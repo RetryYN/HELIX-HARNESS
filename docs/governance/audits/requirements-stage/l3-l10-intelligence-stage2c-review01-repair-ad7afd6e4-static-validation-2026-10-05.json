@@ -1,0 +1,3010 @@
+{
+  "record_kind": "creator-stage2c-review-repair-supplement.v1",
+  "status": "body committed; root inspection and independent review pending; no PO approval or execution claim",
+  "mechanism": "HELIX-INTELLIGENCE",
+  "stage": "Stage 2c",
+  "parents": [
+    "HELIXINTELLIGENCE-L2-068",
+    "HELIXINTELLIGENCE-L2-075"
+  ],
+  "base_commit": "0fa04ee88adf9111486a8a51e64e0f4cb5d4f082",
+  "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+  "body_parent_commit": "0fa04ee88adf9111486a8a51e64e0f4cb5d4f082",
+  "previous_immutable_records": [
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-intelligence-stage2c-root-static-validation-2026-10-05-a4610274f.json",
+      "source_commit": "0fa04ee88adf9111486a8a51e64e0f4cb5d4f082",
+      "sha256": "5da148947b44ca1da9e4e15de29e6d02e5cfea8566466528e9288ebc885aca8c",
+      "bytes": 46303,
+      "unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-intelligence-stage2c-main-publication-cutout-2026-10-05.json",
+      "source_commit": "0fa04ee88adf9111486a8a51e64e0f4cb5d4f082",
+      "sha256": "fedfcfbbae06c303a349f27144a4c4fe48acc004fe64bd99e3c7d0cdc58d7c0c",
+      "bytes": 136844,
+      "unchanged": true
+    }
+  ],
+  "documents": [
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "full_sha256": "71ed947525facac93b8861e206799ac6d4eaedeb47db7cff5dd838a2e7511f0f",
+      "bytes": 18447,
+      "physical_lines": 58
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "full_sha256": "adc15e2f4217d0271fc6db1ac90f5810fbeea8705808c771cd72266eef89bc2f",
+      "bytes": 2074,
+      "physical_lines": 16
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "full_sha256": "e2585be9f3e27184f30b62a645816f000612ea0760e26e00dc08e28a44b7d22e",
+      "bytes": 7927,
+      "physical_lines": 26
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "full_sha256": "07cf94ba5a1f34f333ef90109e004dd4f9d7c2b4df5570c7cf8d46c0287c96a8",
+      "bytes": 14879,
+      "physical_lines": 99
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "full_sha256": "b6df5e718a41779bcd02a9b1dfa7ab6b6560657c90e50a604249989e1b656bfc",
+      "bytes": 1832,
+      "physical_lines": 16
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "full_sha256": "9a261ee29c0dd0f504770f04dc469fca93c7d4b5736d80d12a92c84a799c6eb6",
+      "bytes": 6171,
+      "physical_lines": 25
+    }
+  ],
+  "source_pins": [
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 491,
+        "end": 506
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "152bd91c5e660815f0ac6cabcfc501d527adb18973db329f95c0d16e544a02d9",
+      "role": "fixed adopted L2-068 semantic clauses"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 201,
+        "end": 209
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "f9733900a979eebc6058056ea6b51370f4acd5b602955988985bb1dbf97b3d26",
+      "role": "L11-068 heading locator and acceptance clauses"
+    },
+    {
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "source_path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "physical_lines": {
+        "start": 98,
+        "end": 98
+      },
+      "full_file_sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+      "raw_span_sha256_lf_inclusive": "e67c4a4fda50180a66bc823eaae0a809351c3c0ed677542de912b846c20aa896",
+      "role": "PO adoption row for parent 068"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
+      "physical_lines": {
+        "start": 21365,
+        "end": 21390
+      },
+      "full_file_sha256": "ec970df79eaaf693f8825045b235c43ea10aefa7925701b1fff2a974df3e4e0a",
+      "raw_span_sha256_lf_inclusive": "d583aebbfbb23c608e2bff088445bd5135e35a66a3d7d4a8800bc2f9287553d6",
+      "role": "G0 Stage 2c registration and stage membership"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "docs/governance/audits/requirements-stage/implementation-order-assignments-2026-09-27.json",
+      "physical_lines": {
+        "start": 1859,
+        "end": 1865
+      },
+      "full_file_sha256": "78db3c793c17dbd80ad663a63aadd5f3c1c1e403da6b3bba75518ecfe5ba7f25",
+      "raw_span_sha256_lf_inclusive": "f801f1449705deb417054fa9c2c2e165985478576da1729669d1e5a0a0b4196e",
+      "role": "stage assignment source; candidate membership only"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "docs/governance/decisions/implementation-order-po-decision-2026-10-03.md",
+      "physical_lines": {
+        "start": 5,
+        "end": 46
+      },
+      "full_file_sha256": "c06e922bfd26947f22afebcc5dbd44f57aa04579728872350229792a1c7f1224",
+      "raw_span_sha256_lf_inclusive": "6ae3ef60149b2d3f71cd828d8ad443ce4a17012838e290bedc3969d3cdee229d",
+      "role": "G0 PO choice and sequence"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "docs/governance/l3-l10-authoring-layout.md",
+      "physical_lines": {
+        "start": 1,
+        "end": 71
+      },
+      "full_file_sha256": "d1fb0c89df30aca6bb828f28e58329d57c40bb7593df540625562b5ac920a7ca",
+      "raw_span_sha256_lf_inclusive": "d1fb0c89df30aca6bb828f28e58329d57c40bb7593df540625562b5ac920a7ca",
+      "role": "current L3/L10 placement and paired-doc layout"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "physical_lines": {
+        "start": 148,
+        "end": 168
+      },
+      "full_file_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "raw_span_sha256_lf_inclusive": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9",
+      "role": "legacy L3 definition; requirement/AC and approval boundary"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "physical_lines": {
+        "start": 147,
+        "end": 147
+      },
+      "full_file_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "raw_span_sha256_lf_inclusive": "80e5e1458b29a3a528da1363136da617fc21bc6212b46074b871e2ef0d6964cf",
+      "role": "legacy shared FR/AC support examples"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "physical_lines": {
+        "start": 224,
+        "end": 224
+      },
+      "full_file_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "raw_span_sha256_lf_inclusive": "727dd6e270f6f0fdf2c1ae597c70366bf4db298b4476a073c408c5b8e2bdbd47",
+      "role": "legacy shared FR/AC support examples"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+      "physical_lines": {
+        "start": 26,
+        "end": 45
+      },
+      "full_file_sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+      "raw_span_sha256_lf_inclusive": "da0c7c2017143bd6128e0d84227c341fbcaedb9027276d427de11e51f706974f",
+      "role": "legacy worker-common support/owner/source conditions"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+      "physical_lines": {
+        "start": 47,
+        "end": 110
+      },
+      "full_file_sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+      "raw_span_sha256_lf_inclusive": "29aee7e56d632ab40cddf6311876300b43aa04ace80eefbe414820439a53a419",
+      "role": "legacy worker-common support/owner/source conditions"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+      "physical_lines": {
+        "start": 123,
+        "end": 137
+      },
+      "full_file_sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+      "raw_span_sha256_lf_inclusive": "69673a3f57962479e561a52991ff5bebb584d83a4054af849c3fdbecf3b42f77",
+      "role": "legacy worker-common support/owner/source conditions"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/worker-common-contract-acceptance.md",
+      "physical_lines": {
+        "start": 18,
+        "end": 37
+      },
+      "full_file_sha256": "c8dff734891a6a7350feb9b698c40e1616946cdd424433d662f1da49d8ac800d",
+      "raw_span_sha256_lf_inclusive": "b6114f9e9fda413b29b97693836562e55efc2b084f4f199dc839cee78c106b7b",
+      "role": "legacy worker-common paired acceptance"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/worker-common-contract-acceptance.md",
+      "physical_lines": {
+        "start": 39,
+        "end": 64
+      },
+      "full_file_sha256": "c8dff734891a6a7350feb9b698c40e1616946cdd424433d662f1da49d8ac800d",
+      "raw_span_sha256_lf_inclusive": "ea7c842d97f64693f2a9242209f79805f2b0aff9f0fc1f84371634296ae89473",
+      "role": "legacy worker-common paired acceptance"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+      "physical_lines": {
+        "start": 17,
+        "end": 55
+      },
+      "full_file_sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+      "raw_span_sha256_lf_inclusive": "36e097a074fe674fddd2719b6c196163a6aa625908c90f0125ff42a99e2a41da",
+      "role": "legacy resident/assistant role and independent review acceptance"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md",
+      "physical_lines": {
+        "start": 162,
+        "end": 170
+      },
+      "full_file_sha256": "d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a",
+      "raw_span_sha256_lf_inclusive": "d8e3f0e9afaa03c20985808ccade01279952ea5366655e3d4e95ca9e97dd3df5",
+      "role": "legacy L10 paired-verification and backflow form"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md",
+      "physical_lines": {
+        "start": 195,
+        "end": 207
+      },
+      "full_file_sha256": "d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a",
+      "raw_span_sha256_lf_inclusive": "9a91c1d2094be6c1c0463b9f3af280f41abb15b0503f8520c7e72be12c27c75b",
+      "role": "legacy L10 paired-verification and backflow form"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md",
+      "physical_lines": {
+        "start": 16,
+        "end": 56
+      },
+      "full_file_sha256": "949b0da00d2a417e1b36d3679b89735de7adadf831f567dbe383dfe6337f19e4",
+      "raw_span_sha256_lf_inclusive": "fbb50e1ed591235cba594d8b8a10d5f1c55be865e3df9c9daf75f3814a18ab6a",
+      "role": "legacy three-subdocument format; L12 discrepancy source"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+      "physical_lines": {
+        "start": 21,
+        "end": 34
+      },
+      "full_file_sha256": "2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d",
+      "raw_span_sha256_lf_inclusive": "0392a485245f3de9165f2d3fc17f222b33ef0bbdfc059b3efe466b997576e007",
+      "role": "legacy NFR measure/acceptance form; old values not reused"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+      "physical_lines": {
+        "start": 58,
+        "end": 81
+      },
+      "full_file_sha256": "2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d",
+      "raw_span_sha256_lf_inclusive": "092d9b2750c81d8c05857a45692cb1f64996554cc3e679cf7a6e74c6d0990838",
+      "role": "legacy NFR measure/acceptance form; old values not reused"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "docs/helix-harness/sources/capability-reinforcement-po-original-2026-09-27.md",
+      "physical_lines": {
+        "start": 1,
+        "end": 60
+      },
+      "full_file_sha256": "ab8bb6ae8cd418053d6baaafccaa80ee8ef2e715caab1576e5a00c306e97d1f8",
+      "raw_span_sha256_lf_inclusive": "ab8bb6ae8cd418053d6baaafccaa80ee8ef2e715caab1576e5a00c306e97d1f8",
+      "role": "PO support intent source item 5"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "docs/governance/decisions/worker-support-derivation-2026-09-27.md",
+      "physical_lines": {
+        "start": 1,
+        "end": 44
+      },
+      "full_file_sha256": "433e3887f834f9c0c9054282c4c25b9caee59334c1121a15fb7dad86661b014d",
+      "raw_span_sha256_lf_inclusive": "433e3887f834f9c0c9054282c4c25b9caee59334c1121a15fb7dad86661b014d",
+      "role": "support unit derivation and owner split"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 491,
+        "end": 491
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "819f8f3fddf420ed261a6ca76857789fe35959c5f69cb35f049d939e6ab27570",
+      "role": "fixed L2-068 condition atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 492,
+        "end": 492
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "role": "fixed L2-068 condition atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 493,
+        "end": 493
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "5fecb9cb29701fd4fbe27d6461df006db6752452fa6010743c0982f3e6a3f482",
+      "role": "fixed L2-068 condition atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 494,
+        "end": 494
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "6d4fa3a48144d63cc93e7e69bc4359473a1352deaa8da848d1d18d50cdc79dd2",
+      "role": "fixed L2-068 condition atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 495,
+        "end": 495
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "cae0ac6a4b0430e473dc8567453e83f881eaaabadc0526228857255f96ffb254",
+      "role": "fixed L2-068 condition atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 496,
+        "end": 496
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "d99d02eb77d0d4aabd81a81bbfbcfb192528707e580e6c4c643a9a122f789d9a",
+      "role": "fixed L2-068 condition atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 497,
+        "end": 497
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "24d70736f4286906ff5e1f01182c641bd9fc3ec418dace3b729694f1f5deb1f5",
+      "role": "fixed L2-068 condition atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 498,
+        "end": 498
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "cf4b2e3c99a9ec8adc9786575c1473dcd295b44673571309b66e5afa1c91c285",
+      "role": "fixed L2-068 condition atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 499,
+        "end": 499
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "a6a0fd1abc7a6334ba2d11b904617735fd83f83575ff7a7381d64d5e8bfa137f",
+      "role": "fixed L2-068 condition atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 500,
+        "end": 500
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "51c605c7744ac38df2798a83d1eba908d1d2ea95127d0d3b98cd4c0e3b58b5ac",
+      "role": "fixed L2-068 condition atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 501,
+        "end": 501
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "ba5f0d3a5e8ff9fe385b0716e30e01a96554c018d470b3a692e44e225ca454b3",
+      "role": "fixed L2-068 condition atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 502,
+        "end": 502
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "61a26dbd8286229202d6f1f2c2b466a39db5b17786c762b885a260ca62491c8c",
+      "role": "fixed L2-068 condition atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 503,
+        "end": 503
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "c4b40730dddd21509af64fee4a3bfe29ca9fad54c243315dcd3e8e25a15229df",
+      "role": "fixed L2-068 condition atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 504,
+        "end": 504
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "dbc1a18d14f9e7b5949fc97449a35d7a0dfe3e4445ba16f19aa103b7d5891473",
+      "role": "fixed L2-068 condition atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 505,
+        "end": 505
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "c14e31e041af81d4c358fad4712e5923c69db4b724f3acd8bae87ce92a92672c",
+      "role": "fixed L2-068 condition atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 506,
+        "end": 506
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "role": "fixed L2-068 condition atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 201,
+        "end": 201
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "f9eb3926fb800ae7294536cd6e406c5f3cf6d231105a1f57645b49cf73a3b317",
+      "role": "fixed L11-068 line atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 202,
+        "end": 202
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "role": "fixed L11-068 line atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 203,
+        "end": 203
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "7ad925302c336c6bfc5cb72485992cb53550263006e7f20b5a790274c13ecb2e",
+      "role": "fixed L11-068 line atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 204,
+        "end": 204
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "471789aff707e132d9ff318b62b62260703c265bf1c1ff3c4274595500c71060",
+      "role": "fixed L11-068 line atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 205,
+        "end": 205
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "427ea51c8d6e36b43311661c9222bcbe9a5a3bf24ce3831447d886c16f118fb2",
+      "role": "fixed L11-068 line atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 206,
+        "end": 206
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "f601171060eb24e8df36f5b4f1ae6db80d511ecdf7a1ccd4d3ce0c5a95d310b8",
+      "role": "fixed L11-068 line atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 207,
+        "end": 207
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "952ac4ed5db919441f2d402b7f94e8d660c63da479c17ec481d1c762f5f8b513",
+      "role": "fixed L11-068 line atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 208,
+        "end": 208
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "78adfe2c392506ee3f9fa8490c6614aeb5c68cbd11671672bf1c10930d1593b7",
+      "role": "fixed L11-068 line atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 209,
+        "end": 209
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "8b49c6fa27929c59966d08495a69d8144aabbcb10c09adcdeda3e2d15102c580",
+      "role": "fixed L11-068 line atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 491,
+        "end": 506
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "152bd91c5e660815f0ac6cabcfc501d527adb18973db329f95c0d16e544a02d9",
+      "raw_span_bytes": 8073,
+      "role": "fixed L2-068 full scope and operation-record clauses"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 500,
+        "end": 500
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "51c605c7744ac38df2798a83d1eba908d1d2ea95127d0d3b98cd4c0e3b58b5ac",
+      "raw_span_bytes": 440,
+      "role": "fixed L2-068 operation-time required-record clause"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 202,
+        "end": 209
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "21bae7a8fbe3a4c0b53dc3f038dc52e0e9b32ac534d5c5993ee305501800f443",
+      "raw_span_bytes": 4071,
+      "role": "fixed L11-068 normal, error, and missing-duty oracle clauses"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 205,
+        "end": 205
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "427ea51c8d6e36b43311661c9222bcbe9a5a3bf24ce3831447d886c16f118fb2",
+      "raw_span_bytes": 487,
+      "role": "fixed L11-068 error examples, missing/contradictory-source candidate output"
+    },
+    {
+      "source_commit": "3930aa4b41aaa311b1fcbccdbf9e6d8f9e02f002",
+      "source_path": "docs/governance/github-upstream-operating-model.md",
+      "physical_lines": {
+        "start": 115,
+        "end": 119
+      },
+      "full_file_sha256": "eed2b774bb78545ac53c7d55f3ae3ab4e9c4f421b4eaf3ac3bcdbcdd869dd27b",
+      "raw_span_sha256_lf_inclusive": "39aad58d4c7bb5c3bac3427d5892b889605654badb6157db579f3837d9e7fb14",
+      "raw_span_bytes": 560,
+      "role": "delegated L3/L10 approval authority state for status wording"
+    }
+  ],
+  "source_pin_checks": [
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 491,
+        "end": 506
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "152bd91c5e660815f0ac6cabcfc501d527adb18973db329f95c0d16e544a02d9",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 201,
+        "end": 209
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "f9733900a979eebc6058056ea6b51370f4acd5b602955988985bb1dbf97b3d26",
+      "verified": true
+    },
+    {
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "source_path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "physical_lines": {
+        "start": 98,
+        "end": 98
+      },
+      "full_file_sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+      "raw_span_sha256_lf_inclusive": "e67c4a4fda50180a66bc823eaae0a809351c3c0ed677542de912b846c20aa896",
+      "verified": true
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
+      "physical_lines": {
+        "start": 21365,
+        "end": 21390
+      },
+      "full_file_sha256": "ec970df79eaaf693f8825045b235c43ea10aefa7925701b1fff2a974df3e4e0a",
+      "raw_span_sha256_lf_inclusive": "d583aebbfbb23c608e2bff088445bd5135e35a66a3d7d4a8800bc2f9287553d6",
+      "verified": true
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "docs/governance/audits/requirements-stage/implementation-order-assignments-2026-09-27.json",
+      "physical_lines": {
+        "start": 1859,
+        "end": 1865
+      },
+      "full_file_sha256": "78db3c793c17dbd80ad663a63aadd5f3c1c1e403da6b3bba75518ecfe5ba7f25",
+      "raw_span_sha256_lf_inclusive": "f801f1449705deb417054fa9c2c2e165985478576da1729669d1e5a0a0b4196e",
+      "verified": true
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "docs/governance/decisions/implementation-order-po-decision-2026-10-03.md",
+      "physical_lines": {
+        "start": 5,
+        "end": 46
+      },
+      "full_file_sha256": "c06e922bfd26947f22afebcc5dbd44f57aa04579728872350229792a1c7f1224",
+      "raw_span_sha256_lf_inclusive": "6ae3ef60149b2d3f71cd828d8ad443ce4a17012838e290bedc3969d3cdee229d",
+      "verified": true
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "docs/governance/l3-l10-authoring-layout.md",
+      "physical_lines": {
+        "start": 1,
+        "end": 71
+      },
+      "full_file_sha256": "d1fb0c89df30aca6bb828f28e58329d57c40bb7593df540625562b5ac920a7ca",
+      "raw_span_sha256_lf_inclusive": "d1fb0c89df30aca6bb828f28e58329d57c40bb7593df540625562b5ac920a7ca",
+      "verified": true
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "physical_lines": {
+        "start": 148,
+        "end": 168
+      },
+      "full_file_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "raw_span_sha256_lf_inclusive": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9",
+      "verified": true
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "physical_lines": {
+        "start": 147,
+        "end": 147
+      },
+      "full_file_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "raw_span_sha256_lf_inclusive": "80e5e1458b29a3a528da1363136da617fc21bc6212b46074b871e2ef0d6964cf",
+      "verified": true
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "physical_lines": {
+        "start": 224,
+        "end": 224
+      },
+      "full_file_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "raw_span_sha256_lf_inclusive": "727dd6e270f6f0fdf2c1ae597c70366bf4db298b4476a073c408c5b8e2bdbd47",
+      "verified": true
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+      "physical_lines": {
+        "start": 26,
+        "end": 45
+      },
+      "full_file_sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+      "raw_span_sha256_lf_inclusive": "da0c7c2017143bd6128e0d84227c341fbcaedb9027276d427de11e51f706974f",
+      "verified": true
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+      "physical_lines": {
+        "start": 47,
+        "end": 110
+      },
+      "full_file_sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+      "raw_span_sha256_lf_inclusive": "29aee7e56d632ab40cddf6311876300b43aa04ace80eefbe414820439a53a419",
+      "verified": true
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+      "physical_lines": {
+        "start": 123,
+        "end": 137
+      },
+      "full_file_sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+      "raw_span_sha256_lf_inclusive": "69673a3f57962479e561a52991ff5bebb584d83a4054af849c3fdbecf3b42f77",
+      "verified": true
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/worker-common-contract-acceptance.md",
+      "physical_lines": {
+        "start": 18,
+        "end": 37
+      },
+      "full_file_sha256": "c8dff734891a6a7350feb9b698c40e1616946cdd424433d662f1da49d8ac800d",
+      "raw_span_sha256_lf_inclusive": "b6114f9e9fda413b29b97693836562e55efc2b084f4f199dc839cee78c106b7b",
+      "verified": true
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/worker-common-contract-acceptance.md",
+      "physical_lines": {
+        "start": 39,
+        "end": 64
+      },
+      "full_file_sha256": "c8dff734891a6a7350feb9b698c40e1616946cdd424433d662f1da49d8ac800d",
+      "raw_span_sha256_lf_inclusive": "ea7c842d97f64693f2a9242209f79805f2b0aff9f0fc1f84371634296ae89473",
+      "verified": true
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+      "physical_lines": {
+        "start": 17,
+        "end": 55
+      },
+      "full_file_sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+      "raw_span_sha256_lf_inclusive": "36e097a074fe674fddd2719b6c196163a6aa625908c90f0125ff42a99e2a41da",
+      "verified": true
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md",
+      "physical_lines": {
+        "start": 162,
+        "end": 170
+      },
+      "full_file_sha256": "d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a",
+      "raw_span_sha256_lf_inclusive": "d8e3f0e9afaa03c20985808ccade01279952ea5366655e3d4e95ca9e97dd3df5",
+      "verified": true
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md",
+      "physical_lines": {
+        "start": 195,
+        "end": 207
+      },
+      "full_file_sha256": "d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a",
+      "raw_span_sha256_lf_inclusive": "9a91c1d2094be6c1c0463b9f3af280f41abb15b0503f8520c7e72be12c27c75b",
+      "verified": true
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md",
+      "physical_lines": {
+        "start": 16,
+        "end": 56
+      },
+      "full_file_sha256": "949b0da00d2a417e1b36d3679b89735de7adadf831f567dbe383dfe6337f19e4",
+      "raw_span_sha256_lf_inclusive": "fbb50e1ed591235cba594d8b8a10d5f1c55be865e3df9c9daf75f3814a18ab6a",
+      "verified": true
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+      "physical_lines": {
+        "start": 21,
+        "end": 34
+      },
+      "full_file_sha256": "2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d",
+      "raw_span_sha256_lf_inclusive": "0392a485245f3de9165f2d3fc17f222b33ef0bbdfc059b3efe466b997576e007",
+      "verified": true
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+      "physical_lines": {
+        "start": 58,
+        "end": 81
+      },
+      "full_file_sha256": "2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d",
+      "raw_span_sha256_lf_inclusive": "092d9b2750c81d8c05857a45692cb1f64996554cc3e679cf7a6e74c6d0990838",
+      "verified": true
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "docs/helix-harness/sources/capability-reinforcement-po-original-2026-09-27.md",
+      "physical_lines": {
+        "start": 1,
+        "end": 60
+      },
+      "full_file_sha256": "ab8bb6ae8cd418053d6baaafccaa80ee8ef2e715caab1576e5a00c306e97d1f8",
+      "raw_span_sha256_lf_inclusive": "ab8bb6ae8cd418053d6baaafccaa80ee8ef2e715caab1576e5a00c306e97d1f8",
+      "verified": true
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "docs/governance/decisions/worker-support-derivation-2026-09-27.md",
+      "physical_lines": {
+        "start": 1,
+        "end": 44
+      },
+      "full_file_sha256": "433e3887f834f9c0c9054282c4c25b9caee59334c1121a15fb7dad86661b014d",
+      "raw_span_sha256_lf_inclusive": "433e3887f834f9c0c9054282c4c25b9caee59334c1121a15fb7dad86661b014d",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 491,
+        "end": 491
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "819f8f3fddf420ed261a6ca76857789fe35959c5f69cb35f049d939e6ab27570",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 492,
+        "end": 492
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 493,
+        "end": 493
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "5fecb9cb29701fd4fbe27d6461df006db6752452fa6010743c0982f3e6a3f482",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 494,
+        "end": 494
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "6d4fa3a48144d63cc93e7e69bc4359473a1352deaa8da848d1d18d50cdc79dd2",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 495,
+        "end": 495
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "cae0ac6a4b0430e473dc8567453e83f881eaaabadc0526228857255f96ffb254",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 496,
+        "end": 496
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "d99d02eb77d0d4aabd81a81bbfbcfb192528707e580e6c4c643a9a122f789d9a",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 497,
+        "end": 497
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "24d70736f4286906ff5e1f01182c641bd9fc3ec418dace3b729694f1f5deb1f5",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 498,
+        "end": 498
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "cf4b2e3c99a9ec8adc9786575c1473dcd295b44673571309b66e5afa1c91c285",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 499,
+        "end": 499
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "a6a0fd1abc7a6334ba2d11b904617735fd83f83575ff7a7381d64d5e8bfa137f",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 500,
+        "end": 500
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "51c605c7744ac38df2798a83d1eba908d1d2ea95127d0d3b98cd4c0e3b58b5ac",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 501,
+        "end": 501
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "ba5f0d3a5e8ff9fe385b0716e30e01a96554c018d470b3a692e44e225ca454b3",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 502,
+        "end": 502
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "61a26dbd8286229202d6f1f2c2b466a39db5b17786c762b885a260ca62491c8c",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 503,
+        "end": 503
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "c4b40730dddd21509af64fee4a3bfe29ca9fad54c243315dcd3e8e25a15229df",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 504,
+        "end": 504
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "dbc1a18d14f9e7b5949fc97449a35d7a0dfe3e4445ba16f19aa103b7d5891473",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 505,
+        "end": 505
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "c14e31e041af81d4c358fad4712e5923c69db4b724f3acd8bae87ce92a92672c",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 506,
+        "end": 506
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 201,
+        "end": 201
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "f9eb3926fb800ae7294536cd6e406c5f3cf6d231105a1f57645b49cf73a3b317",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 202,
+        "end": 202
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 203,
+        "end": 203
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "7ad925302c336c6bfc5cb72485992cb53550263006e7f20b5a790274c13ecb2e",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 204,
+        "end": 204
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "471789aff707e132d9ff318b62b62260703c265bf1c1ff3c4274595500c71060",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 205,
+        "end": 205
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "427ea51c8d6e36b43311661c9222bcbe9a5a3bf24ce3831447d886c16f118fb2",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 206,
+        "end": 206
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "f601171060eb24e8df36f5b4f1ae6db80d511ecdf7a1ccd4d3ce0c5a95d310b8",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 207,
+        "end": 207
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "952ac4ed5db919441f2d402b7f94e8d660c63da479c17ec481d1c762f5f8b513",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 208,
+        "end": 208
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "78adfe2c392506ee3f9fa8490c6614aeb5c68cbd11671672bf1c10930d1593b7",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 209,
+        "end": 209
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "8b49c6fa27929c59966d08495a69d8144aabbcb10c09adcdeda3e2d15102c580",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 491,
+        "end": 506
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "152bd91c5e660815f0ac6cabcfc501d527adb18973db329f95c0d16e544a02d9",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 500,
+        "end": 500
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "51c605c7744ac38df2798a83d1eba908d1d2ea95127d0d3b98cd4c0e3b58b5ac",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 202,
+        "end": 209
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "21bae7a8fbe3a4c0b53dc3f038dc52e0e9b32ac534d5c5993ee305501800f443",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 205,
+        "end": 205
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "427ea51c8d6e36b43311661c9222bcbe9a5a3bf24ce3831447d886c16f118fb2",
+      "verified": true
+    },
+    {
+      "source_commit": "3930aa4b41aaa311b1fcbccdbf9e6d8f9e02f002",
+      "source_path": "docs/governance/github-upstream-operating-model.md",
+      "physical_lines": {
+        "start": 115,
+        "end": 119
+      },
+      "full_file_sha256": "eed2b774bb78545ac53c7d55f3ae3ab4e9c4f421b4eaf3ac3bcdbcdd869dd27b",
+      "raw_span_sha256_lf_inclusive": "39aad58d4c7bb5c3bac3427d5892b889605654badb6157db579f3837d9e7fb14",
+      "verified": true
+    }
+  ],
+  "current_line_pins": [
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 1,
+      "literal": "# HELIX-INTELLIGENCE L3 機能要件（Stage 2c）",
+      "raw_line_sha256_lf_inclusive": "d1da8dd2a09b02f9f498042ef5d2d89098da371985015efcec79f642754957e1"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 2,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 3,
+      "literal": "状態: L3未承認（委任承認前）の起草候補。親は基準main `633bf12ea8f948db8ba3d6600179c4a9507377a7` で採択された要求の固定対象revisionに限る。L3承認、実装・実行の許可を生成しない。",
+      "raw_line_sha256_lf_inclusive": "a3aff43f9be63300141fb680098bee8ec2595f81be3f9084997fbbc491aa5e39"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 4,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 5,
+      "literal": "## 目的とsource",
+      "raw_line_sha256_lf_inclusive": "1446b9620ce6c13aeabb38a0cfcd7748ee623635f84dc3cbc0530315f7d70d68"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 6,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 7,
+      "literal": "固定採択L2/L11をシステム動作に詳細化し、各FRをこの文書内のACへ結び、対となるL10 `functional-verification.md` のCASEへ追跡する。旧L3のFR/AC trace形と旧paired acceptanceの正常・negative oracle形は再導出する。旧ID、provider/runtime固有方式、旧L10/L12実行条件は移さない。",
+      "raw_line_sha256_lf_inclusive": "3d970ca933f2cd25d514a469a3ac0068251317f9428ed5d8a4435416d784e3a9"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 8,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 9,
+      "literal": "旧HELIX起点は、旧L3 layer定義 `archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md:148-168`（LEGACY-ASSET-F542125805B777D8A56A）、旧shared FR/AC `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md:38-57,134-197,198-307`（LEGACY-ASSET-EE5DBACC7F28F7D1F605）、旧paired test shape `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md:32-90,91-216`（LEGACY-ASSET-44DD86E3DEC09E65EF51）です。INT specific旧L3は `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md:26-45,47-110,123-137`（LEGACY-ASSET-9114D4E463E95B67DD0C）、対は `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/worker-common-contract-acceptance.md:18-37,39-64`（LEGACY-ASSET-C6ADB99F1353965C5449）と `resident-lane-orchestration-acceptance.md:17-55`（LEGACY-ASSET-437A6A68F9A9E0AE1B9E）です。旧L10 phase定義 `archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md:162-170,195-207` はL3↔L10 pairとL3/L4-L6への戻しを定義しますが、旧L3 README `archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md:16-56` は下流をL3→L12 pairとし、旧L10 processとの記述が食い違います。そこでL10 phaseを検証pair/差戻しの形式起点、READMEをfunctional/business/NFR sub-doc分割の形式起点に限定し、READMEのL12/G3 gateや旧L10の運用・承認段階は継承しません。旧L3のengineering discipline（旧L3定義:163-165、no-code-first・責務owner・許容complexity等をPLAN契約でfreeze）も独立した実行/CI規則として移さず、現行のsource-bound要件・L10 oracle traceだけを再導出します。項目別の再利用・再導出・置換とraw source pinsはrevision-specificなhandoff/監査記録へ収録し、private `/tmp` artifactを正本依存にしません。",
+      "raw_line_sha256_lf_inclusive": "23e454779898780a4104aad213baba513e9a3c18b52b2ea5fa6a767c9359492d"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 10,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 11,
+      "literal": "対象は採択済み `HELIXINTELLIGENCE-L2-068` と `HELIXINTELLIGENCE-L2-075`。Stage 2aの010/066草稿は含めない。項目別sourceと再導出は時点監査へ記録する。",
+      "raw_line_sha256_lf_inclusive": "01ae18ae8064cbf3045a57d37ab9c686962490f8bfe7a1d03a47a3793888c957"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 12,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 13,
+      "literal": "## FR-INT-068 — 作業中Workerへの単体支援候補（Stage 2c）",
+      "raw_line_sha256_lf_inclusive": "02a647d37191e0329099a4ea05eadd1cce53f7ac0faec16e8d7a463ce52f08ee"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 14,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 15,
+      "literal": "- 親: `HELIXINTELLIGENCE-L2-068`、親L1は `HELIXINTELLIGENCE-L1-002`、`HELIXINTELLIGENCE-L1-005`、`HELIXINTELLIGENCE-L1-007`、`HELIXINTELLIGENCE-L1-008`。context L1は `HELIXINTELLIGENCE-L1-003`、`HELIXINTELLIGENCE-L1-012`、`HELIXINTELLIGENCE-L1-013`、`HELIXINTELLIGENCE-L1-019`、`HELIXINTELLIGENCE-L1-020`。`version_target: 1.0` は候補目標であり、収載・採択・releaseを意味しない。",
+      "raw_line_sha256_lf_inclusive": "43ff35269510aea80965046093f297118c4cc61854a724257144b5a471c80125"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 16,
+      "literal": "- 固定L2: `docs/helix-intelligence/L2-requirements/intelligence-requirements.md:491-506`、固定revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。PO採択decisionは `docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md:98`、採択基準mainは `633bf12ea8f948db8ba3d6600179c4a9507377a7`。固定L11の条件行は `docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md:202-209` 同revision。",
+      "raw_line_sha256_lf_inclusive": "d8ea9919e55f8c95bff235b07b91315ea155f59819fe3190365a6132faaa9008"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 17,
+      "literal": "- Owner: INTELLIGENCEは既存条件内の診断・設計・test支援候補を作る。元Workerが実装を担い、OSはassignment/ticket/dispatch/budget/stop、HARNESSまたは既存対象ownerはrequirement/design/oracle/受入意味、SECURITY/OSはdata-use/authority、BRAINはcandidate applicability、LABOは長期評価・一般化を所有する。新ownerは作らない。",
+      "raw_line_sha256_lf_inclusive": "0dbdb0a08d6386f407ec52994aada9f75c3bf1995d42abfa7f702041d256ca81"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 18,
+      "literal": "- 入力: 有効な元Worker assignmentまたは着手予定assignment、task/ticket identity、scope、対象requirement/design revision、既存HARNESS-L2-022 oracleと受入義務、operation別input/output contract、OSの割当budget/deadline/stop、実際に選択したsourceのidentity/version/owner/provenance/利用許可/applicability。failure/blocked evidenceは共通必須にしない。症状・観測・再現材料は、それを要するdiagnosis/consult operationだけへ追加する。",
+      "raw_line_sha256_lf_inclusive": "6b5fba211a4680e70fd12c7c59f16b40509c9b59ebb84a0c8886f81c07b2e272"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 19,
+      "literal": "- 出力候補: sourceに結び付いた診断（観測fact、inference、hypothesis、unknownを区別）、関連する最小design/code/prior-failure/BRAIN context、subtaskごとの依存・受入・stop案、必要時の限定consult question、元Workerへの修正案、既存HARNESS-L2-022 oracleに束縛したtest/oracle拡張案、evidence/coverage checklist。いずれも候補であり要求、accepted oracle、ticket、assignment、run resultではない。",
+      "raw_line_sha256_lf_inclusive": "3d76f3735ead4c1a56f8b401950e37decb5dcca2cd43bfa9d8b74addca9e11bc"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 20,
+      "literal": "- AC-INT-068-01（単体成立・事前準備）: 操作に必要な共通入力と既存oracleが揃えば、失敗報告やHELIXOS-L2-028/029完了を要求せず、作業前のtest/instruction/support candidateを返せる。親のscope・requirement/design revision・元assignment・budget/deadline/stop・既存義務を維持する。consult不要の操作にconsult receiptを要求しない。",
+      "raw_line_sha256_lf_inclusive": "69e035a8abe7c06dec2e8b6fb99a285f7457dffa472a7b282c9740b2ffa89aae"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 21,
+      "literal": "- AC-INT-068-02（diagnosis証拠）: diagnosis/consultを選ぶ場合、入力された症状・観測・再現材料とsourceを結び付け、観測factと解釈・仮説・unknownを分離する。必要証拠がなければそのdiagnosis/consult candidateだけを保留し、不足と既存ownerを返す。妥当な事前準備候補を同じ不足で止めない。",
+      "raw_line_sha256_lf_inclusive": "dc7046c22015e0b03b0cef9aa47922103de737344163049c64c511918ac0e5a5"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 22,
+      "literal": "- AC-INT-068-03（sourceとpacket）: 選択sourceのidentity/version/owner/state/provenance/scope/permission/applicabilityを保持し、必要な選択sourceのmissing/stale/conflict/restricted/out-of-scopeを成功や事実へ補完しない。未選択sourceは強制依存にしない。packet/contextを使う場合はAIDOCのsource/revision/authorityとsummary non-authority、OS CLR-R06の必要情報・未完義務の保持に従う。secret/private reasoningや未承認結論をpacketへ入れず、summaryをauthority化せず、選択packetの必要な未完義務を落とさない。packet利用自体を新しい能力や必須入力へしない。",
+      "raw_line_sha256_lf_inclusive": "e2e908d3776b79feeec9016df9f8e44299f8597a56a387a624f35cb62097c7c3"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 23,
+      "literal": "- AC-INT-068-04（候補出力・oracle trace）: 実施operationとtrigger、期待output、scopeを識別して記録する。いずれかが欠けるcandidateは不足を明示し、完全な候補/受入条件として扱わず、oracle意味をHARNESSまたは対象ownerへ戻す。各subtaskのdependency/acceptance/stop案、修正案、consult question、test/oracle案はtask/scopeと固定requirement/design/既存HARNESS-L2-022 oracleへtraceし、根拠source・仮定・unknown・代替案・return targetを記録する。test/oracleは追加提案に留まり、accepted oracleや受入条件として確定せず、既存oracleも変更しない。",
+      "raw_line_sha256_lf_inclusive": "79b4ca86cf7868831444fe026b122d75d935428ba2a844464fc73d626648c064"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 24,
+      "literal": "- AC-INT-068-05（権限と担当）: 元Workerは修正・実装責任を維持する。INTELLIGENCEはassignment/dispatch、test/CI実行、受入、merge、requirement/design authority、BRAINへの直接generic promotionを行わず、支援者/助言者を同一変更の独立reviewerまたは利用者受入者として数えない。HELIXOS-L2-020の実行、HELIXOS-L2-028の実consult/handoff、HELIXOS-L2-029の作業往復は選択された別operationの責務であり、本単体候補の成功条件へ取り込まない。Bench未評価は未評価のまま保ち、配置適性を代行判定しない。",
+      "raw_line_sha256_lf_inclusive": "08599a7abfc9c01b6c49d2dcdc1de4709ef54005e0141cc6d292f58fb19e86f5"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 25,
+      "literal": "- AC-INT-068-06（戻し・停止・版）: task/ticket/assignment/scope/budget/stop不足はOS、事実/provenance/applicabilityは既存source owner、requirement/design/oracle意味はHARNESSまたは既存対象owner、権限/data-useはSECURITY/OS、BRAIN applicabilityはBRAIN、長期effectiveness/generalizationはLABOへ戻す。operation単位で不足・停止理由・再開条件・未完義務を保持し、無関係な正常operationへ波及させない。要求の意味/scope/owner/version変更が必要な不足のみ上流へ戻す。依存する既存契約は `HELIXINTELLIGENCE-L2-002/003/005/007/008/012/013/019/020`、対象判断contract、OSの有効task/scope context、HARNESS-L2-022である。`HELIXLABO-L2-055`は利用可能な場合だけ歴史材料として参照し、未評価は未評価のまま保つ。HELIXOS-L2-020は選択されたtest実行、HELIXOS-L2-028は実consult/handoff、HELIXOS-L2-029はcomposite作業往復という各別operationの責務である。",
+      "raw_line_sha256_lf_inclusive": "790581e19d6df11eda06d46bdf9cf9ffcc51253edc2a5555da7b8cce8e0f5fe2"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 26,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 27,
+      "literal": "旧sourceとの差分: 旧L3 shared FR/ACのrequirement→AC traceと責務分離、旧paired acceptanceのnormal/negative oracle形は再導出する。旧worker-common contractとresident-lane acceptanceのsource-bound入力、元Worker責任、助言者と独立reviewの分離を意味対応させる。旧Issue/PLAN authority、旧runtime/CLI、test実行方式、旧stage/gate、provider固有方式、engineering-discipline実行規則は再利用しない。旧READMEのL12と旧L10 processの層差は既存冒頭の通り形式起点を限定する。",
+      "raw_line_sha256_lf_inclusive": "55aaf423fba4d12c9dbe70c75f1df1c72033f259c8fe863c34b78dffefe816ae"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 28,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 29,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 30,
+      "literal": "## FR-INT-075 — Agentic Audit Probeのproposal識別と適格化境界（Stage 2c）",
+      "raw_line_sha256_lf_inclusive": "e8db5b5de7ddaf7d2f58d0b131255cc1ef0ab47a68b10a8de6c3b98bbe04f419"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 31,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 32,
+      "literal": "- 親revision: `HELIXINTELLIGENCE-L2-075`、`version_target: 1.0`。本文snapshot内の「未採択candidate」表記より後のPO判断記録を採否の正本とする。PO `MPR-RC-HELIXINTELLIGENCE-L2-075-002` は、L2/L11本文SHA `c302d45ef008b8d73f71c9484c1c9e2432c8e195f23c559b513d36309cdb80f6` / `b81bd9e52df97cc92f0f228fb9effab476012836e7e113b985641ea2c99ac08e` に一致するrevisionを本文どおり承認している。L3は承認前の起草候補である。",
+      "raw_line_sha256_lf_inclusive": "b4b2181bc28a8e65d736af7a81bee498aa18f257680599711d8fd0284aee8cfb"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 33,
+      "literal": "- 対応する採択上流: `HELIXINTELLIGENCE-L1-009`（監査結果をHEAD/authority/作成者/evidence/reproduction/falsificationへ辿る、自由文だけでauthorityを変えない）と `HELIXINTELLIGENCE-L2-009` のaudit finding trace。L2-075本文の対象条件は `1880c422311a7f8321dbb0e2b98fa12c69449201` のL2 `618-625` / L11 `337-343`。G0 Stage 2cは案Bの限定したWorker support/test generationをStage 2b完了gateなしで進め、G0順序表の明示前提欄から追加のStage完了gateを作らない。採択済みL1-009／L2-009のtraceとowner境界は前記の意味根拠として保持する。",
+      "raw_line_sha256_lf_inclusive": "761e83ab8e880e9682ccb3d3a582ab129b03616c0731a7e4eeed71e5ff20139a"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 34,
+      "literal": "- Owner境界: INTELLIGENCEはidentity/evidence/qualification状態を保持したprobe proposalを返す。監査対象authority/sourceは既存機構owner、existing UIL-01〜04はduplicate/existing owner、独立再現、反証、expiry/supersessionの既存qualification/handoff先であり、本候補でUILの規則・owner・routeを再実装しない。AI自身は `verified`、P0/P1、owner、route、remediation adoptionを確定しない。PR review findingとsystem audit proposalは別identity・別schemaに保つ。finding proposalとremediation proposalは別identity・別判定を保つ。",
+      "raw_line_sha256_lf_inclusive": "035c071464fd29fd73da266716b5b23cc86f6d56f2a319cde1ce204da0bf4e32"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 35,
+      "literal": "- FR-INT-075-01（proposal identity）: `AgenticAuditProbeProposalV1`候補はproposal ID、audit episode、producer provider/runtime/model/version/session、repository、candidate HEAD、worktree identity、authority revision/digest、責務/invariant ID、観測挙動、evidence、reproduction recipe、counterevidence、confidence、expiry、finding advisory、remediation advisory、proposal digestを結ぶ。各fieldは同じproposal/audit/source/target identityへ追跡できる。欠落値を他fieldから補完せず、findingとremediation advisoryを分離する。",
+      "raw_line_sha256_lf_inclusive": "430ff152971af3c0357c8867005c25dfe60630e9a37107f9664a0794a5e730a1"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 36,
+      "literal": "- FR-INT-075-02（authority・identity照合）: exact HEAD、resolved worktree、authority digest、producer session、responsibility owner、evidenceの存在・identity・revision一致を別々に照合する。欠落、改変、不一致、異版はproposalをfail-close/incompleteとし、該当fieldと欠落/不一致を説明する個別reasonを残す。reasonのenum、語彙、schemaは固定しない。current、compatibility、historical authority/evidenceを明示し、historical evidenceをcurrent claimへ昇格しない。",
+      "raw_line_sha256_lf_inclusive": "94ef7ed3f5c30fc76b2b0f475e19b45c9ab0bc076622ec109bdadea77e62cd73"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 37,
+      "literal": "- FR-INT-075-03（qualification handoff）: AI自己評価のみではverified、priority、owner/route、remediation採用を決めない。duplicate/existing owner照合、独立再現、反証、expiry、supersessionの不足・unknown・矛盾は未qualifiedとして既存UIL-01〜04のownerへ返す。各finding/remediation proposalのidentityを維持し、qualifying processやIssue/Requirement/CI/merge runtimeを起動・代行しない。AAFD-R-04のdetector priority/direct-projection条件は採択済みL2-073側に残し、この親へ追加しない。",
+      "raw_line_sha256_lf_inclusive": "d828252407f60d49381ff99d3175606b6b5c8996a6e8bab08c2072bd782fc4f4"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 38,
+      "literal": "- AC-INT-075-01（正常）: synthetic proposalに親の列挙した全identity/evidence/advisory fieldを与え、各fieldのproposal・episode・producer/session・repository/HEAD/worktree・authority・responsibility・観測/evidence identityとrevisionを整合させる。proposal digestを全入力に結び、PR review findingとsystem audit proposalが別identity・別schemaで、finding/remediation advisoryが別identity・別判定であるcandidateを返す。accepted authorityを変更せず、資格・採用・実行済みstatusを生成しない。",
+      "raw_line_sha256_lf_inclusive": "896d71a2daa2f8358652d1f1e84762bb713054710e8a17d434c5b3afcba90400"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 39,
+      "literal": "- AC-INT-075-02（field完全性）: 全列挙fieldの存在・意味・digest bindingを確認する。field単位の欠落/改変negativeはCASEで一度に一fieldだけ変え、そのfield名と当該欠落/不一致に対応するreasonを結果へ残す。別field/別sourceでの補完や、reason enum/schemaの固定を要求しない。",
+      "raw_line_sha256_lf_inclusive": "a4c07f3eabcf6106ea9d5e874ff7379f70bb1b68e7870d7bea78d4b5ea6bf652"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 40,
+      "literal": "- AC-INT-075-03（6 identity negative）: exact HEAD、resolved worktree、authority digest、producer session、responsibility owner、evidenceを各々独立にmissing、changed、wrong revisionへ変異し、対象条件ごとにincomplete/rejectedと理由を出す。他identityやhistorical evidenceで代用しない。",
+      "raw_line_sha256_lf_inclusive": "45bf28789d696e6a675ec82ece0b0c80a377cc62f91e4e877f8ab3cd1fa3ee1d"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 41,
+      "literal": "- AC-INT-075-04（authority時制）: 同一のproposalについてcurrent、許容範囲内のcompatibility、historicalを別fixtureで確認する。historicalをcurrent claimへ変えず、compatibilityの適用範囲不明はunknown/incompleteに保つ。",
+      "raw_line_sha256_lf_inclusive": "88c0226b4764dc34888b5aaf5d9a42c87efb522f9e9de8b878fd60c63d3615d8"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 42,
+      "literal": "- AC-INT-075-05（qualification negative）: 自己評価だけのverified/P0/P1/owner/route/remediation adoption、duplicate/existing owner照合不足、独立再現不足、未処理counterevidence、expiry根拠欠落またはexpired、supersession未解決を個々に未qualifiedへ保つ。finding/remediationを同一identity・decisionへ結合しない。各不足を既存owner/handoffへ返す。",
+      "raw_line_sha256_lf_inclusive": "633f1e4501c058acb68812396535b12fd972ffc110e8e054ae4dd5657b9e8aa7"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 43,
+      "literal": "- AC-INT-075-06（unknown・非実行）: 別producer/session/HEAD、stale evidence、未見の監査episode、期限切れ/superseded/duplicate candidateを個別に入力する。確定不能な関係はunknown/incompleteで保持し、existing ownerへhandoffする。proposal生成からUIL/TER/Future Synthesis runtime、Issue/Requirement/CI/merge操作を生じさせない。",
+      "raw_line_sha256_lf_inclusive": "3f6f8750294f3d2414a25ccb181f537d94b3ccb81ec9f9d4a11da6b1f86a0866"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 44,
+      "literal": "- 旧source差分: 旧L3のFR+ACを対のL10 CASEへtraceする形（LEGACY-ASSET-F542125805B777D8A56A、`archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md:148-168`）は意味を再導出する。旧AAFD `LEGACY-ASSET-EB3700B0088F311C2295` のR-01〜03（`agentic-audit-future-state-delta-requirements.md:23-41`）はidentity/evidence/qualificationの意味を再導出し、旧Issue/runtime/adapter/control名は現行L1/L2/ownerへ置換する。旧paired AC `LEGACY-ASSET-CAC0C64EB7540180B1FE` のAC-001〜003（`agentic-audit-future-state-delta-acceptance.md:15-17`）の完全proposal、individual reason、qualification negativeはnormal/negative oracle形式として再導出する。旧表のAC-004はR-04 detector条件であり、親075の範囲外でありL2-073の担当範囲なので含めない。残余AAFD R-04+、AC-004+、future-state adapter/TER/Future Synthesis/runtimeは親075の要求にしない。旧L3の工程/G3/approval/runtimeも移さず、現行配置・L3承認境界に従う。項目ごとの対応は次のとおり。",
+      "raw_line_sha256_lf_inclusive": "5b21367d4506d7108f2707e9ccb3778bda37eaf45e3968c34a5ce223f5883538"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 45,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 46,
+      "literal": "| 旧項目 | 扱い | 現行への再導出/置換理由 |",
+      "raw_line_sha256_lf_inclusive": "575a5c50e6b0f6dd593b061d0b4df55cb1119cc4ab80bcd63d8a796b819189b4"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 47,
+      "literal": "|---|---|---|",
+      "raw_line_sha256_lf_inclusive": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 48,
+      "literal": "| AAFD-R-01 proposal schema | 再導出 | 旧の列挙形式から、固定L2-075の`AgenticAuditProbeProposalV1`全fieldと個別identity境界へ結ぶ。旧Issue/runtime/schema実装名は採らない。 |",
+      "raw_line_sha256_lf_inclusive": "231f2cbd3517178b9c87eba145183da250d587c70636dd9dcde18e949f32db12"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 49,
+      "literal": "| AAFD-R-02 identity受入 | 再導出 | exact HEAD/worktree/authority digest/producer session/responsibility owner/evidenceの6検査とfield別reasonをAC化する。旧failure動作の詳細enum/schemaは置換し、reason vocabularyを固定しない。 |",
+      "raw_line_sha256_lf_inclusive": "c6b822a7b2aef18b2b41138fa42fe1450ee32afd9ed60d83f236748801ec5a4d"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 50,
+      "literal": "| AAFD-R-03 適格化境界 | 再導出 | self-qualification拒否、duplicate/owner照合・独立再現・反証・expiry・supersessionの既存UIL handoffと、finding/remediationの分離を固定L2-075から導く。UIL qualification runtimeは置換対象として実装しない。 |",
+      "raw_line_sha256_lf_inclusive": "0959e9e99cecc54f2cb29a536fae2bb71d7e9595f4c655703be491c620cdc2ef"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 51,
+      "literal": "| AAFD-AC-001 | 再導出 | 全field/digest bindingとfinding/remediation別identityのnormal oracleにする。旧fixture/ID・runtimeは持ち込まない。 |",
+      "raw_line_sha256_lf_inclusive": "84c9bfa7e3d879812bc6bf6ec33f125da0811156ab81ea229a793c8dcc75a7fb"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 52,
+      "literal": "| AAFD-AC-002 | 再導出 | 6 identity条件のmissing/changed/wrong revisionを一変数ずつ試し、各fieldとreasonを残す。reason enumは固定しない。 |",
+      "raw_line_sha256_lf_inclusive": "95b9f7d8a6171b463be75466982a97e6881d794fa3308deaedf715135d558820"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 53,
+      "literal": "| AAFD-AC-003 | 再導出 | self-rating、独立再現不足、duplicate、expired、counterevidenceのqualification negativeを個別CASEにする。route・qualified判断の実体は既存UIL ownerへ残す。 |",
+      "raw_line_sha256_lf_inclusive": "e90e2228d0302680b27764b7cf6144ae47f3b235c1830f73fe9e39ba797ee2e2"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 54,
+      "literal": "| AAFD-AC-004 / AAFD-R-04 | 対象外 | deterministic detector priority/direct projectionは採択済みL2-073のscope。075へ追加しない。 |",
+      "raw_line_sha256_lf_inclusive": "069c87a6f6fe6b5c3fe06770878a2374edd7c31e53615258f9fe0c9797fb4cf3"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 55,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 56,
+      "literal": "## Stage 2a（PR #2594）carry-forward記録",
+      "raw_line_sha256_lf_inclusive": "9948dfe28515ab824d08be92c6911814a977938f35d348d6be37bf7cb2c07f3b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 57,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 58,
+      "literal": "以下はStage 2a（PR #2594）の旧review carry状態を示す時点説明であり、Stage 2cの要求・受入条件・親依存ではない。C13-M10（L2-010）、C13-M7（L2-066）、C13-M12 audit-record correction、Minor INT-010、Minor INT-060-078は当該Stage 2a範囲で未解消として引き継ぐ。`C13-U-INT-NFR-060-078`と`C13-U-all-crosswalk-and-legacy`も当該監査範囲で未確認のまま保持する。この本文と監査は独立reviewやfinding closureを意味しない。",
+      "raw_line_sha256_lf_inclusive": "95b84d31171af15a3613afdcef8c661c3f4998101c8daafab780d06c24739efe"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "physical_line": 1,
+      "literal": "# HELIX-INTELLIGENCE L3 業務要件（Stage 2c）",
+      "raw_line_sha256_lf_inclusive": "2b894fd4b4d5fd2a368cac5bcdd20fa9db0fc0a810aefbbf36601b37ce1ecdd9"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "physical_line": 2,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "physical_line": 3,
+      "literal": "状態: L3未承認（委任承認前）の起草候補。機構固有の業務要件のみを固定採択L2の意味から整理し、実装済み・業務成果成立とは扱わない。",
+      "raw_line_sha256_lf_inclusive": "55b1b84bee1fcc2271e0887cdb5e04ca1845d7437ef5b3dafad61e6d919bcb93"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "physical_line": 4,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "physical_line": 5,
+      "literal": "旧HELIXの3 sub-doc分離（`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md:16-28`、LEGACY-ASSET-9A772391C7FB1298D45F）と業務詳細を機能詳細から分けた形（`business-detail.md:21-39,84-104`、LEGACY-ASSET-A6E2C7F0565E5F804F06）を起点にする。再導出するのは、業務目的・評価owner・責任境界を明示し機能要件と重複しない形式である。旧HARNESSのLearning Engine、PLAN単位評価、旧KPI/score/自動適用や承認動作はINTELLIGENCEへ移さない。",
+      "raw_line_sha256_lf_inclusive": "3999d38276829484016b2c081a8fe2aa8409518daef7375af77e8f55e70e5fd9"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "physical_line": 6,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "physical_line": 7,
+      "literal": "対象は採択済み `HELIXINTELLIGENCE-L2-068` と `HELIXINTELLIGENCE-L2-075`。Stage 2aの010/066草稿は含めない。項目別sourceと再導出は時点監査へ記録する。",
+      "raw_line_sha256_lf_inclusive": "01ae18ae8064cbf3045a57d37ab9c686962490f8bfe7a1d03a47a3793888c957"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "physical_line": 8,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "physical_line": 9,
+      "literal": "## Stage 2c — L2-068の業務要件範囲",
+      "raw_line_sha256_lf_inclusive": "94049b37ffc852217b0163ff5c792e7e314025c032d38ccce047cbe31a531ade"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "physical_line": 10,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "physical_line": 11,
+      "literal": "固定親 `HELIXINTELLIGENCE-L2-068` は独立した業務outcome ownerやbusiness metricを定めないため、この親のBRは起草せず、business acceptance CASEも追加しない。Stage 2cの機能受入・検証の正本は `FR-INT-068` の `AC-INT-068-01`〜`AC-INT-068-06` と、functional L10の `CASE-INT-068-01`〜`CASE-INT-068-11` とする。別のStage 2a草稿のBR-INT-010/066は本書に収載せず、各固定親の範囲に留まり、このscopeのowner・KPI・gateを生成しない。",
+      "raw_line_sha256_lf_inclusive": "776e7d8f81ce30351578831eb75b09bceaf7ee9b81d3636d9a99ec58dc794a2a"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "physical_line": 12,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "physical_line": 13,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "physical_line": 14,
+      "literal": "## Stage 2c — L2-075の業務範囲",
+      "raw_line_sha256_lf_inclusive": "7ba54f04710be5b7f2aa1667606d3aa0bbbca2a7035248ab2ba2661e13fc7624"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "physical_line": 15,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "physical_line": 16,
+      "literal": "固定親 `HELIXINTELLIGENCE-L2-075` はproposal identityとqualification handoffの機能条件を持つが、独立business outcome・business owner・business metricを追加で定めない。そのためBR-INT-075およびbusiness CASEは起草せず、受入/evidenceは `FR-INT-075` の `AC-INT-075-01`〜`AC-INT-075-06` とfunctional L10の `CASE-INT-075-01`〜`CASE-INT-075-09` を参照する。別のStage 2a草稿のBR-INT-010/066とL2-068の業務範囲を075へ広げない。",
+      "raw_line_sha256_lf_inclusive": "c5d6b877218505c00f6d57a6e255681fcffdac4198b4930af38e8083e0e5856e"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "physical_line": 1,
+      "literal": "# HELIX-INTELLIGENCE L3 NFR・技術候補（Stage 2c）",
+      "raw_line_sha256_lf_inclusive": "4d7c6dfc1b850198989f834dcb00911e80c39f0e55a1802802273fd3794d9561"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "physical_line": 2,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "physical_line": 3,
+      "literal": "状態: L3未承認（委任承認前）の起草候補。固定採択L2に数値thresholdがない箇所は、観測と比較を可能にする根拠付き技術候補を記録する。候補値・測定軸は採択値、実測結果、実行許可を意味しない。",
+      "raw_line_sha256_lf_inclusive": "8403e7286d78626f4ac459ea87c98e83dc5f7e974cf0c6e6fae71501eab16b2c"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "physical_line": 4,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "physical_line": 5,
+      "literal": "旧HELIX NFR文書の「特性→計測→受入」の構造を起点に再導出する（`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md:21-34,58-81`、LEGACY-ASSET-DB669724249A14A665F0）。旧IPA grade、数値、pass条件、CI/runtime、HARNESS KPI/料金モデルを現行NFRとして再利用しない。該当する数値sourceは採択L2/L11に見当たらないため、以下は候補の比較設計である。",
+      "raw_line_sha256_lf_inclusive": "4dcd8fa612fc3b05f7c80e4fa7f3074183b19616c8b56ad4815a680083938a78"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "physical_line": 6,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "physical_line": 7,
+      "literal": "対象は採択済み `HELIXINTELLIGENCE-L2-068` と `HELIXINTELLIGENCE-L2-075`。Stage 2aの010/066草稿は含めない。項目別sourceと再導出は時点監査へ記録する。",
+      "raw_line_sha256_lf_inclusive": "01ae18ae8064cbf3045a57d37ab9c686962490f8bfe7a1d03a47a3793888c957"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "physical_line": 8,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "physical_line": 9,
+      "literal": "## NFR-INT-068-01 — 支援candidateの入力充足・根拠境界・既存budget計測（Stage 2c）",
+      "raw_line_sha256_lf_inclusive": "14f5784e58c4fb77740e56383263144d4a37f32f2a6325236850e7772b7677e1"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "physical_line": 10,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "physical_line": 11,
+      "literal": "- 親: `HELIXINTELLIGENCE-L2-068`、version target `1.0` candidate。固定条件はL2:491-506/L11:202-209、revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。",
+      "raw_line_sha256_lf_inclusive": "3392c68001bbd7acd15a2b45599b85197909c6fbf6b1b1cbe70f329b90345ba5"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "physical_line": 12,
+      "literal": "- 候補比較: Candidate 1はoperationごとにL2必須入力をfield単位で列挙し、fieldごとに適用・充足・missing・unknown・stale・restricted・conflictを集計する。Candidate 2はoperation単位の総合充足率だけを表示する。Candidate 1を推奨する。固定親は各必須条件の欠落で該当operationを保留するため、総合率だけでは一つの必須field欠落を他fieldの充足で隠すおそれがある。diagnosis evidenceを要求するoperationと不要なpre-test/instruction operationも分ける。各substantive claimを選択source/観測へtraceするかinference/hypothesis/unknownと分類し、unsupported fact、unknown-to-fact/pass、wrong-owner returnを別々に記録する。候補比較はこの意味oracleを満たすかで行い、任意の数値cutoffを置かない。",
+      "raw_line_sha256_lf_inclusive": "332a1a81fefee18754f6c8a0300805148c37b78a812a57099c92e082d15ec084"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "physical_line": 13,
+      "literal": "- 母集団と分母: 入力fieldの有無を調べる前に、対象operation ID・scope・source/revisionの母集団を固定し、必須入力不足で保留になるoperationも含める。operation充足率の分母はこの全対象operation数、分子はoperation別必須fieldをすべて満たすoperation数とする。field別の分母はそのfieldが対象operation contract上適用・必須であるoperation数、分子はそのfieldが満たされるoperation数とし、非適用fieldはfield分母へ含めない。分母0は率なしとする。operation disposition（normal completed、failed、cancelled/stopped、未完了/不明）と観測状態（観測あり、missing observation、観測打切り/censored）は別軸で報告し、入力field状態（充足、missing、unknown、stale、restricted、conflict）とも直交させる。`missing input`はoperation dispositionではなく該当fieldの状態として記録する。preparationとdiagnosis/consultは別populationとする。",
+      "raw_line_sha256_lf_inclusive": "79532d1e671728419ce099a52a6bd982d7c0be0f40cff2d7d2784aba84dea1dc"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "physical_line": 14,
+      "literal": "- claim census: 全substantive claimを母集団にする。claim kindはfact / inference / hypothesis / unknown / unclassifiableのいずれか一つへ排他的に分類する。source support状態（trace-backed / unsupported / not assessable）と誤りevent（unknown-to-fact、unknown-to-pass、wrong-owner return等）は別軸で集計し、同じclaimに複数の誤りeventがある場合はevent countで別記する。claim kindとsupport状態・eventを混ぜず、全claim件数とkind件数の合計が一致することを照合する。",
+      "raw_line_sha256_lf_inclusive": "76dda4946d69d24ff84456d67beb0c3d5d47c6c12ca06db97a26cd2585bc2a50"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "physical_line": 15,
+      "literal": "- 既存budget・elapsed: 元OS assignmentの初期値・operation前後の残量・deadline・stop/cancelを元の単位で保持する。elapsedは、既存OS記録が同一operationの開始/終了event、同一clock、同一unitを特定し、両timestampの整合（開始≤終了）が確認できる場合だけvalid標本とする。これは運用上のpassを意味しない。operationがfailedまたはstoppedでも時刻が有効なら標本に含める。計測定義/sourceが有効な標本では、明示的な観測打切りならcensored、それ以外のendpoint欠落ならmissing、両endpointがあるがtimestamp不整合ならfailed observation、両端整合ならvalidの順に一状態だけ割り当てる。definition/sourceが欠けelapsedを計算できない状態はunknown/unavailableであり、実測elapsedが0である状態と区別する。valid標本のnとunitを記録し、n=0ならp50/p95なし、記録自体が無い場合は未実測とする。欠測を0へ変換しない。budget reset、増額、一定割合の予約、根拠のないnumeric threshold・sample minimum・windowは作らない。",
+      "raw_line_sha256_lf_inclusive": "653d2162a6fafd7bd9f9539f85241b45b3c176e0e61475ea0b4bdcfceaac1fda"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "physical_line": 16,
+      "literal": "- 根拠: L2-068はsource/applicability、failure evidenceのoperation限定、元budget/deadline/stop、入力不足時のreturnを定める。L11:202-209は候補生成、準備/診断の区分、unknown保持とowner返却を与える。母集団・分母・elapsed validityの具体化は再現可能な測定設計上の候補であり、固定親に新しい実行義務やSLAを追加しない。旧sourceは数値性能thresholdを根拠づけない。",
+      "raw_line_sha256_lf_inclusive": "40b083c65821dadb6dc89b0d48634af877a0caebb4626d2870088b76185e336d"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "physical_line": 17,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "physical_line": 18,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "physical_line": 19,
+      "literal": "## NFR-INT-075-01 — proposal identity／evidence fieldの観測候補",
+      "raw_line_sha256_lf_inclusive": "bafedc5a154499638d8b6d31a005270ee254267bc40713f593ccfa1ff342d5f1"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "physical_line": 20,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "physical_line": 21,
+      "literal": "- 親: `HELIXINTELLIGENCE-L2-075`、`version_target: 1.0` candidate。固定L2/L11 exact revisionおよびPO採択判断はfunctional L3と同じsource pinに従う。",
+      "raw_line_sha256_lf_inclusive": "6ecce6a300e5abb23b667507987b9a3ee437adfc4658a1fad526bd44c49513ac"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "physical_line": 22,
+      "literal": "- 技術候補比較: Candidate 1はproposal field matrixで、親が列挙するidentity、authority/evidence、reproduction/counterevidence/confidence/expiry、finding/remediation advisory、digestを個別確認する。Candidate 2はproposal全体のall-fields-pass率だけを報告する。Candidate 1を推奨する。L2-075は一つのidentity/evidence欠落だけでもそのfieldを不完全とし、他fieldで補完しないため、全体率だけではどのfieldのreasonが欠けたか分からない。",
+      "raw_line_sha256_lf_inclusive": "975f1b9df1dff3538c9dd1033df76d13d14adfffadeced6265ee51ae0aae238d"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "physical_line": 23,
+      "literal": "- Candidate 1のcoverageは「normal binding確認と独立negative理由確認の両方がmatrixにある宣言field数 / matrix上の全宣言field数」として測り、authority class・fixture数・source revision・未評価field数を添える。qualificationはself-rating、duplicate/existing owner、独立再現、counterevidence、expiry、supersessionを別facetのfixture件数とexpected/observed handoff resultで示す。いずれも検証設計の測定候補であり、製品pass threshold、schema enum、最低NやSLAではない。",
+      "raw_line_sha256_lf_inclusive": "e64ce3d96388f74eb40ece172508737c60d8e6f8ba1c315bba24eb96eaad422e"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "physical_line": 24,
+      "literal": "- qualification測定候補: AI self-rating、duplicate/existing owner、独立再現、counterevidence、expiry、supersessionを別facetとしてfixture母集団・unknown件数・既存owner handoff件数とともに報告する。finding/remediation identity混同、または親が禁止する資格/authorityの自己確定は各fixture oracleで拒否されることを記録する。複数facetを単一scoreへ畳み込まず、候補別の件数とscopeを示す。",
+      "raw_line_sha256_lf_inclusive": "263ce1a7094a0db5aa4a9efbd690807b963bcb123871eca016e5c72b31d607c5"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "physical_line": 25,
+      "literal": "- 母集団/分母: L10の全field mutationとqualification fixtureをoperation・authority class（current/compatibility/historical）ごとに全数列挙し、未見normal fixtureとnegative fixtureを分ける。field matrix上の宣言field数をcoverage分母とし、未作成fixtureを成功件数へ含めない。identity条件が欠落・不明なら別fieldやhistorical sourceで埋めずunknown/incompleteとする。",
+      "raw_line_sha256_lf_inclusive": "a719acede70cdbcd9af1c7403dcbf350ff2999becec40d23f7330b51da1eda56"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "physical_line": 26,
+      "literal": "- 根拠: 固定L2-075 `618-625` / L11 `337-343` が要求する全field、6 identity条件、個別reason、時制区分、qualification handoffを測定対象にする。旧AAFD/旧ACは数値閾値やruntime性能値を与えないため持ち込まない。candidate値の比較はfield単位の観測可能性と各oracleの成立を並べ、parameterごとのPO判断や追加gateを作らない。",
+      "raw_line_sha256_lf_inclusive": "fd085dd1575363459f22e98bf9e7a1048c1fceecf536b7e0eb0e4223a9714ae4"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 1,
+      "literal": "# HELIX-INTELLIGENCE L10 機能総合検証（Stage 2c）",
+      "raw_line_sha256_lf_inclusive": "818cd387d366c450ad37b2ac8d0c3e4b826ef7ccf24d7db8b4ecfa6a45d6b0bd"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 2,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 3,
+      "literal": "状態: L3と対になる検証設計候補。実行結果、PO L3承認、実装/実行許可を生成しない。L3 `functional-requirements.md`のAC identityを参照し、固定L2/L11のsource/revision/scopeとowner境界をoracleにする。",
+      "raw_line_sha256_lf_inclusive": "e511f8c5cd9b80a44d35ddfaa79e409649c3197d3e4891eab1d91fa51c1ebb9b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 4,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 5,
+      "literal": "旧L10 verification layerのfailure/backflow定義（LEGACY-ASSET-34DF3B535879CC73FA86, `archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md:162-170,195-207`）と、旧worker acceptanceのfixture/negative trace（LEGACY-ASSET-C6ADB99F1353965C5449, `worker-common-contract-acceptance.md:18-37,39-64`）を再導出する。旧HAT/AT件数、CI/runtime、provider/sandbox値は移さない。",
+      "raw_line_sha256_lf_inclusive": "c613a0e5830154013c67a3b378a8c999a6c2d3697b7c6d18005871eb6e9667e8"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 6,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 7,
+      "literal": "対象は採択済み `HELIXINTELLIGENCE-L2-068` と `HELIXINTELLIGENCE-L2-075`。Stage 2aの010/066草稿は含めない。項目別sourceと再導出は時点監査へ記録する。",
+      "raw_line_sha256_lf_inclusive": "01ae18ae8064cbf3045a57d37ab9c686962490f8bfe7a1d03a47a3793888c957"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 8,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 9,
+      "literal": "## CASE-INT-068-01 — 失敗前の事前準備（AC-INT-068-01, AC-INT-068-04）",
+      "raw_line_sha256_lf_inclusive": "e92df7807f05dc32b5fca760ce8305cc801be7177b39b12ae5b1a4a3498172c6"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 10,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 11,
+      "literal": "- 入力: 元Workerの着手予定assignment、ticket/task identity、scope、承認済みrequirement/design revision、HARNESS-L2-022の既存oracle/受入義務、OSの既存budget/deadline/stop条件。例は固定L11の `PATCH /applications/{id}` 状態遷移で、`draft`更新は許可・保存され、`approved`更新は拒否され値不変。failure report、過去failure、consult receiptを与えない。",
+      "raw_line_sha256_lf_inclusive": "0685fdbdd3563d769e31d9bdd1b3ceb3469db394efab63bb5ba97cde178aa7be"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 12,
+      "literal": "- 期待: INTELLIGENCEは候補test/instructionを要求状態と既存oracleにtraceし、作業前に返す。各case候補は状態遷移、境界値、無関係fieldへの副作用を分ける。これは実行・合格・採択ではない。",
+      "raw_line_sha256_lf_inclusive": "fa1ecd1d7c15bbb07bfbc1d2b80395730e3680c541a8c19e6e910fa94591b061"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 13,
+      "literal": "- 合格: 失敗資料を欠くことだけで候補を止めず、既存義務・停止条件・元Worker責任を保つ。consult不要のためHELIXOS-L2-028 receiptを要求しない。",
+      "raw_line_sha256_lf_inclusive": "c0b18157b1263d366dc7f3a8d4dba23aac23d5b8c9bc9dca9f2b7f7a35957005"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 14,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 15,
+      "literal": "## CASE-INT-068-02 — 選択sourceと条件付きpacket利用（AC-INT-068-03）",
+      "raw_line_sha256_lf_inclusive": "304a67320039288e81b501683b27a4d1d2ab51b099ed4d5378e30745522c4d16"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 16,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 17,
+      "literal": "有効な設計/code sourceを実際に選ぶfixtureではidentity、version、owner、scope、provenance、permission、applicabilityを入力し、sourceに追跡可能なcontextを候補へ含める。operationとtrigger、期待outputとscopeも識別する。別のpacket-use fixtureではAIDOC source/revision/authorityとsummary non-authority、OS CLR-R06必須contextおよび未完義務を維持する。合格は、summaryから権威や許可を推論せず、secret/private reasoning・未承認結論を混入せず、継続に必要な未完義務を保持すること。packetを使わないnormal fixtureも許し、packet能力/receiptを全operationへ要求しない。",
+      "raw_line_sha256_lf_inclusive": "0a6f502de407ae227c71a6e673bcb4acb9b17ef9be60557027cae68f8e784ad8"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 18,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 19,
+      "literal": "## CASE-INT-068-03 — 診断に必要な観測と証拠限定（AC-INT-068-02）",
+      "raw_line_sha256_lf_inclusive": "ea69c9f9c2806725f4778ac01e9549fe5e5ffdd5f3e46e5bb7679c2c9554a3e7"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 20,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 21,
+      "literal": "- normal: `approved`状態の対象へ `PATCH` が200を返した観測を、request/responseと再現sourceに束縛して与える。候補は観測事実、原因hypothesis、unknownを分け、必要なら「approved判定の契約と拒否時の未変更条件」を既存requirement/oracle ownerへ問う限定相談候補を返す。入力観測を越えて原因を断定しない。",
+      "raw_line_sha256_lf_inclusive": "941af9b4b9b0e37c91471b8cb7dc3c98f8cb0143fdb4b245cbb4591d99dd9d59"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 22,
+      "literal": "- negative: diagnosis operationの症状・観測・再現sourceを一項目ずつ欠落/stale/conflictにし、diagnosis candidateを保留して不足とownerを示す。同じfixtureの有効なpre-test candidateは失敗証拠不足だけを理由に保留しない。",
+      "raw_line_sha256_lf_inclusive": "cbda9b0c265c548d64a3aa451c5aa862538aa87b09f2f0a26b27225edfe1c5c7"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 23,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 24,
+      "literal": "## CASE-INT-068-04 — 選択sourceの不整合と未選択sourceの独立（AC-INT-068-03, AC-INT-068-06）",
+      "raw_line_sha256_lf_inclusive": "e60fa0b505b697d87158d6ba0aca764d6df13c6c7765dc41aafe6a52a0c5585c"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 25,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 26,
+      "literal": "同一の有効baselineから、一度に一条件ずつ、選択sourceのidentity欠落、version stale、scope不一致、provenance欠落、利用制限、適用性unknown/conflictを変える。該当sourceに依存するcandidateだけを成功扱いせず、candidateに該当sourceをmissing/contradictoryとして表示し、必要なsource ownerまたはSECURITY/OSへ不足を返す。sourceを選択していない別operationは無条件にそのsourceへ依存しない。組合せfixtureでも誤った事実化・波及停止がないことを確認する。",
+      "raw_line_sha256_lf_inclusive": "6a2a4abdd9f13321ca92eb09d28ddb42a187dd3d4c9e848866d6d41bec267ecd"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 27,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 28,
+      "literal": "## CASE-INT-068-05 — unsupported fact・誤助言・unknown保持（AC-INT-068-02, AC-INT-068-04）",
+      "raw_line_sha256_lf_inclusive": "a30ae4443c19f3fda57cadd99d7d5269cf82114373c821fb77913c92e8842d98"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 29,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 30,
+      "literal": "正常対照のsource factと明示unknownを固定し、次のnegativeを独立に適用する: 過去類似例だけから `approved` 更新可と断定する、仮説を観測factとして表示する、未知oracle適用性をgeneric passへ変える、source/revision/scopeの不一致を黙って採用する。候補出力ではmissing/contradictory sourceとして表示し、正しい既存ownerへBackflowする。各変異は候補を不合格とし、必要requirement/design/oracle意味を既存ownerへ返し、unknownを維持する。",
+      "raw_line_sha256_lf_inclusive": "0f8b2fe87bdf139d643697c17ecb369862b0fad40c86f0a9cb709bdd4d3ead23"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 31,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 32,
+      "literal": "## CASE-INT-068-06 — authority、担当、未完義務（AC-INT-068-04, AC-INT-068-05, AC-INT-068-06）",
+      "raw_line_sha256_lf_inclusive": "14354ddd649a3903da750c59f18ebe52b46d17aeb0c1a4f2c4608a775f218a99"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 33,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 34,
+      "literal": "有効候補の一要素を個別に変え、INTELLIGENCEまたは支援者がassignment/dispatch、test実行/CI、acceptance、merge、requirement/design authority、BRAIN直接promotion、独立review/利用者受入を行ったように見せる。別fixtureで、test/oracle追加案をaccepted oracleまたは受入条件として確定する変異と、既存HARNESS-L2-022 oracleの期待結果/条件を書き換える変異を独立に与える。全て拒否し、既存oracleと受入条件の意味を変更せず、必要ならHARNESSまたは対象requirement/design ownerへ戻す。元Workerの責任と現行ownerを保持する。選択packetの未完義務を一つずつ除いたnegativeも置き、継続状態を完了扱いしない。長期effectiveness未評価、Bench未評価を有効性・配置適性へ誤変換しない。",
+      "raw_line_sha256_lf_inclusive": "dbb496aacea694648636dc146c3ee19d02b59992d52f9cd7d7fd115cc2ea9190"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 35,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 36,
+      "literal": "## CASE-INT-068-07 — owner別不足・停止と部分継続（AC-INT-068-01, AC-INT-068-06）",
+      "raw_line_sha256_lf_inclusive": "64e438c0a4848b26e8f03c551ab2b11fc0b59d85698a0b0888e777558b3b1d1e"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 37,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 38,
+      "literal": "task/ticket/assignment/scopeまたは元budget/deadline/stopの不足はOSへ、source truth/provenanceはsource ownerへ、requirement/design/oracle applicabilityはHARNESSまたは既存対象ownerへ、permission/data-useはSECURITY/OSへ、BRAIN applicabilityはBRAINへ、effectiveness/generalizationはLABOへそれぞれ独立に返す。該当operationだけをholdし、他の十分なpreparation operationを継続可能にする。戻し先を特定できない業務責任を新ownerへ割り当てずunknownとして示す。",
+      "raw_line_sha256_lf_inclusive": "d0c13a3fb252c9b63990d9351d2839cc77ccaac91f591c271813897b8b10c915"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 39,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 40,
+      "literal": "## CASE-INT-068-08 — 未見endpoint/state model（AC-INT-068-02, AC-INT-068-04, AC-INT-068-06）",
+      "raw_line_sha256_lf_inclusive": "94a8a8177a67fcbe2c83ee0045a4ddb52c694ea52f086509befc0671b9cdfd04"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 41,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 42,
+      "literal": "未見endpointと異なるstate modelを与え、類似sourceはあるが対象oracleへの適用性と更新副作用が未確定のfixtureを使う。INTELLIGENCEは必要なrequirement/design evidenceと既存oracle ownerへの質問候補、alternative、unknown、return targetを返す。generic pass、approved後編集可能という一般化、またはowner創作があれば不合格。",
+      "raw_line_sha256_lf_inclusive": "1d684e873b8f147968e0d2bd5a20643a4fbd0f31325e77cda98afd1bf48af279"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 43,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 44,
+      "literal": "## CASE-INT-068-09 — 支援候補の独立成立と関連能力の分離（AC-INT-068-01, AC-INT-068-05）",
+      "raw_line_sha256_lf_inclusive": "be3a791d3c141b538ab64beabc7f1f43c905354d6ffb2e36d736e8d30bd544d6"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 45,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 46,
+      "literal": "有効なtask/input/output contractから単体支援candidateを作るnormalではHELIXOS-L2-028実相談receiptもHELIXOS-L2-029の完了loopも要求しない。対照としてactual consultationを選ぶ場合はHELIXOS-L2-028、test実行を選ぶ場合はHELIXOS-L2-020、Worker作業・検証・修正往復を評価する場合はHELIXOS-L2-029およびHARNESS-L2-022の各owner契約へ分離する。proposal生成をそれらの実行済み証拠と表示しない。",
+      "raw_line_sha256_lf_inclusive": "6a1d3f7287037b8b88869a899b368507f613a8983776873fb92706236c1e6cc4"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 47,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 48,
+      "literal": "## CASE-INT-068-10 — 未見normal support operation（AC-INT-068-01, AC-INT-068-04, AC-INT-068-05）",
+      "raw_line_sha256_lf_inclusive": "488de361d94d03ecb660dce8cfa62dd7c038fb77e62392f50d1c72b81e02628b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 49,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 50,
+      "literal": "未公開の支援operationで、必須入力/source契約が有効、consultもfailure diagnosisも不要なものをheld-out normalとして与える。operation/scope/根拠/不確実性・代替案・owner return・未完義務・stopを追跡した候補を返し、既存authority境界を守れば合格。未見を理由に新gate、owner、universal source dependencyを作らない。",
+      "raw_line_sha256_lf_inclusive": "2018a20ddeaa6a90b8ebcd85c6ff420d67540cd70991e5585158e02b30ffd2cb"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 51,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 52,
+      "literal": "## CASE-INT-068-11 — operation record欠落（AC-INT-068-04）",
+      "raw_line_sha256_lf_inclusive": "dd2850ad1bf1079ac65c0126660cec5cff5f0d60e430f578f0550cc82ca94231"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 53,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 54,
+      "literal": "CASE-INT-068-01の同一baselineから、実施operation、trigger、期待output、scopeの各記録を一つずつ欠落させる独立negativeを作る。期待oracleは欠落fieldをcandidateに明示し、完全なoperation recordや受入条件として扱わず、不足に関係するHARNESSまたは対象ownerへ戻すこと。accepted oracleを新設/変更しない。",
+      "raw_line_sha256_lf_inclusive": "e5b7831bcd2f5be4de7d6e8fce72980f5ffd11326a75169d05d75741906fee28"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 55,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 56,
+      "literal": "## L2-068 / L11-068 atom coverage",
+      "raw_line_sha256_lf_inclusive": "18bc7890e9299739ccbdd5d9fd81cae0dd5e35ea81541f8d9ecf5bef3657926c"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 57,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 58,
+      "literal": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:491-506` と同固定revisionのL11 `intelligence-acceptance.md:202-209` を条件別に読み、FR/ACと本CASEへ配置した。L11:201は `HELIXINTELLIGENCE-L2-068` 見出しであり、条件atomとして扱わない。C13実comment `RH-PR2564-L3L10-274-13` のM12・line 168「068のatomをheadingだけにしない」は引き続き未解消としてcarryし、この対応表は独立review/closureではない。句ごとのsource/raw pinとcrosswalkはhandoff監査記録に収録する。",
+      "raw_line_sha256_lf_inclusive": "bafbde6b7d9377e30e80574a2c2ce6a9158fb8338f43b66706a46e66108a861f"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 59,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 60,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 61,
+      "literal": "## CASE-INT-075-01 — 完全な正常proposal（AC-INT-075-01）",
+      "raw_line_sha256_lf_inclusive": "239d4166b704a639fdf9ef938e62ea95d35c2c68a3abf03d2c013bde6fb716be"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 62,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 63,
+      "literal": "合成fixtureにproposal ID、audit episode、producer/provider/runtime/model/version/session、repository/candidate HEAD/resolved worktree、authority revision/digest、responsibility/invariant ID、observed behavior、evidence/reproduction/counterevidence、confidence/expiry、finding advisory/remediation advisory、proposal digestを全て与える。全fieldを一つのaudit episodeとtarget revisionへ束ね、content/digestを再計算可能なinputから照合する。PR review findingとsystem proposalは別identity・別schema、findingとremediationは別identity・別判定で返り、authority/priority/qualification状態が変更されなければ合格。",
+      "raw_line_sha256_lf_inclusive": "80d39bbec33142d6eef957a63d14b32f42dc50ed97d19e96a5118a85ee25f439"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 64,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 65,
+      "literal": "## CASE-INT-075-02 — identity／evidence各fieldの失敗（AC-INT-075-02, AC-INT-075-03）",
+      "raw_line_sha256_lf_inclusive": "1b23713192aed168fdbb0895ff10d761fc5f476190acfb091f17ff82618ff7b2"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 66,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 67,
+      "literal": "CASE01の正常baselineから各fieldを一つずつ変える。親の6 identity条件（exact HEAD、resolved worktree、authority digest、producer session、responsibility owner、evidence）は各fieldにつきmissing、changed、wrong-revisionを別fixtureで検査する。その他の列挙proposal field（proposal/episode/producer attributes/repository/responsibility ID/observation/reproduction/counterevidence/confidence/expiry/advisories/digest）もそれぞれ独立に欠落・不一致を変異する。各fixtureは影響fieldを個別reasonとともにincomplete/rejectedへし、正常対照や別fieldから値を補わない。reasonの用語・enum・schemaはoracleに固定しない。項目固有reasonを汎用拒否理由だけへ集約する独立変異も不合格とし、失敗fieldと欠落／不一致の種類が読めることを観測する。",
+      "raw_line_sha256_lf_inclusive": "ed044ace93a008df69dcf2c1b68912345bfc22ec42d604ea408d17f0fbb5c241"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 68,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 69,
+      "literal": "## CASE-INT-075-03 — authority時制の分離（AC-INT-075-04）",
+      "raw_line_sha256_lf_inclusive": "20ba38a3334ff1b250b15044e889269b4079f54080d1bf15cbdb1a82749f4c0a"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 70,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 71,
+      "literal": "CASE01からauthority/evidence時制だけを切替え、current、source契約内のcompatibility、historicalの3 fixtureを独立に評価する。currentはそのrevision/digestを束縛し、compatibilityは契約範囲の根拠を示し、historicalは歴史材料として明記される。historicalをcurrentへ昇格する変異は不合格、compatibility適用範囲が未確定の変異はunknown/incompleteへ留まる。",
+      "raw_line_sha256_lf_inclusive": "3fd42673667190c888f6e6e49d8e3a76c2ec15bf42cbf43a3131b8f5dcc2eed0"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 72,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 73,
+      "literal": "## CASE-INT-075-04 — 適格化条件ごとの失敗（AC-INT-075-05）",
+      "raw_line_sha256_lf_inclusive": "81d27c382258a146bce2cb1dcdc43b5cf0aec9fcb86a27913beb86e6a5749bda"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 74,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 75,
+      "literal": "normal proposalからqualification facetを一度に一つ変異する。AI self-ratingだけでverified/P0/P1/owner/route/remediation adoptionを確定する、duplicate/existing owner照合が無い、independent reproductionが無い、反証が未処理、expiry根拠が無い/expired、supersession状態が未解決、finding/remediationを同じidentityまたは単一decisionへ統合する各negativeを個別fixtureにする。各々未qualified/unknownのまま保持し、既存UIL-01〜04の適切な既存ownerへ返す。独立に有効な他facetは改変fixtureの根拠に流用しない。",
+      "raw_line_sha256_lf_inclusive": "3938521901a2280c2bdcad3fc90d815911f047cf8d4e5a34b33b17487814a51d"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 76,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 77,
+      "literal": "## CASE-INT-075-05 — 未見の正常監査episode（AC-INT-075-01, AC-INT-075-06）",
+      "raw_line_sha256_lf_inclusive": "d911ca072dae341634fc48f1d88987707c8f4fb08124e07612b35138dd3dbde8"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 78,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 79,
+      "literal": "未使用のaudit episodeで、既知のproducer identity/authority contract内のsourceとtarget revisionが全て一致し、CASE01と同じdeclared fieldsが完全なnormal fixtureを与える。proposalを返しつつqualification状態はcandidateのまま保持し、new episodeであることだけを理由に新gate/owner/routeを発明しない。",
+      "raw_line_sha256_lf_inclusive": "c1be73a0059036f4ea301304337155ecb6792c850cc38361b968068e698c56a1"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 80,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 81,
+      "literal": "## CASE-INT-075-06 — 未見・不完全identityの返却（AC-INT-075-03, AC-INT-075-06）",
+      "raw_line_sha256_lf_inclusive": "290cd494b816d2eaddb0444d13183bf82fe2b12adfdf4a768c9d2e5dcdd575a6"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 82,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 83,
+      "literal": "未見producer/session、別HEAD、stale evidence、期限切れ、superseded、duplicate proposalを互いに独立なfixtureとして与える。確認できないproducer/owner/authority relationはunknown/incompleteとし、該当ownerへ照会候補を返す。過去のcurrent resultや別proposalで補完しない。Proposal生成からruntime/Issue/Requirement/CI/merge/Future Synthesis operationが発生しない。",
+      "raw_line_sha256_lf_inclusive": "d8d52599eccc737dd1d12f13869051df3799ef3f407e961532e0b23fe9d67c46"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 84,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 85,
+      "literal": "## CASE-INT-075-07 — finding／remediation identityの分離（AC-INT-075-01, AC-INT-075-05）",
+      "raw_line_sha256_lf_inclusive": "50485ea12899690f1351c2c9bc6d78db29b96d5078a4af4e94edd3cd0c1e17e5"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 86,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 87,
+      "literal": "正常proposalがfinding advisoryとremediation advisoryを別identity・別判定として持つfixtureを通す。両advisoryのidentity、evidence、stateを同一化するnegativeを一変数で注入し拒否する。PR review findingとsystem audit proposalを同identityまたは同schemaへ混同する変異も独立に拒否する。具体的PR schemaの新設はしない。提案の生成をremediation実行や採用へ変換しない。",
+      "raw_line_sha256_lf_inclusive": "675e9db6927317f83a04549ccb5e71806c1c85f3a0f396374bab84917fee5a14"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 88,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 89,
+      "literal": "## CASE-INT-075-08 — 根拠のない自己適格化とroute生成（AC-INT-075-05, AC-INT-075-06）",
+      "raw_line_sha256_lf_inclusive": "4757c762a98c9b44fb20612caeee293d14194ca67cc4113d70bf9bc0a323681d"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 90,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 91,
+      "literal": "proposal proseが独立資格情報なしにverified/P0/P1、正式owner/route、remediation adoptionを宣言する別々のnegative fixtureを与える。全てその結論を権威化せず、根拠不足と既存UIL/該当ownerへの返却を保持する。新route・priority enumは作らない。",
+      "raw_line_sha256_lf_inclusive": "72d11d80f13cc94ecf18d0e112454d3c25b54c6fa7fec50e912b65966b49f8fc"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 92,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 93,
+      "literal": "## CASE-INT-075-09 — detector／direct-projectionの対象外境界（AC-INT-075-06）",
+      "raw_line_sha256_lf_inclusive": "c286e3e455a9241c13337377141c341acaaee673876fb64edb97b4f06f2d1baa"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 94,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 95,
+      "literal": "L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要求や自由文direct write結果を与え、Stage 2c L3 candidateがその能力を主張しないことを確認する。決定論的検出器の契約はL2-073のauthority範囲のままとし、このCASEでL2-073自体のqualification/実行を要求しない。",
+      "raw_line_sha256_lf_inclusive": "f4ebc7b780790b837f016f70f8f09479c9f853596ab827fb0c4a71617aaa9cf2"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 96,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 97,
+      "literal": "## L2-075／L11-075条件の対応",
+      "raw_line_sha256_lf_inclusive": "78394d4526224bcbfb825c8e528e0d67ef9fd0a66f50b17f821b68361042b791"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 98,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 99,
+      "literal": "固定L2 `intelligence-requirements.md:618-625`、L11 `intelligence-acceptance.md:337-343` とPO採択行 `po-decision-2026-10-03-later35.md:33` のsource pinはrevision-specific auditに収録する。L2 snapshotの旧「未採択」表示はこのrevisionの後続PO判断と同一semantic digestにより読み替える。旧AAFD AC-001〜003の実行/受入条件を15-17行で照合し、L2-075に含まれるidentity/evidence/qualificationを本FR/AC/CASEへ配置した。旧AC-004/R-04 detector条件は対象外。source再導出記録はclosureや独立reviewを意味しない。",
+      "raw_line_sha256_lf_inclusive": "bb25e1ba0ec79d1d3e2dbe72bb8c7fb3b99fa6d1a5f916c8ac8918a95e933148"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "physical_line": 1,
+      "literal": "# HELIX-INTELLIGENCE L10 業務総合検証（Stage 2c）",
+      "raw_line_sha256_lf_inclusive": "3e1b39bc8fe3d56770319fdb667a4efe083cbfda0d4af479f2ce7104b73d06c5"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "physical_line": 2,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "physical_line": 3,
+      "literal": "状態: 対のL3業務要件を検証する設計候補。業務結果を実測済みとは扱わない。業務要件の正本はL3 `business-requirements.md`であり、本書はそのACとfunctional CASEへのtraceをまとめる。",
+      "raw_line_sha256_lf_inclusive": "2afe212a2b55e023cf79a3e0532e313f5d9d9d935ddc5b2f7475d09080ddd2af"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "physical_line": 4,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "physical_line": 5,
+      "literal": "旧HELIXの受入test設計のpair trace（LEGACY-ASSET-44DD86E3DEC09E65EF51, `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md:32-90,91-216`）およびwrong actor/scope/stale receipt mutationの設計（LEGACY-ASSET-437A6A68F9A9E0AE1B9E, `resident-lane-orchestration-acceptance.md:17-55`）を形式起点にする。旧Issue/PLAN authority、lane/lease機構、件数、test runtimeは再利用しない。",
+      "raw_line_sha256_lf_inclusive": "6fef5fa1d4e2c0255aea3967e66edb1eb6d04d3ad18ae1bd0fb9151e8f1f61bd"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "physical_line": 6,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "physical_line": 7,
+      "literal": "対象は採択済み `HELIXINTELLIGENCE-L2-068` と `HELIXINTELLIGENCE-L2-075`。Stage 2aの010/066草稿は含めない。項目別sourceと再導出は時点監査へ記録する。",
+      "raw_line_sha256_lf_inclusive": "01ae18ae8064cbf3045a57d37ab9c686962490f8bfe7a1d03a47a3793888c957"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "physical_line": 8,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "physical_line": 9,
+      "literal": "## Stage 2c — L2-068の業務検証範囲",
+      "raw_line_sha256_lf_inclusive": "1d84217a9d8cbe4bb7a1b2449f28b70bb3242847eb0bdf14ff12e32114376bf5"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "physical_line": 10,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "physical_line": 11,
+      "literal": "固定親 `HELIXINTELLIGENCE-L2-068` に独立business outcomeがないため、Stage 2cのbusiness CASEは設けない。受入/evidenceはL3 `FR-INT-068` / `AC-INT-068-01`〜`AC-INT-068-06` およびfunctional L10 `CASE-INT-068-01`〜`CASE-INT-068-11` を参照する。別のStage 2a草稿のBR-INT-010/066は本書に収載せず、そのoracleをL2-068へ拡張せず、新しいbusiness owner・KPI・受入gateを追加しない。",
+      "raw_line_sha256_lf_inclusive": "cb13b86d33958a612ee6aa0ae7aeb8f1a083b75ff18bcd240632b49f3a7d4638"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "physical_line": 12,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "physical_line": 13,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "physical_line": 14,
+      "literal": "## Stage 2c — L2-075の業務検証範囲",
+      "raw_line_sha256_lf_inclusive": "b4afca2eb72f2bddba1e0c3f30fc468f46ea285473d65da8ddf7fc26d4d5343f"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "physical_line": 15,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "physical_line": 16,
+      "literal": "固定親 `HELIXINTELLIGENCE-L2-075` は独立business outcomeを要求しないため、BR-INT-075/Business CASEは追加しない。Stage 2c evidenceは `FR-INT-075` の `AC-INT-075-01`〜`AC-INT-075-06` およびfunctional CASE `CASE-INT-075-01`〜`CASE-INT-075-09` を参照する。qualification owner、business KPI、新しいgateは作らない。",
+      "raw_line_sha256_lf_inclusive": "9ce742ee703366198e4615d09f9391d7b13add343230421c26e0b96d5ff2f3d4"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "physical_line": 1,
+      "literal": "# HELIX-INTELLIGENCE L10 NFR総合検証（Stage 2c）",
+      "raw_line_sha256_lf_inclusive": "2d7bac2fdbddb77cfbbda063739f414421e54b45cd3199bf5f02e744ba5c6032"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "physical_line": 2,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "physical_line": 3,
+      "literal": "状態: NFR技術候補に対する検証設計。数値cutoffの採択、runtime計測、PO承認を示さない。L3 `nfr-grade.md`の候補を、固定L2が指定する測定次元と対にする。",
+      "raw_line_sha256_lf_inclusive": "93f07ee7992640faf809f5632f977d0253bc1221b30d5134b312529e6b81d4e1"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "physical_line": 4,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "physical_line": 5,
+      "literal": "旧NFR→measure/acceptance traceの形式を再導出する（LEGACY-ASSET-DB669724249A14A665F0, `archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md:21-34,58-81`; paired oracle shape LEGACY-ASSET-44DD86E3DEC09E65EF51, `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md:32-90,91-216`）。旧IPA grade、threshold、pass値、CI/runtimeは流用しない。",
+      "raw_line_sha256_lf_inclusive": "839bb5b65697e0127c45ee121df0e92dc321aeb075b22740febf923adaadc3f0"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "physical_line": 6,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "physical_line": 7,
+      "literal": "対象は採択済み `HELIXINTELLIGENCE-L2-068` と `HELIXINTELLIGENCE-L2-075`。Stage 2aの010/066草稿は含めない。項目別sourceと再導出は時点監査へ記録する。",
+      "raw_line_sha256_lf_inclusive": "01ae18ae8064cbf3045a57d37ab9c686962490f8bfe7a1d03a47a3793888c957"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "physical_line": 8,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "physical_line": 9,
+      "literal": "## CASE-NFR-INT-068-01 — operation別入力・claim・budgetの計測候補",
+      "raw_line_sha256_lf_inclusive": "8952d0aa38fd3f7780bb3d19e12feb9d983563d790806110792d2307d34e0dd0"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "physical_line": 10,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "physical_line": 11,
+      "literal": "- 固定親: `HELIXINTELLIGENCE-L2-068`、L2 `491-506`、L11 `202-209`、固定revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。実装実測やL3採択を示さない。",
+      "raw_line_sha256_lf_inclusive": "bf3b3d6c9dda5dfc1f56be5e7127d47213d288e6f4e8328819a538b1b20c17bb"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "physical_line": 12,
+      "literal": "- operation母集団: operation ID、scope、source/revisionを入力fieldの検査前に固定し、必須input欠落operationも母集団に残す。normal completed、failed、cancelled/stopped、未完了/不明のdispositionを一つだけ割り当てる。観測状態（観測あり/missing observation/censored）とfield状態（充足/missing/unknown/stale/restricted/conflict）は別軸にする。missing inputをdispositionに重複計上しない。preparationとdiagnosis/consultを分ける。",
+      "raw_line_sha256_lf_inclusive": "99abfeff43ce97aaf7178b0a0182345be3d836b0d98c0197088e0bedce59fb97"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "physical_line": 13,
+      "literal": "- 操作入力oracle: 2つの独立集計を照合する。operation充足率の分母は固定した全operation母集団、分子はすべての適用必須fieldが充足したoperation数。field別率の分母はcontract上そのfieldが適用必須となるoperation数、分子は当該fieldが充足したoperation数。入力field欠落の対象operation例を使い、operation分母には残り、対応fieldではmissing、operationは必要に応じて保留されることを確認する。failed＋missing field、cancelled＋stale field等の組合せ例ではdispositionとfield statusが別軸のまま集計されることを確認する。各適用母集団0の場合は率なしとする。",
+      "raw_line_sha256_lf_inclusive": "dcb08b90faac9b36d61197db1521de4719b15e9ab29812c48984a1b89bd8cb15"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "physical_line": 14,
+      "literal": "- claim oracle: fixture上の全substantive claimを各一つのclaim kind（fact/inference/hypothesis/unknown/unclassifiable）へ分類し、各claimがちょうど一つのkindへ入ること、全claim件数とkind合計が一致することを確認する。source support（trace-backed/unsupported/not assessable）およびunknown-to-fact、unknown-to-pass、wrong-owner return等の誤りeventは独立軸として記録し、一claimが複数eventを持つ場合もclaim kind countを重複させない。",
+      "raw_line_sha256_lf_inclusive": "5b3a9b78c9249df91e99de076dca57a4c1ab5c8e27e8e959c1cc3370c79d905a"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "physical_line": 15,
+      "literal": "- budget/elapsed oracle: 元assignment budgetの初期値・operation前後残量・deadline・stop/cancelを記録し、reset/増額や割合閾値を作らない。valid elapsedは既存OS記録が特定する同一operationの開始/終了event、same clock/unit、整合timestamp（start≤end）が全てある場合のみ。normal・failed・stoppedの個別fixtureで有効timestampなら観測validとして記録するが、validはpassを意味しない。両endpoint同時刻の実elapsed zeroと、elapsed定義/source欠落のunknownを別oracleにする。計測定義/sourceが有効な標本では、明示的な観測打切りをcensored、打切り以外の開始/終了endpoint欠落をmissing、両端はあるが時刻逆転または同時計測条件不一致をelapsed観測failed、両端整合をvalidの順で一状態だけ付ける。打切りとendpoint欠落が重なるfixtureもcensoredへ一度だけ数える。n_valid=0は分位値なし、観測記録自体が無い場合だけ未実測とし、欠測を0化しない。p50/p95はvalid標本だけから計算する。",
+      "raw_line_sha256_lf_inclusive": "ae415f97da287c44458cca2d334bd23b7a45ab47ef3b9dc23349189884256b59"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "physical_line": 16,
+      "literal": "- 合格: 入力field・operation・claim・elapsedの各分母とstatus軸が混ざらず、全fixture件数が再計算可能であること。計測定義不足はunknown/unavailableとして記録し、親にないruntime/clock/SLA義務、sample minimum、任意window、numeric cutoffを作らない。",
+      "raw_line_sha256_lf_inclusive": "16539da0e0e7f3280e933fc86f8ee45f5a8fef85f7f494159c66cde6d1ceee0f"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "physical_line": 17,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "physical_line": 18,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "physical_line": 19,
+      "literal": "## CASE-NFR-INT-075-01 — 宣言identityと適格化の測定候補",
+      "raw_line_sha256_lf_inclusive": "3a5f2f15c8ed8339186c1600df58ba260bb582ec976646967c4bdf87dbbe908f"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "physical_line": 20,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "physical_line": 21,
+      "literal": "- 固定親: `HELIXINTELLIGENCE-L2-075`。L2 `618-625`、L11 `337-343`、PO採択行 `po-decision-2026-10-03-later35.md:33` のexact revision/digestを対照とする。実測やL3採択を示さない。",
+      "raw_line_sha256_lf_inclusive": "643511de84d458f8b990e5d8ff5e83ffa8381d6550f677453330d6010c009087"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "physical_line": 22,
+      "literal": "- field matrix: CASE-INT-075-01の全declared fieldを母集団として、各fieldについてnormal binding fixture・missing・altered・wrong-revision reason fixtureの有無を列挙する。6 identity条件の各変異がそれぞれsingle-fieldになっていることを検査する。coverage候補はnormal binding確認と独立negative理由確認の両方がmatrixにある宣言field数/全declared field数で示し、対象L2 revision、fixture数、未作成/未評価fieldを併記する。分母0は率なし。coverage結果を運用時passや資格へ変換しない。",
+      "raw_line_sha256_lf_inclusive": "62e2e1b77d823a0c88b235a29fd512aafacbb2281b191536d845f283a831c973"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "physical_line": 23,
+      "literal": "- qualification matrix: self-rating、duplicate/existing owner、independent reproduction、counterevidence、expiry、supersession、finding/remediation identityを別facetとし、各facetの正常・negative・unknown fixture数とexpected/observed未qualified・owner handoff結果を記録する。facet間を単一scoreで相殺せず、未確認をpositive件数に含めない。",
+      "raw_line_sha256_lf_inclusive": "2b8e73a8a3ac99f03f0078e0278a060c601ef1e3b810fe616f94b266cacfa96f"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "physical_line": 24,
+      "literal": "- authority population: current / compatibility / historicalを分け、歴史sourceをcurrent denominatorまたはcurrent passへ混ぜない。別producer/session/HEAD/stale/expired/superseded/duplicate fixtureはunseen/incomplete populationに分類し、理由と既存ownerを保持する。",
+      "raw_line_sha256_lf_inclusive": "7f192bc131b94b1580486778c019f1190b79dc784b58826219dffe2848f4d27a"
+    },
+    {
+      "content_commit": "ad7afd6e42c4ab6e85f8bdb12d2783d104e2d85e",
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "physical_line": 25,
+      "literal": "- 判定: 候補NFRはテストmatrixの可観測性・coverage比較に限定する。合否閾値、最低件数、SLA、schema enum、Qualification algorithm、UIL runtime、Issue/CI/merge実行を追加しない。採択済みL2-009/L1-009とのtraceが不足する場合はunknownとして既存ownerへ返す。",
+      "raw_line_sha256_lf_inclusive": "22631fc65d5a8f39e21902f6126dcc99ff61cf259bd3b8b5f4e95fc58e606c52"
+    }
+  ],
+  "review_source": {
+    "comment_id": 5988202697,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2597#issuecomment-5988202697",
+    "body_sha256": "5aee47d3fd5431edd70e6496382c6a8c705c9a0ba17430583f2eb9e52c8de2d7",
+    "body_utf8_bytes": 5485,
+    "counts": {
+      "blocker": 0,
+      "major": 1,
+      "minor": 5
+    }
+  },
+  "historical_public_source_note": {
+    "prior_record_path": "docs/governance/audits/requirements-stage/l3-l10-intelligence-stage2c-root-static-validation-2026-10-05-a4610274f.json",
+    "prior_private_snapshot_path": "/tmp/pr2564-claude13-comment-full.txt",
+    "status": "旧時点記録のlocatorは不変。これはprivate取得cacheであり正本依存ではない。公開sourceはPR #2564 Claude commentである。",
+    "public_comment_id": 5981101754,
+    "public_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2564#issuecomment-5981101754",
+    "public_body_sha256": "ec73191641cef5fc5135049f6243212dd2e3972291800b50bced366da87ab6d2",
+    "public_body_utf8_bytes": 32524
+  },
+  "finding_dispositions": [
+    {
+      "id": "M1",
+      "severity": "Major",
+      "disposition": "addressed",
+      "detail": "CASE-INT-068-06 now contains two independent negative fixtures: promoting a proposed oracle to accepted oracle/acceptance condition, and changing the existing HARNESS-L2-022 oracle. Both reject and route oracle meaning to HARNESS or the existing target owner."
+    },
+    {
+      "id": "m1",
+      "severity": "Minor",
+      "disposition": "addressed",
+      "detail": "CASE-INT-068-04/05 explicitly expose missing or contradictory source status in the candidate output before returning to the correct existing owner."
+    },
+    {
+      "id": "m2",
+      "severity": "Minor",
+      "disposition": "addressed",
+      "detail": "All three L3 document state lines now say L3 unapproved, delegated review pending."
+    },
+    {
+      "id": "m3",
+      "severity": "Minor",
+      "disposition": "addressed",
+      "detail": "C13 carry text is labeled specifically as Stage 2a PR #2594 historical review state, outside Stage 2c requirement/acceptance/scope."
+    },
+    {
+      "id": "m4",
+      "severity": "Minor",
+      "disposition": "addressed",
+      "detail": "The old immutable audit retains its private /tmp cache locator. This new main-publication follow-up records public PR #2564 comment 5981101754 and exact body SHA as the public source; no private file is a canonical dependency."
+    },
+    {
+      "id": "m5",
+      "severity": "Minor",
+      "disposition": "addressed",
+      "detail": "AC-INT-068-04 and new CASE-INT-068-11 independently omit operation, trigger, expected output, or scope record, expose the missing field, and do not accept/alter oracle semantics."
+    }
+  ],
+  "counts": {
+    "retained_source_pins_revalidated": 48,
+    "new_git_source_pins": 5,
+    "review_comment_pins": 2,
+    "total_pin_records": 55,
+    "current_line_pins": 240,
+    "canonical_documents": 6,
+    "CASE_INT_068": 11,
+    "CASE_INT_075": 9
+  },
+  "static_checks": {
+    "scfctl_validate_bindings": 147,
+    "scfctl_validate_fail": 0,
+    "stale": 0,
+    "residuals": 0,
+    "govcheck": "ok atoms=7622 requirements=57 files=58",
+    "git_diff_check": "pass",
+    "case_resolver": "0.68 cases 11; 0.75 cases 9; refs updated",
+    "legacy_runtime_test_ci_bun": "not run"
+  },
+  "limits": [
+    "root inspection pending",
+    "independent review pending",
+    "PO L3 approval not granted",
+    "L10 execution or runtime measurement not performed",
+    "existing C13 carry and unreviewed scope remains open",
+    "no push"
+  ]
+}
