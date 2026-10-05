@@ -1,0 +1,1960 @@
+{
+  "record_kind": "OS Stage 2a formal review02 corrective supplement",
+  "record_date": "2026-10-05",
+  "authority_effect": "none",
+  "mechanism": "HELIX-OS",
+  "stage": "Stage 2a",
+  "scope": {
+    "parents": [
+      "HELIXOS-L2-015",
+      "HELIXOS-L2-016",
+      "HELIXOS-L2-017",
+      "HELIXOS-L2-018",
+      "HELIXOS-L2-019",
+      "HELIXOS-L2-020",
+      "HELIXOS-L2-023",
+      "HELIXOS-L2-027"
+    ],
+    "version_target": "1.0",
+    "meaning_scope_owner_version_changed": false,
+    "other_stage_added": false
+  },
+  "formal_review_source": {
+    "comment_id": 5988809739,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2593#issuecomment-5988809739",
+    "reviewed_content_head": "46dffc94196a054a5bb7dee2b430b73a62fa0103",
+    "body_sha256_utf8": "529c1525586198a00f7518c269c8026b401c21f34f28d175f0b84cacc269cc27",
+    "body_bytes": 11005,
+    "major_count": 9,
+    "minor_count": 7,
+    "source_path": "/tmp/pr2593-review02-comment-body.txt"
+  },
+  "body_parent_revision": "46dffc94196a054a5bb7dee2b430b73a62fa0103",
+  "body_revision": "629607dc39cd3996773566d0abbf0a7fa862e0aa",
+  "latest_main_reference": {
+    "revision": "dcc72fc16a8058ee7da1e0cd5c9907dc125c90f4",
+    "role": "root-provided latest main reference already integrated at body parent; no push or merge by this worker"
+  },
+  "approved_stage2b_prefix_admission": {
+    "decision_record_path": "docs/governance/decisions/helix-os-stage2b-l3-l10-po-decision-2026-10-05.md",
+    "decision_record_introduction_commit": "521bb1b121483b97bf954cf405ad4b5048d166be",
+    "decision_record_current_base": "1fcd83982bbb93c0630951c80dfd076e98caa54c",
+    "decision_record_full_sha256": "b833465f1c46331bf2adbc96244f5a2ac4052779e880a5d3d298f61f4b6802af",
+    "decision_record_bytes": 4846,
+    "decision_record_raw_full_lines_pin": {
+      "label": "委任L3/L10承認decision record",
+      "revision": "1fcd83982bbb93c0630951c80dfd076e98caa54c",
+      "path": "docs/governance/decisions/helix-os-stage2b-l3-l10-po-decision-2026-10-05.md",
+      "full_sha256": "b833465f1c46331bf2adbc96244f5a2ac4052779e880a5d3d298f61f4b6802af",
+      "byte_length": 4846,
+      "physical_lines": [
+        1,
+        49
+      ],
+      "raw_span_sha256_lf_inclusive": "b833465f1c46331bf2adbc96244f5a2ac4052779e880a5d3d298f61f4b6802af",
+      "raw_span_byte_length": 4846
+    },
+    "approved_content_revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+    "approved_parents": [
+      "HELIXOS-L2-014"
+    ],
+    "approved_version_target": "1.0",
+    "approved_document_sha256_from_decision": {
+      "docs/helix-os/L3-requirements/functional-requirements.md": "cb82838b9e18ac8df5e02b48b65f1c318b90c08aec3cecd67a5d97193e827ab5",
+      "docs/helix-os/L3-requirements/business-requirements.md": "235787ab8c96e15ac91eec955ed5650a49a0993636e8523d006dc587f6d9a863",
+      "docs/helix-os/L3-requirements/nfr-grade.md": "0c87bdde3491124ed8e6e8888115802f91ca1897e0760b44273d395967180326",
+      "docs/helix-os/L10-verification/functional-verification.md": "6dcafdd7f88ad6acde046702d4c0b681c9d94973f2967f24625bf5264cb24476",
+      "docs/helix-os/L10-verification/business-verification.md": "ffed2d5b4b688dd22aa8d3aae0b3b9faadd01a6074af530c8630da602f513629",
+      "docs/helix-os/L10-verification/nfr-verification.md": "2c0060eaa9efc027d34011f1948d18cdec66665e17b8a5b2e9b9b29d9fb29748"
+    },
+    "current_six_prefix_exact_match": true,
+    "decision_scope_note": "Approved Stage2b-014 prefix bytes are preserved exactly; its L3 approval is not inherited by the appended Stage2a candidate. Stage2a remains unapproved. Earlier source-and-pair receipt is retained in its original build-time state and is not used to override the later admitted decision."
+  },
+  "canonical_documents": [
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "full_sha256": "c49988f32a89332b1b11eb80b249f03f6711fc7891edb1de086c015a6ff6c318",
+      "bytes": 58422,
+      "physical_lines": 180,
+      "approved_stage2b_prefix": {
+        "revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+        "bytes": 12600,
+        "sha256": "cb82838b9e18ac8df5e02b48b65f1c318b90c08aec3cecd67a5d97193e827ab5",
+        "matches_approved_document_bytes": true
+      }
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "full_sha256": "20b14814d3cd42d464e127ba8823e648094a88268f1ca8c0ba9520b1e99b33bf",
+      "bytes": 10894,
+      "physical_lines": 49,
+      "approved_stage2b_prefix": {
+        "revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+        "bytes": 855,
+        "sha256": "235787ab8c96e15ac91eec955ed5650a49a0993636e8523d006dc587f6d9a863",
+        "matches_approved_document_bytes": true
+      }
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "full_sha256": "0ab4279e9c3dbdd8de8e7a28e9e1c8fdf7321f8b2a824c11d2ab1d37519cb248",
+      "bytes": 11752,
+      "physical_lines": 57,
+      "approved_stage2b_prefix": {
+        "revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+        "bytes": 2732,
+        "sha256": "0c87bdde3491124ed8e6e8888115802f91ca1897e0760b44273d395967180326",
+        "matches_approved_document_bytes": true
+      }
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "full_sha256": "10e0928bbd3921e4610d7ed74cf5ebb93dd08324fa687bcbd093c8019933d307",
+      "bytes": 68371,
+      "physical_lines": 424,
+      "approved_stage2b_prefix": {
+        "revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+        "bytes": 19873,
+        "sha256": "6dcafdd7f88ad6acde046702d4c0b681c9d94973f2967f24625bf5264cb24476",
+        "matches_approved_document_bytes": true
+      }
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "full_sha256": "863ea0faf4d5bd1c1843aa38562b8e11e5c9ddf0bfe71dee8bfcb3777918a2c5",
+      "bytes": 7113,
+      "physical_lines": 34,
+      "approved_stage2b_prefix": {
+        "revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+        "bytes": 891,
+        "sha256": "ffed2d5b4b688dd22aa8d3aae0b3b9faadd01a6074af530c8630da602f513629",
+        "matches_approved_document_bytes": true
+      }
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "full_sha256": "436a58b7e2b8c9b744a75d6c0ca5e2735480b697a7c3bf416f85fbb7011a6545",
+      "bytes": 10832,
+      "physical_lines": 53,
+      "approved_stage2b_prefix": {
+        "revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+        "bytes": 2608,
+        "sha256": "2c0060eaa9efc027d34011f1948d18cdec66665e17b8a5b2e9b9b29d9fb29748",
+        "matches_approved_document_bytes": true
+      }
+    }
+  ],
+  "current_changed_line_pins": [
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "physical_line": 59,
+      "literal": "固定L2は `docs/helix-os/L2-requirements/governance-requirements.md`、固定L11は `docs/helix-os/L11-acceptance/governance-acceptance.md` のf6dad2a revisionである。POのmain633 decision記録 `docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md` row 48はOS-L2-014〜029をまとまりで採択した。次の8親はそれぞれL2/L11のidentity・本文をpinし、各registration/digestをPO decisionの個別完全一致rowと偽らない。OS-018には `docs/governance/decisions/po-decision-2026-10-03-additions10.md` row 34のmain633追加decisionも適用し、HIL-NFR-36の事実・理由、実行した品質対応/結果、予定と実行の区別を保持する。新しいdefaultや全案件共通の対応順序は加えない。",
+      "raw_line_sha256_lf_inclusive": "473a10221a4fcc436a3511f909914cf5fc5aea30c941eef18f970150b1b14e44",
+      "raw_line_bytes": 774
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "physical_line": 73,
+      "literal": "| `HELIXOS-L2-001`（015/019/023のsource・authority・対象revision条件） | 投影と正本、source identity/revision/digest、判断主体、訂正履歴を保持し、Issue/PR/CIからauthorityを作らない。 | `AC-OS-015-01`, `AC-OS-015-02`, `AC-OS-015-03`, `AC-OS-019-01`, `AC-OS-019-02`, `AC-OS-019-03`, `AC-OS-023-01`, `AC-OS-023-02`; `CASE-OS-015-01`, `CASE-OS-015-02a`, `CASE-OS-015-02b`, `CASE-OS-015-02c`, `CASE-OS-015-02d`, `CASE-OS-015-02e`, `CASE-OS-015-02f`, `CASE-OS-015-02g`, `CASE-OS-015-02h`, `CASE-OS-015-02i`, `CASE-OS-015-02j`, `CASE-OS-015-02k`, `CASE-OS-015-03`, `CASE-OS-019-01`, `CASE-OS-019-02a`, `CASE-OS-019-02b`, `CASE-OS-019-02c`, `CASE-OS-019-02d`, `CASE-OS-019-02e`, `CASE-OS-019-02f`, `CASE-OS-019-03`, `CASE-OS-023-01`, `CASE-OS-023-02a`, `CASE-OS-023-02b`, `CASE-OS-023-02c`, `CASE-OS-023-02d`, `CASE-OS-023-02e`, `CASE-OS-023-02f`, `CASE-OS-023-02g`, `CASE-OS-023-02h`, `CASE-OS-023-02i`, `CASE-OS-023-02j`, `CASE-OS-023-02k`, `CASE-OS-023-02l`, `CASE-OS-023-02m`, `CASE-OS-023-02n`, `CASE-OS-023-03` |",
+      "raw_line_sha256_lf_inclusive": "f7f37dc5ba9d762c848cc0069304b0c1cf2e023d2244812169ebfcc5cd3138cb",
+      "raw_line_bytes": 1049
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "physical_line": 74,
+      "literal": "| `HELIXOS-L2-002`（016/019/020/023の要求relation・handoff・提供追跡条件） | 対象revisionとunit/connection/composite relationを分離し、下位成功だけで上位完了にしない。 | `AC-OS-016-01`, `AC-OS-016-02`, `AC-OS-016-03`, `AC-OS-019-01`, `AC-OS-019-02`, `AC-OS-019-03`, `AC-OS-020-01`, `AC-OS-020-02`, `AC-OS-020-03`, `AC-OS-023-01`, `AC-OS-023-02`, `AC-OS-023-03`; `CASE-OS-016-01`, `CASE-OS-016-02a`, `CASE-OS-016-02b`, `CASE-OS-016-02c`, `CASE-OS-016-02d`, `CASE-OS-016-02e`, `CASE-OS-016-02f`, `CASE-OS-016-02g`, `CASE-OS-016-02h`, `CASE-OS-016-02i`, `CASE-OS-016-03`, `CASE-OS-019-01`, `CASE-OS-019-02a`, `CASE-OS-019-02b`, `CASE-OS-019-02c`, `CASE-OS-019-02d`, `CASE-OS-019-02e`, `CASE-OS-019-02f`, `CASE-OS-019-03`, `CASE-OS-020-01`, `CASE-OS-020-02a`, `CASE-OS-020-02b`, `CASE-OS-020-02c`, `CASE-OS-020-02d`, `CASE-OS-020-02e`, `CASE-OS-020-02f`, `CASE-OS-020-02g`, `CASE-OS-020-02h`, `CASE-OS-020-02i`, `CASE-OS-020-02j`, `CASE-OS-020-02k`, `CASE-OS-020-02l`, `CASE-OS-020-03`, `CASE-OS-023-01`, `CASE-OS-023-02a`, `CASE-OS-023-02b`, `CASE-OS-023-02c`, `CASE-OS-023-02d`, `CASE-OS-023-02e`, `CASE-OS-023-02f`, `CASE-OS-023-02g`, `CASE-OS-023-02h`, `CASE-OS-023-02i`, `CASE-OS-023-02j`, `CASE-OS-023-02k`, `CASE-OS-023-02l`, `CASE-OS-023-02m`, `CASE-OS-023-02n`, `CASE-OS-023-03` |",
+      "raw_line_sha256_lf_inclusive": "fee6b52afe8f9d2171aca44f5f88306a5baf359f1beaa69ddd01dfcbf4232dd3",
+      "raw_line_bytes": 1323
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "physical_line": 75,
+      "literal": "| `HELIXOS-L2-003`（015/017/023の要求意味・判断source条件） | 登録済み目的・要求・制約と判断sourceを保持し、ticket案や記録から意味/判断を生成しない。 | `AC-OS-015-01`, `AC-OS-015-02`, `AC-OS-017-01`, `AC-OS-017-02`, `AC-OS-023-01`, `AC-OS-023-02`; `CASE-OS-015-01`, `CASE-OS-015-02a`, `CASE-OS-015-02b`, `CASE-OS-015-02c`, `CASE-OS-015-02d`, `CASE-OS-015-02e`, `CASE-OS-015-02f`, `CASE-OS-015-02g`, `CASE-OS-015-02h`, `CASE-OS-015-02i`, `CASE-OS-015-02j`, `CASE-OS-015-02k`, `CASE-OS-015-03`, `CASE-OS-017-01`, `CASE-OS-017-02a`, `CASE-OS-017-02b`, `CASE-OS-017-02c`, `CASE-OS-017-02d`, `CASE-OS-017-02e`, `CASE-OS-017-02f`, `CASE-OS-017-02g`, `CASE-OS-017-02h`, `CASE-OS-017-02i`, `CASE-OS-017-02j`, `CASE-OS-017-03`, `CASE-OS-023-01`, `CASE-OS-023-02a`, `CASE-OS-023-02b`, `CASE-OS-023-02c`, `CASE-OS-023-02d`, `CASE-OS-023-02e`, `CASE-OS-023-02f`, `CASE-OS-023-02g`, `CASE-OS-023-02h`, `CASE-OS-023-02i`, `CASE-OS-023-02j`, `CASE-OS-023-02k`, `CASE-OS-023-02l`, `CASE-OS-023-02m`, `CASE-OS-023-02n`, `CASE-OS-023-03` |",
+      "raw_line_sha256_lf_inclusive": "063350bdf849c1f6a1fe952376e45156039898036c80cdf6980ceaad1ee8818c",
+      "raw_line_bytes": 1071
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "physical_line": 76,
+      "literal": "| `HELIXOS-L2-004`（018/019/023/027の既存束ね条件） | 割当・復旧・handoff・限定初回実行条件を各該当親で保持する。HXT-USEの周辺jobはここへ誤分類しない。 | `AC-OS-018-01`, `AC-OS-018-02`, `AC-OS-018-03`, `AC-OS-018-04`, `AC-OS-019-01`, `AC-OS-019-02`, `AC-OS-019-03`, `AC-OS-023-01`, `AC-OS-023-02`, `AC-OS-023-03`, `AC-OS-027-01`, `AC-OS-027-02`, `AC-OS-027-03`, `AC-OS-027-04`, `AC-OS-027-05`, `AC-OS-027-06`; `CASE-OS-018-01`, `CASE-OS-018-02a`, `CASE-OS-018-02b`, `CASE-OS-018-02c`, `CASE-OS-018-02d`, `CASE-OS-018-02e`, `CASE-OS-018-02f`, `CASE-OS-018-02g`, `CASE-OS-018-02h`, `CASE-OS-018-02i`, `CASE-OS-018-02j`, `CASE-OS-018-02k`, `CASE-OS-018-02l`, `CASE-OS-018-02m`, `CASE-OS-018-02n`, `CASE-OS-018-02o`, `CASE-OS-018-02p`, `CASE-OS-018-03`, `CASE-OS-018-04a`, `CASE-OS-018-04b`, `CASE-OS-018-04c`, `CASE-OS-018-04d`, `CASE-OS-018-04e`, `CASE-OS-018-04f`, `CASE-OS-018-04g`, `CASE-OS-018-04h`, `CASE-OS-018-04i`, `CASE-OS-018-04j`, `CASE-OS-018-04k`, `CASE-OS-018-04l`, `CASE-OS-018-05`, `CASE-OS-019-01`, `CASE-OS-019-02a`, `CASE-OS-019-02b`, `CASE-OS-019-02c`, `CASE-OS-019-02d`, `CASE-OS-019-02e`, `CASE-OS-019-02f`, `CASE-OS-019-03`, `CASE-OS-023-01`, `CASE-OS-023-02a`, `CASE-OS-023-02b`, `CASE-OS-023-02c`, `CASE-OS-023-02d`, `CASE-OS-023-02e`, `CASE-OS-023-02f`, `CASE-OS-023-02g`, `CASE-OS-023-02h`, `CASE-OS-023-02i`, `CASE-OS-023-02j`, `CASE-OS-023-02k`, `CASE-OS-023-02l`, `CASE-OS-023-02m`, `CASE-OS-023-02n`, `CASE-OS-023-03`, `CASE-OS-027-01`, `CASE-OS-027-02a1`, `CASE-OS-027-02a2`, `CASE-OS-027-02a3`, `CASE-OS-027-02a4`, `CASE-OS-027-02a5`, `CASE-OS-027-02a6`, `CASE-OS-027-02b`, `CASE-OS-027-02c`, `CASE-OS-027-02d`, `CASE-OS-027-02e1`, `CASE-OS-027-02e2`, `CASE-OS-027-02e3`, `CASE-OS-027-02f`, `CASE-OS-027-03a`, `CASE-OS-027-03b`, `CASE-OS-027-03c`, `CASE-OS-027-03d`, `CASE-OS-027-03e`, `CASE-OS-027-03f`, `CASE-OS-027-03g`, `CASE-OS-027-03h`, `CASE-OS-027-03i`, `CASE-OS-027-03j`, `CASE-OS-027-03k`, `CASE-OS-027-03l`, `CASE-OS-027-03m`, `CASE-OS-027-03n`, `CASE-OS-027-03o`, `CASE-OS-027-03p`, `CASE-OS-027-03q`, `CASE-OS-027-03r`, `CASE-OS-027-03s`, `CASE-OS-027-03t`, `CASE-OS-027-03u`, `CASE-OS-027-03w`, `CASE-OS-027-03x`, `CASE-OS-027-03y`, `CASE-OS-027-03z`, `CASE-OS-027-03aa`, `CASE-OS-027-03ac`, `CASE-OS-027-03ad`, `CASE-OS-027-03af`, `CASE-OS-027-03ag`, `CASE-OS-027-03ah`, `CASE-OS-027-03ai`, `CASE-OS-027-03aj`, `CASE-OS-027-03ak`, `CASE-OS-027-03al`, `CASE-OS-027-03am`, `CASE-OS-027-03an`, `CASE-OS-027-03ao`, `CASE-OS-027-03ap`, `CASE-OS-027-03ar`, `CASE-OS-027-03as`, `CASE-OS-027-03at`, `CASE-OS-027-03au`, `CASE-OS-027-03av`, `CASE-OS-027-03aw`, `CASE-OS-027-03ax`, `CASE-OS-027-04`, `CASE-OS-027-05`, `CASE-OS-027-06` |",
+      "raw_line_sha256_lf_inclusive": "de69e9b5db88567c6f2cc91b4ad474aaaa73cb3e9884c1abf9de96ad2f7b8943",
+      "raw_line_bytes": 2721
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "physical_line": 77,
+      "literal": "| `HELIXOS-L2-005`（019の観測・改善還流条件） | sourceと適用scope付きの観測・失敗・改善候補を保持して既存還流先へ接続する。 | `AC-OS-019-01`, `AC-OS-019-02`, `AC-OS-019-03`; `CASE-OS-019-01`, `CASE-OS-019-02a`, `CASE-OS-019-02b`, `CASE-OS-019-02c`, `CASE-OS-019-02d`, `CASE-OS-019-02e`, `CASE-OS-019-02f`, `CASE-OS-019-03` |",
+      "raw_line_sha256_lf_inclusive": "db9ef985ba0c9e69827aab6c427f3951cdf4f76d2b5d387ee356a8dbca9904a3",
+      "raw_line_bytes": 369
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "physical_line": 79,
+      "literal": "| `HELIXOS-L2-007`（015/016/017/019/020/023の共通統制・evidence/state条件） | 共通統制、unknown/conflict/stale、再評価前の未完stateを維持し、下流完了へ昇格しない。 | `AC-OS-015-02`, `AC-OS-016-02`, `AC-OS-017-02`, `AC-OS-019-02`, `AC-OS-020-02`, `AC-OS-023-02`; `CASE-OS-015-02a`, `CASE-OS-015-02b`, `CASE-OS-015-02c`, `CASE-OS-015-02d`, `CASE-OS-015-02e`, `CASE-OS-015-02f`, `CASE-OS-015-02g`, `CASE-OS-015-02h`, `CASE-OS-015-02i`, `CASE-OS-015-02j`, `CASE-OS-015-02k`, `CASE-OS-016-02a`, `CASE-OS-016-02b`, `CASE-OS-016-02c`, `CASE-OS-016-02d`, `CASE-OS-016-02e`, `CASE-OS-016-02f`, `CASE-OS-016-02g`, `CASE-OS-016-02h`, `CASE-OS-016-02i`, `CASE-OS-017-02a`, `CASE-OS-017-02b`, `CASE-OS-017-02c`, `CASE-OS-017-02d`, `CASE-OS-017-02e`, `CASE-OS-017-02f`, `CASE-OS-017-02g`, `CASE-OS-017-02h`, `CASE-OS-017-02i`, `CASE-OS-017-02j`, `CASE-OS-019-02a`, `CASE-OS-019-02b`, `CASE-OS-019-02c`, `CASE-OS-019-02d`, `CASE-OS-019-02e`, `CASE-OS-019-02f`, `CASE-OS-020-02a`, `CASE-OS-020-02b`, `CASE-OS-020-02c`, `CASE-OS-020-02d`, `CASE-OS-020-02e`, `CASE-OS-020-02f`, `CASE-OS-020-02g`, `CASE-OS-020-02h`, `CASE-OS-020-02i`, `CASE-OS-020-02j`, `CASE-OS-020-02k`, `CASE-OS-020-02l`, `CASE-OS-023-02a`, `CASE-OS-023-02b`, `CASE-OS-023-02c`, `CASE-OS-023-02d`, `CASE-OS-023-02e`, `CASE-OS-023-02f`, `CASE-OS-023-02g`, `CASE-OS-023-02h`, `CASE-OS-023-02i`, `CASE-OS-023-02j`, `CASE-OS-023-02k`, `CASE-OS-023-02l`, `CASE-OS-023-02m`, `CASE-OS-023-02n` |",
+      "raw_line_sha256_lf_inclusive": "798ff0b1c1b912e2776141756f8c0e2e5664b4b5710e6b84e8fd117a66fbeb03",
+      "raw_line_bytes": 1480
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "physical_line": 81,
+      "literal": "| `HELIXOS-L2-009`（018/019/023/027の許可・Recovery・状態継承条件） | 復旧・再開でscope、累積制約、未完義務を保ち、適格性不足を成功へ変えない。 | `AC-OS-018-02`, `AC-OS-018-03`, `AC-OS-019-02`, `AC-OS-023-02`, `AC-OS-027-01`, `AC-OS-027-02`, `AC-OS-027-03`; `CASE-OS-018-02a`, `CASE-OS-018-02b`, `CASE-OS-018-02c`, `CASE-OS-018-02d`, `CASE-OS-018-02e`, `CASE-OS-018-02f`, `CASE-OS-018-02g`, `CASE-OS-018-02h`, `CASE-OS-018-02i`, `CASE-OS-018-02j`, `CASE-OS-018-02k`, `CASE-OS-018-02l`, `CASE-OS-018-02m`, `CASE-OS-018-02n`, `CASE-OS-018-02o`, `CASE-OS-018-02p`, `CASE-OS-018-03`, `CASE-OS-019-02a`, `CASE-OS-019-02b`, `CASE-OS-019-02c`, `CASE-OS-019-02d`, `CASE-OS-019-02e`, `CASE-OS-019-02f`, `CASE-OS-023-02a`, `CASE-OS-023-02b`, `CASE-OS-023-02c`, `CASE-OS-023-02d`, `CASE-OS-023-02e`, `CASE-OS-023-02f`, `CASE-OS-023-02g`, `CASE-OS-023-02h`, `CASE-OS-023-02i`, `CASE-OS-023-02j`, `CASE-OS-023-02k`, `CASE-OS-023-02l`, `CASE-OS-023-02m`, `CASE-OS-023-02n`, `CASE-OS-027-01`, `CASE-OS-027-02a1`, `CASE-OS-027-02a2`, `CASE-OS-027-02a3`, `CASE-OS-027-02a4`, `CASE-OS-027-02a5`, `CASE-OS-027-02a6`, `CASE-OS-027-02b`, `CASE-OS-027-02c`, `CASE-OS-027-02d`, `CASE-OS-027-02e1`, `CASE-OS-027-02e2`, `CASE-OS-027-02e3`, `CASE-OS-027-02f`, `CASE-OS-027-03a`, `CASE-OS-027-03b`, `CASE-OS-027-03c`, `CASE-OS-027-03d`, `CASE-OS-027-03e`, `CASE-OS-027-03f`, `CASE-OS-027-03g`, `CASE-OS-027-03h`, `CASE-OS-027-03i`, `CASE-OS-027-03j`, `CASE-OS-027-03k`, `CASE-OS-027-03l`, `CASE-OS-027-03m`, `CASE-OS-027-03n`, `CASE-OS-027-03o`, `CASE-OS-027-03p`, `CASE-OS-027-03q`, `CASE-OS-027-03r`, `CASE-OS-027-03s`, `CASE-OS-027-03t`, `CASE-OS-027-03u`, `CASE-OS-027-03w`, `CASE-OS-027-03x`, `CASE-OS-027-03y`, `CASE-OS-027-03z`, `CASE-OS-027-03aa`, `CASE-OS-027-03ac`, `CASE-OS-027-03ad`, `CASE-OS-027-03af`, `CASE-OS-027-03ag`, `CASE-OS-027-03ah`, `CASE-OS-027-03ai`, `CASE-OS-027-03aj`, `CASE-OS-027-03ak`, `CASE-OS-027-03al`, `CASE-OS-027-03am`, `CASE-OS-027-03an`, `CASE-OS-027-03ao`, `CASE-OS-027-03ap`, `CASE-OS-027-03ar`, `CASE-OS-027-03as`, `CASE-OS-027-03at`, `CASE-OS-027-03au`, `CASE-OS-027-03av`, `CASE-OS-027-03aw`, `CASE-OS-027-03ax`, `CASE-OS-027-04`, `CASE-OS-027-05`, `CASE-OS-027-06` |",
+      "raw_line_sha256_lf_inclusive": "336df9ffc21e574dc60ce2515e057fea2363d4adb227719c27d09ea2b85b9292",
+      "raw_line_bytes": 2231
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "physical_line": 82,
+      "literal": "| `HELIXOS-L2-010`（017のticket種別/flowと023の周辺job宣言） | HXT-TYPE-01〜21、HXT-FLOW-01〜09、HXT-SYS-01、HXT-USE-01を個別保持する。SYSは017、USEは023に帰属する。 | `AC-OS-017-01`, `AC-OS-017-02`, `AC-OS-023-01`, `AC-OS-023-02`; `CASE-OS-017-01`, `CASE-OS-017-02a`, `CASE-OS-017-02b`, `CASE-OS-017-02c`, `CASE-OS-017-02d`, `CASE-OS-017-02e`, `CASE-OS-017-02f`, `CASE-OS-017-02g`, `CASE-OS-017-02h`, `CASE-OS-017-02i`, `CASE-OS-017-02j`, `CASE-OS-017-03`, `CASE-OS-023-01`, `CASE-OS-023-02a`, `CASE-OS-023-02b`, `CASE-OS-023-02c`, `CASE-OS-023-02d`, `CASE-OS-023-02e`, `CASE-OS-023-02f`, `CASE-OS-023-02g`, `CASE-OS-023-02h`, `CASE-OS-023-02i`, `CASE-OS-023-02j`, `CASE-OS-023-02k`, `CASE-OS-023-02l`, `CASE-OS-023-02m`, `CASE-OS-023-02n`, `CASE-OS-023-03` ; `CASE-OS-017-HXT-TYPE-01`, `CASE-OS-017-HXT-TYPE-02`, `CASE-OS-017-HXT-TYPE-03`, `CASE-OS-017-HXT-TYPE-04`, `CASE-OS-017-HXT-TYPE-05`, `CASE-OS-017-HXT-TYPE-06`, `CASE-OS-017-HXT-TYPE-07`, `CASE-OS-017-HXT-TYPE-08`, `CASE-OS-017-HXT-TYPE-09`, `CASE-OS-017-HXT-TYPE-10`, `CASE-OS-017-HXT-TYPE-11`, `CASE-OS-017-HXT-TYPE-12`, `CASE-OS-017-HXT-TYPE-13`, `CASE-OS-017-HXT-TYPE-14`, `CASE-OS-017-HXT-TYPE-15`, `CASE-OS-017-HXT-TYPE-16`, `CASE-OS-017-HXT-TYPE-17`, `CASE-OS-017-HXT-TYPE-18`, `CASE-OS-017-HXT-TYPE-19`, `CASE-OS-017-HXT-TYPE-20`, `CASE-OS-017-HXT-TYPE-21`, `CASE-OS-017-HXT-FLOW-01`, `CASE-OS-017-HXT-FLOW-02`, `CASE-OS-017-HXT-FLOW-03`, `CASE-OS-017-HXT-FLOW-04`, `CASE-OS-017-HXT-FLOW-05`, `CASE-OS-017-HXT-FLOW-06`, `CASE-OS-017-HXT-FLOW-07`, `CASE-OS-017-HXT-FLOW-08`, `CASE-OS-017-HXT-FLOW-09`, `CASE-OS-017-HXT-SYS-01`, `CASE-OS-023-HXT-USE-01` |",
+      "raw_line_sha256_lf_inclusive": "65a0f874fc9bef644340ae0fc5be6f17f53fa6011d4c984d2474a40e2d79bdeb",
+      "raw_line_bytes": 1657
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "physical_line": 84,
+      "literal": "| `HELIXOS-L2-027`（限定初回実行が束ねる条件） | 018/019/026、LABO-055/054、INTELLIGENCE-010は各既存ownerの入力条件として参照し、OS-027の意味へ取り込まない。 | `AC-OS-027-01`〜`06`; `CASE-OS-027-01`, `CASE-OS-027-02a1`〜`02f`, `CASE-OS-027-03a`, `CASE-OS-027-03b`, `CASE-OS-027-03c`, `CASE-OS-027-03d`, `CASE-OS-027-03e`, `CASE-OS-027-03f`, `CASE-OS-027-03g`, `CASE-OS-027-03h`, `CASE-OS-027-03i`, `CASE-OS-027-03j`, `CASE-OS-027-03k`, `CASE-OS-027-03l`, `CASE-OS-027-03m`, `CASE-OS-027-03n`, `CASE-OS-027-03o`, `CASE-OS-027-03p`, `CASE-OS-027-03q`, `CASE-OS-027-03r`, `CASE-OS-027-03s`, `CASE-OS-027-03t`, `CASE-OS-027-03u`, `CASE-OS-027-03w`, `CASE-OS-027-03x`, `CASE-OS-027-03y`, `CASE-OS-027-03z`, `CASE-OS-027-03aa`, `CASE-OS-027-03ac`, `CASE-OS-027-03ad`, `CASE-OS-027-03af`, `CASE-OS-027-03ag`, `CASE-OS-027-03ah`, `CASE-OS-027-03ai`, `CASE-OS-027-03aj`, `CASE-OS-027-03ak`, `CASE-OS-027-03al`, `CASE-OS-027-03am`, `CASE-OS-027-03an`, `CASE-OS-027-03ao`, `CASE-OS-027-03ap`, `CASE-OS-027-03ar`, `CASE-OS-027-03as`, `CASE-OS-027-03at`, `CASE-OS-027-03au`, `CASE-OS-027-03av`, `CASE-OS-027-03aw`, `CASE-OS-027-03ax`, `CASE-OS-027-04`〜`06`。 |",
+      "raw_line_sha256_lf_inclusive": "57d6b9305db4aad240b323a4ed272d8c9bce6a6e21f77792b9cfe7d4c789362c",
+      "raw_line_bytes": 1196
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "physical_line": 85,
+      "literal": "表の対象外とした束ね元は次のとおり。L2-018のticket詳細・resident-lane・three-laneは018内で保持し、027の018/019/026、LABO-055/054、INTELLIGENCE-010は当該ownerの接続先として参照する。L2-019のHBR-P7/P9とL2-020のHBR-P3/P6/HR-FR-HYB-010はそれぞれ019/020の条件として保持し、Stage2aから外さない。",
+      "raw_line_sha256_lf_inclusive": "3f3c43cbb134e34fe8dbab9458d0d70f47ca33993e50fa4bdbdf5ce59825f851",
+      "raw_line_bytes": 363
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "physical_line": 86,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "raw_line_bytes": 1
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "physical_line": 103,
+      "literal": "- **AC-OS-016-01 正常**: 各結果をfixture input/digest、固定親L2 revision、対象revision、実行actor、理由/evidence、使用HARNESS契約版へ束縛する。二つ以上のprojectでunit、connection、composite、依存edgeと各状態が個別に読め、release-kanban上のprovision/operation stateがsourceへtraceする。unit/connection/compositeは別々の判定になる。",
+      "raw_line_sha256_lf_inclusive": "4917eed88f6bd6103c24a51ac41b310df2f2933a6eca83f0bbf66e586e9e31f4",
+      "raw_line_bytes": 401
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "physical_line": 104,
+      "literal": "- **AC-OS-016-02 negative**: 各CASEの結果にfixture input/digest、固定親L2 revision、対象revision、実行actor、理由/evidence、HARNESS契約版を束縛する。下位のsuccessをconnection/composite/他project完了へ昇格しない。owner/dependency/diff/verification targetの各欠落を独立変異にし、unknown/conflictとして保持し対象要求/sourceへ返す。未解決edgeとstale理由を保持し、再評価前に下流完了へ進めない。別projectのproject/CI/PRを完了evidenceとして流用せず、CIまたはticket planだけでmerge/release readinessを作らない。",
+      "raw_line_sha256_lf_inclusive": "289037de615f241222177bd57fdcfa3bdf68b883647ad03e5fc3e2c9f7c67190",
+      "raw_line_bytes": 623
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "physical_line": 112,
+      "literal": "- **AC-OS-017-01 正常**: 各結果をfixture input/digest、固定親L2 revision、対象revision、実行actor、理由/evidence、使用HARNESS契約版へ束縛する。同一のaccepted inputとHARNESS contractから同一のticket candidateが得られ、差異があるtarget/dependencyは個別に保持される。各HXT-TYPE-01〜21では固定L2/L11行の目的・発行区分・合流先を一組で保つ。1.0の途中結果は固定L2の既定戻し先へ差し戻し、戻し先と元ticket identityを追跡する。INT案はauthority/budget/deadline/dependency等へ照合してから扱い、LABO水準/evidenceが提供された場合はそのsource bindingを保つが、未提供なら推測・要求しない。",
+      "raw_line_sha256_lf_inclusive": "59b52e162b36098430424a55c5d3ae6d24989c3229fa25d5146a2e505f8506d7",
+      "raw_line_bytes": 736
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "physical_line": 113,
+      "literal": "- **AC-OS-017-02 negative**: 各CASEの結果にfixture input/digest、固定親L2 revision、対象revision、実行actor、理由/evidence、HARNESS契約版を束縛する。input unknown、conflict、scope逸脱、permission不足をそれぞれ独立に扱い、ticketを実行可能にしない。HARNESS語彙/義務のOS再定義、既定部品外flowの1.0生成、INT案の無条件ticket化、全案件共通の固定sequenceを拒否する。各ticket種類の目的/発行区分/合流先、finding振分け理由、Forward/Discovery/Backflow/Recovery/Incidentのflowを固定L2/L11の行どおり保つ。L2が4.0境界とした部品外flowを1.0へ持ち込まない。停止後も元revision/stop reason/unfinished duties/cumulative budget/deadlineを保つ。",
+      "raw_line_sha256_lf_inclusive": "e1aee13d08865a37c51df9a42980a179091f5bc2042d0c1d52205c524d829699",
+      "raw_line_bytes": 778
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "physical_line": 118,
+      "literal": "- 親: `HELIXOS-L2-018`、version target `1.0`。固定L2 `governance-requirements.md:672-681`、L11 `governance-acceptance.md:345-351`。HIL-NFR-36残差追補は `docs/governance/decisions/po-decision-2026-10-03-additions10.md` row 34。",
+      "raw_line_sha256_lf_inclusive": "5bc99da5ea56ec7f09b70722e5a65450b3756f88d0cab019e6c050414c1b0a61",
+      "raw_line_bytes": 240
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "physical_line": 124,
+      "literal": "- **AC-OS-018-04 追加採択条件**: `docs/governance/decisions/po-decision-2026-10-03-additions10.md` row 34でmain633により採択された `MPR-RC-HELIXOS-L2-018-002` を追加根拠とする。追補L2 `1604–1619` のregistered semantic digestは `5e2a621be8b4bda140bd796a48bedf2b3369daf5fad2665060ac41aa1a3174d2`、同sourceのraw LF-inclusive span SHA-256は `634b700e1ed79c60f53235f6fb0e73348b7cc07264d4e4f8afb69e107aa1996d`。追補L11 `1259–1276` のregistered semantic digestは `e32e45319a3ac91004e3e1a985c7ff44e91b9e86f05b85c266d6b8d67acf87b5`、同sourceのraw LF-inclusive span SHA-256は `ba303351c99a385506d9f151d0b51c03fb08922ce7d2848ffb3b1f485c4c221c`。この追補はf6dad2aに存在しないため、採択記録とmain633のsource bytesを別pinで保持する。適用sourceがある場合だけ、HIL-NFR-36の予定対応と実際の対応、逸脱の根拠receipt、実際に通ったstepと順序、結果、理由を区別して記録する。適用sourceがない場合は未選択consult/support receiptを捏造しない。receiptの適用可否・内容にmissing/stale/conflict/unknown-scope/unknown-ownerがあれば該当するreceipt facetだけをunknown/未完とする。assignmentの可否・継続は既存authority/制約で別に判断し、receipt欠落だけを理由に事前gateまたは全assignment停止を加えない。適用可能な選択sourceの欠落と、適用sourceがない非選択branchを区別する。provider名だけで独立性を判定せず、SECURITY authorizationまたはINFRASTRUCTURE実環境stateをOSが代替しない。既存L2条件に従う期限/budget超過停止と未完義務保持はそのまま維持し、新default・共通対応順序は作らない。 対応CASEは `CASE-OS-018-04a`〜`CASE-OS-018-04l` を個別に照合する。",
+      "raw_line_sha256_lf_inclusive": "38bcf9e38e53e5337c18c9bbc024f569a12446057aadd371411fb4705fcce6ad",
+      "raw_line_bytes": 1833
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "physical_line": 132,
+      "literal": "- **AC-OS-019-02 negative**: 重複配送が二重副作用にならない、failed save/projectionをsuccessful checkpointとして公開しない、provider summaryのみの再開を拒否する。用途外data-useを別project/learningへ流用しない。記録件数だけでepisode完了を主張しない。replay失敗時は原eventを用い、固定L2の失敗位置から再構築し、失敗と未完義務を保持する。",
+      "raw_line_sha256_lf_inclusive": "2e2940695a52424da7e74f0e66dfe97bc47974c8ec02b7ff4e99d1a8d3e07e59",
+      "raw_line_bytes": 436
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "physical_line": 141,
+      "literal": "- **AC-OS-020-02 negative**: HARNESS oracleの追加/削除、必要検証欠落、固定stage count、old CI greenまたはwrong-head green、CI結果によるmeaning review/acceptance/merge/release代替、監視・隔離境界なしでの実行は不合格。中断・失敗時は同じHEAD/義務/許可bindingのunfinished stateを保持し、oracle欠落・環境違いは未完としてHARNESS契約またはticketへ戻す（固定L11:364）。失敗を検査弱化でgreen化しない。",
+      "raw_line_sha256_lf_inclusive": "23de340a9bb620746ef4c333e07a15700c201b755ef3e1dbc31ab800af1c816c",
+      "raw_line_bytes": 497
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "physical_line": 155,
+      "literal": "- 親: `HELIXOS-L2-027`、version target `1.0`。固定L2 `governance-requirements.md:824-835`、L11 `governance-acceptance.md:442-456`。",
+      "raw_line_sha256_lf_inclusive": "432abf18a9052bae14f69509c59f3c0a76b574608a63fa6f99fa78e724d53e85",
+      "raw_line_bytes": 139
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "physical_line": 157,
+      "literal": "- **AC-OS-027-01 normal — 未評価単独は拒否理由でない**: 性能履歴のないWorker/modelでも、以下6条件すべてとtaskに有効なoperation authorityを満たし、人が限定scope/Worker/budget/deadline/stop/verification dutiesを確認した場合、限定初回を許可できる。proposal/evidence substitutionは同じ固定schema/source/scopeを用い、actor/timeとOS receiptを残し、source/actor、入力と契約revision、task/scope、作成時点、basis/reason、未評価表示、受領側revisionを束縛する。実行後は、作成Workerとは異なる人の確認者が結果を確認し、確認者actor、対象revision、受領側revision、scope、確認時点、根拠、結果、未完義務を同一の確認記録へ束縛する。これは新しい毎回承認gateではなく、固定L2/L11の結果確認evidenceである。初回成功もLABOが適用可能なoracleで評価するまではunassessedのまま。六条件は、(1) 全入出力assetのidentityとclassification owner/source/revision/data-useを束縛し、unknown/secret/HELIX-restrictedを除外、出力classification/scopeを事前指定、(2) credential accessとraw secret read/input/outputなし、(3) networkなしまたはSECURITY-L2-006が明示許可する宛先/protocol/path/data class/量/purpose/authority/expiry内、(4) SECURITY-L2-003 isolationと選択作業に適用するL2-007制約を環境へ適用しhost fallbackなし、(5) operationごとにSECURITY-L2-008 actor/target/operation/revision/environment/scope/expiryに一致する有効authority、(6) 変更前状態と復旧先が確認できる可逆変更でrelease/tag/distribution等の不可逆作用なし、である。各根拠は同じattempt/scope/revision/environmentに束縛する。L2-027の対象は一つの可逆artifactという指定であり、artifactの「小ささ」を追加条件にしない。",
+      "raw_line_sha256_lf_inclusive": "47c5596aed7f835abeee04ad77f19c79ea5a214457f5479a4600c9d104e33337",
+      "raw_line_bytes": 1925
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "physical_line": 159,
+      "literal": "- **AC-OS-027-03 negative — 他の必須開始入力/適用scope**: 共通normal baselineでは6適格条件とoperation authorityを確認済みにする。各CASEは一つのrequired input/bindingだけを変異する。`CASE-OS-027-03a`はoperation authority欠落で、適格条件5と重なるoracleとして他の5条件を保ち、条件5不成立を明記する。`03b` HARNESS oracle、`03c` budget、`03d` deadline、`03e` stop、`03f` task scope、`03g` verification scope、`03h` exact HEAD、`03i` partial success、`03j` LABO assignment、`03k` score-only変更は各々独立fixtureとする。追加negative `03l`〜`03ax`（未使用欠番03ab/03ae/03aq、統合ID03v→03ajを明記）では、unassessed/qualification、oracle適用、scope外挿、人代行binding、実行中budget/deadline/scope、HARNESS validation/evidence、CI未構築、classification/authority/applicabilityのunknown/missing/stale/conflict、artifact分類/出力scope逸脱、性能履歴によるfailure相殺、各Worker result status保持、人によるoracle/duty変更、L2:835の2つのowner return routeを個別に照合する。L2-027が要求するsource/authority不足の戻し先を区別しunfinished dutiesを保持する。OS-026の実装依存、LABO-L2-057の前提、OS-020の既実装を仮定しない。候補revisionと実際に選択した契約版は別記録する。",
+      "raw_line_sha256_lf_inclusive": "b5637ef0e8d545ef445fea3b069abaa2dc361d43492cbfc8ddebff6eb1c45e5e",
+      "raw_line_bytes": 1394
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "physical_line": 25,
+      "literal": "固定親 `HELIXOS-L2-017` version target `1.0` の成果は、HARNESS既定工程部品とINT案を既存authority/dependency/budget/deadlineへ照合したticketを作り、停止・差戻し時も未完義務を保つこと。OSはHARNESS工程やINT案ownerを代替しない。部品外workflowはL2が示す4.0境界に残す。Acceptanceは `AC-OS-017-01`, `AC-OS-017-02`, `AC-OS-017-03` と `CASE-OS-017-01`, `CASE-OS-017-02a`〜`02j`, `CASE-OS-017-03`, `CASE-OS-017-HXT-TYPE-01`〜`-21`, `CASE-OS-017-HXT-FLOW-01`〜`-09`, `CASE-OS-017-HXT-SYS-01` を参照する。",
+      "raw_line_sha256_lf_inclusive": "a4d450a6edb29e7d96798e2faff0fcbae350fd10bd4e83a3b33d9298654c8845",
+      "raw_line_bytes": 576
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "physical_line": 29,
+      "literal": "固定親 `HELIXOS-L2-018` version target `1.0` の成果は、Worker作業と独立reviewを分離し、assignment、attempt、scope、cumulative budget/deadline/failure countと未完義務を辿れること。OSはSECURITY認可、INFRA資源状態、LABO評価を代行しない。追加決定 `MPR-RC-HELIXOS-L2-018-002` は`docs/governance/decisions/po-decision-2026-10-03-additions10.md` row 34で採択されており、追補L2 span 1604–1619 registered semantic digest `5e2a621be8b4bda140bd796a48bedf2b3369daf5fad2665060ac41aa1a3174d2`（raw LF-inclusive span SHA-256 `634b700e1ed79c60f53235f6fb0e73348b7cc07264d4e4f8afb69e107aa1996d`）、L11 span 1259–1276 registered semantic digest `e32e45319a3ac91004e3e1a985c7ff44e91b9e86f05b85c266d6b8d67acf87b5`（raw LF-inclusive span SHA-256 `ba303351c99a385506d9f151d0b51c03fb08922ce7d2848ffb3b1f485c4c221c`）をf6固定本文とは別に参照する。適用sourceがある場合だけ該当receipt facetを記録する。receipt facetのmissing/unknown/stale/conflict/scope-unknownはそのfacetを未完に保ち、assignmentの可否・継続は既存authority/制約で別判定する。receipt欠落だけを理由に事前gateまたは全assignment停止を加えない。適用sourceのある場合だけ予定/実績・逸脱理由を記録し、quality eventなしでconsult/supportが未選択ならreceiptを生成しない。選択scopeに適用するdefault/order sourceが特定できなければ、facetをunknown/未完にして元のdecision/policy meaning ownerへ返し、適用外/逸脱なしにしない。Acceptanceは `AC-OS-018-01`, `AC-OS-018-02`, `AC-OS-018-03`, `AC-OS-018-04` と `CASE-OS-018-01`, `CASE-OS-018-02a`, `CASE-OS-018-02b`, `CASE-OS-018-02c`, `CASE-OS-018-02d`, `CASE-OS-018-02e`, `CASE-OS-018-02f`, `CASE-OS-018-02g`, `CASE-OS-018-02h`, `CASE-OS-018-02i`, `CASE-OS-018-02j`, `CASE-OS-018-02k`, `CASE-OS-018-02l`, `CASE-OS-018-02m`, `CASE-OS-018-02n`, `CASE-OS-018-02o`, `CASE-OS-018-02p`, `CASE-OS-018-03`, `CASE-OS-018-04a`, `CASE-OS-018-04b`, `CASE-OS-018-04c`, `CASE-OS-018-04d`, `CASE-OS-018-04e`, `CASE-OS-018-04f`, `CASE-OS-018-04g`, `CASE-OS-018-04h`, `CASE-OS-018-04i`, `CASE-OS-018-04j`, `CASE-OS-018-04k`, `CASE-OS-018-04l` を参照する。",
+      "raw_line_sha256_lf_inclusive": "8c5a3eae20ef55020a8d2234ebcc4d1f1d9ab9f50b42c2650a94499a330b1779",
+      "raw_line_bytes": 2255
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "physical_line": 41,
+      "literal": "固定親 `HELIXOS-L2-023` version target `1.0` の成果は、OS-016のportfolio traceにある対象要求revision・unit/connection/composite relation・source-bound stateを含めてsender/receiver間でexact revision/digest/scope/causal ID/evidence/unfinished dutiesを共有し、unit・connection・composite・次段の別々の判定を保つこと。transport receiptやPR/CI stateだけでbusiness completionを作らない。Acceptanceは `AC-OS-023-01`, `AC-OS-023-02`, `AC-OS-023-03` と `CASE-OS-023-01`, `CASE-OS-023-02a`, `CASE-OS-023-02b`, `CASE-OS-023-02c`, `CASE-OS-023-02d`, `CASE-OS-023-02e`, `CASE-OS-023-02f`, `CASE-OS-023-02g`, `CASE-OS-023-02h`, `CASE-OS-023-02i`, `CASE-OS-023-02j`, `CASE-OS-023-02k`, `CASE-OS-023-02l`, `CASE-OS-023-02m`, `CASE-OS-023-02n`, `CASE-OS-023-03`, `CASE-OS-023-HXT-USE-01` を参照する。",
+      "raw_line_sha256_lf_inclusive": "04a3097a412129330e8f769783ac60f0d48b14976441bf2a2b16385b6f743926",
+      "raw_line_bytes": 848
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "physical_line": 45,
+      "literal": "固定親 `HELIXOS-L2-027` version target `1.0` の成果は、性能未評価という状態と操作permissionを区別し、採択済み六条件・authorityの全てが成立する狭い初回実行だけを扱い、その結果を同scopeでLABOへ渡すこと。初回成功はqualificationではなく、LABOのsource-bound評価までunassessedを保つ。人確認は既存L2内の初回scopeと結果の確認であり、確認者actor・対象revision・scope・時点・結果・未完義務を記録する。これは毎task承認やPR/CI/reviewerによるdecision生成ではない。Acceptanceは `AC-OS-027-01`, `AC-OS-027-02`, `AC-OS-027-03`, `AC-OS-027-04`, `AC-OS-027-05`, `AC-OS-027-06` と `CASE-OS-027-01`, `CASE-OS-027-02a1`, `CASE-OS-027-02a2`, `CASE-OS-027-02a3`, `CASE-OS-027-02a4`, `CASE-OS-027-02a5`, `CASE-OS-027-02a6`, `CASE-OS-027-02b`, `CASE-OS-027-02c`, `CASE-OS-027-02d`, `CASE-OS-027-02e1`, `CASE-OS-027-02e2`, `CASE-OS-027-02e3`, `CASE-OS-027-02f`, `CASE-OS-027-03a`, `CASE-OS-027-03b`, `CASE-OS-027-03c`, `CASE-OS-027-03d`, `CASE-OS-027-03e`, `CASE-OS-027-03f`, `CASE-OS-027-03g`, `CASE-OS-027-03h`, `CASE-OS-027-03i`, `CASE-OS-027-03j`, `CASE-OS-027-03k`, `CASE-OS-027-03l`, `CASE-OS-027-03m`, `CASE-OS-027-03n`, `CASE-OS-027-03o`, `CASE-OS-027-03p`, `CASE-OS-027-03q`, `CASE-OS-027-03r`, `CASE-OS-027-03s`, `CASE-OS-027-03t`, `CASE-OS-027-03u`, `CASE-OS-027-03w`, `CASE-OS-027-03x`, `CASE-OS-027-03y`, `CASE-OS-027-03z`, `CASE-OS-027-03aa`, `CASE-OS-027-03ac`, `CASE-OS-027-03ad`, `CASE-OS-027-03af`, `CASE-OS-027-03ag`, `CASE-OS-027-03ah`, `CASE-OS-027-03ai`, `CASE-OS-027-03aj`, `CASE-OS-027-03ak`, `CASE-OS-027-03al`, `CASE-OS-027-03am`, `CASE-OS-027-03an`, `CASE-OS-027-03ao`, `CASE-OS-027-03ap`, `CASE-OS-027-03ar`, `CASE-OS-027-03as`, `CASE-OS-027-03at`, `CASE-OS-027-03au`, `CASE-OS-027-03av`, `CASE-OS-027-03aw`, `CASE-OS-027-03ax`, `CASE-OS-027-04`, `CASE-OS-027-05`, `CASE-OS-027-06` を参照する。",
+      "raw_line_sha256_lf_inclusive": "35d31fce29667421e7dd7f76066111fe0a4acdfe8bd6e1441158dfd5206fd764",
+      "raw_line_bytes": 1952
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "physical_line": 37,
+      "literal": "親 `HELIXOS-L2-018` / `FR-OS-018`。HIL-NFR-36追補 `MPR-RC-HELIXOS-L2-018-002` は`docs/governance/decisions/po-decision-2026-10-03-additions10.md` row 34採択であり、f6dad2a baselineとは別のL2 1604–1619 registered semantic digest `5e2a621be8b4bda140bd796a48bedf2b3369daf5fad2665060ac41aa1a3174d2`（raw LF-inclusive span SHA-256 `634b700e1ed79c60f53235f6fb0e73348b7cc07264d4e4f8afb69e107aa1996d`）/ L11 1259–1276 registered semantic digest `e32e45319a3ac91004e3e1a985c7ff44e91b9e86f05b85c266d6b8d67acf87b5`（raw LF-inclusive span SHA-256 `ba303351c99a385506d9f151d0b51c03fb08922ce7d2848ffb3b1f485c4c221c`）へ結ぶ。候補1: 各fixtureで必要なbinding fieldの有無・不一致、重複claim/run、counter resetを全数確認し、各停止について停止理由・OS管理/推進への最初の返却record・該当時の既存source ownerへの訂正依頼を記録する。候補2: 消費budgetと許可budget値を別記し、分母が存在し0より大きい場合のみ比率を算出する。zero/missing budgetは算出不可として報告する。期限はabsolute deadline表現と経過時間を別記し、現在のticket契約入力に計測開始点・単位付き許可duration/windowが明示されている場合だけ同単位の比率を算出する。absolute deadline、duration/windowのzero/missing、開始点/単位不明は比率算出不可と区別する。attempt/failure countをticket/scope/revisionで層別比較する。HIL-NFR-36は適用sourceの選択/不選択、revision-bound deviation receipt、実際に通った各step/順序、結果/理由、未選択consult/support receipt不生成を照合する。source/receiptのunknown・missing・stale・conflict・scope unknownは該当facetとして集計し、assignment可否/継続の結果とは別にする。receipt状態だけを理由に事前gateまたは全assignment停止を計上しない。新しいdefault値、failure upper bound、response orderを作らない。",
+      "raw_line_sha256_lf_inclusive": "3164cc210e5b9e68f2a4b6c44a21c1e8de6271000bf0b3fadbb814b549abe7fa",
+      "raw_line_bytes": 2001
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "physical_line": 41,
+      "literal": "親 `HELIXOS-L2-019` / `FR-OS-019`。Candidate 1: fixture内eventごとにduplicate/missing/stale/denied/not-run/success分類とreconstructed episodeの差を記録する。Candidate 2: normal crash/restartの再構築所要時間と、失敗位置から原eventで行うreplayの所要時間を別母集団に分け、各々実時刻がある場合のみ観測値として比較する。根拠のない保持期間、exactly-once timeout、replay時間の打切り閾値を設けない。L2の「誤successful checkpointを出さない」等を判定oracleにする。",
+      "raw_line_sha256_lf_inclusive": "cef71d2c4b28c8cd9bb35236d74135d5d72490cd1e5bf3a356f09896f715458f",
+      "raw_line_bytes": 571
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "physical_line": 53,
+      "literal": "親 `HELIXOS-L2-027` / `FR-OS-027`。Candidate 1: 六つの低リスク条件 + per-operation authorityをbool conjunctionとして個別evidence付きで照合する。重み付きscoreや総合risk値は作らない。Candidate 2: LABO評価時、実在観測件数n、task/model class、scope/revision、success/failure/rework/latency/cost/reliability分布、uncertainty/counterexample/unknownを記録し、採用oracle候補の比較資料にする。固定L2/L11はuniversal minimum N/score thresholdを禁止し、一度の成功だけではassessedとしない。unknown/missing/stale/conflictの分類・authority・applicability evidence、output classification/scope、result status、oracle/duty integrityとL2:835 owner routeも区別して数える。assignment欠落、作成Workerと異なるactorによるhuman confirmation欠落、LABO受領欠落を独立に数える。Candidate/score/CI/reviewer identityはpermissionやhuman decisionを生まない。",
+      "raw_line_sha256_lf_inclusive": "3e7d6e61c57d400f6551aee6d14672539bdfe0c5b3c55ac32c07cc0313c93d1b",
+      "raw_line_bytes": 975
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 85,
+      "literal": "各CASEはfixture input/digest、親L2固定revision、対象revision、実行者actor、理由/evidence、使用したHARNESS契約版、expected state/owner routeを保持する。L11:322の全結果fieldをbindingし、OS Stage2aの8親すべてに適用する。一つのnegative CASEにつき一変数だけ変更する。運用・PR/review/CI/mailbox outcomeをPO decision、許可、acceptanceへ昇格しない。",
+      "raw_line_sha256_lf_inclusive": "2201b73bd2e12016427ed960479cb85545911c29bec0a8f66a92b569914ded93",
+      "raw_line_bytes": 422
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 100,
+      "literal": "| `CASE-OS-015-02f` | 訂正で原raw eventを上書き | 上書きを不合格とし、元eventを保持して訂正eventを追記する 。戻し先はL11:329のcanonical sourceまたはdecision authorityへ返す |",
+      "raw_line_sha256_lf_inclusive": "c7d41b2f62a4661d05ed41f66f07620ea2d928e32eded2bc032e9ab8016ea5cc",
+      "raw_line_bytes": 218
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 102,
+      "literal": "| `CASE-OS-015-02h` | Issue/CIだけから要求意味または実装許可を生成 | meaning/permissionを生成しない 。戻し先はL11:329のcanonical sourceまたはdecision authorityへ返す |",
+      "raw_line_sha256_lf_inclusive": "5a5fa7bdc584854bc53411e2c24410498863f48ce5f9d127f7225aeac80b3154",
+      "raw_line_bytes": 204
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 115,
+      "literal": "fixtureにはinput/digest、固定L2 parent revision、対象revision、実行actor、理由/evidence、HARNESS契約版を束縛する。二つ以上のproject、各requirements revision、unit/connection/composite edges、dependencies、diff/verification/provision/operation stateを与える。Oracleはそれぞれunconnected/unagreed/unimplemented/unverified/unprovided/unknown/staleを別に表示し、下位対象成功を他対象へ波及させず、release-kanban recordをsourceにtraceする。",
+      "raw_line_sha256_lf_inclusive": "bdb42990b57241b7a86698ed7ae743cc6b558527e62bf6b520ec6e06cabd2cf2",
+      "raw_line_bytes": 508
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 127,
+      "literal": "| `CASE-OS-016-02g` | 一つのproject/CI/PRを別projectまたはcompositeの完了根拠へ流用 | cross-project completionを拒否し各対象stateを分ける 。戻し先はL11:336のtarget requirementまたはconnection ownerへ返す |",
+      "raw_line_sha256_lf_inclusive": "d71df83058ceb4ba017b54125bad41c10105a839f4f0a3c31607c1ed5509e221",
+      "raw_line_bytes": 245
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 137,
+      "literal": "fixtureにはinput/digest、固定L2 parent revision、対象revision、実行actor、理由/evidence、HARNESS契約版を束縛する。同一accepted request/HARNESS contract/INT proposalを反復投入し、別の有効target/dependencyも対照にする。Oracleは同条件でtarget/kind/parent revision/scope/dependency/acceptance duty/return ownerが同じticket candidateとなり、別対象差を保持すること。L2-017の1.0許可対象へ途中結果を与え、既定戻し先と元ticket identityを保って差し戻せることもnormalで確認する。INT提案はauthority/budget/deadline/dependencyとHARNESS語彙へ照合され、LABO水準/evidenceが提供された場合だけそのsource bindingを保持する。",
+      "raw_line_sha256_lf_inclusive": "95d2c453818b871817483ab8625b131406d3986aadb90e7af5db7d945d88b342",
+      "raw_line_bytes": 745
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 149,
+      "literal": "| `CASE-OS-017-02g` | 全案件へ同一固定sequenceを適用 | HARNESS既定部品と当該入力に基づくflowだけを保持する 。戻し先はL11:343のmissing inputまたはresponsibilityへ返す |",
+      "raw_line_sha256_lf_inclusive": "9d2c13450f99492c1016e256eeba80a576e2c829b7d069f3b42a5479a9bbecad",
+      "raw_line_bytes": 211
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 164,
+      "literal": "| `CASE-OS-017-HXT-TYPE-01` | `HXT-TYPE-01`（Forward 大） | L2/L11の同じ行にある目的・発行区分・合流先を一組で保持し、同じ行の反例を独立入力として拒否する。未決の人判断・scope・versionを補完せず、L2/L11に明記された戻し先がある場合だけそこへ戻す。固定行に戻し先がないことから新しい戻し先を作らない。 |",
+      "raw_line_sha256_lf_inclusive": "f2ce2bb8b1bf704c6877bb2d3ee04ea99c78fbc09e4aa604d4c82ae3345744ca",
+      "raw_line_bytes": 411
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 165,
+      "literal": "| `CASE-OS-017-HXT-TYPE-02` | `HXT-TYPE-02`（Forward 中） | L2/L11の同じ行にある目的・発行区分・合流先を一組で保持し、同じ行の反例を独立入力として拒否する。未決の人判断・scope・versionを補完せず、L2/L11に明記された戻し先がある場合だけそこへ戻す。固定行に戻し先がないことから新しい戻し先を作らない。 |",
+      "raw_line_sha256_lf_inclusive": "f87966332fda2e33b1185b3ccee1ee61c395f0d850b61d8745477dad65aa8caa",
+      "raw_line_bytes": 411
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 166,
+      "literal": "| `CASE-OS-017-HXT-TYPE-03` | `HXT-TYPE-03`（Forward 小） | L2/L11の同じ行にある目的・発行区分・合流先を一組で保持し、同じ行の反例を独立入力として拒否する。未決の人判断・scope・versionを補完せず、L2/L11に明記された戻し先がある場合だけそこへ戻す。固定行に戻し先がないことから新しい戻し先を作らない。 |",
+      "raw_line_sha256_lf_inclusive": "8889045d2e6fbdf061757def353852b3c5d9b124949ee7d9eef6ea08fdadcf4c",
+      "raw_line_bytes": 411
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 167,
+      "literal": "| `CASE-OS-017-HXT-TYPE-04` | `HXT-TYPE-04`（Discovery） | L2/L11の同じ行にある目的・発行区分・合流先を一組で保持し、同じ行の反例を独立入力として拒否する。未決の人判断・scope・versionを補完せず、L2/L11に明記された戻し先がある場合だけそこへ戻す。固定行に戻し先がないことから新しい戻し先を作らない。 |",
+      "raw_line_sha256_lf_inclusive": "4ef78fe2f3593295012be5103971921ca7c23e5b59d0a7c82ce562cd9ac4d276",
+      "raw_line_bytes": 409
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 168,
+      "literal": "| `CASE-OS-017-HXT-TYPE-05` | `HXT-TYPE-05`（PoC） | L2/L11の同じ行にある目的・発行区分・合流先を一組で保持し、同じ行の反例を独立入力として拒否する。未決の人判断・scope・versionを補完せず、L2/L11に明記された戻し先がある場合だけそこへ戻す。固定行に戻し先がないことから新しい戻し先を作らない。 |",
+      "raw_line_sha256_lf_inclusive": "50ee4203213b51009b50872ab97ad4c95e4c22ddff99fc6c9490964a186e7c62",
+      "raw_line_bytes": 403
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 169,
+      "literal": "| `CASE-OS-017-HXT-TYPE-06` | `HXT-TYPE-06`（Prototype） | L2/L11の同じ行にある目的・発行区分・合流先を一組で保持し、同じ行の反例を独立入力として拒否する。未決の人判断・scope・versionを補完せず、L2/L11に明記された戻し先がある場合だけそこへ戻す。固定行に戻し先がないことから新しい戻し先を作らない。 |",
+      "raw_line_sha256_lf_inclusive": "13ffdbba7a6793edd3362891c20f948159bea7389e6d792ac38c759088af1948",
+      "raw_line_bytes": 409
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 170,
+      "literal": "| `CASE-OS-017-HXT-TYPE-07` | `HXT-TYPE-07`（Decide） | L2/L11の同じ行にある目的・発行区分・合流先を一組で保持し、同じ行の反例を独立入力として拒否する。未決の人判断・scope・versionを補完せず、L2/L11に明記された戻し先がある場合だけそこへ戻す。固定行に戻し先がないことから新しい戻し先を作らない。 |",
+      "raw_line_sha256_lf_inclusive": "58e33060d480e3dc82c7bedd1f54c54546afd44b4fba9efebc995b75b8a6417e",
+      "raw_line_bytes": 406
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 171,
+      "literal": "| `CASE-OS-017-HXT-TYPE-08` | `HXT-TYPE-08`（Backflow） | L2/L11の同じ行にある目的・発行区分・合流先を一組で保持し、同じ行の反例を独立入力として拒否する。未決の人判断・scope・versionを補完せず、L2/L11に明記された戻し先がある場合だけそこへ戻す。固定行に戻し先がないことから新しい戻し先を作らない。 |",
+      "raw_line_sha256_lf_inclusive": "127bc84e6b76a33a56eca723336d4d9c23c92ce4f750d2361355469dec6ce9fd",
+      "raw_line_bytes": 408
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 172,
+      "literal": "| `CASE-OS-017-HXT-TYPE-09` | `HXT-TYPE-09`（Reverse） | L2/L11の同じ行にある目的・発行区分・合流先を一組で保持し、同じ行の反例を独立入力として拒否する。未決の人判断・scope・versionを補完せず、L2/L11に明記された戻し先がある場合だけそこへ戻す。固定行に戻し先がないことから新しい戻し先を作らない。 |",
+      "raw_line_sha256_lf_inclusive": "b39935bd8944e7115170b6a6582d01dff43cdbcff4882eb4b3394ff71f8c14df",
+      "raw_line_bytes": 407
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 173,
+      "literal": "| `CASE-OS-017-HXT-TYPE-10` | `HXT-TYPE-10`（Recovery） | L2/L11の同じ行にある目的・発行区分・合流先を一組で保持し、同じ行の反例を独立入力として拒否する。未決の人判断・scope・versionを補完せず、L2/L11に明記された戻し先がある場合だけそこへ戻す。固定行に戻し先がないことから新しい戻し先を作らない。 |",
+      "raw_line_sha256_lf_inclusive": "9970d66f3956d77a7a5d5d07db9e9eda851425dd19ec15b0b40f2a21c130ab35",
+      "raw_line_bytes": 408
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 174,
+      "literal": "| `CASE-OS-017-HXT-TYPE-11` | `HXT-TYPE-11`（Incident） | L2/L11の同じ行にある目的・発行区分・合流先を一組で保持し、同じ行の反例を独立入力として拒否する。未決の人判断・scope・versionを補完せず、L2/L11に明記された戻し先がある場合だけそこへ戻す。固定行に戻し先がないことから新しい戻し先を作らない。 |",
+      "raw_line_sha256_lf_inclusive": "5df69edc322e98ed91032949dfa5c84295eb907b34b0e9bbda3041dba4db0c5f",
+      "raw_line_bytes": 408
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 175,
+      "literal": "| `CASE-OS-017-HXT-TYPE-12` | `HXT-TYPE-12`（Refactor） | L2/L11の同じ行にある目的・発行区分・合流先を一組で保持し、同じ行の反例を独立入力として拒否する。未決の人判断・scope・versionを補完せず、L2/L11に明記された戻し先がある場合だけそこへ戻す。固定行に戻し先がないことから新しい戻し先を作らない。 |",
+      "raw_line_sha256_lf_inclusive": "d4ff0e50a962f9bfc5fc776b26fe9da04a6f4d65007b3a4835e2a0d99daf9ead",
+      "raw_line_bytes": 408
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 176,
+      "literal": "| `CASE-OS-017-HXT-TYPE-13` | `HXT-TYPE-13`（Design-refactor） | L2/L11の同じ行にある目的・発行区分・合流先を一組で保持し、同じ行の反例を独立入力として拒否する。未決の人判断・scope・versionを補完せず、L2/L11に明記された戻し先がある場合だけそこへ戻す。固定行に戻し先がないことから新しい戻し先を作らない。 |",
+      "raw_line_sha256_lf_inclusive": "00d37f0a5c741b5ea8eb9313c94d8e034c55a5872ad8a19d13141cf6d58ec1c6",
+      "raw_line_bytes": 415
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 177,
+      "literal": "| `CASE-OS-017-HXT-TYPE-14` | `HXT-TYPE-14`（Performance-refactor） | L2/L11の同じ行にある目的・発行区分・合流先を一組で保持し、同じ行の反例を独立入力として拒否する。未決の人判断・scope・versionを補完せず、L2/L11に明記された戻し先がある場合だけそこへ戻す。固定行に戻し先がないことから新しい戻し先を作らない。 |",
+      "raw_line_sha256_lf_inclusive": "447ead084465f4064f849b9279ba2077a7e72ea179c4b15cb06bc31906c800f7",
+      "raw_line_bytes": 420
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 178,
+      "literal": "| `CASE-OS-017-HXT-TYPE-15` | `HXT-TYPE-15`（Redesign） | L2/L11の同じ行にある目的・発行区分・合流先を一組で保持し、同じ行の反例を独立入力として拒否する。未決の人判断・scope・versionを補完せず、L2/L11に明記された戻し先がある場合だけそこへ戻す。固定行に戻し先がないことから新しい戻し先を作らない。 |",
+      "raw_line_sha256_lf_inclusive": "1e9e0a4b398dd592c833be9b00ad73fc0d99db0240ab55438c5487655eba8f24",
+      "raw_line_bytes": 408
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 179,
+      "literal": "| `CASE-OS-017-HXT-TYPE-16` | `HXT-TYPE-16`（Retrofit） | L2/L11の同じ行にある目的・発行区分・合流先を一組で保持し、同じ行の反例を独立入力として拒否する。未決の人判断・scope・versionを補完せず、L2/L11に明記された戻し先がある場合だけそこへ戻す。固定行に戻し先がないことから新しい戻し先を作らない。 |",
+      "raw_line_sha256_lf_inclusive": "0521c08928fcea38e42eabc5dbd20df5e86b9676ec7dc72860ecf5e52507c94f",
+      "raw_line_bytes": 408
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 180,
+      "literal": "| `CASE-OS-017-HXT-TYPE-17` | `HXT-TYPE-17`（Research） | L2/L11の同じ行にある目的・発行区分・合流先を一組で保持し、同じ行の反例を独立入力として拒否する。未決の人判断・scope・versionを補完せず、L2/L11に明記された戻し先がある場合だけそこへ戻す。固定行に戻し先がないことから新しい戻し先を作らない。 |",
+      "raw_line_sha256_lf_inclusive": "4f9416e0847dfdbe0951337a1a1bfdb7d73fe020e29ed929cb363ee6bf25fbbc",
+      "raw_line_bytes": 408
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 181,
+      "literal": "| `CASE-OS-017-HXT-TYPE-18` | `HXT-TYPE-18`（Add-feature） | L2/L11の同じ行にある目的・発行区分・合流先を一組で保持し、同じ行の反例を独立入力として拒否する。未決の人判断・scope・versionを補完せず、L2/L11に明記された戻し先がある場合だけそこへ戻す。固定行に戻し先がないことから新しい戻し先を作らない。 |",
+      "raw_line_sha256_lf_inclusive": "6e2a36b6abb6450232cb666beac595784564527db5950c56843f546392223860",
+      "raw_line_bytes": 411
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 182,
+      "literal": "| `CASE-OS-017-HXT-TYPE-19` | `HXT-TYPE-19`（Version-up） | L2/L11の同じ行にある目的・発行区分・合流先を一組で保持し、同じ行の反例を独立入力として拒否する。未決の人判断・scope・versionを補完せず、L2/L11に明記された戻し先がある場合だけそこへ戻す。固定行に戻し先がないことから新しい戻し先を作らない。 |",
+      "raw_line_sha256_lf_inclusive": "3461f1974872e2f8acc94736ddb70b936ba4471dc96adcf4a80a48cb1fe3ee7e",
+      "raw_line_bytes": 410
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 183,
+      "literal": "| `CASE-OS-017-HXT-TYPE-20` | `HXT-TYPE-20`（Experiment（案）） | L2/L11の同じ行にある目的・発行区分・合流先を一組で保持し、同じ行の反例を独立入力として拒否する。未決の人判断・scope・versionを補完せず、L2/L11に明記された戻し先がある場合だけそこへ戻す。固定行に戻し先がないことから新しい戻し先を作らない。 |",
+      "raw_line_sha256_lf_inclusive": "209bc4b13bbe7d2b0dc005a7494e1af056225186f62906e31d969ee8d9555902",
+      "raw_line_bytes": 419
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 184,
+      "literal": "| `CASE-OS-017-HXT-TYPE-21` | `HXT-TYPE-21`（Training（案、3.0）） | L2/L11の同じ行にある目的・発行区分・合流先を一組で保持し、同じ行の反例を独立入力として拒否する。未決の人判断・scope・versionを補完せず、L2/L11に明記された戻し先がある場合だけそこへ戻す。固定行に戻し先がないことから新しい戻し先を作らない。 |",
+      "raw_line_sha256_lf_inclusive": "c519a86c1652bc135e9d4b0d0b85c743e090d6a236e502cd167e0347e5d5f55d",
+      "raw_line_bytes": 423
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 200,
+      "literal": "### CASE-OS-023-HXT-USE-01 — 周辺job boundary（AC-OS-023-01/02）",
+      "raw_line_sha256_lf_inclusive": "fc4c8a13726cef3d503cb72b57e6c74f3ea5276fbe741f26c52f7bb3d885a6b1",
+      "raw_line_bytes": 71
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 202,
+      "literal": "Crawler/Bugbotは `CASE-OS-023-HXT-USE-01` として023で固定L2/L11の既存ticket種類/割当へ接続するnormalを照合する。独立negativeでは新しい種類の追加、またはWEB-OS未決jobの内部OS state/writer/authority化をそれぞれ単独変異し拒否する。",
+      "raw_line_sha256_lf_inclusive": "87e44270727a07caa5ae2125791d0da3d207e8d80510280be1cd0ad0d775e2cc",
+      "raw_line_bytes": 291
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 204,
+      "literal": "### CASE-OS-017-HXT-SYS-01 — ticket composite trace（AC-OS-017-01/02）",
+      "raw_line_sha256_lf_inclusive": "f2855b4e21551e2a102e86c1f081d5677be3b766a6593307cfaf5b7b1022d801",
+      "raw_line_bytes": 75
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 237,
+      "literal": "### CASE-OS-018-04a〜04l — conditional HIL-NFR-36 evidence（AC-OS-018-04）",
+      "raw_line_sha256_lf_inclusive": "7daa3f71efa36a69ea6c5a69f634360f4ec598fbf21418a6524cc0b4686c3321",
+      "raw_line_bytes": 80
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 239,
+      "literal": "L2-018-002の選択分岐を分ける。`CASE-OS-018-04a`は適用default/order sourceが選択され有効なときのnormalで、対象revisionと根拠receipt、予定step、実際に通ったstepと順序、結果、逸脱理由を別々に記録する。`04b`は逸脱根拠receipt欠落、`04c`は逸脱根拠receiptの別revision、`04d`は実際に通ったstep receipt欠落、`04e`はstep順序不整合、`04f`は既存sourceから適用対象と確認できる選択default/order source referenceの欠落、`04g`は選択source stale、`04h`はsource owner unknown、`04j`はsource scope unknown、`04k`はsource間conflictをそれぞれ独立variantとする。これらでは該当するreceipt facetだけをunknown/未完にし、assignmentの可否・継続は既存authority/制約で別判定する。receipt欠落だけで事前gateまたは全assignment停止を加えない。sourceが適用可能で選択対象だがその参照が欠落した場合（04f）と、適用sourceのない非選択branch（04i）を区別する。`04i`はquality eventなし、かつconsult/supportが未選択のnormalに限り、未選択receiptを作らない。適用sourceのunknown/欠落は04lで別に検査する。provider名だけで独立性を判定せず、FR-63・別scope・INT案からdefault/orderを補わない。追加default、retry上限、全件共通対応順は作らない。",
+      "raw_line_sha256_lf_inclusive": "b160dc060a6c8013e495d84f8a0ded3c2634b15b05573a89331a143ff9121a08",
+      "raw_line_bytes": 1409
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 244,
+      "literal": "| `CASE-OS-018-04b` | 適用sourceが選択され逸脱reason receiptだけを欠落 | 該当receipt facetをunknown/未完として元のdecision/policy meaning ownerへ返す。assignment可否・継続は既存authority/制約で別判定し、追加gateを作らない |",
+      "raw_line_sha256_lf_inclusive": "7d55470d9dcdfcafdd75208221646b3ab8947da34b194be5bd8349aad1225235",
+      "raw_line_bytes": 275
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 245,
+      "literal": "| `CASE-OS-018-04c` | deviation reason receiptのrevisionを不一致にする | 当該receipt facetをstale/unknownとして未完保持し、assignment可否・継続は既存authority/制約で別判定し、該当facetを元のdecision/policy meaning ownerへ返す |",
+      "raw_line_sha256_lf_inclusive": "2ae1f9d7928758af6b6a7826c8113d4ae984b6d7306d14e772f1d8b436205174",
+      "raw_line_bytes": 272
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 246,
+      "literal": "| `CASE-OS-018-04d` | 実際に通ったstepのreceiptだけを欠落 | 該当stepの実績receipt facetを未完とし、assignment可否・継続は既存authority/制約で別判定し、該当facetを元のdecision/policy meaning ownerへ返す |",
+      "raw_line_sha256_lf_inclusive": "4d0d9973f6fe34701648049a578f1e09b8f0a80cb95e2fc4170591e0cc62cd48",
+      "raw_line_bytes": 251
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 247,
+      "literal": "| `CASE-OS-018-04e` | step receipt順序を不一致にする | 順序receipt facetだけunknown/未完とし、実績順序を推測しない。assignment可否・継続は既存authority/制約で別判定し、該当facetを元のdecision/policy meaning ownerへ返す |",
+      "raw_line_sha256_lf_inclusive": "0af3d8f38f41f67d554aa1da41f5ea16fd6603567ea6b24893f22f102a527830",
+      "raw_line_bytes": 274
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 248,
+      "literal": "| `CASE-OS-018-04f` | 既存の適用根拠はdefault/order sourceを選択しているが、その参照が欠落 | 当該receipt facetをunknown/未完とし、FR-63等から補完しない。assignment可否・継続は既存authority/制約で別判定し、該当facetを元のdecision/policy meaning ownerへ返す |",
+      "raw_line_sha256_lf_inclusive": "bbf6442e174423f7e3d5cd6ab210961849fa5ec54967fc76c387d57f257d424f",
+      "raw_line_bytes": 323
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 249,
+      "literal": "| `CASE-OS-018-04g` | default/order sourceをstaleにする | 当該receipt facetをstale/unknownで保持し、古いsourceで採択しない。assignment可否・継続は既存authority/制約で別判定し、該当facetを元のdecision/policy meaning ownerへ返す |",
+      "raw_line_sha256_lf_inclusive": "61231562e040ea623145ae2de4ee2454c5ac25e9f7c3efc7e10bd2c1172bb44f",
+      "raw_line_bytes": 274
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 250,
+      "literal": "| `CASE-OS-018-04h` | default/order source ownerをunknownにする | 当該receipt facetのownerをunknownで保持し、新ownerを作らない。assignment可否・継続は既存authority/制約で別判定し、該当facetを元のdecision/policy meaning ownerへ返す |",
+      "raw_line_sha256_lf_inclusive": "d1458991487d76249bd521792be5d4b31fa94edce1e817492fac18ec932dcc86",
+      "raw_line_bytes": 277
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 251,
+      "literal": "| `CASE-OS-018-04i` | quality eventがなくconsult/supportも未選択 | optional receiptを生成しない。適用source欠落をこの正常fixtureに含めない |",
+      "raw_line_sha256_lf_inclusive": "43e770df891c7b58d9ace529350058adfaf811b578509ada3bb9e47a164d8bf6",
+      "raw_line_bytes": 169
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 252,
+      "literal": "| `CASE-OS-018-04j` | 適用sourceのscopeを特定できない | 当該receipt facetだけscope unknown/未完とし、別scopeから補完しない。assignment可否・継続は既存authority/制約で別判定し、該当facetを元のdecision/policy meaning ownerへ返す |",
+      "raw_line_sha256_lf_inclusive": "fadf118ef319761c0defd224d611cc52d4d4234a3fb41fa6c2b1ce819e285b57",
+      "raw_line_bytes": 281
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 253,
+      "literal": "| `CASE-OS-018-04k` | 適用source間のconflict | 当該receipt facetだけconflict/未完とし、優先sourceを推測しない。assignment可否・継続は既存authority/制約で別判定し、該当facetを元のdecision/policy meaning ownerへ返す |",
+      "raw_line_sha256_lf_inclusive": "a9350c27958cce9fe3842f11181ad92eb5245fdb4b7dd24ba7ab6cc6a6b780b2",
+      "raw_line_bytes": 262
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 254,
+      "literal": "| `CASE-OS-018-04l` | 選択されたtask/scopeに適用するdefault/order sourceが存在しない | 当該facetをunknown/未完として保持し、適用外・逸脱なしと分類せず、元のdecision/policy meaning ownerへ返す。assignment可否・継続は既存authority/制約で別判断する |",
+      "raw_line_sha256_lf_inclusive": "80d3207689de889412bbdb4d47d819d7c55b57684ee4ed84ab63b53d6c1efc91",
+      "raw_line_bytes": 312
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 255,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "raw_line_bytes": 1
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 256,
+      "literal": "### CASE-OS-018-05 — provider identity/context boundary（AC-OS-018-01/04）",
+      "raw_line_sha256_lf_inclusive": "7dcc043b311f5cdcc88cf2fb9e56df4162b501642a1b31885779fdb66e7f05a1",
+      "raw_line_bytes": 79
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 257,
+      "literal": "",
+      "raw_line_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "raw_line_bytes": 1
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 258,
+      "literal": "正常例では同一provider内の別identityを分け、別provider名でも同じidentity/contextなら名称だけで独立としない。個別negativeでは同一provider・別identityを統合する変異、別provider名・同一contextを独立扱いする変異をそれぞれ与える。identity/context/authority evidenceを照合し、不足は既存ownerへ戻す。",
+      "raw_line_sha256_lf_inclusive": "c8de0269b51279c09b2645791ce01a399096897f43a5f7aa8378325a662e2c56",
+      "raw_line_bytes": 381
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 294,
+      "literal": "| `CASE-OS-020-02h` | declared environment identityを別環境へ変更 | resultを対象runへ流用せずunfinishedとし、HARNESS契約またはticketへ戻す（固定L2:700、L11:364） |",
+      "raw_line_sha256_lf_inclusive": "a8ac74ca07b2512ce76811dffaabfa5aff02567feb1ae1031c174fd4684aa53d",
+      "raw_line_bytes": 195
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 355,
+      "literal": "### CASE-OS-027-03a〜03ax — 独立した開始/適用scope negative（AC-OS-027-03）",
+      "raw_line_sha256_lf_inclusive": "13bb9b9e0b91d3c295fba0e43ab78cee1b3937b53b695489cdcec7bccebec0a5",
+      "raw_line_bytes": 89
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 357,
+      "literal": "共通normal baselineでは六条件とoperation authorityを確認済みにする。各fixtureは一つの追加required input/bindingだけを変える。03aはauthority欠落であり、六条件のうち条件5と重複する。欠番03ab/03ae/03aqは予約・未使用として記録し、03vは03ajと同じauthority-missing変異のため03ajへ統合した。03wはconflict状態を保持する。",
+      "raw_line_sha256_lf_inclusive": "f135f0f9ee047113984cfb706b4fd9d9546d4a5c85fa4a65694e6440d63f6452",
+      "raw_line_bytes": 406
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 382,
+      "literal": "| `CASE-OS-027-03w` | applicability evidenceをconflictにする | conflictを保持し既存source ownerへ戻す |",
+      "raw_line_sha256_lf_inclusive": "822e3b9b5d7e3e2f7194a483cf00c6b17809746543ed448244a98ed44d4452dd",
+      "raw_line_bytes": 117
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 401,
+      "literal": "| `CASE-OS-027-03as` | Bench source/evidence不足をLABOでなく別ownerへ返す | L2:835どおりLABOへ戻し、OSで代替しない |",
+      "raw_line_sha256_lf_inclusive": "00dce1054ad1ac46f972a5e5ab77ae9fb4a55a091df7ba98a6decf58eb794f03",
+      "raw_line_bytes": 140
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 402,
+      "literal": "| `CASE-OS-027-03at` | task attribute/receipt不足をOSまたはINTでなくLABOへ返す | L2:835どおりOSまたはINTへ戻し、LABOで代替しない |",
+      "raw_line_sha256_lf_inclusive": "16ede518abb9133e2c813ec7e68bdc6f11e0ed8de11bc2ff56fe7a3ca8fe53c0",
+      "raw_line_bytes": 159
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 404,
+      "literal": "| `CASE-OS-027-03av` | operationにassignment recordがない | success表示を拒否し既存OS assignment ownerへ戻す |",
+      "raw_line_sha256_lf_inclusive": "8c7ab0cb0593c7cceadd9858d66a99ddc29c71d5724c0f18c931c816eb4e4096",
+      "raw_line_bytes": 126
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 405,
+      "literal": "| `CASE-OS-027-03aw` | 作成Worker本人の記録だけで別actorによるhuman confirmation recordを欠落 | success表示を拒否し未完確認義務を保持して既存OS管理/推進へ戻す |",
+      "raw_line_sha256_lf_inclusive": "1c9b91f74e6456ebbaaa15e8ba5b3156e35f9ee985d6834798455077fc701e99",
+      "raw_line_bytes": 204
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 406,
+      "literal": "| `CASE-OS-027-03ax` | LABO受領recordを欠落 | success表示を拒否し未完受領義務を保持して既存LABO ownerへ戻す |",
+      "raw_line_sha256_lf_inclusive": "4e950b7d41c6b3ac01c83a701512adcbf67745b86650eee824504ca188360759",
+      "raw_line_bytes": 137
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 414,
+      "literal": "INT/LABO runtimeを前提にしないhuman proposal/evidence fixtureにtask identity、source/contract revision、scope、unassessed、actor/time、basis/reason、受領側revisionを束縛する。OS receiptとassignmentは別状態。human inputをINT-generated/LABO-assessed/permissionとして表示したら不合格。実行結果を人が確認した場合は、作成Workerと異なる確認者actor、対象revision、受領側revision、scope、確認時点、根拠、結果、未完義務を同じ確認recordへ束縛し、proposal/evidence代行とは別に追跡する。",
+      "raw_line_sha256_lf_inclusive": "549de8449083a53afaaaac86f3aaa6ce91008f27d2e0321225affa67ea22f840",
+      "raw_line_bytes": 587
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 420,
+      "literal": "正常CASE-OS-027-05/06のresult envelopeは固定L2:832に従い成功・失敗・拒否・中断・unknownを区別し、根拠、受領側revision、scope、確認者actor/timeとunfinished dutiesを含める。固定L2:835の戻し先は、Bench source/evidence不足ならLABO、task属性またはINT receipt不足ならOSまたはINTELLIGENCEとし、OSがLABO判断・assignmentを代行しない。CASE-OS-027-03as/03atはこの2経路を別々に検査する。",
+      "raw_line_sha256_lf_inclusive": "338272b9ba2c6d1a5298f79567d9b0f197baa87629b6b02ca4ff70d010b79f82",
+      "raw_line_bytes": 472
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "physical_line": 21,
+      "literal": "| `BR-OS-017` | ticket/workflow候補が固定HARNESS語彙、authority、依存、停止義務を保持 | `FR-OS-017`; `AC-OS-017-01`, `AC-OS-017-02`, `AC-OS-017-03` | `CASE-OS-017-01`, `CASE-OS-017-02a`, `CASE-OS-017-02b`, `CASE-OS-017-02c`, `CASE-OS-017-02d`, `CASE-OS-017-02e`, `CASE-OS-017-02f`, `CASE-OS-017-02g`, `CASE-OS-017-02h`, `CASE-OS-017-02i`, `CASE-OS-017-02j`, `CASE-OS-017-03`, `CASE-OS-017-HXT-TYPE-01`〜`-21`, `CASE-OS-017-HXT-FLOW-01`〜`-09`, `CASE-OS-017-HXT-SYS-01` |",
+      "raw_line_sha256_lf_inclusive": "c539034bc9634fb5c27b4109858032939b6f39d974041569bb2f4727f2f03353",
+      "raw_line_bytes": 492
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "physical_line": 22,
+      "literal": "| `BR-OS-018` | assignment/attempt/review責務を分け、累積制約を保ち、停止理由を管理/推進へ戻して外部sourceの訂正先をその記録から辿る。実/予定対応を区別 | `FR-OS-018`; `AC-OS-018-01`, `AC-OS-018-02`, `AC-OS-018-03`, `AC-OS-018-04` | `CASE-OS-018-01`, `CASE-OS-018-02a`, `CASE-OS-018-02b`, `CASE-OS-018-02c`, `CASE-OS-018-02d`, `CASE-OS-018-02e`, `CASE-OS-018-02f`, `CASE-OS-018-02g`, `CASE-OS-018-02h`, `CASE-OS-018-02i`, `CASE-OS-018-02j`, `CASE-OS-018-02k`, `CASE-OS-018-02l`, `CASE-OS-018-02m`, `CASE-OS-018-02n`, `CASE-OS-018-02o`, `CASE-OS-018-02p`, `CASE-OS-018-03`, `CASE-OS-018-04a`, `CASE-OS-018-04b`, `CASE-OS-018-04c`, `CASE-OS-018-04d`, `CASE-OS-018-04e`, `CASE-OS-018-04f`, `CASE-OS-018-04g`, `CASE-OS-018-04h`, `CASE-OS-018-04i`, `CASE-OS-018-04j`, `CASE-OS-018-04k`, `CASE-OS-018-04l` |",
+      "raw_line_sha256_lf_inclusive": "853ca40d34c366cc766f64880393285c6e59dcad20137b4203b92d3c8f54b4ff",
+      "raw_line_bytes": 852
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "physical_line": 25,
+      "literal": "| `BR-OS-023` | sender/receiverのscope・unfinished dutiesを保ち、unit/connection/composite/次段を別判定 | `FR-OS-023`; `AC-OS-023-01`, `AC-OS-023-02`, `AC-OS-023-03` | `CASE-OS-023-01`, `CASE-OS-023-02a`, `CASE-OS-023-02b`, `CASE-OS-023-02c`, `CASE-OS-023-02d`, `CASE-OS-023-02e`, `CASE-OS-023-02f`, `CASE-OS-023-02g`, `CASE-OS-023-02h`, `CASE-OS-023-02i`, `CASE-OS-023-02j`, `CASE-OS-023-02k`, `CASE-OS-023-02l`, `CASE-OS-023-02m`, `CASE-OS-023-02n`, `CASE-OS-023-03`, `CASE-OS-023-HXT-USE-01` |",
+      "raw_line_sha256_lf_inclusive": "1dd4510ba5c33e7a77409162ed77adcd18236f58bc60633491323619f2918322",
+      "raw_line_bytes": 509
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "physical_line": 26,
+      "literal": "| `BR-OS-027` | 限定scopeの許可とperformance evaluationを分け、初回successをqualificationにしない | `FR-OS-027`; `AC-OS-027-01`, `AC-OS-027-02`, `AC-OS-027-03`, `AC-OS-027-04`, `AC-OS-027-05`, `AC-OS-027-06` | `CASE-OS-027-01`, `CASE-OS-027-02a1`, `CASE-OS-027-02a2`, `CASE-OS-027-02a3`, `CASE-OS-027-02a4`, `CASE-OS-027-02a5`, `CASE-OS-027-02a6`, `CASE-OS-027-02b`, `CASE-OS-027-02c`, `CASE-OS-027-02d`, `CASE-OS-027-02e1`, `CASE-OS-027-02e2`, `CASE-OS-027-02e3`, `CASE-OS-027-02f`, `CASE-OS-027-03a`, `CASE-OS-027-03b`, `CASE-OS-027-03c`, `CASE-OS-027-03d`, `CASE-OS-027-03e`, `CASE-OS-027-03f`, `CASE-OS-027-03g`, `CASE-OS-027-03h`, `CASE-OS-027-03i`, `CASE-OS-027-03j`, `CASE-OS-027-03k`, `CASE-OS-027-03l`, `CASE-OS-027-03m`, `CASE-OS-027-03n`, `CASE-OS-027-03o`, `CASE-OS-027-03p`, `CASE-OS-027-03q`, `CASE-OS-027-03r`, `CASE-OS-027-03s`, `CASE-OS-027-03t`, `CASE-OS-027-03u`, `CASE-OS-027-03w`, `CASE-OS-027-03x`, `CASE-OS-027-03y`, `CASE-OS-027-03z`, `CASE-OS-027-03aa`, `CASE-OS-027-03ac`, `CASE-OS-027-03ad`, `CASE-OS-027-03af`, `CASE-OS-027-03ag`, `CASE-OS-027-03ah`, `CASE-OS-027-03ai`, `CASE-OS-027-03aj`, `CASE-OS-027-03ak`, `CASE-OS-027-03al`, `CASE-OS-027-03am`, `CASE-OS-027-03an`, `CASE-OS-027-03ao`, `CASE-OS-027-03ap`, `CASE-OS-027-03ar`, `CASE-OS-027-03as`, `CASE-OS-027-03at`, `CASE-OS-027-03au`, `CASE-OS-027-03av`, `CASE-OS-027-03aw`, `CASE-OS-027-03ax`, `CASE-OS-027-04`, `CASE-OS-027-05`, `CASE-OS-027-06` |",
+      "raw_line_sha256_lf_inclusive": "36d56848d7dba3382db110b9cd1d368c920f451dc236d272a341831026d19cd0",
+      "raw_line_bytes": 1451
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "physical_line": 33,
+      "literal": "親 `HELIXOS-L2-018`; HIL-NFR-36追補 `MPR-RC-HELIXOS-L2-018-002`（`docs/governance/decisions/po-decision-2026-10-03-additions10.md` row 34。L2 physical locator 1604–1619 registered semantic digest `5e2a621be8b4bda140bd796a48bedf2b3369daf5fad2665060ac41aa1a3174d2`（raw LF-inclusive span SHA-256 `634b700e1ed79c60f53235f6fb0e73348b7cc07264d4e4f8afb69e107aa1996d`）、L11 physical locator 1259–1276 registered semantic digest `e32e45319a3ac91004e3e1a985c7ff44e91b9e86f05b85c266d6b8d67acf87b5`（raw LF-inclusive span SHA-256 `ba303351c99a385506d9f151d0b51c03fb08922ce7d2848ffb3b1f485c4c221c`））を固定f6dad2a本文と別pinで適用する。全fixtureで重複claim/run、counter reset、binding欠落/不一致、SECURITY/INFRA stateのOS代替、実行中のbudget/deadline超過停止を数える。実際に停止した場合は停止理由と最初のOS管理/推進受領recordを照合し、外部sourceの不足/不一致がある場合はそのrecordを起点にした既存ownerへの訂正依頼も記録する。018-002のreceipt missing/unknown/conflict/scope-unknownは該当facetの未完として集計し、assignment可否/継続は既存authority/制約で別集計する。receipt状態だけによる新たな事前gate/全assignment停止を測定条件にしない。実測ではticket/revision/scopeごとに消費budgetと許可budget値を別記し、許可値が存在して0より大きい場合のみ比率を算出する。zero/missing budgetは算出不可として扱う。期限はabsolute deadline表現と経過時間を分け、現在のticket契約入力に計測開始点・単位付きduration/windowが明示されている場合だけ同単位の比率を算出する。absolute deadline、duration/windowのzero/missing、開始点/単位不明は算出不可とする。attempt/failure数を層別する。HIL-NFR-36では適用sourceの選択/不選択、revision-bound deviation receipt、実際に通った各step/順序、結果/理由、未選択consult/support receipt不生成を検査する。新しいfailure cap/default/orderは置かない。",
+      "raw_line_sha256_lf_inclusive": "a05a678d409c8ab328a8fe4771bfdc4db59bf27ae8ecc7989b8dc6cf7701ce75",
+      "raw_line_bytes": 2110
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "physical_line": 37,
+      "literal": "親 `HELIXOS-L2-019`; fixture eventをmissing/duplicate/stale/denied/not-run/success別に数え、normal crash/restartの測定と失敗後replayを分ける。normalでは通常のcrash/restart eventから再構築し、negative/replayでは原eventを使い固定L2の失敗位置から再構築した差分を示す。実timestampがある場合の各durationは別母集団として観測候補に表示し、保持日数/復旧時間のcutoffにしない。",
+      "raw_line_sha256_lf_inclusive": "706a644e49f08f57b5d24e64f7e58d0ad52f3d493b0b9e62a5042795ea9629b2",
+      "raw_line_bytes": 464
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "physical_line": 49,
+      "literal": "親 `HELIXOS-L2-027`; six eligibility conditionsとoperation authorityを別fieldで照合し、weighted scoreではなく全条件のconjunctionで判定する。LABO評価候補資料には実在sample n、scope/task/model class/revision、success/failure/rework/latency/cost/reliability、uncertainty/counterexample/unknownとoracle revision/criterionを記録する。分類・authority・applicability evidenceのunknown/missing/stale/conflict、output classification/scope逸脱、各result status、requested oracle/duty保持、人代行binding、実行中budget/deadline、L2:835の2 return routeをfunctional CASEごとに照合する。assignment record欠落、作成Workerとは異なるactorによるhuman confirmation欠落、LABO受領record欠落は別fixtureとして計数する。L2/L11はuniversal minimum N/score cutoffを定めず、一回のsuccessだけではassessedにしない。候補値は比較資料で、PO per-parameter approvalや新gateではない。",
+      "raw_line_sha256_lf_inclusive": "69c91ae853c11c96ec6d6c1f1c0b29ab7458f350f22cad4b386c078de47a6fee",
+      "raw_line_bytes": 988
+    }
+  ],
+  "current_changed_line_pin_count": 96,
+  "inherited_fixed_and_legacy_source_pins": [
+    {
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "physical_lines": [
+        48,
+        48
+      ],
+      "full_file_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "raw_span_sha256_lf_inclusive": "9d167c5db90b6b27d94af25d3a219f2c36ccf3b120635ab564447ca61f95b27a",
+      "asset_id": null,
+      "role": "po_main633_group",
+      "verified_full_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "verified_raw_span_sha256_lf_inclusive": "9d167c5db90b6b27d94af25d3a219f2c36ccf3b120635ab564447ca61f95b27a",
+      "verified": true
+    },
+    {
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/po-decision-2026-10-03-additions10.md",
+      "physical_lines": [
+        34,
+        34
+      ],
+      "full_file_sha256": "a42baefd1f1c24461b6abb62e4daa88aec3fba36e5409170f8660cdbc8f6c8ad",
+      "raw_span_sha256_lf_inclusive": "e4c090df44a79363fb9c54bf5d333b7c770bcaa9e550015c2b2247710acd2fd2",
+      "asset_id": null,
+      "role": "po_018_supplement",
+      "verified_full_sha256": "a42baefd1f1c24461b6abb62e4daa88aec3fba36e5409170f8660cdbc8f6c8ad",
+      "verified_raw_span_sha256_lf_inclusive": "e4c090df44a79363fb9c54bf5d333b7c770bcaa9e550015c2b2247710acd2fd2",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md",
+      "physical_lines": [
+        16,
+        56
+      ],
+      "full_file_sha256": "949b0da00d2a417e1b36d3679b89735de7adadf831f567dbe383dfe6337f19e4",
+      "raw_span_sha256_lf_inclusive": "fbb50e1ed591235cba594d8b8a10d5f1c55be865e3df9c9daf75f3814a18ab6a",
+      "asset_id": null,
+      "role": "root review OS2A-REVIEW-05 cited primary source",
+      "verified_full_sha256": "949b0da00d2a417e1b36d3679b89735de7adadf831f567dbe383dfe6337f19e4",
+      "verified_raw_span_sha256_lf_inclusive": "fbb50e1ed591235cba594d8b8a10d5f1c55be865e3df9c9daf75f3814a18ab6a",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md",
+      "physical_lines": [
+        37,
+        49
+      ],
+      "full_file_sha256": "949b0da00d2a417e1b36d3679b89735de7adadf831f567dbe383dfe6337f19e4",
+      "raw_span_sha256_lf_inclusive": "f4254d0ba80424a1474a2a7baa07b646fb985ca7be8a35b79bc05403f8b33ddd",
+      "asset_id": null,
+      "role": "root review OS2A-REVIEW-03 cited primary source",
+      "verified_full_sha256": "949b0da00d2a417e1b36d3679b89735de7adadf831f567dbe383dfe6337f19e4",
+      "verified_raw_span_sha256_lf_inclusive": "f4254d0ba80424a1474a2a7baa07b646fb985ca7be8a35b79bc05403f8b33ddd",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/document-authority-census-requirements.md",
+      "physical_lines": [
+        23,
+        69
+      ],
+      "full_file_sha256": "e05adb62d9ad07507f962cf060b3dbe66c161afc3f09391b29b3144ced57535c",
+      "raw_span_sha256_lf_inclusive": "e4d761d697c63b93ae4d03f67419cb99d10e2a5e3c2b42ec8799ed616c706dc5",
+      "asset_id": "LEGACY-ASSET-C6936A5DA79A6DAE4FE4",
+      "role": "L3",
+      "verified_full_sha256": "e05adb62d9ad07507f962cf060b3dbe66c161afc3f09391b29b3144ced57535c",
+      "verified_raw_span_sha256_lf_inclusive": "e4d761d697c63b93ae4d03f67419cb99d10e2a5e3c2b42ec8799ed616c706dc5",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/document-authority-census-requirements.md",
+      "physical_lines": [
+        70,
+        87
+      ],
+      "full_file_sha256": "e05adb62d9ad07507f962cf060b3dbe66c161afc3f09391b29b3144ced57535c",
+      "raw_span_sha256_lf_inclusive": "9cd38911e7a9758fd7cf8e8540332778f24e6e4a6b9df90112da38c23dec2a49",
+      "asset_id": "LEGACY-ASSET-C6936A5DA79A6DAE4FE4",
+      "role": "L3",
+      "verified_full_sha256": "e05adb62d9ad07507f962cf060b3dbe66c161afc3f09391b29b3144ced57535c",
+      "verified_raw_span_sha256_lf_inclusive": "9cd38911e7a9758fd7cf8e8540332778f24e6e4a6b9df90112da38c23dec2a49",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/orchestration-memory-runtime.md",
+      "physical_lines": [
+        14,
+        50
+      ],
+      "full_file_sha256": "c4fae09ac57f335a572b1d86ad353e7985551caa364f991a08e15d24d603c857",
+      "raw_span_sha256_lf_inclusive": "6ca6a61afc1b9a5fd247f79c93c92b1abac5544a06c10ef9e10f09411fa2241f",
+      "asset_id": "LEGACY-ASSET-8FECCE93E3996E8AAAFF",
+      "role": "L3",
+      "verified_full_sha256": "c4fae09ac57f335a572b1d86ad353e7985551caa364f991a08e15d24d603c857",
+      "verified_raw_span_sha256_lf_inclusive": "6ca6a61afc1b9a5fd247f79c93c92b1abac5544a06c10ef9e10f09411fa2241f",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "physical_lines": [
+        38,
+        57
+      ],
+      "full_file_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "raw_span_sha256_lf_inclusive": "bdb56ad09b5ce182466bcfaa9494d2ceaf60be075fc76efd65bfa6709e2278dc",
+      "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "role": "shared old FR/AC trace and completeness form; no old numbers/IDs/late addenda copied; L3",
+      "verified_full_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "verified_raw_span_sha256_lf_inclusive": "bdb56ad09b5ce182466bcfaa9494d2ceaf60be075fc76efd65bfa6709e2278dc",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "physical_lines": [
+        134,
+        197
+      ],
+      "full_file_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "raw_span_sha256_lf_inclusive": "747723b54908e79652e347ab529875943afc051fc9f9182d149481f01475e5a0",
+      "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "role": "shared old FR/AC trace and completeness form; no old numbers/IDs/late addenda copied; L3",
+      "verified_full_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "verified_raw_span_sha256_lf_inclusive": "747723b54908e79652e347ab529875943afc051fc9f9182d149481f01475e5a0",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "physical_lines": [
+        198,
+        307
+      ],
+      "full_file_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "raw_span_sha256_lf_inclusive": "7f3326adfef43b9fbcc3542cf2351058a87af78e7952875c7bc95f0343f985d5",
+      "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "role": "shared old FR/AC trace and completeness form; no old numbers/IDs/late addenda copied; L3",
+      "verified_full_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "verified_raw_span_sha256_lf_inclusive": "7f3326adfef43b9fbcc3542cf2351058a87af78e7952875c7bc95f0343f985d5",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "physical_lines": [
+        26,
+        58
+      ],
+      "full_file_sha256": "361a9ef773f7cf36cc0953f70cad205184ca952f2cb672431e5b929121ef1f61",
+      "raw_span_sha256_lf_inclusive": "262d51ac2f1c7aa890e717346d6624b743b3e10f5d2a32a5fdbadeadc019af9b",
+      "asset_id": "LEGACY-ASSET-E78B8D68CC327AA00991",
+      "role": "L3",
+      "verified_full_sha256": "361a9ef773f7cf36cc0953f70cad205184ca952f2cb672431e5b929121ef1f61",
+      "verified_raw_span_sha256_lf_inclusive": "262d51ac2f1c7aa890e717346d6624b743b3e10f5d2a32a5fdbadeadc019af9b",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "physical_lines": [
+        59,
+        78
+      ],
+      "full_file_sha256": "361a9ef773f7cf36cc0953f70cad205184ca952f2cb672431e5b929121ef1f61",
+      "raw_span_sha256_lf_inclusive": "b57caf2edf5b80f21eae2fcfbc6e5f18699f7e8556e6c0868ed715cd8e890fe6",
+      "asset_id": "LEGACY-ASSET-E78B8D68CC327AA00991",
+      "role": "L3",
+      "verified_full_sha256": "361a9ef773f7cf36cc0953f70cad205184ca952f2cb672431e5b929121ef1f61",
+      "verified_raw_span_sha256_lf_inclusive": "b57caf2edf5b80f21eae2fcfbc6e5f18699f7e8556e6c0868ed715cd8e890fe6",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "physical_lines": [
+        34,
+        124
+      ],
+      "full_file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "raw_span_sha256_lf_inclusive": "8b6ada1f94500116e296ce638344b7b602bc8a9299b0fc0f4879f82b47cd84a0",
+      "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+      "role": "L3",
+      "verified_full_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "verified_raw_span_sha256_lf_inclusive": "8b6ada1f94500116e296ce638344b7b602bc8a9299b0fc0f4879f82b47cd84a0",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "physical_lines": [
+        189,
+        390
+      ],
+      "full_file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "raw_span_sha256_lf_inclusive": "07524cef0d02ac05c73f6df89b339b7c2c32ce3eb0bb263192bd204b89e58ab4",
+      "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+      "role": "L3",
+      "verified_full_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "verified_raw_span_sha256_lf_inclusive": "07524cef0d02ac05c73f6df89b339b7c2c32ce3eb0bb263192bd204b89e58ab4",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "physical_lines": [
+        391,
+        478
+      ],
+      "full_file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "raw_span_sha256_lf_inclusive": "0f48e87e85e60c638a63d1d5166aeb66fbe0944cd3b57924f81b3be60c657793",
+      "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+      "role": "L3",
+      "verified_full_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "verified_raw_span_sha256_lf_inclusive": "0f48e87e85e60c638a63d1d5166aeb66fbe0944cd3b57924f81b3be60c657793",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "physical_lines": [
+        495,
+        620
+      ],
+      "full_file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "raw_span_sha256_lf_inclusive": "554570a7ff08ade2b1f47ed79352518cb38f260e0a5da8f349b11afe30ea693b",
+      "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+      "role": "L3",
+      "verified_full_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "verified_raw_span_sha256_lf_inclusive": "554570a7ff08ade2b1f47ed79352518cb38f260e0a5da8f349b11afe30ea693b",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "physical_lines": [
+        717,
+        856
+      ],
+      "full_file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "raw_span_sha256_lf_inclusive": "d3700cb6f753e41b61f23947aa7960261b0cd562e745958cda4d8aaff8523a00",
+      "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+      "role": "L3",
+      "verified_full_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "verified_raw_span_sha256_lf_inclusive": "d3700cb6f753e41b61f23947aa7960261b0cd562e745958cda4d8aaff8523a00",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "physical_lines": [
+        858,
+        925
+      ],
+      "full_file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "raw_span_sha256_lf_inclusive": "90c2609174e8f9577cff56b86b6616f46b7da00f5ad31a8105036338164f4746",
+      "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+      "role": "L3",
+      "verified_full_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "verified_raw_span_sha256_lf_inclusive": "90c2609174e8f9577cff56b86b6616f46b7da00f5ad31a8105036338164f4746",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md",
+      "physical_lines": [
+        32,
+        70
+      ],
+      "full_file_sha256": "65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc",
+      "raw_span_sha256_lf_inclusive": "c58abfe822a6c95a70d11c10e6355ef14f032c4c6cf9993c24f6eb24f41d4477",
+      "asset_id": "LEGACY-ASSET-7F8960532611D89D03E1",
+      "role": "L3",
+      "verified_full_sha256": "65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc",
+      "verified_raw_span_sha256_lf_inclusive": "c58abfe822a6c95a70d11c10e6355ef14f032c4c6cf9993c24f6eb24f41d4477",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md",
+      "physical_lines": [
+        72,
+        94
+      ],
+      "full_file_sha256": "65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc",
+      "raw_span_sha256_lf_inclusive": "afaad3aaa2f623b5979b658c32525c0552dce29b8591dc58e8b11b8b1ab684bf",
+      "asset_id": "LEGACY-ASSET-7F8960532611D89D03E1",
+      "role": "L3",
+      "verified_full_sha256": "65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc",
+      "verified_raw_span_sha256_lf_inclusive": "afaad3aaa2f623b5979b658c32525c0552dce29b8591dc58e8b11b8b1ab684bf",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "physical_lines": [
+        13,
+        40
+      ],
+      "full_file_sha256": "e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b",
+      "raw_span_sha256_lf_inclusive": "8cb812720e17b8d39479af125819912bc28596ae6f90a0e90dd52034fd8b3c36",
+      "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+      "role": "L3",
+      "verified_full_sha256": "e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b",
+      "verified_raw_span_sha256_lf_inclusive": "8cb812720e17b8d39479af125819912bc28596ae6f90a0e90dd52034fd8b3c36",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "physical_lines": [
+        41,
+        63
+      ],
+      "full_file_sha256": "e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b",
+      "raw_span_sha256_lf_inclusive": "08ecc3dcabf567087f5141b615bd1ba5f8ff9a7312557a1cd96275d444b4646f",
+      "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+      "role": "L3",
+      "verified_full_sha256": "e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b",
+      "verified_raw_span_sha256_lf_inclusive": "08ecc3dcabf567087f5141b615bd1ba5f8ff9a7312557a1cd96275d444b4646f",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "physical_lines": [
+        64,
+        87
+      ],
+      "full_file_sha256": "e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b",
+      "raw_span_sha256_lf_inclusive": "bf31f1736de2286933ce046ac35c9f2036845d666cd7b19b3b40557e97a55b80",
+      "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+      "role": "L3",
+      "verified_full_sha256": "e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b",
+      "verified_raw_span_sha256_lf_inclusive": "bf31f1736de2286933ce046ac35c9f2036845d666cd7b19b3b40557e97a55b80",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "physical_lines": [
+        148,
+        168
+      ],
+      "full_file_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "raw_span_sha256_lf_inclusive": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9",
+      "asset_id": "LEGACY-ASSET-F542125805B777D8A56A",
+      "role": "old L3 definition; authoring/approval semantics; root review OS2A-REVIEW-03 cited primary source",
+      "verified_full_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "verified_raw_span_sha256_lf_inclusive": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md",
+      "physical_lines": [
+        162,
+        170
+      ],
+      "full_file_sha256": "d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a",
+      "raw_span_sha256_lf_inclusive": "d8e3f0e9afaa03c20985808ccade01279952ea5366655e3d4e95ca9e97dd3df5",
+      "asset_id": "LEGACY-ASSET-34DF3B535879CC73FA86",
+      "role": "old L10 verification layer and failure/backflow definition; root review OS2A-REVIEW-03 cited primary source",
+      "verified_full_sha256": "d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a",
+      "verified_raw_span_sha256_lf_inclusive": "d8e3f0e9afaa03c20985808ccade01279952ea5366655e3d4e95ca9e97dd3df5",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md",
+      "physical_lines": [
+        195,
+        207
+      ],
+      "full_file_sha256": "d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a",
+      "raw_span_sha256_lf_inclusive": "9a91c1d2094be6c1c0463b9f3af280f41abb15b0503f8520c7e72be12c27c75b",
+      "asset_id": "LEGACY-ASSET-34DF3B535879CC73FA86",
+      "role": "old L10 verification layer and failure/backflow definition; root review OS2A-REVIEW-03 cited primary source",
+      "verified_full_sha256": "d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a",
+      "verified_raw_span_sha256_lf_inclusive": "9a91c1d2094be6c1c0463b9f3af280f41abb15b0503f8520c7e72be12c27c75b",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "physical_lines": [
+        32,
+        90
+      ],
+      "full_file_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+      "raw_span_sha256_lf_inclusive": "0b6f167d1e4002f0f92a80294992ee3b785f676685402c1945b15d5f38ee0228",
+      "asset_id": "LEGACY-ASSET-44DD86E3DEC09E65EF51",
+      "role": "old paired positive/negative/trace oracle design; no old L12/HAT/runtime; paired_old_test_design",
+      "verified_full_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+      "verified_raw_span_sha256_lf_inclusive": "0b6f167d1e4002f0f92a80294992ee3b785f676685402c1945b15d5f38ee0228",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "physical_lines": [
+        91,
+        216
+      ],
+      "full_file_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+      "raw_span_sha256_lf_inclusive": "066ad9e1de61935f6a5c5a939a5e78a4348f29431a9737f187edb991b71d82e4",
+      "asset_id": "LEGACY-ASSET-44DD86E3DEC09E65EF51",
+      "role": "old paired positive/negative/trace oracle design; no old L12/HAT/runtime; paired_old_test_design",
+      "verified_full_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+      "verified_raw_span_sha256_lf_inclusive": "066ad9e1de61935f6a5c5a939a5e78a4348f29431a9737f187edb991b71d82e4",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/lifecycle-state-separation-acceptance.md",
+      "physical_lines": [
+        235,
+        265
+      ],
+      "full_file_sha256": "73a371eadd006c4f850cc0129f8c6cdf2b44c17d8356b94164cf253711c4f60c",
+      "raw_span_sha256_lf_inclusive": "76e4d210553408b6ee98fe9d59df0a8e883cdeea893f5f484ac65baa46a2fad7",
+      "asset_id": "LEGACY-ASSET-1EAF81D2FED559ED38C4",
+      "role": "paired_old_test_design",
+      "verified_full_sha256": "73a371eadd006c4f850cc0129f8c6cdf2b44c17d8356b94164cf253711c4f60c",
+      "verified_raw_span_sha256_lf_inclusive": "76e4d210553408b6ee98fe9d59df0a8e883cdeea893f5f484ac65baa46a2fad7",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+      "physical_lines": [
+        17,
+        55
+      ],
+      "full_file_sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+      "raw_span_sha256_lf_inclusive": "36e097a074fe674fddd2719b6c196163a6aa625908c90f0125ff42a99e2a41da",
+      "asset_id": "LEGACY-ASSET-437A6A68F9A9E0AE1B9E",
+      "role": "paired_old_test_design",
+      "verified_full_sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+      "verified_raw_span_sha256_lf_inclusive": "36e097a074fe674fddd2719b6c196163a6aa625908c90f0125ff42a99e2a41da",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+      "physical_lines": [
+        13,
+        29
+      ],
+      "full_file_sha256": "b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4",
+      "raw_span_sha256_lf_inclusive": "7cacf65c679bc4fed25cbf60470790b47577e85982d01a88cafc0da6d46ae2fd",
+      "asset_id": "LEGACY-ASSET-170112AB2FA2FFDBFEE9",
+      "role": "paired_old_test_design",
+      "verified_full_sha256": "b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4",
+      "verified_raw_span_sha256_lf_inclusive": "7cacf65c679bc4fed25cbf60470790b47577e85982d01a88cafc0da6d46ae2fd",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+      "physical_lines": [
+        42,
+        55
+      ],
+      "full_file_sha256": "b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4",
+      "raw_span_sha256_lf_inclusive": "1a3cb681522d6929f8dcaaf2ec2f5b0a75386dbf821eed06a3945af0683839a4",
+      "asset_id": "LEGACY-ASSET-170112AB2FA2FFDBFEE9",
+      "role": "paired_old_test_design",
+      "verified_full_sha256": "b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4",
+      "verified_raw_span_sha256_lf_inclusive": "1a3cb681522d6929f8dcaaf2ec2f5b0a75386dbf821eed06a3945af0683839a4",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "physical_lines": [
+        324,
+        329
+      ],
+      "full_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "raw_span_sha256_lf_inclusive": "79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0",
+      "asset_id": null,
+      "role": "HELIXOS-L2-015_l11",
+      "verified_full_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "verified_raw_span_sha256_lf_inclusive": "79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "physical_lines": [
+        331,
+        336
+      ],
+      "full_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "raw_span_sha256_lf_inclusive": "2dc46eb36e8ca552c079ade0dad329c2ca0c244f4c2493a06eec4f60647897a3",
+      "asset_id": null,
+      "role": "HELIXOS-L2-016_l11",
+      "verified_full_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "verified_raw_span_sha256_lf_inclusive": "2dc46eb36e8ca552c079ade0dad329c2ca0c244f4c2493a06eec4f60647897a3",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "physical_lines": [
+        338,
+        344
+      ],
+      "full_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "raw_span_sha256_lf_inclusive": "b5a2d6f02bc5ab05df8d482b171cd4db0b005e23ddf2f54c463aeebff8555cf2",
+      "asset_id": null,
+      "role": "HELIXOS-L2-017_l11",
+      "verified_full_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "verified_raw_span_sha256_lf_inclusive": "b5a2d6f02bc5ab05df8d482b171cd4db0b005e23ddf2f54c463aeebff8555cf2",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "physical_lines": [
+        345,
+        351
+      ],
+      "full_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "raw_span_sha256_lf_inclusive": "257fbc3de623fb45dd26c284137ece6b0bc615577bf0ed937ae058537968b891",
+      "asset_id": null,
+      "role": "HELIXOS-L2-018_l11",
+      "verified_full_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "verified_raw_span_sha256_lf_inclusive": "257fbc3de623fb45dd26c284137ece6b0bc615577bf0ed937ae058537968b891",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "physical_lines": [
+        352,
+        358
+      ],
+      "full_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "raw_span_sha256_lf_inclusive": "8b9acc85e6049ba55d1ef3c90fe7abc867db1c2d51c53096d0a18d5316c06900",
+      "asset_id": null,
+      "role": "HELIXOS-L2-019_l11",
+      "verified_full_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "verified_raw_span_sha256_lf_inclusive": "8b9acc85e6049ba55d1ef3c90fe7abc867db1c2d51c53096d0a18d5316c06900",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "physical_lines": [
+        359,
+        365
+      ],
+      "full_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "raw_span_sha256_lf_inclusive": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03",
+      "asset_id": null,
+      "role": "HELIXOS-L2-020_l11",
+      "verified_full_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "verified_raw_span_sha256_lf_inclusive": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "physical_lines": [
+        380,
+        386
+      ],
+      "full_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "raw_span_sha256_lf_inclusive": "215240e3045227f84a8f485fd17752e2def2c15c3db538e797ebbd8b58f4536d",
+      "asset_id": null,
+      "role": "HELIXOS-L2-023_l11",
+      "verified_full_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "verified_raw_span_sha256_lf_inclusive": "215240e3045227f84a8f485fd17752e2def2c15c3db538e797ebbd8b58f4536d",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "physical_lines": [
+        442,
+        456
+      ],
+      "full_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "raw_span_sha256_lf_inclusive": "a2ae828eaa67210d5b6a38de065d989a5addfd5676f0408d6564fa318bb541c2",
+      "asset_id": null,
+      "role": "HELIXOS-L2-027_l11",
+      "verified_full_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "verified_raw_span_sha256_lf_inclusive": "a2ae828eaa67210d5b6a38de065d989a5addfd5676f0408d6564fa318bb541c2",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "physical_lines": [
+        642,
+        651
+      ],
+      "full_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "raw_span_sha256_lf_inclusive": "18756826fc4dda35a81059eebcecb81df554937cd60f828eb67a5f1cc3fbda69",
+      "asset_id": null,
+      "role": "HELIXOS-L2-015_l2",
+      "verified_full_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "verified_raw_span_sha256_lf_inclusive": "18756826fc4dda35a81059eebcecb81df554937cd60f828eb67a5f1cc3fbda69",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "physical_lines": [
+        652,
+        661
+      ],
+      "full_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "raw_span_sha256_lf_inclusive": "55d5b2e72438019d672d7cfd39c2c3908248bc9783952f678b0288132bdac7e8",
+      "asset_id": null,
+      "role": "HELIXOS-L2-016_l2",
+      "verified_full_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "verified_raw_span_sha256_lf_inclusive": "55d5b2e72438019d672d7cfd39c2c3908248bc9783952f678b0288132bdac7e8",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "physical_lines": [
+        662,
+        671
+      ],
+      "full_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "raw_span_sha256_lf_inclusive": "1f74fdb3677c997071c80a618cd48d7c1f5f9cac2650efe61ecc197539f9f2f7",
+      "asset_id": null,
+      "role": "HELIXOS-L2-017_l2; root review OS2A-REVIEW-01 cited primary source",
+      "verified_full_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "verified_raw_span_sha256_lf_inclusive": "1f74fdb3677c997071c80a618cd48d7c1f5f9cac2650efe61ecc197539f9f2f7",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "physical_lines": [
+        672,
+        681
+      ],
+      "full_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "raw_span_sha256_lf_inclusive": "41d0788d372793e0dd2c61d54d7e59886cfa45987a993cdeabdcb2c3b3b5ea72",
+      "asset_id": null,
+      "role": "HELIXOS-L2-018_l2",
+      "verified_full_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "verified_raw_span_sha256_lf_inclusive": "41d0788d372793e0dd2c61d54d7e59886cfa45987a993cdeabdcb2c3b3b5ea72",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "physical_lines": [
+        682,
+        691
+      ],
+      "full_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "raw_span_sha256_lf_inclusive": "acea5c3a2f1b3a2c8aff97a37ed5476ad360d8707280f0bb0e8957b601a9e79f",
+      "asset_id": null,
+      "role": "HELIXOS-L2-019_l2",
+      "verified_full_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "verified_raw_span_sha256_lf_inclusive": "acea5c3a2f1b3a2c8aff97a37ed5476ad360d8707280f0bb0e8957b601a9e79f",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "physical_lines": [
+        692,
+        701
+      ],
+      "full_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "raw_span_sha256_lf_inclusive": "cae3019c5cd3549faaff920f9afa934f83ec4450c0ee7d7532bfc66ccc976f15",
+      "asset_id": null,
+      "role": "HELIXOS-L2-020_l2",
+      "verified_full_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "verified_raw_span_sha256_lf_inclusive": "cae3019c5cd3549faaff920f9afa934f83ec4450c0ee7d7532bfc66ccc976f15",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "physical_lines": [
+        722,
+        731
+      ],
+      "full_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "raw_span_sha256_lf_inclusive": "9e07b91bc6da6705d31bd24c2b6078807ad644d7266ba068a3c8aa5dbf849248",
+      "asset_id": null,
+      "role": "HELIXOS-L2-023_l2",
+      "verified_full_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "verified_raw_span_sha256_lf_inclusive": "9e07b91bc6da6705d31bd24c2b6078807ad644d7266ba068a3c8aa5dbf849248",
+      "verified": true
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "physical_lines": [
+        824,
+        846
+      ],
+      "full_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "raw_span_sha256_lf_inclusive": "49cd7c1512f292a292908d42c6af02024f5b7b0a89d7176e2c691720c27703c6",
+      "asset_id": null,
+      "role": "HELIXOS-L2-027_l2; root review OS2A-REVIEW-02 cited primary source",
+      "verified_full_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "verified_raw_span_sha256_lf_inclusive": "49cd7c1512f292a292908d42c6af02024f5b7b0a89d7176e2c691720c27703c6",
+      "verified": true
+    },
+    {
+      "label": "HELIXOS-L2-001",
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "physical_lines": [
+        650,
+        659
+      ],
+      "full_file_sha256": "c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a",
+      "full_file_bytes": 447207,
+      "raw_span_sha256_lf_inclusive": "5240651a0366284941806eb534bc16e4387614aeec4588391a543c684dbd3bcd",
+      "raw_span_bytes": 1364,
+      "role": "fixed L2 parent for C1/crosswalk"
+    },
+    {
+      "label": "HELIXOS-L2-002",
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "physical_lines": [
+        660,
+        669
+      ],
+      "full_file_sha256": "c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a",
+      "full_file_bytes": 447207,
+      "raw_span_sha256_lf_inclusive": "f90529abdc6d9ef0581eda3f03a6f1803dca504e9936a27fa8f2538569fa2942",
+      "raw_span_bytes": 1614,
+      "role": "fixed L2 parent for C1/crosswalk"
+    },
+    {
+      "label": "HELIXOS-L2-003",
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "physical_lines": [
+        670,
+        679
+      ],
+      "full_file_sha256": "c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a",
+      "full_file_bytes": 447207,
+      "raw_span_sha256_lf_inclusive": "ae44cac739cec5915d1ce26c75eb389131f6841b7e0b302fe0efe9d4c0fb6a83",
+      "raw_span_bytes": 1636,
+      "role": "fixed L2 parent for C1/crosswalk"
+    },
+    {
+      "label": "HELIXOS-L2-004",
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "physical_lines": [
+        680,
+        689
+      ],
+      "full_file_sha256": "c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a",
+      "full_file_bytes": 447207,
+      "raw_span_sha256_lf_inclusive": "a31da1dae4705095544c2b8ec36888225c97fe9bb73d228e65891c5c14e322c3",
+      "raw_span_bytes": 1385,
+      "role": "fixed L2 parent for C1/crosswalk"
+    },
+    {
+      "label": "HELIXOS-L2-005",
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "physical_lines": [
+        690,
+        699
+      ],
+      "full_file_sha256": "c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a",
+      "full_file_bytes": 447207,
+      "raw_span_sha256_lf_inclusive": "de35cf13eccdd0c78069c6a06a7d5bead254eb79efccb8dbcdc63889b8087430",
+      "raw_span_bytes": 1272,
+      "role": "fixed L2 parent for C1/crosswalk"
+    },
+    {
+      "label": "HELIXOS-L2-007",
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "physical_lines": [
+        700,
+        709
+      ],
+      "full_file_sha256": "c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a",
+      "full_file_bytes": 447207,
+      "raw_span_sha256_lf_inclusive": "1ba50e3dcf99dbdc2c66a3d203a5569abf61c0e18f9c44bb296244b2205f52be",
+      "raw_span_bytes": 2016,
+      "role": "fixed L2 parent for C1/crosswalk"
+    },
+    {
+      "label": "HELIXOS-L2-009",
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "physical_lines": [
+        720,
+        731
+      ],
+      "full_file_sha256": "c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a",
+      "full_file_bytes": 447207,
+      "raw_span_sha256_lf_inclusive": "c7208601a77a1d698e6c3fe427bb535380f553f3af3828c825b2b0f0e76e0e06",
+      "raw_span_bytes": 1601,
+      "role": "fixed L2 parent for C1/crosswalk"
+    },
+    {
+      "label": "HELIXOS-L2-010",
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "physical_lines": [
+        732,
+        741
+      ],
+      "full_file_sha256": "c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a",
+      "full_file_bytes": 447207,
+      "raw_span_sha256_lf_inclusive": "c95ed2214e72795a30ee2acaa3dd96bc77ccc41b66df4b3d44f83212ebaba780",
+      "raw_span_bytes": 1281,
+      "role": "fixed L2 parent for C1/crosswalk"
+    },
+    {
+      "label": "HELIXOS-L2-027",
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "physical_lines": [
+        824,
+        846
+      ],
+      "full_file_sha256": "c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a",
+      "full_file_bytes": 447207,
+      "raw_span_sha256_lf_inclusive": "49cd7c1512f292a292908d42c6af02024f5b7b0a89d7176e2c691720c27703c6",
+      "raw_span_bytes": 9333,
+      "role": "fixed L2 parent for C1/crosswalk"
+    },
+    {
+      "label": "L11-result-binding",
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "physical_lines": [
+        317,
+        326
+      ],
+      "full_file_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+      "full_file_bytes": 331746,
+      "raw_span_sha256_lf_inclusive": "5c2fc09db869a131c667c27240f7740d1b4b4ffb4e64d58f26e489f10ded1fc2",
+      "raw_span_bytes": 3053,
+      "role": "fixed L11 verification/return requirement"
+    },
+    {
+      "label": "L11-015-return",
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "physical_lines": [
+        327,
+        331
+      ],
+      "full_file_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+      "full_file_bytes": 331746,
+      "raw_span_sha256_lf_inclusive": "ed354b4af66a7ab83e90514c10967f87d41ea5fb305e9011a78c20a223a53ad5",
+      "raw_span_bytes": 650,
+      "role": "fixed L11 verification/return requirement"
+    },
+    {
+      "label": "L11-016-return",
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "physical_lines": [
+        334,
+        338
+      ],
+      "full_file_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+      "full_file_bytes": 331746,
+      "raw_span_sha256_lf_inclusive": "71ab526c6f7a6be6383ff03f74f9b5d62e9a071cb5b338839da8ad8f0e1d0f79",
+      "raw_span_bytes": 715,
+      "role": "fixed L11 verification/return requirement"
+    },
+    {
+      "label": "L11-017-return",
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "physical_lines": [
+        341,
+        345
+      ],
+      "full_file_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+      "full_file_bytes": 331746,
+      "raw_span_sha256_lf_inclusive": "2e41cfcb1fca3be6a05ef44d9881336abcd1015c7016b4a850fa02fc8b7c9396",
+      "raw_span_bytes": 849,
+      "role": "fixed L11 verification/return requirement"
+    },
+    {
+      "label": "L11-019-replay",
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "physical_lines": [
+        352,
+        359
+      ],
+      "full_file_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+      "full_file_bytes": 331746,
+      "raw_span_sha256_lf_inclusive": "25efd941beb8c1fec83c327da109306d0d132ab080f96196ef9471d533bb68ba",
+      "raw_span_bytes": 1002,
+      "role": "fixed L11 verification/return requirement"
+    },
+    {
+      "label": "L11-020-return",
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "physical_lines": [
+        361,
+        366
+      ],
+      "full_file_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+      "full_file_bytes": 331746,
+      "raw_span_sha256_lf_inclusive": "8ad937ff5a0251df71a59ad56b236b7cd1e73077c944a012deaaa6975ee7347b",
+      "raw_span_bytes": 1018,
+      "role": "fixed L11 verification/return requirement"
+    },
+    {
+      "label": "L11-027-acceptance",
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "physical_lines": [
+        446,
+        451
+      ],
+      "full_file_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+      "full_file_bytes": 331746,
+      "raw_span_sha256_lf_inclusive": "6d8f12e866bc23030b26310ccbf83a9987879820459ee6e316ada1d65a586373",
+      "raw_span_bytes": 3568,
+      "role": "fixed L11 verification/return requirement"
+    },
+    {
+      "label": "L11-018-002",
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "physical_lines": [
+        1266,
+        1276
+      ],
+      "full_file_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+      "full_file_bytes": 331746,
+      "raw_span_sha256_lf_inclusive": "1284793afa8bbaaa1328d884ef8f5ed297fc4551790dbc4dec9e6b634b622976",
+      "raw_span_bytes": 2727,
+      "role": "fixed L11 verification/return requirement"
+    },
+    {
+      "label": "main633-group-decision",
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "physical_lines": [
+        48,
+        48
+      ],
+      "full_file_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "full_file_bytes": 5689,
+      "raw_span_sha256_lf_inclusive": "9d167c5db90b6b27d94af25d3a219f2c36ccf3b120635ab564447ca61f95b27a",
+      "raw_span_bytes": 255,
+      "role": "PO authority decision row"
+    },
+    {
+      "label": "main633-018-addition",
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/po-decision-2026-10-03-additions10.md",
+      "physical_lines": [
+        34,
+        34
+      ],
+      "full_file_sha256": "a42baefd1f1c24461b6abb62e4daa88aec3fba36e5409170f8660cdbc8f6c8ad",
+      "full_file_bytes": 29859,
+      "raw_span_sha256_lf_inclusive": "e4c090df44a79363fb9c54bf5d333b7c770bcaa9e550015c2b2247710acd2fd2",
+      "raw_span_bytes": 477,
+      "role": "PO authority decision row"
+    }
+  ],
+  "inherited_source_pin_count": 67,
+  "previous_immutable_records": [
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-os-stage2a-main-publication-repair02-2026-10-05.json",
+      "source_revision": "46dffc94196a054a5bb7dee2b430b73a62fa0103",
+      "sha256": "2bc59efecd7777ba2abadff4ec45b4a90dc299b703412f4b74a8ae8da635909c",
+      "bytes": 64280,
+      "unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-os-stage2a-review01-repair-2026-10-05-48be58f70.json",
+      "source_revision": "3f4c513980c0509fa91c6dc8fc6988bce8809d0c",
+      "role": "historical immutable repair record; not modified"
+    }
+  ],
+  "dispositions": [
+    {
+      "id": "C1",
+      "finding": "各L2 parent bundleに対するFR/AC/CASE対応が不足または誤分類",
+      "disposition": "8親のcurrent_condition_refsを固定L2の対象親へ再配置し、列挙は完全修飾IDへ統一。018の内包条件と027/019/020の表外参照関係を明記。Stage2a scopeは015/016/017/018/019/020/023/027を維持。"
+    },
+    {
+      "id": "C2",
+      "finding": "L11:322の全結果bindingがStage2a全体へ適用されていない",
+      "disposition": "FV共通条件と該当ACへfixture input/digest、親L2 revision、対象revision、actor、理由/evidence、HARNESS契約版、expected state/owner routeを明記。全8親に適用。"
+    },
+    {
+      "id": "N1",
+      "finding": "015/016/017のnegative return destination不足",
+      "disposition": "CASE-015-02f/02h、016-02g、017-02gへ固定L11の戻し先を追記。"
+    },
+    {
+      "id": "018-N1",
+      "finding": "未選択consult/support normalと選択scopeの適用source不在を混同",
+      "disposition": "04iはquality eventなし/consult-support未選択のみの正常例とし、適用source不在を含めない。04lは選択scopeに適用するsourceが存在しない単一negativeとしてfacet unknown/未完・元meaning owner返却を記録。"
+    },
+    {
+      "id": "018-N2",
+      "finding": "018追加receipt unknown negativeにmeaning ownerへのreturnがない",
+      "disposition": "04b〜04h、04j〜04lに該当facetを元decision/policy meaning ownerへ返す結果を示す。04lはsource不存在のみ。"
+    },
+    {
+      "id": "018-3",
+      "finding": "provider identity/context boundaryのL10 oracle不足",
+      "disposition": "CASE-OS-018-05で同一provider別identityの統合と、別provider同一identity/contextの独立扱いを個別negative化。"
+    },
+    {
+      "id": "020-1",
+      "finding": "020-02hがenvironment mismatchのreturnを欠く",
+      "disposition": "ticketまたはHARNESS contractへ戻し、unfinishedを保持する結果を追加。"
+    },
+    {
+      "id": "027-N1",
+      "finding": "L2:832/835 locatorが1行ずれ",
+      "disposition": "該当L3/L10/NFR記述をL2:832 result distinctions、L2:835 return destinationへ訂正。"
+    },
+    {
+      "id": "027-2",
+      "finding": "assignment、人確認、LABO receipt欠落の個別oracleがない",
+      "disposition": "03av/03aw/03axを追加し、成功表示拒否と既存ownerへのreturnを独立記録。"
+    },
+    {
+      "id": "m1",
+      "finding": "HXT-TYPEに未根拠のreturn、FLOWに単独variantとsystem補完拒否がない",
+      "disposition": "TYPEは固定行がreturnを指定するときのみその先へ戻す。FLOWに独立variantとL11:274補完拒否を明記。"
+    },
+    {
+      "id": "m2",
+      "finding": "HXT CASEのBR/BV trace欠落",
+      "disposition": "017 HXT群とSYS/USEの各親をBR/BVへ追記。017-SYSと023-USEの親帰属を正す。"
+    },
+    {
+      "id": "m3",
+      "finding": "PO decisionのファイルpath不明",
+      "disposition": "row48と追加row34を別ファイルpathとして記載。"
+    },
+    {
+      "id": "m4",
+      "finding": "019 replay表現と測定populationの不整合",
+      "disposition": "原eventを用いる表現へ修正し、通常restartとfailure-position replayを分離。"
+    },
+    {
+      "id": "m5",
+      "finding": "027小成果物の強化語とreceipt項目欠落",
+      "disposition": "「小」を削除し、案receiptの根拠・受領側revisionを正常例に保持。"
+    },
+    {
+      "id": "m6",
+      "finding": "027 case ID/範囲/統合表現不一致",
+      "disposition": "AC/BV/BR/NFRのCASE censusを同期、03v→03aj統合、欠番記録、03w conflict期待を揃える。"
+    },
+    {
+      "id": "m7",
+      "finding": "review01-repair auditの本文と不一致な主張",
+      "disposition": "旧記録は不変。旧C1/C2/018-3記述を事実主張として継承せず、この監査で現在差分・旧記録との差を明記。"
+    }
+  ],
+  "status": "作成側の修正記録。root再検収、独立再review、Stage2a PO承認は未成立。",
+  "checks": {
+    "approved_stage2b_prefix_exact_bytes": "6/6 compared against git show 6276adb92b3056b1e53055cd56f214ebc5d87158",
+    "source_pins_recomputed": "48 inherited pins plus 19 exact L2/L11/decision spans verified against git show",
+    "functional_case_ids_in_l10_verification": 38,
+    "functional_requirement_reference_ids_in_l3": 27,
+    "current_changed_line_pins": 96,
+    "case_id_structural_scope_note": "CASE IDs are structurally counted; independent semantic closure is not inferred. Existing Stage2b-014 cases remain as approved prefix.",
+    "scfctl_validate": "PASS; bindings=147 fail=0",
+    "scfctl_stale": "PASS; stale=0",
+    "scfctl_residuals": "PASS; residuals=0",
+    "govcheck": "PASS; atoms=7622 requirements=57 files=58",
+    "git_diff_check": "PASS"
+  },
+  "carry_forward": {
+    "C13_findings_and_unreviewed": {
+      "C13_findings": [
+        "Claude13 OS minor 015-07 deletion oracle",
+        "Claude13 OS minor AC-017-29 impact candidates and Unknown",
+        "Claude13 OS minor AC-018-01 failure return boundary",
+        "Claude13 OS minor L11-31 planner/executor separation",
+        "Claude13 OS minor L11-227 / L2-470 promotion and identity conditions",
+        "Claude13 OS minor crosswalk source index",
+        "Claude13 OS minor non-promotion/state retention",
+        "Claude13 M12 / OS audit-map mismatch"
+      ],
+      "C13_unreviewed": [
+        "OS legacy table cells only keyword checked",
+        "OS global source and coverage limits"
+      ],
+      "status": "未解消持越し。作成側の起草・静的照合から独立解消判定を生成しない。",
+      "source_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/2564#issuecomment-5981101754",
+      "source_comment_sha256": "4d837e616451040cb15762e98b65cb9f104db8856f0319f4f376a47459644f1c"
+    },
+    "old_unreviewed": [
+      "修正後exact HEADの独立review",
+      "POの対象revision L3承認",
+      "持越し所見の独立解消判定",
+      "実行・性能実測・L10実証"
+    ],
+    "old_limits": [
+      "旧runtime・test・CI・Bunを実行していない。",
+      "静的検収は独立review、L3承認、L10実行結果を生成しない。",
+      "C13および対象外親の未解消指摘は持越し。対象8親への具体化から旧findingsの独立解消を生成しない。"
+    ],
+    "status": "Unresolved/unreviewed items remain carried; no closure is inferred from source pins or author static checks."
+  },
+  "limits": [
+    "Author-side document repair only; root must inspect exact bytes and semantics.",
+    "No independent review, PO approval, L10 execution, implementation, or release state is created.",
+    "Previous repair audits and historical records remain immutable.",
+    "No push, PR, mailbox, old runtime/test/CI/Bun execution."
+  ]
+}
