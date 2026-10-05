@@ -16,3 +16,8 @@
 ## Stage 2a — 055/056/057
 
 固定親に独立business outcomeがないため、別BR/AC/BCASEは作らない。L10の業務結果は[L3 functional AC](../L3-requirements/functional-requirements.md)の `LABO-055-AC-01`〜`LABO-055-AC-04`、`LABO-056-AC-01`〜`LABO-056-AC-05`、`LABO-057-AC-01`〜`LABO-057-AC-04`を参照する。owner境界と戻し先を確認する際も同じfunctional caseを用い、重複business oracleを追加しない。
+
+
+## Stage 4 — HELIXLABO-L2-036/037/038/039/040/041/052/054
+
+固定親に独立business outcomeはないため別BV/BCASEは追加しない。業務上の正常/失敗と戻し先は[L3 functional AC](../L3-requirements/functional-requirements.md)の`LABO-036-AC-01/02`、`LABO-037-AC-01/02`、`LABO-038-AC-01/02`、`LABO-039-AC-01/02`、`LABO-040-AC-01/02`、`LABO-041-AC-01/02`、`LABO-052-AC-01/02`、`LABO-054-AC-01/02`を[L10 functional cases](functional-verification.md)で照合する。candidate/receiptを業務完了、要求変更、ticket/assignment、authority変更、接続契約変更またはmodel変更へ昇格しない。
