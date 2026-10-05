@@ -243,7 +243,7 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 | CASE | 単独変異 | 期待結果・戻し先 |
 |---|---|---|
 | `CASE-INT-017-02a` | 操作時点permission receiptを欠落 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、SECURITY permission/isolation ownerへ戻す。他の正常source/operationは維持する。 |
-| `CASE-INT-017-02b` | Worker実行resultを欠落 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、Worker result ownerへ戻す。他の正常source/operationは維持する。 |
+| `CASE-INT-017-02b` | Worker実行resultを欠落 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、Worker execution/result ownerへ戻す。他の正常source/operationは維持する。 |
 | `CASE-INT-017-02c` | HARNESS verification obligationを欠落 | 修復成功をOS検収済みにせず、欠落検証義務をHARNESS/OSへ戻し、修復未完了を保持する。他の正常sourceは維持する。 |
 | `CASE-INT-017-02d` | OS acceptance receiptを欠落 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、OS acceptance ownerへ戻す。他の正常source/operationは維持する。 |
 | `CASE-INT-017-02e` | permissionのtarget scopeだけを別scopeへ差し替える | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、SECURITY permission/isolation ownerへ戻す。他の正常source/operationは維持する。 |
