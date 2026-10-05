@@ -57,3 +57,117 @@ NFR候補の選択や運用値はPOへparameterごとの質問にせず、根拠
 - qualification測定候補: AI self-rating、duplicate/existing owner、独立再現、counterevidence、expiry、supersessionを別facetとしてfixture母集団・unknown件数・既存owner handoff件数とともに報告する。finding/remediation identity混同、または親が禁止する資格/authorityの自己確定は各fixture oracleで拒否されることを記録する。複数facetを単一scoreへ畳み込まず、候補別の件数とscopeを示す。
 - 母集団/分母: L10の全field mutationとqualification fixtureをoperation・authority class（current/compatibility/historical）ごとに全数列挙し、未見normal fixtureとnegative fixtureを分ける。field matrix上の宣言field数をcoverage分母とし、未作成fixtureを成功件数へ含めない。identity条件が欠落・不明なら別fieldやhistorical sourceで埋めずunknown/incompleteとする。
 - 根拠: 固定L2-075 `618-625` / L11 `337-343` が要求する全field、6 identity条件、個別reason、時制区分、qualification handoffを測定対象にする。旧AAFD/旧ACは数値閾値やruntime性能値を与えないため持ち込まない。candidate値の比較はfield単位の観測可能性と各oracleの成立を並べ、parameterごとのPO判断や追加gateを作らない。
+
+
+## Stage 4 — source/contract trace候補
+
+共通HARNESS-L2-010/011 packのfield母集団は全対象operationで照合する。例外として、L2-017は固定L2に共通pack句がないため、当該operationがpackを実際に消費する場合だけ該当fieldを必須分母へ含める。
+
+親が有限個で明示するrequired source/field/ownerを照合するNFR候補。技術値は全required fieldの充足率100%候補と、誤ったsource/owner bind 0候補（親の完全保持条件から導出）に限定し、既定SLA、minimum sample、runtime latencyを新設しない。missing/unknown/stale/conflictは別stateで保持し、未選択sourceを母集団へ入れない。
+
+### NFR-INT-017-01 — required source binding completeness候補
+
+- 固定親: `HELIXINTELLIGENCE-L2-017`。
+- 対象測定: 同一target revision/scopeに対するSECURITY permission/isolation・Worker実行・HARNESS検証義務・OS検収の各結果。
+- 候補値: applicable required-field coverage 100%、wrong source/owner binding 0。固定親が要求する全必須情報の保持を示す候補で、任意性能/SLA基準ではない。適用範囲外のfieldは分母に入れず、unknownを成功に含めない。
+- 根拠CASE: `CASE-INT-017-01`, `CASE-INT-017-01a`, `CASE-INT-017-02a`, `CASE-INT-017-02b`, `CASE-INT-017-02c`, `CASE-INT-017-02d`, `CASE-INT-017-02e`, `CASE-INT-017-02f`, `CASE-INT-017-02g`, `CASE-INT-017-02h`, `CASE-INT-017-02i`, `CASE-INT-017-02j`, `CASE-INT-017-02k`, `CASE-INT-017-02l`, `CASE-INT-017-02m`, `CASE-INT-017-02n`, `CASE-INT-017-02o`, `CASE-INT-017-03`, `CASE-INT-017-03a`, `CASE-INT-017-04a`, `CASE-INT-017-04b`, `CASE-INT-017-04c`, `CASE-INT-017-04d`, `CASE-INT-017-04e`, `CASE-INT-017-05a`, `CASE-INT-017-05b`, `CASE-INT-017-05c`, `CASE-INT-017-05d`, `CASE-INT-017-05e`, `CASE-INT-017-05f`, `CASE-INT-017-05g`, `CASE-INT-017-05h`, `CASE-INT-017-05i`, `CASE-INT-017-05j`, `CASE-INT-017-05k`, `CASE-INT-017-05l`, `CASE-INT-017-05m`, `CASE-INT-017-05n`, `CASE-INT-017-05o`, `CASE-INT-017-05p`, `CASE-INT-017-05q`
+
+### NFR-INT-030-01 — required source binding completeness候補
+
+- 固定親: `HELIXINTELLIGENCE-L2-030`。
+- 対象測定: 許可されたHARNESS requirement/design revision、process contract、verification obligation、admitted connector contract。
+- 候補値: applicable required-field coverage 100%、wrong source/owner binding 0。固定親が要求する全必須情報の保持を示す候補で、任意性能/SLA基準ではない。適用範囲外のfieldは分母に入れず、unknownを成功に含めない。
+- 根拠CASE: `CASE-INT-030-01`, `CASE-INT-030-02a`, `CASE-INT-030-02b`, `CASE-INT-030-02c`, `CASE-INT-030-02d`, `CASE-INT-030-02e`, `CASE-INT-030-02f`, `CASE-INT-030-02g`, `CASE-INT-030-02h`, `CASE-INT-030-03`, `CASE-INT-030-04a`, `CASE-INT-030-04b`, `CASE-INT-030-04c`, `CASE-INT-030-04d`, `CASE-INT-030-04e`, `CASE-INT-030-04f`, `CASE-INT-030-05a`, `CASE-INT-030-05b`, `CASE-INT-030-05c`, `CASE-INT-030-05d`, `CASE-INT-030-05e`, `CASE-INT-030-05f`, `CASE-INT-030-05g`, `CASE-INT-030-05h`, `CASE-INT-030-05i`, `CASE-INT-030-05j`, `CASE-INT-030-05k`, `CASE-INT-030-05l`, `CASE-INT-030-05m`, `CASE-INT-030-05n`, `CASE-INT-030-05o`, `CASE-INT-030-05p`, `CASE-INT-030-05q`
+
+### NFR-INT-031-01 — required source binding completeness候補
+
+- 固定親: `HELIXINTELLIGENCE-L2-031`。
+- 対象測定: 許可ticket/current state/dependency/evidence、OS source revision、admitted connector contract。
+- 候補値: applicable required-field coverage 100%、wrong source/owner binding 0。固定親が要求する全必須情報の保持を示す候補で、任意性能/SLA基準ではない。適用範囲外のfieldは分母に入れず、unknownを成功に含めない。
+- 根拠CASE: `CASE-INT-031-01`, `CASE-INT-031-02a`, `CASE-INT-031-02b`, `CASE-INT-031-02c`, `CASE-INT-031-02d`, `CASE-INT-031-02e`, `CASE-INT-031-02f`, `CASE-INT-031-02g`, `CASE-INT-031-02n`, `CASE-INT-031-03`, `CASE-INT-031-04a`, `CASE-INT-031-04b`, `CASE-INT-031-04c`, `CASE-INT-031-04d`, `CASE-INT-031-04e`, `CASE-INT-031-05a`, `CASE-INT-031-05b`, `CASE-INT-031-05c`, `CASE-INT-031-05d`, `CASE-INT-031-05e`, `CASE-INT-031-05f`, `CASE-INT-031-05g`, `CASE-INT-031-05h`, `CASE-INT-031-05i`, `CASE-INT-031-05j`, `CASE-INT-031-05k`, `CASE-INT-031-05l`, `CASE-INT-031-05m`, `CASE-INT-031-05n`, `CASE-INT-031-05o`, `CASE-INT-031-05p`, `CASE-INT-031-05q`
+
+### NFR-INT-032-01 — required source binding completeness候補
+
+- 固定親: `HELIXINTELLIGENCE-L2-032`。
+- 対象測定: BRAIN Pattern/Unit/Part、applicability、exception、counterexampleおよびrevision。
+- 候補値: applicable required-field coverage 100%、wrong source/owner binding 0。固定親が要求する全必須情報の保持を示す候補で、任意性能/SLA基準ではない。適用範囲外のfieldは分母に入れず、unknownを成功に含めない。
+- 根拠CASE: `CASE-INT-032-01`, `CASE-INT-032-02a`, `CASE-INT-032-02b`, `CASE-INT-032-02c`, `CASE-INT-032-02d`, `CASE-INT-032-02e`, `CASE-INT-032-02f`, `CASE-INT-032-02g`, `CASE-INT-032-02h`, `CASE-INT-032-02i`, `CASE-INT-032-02j`, `CASE-INT-032-02k`, `CASE-INT-032-02l`, `CASE-INT-032-02m`, `CASE-INT-032-03`, `CASE-INT-032-04a`, `CASE-INT-032-04b`, `CASE-INT-032-04c`, `CASE-INT-032-04d`, `CASE-INT-032-04e`, `CASE-INT-032-04f`, `CASE-INT-032-04g`, `CASE-INT-032-04h`, `CASE-INT-032-04i`, `CASE-INT-032-04j`, `CASE-INT-032-04k`, `CASE-INT-032-04l`, `CASE-INT-032-05a`, `CASE-INT-032-05b`, `CASE-INT-032-05c`, `CASE-INT-032-05d`, `CASE-INT-032-05e`, `CASE-INT-032-05f`, `CASE-INT-032-05g`, `CASE-INT-032-05h`, `CASE-INT-032-05i`, `CASE-INT-032-05j`, `CASE-INT-032-05k`, `CASE-INT-032-05l`, `CASE-INT-032-05m`, `CASE-INT-032-05n`, `CASE-INT-032-05o`, `CASE-INT-032-05p`, `CASE-INT-032-05q`
+
+### NFR-INT-033-01 — required source binding completeness候補
+
+- 固定親: `HELIXINTELLIGENCE-L2-033`。
+- 対象測定: Product Core requirement/design/meaningとHARNESS process contract/verification obligationを別source/revisionで受領。
+- 候補値: applicable required-field coverage 100%、wrong source/owner binding 0。固定親が要求する全必須情報の保持を示す候補で、任意性能/SLA基準ではない。適用範囲外のfieldは分母に入れず、unknownを成功に含めない。
+- 根拠CASE: `CASE-INT-033-01`, `CASE-INT-033-02a`, `CASE-INT-033-02b`, `CASE-INT-033-02c`, `CASE-INT-033-02d`, `CASE-INT-033-02e`, `CASE-INT-033-02f`, `CASE-INT-033-02g`, `CASE-INT-033-02h`, `CASE-INT-033-02i`, `CASE-INT-033-03`, `CASE-INT-033-03a`, `CASE-INT-033-04a`, `CASE-INT-033-04b`, `CASE-INT-033-04c`, `CASE-INT-033-04d`, `CASE-INT-033-04e`, `CASE-INT-033-05a`, `CASE-INT-033-05b`, `CASE-INT-033-05c`, `CASE-INT-033-05d`, `CASE-INT-033-05e`, `CASE-INT-033-05f`, `CASE-INT-033-05g`, `CASE-INT-033-05h`, `CASE-INT-033-05i`, `CASE-INT-033-05j`, `CASE-INT-033-05k`, `CASE-INT-033-05l`, `CASE-INT-033-05m`, `CASE-INT-033-05n`, `CASE-INT-033-05o`, `CASE-INT-033-05p`, `CASE-INT-033-05q`
+
+### NFR-INT-034-01 — required source binding completeness候補
+
+- 固定親: `HELIXINTELLIGENCE-L2-034`。
+- 対象測定: 過去evaluation、success/failure/counterexample、Worker/model実績、Bench level、explicitly unevaluatedと各source scope/revision。
+- 候補値: applicable required-field coverage 100%、wrong source/owner binding 0。固定親が要求する全必須情報の保持を示す候補で、任意性能/SLA基準ではない。適用範囲外のfieldは分母に入れず、unknownを成功に含めない。
+- 根拠CASE: `CASE-INT-034-01`, `CASE-INT-034-02a`, `CASE-INT-034-02b`, `CASE-INT-034-02c`, `CASE-INT-034-02d`, `CASE-INT-034-02e`, `CASE-INT-034-02f`, `CASE-INT-034-02g`, `CASE-INT-034-02h`, `CASE-INT-034-02i`, `CASE-INT-034-02j`, `CASE-INT-034-02l`, `CASE-INT-034-02m`, `CASE-INT-034-02n`, `CASE-INT-034-03`, `CASE-INT-034-04a`, `CASE-INT-034-04b`, `CASE-INT-034-04c`, `CASE-INT-034-04d`, `CASE-INT-034-04e`, `CASE-INT-034-04f`, `CASE-INT-034-05a`, `CASE-INT-034-05b`, `CASE-INT-034-05c`, `CASE-INT-034-05d`, `CASE-INT-034-05e`, `CASE-INT-034-05f`, `CASE-INT-034-05g`, `CASE-INT-034-05h`, `CASE-INT-034-05i`, `CASE-INT-034-05j`, `CASE-INT-034-05k`, `CASE-INT-034-05l`, `CASE-INT-034-05m`, `CASE-INT-034-05n`, `CASE-INT-034-05o`, `CASE-INT-034-05p`, `CASE-INT-034-05q`
+
+### NFR-INT-035-01 — required source binding completeness候補
+
+- 固定親: `HELIXINTELLIGENCE-L2-035`。
+- 対象測定: plan/placement/diagnosis/review/repair candidate、根拠、停止条件、依存、source revision。
+- 候補値: applicable required-field coverage 100%、wrong source/owner binding 0。固定親が要求する全必須情報の保持を示す候補で、任意性能/SLA基準ではない。適用範囲外のfieldは分母に入れず、unknownを成功に含めない。
+- 根拠CASE: `CASE-INT-035-01`, `CASE-INT-035-02a`, `CASE-INT-035-02b`, `CASE-INT-035-02c`, `CASE-INT-035-02d`, `CASE-INT-035-02e`, `CASE-INT-035-02f`, `CASE-INT-035-02g`, `CASE-INT-035-02h`, `CASE-INT-035-02i`, `CASE-INT-035-02j`, `CASE-INT-035-02k`, `CASE-INT-035-02l`, `CASE-INT-035-02m`, `CASE-INT-035-03`, `CASE-INT-035-04a`, `CASE-INT-035-04b`, `CASE-INT-035-04c`, `CASE-INT-035-04d`, `CASE-INT-035-04e`, `CASE-INT-035-04f`, `CASE-INT-035-04g`, `CASE-INT-035-05a`, `CASE-INT-035-05b`, `CASE-INT-035-05c`, `CASE-INT-035-05d`, `CASE-INT-035-05e`, `CASE-INT-035-05f`, `CASE-INT-035-05g`, `CASE-INT-035-05h`, `CASE-INT-035-05i`, `CASE-INT-035-05j`, `CASE-INT-035-05k`, `CASE-INT-035-05l`, `CASE-INT-035-05m`, `CASE-INT-035-05n`, `CASE-INT-035-05o`, `CASE-INT-035-05p`, `CASE-INT-035-05q`
+
+### NFR-INT-036-01 — required source binding completeness候補
+
+- 固定親: `HELIXINTELLIGENCE-L2-036`。
+- 対象測定: operation candidateのactor/action/target/scope/revisionとSECURITY permission/constraint/revocation結果。
+- 候補値: applicable required-field coverage 100%、wrong source/owner binding 0。固定親が要求する全必須情報の保持を示す候補で、任意性能/SLA基準ではない。適用範囲外のfieldは分母に入れず、unknownを成功に含めない。
+- 根拠CASE: `CASE-INT-036-01`, `CASE-INT-036-02a`, `CASE-INT-036-02b`, `CASE-INT-036-02c`, `CASE-INT-036-02d`, `CASE-INT-036-02e`, `CASE-INT-036-02f`, `CASE-INT-036-02g`, `CASE-INT-036-02h`, `CASE-INT-036-02i`, `CASE-INT-036-02k`, `CASE-INT-036-02l`, `CASE-INT-036-02n`, `CASE-INT-036-02o`, `CASE-INT-036-03`, `CASE-INT-036-03a`, `CASE-INT-036-03b`, `CASE-INT-036-04a`, `CASE-INT-036-04b`, `CASE-INT-036-04c`, `CASE-INT-036-04d`, `CASE-INT-036-04e`, `CASE-INT-036-04f`, `CASE-INT-036-04g`, `CASE-INT-036-04h`, `CASE-INT-036-04i`, `CASE-INT-036-04j`, `CASE-INT-036-04k`, `CASE-INT-036-05a`, `CASE-INT-036-05b`, `CASE-INT-036-05c`, `CASE-INT-036-05d`, `CASE-INT-036-05e`, `CASE-INT-036-05f`, `CASE-INT-036-05g`, `CASE-INT-036-05h`, `CASE-INT-036-05i`, `CASE-INT-036-05j`, `CASE-INT-036-05k`, `CASE-INT-036-05l`, `CASE-INT-036-05m`, `CASE-INT-036-05n`, `CASE-INT-036-05o`, `CASE-INT-036-05p`, `CASE-INT-036-05q`
+
+### NFR-INT-037-01 — required source binding completeness候補
+
+- 固定親: `HELIXINTELLIGENCE-L2-037`。
+- 対象測定: OS発行・割当ticket、Worker actor、task scope、ticket revision、admitted contract。
+- 候補値: applicable required-field coverage 100%、wrong source/owner binding 0。固定親が要求する全必須情報の保持を示す候補で、任意性能/SLA基準ではない。適用範囲外のfieldは分母に入れず、unknownを成功に含めない。
+- 根拠CASE: `CASE-INT-037-01`, `CASE-INT-037-02a`, `CASE-INT-037-02b`, `CASE-INT-037-02c`, `CASE-INT-037-02d`, `CASE-INT-037-02e`, `CASE-INT-037-02f`, `CASE-INT-037-02g`, `CASE-INT-037-02h`, `CASE-INT-037-02i`, `CASE-INT-037-02j`, `CASE-INT-037-03`, `CASE-INT-037-04a`, `CASE-INT-037-04b`, `CASE-INT-037-04c`, `CASE-INT-037-04d`, `CASE-INT-037-04e`, `CASE-INT-037-04f`, `CASE-INT-037-04g`, `CASE-INT-037-04h`, `CASE-INT-037-05a`, `CASE-INT-037-05b`, `CASE-INT-037-05c`, `CASE-INT-037-05d`, `CASE-INT-037-05e`, `CASE-INT-037-05f`, `CASE-INT-037-05g`, `CASE-INT-037-05h`, `CASE-INT-037-05i`, `CASE-INT-037-05j`, `CASE-INT-037-05k`, `CASE-INT-037-05l`, `CASE-INT-037-05m`, `CASE-INT-037-05n`, `CASE-INT-037-05o`, `CASE-INT-037-05p`, `CASE-INT-037-05q`
+
+### NFR-INT-038-01 — required source binding completeness候補
+
+- 固定親: `HELIXINTELLIGENCE-L2-038`。
+- 対象測定: requirement revision、oracle、expected failure、independent verification、consumer acceptance、backflow condition。
+- 候補値: applicable required-field coverage 100%、wrong source/owner binding 0。固定親が要求する全必須情報の保持を示す候補で、任意性能/SLA基準ではない。適用範囲外のfieldは分母に入れず、unknownを成功に含めない。
+- 根拠CASE: `CASE-INT-038-01`, `CASE-INT-038-02a`, `CASE-INT-038-02b`, `CASE-INT-038-02c`, `CASE-INT-038-02d`, `CASE-INT-038-02e`, `CASE-INT-038-02f`, `CASE-INT-038-02g`, `CASE-INT-038-02h`, `CASE-INT-038-02i`, `CASE-INT-038-02j`, `CASE-INT-038-02k`, `CASE-INT-038-02l`, `CASE-INT-038-03`, `CASE-INT-038-04a`, `CASE-INT-038-04b`, `CASE-INT-038-04c`, `CASE-INT-038-04d`, `CASE-INT-038-04e`, `CASE-INT-038-04f`, `CASE-INT-038-05a`, `CASE-INT-038-05b`, `CASE-INT-038-05c`, `CASE-INT-038-05d`, `CASE-INT-038-05e`, `CASE-INT-038-05f`, `CASE-INT-038-05g`, `CASE-INT-038-05h`, `CASE-INT-038-05i`, `CASE-INT-038-05j`, `CASE-INT-038-05k`, `CASE-INT-038-05l`, `CASE-INT-038-05m`, `CASE-INT-038-05n`, `CASE-INT-038-05o`, `CASE-INT-038-05p`, `CASE-INT-038-05q`
+
+### NFR-INT-039-01 — required source binding completeness候補
+
+- 固定親: `HELIXINTELLIGENCE-L2-039`。
+- 対象測定: scope付きrepair candidate、Worker execution evidence、HARNESS verification resultと各revision/receipt。
+- 候補値: applicable required-field coverage 100%、wrong source/owner binding 0。固定親が要求する全必須情報の保持を示す候補で、任意性能/SLA基準ではない。適用範囲外のfieldは分母に入れず、unknownを成功に含めない。
+- 根拠CASE: `CASE-INT-039-01`, `CASE-INT-039-02a`, `CASE-INT-039-02b`, `CASE-INT-039-02c`, `CASE-INT-039-02d`, `CASE-INT-039-02e`, `CASE-INT-039-02f`, `CASE-INT-039-02g`, `CASE-INT-039-02h`, `CASE-INT-039-02i`, `CASE-INT-039-03`, `CASE-INT-039-03a`, `CASE-INT-039-03b`, `CASE-INT-039-04a`, `CASE-INT-039-04b`, `CASE-INT-039-04c`, `CASE-INT-039-04d`, `CASE-INT-039-04e`, `CASE-INT-039-05a`, `CASE-INT-039-05b`, `CASE-INT-039-05c`, `CASE-INT-039-05d`, `CASE-INT-039-05e`, `CASE-INT-039-05f`, `CASE-INT-039-05g`, `CASE-INT-039-05h`, `CASE-INT-039-05i`, `CASE-INT-039-05j`, `CASE-INT-039-05k`, `CASE-INT-039-05l`, `CASE-INT-039-05m`, `CASE-INT-039-05n`, `CASE-INT-039-05o`, `CASE-INT-039-05p`, `CASE-INT-039-05q`
+
+### NFR-INT-040-01 — required source binding completeness候補
+
+- 固定親: `HELIXINTELLIGENCE-L2-040`。
+- 対象測定: prediction/diagnosis/review/placement/repair result、source revision、episode/scope、actual evidence/observation window。
+- 候補値: applicable required-field coverage 100%、wrong source/owner binding 0。固定親が要求する全必須情報の保持を示す候補で、任意性能/SLA基準ではない。適用範囲外のfieldは分母に入れず、unknownを成功に含めない。
+- 根拠CASE: `CASE-INT-040-01`, `CASE-INT-040-01a`, `CASE-INT-040-01b`, `CASE-INT-040-01c`, `CASE-INT-040-01d`, `CASE-INT-040-01e`, `CASE-INT-040-02a`, `CASE-INT-040-02b`, `CASE-INT-040-02c`, `CASE-INT-040-02d`, `CASE-INT-040-02e`, `CASE-INT-040-02f`, `CASE-INT-040-02g`, `CASE-INT-040-02h`, `CASE-INT-040-02i`, `CASE-INT-040-02j`, `CASE-INT-040-02k`, `CASE-INT-040-02l`, `CASE-INT-040-03`, `CASE-INT-040-03a`, `CASE-INT-040-04a`, `CASE-INT-040-04b`, `CASE-INT-040-04c`, `CASE-INT-040-04d`, `CASE-INT-040-04e`, `CASE-INT-040-04f`, `CASE-INT-040-04g`, `CASE-INT-040-05a`, `CASE-INT-040-05b`, `CASE-INT-040-05c`, `CASE-INT-040-05d`, `CASE-INT-040-05e`, `CASE-INT-040-05f`, `CASE-INT-040-05g`, `CASE-INT-040-05h`, `CASE-INT-040-05i`, `CASE-INT-040-05j`, `CASE-INT-040-05k`, `CASE-INT-040-05l`, `CASE-INT-040-05m`, `CASE-INT-040-05n`, `CASE-INT-040-05o`, `CASE-INT-040-05p`, `CASE-INT-040-05q`
+
+### NFR-INT-041-01 — required source binding completeness候補
+
+- 固定親: `HELIXINTELLIGENCE-L2-041`。
+- 対象測定: 各admitted mechanismの許可current state/evidence、個別revision、connector/authority contract。
+- 候補値: applicable required-field coverage 100%、wrong source/owner binding 0。固定親が要求する全必須情報の保持を示す候補で、任意性能/SLA基準ではない。適用範囲外のfieldは分母に入れず、unknownを成功に含めない。
+- 根拠CASE: `CASE-INT-041-01`, `CASE-INT-041-02a`, `CASE-INT-041-02b`, `CASE-INT-041-02c`, `CASE-INT-041-02d`, `CASE-INT-041-02e`, `CASE-INT-041-02f`, `CASE-INT-041-02g`, `CASE-INT-041-02h`, `CASE-INT-041-02i`, `CASE-INT-041-03`, `CASE-INT-041-03a`, `CASE-INT-041-03b`, `CASE-INT-041-04a`, `CASE-INT-041-04b`, `CASE-INT-041-04c`, `CASE-INT-041-04d`, `CASE-INT-041-04e`, `CASE-INT-041-05a`, `CASE-INT-041-05b`, `CASE-INT-041-05c`, `CASE-INT-041-05d`, `CASE-INT-041-05e`, `CASE-INT-041-05f`, `CASE-INT-041-05g`, `CASE-INT-041-05h`, `CASE-INT-041-05i`, `CASE-INT-041-05j`, `CASE-INT-041-05k`, `CASE-INT-041-05l`, `CASE-INT-041-05m`, `CASE-INT-041-05n`, `CASE-INT-041-05o`, `CASE-INT-041-05p`, `CASE-INT-041-05q`
+
+### NFR-INT-044-01 — required source binding completeness候補
+
+- 固定親: `HELIXINTELLIGENCE-L2-044`。
+- 対象測定: INTELLIGENCE decision/candidate、genericization proposal、evidence/scope、LABO evaluation handoff。
+- 候補値: applicable required-field coverage 100%、wrong source/owner binding 0。固定親が要求する全必須情報の保持を示す候補で、任意性能/SLA基準ではない。適用範囲外のfieldは分母に入れず、unknownを成功に含めない。
+- 根拠CASE: `CASE-INT-044-01`, `CASE-INT-044-02a`, `CASE-INT-044-02b`, `CASE-INT-044-02c`, `CASE-INT-044-02d`, `CASE-INT-044-02e`, `CASE-INT-044-02f`, `CASE-INT-044-02g`, `CASE-INT-044-02h`, `CASE-INT-044-02i`, `CASE-INT-044-02j`, `CASE-INT-044-03`, `CASE-INT-044-04a`, `CASE-INT-044-04b`, `CASE-INT-044-04c`, `CASE-INT-044-04d`, `CASE-INT-044-04e`, `CASE-INT-044-04f`, `CASE-INT-044-04g`, `CASE-INT-044-04h`, `CASE-INT-044-05a`, `CASE-INT-044-05b`, `CASE-INT-044-05c`, `CASE-INT-044-05d`, `CASE-INT-044-05e`, `CASE-INT-044-05f`, `CASE-INT-044-05g`, `CASE-INT-044-05h`, `CASE-INT-044-05i`, `CASE-INT-044-05j`, `CASE-INT-044-05k`, `CASE-INT-044-05l`, `CASE-INT-044-05m`, `CASE-INT-044-05n`, `CASE-INT-044-05o`, `CASE-INT-044-05p`, `CASE-INT-044-05q`
+
+### NFR-INT-045-01 — required source binding completeness候補
+
+- 固定親: `HELIXINTELLIGENCE-L2-045`。
+- 対象測定: Product Core meaning conflict/gap/improvement candidate、source revision、target identity。
+- 候補値: applicable required-field coverage 100%、wrong source/owner binding 0。固定親が要求する全必須情報の保持を示す候補で、任意性能/SLA基準ではない。適用範囲外のfieldは分母に入れず、unknownを成功に含めない。 target identityが既知で固定親がそのtargetを要する候補だけをcoverage分母に含める。target identity欠落のCASE-INT-045-02aとtarget identity unknownの04a、および未見identityをunroutedのまま保持するCASE-INT-045-03は分母外のunrouted falsificationとして別集計し、coverageを失敗にも成功にも算入しない。target identityが既知でownerだけ不明の04b、およびtarget既知で直接routeする02kは分母に含める。
+- 根拠CASE: `CASE-INT-045-01`, `CASE-INT-045-02a`, `CASE-INT-045-02b`, `CASE-INT-045-02c`, `CASE-INT-045-02d`, `CASE-INT-045-02e`, `CASE-INT-045-02f`, `CASE-INT-045-02g`, `CASE-INT-045-02h`, `CASE-INT-045-02i`, `CASE-INT-045-02j`, `CASE-INT-045-02k`, `CASE-INT-045-02l`, `CASE-INT-045-02m`, `CASE-INT-045-03`, `CASE-INT-045-04a`, `CASE-INT-045-04b`, `CASE-INT-045-04c`, `CASE-INT-045-04d`, `CASE-INT-045-04e`, `CASE-INT-045-04f`, `CASE-INT-045-04g`, `CASE-INT-045-05a`, `CASE-INT-045-05b`, `CASE-INT-045-05c`, `CASE-INT-045-05d`, `CASE-INT-045-05e`, `CASE-INT-045-05f`, `CASE-INT-045-05g`, `CASE-INT-045-05h`, `CASE-INT-045-05i`, `CASE-INT-045-05j`, `CASE-INT-045-05k`, `CASE-INT-045-05l`, `CASE-INT-045-05m`, `CASE-INT-045-05n`, `CASE-INT-045-05o`, `CASE-INT-045-05p`, `CASE-INT-045-05q`
+
+review06追補の個別変異はCASE-INT-017-02o（revoked）とCASE-INT-034-02l/02m/02n（結果値の両方向反転/欠落）。04表のA/B列挙はfieldごとの独立fixtureとして扱う。測定時のrun識別と分母は対L10のnfr-verificationに従う。数値閾値を新設しない。

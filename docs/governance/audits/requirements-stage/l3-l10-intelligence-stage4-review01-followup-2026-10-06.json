@@ -1,0 +1,542 @@
+{
+  "record_type": "append-only review follow-up / static correction record",
+  "date": "2026-10-06",
+  "review": {
+    "formal_comment_id": "5998600605",
+    "full_review_path": "/tmp/pr2612-review01-full.md",
+    "findings": "Major 22, Minor 24",
+    "target_worktree": "/home/tenni/.helix-worktrees/l3-intelligence-stage4-main-publication",
+    "base_head": "b3f13ca914482088249505336228b75e9514b3c0"
+  },
+  "immutability": {
+    "prior_audit_path": "docs/governance/audits/requirements-stage/l3-l10-intelligence-stage4-main-publication-2026-10-06.json",
+    "prior_audit_sha256": "f3daf64e1b132254dd03e9754b5877df57c4c48ba75e20ee748f30830af1918c",
+    "prior_audit_modified": false
+  },
+  "fixed_source_pins": {
+    "l2_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "l2_parent_rows": {
+      "017": {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "lines": [
+          202,
+          206
+        ]
+      },
+      "030": {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "lines": [
+          208,
+          215
+        ]
+      },
+      "031": {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "lines": [
+          217,
+          224
+        ]
+      },
+      "032": {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "lines": [
+          226,
+          233
+        ]
+      },
+      "033": {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "lines": [
+          235,
+          242
+        ]
+      },
+      "034": {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "lines": [
+          244,
+          251
+        ]
+      },
+      "035": {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "lines": [
+          253,
+          260
+        ]
+      },
+      "036": {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "lines": [
+          262,
+          269
+        ]
+      },
+      "037": {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "lines": [
+          271,
+          278
+        ]
+      },
+      "038": {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "lines": [
+          280,
+          287
+        ]
+      },
+      "039": {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "lines": [
+          289,
+          296
+        ]
+      },
+      "040": {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "lines": [
+          298,
+          305
+        ]
+      },
+      "041": {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "lines": [
+          307,
+          314
+        ]
+      },
+      "044": {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "lines": [
+          334,
+          341
+        ]
+      },
+      "045": {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "lines": [
+          343,
+          350
+        ]
+      }
+    },
+    "l11_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+    "l11_rows_92_108": [
+      {
+        "line": 92,
+        "sha256": "44d573655a0173928b327377c177bf200e3036635bea86ba74de40ecd7d22528",
+        "text": "| HELIXINTELLIGENCE-L2-017 | 同一target revision/scopeでHELIXINTELLIGENCE-L2-036～HELIXINTELLIGENCE-L2-039のpermission/Worker/HARNESS/OS各結果を別々に保持し、未完義務を引き継ぐ | いずれかの結果で別ownerのpermission/execution/verification/acceptanceを代替する | 欠落stageのSECURITY/Worker/HARNESS/OS ownerへ戻し修復未完了 |"
+      },
+      {
+        "line": 93,
+        "sha256": "ef5700d5d1204c95c2336c5591deb7aaba7348619c0dacf3a489013f4f70afc9",
+        "text": "| HELIXINTELLIGENCE-L2-030 | HARNESS source revision/contract/evidenceをSituation Modelへ渡しsource正本を保持する | stale sourceをcurrent化する、HARNESS authorityを移す | source revision不明/staleはHARNESS sourceへ戻し再照合 |"
+      },
+      {
+        "line": 94,
+        "sha256": "1475938bfa3f00da00745c1d4057e1c9ba4cd4c9cf029f3a9d520dc24e2720b9",
+        "text": "| HELIXINTELLIGENCE-L2-031 | OS ticket/state/dependency/evidenceをOS revision付きで渡す | Situation ModelからOS stateを書き換える | stale/unknownはOS sourceへ戻し再照合 |"
+      },
+      {
+        "line": 95,
+        "sha256": "846ab0ae1296f1b7fbcb59121ef927bd7ec95f6661a6b45451b703fe3ebb5678",
+        "text": "| HELIXINTELLIGENCE-L2-032 | BRAIN Pattern/Unit/Part/applicability/counterexampleを判断材料として受け取る | INTELLIGENCE判断でBRAIN正本を直接変更する | applicability/revision不明はBRAINへ戻す |"
+      },
+      {
+        "line": 96,
+        "sha256": "b18ed857ee157a5bb2ddac8a36591a562c5478a543bab8b03783ddbd70f85933",
+        "text": "| HELIXINTELLIGENCE-L2-033 | Product Core/HARNESS要求・設計・検証義務を各source revision付きで受け取る | 異なるownerの意味を黙って統合する | 矛盾/ revision不明は該当Product Core/HARNESS ownerへ戻す |"
+      },
+      {
+        "line": 97,
+        "sha256": "cb87e8b16c0adc8bf3ece96243114f6348caf1ed39b15fb55cb3d33e36eed216",
+        "text": "| HELIXINTELLIGENCE-L2-034 | LABO評価/反例/Bench level/未評価状態をscope付きで受け取る | LABO historyから現在割当を直接更新する | 未評価/scope不明はLABOへ戻す |"
+      },
+      {
+        "line": 98,
+        "sha256": "1eea53757eeae290d89b1fae80f446b62ddce6c1a2e59edeb7580afe13789d79",
+        "text": "| HELIXINTELLIGENCE-L2-035 | 計画/配置/診断/Review/repair候補をOSへ返し、OSがticket化・進行する | INTELLIGENCEがOS ticket/assignmentを生成する | candidate不完全/staleはINTELLIGENCEへ戻しticket化しない |"
+      },
+      {
+        "line": 99,
+        "sha256": "468acf46aa52e3ff015dfd67ff806d0397f414789642ecfd0d80d6541328a42b",
+        "text": "| HELIXINTELLIGENCE-L2-036 | 操作候補のSECURITY permission/constraint/revocationを照合し、authorityをSECURITYに残す | 許可を推測する、INTELLIGENCEからpermissionを変更する | permission欠落/失効/unknownはSECURITYへ戻し実行しない |"
+      },
+      {
+        "line": 100,
+        "sha256": "2cb997bcd069666bbc3f5f0e5e928e6bddbd7a8bdc1a87e0f6929dce78ac18cb",
+        "text": "| HELIXINTELLIGENCE-L2-037 | OS assignment済みticketがWorkerへ渡り、actor/scope/resultが区別される | INTELLIGENCEをWorkerにする、OS割当を飛ばす | ticket/scope/assignment不明はOSへ戻し実行しない |"
+      },
+      {
+        "line": 101,
+        "sha256": "48ff99dd95a26e1e4c82bf27c8502e17c6d3336a8f2238631353f32b08bad360",
+        "text": "| HELIXINTELLIGENCE-L2-038 | HARNESS verification obligations/oracle/backflow conditionが修復ticketへ紐づく | repairerがverification obligationを削る/作る | 義務欠落/未達はHARNESSへ戻す |"
+      },
+      {
+        "line": 102,
+        "sha256": "fa74d9d8d6287f53a1f86f1959f1ce7e9e3935fa293cc3a601e7967c6ea79224",
+        "text": "| HELIXINTELLIGENCE-L2-039 | 修復candidate/evidence/HARNESS resultをOS acceptanceへ渡す | repair successだけでacceptanceを生成する | evidence/verification欠落は各owner/OSへ戻しacceptanceしない |"
+      },
+      {
+        "line": 103,
+        "sha256": "90f6cbddf5397683c513f3ea321515e6c78f965157818b164c704e863cb3cc5e",
+        "text": "| HELIXINTELLIGENCE-L2-040 | INTELLIGENCE判断/予測/配置/修復の実績がLABO過去評価へsource-boundで返る | INTELLIGENCEが効果評価を自分で採択する | 実測/source revision不足はINTELLIGENCE/LABOへ戻す |"
+      },
+      {
+        "line": 104,
+        "sha256": "347306b43733f1ed4153371603db1d33d24aa940026aa765b2054ee5a7855cb9",
+        "text": "| HELIXINTELLIGENCE-L2-041 | 各source mechanismの個別connectorごとにscope/revisionを保持し、authority所有者が変わらない | connectorをsource間共有してidentity/scopeを混ぜる、Web/WEB-OS未採択contractを必須にする | scope/revision欠落は該当source ownerへ戻す |"
+      },
+      {
+        "line": 105,
+        "sha256": "d39192580c1b5ac619d32e77296b96b4143e07a1d7c9a2c67f746cea2a25273c",
+        "text": "| HELIXINTELLIGENCE-L2-042 | LABO data class/training/eval setが3.0材料として正しい区分・revision付きで届く | holdout/prohibited dataをtrainingへ混ぜる、3.0を1.0依存にする | data-use class/lineage不明はLABOへ戻し学習に使わない |"
+      },
+      {
+        "line": 106,
+        "sha256": "4af9861e868220cf106700eda95cb22d703a82155c5449be0c3bffb7cd68f41a",
+        "text": "| HELIXINTELLIGENCE-L2-043 | 3.0 model outcome/evidenceがLABOへ返り、独立比較に使われる | INTELLIGENCE内部scoreのみで恒久改善を確定する | 比較scope/実測不足はLABOへ戻す |"
+      },
+      {
+        "line": 107,
+        "sha256": "74ecaa903d52eca68f3d690659cc274f30f78feb06dfea7db5a9da3eb970bb04",
+        "text": "| HELIXINTELLIGENCE-L2-044 | BRAIN knowledgeへの直接writeがなく、generic candidateはLABO評価経路へ行く | INTELLIGENCE判断からBRAIN knowledge自動更新 | generic化evidence不足はLABOへ戻しBRAINを更新しない |"
+      },
+      {
+        "line": 108,
+        "sha256": "1bb2b5bba1b0425f20fd9dd624c66452948c81c3fd7ed04c65106ab7d386d891",
+        "text": "| HELIXINTELLIGENCE-L2-045 | product meaning issueが該当Product Coreへbackflow candidateで届く | INTELLIGENCEがProduct Core正本を書き換える | backflow target不明はProduct Core ownerへ照会 |"
+      }
+    ],
+    "l11_individual_acceptance_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+    "l11_individual_acceptance_rows": [
+      266,
+      267,
+      268,
+      269,
+      270,
+      271,
+      272,
+      273,
+      274,
+      275,
+      276,
+      277,
+      278,
+      279,
+      280
+    ]
+  },
+  "committed_g0_replacement_for_prior_tmp_input": {
+    "implementation_order_addendum": {
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
+      "sha256": "ec970df79eaaf693f8825045b235c43ea10aefa7925701b1fff2a974df3e4e0a",
+      "bytes": 1823772,
+      "scope": "committed G0 source; additions inventory count 0, not full semantic review"
+    },
+    "implementation_order_assignments": {
+      "path": "docs/governance/audits/requirements-stage/implementation-order-assignments-2026-09-27.json",
+      "sha256": "78db3c793c17dbd80ad663a63aadd5f3c1c1e403da6b3bba75518ecfe5ba7f25",
+      "bytes": 122862,
+      "scope": "Stage identity classification only"
+    },
+    "management_provisional_requirement_register": {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "sha256": "d24a982af1c468bb32c9822777a3234d3ce065ff63b89c944b7b04447610c99b",
+      "bytes": 3370048,
+      "adopted_revision_rows_002": [
+        {
+          "line": 455,
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-017-002",
+          "sha256": "2f498c17cfa0fd92b9eb41dff14fe7028bd1b78e33c24420b9020fb4d90f591e"
+        },
+        {
+          "line": 456,
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-030-002",
+          "sha256": "d91df32471608486a78268b53f035a3f3c0fafd211a89a3e3fea55cc13ecd9d8"
+        },
+        {
+          "line": 457,
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-031-002",
+          "sha256": "cd5ff6d333797d793bc00b5e62b99daf93351da52d65a0c114b1bfc80281d74d"
+        },
+        {
+          "line": 458,
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-032-002",
+          "sha256": "902aff11f4d5cb908dc51134c4e11a8ebf13605d347f9020ffb290b3f871ec83"
+        },
+        {
+          "line": 459,
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-033-002",
+          "sha256": "0fa60e46a5e389b2a183ea7c18f6da48b60eaa7b67a3a3839358c09fb59460e2"
+        },
+        {
+          "line": 460,
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-034-002",
+          "sha256": "a891e62b7144a43628577b40a44078cfc8544113be2ca95f29da337147ff0670"
+        },
+        {
+          "line": 461,
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-035-002",
+          "sha256": "bfba261c7e3860ff05d57ae9282584bd0d1f3e052dc766baf14d32f4d020db68"
+        },
+        {
+          "line": 462,
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-036-002",
+          "sha256": "c95228fae9cdfa459c836bf32200ba3be325b5821eb0d2fa8afedda8a1e9d5b5"
+        },
+        {
+          "line": 463,
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-037-002",
+          "sha256": "761f64b259538b135cc8e712a8e97e0bcb479ad4122cbd5ca27d78af417d2d96"
+        },
+        {
+          "line": 464,
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-038-002",
+          "sha256": "2fc3a841fb32f1d7e1121d40e3c4e606f2880d6d9dc3e62f25bdcd125fe4d6fd"
+        },
+        {
+          "line": 465,
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-039-002",
+          "sha256": "58473e370da26a58f092fb277492cf1bc61a7f15b70530f991ca8760e70ba768"
+        },
+        {
+          "line": 466,
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-040-002",
+          "sha256": "7c8ba7b7355b1bbf2298ecb8aeb7c377f0fde8e591473ee7c82101bd25b95aa5"
+        },
+        {
+          "line": 467,
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-041-002",
+          "sha256": "a15d4a701795df27d1f5ad5370be7907184034fadc18a1f14ec3d898aab53a56"
+        },
+        {
+          "line": 468,
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-044-002",
+          "sha256": "2a10ace8377d518a861fcc6878b81e5a56c095a8d995d4151ea42b2d9d552a1a"
+        },
+        {
+          "line": 469,
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-045-002",
+          "sha256": "48194c1f4a905e1f696f95302c9f5f11e2096ea65e651acfadc2103ef95b7d96"
+        }
+      ]
+    },
+    "po_decision": {
+      "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+      "locator": "#L73",
+      "scope": "exact identity/revision adoption evidence; no new approval inferred"
+    },
+    "prior_repo_external_prepared_input": {
+      "path": "/tmp/int-stage4-g0-parents.json",
+      "used_by_prior_audit": true,
+      "replaced_as_basis_here": true
+    }
+  },
+  "legacy_source_semantics_checked": [
+    {
+      "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "lines": [
+        35,
+        58
+      ],
+      "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+      "use": "017 BBR-R02/R04 repair/recovery constraints as comparison; not generic repair authority"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-35F5F438E0F8755B1CCE",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requests.md",
+      "lines": [
+        1,
+        29
+      ],
+      "sha256": "20f549aa879d84e92196976ab2106bacedb393767d7a9946483c4d308576024e",
+      "use": "Request context and GH-FR-011 reuse claim; approval content not transferred"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-CF1129DCA8779904F6B3",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "lines": [
+        103,
+        105
+      ],
+      "sha256": "b387f8a4ffd324d2abd210439bc791611d4e6c8aa2498fe5facccc48fc7f552f",
+      "use": "same-episode CI self-repair comparison only"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-5CBA32E9DB5B0FE05589",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/design-registry-requirement-family-authority.md",
+      "lines": [
+        14,
+        58
+      ],
+      "sha256": "4f75f1fb5d285daaa582b2e4cbc016d8679d9e2364f60cc152dac3f5dece71ae",
+      "use": "032 screen-trace family registration and no-renumbering; no input_policy/DAC claim"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-C6936A5DA79A6DAE4FE4",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/document-authority-census-requirements.md",
+      "lines": [
+        27,
+        61
+      ],
+      "sha256": "e05adb62d9ad07507f962cf060b3dbe66c161afc3f09391b29b3144ced57535c",
+      "use": "DAC identity/class/disposition/binding only; no revision guarantee"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-9114D4E463E95B67DD0C",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+      "lines": [
+        47,
+        110
+      ],
+      "sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+      "use": "037 worker actor/scope/result comparison"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-C6ADB99F1353965C5449",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/worker-common-contract-acceptance.md",
+      "lines": [
+        18,
+        64
+      ],
+      "sha256": "c8dff734891a6a7350feb9b698c40e1616946cdd424433d662f1da49d8ac800d",
+      "use": "scope/stale receipt only; does not support wrong actor oracle"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "lines": [
+        189,
+        260
+      ],
+      "sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "use": "039 receipt/version/authority comparison only; no misordered handoff claim"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-437A6A68F9A9E0AE1B9E",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+      "lines": [
+        17,
+        55
+      ],
+      "sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+      "use": "acceptance comparison only; no duplicate/late event claim for 040"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "lines": [
+        41,
+        55
+      ],
+      "sha256": "e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b",
+      "use": "044 UWJ judgment comparison; not DAC historical/candidate nonpromotion"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-6FFD7F4E58066D08B053",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-workflow-ai-judgment-engine-acceptance.md",
+      "lines": [
+        17,
+        26
+      ],
+      "sha256": "1c4e07263eba5254cfe66b920c4baf46227e0e07cb47ff60ac2e854740645db3",
+      "use": "acceptance comparison only"
+    }
+  ],
+  "correction_snapshot": {
+    "canonical_documents": [
+      {
+        "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+        "byte_count": 79083,
+        "sha256": "a6fa289885a5e4e4b61ed705ebfce13e2d3832e88211587c789f276a64b0e601"
+      },
+      {
+        "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+        "byte_count": 192399,
+        "sha256": "b71d901264543020fc5ea3a3fe0b8687e2584f6397b8bceda82a3e8a4d9d8485"
+      },
+      {
+        "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+        "byte_count": 18266,
+        "sha256": "050da09802a4acc0ee53f3cee048ca77340a1cbfce071d1f3204ebe3660f1684"
+      },
+      {
+        "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+        "byte_count": 18308,
+        "sha256": "a25c4a6a5bae03aca34814c2cbf4a80b286dec74d3637afccc1c438110b4e07f"
+      },
+      {
+        "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+        "byte_count": 34454,
+        "sha256": "fb56b5ae50106cac2a16f5f5feb13f47ad41ffc497a25da19c037d910e24f1dd"
+      },
+      {
+        "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+        "byte_count": 27155,
+        "sha256": "9452b4ce614f709d63e4349e42dfc762c042bf035baaf800eb76967c9b64d1db"
+      }
+    ],
+    "fixture_count_by_parent": {
+      "017": 40,
+      "030": 34,
+      "031": 33,
+      "032": 36,
+      "033": 37,
+      "034": 36,
+      "035": 39,
+      "036": 44,
+      "037": 35,
+      "038": 38,
+      "039": 37,
+      "040": 43,
+      "041": 35,
+      "044": 38,
+      "045": 39
+    },
+    "fixture_count_total": 564,
+    "fixture_id_duplicates": 0,
+    "br_bv_nfr_grade_refs_equal_fixture_sets": true,
+    "nfr_verification_denominator_is_subset_and_checked_for_dangling_refs": true,
+    "fixed_pack_cases": "05a–05q; duplicate 05r removed; 036/039 apply unconditionally per fixed L2, 017 only where its L2-admitted operation consumes a common pack",
+    "static_only": true,
+    "tests_ci_runtime_cli_executed": false,
+    "git_diff_check": "PASS"
+  },
+  "unconfirmed_groups": [
+    {
+      "group": 1,
+      "status": "not recomputed",
+      "detail": "10-05 audit pins for 495 cases and former L11 rows 247–256 were not recomputed; 10-06 audit is retained as prior artifact and this record does not assert its pins."
+    },
+    {
+      "group": 2,
+      "status": "partially checked",
+      "detail": "Six common legacy span citations were not all reread exhaustively for every attributed claim; only explicit source crosswalk entries above were read and bounded."
+    },
+    {
+      "group": 3,
+      "status": "checked for field fit",
+      "detail": "HARNESS-L2-010/011 fixed text at product-requirements.md:340–362 was read and common 05a–q cases mapped to contract fields; no artifact digest/provenance claim retained."
+    },
+    {
+      "group": 4,
+      "status": "not exhaustive",
+      "detail": "BBR-R02/R04 and GH-FR-011 were read; no exhaustive search for alternative BBR/GH legacy sources or RLO terms was performed."
+    },
+    {
+      "group": 5,
+      "status": "not fully read",
+      "detail": "Full body of implementation-order PO decision addendum 2026-10-03 and all 10 additions inventory were not read; committed G0 file pins replace the nonreproducible tmp source as the classification basis only."
+    },
+    {
+      "group": 6,
+      "status": "not checked",
+      "detail": "Latest-main merged-tree staleness (`scfctl stale`) was not run or independently verified; no current/legacy CLI was executed."
+    }
+  ]
+}
