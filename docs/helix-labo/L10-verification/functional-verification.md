@@ -2340,7 +2340,7 @@ input observation identity/source revision；episode candidate identityとrelati
 
 - 対応AC: `LABO-029-AC-02`。固定親: `HELIXLABO-L2-029`。
 - 独立fixture（変更は一条件だけ）: 有効CI/test observationへLABO自身がverification結果を書き換える要求だけを加える。
-- 期待oracle: 元結果を不変にしHARNESS verification source ownerへ戻す。
+- 期待oracle: 元CI/test結果を不変に保ち、verification結果書換え要求を拒否する。このCASEは拒否と元結果の不変だけを照合し、固定L2-029が定めない戻し先を新設しない。検査scope欠落のみ、固定親どおりsource ownerへ戻す。
 
 ### L10-LABO-012-C10 — relation authority書換え
 
