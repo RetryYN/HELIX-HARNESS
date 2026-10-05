@@ -611,6 +611,7 @@ AC-018-01の入力条件はR001〜R034に加えR056/R057で個別欠落、R058�
 | CASE ID | FR / AC | 入力・単独変異 | 観測oracle |
 |---|---|---|---|
 | `CASE-HARNESS-L10-018-R058` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | R001の配備済み製品revision、owner承認済み運用要求revision、11軸の適用性・決定owner・根拠を保持し、運用要求が対応する製品revisionだけを当該配備revisionと異なるrevisionへ変える。両revisionと承認状態は既知とする。 | 対応不一致を検出し、当該配備revisionの観測設計を評価成立とせず運用要求ownerへ返す。配備recordと承認済み要求の元revision・traceを保持し、別revision向け承認を当該revisionへの承認へ変換しない。 |
+
 ## Stage 5 suffix — HARNESS-L2-021/025/033/035/037機能検証CASE
 
 以下は固定親scopeの設計fixtureであり未実行である。各行は単一の意味状態または一入力条件を変え、bundle/indexから一件の独立CASEを推論しない。未見正常fixtureも同じ対象revision・scope・適用oracleの範囲だけで評価する。missing/unknown/stale/mismatch、未選択・未観測、失敗、ownerを別状態で残す。source・receipt・oracleが不足して判定不能なら未評価とする。

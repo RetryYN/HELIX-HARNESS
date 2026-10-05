@@ -1,0 +1,734 @@
+{
+  "record_kind": "INTELLIGENCE Stage 3 作成側修正・CASE独立化の追補記録（append-only）",
+  "date": "2026-10-05",
+  "language": "ja",
+  "authority_effect": "なし。CASE設計の粒度と戻し先を明示する作成側補正であり、L3/L10承認、独立review closure、要求意味・version・owner・PO判断、実装/実行許可、stage完了を生成しない。",
+  "scope": {
+    "mechanism": "HELIX-INTELLIGENCE",
+    "stage": "Stage 3 / 1.0",
+    "parents": [
+      "HELIXINTELLIGENCE-L2-001",
+      "HELIXINTELLIGENCE-L2-002",
+      "HELIXINTELLIGENCE-L2-003",
+      "HELIXINTELLIGENCE-L2-004",
+      "HELIXINTELLIGENCE-L2-005",
+      "HELIXINTELLIGENCE-L2-006"
+    ],
+    "files": [
+      "docs/helix-intelligence/L10-verification/functional-verification.md"
+    ],
+    "not_reviewed_by_this_patch": "Stage 3の他16親と他Stage。既存6-main-prefixは変更しない。"
+  },
+  "revisions": {
+    "main_base": "2e9e9f2267aab50bc1c22e3b3ca9c9d0ce808832",
+    "prior_publication_HEAD": "b999b386ca89db74d625dec1fa137a7215a52fa1",
+    "prior_content_commit": "3eca9fe7f13bf945311ffd5b1f42f6e61a930c9a",
+    "new_body_commit": "f5f4dd2387019e61f5b496e72e249840fcefa7f2",
+    "fixed_L2_L11_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7"
+  },
+  "prior_immutable_records": [
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-intelligence-stage3-main-publication-cutout-2026-10-05.json",
+      "sha256": "7ebc26b06178d4cd40cab3d5a020a46ba08aa2c05f19ca39f58374c510db8ad8",
+      "bytes": 564964,
+      "preserved_unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-intelligence-stage3-main-publication-cutout-2026-10-05.md",
+      "sha256": "7e30f028d274f93061735ec759fbe3b3decd65b389c0ab8380172f295024010c",
+      "bytes": 1518,
+      "preserved_unchanged": true
+    }
+  ],
+  "prior_count_correction": {
+    "prior_summary_claim": "129 functional CASE rows in the Stage 3 table",
+    "correction": "129はCASE行数であり、各行内に列挙した全変異が別CASE IDを持つことや、各変異の個別戻し先が記録済みであることの証明ではない。この追補は001–006のみを対象に個別化し、他親の独立negative coverageを確認済みとはしない。",
+    "prior_stage3_case_rows": 129,
+    "current_stage3_case_rows": 168,
+    "added_distinct_rows": 39,
+    "not_claimed": "全168行の全変異を独立reviewしたとは主張しない。"
+  },
+  "case_restructuring": [
+    {
+      "parent": "HELIXINTELLIGENCE-L2-001",
+      "ACs": [
+        "AC-INTELLIGENCE-L3-001-01",
+        "AC-INTELLIGENCE-L3-001-02",
+        "AC-INTELLIGENCE-L3-001-03"
+      ],
+      "new_case_count": 14,
+      "case_ids": [
+        "CASE-INTELLIGENCE-L10-001-01",
+        "CASE-INTELLIGENCE-L10-001-02",
+        "CASE-INTELLIGENCE-L10-001-03",
+        "CASE-INTELLIGENCE-L10-001-04",
+        "CASE-INTELLIGENCE-L10-001-05",
+        "CASE-INTELLIGENCE-L10-001-06",
+        "CASE-INTELLIGENCE-L10-001-07",
+        "CASE-INTELLIGENCE-L10-001-08",
+        "CASE-INTELLIGENCE-L10-001-09",
+        "CASE-INTELLIGENCE-L10-001-10",
+        "CASE-INTELLIGENCE-L10-001-11",
+        "CASE-INTELLIGENCE-L10-001-12",
+        "CASE-INTELLIGENCE-L10-001-13",
+        "CASE-INTELLIGENCE-L10-001-14"
+      ],
+      "coverage": "add/split/merge/retire normalを分離。identity missing/collision、split relation missing、merge relation missing、history confusion、固定enum reject、独立authority昇格を単独negativeに分け、併発、held-out正常、relation局所unknownも別ID。戻し先はINTELLIGENCE domain composition。"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-002",
+      "ACs": [
+        "AC-INTELLIGENCE-L3-002-01",
+        "AC-INTELLIGENCE-L3-002-02",
+        "AC-INTELLIGENCE-L3-002-03"
+      ],
+      "new_case_count": 7,
+      "case_ids": [
+        "CASE-INTELLIGENCE-L10-002-01",
+        "CASE-INTELLIGENCE-L10-002-02",
+        "CASE-INTELLIGENCE-L10-002-03",
+        "CASE-INTELLIGENCE-L10-002-04",
+        "CASE-INTELLIGENCE-L10-002-05",
+        "CASE-INTELLIGENCE-L10-002-06",
+        "CASE-INTELLIGENCE-L10-002-07"
+      ],
+      "coverage": "per-domain capability normal、根拠欠落、別domain流用、unknown暗黙trueを分離し併発を追加。未見domainの根拠付きsubset normalと、単一capability欠落の局所unknownを分離。capability/source不足は該当domainのINTELLIGENCE判断設計へ。"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-003",
+      "ACs": [
+        "AC-INTELLIGENCE-L3-003-01",
+        "AC-INTELLIGENCE-L3-003-02",
+        "AC-INTELLIGENCE-L3-003-03"
+      ],
+      "new_case_count": 8,
+      "case_ids": [
+        "CASE-INTELLIGENCE-L10-003-01",
+        "CASE-INTELLIGENCE-L10-003-02",
+        "CASE-INTELLIGENCE-L10-003-03",
+        "CASE-INTELLIGENCE-L10-003-04",
+        "CASE-INTELLIGENCE-L10-003-05",
+        "CASE-INTELLIGENCE-L10-003-06",
+        "CASE-INTELLIGENCE-L10-003-07",
+        "CASE-INTELLIGENCE-L10-003-08"
+      ],
+      "coverage": "source-joined normal、evidence source missing、dependency revision stale、risk conflict、dependency orphanを別ID化し、missing+stale併発、未見provider/environment正常join、dependency revision局所unknownを分離。各不足は対応source ownerへ。"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-004",
+      "ACs": [
+        "AC-INTELLIGENCE-L3-004-01",
+        "AC-INTELLIGENCE-L3-004-02",
+        "AC-INTELLIGENCE-L3-004-03"
+      ],
+      "new_case_count": 8,
+      "case_ids": [
+        "CASE-INTELLIGENCE-L10-004-01",
+        "CASE-INTELLIGENCE-L10-004-02",
+        "CASE-INTELLIGENCE-L10-004-03",
+        "CASE-INTELLIGENCE-L10-004-04",
+        "CASE-INTELLIGENCE-L10-004-05",
+        "CASE-INTELLIGENCE-L10-004-06",
+        "CASE-INTELLIGENCE-L10-004-07",
+        "CASE-INTELLIGENCE-L10-004-08"
+      ],
+      "coverage": "4分類正常、hypothesis-to-fact、source identity missing、revision missing、unknown-to-successを分離し、併発、未見source typeの正常、locator局所unknownを追加。source/evidence不足は該当source ownerへ。"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-005",
+      "ACs": [
+        "AC-INTELLIGENCE-L3-005-01",
+        "AC-INTELLIGENCE-L3-005-02",
+        "AC-INTELLIGENCE-L3-005-03"
+      ],
+      "new_case_count": 10,
+      "case_ids": [
+        "CASE-INTELLIGENCE-L10-005-01",
+        "CASE-INTELLIGENCE-L10-005-02",
+        "CASE-INTELLIGENCE-L10-005-03",
+        "CASE-INTELLIGENCE-L10-005-04",
+        "CASE-INTELLIGENCE-L10-005-05",
+        "CASE-INTELLIGENCE-L10-005-06",
+        "CASE-INTELLIGENCE-L10-005-07",
+        "CASE-INTELLIGENCE-L10-005-08",
+        "CASE-INTELLIGENCE-L10-005-09",
+        "CASE-INTELLIGENCE-L10-005-10"
+      ],
+      "coverage": "normal plan candidate、unapproved/stale requirement、dependency missing/cycle、fallback missing、unapproved+dependency併発、current-state source missingを分離。held-out dependency normalとstop-only局所unknownを分ける。requirement/contract/current-state不足は各sourceへ、ticket/assignmentはOSへ。"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-006",
+      "ACs": [
+        "AC-INTELLIGENCE-L3-006-01",
+        "AC-INTELLIGENCE-L3-006-02",
+        "AC-INTELLIGENCE-L3-006-03"
+      ],
+      "new_case_count": 10,
+      "case_ids": [
+        "CASE-INTELLIGENCE-L10-006-01",
+        "CASE-INTELLIGENCE-L10-006-02",
+        "CASE-INTELLIGENCE-L10-006-03",
+        "CASE-INTELLIGENCE-L10-006-04",
+        "CASE-INTELLIGENCE-L10-006-05",
+        "CASE-INTELLIGENCE-L10-006-06",
+        "CASE-INTELLIGENCE-L10-006-07",
+        "CASE-INTELLIGENCE-L10-006-08",
+        "CASE-INTELLIGENCE-L10-006-09",
+        "CASE-INTELLIGENCE-L10-006-10"
+      ],
+      "coverage": "prediction input normal、evidence/falsification/assumption/uncertainty missing、actual overwrite、併発、stale current-state revisionを分離。未見予測正常とfalsification-source局所unknownを分け、各source不足はsource ownerへ、actual resultはLABOへ渡す。"
+    }
+  ],
+  "fixed_source_pins": [
+    {
+      "parent": "HELIXINTELLIGENCE-L2-001",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "full_file_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "physical_line_start": 48,
+      "physical_line_end": 53,
+      "raw_lf_span_sha256": "277e6dffe38cc85071e33d2c29f5c5be7f69a65ccf902a887f0a7940b2709e8d",
+      "span_bytes": 937,
+      "role": "採択済L2本文: scope/input/output/guarantee/owner"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-001",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "full_file_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "physical_line_start": 62,
+      "physical_line_end": 62,
+      "raw_lf_span_sha256": "b4c08207472bed3549c8dbf4d400f531ade66fe12e858de10e0d4ce3e64853af",
+      "span_bytes": 243,
+      "role": "採択済L11受入行: fixed acceptance/negative/return"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-002",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "full_file_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "physical_line_start": 54,
+      "physical_line_end": 59,
+      "raw_lf_span_sha256": "778ede90c606c4a0117c22bb039a6de9e2aea1ba14d66b4ef2bd1639549411ea",
+      "span_bytes": 785,
+      "role": "採択済L2本文: scope/input/output/guarantee/owner"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-002",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "full_file_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "physical_line_start": 63,
+      "physical_line_end": 63,
+      "raw_lf_span_sha256": "3b3da03d2c04541b261dcd849cd3da06e68aaaa06b358484ede5143bfb919871",
+      "span_bytes": 236,
+      "role": "採択済L11受入行: fixed acceptance/negative/return"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-003",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "full_file_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "physical_line_start": 60,
+      "physical_line_end": 65,
+      "raw_lf_span_sha256": "bb6d3f049a704fab896637684254c6e949e784d7779f9afcbc07121f7e4b5dd7",
+      "span_bytes": 1007,
+      "role": "採択済L2本文: scope/input/output/guarantee/owner"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-003",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "full_file_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "physical_line_start": 64,
+      "physical_line_end": 64,
+      "raw_lf_span_sha256": "d33c35936fbaaca6d7e0882fe6ffb4a053a37e76a5a108dd729076ddf62cf8ae",
+      "span_bytes": 276,
+      "role": "採択済L11受入行: fixed acceptance/negative/return"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-004",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "full_file_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "physical_line_start": 66,
+      "physical_line_end": 71,
+      "raw_lf_span_sha256": "54d3d29add034a0cbfd62742d506a8467661bc70f6f9c8393220ebf2f527ba9e",
+      "span_bytes": 803,
+      "role": "採択済L2本文: scope/input/output/guarantee/owner"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-004",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "full_file_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "physical_line_start": 65,
+      "physical_line_end": 65,
+      "raw_lf_span_sha256": "fac046642b01ea76a03c339e2b7cd0098ba00855bbd4dd2eb619d2b1613f0e73",
+      "span_bytes": 245,
+      "role": "採択済L11受入行: fixed acceptance/negative/return"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-005",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "full_file_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "physical_line_start": 72,
+      "physical_line_end": 77,
+      "raw_lf_span_sha256": "5070f27d934f4018e6f1aa2aa73a42fcf95e3b6552178f093f15d04c7c971a36",
+      "span_bytes": 973,
+      "role": "採択済L2本文: scope/input/output/guarantee/owner"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-005",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "full_file_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "physical_line_start": 66,
+      "physical_line_end": 66,
+      "raw_lf_span_sha256": "41c28827cc018b3e0879e5561ea185eafbb5563250e036f093bc3e8e2ea2fdb6",
+      "span_bytes": 347,
+      "role": "採択済L11受入行: fixed acceptance/negative/return"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-006",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "full_file_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "physical_line_start": 78,
+      "physical_line_end": 83,
+      "raw_lf_span_sha256": "ebda1276d405aab02cfc69747d2afa1218f0f151f51863f439424a88195f4a63",
+      "span_bytes": 1055,
+      "role": "採択済L2本文: scope/input/output/guarantee/owner"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-006",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "full_file_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "physical_line_start": 67,
+      "physical_line_end": 67,
+      "raw_lf_span_sha256": "5aaa3258c1d0f13de602cd68e5365b0c2414eec401c91bb8b316aec7cad3dcac",
+      "span_bytes": 305,
+      "role": "採択済L11受入行: fixed acceptance/negative/return"
+    }
+  ],
+  "documents": [
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "full_sha256": "e400fc4918f5c55c3b8b76fb5e79fdb0175d4c71e9a27474bfb5e39ba00c5fc8",
+      "bytes": 77369,
+      "lines": 404,
+      "approved_main_prefix_sha256": "cb9cc91c9f2646e2272fd18c6fd2b176285ba3b0f36409805e5a2879adad6017",
+      "approved_main_prefix_bytes": 33090,
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "full_sha256": "9f683087c797cc4a81ac4e23773d13fda5a83e385e518c5983b99d37eebf31ff",
+      "bytes": 10025,
+      "lines": 71,
+      "approved_main_prefix_sha256": "5839b4cd42af9d57b0e01e8da6014838097671738297e2a343bcc4739d67809d",
+      "approved_main_prefix_bytes": 5552,
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "full_sha256": "63c0d3a0e8aa189d27478d7d5929f83bdd439dc5e3f6befcdb7904e46dca3170",
+      "bytes": 25753,
+      "lines": 90,
+      "approved_main_prefix_sha256": "046a3b23b5070e339e579da2428d7773cb91da2b9ebad520971be3803e2e1a80",
+      "approved_main_prefix_bytes": 14314,
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "full_sha256": "b131d0e75fbc4b9989d53702d63b43ac6792070d09f2a4e2bd7cf0654bffa7e8",
+      "bytes": 114409,
+      "lines": 396,
+      "approved_main_prefix_sha256": "192e980c2b4c6c7a78d2651ae30e23c5072ee1ff4ae7366bd01be155bf88aac6",
+      "approved_main_prefix_bytes": 31138,
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "full_sha256": "702c659ec2b3fed6a8b8377342844b807da4e0e5385556a5609df6a9d8009c52",
+      "bytes": 14320,
+      "lines": 75,
+      "approved_main_prefix_sha256": "9f8049fd3e7bdfe6550f5de9a444d1f44449c1b61769bf79e85b47c2c5906e81",
+      "approved_main_prefix_bytes": 5680,
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "full_sha256": "6bef9a5c269e7b964de79af7f0b82f3a2778a7d3faf12d9a54eb61a34d683719",
+      "bytes": 26696,
+      "lines": 86,
+      "approved_main_prefix_sha256": "a8f2e0c4bc1d482d6cfd68cd5f9638fcf8575104aafc7bdcb5214b162190f876",
+      "approved_main_prefix_bytes": 12464,
+      "prefix_exact": true
+    }
+  ],
+  "current_line_pins": [
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 229,
+      "literal": "| `CASE-INTELLIGENCE-L10-001-01` | `FR-INTELLIGENCE-L3-001-01` | `AC-INTELLIGENCE-L3-001-01` | 開発・運用対象から新しいdomainをaddする正常fixture。 | 新identityを付け、固定enumや独立authorityにせずdomain編成候補として返す。 | 正常fixtureがAC-01のidentity/lifecycle oracleと異なれば不合格。 |",
+      "raw_lf_sha256": "a7dbfdc7141b639156c3d8715493b99fbe108d1ac59a6d6568a033f271b28ab6"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 230,
+      "literal": "| `CASE-INTELLIGENCE-L10-001-02` | `FR-INTELLIGENCE-L3-001-01` | `AC-INTELLIGENCE-L3-001-01` | 既存domainをsplitし、旧identityと両方の新identityを結ぶ正常fixture。 | split前後のidentityとsplit relationを追跡可能に保持する。 | relationが別domainや履歴へ誤結合する場合は不合格。編成粒度・source不足はINTELLIGENCEのdomain編成へ戻す。 |",
+      "raw_lf_sha256": "84b85bdb3feb45d80bddd2b208810cd2be1ffce686298fdd09836858ff38e1b0"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 231,
+      "literal": "| `CASE-INTELLIGENCE-L10-001-03` | `FR-INTELLIGENCE-L3-001-01` | `AC-INTELLIGENCE-L3-001-01` | 複数domainをmergeする正常fixture。 | 旧identity群、新identity、merge relationと参照履歴を保持する。 | 旧identity履歴が消えるか別domainへ結ばれたら不合格。domain編成・関係不足はINTELLIGENCEのdomain編成へ戻す。 |",
+      "raw_lf_sha256": "692b2326524d87c98ccc191de3f6d3c835bc8a94160582c8f48e59c6c7fabb8d"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 232,
+      "literal": "| `CASE-INTELLIGENCE-L10-001-04` | `FR-INTELLIGENCE-L3-001-01` | `AC-INTELLIGENCE-L3-001-01` | domainをretireする正常fixture。 | retired identityと参照可能な履歴を保持し、新しい操作へ混同しない。 | 退役履歴を消す、または既存参照を追跡不能にしたら不合格。履歴/source不足は該当domain編成ownerへ戻す。 |",
+      "raw_lf_sha256": "f5fcca42c76ed1a26bcc770ab50a22b657240dd85ce16cca49f718bf2edf6d38"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 233,
+      "literal": "| `CASE-INTELLIGENCE-L10-001-05` | `FR-INTELLIGENCE-L3-001-01` | `AC-INTELLIGENCE-L3-001-02` | 他条件を正常に保ち、lifecycle対象のidentityだけを欠落させる。 | 対象identityとその関係だけを未確定にし、不足を特定する。 | identity欠落を補完・確定したら不合格。domain粒度・編成不足はINTELLIGENCE domain編成へ戻す。 |",
+      "raw_lf_sha256": "5961be78791df06d88dd6b39ec97e90afe1ae138d5524edd10ae0f695a245d9e"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 234,
+      "literal": "| `CASE-INTELLIGENCE-L10-001-06` | `FR-INTELLIGENCE-L3-001-01` | `AC-INTELLIGENCE-L3-001-02` | 他条件を正常に保ち、同じactive identityを別domainへ割り当てる衝突だけを注入する。 | 衝突したidentity関係だけを候補確定せず保留し、他の有効domain候補を保持する。 | 衝突を受入、または全編成を無関係に失敗させたら不合格。identity編成不足はINTELLIGENCE domain編成へ戻す。 |",
+      "raw_lf_sha256": "72f2ba244b1bc14ec0abfa74860886685df0cff6e7d6d74820ca4d54d332cf31"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 235,
+      "literal": "| `CASE-INTELLIGENCE-L10-001-07` | `FR-INTELLIGENCE-L3-001-01` | `AC-INTELLIGENCE-L3-001-02` | splitは有効だが、そのsplit relationだけを欠落させる。 | split後の未結合edgeだけunknownにし、domain追加など他の有効操作を保つ。 | split関係を推測・確定したら不合格。欠落関係はINTELLIGENCE domain編成へ戻す。 |",
+      "raw_lf_sha256": "79721af0e34363dcbf9d03edd5ea1c8d3ac7089d8992a748b9622c160a61416c"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 236,
+      "literal": "| `CASE-INTELLIGENCE-L10-001-08` | `FR-INTELLIGENCE-L3-001-01` | `AC-INTELLIGENCE-L3-001-02` | mergeは有効だが、そのmerge relationだけを欠落させる。 | merge relationだけunknownにし、他のidentity/historyを保持する。 | merge関係を推測・確定、または無関係identityを変更したら不合格。relation不足はINTELLIGENCE domain編成へ戻す。 |",
+      "raw_lf_sha256": "099e4aae7356d821deb6fdc6b5396635f322e1a31e3c5080b64b1cc559f319e4"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 237,
+      "literal": "| `CASE-INTELLIGENCE-L10-001-09` | `FR-INTELLIGENCE-L3-001-01` | `AC-INTELLIGENCE-L3-001-02` | 正常なsplitとretire履歴があるbaselineから、履歴参照先だけを別identityへ混同する。 | 混同した履歴relationだけ未確定にし、正しいlifecycle履歴を保つ。 | 履歴混同を確定、または有効な過去参照を消したら不合格。履歴source不足は該当source/domain編成 ownerへ戻す。 |",
+      "raw_lf_sha256": "1656a61a2e4e37c3204f191628cfdd7bd820b6c9480ad679c576b2bbdabf4cae"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 238,
+      "literal": "| `CASE-INTELLIGENCE-L10-001-10` | `FR-INTELLIGENCE-L3-001-01` | `AC-INTELLIGENCE-L3-001-02` | CASE-05〜09のうちidentity衝突とsplit relation欠落を同時に注入する併発fixture。 | 2つの問題を別理由・別edgeとして残し、無関係の正常domain lifecycleを維持する。 | 片方の変異だけ検出、両方を一つの曖昧理由へ隠す、または全正常関係を失えば不合格。双方のidentity/relation不足はINTELLIGENCE domain編成へ戻す。 |",
+      "raw_lf_sha256": "e50d1d286a020db1ff8e823c0ac5308812d55fcbaa0892b5e155373f7e1d5a87"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 239,
+      "literal": "| `CASE-INTELLIGENCE-L10-001-11` | `FR-INTELLIGENCE-L3-001-01` | `AC-INTELLIGENCE-L3-001-03` | 既存fixtureにないdomain名と有効なidentity、add/split/merge/retireのいずれか一つの宣言済み操作関係を持つheld-out正常例。 | 未見性だけでは拒否せず、同じlifecycle contractで関係を追跡する。 | 正常な未見domainを一律rejectまたは新authorityにしたら不合格。 |",
+      "raw_lf_sha256": "373657b31dafa56d26c1fdf5f53f8e3a9651768a01bb264e08298d6024f874c1"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 240,
+      "literal": "| `CASE-INTELLIGENCE-L10-001-12` | `FR-INTELLIGENCE-L3-001-01` | `AC-INTELLIGENCE-L3-001-03` | CASE-11の同じheld-out例からsplit後の片側identity relationだけを欠落させる局所unknown対照。 | 欠落edgeだけunknownにし、成立しているidentityと関係は候補として保持する。 | 未見性で全体reject、欠落edgeを推測補完、または有効部分も落としたら不合格。relation不足はdomain編成へ戻す。 |",
+      "raw_lf_sha256": "cdcbdc6ce0af003443ba0115cf4171838e73c8cbe3b0fd5859dbbe02295d7092"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 241,
+      "literal": "| `CASE-INTELLIGENCE-L10-001-13` | `FR-INTELLIGENCE-L3-001-01` | `AC-INTELLIGENCE-L3-001-02` | 有効なdomain候補を固定enumの一員でなければ拒否する変異だけを与える。 | 新しいdomain語彙をenum外という理由だけで拒否せず、意味が未確定ならdomain編成へ返す。 | 未宣言enumを要求するか、根拠なしに意味を確定したら不合格。 |",
+      "raw_lf_sha256": "b31e278905dc3218d2ea5fc63d85cc70413212387eb4150a605c7cd2da35b297"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 242,
+      "literal": "| `CASE-INTELLIGENCE-L10-001-14` | `FR-INTELLIGENCE-L3-001-01` | `AC-INTELLIGENCE-L3-001-02` | domain追加をINTELLIGENCE外の独立authority追加として扱う変異だけを与える。 | 独立authorityを生成せず、domain編成candidateに留める。 | 新authorityを追加したら不合格。編成粒度不明はdomain編成へ戻す。 |",
+      "raw_lf_sha256": "549b40642a6ed0be108c629ea66165d7d55578422095c8498cebfce2def27dc9"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 243,
+      "literal": "| `CASE-INTELLIGENCE-L10-002-01` | `FR-INTELLIGENCE-L3-002-01` | `AC-INTELLIGENCE-L3-002-01` | Domain Aに根拠付きUnderstand/Review、BにPlan、Cを未構成とする正常入力。 | domain別の宣言済み能力集合を返し、Cは未構成のまま保つ。 | 正常fixtureがAC-01のdomain別構成oracleと異なれば不合格。 |",
+      "raw_lf_sha256": "109ea16e954cbaa889d722abec4e7f175323acc6e9a83b37a83315a730c683e7"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 244,
+      "literal": "| `CASE-INTELLIGENCE-L10-002-02` | `FR-INTELLIGENCE-L3-002-01` | `AC-INTELLIGENCE-L3-002-02` | AのReview capabilityだけ根拠を欠落させ、B/Cの他fieldは正常に保つ。 | AのReviewだけ未構成/unknownにし、不足をAの該当sourceまたはINTELLIGENCE判断設計ownerへ戻す。 | B/Cを巻き込む、根拠を推測する、または全能力をrejectしたら不合格。 |",
+      "raw_lf_sha256": "cc57b823cfdf6446104d54cad8268b7f28ca8e4a4524fcf7a52516e25bb63425"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 245,
+      "literal": "| `CASE-INTELLIGENCE-L10-002-03` | `FR-INTELLIGENCE-L3-002-01` | `AC-INTELLIGENCE-L3-002-02` | Aの能力一つだけをBにも割り当てるdomain間流用変異。 | 流用されたBの能力だけ未構成に戻し、Aの有効能力は維持する。 | 別domain設定を根拠として受入したら不合格。source/責務不足は対象domainのINTELLIGENCE判断設計へ戻す。 |",
+      "raw_lf_sha256": "1fe5c0d2e10d8a6d5788bb3bb7119d8a869b4c0a3fcc51e80bd232844abc9635"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 246,
+      "literal": "| `CASE-INTELLIGENCE-L10-002-04` | `FR-INTELLIGENCE-L3-002-01` | `AC-INTELLIGENCE-L3-002-02` | Cの未構成capability一つだけを暗黙trueにする変異。 | Cの該当能力を未構成/unknownに保つ。 | 未宣言能力を有効として返したら不合格。能力source不足は該当domainのINTELLIGENCE判断設計へ戻す。 |",
+      "raw_lf_sha256": "cc8ffbea50bd004e486d8b1ed5de173b26759983c4e04f30d08103c45e3f9e01"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 247,
+      "literal": "| `CASE-INTELLIGENCE-L10-002-05` | `FR-INTELLIGENCE-L3-002-01` | `AC-INTELLIGENCE-L3-002-02` | CASE-02〜04の根拠欠落、別domain流用、暗黙true化を併発させる。 | 各domain/capability問題を個別理由と状態で返し、有効な別設定は維持する。 | 異なる変異を単一の曖昧な理由にまとめる、または一つでも見逃したら不合格。各不足は該当domainのINTELLIGENCE判断設計へ戻す。 |",
+      "raw_lf_sha256": "62de4c560656868ab0d08af5e16d748c0d77436cc32334ce86bb6867b5ba3632"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 248,
+      "literal": "| `CASE-INTELLIGENCE-L10-002-06` | `FR-INTELLIGENCE-L3-002-01` | `AC-INTELLIGENCE-L3-002-03` | 既知domain fixtureにないDomain Dへ、根拠付きsubset capabilityだけを与えるheld-out正常例。 | subsetだけ構成し、未列挙の他能力は未構成にする。 | 未見性を理由に全domain reject、または他domainの能力を流用したら不合格。 |",
+      "raw_lf_sha256": "34eb44c0230fe5d95c250d21a59977a4b8c024aaeef660c29c2bfe804821cf9a"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 249,
+      "literal": "| `CASE-INTELLIGENCE-L10-002-07` | `FR-INTELLIGENCE-L3-002-01` | `AC-INTELLIGENCE-L3-002-03` | CASE-06から一能力の根拠だけを欠落させる局所unknown対照。 | 欠落根拠の能力だけunknown/未構成とし、宣言済みsubsetを維持する。不足は該当sourceまたはINTELLIGENCE判断設計へ戻す。 | 未見全体をreject、または根拠のない能力をtrueにしたら不合格。 |",
+      "raw_lf_sha256": "5a4f569675f80cfb98dce36c89ce51c95c48a546f18d7ea3c631279d4bf905ab"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 250,
+      "literal": "| `CASE-INTELLIGENCE-L10-003-01` | `FR-INTELLIGENCE-L3-003-01` | `AC-INTELLIGENCE-L3-003-01` | target、requirement/design revision、ticket/state、dependency/evidence/finding、worker/model/provider/environment、cost/budget/risk/time、known/unknownを互いに異なるsource identity/revisionで結ぶ正常join。 | source truthを変えず各fieldとrevision relationをSituation Modelへ結ぶ。 | source value改変、authority昇格、またはrequired relation脱落は不合格。 |",
+      "raw_lf_sha256": "ad31124c8aa03a6a08cdc18047b81b50852371d617b9dc9e493b3d99cd667301"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 251,
+      "literal": "| `CASE-INTELLIGENCE-L10-003-02` | `FR-INTELLIGENCE-L3-003-01` | `AC-INTELLIGENCE-L3-003-02` | 他のjoinを正常に保ち、evidence sourceだけをmissingにする。 | evidence relationだけunknownとし、そのevidence source ownerへ再照合を返す。 | evidence source不在を推測補完、または他の一致sourceを失ったら不合格。 |",
+      "raw_lf_sha256": "8ad8456ce0af103452c79699ca7f433b77d5287d76ef0c02342211134fb84a3c"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 252,
+      "literal": "| `CASE-INTELLIGENCE-L10-003-03` | `FR-INTELLIGENCE-L3-003-01` | `AC-INTELLIGENCE-L3-003-02` | 他のsource/relationを正常に保ち、dependency source revisionだけstaleにする。 | dependency relationだけunknown/staleとして可視化し、dependency source ownerへ再照合を返す。 | 古いrevisionでjoin、または他のfieldを誤ってunknown化したら不合格。 |",
+      "raw_lf_sha256": "80ddfe6cc0c6e2d5a8e4fe36b6813649e73bf83155acdc1af753ad3cb09a5108"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 253,
+      "literal": "| `CASE-INTELLIGENCE-L10-003-04` | `FR-INTELLIGENCE-L3-003-01` | `AC-INTELLIGENCE-L3-003-02` | risk valueの二source間の矛盾だけを注入する。 | risk relationだけunknown/contradictoryと表示し、両source ownerへ再照合を返す。 | 一方のsourceを根拠なく優先、または値を平均・補完したら不合格。 |",
+      "raw_lf_sha256": "fd24b44a5f766eddc012ffb33f80fcb7657b0982ec159878f4c72ed4d02afc17"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 254,
+      "literal": "| `CASE-INTELLIGENCE-L10-003-05` | `FR-INTELLIGENCE-L3-003-01` | `AC-INTELLIGENCE-L3-003-02` | dependency edgeの片側source relationだけを孤立させる。 | 孤立dependencyだけunknownとし、関係するdependency source ownerへ再照合を返す。 | 孤立edgeを接続推測、または無関係の有効edgeを落としたら不合格。 |",
+      "raw_lf_sha256": "12e347520a49c6bc985ca246af2eded4b0ef9fa4789d8ebca8f36e904b51da88"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 255,
+      "literal": "| `CASE-INTELLIGENCE-L10-003-06` | `FR-INTELLIGENCE-L3-003-01` | `AC-INTELLIGENCE-L3-003-02` | CASE-02の必須source missingとCASE-03のdependency staleを同時に注入する併発fixture。 | missingとstaleを別field/reasonで保持し、残るsource-consistent relationを維持する。各不足を該当source ownerへ返す。 | 一方を見逃す、または併発を一つの補完値へ潰したら不合格。 |",
+      "raw_lf_sha256": "81ed2d804c88384ad522f61c719da040e11ffb32ea3c32191d40bd1097138234"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 256,
+      "literal": "| `CASE-INTELLIGENCE-L10-003-07` | `FR-INTELLIGENCE-L3-003-01` | `AC-INTELLIGENCE-L3-003-03` | 未見worker/provider/environmentを含むが全required source identity/revisionとrelationsが一致するheld-out正常join。 | 未見値でも同契約で完全joinし、source truthを保持する。 | 未見属性だけを理由にrejectまたはauthorityへ昇格したら不合格。 |",
+      "raw_lf_sha256": "6c4b95276fdb9cb1230dfd8ec36e1c07f72285b7b205b8454b18a05f7f37ebce"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 257,
+      "literal": "| `CASE-INTELLIGENCE-L10-003-08` | `FR-INTELLIGENCE-L3-003-01` | `AC-INTELLIGENCE-L3-003-03` | CASE-07からdependency revisionだけ未取得にした局所unknown対照。 | dependency relationだけunknownとし、他sourceが揃うjoinを保持する。dependency source ownerへ再照合を返す。 | 未見全体をreject、またはdependencyを推測補完したら不合格。 |",
+      "raw_lf_sha256": "fcf1d28cb1afa11143ec04e8610a580859a45448d34bd6d13c560b8de8022503"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 258,
+      "literal": "| `CASE-INTELLIGENCE-L10-004-01` | `FR-INTELLIGENCE-L3-004-01` | `AC-INTELLIGENCE-L3-004-01` | source-backed observation、そこから導くinterpretation、仮説、未取得fieldを同一recordに与える正常例。 | Fact/Interpretation/Hypothesis/Unknownを区別し、各々source/evidence/revisionへ結ぶ。 | 分類が一つでも欠落またはsourceと誤結合したら不合格。 |",
+      "raw_lf_sha256": "8d5e98ed69b71802ecb87ce9fc0d994526c4264b8150daa853ff300631598760"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 259,
+      "literal": "| `CASE-INTELLIGENCE-L10-004-02` | `FR-INTELLIGENCE-L3-004-01` | `AC-INTELLIGENCE-L3-004-02` | 他分類を正常に保ち、Hypothesis labelだけをObserved Factへ変更する。 | 仮説をfactとして確定せず、その分類だけ不成立としてsource/evidence ownerへ戻す。 | 仮説のfact昇格を受け入れたら不合格。 |",
+      "raw_lf_sha256": "c5eef7ca816c514ca22122e0b7f4d549cc1b0092bae83bd9613c033f5b832f15"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 260,
+      "literal": "| `CASE-INTELLIGENCE-L10-004-03` | `FR-INTELLIGENCE-L3-004-01` | `AC-INTELLIGENCE-L3-004-02` | fact値はあるが、そのsource identityだけを欠落させる。 | 影響fieldのみunknownとし、source ownerへ照合を戻す。他の分類は保持する。 | source identityを推測・補完したら不合格。 |",
+      "raw_lf_sha256": "fd6c59e7e98dacc319d412dbcb51eed51546b4413bece47f5cc35e9fcc1a4455"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 261,
+      "literal": "| `CASE-INTELLIGENCE-L10-004-04` | `FR-INTELLIGENCE-L3-004-01` | `AC-INTELLIGENCE-L3-004-02` | source identityはあるが、対象revisionだけを欠落させる。 | 対象fieldをunknownとしsource ownerへrevisionを再照合する。 | revision欠落をcurrent扱いしたら不合格。 |",
+      "raw_lf_sha256": "4c329d3db2b7d8bfa6af9ae3cb531052abbf01eb148609a2ede5b32462b1ab7c"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 262,
+      "literal": "| `CASE-INTELLIGENCE-L10-004-05` | `FR-INTELLIGENCE-L3-004-01` | `AC-INTELLIGENCE-L3-004-02` | 明示Unknownをsuccess/正常確定として扱う変異だけを注入する。 | unknownをunknownのまま残し、確定表示を拒否する。根拠不足はsource/evidence ownerへ戻す。 | unknownを成功扱いしたら不合格。 |",
+      "raw_lf_sha256": "9b6b2a4fe2ac805d50807a2b0f969450b97c5e8a680db153f2b2e809e8c64b20"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 263,
+      "literal": "| `CASE-INTELLIGENCE-L10-004-06` | `FR-INTELLIGENCE-L3-004-01` | `AC-INTELLIGENCE-L3-004-02` | Hypothesis-to-Fact変更とsource revision欠落を併発させる。 | 誤分類と出典不足を別々に報告し、正しい他分類は維持する。 | 併発を一理由へ隠す、またはunknownを確定したら不合格。分類/出典不足を該当source/evidence ownerへ返す。 |",
+      "raw_lf_sha256": "c29a4167e89d6592a993fae1f4aa5caca079c6080fbe3ed7b14cea5c6be6e70d"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 264,
+      "literal": "| `CASE-INTELLIGENCE-L10-004-07` | `FR-INTELLIGENCE-L3-004-01` | `AC-INTELLIGENCE-L3-004-03` | 未見evidence typeだがsource locatorと観測内容が明示されたheld-out正常例。 | 同じ4分類契約を使い、source-backed factを保持する。 | 未見typeだけでrejectまたは新分類を発明したら不合格。 |",
+      "raw_lf_sha256": "89592762733e1931894873eaac97a27f25bf4a77aed70b083f7a29f6f4886efc"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 265,
+      "literal": "| `CASE-INTELLIGENCE-L10-004-08` | `FR-INTELLIGENCE-L3-004-01` | `AC-INTELLIGENCE-L3-004-03` | CASE-07からsource locatorだけを欠落させる局所unknown対照。 | locator欠落fieldだけunknownとし、観測内容がsource-backedである部分を維持する。source ownerへ照合を戻す。 | 全record reject、またはsource不明fieldをfactとしたら不合格。 |",
+      "raw_lf_sha256": "6b2d7b1d787f0c7af23d75aef4f45d3c9fd1c70bb64db466e6a2e0ddfa4a0628"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 266,
+      "literal": "| `CASE-INTELLIGENCE-L10-005-01` | `FR-INTELLIGENCE-L3-005-01` | `AC-INTELLIGENCE-L3-005-01` | 承認済target/current requirement revision、HARNESS contract revision、prerequisite/dependency/order、parallelizable work、expected result、risk/uncertainty、stop/fallbackを持つ正常plan input。 | 要求された関係を含むplan candidateを返し、ticket/assignmentを発行せずOS handoffとする。 | 必須fieldの欠落、またはcandidateをticket/assignmentへ昇格したら不合格。 |",
+      "raw_lf_sha256": "b80a1d45ffafb21e817a4c9fa7e30e8cf88eccd6595f4e7aeb1e6e06f8167244"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 267,
+      "literal": "| `CASE-INTELLIGENCE-L10-005-02` | `FR-INTELLIGENCE-L3-005-01` | `AC-INTELLIGENCE-L3-005-02` | 同一plan baselineでtarget requirementのapproval stateだけ未承認にする。 | planを確定せず未承認要件を示し、該当requirement ownerへ戻す。 | 未承認targetから確定planを返したら不合格。 |",
+      "raw_lf_sha256": "5a0558aa7324bb55ac66dd5e5efe5d112d7728b4e33151af3de0aaaff7cecf1e"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 268,
+      "literal": "| `CASE-INTELLIGENCE-L10-005-03` | `FR-INTELLIGENCE-L3-005-01` | `AC-INTELLIGENCE-L3-005-02` | 同一plan baselineでrequirement revisionだけstaleにする。 | stale revisionを使わずplanを保留し、requirement source ownerへ照合を戻す。 | 古いrequirement revisionでplanを確定したら不合格。 |",
+      "raw_lf_sha256": "6c54d4e0834fe7ab29950c24d87dd3542280073f2b148adbb1edc6f89bcd65f8"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 269,
+      "literal": "| `CASE-INTELLIGENCE-L10-005-04` | `FR-INTELLIGENCE-L3-005-01` | `AC-INTELLIGENCE-L3-005-02` | planの一prerequisite dependencyだけ欠落させる。 | 影響plan部分だけ未確定にし、dependency source ownerへ不足を返す。他の比較可能部分は保持する。 | 依存を推測補完またはticket発行したら不合格。 |",
+      "raw_lf_sha256": "ad682488f5c612e72d6bbfa4a6571110949ec5c1cbf879f79752fda5d0a393da"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 270,
+      "literal": "| `CASE-INTELLIGENCE-L10-005-05` | `FR-INTELLIGENCE-L3-005-01` | `AC-INTELLIGENCE-L3-005-02` | dependency edgeだけ循環し、他のplan fieldsは正常に保つ。 | 循環依存部分を未確定として関係source ownerへ戻す。 | 順序を捏造、循環を正常としたら不合格。循環edgeの意味は関係source ownerへ戻す。 |",
+      "raw_lf_sha256": "5886553e35aa6d2992de012b3c3f5106dfd9fb1857dee2aa15952727dafc43a7"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 271,
+      "literal": "| `CASE-INTELLIGENCE-L10-005-06` | `FR-INTELLIGENCE-L3-005-01` | `AC-INTELLIGENCE-L3-005-02` | fallbackだけを欠落させる。 | fallback不足を理由に影響planを未確定にし、requirement/plan input ownerへ戻す。 | fallbackを自作してplan確定したら不合格。 |",
+      "raw_lf_sha256": "345d7156fa9757a0baf82794464c6bb4aad752d67c6916628e92c966aefb92a6"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 272,
+      "literal": "| `CASE-INTELLIGENCE-L10-005-07` | `FR-INTELLIGENCE-L3-005-01` | `AC-INTELLIGENCE-L3-005-02` | target requirement未承認とdependency欠落を併発させる。 | 2不足を個別理由・sourceへ返し、有効なrisk/stop情報は保持する。 | 一方を見逃す、または両方を補完したら不合格。 |",
+      "raw_lf_sha256": "c931e339cb4e97287ed8c729995d407ef98ac6fce4d5beeab8aad28acd814cbe"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 273,
+      "literal": "| `CASE-INTELLIGENCE-L10-005-08` | `FR-INTELLIGENCE-L3-005-01` | `AC-INTELLIGENCE-L3-005-03` | 未見dependency構成でもapproved target/current contractと全dependency revisionが宣言済みのheld-out正常例。 | 同一contractでcandidateを返し、未見性のみでrejectせずticketを作らない。 | 未見だけを理由に新gateを作る、またはticket化したら不合格。 |",
+      "raw_lf_sha256": "997f5034a66ddfee9c73c392563a1a746d4882bc7394f2014db945fe7bb1d498"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 274,
+      "literal": "| `CASE-INTELLIGENCE-L10-005-09` | `FR-INTELLIGENCE-L3-005-01` | `AC-INTELLIGENCE-L3-005-03` | CASE-08からstop conditionだけを欠落させる局所unknown対照。 | stop不足の影響範囲だけ未確定として保ち、他の宣言済みplan fieldを保持する。source不足は該当source ownerへ戻す。 | 未見全体をreject、またはstop conditionを推測補完したら不合格。 |",
+      "raw_lf_sha256": "20d4f0149cb4eaeb8caae2df7615e8c3800a5416693d5e420ba1ca425f7c8df3"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 275,
+      "literal": "| `CASE-INTELLIGENCE-L10-005-10` | `FR-INTELLIGENCE-L3-005-01` | `AC-INTELLIGENCE-L3-005-02` | 他入力を正常に保ちcurrent state sourceだけを欠落させる。 | stateを推測せずaffected plan部分だけ未確定にし、current state source ownerへ照合を戻す。 | 欠落stateを補完してplanを確定したら不合格。 |",
+      "raw_lf_sha256": "d5eafb2519ba246284bc0e4b375ae1f71f31d6af50e3db79854a3b89481fa572"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 276,
+      "literal": "| `CASE-INTELLIGENCE-L10-006-01` | `FR-INTELLIGENCE-L3-006-01` | `AC-INTELLIGENCE-L3-006-01` | 同一scopeのcurrent Situation Model/change candidateから、要求・設計・dependency、regression、CI/integration、performance/release risk、Worker failure、cost/time各該当予測をsource evidenceに基づき作る正常例。 | 各predictionへassumption/evidence/uncertainty/falsificationを結び、future actualは未発生としてLABOへ渡す。 | 予測を実測事実、またはLABO評価済みと表示したら不合格。 |",
+      "raw_lf_sha256": "a67294280654820ca669dfadb735a39846972d88af7fab711afdbddc37cd6c5c"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 277,
+      "literal": "| `CASE-INTELLIGENCE-L10-006-02` | `FR-INTELLIGENCE-L3-006-01` | `AC-INTELLIGENCE-L3-006-02` | 他のprediction partsを正常に保ち、evidenceだけを欠落させる。 | 該当predictionだけunknown/未評価にし、source ownerへ再照合する。 | 根拠なしにpredictionを確定したら不合格。 |",
+      "raw_lf_sha256": "05f03a8db062af2738fc01b9486b0e72ba24de15e6106715b5a9921ec7833358"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 278,
+      "literal": "| `CASE-INTELLIGENCE-L10-006-03` | `FR-INTELLIGENCE-L3-006-01` | `AC-INTELLIGENCE-L3-006-02` | evidenceはあるが、反証可能条件falsificationだけを欠落させる。 | 該当predictionを確定せず、falsification不足を特定しsource ownerへ戻す。 | 反証条件なしで確定表示したら不合格。 |",
+      "raw_lf_sha256": "61473e11694d8896a9c8b18abc66c37e072304f51c44a23ed8ef1ad2657f0042"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 279,
+      "literal": "| `CASE-INTELLIGENCE-L10-006-04` | `FR-INTELLIGENCE-L3-006-01` | `AC-INTELLIGENCE-L3-006-02` | 一予測のassumptionだけを欠落させる。 | 該当predictionを未確定にし、assumption source ownerへ戻す。 | assumptionを暗黙補完したら不合格。 |",
+      "raw_lf_sha256": "1f0ba9bc92ec09154f9b68577d9c770945fcc5a62c8dd1bda04d3a955b2c9526"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 280,
+      "literal": "| `CASE-INTELLIGENCE-L10-006-05` | `FR-INTELLIGENCE-L3-006-01` | `AC-INTELLIGENCE-L3-006-02` | 一予測のuncertaintyだけを欠落させる、または確定値に偽装する。 | uncertainty不足を保持し、確度を捏造せず該当source ownerへ戻す。 | 不確実性を隠して確定表示したら不合格。 |",
+      "raw_lf_sha256": "30206e93b001c7bbc330599f4ebba0a7122a3369e5299369958896a8e9e60193"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 281,
+      "literal": "| `CASE-INTELLIGENCE-L10-006-06` | `FR-INTELLIGENCE-L3-006-01` | `AC-INTELLIGENCE-L3-006-02` | LABOの後続actual measurementをprediction値へ上書きする変異だけを与える。 | predictionとactual resultを分離し、実測は別LABO recordのまま保持する。 | predictionをactual outcomeへ複写/昇格したら不合格。actual measurementの責務はLABOに残す。 |",
+      "raw_lf_sha256": "c3c894d2473fbc5c716707eab024969476d89a24a43ec9ea23180dc1c7a0ef25"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 282,
+      "literal": "| `CASE-INTELLIGENCE-L10-006-07` | `FR-INTELLIGENCE-L3-006-01` | `AC-INTELLIGENCE-L3-006-02` | evidence欠落とfalsification欠落を同時に注入する併発fixture。 | 両不足を別々に示し、該当predictionだけunknown/未評価、他の根拠済みpredictionを維持する。 | 片方を見逃す、または曖昧な一理由へ統合したら不合格。各欠落はそれぞれのsource ownerへ再照合する。 |",
+      "raw_lf_sha256": "5d87422a65d2b4a009f0cdb4953db8cfc998694e86fdd10d03ac7c60b4ab7f95"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 283,
+      "literal": "| `CASE-INTELLIGENCE-L10-006-08` | `FR-INTELLIGENCE-L3-006-01` | `AC-INTELLIGENCE-L3-006-03` | 未見prediction targetでも同一scopeのcurrent state/evidence、assumption、uncertainty、falsificationが揃うheld-out正常例。 | 同じprediction contractを適用し、実測は未発生として保持する。 | 未見性のみでreject、またはactualを生成したら不合格。 |",
+      "raw_lf_sha256": "2b98e97662a4bd7c0390f841d569ccc9ff88f7f4aad7aa7ee33006c01c834fcf"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 284,
+      "literal": "| `CASE-INTELLIGENCE-L10-006-09` | `FR-INTELLIGENCE-L3-006-01` | `AC-INTELLIGENCE-L3-006-03` | CASE-08からfalsification sourceだけを欠落させる局所unknown対照。 | 反証条件だけunknownとして該当source ownerへ照合を戻し、成立した他のprediction fieldを保持する。 | 未見全体reject、またはfalsificationを推測補完したら不合格。 |",
+      "raw_lf_sha256": "d6c22d1f8b57df11e1c57c3de317818ce742d6596ed4bb5fdb3ac294c9958f8f"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 285,
+      "literal": "| `CASE-INTELLIGENCE-L10-006-10` | `FR-INTELLIGENCE-L3-006-01` | `AC-INTELLIGENCE-L3-006-02` | current Situation Model source revisionだけをstaleにし、predictionの他fieldは保つ。 | stale sourceを使わず影響predictionのみunknown/未評価にして該当source ownerへ照合する。 | stale stateから予測を確定したら不合格。 |",
+      "raw_lf_sha256": "d957c8d25b69bb31f4f46754ff675cda03a7a661a340e66f51251c220e815c2d"
+    }
+  ],
+  "validation": {
+    "affected_case_rows": 57,
+    "affected_case_ids_unique": true,
+    "all_affected_rows_have_6_cells": true,
+    "ACs_01_02_03_each_mapped_per_parent": true,
+    "main_prefixes_all_six_exact": true,
+    "scfctl_validate": "PASS bindings=147 fail=0",
+    "scfctl_stale": "PASS stale=0",
+    "scfctl_residuals": "PASS residuals=0",
+    "govcheck": "PASS atoms=7622 requirements=57 files=58",
+    "git_diff_check": "PASS"
+  },
+  "limitations": [
+    "これは作成側の静的case設計補正であり独立reviewではない。",
+    "固定source ownerの表記は親が定めるsource/責務ownerに留め、未知のownerや定量閾値を追加していない。",
+    "Stage3残り16親、NFR/Business全範囲、C13 findingsの全量closureは再レビューしていない。",
+    "旧runtime/CLI/test/CI、Bunは実行していない。"
+  ]
+}
