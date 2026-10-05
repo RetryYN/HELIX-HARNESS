@@ -332,3 +332,325 @@ HIL-BR-32、HR-FR-HIL-23/HAC-HIL-23a/b/c、HAT-HIL-23、P2-05/HAT、WCCの対応
 | `SECURITY-CASE-035-02` | `SECURITY-AC-035-02` | run限定設定を持つ追加runtimeでsuccess/failure/cancel各終端と次runを与える。各終端の設定残置・cleanup観測欠落を別変異する。 | 全終端で除去し次runへ継承しない。残置/未観測は当該runの完了を成功扱いせず、cleanup強制はWorker、assignment/未完義務はOS、policy意味・owner不足はSECURITYへ返す。固定期限や設定schemaは作らない。 |
 | `SECURITY-CASE-035-03` | `SECURITY-AC-035-03` | repository deny switchの設定能力あり/なし/unknownと適用状態を分け、同一対象有効denyへのrun設定/provider flag試行、cleanup後、主Workerとbypass非選択正常操作を対照にする。 | 能力と適用を別に観測し、032のdeny優先・cleanup後denyを維持。優先成立だけからswitch能力を推定しない。主Workerに035を拡張せず既存条件の適用を免除しない。policy/deny applicabilityの意味・状態不足はSECURITY、実適用の観測不足とcleanup強制はWorker実行環境、assignment/未完義務はOSへ返す。 |
 | `SECURITY-CASE-035-04` | `SECURITY-AC-035-04` | allowlist正常例に同一target revision/既存authority/current repository policy/deny stateを与える。target revision不一致、別repositoryのdeny state流用、別runtimeのallowlist能力流用、旧repo設定/provider UI/remote flagだけでdeny能力を申告する変異、適用状態だけを申告する変異を別fixtureにする。006/007/008/OS-018既存条件の失敗も035成功から相殺しようとする独立negativeを含む。 | 正常は同一scopeの既存状態を照合する。target/repository/runtime間の証拠流用はhold（L11-035:165）、provider/UI/remote flagまたは適用状態だけの申告はunknown（L2-035:492）、既存006/007/008/OS-018条件の相殺は不合格（L11-035:166）とする。policy不足はSECURITY、assignment/未完義務はOS、enforcement/cleanup強制はWorker実行環境へ戻す。 |
+
+## Stage 4 — 接続・構成体の総合検証候補
+
+全caseは固定L2/L11の文書上oracleであり未実行である。合成identity/revision/credential markerだけを使い、実secret、実credential、実外部通信、実assignment、実resource、実promotionを行わない。共通してunknown/missing/staleはsuccessへ変換せず、無関係scopeを停止しない。各CASE IDは単一の正常条件または単一のnegative変異を検証する。
+
+### SECURITY-CASE-021-01 — 外部data flow正常
+
+- **対象AC**：`SECURITY-AC-021-01/02/03`
+- **固定L11 oracle**（L2-021、L11:45）：External Data→CONNECT→SECURITY→LABO/INTELLIGENCEでsource/classification/contract versionを保持し、下流到達だけでtrust昇格しない。通信・再送はCONNECT、trust判断はSECURITYが持つ。
+- **正常fixture/oracle**：合成source identity/revision、CONNECT contract identity/revision、SECURITY classification/boundary decision、選択consumer contractを同じflow identityで追い、stage別receiptのinput/outputを対応させる。consumer受領はtrust状態を変更しない。
+- **未見正常例**：別の合成source/consumer組で同じ既存contract bindingを適用し、未信頼sourceと分類を保持する。consumerが未選択なら未観測とし、義務や実受領を捏造しない。
+- **owner oracle・戻し先**：CONNECTは通信・再送・追跡、SECURITYはtrust boundary、LABO/INTELLIGENCEは受領contract、L2-014/027は永続化側。意味不足はL1-001/002、接続contract mismatchはCONNECT要求へ戻す。
+
+### SECURITY-CASE-021-02 — source identity欠落
+
+- **対象AC**：`SECURITY-AC-021-01`
+- **negative変異**：正常flowからsource identityだけを欠落させる。
+- **期待oracle**：sourceの由来をunknownとして接続先へtrusted dataとして渡さず、該当flowをholdする。別stageの成功receiptで補わない。
+- **owner戻し**：source owner/SECURITYのtrust境界へ不足を返す。無関係sourceは継続する。
+
+### SECURITY-CASE-021-03 — CONNECT contract revision不一致
+
+- **対象AC**：`SECURITY-AC-021-01`
+- **negative変異**：選択されたCONNECT contract revisionだけを別revisionへ変える。
+- **期待oracle**：binding mismatchとして該当flowをholdし、旧contract receiptを流用しない。SECURITYは接続/再送を代行しない。
+- **owner戻し**：CONNECT contract mismatchとしてCONNECT要求へ返す。
+
+### SECURITY-CASE-021-04 — classification unknown
+
+- **対象AC**：`SECURITY-AC-021-02`
+- **negative変異**：sourceとcontractは保ちclassificationのみunknownにする。
+- **期待oracle**：未信頼/unknownを保持し、consumer receiptやtransport成功をtrust昇格に使わない。
+- **owner戻し**：classification/policyの意味不足をSECURITY L1-001/002へ返す。
+
+### SECURITY-CASE-021-05 — consumer receiptによるtrust昇格
+
+- **対象AC**：`SECURITY-AC-021-02/03`
+- **negative変異**：consumer受領receiptだけでsource classificationをtrustedへ変えた主張を与える。
+- **期待oracle**：不合格。受領状態とSECURITY判断を別に保ち、永続化は021の成功に含めない。
+- **owner戻し**：trust判断はSECURITY、保存/handoffはL2-027とconsumer ownerへ戻す。
+
+### SECURITY-CASE-021-06 — CONNECTによるpolicy判断生成
+
+- **対象AC**：`SECURITY-AC-021-02`
+- **negative変異**：CONNECT transport resultをSECURITY allow/trust decisionとして扱う。
+- **期待oracle**：不合格。CONNECT結果からpolicy/authorityを生成しない。
+- **owner戻し**：CONNECTの通信責務とSECURITYのtrust policy境界へ戻す。
+
+### SECURITY-CASE-021-07 — SECURITYによる再送所有
+
+- **対象AC**：`SECURITY-AC-021-03`
+- **negative変異**：通信失敗後のretry/re-send判断をSECURITY policy receiptへ置く。
+- **期待oracle**：不合格。SECURITYはretry実行・通信追跡を所有せず、CONNECT契約へ返す。
+- **owner戻し**：CONNECTの接続要求へ戻す。
+
+### SECURITY-CASE-022-01 — authority flow正常
+
+- **対象AC**：`SECURITY-AC-022-01/02/03`
+- **固定L11 oracle**（L2-022、L11:46）：INTELLIGENCE request、SECURITY decision、OS authorized work/assignment、Worker applied scopeを同一identity/operation/revision/scopeで追う。request単独実行、OSによるdecision上書き、SECURITYによるWorker配置は不合格。
+- **正常fixture/oracle**：同一subject/target/operation/revision/environment/scope/expiryを持つ既存authority、INTELLIGENCE request、SECURITY decision、OS assignment、Worker適用証拠を相関し、各ownerの結果を分けて返す。既決authorityの有効範囲では新たな人間approveを追加しない。
+- **未見正常例**：既存authorityの別operationで、完全一致したscopeだけを判定し、他operationへの権限流用をしない。
+- **owner oracle・戻し先**：authority/policyはSECURITY、request/semantic meaningはINTELLIGENCE、ticket/assignment/progressionはOS、制約適用はWorker/INFRA。意味差は該当L1へ、assignment差はOS、execution差はWorker/INFRAへ。
+
+### SECURITY-CASE-022-02 — request単独allow
+
+- **対象AC**：`SECURITY-AC-022-01`
+- **negative変異**：operation requestだけを入力しauthority receipt/決定を欠く。
+- **期待oracle**：allow/assignment/runを生成しない。該当操作は未許可のまま。
+- **owner戻し**：authority不足をSECURITYへ返す。
+
+### SECURITY-CASE-022-03 — subject不一致
+
+- **対象AC**：`SECURITY-AC-022-02`
+- **negative変異**：decisionからassignmentへのsubject identityだけを変える。
+- **期待oracle**：同一subjectでないためhold/denyし、別subject receiptを流用しない。
+- **owner戻し**：既存authority照合はSECURITY、assignment identityはOS。
+
+### SECURITY-CASE-022-04 — target不一致
+
+- **対象AC**：`SECURITY-AC-022-02`
+- **negative変異**：target identityだけを変える。
+- **期待oracle**：別targetへのallowを拒否し、旧targetのscopeを使わない。
+- **owner戻し**：SECURITY authority policyへ返す。
+
+### SECURITY-CASE-022-05 — operation不一致
+
+- **対象AC**：`SECURITY-AC-022-02`
+- **negative変異**：許可operationだけを隣接operationへ置換する。
+- **期待oracle**：operation-specific authority不一致として拒否する。
+- **owner戻し**：SECURITY L1-008へ返す。
+
+### SECURITY-CASE-022-06 — revision不一致
+
+- **対象AC**：`SECURITY-AC-022-02`
+- **negative変異**：authority revisionだけをstale/別revisionへする。
+- **期待oracle**：旧revisionのdecisionを現runへ流用しない。
+- **owner戻し**：SECURITY policy/authority ownerへ返す。
+
+### SECURITY-CASE-022-07 — environment不一致
+
+- **対象AC**：`SECURITY-AC-022-02`
+- **negative変異**：environment identityだけをstaging/production等の別値へする。
+- **期待oracle**：authority mismatchとして該当操作を拒否する。
+- **owner戻し**：SECURITY/INFRASTRUCTUREの該当既存ownerへ返す。
+
+### SECURITY-CASE-022-08 — scope不一致
+
+- **対象AC**：`SECURITY-AC-022-02`
+- **negative変異**：assignment scopeだけを拡大または別scopeへ変える。
+- **期待oracle**：既存decisionを拡大scopeへ流用しない。無関係scopeは止めない。
+- **owner戻し**：OS assignmentとSECURITY authority ownerへ戻す。
+
+### SECURITY-CASE-022-09 — expiry後のauthority再利用
+
+- **対象AC**：`SECURITY-AC-022-02`
+- **negative変異**：他tupleを維持しexpiryだけを過去時刻にする。
+- **期待oracle**：期限切れauthorityを許可に使わず、該当操作の停止を反映する。
+- **owner戻し**：SECURITY authority、OS進行/停止伝播へ戻す。
+
+### SECURITY-CASE-022-10 — revoke後のauthority再利用
+
+- **対象AC**：`SECURITY-AC-022-02`
+- **negative変異**：他tuple/expiryを維持しauthority stateだけをrevokedにする。
+- **期待oracle**：revoke後の判定を許可に使わず、該当停止を反映する。
+- **owner戻し**：SECURITY authority、OS進行/停止伝播へ戻す。
+
+### SECURITY-CASE-022-11 — OSによるSECURITY decision上書き
+
+- **対象AC**：`SECURITY-AC-022-03`
+- **negative変異**：SECURITY deny/constrainをOSがallowへ変更した状態にする。
+- **期待oracle**：不合格。OS ticketはSECURITY判定を代替しない。
+- **owner戻し**：OS assignment/progressionとSECURITY policyへ個別に返す。
+
+### SECURITY-CASE-022-12 — SECURITYによるassignment生成
+
+- **対象AC**：`SECURITY-AC-022-03`
+- **negative変異**：SECURITY decision自体にOS ticket/assignment発行を含める。
+- **期待oracle**：不合格。security判定からassignmentを生成しない。
+- **owner戻し**：ticket/assignmentのOS ownerへ返す。
+
+### SECURITY-CASE-022-13 — Worker effective scope不一致
+
+- **対象AC**：`SECURITY-AC-022-03`
+- **negative変異**：Worker適用scopeだけをassignment/decisionより広くする。
+- **期待oracle**：scope不一致として該当runを停止し、Workerが自己拡張しない。
+- **owner戻し**：制約適用はWorker/INFRA、policy/authorityはSECURITY、assignmentはOS。
+
+### SECURITY-CASE-023-01 — admissionからpromotionまでの正常trace
+
+- **対象AC**：`SECURITY-AC-023-01/02/03`
+- **固定L11 oracle**（L2-023、L11:47）：candidate→SECURITY admission→Worker→HARNESS verification→OS promotionを別状態で追い、各stage failure/unknownで後段promotionを止める。単独greenを代替にしない。
+- **正常fixture/oracle**：合成candidate identity/revisionからSECURITY固有のadmission、Worker実行証拠、HARNESS verification結果、OS promotion stateへ段階ごとのinput/output identityを結ぶ。各stage resultは別々のreceiptであり、次段階の存在で前段条件を補完しない。
+- **未見正常例**：別candidate revisionでも同じ各段階の既存contract/evidenceがそろう場合に段階別traceを返し、実際のpromotionを発行しない。
+- **owner oracle・戻し先**：provenance/capability/authorityはSECURITY、実行はWorker/INFRA、verificationはHARNESS、promotion/progressionはOS。各失敗を対応ownerへ戻す。
+
+### SECURITY-CASE-023-02 — SECURITY acceptance単独で実行/promotion
+
+- **対象AC**：`SECURITY-AC-023-02`
+- **negative変異**：後続Worker/HARNESS evidenceを欠いたままSECURITY admissionを実行/promotion完了と解釈する。
+- **期待oracle**：不合格。SECURITY固有acceptanceは次段階を実行・完了させない。
+- **owner戻し**：不足段階のWorker/HARNESS/OS ownerへ返す。
+
+### SECURITY-CASE-023-03 — Worker evidence欠落
+
+- **対象AC**：`SECURITY-AC-023-01/03`
+- **negative変異**：他stageは保持しWorkerの実行/適用receiptだけをmissingにする。
+- **期待oracle**：Worker段階をunknown/unfinishedにし、HARNESS/OS promotionへ進めない。
+- **owner戻し**：Worker/INFRASTRUCTURE実行観測ownerへ返す。
+
+### SECURITY-CASE-023-04 — candidate revision drift
+
+- **対象AC**：`SECURITY-AC-023-01`
+- **negative変異**：Worker実行対象revisionだけをcandidate/SECURITY admission revisionと異ならせる。
+- **期待oracle**：stage identity mismatchとして旧admissionを流用しない。後段状態をpromotion扱いしない。
+- **owner戻し**：SECURITY candidate/admission ownerとWorker artifact identity ownerへ返す。
+
+### SECURITY-CASE-023-05 — HARNESS green単独でSECURITY admission代替
+
+- **対象AC**：`SECURITY-AC-023-02`
+- **negative変異**：SECURITY admission失敗/unknownのままHARNESS verificationをgreenにする。
+- **期待oracle**：不合格。HARNESS greenはSECURITY固有条件を代替しない。
+- **owner戻し**：SECURITY policy/admission ownerへ戻す。
+
+### SECURITY-CASE-023-06 — verification failure後のpromotion
+
+- **対象AC**：`SECURITY-AC-023-03`
+- **negative変異**：HARNESS verificationだけをfailure/unknownにする。
+- **期待oracle**：後続OS promotionを成功扱いしない。
+- **owner戻し**：HARNESS verification contractとOS promotion stateへ返す。
+
+### SECURITY-CASE-023-07 — OS ticket単独promotion
+
+- **対象AC**：`SECURITY-AC-023-02`
+- **negative変異**：他stage evidenceを欠いたままOS ticketだけをpromotion proofとして扱う。
+- **期待oracle**：不合格。ticketは上流failure/unknownを閉じない。
+- **owner戻し**：OS progression ownerへ返す。
+
+### SECURITY-CASE-023-08 — stage間identity不一致
+
+- **対象AC**：`SECURITY-AC-023-01/03`
+- **negative変異**：HARNESSまたはOS receiptのcandidate identityだけを異なるcandidateへ変える。
+- **期待oracle**：receipt chainを分断し、該当段階を未完とする。異なるcandidateのevidenceを合成しない。
+- **owner戻し**：identity差の発生した段階ownerへ返す。
+
+### SECURITY-CASE-024-01 — policy/resource/enforcementの正常trace
+
+- **対象AC**：`SECURITY-AC-024-01/03`
+- **固定L11 oracle**（L2-024、L11:48）：SECURITY policy/authority、INFRASTRUCTURE resource state/観測、Worker physical enforcementをreceiptで対応付ける。INFRASTRUCTUREがpolicyを作らず、secret値をordinary resource state/backupへ保存しない。
+- **正常fixture/oracle**：synthetic resource identity/revision、SECURITY policy revision、Workerの制約適用状態とINFRASTRUCTURE観測を同じ対象/scopeへ束縛し、宣言と実状態を別に返す。credentialは存在しない合成markerのみを用いる。
+- **未見正常例**：別のsynthetic resource/環境でも各ownerのstateを照合し、SECURITYが配置を所有せず、INFRAがpolicyを作らない。
+- **owner oracle・戻し先**：policy/authorityはSECURITY、実resource/state/観測はINFRASTRUCTURE、physical enforcementはWorker。意味差はSECURITY L1、資源state/適用観測差はINFRASTRUCTURE L1/L2へ返す。
+
+### SECURITY-CASE-024-02 — INFRASTRUCTUREによるsecurity policy作成
+
+- **対象AC**：`SECURITY-AC-024-02`
+- **negative変異**：他fieldを正常に保ちINFRASTRUCTUREがSECURITY policyを作成/変更したとする。
+- **期待oracle**：owner inversionとして不合格。資源状態は保持し、policy ownerへ戻す。
+
+### SECURITY-CASE-024-03 — SECURITYによるresource placement/state所有
+
+- **対象AC**：`SECURITY-AC-024-02`
+- **negative変異**：SECURITY policy decisionがresource placement/stateを決める。
+- **期待oracle**：不合格。resource owner/観測はINFRASTRUCTUREへ残す。
+
+### SECURITY-CASE-024-04 — Worker enforcement evidence欠落
+
+- **対象AC**：`SECURITY-AC-024-01`
+- **negative変異**：他のreceiptを保ち、Worker effective enforcement evidenceだけを欠落させる。
+- **期待oracle**：policy宣言やINFRASTRUCTURE観測だけで実適用successにせず、該当状態をunknown/unfinishedとして保持する。
+- **owner戻し**：実適用の観測不足をWorker/INFRASTRUCTURE既存ownerへ返す。
+
+### SECURITY-CASE-024-05 — INFRASTRUCTURE observation欠落
+
+- **対象AC**：`SECURITY-AC-024-01`
+- **negative変異**：他のreceiptを保ち、INFRASTRUCTURE resource observationだけを欠落させる。
+- **期待oracle**：policy宣言やWorker適用証拠だけで実resource stateを確定せず、該当状態をunknown/unfinishedとして保持する。
+- **owner戻し**：resource state/観測不足をINFRASTRUCTUREへ返す。
+
+### SECURITY-CASE-024-06 — resource identity不一致
+
+- **対象AC**：`SECURITY-AC-024-01`
+- **negative変異**：resource identityだけをreceipt間で不一致にする。
+- **期待oracle**：異なるresource receiptを結合せず、該当対象をunknownとして保持する。
+- **owner戻し**：INFRASTRUCTUREへ返す。
+
+### SECURITY-CASE-024-07 — policy revision不一致
+
+- **対象AC**：`SECURITY-AC-024-01`
+- **negative変異**：policy revisionだけをreceipt間で不一致にする。
+- **期待oracle**：stale/mismatch policy receiptを流用せずunknownとして保持する。
+- **owner戻し**：SECURITY policy ownerへ返す。
+
+### SECURITY-CASE-024-08 — scope不一致
+
+- **対象AC**：`SECURITY-AC-024-01`
+- **negative変異**：scopeだけをreceipt間で不一致にする。
+- **期待oracle**：異なるscopeのevidenceを同一証拠にしない。
+- **owner戻し**：policy/assignment該当ownerへ返す。
+
+### SECURITY-CASE-024-09 — raw credentialを通常resource stateへ保存
+
+- **対象AC**：`SECURITY-AC-024-03`
+- **negative変異**：通常resource stateにraw credential値が含まれる状態を作ろうとする。
+- **期待oracle**：fixtureは実値を使わず合成markerで検出し、保存を許さない。receiptにも値を記録しない。
+- **owner戻し**：credential boundaryはSECURITY、resource handlingはINFRASTRUCTUREへ返す。
+
+### SECURITY-CASE-024-10 — raw credentialをbackup/snapshotへ保存
+
+- **対象AC**：`SECURITY-AC-024-03`
+- **negative変異**：通常resource stateを保ち、backup/snapshot経路だけに合成markerを加える。
+- **期待oracle**：backup/snapshot出力先で露出を拒否し、raw valueを保存しない。
+- **owner戻し**：SECURITY/INFRASTRUCTUREの既存ownerへ返す。
+
+### SECURITY-CASE-026-01 — deterministic Guard、Botなし
+
+- **対象AC**：`SECURITY-AC-026-01/03`
+- **固定L11 oracle**（L2-026、L11:50）：Guard決定とsemantic judgementを分け、判断不能はunknown/制限。Bot不在でGuard条件を落とさず、SECURITYがmodel/routingを決めない。
+- **正常fixture/oracle**：既存決定的Guard ruleとsynthetic inputを与え、Bot runtimeなしでSECURITY Guardが既存条件を判定する。例示Botの起動やsemantic probingを要求しない。
+- **未見正常例**：別の未見入力でも既定義deterministic ruleを同じownerで判定する。存在しないGuard ruleを補作しない。
+- **owner oracle・戻し先**：決定的rule/authorityはSECURITY、必要なsemantic judgement/diagnosisはINTELLIGENCE。semantic不足はINTELLIGENCEへ返す。
+
+### SECURITY-CASE-026-02 — Bot不在でGuard ruleを省略
+
+- **対象AC**：`SECURITY-AC-026-01`
+- **negative変異**：Bot未接続だけを変え、既定義deterministic Guard条件が実行されない。
+- **期待oracle**：不合格。Bot不在で決定的制約を落とさない。
+- **owner戻し**：Guard enforcementをSECURITY ownerへ返す。
+
+### SECURITY-CASE-026-03 — semantic inputをauthorityへ昇格
+
+- **対象AC**：`SECURITY-AC-026-02`
+- **negative変異**：INTELLIGENCE semantic judgement/diagnosis resultだけをallow/authorityとして扱う。
+- **期待oracle**：不合格。semantic resultは判断入力でありGuard ruleやoperation authorityではない。
+- **owner戻し**：semantic meaningはINTELLIGENCE、authorityはSECURITYに残す。
+
+### SECURITY-CASE-026-04 — semantic unknownをpass
+
+- **対象AC**：`SECURITY-AC-026-02`
+- **negative変異**：judgement不能/unknownを判定成功へ変える。
+- **期待oracle**：unknown/制限のまま返し、未確定scopeで許可しない。
+- **owner戻し**：INTELLIGENCE semantic responsibilityへ返す。
+
+### SECURITY-CASE-026-05 — SECURITYがmodel/routingを決める
+
+- **対象AC**：`SECURITY-AC-026-03`
+- **negative変異**：SECURITY policy文書内でmodelまたはrouting choiceを決定する。
+- **期待oracle**：owner boundary違反として不合格。SECURITYは既存接続contractだけを参照する。
+- **owner戻し**：INTELLIGENCE meaning/model/routing ownerへ返す。
+
+### SECURITY-CASE-026-06 — 全Botを1.0 runtime必須化
+
+- **対象AC**：`SECURITY-AC-026-03`
+- **negative変異**：L2例示Bot全件のruntime実装/稼働を1.0 Guardの前提とする。
+- **期待oracle**：不合格。必要時の接続と全Bot実装必須を区別する。
+- **owner戻し**：対象版/意味が変わる場合だけL2へ返す。
+
+### SECURITY-CASE-026-07 — 後続版semantic scopeを1.0へ前倒し
+
+- **対象AC**：`SECURITY-AC-026-03`
+- **negative変異**：semantic exfiltration/probing実利用またはBot runtimeを1.0の成立条件へ加える。
+- **期待oracle**：不合格。1.0はGuard/Bot境界だけを照合する。
+- **owner戻し**：1.x/後続版を保持し、要求の意味・version変更が必要な場合だけL2へ戻す。

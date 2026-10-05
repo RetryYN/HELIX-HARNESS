@@ -459,3 +459,85 @@ L11全文SHAは`e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0
 ### 029の規範sourceとcorroborationの区別
 
 旧IR `requirements.json#/HIL-NFR-37`（5971–5992行）と `#/HIL-NFR-39`（6067–6088行、LEGACY-ASSET-A60CF91DD2AF6693E6F9）を規範sourceとして保持する。旧L1 217/219行は同文のcorroborationであり別atomに数えない。BR-32は追加runtime区分、HR/HAC/HAT-HIL-23は共有consumer/oracle contextである。consumer全条件のclosureを029だけで生成しない。既存034のcatalog/typed/probe意味はそのownerに保持し、旧source holdingをL3起草で終端化しない。
+
+## Stage 4 — 接続・構成体の境界（5親、候補）
+
+> 状態：採択済みL2候補から導出したL3/L10候補であり、承認・実装・実行・promotionを許可しない。対象はHELIXSECURITY-L2-021/022/023/024/026のみ。各親のversion_targetは1.0。026はGuardの決定的境界だけを含み、semantic probing/exfiltration実利用やBot runtimeは後続版のまま。
+
+### 親、PO採択、旧HELIXの起点
+
+PO decisionは `633bf12ea8f948db8ba3d6600179c4a9507377a7` のHELIX-SECURITY判断record rows 59–64にある各明示registrationを採択している。G0のStage 4は順序区分であり、PO採択・全Stage完了・実装またはreleaseを生成しない。021は1.0接続境界と対象別能力、022–024は1.0、026はGuard 1.0とsemantic接続の後続版境界を保持する。
+
+旧HELIXのL3工程定義 `archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md:148–168`（`LEGACY-ASSET-F542125805B777D8A56A`, SHA-256 `9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3`）が示すFR/ACとpairの形式を再導出する。旧SECURITY capability-broker L3 `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md`（`LEGACY-ASSET-B62E49D2E156232B8C63`）のtyped authority、exact binding、failure receiptは関係する観点だけを再利用し、closed enum、runtime broker、hook/sandbox coverage、AND gate、旧承認・DB/receipt schemaは現行要求として移さない。旧paired `security-capability-broker-acceptance.md`（`LEGACY-ASSET-170112AB2FA2FFDBFEE9`）は独立negativeとevidenceのconsumer形を再導出する資料で、実行しない。
+
+旧GitHub security admission L3 `github-security-admission-requirements.md`（`LEGACY-ASSET-ADE4AF41DD06DA4F100F`）およびpaired `github-security-admission-system-test-design.md`（`LEGACY-ASSET-EB421907D74CD002EA40`）のexact HEAD/artifact binding、coverage/receipt drift、scanner間の非相殺は更新審査・段階境界の隣接consumer資料として参照する。GitHub固有のscanner、severity、waiver、CI/deployment、settings/apply、Codex Securityの各条件はSECURITY-L2-023へ移植せず、既存HARNESS verificationとOS promotionのowner境界から再導出する。資産台帳上のhistorical/unresolved状態は変更・昇格しない。
+
+| 親 | 旧sourceの項目と処置 | 現行の再導出・置換理由 |
+|---|---|---|
+| HELIXSECURITY-L2-021 | 旧CAP `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md:68–112,128–166`（`LEGACY-ASSET-B62E49D2E156232B8C63`, SHA-256 `161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7`）、旧CAP acceptance `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md:18–29,55–59`（`LEGACY-ASSET-170112AB2FA2FFDBFEE9`, SHA-256 `b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4`）のbinding/evidence形を部分再利用。 | 外部dataのsource/classification/contract revision保持、CONNECT transportとSECURITY trust判断の分離、LABO/INTELLIGENCE受領だけでtrust昇格しない意味は固定L2/L11から再導出。旧physical target、sink enum、旧runtime broker、全runtime AND gateは置換。 |
+| HELIXSECURITY-L2-022 | 上記旧CAP `:32–44,116–151,160–166` とpaired acceptance `:20–29,57–59`（同一asset ID/SHA）にあるtyped tupleと理由付き結果を部分再利用。 | INTELLIGENCE request→SECURITY operation-specific判断→OS assignment/progression→Worker enforcementの責務・同一性連続性を再導出。旧closed capability enum、human-approval receipt、broker admissionを持ち込まない。 |
+| HELIXSECURITY-L2-023 | 上記旧CAP `:116–166`/acceptance `:20–29,55–59`（同一asset ID/SHA）と旧GitHub admission `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-security-admission-requirements.md:14–75`（`LEGACY-ASSET-ADE4AF41DD06DA4F100F`, SHA-256 `0a25ec678f4f45b8741f9ad4c8c71d28f140160d575a1b39187faf9857d03a72`）、paired system test `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/github-security-admission-system-test-design.md:14–28`（`LEGACY-ASSET-EB421907D74CD002EA40`, SHA-256 `6ee1f7d3292418f03c4affe16e7e5cf6725e009278abd2b1407f46ed457b089b`）を段階別証拠/receipt driftの隣接資料として限定参照。 | SECURITY admission、Worker実行、HARNESS verification、OS promotionを別state/receiptで連結する。scanner profile、severity/waiver、GitHub settings、固定CI/deploy gate、旧runtimeを置換・除外。 |
+| HELIXSECURITY-L2-024 | 旧CAP §1.2/3のtarget/runtime enforcementとCAP-006の適用観測だけを部分再利用。 | SECURITY policy/authority、INFRASTRUCTURE実資源・runtime resource state/観測、Worker物理強制の責務を再導出。INFRAがpolicyを作る/SECURITYがresource placementを所有する方式、secret値をordinary state/backupへ保存する方式は採らない。 |
+| HELIXSECURITY-L2-026 | 上記旧CAP `:46–66,133–166` とpaired acceptance `:20–29,42–53`（`LEGACY-ASSET-170112AB2FA2FFDBFEE9`, SHA-256 `b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4`）のdecision/analysisとunknown境界を部分参照。 | 1.0 Guard決定と、必要時のINTELLIGENCE semantic judgement/diagnosisを再導出。旧Bot/runtime一覧・必須接続・model/router所有・semantic probing/exfiltrationの1.x scopeは移さない。 |
+
+固定親のraw-LF spanとPO/G0・旧asset全文pinはこのrevisionのappend-only監査記録に固定する。下記は現行の採択意味、owner、scopeを記述し直すもので、旧sourceや候補登録から追加authorityを作らない。
+
+### SECURITY-FR-021-01 — 外部data接続の信頼境界
+
+External dataからCONNECT、SECURITY boundaryを経てLABOまたはINTELLIGENCEへ渡るscopeについて、source identity/revision、CONNECT contract identity/revision、SECURITY分類・境界判断、受領先契約を同じflowへ対応付ける。接続receiptは未信頼sourceを保持し、SECURITYの判断と下流の受領を別結果として表す。CONNECTは通信・再送・追跡を持ち、SECURITYはtrust policy判断を持つ。下流受領や通信成功はtrust昇格を意味しない。永続化promotionはL2-014/027に残す。
+
+**旧HELIX対応**：上表021行のとおり旧CAPのbinding/evidence構造だけを部分再利用し、外部接続、分類、受領契約、ownerは現行L2-021から再導出する。旧transport enumやbroker runtimeは置換する。
+
+- **固定親**：`HELIXSECURITY-L2-021` / `MPR-RC-HELIXSECURITY-L2-021-002`、version_target `1.0の境界、対象別能力に従う`。固定L2 `633bf12...:272–281`、L11 `:45`、PO decision `:59`。
+- **依存と戻し先**：L2-001/002、選択されたCONNECT contract、LABO/INTELLIGENCEの受領契約。source、入力/出力identity、contract版、classification、deny/unknown伝播を照合する。connection contract mismatchはCONNECT側の接続要求、trust policy差はL1-001/002へ戻す。永続化はL2-014/027へ戻す。SECURITYは再送を所有しない。
+- **`SECURITY-AC-021-01` flow binding**：source、CONNECT contract/revision、SECURITY classification/decision、受領先contractを同一flow identityへ束縛し、receipt上で各stageの入力と出力を対応付ける。
+- **`SECURITY-AC-021-02` trust non-promotion**：受信、transport成功、受領先ackだけを根拠に未信頼dataをinstruction/trusted data/authorityへ昇格しない。SECURITYの明示境界判断と受領結果を分離する。
+- **`SECURITY-AC-021-03` 含有条件**：候補は接続境界のtraceであり、L2-014/027の永続化・保存完了や接続先の個別機能をこの親へ追加しない。
+
+### SECURITY-FR-022-01 — operation authorityの段階間同一性
+
+INTELLIGENCE requestは案/要求入力であり実行許可ではない。SECURITYはoperation-specific allow/deny/constrainを既存authorityから判定する。OSはticket/assignmentと許可済み進行、Worker execution environmentは適用scopeを所有する。request、SECURITY decision、OS assignment、Worker evidence間でsubject/target/operation/revision/environment/scopeを照合し、expiry・revoke/mismatchは既存契約に従う。SECURITYはticket、assignment、Worker配置を決めず、OSはSECURITY判断を上書きしない。
+
+**旧HELIX対応**：旧CAP typed tuple・action bindingの部分類似を再利用し、全操作に適用される境界とrole ownerを固定L2-022/L11から再導出する。旧closed enum、追加human approve、security-engagement限定authorityは移植しない。
+
+- **固定親**：`HELIXSECURITY-L2-022` / `MPR-RC-HELIXSECURITY-L2-022-001`、version_target `1.0`。固定L2 `633bf12...:282–291`、L11 `:46`、PO decision `:60`。
+- **依存と戻し先**：L2-003/005/007/008/009、OS assignment、INTELLIGENCE request。主体、対象、操作、revision、environment、scope、expiryの連続性および拒否・失効の伝播を確認する。意味差は最も早い該当L1、OS ticket/進行差はOS、Worker適用差はWorker/INFRAへ返す。authority欠落では当該操作を停止する。
+- **`SECURITY-AC-022-01` request is not grant**：request単独でallow/assignment/runを生成しない。decisionは既存の一致するoperation authorityとそのreasonを参照する。
+- **`SECURITY-AC-022-02` binding continuity**：request→decision→assignment→effective scopeの同一subject/target/operation/revision/environment/scope/expiryを照合し、stageごとのreceiptを対応付ける。
+- **`SECURITY-AC-022-03` role separation**：SECURITYによるassignment/Worker placement、OSによるSECURITY decision上書き、Workerによる自己scope拡張を防ぎ、それぞれの不足を既存ownerへ戻す。
+
+### SECURITY-FR-023-01 — update admissionからpromotionの段階別receipt
+
+更新candidate、SECURITY admission、Worker実行、HARNESS verification、OS promotionを独立した段階として記録し、各段階のinput/output identity・revision・status・evidenceを連続して照合できるようにする。SECURITY acceptance単独で実行/promotionを許さず、HARNESS green単独でSECURITY admissionを代替せず、OS ticket単独で不明な条件を昇格しない。いずれかの段階でfailure/unknownなら後段状態をsuccess/promotionとして報告しない。SECURITYはpolicy/authority、Workerは実行、HARNESSはverification contract、OSはpromotion stateを所有する。
+
+**旧HELIX対応**：CAP acceptanceの各failureを理由付きで残す構造、GH admissionのexact revision/coverage driftを照合材料として限定再利用する。security scan、CI/deploy、waiver、external settings/applyは固定親にないため要件へ昇格させず、段階責務を現L2-023から再導出する。
+
+- **固定親**：`HELIXSECURITY-L2-023` / `MPR-RC-HELIXSECURITY-L2-023-001`、version_target `1.0`。固定L2 `633bf12...:292–301`、L11 `:47`、PO decision `:61`。
+- **依存と戻し先**：L2-007/010/011/012/013、HARNESS verification contract、OS promotion state。provenance/capability/authority問題はSECURITY、実行環境失敗はWorker/INFRA、検証失敗はHARNESS対応pair、進行/promotion失敗はOSへ戻す。
+- **`SECURITY-AC-023-01` distinct stage state**：candidate→SECURITY admission→Worker execution→HARNESS verification→OS promotionの各状態とreceiptを別々に記録し、各境界の対象revisionと入力/出力identityを結ぶ。
+- **`SECURITY-AC-023-02` no substitute success**：SECURITY acceptanceだけ、HARNESS greenだけ、OS ticketだけでは次段階の成功・promotionを生成しない。
+- **`SECURITY-AC-023-03` failure propagation**：各段階のfailure/unknown/missing/stale evidenceは該当段階を未完として保持し、その後の段階を成功表示しない。戻し先ownerをそのfailure kindに対応させる。
+
+### SECURITY-FR-024-01 — policyと実資源状態の境界receipt
+
+SECURITY policy/authorityとINFRASTRUCTUREが保持する実資源・runtime resource state/観測、ならびにWorker execution environmentによる制約強制を、同一対象・revision・scopeのreceiptで対応付ける。policy宣言と実状態/適用観測は別のevidenceとして保持し、一方から他方を推定しない。INFRASTRUCTUREはsecurity policyを作らず、SECURITYはresource placement/stateを所有しない。raw credential値を通常のresource state・backup・snapshotへ保存しない。
+
+**旧HELIX対応**：旧CAP target identity/runtime coverageとvalue-free reason receiptの形だけ部分再利用する。現行のpolicy/resource/enforcer/observation ownershipはL2-024から再導出し、旧resource broker、hook enforcement/runtime schemaを置換する。
+
+- **固定親**：`HELIXSECURITY-L2-024` / `MPR-RC-HELIXSECURITY-L2-024-001`、version_target `1.0`。固定L2 `633bf12...:302–311`、L11 `:48`、PO decision `:62`。
+- **依存と戻し先**：Infrastructure L1-004/006/016/028/029、Security L2-005/006/007/008/009。policyと実際のenvironment/network/credential boundaryをtraceし、未適用/unknownを観測する。policy意味差はSECURITY L1、resource state/実適用差はINFRASTRUCTURE L1/L2へ戻す。OSの作業状態へ混ぜない。
+- **`SECURITY-AC-024-01` policy/effective state split**：SECURITY policy revision、INFRASTRUCTURE resource identity/revision/observed state、Workerのconstraint application stateを個別記録し、同一対象とscopeへ束縛する。
+- **`SECURITY-AC-024-02` no owner inversion**：INFRASTRUCTUREがpolicyを作る/変更する、またはSECURITYがresource placement/stateを決める変異を不合格とし、各意味を既存ownerへ戻す。
+- **`SECURITY-AC-024-03` credential value exclusion**：合成fixtureでcredential valueを含めず、通常resource state/backup/snapshotへraw credential値を保存しない。credential-useの許否は既存L2-005/008に従う。
+
+### SECURITY-FR-026-01 — deterministic Guardとsemantic判断の境界
+
+1.0ではL2-020に列挙された決定的Guard条件をSECURITY側の既存rule/authorityにより判定し、BotやINTELLIGENCE semantic responseの有無でrule適用を省かない。semantic judgement/diagnosisが必要な場合は、限定scope付きの判断依頼とその由来/確度をINTELLIGENCE接続の範囲で扱い、decision inputとGuard結果を区別する。semantic judgement不能はunknown/制限として扱い、SECURITYはmodelやroutingを決めない。1.0要件はGuard/Bot責務境界に限り、L2-026が後続版としているsemantic exfiltration/probingの実利用やBot runtimeを前倒ししない。
+
+**旧HELIX対応**：旧CAPのtyped decisionとanalysis／enforcementの区分だけ部分参照する。Bot例、runtime、closed role/authority tupleは現行固定L2から再導出せず、不要な実装要求となるため置換する。
+
+- **固定親**：`HELIXSECURITY-L2-026` / `MPR-RC-HELIXSECURITY-L2-026-001`、version_target `Guard 1.0、意味判断/観測の1.x`。このStageではGuard 1.0の責務境界のみ。固定L2 `633bf12...:322–331`、L11 `:50`、PO decision `:64`。
+- **依存と戻し先**：L2-018/020、INTELLIGENCE L1/将来接続contract。Guard結果とsemantic judgement/diagnosis、判断由来と確度を区別する。semantic判断不能はunknown/制限として保持してINTELLIGENCEの意味責務へ戻す。SECURITYがmodel/routingを決めない。
+- **`SECURITY-AC-026-01` Guard remains deterministic**：Guardに定義済みの決定的条件をBot不在時にも判定し、Bot response待ちを理由にルールを飛ばさない。
+- **`SECURITY-AC-026-02` semantic input boundary**：必要時のsemantic inputは限定scope/由来/確度を識別するdecision inputとして区別し、Guard結果やauthorityそのものに変換しない。判断不能はunknown/制限とする。
+- **`SECURITY-AC-026-03` version and owner boundary**：semantic probing/exfiltration実利用とBot runtimeは1.xまたは必要な後続版として残す。全例示Botを1.0 runtime必須にせず、SECURITYがmodel/routingを選ばない。

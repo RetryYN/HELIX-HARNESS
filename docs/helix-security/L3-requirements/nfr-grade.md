@@ -70,3 +70,17 @@ Stage 2cの分母は検査結果を読む前に適用条件から固定する。
 | `SEC-NFR-032-01` / `SECURITY-AC-032-01..03` | 有効permanent denyの下位機構上書き0、確認済み非適用への新規allow/deny生成0。 | 032の対象scopeと優先順位。主/追加双方を照合するBを追加runtimeだけのAと比較し、固定親どおりBを候補とする。 | 同一対象のmarker/flag各変異とpolicy状態を測る。switch設定能力は035で別観測し032成功で補わない。032-03のOS assignment/未完義務、031からの充足推定禁止も確認する。 |
 | `SEC-NFR-034-01` / `SECURITY-AC-034-01..04` | profile/revision間の条件流用0、write-capable probeをread-onlyとする件数0、正常scoped credential-useへの追加一律deny0。 | profile束縛Bを全接続一括判定Aと比較し、固定034どおりBを候補とする。 | capability・authority・egress各変異と未見正常profileを比較する。catalog/typed供給の未完はそのまま保持し全source closureを数えない。034-04のread-only越境、1.x probe代用と三責務越境を別fixtureにする。 |
 | `SEC-NFR-035-01` / `SECURITY-AC-035-01..04` | run設定残置/次run継承0、allowlist対応時のYOLO代替0、deny能力未観測の成功claim0。 | PO scope A/配置Aと旧NFR38四条件。successだけcleanupするAと全終端照合Bを比較しBを候補とする。 | success/failure/cancel各終端、対応/非対応/unknown能力、deny前後を独立計測する。timeoutや経過期限・runtime一覧は未規定であり数値を追加しない。035-04でtarget revision/authority/repository policy・deny binding、repo/runtime間非流用、claim-only unknown、および006/007/008/OS-018非相殺を測る。 |
+
+## Stage 4 — 技術候補（5親）
+
+ここで示す0件は、固定L2/L11の失敗を成功扱いしない設計上の候補oracleであり、実測値・実装値・PO承認SLOではない。固定親にないlatency、retention、throughput、quotaを追加しない。測定時は適用条件を先に分母へ固定し、未選択/未観測/missing/unknown/staleを0/passに変換しない。
+
+| 候補ID / 親AC | 候補metric | 比較・根拠 | L10で測る範囲 |
+|---|---|---|---|
+| `SEC-NFR-021-01` / `SECURITY-AC-021-01..03` | flow stage identity/revision/classification bindingの欠落・trust誤昇格候補0。 | 全体のtransport成功だけで閉じる案と、CONNECT/SECURITY/consumer receiptごとにtraceする案を比較し、L2-021の責務分離に対応する後者を候補とする。 | source、contract、decision、consumerを段階ごとに照合。未選択consumerは未観測で記録し、接続successからtrustを推定しない。 |
+| `SEC-NFR-022-01` / `SECURITY-AC-022-01..03` | request単独allow、authority tuple drift許可、role inversionの候補0。 | request一つで許可とする案と、既存authority・OS assignment・Worker適用を別に照合する案を比較し、L2-022のoperation-specific boundaryを保つ後者を候補とする。 | actor/target/operation/revision/environment/scope/expiryは各独立fixture。通常有効scopeは追加approveなしで再利用する。 |
+| `SEC-NFR-023-01` / `SECURITY-AC-023-01..03` | 4段階のstate/receipt欠落・failure後のsuccess/promotion誤表示候補0。 | 集約greenだけでpromotionする案と、SECURITY admission/Worker/HARNESS verification/OS promotionを別状態で連結する案を比較し、L2-023の別段階条件を満たす後者を候補とする。 | 各段階の入力/出力identityとrevision、failure/unknown、後段holdをCASE単位で照合。性能期限値は追加しない。 |
+| `SEC-NFR-024-01` / `SECURITY-AC-024-01..03` | policy/effective resource/enforcement evidenceの誤結合0、raw credential値のresource/backup/snapshot露出0。 | policy設定だけを実適用とみなす案と、INFRA/Workerの観測を別receiptとして束ねる案を比較し、L2-024の三者境界を保つ後者を候補とする。 | synthetic resource identity/revision、policy revision、Worker適用観測の結合を測る。secret markerは値を記録せず合成fixtureで検出する。 |
+| `SEC-NFR-026-01` / `SECURITY-AC-026-01..03` | Bot不在による決定的Guard条件抜け0、semantic judgementをGuard/authorityへ昇格する誤分類0。 | Guardを常にBotへ委譲する案と、1.0 deterministic ruleを保持し必要時のsemantic inputを別に扱う案を比較し、固定L2-020/026に沿う後者を候補とする。 | Bot absent/optional input/unknown semantic resultを比較する。全Bot稼働率やsemantic runtimeの1.0完成は測定母集団に含めない。 |
+
+固定L2/L11に明示されたreceipt・状態は各CASEのfixture範囲で照合する。候補0件はその範囲のoracleであり、独立製品SLO、外部作用の許可、実測成功を表さない。
