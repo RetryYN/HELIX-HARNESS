@@ -1,0 +1,5 @@
+# LABO Stage2b review06 Root検収
+
+本文e44fbbb271392063853ff93529363a3a73d8a0ef。C12の元結果不変・書換え拒否を固定L2:237に照合、034/035 CONNECT契約owner表記は接続前置159–162と既存CASEへ一致。trace表の全変更をCASE multisetで確認し、順序変更のみ・分類と集合不変。6文書SHA/prefix一致、312 CASE同集合、diffcheck確認。
+
+Worker監査はrequirement-registration配下に作成されているため時点記録bytesを保持する。本L3検収はrequirements-stage配下に置く。独立reviewと承認待ち、CASE未実行。

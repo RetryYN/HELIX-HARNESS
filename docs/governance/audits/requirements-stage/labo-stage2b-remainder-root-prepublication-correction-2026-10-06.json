@@ -1,0 +1,59 @@
+{
+  "record_kind": "root_prepublication_partial_correction",
+  "authority_effect": "none",
+  "latest_main": "5acae384305b01d10e88eeb2e6406f847baf66df",
+  "prior_body": "9c3e9f1200e9f5221a38b779d22fb2fba4c6e716",
+  "documents": [
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "sha256": "86ab4cb31a146c7d4e882fa8ab37a2708cb61d00dc3f5f159b0cca40f09c3736",
+      "base_prefix_sha256": "12fdf58a66b4108bf45dcccb9845062f23b8cc49f33c800eeb6a23b12db43aa1",
+      "base_prefix_bytes": 4234
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "sha256": "eab149da9461339ceac1c727f6523cee7826a7770340b7a834911fdee43bc221",
+      "base_prefix_sha256": "5abc0f1c0aa8b6ed29ff35dd8b473332d237ae3685673c938184f812e1b78857",
+      "base_prefix_bytes": 105136
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "sha256": "c1251f20c4aee6e17d92bda3b0885d7fe051d1e2f80af774c138c86d9642a022",
+      "base_prefix_sha256": "39ecabeaec040cde052db5bb0eb77ac0446fe5951483d3ed4106768512a134ec",
+      "base_prefix_bytes": 31278
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "sha256": "7b48d40ae07ac9ae1acbf60d6ddc33099457490777ada9254c1764ba556ed000",
+      "base_prefix_sha256": "0d4dc09046dbe401846dd79241151a55bfc1c46a7514197a00602f209ffb5908",
+      "base_prefix_bytes": 3291
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "sha256": "ae07382f10a2daca62d542f9c0ea87f43d46e9a783f1b1cc211f92d542fedf73",
+      "base_prefix_sha256": "891ae5539580ffe9dcba38c539807e1adc9017021ff010dbd6d8d42cc4c37fa7",
+      "base_prefix_bytes": 145671
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "sha256": "4a2a9f4e33ef461ae09810171f283cb87fe2d515fcbcc26150345d1ebdb0c0e6",
+      "base_prefix_sha256": "dcbc66854fcbcb7b718e390b515d61fa80d2392e1d199c3c884d5ed0edf3aa52",
+      "base_prefix_bytes": 29799
+    }
+  ],
+  "corrected_legacy_source": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+    "physical_lines": [
+      43,
+      57
+    ],
+    "full_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+    "raw_lf_sha256": "c329095d1f0e61ab5260c54a6829489dd5d9651a18dae2803dd5af20a0dc7190",
+    "literal": "### UIL-R-01 改善source registry\n\n観測sourceはstable ID、owner、schema version、detector version、input authority、revision、retention、redaction、\nfreshness、failure dispositionを持つversioned registryへ登録する。任意log文字列やAI感想をdetector evidenceとして\n扱わず、unknown source、欠落revision、stale evidenceをfail-closeする。\n\n初期sourceはCI wall-clock／queue／runner-minute／flake／retry、DB projection／replay／checkpoint、Requirement／\nDefinitionのduplicate／overlap／orphan／stale、dependency cycle／fan-out／change amplification、review／rework／\nrollback／incident、provider／toolchain drift、distribution consumer、resource／cost／security findingとする。\n\n### UIL-R-02 観測正規化とbaseline比較\n\nsource eventをstable event ID、baseline revision、observed revision、payload digest、correlation、causation、confidence、\ncounterevidenceへ正規化する。同一event集合とregistry versionから同一normalized exact setとdigestを生成し、\ncurrent baseline、観測値、欠測、予測を別fieldにする。\n"
+  },
+  "remaining": [
+    "C02/C03 case familyの複数変異を単独CASEまたは実在ID indexへ照合する",
+    "全22親の固定L11基本行と詳細条件を引用し、追加caseへ展開する",
+    "修正後revisionの全source/current suffix再pinと独立review"
+  ]
+}
