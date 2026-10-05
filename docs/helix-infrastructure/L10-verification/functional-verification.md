@@ -235,3 +235,188 @@ L2-005は採択済み依存入力であり、L3/L10対象ではない。005の�
 | CASE-INFRA-010-20 negative / read-only write enforcement evidence missing | INFRA-010-FR-01 / INFRA-010-AC-01 | read-only declarationと空write-setだけを与え、適用されたwrite prohibitionの証拠だけを欠落させる。他のread authority/scope/inputは正常。 | 読取専用宣言だけでは成功扱いせず、SECURITY/OSへ返す。 |
 | CASE-INFRA-010-21 negative / read-only before-after evidence missing | INFRA-010-FR-01 / INFRA-010-AC-01 | read-only宣言とwrite禁止証跡を与えるが、対象scopeのbefore/after observationだけを欠落させる。 | 対象scopeの不変確認なしに成功扱いせず、SECURITY/OSへ返す。 |
 | CASE-INFRA-010-22 negative / revoked update admission | INFRA-010-FR-02 / INFRA-010-AC-02 | 有効な通常authorityとticketを保ち、state-changing operationのupdate-admissionだけをrevokedにする。read-only対照は別fixtureで適格を保つ。 | 変更適用を開始前に拒否してSECURITYへ戻し、revoked状態と未完変更義務を保持する。read-onlyをupdate-admission不在だけで拒否しない。 |
+
+## Stage 4 追加範囲 — HELIXINFRASTRUCTURE-L2-008/025
+
+この追記は採択済み `HELIXINFRASTRUCTURE-L2-008` と `HELIXINFRASTRUCTURE-L2-025` の1.0候補である。固定要求意味はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7` のL2/L11、PO確認対象は `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。既承認prefixのbytesを保ち、この追記の承認・実装結果は別に判断する。実装順序はG0案Bに従う。後続版、自動配置最適化、高度な自動増減、Web展開を受入条件へ加えない。
+
+### Stage 4 fixtureとoracle
+
+対のL3 INFRA-008/025各ACをシステム境界で照合する設計であり、今回の実装試験結果ではない。合成・非secretのfixtureを用いる。各行は独立CASE IDを持ち、変異の成功を他行へ流用しない。normal、held-out normal、missing/unknown/stale/mismatch、owner戻しを別の入力identityで実行する。未見正常は契約に明示対応する新入力であり、適用不明なら正常ではない。stale判定は既存source契約に従い、新しい時間値やexpiry gateを作らない。固定親pin/旧source処置はL3機能本文と同時点監査へ結ぶ。
+
+| CASE | AC trace | 種別 | 入力と操作 | 期待oracle・戻し先 |
+|---|---|---|---|---|
+| CASE-INFRA-008-S4-01 | INFRA-008-AC-01, INFRA-008-AC-02 | 正常 | design-core-a/rev-d1/scope-a approved、versioned interface i1。target-a/rev-t4とactual-a/rev-a7を同対象参照で結ぶ。 | 設計/target/actualを別identity/revisionで追跡し、一致比較入力を提供。全canonical設計bytes不変。 |
+| CASE-INFRA-008-S4-02 | INFRA-008-AC-02 | drift正常 | 正常とは別fixtureのapproved design-core-b、target-bとactual-bのconfig差。 | 差異を比較入力として保ち、actualをdesign/targetに書換えず変更提案を別状態に保持。 |
+| CASE-INFRA-008-S4-03 | INFRA-008-AC-01, INFRA-008-AC-02 | 未見正常 | held-out design-core-uと新resource/environment、支持されたinterfaceで別target/runtime revisionsを与える。 | 契約適用を照合できれば正常にtargetを結ぶ。未知の名前だけで拒否せず、revision文字列の同値を強制しない。 |
+| CASE-INFRA-008-S4-04 | INFRA-008-AC-01 | 個別負例 | 正常入力のdesign identityだけをmissingにする。他fieldは正常。 | design identityの問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |
+| CASE-INFRA-008-S4-05 | INFRA-008-AC-01 | 個別負例 | 正常入力のdesign identityだけをunknownにする。他fieldは正常。 | design identityの問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |
+| CASE-INFRA-008-S4-06 | INFRA-008-AC-01 | 個別負例 | 正常入力のdesign identityだけをstaleにする。他fieldは正常。 | design identityの問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |
+| CASE-INFRA-008-S4-07 | INFRA-008-AC-01 | 個別負例 | 正常入力のdesign identityだけをmismatchにする。他fieldは正常。 | design identityの問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |
+| CASE-INFRA-008-S4-08 | INFRA-008-AC-01 | 個別負例 | 正常入力のdesign revisionだけをmissingにする。他fieldは正常。 | design revisionの問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |
+| CASE-INFRA-008-S4-09 | INFRA-008-AC-01 | 個別負例 | 正常入力のdesign revisionだけをunknownにする。他fieldは正常。 | design revisionの問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |
+| CASE-INFRA-008-S4-10 | INFRA-008-AC-01 | 個別負例 | 正常入力のdesign revisionだけをstaleにする。他fieldは正常。 | design revisionの問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |
+| CASE-INFRA-008-S4-11 | INFRA-008-AC-01 | 個別負例 | 正常入力のdesign revisionだけをmismatchにする。他fieldは正常。 | design revisionの問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |
+| CASE-INFRA-008-S4-12 | INFRA-008-AC-01 | 個別負例 | 正常入力のdesign scopeだけをmissingにする。他fieldは正常。 | design scopeの問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |
+| CASE-INFRA-008-S4-13 | INFRA-008-AC-01 | 個別負例 | 正常入力のdesign scopeだけをunknownにする。他fieldは正常。 | design scopeの問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |
+| CASE-INFRA-008-S4-14 | INFRA-008-AC-01 | 個別負例 | 正常入力のdesign scopeだけをstaleにする。他fieldは正常。 | design scopeの問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |
+| CASE-INFRA-008-S4-15 | INFRA-008-AC-01 | 個別負例 | 正常入力のdesign scopeだけをmismatchにする。他fieldは正常。 | design scopeの問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |
+| CASE-INFRA-008-S4-16 | INFRA-008-AC-01 | 個別負例 | 正常入力の承認状態だけをmissingにする。他fieldは正常。 | 承認状態の問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |
+| CASE-INFRA-008-S4-17 | INFRA-008-AC-01 | 個別負例 | 正常入力の承認状態だけをunknownにする。他fieldは正常。 | 承認状態の問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |
+| CASE-INFRA-008-S4-18 | INFRA-008-AC-01 | 個別負例 | 正常入力の承認状態だけをstaleにする。他fieldは正常。 | 承認状態の問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |
+| CASE-INFRA-008-S4-19 | INFRA-008-AC-01 | 個別負例 | 正常入力の承認状態だけをmismatchにする。他fieldは正常。 | 承認状態の問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |
+| CASE-INFRA-008-S4-20 | INFRA-008-AC-01 | 個別負例 | 正常入力のversioned design interfaceだけをmissingにする。他fieldは正常。 | versioned design interfaceの問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |
+| CASE-INFRA-008-S4-21 | INFRA-008-AC-01 | 個別負例 | 正常入力のversioned design interfaceだけをunknownにする。他fieldは正常。 | versioned design interfaceの問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |
+| CASE-INFRA-008-S4-22 | INFRA-008-AC-01 | 個別負例 | 正常入力のversioned design interfaceだけをstaleにする。他fieldは正常。 | versioned design interfaceの問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |
+| CASE-INFRA-008-S4-23 | INFRA-008-AC-01 | 個別負例 | 正常入力のversioned design interfaceだけをmismatchにする。他fieldは正常。 | versioned design interfaceの問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |
+| CASE-INFRA-008-S4-24 | INFRA-008-AC-01 | 個別負例 | 正常入力のL2-001 resource/environment参照だけをmissingにする。他fieldは正常。 | L2-001 resource/environment参照の問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |
+| CASE-INFRA-008-S4-25 | INFRA-008-AC-01 | 個別負例 | 正常入力のL2-001 resource/environment参照だけをunknownにする。他fieldは正常。 | L2-001 resource/environment参照の問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |
+| CASE-INFRA-008-S4-26 | INFRA-008-AC-01 | 個別負例 | 正常入力のL2-001 resource/environment参照だけをstaleにする。他fieldは正常。 | L2-001 resource/environment参照の問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |
+| CASE-INFRA-008-S4-27 | INFRA-008-AC-01 | 個別負例 | 正常入力のL2-001 resource/environment参照だけをmismatchにする。他fieldは正常。 | L2-001 resource/environment参照の問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |
+| CASE-INFRA-008-S4-28 | INFRA-008-AC-01 | 個別負例 | 正常入力のL2-002 comparison参照だけをmissingにする。他fieldは正常。 | L2-002 comparison参照の問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |
+| CASE-INFRA-008-S4-29 | INFRA-008-AC-01 | 個別負例 | 正常入力のL2-002 comparison参照だけをunknownにする。他fieldは正常。 | L2-002 comparison参照の問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |
+| CASE-INFRA-008-S4-30 | INFRA-008-AC-01 | 個別負例 | 正常入力のL2-002 comparison参照だけをstaleにする。他fieldは正常。 | L2-002 comparison参照の問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |
+| CASE-INFRA-008-S4-31 | INFRA-008-AC-01 | 個別負例 | 正常入力のL2-002 comparison参照だけをmismatchにする。他fieldは正常。 | L2-002 comparison参照の問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |
+| CASE-INFRA-008-S4-32 | INFRA-008-AC-01, INFRA-008-AC-02 | 境界負例 | 未承認designからtarget確定だけを試みる。他の入力は適用可能。 | 該当誤確定/変更/owner移管/比較を成立扱いにせず、CORE/design ownerへ返し比較保留と入力bytesを保持する。 |
+| CASE-INFRA-008-S4-33 | INFRA-008-AC-01, INFRA-008-AC-02 | 境界負例 | actual値をapproved designへ上書きだけを試みる。他の入力は適用可能。 | 該当誤確定/変更/owner移管/比較を成立扱いにせず、CORE/design ownerへ返し比較保留と入力bytesを保持する。 |
+| CASE-INFRA-008-S4-34 | INFRA-008-AC-01, INFRA-008-AC-02 | 境界負例 | drift解消としてtargetを無言上書きだけを試みる。他の入力は適用可能。 | 該当誤確定/変更/owner移管/比較を成立扱いにせず、CORE/design ownerへ返し比較保留と入力bytesを保持する。 |
+| CASE-INFRA-008-S4-35 | INFRA-008-AC-01, INFRA-008-AC-02 | 境界負例 | INFRAへCORE設計意味ownerを移すだけを試みる。他の入力は適用可能。 | 該当誤確定/変更/owner移管/比較を成立扱いにせず、CORE/design ownerへ返し比較保留と入力bytesを保持する。 |
+| CASE-INFRA-008-S4-36 | INFRA-008-AC-01, INFRA-008-AC-02 | 境界負例 | COREをruntime actual ownerにするだけを試みる。他の入力は適用可能。 | 該当誤確定/変更/owner移管/比較を成立扱いにせず、CORE/design ownerへ返し比較保留と入力bytesを保持する。 |
+| CASE-INFRA-008-S4-37 | INFRA-008-AC-01, INFRA-008-AC-02 | 境界負例 | 変更提案だけで設計変更を実施だけを試みる。他の入力は適用可能。 | 該当誤確定/変更/owner移管/比較を成立扱いにせず、CORE/design ownerへ返し比較保留と入力bytesを保持する。 |
+| CASE-INFRA-008-S4-38 | INFRA-008-AC-01, INFRA-008-AC-02 | 境界負例 | 変更提案だけで実操作を実施だけを試みる。他の入力は適用可能。 | 該当誤確定/変更/owner移管/比較を成立扱いにせず、CORE/design ownerへ返し比較保留と入力bytesを保持する。 |
+| CASE-INFRA-008-S4-39 | INFRA-008-AC-01, INFRA-008-AC-02 | 境界負例 | 別environmentのactualを対象比較へ結ぶだけを試みる。他の入力は適用可能。 | 該当誤確定/変更/owner移管/比較を成立扱いにせず、CORE/design ownerへ返し比較保留と入力bytesを保持する。 |
+| CASE-INFRA-025-S4-01 | INFRA-025-AC-01, INFRA-025-AC-02 | 正常 | Worker-w1とresource-r1を別identityにし、OS ticket-t1、要求-q1、責務-o1、必要CPU/memory/GPU/storage/network/process/container、capacity/state、SECURITY条件と実隔離source/revisionを与える。 | 実資源とWorkerを対応づけ、適用属性と実隔離を照合。OS/SECURITYと実資源の正本が分離する。 |
+| CASE-INFRA-025-S4-02 | INFRA-025-AC-01, INFRA-025-AC-02 | 未見正常 | 別宣言のWorker-uと新resource-r9、既存契約で適用を説明できる実行方式と実隔離証拠。 | 未見値を固定allowlistへ補完せず、同じ必要参照/条件を満たすscopeで接続成立。 |
+| CASE-INFRA-025-S4-03 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のWorker identityだけをmissingにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-04 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のWorker identityだけをunknownにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-05 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のWorker identityだけをstaleにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-06 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のWorker identityだけをmismatchにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-07 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のOS ticket参照だけをmissingにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-08 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のOS ticket参照だけをunknownにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-09 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のOS ticket参照だけをstaleにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-10 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のOS ticket参照だけをmismatchにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-11 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須の要求参照だけをmissingにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-12 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須の要求参照だけをunknownにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-13 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須の要求参照だけをstaleにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-14 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須の要求参照だけをmismatchにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-15 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須の作業責務参照だけをmissingにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-16 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須の作業責務参照だけをunknownにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-17 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須の作業責務参照だけをstaleにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-18 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須の作業責務参照だけをmismatchにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-19 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のCPUだけをmissingにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-20 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のCPUだけをunknownにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-21 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のCPUだけをstaleにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-22 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のCPUだけをmismatchにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-23 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のmemoryだけをmissingにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-24 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のmemoryだけをunknownにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-25 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のmemoryだけをstaleにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-26 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のmemoryだけをmismatchにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-27 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のGPUだけをmissingにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-28 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のGPUだけをunknownにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-29 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のGPUだけをstaleにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-30 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のGPUだけをmismatchにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-31 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のstorageだけをmissingにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-32 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のstorageだけをunknownにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-33 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のstorageだけをstaleにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-34 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のstorageだけをmismatchにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-35 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のnetworkだけをmissingにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-36 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のnetworkだけをunknownにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-37 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のnetworkだけをstaleにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-38 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のnetworkだけをmismatchにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-39 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のprocess/container環境だけをmissingにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-40 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のprocess/container環境だけをunknownにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-41 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のprocess/container環境だけをstaleにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-42 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のprocess/container環境だけをmismatchにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-43 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須の実資源identityだけをmissingにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-44 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須の実資源identityだけをunknownにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-45 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須の実資源identityだけをstaleにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-46 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須の実資源identityだけをmismatchにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-47 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のcapacityだけをmissingにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-48 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のcapacityだけをunknownにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-49 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のcapacityだけをstaleにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-50 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のcapacityだけをmismatchにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-51 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のstateだけをmissingにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-52 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のstateだけをunknownにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-53 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のstateだけをstaleにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-54 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のstateだけをmismatchにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-55 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のL2-001参照だけをmissingにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-56 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のL2-001参照だけをunknownにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-57 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のL2-001参照だけをstaleにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-58 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のL2-001参照だけをmismatchにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-59 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のL2-003参照だけをmissingにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-60 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のL2-003参照だけをunknownにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-61 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のL2-003参照だけをstaleにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-62 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のL2-003参照だけをmismatchにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-63 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のWorker実行契約だけをmissingにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-64 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のWorker実行契約だけをunknownにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-65 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のWorker実行契約だけをstaleにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-66 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のWorker実行契約だけをmismatchにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-67 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のSECURITY隔離条件だけをmissingにし、他fieldを正常にする。 | 接続成立とせずSECURITYへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-68 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のSECURITY隔離条件だけをunknownにし、他fieldを正常にする。 | 接続成立とせずSECURITYへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-69 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のSECURITY隔離条件だけをstaleにし、他fieldを正常にする。 | 接続成立とせずSECURITYへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-70 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のSECURITY隔離条件だけをmismatchにし、他fieldを正常にする。 | 接続成立とせずSECURITYへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-71 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須の隔離実適用観測だけをmissingにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-72 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須の隔離実適用観測だけをunknownにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-73 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須の隔離実適用観測だけをstaleにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-74 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須の隔離実適用観測だけをmismatchにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源/移動先の観測を保持し、unknownを非適用や十分にしない。 |
+| CASE-INFRA-025-S4-75 | INFRA-025-AC-01 | 非適用正常 | 既存契約でGPU非適用を明示するCPU-only resourceとWorkerを別fixtureで与える。 | 非適用理由とsourceを保持。GPU不足の推定失敗を作らず、残る適用属性を照合する。 |
+| CASE-INFRA-025-S4-76 | INFRA-025-AC-02 | 資源不足 | 正常の実capacityだけを必要容量未満にする。 | 接続成立とせず資源ownerへ返す。OS作業参照と未完義務を保持する。 |
+| CASE-INFRA-025-S4-77 | INFRA-025-AC-02 | 隔離不能 | 他の入力は正常で、その資源方式ではSECURITY条件を実施できない。 | 接続成立とせずSECURITYへ戻し、利用資源の実状態と未完義務を保持。policyを変更しない。 |
+| CASE-INFRA-025-S4-78 | INFRA-025-AC-02 | 宣言のみ | SECURITY条件と隔離宣言は存在するが実適用の観測を持たない。 | 宣言だけで隔離成立とせず実観測を担う資源ownerへ戻す。SECURITY条件自体が不明ならSECURITYへ返し、未観測を保持。 |
+| CASE-INFRA-025-S4-79 | INFRA-025-AC-03 | 移動正常 | 既存操作契約下で同じWorker/ticket/要求/責務をresource-r1からr2へ接続し、両resourceの前後source/revisionと未完作業を別々に記録。 | 作業参照を保持、元/移動先状態を区別し、資源変更でWorker責務を消さない。 |
+| CASE-INFRA-025-S4-80 | INFRA-025-AC-03 | 移動未見正常 | 独立のWorker-u2と資源x/yへ同一作業参照を結び、既存契約に適用する移動結果を与える。 | 新資源名称だけで拒否せず、旧資源の成功を移動先へ転用せず各実状態を照合。 |
+| CASE-INFRA-025-S4-81 | INFRA-025-AC-03, INFRA-025-AC-04 | 移動負例 | ticket参照を移動後に消去だけを独立変異にする。 | 接続/移動成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。元/移動先と未完の既知情報を保持し、正本を移管しない。 |
+| CASE-INFRA-025-S4-82 | INFRA-025-AC-03, INFRA-025-AC-04 | 移動負例 | 要求参照を移動後に消去だけを独立変異にする。 | 接続/移動成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。元/移動先と未完の既知情報を保持し、正本を移管しない。 |
+| CASE-INFRA-025-S4-83 | INFRA-025-AC-03, INFRA-025-AC-04 | 移動負例 | Worker責務参照を移動後に消去だけを独立変異にする。 | 接続/移動成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。元/移動先と未完の既知情報を保持し、正本を移管しない。 |
+| CASE-INFRA-025-S4-84 | INFRA-025-AC-03, INFRA-025-AC-04 | 移動負例 | 未完義務を移動後に消去だけを独立変異にする。 | 接続/移動成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。元/移動先と未完の既知情報を保持し、正本を移管しない。 |
+| CASE-INFRA-025-S4-85 | INFRA-025-AC-03, INFRA-025-AC-04 | 移動負例 | 元資源状態を消去だけを独立変異にする。 | 接続/移動成立とせず資源ownerへ該当問題を戻す。元/移動先と未完の既知情報を保持し、正本を移管しない。 |
+| CASE-INFRA-025-S4-86 | INFRA-025-AC-03, INFRA-025-AC-04 | 移動負例 | 移動先状態を欠落だけを独立変異にする。 | 接続/移動成立とせず資源ownerへ該当問題を戻す。元/移動先と未完の既知情報を保持し、正本を移管しない。 |
+| CASE-INFRA-025-S4-87 | INFRA-025-AC-03, INFRA-025-AC-04 | 移動負例 | 旧資源のsuccessを新資源currentへ流用だけを独立変異にする。 | 接続/移動成立とせず資源ownerへ該当問題を戻す。元/移動先と未完の既知情報を保持し、正本を移管しない。 |
+| CASE-INFRA-025-S4-88 | INFRA-025-AC-03, INFRA-025-AC-04 | 移動負例 | ticket正本をINFRAへ移管だけを独立変異にする。 | 接続/移動成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。元/移動先と未完の既知情報を保持し、正本を移管しない。 |
+| CASE-INFRA-025-S4-89 | INFRA-025-AC-03 | 移動状態 | 資源移動を失敗とする独立fixture。 | 失敗/部分/停止を成功にしない。同作業lineageと未完義務/両resource状態を保つ。revision変更時は新適用条件を照合し、資源ownerまたはOS/SECURITYの該当ownerへ戻す。 |
+| CASE-INFRA-025-S4-90 | INFRA-025-AC-03 | 移動状態 | 資源移動を部分移動とする独立fixture。 | 失敗/部分/停止を成功にしない。同作業lineageと未完義務/両resource状態を保つ。revision変更時は新適用条件を照合し、資源ownerまたはOS/SECURITYの該当ownerへ戻す。 |
+| CASE-INFRA-025-S4-91 | INFRA-025-AC-03 | 移動状態 | 資源移動を停止後同scope再開とする独立fixture。 | 停止中は未完を保持する。再開時に適用条件と両資源状態を再照合できれば同作業lineageで接続を再開し、失敗だけを資源ownerまたはOS/SECURITYの該当ownerへ戻す。 |
+| CASE-INFRA-025-S4-92 | INFRA-025-AC-03 | 移動状態 | 資源移動を再開時revision変更とする独立fixture。 | 停止中は未完を保持する。再開時に適用条件と両資源状態を再照合できれば同作業lineageで接続を再開し、失敗だけを資源ownerまたはOS/SECURITYの該当ownerへ戻す。 |
+| CASE-INFRA-025-S4-93 | INFRA-025-AC-01, INFRA-025-AC-04 | 境界負例 | Workerをmachine identityへ同一化だけを正常入力へ加える。 | 該当する誤identity/owner/権限代用/追加条件を成立させず、OS/Worker契約ownerへ該当問題を戻す。最適化/高度増減だけの欠如で適格な接続を不合格にしない。 |
+| CASE-INFRA-025-S4-94 | INFRA-025-AC-01, INFRA-025-AC-04 | 境界負例 | INFRAがWorker assignmentを発行だけを正常入力へ加える。 | 該当する誤identity/owner/権限代用/追加条件を成立させず、OSへ該当問題を戻す。最適化/高度増減だけの欠如で適格な接続を不合格にしない。 |
+| CASE-INFRA-025-S4-95 | INFRA-025-AC-01, INFRA-025-AC-04 | 境界負例 | INFRAがSECURITY policyを変更だけを正常入力へ加える。 | 該当する誤identity/owner/権限代用/追加条件を成立させず、SECURITYへ該当問題を戻す。最適化/高度増減だけの欠如で適格な接続を不合格にしない。 |
+| CASE-INFRA-025-S4-96 | INFRA-025-AC-01, INFRA-025-AC-04 | 境界負例 | INFRAが操作authorityを発行だけを正常入力へ加える。 | 該当する誤identity/owner/権限代用/追加条件を成立させず、SECURITYへ該当問題を戻す。最適化/高度増減だけの欠如で適格な接続を不合格にしない。 |
+| CASE-INFRA-025-S4-97 | INFRA-025-AC-01, INFRA-025-AC-04 | 境界負例 | 資源接続結果だけでL2-010構成体を受入だけを正常入力へ加える。 | 該当する誤identity/owner/権限代用/追加条件を成立させず、L2-010の既存operation契約ownerへ該当問題を戻す。最適化/高度増減だけの欠如で適格な接続を不合格にしない。 |
+| CASE-INFRA-025-S4-98 | INFRA-025-AC-01, INFRA-025-AC-04 | 境界負例 | 自動配置最適化欠如を本接続の失敗条件にするだけを正常入力へ加える。 | 該当する誤identity/owner/権限代用/追加条件を成立させず、OS/INTELLIGENCEの配置判断ownerへ該当問題を戻す。最適化/高度増減だけの欠如で適格な接続を不合格にしない。 |
+| CASE-INFRA-025-S4-99 | INFRA-025-AC-01, INFRA-025-AC-04 | 境界負例 | 高度な自動増減欠如を本接続の失敗条件にするだけを正常入力へ加える。 | 該当する誤identity/owner/権限代用/追加条件を成立させず、OS/INTELLIGENCEの配置判断ownerへ該当問題を戻す。最適化/高度増減だけの欠如で適格な接続を不合格にしない。 |
+| CASE-INFRA-025-S4-100 | INFRA-025-AC-02, INFRA-025-AC-03 | owner不明 | 資源不足のsourceは判明しているが資源ownerを識別できない。 | 戻し先を推測せず未解決owner、未完作業、元資源と移動先の観測状態を保持し接続成立を示さない。 |
+
+| CASE-INFRA-008-S4-40 | INFRA-008-AC-02 | 比較入力負例 | target identityだけをmissingにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
+| CASE-INFRA-008-S4-41 | INFRA-008-AC-02 | 比較入力負例 | target identityだけをunknownにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
+| CASE-INFRA-008-S4-42 | INFRA-008-AC-02 | 比較入力負例 | target identityだけをstaleにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
+| CASE-INFRA-008-S4-43 | INFRA-008-AC-02 | 比較入力負例 | target identityだけをmismatchにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
+| CASE-INFRA-008-S4-44 | INFRA-008-AC-02 | 比較入力負例 | target revisionだけをmissingにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
+| CASE-INFRA-008-S4-45 | INFRA-008-AC-02 | 比較入力負例 | target revisionだけをunknownにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
+| CASE-INFRA-008-S4-46 | INFRA-008-AC-02 | 比較入力負例 | target revisionだけをstaleにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
+| CASE-INFRA-008-S4-47 | INFRA-008-AC-02 | 比較入力負例 | target revisionだけをmismatchにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
+| CASE-INFRA-008-S4-48 | INFRA-008-AC-02 | 比較入力負例 | target scopeだけをmissingにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
+| CASE-INFRA-008-S4-49 | INFRA-008-AC-02 | 比較入力負例 | target scopeだけをunknownにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
+| CASE-INFRA-008-S4-50 | INFRA-008-AC-02 | 比較入力負例 | target scopeだけをstaleにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
+| CASE-INFRA-008-S4-51 | INFRA-008-AC-02 | 比較入力負例 | target scopeだけをmismatchにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
+| CASE-INFRA-008-S4-52 | INFRA-008-AC-02 | 比較入力負例 | target sourceだけをmissingにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
+| CASE-INFRA-008-S4-53 | INFRA-008-AC-02 | 比較入力負例 | target sourceだけをunknownにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
+| CASE-INFRA-008-S4-54 | INFRA-008-AC-02 | 比較入力負例 | target sourceだけをstaleにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
+| CASE-INFRA-008-S4-55 | INFRA-008-AC-02 | 比較入力負例 | target sourceだけをmismatchにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
+| CASE-INFRA-008-S4-56 | INFRA-008-AC-02 | 比較入力負例 | actual identityだけをmissingにし、designは適用可能に保つ。 | 当該比較を保留し、資源source ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
+| CASE-INFRA-008-S4-57 | INFRA-008-AC-02 | 比較入力負例 | actual identityだけをunknownにし、designは適用可能に保つ。 | 当該比較を保留し、資源source ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
+| CASE-INFRA-008-S4-58 | INFRA-008-AC-02 | 比較入力負例 | actual identityだけをstaleにし、designは適用可能に保つ。 | 当該比較を保留し、資源source ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
+| CASE-INFRA-008-S4-59 | INFRA-008-AC-02 | 比較入力負例 | actual identityだけをmismatchにし、designは適用可能に保つ。 | 当該比較を保留し、資源source ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
+| CASE-INFRA-008-S4-60 | INFRA-008-AC-02 | 比較入力負例 | actual revisionだけをmissingにし、designは適用可能に保つ。 | 当該比較を保留し、資源source ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
+| CASE-INFRA-008-S4-61 | INFRA-008-AC-02 | 比較入力負例 | actual revisionだけをunknownにし、designは適用可能に保つ。 | 当該比較を保留し、資源source ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
+| CASE-INFRA-008-S4-62 | INFRA-008-AC-02 | 比較入力負例 | actual revisionだけをstaleにし、designは適用可能に保つ。 | 当該比較を保留し、資源source ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
+| CASE-INFRA-008-S4-63 | INFRA-008-AC-02 | 比較入力負例 | actual revisionだけをmismatchにし、designは適用可能に保つ。 | 当該比較を保留し、資源source ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
+| CASE-INFRA-008-S4-64 | INFRA-008-AC-02 | 比較入力負例 | actual scopeだけをmissingにし、designは適用可能に保つ。 | 当該比較を保留し、資源source ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
+| CASE-INFRA-008-S4-65 | INFRA-008-AC-02 | 比較入力負例 | actual scopeだけをunknownにし、designは適用可能に保つ。 | 当該比較を保留し、資源source ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
+| CASE-INFRA-008-S4-66 | INFRA-008-AC-02 | 比較入力負例 | actual scopeだけをstaleにし、designは適用可能に保つ。 | 当該比較を保留し、資源source ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
+| CASE-INFRA-008-S4-67 | INFRA-008-AC-02 | 比較入力負例 | actual scopeだけをmismatchにし、designは適用可能に保つ。 | 当該比較を保留し、資源source ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
+| CASE-INFRA-008-S4-68 | INFRA-008-AC-02 | 比較入力負例 | actual sourceだけをmissingにし、designは適用可能に保つ。 | 当該比較を保留し、資源source ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
+| CASE-INFRA-008-S4-69 | INFRA-008-AC-02 | 比較入力負例 | actual sourceだけをunknownにし、designは適用可能に保つ。 | 当該比較を保留し、資源source ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
+| CASE-INFRA-008-S4-70 | INFRA-008-AC-02 | 比較入力負例 | actual sourceだけをstaleにし、designは適用可能に保つ。 | 当該比較を保留し、資源source ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
+| CASE-INFRA-008-S4-71 | INFRA-008-AC-02 | 比較入力負例 | actual sourceだけをmismatchにし、designは適用可能に保つ。 | 当該比較を保留し、資源source ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
+
+全CASEでinput/output identity、source/revision/scope、適用条件、対象owner、target確定/比較/接続の各状態、保持した未完義務を記録する。025移動は元資源と移動先を別に観測する。必要観測missingは設計上の期待拒否と、後続検証そのものの未実行を分ける。

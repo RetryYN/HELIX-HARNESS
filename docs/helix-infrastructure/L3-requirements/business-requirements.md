@@ -35,3 +35,9 @@ stage: 1
 このStage 2a追記で直接扱う採択済み親は `HELIXINFRASTRUCTURE-L2-003`、`-004`、`-005`、`-009`、`-010` である。これらの固定親は資源観測、runtime state、recovery、OS Work/Changeとの接続、SECURITY authority下の操作責務を定めるが、独立したbusiness outcomeまたは業務成功oracleを定義しない。したがってStage 2aにも独立BR、業務成功条件、business受入caseは追加しない。親に基づく機能要件と検証は[機能要件](functional-requirements.md)のFR/ACおよび対の[L10機能検証](../L10-verification/functional-verification.md)を参照する。
 
 旧business文書の分離配置は維持する。旧BRの分類・metric・owner・承認動作を現行business outcomeへ移さない。scope/ownerの変更が必要になれば対応するL2へ戻し、技術候補だけの個別PO質問は作らない。
+
+## Stage 4 追加範囲 — HELIXINFRASTRUCTURE-L2-008/025
+
+この追記は採択済み `HELIXINFRASTRUCTURE-L2-008` と `HELIXINFRASTRUCTURE-L2-025` の1.0候補である。固定要求意味はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7` のL2/L11、PO確認対象は `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。既承認prefixのbytesを保ち、この追記の承認・実装結果は別に判断する。実装順序はG0案Bに従う。後続版、自動配置最適化、高度な自動増減、Web展開を受入条件へ加えない。
+
+固定008/025に独立business outcome/oracleはないため、独立BR/BCASEは追加しない。機能正本 INFRA-008-FR-01/AC-01/02、INFRA-025-FR-01/02・AC-01..04と対のL10を参照する。設計接続・資源対応・隔離・未完保持から業務成功、release、incident close、費用/配置採用を生成しない。

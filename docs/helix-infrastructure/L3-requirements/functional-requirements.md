@@ -337,3 +337,62 @@ OS/Control Plane停止中のbootstrap/recoveryはINFRA-006の限定resource/path
 Authority、credential scope、target、revisionの不一致は実行前に拒否する。部分実行はsuccessとせず、実際のstate、operation receipt、未完operation、適用されるrecovery/rollback dutyを保持する。
 
 **INFRA-010-AC-04**: 完了normal fixtureではWorker result receiptと別個のactual-state observationをtarget/action/revision参照で結ぶ。Worker応答だけでactual stateを推定しない。mismatched authority/credential scope/target/revisionは個別negative fixtureで確認しoperation-startがない。途中失敗fixtureでは実際に変わったstateと未完dutyを保持し、SECURITY/OSまたは実状態のInfrastructure ownerへ戻す。
+
+## Stage 4 追加範囲 — HELIXINFRASTRUCTURE-L2-008/025
+
+この追記は採択済み `HELIXINFRASTRUCTURE-L2-008` と `HELIXINFRASTRUCTURE-L2-025` の1.0候補である。固定要求意味はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7` のL2/L11、PO確認対象は `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。既承認prefixのbytesを保ち、この追記の承認・実装結果は別に判断する。実装順序はG0案Bに従う。後続版、自動配置最適化、高度な自動増減、Web展開を受入条件へ加えない。
+
+### 固定親と旧資産の処置
+
+L2全文SHA-256 `569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b`、L11全文SHA-256 `7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada`。採択根拠は `docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md:48`。
+
+| 正規親 | 採用登録 / semantic digest | 固定L2 / 対L11行（633bf12） |
+|---|---|---|
+| `HELIXINFRASTRUCTURE-L2-008` | `MPR-RC-HELIXINFRASTRUCTURE-L2-008-002` / `sha256:ae2457734e68f0fa49d801f485fad5b99b08945c8ba85f405306150d8d65c925` | `docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:104–113` / `docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md:106–115` |
+| `HELIXINFRASTRUCTURE-L2-025` | `MPR-RC-HELIXINFRASTRUCTURE-L2-025-002` / `sha256:7465361b4d272cc1bf352a019272d6212a59282c938af704583ba1c0d493554c` | `docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:287–296` / `docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md:290–298` |
+
+008は旧OPS-R-01/02/04とOPS-AC-001/002/004の環境・設計入力・deployment planと実結果の分離、曖昧target/unknown capability拒否を部分再導出する。現行のCORE設計意味owner、runtime target/actual ownerと変更提案の境界は固定008から導く。旧Manifest/Plan/Receipt schema、provider command、promotion/production apply、rollback義務や旧承認gateは008へ移植しない。025は旧WCC-FR-01/03/04とHAT-WCC-03/06のWorker identity・実隔離・宣言だけを証拠にしない意味を部分再導出し、旧Conceptの資源不足時に未完を失わず再配置する意味を比較する。Worker≠計算機、ticket/要求/責務のOS正本、利用資源の方式でSECURITY条件を適用する責務は固定025から導く。旧wrapper、sandbox option、禁止path、network default、provider制約を現行要求へ移さない。旧L3のFR+AC/三文書/検証pairという形式を再導出し、旧G3/UX受入layer定義は置換する。旧自律境界のAI起草と人の要件承認という分担を保持し、現在の委任承認は現行PO判断による。完全一致copyはない。
+
+| 旧asset | 読んだsource / 行 | 全文SHA-256 | raw span SHA-256（LF含む） |
+|---|---|---|---|
+| `LEGACY-ASSET-17C4BF78919578FEBB18` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md:68–79` | `ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0` | `acb16d0cc266a710a0f2aee3677954b25aa4837a2003b01830575944e999a370` |
+| `LEGACY-ASSET-17C4BF78919578FEBB18` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md:86–92` | `ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0` | `2adc06537aa0e010b7f28b75dcb7fe0945628bc08b65eeb93a7672fe79792e39` |
+| `LEGACY-ASSET-F46AB11BD14F2C0469F4` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/product-lifecycle-operations-acceptance.md:26–29` | `19c75a442154b4d17e645143f4adaaa23791a1043caa73178e5d75cc468b7d58` | `b97936e170c2a450dac6d3c2d618105de2af24cabfaec450818c142f988f4663` |
+| `LEGACY-ASSET-9114D4E463E95B67DD0C` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md:55–58` | `773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290` | `bd9b513950c7a52195b507b04ef5cdd7b77216fc6011dc0119b37e00569d3752` |
+| `LEGACY-ASSET-C6ADB99F1353965C5449` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/worker-common-contract-acceptance.md:31–34` | `c8dff734891a6a7350feb9b698c40e1616946cdd424433d662f1da49d8ac800d` | `636d42400dbd74350f4e2175119cd1a5af47e8219ab653cabf43731f8b85dc18` |
+| `LEGACY-ASSET-235F57A4DC453383E6C7` | `archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/concept/HELIX_CONCEPT_v0.1.md:234–238` | `ab9d93f843875c1cd9b61049721c455ae067548196c216e64168711156afd475` | `801ef4f2b8b36fd779d4570fee866fd46f959ce0358c4f7c11ceea07ff7101bb` |
+| `LEGACY-ASSET-F542125805B777D8A56A` | `archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md:148–168` | `9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3` | `e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9` |
+| `LEGACY-ASSET-6EBDB617A8104A7756D0` | `archive/legacy-generation-2026-09-14/root/CLAUDE.md:82–85` | `7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb` | `fc924232f93af2593a0d8ec97c36224a3c2f641ca5c03468ecae747107bd4785` |
+
+### INFRA-008-FR-01 — CORE設計とdeployment targetの接続
+
+CORE所有のapproved Infrastructure designのidentity/exact revision/scopeとversioned design interfaceを受け取り、同じ設計を根拠にdeployment targetとactualとの比較入力を提供する。target/runtime revisionは設計revisionと別identityで明示的に対応づける。同じSHA文字列であることを強制しない。L2-001/002のresource/environmentと三状態の比較契約を参照し、COREが設計意味、INFRASTRUCTUREがruntime target/actualを所有する。変更提案は設計変更と実行から別に保つ。
+
+**INFRA-008-AC-01**：適用design identity/revision/scope・承認状態・interfaceを確認できる入力からだけtargetを導く。別revision、scope不一致、未承認、missing/unknown/stale、interface/contract不一致ではtarget確定と比較成立に進めず、CORE/上流design ownerへ返して比較保留を保持する。必要なL2-001/002参照が不明なら比較の未確認範囲を保持し、他resource/environmentや旧証拠で補完しない。sourceの既存currentness条件を照合し、独自expiry値は作らない。
+
+**INFRA-008-AC-02**：targetとactualのidentity/revision/scope/sourceおよびCORE設計参照を追跡できる。いずれかが不足/不明/非current/不一致ならその比較を保留し、設計・target対応はCORE/design owner、actual観測は資源source ownerへ該当問題を戻す。同一対象の一致とdriftを分け、actualからdesign/targetのcanonical bytesや設計承認を生成・変更しない。design意味ownerとruntime state ownerを移さず、変更提案だけでは設計変更・実操作を実施しない。適用する同じ契約に明示的に対応する未見design/target/actualでも、未見名称だけで拒否しない。
+
+### INFRA-025-FR-01 — Workerと実資源の対応
+
+Worker identity、OS ticket・要求・作業責務の参照、必要なCPU/memory/GPU/storage/networkとprocess/container等の実行環境、SECURITY隔離条件を受け取る。L2-001/003のresource identity、実際の容量・状態へWorkerを対応づける。Workerとresourceは別identityとして関連づけ、同じ名称でも混同しない。INFRASTRUCTUREは実資源/stateを所有し、その資源で利用できる方式で隔離条件を適用する。隔離policyの意味/認可はSECURITY、作業参照の正本はOS/要求・責務ownerに保持する。
+
+**INFRA-025-AC-01**：必要な資源・環境の要求と実capacity/state/source/revisionをWorker参照へ結び、各CPU/memory/GPU/storage/network/process/container等の適用対象を宣言して照合する。非適用は既存契約で明示し、不明を非適用や十分へ丸めない。Workerを計算機のidentity/stateで置換しない。新たなWorker/resource種でも既存契約に適用できる場合は正常に対応づける。
+
+**INFRA-025-AC-02**：対象資源で利用できる隔離方式による実適用の観測をSECURITY条件へ対応づける。宣言・policy存在・Worker応答だけでは隔離成立にしない。資源不足/容量・状態不明および隔離実適用の観測問題は資源owner、隔離不能/条件不明はSECURITY、ticket/要求/作業参照不明はOSまたはその既存参照ownerへ戻す。該当ownerを特定できなければ推測せず未解決を保持する。これらの状態では接続成立を示さない。
+
+### INFRA-025-FR-02 — 資源移動時の作業lineage
+
+必要に応じ別資源へ移る場合も、ticket、要求、Worker責務、未完義務を同じ作業へ辿れるよう保持し、元資源と移動先の観測状態を別々に残す。計算機変更でWorker責務を消さず、INFRASTRUCTUREへticket正本を移さない。実操作の認可から実行までの構成体L2-010は別契約として参照し、本接続の検証で権限や新しい移動許可を生成しない。
+
+**INFRA-025-AC-03**：既存契約下の移動の前後でWorker、ticket、要求、責務、未完作業の参照を辿り、元資源/移動先のidentity/revision/状態を保持する。移動失敗・部分移動・停止/再開で義務を消さず、資源ownerまたはOS/SECURITYの原因に対応するownerへ戻す。旧資源の結果を移動先の現在状態へ流用しない。
+
+**INFRA-025-AC-04**：自動配置最適化や高度な自動増減の未成立だけで接続を不合格にしない。INFRASTRUCTUREがWorker assignment、SECURITY policy/authority、ticket/要求/責務の意味正本を所有する変異は成立させない。資源対応の正常結果をL2-010の操作許可や構成体受入へ代用しない。
+
+| 親句 | FR/AC | 対L10 |
+|---|---|---|
+| 008入力・依存・失敗戻し | INFRA-008-FR-01 / INFRA-008-AC-01 | CASE-INFRA-008-S4-01および固定入力の個別negative |
+| 008提供・設計/target/actual分離・提案境界 | INFRA-008-FR-01 / INFRA-008-AC-02 | CASE-INFRA-008-S4の一致/drift/未見正常/owner変異 |
+| 025入力・capacity/state・資源/Worker区別 | INFRA-025-FR-01 / INFRA-025-AC-01 | CASE-INFRA-025-S4の資源/参照fixture |
+| 025隔離実適用・失敗owner | INFRA-025-FR-01 / INFRA-025-AC-02 | CASE-INFRA-025-S4の隔離/容量/作業参照の個別negative |
+| 025移動後の作業lineage・未完と両資源状態 | INFRA-025-FR-02 / INFRA-025-AC-03 | CASE-INFRA-025-S4の移動/失敗/再開fixture |
+| 025版・最適化非依存・010別契約 | INFRA-025-FR-02 / INFRA-025-AC-04 | CASE-INFRA-025-S4の境界変異 |
