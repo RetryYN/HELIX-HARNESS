@@ -1,0 +1,112 @@
+{
+  "record_type": "immutable historical-record inclusion supplement for LABO Stage2b publication cutout",
+  "record_date": "2026-10-05",
+  "supplements_record_path": "docs/governance/audits/requirement-registration/labo-stage2b-002-010-publication-cutout-2026-10-05.json",
+  "supplements_record_commit": "c614ec905cb27a8c8632c05abd883d691833df5e",
+  "supplements_record_sha256": "b312a39814acc221489b5a2d10d526d9079b2cbdd6752143c32bfa3f7734cd26",
+  "body_commit_unchanged": "62e77c01a84d17fe3d30d4478293cf53e0cd1b39",
+  "scope": "Preserve point-in-time Stage2b 002-005 and 006-010 source/pair evidence for PR-local access; no canonical requirement or audit body is overwritten.",
+  "historical_record_copies": [
+    {
+      "group": "Stage2b first four creator review",
+      "original_record_commit": "fcb0b7b6be45f39b63b1dd1dc099be7d12641c3b",
+      "original_record_path": "docs/governance/audits/requirements-stage/l3-l10-labo-stage2b-first-four-po-review-2026-10-05-56868ac8c.md",
+      "copied_path": "docs/governance/audits/requirements-stage/l3-l10-labo-stage2b-first-four-po-review-2026-10-05-56868ac8c.md",
+      "full_file_sha256": "40ac6992a3b7fb5d6b28fc54127129e5e1db61cc3f93eb89aaa0fa70cae55a11",
+      "bytes": 2388,
+      "related_json_path": "docs/governance/audits/requirements-stage/l3-l10-labo-stage2b-first-four-static-validation-2026-10-05-56868ac8c.json",
+      "metadata_target_body_revision": "56868ac8c1eb8bc100b1d261119111b0ce22bc42",
+      "byte_identical_copy_verified": true
+    },
+    {
+      "group": "Stage2b first four creator source/static record",
+      "original_record_commit": "fcb0b7b6be45f39b63b1dd1dc099be7d12641c3b",
+      "original_record_path": "docs/governance/audits/requirements-stage/l3-l10-labo-stage2b-first-four-static-validation-2026-10-05-56868ac8c.json",
+      "copied_path": "docs/governance/audits/requirements-stage/l3-l10-labo-stage2b-first-four-static-validation-2026-10-05-56868ac8c.json",
+      "full_file_sha256": "7d4688fecb002bb3a60aa1d4e60833a692836b119af566d779f326e7661b6c38",
+      "bytes": 23223,
+      "related_json_path": null,
+      "metadata_target_body_revision": "56868ac8c1eb8bc100b1d261119111b0ce22bc42",
+      "byte_identical_copy_verified": true
+    },
+    {
+      "group": "Stage2b first four root summary",
+      "original_record_commit": "11e987b506ff4a85bd231671d7f172b4895d55cf",
+      "original_record_path": "docs/governance/audits/requirements-stage/l3-l10-labo-stage2b-first-four-root-summary-2026-10-05-4b111545f.md",
+      "copied_path": "docs/governance/audits/requirements-stage/l3-l10-labo-stage2b-first-four-root-summary-2026-10-05-4b111545f.md",
+      "full_file_sha256": "73d6982372f7200ef74bfb0cba909c98204b9f9ed4786837f6e3a25c790a49ce",
+      "bytes": 1612,
+      "related_json_path": "docs/governance/audits/requirements-stage/l3-l10-labo-stage2b-first-four-root-validation-2026-10-05-4b111545f.json",
+      "metadata_target_body_revision": "4b111545f0658fe825cfbfab21924e41c5af2e6d",
+      "byte_identical_copy_verified": true
+    },
+    {
+      "group": "Stage2b first four root validation",
+      "original_record_commit": "11e987b506ff4a85bd231671d7f172b4895d55cf",
+      "original_record_path": "docs/governance/audits/requirements-stage/l3-l10-labo-stage2b-first-four-root-validation-2026-10-05-4b111545f.json",
+      "copied_path": "docs/governance/audits/requirements-stage/l3-l10-labo-stage2b-first-four-root-validation-2026-10-05-4b111545f.json",
+      "full_file_sha256": "1028ee04b5165a47c8e8ccb42d11efe8bf522d70002713d389f64397d4520a0e",
+      "bytes": 140182,
+      "related_json_path": null,
+      "metadata_target_body_revision": "4b111545f0658fe825cfbfab21924e41c5af2e6d",
+      "byte_identical_copy_verified": true
+    },
+    {
+      "group": "Stage2b 006-010 original source/pair receipt",
+      "original_record_commit": "ddac11846f3974b3761991ee8c09897b7153fbca",
+      "original_record_path": "docs/governance/audits/requirement-registration/labo-stage2b-006-010-source-pair-receipt-2026-10-05.md",
+      "copied_path": "docs/governance/audits/requirement-registration/labo-stage2b-006-010-source-pair-receipt-2026-10-05.md",
+      "full_file_sha256": "f94ae5e81aadd979d009c8650ef574a33bf907d9947dbaef9738a5c11de016c7",
+      "bytes": 4796,
+      "related_json_path": "docs/governance/audits/requirement-registration/labo-stage2b-006-010-source-pair-receipt-2026-10-05.json",
+      "metadata_target_body_revision": "233353bdd4d8d6ff850c0b63cf3a8acf17f2731d",
+      "byte_identical_copy_verified": true
+    },
+    {
+      "group": "Stage2b 006-010 original source/pair receipt",
+      "original_record_commit": "ddac11846f3974b3761991ee8c09897b7153fbca",
+      "original_record_path": "docs/governance/audits/requirement-registration/labo-stage2b-006-010-source-pair-receipt-2026-10-05.json",
+      "copied_path": "docs/governance/audits/requirement-registration/labo-stage2b-006-010-source-pair-receipt-2026-10-05.json",
+      "full_file_sha256": "6875f6cb2e58b1f25a7a911cd7c2ba10a3a132a55a0d93540fc9f01f41131d56",
+      "bytes": 70658,
+      "related_json_path": null,
+      "metadata_target_body_revision": "233353bdd4d8d6ff850c0b63cf3a8acf17f2731d",
+      "byte_identical_copy_verified": true
+    },
+    {
+      "group": "Stage2b 006-010 CASE14 repair overlay",
+      "original_record_commit": "220a1462f4079620141c0861791a0a9a9c01a238",
+      "original_record_path": "docs/governance/audits/requirement-registration/labo-stage2b-006-010-repair01-2026-10-05.md",
+      "copied_path": "docs/governance/audits/requirement-registration/labo-stage2b-006-010-repair01-2026-10-05.md",
+      "full_file_sha256": "9a5983c0bea4aac40bae399d9c1a2a216801c131532306dc6d178851cb1a504e",
+      "bytes": 2461,
+      "related_json_path": "docs/governance/audits/requirement-registration/labo-stage2b-006-010-repair01-2026-10-05.json",
+      "metadata_target_body_revision": "e8628f07ba802623f8b895bb9c938a617b5d4d06",
+      "byte_identical_copy_verified": true
+    },
+    {
+      "group": "Stage2b 006-010 CASE14 repair overlay",
+      "original_record_commit": "220a1462f4079620141c0861791a0a9a9c01a238",
+      "original_record_path": "docs/governance/audits/requirement-registration/labo-stage2b-006-010-repair01-2026-10-05.json",
+      "copied_path": "docs/governance/audits/requirement-registration/labo-stage2b-006-010-repair01-2026-10-05.json",
+      "full_file_sha256": "2e1b1696a915519aa7facd277b2494de2a3799f795157744723044d0751a0a95",
+      "bytes": 83329,
+      "related_json_path": null,
+      "metadata_target_body_revision": "e8628f07ba802623f8b895bb9c938a617b5d4d06",
+      "byte_identical_copy_verified": true
+    }
+  ],
+  "checks": {
+    "records_copied": 8,
+    "full_sha256_recomputed_against_git_show": true,
+    "all_copied_bytes_equal_original": true,
+    "metadata_target_body_revision_captured": true,
+    "old_records_modified": false,
+    "canonical_requirements_modified": false
+  },
+  "limitations": [
+    "These historical records describe their own older source/body revisions, not the combined publication cutout.",
+    "The combined Stage2b 002-010 exact revision remains a separate candidate with root inspection pending, independent review absent, and PO L3 approval absent.",
+    "The old source records are included byte-identically only so PR readers can inspect the referenced history without relying on an unpushed source branch."
+  ]
+}
