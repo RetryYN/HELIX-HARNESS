@@ -177,7 +177,7 @@ Stage 1 prefixはmain 28b3d3645e6298c159758700c2edd3d396c336f5の既存bytesを�
 | `CASE-HARNESS-L10-047-01` | `FR-HARNESS-L3-047` | `AC-HARNESS-L3-047-01` | measured applicable benefit、single-worker role sufficient、LABO evidence unknownの各例。 | unknownをmusterへ昇格、十分なexisting roleを無視。 | 3状態を区別し根拠のないmusterを不合格にする。 |
 | `CASE-HARNESS-L10-047-02` | `FR-HARNESS-L3-047` | `AC-HARNESS-L3-047-02` | muster candidateと、objective、成果物schema、tool guidance、task boundary、context selectors、allowed/denied tool/path候補、model/effort class、budget、checkpoint、escalation、verification contractを備えるcontractを入力する。 | 上記fieldを一つずつ欠落/変更し、さらにinput/output digest、generation rationale、guard validation結果を個別に欠落または矛盾させる。 | 全fieldと各traceが揃う時だけcontract candidateを照合済みとし、missing/contradictory fieldはfinding。同一正規化inputとgenerator revisionで意味内容/digestが一致する。proposalからassignment/authority/起動を作らない。 |
 | `CASE-HARNESS-L10-047-03` | `FR-HARNESS-L3-047` | `AC-HARNESS-L3-047-03` | worker/verifier別identity/context/authorityと既存lifecycle/profileをfixtureする。 | 同一provider/modelだけでindependence偽、lifecycle/profile missingを許可。 | identity separationを観測し不足はdefer。 |
-| `CASE-HARNESS-L10-049-01` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-01` | 固定L11最小入力: renderable prototype、screen ID、target revision、利用許可、profile、device/view/viewport。各checkはaccessibility、contrast、画面幅別崩れ/はみ出し、empty/loading/error等主要state、profile基準の文言量。 | 各checkの表示条件、oracle/手段版、既知fixtureまたは表示証拠を一つずつ欠落。 | checkごとにpass/fail/warning/unknown/根拠付き適用外を返す。条件欠落・未測定はunknown、適用外は理由を別記し、他checkで相殺しない。最小入力は保ち、生成/Pattern/ID発番証拠を追加必須にしない。 |
+| `CASE-HARNESS-L10-049-01` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-01` | 固定L11最小入力: renderable prototype、screen ID、target revision、利用許可、profile、device/view/viewport。各checkはaccessibility、contrast、画面幅別崩れ/はみ出し、empty/loading/error等主要state、profile基準の文言量。 | 各checkの表示条件、oracle/手段版、既知fixtureまたは表示証拠を一つずつ欠落。 | checkごとにpass/warning/unknown/根拠付き適用外を返す。条件欠落・未測定はunknown、適用外は理由を別記し、他checkで相殺しない。最小入力は保ち、生成/Pattern/ID発番証拠を追加必須にしない。 |
 | `CASE-HARNESS-L10-049-02` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-02` | 5 checkそれぞれの既知positive/negative fixtureと期待分類・観測結果を入力する。 | TP/FP/FN/TNを各check別に変異し、分母0・不足fixture・別scope/revision結果の流用を確認。 | check別precision=TP/(TP+FP)、recall=TP/(TP+FN)と件数を示す。分母0、適用条件不明、fixture不足は数値を捏造せず未評価/warningとする。 |
 | `CASE-HARNESS-L10-049-03` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-03` | minimum inputのみで測定する正常例。 | prototype生成、Pattern選択、screen ID発番証拠を追加必須inputとして要求。 | 固定L11にない追加条件で正常入力を拒否したら不合格。結果でagreement/acceptanceを生成しない。 |
 | `CASE-HARNESS-L10-054-01` | `FR-HARNESS-L3-054` | `AC-HARNESS-L3-054-01` | 047 contract/task/scope/revisionを結ぶmuster/existing-role/unknown handoff各例。 | OS assignmentが別task/revisionへ結ばれる。 | 同一identityのみ対応し、wrong assignmentを未完にする。 |
@@ -201,15 +201,177 @@ Stage 1 prefixはmain 28b3d3645e6298c159758700c2edd3d396c336f5の既存bytesを�
 | `CASE-HARNESS-L10-036-06` | `FR-HARNESS-L3-036` / `AC-HARNESS-L3-036-03` | 合意済screen scopeの正常fixture、根拠ある非screen PoCの正常fixture、screen対象追加後の再評価をそれぞれ別に与える。 | 旧drive結果を欠落、screen scope根拠を欠落、screen対象を追加しても旧matrixを再利用、非screen PoCをscreenとして扱う各variant。 | screen対象の五軸を適用し、根拠あるnon-screenだけ対象外とする。unknown applicabilityは保留。screen requirement/design ownerへ返す。 |
 | `CASE-HARNESS-L10-036-07` | `FR-HARNESS-L3-036` / `AC-HARNESS-L3-036-03` | screen対象でmock-promotion/design-token-drift/a11y-regression/visual-regression/state-transition-drift全軸の個別oracleを有効にする。 | 五軸の適用条件、oracle、input、evidenceをそれぞれ一項目ずつmissing/stale/failへ変異し、計測対象は他軸と独立。 | どの1軸でもsilent passしない。画面対象ではN/A不可。detector/design ownerへ戻す。 |
 | `CASE-HARNESS-L10-038-04` | `FR-HARNESS-L3-038` / `AC-HARNESS-L3-038-01` | explicit selected source/scope内のmanifestを用い、全capabilityの一意ID・件数・identityとsource atomからrequirements/design/test/detector endpointへのforward/reverse relationを照合する。 | capability集合から1件を抜く/余分に足す/ID重複/identity不一致、各relation方向を片方ずつ欠落、unsupported/unknown capabilityを個別投入。 | manifest集合一致と双方向relationを別々に確認。unknown/unsupportedはunfinishedで、source owner、形成008/024、design014/028、oracle004/022の該当ownerへ返す。 |
-| `CASE-HARNESS-L10-038-05` | `FR-HARNESS-L3-038` / `AC-HARNESS-L3-038-02` | 同じ選択scopeで、(1) source根拠/scope map、(2) observation contract、(3) as-is design/test、(4) intent仮説と既存authorityに基づくPO検証状態、(5) gapとowner/routingの5段階を順に持つfixtureを用意する。初期観測/要求形成のみ成立する中間fixture、各段階までのclaim、該当する全段階を閉じた別正常fixtureを比較し、後段はclaim範囲になるまで未完義務として保持する。 | observation contract欠落で観測成立をclaim、as-is design/test欠落でそれを含む段階をclaim、仮説だけでPO検証済みとclaim、gap/owner/routing欠落で完了claim、段階の飛越し/順序逆転、budget/checkpointで残義務を分母から除外、source revision変更後に旧closureを流用する各変異を独立に与える。未選択sourceを不存在と外挿する変異も与える。 | 初期観測/要求形成は後段成果を要求せず成立し得る一方、claimした段階の必要内容が欠ければそのclaimだけを未完/unknownにする。PO判断が既存authority上必要な場合は未検証のまま保持し、既存authority ownerへ返す。中断後も残義務と同revisionを維持し、source変更時は影響する内容を再照合する。source欠落はsource owner、形成/traceは008/024/003/004、designは014/028、oracleは004/022の該当ownerへ返す。 |
-| `CASE-HARNESS-L10-039-04` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-02` | Experience parent graph（UserTask/BusinessOutcome/scenario/success/rationale）と各選択UI relationを同一scope/revisionで与える。非UI正常例にもExperience graphを含める。 | 各graph relationの欠落、意味を持たないgraph node、UI screen relation欠落、選択risk pairwise/drift欠落を別々に変異。 | 非UIでもExperience graph必須。UI relation/driftの必要性は選択scopeに従い、該当要求/Experience ownerへ返す。 |
+| `CASE-HARNESS-L10-038-05` | `FR-HARNESS-L3-038` / `AC-HARNESS-L3-038-05` | 同じ選択scopeで、(1) source根拠/scope map、(2) observation contract、(3) as-is design/test、(4) intent仮説と既存authorityに基づくPO検証状態、(5) gapとowner/routingの5段階を順に持つfixtureを用意する。初期観測/要求形成のみ成立する中間fixture、各段階までのclaim、該当する全段階を閉じた別正常fixtureを比較し、後段はclaim範囲になるまで未完義務として保持する。 | observation contract欠落で観測成立をclaim、as-is design/test欠落でそれを含む段階をclaim、仮説だけでPO検証済みとclaim、gap/owner/routing欠落で完了claim、段階の飛越し/順序逆転、budget/checkpointで残義務を分母から除外、source revision変更後に旧closureを流用する各変異を独立に与える。未選択sourceを不存在と外挿する変異も与える。 | 初期観測/要求形成は後段成果を要求せず成立し得る一方、claimした段階の必要内容が欠ければそのclaimだけを未完/unknownにする。PO判断が既存authority上必要な場合は未検証のまま保持し、既存authority ownerへ返す。中断後も残義務と同revisionを維持し、source変更時は影響する内容を再照合する。source欠落はsource owner、形成/traceは008/024/003/004、designは014/028、oracleは004/022の該当ownerへ返す。 |
+| `CASE-HARNESS-L10-039-04` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-01` | Experience parent graph（UserTask/BusinessOutcome/scenario/success/rationale）と各選択UI relationを同一scope/revisionで与える。非UI正常例にもExperience graphを含める。 | 各graph relationの欠落、意味を持たないgraph node、UI screen relation欠落、選択risk pairwise/drift欠落を別々に変異。 | 非UIでもExperience graph必須。UI relation/driftの必要性は選択scopeに従い、該当要求/Experience ownerへ返す。 |
 | `CASE-HARNESS-L10-039-05` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-02` | same-scope/revision interactive prototype walkthroughとreal-data/responsive/motion/accessibility/performance/continuity/human-current evidenceを揃えたUX completed example。将来測定前にcandidate startできる別正常例。 | 7軸それぞれを独立にmissing/stale/unknownへ変異し、UI対象へのN/Aを個別に与える。prototype操作不能/walkthrough scope違い/revision違いも独立variant。 | UX完了claimは7軸全ての同一scope/revision current evidenceを要し、どれか一つでも未完なら非完了。未来結果がないことだけで開始を阻害しない。Human evaluation owner/UX requirement ownerへ返す。 |
 | `CASE-HARNESS-L10-040-04` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-02` | L0 anchorをlayer catalog外の独立recordにし、各rowにsubject/revision/span/digest/status/owner/edgeとrequired ledger contract fieldを揃える。snapshot coverageは母集団と未完を区別する。 | L0をlayer/7番目pair化、参照stringだけのanchor、各contract field/edgeを一つずつ削除、snapshot欠落/staleを個別投入。 | 全field/edgeの逆引きとcoverageを照合。登録/保存処理はOS owner、authority anchor sourceはその上流ownerへ戻す。 |
-| `CASE-HARNESS-L10-041-04` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-03` | adopted base template obligationとL11 revision -003追加atomic split/merge oracleを同時に使う。未選択templateは未観測として別record。 | 2義務束ね、1義務分割、同一input/extractorでのdigest差異、digest一致だがatom/gap欠落をそれぞれ独立に与える。 | source obligation単位対応、atomicity、同-input/extractor semantic digestを検証。template内容や採択はtemplate ownerに返し、009/040との混同は行わない。 |
-| `CASE-HARNESS-L10-042-04` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-01` | meaning-preserving changeと、対応するL2-019 reverse route、016性能契約が選択scopeの場合の正常例。 | source/design/contractのいずれか欠落、semantic change、consumer/oracle/dependency欠落、feature同episode混在を別々に与える。 | 振る舞い保持はrefactor candidate、意味変更は003/004/016の該当ownerへBackflow、featureは別episode。 |
-| `CASE-HARNESS-L10-043-04` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-01` | PO採択済みB/HARNESS-CORE route上で適用rule/branchごとのpositive、boundary-negative、条件、oracle、根拠あるrisk追加例、未見正常例を与える。 | positive例、negative例、rule condition/oracle、risk追加根拠をそれぞれ一つずつ除去し、適用分母unknownも個別に変異。例数だけの代理判定を与える。 | branch/rule別にcoverage欠落と例数のみ判定を拒否。unknown分母は0/N-Aでなく未評価。template009/atom041/risk oracle004 ownerへ返す。 |
-| `CASE-HARNESS-L10-044-04` | `FR-HARNESS-L3-044` / `AC-HARNESS-L3-044-01` | PO採択済みB/Design Contract Portfolioで各classのreuse/delta/new/reasoned-N/Aと必要時複数契約境界理由を与える。 | uncovered/duplicate/孤立oracle/N-A根拠なしを各独立変異し、025/043 output-only closureを別負例にする。 | class別coverage、meaning duplicate、N-A理由を別々に照合し、025/043は別工程として保持。要求owner/009 template/041 atom/026 design/022 oracle ownerへ戻す。 |
-| `CASE-HARNESS-L10-046-04` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-01` | Full Vの適用L1–L5設計freezeと12 workflow obligation/pair evidenceを与え、Scrum未選択の正常例を別にする。 | 任意workflow obligation/pairを一つずつ欠落、Full Vにfreezeなし、非Scrum scopeへdelta/Reverse/SR0–SR4を課す。 | Full Vのfreezeを要求し、Scrum条件は選択scopeだけ。workflow/design ownerへ欠落を返す。 |
-| `CASE-HARNESS-L10-047-04` | `FR-HARNESS-L3-047` / `AC-HARNESS-L3-047-01` | 列挙された全contract fields、input/output digest、generation rationale、guard validationを備えたcontract candidate、およびexisting-role-sufficient正常例を個別に置く。 | 列挙された各fieldと3 supporting evidenceを一つずつ欠落/不一致、provider/price benchmarkのみ、worker/verifier identity/context/authority混同、sufficient roleを無視したmusterを独立に与える。 | 根拠と全候補fieldの対応を照合。LABO comparison unknownは未評価。HARNESS contract/role owner、要求owner、INT/LABO/OS/SECURITYの実既存ownerへ返す。 |
-| `CASE-HARNESS-L10-049-04` | `FR-HARNESS-L3-049` / `AC-HARNESS-L3-049-02` | fixed L11-049の最小入力で5 checkごとのpositive/negative fixture、期待分類、実際表示証拠と対象scope/revisionを与える。 | 表示証拠なし、静止画だけ、profile roleを越す反復、説明だけの適用理由、screen ID証明要求をそれぞれ独立に変異。 | check別TP/FP/FN/TN、precision/recallを報告し、分母0/unknownは未評価。固定合格threshold・O10 prototype-generation routeを作らない。 |
+| `CASE-HARNESS-L10-041-04` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-03` | L2:962の原子性とL11:705からsplit/atomic mappingを適用し、L11 revision -003のmerge反例を別に使う。未選択templateは未観測として別record。 | 2義務束ね、1義務分割、同一input/extractorでのdigest差異、digest一致だがatom/gap欠落をそれぞれ独立に与える。 | source obligation単位対応、atomicity、同-input/extractor semantic digestを検証。template内容や採択はtemplate ownerに返し、009/040との混同は行わない。 |
+| `CASE-HARNESS-L10-042-04` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-02` | 選択scopeのconsumer、oracle、dependency evidenceが揃い、同じ要求・公開契約・永続stateの意味を保つ変更を提示する。 | consumer列挙、oracle根拠、dependency graphのうち該当一項目だけ欠落/staleにする。rollback前提は入力にしない。 | 不足項目のみunknown/未完。意味変更routeと機能追加は別CASEで確かめる。 |
+| `CASE-HARNESS-L10-043-04` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-03` | PO採択済みB/HARNESS-CORE routeの適用rule/branch、risk根拠、positive/boundary-negativeの対応と未見の有効branchを与える。 | 新revisionまたはbranchを一つ追加し、分母更新を欠く変異を与える。 | branch更新後の母集団を用いてcoverageを再評価。unknown分母は未評価、未選択scopeは未観測。 |
+| `CASE-HARNESS-L10-044-04` | `FR-HARNESS-L3-044` / `AC-HARNESS-L3-044-01` | 選択portfolioの各適用classにnormative contractと対oracleの関係を対応させる。 | 一つの適用classのcontract relationだけ欠落させる。 | 未被覆classを列挙し、要求/template/designの既存ownerへ戻す。 |
+| `CASE-HARNESS-L10-046-04` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | Production Scrum選択scopeでslice delta、Reverse/backfill、必要triggerに対応するSR0–SR4/SR4 pair-freezeを同一revisionに結ぶ。 | Scrum scopeの欠落義務をslice単体成功、一般V-pair一覧、別revision receiptで相殺する。 | 選択scopeは未完のまま。coverage receiptからticket/release許可を生成しない。 |
+| `CASE-HARNESS-L10-047-04` | `FR-HARNESS-L3-047` / `AC-HARNESS-L3-047-02` | `muster_candidate`のcontractに各fixed field、input/output digest、generation rationale、guard結果を同一scope/revisionで結ぶ。 | provider/model記録だけを欠落させる。 | 判断を不完全として該当既存ownerへ戻す。provider/model単独で利益や権限を推定しない。 |
+| `CASE-HARNESS-L10-049-04` | `FR-HARNESS-L3-049` / `AC-HARNESS-L3-049-04` | profileに基づく文字量findingの3種類（上限超過、同内容反復、説明のためだけの説明）を別々に評価する。 | 各種類を個別に起こす入力と、根拠のない一律文字数上限を設定する入力を与える。 | 3 findingを混同せず、根拠のない閾値は不成立。人の文言判断を承認扱いにしない。 |
 | `CASE-HARNESS-L10-054-04` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-03` | muster/existing-role/unknown candidateの各既存OS assignment responseを同一task/scope/revisionで照合し、assignment-response receiptまで揃える。 | axis mapping未定、assignment/response/receipt欠落、scope不一致、revision変更に依存する根拠だけstale化を別々に与える。 | 受領/identity一致前はhandoff未完。新axis mappingを推測せず、既存OS assignment ownerとcontract source ownerへ返す。 |
+
+#### Stage 3 固定L11の個別条件追補fixture
+
+以下のCASEは本文上の追加ACへ一対一で対応する。各negativeは記載した対象条件だけを変え、残りの入力・revision・scopeを正常に保つ。
+
+| L10 case ID | FR / AC | 正常・未見正常入力 | 独立negative mutation | oracle・既存owner戻し先 |
+|---|---|---|---|---|
+| `CASE-HARNESS-L10-034-07` | `FR-HARNESS-L3-034` / `AC-HARNESS-L3-034-04` | 適用AI measurement contractに判断再現性条件をsource/revisionへ結ぶ。 | 再現性条件だけ欠落。 | 該当metric未完、要求ownerへ。 |
+| `CASE-HARNESS-L10-034-08` | `FR-HARNESS-L3-034` / `AC-HARNESS-L3-034-04` | Worker/verifierが独立context/authorityである測定条件。 | 独立性根拠だけ欠落。 | AI条件未評価、要求ownerへ。 |
+| `CASE-HARNESS-L10-034-09` | `FR-HARNESS-L3-034` / `AC-HARNESS-L3-034-04` | measurement oracleと証拠の対応を保持。 | 根拠対応だけ切断。 | 成立claimなし、該当oracle ownerへ。 |
+| `CASE-HARNESS-L10-034-10` | `FR-HARNESS-L3-034` / `AC-HARNESS-L3-034-04` | 反復停止条件をmetric契約へ結ぶ。 | 停止条件だけ欠落。 | 未完を保持、要求ownerへ。 |
+| `CASE-HARNESS-L10-034-11` | `FR-HARNESS-L3-034` / `AC-HARNESS-L3-034-04` | 費用conditionを適用scopeへ結ぶ。 | 費用conditionだけ欠落。 | 未評価とし、要求ownerへ。 |
+| `CASE-HARNESS-L10-034-12` | `FR-HARNESS-L3-034` / `AC-HARNESS-L3-034-04` | provider degradation conditionを適用時に照合。 | degradation conditionだけ不成立。 | 成立claimなし、要求ownerへ。 |
+| `CASE-HARNESS-L10-034-13` | `FR-HARNESS-L3-034` / `AC-HARNESS-L3-034-04` | memory contamination toleranceをAI適用時に照合。 | toleranceだけ欠落。 | 未完を保持。 |
+| `CASE-HARNESS-L10-034-14` | `FR-HARNESS-L3-034` / `AC-HARNESS-L3-034-04` | 非AI対象でAI専用条件を適用外とする根拠を保持。 | 非AI対象へAI専用条件を理由なしに強制。 | 過剰適用として不成立。 |
+| `CASE-HARNESS-L10-034-15` | `FR-HARNESS-L3-034` / `AC-HARNESS-L3-034-04` | error budgetとhard limitを別値・別意味で保持し、超過時の期待結果を各自の固定条件から照合。 | error budgetをhard limitとして扱う。 | 誤分類として不成立、metric ownerへ。 |
+| `CASE-HARNESS-L10-034-16` | `FR-HARNESS-L3-034` / `AC-HARNESS-L3-034-04` | 対象要求に関係するoracle/probeと再現条件を記録。 | oracleだけを黙って変更する、または再現不能probeを成功扱いする（各個別fixture）。 | 未完、該当oracle ownerへ。 |
+| `CASE-HARNESS-L10-034-17` | `FR-HARNESS-L3-034` / `AC-HARNESS-L3-034-04` | 完了途中のmetric義務をsession交代後も同revisionで保持。 | session交代で未完義務を消す。 | 完了claimを拒否、担当要求/NFR ownerへ。 |
+| `CASE-HARNESS-L10-034-18` | `FR-HARNESS-L3-034` / `AC-HARNESS-L3-034-04` | 固定L11の未見例として新providerかつ同品質条件のscopeを与える。 | 過去fixture値から未定閾値・代表性を推定する。 | unknownを維持し、固定DB実装を強制しない。 |
+| `CASE-HARNESS-L10-036-08` | `FR-HARNESS-L3-036` / `AC-HARNESS-L3-036-04` | dev-local前commitとCI後commit SHAが異なるが、同一gate identity/content/version/scopeと対応結果を持つ。 | SHA差だけでparity failureとする。 | 偽不一致として不合格。SHA一致要件を作らない。 |
+| `CASE-HARNESS-L10-036-09` | `FR-HARNESS-L3-036` / `AC-HARNESS-L3-036-04` | screen scopeにartifact/CI greenがあり、system/user acceptanceは別oracleで未成立。 | artifact存在、CI green、別revision passまたはunit結果からacceptanceを生成する（各個別fixture）。 | 受入を生成せず、022/005の既存境界へ。 |
+| `CASE-HARNESS-L10-036-10` | `FR-HARNESS-L3-036` / `AC-HARNESS-L3-036-04` | 非適用判定に判定者、理由、revision、HEAD、再評価条件を揃える。 | いずれか一要素欠落。 | 非適用を拒否、HARNESS適用ownerへ。 |
+| `CASE-HARNESS-L10-036-11` | `FR-HARNESS-L3-036` / `AC-HARNESS-L3-036-04` | OSは固定適用性を記録し、036はscreen有無を推測しない。 | OSが適用性を変更する、または036が画面有無を推測する（別fixture）。 | 未評価/不成立、既存screen/requirement ownerへ。 |
+| `CASE-HARNESS-L10-038-06` | `FR-HARNESS-L3-038` / `AC-HARNESS-L3-038-04` | 同一意味の義務を既存義務へ採用する。 | 採用を強化または却下と誤表示する。 | disposition不一致。 |
+| `CASE-HARNESS-L10-038-07` | `FR-HARNESS-L3-038` / `AC-HARNESS-L3-038-04` | 既存義務を根拠付きで強化する。 | 強化を通常採用として表示する。 | disposition不一致、要求ownerへ。 |
+| `CASE-HARNESS-L10-038-08` | `FR-HARNESS-L3-038` / `AC-HARNESS-L3-038-04` | 再設計候補を候補のまま保持する。 | 再設計候補を承認済み要求へ変換する。 | authorityを生成せず不成立。 |
+| `CASE-HARNESS-L10-038-09` | `FR-HARNESS-L3-038` / `AC-HARNESS-L3-038-04` | 根拠とauthorityを明示した却下/対象外。 | 根拠またはauthorityなしの却下。 | 未決/unknown、既存要求ownerへ。 |
+| `CASE-HARNESS-L10-038-10` | `FR-HARNESS-L3-038` / `AC-HARNESS-L3-038-04` | 吸収先を特定して吸収する。 | 吸収先なしに吸収と表示。 | 不成立、責務ownerへ。 |
+| `CASE-HARNESS-L10-038-11` | `FR-HARNESS-L3-038` / `AC-HARNESS-L3-038-04` | 結論未決の義務をunknown/未決として残す。 | 未決を採択済みと表示。 | authority状態を偽らず不合格。 |
+| `CASE-HARNESS-L10-038-12` | `FR-HARNESS-L3-038` / `AC-HARNESS-L3-038-04` | 異なるcapabilityが同じ意味のoracleを根拠付きで共有する。 | oracle共有だけを理由に拒否する。 | 不当拒否として不合格。 |
+| `CASE-HARNESS-L10-038-13` | `FR-HARNESS-L3-038` / `AC-HARNESS-L3-038-04` | capabilityごとのtrace coverageを明示する。 | coverage表を空にする、またはsource本文を貼り付けただけでtrace成立とする（各fixture）。 | closureなし、HARNESS trace ownerへ。 |
+| `CASE-HARNESS-L10-039-06` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-04` | 7軸UX evidenceにaffected/unaffected/unknownを同scope/revisionで記録。 | affected/unaffected/unknownのいずれかを落とす。 | drift評価未完、既存design/requirement ownerへ。 |
+| `CASE-HARNESS-L10-039-07` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-04` | PoCとAI recommendationを提案資料としてのみ保持。 | PoC/AI recommendation/agreement/時間経過からvision/brand/priorityを生成または承認する（各fixture）。 | 上流判断を生成せず不成立。 |
+| `CASE-HARNESS-L10-039-08` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-04` | UI scopeで選択された実測条件を既存036へ参照。 | 049を新しい実測戻し先として用いる。 | 049 routeを拒否。実測は既存OS/利用者/LABOへ。 |
+| `CASE-HARNESS-L10-039-09` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-04` | UX結果がまだない段階でも候補起草を続け、結果義務を保持する。 | 将来UX evidenceの未作成だけで起草開始を停止。 | 新gateとして不成立。 |
+| `CASE-HARNESS-L10-040-05` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-04` | 有効なlayer/template contract revisionから項目集合を抽出。 | 暗黙に固定件数を課す。 | 項目集合はsourceから導出し、固定未根拠countを拒否。 |
+| `CASE-HARNESS-L10-040-06` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-04` | 隠れた有効template revisionでcoverageを再照合する。 | 新revisionを伏せたまま旧coverageをcurrentとする。 | stale/uncoveredを示し、040契約ownerへ。 |
+| `CASE-HARNESS-L10-041-05` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-04` | 選択済みtemplateの全applicability branchをmachine extraction resultと結ぶ。 | branchを人手要約だけで完全抽出と称する。 | 抽出完了を拒否、template owner/009へ。 |
+| `CASE-HARNESS-L10-041-06` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-04` | 未見の有効template revisionにbranch→atomの対応または明示gapを出す。 | revisionを隠す、branchを省く、unextractableを補完する（各fixture）。 | gap/unknownを保持、009/template ownerへ。 |
+| `CASE-HARNESS-L10-042-05` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-02` | L2が指定しないrollback前提を入力せず、既存変更意味でrefactor候補を照合する。 | rollback入力欠落だけで候補を拒否する。 | 固定親にない条件として不合格。 |
+| `CASE-HARNESS-L10-043-05` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-04` | 各適用rule/branchに正条件を満たすpositiveと境界を試すnegativeを置く。 | positiveがrule条件を満たさない。 | 例coverage不成立、template/004 ownerへ。 |
+| `CASE-HARNESS-L10-043-06` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-04` | risk分析で未被覆と示されたscopeに追加例を対応。 | 未被覆と示された領域に例を追加しない。 | risk coverage未完。 |
+| `CASE-HARNESS-L10-043-07` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-04` | matrix内で重複/冗長性findingを根拠付きで示す。 | L2:993の重複/冗長findingを落とす。 | finding coverage未完。 |
+| `CASE-HARNESS-L10-044-05` | `FR-HARNESS-L3-044` / `AC-HARNESS-L3-044-04` | 複数normative contractが必要なscopeにboundary/reasonを示す。 | 必要な複数contractの境界または理由を欠く。 | 判定unknown/未完、既存contract ownerへ。 |
+| `CASE-HARNESS-L10-044-06` | `FR-HARNESS-L3-044` / `AC-HARNESS-L3-044-04` | 採択済み025/026のscopeを参照する。 | 025/026へ追加義務を無断追記する。 | 権限・scope拡大を拒否。 |
+| `CASE-HARNESS-L10-046-05` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-04` | Scrum scopeと同じscope/revisionのworkflow obligation/pair evidenceを提示。 | slice単体成功または一般V-pair一覧でmissing obligationを相殺する。 | Scrum scope未完。 |
+| `CASE-HARNESS-L10-046-06` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-04` | coverage receiptはcoverage事実のまま保持。 | receiptからticket発行またはrelease許可を生成する（別fixture）。 | 状態/許可生成を拒否。 |
+| `CASE-HARNESS-L10-047-05` | `FR-HARNESS-L3-047` / `AC-HARNESS-L3-047-04` | 同一source/scope/oracle/generator/profile/authority revisionで判断を行う。 | sourceまたはscope変更後に旧判断をcurrentと流用する。 | staleとして再照合。 |
+| `CASE-HARNESS-L10-047-06` | `FR-HARNESS-L3-047` / `AC-HARNESS-L3-047-04` | 中断時に根拠、partial contract、未完義務、再開条件を保存。 | 中断またはbudget/期限到達で未完義務を消し、成功扱いする。 | 未完を保持し、現行contract ownerへ。 |
+| `CASE-HARNESS-L10-047-07` | `FR-HARNESS-L3-047` / `AC-HARNESS-L3-047-04` | INT proposalを配置案として記録し、OS assignmentを別状態に保つ。 | tool/pathをSECURITY許可、INT/LABO proposalを割当済みとする（各fixture）。 | authority/assignmentを生成せず既存ownerへ。 |
+| `CASE-HARNESS-L10-047-08` | `FR-HARNESS-L3-047` / `AC-HARNESS-L3-047-04` | contractにOS budget/期限、SECURITY constraint、provider/model記録の該当入力を識別。 | そのうち一入力のみ欠落/不一致にする。 | 該当判断をunknown/未完にして当該ownerへ。 |
+| `CASE-HARNESS-L10-049-05` | `FR-HARNESS-L3-049` / `AC-HARNESS-L3-049-04` | screen IDと対象screen revisionを照合し、同じscopeで測定。 | screen ID欠落または別revisionを個別に与える。 | IDを捏造せずwarning/unknown、対象ownerへ。 |
+| `CASE-HARNESS-L10-049-06` | `FR-HARNESS-L3-049` / `AC-HARNESS-L3-049-04` | 発行工程入力が欠けた状態と、既存screen ID自体が欠けた状態を別々に示す。 | 代替screen IDを自動作成する。 | 代替IDなし、該当source/upstream ownerへ。 |
+| `CASE-HARNESS-L10-049-07` | `FR-HARNESS-L3-049` / `AC-HARNESS-L3-049-05` | machine checkはpassでもimplemented/ux_verifiedを生成しない。 | passからimplementedを作る。 | 状態生成を拒否。 |
+| `CASE-HARNESS-L10-049-08` | `FR-HARNESS-L3-049` / `AC-HARNESS-L3-049-05` | implemented状態とUX evidenceを別々に保持。 | implementedからux_verifiedを推定する。 | 推定不成立、039/upstream ownerへ。 |
+| `CASE-HARNESS-L10-049-09` | `FR-HARNESS-L3-049` / `AC-HARNESS-L3-049-05` | 1.0測定候補と将来real-user UX/drift/analyticsを別範囲にする。 | 後続版のいずれかを1.0完了条件へ前倒す（各fixture）。 | 1.0 closureに使わず未決scopeを維持。 |
+| `CASE-HARNESS-L10-049-10` | `FR-HARNESS-L3-049` / `AC-HARNESS-L3-049-05` | LABO既存connection評価結果と人の文言判断状態を別に記録。 | machine resultまたはLABO評価から人の文言判断を承認済みにする。 | 承認を生成せず、文言判断は既存上流ownerへ。 |
+| `CASE-HARNESS-L10-054-05` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | muster候補ありの契約だけを既存OS assignment境界へ渡す。 | muster候補がないのにOSへcontractを渡す。 | handoffを不成立としHARNESS ownerへ。 |
+| `CASE-HARNESS-L10-054-06` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | existing-role-sufficientを同じtask/scope/revisionに結び、追加assignmentなしとする。 | 既存role十分なのに新しい専門contract/assignmentを生成。 | 追加生成を拒否。 |
+| `CASE-HARNESS-L10-054-07` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | worker/verifierを異なるidentity/context/authorityで記録。 | 分離条件を欠く、または同provider/modelだけで独立性を否定する（別fixture）。 | 前者は不成立、後者は誤判定として不成立。 |
+| `CASE-HARNESS-L10-054-08` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | provider/modelが一致していても別identity/context/authorityの正常fixture。 | provider/model一致だけで独立性を否定。 | 独立性判定を固定親のidentity/context/authorityに戻す。 |
+
+#### Stage 3 未見正常・個別戻し先追補
+
+| L10 case ID | FR / AC | 正常・未見正常入力 | 独立negative mutation | oracle・既存owner戻し先 |
+|---|---|---|---|---|
+| `CASE-HARNESS-L10-034-19` | `FR-HARNESS-L3-034` / `AC-HARNESS-L3-034-04` | 別の実行手段へ交換後も同じ対象revision、内容oracle、実測結果、overhead、再現性、再測定triggerを追跡する。 | 実行手段交換後に実結果の連続性だけ切る。 | 未完を維持しOS/利用者の実行結果ownerへ。 |
+| `CASE-HARNESS-L10-034-20` | `FR-HARNESS-L3-034` / `AC-HARNESS-L3-034-04` | NFR固有のAI永続化対象でstable ID/source authority/surface、target/error budget/hard limit、時系列と改善episodeを追跡する。 | いずれか一つを欠落させる別fixture。 | 該当NFR ownerへ戻し、未測定は未測定。 |
+| `CASE-HARNESS-L10-036-12` | `FR-HARNESS-L3-036` / `AC-HARNESS-L3-036-04` | 固定profileのcross-detection four axesとlocal/CI parityに、未見の同scope設計項目を加える。 | 追加項目のoracleがないのに通過扱いする。 | 該当範囲のみ未評価。 |
+| `CASE-HARNESS-L10-038-14` | `FR-HARNESS-L3-038` / `AC-HARNESS-L3-038-04` | 初期観測・要求形成までを主張し、後続design/test/PO verification/gap routeを未完義務として残す。 | 後段義務を前段成立から完了と推定。 | そのclaimだけ不成立。必要上流判断は既存authority ownerへ。 |
+| `CASE-HARNESS-L10-039-10` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-04` | selected UX seven-axis relationを同一scope/revisionで照合し、各axisの状態を保持する。 | real-data axisだけmissing/stale。 | UX completionだけ未完、候補作成は止めない。 |
+| `CASE-HARNESS-L10-039-11` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-04` | human-current evidenceが人の既存判断記録に結び付く。 | AIがvision/brand/priorityを自己承認する。 | 不成立、既存上流authority ownerへ。 |
+| `CASE-HARNESS-L10-040-07` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-04` | hidden layer/template revisionの選択範囲を更新してcatalog coverageを判定する。 | old revision coverageを新revisionへ流用。 | stale/uncoveredを表示し040契約ownerへ。 |
+| `CASE-HARNESS-L10-041-07` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-04` | hidden active-template revisionの各applicability branchを原子的atomまたは理由付きgapへ対応する。 | template branchをひとつ欠落。 | 完全抽出を拒否。template owner/009へ。 |
+| `CASE-HARNESS-L10-042-06` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-02` | 未見same-scope consumerとdependencyを変更前後に列挙し、既存oracleへ対応させる。 | consumerまたはdependencyの一つだけを隠す。 | 意味保存判定unknown、既存design/contract ownerへ。 |
+| `CASE-HARNESS-L10-042-07` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-02` | 性能変更を選択した場合、L2-016のbaseline/workload/oracleを用いる。 | performance regressionまたはmeasurement unmeasurableを別々に与え、refactor candidateを成功扱い。 | 016既存契約へ戻し相殺しない。 |
+| `CASE-HARNESS-L10-044-07` | `FR-HARNESS-L3-044` / `AC-HARNESS-L3-044-04` | hidden applicable obligation class/contract revisionを追加しcoverage denominatorを更新。 | 新classを隠したまま旧receiptをcurrent扱い。 | unknown/uncovered、既存contract ownerへ。 |
+| `CASE-HARNESS-L10-046-07` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-04` | hidden transitionまたはslice deltaを加えscope/revision内のworkflow obligation coverageを再照合。 | 別revisionまたは一般V-pair証拠で不足を相殺。 | selected Scrum scopeは未完のまま。 |
+| `CASE-HARNESS-L10-046-08` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-04` | workflow contract不整合をHARNESS-L2-002/003へ、pair/oracle欠落を004/022へ、OS save/execute receipt欠落をOS未実行として別々に返す。 | 3原因のどれかを別ownerへ束ねる。 | cause-specific returnを確認し、ownerを新設しない。 |
+| `CASE-HARNESS-L10-047-09` | `FR-HARNESS-L3-047` / `AC-HARNESS-L3-047-04` | 未見task-kind/domain/riskでexisting-role comparisonとLABO scopeを改めて照合する。 | 適用外LABO evidenceのみでmusterを作る。 | unknown/defer、要求ownerへ。 |
+| `CASE-HARNESS-L10-047-10` | `FR-HARNESS-L3-047` / `AC-HARNESS-L3-047-04` | OS assignment/budget/deadline、SECURITY constraint、provider/modelの各必要記録を同一scopeへ結ぶ。 | 各recordをひとつずつmissing/stale/conflictへ変異する独立fixture。 | 該当fieldだけ未完。INT proposalからassignmentを生成しない。 |
+| `CASE-HARNESS-L10-047-11` | `FR-HARNESS-L3-047` / `AC-HARNESS-L3-047-04` | comparison reasonにtask/capability/performance evidenceを使い、provider名は識別情報として保持する。 | 専門性labelだけ、unrelated task parallelismだけ、固定数値thresholdだけでmusterする各fixture。 | 根拠なし候補を拒否しHARNESS要求ownerへ。 |
+| `CASE-HARNESS-L10-049-11` | `FR-HARNESS-L3-049` / `AC-HARNESS-L3-049-04` | profile上限と根拠に対し文字量の超過のみをfindingとして返す。 | 上限超過の入力をひとつ与える。 | 独立findingを作る。 |
+| `CASE-HARNESS-L10-049-12` | `FR-HARNESS-L3-049` / `AC-HARNESS-L3-049-04` | 同内容反復だけを検出する。 | 同内容の反復をprofile条件内で与える。 | 上限超過と別のfindingとして返す。 |
+| `CASE-HARNESS-L10-049-13` | `FR-HARNESS-L3-049` / `AC-HARNESS-L3-049-04` | 説明のためだけの説明を判断材料と区別する。 | 説明だけを与える。 | third findingを作り「適用理由」へ置換しない。 |
+| `CASE-HARNESS-L10-049-14` | `FR-HARNESS-L3-049` / `AC-HARNESS-L3-049-04` | profileがない場合、固定の文字数閾値がなくてもunknownとして扱う。 | 全役割へ一律文字数上限を追加する。 | 追加閾値を拒否する。 |
+| `CASE-HARNESS-L10-049-15` | `FR-HARNESS-L3-049` / `AC-HARNESS-L3-049-05` | screen IDが既知でscreen source revisionのみ未確認。 | screen IDは既知だがrevisionが不一致。 | ID欠落と別条件としてwarning/unknown。 |
+| `CASE-HARNESS-L10-049-16` | `FR-HARNESS-L3-049` / `AC-HARNESS-L3-049-05` | screen ID自体が不足する。 | IDを代替発行しpassにする。 | IDを作らず不足を記録。 |
+| `CASE-HARNESS-L10-049-17` | `FR-HARNESS-L3-049` / `AC-HARNESS-L3-049-05` | 発行工程のinputだけが不足し、screen IDは既存で有効。 | 発行工程input不足をscreen ID欠落と同一扱いにする。 | 両欠落種別を区別し、追加必須条件は作らない。 |
+| `CASE-HARNESS-L10-054-09` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | existing_role_sufficientを返し既存roleへ留める。 | 不要な新専門contract/assignmentを作る。 | 不成立、既存role ownerへ。 |
+| `CASE-HARNESS-L10-054-10` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | 同一provider/modelでもworker/verifier identity/context/authorityが独立した正常例。 | provider/modelの同一性だけで非独立とする。 | 独立性は3境界で判定。 |
+
+| `CASE-HARNESS-L10-034-21` | `FR-HARNESS-L3-034` / `AC-HARNESS-L3-034-04` | 対象要求のmetric ID・意味・source revisionを結ぶ。 | 既存metric IDを別意味へ流用する。 | 成立を拒否し要求/NFR ownerへ。 |
+| `CASE-HARNESS-L10-034-22` | `FR-HARNESS-L3-034` / `AC-HARNESS-L3-034-04` | 根拠ある適用conditionと許容差を指定。 | 無制限の許容差だけを与える。 | 契約不成立。 |
+| `CASE-HARNESS-L10-034-23` | `FR-HARNESS-L3-034` / `AC-HARNESS-L3-034-04` | 対象要求に関連するoracle/probeをsourceへ結ぶ。 | 無関係oracleだけ、または再現不能probeだけを使う（別fixture）。 | 成立せずoracle/metric ownerへ。 |
+| `CASE-HARNESS-L10-034-24` | `FR-HARNESS-L3-034` / `AC-HARNESS-L3-034-04` | system計測の契約・実結果を同一対象revisionへ結ぶ。 | 局所probeだけでsystem計測済みとする。 | 不成立。 |
+| `CASE-HARNESS-L10-034-25` | `FR-HARNESS-L3-034` / `AC-HARNESS-L3-034-04` | 外部利用者へ必要な外向き条件と受入結果だけを求める。 | 外部利用者へ内部OS一式を必須化する。 | 過剰要求を拒否。 |
+| `CASE-HARNESS-L10-034-26` | `FR-HARNESS-L3-034` / `AC-HARNESS-L3-034-04` | 後続版INFRASTRUCTURE未整備でもL3計測契約を起草し、未実測義務を保持。 | 後続能力が未存在なだけで起草を停止。 | 固定親にない前提として不成立。 |
+| `CASE-HARNESS-L10-034-27` | `FR-HARNESS-L3-034` / `AC-HARNESS-L3-034-04` | 資源・権限が揃った時点で測定を行う。 | 資源または権限が欠けたまま実測済みと主張する。 | 実測済みを拒否しOS/利用者へ。 |
+| `CASE-HARNESS-L10-034-28` | `FR-HARNESS-L3-034` / `AC-HARNESS-L3-034-04` | fixed L11の各NFR固有fieldと適用性を同revisionで対応。 | storage/projection conditionの必要fieldだけを欠落。 | 未完、該当metric ownerへ。 |
+| `CASE-HARNESS-L10-036-13` | `FR-HARNESS-L3-036` / `AC-HARNESS-L3-036-04` | 同一selected scopeのartifactからsystem/user acceptanceは別oracleで確認する。 | artifactの存在だけからsystem/user acceptanceを生成する。 | acceptanceを生成せず022/既存ownerへ。 |
+| `CASE-HARNESS-L10-036-14` | `FR-HARNESS-L3-036` / `AC-HARNESS-L3-036-04` | CI greenをgate resultとして記録しacceptanceとは分離。 | CI greenだけからsystem/user acceptanceを生成。 | 不成立。 |
+| `CASE-HARNESS-L10-036-15` | `FR-HARNESS-L3-036` / `AC-HARNESS-L3-036-04` | current revisionのselected gate結果を照合。 | 別revisionのpassを流用してsystem acceptanceを生成。 | staleとして拒否。 |
+| `CASE-HARNESS-L10-036-16` | `FR-HARNESS-L3-036` / `AC-HARNESS-L3-036-04` | unit resultをunit scopeに限り保つ。 | unit resultだけからsystem/user acceptanceを生成。 | scope外推論を拒否。 |
+| `CASE-HARNESS-L10-038-15` | `FR-HARNESS-L3-038` / `AC-HARNESS-L3-038-04` | selected capabilityのcoverage matrixに適用義務を記録。 | coverage matrixを空にする。 | coverage不成立。 |
+| `CASE-HARNESS-L10-038-16` | `FR-HARNESS-L3-038` / `AC-HARNESS-L3-038-04` | source bodyからatom/endpoint間のtrace edgeを出す。 | source本文の貼り直しだけをtrace evidenceとする。 | trace不成立。 |
+| `CASE-HARNESS-L10-041-08` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-04` | template branchをmachine extraction resultと照合し、人手要約は補助contextに限る。 | machine extraction resultなしで人手要約だけをcomplete extractionとする。 | 完了を拒否、template owner/009へ。 |
+| `CASE-HARNESS-L10-041-09` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-04` | 未見適用branchを検出して対応atomを作る。 | applicability branchを読み飛ばす。 | branch coverage未完。 |
+| `CASE-HARNESS-L10-041-10` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-04` | 抽出不能なsource spanを理由付きgapとして保持。 | 抽出不能branchを自由補完する。 | gapを維持し不成立。 |
+| `CASE-HARNESS-L10-044-08` | `FR-HARNESS-L3-044` / `AC-HARNESS-L3-044-04` | 適用normative contractとportfolio scope内の対oracleを関係付ける。 | normative contractだけをportfolioから孤立させる。 | 未完findingを返す。 |
+| `CASE-HARNESS-L10-047-12` | `FR-HARNESS-L3-047` / `AC-HARNESS-L3-047-04` | OS, SECURITY, INTELLIGENCE, LABOの各入力は選択条件に応じた正確な既存owner/authority参照を持つ。 | permission/assignment/source分類の一つを混同する。 | 該当結果をunknown/deferし、既存ownerへ戻す。 |
+| `CASE-HARNESS-L10-049-18` | `FR-HARNESS-L3-049` / `AC-HARNESS-L3-049-05` | 未見device/view/locale条件を与え、既知profile範囲を同revisionで計測する。 | 未選択device/view/localeを観測済みまたは合格と推定する。 | 未選択範囲を未観測、選択条件不足はunknown。 |
+| `CASE-HARNESS-L10-054-11` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | tool/path candidateは契約上の候補にとどめ、SECURITY ownerの既存制約を参照。 | tool/path候補をSECURITY許可へ昇格。 | authority生成を拒否、SECURITY ownerへ。 |
+| `CASE-HARNESS-L10-054-12` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | worker/verifierの異なるidentity/context/authorityを示す正常例。 | worker/verifierの独立性を欠く。 | guard不成立、既存contract ownerへ。 |
+| `CASE-HARNESS-L10-039-12` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-04` | UI契約のdestructive/undo条件を選択scopeへ結ぶ。 | destructive/undo条件だけ欠落。 | 影響範囲をunknownにし既存design ownerへ。 |
+| `CASE-HARNESS-L10-039-13` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-04` | UI契約のrole conditionを選択scopeへ結ぶ。 | role conditionだけ欠落。 | 当該scope未完。 |
+| `CASE-HARNESS-L10-039-14` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-04` | locale conditionを適用時だけ対象へ結ぶ。 | locale conditionだけ欠落。 | affected/unaffected/unknownを分け、推測しない。 |
+| `CASE-HARNESS-L10-039-15` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-04` | 選択UI scopeで旧artifact条件を現行契約に適用。 | 全UI scopeへ旧artifact一式/S0-S4を必須化する。 | 過剰強化として拒否。 |
+| `CASE-HARNESS-L10-039-16` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-04` | 非UI scopeにscreen artifact義務を導入しない。 | 非UIへscreen ledgerを要求する。 | scope外適用として不成立。 |
+| `CASE-HARNESS-L10-039-17` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-04` | Full V/Scrum選択scopeの既存pair oracleを適用。 | 未作成UX evidenceからSR4/Full V closureを生成する。 | closureを生成せず、該当stageを未完にする。 |
+| `CASE-HARNESS-L10-039-18` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-04` | backfill変更を既存scope/revisionで追跡。 | backfill relation欠落を隠す。 | stale/unknownとして既存HARNESS ownerへ。 |
+| `CASE-HARNESS-L3-047-13` | `FR-HARNESS-L3-047` / `AC-HARNESS-L3-047-04` | task/process条件の入力を与える。 | task/process条件だけ不足。 | HARNESS要求/process ownerへ戻しLABOへ誤送しない。 |
+| `CASE-HARNESS-L10-047-14` | `FR-HARNESS-L3-047` / `AC-HARNESS-L3-047-04` | task oracle/verification contractを識別する。 | oracleだけ不足。 | HARNESS oracle/requirement ownerへ。 |
+| `CASE-HARNESS-L10-047-15` | `FR-HARNESS-L3-047` / `AC-HARNESS-L3-047-04` | LABO comparison evidenceは選択時、scope一致時のみ用いる。 | source/comparison materialだけ不足。 | LABOはcomparison-only recipient、task/process deficiencyはHARNESSへ返す。 |
+| `CASE-HARNESS-L10-047-16` | `FR-HARNESS-L3-047` / `AC-HARNESS-L3-047-04` | source identity/revision/scopeを保持。 | source revisionだけ変更しstale判断を更新しない。 | dependent judgementをstaleとして再照合。 |
+| `CASE-HARNESS-L10-047-17` | `FR-HARNESS-L3-047` / `AC-HARNESS-L3-047-04` | scope/oracle/generator revisionを記録。 | scopeだけ、oracleだけ、またはgeneratorだけ変更（各個別fixture）。 | 依存判断だけstaleへ。 |
+| `CASE-HARNESS-L10-047-18` | `FR-HARNESS-L3-047` / `AC-HARNESS-L3-047-04` | profile/authority revisionを記録。 | profileだけ、またはauthorityだけ変更（別fixture）。 | dependent decision/contract stale、許可は作らない。 |
+| `CASE-HARNESS-L10-047-19` | `FR-HARNESS-L3-047` / `AC-HARNESS-L3-047-04` | interruption時にdecision rationaleを残す。 | 中断後に根拠だけ消す。 | 未完として保持。 |
+| `CASE-HARNESS-L10-047-20` | `FR-HARNESS-L3-047` / `AC-HARNESS-L3-047-04` | interruption時にpartial contractとunfinished obligationを残す。 | partial contractまたは未完義務だけを消す（別fixture）。 | 再開前は未完。 |
+| `CASE-HARNESS-L10-047-21` | `FR-HARNESS-L3-047` / `AC-HARNESS-L3-047-04` | interruption後の再開条件を記録。 | resume conditionだけ欠落。 | success扱いしない。 |
+| `CASE-HARNESS-L10-054-13` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | `muster_candidate`なしの場合に既存OS contract boundaryを参照。 | 候補なしのcontractをOSへ送る。 | handoffを拒否。 |
+| `CASE-HARNESS-L10-054-14` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | tool/pathは候補として記録しSECURITY決定とは分離。 | tool/path候補からSECURITY permissionを発行する。 | authority生成を拒否しSECURITYへ。 |
+| `CASE-HARNESS-L10-054-15` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | LABO/INTELLIGENCE資料を比較・placement材料として別scopeに識別。 | LABOまたはINTELLIGENCE資料だけからSECURITY permissionを生成（各個別fixture）。 | authorityを生成せずSECURITY ownerへ。 |
+
+| `CASE-HARNESS-L10-036-17` | `FR-HARNESS-L3-036` / `AC-HARNESS-L3-036-04` | non-applicability記録に判定者がある。 | 判定者だけ欠落。 | 非適用判定を拒否。 |
+| `CASE-HARNESS-L10-036-18` | `FR-HARNESS-L3-036` / `AC-HARNESS-L3-036-04` | non-applicability記録に理由がある。 | 理由だけ欠落。 | 非適用判定を拒否。 |
+| `CASE-HARNESS-L10-036-19` | `FR-HARNESS-L3-036` / `AC-HARNESS-L3-036-04` | non-applicability対象revisionを固定。 | revisionだけ欠落。 | 未評価として保持。 |
+| `CASE-HARNESS-L10-036-20` | `FR-HARNESS-L3-036` / `AC-HARNESS-L3-036-04` | non-applicability記録のtarget HEADを固定。 | HEADだけ欠落。 | 非適用を受理しない。 |
+| `CASE-HARNESS-L10-036-21` | `FR-HARNESS-L3-036` / `AC-HARNESS-L3-036-04` | non-applicabilityに既存の再評価条件を記録。 | 再評価条件だけ欠落。 | 対象範囲をunknownに戻す。 |
+| `CASE-HARNESS-L10-036-22` | `FR-HARNESS-L3-036` / `AC-HARNESS-L3-036-04` | OSはscope内の既存適用性を記録。 | OSが適用性を別値に変える。 | OSが黙ってscope変更できない。 |
+| `CASE-HARNESS-L10-036-23` | `FR-HARNESS-L3-036` / `AC-HARNESS-L3-036-04` | screen適用性は既存owner記録で判断。 | 036が画面有無を独自に推測。 | 適用性unknownとして既存ownerへ。 |
+| `CASE-HARNESS-L10-038-17` | `FR-HARNESS-L3-038` / `AC-HARNESS-L3-038-04` | 複数capabilityへ同一requirement/design/testを結ぶ場合、その意味根拠とedgeを明記。 | 同一要素を複数capabilityへ根拠なく複製する。 | 重複finding、根拠なしclosureなし。 |
+| `CASE-HARNESS-L10-039-19` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-04` | selected UX evidenceでreal-data軸が現行。 | real-dataだけ欠落。 | UX completionだけ保留。 |
+| `CASE-HARNESS-L10-039-20` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-04` | responsive軸が現行。 | responsiveだけstale。 | UX completionだけ保留。 |
+| `CASE-HARNESS-L10-039-21` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-04` | motion軸が現行。 | motionだけunknown。 | UX completionだけ保留。 |
+| `CASE-HARNESS-L10-039-22` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-04` | accessibility軸が現行。 | accessibilityだけmissing。 | UX completionだけ保留。 |
+| `CASE-HARNESS-L10-039-23` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-04` | performance軸が現行。 | performanceだけstale。 | UX completionだけ保留。 |
+| `CASE-HARNESS-L10-039-24` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-04` | continuity軸が現行。 | continuityだけmissing。 | UX completionだけ保留。 |
+| `CASE-HARNESS-L10-039-25` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-04` | human-current evidenceは現行の人判断記録。 | human-current evidenceだけ欠落。 | UX completionだけ保留、人判断を生成しない。 |
+| `CASE-HARNESS-L10-039-26` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-04` | PoCをPoC候補のまま保持。 | PoCだけからvisionを作る。 | visionを生成せず上流ownerへ。 |
+| `CASE-HARNESS-L10-039-27` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-04` | AI recommendationを提案資料に限る。 | recommendationだけからbrandを作る。 | brandを生成せず上流ownerへ。 |
+| `CASE-HARNESS-L10-039-28` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-04` | agreement stateは人の既存決定を参照。 | agreementの有無だけからpriorityを作る。 | priorityを生成せず不成立。 |
+| `CASE-HARNESS-L10-039-29` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-04` | elapsed timeを状態変化の証拠にしない。 | 時間経過だけから人判断を推定。 | 推定・承認を拒否。 |
+| `CASE-HARNESS-L10-047-22` | `FR-HARNESS-L3-047` / `AC-HARNESS-L3-047-04` | specialist benefitをtask関連根拠で示す。 | expertise labelだけでmusterする。 | 根拠不十分、HARNESS要求ownerへ。 |
+| `CASE-HARNESS-L10-047-23` | `FR-HARNESS-L3-047` / `AC-HARNESS-L3-047-04` | task内parallelismを比較根拠にする。 | unrelated task parallelismだけでmusterする。 | 根拠不十分。 |
+| `CASE-HARNESS-L10-047-24` | `FR-HARNESS-L3-047` / `AC-HARNESS-L3-047-04` | 比較案で数値を候補として根拠・測定方法とともに扱う。 | 固定の数値thresholdを親根拠なしに足す。 | 固定閾値を拒否。 |
+| `CASE-HARNESS-L10-047-25` | `FR-HARNESS-L3-047` / `AC-HARNESS-L3-047-04` | allowed/denied tool/pathをcontract候補に保持。 | 候補pathだけからSECURITY許可を作る。 | authority生成せずSECURITYへ。 |
+| `CASE-HARNESS-L10-047-26` | `FR-HARNESS-L3-047` / `AC-HARNESS-L3-047-04` | INTELLIGENCE/LABO proposalは提案/evidence状態。 | proposalだけをassignment済みにする。 | assignmentを生成せずOS/INT/LABO各ownerへ。 |
+| `CASE-HARNESS-L10-047-27` | `FR-HARNESS-L3-047` / `AC-HARNESS-L3-047-04` | provider/modelはcontract記録に保持。 | provider/model fieldだけmissing。 | incomplete record、HARNESS contract ownerへ。 |
+| `CASE-HARNESS-L10-054-16` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | existing role sufficientで、新しいcontract/assignmentを作らない。 | fixed Worker countまたはTeamDefinitionを受入条件に追加する。 | 固定値/schemaを拒否。 |
+| `CASE-HARNESS-L10-054-17` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | runtime-neutral contractとOS assignment境界を分ける。 | 旧projectionをacceptance resultとして要求する。 | 不成立。 |
+| `CASE-HARNESS-L10-054-18` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | authority/assignment/worker lifecycleを各既存owner記録から照合。 | HARNESS candidate/handoffだけから実行、authority、acceptanceを生成する。 | 状態生成を拒否。 |
