@@ -1,0 +1,36 @@
+# HELIX-LABO L3 NFR候補 — Stage 2b（002–010）
+
+状態：未承認のL3/L10候補。対象はStage 2bの採択親 HELIXLABO-L2-002〜010のみ。固定L2/L11が要件authority、PO記録は親の採択登録、G0記録は実装順序だけを示す。本文は実装・実行・リリース許可や要件承認を生成しない。Stage 2bの親・case範囲、source disposition、固定根拠は[このcutoutの不変監査記録](../../governance/audits/requirement-registration/labo-stage2b-002-010-publication-cutout-2026-10-05.json)に固定する。
+
+## Stage 2b — 002/003/004/005 の技術候補（1.0、一括L3承認対象）
+
+以下は固定L2/L11に結ぶ技術候補であり、測定値・承認値・実装値・SLAではない。値ごとのPO質問や追加gateを作らない。実operation許可・Worker資格/割当・業務成功の判断は含まない。親のmeaning/scope/owner/versionが変わる場合だけ該当L2へ戻す。
+
+| 対象 | 候補値・比較理由 | L10測定 | 適用限界 |
+|---|---|---|---|
+| `LABO-002-FR-01` episode trace coverage | 選択scopeで観測された固定L2列挙stage/event typeとrequirement/revision、責務、product、mechanism、worker、provider/model/configuration、artifact、environment、resultを保持し、観測fieldのsource identity/revision逆参照率100%。未発生stageを生成しない。一部fieldが欠けたときは100%を成功で埋めず欠測を数える。 | 固定source identityを使い、全field/全stage、各field単独missing、source revision conflict、partial episodeをfixture化。保持率と未完義務表示、逆参照結果をfield単位で比較。 | sourceに未観測の事実やeventを要求しない。因果率・時間窓・similarity閾値は作らない。 |
+| `LABO-002-FR-01` orphan/false-correlation integrity | 相関不能eventの消失0、時刻/path近接だけに基づく因果assertion 0、元event更新0。成功率や因果スコアは定義しない。 | orphan正常、co-timed/co-path unrelated、relation訂正、元event before/after同一性を別fixtureで確認。 | correlation不能が意味する業務失敗を創作せずunknown/孤立を維持。 |
+| `LABO-003-FR-01` decomposition fidelity | 親の9分類群を個別に表現できること（9/9 identity保持）。同一episodeに複数分類が共存し、分類不能/反証/欠測を別の未確定理由として保持。 | 9分類を混在入力し、各分類1つずつ欠落/誤結合/誤推測へ変異。source evidence/revisionと元meaningへのtrace、条件付き成功のscopeを検査。 | 分類の優劣・加重score・採用率は親にないため設けない。 |
+| `LABO-004-FR-01` comparison-axis fidelity | 七軸 `purpose, structure, behavior, assumption, constraint, guarantee, cost` を各々保持（7/7）。部分一致/条件差を全体一致へ上げる割合0。 | 七軸を全て宣言した方式A/B、1軸差、条件差、元意味不明、candidateがauthority化するnegativeを別fixture化。 | 守破離をprovider rankや技法の一般評価にしない。一致閾値・similarity係数は未指定。 |
+| `LABO-005-FR-01` operation candidate fidelity | 親の12 operation identityを個別に表現（12/12）。候補ごとに維持意味・変更意味・適用条件・scopeを持ち、明示根拠のない項目をunknownで残す。自動採択/実行/退役0。 | 12 operationを独立candidateとして用意し、意味field・条件・scopeを各1つずつ欠落/変更。新機構の追加件数/増加だけを改善目的にする要求、意味変更隠蔽、自動実施要求を別々の負fixture化。件数の減少を新たな最小化制約にはしない。 | 12 operationは候補表現の網羅性であり、実operation実施の義務や改善尺度ではない。 |
+| 002–005 timing/volume profile | 合成計画試行を入力件数×episode数×source数×evidence payload sizeの各条件で定め、ingestion/grouping/comparison/candidate generationの観測latencyをp50/p95、throughputをitems/second候補として分離記録する。固定閾値・容量上限・retention/SLAは置かない。 | 各条件の `N_planned` に対し試行の観測可否dispositionとoracle verdictを分離する。各planned trialのprimary dispositionは `valid / failed / missing / censored` の相互排他とし、理由を別fieldで保持する。`valid`は予定した観測を完了し判定材料が揃った意味で、oracleのpass/fail/unknownを別記録する。意図的なnegative fixtureが拒否され、その結果を観測できたものは `valid` かつoracle `pass`、要求を誤って通したものは `valid` かつoracle `fail`。測定器故障で信頼できる結果がないものを `failed`、予定runのreceipt/startがないものを `missing`、開始後に予定観測窓が終わり観測が打ち切られたものを `censored` とする。優先順は、予定対象scope/母集団自体が不明ならunknown（ゼロ件としない）、receipt/startなしはmissing、開始後の観測窓未完はcensored、完了した信頼できる判定結果はvalid、その他の測定機構故障はfailed。意図的な入力field欠落そのものはmissing dispositionではない。primary dispositionの合計=`N_planned`を確認し、latency p50/p95はvalid観測のみで算出し、`N_valid/N_planned`とoracle verdict別件数を併記。`N_valid=0`ならpercentileなし、`N_planned=0`ならcoverage比なし。throughputは信頼できるprocessed count/正の秒単位観測時間とし、`N_planned>0`かつ時間が正でcount=0なら真の0 items/second。時間欠測/0、またはvalid観測なしは算出不能。可観測性はoracle合格を意味しない。 | workload・性能閾値・比較cohortは親にないため、候補measurement protocolだけをL3一括承認対象とし、業務性能保証とみなさない。 |
+
+**比較・測定の読み方**：完全field/identity traceはpartial traceより誤った成功補完を見つけられ、親の列挙fieldを直接照合できるため候補に選ぶ。欠測、失敗、打切を分母から外すとcoverageが過大に見えるため、計画試行母集団を固定して排他的なdispositionを報告する。observability dispositionとoracle pass/fail/unknownは別軸で報告する。個別候補値は根拠の明示と合成fixtureによる比較・測定を可能にするが、unknownが実ゼロやfailureへ置き換わること、未実行をpass扱いすることを認めない。旧Benchの固定category/metric/score/provider順位/hidden scorerを根拠や値として再利用しない。
+
+## Stage 2b — HELIXLABO-L2-006/007/008/009/010 技術候補
+
+以下は固定L2/L11の列挙field・状態を照合する測定候補であり、実測・承認・実装・SLA値ではない。通常の一括L3承認候補に含み、parameterごとのPO質問や追加gateを設けない。固定親の意味、scope、owner、versionは変えない。
+
+| 対象 | 根拠付き候補 | 比較・測定方法 | 適用限界 |
+|---|---|---|---|
+| `HELIXLABO-L2-006` — 比較軸の完全性 | 固定L2の14 evaluation dimensions（quality、success/failure、false positive/negative、rework、speed、CI/Worker time、token/API cost、human intervention、context、complexity、recovery time、release lead time、ops load、cross-product reuse）を14別fieldで扱う | 同一宣言scope内で各dimensionのeligible/observed/valid/missing/not-applicable/incomparable/interrupted件数とevidence locatorを別集計する。oracleが宣言した必要品質を満たさずspeedが改善する場合も、品質違反とspeedを別に保持し、weighted scoreで相殺せず、評価可能な軸数だけでimprovementとしない。 | 14は固定親の列挙数で、業務成功数・重み・性能閾値ではない。 |
+| `HELIXLABO-L2-006` — 比較identity | ticket、experiment、arm、oracle/条件、assignment、Worker result、target versionのlink完全性 | planned comparison arm数を分母にし、同一ticket/experiment/target版/条件/oracleへlinkできるarmと欠落理由を別集計する。片方のarmやsource identity欠落を分母から外さない。 | assignment/実行許可やWorker資格を測らず、OS/実行元sourceの真実をLABOが作らない。 |
+| `HELIXLABO-L2-007` — six-condition evidence vector | 固定親の6条件（同条件再現性、機械判定可能性、oracle、bounded side effects、retry/rollback、idempotency）を条件ごとにsupported/contradicted/unknownで報告 | 同一candidate scope母集団を分母に各条件のevidence locatorと状態を記録し、欠測をunknownとして残す。平均scoreや全体合格閾値を置かない。 | system化率や資格付与の目標値にしない。 |
+| `HELIXLABO-L2-007` — candidate/operation state | systemization candidateとoperation continuation candidate、限界・未確定条件を別状態で保持 | 計画candidate全数を母集団としてcandidate種別、観測stage、根拠・counterexample・unknownを記録する。段階ラベルから自動遷移を数えない。 | 新gate、promotion、承認、実operationを作らない。 |
+| `HELIXLABO-L2-008` — 証拠とunfinished-duty保持 | current system version、owner-provided outcome、例外、FP、workaround/cost、guarantee、復帰条件、unfinished-dutyを別fieldで追跡 | 計画したreevaluation候補数を分母にfield別present/unknown/stale/conflict countとsource link、unfinished-duty identity retentionを報告する。continue/modify/fallbackの候補は別分類で数え、固定比率を設けない。 | fallback実行、system退役、永続system化を示さない。 |
+| `HELIXLABO-L2-009` — 5 scope-level evidence matrix | single episode、repeated episodes、cross-project、cross-product、general structureの固定5段階 | 各scope claimについてsupport/counterexample/sample-condition/applicability-evidenceを段階別に列記し、根拠が支持する最大scopeとclaimのscopeを比較する。母集団は対象scope claim全数とし、unknown/sample不足も数に残す。 | 最小sample数・cross-product件数・generalization率は固定親から創作しない。 |
+| `HELIXLABO-L2-010` — proposal field/action fidelity | 固定16 mandatory fieldsと8 valid `recommended_action` values | eligible target-specific proposalを分母にfieldごとのpresent/missing/conflict count、scope/evidence locator、action別valid/unknown countを報告する。8 actionすべてを正常fixtureで一件ずつ照合し、列挙外actionはunknownとして別negativeにする。 | proposal completenessはtarget変更・OS routing/registration・承認を意味しない。 |
+
+母集団を事前に宣言し、report dispositionは `valid / failed / missing / censored` を排他的に数え、合計がplanned件数に一致する候補とする。`valid`は観測と判定材料が完了した意味で、oracle pass/fail/unknownは別軸。`failed`は測定機構故障で信頼できる結果なし、`missing`はplanned runにreceipt/startなし、`censored`は開始後に予定観測窓が未完の状態。対象scope/母集団が不明な場合はunknownで、ゼロ件と仮定しない。missing/failed/censoredを有効成功へ変換しない。率は分母が0またはmissingなら算出値なしとし、割合へゼロを代入しない。時間計測が使える場合p50/p95はvalid時間標本のみでn_validとfailed/missing/censored件数を添える。n_valid=0なら分位値なし、実測自体がない場合だけ「未実測」と記載する。処理量は有効件数/明示された正の秒単位観測時間で `items/second` として記録し、時間が0/missingなら算出不能。これらは測定報告の候補であり、製品SLO/RTO、最低試行数、合格閾値を新設しない。
+
+旧HELIX-Benchの固定5 category/12 metric、scorer、hidden oracle、team/provider ranking、fixed run protocol、price normalization、qualification/admissionは本親に由来しないため再利用しない。測定とfailureをevidenceへ結ぶ一般形式のみ旧sourceから再導出し、具体的な項目と個数は固定L2-006〜010の列挙に限定する。
