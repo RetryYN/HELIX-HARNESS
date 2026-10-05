@@ -271,7 +271,7 @@ C13-M10、C13-M7、C13-M12 audit-record correction、Minor INT-010、Minor INT-0
 - AC-INT-044-02 (独立negative): CASE-INT-044-02a〜jを一変数ずつ変異する。candidate identity/source、evidence scope、LABO evaluation省略、未評価からのBRAIN更新、評価scope違い、根拠のない汎用性、未選択connector、BRAIN直接出力、証拠欠落candidateからのBRAIN更新を個別に拒否する。BRAIN canonicalは変更せず、未評価/evidence欠落はLABO evaluation ownerへ戻す。
 - AC-INT-044-03 (未見入力 oracle): 未見candidate kindもsource/scopeを維持してLABOへ渡し、評価例がないものをgeneralizableと断定しない。
 - AC-INT-044-04 (unknown/未宣言): CASE-INT-044-04a〜gでcandidate identity/source、evaluation evidence identity、evaluation applicability/scope/status、BRAIN direct-update経路、generic scopeを独立に保留し、candidate/evidence/evaluationの不足はLABO evaluation owner、BRAIN canonicalはBRAIN ownerへ戻す。
-- 旧source disposition: 旧SYN observation/candidate分離を比較起点とする。旧DAC historical/candidate non-promotionという表現は採用せず、当該scopeのLABO evaluation/BRAIN canonical境界を固定L2/L11から再導出する。旧human gateは追加せず現ownerへ置換。
+- 旧source disposition: 旧UWJ-FR-009/010とUWJ-AC-009/010（LEGACY-ASSET-5EE032D657C221184B00:41–55、LEGACY-ASSET-6FFD7F4E58066D08B053:17–26）のfacts/candidate/proposal-onlyと自己承認拒否を比較起点とする。旧SYN/DACをこのpinのsourceとして称さず、当該scopeのLABO evaluation/BRAIN canonical境界を固定L2/L11から再導出する。旧human gateは追加せず現ownerへ置換。
 
 ### FR-INT-045 — INTELLIGENCE → Product Core Backflow（Stage 4）
 
