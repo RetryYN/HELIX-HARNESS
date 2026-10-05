@@ -197,13 +197,15 @@ fixtureにはinput/digest、固定L2 parent revision、対象revision、実行ac
 | `CASE-OS-017-HXT-FLOW-08` | `HXT-FLOW-08` | L2/L11の同ID行にある起点・経路・合流先を保ってnormal traceを完成する。同じ行の反例を独立入力として拒否し、ticket identity・未完義務・裁定/評価責務を保持する。 |
 | `CASE-OS-017-HXT-FLOW-09` | `HXT-FLOW-09` | L2/L11の同ID行にある起点・経路・合流先を保ってnormal traceを完成する。同じ行の反例を独立入力として拒否し、ticket identity・未完義務・裁定/評価責務を保持する。 |
 
+L11:274に従い、入力・判断の不足をシステムで補完した場合は不成立とする。各FLOW行に複数の反例がある場合は、対象行の他条件を正常に保ち、反例を一つずつ独立variantとして照合する。
+
 ### CASE-OS-023-HXT-USE-01 — 周辺job boundary（AC-OS-023-01/02）
 
 Crawler/Bugbotは `CASE-OS-023-HXT-USE-01` として023で固定L2/L11の既存ticket種類/割当へ接続するnormalを照合する。独立negativeでは新しい種類の追加、またはWEB-OS未決jobの内部OS state/writer/authority化をそれぞれ単独変異し拒否する。
 
-### CASE-OS-017-HXT-SYS-01 — ticket composite trace（AC-OS-017-01/02）
+### CASE-OS-017-HXT-SYS-01 — ticket composite trace（AC-OS-017-01/02、AC-OS-023-01/02）
 
-Normalは親要求revisionからHARNESS版、INTELLIGENCE proposal、OS eligibility/issue、HARNESS検収plan/resultまで同一ticketを追跡する。個別negativeは (a) BRAINに稼働判断を戻す、(b) INTELLIGENCE/HARNESSがticket発行、(c) PR mergeだけで完了、(d) 部品外flowを1.0へ生成、(e) 開発方式をticket typeへする、(f) 突発と計画を混同、を一つずつ変異し固定L11反例として拒否する。authority境界と未完義務を保持する。
+Normalは親要求revisionからHARNESS版、INTELLIGENCE proposal、OS eligibility/issue、HARNESS検収plan/resultまで同一ticketを追跡する。固定L2-010の束ね条件に従い、023側でも本CASEを参照し、handoff上のrevision/scope/unfinished dutiesを保つ。個別negativeは (a) BRAINに稼働判断を戻す、(b) INTELLIGENCE/HARNESSがticket発行、(c) PR mergeだけで完了、(d) 部品外flowを1.0へ生成、(e) 開発方式をticket typeへする、(f) 突発と計画を混同、を一つずつ変異し固定L11反例として拒否する。authority境界と未完義務を保持する。
 
 ### CASE-OS-018-01 — assignment/attempt normal（AC-OS-018-01）
 
@@ -236,7 +238,7 @@ ticket/head/authority/Worker/caller lane/scope/lease/cumulative budget/deadline�
 
 ### CASE-OS-018-04a〜04l — conditional HIL-NFR-36 evidence（AC-OS-018-04）
 
-L2-018-002の選択分岐を分ける。`CASE-OS-018-04a`は適用default/order sourceが選択され有効なときのnormalで、対象revisionと根拠receipt、予定step、実際に通ったstepと順序、結果、逸脱理由を別々に記録する。`04b`は逸脱根拠receipt欠落、`04c`は逸脱根拠receiptの別revision、`04d`は実際に通ったstep receipt欠落、`04e`はstep順序不整合、`04f`は既存sourceから適用対象と確認できる選択default/order source referenceの欠落、`04g`は選択source stale、`04h`はsource owner unknown、`04j`はsource scope unknown、`04k`はsource間conflictをそれぞれ独立variantとする。これらでは該当するreceipt facetだけをunknown/未完にし、assignmentの可否・継続は既存authority/制約で別判定する。receipt欠落だけで事前gateまたは全assignment停止を加えない。sourceが適用可能で選択対象だがその参照が欠落した場合（04f）と、適用sourceのない非選択branch（04i）を区別する。`04i`はquality eventなし、かつconsult/supportが未選択のnormalに限り、未選択receiptを作らない。適用sourceのunknown/欠落は04lで別に検査する。provider名だけで独立性を判定せず、FR-63・別scope・INT案からdefault/orderを補わない。追加default、retry上限、全件共通対応順は作らない。
+L2-018-002の選択分岐を分ける。`CASE-OS-018-04a`は適用default/order sourceが選択され有効なときのnormalで、対象revisionと根拠receipt、予定step、実際に通ったstepと順序、結果、逸脱理由を別々に記録する。`04b`は逸脱根拠receipt欠落、`04c`は逸脱根拠receiptの別revision、`04d`は実際に通ったstep receipt欠落、`04e`はstep順序不整合、`04f`は既存sourceから適用対象と確認できる選択default/order source referenceの欠落、`04g`は選択source stale、`04h`はsource owner unknown、`04j`はsource scope unknown、`04k`はsource間conflictをそれぞれ独立variantとする。これらでは該当するreceipt facetだけをunknown/未完にし、assignmentの可否・継続は既存authority/制約で別判定する。receipt欠落だけで事前gateまたは全assignment停止を加えない。sourceが適用可能で選択対象だがその参照が欠落した場合（04f）と、quality eventなし・consult/support未選択の正常境界（04i）を区別する。`04i`はquality eventなし、かつconsult/supportが未選択のnormalに限り、未選択receiptを作らない。適用sourceのunknown/欠落は04lで別に検査する。provider名だけで独立性を判定せず、FR-63・別scope・INT案からdefault/orderを補わない。追加default、retry上限、全件共通対応順は作らない。
 
 | CASE | fixture | expected / owner |
 |---|---|---|
@@ -248,14 +250,21 @@ L2-018-002の選択分岐を分ける。`CASE-OS-018-04a`は適用default/order 
 | `CASE-OS-018-04f` | 既存の適用根拠はdefault/order sourceを選択しているが、その参照が欠落 | 当該receipt facetをunknown/未完とし、FR-63等から補完しない。assignment可否・継続は既存authority/制約で別判定し、該当facetを元のdecision/policy meaning ownerへ返す |
 | `CASE-OS-018-04g` | default/order sourceをstaleにする | 当該receipt facetをstale/unknownで保持し、古いsourceで採択しない。assignment可否・継続は既存authority/制約で別判定し、該当facetを元のdecision/policy meaning ownerへ返す |
 | `CASE-OS-018-04h` | default/order source ownerをunknownにする | 当該receipt facetのownerをunknownで保持し、新ownerを作らない。assignment可否・継続は既存authority/制約で別判定し、該当facetを元のdecision/policy meaning ownerへ返す |
-| `CASE-OS-018-04i` | quality eventがなくconsult/supportも未選択 | optional receiptを生成しない。適用source欠落をこの正常fixtureに含めない |
+| `CASE-OS-018-04i` | quality eventがなくconsult/supportも未選択 | 未選択consult/support receiptを生成しない正常境界。適用sourceの有無や欠落はこのfixtureで判定しない |
 | `CASE-OS-018-04j` | 適用sourceのscopeを特定できない | 当該receipt facetだけscope unknown/未完とし、別scopeから補完しない。assignment可否・継続は既存authority/制約で別判定し、該当facetを元のdecision/policy meaning ownerへ返す |
 | `CASE-OS-018-04k` | 適用source間のconflict | 当該receipt facetだけconflict/未完とし、優先sourceを推測しない。assignment可否・継続は既存authority/制約で別判定し、該当facetを元のdecision/policy meaning ownerへ返す |
 | `CASE-OS-018-04l` | 選択されたtask/scopeに適用するdefault/order sourceが存在しない | 当該facetをunknown/未完として保持し、適用外・逸脱なしと分類せず、元のdecision/policy meaning ownerへ返す。assignment可否・継続は既存authority/制約で別判断する |
 
-### CASE-OS-018-05 — provider identity/context boundary（AC-OS-018-01/04）
+### CASE-OS-018-05a/05b — provider identity/context boundary（AC-OS-018-01/04）
 
-正常例では同一provider内の別identityを分け、別provider名でも同じidentity/contextなら名称だけで独立としない。個別negativeでは同一provider・別identityを統合する変異、別provider名・同一contextを独立扱いする変異をそれぞれ与える。identity/context/authority evidenceを照合し、不足は既存ownerへ戻す。
+正常例では同一provider内の別identityを分け、別provider名でも同じidentity/contextなら名称だけで独立としない。各negativeは対象以外の条件を正常に保つ。
+
+| CASE | 独立variant | expected / owner |
+|---|---|---|
+| `CASE-OS-018-05a` | 同一provider内の別identityを統合する | 独立review完了扱いを止め、停止理由と未完のreview dutyを記録してOS管理/推進へ返す。 |
+| `CASE-OS-018-05b` | 別provider名・同一identity/contextを独立扱いする | 独立review完了扱いを止め、停止理由と未完のreview dutyを記録してOS管理/推進へ返す。 |
+
+identity/context/authority evidenceの不足も既存ownerへ戻し、CASE-OS-018-02gと同じ停止・未完記録のoracleを適用する。
 
 ### CASE-OS-019-01 — episode reconstruction normal（AC-OS-019-01）
 
