@@ -75,3 +75,211 @@
 ### CASE-OS-014-11 — FRS-BR-008/009 disposition（AC-OS-014-11）
 
 正常: `MPR-RC-HELIXOS-L2-014-002`のsource dispositionと固定PO決定に沿って、FRS-BR-008の内部で使う意味とFRS-BR-009の安全閉包/組合せ検証を現行契約へ再導出し、旧CI先行利用を使わない。固定coverage receiptでは6 source atomsのうち5件をcarried、1件Cursor限定委譲を保留する。未見正常: 同じ処分を別revision-bound planning recordでたどり、保留atomを対象へ混入しない。negativeを個別にする: 旧CI/wait/rerunを追加、Lite/Fullをstage名にする、保留Cursor委譲を復活、安全dependencyを落とす、HARNESS service⑥をOS配布境界へ取り込む、旧test/runtimeを合格証拠にする。期待: PO dispositionを保持しsource/owner不足へ戻す。旧source、登録、testから採択や実行許可を推測しない。
+
+## Stage 2a — 8親の機能総合検証（015/016/017/018/019/020/023/027）
+
+状態: L3対の検証設計候補。実行結果・L3承認・実装/実行許可を生成しない。L3 `functional-requirements.md`のAC IDに結び、fixed L2/L11 source revisionとownerをoracleにする。新世代CI未構築、旧test/runtime/CIは実行しない。
+
+旧L3定義、旧L10 process、旧READMEとpaired testのpositive/negative/trace形からverification/backflowの意味を再導出する。旧processはL3↔L10、READMEはL3→L12と層対応が異なるため、この不一致を記録し、どちらの旧層対応も現行の正本として引き継がない。現在の配置は現行6 canonical文書によるL3/L10構成に従う。旧G3/L12 gateとtest runtimeは移さない。
+
+各CASEはfixture input/digest、親L2 fixed revision、HARNESS contract/oracle source（適用時）、expected state/owner routeを保持する。一つのnegative CASEにつき一変数だけ変更する。運用・PR/review/CI/mailbox outcomeをPO decision、許可、acceptanceへ昇格しない。
+
+### CASE-OS-015-01 — authority record正常（AC-OS-015-01）
+
+別対象のConcept/L1/要求revision、decision record、raw eventとIssue/PR projectionを入力する。Oracleはsource identity/revision/digest/decision source/ownerをcanonicalへ辿り、projection close/merge/green変化後もauthorityが不変、訂正後も原eventが保持されること。合格は全traceが一致すること。
+
+### AC-OS-015-02 — authority negative（AC-OS-015-02）
+
+| CASE | mutation（他条件は正常） | expected / owner |
+|---|---|---|
+| `CASE-OS-015-02a` | target identity unknown | unresolvedを保持し対象canonical ownerへ戻す |
+| `CASE-OS-015-02b` | target source revision stale/mismatch | authorityを成立扱いせずcanonical sourceへ戻す |
+| `CASE-OS-015-02c` | digestを欠落または不一致 | current authority projectionに採用せずsourceへ戻す |
+| `CASE-OS-015-02d` | decision sources conflict | unresolved conflictを保ちdecision ownerへ戻す |
+
+Projection-only approval、訂正によるraw event上書き、PR/memory/CIからのmeaning/approval/permission生成も期待oracle違反とする。
+
+### CASE-OS-015-03 — unseen correction chain（AC-OS-015-03）
+
+未見targetと複数回の修正・分類eventをheld-out入力にする。oracleはsource revision・訂正前後・original raw eventsを順に辿れること。未知の分類はunknownのままにし、PR/review statusから埋めない。
+
+### CASE-OS-016-01 — portfolio states正常（AC-OS-016-01）
+
+二つ以上のproject、各requirements revision、unit/connection/composite edges、dependencies、diff/verification/provision/operation stateを与える。Oracleはそれぞれunconnected/unagreed/unimplemented/unverified/unprovided/unknown/staleを別に表示し、下位対象成功を他対象へ波及させず、release-kanban recordをsourceにtraceする。
+
+### AC-OS-016-02 — state/edge negative（AC-OS-016-02）
+
+| CASE | mutation（他条件は正常） | expected / owner |
+|---|---|---|
+| `CASE-OS-016-02a` | unit successのみでconnection/composite completeとする | 拒否しunit/connection/compositeを別stateにする |
+| `CASE-OS-016-02b` | owner identity欠落 | unknown/conflictを保持し要求/source ownerへ戻す |
+| `CASE-OS-016-02c` | dependency edge欠落 | edge unknownのまま下流completeにしない |
+| `CASE-OS-016-02d` | implementation diff欠落 | impactなしと推論せずsource ownerへ戻す |
+| `CASE-OS-016-02e` | verification target欠落 | unknownを保持しsource/connection ownerへ戻す |
+
+単一project/CI/PRを他project/composite証拠にする変異も不合格。ticket plan/CIのみでmerge/release readinessにしない。
+
+### CASE-OS-016-03 — unseen portfolio relation（AC-OS-016-03）
+
+未見dependency/relationを含む二対象以上のportfolioを投入。Oracleはknown stateを保ちunknown edge・owner・revisionを表示すること。未提示targetのcoverageを全repo censusとしてclaimしない。
+
+### CASE-OS-017-01 — accepted inputsからticket候補（AC-OS-017-01）
+
+同一accepted request/HARNESS contract/INT proposalを反復投入し、別の有効target/dependencyも対照にする。Oracleは同条件でtarget/kind/parent revision/scope/dependency/acceptance duty/return ownerが同じticket candidateとなり、別対象差を保持すること。INT提案はauthority/budget/deadline/dependencyとHARNESS語彙へ照合される。
+
+### AC-OS-017-02 — suitability negative（AC-OS-017-02）
+
+| CASE | mutation（他条件は正常） | expected / owner |
+|---|---|---|
+| `CASE-OS-017-02a` | INT proposalを無条件で採用 | OS適格性照合を通らず実行可能ticketにしない |
+| `CASE-OS-017-02b` | HARNESS process term/order/dutyをOSが変更 | 元のHARNESS contractへ返しcandidateを保留 |
+| `CASE-OS-017-02c` | fixed HARNESS partにないflowを1.0で生成 | unsupported/unknownで止め、既定戻し先を保つ |
+| `CASE-OS-017-02d` | required input unknown | ticketを実行可能にせず要求/permission ownerへ戻す |
+| `CASE-OS-017-02e` | unresolved dependencyをready化 | dependency ownerへ返し実行可能ticketにしない |
+| `CASE-OS-017-02f` | restartでoriginal revision/stop reason/unfinished duties/budget/deadlineを落とす | 再開を不成立にし、累積条件を復元する |
+
+全案件へ同一固定sequenceを当てる変異も拒否する。
+
+### CASE-OS-017-03 — unseen allowed components（AC-OS-017-03）
+
+未見targetで固定HARNESS componentの許可された別組合せを入力する。Oracleは既知部品のみを適用し、部品外の動的workflow能力を捏造せず、適格性差を説明する。
+
+### CASE-OS-018-01 — assignment/attempt normal（AC-OS-018-01）
+
+ticket/head/authority/Worker/caller lane/scope/lease/cumulative budget/deadlineとINFRA resource/LABO class statusを固定し、assignment→attempt→artifact/evidence→handoffを追跡する。作成Workerと別identity/context/authorityの独立review担当へ意味とunfinished dutiesを渡し、author自身を承認者にしない。
+
+### AC-OS-018-02 — execution-control negatives（AC-OS-018-02）
+
+| CASE | mutation（他条件は正常） | expected / owner |
+|---|---|---|
+| `CASE-OS-018-02a` | 同一leaseでduplicate claim | 重複claimを拒否 |
+| `CASE-OS-018-02b` | 同一attemptでduplicate run | duplicate executionを防ぎOS stop evidenceを記録 |
+| `CASE-OS-018-02c` | restart時にcumulative budgetをreset | attempt継続を止め元の制約を維持 |
+| `CASE-OS-018-02d` | restart時にdeadlineをreset | attempt継続を止め元の制約を維持 |
+| `CASE-OS-018-02e` | failure count reset | resetを拒否し既存attempt状態を保つ |
+| `CASE-OS-018-02f` | unassessed Workerをassessedと表示 | LABO状態を改変せず未評価に保つ |
+| `CASE-OS-018-02g` | author Workerが自分をapprove/independent-review済みにする | 独立性不成立として別reviewへ戻す |
+| `CASE-OS-018-02h` | assignment scope mismatch | start/continueを停止しpartial output隔離、OSへ返す |
+| `CASE-OS-018-02i` | target HEAD mismatch | start/continueを停止しpartial output隔離、OSへ返す |
+| `CASE-OS-018-02j` | expired lease | 継続を停止しhandoff dutiesを保持 |
+| `CASE-OS-018-02k` | Worker capability mismatch | start/continueを停止しLABO/OS ownerへ返す |
+| `CASE-OS-018-02l` | authority stale/mismatch | start/continueを停止しSECURITY/source ownerへ返す |
+
+### CASE-OS-018-03 — unseen replacement/resume（AC-OS-018-03）
+
+期限またはlease expiryの後、Worker交代/再開を行う。Oracleはunfinished dutiesとbudget/deadline/failure count/scopeを維持し、期限後の旧assignmentを流用しない。
+
+### CASE-OS-018-04 — planned vs performed HIL-NFR-36 record（AC-OS-018-04）
+
+accepted defaultから逸脱した品質issue fixtureで、予定手順、実際の手順、結果、逸脱理由を別々に入力する。Oracleは実績と予定を区別して記録すること。追加のdefault、retry上限、全件共通対応順は作らない。
+
+### CASE-OS-019-01 — episode reconstruction normal（AC-OS-019-01）
+
+source/revision/correlation ID/actor/data-use class付きの要求・判断・作業・検証・backflow/checkpoint eventからepisodeを再構成。Oracleはmissing/duplicate/stale/denied/not-runとsuccessを区別し、restart後もscope/deadline/budget/failure count/unfinished dutiesを保持する。
+
+### AC-OS-019-02 — continuity negatives（AC-OS-019-02）
+
+| CASE | mutation（他条件は正常） | expected / owner |
+|---|---|---|
+| `CASE-OS-019-02a` | 同eventを再配送 | 記録duplicateを分類し同じside effectを二重実行しない |
+| `CASE-OS-019-02b` | raw eventsを欠きprovider memory/summaryだけ渡す | authority recoveryを拒否しoriginへevidence欠落を戻す |
+| `CASE-OS-019-02c` | 保存またはprojection失敗後もsuccess checkpointを公開 | 不合格、raw eventから再構築 |
+| `CASE-OS-019-02d` | unauthorized data-use classを他project/learning用途へ送る | 送信を拒否しSECURITY/origin ownerへ返す |
+
+### CASE-OS-019-03 — unseen crash/replay sequence（AC-OS-019-03）
+
+未見のcrash/restart/replay順序をheld-out入力にし、raw sourceからepisodeを復元する。記録件数やprojection生成だけをcompletionとしない。
+
+### CASE-OS-020-01 — scoped obligation profile/run（AC-OS-020-01）
+
+HARNESS-L2-022等の実際に選択されたcontract/oracle、requirements pair、ticket, changeset/base, runner/environmentを入力する。HARNESSが要求する対象義務のみをprofileへ写し、exact HEAD/oracle/env/run identityと状態success/fail/denied/skipped/interrupted/staleを照合する。CIを動かした結果ではなく設計oracleを示すcaseである。
+
+### AC-OS-020-02 — verification negatives（AC-OS-020-02）
+
+| CASE | mutation（他条件は正常） | expected / owner |
+|---|---|---|
+| `CASE-OS-020-02a` | すべての仕事へ固定段数を要求 | HARNESS契約にない義務を追加せず不合格 |
+| `CASE-OS-020-02b` | OSがHARNESS oracleを追加/削除 | HARNESS ownerへ戻しprofile未確定 |
+| `CASE-OS-020-02c` | applicable obligationを一つ欠落 | unfinishedとしてHARNESS/ticket/resource ownerへ戻す |
+| `CASE-OS-020-02d` | exact base/headと異なるHEADのgreenを使う | resultを現対象の成功にしない |
+| `CASE-OS-020-02e` | CI successからmeaning review/acceptance/merge/releaseを推論 | decisionを生成せず不合格 |
+| `CASE-OS-020-02f` | 旧CI greenを新世代結果として使う | 不合格。旧CIは実行しない |
+
+### CASE-OS-020-03 — unseen mixed obligations（AC-OS-020-03）
+
+複数義務を持つ未見diffについて、固定HARNESS contractに照らしたselection rationaleを記録し、義務を追加/省略しない。plan stateとrun stateは別にする。
+
+### CASE-OS-023-01 — sender/receiver handoff normal（AC-OS-023-01）
+
+OS-016から対象要求revision、unit/connection/composite relationとsource-bound stateを含むportfolio traceを入力し、015/017/018/019/020からauthority、ticket、assignment/attempt、evidence、検証義務/結果の該当sourceを接続する。exact revision/digest/causal ID/scope/duty/stop reason/evidenceを送る。unit outcome、connection acceptance、composite acceptanceを別oracleで照合し、receiverがunfinished dutiesを受理した記録を確認する。
+
+### AC-OS-023-02 — handoff negatives（AC-OS-023-02）
+
+| CASE | mutation（他条件は正常） | expected / owner |
+|---|---|---|
+| `CASE-OS-023-02a` | revision/digest mismatch | connection unresolved、origin source/managementへ返す |
+| `CASE-OS-023-02b` | authority/evidence mismatch | acceptanceを拒否しorigin ownerを保持 |
+| `CASE-OS-023-02c` | unit successのみでconnection/composite/next stage accepted化 | 不合格、別判定を保つ |
+| `CASE-OS-023-02d` | receiver未受領なのにticket complete | 不合格、unfinished dutiesとticketを保留 |
+
+### CASE-OS-023-03 — mixed-duties unseen handoff（AC-OS-023-03）
+
+未見receiverとcompleted/unfinished混在を入力し、各dutyを元scope/revisionに維持する。transport receiptだけでbusiness successを作らない。
+
+### CASE-OS-027-01 — unassessed-only normal（AC-OS-027-01）
+
+Worker/model性能履歴だけを「未評価」にし、他入力は全て固定L2条件に合致させる。6条件すべてのevidenceと有効authority、人が狭いscope/Worker/budget/deadline/stop/HARNESS dutiesを確認した状態なら、性能未評価を理由に拒否しない。条件成立の記録後に限る限定初回作業を設計上許容し、作成Workerとは異なる確認者actorが実行結果を確認した記録に結果、対象revision、scope、確認時点、未完義務を束縛する。確認記録は固定L2/L11のevidenceであり、実行許可や新しい毎回承認gateを作らない。成功結果もLABO評価前はunassessedに留める。これは実行・許可の実証ではない。
+
+### AC-OS-027-02 — 六つのlow-risk条件を個別に破る
+
+正常な基準入力では六条件とoperation authorityを成立させる。各行では対象条件内の一fieldまたは事実だけを変え、非対象の五条件を保つ。02e1〜02e3は条件5への変異でoperation authority自体が不成立となるため、変異後にauthority有効とは記録しない。他の条件への変異では操作authorityを有効に保つ。02a5のdata-use許可欠落と条件5の操作authority不一致は別のfixtureとして照合する。
+
+| CASE | single mutation | expected / owner |
+|---|---|---|
+| `CASE-OS-027-02a1` | asset identity欠落 | start拒否、SECURITY/source ownerへ戻す |
+| `CASE-OS-027-02a2` | classification owner欠落 | start拒否、SECURITY/source ownerへ戻す |
+| `CASE-OS-027-02a3` | classification source/revisionをstale化 | start拒否、SECURITY/source ownerへ戻す |
+| `CASE-OS-027-02a4` | planned output classification/scope欠落 | start拒否、OS/SECURITYへ戻す |
+| `CASE-OS-027-02a5` | data-use permissionを欠落 | start拒否、SECURITYへ戻す |
+| `CASE-OS-027-02a6` | input/outputをsecretまたはHELIX-restrictedにする | start拒否、SECURITYへ戻す |
+| `CASE-OS-027-02b` | credential accessまたはraw secret read/input/outputが必要になる | start拒否、SECURITYへ戻す。別の人確認で上書きしない |
+| `CASE-OS-027-02c` | networkなしをunauthorized destination/protocol/path/egressへ変更（SECURITY-006明示許可なし） | start/retry拒否、SECURITYへ戻す |
+| `CASE-OS-027-02d` | isolationまたはSECURITY制約の一つを未適用にする、またはhost fallback | start拒否。partial outputがあれば隔離しINFRA/SECURITYへ戻す |
+| `CASE-OS-027-02e1` | authorized actorを別actorにする | start拒否、authority sourceへ戻す |
+| `CASE-OS-027-02e2` | target/operationのうち一方を変更 | start拒否、authority sourceへ戻す |
+| `CASE-OS-027-02e3` | revision/environment/scope/expiryのうち一つをstale/mismatch | start拒否、authority sourceへ戻す |
+| `CASE-OS-027-02f` | 取り消せる小成果物を不可逆変更/release/tag/distribution/rollback不能へ変更 | start拒否、OS/authority ownerへ戻す。人確認で免除しない |
+
+### CASE-OS-027-03a〜03k — 独立した開始/適用scope negative（AC-OS-027-03）
+
+共通normal baselineでは六条件とoperation authorityを確認済みにする。各fixtureは一つの追加required input/bindingだけを変える。03aはauthority欠落であり、六条件のうち条件5（operationごとの有効authority）と重複する。03aでは他の五条件を満たしたまま条件5に重なるauthority fieldだけを外し、六条件全て成立とは記録しない。これは重複するauthority oracleの個別traceである。
+
+| CASE | single mutation | expected / owner |
+|---|---|---|
+| `CASE-OS-027-03a` | operation authority missing | start拒否、SECURITY authority sourceへ戻す |
+| `CASE-OS-027-03b` | HARNESS oracle missing | start拒否、HARNESS ownerへ戻す |
+| `CASE-OS-027-03c` | authorized budget missing | start拒否、OS/ticket ownerへ戻す |
+| `CASE-OS-027-03d` | deadline missing | start拒否、OS/ticket ownerへ戻す |
+| `CASE-OS-027-03e` | stop condition missing | start拒否、OS/ticket ownerへ戻す |
+| `CASE-OS-027-03f` | task scope outside accepted bound | start拒否、OS/source ownerへ戻す |
+| `CASE-OS-027-03g` | verification scope outside accepted bound | start拒否、HARNESS/OS ownerへ戻す |
+| `CASE-OS-027-03h` | exact HEAD mismatch | 現対象として実行/検証しない |
+| `CASE-OS-027-03i` | partial successを完了扱い | 不合格、unfinished dutyを保持 |
+| `CASE-OS-027-03j` | LABOがOS assignment/Workerを指定 | 不合格、OS ownerへ戻す |
+| `CASE-OS-027-03k` | scoreのみでscope/branch/authority変更 | 不合格、permissionと評価を分離 |
+
+### CASE-OS-027-04 — unseen conforming task（AC-OS-027-04）
+
+未公開task fixtureが同じ6条件・authority・scope・oracleを満たすとき、その限定入力の範囲でのみ扱い、unknownを推測で埋めない。成功後も適用scope付きLABO評価が未完ならunassessedを保つ。
+
+### CASE-OS-027-05 — human substitute trace（AC-OS-027-05）
+
+INT/LABO runtimeを前提にしないhuman proposal/evidence fixtureにtask identity、source/contract revision、scope、unassessed、actor/timeを束縛する。OS receiptとassignmentは別状態。human inputをINT-generated/LABO-assessed/permissionとして表示したら不合格。実行結果を人が確認した場合は、作成Workerと異なる確認者actor、対象revision、scope、確認時点、結果、未完義務を同じ確認recordへ束縛し、proposal/evidence代行とは別に追跡する。
+
+### CASE-OS-027-06 — evidence-scoped LABO assessment（AC-OS-027-06）
+
+適用可能なoracle revision/criterion/comparison conditionを特定し、実結果/failure/counterexample/unknownに適用した状態をLABO ownerが確認する。対象task/model class/scopeだけassessedとし、別scopeには流用しない。oracle不在・scope mismatch・実適用なし・一回成功のみならunassessed/evaluation-unknown。
+
+### C13 carry-forward
+
+C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit scopeどおりcarryする。本文を作成したこと、source SHA一致、静的参照検査は独立reviewやfinding closureではない。

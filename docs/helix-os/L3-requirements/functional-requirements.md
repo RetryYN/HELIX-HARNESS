@@ -49,3 +49,110 @@ OSは、固定L2-014の内部段階releaseについて、stage identityと範囲
 | 014 FRS処分 | FRS-BR-008/009と旧stage acceptance | 固定PO処分どおりcarried 5 atomsとCursor pending atomを分ける。旧CI利用/wait/rerunを除き、旧IDを現行要件へしない。 |
 
 旧共通L3定義148–168はFR/ACと受入の対応形式、旧共通L10 process 162–170および195–207は検証case形式の比較起点である。旧README（`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md:38–41`、`LEGACY-ASSET-9A772391C7FB1298D45F`、source full SHA-256 `949b0da00d2a417e1b36d3679b89735de7adadf831f567dbe383dfe6337f19e4`）が示すL3→L12配置と旧L10 processのL3↔L10対応差は固定sourceの差として保持し、現行層対応は現行L3/L10の6 canonical文書に従う。旧定義の163–165 `engineering_discipline_required`、G3/L12 gate、旧runtime/test/CIは移植しない。
+
+## Stage 2a — 8親の機能要件（015/016/017/018/019/020/023/027）
+
+状態: L3未承認の起草候補。固定採択L2/L11の対象revisionを詳細化する。本文、PR、review、運用結果からL3承認、実装・実行許可、人間判断を生成しない。
+
+### sourceと旧HELIX対応
+
+固定L2は `docs/helix-os/L2-requirements/governance-requirements.md`、固定L11は `docs/helix-os/L11-acceptance/governance-acceptance.md` のf6dad2a revisionである。POのmain633 decision row 48はOS-L2-014〜029をまとまりで採択した。次の8親はそれぞれL2/L11のidentity・本文をpinし、各registration/digestをPO decisionの個別完全一致rowと偽らない。OS-018にはmain633の追加decision row 34も適用し、HIL-NFR-36の事実・理由、実行した品質対応/結果、予定と実行の区別を保持する。新しいdefaultや全案件共通の対応順序は加えない。
+
+旧HELIX起点:
+
+- 旧L3定義 `archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md:148-166`（`LEGACY-ASSET-F542125805B777D8A56A`、全体SHA `9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3`）、旧README `archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md:16-56`、旧L10 process `archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md:162-170,195-207`から、FR/ACとverification pairの意味を再導出する。READMEはL3→L12、旧processはL3↔L10と異なる層対応を記すため、この食い違いを記録し、どちらの旧対応も現行の正本として引き継がない。3文書の分離形式は参考にし、今回の配置は現行の6 canonical文書によるL3/L10構成に従う。旧G3/L12 gate/runtimeと旧定義163-165の`engineering_discipline_required` PLAN freeze（no-code-first/complexity等）は現行のgate、実行、CI規則へコピーしない。
+- 旧shared FR/AC `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md:38-57,134-197,198-307`（`LEGACY-ASSET-EE5DBACC7F28F7D1F605`、全体SHA `7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544`）から親trace/ACの構造だけを再利用し、旧IDs・旧数値・late addendaを移さない。旧paired test `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md:32-90,91-216`（`LEGACY-ASSET-44DD86E3DEC09E65EF51`、全体SHA `df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6`）からpositive/negative/held-out oracleの形を再導出し、旧HAT/L12/runtimeは移さない。
+- 親別の旧sourceと項目ごとの再利用・再導出・置換は末尾crosswalkと対応L10に記録する。sourceの旧IDは出自trace専用で、現行IDとして使わない。
+
+### FR-OS-015 — 管理authority記録
+
+- 親: `HELIXOS-L2-015`、version target `1.0`。固定L2 `governance-requirements.md:642-651`、L11 `governance-acceptance.md:324-329`。
+- **FR-OS-015**: 対象/source identity・revision・digest、actor/time、canonical source、decision record、未分類raw event、訂正/競合/staleを記録し、authorityの出所・対象revision・差分・訂正履歴を辿れる管理projectionを提供する。projectionと正本を分離し、raw eventは後から分類しても保持する。
+- Owner: OSはrecord/projectionを管理する。要求意味と人間decisionはcanonical source/decision ownerに残す。
+- **AC-OS-015-01 正常**: 複数対象と異なるsource revisionを投入し、全recordが正しいsource/digest/decision ownerへ辿れる。Issue/PR/CI projectionをclose/merge/greenへ変えてもauthority値は変わらず、訂正後も元raw eventと訂正履歴が残る。
+- **AC-OS-015-02 negative**: unknown target、revision mismatch、digest missing、authority conflictを独立に投入し、それぞれunresolvedとして保持してcanonical sourceまたはdecision ownerへ戻す。PR/memoryだけから採否を作る、raw eventを訂正で上書きする、wrong product/stale/digest mismatchをcurrent authorityにする場合は不合格。記録から要求意味・human decision・実装許可を生成しない。
+- **AC-OS-015-03 unseen normal**: 未見の対象と複数回訂正でも元event、source revision、訂正順序を追跡でき、未分類eventを推測で確定しない。
+
+### FR-OS-016 — Portfolio trace・状態
+
+- 親: `HELIXOS-L2-016`、version target `1.0`。固定L2 `governance-requirements.md:652-661`、L11 `governance-acceptance.md:331-336`。
+- **FR-OS-016**: 複数対象の要求/revision、HARNESS contract、unit/connection/composite identityと関係、dependency/owner/diff/verification/provision/operation記録を要求から運用状態へtraceする。未接続・未合意・未実装・未検証・未提供・unknown・staleを別状態としてtarget revisionへ結びつける。
+- Owner: OSがportfolio trace/statusを持ち、各project/source ownerが内容と検証evidenceを持つ。HARNESS contract版はHARNESSの正本に従う。
+- **AC-OS-016-01 正常**: 二つ以上のprojectでunit、connection、composite、依存edgeと各状態が個別に読め、release-kanban上のprovision/operation stateがsourceへtraceする。unit/connection/compositeは別々の判定になる。
+- **AC-OS-016-02 negative**: 下位のsuccessをconnection/composite/他project完了へ昇格しない。owner/dependency/diff/verification targetの各欠落を独立変異にし、unknown/conflictとして保持し対象要求/sourceへ返す。CI/PR/ticket planだけでmerge/release readinessを作らない。
+- **AC-OS-016-03 unseen normal**: 未見のrelationを含むportfolioで既知stateを維持し、未知edgeをunknownで表示してowner/revisionを保持する。
+
+### FR-OS-017 — 推進・ticket/workflow
+
+- 親: `HELIXOS-L2-017`、version target `1.0`。固定L2 `governance-requirements.md:662-671`、L11 `governance-acceptance.md:338-344`。
+- **FR-OS-017**: 登録済み目的/要求/制約/許可/優先度/依存/資源/budget/deadline/stop、HARNESS版/connection state、INTELLIGENCE案、HARNESS工程契約から、適格性確認後にticket graphとworkflow instanceを作る。ticketはtarget/kind/parent revision/scope/dependency/acceptance duty/return destinationを束縛する。
+- Owner: OSは推進・ticket/workflow。INTELLIGENCEは案、HARNESSは工程語彙/順序/義務、SECURITYはauthority制約を保持する。
+- **AC-OS-017-01 正常**: 同一のaccepted inputとHARNESS contractから同一のticket candidateが得られ、差異があるtarget/dependencyは個別に保持される。INT案はauthority/budget/deadline/dependency等へ照合してから扱う。
+- **AC-OS-017-02 negative**: input unknown/conflict、未解決dependency、scope逸脱、permission不足ではticketを実行可能にしない。HARNESS語彙/義務のOS再定義、既定部品外flowの1.0生成、INT案の無条件ticket化、全案件共通の固定sequenceを拒否する。L2が4.0境界とした部品外flowを1.0へ持ち込まない。停止後も元revision/stop reason/unfinished duties/cumulative budget/deadlineを保つ。
+- **AC-OS-017-03 unseen normal**: 異なる許可済み既定部品の組合せを使う未見taskでも固定契約境界を守る。対応部品がない場合はunsupported/unknownとして扱い、flowを作らない。
+
+### FR-OS-018 — Worker割当・実行統制
+
+- 親: `HELIXOS-L2-018`、version target `1.0`。固定L2 `governance-requirements.md:672-681`、L11 `governance-acceptance.md:345-351`。HIL-NFR-36残差追補はmain633 decision row 34。
+- **FR-OS-018**: ticket revision/digest、assignment/attempt、lane/Worker/model-class level、SECURITY制約、INFRA resource、scope/budget/deadline、成果/evidenceを関連づけ、既存authority内で割当・進行・停止・回収・handoffを記録する。assignmentはSECURITY認可、実resource state、独立reviewを代行しない。
+- Owner: OS assignment/attempt/handoff、SECURITY permission、INFRA actual resource、LABO performance/evaluation、INTELLIGENCE placement proposalはそれぞれsource ownerを維持する。
+- **AC-OS-018-01 正常**: exact ticket/head/authority/Worker/caller lane/scope/lease/budget/deadlineと成果/evidenceを辿り、独立review担当へ意味とunfinished dutiesを渡す。author Workerの出力を自己承認/独立review済みにしない。
+- **AC-OS-018-02 negative**: duplicate claim/run、期限・budget・failure count reset、unassessed Workerをassessed化、OSによるSECURITY/INFRA state代行、author self-approvalを個別に拒否する。scope/head/lease/capability/authority不一致はstart/continueを止め、partial outputを隔離しdutiesをhandoffする。
+- **AC-OS-018-03 unseen normal**: Worker/lease handoffまたは再開時にcumulative limits、scope、unfinished dutiesを保持し、期限/lease失効後も別の適格担当へ戻せる。
+- **AC-OS-018-04 追加採択条件**: HIL-NFR-36の予定対応と実際の対応を区別し、default逸脱の事実/理由、品質問題で実際に通った手順/結果を記録する。新default・共通対応順序は作らない。
+
+### FR-OS-019 — Evidence・continuity
+
+- 親: `HELIXOS-L2-019`、version target `1.0`。固定L2 `governance-requirements.md:682-691`、L11 `governance-acceptance.md:352-358`。
+- **FR-OS-019**: event/source revision/correlation ID/actor/data-use class、execution/verification result、correction/checkpoint/unfinished dutyからepisodeの原記録・projection・再開情報を構成する。provider memoryはcontinuityの正本にしない。
+- Owner: OSはevent/projection/recoveryを担う。event meaningとsourceはorigin owner、data-use permission/classificationは該当SECURITY/source ownerに残す。
+- **AC-OS-019-01 正常**: event provenance/correctionからepisodeを再構築し、missing/duplicate/stale/denied/not-runをsuccessと区別する。session/runtime交代後もscope/deadline/budget/failure count/unfinished dutiesが残る。
+- **AC-OS-019-02 negative**: 重複配送が二重副作用にならない、failed save/projectionをsuccessful checkpointとして公開しない、provider summaryのみの再開を拒否する。用途外data-useを別project/learningへ流用しない。
+- **AC-OS-019-03 unseen normal**: 未見のcrash/restart/replay順序からraw eventsを使い再構築し、欠落証拠をorigin ownerへ戻す。projectionのみからsuccessを生成しない。
+
+### FR-OS-020 — 検収・CI運転
+
+- 親: `HELIXOS-L2-020`、version target `1.0`。固定L2 `governance-requirements.md:692-701`、L11 `governance-acceptance.md:359-365`。
+- **FR-OS-020**: ticket graph、採択済みrequirements/pair/oracle、HARNESS contract/duties、diff/base、runner/environment、適用されるconnection/evidenceから変更scopeに必要なprofileを組み、隔離実行し、状態を回収/再開する。新世代CI未構築。旧CIは動かさずfallbackにも使わない。
+- Owner: HARNESSは検証義務/oracle、OSはprofile組成と運転、SECURITYはauthority、INFRAはrunner/resourceの実値。
+- **AC-OS-020-01 正常**: applicable HARNESS obligationsと対象diffに沿うprofileを選び、exact head/oracle/environment/run identityに束縛してsuccess/fail/denied/skipped/interrupted/staleを区別する。計画と実行は別state。
+- **AC-OS-020-02 negative**: HARNESS oracleの追加/削除、必要検証欠落、固定stage count、old CI greenまたはwrong-head green、CI結果によるmeaning review/acceptance/merge/release代替は不合格。検証義務/runner欠落はunfinishedとしてHARNESS/ticket/resource ownerへ戻す。
+- **AC-OS-020-03 unseen normal**: 異種義務を持つ未見diffでも適用対象をHARNESS contractから導く。存在しない義務や段数を固定しない。
+
+### FR-OS-023 — 管理→推進→Worker→検収 handoff
+
+- 親: `HELIXOS-L2-023`、version target `1.0`。固定L2 `governance-requirements.md:722-731`、L11 `governance-acceptance.md:380-386`。
+- **FR-OS-023**: OS-016のportfolio traceにある対象要求revision・unit/connection/composite relation・接続状態を含む管理/source、ticket、assignment/attempt、検証結果とevidence間のhandoffをsubject revision/digest、causal ID、scope、unfinished duties、stop reason、evidenceへ束縛する。OS-016のsource/statusをhandoffへ写すときもconnection/composite acceptanceを生成しない。
+- Owner: 各sender/receiverの意味上の責務を維持し、OSはhandoff record/receiptを結ぶ。交差する役割をauthorityとして混ぜない。
+- **AC-OS-023-01 正常**: OS-016から対象要求revision、unit/connection/composite relationと各source-bound stateを含むportfolio traceを入力し、015/017/018/019/020の該当sourceにあるauthority、ticket、assignment/attempt、evidence、検証義務/結果を受渡す。unit success、connection-specific acceptance、composite acceptanceを別々に記録し、receiverが対象revision/digest/scopeとunfinished dutiesを受領した証拠を残す。
+- **AC-OS-023-02 negative**: revision/digest/authority/evidence mismatchではconnection unresolvedとし発生側正本/管理へ返す。単体successでhandoff・次段acceptance・ticket completionを自動生成しない。
+- **AC-OS-023-03 unseen normal**: mixed completed/unfinished dutiesと異なるreceiver pathでscope/revisionを保ち、未完義務を消さない。
+
+### FR-OS-027 — 未評価状態からの限定初回実行
+
+- 親: `HELIXOS-L2-027`、version target `1.0`。固定L2 `governance-requirements.md:824-846`、L11 `governance-acceptance.md:442-456`。
+- **FR-OS-027**: 限定task/attemptで許容される一つの小さく可逆なartifactを隔離環境で初回実行し、authority・分類・Worker・scope・予算/期限/stop・HARNESS oracle/義務・人確認をbindingする。操作許可と性能評価状態は独立する。LABO/INT実装が未利用なら同じL2 contractによるhuman substituteを入力として許すが、生成性能/評価/assignmentのauthorityを人へ移さない。
+- **AC-OS-027-01 normal — 未評価単独は拒否理由でない**: 性能履歴のないWorker/modelでも、以下6条件すべてとtaskに有効なoperation authorityを満たし、人が限定scope/Worker/budget/deadline/stop/verification dutiesを確認した場合、限定初回を許可できる。proposal/evidence substitutionは同じ固定schema/source/scopeを用い、actor/timeとOS receiptを残す。実行後は、作成Workerとは異なる人の確認者が結果を確認し、確認者actor、対象revision、scope、確認時点、結果、未完義務を同一の確認記録へ束縛する。これは新しい毎回承認gateではなく、固定L2/L11の結果確認evidenceである。初回成功もLABOが適用可能なoracleで評価するまではunassessedのまま。 六条件は、(1) 全入出力assetのidentityとclassification owner/source/revision/data-useを束縛し、unknown/secret/HELIX-restrictedを除外、出力classification/scopeを事前指定、(2) credential accessとraw secret read/input/outputなし、(3) networkなしまたはSECURITY-L2-006が明示許可する宛先/protocol/path/data class/量/purpose/authority/expiry内、(4) SECURITY-L2-003 isolationと選択作業に適用するL2-007制約を環境へ適用しhost fallbackなし、(5) operationごとにSECURITY-L2-008 actor/target/operation/revision/environment/scope/expiryに一致する有効authority、(6) 変更前状態と復旧先が確認できる可逆変更でrelease/tag/distribution等の不可逆作用なし、である。各根拠は同じattempt/scope/revision/environmentに束縛する。
+- **AC-OS-027-02 negative — 6条件の独立変異**: 共通normal baselineでは6条件とoperation authorityを成立させる。各CASEは表記された一つの条件内の一field/事実だけを変異し、それ以外の適格条件はbaselineどおり保つ。`CASE-OS-027-02a1`–`CASE-OS-027-02a6`は分類/provenance/data-use条件1内のasset identity、classification owner/source/revision、planned output class/scope、data-use、secret/restricted input/outputを個別に変える。`CASE-OS-027-02b`はcredential/secret条件2、`CASE-OS-027-02c`は通信条件3、`CASE-OS-027-02d`は隔離/適用条件4、`CASE-OS-027-02e1`–`CASE-OS-027-02e3`はactor/target/operation/revision/environment/scope/expiry authority条件5、`CASE-OS-027-02f`は可逆性条件6をそれぞれ個別に変異する。02e系ではcondition 5とoperation authority自体が不成立となるため、変異後にauthority有効とは記録しない。その他の条件変異ではoperation authorityを有効に保つ。02a5のdata-use欠落は条件1のdata-use constraintであり、条件5の操作authority欠落とは別のfixture・根拠である。各caseで開始拒否、owner/根拠/再開条件を示し、失敗を別条件で相殺しない。
+- **AC-OS-027-03 negative — 他の必須開始入力/適用scope**: 共通normal baselineでは6適格条件とoperation authorityを確認済みにする。各CASEはひとつの追加必須input/bindingだけを欠落/変更する。`CASE-OS-027-03a`はoperation authority欠落で、適格条件5と意味が重なることを明示し、他の5条件は成立したまま条件5相当のauthority inputだけを外す（重複するauthority oracleの個別traceであり、六条件すべて成立とは主張しない）。`CASE-OS-027-03b` HARNESS oracle missing、`CASE-OS-027-03c` authorized budget missing、`CASE-OS-027-03d` deadline missing、`CASE-OS-027-03e` stop condition missing、`CASE-OS-027-03f` task scope逸脱、`CASE-OS-027-03g` verification scope逸脱、`CASE-OS-027-03h` exact HEAD mismatch、`CASE-OS-027-03i` partial successを完了扱い、`CASE-OS-027-03j` LABOがOS assignmentを行う、`CASE-OS-027-03k` scoreだけでscope/branch/authority変更をそれぞれ独立fixtureにする。該当固定ownerへ返し、未完義務/再開条件を保持する。
+- **AC-OS-027-04 unseen normal**: 未公開taskが同一の狭いconjunctionを満たす場合も限定入力の範囲でのみ扱い、unknownを推測で埋めない。human proposal/evidence substituteもorigin/schema revision/source/scope/actor/time/receiptを保つ。
+- **AC-OS-027-05 human-substitute normal**: INT/LABO runtimeを実行前提とせず、人が同じaccepted contractに沿ってproposal/evidenceを明示するとき、OSは受領・assignment・権限を別stateに保つ。人手入力はINT生成やLABO評価済み証拠にならない。
+- **AC-OS-027-06 evaluation boundary**: oracleの存在だけでassessedにしない。LABOがtask/model class/scopeに適用可能と確認したoracle revision・判定条件・比較条件を実結果（failures/counterexamples/unknown含む）へ実際に適用したときだけ当該範囲を評価する。一回のsuccessのみ、異class/scope、stale/conflict、基準なしはunassessed/evaluation-unknownを保持する。
+- Owner: SECURITYはclassification/operation permission、安全制約。OSだけがexisting authorityで適格性・割当・停止を判断。INTはproposal schema/meaning、LABOは観測/評価、INFRAは資源実値、HARNESSはoracle/verification duties。人は指定された限定scopeの初回と結果を確認する。操作/review/CI/PR/mailboxから新しい人間decisionや許可を作らない。
+
+### 対起草時の差戻し規則
+
+L2意味・適用scope・owner・versionの変更が必要と判明した場合だけ、根拠・影響と共にL2/POへ戻す。数値候補の比較ごとにPO承認を聞かず、新gateを作らない。Stage 1全件完了や他Stageの完了を本8親の前提にしない。Stage2cは順序上後続、Stage2bは並行可能。保留/不採択要求、version未指定要求、Web後続条件は親として追加しない。
+
+### 旧source項目別crosswalk
+
+| 現行親 | 旧source (asset ID / path / 行 / 全体SHA) | dispositionと保持点・置換点 |
+|---|---|---|
+| OS-015 | `LEGACY-ASSET-C6936A5DA79A6DAE4FE4` `document-authority-census-requirements.md:23-87` SHA `e05adb62d9ad07507f962cf060b3dbe66c161afc3f09391b29b3144ced57535c`; `LEGACY-ASSET-170112AB2FA2FFDBFEE9` `security-capability-broker-acceptance.md:13-29,42-55` SHA `b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4` | source identity/revision/raw event censusと訂正/分類履歴は意味を再導出。旧document authority schema・broker/provider behaviorは置換。paired positive/negative traceの形を再導出し、runtime/testはコピーしない。 |
+| OS-016 | `LEGACY-ASSET-E78B8D68CC327AA00991` `requirement-discovery-json-authority.md:26-78` SHA `361a9ef773f7cf36cc0953f70cad205184ca952f2cb672431e5b929121ef1f61`; `LEGACY-ASSET-44DD86E3DEC09E65EF51` shared pair | source/revision/provenanceと関係traceの分離を再導出する。旧JSON authority/schemaと旧statusは固定L2のstate modelへ置換し、共通acceptanceの形式を再利用する。旧ID/runtimeは持ち込まない。 |
+| OS-017 | `LEGACY-ASSET-5EE032D657C221184B00` `universal-workflow-ai-judgment-engine.md:13-87` SHA `e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b`; `LEGACY-ASSET-44DD86E3DEC09E65EF51` | task/dependency/budget/stopと構成の考え方を固定HARNESS process語彙のもとで再導出する。旧mode名、自律判断、一本道sequence、1.0で未対応のflowは置換または対象外とする。 |
+| OS-018 | `LEGACY-ASSET-50CA1C554747F12266D3` `resident-lane-orchestration-requirements.md:34-124,189-478,495-620,717-925` SHA `17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd`; `LEGACY-ASSET-437A6A68F9A9E0AE1B9E` `resident-lane-orchestration-acceptance.md:17-55` SHA `63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707` | actor/scope、lease expiry、重複作業防止、累積制約、partial output隔離、handoff/independent review、unassessedの区別を再導出する。旧lane/lease/provider runtimeは置換または対象外とし、固定provider数を作らない。 |
+| OS-019 | `LEGACY-ASSET-8FECCE93E3996E8AAAFF` `orchestration-memory-runtime.md:14-50` SHA `c4fae09ac57f335a572b1d86ad353e7985551caa364f991a08e15d24d603c857`; `LEGACY-ASSET-1EAF81D2FED559ED38C4` `lifecycle-state-separation-acceptance.md:235-265` SHA `73a371eadd006c4f850cc0129f8c6cdf2b44c17d8356b94164cf253711c4f60c` | append/projection/recoveryとlifecycle stateの区別を再導出する。provider memoryをauthorityにせず、旧runtime/state機構は置換する。 |
+| OS-020 | `LEGACY-ASSET-EE5DBACC7F28F7D1F605` `pillar-functional-requirements.md:38-57,134-197,198-307` SHA `7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544`; `LEGACY-ASSET-44DD86E3DEC09E65EF51` shared pair | FR/AC traceとnormal/negative oracleの形式を再利用し、内容は固定HARNESS contractとexact run bindingから再導出する。旧HAT/L12/runtime/CIは置換または対象外とする。 |
+| OS-023 | `LEGACY-ASSET-50CA1C554747F12266D3` same resident-lane L3 above; `LEGACY-ASSET-437A6A68F9A9E0AE1B9E` acceptance above | scope付きhandoff、receiver duties、誤ったactorまたはstale receiptの扱いを再導出する。旧lane実装は置換し、現行親のownerを維持する。 |
+| OS-027 | `LEGACY-ASSET-7F8960532611D89D03E1` `technology-environment-reconciliation-requirements.md:32-94` SHA `65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc`; `LEGACY-ASSET-437A6A68F9A9E0AE1B9E` acceptance above | drift/evidence、観測だけでauthorityを更新しないこと、unassessed、scoreだけでauthorityを変えないことを保持する。technology reconciliation state machineとresident-lane機構は置換する。現行の6適格条件とowner境界は固定L2/L11からのみ再導出する。 |

@@ -11,3 +11,43 @@
 ### CASE-NFR-OS-014-02 — forward and rollback transition evidence
 
 親 `HELIXOS-L2-014` / `NFR-OS-014-02`。Populationは明示scope/revisionで開始したsynthetic stage-transition attempts。forward/cutoverとproblem-triggered rollbackの2種類の遷移を別に数え、same state/record identityを保ったevidence-complete attempts / started applicable attemptsを比較する。2はL2の「次を構築・検証後に乗り換える」「問題時は前段階へ戻す」の2 transition class数で、pass ratio thresholdではない。分母0/missingは算出しない。transition-class applicability、prior/next identity、pre-cutover verification、rollback target, state/record preservationをfieldごとに集計する。failed, stopped, missing, unknown/stale dependency, wrong revision, rollback target missingを別件数にする。人手工程はowner/result recordを保持する。real timestampがある場合のみ同じ単位の有効sampleでn_valid/p50/p95を示しfailed/missing/censored/unfinishedを別件数にする。n_valid=0は分位値なし、実観測自体なしのみ未測定。SLA/RTO/RPOや固定最低数を作らない。
+
+## Stage 2a — 8親のNFR総合検証（015/016/017/018/019/020/023/027）
+
+状態: `../L3-requirements/nfr-grade.md`の根拠付き候補を検証する設計。実行計測、threshold採択、PO承認、独立reviewを意味しない。
+
+### CASE-NFR-OS-015-01 — authority completeness
+
+親 `HELIXOS-L2-015`; Candidate 1の全required field presence/valueを対象fixture全数で照合する。source identity/revision/digest/decision source/actor/time/raw event/correction chainのmissing/mismatchをfield別に数える。欠落0期待は固定L2/L11 contract oracle。母集団外targetや日数で合否を作らない。
+
+### CASE-NFR-OS-016-01 — portfolio edge/state census
+
+親 `HELIXOS-L2-016`; fixed portfolio scopeが明示する全対象/edgeをcensusし、unit/connection/composite state、owner/dependency/diff/verification missing、unknown/staleを数える。未提示範囲の全体coverageを推定しない。candidate比較は同一scope/revisionで行う。
+
+### CASE-NFR-OS-017-01 — ticket binding and workload ratios
+
+親 `HELIXOS-L2-017`; 同一ticketに適用するsource/contractとinput digestを使ってticket fieldsを比較し、target/revision/scope/dependency/duty/return ownerの差を特定する。実データでは消費budgetと許可budget値を別々に記録し、分母が存在し0より大きい場合だけ比率を算出する。zero/missing budgetは算出不可として報告する。期限はsource表現と経過時間を別記し、現在のticket契約入力に計測開始点・単位付き許可duration/windowが明示されている場合に限り同単位の比率を算出する。absolute deadline、duration/windowのzero/missing、開始点/単位不明は比率算出不可として記録する。task-class別分布を示し、任意のglobal limitは置かない。
+
+### CASE-NFR-OS-018-01 — attempt binding/cumulative-control census
+
+親 `HELIXOS-L2-018`; 全fixtureで重複claim/run、counter reset、binding欠落/不一致を数える。実測ではticket/revision/scopeごとに消費budgetと許可budget値を別記し、許可値が存在して0より大きい場合のみ比率を算出する。zero/missing budgetは算出不可として扱う。期限はabsolute deadline表現と経過時間を分け、現在のticket契約入力に計測開始点・単位付きduration/windowが明示されている場合だけ同単位の比率を算出する。absolute deadline、duration/windowのzero/missing、開始点/単位不明は算出不可とする。attempt/failure数を層別する。HIL-NFR-36ではdefault逸脱の理由、予定対応/実施対応、結果の各記録fieldが揃うか検査する。新しいfailure cap/default/orderは置かない。
+
+### CASE-NFR-OS-019-01 — event/replay classification
+
+親 `HELIXOS-L2-019`; fixture eventをmissing/duplicate/stale/denied/not-run/success別に数え、raw eventからのreconstructed episodeとの差分を示す。実timestampがある場合のreplay durationは観測候補として表示し、保持日数/復旧時間のcutoffにしない。
+
+### CASE-NFR-OS-020-01 — applicable verification obligation census
+
+親 `HELIXOS-L2-020`; HARNESS契約・対象diffから適用義務を定め、applicable/selected/executed/missingを全数照合。exact head/oracle/environment/run bindingを別に検査する。required obligationのmissingは固定契約違反。候補test数/段数/実行時間thresholdは発明しない。
+
+### CASE-NFR-OS-023-01 — handoff binding census
+
+親 `HELIXOS-L2-023`; 実際のhandoff edgeごとにrevision/digest/causal ID/scope/unfinished duty/stop reason/evidence presence/valueを照合する。実測timestampがある場合はsenderからreceiver acceptanceまでを分布で示すだけで、任意latency KPIは設けない。
+
+### CASE-NFR-OS-027-01 — eligibility/evaluation evidence
+
+親 `HELIXOS-L2-027`; six eligibility conditionsとoperation authorityを別fieldで照合し、weighted scoreではなく全条件のconjunctionで判定する。LABO評価候補資料には実在sample n、scope/task/model class/revision、success/failure/rework/latency/cost/reliability、uncertainty/counterexample/unknownとoracle revision/criterionを記録する。L2/L11はuniversal minimum N/score cutoffを定めず、一回のsuccessだけではassessedにしない。候補値は比較資料で、PO per-parameter approvalや新gateではない。
+
+### L10測定記録
+
+各caseはfixture digest、exact parent revision、入力母集団/scope、source oracle、期待/実測state、owner routeを記録する。割合を出す場合は対象母集団、分子・分母、単位、scope/revisionを記し、分母0/missingは算出値なしとして件数を別記する。unknown/未判定を成功扱いまたは分母へ黙って含めない。p50/p95は定義と単位が同じ有効な時間標本だけから算出し、n_validとfailed/missing/censored各件数を分ける。欠測/censoredを0に置き換えない。n_valid=0なら分位値なしと記録し、実測自体がない場合だけ未実測とする。失敗/missing/censored等の観測件数は保持する。fixture数と実観測数を混ぜない。この記録形式はSLA、threshold、pass gateを作らない。static trace/pin checkは実行成功や独立reviewの証拠ではない。
