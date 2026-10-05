@@ -1,0 +1,2416 @@
+{
+  "record_type": "root_labo_stage4_review01_repair_verification",
+  "as_of": "2026-10-05",
+  "body_revision": "13e84b7c0f80d224c611b6a15ebaf25c6058cbab",
+  "base_revision": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+  "authority_effect": "none; independent re-review and L3 approval pending",
+  "worker_audit": {
+    "path": "docs/governance/audits/requirements-stage/l3-l10-labo-stage4-review01-repair-2026-10-05-5665b273.json",
+    "sha256": "e6630fd25595e1d0b0788329da151a0ec9ce13776969a0f4b5546b1ef5b909a5"
+  },
+  "root_followup": "Worker appended CASE rows after a blank line without a table header. Root removed the gap and verified all 108 CASE rows have a continuous table predecessor and five columns. Old moment records remain unchanged.",
+  "fixed_source_pins": [
+    {
+      "kind": "L2-010 connector ownership",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "full_file_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "physical_line_start": 143,
+      "physical_line_end": 145,
+      "raw_lf_span_sha256": "45b1edbc1dea9d3d2f4e51cac85f3d132115a5285b423ae02c7e227a5a8d5e30",
+      "raw_bytes": 731,
+      "literal": "- 親：HELIXLABO-L1-007, HELIXLABO-L1-010。\n\n入力は評価済みepisode、実験、反例、適用範囲、出力は一つ以上のtarget-specific Feedback candidateである。各Feedbackは最低限`source_episode, source_revision, target_mechanism, target_responsibility, observation, evidence, failure_or_success, hypothesis, experiment, result, counterexample, scope, confidence, regression_risk, recommended_action, revalidation_condition`を持つ。推奨actionは`maintain, redefine, replace, split, merge, systemize, operational_fallback, retire`から選ぶ。Feedbackは提案でありauthorityではない。登録・routingはOS、変更はtarget ownerが担い、欠けた必須根拠は補完せず差戻す。\n"
+    },
+    {
+      "kind": "common connector contract",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "full_file_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "physical_line_start": 158,
+      "physical_line_end": 160,
+      "raw_lf_span_sha256": "3755b9231aad6e4583db1394f733e70813ec489512f2a327dd6fdc8ff6bfdb01",
+      "raw_bytes": 440,
+      "literal": "\n接続の版契約はHARNESS-L2-010/011に沿う。接続ごとに固有のconnectorを一つ対応づける。connectorは入力・出力、契約版、依存版、観測可能な進行・結果・証拠、失敗時の戻し先、未完義務を引き継ぐ。source authorityやtarget authorityを移さず、片側の成功だけで接続成功としない。以下の機構・source群の個別connectorは互いに代用しない。\n\n"
+    },
+    {
+      "kind": "L2-019 OS routing",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "full_file_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "physical_line_start": 197,
+      "physical_line_end": 199,
+      "raw_lf_span_sha256": "a55ef76a3811dfdd05544aaa5c169b0e716a7662df8d57f621fc6efbc8e55291",
+      "raw_bytes": 464,
+      "literal": "- 親：HELIXLABO-L1-005（Generalizationの結果元）、HELIXLABO-L1-007（Feedback先）、HELIXLABO-L1-010（INTELLIGENCE評価材料）。入力：範囲付き知見とtarget/responsibility候補。出力：target別Feedback候補。依存：L2-009、target identity/evidence。保証：targetごとに提案を分ける。target不明はOS routing候補として戻す。`version_target: 1.0`。\n\n### HELIXLABO-L2-020 — Operational Fallback → Aggregate\n"
+    },
+    {
+      "kind": "L2-036..041 parent scope",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "full_file_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "physical_line_start": 263,
+      "physical_line_end": 286,
+      "raw_lf_span_sha256": "b1d9130771b081a3a3141693acad300f9b817d3bb01c06f1fafc430283109bfa",
+      "raw_bytes": 2516,
+      "literal": "### HELIXLABO-L2-036 — LABO → HELIX-HARNESS\n\n- 親：HELIXLABO-L1-007。入力：V-model、要求形成、design obligation、verification contract、backflow、境界調整、refactor、release/maintenance工程のevidence。出力：HARNESS向けFeedback candidate。依存：対象revisionとHARNESS connector。保証：意味変更は上流candidateとして返し、LABOは要求・contractを書き換えない。target不明はrouting候補へ戻す。`version_target: 1.0`。\n\n### HELIXLABO-L2-037 — LABO → HELIX-OS\n\n- 親：HELIXLABO-L1-007。入力：ticket、WIP、worker placement、priority、CI profile、inspection/integration、release promotion、retry/recovery、cost/order/stateの運転evidence。出力：OS向けFeedback candidate。依存：OS target identity/connector。保証：ticket登録/routing/運転はOSに残す。scopeが不明ならOSへ戻す。`version_target: 1.0`。\n\n### HELIXLABO-L2-038 — LABO → SECURITY\n\n- 親：HELIXLABO-L1-007。入力：認可・隔離・credential・情報保護に関する許可evidence。出力：SECURITY向けFeedback candidate。依存：SECURITY data-handling/target contract。保証：LABOは権限を変更せずrestricted dataを通常packetへ流さない。scope不明はSECURITYへ戻す。`version_target: 1.0`。\n\n### HELIXLABO-L2-039 — LABO → Worker execution\n\n- 親：HELIXLABO-L1-007。入力：Worker実行、停止、復旧に関する許可結果。出力：OS/SECURITYを経たtarget-specific Feedback candidate。依存：Worker result identityとOS/SECURITY routing。保証：Worker assignment/executionをLABOが変更しない。責務不明はOSへ戻す。`version_target: 1.0`。\n\n### HELIXLABO-L2-040 — LABO → HELIX-CONNECT\n\n- 親：HELIXLABO-L1-007。入力：内外connection、retry、contract version、traceに関するevidence。出力：CONNECT向けFeedback candidate。依存：接続固有identityとCONNECT connector。保証：connector contractをLABOが変更しない。不一致はCONNECTへ戻す。`version_target`は対象接続の上流採択scopeに従う。\n\n### HELIXLABO-L2-041 — LABO → Product Core\n\n- 親：HELIXLABO-L1-007。入力：product固有meaning、要求、設計、domain、UXのevidence。出力：該当Product Core向けcandidate。依存：対象製品のidentity/版と個別connector。保証：product meaningをBRAINへ移さず、正本を製品側に残す。target不明はownerへ戻す。`version_target`は各製品の採択scopeに従う。\n\n"
+    },
+    {
+      "kind": "L2-041 product truth",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "full_file_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "physical_line_start": 285,
+      "physical_line_end": 285,
+      "raw_lf_span_sha256": "492870bf01a2a4f3599bae86358c352d30e477bc4499574d08f64cdead06ca16",
+      "raw_bytes": 368,
+      "literal": "- 親：HELIXLABO-L1-007。入力：product固有meaning、要求、設計、domain、UXのevidence。出力：該当Product Core向けcandidate。依存：対象製品のidentity/版と個別connector。保証：product meaningをBRAINへ移さず、正本を製品側に残す。target不明はownerへ戻す。`version_target`は各製品の採択scopeに従う。\n"
+    },
+    {
+      "kind": "L2-054 and L2-055 waterline",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "full_file_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "physical_line_start": 290,
+      "physical_line_end": 295,
+      "raw_lf_span_sha256": "ed36ee1f061bb4f70ce6c590c019d5eae594c08ca19de6d3f719e99026018373",
+      "raw_bytes": 1045,
+      "literal": "### HELIXLABO-L2-054 — HELIX-Bench水準のINTELLIGENCE接続（1.0）\n\nL2-055が生成した作業種別・model class別の水準、根拠、適用範囲、未評価状態をINTELLIGENCEへ渡す専用接続である。水準生成は055、配置案の作成はINTELLIGENCE、指定・割当てはOSが担う。本節は接続・受領範囲を定義し、水準生成を重複定義しない。未評価を実績ありに見せた場合、model変更・scope拡大・権限拡大を直接行った場合は不成立としてLABO/INTELLIGENCE/OSの責務境界へ戻す。\n\n- 親：HELIXLABO-L1-011, HELIXINTELLIGENCE-L1-010。入力：L2-055の水準生成結果。出力：同じ作業種別・model class・評価範囲・根拠・未評価状態を保ったINTELLIGENCE向け受渡し。依存：HELIX-BenchのL2-055、INTELLIGENCE connector。保証：接続は水準を変えず、配置案はINTELLIGENCE、指定・割当てはOSに残す。未評価や範囲不明は水準生成側の再評価へ戻す。`version_target: 1.0`。\n\n"
+    },
+    {
+      "kind": "L2-054 no duplicate waterline",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "full_file_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "physical_line_start": 292,
+      "physical_line_end": 292,
+      "raw_lf_span_sha256": "df9012203d069402ce75a22d82cddc7bb3bd06087696970b38dad6afbc959cc6",
+      "raw_bytes": 503,
+      "literal": "L2-055が生成した作業種別・model class別の水準、根拠、適用範囲、未評価状態をINTELLIGENCEへ渡す専用接続である。水準生成は055、配置案の作成はINTELLIGENCE、指定・割当てはOSが担う。本節は接続・受領範囲を定義し、水準生成を重複定義しない。未評価を実績ありに見せた場合、model変更・scope拡大・権限拡大を直接行った場合は不成立としてLABO/INTELLIGENCE/OSの責務境界へ戻す。\n"
+    },
+    {
+      "kind": "L2-052 source-receipt / ownership",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "full_file_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "physical_line_start": 310,
+      "physical_line_end": 315,
+      "raw_lf_span_sha256": "5f699714785fe30793a121c50082b86a1569622c9e6b0ce8a633d011055fde69",
+      "raw_bytes": 1226,
+      "literal": "### HELIXLABO-L2-052 — INTELLIGENCE評価材料循環 (`version_target: 1.0`)\n\nL2-035で定義した境界payloadを使い、LABOの評価済みsource revisionからINTELLIGENCEの受領まで同一revision・適用範囲・未評価状態を追跡する構成体である。035のpayload schemaや転送責務を再定義しない。INTELLIGENCEの現在判断、予測、配置案、bot稼働をLABOが所有しない。評価材料を渡すことはモデル変更・training許可ではない。source revision、範囲、受領の対応が不明なら該当source/evidenceへ戻し、循環を未完了とする。\n\n- 親：HELIXLABO-L1-007, HELIXLABO-L1-010, HELIXINTELLIGENCE-L1-018。依存：L2-035と評価済みsource evidence。入力：L2-035のpayloadおよび同revisionのprovenance。出力：INTELLIGENCE側の受領証跡とLABO側から辿れる同一revisionの材料循環。保証：payloadの境界契約は035、評価から受領までの構成体追跡は052に分離し、INTELLIGENCEは評価範囲・未評価状態を受け取る。判断/配置/稼働はINTELLIGENCE側で行う。範囲・版・受領が不明ならLABO再評価へ戻す。`version_target: 1.0`（評価材料のみ）。\n\n"
+    },
+    {
+      "kind": "L11-036..041/054 cases",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "full_file_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "physical_line_start": 87,
+      "physical_line_end": 94,
+      "raw_lf_span_sha256": "dbbf1da9f0f114257921af2e85504bfe7d32ef02682ef418db30c49da4853b78",
+      "raw_bytes": 2060,
+      "literal": "| HELIXLABO-L2-036 | V-model、要求形成、design obligation、verification contract、backflow、境界調整、refactor、release criteria、ops-maintenanceの問題candidateをHARNESSへscope付きで返せる | 要求意味をLABOが書き換える、実験結果で工程contractを即時変更する |\n| HELIXLABO-L2-037 | ticket/WIP/worker placement/priority/CI profile/inspection/integration/release promotion/retry/recovery/cost/order/stateの運転問題をOS向け提案として返せる | LABOがticketを発行・割当・優先・実行/state更新する、OS routingを飛ばす |\n| HELIXLABO-L2-038 | 認可・隔離・credential・情報保護の候補をSECURITYへ渡し、authorityとdata scopeを維持する | LABOが権限を変更する、restricted dataを通常evidenceへ流す |\n| HELIXLABO-L2-039 | Worker実行・停止・復旧のcandidateがOS/SECURITYのtarget routingを経て扱われ、Worker割当はLABO外に残る | LABOがWorkerを直接変更・割当する |\n| HELIXLABO-L2-040 | 内外接続、retry、contract version、traceのcandidateがCONNECTへ接続単位で渡る | LABOがconnector contractを直接変更する、接続版/trace欠落を隠す |\n| HELIXLABO-L2-041 | product固有meaning/要求/設計/domain/UXを該当Product Coreへ渡す | product固有意味をBRAINへ汎用化して送る |\n| HELIXLABO-L2-042 | 採択済み接続がある場合に限りcandidateをWEB-OSへ渡し、WEB-OS state/authorityと本体OSを区別する。接続不在はLABO 1.0の不成立にしない | WEB-OS authorityを本体OSやLABOが更新する、未採択Web要求を現行扱いする |\n| HELIXLABO-L2-054 | 055の作業種別・model class別水準、根拠、評価範囲、未評価状態を同じscopeのままINTELLIGENCEへ接続し、INTELLIGENCE案とOS指定/割当てを別状態で保つ | 接続中に水準・評価状態・scopeを変える、LABOがworker/modelを割り当てる、過去水準から未知jobの成功を保証する、scoreでscope/branch/merge authorityを変える |\n"
+    },
+    {
+      "kind": "L11-052 forbidden training/adjustment",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "full_file_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "physical_line_start": 102,
+      "physical_line_end": 102,
+      "raw_lf_span_sha256": "5d7d649878da8b308e11b0fd9da626404c460e285ab4b59c8acfecd6c4bb8f3b",
+      "raw_bytes": 366,
+      "literal": "| HELIXLABO-L2-052 | 035のpayload契約で評価済みepisode・反例・判断材料を送り、sourceとINTELLIGENCE receiptが同一revision・適用範囲・未評価状態を示す | payloadを035と重複定義する、異revision/範囲の受領を成功とする、training/調整を必須化する、材料からmodel変更・bot稼働を自動化する |\n"
+    },
+    {
+      "kind": "L11 §24 product/Intelligence boundaries",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "full_file_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "physical_line_start": 117,
+      "physical_line_end": 119,
+      "raw_lf_span_sha256": "4e25c93a331389daf8a26798322d866c7a0d7b9389f21c2e30ad137a14d26d0b",
+      "raw_bytes": 976,
+      "literal": "| 7 | Product固有意味をBRAINへ送らない。 | HELIXLABO-L2-009, 034, 041 | Product固有meaningは該当Product Coreへ返し、BRAINにはgeneric structure候補のみを送る。 | Product固有ルールや顧客意味をgenericとして送る。 |\n| 8 | BRAINには汎用構造のみをFeedbackする。 | HELIXLABO-L2-034 | 複数meaning/product/episodeに支持されたgeneric structure candidateを範囲・証拠付きで送る。 | 根拠のない単一product/episodeの構造を汎用candidateとする。 |\n| 9 | Intelligenceには判断・監査・bot・モデル改善に使える評価材料を返す。 | HELIXLABO-L2-035, 052, 054, 055 | 判断等の評価材料は035/052、Bench水準は055/054の別契約で根拠・scope・revision・未評価状態を保ってINTELLIGENCEへ渡る。 | LABOが現行判断/配置/botを実行する、Bench水準を別定義したり未評価を評価済みにする、材料転送を学習許可にする。 |\n"
+    }
+  ],
+  "legacy_source_pins": [
+    {
+      "asset_id": "LEGACY-ASSET-02D897E62EF2FA267267",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "physical_line_start": 41,
+      "physical_line_end": 75,
+      "full_file_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "raw_lf_span_sha256": "24f4495d5868f8a5ba6f257751be1adc2d4ba651dab87ddc11c6752cb7cecc77",
+      "raw_bytes": 2716,
+      "literal": "## UIL-FR-001 観測sourceとbaseline比較\n\n### UIL-R-01 改善source registry\n\n観測sourceはstable ID、owner、schema version、detector version、input authority、revision、retention、redaction、\nfreshness、failure dispositionを持つversioned registryへ登録する。任意log文字列やAI感想をdetector evidenceとして\n扱わず、unknown source、欠落revision、stale evidenceをfail-closeする。\n\n初期sourceはCI wall-clock／queue／runner-minute／flake／retry、DB projection／replay／checkpoint、Requirement／\nDefinitionのduplicate／overlap／orphan／stale、dependency cycle／fan-out／change amplification、review／rework／\nrollback／incident、provider／toolchain drift、distribution consumer、resource／cost／security findingとする。\n\n### UIL-R-02 観測正規化とbaseline比較\n\nsource eventをstable event ID、baseline revision、observed revision、payload digest、correlation、causation、confidence、\ncounterevidenceへ正規化する。同一event集合とregistry versionから同一normalized exact setとdigestを生成し、\ncurrent baseline、観測値、欠測、予測を別fieldにする。\n\n### UIL-R-15 観測generationとhistorical baseline保全\n\nnormalized observationは`baseline`、`candidate`、`post_main`を別generationとして保持し、同じHEAD、event payload、\nsource IDでもgeneration identityを統合しない。各generationはrepository、source HEAD、base／candidate HEAD、source\nregistryのversion／digest、detectorのID／version／digest、environment／toolchain digest、物理bindingの適用可否、\n観測時刻、親generationへ束縛する。\n\nhistorical baselineは生成時のregistry、detector、environment identityでsealedし、candidate側変更で再解釈または\nin-place rewriteしない。detector semantics、source event class、evidence boundary、environment、physical bindingの\n比較条件が一致しない場合は、`comparison_compatible`、`reobservation_required`、`baseline_incomparable`、\n`detector_transition_required`のtyped dispositionへ送る。比較不能をno-change、改善、悪化なし、greenへ変換しない。\n\n正規lifecycleは`current baseline → candidate observation → comparison／migration decision → canonical merge →\npost-main observation → new baseline promotion`とする。post-main read-afterなしにcandidateを次baselineへ昇格せず、\ncandidate close／abandon時はhistorical baselineを変更しない。source admission failureはfirst cause、rejected source/event、\nnormalizer disposition、downstream skip/deferをlineageとして保持し、genericな`normalized event missing`だけへ崩さない。\n\n",
+      "disposition": "UIL-FR-001 source registry / observation"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-02D897E62EF2FA267267",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "physical_line_start": 123,
+      "physical_line_end": 141,
+      "full_file_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "raw_lf_span_sha256": "0591fa81b25b6963bba8dfbc140f0909311f0bdac628501a2252cbad1d83dd8c",
+      "raw_bytes": 1498,
+      "literal": "## UIL-FR-003 semantic impactと全体最適評価\n\n### UIL-R-05 意味とsystem全体への影響\n\n価値、挙動、受入、責務、ownership、公開境界、trace、結合度、変更増幅、\nverification cost、defect escape、migration costへの影響をstable IDで算出する。意味変更を意味保存refactorとして\n扱わず、影響不明は推測せずhuman decisionまたはfail-closeへ送る。\n\n候補の作用域は`local_issue`、`system_synthesis`、`requirement_portfolio_resynthesis`へtyped分類する。\n一つの局所責務で閉じるものだけをIssue候補とし、複数Module／V-pairの境界再編はSystem Synthesis候補、\nRequirement／Definition集合のsplit、merge、supersede、ownership再編、Requirement Re-entryを伴うものは\nRequirement Portfolio Resynthesis候補へ昇格する。この分類は新しいworkflow routeではなく、既存routeへ配車する前の\n影響scopeである。Issue件数やfile overlapだけで上位候補を確定せず、stable IDの影響graphと反例を要求する。\n\n### UIL-R-06 反実仮想と全体最適評価\n\ncurrent baseline、提案後予測、反例、局所効果、他Module／V-pair／consumer／security／operationへの副作用、rollbackを\n比較する。LOC、Issue数、test時間、file数など単一metricだけで採用せず、局所改善と全体悪化が同時に起きる候補を\n`adopted`へ昇格しない。予測を実測完了証拠として扱わない。\n",
+      "disposition": "UIL-FR-003 semantic impact"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-02D897E62EF2FA267267",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "physical_line_start": 143,
+      "physical_line_end": 160,
+      "full_file_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "raw_lf_span_sha256": "c968096594bfd6ae95d82a37c2d0ad914ba8299746a38bbb20b0ecba168c2f6b",
+      "raw_bytes": 1195,
+      "literal": "## UIL-FR-004 既存workflowへのbackflow\n\n### UIL-R-07 typed改善配車\n\n`system_change_class`、`capability_expansion_kind`、`workflow_route`を同一enumへ畳み込まない。意味保存整理は\nREFACTORING、要求・価値・挙動・AC変更はRequirement Re-entry／REDESIGN、実装・運用誤りはRECOVERY／REVERSE／\nRETROFIT／REFACTOR、性能・CI・resourceはPERFORMANCE_REFACTOR、新能力はADD_FEATURE、外部技術driftは\nTechnology Environment Reconciliationへ送る。曖昧な候補を推測配車しない。\n\n`candidate_scope_class`は`system_change_class`、`capability_expansion_kind`、`workflow_route`から独立させる。\nRequirement Portfolio Resynthesis候補はRequirement Discovery／Requirement Re-entryとSystem Synthesisの既存authorityを\n再利用し、要求集合の意味変更を自動承認しない。\n\n### UIL-R-08 authority書込guard\n\n発火と候補生成はauthority write、Requirement／Definition変更、実装、merge、publish、cutoverを直接実行しない。\nroute先のPLAN、V-pair、approval、review、CI、rollback契約を再利用し、#1037 whole-system plannerのcurrent write parkingを\n解除しない。\n",
+      "disposition": "UIL-FR-004 backflow / authority write guard"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-02D897E62EF2FA267267",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "physical_line_start": 162,
+      "physical_line_end": 174,
+      "full_file_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "raw_lf_span_sha256": "7cb854d7da892edcce12fb05e079abff5bb035be0247a27e58ee5fce1eca7418",
+      "raw_bytes": 726,
+      "literal": "## UIL-FR-005 変更検証と効果測定\n\n### UIL-R-09 change検証と効果測定\n\n候補に束縛したverification obligations、before／after、cost、side effect、rollback readiness、観測windowを同一scope、\nrevision、artifact digestで比較する。局所green、件数減少、agent自己評価だけで効果を確定しない。\n\n### UIL-R-10 terminal outcome管理\n\n`adopted`、`rejected`、`superseded`、`no_action`、`escalated`を別々のterminal outcomeとして理由、counterevidence、\nreceipt digest付きで保持する。candidate生成、route決定、change mergeをterminalへ丸めず、rejected／no_actionも同一候補を\n無限再生成しないためのdedupe evidenceにする。\n\n",
+      "disposition": "UIL-FR-005 verification / outcomes"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-0B5B38F146D9538C9A36",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-improvement-loop-acceptance.md",
+      "physical_line_start": 31,
+      "physical_line_end": 42,
+      "full_file_sha256": "f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943",
+      "raw_lf_span_sha256": "80adc31e42723500dffed7ef494d0529a3fbef2ffce51a2b5b8c40e78522e8f2",
+      "raw_bytes": 1964,
+      "literal": "| UIL-AC-012 | UIL-R-07 | candidate scope、change class、capability expansionから既存routeとverification obligationを決定的に導出する | scope classを新routeにせず、ambiguous findingを推測配車しない |\n| UIL-AC-013 | UIL-R-08 | candidate生成だけではauthorityが変わらない | Requirement、merge、publishを直接実行しない |\n| UIL-AC-014 | UIL-R-08 | route先のPLAN、V-pair、approval、review、CIを再利用する | 独自completion gateを作らない |\n| UIL-AC-015 | UIL-R-09 | 同一scope／revision／artifactでbefore-afterとside effectを測る | 件数減少、局所green、自己評価で効果確定しない |\n| UIL-AC-016 | UIL-R-10 | 5 terminal outcomeを別々に保持する | mergedをadoptedへ丸めない |\n| UIL-AC-017 | UIL-R-11 | 複数episode、counterexample、mutation、version、expiry後だけrecipe候補になる | 単一project成功をgeneral ruleにしない |\n| UIL-AC-018 | UIL-R-12 | recurrence windowで再発と効果消失を因果接続する | 過去greenで再発を相殺しない |\n| UIL-AC-019 | UIL-R-13 | DB削除後もrepo authority＋event journalから同一projectionを再構築する | DB rowを意味正本にしない |\n| UIL-AC-020 | UIL-R-13 | state machine順序、HEAD、baseline、scopeをexact照合する | 段階飛越、別候補証拠混載を拒否 |\n| UIL-AC-021 | UIL-R-14 | AIなしのdetectorだけでcandidate→route→verificationを生成する | AI proposal除去でcontrol loopを壊さない |\n| UIL-AC-022 | UIL-R-14 | AI利用時にruntime／model／session／context／HEAD／scopeをreceiptへ束縛する | AI出力をdetector evidenceとして偽装しない |\n| UIL-AC-023 | UIL-R-15 | 同一payload／HEADでもbaseline、candidate、post-mainを別generation ID／digestへ投影し、各registry／detector／environment identityを保持する | generation kindをidentityから除去して同一eventへ畳み込まない |\n",
+      "disposition": "UIL paired acceptance inspected; does not assert unauthorized-input oracle"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-28FB139B26CD61CC51EE",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+      "physical_line_start": 76,
+      "physical_line_end": 95,
+      "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+      "raw_lf_span_sha256": "47d25482ea6a5752d4300b657951d50023b3475105bbd0be3c3e9cbb51dbb3ef",
+      "raw_bytes": 539,
+      "literal": "#### HELIX-BENCH-R-03 比較axis\n\n`team_composition`と`harness_profile`を直交させる。\n\n```yaml\nteam_composition_classes:\n  - single_runtime_model\n  - parent_worker\n  - multi_runtime_team\n  - management_tl_paired_cells\nharness_profiles:\n  - no_harness\n  - rule_file_only\n  - helix_partial\n  - helix_full\n```\n\n実runは具体runtime／model／effort／roleをversion付きで持つが、scorerはprovider名やmodel名を\n固定加点・減点に使わない。development style等の工程axisもteam compositionへ混ぜない。\n\n",
+      "disposition": "HELIX-BENCH-R-03 actual comparison axes"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-28FB139B26CD61CC51EE",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+      "physical_line_start": 19,
+      "physical_line_end": 36,
+      "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+      "raw_lf_span_sha256": "0dec8b52e8c24136d6fbde9780e6e41c354d7147465f04da94c1046fb4a054b0",
+      "raw_bytes": 1049,
+      "literal": "# HELIX-Bench 評価契約\n\n## §0 authorityと責務境界\n\nHELIX-Benchは、単体modelのcoding能力ではなく、HELIXが管理する**組織編成と実行規律が、\n要求からaccepted changeまでをどれだけ正確、安全、低費用に完遂できるか**を比較する評価契約である。\n\n- behavior contractは`HELIX-BENCH-FR-001`だけとする。\n- 既存`HR-FR-HIL-22`／`WCC-FR-07`〜`WCC-FR-08`はworker admission用の下位benchである。\n  HELIX-Benchはそれを重複実装せず、system／team／harness profile比較の入力receiptとして再利用する。\n- 開発上のdevelopment style、case-driven model、specialist capability、runtime mode、team composition、\n  harness profileを別axisとして保持する。\n- provider名、model名、IDE名を必須enumにせず、version付きrun inputとして記録する。\n- benchmark runner、dataset、dashboard、provider接続、worker admission判断はL4以降で設計し、\n  本L3/L10 pairでは実装しない。\n\n## §1 振る舞い契約\n\n",
+      "disposition": "HELIX-Bench older meaning/oracle boundary"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-28FB139B26CD61CC51EE",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+      "physical_line_start": 96,
+      "physical_line_end": 169,
+      "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+      "raw_lf_span_sha256": "1784f920ed3295fbaf5b6ed5652b07c8695182b051b08fc23340d1d298085ce4",
+      "raw_bytes": 3134,
+      "literal": "#### HELIX-BENCH-R-04 task snapshotの再現性\n\n各taskは次のexact field setを持つ。\n\n```yaml\nrequired_task_snapshot:\n  - task_id\n  - task_version\n  - fixture_digest\n  - requirement_ids\n  - acceptance_ids\n  - base_head\n  - allowed_paths\n  - forbidden_paths\n  - hidden_oracle_digest\n  - seed\n  - toolchain_versions\n  - timeout_policy\n  - retry_policy\n  - cache_policy\n  - hardware_class\n```\n\npublic taskとhidden oracleを分離し、future answer、secret、PII、private review contextをfixtureへ含めない。\n\n#### HELIX-BENCH-R-05 run protocolの固定\n\nwarmup、repeat count、timeout、retry、CI capacity、cache、parallelismをrun protocol versionへ固定する。\n比較可能なのは同一task snapshot、scoring version、protocol version、hardware classのrunだけとし、\n差がある場合は別cohortとして表示する。manual intervention、tool denial、network access、\ntraining contamination疑義、fixture leakageをrun receiptへ記録する。\n\n#### HELIX-BENCH-R-06 evidenceとscoring\n\nsuccessは自己申告ではなく、artifact、diff、test、negative oracle、independent review、CI、DB、\nlane-ready、merge receiptから算出する。scorerはraw receiptから再計算可能で、metricごとのnumerator、\ndenominator、missing/failure disposition、weight、normalization、confidence intervalを出力する。\n\nscope violation、security finding、data loss、hidden-oracle leakageを平均点で相殺しない。\naccepted changeが0の場合、cost／token reductionを成功値へ変換しない。\n\n#### HELIX-BENCH-R-07 costとcapacity\n\nwall time、parent／worker token、CI実行回数、retry、review round、provider費用、hardware／CI capacityを\n記録し、`accepted_change_count`へ正規化する。価格はsource、currency、effective timestamp、\nsubscription/API-equivalent区分を保持し、費用欠測を0円にしない。\n\n#### HELIX-BENCH-R-08 integrityと履歴\n\nscorer、task、fixture、oracle、protocolのversionとdigestを保持する。benchmark authorとblind judgeを\n分離し、hidden oracleをworker contextへ渡さない。historical resultはそのmodel/runtime/version、\ntoolchain、task snapshotの証拠であり、current性能の代替にしない。\n\n## §2 初期task portfolio\n\n最初の10〜20 taskはHELIX-HARNESSの実Issue／PRを再構成し、少なくとも次のfailure境界を区別する。\n\n- style／case-driven／specialist axisの分離\n- legacy taxonomyのcompatibility input隔離\n- PLAN metadataとexact scope\n- 右腕のright-arm negative oracle\n- Design HARNESS drift\n- external worker admission\n- CI failureの局所修正\n- Reverse fullbackとcurrent styleへの再接続\n\ntask採用時は元PRの未来正解、review comment、secret、個人情報を除去し、hidden oracle側だけに\nmutationと期待結果を保持する。\n\n## §3 非対象\n\n- benchmark runner、dataset packaging、dashboard、model/provider adapterの実装。\n- provider／model採用、価格契約、worker admissionの決定。\n- L4以降の設計降下、L6/L7 implementation、実benchmark scoreの主張。\n",
+      "disposition": "HELIX-Bench source/test consumer boundaries"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A952A3A175EB82A4781B",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+      "physical_line_start": 28,
+      "physical_line_end": 41,
+      "full_file_sha256": "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185",
+      "raw_lf_span_sha256": "e304c3c36a59b2b3ef28f15d2912056fc3874cc211e0ed61d6b385d1fa0deaa7",
+      "raw_bytes": 2578,
+      "literal": "| `HELIX-BENCH-AC-001` | R-01 | 5カテゴリがexact set・exact orderで機械読取できる | カテゴリ欠落、追加、別名をscoring version不変で許可したらfail |\n| `HELIX-BENCH-AC-002` | R-02 | 12指標がexact set・exact orderで機械読取できる | failure／missingを分母から除外したらfail |\n| `HELIX-BENCH-AC-003` | R-03 | team compositionとharness profileを別fieldで比較できる | provider名、model名、HELIX Fullへ固定加点したらfail |\n| `HELIX-BENCH-AC-004` | R-03 | development style、case-driven、specialist、runtime、team、profileが独立axisである | ScrumへPoCを内包、Design HARNESSをstyle化、team構成をruntime mode化したらfail |\n| `HELIX-BENCH-AC-005` | R-04 | required task snapshot 15 fieldがexact一致する | allowed／forbidden path、base HEAD、hidden oracle digestの欠落を許したらfail |\n| `HELIX-BENCH-AC-006` | R-04 | public taskとhidden oracleが分離される | hidden answer、secret、PII、private review contextがworker inputへ漏れたらfail |\n| `HELIX-BENCH-AC-007` | R-05 | 同一snapshot／scorer／protocol／hardware classだけを同一cohort比較する | version差、cache差、manual interventionを無視して順位付けしたらfail |\n| `HELIX-BENCH-AC-008` | R-06 | artifact／diff／test／negative oracle／review／CI／DB／merge receiptからscoreを再計算できる | model自己申告またはprose verdictだけでsuccessにしたらfail |\n| `HELIX-BENCH-AC-009` | R-06 | scope／security／data-loss／leakage failureを単独表示する | 平均点で重大failureを相殺したらfail |\n| `HELIX-BENCH-AC-010` | R-07 | token、wall time、CI rerun、retry、costをaccepted change単位へ正規化する | accepted change 0のrunを低cost成功として扱ったらfail |\n| `HELIX-BENCH-AC-011` | R-07 | pricing source／currency／timestamp／charging classを保持する | 費用欠測を0円として比較したらfail |\n| `HELIX-BENCH-AC-012` | R-08 | task／fixture／oracle／protocol／scorer digestとblind judge分離を保持する | benchmark authorがhidden oracleを見せたままjudgeを兼任したらfail |\n| `HELIX-BENCH-AC-013` | R-08 | historical resultをversioned cohortとして保持する | old model／runtimeの結果をcurrent性能証拠へ流用したらfail |\n| `HELIX-BENCH-AC-014` | §0 | worker admission benchを下位receiptとして参照し、system/team benchと責務分離する | `WCC-FR-07/08`を複製実装する、またはHELIX-Bench scoreだけでworkerをadmitしたらfail |\n",
+      "disposition": "HELIX-Bench paired acceptance; narrow supported oracle"
+    }
+  ],
+  "legacy_asset_disposition_pins": [
+    {
+      "asset_id": "LEGACY-ASSET-28FB139B26CD61CC51EE",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "full_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "physical_line": 458,
+      "raw_lf_line_sha256": "a3f082dadf49c248cd851d449d30b25229e5f33f1d85dfc461d8e90782e6364e",
+      "raw_bytes": 1186,
+      "literal": "{\"asset_id\":\"LEGACY-ASSET-28FB139B26CD61CC51EE\",\"revision\":1,\"source_revision\":\"legacy-generation-2026-09-14\",\"source_path\":\"docs/design/helix/L3-requirements/helix-bench-evaluation.md\",\"source_sha256\":\"a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116\",\"source_surface\":\"docs\",\"source_provenance_ref\":\"archive/legacy-generation-2026-09-14/MANIFEST.sha256\",\"asset_class\":\"Historical\",\"reuse_exclusion_class\":null,\"product_target\":\"unresolved\",\"authority_status\":\"historical\",\"upstream_ids\":[],\"pair_ids\":[],\"disposition\":\"unresolved\",\"implementation_status\":\"unknown\",\"decision_record_ref\":null,\"approval_revision\":null,\"target_path\":null,\"target_sha256\":null,\"meaning_interface_invariance_reason\":null,\"consumer_refs\":[],\"rights_status\":\"unreviewed\",\"executability_status\":\"unreviewed\",\"secret_status\":\"unreviewed\",\"external_effect_status\":\"unreviewed\",\"decided_by\":null,\"decided_at\":null,\"copy_performed_by\":null,\"copy_performed_at\":null,\"read_after_record_ref\":null,\"migration_preconditions\":[\"semantic_atom_inventory\",\"product_owner_decision\",\"parent_requirement_binding\",\"consumer_check\",\"rights_check\",\"executability_check\",\"secret_check\",\"external_effect_check\"]}"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-02D897E62EF2FA267267",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "full_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "physical_line": 490,
+      "raw_lf_line_sha256": "bd8a5534268e88f1fdd84fe95ab2a920718fb8d4681c2d08e04b391cbe40c7d8",
+      "raw_bytes": 1203,
+      "literal": "{\"asset_id\":\"LEGACY-ASSET-02D897E62EF2FA267267\",\"revision\":1,\"source_revision\":\"legacy-generation-2026-09-14\",\"source_path\":\"docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md\",\"source_sha256\":\"01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4\",\"source_surface\":\"docs\",\"source_provenance_ref\":\"archive/legacy-generation-2026-09-14/MANIFEST.sha256\",\"asset_class\":\"Historical\",\"reuse_exclusion_class\":null,\"product_target\":\"unresolved\",\"authority_status\":\"historical\",\"upstream_ids\":[],\"pair_ids\":[],\"disposition\":\"unresolved\",\"implementation_status\":\"unknown\",\"decision_record_ref\":null,\"approval_revision\":null,\"target_path\":null,\"target_sha256\":null,\"meaning_interface_invariance_reason\":null,\"consumer_refs\":[],\"rights_status\":\"unreviewed\",\"executability_status\":\"unreviewed\",\"secret_status\":\"unreviewed\",\"external_effect_status\":\"unreviewed\",\"decided_by\":null,\"decided_at\":null,\"copy_performed_by\":null,\"copy_performed_at\":null,\"read_after_record_ref\":null,\"migration_preconditions\":[\"semantic_atom_inventory\",\"product_owner_decision\",\"parent_requirement_binding\",\"consumer_check\",\"rights_check\",\"executability_check\",\"secret_check\",\"external_effect_check\"]}"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A952A3A175EB82A4781B",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "full_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "physical_line": 2822,
+      "raw_lf_line_sha256": "3ea876481dd4af7add76ce81391c5f24b1e2443c36fe5e1cd66d82609a38910d",
+      "raw_bytes": 1212,
+      "literal": "{\"asset_id\":\"LEGACY-ASSET-A952A3A175EB82A4781B\",\"revision\":1,\"source_revision\":\"legacy-generation-2026-09-14\",\"source_path\":\"docs/test-design/helix/helix-bench-evaluation-acceptance.md\",\"source_sha256\":\"6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185\",\"source_surface\":\"docs\",\"source_provenance_ref\":\"archive/legacy-generation-2026-09-14/MANIFEST.sha256\",\"asset_class\":\"Historical\",\"reuse_exclusion_class\":\"legacy_test_design_or_oracle\",\"product_target\":\"unresolved\",\"authority_status\":\"historical\",\"upstream_ids\":[],\"pair_ids\":[],\"disposition\":\"unresolved\",\"implementation_status\":\"unknown\",\"decision_record_ref\":null,\"approval_revision\":null,\"target_path\":null,\"target_sha256\":null,\"meaning_interface_invariance_reason\":null,\"consumer_refs\":[],\"rights_status\":\"unreviewed\",\"executability_status\":\"unreviewed\",\"secret_status\":\"unreviewed\",\"external_effect_status\":\"unreviewed\",\"decided_by\":null,\"decided_at\":null,\"copy_performed_by\":null,\"copy_performed_at\":null,\"read_after_record_ref\":null,\"migration_preconditions\":[\"semantic_atom_inventory\",\"product_owner_decision\",\"parent_requirement_binding\",\"consumer_check\",\"rights_check\",\"executability_check\",\"secret_check\",\"external_effect_check\"]}"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-0B5B38F146D9538C9A36",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "full_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "physical_line": 2851,
+      "raw_lf_line_sha256": "e8996a9e739ba18fefa06a44c7c97087b86b10f20de06f3095bebcd8d8b924ac",
+      "raw_bytes": 1216,
+      "literal": "{\"asset_id\":\"LEGACY-ASSET-0B5B38F146D9538C9A36\",\"revision\":1,\"source_revision\":\"legacy-generation-2026-09-14\",\"source_path\":\"docs/test-design/helix/universal-improvement-loop-acceptance.md\",\"source_sha256\":\"f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943\",\"source_surface\":\"docs\",\"source_provenance_ref\":\"archive/legacy-generation-2026-09-14/MANIFEST.sha256\",\"asset_class\":\"Historical\",\"reuse_exclusion_class\":\"legacy_test_design_or_oracle\",\"product_target\":\"unresolved\",\"authority_status\":\"historical\",\"upstream_ids\":[],\"pair_ids\":[],\"disposition\":\"unresolved\",\"implementation_status\":\"unknown\",\"decision_record_ref\":null,\"approval_revision\":null,\"target_path\":null,\"target_sha256\":null,\"meaning_interface_invariance_reason\":null,\"consumer_refs\":[],\"rights_status\":\"unreviewed\",\"executability_status\":\"unreviewed\",\"secret_status\":\"unreviewed\",\"external_effect_status\":\"unreviewed\",\"decided_by\":null,\"decided_at\":null,\"copy_performed_by\":null,\"copy_performed_at\":null,\"read_after_record_ref\":null,\"migration_preconditions\":[\"semantic_atom_inventory\",\"product_owner_decision\",\"parent_requirement_binding\",\"consumer_check\",\"rights_check\",\"executability_check\",\"secret_check\",\"external_effect_check\"]}"
+    }
+  ],
+  "canonical_documents": [
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "full_sha256": "917500aea7e05860f1b8474f3170301852cb6c5d8bb442ab5aa90a67a21032c3",
+      "bytes": 104237,
+      "main_prefix_bytes": 76942,
+      "main_prefix_sha256": "417a229a2f29f90e141f72f99505d9ef90ce7d29cd4255eca5113f86ff7a74e0",
+      "prefix_byte_equal": true
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "full_sha256": "12fdf58a66b4108bf45dcccb9845062f23b8cc49f33c800eeb6a23b12db43aa1",
+      "bytes": 4234,
+      "main_prefix_bytes": 3523,
+      "main_prefix_sha256": "29bc13fb45be882b76e1c36e6f1f3f98b97b89ef92bdc63cc6ffda5b690ec2be",
+      "prefix_byte_equal": true
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "full_sha256": "3ed704734d16a542e756a024deecfe2a1716c956ce9697defa1a8255186fab0c",
+      "bytes": 31230,
+      "main_prefix_bytes": 26719,
+      "main_prefix_sha256": "b0139aac6e5a7d08772bdbb5c797c472f7cc4a19de04d78d2d2a2b636a8fb802",
+      "prefix_byte_equal": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "full_sha256": "7edd5726d8a33e78139271432a9724e5f2e3e46e0a2653db603187aadd55d497",
+      "bytes": 145163,
+      "main_prefix_bytes": 98614,
+      "main_prefix_sha256": "c4337fc847a173148c17fec7be2a5f2022f73b40c4e42989fa3ba211e1689f14",
+      "prefix_byte_equal": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "full_sha256": "0d4dc09046dbe401846dd79241151a55bfc1c46a7514197a00602f209ffb5908",
+      "bytes": 3291,
+      "main_prefix_bytes": 2647,
+      "main_prefix_sha256": "0338364f94216b99bdad2691feb61ad695717174520a777ca79ecd50086b3de3",
+      "prefix_byte_equal": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "full_sha256": "60340d8e690b0b02ebe9315773c4b4ced7d65d3120dce663c4f73cd60a57a2e2",
+      "bytes": 29751,
+      "main_prefix_bytes": 22096,
+      "main_prefix_sha256": "39a2dc9775b0a3c85ba69fc63b1a6e9946bb21e1e5f95e4a038814c4d7ddf42c",
+      "prefix_byte_equal": true
+    }
+  ],
+  "current_suffix_line_pins": [
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 361,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 362,
+      "raw_lf_sha256": "1a26123ce7730c1fd5f9814e10f229536c7e5d1b646c2a8d7705094b81e78f16",
+      "literal": "## Stage 4 — HELIXLABO-L2-036/037/038/039/040/041/052/054（候補）"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 363,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 364,
+      "raw_lf_sha256": "2ccd9782acefbf8b7f8f45505ccf518f8ac401b5ed5bb75298a14eef2194d03a",
+      "literal": "状態：固定親から再導出した未承認L3/L10候補。対象は列記8 parentだけで、意味・範囲・owner・版は変更しない。本文はL3承認、実装/実行/配布許可を生成しない。要求段階のmain basis、PO決定記録、候補登録はすべて `633bf12ea8f948db8ba3d6600179c4a9507377a7` に存在する。PO決定は候補採択を記録し、registerは8候補を `registered_proposal` として登録する。要件意味の正本は `f6dad2a33e24f000b87d7f09b8d40288257e74cc` の固定L2/L11であり、登録状態からL3承認を推定しない。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 365,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 366,
+      "raw_lf_sha256": "8a7217cda51a3362fdc6c516f428db2e4bdffabc811cfc424932c5e9340f1f07",
+      "literal": "### 固定親・版・対L11"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 367,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 368,
+      "raw_lf_sha256": "4bf43429404ace7a3a8f4ab492ea08acc12f50fc59a50bb002fa38c8086d9b08",
+      "literal": "| 親 | 採択登録 | 版 | 固定L2/L11条件 |"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 369,
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832",
+      "literal": "|---|---|---|---|"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 370,
+      "raw_lf_sha256": "ead8321b72a867ce8435011369216fa3fe15bec3e0e585e080a6a065342377d5",
+      "literal": "| `HELIXLABO-L2-036` | `MPR-RC-HELIXLABO-L2-036-001` | 1.0 | L2 `263-266`、L11 `87`。固定revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc` |"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 371,
+      "raw_lf_sha256": "f9d553c223b59fe3572dbf12e0d053c9e3fa07af5a2a0ca950e95973c662ccab",
+      "literal": "| `HELIXLABO-L2-037` | `MPR-RC-HELIXLABO-L2-037-001` | 1.0 | L2 `267-270`、L11 `88`。固定revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc` |"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 372,
+      "raw_lf_sha256": "6280f78e1b9905d4cfc20d65354a30201f0cdbd525b838b55d3f08eb6d6db353",
+      "literal": "| `HELIXLABO-L2-038` | `MPR-RC-HELIXLABO-L2-038-001` | 1.0 | L2 `271-274`、L11 `89`。固定revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc` |"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 373,
+      "raw_lf_sha256": "e5462b2a476e11fc60c1846fecea51c2c8c0f29c64a8853adb9407b99c0f0d23",
+      "literal": "| `HELIXLABO-L2-039` | `MPR-RC-HELIXLABO-L2-039-001` | 1.0 | L2 `275-278`、L11 `90`。固定revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc` |"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 374,
+      "raw_lf_sha256": "15571d83d52e0ef058ba62c243c162240c8ba006f4c850f678881d1ea9f81f49",
+      "literal": "| `HELIXLABO-L2-040` | `MPR-RC-HELIXLABO-L2-040-001` | 上流採択scopeに従う | L2 `279-282`、L11 `91`。固定revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc` |"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 375,
+      "raw_lf_sha256": "0ab0c21bc5da11859e2227ac12465a0c4498a2d76b24ff78f004d371ef731a1f",
+      "literal": "| `HELIXLABO-L2-041` | `MPR-RC-HELIXLABO-L2-041-001` | 上流採択scopeに従う | L2 `283-286`、L11 `92`。固定revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc` |"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 376,
+      "raw_lf_sha256": "cdac1248c2aacc4ecdcf2fd9e2fa4d553e6354809850ac9e301926476a3b2954",
+      "literal": "| `HELIXLABO-L2-052` | `MPR-RC-HELIXLABO-L2-052-001` | 1.0 | L2 `310-315`、L11 `102`。固定revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc` |"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 377,
+      "raw_lf_sha256": "6f47104ada9c31b1361ce163d50fec62c15b97f3f981ffc49a2abfc4746cf528",
+      "literal": "| `HELIXLABO-L2-054` | `MPR-RC-HELIXLABO-L2-054-001` | 1.0 | L2 `290-295`、L11 `94`。固定revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc` |"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 378,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 379,
+      "raw_lf_sha256": "8db6b5bfc6bebf24d821164da3b804e5bd60855bceb8fce7d0aa83aa72692609",
+      "literal": "### 旧sourceからの項目別扱い"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 380,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 381,
+      "raw_lf_sha256": "b041d2eb42e3b783207d062480e29db3d2324c70d3aa90a061cd67ca394f265e",
+      "literal": "UIL旧L3 `LEGACY-ASSET-02D897E62EF2FA267267`（`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md`、whole SHA `01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4`、143–160 span SHA `c968096594bfd6ae95d82a37c2d0ad914ba8299746a38bbb20b0ecba168c2f6b`）と旧paired acceptance `LEGACY-ASSET-0B5B38F146D9538C9A36`（`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-improvement-loop-acceptance.md`、whole SHA `f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943`、31–42 span `80adc31e42723500dffed7ef494d0529a3fbef2ffce51a2b5b8c40e78522e8f2`）から、source/evidence identity、観測と欠測、候補とauthority、failure/unknownの分離を各親へ再導出する。旧25 case、schema、route enum、runtime、承認workflowを移さない。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 382,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 383,
+      "raw_lf_sha256": "95dca0aef25502409dfb7c42b9f63197887a4324376b12f2cae6ebb937b9ac0a",
+      "literal": "旧Bench L3 `LEGACY-ASSET-28FB139B26CD61CC51EE`（whole SHA `a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116`、19–36 span `0dec8b52e8c24136d6fbde9780e6e41c354d7147465f04da94c1046fb4a054b0`）と旧paired acceptance `LEGACY-ASSET-A952A3A175EB82A4781B`（whole SHA `6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185`、28–41 span `e304c3c36a59b2b3ef28f15d2912056fc3874cc211e0ed61d6b385d1fa0deaa7`）は054の評価軸の区別とpositive/negative oracle形式に限り再導出する。旧5 category、12 metric、scorer、hidden oracle、provider/team順位、runner、資格/admission、価格規約を本Stageの要求にしない。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 384,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 385,
+      "raw_lf_sha256": "04e2d07e02c800222666f514e353fe274f34dca5a568d87244e24e9e3ef9d36f",
+      "literal": "旧共通L3定義 `LEGACY-ASSET-F542125805B777D8A56A` のFR+ACと対検証の意味は6文書pairとして再導出し、旧G3/runtime/sub-gateは置換する。各親固有の保持点・差分は監査記録に固定する。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 386,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 387,
+      "raw_lf_sha256": "506f45857e1d01be8fbd5c9e39b2b13a0191ff41a992f3cfe3e7baf3190f1707",
+      "literal": "### 旧sourceの親別disposition"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 388,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 389,
+      "raw_lf_sha256": "0e8bdaf6afbfe95851b01a66fe1286bab42ad874abf2fdd10a4c64aa25360ac0",
+      "literal": "| 固定親 | 旧source・項目 | disposition / 差分理由 |"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 390,
+      "raw_lf_sha256": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea",
+      "literal": "|---|---|---|"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 391,
+      "raw_lf_sha256": "9c0c0071a88f035c49076fe14ba3a48ed21a234772ea4a165d246dc462c5a9df",
+      "literal": "| `HELIXLABO-L2-036` | `LEGACY-ASSET-02D897E62EF2FA267267` UIL旧L3 FR-003/004/005、`universal-improvement-loop-requirements.md:123-174` | findingをcandidateとして根拠・影響scope・上流戻し先へ結び付ける意味を再導出。旧event trigger、route schema、工程runtimeは置換し、HARNESSの要求・contractをLABOが変更しない。 |"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 392,
+      "raw_lf_sha256": "f4d395023fbf7c9375827c82e87f2df6832fab84d1b29304e4af3a329280b185",
+      "literal": "| `HELIXLABO-L2-037` | 同UIL旧L3 FR-001 `universal-improvement-loop-requirements.md:41-75`、FR-004/005 `:143-174`、旧受入`LEGACY-ASSET-0B5B38F146D9538C9A36` `universal-improvement-loop-acceptance.md:31-42` | operation evidenceとcandidateを分ける検証の形を再導出。旧ticket/runtime/approval routeを置換し、登録・routing・運転をOSに残す。 |"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 393,
+      "raw_lf_sha256": "d160d7cdf5f3efc298570eaca170e48984c81fe50ca57551866d91be5ecaf630",
+      "literal": "| `HELIXLABO-L2-038` | 同UIL旧L3 authority write guard FR-004 `universal-improvement-loop-requirements.md:143-160`のみ（旧受入`LEGACY-ASSET-0B5B38F146D9538C9A36` 31-42にunauthorized-input oracleはない） | 権限境界と許可evidenceの分離を再導出。旧authorization mechanismを移植せず、authority/data-handling ownerをSECURITYに残す。restricted-dataの通常evidence禁止は固定L2/L11に基づく。 |"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 394,
+      "raw_lf_sha256": "604663641981208bc418dc29438639c357d0c7a25d7bf37c4e9cc435d8355d51",
+      "literal": "| `HELIXLABO-L2-039` | 同UIL旧L3 source identity FR-001 `universal-improvement-loop-requirements.md:41-75`、typed return FR-004/005 `:143-174` | result provenanceとfailure returnを再導出。旧Worker execution/runtimeを置換し、Worker assignment/executionをLABOから除く。 |"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 395,
+      "raw_lf_sha256": "05a4d01391496f4550077754d43b3dee8f17763a2bb13042eb21a9d53d570302",
+      "literal": "| `HELIXLABO-L2-040` | 同UIL旧L3 candidate/backflow FR-004/005 `universal-improvement-loop-requirements.md:143-174` | source/target identity保持をconnection固有evidenceへ再導出。旧transport/retry implementationを置換し、connector contract責務をCONNECTに残す。 |"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 396,
+      "raw_lf_sha256": "8f56c7b5e5b3b4ce93b57473d9e9df0e7ef6e26f029e3a7a01740b4cefaea07a",
+      "literal": "| `HELIXLABO-L2-041` | 同UIL旧L3 semantic impact FR-003 `universal-improvement-loop-requirements.md:123-141`とtyped route FR-004 `:143-160` | meaning impactをProduct Core別に返す意味を再導出。generic portfolio routingは置換し、製品固有meaningをBRAINへ移さない。 |"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 397,
+      "raw_lf_sha256": "2fc42e1c92640d970563cfc35952778b56e88fa006d49175d8509c94973626a1",
+      "literal": "| `HELIXLABO-L2-052` | 同UIL旧L3 provenance/observation FR-001/005/007 | source revisionからreceiptまでのlineageを、固定L2-035 payloadのcomposite traceとして再導出。旧merge/post-main promotion lifecycleは置換し、評価/受領をモデル更新へ結ばない。 |"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 398,
+      "raw_lf_sha256": "be3bddd54844816ab36e60da2048fbb74a58ef583a7423eaaccc1c6061466073",
+      "literal": "| `HELIXLABO-L2-054` | `LEGACY-ASSET-28FB139B26CD61CC51EE` Bench L3 §0/R-03/R-08、`helix-bench-evaluation.md:19-36,76-95,96-169`; `LEGACY-ASSET-A952A3A175EB82A4781B` paired acceptance `helix-bench-evaluation-acceptance.md:28-41` | 直交した評価軸、version/scopeとunassessed evidenceの区別を再導出して055出力の専用handoffに限る。旧category/metric/scorer/runner/provider順位/admissionは置換・除外。 |"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 399,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 400,
+      "raw_lf_sha256": "b1493d8ad5cace6f04a07534cf5f5a9f2ad1fef7fcd6e9b552823d551a978789",
+      "literal": "同一の旧sourceを複数親が利用する場合も、各行の現行意味はそれぞれの固定L2が定める。旧sourceは出自・失敗形態の起点であり、旧要求・ID・実装・承認状態の自動継承ではない。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 401,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 402,
+      "raw_lf_sha256": "181c4f74124e08211ebc4e60382c09449299da4c8ab1f5ae4603c16f438bc34c",
+      "literal": "### LABO-036-FR-01 — LABO → HELIX-HARNESS"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 403,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 404,
+      "raw_lf_sha256": "f0fa4ba9859b8d881e6162369930fdf4276648f3f257c7ded5a8535da143b02c",
+      "literal": "HELIXLABO-L2-036の入力はV-model、要求形成、design obligation、verification contract、backflow、境界調整、refactor、release/maintenance工程のevidence。出力はHARNESS向けFeedback candidateとする。同一対象revisionの許可された工程evidenceを用い、根拠・範囲付きFeedback candidateをHARNESSへ返す。LABOは親が持つ意味、operation、権限、割当、正本を変更せず、入力のsource identity/revision・適用scope・根拠を保つ。対象が未選択または未発生なら候補を捏造せず、親で定める適用範囲を保持する。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 405,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 406,
+      "raw_lf_sha256": "7bf2a79f4506c6f001580b959a5d56e0d1c2d9cd15862157a5aba0287b59e0ce",
+      "literal": "**LABO-036-AC-01 — 正常・未見正常**：同一対象revisionの許可された工程evidenceを用い、根拠・範囲付きFeedback candidateをHARNESSへ返す。 未見正常条件として、未見のmaintenance工程evidenceを同じscope付きcandidate形式で返し、工程契約変更済みとはしない。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 407,
+      "raw_lf_sha256": "02dbc1d6c6b7d0162823343cab8bf0e1177bac6287c8edbb3cd339cc6ede827b",
+      "literal": "**LABO-036-AC-02 — 不成立・owner境界**：次のfixtureは独立に不成立とし、原因を併発で代用しない。target不明はrouting候補へ戻し、recipientを推測しない。要求・contractの意味判断はHARNESSの既存上流ownerに残す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 408,
+      "raw_lf_sha256": "865fe54e5e79437d09adf2411a9aabd85413af02a3eb53143d0d0d99788d0310",
+      "literal": "- LABOが要求意味を直接変更する。 直接変更を拒否し、元要求とcandidateを分け、変更を行わない。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 409,
+      "raw_lf_sha256": "f077ac70d403dd3a38d9dac91cae3d2319a0d420054b2a69a175dce753236262",
+      "literal": "- LABOがverification contractを直接変更する。 直接変更を拒否し、contractはHARNESSの正本に残す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 410,
+      "raw_lf_sha256": "6e59244f5e63b6b0f8283872bacf17f4da4f4bbd4e11ef261bc5047887fff841",
+      "literal": "- 実験結果を根拠に工程contractを即時変更する（結果の個数や変更済み表示の有無を問わない）。実変更を拒否し、candidateを保持してHARNESSへ返す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 411,
+      "raw_lf_sha256": "365fa292593ae1905efedd05a88b37027c37cd79e96d7508612277f0288d0152",
+      "literal": "- Feedback target revisionを欠落させる。candidateの適用対象を確定せず、target不明をrouting候補へ戻す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 412,
+      "raw_lf_sha256": "ac97c2dd944e726d35552fa661664681b2250922505107b799915b2aea8b9b6d",
+      "literal": "- source/evidence identityだけが欠落する。identity不明をunknownとして保持し、対象を推測せずrouting候補へ戻す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 413,
+      "raw_lf_sha256": "e954fd55a69d5cfd098f3bd74f772f7e95a3a6bef6135e2319de9cbf2ddb7081",
+      "literal": "- 適用scopeだけが欠落する。scopeを推測せずrouting候補へ戻す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 414,
+      "raw_lf_sha256": "b1fad52839b7caf713286f902c4e622023a942087961b9f4b90ce6ba9dbecc64",
+      "literal": "- HARNESS connectorだけが欠落する。接続先を推測せずhandoff未完了として保持する。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 415,
+      "raw_lf_sha256": "7386847da222e2bdbf1b94a418dec100980ff7ad7728def257ed7b8d2b8bbad0",
+      "literal": "- 選択されたHARNESS接続に別接続のconnectorを代用する。固有connector一致を要求し、代用を拒否する。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 416,
+      "raw_lf_sha256": "6097e61444a452b26752948b7808adfd88bfac61ee1ed87400fc064a9b02ca54",
+      "literal": "- 接続片側だけが成功する。接続全体を成功扱いせず、失敗側と未完義務を保持する。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 417,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 418,
+      "raw_lf_sha256": "5b9a41d30c593f6b45f99223a95cd4bf1ee3cd9c2a6c98f0489919f7172a54b3",
+      "literal": "### LABO-037-FR-01 — LABO → HELIX-OS"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 419,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 420,
+      "raw_lf_sha256": "9c564a97d76e84ef4b395e7e51a7d8a6629a78709636559ef4814d47c309ca3a",
+      "literal": "HELIXLABO-L2-037の入力はticket、WIP、worker placement、priority、CI profile、inspection/integration、release promotion、retry/recovery、cost/order/stateの運転evidence。出力はOS向けFeedback candidateとする。OS target identityと選択connectorが特定された運転evidenceをFeedback candidateとしてOSへ返す。LABOは親が持つ意味、operation、権限、割当、正本を変更せず、入力のsource identity/revision・適用scope・根拠を保つ。対象が未選択または未発生なら候補を捏造せず、親で定める適用範囲を保持する。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 421,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 422,
+      "raw_lf_sha256": "3846afd64426f83a22ea092a00d0b5fd8abdb986da07db4ac011cbd8ef263c56",
+      "literal": "**LABO-037-AC-01 — 正常・未見正常**：OS target identityと選択connectorが特定された運転evidenceをFeedback candidateとしてOSへ返す。 未見正常条件として、未見のretry/recovery evidenceを対象scopeとともにcandidate化し、実運転を生成しない。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 423,
+      "raw_lf_sha256": "5bb12325ad413663500049fdc67fa73d16b98bc1d1d6631cf833e3b771ed826c",
+      "literal": "**LABO-037-AC-02 — 不成立・owner境界**：次のfixtureは独立に不成立とし、原因を併発で代用しない。scopeまたはOS target identity不明はOSへ戻す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 424,
+      "raw_lf_sha256": "d8a364a070ce87b4a28809d0c399355005bcb3538eab00e28c42c1603ac8e764",
+      "literal": "- LABOがticketを発行する。 ticketを作らずcandidateに留める。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 425,
+      "raw_lf_sha256": "201c1c3d4381950682e9e62b9dbff5363e0b12eeaa215cb0ec344293652d3707",
+      "literal": "- LABOがworker placementを変更する。 assignmentを変更せず、OS責務のまま保持する。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 426,
+      "raw_lf_sha256": "5809f9677df30c3ba465364c39772a29c57fa30c96525399237134a02f57ae46",
+      "literal": "- LABOがpriorityを変更する。 priorityを変更せず、OS責務のまま保持する。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 427,
+      "raw_lf_sha256": "b0ed456d2c3abde988a9c51c358b2ab237ecfd45f912645eef236bd9cb099b2c",
+      "literal": "- LABOがticket/operationを実行する。実行を開始せず、OSが持つ既存記録を参照したcandidateに留める。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 428,
+      "raw_lf_sha256": "ed4545db9787bddf3425257a77b314d4a2c57d71d6bf628341cc91b3f3108c53",
+      "literal": "- LABOが運転stateを更新する。 stateを変更せず、OSが持つ既存記録を参照したcandidateに留める。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 429,
+      "raw_lf_sha256": "56f62cde9f1f3d7dee515dee690cd51618ada2671509cbc5ad8ee9343af04389",
+      "literal": "- FeedbackをOS routingへ渡さず迂回する。 OS routing迂回を拒否し、ticket/operationを作らない。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 430,
+      "raw_lf_sha256": "ab4cf7ec2ae171620a3c101223f6ec8c97557651e3d897a3d10ff47d97376674",
+      "literal": "- LABOがoperationを運転済みとして記録する。 運転を生成せずOSの記録を参照したcandidateに留める。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 431,
+      "raw_lf_sha256": "a3fa81d50c857be8db493bb1459dadb6b0f10a002e63fdcefbbf92bb03016ca9",
+      "literal": "- OS target identityだけが欠落する。target不明をOSへ戻し、ticket/routing/operationを生成しない。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 432,
+      "raw_lf_sha256": "dc7d641347f2bbfc1e3f4c133ede033f4df7a8684bf4e199b2c5659f176d9074",
+      "literal": "- 選択scopeだけが欠落する。scopeを推測せずOSへ戻す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 433,
+      "raw_lf_sha256": "b64ded2bafc0c196c17d83888bd521b639fc9e4c09c5815bda7ea0e45ed0d503",
+      "literal": "- 選択OS connectorだけが欠落する。routing未確定として保持しOSへ戻す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 434,
+      "raw_lf_sha256": "0b6eef97c5aed40e98d58268408b56998923bc1113e71880203b518d5879a521",
+      "literal": "- 選択されたOS接続に別接続のconnectorを代用する。固有connector一致を要求し、代用を拒否する。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 435,
+      "raw_lf_sha256": "770c73d2742c2bd40e8aef2cbbcc36b0fb2246a4c2aa6544ae13b75ade16368b",
+      "literal": "- 接続片側だけが成功する。OS接続全体を成功扱いせず、失敗側と未完義務を保持する。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 436,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 437,
+      "raw_lf_sha256": "3c068aee1108341e98645db887bdcd4e0bc958b87dfcd386560f411de9f584a0",
+      "literal": "### LABO-038-FR-01 — LABO → SECURITY"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 438,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 439,
+      "raw_lf_sha256": "087f8c097085fce3e5895d946da582714acfb34ae765c5cb29fad175d9d2ccf9",
+      "literal": "HELIXLABO-L2-038の入力は認可・隔離・credential・情報保護に関する許可evidence。出力はSECURITY向けFeedback candidateとする。許可evidenceだけを取り扱い情報保護candidateをSECURITYへ渡す。restricted dataを通常packetまたは通常evidenceへ流さない。fixtureには合成markerのみを使い、実secret、credential、PIIは記録しない。LABOは親が持つ意味、operation、権限、割当、正本を変更せず、入力のsource identity/revision・適用scope・根拠を保つ。対象が未選択または未発生なら候補を捏造せず、親で定める適用範囲を保持する。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 440,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 441,
+      "raw_lf_sha256": "339efc6b79d55bd3c2e755e2ddde4da6e2182e586e9c87337ee400e27c3b29b7",
+      "literal": "**LABO-038-AC-01 — 正常・未見正常**：許可evidenceだけを取り扱い情報保護candidateをSECURITYへ渡す。通常packet/evidenceにrestricted dataを流さず、未見正常fixtureでもauthority判断はSECURITYに残す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 442,
+      "raw_lf_sha256": "03ca46e88985025426c59af1f6541d1e7f0e01f1ef4a96b79984dd4729c61893",
+      "literal": "**LABO-038-AC-02 — 不成立・owner境界**：次のfixtureは独立に不成立とし、原因を併発で代用しない。scope不明またはdata-handling contract不明はSECURITYへ戻す。restricted dataは通常packet/evidenceの両方へ流さない。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 443,
+      "raw_lf_sha256": "0ba5d78f2fca239f2ceca8e342f9f3efec20486381b68f6f46bf8f894d7ac83b",
+      "literal": "- LABOがauthorityを直接変更する。 authority変更を拒否し、candidateに留める。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 444,
+      "raw_lf_sha256": "bef176d76ec05f21bba51a7e777781c8b849192c11a72341236318b0e5d316f0",
+      "literal": "- 合成restricted-data markerを通常packetへ含める。packetを成立扱いせず、情報保護責務をSECURITYへ戻す。実secret値はfixtureにも記録しない。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 445,
+      "raw_lf_sha256": "48a234019bd999088e182c9786665b4747020eceb8143736bcc4d729f7e9901d",
+      "literal": "- 合成restricted-data markerを通常evidenceへ含める。evidenceを成立扱いせずSECURITYへ戻す。実secret値はfixtureにも記録しない。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 446,
+      "raw_lf_sha256": "b25199aa4018ab8d18cc0575c152c95f975c2827210dc9227c2bb7bf33b0ea16",
+      "literal": "- 選択scopeが不明なevidenceを許可evidenceとして扱う。 許可判定を推測せずunknownとしてSECURITYへ戻す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 447,
+      "raw_lf_sha256": "48c1fb601a013edc929497cb74c18d938133fc7783efb88be13c05fe12f47e01",
+      "literal": "- 許可evidence identityだけが欠落する。許可evidenceとして確定せずunknownをSECURITYへ戻す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 448,
+      "raw_lf_sha256": "7d25af4760e0f2965f94a03133bdce43ca704f0c87abd845e6ccc10e70d5aba9",
+      "literal": "- SECURITY data-handling/target contractだけが欠落する。許可範囲を推測せずSECURITYへ戻す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 449,
+      "raw_lf_sha256": "b77a9d16ea2b797496b98cad6eef113f006cc6f945932c590847eeb75af6fdb3",
+      "literal": "- SECURITY接続に別接続のconnectorを代用する。固有connector一致を要求し代用を拒否する。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 450,
+      "raw_lf_sha256": "6097e61444a452b26752948b7808adfd88bfac61ee1ed87400fc064a9b02ca54",
+      "literal": "- 接続片側だけが成功する。接続全体を成功扱いせず、失敗側と未完義務を保持する。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 451,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 452,
+      "raw_lf_sha256": "9b9f790b9443fce88679f37474ecd96f6ec33bfb61a087c0119ae1648f5b3514",
+      "literal": "### LABO-039-FR-01 — LABO → Worker execution（OS/SECURITY経由）"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 453,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 454,
+      "raw_lf_sha256": "e2cf4873bffa843ffd2558e09dc5ccde149a43bbd209cfe6f4ce33cf4eda09a6",
+      "literal": "HELIXLABO-L2-039の入力はWorker実行、停止、復旧に関する許可結果。出力はOS/SECURITYを経たtarget-specific Feedback candidateとする。既存OS/SECURITY routingを通ったWorker result identityと許可結果をtarget-specific Feedback candidateとして扱う。LABOは親が持つ意味、operation、権限、割当、正本を変更せず、入力のsource identity/revision・適用scope・根拠を保つ。対象が未選択または未発生なら候補を捏造せず、親で定める適用範囲を保持する。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 455,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 456,
+      "raw_lf_sha256": "568acbb33380d2ce6b3b34e0049326355cf5c78cde762e16e499e65e1bf5ac9e",
+      "literal": "**LABO-039-AC-01 — 正常・未見正常**：既存OS/SECURITY routingを通ったWorker result identityと許可結果をtarget-specific Feedback candidateとして扱う。 未見正常条件として、未見のrecovery resultも元Worker identityと既存routingを保って扱う。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 457,
+      "raw_lf_sha256": "cf4b1680eb4c2249802b9728566bc8e4567ecbd2780c3835def19e00008ae08d",
+      "literal": "**LABO-039-AC-02 — 不成立・owner境界**：次のfixtureは独立に不成立とし、原因を併発で代用しない。責務不明はOSへ。authority/data scope不明はSECURITYへ。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 458,
+      "raw_lf_sha256": "fa2933f6c82283a1661efdd080797fef50340208afcad47d581b2577ee3c0358",
+      "literal": "- LABOがWorker assignmentを変更する。 assignmentを変更せずOSへ返す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 459,
+      "raw_lf_sha256": "ac102764809c3d84bfb3b7f54d4b1ca97fa30f5a349d3c924b1cc9e75d214ce7",
+      "literal": "- LABOがWorkerを直接実行する。 実行を行わず候補記録に留める。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 460,
+      "raw_lf_sha256": "c5b54fe082e32702d6bb6ed969a53942cf583271841916469ed98d7db35f6be3",
+      "literal": "- LABOがWorkerを直接停止する。 停止を行わず候補記録に留める。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 461,
+      "raw_lf_sha256": "4fe249655a346b0974ba90f7f56382c4f63685bb99d896ca87265f8a1121ab33",
+      "literal": "- result identityを別Workerのresultへ差し替える。 resultとWorker identityの不一致をunknownとして保持する。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 462,
+      "raw_lf_sha256": "e300f54402a45b18242ff81240f7503850f2ab2b8abf582f928972802a0f720b",
+      "literal": "- OS routingを欠いた結果をtarget-specificとして受け入れる（L10-LABO-039-CASE-06）。target-specific candidateとして確定せずOSへ戻す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 463,
+      "raw_lf_sha256": "54b8323df540a2ddc11d96ba1707bb783e46fbace3c6ff175700fdeaf982178c",
+      "literal": "- SECURITY routingを要する結果で同routingを欠落させる（L10-LABO-039-CASE-07）。許可結果として確定せずSECURITYへ戻す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 464,
+      "raw_lf_sha256": "19a4bf3756a774a009416f4106f8b97dba27bc16d7e00638f0a87582767c886c",
+      "literal": "- Worker result identityだけが欠落する。resultをtarget-specificとせずunknownとしてOSへ戻す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 465,
+      "raw_lf_sha256": "cf54c31263619f73d733f1c74b6c2bf3b2ac46b7aec713d3a9d67cec490af9b4",
+      "literal": "- 親上必要なOSまたはSECURITY routingだけが欠落する。該当routing ownerへ戻し許可結果として確定しない。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 466,
+      "raw_lf_sha256": "188edd9afdc1130d4e612349885200f3e439cdee432247a5f987394b412cb835",
+      "literal": "- 選択されたWorker接続に別接続のconnectorを代用する。固有connector一致を要求し代用を拒否する。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 467,
+      "raw_lf_sha256": "a48385320eb69bca37c9663292b8e64b2f8f33f5af279376c431302765f58807",
+      "literal": "- OS側だけが成功しSECURITY側が未完了、またはその逆のfixtureを作る。両方の親条件が適用される場合、片側だけで接続成功とせず未完義務を保持する。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 468,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 469,
+      "raw_lf_sha256": "c71ca6e77bb84192796fa477d14fd50885704e9239af631dfeb6056fe0684715",
+      "literal": "### LABO-040-FR-01 — LABO → HELIX-CONNECT"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 470,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 471,
+      "raw_lf_sha256": "74992ab9ca42d376507a05d1bb4575faece4d5eda44b9a9e9c920bf32f4f9b3c",
+      "literal": "HELIXLABO-L2-040の入力は内外connection、retry、contract version、traceに関するevidence。出力はCONNECT向けFeedback candidateとする。選択されたconnection identityとその上流採択scopeのcontract versionに結び付くretry/trace evidenceをCONNECT candidateにする。LABOは親が持つ意味、operation、権限、割当、正本を変更せず、入力のsource identity/revision・適用scope・根拠を保つ。対象が未選択または未発生なら候補を捏造せず、親で定める適用範囲を保持する。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 472,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 473,
+      "raw_lf_sha256": "f17f7ba5859392555154db019eaa63c3209a2b7635fe665738a019ac7398e246",
+      "literal": "**LABO-040-AC-01 — 正常・未見正常**：選択されたconnection identityとその上流採択scopeのcontract versionに結び付くretry/trace evidenceをCONNECT candidateにする。未選択scopeを不成立にせず、未見正常条件では別の選択connectionのtraceを別identityのまま扱う。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 474,
+      "raw_lf_sha256": "84b8525ebb27deaef6da34d4203b4a18f28a5e0e4365f23e9aa118eb69f35b36",
+      "literal": "**LABO-040-AC-02 — 不成立・owner境界**：次のfixtureは独立に不成立とし、原因を併発で代用しない。接続契約不一致はCONNECTへ。選択scopeの版欠落・不一致はCONNECTへ、scope自体の不明はunknownとして保持しcandidateを確定しない。選択scopeに限って不足を検査し、未選択scope自体をfailureにしない。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 475,
+      "raw_lf_sha256": "c61aa4e4e8e6060f5acc647515cf3178358991eb8cfca97db392a05c7a6e69bc",
+      "literal": "- connection identityを欠落させる。 接続単位のcandidateとして確定せずunknownにする。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 476,
+      "raw_lf_sha256": "3189f3796e627b9d8df304facd545ca8d19a3afe57ae6bd2140c4236acd346e5",
+      "literal": "- 選択connectionのcontract versionを別revisionへ差し替える。 異revision evidenceを成功扱いせずCONNECTへ戻す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 477,
+      "raw_lf_sha256": "15f7b955c7613bf03166ddc60c6be82f12bc917be5be56a3d44d101520d813bf",
+      "literal": "- 上流採択scopeだけを欠落させる。scopeを推測せずunknownとして保持しcandidateを確定しない。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 478,
+      "raw_lf_sha256": "16ef970ea3214aec100c78c4bcfa6a4370a1054730125b7bb8af5f4de9108557",
+      "literal": "- 接続traceを欠落させる。 trace欠落を保ち候補を完了扱いしない。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 479,
+      "raw_lf_sha256": "d7ca2fb505f7e3740fa80f4f032e04610683d2f9fd3c83dd13720b6f50392e19",
+      "literal": "- LABOがconnector contractを直接変更する。 contract変更を拒否しCONNECT ownerへ返す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 480,
+      "raw_lf_sha256": "8b50c1deee8a8eab7edd4d2073e2c6d213409d469404901575bbbc26873e6d7a",
+      "literal": "- CONNECT connectorだけが欠落する。CONNECT先を推測せずcandidateを未完了として保持する。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 481,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 482,
+      "raw_lf_sha256": "355f5ccb62882fbfbc58a063aeb46c68dfdb1d14e6b34de7e0f9603d7b2d4160",
+      "literal": "### LABO-041-FR-01 — LABO → 該当Product Core"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 483,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 484,
+      "raw_lf_sha256": "1e5e708a4d1aa8506bc5b6fddf829323196579283848038bfa2b5e7d8f7d8559",
+      "literal": "HELIXLABO-L2-041の入力はproduct固有meaning、要求、設計、domain、UXのevidence。出力は該当Product Core向けcandidateとする。選択製品identityと版に対応した個別connectorがあるscopeでproduct固有candidateを該当Product Coreへ返す。LABOは親が持つ意味、operation、権限、割当、正本を変更せず、入力のsource identity/revision・適用scope・根拠を保つ。対象が未選択または未発生なら候補を捏造せず、親で定める適用範囲を保持する。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 485,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 486,
+      "raw_lf_sha256": "3797a8a96a08a910f20fb4734156ccb74d79a94a3736cedc9a992ee241d892a6",
+      "literal": "**LABO-041-AC-01 — 正常・未見正常**：選択製品identityと版に対応した個別connectorがあるscopeでproduct固有candidateを該当Product Coreへ返す。未選択scopeを不成立にせず、未見の別domain evidenceも該当Product Core別に保ち、製品meaningを汎用化しない。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 487,
+      "raw_lf_sha256": "0bebd74e00de4519fe351e2fde8341556c2a0e688a6cb01d89146ab32aaf25b8",
+      "literal": "**LABO-041-AC-02 — 不成立・owner境界**：次のfixtureは独立に不成立とし、原因を併発で代用しない。対象製品またはowner不明は既存Product Core ownerへ戻す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 488,
+      "raw_lf_sha256": "6cb4f43778ccea704b278799c29a80ed3b66a6031d51d62210713be6fdfb45b7",
+      "literal": "- product identityを欠落させる。 製品を推測せずowner不明として戻す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 489,
+      "raw_lf_sha256": "a49085ee9decd893b765c104bca608bd0e6f6cec3d3b333ac9caae913e48349c",
+      "literal": "- 別のProduct Coreをtargetとして指定する。 誤routeを拒否し正しいowner確認まで確定しない。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 490,
+      "raw_lf_sha256": "37f7f68bd9d0bbec85d09d519cd46b08d44549d848101a6d7c2a469fa3b9ee57",
+      "literal": "- product固有meaningをBRAIN向けgeneric structureとして送る。 generic化を拒否し製品側の意味を保持する。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 491,
+      "raw_lf_sha256": "db259872ec385253b63674a17f8124e5a29dda74e609b66a0f69c9db5a5f0a63",
+      "literal": "- 選択製品のversionだけが欠落する。版を推測せず該当Product Core ownerへ戻す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 492,
+      "raw_lf_sha256": "9987ebfbc64981540ed93b8b11c78b7c244650c5d3ad55d57438e6f98c314e35",
+      "literal": "- 当該製品の個別connectorだけが欠落する。別製品へ迂回せず該当Product Core ownerへ戻す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 493,
+      "raw_lf_sha256": "d0b8a9108b69d39d1032410d3e2a065700152400e9585afd00db2c2a4edeb0a9",
+      "literal": "- LABOがProduct Coreの正本へ直接書き込む。書込みを拒否し正本を製品側に残す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 494,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 495,
+      "raw_lf_sha256": "529af3c4cb74f2620ef0a802ad5aeac334a0ffcff18d9fd6234bc97c4048b7a2",
+      "literal": "### LABO-052-FR-01 — INTELLIGENCE評価材料循環（L2-035 payload）"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 496,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 497,
+      "raw_lf_sha256": "d502e388f137e4e3f109e0391dbd155929590de526f13f52c69711a1c37e9271",
+      "literal": "HELIXLABO-L2-052の入力はL2-035で定義する評価済みsource revisionとpayload、適用範囲、未評価状態。出力はINTELLIGENCE側の受領証跡とLABO側から辿れる同一revisionの材料循環とする。035 payloadの境界を保ち、LABO source revisionからINTELLIGENCE receiptまで同一revision、適用scope、unassessed状態を対応づける。LABOは親が持つ意味、operation、権限、割当、正本を変更せず、入力のsource identity/revision・適用scope・根拠を保つ。対象が未選択または未発生なら候補を捏造せず、親で定める適用範囲を保持する。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 498,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 499,
+      "raw_lf_sha256": "40ee5641cd0f7bb0bd6e1507c367ac718ecba0ff76f7ccc4be9a96125a4fee50",
+      "literal": "**LABO-052-AC-01 — 正常・未見正常**：035 payloadの境界を保ち、LABO source revisionからINTELLIGENCE receiptまで同一revision、適用scope、unassessed状態を対応づける。 未見正常条件として、別種の評価材料でも035 payloadとsame revision/scope/stateを保ち、受領を評価成功としない。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 500,
+      "raw_lf_sha256": "6f9f906a24bb8fe334f401a865386557e175f45e0ef0f35c3a6dc33b3266a013",
+      "literal": "**LABO-052-AC-02 — 不成立・owner境界**：次のfixtureは独立に不成立とし、原因を併発で代用しない。source identity自体の欠落は該当source/evidence ownerへ戻す。scope、revision、receiptの欠落・不一致はLABO再評価へ戻し、循環を未完了のまま保持する。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 501,
+      "raw_lf_sha256": "bdb424710f48f25a920a02d4bdab62c19cff2e2a5823cb62150cadc525f3669d",
+      "literal": "- receiptのsource revisionを別revisionにする。revision不一致でreceipt照合を成立させずLABO再評価へ戻す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 502,
+      "raw_lf_sha256": "1059ea847465cf2ec5da145495a43ce6b103668dc180576a2b710fc387ba807b",
+      "literal": "- receiptの適用scopeを別scopeにする。scope不一致で受領を成功扱いせずLABO再評価へ戻す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 503,
+      "raw_lf_sha256": "5b2480006cdc4804c7e2c0bf062986444c17f7ab9f3ebff720ed34d66efe1797",
+      "literal": "- payloadのunassessed状態だけをassessedへ変える。 状態を元のまま保持し評価済みへの昇格を拒否する。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 504,
+      "raw_lf_sha256": "1a5299287eda758b0ff9ccef75b79935c39be0d85b4336d471541f1cd046ffa6",
+      "literal": "- 035 payload schemaを複製・再定義する。 052からschema定義を追加せず、035境界を参照する。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 505,
+      "raw_lf_sha256": "4bbd77d9f56ba287fd2b10d2f220c7f45a05366623255a867902ac9f0f82d178",
+      "literal": "- receiptからmodel変更を自動生成する。 変更を生成せずINTELLIGENCE判断に残す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 506,
+      "raw_lf_sha256": "12920b8dd3672d7435f3c330454a8c7a96f2697c7e979860ea569e3d19152dfa",
+      "literal": "- receiptからtrainingを自動生成する。 training許可を生成せずsource状態を保持する。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 507,
+      "raw_lf_sha256": "e019c2965507bbede956ec1c19fa9582bc25becfcbcbcfff98fc9d198bf33755",
+      "literal": "- receiptからbot稼働を自動生成する。 bot稼働を生成せずINTELLIGENCE判断に残す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 508,
+      "raw_lf_sha256": "17c9c41fa49ececdee62bff841cf82094ead9d5b554fd0d5d702395b0c026b8a",
+      "literal": "- source identityだけが欠落する。identityをunknownとして保持し該当source/evidence ownerへ戻す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 509,
+      "raw_lf_sha256": "1cc019ac1914fbd25564e4a3b8cf971c14ec02875175fff64d166c1922cf6057",
+      "literal": "- source revisionだけが欠落する。revisionをunknownとして保持しLABO再評価へ戻す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 510,
+      "raw_lf_sha256": "9e90c27b2bb7664f648116c84544f5568e30f68d4497ba584223c18839660b45",
+      "literal": "- 適用scopeだけが欠落する。scopeをunknownとして保持しLABO再評価へ戻す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 511,
+      "raw_lf_sha256": "604a8977abb42ebed36c92332ff0a40d99055d73629398e2a5b0fb4d89692653",
+      "literal": "- INTELLIGENCE receiptだけが欠落する。受領を成功扱いせずLABO再評価へ戻す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 512,
+      "raw_lf_sha256": "9cf62460e3bfcaa8b194b3321e56132cb9e966241b1499d160aee0f16e16af7e",
+      "literal": "- receiptからtrainingまたは調整の実行・完了を循環成立の必須条件にする。必須化を拒否し、receiptと評価材料循環の境界を保つ。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 513,
+      "raw_lf_sha256": "0a5f52adeafc629775d23c982cb9de688521d7e3e8bcdec0df074e6f46c27835",
+      "literal": "- LABOがtrainingを実行・完了する。実行結果を生成せず既存ownerへ残す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 514,
+      "raw_lf_sha256": "b5a75354769b56a46826310481930538231541cff7a8637fb1d53b1c34a11dc9",
+      "literal": "- LABOが調整を実行・完了する。実行結果を生成せず既存ownerへ残す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 515,
+      "raw_lf_sha256": "318a38ad8c8d22f3059746332994c4b5749ac50f50dac4a466bb13e43456f097",
+      "literal": "- LABOがINTELLIGENCEの現在判断を生成・所有する。判断をLABO成果として確定せずINTELLIGENCEへ戻す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 516,
+      "raw_lf_sha256": "efced27a4c8a0300029ec2f805f2dc1a8a1df5e3735948cea5b53c17ce2f7bbb",
+      "literal": "- LABOがINTELLIGENCEの予測を生成・所有する。予測をLABO成果として確定せずINTELLIGENCEへ戻す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 517,
+      "raw_lf_sha256": "35cdcdb0c86b3c1a5bde0a1c3cb68956fc4c09bde29a51276af495fd9660c587",
+      "literal": "- LABOがINTELLIGENCEの配置案を生成・所有する。配置案をLABO成果として確定せずINTELLIGENCEへ戻す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 518,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 519,
+      "raw_lf_sha256": "b556e8e8a0fe00cc2ab9b3b781ae11353b625095a0b718e753ddfac2babead12",
+      "literal": "### LABO-054-FR-01 — HELIX-Bench水準のINTELLIGENCE専用接続"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 520,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 521,
+      "raw_lf_sha256": "7754840a892d046b7992b7dba94d3618aaf97e25be816c62505d2d6fc698cd16",
+      "literal": "HELIXLABO-L2-054の入力はL2-055が生成したwork-kind/model-class別の水準、根拠、適用範囲、未評価状態。出力は同じ作業種別・model class・評価範囲・根拠・未評価状態を保ったINTELLIGENCE向け受渡しとする。055の出力を同じwork kind、model class、評価範囲、根拠、unassessed状態でINTELLIGENCEへ渡す。LABOは親が持つ意味、operation、権限、割当、正本を変更せず、入力のsource identity/revision・適用scope・根拠を保つ。対象が未選択または未発生なら候補を捏造せず、親で定める適用範囲を保持する。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 522,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 523,
+      "raw_lf_sha256": "e142267868acfded0b64650f28c7b8d449f8547c4e6e8165eb01a6dc1455f218",
+      "literal": "**LABO-054-AC-01 — 正常・未見正常**：055の出力を同じwork kind、model class、評価範囲、根拠、unassessed状態でINTELLIGENCEへ渡す。 未見正常条件として、未見のwork-kind/model-classでも適用可能な既存055出力のみ受け渡し、unknownを成功実績へ外挿しない。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 524,
+      "raw_lf_sha256": "101ea68d248bd88cdf47a017b4bd5df0ab407de7d3ed4974b02a2d12442c3a2d",
+      "literal": "**LABO-054-AC-02 — 不成立・owner境界**：次のfixtureは独立に不成立とし、原因を併発で代用しない。未評価またはscope不明は水準生成側へ戻して再評価する。配置案はINTELLIGENCE、指定/割当はOSへ残す。unknown jobの成功保証とscoreによるscope/branch/merge authorityの変更を拒否する。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 525,
+      "raw_lf_sha256": "c38fcfe346e6b81c8cd7bec2e46b2d921f673bc9d3ab762bcb665324277ce826",
+      "literal": "- 接続中に水準だけを変更する。 055の水準を不変に保ち不一致を不成立とする。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 526,
+      "raw_lf_sha256": "6934188618644f359d2960808359ef1ff265e615ebf5848399b3ee0ddf9196d6",
+      "literal": "- work-kindだけを別値へ変える。 別work kindへ水準を流用せず再評価へ戻す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 527,
+      "raw_lf_sha256": "fc79390361fcee0bb2ee57ca7bad75b6fe1907a2a052a8d8ff681a4f2d483615",
+      "literal": "- model classだけを別値へ変える。 別model classへ水準を流用せず再評価へ戻す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 528,
+      "raw_lf_sha256": "e457aff4bc3093ed8cf661eb8cb1c9d7ac3fe5ba5ca017f6700ca634fa35bcd5",
+      "literal": "- 評価範囲だけを別scopeへ変える。 別scopeへ水準を流用せず再評価へ戻す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 529,
+      "raw_lf_sha256": "7310cc382f609a5dc368244ca581ac4e5595e25e72a04f3a8a0cc36db8bd237e",
+      "literal": "- 根拠を欠落させる。 evidence欠落をunknownのまま保持し再評価へ戻す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 530,
+      "raw_lf_sha256": "089f6547073cfdd925fb9c9e4b09b1e25f44139bd3a85bc45eb9570b24940521",
+      "literal": "- unassessedをassessedとして表示する。 未評価のまま保持し実績化を拒否する。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 531,
+      "raw_lf_sha256": "e5d95db60f0351c535d4f5ada864dffb4438bf029b186d34ae8df6beca4104af",
+      "literal": "- 評価scopeだけを欠落させる。範囲を推測せず水準生成側へ再評価を戻す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 532,
+      "raw_lf_sha256": "7320c9fe094ee8e3f984ebe95beaa235c55a720cc45ad7f21a82daf270dd494a",
+      "literal": "- LABOがmodelを指定する。model指定を生成せず、配置案はINTELLIGENCE、指定/割当はOSへ残す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 533,
+      "raw_lf_sha256": "a33eef6d1bd0b038ddfa20aa6294da4fc7c2a77e5627acd3386e24b2d712a813",
+      "literal": "- LABOがmodelを変更する。変更を生成せず、配置案はINTELLIGENCE、指定/割当はOSへ残す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 534,
+      "raw_lf_sha256": "50900e2d0e3b3191d9270cc3a532b7685d0beddd7b2ed343b828a3ed31e89a8d",
+      "literal": "- 過去水準だけで未評価のjobを成功保証する。 成功保証を生成せず、055水準生成側へunknownとして戻す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 535,
+      "raw_lf_sha256": "8091494c7b1e1abb73ef03e3417462b91baafb75a5bc9476600dfbb8ec75ef92",
+      "literal": "- scoreだけで適用scopeを変更する。 scopeを変更せず、055が示す評価範囲を保つ。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 536,
+      "raw_lf_sha256": "ffbbda95fc87b034a59607af9437ab76f450940fccf623618b68875b4b8b4917",
+      "literal": "- scoreだけでbranchを変更する。 branchを変更せず、接続candidateに留める。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 537,
+      "raw_lf_sha256": "4c0c9203442388ae69bbc2bf50a921b6fcab8a053b99fbf59e53d17bfa5dbe52",
+      "literal": "- scoreだけでmerge authorityを変更する。 authorityを変更せず、既存ownerへ残す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 538,
+      "raw_lf_sha256": "e3298da02851ffe2d10b64849ef44c1c8dcc9ba87bd13d5900dec909130ed49c",
+      "literal": "- LABOがworkerを割当する。 assignmentを生成せずOSへ残す。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 539,
+      "raw_lf_sha256": "4e493ac084db8670a21704311b2de10fb7a68897e36709947e94951910996b3a",
+      "literal": "- INTELLIGENCE connectorだけが欠落する。受領済みとせずconnection未完了を保持する。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 540,
+      "raw_lf_sha256": "8a4511e68425c40945e98e714df3851b14b84cfef07aa09ae2b700f713e06c5f",
+      "literal": "- L2-055水準を別定義し、重複waterlineを生成する。水準生成を055へ残し接続で再定義しない。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 541,
+      "raw_lf_sha256": "0bf622a417f892e9f422a35f7ec5e484a265d6b0d575f95a6e46325c82f6a12b",
+      "literal": "- 055水準を別のBench定義へ置き換える。接続対象を固定055出力と照合し、別定義で成立させない。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 542,
+      "raw_lf_sha256": "d4795a5a3426aef526e4fc7cf0df6d4a87fd53c331fdf5a132a07f0e32906b3b",
+      "literal": "- 配置案をOS指定/割当と同一状態へまとめる。INTELLIGENCE案とOS指定/割当を別状態で保持する。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 543,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 544,
+      "raw_lf_sha256": "8a66b942e88bcadef315df5a7391f073300fe2039d617cd999cb09810e999665",
+      "literal": "### Stage 4 共通の意味境界"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 545,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "physical_line": 546,
+      "raw_lf_sha256": "604712bae213ff4b59ef4c491570e304ef0c0bce7ee3ecb5020e997365ff3aad",
+      "literal": "各候補は親L2の適用条件に限る。選択された接続ごとに固有connectorを一つ対応づけ、別接続のconnectorで代用せず、片側成功だけで接続全体を成功としない。未選択対象の不存在を全体failureや追加gateにしない。L2に記載のない戻し先・owner・authority・承認・数値閾値を新設しない。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "physical_line": 21,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "physical_line": 22,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "physical_line": 23,
+      "raw_lf_sha256": "c692b0b07147d36da2af0f172de2fd411edfb595be2e849a1313c8fa9a85eaa6",
+      "literal": "## Stage 4 — HELIXLABO-L2-036/037/038/039/040/041/052/054"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "physical_line": 24,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "physical_line": 25,
+      "raw_lf_sha256": "5e875e62e8c3f014cf8d90db571a86ee30f0bf28fea0772492616ef85c314501",
+      "literal": "固定L2/L11にfunctional outcomeと独立した追加business outcome/ownerは定義されていない。独立BR/AC/BCASEは追加しない。結果、失敗、owner戻しは[L3 functional requirements](functional-requirements.md)のLABO-036/037/038/039/040/041/052/054-AC-01/02を唯一の条件正本として、対となるfunctional verificationで照合する。LABOはFeedback candidateまたは受領traceを扱い、HARNESS要求・OS運転・SECURITY authority・Worker実行/割当・CONNECT契約・Product Core meaning・INTELLIGENCE判断/配置/学習を実行しない。L2-040/041の適用scopeは各上流採択scopeに従う。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "physical_line": 86,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "physical_line": 87,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "physical_line": 88,
+      "raw_lf_sha256": "ec3042bf69cbc2887cbf94bb9bd7391550ad9d04dd0b4a5965b25140917abdd1",
+      "literal": "## Stage 4 — 技術候補 HELIXLABO-L2-036/037/038/039/040/041/052/054"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "physical_line": 89,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "physical_line": 90,
+      "raw_lf_sha256": "e5d77ef5f91cb330f34fc64ece578bfe100e038f2ee8047d952e5df269683ee3",
+      "literal": "以下は親の列挙条件を合成fixture上で測定する候補であり、実測・承認・実装値、SLA、性能保証ではない。値ごとのPO確認や追加gateを作らない。"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "physical_line": 91,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "physical_line": 92,
+      "raw_lf_sha256": "ef8d2ec2e4e1225b8e6787b6578f9c535ec6965b178e02008a67c1b3c70774f6",
+      "literal": "| 対象 | 根拠付き測定候補 | 比較・判定方法 | 限界 |"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "physical_line": 93,
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832",
+      "literal": "|---|---|---|---|"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "physical_line": 94,
+      "raw_lf_sha256": "b80ce9424b2539a252b688e18432fcca88eeee6eb29a4d1dcfaa4461b80df5bb",
+      "literal": "| 036–041 Feedback identity/owner fidelity | 各親の具体baseline/held-out fixtureとL10のidentity/revision/scope/connector欠落CASEからなるplanned candidate populationに対し、対象identity、source revision、scope、既存recipient一致数とmissing/unknown/mismatch数を個別記録する。| exact selected-target bindingとtarget名だけの曖昧照合を比較し、親で列挙されたsource/target tupleごとの誤routeとunknownを数える。期待は正しい候補だけを該当recipientへ束縛し、不明を推測しないこと。| 業務成果率、最小標本、target選択順位は定めない。040/041は選択された上流scopeだけを母集団にし、未選択scopeを不成立に数えない。|"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "physical_line": 95,
+      "raw_lf_sha256": "6757795327190c166aca317b1944baa0a94133e11a8770de94947c7a10f1b8e2",
+      "literal": "| 036–041 authority/operation separation | `L10-LABO-036-CASE-01`, `L10-LABO-036-CASE-02`, `L10-LABO-036-CASE-03`, `L10-LABO-036-CASE-04`, `L10-LABO-036-CASE-05`, `L10-LABO-036-CASE-06`, `L10-LABO-036-CASE-07`, `L10-LABO-036-CASE-09`, `L10-LABO-036-CASE-10`, `L10-LABO-036-CASE-11`, `L10-LABO-036-CASE-12`, `L10-LABO-037-CASE-01`, `L10-LABO-037-CASE-02`, `L10-LABO-037-CASE-03`, `L10-LABO-037-CASE-04`, `L10-LABO-037-CASE-05`, `L10-LABO-037-CASE-06`, `L10-LABO-037-CASE-07`, `L10-LABO-037-CASE-08`, `L10-LABO-037-CASE-09`, `L10-LABO-037-CASE-10`, `L10-LABO-037-CASE-11`, `L10-LABO-037-CASE-12`, `L10-LABO-037-CASE-13`, `L10-LABO-038-CASE-01`, `L10-LABO-038-CASE-02`, `L10-LABO-038-CASE-03`, `L10-LABO-038-CASE-04`, `L10-LABO-038-CASE-05`, `L10-LABO-038-CASE-06`, `L10-LABO-038-CASE-07`, `L10-LABO-038-CASE-08`, `L10-LABO-038-CASE-09`, `L10-LABO-038-CASE-10`, `L10-LABO-039-CASE-01`, `L10-LABO-039-CASE-02`, `L10-LABO-039-CASE-03`, `L10-LABO-039-CASE-04`, `L10-LABO-039-CASE-05`, `L10-LABO-039-CASE-06`, `L10-LABO-039-CASE-07`, `L10-LABO-039-CASE-08`, `L10-LABO-039-CASE-09`, `L10-LABO-039-CASE-10`, `L10-LABO-039-CASE-11`, `L10-LABO-040-CASE-01`, `L10-LABO-040-CASE-02`, `L10-LABO-040-CASE-03`, `L10-LABO-040-CASE-04`, `L10-LABO-040-CASE-05`, `L10-LABO-040-CASE-06`, `L10-LABO-040-CASE-07`, `L10-LABO-040-CASE-08`, `L10-LABO-040-CASE-10`, `L10-LABO-040-CASE-11`, `L10-LABO-040-CASE-12`, `L10-LABO-041-CASE-01`, `L10-LABO-041-CASE-02`, `L10-LABO-041-CASE-03`, `L10-LABO-041-CASE-04`, `L10-LABO-041-CASE-05`, `L10-LABO-041-CASE-06`, `L10-LABO-041-CASE-07`, `L10-LABO-041-CASE-08`, `L10-LABO-041-CASE-09`, `L10-LABO-041-CASE-10`, `L10-LABO-041-CASE-11`を母集団として各誤作用件数を別々に記録する。 | operation/candidate/authorityを分け、固有connector、全体完了、未完義務、restricted-data通常packet/evidence禁止を個別照合する。 | oracle上の不成立条件であり、実環境値・安全閾値は主張しない。 |"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "physical_line": 96,
+      "raw_lf_sha256": "c5f4799dd0afa254d919fb7e3f94a59658bba5a2f20e1902f0a0426569c587e9",
+      "literal": "| 052 revision/scope/state lineage | planned source-to-receipt traceごとにsource identity/revision、適用scope、評価/未評価状態、receiptの一致・欠測・不一致を分ける。| 035 payloadと同一revision/scope/stateのreceiptを照合し、別revision/scopeや状態変換を独立変異で計数する。| schemaや受領SLAを追加せず、INTELLIGENCE判断成功を測らない。|"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "physical_line": 97,
+      "raw_lf_sha256": "241341394b92f8e7ad6e14ae2fdb21b2ebce8faa4922dd7cc274684109ea1c12",
+      "literal": "| 054 waterline/evidence fidelity | planned selected work-kind/model-class packetごとに水準、根拠、適用範囲、未評価状態の保持/unknown/mismatchとscope欠落を記録する。| 055出力のexact tuple保持と、別classへの流用・未評価の実績化、unknown job成功保証、scoreによるscope/branch/merge authority変更を比較する。未知classをunknownとして保つ。| 055の生成品質、INTELLIGENCE配置精度、OS割当成果を新たに評価しない。|"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "physical_line": 98,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "physical_line": 99,
+      "raw_lf_sha256": "facfa10f20d4a24b6dd3a8739d7ba75651038a8e07245ca9fa562c0775aabf08",
+      "literal": "率を報告する場合は事前宣言したeligible planned populationを分母とし、母集団不明はunknown、分母0/missingは算出値なしとする。missing、failure、censored、not-applicable、unknownは区別し、分母から落とさない。性能percentileや最低試行数、fixed thresholdは親・旧sourceに根拠がないため設定しない。候補の数値が必要になる場合は根拠、比較案、測定方法を添えて提案し、実測なしを未測定と記録する。"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 443,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 444,
+      "raw_lf_sha256": "71a87c0673c72f9fa35fdf231f5dbbae56d96009602b7b22573ce363effd2a89",
+      "literal": "## Stage 4 — HELIXLABO-L2-036/037/038/039/040/041/052/054総合検証（未実行fixture設計）"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 445,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 446,
+      "raw_lf_sha256": "e5fd58422cba76d252412b034a329865bcaba5e25f873325de48fe1bcc60e131",
+      "literal": "状態：合成fixtureとoracle設計。旧test/runtime/CIは実行していない。対応L3は[functional requirements Stage 4](../L3-requirements/functional-requirements.md)。親別正常、独立negative、未見正常を別case IDで示す。"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 447,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 448,
+      "raw_lf_sha256": "f51bb7b423963c06cf13bcf14d8b055ca102ee844c1ff2bd3aa818298afa7cbf",
+      "literal": "| L10 Case ID | 固定parent / L3 AC | 入力fixture・単一変異 | 期待oracle | 不合格となる誤判定 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 449,
+      "raw_lf_sha256": "1de25071dfbcd236934eb9f3678ebfec9dd4c3536111762658ac30cb74aca430",
+      "literal": "|---|---|---|---|---|"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 450,
+      "raw_lf_sha256": "a1b01c582e2abf624900c8dae0d1b83e39337b187f4c6b27f304462806ab5bc4",
+      "literal": "| `L10-LABO-036-CASE-01` | `HELIXLABO-L2-036` / `LABO-036-AC-01` | 正常fixture：選択HARNESS対象 `req-036-A@rev-17` のverification-contract evidence `ev-036-vc-17`、scope `S-036-A`、source revision `rev-17`、HARNESS connector `conn-H-A` を使い、要求・contract自体は変えずFeedback candidateを返す。 | 同一対象revisionの許可された工程evidenceを用い、根拠・範囲付きFeedback candidateをHARNESSへ返す。 | 誤判定：親の固定条件を満たすcandidate/traceを不成立扱いする、または親にない成果・変更を生成する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 451,
+      "raw_lf_sha256": "7b7021c8cdc2e243d5105961cee6dc8b158226097927f105afba9f4b9e29b253",
+      "literal": "| `L10-LABO-036-CASE-02` | `HELIXLABO-L2-036` / `LABO-036-AC-02` | 単独negative：LABOが要求意味を直接変更する。 | 直接変更を拒否し、元要求とcandidateを分け、変更を行わない。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 452,
+      "raw_lf_sha256": "e3ff34d45801e8be8e321e7f25b24ee68f268042dce699cd83d3e1dbe6b9f211",
+      "literal": "| `L10-LABO-036-CASE-03` | `HELIXLABO-L2-036` / `LABO-036-AC-02` | 単独negative：LABOがverification contractを直接変更する。 | 直接変更を拒否し、contractはHARNESSの正本に残す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 453,
+      "raw_lf_sha256": "0b2170531dc822427cc248de4ee248a4ed5e833fc119772b0530c9e2e583d111",
+      "literal": "| `L10-LABO-036-CASE-04` | `HELIXLABO-L2-036` / `LABO-036-AC-02` | 単独negative：実験結果を根拠に工程contractを即時実変更する（結果の個数・表示方法は問わない）。 | 実変更を拒否しcandidateを保持してHARNESSへ返す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 454,
+      "raw_lf_sha256": "eb814a949201f4e23873276cf93cf1725880ac427ce493c9c9cf26051d51bdaf",
+      "literal": "| `L10-LABO-036-CASE-05` | `HELIXLABO-L2-036` / `LABO-036-AC-02` | 単独negative：Feedback target revisionを欠落させる。 | candidateの適用対象を確定せず、target不明をrouting候補へ戻す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 455,
+      "raw_lf_sha256": "4e6456e4ade9588de7e5e845c4ae74fc70af6dd4a69f94a621cc0071cace80e4",
+      "literal": "| `L10-LABO-036-CASE-06` | `HELIXLABO-L2-036` / `LABO-036-AC-01` | 未見正常fixture：同じHARNESS対象 `req-036-A@rev-17` とscope `S-036-A` 内の未見maintenance evidence `ev-maint-036-B@rev-17` をcandidate化し、contract変更済みとはしない。 | 未見のmaintenance工程evidenceを同じscope付きcandidate形式で返し、工程契約変更済みとはしない。 | 誤判定：scope内の未見evidenceを一律拒否する、またはunknown/未評価を既知の成功・権限へ外挿する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 456,
+      "raw_lf_sha256": "c132863c40e630b5870b83cc69c25ac448b92db9d8db6eaebec32738d23ca8f2",
+      "literal": "| `L10-LABO-037-CASE-01` | `HELIXLABO-L2-037` / `LABO-037-AC-01` | 正常fixture：OS target `ticket-target-037-A` と選択OS connector `conn-OS-A`、scope `S-037-A`、retry event `retry-037-01@rev-4` を用いて、ticket/stateを変更せずcandidateを返す。 | OS target identityと選択connectorが特定された運転evidenceをFeedback candidateとしてOSへ返す。 | 誤判定：親の固定条件を満たすcandidate/traceを不成立扱いする、または親にない成果・変更を生成する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 457,
+      "raw_lf_sha256": "14178e812a785c8386b0786befd224c1418ea86acd16353f809747e451482504",
+      "literal": "| `L10-LABO-037-CASE-02` | `HELIXLABO-L2-037` / `LABO-037-AC-02` | 単独negative：LABOがticketを発行する。 | ticketを作らずcandidateに留める。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 458,
+      "raw_lf_sha256": "2b99856792afc1be152821e5abfa0aa73766667bd28dbaef5a9aea93ec59640e",
+      "literal": "| `L10-LABO-037-CASE-03` | `HELIXLABO-L2-037` / `LABO-037-AC-02` | 単独negative：LABOがworker placementを変更する。 | assignmentを変更せず、OS責務のまま保持する。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 459,
+      "raw_lf_sha256": "d4feb4b6cd03c660ce6dc6d2224fab492eedac5aa57c1033d8bf8b026dd78d86",
+      "literal": "| `L10-LABO-037-CASE-04` | `HELIXLABO-L2-037` / `LABO-037-AC-02` | 単独negative：LABOがpriorityを変更する。 | priorityを変更せず、OS責務のまま保持する。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 460,
+      "raw_lf_sha256": "e988a24f11b4b244f7f89c58a5a9cec7b74ea49cac6f1712c7210fc650240b19",
+      "literal": "| `L10-LABO-037-CASE-05` | `HELIXLABO-L2-037` / `LABO-037-AC-02` | 単独negative：LABOが運転stateを更新する。 | stateを変更せず、OSが持つ既存記録を参照したcandidateに留める。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 461,
+      "raw_lf_sha256": "033ba4cce0e4969f57c5c42560c3102572319688d303e152849ffa5a2bfeb53d",
+      "literal": "| `L10-LABO-037-CASE-06` | `HELIXLABO-L2-037` / `LABO-037-AC-02` | 単独negative：FeedbackをOS routingへ渡さず迂回する。 | OS routing迂回を拒否し、ticket/operationを作らない。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 462,
+      "raw_lf_sha256": "bb429aef76b737ec55562966428eda8a59ede1f190215baf507e441cfb037877",
+      "literal": "| `L10-LABO-037-CASE-07` | `HELIXLABO-L2-037` / `LABO-037-AC-02` | 単独negative：LABOがticket/operationを実行する。 | 実行を開始せず、OSが持つ既存記録を参照したcandidateに留める。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 463,
+      "raw_lf_sha256": "43cd77887db6689d9c95168394542864b2cbd47bd5507349b80a545baba417b7",
+      "literal": "| `L10-LABO-037-CASE-08` | `HELIXLABO-L2-037` / `LABO-037-AC-01` | 未見正常fixture：同じOS target/connector/scopeを保った別の未見recovery event `recovery-037-B@rev-4` をcandidate化し、operationを実行しない。 | 未見のretry/recovery evidenceを対象scopeとともにcandidate化し、実運転を生成しない。 | 誤判定：scope内の未見evidenceを一律拒否する、またはunknown/未評価を既知の成功・権限へ外挿する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 464,
+      "raw_lf_sha256": "cd78c89f0175df80b9dbac488b4137d61f7a2390acdcae888f2bf336156e4881",
+      "literal": "| `L10-LABO-038-CASE-01` | `HELIXLABO-L2-038` / `LABO-038-AC-01` | 正常fixture：許可済み隔離evidence `authz-038-A@rev-3`、scope `S-038-A`、SECURITY target/data-handling contract `sec-contract-038-A` を用いる。fixtureにはsecret値を含めず保護candidateだけを渡す。 | 許可evidenceだけを取り扱い情報保護candidateをSECURITYへ渡す。restricted dataを通常packet/evidenceへ流さない。実secret値はfixtureに含めない。 | 誤判定：親の固定条件を満たすcandidate/traceを不成立扱いする、または親にない成果・変更を生成する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 465,
+      "raw_lf_sha256": "66690fe375f24e208a153fc30a561685fcd73ba10b778ad6d702214b059ea379",
+      "literal": "| `L10-LABO-038-CASE-02` | `HELIXLABO-L2-038` / `LABO-038-AC-02` | 単独negative：LABOがauthorityを直接変更する。 | authority変更を拒否し、candidateに留める。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 466,
+      "raw_lf_sha256": "e73ba4537f23046a850500f5447819571439624f43ea76e9cd09a73ecf968360",
+      "literal": "| `L10-LABO-038-CASE-03` | `HELIXLABO-L2-038` / `LABO-038-AC-02` | 単独negative：合成restricted-data markerを通常packetへ含める。 | packetを成立扱いせず、情報保護責務をSECURITYへ戻す。実secret値はfixtureにも記録しない。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 467,
+      "raw_lf_sha256": "81c590c406382529e28ee0f2f862d406e81f009873d6930d48291e750163f433",
+      "literal": "| `L10-LABO-038-CASE-04` | `HELIXLABO-L2-038` / `LABO-038-AC-02` | 単独negative：選択scopeが不明なevidenceを許可evidenceとして扱う。 | 許可判定を推測せずunknownとしてSECURITYへ戻す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 468,
+      "raw_lf_sha256": "ce4c922c3bfed15e41e0442f737979c9012ceb4bbe03016b41078f0150962413",
+      "literal": "| `L10-LABO-038-CASE-05` | `HELIXLABO-L2-038` / `LABO-038-AC-01` | 未見正常fixture：scope `S-038-A` とSECURITY contractを保った別の許可済み隔離evidence `authz-038-B@rev-3` を扱い、authority判断をSECURITYに残す。 | 異なる情報保護evidenceの未見正常例でもauthority判断はSECURITYに残す。 | 誤判定：scope内の未見evidenceを一律拒否する、またはunknown/未評価を既知の成功・権限へ外挿する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 469,
+      "raw_lf_sha256": "3f72ed5d89249a36fdf4e17cc1a44c3b62da3da9df37ecfe904f248706aaf980",
+      "literal": "| `L10-LABO-039-CASE-01` | `HELIXLABO-L2-039` / `LABO-039-AC-01` | 正常fixture：既存OS/SECURITY routing `route-039-A` 経由のWorker result `worker-039-A/result-12@rev-8` と許可結果を使い、assignment/executionは変更せずtarget-specific candidateを扱う。 | 既存OS/SECURITY routingを通ったWorker result identityと許可結果をtarget-specific Feedback candidateとして扱う。 | 誤判定：親の固定条件を満たすcandidate/traceを不成立扱いする、または親にない成果・変更を生成する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 470,
+      "raw_lf_sha256": "5a2876b16f03f3ec64da0dbdbde4fb98359cdbd5b80647e8d1b68d15b60c1991",
+      "literal": "| `L10-LABO-039-CASE-02` | `HELIXLABO-L2-039` / `LABO-039-AC-02` | 単独negative：LABOがWorker assignmentを変更する。 | assignmentを変更せずOSへ返す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 471,
+      "raw_lf_sha256": "81dd0431d09cbc948f4c90907cf50c3dc0debccc931e1401e0c6430c9866ede7",
+      "literal": "| `L10-LABO-039-CASE-03` | `HELIXLABO-L2-039` / `LABO-039-AC-02` | 単独negative：LABOがWorkerを直接実行する。 | 実行を行わず候補記録に留める。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 472,
+      "raw_lf_sha256": "fd36216aff7fec3e12bc22f16e015c3be80bcd85bfd94a57ba6eab45db7752ef",
+      "literal": "| `L10-LABO-039-CASE-04` | `HELIXLABO-L2-039` / `LABO-039-AC-02` | 単独negative：LABOがWorkerを直接停止する。 | 停止を行わず候補記録に留める。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 473,
+      "raw_lf_sha256": "3ceaf122c814c3692aef8187a9411235661a1ef9dba3dccadafaca821253ff87",
+      "literal": "| `L10-LABO-039-CASE-05` | `HELIXLABO-L2-039` / `LABO-039-AC-02` | 単独negative：result identityを別Workerのresultへ差し替える。 | resultとWorker identityの不一致をunknownとして保持する。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 474,
+      "raw_lf_sha256": "f771ae9dd12bc6436941f3cc16832e68cf5f244b177d850aa6e27672c2162cda",
+      "literal": "| `L10-LABO-039-CASE-06` | `HELIXLABO-L2-039` / `LABO-039-AC-02` | 単独negative：OS routingを欠いた結果をtarget-specificとして受け入れる。 | target-specific candidateとして確定せずOSへ戻す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 475,
+      "raw_lf_sha256": "6302a9285a9912b7a87178004ba76ab5f26fe33640d4fb78faacd8e988177b7e",
+      "literal": "| `L10-LABO-039-CASE-07` | `HELIXLABO-L2-039` / `LABO-039-AC-02` | 単独negative：SECURITY routingを要する結果で同routingを欠落させる。 | 許可結果として確定せずSECURITYへ戻す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 476,
+      "raw_lf_sha256": "efc7bbfdb35e561e1d3922029d8f4eca12b8db2e8985488d2ca25f026603de47",
+      "literal": "| `L10-LABO-039-CASE-08` | `HELIXLABO-L2-039` / `LABO-039-AC-01` | 未見正常fixture：同じroutingとWorker identityを保った別の許可済みrecovery result `worker-039-A/result-13@rev-8` をtarget-specific candidateにする。 | 未見のrecovery resultも元Worker identityと既存routingを保って扱う。 | 誤判定：scope内の未見evidenceを一律拒否する、またはunknown/未評価を既知の成功・権限へ外挿する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 477,
+      "raw_lf_sha256": "78a831cb8e21dcd383917f20639d92b11f05ffc5cc5d893e8edc98562cb68175",
+      "literal": "| `L10-LABO-040-CASE-01` | `HELIXLABO-L2-040` / `LABO-040-AC-01` | 正常fixture：選択connection `conn-040-A`、上流採択scope `S-040-A`、contract version `cv-7`、trace `trace-040-07`、CONNECT connector `connect-040-A` を結ぶretry candidateを返す。 | 選択されたconnection identityとその上流採択scopeのcontract versionに結び付くretry/trace evidenceをCONNECT candidateにする。 | 誤判定：親の固定条件を満たすcandidate/traceを不成立扱いする、または親にない成果・変更を生成する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 478,
+      "raw_lf_sha256": "d3af1c30b1d6dc739417c26902d9bc7465fcc61a4dfd344e5c8d93d9b9849c26",
+      "literal": "| `L10-LABO-040-CASE-02` | `HELIXLABO-L2-040` / `LABO-040-AC-01` | 未選択scopeの正常対照：この試行では当該upstream target/connectionが未選択で、選択scopeにこの要求は含まれない。 | 未選択対象を存在すると捏造せず、1.0一律依存の失敗にしない。 | 未選択だけを理由にstage全体を不成立または新gateにする変異は不合格。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 479,
+      "raw_lf_sha256": "3f5504f5b90c6bcd2c7c0ff77bc5f786404af49ddd66f84b0e48610502914bda",
+      "literal": "| `L10-LABO-040-CASE-03` | `HELIXLABO-L2-040` / `LABO-040-AC-02` | 単独negative：connection identityを欠落させる。 | 接続単位のcandidateとして確定せずunknownにする。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 480,
+      "raw_lf_sha256": "ace9a1d92b707d64ca9e3f488cb74c4b79429ada516d54412b89d535afcfc2a1",
+      "literal": "| `L10-LABO-040-CASE-04` | `HELIXLABO-L2-040` / `LABO-040-AC-02` | 単独negative：選択connectionのcontract versionを別revisionへ差し替える。 | 異revision evidenceを成功扱いせずCONNECTへ戻す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 481,
+      "raw_lf_sha256": "9a23a17ab2581f998c87eb738c80c20c0e980343ca55b62138f6e2e8a6b27d6c",
+      "literal": "| `L10-LABO-040-CASE-05` | `HELIXLABO-L2-040` / `LABO-040-AC-02` | 単独negative：接続traceを欠落させる。 | trace欠落を保ち候補を完了扱いしない。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 482,
+      "raw_lf_sha256": "5778efa8fbdeb0bd35fb95a059dedfb4d6817eab911310b5e36e45eb7f5c750a",
+      "literal": "| `L10-LABO-040-CASE-06` | `HELIXLABO-L2-040` / `LABO-040-AC-02` | 単独negative：LABOがconnector contractを直接変更する。 | contract変更を拒否しCONNECT ownerへ返す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 483,
+      "raw_lf_sha256": "307d172df6044d6b2d324172e7f4cae17d7cb6f02f13cc6a1dfe4783dc68ae11",
+      "literal": "| `L10-LABO-040-CASE-07` | `HELIXLABO-L2-040` / `LABO-040-AC-01` | 未見正常fixture：別の上流選択connection `conn-040-B` と固有scope/version/trace tupleを用い、Aのidentityを混ぜずcandidateにする。 | 別の選択connectionに関する未見traceでも別identityを混合せず扱う。 | 誤判定：scope内の未見evidenceを一律拒否する、またはunknown/未評価を既知の成功・権限へ外挿する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 484,
+      "raw_lf_sha256": "bec9fbcda54df8f6d5db1f00edc462df8dd333bb114098fd68b93a10714f4296",
+      "literal": "| `L10-LABO-041-CASE-01` | `HELIXLABO-L2-041` / `LABO-041-AC-01` | 正常fixture：選択Product Core対象 `product-041-A` version `pv-5`、個別connector `pc-041-A`、scope `S-041-A` のUX/domain evidence `ev-041-A` を製品別candidateで返す。 | 選択製品identityと版に対応した個別connectorがあるscopeでproduct固有candidateを該当Product Coreへ返す。 | 誤判定：親の固定条件を満たすcandidate/traceを不成立扱いする、または親にない成果・変更を生成する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 485,
+      "raw_lf_sha256": "5c46a9d7f3bd5b7ddb65bf2a72b054241ab8e194f9f179f5aa0added50326eff",
+      "literal": "| `L10-LABO-041-CASE-02` | `HELIXLABO-L2-041` / `LABO-041-AC-01` | 未選択scopeの正常対照：この試行では当該upstream target/connectionが未選択で、選択scopeにこの要求は含まれない。 | 未選択対象を存在すると捏造せず、1.0一律依存の失敗にしない。 | 未選択だけを理由にstage全体を不成立または新gateにする変異は不合格。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 486,
+      "raw_lf_sha256": "548c94d11bb86c76b2d0b83d4f16cdd893366adfe08644aa9c40823f00200030",
+      "literal": "| `L10-LABO-041-CASE-03` | `HELIXLABO-L2-041` / `LABO-041-AC-02` | 単独negative：product identityを欠落させる。 | 製品を推測せずowner不明として戻す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 487,
+      "raw_lf_sha256": "8a8ea5c48ad40c8acbe7f64bbd14b25961fbe09b827aa815884489b71f21e8cd",
+      "literal": "| `L10-LABO-041-CASE-04` | `HELIXLABO-L2-041` / `LABO-041-AC-02` | 単独negative：別のProduct Coreをtargetとして指定する。 | 誤routeを拒否し正しいowner確認まで確定しない。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 488,
+      "raw_lf_sha256": "047290d58dd1a3f82ba73cda38785bcb0e6be96acfb3fb0c4e09f7f8b6a03f2d",
+      "literal": "| `L10-LABO-041-CASE-05` | `HELIXLABO-L2-041` / `LABO-041-AC-02` | 単独negative：product固有meaningをBRAIN向けgeneric structureとして送る。 | generic化を拒否し製品側の意味を保持する。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 489,
+      "raw_lf_sha256": "d6d6571b0b214a002c842a090c1e8e9c605fb0d06da363e7f26bddaac780b978",
+      "literal": "| `L10-LABO-041-CASE-06` | `HELIXLABO-L2-041` / `LABO-041-AC-01` | 未見正常fixture：同じ選択製品scopeの未見domain evidence `ev-domain-041-B@pv-5` をProduct Core別candidateに保ち、generic化しない。 | 未見の別domain evidenceも該当Product Core別に保ち、製品meaningを汎用化しない。 | 誤判定：scope内の未見evidenceを一律拒否する、またはunknown/未評価を既知の成功・権限へ外挿する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 490,
+      "raw_lf_sha256": "895a772a651fb16c016d1a14a30bcfce97e0f4d47dbf6d4857ea4f5c40b9622e",
+      "literal": "| `L10-LABO-052-CASE-01` | `HELIXLABO-L2-052` / `LABO-052-AC-01` | 正常fixture：L2-035 payload `payload-035-A` のsource `source-052-A@rev-6`、scope `S-052-A`、state `unassessed` をINTELLIGENCE receipt `receipt-052-A` と対応させ、受領を評価成功にしない。 | 035 payloadの境界を保ち、LABO source revisionからINTELLIGENCE receiptまで同一revision、適用scope、unassessed状態を対応づける。 | 誤判定：親の固定条件を満たすcandidate/traceを不成立扱いする、または親にない成果・変更を生成する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 491,
+      "raw_lf_sha256": "ab58bcbc4464b61403d59c5b2e461c5573dc11a669d24952bfed1c8406949ee2",
+      "literal": "| `L10-LABO-052-CASE-02` | `HELIXLABO-L2-052` / `LABO-052-AC-02` | 単独negative：receiptのsource revisionを別revisionにする。 | revision不一致でreceipt照合を成立させずLABO再評価へ戻す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 492,
+      "raw_lf_sha256": "a013af69e9b9993b492d306d934e443f8fd4c28e1d907f8d05ccd89c6efc41f1",
+      "literal": "| `L10-LABO-052-CASE-03` | `HELIXLABO-L2-052` / `LABO-052-AC-02` | 単独negative：receiptの適用scopeを別scopeにする。 | scope不一致で受領を成功扱いせずLABO再評価へ戻す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 493,
+      "raw_lf_sha256": "31bf688ff87083541c1c3bd57210004b12217e993f368af6dc0c679c8e8f54b8",
+      "literal": "| `L10-LABO-052-CASE-04` | `HELIXLABO-L2-052` / `LABO-052-AC-02` | 単独negative：payloadのunassessed状態だけをassessedへ変える。 | 状態を元のまま保持し評価済みへの昇格を拒否する。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 494,
+      "raw_lf_sha256": "b9ffceb4101d550196e8cce59a5c55f2bb2c632ff5c2f23c75779e6b87b4aa1f",
+      "literal": "| `L10-LABO-052-CASE-05` | `HELIXLABO-L2-052` / `LABO-052-AC-02` | 単独negative：035 payload schemaを複製・再定義する。 | 052からschema定義を追加せず、035境界を参照する。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 495,
+      "raw_lf_sha256": "36f296f6cf65449d3fb51f0d7fd65a5c43c325745987836fd6d435a0b245f053",
+      "literal": "| `L10-LABO-052-CASE-06` | `HELIXLABO-L2-052` / `LABO-052-AC-02` | 単独negative：receiptからmodel変更を自動生成する。 | 変更を生成せずINTELLIGENCE判断に残す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 496,
+      "raw_lf_sha256": "240529f495128f2f49134bd617838740bed0e24a13be9664ca5e037b1bb17f18",
+      "literal": "| `L10-LABO-052-CASE-07` | `HELIXLABO-L2-052` / `LABO-052-AC-02` | 単独negative：receiptからtrainingを自動生成する。 | training許可を生成せずsource状態を保持する。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 497,
+      "raw_lf_sha256": "f24a0a37cea8d15ddac1c81fae44f0838c327089207d838e3e505963509a6750",
+      "literal": "| `L10-LABO-052-CASE-08` | `HELIXLABO-L2-052` / `LABO-052-AC-02` | 単独negative：receiptからbot稼働を自動生成する。 | bot稼働を生成せずINTELLIGENCE判断に残す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 498,
+      "raw_lf_sha256": "5f631de20b8816cf03c8074ebd2dca6418099988cddb35c043f64f5c1718cee7",
+      "literal": "| `L10-LABO-052-CASE-09` | `HELIXLABO-L2-052` / `LABO-052-AC-01` | 未見正常fixture：別種の評価材料 `payload-035-B` でもsource revision/scope/stateがreceiptに一致し、receiptを評価成功としない。 | 別種の評価材料でも035 payloadとsame revision/scope/stateを保ち、受領を評価成功としない。 | 誤判定：scope内の未見evidenceを一律拒否する、またはunknown/未評価を既知の成功・権限へ外挿する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 499,
+      "raw_lf_sha256": "ca50bec4ebafebd2820acfe406b1704b62c86828ee1b6adaa4a48dc975c89c39",
+      "literal": "| `L10-LABO-054-CASE-01` | `HELIXLABO-L2-054` / `LABO-054-AC-01` | 正常fixture：L2-055 output `waterline-055-A` のwork kind `maintenance`, model class `class-A`, scope `S-054-A`, evidence `ev-055-A`, state `unassessed` をINTELLIGENCE connector `int-054-A` へ同一tupleで渡し、OS assignmentを作らない。 | 055の出力を同じwork kind、model class、評価範囲、根拠、unassessed状態でINTELLIGENCEへ渡す。 | 誤判定：親の固定条件を満たすcandidate/traceを不成立扱いする、または親にない成果・変更を生成する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 500,
+      "raw_lf_sha256": "c3f8db5b45ccf9567c537736074663e7c87a45e5c1deb137a9bb4701cc12103b",
+      "literal": "| `L10-LABO-054-CASE-02` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 単独negative：接続中に水準だけを変更する。 | 055の水準を不変に保ち不一致を不成立とする。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 501,
+      "raw_lf_sha256": "2d66c38fd49f235f9472a1ff22a75a27e493acd0308c50fff35dac48a7d8aa8f",
+      "literal": "| `L10-LABO-054-CASE-03` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 単独negative：work-kindだけを別値へ変える。 | 別work kindへ水準を流用せず再評価へ戻す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 502,
+      "raw_lf_sha256": "cfc22c885f262cad75a4d3642bce3d86de574fa7cbf88a1574e40718980efbab",
+      "literal": "| `L10-LABO-054-CASE-04` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 単独negative：model classだけを別値へ変える。 | 別model classへ水準を流用せず再評価へ戻す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 503,
+      "raw_lf_sha256": "22d492dc5e88792de5cdbaa500525447ec063a8520ba40a3ab20243fe375d842",
+      "literal": "| `L10-LABO-054-CASE-05` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 単独negative：評価範囲だけを別scopeへ変える。 | 別scopeへ水準を流用せず再評価へ戻す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 504,
+      "raw_lf_sha256": "b1bc1f3c7ea17898a799d72d633f695940c9fc061ffcbf58422c2bd34ba0ccdd",
+      "literal": "| `L10-LABO-054-CASE-06` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 単独negative：根拠を欠落させる。 | evidence欠落をunknownのまま保持し再評価へ戻す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 505,
+      "raw_lf_sha256": "0a2b2ef5727415fe851c632f1b2d7d3abe6b47b58c6a226d7641f423bd022257",
+      "literal": "| `L10-LABO-054-CASE-07` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 単独negative：unassessedをassessedとして表示する。 | 未評価のまま保持し実績化を拒否する。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 506,
+      "raw_lf_sha256": "b87e35abd270cc14948b3a686f3c84f0fa06bc5ac9c4c04b225aa5c3fd4b1e14",
+      "literal": "| `L10-LABO-054-CASE-08` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 単独negative：LABOがmodelを指定する。 | model指定を生成せず、配置案はINTELLIGENCE、指定/割当はOSへ残す。 | 誤判定：LABOのmodel指定を受け入れ、提案・指定の状態を混同する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 507,
+      "raw_lf_sha256": "7aa20adac6ef00a5040c0b9ec9b3d715f32c550af647767422e726a279da9c2b",
+      "literal": "| `L10-LABO-054-CASE-09` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 単独negative：LABOがworkerを割当する。 | assignmentを生成せずOSへ残す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 508,
+      "raw_lf_sha256": "eaa63114a3bd2f560d33c692d9021a745d287600c8c18e84535533d7dc185107",
+      "literal": "| `L10-LABO-054-CASE-10` | `HELIXLABO-L2-054` / `LABO-054-AC-01` | 未見正常fixture：適用可能な既存055 outputを伴う別work-kind/model-class組 `maintenance-B/class-B` を扱い、同じtupleをINTELLIGENCEへ渡す。 | 未見のwork-kind/model-classでも適用可能な既存055出力のみ受け渡し、unknownを成功実績へ外挿しない。 | 誤判定：scope内の未見evidenceを一律拒否する、またはunknown/未評価を既知の成功・権限へ外挿する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 509,
+      "raw_lf_sha256": "878f7cc6d304bdacf2befb86c2cefa1d17298ace353dae8efe1b106c473ae056",
+      "literal": "| `L10-LABO-036-CASE-07` | `HELIXLABO-L2-036` / `LABO-036-AC-02` | 個別negative：source identity欠落。source/evidence identityだけを欠落。他fieldは正常baselineと同じ。 | identity不明をunknownとして保持し対象を推測せずrouting候補へ戻す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 510,
+      "raw_lf_sha256": "af5a061198a179ef91916ac4c5d7c8718e48b569c4393695352a2dc9c51b912c",
+      "literal": "| `L10-LABO-036-CASE-09` | `HELIXLABO-L2-036` / `LABO-036-AC-02` | 個別negative：HARNESS connector欠落。HARNESS connectorだけを欠落。evidence identity/revision/scopeは正常baselineのまま。 | 接続先を推測せずhandoff未完了として保持する。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 511,
+      "raw_lf_sha256": "10fcfd44fd3b0df319690c91eabfe6a182c334f2102adfbaad222a066b5d6b14",
+      "literal": "| `L10-LABO-036-CASE-10` | `HELIXLABO-L2-036` / `LABO-036-AC-02` | 個別negative：適用scope欠落。scopeだけを欠落させ、target revision/evidence/connectorは正常baselineのまま。 | scope不明を保ち対象を推測せずrouting候補へ戻す。 | 誤判定：scope欠落/unknownを適用可能なcandidateとして受け入れる、または範囲を推測する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 512,
+      "raw_lf_sha256": "832dad716eeb59746a48612735a18e732506d747659612e1c7f9da1713c39d2e",
+      "literal": "| `L10-LABO-037-CASE-09` | `HELIXLABO-L2-037` / `LABO-037-AC-02` | 個別negative：OS target identity欠落。OS target identityだけを欠落。運転evidence/scope/connector以外は正常baselineのまま。 | target不明をOSへ戻しticket/routing/operationを生成しない。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 513,
+      "raw_lf_sha256": "dd8ed06f0a2c292243f761d74941afee995bc669260a4726661d23c7bbda5a68",
+      "literal": "| `L10-LABO-037-CASE-10` | `HELIXLABO-L2-037` / `LABO-037-AC-02` | 個別negative：scope欠落。選択scopeだけを欠落。OS target/evidence/connectorは正常baselineのまま。 | scopeを推測せずOSへ戻す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 514,
+      "raw_lf_sha256": "c16156cd445a5a7b7b7837623551ad74c7daf218802c97daba71f9e5146b93c1",
+      "literal": "| `L10-LABO-037-CASE-11` | `HELIXLABO-L2-037` / `LABO-037-AC-02` | 個別negative：OS connector欠落。選択OS connectorだけを欠落。target/evidence/scopeは正常baselineのまま。 | routing未確定として保持しOSへ戻す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 515,
+      "raw_lf_sha256": "afce77b9b017451adeca4b1b7d14ae455f38dc6c308733049182caeeb8d10d72",
+      "literal": "| `L10-LABO-038-CASE-06` | `HELIXLABO-L2-038` / `LABO-038-AC-02` | 個別negative：SECURITY contract欠落。SECURITY data-handling/target contractだけを欠落。許可evidence/scopeは正常baselineのまま。 | 許可範囲を推測せずSECURITYへ戻しcandidateを未確定に保つ。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 516,
+      "raw_lf_sha256": "15a45c8a5ce701517c98a016cd404c4d85db094b067579f979026daf016a170f",
+      "literal": "| `L10-LABO-038-CASE-07` | `HELIXLABO-L2-038` / `LABO-038-AC-02` | 個別negative：許可evidence identity欠落。許可evidence identityだけを欠落。他fieldは正常baselineのまま。 | 許可evidenceとして確定せずunknownをSECURITYへ戻す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 517,
+      "raw_lf_sha256": "da60f1894108ad6250a2607afcd063307566b9d29f9bec43ffac58ca87263d02",
+      "literal": "| `L10-LABO-039-CASE-09` | `HELIXLABO-L2-039` / `LABO-039-AC-02` | 個別negative：Worker result identity欠落。Worker result identityだけを欠落。既存OS/SECURITY routingと許可結果は保持。 | resultをtarget-specificとせずunknownとしてOSへ戻す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 518,
+      "raw_lf_sha256": "fd443b88bf5dfe62f3e3c9367f18216d39d9bf0c662f577680cac9115ffb4e68",
+      "literal": "| `L10-LABO-040-CASE-08` | `HELIXLABO-L2-040` / `LABO-040-AC-02` | 個別negative：CONNECT connector欠落。選択connection/採択scope/contract version/traceを保ちCONNECT connectorだけを欠落。 | CONNECT先を推測せずcandidateを未完了として保持する。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 519,
+      "raw_lf_sha256": "7ca03e42139252481b92ae819d031da7fc20327617642e97d8b9f7064c58b036",
+      "literal": "| `L10-LABO-040-CASE-10` | `HELIXLABO-L2-040` / `LABO-040-AC-02` | 個別negative：上流採択scope欠落。選択connection/version/trace/CONNECT connectorを保ちscopeだけを欠落させる。 | scope不明をunknownとして保持しcandidateを確定しない。 | 誤判定：scope不明を有効な接続candidateとして扱う、または未選択scopeを新gateにする。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 520,
+      "raw_lf_sha256": "dff217d508f1987b89d30971b687c87ea11b8f4e2047d7569d119a630bfbd25b",
+      "literal": "| `L10-LABO-041-CASE-07` | `HELIXLABO-L2-041` / `LABO-041-AC-02` | 個別negative：product version欠落。選択product identityを保ち対応版だけを欠落。個別connector/evidenceは正常baselineのまま。 | 版を推測せずcandidateを確定しない。該当Product Core ownerへ戻す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 521,
+      "raw_lf_sha256": "fc7f673395a58ea5e50d86371bdd81c73b67a2b74ca3d5fa6d5d87e5ba89f19e",
+      "literal": "| `L10-LABO-041-CASE-08` | `HELIXLABO-L2-041` / `LABO-041-AC-02` | 個別negative：個別connector欠落。product identity/version/scope/evidenceは保ち当該製品connectorだけを欠落。 | 別製品へ迂回せず未完了として該当Product Core ownerへ戻す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 522,
+      "raw_lf_sha256": "63d8ab0cbd17865bd06207833051022be6be0811f904a7e141acad2f2cd6310e",
+      "literal": "| `L10-LABO-052-CASE-10` | `HELIXLABO-L2-052` / `LABO-052-AC-02` | 個別negative：source identity欠落。035 payloadのsource identityだけを欠落。revision/scope/unassessed/receiptは正常baselineのまま。 | lineageを成立扱いせず該当source/evidence ownerへ戻す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 523,
+      "raw_lf_sha256": "027be1f7ebf873df6975ef6309a6dd1a0038531ec77ada7b1464762bef04f4cf",
+      "literal": "| `L10-LABO-052-CASE-11` | `HELIXLABO-L2-052` / `LABO-052-AC-02` | 個別negative：source revision欠落。source revisionだけを欠落。payload/scope/state/receiptは正常baselineのまま。 | revisionをunknownとして保持しLABO再評価へ戻す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 524,
+      "raw_lf_sha256": "96030f545d8ccbac65e635f81d20e966b233f473cc74c4c1f8c71255fc9e5ebd",
+      "literal": "| `L10-LABO-052-CASE-12` | `HELIXLABO-L2-052` / `LABO-052-AC-02` | 個別negative：scope欠落。適用scopeだけを欠落。source/payload/state/receiptは正常baselineのまま。 | scopeをunknownとして保持しLABO再評価へ戻す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 525,
+      "raw_lf_sha256": "86e76b9096534b2ce7f4ac980edeccd61bcd8ecea7907aa46d21f1e315a365dd",
+      "literal": "| `L10-LABO-052-CASE-13` | `HELIXLABO-L2-052` / `LABO-052-AC-02` | 個別negative：receipt欠落。INTELLIGENCE receiptだけを欠落。source tupleは正常baselineのまま。 | 受領済みとせず循環未完了で保ちLABO再評価へ戻す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 526,
+      "raw_lf_sha256": "df1f8a9e011d9d3bd9a902a6bc3579570d193ad2f4931806ce33c2fa01930351",
+      "literal": "| `L10-LABO-054-CASE-11` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 個別negative：unknown job成功保証。L2-055に既存評価がないwork-kind/model-class tupleへ過去水準だけを適用し成功保証を出す。 | 未知tupleをunknownのまま保ち成功保証を拒否し055水準生成側へ戻す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 527,
+      "raw_lf_sha256": "fddc4adb9b2c8e7db1d3f1634d0a1f2465af9010afadef6678cda5fc6358d2a2",
+      "literal": "| `L10-LABO-054-CASE-12` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 個別negative：scoreによるscope変更。正常055出力とscoreは一定のままscoreを理由に適用scopeだけを拡大する。 | scope変更を拒否し055の評価範囲を保持する。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 528,
+      "raw_lf_sha256": "0482a76dc352f756537d35dd0ebccd06bf6672216355645b043b9fd359f5e452",
+      "literal": "| `L10-LABO-054-CASE-13` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 個別negative：scoreによるbranch変更。正常055出力とscoreは一定のままscoreを理由にbranchだけを変更する。 | branch変更を拒否しcandidateに留める。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 529,
+      "raw_lf_sha256": "3924691a9e26923e50ca28d8c2f72a82d2c0416d47d27d6816b496821f346594",
+      "literal": "| `L10-LABO-054-CASE-14` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 個別negative：scoreによるmerge authority変更。正常055出力とscoreは一定のままscoreを理由にmerge authorityだけを変更する。 | authority変更を拒否し既存ownerへ残す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 530,
+      "raw_lf_sha256": "5523aa2c2cc9c5d10bd84bd62f1e38ea7a81eb1ad1603860cc3302b19925bace",
+      "literal": "| `L10-LABO-054-CASE-15` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 個別negative：INTELLIGENCE connector欠落。055 output tupleを保ちINTELLIGENCE connectorだけを欠落。 | 受領済みとせずconnection未完了を保持する。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 531,
+      "raw_lf_sha256": "9a5002d805c7005acffadcee1d262dc4e4f7dce9738037c58c7464ffd0947bc8",
+      "literal": "| `L10-LABO-054-CASE-16` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 個別negative：評価scope欠落。055 outputのwork-kind/model-class/evidence/stateは保ち評価scopeだけを欠落させる。 | unknownを保持して水準生成側へ再評価を戻し、範囲外成功を保証しない。 | 誤判定：scope不明を有効tupleとし、未知scopeへ水準を適用する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 532,
+      "raw_lf_sha256": "b535c105716332005ccec4ad47dd637808af6c3d4d6c0fafcac268c61474b861",
+      "literal": "| `L10-LABO-036-CASE-11` | `HELIXLABO-L2-036` / `LABO-036-AC-02` | 単独negative：別接続のconnectorをHARNESS接続へ代用する。source、revision、scopeは正常baselineのままconnector identityだけを別connectionのものにする。 | 固有connectorとの一致を要求し、代用connectorでhandoffを成立させない。 | 誤判定：別connectionのconnectorを同一接続のものとして成功扱いする。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 533,
+      "raw_lf_sha256": "026ca2c40b20a96e7676cd1b381e2783687e7211e8ff343bd59a78fdb9a78e97",
+      "literal": "| `L10-LABO-036-CASE-12` | `HELIXLABO-L2-036` / `LABO-036-AC-02` | 単独negative：HARNESS接続の片側だけ成功し他方に未完義務が残る。 | 片側成功で接続全体を成功扱いせず、未完義務を保持する。 | 誤判定：一方の成功を接続全体の成立とする。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 534,
+      "raw_lf_sha256": "a7316798f62606faab2ab9343efd227cf16dccdac7ae81e0d46f33e982252809",
+      "literal": "| `L10-LABO-037-CASE-12` | `HELIXLABO-L2-037` / `LABO-037-AC-02` | 単独negative：別OS接続のconnectorを選択OS connectionへ代用する。 | 接続固有connectorでないものを拒否しroutingを未完了にする。 | 誤判定：別接続のconnectorでOS向けcandidateを成功扱いする。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 535,
+      "raw_lf_sha256": "f043b7145aaede7a0a2b337558ff55e65fff28b942969524c3f6c0c8379b4420",
+      "literal": "| `L10-LABO-037-CASE-13` | `HELIXLABO-L2-037` / `LABO-037-AC-02` | 単独negative：OS接続の片側だけ成功し他方に未完義務が残る。 | 接続全体を成功扱いせず、未完義務とOS戻しを保持する。 | 誤判定：片側成功でrouting/接続全体を成立扱いする。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 536,
+      "raw_lf_sha256": "e567cfcfc0bca50c881fe0048d22f0d2ecb77384038a963f70e6edc87b4430a3",
+      "literal": "| `L10-LABO-038-CASE-08` | `HELIXLABO-L2-038` / `LABO-038-AC-02` | 単独negative：別SECURITY接続のconnectorを代用する。 | 固有connectorでないため拒否し、許可範囲を確定しない。 | 誤判定：別接続のconnectorで保護candidateを成立させる。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 537,
+      "raw_lf_sha256": "91be2b271909e4f7cdbcdf03a1b9af2f1a5ae61820a8b1f20dba5fa4bb256980",
+      "literal": "| `L10-LABO-038-CASE-09` | `HELIXLABO-L2-038` / `LABO-038-AC-02` | 単独negative：合成restricted-data markerを通常evidenceへ流す。 | 通常evidenceを成立扱いせずSECURITYへ戻す。実secret値はfixtureに含めない。 | 誤判定：restricted dataが通常evidenceに含まれた状態を許可する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 538,
+      "raw_lf_sha256": "7c0cf448ca2a757b9760e3cb0320df3b5b2c8bdd1840f5994f0bf65a433315ad",
+      "literal": "| `L10-LABO-038-CASE-10` | `HELIXLABO-L2-038` / `LABO-038-AC-02` | 単独negative：SECURITY接続の片側だけ成功し他方に未完義務が残る。 | 接続全体を成功扱いせず失敗側と未完義務を保持する。 | 誤判定：片側成功だけで接続全体を成功とする。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 539,
+      "raw_lf_sha256": "a251c5f0d38aa2fae0eb638d4053797f7016028b91a17298de8e1f0cc476883c",
+      "literal": "| `L10-LABO-039-CASE-10` | `HELIXLABO-L2-039` / `LABO-039-AC-02` | 単独negative：Worker execution接続へ別接続のconnectorを代用する。 | connector identity不一致を保持しtarget-specific resultを成立させない。 | 誤判定：別connection connectorでWorker resultを受理する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 540,
+      "raw_lf_sha256": "7967ff31d9d50fd4bb330db3f4e82bd79ba2150e792ed13461c5d603ade5a01a",
+      "literal": "| `L10-LABO-039-CASE-11` | `HELIXLABO-L2-039` / `LABO-039-AC-02` | 単独negative：適用されるOS/SECURITY接続の片側だけ成功する。 | 両親条件が適用される接続では片側だけで全体成功にせず、未完義務を保持する。 | 誤判定：片側の成功をOS/SECURITY経由の全体成立とする。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 541,
+      "raw_lf_sha256": "6a92aecbf4382f093547ca79d9fdacce5d1c1c9c8a1bdb260493ba8120fbb6c1",
+      "literal": "| `L10-LABO-040-CASE-11` | `HELIXLABO-L2-040` / `LABO-040-AC-02` | 単独negative：選択connectionのcontract versionだけを欠落させる。 | 欠落版を隠さずunknownとして保持し、接続candidateを完了扱いしない。 | 誤判定：contract version欠落を有効な接続として受理する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 542,
+      "raw_lf_sha256": "5dea3c22ec5d8e5efda3678c745f23b92e6e0a99ccf35f484784bc35bcf9ecb6",
+      "literal": "| `L10-LABO-040-CASE-12` | `HELIXLABO-L2-040` / `LABO-040-AC-02` | 単独negative：選択connectionに別connectionのconnectorを代用する。 | 接続固有connector不一致を拒否しCONNECTへ戻す。 | 誤判定：別接続connectorで接続単位candidateを成立させる。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 543,
+      "raw_lf_sha256": "b674372b7bef1cc1c47a088e7aea8906ce8d6a2cf83e3d50e8751cb04dade3a1",
+      "literal": "| `L10-LABO-041-CASE-09` | `HELIXLABO-L2-041` / `LABO-041-AC-02` | 単独negative：Product Core個別connectorへ別製品connectorを代用する。 | 対象製品identityに対応するconnectorだけを受理し、誤routeを拒否する。 | 誤判定：別製品connectorを対象製品向けとして受理する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 544,
+      "raw_lf_sha256": "6defd4d1ff0a22c10c49dee7a16216d1d6bd7a72f0762b6e1cec291cbcb1fd0d",
+      "literal": "| `L10-LABO-041-CASE-10` | `HELIXLABO-L2-041` / `LABO-041-AC-02` | 単独negative：Product Core接続の片側だけ成功し未完義務が残る。 | 接続全体を成功扱いせず、未完義務を保持する。 | 誤判定：片側成功でproduct candidateの接続全体を成立扱いする。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 545,
+      "raw_lf_sha256": "9ddcb20a8411d7b657b7638c834f240335ae80311b8e8a2e7dbf32418ec18d0f",
+      "literal": "| `L10-LABO-041-CASE-11` | `HELIXLABO-L2-041` / `LABO-041-AC-02` | 単独negative：LABOがProduct Core正本へ直接書き込む。 | 直接書込みを拒否し正本を製品側に残す。 | 誤判定：LABOがProduct Coreの正本を更新する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 546,
+      "raw_lf_sha256": "1c9c0bf3ff1806ba322069dda067b84777926f24323c004e7f618091044f4ded",
+      "literal": "| `L10-LABO-052-CASE-14` | `HELIXLABO-L2-052` / `LABO-052-AC-02` | 単独negative：receiptからtraining実行・完了を循環成立の前提にする。 | 必須化を拒否し、receiptと材料循環の成立判定を独立に保つ。 | 誤判定：training実行または完了がないことだけで材料受領を不成立とする。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 547,
+      "raw_lf_sha256": "6a43453ff1b16786b61ee4f447614d577eafbed3bcd944f87b44393b915613e3",
+      "literal": "| `L10-LABO-052-CASE-15` | `HELIXLABO-L2-052` / `LABO-052-AC-02` | 単独negative：receiptから調整実行・完了を循環成立の前提にする。 | 必須化を拒否し、評価材料循環を未完了扱いへ誤変換しない。 | 誤判定：調整実行・完了を新たな受領条件にする。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 548,
+      "raw_lf_sha256": "4ad7cbbc81f675275e4d1a1fc91848b5d09ac4d57da0990058951df49f4e236c",
+      "literal": "| `L10-LABO-052-CASE-16` | `HELIXLABO-L2-052` / `LABO-052-AC-02` | 単独negative：LABOがINTELLIGENCEの現在判断を生成・所有する。 | 判断をLABO成果として確定せずINTELLIGENCEへ残す。 | 誤判定：現在判断をLABO所有の結果として受理する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 549,
+      "raw_lf_sha256": "e906dc019a50b61f6b1d9dc759a863b483d02a442d6079825c9d9565efadd865",
+      "literal": "| `L10-LABO-052-CASE-17` | `HELIXLABO-L2-052` / `LABO-052-AC-02` | 単独negative：LABOがINTELLIGENCEの予測を生成・所有する。 | 予測をLABO成果として確定せずINTELLIGENCEへ残す。 | 誤判定：予測をLABO所有の結果として受理する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 550,
+      "raw_lf_sha256": "f3165517b1b212972004c52042004d59a92a86ca6cb0088784a47da9f176d937",
+      "literal": "| `L10-LABO-052-CASE-18` | `HELIXLABO-L2-052` / `LABO-052-AC-02` | 単独negative：LABOがINTELLIGENCEの配置案を生成・所有する。 | 配置案をLABO成果として確定せずINTELLIGENCEへ戻す。 | 誤判定：配置案をLABO所有の結果として受理する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 551,
+      "raw_lf_sha256": "6fb57314fbe41c732157259d7461ca329825c3e8660576effb00a500975a0955",
+      "literal": "| `L10-LABO-054-CASE-17` | `HELIXLABO-L2-054` / `LABO-054-AC-01` | 正常fixture：055 outputをINTELLIGENCE配置案 `placement-proposal-054-A` とOS指定/割当 `os-assignment-054-A` の別状態へ関連付け、同scopeの受領を確認する。 | INTELLIGENCE案とOS指定/割当を別状態で保ち、055の水準・scope・根拠・未評価を保持する。 | 誤判定：正常な別状態を一律拒否、またはproposalをassignmentへ昇格する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 552,
+      "raw_lf_sha256": "b6ceada45992e33d96f2f684b9c1c203c26cf2fcb80862d2eb0756d6d42168c0",
+      "literal": "| `L10-LABO-054-CASE-18` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 単独negative：L2-055水準を別定義し重複waterlineを生成する。 | 055の既存水準生成を参照し、別定義や重複生成を拒否する。 | 誤判定：水準生成を接続要件で再定義する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 553,
+      "raw_lf_sha256": "e7c139e7f0f174a83d2af1e488fc23de6c66dd05a8492911b41b46cfdb6ffc2b",
+      "literal": "| `L10-LABO-054-CASE-19` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 単独negative：055 waterlineを別Bench定義へ置き換える。 | 固定055出力との同一性を保ち、別定義で成立させない。 | 誤判定：接続側で別waterline定義を採用する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 554,
+      "raw_lf_sha256": "96454cd09ddf5869b553cc524f70b920d5f5518d4bc0ee5cdaec13d782e146f3",
+      "literal": "| `L10-LABO-054-CASE-20` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 単独negative：INTELLIGENCE配置案とOS指定/割当を一状態へ統合する。 | 二つの状態を別々に保持し、配置案から指定/割当を生成しない。 | 誤判定：配置案をOS指定/割当と同一視する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 555,
+      "raw_lf_sha256": "cc1e64e0eb85ede5c618983eafce3d3041e9e475c219692fe2ec500c90a682a6",
+      "literal": "| `L10-LABO-054-CASE-21` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 単独negative：LABOがmodelを変更する。 | 変更を生成せず、配置案はINTELLIGENCE、指定/割当はOSへ残す。 | 誤判定：LABOのmodel変更を受け入れ、提案・指定・割当の境界を混同する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 556,
+      "raw_lf_sha256": "7ead9ce6d2eaa98ccb9c89571e7281077c8e5f7938765c82c2efba71c7b7cdce",
+      "literal": "| `L10-LABO-052-CASE-19` | `HELIXLABO-L2-052` / `LABO-052-AC-02` | 単独negative：LABOがreceiptを根拠にtrainingを実行・完了する。 | training実行結果を生成せず、材料受領とtraining許可を分離する。 | 誤判定：training実行/完了をLABO循環内の作用として受け入れる。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 557,
+      "raw_lf_sha256": "4c2bc808dc03ef11e24a010c41e0177e581b7af4773a8b73e999a3334f9d6e52",
+      "literal": "| `L10-LABO-052-CASE-20` | `HELIXLABO-L2-052` / `LABO-052-AC-02` | 単独negative：LABOがreceiptを根拠に調整を実行・完了する。 | 調整実行結果を生成せず、材料受領と調整を分離する。 | 誤判定：調整実行/完了をLABO循環内の作用として受け入れる。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "physical_line": 19,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "physical_line": 20,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "physical_line": 21,
+      "raw_lf_sha256": "c692b0b07147d36da2af0f172de2fd411edfb595be2e849a1313c8fa9a85eaa6",
+      "literal": "## Stage 4 — HELIXLABO-L2-036/037/038/039/040/041/052/054"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "physical_line": 22,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "physical_line": 23,
+      "raw_lf_sha256": "2a3c5caa3aece1fd91bd53040d4909297c49e3f7b2f55d1a03dd39254ab3b2d1",
+      "literal": "固定親に独立business outcomeはないため別BV/BCASEは追加しない。業務上の正常/失敗と戻し先は[L3 functional AC](../L3-requirements/functional-requirements.md)の`LABO-036-AC-01/02`、`LABO-037-AC-01/02`、`LABO-038-AC-01/02`、`LABO-039-AC-01/02`、`LABO-040-AC-01/02`、`LABO-041-AC-01/02`、`LABO-052-AC-01/02`、`LABO-054-AC-01/02`を[L10 functional cases](functional-verification.md)で照合する。candidate/receiptを業務完了、要求変更、ticket/assignment、authority変更、接続契約変更またはmodel変更へ昇格しない。"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "physical_line": 66,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "physical_line": 67,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "physical_line": 68,
+      "raw_lf_sha256": "9a05218b14485389f405359445937e596ec68ef32e27fd1d208e854bfb6ff2ee",
+      "literal": "## Stage 4 — 技術候補の合成検証（未実行）"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "physical_line": 69,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "physical_line": 70,
+      "raw_lf_sha256": "c8a415f71ccb8196e1bd7801ac4954d7d287a73aeee80d8fe1c9d4397c89d313",
+      "literal": "[L3 NFR候補](../L3-requirements/nfr-grade.md)の同じ固定parent、合成fixtureと母集団を使う。期待値は要求の意味を変えないtrace/boundary照合であり、製品SLA判定ではない。"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "physical_line": 71,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "physical_line": 72,
+      "raw_lf_sha256": "a32ac67c16dc38b868cb998df67ef74af10ccea32408bb7495eec826bb26b3bb",
+      "literal": "| NFR候補 | 対応AC / L10母集団 | fixture / 観測 | 算出と判定 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "physical_line": 73,
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832",
+      "literal": "|---|---|---|---|"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "physical_line": 74,
+      "raw_lf_sha256": "594352f915eb5a8be37cc1f69432032b9567699274154aa6c2dbfdb5c44f3f61",
+      "literal": "| Feedback identity/owner fidelity 036 | `LABO-036-AC-01`, `LABO-036-AC-02`; `L10-LABO-036-CASE-01`, `L10-LABO-036-CASE-02`, `L10-LABO-036-CASE-03`, `L10-LABO-036-CASE-04`, `L10-LABO-036-CASE-05`, `L10-LABO-036-CASE-06`, `L10-LABO-036-CASE-07`, `L10-LABO-036-CASE-09`, `L10-LABO-036-CASE-10` | HARNESS target/verification-contract baseline・maintenance held-outとsource identity/target revision/scope/HARNESS connectorの単独欠落。 | eligible fixtureごとのidentity/revision/scope/recipient一致・missing・unknown・mismatchと誤routeを分けて記録する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "physical_line": 75,
+      "raw_lf_sha256": "0a1d68b9303fdd94b69062bd7878567dff64180d5e89524368648cdd8d2ec1a5",
+      "literal": "| Feedback identity/owner fidelity 037 | `LABO-037-AC-01`, `LABO-037-AC-02`; `L10-LABO-037-CASE-01`, `L10-LABO-037-CASE-02`, `L10-LABO-037-CASE-03`, `L10-LABO-037-CASE-04`, `L10-LABO-037-CASE-05`, `L10-LABO-037-CASE-06`, `L10-LABO-037-CASE-07`, `L10-LABO-037-CASE-08`, `L10-LABO-037-CASE-09`, `L10-LABO-037-CASE-10`, `L10-LABO-037-CASE-11` | OS ticket target/選択connector/scope付きretry baseline・recovery held-outとtarget/scope/connectorの単独欠落。 | OS戻し/保持とcandidate identity一致を記録し、ticket/routing/operation誤生成は別計上する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "physical_line": 76,
+      "raw_lf_sha256": "c4b33c12a35855fc89eb85a8053ffb17f9f2fd76e11ccd9482091f249db37b0a",
+      "literal": "| Feedback identity/owner fidelity 038 | `LABO-038-AC-01`, `LABO-038-AC-02`; `L10-LABO-038-CASE-01`, `L10-LABO-038-CASE-02`, `L10-LABO-038-CASE-03`, `L10-LABO-038-CASE-04`, `L10-LABO-038-CASE-05`, `L10-LABO-038-CASE-06`, `L10-LABO-038-CASE-07` | 許可済み隔離evidence baseline・別許可evidence held-outとevidence identity/SECURITY contract欠落。secret値は含めない。 | authority/data scope不明のunknown保持とSECURITY戻しを照合する。secret値は使用しない。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "physical_line": 77,
+      "raw_lf_sha256": "45b84df3850d714b013b62bc832bc01f500f42a47b8f1a55411afcfe0b9eccb5",
+      "literal": "| Feedback identity/owner fidelity 039 | `LABO-039-AC-01`, `LABO-039-AC-02`; `L10-LABO-039-CASE-01`, `L10-LABO-039-CASE-02`, `L10-LABO-039-CASE-03`, `L10-LABO-039-CASE-04`, `L10-LABO-039-CASE-05`, `L10-LABO-039-CASE-06`, `L10-LABO-039-CASE-07`, `L10-LABO-039-CASE-08`, `L10-LABO-039-CASE-09` | OS/SECURITY routing済みWorker result baseline・recovery held-outとresult identity/required routingの単独欠落。 | result identity/許可結果一致とOS/SECURITY経路欠落の不受理を別々に記録する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "physical_line": 78,
+      "raw_lf_sha256": "a965bdc399a278cdafe5b7fffc0601eda31a96071238f3f9fb1543f77af80250",
+      "literal": "| Feedback identity/owner fidelity 040 | `LABO-040-AC-01`, `LABO-040-AC-02`; `L10-LABO-040-CASE-01`, `L10-LABO-040-CASE-02`, `L10-LABO-040-CASE-03`, `L10-LABO-040-CASE-04`, `L10-LABO-040-CASE-05`, `L10-LABO-040-CASE-06`, `L10-LABO-040-CASE-07`, `L10-LABO-040-CASE-08`, `L10-LABO-040-CASE-10` | 選択connection/scope/version/trace/CONNECT connector baseline・別connection held-outとidentity/connector/scope欠落。未選択scopeは対象外。 | 選択scope内でidentity/version/trace一致、unknown、connector欠落を計上し未選択scopeをfailureにしない。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "physical_line": 79,
+      "raw_lf_sha256": "0e6e7dfae9f0281c0ff9738e51832fafa0c31a75e883ebf8391bb778bd37d2b1",
+      "literal": "| Feedback identity/owner fidelity 041 | `LABO-041-AC-01`, `LABO-041-AC-02`; `L10-LABO-041-CASE-01`, `L10-LABO-041-CASE-02`, `L10-LABO-041-CASE-03`, `L10-LABO-041-CASE-04`, `L10-LABO-041-CASE-05`, `L10-LABO-041-CASE-06`, `L10-LABO-041-CASE-07`, `L10-LABO-041-CASE-08` | 選択Product Core identity/version/個別connector baseline・別domain held-outとversion/connector欠落。未選択scopeは対象外。 | recipient一致、generic化、誤routeを分け、未選択scopeをfailureにしない。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "physical_line": 80,
+      "raw_lf_sha256": "cdef18971211989780dd40d0b8ae0131990df0a3f8fa2ac1ff72d2ac23d90157",
+      "literal": "| authority/operation separation 036–041 | `L10-LABO-036-CASE-01`, `L10-LABO-036-CASE-02`, `L10-LABO-036-CASE-03`, `L10-LABO-036-CASE-04`, `L10-LABO-036-CASE-05`, `L10-LABO-036-CASE-06`, `L10-LABO-036-CASE-07`, `L10-LABO-036-CASE-09`, `L10-LABO-036-CASE-10`, `L10-LABO-036-CASE-11`, `L10-LABO-036-CASE-12`, `L10-LABO-037-CASE-01`, `L10-LABO-037-CASE-02`, `L10-LABO-037-CASE-03`, `L10-LABO-037-CASE-04`, `L10-LABO-037-CASE-05`, `L10-LABO-037-CASE-06`, `L10-LABO-037-CASE-07`, `L10-LABO-037-CASE-08`, `L10-LABO-037-CASE-09`, `L10-LABO-037-CASE-10`, `L10-LABO-037-CASE-11`, `L10-LABO-037-CASE-12`, `L10-LABO-037-CASE-13`, `L10-LABO-038-CASE-01`, `L10-LABO-038-CASE-02`, `L10-LABO-038-CASE-03`, `L10-LABO-038-CASE-04`, `L10-LABO-038-CASE-05`, `L10-LABO-038-CASE-06`, `L10-LABO-038-CASE-07`, `L10-LABO-038-CASE-08`, `L10-LABO-038-CASE-09`, `L10-LABO-038-CASE-10`, `L10-LABO-039-CASE-01`, `L10-LABO-039-CASE-02`, `L10-LABO-039-CASE-03`, `L10-LABO-039-CASE-04`, `L10-LABO-039-CASE-05`, `L10-LABO-039-CASE-06`, `L10-LABO-039-CASE-07`, `L10-LABO-039-CASE-08`, `L10-LABO-039-CASE-09`, `L10-LABO-039-CASE-10`, `L10-LABO-039-CASE-11`, `L10-LABO-040-CASE-01`, `L10-LABO-040-CASE-02`, `L10-LABO-040-CASE-03`, `L10-LABO-040-CASE-04`, `L10-LABO-040-CASE-05`, `L10-LABO-040-CASE-06`, `L10-LABO-040-CASE-07`, `L10-LABO-040-CASE-08`, `L10-LABO-040-CASE-10`, `L10-LABO-040-CASE-11`, `L10-LABO-040-CASE-12`, `L10-LABO-041-CASE-01`, `L10-LABO-041-CASE-02`, `L10-LABO-041-CASE-03`, `L10-LABO-041-CASE-04`, `L10-LABO-041-CASE-05`, `L10-LABO-041-CASE-06`, `L10-LABO-041-CASE-07`, `L10-LABO-041-CASE-08`, `L10-LABO-041-CASE-09`, `L10-LABO-041-CASE-10`, `L10-LABO-041-CASE-11` | 各親の直接編集、ticket/operation、authority、Worker、connector一意/代用、片側成功、restricted data、scope/version欠落などを単独CASEで照合する。 | 禁止作用negativeのfalse acceptanceをCASE別に記録し、接続は固有connector・全体完了・未完義務を観測する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "physical_line": 81,
+      "raw_lf_sha256": "1ce417d27f9e860adb69de89bbabef0062714b3907de3192cb796faae102c247",
+      "literal": "| source-to-receipt lineage 052 | `LABO-052-AC-01`, `LABO-052-AC-02`; `L10-LABO-052-CASE-01`, `L10-LABO-052-CASE-02`, `L10-LABO-052-CASE-03`, `L10-LABO-052-CASE-04`, `L10-LABO-052-CASE-05`, `L10-LABO-052-CASE-06`, `L10-LABO-052-CASE-07`, `L10-LABO-052-CASE-08`, `L10-LABO-052-CASE-09`, `L10-LABO-052-CASE-10`, `L10-LABO-052-CASE-11`, `L10-LABO-052-CASE-12`, `L10-LABO-052-CASE-13`, `L10-LABO-052-CASE-14`, `L10-LABO-052-CASE-15`, `L10-LABO-052-CASE-16`, `L10-LABO-052-CASE-17`, `L10-LABO-052-CASE-18`, `L10-LABO-052-CASE-19`, `L10-LABO-052-CASE-20` | 035 payload/source identity/revision/scope/unassessed/INTELLIGENCE receipt正常fixtureと各単独欠落・不一致、training/調整必須化とLABO所有禁止。 | 各fieldのmatch/missing/unknown/mismatchを別計上し、training/調整は受領の必須条件にせず、INTELLIGENCE判断・予測・配置案はINTELLIGENCEへ残す。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "physical_line": 82,
+      "raw_lf_sha256": "49133ba74a7b3b521da4f4c82c39ee653d99b57dc7f54cb7e13eb4ee3bbbde66",
+      "literal": "| 055 result connection 054 | `LABO-054-AC-01`, `LABO-054-AC-02`; `L10-LABO-054-CASE-01`, `L10-LABO-054-CASE-02`, `L10-LABO-054-CASE-03`, `L10-LABO-054-CASE-04`, `L10-LABO-054-CASE-05`, `L10-LABO-054-CASE-06`, `L10-LABO-054-CASE-07`, `L10-LABO-054-CASE-08`, `L10-LABO-054-CASE-09`, `L10-LABO-054-CASE-10`, `L10-LABO-054-CASE-11`, `L10-LABO-054-CASE-12`, `L10-LABO-054-CASE-13`, `L10-LABO-054-CASE-14`, `L10-LABO-054-CASE-15`, `L10-LABO-054-CASE-16`, `L10-LABO-054-CASE-17`, `L10-LABO-054-CASE-18`, `L10-LABO-054-CASE-19`, `L10-LABO-054-CASE-20`, `L10-LABO-054-CASE-21` | 055出力のwork-kind/model-class/scope/evidence/unassessed正常・未見、tuple/unknown/connector/owner境界の独立変異。 | 055 tuple保持、未評価/unknown維持、INTELLIGENCE案とOS指定/割当の分離、接続未完了を照合する。 |"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "physical_line": 83,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "physical_line": 84,
+      "raw_lf_sha256": "f6874bf131b75e586e34a960e2234f16b32cbade8eb989076765fa0a9396e7e3",
+      "literal": "全planned caseにcase ID、fixed parent revision、expected/observed oracle dispositionを記録する。成功、negative rejection、unknown/unassessed、missing fixtureは別状態。分母0または母集団不明は率を出さず、観測自体がなければ未測定とする。旧test/runtime/CIは実行しない。"
+    }
+  ],
+  "verification": {
+    "fixed_full_span_literal_pins": 11,
+    "legacy_full_span_literal_pins": 9,
+    "ledger_full_line_pins": 4,
+    "nonempty_inbounds_spans": "PASS",
+    "literal_convention": "span literals include LF; ledger/current line literal omits terminal LF while raw hash includes LF",
+    "CASE_unique": 108,
+    "AC_dangling": 0,
+    "table_orphans": 0,
+    "main_prefixes": 6,
+    "validate": "147/0",
+    "stale": 0,
+    "residuals": 0,
+    "govcheck": "7622/57/58 PASS",
+    "diff_check": "PASS"
+  },
+  "limits": [
+    "Finding dispositions in Worker record remain author repair claims, not independent closure.",
+    "Root read the 4 changed document diffs, fixed relevant L2/L11 clauses and all nine bounded legacy spans; no full legacy inventory claim.",
+    "CASE specifications, old runtime/test/CI were not executed.",
+    "Opus/Fable independent re-review and delegated L3 decision pending."
+  ]
+}
