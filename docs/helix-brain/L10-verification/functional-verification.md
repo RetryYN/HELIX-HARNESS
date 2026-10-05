@@ -552,6 +552,22 @@ L2-029の常時必須・操作時のみ・入力元に応じて必須・参照�
 
 **状態：未承認・未実行。** 固定L2/L11 `f6dad2a33e24f000b87d7f09b8d40288257e74cc`とmain `633bf12ea8f948db8ba3d6600179c4a9507377a7`の採択登録を対象とし、Stage 4の7親だけを照合する。全caseは宣言済み合成fixtureで、製品値を決定しない。旧test/runtime/CIを実行せず、旧case ID・閾値を移植しない。source / full-span pinsは本追補の時点監査へ記録する。
 
+
+### 固定親句からAC/CASEへの対応
+
+CASE番号は各親見出し内で一意。各列の固定句は親source全文と時点監査のraw pinに照合する。
+
+| 固定L2/L11句 | L3 AC | L10 CASE |
+|---|---|---|
+| 018: extracted candidate/source/provenance/revision/product relation/receiver identity/raw-original禁止/candidate-only | AC-01〜03 | C01〜C15 |
+| 019: Product Core query scope/required input/constraintと候補response全field/exact version/non-adoption | AC-01〜03 | C01〜C15 |
+| 020: evaluation target/candidate revision/scope/method/evidence/result/failure/counterexample/unassessed range、OS/BRAIN state分離 | AC-01〜03 | C01〜C14 |
+| 021: INTELLIGENCE query/scopeへのsource付き判断材料、runtime結論/暗黙改変禁止 | AC-01〜03 | C01〜C15 |
+| 022: required input/dependencyからHARNESS-L2-009 obligationへのforward/reverse trace、値unknown/open obligation、導出権限境界 | AC-01〜03 | C01〜C13 |
+| 023: generic Visual Design/UXとProduct Core残余、LABO経由結果、direct promotion禁止 | AC-01〜03 | C01〜C10 |
+| 030: 常時contract、選択knowledge field、未選択source未観測、receipt/open obligation、traceと非昇格 | AC-01〜05 | C01〜C35 |
+
+
 ### HELIXBRAIN-L2-018 — `BRAIN-018-FR-01`
 
 - **L10-BRAIN-018-C01 (AC-01, 正常)**：HELIX-HARNESS-COREが抽出済candidate、source/provenance/revision、generic candidateと製品固有残余の関係、receiver identityを渡し、raw originalなし。**期待**：candidate receiptを返すがaccepted/matureにはしない。
