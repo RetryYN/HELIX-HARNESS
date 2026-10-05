@@ -157,10 +157,10 @@ Stage 1 prefixはmain 28b3d3645e6298c159758700c2edd3d396c336f5の既存bytesを�
 | `CASE-HARNESS-L10-026-09` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-03 | 選択Pattern versionだけをcompatibility boundary外へ変える。 | stale/incompatibleを未選択扱いにせずBRAIN ownerへ戻す。 |
 | `CASE-HARNESS-L10-026-10` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-03 | 選択Patternのrequired input一つだけをunknownにする。 | Pattern依存部分を保留し、要求条件は補完しない。 |
 | `CASE-HARNESS-L10-026-11` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-03 | UI操作normalからUI agreement/screen evidenceだけを除く。 | UI対象のみ保留し、既存L1/L2の該当ownerへ戻す。 |
-| `CASE-HARNESS-L10-026-12` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-04 | UIでは編集不可だが同一revisionのAPI/commandが編集を受理する。 | 内容oracle違反で不合格、該当design/API ownerへ返す。 |
-| `CASE-HARNESS-L10-026-13` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-04 | 許可されないactorのpermissionだけを残す。 | actor別permission oracleにより不合格、SECURITY/該当authority ownerへ戻す。 |
+| `CASE-HARNESS-L10-026-12` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-04 | UIでは編集不可だが同一revisionのAPI/commandが編集を受理する。 | 内容oracle違反で不合格、HARNESS design/pair ownerまたは選択API contract ownerへ返す。 |
+| `CASE-HARNESS-L10-026-13` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-04 | 許可されないactorのpermissionだけを残す。 | actor別permission oracleにより不合格、既存authority ownerへ戻す。 |
 | `CASE-HARNESS-L10-026-15` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-05 | 選択Pattern間で固定requirement invariantに関する矛盾を一つ与え、同一scopeの代替構成を比較する。 | invariantを満たす候補だけ残し、満たす案がない場合は要求不足としてL2-008へ戻す。意味変更でconflictを隠す変異は不合格。 |
-| `CASE-HARNESS-L10-026-14` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-04 | 競合更新だけを加え、承認後の不変条件を破るdata transitionを生じさせる。 | trace欄が埋まっていてもdata invariant違反で不合格、該当design/data ownerへ戻す。 |
+| `CASE-HARNESS-L10-026-14` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-04 | 競合更新だけを加え、承認後の不変条件を破るdata transitionを生じさせる。 | trace欄が埋まっていてもdata invariant違反で不合格、HARNESS design/pair ownerまたは既存data ownerへ戻す。 |
 | `CASE-HARNESS-L10-026-16` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-02 | CASE-026-01からTemplate applicabilityだけをunknownにする。 | applicableと推測せずTemplate ownerへ戻す。 |
 | `CASE-HARNESS-L10-026-17` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-02 | CASE-026-01からTemplate revisionだけを選択scopeより古いstaleへ変える。 | 最新版と推測せずL2-009/template ownerへ戻す。 |
 | `CASE-HARNESS-L10-026-18` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-02 | CASE-026-01からTemplate scopeだけを異なるscopeへmismatchにする。 | scope違いを拒否する。 |
@@ -199,17 +199,17 @@ Stage 1 prefixはmain 28b3d3645e6298c159758700c2edd3d396c336f5の既存bytesを�
 | `CASE-HARNESS-L10-028-04` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-02 | requirement revisionだけを別revisionへmismatchにする。 | identityを混ぜずauthority owner/L2-008へ戻す。 |
 | `CASE-HARNESS-L10-028-05` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-02 | product identityだけを異なるproductへ変える。 | cross-product comparisonを拒否する。 |
 | `CASE-HARNESS-L10-028-06` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-02 | comparison scopeだけを異なるscopeへ変える。 | scope mismatchを表示し該当design ownerへ戻す。 |
-| `CASE-HARNESS-L10-028-07` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-02 | design authority stateだけをunknownにする。 | candidate comparisonを維持できる場合もapproved claimは保留する。 |
-| `CASE-HARNESS-L10-028-08` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-03 | 別revisionに発行されたapproval receiptだけを入力する。 | approved扱いを拒否しreceipt issuer/authority ownerへ戻す。 |
+| `CASE-HARNESS-L10-028-07` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-02, AC-HARNESS-L3-028-06 | design authority stateだけをunknownにする。 | 比較結果を確定せずunknownで保留し、既存L2-008/authority ownerへ返す。 |
+| `CASE-HARNESS-L10-028-08` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-03 | 別revisionに発行されたapproval receiptだけを入力する。 | approved扱いを拒否しHARNESS-L2-008/既存authority ownerへ戻す。 |
 | `CASE-HARNESS-L10-028-09` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-02 | 一つのknown relation mappingだけを除く。 | affected/unaffectedを推定せずそのedgeをunknownにする。 |
 | `CASE-HARNESS-L10-028-10` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-04 | path/nameが似る無関係identityをaffected setへ加える。 | exact identity根拠がない追加を拒否する。 |
 | `CASE-HARNESS-L10-028-11` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-04 | 未知のedgeをUnaffectedへ分類する。 | unknownを保ち該当relation/design ownerへ戻す。 |
 | `CASE-HARNESS-L10-028-12` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-04 | 未見helper/API edgeを含む通常範囲内fixture。 | 既知edgeだけaffected、未見edge unknownの未見正常を確認する。 |
 | `CASE-HARNESS-L10-028-13` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-05 | source snapshotを更新する。 | 旧receiptをstaleとし027再抽出後に028比較をやり直す。 |
 | `CASE-HARNESS-L10-028-14` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-03 | 保存designの同一対象revisionに結び付いた既存approval receiptと、そのrevisionのcandidate comparisonを入力する。 | exact bindingを照合し、入力済みのapproved状態を認識する。比較または候補から新しい承認・receiptを生成しない。 |
-| `CASE-HARNESS-L10-028-15` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-03 | CASE-028-14と同じcandidateにapproval receiptだけを欠落させ、approvedを主張する独立変異を与える。 | approved claimを拒否し、candidate比較と未承認/unknown状態を区別してreceipt issuer/authority ownerへ戻す。 |
+| `CASE-HARNESS-L10-028-15` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-03 | CASE-028-14と同じcandidateにapproval receiptだけを欠落させ、approvedを主張する独立変異を与える。 | approved claimを拒否し、candidate比較と未承認/unknown状態を区別してHARNESS-L2-008/既存authority ownerへ戻す。 |
 | `CASE-HARNESS-L10-029-01` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-01 | 同一source/product/scopeのvalid 027/028結果と識別済みsaved designを与え、design delta、選択API案、選択migration案、custom保持、backflowを区別する。 | 五要素のtraceと未実行proposalを確認する。migration不採用なら理由を返し、実変更しない。 |
-| `CASE-HARNESS-L10-029-02` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-01 | API修復もmigrationも選択しない同scope fixtureを与える。 | API/data contractを要求せず、custom保持・design delta・unknown/backflowは評価する。 |
+| `CASE-HARNESS-L10-029-02` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-01 | API修復もmigrationも選択しない同scope fixtureを与える。 | API/data contractを要求せず、custom保持・design delta・unknown/backflowを評価し、選択しない理由も記録する。 |
 | `CASE-HARNESS-L10-029-03` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-02 | 027 receiptだけをmissingにする。 | 全proposalを有効化せずsource extraction ownerへ戻す。 |
 | `CASE-HARNESS-L10-029-04` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-02 | 028 receiptだけを別source revisionとmismatchにする。 | 同一bundleとして束ねず028 ownerへ戻す。 |
 | `CASE-HARNESS-L10-029-05` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-02 | source revisionだけを更新しsaved-design comparisonを旧版に残す。 | cross-revision bundleを拒否し再抽出・再比較する。 |
@@ -238,7 +238,7 @@ Stage 1 prefixはmain 28b3d3645e6298c159758700c2edd3d396c336f5の既存bytesを�
 | `CASE-HARNESS-L10-026-30` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-01 | 同scopeで作成側へ伏せた二つの競合更新経路を加え、承認後の更新を双方とも拒否するvalid designを与える。 | 競合経路が増えても固定invariantとpairを満たす未見正常。 |
 | `CASE-HARNESS-L10-026-31` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-03 | UI対象の正常designへ現行UI agreementとscreen evidenceを同scope/revisionで結ぶ。 | 画面の拒否表示とAPI/actor/dataの拒否oracleを同時に満たす正常。UI存在だけで内容oracleを代替しない。 |
 | `CASE-HARNESS-L10-026-32` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-03 | 選択Patternを使う正常designからHELIXBRAIN-L2-030 connection receiptだけを欠落させる。 | 選択知識利用を保留し既存BRAIN connection ownerへ戻す。connector contractがあるだけでreceiptを生成しない。 |
-| `CASE-HARNESS-L10-026-33` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-02 | 014交換前後の入出力contractとscopeが適合し、同じ要件revisionとpaired verificationを満たす新014契約を与える。旧completion receiptは入力しない。 | 交換後contract/compatibility/pairを照合して設計を構成できる。旧receiptの流用やcompletion receipt必須化をしない。 |
+| `CASE-HARNESS-L10-026-33` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-02, AC-HARNESS-L3-026-06 | 014 serviceが026 packを交換し、旧completion receiptなしで入力/出力contract・scope・互換性を照合する。 | 交換対象は026 pack。014 serviceと026 packを別identityに保ち、unit/connection/composite結果も区別する。 |
 | `CASE-HARNESS-L10-027-20` | FR-HARNESS-L3-027 / AC-HARNESS-L3-027-04 | 未見API schema version v-api-newのfield f-newが選択extractor契約で明示支持され、他のsource tupleは正常なfixtureを与える。 | 支持されたfieldを新source spanへ結ぶ未見正常。未支持fieldは別unknownとして保持し、既知field成功を外挿しない。 |
 | `CASE-HARNESS-L10-027-21` | FR-HARNESS-L3-027 / AC-HARNESS-L3-027-02 | 選択sourceと異なるbranchの定義だけを同じ対象としてjoinする。 | joinを拒否しsource identity/revisionを保ってsource ownerへ返す。 |
 | `CASE-HARNESS-L10-027-22` | FR-HARNESS-L3-027 / AC-HARNESS-L3-027-02 | raw source extractionへ対象と不一致の任意saved design revisionだけを観測根拠として混ぜる。 | 保存designをsource根拠として採用せず027単独観測へ限定する。saved designを必須化しない。 |
@@ -246,9 +246,77 @@ Stage 1 prefixはmain 28b3d3645e6298c159758700c2edd3d396c336f5の既存bytesを�
 | `CASE-HARNESS-L10-027-24` | FR-HARNESS-L3-027 / AC-HARNESS-L3-027-02 | parse不能custom function一つだけを削除対象へ分類する。 | 削除推定を拒否しunknown/unsupportedの観測候補として保持する。 |
 | `CASE-HARNESS-L10-028-16` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-04 | known traceが揃う通常bounded diffだけを与え、全体Reverseを必須条件へ変える。 | 不要な全体Reverse強制を拒否し固定003/004の局所比較を保つ。 |
 | `CASE-HARNESS-L10-028-17` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-04 | 意味変更一つをright-side patch候補へ隠して意味保存と表示する。 | 意味保存claimを拒否し該当L2/L1の既存Backflow ownerへ返す。 |
-| `CASE-HARNESS-L10-028-18` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-02 | trace relation一つが欠落し、known edgeの比較は正常なfixtureを与える。 | 欠落relationはunknownとし全体Reverse/reobservation候補へ返す。既知edgeの局所比較を全体完成としない。 |
+| `CASE-HARNESS-L10-028-18` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-04 | trace relation一つが欠落し、known edgeの比較は正常なfixtureを与える。 | 欠落relationはunknownとし全体Reverse/reobservation候補へ返す。既知edgeの局所比較を全体完成としない。 |
 | `CASE-HARNESS-L10-029-20` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-02 | candidate saved-design comparisonからapproval receiptだけを欠落させ、approvedを主張する。 | approved claimを拒否しcandidate比較と既存authority状態を分ける。 |
-| `CASE-HARNESS-L10-029-21` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-02 | 同対象の別revision approval receiptだけを流用する。 | 別revisionのapproved claimを拒否しreceipt issuer/authority ownerへ戻す。 |
+| `CASE-HARNESS-L10-029-21` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-02 | 同対象の別revision approval receiptだけを流用する。 | 別revisionのapproved claimを拒否し、既存L2-008/authority ownerへ戻す。 |
 | `CASE-HARNESS-L10-029-22` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-05 | source edit後、027が新source revisionで再抽出し028が同revisionへ再比較し、五要素bundleを新revisionで再生成する正常fixture。 | 新revisionのsource→delta→proposal traceとcustom保持・選択依存を満たす。旧passから新revision成功を推定しない。 |
 | `CASE-HARNESS-L10-029-23` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-03 | 選択migration proposalのrollback oracleだけを欠落させ、他のschema/data/source-target/loss根拠は正常。 | migration部分をunknown/保留とし既存data/oracle ownerへ返す。 |
 | `CASE-HARNESS-L10-029-24` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-04 | CASE-029-01のproposalからmigrationだけを自動実行する。 | migration実行を拒否しproposal/planを非実行候補として保持する。 |
+| `CASE-HARNESS-L10-026-34` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-06 | 026をoptionalにする単独変異。 | 014 serviceの必須pack境界を保持し、optional扱いを拒否。HARNESS-L2-010/011 ownerへ戻す。 |
+| `CASE-HARNESS-L10-026-35` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-06 | 026を014とは別の第二製品として登録する単独変異。 | 別製品化を拒否し、CORE共通pack境界へ戻す。 |
+| `CASE-HARNESS-L10-026-36` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-06 | 014完了receiptを026交換開始の必須条件にする単独変異。 | 014完了を要求せず、pack交換を評価する。 |
+| `CASE-HARNESS-L10-026-37` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-06 | 025完了receiptを026の必須依存にする単独変異。 | 親にない依存追加を拒否し、対象pack契約を確認する。 |
+| `CASE-HARNESS-L10-026-38` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-06 | 026 packをstaleだけにする。 | 適合packとして扱わず、010/011 pack契約ownerへ戻す。 |
+| `CASE-HARNESS-L10-026-39` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-06 | 026との互換性だけをnon-compatibleにする。 | 014交換結果を成立扱いせず、pack契約ownerへ戻す。 |
+| `CASE-HARNESS-L10-026-40` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-05 | 固定invariantを維持する有効な代替案が存在する。 | 案を比較して保持し、意味変更や承認を生成しない正常fixture。 |
+| `CASE-HARNESS-L10-026-41` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-05 | valid alternativeだけを除く。 | 要求不足をL2-008へ戻す。 |
+| `CASE-HARNESS-L10-026-42` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-05 | alternativeのinvariant適合性だけをinvalidにする。 | invalid案を拒否する。 |
+| `CASE-HARNESS-L10-026-43` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-05 | approved requirement meaningを修正可能とする単独変異。 | 意味変更を拒否しL2-008/既存authority ownerへ返す。 |
+| `CASE-HARNESS-L10-026-44` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-02 | L3 approvalだけをmissingにする。 | 設計候補から承認を生成せずL3 authority ownerへ返す。 |
+| `CASE-HARNESS-L10-026-45` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-02 | L3 authority stateだけをunknownにする。 | 適格状態を推測せずauthority ownerへ返す。 |
+| `CASE-HARNESS-L10-027-25` | FR-HARNESS-L3-027 / AC-HARNESS-L3-027-01 | 019で選択されたsource tupleと結果handoff identityを満たす正常sourceを与える。 | 019完了receiptなしに観測を開始し、結果を同じidentity/scopeへ結ぶ正常。 |
+| `CASE-HARNESS-L10-027-26` | FR-HARNESS-L3-027 / AC-HARNESS-L3-027-02 | 選択source target version contractだけをmissingにする。 | observation resultを保留し既存source/contract ownerへ戻す。 |
+| `CASE-HARNESS-L10-027-27` | FR-HARNESS-L3-027 / AC-HARNESS-L3-027-02 | selected source data-use permissionだけをmissingにする。 | source read/useを成立扱いせず既存permission ownerへ返す。 |
+| `CASE-HARNESS-L10-027-28` | FR-HARNESS-L3-027 / AC-HARNESS-L3-027-06 | custom processingがstatic codeに存在する正常fixture。 | その処理を観測事実としてspanに記録し、runtime実測とは主張しない。 |
+| `CASE-HARNESS-L10-028-19` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-01 | external custom logic、exact affected set、design/pair/test scope、recommended backflowを含むvalid comparison。 | 三種の情報（design/observation/derived interpretation）を分けて正常成立。 |
+| `CASE-HARNESS-L10-028-20` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-06 | valid source observationから一部だけを抽出する。 | 部分範囲を明示し、全体comparisonへ拡張しない。 |
+| `CASE-HARNESS-L10-028-21` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-06 | saved design間に相反するdesign内容を与える。 | conflictとして比較結果を保留し既存design/meaning ownerへ戻す。 |
+| `CASE-HARNESS-L10-028-22` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-06 | custom logic ownerだけをunknownにする。 | custom logicを保持して該当範囲をunknownにする。 |
+| `CASE-HARNESS-L10-028-23` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-06 | baseline design revisionだけを現在対象からmismatchにする。 | stale/mismatchとして比較を保留し既存design ownerへ戻す。 |
+| `CASE-HARNESS-L10-028-24` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-06 | API comparison operationを選択し、そのAPI/design/oracle/data ownership contractを満たす。 | selected operation内だけで比較し、baseline source/design revisionとdigestを結ぶ正常。 |
+| `CASE-HARNESS-L10-028-25` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-06 | API comparison契約だけをmissingにする。 | 該当API comparisonを保留し既存契約ownerへ戻す。 |
+| `CASE-HARNESS-L10-028-26` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-06 | DB migration impactを選択し対応contract/oracleを与える。 | 選択したmigration比較だけ成立する正常fixture。 |
+| `CASE-HARNESS-L10-028-27` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-06 | selected DB migration data-owner contractだけを欠落させる。 | migration比較を保留し既存data ownerへ戻す。 |
+| `CASE-HARNESS-L10-028-28` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-06 | design authorityをstaleだけにする。 | comparison conclusionを確定せずauthority ownerへ戻す。 |
+| `CASE-HARNESS-L10-029-25` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-01, AC-HARNESS-L3-029-07 | `/orders/approve` と `normalizeSupplierCode` を同一source/design scopeで入力し、API/migrationを未選択とする。 | 五要素を区別しcustom logicを保持する。未選択API/migrationはproposalなしと理由を記録する正常。 |
+| `CASE-HARNESS-L10-029-26` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-06 | 選択API repairのAPI validation oracleだけをmissingにする。 | API proposalだけ保留し既存API/CORE ownerへ戻す。 |
+| `CASE-HARNESS-L10-029-27` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-06 | 選択API repairのtarget implementation revisionだけをstaleにする。 | selected API proposalを保留し既存API/CORE ownerへ戻す。 |
+| `CASE-HARNESS-L10-029-28` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-06 | 選択migrationのsource/target schema contractだけをmissingにする。 | migration proposalを保留し既存schema/data ownerへ戻す。 |
+| `CASE-HARNESS-L10-029-29` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-06 | 選択migrationのdata-use permissionだけをmissingにする。 | migration proposalを保留し既存permission ownerへ戻す。 |
+| `CASE-HARNESS-L10-029-30` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-06 | 選択migrationのloss oracleだけをmissingにする。 | lossを推測せずmigration proposalを保留する。 |
+| `CASE-HARNESS-L10-029-31` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-07 | unitとconnectionがsuccessだがcomposite resultがunknownである。 | composite successを推論せずunknownのまま残す。 |
+| `CASE-HARNESS-L10-029-32` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-07 | selected scope外repository/branch/providerを入力へ追加する。 | 追加領域を未観測として保ちproposalへ混ぜない。 |
+| `CASE-HARNESS-L10-029-33` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-07 | 未対応DB/API/config/version一つを選択sourceに与える。 | unsupported/unknownとして保持しsilent fallbackせず該当contract ownerへ戻す。 |
+
+| `CASE-HARNESS-L10-027-29` | FR-HARNESS-L3-027 / AC-HARNESS-L3-027-02 | 019 input target identityだけをmissingにする。 | 対象を推測せずsource/019 ownerへ戻す。 |
+| `CASE-HARNESS-L10-027-30` | FR-HARNESS-L3-027 / AC-HARNESS-L3-027-02 | 019 input product identityだけを別productへmismatchにする。 | cross-product extractionを拒否する。 |
+| `CASE-HARNESS-L10-027-31` | FR-HARNESS-L3-027 / AC-HARNESS-L3-027-02 | selected source typeだけを019 selectionとmismatchにする。 | type/parserを自動選択せずsource/019 ownerへ戻す。 |
+| `CASE-HARNESS-L10-027-32` | FR-HARNESS-L3-027 / AC-HARNESS-L3-027-02 | selected source revisionだけをstaleにする。 | old observationを流用せず再抽出する。 |
+| `CASE-HARNESS-L10-027-33` | FR-HARNESS-L3-027 / AC-HARNESS-L3-027-02 | source digestだけをmissingにする。 | source identityは保持しつつ結果をunknownとしてsource ownerへ戻す。 |
+| `CASE-HARNESS-L10-027-34` | FR-HARNESS-L3-027 / AC-HARNESS-L3-027-02 | source scopeだけを別scopeへmismatchにする。 | scope外sourceを読まずselection ownerへ戻す。 |
+| `CASE-HARNESS-L10-027-35` | FR-HARNESS-L3-027 / AC-HARNESS-L3-027-02 | 019 output result identityだけを選択inputとmismatchにする。 | 結果を誤った対象へ結ばず019/027 ownerへ戻す。 |
+| `CASE-HARNESS-L10-028-29` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-01 | 同scopeの028を共通componentとして採択した正常caseを与える。 | ⑤専用扱いせず同じfixed operation boundary内でcomparisonできる。 |
+| `CASE-HARNESS-L10-029-34` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-01 | 029をCORE共通componentとして採択したscopeを与える。 | ⑤専用扱いせずCORE ownerのままnormal proposalを作る。 |
+| `CASE-HARNESS-L10-029-35` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-02 | saved design authorityだけをstaleにする。 | approvalを推論せず既存L2-008/authority ownerへ返す。 |
+| `CASE-HARNESS-L10-029-36` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-02 | source owner fieldだけをunknownにする。 | ownerをdefault補完せず該当proposalを保留する。 |
+| `CASE-HARNESS-L10-029-37` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-02 | selected source identityだけをunknownにする。 | 別sourceへsilent fallbackせず既存source ownerへ戻す。 |
+| `CASE-HARNESS-L10-029-38` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-03 | migration proposalでschema version assumptionを隠す。 | schema assumptionをunknownとしてmigration部分を保留する。 |
+| `CASE-HARNESS-L10-029-39` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-07 | unsupported API/schema versionが入力されたときdefault parser fallbackする。 | fallbackを拒否しunsupported/unknownを維持する。 |
+| `CASE-HARNESS-L10-026-46` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-06 | 未見だが契約互換な026 pack revisionを同一scopeで交換する。 | revisionとpairを再照合して正常成立し、old receiptを流用しない。 |
+| `CASE-HARNESS-L10-028-30` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-07 | 028共通comparisonから010 pack contractだけをmissingにする。 | comparisonを保留し既存pack contract ownerへ戻す。 |
+| `CASE-HARNESS-L10-028-31` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-07 | 028共通comparisonから011 call/input contractだけをstaleにする。 | comparisonを保留し既存call contract ownerへ戻す。 |
+| `CASE-HARNESS-L10-029-40` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-08 | 029 proposalから010 pack contractだけをmissingにする。 | proposalを保留しHARNESS-L2-010 ownerへ戻す。 |
+| `CASE-HARNESS-L10-029-41` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-08 | 029 proposalから011 call/input contractだけをstaleにする。 | proposalを保留しHARNESS-L2-011 ownerへ戻す。 |
+| `CASE-HARNESS-L10-029-42` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-08 | requirement impactだけをL2-003から欠落させる。 | 影響範囲を確定せず既存003 ownerへ戻す。 |
+| `CASE-HARNESS-L10-029-43` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-08 | requirement backflowだけをL2-004から欠落させる。 | 戻し先を発明せず既存004 ownerへ戻す。 |
+| `CASE-HARNESS-L10-029-44` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-08 | paired oracleだけをL2-022から欠落させる。 | pair/verificationを成立扱いせず022 ownerへ戻す。 |
+| `CASE-HARNESS-L10-029-45` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-02 | saved design authorityだけをunknownにしapproved claimを添える。 | claimを拒否し既存L2-008/authority ownerへ返す。 |
+| `CASE-HARNESS-L10-029-46` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-02 | proposal source relationだけをunknownにする。 | relationをdefault補完せず候補をunknownのまま保留する。 |
+| `CASE-HARNESS-L10-029-47` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-04, AC-HARNESS-L3-029-07 | proposalをapproved designへ自動promoteする。 | candidateをapprovedへ変換せず既存authority stateを保持する。 |
+| `CASE-HARNESS-L10-029-48` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-04 | proposalからcommitまたはreleaseを自動実行する。 | 実行を拒否しproposalを非実行候補のまま保つ。 |
+| `CASE-HARNESS-L10-026-47` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-07 | 010 pack contractだけをmissingにする。 | design compositionを保留し既存010 ownerへ戻す。 |
+| `CASE-HARNESS-L10-026-48` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-07 | 011 call/input contractだけをstaleにする。 | design compositionを保留し既存011 ownerへ戻す。 |
+| `CASE-HARNESS-L10-026-49` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-07 | 022 paired-verification contractだけをscope mismatchにする。 | pair成立を推定せず既存022 ownerへ戻す。 |
+| `CASE-HARNESS-L10-027-36` | FR-HARNESS-L3-027 / AC-HARNESS-L3-027-06 | selected DB definitionのtarget version contractだけを欠落させる。 | DB observationを完了扱いせずsource/contract ownerへ戻す。 |
+| `CASE-HARNESS-L10-027-37` | FR-HARNESS-L3-027 / AC-HARNESS-L3-027-06 | source observation候補から既存requirement/design本文を書換える単独変異。 | 書換えを拒否し、source observationと要求/設計authorityを分離する。 |
+| `CASE-HARNESS-L10-027-38` | FR-HARNESS-L3-027 / AC-HARNESS-L3-027-06 | static code observationだけからbehaviorを要求として確定する単独変異。 | Requirement claimを拒否し、観測候補と既存要求を分ける。 |
