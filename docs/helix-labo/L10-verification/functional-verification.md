@@ -2350,6 +2350,24 @@ input observation identity/source revision；episode candidate identityとrelati
 - 入力fixture: 正常callの他条件を保持し、001の観測責務だけをsource正本変更責務へ変更する要求を加える。
 - 期待: 責務変更を拒否し001の観測責務とsource正本を保持してLABO001契約へ戻す。
 
+### L10-LABO-058-C37 — WEB-OS明示選択正常
+
+- 対応AC: `LABO-058-AC-01`。親: `HELIXLABO-L2-058`。
+- 入力fixture: WEB-OS sourceを明示選択し、既存L2-032の採択済みsource contract、個別connector、tenant/customer scope、source identity/revision、許可されたruntime observationを同じ対象へ有効に束縛する。
+- 期待: 選択WEB-OS sourceの条件だけでobservation候補を照合し、tenant/customer scopeとWEB-OS authorityをsource側に保持する。実際のWEB-OS採択・稼働を成立させず、未選択の1.0呼出しへ条件を追加しない。
+
+### L10-LABO-058-C38 — WEB-OS選択contract未採択
+
+- 対応AC: `LABO-058-AC-02`。親: `HELIXLABO-L2-058`。
+- 入力fixture: C37の選択と他のscope・connector・observation条件を保持し、選択WEB-OS source contractの採択状態だけを未採択にする。
+- 期待: 当該WEB-OS入力を成立させず、source ownerへ未採択contractを戻す。他の有効sourceと未選択source状態を保持する。
+
+### L10-LABO-058-C39 — WEB-OS選択connector欠落
+
+- 対応AC: `LABO-058-AC-02`。親: `HELIXLABO-L2-058`。
+- 入力fixture: C37の選択・採択source contract・tenant/customer scopeを保持し、当該WEB-OS sourceの個別connectorだけを欠落させる。
+- 期待: 当該入力を成立させずCONNECTの当該connector ownerへ不足を戻す。別source connectorの暗黙共用をしない。
+
 ### L10-LABO-025-C10 — SECURITY finding disposition変更
 
 - 対応AC: `LABO-025-AC-02`。親: `HELIXLABO-L2-025`。
