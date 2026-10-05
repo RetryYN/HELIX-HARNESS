@@ -83,3 +83,17 @@
 | 055/056/057 timing and volume | payload size・group数・履歴件数の各条件組合せごとに計画試行母集団を定め、ingestion latencyのp50/p95とthroughput候補を別々に記録する。固定閾値・容量上限・保持期間・SLAは置かない。 | 固定親にworkload限度やSLAはない。旧Benchはfailure/missingを分母から捨てないため、各試行を `valid / failed / missing / censored` の排他的状態へ分けて母集団全体を記録する。新しいtransport要求は作らない。 | 各条件の `N_planned` を分母に `N_valid, N_failed, N_missing, N_censored` を別々に数え、合計と母集団一致を確認する。p50/p95はvalid latencyだけから算出し `N_valid/N_planned` も併記。`N_valid=0`ならpercentileは算出値なし。`N_valid/N_planned`は`N_planned=0`で算出値なしとし、`N_planned>0`かつ`N_valid=0`なら0の割合と失敗等の件数を併記する。throughputは有効処理件数を明示的な測定時間（seconds）で割り `items/second` として独立記録し、`N_planned=0`または測定時間が0/missingなら算出値なしとする。 |
 
 100%/0は状態・identityの不変性、誤った昇格や重複生成を測る候補で、business success rate・性能SLA・資格基準ではない。実operationのeligibilityやSLAを固定親の既存source契約と混同しない。採用oracleのownerが未定でも候補測定とL3起草は進める。意味・scope・owner・versionの変更が必要な場合だけ該当L2へ戻す。
+
+
+## Stage 4 — 技術候補 HELIXLABO-L2-036/037/038/039/040/041/052/054
+
+以下は親の列挙条件を合成fixture上で測定する候補であり、実測・承認・実装値、SLA、性能保証ではない。値ごとのPO確認や追加gateを作らない。
+
+| 対象 | 根拠付き測定候補 | 比較・判定方法 | 限界 |
+|---|---|---|---|
+| 036–041 Feedback identity/owner fidelity | planned candidate populationに対する対象identity、source revision、scope、既存recipient一致数とmissing/unknown/mismatch数を個別記録する。| exact selected-target bindingとtarget名だけの曖昧照合を比較し、親で列挙されたsource/target tupleごとの誤routeとunknownを数える。期待は正しい候補だけを該当recipientへ束縛し、不明を推測しないこと。| 業務成果率、最小標本、target選択順位は定めない。040/041は選択された上流scopeだけを母集団にし、未選択scopeを不成立に数えない。|
+| 036–041 authority/operation separation | 各親の非許可作用（直接編集、ticket/state操作、authority変更、Worker操作、contract変更、generic化）の独立fixtureを母集団として各誤作用件数を別々に記録する。| operation/candidate/authorityを一つにまとめる方式と個別状態を保持する方式を比較し、親が禁じる作用が候補から生成されないことを照合する。| これらはoracle上の不成立条件であり、実環境での運転値・安全閾値を主張しない。|
+| 052 revision/scope/state lineage | planned source-to-receipt traceごとにrevision、適用scope、評価/未評価状態の一致・欠測・不一致を分ける。| 035 payloadと同一revision/scope/stateのreceiptを照合し、別revision/scopeや状態変換を独立変異で計数する。| schemaや受領SLAを追加せず、INTELLIGENCE判断成功を測らない。|
+| 054 waterline/evidence fidelity | planned selected work-kind/model-class packetごとに水準、根拠、適用範囲、未評価状態の保持/unknown/mismatchを記録する。| 055出力のexact tuple保持と、別classへの流用・未評価の実績化を比較する。未知classをunknownとして保つ。| 055の生成品質、INTELLIGENCE配置精度、OS割当成果を新たに評価しない。|
+
+率を報告する場合は事前宣言したeligible planned populationを分母とし、母集団不明はunknown、分母0/missingは算出値なしとする。missing、failure、censored、not-applicable、unknownは区別し、分母から落とさない。性能percentileや最低試行数、fixed thresholdは親・旧sourceに根拠がないため設定しない。候補の数値が必要になる場合は根拠、比較案、測定方法を添えて提案し、実測なしを未測定と記録する。

@@ -440,3 +440,69 @@ input observation identity/source revision；episode candidate identityとrelati
 ### 共通判定とowner戻し先
 
 正例とnegativeは記載した一変数だけを変える。unseen normalは同じ固定scope/contract内の未見identityを用いて同じACを再確認する。sourceまたはscope不明を成功/実績0/失敗へ丸めない。OSはassignment/ticket/source/scope/delivery identity、Workerまたは元result sourceは実行/result/revision、SECURITYは許可/classificationを所有する。oracle適用性不足はBenchがunassessedとして記録し、訂正依頼は元oracle/criteria source ownerへ戻す。LABO/Benchをoracle owner・assignment owner・資格判定者にしない。固定親に独立business outcomeがないのでbusiness caseを重複作成しない。
+
+## Stage 4 — HELIXLABO-L2-036/037/038/039/040/041/052/054総合検証（未実行fixture設計）
+
+状態：合成fixtureとoracle設計。旧test/runtime/CIは実行していない。対応L3は[functional requirements Stage 4](../L3-requirements/functional-requirements.md)。親別正常、独立negative、未見正常を別case IDで示す。
+
+| L10 Case ID | 固定parent / L3 AC | 入力fixture・単一変異 | 期待oracle | 不合格となる誤判定 |
+|---|---|---|---|---|
+| `L10-LABO-036-CASE-01` | `HELIXLABO-L2-036` / `LABO-036-AC-01` | 正常：親に記載の対象範囲を持つ正常fixture。 | 同一対象revisionの許可された工程evidenceを用い、根拠・範囲付きFeedback candidateをHARNESSへ返す。 | 許容。親にない成果・変更を生成しない。 |
+| `L10-LABO-036-CASE-02` | `HELIXLABO-L2-036` / `LABO-036-AC-02` | 単独negative：LABOが要求意味を直接変更する。 | 直接変更を拒否し、元要求とcandidateを分け、変更を行わない。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-036-CASE-03` | `HELIXLABO-L2-036` / `LABO-036-AC-02` | 単独negative：LABOがverification contractを直接変更する。 | 直接変更を拒否し、contractはHARNESSの正本に残す。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-036-CASE-04` | `HELIXLABO-L2-036` / `LABO-036-AC-02` | 単独negative：単一実験の結果だけで工程contractを即時変更済みと表示する。 | 変更済みとせずcandidateを保持し、上流ownerへ渡す。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-036-CASE-05` | `HELIXLABO-L2-036` / `LABO-036-AC-02` | 単独negative：Feedback target revisionを欠落させる。 | candidateの適用対象を確定せず、target不明をLABO routing候補へ戻す。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-036-CASE-06` | `HELIXLABO-L2-036` / `LABO-036-AC-01` | 未見正常：同じ固定scope内の未見入力。 | 未見のmaintenance工程evidenceを同じscope付きcandidate形式で返し、工程契約変更済みとはしない。 | 正常条件を満たせば候補/traceを保持し、未知の意味や適用範囲は推測しない。 |
+| `L10-LABO-037-CASE-01` | `HELIXLABO-L2-037` / `LABO-037-AC-01` | 正常：親に記載の対象範囲を持つ正常fixture。 | OS target identityと選択connectorが特定された運転evidenceをFeedback candidateとしてOSへ返す。 | 許容。親にない成果・変更を生成しない。 |
+| `L10-LABO-037-CASE-02` | `HELIXLABO-L2-037` / `LABO-037-AC-02` | 単独negative：LABOがticketを発行する。 | ticketを作らずcandidateに留める。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-037-CASE-03` | `HELIXLABO-L2-037` / `LABO-037-AC-02` | 単独negative：LABOがworker placementを変更する。 | assignmentを変更せず、OS責務のまま保持する。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-037-CASE-04` | `HELIXLABO-L2-037` / `LABO-037-AC-02` | 単独negative：LABOがpriorityを変更する。 | priorityを変更せず、OS責務のまま保持する。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-037-CASE-05` | `HELIXLABO-L2-037` / `LABO-037-AC-02` | 単独negative：LABOが運転stateを更新する。 | stateを変更せず、OSが持つ既存記録を参照したcandidateに留める。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-037-CASE-06` | `HELIXLABO-L2-037` / `LABO-037-AC-02` | 単独negative：FeedbackをOS routingへ渡さず迂回する。 | OS routing迂回を拒否し、ticket/operationを作らない。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-037-CASE-07` | `HELIXLABO-L2-037` / `LABO-037-AC-02` | 単独negative：LABOがoperationを運転済みとして記録する。 | 運転を生成せずOSの記録を参照したcandidateに留める。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-037-CASE-08` | `HELIXLABO-L2-037` / `LABO-037-AC-01` | 未見正常：同じ固定scope内の未見入力。 | 未見のretry/recovery evidenceを対象scopeとともにcandidate化し、実運転を生成しない。 | 正常条件を満たせば候補/traceを保持し、未知の意味や適用範囲は推測しない。 |
+| `L10-LABO-038-CASE-01` | `HELIXLABO-L2-038` / `LABO-038-AC-01` | 正常：親に記載の対象範囲を持つ正常fixture。 | 許可evidenceだけを取り扱い情報保護candidateをSECURITYへ渡す。通常packetに秘密値を複製しない。 | 許容。親にない成果・変更を生成しない。 |
+| `L10-LABO-038-CASE-02` | `HELIXLABO-L2-038` / `LABO-038-AC-02` | 単独negative：LABOがauthorityを直接変更する。 | authority変更を拒否し、candidateに留める。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-038-CASE-03` | `HELIXLABO-L2-038` / `LABO-038-AC-02` | 単独negative：合成restricted-data markerを通常packetへ含める。 | packetを成立扱いせず、情報保護責務をSECURITYへ戻す。実secret値はfixtureにも記録しない。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-038-CASE-04` | `HELIXLABO-L2-038` / `LABO-038-AC-02` | 単独negative：選択scopeが不明なevidenceを許可evidenceとして扱う。 | 許可判定を推測せずunknownとしてSECURITYへ戻す。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-038-CASE-05` | `HELIXLABO-L2-038` / `LABO-038-AC-01` | 未見正常：同じ固定scope内の未見入力。 | 異なる情報保護evidenceの未見正常例でもauthority判断はSECURITYに残す。 | 正常条件を満たせば候補/traceを保持し、未知の意味や適用範囲は推測しない。 |
+| `L10-LABO-039-CASE-01` | `HELIXLABO-L2-039` / `LABO-039-AC-01` | 正常：親に記載の対象範囲を持つ正常fixture。 | 既存OS/SECURITY routingを通ったWorker result identityと許可結果をtarget-specific Feedback candidateとして扱う。 | 許容。親にない成果・変更を生成しない。 |
+| `L10-LABO-039-CASE-02` | `HELIXLABO-L2-039` / `LABO-039-AC-02` | 単独negative：LABOがWorker assignmentを変更する。 | assignmentを変更せずOSへ返す。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-039-CASE-03` | `HELIXLABO-L2-039` / `LABO-039-AC-02` | 単独negative：LABOがWorkerを直接実行する。 | 実行を行わず候補記録に留める。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-039-CASE-04` | `HELIXLABO-L2-039` / `LABO-039-AC-02` | 単独negative：LABOがWorkerを直接停止する。 | 停止を行わず候補記録に留める。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-039-CASE-05` | `HELIXLABO-L2-039` / `LABO-039-AC-02` | 単独negative：result identityを別Workerのresultへ差し替える。 | resultとWorker identityの不一致をunknownとして保持する。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-039-CASE-06` | `HELIXLABO-L2-039` / `LABO-039-AC-02` | 単独negative：OS routingを欠いた結果をtarget-specificとして受け入れる。 | target-specific candidateとして確定せずOSへ戻す。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-039-CASE-07` | `HELIXLABO-L2-039` / `LABO-039-AC-02` | 単独negative：SECURITY routingを要する結果で同routingを欠落させる。 | 許可結果として確定せずSECURITYへ戻す。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-039-CASE-08` | `HELIXLABO-L2-039` / `LABO-039-AC-01` | 未見正常：同じ固定scope内の未見入力。 | 未見のrecovery resultも元Worker identityと既存routingを保って扱う。 | 正常条件を満たせば候補/traceを保持し、未知の意味や適用範囲は推測しない。 |
+| `L10-LABO-040-CASE-01` | `HELIXLABO-L2-040` / `LABO-040-AC-01` | 正常：親に記載の対象範囲を持つ正常fixture。 | 選択されたconnection identityとその上流採択scopeのcontract versionに結び付くretry/trace evidenceをCONNECT candidateにする。 | 許容。親にない成果・変更を生成しない。 |
+| `L10-LABO-040-CASE-02` | `HELIXLABO-L2-040` / `LABO-040-AC-01` | 未選択scopeの正常対照：この試行では当該upstream target/connectionが未選択で、選択scopeにこの要求は含まれない。 | 未選択対象を存在すると捏造せず、1.0一律依存の失敗にしない。 | 未選択だけを理由にstage全体を不成立または新gateにする変異は不合格。 |
+| `L10-LABO-040-CASE-03` | `HELIXLABO-L2-040` / `LABO-040-AC-02` | 単独negative：connection identityを欠落させる。 | 接続単位のcandidateとして確定せずunknownにする。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-040-CASE-04` | `HELIXLABO-L2-040` / `LABO-040-AC-02` | 単独negative：選択connectionのcontract versionを別revisionへ差し替える。 | 異revision evidenceを成功扱いせずCONNECTへ戻す。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-040-CASE-05` | `HELIXLABO-L2-040` / `LABO-040-AC-02` | 単独negative：接続traceを欠落させる。 | trace欠落を保ち候補を完了扱いしない。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-040-CASE-06` | `HELIXLABO-L2-040` / `LABO-040-AC-02` | 単独negative：LABOがconnector contractを直接変更する。 | contract変更を拒否しCONNECT ownerへ返す。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-040-CASE-07` | `HELIXLABO-L2-040` / `LABO-040-AC-01` | 未見正常：同じ固定scope内の未見入力。 | 別の選択connectionに関する未見traceでも別identityを混合せず扱う。 | 正常条件を満たせば候補/traceを保持し、未知の意味や適用範囲は推測しない。 |
+| `L10-LABO-041-CASE-01` | `HELIXLABO-L2-041` / `LABO-041-AC-01` | 正常：親に記載の対象範囲を持つ正常fixture。 | 選択製品identityと版に対応した個別connectorがあるscopeでproduct固有candidateを該当Product Coreへ返す。 | 許容。親にない成果・変更を生成しない。 |
+| `L10-LABO-041-CASE-02` | `HELIXLABO-L2-041` / `LABO-041-AC-01` | 未選択scopeの正常対照：この試行では当該upstream target/connectionが未選択で、選択scopeにこの要求は含まれない。 | 未選択対象を存在すると捏造せず、1.0一律依存の失敗にしない。 | 未選択だけを理由にstage全体を不成立または新gateにする変異は不合格。 |
+| `L10-LABO-041-CASE-03` | `HELIXLABO-L2-041` / `LABO-041-AC-02` | 単独negative：product identityを欠落させる。 | 製品を推測せずowner不明として戻す。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-041-CASE-04` | `HELIXLABO-L2-041` / `LABO-041-AC-02` | 単独negative：別のProduct Coreをtargetとして指定する。 | 誤routeを拒否し正しいowner確認まで確定しない。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-041-CASE-05` | `HELIXLABO-L2-041` / `LABO-041-AC-02` | 単独negative：product固有meaningをBRAIN向けgeneric structureとして送る。 | generic化を拒否し製品側の意味を保持する。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-041-CASE-06` | `HELIXLABO-L2-041` / `LABO-041-AC-01` | 未見正常：同じ固定scope内の未見入力。 | 未見の別domain evidenceも該当Product Core別に保ち、製品meaningを汎用化しない。 | 正常条件を満たせば候補/traceを保持し、未知の意味や適用範囲は推測しない。 |
+| `L10-LABO-052-CASE-01` | `HELIXLABO-L2-052` / `LABO-052-AC-01` | 正常：親に記載の対象範囲を持つ正常fixture。 | 035 payloadの境界を保ち、LABO source revisionからINTELLIGENCE receiptまで同一revision、適用scope、unassessed状態を対応づける。 | 許容。親にない成果・変更を生成しない。 |
+| `L10-LABO-052-CASE-02` | `HELIXLABO-L2-052` / `LABO-052-AC-02` | 単独negative：receiptのsource revisionを別revisionにする。 | revision不一致でreceipt照合を成立させず元source/evidenceへ戻す。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-052-CASE-03` | `HELIXLABO-L2-052` / `LABO-052-AC-02` | 単独negative：receiptの適用scopeを別scopeにする。 | scope不一致で受領を成功扱いせず元source/evidenceへ戻す。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-052-CASE-04` | `HELIXLABO-L2-052` / `LABO-052-AC-02` | 単独negative：payloadのunassessed状態だけをassessedへ変える。 | 状態を元のまま保持し評価済みへの昇格を拒否する。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-052-CASE-05` | `HELIXLABO-L2-052` / `LABO-052-AC-02` | 単独negative：035 payload schemaを複製・再定義する。 | 052からschema定義を追加せず、035境界を参照する。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-052-CASE-06` | `HELIXLABO-L2-052` / `LABO-052-AC-02` | 単独negative：receiptからmodel変更を自動生成する。 | 変更を生成せずINTELLIGENCE判断に残す。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-052-CASE-07` | `HELIXLABO-L2-052` / `LABO-052-AC-02` | 単独negative：receiptからtrainingを自動生成する。 | training許可を生成せずsource状態を保持する。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-052-CASE-08` | `HELIXLABO-L2-052` / `LABO-052-AC-02` | 単独negative：receiptからbot稼働を自動生成する。 | bot稼働を生成せずINTELLIGENCE判断に残す。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-052-CASE-09` | `HELIXLABO-L2-052` / `LABO-052-AC-01` | 未見正常：同じ固定scope内の未見入力。 | 別種の評価材料でも035 payloadとsame revision/scope/stateを保ち、受領を評価成功としない。 | 正常条件を満たせば候補/traceを保持し、未知の意味や適用範囲は推測しない。 |
+| `L10-LABO-054-CASE-01` | `HELIXLABO-L2-054` / `LABO-054-AC-01` | 正常：親に記載の対象範囲を持つ正常fixture。 | 055の出力を同じwork kind、model class、評価範囲、根拠、unassessed状態でINTELLIGENCEへ渡す。 | 許容。親にない成果・変更を生成しない。 |
+| `L10-LABO-054-CASE-02` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 単独negative：接続中に水準だけを変更する。 | 055の水準を不変に保ち不一致を不成立とする。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-054-CASE-03` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 単独negative：work-kindだけを別値へ変える。 | 別work kindへ水準を流用せず再評価へ戻す。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-054-CASE-04` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 単独negative：model classだけを別値へ変える。 | 別model classへ水準を流用せず再評価へ戻す。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-054-CASE-05` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 単独negative：評価範囲だけを別scopeへ変える。 | 別scopeへ水準を流用せず再評価へ戻す。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-054-CASE-06` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 単独negative：根拠を欠落させる。 | evidence欠落をunknownのまま保持し再評価へ戻す。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-054-CASE-07` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 単独negative：unassessedをassessedとして表示する。 | 未評価のまま保持し実績化を拒否する。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-054-CASE-08` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 単独negative：LABOがmodelを指定または変更する。 | model指定/変更を生成せずINTELLIGENCEへ残す。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-054-CASE-09` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 単独negative：LABOがworkerを割当する。 | assignmentを生成せずOSへ残す。 | 不成立。元evidenceを保持し、列記した既存ownerへ返すか親に戻し先がなければunknownのまま保持する。 |
+| `L10-LABO-054-CASE-10` | `HELIXLABO-L2-054` / `LABO-054-AC-01` | 未見正常：同じ固定scope内の未見入力。 | 未見のwork-kind/model-classでも適用可能な既存055出力のみ受け渡し、unknownを成功実績へ外挿しない。 | 正常条件を満たせば候補/traceを保持し、未知の意味や適用範囲は推測しない。 |
