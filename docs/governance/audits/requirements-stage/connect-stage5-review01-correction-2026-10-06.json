@@ -1,0 +1,976 @@
+{
+  "record_type": "connect-stage5-review01-correction",
+  "as_of": "2026-10-06",
+  "authority_effect": "none",
+  "status": "candidate correction recorded; independent re-review pending; no approval or execution result generated",
+  "base": "5acae384305b01d10e88eeb2e6406f847baf66df",
+  "body_revision": "7449867a8464b8b57be0ee747d148607dca8de5b",
+  "formal_review_comment": {
+    "comment_id": 6002099800,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2615#issuecomment-6002099800",
+    "body_sha256_utf8": "516a609015e8581c4fd77a9451fb669bab4973459f80d26884f9cb72f16d381f",
+    "raw_utf8_bytes": 6590
+  },
+  "prior_immutable_record": {
+    "path": "docs/governance/audits/requirements-stage/connect-stage5-root-draft-audit-2026-10-06.json",
+    "sha256_raw_lf": "a4f75eb7ae8cf0f550f495930173df186b9c7a1531d05a590d3db675d6322fae",
+    "modified": false
+  },
+  "findings": [
+    {
+      "id": "M1",
+      "disposition": "addressed in this candidate",
+      "changes": [
+        "FR/AC require per-edge SECURITY permission identifier and data-use identifier to remain distinct and bound; per-edge send and receive outcomes are included in trace and oracle.",
+        "CASE-007-01 and every Stage 5 case row carry the edge-level evidence requirement.",
+        "New independent CASE-007-40 removes only e2 data-use identifier; all other fields and valid SECURITY permission remain, expects unknown/incomplete and no send/retry; returns missing identifier to existing source owner that declared the data-use identifier.",
+        "NFR population and NFR verification include the identifiers and separate send/receive outcomes; case 40 is included without duplicate counting."
+      ]
+    },
+    {
+      "id": "m1",
+      "disposition": "addressed in this candidate",
+      "changes": [
+        "CASE-007-21..33 now each define a concrete A→B→C→D graph with e1(A→B), e2(B→C), e3(C→D).",
+        "21..28 keep the individual e2 middle-edge state changes; 29..33 keep the individual missing-output mutations over a baseline with e2 timeout and declared-but-unexecuted e3."
+      ]
+    },
+    {
+      "id": "m2",
+      "disposition": "addressed in this candidate",
+      "changes": [
+        "CASE-007-21..28 route edge failures to the e2 connection owner and business/replanning questions to the original mechanism/OS owner.",
+        "Only CASE-007-26, whose single mutation is permission revocation, includes SECURITY as permission owner."
+      ]
+    },
+    {
+      "id": "m3",
+      "disposition": "addressed as bounded adjacent-source comparison, not direct requirement evidence",
+      "changes": [
+        "Expanded supplemental archive search terms to include partial, correlation, idempotency, saga, and multi-hop.",
+        "Direct old CONNECT atom count remains 0 within the recorded query; this is not a proof of absence across all legacy semantics.",
+        "Added two adjacent comparisons with limited interpretation: legacy SEC-AC-CAP-009 partial success to Recovery; L5 correlation_id definition. Neither is imported as a CONNECT requirement."
+      ]
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 128,
+      "end_line": 138,
+      "full_sha256_raw_lf": "31e3f234172bb5a92b26d41db2de21534cd4301274fc7e2800b4f8a935ce598b",
+      "span_sha256_raw_lf": "a2ce7b34ee2d389fbc60a45329c66014a02739150e0cc3c577188aa5578d6228",
+      "literal": "### HELIXCONNECT-L2-007 複数機構を結ぶ構成体の接続完全性（composite）\n\n複数の接続identityで連なる機構間処理について、各辺の端点と契約revision、接続順序、各operationの対応関係、再送境界、終端結果を一つの構成体の追跡から辿れる。全ての必須辺が個別に登録・互換確認され、operationの受渡しが終端まで確認される場合だけ、構成体の技術的通信完了を報告する。途中の辺がstale、失敗、部分成功、unknownの場合は全体成功にせず、停止位置と未完の引継ぎ先を示す。CONNECTは連続処理の業務上の成立、結果の承認を判定しない。\n\n共通pack契約の適用：HARNESS-L2-010/011の各能力の宣言済み入出力、依存版、統合検証範囲、構成更新・切戻し・未完義務引継ぎを参照し、ここで再定義しない。\n\n- **入力**：構成体の辺identity/順序/correlation/scope、各辺登録と現revision照合、端点operation mapping、期限/idempotency/result state、SECURITY許可、辺ごとのrecovery先。\n- **出力**：辺ごとの結果を含む構成体trace、技術的終端state、停止時の未完辺/義務/owner/recovery handoff。\n- **単独で成り立つための依存**：当該構成体を成す全辺のL2-001..005契約、HARNESS-L2-010/011の構成・依存・未完義務契約、各ownerの意味契約とSECURITY適用条件。CONNECTは業務承認主体を代替しない。\n- **失敗時の戻し先**：失敗辺のconnection ownerへ返し、業務判断/再計画は元の機構/OS等ownerへ返す。後続辺を実行済みとせず、先行成功も消さずpartial/unknownを維持する。\n\n"
+    },
+    {
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "start_line": 74,
+      "end_line": 77,
+      "full_sha256_raw_lf": "bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad",
+      "span_sha256_raw_lf": "1caa90d7e3b407c72bea119a4084eb37e9e828c6889ea8621d65410a090a0ade",
+      "literal": "### HELIXCONNECT-L11-007 複数機構の構成体\n\n3つ以上の機構と複数の接続identityで構成する一連の処理を用意し、各辺に異なる能力名、契約revision、対象scopeを割り当てる。各辺の登録・互換照合・operation/correlation/idempotency引継ぎ・expiry/result state・SECURITY/data-use識別子・送受信結果が辺ごとに記録され、構成体の追跡から全辺の順序と終端が辿れることを確認する。一つの中間辺をstale、timeout、異digest再送衝突、期限切れ、取消、許可失効、部分成功にし、後続辺へ未許可の再送/送信が伝播しないこと、全体が成功表示にならないこと、停止位置と未完の引継ぎ先/recovery先が明示されることを確認する。全辺が技術的に完了しても、接続先業務上の成立・承認が生成されないことを確認する。\n\n"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+      "revision": null,
+      "start_line": 28,
+      "end_line": 28,
+      "full_sha256_raw_lf": "b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4",
+      "span_sha256_raw_lf": "ff9d68f9d4d1932a835b68e52c00d67d3caf589e54d6ac026ef99fe2bb6b1493",
+      "literal": "| `SEC-AC-CAP-009` | `SEC-FR-CAP-005` | postcondition成功、失敗、部分成功、rollback unavailable | 成功主張はpostcondition receiptがある場合だけ。部分成功はRecoveryへ送る |\n",
+      "asset_id": "LEGACY-ASSET-170112AB2FA2FFDBFEE9",
+      "relation": "隣接比較のみ。SEC-AC-CAP-009の部分成功→Recovery記述でありCONNECT親への直接要件sourceではない。formal commentの短縮locatorは実archive配置 docs/test-design/helix/... と照合。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/event-projection-checkpoint-replay.md",
+      "revision": null,
+      "start_line": 35,
+      "end_line": 35,
+      "full_sha256_raw_lf": "43cea6098e10bce5fe697ffaa08a9fd02b01d99a1b20dac071f49acfa761aa77",
+      "span_sha256_raw_lf": "d3c039223dbf971f937d0a0c286d1cd80c43c5b20968b3dc75fafc778a2737c5",
+      "literal": "correlation_id: string          # 同一因果連鎖を束ねる識別子\n",
+      "asset_id": "LEGACY-ASSET-33C30050BD9B4A523E60",
+      "relation": "隣接比較のみ。correlation_id識別子の説明でありCONNECT親への直接要件sourceではない。"
+    }
+  ],
+  "old_source_search_supplement": {
+    "archive_root": "archive/legacy-generation-2026-09-14/root/docs",
+    "added_terms": [
+      "partial",
+      "correlation",
+      "idempotency",
+      "saga",
+      "multi-hop"
+    ],
+    "result": "keyword hits were used to locate comparison candidates; no new direct CONNECT-007 requirement atom is inferred from these counts. The two specifically pinned excerpts below were manually read and are adjacent comparisons only. Existing direct old-atom register/search result remains 0 within its stated identity/term scope; not exhaustive semantic absence.",
+    "scope": "archive/legacy-generation-2026-09-14/root/docs 以下の .md/.mdx/.txt 2,479 files を case-insensitive exact-token search。terms は既存のparent-identity検索と別。 occurrence totals: partial 411, correlation 94, idempotency 196, saga 1, multi-hop 0。これら総数は意味分類済み候補件数ではなく、全一致箇所を読んだことも意味しない。",
+    "occurrence_counts": {
+      "partial": 411,
+      "correlation": 94,
+      "idempotency": 196,
+      "saga": 1,
+      "multi-hop": 0
+    }
+  },
+  "canonical_documents": [
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "current_sha256_raw_lf": "55df0f12e988d5574a0066db62846a38cb0e41adc2990594d07201f90ae244cc",
+      "current_bytes": 51673,
+      "base_prefix_sha256_raw_lf": "add54593f70f9cf505a093a72765ca07334b4ce1bfb6d7e89782dca20bdaa0ce",
+      "base_prefix_bytes": 46428,
+      "exact_base_prefix": true
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "current_sha256_raw_lf": "d507a1e7f1caf32a13e760f7f7e237e8128b099050b5fcf4437a433195f121ca",
+      "current_bytes": 9163,
+      "base_prefix_sha256_raw_lf": "57312a3c288c4580dd7a6c8c0bda694285509ad497fd6e78634a3173cf14cc74",
+      "base_prefix_bytes": 8346,
+      "exact_base_prefix": true
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "current_sha256_raw_lf": "ca761abde9e52cd3ec855a9b9da8d42a6baecfd3214eca1043d24333f63cc26f",
+      "current_bytes": 96923,
+      "base_prefix_sha256_raw_lf": "be036dd606db0d1003a6e33741c4f9ba95c84b2f287f328b73e414b18b3692f8",
+      "base_prefix_bytes": 69350,
+      "exact_base_prefix": true
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "current_sha256_raw_lf": "3f7c1c302f6b4e6b45dfd8215f68a34c9cf911ecb1bc9702bbca982fbc5416d1",
+      "current_bytes": 8366,
+      "base_prefix_sha256_raw_lf": "144f740df3db0ce4db20334e3bb27ad41e670f1c96d5912372b2b3f5d76a7396",
+      "base_prefix_bytes": 7404,
+      "exact_base_prefix": true
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.md",
+      "current_sha256_raw_lf": "f70569a905b26b80285be1a1cf715dbeed9c0a6951cd09fd9975ba09a652c4a9",
+      "current_bytes": 2116,
+      "base_prefix_sha256_raw_lf": "682ee13c350966d8edf28e05aae6ce1940b12301cc42a61c1d0ff7c6633983c2",
+      "base_prefix_bytes": 1832,
+      "exact_base_prefix": true
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.md",
+      "current_sha256_raw_lf": "1b6029a48203d756f053b05853de3c7a5ab36181685180bc4b0d2bcb72f0082a",
+      "current_bytes": 1767,
+      "base_prefix_sha256_raw_lf": "236544161821415904f6eb4dd176e371b5f23852f4d589fd374890762475b42e",
+      "base_prefix_bytes": 1486,
+      "exact_base_prefix": true
+    }
+  ],
+  "changed_line_pins": [
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "revision": "7449867a8464b8b57be0ee747d148607dca8de5b",
+      "start_line": 225,
+      "end_line": 225,
+      "full_sha256_raw_lf": "55df0f12e988d5574a0066db62846a38cb0e41adc2990594d07201f90ae244cc",
+      "span_sha256_raw_lf": "6afcb65f5c8876ff01edb59a51a5bdbe4bee97e3927e19589ddeee7c299d2883",
+      "literal": "- `CONNECT-AC-007-01`：全宣言辺の入力と登録・現在互換receiptを個別に照合し、終端までのtraceが揃う場合だけ技術complete。13必須入力の単独欠落を推測で補わず未完とし、同契約内の未見機構/辺は適合なら拒否しない。\n"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "revision": "7449867a8464b8b57be0ee747d148607dca8de5b",
+      "start_line": 226,
+      "end_line": 226,
+      "full_sha256_raw_lf": "55df0f12e988d5574a0066db62846a38cb0e41adc2990594d07201f90ae244cc",
+      "span_sha256_raw_lf": "49e0e3d6c2f6b0c71e7f0a9e496d6f5d0e45cc49cc7e1a2a1eb3e5de7312a726",
+      "literal": "- `CONNECT-AC-007-02`：端点/契約revision/operation/correlation/scope/idempotency/SECURITY許可識別子/data-use識別子/送受信結果を辺ごとに束縛し、各一つだけの取り違えを拒否する。順序・再送境界・終端を一つのtraceへ結び、他辺のreceiptで補完しない。\n"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "revision": "7449867a8464b8b57be0ee747d148607dca8de5b",
+      "start_line": 40,
+      "end_line": 40,
+      "full_sha256_raw_lf": "d507a1e7f1caf32a13e760f7f7e237e8128b099050b5fcf4437a433195f121ca",
+      "span_sha256_raw_lf": "444923df85af05fd60a3c5fb2206777ba57466ddac4d4a3c273dac6e33454854",
+      "literal": "`CON-NFR-007` / `CONNECT-AC-007-01..04`：母集団はfixtureで宣言した必須辺集合と各辺の必要入出力・receipt・SECURITY許可識別子・data-use識別子・送信結果・受信結果・終端/引継ぎである。候補基準はこれら各辺別要素を結ぶ終端trace被覆100%、unknown/部分成功からの全体成功生成0、停止後の未許可後続attempt0、先行成功記録の消失0、業務承認/許可生成0。根拠は固定L2:130–138/L11:76の全必須辺・partial保持・未許可伝播禁止・業務非判定であり、共通SLAやretry回数ではない。分母欠落/不明は達成でなくunknown。辺ごとの期限/再送上限/回復は既存契約を入力し、未指定を無制限にしない。\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "revision": "7449867a8464b8b57be0ee747d148607dca8de5b",
+      "start_line": 35,
+      "end_line": 35,
+      "full_sha256_raw_lf": "3f7c1c302f6b4e6b45dfd8215f68a34c9cf911ecb1bc9702bbca982fbc5416d1",
+      "span_sha256_raw_lf": "8d26b4bde64ff82e793d4875459e5e475bc2732af0abf22206196c64e8c80959",
+      "literal": "`CON-NFR-007`は同じ機能CASE集合を観測し別のCASEを重複計上しない。宣言辺ごとの入力/receipt/lineage/SECURITY許可識別子/data-use識別子/送信結果/受信結果/終端被覆、failureでの全体成功数、未許可後続attempt、先行結果消失、業務承認/許可生成を個別に数える。data-use識別子だけ欠落する独立negativeは`CONNECT-CASE-007-40`で測り、他の有効入力やSECURITY許可欠落と混同しない。固定fixture分母の被覆100%、禁止状態生成/未許可attempt/結果消失は各0を候補判定とする。分母不明・証拠欠落・別revision結果はunknownとし、達成扱いしない。connection不備は失敗辺owner、authorityはSECURITY、業務判断/再計画は元機構/OS等ownerへ分けて戻す。latencyや期限値はowner契約の宣言を照合し製品共通SLAを生成しない。\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "revision": "7449867a8464b8b57be0ee747d148607dca8de5b",
+      "start_line": 319,
+      "end_line": 319,
+      "full_sha256_raw_lf": "ca761abde9e52cd3ec855a9b9da8d42a6baecfd3214eca1043d24333f63cc26f",
+      "span_sha256_raw_lf": "b543b992e340d5618aaeeb3386ebb8bea7180d4f0eb4b55574a6e8bbf90d9945",
+      "literal": "| `CONNECT-CASE-007-01` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、各辺の登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・適用SECURITY許可識別子・data-use識別子を同対象revisionへ束縛。各辺のsend結果とreceive結果を別々にtraceへ記録し、authority/recoveryも記録する | なし（正常） | 全必須辺の技術的終端だけcomplete。辺順・operation lineage・端点・revision・結果を構成体traceから辿る | 構成体connection owner |\n",
+      "case_id": "CONNECT-CASE-007-01"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "revision": "7449867a8464b8b57be0ee747d148607dca8de5b",
+      "start_line": 339,
+      "end_line": 339,
+      "full_sha256_raw_lf": "ca761abde9e52cd3ec855a9b9da8d42a6baecfd3214eca1043d24333f63cc26f",
+      "span_sha256_raw_lf": "1de7a2ed96a2d52613930fa635088c7b6fbed51cfa06d634d85119601d992fc6",
+      "literal": "| `CONNECT-CASE-007-21` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。e1成功を記録し、e2を中間辺、e3を後続辺とする | e2だけstale。e1記録とe3契約は保持 | 全体成功を報告せずe1成功を保持、e2の停止理由/結果/未完義務と未実行e3を区別。未許可の後続send/retryを0とし、接続failureと業務判断/再計画の戻しを分ける | e2 connection owner。業務判断/再計画は元機構/OSの既存owner |\n",
+      "case_id": "CONNECT-CASE-007-21"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "revision": "7449867a8464b8b57be0ee747d148607dca8de5b",
+      "start_line": 340,
+      "end_line": 340,
+      "full_sha256_raw_lf": "ca761abde9e52cd3ec855a9b9da8d42a6baecfd3214eca1043d24333f63cc26f",
+      "span_sha256_raw_lf": "addd4a2b2e4f5cd8e807eefc617ebf8d70e9d928d4fc30b4cc3e7432ffee04d0",
+      "literal": "| `CONNECT-CASE-007-22` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。e1成功を記録し、e2を中間辺、e3を後続辺とする | e2だけtimeout。e1記録とe3契約は保持 | 全体成功を報告せずe1成功を保持、e2の停止理由/結果/未完義務と未実行e3を区別。未許可の後続send/retryを0とし、接続failureと業務判断/再計画の戻しを分ける | e2 connection owner。業務判断/再計画は元機構/OSの既存owner |\n",
+      "case_id": "CONNECT-CASE-007-22"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "revision": "7449867a8464b8b57be0ee747d148607dca8de5b",
+      "start_line": 341,
+      "end_line": 341,
+      "full_sha256_raw_lf": "ca761abde9e52cd3ec855a9b9da8d42a6baecfd3214eca1043d24333f63cc26f",
+      "span_sha256_raw_lf": "ab0c3ad5138463bd5c7adda7692c68d24aa3532f16f7dbd4e12878cd1f91501f",
+      "literal": "| `CONNECT-CASE-007-23` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。e1成功を記録し、e2を中間辺、e3を後続辺とする | e2だけ異digest再送衝突。e1記録とe3契約は保持 | 全体成功を報告せずe1成功を保持、e2の停止理由/結果/未完義務と未実行e3を区別。未許可の後続send/retryを0とし、接続failureと業務判断/再計画の戻しを分ける | e2 connection owner。業務判断/再計画は元機構/OSの既存owner |\n",
+      "case_id": "CONNECT-CASE-007-23"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "revision": "7449867a8464b8b57be0ee747d148607dca8de5b",
+      "start_line": 342,
+      "end_line": 342,
+      "full_sha256_raw_lf": "ca761abde9e52cd3ec855a9b9da8d42a6baecfd3214eca1043d24333f63cc26f",
+      "span_sha256_raw_lf": "32b2ef5e6b399b766e9f9880faf04cdd65897ff1215c4507a4be672f6d1a1c95",
+      "literal": "| `CONNECT-CASE-007-24` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。e1成功を記録し、e2を中間辺、e3を後続辺とする | e2だけ期限切れ。e1記録とe3契約は保持 | 全体成功を報告せずe1成功を保持、e2の停止理由/結果/未完義務と未実行e3を区別。未許可の後続send/retryを0とし、接続failureと業務判断/再計画の戻しを分ける | e2 connection owner。業務判断/再計画は元機構/OSの既存owner |\n",
+      "case_id": "CONNECT-CASE-007-24"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "revision": "7449867a8464b8b57be0ee747d148607dca8de5b",
+      "start_line": 343,
+      "end_line": 343,
+      "full_sha256_raw_lf": "ca761abde9e52cd3ec855a9b9da8d42a6baecfd3214eca1043d24333f63cc26f",
+      "span_sha256_raw_lf": "223deff2fa6859eb5e99ccd3ee2966783b03636e1ac51fc63fb24ef87ed07346",
+      "literal": "| `CONNECT-CASE-007-25` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。e1成功を記録し、e2を中間辺、e3を後続辺とする | e2だけ取消。e1記録とe3契約は保持 | 全体成功を報告せずe1成功を保持、e2の停止理由/結果/未完義務と未実行e3を区別。未許可の後続send/retryを0とし、接続failureと業務判断/再計画の戻しを分ける | e2 connection owner。業務判断/再計画は元機構/OSの既存owner |\n",
+      "case_id": "CONNECT-CASE-007-25"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "revision": "7449867a8464b8b57be0ee747d148607dca8de5b",
+      "start_line": 344,
+      "end_line": 344,
+      "full_sha256_raw_lf": "ca761abde9e52cd3ec855a9b9da8d42a6baecfd3214eca1043d24333f63cc26f",
+      "span_sha256_raw_lf": "28b1ec88cb44cb43a5594fd50f388f41fe5c06506825ce323634b4ae865f5659",
+      "literal": "| `CONNECT-CASE-007-26` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。e1成功を記録し、e2を中間辺、e3を後続辺とする | e2だけ許可失効。e1記録とe3契約は保持 | 全体成功を報告せずe1成功を保持、e2の停止理由/結果/未完義務と未実行e3を区別。未許可の後続send/retryを0とし、接続failureと業務判断/再計画の戻しを分ける | e2 connection owner。許可失効はSECURITYへ照合し、業務判断/再計画は元機構/OSの既存owner |\n",
+      "case_id": "CONNECT-CASE-007-26"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "revision": "7449867a8464b8b57be0ee747d148607dca8de5b",
+      "start_line": 345,
+      "end_line": 345,
+      "full_sha256_raw_lf": "ca761abde9e52cd3ec855a9b9da8d42a6baecfd3214eca1043d24333f63cc26f",
+      "span_sha256_raw_lf": "0a10d93900be2da29c718bd0fda83082d5cbbc3960ae41e07d02384827656fe3",
+      "literal": "| `CONNECT-CASE-007-27` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。e1成功を記録し、e2を中間辺、e3を後続辺とする | e2だけ部分成功。e1記録とe3契約は保持 | 全体成功を報告せずe1成功を保持、e2の停止理由/結果/未完義務と未実行e3を区別。未許可の後続send/retryを0とし、接続failureと業務判断/再計画の戻しを分ける | e2 connection owner。業務判断/再計画は元機構/OSの既存owner |\n",
+      "case_id": "CONNECT-CASE-007-27"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "revision": "7449867a8464b8b57be0ee747d148607dca8de5b",
+      "start_line": 346,
+      "end_line": 346,
+      "full_sha256_raw_lf": "ca761abde9e52cd3ec855a9b9da8d42a6baecfd3214eca1043d24333f63cc26f",
+      "span_sha256_raw_lf": "60d9ad70344212a52b81738995e7d58804ffd9d27ed1997455b6ace6342b426d",
+      "literal": "| `CONNECT-CASE-007-28` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。e1成功を記録し、e2を中間辺、e3を後続辺とする | e2だけunknown。e1記録とe3契約は保持 | 全体成功を報告せずe1成功を保持、e2の停止理由/結果/未完義務と未実行e3を区別。未許可の後続send/retryを0とし、接続failureと業務判断/再計画の戻しを分ける | e2 connection owner。業務判断/再計画は元機構/OSの既存owner |\n",
+      "case_id": "CONNECT-CASE-007-28"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "revision": "7449867a8464b8b57be0ee747d148607dca8de5b",
+      "start_line": 347,
+      "end_line": 347,
+      "full_sha256_raw_lf": "ca761abde9e52cd3ec855a9b9da8d42a6baecfd3214eca1043d24333f63cc26f",
+      "span_sha256_raw_lf": "1c286efd6bec5562c4e34c5433f260f6b8ec53a44dc77838c7894d461c3cc795",
+      "literal": "| `CONNECT-CASE-007-29` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。e1成功、e2 timeout、宣言済みe3は未実行 | 停止位置だけ出力から欠落 | handoff未完を示し全体成功にしない。先行成功/後続未実行を保持し、欠落を既存connection ownerへ返す | 失敗辺connection owner |\n",
+      "case_id": "CONNECT-CASE-007-29"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "revision": "7449867a8464b8b57be0ee747d148607dca8de5b",
+      "start_line": 348,
+      "end_line": 348,
+      "full_sha256_raw_lf": "ca761abde9e52cd3ec855a9b9da8d42a6baecfd3214eca1043d24333f63cc26f",
+      "span_sha256_raw_lf": "15d0915010a88d3346583fcdc7760a778fcf55139bb936c0e5825f84cf3f489e",
+      "literal": "| `CONNECT-CASE-007-30` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。e1成功、e2 timeout、宣言済みe3は未実行 | 未完辺identityだけ出力から欠落 | handoff未完を示し全体成功にしない。先行成功/後続未実行を保持し、欠落を既存connection ownerへ返す | 失敗辺connection owner |\n",
+      "case_id": "CONNECT-CASE-007-30"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "revision": "7449867a8464b8b57be0ee747d148607dca8de5b",
+      "start_line": 349,
+      "end_line": 349,
+      "full_sha256_raw_lf": "ca761abde9e52cd3ec855a9b9da8d42a6baecfd3214eca1043d24333f63cc26f",
+      "span_sha256_raw_lf": "bd563d1a7beaeea99ee47539585413e221e76a7be05e6ae33f420355ebd36e55",
+      "literal": "| `CONNECT-CASE-007-31` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。e1成功、e2 timeout、宣言済みe3は未実行 | 未完義務だけ出力から欠落 | handoff未完を示し全体成功にしない。先行成功/後続未実行を保持し、欠落を既存connection ownerへ返す | 失敗辺connection owner |\n",
+      "case_id": "CONNECT-CASE-007-31"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "revision": "7449867a8464b8b57be0ee747d148607dca8de5b",
+      "start_line": 350,
+      "end_line": 350,
+      "full_sha256_raw_lf": "ca761abde9e52cd3ec855a9b9da8d42a6baecfd3214eca1043d24333f63cc26f",
+      "span_sha256_raw_lf": "0da1891e3f272c55826d64457d0b47f170518ff3602323e8b754249544b8bdac",
+      "literal": "| `CONNECT-CASE-007-32` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。e1成功、e2 timeout、宣言済みe3は未実行 | ownerだけ出力から欠落 | handoff未完を示し全体成功にしない。先行成功/後続未実行を保持し、欠落を既存connection ownerへ返す | 失敗辺connection owner |\n",
+      "case_id": "CONNECT-CASE-007-32"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "revision": "7449867a8464b8b57be0ee747d148607dca8de5b",
+      "start_line": 351,
+      "end_line": 351,
+      "full_sha256_raw_lf": "ca761abde9e52cd3ec855a9b9da8d42a6baecfd3214eca1043d24333f63cc26f",
+      "span_sha256_raw_lf": "cecba8e672f45442daaf173259a9ead6deef273f765ed15b332385e3b062729f",
+      "literal": "| `CONNECT-CASE-007-33` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。e1成功、e2 timeout、宣言済みe3は未実行 | recovery handoffだけ出力から欠落 | handoff未完を示し全体成功にしない。先行成功/後続未実行を保持し、欠落を既存connection ownerへ返す | 失敗辺connection owner |\n",
+      "case_id": "CONNECT-CASE-007-33"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "revision": "7449867a8464b8b57be0ee747d148607dca8de5b",
+      "start_line": 358,
+      "end_line": 358,
+      "full_sha256_raw_lf": "ca761abde9e52cd3ec855a9b9da8d42a6baecfd3214eca1043d24333f63cc26f",
+      "span_sha256_raw_lf": "0c94c4cd3c4d1601d32a9632f30da723c42af5072f6b06ac2756942fdcef356a",
+      "literal": "| `CONNECT-CASE-007-40` | `CONNECT-AC-007-01` | 合成fixture A→B→C。e1/e2各辺の登録・現互換receipt、operation mapping、correlation/idempotency/expiry/result、適用SECURITY許可識別子とsend/receive結果は有効で、全他入力は現revisionへ束縛 | e2のdata-use識別子だけ欠落。他のSECURITY許可・辺入力・結果は有効 | 技術completeにせずe2のdata-use識別子をunknown/欠落として記録し、当該辺のsend/retryを許可しない。SECURITY許可欠落とは混同せず、不足data-use識別子をその識別子を宣言するsource ownerへ返す | 当該辺の宣言元source owner |\n",
+      "case_id": "CONNECT-CASE-007-40"
+    }
+  ],
+  "functional_case_rows": [
+    {
+      "line": 319,
+      "id": "CONNECT-CASE-007-01",
+      "ac": "CONNECT-AC-007-01",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "b543b992e340d5618aaeeb3386ebb8bea7180d4f0eb4b55574a6e8bbf90d9945"
+    },
+    {
+      "line": 320,
+      "id": "CONNECT-CASE-007-02",
+      "ac": "CONNECT-AC-007-01",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "90ecc8fc161273e8d154a5035cbe97e7ded921c1d0c9b24dada9dccce818002a"
+    },
+    {
+      "line": 321,
+      "id": "CONNECT-CASE-007-03",
+      "ac": "CONNECT-AC-007-01",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "e513bd309c05a613e15f709fbf2f925347414f7937e60a2ccbd0cc84865abe37"
+    },
+    {
+      "line": 322,
+      "id": "CONNECT-CASE-007-04",
+      "ac": "CONNECT-AC-007-01",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "30ac146c98820125dc43a46e938df509d43fb62fe1c5fa7f4c59eea60e86856f"
+    },
+    {
+      "line": 323,
+      "id": "CONNECT-CASE-007-05",
+      "ac": "CONNECT-AC-007-01",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "6e90df4365f26335fb29d31d351c81b63b9570dff7080d9c09f81ebfe604f67b"
+    },
+    {
+      "line": 324,
+      "id": "CONNECT-CASE-007-06",
+      "ac": "CONNECT-AC-007-01",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "a1a8f47cc089f07d15639d9854b540402aa796152533d7181bbb6e0182dc4366"
+    },
+    {
+      "line": 325,
+      "id": "CONNECT-CASE-007-07",
+      "ac": "CONNECT-AC-007-01",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "220a4849a49c2d915ca1e3f6ffbd05c5ae89339a372ff0cb012cf498380de2b2"
+    },
+    {
+      "line": 326,
+      "id": "CONNECT-CASE-007-08",
+      "ac": "CONNECT-AC-007-01",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "e2cc427a8f81978f8a4fb77ca852853e108208d8b94d1dc0fd609f3dc287caeb"
+    },
+    {
+      "line": 327,
+      "id": "CONNECT-CASE-007-09",
+      "ac": "CONNECT-AC-007-01",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "607c486e95cd741bcab213298ebdad0a57463175761340f55f8086d75991a90b"
+    },
+    {
+      "line": 328,
+      "id": "CONNECT-CASE-007-10",
+      "ac": "CONNECT-AC-007-01",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "9f4da39d08858ff40ac9e21c33d1dc1d1f97e866349c35f00cd549210476dc89"
+    },
+    {
+      "line": 329,
+      "id": "CONNECT-CASE-007-11",
+      "ac": "CONNECT-AC-007-01",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "f07a28bcd844dee4475d528bb4e01f9573913c920bcc3ad7001affe418f2e46a"
+    },
+    {
+      "line": 330,
+      "id": "CONNECT-CASE-007-12",
+      "ac": "CONNECT-AC-007-01",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "b0e4e9252abdc482f832cfa2f0467d800514e27e4511f0d43d74ec6af9da1642"
+    },
+    {
+      "line": 331,
+      "id": "CONNECT-CASE-007-13",
+      "ac": "CONNECT-AC-007-01",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "99027b27da09bcc378e711ea1ca2237e0d330fa944583d6c1b2e453b9e325cb0"
+    },
+    {
+      "line": 332,
+      "id": "CONNECT-CASE-007-14",
+      "ac": "CONNECT-AC-007-01",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "2b46d33a0f981d275c4fe47575673c69779b4f8e191948455cbd8657da5ff9f6"
+    },
+    {
+      "line": 333,
+      "id": "CONNECT-CASE-007-15",
+      "ac": "CONNECT-AC-007-02",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "3eee4f1b1584e999f0a459b79a9c30d5a051fa0e61862f39f3eb4a4ef7d63a28"
+    },
+    {
+      "line": 334,
+      "id": "CONNECT-CASE-007-16",
+      "ac": "CONNECT-AC-007-02",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "6167b025a64d6d6cea16484b703563081e11ab1c480bfc11d11919b03fbe8c8a"
+    },
+    {
+      "line": 335,
+      "id": "CONNECT-CASE-007-17",
+      "ac": "CONNECT-AC-007-02",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "fd49e251233852baea1f7604c0d8c68bd33f806319e3af4764f9a6b84b5982d0"
+    },
+    {
+      "line": 336,
+      "id": "CONNECT-CASE-007-18",
+      "ac": "CONNECT-AC-007-02",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "153e2ddcac3d90920dd4be76c38e98b4fa1580ea2d624243bb4f688075dc8546"
+    },
+    {
+      "line": 337,
+      "id": "CONNECT-CASE-007-19",
+      "ac": "CONNECT-AC-007-02",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "ee44720b51a3356620770512e59bf3bbfc6eb19cb97b58da7e801be8a1c59567"
+    },
+    {
+      "line": 338,
+      "id": "CONNECT-CASE-007-20",
+      "ac": "CONNECT-AC-007-02",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "e170ee880190171c4ec671d115d8d5b36aebb9e1468cab41b20a3e874032607a"
+    },
+    {
+      "line": 339,
+      "id": "CONNECT-CASE-007-21",
+      "ac": "CONNECT-AC-007-03",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "1de7a2ed96a2d52613930fa635088c7b6fbed51cfa06d634d85119601d992fc6"
+    },
+    {
+      "line": 340,
+      "id": "CONNECT-CASE-007-22",
+      "ac": "CONNECT-AC-007-03",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "addd4a2b2e4f5cd8e807eefc617ebf8d70e9d928d4fc30b4cc3e7432ffee04d0"
+    },
+    {
+      "line": 341,
+      "id": "CONNECT-CASE-007-23",
+      "ac": "CONNECT-AC-007-03",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "ab0c3ad5138463bd5c7adda7692c68d24aa3532f16f7dbd4e12878cd1f91501f"
+    },
+    {
+      "line": 342,
+      "id": "CONNECT-CASE-007-24",
+      "ac": "CONNECT-AC-007-03",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "32b2ef5e6b399b766e9f9880faf04cdd65897ff1215c4507a4be672f6d1a1c95"
+    },
+    {
+      "line": 343,
+      "id": "CONNECT-CASE-007-25",
+      "ac": "CONNECT-AC-007-03",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "223deff2fa6859eb5e99ccd3ee2966783b03636e1ac51fc63fb24ef87ed07346"
+    },
+    {
+      "line": 344,
+      "id": "CONNECT-CASE-007-26",
+      "ac": "CONNECT-AC-007-03",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "28b1ec88cb44cb43a5594fd50f388f41fe5c06506825ce323634b4ae865f5659"
+    },
+    {
+      "line": 345,
+      "id": "CONNECT-CASE-007-27",
+      "ac": "CONNECT-AC-007-03",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "0a10d93900be2da29c718bd0fda83082d5cbbc3960ae41e07d02384827656fe3"
+    },
+    {
+      "line": 346,
+      "id": "CONNECT-CASE-007-28",
+      "ac": "CONNECT-AC-007-03",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "60d9ad70344212a52b81738995e7d58804ffd9d27ed1997455b6ace6342b426d"
+    },
+    {
+      "line": 347,
+      "id": "CONNECT-CASE-007-29",
+      "ac": "CONNECT-AC-007-03",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "1c286efd6bec5562c4e34c5433f260f6b8ec53a44dc77838c7894d461c3cc795"
+    },
+    {
+      "line": 348,
+      "id": "CONNECT-CASE-007-30",
+      "ac": "CONNECT-AC-007-03",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "15d0915010a88d3346583fcdc7760a778fcf55139bb936c0e5825f84cf3f489e"
+    },
+    {
+      "line": 349,
+      "id": "CONNECT-CASE-007-31",
+      "ac": "CONNECT-AC-007-03",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "bd563d1a7beaeea99ee47539585413e221e76a7be05e6ae33f420355ebd36e55"
+    },
+    {
+      "line": 350,
+      "id": "CONNECT-CASE-007-32",
+      "ac": "CONNECT-AC-007-03",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "0da1891e3f272c55826d64457d0b47f170518ff3602323e8b754249544b8bdac"
+    },
+    {
+      "line": 351,
+      "id": "CONNECT-CASE-007-33",
+      "ac": "CONNECT-AC-007-03",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "cecba8e672f45442daaf173259a9ead6deef273f765ed15b332385e3b062729f"
+    },
+    {
+      "line": 352,
+      "id": "CONNECT-CASE-007-34",
+      "ac": "CONNECT-AC-007-03",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "145e8f4acb561da30d6ed735a15159eb2d05b7f24c5042e5b14f1f780057b06d"
+    },
+    {
+      "line": 353,
+      "id": "CONNECT-CASE-007-35",
+      "ac": "CONNECT-AC-007-03",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "90cc8d9081dd888d960182c51d31b03399e1b643be538214243554526fa35d44"
+    },
+    {
+      "line": 354,
+      "id": "CONNECT-CASE-007-36",
+      "ac": "CONNECT-AC-007-04",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "ce1ef43864d0c9aea9d09c7e2af08a4d8d80cb7c40fc42bedde81c82f22deec9"
+    },
+    {
+      "line": 355,
+      "id": "CONNECT-CASE-007-37",
+      "ac": "CONNECT-AC-007-04",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "2e84291382f030d7f34c160cfc391e40ec48e2422aff33cac28acebb3e02f6b8"
+    },
+    {
+      "line": 356,
+      "id": "CONNECT-CASE-007-38",
+      "ac": "CONNECT-AC-007-04",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "9c6e7ecbb3ce0319ac4d6246e3f9c9a6a45253d9a22480091a9f8384f5e030a6"
+    },
+    {
+      "line": 357,
+      "id": "CONNECT-CASE-007-39",
+      "ac": "CONNECT-AC-007-04",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "1c770b055344fe06ee4b9853e8e60675ffceb7d3d79c4eb35da112a72d27bd0a"
+    },
+    {
+      "line": 358,
+      "id": "CONNECT-CASE-007-40",
+      "ac": "CONNECT-AC-007-01",
+      "cell_count": 6,
+      "line_sha256_raw_lf": "3ac7a63c4d6d52eaa8d2b53aa74d4236bd11d1298599abad2620b21f5857c60b"
+    }
+  ],
+  "static_checks": {
+    "git_diff_check": "pass",
+    "stage5_case_rows": 40,
+    "unique_case_ids": 40,
+    "duplicate_case_ids": 0,
+    "markdown_cells_each": 6,
+    "valid_ac_refs": true,
+    "cases_21_to_33_graph_and_edge_ids": "pass",
+    "security_return_only_case_26_within_21_to_28": "pass",
+    "six_base_prefixes_exact": true
+  },
+  "limits": [
+    "This is not independent review, L3 approval, L10 execution, or implementation evidence.",
+    "Older immutable audit remains unchanged; its original search basis is preserved.",
+    "Old partial-success and correlation materials are adjacent comparisons only, not source atoms.",
+    "The extra asset/source search does not claim full semantic exhaustion of the archive."
+  ],
+  "case_inventory": [
+    {
+      "id": "CONNECT-CASE-007-01",
+      "line": 319,
+      "raw_lf_sha256": "b543b992e340d5618aaeeb3386ebb8bea7180d4f0eb4b55574a6e8bbf90d9945",
+      "ac_ids": [
+        "CONNECT-AC-007-01"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-02",
+      "line": 320,
+      "raw_lf_sha256": "90ecc8fc161273e8d154a5035cbe97e7ded921c1d0c9b24dada9dccce818002a",
+      "ac_ids": [
+        "CONNECT-AC-007-01"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-03",
+      "line": 321,
+      "raw_lf_sha256": "e513bd309c05a613e15f709fbf2f925347414f7937e60a2ccbd0cc84865abe37",
+      "ac_ids": [
+        "CONNECT-AC-007-01"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-04",
+      "line": 322,
+      "raw_lf_sha256": "30ac146c98820125dc43a46e938df509d43fb62fe1c5fa7f4c59eea60e86856f",
+      "ac_ids": [
+        "CONNECT-AC-007-01"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-05",
+      "line": 323,
+      "raw_lf_sha256": "6e90df4365f26335fb29d31d351c81b63b9570dff7080d9c09f81ebfe604f67b",
+      "ac_ids": [
+        "CONNECT-AC-007-01"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-06",
+      "line": 324,
+      "raw_lf_sha256": "a1a8f47cc089f07d15639d9854b540402aa796152533d7181bbb6e0182dc4366",
+      "ac_ids": [
+        "CONNECT-AC-007-01"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-07",
+      "line": 325,
+      "raw_lf_sha256": "220a4849a49c2d915ca1e3f6ffbd05c5ae89339a372ff0cb012cf498380de2b2",
+      "ac_ids": [
+        "CONNECT-AC-007-01"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-08",
+      "line": 326,
+      "raw_lf_sha256": "e2cc427a8f81978f8a4fb77ca852853e108208d8b94d1dc0fd609f3dc287caeb",
+      "ac_ids": [
+        "CONNECT-AC-007-01"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-09",
+      "line": 327,
+      "raw_lf_sha256": "607c486e95cd741bcab213298ebdad0a57463175761340f55f8086d75991a90b",
+      "ac_ids": [
+        "CONNECT-AC-007-01"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-10",
+      "line": 328,
+      "raw_lf_sha256": "9f4da39d08858ff40ac9e21c33d1dc1d1f97e866349c35f00cd549210476dc89",
+      "ac_ids": [
+        "CONNECT-AC-007-01"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-11",
+      "line": 329,
+      "raw_lf_sha256": "f07a28bcd844dee4475d528bb4e01f9573913c920bcc3ad7001affe418f2e46a",
+      "ac_ids": [
+        "CONNECT-AC-007-01"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-12",
+      "line": 330,
+      "raw_lf_sha256": "b0e4e9252abdc482f832cfa2f0467d800514e27e4511f0d43d74ec6af9da1642",
+      "ac_ids": [
+        "CONNECT-AC-007-01"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-13",
+      "line": 331,
+      "raw_lf_sha256": "99027b27da09bcc378e711ea1ca2237e0d330fa944583d6c1b2e453b9e325cb0",
+      "ac_ids": [
+        "CONNECT-AC-007-01"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-14",
+      "line": 332,
+      "raw_lf_sha256": "2b46d33a0f981d275c4fe47575673c69779b4f8e191948455cbd8657da5ff9f6",
+      "ac_ids": [
+        "CONNECT-AC-007-01"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-15",
+      "line": 333,
+      "raw_lf_sha256": "3eee4f1b1584e999f0a459b79a9c30d5a051fa0e61862f39f3eb4a4ef7d63a28",
+      "ac_ids": [
+        "CONNECT-AC-007-02"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-16",
+      "line": 334,
+      "raw_lf_sha256": "6167b025a64d6d6cea16484b703563081e11ab1c480bfc11d11919b03fbe8c8a",
+      "ac_ids": [
+        "CONNECT-AC-007-02"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-17",
+      "line": 335,
+      "raw_lf_sha256": "fd49e251233852baea1f7604c0d8c68bd33f806319e3af4764f9a6b84b5982d0",
+      "ac_ids": [
+        "CONNECT-AC-007-02"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-18",
+      "line": 336,
+      "raw_lf_sha256": "153e2ddcac3d90920dd4be76c38e98b4fa1580ea2d624243bb4f688075dc8546",
+      "ac_ids": [
+        "CONNECT-AC-007-02"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-19",
+      "line": 337,
+      "raw_lf_sha256": "ee44720b51a3356620770512e59bf3bbfc6eb19cb97b58da7e801be8a1c59567",
+      "ac_ids": [
+        "CONNECT-AC-007-02"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-20",
+      "line": 338,
+      "raw_lf_sha256": "e170ee880190171c4ec671d115d8d5b36aebb9e1468cab41b20a3e874032607a",
+      "ac_ids": [
+        "CONNECT-AC-007-02"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-21",
+      "line": 339,
+      "raw_lf_sha256": "1de7a2ed96a2d52613930fa635088c7b6fbed51cfa06d634d85119601d992fc6",
+      "ac_ids": [
+        "CONNECT-AC-007-03"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-22",
+      "line": 340,
+      "raw_lf_sha256": "addd4a2b2e4f5cd8e807eefc617ebf8d70e9d928d4fc30b4cc3e7432ffee04d0",
+      "ac_ids": [
+        "CONNECT-AC-007-03"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-23",
+      "line": 341,
+      "raw_lf_sha256": "ab0c3ad5138463bd5c7adda7692c68d24aa3532f16f7dbd4e12878cd1f91501f",
+      "ac_ids": [
+        "CONNECT-AC-007-03"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-24",
+      "line": 342,
+      "raw_lf_sha256": "32b2ef5e6b399b766e9f9880faf04cdd65897ff1215c4507a4be672f6d1a1c95",
+      "ac_ids": [
+        "CONNECT-AC-007-03"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-25",
+      "line": 343,
+      "raw_lf_sha256": "223deff2fa6859eb5e99ccd3ee2966783b03636e1ac51fc63fb24ef87ed07346",
+      "ac_ids": [
+        "CONNECT-AC-007-03"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-26",
+      "line": 344,
+      "raw_lf_sha256": "28b1ec88cb44cb43a5594fd50f388f41fe5c06506825ce323634b4ae865f5659",
+      "ac_ids": [
+        "CONNECT-AC-007-03"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-27",
+      "line": 345,
+      "raw_lf_sha256": "0a10d93900be2da29c718bd0fda83082d5cbbc3960ae41e07d02384827656fe3",
+      "ac_ids": [
+        "CONNECT-AC-007-03"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-28",
+      "line": 346,
+      "raw_lf_sha256": "60d9ad70344212a52b81738995e7d58804ffd9d27ed1997455b6ace6342b426d",
+      "ac_ids": [
+        "CONNECT-AC-007-03"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-29",
+      "line": 347,
+      "raw_lf_sha256": "1c286efd6bec5562c4e34c5433f260f6b8ec53a44dc77838c7894d461c3cc795",
+      "ac_ids": [
+        "CONNECT-AC-007-03"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-30",
+      "line": 348,
+      "raw_lf_sha256": "15d0915010a88d3346583fcdc7760a778fcf55139bb936c0e5825f84cf3f489e",
+      "ac_ids": [
+        "CONNECT-AC-007-03"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-31",
+      "line": 349,
+      "raw_lf_sha256": "bd563d1a7beaeea99ee47539585413e221e76a7be05e6ae33f420355ebd36e55",
+      "ac_ids": [
+        "CONNECT-AC-007-03"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-32",
+      "line": 350,
+      "raw_lf_sha256": "0da1891e3f272c55826d64457d0b47f170518ff3602323e8b754249544b8bdac",
+      "ac_ids": [
+        "CONNECT-AC-007-03"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-33",
+      "line": 351,
+      "raw_lf_sha256": "cecba8e672f45442daaf173259a9ead6deef273f765ed15b332385e3b062729f",
+      "ac_ids": [
+        "CONNECT-AC-007-03"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-34",
+      "line": 352,
+      "raw_lf_sha256": "145e8f4acb561da30d6ed735a15159eb2d05b7f24c5042e5b14f1f780057b06d",
+      "ac_ids": [
+        "CONNECT-AC-007-03"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-35",
+      "line": 353,
+      "raw_lf_sha256": "90cc8d9081dd888d960182c51d31b03399e1b643be538214243554526fa35d44",
+      "ac_ids": [
+        "CONNECT-AC-007-03"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-36",
+      "line": 354,
+      "raw_lf_sha256": "ce1ef43864d0c9aea9d09c7e2af08a4d8d80cb7c40fc42bedde81c82f22deec9",
+      "ac_ids": [
+        "CONNECT-AC-007-04"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-37",
+      "line": 355,
+      "raw_lf_sha256": "2e84291382f030d7f34c160cfc391e40ec48e2422aff33cac28acebb3e02f6b8",
+      "ac_ids": [
+        "CONNECT-AC-007-04"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-38",
+      "line": 356,
+      "raw_lf_sha256": "9c6e7ecbb3ce0319ac4d6246e3f9c9a6a45253d9a22480091a9f8384f5e030a6",
+      "ac_ids": [
+        "CONNECT-AC-007-04"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-39",
+      "line": 357,
+      "raw_lf_sha256": "1c770b055344fe06ee4b9853e8e60675ffceb7d3d79c4eb35da112a72d27bd0a",
+      "ac_ids": [
+        "CONNECT-AC-007-04"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-40",
+      "line": 358,
+      "raw_lf_sha256": "0c94c4cd3c4d1601d32a9632f30da723c42af5072f6b06ac2756942fdcef356a",
+      "ac_ids": [
+        "CONNECT-AC-007-01"
+      ]
+    }
+  ]
+}
