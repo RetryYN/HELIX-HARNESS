@@ -1,0 +1,59 @@
+{
+  "record_type": "delegated_decision_pin",
+  "authority_effect": "none",
+  "body_revision": "3aa88a697dbc8e726bdf23c27c8bb364867bb173",
+  "review_head": "9981f376c50691c80f7cdeb1893588748aa4714d",
+  "base": "5acae384305b01d10e88eeb2e6406f847baf66df",
+  "formal_comment": {
+    "id": 6003038860,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2613#issuecomment-6003038860",
+    "bytes": 3166,
+    "sha256": "67e59bfb59f0bc561b7825c38eae54123928c89faa6595bef9f1536ca99de7d6",
+    "literal": "## review09（independent review、HEAD 9981f376c50691c80f7cdeb1893588748aa4714d、body 3aa88a697dbc8e726bdf23c27c8bb364867bb173）\n\nreviewer: Claude（lane `review_merge`、Fable 5.1）。差分が小さいためreviewer本人（Opus側）が全差分を固定親と照合し、Fable advisorが本revisionで見解を再照合。merge-base 0757e1587、`git merge-tree --write-tree origin/main HEAD` 衝突なし。\n\n### 静的検査（w2613 = exact HEAD）\n- scfctl validate 147/0、stale 0、residuals 0、govcheck ok、`git diff --check` 0。\n- Root検収 `harness-stage2b-remainder-root-review08-acceptance-2026-10-06.json`：pin 229/229一致、case_inventory 220 = FV行220（017:20／018:58／019:24／020:23／024:95）、review08 comment（6002850302）本文SHA一致。FV/NVはbody 3aa88a697と同一bytes、FR不変、6本文main prefix一致。公開CASE消失0。NV 018範囲R058同期。\n\n### review08所見の解消\n- **m1解消**：FV節注を「固定親L2:407/413–416/515/519/521」へ訂正（f6dad2a33の行実測と一致：515＝収束契約5、519＝戻し先、521＝旧RDJ）。\n- **m2解消**：`CASE-HARNESS-L10-018-R058`（運用要求が対応する製品revisionだけを当該配備revisionと異なるrevisionへ変える。両revision・承認状態・11軸・決定owner・根拠は既知）。1変異、oracle「対応不一致を検出し評価成立とせず運用要求ownerへ返す。元revision・traceを保持し、別revision向け承認を当該revisionへの承認へ変換しない」はL2:413・415／AC-018-01の範囲内で強くも弱くもない。戻し先は運用要求owner（R047と同owner、AC-018-03側のR047とは重複しない）。\n\n### Fable見解（advisor、本文3aa88a697・HEAD 9981f376c、差分全文・固定L2 407/413–416/515/519/521・L11:213・FR-018・R001/R047/R056〜R058・検収JSON実読）\n結論行（原文のまま）：「**承認してよい。**」。「前回（本文588ff96a3）の『承認してよい』は本revision（HEAD 9981f376c・本文3aa88a697）でも維持される。本文に関わる所見はない。」付随：記録形式の備考1件（review08 JSONに `owner_derivation` 専用fieldがなく `findings.m2` の一文で持つ。非blocker、本文変更不要）。\n\n### Opus側判定\n所見なし。未確認範囲なし（review06で旧test 2本・旧PLAN-L7-331を読了、review07〜09で追加CASE 9件を全件照合）。\n\n### 委任承認条件の状態（docs/governance/github-upstream-operating-model.md「L3／L10承認の委任」）\n- 条件1（Opus `no_findings`・未確認範囲0）：本commentで成立（HEAD 9981f376c、本文3aa88a697）。\n- 条件2（Fable「承認してよい」）：本commentに原文で記録。\n- 条件3（6本文bytes不変）：作成側が判断記録（`decider_role: PO（委任：Opus・Fable一致）`、対象revision 3aa88a697、6本文SHA、本comment ID/SHA、Fable見解の所在）を追加した後、reviewerが6本文SHA・本comment SHA・委任規則SHA・判断記録SHAを照合してReady→試験merge→明示mergeへ進む。本commentはmerge admissionを生成しない。\n"
+  },
+  "delegation": {
+    "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+    "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220"
+  },
+  "rule": {
+    "path": "docs/governance/github-upstream-operating-model.md",
+    "sha256": "eed2b774bb78545ac53c7d55f3ae3ab4e9c4f421b4eaf3ac3bcdbcdd869dd27b"
+  },
+  "documents": [
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "sha256": "788c690368c3be1721410f65d5970dad1731b8e79a0a5b7b80c26e3475698309",
+      "bytes": 5187
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "sha256": "0a7fb5d4cc88d6fec1576260d5b3bd2adf71d0ed6939b1168cf4ee621dd538dc",
+      "bytes": 196595
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "sha256": "245f1c655276338ac163ba35ded36e8453769197638412a305a2b0aec658fd82",
+      "bytes": 23748
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "sha256": "a1c0ed86d63a523ebad07105ceb6dbbca602bb1bd3c6a76af5c8a9e10fbab4b2",
+      "bytes": 8938
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "sha256": "9734e536774f62ba6d53a8804ca16649e00dda307ae60114431f61ad21daa3b4",
+      "bytes": 138543
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "sha256": "ab37418cb9d3004d6ba0467b4c82bfe4d75f90eb8f4c136902f691e8e3c876b6",
+      "bytes": 31233
+    }
+  ],
+  "decision": {
+    "path": "docs/governance/decisions/helix-harness-stage2b-remainder-l3-l10-po-decision-2026-10-06.md",
+    "sha256": "55056cf356964eefcd69cbad3a3b24da87943465b606d52589dde4576f6f6438"
+  },
+  "six_documents_byte_unchanged": true
+}
