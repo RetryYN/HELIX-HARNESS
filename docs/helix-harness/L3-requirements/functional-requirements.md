@@ -98,7 +98,7 @@ paired_l10: ../L10-verification/functional-verification.md
 
 ## Stage 2b suffix — HARNESS-L2-012/013（1.0対象候補）
 
-この追補は採択候補のHARNESS-L2-012〜016を対象とする。main 28b3d3645e6298c159758700c2edd3d396c336f5のStage 1本文をbyte単位で保持し、このStage 2b suffixだけを追加する。Stage 2a/2cの内容は取り込まず、IDも変更しない。固定L2はmain `f6dad2a33e24f000b87d7f09b8d40288257e74cc`の同一文書SHA-256 `aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a`、親行は012が363–370、013が371–378。固定L11は同mainのSHA-256 `09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4`、受入行は012が207、013が208。PO判断記録のproposal rowはmain `633bf12ea8f948db8ba3d6600179c4a9507377a7`の41–42行。G0順序・version intentは固定G0 addendum `ef753a0e13c908ef1e02b6185bf371ad4eefadd1`のStage 2b行44–45、および対応JSON recordにある。両親は採択候補の1.0 targetだが、L3承認、実装、release inclusionは意味しない。L2本文に個別`version_target`印はないため、項目版はG0の記録に従い、1.0完成を宣言しない。
+この追補は採択候補のHARNESS-L2-012〜016を対象とする。main 28b3d3645e6298c159758700c2edd3d396c336f5のStage 1本文をbyte単位で保持し、このStage 2b suffixだけを追加する。Stage 2a/2cの内容は取り込まず、IDも変更しない。固定L2はmain `f6dad2a33e24f000b87d7f09b8d40288257e74cc`の同一文書SHA-256 `aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a`、親行は012が363–370、013が371–378。固定L11は同mainのSHA-256 `09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4`、受入行は012が207、013が208。PO判断記録 `docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md` のproposal rowはmain `633bf12ea8f948db8ba3d6600179c4a9507377a7`の41–42行。G0順序・version intentは固定G0 addendum `docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md` の `ef753a0e13c908ef1e02b6185bf371ad4eefadd1` Stage 2b行44–45、および対応JSON recordにある。両親は採択候補の1.0 targetだが、L3承認、実装、release inclusionは意味しない。L2本文に個別`version_target`印はないため、項目版はG0の記録に従い、1.0完成を宣言しない。
 
 ### 旧資産の項目別起点と扱い
 
@@ -110,7 +110,7 @@ paired_l10: ../L10-verification/functional-verification.md
 
 ### `FR-HARNESS-L3-012` — PrototypeとPoCを分けた単体判定（親: `HARNESS-L2-012`）
 
-**保持／再導出**：合意前のL2要求、screenの有無、技術的成立性の不確定要素を対象scopeとrevisionに結ぶ。screen prototypeの適用性とPoCの適用性・結果は別々の判定であり、片方からもう片方を推定しない。画面がないことだけをPoC非適用の根拠にせず、PoCが適用可能なtechnical uncertaintyも個別に判定する。入力条件としてL2要求に記述された対象だけを使い、prototype／PoCの結果をDecide前にproduction成果へ昇格させない。
+**保持／再導出**：合意前のL2要求、screenの有無、技術的成立性の不確定要素を対象scopeとrevisionに結ぶ。screen prototypeの適用性とPoCの適用性・結果は別々の判定であり、片方からもう片方を推定しない。画面がないことだけをPoC非適用の根拠にせず、PoCが適用可能なtechnical uncertaintyも個別に判定する。入力条件としてL2要求に記述された対象だけを使い、prototype／PoCの結果をDecide前にproduction成果へ昇格させない。screen prototypeの成果物形式は固定L2どおりHTMLとする。
 
 **入力**：対象L2要求・対象revision/scope、screenの有無、prototype適用性の判定根拠、技術的不確定要素とPoC適用性の判定根拠、各判定者。prototypeまたはPoCを非適用と判定する場合は固定L2どおり非適用理由・判定者・対象HEAD・要求への影響・再評価条件を記録する。
 
@@ -122,7 +122,7 @@ paired_l10: ../L10-verification/functional-verification.md
 
 - **`AC-HARNESS-L3-012-01` 独立した適用判定と結果分離（FR-HARNESS-L3-012）**：screen prototypeとtechnical PoCの双方が適用可能な正常fixtureを使い、別々のscope/適用判定/evidence/resultを返す。Prototypeの成功からPoC成立を導く変異とPoCの成功からPrototype成立を導く変異は独立negativeとして拒否する。
 - **`AC-HARNESS-L3-012-02` 非適用記録・Backflow（FR-HARNESS-L3-012）**：Prototype非適用・PoC適用の正常fixtureを置き、screenなしだけではPoC非適用を決めない。非適用理由、判定者、対象HEAD、要求への影響、再評価条件を一つずつ欠落させる独立negativeを置き、必要fieldと戻し先を示す。適用性や要求への影響を判定できないfixtureは製品成功/失敗へ丸めず未評価とする。
-- **`AC-HARNESS-L3-012-03` Decide前の境界（FR-HARNESS-L3-012）**：Backflow候補をL2要求へ返す正常fixtureを確認する。Decide前に試作/PoC成果をproduction成果、要求合意、承認済み要件と表示する各変異を個別に拒否する。これはDecideやL3承認の新gateを作らず、固定L2の状態境界を確認する。
+- **`AC-HARNESS-L3-012-03` Decide前の境界（FR-HARNESS-L3-012）**：Backflow候補をL2要求へ返す正常fixtureを確認する。Decide前に試作/PoC成果をproduction成果、要求合意、承認済み要件と表示する各変異を個別に拒否する。Decide後のproduction化条件や権限はこの親から追加しない。これはDecideやL3承認の新gateを作らず、固定L2の状態境界を確認する。
 
 ### `FR-HARNESS-L3-013` — 根拠付き要件対の1次・適用時2次形成（親: `HARNESS-L2-013`）
 
@@ -157,45 +157,47 @@ RDJ-FR-003/007とAC-003/007の質問priority・固定iteration詳細は、親L2-
 
 ## Stage 2b suffix — HARNESS-L2-014/015/016（1.0対象候補）
 
-014〜016も固定L2 `f6dad2a33e24f000b87d7f09b8d40288257e74cc` と対のL11同revisionの範囲だけを具体化する。authorityは固定L2/L11と該当する採択判断に限る。mainで承認済みのStage 1 HARNESS-L2-010/011/023の承認はmainのexact revisionだけに適用し、このStage 2b suffixの承認や他のStageの採択を意味しない。親ごとのL1責務、単位scope、入力・出力、工程契約とownerを保ち、未選択親を一律gateにしない。合成fixtureは試験設計上の仮定で、実際のL3承認、template、CORE contract、BRAIN connector、artifactやrevisionを生成しない。
+014〜016も固定L2 `f6dad2a33e24f000b87d7f09b8d40288257e74cc` と対のL11同revisionの範囲だけを具体化する。authorityは固定L2/L11と該当する採択判断に限る。L11 G12の変更影響/制約oracle（同revision:274–280）とG13の品質優先・性能改善で回帰を相殺しない条件（:323–324）を含める。mainで承認済みのStage 1 HARNESS-L2-010/011/023の承認はmainのexact revisionだけに適用し、このStage 2b suffixの承認や他のStageの採択を意味しない。親ごとのL1責務、単位scope、入力・出力、工程契約とownerを保ち、未選択親を一律gateにしない。合成fixtureは試験設計上の仮定で、実際のL3承認、template、CORE contract、BRAIN connector、artifactやrevisionを生成しない。
 
 ### 旧HELIX資産の項目別起点と扱い
 
 固定L2:385の旧Design Template条件、f6 L2:60およびPO確認revisionのL2-009を設計起点とする。旧 `LEGACY-ASSET-5CBA32E9DB5B0FE05589` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/design-registry-requirement-family-authority.md`:60–70（full SHA-256 `4f75f1fb5d285daaa582b2e4cbc016d8679d9e2364f60cc152dac3f5dece71ae`）から、要求family適用・source-kind不一致の識別を再導出する。旧 `LEGACY-ASSET-0861E1D3646C7A28AAD0` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-design-registry-requirement-family-acceptance-test-design.md`:28–45（`bf4d0f0aba62f66e82c0f58c7134765f6c1fb0bcb7f00bb2324e6b2f729a1e9c`）から、対応する正常／誤りfixtureの形のみ再利用する。registry/catalog/parser/loader/DBや旧approvalは移さず、固定L2が指定するDesign Template・CORE・BRAIN connectorへ置換する。templateは設計義務を導く入力であり、要求意味のauthorityではない。
 
-旧 `LEGACY-ASSET-EE5DBACC7F28F7D1F605` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md`:152（full SHA-256 `7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544`）および `LEGACY-ASSET-44DD86E3DEC09E65EF51` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md`:109（`df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6`）から、V-pair欠落・coverageだけで完了にしない汎用形を再導出する。015では同じ `LEGACY-ASSET-EE5DBACC7F28F7D1F605` の旧HR-NFR-P3-04 `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md`:181と、`LEGACY-ASSET-44DD86E3DEC09E65EF51` の旧HAT-N3-04 `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md`:136（同じfull SHA）および `LEGACY-ASSET-B7E240E4CE0263FDBDF6` の旧LIT-N3-04 `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L5-pillar-integration-test-design.md`:77（full SHA `0bf20d470daba6a63b515ebd0d53509ee24c64df2c9e6bd6235e7874af23a8f5`）を、`CASE-HARNESS-L10-015-*` のRed/oracle/Green/refactorまたは理由付き代替oracleの観測形へ限定して再利用する。現行L2条件へ対応させ、旧P3 gate/runtime/CI手順は持ち込まない。前調査の誤locatorであるpillar FR:152–156（P3/P4別要件）およびHAT:109–110（P3-01/02）は015/016の根拠にしない。
+旧 `LEGACY-ASSET-EE5DBACC7F28F7D1F605` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md`:152（full SHA-256 `7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544`）および `LEGACY-ASSET-44DD86E3DEC09E65EF51` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md`:109（`df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6`）から、V-pair欠落・coverageだけで完了にしない汎用形を再導出する。pillar FR:152はP3-01の旧箇所として位置を固定し、現行015/016の独自根拠にはせず、旧要件と現行親の意味差分を追跡するためsource pinへ記録する。015では同じassetの旧HR-NFR-P3-04（同文書:181）、旧HAT-N3-04（同じassetの受入文書:136）、旧LIT-N3-04（`LEGACY-ASSET-B7E240E4CE0263FDBDF6`の旧L5 test文書:77、full SHA `0bf20d470daba6a63b515ebd0d53509ee24c64df2c9e6bd6235e7874af23a8f5`）から、Red/oracle/Green/refactorの観測形だけを再利用する。固定L2-015に「理由付き代替oracle」の例外はないため、この例外経路は採らず、固定L2/L11のoracleで照合する。現行L2条件へ対応させ、旧P3 gate/runtime/CI手順は持ち込まない。誤locatorのpillar FR:152–156（P3/P4別要件）およびHAT:109–110（P3-01/02）は015/016の要件根拠として用いない。
 
-旧HIL-16の意味・consumer/oracle保存と誤routeの指摘は再導出する。起点は `LEGACY-ASSET-02D897E62EF2FA267267` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md`:148–149（full SHA-256 `01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4`）、`LEGACY-ASSET-0B5B38F146D9538C9A36` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-improvement-loop-acceptance.md`:16–43（`f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943`）、`LEGACY-ASSET-C7F0C3B79CBAA72960BF` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md`:50,79（`8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6`）、`LEGACY-ASSET-FA8C6E69463183D6A19B` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md`:48（`a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a`）および `LEGACY-ASSET-7E16E3B80335D8EC6F35` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L5-design-refactoring-domain-model-integration-test-design.md`:16–40（`869d4494c8f5cfaea4d90f29392ee1a2c7c63cc2084712eb43e0c1d91cdeca60`）。これらは意味保存・consumer・回帰oracleと上流差戻しの旧failure/test例に限る。旧state machine、role catalog、function sequence、DB/receipt/fence、runtimeは移植しない。固定L2:395–402のBackflow先とPerformance測定条件に置換する。
+旧HIL-16の意味・consumer/oracle保存と誤routeの指摘は再導出する。起点は `LEGACY-ASSET-02D897E62EF2FA267267` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md`:146–150（full SHA-256 `01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4`。旧区分行148–149を含む文脈bounded span）、`LEGACY-ASSET-0B5B38F146D9538C9A36` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-improvement-loop-acceptance.md`:16–43（`f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943`）、`LEGACY-ASSET-C7F0C3B79CBAA72960BF` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md`:50,79（`8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6`）、`LEGACY-ASSET-FA8C6E69463183D6A19B` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md`:48（`a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a`）および `LEGACY-ASSET-7E16E3B80335D8EC6F35` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L5-design-refactoring-domain-model-integration-test-design.md`:16–40（`869d4494c8f5cfaea4d90f29392ee1a2c7c63cc2084712eb43e0c1d91cdeca60`）。これらは意味保存・consumer・回帰oracleと上流差戻しの旧failure/test例に限る。旧state machine、role catalog、function sequence、DB/receipt/fence、runtimeは移植しない。固定L2:395–402のBackflow先とPerformance測定条件に置換する。
 
 ### `FR-HARNESS-L3-014` — templateに基づく設計と対の検証設計（親: `HARNESS-L2-014`）
 
-承認済みL3要件の正確なrevision/scopeと工程契約を受け取り、適用可能なDesign Template、CORE工程契約、必要なBRAIN connector入力を用いてL4基本設計・L5詳細設計・L6契約と対のL9/L8/L7検証設計を出す。要求kind・対象・構成・risk・domainに対応する義務と、その入力source/revisionを明示し、単体・接続・構成体固有の義務を区別する。下位設計の束ねだけを構成体義務の充足にしない。templateが要求する入力不足・不一致は質問/要求候補として要求ownerへBackflowし、templateから要求意味を決定しない。実際の承認状態や契約内容が入力にない場合は未完/unknownを維持する。
+承認済みL3要件の正確なrevision/scopeと工程契約を受け取り、入力要件は②の出力またはL2-019で持ち込まれた既存要件のいずれでもよい。③単独の適用を保ち、②を一律の前提にしない。適用可能なDesign Template、CORE工程契約、必要なBRAIN connector入力を用いてL4基本設計・L5詳細設計・L6契約と対のL9/L8/L7検証設計を出す。要求kind・対象・構成・risk・domainに対応する義務と、その入力source/revisionを明示し、単体・接続・構成体固有の義務を区別する。下位設計の束ねだけを構成体義務の充足にしない。templateが要求する入力不足・不一致は質問/要求候補として要求ownerへBackflowし、templateから要求意味を決定しない。実際の承認状態や契約内容が入力にない場合は未完/unknownを維持する。
 
 | AC ID | 受入条件 |
 |---|---|
-| `AC-HARNESS-L3-014-01` | 承認済み要件のsource/revision/scopeおよび工程契約を設計sourceへ追跡し、template義務と要求制約を対応づける。 |
-| `AC-HARNESS-L3-014-02` | unit/connection/composite義務を別々に設計・検証計画へ対応させ、下位成果の存在だけで上位義務を成立扱いしない。 |
+| `AC-HARNESS-L3-014-01` | ②の出力またはL2-019で持ち込まれた既存要件のいずれかを用いる正常fixtureで、承認済み要件のsource/revision/scopeおよび工程契約を設計sourceへ追跡し、kind・対象・構成・risk・domainに合うtemplate義務と要求制約を対応づける。template軸の不一致を一軸ずつ与えるnegativeでは誤templateを拒否する。 |
+| `AC-HARNESS-L3-014-02` | unit/connection/composite義務を別々に設計・検証計画へ対応させ、接続固有義務の正常fixtureとその欠落negativeを含め、下位成果の存在だけで上位義務を成立扱いしない。 |
 | `AC-HARNESS-L3-014-03` | templateが明示的に必要とする要求入力のmissing/unknown/conflictを識別し、要求ownerへのBackflow候補にする。templateは要求意味・approvalを決めない。 |
+| `AC-HARNESS-L3-014-04` | 要求・隣接境界・対のverification designへの変更影響を適用可能な固定oracleと照合し、必要な検証設計が欠ける変異を、template/traceが存在しても不合格にする。 |
 
 ### `FR-HARNESS-L3-015` — 凍結設計に対するProvisional実装（親: `HARNESS-L2-015`）
 
-凍結済みL6契約・L5詳細設計および対の検証を、各source/revision/scopeとともに受け取り、固定L2-015が別々に求めるCORE工程契約とCORE検証契約も、それぞれ独立したsource identity/revision/scope traceとして扱う。両契約は互いに代替せず、契約内容・schema・payload・ownerをこの要件から新設しない。限定された実装と設計・test間の双方向traceを作る。固定L2の範囲でcontract→implementation→Red→Green→意味保存の局所Refactor→atomic CIを閉じ、結果状態をProvisionalとする。局所Refactorでpublic contract、要求、architectureまたはstateの意味を変えない。ticketとの関係から選ぶPR前CIと省略検査の記録を保持するが、CIの構成・運転はHELIX-OS、利用者環境では利用者側の責務であり、HARNESSは検証契約を渡す。atomic CI greenからquality/system/user acceptance/releaseを推論しない。
+凍結済みL6契約・L5詳細設計および対の検証を、各source/revision/scopeとともに受け取り、固定L2-015が別々に求めるCORE工程契約とCORE検証契約も、それぞれ独立したsource identity/revision/scope traceとして扱う。両契約は互いに代替せず、契約内容・schema・payload・ownerをこの要件から新設しない。限定された実装と設計・test間の双方向traceを作る。固定L2の範囲でcontract→implementation→Red→Green→意味保存の局所Refactor→atomic CIを閉じ、結果状態をProvisionalとする。局所Refactorでpublic contract、要求、architectureまたはstateの意味を変えない。ticketとの関係から選ぶPR前CIと省略検査の記録を保持するが、CIの構成・運転はHELIX-OS、利用者環境では利用者側の責務であり、HARNESSは検証契約を渡す。利用者CIの結果も同じatomic CI観測対象にでき、HELIX-OSの運転を一律必須にしない。CI実行主体が提供する結果/receiptを検証設計へ渡して閉鎖を観測するが、HARNESS自身はCIを運転しない。atomic CI green単独やコード存在だけからquality/effect success/Acceptedを推論せず、固定quality oracleを満たさない成果はProvisional以上へ進めない。
 
 | AC ID | 受入条件 |
 |---|---|
 | `AC-HARNESS-L3-015-01` | 実装対象が凍結L6/L5および対の検証と同じrevision/scopeに結び、設計↔testの双方向traceを持つ。CORE工程契約とCORE検証契約は別々のsource identity/revision/scopeへtraceし、一方の存在で他方を代替しない。 |
-| `AC-HARNESS-L3-015-02` | 固定された正常oracleでRed→Greenと局所意味保存Refactorを観測し、該当結果revisionをProvisionalとしてのみ出力する。 |
+| `AC-HARNESS-L3-015-02` | 固定された正常oracleでRed→Greenと局所意味保存Refactorを観測し、該当結果revisionをProvisionalとしてのみ出力する。固定quality oracleが不成立でも、費用/時間改善、atomic CI green、コード存在だけを理由に改善成功・Acceptedへしない。 |
 | `AC-HARNESS-L3-015-03` | ticket関係から必要検査と選択したPR前CIの範囲を示し、省略検査を記録する。CIの組立/運転をHARNESS要件へ移さない。 |
-| `AC-HARNESS-L3-015-04` | 内容oracleの不一致、public contract/要求/architecture/state意味の変異があれば、CI結果にかかわらず実装成果を拒否し、sourceが示す設計/要求ownerへ戻す。 |
+| `AC-HARNESS-L3-015-04` | 内容oracleの不一致、public contract/要求/architecture/state意味の変異があれば、CI結果にかかわらず実装成果を拒否し、sourceが示す設計/要求ownerへ戻す。局所Refactorでpublic contractまたは要求意味を変える変異を個別に拒否する。 |
 | `AC-HARNESS-L3-015-05` | CORE工程契約とCORE検証契約のidentity/revision/scopeを独立して確認し、いずれかのmissing/unknown/stale/mismatchを完成扱いせず、その依存ごとに理由とsourceが示す戻し先を保持する。sourceが戻し先を示さない場合はownerをunknownとし、新しいschema・契約内容・ownerを作らない。 |
+| `AC-HARNESS-L3-015-06` | CI実行主体（HELIX-OSまたは利用者）が提供するatomic CI結果/receiptにより選択検査範囲と省略検査を照合し、結果がないのに閉鎖済みとする変異を拒否する。利用者CIだけの正常fixtureを認め、HELIX-OS CIを一律必須にしない。 |
 
 ### `FR-HARNESS-L3-016` — 意味保存Refactorと上流Backflow（親: `HARNESS-L2-016`）
 
-⑤単位で受けた実装、paired design/contract、要求、改善理由を個別に扱う。paired design/contractがなければ、固定L2-019のreverse designから不足を補う。契約・要求・観測behaviorを保存する変更だけをRefactor候補とし、誤った詳細契約はL5、architecture/boundaryはL4、要求/acceptanceはL3/L2、価値はL1へ固定どおりBackflowする。Performance Refactorではbaseline・budget・workload・profile・statistical condition・regression oracleを測定前に特定し、比較可能な観測を要求する。L2の定めない閾値、改善率、工程④の完了を前提にしない。
+⑤単位で受けた実装、paired design/contract、要求、構造を改善する理由を個別に扱う。paired design/contractがなければ、固定L2-019のreverse designから不足を補う。契約・要求・観測behaviorを保存する変更だけをRefactor候補とし、誤った詳細契約はL5、architecture/boundaryはL4、要求/acceptanceはL3/L2、価値はL1へ固定どおりBackflowする。Performance Refactorではbaseline・budget・workload・profile・statistical condition・regression oracleを測定前に特定し、比較可能な観測を要求する。L2の定めない閾値、改善率、工程④の完了を前提にしない。
 
 | AC ID | 受入条件 |
 |---|---|
 | `AC-HARNESS-L3-016-01` | paired sourceがある場合、変更前後の要求・contract・observable behavior・consumer/oracleを比較し、同じ意味の変更だけをRefactor候補として残す。 |
 | `AC-HARNESS-L3-016-02` | paired design/contractがない場合はL2-019 reverse designの必要性を示し、⑤完了・Refactor済みと偽らない。④を一律の依存にしない。 |
-| `AC-HARNESS-L3-016-03` | 意味を変えるfailureはL5/L4/L3-L2/L1の該当ownerへ戻し、右側の実装修正で要求authorityを書き換えない。 |
+| `AC-HARNESS-L3-016-03` | 意味を変えるfailureは、詳細contractをL5、architecture/boundaryをL4、要求/acceptanceをL3/L2、価値をL1の該当ownerへそれぞれ戻し、右側の実装修正で要求authorityを書き換えない。 |
 | `AC-HARNESS-L3-016-04` | Performance Refactorでは測定条件と全ての該当回帰oracleを事前固定し、プロファイル対象の比較可能な前後結果を示す。比較不能、予算違反、回帰または測定不能な改善主張は成功扱いしない。 |
