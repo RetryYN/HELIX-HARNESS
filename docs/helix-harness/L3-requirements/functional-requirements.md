@@ -591,4 +591,8 @@ scope: 本追補5親のみ / G0 version_class 1.0
 
 054の採択状態は固定要求本文の当時の「未採択」metadataから生成せず、[11候補PO判断記録](../../governance/decisions/po-decision-2026-09-29-11candidates.md)のHARNESS-L2-054採択行（34行、登録revision `MPR-RC-HARNESS-L2-054-001`）を参照する。固定L2/L11の意味と版は変更しない。
 
+##### catalogからのauthority推定を分けるRoot追補
+
+| 親 | AC | FV CASE ID |
+|---|---|---|
 | 040 | `AC-HARNESS-L3-040-03` | `CASE-HARNESS-L10-040-r10-l2-agreement-inference`, `CASE-HARNESS-L10-040-r10-l3-approval-inference` |
