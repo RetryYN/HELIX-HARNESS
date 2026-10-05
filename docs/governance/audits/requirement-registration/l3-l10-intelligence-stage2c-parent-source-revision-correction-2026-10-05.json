@@ -1,0 +1,203 @@
+{
+  "record_kind": "parent-specific source revision clarification; append-only root inspection supplement",
+  "language": "ja",
+  "date": "2026-10-05",
+  "authority_effect": "none; this supplement clarifies source attribution only and does not change or generate L3 approval, PO decision, parent meaning, owner, scope, version, or implementation permission",
+  "scope": [
+    "HELIXINTELLIGENCE-L2-068",
+    "HELIXINTELLIGENCE-L2-075"
+  ],
+  "prior_decision_record": {
+    "path": "docs/governance/decisions/helix-intelligence-stage2c-l3-l10-po-decision-2026-10-05.md",
+    "revision": "cba1579cf6008f41026f3622b3b5032271ba3393",
+    "sha256": "4b997629ab37cd8c95f6fe0bc13f456b019c72b92f3b5ea73fe983a313c6b140",
+    "immutable_unchanged": true
+  },
+  "prior_delegated_decision_pin": {
+    "path": "docs/governance/audits/requirement-registration/l3-l10-intelligence-stage2c-delegated-decision-pin-2026-10-05.json",
+    "revision": "133099457efb078da1d7de3fc7e6a49d8389df48",
+    "sha256": "31a8d8fd05218757513e8d294d8094f19c1776862b9cb3b51cf32cd2e221bf33",
+    "immutable_unchanged": true
+  },
+  "clarification": "旧 decision の固定L2/L11一般欄 f6dad2a33e24f000b87d7f09b8d40288257e74cc はHELIXINTELLIGENCE-L2-068のL2/L11だけに適用する。HELIXINTELLIGENCE-L2-075はf6本文に存在せず、本文が1880c422311a7f8321dbb0e2b98fa12c69449201へpinするL2:618–625、L11:337–343が固定authority sourceである。旧decisionおよび旧pinは変更せず、本追補で親別の厳密な対応を加える。",
+  "parents": [
+    {
+      "identity": "HELIXINTELLIGENCE-L2-068",
+      "registration": "MPR-RC-HELIXINTELLIGENCE-L2-068-002",
+      "kind": "unit",
+      "version": "1.0",
+      "stage": "Stage 2c",
+      "fixed_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "authority_pins": [
+        {
+          "identity": "HELIXINTELLIGENCE-L2-068",
+          "source_kind": "L2 parent",
+          "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+          "physical_lines": {
+            "start": 491,
+            "end": 506
+          },
+          "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+          "raw_span_sha256_lf_inclusive": "152bd91c5e660815f0ac6cabcfc501d527adb18973db329f95c0d16e544a02d9",
+          "source_physical_line_count": 559,
+          "raw_span_bytes": 8073,
+          "verified": true
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-068",
+          "source_kind": "L11 acceptance",
+          "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+          "physical_lines": {
+            "start": 201,
+            "end": 209
+          },
+          "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+          "raw_span_sha256_lf_inclusive": "f9733900a979eebc6058056ea6b51370f4acd5b602955988985bb1dbf97b3d26",
+          "source_physical_line_count": 287,
+          "raw_span_bytes": 4186,
+          "verified": true
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-068",
+          "source_kind": "PO registration",
+          "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+          "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "physical_lines": {
+            "start": 98,
+            "end": 98
+          },
+          "full_file_sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+          "raw_span_sha256_lf_inclusive": "e67c4a4fda50180a66bc823eaae0a809351c3c0ed677542de912b846c20aa896",
+          "source_physical_line_count": 140,
+          "raw_span_bytes": 84,
+          "verified": true
+        }
+      ]
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-075",
+      "registration": "MPR-RC-HELIXINTELLIGENCE-L2-075-002",
+      "kind": "unit",
+      "version": "1.0",
+      "stage": "Stage 2c",
+      "fixed_source_revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "authority_pins": [
+        {
+          "identity": "HELIXINTELLIGENCE-L2-075",
+          "source_kind": "L2 parent",
+          "source_revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+          "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+          "physical_lines": {
+            "start": 618,
+            "end": 625
+          },
+          "full_file_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+          "raw_span_sha256_lf_inclusive": "c302d45ef008b8d73f71c9484c1c9e2432c8e195f23c559b513d36309cdb80f6",
+          "source_physical_line_count": 687,
+          "raw_span_bytes": 3611,
+          "verified": true
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-075",
+          "source_kind": "L11 acceptance",
+          "source_revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+          "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+          "physical_lines": {
+            "start": 337,
+            "end": 343
+          },
+          "full_file_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+          "raw_span_sha256_lf_inclusive": "b81bd9e52df97cc92f0f228fb9effab476012836e7e113b985641ea2c99ac08e",
+          "source_physical_line_count": 434,
+          "raw_span_bytes": 2181,
+          "verified": true
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-075",
+          "source_kind": "later35 PO registration",
+          "source_revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+          "path": "docs/governance/decisions/po-decision-2026-10-03-later35.md",
+          "physical_lines": {
+            "start": 33,
+            "end": 33
+          },
+          "full_file_sha256": "e3ea2cc8d79c2568985bc086fbc4d08d25e162fcc546858d6db47bba768ac3d3",
+          "raw_span_sha256_lf_inclusive": "f96c3473f9289f9087b9d8d7f3c4076d0592bdd23de64e8a67ecd212c8ab4d46",
+          "source_physical_line_count": 182,
+          "raw_span_bytes": 253,
+          "verified": true
+        }
+      ]
+    }
+  ],
+  "f6_absence_verification_for_075": [
+    {
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "bytes": 101004,
+      "physical_lines": 559,
+      "searched_literal": "HELIXINTELLIGENCE-L2-075",
+      "occurrences": 0,
+      "method": "entire git-show blob byte search"
+    },
+    {
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "bytes": 76601,
+      "physical_lines": 287,
+      "searched_literal": "HELIXINTELLIGENCE-L2-075",
+      "occurrences": 0,
+      "method": "entire git-show blob byte search"
+    }
+  ],
+  "approved_content_revision": "fdb5cbfff04fb555278242065957336a6e6f21f1",
+  "canonical_documents": [
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "body_revision": "fdb5cbfff04fb555278242065957336a6e6f21f1",
+      "sha256": "9f8049fd3e7bdfe6550f5de9a444d1f44449c1b61769bf79e85b47c2c5906e81",
+      "bytes": 5680,
+      "unchanged": true
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "body_revision": "fdb5cbfff04fb555278242065957336a6e6f21f1",
+      "sha256": "192e980c2b4c6c7a78d2651ae30e23c5072ee1ff4ae7366bd01be155bf88aac6",
+      "bytes": 31138,
+      "unchanged": true
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "body_revision": "fdb5cbfff04fb555278242065957336a6e6f21f1",
+      "sha256": "a8f2e0c4bc1d482d6cfd68cd5f9638fcf8575104aafc7bdcb5214b162190f876",
+      "bytes": 12464,
+      "unchanged": true
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "body_revision": "fdb5cbfff04fb555278242065957336a6e6f21f1",
+      "sha256": "5839b4cd42af9d57b0e01e8da6014838097671738297e2a343bcc4739d67809d",
+      "bytes": 5552,
+      "unchanged": true
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "body_revision": "fdb5cbfff04fb555278242065957336a6e6f21f1",
+      "sha256": "cb9cc91c9f2646e2272fd18c6fd2b176285ba3b0f36409805e5a2879adad6017",
+      "bytes": 33090,
+      "unchanged": true
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "body_revision": "fdb5cbfff04fb555278242065957336a6e6f21f1",
+      "sha256": "046a3b23b5070e339e579da2428d7773cb91da2b9ebad520971be3803e2e1a80",
+      "bytes": 14314,
+      "unchanged": true
+    }
+  ],
+  "review_state": "the root approval/pin remains scoped to the same two parents and same six document bytes; this supplemental record is for source-attribution correction and is not a new review or independent closure"
+}
