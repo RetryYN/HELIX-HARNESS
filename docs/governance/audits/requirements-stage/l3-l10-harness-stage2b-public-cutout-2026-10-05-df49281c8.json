@@ -1,0 +1,1257 @@
+{
+  "record_type": "local Stage 2b L3/L10 cutout audit; not independent review or PO decision",
+  "mechanism": "HELIX-HARNESS",
+  "stage": "2b",
+  "scope_parents": [
+    "HARNESS-L2-012",
+    "HARNESS-L2-013",
+    "HARNESS-L2-014",
+    "HARNESS-L2-015",
+    "HARNESS-L2-016"
+  ],
+  "base_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+  "body_commit": "df49281c8576207cf46b5651c05cf91ac13587c5",
+  "body_commit_is_local_only": true,
+  "pushed": false,
+  "pr_created": false,
+  "authority_status": {
+    "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "fixed_parent_acceptance_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "registration_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "registered_proposal_effect": "authority_effect=none",
+    "stage_assignment_revision": "ef753a0e13c908ef1e02b6185bf371ad4eefadd1",
+    "stage2b_1_0_target_candidate": true,
+    "stage2b_approval": false,
+    "stage1_approval_revision": "a77672513325aa9e79f3780af40455361b5d19a8",
+    "stage1_approval_applies_only_to": "HARNESS-L2-010/011/023 exact revision; does not approve this Stage2b body"
+  },
+  "parents": {
+    "HARNESS-L2-012": {
+      "fixed_l2_source_pin_index": 0,
+      "fixed_l11_source_pin_index": 1,
+      "po_registration_id": "MPR-RC-HARNESS-L2-012-001",
+      "po_registration_source_pin_index": 10,
+      "g0_source_pin_index": 11,
+      "ordering": "G0 Stage 2b / 1.0 target candidate; not an all-parent completion gate",
+      "functional_requirement_id": "FR-HARNESS-L3-012",
+      "acceptance_criteria_ids": [
+        "AC-HARNESS-L3-012-01",
+        "AC-HARNESS-L3-012-02",
+        "AC-HARNESS-L3-012-03"
+      ],
+      "functional_case_ids": [
+        "CASE-HARNESS-L10-012-01",
+        "CASE-HARNESS-L10-012-02",
+        "CASE-HARNESS-L10-012-03",
+        "CASE-HARNESS-L10-012-04",
+        "CASE-HARNESS-L10-012-05"
+      ],
+      "case_trace_map": [
+        {
+          "case_id": "CASE-HARNESS-L10-012-01",
+          "fr_id": "FR-HARNESS-L3-012",
+          "ac_ids": [
+            "AC-HARNESS-L3-012-01"
+          ]
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-012-02",
+          "fr_id": "FR-HARNESS-L3-012",
+          "ac_ids": [
+            "AC-HARNESS-L3-012-01"
+          ]
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-012-03",
+          "fr_id": "FR-HARNESS-L3-012",
+          "ac_ids": [
+            "AC-HARNESS-L3-012-02"
+          ]
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-012-04",
+          "fr_id": "FR-HARNESS-L3-012",
+          "ac_ids": [
+            "AC-HARNESS-L3-012-03"
+          ]
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-012-05",
+          "fr_id": "FR-HARNESS-L3-012",
+          "ac_ids": [
+            "AC-HARNESS-L3-012-01",
+            "AC-HARNESS-L3-012-02"
+          ]
+        }
+      ],
+      "business_requirement": "none independent; functional FR/AC/CASE only",
+      "nfr_candidate_id": "NFR-C-HARNESS-012-01",
+      "nfr_measurement_case_id": "CASE-HARNESS-L10-NFR-012-01"
+    },
+    "HARNESS-L2-013": {
+      "fixed_l2_source_pin_index": 2,
+      "fixed_l11_source_pin_index": 3,
+      "po_registration_id": "MPR-RC-HARNESS-L2-013-001",
+      "po_registration_source_pin_index": 10,
+      "g0_source_pin_index": 11,
+      "ordering": "G0 Stage 2b / 1.0 target candidate; not an all-parent completion gate",
+      "functional_requirement_id": "FR-HARNESS-L3-013",
+      "acceptance_criteria_ids": [
+        "AC-HARNESS-L3-013-01",
+        "AC-HARNESS-L3-013-02",
+        "AC-HARNESS-L3-013-03",
+        "AC-HARNESS-L3-013-04",
+        "AC-HARNESS-L3-013-05"
+      ],
+      "functional_case_ids": [
+        "CASE-HARNESS-L10-013-01",
+        "CASE-HARNESS-L10-013-02",
+        "CASE-HARNESS-L10-013-03",
+        "CASE-HARNESS-L10-013-04",
+        "CASE-HARNESS-L10-013-05",
+        "CASE-HARNESS-L10-013-06",
+        "CASE-HARNESS-L10-013-07"
+      ],
+      "case_trace_map": [
+        {
+          "case_id": "CASE-HARNESS-L10-013-01",
+          "fr_id": "FR-HARNESS-L3-013",
+          "ac_ids": [
+            "AC-HARNESS-L3-013-01",
+            "AC-HARNESS-L3-013-05"
+          ]
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-013-02",
+          "fr_id": "FR-HARNESS-L3-013",
+          "ac_ids": [
+            "AC-HARNESS-L3-013-01"
+          ]
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-013-03",
+          "fr_id": "FR-HARNESS-L3-013",
+          "ac_ids": [
+            "AC-HARNESS-L3-013-02"
+          ]
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-013-04",
+          "fr_id": "FR-HARNESS-L3-013",
+          "ac_ids": [
+            "AC-HARNESS-L3-013-03"
+          ]
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-013-05",
+          "fr_id": "FR-HARNESS-L3-013",
+          "ac_ids": [
+            "AC-HARNESS-L3-013-04"
+          ]
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-013-06",
+          "fr_id": "FR-HARNESS-L3-013",
+          "ac_ids": [
+            "AC-HARNESS-L3-013-01",
+            "AC-HARNESS-L3-013-02",
+            "AC-HARNESS-L3-013-05"
+          ]
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-013-07",
+          "fr_id": "FR-HARNESS-L3-013",
+          "ac_ids": [
+            "AC-HARNESS-L3-013-05"
+          ]
+        }
+      ],
+      "business_requirement": "none independent; functional FR/AC/CASE only",
+      "nfr_candidate_id": "NFR-C-HARNESS-013-01",
+      "nfr_measurement_case_id": "CASE-HARNESS-L10-NFR-013-01"
+    },
+    "HARNESS-L2-014": {
+      "fixed_l2_source_pin_index": 4,
+      "fixed_l11_source_pin_index": 5,
+      "po_registration_id": "MPR-RC-HARNESS-L2-014-003",
+      "po_registration_source_pin_index": 10,
+      "g0_source_pin_index": 11,
+      "ordering": "G0 Stage 2b / 1.0 target candidate; not an all-parent completion gate",
+      "functional_requirement_id": "FR-HARNESS-L3-014",
+      "acceptance_criteria_ids": [
+        "AC-HARNESS-L3-014-01",
+        "AC-HARNESS-L3-014-02",
+        "AC-HARNESS-L3-014-03"
+      ],
+      "functional_case_ids": [
+        "CASE-HARNESS-L10-014-01",
+        "CASE-HARNESS-L10-014-02",
+        "CASE-HARNESS-L10-014-03"
+      ],
+      "case_trace_map": [
+        {
+          "case_id": "CASE-HARNESS-L10-014-01",
+          "fr_id": "FR-HARNESS-L3-014",
+          "ac_ids": [
+            "AC-HARNESS-L3-014-01",
+            "AC-HARNESS-L3-014-02"
+          ]
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-014-02",
+          "fr_id": "FR-HARNESS-L3-014",
+          "ac_ids": [
+            "AC-HARNESS-L3-014-03"
+          ]
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-014-03",
+          "fr_id": "FR-HARNESS-L3-014",
+          "ac_ids": [
+            "AC-HARNESS-L3-014-01",
+            "AC-HARNESS-L3-014-02",
+            "AC-HARNESS-L3-014-03"
+          ]
+        }
+      ],
+      "business_requirement": "none independent; functional FR/AC/CASE only",
+      "nfr_candidate_id": "NFR-C-HARNESS-014-01",
+      "nfr_measurement_case_id": "CASE-HARNESS-L10-NFR-014-01"
+    },
+    "HARNESS-L2-015": {
+      "fixed_l2_source_pin_index": 6,
+      "fixed_l11_source_pin_index": 7,
+      "po_registration_id": "MPR-RC-HARNESS-L2-015-004",
+      "po_registration_source_pin_index": 10,
+      "g0_source_pin_index": 11,
+      "ordering": "G0 Stage 2b / 1.0 target candidate; not an all-parent completion gate",
+      "functional_requirement_id": "FR-HARNESS-L3-015",
+      "acceptance_criteria_ids": [
+        "AC-HARNESS-L3-015-01",
+        "AC-HARNESS-L3-015-02",
+        "AC-HARNESS-L3-015-03",
+        "AC-HARNESS-L3-015-04",
+        "AC-HARNESS-L3-015-05"
+      ],
+      "functional_case_ids": [
+        "CASE-HARNESS-L10-015-01",
+        "CASE-HARNESS-L10-015-02",
+        "CASE-HARNESS-L10-015-03",
+        "CASE-HARNESS-L10-015-04",
+        "CASE-HARNESS-L10-015-05",
+        "CASE-HARNESS-L10-015-06",
+        "CASE-HARNESS-L10-015-07",
+        "CASE-HARNESS-L10-015-08",
+        "CASE-HARNESS-L10-015-09",
+        "CASE-HARNESS-L10-015-10",
+        "CASE-HARNESS-L10-015-11",
+        "CASE-HARNESS-L10-015-12",
+        "CASE-HARNESS-L10-015-13",
+        "CASE-HARNESS-L10-015-14"
+      ],
+      "case_trace_map": [
+        {
+          "case_id": "CASE-HARNESS-L10-015-01",
+          "fr_id": "FR-HARNESS-L3-015",
+          "ac_ids": [
+            "AC-HARNESS-L3-015-01",
+            "AC-HARNESS-L3-015-02"
+          ]
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-015-02",
+          "fr_id": "FR-HARNESS-L3-015",
+          "ac_ids": [
+            "AC-HARNESS-L3-015-03"
+          ]
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-015-03",
+          "fr_id": "FR-HARNESS-L3-015",
+          "ac_ids": [
+            "AC-HARNESS-L3-015-04"
+          ]
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-015-04",
+          "fr_id": "FR-HARNESS-L3-015",
+          "ac_ids": [
+            "AC-HARNESS-L3-015-01",
+            "AC-HARNESS-L3-015-02",
+            "AC-HARNESS-L3-015-04"
+          ]
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-015-05",
+          "fr_id": "FR-HARNESS-L3-015",
+          "ac_ids": [
+            "AC-HARNESS-L3-015-01",
+            "AC-HARNESS-L3-015-05"
+          ]
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-015-06",
+          "fr_id": "FR-HARNESS-L3-015",
+          "ac_ids": [
+            "AC-HARNESS-L3-015-01",
+            "AC-HARNESS-L3-015-05"
+          ]
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-015-07",
+          "fr_id": "FR-HARNESS-L3-015",
+          "ac_ids": [
+            "AC-HARNESS-L3-015-05"
+          ]
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-015-08",
+          "fr_id": "FR-HARNESS-L3-015",
+          "ac_ids": [
+            "AC-HARNESS-L3-015-05"
+          ]
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-015-09",
+          "fr_id": "FR-HARNESS-L3-015",
+          "ac_ids": [
+            "AC-HARNESS-L3-015-05"
+          ]
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-015-10",
+          "fr_id": "FR-HARNESS-L3-015",
+          "ac_ids": [
+            "AC-HARNESS-L3-015-05"
+          ]
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-015-11",
+          "fr_id": "FR-HARNESS-L3-015",
+          "ac_ids": [
+            "AC-HARNESS-L3-015-05"
+          ]
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-015-12",
+          "fr_id": "FR-HARNESS-L3-015",
+          "ac_ids": [
+            "AC-HARNESS-L3-015-05"
+          ]
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-015-13",
+          "fr_id": "FR-HARNESS-L3-015",
+          "ac_ids": [
+            "AC-HARNESS-L3-015-05"
+          ]
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-015-14",
+          "fr_id": "FR-HARNESS-L3-015",
+          "ac_ids": [
+            "AC-HARNESS-L3-015-05"
+          ]
+        }
+      ],
+      "business_requirement": "none independent; functional FR/AC/CASE only",
+      "nfr_candidate_id": "NFR-C-HARNESS-015-01",
+      "nfr_measurement_case_id": "CASE-HARNESS-L10-NFR-015-01"
+    },
+    "HARNESS-L2-016": {
+      "fixed_l2_source_pin_index": 8,
+      "fixed_l11_source_pin_index": 9,
+      "po_registration_id": "MPR-RC-HARNESS-L2-016-004",
+      "po_registration_source_pin_index": 10,
+      "g0_source_pin_index": 11,
+      "ordering": "G0 Stage 2b / 1.0 target candidate; not an all-parent completion gate",
+      "functional_requirement_id": "FR-HARNESS-L3-016",
+      "acceptance_criteria_ids": [
+        "AC-HARNESS-L3-016-01",
+        "AC-HARNESS-L3-016-02",
+        "AC-HARNESS-L3-016-03",
+        "AC-HARNESS-L3-016-04"
+      ],
+      "functional_case_ids": [
+        "CASE-HARNESS-L10-016-01",
+        "CASE-HARNESS-L10-016-02",
+        "CASE-HARNESS-L10-016-03",
+        "CASE-HARNESS-L10-016-04"
+      ],
+      "case_trace_map": [
+        {
+          "case_id": "CASE-HARNESS-L10-016-01",
+          "fr_id": "FR-HARNESS-L3-016",
+          "ac_ids": [
+            "AC-HARNESS-L3-016-01"
+          ]
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-016-02",
+          "fr_id": "FR-HARNESS-L3-016",
+          "ac_ids": [
+            "AC-HARNESS-L3-016-02",
+            "AC-HARNESS-L3-016-03"
+          ]
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-016-03",
+          "fr_id": "FR-HARNESS-L3-016",
+          "ac_ids": [
+            "AC-HARNESS-L3-016-04"
+          ]
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-016-04",
+          "fr_id": "FR-HARNESS-L3-016",
+          "ac_ids": [
+            "AC-HARNESS-L3-016-01",
+            "AC-HARNESS-L3-016-03",
+            "AC-HARNESS-L3-016-04"
+          ]
+        }
+      ],
+      "business_requirement": "none independent; functional FR/AC/CASE only",
+      "nfr_candidate_id": "NFR-C-HARNESS-016-01",
+      "nfr_measurement_case_id": "CASE-HARNESS-L10-NFR-016-01"
+    }
+  },
+  "canonical_documents": {
+    "FR": {
+      "document": "FR",
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "source_commit": "df49281c8576207cf46b5651c05cf91ac13587c5",
+      "full_file_sha256": "b17ff76db4a0fe4c2672e815ca9c567b0021b8b5209f9aa3946957819504ac1b",
+      "stage2b_span": {
+        "start": 99,
+        "end": 201,
+        "raw_span_sha256_lf_inclusive": "153c76e300e22e45d4f62e58628cd9fcefed93ead929c8d8c1bf64a79a87bacb"
+      },
+      "prefix_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+      "prefix_sha256": "c63150540d6a1dce2ee8e566eaee4d518dd1fa868fd6af3cfb75b7df408f8ac7"
+    },
+    "BR": {
+      "document": "BR",
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "source_commit": "df49281c8576207cf46b5651c05cf91ac13587c5",
+      "full_file_sha256": "ae00c0dda32ce2b95213a1be008339c569f892f4a0249a96e9b901cdb70a8f6f",
+      "stage2b_span": {
+        "start": 18,
+        "end": 37,
+        "raw_span_sha256_lf_inclusive": "4f7bc037851f16a43f64da2109c34c64994ca9c99a6980af6b18cd11a5ce1da1"
+      },
+      "prefix_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+      "prefix_sha256": "4edda6e444179db716442eaa39bffb8783eb3a8440b87dda5723c54aeb6294f3"
+    },
+    "NFR": {
+      "document": "NFR",
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "source_commit": "df49281c8576207cf46b5651c05cf91ac13587c5",
+      "full_file_sha256": "d6f10a26dd11b9bf8b6ceb1d3a4bab7ee2f5865949cb5708598c9283fc69ebd8",
+      "stage2b_span": {
+        "start": 56,
+        "end": 73,
+        "raw_span_sha256_lf_inclusive": "25cb362b4e76ef74b1461cbd45c814cf638c4224133969990bc9fac15d1f66d3"
+      },
+      "prefix_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+      "prefix_sha256": "d291fab1f81b8adb76d6cbfbcb0ca274105338b2e6a7fed3c4dbb1443d2f9bd2"
+    },
+    "L10FR": {
+      "document": "L10FR",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "source_commit": "df49281c8576207cf46b5651c05cf91ac13587c5",
+      "full_file_sha256": "303fbaa5075b140f0053d57ba162d2b26e6b6b958b336b55811ac59e7b7ad6e7",
+      "stage2b_span": {
+        "start": 32,
+        "end": 79,
+        "raw_span_sha256_lf_inclusive": "75963328dd82433467dcac2acfa345ea506c900ae0d777f8aeeab738007240d5"
+      },
+      "prefix_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+      "prefix_sha256": "9ec6d90c517535550bad43ba56abb6fba0eac0a62a766f9144b5277e69c6946c"
+    },
+    "L10BR": {
+      "document": "L10BR",
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "source_commit": "df49281c8576207cf46b5651c05cf91ac13587c5",
+      "full_file_sha256": "eeb40a6b192fdc8c29e9fb2913814b4f32d1c9b960c5f2cfcea1c9b91cc133da",
+      "stage2b_span": {
+        "start": 17,
+        "end": 23,
+        "raw_span_sha256_lf_inclusive": "1effdfe8464585de2a9478b652c03633a93c5e5769c848943f6fe99fa969ea4b"
+      },
+      "prefix_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+      "prefix_sha256": "30942ad3414982c13016e7f196cae20f4a6dbe3e53b4175165f2505fb8be92bb"
+    },
+    "L10NFR": {
+      "document": "L10NFR",
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "source_commit": "df49281c8576207cf46b5651c05cf91ac13587c5",
+      "full_file_sha256": "6603ca923d28c22f9b68fdb401f2f1a26850a6966ce03a14776679bbfac8d8df",
+      "stage2b_span": {
+        "start": 25,
+        "end": 44,
+        "raw_span_sha256_lf_inclusive": "7beaad78005729a237eb1f888fd8974647e0e7378ea7ca2e381957799d4e3a89"
+      },
+      "prefix_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+      "prefix_sha256": "c04ad3e124cac5f659f0a03ff22eea79a8e7ca8b0998921d037b77185a01f078"
+    }
+  },
+  "source_pins": {
+    "fixed_authority_and_decisions": [
+      {
+        "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "source_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "physical_lines": {
+          "start": 363,
+          "end": 370
+        },
+        "full_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "raw_span_sha256_lf_inclusive": "ed26f576f8ddd5d6b83d912abfec6ec346d6aa768d631909b72273fd144bd59b",
+        "role": "fixed parent HARNESS-L2-012 full parent clause"
+      },
+      {
+        "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "physical_lines": {
+          "start": 207,
+          "end": 207
+        },
+        "full_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+        "raw_span_sha256_lf_inclusive": "37367ceafecde02c85371205b5cb76bb8b443e32fbc2d414ab7f531ddb818f77",
+        "role": "fixed paired L11 acceptance HARNESS-L2-012"
+      },
+      {
+        "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "source_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "physical_lines": {
+          "start": 371,
+          "end": 378
+        },
+        "full_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "raw_span_sha256_lf_inclusive": "1cf32e08f16ebb09c7d24e731a33cb906f9ddcb4f869f427f8c49481873ed771",
+        "role": "fixed parent HARNESS-L2-013 full parent clause"
+      },
+      {
+        "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "physical_lines": {
+          "start": 208,
+          "end": 208
+        },
+        "full_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+        "raw_span_sha256_lf_inclusive": "38617c490b55cc9b454e06826d180730405eae38e0be13be828b462d96ebdde2",
+        "role": "fixed paired L11 acceptance HARNESS-L2-013"
+      },
+      {
+        "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "source_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "physical_lines": {
+          "start": 379,
+          "end": 386
+        },
+        "full_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "raw_span_sha256_lf_inclusive": "fb8557ae7b84b31b939093490e1571d17a7b2995c6db30a4060dda10c0e284b4",
+        "role": "fixed parent HARNESS-L2-014 full parent clause"
+      },
+      {
+        "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "physical_lines": {
+          "start": 209,
+          "end": 209
+        },
+        "full_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+        "raw_span_sha256_lf_inclusive": "0e4c38f8d57ace3c270459b5523add19e0ed2a5285d848d17d0d16ae698c0491",
+        "role": "fixed paired L11 acceptance HARNESS-L2-014"
+      },
+      {
+        "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "source_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "physical_lines": {
+          "start": 387,
+          "end": 394
+        },
+        "full_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "raw_span_sha256_lf_inclusive": "4c7fb6b87c9dd4664dc0383cfd150d20a0bd53ef1e1ed0f7439ce4a95208ac5c",
+        "role": "fixed parent HARNESS-L2-015 full parent clause"
+      },
+      {
+        "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "physical_lines": {
+          "start": 210,
+          "end": 210
+        },
+        "full_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+        "raw_span_sha256_lf_inclusive": "1511994df9b3b53d62ab501d2fd0d18be14f54fb7389999f37cc3e1b58c29697",
+        "role": "fixed paired L11 acceptance HARNESS-L2-015"
+      },
+      {
+        "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "source_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "physical_lines": {
+          "start": 395,
+          "end": 402
+        },
+        "full_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "raw_span_sha256_lf_inclusive": "084dd154969beffb5c67255adcce3be4f5a483e8e89822dabf83ab82ea974198",
+        "role": "fixed parent HARNESS-L2-016 full parent clause"
+      },
+      {
+        "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "physical_lines": {
+          "start": 211,
+          "end": 211
+        },
+        "full_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+        "raw_span_sha256_lf_inclusive": "e3504f1082accfe91305568a552939628333db0a1c7d28f1d709082b281d3639",
+        "role": "fixed paired L11 acceptance HARNESS-L2-016"
+      },
+      {
+        "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "source_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "physical_lines": {
+          "start": 41,
+          "end": 45
+        },
+        "full_file_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+        "raw_span_sha256_lf_inclusive": "d575e0488a535cbc28dace0de7e9baa159b870e37b4e0cba42fc664f3a18979c",
+        "role": "main633 proposal registration rows; confirms registration status and authority_effect=none"
+      },
+      {
+        "source_commit": "ef753a0e13c908ef1e02b6185bf371ad4eefadd1",
+        "source_path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+        "physical_lines": {
+          "start": 44,
+          "end": 48
+        },
+        "full_file_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+        "raw_span_sha256_lf_inclusive": "061d788b38bf3d14ce7221005db6a78d5143df929d37eb0fd9b02a3aa07471e1",
+        "role": "Stage 2b 1.0-target-candidate ordering for HARNESS-L2-012–016"
+      },
+      {
+        "source_commit": "ef753a0e13c908ef1e02b6185bf371ad4eefadd1",
+        "source_path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
+        "physical_lines": {
+          "start": 225,
+          "end": 474
+        },
+        "full_file_sha256": "ec970df79eaaf693f8825045b235c43ea10aefa7925701b1fff2a974df3e4e0a",
+        "raw_span_sha256_lf_inclusive": "2a48c3d4cb16636c071f6e76f873bcc1ed74f729f0c9f83e2d0e7664bc1c6808",
+        "role": "Stage 2b machine-readable proposal and sequence records for HARNESS-L2-012–016"
+      },
+      {
+        "source_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+        "source_path": "docs/governance/decisions/helix-harness-stage1-l3-l10-po-decision-2026-10-05.md",
+        "physical_lines": {
+          "start": 8,
+          "end": 10
+        },
+        "full_file_sha256": "efda65558a62b0d1caddd98d424704e60c5f827f6e9bf3eaadd861fd0259741e",
+        "raw_span_sha256_lf_inclusive": "238e3b1be5c6dca0cd5f68818a73e1c46951d58d73c0515f911aa9ef7eba8e72",
+        "role": "Stage 1 PO approved revision and effect scope; not Stage2b approval"
+      },
+      {
+        "source_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+        "source_path": "docs/governance/decisions/helix-harness-stage1-l3-l10-po-decision-2026-10-05.md",
+        "physical_lines": {
+          "start": 41,
+          "end": 45
+        },
+        "full_file_sha256": "efda65558a62b0d1caddd98d424704e60c5f827f6e9bf3eaadd861fd0259741e",
+        "raw_span_sha256_lf_inclusive": "59d34fcfa329b4a8533a5aaac463d3608c373bd303bbfc44e1d9949205c1aea6",
+        "role": "Stage 1 approval scope parents 010/011/023 only; excludes 012–016"
+      },
+      {
+        "source_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+        "source_path": "docs/governance/decisions/helix-harness-stage1-l3-l10-po-decision-2026-10-05.md",
+        "physical_lines": {
+          "start": 32,
+          "end": 39
+        },
+        "full_file_sha256": "efda65558a62b0d1caddd98d424704e60c5f827f6e9bf3eaadd861fd0259741e",
+        "raw_span_sha256_lf_inclusive": "fefbbaa4a7120f87adb8fc360e363ab36fd27a75de41a9ad7b85f71b23326f6b",
+        "role": "Stage 1 PO-approved six-file SHA table; verifies preserved prefix bytes"
+      },
+      {
+        "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "source_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "physical_lines": {
+          "start": 60,
+          "end": 60
+        },
+        "full_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "raw_span_sha256_lf_inclusive": "1f3ea0e12d54f757e6e87e634dd8248b1256d9e1da8ae796d3342aa82003531f",
+        "role": "fixed L2-009 source relation referenced by 014 disposition"
+      },
+      {
+        "source_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+        "source_path": "docs/governance/audits/requirements-stage/implementation-order-2026-09-27.md",
+        "physical_lines": {
+          "start": 32,
+          "end": 32
+        },
+        "full_file_sha256": "9b6c7233c57a42dc43c20146f776399a03c9aaf827f40f03a436cba15d7cb862",
+        "raw_span_sha256_lf_inclusive": "b697873cdd8f27863dad28518bbb3820fbf001bbbee15bddd6fc7d1f3833cd09",
+        "role": "Stage 2b order/candidate population context"
+      }
+    ],
+    "selected_stage2b_input_revision": [
+      {
+        "source_commit": "3d7eb58fbf5ab8a1020c4c3f90b607b3b2d7b4e9",
+        "source_path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "physical_lines": {
+          "start": 185,
+          "end": 287
+        },
+        "full_file_sha256": "dfaf887711d50d650134059fcd25e4c8bb62065eb2df7d21c7d9f67d7b670e33",
+        "raw_span_sha256_lf_inclusive": "cccd5e922318044d4371bf6a2135e4fef2b71e7d3a6c6a7c37598a9e8eded1a4",
+        "role": "Stage 2b 012–016 source section copied/revised for FR"
+      },
+      {
+        "source_commit": "3d7eb58fbf5ab8a1020c4c3f90b607b3b2d7b4e9",
+        "source_path": "docs/helix-harness/L3-requirements/business-requirements.md",
+        "physical_lines": {
+          "start": 38,
+          "end": 57
+        },
+        "full_file_sha256": "6bf5ac300b21d04deacff58a64119c56f122c52c9fcdd1ad3120177967e2064f",
+        "raw_span_sha256_lf_inclusive": "4f7bc037851f16a43f64da2109c34c64994ca9c99a6980af6b18cd11a5ce1da1",
+        "role": "Stage 2b 012–016 source section copied/revised for BR"
+      },
+      {
+        "source_commit": "3d7eb58fbf5ab8a1020c4c3f90b607b3b2d7b4e9",
+        "source_path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+        "physical_lines": {
+          "start": 83,
+          "end": 100
+        },
+        "full_file_sha256": "1213e2bff00bcd1a730bec66be8766cea13bcf18bd6e8a624e867d4ad2fa2304",
+        "raw_span_sha256_lf_inclusive": "25cb362b4e76ef74b1461cbd45c814cf638c4224133969990bc9fac15d1f66d3",
+        "role": "Stage 2b 012–016 source section copied/revised for NFR"
+      },
+      {
+        "source_commit": "3d7eb58fbf5ab8a1020c4c3f90b607b3b2d7b4e9",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_lines": {
+          "start": 70,
+          "end": 117
+        },
+        "full_file_sha256": "e2f36186688b9f2e95b40ad89a0c6c7332b4fdf2701a6dfae8a75d7b8c876945",
+        "raw_span_sha256_lf_inclusive": "14b5a3326d7fe8e31d788865b1227287d357d8d4ba5e590ab45da3ab0a87a5ea",
+        "role": "Stage 2b 012–016 source section copied/revised for L10FR"
+      },
+      {
+        "source_commit": "3d7eb58fbf5ab8a1020c4c3f90b607b3b2d7b4e9",
+        "source_path": "docs/helix-harness/L10-verification/business-verification.md",
+        "physical_lines": {
+          "start": 25,
+          "end": 31
+        },
+        "full_file_sha256": "98c665c66340a54a308dc3cee93a61c33ec43454f6fb4276e3184c6ab94faa1e",
+        "raw_span_sha256_lf_inclusive": "1effdfe8464585de2a9478b652c03633a93c5e5769c848943f6fe99fa969ea4b",
+        "role": "Stage 2b 012–016 source section copied/revised for L10BR"
+      },
+      {
+        "source_commit": "3d7eb58fbf5ab8a1020c4c3f90b607b3b2d7b4e9",
+        "source_path": "docs/helix-harness/L10-verification/nfr-verification.md",
+        "physical_lines": {
+          "start": 52,
+          "end": 71
+        },
+        "full_file_sha256": "f54626266157f47649bc7350bab4f88ea5c294c8731a789b79877af7ca0bd62d",
+        "raw_span_sha256_lf_inclusive": "7beaad78005729a237eb1f888fd8974647e0e7378ea7ca2e381957799d4e3a89",
+        "role": "Stage 2b 012–016 source section copied/revised for L10NFR"
+      }
+    ],
+    "legacy_inventory_sources": [
+      {
+        "source_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md",
+        "physical_lines": {
+          "start": 16,
+          "end": 56
+        },
+        "full_file_sha256": "949b0da00d2a417e1b36d3679b89735de7adadf831f567dbe383dfe6337f19e4",
+        "raw_span_sha256_lf_inclusive": "fbb50e1ed591235cba594d8b8a10d5f1c55be865e3df9c9daf75f3814a18ab6a",
+        "role": "Legacy L3/L10 layout and old process model",
+        "asset_id": "LEGACY-ASSET-9A772391C7FB1298D45F"
+      },
+      {
+        "source_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+        "physical_lines": {
+          "start": 148,
+          "end": 166
+        },
+        "full_file_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+        "raw_span_sha256_lf_inclusive": "dd94d271bc924f93244ae9ef92258154b943aa464b2639cec0be0e1266bd1e4f",
+        "role": "Legacy L3 FR/AC and pair/process scope",
+        "asset_id": "LEGACY-ASSET-F542125805B777D8A56A"
+      },
+      {
+        "source_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+        "physical_lines": {
+          "start": 143,
+          "end": 143
+        },
+        "full_file_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+        "raw_span_sha256_lf_inclusive": "92e81acddebb51ec40b38b06d6d783efdb2791679b18800eba1a9c2b808e7984",
+        "role": "012 legacy requirement source",
+        "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605"
+      },
+      {
+        "source_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+        "physical_lines": {
+          "start": 100,
+          "end": 100
+        },
+        "full_file_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+        "raw_span_sha256_lf_inclusive": "73b02fe42b055c094a9b314f2e8f7ff423649c897f068698e6745d6d782817ba",
+        "role": "012 legacy acceptance source",
+        "asset_id": "LEGACY-ASSET-44DD86E3DEC09E65EF51"
+      },
+      {
+        "source_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L6-screen-applicability-prototype-unit-test-design.md",
+        "physical_lines": {
+          "start": 25,
+          "end": 50
+        },
+        "full_file_sha256": "d72c002d485628ba059346b6af6a7233cead8bdf060a2630289d1c8148e0e26f",
+        "raw_span_sha256_lf_inclusive": "45ba2ab8a9e13a15c78bea12407ef365c3523d45c06ac49d364affa6cff62455",
+        "role": "012 legacy screen applicability test design",
+        "asset_id": "LEGACY-ASSET-63DEDB3F6F768B251BC5"
+      },
+      {
+        "source_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+        "physical_lines": {
+          "start": 42,
+          "end": 67
+        },
+        "full_file_sha256": "361a9ef773f7cf36cc0953f70cad205184ca952f2cb672431e5b929121ef1f61",
+        "raw_span_sha256_lf_inclusive": "2f7f1b7a91a6a3a010815024e890b78aac583d8c2be9b112daefee6762088611",
+        "role": "013 legacy requirement formation source",
+        "asset_id": "LEGACY-ASSET-E78B8D68CC327AA00991"
+      },
+      {
+        "source_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+        "physical_lines": {
+          "start": 16,
+          "end": 33
+        },
+        "full_file_sha256": "3462b3da8269668c848799b07305f2fe135d8902de02121c2048d5686d98dc0e",
+        "raw_span_sha256_lf_inclusive": "d18a7f7febab4d92e0ab06cfd6d8b7b292de6640de915511fd49e75594fb82dc",
+        "role": "013 legacy acceptance source",
+        "asset_id": "LEGACY-ASSET-AD746F4F3487103519F9"
+      },
+      {
+        "source_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/design-registry-requirement-family-authority.md",
+        "physical_lines": {
+          "start": 60,
+          "end": 70
+        },
+        "full_file_sha256": "4f75f1fb5d285daaa582b2e4cbc016d8679d9e2364f60cc152dac3f5dece71ae",
+        "raw_span_sha256_lf_inclusive": "6ed9d9c42d705dbf14c7d9eada84f27d0d6b1e3bdadf79af02d5618bbb48c809",
+        "role": "014 source-kind/family applicability source",
+        "asset_id": "LEGACY-ASSET-5CBA32E9DB5B0FE05589"
+      },
+      {
+        "source_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-design-registry-requirement-family-acceptance-test-design.md",
+        "physical_lines": {
+          "start": 28,
+          "end": 45
+        },
+        "full_file_sha256": "bf4d0f0aba62f66e82c0f58c7134765f6c1fb0bcb7f00bb2324e6b2f729a1e9c",
+        "raw_span_sha256_lf_inclusive": "e74821d0df3c2b209756df00c06ce53cfa32789e5dea2bc5df53a9a889522f68",
+        "role": "014 legacy normal/negative fixture shape",
+        "asset_id": "LEGACY-ASSET-0861E1D3646C7A28AAD0"
+      },
+      {
+        "source_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+        "physical_lines": {
+          "start": 181,
+          "end": 181
+        },
+        "full_file_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+        "raw_span_sha256_lf_inclusive": "3320dde645b2c23563d8d8c2fa6daac6d97e8868f5e97b3e7edbefabf4ee7218",
+        "role": "015 legacy NFR source",
+        "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605"
+      },
+      {
+        "source_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+        "physical_lines": {
+          "start": 109,
+          "end": 109
+        },
+        "full_file_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+        "raw_span_sha256_lf_inclusive": "1c60f920a27b1a266d3440c22c62dbc45719b7ff62280bd63649273811515b4e",
+        "role": "014 legacy pair acceptance source",
+        "asset_id": "LEGACY-ASSET-44DD86E3DEC09E65EF51"
+      },
+      {
+        "source_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+        "physical_lines": {
+          "start": 136,
+          "end": 136
+        },
+        "full_file_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+        "raw_span_sha256_lf_inclusive": "ffdfe42c926fe999c1d59b75d0cb4c150a9ee6dd002e54743bdc228c7f11a9f9",
+        "role": "015 legacy NFR acceptance source",
+        "asset_id": "LEGACY-ASSET-44DD86E3DEC09E65EF51"
+      },
+      {
+        "source_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L5-pillar-integration-test-design.md",
+        "physical_lines": {
+          "start": 77,
+          "end": 77
+        },
+        "full_file_sha256": "0bf20d470daba6a63b515ebd0d53509ee24c64df2c9e6bd6235e7874af23a8f5",
+        "raw_span_sha256_lf_inclusive": "873870dae5f335ed00e1f45c8a65f0fa45624a472e85dd1957b8312a082c0d96",
+        "role": "015 legacy integration test NFR source",
+        "asset_id": "LEGACY-ASSET-B7E240E4CE0263FDBDF6"
+      },
+      {
+        "source_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+        "physical_lines": {
+          "start": 148,
+          "end": 149
+        },
+        "full_file_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+        "raw_span_sha256_lf_inclusive": "680fa00b7126ead1f6a39331214983f58be09e8a802df216868864d7f159f7e1",
+        "role": "016 legacy semantic/consumer/oracle preservation source",
+        "asset_id": "LEGACY-ASSET-02D897E62EF2FA267267"
+      },
+      {
+        "source_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-improvement-loop-acceptance.md",
+        "physical_lines": {
+          "start": 16,
+          "end": 43
+        },
+        "full_file_sha256": "f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943",
+        "raw_span_sha256_lf_inclusive": "7c229fcaadeab4ea8d4156c2ae146dbf34b47ffaf8af79c6ca2deb713e3b0c3e",
+        "role": "016 legacy acceptance and negative oracle source",
+        "asset_id": "LEGACY-ASSET-0B5B38F146D9538C9A36"
+      },
+      {
+        "source_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+        "physical_lines": {
+          "start": 50,
+          "end": 50
+        },
+        "full_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+        "raw_span_sha256_lf_inclusive": "636bf050b8a9523e41735710af74de1a1b0711936385a0a16d6b8b501b4a66e0",
+        "role": "016 legacy route requirement locator A",
+        "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF"
+      },
+      {
+        "source_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+        "physical_lines": {
+          "start": 79,
+          "end": 79
+        },
+        "full_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+        "raw_span_sha256_lf_inclusive": "13e315180e4a7f901fbd6a73e05bb2188f98b4afe7aee50e7440002be7d74429",
+        "role": "016 legacy route requirement locator B",
+        "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF"
+      },
+      {
+        "source_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+        "physical_lines": {
+          "start": 48,
+          "end": 48
+        },
+        "full_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+        "raw_span_sha256_lf_inclusive": "4bc22a27b12b1c807fc14ea945a0e69599eca8f938f469e7fae30f0e7f641b93",
+        "role": "016 legacy route acceptance source",
+        "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B"
+      },
+      {
+        "source_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L5-design-refactoring-domain-model-integration-test-design.md",
+        "physical_lines": {
+          "start": 16,
+          "end": 40
+        },
+        "full_file_sha256": "869d4494c8f5cfaea4d90f29392ee1a2c7c63cc2084712eb43e0c1d91cdeca60",
+        "raw_span_sha256_lf_inclusive": "a73bebd85404786e634707e15b477342a0cf27b896ecc5bdea0b0ea20c3bc935",
+        "role": "016 legacy consumer/oracle/refactor integration source",
+        "asset_id": "LEGACY-ASSET-7E16E3B80335D8EC6F35"
+      }
+    ],
+    "preserved_stage1_prefixes": [
+      {
+        "document": "FR",
+        "source_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+        "source_path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "physical_lines": {
+          "start": 1,
+          "end": 97
+        },
+        "full_file_sha256": "c63150540d6a1dce2ee8e566eaee4d518dd1fa868fd6af3cfb75b7df408f8ac7",
+        "raw_span_sha256_lf_inclusive": "c63150540d6a1dce2ee8e566eaee4d518dd1fa868fd6af3cfb75b7df408f8ac7",
+        "byte_length": 26819,
+        "role": "preserved Stage 1 prefix; exact byte prefix",
+        "stage1_po_approved_sha_match": true
+      },
+      {
+        "document": "BR",
+        "source_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+        "source_path": "docs/helix-harness/L3-requirements/business-requirements.md",
+        "physical_lines": {
+          "start": 1,
+          "end": 16
+        },
+        "full_file_sha256": "4edda6e444179db716442eaa39bffb8783eb3a8440b87dda5723c54aeb6294f3",
+        "raw_span_sha256_lf_inclusive": "4edda6e444179db716442eaa39bffb8783eb3a8440b87dda5723c54aeb6294f3",
+        "byte_length": 1738,
+        "role": "preserved Stage 1 prefix; exact byte prefix",
+        "stage1_po_approved_sha_match": true
+      },
+      {
+        "document": "NFR",
+        "source_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+        "source_path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+        "physical_lines": {
+          "start": 1,
+          "end": 54
+        },
+        "full_file_sha256": "d291fab1f81b8adb76d6cbfbcb0ca274105338b2e6a7fed3c4dbb1443d2f9bd2",
+        "raw_span_sha256_lf_inclusive": "d291fab1f81b8adb76d6cbfbcb0ca274105338b2e6a7fed3c4dbb1443d2f9bd2",
+        "byte_length": 10657,
+        "role": "preserved Stage 1 prefix; exact byte prefix",
+        "stage1_po_approved_sha_match": true
+      },
+      {
+        "document": "L10FR",
+        "source_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_lines": {
+          "start": 1,
+          "end": 30
+        },
+        "full_file_sha256": "9ec6d90c517535550bad43ba56abb6fba0eac0a62a766f9144b5277e69c6946c",
+        "raw_span_sha256_lf_inclusive": "9ec6d90c517535550bad43ba56abb6fba0eac0a62a766f9144b5277e69c6946c",
+        "byte_length": 14788,
+        "role": "preserved Stage 1 prefix; exact byte prefix",
+        "stage1_po_approved_sha_match": true
+      },
+      {
+        "document": "L10BR",
+        "source_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+        "source_path": "docs/helix-harness/L10-verification/business-verification.md",
+        "physical_lines": {
+          "start": 1,
+          "end": 15
+        },
+        "full_file_sha256": "30942ad3414982c13016e7f196cae20f4a6dbe3e53b4175165f2505fb8be92bb",
+        "raw_span_sha256_lf_inclusive": "30942ad3414982c13016e7f196cae20f4a6dbe3e53b4175165f2505fb8be92bb",
+        "byte_length": 1424,
+        "role": "preserved Stage 1 prefix; exact byte prefix",
+        "stage1_po_approved_sha_match": true
+      },
+      {
+        "document": "L10NFR",
+        "source_commit": "28b3d3645e6298c159758700c2edd3d396c336f5",
+        "source_path": "docs/helix-harness/L10-verification/nfr-verification.md",
+        "physical_lines": {
+          "start": 1,
+          "end": 23
+        },
+        "full_file_sha256": "c04ad3e124cac5f659f0a03ff22eea79a8e7ca8b0998921d037b77185a01f078",
+        "raw_span_sha256_lf_inclusive": "c04ad3e124cac5f659f0a03ff22eea79a8e7ca8b0998921d037b77185a01f078",
+        "byte_length": 5244,
+        "role": "preserved Stage 1 prefix; exact byte prefix",
+        "stage1_po_approved_sha_match": true
+      }
+    ],
+    "current_stage2b_body_spans": [
+      {
+        "source_commit": "df49281c8576207cf46b5651c05cf91ac13587c5",
+        "source_path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "physical_lines": {
+          "start": 99,
+          "end": 201
+        },
+        "full_file_sha256": "b17ff76db4a0fe4c2672e815ca9c567b0021b8b5209f9aa3946957819504ac1b",
+        "raw_span_sha256_lf_inclusive": "153c76e300e22e45d4f62e58628cd9fcefed93ead929c8d8c1bf64a79a87bacb",
+        "role": "current canonical Stage 2b suffix FR"
+      },
+      {
+        "source_commit": "df49281c8576207cf46b5651c05cf91ac13587c5",
+        "source_path": "docs/helix-harness/L3-requirements/business-requirements.md",
+        "physical_lines": {
+          "start": 18,
+          "end": 37
+        },
+        "full_file_sha256": "ae00c0dda32ce2b95213a1be008339c569f892f4a0249a96e9b901cdb70a8f6f",
+        "raw_span_sha256_lf_inclusive": "4f7bc037851f16a43f64da2109c34c64994ca9c99a6980af6b18cd11a5ce1da1",
+        "role": "current canonical Stage 2b suffix BR"
+      },
+      {
+        "source_commit": "df49281c8576207cf46b5651c05cf91ac13587c5",
+        "source_path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+        "physical_lines": {
+          "start": 56,
+          "end": 73
+        },
+        "full_file_sha256": "d6f10a26dd11b9bf8b6ceb1d3a4bab7ee2f5865949cb5708598c9283fc69ebd8",
+        "raw_span_sha256_lf_inclusive": "25cb362b4e76ef74b1461cbd45c814cf638c4224133969990bc9fac15d1f66d3",
+        "role": "current canonical Stage 2b suffix NFR"
+      },
+      {
+        "source_commit": "df49281c8576207cf46b5651c05cf91ac13587c5",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_lines": {
+          "start": 32,
+          "end": 79
+        },
+        "full_file_sha256": "303fbaa5075b140f0053d57ba162d2b26e6b6b958b336b55811ac59e7b7ad6e7",
+        "raw_span_sha256_lf_inclusive": "75963328dd82433467dcac2acfa345ea506c900ae0d777f8aeeab738007240d5",
+        "role": "current canonical Stage 2b suffix L10FR"
+      },
+      {
+        "source_commit": "df49281c8576207cf46b5651c05cf91ac13587c5",
+        "source_path": "docs/helix-harness/L10-verification/business-verification.md",
+        "physical_lines": {
+          "start": 17,
+          "end": 23
+        },
+        "full_file_sha256": "eeb40a6b192fdc8c29e9fb2913814b4f32d1c9b960c5f2cfcea1c9b91cc133da",
+        "raw_span_sha256_lf_inclusive": "1effdfe8464585de2a9478b652c03633a93c5e5769c848943f6fe99fa969ea4b",
+        "role": "current canonical Stage 2b suffix L10BR"
+      },
+      {
+        "source_commit": "df49281c8576207cf46b5651c05cf91ac13587c5",
+        "source_path": "docs/helix-harness/L10-verification/nfr-verification.md",
+        "physical_lines": {
+          "start": 25,
+          "end": 44
+        },
+        "full_file_sha256": "6603ca923d28c22f9b68fdb401f2f1a26850a6966ce03a14776679bbfac8d8df",
+        "raw_span_sha256_lf_inclusive": "7beaad78005729a237eb1f888fd8974647e0e7378ea7ca2e381957799d4e3a89",
+        "role": "current canonical Stage 2b suffix L10NFR"
+      }
+    ]
+  },
+  "trace_resolution": {
+    "method": "Fully qualified declared IDs; no shorthand inference",
+    "unresolved_ac_references": [],
+    "functional_case_count": 33,
+    "nfr_candidate_case_pairs": {
+      "NFR-C-HARNESS-012-01": "CASE-HARNESS-L10-NFR-012-01",
+      "NFR-C-HARNESS-013-01": "CASE-HARNESS-L10-NFR-013-01",
+      "NFR-C-HARNESS-014-01": "CASE-HARNESS-L10-NFR-014-01",
+      "NFR-C-HARNESS-015-01": "CASE-HARNESS-L10-NFR-015-01",
+      "NFR-C-HARNESS-016-01": "CASE-HARNESS-L10-NFR-016-01"
+    }
+  },
+  "normal_negative_unseen_return": {
+    "HARNESS-L2-012": {
+      "normal": [
+        "prototype and PoC both applicable, independently traced",
+        "prototype non-applicable while technical PoC remains applicable with all fixed non-applicable fields"
+      ],
+      "negative": [
+        "prototype/PoC status cross-inference",
+        "each fixed non-applicable record field omitted independently",
+        "pre-Decide promotion/approval/production authority"
+      ],
+      "unseen_normal": "a new in-scope screen/technical-uncertainty fixture; unknown applicability stays unknown",
+      "return": "missing fixed non-applicable field or requirement impact to HARNESS requirements owner"
+    },
+    "HARNESS-L2-013": {
+      "normal": [
+        "013-alone first formation without 012",
+        "conditional second formation only with applied 012 result",
+        "human semantic decision remains pending"
+      ],
+      "negative": [
+        "each enumerated omission/contradiction/out-of-plan/duplicate/overinterpretation/target/scope/change-impact branch",
+        "engine and CORE each have independent identity/revision/scope x missing/unknown/stale/mismatch"
+      ],
+      "unseen_normal": "new in-scope instruction/evidence and synthetic engine/CORE tuple fixture",
+      "return": "source-indicated existing contract owner; owner unknown stays unknown; missing meaning returns to upstream requirement owner"
+    },
+    "HARNESS-L2-014": {
+      "normal": [
+        "approved requirement/template obligation mapped to design and paired verification",
+        "unit and composite obligations kept distinct"
+      ],
+      "negative": [
+        "missing/unknown/conflicting template-required input; lower-level artifact cannot satisfy composite obligation"
+      ],
+      "unseen_normal": "new in-scope constraint and change-location combination under existing oracle",
+      "return": "source-indicated requirement/design owner; no owner invented"
+    },
+    "HARNESS-L2-015": {
+      "normal": [
+        "frozen L6/L5 and verification with Red→Green→meaning-preserving local Refactor→atomic CI, Provisional only",
+        "CORE process and verification contracts independently identified"
+      ],
+      "negative": [
+        "contract/behavior/meaning changes despite green CI",
+        "CORE process and verification contract fields missing/unknown/stale/mismatch independently"
+      ],
+      "unseen_normal": "new same-scope input under frozen contract and existing behavior oracle",
+      "return": "source-indicated design/requirements owner or existing CORE contract owner; unknown owner remains unknown"
+    },
+    "HARNESS-L2-016": {
+      "normal": [
+        "paired before/after meaning-preserving refactor",
+        "no paired design/contract triggers L2-019 reverse-design-needed status, not completion"
+      ],
+      "negative": [
+        "API/boundary/state/requirement meaning mutation",
+        "wrong backflow layer",
+        "unmeasured or incomparable performance claim, budget/regression failure"
+      ],
+      "unseen_normal": "new in-scope call sequence under paired oracle; performance nonselection does not waive behavior check",
+      "return": "fixed L5/L4/L3-L2/L1 route according to changed meaning; no authority rewrite by implementation"
+    }
+  },
+  "disposition_summary": {
+    "reuse": "合成正常/negative fixtureという検証の形は、旧fixture設計から限定的に再利用。",
+    "rederive": "旧sourceを起点に、現行L2/L11の責務・owner・revision/scope・個別negative/未見normalへ意味を再導出。",
+    "replace": "旧G3/approval gate、旧runtime/test/CI/schema/DB/role catalog/state machineを移さず、現行L3/L10のL2 authorityとFR/AC/CASEへ置換。"
+  },
+  "scope_exclusions": [
+    "Stage 2a/2c本文・親",
+    "L2-005を親または未承認依存とすること",
+    "固定親にないbusiness outcome/oracle",
+    "個別NFR parameter PO gate",
+    "全Stage completion gate",
+    "実装/運転/Release authority"
+  ],
+  "verification": {
+    "prefix_byte_identity": "PASS; each current file starts with its exact base 28b3 file bytes",
+    "scfctl_validate": "PASS bindings=147 fail=0",
+    "scfctl_stale": "PASS stale=0",
+    "scfctl_residuals": "PASS residuals=0",
+    "govcheck": "PASS atoms=7622 requirements=57 files=58",
+    "git_diff_check": "PASS",
+    "old_runtime_tests_ci_bun": "not run by instruction",
+    "independent_review": "pending; this worker audit is not independent review"
+  },
+  "limits": [
+    "L10は設計caseであり実行していない。期待oracle不足は未評価。",
+    "Stage 2b body remains unapproved draft; no independent review or PO approval is produced.",
+    "latest main moved to f54ea028ddd37fd9aea2924e500dafe9dbd72a62 during work; subsequent comparison found only scaffold materials changed, six canonical documents remained identical to base 28b3. Rebase/merge admission still belongs to root."
+  ]
+}
