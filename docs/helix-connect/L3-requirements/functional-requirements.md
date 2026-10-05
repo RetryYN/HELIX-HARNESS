@@ -121,3 +121,52 @@
 | HELIXCONNECT-L2-003 | `docs/helix-connect/L11-acceptance/connect-acceptance.md:54–57` | `2fececd4d6950cdcf5e30f2e9c1585d0db69fa4b75823b710624160a64f9f39a` |
 | HELIXCONNECT-L2-004 | `docs/helix-connect/L11-acceptance/connect-acceptance.md:58–61` | `e1d91d283608de01be754243a36f4136c1e94f91d3510e9f7cc15255aa830dd7` |
 | HELIXCONNECT-L2-005 | `docs/helix-connect/L11-acceptance/connect-acceptance.md:62–65` | `f5ed1adebfef458ff48643d9210d06f0b02d28d9dd22b5503e23fd61fc6dcc3c` |
+
+
+## Stage 2a 追加 — HELIXCONNECT-L2-006のみ
+
+本節だけがStage 2aの追補であり、前段のStage 1対象・bytesは書き換えない。対象は採択済み`HELIXCONNECT-L2-006`の1.0候補のみ。L3未承認、実装・送信・交換許可、L10実行・合格を生成しない。Stage2aの他親、Stage2b、Stage2c、L2-007 compositeは含めない。
+
+### 固定親・依存境界
+
+- PO採択parent: `HELIXCONNECT-L2-006`、registration `MPR-RC-HELIXCONNECT-L2-006-002`、semantic digest `876d54895668800e8a3f1866523fb65fb68bb7c13bad936396ecf43ecff30db7`、`version_target: 1.0`。採択集合はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7`のPO record line 48、固定本文は`f6dad2a33e24f000b87d7f09b8d40288257e74cc`。
+- 要求本文: [L2-006](../L2-requirements/connect-requirements.md#L115)、対応L11要約 [L11-006](../L11-acceptance/connect-acceptance.md#L37)、接続確認本文 [L11-006](../L11-acceptance/connect-acceptance.md#L68)。要求意味の正本は固定L2/L11であり、本節はそこから正常・失敗・handoffの判定を再導出する。
+- 登録・現revision照合・送受信の具体的な既存Stage 1参考点は[FR-001/AC-001](functional-requirements.md#L33)/[CASE-001](../L10-verification/functional-verification.md#L32)、[FR-002/AC-002](functional-requirements.md#L49)/[CASE-002](../L10-verification/functional-verification.md#L41)、[FR-003/AC-003](functional-requirements.md#L65)/[CASE-003](../L10-verification/functional-verification.md#L50)。これらはmainの既存Stage 1 canonicalのexact bytesへの参照で、別の未承認L3をauthorityにしない。要求・受入authorityは対応する固定L2/L11のまま。本文全体と該当spanのmain `e89ca224043575d440f5672f81c681ec6a76df4a` SHAは本追補のsource-pinsへ固定する。
+- 006の固定依存は登録済み単一connection、両端のversion互換宣言、HARNESS-L2-010/011のartifact/dependency version・verification scope・更新/切戻し/未完義務契約、および該当するSECURITY許可である。001/002/003はconnection登録・互換照合・通信という006で用いる操作のStage1参照点で、別connection edge、L2-007 composite、未承認の他機構L3を成立前提にしない。
+
+### CONNECT-FR-006-01 — 片側交換時の接続互換性
+
+**固定親からの再導出**：一つの登録済みconnectionで片側の機構本体またはそのCONNECT adapter/transportを交換する。交換されない側の機構とその契約revisionを入力時から固定し、交換側の旧/新revision、両端契約、接続契約、変更scope、互換条件を別々に結ぶ。宣言された互換範囲内と再照合で確かめられた組合せだけ、固定側を変えず同一接続契約上で送受信できる。交換前後のrevision、照合receipt、送受信結果をconnection/operation identityへ束縛する。
+
+| 固定L2-006句 | 要件上の保持点 |
+|---|---|
+| 片側機構または当該側adapter/transportを交換 | 送信側機構、送信側adapter/transport、受信側機構、受信側adapter/transportを別の交換型として固定する |
+| 変更されない側の機構・契約revisionを固定 | 固定側の機構、意味契約、artifact/dependency revisionとscopeを交換前後で同一の基準として追跡する |
+| 交換後endpoint/接続契約を個別照合 | 互換範囲、両端revision、connection identityに対する現在の照合結果receiptを保持する |
+| 互換確認時だけ固定側を変更せず送受信 | compatible再照合後だけ対象connectionで送受信。固定側を更新したことにする置換・共同変更はこの正常条件を満たさない |
+| incompatible/unknown/stale/意味契約変更は停止 | send attemptを開始せず、固定側変更や両側同時変更で適合扱いにしない |
+| 交換前後のrevision/照合/通信を追跡 | 交換前後のconnection・端点・契約・artifact/dependency revision、compatibility receipt、operation/attemptと技術結果を追跡し、未完義務をhandoff/rollback/recovery receiptへ保つ |
+
+**入力・出力・依存**：固定入力は登録接続、固定側機構と契約/artifact/dependency revision、交換側の旧新revision、変更scope、互換宣言、該当する未完operation/義務/期限/attempt、交換・復旧に適用される既存許可。出力は、固定側を変更しない交換後のcompatibility照合・送受信結果、または理由を記したreject/unknown/staleと未完義務を持つhandoff/rollback/recovery receipt。登録接続と両端互換宣言、HARNESS共通pack、該当するSECURITY許可を用い、別接続を要求しない。
+
+**責務・戻し先**：固定側/交換側の意味契約差分は両端owner、adapter/transportの技術互換はadapter owner、許可範囲・失効・不足はSECURITYへ戻す。固定L2-006で宛先が明示された区分だけを使いownerを新設しない。失敗時は通信停止を維持し、停止位置・現在/旧revision・未完義務・既存recovery先を記録する。業務結果や交換承認をCONNECT receiptから生成しない。
+
+**旧HELIXとの対応と差分**：旧L3工程定義`archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md:148-168`のFR+ACとL10対の構造を保持し、旧G3 gateを現行L10へ持ち込まず三canonical対へ再導出する。直接の旧CONNECT/片側交換要件は指定した旧L3フォルダで確認できなかった（探索語・範囲と限界をsource-pinsに記録）。隣接資産`LEGACY-ASSET-7F8960532611D89D03E1`（Technology Environment Reconciliation）はversion drift、evidence、adapter隔離の類例だけを再導出し、外部tech inventory/upgrade lifecycleを追加しない。`LEGACY-ASSET-9B7682EBDEA171005D45`（distribution package release）は固定source/consumer分離・artifact identityの比較材料に限り、CONNECTの両端交換契約に読み替えない。旧の配布system testとTER acceptance、共通L3 test-designは正常/negative/oracleとtraceの形を参照するが、旧package release、環境更新、旧gate/CIの意味・値・実行を移さない。保持/再導出/置換の対応と各full/raw SHAはsource-pinsに記録する。
+
+**受入条件（AC候補）**
+
+- **CONNECT-AC-006-01 — 互換範囲内の一側交換**：4交換型を独立fixtureにし、各fixtureで登録済みconnection、変更側旧新revision、固定側機構・契約revision、scope、宣言互換条件を入力する。変更側を互換範囲内の新revisionへ交換し現在の両端契約を再照合した結果だけcompatibleとなり、同じconnection契約上の技術送受信ができる。各正常fixtureで変更側旧revision→交換後revision→同connection・scope・revision組に束縛したcurrent comparison receipt→connection/operation/attempt identity→技術結果を、一続きで順序づけられたtraceから辿れる。固定側のidentity/content/revisionを前後で変更せず、業務意味/承認/許可を生成しない。未完operationがない場合は存在しない未完義務を作らない。
+- **CONNECT-AC-006-02 — 非互換・不明・stale fail-close**：各4交換型について、不一致revision、未登録revision、意味契約変更、unknown照合、stale照合receiptをそれぞれ独立に与える（4×5の独立fixture）。交換後の互換照合で不一致・unknown・staleを検出し得るが、すべて送信・再送attempt 0で、compatibleを推定せず、固定側revisionを書き換えず、交換側の適切な技術ownerまたは両端契約ownerへ該当failureを戻す。両側を同時変更するfixtureはunknown/rejectとし、compatibleや片側交換の成功にせず、片側交換のpass計数から除外する。
+- **CONNECT-AC-006-03 — revision/未完義務continuity**：交換前に未完operationがあるfixtureで、旧revision→交換後revision→現在の互換照合receipt→connection/operation identity・attempt・技術結果を一続きのconnection traceで辿れるようにし、operation/ACK/attempt/expiry/義務を旧revisionと対応づけて交換後receipt/handoff/rollback/recoveryにも欠落なく保持する。旧新revisionの混載・旧receipt流用を拒否し、現在の互換照合と既存restart/recovery条件が確認される前は再開・retry・送信を0にする。停止位置と既存recovery先を明示する。
+- **CONNECT-AC-006-04 — authority/owner境界**：交換/復旧に適用するSECURITY許可が存在し有効な正常fixtureと、許可missing/unknown/expired/scope不一致の各反例を区別する。後者はexchange/sendを開始せず保留し、SECURITYへ戻す。契約意味の差分は両端owner、adapter/transport互換failureはadapter ownerへ戻し、receiptだけで両者の業務成立や承認を生成しない。
+
+### 旧assetの意味区分
+
+| 旧asset | 今回の扱い |
+|---|---|
+| `LEGACY-ASSET-F542125805B777D8A56A`（旧L3 process definition） | FR+AC/paired verification形式を再利用。旧G3 gate・承認roleは現行へ再導出しない |
+| `LEGACY-ASSET-7F8960532611D89D03E1`（Technology Environment Reconciliation L3） | 双側revision drift/evidence/adapter分離の隣接類例のみ意味を再導出。CONNECT交換要件の完全一致sourceではない |
+| `LEGACY-ASSET-30FFE84409079C9B06D1`（同TER paired acceptance） | independent oracle/unknown/fail-closeの検証形式だけ再導出。外部provider lifecycleは対象外 |
+| `LEGACY-ASSET-9B7682EBDEA171005D45`（distribution package L3） | 固定sourceとconsumer差分の隣接比較。artifact allowlist/release authorityを採用しない |
+| `LEGACY-ASSET-6C9D2BE4E3C77D78F8EB`（distribution system test） | before/after、consumer境界、個別negativeの形式だけ再導出。配布/release/test実行を行わない |
+| `LEGACY-ASSET-44DD86E3DEC09E65EF51`（shared pillar test design） | FR/AC/case trace形式の旧起点。旧case ID・HAT/L12機構を移植しない |

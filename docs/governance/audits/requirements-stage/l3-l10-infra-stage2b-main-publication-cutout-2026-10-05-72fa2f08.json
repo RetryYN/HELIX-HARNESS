@@ -1,0 +1,1481 @@
+{
+  "record_kind": "Stage2b INFRASTRUCTURE 002/007 main-prefix publication cutout worker static audit; not independent review or approval",
+  "authority_effect": "none",
+  "base_revision": "72fa2f08ccd7a87733112f918659464d5f5cb6c5",
+  "body_revision": "b45edd1337e1e4bf8eecd74193fe4d791dd28cef",
+  "scope": [
+    "HELIXINFRASTRUCTURE-L2-002",
+    "HELIXINFRASTRUCTURE-L2-007"
+  ],
+  "version_target": "1.0",
+  "authority_status": "未承認候補。固定L2/L11とPO採択判断を根拠にしたStage2b追補。Stage1の承認済みprefixを保持する。独立reviewと本StageのL3承認は別途必要。",
+  "counts": {
+    "FR": 2,
+    "AC": 4,
+    "functional_CASE": 13,
+    "NFR": 2,
+    "measurement_CASE": 2,
+    "BR": 0,
+    "source_pins": 15,
+    "canonical_documents": 6,
+    "current_line_pins": 148
+  },
+  "publication_cutout": {
+    "only_stage": "Stage2b",
+    "included_parent_ids": [
+      "HELIXINFRASTRUCTURE-L2-002",
+      "HELIXINFRASTRUCTURE-L2-007"
+    ],
+    "excluded_stages": [
+      "Stage2a",
+      "Stage2c"
+    ],
+    "stage_wide_completion_gate": false,
+    "main_base_had_target_canonical_files": true,
+    "approved_prefix_preserved": true,
+    "approved_stage1_revision": "7a74a8bfce440f5bd40c8d7da9be0ebdcdaf8f0d",
+    "body_commit": "b45edd1337e1e4bf8eecd74193fe4d791dd28cef",
+    "body_commit_is_separate_from_audit_commit": true
+  },
+  "source_pins": [
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "lines": [
+        42,
+        51
+      ],
+      "full_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "raw_span_sha256": "ec40a66b707315814420ac5a7fe17dd4da4b4b3a958cf74a6f799d65ef1d41bc",
+      "kind": "fixed_parent_or_dependency",
+      "physical_bounds_inclusive": [
+        42,
+        51
+      ],
+      "physical_line_count": 10,
+      "full_sha256_recomputed": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "raw_span_sha256_recomputed": "ec40a66b707315814420ac5a7fe17dd4da4b4b3a958cf74a6f799d65ef1d41bc",
+      "bounded_literal_utf8": "### HELIXINFRASTRUCTURE-L2-002 Desired Target・Actual State・Drift\n\n- **親L1**：`HELIXINFRASTRUCTURE-L1-002`、`HELIXINFRASTRUCTURE-L1-003`。\n- **入力**：設計の意味正本から受け取るapproved configuration、deployment target、resource observationとそのsource/revision。\n- **提供**：approved design、deployment target、observed actual stateの分離および差異の提示。\n- **保証**：resource missing、unexpected resource、version/config/network/permission/capacity drift、runtime replacement、unknown dependencyを比較でき、差異を自動で正しい変更・設計承認とみなさない。actual stateから要求/設計を書き換えない。\n- **単独成立の依存・版**：L2-001、HELIX-HARNESS-COREの承認済み設計参照、source-qualified actual observation。`version_target: 1.0`。\n- **失敗時の戻し先・未完義務**：design/target/observationが欠落・stale・互換不明ならdrift結果を確定せず、そのsource ownerへ戻す。未確認範囲を保持し、修正実行はOS ticket/SECURITY authority/Worker接続を経る。\n- **束ねるL1/PO条件**：HRI-L1-002/003。最低範囲4 (Desired/Actual separation)、5 (Drift)。\n\n"
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "lines": [
+        92,
+        101
+      ],
+      "full_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "raw_span_sha256": "29820e63b84ed4119c171e12b127b5f1eb3ff0bada5b693cfd0bf860b2934959",
+      "kind": "fixed_parent_or_dependency",
+      "physical_bounds_inclusive": [
+        92,
+        101
+      ],
+      "physical_line_count": 10,
+      "full_sha256_recomputed": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "raw_span_sha256_recomputed": "29820e63b84ed4119c171e12b127b5f1eb3ff0bada5b693cfd0bf860b2934959",
+      "bounded_literal_utf8": "### HELIXINFRASTRUCTURE-L2-007 Runtime Rebuildability\n\n- **親L1**：`HELIXINFRASTRUCTURE-L1-038`。\n- **入力**：approved design参照、configuration、artifact、dependency、data backup、version、deployment evidence。\n- **提供**：Infrastructure state喪失後に、対象の必要な実行環境を再構築できる情報と再構築の検証結果。\n- **保証**：必要な復旧情報を特定machine内だけに閉じ込めず、実再構築、依存再接続、起動、検証を記録する。再構築可能性は単なるbackup存在・文書存在と別に判定する。\n- **単独成立の依存・版**：L2-001/005/006、復旧対象となるapproved designとartifact/data evidence。`version_target: 1.0`。\n- **失敗時の戻し先・未完義務**：source/設定/依存/dataが欠ける場合、再構築成功とせず欠けたownerへ戻す。復元済み部分と未完の依存・verificationを引き継ぐ。\n- **束ねるL1/PO条件**：HRI-L1-038。最低範囲18 (Rebuildability)。\n\n"
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "lines": [
+        32,
+        41
+      ],
+      "full_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "raw_span_sha256": "3291942a92945d75c2e95d3c2be284d2349e9b89527ff9b7c56b70f785720b77",
+      "kind": "fixed_parent_or_dependency",
+      "physical_bounds_inclusive": [
+        32,
+        41
+      ],
+      "physical_line_count": 10,
+      "full_sha256_recomputed": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "raw_span_sha256_recomputed": "3291942a92945d75c2e95d3c2be284d2349e9b89527ff9b7c56b70f785720b77",
+      "bounded_literal_utf8": "### HELIXINFRASTRUCTURE-L2-001 Runtime Resource Topologyと環境\n\n- **親L1**：`HELIXINFRASTRUCTURE-L1-001`、`HELIXINFRASTRUCTURE-L1-004`、`HELIXINFRASTRUCTURE-L1-005`、`HELIXINFRASTRUCTURE-L1-006`、`HELIXINFRASTRUCTURE-L1-007`、`HELIXINFRASTRUCTURE-L1-009`、`HELIXINFRASTRUCTURE-L1-022`。\n- **入力**：HELIX-OS、BRAIN、LABO、INTELLIGENCE、SECURITY、CONNECT、Worker/Model Runtime、database、queue、artifact/evidence store、log/metric infrastructure等のresource identity、role、environment、location、version、dependency、lifecycle、network path、state/storage class、compute/model runtime情報。\n- **提供**：HELIX本体の実行資源と関係の識別・参照、および配置環境・実行版の可観測なresource topology。\n- **保証**：各resourceについてidentity/role/environment/location/version/dependencies/lifecycle stateを辿れる。development/verification/staging/production/recovery等の環境は独立identityであり、resource/config/network/credential scope/data/version/authorityを分離し、別環境の成功を本番成立の証拠にしない。HELIX-CONNECTの論理接続とphysical/runtime communication pathを別にし、network pathはsource/destination/protocol/endpoint/direction/purpose/security boundary/dependencyで参照する。永続/一時stateを分けowner/durability/backup/retention/environment/confidentiality/recovery要求を持たせる。Model/Worker資源・実行状態を記録するが、model能力の評価、Worker ticket/作業状態、security policyは所有しない。旧Runner/Sandboxの実行能力は2026-09-26 PO decisionに従いWorkerとして参照する。\n- **単独成立の依存・版**：承認対象となるHELIX-HARNESS-CORE設計の参照と、resource/environment/interface identity。`version_target: 1.0`。\n- **失敗時の戻し先・未完義務**：resource/owner/environment/location/version/dependencyが不明ならunknownのままresource sourceまたは設計ownerへ返す。読み取り不能・部分更新時は以前のobservationをcurrentと見なさず、未完の観測範囲を残す。\n- **束ねるL1/PO条件**：HRI-L1-001/004/005/006/007/009/022。最低範囲1 (Resource identity)、2 (Topology)、3 (Environment)、6 (Compute/Network/Storage)、7 (Model/Worker Runtime)、13 (Deployment version)。\n\n"
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "lines": [
+        72,
+        91
+      ],
+      "full_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "raw_span_sha256": "f85c5c5d796784b9d08edff08b882a4a9f85203b156d3abd185f5a8db5bd3773",
+      "kind": "fixed_parent_or_dependency",
+      "physical_bounds_inclusive": [
+        72,
+        91
+      ],
+      "physical_line_count": 20,
+      "full_sha256_recomputed": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "raw_span_sha256_recomputed": "f85c5c5d796784b9d08edff08b882a4a9f85203b156d3abd185f5a8db5bd3773",
+      "bounded_literal_utf8": "### HELIXINFRASTRUCTURE-L2-005 Backup・Restore・Rollback\n\n- **親L1**：`HELIXINFRASTRUCTURE-L1-017`、`HELIXINFRASTRUCTURE-L1-018`、`HELIXINFRASTRUCTURE-L1-019`。\n- **入力**：重要state、backup target/source revision/time/completeness/location/integrity/expiry、configuration/artifact/dependency/data compatibility、復旧procedureと検証結果。\n- **提供**：backup実行state、restore実行結果、適格なrollback targetとrecovery procedureの独立記録。\n- **保証**：backup設定とbackup成功、backup存在とrestore可能、rollbackとincident closureを分ける。restoreでintegrity、dependency reconnection、startup、verificationを確認する。rollback先にはInfrastructure版・設定・artifact・依存・data互換・procedureを結ぶ。\n- **単独成立の依存・版**：L2-001/002、対象stateのowner/retention/recovery要求、独立検証できるrestore environment。`version_target: 1.0`。故障単位を用いる自動failoverは依存しない。\n- **失敗時の戻し先・未完義務**：backup不完全、restore不成立、互換不明、rollback target不明時は成功stateを発行せず、復旧設計owner/OSへ戻す。変更前の適格state、失敗記録、未完復旧・検証義務を保持する。\n- **束ねるL1/PO条件**：HRI-L1-017/018/019。最低範囲11 (Backup/Restore)、12 (Rollback)。\n\n### HELIXINFRASTRUCTURE-L2-006 HELIX独立Bootstrap・Recovery Path\n\n- **親L1**：`HELIXINFRASTRUCTURE-L1-020`、`HELIXINFRASTRUCTURE-L1-021`。\n- **入力**：HELIX本体/OS等が停止した状況、点検・health確認・service停止・rollback・recovery起動に必要な最低資源、SECURITYの別authority。\n- **提供**：停止中HELIXに依存せず起動・点検・復旧できる範囲、および通常Control Plane外の限定recovery path。\n- **保証**：HELIX-OS停止時にHELIX-OS自身へ修復を依頼する循環を作らない。Out-of-band pathは通常の万能運用経路にならず、SECURITYの別authorityを受けて限定操作する。\n- **単独成立の依存・版**：L2-005と、独立して使える起動/復旧resourceおよびSECURITY authority。`version_target: 1.0`。完全自動failoverは含まない。\n- **失敗時の戻し先・未完義務**：HELIX自身の制御面に依存する、またはSECURITY authorityが不明な場合は復旧成功とせず停止する。残る復旧操作・制約・最終適格revisionを記録する。\n- **束ねるL1/PO条件**：HRI-L1-020/021。最低範囲17 (Bootstrap/Out-of-Band Recovery)。\n\n"
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "lines": [
+        44,
+        53
+      ],
+      "full_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "raw_span_sha256": "710b5ef8b55bbef350573769de70e255962fde93e9421fbf4a9c2f43ac4dacfb",
+      "kind": "fixed_L11",
+      "physical_bounds_inclusive": [
+        44,
+        53
+      ],
+      "physical_line_count": 10,
+      "full_sha256_recomputed": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "raw_span_sha256_recomputed": "710b5ef8b55bbef350573769de70e255962fde93e9421fbf4a9c2f43ac4dacfb",
+      "bounded_literal_utf8": "### HELIXINFRASTRUCTURE-L2-002 Desired Target・Actual State・Drift\n\n- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-002`、`HELIXINFRASTRUCTURE-L1-003`。\n\n- **受入手順**：approved configuration/design revisionとdeployment targetを入力し、同じ対象の一致状態、missing resource、unexpected resource、version/config/network/permission/capacity差異、unknown dependency、stale observationを含むactual fixturesを比較する。\n- **成功条件**：design, target, actual, drift resultが相互参照できる別stateとして記録される。差異の種類とsourceが示され、観測値から設計や要求を変更しない。\n- **反例・失敗条件**：実環境にある値をapproved designへ自動昇格する、unknown/staleを一致として扱う、unexpected resourceを承認済みとみなす、差異を消すために比較入力を上書きする場合は不合格。\n- **失敗戻し先**：stale/欠落したdesign・target・observationのownerへ返し、drift判定を保留する。\n- **対応する1.0 minimum**：4 Design/Deployment Target/Actual separation、5 Drift。\n\n"
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "lines": [
+        94,
+        103
+      ],
+      "full_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "raw_span_sha256": "671533fadb07000ed569641feaee10a4d186d105b58a23a34a763a4e58e7aa1b",
+      "kind": "fixed_L11",
+      "physical_bounds_inclusive": [
+        94,
+        103
+      ],
+      "physical_line_count": 10,
+      "full_sha256_recomputed": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "raw_span_sha256_recomputed": "671533fadb07000ed569641feaee10a4d186d105b58a23a34a763a4e58e7aa1b",
+      "bounded_literal_utf8": "### HELIXINFRASTRUCTURE-L2-007 Runtime Rebuildability\n\n- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-038`。\n\n- **受入手順**：必要環境を消失したfixtureからapproved design、config、artifact、dependency、data backup、version、deployment evidenceを使って隔離環境へ再構築し、再接続・起動・検証を行う。\n- **成功条件**：必要な環境を再現でき、入力artifact/revisionから結果まで追跡可能である。machine内だけの情報やbackup記録の存在を再構築成功に代えない。\n- **反例・失敗条件**：依存/data/credential authorityが欠けたまま起動だけでpassする、文書やbackupがあるだけでrebuildableと判定する場合は不合格。\n- **失敗戻し先**：欠落したdesign/artifact/dependency/data ownerへ戻し、復元部分と未完義務を区別する。\n- **対応する1.0 minimum**：18 Rebuildability。\n\n"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+      "lines": [
+        26,
+        52
+      ],
+      "full_sha256": "0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f",
+      "raw_span_sha256": "13ba8153894b8fb075614fc62b2803dfca7d939206aa1e993c751fda6bfa7d41",
+      "kind": "PO_fixed_revision",
+      "physical_bounds_inclusive": [
+        26,
+        52
+      ],
+      "physical_line_count": 27,
+      "full_sha256_recomputed": "0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f",
+      "raw_span_sha256_recomputed": "13ba8153894b8fb075614fc62b2803dfca7d939206aa1e993c751fda6bfa7d41",
+      "bounded_literal_utf8": "\nPOは固定main f6dad2a33e24f000b87d7f09b8d40288257e74cc上の以下のbytesを確認対象revisionとして確定し、L2本文HELIXINFRASTRUCTURE-L2-001〜026とそれぞれに対になる固定L11受入本文一式に合意した。\n\n| 層 | 固定対象path | SHA-256 |\n|---|---|---|\n| L1 | [docs/helix-infrastructure/L1-planning/infrastructure-intent.md](../../helix-infrastructure/L1-planning/infrastructure-intent.md) | 1673cf1333c762b817e1031cb610de90b6e967f7c2d851ab2a4b71e4959ebc37 |\n| L2 | [docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md](../../helix-infrastructure/L2-requirements/infrastructure-requirements.md) | 569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b |\n| L11 | [docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md](../../helix-infrastructure/L11-acceptance/infrastructure-acceptance.md) | 7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada |\n\n明示候補集合は確認資料の候補表にある最新registration IDとの対応で識別する。\n\n確認資料とPO判断出典:\n\n- 確認packet（固定HEAD `14b1d07ca39548c031856f3734f2d3599a97ce15`）: [候補表・最新registration ID対応](https://github.com/RetryYN/HELIX-HARNESS/blob/14b1d07ca39548c031856f3734f2d3599a97ce15/docs/governance/audits/requirements-stage/helix-infrastructure-po-confirmation-2026-09-27.md)\n- PO判断受領comment: [https://github.com/RetryYN/HELIX-HARNESS/pull/2204#issuecomment-5857756845](https://github.com/RetryYN/HELIX-HARNESS/pull/2204#issuecomment-5857756845)\n\n固定対象本文のSHAは変更していない。L1/L2/L11のdraft/candidate metadataは固定時点の本文として維持し、POのrevision確認・要求合意・候補採用は本decision recordを正本として読む。\n\n## 採用する明示候補集合\n\nPOは以下の全26件を、確認資料に記載された各version_targetと適用条件を保持して採用した。\n\nHELIXINFRASTRUCTURE-L2-001, HELIXINFRASTRUCTURE-L2-002, HELIXINFRASTRUCTURE-L2-003, HELIXINFRASTRUCTURE-L2-004, HELIXINFRASTRUCTURE-L2-005, HELIXINFRASTRUCTURE-L2-006, HELIXINFRASTRUCTURE-L2-007, HELIXINFRASTRUCTURE-L2-008, HELIXINFRASTRUCTURE-L2-009, HELIXINFRASTRUCTURE-L2-010, HELIXINFRASTRUCTURE-L2-011, HELIXINFRASTRUCTURE-L2-012, HELIXINFRASTRUCTURE-L2-013, HELIXINFRASTRUCTURE-L2-014, HELIXINFRASTRUCTURE-L2-015, HELIXINFRASTRUCTURE-L2-016, HELIXINFRASTRUCTURE-L2-017, HELIXINFRASTRUCTURE-L2-018, HELIXINFRASTRUCTURE-L2-019, HELIXINFRASTRUCTURE-L2-020, HELIXINFRASTRUCTURE-L2-021, HELIXINFRASTRUCTURE-L2-022, HELIXINFRASTRUCTURE-L2-023, HELIXINFRASTRUCTURE-L2-024, HELIXINFRASTRUCTURE-L2-025, HELIXINFRASTRUCTURE-L2-026\n\nL2-001〜011および025の1.0、L2-012〜024/026の「1.0より後（版は未定）」を各適用条件とともに維持する。PO既決の最低18項目を変更せず、後続版を1.0へ前倒ししない。\n\n適用条件の意味は固定L2/L11本文を正本とする。本記録は候補の一律実行、実装、releaseを意味しない。\n"
+    },
+    {
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "lines": [
+        163,
+        163
+      ],
+      "full_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "raw_span_sha256": "af089cc9b5e5a002d242c10313bd9ea9c127035c5547a7b1fa8a5bd989002ac5",
+      "kind": "sequence_only",
+      "physical_bounds_inclusive": [
+        163,
+        163
+      ],
+      "physical_line_count": 1,
+      "full_sha256_recomputed": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "raw_span_sha256_recomputed": "af089cc9b5e5a002d242c10313bd9ea9c127035c5547a7b1fa8a5bd989002ac5",
+      "bounded_literal_utf8": "| `HELIXINFRASTRUCTURE-L2-002` | `MPR-RC-HELIXINFRASTRUCTURE-L2-002-002` | `docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md#L48` | `1.0 target candidate` | `Stage 2b` | `original 250 carry-forward` |\n"
+    },
+    {
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "lines": [
+        168,
+        168
+      ],
+      "full_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "raw_span_sha256": "6a39442f356b8347ab6d6c1d7901fe78a42ccc3d57afece492daefb9f3b4c14f",
+      "kind": "sequence_only",
+      "physical_bounds_inclusive": [
+        168,
+        168
+      ],
+      "physical_line_count": 1,
+      "full_sha256_recomputed": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "raw_span_sha256_recomputed": "6a39442f356b8347ab6d6c1d7901fe78a42ccc3d57afece492daefb9f3b4c14f",
+      "bounded_literal_utf8": "| `HELIXINFRASTRUCTURE-L2-007` | `MPR-RC-HELIXINFRASTRUCTURE-L2-007-002` | `docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md#L48` | `1.0 target candidate` | `Stage 2b` | `original 250 carry-forward` |\n"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "lines": [
+        148,
+        168
+      ],
+      "full_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "raw_span_sha256": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9",
+      "kind": "legacy_comparison",
+      "physical_bounds_inclusive": [
+        148,
+        168
+      ],
+      "physical_line_count": 21,
+      "full_sha256_recomputed": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "raw_span_sha256_recomputed": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9",
+      "bounded_literal_utf8": "### L3 要件定義\n\n| 項目 | 内容 |\n|------|------|\n| 名称 | 要件定義 (System Requirements) |\n| 目的 | システム機能要件 (FR-*) + 受入条件 (AC-*) を確定し、設計への入力とする |\n| 主要成果物 ① | 3 sub-doc: functional-requirement / business-requirement / nfr-grade |\n| ③ テスト設計ペア | UX受入テスト設計（L10で実施） |\n| V-pair (右腕) | **L10** UX受入検証 |\n| 主要ゲート | **G3** 機能要件凍結 (FR+AC ⇔ L10 UX受入テスト設計 pair freeze) |\n| 入口 | G1/G2 exit 後 (L1 業務要求 BR-* が入力) |\n| 出口 | G3 通過 (FR+AC 全件確定 + 受入テスト設計 pair 揃い) |\n| 主要 role | `tl` 必須 (FR+AC 仕様化)、`po` 必須 (受入条件確認) |\n\n注: FR-* は L1 BR-* から双方向 trace する。AC 不在での G3 通過は fail (AP-4)。\nG3では`engineering_discipline_required: true`のPLAN契約により、no-code-first判断、責務owner、\n許容complexity、L10で観測する振る舞いをfreezeする。ここでobject modelを一律採用せず、\n`none` / `pure_function`を含む最小のmodeling判断を許可する。\n出典: concept v3.1 §3.1.2 / requirements v1.3.12 §2.2 G3\n\n---\n"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md",
+      "lines": [
+        16,
+        56
+      ],
+      "full_sha256": "949b0da00d2a417e1b36d3679b89735de7adadf831f567dbe383dfe6337f19e4",
+      "raw_span_sha256": "fbb50e1ed591235cba594d8b8a10d5f1c55be865e3df9c9daf75f3814a18ab6a",
+      "kind": "legacy_comparison",
+      "physical_bounds_inclusive": [
+        16,
+        56
+      ],
+      "physical_line_count": 41,
+      "full_sha256_recomputed": "949b0da00d2a417e1b36d3679b89735de7adadf831f567dbe383dfe6337f19e4",
+      "raw_span_sha256_recomputed": "fbb50e1ed591235cba594d8b8a10d5f1c55be865e3df9c9daf75f3814a18ab6a",
+      "bounded_literal_utf8": "# L3 機能要件 sub-doc (harness)\n\nL1 業務要求 / 機能要求 / NFR を L3 機能要件 (FR-* + AC-* + IPA グレード値) に詳細化する sub-doc 群。\n\n## 構成 (3 sub-doc)\n\n| sub-doc | 役割 | status | 担当 PLAN |\n|---------|------|--------|-----------|\n| `functional-requirements.md` | FR-* + AC-* (Given-When-Then) 詳細化、画面紐付き / mode / drive / 人間判断点 | confirmed | PLAN-L3-01-functional-detail |\n| `business-detail.md` | BR-21 詳細化 + HM-08 連動 + FR-L1-36/38/43 (Learning Engine evaluation projection) | confirmed | PLAN-L3-02-business-detail |\n| `nfr-grade.md` | NFR-01〜17 の IPA グレード Lv + 受入閾値 + 測定方法 + pass 条件 | confirmed | PLAN-L3-03-nfr-grade |\n\n> **scope 分離**: L3 では screen / technical sub-doc を起こさない。screen は L1 + L2-screen で完結 (L10 UX 磨きへ continue)、technical は L4 ADR / L4 基本設計に直送。\n\n## companion doc (sub_doc ではない)\n\n| doc | 役割 | status |\n|-----|------|--------|\n| `roadmap.md` | 検証/改善ロードマップ (L0-L14 を横断する 7 フェーズ + 2 ゲート、PO /goal 2026-06-04)。L3 マイルストーンで起票する**設計層の計画 doc**。V-model の標準 sub_doc (テスト設計と pair する artifact) ではなく、L12 受入テストとは pair しない companion。CLAUDE.md Read Order / AGENTS.md Core Reads には含めず、V-model freeze 境界で検証サイクルを実行するときだけ動的に参照する | draft |\n\n> roadmap.md は `sub_doc` enum (functional-requirement / business-requirement / nfr-grade) の対象外。G3 pair freeze の trace 対象にも含めない (pair artifact を持たないため)。詳細・配置根拠は roadmap.md §6 / IMP-036 を参照。\n\n## L1 ↔ L3 ↔ L12 接続\n\n- **上流 (L1 baton)**: L1 5 sub-doc + L2-screen placeholder を全件 `dependencies.requires` で列挙 (G1-trace R4 充足規約、screen §4.1 参照)。L2-screen は L3 の未充足依存ではなく、L2 着手時に PLAN-L2-01〜04 で本起票する明示 carry として扱う。\n- **下流 (L3 → L12 pair)**: 本 sub-doc 3 件全体 ↔ `docs/test-design/harness/L3-acceptance-test-design.md` 1 doc (V-model L3↔L12 pair)\n- **下流 (L3 → L4)**: L4 PLAN (PLAN-L4-01〜05) は本 sub-doc 全件を `dependencies.requires` に列挙\n\n## 横断原則継承 (CC2 carry)\n\nscreen §4.1 の CC2 carry は、現行 HELIX の「AI 自律を既定、不可逆・高影響だけ人間 residue」へ読み替える。L3 全機能要件では「**人間判断点**」を L0-L3 承認、不可逆 cutover、本番・認証・PII・secret・license・destructive 操作、異常時 override に限定して明示し、L4 以降の通常 GitHub 運用や検証実行に per-gate の人間承認を要求しない。\n\n## G3 ゲート (L3 pair freeze)\n\nL3 3 sub-doc + L12 受入テスト 1 doc の pair freeze を **G3** で確定する。**正規式モデル (PLAN-RECOVERY-02)**: L3 の検証本質 = 本番受入 (L12)。画面要求は L1 (screen sub-doc) が担い L3 では起こさない。L2=L1 フェーズ分離の根拠は L1/L2 設計本文と L12 受入テスト trace に置き、本 README は索引として扱う。G3 内 sub-gate 候補 (L1 G1-trace と同様の構造):\n\n- **G3-content**: 各 sub-doc の必須 § 完備\n- **G3-pair**: L3 sub-doc ⇔ L12 受入テスト pair 整合\n- **G3-trace**: FR-L1 → FR-L3 / FR-L3 → AC / AC → 受入テスト / NFR → 閾値 → 受入テスト の 4 方向 trace 整合 (機械検証、`helix plan lint --gate G3-trace`)\n\n詳細は L3 sub-doc 本起票 + PLAN-L3-01〜03 Step 6 で確定する。`helix plan lint --gate G3-trace` は L7 実装済みで、G3-trace は `helix doctor` の hard gate としても集約される。G3 freeze 前は機械検証結果と L12 acceptance test design の宣言 trace を合わせてレビューする。\n"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md",
+      "lines": [
+        32,
+        70
+      ],
+      "full_sha256": "65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc",
+      "raw_span_sha256": "c58abfe822a6c95a70d11c10e6355ef14f032c4c6cf9993c24f6eb24f41d4477",
+      "kind": "legacy_comparison",
+      "physical_bounds_inclusive": [
+        32,
+        70
+      ],
+      "physical_line_count": 39,
+      "full_sha256_recomputed": "65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc",
+      "raw_span_sha256_recomputed": "c58abfe822a6c95a70d11c10e6355ef14f032c4c6cf9993c24f6eb24f41d4477",
+      "bounded_literal_utf8": "## 0. 目的とauthority境界\n\nHELIX外部で独立更新されるAI provider、CLI、SDK、IDE、MCP、GitHub Actions／runner、Node／Python、OS、container、cloud、DB、protocolについて、version差だけでなく設定schema、default、permission、persistent state、hook、sandbox、network、credential、API behaviorの意味変化を継続検出し、HELIXのRequirement、Definition、Contract、安全境界へ再束縛する。\n\n本capabilityは自動最新版追従器ではない。外部技術をHELIXの意味authorityへ昇格せず、provider固有処理はtyped adapterへ隔離する。観測は正本を直接変更せず、Evidence、候補、影響分類、再freeze、再検証を経てbaselineへ昇格する。既存IDとの`refines`／`extends`／`governed_by` edgeはexact解決し、dangling edgeと文書名だけの束縛を拒否する。\n\n## 1. Feature契約\n\n### TER-FR-001 外部技術inventoryと実効baseline\n\n- `TER-R-01 Technology Environment Contract`: stable ID、kind、provider、current/candidate version、support/EOL、source、artifact/config-schema digest、default behavior、HELIX/native responsibility、forbidden overlap、adapter、last verified、trigger、rollback targetを保持する。version/source/support/owner未解決をfail-closeする。\n- `TER-R-02 Effective Configuration Attestation`: project/user/managed/env/runtime defaultを含むdeclared config、effective config、runtime probeを分離し、memory、rules、hooks、permission、approval、sandbox、filesystem、network、MCP、credential、session persistence、fallbackをreceiptへ束縛する。HELIXと同一責務のnative機能は隔離までworker admissionを拒否する。\n\n### TER-FR-002 変更検出と定期再検証\n\n- `TER-R-03 Event-driven Detection`: version、schema、default、deprecation、EOL、permission、hook、memory、sandbox、network、credential、API、support policy変化でReconciliation episodeを起動する。changelog文字列だけを証拠にしない。\n- `TER-R-04 Periodic Full Reconciliation`: release wave、期間、provider admission更新、障害再発、unknown/stale attestation増加をtriggerに全inventoryを再検証する。周期だけで自動更新しない。\n\ncurrent GitHub Actionsのmutable tag、runner alias、unpinned OS packageは初期reconciliation対象である。是正実装#1185は#270のGitHub Security Admissionと本authorityを共同前提とし、Action full SHA、runner/toolchain effective identity、同一environment再現性を証明する。mutable environmentで得た別世代greenを同一候補の再現証拠へ流用しない。\n\n### TER-FR-003 Semantic DiffとHELIX invariant影響解析\n\n- `TER-R-05 Semantic Diff`: 設定意味、default、permission、persistence、I/O、failure mode、sandbox、network、cost、performance、reproducibility、security、privacy、compatibilityを比較し、version不変のbehavior driftも検出する。\n- `TER-R-06 Invariant Impact Graph`: diffをRequirement、Definition、Contract、Workflow、WCC、Security、Memory、CI、Release、Deployment、Runbookへstable IDで接続し、blast radius、stale target、oracle、rollback、human decisionを算出する。名称一致や単一logで確定しない。\n\n### TER-FR-004 候補評価・昇格・巻き戻し\n\n- `TER-R-07 Candidate Lifecycle`: `detected → diffed → classified → attested → shadow_verified → canary_verified → approved → promoted → read_after_verified`を正規遷移とし、`blocked/deferred/rejected/rolled_back`を分離する。段階飛越、artifact/config digest差替え、未検証環境への昇格を拒否する。\n- `TER-R-08 Adoption Decision`: `retain/upgrade/pin/replace/deprecate/retire`をsecurity、compatibility、behavior、cost、performance、support、migration、rollback、HELIX invariantの比較Evidenceで決める。high-impact、不可逆、credential、production変更はaction-binding approvalへ止める。\n\n### TER-FR-005 変更分類・戻り先・再Forward\n\n- `TER-R-09 Change Class and Route`: `implementation_ops/definition_review/requirement_change`とworkflow routeを別fieldにする。局所対応は`RETROFIT/REFACTOR/RECOVERY`、責務境界変更は`DESIGN_REFACTOR/REDESIGN`、能力・受入変更はRequirement Discovery/`REDESIGN`へEvidence付きで送る。\n- `TER-R-10 Re-entry Contract`: affected layer、base revision、stale target、再freeze条件、Forward再入条件をtyped化する。Requirement変更はL1/L2再整理からL3 compile/freeze、Definition変更は該当L3〜L5とV-pair stale化を経る。旧下流greenで相殺しない。\n\n### TER-FR-006 Maintenance、doctor、完了証拠\n\n- `TER-R-11 Maintenance Obligation`: next review、support/deprecation期限、再attestation条件、owner、Evidenceを生成し、期限切れ、unknown config surface、schema drift、native fallback再出現をdoctorでsurfaceする。\n- `TER-R-12 Completion Evidence`: effective config、runtime probe、shadow/canary、全影響oracle、independent review、rollback readiness、main/DB/provider runtime read-after一致後だけbaselineを更新する。secret、PII、個人absolute path、raw credentialを保存しない。\n"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/technology-environment-reconciliation-acceptance.md",
+      "lines": [
+        16,
+        39
+      ],
+      "full_sha256": "aa61d626e7e5d5ee61f6bc96532cec931da4a1dbd104be805e4c03a0c9a2fd7d",
+      "raw_span_sha256": "672efe8812416fa909f5d391b362be23d4631b42bdbc2015918bfe59b184df85",
+      "kind": "legacy_comparison",
+      "physical_bounds_inclusive": [
+        16,
+        39
+      ],
+      "physical_line_count": 24,
+      "full_sha256_recomputed": "aa61d626e7e5d5ee61f6bc96532cec931da4a1dbd104be805e4c03a0c9a2fd7d",
+      "raw_span_sha256_recomputed": "672efe8812416fa909f5d391b362be23d4631b42bdbc2015918bfe59b184df85",
+      "bounded_literal_utf8": "# Technology Environment Reconciliation受入テスト設計\n\n| AC ID | 対応 | 合格条件 | Negative Oracle |\n|---|---|---|---|\n| TER-AC-001 | TER-R-01 | 全対象にowner、version、schema/artifact digest、support、triggerがある | unknown、ownerなし、range-onlyを拒否 |\n| TER-AC-002 | TER-R-02 | declared/effective/runtime probeを区別する | repository設定の存在だけでgreenにしない |\n| TER-AC-003 | TER-R-02 | HELIXとnative責務の競合を検出する | native memory等の二重authorityを黙認しない |\n| TER-AC-004 | TER-R-05 | version不変のdefault変更もdriftになる | version比較だけで無影響判定しない |\n| TER-AC-005 | TER-R-03 / TER-R-04 | eventと周期の双方でepisodeを起動する | changelog未取得を無変化扱いしない |\n| TER-AC-006 | TER-R-06 | semantic diffからimpact graphとstale対象を導出する | 名称一致、単一logで確定しない |\n| TER-AC-007 | TER-R-05 / TER-R-06 | unknown/high-riskをfail-closeまたはdeferする | silent fallbackしない |\n| TER-AC-008 | TER-R-07 | shadow→canary→promotionが同一artifact/config digest | stage skip、途中差替えを拒否 |\n| TER-AC-009 | TER-R-08 | adoption decisionに比較Evidenceがある | 最新版だけを理由に採用しない |\n| TER-AC-010 | TER-R-09 | change classとworkflow routeが別field | 同一enumへ畳み込まない |\n| TER-AC-011 | TER-R-09 | 構造原因をdefinition_reviewへ昇格する | local patchだけのcloseを拒否 |\n| TER-AC-012 | TER-R-10 | requirement_changeがDiscoveryと再freezeへ戻る | L3直接手編集で意味変更しない |\n| TER-AC-013 | TER-R-10 | stale下流成果をcompletionに使わない | 旧oracleのgreenで相殺しない |\n| TER-AC-014 | TER-R-12 | effective configとruntime read-afterが一致する | file更新だけで完了しない |\n| TER-AC-015 | TER-R-07 / TER-R-08 | rollback targetとrecovery手順が再現可能 | rollback不能なpromotionを拒否 |\n| TER-AC-016 | TER-R-12 | secret/PII/個人pathがredactされる | raw値保存を拒否 |\n| TER-AC-017 | TER-R-11 | provider version/schema driftがMaintenanceObligation化される | 期限切れattestationを黙認しない |\n| TER-AC-018 | TER-R-12 | HELIX自身でprovider更新episodeをdogfoodする | self-host例外、手編集receiptを拒否 |\n\n18件すべてを独立oracleとして保持し、単一happy-path testで複数failure classを相殺しない。\n"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/distribution-package-release-requirements.md",
+      "lines": [
+        24,
+        83
+      ],
+      "full_sha256": "c854d77696bba4904bc91c1d32b8f1bd714408480f16538b7eb7e77291104f1c",
+      "raw_span_sha256": "60f558ed4c14b1b235e060dad063c8a07c202b02868a1004ae8f4855671e6c2e",
+      "kind": "legacy_comparison",
+      "physical_bounds_inclusive": [
+        24,
+        83
+      ],
+      "physical_line_count": 60,
+      "full_sha256_recomputed": "c854d77696bba4904bc91c1d32b8f1bd714408480f16538b7eb7e77291104f1c",
+      "raw_span_sha256_recomputed": "60f558ed4c14b1b235e060dad063c8a07c202b02868a1004ae8f4855671e6c2e",
+      "bounded_literal_utf8": "- 入力: development source HEAD、requirements digest、package version、versioned capability allowlist、consumer profile。\n- 出力: immutable artifact、manifest、consumer smoke evidence、promotion／rollback plan、approval-bound remote action。\n- authority: development repository。distribution repositoryやgenerated artifactを逆向き正本にしない。\n- consumer: clean／既存／monorepo project。HELIX-HARNESS自身のdogfood stateをconsumerへ持ち込まない。\n- transaction: local plan／build／dry-runは可逆。safe release standing authorizationへ完全一致する既定配布先の\n  canary／preview／stableは自走可能。policy外target、repository切替、identifier／state cutoverはaction-binding approval対象。\n\n### 2.1 初期consumer profile\n\n- display name: `HELIX-HARNESS-LITE`\n- profile ID: `consumer_core_v1`\n- source authority: development repository `HELIX-HARNESS`のみ\n- distribution repository: `RetryYN/HELIX-HARNESS-DevOS`\n- generation: typed capability allowlistからのdeterministic projection\n- promotion: Full HELIXでconsumer-safe終端済みcapabilityだけをversioned receiptで昇格\n- prohibition: Lite fork、独自仕様、手編集allowlist、development state混入、除外capabilityの到達可能surface\n\n初期allowlist capabilityは次のexact setとする。\n\n- L1-L12正規Vモデル、PLAN／Issue／branchのauthority契約。\n- typed workflow identity、legacy input-only隔離。\n- CI、doctor、lint、mutationの反証oracle。\n- schema／templateだけのDB projection、replay、checkpoint。developmentのDB実データは含めない。\n- setup project、status、completion decision packet、review bundle、consumer doctor、基本CLI。\n- exact-HEAD independent review、GitHub contract、Codex／Claude hookのconsumer integration profile。\n\n初期profileは#188 switching／routing／allocation、#819 resident multi-runtime lane、lane supervisor、Grok／Cursor\nresident lane、provider自動fallback、multi-HEAD resident runtime、未終端security broker、development固有PLAN／memory／\n`harness.db`実データ／receipt／credential／absolute pathを含めない。除外capabilityはartifact fileだけでなくCLI help、\nsetup、schema、doctor、generated docsからも到達不能でなければならない。\n\nFull HELIXでconsumer-safe acceptanceが終端したcapabilityだけをversioned promotion receiptによりprofile manifestへ\n昇格できる。Lite独自仕様、Lite側からFullへの逆流、手編集によるallowlist追加、除外capabilityの推測fallbackを禁止する。\n\n### 2.2 安全な段階releaseのstanding authorization\n\n`RetryYN/HELIX-HARNESS-DevOS`だけをtargetとするcanary／preview／stableは、source HEAD、requirements refinement／\nprofile／artifact digest、exact-HEAD review、Linux／Windows smoke、credential target authority、rollback rehearsalの\nmonitoring window、expiryを束縛したstanding authorization receiptが一致する場合に限り追加承認なしで自走できる。\ntarget／params／artifact drift、stage skip、credential authority不一致、policy期限切れはfail-closeする。repository切替、\nidentifier／state cutover、policy外target、consumer data破壊を伴う操作はaction-binding approval境界へ残す。\n\n## 2.3 Requirement IR詳細化条項\n\n#### DIST-LITE-R-01 profile identityとauthority\n\n初期consumer distributionは表示名`HELIX-HARNESS-LITE`、machine profile ID`consumer_core_v1`とし、\nHELIX-HARNESSだけをsource authority、`RetryYN/HELIX-HARNESS-DevOS`を配布先とする。Liteをfork、独立製品、\n逆向きrequirements authorityとして扱わない。旧`RetryYN/HELIX-HARNESS-OS`はcompatibility inputに限り、\ncurrent output、receipt、tag pinへ再投影しない。\n\n#### DIST-LITE-R-02 typed allowlistと除外\n\nprofileはtyped capability IDのversioned allowlistから決定的に生成する。初期exact setと除外exact setを\nfile、CLI help、setup、schema、doctor、generated docsの全surfaceで強制し、path一致やfallbackで未終端capabilityを\n含めない。\n\n#### DIST-LITE-R-03 artifact identityとpromotion\n\n同一source HEAD、requirements refinement digest、profile version／digest、package versionのbuildは同一artifact\n"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/distribution-package-release-system-test-design.md",
+      "lines": [
+        1,
+        58
+      ],
+      "full_sha256": "3b3e8b72c51ac418ed58c9278cb07f683c37eaf723d6710d12c1ddfb34a811fc",
+      "raw_span_sha256": "3b3e8b72c51ac418ed58c9278cb07f683c37eaf723d6710d12c1ddfb34a811fc",
+      "kind": "legacy_comparison",
+      "physical_bounds_inclusive": [
+        1,
+        58
+      ],
+      "physical_line_count": 58,
+      "full_sha256_recomputed": "3b3e8b72c51ac418ed58c9278cb07f683c37eaf723d6710d12c1ddfb34a811fc",
+      "raw_span_sha256_recomputed": "3b3e8b72c51ac418ed58c9278cb07f683c37eaf723d6710d12c1ddfb34a811fc",
+      "bounded_literal_utf8": "---\ntitle: \"multi-project配布packageと段階release L10 system test設計\"\nlayer: L10\nartifact_type: test_design\nstatus: confirmed\ncreated: 2026-08-14\nupdated: 2026-08-22\nowner: Codex / QA\nplan: docs/plans/PLAN-L3-65-distribution-repository-devos-authority.md\npair_artifact: docs/design/helix/L3-requirements/distribution-package-release-requirements.md\n---\n\n# multi-project配布packageと段階release L10 system test設計\n\n## 1. 対象と境界\n\nrequirements §4.6.1の`HR-FR-HYB-008`をsystem境界で検証する。local package plan／dry-run／consumer\nfixtureを対象とし、remote sync apply、tag、release publish、channel promotion、PLAN-M-02 cutoverは実行しない。\n\n## 2. oracle完全集合\n\n| oracle | 対応AC | system入力 | pass条件 | negative oracle |\n|---|---|---|---|---|\n| `ST-DIST-001` | `HR-AC-HYB-008-01` | source HEAD、`consumer_core_v1`、candidate manifest | profile／include／exclude exact set、source／requirements／profile／artifact digest、version一致 | unknown profile、manifest外file、duplicate、手編集allowlist、digest driftを拒否 |\n| `ST-DIST-002` | `HR-AC-HYB-008-02` | dogfood混入mutation群 | project PLAN／design／DB／state／memory／credential／PII／absolute pathが0 | 各mutationを独立kill |\n| `ST-DIST-003` | `HR-AC-HYB-008-03` | clean／既存／monorepo consumerへsetupを2回 | 2回目no-op、managed marker外とconsumer bytes不変 | overwrite、delete、marker外変更を拒否 |\n| `ST-DIST-004` | `HR-AC-HYB-008-04` | package contents | README／LICENSE／attribution／provenance／免責がexact存在 | 1件ずつ欠落させて拒否 |\n| `ST-DIST-005` | `HR-AC-HYB-008-05` | `consumer_core_v1` clean Linux fresh process | install→build→setup→status→consumer doctor→minimal workflow→CI→completion evidence green | bare CLI／package script／Node不足／除外capability到達をtyped red |\n| `ST-DIST-006` | `HR-AC-HYB-008-06` | Windows fresh process | Linuxと同一artifact digest、PowerShell entrypoint smoke green |別artifact、Bun依存、POSIX専用pathを拒否 |\n| `ST-DIST-007` | `HR-AC-HYB-008-07` | canary／preview／stable receipt列 | 同一artifact digest、一方向、entry／window／stop条件充足 | stage skip、rebuild差替え、stale receiptを拒否 |\n| `ST-DIST-008` | `HR-AC-HYB-008-08` | failed canaryとrollback rehearsal | engine pinだけ直前tagへ戻りconsumer所有bytes不変 | consumer repository rollback／state wipeを拒否 |\n| `ST-DIST-009` | `HR-AC-HYB-008-09` | safe release policyとremote action plan | 既定配布先、HEAD／profile／artifact、review、smoke、rollback、monitoring、expiryがstanding authorizationと一致するcanary／preview／stableだけ自走 | target／params／digest drift、stage skip、期限切れ、policy外cutoverのaction-binding approval欠落を拒否 |\n\n### 2.1 Requirement IR詳細化の受入条件\n\n| AC ID | 対応requirement | 入力／操作 | 合格条件 | negative mutation |\n|---|---|---|---|---|\n| `DIST-LITE-AC-001` | `DIST-LITE-R-01` | profile identityとsource／distribution repositoryを読む | `HELIX-HARNESS-LITE`／`consumer_core_v1`／HELIX-HARNESS authority／HELIX-HARNESS-DevOS targetがexact一致し、旧HELIX-HARNESS-OSをcurrent outputへ再投影しない | Lite fork、別authority、別target、旧identity再出力を拒否する |\n| `DIST-LITE-AC-002` | `DIST-LITE-R-02` | initial capability allowlistを生成する | typed capability exact setだけがmanifestへ入る | path一致、unknown capability、手編集allowlistを拒否する |\n| `DIST-LITE-AC-003` | `DIST-LITE-R-02` | 除外capabilityを各consumer surfaceから探索する | file、CLI help、setup、schema、doctor、generated docsで到達0件になる | #188、#819、未終端security brokerのいずれかを到達可能にしたら拒否する |\n| `DIST-LITE-AC-004` | `DIST-LITE-R-03` | 同一authority inputでpackageを2回buildする | tarball、checksum、manifest、artifact digestが一致する | timestamp、entry order、absolute path、別build差替えを拒否する |\n| `DIST-LITE-AC-005` | `DIST-LITE-R-03` | canaryからpreview、stableへpromotionする | 同一artifact digestを一方向にpromotionする | stage skip、rebuild、digest driftを拒否する |\n| `DIST-LITE-AC-006` | `DIST-LITE-R-04` | clean Linux fresh processでconsumer flowを実行する | install→build→setup→status→doctor→minimal workflow→CI→completion evidenceがgreenになる | bare CLI、missing script、dogfood state、credential前提を拒否する |\n| `DIST-LITE-AC-007` | `DIST-LITE-R-04` | Windows smokeとrollback／uninstall rehearsalを実行する | 同一Node artifactを使いconsumer所有bytesとevidenceを保全する | OS別artifact、consumer rollback、state wipeを拒否する |\n| `DIST-LITE-AC-008` | `DIST-LITE-R-05` | standing authorizationとsafe release actionを照合する | target、HEAD、profile、artifact、review、smoke、rollback、monitoring、expiryの完全一致時だけ自走する | field欠落、drift、expiry、credential authority不一致を拒否する |\n| `DIST-LITE-AC-009` | `DIST-LITE-R-05` | policy外targetまたは不可逆cutoverを要求する | action-binding approvalへ停止する | standing authorizationをrepository切替、identifier／state cutover、consumer data破壊へ流用したら拒否する |\n\n## 3. evidence schema定義\n\n各oracleはsource HEAD、requirements digest、package version、artifact digest、OS／Node version、command、\nexit code、output digest、consumer before／after digest、started／completed時刻を持つ。profileはID／version／digest／\ncapability exact setを持つ。promotion／rollbackはchannel、\nprevious／candidate tag、観測window、stop reason、approval snapshotを追加する。path、credential、PIIを記録しない。\n\n## 4. release判定\n\n`ST-DIST-001..009`の設計・実装・current evidenceを別stateで扱う。本書のconfirmやlocal smoke greenを\nstable publish済みと読み替えず、remote actionはaction-binding approvalへ停止する。\n"
+    }
+  ],
+  "stage1_approved_prefix": {
+    "approved_body_revision": "7a74a8bfce440f5bd40c8d7da9be0ebdcdaf8f0d",
+    "current_main_base": "72fa2f08ccd7a87733112f918659464d5f5cb6c5",
+    "po_decision_path": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+    "po_decision_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "prefix_exact_byte_equality_checked_for_all_six_documents": true,
+    "document_pins": [
+      {
+        "document": "BR",
+        "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+        "body_revision": "b45edd1337e1e4bf8eecd74193fe4d791dd28cef",
+        "full_file_sha256": "57c71c8b3fa59992d4b5845e54aca9efea54ad4fac9ab5f87e4915c8f734cb8e",
+        "bytes": 3223,
+        "physical_lines": 31,
+        "approved_stage1_revision": "7a74a8bfce440f5bd40c8d7da9be0ebdcdaf8f0d",
+        "approved_stage1_prefix_bytes": 1952,
+        "approved_stage1_prefix_sha256": "c2b22bc5af8bf721c9f6e4594e81046dde2ed2a9555fa0643accb76f8a37f97e",
+        "prefix_exact_bytes_match_main_base": true,
+        "stage2b_suffix_line_start": 23,
+        "stage2b_suffix_physical_line_count_including_separator": 10,
+        "stage2b_content_physical_line_count": 9,
+        "stage2b_suffix_raw_sha256": "97aa6a9db48f5d2e513b711125813fa17e4b14becca3f8332e0ef8e3e88132b5"
+      },
+      {
+        "document": "FR",
+        "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+        "body_revision": "b45edd1337e1e4bf8eecd74193fe4d791dd28cef",
+        "full_file_sha256": "6589924e65480f0b87ee3bd0e865dc6f452dde4c1455cc23b042a533da1a11ff",
+        "bytes": 26163,
+        "physical_lines": 159,
+        "approved_stage1_revision": "7a74a8bfce440f5bd40c8d7da9be0ebdcdaf8f0d",
+        "approved_stage1_prefix_bytes": 16146,
+        "approved_stage1_prefix_sha256": "22d90beb7fcec36e33b63cc3fa7921e224ff6ced66ea8f9a5f2fdb71570d28b6",
+        "prefix_exact_bytes_match_main_base": true,
+        "stage2b_suffix_line_start": 97,
+        "stage2b_suffix_physical_line_count_including_separator": 64,
+        "stage2b_content_physical_line_count": 63,
+        "stage2b_suffix_raw_sha256": "8165728536147a62318229c29d0acd6e92a5897f7f410d04c0648bcfef5ec9f7"
+      },
+      {
+        "document": "NFR",
+        "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+        "body_revision": "b45edd1337e1e4bf8eecd74193fe4d791dd28cef",
+        "full_file_sha256": "d4a5a845013ec1b0980ab9705a474289f149f060ce724ca75ac1dac33312f34b",
+        "bytes": 10848,
+        "physical_lines": 60,
+        "approved_stage1_revision": "7a74a8bfce440f5bd40c8d7da9be0ebdcdaf8f0d",
+        "approved_stage1_prefix_bytes": 8514,
+        "approved_stage1_prefix_sha256": "a381b4b88fe6b5621fecf1195470b45bd5fbfd1f1dc88fee7dc3cf259abbb3ab",
+        "prefix_exact_bytes_match_main_base": true,
+        "stage2b_suffix_line_start": 47,
+        "stage2b_suffix_physical_line_count_including_separator": 15,
+        "stage2b_content_physical_line_count": 14,
+        "stage2b_suffix_raw_sha256": "822b7043ac04778f3a51f928b435a296b0e367ffff1a4a58057df6e12af34367"
+      },
+      {
+        "document": "L10BR",
+        "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+        "body_revision": "b45edd1337e1e4bf8eecd74193fe4d791dd28cef",
+        "full_file_sha256": "cd1fb223b3b612f779de050975afb576c649eb15ed3f0ca1bfd73b515e76a280",
+        "bytes": 2614,
+        "physical_lines": 29,
+        "approved_stage1_revision": "7a74a8bfce440f5bd40c8d7da9be0ebdcdaf8f0d",
+        "approved_stage1_prefix_bytes": 1293,
+        "approved_stage1_prefix_sha256": "8801b848f6b16d5214a45b3652446a228e829c687f9203e50c02ad2bf5ddbe70",
+        "prefix_exact_bytes_match_main_base": true,
+        "stage2b_suffix_line_start": 21,
+        "stage2b_suffix_physical_line_count_including_separator": 10,
+        "stage2b_content_physical_line_count": 9,
+        "stage2b_suffix_raw_sha256": "464cdd98c929ca09a7ecd1bce8e24b7fa2d7006c302a95c5f32099c92bda096e"
+      },
+      {
+        "document": "L10FR",
+        "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+        "body_revision": "b45edd1337e1e4bf8eecd74193fe4d791dd28cef",
+        "full_file_sha256": "9c463c5d848a57328810417bce370c5cf1be2d4725e5f3113f51a9e6cf8256ca",
+        "bytes": 23586,
+        "physical_lines": 119,
+        "approved_stage1_revision": "7a74a8bfce440f5bd40c8d7da9be0ebdcdaf8f0d",
+        "approved_stage1_prefix_bytes": 15888,
+        "approved_stage1_prefix_sha256": "e9e3132d779e3ea9c8e4cfef2d066d0f5394cfb76069cb2af90468c4930172a7",
+        "prefix_exact_bytes_match_main_base": true,
+        "stage2b_suffix_line_start": 81,
+        "stage2b_suffix_physical_line_count_including_separator": 40,
+        "stage2b_content_physical_line_count": 39,
+        "stage2b_suffix_raw_sha256": "5fdf4fbbb62499e8e0e95160272a8a51d16227d74e14b88ce59f6240f29664af"
+      },
+      {
+        "document": "L10NFR",
+        "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+        "body_revision": "b45edd1337e1e4bf8eecd74193fe4d791dd28cef",
+        "full_file_sha256": "d2f8284b769b69dff1ea3c1891a54d0e15e0eb04a06fac4e2389431d2f4cb6eb",
+        "bytes": 9467,
+        "physical_lines": 53,
+        "approved_stage1_revision": "7a74a8bfce440f5bd40c8d7da9be0ebdcdaf8f0d",
+        "approved_stage1_prefix_bytes": 6449,
+        "approved_stage1_prefix_sha256": "562545cfb95e81bce5db29628b5fbb3a82c20fbb41db6867364ff60b2c84c63a",
+        "prefix_exact_bytes_match_main_base": true,
+        "stage2b_suffix_line_start": 40,
+        "stage2b_suffix_physical_line_count_including_separator": 15,
+        "stage2b_content_physical_line_count": 14,
+        "stage2b_suffix_raw_sha256": "732b3435222f03254011e6e0b78e05a52802925e5df7a98e45daa00074b5f9d6"
+      }
+    ]
+  },
+  "historical_records": {
+    "prior_candidate_body_revision": "e12514cb9666c1ae4e9daff658b4f2f92827672a",
+    "prior_cutout_body_revision": "08c5d0632edcd1832158c95d1098f22ec829870b",
+    "prior_root_static_audit_commit": "fc6002190138102ec93a5135cf98d02c10bc27f2",
+    "prior_cutout_audit_commit": "c7cf9be5c6a7e7eb1060e3278cb887e73e637eca",
+    "preserved_artifacts": [
+      {
+        "path": "docs/governance/audits/requirements-stage/l3-l10-infra-stage2b-root-static-validation-2026-10-05-e12514cb9.json",
+        "source_commit": "fc6002190138102ec93a5135cf98d02c10bc27f2",
+        "source_blob_sha256": "5e2673aa60306551d89c5030057c349acde0ee527b672f775cc20c0b3aaa75a9",
+        "bytes": 165599,
+        "copied_byte_identically": true
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/l3-l10-infra-stage2b-root-po-summary-2026-10-05-e12514cb9.md",
+        "source_commit": "fc6002190138102ec93a5135cf98d02c10bc27f2",
+        "source_blob_sha256": "c19ffcfb07282e03bde53f4f296dccb0bbac371104eb098cc9ac00a78709d940",
+        "bytes": 1509,
+        "copied_byte_identically": true
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/l3-l10-infra-stage2b-002-007-publication-cutout-2026-10-05-08c5d063.json",
+        "source_commit": "c7cf9be5c6a7e7eb1060e3278cb887e73e637eca",
+        "source_blob_sha256": "787481c89a158e2626428443a5670df34ea2f782a55b944178a76875cd25fb02",
+        "bytes": 44599,
+        "copied_byte_identically": true
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/l3-l10-infra-stage2b-002-007-publication-cutout-2026-10-05-08c5d063.md",
+        "source_commit": "c7cf9be5c6a7e7eb1060e3278cb887e73e637eca",
+        "source_blob_sha256": "ab9487d65f7d96e7c9afcf84658cb65aaebdee10299472ff560059c98c815f37",
+        "bytes": 1523,
+        "copied_byte_identically": true
+      }
+    ],
+    "prior_records_modified": false,
+    "prior_cutout_had_no_approved_prefix_at_its_base": "f54ea028ddd37fd9aea2924e500dafe9dbd72a62"
+  },
+  "canonical_documents": [
+    {
+      "document": "BR",
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "body_revision": "b45edd1337e1e4bf8eecd74193fe4d791dd28cef",
+      "full_file_sha256": "57c71c8b3fa59992d4b5845e54aca9efea54ad4fac9ab5f87e4915c8f734cb8e",
+      "bytes": 3223,
+      "physical_lines": 31,
+      "approved_stage1_revision": "7a74a8bfce440f5bd40c8d7da9be0ebdcdaf8f0d",
+      "approved_stage1_prefix_bytes": 1952,
+      "approved_stage1_prefix_sha256": "c2b22bc5af8bf721c9f6e4594e81046dde2ed2a9555fa0643accb76f8a37f97e",
+      "prefix_exact_bytes_match_main_base": true,
+      "stage2b_suffix_line_start": 23,
+      "stage2b_suffix_physical_line_count_including_separator": 10,
+      "stage2b_content_physical_line_count": 9,
+      "stage2b_suffix_raw_sha256": "97aa6a9db48f5d2e513b711125813fa17e4b14becca3f8332e0ef8e3e88132b5"
+    },
+    {
+      "document": "FR",
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "body_revision": "b45edd1337e1e4bf8eecd74193fe4d791dd28cef",
+      "full_file_sha256": "6589924e65480f0b87ee3bd0e865dc6f452dde4c1455cc23b042a533da1a11ff",
+      "bytes": 26163,
+      "physical_lines": 159,
+      "approved_stage1_revision": "7a74a8bfce440f5bd40c8d7da9be0ebdcdaf8f0d",
+      "approved_stage1_prefix_bytes": 16146,
+      "approved_stage1_prefix_sha256": "22d90beb7fcec36e33b63cc3fa7921e224ff6ced66ea8f9a5f2fdb71570d28b6",
+      "prefix_exact_bytes_match_main_base": true,
+      "stage2b_suffix_line_start": 97,
+      "stage2b_suffix_physical_line_count_including_separator": 64,
+      "stage2b_content_physical_line_count": 63,
+      "stage2b_suffix_raw_sha256": "8165728536147a62318229c29d0acd6e92a5897f7f410d04c0648bcfef5ec9f7"
+    },
+    {
+      "document": "NFR",
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "body_revision": "b45edd1337e1e4bf8eecd74193fe4d791dd28cef",
+      "full_file_sha256": "d4a5a845013ec1b0980ab9705a474289f149f060ce724ca75ac1dac33312f34b",
+      "bytes": 10848,
+      "physical_lines": 60,
+      "approved_stage1_revision": "7a74a8bfce440f5bd40c8d7da9be0ebdcdaf8f0d",
+      "approved_stage1_prefix_bytes": 8514,
+      "approved_stage1_prefix_sha256": "a381b4b88fe6b5621fecf1195470b45bd5fbfd1f1dc88fee7dc3cf259abbb3ab",
+      "prefix_exact_bytes_match_main_base": true,
+      "stage2b_suffix_line_start": 47,
+      "stage2b_suffix_physical_line_count_including_separator": 15,
+      "stage2b_content_physical_line_count": 14,
+      "stage2b_suffix_raw_sha256": "822b7043ac04778f3a51f928b435a296b0e367ffff1a4a58057df6e12af34367"
+    },
+    {
+      "document": "L10BR",
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "body_revision": "b45edd1337e1e4bf8eecd74193fe4d791dd28cef",
+      "full_file_sha256": "cd1fb223b3b612f779de050975afb576c649eb15ed3f0ca1bfd73b515e76a280",
+      "bytes": 2614,
+      "physical_lines": 29,
+      "approved_stage1_revision": "7a74a8bfce440f5bd40c8d7da9be0ebdcdaf8f0d",
+      "approved_stage1_prefix_bytes": 1293,
+      "approved_stage1_prefix_sha256": "8801b848f6b16d5214a45b3652446a228e829c687f9203e50c02ad2bf5ddbe70",
+      "prefix_exact_bytes_match_main_base": true,
+      "stage2b_suffix_line_start": 21,
+      "stage2b_suffix_physical_line_count_including_separator": 10,
+      "stage2b_content_physical_line_count": 9,
+      "stage2b_suffix_raw_sha256": "464cdd98c929ca09a7ecd1bce8e24b7fa2d7006c302a95c5f32099c92bda096e"
+    },
+    {
+      "document": "L10FR",
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "body_revision": "b45edd1337e1e4bf8eecd74193fe4d791dd28cef",
+      "full_file_sha256": "9c463c5d848a57328810417bce370c5cf1be2d4725e5f3113f51a9e6cf8256ca",
+      "bytes": 23586,
+      "physical_lines": 119,
+      "approved_stage1_revision": "7a74a8bfce440f5bd40c8d7da9be0ebdcdaf8f0d",
+      "approved_stage1_prefix_bytes": 15888,
+      "approved_stage1_prefix_sha256": "e9e3132d779e3ea9c8e4cfef2d066d0f5394cfb76069cb2af90468c4930172a7",
+      "prefix_exact_bytes_match_main_base": true,
+      "stage2b_suffix_line_start": 81,
+      "stage2b_suffix_physical_line_count_including_separator": 40,
+      "stage2b_content_physical_line_count": 39,
+      "stage2b_suffix_raw_sha256": "5fdf4fbbb62499e8e0e95160272a8a51d16227d74e14b88ce59f6240f29664af"
+    },
+    {
+      "document": "L10NFR",
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "body_revision": "b45edd1337e1e4bf8eecd74193fe4d791dd28cef",
+      "full_file_sha256": "d2f8284b769b69dff1ea3c1891a54d0e15e0eb04a06fac4e2389431d2f4cb6eb",
+      "bytes": 9467,
+      "physical_lines": 53,
+      "approved_stage1_revision": "7a74a8bfce440f5bd40c8d7da9be0ebdcdaf8f0d",
+      "approved_stage1_prefix_bytes": 6449,
+      "approved_stage1_prefix_sha256": "562545cfb95e81bce5db29628b5fbb3a82c20fbb41db6867364ff60b2c84c63a",
+      "prefix_exact_bytes_match_main_base": true,
+      "stage2b_suffix_line_start": 40,
+      "stage2b_suffix_physical_line_count_including_separator": 15,
+      "stage2b_content_physical_line_count": 14,
+      "stage2b_suffix_raw_sha256": "732b3435222f03254011e6e0b78e05a52802925e5df7a98e45daa00074b5f9d6"
+    }
+  ],
+  "current_line_pins": [
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 23,
+      "raw_lf_sha256": "70d0af1ffdd6789481994b9bf36b0138655a314155675d463f350d2eb13455a3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 24,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 25,
+      "raw_lf_sha256": "7556f04df4456a0a1e6c54df43d268d4a39485581ae01bdd7770b767e1115d59"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 26,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 27,
+      "raw_lf_sha256": "5471b42e3385e13ab30b2dce2a36473aab69116d9878dcd4122336d4cae76ce6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 28,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 29,
+      "raw_lf_sha256": "27567d600bd1358073d0b99245fbf24e877662365adf4ada576c82a38394a6c3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 30,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 31,
+      "raw_lf_sha256": "dddd14256ae12c210a2cb9811ccf9a843c00d56d948155e5378e126d65952e7b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 97,
+      "raw_lf_sha256": "c497857fa3f6b2a2d01dedc9e3be6e6a842af49d30c13a5ed2ed6abf027a3b3a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 98,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 99,
+      "raw_lf_sha256": "7556f04df4456a0a1e6c54df43d268d4a39485581ae01bdd7770b767e1115d59"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 100,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 101,
+      "raw_lf_sha256": "5471b42e3385e13ab30b2dce2a36473aab69116d9878dcd4122336d4cae76ce6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 102,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 103,
+      "raw_lf_sha256": "27567d600bd1358073d0b99245fbf24e877662365adf4ada576c82a38394a6c3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 104,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 105,
+      "raw_lf_sha256": "b7c49d4b0d5f1adf674fcf99b99e9f492113e1a548ba7a1a36e6d849fb3e2a13"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 106,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 107,
+      "raw_lf_sha256": "2714013857aadc2e5e9a64784824fa90a55775bf3c724e9b5eb4600c76564442"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 108,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 109,
+      "raw_lf_sha256": "8e66ea61099fd1e5c6118ad84015460c13609a4238759be8be4665b1656ff9f0"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 110,
+      "raw_lf_sha256": "5f5fc406ba3ce68ac3c50a68d30f51b5a9623d6930d46886ac993d0db108341e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 111,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 112,
+      "raw_lf_sha256": "2dce15852ab18048849a791605d09e563f17e184e18fc30f66ce85626570e71b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 113,
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 114,
+      "raw_lf_sha256": "93d7069701cfa41a4775729e24e23da22d2845a79352a4b8f5d8e977cc4095ef"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 115,
+      "raw_lf_sha256": "0453c4e6b415ee057d0e19e3e07fec301adfac69d7541c798a0fb08b912c081c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 116,
+      "raw_lf_sha256": "e0f4ee36edb0271ff5971a10b2e7e342e832d51d9af90b0ee7d38c4b8aba84a6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 117,
+      "raw_lf_sha256": "70f09cca77417062c469d57d575e32b92fd6b8d0d042b25e5f049df0636dd900"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 118,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 119,
+      "raw_lf_sha256": "5784ed92b38b12a2d4fbe8265851ead174d91ca71640f9e3d5364dbe59d44afc"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 120,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 121,
+      "raw_lf_sha256": "29ad9075320a44aa79c9641822515330b8370cbaca8f16004080f974e9606d69"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 122,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 123,
+      "raw_lf_sha256": "3f85659757ab80f57033961ba22669c01016b6d398a32b7cd2c788d53a6c195c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 124,
+      "raw_lf_sha256": "c93b66e0fef413c0c2e67dbbc1e3678e176652308be16734ef78b57166ea0268"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 125,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 126,
+      "raw_lf_sha256": "2dce15852ab18048849a791605d09e563f17e184e18fc30f66ce85626570e71b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 127,
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 128,
+      "raw_lf_sha256": "2981162eeeb0538bd025b77cff4661f14c4f8bac24b3ace5e86078edee12d5bf"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 129,
+      "raw_lf_sha256": "3bf822496957910e2bf897d9bcde14e7bb879d06e352a7fcf619b5c2a93521d6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 130,
+      "raw_lf_sha256": "adbd438d2de914c3add49eb3daa56f8633dc7b8019611288230e6dacb44b136c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 131,
+      "raw_lf_sha256": "2e070d7f883dbf83e3b0949bb37aad85d70140186fc9807de6c80be467910051"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 132,
+      "raw_lf_sha256": "5e8a6bd1c92232cbe55a027d24be3078f6fd04767dc44003332aaf7175a85cc0"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 133,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 134,
+      "raw_lf_sha256": "af676e11104a94967bd79697c58bc6f24a829b8fb47777d8e4c70c3b9a788fbe"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 135,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 136,
+      "raw_lf_sha256": "9b85e13b8276a4873608a742a47dda293282156c85963b764ac14a4ccf12b873"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 137,
+      "raw_lf_sha256": "595ada588de7eec6316c6a537e5cd64fb200baf8582fc1e17a19b28139e390b1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 138,
+      "raw_lf_sha256": "d2a67f795fc0cc152441642443f6ac8ce68583804b72127fee9ba5fe2526fec6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 139,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 140,
+      "raw_lf_sha256": "7adf1ca340c450a1a6fb8e6eccf612d313d975d95cab035204eaf35ee07f35ca"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 141,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 142,
+      "raw_lf_sha256": "27a396bd9eeafbcf897989b92cad2bf222d6748a01dd2b0c72cc5e03f90012ab"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 143,
+      "raw_lf_sha256": "afb674f17de2d1b605c4ea893e9c2d53851b513fab24c9fb69726423c8bd598f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 144,
+      "raw_lf_sha256": "aa7c000dbf644e6ba08805bed4bf842b8be55b57ba6cd1da9d145bf52a53df67"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 145,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 146,
+      "raw_lf_sha256": "6cc41bcd7ba78e155c31b01e0d6e1617b8df4188466895d01bc8de7e34208ad4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 147,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 148,
+      "raw_lf_sha256": "b47d96c9eabc90b51094159f3ab6c716a7cd323580f714baf964ac03d0a020b6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 149,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 150,
+      "raw_lf_sha256": "5627f685470a6ddfe3b97d85100250a9578d69e93de11620431332e9d1696093"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 151,
+      "raw_lf_sha256": "1de25071dfbcd236934eb9f3678ebfec9dd4c3536111762658ac30cb74aca430"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 152,
+      "raw_lf_sha256": "737e5764b747f082450f5220b9798107fed5192e7e4af1b155208ccf683c5ddf"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 153,
+      "raw_lf_sha256": "9dfe91d3291118d4d27d942f17a9f8ec1eb4c900e9a8af05c373aa60d6be123f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 154,
+      "raw_lf_sha256": "d2458184eaf9791913af6d4947d074eab5b691dbc866955d7ca3af06b77814c9"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 155,
+      "raw_lf_sha256": "b2a40332e461a3bff77450499f6082c2fa69fa39ae6ac5ef020d7b77d05f31e0"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 156,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 157,
+      "raw_lf_sha256": "54b0a42434167638ccc5e18609e597d57cd780065338088b1552b2ffc3dbb0e3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 158,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 159,
+      "raw_lf_sha256": "d2fc0956a72314628fcdd7fce5e67d3d06e00b9174f34ce48a3cb88100671fe8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 47,
+      "raw_lf_sha256": "0bc8dcbde96f03b1908921bece620112daf112b99a9a90522917c3e2da200074"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 48,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 49,
+      "raw_lf_sha256": "7556f04df4456a0a1e6c54df43d268d4a39485581ae01bdd7770b767e1115d59"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 50,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 51,
+      "raw_lf_sha256": "5471b42e3385e13ab30b2dce2a36473aab69116d9878dcd4122336d4cae76ce6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 52,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 53,
+      "raw_lf_sha256": "27567d600bd1358073d0b99245fbf24e877662365adf4ada576c82a38394a6c3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 54,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 55,
+      "raw_lf_sha256": "1735f7a9f8f8b11af1a55ba43993f6a9fc39025f18ee6e6c03a4428a36551674"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 56,
+      "raw_lf_sha256": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 57,
+      "raw_lf_sha256": "232d7baad74d859f3deb1420a5e7d1eee0cd505fc0e7a17d8235ec9a5c549f12"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 58,
+      "raw_lf_sha256": "4c10ef7d452bd1595b99164aadb58cd85130b87a94b90f203b8e6d7474e8b9cd"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 59,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 60,
+      "raw_lf_sha256": "23cfd829c2207c71feadac436939ffa54e6694456bced703137c8e231a2b2f38"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 21,
+      "raw_lf_sha256": "721d7867d53cd322fa9efc20a96436ce7eb10f93ce0830ff5f33d0439c0768fa"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 22,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 23,
+      "raw_lf_sha256": "7556f04df4456a0a1e6c54df43d268d4a39485581ae01bdd7770b767e1115d59"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 24,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 25,
+      "raw_lf_sha256": "5471b42e3385e13ab30b2dce2a36473aab69116d9878dcd4122336d4cae76ce6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 26,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 27,
+      "raw_lf_sha256": "27567d600bd1358073d0b99245fbf24e877662365adf4ada576c82a38394a6c3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 28,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 29,
+      "raw_lf_sha256": "2ad0d53442d4e9faeaa53c3543e4f99eb4420067f8919a3e13237b90d3f0c550"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 81,
+      "raw_lf_sha256": "57d0feea33003ae33fd2c22e8c1fbcc9f55b74446d5e8b77bc44c1d98b4e07a0"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 82,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 83,
+      "raw_lf_sha256": "7556f04df4456a0a1e6c54df43d268d4a39485581ae01bdd7770b767e1115d59"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 84,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 85,
+      "raw_lf_sha256": "5471b42e3385e13ab30b2dce2a36473aab69116d9878dcd4122336d4cae76ce6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 86,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 87,
+      "raw_lf_sha256": "27567d600bd1358073d0b99245fbf24e877662365adf4ada576c82a38394a6c3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 88,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 89,
+      "raw_lf_sha256": "8a54e28e07dfab185a753cb950f1d31c3d55a2cbff4e7dbe9411d385a0f03209"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 90,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 91,
+      "raw_lf_sha256": "6495a8dafd8beeec30f5c3555be51af554c73b5387afe82581e974dc575bd27a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 92,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 93,
+      "raw_lf_sha256": "ee03882ee4fe6c90e3b19d5266fe937e4702bb6f61b5210fe4a3b43d08519d82"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 94,
+      "raw_lf_sha256": "b1c015e4237c1720df25d39ea93f181092385f1a14737cc959358cac157ac884"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 95,
+      "raw_lf_sha256": "6dc18834720ebafdef6862655ad0a06f6225a38115433c22b8924ab9d8836724"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 96,
+      "raw_lf_sha256": "6a4d05645f4fcebada7ba2ca373bd1b02bf1297bef87a1d9c255b28dc922c1f7"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 97,
+      "raw_lf_sha256": "fc78b877cd8b94f733e08cdf7ba7191bb62fc0c4aeba2b9150992eb2f2506bf3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 98,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 99,
+      "raw_lf_sha256": "15d923e8ea6b5a2c7ff34fd4be7d84cf52a4fa95f5c03700f64eb79f8a2e9e35"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 100,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 101,
+      "raw_lf_sha256": "1367e3d8838919e79ca96e0e7699ad41d380eb8ed4eb7d9f123025f84a34cca6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 102,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 103,
+      "raw_lf_sha256": "ed3e140e588abe67526072a98e96f4ce865ae6fdf2dd6e5ca0c921c81a4812b6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 104,
+      "raw_lf_sha256": "f0e26790b642601e3b7681b019c0582d07b2dff450b0e87bef3908124c4744bb"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 105,
+      "raw_lf_sha256": "1e1a99f9f84b30599f89d82af225ae0fee23bf5c0c33420fb0539996848f2e18"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 106,
+      "raw_lf_sha256": "cddbd45c205ce366f23ea1fcdff6571e226d7aa75fb6d10dec54dfdb61f1f67a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 107,
+      "raw_lf_sha256": "253159e53560749df42e0c47bd4a54daeda9789ecec93d8d9a4927c3b68a2255"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 108,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 109,
+      "raw_lf_sha256": "8776d7a83b6df64708c7ab1876bd7aef1fddb66a1640f288ef921952eb23475b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 110,
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 111,
+      "raw_lf_sha256": "bd81fbae94b5b1c5aeb5b6a6ceba88f71c7c4fbf3af4cb34c468ed110892fb55"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 112,
+      "raw_lf_sha256": "74572a08e31c74551531406334476f193295bcf0e8c006cb195c3a060ac80393"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 113,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 114,
+      "raw_lf_sha256": "c5b813ede9a783325f06d77d463cc4b5dc2b44d3ca109476d9c7e053f3d77289"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 115,
+      "raw_lf_sha256": "5f005ea15e8714111b438839beff2c18d2a3c9a822e0c6b2ec21531d3d9c5418"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 116,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 117,
+      "raw_lf_sha256": "04855cc2d7746c667ca8cab8570a60a5a508974b60db622e9f4c8890566aa4ea"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 118,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 119,
+      "raw_lf_sha256": "5d2c52bfb39413519b7b8c663cd3717726c2fd5a7a55555f31b69249a028ad19"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 40,
+      "raw_lf_sha256": "97c5a0d310a800e20c098d9338bea1f23997f6b48335f62ecb94dcd15d0da84c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 41,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 42,
+      "raw_lf_sha256": "7556f04df4456a0a1e6c54df43d268d4a39485581ae01bdd7770b767e1115d59"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 43,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 44,
+      "raw_lf_sha256": "5471b42e3385e13ab30b2dce2a36473aab69116d9878dcd4122336d4cae76ce6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 45,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 46,
+      "raw_lf_sha256": "27567d600bd1358073d0b99245fbf24e877662365adf4ada576c82a38394a6c3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 47,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 48,
+      "raw_lf_sha256": "08ded94155391a4ffc862659884fc7763dee61c92e971ba529fa81ff5f26d7f7"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 49,
+      "raw_lf_sha256": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 50,
+      "raw_lf_sha256": "7ef03f57acacca9eac168cd6fbe8363c54810958e6102c7e433e39fa173db036"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 51,
+      "raw_lf_sha256": "dbd5f39f2715499cfba767a4dcf0eecf8cdab45217445a07c198e2c44f612db2"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 52,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 53,
+      "raw_lf_sha256": "86708b525187758f7d118676c3f058230f322cb24781a16f5c50706c6723dca3"
+    }
+  ],
+  "body_transformation_inventory": [
+    {
+      "document": "BR",
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "from_body_revision": "08c5d0632edcd1832158c95d1098f22ec829870b",
+      "to_body_revision": "b45edd1337e1e4bf8eecd74193fe4d791dd28cef",
+      "old_heading_literal": "# HELIX-INFRASTRUCTURE L3 業務要件 — Stage 2b（002/007、候補）",
+      "new_heading_literal": "## Stage 2b suffix — HELIXINFRASTRUCTURE-L2-002/007 業務境界",
+      "old_invalid_link_literal": "[Stage2b公開cutout監査](../../governance/audits/requirement-registration/infrastructure-stage2b-002-007-publication-cutout-2026-10-05.json)",
+      "new_audit_link_literal": "[Stage2b公開cutout監査](../../governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08.json)",
+      "old_scope_heading_literal": "## Stage 2b 追加範囲 — 002/007",
+      "new_scope_heading_literal": "### 対象・適用範囲 — HELIXINFRASTRUCTURE-L2-002/007",
+      "exact_occurrence_count_each": 1,
+      "only_these_three_suffix_edits": true,
+      "source_suffix_exactly_matches_after_edits": true,
+      "source_suffix_raw_sha256": "ddb6d1a07b38b96f0176e8111fbc4acd97202dd0ada64275b43ed47af46aa033",
+      "published_document_sha256": "57c71c8b3fa59992d4b5845e54aca9efea54ad4fac9ab5f87e4915c8f734cb8e"
+    },
+    {
+      "document": "FR",
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "from_body_revision": "08c5d0632edcd1832158c95d1098f22ec829870b",
+      "to_body_revision": "b45edd1337e1e4bf8eecd74193fe4d791dd28cef",
+      "old_heading_literal": "# HELIX-INFRASTRUCTURE L3 機能要件 — Stage 2b（002/007、候補）",
+      "new_heading_literal": "## Stage 2b suffix — HELIXINFRASTRUCTURE-L2-002/007 機能要件",
+      "old_invalid_link_literal": "[Stage2b公開cutout監査](../../governance/audits/requirement-registration/infrastructure-stage2b-002-007-publication-cutout-2026-10-05.json)",
+      "new_audit_link_literal": "[Stage2b公開cutout監査](../../governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08.json)",
+      "old_scope_heading_literal": "## Stage 2b 追加範囲 — 002/007",
+      "new_scope_heading_literal": "### 対象・適用範囲 — HELIXINFRASTRUCTURE-L2-002/007",
+      "exact_occurrence_count_each": 1,
+      "only_these_three_suffix_edits": true,
+      "source_suffix_exactly_matches_after_edits": true,
+      "source_suffix_raw_sha256": "e9b178d326a6ab2b9398aab2c792357efa88875a32083519c157317a311cd743",
+      "published_document_sha256": "6589924e65480f0b87ee3bd0e865dc6f452dde4c1455cc23b042a533da1a11ff"
+    },
+    {
+      "document": "NFR",
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "from_body_revision": "08c5d0632edcd1832158c95d1098f22ec829870b",
+      "to_body_revision": "b45edd1337e1e4bf8eecd74193fe4d791dd28cef",
+      "old_heading_literal": "# HELIX-INFRASTRUCTURE L3 NFR候補 — Stage 2b（002/007）",
+      "new_heading_literal": "## Stage 2b suffix — HELIXINFRASTRUCTURE-L2-002/007 NFR候補",
+      "old_invalid_link_literal": "[Stage2b公開cutout監査](../../governance/audits/requirement-registration/infrastructure-stage2b-002-007-publication-cutout-2026-10-05.json)",
+      "new_audit_link_literal": "[Stage2b公開cutout監査](../../governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08.json)",
+      "old_scope_heading_literal": "## Stage 2b 追加範囲 — 002/007",
+      "new_scope_heading_literal": "### 対象・適用範囲 — HELIXINFRASTRUCTURE-L2-002/007",
+      "exact_occurrence_count_each": 1,
+      "only_these_three_suffix_edits": true,
+      "source_suffix_exactly_matches_after_edits": true,
+      "source_suffix_raw_sha256": "004b4cc98f34e443a708a95af4b03ef10abcfeab0431e27339de060318cfecdf",
+      "published_document_sha256": "d4a5a845013ec1b0980ab9705a474289f149f060ce724ca75ac1dac33312f34b"
+    },
+    {
+      "document": "L10BR",
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "from_body_revision": "08c5d0632edcd1832158c95d1098f22ec829870b",
+      "to_body_revision": "b45edd1337e1e4bf8eecd74193fe4d791dd28cef",
+      "old_heading_literal": "# HELIX-INFRASTRUCTURE L10 業務総合検証 — Stage 2b（002/007、候補）",
+      "new_heading_literal": "## Stage 2b suffix — HELIXINFRASTRUCTURE-L2-002/007 業務総合検証",
+      "old_invalid_link_literal": "[Stage2b公開cutout監査](../../governance/audits/requirement-registration/infrastructure-stage2b-002-007-publication-cutout-2026-10-05.json)",
+      "new_audit_link_literal": "[Stage2b公開cutout監査](../../governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08.json)",
+      "old_scope_heading_literal": "## Stage 2b 追加範囲 — 002/007",
+      "new_scope_heading_literal": "### 対象・適用範囲 — HELIXINFRASTRUCTURE-L2-002/007",
+      "exact_occurrence_count_each": 1,
+      "only_these_three_suffix_edits": true,
+      "source_suffix_exactly_matches_after_edits": true,
+      "source_suffix_raw_sha256": "88b2982abf5ff2f0a8533bb4e8c81215c0ac4caae4b9febfb41d59de6f998cac",
+      "published_document_sha256": "cd1fb223b3b612f779de050975afb576c649eb15ed3f0ca1bfd73b515e76a280"
+    },
+    {
+      "document": "L10FR",
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "from_body_revision": "08c5d0632edcd1832158c95d1098f22ec829870b",
+      "to_body_revision": "b45edd1337e1e4bf8eecd74193fe4d791dd28cef",
+      "old_heading_literal": "# HELIX-INFRASTRUCTURE L10 機能総合検証 — Stage 2b（002/007、候補）",
+      "new_heading_literal": "## Stage 2b suffix — HELIXINFRASTRUCTURE-L2-002/007 機能総合検証",
+      "old_invalid_link_literal": "[Stage2b公開cutout監査](../../governance/audits/requirement-registration/infrastructure-stage2b-002-007-publication-cutout-2026-10-05.json)",
+      "new_audit_link_literal": "[Stage2b公開cutout監査](../../governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08.json)",
+      "old_scope_heading_literal": "## Stage 2b 追加範囲 — 002/007",
+      "new_scope_heading_literal": "### 対象・適用範囲 — HELIXINFRASTRUCTURE-L2-002/007",
+      "exact_occurrence_count_each": 1,
+      "only_these_three_suffix_edits": true,
+      "source_suffix_exactly_matches_after_edits": true,
+      "source_suffix_raw_sha256": "6f48ca46bdaec9005acc953bc1c55388bb8c4482c59472398c2aefcfb507bf73",
+      "published_document_sha256": "9c463c5d848a57328810417bce370c5cf1be2d4725e5f3113f51a9e6cf8256ca"
+    },
+    {
+      "document": "L10NFR",
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "from_body_revision": "08c5d0632edcd1832158c95d1098f22ec829870b",
+      "to_body_revision": "b45edd1337e1e4bf8eecd74193fe4d791dd28cef",
+      "old_heading_literal": "# HELIX-INFRASTRUCTURE L10 NFR総合検証 — Stage 2b（002/007、候補)",
+      "new_heading_literal": "## Stage 2b suffix — HELIXINFRASTRUCTURE-L2-002/007 NFR総合検証",
+      "old_invalid_link_literal": "[Stage2b公開cutout監査](../../governance/audits/requirement-registration/infrastructure-stage2b-002-007-publication-cutout-2026-10-05.json)",
+      "new_audit_link_literal": "[Stage2b公開cutout監査](../../governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08.json)",
+      "old_scope_heading_literal": "## Stage 2b 追加範囲 — 002/007",
+      "new_scope_heading_literal": "### 対象・適用範囲 — HELIXINFRASTRUCTURE-L2-002/007",
+      "exact_occurrence_count_each": 1,
+      "only_these_three_suffix_edits": true,
+      "source_suffix_exactly_matches_after_edits": true,
+      "source_suffix_raw_sha256": "c54418821fe65d6e858d05e6c5de5d795cf3e5083c24153f8c330af996d7d211",
+      "published_document_sha256": "d2f8284b769b69dff1ea3c1891a54d0e15e0eb04a06fac4e2389431d2f4cb6eb"
+    }
+  ],
+  "relative_link_checks": [
+    {
+      "source_path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "markdown_link_target": "../../governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08.json",
+      "resolved_target": "docs/governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08.json",
+      "exists": true
+    },
+    {
+      "source_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "markdown_link_target": "../../governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08.json",
+      "resolved_target": "docs/governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08.json",
+      "exists": true
+    },
+    {
+      "source_path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "markdown_link_target": "../../governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08.json",
+      "resolved_target": "docs/governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08.json",
+      "exists": true
+    },
+    {
+      "source_path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "markdown_link_target": "../../governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08.json",
+      "resolved_target": "docs/governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08.json",
+      "exists": true
+    },
+    {
+      "source_path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "markdown_link_target": "../../governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08.json",
+      "resolved_target": "docs/governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08.json",
+      "exists": true
+    },
+    {
+      "source_path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "markdown_link_target": "../../governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08.json",
+      "resolved_target": "docs/governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08.json",
+      "exists": true
+    },
+    {
+      "source_path": "docs/governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08-summary.md",
+      "markdown_link_target": "l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08.json",
+      "resolved_target": "docs/governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08.json",
+      "exists": true
+    }
+  ],
+  "verification": {
+    "all_15_fixed_or_legacy_source_pin_full_and_raw_lf_hashes_recomputed": true,
+    "historical_artifacts_exact_copied": true,
+    "approved_stage1_prefix_byte_identical": true,
+    "only_002_007_stage2b_suffix_appended": true,
+    "old_cutout_heading_scope_and_nonexistent_link_corrected": true,
+    "stage2a_stage2c_not_included": true,
+    "old_records_modified": false,
+    "static_script_results": {
+      "command": "python3 -B scaffold/tools/scfctl.py validate; stale; residuals; python3 -B scaffold/governance/tools/govcheck.py",
+      "validate": "PASS bindings=147 fail=0",
+      "stale": "PASS stale=0",
+      "residuals": "PASS residuals=0",
+      "govcheck": "PASS atoms=7622 requirements=57 files=58",
+      "git_diff_check": "PASS"
+    },
+    "independent_review": "not performed by worker task; separate exact-head Claude review remains required",
+    "po_l3_approval": "not present for this Stage2b body revision",
+    "commit_or_push_performed": false,
+    "all_relative_links_checked_for_new_cutout_references": true,
+    "all_stage2b_suffixes_equal_old_cutout_after_three_recorded_edits": true,
+    "per_document_title_literal_link_literal_and_scope_literal_recorded": true
+  }
+}

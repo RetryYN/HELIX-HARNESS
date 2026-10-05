@@ -74,3 +74,48 @@
 - **negative/boundary oracle**：記録済みeventの上書き、削除、順序差替えを個別に与え、いずれも不合格とする。訂正eventの追記は元eventを不変に保つ正常例として照合する。交換/切戻しeventの各追跡、source ownerのdata-use区分識別子保持を照合し、event欠落・識別子欠落/置換は不合格。attempt/event欠落、順序逆転、終端receipt欠落、片端観測不能を投入し、traceをcomplete/business successとせずunknown/unfinishedとしてownerへ返す。受信確認失敗、再送途中stale、期限切れ、取消、許可失効をそれぞれ独立変異し、停止地点・未完義務・owner/recovery先と観測済端点結果を保持する。ACの各証拠項目を一つずつ欠落させ、completeへ丸めない。同identity同digestの重複と異digest衝突は異なる結果として観測する。合成markerのみのraw業務payload・secret・credentialの各保存反例は、値を証拠出力せず不合格とする。未見のevent並びでも同じ証拠・非保存条件を照合する。
 - **責務・失敗時の戻し先**：connection operation eventと共通ログ/証拠の契約。通常trace/receiptへraw業務payload・secret・credential値を保存・複製しない。必要な本文保持は元source/consumer ownerとSECURITYの契約を参照する。 failure時は、traceの欠落/順序不明はoperationをunknownとしてconnection operation ownerへ返し、業務完了を止める。data-useや許可の不明はSECURITY/source ownerへ戻す。
 - **証拠**: fixture input、照合revision、event/receipt列、最終状態と未完owner。実通信payload自体は不要。
+
+
+## Stage 2a — HELIXCONNECT-L2-006の総合検証
+
+本節は006だけの追加case群であり、前段Stage 1本文と001〜005の対応表・caseは保持する。固定親は[f6 L2-006](../L2-requirements/connect-requirements.md#L115)、[L11 acceptance row](../L11-acceptance/connect-acceptance.md#L37)、[L11 exchange fixture](../L11-acceptance/connect-acceptance.md#L68)。Po採択集合はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7`のPO記録line 48。親の入出力・owner・依存契約はL3の[FR-006-01](../L3-requirements/functional-requirements.md#L137)と同じものを使う。
+
+### AC→case trace
+
+| 固定L2句 | L3 AC候補 | L10 case | 観測oracle |
+|---|---|---|---|
+| 4種類の一側交換、固定側/契約revisionを固定、互換時だけ同契約で送受信 | `CONNECT-AC-006-01` | `CONNECT-CASE-006-01`, `006-05` | 4型を独立に照合し、固定側変更0、互換receipt/送受信のidentity・revision束縛 |
+| 不一致・unknown・stale・意味契約変更は通信停止 | `CONNECT-AC-006-02` | `CONNECT-CASE-006-02` | 片側交換後に4型×5 failure classを照合し、各send/retry attempt 0。許可不備だけ交換開始前に停止 |
+| revision continuityと未完義務のhandoff/rollback/recovery | `CONNECT-AC-006-03` | `CONNECT-CASE-006-03` | 旧revision→新revision→current comparison receipt→connection/operation/attempt/技術結果を一つのtraceで追跡し、未完義務を保持。旧新mix 0、再照合前send/retry 0 |
+| exchange/recovery権限、owner分離 | `CONNECT-AC-006-04` | `CONNECT-CASE-006-04` | 有効authorityとmissing/unknown/expired/wrong-scopeを区別し、該当ownerへ戻す |
+
+### CONNECT-CASE-006-01 — 4型の互換内一側交換
+
+- **対象AC**: `CONNECT-AC-006-01`。
+- **正常fixture**: 1登録済みconnectionについて、以下を互いに独立した4 variantとして実施する。(a)送信側機構本体交換、(b)送信側CONNECT adapter/transport交換、(c)受信側機構本体交換、(d)受信側CONNECT adapter/transport交換。各々で交換しない側の機構・意味契約revision・artifact/dependency revisionを固定し、交換側の旧新revisionと両端契約、compatibility range、変更scope、該当権限、HARNESS common-pack scope/recovery bindingを記録する。宣言範囲内の新revisionを再照合しcompatible receiptを得た後だけ、同一connection contract上でoperationを送受信する。**期待oracle**: 4/4 variantが独立に照合され、各々の固定側bytes/identity/revisionは前後一致する。未完operationの事前有無にかかわらず、交換側旧revision→交換後revision→同connection・scope・revision組に束縛したcurrent comparison receipt→connection/operation/attempt identity→技術結果を、一続きで順序づけられたtraceから辿れる。接続・operation/revisionとreceiptが一致し、接続技術結果を業務成立へ昇格しない。
+- **入力欠落/不一致**: 各variantで登録接続identity、固定側機構identity、固定側契約revision、固定側artifact revision、固定側dependency revision、交換側旧revision、交換側新revision、変更scope、compatibility declaration、current comparison receiptを一つずつmissing/unknown/他scopeまたは他revisionに変える。**期待oracle**: 既存の交換許可が有効なら片側交換の結果を照合し、欠落/不一致の互換入力・receiptはcompatibleへ補完せずunknown/staleとして扱って送信・再送attempt 0にする。交換許可自体のmissing/unknown/expired/scope不一致だけはCASE-006-04で交換開始前に停止する。送信許可は互換参照照合を代替しない。
+- **trace断絶negative fixtures**: 他の正常入力と各trace要素は保ち、(1)current comparison receiptが別connection・別scope・別revision組へ結び付く、(2)operation/attempt identityが現在のconnectionまたはcomparison receiptから切れる、(3)技術結果が該当operation/attemptへ結び付かない、を各々独立に変異する。**期待oracle**: どの断絶も互換送受信のpass根拠にせずtraceをunknown/staleとして保留する。正しいreceipt束縛を確認できない間はsend/retry attemptを発行しない。孤立した技術結果を成功として計上しない。
+
+### CONNECT-CASE-006-02 — 互換・登録・意味変更failure matrix
+
+- **対象AC**: `CONNECT-AC-006-02`。
+- **negative fixtures**: 各交換variant (a)〜(d)ごとに、以下を別々のfixtureとして与える: (1)非互換revision、(2)未登録revision、(3)意味契約変更、(4)unknown compatibility result、(5)stale compatibility receipt。計20独立fixture。さらに固定側も同時更新する反例を与え、片側交換の証拠に含めない。
+- **期待oracle**: 20 fixtureすべてで交換後の互換結果を分類し、送信・再送attempt 0、compatibleへの推測昇格0、固定側identity/contract revision更新0。固定側と交換側の両方が変化したfixtureはunknown/rejectとし、compatibleまたは片側交換成功にせず、片側交換のpass計数へ含めない。compatibility failureを検出するための片側交換・結果照合は許可反例でない限り開始を禁じない。staleはそのrevision組に再照合してcompatibleになるまで送信を保留する。技術互換の不一致はadapter owner、意味契約差分は両端ownerへ理由とrevisionを返し、既存停止/recovery先を記録する。許可があっても非互換/unknown/staleをoverrideしない。
+
+### CONNECT-CASE-006-03 — 未完義務とrevision continuity
+
+- **対象AC**: `CONNECT-AC-006-03`。
+- **正常fixture**: 一側交換開始前に未完operationを置き、operation identity、ACK状態、過去attempt順、expiry、未完義務、停止位置、旧revision、交換後revision、現在の互換照合receiptと既存restart/recovery条件を入力する。互換内の交換で固定側を変更しない。**期待oracle**: 旧revision→交換後revision→現在の比較receipt→connection/operation identity・attempt・技術結果が一続きのtraceで結ばれ、交換前後receiptとhandoff/rollback/recovery参照が同じ未完義務と旧新revisionを明示し、各義務の状態を失わない。再照合・既存再開条件が成立するまでは追加send/retryを0に保つ。
+- **negative fixtures**: traceの途中でreceiptが欠落・他connection/operationまたは他revisionへ結び付くケースを個別に与える。さらに、(1)operation identity欠落、(2)過去attempt順序/履歴欠落、(3)現在の再照合receiptより前にretryを試みるケースを各々独立して与える。従来のexpiry欠落/失効、旧revision receipt流用、新旧attemptの混合、ACK欠落、未完義務の一件欠落、固定側を新revisionと偽装、recovery先欠落も個別に保持する。**期待oracle**: 各反例はpassにせず停止、unknown/unfinishedとし、send/retryは0、欠落理由・停止地点・当該既存owner/recovery先を保持する。未完義務不存在の場合に架空義務を要求しない。
+
+### CONNECT-CASE-006-04 — 交換/復旧authorityとowner別戻し
+
+- **対象AC**: `CONNECT-AC-006-02`, `CONNECT-AC-006-04`。
+- **fixture**: exchangeとrecoveryに適用される識別子付き有効許可を持つ通常例を用意し、許可missing、unknown、expired、scope不一致を個別変異する。別入力でadapter/transport技術互換failureと両端意味契約差分を与える。
+- **期待oracle**: 有効な適用許可が確認できる場合だけ許可された交換/復旧fixtureを進める。権限反例ではexchange/send attempt 0でSECURITYへ戻す。adapter/transport互換はadapter owner、意味契約差分は両端owner、接続先の業務結果はreceiver business ownerを維持し、同じgeneric failure routeに畳み込まない。CONNECTはauthorityやbusiness resultを生成しない。
+
+### CONNECT-CASE-006-05 — 未見の互換内正常revision
+
+- **対象AC**: `CONNECT-AC-006-01`。
+- **正常fixture**: provided happy-path以外の未見revision組を使い、(a)〜(d)各交換型を一つずつ宣言済み互換範囲内で再照合する。未見であること以外は固定入力束縛・owner・scope・permission・HARNESS pack条件を満たす。
+- **期待oracle**: 4型それぞれで固定側を不変に保ち、current comparison receiptと同じconnection contractの技術送受信を返す。未登録・範囲外revisionを未見正常例へ混ぜず、unknown/staleを正常へ格上げしない。未見fixtureは互換範囲を拡張しない。

@@ -45,6 +45,9 @@ target_authority_state
   draft_candidate／draft
     → 対象revision付き人間decision
     → approved_revision
+  L3／L10のdraft
+    → POの委任によるOpus・Fable一致の判断記録（GitHub上流運用モデル「L3／L10承認の委任」）
+    → approved_revision
 
 carry_forward_state
   preserved_pending_rehome

@@ -1,0 +1,1523 @@
+{
+  "schema_version": "helix.l3-l10.static-audit.v1",
+  "status": "local draft; independent exact-HEAD review and PO approval pending",
+  "mechanism": "HELIX-INFRASTRUCTURE",
+  "stage": "Stage 1",
+  "base_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+  "content_source_commit": "98c79e0e15e50b371db83e0a2a9829d6fbf89ffd",
+  "parents": [
+    "HELIXINFRASTRUCTURE-L2-001",
+    "HELIXINFRASTRUCTURE-L2-006"
+  ],
+  "documents": [
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "sha256": "127992ba5cda5964a3ecf847295da5e2fbd97c8f390ce1bdca4a54de30fbf204",
+      "line_count": 94
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "sha256": "c2b22bc5af8bf721c9f6e4594e81046dde2ed2a9555fa0643accb76f8a37f97e",
+      "line_count": 21
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "sha256": "1b5f2f3ee6d44ed095efd018b4ab03d548cba7b46bdf66b16a45d8a0966bdd1e",
+      "line_count": 45
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "sha256": "d467ee3c5ea4d7537d13425ef4e320ca98d4c04b7ba918768b3f95062880a3ac",
+      "line_count": 75
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "sha256": "8801b848f6b16d5214a45b3652446a228e829c687f9203e50c02ad2bf5ddbe70",
+      "line_count": 19
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "sha256": "eaadd079c205564a84a9b221d9ca3c0393e79ac7ff98cc96f8603e5eba69b4d5",
+      "line_count": 38
+    }
+  ],
+  "source_pin_evidence": {
+    "purpose": "Local source-pin and traceability evidence for six draft canonical L3/L10 documents; no approval/review/acceptance implied.",
+    "worktree": {
+      "path": "/home/tenni/.helix-worktrees/l3-infra-stage1-pair",
+      "branch": "codex/l3-infra-stage1-pair",
+      "base": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "main_adoption_basis": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "fixed_l2_l11_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+    },
+    "fixed_parent_spans": {
+      "L2-001": {
+        "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "inclusive_lines": [
+          32,
+          40
+        ],
+        "raw_sha256": "1f419d31826a8f6627f0595822cd99d5b8c55db0bfd5faa25a735bca92b529c6",
+        "full_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b"
+      },
+      "L2-006": {
+        "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "inclusive_lines": [
+          82,
+          90
+        ],
+        "raw_sha256": "546bf30c3fca163f1ccb8303cbf26d3be45baa700c77099ddc7d3f6a4701fcbc",
+        "full_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b"
+      },
+      "L11-001": {
+        "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "inclusive_lines": [
+          34,
+          41
+        ],
+        "raw_sha256": "8f3f16b4e477ebac56a251d64f56d86afc7c2987bb623951689c988ffe2e625c",
+        "full_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada"
+      },
+      "L11-006": {
+        "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "inclusive_lines": [
+          84,
+          91
+        ],
+        "raw_sha256": "4c35de5ae026df947330c2ecd0245e07fe4ec460c01fbaf7c85d06074019a08f",
+        "full_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada"
+      },
+      "PO_adoption_candidates_row": {
+        "path": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "inclusive_lines": [
+          48,
+          48
+        ],
+        "raw_sha256": "4c8d971350ada77c36cb15632dcfc06c6342d61c3b329909bca8d289ec9cba49",
+        "full_sha256": "0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f"
+      },
+      "PO_version_scope_row": {
+        "path": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "inclusive_lines": [
+          50,
+          50
+        ],
+        "raw_sha256": "07777ae5758cf64e9e859c0f00263ab5a27a67a4f2749f2752ae3e532dd6339d",
+        "full_sha256": "0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f"
+      },
+      "L11-001-failure-return": {
+        "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "inclusive_lines": [
+          41,
+          41
+        ],
+        "raw_sha256": "d294388b98245f7495f8594e9aada9424fefa40872fa0d4cc72118d19046c518",
+        "full_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+        "quoted_clause": "- **失敗戻し先**：欠落したsource/ownerまたはCORE設計owner。読めない範囲・未完観測を保持する。"
+      },
+      "L11-006-failure-return": {
+        "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "inclusive_lines": [
+          91,
+          91
+        ],
+        "raw_sha256": "abdfffcc1922cef8a3436f8be5fee957859a6058c34fe9bda5991a59a9c374c6",
+        "full_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+        "quoted_clause": "- **失敗戻し先**：独立経路またはauthorityを提供するownerへ戻す。安全に復旧できない範囲を明示して停止する。"
+      }
+    },
+    "po_adoption_registrations_main633": {
+      "HELIXINFRASTRUCTURE-L2-001": {
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "line": 440,
+        "raw_sha256": "3f51b57247b300add2f7d349d2663f126b819d28af942eab800f4ffa981d3c0c",
+        "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-001-003",
+        "semantic_digest": "sha256:1f419d31826a8f6627f0595822cd99d5b8c55db0bfd5faa25a735bca92b529c6",
+        "supersedes_registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-001-002"
+      },
+      "HELIXINFRASTRUCTURE-L2-006": {
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "line": 126,
+        "raw_sha256": "0a7c45c65bdfcdec5d021b2ead43ef33a57b7941541080ed1facdcfbe3f44635",
+        "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-006-002",
+        "semantic_digest": "sha256:546bf30c3fca163f1ccb8303cbf26d3be45baa700c77099ddc7d3f6a4701fcbc",
+        "supersedes_registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-006-001"
+      }
+    },
+    "po_decision": {
+      "path": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "full_sha256": "0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f",
+      "adoption_candidate_list_row_line": 48,
+      "adoption_scope_row_line": 50,
+      "authority": "PO adopted all listed L2 candidates and their version/scope at decision record; does not approve L3.",
+      "adoption_candidate_list_row_span": {
+        "path": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "inclusive_lines": [
+          48,
+          48
+        ],
+        "raw_sha256": "4c8d971350ada77c36cb15632dcfc06c6342d61c3b329909bca8d289ec9cba49",
+        "full_sha256": "0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f"
+      },
+      "adoption_scope_row_span": {
+        "path": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "inclusive_lines": [
+          50,
+          50
+        ],
+        "raw_sha256": "07777ae5758cf64e9e859c0f00263ab5a27a67a4f2749f2752ae3e532dd6339d",
+        "full_sha256": "0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f"
+      }
+    },
+    "old_sources": {
+      "old_l3_definition": {
+        "asset_path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+        "full_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+        "spans": [
+          {
+            "inclusive_lines": [
+              13,
+              21
+            ],
+            "raw_sha256": "d16597b2119b4b6d89a48c97777397f983d404059799ab440e76d02f821e1a69"
+          },
+          {
+            "inclusive_lines": [
+              101,
+              101
+            ],
+            "raw_sha256": "9a48e962ded1a655d4d467b146034189604c8545efe963446a06d5230e32889c"
+          },
+          {
+            "inclusive_lines": [
+              148,
+              168
+            ],
+            "raw_sha256": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9"
+          }
+        ],
+        "asset_id": "LEGACY-ASSET-F542125805B777D8A56A"
+      },
+      "old_gate_definition": {
+        "asset_path": "archive/legacy-generation-2026-09-14/root/docs/process/gates.md",
+        "full_sha256": "dcbc0009d6fd7576cd305f90cfbf47916f666ada0031711f1fa1f952b7014b08",
+        "spans": [
+          {
+            "inclusive_lines": [
+              41,
+              41
+            ],
+            "raw_sha256": "f3e1188383002fad74fca0fe087c327d6514afe8236fc765a4e4925e81cde4c0"
+          },
+          {
+            "inclusive_lines": [
+              64,
+              64
+            ],
+            "raw_sha256": "e7b1b13818bf8e3c8cc1afa702735fd64e570bb0fccd9775a35d2a07dbb12a17"
+          }
+        ],
+        "asset_id": "LEGACY-ASSET-B30F3C82B6B0FDC0D2A8"
+      },
+      "old_claude_autonomy": {
+        "asset_path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+        "full_sha256": "7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb",
+        "spans": [
+          {
+            "inclusive_lines": [
+              82,
+              85
+            ],
+            "raw_sha256": "fc924232f93af2593a0d8ec97c36224a3c2f641ca5c03468ecae747107bd4785"
+          }
+        ],
+        "asset_id": "LEGACY-ASSET-6EBDB617A8104A7756D0"
+      },
+      "old_ops_requirement": {
+        "asset_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+        "full_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+        "spans": [
+          {
+            "inclusive_lines": [
+              68,
+              73
+            ],
+            "raw_sha256": "90ec4ca119bf860db25efd2126095d80376a2fa1ce3db2159a5da49fc5610f14"
+          },
+          {
+            "inclusive_lines": [
+              74,
+              98
+            ],
+            "raw_sha256": "3432d94b427f4156a468d9f5d6a2cd52b538e87d486678f7b8112a5e1ba8902b"
+          },
+          {
+            "inclusive_lines": [
+              108,
+              119
+            ],
+            "raw_sha256": "8b6a4d033f4f20e529356d5264c9a68acc1467d08f50f6e77aefe0b6439bf946"
+          },
+          {
+            "inclusive_lines": [
+              140,
+              171
+            ],
+            "raw_sha256": "585937e062e49aad5f3e89bb7408eb329ff488d258c0afae22b7c4ab16f56f35"
+          }
+        ],
+        "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18"
+      },
+      "old_ops_acceptance": {
+        "asset_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/product-lifecycle-operations-acceptance.md",
+        "full_sha256": "19c75a442154b4d17e645143f4adaaa23791a1043caa73178e5d75cc468b7d58",
+        "spans": [
+          {
+            "inclusive_lines": [
+              20,
+              39
+            ],
+            "raw_sha256": "932f33434e4e462de57e511de5a2c9dcc99e367c5d45ccba41bbf672986e64fa"
+          },
+          {
+            "inclusive_lines": [
+              26,
+              26
+            ],
+            "raw_sha256": "f14b760580d8ec6a8b1a01bd0d4ef197a9b9b670fb8201f4ff8c1c8630b20657"
+          }
+        ],
+        "asset_id": "LEGACY-ASSET-F46AB11BD14F2C0469F4"
+      },
+      "old_nfr_grade": {
+        "asset_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/nfr-grade.md",
+        "full_sha256": "ba57990cf5343e9d4ad42ca8c2340d76c80e6e1c23085ba5e496d8014acf3fc3",
+        "spans": [
+          {
+            "inclusive_lines": [
+              1,
+              73
+            ],
+            "raw_sha256": "ba57990cf5343e9d4ad42ca8c2340d76c80e6e1c23085ba5e496d8014acf3fc3"
+          }
+        ],
+        "asset_id": "LEGACY-ASSET-8CC5ABFC98C0D00183CA"
+      },
+      "old_concept_plane": {
+        "asset_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md",
+        "full_sha256": "8c492aae7a3c2f2c27dd24794d2ba4c7a9fc025737fa7ea61215b3b6658a5e59",
+        "spans": [
+          {
+            "inclusive_lines": [
+              36,
+              36
+            ],
+            "raw_sha256": "d85ed709c997c3c42baa97cef5125d2409158068944cde1dc68be73c9da8a45b"
+          },
+          {
+            "inclusive_lines": [
+              79,
+              85
+            ],
+            "raw_sha256": "134202fb12f11721db598bd219c24e424f36802d45eedfe5236b270ada277101"
+          },
+          {
+            "inclusive_lines": [
+              116,
+              128
+            ],
+            "raw_sha256": "d83f5a6ad4c23ded9cbe1583517c168bf78f81d77014a795980d8551f43a7351"
+          }
+        ],
+        "asset_id": "LEGACY-ASSET-653A097F9C9EE51F6FDD"
+      },
+      "old_resource_constraints": {
+        "asset_path": "archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/concept/HELIX_CONCEPT_v0.1.md",
+        "full_sha256": "ab9d93f843875c1cd9b61049721c455ae067548196c216e64168711156afd475",
+        "spans": [
+          {
+            "inclusive_lines": [
+              69,
+              91
+            ],
+            "raw_sha256": "0d485817fe21258c934e730199d55eef75743d1386b31801f8c8bea100710831"
+          },
+          {
+            "inclusive_lines": [
+              234,
+              238
+            ],
+            "raw_sha256": "801ef4f2b8b36fd779d4570fee866fd46f959ce0358c4f7c11ceea07ff7101bb"
+          }
+        ],
+        "asset_id": "LEGACY-ASSET-235F57A4DC453383E6C7"
+      },
+      "old_business_detail": {
+        "asset_id": "LEGACY-ASSET-A6E2C7F0565E5F804F06",
+        "asset_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md",
+        "full_sha256": "99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d",
+        "spans": [
+          {
+            "inclusive_lines": [
+              21,
+              39
+            ],
+            "raw_sha256": "ade5075e3df236216603e1e0d3fb83c8cdae007f7f319e49bd4af1c5d4efca5e"
+          },
+          {
+            "inclusive_lines": [
+              84,
+              104
+            ],
+            "raw_sha256": "f79e52ce0ac3797d30c46573a61f8115656ece2f8485461c728cdcf50fa4b38f"
+          }
+        ],
+        "treatment": "Retain only the historical separation/layout as provenance; do not carry old business metrics, owner assignments, runtime or approval behavior into current requirements."
+      }
+    },
+    "candidate_history_001_footer": {
+      "revision": "f1d269ac90d2b757c4ff5c0180eb4835b807316d",
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "section": "Review修正：INFRA-001/005の旧source起点",
+      "inclusive_lines": [
+        459,
+        465
+      ],
+      "assessment": "001 portion only: OPS-R-01 / OPS-AC-001 are partial semantic roots for environment/resource/credential-reference identity and exact-vs-ambiguous target distinction; do not add OPS-R-03/OPS-AC-003 or any 005 parent content.",
+      "full_sha256": "22de6ede33c6afc376abe81f19484b2b5f14634d775ae83c747eb7f1aea2a93b",
+      "inclusive_span_sha256": "f378fcbc36b8782e20c4e6df9d66fe4faaba122bf01f4a71a5d9c9309831491f",
+      "footer_001_row_line": 465,
+      "footer_001_row_sha256": "97f22fcbff2f791556ede68d1c9cedf215457d0180a4c56ce5f622801f33debd",
+      "005_row_excluded": true,
+      "footer_005_row_line_excluded": 466,
+      "footer_005_row_sha256_recorded": false,
+      "extracted_context_line_range": [
+        461,
+        461
+      ]
+    },
+    "canonical_documents": {
+      "docs/helix-infrastructure/L3-requirements/functional-requirements.md": {
+        "sha256": "127992ba5cda5964a3ecf847295da5e2fbd97c8f390ce1bdca4a54de30fbf204",
+        "authority": "draft_candidate"
+      },
+      "docs/helix-infrastructure/L3-requirements/business-requirements.md": {
+        "sha256": "c2b22bc5af8bf721c9f6e4594e81046dde2ed2a9555fa0643accb76f8a37f97e",
+        "authority": "draft_candidate"
+      },
+      "docs/helix-infrastructure/L3-requirements/nfr-grade.md": {
+        "sha256": "1b5f2f3ee6d44ed095efd018b4ab03d548cba7b46bdf66b16a45d8a0966bdd1e",
+        "authority": "draft_candidate"
+      },
+      "docs/helix-infrastructure/L10-verification/functional-verification.md": {
+        "sha256": "d467ee3c5ea4d7537d13425ef4e320ca98d4c04b7ba918768b3f95062880a3ac",
+        "authority": "draft_candidate"
+      },
+      "docs/helix-infrastructure/L10-verification/business-verification.md": {
+        "sha256": "8801b848f6b16d5214a45b3652446a228e829c687f9203e50c02ad2bf5ddbe70",
+        "authority": "draft_candidate"
+      },
+      "docs/helix-infrastructure/L10-verification/nfr-verification.md": {
+        "sha256": "eaadd079c205564a84a9b221d9ca3c0393e79ac7ff98cc96f8603e5eba69b4d5",
+        "authority": "draft_candidate"
+      }
+    },
+    "parent_phrase_to_requirement_acceptance_case": [
+      {
+        "parent_clause": "L2-001: each resource resource identity",
+        "FR": "INFRA-001-FR-01-01",
+        "AC": "INFRA-001-AC-01",
+        "CASE": [
+          "L10-INFRA-001-C01",
+          "L10-INFRA-001-C02",
+          "L10-INFRA-001-C13",
+          "L10-INFRA-001-C14"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: each resource role",
+        "FR": "INFRA-001-FR-01-01",
+        "AC": "INFRA-001-AC-01",
+        "CASE": [
+          "L10-INFRA-001-C01",
+          "L10-INFRA-001-C02",
+          "L10-INFRA-001-C13",
+          "L10-INFRA-001-C14"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: each resource environment",
+        "FR": "INFRA-001-FR-01-01",
+        "AC": "INFRA-001-AC-01",
+        "CASE": [
+          "L10-INFRA-001-C01",
+          "L10-INFRA-001-C02",
+          "L10-INFRA-001-C13",
+          "L10-INFRA-001-C14"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: each resource location",
+        "FR": "INFRA-001-FR-01-01",
+        "AC": "INFRA-001-AC-01",
+        "CASE": [
+          "L10-INFRA-001-C01",
+          "L10-INFRA-001-C02",
+          "L10-INFRA-001-C13",
+          "L10-INFRA-001-C14"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: each resource version",
+        "FR": "INFRA-001-FR-01-01",
+        "AC": "INFRA-001-AC-01",
+        "CASE": [
+          "L10-INFRA-001-C01",
+          "L10-INFRA-001-C02",
+          "L10-INFRA-001-C13",
+          "L10-INFRA-001-C14"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: each resource dependency",
+        "FR": "INFRA-001-FR-01-01",
+        "AC": "INFRA-001-AC-01",
+        "CASE": [
+          "L10-INFRA-001-C01",
+          "L10-INFRA-001-C02",
+          "L10-INFRA-001-C13",
+          "L10-INFRA-001-C14"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: each resource lifecycle state",
+        "FR": "INFRA-001-FR-01-01",
+        "AC": "INFRA-001-AC-01",
+        "CASE": [
+          "L10-INFRA-001-C01",
+          "L10-INFRA-001-C02",
+          "L10-INFRA-001-C13",
+          "L10-INFRA-001-C14"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: resource scope includes HELIX-OS",
+        "FR": "INFRA-001-FR-01-01; INFRA-001-FR-01-04",
+        "AC": "INFRA-001-AC-01; INFRA-001-AC-04",
+        "CASE": [
+          "L10-INFRA-001-C01",
+          "L10-INFRA-001-C09",
+          "L10-INFRA-001-C11"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: resource scope includes BRAIN",
+        "FR": "INFRA-001-FR-01-01; INFRA-001-FR-01-04",
+        "AC": "INFRA-001-AC-01; INFRA-001-AC-04",
+        "CASE": [
+          "L10-INFRA-001-C01",
+          "L10-INFRA-001-C09",
+          "L10-INFRA-001-C11"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: resource scope includes LABO",
+        "FR": "INFRA-001-FR-01-01; INFRA-001-FR-01-04",
+        "AC": "INFRA-001-AC-01; INFRA-001-AC-04",
+        "CASE": [
+          "L10-INFRA-001-C01",
+          "L10-INFRA-001-C09",
+          "L10-INFRA-001-C11"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: resource scope includes INTELLIGENCE",
+        "FR": "INFRA-001-FR-01-01; INFRA-001-FR-01-04",
+        "AC": "INFRA-001-AC-01; INFRA-001-AC-04",
+        "CASE": [
+          "L10-INFRA-001-C01",
+          "L10-INFRA-001-C09",
+          "L10-INFRA-001-C11"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: resource scope includes SECURITY",
+        "FR": "INFRA-001-FR-01-01; INFRA-001-FR-01-04",
+        "AC": "INFRA-001-AC-01; INFRA-001-AC-04",
+        "CASE": [
+          "L10-INFRA-001-C01",
+          "L10-INFRA-001-C09",
+          "L10-INFRA-001-C11"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: resource scope includes CONNECT",
+        "FR": "INFRA-001-FR-01-01; INFRA-001-FR-01-04",
+        "AC": "INFRA-001-AC-01; INFRA-001-AC-04",
+        "CASE": [
+          "L10-INFRA-001-C01",
+          "L10-INFRA-001-C09",
+          "L10-INFRA-001-C11"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: resource scope includes Worker/Model Runtime",
+        "FR": "INFRA-001-FR-01-01; INFRA-001-FR-01-04",
+        "AC": "INFRA-001-AC-01; INFRA-001-AC-04",
+        "CASE": [
+          "L10-INFRA-001-C01",
+          "L10-INFRA-001-C09",
+          "L10-INFRA-001-C11"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: resource scope includes database",
+        "FR": "INFRA-001-FR-01-01; INFRA-001-FR-01-04",
+        "AC": "INFRA-001-AC-01; INFRA-001-AC-04",
+        "CASE": [
+          "L10-INFRA-001-C01",
+          "L10-INFRA-001-C09",
+          "L10-INFRA-001-C11"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: resource scope includes queue",
+        "FR": "INFRA-001-FR-01-01; INFRA-001-FR-01-04",
+        "AC": "INFRA-001-AC-01; INFRA-001-AC-04",
+        "CASE": [
+          "L10-INFRA-001-C01",
+          "L10-INFRA-001-C09",
+          "L10-INFRA-001-C11"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: resource scope includes artifact/evidence store",
+        "FR": "INFRA-001-FR-01-01; INFRA-001-FR-01-04",
+        "AC": "INFRA-001-AC-01; INFRA-001-AC-04",
+        "CASE": [
+          "L10-INFRA-001-C01",
+          "L10-INFRA-001-C09",
+          "L10-INFRA-001-C11"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: resource scope includes log/metric infrastructure",
+        "FR": "INFRA-001-FR-01-01; INFRA-001-FR-01-04",
+        "AC": "INFRA-001-AC-01; INFRA-001-AC-04",
+        "CASE": [
+          "L10-INFRA-001-C01",
+          "L10-INFRA-001-C09",
+          "L10-INFRA-001-C11"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: development environment has independent identity",
+        "FR": "INFRA-001-FR-01-02",
+        "AC": "INFRA-001-AC-02",
+        "CASE": [
+          "L10-INFRA-001-C01",
+          "L10-INFRA-001-C02",
+          "L10-INFRA-001-C03",
+          "L10-INFRA-001-C13"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: verification environment has independent identity",
+        "FR": "INFRA-001-FR-01-02",
+        "AC": "INFRA-001-AC-02",
+        "CASE": [
+          "L10-INFRA-001-C01",
+          "L10-INFRA-001-C02",
+          "L10-INFRA-001-C03",
+          "L10-INFRA-001-C13"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: staging environment has independent identity",
+        "FR": "INFRA-001-FR-01-02",
+        "AC": "INFRA-001-AC-02",
+        "CASE": [
+          "L10-INFRA-001-C01",
+          "L10-INFRA-001-C02",
+          "L10-INFRA-001-C03",
+          "L10-INFRA-001-C13"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: production environment has independent identity",
+        "FR": "INFRA-001-FR-01-02",
+        "AC": "INFRA-001-AC-02",
+        "CASE": [
+          "L10-INFRA-001-C01",
+          "L10-INFRA-001-C02",
+          "L10-INFRA-001-C03",
+          "L10-INFRA-001-C13"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: recovery environment has independent identity",
+        "FR": "INFRA-001-FR-01-02",
+        "AC": "INFRA-001-AC-02",
+        "CASE": [
+          "L10-INFRA-001-C01",
+          "L10-INFRA-001-C02",
+          "L10-INFRA-001-C03",
+          "L10-INFRA-001-C13"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: environment separation for resource",
+        "FR": "INFRA-001-FR-01-02",
+        "AC": "INFRA-001-AC-02",
+        "CASE": [
+          "L10-INFRA-001-C01",
+          "L10-INFRA-001-C02",
+          "L10-INFRA-001-C13"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: environment separation for config",
+        "FR": "INFRA-001-FR-01-02",
+        "AC": "INFRA-001-AC-02",
+        "CASE": [
+          "L10-INFRA-001-C01",
+          "L10-INFRA-001-C02",
+          "L10-INFRA-001-C13"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: environment separation for network",
+        "FR": "INFRA-001-FR-01-02",
+        "AC": "INFRA-001-AC-02",
+        "CASE": [
+          "L10-INFRA-001-C01",
+          "L10-INFRA-001-C02",
+          "L10-INFRA-001-C13"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: environment separation for credential scope",
+        "FR": "INFRA-001-FR-01-02",
+        "AC": "INFRA-001-AC-02",
+        "CASE": [
+          "L10-INFRA-001-C01",
+          "L10-INFRA-001-C02",
+          "L10-INFRA-001-C13"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: environment separation for data",
+        "FR": "INFRA-001-FR-01-02",
+        "AC": "INFRA-001-AC-02",
+        "CASE": [
+          "L10-INFRA-001-C01",
+          "L10-INFRA-001-C02",
+          "L10-INFRA-001-C13"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: environment separation for version",
+        "FR": "INFRA-001-FR-01-02",
+        "AC": "INFRA-001-AC-02",
+        "CASE": [
+          "L10-INFRA-001-C01",
+          "L10-INFRA-001-C02",
+          "L10-INFRA-001-C13"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: environment separation for authority",
+        "FR": "INFRA-001-FR-01-02",
+        "AC": "INFRA-001-AC-02",
+        "CASE": [
+          "L10-INFRA-001-C01",
+          "L10-INFRA-001-C02",
+          "L10-INFRA-001-C13"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: HELIX-CONNECT logical connection identity and physical/runtime path are distinct",
+        "FR": "INFRA-001-FR-01-03",
+        "AC": "INFRA-001-AC-03",
+        "CASE": [
+          "L10-INFRA-001-C05",
+          "L10-INFRA-001-C06",
+          "L10-INFRA-001-C07",
+          "L10-INFRA-001-C08"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: physical network path axis source",
+        "FR": "INFRA-001-FR-01-03",
+        "AC": "INFRA-001-AC-03",
+        "CASE": [
+          "L10-INFRA-001-C05",
+          "L10-INFRA-001-C06",
+          "L10-INFRA-001-C07",
+          "L10-INFRA-001-C08"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: physical network path axis destination",
+        "FR": "INFRA-001-FR-01-03",
+        "AC": "INFRA-001-AC-03",
+        "CASE": [
+          "L10-INFRA-001-C05",
+          "L10-INFRA-001-C06",
+          "L10-INFRA-001-C07",
+          "L10-INFRA-001-C08"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: physical network path axis protocol",
+        "FR": "INFRA-001-FR-01-03",
+        "AC": "INFRA-001-AC-03",
+        "CASE": [
+          "L10-INFRA-001-C05",
+          "L10-INFRA-001-C06",
+          "L10-INFRA-001-C07",
+          "L10-INFRA-001-C08"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: physical network path axis endpoint",
+        "FR": "INFRA-001-FR-01-03",
+        "AC": "INFRA-001-AC-03",
+        "CASE": [
+          "L10-INFRA-001-C05",
+          "L10-INFRA-001-C06",
+          "L10-INFRA-001-C07",
+          "L10-INFRA-001-C08"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: physical network path axis direction",
+        "FR": "INFRA-001-FR-01-03",
+        "AC": "INFRA-001-AC-03",
+        "CASE": [
+          "L10-INFRA-001-C05",
+          "L10-INFRA-001-C06",
+          "L10-INFRA-001-C07",
+          "L10-INFRA-001-C08"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: physical network path axis purpose",
+        "FR": "INFRA-001-FR-01-03",
+        "AC": "INFRA-001-AC-03",
+        "CASE": [
+          "L10-INFRA-001-C05",
+          "L10-INFRA-001-C06",
+          "L10-INFRA-001-C07",
+          "L10-INFRA-001-C08"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: physical network path axis security boundary",
+        "FR": "INFRA-001-FR-01-03",
+        "AC": "INFRA-001-AC-03",
+        "CASE": [
+          "L10-INFRA-001-C05",
+          "L10-INFRA-001-C06",
+          "L10-INFRA-001-C07",
+          "L10-INFRA-001-C08"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: physical network path axis dependency",
+        "FR": "INFRA-001-FR-01-03",
+        "AC": "INFRA-001-AC-03",
+        "CASE": [
+          "L10-INFRA-001-C05",
+          "L10-INFRA-001-C06",
+          "L10-INFRA-001-C07",
+          "L10-INFRA-001-C08"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: persistent/temporary storage attribute owner",
+        "FR": "INFRA-001-FR-01-04",
+        "AC": "INFRA-001-AC-04",
+        "CASE": [
+          "L10-INFRA-001-C09",
+          "L10-INFRA-001-C10"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: persistent/temporary storage attribute durability",
+        "FR": "INFRA-001-FR-01-04",
+        "AC": "INFRA-001-AC-04",
+        "CASE": [
+          "L10-INFRA-001-C09",
+          "L10-INFRA-001-C10"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: persistent/temporary storage attribute backup",
+        "FR": "INFRA-001-FR-01-04",
+        "AC": "INFRA-001-AC-04",
+        "CASE": [
+          "L10-INFRA-001-C09",
+          "L10-INFRA-001-C10"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: persistent/temporary storage attribute retention",
+        "FR": "INFRA-001-FR-01-04",
+        "AC": "INFRA-001-AC-04",
+        "CASE": [
+          "L10-INFRA-001-C09",
+          "L10-INFRA-001-C10"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: persistent/temporary storage attribute environment",
+        "FR": "INFRA-001-FR-01-04",
+        "AC": "INFRA-001-AC-04",
+        "CASE": [
+          "L10-INFRA-001-C09",
+          "L10-INFRA-001-C10"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: persistent/temporary storage attribute confidentiality",
+        "FR": "INFRA-001-FR-01-04",
+        "AC": "INFRA-001-AC-04",
+        "CASE": [
+          "L10-INFRA-001-C09",
+          "L10-INFRA-001-C10"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: storage has recovery requirement reference",
+        "FR": "INFRA-001-FR-01-04",
+        "AC": "INFRA-001-AC-04",
+        "CASE": [
+          "L10-INFRA-001-C09",
+          "L10-INFRA-001-C10"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: scoped Model Runtime field model is tied to environment/source/revision",
+        "FR": "INFRA-001-FR-01-04",
+        "AC": "INFRA-001-AC-04",
+        "CASE": [
+          "L10-INFRA-001-C09",
+          "L10-INFRA-001-C10",
+          "L10-INFRA-001-C11"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: scoped Model Runtime field version is tied to environment/source/revision",
+        "FR": "INFRA-001-FR-01-04",
+        "AC": "INFRA-001-AC-04",
+        "CASE": [
+          "L10-INFRA-001-C09",
+          "L10-INFRA-001-C10",
+          "L10-INFRA-001-C11"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: scoped Model Runtime field server is tied to environment/source/revision",
+        "FR": "INFRA-001-FR-01-04",
+        "AC": "INFRA-001-AC-04",
+        "CASE": [
+          "L10-INFRA-001-C09",
+          "L10-INFRA-001-C10",
+          "L10-INFRA-001-C11"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: scoped Model Runtime field GPU-memory requirement is tied to environment/source/revision",
+        "FR": "INFRA-001-FR-01-04",
+        "AC": "INFRA-001-AC-04",
+        "CASE": [
+          "L10-INFRA-001-C09",
+          "L10-INFRA-001-C10",
+          "L10-INFRA-001-C11"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: scoped Model Runtime field concurrency is tied to environment/source/revision",
+        "FR": "INFRA-001-FR-01-04",
+        "AC": "INFRA-001-AC-04",
+        "CASE": [
+          "L10-INFRA-001-C09",
+          "L10-INFRA-001-C10",
+          "L10-INFRA-001-C11"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: scoped Model Runtime field latency is tied to environment/source/revision",
+        "FR": "INFRA-001-FR-01-04",
+        "AC": "INFRA-001-AC-04",
+        "CASE": [
+          "L10-INFRA-001-C09",
+          "L10-INFRA-001-C10",
+          "L10-INFRA-001-C11"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: scoped Model Runtime field capacity is tied to environment/source/revision",
+        "FR": "INFRA-001-FR-01-04",
+        "AC": "INFRA-001-AC-04",
+        "CASE": [
+          "L10-INFRA-001-C09",
+          "L10-INFRA-001-C10",
+          "L10-INFRA-001-C11"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: scoped Model Runtime field health is tied to environment/source/revision",
+        "FR": "INFRA-001-FR-01-04",
+        "AC": "INFRA-001-AC-04",
+        "CASE": [
+          "L10-INFRA-001-C09",
+          "L10-INFRA-001-C10",
+          "L10-INFRA-001-C11"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: scoped Model Runtime field endpoint is tied to environment/source/revision",
+        "FR": "INFRA-001-FR-01-04",
+        "AC": "INFRA-001-AC-04",
+        "CASE": [
+          "L10-INFRA-001-C09",
+          "L10-INFRA-001-C10",
+          "L10-INFRA-001-C11"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: record Worker resource/runtime state without owning Worker capability evaluation or ticket state",
+        "FR": "INFRA-001-FR-01-04",
+        "AC": "INFRA-001-AC-04",
+        "CASE": [
+          "L10-INFRA-001-C09",
+          "L10-INFRA-001-C11",
+          "L10-INFRA-001-C12"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: do not own security policy; preserve source-qualified state and return conflicts to actual owner",
+        "FR": "INFRA-001-FR-01-02; INFRA-001-FR-01-04",
+        "AC": "INFRA-001-AC-02; INFRA-001-AC-04",
+        "CASE": [
+          "L10-INFRA-001-C08",
+          "L10-INFRA-001-C12",
+          "L10-INFRA-001-C14"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L2-001: unreadable/partial update does not make prior observation current; preserve unobserved range",
+        "FR": "INFRA-001-FR-01-01",
+        "AC": "INFRA-001-AC-01",
+        "CASE": [
+          "L10-INFRA-001-C14"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-001"
+      },
+      {
+        "parent_clause": "L11-001: declared topology/environment/network/storage/model fields are individually observable with source/revision and unknown retained",
+        "FR": [
+          "INFRA-001-FR-01-01",
+          "INFRA-001-FR-01-02",
+          "INFRA-001-FR-01-03",
+          "INFRA-001-FR-01-04"
+        ],
+        "AC": [
+          "INFRA-001-AC-01",
+          "INFRA-001-AC-02",
+          "INFRA-001-AC-03",
+          "INFRA-001-AC-04"
+        ],
+        "CASE": [
+          "L10-INFRA-001-C01",
+          "L10-INFRA-001-C02",
+          "L10-INFRA-001-C03",
+          "L10-INFRA-001-C04",
+          "L10-INFRA-001-C05",
+          "L10-INFRA-001-C06",
+          "L10-INFRA-001-C07",
+          "L10-INFRA-001-C08",
+          "L10-INFRA-001-C09",
+          "L10-INFRA-001-C10",
+          "L10-INFRA-001-C11",
+          "L10-INFRA-001-C12",
+          "L10-INFRA-001-C13",
+          "L10-INFRA-001-C14"
+        ],
+        "parent_source_span": "fixed_parent_spans.L11-001"
+      },
+      {
+        "parent_clause": "L2-006: independent path works while HELIX/control plane unavailable; does not depend on stopped ticket/assignment/health/approval",
+        "FR": "INFRA-006-FR-01-01",
+        "AC": "INFRA-006-AC-01",
+        "CASE": [
+          "L10-INFRA-006-C01",
+          "L10-INFRA-006-C02",
+          "L10-INFRA-006-C03",
+          "L10-INFRA-006-C04",
+          "L10-INFRA-006-C16"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-006 + fixed_parent_spans.L11-006-failure-return"
+      },
+      {
+        "parent_clause": "L2-006: separate SECURITY authority, limited target/scope/revision and expiry are checked",
+        "FR": "INFRA-006-FR-01-01",
+        "AC": "INFRA-006-AC-01",
+        "CASE": [
+          "L10-INFRA-006-C01",
+          "L10-INFRA-006-C02",
+          "L10-INFRA-006-C03",
+          "L10-INFRA-006-C04"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-006 + fixed_parent_spans.L11-006-failure-return"
+      },
+      {
+        "parent_clause": "L2-006: explicitly permitted operation bootstrap is individually evaluated",
+        "FR": "INFRA-006-FR-01-02",
+        "AC": "INFRA-006-AC-02",
+        "CASE": [
+          "L10-INFRA-006-C01"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-006"
+      },
+      {
+        "parent_clause": "L2-006: explicitly permitted operation health check is individually evaluated",
+        "FR": "INFRA-006-FR-01-02",
+        "AC": "INFRA-006-AC-02",
+        "CASE": [
+          "L10-INFRA-006-C05"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-006"
+      },
+      {
+        "parent_clause": "L2-006: explicitly permitted operation service stop is individually evaluated",
+        "FR": "INFRA-006-FR-01-02",
+        "AC": "INFRA-006-AC-02",
+        "CASE": [
+          "L10-INFRA-006-C06"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-006"
+      },
+      {
+        "parent_clause": "L2-006: explicitly permitted operation rollback is individually evaluated",
+        "FR": "INFRA-006-FR-01-02",
+        "AC": "INFRA-006-AC-02",
+        "CASE": [
+          "L10-INFRA-006-C07"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-006"
+      },
+      {
+        "parent_clause": "L2-006: explicitly permitted operation recovery is individually evaluated",
+        "FR": "INFRA-006-FR-01-02",
+        "AC": "INFRA-006-AC-02",
+        "CASE": [
+          "L10-INFRA-006-C08"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-006"
+      },
+      {
+        "parent_clause": "L2-006: state-changing operation requires applicable L2-005 recovery duties; no uniform duty added to read-only health check",
+        "FR": "INFRA-006-FR-01-02",
+        "AC": "INFRA-006-AC-02",
+        "CASE": [
+          "L10-INFRA-006-C05",
+          "L10-INFRA-006-C07",
+          "L10-INFRA-006-C08",
+          "L10-INFRA-006-C06",
+          "L10-INFRA-006-C14",
+          "L10-INFRA-006-C15"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-006"
+      },
+      {
+        "parent_clause": "L2-006: reject unlisted operation, mismatched target/revision/scope/authority, expiry, or unknown required recovery duty",
+        "FR": "INFRA-006-FR-01-01; INFRA-006-FR-01-02",
+        "AC": "INFRA-006-AC-01; INFRA-006-AC-02",
+        "CASE": [
+          "L10-INFRA-006-C02",
+          "L10-INFRA-006-C04",
+          "L10-INFRA-006-C06",
+          "L10-INFRA-006-C13",
+          "L10-INFRA-006-C15",
+          "L10-INFRA-006-C16"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-006"
+      },
+      {
+        "parent_clause": "L2-006/L11-006: preserve operation start conditions, result, final eligible revision and unfinished action/constraint/recovery duties",
+        "FR": [
+          "INFRA-006-FR-01-01",
+          "INFRA-006-FR-01-02",
+          "INFRA-006-FR-01-03"
+        ],
+        "AC": [
+          "INFRA-006-AC-01",
+          "INFRA-006-AC-02",
+          "INFRA-006-AC-03"
+        ],
+        "CASE": [
+          "L10-INFRA-006-C09",
+          "L10-INFRA-006-C10",
+          "L10-INFRA-006-C11",
+          "L10-INFRA-006-C12"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-006 + fixed_parent_spans.L11-006"
+      },
+      {
+        "parent_clause": "L2-006/L11-006: failure/partial/unknown remain distinct; do not overwrite eligible source state or erase unfinished duty",
+        "FR": [
+          "INFRA-006-FR-01-01",
+          "INFRA-006-FR-01-02",
+          "INFRA-006-FR-01-03"
+        ],
+        "AC": [
+          "INFRA-006-AC-01",
+          "INFRA-006-AC-02",
+          "INFRA-006-AC-03"
+        ],
+        "CASE": [
+          "L10-INFRA-006-C09",
+          "L10-INFRA-006-C10",
+          "L10-INFRA-006-C11",
+          "L10-INFRA-006-C12"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-006 + fixed_parent_spans.L11-006"
+      },
+      {
+        "parent_clause": "L2-006: fully automatic failover excluded from 1.0",
+        "FR": "scope guard; no FR acceptance added",
+        "AC": "none",
+        "CASE": [
+          "L10-INFRA-006-C01",
+          "L10-INFRA-006-C02",
+          "L10-INFRA-006-C03",
+          "L10-INFRA-006-C04",
+          "L10-INFRA-006-C05",
+          "L10-INFRA-006-C06",
+          "L10-INFRA-006-C07",
+          "L10-INFRA-006-C08",
+          "L10-INFRA-006-C09",
+          "L10-INFRA-006-C10",
+          "L10-INFRA-006-C11",
+          "L10-INFRA-006-C12",
+          "L10-INFRA-006-C13",
+          "L10-INFRA-006-C14",
+          "L10-INFRA-006-C15",
+          "L10-INFRA-006-C16"
+        ],
+        "parent_source_span": "fixed_parent_spans.L2-006"
+      }
+    ],
+    "business_pair_disposition": {
+      "BR": "no independent business outcome exists in fixed parents; no duplicate business requirements; reference functional FR/AC only.",
+      "BV": "no independent business oracle/test case; functional L10 verifies referenced FR/AC.",
+      "business_case_ids": []
+    },
+    "nfr006_01_scope_correction": "Removed L2-010 citation; technical candidate now grounded only in fixed L2-006 limited-operation and separate SECURITY-authority wording. No L2-010 dependency is asserted.",
+    "claude13_carry_forward": {
+      "source_path": "/tmp/pr2564-claude13-comment.md",
+      "line_count": 270,
+      "full_sha256": "4d837e616451040cb15762e98b65cb9f104db8856f0319f4f376a47459644f1c",
+      "raw_spans": [
+        {
+          "inclusive_lines": [
+            202,
+            207
+          ],
+          "raw_sha256": "0c8ea8e924f555fa4dd938df8e667f510870673c14ebd967bba33540011c5ea7"
+        },
+        {
+          "inclusive_lines": [
+            254,
+            254
+          ],
+          "raw_sha256": "1f32da195c855101028695190b6f250c3aadbf4a9d7d01afac94354f8145cbc7"
+        }
+      ],
+      "exact_review_target": "PR 2564 review comment: exact HEAD ef5b402bd0c67165531d25f4dca27783d301a186; base a56f486a40d7ee925c781c8037ee8f42f566c4fe; comment states no approval/Ready/merge generated.",
+      "status": "carried; not an independent review closure for this local draft",
+      "infra_findings": [
+        {
+          "finding": "005 retention owner consistency had improved at that reviewed HEAD",
+          "disposition": "out of scope; no 005 parent or content added"
+        },
+        {
+          "finding": "005 AC-02 return owner disagreed with parent/C02; AC-01 unspecified case missing",
+          "disposition": "out of scope; no 005 requirement/case added"
+        },
+        {
+          "finding": "003 coverage table omitted counterexample C03",
+          "disposition": "out of scope; no 003 parent/case added"
+        },
+        {
+          "finding": "006/004/009 return destinations appeared only in cases, not ACs (review cited L11:91,71 and L2:121)",
+          "disposition": "006 carried into fixed-parent-aligned AC-01 and AC-03; AC-01 names independent-path/authority provider owner, AC-03 states unsafe recovery range is exposed and stopped; 004/009 out of scope",
+          "current_local_disposition": {
+            "FR_AC": [
+              "INFRA-006-FR-01-01",
+              "INFRA-006-AC-01",
+              "INFRA-006-AC-03"
+            ],
+            "CASE": [
+              "L10-INFRA-006-C04",
+              "L10-INFRA-006-C12",
+              "L10-INFRA-006-C16"
+            ],
+            "basis": "fixed L2-006 line 89 and fixed L11-006 line 91; return to owner providing independent path or authority and stop/show unsafe recovery range"
+          }
+        },
+        {
+          "finding": "NG:14 sentence malformed",
+          "disposition": "carried as unverified against this local draft; locator is from the Claude13 reviewed revision, not treated as a current line locator. Current NFR text has been read, but this finding is not claimed closed without exact phrase/source mapping."
+        }
+      ],
+      "unreviewed_scope": {
+        "finding": "INFRA 008,025,011 CASE C01–C23 remained dependent on previous review.",
+        "disposition": "outside this two-parent local draft; no closure asserted."
+      },
+      "source_reuse_boundary": "Old-source partial reuse/re-derivation and requirement edits here do not resolve, supersede, or close Claude13 review findings."
+    },
+    "verification": {
+      "performed": [
+        "Read repository entry, CLAUDE.md, local L3 goal, authoring layout, all six canonical files, fixed L2/L11 and PO decision source sections, old L3 and acceptance sources, saved f1 candidate INFRA-001/005 footer.",
+        "Static check only: IDs, source pins, parent scope, FR/AC/CASE links, ownership and exclusions."
+      ],
+      "not_performed": [
+        "Bun/runtime/test/CI/legacy execution, implementation tests, PO approval, independent review, GitHub operations."
+      ]
+    },
+    "nfr_measurement_trace": [
+      {
+        "parent_clause": "L2-001: declared resource identity and seven topology attributes, unknown plus source/revision retained",
+        "NFR": "INFRA-NFR-001-01",
+        "candidate_value": "100% of declared-scope identities have each field as value or explicit unknown with source/revision",
+        "L10_measurement": "nfr-verification.md row INFRA-NFR-001-01: denominator=all declared identities; field-level known/unknown, source/revision, duplicate/missing counts"
+      },
+      {
+        "parent_clause": "L2-001: eight physical network path axes; six storage attributes and recovery reference",
+        "NFR": "INFRA-NFR-001-02",
+        "candidate_value": "8/8 path axes and 6/6 storage attributes plus recovery reference are value or explicit unknown",
+        "L10_measurement": "nfr-verification.md row INFRA-NFR-001-02: mutate each axis/attribute/reference; inspect visibility and prevent false-complete"
+      },
+      {
+        "parent_clause": "L2-001: logical CONNECT identity and physical path are distinct",
+        "NFR": "INFRA-NFR-001-03",
+        "candidate_value": "0 erroneous identity merges",
+        "L10_measurement": "nfr-verification.md row INFRA-NFR-001-03: same-name/endpoint fixture plus merge mutation; retain separate identities and reference edge"
+      },
+      {
+        "parent_clause": "L2-006: each operation request matches target/action/revision/scope/authority/expiry",
+        "NFR": "INFRA-NFR-006-01",
+        "candidate_value": "6/6 condition checks; 0 invalid/unknown pass",
+        "L10_measurement": "nfr-verification.md row INFRA-NFR-006-01: each of six conditions independently absent/mismatch/expired; record check and start result"
+      },
+      {
+        "parent_clause": "L2-006: only bootstrap, health check, service stop, rollback, recovery; independent of stopped control-plane route",
+        "NFR": "INFRA-NFR-006-02",
+        "candidate_value": "operation coverage 5/5; stopped-plane dependency routes 0",
+        "L10_measurement": "nfr-verification.md row INFRA-NFR-006-02 plus functional cases C01/C05–C08 for the five individually covered operations; C13–C16 for unknown operation, implicit health-check mutation, unknown recovery duty, and stopped-plane route. Observe operation matrix and route; automatic failover excluded."
+      },
+      {
+        "parent_clause": "L2-006: health check is an allowed limited operation; fixed parent gives no timeout/retry number",
+        "NFR": "INFRA-NFR-006-03",
+        "candidate_value": "5-second probe timeout and 3 probes (max 15 seconds), technical candidate only",
+        "basis_and_comparison": "Fixed parent requires health check but does not set timeout/retry. Compare 1s×1 (sensitive to transient delay), 5s×3 (bounded multi-observation), 10s×5 (up to 50s). No product SLO or global health policy is inferred.",
+        "L10_measurement": "nfr-verification.md row INFRA-NFR-006-03: inject 0/4/6-second latency, 1/2/3 consecutive no-response, and recovery mid-sequence; record per-probe duration/result and candidate classification."
+      }
+    ],
+    "excluded_parent_meaning": [
+      {
+        "topic": "post-recovery OS synchronization / same operation identity linked to an existing work/change",
+        "finding": "Not present in fixed L2-006/L11-006 source spans pinned above. Removed from INFRA-006-FR-01-03, AC-03, L10 C09–C12 and business pair; no L3/L10 requirement or test is generated for it."
+      },
+      {
+        "topic": "fully automatic failover",
+        "finding": "Explicitly excluded by fixed parent; not added as an FR/AC and not a 1.0 acceptance condition."
+      },
+      {
+        "topic": "L2-005",
+        "finding": "PO-adopted L2 input dependency only where fixed L2-006 applies recovery duties to a state-changing operation. No L2-005 parent L3/L10 candidate is added."
+      },
+      {
+        "topic": "L2-010",
+        "finding": "Not a parent and not cited as a dependency for INFRA-NFR-006-01."
+      }
+    ],
+    "case_inventory": {
+      "INFRA-001": 14,
+      "INFRA-006": 16,
+      "all_functional_L10_cases": 30,
+      "case_id_source": "functional-verification.md"
+    }
+  },
+  "creator_findings_fixed": [
+    "001読取不能/部分更新の旧観測current誤用をAC01/C14で拒否",
+    "006親にない復旧後OS同期必須を除去",
+    "business重複AC/16CASEを除去し機能ACを正本化",
+    "006正常5操作と独立negative4枝をそれぞれCASE化",
+    "006固定L11提供ownerへ戻し安全復旧不能範囲を停止するACを保持",
+    "L11親節末尾戻し先行41/91を追加pin",
+    "scope外L2-010を006NFR根拠から除去",
+    "旧source完全一致claim/placeholderを訂正"
+  ],
+  "checks": {
+    "root_full_canonical_read": 6,
+    "fixed_and_legacy_spans_recomputed": 28,
+    "adopted_registration_raw_rows_recomputed": 2,
+    "candidate001_only_footer_pin_recomputed": true,
+    "canonical_sha_matches": 6,
+    "line_total": 292,
+    "parent_count": 2,
+    "functional_ac_count": 7,
+    "functional_case_count": 30,
+    "nfr_candidates": 6,
+    "local_links": "pass",
+    "whitespace": "pass",
+    "scfctl_validate_bindings": 147,
+    "scfctl_validate_fail": 0,
+    "scfctl_stale": 0,
+    "scfctl_residuals": 0,
+    "govcheck": "ok atoms=7622 requirements=57 files=58"
+  },
+  "carried_review": {
+    "source_path": "/tmp/pr2564-claude13-comment.md",
+    "line_count": 270,
+    "full_sha256": "4d837e616451040cb15762e98b65cb9f104db8856f0319f4f376a47459644f1c",
+    "raw_spans": [
+      {
+        "inclusive_lines": [
+          202,
+          207
+        ],
+        "raw_sha256": "0c8ea8e924f555fa4dd938df8e667f510870673c14ebd967bba33540011c5ea7"
+      },
+      {
+        "inclusive_lines": [
+          254,
+          254
+        ],
+        "raw_sha256": "1f32da195c855101028695190b6f250c3aadbf4a9d7d01afac94354f8145cbc7"
+      }
+    ],
+    "exact_review_target": "PR 2564 review comment: exact HEAD ef5b402bd0c67165531d25f4dca27783d301a186; base a56f486a40d7ee925c781c8037ee8f42f566c4fe; comment states no approval/Ready/merge generated.",
+    "status": "carried; not an independent review closure for this local draft",
+    "infra_findings": [
+      {
+        "finding": "005 retention owner consistency had improved at that reviewed HEAD",
+        "disposition": "out of scope; no 005 parent or content added"
+      },
+      {
+        "finding": "005 AC-02 return owner disagreed with parent/C02; AC-01 unspecified case missing",
+        "disposition": "out of scope; no 005 requirement/case added"
+      },
+      {
+        "finding": "003 coverage table omitted counterexample C03",
+        "disposition": "out of scope; no 003 parent/case added"
+      },
+      {
+        "finding": "006/004/009 return destinations appeared only in cases, not ACs (review cited L11:91,71 and L2:121)",
+        "disposition": "006 carried into fixed-parent-aligned AC-01 and AC-03; AC-01 names independent-path/authority provider owner, AC-03 states unsafe recovery range is exposed and stopped; 004/009 out of scope",
+        "current_local_disposition": {
+          "FR_AC": [
+            "INFRA-006-FR-01-01",
+            "INFRA-006-AC-01",
+            "INFRA-006-AC-03"
+          ],
+          "CASE": [
+            "L10-INFRA-006-C04",
+            "L10-INFRA-006-C12",
+            "L10-INFRA-006-C16"
+          ],
+          "basis": "fixed L2-006 line 89 and fixed L11-006 line 91; return to owner providing independent path or authority and stop/show unsafe recovery range"
+        }
+      },
+      {
+        "finding": "NG:14 sentence malformed",
+        "disposition": "carried as unverified against this local draft; locator is from the Claude13 reviewed revision, not treated as a current line locator. Current NFR text has been read, but this finding is not claimed closed without exact phrase/source mapping."
+      }
+    ],
+    "unreviewed_scope": {
+      "finding": "INFRA 008,025,011 CASE C01–C23 remained dependent on previous review.",
+      "disposition": "outside this two-parent local draft; no closure asserted."
+    },
+    "source_reuse_boundary": "Old-source partial reuse/re-derivation and requirement edits here do not resolve, supersede, or close Claude13 review findings."
+  },
+  "limits": [
+    "未実行の文書設計。独立review、PO承認、実装・実行許可・業務成果を生成しない。",
+    "旧runtime/test/CI/Bunを実行していない。",
+    "local準備のみ。#2564全親/旧findingの独立closureを生成しない。"
+  ]
+}

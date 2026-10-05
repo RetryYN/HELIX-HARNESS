@@ -1,0 +1,527 @@
+{
+  "schema_version": "helix.l3-l10.review-repair-audit.v1",
+  "status": "worker repair evidence for Claude review02 findings; root verification and exact-HEAD independent review pending",
+  "mechanism": "HELIX-LABO",
+  "stage": "Stage 1",
+  "base_commit": "4f10325a4a27a8b0390be895b881d2596e56b261",
+  "content_source_commit": "8fb2ae97960ad0f7a84380e3d52ab99920ee2dc7",
+  "scope": [
+    "HELIXLABO-L2-001",
+    "HELIXLABO-L2-011"
+  ],
+  "review_source": {
+    "path": "/tmp/pr2580-claude-review02.md",
+    "sha256": "e51f97c0f41173e90770a447cee1f8935243976204c81d2c88716fd29848f556",
+    "response_envelope_path": "/tmp/pr2580-response02-envelope.json",
+    "response_envelope_sha256": "be05708e4aab477ce5d3d49bdba7c3f72c995cb0bd7288f786c2c80df048f678",
+    "reviewed_content_head": "ff7e4c50dca60ec790d9c8cf11df39671b89543c",
+    "request_id": "RH-PR2580-LABO-STAGE1-02",
+    "response_event_id": "RH-PR2580-LABO-STAGE1-02-RESPONSE",
+    "reviewer": "claude",
+    "result": "findings",
+    "findings": [
+      {
+        "id": "N3",
+        "severity": "Major",
+        "disposition": "FR AC-02/crosswalk, L10 C02/C12, and NFR distinguish missing from mismatch. Only fixed L2-001 L2:73 missing/unauthorized input returns to source responsibility; identity/revision mismatch preserves original record and holds without a new route, except relation mismatch with evidence returns to Correlate."
+      },
+      {
+        "id": "N1",
+        "severity": "Minor",
+        "disposition": "L10 generic verdict now preserves source status/record and records LABO processing hold separately; only fixed-parent routes are used."
+      },
+      {
+        "id": "N2",
+        "severity": "Minor",
+        "disposition": "FR coverage explicitly traces fixed L11 §24 #1 to C14/C15. NFR input mutations independently include identity mixing, scope missing, and scope unauthorized; routes distinguish source-declared missing/unauthorized from LABO-side mixing."
+      },
+      {
+        "id": "N4",
+        "severity": "Minor",
+        "disposition": "FR crosswalk traces fixed L2:159 non-substitution to C13. C13/NFR reject requirement-parent or other-connection substitution, mark receipt mismatch, and stop without receipt/connection-success."
+      }
+    ],
+    "unreviewed": []
+  },
+  "previous_immutable_audit": {
+    "path": "docs/governance/audits/requirements-stage/l3-l10-labo-stage1-review01-repair-correction01-2026-10-05-a2c2c6f2.json",
+    "sha256": "6b39ffbe99d26b4682f8645351ccfe29ab5e73925f7418e60ae69118784f8846",
+    "modified": false
+  },
+  "documents": [
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "sha256": "6a2909c6163350025eadaa8fe028b9ab50376ebb07b6f2bd7666c17540261fb8",
+      "bytes": 22967,
+      "lines": 117,
+      "changed_in_this_repair": true
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "sha256": "af7c875eb2e43b99f85c092baf7cbb0379ec6b8c5c08c9e01f39f8b72f1192d0",
+      "bytes": 522,
+      "lines": 3,
+      "changed_in_this_repair": false
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "sha256": "95faea76e433f4144bf8b255b6b83a602161084b625a0bc095bda39d4bd416e8",
+      "bytes": 3200,
+      "lines": 15,
+      "changed_in_this_repair": false
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "sha256": "79a5e56ca68681136355c1f2d62bff8e9b8bb0b119565edeb4c75a71fad6e8d8",
+      "bytes": 15814,
+      "lines": 76,
+      "changed_in_this_repair": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "sha256": "603612c09603d6be3c5b1d45bcbafbe7281457454474acef38d4ddb6e7e13d37",
+      "bytes": 529,
+      "lines": 3,
+      "changed_in_this_repair": false
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "sha256": "97545f30c540e63141e8cb53e27969b9f3d094d12580be03c99836086b7bc4eb",
+      "bytes": 3298,
+      "lines": 13,
+      "changed_in_this_repair": true
+    }
+  ],
+  "fixed_source_pins": {
+    "HELIXLABO-L2-001": {
+      "registration_ids": [
+        "MPR-RC-HELIXLABO-L2-001-001",
+        "MPR-RC-HELIXLABO-L2-001-002"
+      ],
+      "semantic_digest": "27b001d93a39c0a7f2b3b6d89e8acc5777015224c2a18f222f1e32e8933bdc4a",
+      "L2": {
+        "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+        "bytes": 73845,
+        "lines": 455,
+        "start_line": 69,
+        "end_line": 76,
+        "raw_lf_sha256": "9c1f285a0835a56fd7042025636ff68c2bca46d31eb2df693465d02fe772a104",
+        "literal": "### HELIXLABO-L2-001 — Aggregate Engine（集積）\n\n- 親：HELIXLABO-L1-001。\n\n入力は各機構・製品・運用環境から許可された観測情報。出力はsource identity/revisionと出典を保つLABO observationである。最低限、原文§3の`episode_id, requirement_revision, ticket_id, responsibility_id, product, mechanism, worker, provider, model, configuration, artifact, CI/test, release, deployment, runtime, failure, rework, cost, time, result`を結べる。開発ログ、Worker/AI判断、CI/test/review、backflow/recovery/incident/refactor、release/deployment/runtime、利用、再作業、費用、token/API、model/provider、correction/rollback/product resultを対象にする。成功のみを収集せず、`success, failure, rejected, cancelled, blocked, unknown, not_observed`を区別する。sourceの正本・state・authorityをLABOへ移さない。欠落や権限外情報は成功扱いせず、当該観測を保留しsource責務へ戻す。\n\n- **単独成立・保証・version_target**：1.0。単独成立依存：1.0対象sourceの個別入力接続（L2-021〜030）。Web/WEB-OS source（L2-031/032）は各source contractが採択された場合に加える任意接続で、1.0の必須依存にしない。保証：source provenance・revision・状態分類を保持したobservationだけを出力し、source正本を変更しない。`version_target`は当該能力の目標版であり、実際の契約版・成果物版ではない。採択後の実版と互換範囲はHARNESS-L2-010/011の共通契約へ記録する。\n\n"
+      },
+      "L11": {
+        "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+        "bytes": 40455,
+        "lines": 203,
+        "start_line": 43,
+        "end_line": 47,
+        "raw_lf_sha256": "d4891130ef25adf720c5e68b584cb17bd12066ea29fc7c4b50585a1cc49d5a8b",
+        "literal": "| 対応L2 | 成功条件 | 反例・不成立条件 |\n|---|---|---|\n| HELIXLABO-L2-001 | 複数sourceから許可された成功、失敗、拒否、取消、blocked、unknown、not_observedを入力し、それぞれのsource identity/revisionと列挙されたobservation fieldsを保持できる。元source authority/stateはsource側に残る | 成功ログだけを受け取り失敗・拒否を落とす、not_observedをsuccessへ変える、source revision不明をcurrentとして使う、権限外/secret dataを取り込む、LABO側記録をsource正本として書き戻す |\n| HELIXLABO-L2-002 | 要求→ticket→Worker→実装→atomic CI→integration→proof CI→release→deployment→runtime→incident→recoveryをepisodeへ結び、要求revision・actor/provider/model/configuration・artifact・環境を追える。相関できないeventも孤立として残る | 時刻/path一致だけで因果断定する、無関係eventを一episodeへ結合する、欠けた義務を補完して完了扱いする、訂正で元eventを上書きする |\n| HELIXLABO-L2-003 | 一episodeに成功/失敗・条件・汎用/product固有・system/operation・unknown/unnecessaryが併存する入力を与え、別々に根拠付き分類できる | episode全体を一括採否する、unknownを推測で分類する、条件付きの成功を無条件一般化する |\n"
+      }
+    },
+    "HELIXLABO-L2-011": {
+      "registration_ids": [
+        "MPR-RC-HELIXLABO-L2-011-001",
+        "MPR-RC-HELIXLABO-L2-011-002"
+      ],
+      "semantic_digest": "39d5c13584a1a339660788e79c9fab9b3ad688675587c3d8510fe65153505724",
+      "L2": {
+        "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+        "bytes": 73845,
+        "lines": 455,
+        "start_line": 163,
+        "end_line": 166,
+        "raw_lf_sha256": "9fcf8b7b648681c7ff08080565a2d708cdd9c5a619e40e8f8bad6196f4c36cb6",
+        "literal": "### HELIXLABO-L2-011 — Aggregate → Correlate\n\n- 親：HELIXLABO-L1-001, HELIXLABO-L1-002。入力：source付きobservationとfield/revision。出力：episode候補。依存：L2-001およびAggregate identity。保証：元source参照と欠測を保持し、因果を確定しない。relation不一致は元記録を保ってcorrelationへ戻す。`version_target: 1.0`。\n\n"
+      },
+      "L11": {
+        "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+        "bytes": 40455,
+        "lines": 203,
+        "start_line": 60,
+        "end_line": 64,
+        "raw_lf_sha256": "136d16707e53e545e4bc6cc18384d604f971e35d00cb2a9750676cdb34f66563",
+        "literal": "| 対応L2 | 成功条件 | 反例・不成立条件 |\n|---|---|---|\n| HELIXLABO-L2-011 | observation fields、source revision、欠測をAggregateからCorrelateへ渡し、episodeと元観測を往復参照できる | IDやsource revisionを欠落させる、単体engine成功を接続成功へ写す |\n| HELIXLABO-L2-012 | episode evidenceからdecompositionへ辿れ、分類の根拠・反証が残る | relation版違いを黙って受け入れる、相関を因果として転送する |\n| HELIXLABO-L2-013 | 分解の各軸と証拠をVector比較へ渡し、unknownや条件依存も保持する | 分類根拠を失う、unknownを成功要素として扱う |\n"
+      }
+    }
+  },
+  "counts": {
+    "FR": 2,
+    "AC": 4,
+    "functional_cases": 28,
+    "NFR_candidates": 5,
+    "NFR_measurement_rows": 5,
+    "canonical_line_total": 227
+  },
+  "checks": {
+    "source_revisions": {
+      "fixed_L2_L11": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "PO_decision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "MPR_register": "28b3d3645e6298c159758700c2edd3d396c336f5",
+      "body": "8fb2ae97960ad0f7a84380e3d52ab99920ee2dc7"
+    },
+    "canonical_document_hashes_recomputed_from_body_commit": 6,
+    "fixed_L2_L11_parent_and_trace_spans_recomputed_from_git_show": 6,
+    "PO_rows_recomputed": 2,
+    "MPR_rows_recomputed": 4,
+    "review_findings_repaired": 4,
+    "scfctl_validate_bindings": 147,
+    "scfctl_validate_fail": 0,
+    "scfctl_stale": 0,
+    "scfctl_residuals": 0,
+    "govcheck": "ok atoms=7622 requirements=57 files=58",
+    "diff_check": "pass",
+    "old_source_runtime_test_CI": "not run"
+  },
+  "limits": [
+    "この監査は作成側の静的修正証拠であり、root最終検収・修正後HEADの独立review・PO要件承認ではない。",
+    "L3/L10は未承認・未実行。実装/実行許可、実際の接続、業務完了、要件承認を生成しない。",
+    "旧sourceと旧test designは参照のみ。旧runtime/test/CI/Bunは実行していない。",
+    "前回immutable監査のwhole-source pin差異を追記で訂正する。本修正は固定parentの意味を変えず、新owner・route・PO gateを追加しない。"
+  ],
+  "supersedes_local_record": {
+    "path": "/tmp/pr2580-labo-review02-fix-handoff.json",
+    "status": "this new repair evidence supersedes no earlier immutable audit; previous immutable audits remain unchanged"
+  },
+  "previous_immutable_audits": [
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-labo-stage1-static-validation-2026-10-05-1eab4a929.json",
+      "sha256": "82deb0894115119a9c4f31b3902e98d8dd60d116a381b6f91ad81a17e4ada35c",
+      "modified": false
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-labo-stage1-review01-repair-2026-10-05-a2c2c6f2.json",
+      "sha256": "ab1a8d10ba08addcb5a8d4fecd926879547e3f0f2569af5b8f8caa135251e5c8",
+      "modified": false
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-labo-stage1-review01-repair-correction01-2026-10-05-a2c2c6f2.json",
+      "sha256": "6b39ffbe99d26b4682f8645351ccfe29ab5e73925f7418e60ae69118784f8846",
+      "modified": false
+    }
+  ],
+  "additional_fixed_source_pins": {
+    "L2_connector_non_substitution": {
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "bytes": 73845,
+      "lines": 455,
+      "start_line": 159,
+      "end_line": 161,
+      "raw_lf_sha256": "44221dd644e0c18ef43b6f39177417f9a2442af46fff8cde08b827d981c372ec",
+      "literal": "接続の版契約はHARNESS-L2-010/011に沿う。接続ごとに固有のconnectorを一つ対応づける。connectorは入力・出力、契約版、依存版、観測可能な進行・結果・証拠、失敗時の戻し先、未完義務を引き継ぐ。source authorityやtarget authorityを移さず、片側の成功だけで接続成功としない。以下の機構・source群の個別connectorは互いに代用しない。\n\n各接続は個別identityであり、各接続に固有のHELIX-CONNECT connectorを一つ割り当てる。各接続packは下記の入力・出力・親L1・依存・保証・失敗時戻し先を持ち、共通contractの実版記録はHARNESS-L2-010/011に従う。各節で示す`version_target`は機能目標であってartifact versionではない。\n"
+    },
+    "L11_PO_section24_rows": {
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "bytes": 40455,
+      "lines": 203,
+      "start_line": 109,
+      "end_line": 116,
+      "raw_lf_sha256": "7e3bcd9acc0c1b35d2d6d5d56ffb5081825a4cae12386612a9a986a645cdc41d",
+      "literal": "| # | PO原文§24の条件 | 対応L2/L11 | 成功条件 | 反例・不成立条件 |\n|---:|---|---|---|---|\n| 1 | LABOは全HELIXの観測結果を横断して扱える。 | HELIXLABO-L2-001, 021–032 | 各許可sourceのobservationが個別identity/revisionを保ってLABOへ到達する。 | source scope未許可・欠落のまま横断済みとする、sourceを同一identityへ混ぜる。 |\n| 2 | 原state/authorityをLABOへ集中させない。 | HELIXLABO-L2-001, 021–042 | source/target stateとauthorityは各機構に残し、LABOはobservation/candidateのみ保持する。 | LABO記録をsource正本として書き戻す、Feedbackで直接state/authorityを変更する。 |\n| 3 | 成功だけでなく失敗・拒否・不明も集積する。 | HELIXLABO-L2-001, 002 | success/failure/rejected/cancelled/blocked/unknown/not_observedが区別されepisodeへ追跡される。 | unknown/not_observedをsuccessへ変換する、失敗や拒否を落とす。 |\n| 4 | correlationを因果と決めつけない。 | HELIXLABO-L2-002 | episode内の相関関係と因果未確定を区別し、根拠とrevisionを辿れる。 | 時刻/pathの近さだけで因果を確定する。 |\n| 5 | 一事例を一般化しない。 | HELIXLABO-L2-009 | single episodeから支持可能なscopeを限定し、反例で範囲を狭める。 | 一例をcross-project/cross-product/general structureへ拡張する。 |\n| 6 | 外部方式をそのまま採用しない。 | HELIXLABO-L2-033, 051 | 外部sourceをprovenance確認・分解・比較・実験後のcandidateとして扱う。 | external success例を無評価で取り込む、命令/patchを評価前に実行する。 |\n"
+    }
+  },
+  "authority_record_pins": {
+    "PO_decision": {
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      "sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0",
+      "bytes": 12756,
+      "lines": 139,
+      "target_rows": [
+        {
+          "start_line": 48,
+          "end_line": 48,
+          "raw_lf_sha256": "8b24c8a79dcf372ebb42cf5a723107be7b8b4143ebf3479a9f3663155e5099e9",
+          "literal": "| `HELIXLABO-L2-001` | `MPR-RC-HELIXLABO-L2-001-001` | unit / 1.0 |\n"
+        },
+        {
+          "start_line": 59,
+          "end_line": 59,
+          "raw_lf_sha256": "c2941eadb9435a01a36d69d2311ceb0b5f3e56aa2f1d5b8be29de44cf16aae06",
+          "literal": "| `HELIXLABO-L2-011` | `MPR-RC-HELIXLABO-L2-011-001` | connection / 1.0 |\n"
+        }
+      ]
+    },
+    "MPR_register": {
+      "source_revision": "28b3d3645e6298c159758700c2edd3d396c336f5",
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "sha256": "d24a982af1c468bb32c9822777a3234d3ce065ff63b89c944b7b04447610c99b",
+      "bytes": 3370048,
+      "lines": 1077,
+      "rows": [
+        {
+          "registration_id": "MPR-RC-HELIXLABO-L2-001-001",
+          "physical_line": 234,
+          "raw_lf_sha256": "eb2afaebec89837cb9f275a8d1715ee05db044e19b47fd890c8fb0b0e1de03bb",
+          "semantic_digest": "sha256:27b001d93a39c0a7f2b3b6d89e8acc5777015224c2a18f222f1e32e8933bdc4a",
+          "literal": "{\"registration_id\":\"MPR-RC-HELIXLABO-L2-001-001\",\"supersedes_registration_id\":null,\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HELIXLABO-L2-001\",\"requirement_kind\":\"unit\",\"product_target\":\"HELIX-LABO\",\"candidate_source_path\":\"docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-001\",\"candidate_semantic_digest\":\"sha256:27b001d93a39c0a7f2b3b6d89e8acc5777015224c2a18f222f1e32e8933bdc4a\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（親候補、承認を推定しない）\",\"parent_planning_revision\":\"docs/helix-labo/L1-planning/labo-intent.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc（draft_candidate、PO対象revision確認待ち）\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json#HELIXLABO-L2-001\",\"source_atom_set_digest\":\"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"source_atom_count\":0,\"source_collection_scope\":\"現行LABO L1/POと既存候補を起点に機能単位へ具体化する未採択候補。旧sourceは意味比較として参照し、この登録で旧atomの移管・採択・retireを行わない。入力旧atom集合は空集合。空集合のno_lossを原文の意味被覆や全旧資産の被覆へ拡張しない。既存候補は保持し、親原文・既存条件の行き先を本文とparent_source_conditionsで示す。\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\",\"coverage_result\":\"no_loss\",\"carried_atom_refs\":[],\"preserved_pending_registration_refs\":[\"MPR-SH-CANDIDATE-003\"],\"human_decision_disposition_refs\":[],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex execution lane\",\"registered_at\":\"2026-09-27T02:36:24+09:00\",\"evidence_refs\":[\"docs/helix-labo/L2-requirements/labo-requirements.md\",\"docs/helix-labo/L1-planning/labo-intent.md\",\"docs/helix-labo/sources/labo-core-engine-po-original-2026-09-26.md\",\"docs/governance/decisions/labo-core-engine-po-decisions-2026-09-26.md\",\"docs/governance/decisions/handoff-integration-po-decisions-2026-09-26.md\",\"docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md\",\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\"]}\n"
+        },
+        {
+          "registration_id": "MPR-RC-HELIXLABO-L2-011-001",
+          "physical_line": 245,
+          "raw_lf_sha256": "ba8974bc98a38e7d2e0a36067b3d8df49d02bad8bac279cc77466f845758728d",
+          "semantic_digest": "sha256:39d5c13584a1a339660788e79c9fab9b3ad688675587c3d8510fe65153505724",
+          "literal": "{\"registration_id\":\"MPR-RC-HELIXLABO-L2-011-001\",\"supersedes_registration_id\":null,\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HELIXLABO-L2-011\",\"requirement_kind\":\"connection\",\"product_target\":\"HELIX-LABO\",\"candidate_source_path\":\"docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-011\",\"candidate_semantic_digest\":\"sha256:39d5c13584a1a339660788e79c9fab9b3ad688675587c3d8510fe65153505724\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（親候補、承認を推定しない）\",\"parent_planning_revision\":\"docs/helix-labo/L1-planning/labo-intent.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc（draft_candidate、PO対象revision確認待ち）\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json#HELIXLABO-L2-011\",\"source_atom_set_digest\":\"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"source_atom_count\":0,\"source_collection_scope\":\"現行LABO L1/POと既存候補を起点に機能単位へ具体化する未採択候補。旧sourceは意味比較として参照し、この登録で旧atomの移管・採択・retireを行わない。入力旧atom集合は空集合。空集合のno_lossを原文の意味被覆や全旧資産の被覆へ拡張しない。既存候補は保持し、親原文・既存条件の行き先を本文とparent_source_conditionsで示す。\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\",\"coverage_result\":\"no_loss\",\"carried_atom_refs\":[],\"preserved_pending_registration_refs\":[\"MPR-SH-CANDIDATE-003\"],\"human_decision_disposition_refs\":[],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex execution lane\",\"registered_at\":\"2026-09-27T02:36:24+09:00\",\"evidence_refs\":[\"docs/helix-labo/L2-requirements/labo-requirements.md\",\"docs/helix-labo/L1-planning/labo-intent.md\",\"docs/helix-labo/sources/labo-core-engine-po-original-2026-09-26.md\",\"docs/governance/decisions/labo-core-engine-po-decisions-2026-09-26.md\",\"docs/governance/decisions/handoff-integration-po-decisions-2026-09-26.md\",\"docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md\",\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\"]}\n"
+        },
+        {
+          "registration_id": "MPR-RC-HELIXLABO-L2-001-002",
+          "physical_line": 814,
+          "raw_lf_sha256": "3927493827a39d97c477b3973716155f0a6a8ded64d431716721a77aabafc021",
+          "semantic_digest": "sha256:27b001d93a39c0a7f2b3b6d89e8acc5777015224c2a18f222f1e32e8933bdc4a",
+          "literal": "{\"registration_id\":\"MPR-RC-HELIXLABO-L2-001-002\",\"supersedes_registration_id\":\"MPR-RC-HELIXLABO-L2-001-001\",\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HELIXLABO-L2-001\",\"requirement_kind\":\"unit\",\"product_target\":\"HELIX-LABO\",\"candidate_source_path\":\"docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-001\",\"candidate_semantic_digest\":\"sha256:27b001d93a39c0a7f2b3b6d89e8acc5777015224c2a18f222f1e32e8933bdc4a\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（親候補、承認を推定しない）\",\"parent_planning_revision\":\"docs/helix-labo/L1-planning/labo-intent.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc（draft_candidate、PO対象revision確認待ち）\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json#HELIXLABO-L2-001\",\"source_atom_set_digest\":\"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"source_atom_count\":0,\"source_collection_scope\":\"現行LABO L1/POと既存候補を起点に機能単位へ具体化する未採択候補。旧sourceは意味比較として参照し、この登録で旧atomの移管・採択・retireを行わない。入力旧atom集合は空集合。空集合のno_lossを原文の意味被覆や全旧資産の被覆へ拡張しない。既存候補は保持し、親原文・既存条件の行き先を本文とparent_source_conditionsで示す。\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\",\"coverage_result\":\"no_loss\",\"carried_atom_refs\":[],\"preserved_pending_registration_refs\":[\"MPR-SH-CANDIDATE-004\"],\"human_decision_disposition_refs\":[],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex worker (R2289-02 metadata correction; authority_effect:none)\",\"registered_at\":\"2026-10-03T00:00:00+09:00\",\"evidence_refs\":[\"docs/helix-labo/L2-requirements/labo-requirements.md\",\"docs/helix-labo/L1-planning/labo-intent.md\",\"docs/helix-labo/sources/labo-core-engine-po-original-2026-09-26.md\",\"docs/governance/decisions/labo-core-engine-po-decisions-2026-09-26.md\",\"docs/governance/decisions/handoff-integration-po-decisions-2026-09-26.md\",\"docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md\",\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\"],\"correction_reason\":\"R2289-02: metadata-only correction to the current source-holding registration and its path; candidate meaning, source atoms, source/candidate digests, coverage, counts, state, authority and human-decision status are unchanged.\"}\n"
+        },
+        {
+          "registration_id": "MPR-RC-HELIXLABO-L2-011-002",
+          "physical_line": 824,
+          "raw_lf_sha256": "175e6c0cf96ef79f7a898cff46e55d6b3f285afb53186f1c302db8029fd56d53",
+          "semantic_digest": "sha256:39d5c13584a1a339660788e79c9fab9b3ad688675587c3d8510fe65153505724",
+          "literal": "{\"registration_id\":\"MPR-RC-HELIXLABO-L2-011-002\",\"supersedes_registration_id\":\"MPR-RC-HELIXLABO-L2-011-001\",\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HELIXLABO-L2-011\",\"requirement_kind\":\"connection\",\"product_target\":\"HELIX-LABO\",\"candidate_source_path\":\"docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-011\",\"candidate_semantic_digest\":\"sha256:39d5c13584a1a339660788e79c9fab9b3ad688675587c3d8510fe65153505724\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（親候補、承認を推定しない）\",\"parent_planning_revision\":\"docs/helix-labo/L1-planning/labo-intent.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc（draft_candidate、PO対象revision確認待ち）\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json#HELIXLABO-L2-011\",\"source_atom_set_digest\":\"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"source_atom_count\":0,\"source_collection_scope\":\"現行LABO L1/POと既存候補を起点に機能単位へ具体化する未採択候補。旧sourceは意味比較として参照し、この登録で旧atomの移管・採択・retireを行わない。入力旧atom集合は空集合。空集合のno_lossを原文の意味被覆や全旧資産の被覆へ拡張しない。既存候補は保持し、親原文・既存条件の行き先を本文とparent_source_conditionsで示す。\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\",\"coverage_result\":\"no_loss\",\"carried_atom_refs\":[],\"preserved_pending_registration_refs\":[\"MPR-SH-CANDIDATE-004\"],\"human_decision_disposition_refs\":[],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex worker (R2289-02 metadata correction; authority_effect:none)\",\"registered_at\":\"2026-10-03T00:00:00+09:00\",\"evidence_refs\":[\"docs/helix-labo/L2-requirements/labo-requirements.md\",\"docs/helix-labo/L1-planning/labo-intent.md\",\"docs/helix-labo/sources/labo-core-engine-po-original-2026-09-26.md\",\"docs/governance/decisions/labo-core-engine-po-decisions-2026-09-26.md\",\"docs/governance/decisions/handoff-integration-po-decisions-2026-09-26.md\",\"docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md\",\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\"],\"correction_reason\":\"R2289-02: metadata-only correction to the current source-holding registration and its path; candidate meaning, source atoms, source/candidate digests, coverage, counts, state, authority and human-decision status are unchanged.\"}\n"
+        }
+      ]
+    }
+  },
+  "prior_pin_discrepancy": {
+    "summary": "The previous worker correction audit recorded whole-file L2/L11 SHA and line counts from a working-tree snapshot, while the fixed parent spans matched. This audit recomputes all source bytes via git show at the named source revision. No fixed parent literal/raw span changed; this is a pin correction, not a requirements change.",
+    "previous_audit_path": "docs/governance/audits/requirements-stage/l3-l10-labo-stage1-review01-repair-correction01-2026-10-05-a2c2c6f2.json",
+    "previous_L2_whole_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+    "fixed_revision_L2_whole_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+    "previous_L2_lines": 584,
+    "fixed_revision_L2_lines": 455,
+    "previous_L11_whole_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+    "fixed_revision_L11_whole_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+    "previous_L11_lines": 316,
+    "fixed_revision_L11_lines": 203,
+    "prior_audit_immutable": true
+  },
+  "legacy_source_pins": [
+    {
+      "asset_id": "LEGACY-ASSET-F542125805B777D8A56A",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "source_revision": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "full_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "bytes": 15617,
+      "physical_lines": 284,
+      "spans": [
+        {
+          "start_line": 13,
+          "end_line": 21,
+          "raw_lf_sha256": "d16597b2119b4b6d89a48c97777397f983d404059799ab440e76d02f821e1a69",
+          "literal": "## 総則\n\n左腕の各層では以下の 2 成果物を **同時に** 起票・凍結する:\n\n- **① 設計成果物** (`docs/design/`)\n- **③ テスト設計成果物** (`docs/test-design/`)\n\n左腕完了 = ① + ③ ペアが揃い、対応ゲートを通過した状態。\n設計のみ先行・テスト設計を後回しにする運用は V-model 違反 (AP-8: 逆ピラミッド)。\n"
+        },
+        {
+          "start_line": 101,
+          "end_line": 101,
+          "raw_lf_sha256": "9a48e962ded1a655d4d467b146034189604c8545efe963446a06d5230e32889c",
+          "literal": "注: L1 機能要求 (FR-L1-*) は「ユーザー視点の要望」。L3 機能要件 (FR-*) は「システム仕様+AC」。両者は別物であり L1 に FR を書かない (AP-6)。\n"
+        },
+        {
+          "start_line": 148,
+          "end_line": 168,
+          "raw_lf_sha256": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9",
+          "literal": "### L3 要件定義\n\n| 項目 | 内容 |\n|------|------|\n| 名称 | 要件定義 (System Requirements) |\n| 目的 | システム機能要件 (FR-*) + 受入条件 (AC-*) を確定し、設計への入力とする |\n| 主要成果物 ① | 3 sub-doc: functional-requirement / business-requirement / nfr-grade |\n| ③ テスト設計ペア | UX受入テスト設計（L10で実施） |\n| V-pair (右腕) | **L10** UX受入検証 |\n| 主要ゲート | **G3** 機能要件凍結 (FR+AC ⇔ L10 UX受入テスト設計 pair freeze) |\n| 入口 | G1/G2 exit 後 (L1 業務要求 BR-* が入力) |\n| 出口 | G3 通過 (FR+AC 全件確定 + 受入テスト設計 pair 揃い) |\n| 主要 role | `tl` 必須 (FR+AC 仕様化)、`po` 必須 (受入条件確認) |\n\n注: FR-* は L1 BR-* から双方向 trace する。AC 不在での G3 通過は fail (AP-4)。\nG3では`engineering_discipline_required: true`のPLAN契約により、no-code-first判断、責務owner、\n許容complexity、L10で観測する振る舞いをfreezeする。ここでobject modelを一律採用せず、\n`none` / `pure_function`を含む最小のmodeling判断を許可する。\n出典: concept v3.1 §3.1.2 / requirements v1.3.12 §2.2 G3\n\n---\n"
+        }
+      ],
+      "use": "L3 definition: FR+AC paired to current L3/L10; old stage labels/sub-gates are not carried"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-B30F3C82B6B0FDC0D2A8",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/gates.md",
+      "source_revision": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "full_sha256": "dcbc0009d6fd7576cd305f90cfbf47916f666ada0031711f1fa1f952b7014b08",
+      "bytes": 11592,
+      "physical_lines": 117,
+      "spans": [
+        {
+          "start_line": 41,
+          "end_line": 41,
+          "raw_lf_sha256": "f3e1188383002fad74fca0fe087c327d6514afe8236fc765a4e4925e81cde4c0",
+          "literal": "| **G3** | L3 完了 | FR+AC ⇔ 受入テスト設計 ペア凍結 / AC 不在 → fail | block → L3 修正 |\n"
+        },
+        {
+          "start_line": 64,
+          "end_line": 64,
+          "raw_lf_sha256": "e7b1b13818bf8e3c8cc1afa702735fd64e570bb0fccd9775a35d2a07dbb12a17",
+          "literal": "- 収束後の L1/L2 変更は silent edit ではなく、change-log と A-40 再検証を経由する。G3 以降は PO 承認済み L3 FR+AC を下流判断の SSoT とする。\n"
+        }
+      ],
+      "use": "FR and AC correspondence/pair-completeness meaning"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-6EBDB617A8104A7756D0",
+      "path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+      "source_revision": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "full_sha256": "7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb",
+      "bytes": 23313,
+      "physical_lines": 334,
+      "spans": [
+        {
+          "start_line": 82,
+          "end_line": 85,
+          "raw_lf_sha256": "fc924232f93af2593a0d8ec97c36224a3c2f641ca5c03468ecae747107bd4785",
+          "literal": "### 自律境界（charter §3）\n\n- **人**: L0 企画 / L1 要求 / L2 デザインモック（モックが最後の直接関与）／ L3 要件は**承認のみ**。\n- **AI**: L3 起草 ＋ L4 以降〜GitHub PR/CI/merge/tag を**完全自動**（不可逆操作のみ escalate）。\n"
+        }
+      ],
+      "use": "human approves L3; AI drafts"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-34DF3B535879CC73FA86",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md",
+      "source_revision": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "full_sha256": "d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a",
+      "bytes": 19615,
+      "physical_lines": 220,
+      "spans": [
+        {
+          "start_line": 162,
+          "end_line": 170,
+          "raw_lf_sha256": "d8e3f0e9afaa03c20985808ccade01279952ea5366655e3d4e95ca9e97dd3df5",
+          "literal": "### L10 機能要件・UX受入\n\n| 項目 | 内容 |\n|---|---|\n| 目的 | L3 FR/ACをsystem behavior、実データ表示、accessibilityを含めて検証する |\n| V-pair | **L3↔L10** |\n| gate | **G10** |\n| 出口 | G10 green → L11 |\n| 差し戻し | L3機能要件または対応するL4-L6設計 |\n"
+        },
+        {
+          "start_line": 195,
+          "end_line": 207,
+          "raw_lf_sha256": "9a91c1d2094be6c1c0463b9f3af280f41abb15b0503f8520c7e72be12c27c75b",
+          "literal": "## 右腕差し戻しルール\n\n検証工程で失敗した場合の差し戻し先を明示する (concept v3.1 §3.1.5):\n\n| 失敗工程 | 差し戻し先 |\n|---------|-----------|\n| L8 結合テスト失敗 | L5 詳細設計 または L7 実装 |\n| L9 総合テスト失敗 | L4 基本設計 |\n| L10 機能要件・UX受入失敗 | L3要件または対応するL4-L6設計 |\n| L11 人間受入フィードバック | L2要求。system behavior変更時はL3 add-design |\n| L12 価値・運用品質失敗 | L1事業要求へfeedback。本番回帰はIncident mode、軽微なrelease問題はG12 evidenceを再取得 |\n\n差し戻し記録は PLAN の carry log に残す。右側工程で「ペア未凍結のテスト設計を後付け」することは V-model 違反 (AP-7)。\n"
+        }
+      ],
+      "use": "old L10 meaning/system verification design only; no old execution"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-B5B5E71B2AF1459D59A1",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+      "source_revision": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "full_sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a",
+      "bytes": 72114,
+      "physical_lines": 974,
+      "spans": [
+        {
+          "start_line": 22,
+          "end_line": 34,
+          "raw_lf_sha256": "5d28764f462e5bb9fa6dd3b8a3557941f53946698da94bed79fb386a3df22b55",
+          "literal": "> **SSoT 参照**: ユビキタス言語 = L0 概念層 §10 用語集 / Bounded Context = L0 §2.5 (9-mode) + screen sub-doc §6 (PM/HM/GD 3 カテゴリ) / 業界標準整合 = ISO/IEC/IEEE 29148 (要件記述) + BDD Given-When-Then (AC 形式) + ISTQB Foundation Level (境界値分析)。\n> **件数確定**: L3 FR は **26 件** = P0 18 件 (FR-01〜18、L1 FR-L1-01〜18 と 1:1 対応) + FR-45 (P0、doc-reviewer back-propagation A-49) + workflow core 7 件 (FR-23〜30、A-50 で L3 直接詳細化)。残 P1 10 件 + P2 5 件は L4 carry (§3 / §3.1)。BR-21 経路 (FR-L1-36 / FR-L1-38 / FR-L1-43 + 関連 P2) は business-detail.md 担当 (重複回避)。FR-L1-36 / FR-L1-38 / FR-L1-43 はすべて PLAN-L7-53 で実装済み (2026-06-15)。g3-trace lint の l3Fr=26 と一致。\n> **AC 件数**: 全 FR で AC 最低 3 件 (正常 / 異常 / 境界)、functional sub-doc の AC-FR は **85 件** (FR-03/07/25 の back-fill 追加 AC を含む)。**人間判断点 列必須** (CC2 carry)。\n> **L12 接続規約**: `next_pair_freeze: L12`。L12 受入テスト設計は本 sub-doc の全 AC を AT-* で被覆 (孤児 AC = 0)。\n> **正規式モデル (PLAN-RECOVERY-02、2026-06-04)**: L3 要件の検証本質 = **本番受入** (本番環境で FR+AC が満たせるか、L12 で実施。データ実在性エスカレーションの本番 band)。画面要求は L1 (screen sub-doc) が担い L3 では起こさない (L2=L1 フェーズ分離)。\n\n# HELIX-HARNESS — L3 機能要件 (functional)\n\n## §1 目的・背景\n\nL1 機能要求 (FR-L1-*、ユーザー視点の「何の機能が必要か」) を L3 機能要件 (FR-*、システム視点の「何を満たすべきか」) に詳細化する sub-doc。各 FR に **入出力 / 振る舞い / 受入条件 (AC)** を確定し、L7 実装スプリント (TDD Red) の入力として機械検証可能な粒度に整える。\n\nスコープ: **L3 FR 26 件** = P0 18 件 (FR-01〜18) + FR-45 (P0、back-propagation) + workflow core 7 件 (FR-23〜30、A-50 で「ワークフロー = harness ガードレール」として L3 直接詳細化)。残 P1 10 件は L4 基本設計で carry (§3.1)、P2 5 件 + BR-21 経路は PLAN-L3-02 (business-detail) に委譲。\n"
+        }
+      ],
+      "use": "old HARNESS functional requirements; non-identical to current LABO observation scope"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A6E2C7F0565E5F804F06",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md",
+      "source_revision": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "full_sha256": "99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d",
+      "bytes": 16399,
+      "physical_lines": 256,
+      "spans": [
+        {
+          "start_line": 137,
+          "end_line": 145,
+          "raw_lf_sha256": "7cee661109db34583676144f6acbd6bc1e1342e4492d06e8b0f6009b56aa9e3f",
+          "literal": "#### AC-FR-BR21-08 (正常系: HM-08 表示)\n- **前提**: 集計バッチ完了 (sprint 末トリガー)\n- **操作**: HM-08 アクセス\n- **期待結果**: 4 ソース統合ビュー表示 / 5 指標サマリ + skill/model 別 詳細テーブル / 30 秒ポーリングで自動更新\n\n#### AC-FR-BR21-09 (異常系: 集計バッチ失敗)\n- **前提**: invocation_log が破損 (JSON parse error)\n- **操作**: 集計バッチ実行\n- **期待結果**: 該当データソースをスキップ + 警告 `Warning: invocation_log 破損、token cost 指標欠落` / 他 3 ソースは正常集計 / HM-08 に警告バナー表示\n"
+        }
+      ],
+      "use": "old BR21 dashboard partial-source failure example only"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "source_revision": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "full_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "bytes": 65731,
+      "physical_lines": 354,
+      "spans": [
+        {
+          "start_line": 134,
+          "end_line": 153,
+          "raw_lf_sha256": "1182367b0bed125db89a879d2b468ab0dc0df42b480df06456e2ff438a674d41",
+          "literal": "## §1 FR/AC 一覧\n\n| ID | 親 | 要件 | 主な AC |\n|----|----|------|---------|\n| HR-FR-P0-01 | HBR-P0 | specialist workflowは`style_return`を持ち、Reverse/Recovery/Incident/Refactor/Retrofit/Research/Add-featureの出口が選択済みdevelopment styleへ戻るか、明示`gap-only` / `version_target`に隔離される。Discovery／PoCは別軸case-driven S0–S4として、S4判断後だけ選択済みstyleへ戻す | HAC-P0-01a / HAC-P0-01b |\n| HR-FR-P0-02 | HBR-P0 | runaway guard は budget time-cap、iteration cap、lock、Recovery escalation を単一停止判定に集約し、停止理由をappend-only continuation eventへ先にdurable appendし、DBへ冪等投影してから公開する | HAC-P0-02a / HAC-P0-02b |\n| HR-FR-P1-01 | HBR-P1 | continuous-run engine は resume 3 条件、job-queue、budget time-cap、fresh-session 再入をつなぎ、要件承認後の無人再開を成立させる | HAC-P1-01a / HAC-P1-01b |\n| HR-FR-P1-02 | HBR-P1 | `version_target` / release tag / migration / rollback を持つ version-up lifecycle を提供し、今版外作業を失わない。parked work は activation decision、parked review、action-binding approval、reapproval trigger を `version-up-activation-packet.v1` として出せるが、packet は plan-only で apply surface を持たない。HEAD/scope/source/evidence drift がある場合は dry-run・doctor・approval packet を再実行し、古い承認根拠を流用しない。GitHub Actions を activation/dry-run workflow として採用する候補では、`GITHUB_TOKEN` 権限、least privilege、`pull_request_target` 未信頼コード実行、自動 PR 承認リスクを `approval_scope` / `dry_run_plan` / `external_rehearsal_plan` / provenance / audit の判断材料に含め、CI があることを安全証明にしない。同一 PLAN に複数判断境界がある場合は `relatedDecisionPackets[]` で primary/supporting packet route を保持し、S4 / version-up / rename / action-binding のどれか一つだけを見て完了扱いしない | HAC-P1-02a / HAC-P1-02b |\n| HR-FR-P1-03 | HBR-P1 | 大きい要求は選択済みdevelopment styleのsliceへ分割され、各sliceがstyle返却先、budget、acceptance、DB-backed next_actionを持つ。Discovery／PoCを分割方式やScrum phaseとして暗黙起動しない | HAC-P1-03a / HAC-P1-03b |\n| HR-FR-P1-04 | HBR-P1 / HBR-P3 | L2要求・プロト合意をL3凍結の前提とし、非UIでも適用性receiptなしに暗黙skipしない。導入時や後続の要求変更時にL2 templateとmock workflowを生成・選択し、要求へのback-propagationを行えるようにする。templateの生成やdefer記録だけでL3凍結を許可しない | HAC-P1-04a / HAC-P1-04b |\n| HR-FR-P2-01 | HBR-P2 | agent->tool request/response は typed contract registry で検証され、未登録 tool surface は fail-close または明示 deferred になる | HAC-P2-01a / HAC-P2-01b |\n| HR-FR-P2-02 | HBR-P2 | loop 内 effort/budget は plan size、model role、iteration、tool use に紐づく上限を持ち、超過時は自己継続せず停止または version-up へ隔離する | HAC-P2-02a / HAC-P2-02b |\n| HR-FR-P2-03 | HBR-P2 / HNFR-AC | Codex CLI/IDE/hosted API surface は Claude hook intent と同じ guard intent に正規化され、`apply_patch` / `write_file` / `exec_command` / `local_shell` を Claude `Edit` / `Write` / `MultiEdit` / `Bash` 相当の adapter map で扱い、repo hook 非強制 surface では編集前 git/status preflight を必須にする | HAC-P2-03a / HAC-P2-03b |\n| HR-FR-P2-04 | HBR-P2 / HBR-P3 / HBR-P4 | agent loop は API/SDK 採用前提ではなく、外部 API/SDK 呼び出し前提でもなく、PLAN 駆動で動く。plan/tool/handoff/guardrail/eval outcome を harness DB の trace span として記録し、simple-composable workflow から eval green を確認してから multi-agent / long-running autonomy へ昇格する。TDD 実装では smart review agent が先に test/oracle を作り、light implementation agent が最小実装し、smart review agent が指示・テスト・レビューして fail 時に修正ループへ戻す pair programming route を持つ。light implementation は changed-files / targeted-test-command / implementation-notes の実装証跡、または consultation question を出し、consultation は pass ではなく smart review の implementation directive / fix response を経て次の light fix cycle に戻す。consultation question がある出力は、同時に implementation evidence を含んでも pending consultation として扱い、smart response 無しに pass へ進めない | HAC-P2-04a / HAC-P2-04b |\n| HR-FR-P2-05 | HBR-P2 / HNFR-P8 | 外部AI workerは登録済みdescriptor、隔離worktree、bounded resource、network default deny、non-authorityを必須とし、secret taskと未登録runtimeを起動前に拒否する。Python意味コアはADR-010の意味判断・生成authorityを持つ別の実行契約として扱い、登録済みdescriptor、bounded resource、network default denyを要求し、repository／DB path／credential／`.helix/`を渡さない | HAC-P2-05a / HAC-P2-05b |\n| HR-FR-P2-06 | HBR-P2 / HNFR-AC | Python意味コアとTypeScript/Node transactional boundaryの間はversioned typed wire eventだけを通す。ADR-010に従い、承認済み要求・判断記録・ADRの下でPythonは意味判断・生成、Nodeは再検証・単一transaction commit・外部副作用の同格の層別authorityを持つ。一方を他方の全面上位にしない | HAC-P2-06a / HAC-P2-06b |\n| HR-FR-P2-07 | HBR-P2 / HNFR-P8 | repository／credential／state／DBのpermanent bypass denyはone-shot markerやprovider flagより優先し、workerへauthority capabilityを渡さない | HAC-P2-07a / HAC-P2-07b |\n| HR-FR-P2-08 | HBR-P2 / HNFR-P3 | worker outputはstrict schema、digest、size、timeoutを既定で検証し、期限・owner・対象を持つ緩和profile以外をfail-closeする | HAC-P2-08a / HAC-P2-08b |\n| HR-FR-P3-01 | HBR-P3 | pair_closure / 片肺禁止 / 機械判定と AI 判定の境界を L3-L7 全 gate で formalize し、coverage 単独 pass を完了根拠にしない | HAC-P3-01a / HAC-P3-01b |\n| HR-FR-P3-02 | HBR-P3 / HNFR-P3 | external-truth grounding は URL/公開日/版/引用対象 span を記録し、外部根拠なき外部事実 claim を未検証として reject する | HAC-P3-02a / HAC-P3-02b |\n"
+        },
+        {
+          "start_line": 178,
+          "end_line": 190,
+          "raw_lf_sha256": "b22d92ccdaa19287976d6c67a4289cde8f379e16382fc07498a3d9b9746752c0",
+          "literal": "| HR-NFR-P3-01 | HNFR-P3 | 合格主張は green command evidence、review tier、external-truth grounding の有無を区別し、self-verification 単独を禁止する | HAC-N3-01a / HAC-N3-01b |\n| HR-NFR-P3-02 | HNFR-P3 / HBR-P3 | 実装精度は design requirement ID、acceptance ID、code/test evidence、review finding の対応で計測し、未対応 claim を完了根拠にしない | HAC-N3-02a / HAC-N3-02b |\n| HR-NFR-P3-03 | HNFR-P3 / HBR-P9 | canonical L1-L12の層単位でregression fenceを持ち、層外L0 charterのauthority projectionも検査する。変更影響層のgate/test/doctorが未実行ならpassを出さない | HAC-N3-03a / HAC-N3-03b |\n| HR-NFR-P3-04 | HNFR-P3 / HBR-P3 | AI による実装作業は test-first を既定にし、Red evidence、expected failure、acceptance oracle、Green evidence、refactor safety を記録する。test-first 不適用は理由と代替 oracle を持たなければならない | HAC-N3-04a / HAC-N3-04b |\n| HR-NFR-P5-01 | HNFR-P5 | injection budget は直近逐語 / rolling summary / stable constraints の 3 層と層境界数値を持ち、可逆圧縮に必要な artifact trail と raw/evidence pointer を汎用要約から分離して保持する | HAC-N5-01a / HAC-N5-01b |\n| HR-NFR-P5-02 | HNFR-P5 | continuation checkpointはappend-only eventを先にdurable appendし、event idでDB projectionを冪等更新した後だけ公開する。append後/projection前crashからのrestart、bounded memory breadcrumbを保証する。session prose / `CURRENT.json` / handover CLIを生成せず、provider delegation evidenceは別契約として保持する | HAC-N5-02a / HAC-N5-02b |\n| HR-NFR-P5-03 | HNFR-P5 / HBR-P3 | verification workload は fast/default/full の test/verification profile、並列度、CPU/IO/resource budget、timeout、p95 duration budget、実行時間記録を持ち、通常 loop で必要以上の full suite を強制しない。初期 budget は fast<=120s / default<=600s / full<=1800s を上限目安とし、超過時は continuation/blocker/improvement task に変換する | HAC-N5-03a / HAC-N5-03b |\n| HR-NFR-P8-01 | HNFR-P8 | 認証/認可/決済/PII/secret/license/schema migration/destructive data/external API・infra 変更は action-binding approval なしに適用しない。version-up activation / rename cutover の action-binding approval は `reviewed_snapshot_binding` に packet field 名だけでなく current `sha256:` snapshotId を記録するまで pending とし、古い承認材料を実行許可に流用しない | HAC-N8-01a / HAC-N8-01b |\n| HR-NFR-P8-02 | HNFR-P8 / HBR-P8 | prompt injection / tool injection / data exfiltration 誘導を検出・分類し、外部データ由来の命令を隔離、redaction、human review、deny のいずれかに送る | HAC-N8-02a / HAC-N8-02b |\n| HR-NFR-P8-03 | HNFR-P8 / HBR-P8 | agentic AI 機能は段階導入を既定にし、task-scoped permission、least privilege、監査ログ、rollback/reversibility、risk owner、継続監視、threat model 更新を持たない限り自動適用範囲へ昇格しない | HAC-N8-03a / HAC-N8-03b |\n| HR-NFR-AC-01 | HNFR-AC | rule-drift は Claude/Codex だけでなく agent/template/skill/runtime adapter へ一般化し、単一 core から逸脱する規則差分を検出する | HAC-NAC-01a / HAC-NAC-01b |\n| HR-NFR-AC-02 | HNFR-AC | hosted API/developer tool surface は repo hook 非強制であることを明示し、作業前 preflight と監査ログを必須にする | HAC-NAC-02a / HAC-NAC-02b |\n| HR-NFR-AC-03 | HNFR-AC / HBR-P2 / HBR-P8 | AI runtime は provider API 直叩きや SDK 常駐実行を前提にせず、PLAN artifact、repo-local CLI adapter、harness DB trace、dry-run plan を正本にする。外部 API / infra / GitHub 操作は plan emit と action-binding approval を経ない限り実適用しない | HAC-NAC-03a / HAC-NAC-03b |\n"
+        }
+      ],
+      "use": "legacy pillar FR/AC examples, semantic comparison only"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-44DD86E3DEC09E65EF51",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "source_revision": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "full_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+      "bytes": 30874,
+      "physical_lines": 216,
+      "spans": [
+        {
+          "start_line": 43,
+          "end_line": 50,
+          "raw_lf_sha256": "17a29eeb22b6ecf41e8776b556a566f0a0613212de2e7c660e259f3ec1bd6acb",
+          "literal": "- 対象 L3 要件: HR-FR 38 件 + HR-NFR 13 件 = 51 件（従来46件 + 2026-07-19 worker runtime／配布要求5件）。\n- 対象 AC: HAC 102 件。\n- 受入テスト: HAT 51 件。各 HAT は対応 FR/NFR の 2 AC を束ね、正常/異常または通常/境界を観測する。\n- Route-B back-fill L3 要件: `HR-BR-*` / `HR-NFR-03*` 8 件。P2/P7 の先行実装由来で、pillar 51 件とは別枠で §1.1 に受入観測を持つ。\n- 孤児: 0。詳細は §2 / §2.1 trace。\n\n新規HAT-P2-05..08／HAT-P6-06は受入設計の確定を示し、test implementationまたはruntime greenを示さない。旧46件の下流証拠と分離し、L4以降へ降下するまで`designed`を上限とする。\n\n"
+        },
+        {
+          "start_line": 67,
+          "end_line": 90,
+          "raw_lf_sha256": "e13598bd4995ac192a747b0690c0c2fa5a2d17eb9c72949211ae1430e8812866",
+          "literal": "## §0.2 HELIX 検証戦略\n\n本書はL10総合テスト設計であり、HAT-*はL3要件のシステム挙動を検証する **テスト戦略**である。\nHELIX ではこれに加え、受入 claim を閉じる **検証戦略**を要求する。\n\n- HAT が runtime behavior を観測する場合、合格根拠は実 command / adapter / hook / session 由来の evidence\n  でなければならない。DB projection、計画表、coverage 数値だけでは `works` claim を閉じない。\n- P2/P7/HNFR-AC の Claude/Codex runtime parity は、direct hook が効く surface と hosted/API preflight-only\n  surface を分け、どちらの evidence で受け入れるかを記録する。\n- P3/P9 の実装精度・DB 収束は、RUN & Debugで捕捉したruntime provenanceをL10検証evidence\n  に接続する。projection-only telemetry は未検証として扱う。\n\n### §0.3 HELIX NFR グレード projection oracle\n\n`docs/design/helix/L3-requirements/nfr-grade.md` は、既存 L1/L3/L6 に散在する数値閾値を束ねる\nprojection であり、新しい閾値の正本ではない。受入観測では次を確認する。\n\n| 観測 | 対応 acceptance | 期待 |\n|------|-----------------|------|\n| bounded recall 件数 / 文字数 | HAT-P7-01 / HAT-N5-01 | 直近 12 件 / 240 字上限が source path とともに示される |\n| verification profile budget | HAT-N5-03 | fast <= 120s、default <= 600s、full <= 1800s と実測 duration が証跡化される |\n| CI auto-fix repush | HAT-P6-02 / HAT-P6-05 | confidence >= 0.75 かつ iteration cap 内でなければ repush せず escalation する |\n| approval snapshot binding | HAT-N8-01 / HAT-P6-04 | current `sha256:` snapshotId が無い approval は pending として扱う |\n\n"
+        },
+        {
+          "start_line": 91,
+          "end_line": 120,
+          "raw_lf_sha256": "0493df0f6b3370862f8a2e43ae0eee86f445374bc0f45404208ebbdae14f2a8a",
+          "literal": "## §1 受入テスト\n\n| HAT-ID | 対応 L3 | 対応 AC | 受入観測 | 機械検証候補 |\n|--------|---------|---------|----------|--------------|\n| HAT-P0-01 | HR-FR-P0-01 | HAC-P0-01a/b | workflow PLANが選択済みdevelopment styleへの返却先または明示隔離を持つ。Discovery／PoCはS4判断後だけ接続し、返却先欠落・不存在・Scrumへの暗黙内包を拒否する | style返却先とcase-driven境界の検証／plan-governance |\n| HAT-P0-02 | HR-FR-P0-02 | HAC-P0-02a/b | cap/lock到達時に停止理由をevent-firstで保存し、DBへ冪等投影して二重実行しない | orchestration / continuation-integrity tests |\n| HAT-P1-01 | HR-FR-P1-01 | HAC-P1-01a/b | resume 3条件 + job + budget + event-first checkpoint + crash restartが連動し、projection成功前は公開せずsession prose/CURRENT/CLIを生成しない | loop-runner / continuation/resurrection tests |\n| HAT-P1-02 | HR-FR-P1-02 | HAC-P1-02a/b | version_target と tag bump dry-run が migration/rollback を出す。parked PLAN の activation packet は activation/parked review/action-binding approval、source ledger freshness、reapproval trigger、activation snapshot binding、version dry-run result digest を判断材料として出すが、plan-only で apply/activation permission を持たない。status / completion decision packet / continuation read model の version-up summary は親 field だけでなく、activation snapshot id、dry-run/rollback plan、readiness evidence、source ledger rows digest、version dry-run digest、release tag 解決、security checklist route impact、reapproval action の具体 field を出す。source ledger stale / 必須 source 欠落、external rehearsal / provenance evidence pending、HEAD/scope/source/evidence/dry-run result drift は activation 前 blocker または再承認 route になる。GitHub Actions activation/dry-run workflow を含む場合は secure-use source、`GITHUB_TOKEN` 権限、least privilege、`pull_request_target`、自動 PR 承認リスクが approval / dry-run / external rehearsal / provenance / audit の期待値に入る | version-up tests / plan lint / activation-packet CLI smoke |\n| HAT-P1-03 | HR-FR-P1-03 | HAC-P1-03a/b | 大きい要求が選択済みdevelopment styleのsliceに分割され、各sliceがparent・返却先・acceptance・budget・DB-backed next_actionを持つ。Discovery／PoCを分割方式として暗黙起動しない | scrum/work-breakdown / continuation tests |\n| HAT-P1-04 | HR-FR-P1-04 | HAC-P1-04a/b | template生成だけでL3凍結を許可しない。UIの要求／プロト合意、非UIの適用性receiptを検査し、欠落を拒否する。後日mockの差分をL2へ反映して再合意し、影響するL3／L11を再検証する | L2-template／適用性receipt／back-propagation tests |\n| HAT-P2-01 | HR-FR-P2-01 | HAC-P2-01a/b | tool contract registry が未登録 surface を許可せず、request/response の required/forbidden field を検証する | `tests/tool-contract.test.ts` / doctor `tool-contract-registry` |\n| HAT-P2-02 | HR-FR-P2-02 | HAC-P2-02a/b | loop effort/budget 超過で自己継続しない | `tests/orchestration/orchestration.test.ts` HU-PILLAR-P2-02 / `tickLoopEffortBudget` |\n| HAT-P2-03 | HR-FR-P2-03 | HAC-P2-03a/b | Codex `apply_patch` / `write_file` / `exec_command` / `local_shell` adapter map、direct hook parity、hosted API preflight が区別される | `tests/codex-hook-adapter.test.ts` / `tests/hosted-preflight.test.ts` / `helix guard preflight --json` |\n| HAT-P2-04 | HR-FR-P2-04 | HAC-P2-04a/b | API/SDK 呼び出し前提ではなく PLAN 駆動で、simple workflow 既定、multi-agent 昇格理由、harness DB loop trace span、eval outcome が残る。pair-agent TDD route は consultation question を含む light output を pending consultation として扱い、smart directive / fix response 無しに pass しない。light output が完了/承認 marker を出す場合は light agent の closing authority 越えとして fail-close する。task difficulty と `maxFixCyclesSource` を plan/run evidence に残し、未指定 max cycle は difficulty policy (`trivial/simple=1`, `standard=2`, `complex=3`, `critical=4`) から導出する。max cycle 到達は `max-fix-cycles-exhausted` finding として監査可能に残る。`pair-agent plan --save-evidence` は adapter plan / prompt digest / frontier guardrail を残し、`pair-agent run --save-evidence` は `loop_summary` / `transcript_digest` / phase `output_excerpt_digest` を残す。DB rebuild は保存済み `phase_spans` が `smart_test_author` から始まり `light_implementation` / `smart_review` が交互に続くことを検査し、違反時は `pair-agent-run-evidence` gate blocked と finding に投影する。plan/run phase agent は `model_runs`、gate は `gate_runs`、frontier approval は `guardrail_decisions`、phase/smart/light/review/consultation/pending consultation/failed review/fix cycle count は `quality_signals` へ投影する | agent-loop tracing / eval tests / `tests/pair-agent.test.ts` / `tests/projection-writer.test.ts` |\n| HAT-P2-05 | HR-FR-P2-05 | HAC-P2-05a/b | 外部AI workerの隔離worktree／non-authorityとPython意味コアの層別authorityを区別する。Pythonへrepository／DB path／credential／`.helix/`を渡さず、descriptor・resource上限・network denyを検査する。secret taskと未登録runtimeは起動前にdenyする | worker runtime admission設計test（未実装はdesignedとして追跡） |\n| HAT-P2-06 | HR-FR-P2-06 | HAC-P2-06a/b | Python意味判断・生成とNode実行境界をADR-010の同格の層別authorityとして検査する。typed wire eventをNodeが再検証し、Nodeだけが単一commitする。未登録event／直接write要求は実行しない | delegation wire adapter設計test（未実装はdesignedとして追跡） |\n| HAT-P2-07 | HR-FR-P2-07 | HAC-P2-07a/b | permanent bypass denyがone-shot marker／provider flagより優先し、無権限変更を拒否する | repository bypass policy設計test（未実装はdesignedとして追跡） |\n| HAT-P2-08 | HR-FR-P2-08 | HAC-P2-08a/b | strict既定のschema／digest検証と、期限付き緩和profileのfail-closeを検査する | worker output validation設計test（未実装はdesignedとして追跡） |\n| HAT-P3-01 | HR-FR-P3-01 | HAC-P3-01a/b | pair 欠落と coverage-only 完了主張を拒否する | pair-freeze / review-evidence tests |\n| HAT-P3-02 | HR-FR-P3-02 | HAC-P3-02a/b | 外部 claim は source attribution + 別 verifier を要求する | external-grounding tests |\n| HAT-P4-01 | HR-FR-P4-01 | HAC-P4-01a/b | detector event が repair candidate へ変換され、高リスクは approval 待ちになる | repair-routing tests |\n| HAT-P4-02 | HR-FR-P4-02 | HAC-P4-02a/b | repair recipe が memory/backlog へ残り、頻出時に promote 候補になる | memory + improvement-backlog tests |\n| HAT-P4-03 | HR-FR-P4-03 | HAC-P4-03a/b | 実装精度・レビュー・テスト時間・flake・再作業 metric と trace/metric/log observability が改善候補へ変換される | metric collector / improvement routing tests |\n| HAT-P6-01 | HR-FR-P6-01 | HAC-P6-01a/b | raw push/merge が required checks と bypass audit により制御される | GitHub rules dry-run tests + primary-source artifact |\n| HAT-P6-02 | HR-FR-P6-02 | HAC-P6-02a/b | PR review と CI auto-fix が worker≠verifier と confidence cap を守る | PR workflow tests |\n| HAT-P6-03 | HR-FR-P6-03 | HAC-P6-03a/b | fresh/brownfield setup が `.helix` / `.helix` state、consumer doctor baseline、baseline plan、import report、`skip_sub_doc` を非破壊に出す。導入先では `helix doctor --profile consumer` が dogfood design/plans 無しで通り、配布済み `.helix/teams/default-hybrid.yaml` を使った `helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json` dry-run が Codex worker / Claude reviewer 分離を検証する。`consumerReadiness.artifactReadiness` は AGENTS / VSCode task / `.helix` baseline / default-hybrid team の意味契約を検査し、artifact が欠けるか導線と worker/reviewer 分離が崩れた場合は環境 CLI が解決済みでも `fix_consumer_readiness` に戻す。projected hook / agent が呼ぶ bare `helix` の PATH 解決だけを `helix-cli` green 条件にし、`package.json.scripts.helix` / `bun run helix` は `helix-package-script` fallback 証跡に限定する。package script のみなら `cliResolution.strategy=package-script`、`bareCommandResolved=false`、`packageScriptAvailable=true`、`ok=false`、`postSetupWorkflow.nextRoute=fix_consumer_readiness` を観測し、VSCode task / CI / package-local smoke の成功を hook 自走性や setup ready に読み替えない。consumer doctor は `.helix/state/project-setup.json` の `completionClaimAllowed=false` と completion packet / consumer doctor verification command も検査し、setup ready を whole-program completion ready に読み替えない | setup/distribution tests |\n| HAT-P6-04 | HR-FR-P6-04 | HAC-P6-04a/b | tag bump が migration/rollback/idempotency plan を出し破壊的 apply を止める。rename/cutover は未承認のまま audit/cutover packet を出し、status / completion decision packet / continuation read model の summary に cutover snapshot digest、snapshot review、runbook write policy、backup/restore evidence、freeze policy、approval gate の具体 field を出す | version-up dry-run tests / identifier-rename tests |\n| HAT-P6-05 | HR-FR-P6-05 | HAC-P6-05a/b | release automation が一次出典つき ADR で選ばれ、CI auto-fix repush が confidence 0.75 と iteration cap を守る | release ADR / CI auto-fix tests |\n| HAT-P6-06 | HR-FR-P6-06 | HAC-P6-06a/b | canonical indexからgenerated indexを再現し、first/third-party provenance／license／免責／digestを保持し、手編集と未承認cutoverを拒否する | distribution package contract設計test（未実装はdesignedとして追跡） |\n| HAT-P7-01 | HR-FR-P7-01 | HAC-P7-01a/b | Claude/Codexが同じ共有memoryをbounded recallし、provider delegation evidenceとoperations transitionをrecall/continuation sourceにしない。retirement前後のcount・原本digest・provenance・schema・query/export可用性・retention metadata不変を確認する | memory surface / session-start / preserve evidence boundary and integrity tests |\n"
+        }
+      ],
+      "use": "paired old test design; failure-class comparison only, not executed"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-8CC5ABFC98C0D00183CA",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/nfr-grade.md",
+      "source_revision": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "full_sha256": "ba57990cf5343e9d4ad42ca8c2340d76c80e6e1c23085ba5e496d8014acf3fc3",
+      "bytes": 5489,
+      "physical_lines": 73,
+      "spans": [
+        {
+          "start_line": 1,
+          "end_line": 73,
+          "raw_lf_sha256": "ba57990cf5343e9d4ad42ca8c2340d76c80e6e1c23085ba5e496d8014acf3fc3",
+          "literal": "---\ntitle: \"HELIX L3 非機能グレード projection\"\nlayer: L3\nkind: add-design\nstatus: placeholder\ncreated: 2026-07-06\nupdated: 2026-07-06\nowner: TL (Codex)\nplan: PLAN-L3-07-requirements-binding-enforcement\nrelated_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md\nrelated_l1: docs/design/helix/L1-requirements/pillar-requirements.md\nrelated_l3: docs/design/helix/L3-requirements/pillar-functional-requirements.md\npair_artifact: docs/test-design/helix/L3-pillar-acceptance-test-design.md\nnext_pair_freeze: L12\n---\n\n# HELIX L3 非機能グレード projection\n\n## §0 位置づけ\n\n本書は `PLAN-L3-07` Step 3 の HELIX 版 NFR グレード表である。既存の\n`pillar-functional-requirements.md`、`pillar-requirements.md`、L6 function design に散在していた\n数値閾値を一覧化し、canonical L10〜L12検証と後続L6実装/L7 TDD closureで参照しやすくする。\n\n本書は新しい閾値を発明しない。閾値変更が必要な場合は、該当する L1/L3 正本へ back-merge し、\nその後に本 projection を更新する。\n\n## §1 グレード分類\n\n| 分類 | 対象 | 初期グレード | 判定方針 |\n|------|------|--------------|----------|\n| 実装精度 | HR-NFR-P3 系 | Grade 3 | green command、review evidence、trace、runtime evidence が揃うまで完了 claim を許可しない |\n| context 効率 | HR-NFR-P5 系 | Grade 2 | budget を超えた検証・handover・context 注入を continuation / blocker / improvement へ変換する |\n| GitHub / 配布 | HR-FR-P6 系 | Grade 3 | 通常 PR 操作と高影響 apply を分離し、branch protection / rename / release は approval 境界に置く |\n| memory / glossary | HR-FR-P7 系 | Grade 2 | 共有 memory と Glossary SSoT を per-agent silo から分離し、drift を検出する |\n| security / approval | HR-NFR-P8 系 | Grade 3 | 外部 API、secret、infra、不可逆操作は action-binding approval なしに apply しない |\n| adapter 一貫性 | HR-NFR-AC 系 | Grade 3 | Claude / Codex / hosted API の surface 差分を明示し、hook 非強制面を covered と誤認しない |\n\n## §2 数値閾値一覧\n\n| ID | 閾値 | 正本 | 測定 / 使用箇所 | 超過時の扱い |\n|----|------|------|-----------------|--------------|\n| HNFR-G-P5-01 | 直近 12 件 / 240 字 | `pillar-requirements.md` HBR-P7 | bounded recall / SessionStart memory surface | 追加読み込みではなく要約・handover・明示検索へ送る |\n| HNFR-G-P5-02 | fast <= 120s | `pillar-functional-requirements.md` HR-NFR-P5-03 / HAC-N5-03a | fast verification profile | improvement または blocker に分類し、silent retry しない |\n| HNFR-G-P5-03 | default <= 600s | `pillar-functional-requirements.md` HR-NFR-P5-03 / HAC-N5-03a | default verification profile | continuation / blocker / improvement task へ変換する |\n| HNFR-G-P5-04 | full <= 1800s | `pillar-functional-requirements.md` HR-NFR-P5-03 / HAC-N5-03b | full verification profile / 高負荷検証 | 通常 loop へ無条件に戻さず、実行理由と evidence を残す |\n| HNFR-G-P6-01 | CI auto-fix confidence >= 0.75 | `pillar-requirements.md` P3 / `pillar-functional-requirements.md` HR-FR-P6-05 | CI auto-fix repush gate | 閾値未満なら repush せず Issue / escalation に止める |\n| HNFR-G-P6-02 | iteration cap 内 | `pillar-functional-requirements.md` HR-FR-P6-05 / HAC-P6-05b | CI auto-fix / release automation | cap 超過時は再試行を止め、Issue / escalation へ送る |\n| HNFR-G-P8-01 | approval snapshot は current `sha256:` snapshotId 必須 | `pillar-functional-requirements.md` HR-NFR-P8-01 / HAT-N8-01 | version-up activation / rename cutover / action-binding approval | field 名だけの承認を pending とし、古い snapshot を流用しない |\n| HNFR-G-AC-01 | hosted API 編集前 preflight 必須 | `pillar-functional-requirements.md` HR-NFR-AC-02 | hosted API / developer tool surface | preflight 無しの編集は evidence 不足として差し戻す |\n\n## §3 受入観測への接続\n\n| 閾値 | L12 acceptance | 期待する証跡 |\n|------|----------------|--------------|\n| HNFR-G-P5-01 | HAT-P7-01 / HAT-N5-01 | memory surface の件数、文字数、source path、handover 参照 |\n| HNFR-G-P5-02..04 | HAT-N5-03 | verification profile、timeout、p95 duration budget、実測 duration、worker 数 |\n| HNFR-G-P6-01..02 | HAT-P6-02 / HAT-P6-05 | confidence、iteration count、worker / reviewer 分離、escalation route |\n| HNFR-G-P8-01 | HAT-N8-01 / HAT-P6-04 | activationSnapshot / cutoverSnapshot の `sha256:` binding、expiry、audit、rollback evidence |\n| HNFR-G-AC-01 | HAT-NAC-02 | repo hook 非強制 surface の明示、git/status preflight、target paths |\n\n## §4 変更ルール\n\n1. 閾値を変更する場合は、L1 または L3 の正本要求を先に更新する。\n2. 本書だけを更新して runtime 挙動が変わったとは扱わない。\n3. security / approval / cutover に関わる閾値は action-binding approval と snapshot binding を維持する。\n4. verification profile の timeout や p95 budget は、実測 duration と改善候補へ接続する。\n\n## §5 現在の状態\n\n- 本書は `PLAN-L3-07` Step 3 の placeholder projection であり、confirmed 正本ではない。\n- `PLAN-L3-07` terminal 化には、Step 2 後半、Step 6、review evidence、green command の追加確認が必要である。\n- 本書の追加は `completionClaimAllowed=false` の境界を変えない。\n"
+        }
+      ],
+      "use": "legacy generic NFR form; old grade values not carried"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-DB669724249A14A665F0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+      "source_revision": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "full_sha256": "2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d",
+      "bytes": 17431,
+      "physical_lines": 243,
+      "spans": [
+        {
+          "start_line": 21,
+          "end_line": 34,
+          "raw_lf_sha256": "0392a485245f3de9165f2d3fc17f222b33ef0bbdfc059b3efe466b997576e007",
+          "literal": "> **SSoT 参照**: L1 NFR-01〜17 (15 件、NFR-09/10 連動欠番) = nfr.md / IPA グレード Lv = IPA 非機能要求グレード 2018 公式 sample (社内内製ツール想定) / ISO 25010:2023 = 品質特性 catalog / KPI D-01〜D-09 = business-requirements.md §6.5。\n> **scope**: L1 NFR-01〜17 (15 件、NFR-09/10 連動欠番) の IPA グレード Lv + 受入閾値 + 測定方法 + pass 条件確定。NFR-17 = 統合セキュリティ (A-54 audit 軸1 I-01 back-propagation、§5)。さらなる NFR 体系追加は L4 carry。NFR-18 (telemetry PII redaction、Phase B 新規候補) は §7.3 carry で宣言 (旧 NFR-17 を A-54 で NFR-18 にリネーム、統合セキュリティとの ID 衝突解消)。\n> **L12 接続**: 全 NFR-* に AT-* 紐付け (孤児 NFR = 0、機械検証)。\n\n# HELIX-HARNESS — L3 NFR グレード値 (nfr-grade) — IPA Lv + 受入閾値\n\n## §1 可用性 (IPA 継続性 / 耐障害性、Lv2)\n\n| NFR-ID | 要件 | IPA Lv | 受入閾値 | 測定方法 | pass 条件 |\n|--------|------|--------|---------|---------|----------|\n| **NFR-01** | cross-platform (Windows/macOS/Linux ネイティブ) | Lv2 (業務時間内継続) | 3 OS で主要 CLI コマンド 95% 以上動作 | `helix doctor --platform-check` / CI matrix (Windows + macOS + Linux) | 3 OS で同一 commit が `helix plan lint / gate / doctor` 全件 pass |\n| **NFR-03** | AI mode 非依存 (4 mode 全動作、A-47 補完) | Lv2 | standalone / claude-only / codex-only / hybrid 全 mode で P0 FR-01〜18 動作 | `helix doctor --mode-check` / 4 mode × 統制対象 repo テスト | 4 mode で全 P0 FR が pass / mode 別差異 0 件 |\n| **NFR-06** | fail-close (guard / gate / lint) | Lv3 (§5 セキュリティ正本) | 全 fail-close 経路で例外漏れ 0 件 | agent-guard test / gate test / vitest 全件 | 全 fail-close test pass / 例外漏れ audit 0 件 |\n| **NFR-16** | onboarding 互換性 (skip_sub_doc) | Lv2 | KPI D-09 ≥ 95% (handover 引継ぎ成功率、A-43 / A-44 ledger 整合) | `.helix/handover/` 引継ぎ成功 / 失敗ログ集計 | sprint 末 D-09 ≥ 95% |\n"
+        },
+        {
+          "start_line": 58,
+          "end_line": 74,
+          "raw_lf_sha256": "74f6a44aeab7e88f1f97b615b6be52001e852f27f790cdba9f1cee4228f87268",
+          "literal": "## §2 性能・拡張性 (IPA 性能効率性 / 移植性、Lv2)\n\n| NFR-ID | 要件 | IPA Lv | 受入閾値 | 測定方法 | pass 条件 |\n|--------|------|--------|---------|---------|----------|\n| **NFR-02** | 更新性 (npm / repo template / 社内共有) | Lv2 (CLI ツール想定) | L4 ADR で配布形態確定 | L4 ADR 進捗 | L4 carry (本 PLAN は閾値 placeholder) |\n| **NFR-12** | machine×AI 二層 (静的 + AI レビュー) | Lv2 | KPI D-07 (AI 委譲時間率) ≥ 70% (目標値) | `.helix/audit/invocation_log/` 集計 | 直近 1 sprint D-07 ≥ 50% (Phase A) / ≥ 70% (Phase B、§6.2 BR-21 着手条件と整合) |\n| **NFR-15** | server-optional (Phase A local / Phase B server) | Lv2 | Phase A は local-only で全機能動作 / Phase B 拡張は L4 carry | Phase A: `helix doctor --server-disabled` / Phase B: ADR | Phase A: server なしで全 P0 FR 動作 / Phase B: L4 ADR |\n\n#### AC-NFR-02（carry placeholder: L4 持ち越し）\n- **前提**: L4 ADR 未確定 (本 PLAN range 外)\n- **操作**: L4 PLAN 起票時\n- **期待結果**: 配布形態 (npm / repo template / GitHub Packages) を ADR で確定\n\n#### AC-NFR-12-01 (正常系)\n- **前提**: 直近 sprint で AI 委譲時間 = 8 時間、人間作業時間 = 4 時間\n- **操作**: sprint 末 D-07 集計\n- **期待結果**: D-07 = 8/(8+4) × 100 = 66.7% / Phase A 閾値 ≥ 50% pass\n"
+        }
+      ],
+      "use": "old HARNESS NFR basis; old thresholds/runtime not carried"
+    }
+  ]
+}
