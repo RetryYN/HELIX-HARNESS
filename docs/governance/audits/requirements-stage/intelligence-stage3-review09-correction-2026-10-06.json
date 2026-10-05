@@ -1,0 +1,289 @@
+{
+  "record_type": "intelligence_stage3_review09_correction_supplement",
+  "date": "2026-10-06",
+  "authority_effect": "none",
+  "status": "作成側補正。独立reviewおよび委任承認は未成立。",
+  "body_parent": "42bd21eabf11fdc63e4c40ec66f34ee1c6143956",
+  "body_revision": "67ef7d435375cdb478145d1b1ee17e46f74f0361",
+  "fixed_main_revision": "14dbdb6ae562d19d7fc49b33e36c18efcd3bafc0",
+  "formal_comment": {
+    "repository": "RetryYN/HELIX-HARNESS",
+    "comment_id": 6003498249,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2607#issuecomment-6003498249",
+    "raw_utf8_sha256": "a954e07b6c2b695ff728080d472e8276811ce88e3ee209fe0ad55a91b22149af",
+    "local_capture": "/tmp/pr2607-review09-comment6003498249.json (body UTF-8 string; JSON envelope excluded from hash)",
+    "raw_utf8_bytes": 4930
+  },
+  "findings": [
+    {
+      "id": "M1",
+      "result": "本文補正済・独立review待ち",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 1213,
+      "change": "authority参照不一致の戻し先を既存authorityの対象ownerへ限定。SECURITY宛ての追加ルートを削除。",
+      "source": "固定L2-072 lines 565–567, 573。judgment meaning/scopeは対象owner、knowledge sourceはBRAIN、experiment/evaluationはLABO、common pack contractはHARNESS。"
+    },
+    {
+      "id": "m1",
+      "result": "本文補正済・独立review待ち",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 419,
+      "change": "L2 locator 143を142に訂正。旧root-review08監査の143 pinは不変のまま誤記として追補訂正。"
+    },
+    {
+      "id": "m2",
+      "result": "本文補正済・独立review待ち",
+      "paths": [
+        {
+          "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+          "lines": [
+            449,
+            450
+          ]
+        },
+        {
+          "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+          "lines": [
+            1205,
+            1206
+          ]
+        }
+      ],
+      "change": "067 evaluation packetのscope/revision欠落2CASEのtraceをAC-067-04へ修正。"
+    },
+    {
+      "id": "m3",
+      "result": "本文補正済・独立review待ち",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "lines": [
+        1208,
+        1209
+      ],
+      "change": "fixture文中の句点後余分空白を除去。1210も点検し、該当する文中空白なしのため変更なし。"
+    }
+  ],
+  "fixed_source_line_pins": [
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "revision": "14dbdb6ae562d19d7fc49b33e36c18efcd3bafc0",
+      "line": 142,
+      "raw_lf_sha256": "d7eeb8532c1fe61c3e172a5f10300245291ec5bf427d906c23c5e5f9651836cc",
+      "literal": "- 親：HELIXINTELLIGENCE-L1-016。単独成立依存：検出済み限定問題、target revision、actor/write-set/side-effect/budget/deadline/retry/impact/recovery情報。検証範囲：scope-bound repair candidateおよび結果。保証：要求/設計/verification obligationを変更せず、stale/逸脱/循環/重複/予算超過/不明副作用を成功にしない。失敗時戻し先：target/scope/副作用情報不明や境界逸脱は修復候補を停止し、該当source/SECURITY/OS ownerへ戻す。`version_target: 1.0`。実契約版・成果物版・依存版・互換範囲・交換/更新条件はHARNESS-L2-010/011共通pack contractを適用する。",
+      "full_file_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c"
+    },
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "revision": "14dbdb6ae562d19d7fc49b33e36c18efcd3bafc0",
+      "line": 143,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": "",
+      "full_file_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c"
+    },
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "revision": "14dbdb6ae562d19d7fc49b33e36c18efcd3bafc0",
+      "line": 566,
+      "raw_lf_sha256": "931d68d0d84e32e64f6c263582b87a76cb744b1a2014dd28cbfde1563fe2225f",
+      "literal": "- **入力**：対象判断のscopeとrevision、該当工程・domain・risk・failure mode、参照すべき既存authority identity/revision、既存packを更新する場合はそのidentity/version、選択したskill/rule・BRAIN知識のsource/version、適用条件、必要evidence、unknown/contradiction、評価を行う段階では評価用caseと期待oracle。情報が該当しない場合は非適用理由を記録し、推測で補わない。",
+      "full_file_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c"
+    },
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "revision": "14dbdb6ae562d19d7fc49b33e36c18efcd3bafc0",
+      "line": 573,
+      "raw_lf_sha256": "afecf0ac8ebc2c25cdaaa37b954a6e8b6bb12974483aede975923a49657fe40d",
+      "literal": "- **保証と失敗時**：適用条件外、版不一致、authority/scope不明、shadow比較不能、review独立性不明ならunknownまたは未完を保持し、強制規則へ昇格させない。shadowとreviewの両方が揃っても、既存の対象authorityがpackを強制規則として採用した事実をINTELLIGENCEが代行しない。戻し先は、judgment意味・範囲は該当する要求/対象owner、knowledge sourceはBRAIN、実験材料と効果評価はLABO、pack共通契約はHARNESSへ返す。",
+      "full_file_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "revision": "14dbdb6ae562d19d7fc49b33e36c18efcd3bafc0",
+      "line": 77,
+      "raw_lf_sha256": "cf6faea87e0faefda910b1e5dbd6227969e459d2dc12d1fccdcfd91a9506446d",
+      "literal": "| HELIXINTELLIGENCE-L2-016 | repair対象のrevision/actor/write-set/side effect/budget/deadline/retry/impact/recoveryを束縛し、意味変更/未信頼/二重実行/循環/予算逸脱/不明副作用を止める | 候補/登録から包括write権限を得る、requirements/verificationを修復する、staleを適用する | target/scope/side effect不明または逸脱時はsource/SECURITY/OS ownerへ戻し修復停止 |",
+      "full_file_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "revision": "14dbdb6ae562d19d7fc49b33e36c18efcd3bafc0",
+      "line": 199,
+      "raw_lf_sha256": "e21a75c053fb953850f81f76105080a1a27ab8ed781d94f256b3bd989e21b2fd",
+      "literal": "| `HELIXINTELLIGENCE-L2-067` L11受入補強（単体候補、primary parent `HELIXINTELLIGENCE-L1-010`, comparison context `HELIXINTELLIGENCE-L1-011`） | scope/revision有効な決定・quality oracleと、HELIXINTELLIGENCE-L2-034経由で受けた比較材料が、既存L2-010 placement proposalの根拠・適用範囲・未評価状態を保ったまま使われる。LABO035→INT034の送受契約版・互換範囲・scopeが一致し、LABO052で同一結果の受領receiptを追跡できる正常例を確認する。不一致・欠落例は未受領/未評価のままsourceへ返す。決定が未決/失効/範囲外なら提案を確定せずownerへ戻す。 | 決定値が異なるscopeに適用される／L2-034のsource/scope/revisionが失われる／LABO035とINT034の契約版・互換範囲不一致や未受領receiptを選択根拠にする／入力契約候補が新engine、assignmentまたはworker/model切替になる。 |",
+      "full_file_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33"
+    }
+  ],
+  "prior_audit_locator_correction": {
+    "path": "docs/governance/audits/requirements-stage/intelligence-stage3-root-review08-correction-2026-10-06.json",
+    "sha256": "94555543cbb4add9108f1c8e896b978d4cf5aaaa2f2a128ab6d8ef61b99234d3",
+    "immutable": true,
+    "prior_pin": {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "revision": "67ef7d435375cdb478145d1b1ee17e46f74f0361",
+      "line": 143,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": "",
+      "raw_bytes_hex": "0a",
+      "literal_representation": "\\n (empty physical line with LF)"
+    },
+    "finding": "旧JSONのL2 line 143 literalは空行。実戻し先はline 142。旧記録は変更しない。"
+  },
+  "legacy_source_mapping_read": [
+    {
+      "parent": "016",
+      "existing_crosswalk_path": "docs/governance/audits/requirements-stage/l3-l10-intelligence-stage3-main-publication-cutout-2026-10-05.json",
+      "assets": [
+        "LEGACY-ASSET-02D897E62EF2FA267267 universal-improvement-loop-requirements.md:41–201",
+        "LEGACY-ASSET-17C4BF78919578FEBB18 product-lifecycle-operations-requirements.md:129–160",
+        "LEGACY-ASSET-D881AF6AFD277B1DE934 bugbot-bounded-repair-requirements.md:1–79",
+        "LEGACY-ASSET-0B5B38F146D9538C9A36 universal-improvement-loop-acceptance.md:16–46",
+        "LEGACY-ASSET-F46AB11BD14F2C0469F4 product-lifecycle-operations-acceptance.md:1–53",
+        "LEGACY-ASSET-901CD182B52024593E41 bugbot-bounded-repair-acceptance.md:1–30"
+      ],
+      "disposition": "前回crosswalkの再導出/置換は不変。今回のL2 locator訂正は旧対応に影響しない。"
+    },
+    {
+      "parent": "067",
+      "existing_crosswalk_path": "docs/governance/audits/requirements-stage/l3-l10-intelligence-stage3-main-publication-cutout-2026-10-05.json",
+      "assets": [
+        "LEGACY-ASSET-50CA1C554747F12266D3 resident-lane-orchestration-requirements.md:663–666",
+        "LEGACY-ASSET-28FB139B26CD61CC51EE helix-bench-evaluation.md:21–148",
+        "LEGACY-ASSET-9114D4E463E95B67DD0C worker-common-contract.md:47–137",
+        "LEGACY-ASSET-437A6A68F9A9E0AE1B9E resident-lane-orchestration-acceptance.md:43",
+        "LEGACY-ASSET-A952A3A175EB82A4781B helix-bench-evaluation-acceptance.md:19–46",
+        "LEGACY-ASSET-C6ADB99F1353965C5449 worker-common-contract-acceptance.md:18–60"
+      ],
+      "disposition": "source/scope/revisionの意味対応は不変。CASE traceだけAC-04へ同期。"
+    },
+    {
+      "parent": "072",
+      "existing_crosswalk_path": "docs/governance/audits/requirements-stage/l3-l10-intelligence-stage3-main-publication-cutout-2026-10-05.json",
+      "assets": [
+        "LEGACY-ASSET-719D5EC9C06FC4AAD0FF infinity-loop-platform-requirements.md:81",
+        "LEGACY-ASSET-9114D4E463E95B67DD0C worker-common-contract.md:47–137",
+        "LEGACY-ASSET-C6ADB99F1353965C5449 worker-common-contract-acceptance.md:18–60"
+      ],
+      "disposition": "judgment-pack, shadow, independent reviewの再導出を維持。owner-routingのみ固定L2:573に同期。"
+    }
+  ],
+  "documents": [
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "body_sha256": "47ff208d647c176378da650821c91a176f5d232e3e044b63c6ce00aeaf2820a7",
+      "bytes": 14555,
+      "main_prefix_revision": "14dbdb6ae562d19d7fc49b33e36c18efcd3bafc0",
+      "main_prefix_bytes": 5680,
+      "main_prefix_sha256": "9f8049fd3e7bdfe6550f5de9a444d1f44449c1b61769bf79e85b47c2c5906e81",
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "body_sha256": "48177ad4fa3303981d59c0ed84031a8b8eaddfd47f3822d6a1618f5964e998d0",
+      "bytes": 467014,
+      "main_prefix_revision": "14dbdb6ae562d19d7fc49b33e36c18efcd3bafc0",
+      "main_prefix_bytes": 31138,
+      "main_prefix_sha256": "192e980c2b4c6c7a78d2651ae30e23c5072ee1ff4ae7366bd01be155bf88aac6",
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "body_sha256": "38434b5da4b86657435ac4f8e5c3506bcabfa7b2b0184637d3af08e03117d3bf",
+      "bytes": 29221,
+      "main_prefix_revision": "14dbdb6ae562d19d7fc49b33e36c18efcd3bafc0",
+      "main_prefix_bytes": 12464,
+      "main_prefix_sha256": "a8f2e0c4bc1d482d6cfd68cd5f9638fcf8575104aafc7bdcb5214b162190f876",
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "body_sha256": "d8815e2da610280764207379dd9ac94b50c9ac1b33ba4f2a6b170e137cf45c87",
+      "bytes": 10260,
+      "main_prefix_revision": "14dbdb6ae562d19d7fc49b33e36c18efcd3bafc0",
+      "main_prefix_bytes": 5552,
+      "main_prefix_sha256": "5839b4cd42af9d57b0e01e8da6014838097671738297e2a343bcc4739d67809d",
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "body_sha256": "13d332c30065f9f69e1191c17252573c5c24ad9a15fbca93fd8b07df0e735fef",
+      "bytes": 109756,
+      "main_prefix_revision": "14dbdb6ae562d19d7fc49b33e36c18efcd3bafc0",
+      "main_prefix_bytes": 33090,
+      "main_prefix_sha256": "cb9cc91c9f2646e2272fd18c6fd2b176285ba3b0f36409805e5a2879adad6017",
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "body_sha256": "52881cbca3596750d9ae6845e57e02c821ed628f0ec3de67ccb4fc1d3190811d",
+      "bytes": 27764,
+      "main_prefix_revision": "14dbdb6ae562d19d7fc49b33e36c18efcd3bafc0",
+      "main_prefix_bytes": 14314,
+      "main_prefix_sha256": "046a3b23b5070e339e579da2428d7773cb91da2b9ebad520971be3803e2e1a80",
+      "prefix_exact": true
+    }
+  ],
+  "current_changed_line_pins": [
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 419,
+      "raw_lf_sha256": "b4e8de52c4d67421efda5b6006877f3ae15e8d02d0a8980f23f7dc2b7bcd5302",
+      "literal": "| `CASE-INTELLIGENCE-L10-016-02r` | `FR-INTELLIGENCE-L3-016-01` | `AC-INTELLIGENCE-L3-016-02` | normal candidateからwrite-setだけを不一致/別版へ変える。 | write-set mismatchとしてcandidate該当fieldだけ未完にする。実結果/実行許可を生成しない。 | 固定L2:142/L11:77の該当source/SECURITY/OS ownerへ照合を戻さないまま確定したら不合格。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 1205,
+      "raw_lf_sha256": "4b78cf5c5e72411534f16eef4036b4c3f8c49e8b1fa2f7fbb9e468fd7b323be0",
+      "literal": "| `CASE-INTELLIGENCE-L10-R08-067-evaluation-scope-missing` | `FR-INTELLIGENCE-L3-067-01` | `AC-INTELLIGENCE-L3-067-04` | 同scopeで有効なquality/order decisionとINT034経由LABO評価packetが正常な未見対照から、評価packetのscopeだけを欠落させる。source locator・同一結果receipt・他fieldは有効。 | 当該packetのscope不足を未受領/未評価として送信元LABOへ戻す。既決decisionと既知proposal入力は保持し、評価対象範囲を推測しない。 | 他sourceやdecisionの値で評価packetを補完、未評価を成功にする、無関係部分まで一括停止したら不合格。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 1206,
+      "raw_lf_sha256": "e9b17980dd350f6c66cbfd7285f31cc6af7a42ee93295a90afd606cdb694bea6",
+      "literal": "| `CASE-INTELLIGENCE-L10-R08-067-evaluation-revision-missing` | `FR-INTELLIGENCE-L3-067-01` | `AC-INTELLIGENCE-L3-067-04` | 同scopeで有効なquality/order decisionとINT034経由LABO評価packetが正常な未見対照から、評価packetのrevisionだけを欠落させる。source locator・同一結果receipt・他fieldは有効。 | 当該packetのrevision不足を未受領/未評価として送信元LABOへ戻す。既決decisionと既知proposal入力は保持し、評価対象範囲を推測しない。 | 他sourceやdecisionの値で評価packetを補完、未評価を成功にする、無関係部分まで一括停止したら不合格。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 1208,
+      "raw_lf_sha256": "45a80f1c8ea5be48bdc1972c8d4b612fd9325afc8d91ee6bf9e9f0c95afeec2d",
+      "literal": "| `CASE-INTELLIGENCE-L10-R08-072-invented-threshold-reject` | `FR-INTELLIGENCE-L3-072-01` | `AC-INTELLIGENCE-L3-072-07` | 同じ対象scope/revision/case集合/oracleでcandidateあり・なしのshadow結果を対にし、既知FP/FN/unknown/seeded counterexampleと各結果、既存rollback先・戻し条件・当該版evidenceを正常に束縛する。結果評価時の閾値だけを根拠のない新値へ変え、差を成功扱いする入力。 | 新閾値による成功化を拒否し、元oracleと両shadow結果を保持して当該比較を未評価としてLABOへ照合を戻す。 | 閾値創作で成功/優位を確定したら不合格。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 1209,
+      "raw_lf_sha256": "9ace8f9c5faa000da2b09a4d71ab8150b4266427f541883ce697547b82c8dd63",
+      "literal": "| `CASE-INTELLIGENCE-L10-R08-072-added-case-success-reject` | `FR-INTELLIGENCE-L3-072-01` | `AC-INTELLIGENCE-L3-072-07` | 同じ対象scope/revision/case集合/oracleでcandidateあり・なしのshadow結果を対にし、既知FP/FN/unknown/seeded counterexampleと各結果、既存rollback先・戻し条件・当該版evidenceを正常に束縛する。成功判定のcase集合だけへcandidate側の成功caseを追加する入力。 | 同一case比較の不成立を検出し比較不能/未評価を保持してLABOへ戻す。元case集合と両側結果は消さない。 | case追加による差を同条件の成功として扱ったら不合格。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 1213,
+      "raw_lf_sha256": "b7b608f6692778b271bb357b2176102f9fec6cc3a3830761eecb4f847dfc1c6b",
+      "literal": "| `CASE-INTELLIGENCE-L10-R08-072-applicability-authority-mismatch` | `FR-INTELLIGENCE-L3-072-01` | `AC-INTELLIGENCE-L3-072-02` | 正常な対象packのscope/version/sourceとshadow条件を保持し、authority参照だけを当該packの適用根拠と不一致にする。 | 不一致facetを適用可能とせずunknown/未評価として該当source ownerへ返す。authority参照の不一致は既存authorityの対象ownerへ戻し、追加許可・gate強制を生成しない。 | 不一致を互換として推測する、無関係なfieldを補完、又は実判断を変えたら不合格。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 449,
+      "raw_lf_sha256": "0397be769a9b224d97f1466de9df3d428eac94f09ac96d4b34fda34a2acce10c",
+      "literal": "| `067` | `AC-INTELLIGENCE-L3-067-04` | `CASE-INTELLIGENCE-L10-R08-067-evaluation-scope-missing` |"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 450,
+      "raw_lf_sha256": "06ca4941c69375ad8dc51b3b85ba951168a8d7a5f9d4fb531e8d45e378189d91",
+      "literal": "| `067` | `AC-INTELLIGENCE-L3-067-04` | `CASE-INTELLIGENCE-L10-R08-067-evaluation-revision-missing` |"
+    }
+  ],
+  "static_checks": {
+    "git_diff_check": "pass",
+    "functional_verification_table_case_ids_before": 985,
+    "functional_verification_table_case_ids_after": 985,
+    "removed_case_ids": [],
+    "added_case_ids": [],
+    "trace_scope_case_ac": "AC-INTELLIGENCE-L3-067-04",
+    "trace_revision_case_ac": "AC-INTELLIGENCE-L3-067-04",
+    "R08_fixture_sentence_spacing": "1208/1209 corrected; 1210 inspected and has no internal sentence-space issue",
+    "six_main_prefixes_exact": true
+  },
+  "limitations": [
+    "静的本文・locator・ID照合のみ。旧runtime/test/CI/Bunは実行していない。",
+    "新revisionの独立review、Opus/Fable見解、PO事後確認、採択は未成立。"
+  ]
+}

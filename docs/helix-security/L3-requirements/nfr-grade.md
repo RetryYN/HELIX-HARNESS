@@ -84,3 +84,10 @@ Stage 2cの分母は検査結果を読む前に適用条件から固定する。
 | `SEC-NFR-026-01` / `SECURITY-AC-026-01..03` | Bot不在による決定的Guard条件抜け・Bot接続時の決定規則委譲候補0、semantic judgementのauthority化0、必要時に選択したBot inputの発行元/目的/authority限定Worker境界の不一致受入0、SECURITYのmodel/routing決定・semantic unknownのpass・1.x能力前倒し候補0。 | Guardを常にBotへ委譲する案と、1.0 deterministic ruleを保持し必要時のsemantic inputを別に扱う案を比較し、固定L2-020/026に沿う後者を候補とする。 | Bot absent/optional input/unknown semantic resultと選択時のINTELLIGENCE発行・限定Worker境界を比較する。全Bot稼働率やsemantic runtimeの1.0完成は測定母集団に含めない。 |
 
 固定L2/L11に明示されたreceipt・状態は各CASEのfixture範囲で照合する。候補0件はその範囲のoracleであり、独立製品SLO、外部作用の許可、実測成功を表さない。
+
+
+## Stage 5 — HELIXSECURITY-L2-027の技術候補
+
+SEC-NFR-027-01：対象source/provenance/classification・判定・sink結果のrequired-field照合、経路間証拠流用とdeny/hold→保存successの誤変換0件を候補oracleとする。集約green一つで確認する案と各経路を独立traceする案を比較し、固定親L2:337–339/L11:51を保つ後者を候補とする。latency、retention、最低標本数、実保存成功率を追加しない。
+
+対象CASEはSECURITY-CASE-027-001〜093、AC-027-01〜05。0件は定義された合成fixtureでの誤受理候補であり実測値ではない。missing/unknown/未選択/未観測/未実行は達成0へ丸めない。

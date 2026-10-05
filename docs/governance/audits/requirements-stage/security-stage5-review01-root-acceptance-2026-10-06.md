@@ -1,0 +1,7 @@
+# SECURITY Stage5 review01 Root検収
+
+本文 `5c57a4f9150d93eda835068d38a9f4345b73a2e6`。Worker修正を検収し、Memory接続契約の説明文を日本語へ補正。93定義・5AC、13source span・六Worker本文pin・93 raw CASE=112件一致。最新main六prefix/fullSHA・静的147fail0/stale0/residuals0を照合。
+
+旧Worker MDにはSHAの未展開式が残る。旧記録を変更せず実値を本JSONへ訂正追補した。旧formal digestはAPI bodyに余分なLFを一つ足したローカルファイルのSHAであり、正しいAPI body SHAを下に記す。正式comment6003739821 SHA `f4a706367981324a4451cf5d0f85f34d877a9bb091cd910cbdb2b9463a8b842b`。旧draft JSON SHA `4b21f43bcf9d25aef72a0f1c05052c262b915b6f0ac71507dfb34832cbb7aa6f`、旧draft MD SHA `3a56effd0ba92b448ac4ed644ad4379de554c93ab5fc099563a5fcde5fbaefaa`。
+
+Memoryの機構ownerは未特定。P1は宣言済み合成sink-owner契約、P2/P3は固定015のowner範囲だけを記し実契約IDは未特定。実接続契約の成立を生成しない。CASE未実行、独立再review・委任承認前。

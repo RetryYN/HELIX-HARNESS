@@ -1,0 +1,73 @@
+{
+  "authority_effect": "none",
+  "body_revision": "4e61305f38d16cb5caefd7e5c7168a6d483eb7c4",
+  "reviewed_head": "a43bb658fdef9bab5f082ce39d54969d1bcc1f7f",
+  "latest_base_checked": "b5e9b4b682ba762bf1cfc1e370c0cec1e3fddcfd",
+  "documents": [
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "sha256": "39fa84086d01f8dc38829c12edc37fef0bd3a9a54f354891938c501fd7f4778a",
+      "bytes": 8587
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "sha256": "b60c459ec97aa71a2a014f9debd733a2d1adb1afadda6b1acc8a030d3490e071",
+      "bytes": 251786
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "sha256": "9559a4dcff2a55d04458410cc15cdb7ef52525844a5624117d2acb0fcef3174e",
+      "bytes": 56000
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "sha256": "a7ea1ff62ba6d2e52464ba5057c9e0044e09edc6f861ac3d33275e1114612007",
+      "bytes": 7644
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "sha256": "d9bb07d7e7d0ecbc9947c6b1b9b554fe6d2b950674e2e9dae961594215c8e9d7",
+      "bytes": 287563
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "sha256": "6064e42c024db902bcbe7136bbd490265d6a3812aac75d431209b1642227a7f3",
+      "bytes": 45678
+    }
+  ],
+  "formal_comment": {
+    "id": 6005201116,
+    "body": "## review10（independent review、HEAD a43bb658fdef9bab5f082ce39d54969d1bcc1f7f、body 4e61305f38d16cb5caefd7e5c7168a6d483eb7c4）\n\nreviewer: Claude（lane `review_merge`、Fable 5.1）。差分（FV 3行・FR 1行・review09補正記録md/json）はreviewer本人（Opus側）が全行実読。Fable advisorが差分と固定L2 §001（L73）/§006/§016/§030/§058（L410/L413）を実読・SHA実計算して再見解を返した。merge-base 0757e1587、main b5e9b4b68（#2617 merge後）に対し `git merge-tree --write-tree origin/main HEAD` 衝突なし、6本文main prefix一致。\n\n### 静的検査（w2614 = exact HEAD）\n- scfctl validate 147/0、stale 0、residuals 0、govcheck ok。`git diff --check` は既存時点記録の末尾空白のみ（既記録）。\n- review09補正記録 `labo-stage2b-review09-correction-2026-10-06.json`：6本文SHA/main prefix 6/6、固定source pin 3/3（f6dad2a33 raw span・full SHA・literal）、review09 comment 6005026857 API body SHA一致、CASE 314一意（追加・削除0）。\n\n### review09所見の解消\n- **m1解消**：016-C05/C06/C07「不足・不一致を評価材料（出力）に記録する」。L2-016:185の出力名称と字義一致、L2-006出力への書き戻しと読む余地なし。\n- **m2解消**：FR 030-AC-02の再導出根拠をL2-030→001入力接続、L2-001:73（欠落時source責務への返却）、L2-058:410（選択source接続条件）、L2-058:413（version/scope/許可/receipt条件）に分解し、「該当Product Core source ownerへ戻す（接続契約の不足として）」へ。引用3箇所はいずれも原文と字義一致、SECURITY routeを除くのは対象事象に対応する既存routeの選択であり新route追加ではない。\n\n### Fable見解（advisor、再見解）\n結論行（原文のまま）：「**承認してよい**」。「新規のMajor/Minorはない」。付記（指摘ではない）：FV 030-C06/C09の戻し先文言はFR改訂文と同義の範囲で前revisionから不変。\n\n### Opus側判定\n所見なし。未確認範囲なし（review01〜10で22親・FR/AC・CASE 314・BR/BV/NG/NV・監査・固定親節境界・旧source対応を照合）。\n\n### 委任承認条件の状態（docs/governance/github-upstream-operating-model.md「L3／L10承認の委任」）\n- 条件1（Opus `no_findings`・未確認範囲0）：本commentで成立（HEAD a43bb658f、本文4e61305f3）。\n- 条件2（Fable「承認してよい」）：本commentに原文で記録。\n- 条件3（6本文bytes不変）：作成側が判断記録（`decider_role: PO（委任：Opus・Fable一致）`、対象revision 4e61305f3、6本文SHA、本comment ID/SHA、Fable見解の所在）を追加した後、reviewerが6本文SHA・本comment SHA・委任規則SHA・判断記録SHAを照合し、最新mainとの試験merge→作成側Ready化（依頼どおりRoot Ready前にReady/mergeしない）→明示mergeへ進む。POの事後確認一覧（LABO×Stage2b、22親）に「委任2者が同一model、laneで独立性担保」の注記を添える。本commentはmerge admissionを生成しない。\n",
+    "sha256": "bc7a0aed8a37461b4887c75dd874ccf6b95aa10d198ec7094c39150a343043e8"
+  },
+  "delegation_sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220",
+  "rule_sha256": "eed2b774bb78545ac53c7d55f3ae3ab4e9c4f421b4eaf3ac3bcdbcdd869dd27b",
+  "decision": {
+    "path": "docs/governance/decisions/helix-labo-stage2b-remainder-l3-l10-po-decision-2026-10-06.md",
+    "sha256": "42ad0b7ece7cd9bbb95bb2185b739af265e03a51fda16d8a6243b8e0ce992562"
+  },
+  "parents": [
+    "HELIXLABO-L2-012",
+    "HELIXLABO-L2-013",
+    "HELIXLABO-L2-014",
+    "HELIXLABO-L2-015",
+    "HELIXLABO-L2-016",
+    "HELIXLABO-L2-017",
+    "HELIXLABO-L2-018",
+    "HELIXLABO-L2-019",
+    "HELIXLABO-L2-020",
+    "HELIXLABO-L2-021",
+    "HELIXLABO-L2-022",
+    "HELIXLABO-L2-023",
+    "HELIXLABO-L2-024",
+    "HELIXLABO-L2-025",
+    "HELIXLABO-L2-026",
+    "HELIXLABO-L2-027",
+    "HELIXLABO-L2-028",
+    "HELIXLABO-L2-029",
+    "HELIXLABO-L2-030",
+    "HELIXLABO-L2-034",
+    "HELIXLABO-L2-035",
+    "HELIXLABO-L2-058"
+  ]
+}

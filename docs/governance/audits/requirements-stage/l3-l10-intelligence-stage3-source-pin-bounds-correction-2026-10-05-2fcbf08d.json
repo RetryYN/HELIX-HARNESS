@@ -1,0 +1,95 @@
+{
+  "record_kind": "INTELLIGENCE Stage 3 source-pin physical-bound補正（append-only）",
+  "date": "2026-10-05",
+  "language": "ja",
+  "authority_effect": "なし。前監査のsource span終端を物理見出し境界に合わせて精密化するだけで、本文・要求意味・承認・PO判断を変更しない。",
+  "supersedes": {
+    "path": "docs/governance/audits/requirements-stage/l3-l10-intelligence-stage3-case-split-correction-2026-10-05-491542dd.json",
+    "sha256": "933f921083d943a9f15226d0c4f243b99081701ef415bbb26249d497fd6a154c",
+    "bytes": 164977,
+    "scope": "fixed_source_pins.spansの該当行boundsのみ。前監査本文/判断はimmutableのまま。"
+  },
+  "body_revision": "491542dd5b28788dc561b9e0b743b3731662a87c",
+  "corrected_fixed_source_pins": [
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "fixed_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "full_file_bytes": 151600,
+      "full_file_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "spans": [
+        {
+          "start_line": 466,
+          "end_line": 490,
+          "label": "L2-067 complete section",
+          "raw_lf_bytes": 8387,
+          "raw_lf_sha256": "1b014aca5a6695d47f5bda2b2a0d7135265da95160b471bfccd141da9cb53378"
+        },
+        {
+          "start_line": 561,
+          "end_line": 600,
+          "label": "L2-072 adopted 004 registration section",
+          "raw_lf_bytes": 13146,
+          "raw_lf_sha256": "fc8b313e522af21ad5c78de34444a6089a09afa143f73f7e812fd18e36321ad3"
+        },
+        {
+          "start_line": 601,
+          "end_line": 608,
+          "label": "L2-073 adopted section",
+          "raw_lf_bytes": 2736,
+          "raw_lf_sha256": "6120dd0cb1ceb33315148f207f32d565aad10cafa94ef1e68a7d248b2474a1ee"
+        },
+        {
+          "start_line": 673,
+          "end_line": 687,
+          "label": "L2-072 005 registration supplement",
+          "raw_lf_bytes": 6047,
+          "raw_lf_sha256": "511c0083b8aaeab292ab348f488367b197516a9faaf92a44a27df1e80c6f21d8"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "fixed_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "full_file_bytes": 123549,
+      "full_file_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "spans": [
+        {
+          "start_line": 68,
+          "end_line": 80,
+          "label": "L11 accepted rows for 007-020",
+          "raw_lf_bytes": 3956,
+          "raw_lf_sha256": "2be940c892bb353686d2d5d877d628a963546512d50a75de93ecdb814bf0926e"
+        },
+        {
+          "start_line": 72,
+          "end_line": 72,
+          "label": "L11-011 comparison condition row",
+          "raw_lf_bytes": 284,
+          "raw_lf_sha256": "8adac0c5ba0a9d7c441831d37cc8f054788201f351fc5f1c5f74421af9e346c3"
+        },
+        {
+          "start_line": 289,
+          "end_line": 316,
+          "label": "L11-072 004 registration acceptance section",
+          "raw_lf_bytes": 7300,
+          "raw_lf_sha256": "3d0bd11f298ef4382cd670aec060c5270b3fb979d5d2bd27138fca9a60b01b19"
+        },
+        {
+          "start_line": 317,
+          "end_line": 327,
+          "label": "L11-073 accepted section",
+          "raw_lf_bytes": 2767,
+          "raw_lf_sha256": "6d0ebad21666016df33ac4aaf16c60d157c471aba37f95b7bd08d3b16d81c931"
+        },
+        {
+          "start_line": 398,
+          "end_line": 434,
+          "label": "L11-072 005 registration supplement",
+          "raw_lf_bytes": 11076,
+          "raw_lf_sha256": "9884a284fbaecc0134936e0b3772871974d5eb24d78c4ebbef22ebf2c6bbb194"
+        }
+      ]
+    }
+  ],
+  "note": "前の監査に記したL2-067 466–477、L2-072 561–598、L11-072 289–314、L11-073 317–324は一部条件を含むraw pinではあるが節全体spanではなかった。この記録は対象節の正確な物理boundを追加する。PO decision pinsとその他の全file SHAは前監査の値を維持する。"
+}
