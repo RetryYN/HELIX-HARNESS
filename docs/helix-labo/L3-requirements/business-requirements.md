@@ -46,4 +46,4 @@
 
 効果の採択、改善完了、事業KPI、assignment、permission、target変更を評価・提案から生成しない。対象L2以外のStage/機構をこの表で前倒ししない。
 
-追補CASEは対のfunctional ACを検証するCASE indexであり、独立BR・事業outcome・閾値を追加しない。親ごとの正確なCASE終端はbusiness-verification.mdのStage 5 indexを参照する。
+追補CASEの範囲は対のfunctional ACを検証するCASE indexであり、独立fixture行とalias/index行を区別し、独立BR・事業outcome・閾値を追加しない。親ごとの正確なCASE終端はbusiness-verification.mdのStage 5 indexを参照する。
