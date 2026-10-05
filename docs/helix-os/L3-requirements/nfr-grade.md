@@ -77,3 +77,25 @@
 ### 技術値差戻し
 
 候補の測定値は比較・反証可能性とscopeを付けL10に記録する。L2のmeaning、scope、owner、versionを変えなければ成立しないときだけ上流へ戻し、数値parameterごとのPO確認や新gateを作らない。
+
+## Stage 3：非機能要件候補と技術値案
+
+以下は通常のL3候補であり、値ごとのPO承認gateではない。sourceが数値を指定しない点は旧値の無根拠流用を許さないが、比較可能な技術候補を起草することは妨げない。採用候補は設計・L10 fixtureで測定し、固定L2の意味・owner・版を変えない。
+
+| NFR ID / 親 / FR trace | 候補値・根拠 | 比較案と限界 | L10計測 |
+|---|---|---|---|
+| NFR-OS-L3-032-01 / 032 / AC-01..06 | identity/fingerprint/baseline/scope/oracleを照合し、versionは完全一致または既存登録済みの明示compatibility条件で判定する。 | undeclared partial matchは除外するが、親が認める明示compatibilityの有効経路は保持する。 | exact-version正常、登録済compatibility別version正常、未宣言compatibility/各必須field欠落・不一致の独立fixtureを照合。 |
+| NFR-OS-L3-033-01 / 033 / AC-01..06 | 最小candidateは同一snapshotのrun+rerun 2回、選択集合全件digest/fingerprint一致。determinismを比較する最低対。 | 3回runはflakiness検出力を上げるが計算費用増。L10は2回の受入対に加え3回stressを測定候補とする。 | 2-run一致率=100%のselected capability coverage、差異隠蔽0。 |
+| NFR-OS-L3-034-01 / 034 / AC-01..05 | disposition別必須証拠充足100%、必須証拠欠落時のterminalization 0。 | 全dispositionへ一律PO receiptを要求する案はL11のauthority差を広げるため不採択。 | 全L11定義disposition枝ごとにrequired evidence field mutation、誤terminal 0。 |
+| NFR-OS-L3-035-01 / 035 / AC-01..05 | 同一event identity/revisionのjob registration cardinality=1。3 delivery再送はtest fixture候補。 | 1回だけでは冪等性を測れず、10回は初期要件の根拠なし。3回は初回+重複二回の判別 fixtureに限定。 | 各event 3 delivery後もregistered job 1、job executionは測らない。 |
+| NFR-OS-L3-036-01 / 036 / AC-01..04 | 全Retrofit upgradeごとにplan確定前preflightとapply直前再照合のcoverage 100%。 | plan前だけではapply前driftを見逃す。通常operationへ拡張しない。 | 複数upgrade ticket fixtureで各upgrade両境界のcurrent source/authority照合、欠落0。 |
+| NFR-OS-L3-037-01 / 037 / AC-01..05 | 週次報告・観測の結果、source/revisionの可追跡性、未観測と差分なしの区別を測る。頻度の出所は旧BR §3.3/FR-L1-11。 | 週次頻度は既存親で保持。連続二観測はL10 fixture設計の一候補で、閾値や新しい成立条件にしない。 | Reverse/Backflowとsource-classified debtの二経路を別々に通し、fixture上の複数週・週境界・欠測・staleを比較。欠測をno-drift扱いしない。 |
+| NFR-OS-L3-038-01 / 038 / AC-01..04 | source proposal IDあたりappend 1、snapshot digestの整合100%、非原子的finding時row増分0、非決定抽出時current update 0/snapshot不変、失敗時完了claim 0。 | retry回数の固定値は親にないため設定しない。 | same ID重送/途中失敗、041-003のatomicity findingとsame-input nondeterminism、candidate row増分・current ledger・snapshot/receiptを再照合。 |
+| NFR-OS-L3-040-01 / 040 / AC-01..06 | 入力された適用中policy上限の判定と、lineage/counter/budgetの保持、上限到達またはledger unknown時の正しいtyped returnを測る。 | retry数値の新設・比較・優先値の提案は本親の範囲外。 | 上限がunknownなら既存policy decision ownerへ、ledgerがmissing/unreadableならHELIXOS-L2-019の記録ownerへ戻す条件を分け、上限到達/未到達、Worker交代、実験budget分離を個別に観測。 |
+| NFR-OS-L3-041-01 / 041 / AC-01..04 | resumeごとにcanonical source/authority再取得100%、stale source継続0。 | cacheを信頼する案はsource driftを見落とす。 | resumed pathでsource digest/revision再照合、欠落時fail-safe。 |
+| NFR-OS-L3-042-01 / 042 / AC-01..06 | strict schema/digestと、既存契約に実在する緩和条件・対象・期限・再検証receiptの適用一致を測る。 | expiry比較は既存契約が与える場合に限る。新しい期限値や期限契約を作らない。 | strict failure、既存期限の境界前後、適用外scope、期限/receipt欠落を独立に照合。 |
+| NFR-OS-L3-043-01 / 043 / AC-01..06 | request/call/result因果trace completeness 100%、既存契約上request必須のoperationでrequestなしcallのauthorized count=0。request不要operationの許可済み実行は数値対象外とし、新requestを導入しない。 | event統合表示は件数を減らすが段階差を失うため採用しない。 | event ordering/correlation field欠落・逆転を注入し成功trace誤判定0。 |
+| NFR-OS-L3-044-01 / 044 / AC-01..03 | prose-only handoverによるresolution=0、unknown/stale/conflict時の該当finding保留率を観測する。 | 新しいreceipt schema/十分条件とsource HEAD mismatch判定は対象外。 | prose-onlyと固定source契約上の既存evidence有無を比較し、保留状態・理由の保持を確認。 |
+| NFR-OS-L3-049-01 / 049 / AC-01..05 | observation bucket 15min candidate、configured max/WIP/state countsは別軸。15minは短期状態遷移の視認候補で固定worker数でない。 | 1minはnoise/high overhead、60minは短い競合を隠す。15/60分fixtureで状態誤分類と観測負荷を比較。 | 同じtask traceを各windowでreplayしstate conservation、後段capacity確保なしのdispatch 0。 |
+| NFR-OS-L3-050-01 / 050 / AC-01..05 | 適用中の既存設定閾値・capacity・縮退条件に対する判定、原因別backpressure、lease保全を測る。 | 閾値・bucket時間・増枠数値はこの親で新設しない。1/2 bucketや15/60minは採択候補にもせず、比較はfixtureに与えた設定値だけで行う。 | 設定上のspike/持続状態、downstream blocker、縮退、stale returnを別々に与え、誤増枠・backpressure漏れを確認。 |
+| NFR-OS-L3-051-01 / 051 / AC-01..09 | task class/scope/revisionに対する既存適性evidenceの適用条件・版照合と、task単位選択を測る。expiry fieldはsourceが持つ場合のみ照合し、expiryなしをunknownとしない。 | evidence freshness期限/thresholdの新設は対象外。期限が既存sourceにある場合のみ、その入力値を用いる。 | 既存期限のある/ないsourceを分け、scope変更・stale・同名別providerを独立fixtureで照合する。 |
