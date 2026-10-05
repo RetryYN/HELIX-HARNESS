@@ -1,0 +1,45 @@
+{
+  "record_kind": "l3-l10-brain-case-count-correction",
+  "authority_effect": "none",
+  "corrects_audit": "docs/governance/audits/requirements-stage/l3-l10-brain-stage2b-next-five-static-validation-2026-10-05-2dfac6cf.json",
+  "corrected_body_revision": "2dfac6cfb2aadd3d029ebc7d013dc01cdd4b27df",
+  "correction_reason": "The immutable audit's functional_CASE total and its creator_acceptance count statement were based on an incomplete count that omitted Stage 1 case identifiers and conflated selected-slice versus aggregate counts.",
+  "corrected_counts": {
+    "current_slice_stage2b_selected_parents_009_010_011_012_029": 91,
+    "stage2b_aggregate_first_six_plus_next_five": 179,
+    "stage1_007_008_028": 22,
+    "all_functional_cases_in_paired_verification": 201
+  },
+  "breakdown_by_parent": {
+    "HELIXBRAIN-L2-001": 18,
+    "HELIXBRAIN-L2-002": 12,
+    "HELIXBRAIN-L2-003": 18,
+    "HELIXBRAIN-L2-004": 10,
+    "HELIXBRAIN-L2-005": 11,
+    "HELIXBRAIN-L2-006": 19,
+    "HELIXBRAIN-L2-007": 9,
+    "HELIXBRAIN-L2-008": 6,
+    "HELIXBRAIN-L2-028": 7,
+    "HELIXBRAIN-L2-009": 11,
+    "HELIXBRAIN-L2-010": 9,
+    "HELIXBRAIN-L2-011": 9,
+    "HELIXBRAIN-L2-012": 10,
+    "HELIXBRAIN-L2-029": 52
+  },
+  "count_method": "Count unique exact L10-BRAIN-NNN-CNN identifiers in docs/helix-brain/L10-verification/functional-verification.md. The 22 Stage 1 identifiers are in bullet-style cases and were omitted by table-only row counting. Stage 2b first six parents contribute 88; this next-five slice contributes 91.",
+  "unchanged_evidence": {
+    "body_revision": "2dfac6cfb2aadd3d029ebc7d013dc01cdd4b27df",
+    "six_canonical_sha_and_prefix_pins": "Retained from corrected-body static-validation record; no canonical bytes are changed by this supplement.",
+    "source_pin_records": 18,
+    "bounded_raw_lf_spans": 37,
+    "current_line_pins": 240
+  },
+  "status_and_limits": {
+    "candidate_status": "candidate draft; unapproved; unexecuted",
+    "l3_po_approval": false,
+    "independent_review": false,
+    "root_final_acceptance": false,
+    "l10_execution_or_performance_measurement": false,
+    "push_pr_mailbox": "not performed"
+  }
+}
