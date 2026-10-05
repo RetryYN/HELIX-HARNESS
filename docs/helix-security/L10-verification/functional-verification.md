@@ -248,3 +248,54 @@ L2-002の命令様入力からsecurity policy変更へ直結させない条件�
 6. L2-014はmemory/training/BRAIN target別のSECURITY判定のみを返し、handoff、LABO評価、BRAIN登録、実保存をこのsliceで成功扱いしない。
 
 総合判定候補はこのStage 1の19 FR/AC/CASEおよび適用するNFRだけを、同一対象revisionで照合する。設計は未実行であり、case greenやreceiptからL3承認、authority、実装・実行許可を生成しない。
+
+## Stage 2c（HELIXSECURITY-L2-031）— 対L3 functional verification
+
+以下のケースは固定L2-031/L11-031の文書上の受入oracleであり、実行結果ではない。試験データは合成payload、合成credential marker、isolated sandbox/copyだけを用いる。実secret、実credential、canonical HELIX state/repositoryへのアクセスをfixtureに使わない。Stage 1や別候補の草稿はauthority/prerequisiteではない。
+
+### SECURITY-CASE-031-01 — runtime identityと依存閉包（`SECURITY-AC-031-01`）
+
+- **通常**：追加runtimeを明示選択した同一revision fixtureでruntime/config、SECURITY-005/007/008/029、OS-018、INFRASTRUCTURE-010の適用条件を照合し、allow/deny/constrainと根拠を返す。006/009/022/023/HARNESS/OS後段条件は該当操作を選んだfixtureだけに含める。
+- **個別negative**：各常時依存のrevision mismatch、missing、unknownを一つずつ変異し、その追加runtime operationだけ開始拒否・owner別戻し。006は外部送信条件なしでrequiredにしない。停止・逸脱なしの009、proposal生成段階だけの022/023・HARNESS検証・OS promotionを要求しない。
+- **未見正常**：新しいruntime configで、同じ固定依存のrevision/条件が全て照合できる合成fixtureを与え、当該operationだけ再評価する。未選択runtimeや主Workerへ結果を流用しない。
+- **owner oracle**：policy/authority不足はSECURITY、assignment不足はOS、実行資源制約不足はINFRASTRUCTURE/Workerへ返す。別の有効operationは継続する。
+
+### SECURITY-CASE-031-02 — 実行前入力と後結果の分離（`SECURITY-AC-031-02`）
+
+- **通常**：開始前に正しいruntime/config、SECURITY許可条件、OS ticket/assignment/task revision、選択owner/system提供のmanifest/digest/classification、Worker/INFRASTRUCTURE制約を与える。result/diff/receiptがまだ無くても、前提が満たされれば開始可否を判断し、要求しない。
+- **個別negative**：runtime identity、authority tuple、assignment revision、payload manifest/digest、scopeをそれぞれ単独に欠落・不一致・staleへ変え、開始を拒否する。開始前に未生成のresult/diff/完了receiptを要求する変異も不合格。
+- **未見正常**：未見の選択payload path/revisionでもowner/systemが明示した最小manifestと許可scopeが一致すれば開始入力として扱い、未選択sourceを補完しない。
+- **owner oracle**：manifest不足はsource/payload owner、assignmentはOS、authority/policyはSECURITYへ返す。
+
+### SECURITY-CASE-031-03 — proposal-only（`SECURITY-AC-031-03`）
+
+- **通常**：isolated copy内の合成編集proposalを返し、受領直後はuntrusted/unverifiedとする。HARNESS選択oracleへ戻し、提案自体でcanonical stateが変わらない。
+- **個別negative**：proposal出力だけで要求、priority、authority、ticket、assignment、acceptance、canonical artifact/evidence、mergeまたはpromotionの各対象を個別に変えようとする。全て拒否し、該当結果を隔離する。
+- **未見正常**：新しい合成提案も同じ未検証境界で受け取り、既存routeに戻す。通常のcopy編集を禁止しない。
+- **owner oracle**：proposal verificationはHARNESS、assignment/progressionはOS、要求意味/authorityは既存の各owner。runtime自己申告を判断根拠にしない。
+
+### SECURITY-CASE-031-04 — copy/canonical・credential・classification境界（`SECURITY-AC-031-04`）
+
+- **通常**：owner/systemが選択した最小payloadを別のassignment-bound isolated copyへ置き、許可範囲の読み取り/編集をproposalとして回収する。公開可能コードについてopt-out未完了とunknownを別々の合成正常fixtureにし、既存送信先/目的/authority/期限/隔離条件が合致する場合は限定委譲を許す。いずれもruntime採用完了は生成しない。加えて、SEC-029が許す非public classはcompleted opt-outと既存scope/authorityが合致した場合だけ個別正常fixtureにする。raw secret値は一切使わない。値を露出しない非公開capabilityの合成fixtureではoperation/target/revision/scope/expiryが全て一致する場合を正常とし、各項目の欠落・不一致・expiryを独立に拒否する。
+- **個別negative**：canonical repository readとwrite、要求/authority/ticket/assignment/workflow/evidence/receipt state readとwriteを直接個別に試み拒否する。copy内read/editは維持する。credential store/provider参照とraw credential/secret値の取得、context/env/payload/artifact/receipt露出を個別拒否し、marker値は証拠へ書かない。opt-out未完とunknownをそれぞれ公開可能コード以外への委譲拒否、opt-out状態ごとにHELIX-confidential/restricted/secretとsecret/PII相当をそれぞれ独立に拒否、unknown classificationをpublicへ昇格する変異を拒否する。
+- **未見正常**：別の未見synthetic payload classでもSEC-029の既存判定と選択scopeだけを再評価し、completed opt-outのみをconfidential許可としない。追加runtime全体をpublic-onlyへ狭めない。
+- **owner oracle**：分類/credential/permissionはSECURITY、copy作成とassignmentはOS/Worker、物理境界はWorker/INFRASTRUCTURE。適用観測不能なら該当runをholdし、無関係作業は続行する。
+
+### SECURITY-CASE-031-05 — 条件付き操作と実行後確認（`SECURITY-AC-031-05`）
+
+- **通常**：外部接続/送信を選んだ場合はSECURITY-006の宛先/data/目的/expiry、stop/deviation時は009、verification/adoptionへ進む場合は022/023とHARNESS選択oracle/OS条件をその条件内で照合する。proposal生成前入力には含めない。run後はWorker/INFRASTRUCTURE適用観測、OS result/diff receipt、HARNESS verificationを別状態として記録する。
+- **個別negative**：送信fixtureで006の各必要項目を独立に欠落、stop/deviation fixtureで009の伝播観測を欠落、verification fixtureで各必要後段contract/receiptを欠落させる。該当段階だけholdし、前段のproposal生成可否と混同しない。receipt単独でverification/adoptionを成功扱いしない。
+- **未見正常**：新しい条件付き送信先または別の未見proposalを選択した場合も、該当条件だけ同revisionで再確認し、未選択条件を義務化しない。
+- **owner oracle**：送信policyはSECURITY/CONNECT、停止・assignmentはOS、実適用観測はWorker/INFRASTRUCTURE、proposal oracleはHARNESS。SECURITYはresult receiptを生成しない。
+
+### SECURITY-CASE-031-06 — owner別戻し、隔離、無関係scope（`SECURITY-AC-031-06`）
+
+- **通常**：有効な追加runtime assignmentと独立した無関係operationを同時にfixtureし、対象runに不足があれば対象だけhold/隔離、無関係operationは有効な既存条件で継続する。
+- **個別negative**：開始前authority/runtime/scope/payload/isolation/credential/classification/該当egress条件、開始後の適用観測/diff/result receiptを個別に欠落・unknown・staleへ変異する。開始前は対象runを開始せず、開始後は結果をaccepted/verified/promotedにせず隔離/holdする。各不足をSECURITY、OS、Worker、INFRASTRUCTURE、HARNESSの該当ownerへ返し、誤ったownerに代行させない。
+- **変更・逸脱の個別negative**：runtime identity/version/config、scope、payload identity/revision/digest、credential/data classification、authorityを一つずつ変更し、旧判定の流用を拒否して当該条件を再照合する。scope外read、scope外write、許可path外diff、deny対象egress、適用観測unknown、host fallbackをそれぞれ独立に与え、対象run停止・結果隔離・該当owner返却・OSの未完義務記録を観測する。
+- **未見正常**：無関係scopeの異なる実行条件で、031に該当しない通常operationが既存authorityに従って進める。追加runtime failureから主Worker全体停止を生成しない。
+- **owner oracle**：OS assignmentに対象revisionと未完義務を記録し、SECURITY policy不足はSECURITY、物理制約はWorker/INFRASTRUCTURE、検証はHARNESSへ戻す。requirements/approval/mergeの判断を生成しない。
+
+### 旧oracleとの限定対応
+
+HIL-BR-32、HR-FR-HIL-23/HAC-HIL-23a/b/c、HAT-HIL-23、P2-05/HAT、WCCの対応項目はSECURITY-FR-031-01〜06に割り当て、ACごとの通常・negative・未見正常・owner oracleは上記CASEで確認する。旧quota閾値、HAC-HIL-23cの閾値oracle、環境浄化全般、permanent bypass、runtime固有audit、Python semanticsの完了を推定しない。旧test-designの実行結果も含まない。
