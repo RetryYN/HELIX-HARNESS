@@ -1,0 +1,355 @@
+{
+  "record_type": "immutable creator repair audit for #2583 OS Stage2b parent 014 review02 m9; not independent review, PO approval, or release admission",
+  "date": "2026-10-05",
+  "mechanism": "HELIX-OS",
+  "parent": "HELIXOS-L2-014",
+  "stage": "Stage 2b",
+  "version_target": "1.0",
+  "review_comment": {
+    "pull_request": 2583,
+    "comment_id": 5986405259,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2583#issuecomment-5986405259",
+    "body_utf8_bytes": 3594,
+    "body_sha256": "b3784765f02243d96796b0daf3d94f7efb62749f8cb67da426100abf59cd79aa",
+    "finding_counts": {
+      "blocker": 0,
+      "major": 0,
+      "minor": 1
+    },
+    "exact_base": "f54ea028ddd37fd9aea2924e500dafe9dbd72a62",
+    "content_head": "3f0778cfab0f84be0addf00b811ee6ac11a29117",
+    "previous_findings_status": "review01 prior 8 findings reported resolved by reviewer"
+  },
+  "candidate_status": {
+    "po_l3_approval": "not present",
+    "independent_review": "review02 m9 repaired; exact re-review pending",
+    "root_final_acceptance": "pending",
+    "implementation_or_release_permission": "not created",
+    "authority_effect": "none"
+  },
+  "previous_review02_head": "3f0778cfab0f84be0addf00b811ee6ac11a29117",
+  "body_commit": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+  "scope_changed": false,
+  "version_target_changed": false,
+  "owner_changed": false,
+  "fixed_authority": {
+    "l2_l11_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "po_decision_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7"
+  },
+  "finding_disposition": {
+    "id": "m9",
+    "disposition": "修正",
+    "finding": "適用条件がある依存について、該当operationがscope内にあるのに未適用と誤申告してclosureを通す逆向きfixtureがなかった。",
+    "change": "CASE-OS-014-02へ独立negative 7件を追加。INFRA-017 backup、INFRA-018 restore、INFRA-019 rollback、SECURITY-005 credential-use、SECURITY-006 network send、SECURITY-008 required operation authority、SECURITY-016 selected classification record inputについて、operation存在を固定し対象依存のnot-applicable申告だけを変異。全てunknown/unfinished保持、closure/releaseを保留し既存ownerへ返す。scope/owner/authority/条件を拡張していない。",
+    "fixed_source": "L2-014 lines 619-635, especially safety dependencies and no release when required safety condition missing; L11-014 line 317; SECURITY-005/006/008 lines 110-127; SECURITY-016 lines 220-228; INFRASTRUCTURE-017/018/019/020/022 lines 74-80."
+  },
+  "counts": {
+    "fixed_parent_clauses": 11,
+    "functional_fr": 1,
+    "functional_ac": 11,
+    "functional_top_level_case_families": 11,
+    "added_independent_inverse_applicability_fixtures": 7,
+    "nfr_candidates": 2,
+    "nfr_cases": 2,
+    "business_br": 0,
+    "business_cases": 0
+  },
+  "canonical_bodies": [
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+      "sha256": "cb82838b9e18ac8df5e02b48b65f1c318b90c08aec3cecd67a5d97193e827ab5",
+      "bytes": 12600,
+      "physical_lines": 51
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+      "sha256": "235787ab8c96e15ac91eec955ed5650a49a0993636e8523d006dc587f6d9a863",
+      "bytes": 855,
+      "physical_lines": 7
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+      "sha256": "0c87bdde3491124ed8e6e8888115802f91ca1897e0760b44273d395967180326",
+      "bytes": 2732,
+      "physical_lines": 15
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+      "sha256": "6dcafdd7f88ad6acde046702d4c0b681c9d94973f2967f24625bf5264cb24476",
+      "bytes": 19873,
+      "physical_lines": 77
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+      "sha256": "ffed2d5b4b688dd22aa8d3aae0b3b9faadd01a6074af530c8630da602f513629",
+      "bytes": 891,
+      "physical_lines": 11
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+      "sha256": "2c0060eaa9efc027d34011f1948d18cdec66665e17b8a5b2e9b9b29d9fb29748",
+      "bytes": 2608,
+      "physical_lines": 13
+    }
+  ],
+  "fixed_source_pins": [
+    {
+      "label": "fixed L2-014 clause and all normative conditions",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "physical_lines": {
+        "start": 619,
+        "end_inclusive": 635
+      },
+      "whole_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "raw_lf_span_sha256": "99e6dc6db0f8691d571b439ea142242dfdbd24da82668d55c82498ec4ca8e09d",
+      "raw_span_bytes": 4948,
+      "line_terminators_included": true
+    },
+    {
+      "label": "fixed L11-014 acceptance and refutation row",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "physical_lines": {
+        "start": 317,
+        "end_inclusive": 317
+      },
+      "whole_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "raw_lf_span_sha256": "4151a53da492df9e4809195f08cc6fe2794faa4774dac122bc061437bd156769",
+      "raw_span_bytes": 1969,
+      "line_terminators_included": true
+    },
+    {
+      "label": "fixed SECURITY-005/006/008 applicability and returns",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "physical_lines": {
+        "start": 110,
+        "end_inclusive": 127
+      },
+      "whole_file_sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+      "raw_lf_span_sha256": "e5b7a1249f476022993a6c668f9f7cfc454e3b94523f7a4976b0839a45dfaf3c",
+      "raw_span_bytes": 2482,
+      "line_terminators_included": true
+    },
+    {
+      "label": "fixed SECURITY-016 classification record contract",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "physical_lines": {
+        "start": 220,
+        "end_inclusive": 228
+      },
+      "whole_file_sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+      "raw_lf_span_sha256": "4b57ed4eccad237ce1a952559682456afa7ec1b4578865c3eac452e8b7bc7392",
+      "raw_span_bytes": 1173,
+      "line_terminators_included": true
+    },
+    {
+      "label": "fixed INFRASTRUCTURE-017/018/019/020/022 meanings",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-infrastructure/L1-planning/infrastructure-intent.md",
+      "physical_lines": {
+        "start": 74,
+        "end_inclusive": 80
+      },
+      "whole_file_sha256": "1673cf1333c762b817e1031cb610de90b6e967f7c2d851ab2a4b71e4959ebc37",
+      "raw_lf_span_sha256": "5191fa1eb663286361bb9c2528164ea60f09f3d65663d8315891c44edf9770e9",
+      "raw_span_bytes": 2405,
+      "line_terminators_included": true
+    }
+  ],
+  "current_touched_line_pins": [
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+      "physical_line": 27,
+      "literal": "人が実施した作業も同じ行の必要field・source/revision・scope・authority・evidenceが揃うときだけclosureに含める。人分担を理由に安全dependencyをoptional化しない。failure fixtureは各field×statusごとに独立IDを割り当て、summaryで一括greenにしない。以下のnegativeも互いに独立する: (1) 必要な安全依存は揃うが未選択の無関係機構が未完成であることだけを理由にstageを保留する、(2) HARNESS-L2-010/011の選択pack契約を通さず別系統の簡易実装でstageを組む、(3) 安全依存の欠落を無関係機構の未完成へ読み替えて不合格理由を隠す。期待: (1)は無関係機構の完成をstage条件にせず、対象scope内の証拠で判定する。(2)は別系統実装を不適格としてHARNESSへ返す。(3)は必要安全依存をunknown/unfinishedのまま該当ownerへ返す。",
+      "raw_lf_sha256": "7d6027b6da762cd05605d4005cb8219aedd8a4491e3c9e42a454c5b47b4b1587"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+      "physical_line": 28,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+      "physical_line": 29,
+      "literal": "**適用条件の逆向きnegative（各fixtureは独立）**: 各caseではbaselineの他dependency・field・statusを正常に保ち、対象operationがscopeに存在する事実は固定したまま、その依存だけ `not applicable` と申告する一つの変異を加える。各期待は申告を根拠にclosure/releaseを通さず、unknown/unfinishedを保って既存ownerへ返す。",
+      "raw_lf_sha256": "5bf41459afeba3db6c84ab99f2e3c6b287f7519bd0ee5e18aee9e7f807ed22bf"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+      "physical_line": 30,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+      "physical_line": 31,
+      "literal": "| fixture | 固定する適用条件と唯一の変異 | 期待oracle・戻し先 |",
+      "raw_lf_sha256": "2563139a57636f50946749274e5c620f67e1616bdeb1b3f86560e296d4985bb1"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+      "physical_line": 32,
+      "literal": "|---|---|---|",
+      "raw_lf_sha256": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+      "physical_line": 33,
+      "literal": "| `CASE-OS-014-02-I017-APPLICABILITY-OMITTED` | stage scopeにbackup operationがあるが、INFRASTRUCTURE-L1-017を未適用と申告する | backupの対象・元revision・時刻・完全さ・場所・完全性・期限の確認を保留し、stage closureをunknown/unfinishedにする。INFRASTRUCTUREへ返す。 |",
+      "raw_lf_sha256": "6d3600dc9ebc571e2cd08bf33b2a555b663f118d639ed773d922653596c3cd57"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+      "physical_line": 34,
+      "literal": "| `CASE-OS-014-02-I018-APPLICABILITY-OMITTED` | stage scopeにrestore operationがあるが、INFRASTRUCTURE-L1-018を未適用と申告する | restore実行・完全性・依存再接続・起動・検証の確認を保留し、stage closureをunknown/unfinishedにする。INFRASTRUCTUREへ返す。 |",
+      "raw_lf_sha256": "f8536b0a244e564508ad8c57e776d60bc6fa5f454e4da88ca1f19cd0ca581216"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+      "physical_line": 35,
+      "literal": "| `CASE-OS-014-02-I019-APPLICABILITY-OMITTED` | stage scopeにrollback operationがあるが、INFRASTRUCTURE-L1-019を未適用と申告する | 適格なrollback target、version/config/artifact/dependency/data互換性/procedureを確認できるまでclosureを保留する。INFRASTRUCTUREへ返す。 |",
+      "raw_lf_sha256": "842be24f0690fe17041cd15b7161e14dc28478601c7b8fdbb4a37c54b0c4dc1e"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+      "physical_line": 36,
+      "literal": "| `CASE-OS-014-02-S005-APPLICABILITY-OMITTED` | scope内の選択operationがcredential-useを含むが、SECURITY-L2-005を未適用と申告する | credential-useを許可済みとせず停止し、stage closureをunknown/unfinishedにする。SECURITYへ返す。raw secretをfixtureへ含めない。 |",
+      "raw_lf_sha256": "9cf84819608978202a498e475a1184b2a885613b63f230d5e1df117bd3a22052"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+      "physical_line": 37,
+      "literal": "| `CASE-OS-014-02-S006-APPLICABILITY-OMITTED` | scope内に明示されたnetwork send operationがあるが、SECURITY-L2-006を未適用と申告する | 送信をdeny/holdし、宛先・data classification・目的・authority等の該当条件を確認するまでclosureを保留する。SECURITYへ返す。 |",
+      "raw_lf_sha256": "eda04491e45b7f4c369b0f76a39890cd93eb041df8606ea4693f81cf16a7e297"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+      "physical_line": 38,
+      "literal": "| `CASE-OS-014-02-S008-APPLICABILITY-OMITTED` | scope内operationがauthorityを必要とするが、SECURITY-L2-008を未適用と申告する | 必要authorityを推測せずoperationをholdし、closureをunknown/unfinishedにする。SECURITYへ返す。 |",
+      "raw_lf_sha256": "7bbbbf22690e35ee450afe05b08077b539e741b430933f7ab9848b4fde3e613a"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+      "physical_line": 39,
+      "literal": "| `CASE-OS-014-02-S016-APPLICABILITY-OMITTED` | 明示されたnetwork sendが選択したSECURITY-L2-006 data-classification inputとして分類recordを使うが、SECURITY-L2-016を未適用と申告する | 選択recordのasset identity/classification value/record owner/source/revisionを確認するまでclosureを保留する。SECURITYへ返す。asset-specific sink enforcementは追加しない。 |",
+      "raw_lf_sha256": "0a73b909d6178cb0c044cbd5dfc0520908a32b179d9a7223ada86c802c5fbf98"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+      "physical_line": 40,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+      "physical_line": 41,
+      "literal": "未見正常: 別の選択pack/source構成で同じclosure規則を適用し、未選択sourceを未観測に保つ。",
+      "raw_lf_sha256": "85e1161686a351c7d5a2f698b595073f863e2cd8c5839b1cce954a1908f0dce6"
+    }
+  ],
+  "prior_immutable_audit_files": [
+    {
+      "path": "docs/governance/audits/requirement-registration/os-stage2b-014-repair-2026-10-05.json",
+      "revision": "3f0778cfab0f84be0addf00b811ee6ac11a29117",
+      "sha256": "cc64d99e350b7282ceec7fde9e7ac7d592739d7e3737e29ba2605e7cdb745b70",
+      "byte_identical_to_pre_repair_head": true
+    },
+    {
+      "path": "docs/governance/audits/requirement-registration/os-stage2b-014-repair-2026-10-05.md",
+      "revision": "3f0778cfab0f84be0addf00b811ee6ac11a29117",
+      "sha256": "38e5463aa2fb80adec0e5cef3e54de6f33af605186d1526aa180a9e19ec9294f",
+      "byte_identical_to_pre_repair_head": true
+    },
+    {
+      "path": "docs/governance/audits/requirement-registration/os-stage2b-014-repair02-2026-10-05.json",
+      "revision": "3f0778cfab0f84be0addf00b811ee6ac11a29117",
+      "sha256": "758872de2204091acd7802ffb7c730cf67dac53cf40dc8d4ea2ca1e9c2d10615",
+      "byte_identical_to_pre_repair_head": true
+    },
+    {
+      "path": "docs/governance/audits/requirement-registration/os-stage2b-014-repair02-2026-10-05.md",
+      "revision": "3f0778cfab0f84be0addf00b811ee6ac11a29117",
+      "sha256": "93c784bd23e93c1dc0019228787da6dcd883789279c1c512bf4e369c3bff5f66",
+      "byte_identical_to_pre_repair_head": true
+    },
+    {
+      "path": "docs/governance/audits/requirement-registration/os-stage2b-014-source-and-pair-receipt-2026-10-05.json",
+      "revision": "3f0778cfab0f84be0addf00b811ee6ac11a29117",
+      "sha256": "8c7a4d1650652ce8f5c69710bf301834927bb88dc4276d369ea2693b81ddb96b",
+      "byte_identical_to_pre_repair_head": true
+    },
+    {
+      "path": "docs/governance/audits/requirement-registration/os-stage2b-014-source-and-pair-receipt-2026-10-05.md",
+      "revision": "3f0778cfab0f84be0addf00b811ee6ac11a29117",
+      "sha256": "eb3a721add10a0f43c8fe04a3566935143c76738d628cd2a856cc75eb5962ce2",
+      "byte_identical_to_pre_repair_head": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-os-stage2b-publication-2026-10-05.json",
+      "revision": "3f0778cfab0f84be0addf00b811ee6ac11a29117",
+      "sha256": "ce19fab1ca94ac9fe79856d19f5f571e34e43509d3491f4054ea304ec0ed5793",
+      "byte_identical_to_pre_repair_head": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-os-stage2b-publication-2026-10-05.md",
+      "revision": "3f0778cfab0f84be0addf00b811ee6ac11a29117",
+      "sha256": "e3a65d92d687e55ed398533ac851defd44464af1e18d259422d73bee8f551e30",
+      "byte_identical_to_pre_repair_head": true
+    },
+    {
+      "path": "docs/governance/audits/requirement-registration/os-stage2b-014-review01-repair-2026-10-05.json",
+      "revision": "3f0778cfab0f84be0addf00b811ee6ac11a29117",
+      "sha256": "46f93f31d7eb8341a1fb8982dd2c43a193652474edefc0686a2db9f9d646cf3d",
+      "byte_identical_to_pre_repair_head": true
+    },
+    {
+      "path": "docs/governance/audits/requirement-registration/os-stage2b-014-review01-repair-2026-10-05.md",
+      "revision": "3f0778cfab0f84be0addf00b811ee6ac11a29117",
+      "sha256": "7322cd4573d377ebe065c336ace4bbbc17c3a95b0d856ed8df6f779ba2d79138",
+      "byte_identical_to_pre_repair_head": true
+    }
+  ],
+  "static_verification": {
+    "all_7_fixture_ids_unique_and_present": "pass",
+    "each_fixture_holds_operation_present_and_mutates_only_one_dependency_applicability": "pass by authored case specification; execution not performed",
+    "all_7_cases_return_to_existing_INFRASTRUCTURE_or_SECURITY_owner": "pass",
+    "fixed_source_spans_recomputed_from_exact_f6_revision": "pass",
+    "canonical_6_SHA_bytes_and_line_counts_bound_to_body_commit": "pass",
+    "only_functional_verification_changed_in_body_commit": "pass",
+    "historical_audits_byte_identical": "pass",
+    "git_diff_check": "pass",
+    "L10_execution": "not performed"
+  },
+  "limits": [
+    "L10 fixtures are design only and were not executed.",
+    "No implementation, PoC, release, distribution, or issue close authorization.",
+    "Root semantic inspection and separate Opus/Fable exact re-review remain pending."
+  ],
+  "push": false,
+  "pr_update": false
+}
