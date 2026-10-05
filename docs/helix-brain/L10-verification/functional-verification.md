@@ -633,8 +633,8 @@ CASE番号は各親見出し内で一意。各列の固定句は親source全文�
 ### HELIXBRAIN-L2-020 — `BRAIN-020-FR-01`
 
 - **L10-BRAIN-020-C01 (AC-01, 正常)**：candidate revisionと一致するLABO evaluation receiptにscope/method/evidence/result/failure/counterexample/unassessed rangeおよびsource/version/evaluation identityを与える。**期待**：全項目を結び、候補input receiptとして返す。OS登録・独立検証・採否は未決。
-- **L10-BRAIN-020-C02 (AC-02, 個別negative)**：同じ親のC01正常fixtureで他fieldを保持し、evaluation target revision不一致にする。**期待**：評価receiptの受渡しを止めLABOへ戻す。
-- **L10-BRAIN-020-C03 (AC-02, 個別negative)**：同じ親のC01正常fixtureで他fieldを保持し、candidate revision不一致にする。**期待**：評価receiptの受渡しを止めLABOへ戻す。
+- **L10-BRAIN-020-C02 (AC-02, 個別negative)**：同じ親のC01正常fixtureで他fieldを保持し、evaluation target revision不一致にする。**期待**：候補をunknownとして保持し評価receiptの受渡しを止めLABOへ評価を戻す。
+- **L10-BRAIN-020-C03 (AC-02, 個別negative)**：同じ親のC01正常fixtureで他fieldを保持し、candidate revision不一致にする。**期待**：候補をunknownとして保持し評価receiptの受渡しを止めLABOへ評価を戻す。
 - **L10-BRAIN-020-C04 (AC-02, 独立negative)**：同親C01正常fixtureで他fieldを保持し、evaluation scopeだけを欠落させる。**期待**：候補をunknown/unfinishedに保ち、evaluation不足をLABOへ戻す。
 - **L10-BRAIN-020-C05 (AC-02, 独立negative)**：同親C01正常fixtureで他fieldを保持し、methodだけを欠落させる。**期待**：候補をunknown/unfinishedに保ち、evaluation不足をLABOへ戻す。
 - **L10-BRAIN-020-C06 (AC-02, 独立negative)**：同親C01正常fixtureで他fieldを保持し、evidenceだけを欠落させる。**期待**：候補をunknown/unfinishedに保ち、evaluation evidence不足をLABOへ戻す。
@@ -653,9 +653,9 @@ CASE番号は各親見出し内で一意。各列の固定句は親source全文�
 - **L10-BRAIN-020-R-evaluation-promotion (AC-02, 独立fixture)**：同親C01の正常source/revision/scopeと他必須fieldを保持し、評価resultだけでacceptedへ昇格。**期待**：候補のまま保ち評価・OS登録・BRAIN独立検証・採否を別stateで追う。
 - **L10-BRAIN-020-R-independent-verification (AC-02, 独立fixture)**：同親C01の正常source/revision/scopeと他必須fieldを保持し、BRAIN内独立検証だけを省いてmatureへ昇格。**期待**：昇格を拒否しBRAIN内独立検証を未完として保持。
 - **L10-BRAIN-020-R-infra-state-normal (AC-01, 独立fixture)**：同親C01の正常source/revision/scopeと他必須fieldを保持し、Infrastructure candidateのmaturity評価を選択し、INFRA017 state/evidenceも同candidate revisionへ結ぶ。**期待**：該当時だけstate/evidenceを保持しcandidateとして受領、採用を生成しない。
-- **L10-BRAIN-020-R-infra-state-missing (AC-02, 独立fixture)**：同親C01の正常source/revision/scopeと他必須fieldを保持し、Infrastructure maturity評価を選択したままstateだけ欠落。**期待**：当該stateをunknownとし昇格しない。Infrastructure state/evidence不足はINFRASTRUCTURE、evaluation contract不足はLABOへ戻す。OS登録状態の正本はOSへ返す。
-- **L10-BRAIN-020-R-infra-evidence-missing (AC-02, 独立fixture)**：同親C01の正常source/revision/scopeと他必須fieldを保持し、Infrastructure maturity評価を選択したままevidenceだけ欠落。**期待**：当該Infrastructure state/evidence不足はINFRASTRUCTUREへ返しcandidateを保持する。
-- **L10-BRAIN-020-R-infra-revision (AC-02, 独立fixture)**：同親C01の正常source/revision/scopeと他必須fieldを保持し、Infrastructure state/evidenceだけを別candidate revisionへ結合。**期待**：誤結合を拒否しInfrastructure state/evidence不足をINFRASTRUCTUREへ戻す。
+- **L10-BRAIN-020-R-infra-state-missing (AC-02, 独立fixture)**：同親C01の正常source/revision/scopeと他必須fieldを保持し、Infrastructure maturity評価を選択したままstateだけ欠落。**期待**：stateをunknownとして保持し昇格しない。選択したInfrastructure評価を対象revisionに結べないためLABOへ評価を返す。OS登録状態を変更しない。
+- **L10-BRAIN-020-R-infra-evidence-missing (AC-02, 独立fixture)**：同親C01の正常source/revision/scopeと他必須fieldを保持し、Infrastructure maturity評価を選択したままevidenceだけ欠落。**期待**：対象revisionに結べない評価をunknown候補として止め、LABOへ評価を返す。昇格とOS登録state変更を行わない。
+- **L10-BRAIN-020-R-infra-revision (AC-02, 独立fixture)**：同親C01の正常source/revision/scopeと他必須fieldを保持し、Infrastructure state/evidenceだけを別candidate revisionへ結合。**期待**：対象revisionに結べない評価をunknown候補として止め、LABOへ評価を返す。昇格とOS登録state変更を行わない。
 - **L10-BRAIN-020-R-infra-unselected (AC-03, 独立fixture)**：同親C01の正常source/revision/scopeと他必須fieldを保持し、非Infrastructure candidateを未見scopeで評価し、INFRA017を選択しない。**期待**：条件付き依存を強制せず対象revisionのcandidateだけを受領。
 - **L10-BRAIN-020-R-007008-provenance-missing (AC-02, 独立negative)**：同親C01の正常fixtureで他fieldを保ち、L2-007 generic provenanceだけを欠落させる。**期待**：候補をunknown/unfinishedに保ちprovenance不足をLABOへ返す。
 - **L10-BRAIN-020-R-identity-missing (AC-02, 独立negative)**：同親C01の正常fixtureで他fieldを保ち、L2-008 identityだけを欠落させる。**期待**：L2-008 identityの欠落をunknownとして保持し、知識identityをBRAINへ戻す。
@@ -759,7 +759,7 @@ CASE番号は各親見出し内で一意。各列の固定句は親source全文�
 - **L10-BRAIN-030-C30 (AC-04, 独立negative)**：BRAINが製品固有API結論だけを出力する。**期待**：結論を返さずHARNESSへ戻す。
 - **L10-BRAIN-030-C31 (AC-05, 未見正常)**：未見互換pairを固定source上の宣言範囲内で与え、選択knowledgeは全fieldとtraceを満たす。**期待**：同契約で照合し候補receiptを作る。
 - **L10-BRAIN-030-C32 (AC-05, 局所unknown)**：異なる未見pairで互換範囲が未宣言。**期待**：compatibilityだけunknown/holdとし範囲を創作しない。
-- **L10-BRAIN-030-C33 (AC-05, 複数field正常境界)**：選択knowledgeに定義済みfieldがあり値だけunknown。**期待**：receiptにfield identity/reasonを残しobligation open。
+- **L10-BRAIN-030-C33 (AC-04/05, 独立negative)**：C23と同じ単一field unknown fixtureで、field identityだけをreceiptから欠落させる。**期待**：値unknown自体を拒むのでなく、その未決fieldを義務へ辿れないreceiptを不合格とし、対応付け不足をHARNESSへ返す。
 - **L10-BRAIN-030-C34 (AC-05, 個別negative)**：knowledge revisionにrequired-field definition自体がない。**期待**：値unknownとして受領せずBRAINへ返す。
 - **L10-BRAIN-030-C35 (AC-05, 正常境界)**：別queryでknowledgeを未選択にする。**期待**：その知識sourceを未観測として扱い、欠落扱いも適用可推定もしない。
 
