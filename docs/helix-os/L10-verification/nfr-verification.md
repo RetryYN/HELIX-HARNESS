@@ -128,9 +128,9 @@ NFR候補は計測対象と比較値であり、POごとのparameter gateでは�
 
 | NFR CASE | NFR候補 | 集計対象 functional CASE | 観測と未評価条件 |
 |---|---|---|---|
-| `CASE-OS-L10-NFR-025-01` | `NFR-OS-L3-025-01` | `CASE-OS-L10-025-01`–`04` | unit/connection/compositeの誤結合と未完義務をfixture単位で計数。全運転KPIではない。|
-| `CASE-OS-L10-NFR-026-01` | `NFR-OS-L3-026-01` | `CASE-OS-L10-026-01`–`06` | closure、unknown、安全不足、代替space、minimum-proof stateを分離。未探索spaceを成功・失敗件数へ補完しない。|
-| `CASE-OS-L10-NFR-031-01` | `NFR-OS-L3-031-01` | `CASE-OS-L10-031-01`–`07` | old 60s/3m comparisonと現在適用budgetを混同しない。環境/母集団/期間/除外理由が不明ならpercentile未評価。|
-| `CASE-OS-L10-NFR-047-01` | `NFR-OS-L3-047-01` | `CASE-OS-L10-047-01`–`07` | original/successor lineage、return reason/evidence/owner、非継承の独立欠落をそれぞれ集計する。|
+| `CASE-OS-L10-NFR-025-01` | `NFR-OS-L3-025-01` | `CASE-OS-L10-025-01`–`21` | service①〜⑦および選択scopeの正常/部分未見とunknown等のfixture内分類・誤結合を計数。全運転KPIではない。|
+| `CASE-OS-L10-NFR-026-01` | `NFR-OS-L3-026-01` | `CASE-OS-L10-026-01`–`30` | source/contract/permission/dependency/recovery/human入力状態、closure、空集合unknown、代替space、minimum-proof stateを分離。|
+| `CASE-OS-L10-NFR-031-01` | `NFR-OS-L3-031-01` | `CASE-OS-L10-031-01`–`63` | old 60s/3m comparisonと現在適用budgetを混同しない。各固定L2-031 measurement fieldの有無/stale/scope不一致、AC03単変異、安全性/並列化/回収traceをCASE別集計し、欠落population等のpercentileを未評価とする。|
+| `CASE-OS-L10-NFR-047-01` | `NFR-OS-L3-047-01` | `CASE-OS-L10-047-01`–`26` | reason/evidence/root revisionの独立欠落、Assignment/Attempt/result/authority非継承、unknown軸、双方向参照・owner backflowをCASE別集計する。|
 
 これらはdocumented fixtureの静的集計候補であり、実測やoperational NFR達成を示さない。

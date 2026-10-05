@@ -98,9 +98,9 @@
 
 | 親 | business扱い | L10で照合する境界 |
 |---|---|---|
-| `HELIXOS-L2-025` | 独立BRなし | unit・connection・compositeの証拠を区別し、構成体の未完義務・unknownを個別成功で隠さない。|
-| `HELIXOS-L2-026` | 独立BRなし | 要求導出・依存閉包・比較範囲・最小性の未立証を別状態にし、実構成の受入へ読み替えない。|
-| `HELIXOS-L2-031` | 独立BRなし | 正しさ、性能計測、性能未達、改善回収を分け、既存性能予算の有無・条件を保つ。|
-| `HELIXOS-L2-047` | 独立BRなし | ticket返却・再発行と要求意味変更、assignment/result/authority継承を分ける。|
+| `HELIXOS-L2-025` | 独立BRなし | service①〜⑦ unit/選択connection/composite正常と部分未見正常を区別し、unknown/stale/未許可/human-wait・後続版・OS製品化・LABO移管境界を個別CASEで保持する。|
+| `HELIXOS-L2-026` | 独立BRなし | 要求source/contract/compatibility/recovery/permission/owner/human processと各dependency stateを独立CASEで照合し、空集合・安全省略・未決pack・未撤去WT・他stage boot・一層削除minimumの誤りを拒否する。|
+| `HELIXOS-L2-031` | 独立BRなし | 測定全field/適用scope、correctnessと性能、4弱化、escaped defect/mutation/flake、warm cache/review HEAD、lease/fence/artifact/fallback/DAG/cancel/exactly-once/causal traceを区別する。|
+| `HELIXOS-L2-047` | 独立BRなし | reason/evidence/root revision、assignment/attempt/result/authority非継承、provider-only変更、参照両方向、旧証拠とnew revision、split/scope/backflow既存ownerを独立照合する。|
 
 この表は機能CASEへの参照境界だけを示す。Stage一式の承認待ちを新たなgateとせず、上流意味変更が必要な個別項目だけを既存authorityへ戻す。

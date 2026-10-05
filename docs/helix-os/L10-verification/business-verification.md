@@ -87,9 +87,9 @@ fixtureと実観測を分けて記録し、各親についてtrace正確性、un
 
 | business CASE | 親・参照機能CASE | 照合 | 対象外 |
 |---|---|---|---|
-| `CASE-OS-L10-BIZ-025-01` | 025 / `CASE-OS-L10-025-01..04` | unit・connection・compositeと、個別成立/全体確認のowner・状態を別々に保つ。| 全製品稼働率、新規owner/KPI。|
-| `CASE-OS-L10-BIZ-026-01` | 026 / `CASE-OS-L10-026-01..06` | 導出candidate、依存閉包、最小性の未立証、実構成受入を混同しない。| 最小pack数・段階数目標。|
-| `CASE-OS-L10-BIZ-031-01` | 031 / `CASE-OS-L10-031-01..07` | correctness・performance・recoveryを独立状態にし、条件付き旧比較値と現行適用予算を分ける。| 現行SLO、速度KPI、merge admission。|
-| `CASE-OS-L10-BIZ-047-01` | 047 / `CASE-OS-L10-047-01..07` | return、revision、issuer、assignment/resultの境界を保ち、Issue/PR完了を要求完了としない。| ticket処理時間・再発行率。|
+| `CASE-OS-L10-BIZ-025-01` | 025 / `CASE-OS-L10-025-01..21` | 各サービスunit/connection/compositeと正常・unknown等のstateを個別に保ち、固定L2外の製品化やstage条件を生成しない。| 全製品稼働率、新規owner/KPI。|
+| `CASE-OS-L10-BIZ-026-01` | 026 / `CASE-OS-L10-026-01..30` | 個別入力・各dependency state、復旧/permission/owner/human工程のmissingとclosure/minimum/実構成受入を混同しない。| 最小pack数・段階数目標。|
+| `CASE-OS-L10-BIZ-031-01` | 031 / `CASE-OS-L10-031-01..63` | 全測定fieldとscope、correctness/performance/recovery、安全性・最適化の独立状態を保ち旧比較値を普遍SLOにしない。| 現行SLO、速度KPI、merge admission。|
+| `CASE-OS-L10-BIZ-047-01` | 047 / `CASE-OS-L10-047-01..26` | 返却根拠、全非継承軸、provider-only identity、双方向参照、revision証拠、split/scope/backflow境界を保ちIssue/PR完了を要求完了としない。| ticket処理時間・再発行率。|
 
 上表は機能CASEへの静的参照であり、独自のbusiness acceptanceやstage完了条件ではない。

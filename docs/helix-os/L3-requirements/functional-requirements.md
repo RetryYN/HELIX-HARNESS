@@ -543,9 +543,9 @@ HELIX自身と複数projectの対象revisionごとに、L2-015〜024のunit、�
 
 **責務／依存**：OSは統合状態とtrace、各unit ownerは自身の契約・証拠、HARNESS/周辺機構は明示済み接続契約を担う。新しいowner・承認・KPIを作らない。固定L2に列挙された既存L2と必要な接続だけを依存として扱う。
 
-**AC-OS-L3-025-01 — 単独/接続/composite分離**：各project・対象revisionでunit、選択connection、composite固有端から端証拠を個別に参照する。固定L2/L11の1.0全体確認条件と単独作業の対象範囲を混同しない。
+**AC-OS-L3-025-01 — 単独/接続/composite分離**：各project・対象revisionでunit、選択connection、composite固有端から端証拠を個別に参照する。選択されたHARNESSサービス①〜⑦のunit正常例、選択connection/composite正常、部分未見正常と、unknown/stale/未許可/human-waitの独立状態を照合する。固定L2/L11の1.0全体確認条件と単独作業の対象範囲を混同しない。
 
-**AC-OS-L3-025-02 — 部分成立と保持**：あるHARNESS製品の単独成立、別projectの未完了、L1-011/012のLABO移管状態をそれぞれ独立に扱う。部分成立から7製品群・HELIX-OS全体の成立やfailure解消を作らない。
+**AC-OS-L3-025-02 — 部分成立と保持**：あるHARNESS製品の単独成立、別projectの未完了、L1-011/012のLABO移管状態をそれぞれ独立に扱う。後続版の前倒しとHELIX-OS外部製品化を拒否し、部分成立から7製品群・HELIX-OS全体の成立やfailure解消を作らない。
 
 ### `FR-OS-L3-026` — `HELIXOS-L2-026` 段階release構成の導出能力
 
@@ -555,7 +555,7 @@ HELIX自身と複数projectの対象revisionごとに、L2-015〜024のunit、�
 
 **AC-OS-L3-026-01 — 導出結果と証拠の分離**：validな入力では目的、scope、要求revision、許容分担、境界、依存と安全依存、閉包、未立証、代替比較を同一入力revisionへ束縛して返す。導出能力の確認を実構成の実行・復旧・composite受入へ読み替えない。
 
-**AC-OS-L3-026-02 — 欠落・不整合の独立保持**：要求source、通常依存、安全依存、互換性、復旧条件の一項目のみをそれぞれ欠落/stale/不一致にし、当該不足を特定ownerへ返して成立構成を主張しない。trace参照だけのcycleと実行前提のcycleを区別する。
+**AC-OS-L3-026-02 — 欠落・不整合の独立保持**：要求source identity/revision、HARNESS contract version/互換、復旧条件、permission、owner、人の許容工程を一項目ずつ、さらに通常/安全依存のmissing/unknown/stale/conflictを独立に変異させ、当該不足を特定ownerへ返して成立構成を主張しない。空集合unknown、必須安全dependency省略、未決境界pack、未撤去working tree、別stage bootstrap cycleを保持し、trace参照cycleと実行前提cycleを区別する。
 
 **AC-OS-L3-026-03 — 最小性の境界**：候補空間または適格条件・代替比較が不足した例を、閉包状態を保持した「最小性未立証」とする。代替比較がある通常例でも、固定L2が定めない段階数、pack数、taxonomyを追加せず、stage採択や外部作用を生成しない。
 
@@ -569,7 +569,7 @@ HELIX自身と複数projectの対象revisionごとに、L2-015〜024のunit、�
 
 **AC-OS-L3-031-02 — 性能と正しさの独立**：correctness成立・性能超過、性能内・correctness不成立をそれぞれ別stateとして観測する。超過時は同episodeのRecovery義務を保持し、合否・merge admissionをこの親から作らない。
 
-**AC-OS-L3-031-03 — 非縮退回収**：必須検証削減、oracle閾値緩和、timeout延長、外部環境への義務先送りの各単独変異を改善と認定しない。改善前後receipt、必須集合非縮退、review、再検証が揃わなければ未完を保持する。
+**AC-OS-L3-031-03 — 非縮退回収**：必須検証削減、oracle閾値緩和、timeout延長、外部環境への義務先送りの各単独変異を改善と認定しない。escaped defect、mutation detection、flake、warm/cold cache、review HEAD、lease/fence並列、artifact binding、fallback telemetry/quota/DAG、cancelled success、exactly-once、causal traceを独立に照合する。改善前後receipt、必須集合非縮退、review、再検証が揃わなければ未完を保持する。
 
 ### `FR-OS-L3-047` — `HELIXOS-L2-047` 理由付きticket返却と新revision
 
@@ -579,7 +579,7 @@ HELIX自身と複数projectの対象revisionごとに、L2-015〜024のunit、�
 
 **AC-OS-L3-047-02 — 再発行と非継承**：対処済み新ticketを別revisionとして発行し、既存typed relationで旧revisionと結ぶ。assignment、Attempt、result、authorityを契約上の適格化なしに引き継がない。provider等の運用属性だけが変わるfixtureはticket意味revisionを変えない。
 
-**AC-OS-L3-047-03 — unknownとTicket非参照境界**：source/revision/scope/returner/relationをそれぞれ単独でunknown/staleにした場合、当該ticketだけ未完として発行元へ返す。Ticket内の他成果物参照、成果物からTicketへの要求根拠/実装部品参照、Issue/PR状態のみの完了推定を拒否し、根拠正本へ戻す。
+**AC-OS-L3-047-03 — unknownとTicket非参照境界**：reason/evidence/root revisionを別々に欠落させ、Assignment/Attempt/result/authorityの非継承を各々独立に確かめる。target/returner/source/scope/relationをそれぞれ単独でunknown/staleにした場合、当該ticketだけ未完として発行元へ返す。provider差だけでは仕事identityを変えない。Ticket→artifactとartifact→Ticketの参照を別々に拒否し、旧証拠/new revision stateを分離し、split/scope/backflowは既存ownerへ戻す。Issue/PR状態のみの完了推定も拒否する。
 
 ### Stage 5の旧source対応・保持と変更理由
 
@@ -592,4 +592,4 @@ HELIX自身と複数projectの対象revisionごとに、L2-015〜024のunit、�
 
 ### source pinと固定情報
 
-固定L2/L11とdecision行、MPR物理行、G0のStage 5/1.0対応は `harness-os-stage5-four-parent-followup-2026-10-06.json` のpinsを参照する。L2のauthoritative text、PO採択範囲、G0の順序分類、現register metadataは同一概念として上書きしない。固定親が未採択候補と記載する031/047、候補表示を持つ025/026の文言を保持する。
+固定L2/L11とdecision行、MPR物理行、G0のStage 5/1.0対応は `docs/governance/audits/requirements-stage/helix-os-stage5-four-parent-l3-l10-draft-2026-10-06.json` のpinsを参照する。L2のauthoritative text、PO採択範囲、G0の順序分類、現register metadataは同一概念として上書きしない。固定親が未採択候補と記載する031/047、候補表示を持つ025/026の文言を保持する。
