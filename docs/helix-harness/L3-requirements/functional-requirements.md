@@ -590,3 +590,5 @@ scope: 本追補5親のみ / G0 version_class 1.0
 旧資産から再利用するのはFR→AC→paired testのtrace骨格と個別normal/negative/unseen oracleの形である。現行意味・scope・owner・versionは固定L2/L11から再導出し、旧ID/layer/runtime/CLI/approval gate/固定値は置換する。旧sourceごとのasset/path/span/full SHA、fixed source pins、現行本文line pinsは[Stage 3 review01補正監査](../../governance/audits/requirements-stage/harness-stage3-review01-correction-2026-10-05.json)へ固定する。
 
 054の採択状態は固定要求本文の当時の「未採択」metadataから生成せず、[11候補PO判断記録](../../governance/decisions/po-decision-2026-09-29-11candidates.md)のHARNESS-L2-054採択行（34行、登録revision `MPR-RC-HARNESS-L2-054-001`）を参照する。固定L2/L11の意味と版は変更しない。
+
+| 040 | `AC-HARNESS-L3-040-03` | `CASE-HARNESS-L10-040-r10-l2-agreement-inference`, `CASE-HARNESS-L10-040-r10-l3-approval-inference` |
