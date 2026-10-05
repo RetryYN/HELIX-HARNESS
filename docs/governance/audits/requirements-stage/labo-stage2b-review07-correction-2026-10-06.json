@@ -1,0 +1,515 @@
+{
+  "record_type": "labo_stage2b_review07_correction_append_only_audit",
+  "record_date": "2026-10-06",
+  "language": "ja",
+  "immutable": true,
+  "authority_effect": "none",
+  "target": {
+    "pr": 2614,
+    "parent_set": [
+      "HELIXLABO-L2-016",
+      "HELIXLABO-L2-024",
+      "HELIXLABO-L2-030",
+      "HELIXLABO-L2-058"
+    ],
+    "base_commit": "1d7f57491b1e8b4337f1933aec2c1649df5f2ea2",
+    "published_head_before_correction": "3ae18859644286753e5755cfbf68893a9e204cbb",
+    "body_commit": "9c09072dbed8661f9415746437ab64fc2b39423b",
+    "stage_scope": "既存Stage2b本文の上記4親のみ。その他の親・Stage本文は変更しない。"
+  },
+  "formal_comment": {
+    "comment_id": 6003860873,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2614#issuecomment-6003860873",
+    "path": "/tmp/pr2614-review07-comment6003860873.md",
+    "bytes": 4797,
+    "sha256_raw_utf8": "499d0a43bca3d609041649d0135c2523d5f0b957ab5d9a913d65178300e619cc",
+    "read_as_data": true
+  },
+  "dispositions": [
+    {
+      "finding": "M1",
+      "parent": "HELIXLABO-L2-058",
+      "status": "本文補正反映・独立再review pending",
+      "basis": "固定L2:414は058追補自体を001実行の前提に再帰要求しない。",
+      "change": "AC-02に非再帰境界を明示し、L10-LABO-058-C41を追加。001の固有条件と選択source closureが有効なとき、058 supplementが存在しないことだけでは拒否しない。058実行済/採択済みや別依存充足の主張は生成しない。FR/AC trace、functional/business/NFR各case tableへ同期。"
+    },
+    {
+      "finding": "M2",
+      "parent": "HELIXLABO-L2-024",
+      "status": "本文補正反映・独立再review pending",
+      "basis": "固定L11:75は稼働中判断を過去実績と混ぜる反例を明記。",
+      "change": "LABO-024-AC-02へ区別を追記し、L10-LABO-024-C18で出力分類だけを現行判断から過去実績へ変える一条件fixtureを追加。混入拒否・二状態保持・権威生成なし、親にない戻し先は作らない。FR/AC trace、functional/business/NFR各case tableへ同期。"
+    },
+    {
+      "finding": "M3",
+      "parent": "HELIXLABO-L2-030",
+      "status": "本文補正反映・独立再review pending",
+      "basis": "固定L2:241は製品意味/authority保持と異source統合禁止を規定し、C05 identity missing/C07統合/C08 authority移転の戻し先を定めない。",
+      "change": "FV C05/C07/C08は不正な利用・統合・書換えを拒否しsource identity/authorityを維持。固定親にないProduct Core source owner routeを削除。FR ACとtraceは戻し先が固定親に定められる場合だけ照合する表現へ修正。C06/C09の既存根拠routeには変更なし。"
+    },
+    {
+      "finding": "m1",
+      "parent": "HELIXLABO-L2-016",
+      "status": "本文補正反映・独立再review pending",
+      "basis": "固定L2:185は比較結果・反例・oracle・中断状態を評価材料として渡し、判定不能はoperation候補として保留すると規定。",
+      "change": "FV C11のoracle identity欠落をunknownとして保持しsystem適格性を導かず、比較結果はoperation候補のまま保留。固定親にないowner routeを追加しない。"
+    }
+  ],
+  "fixed_source_pins": [
+    {
+      "label": "fixed L2-016",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "physical_lines": {
+        "start": 183,
+        "end": 186
+      },
+      "full_file_sha256_raw_lf": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "span_sha256_raw_lf": "7f79a3cecff61f2667bdce6214cf5e8de9c6b2ba6169de3ae28b33c01a42ede7",
+      "literal_utf8": "### HELIXLABO-L2-016 — Experiment → Assurance Allocation\n\n- 親：HELIXLABO-L1-005（Experiment）、HELIXLABO-L1-006（Assurance Allocation）。入力：比較結果・反例・oracle・中断状態。出力：system/operation評価材料。依存：L2-006。保証：比較可能性と反例を保持。判定不能はoperation候補として保留する。`version_target: 1.0`。\n\n"
+    },
+    {
+      "label": "fixed L2-024",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "physical_lines": {
+        "start": 215,
+        "end": 218
+      },
+      "full_file_sha256_raw_lf": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "span_sha256_raw_lf": "300c79db30dd775aa504d23005b53d51bb966b6c52b9d722aa2efa41239e7fa7",
+      "literal_utf8": "### HELIXLABO-L2-024 — INTELLIGENCE → Aggregate\n\n- 親：HELIXLABO-L1-001。入力：許可された判断/予測/診断/reviewの結果観測。出力：観測事実と判断結果を区別したobservation。依存：INTELLIGENCE source contractと個別connector。保証：過去評価は現在のauthorityにならない。版不一致はINTELLIGENCEへ戻す。`version_target: 1.0`。\n\n"
+    },
+    {
+      "label": "fixed L2-030",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "physical_lines": {
+        "start": 239,
+        "end": 242
+      },
+      "full_file_sha256_raw_lf": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "span_sha256_raw_lf": "9631b221fb6c1cb7b135324e0f914084146031297e2b82b95d64e14cc0df3613",
+      "literal_utf8": "### HELIXLABO-L2-030 — Product Core → Aggregate\n\n- 親：HELIXLABO-L1-001。入力：各製品の許可利用・結果観測。出力：product/source identity別observation。依存：そのProduct Coreのsource contractと専用connector。保証：製品意味とauthorityを保つ。異なるsourceは同一identityに統合しない。`version_target`は接続対象製品の採択済みscopeに従う。\n\n"
+    },
+    {
+      "label": "fixed L2-058",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "physical_lines": {
+        "start": 403,
+        "end": 415
+      },
+      "full_file_sha256_raw_lf": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "span_sha256_raw_lf": "b2bbcdc2a4687314eef773ecae25517776e548be7df8c23818549eb6841ac9cf",
+      "literal_utf8": "### HELIXLABO-L2-058 — 観測集積の入力元ごとの依存条件（単体追補候補、1.0）\n\n- **親L1**：HELIXLABO-L1-001。既存HELIXLABO-L2-001の集積能力に適用する依存区分の追補候補であり、新しい集積エンジンを作らない。現行L1/L2の採択状態は変えない。\n- **起点**：[PO補強原文](../../helix-os/sources/body-reinforcement-po-original-2026-09-27.md)の第2点、HARNESS-L2-010／011とその依存区分追補候補HARNESS-L2-023。旧FRS-R-06の必要な依存欠落・暗黙包含拒否、FRS-R-13／14の安全閉包・不明時停止を保持し、対応能力全体と個別呼出しの必須入力を分離する意味の再導出である。旧資産の具体位置・digestはG10依存監査に記録する。旧実装・runtimeは利用しない。\n- **受け取るもの**：集積対象scopeと選択source identity、操作、source/契約版、観測の利用許可、source別入力接続、既存001の観測状態・provenance・最低項目の契約。選択の根拠と未選択sourceも表示する。\n- **提供するもの**：その呼出しに必要なsource別接続と安全・版条件を照合したLABO observation、未観測の入力元、受領失敗・不足の理由。元の001の観測本文・責務・出力項目を変更しない。\n- **常時必須**：LABO001のprovenance、source identity/revision、状態区分、対象scope、適用するdata-use/authority、契約版、source正本を変更しない条件。入力元を選ばないことを、権限不明なデータの取込許可へ変えない。\n- **選択した入力元に応じて必須**：001に列挙されたL2-021〜030は、当該呼出しが受け取る各sourceに対応する接続を要求する。例えばWorker観測のみならL2-028の入力・受領契約とその安全依存を必要とし、入力に含まれないBRAIN等の別source接続の稼働は当該呼出しの成立条件にしない。複数sourceを選べばその全部に対応する接続・許可・依存閉包を要求する。selected sourceの欠落を「未選択」へ変えて成功にしない。\n- **特定操作時のみ必須**：Web/WEB-OS観測を加える操作では、既存L2-031／032に記したsource contractの採択と該当接続・安全条件を満たす。Webを選ばないLABO 1.0の呼出しへWeb実運用を前提にしない。2.0の外部取得入力は既存L2-033の版範囲に従い、1.0へ無断追加しない。\n- **参照のみ**：全sourceに対応する1.0要求範囲の一覧、未選択sourceの契約説明、旧資産の比較資料は、個別呼出しの実行サービス依存ではない。ただし一覧にある1.0対象能力の完成義務は保持し、個別呼出しで不要という理由で削除・延期しない。\n- **保証・失敗時**：未選択または未接続のsourceは未観測を保持し、成功・観測済みへ変換しない。選択sourceのversion/scope/許可/receiptが不足・不一致ならその入力の成立を拒みsource owner／SECURITYへ戻す。選択条件自体がunknownなら全部不要とせず呼出し条件の確認へ戻す。観測集積の成功をBench評価済み、割当許可、全source対応完成にしない。\n- **単独成立の依存**：既存HELIXLABO-L2-001の契約本文、HARNESS-L2-010／011／023の依存区分契約、選択sourceの入力接続とその安全・版条件。この追補自身を001の実行前提に再帰的に要求せず、001の利用条件を補う。実契約版は採択後に入力へ束縛し、`version_target: 1.0`を実装版・採択状態と混同しない。\n\n"
+    },
+    {
+      "label": "fixed L11-016",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "physical_lines": {
+        "start": 67,
+        "end": 67
+      },
+      "full_file_sha256_raw_lf": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "span_sha256_raw_lf": "81cfb4530796eefc94942936e18c88acc62c8c121fc1979a926d4784143fa644",
+      "literal_utf8": "| HELIXLABO-L2-016 | Experiment結果・反例からAssurance Allocationへ、比較可能性とoracleを保って渡す | 実験実行のみでsystem化適格と判定する、反例を欠落させる |\n"
+    },
+    {
+      "label": "fixed L11-024",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "physical_lines": {
+        "start": 75,
+        "end": 75
+      },
+      "full_file_sha256_raw_lf": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "span_sha256_raw_lf": "a1cb1b580641dd5f04ab97f489a86b5d551031bf038ca91595f71e405a304ca4",
+      "literal_utf8": "| HELIXLABO-L2-024 | INTELLIGENCEから個別connectorで許可判断/評価結果を受け、現行判断と過去評価を区別する | 稼働中判断を過去実績と混ぜる |\n"
+    },
+    {
+      "label": "fixed L11-030",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "physical_lines": {
+        "start": 81,
+        "end": 81
+      },
+      "full_file_sha256_raw_lf": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "span_sha256_raw_lf": "d89d8e38658a4023b3dcd7499875e3bb51d6791fb875365cc3b4cb8a8dc54336",
+      "literal_utf8": "| HELIXLABO-L2-030 | Product Coreから許可された製品利用・結果を個別に受け、製品meaningを保持する | 異なるproduct sourceを一つの正本へ混ぜる |\n"
+    },
+    {
+      "label": "fixed L11-058",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "physical_lines": {
+        "start": 156,
+        "end": 162
+      },
+      "full_file_sha256_raw_lf": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "span_sha256_raw_lf": "8bd48dea9ee4e634eae46ead9dbf989b8d5e425aaecd35ef637e10f60cf96734",
+      "literal_utf8": "### HELIXLABO-L2-058 観測集積の入力元ごとの依存条件\n\n- **正常例**：選択入力がWorker観測だけの呼出しで、001/028のprovenance・版・scope・許可・状態区分・受領契約と安全依存が揃う。他の未選択入力は未観測を表示したまま、Worker観測を取り込める。全入力元対応の完成を主張しない。\n- **複数入力例**：WorkerとOSの観測を選択した場合は、両方のsource別接続と安全依存を要求する。片方のreceiptが欠落した結果を完全な集積成功にしない。\n- **反例**：未選択sourceの完成待ちで、必要条件を満たすWorker入力を拒む。選択済みsourceが欠けたため未選択へ改変する。安全依存を参照のみと分類する。未選択を観測済みへ変える。Web未採択を理由に全LABO 1.0を不成立にする。個別呼出しの成功を1.0全source対応済みとする。\n- **版・変更**：sourceの追加/削除、操作、scope、契約版が変わった場合に依存分類と閉包を再照合する。前回の選択やreceiptを無条件に継承しない。\n- **不足・戻し先**：選択条件が不明なら要求された呼出しscopeのownerへ、入力契約・版は各sourceとLABOへ、許可/classificationはSECURITYへ戻す。未観測・未完義務を消さず、既存001の出力保証を保つ。\n"
+    }
+  ],
+  "body_files": [
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "full_sha256_raw_lf": "53cee8847a4f7950dc7e6553be3b7e91e622ff67248c7b78e640bf8ecd61c3bf",
+      "bytes": 251307,
+      "approved_main_prefix_revision": "1d7f57491b1e8b4337f1933aec2c1649df5f2ea2",
+      "approved_main_prefix_bytes": 105136,
+      "approved_main_prefix_sha256_raw_lf": "5abc0f1c0aa8b6ed29ff35dd8b473332d237ae3685673c938184f812e1b78857",
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "full_sha256_raw_lf": "39fa84086d01f8dc38829c12edc37fef0bd3a9a54f354891938c501fd7f4778a",
+      "bytes": 8587,
+      "approved_main_prefix_revision": "1d7f57491b1e8b4337f1933aec2c1649df5f2ea2",
+      "approved_main_prefix_bytes": 4234,
+      "approved_main_prefix_sha256_raw_lf": "12fdf58a66b4108bf45dcccb9845062f23b8cc49f33c800eeb6a23b12db43aa1",
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "full_sha256_raw_lf": "9559a4dcff2a55d04458410cc15cdb7ef52525844a5624117d2acb0fcef3174e",
+      "bytes": 56000,
+      "approved_main_prefix_revision": "1d7f57491b1e8b4337f1933aec2c1649df5f2ea2",
+      "approved_main_prefix_bytes": 31278,
+      "approved_main_prefix_sha256_raw_lf": "39ecabeaec040cde052db5bb0eb77ac0446fe5951483d3ed4106768512a134ec",
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "full_sha256_raw_lf": "6da113b3a75d1e08e1fa7620c522271f38e16be02364ceb6967da473abd73dd8",
+      "bytes": 287456,
+      "approved_main_prefix_revision": "1d7f57491b1e8b4337f1933aec2c1649df5f2ea2",
+      "approved_main_prefix_bytes": 145671,
+      "approved_main_prefix_sha256_raw_lf": "891ae5539580ffe9dcba38c539807e1adc9017021ff010dbd6d8d42cc4c37fa7",
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "full_sha256_raw_lf": "a7ea1ff62ba6d2e52464ba5057c9e0044e09edc6f861ac3d33275e1114612007",
+      "bytes": 7644,
+      "approved_main_prefix_revision": "1d7f57491b1e8b4337f1933aec2c1649df5f2ea2",
+      "approved_main_prefix_bytes": 3291,
+      "approved_main_prefix_sha256_raw_lf": "0d4dc09046dbe401846dd79241151a55bfc1c46a7514197a00602f209ffb5908",
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "full_sha256_raw_lf": "6064e42c024db902bcbe7136bbd490265d6a3812aac75d431209b1642227a7f3",
+      "bytes": 45678,
+      "approved_main_prefix_revision": "1d7f57491b1e8b4337f1933aec2c1649df5f2ea2",
+      "approved_main_prefix_bytes": 29799,
+      "approved_main_prefix_sha256_raw_lf": "dcbc66854fcbcb7b718e390b515d61fa80d2392e1d199c3c884d5ed0edf3aa52",
+      "prefix_exact": true
+    }
+  ],
+  "current_added_line_pins": [
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "line": 45,
+      "literal_utf8": "| `HELIXLABO-L2-024` | 独立BVなし | `LABO-024-AC-01`, `LABO-024-AC-02` | `L10-LABO-024-C01` と各単独negative/held-out normal case。追加CASE: `L10-LABO-024-C17`, `L10-LABO-024-C18` |\n",
+      "raw_sha256": "fc36f824aeb47e50a7b4966d9e6fe2e9f8cd7bf81158c4c7d232d7a7ea81d6c2"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "line": 54,
+      "literal_utf8": "| `HELIXLABO-L2-058` | 独立BVなし | `LABO-058-AC-01`, `LABO-058-AC-02` | `L10-LABO-058-C01` と各単独negative/held-out normal case。追加CASE: `L10-LABO-058-C40`, `L10-LABO-058-C41` |\n",
+      "raw_sha256": "597d499d3aef1049e6f7e1539282a2114e00d75bb8736eeab23ec730786c4f48"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "line": 579,
+      "literal_utf8": "| `HELIXLABO-L2-024` / `MPR-RC-HELIXLABO-L2-024-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L72 / `sha256:b9716e90512221b17da8f2eb3df7d8ea64bcdab2e4223ea32a720ae8c19ddbd4` | L215–218 `300c79db30dd775aa504d23005b53d51bb966b6c52b9d722aa2efa41239e7fa7` | `LABO-024-FR-01`, `LABO-024-AC-01/02`; 個別fixture: `L10-LABO-024-C01`, `L10-LABO-024-C04`, `L10-LABO-024-C05`, `L10-LABO-024-C06`, `L10-LABO-024-C07`, `L10-LABO-024-C08`, `L10-LABO-024-C09`, `L10-LABO-024-C16`, `L10-LABO-024-C17`, `L10-LABO-024-C18`|\n",
+      "raw_sha256": "bd641415832417ea235a51542fafdc01023e22d734ff75405d3acb4f3fdc0d2f"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "line": 588,
+      "literal_utf8": "| `HELIXLABO-L2-058` / `MPR-RC-HELIXLABO-L2-058-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L98 / `sha256:0ff4f665f3a465611b2489a908bfb161e852fa5706393d04c21d59c3598d9f17` | L403–415 `b2bbcdc2a4687314eef773ecae25517776e548be7df8c23818549eb6841ac9cf` | `LABO-058-FR-01`, `LABO-058-AC-01/02`; 個別fixture: `L10-LABO-058-C01`, `L10-LABO-058-C06`, `L10-LABO-058-C07`, `L10-LABO-058-C08`, `L10-LABO-058-C09`, `L10-LABO-058-C10`, `L10-LABO-058-C11`, `L10-LABO-058-C12`, `L10-LABO-058-C13`, `L10-LABO-058-C14`, `L10-LABO-058-C15`, `L10-LABO-058-C16`, `L10-LABO-058-C17`, `L10-LABO-058-C18`, `L10-LABO-058-C19`, `L10-LABO-058-C20`, `L10-LABO-058-C21`, `L10-LABO-058-C22`, `L10-LABO-058-C23`, `L10-LABO-058-C24`, `L10-LABO-058-C25`, `L10-LABO-058-C26`, `L10-LABO-058-C27`, `L10-LABO-058-C28`, `L10-LABO-058-C29`, `L10-LABO-058-C30`, `L10-LABO-058-C31`, `L10-LABO-058-C32`, `L10-LABO-058-C33`, `L10-LABO-058-C34`, `L10-LABO-058-C35`, `L10-LABO-058-C36`, `L10-LABO-058-C37`, `L10-LABO-058-C38`, `L10-LABO-058-C39`, `L10-LABO-058-C40`, `L10-LABO-058-C41`|\n",
+      "raw_sha256": "02f71d719cdb74b27d038602b66ff7b33ba29205932d49549bde1a9655826d61"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "line": 1665,
+      "literal_utf8": "- 入力fixture: 許可Product Core resultからproduct identityだけを欠落させる。期待：意味/帰属を推測せず当該利用を拒否し、固定親にない返却先を新設しない。\n",
+      "raw_sha256": "fc7ab186d708a9d2ef5acc60d87506dd67623effae4c1f44e68d27a24d457a2b"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "line": 1676,
+      "literal_utf8": "- 入力fixture: meaningが異なる二product sourceを一identityへ統合する変異だけを与える。期待：統合を拒否し、各source identityと別々のobservationを保つ。固定親にない返却先を新設しない。\n",
+      "raw_sha256": "9b5193bdd32eedd0992dd8647cf9af97c680d9d9e6544f88b04eb066669e876f"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "line": 1682,
+      "literal_utf8": "- 入力fixture: product resultを受け、Product Core meaning/authorityを書き換える出力変異だけを与える。期待：書換えを拒否しsource authority/meaningを保持する。固定親にない返却先を新設しない。\n",
+      "raw_sha256": "d40760af796e899fc4dbeb2528e2d40b5b3411f010447c016c3e40d6b1317d82"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "line": 2463,
+      "literal_utf8": "- 入力/期待oracle: 他の比較可能性・反例・結果を保ちoracle identityだけ欠落。欠落のみunknownとして保持しsystem適格性を導かない。比較結果はoperation候補として保留し、固定L2にないowner routeを追加しない。\n",
+      "raw_sha256": "71b072843644da490029b83d569551b5264aa8216764004fdb2c460f0ded862b"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "line": 2545,
+      "literal_utf8": "\n",
+      "raw_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "line": 2546,
+      "literal_utf8": "\n",
+      "raw_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "line": 2547,
+      "literal_utf8": "### L10-LABO-024-C18 — 稼働中判断を過去実績へ混入\n",
+      "raw_sha256": "8552a3368d97ca8ff6194ee4af62831b74de91d85ce3e1478101a21e4db0c6cb"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "line": 2548,
+      "literal_utf8": "\n",
+      "raw_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "line": 2549,
+      "literal_utf8": "- 対応AC: `LABO-024-AC-02`。固定親: `HELIXLABO-L2-024`。\n",
+      "raw_sha256": "852939ffa8f7360a7961d596de0fa8a6d565599f19f5bad82b3c2d7758f27168"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "line": 2550,
+      "literal_utf8": "- 入力fixture: 有効な稼働中判断と過去評価をそれぞれ区別できる同一source identity/revision/evidenceを用い、出力分類だけを「稼働中判断を過去実績」とする。\n",
+      "raw_sha256": "40f8fc04a0cdc2b1c9511c35751d753efd4f3837244eb10e7201950e9cc600a5"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "line": 2551,
+      "literal_utf8": "- 期待oracle: 混入を拒否し、現行判断と過去評価を別状態で保持する。これだけで新たな権威・判断を生成しない。固定親に戻し先指定がないため、返却先を創作せず不合格を記録する。\n",
+      "raw_sha256": "043a840e13be65d69a910381537fdfbd25469cdfb1de2be4ee97f326a04c07b1"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "line": 2552,
+      "literal_utf8": "\n",
+      "raw_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "line": 2553,
+      "literal_utf8": "### L10-LABO-058-C41 — 058補足を001実行の再帰前提にしない\n",
+      "raw_sha256": "7fa66d5e2ebff1f9b4d36c3ae0a38b6174f1147253fb8891695469ed19a3ae5f"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "line": 2554,
+      "literal_utf8": "\n",
+      "raw_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "line": 2555,
+      "literal_utf8": "- 対応AC: `LABO-058-AC-02`。固定親: `HELIXLABO-L2-058`。\n",
+      "raw_sha256": "55308655396e17d2906ad9e6512c72ee657f4a02f2bebebffa2ee0471a2f616c"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "line": 2556,
+      "literal_utf8": "- 入力fixture: L2-001の必須入力・選択source・適用される安全/版条件は満たすが、058 supplement自体は入力・実行結果として存在しない。変異は058 supplementの有無のみ。\n",
+      "raw_sha256": "b6ecb38a39ecced464ab15f29528d518714e051541bd92c51498d54730d340ce"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "line": 2557,
+      "literal_utf8": "- 期待oracle: supplementがないことだけで001固有の有効な観測を拒否しない。同時に、058を実行済み、採択済み、または他のsource dependencyを満たしたと扱わない。固定L2:058に戻し先が指定されていないため追加しない。\n",
+      "raw_sha256": "8466e35b0ea633b4eea01951a0b312c61a34a9015a319a921901f6d265907c4c"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "line": 106,
+      "literal_utf8": "| `HELIXLABO-L2-024` | INTELLIGENCE decision/history lineage | 当該親の個別fixtureのみ（summary/indexは除外）。missing/failed/censoredは母集団から除外しない。分母が0または不明なら率なし。 | caseごとに`valid/failed/missing/censored`とoracle`pass/fail/unknown`を別記録。各negativeは一変数だけを変え、戻し先/unknown holdとsource state保持を照合する。case: `L10-LABO-024-C01`, `L10-LABO-024-C04`, `L10-LABO-024-C05`, `L10-LABO-024-C06`, `L10-LABO-024-C07`, `L10-LABO-024-C08`, `L10-LABO-024-C09`, `L10-LABO-024-C16`, `L10-LABO-024-C17`, `L10-LABO-024-C18` |\n",
+      "raw_sha256": "312d1ca22dc0ae2a59ae2bbc4b831b2c470d4fc0785bde6ba53f5279102f0d51"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "line": 115,
+      "literal_utf8": "| `HELIXLABO-L2-058` | selected dependency closure | 当該親の個別fixtureのみ（summary/indexは除外）。missing/failed/censoredは母集団から除外しない。分母が0または不明なら率なし。 | caseごとに`valid/failed/missing/censored`とoracle`pass/fail/unknown`を別記録。各negativeは一変数だけを変え、戻し先/unknown holdとsource state保持を照合する。case: `L10-LABO-058-C01`, `L10-LABO-058-C06`, `L10-LABO-058-C07`, `L10-LABO-058-C08`, `L10-LABO-058-C09`, `L10-LABO-058-C10`, `L10-LABO-058-C11`, `L10-LABO-058-C12`, `L10-LABO-058-C13`, `L10-LABO-058-C14`, `L10-LABO-058-C15`, `L10-LABO-058-C16`, `L10-LABO-058-C17`, `L10-LABO-058-C18`, `L10-LABO-058-C19`, `L10-LABO-058-C20`, `L10-LABO-058-C21`, `L10-LABO-058-C22`, `L10-LABO-058-C23`, `L10-LABO-058-C24`, `L10-LABO-058-C25`, `L10-LABO-058-C26`, `L10-LABO-058-C27`, `L10-LABO-058-C28`, `L10-LABO-058-C29`, `L10-LABO-058-C30`, `L10-LABO-058-C31`, `L10-LABO-058-C32`, `L10-LABO-058-C33`, `L10-LABO-058-C34`, `L10-LABO-058-C35`, `L10-LABO-058-C36`, `L10-LABO-058-C37`, `L10-LABO-058-C38`, `L10-LABO-058-C39`, `L10-LABO-058-C40`, `L10-LABO-058-C41` |\n",
+      "raw_sha256": "22d3ed8b345f99da38d027dbcd1aa53f785e154ff5c561215e1bebbcdd297f43"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "line": 47,
+      "literal_utf8": "| `HELIXLABO-L2-024` | 独立BRなし | `LABO-024-AC-01`, `LABO-024-AC-02` | `L10-LABO-024-C01` と各単独negative/held-out normal case。追加CASE: `L10-LABO-024-C17`, `L10-LABO-024-C18` |\n",
+      "raw_sha256": "51ca2650ce9b931f5b543b2244d66c42a517b972fc5a8de05f5f84e21b7fda7c"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "line": 56,
+      "literal_utf8": "| `HELIXLABO-L2-058` | 独立BRなし | `LABO-058-AC-01`, `LABO-058-AC-02` | `L10-LABO-058-C01` と各単独negative/held-out normal case。追加CASE: `L10-LABO-058-C40`, `L10-LABO-058-C41` |\n",
+      "raw_sha256": "6dfeb25ce77e1f2f06da40cc27e41ffeeeeeb5e9af67e3df1f5a131dc99a24e9"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "line": 577,
+      "literal_utf8": "| `HELIXLABO-L2-024` / `MPR-RC-HELIXLABO-L2-024-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L72 / `sha256:b9716e90512221b17da8f2eb3df7d8ea64bcdab2e4223ea32a720ae8c19ddbd4` | `docs/helix-labo/L2-requirements/labo-requirements.md` L215–218; raw SHA `300c79db30dd775aa504d23005b53d51bb966b6c52b9d722aa2efa41239e7fa7` | `LABO-024-FR-01`, `LABO-024-AC-01/02`; 個別fixture: `L10-LABO-024-C01`, `L10-LABO-024-C04`, `L10-LABO-024-C05`, `L10-LABO-024-C06`, `L10-LABO-024-C07`, `L10-LABO-024-C08`, `L10-LABO-024-C09`, `L10-LABO-024-C16`, `L10-LABO-024-C17`, `L10-LABO-024-C18`; summary/index（分母外）: `L10-LABO-024-C02`, `L10-LABO-024-C03`|\n",
+      "raw_sha256": "f9136bb209ededeaa9b854e15653aa6039a6cf6264127725db72c42f1762f409"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "line": 586,
+      "literal_utf8": "| `HELIXLABO-L2-058` / `MPR-RC-HELIXLABO-L2-058-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L98 / `sha256:0ff4f665f3a465611b2489a908bfb161e852fa5706393d04c21d59c3598d9f17` | `docs/helix-labo/L2-requirements/labo-requirements.md` L403–415; raw SHA `b2bbcdc2a4687314eef773ecae25517776e548be7df8c23818549eb6841ac9cf` | `LABO-058-FR-01`, `LABO-058-AC-01/02`; 個別fixture: `L10-LABO-058-C01`, `L10-LABO-058-C06`, `L10-LABO-058-C07`, `L10-LABO-058-C08`, `L10-LABO-058-C09`, `L10-LABO-058-C10`, `L10-LABO-058-C11`, `L10-LABO-058-C12`, `L10-LABO-058-C13`, `L10-LABO-058-C14`, `L10-LABO-058-C15`, `L10-LABO-058-C16`, `L10-LABO-058-C17`, `L10-LABO-058-C18`, `L10-LABO-058-C19`, `L10-LABO-058-C20`, `L10-LABO-058-C21`, `L10-LABO-058-C22`, `L10-LABO-058-C23`, `L10-LABO-058-C24`, `L10-LABO-058-C25`, `L10-LABO-058-C26`, `L10-LABO-058-C27`, `L10-LABO-058-C28`, `L10-LABO-058-C29`, `L10-LABO-058-C30`, `L10-LABO-058-C31`, `L10-LABO-058-C32`, `L10-LABO-058-C33`, `L10-LABO-058-C34`, `L10-LABO-058-C35`, `L10-LABO-058-C36`, `L10-LABO-058-C37`, `L10-LABO-058-C38`, `L10-LABO-058-C39`, `L10-LABO-058-C40`, `L10-LABO-058-C41`; summary/index（分母外）: `L10-LABO-058-C02`, `L10-LABO-058-C03`, `L10-LABO-058-C04`, `L10-LABO-058-C05` |\n",
+      "raw_sha256": "e4195aa0ebe9b3ec9bb90bed6612caaff93b71e61784939039e4a0cc437d77f7"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "line": 771,
+      "literal_utf8": "- **LABO-016-AC-02 — failure/owner boundary**：判定不能をsystem候補成立へ読み替えない。反例を欠落させず評価材料に保持する。oracle identity欠落はunknownのまま保持し、system適格性を導かない。比較結果はoperation候補として保留し、固定親にないowner routeを追加しない。自動system化/昇格をしない.\n",
+      "raw_sha256": "0c5d22205b99ecb5a5bf770add432f3368b1b5d4e5cebec8017e4babb7992bfd"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "line": 1097,
+      "literal_utf8": "- **LABO-024-AC-02 — failure/owner boundary**：source identity/revision欠落・不一致、過去評価のcurrent authority化、稼働中判断を過去実績へ混ぜること、観測事実と判断の混同、INTELLIGENCE正本への書戻しを成功扱いしない。現行判断は現行判断のまま、過去評価は過去評価のまま分離する。\n",
+      "raw_sha256": "de44b52c0f202a056b3792f9dea2c75d02a8b9ca009c17924aa15c48585c7177"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "line": 1103,
+      "literal_utf8": "個別negative検証対象（summary/indexを除く）: `L10-LABO-024-C05`, `L10-LABO-024-C06`, `L10-LABO-024-C07`, `L10-LABO-024-C08`, `L10-LABO-024-C09`, `L10-LABO-024-C16`, `L10-LABO-024-C17`, `L10-LABO-024-C18`。\n",
+      "raw_sha256": "797317c0a8d6863e1cee0bff481a5fdf1c9ead665dbbab4b6c043485c2aeafc8"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "line": 1110,
+      "literal_utf8": "| 不一致/欠落/unknown/staleの失敗規則 | `LABO-024-FR-01 / LABO-024-AC-02` | `L10-LABO-024-C05`, `L10-LABO-024-C06`, `L10-LABO-024-C07`, `L10-LABO-024-C08`, `L10-LABO-024-C09`, `L10-LABO-024-C16`, `L10-LABO-024-C17`, `L10-LABO-024-C18` | 各独立CASEの一条件変異を成功へ昇格せず、稼働中判断と過去実績の区分を維持 |\n",
+      "raw_sha256": "d316809a19e9795f50682e420e9cf3840557b728403fc6249f43ffd1b132ecfd"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "line": 1346,
+      "literal_utf8": "- **LABO-030-AC-02 — failure boundary**：product identity欠落、source revision不一致、異なるsource統合、authority移管、source contract欠落を成功扱いしない。親が戻し先を定めないidentity欠落・source統合・authority移管は拒否のみとし、返却先を新設しない。未採択source/productを暗黙必須化せず製品stateを書き換えない。\n",
+      "raw_sha256": "2e8f5481b103930348f9ce4ff9c1e1182dc134618951ef9dba506b7891619dd9"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "line": 1359,
+      "literal_utf8": "| 不一致/欠落/unknown/staleの失敗規則 | `LABO-030-FR-01 / LABO-030-AC-02` | `L10-LABO-030-C05`, `L10-LABO-030-C06`, `L10-LABO-030-C07`, `L10-LABO-030-C08`, `L10-LABO-030-C09`, `L10-LABO-030-C10` | 各独立CASEの一条件変異を成功へ昇格せず、固定親に戻し先がある場合だけ照合 |\n",
+      "raw_sha256": "f2abe1636891872fe4fe4c8ab25f0dc85b7427488626e9d07691a03028cef17e"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "line": 1360,
+      "literal_utf8": "| 責務ownerと変更禁止境界 | `LABO-030-FR-01 / LABO-030-AC-02` | `L10-LABO-030-C08` | source authority/meaningを書き換えず、固定親にない返却先を作らない |\n",
+      "raw_sha256": "06bd58bcfccdcb84a4072bb047a32d1fdd3dd03d464433d51af3e1eec571a507"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "line": 1472,
+      "literal_utf8": "- **LABO-058-AC-02 — failure/owner boundary**：選択sourceのmissingは未選択へ変えず、未選択/unconnected sourceはunobservedのままにする。選択sourceまたは呼出しscope自体がunknownなら既存call-scope ownerへ戻す。選択sourceのpermission/classification不足はSECURITYへ、source/contract/versionの不足・不一致は当該source/LABOまたは接続contractならCONNECTへ、OS assignment/receipt不足は既存OS ownerへ戻す。scope不足またはscope変更後のreceipt不一致は固定L2:413に従い当該source owner／SECURITYへ戻す。source集合等が明示変更された場合は新条件で再closureし、旧receiptを流用しない。058追補の存在だけを001の実行前提にせず、001固有の有効条件を満たす実行を拒まない。Bench評価済み、assignment permission、全source完了を主張しない。001の本文/責務/outputは変更せず、source選択条件だけを補う。source未選択はpermission不明データの取込許可にならない。Web/WEB-OSは選択時だけ既存採択source contractを要求し、外部取得2.0を1.0へ前倒ししない。\n",
+      "raw_sha256": "bcca9d361ef0843cf67a9cd5dca116944908e233c98ccb31e158132e70831d3e"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "line": 1477,
+      "literal_utf8": "- `LABO-058-AC-02` は各一変数fixtureを個別に照合し、未選択・未完・unknownを成功へ変えず、固定親に定めのある場合だけ既存ownerへ戻す: `L10-LABO-058-C06`, `L10-LABO-058-C07`, `L10-LABO-058-C08`, `L10-LABO-058-C09`, `L10-LABO-058-C10`, `L10-LABO-058-C11`, `L10-LABO-058-C13`, `L10-LABO-058-C14`, `L10-LABO-058-C15`, `L10-LABO-058-C16`, `L10-LABO-058-C17`, `L10-LABO-058-C18`, `L10-LABO-058-C19`, `L10-LABO-058-C20`, `L10-LABO-058-C21`, `L10-LABO-058-C22`, `L10-LABO-058-C23`, `L10-LABO-058-C24`, `L10-LABO-058-C25`, `L10-LABO-058-C26`, `L10-LABO-058-C27`, `L10-LABO-058-C28`, `L10-LABO-058-C29`, `L10-LABO-058-C30`, `L10-LABO-058-C31`, `L10-LABO-058-C33`, `L10-LABO-058-C34`, `L10-LABO-058-C35`, `L10-LABO-058-C36`, `L10-LABO-058-C38`, `L10-LABO-058-C39`, `L10-LABO-058-C40`, `L10-LABO-058-C41`。C41は001実行前提へ058を再帰追加する誤りを拒否する独立fixture。集約fixtureを個別negativeの代替にしない。\n",
+      "raw_sha256": "bf2c478f4401cf645c517590595eef06050bece95badef8a2c764dcf78608348"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "line": 1495,
+      "literal_utf8": "| 058追補を001の実行前提にしない | `LABO-058-FR-01 / LABO-058-AC-02` | `L10-LABO-058-C41` | 001固有の入力条件と接続条件が有効なら、058の補助的な依存区分情報がないことだけを理由に001の観測を拒まない |\n",
+      "raw_sha256": "e9dcd685d32aec254991b476455dcf32964a897b6431f4d5e140a6e03141d148"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "line": 1520,
+      "literal_utf8": "| `HELIXLABO-L2-024` | 固定親のscope/owner/version、条件句を保持 | `LABO-024-AC-01/02` | `L10-LABO-024-C01`, `L10-LABO-024-C04`, `L10-LABO-024-C05`, `L10-LABO-024-C06`, `L10-LABO-024-C07`, `L10-LABO-024-C08`, `L10-LABO-024-C09`, `L10-LABO-024-C16`, `L10-LABO-024-C17`, `L10-LABO-024-C18` |\n",
+      "raw_sha256": "48141aca30e692bd7cf7035d4e61f07127a3ed88789a79babcef85d943309ff1"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "line": 119,
+      "literal_utf8": "| `HELIXLABO-L2-024` | INTELLIGENCE判断revisionとhistorical/current区別 | 親に列挙された必須conditionごとに個別fixtureを定義。正例/各単独変異/未見正常を含む。 | planned fixtureを分母にし、identity・revision・scope・owner戻しを個別集計。unknown/missing/stale/mismatch/未完を別状態に保持し、禁止された正本書換え・昇格は0。case: `L10-LABO-024-C01`, `L10-LABO-024-C04`, `L10-LABO-024-C05`, `L10-LABO-024-C06`, `L10-LABO-024-C07`, `L10-LABO-024-C08`, `L10-LABO-024-C09`, `L10-LABO-024-C16`, `L10-LABO-024-C17`, `L10-LABO-024-C18` |\n",
+      "raw_sha256": "3728fe7302c8b60ac600ceca0f13ea2188e513fa7884bcfbc4e1213c0f6ff128"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "line": 128,
+      "literal_utf8": "| `HELIXLABO-L2-058` | 呼出しごとの選択source dependency closure | 親に列挙された必須conditionごとに個別fixtureを定義。正例/各単独変異/未見正常を含む。 | planned fixtureを分母にし、identity・revision・scope・owner戻しを個別集計。unknown/missing/stale/mismatch/未完を別状態に保持し、禁止された正本書換え・昇格は0。case: `L10-LABO-058-C01`, `L10-LABO-058-C06`, `L10-LABO-058-C07`, `L10-LABO-058-C08`, `L10-LABO-058-C09`, `L10-LABO-058-C10`, `L10-LABO-058-C11`, `L10-LABO-058-C12`, `L10-LABO-058-C13`, `L10-LABO-058-C14`, `L10-LABO-058-C15`, `L10-LABO-058-C16`, `L10-LABO-058-C17`, `L10-LABO-058-C18`, `L10-LABO-058-C19`, `L10-LABO-058-C20`, `L10-LABO-058-C21`, `L10-LABO-058-C22`, `L10-LABO-058-C23`, `L10-LABO-058-C24`, `L10-LABO-058-C25`, `L10-LABO-058-C26`, `L10-LABO-058-C27`, `L10-LABO-058-C28`, `L10-LABO-058-C29`, `L10-LABO-058-C30`, `L10-LABO-058-C31`, `L10-LABO-058-C32`, `L10-LABO-058-C33`, `L10-LABO-058-C34`, `L10-LABO-058-C35`, `L10-LABO-058-C36`, `L10-LABO-058-C37`, `L10-LABO-058-C38`, `L10-LABO-058-C39`, `L10-LABO-058-C40`, `L10-LABO-058-C41` |\n",
+      "raw_sha256": "0aa4080ddd8675ff7734cff537ecf33b89a6411875e3ae57bf3a5079af80fa14"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "line": 150,
+      "literal_utf8": "| `HELIXLABO-L2-024` | `LABO-024-AC-01/02` | `L10-LABO-024-C01`, `L10-LABO-024-C04`, `L10-LABO-024-C05`, `L10-LABO-024-C06`, `L10-LABO-024-C07`, `L10-LABO-024-C08`, `L10-LABO-024-C09`, `L10-LABO-024-C16`, `L10-LABO-024-C17`, `L10-LABO-024-C18` | 各fixtureを個別に1件として状態・oracle・固定owner戻しを記録。|\n",
+      "raw_sha256": "f8b9a4709ad08ec104ed60b26aa53414b872ef3b80d1e8a64087261623c800dc"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "line": 159,
+      "literal_utf8": "| `HELIXLABO-L2-058` | `LABO-058-AC-01/02` | `L10-LABO-058-C01`, `L10-LABO-058-C06`, `L10-LABO-058-C07`, `L10-LABO-058-C08`, `L10-LABO-058-C09`, `L10-LABO-058-C10`, `L10-LABO-058-C11`, `L10-LABO-058-C12`, `L10-LABO-058-C13`, `L10-LABO-058-C14`, `L10-LABO-058-C15`, `L10-LABO-058-C16`, `L10-LABO-058-C17`, `L10-LABO-058-C18`, `L10-LABO-058-C19`, `L10-LABO-058-C20`, `L10-LABO-058-C21`, `L10-LABO-058-C22`, `L10-LABO-058-C23`, `L10-LABO-058-C24`, `L10-LABO-058-C25`, `L10-LABO-058-C26`, `L10-LABO-058-C27`, `L10-LABO-058-C28`, `L10-LABO-058-C29`, `L10-LABO-058-C30`, `L10-LABO-058-C31`, `L10-LABO-058-C32`, `L10-LABO-058-C33`, `L10-LABO-058-C34`, `L10-LABO-058-C35`, `L10-LABO-058-C36`, `L10-LABO-058-C37`, `L10-LABO-058-C38`, `L10-LABO-058-C39`, `L10-LABO-058-C40`, `L10-LABO-058-C41` | 各fixtureを個別に1件として状態・oracle・固定owner戻しを記録。|\n",
+      "raw_sha256": "3c7cd2bfeb9b39673dc527be00ebf81d1ce79f9701d570db337247f0f2aa168d"
+    }
+  ],
+  "case_static": {
+    "stage2b_case_heading_count": 314,
+    "unique": true,
+    "new_case_ids": [
+      "L10-LABO-024-C18",
+      "L10-LABO-058-C41"
+    ],
+    "new_ids_each_present_once": true,
+    "cross_document_case_references_resolve": true
+  },
+  "prior_immutable_records": [
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage2b-review05-correction-2026-10-06.json",
+      "bytes": 330322,
+      "sha256_raw_lf": "ce859f39a4cf86793b9e61a430a457f86e15a6120ccd8f7016833e9de350c65a",
+      "unchanged_from_review07_published_head": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage2b-review05-correction-2026-10-06.md",
+      "bytes": 2566,
+      "sha256_raw_lf": "5dea9dcd56f02d8506dac665d9a0bfa340aa29119481c2e276634dd5ec0d879f",
+      "unchanged_from_review07_published_head": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage2b-root-review06-acceptance-2026-10-06.json",
+      "bytes": 1753,
+      "sha256_raw_lf": "2061bf7bfe405caf471d7a36711ea6df79a2886b8ffd9990fd8e95caffd42473",
+      "unchanged_from_review07_published_head": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage2b-root-review06-acceptance-2026-10-06.md",
+      "bytes": 601,
+      "sha256_raw_lf": "3a3118bd890781c3af4d3f449857d1b241347aac9d9c6204a78824ea3233d7ba",
+      "unchanged_from_review07_published_head": true
+    }
+  ],
+  "verification": {
+    "scfctl_validate": "PASS (147 bindings, 0 failures)",
+    "scfctl_stale": "PASS (0)",
+    "scfctl_residuals": "PASS (0)",
+    "git_diff_check": "PASS",
+    "old_runtime_ci_bun": "not run",
+    "push_or_pr": "not performed"
+  },
+  "limitations": [
+    "本文とID/traceの静的照合のみ。L10 fixtureを実行していない。",
+    "正式review所見の独立解消・Opus/Fable再reviewは本記録で生成せず、Root検収と独立再reviewを待つ。",
+    "新しい要求authority、owner、戻し先、承認状態は生成しない。"
+  ]
+}
