@@ -594,3 +594,14 @@ execution_status: designed_only_not_executed
 | `CASE-HARNESS-L10-024-R093` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | product-pack-missing：R001の正常engine/対象製品/target revision/scope/既回答とpack identityを保持し、当該製品packの内容だけを欠落させる。他製品packは利用可能だが未選択。 | 当該製品pack不足をunknown/未確定としてpack契約ownerへ返し、別製品packで補わず質問選択・収束を確定しない。 |
 | `CASE-HARNESS-L10-024-R094` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | product-pack-revision-mismatch：R001の対象製品と指定pack-P@r1/engine/target/scope/既回答を保持し、意味入力のpack content revisionだけをP@r2へ変える。 | pack版不一致をpack契約ownerへ返し、r1/r2の語彙・policy・質問・matrixを混合せず質問順・理由・収束の確定を保留する。 |
 | `CASE-HARNESS-L10-019-R024` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-02` | reverse-output-coverage-gap：R001の選択source/変換scope/revision/ownerと他層の対応を保持し、変換対象一層の結果だけを変換済み・理由付き非影響・変換不能/unknown一覧のいずれからも除去した出力を成功扱いする。 | 対応欠落を検出し変換候補を完了扱いせず、当該層の未分類部分と元traceをunknownとして保持しHARNESS Reverse要求ownerへ不足を返す。対象外層や未選択sourceへ義務を拡張しない。 |
+
+### review07 入力欠落・rollback・反復上限の独立fixture追補
+
+| CASE ID | FR / AC | 入力・単独変異 | 観測oracle |
+|---|---|---|---|
+| `CASE-HARNESS-L10-018-R056` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | R001のowner承認済み運用要求revision、11軸の適用性・決定owner・根拠は有効のまま、配備済み製品revisionだけを欠落させる。配備record提供元identityは既知とする。 | 当該製品revisionに対応する観測設計を評価済み・successとせず、不足した配備revisionを配備record提供元へ返す。運用要求と元traceを保持し、配備・観測・運用状態を補完しない。 |
+| `CASE-HARNESS-L10-018-R057` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | R001の配備済み製品revision、運用要求revision、11軸の適用性・決定owner・根拠は有効のまま、運用要求ownerの承認だけを欠落させ未承認draftとする。 | 未承認要求を承認済みへ変換せず観測設計の評価成立を保留し、当該運用要求ownerへ承認状態の不足を返す。配備済みrevisionを保持し、文書・CI・実装から承認を生成しない。 |
+| `CASE-HARNESS-L10-017-R020` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-03` | rollback正常：同一対象scopeのrelease失敗fixtureに、直前適格版artifact identity/versionと適格性evidenceを与える。対象環境・Release Port・元artifact・提供元ownerは確定済みとする。 | release packetのrollback先identity/versionが与えた直前適格版と一致し、そのevidenceへtraceが到達する。別版を選ばず、実際の配備・rollback操作やObservedを生成しない。 |
+| `CASE-HARNESS-L10-024-R095` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | R001のcandidate・既回答・target revision/scope・ownerと利用可能履歴を保持する。必須形成情報が残る状態で、根拠のない固定iteration上限への到達だけを理由に形成を打ち切り完了とする出力を与える。 | 固定上限だけによる打切り・完了を拒否し、残る必須形成情報とopen item/owner/re-entryを保持してHARNESS要求ownerへ返す。履歴件数を最低条件にも上限にもせず、人の合意・採択を生成しない。 |
+
+AC-018-01の入力条件はR001〜R034に加えR056/R057で個別欠落を照合する。AC-017-03はR013の直前適格版未特定反例とR020の特定済み正常を比較し、AC-024-03はR095で固定反復上限のみの打切りを拒否する。固定親L2:407/413–416/517およびL11:212–213、旧RDJ-FR-007/AC-007の条件照合を再導出し、旧最低2 iteration・旧runtime gateを移植しない。
