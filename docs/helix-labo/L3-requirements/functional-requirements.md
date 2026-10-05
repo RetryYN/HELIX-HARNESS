@@ -155,7 +155,7 @@ OS execution resultをLABO-028へ受け取り、同一のticket/task/assignment/
 
 - **LABO-057-AC-01 — identityとfield**：送信source recordとLABO receiptが全必須identity、revision、scope、state、verification、人確認、data-use class、未完義務で一致する。同じresultを変更・補完しない。
 - **LABO-057-AC-02 — 受領義務**：CONNECT契約と明示human receiptを独立した代替方式として扱う。いずれか一方式が契約/schema version・scopeの照合、acknowledgment、trace、dedupe、stale停止、same-ID retryと未完義務保持を証明すれば、同一義務を満たす受領根拠となる。片方の方式が不在またはunknownであることだけでは、他方の有効な方式による受領成立を妨げない。両方式が不在/unknownで有効な証拠がない場合は受領成功を主張しない。
-- **LABO-057-AC-03 — fail-closedと戻し先**：一方の方式のreceipt欠落/不一致、stale revision、または契約unknownはその方式の根拠として数えず、もう一方の有効な方式が同一義務を満たす場合はその方式で受領を成立させられる。両方式とも不在/unknown/不整合で有効な根拠がない場合、または共通のsource identity/送達、scope/stateに不一致がある場合は受領成立を主張せず、元resultと未完義務を保持する。source identityまたは送達の不一致はOSへ戻し、受信側receiptとの不一致はOS/LABOへ戻す。受領schema/classification不一致はLABOまたはSECURITYへ戻す。027だけで接続依存を満たさない。
+- **LABO-057-AC-03 — fail-closedと戻し先**：方式固有の証拠（選択CONNECT契約の有効性/版、human receipt自体）の欠落・不一致・unknownはその方式の根拠に数えない。もう一方の有効な方式は、方式固有証拠の問題だけなら同一義務を満たす根拠になり得る。ただし、共通のsource identity/送達・scope/stateが不一致、送信receiptとLABO受領receiptが不一致、またはresult revisionがstale/改変されている場合は、どちらの方式でも受領成立を主張せず、元resultと未完義務を保持する。source identity/送達不一致はOS、送信/受領receipt不一致はOS/LABOへ戻す。受領schema/classification不一致はLABOまたはSECURITYへ戻す。027だけで接続依存を満たさない。
 - **LABO-057-AC-04 — receipt返却と履歴化先**：成立した受領ではLABOが受領receiptを返し、後続の履歴化先を示す。受領receiptと履歴化先の対応が追跡できることを確認し、接続・配送成功自体から評価済み水準、資格、配置判断を作らない。assignmentはOSの責務のまま保持する。
 
 ### 旧source項目別dispositionと対の層

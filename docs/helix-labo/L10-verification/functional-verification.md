@@ -137,7 +137,7 @@ input observation identity/source revision；episode candidate identityとrelati
 - **L10-LABO-057-CASE-03 negative identity mutation** — ticket/task/assignment/attempt/Worker identityを一度に1項目ずつ欠落または変更。期待：不成立、元result/未完義務を保持しOSへ。確認 LABO-057-AC-01, LABO-057-AC-03。
 - **L10-LABO-057-CASE-04 negative request/contract revision** — request revisionとcontract/schema revisionを独立fixtureでstale化する。期待：request/source revision不足はOS、contract/schema不足はLABOへ戻し、どちらも受領成立にせず未完義務を保持する。delivery identity不一致はCASE-22、送受receipt不一致はCASE-23で別判定する。確認 LABO-057-AC-01, LABO-057-AC-03。
 - **L10-LABO-057-CASE-05 negative scope mutation** — scopeだけ変更。期待：別scope receiptを流用せず不成立、OSへ。確認 LABO-057-AC-01, LABO-057-AC-03。
-- **L10-LABO-057-CASE-06 negative result/verification mutation** — result state、verification state、人確認receiptを各独立fixtureで欠落/改変。期待：不一致を止め成功補正なし。送受result/verification/人確認receipt不一致はOS/LABOへ戻し、schema/classification問題はLABO/SECURITYへ戻す。確認 LABO-057-AC-01, LABO-057-AC-03。
+- **L10-LABO-057-CASE-06 negative result/verification mutation** — result state、result revisionのstale/改変、verification state、人確認receiptを各独立fixtureで欠落/改変する。期待：共通不成立としてどのreceipt方式でも受領を成立させず、stale/改変結果を成功補正しない。送受result/revision/verification/人確認receipt不一致はOS/LABOへ戻し、schema/classification問題はLABO/SECURITYへ戻す。確認 LABO-057-AC-01, LABO-057-AC-03。
 - **L10-LABO-057-CASE-07 negative data-use mutation** — data-use classだけ欠落/不一致。期待：許可判定を代行せず保留、SECURITY/contract ownerへ。確認 LABO-057-AC-01, LABO-057-AC-03。
 - **L10-LABO-057-CASE-08 negative unfinished duty erased** — 未完義務だけreceiptから除く。期待：不成立、元義務を保持。確認 LABO-057-AC-01, LABO-057-AC-03。
 - **L10-LABO-057-CASE-09 negative ack absent** — CONNECT契約とhuman receiptを別fixtureにし、各々ackだけ欠落。期待：どちらも未受領としてretry/未完義務保持。確認 LABO-057-AC-02, LABO-057-AC-03。
@@ -154,7 +154,7 @@ input observation identity/source revision；episode candidate identityとrelati
 - **L10-LABO-057-CASE-20 negative human receipt absent** — 他条件と有効なCONNECT contract fixtureを固定し、human receiptだけを不在にする。期待：human receipt方式を成立根拠に数えず、有効なCONNECT contractにより受領成立する。確認 LABO-057-AC-02, LABO-057-AC-03。
 - **L10-LABO-057-CASE-21 negative human receipt unknown** — 他条件と有効なCONNECT contract fixtureを固定し、human receiptの有効性だけunknownにする。期待：human receipt方式を成立根拠に数えず、有効なCONNECT contractにより受領成立する。確認 LABO-057-AC-02, LABO-057-AC-03。
 - **L10-LABO-057-CASE-22 negative source/delivery mismatch** — source identityとdelivery identityだけ不一致にし、受領receipt一致は保つ。期待：OSへ戻し、受領成立にしない。確認 LABO-057-AC-03。
-- **L10-LABO-057-CASE-23 negative send/receive receipt mismatch** — sourceとdeliveryは一致、送信receiptと受領receiptだけ不一致にする。期待：OS/LABOへ戻し、原記録と未完義務を保持する。確認 LABO-057-AC-03。
+- **L10-LABO-057-CASE-23 negative send/receive receipt mismatch** — sourceとdeliveryは一致、送信receiptと受領receiptだけ不一致にする。期待：接続・受領を成立扱いせず、受領成功を主張しない。OS/LABOへ戻し、原記録と未完義務を保持する。確認 LABO-057-AC-03。
 - **L10-LABO-057-CASE-24 normal receipt return/history destination** — CONNECT契約とhuman receiptを別々の正常fixtureで成立させる。期待：LABO受領receiptを返し、後続の履歴化先を各方式で示して追跡できる。評価済みへの昇格やassignmentはしない。確認 LABO-057-AC-04。
 - **L10-LABO-057-CASE-25 negative neither method establishes receipt** — 3つの独立subfixtureを与える：(a) CONNECT contractとhuman receiptがともに不在、(b) ともにunknown、(c) 一方が不在で他方がunknown。期待：いずれも有効な方式がなく、受領成功を主張せず未受領と元の未完義務を保持する。各subfixtureは他条件を固定し、片方式だけ有効なCASE-18〜21と区別する。確認 LABO-057-AC-02, LABO-057-AC-03、固定L11:154。
 
