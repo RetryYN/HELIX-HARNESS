@@ -223,7 +223,7 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 
 ## Stage 4 — 1.0接続15親の総合検証
 
-状態: 未実行のL10設計候補。各CASEは固定633 L2/L11 parentとR2187-01の内容oracleに束縛し、PR/review/implementation/approvalから受入を生成しない。HARNESS-L2-010/011共通packは固定L2に共通pack句を持たない017では、packを消費する場合の補助検証として消費時だけ、036・039および他の固定親では各operationに常時適用する。これを個別sourceの選択条件へ弱めない。
+状態: 未実行のL10設計候補。各CASEは固定633 L2/L11 parentとR2187-01の内容oracleに束縛し、PR/review/implementation/approvalから受入を生成しない。 各04表のA/B列挙は各fieldを別runで一変数ずつunknownにする。行IDはfixture family識別子とし、各runは選んだfieldを記録して区別する。同時変異や1runへの束ね、分母重複をしない。HARNESS-L2-010/011共通packは固定L2に共通pack句を持たない017では、packを消費する場合の補助検証として消費時だけ、036・039および他の固定親では各operationに常時適用する。これを個別sourceの選択条件へ弱めない。
 
 ### CASE-INT-017-01 — source-bound正常（AC-INT-017-01）
 
@@ -238,7 +238,7 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 
 ### CASE-INT-017-02 — 親固有fieldの独立negative（AC-INT-017-02）
 
-各行をCASE-INT-017-01の同一入力から作り、他fieldは有効な正常値に固定して一変数だけを変える。
+各行をCASE-INT-017-01の同一入力から作り、他fieldは有効な正常値に固定して一変数だけを変える。 固定L11:92の別owner代替反例は017-02h/02nに加え、permissionはCASE-INT-036-02h、acceptanceはCASE-INT-039-02c/02d/02fへtraceし、同一fixtureを重複分母へ入れない。
 
 | CASE | 単独変異 | 期待結果・戻し先 |
 |---|---|---|
@@ -250,7 +250,8 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 | `CASE-INT-017-02f` | 実行時点で有効だったpermissionの後日失効だけを根拠に、過去の有効証拠を無効として棄却する | 不合格。後日失効を遡及させず、実行時点の有効証拠と過去の完了判定を保持する。 |
 | `CASE-INT-017-02g` | 四段階のsource/revisionを一つへ統合 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、該当する各source ownerへ戻す。他の正常source/operationは維持する。 |
 | `CASE-INT-017-02h` | 修復candidateに包括write authorityを付与 | 包括write authorityを拒否し、SECURITY permission/isolationとWorker実行・HARNESS検証・OS検収それぞれの既存owner責務を保持する。 |
-| `CASE-INT-017-02i` | 実行時点ですでに期限切れまたはrevokedのpermissionで実行 | 操作を実行可能にせず、完了扱いしない。SECURITY permission/isolation ownerへ戻す。 |
+| `CASE-INT-017-02i` | 実行時点ですでに期限切れのpermissionで実行（revokedは別CASE-INT-017-02o） | 操作を実行可能にせず、完了扱いしない。SECURITY permission/isolation ownerへ戻す。 |
+| `CASE-INT-017-02o` | 実行時点permissionの状態だけをrevokedにする。他のtarget/scope/期限/receiptは正常 | 当該操作を実行可能/完了扱いせずSECURITY permission/isolation ownerへ戻す。他の有効段階証拠を保持する。 |
 | `CASE-INT-017-02j` | Worker result target revisionだけを別revisionへ変更 | 当該Worker証拠を不一致として完了から除外し、Worker execution/result ownerへ戻す。 |
 | `CASE-INT-017-02k` | HARNESS検証対象revisionだけを別revisionへ変更 | 当該検証証拠を不一致として完了から除外し、HARNESS verification ownerへ戻す。 |
 | `CASE-INT-017-02l` | OS検収対象revisionだけを別revisionへ変更 | 当該検収証拠を不一致として完了から除外し、OS acceptance ownerへ戻す。 |
@@ -598,6 +599,9 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 | `CASE-INT-034-02i` | LABO historyだけを入力にINTELLIGENCEが現在のOS assignmentを書き換える | 不合格。照合をLABO evaluation ownerへ戻し、現在割当はOSに残して変更しない。 |
 | `CASE-INT-034-02j` | Bench evaluation source identityだけを別sourceへ変える | 当該Bench評価を対象Workerの適格証拠にせずLABOへ戻す。他の同scope正常評価を保持する。 |
 | `CASE-INT-034-02k` | 索引：Bench評価scopeの別Worker/modelへの流用 | CASE-INT-034-02cで照合し、この行を独立fixture/分母へ重複算入しない。 |
+| `CASE-INT-034-02l` | 同scope LABO原結果がsuccessと分かる正常入力から結果値だけfailureへ反転し、identity/revision/evidenceは保持する | 原結果との不一致を検出し判断evidenceへ使わずLABO evaluation ownerへ戻す。原結果と他の有効材料は保持する。 |
+| `CASE-INT-034-02m` | 同scope LABO正常評価packetからsuccess/failure結果値だけを欠落させる。他のsource/revision/scope/evidenceは有効 | 欠落値をunknown/未評価として保持し、判断evidenceへ使わずLABO evaluation ownerへ戻す。値を成功/失敗へ補完しない。 |
+| `CASE-INT-034-02n` | 同scope LABO原結果がfailureと分かる正常入力から結果値だけsuccessへ反転し、identity/revision/evidenceは保持する | 原結果との不一致を検出し判断evidenceへ使わずLABO evaluation ownerへ戻す。failure原結果と他の有効材料は保持し、過去失敗を成功へ変換しない。 |
 
 ### CASE-INT-034-03 — 未見入力の親oracle（AC-INT-034-03）
 

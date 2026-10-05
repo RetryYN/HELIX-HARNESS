@@ -296,3 +296,5 @@ C13-M10、C13-M7、C13-M12 audit-record correction、Minor INT-010、Minor INT-0
 - AC-INT-045-04 (unknown/未宣言): CASE-INT-045-04a〜gでtarget identity、owner不明、source identity/revision/scope、meaning-conflict evidence、connector contractを個別に保持する。Product Core対象が未識別ならowner名だけでrouteせずunroutedにし、connector不明だけはCONNECT ownerへ戻す。
 - 旧source参照: LEGACY-ASSET-9B6FC1ED349F96394497 (archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/bugbot-generation-requirements.md:18–70)；LEGACY-ASSET-658FF8439F9F8E694710 (archive/legacy-generation-2026-09-14/root/docs/test-design/helix/bugbot-generation-acceptance.md:31–41)。
 - 旧source disposition: 旧BBG-R03 false claim/scope expansionおよびAC03 negative oracleを再導出。旧CLI/generator/direct writebackは移さない。
+
+**review06 trace補足**：017の固定L11:92のpermission/acceptance代替はCASE-INT-036-02hとCASE-INT-039-02c/02d/02fにも結び、017-02oはrevokedを期限切れ02iと独立化する。034-02l/02m/02nはAC-INT-034-02の原success/failure結果値の両方向反転/欠落を単独照合する。041のL11:278「未知版」はcompatibility unknown/未宣言の03bへ対応する。L11:260の共通範囲条件と固定L2:314のdeclared compatibility契約を適用し、宣言範囲内と既知の未fixture版03aを拒否しない。
