@@ -1,0 +1,192 @@
+{
+  "record_type": "root acceptance at exact revision",
+  "authority_effect": "none",
+  "body_revision": "da4876c86aa60edaa84a326297c5f3ae4207186e",
+  "worker_audit": {
+    "path": "docs/governance/audits/requirements-stage/intelligence-stage5-review02-correction-2026-10-06.json",
+    "sha256": "4318bbc8e655e680dcb5da0f8ad8988541659fa5617222dcd53815d06ca7ad07"
+  },
+  "read_scope": "Worker changed prose diff fully read; fixed L2 affected clauses read; 59 fixed source pins independently recalculated. Legacy source meaning follows prior read scope; pin equality alone is not semantic reading.",
+  "root_correction": "AC-INT-069-08 failure routing aligned to fixed L2:526: model owner for schema/transition/domain; source owner for observation/inference; normal calculation insufficiency stays unknown; scenario author only for selected validation oracle insufficiency.",
+  "canonical_documents": [
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "body_revision": "da4876c86aa60edaa84a326297c5f3ae4207186e",
+      "full_sha256": "e681e6d88428a0cf805b31187908c29e1226a994269cd348cff6f49963de382a",
+      "full_bytes": 205240,
+      "main_revision": "190d23aac79ee24b78e3666aae5506a5d85a45b5",
+      "main_prefix_bytes": 170428,
+      "main_prefix_sha256": "24f00c4e7c4e3415aac73116851c1d5d953688a741bf6d3bd400171c7177670f",
+      "suffix_bytes": 34812,
+      "suffix_sha256": "f06fe28c61097b98390add4d1d5c66789fea90d5cef3fc722da08865023c91b9",
+      "suffix_rule": "all bytes after exact main prefix; no LF removal"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "body_revision": "da4876c86aa60edaa84a326297c5f3ae4207186e",
+      "full_sha256": "e4e152a7e6ed6346379adb6904d53e5daf627f39d17ffe193120e31786392ce6",
+      "full_bytes": 25859,
+      "main_revision": "190d23aac79ee24b78e3666aae5506a5d85a45b5",
+      "main_prefix_bytes": 23581,
+      "main_prefix_sha256": "58432c78c93035c69cdb08ffe775d04c6339ef8ae26348f04024413279bab720",
+      "suffix_bytes": 2278,
+      "suffix_sha256": "5fb0c328790cbd97e0a70b54cd419821ed0f68fdaa64abb574417570257247db",
+      "suffix_rule": "all bytes after exact main prefix; no LF removal"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "body_revision": "da4876c86aa60edaa84a326297c5f3ae4207186e",
+      "full_sha256": "b17be1e9e30b5a559d2e230bc75f3962f2c04499b67f17ac11adde5a38c624d0",
+      "full_bytes": 57990,
+      "main_revision": "190d23aac79ee24b78e3666aae5506a5d85a45b5",
+      "main_prefix_bytes": 48516,
+      "main_prefix_sha256": "f5da5d569f483d36aed039b80e0aadeadf48715a4dd854e6f20a5949310ea0e6",
+      "suffix_bytes": 9474,
+      "suffix_sha256": "0b488033c1b9da433c84da4a9791c0d20378306c427749f22f70b4e7f90a6082",
+      "suffix_rule": "all bytes after exact main prefix; no LF removal"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "body_revision": "da4876c86aa60edaa84a326297c5f3ae4207186e",
+      "full_sha256": "5f90a6ca52950a473f3e7769d942d3be0960beb538ede4e294272ae22524fd7f",
+      "full_bytes": 701030,
+      "main_revision": "190d23aac79ee24b78e3666aae5506a5d85a45b5",
+      "main_prefix_bytes": 642259,
+      "main_prefix_sha256": "0ddcfb85e1fdafbb2aab6aed1bc16dfb49fd2554dedea4112f6aeef1283e78bd",
+      "suffix_bytes": 58771,
+      "suffix_sha256": "85b779622b806d9f79b3678583302927daaf06d34f7b0d42337caed75f07e140",
+      "suffix_rule": "all bytes after exact main prefix; no LF removal"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "body_revision": "da4876c86aa60edaa84a326297c5f3ae4207186e",
+      "full_sha256": "a91b52219d7453fde6277b1fb07994e96d9b31657e7af060b2006745f7d7f285",
+      "full_bytes": 29560,
+      "main_revision": "190d23aac79ee24b78e3666aae5506a5d85a45b5",
+      "main_prefix_bytes": 27701,
+      "main_prefix_sha256": "3bae5af7db872ec2eca907f7a51d48b22c6c2637aaef8b7a54e5c6f9555fc59f",
+      "suffix_bytes": 1859,
+      "suffix_sha256": "cf4e7e9ad71277ee779b906515c5c59a17de06231ae44d9c71ceb15edfc94071",
+      "suffix_rule": "all bytes after exact main prefix; no LF removal"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "body_revision": "da4876c86aa60edaa84a326297c5f3ae4207186e",
+      "full_sha256": "75a8fc076c1542095766a58b469d2db596b40f49603c9317ff39f35be1d727df",
+      "full_bytes": 53130,
+      "main_revision": "190d23aac79ee24b78e3666aae5506a5d85a45b5",
+      "main_prefix_bytes": 44908,
+      "main_prefix_sha256": "2b6cbaad0292ba16df5ba65458779d2c9abc8c1f36298141d736df945e8d7029",
+      "suffix_bytes": 8222,
+      "suffix_sha256": "6bbf8a2eb94b197da0fc493706595c544b6b1e0b110616a3d55839449010a1b6",
+      "suffix_rule": "all bytes after exact main prefix; no LF removal"
+    }
+  ],
+  "fixed_source_pins_verified": 59,
+  "out_of_bounds_old_pin_withdrawn": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "physical_lines": [
+        113,
+        145
+      ],
+      "line_count": 87,
+      "prior_span_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": "retracted: out of bounds"
+    }
+  ],
+  "case_census": {
+    "fv_definition_rows": 303,
+    "unique": 303,
+    "explicit_alias_rows": 20,
+    "excluded_legacy_rows": [
+      "CASE-INT-063-02d"
+    ],
+    "individual_or_unmarked_rows": 282,
+    "note": "282 is a format count, not an independently established semantic coverage count.",
+    "alias_map": {
+      "CASE-INT-063-02g": [
+        "CASE-INT-063-04g",
+        "CASE-INT-063-04h"
+      ],
+      "CASE-INT-074-02e": [
+        "CASE-INT-074-05q",
+        "CASE-INT-074-05r"
+      ],
+      "CASE-INT-074-02f": [
+        "CASE-INT-074-05s",
+        "CASE-INT-074-05u"
+      ],
+      "CASE-INT-077-03f": [
+        "CASE-INT-077-03d",
+        "CASE-INT-077-03e",
+        "CASE-INT-077-03h",
+        "CASE-INT-077-03i",
+        "CASE-INT-077-03j"
+      ],
+      "CASE-INT-077-03k": [
+        "CASE-INT-077-05b"
+      ],
+      "CASE-INT-077-03l": [
+        "CASE-INT-077-05c"
+      ],
+      "CASE-INT-077-03m": [
+        "CASE-INT-077-05d"
+      ],
+      "CASE-INT-060-05a": [
+        "CASE-INT-060-06a"
+      ],
+      "CASE-INT-060-05b": [
+        "CASE-INT-060-06f"
+      ],
+      "CASE-INT-060-05c": [
+        "CASE-INT-060-06i"
+      ],
+      "CASE-INT-060-05d": [
+        "CASE-INT-060-06l"
+      ],
+      "CASE-INT-062-04b": [
+        "CASE-INT-062-05a"
+      ],
+      "CASE-INT-062-04c": [
+        "CASE-INT-062-02d"
+      ],
+      "CASE-INT-062-04g": [
+        "CASE-INT-062-02g"
+      ],
+      "CASE-INT-070-08a": [
+        "CASE-INT-070-05c"
+      ],
+      "CASE-INT-074-05y": [
+        "CASE-INT-074-05j"
+      ],
+      "CASE-INT-071-05f": [
+        "CASE-INT-071-04f"
+      ],
+      "CASE-INT-071-05h": [
+        "CASE-INT-071-04g"
+      ],
+      "CASE-INT-077-06e": [
+        "CASE-INT-077-05w"
+      ],
+      "CASE-INT-077-06f": [
+        "CASE-INT-077-05v"
+      ]
+    },
+    "nfr_definition_rows": 27
+  },
+  "static_checks": {
+    "scfctl_validate": {
+      "bindings": 147,
+      "fail": 0
+    },
+    "stale": 0,
+    "residuals": 0,
+    "govcheck": "ok atoms=7622 requirements=57 files=58",
+    "diff_check": 0,
+    "trial_merge": 0
+  },
+  "pending": [
+    "Claude exact HEAD independent review and delegated agreement; no approval or Ready generated"
+  ]
+}
