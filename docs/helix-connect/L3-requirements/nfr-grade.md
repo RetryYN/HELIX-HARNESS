@@ -14,3 +14,12 @@
 
 
 旧NFR `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/nfr-grade.md:1–73`（asset `LEGACY-ASSET-8CC5ABFC98C0D00183CA`、SHA-256 `ba57990cf5343e9d4ad42ca8c2340d76c80e6e1c23085ba5e496d8014acf3fc3`）から候補・測定・受入の対応形式を意味再導出する。旧projectionのgrade・memory件数/文字数・verification timeout・confidence・approval snapshot値は継承せず、今回の固定親の接続単位・owner境界へ再導出する。理由は旧HELIXの運用・承認projectionとCONNECTの契約単位を混同しないためである。旧CLI/CI/Bunは使用しない。
+
+
+## Stage 2a 追加 — HELIXCONNECT-L2-006のみ
+
+| 候補ID / AC | 観測対象・値 | 根拠と比較 | L10での測定 |
+|---|---|---|---|
+| `CON-NFR-006` / `CONNECT-AC-006-01..04` | L11が列挙する4交換型すべてを独立照合（4/4）。固定側identity/契約revision変更0、非互換・unknown・stale時のsend/retry attempt 0、許可不足時のexchange/send/retry attempt 0、旧新revision混載0。未完operation/ACK/attempt/expiry/義務は交換前後receipt間で全て保持。 | 4型、互換時の固定側不変、失敗時停止、未完引継ぎは固定L2-006/L11-006の明示条件から採る。compatibility failureは片側交換後の照合で検出し得るため、交換自体を事前禁止せず送信・再送を0にする。交換開始禁止は該当する既存許可が不足するauthority反例に限る。共通latency、transport、compatibility range数値は親が定めていないため新しい値を置かず、端点ownerの宣言済み互換条件を入力する。これは測定候補で実装値やPO承認値ではなく、個別parameterごとの質問/gateを作らない。 | 4型ごとの固定側前後revisionと互換receiptを比較し、failure class別send/retry attempt、receipt継続field、scope・許可を観測する。根拠不足/比較不能はunknown/staleで停止する。 |
+
+この追加はStage 1のNFR rowsに変更を加えない。意味・scope・owner・versionを変える必要が生じた場合のみL2/POへ戻す。
