@@ -362,7 +362,7 @@ Stage 1 prefixはmain 28b3d3645e6298c159758700c2edd3d396c336f5の既存bytesを�
 | `CASE-HARNESS-L10-027-48` | FR-HARNESS-L3-027 / AC-HARNESS-L3-027-08 | 正常observationのaffected scopeだけを選択input scopeとmismatchにする。 | 不一致passを成立扱いせず選択sourceのinput ownerへ戻す。 |
 | `CASE-HARNESS-L10-029-67` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-02 | 028 comparison側のproductを正常に保ち、027抽出receipt側のproduct identityだけ別productへ変える。 | cross-product bundleを拒否し該当部分を保留し027抽出ownerへ再抽出を戻す。 |
 | `CASE-HARNESS-L10-026-58` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-02 | 同一正常tupleの他fieldを保持し、BRAIN connector契約版だけをunknownにする。 | 設計構成を未完として当該状態と理由を保持し、COREのBRAIN connector契約ownerへ戻す。他fieldから補完しない。 |
-| `CASE-HARNESS-L10-026-59` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-02 | 同一正常tupleの他fieldを保持し、HARNESS-L2-010/011 paired outputだけをstaleにする。 | 設計構成を未完として当該状態と理由を保持し、HARNESS-L2-010/011 pack ownerへ戻す。他fieldから補完しない。 |
+| `CASE-HARNESS-L10-026-59` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-02 | 同一正常tupleの他fieldを保持し、HARNESS-L2-010/011 pack契約版だけをstaleにする。 | 設計構成を未完として当該状態と理由を保持し、HARNESS-L2-010/011 pack ownerへ戻す。他fieldから補完しない。 |
 | `CASE-HARNESS-L10-026-60` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-02 | 同一正常tupleの他fieldを保持し、HARNESS-L2-009設計義務だけをunknownにする。 | 設計構成を未完として当該状態と理由を保持し、HARNESS-L2-009/template ownerへ戻す。他fieldから補完しない。 |
 | `CASE-HARNESS-L10-026-61` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-02 | 同一正常tupleの他fieldを保持し、HARNESS-L2-009設計義務だけをstaleにする。 | 設計構成を未完として当該状態と理由を保持し、HARNESS-L2-009/template ownerへ戻す。他fieldから補完しない。 |
 | `CASE-HARNESS-L10-026-62` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-02 | 同一正常tupleの他fieldを保持し、HARNESS-L2-009設計義務だけをmismatchにする。 | 設計構成を未完として当該状態と理由を保持し、HARNESS-L2-009/template ownerへ戻す。他fieldから補完しない。 |
