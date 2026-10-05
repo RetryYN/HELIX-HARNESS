@@ -1,0 +1,75 @@
+{
+  "record_type": "root-review02-acceptance-followup",
+  "body_revision": "9de523cf9a07db4746ad22d911f3393e5a223132",
+  "base_main_revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+  "previous_worker_audit": {
+    "path": "docs/governance/audits/requirements-stage/harness-stage2b-remainder-review02-correction-2026-10-06.json",
+    "sha256": "24b372aa3bd5b5c54df2a839246ad51a8500678969fc63b237242a67cdae3167"
+  },
+  "current_six_canonical_pins": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "body_revision": "9de523cf9a07db4746ad22d911f3393e5a223132",
+      "full_sha256_raw_lf": "4704f56ba1f2289593fd1a4e7fcb65df3ede397d8a3bdba76d0795e130b8aee0",
+      "prefix_revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+      "prefix_bytes": 111991,
+      "prefix_sha256_raw_lf": "b869de423632daaa4fcdebd5af5bd6a8aaea3c3d378d4c8cdec87bd95e092760",
+      "prefix_equal": true
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "body_revision": "9de523cf9a07db4746ad22d911f3393e5a223132",
+      "full_sha256_raw_lf": "a1c0ed86d63a523ebad07105ceb6dbbca602bb1bd3c6a76af5c8a9e10fbab4b2",
+      "prefix_revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+      "prefix_bytes": 7774,
+      "prefix_sha256_raw_lf": "b15d4bccf9261dd05f9f4ff6018c8ec922d13501a5fcfbf9df99075e4bc1a5b7",
+      "prefix_equal": true
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "body_revision": "9de523cf9a07db4746ad22d911f3393e5a223132",
+      "full_sha256_raw_lf": "94f4370d3de4fcf4ff6fb3bdc85c2583c6c98d4a0e170dd9527ad80ab77a4e10",
+      "prefix_revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+      "prefix_bytes": 27954,
+      "prefix_sha256_raw_lf": "a822b1db81e630f5e8c6900d899e18991da6e9ca40735dffacb0df740bf2fa9f",
+      "prefix_equal": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "body_revision": "9de523cf9a07db4746ad22d911f3393e5a223132",
+      "full_sha256_raw_lf": "c388d15201cfe5c497c4333aa7577484228d332d74b74cdedd298f037d570ff4",
+      "prefix_revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+      "prefix_bytes": 116281,
+      "prefix_sha256_raw_lf": "4fbe36227888ca2ba0b955d88d883d2c1a3eae832fd161f0fb3f9354b874d197",
+      "prefix_equal": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "body_revision": "9de523cf9a07db4746ad22d911f3393e5a223132",
+      "full_sha256_raw_lf": "788c690368c3be1721410f65d5970dad1731b8e79a0a5b7b80c26e3475698309",
+      "prefix_revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+      "prefix_bytes": 4395,
+      "prefix_sha256_raw_lf": "ee401cfd216fd3f3f14d329e21ef919f2be84887784d52067f5bb9113cd90812",
+      "prefix_equal": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "body_revision": "9de523cf9a07db4746ad22d911f3393e5a223132",
+      "full_sha256_raw_lf": "b75225c215520e69c60a3b6de074640296fefd4acbd4713f14a48758db764a32",
+      "prefix_revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+      "prefix_bytes": 20429,
+      "prefix_sha256_raw_lf": "d579f983194734093753d0361e7613dc28792d124421c40d703fc8c0b5e0625b",
+      "prefix_equal": true
+    }
+  ],
+  "root_read_extent": "正式comment5999928201全文・Worker変更5文書の全文差分と監査summaryを読んだ。新R022を含むNV範囲をRootが補正。旧source全量再読・未確認3群解消は主張しない。",
+  "case_count": 192,
+  "case_unique": true,
+  "nfr_020_range": "R001..R022",
+  "git_diff_check": "PASS",
+  "limitations": [
+    "正式reviewの未確認3群は継続",
+    "独立review・Fable合意・委任decision未成立",
+    "L10設計のみ、実行結果なし"
+  ]
+}

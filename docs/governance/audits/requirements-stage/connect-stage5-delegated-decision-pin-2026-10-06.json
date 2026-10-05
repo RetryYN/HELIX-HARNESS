@@ -1,0 +1,59 @@
+{
+  "record_type": "delegated_decision_pin",
+  "authority_effect": "none",
+  "body_revision": "af0c0641c9b6df37a0742bbb9325d868db3e815a",
+  "review_head": "0a6d7d45275da97d2deaa924e637ad1d67da53b1",
+  "base": "5acae384305b01d10e88eeb2e6406f847baf66df",
+  "formal_comment": {
+    "id": 6003274683,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2615#issuecomment-6003274683",
+    "bytes": 3442,
+    "sha256": "dbca06f94af25037412ab6c7c234a59670ddffae449806ea43cd645b2df5a55e",
+    "literal": "## review04（independent review、HEAD 0a6d7d45275da97d2deaa924e637ad1d67da53b1、body af0c0641c9b6df37a0742bbb9325d868db3e815a）\n\nreviewer: Claude（lane `review_merge`、Fable 5.1）。差分（FV 5行・FR 1行）はreviewer本人（Opus側）が固定親と照合し、Fable advisorが本revisionで43 CASE・FR-007・AC 4件を固定L2:128〜138／L11:74〜77・L2-005:111へ再照合。merge-base 5acae3843、main 14dbdb6ae（#2613 merge後）に対し `git merge-tree --write-tree origin/main HEAD` 衝突なし、6本文main prefix一致。\n\n### 静的検査（w2615 = exact HEAD）\n- scfctl validate 147/0、stale 0、residuals 0、govcheck ok、`git diff --check` 0。\n- Root記録 `connect-stage5-root-review03-correction-2026-10-06.json` pin 8/8（6本文SHA・L2 full SHA・review03 comment 6003010494 SHA）一致。6本文はbody af0c0641cと同一bytes。CASE 43一意・6列。\n\n### review03所見の解消\n- **m1解消**：FR:226・FV:358のlocatorを「L2-007:136が依存する…L2-005:111」「L2-007:137の経路」へ（f6dad2a33：134入力／135出力／136依存／137戻し先、L2-005:111戻し先を実測）。\n- **m2解消**：CASE-007-01 oracleに「再送境界・終端結果」、CASE-007-02に「各辺の再送境界・終端結果を構成体traceから辿れることを確認する」（L2:130）。\n- **m3解消**：CASE-007-36／37の戻し先は「元業務owner／承認主体」のみ。「送信許可はSECURITY」はCASE-38だけに残る。\n- Root記録md「旧review02 MDの135/136記述は誤りとして本追補で訂正し、過去bytesは保持」はappend-only方針と整合。\n\n### Fable見解（advisor、本文af0c0641c・HEAD 0a6d7d452、差分・固定親行実測・43 CASE再照合・監査JSON SHA照合）\n結論行（原文のまま）：「**承認してよい。**」。「前回Minor 3件（m1〜m3）は本revisionで全て閉じており、新たな矛盾は見つからなかった。付随所見はMinor 1件（非blocker、承認を止めない）」。付随所見：FR:226のSECURITY系導出注記がCASE-40のみを名指しし、同じL2-005:111を根拠とするCASE-13/26/38を挙げていない（戻し先自体は固定親の範囲内で、c9deffa1f時点から同文。記述の網羅性の問題、次の意味変更時に併せて直す運用を推奨）。\n\n### Opus側判定\n所見なし。未確認範囲なし（review01〜04で43 CASE・AC 4件・NFR・BR/BV・監査3件・隣接旧source 2件・token再計数まで照合）。Fableの付随所見は戻し先の妥当性を変えない注記の網羅性であり、本文変更を要求しない（次回の本文変更時に併記）。\n\n### 委任承認条件の状態（docs/governance/github-upstream-operating-model.md「L3／L10承認の委任」）\n- 条件1（Opus `no_findings`・未確認範囲0）：本commentで成立（HEAD 0a6d7d452、本文af0c0641c）。\n- 条件2（Fable「承認してよい」）：本commentに原文で記録。\n- 条件3（6本文bytes不変）：作成側が判断記録（`decider_role: PO（委任：Opus・Fable一致）`、対象revision af0c0641c、6本文SHA、本comment ID/SHA、Fable見解の所在）を追加した後、reviewerが6本文SHA・本comment SHA・委任規則SHA・判断記録SHAを照合し、最新main（14dbdb6ae以降）との試験merge→Ready→明示mergeへ進む。本commentはmerge admissionを生成しない。\n"
+  },
+  "delegation": {
+    "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+    "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220"
+  },
+  "rule": {
+    "path": "docs/governance/github-upstream-operating-model.md",
+    "sha256": "eed2b774bb78545ac53c7d55f3ae3ab4e9c4f421b4eaf3ac3bcdbcdd869dd27b"
+  },
+  "documents": [
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.md",
+      "sha256": "ecfe151650418d88e69726d3102f542bb43e75faeb8737224f1e04c4181dfec0",
+      "bytes": 1950
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "sha256": "fdff7c3edba7be7c7a169a92c72b1befe697dc3c3af39ec7733315ec20fa2d2f",
+      "bytes": 100547
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "sha256": "9efc5ddc902da565ad3d1295b2088ade1e7ab3427f1b4206ff3d4686a1197e48",
+      "bytes": 8472
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.md",
+      "sha256": "3ff964c1b762c9f67228214d62df5e208d0e0ab5bd4f2ffb57b26f8684ebd925",
+      "bytes": 2305
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "sha256": "85e3186fbb82d8f61a12351f567a118850b856473b7928a334cea1e5f28464a4",
+      "bytes": 52326
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "sha256": "8becd7af6701e3de40a300c617aa3eca2d0214a867a2685b8615efcf8b7582aa",
+      "bytes": 9340
+    }
+  ],
+  "decision": {
+    "path": "docs/governance/decisions/helix-connect-stage5-l3-l10-po-decision-2026-10-06.md",
+    "sha256": "60b514a280f3f599a6961c29341bc699f102f7ec2099aeac9c41ca39b1164ae8"
+  },
+  "six_documents_byte_unchanged": true
+}
