@@ -8,13 +8,13 @@
 
 固定親 `HELIXINTELLIGENCE-L2-010`（version target 1.0）の業務上の成果は、task属性と適用scope内の実績に基づく配置候補を作り、根拠・除外・未評価を明らかにすること。実assignment・進行はOS、観測実績/HELIX-Bench評価はLABO、候補判断はINTELLIGENCEの責務として分ける。候補が無い、または根拠が不足するときは、確定配置を作らず親のL2で指定したownerへ戻す。
 
-Acceptance/evidenceは `functional-requirements.md` のFR-INT-010およびAC-INT-010-01, AC-INT-010-02, AC-INT-010-03, AC-INT-010-04, AC-INT-010-05, AC-INT-010-06、`../L10-verification/functional-verification.md` のCASE-INT-010-01, CASE-INT-010-05, CASE-INT-010-06, CASE-INT-010-02a, CASE-INT-010-02b, CASE-INT-010-02c, CASE-INT-010-03a, CASE-INT-010-03b, CASE-INT-010-04a, CASE-INT-010-04b, CASE-INT-010-04c, CASE-INT-010-04d, CASE-INT-010-04e, CASE-INT-010-04f, CASE-INT-010-04g, CASE-INT-010-04h, CASE-INT-010-04i, CASE-INT-010-04j, CASE-INT-010-04kを正本とする。ここでは新しいbusiness owner、成功KPI、配置決定、候補選択gateを追加しない。
+Acceptance/evidenceは `functional-requirements.md` のFR-INT-010およびAC-INT-010-01〜07、`../L10-verification/functional-verification.md` のCASE-INT-010-01, CASE-INT-010-05, CASE-INT-010-06, CASE-INT-010-02a〜02h, CASE-INT-010-03a〜03b, CASE-INT-010-04a〜04kを正本とする。ここでは新しいbusiness owner、成功KPI、配置決定、候補選択gateを追加しない。
 
 ## BR-INT-066 — 人代行時もproposalとassignmentを分離
 
 固定親 `HELIXINTELLIGENCE-L2-066`（version target 1.0）の業務上の成果は、INT runtimeが使えない経路でも人の暫定案を既存L2-010 proposal contractに沿って入力・受領可能にし、originと根拠の状態を保つこと。人手案がINTの生成物や評価実績と誤認されず、OSの受領・別個のassignment判断と、LABOの評価責務を侵さないことを示す。
 
-Acceptance/evidenceは `functional-requirements.md` のFR-INT-066およびAC-INT-066-01、AC-INT-066-02、AC-INT-066-03、AC-INT-066-04、AC-INT-066-05、AC-INT-066-06、AC-INT-066-07、`../L10-verification/functional-verification.md` のCASE-INT-066-01、CASE-INT-066-02、CASE-INT-066-03a、CASE-INT-066-03b、CASE-INT-066-04a、CASE-INT-066-04b、CASE-INT-066-05a、CASE-INT-066-05b、CASE-INT-066-05c、CASE-INT-066-05d、CASE-INT-066-05e、CASE-INT-066-05f、CASE-INT-066-05g、CASE-INT-066-05h、CASE-INT-066-05i、CASE-INT-066-05j、CASE-INT-066-05k、CASE-INT-066-06a、CASE-INT-066-06b、CASE-INT-066-07を正本とする。人代行入力はINT実装稼働の前提ではなく、新規のmanual approval段階も追加しない。
+Acceptance/evidenceは `functional-requirements.md` のFR-INT-066およびAC-INT-066-01〜08、`../L10-verification/functional-verification.md` のCASE-INT-066-01、CASE-INT-066-02、CASE-INT-066-03a、CASE-INT-066-03b、CASE-INT-066-04a、CASE-INT-066-04b、CASE-INT-066-04c、CASE-INT-066-04d、CASE-INT-066-05a〜05t、CASE-INT-066-06a〜06f、CASE-INT-066-07、CASE-INT-066-08a、CASE-INT-066-08bを正本とする。人代行入力はINT実装稼働の前提ではなく、新規のmanual approval段階も追加しない。
 
 ## 旧sourceとの差分
 
