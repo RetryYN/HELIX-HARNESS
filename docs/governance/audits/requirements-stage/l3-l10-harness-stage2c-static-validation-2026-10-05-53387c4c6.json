@@ -1,0 +1,815 @@
+{
+  "title": "HARNESS Stage 2c 030/031/032 L3/L10 paired authoring static record",
+  "record_kind": "作成側の時点監査・PO提示要約",
+  "authority_effect": "none",
+  "status": "creator_static_checked_exact_head_independent_review_and_PO_L3_decision_pending",
+  "base_revision": "8361b16f556cabd5dbaa646ab95045792db3a367",
+  "body_commit": "53387c4c6b08a6cee8766affda815f4c60829106",
+  "scope": {
+    "mechanism": "HELIX-HARNESS",
+    "stage": "Stage 2c",
+    "parents": [
+      "HARNESS-L2-030",
+      "HARNESS-L2-031",
+      "HARNESS-L2-032"
+    ],
+    "parent_count": 3,
+    "target_version": "1.0 target candidates only; no release inclusion",
+    "prefix_policy": "Six existing canonical document prefixes at base revision remain byte-identical; suffix-only change."
+  },
+  "po_summary": {
+    "adoption_basis_main": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "po_decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+    "rows": {
+      "030": 59,
+      "031": 60,
+      "032": 61
+    },
+    "population_distinction": "Stage2c全版 adopted=10; 1.0 subset=8. PO案Bの最初の1.0組=6（HARNESS030/031/032、INTELLIGENCE068、OS028/029）。今回の3親だけを起草。別枠INTELLIGENCE075/SECURITY031は対象外。",
+    "stage_prerequisites": {
+      "030": [
+        "HARNESS-L2-010",
+        "HARNESS-L2-014",
+        "HARNESS-L2-022"
+      ],
+      "031": [
+        "HARNESS-L2-010",
+        "HARNESS-L2-022"
+      ],
+      "032": []
+    },
+    "version_note": "version_target 1.0はrelease inclusionではない。個別親の意味・scope・owner・版は固定sourceのまま。"
+  },
+  "authority_boundary": {
+    "fixed_l2_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "fixed_l11_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "l2_source_span": "product-requirements.md:607-666, 667-689",
+    "l11_source_span": "product-acceptance.md:408-431",
+    "stage1_stage2a_drafts": "unapproved_context_only_not_authority_or_required_dependency",
+    "l3_approval": "not_created",
+    "release_or_implementation_permission": "not_created",
+    "033": "separate composite parent; no all-033 end-to-end acceptance imported into 030/031/032",
+    "business": "no independent business requirement/oracle/owner/value threshold added"
+  },
+  "legacy_disposition": [
+    {
+      "asset_id": "LEGACY-ASSET-F542125805B777D8A56A",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "span": "148-168",
+      "full_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "disposition": "旧3区分・FR/ACと対検証の形を再導出。G3/runtime/sub-gateおよび旧L10/L12 pairingを置換。engineering discipline163-165は対象親にないため継承しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-9A772391C7FB1298D45F",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md",
+      "span": "16-56",
+      "full_sha256": "949b0da00d2a417e1b36d3679b89735de7adadf831f567dbe383dfe6337f19e4",
+      "disposition": "旧3文書の区分・対応構造を再導出し旧L12 pairingを置換。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-B5B5E71B2AF1459D59A1",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+      "spans": [
+        "95-118",
+        "119-148",
+        "454-477",
+        "478-501",
+        "574-612"
+      ],
+      "full_sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a",
+      "disposition": "FR-02/03 trace/test consideration、FR-16/25 failure/regression意味を親ごとに限定再導出。旧IDs/counts/runtime, production-only, GHA/G7 and numeric thresholds are replaced."
+    },
+    {
+      "asset_id": "LEGACY-ASSET-1B92155F959D7905DD1E",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L3-acceptance-test-design.md",
+      "spans": [
+        "26-40",
+        "100-104",
+        "105-107",
+        "121-126"
+      ],
+      "full_sha256": "27a92c3be07aa06b9e8a598b7b2b7bcc357ccb6afa876e27e45cd85e7f3d00c1",
+      "disposition": "正常・反例・境界のtest-pair形だけを再導出し、旧AT-ID、実行runner、旧L12 acceptanceを移さない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A6E2C7F0565E5F804F06",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md",
+      "spans": [
+        "21-37",
+        "84-104"
+      ],
+      "full_sha256": "99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d",
+      "disposition": "単一正本・適用範囲を記録する書式のみ参考とし、BR-21/HM-08/Learning Engine/KPI/ownerは移さない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-DB669724249A14A665F0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+      "span": "21-24",
+      "full_sha256": "2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d",
+      "disposition": "候補・根拠・測定・判定を一組で書く形を再導出。旧IPA grade/CI threshold/SLAは移さない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-73B5C6C7D281E28EC541",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L8-integration-test-design.md",
+      "span": "122-136",
+      "full_sha256": "c8b287ee4e103255081f00439b7fb2f3dfd259e0fb35a2760b48ad583524fe15",
+      "disposition": "fixture/mockの境界形のみ参考にし、old adapter/runtime/CIを実行・移植しない。"
+    }
+  ],
+  "source_pins": [
+    {
+      "kind": "current authoring layout rule",
+      "asset_id": null,
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "docs/governance/l3-l10-authoring-layout.md",
+      "full_file_sha256": "d1fb0c89df30aca6bb828f28e58329d57c40bb7593df540625562b5ac920a7ca",
+      "byte_length": 12199,
+      "physical_line_count": 71,
+      "physical_lines": [
+        1,
+        49
+      ],
+      "raw_lf_inclusive_span_sha256": "b518693c5ed9aa5b7ae6243f51d3e0d19db750a855c1dca4c1379c82bfdd9ae1",
+      "span_bytes": 6336,
+      "literal": "# L3要件・L10総合検証の配置と著述規則\n\n本書は、現行の本体8機構におけるL3要件と対となるL10総合検証の正本配置、および旧HELIX資産から初回起草するときの扱いを定める。これは配置・著述の規則であり、L2要求の意味、L3要件の承認、実装許可、実行許可を決めない。\n\n## 配置\n\n各機構の正本は、その機構の既存`docs/<mechanism>/`以下に置く。L3要件は`L3-requirements/`、L10総合検証は`L10-verification/`に分け、6文書を基本の対応単位とする。\n\n| 機構 | L3要件 | L10総合検証 |\n|---|---|---|\n| HELIX-HARNESS | `docs/helix-harness/L3-requirements/` | `docs/helix-harness/L10-verification/` |\n| HELIX-OS | `docs/helix-os/L3-requirements/` | `docs/helix-os/L10-verification/` |\n| HELIX-BRAIN | `docs/helix-brain/L3-requirements/` | `docs/helix-brain/L10-verification/` |\n| HELIX-LABO | `docs/helix-labo/L3-requirements/` | `docs/helix-labo/L10-verification/` |\n| HELIX-INTELLIGENCE | `docs/helix-intelligence/L3-requirements/` | `docs/helix-intelligence/L10-verification/` |\n| HELIX-SECURITY | `docs/helix-security/L3-requirements/` | `docs/helix-security/L10-verification/` |\n| HELIX-INFRASTRUCTURE | `docs/helix-infrastructure/L3-requirements/` | `docs/helix-infrastructure/L10-verification/` |\n| HELIX-CONNECT | `docs/helix-connect/L3-requirements/` | `docs/helix-connect/L10-verification/` |\n\nL3は旧HELIXの3区分を起点に、現行の対象と承認済みL2要求へ合わせて次の名前を使う。\n\n| L3文書 | 対応するL10文書 | 対応範囲 |\n|---|---|---|\n| `functional-requirements.md` | `functional-verification.md` | 機能要件、同じAC IDによる動作条件と総合検証 |\n| `business-requirements.md` | `business-verification.md` | 機構の業務上の要件とその観測・検証条件 |\n| `nfr-grade.md` | `nfr-verification.md` | NFR、根拠付きの候補値・閾値、計測と判定方法 |\n\n`business-requirements.md`は、旧実体`business-detail.md`を起点に、現行L3で機構の業務要件を示す統一名として再導出した名前であり、旧本文の移動や複製を意味しない。これはL2の要求分類や意味を変更しない。画面・技術設計など別の責務をこの3文書へ追加せず、適用する設計層へつなぐ。\n\n横断するACはL3文書を一つの正本箇所として定義し、親L2のexact identityと承認対象revisionへtraceする。関係するL3文書間で同じ条件を別ID・別文面で重複定義せず、L10からL3のACを参照する。L10はそのACを総合検証できる観測・oracle・判定へ結び、L3、L4〜L6の設計、対象revisionを参照する。L10から新しい要求やL3承認を作らない。\n\nここでいう「本体8機構」は対象機構の数であり、製品数ではない。HARNESS製品と各機構の責務は現在のConcept、対象別L1/L2、およびPOが確定したrevisionに従う。WebおよびWEB-OSの将来要件を1.0へ前倒ししない。\n\nここで確定するのは文書配置の判断である。まだ物理ディレクトリや空の文書を作らない。最初のL3本文を起草するとき、その本文と同時に対象機構の`L3-requirements/`と`L10-verification/`を作成する。旧G3の名称、runtime、sub-gate構成は移植しない。一方、FRとACの整合、L3/L10の対応、承認対象PO exact revisionへのtraceが揃わなければ、L3要件は完成扱いにしない。この完了条件に加えて通常のL3承認を超える新しいgateは設けず、人間承認は現在のauthority状態モデルと対象revisionが要求する範囲で扱う。\n\n## 旧資産の扱いと責務\n\n初回起草では旧HELIXのL3定義・旧L3文書を先に読み、各項目について「再利用」「再導出」「置換」のどれかと根拠を記録する。記録には旧ID、旧source path・行・SHA-256、現行の親L2 IDとrevision、現行owner、配置先、変更理由を含める。旧source IDは出自を辿るために保持し、旧番号を現行要件IDへ機械的に流用しない。現行の機構・要求・文書へ割り当てるIDと版の印は項目単位で管理し、将来版は`version_target`等の項目印で保持する。正本を`_vN`や日付付き複製に分けず、過去の本文はgit履歴で辿る。\n\n要求の親は、基準main `633bf12`時点で採択された374件の本体8機構L2要求と、そのPO採択対象revisionに限る。hold 5件とreject 5件からL3親要求を作らない。G0の版区分候補274件・後続版35件・Web条件付き3件・版未指定62件を区別し、適用条件と`version_target`を保持する。版未指定62件を1.0へ自動収載しない。これらの候補区分は実装・release許可を意味しない。\n\n「business」の分類とownerは、旧ファイルの名前や内容だけで決めない。現在のL2とPOが確定した意味に沿って項目ごとに割り当てる。たとえば、HARNESSは工程標準・工程契約と検証義務を持ち、HELIX-OSは登録・進行統制・実行結果の回収を持ち、HELIX-LABOは観測の評価と改善提案を持つ。旧`business-detail.md`のBR-21、Learning Engine、HM-08、旧runtimeの評価値や承認動作をHARNESSへ一括で移さず、現行ownerに従って再導出する。旧`nfr-grade.md`のIPA grade、placeholder値、閾値、旧CI・runtime・approvalは現行値として継承しない。必要な技術値は根拠を添えた候補として起草し、値ごとのPO確認を新設しない。\n\n要求の意味、適用範囲、owner、版を変える必要がある場合は、対応する上流L2へ差し戻してPO判断に上げる。技術値の候補化、測定方法の再導出、文書名・配置の整理だけを理由に新しいPO承認gateを作らない。旧sourceや旧test設計の実行結果は現行検証の証拠にしない。\n\n## 根拠\n\n旧sourceは再構築の起点として読む資料であり、その配置、承認状態、工程番号、実装方式を現行へ自動継承しない。以下の行番号は`archive/legacy-generation-2026-09-14/root/`からの相対pathである。SHA-256は旧source本文の値。\n\n"
+    },
+    {
+      "kind": "fixed HARNESS L2 parents and 033 contrast",
+      "asset_id": null,
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "full_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "byte_length": 138792,
+      "physical_line_count": 689,
+      "physical_lines": [
+        607,
+        626
+      ],
+      "raw_lf_inclusive_span_sha256": "7eb3e750715c8c229221fdf23374c5e9d5f1b29cbf6d70479b40ba9eb5cb7ccb",
+      "span_bytes": 4308,
+      "literal": "### HARNESS-L2-030 テストscenario・case・data・double生成（単体候補、version_target 1.0）\n\n- **所属候補（未採択）**：HELIX-HARNESS-CORE。利用先：case/data/double生成を選択する各サービス。Conceptの横断test/CIに対応する共有生成pack。014の対設計と022のoracle/検証義務を使用し、OS-020または利用者CIの実行責務を所有しない。 HARNESS-L2-010に従い主owner候補は一つとする。記載は所属採択・v0.1収載・実装許可を生成しない。\n\n**親L1**：`HARNESS-L1-001`, `HARNESS-L1-004`, `HARNESS-L1-005`, `HARNESS-L1-007`。HARNESS-L1-001は要求から検証までを対で追跡する企画、HARNESS-L1-004は対象revision/riskに合う検証義務・反例・証拠・戻し先、HARNESS-L1-005/007は外部利用とVersion 1の適用範囲を根拠とする。\n\n**種類と境界**：単体のversioned capability pack候補。`HARNESS-L2-014`が所有する対の設計と、`HARNESS-L2-022`が所有する検証・受入oracle/段階契約を具体的scenario/case/fixture候補へ写す。014の設計authorityや022のoracle/検証義務/stage/state/受入を置換・追加しない。HARNESS-L2-010が030のpack identity/version/依存境界、HARNESS-L2-011が呼出し時の入力/scope/互換性/receiptを所有する。生成caseの実行・結果収集は選択された`HELIXOS-L2-020`または利用者CIが行い、OS利用時のpacket接続は032を通す。execution result/consumer receiptは呼出し後の結果であり、030を開始する前提ではない。\n\n**受け取るもの**：対象artifact/API/state-transitionのrevisionとscope、承認済みL3要件、`HARNESS-L2-014`の対応する設計・対の検証設計、`HARNESS-L2-022`の適用oracle/期待observable behavior、選択したexternal contractおよびfixture/sourceの版。API/state仕様の記述だけから未定義の要求意味を補わない。\n\n**提供するもの**：安定case identity、case family/actor/precondition/操作列、再現可能なtest data、必要なexternal-service double contract、対象requirement/design/oracleとのtrace、適用範囲・source版・seedまたは生成入力、未生成/未確定条件の一覧。boundary、permission、cancel、orderingをcase familyとして扱う。doubleは選択された外部契約の限定stubであり、実サービス全体の同等性を主張しない。\n\n**依存区分**：\n- **常時必須**：対象revision/scope、承認済み要件と`HARNESS-L2-014`の対応設計、`HARNESS-L2-022`の適用oracle/検証義務契約、`HARNESS-L2-010/011`のpack/call version・依存・scope・receipt契約、case artifact identity/schema、source利用権限と対象data class。oracleまたは操作許可がunknown/missing/conflictなら該当caseを確定せず保留する。\n- **特定操作時のみ**：boundary case生成時は仕様で定義された境界、取消case生成時はstate transition上の取消可否、権限case生成時は承認済みactor/action permission、external double生成時は対象サービスの呼出し・失敗・副作用契約を要求する。選択されない操作familyは当該実行の必須条件ではない。\n- **選択した入力元に応じて必須**：選択したAPI schema/state model/design/oracle/external contractそれぞれのidentity、revision、互換性、対象scope。選ばれていないprovider・schema・patternは未観測として記録し、存在や適用可能性を推測しない。\n- **参照資料のみ**：背景説明、旧test例、過去のlog例など、今回の期待値・権限・適用範囲を決めない資料。承認済みrequirement、security permission、適用oracleはこの区分へ落とさない。\n\n**保証すること**：入力された規範とoracleへtraceできる候補を返し、根拠がない期待値・権限・境界は発明しない。同一の固定入力・source version・scopeからcase意味を再現できるよう、生成条件を記録する。生成caseの存在、件数、coverageは品質、欠陥不存在、実行成功の証拠としない。意味が未確定なら要求/契約ownerへ戻し、要求意味変更は`HARNESS-L2-003`/`HARNESS-L2-004`の戻し先に従う。\n\n"
+    },
+    {
+      "kind": "fixed HARNESS L2 parents and 033 contrast",
+      "asset_id": null,
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "full_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "byte_length": 138792,
+      "physical_line_count": 689,
+      "physical_lines": [
+        627,
+        646
+      ],
+      "raw_lf_inclusive_span_sha256": "19d6ff28d01af936ec7b01420a67326dc82b47c5001ad00a81540161ffecbb85",
+      "span_bytes": 4942,
+      "literal": "### HARNESS-L2-031 ログ・入力からの最小再現と回帰候補生成（単体候補、version_target 1.0）\n\n- **所属候補（未採択）**：HELIX-HARNESS共通部品。利用先：④開発・⑤リファクタリングのfailure、⑦運用保守のincident等。PO原文の障害を本番incidentだけへ限定せず、許可されたlog/inputから再現・回帰候補を共有提供する。CORE/022のoracle/traceと選択executorの隔離実行を保持する。 HARNESS-L2-010に従い主owner候補は一つとする。記載は所属採択・v0.1収載・実装許可を生成しない。\n\n**親L1**：`HARNESS-L1-001`, `HARNESS-L1-004`, `HARNESS-L1-005`, `HARNESS-L1-007`。`HARNESS-L1-004`の反例・証拠・戻し先と、`HARNESS-L1-001`のV-pair traceを具体化する。\n\n**種類と境界**：単体のversioned capability pack候補。HARNESS-L2-031は許可された障害入力からsanitized reproduction candidateと回帰test candidateを作り、HARNESS-L2-022はoracle/受入意味、OS-020または利用者CIは隔離実行/result receiptを所有する。HARNESS-L2-010が031のpack identity/version/依存境界、HARNESS-L2-011がcall/input/scope/compatibility/receiptを所有し、032が選択executorへのrun-request packetを接続する。段階は①log/inputからreduction candidate生成、②選択executorへの隔離run request、③後続run resultを次のreduction inputとして受ける、④同一oracle failureが保たれた範囲を再現候補として確定、⑤修正後は別revisionの回帰run結果を後段証拠として結ぶ。将来のrun receiptや修正後passを①の前提にしない。候補生成だけでは縮小後の同一failureを確認済みと主張しない。\n\n**受け取るもの**：障害の対象revision、bounded logと対応する入力/操作列、環境・依存版・seed（得られる場合）、取得/利用許可、sanitization規則、関連する要件/API/state contractと独立oracleの参照。副作用を再送しないためのexternal-call制約を含む。\n\n**提供するもの**：元failureの識別子/digest、sanitized入力、最小化手順と各縮小段階、各段階の032 run-request packet、後続実行結果を受ける入力口、reproduction recipe、固定oracleで照合したobservable symptom、再現可否/不足証拠、候補regression case、修正前failure runと将来の修正後runへ結ぶscope/version trace。将来のrun resultは生成開始前入力でなく段階後の証拠であり、選択executorのreceiptが返るまで同一failure確認は未完とする。修正後resultがまだ無い場合も回帰test candidateは作れるが、回帰成立済みとはしない。\n\n**依存区分**：\n- **常時必須**：当該log/inputの対象scopeでの取得・利用許可、対象revisionとの関係、security/data handling契約、`HARNESS-L2-022`のfailure oracleまたはoracle ownerへの明示参照、`HARNESS-L2-010/011`の031 pack/call version・依存・scope・receipt契約、外部副作用の抑止条件。いずれか不明なら機微入力を処理せず保留する。\n- **特定操作時のみ**：log/input minimizationと同一failure確認を選んだ時だけbounded log、入力、操作列、環境/依存版情報、HARNESS-L2-032経由で選ぶOS-020または利用者CIの隔離run request/後続result receiptを要求する。各resultを得てから次の縮小候補を作る。回帰candidate作成に必要なのは独立oracleと修正前failureの基準であり、修正後resultは候補生成の前提ではなく、修正後revisionで後段実行した結果receiptである。incident inputを扱わないrunにはincident reproductionを要求しない。\n- **選択した入力元に応じて必須**：選んだlog、request payload、state snapshot、依存応答記録、OS-020または利用者CI executor等のsource identity/version、許可scope、取得時刻またはrevision結合情報、redaction結果。縮小確認では選択executorの各段階run receiptを次の段階入力として結ぶ。未選択source/executorは未観測とする。\n- **参照資料のみ**：背景incident narrative、既知の似たfailure、過去の再現手順のうち、現在の入力許可・oracle・対象revisionを確定しないもの。適用oracleとsecurity/data許可は参照扱いへ落とさない。\n\n**保証すること**：機微情報を隠し、与えられたscope内で入力を小さくし、同じoracle上のfailureが保たれるかを記録する。再現不能、根因unknown、必要な環境情報不足を明示し、元failureの事実を保持する。rerun成功で初回failureを消さず、test削除/skip、oracle弱化、coverage数値だけで修正成功を主張しない。期待挙動が上流で未決なら`HARNESS-L2-003`/`HARNESS-L2-004`に従い意味ownerへ戻す。\n\n"
+    },
+    {
+      "kind": "fixed HARNESS L2 parents and 033 contrast",
+      "asset_id": null,
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "full_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "byte_length": 138792,
+      "physical_line_count": 689,
+      "physical_lines": [
+        647,
+        666
+      ],
+      "raw_lf_inclusive_span_sha256": "f5837fff703b5acf4d4e1eb74543582434df082fd3594b1c679413d394326080",
+      "span_bytes": 3328,
+      "literal": "### HARNESS-L2-032 生成artifactからOS-020実行契約への接続（接続候補、version_target 1.0）\n\n- **所属候補（未採択）**：HELIX-HARNESS-CORE。利用先：030/031利用サービスと選択したOS-020または利用者CI。test artifact/oracle/revision/scopeをexecutor inputへ写す業務上の接続packを所有する。CONNECTは利用時の登録・版照合・通信・再送・追跡を担い、032の業務意味は持たない。実行・隔離・結果回収は選択executorへ残す。 HARNESS-L2-010に従い主owner候補は一つとする。記載は所属採択・v0.1収載・実装許可を生成しない。\n\n**親L1**：`HARNESS-L1-001`, `HARNESS-L1-004`, `HARNESS-L1-005`, `HARNESS-L1-007`。HARNESSが契約を外部利用可能にし、検証証拠を対象revisionと結び付ける企画を具体化する。実行主体の企画根拠は`HELIXOS-L1-004`であり、本候補はOSのrun制御をHARNESSへ移さない。\n\n**種類と境界**：接続能力。`HARNESS-L2-030`/`HARNESS-L2-031`のcase/repro artifactから、選択した`HELIXOS-L2-020`または利用者CIへ送るversioned input/run-request packetを作る。HARNESSは検証義務/oracle/artifact identity/scope/target revisionを、OSまたは利用者CIは実行・隔離・結果収集を所有する。最初のrun receiptは032の送信入力でなく下流出力、031が次の縮小段階を選ぶ際の後続入力である。\n\n**受け取るもの**：case/repro artifactとsource identity、適用契約/oracle版、target revision/scope、必要runner capabilityと許可条件、選択consumerの受入schema/compatibility契約。consumer receiptがまだないことを理由に初回packet接続を不能にしない。\n\n**提供するもの**：consumer schemaに適合するrun input packet、case identityとoracle参照の対応、対象HEAD/scope/source versionの結合、未解決compatibility/permission項目、consumerへ渡した内容のreceipt参照枠。execution outcomeはconsumerが返し、HARNESSはその意味を捏造しない。\n\n**依存区分**：\n- **常時必須**：HARNESS case artifact schema、対象revision/scope、適用oracle/検証義務、consumerの明示schema/version/compatibility、security/permissionと実行境界。unknown/mismatchは保留し、不足したoracleをoptional扱いにしない。\n- **特定操作時のみ**：隔離実行、network-disabled、external double注入、seed/timeout指定など、artifactで要求するrunner capabilityだけを当該run時に要求する。\n- **選択した入力元に応じて必須**：選んだOS-020または利用者CI consumerのidentity/version/schemaと対応するrunner capability。未選択consumerは未観測。\n- **参照資料のみ**：他consumer用の例、履歴run packet、旧CI構成など。必要なoracle/schema/permissionを参照資料へ降格しない。\n\n**保証すること**：生成caseの意図とoracle参照を損なわずconsumerへ渡し、対象revision・scope・source versionの対応を保持する。実行・成功/failure判定・CI ticket発行・再開はconsumer責務である。受渡し成功をtest pass、品質受入、artifact state昇格とみなさない。接続契約の欠落/不整合は送り先consumerの責任ownerへ戻す。\n\n"
+    },
+    {
+      "kind": "fixed HARNESS L2 parents and 033 contrast",
+      "asset_id": null,
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "full_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "byte_length": 138792,
+      "physical_line_count": 689,
+      "physical_lines": [
+        667,
+        689
+      ],
+      "raw_lf_inclusive_span_sha256": "a8e6b5d217ef56b6197826c7b0606058900ad7c5796be3299b188d22502d07c8",
+      "span_bytes": 6114,
+      "literal": "### HARNESS-L2-033 failure-to-regression trace構成体（構成体候補、version_target 1.0）\n\n- **所属候補（未採択）**：HELIX-HARNESS-CORE。利用先：case生成・再現・回帰を選択する各サービス。複数packを跨ぐtest/CIのtrace構成体を所有する。unit/接続成立と回帰成立を分け、014/022の意味authority、OS/利用者CIの実行を引き取らない。 HARNESS-L2-010に従い主owner候補は一つとする。記載は所属採択・v0.1収載・実装許可を生成しない。\n\n**親L1**：`HARNESS-L1-001`, `HARNESS-L1-004`, `HARNESS-L1-005`, `HARNESS-L1-007`。対象は`HARNESS-L2-030`または`HARNESS-L2-031`の生成能力と、必要に応じ`HARNESS-L2-032`のconsumer接続を含む端から端の作成/受渡しtrace。HARNESS-L2-022の検証・受入契約は構成体の規範入力であり置換しない。\n\n**種類と境界**：構成体候補。通常contract-derived caseとincident-derived minimized reproを、同一のartifact/execution/trace境界で結ぶ。failure inputがない通常case生成にincident reproductionを要求せず、選択した操作のみに条件付き依存を適用する。構成体自身が生成するcaseの受入receiptまたはOS run resultを、構成体を生成/開始する前提にしない。\n\n**受け取るもの**：開始時の対象revision/scope、HARNESS-L2-022適用oracle、対の設計または許可されたincident source、必要なunit pack identity/schema/version、選択consumerを使う場合のHARNESS-L2-032 compatibility。初期入力に将来の生成receipt、run結果、修正後passを要求しない。run receiptは先行段階の後で返る結果を次段階が受ける。各sourceの許可と適用範囲を保持する。\n\n**提供するもの**：source→failure/original input→reduction candidate→032隔離run request→後続resultで同一failure確認→regression candidate→修正前revisionでのfail→修正後revisionでのpass（修正runを選択した場合）→consumer packet/result receiptを段階順につなぐtrace、対象revision/version、failure/reproduction status、生成物ごとのscopeと不足事項。033が回帰成立を主張する時は独立oracle上で縮小前後の同一failure、修正前fail、修正後passの全条件を要し、trace/候補生成だけを成功にしない。修正後passやconsumer resultは作成開始前の入力でなく後段結果である。単体結果・接続結果を同じ成功状態へ潰さない。\n\n**依存区分**：\n- **常時必須**：対象revision/scope、HARNESS-L2-022のoracle/義務契約、少なくとも一つの選択unit能力（030または031）のidentity/version/適用範囲、artifact trace schema、安全な入力処理。\n- **特定操作時のみ**：incident縮小・同一failure確認を選ぶ場合は031のsanitized incident input、必要に応じHARNESS-L2-014の対象pair/design、032 run-request connection、選択executor（OS-020または利用者CI）の各段階isolated result receiptを要求し、各result後に次のreduction candidateを生成する。回帰candidateを作るだけなら修正後run resultは要求しない。033が「回帰成立」と判定する操作では、縮小前後を同一oracleで確認し、修正前revisionのfailと修正後revisionのpassの各run receiptが後段結果として必要。case/recipe packetをrunnerへ送る場合は032 contractとconsumerを選択する。未選択operationは未実施として明示する。\n- **選択した入力元に応じて必須**：選択された設計/spec/oracle/log/input/consumer contract各identity、version、compatibility、権限。未選択の設計sourceやconsumerを暗黙に補完しない。\n- **参照資料のみ**：今回のsource/oracle/permissionを規定しない過去例・背景。構成体の必須traceやsecurity契約は参照に落とさない。\n\n**保証すること**：各構成要素と適用条件の関係を追跡でき、未完/未再現/未接続/未実行の差を明示する。033の回帰成立oracleは、縮小前後の同一failure、修正前revisionでのfail、修正後revisionでのpassを独立receiptで確かめる。修正前後のrun結果は作成開始前入力ではなく段階後の証拠である。case生成・repro成立・CI pass・HARNESS-L2-022のstage受入を同一判定にしない。上流の期待結果が不足すれば要求/設計/oracle ownerへ、source permissionが不足すればsecurity/data ownerへ、consumer契約が不整合ならconsumer ownerへ戻す。\n\n### 候補関係と1.0境界\n\n`HARNESS-L2-014`は対の設計、`HARNESS-L2-022`はoracle/義務/stage受入契約を所有し、`HARNESS-L2-030`/`031`はそれらを入力にする独立versioned capability pack/unit、`HARNESS-L2-032`は選択executorへの接続、`HARNESS-L2-033`は全段階を追う構成体を所有する。HARNESS-L2-010は各pack identity/version/依存境界、HARNESS-L2-011はcall/input/scope/compatibility/receiptを所有する。既存014/022の置換・意味変更ではない。PO第4項が求めるtest/data/double/repro/regression能力を含む一方、v0.1収載、必要case数、coverage率、mutation閾値、reduction上限、全欠陥不存在の保証は未採択。実行は選択したOS-020または利用者CI、oracle authorityはHARNESS-L2-022/上流requirementに残す。030/031/032のpackまたは依存契約を交換・更新した場合、HARNESS-L2-010/011のversion/compatibility照合後、影響を受ける未実行candidate・artifact・consumer packetを新revisionへ結び直し、選択したoperationのcase/oracle/reduction・consumer適合性を再検証する。HARNESS-L2-014の対設計またはHARNESS-L2-022のoracle/義務契約が更新された場合も、それに依存するcase/repro/regression candidateのtrace・期待値・適用scopeを新契約へ再照合し、不一致はstaleとして該当operationを再生成/再検証する。旧pack/result receiptを新版の合格へ流用しない。\n"
+    },
+    {
+      "kind": "fixed HARNESS L11 acceptance cases",
+      "asset_id": null,
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "full_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "byte_length": 92483,
+      "physical_line_count": 461,
+      "physical_lines": [
+        408,
+        415
+      ],
+      "raw_lf_inclusive_span_sha256": "f997a693d659b2d0e704a9780e32bf9a7022f9fd597eaa3d713954f588562e7d",
+      "span_bytes": 2202,
+      "literal": "### HARNESS-L2-030 テストscenario・case・data・double生成（単体候補）\n\n**正常例**：対象scopeと承認済みL3要件revision、それに対応するHARNESS-L2-014の設計・対の検証設計revisionへ結び付いたAPI/state contractとHARNESS-L2-022 oracleを与える。例として、申請をdraftからsubmit可能なactorで送信するとsubmittedへ遷移し、承認後は編集拒否かつ保存状態不変、というfixtureを用いる。正常submit、仕様に明記された最小/最大・空/null境界、権限のあるactorとないactor、cancel可能/不可の各state、submit前approveやterminal後update等の順序違反を、仕様の該当範囲に限ってcase化する。各期待応答・状態不変条件は独立oracleへ対応し、test dataの値とcase identityが再現可能であることを確認する。選択された外部service contractに対するdoubleでは、contractに記載された応答/timeout等を返し、期待呼出し数・副作用条件をassertできる形にする。合格は生成内容が入力contract/oracleに沿うことであり、生成caseを実行済みとはしない。\n\n**誤りを含む例**：未承認actorを許可するcase、仕様にない取消や境界を期待値として発明、承認後編集を許容、oracleと逆の状態遷移、同じ誤ったgeneratorからexpected valueを作る、実サービスへネットワーク接続するdouble、secretをfixtureへ含めるcaseを入力/候補へ混ぜる。権限・状態・期待結果・data permissionに反するcandidateを検出して拒否または未確定へ送り、存在だけで合格させない。coverageの増加やcase countで矛盾を相殺しない。\n\n**未見例**：同じAPI/state domainの未公開actor/入力境界/操作順を与え、入力oracleが定義する場合だけ対応caseと期待結果を作り、内容・trace・scopeが一致するか確認する。oracleが未定義、sourceが未選択、またはdomain外なら期待値を作らずunknown/未評価を返す。合格はこのfixture・contract revision・scopeのみに限り、全actor/全境界/全欠陥を保証しない。\n\n"
+    },
+    {
+      "kind": "fixed HARNESS L11 acceptance cases",
+      "asset_id": null,
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "full_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "byte_length": 92483,
+      "physical_line_count": 461,
+      "physical_lines": [
+        416,
+        423
+      ],
+      "raw_lf_inclusive_span_sha256": "3468443a23522d8e5ce5c15b0c218630a1ce32b439fc1476cdaf6a7c46d293db",
+      "span_bytes": 2842,
+      "literal": "### HARNESS-L2-031 ログ・入力からの最小再現と回帰候補生成（単体候補）\n\n**正常例（具体input・独立期待値）**：approved applicationの`note`を変更するsanitized incidentを与える。既存requirement/API contractと022 oracleは「構文と必須fieldが有効なapproved状態のPATCHは409で拒否され、保存済みnoteを変更しない。空bodyは必須field欠落として先に422で拒否し、保存状態を変更しない」と規定する。未修正target revisionでは、認証済みowner actorから元input `PATCH /applications/42` body `{\"note\":\"corrected\",\"debug\":\"trace\",\"display\":\"preview\"}`（debug/displayは契約で許可された無関係metadata、保存済みnoteは`current`）を送り、200を返してnoteを`corrected`へ書き換えるfailureを記録する。HARNESS-L2-031はdebug/display等を除いたreduction candidate `{\"note\":\"corrected\"}`を出し、HARNESS-L2-032経由で選択executor（OS-020または利用者CI）へ隔離run requestを送る。後続receiptが同じtarget revision・environmentで同じowner actor・endpointに対する200と`current`→`corrected` note変更を確認すれば、元failureと縮小後failureは同一oracle違反として保持される。さらに削除した空bodyが422となりnoteを変えない結果なら、より小さい入力は同じfailureでないとして保持candidateを`{\"note\":\"corrected\"}`へ戻す。期待値はgenerator由来でなく既存requirement/API contract/022 oracleから独立に得る。run結果がまだ返っていないcandidateは同一failure確認済みとしない。修正後版で409かつnote不変となる回帰passは後段の別revision run receiptであり、031のcandidate生成前提にしない。\n\n**誤りを含む例**：secret/PIIを残す、無許可production inputを使う、032のisolated run request/resultなしに縮小後も同一failureと断定、縮小後の200が別response/body mutationなのに同一oracle違反と主張、再実行greenで元failureを消す、修正後pass receiptを作成開始前から必須入力にする、修正前failまたは修正後passを未実行なのに回帰成立とする、oracle未確認の根因を断定する。安全違反は拒否し、oracle不一致・再現不能は未再現として返す。元failureを削除/skipしない。\n\n**未見例**：既知fixtureとは異なる同scope failure inputと許可sourceを使い、同一oracleで縮小後のobservable failureが保たれるか確認する。ログ形式/環境が未知、必要入力が欠落、oracleがない場合は未再現/不足の状態と理由を返し、成功とも失敗原因確定とも扱わない。合格は対象scopeの限定reductionであり、一般の障害原因特定能力を保証しない。\n\n"
+    },
+    {
+      "kind": "fixed HARNESS L11 acceptance cases",
+      "asset_id": null,
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "full_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "byte_length": 92483,
+      "physical_line_count": 461,
+      "physical_lines": [
+        424,
+        431
+      ],
+      "raw_lf_inclusive_span_sha256": "a31e215ccfe6315dde7fcea169ccebfd532be8cc4b09ee57a92456a62e94117c",
+      "span_bytes": 1300,
+      "literal": "### HARNESS-L2-032 生成artifactからOS-020実行契約への接続（接続候補）\n\n**正常例**：HARNESS-L2-030/031からartifact identity, source version, target HEAD/scope, oracle referenceを受け、選択済みOS-020または利用者CIの明示schema/versionに適合するrun input packetを構成する。packet内容のidentity/version/oracle参照とconsumer receipt参照が対応することを照合する。consumer receiptと実行結果はOS/利用者CIから返る後続情報であり、接続能力の作動前提にしない。\n\n**誤りを含む例**：別HEAD/別scopeのcaseを接続、oracle参照を欠落・すり替え、互換性のないconsumer schemaへ送る、外部double指定を落として実providerを呼ばせる、packet送信をrun passとみなす。該当入力を保留/拒否し、CI greenやticket発行をHARNESS受入へ読み替えない。\n\n**未見例**：新しいが宣言済みschema互換範囲のconsumer revisionへcase packetを渡し、対象HEAD・scope・source/oracle identityを保持したまま受領できるか確かめる。未宣言consumerや互換性のないschemaは未接続/unknown。合格は宣言済みconsumer/version組に限定し、OSの実行・ticket・検収をHARNESSが担うことを意味しない。\n\n"
+    },
+    {
+      "kind": "fixed HARNESS L11 acceptance cases",
+      "asset_id": null,
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "full_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "byte_length": 92483,
+      "physical_line_count": 461,
+      "physical_lines": [
+        432,
+        443
+      ],
+      "raw_lf_inclusive_span_sha256": "b80d9fe251c560bc555489c7ce034f334fda971f3fcf233fa148e6d2b195d7b4",
+      "span_bytes": 3896,
+      "literal": "### HARNESS-L2-033 failure-to-regression trace構成体（構成体候補）\n\n**正常例（回帰成立の構成体oracle）**：構成開始時の入力は許可済みsanitized original incident、target revision、独立022 oracle、必要な031/032 pack contractだけで、将来の生成receipt・実行結果・修正後passは要求しない。031が縮小candidateを作り、032が各候補を選択executorへ隔離requestし、後続receiptを受けてから次候補を縮小する。上記PATCH例では元inputと`{\"note\":\"corrected\"}`が未修正版でともに200＋永続note変更となり、独立oracle「approvedなら409＋不変」に対する同一failureであることを確かめる。より小さい空bodyが同じfailureでなければその候補を採らない。そこでcandidate regression caseを固定し、修正前revisionで同じoracle違反（fail）、修正後revisionで409かつ永続note不変（pass）となる隔離run receiptを後段で結ぶ。case/repro candidateの生成だけでは「回帰成立」とせず、回帰成立operationで必要なすべての後続receiptが揃ったときだけ033は成立とできる。contract-derived routeだけを選択した場合はincident/reduction段階を未適用、failure routeを選択しない限り同じfailure証明を要求しない。\n\n**誤りを含む例**：縮小前後のobservable failureが異なる、隔離run receiptなしに同一failureを断定、修正前runがfailしない、修正後runがpassしないのに回帰成立とする、別revisionの結果を混ぜる、未選択consumerを実行済みとする、将来receiptがないため初回case/repro candidateを開始不能にする、case/traceだけで022のProvisional/Integrated/Verified/Acceptedを進める。trace不整合/誤った期待値は不合格、未解決permission/oracle/consumer条件は保留とする。\n\n**未見例**：fixture作成者が隠した同scope failureで、縮小candidateごとの032 request→executor result→次の縮小の順序が守られ、失敗症状が同一oracleに残るか確認する。回帰成立を選んだ場合は修正前fail/修正後pass receiptも後段で結ぶ。oracleなし・source未許可・互換consumer未宣言なら該当段階は未評価/未接続。unit candidateの受入合格は回帰成立や修正済みを意味せず、完全coverage/全欠陥不存在を主張しない。\n\n### 共通の責務・結果限界\n\nHARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle・受入の意味を保持し、HARNESS-L2-010/011が各versioned pack/call境界を保持する。030/031 candidateは独立した生成能力pack、032は選択したexecutorへの接続、033はcandidate生成から後続resultまで段階を結ぶ構成体である。`HELIXOS-L2-020`または利用者CIはrun構成・隔離実行・結果回収を行い、run resultはHARNESS-L2-022 oracleに対する後続証拠としてstage別に扱う。030/031/032 packまたは依存契約を交換した場合は010/011のversion/compatibilityを照合し、影響するcase/oracle/repro/consumer packetを新revisionへ結び直して該当operationを再検証する。014の対設計または022のoracle/義務契約が変わったfixtureでは、既存candidateのtraceと期待値を新契約へ照合し、staleなcase/reproは再生成する。縮小実行を選択した場合は選択executorのisolated run receiptを新しいpack/source revisionに対して再取得する。旧receiptや旧artifactの合格を新版へ流用しない。テストの生成・受渡しだけではtest pass、ProvisionalからIntegratedへの進行、Verified、Accepted、要求承認、releaseを生成しない。上流意味不足はHARNESS-L2-003/004に基づく該当ownerへ、権限/data-use不足はsecurity/data ownerへ戻す。\n\n"
+    },
+    {
+      "kind": "PO exact adoption rows 030-032",
+      "asset_id": null,
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "full_file_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "byte_length": 17865,
+      "physical_line_count": 76,
+      "physical_lines": [
+        59,
+        61
+      ],
+      "raw_lf_inclusive_span_sha256": "f3e3c7201fb4b064a935f8266e9810fd68d5b4796ecf3fbc27a6619807dcfe24",
+      "span_bytes": 1446,
+      "literal": "| HARNESS-L2-030 | MPR-RC-HARNESS-L2-030-002 | unit / registered_proposal; authority_effect=none | 1.0 | [docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json) / c6c3b2863eaf026ac61c4e272acc197c6021c24e74b4899a23631c74b67b8860 |\n| HARNESS-L2-031 | MPR-RC-HARNESS-L2-031-002 | unit / registered_proposal; authority_effect=none | 1.0 | [docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json) / c6c3b2863eaf026ac61c4e272acc197c6021c24e74b4899a23631c74b67b8860 |\n| HARNESS-L2-032 | MPR-RC-HARNESS-L2-032-002 | connection / registered_proposal; authority_effect=none | 1.0 | [docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json) / c6c3b2863eaf026ac61c4e272acc197c6021c24e74b4899a23631c74b67b8860 |\n"
+    },
+    {
+      "kind": "PO option B and identity decision",
+      "asset_id": null,
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "docs/governance/decisions/implementation-order-po-decision-2026-10-03.md",
+      "full_file_sha256": "c06e922bfd26947f22afebcc5dbd44f57aa04579728872350229792a1c7f1224",
+      "byte_length": 11477,
+      "physical_line_count": 87,
+      "physical_lines": [
+        1,
+        10
+      ],
+      "raw_lf_inclusive_span_sha256": "2504af5a232d6134d36567f6e65c640b09a6a4c0fc7c6e4e9c2bb787c6d747f3",
+      "span_bytes": 1453,
+      "literal": "# 実装順序のPO選択記録：Stage 2cを前倒し（2026-10-03）\n\n## 対象とsource pin\n\nこの記録は、要求段階でL3開始時の判断として残されていた実装順序A/Bについて、POが選んだ案Bを受領・固定するdecision recordである。選択対象は実装順序だけであり、L3/L10の本文承認、1.0収載、要求の追加・変更、実装・実行・release許可を生成しない。\n\n- 基準main: `633bf12ea8f948db8ba3d6600179c4a9507377a7`（#2554統合後）。\n- PO source: `scaffold/review-handoff/local/codex-goals-2026-10-03-l3.md`。2026-10-03にshared local sourceとして受領し全文を読み、SHA-256=`b5030366fe27022695c9a51883e7cfe11656bc8ffce90c932598b85e9e9a79c4`、bytes=16787を固定した。このsource file自体は本recordのbase commit `4ef29ee37ee271d224b4f3e6c520b996075c66e3`に含まれない。\n- 9/27順序案: `docs/governance/audits/requirements-stage/implementation-order-2026-09-27.md`、基準main上のSHA-256 `9b6c7233c57a42dc43c20146f776399a03c9aaf827f40f03a436cba15d7cb862`。\n- 9/27機械照合: `docs/governance/audits/requirements-stage/implementation-order-assignments-2026-09-27.json`、基準main上のSHA-256 `78db3c793c17dbd80ad663a63aadd5f3c1c1e403da6b3bba75518ecfe5ba7f25`。JSON `source_revision`=`d308f4080da298172001ef97e9c4b5f66d32ed7d`。元source setのfile SHA一覧は追補JSONの`order_assignment_source.source_sha256`に保存する。\n"
+    },
+    {
+      "kind": "PO option B and identity decision",
+      "asset_id": null,
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "docs/governance/decisions/implementation-order-po-decision-2026-10-03.md",
+      "full_file_sha256": "c06e922bfd26947f22afebcc5dbd44f57aa04579728872350229792a1c7f1224",
+      "byte_length": 11477,
+      "physical_line_count": 87,
+      "physical_lines": [
+        20,
+        46
+      ],
+      "raw_lf_inclusive_span_sha256": "00286705d1cea5b9fdf5cfbff582efc8cff49e0211b33a3f4b5d1ac3fd3ff517",
+      "span_bytes": 3244,
+      "literal": "\n- 選択肢A: Stage 2b/3の基礎unitを先に広げ、各domainの能力・契約の幅を先に整える。運用を広げるときの依存見通しは得やすいが、低コストWorker支援やcase準備の効果を観測する時期が遅くなる。\n- 選択肢B（推奨）: Stage 2a後、Stage 2cから適用oracle・scope・authorityが揃う小さなWorker支援/test生成枝を選び、Stage 2b/3と並行して進める。支援/生成単体から始め、相談・実行・compositeはその操作を選び必要なreceiptが発生した場合にだけ続ける。\n\nPOがgoal sourceに記録した選択（lines 12–13）:\n\n> POの選択：「案B：支援・テスト生成を前倒し (Recommended)」\n>\n> 選択肢本文：「Stage 2aの後、Workerへの支援・テスト生成（Stage 2c、6件）を狭い範囲で先に進め、残りの基礎部分（2b、72件）と並行する。後続の作業コストが下がるかを早く確かめられる。9/27順序案の推奨。」\n\n本記録は受領した原文を保存する。新しい質問、選択、approval procedureを作らない。\n\n## 固定された元Stage 2c identity/revision\n\n9/27 JSONの`stage_assignments.stage_2c`は6 identityを含む。identityは下表の基準main上のPO-adopted registration revisionとcandidate semantic digestへ固定する。9/27 JSON自体はidentity/stageのみを持ち、revision/digestを含まないため、registration/PO-decision joinは基準main `633bf12`で固定した。\n\n| Identity | Stage | registration revision | candidate semantic digest | PO decision locator |\n|---|---|---|---|---|\n| `HARNESS-L2-030` | `Stage 2c` | `MPR-RC-HARNESS-L2-030-002` | `sha256:579043ac6abf9bff8712355ff96da3cd6287b286947074a11efc583c1f38e0a1` | `docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md#L59` |\n| `HARNESS-L2-031` | `Stage 2c` | `MPR-RC-HARNESS-L2-031-002` | `sha256:ca1e113a5980df023bdb27bb461e1fc57137d14da060d26180e4d70abdf90611` | `docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md#L60` |\n| `HARNESS-L2-032` | `Stage 2c` | `MPR-RC-HARNESS-L2-032-002` | `sha256:83967a4eb0b9671293bc0d6006652c0ca42648836e108f6093c01e55ff77c569` | `docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md#L61` |\n| `HELIXINTELLIGENCE-L2-068` | `Stage 2c` | `MPR-RC-HELIXINTELLIGENCE-L2-068-002` | `sha256:d5145aae05dffd5bc61d795748060fca95f446be0b100b786a178bcf503452bf` | `docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md#L98` |\n| `HELIXOS-L2-028` | `Stage 2c` | `MPR-RC-HELIXOS-L2-028-001` | `sha256:f41238ee4660d455d6f6a144bdab4a35ef9704aac190835a24589853ed3e4fab` | `docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md#L48` |\n| `HELIXOS-L2-029` | `Stage 2c` | `MPR-RC-HELIXOS-L2-029-003` | `sha256:59a37b8d83fb269c12263089d937e696d0b9bfe8684d46822e267588802878f8` | `docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md#L27` |\n\n\n上記6件以外の追加候補も、Stage 2cへ置く場合は9/27順序案が定めた小scope、必要契約、Stage 2bとの並行可能性を保つ。Stage 2c全件開始・完了は2bまたは後続Stageの全体gateではない。\n"
+    },
+    {
+      "kind": "G0 stage/version addendum human record",
+      "asset_id": null,
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "full_file_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "byte_length": 183432,
+      "physical_line_count": 552,
+      "physical_lines": [
+        5,
+        10
+      ],
+      "raw_lf_inclusive_span_sha256": "88d388cdc9191a666da4ddb139f697033d05f25a115ad370d29d0f3949b5bfde",
+      "span_bytes": 1190,
+      "literal": "9/27の順序案本文は不変である。本追補は#2554統合後の基準main `633bf12ea8f948db8ba3d6600179c4a9507377a7`に固定したPO採択候補374件を、版intentと順序Stageの独立軸で照合する。順序選択のsource受領と案B選択本文は[PO判断記録](../../decisions/implementation-order-po-decision-2026-10-03.md)に記録した。全件の登録revision・PO decision locator・digest・source-lineは[機械照合JSON](implementation-order-addendum-2026-10-03.json)にある。\n\n- 9/27本文 SHA-256: `9b6c7233c57a42dc43c20146f776399a03c9aaf827f40f03a436cba15d7cb862`。9/27割当JSON SHA-256: `78db3c793c17dbd80ad663a63aadd5f3c1c1e403da6b3bba75518ecfe5ba7f25`。9/27 source revision: `d308f4080da298172001ef97e9c4b5f66d32ed7d`。\n- 2026-10-03 goal source: `scaffold/review-handoff/local/codex-goals-2026-10-03-l3.md`、bytes=16787、SHA-256=`b5030366fe27022695c9a51883e7cfe11656bc8ffce90c932598b85e9e9a79c4`。POの質問はline 11、案B選択と本文はlines 12–13から受領した。\n- 選択案Bの要点: Stage 2a後、Stage 2cの支援/test生成を狭いscopeで先行しStage 2bと並行する。Stage 2b全件完了はgateにしない。\n\n"
+    },
+    {
+      "kind": "G0 stage/version addendum human record",
+      "asset_id": null,
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "full_file_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "byte_length": 183432,
+      "physical_line_count": 552,
+      "physical_lines": [
+        22,
+        26
+      ],
+      "raw_lf_inclusive_span_sha256": "2f4b5019bb049eaf3d6544b6fb5cafbc0885100d5f09d60146f7a8a8dbb265a2",
+      "span_bytes": 825,
+      "literal": "順序Stage件数（374）: `Stage 1`=48, `Stage 2a`=29, `Stage 2b`=75, `Stage 2c`=10, `Stage 3`=72, `Stage 4`=58, `Stage 5`=46, `later-version order slot`=33, `Web conditional order slot`=3. Stage軸は版intentと独立している。未指定62に対する新しいgate・個別PO手続き・1.0収載判断を設けない。HELIXOS-L2-132は版未指定のまま、goalが指定した恒久Bun不使用は作業制約として直ちに適用する。\n\n## 9/27 Stage 2c固定と追補\n\n9/27の元Stage 2cは6件: HARNESS-L2-030/031/032、HELIXINTELLIGENCE-L2-068、HELIXOS-L2-028/029。登録revisionとcandidate semantic digestはPO判断記録およびJSONの`original_9_27_stage_2c_exact_six`にpinした。追加候補のStage 2cはHELIXINTELLIGENCE-L2-075、HELIXSECURITY-L2-031、HELIXOS-L2-119/131で、計10件。\n"
+    },
+    {
+      "kind": "G0 stage/version addendum human record",
+      "asset_id": null,
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "full_file_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "byte_length": 183432,
+      "physical_line_count": 552,
+      "physical_lines": [
+        62,
+        64
+      ],
+      "raw_lf_inclusive_span_sha256": "c196854f5cfc34f4e0abb71e26cd10f65ebff3523c59cfa53661bc986c2ff63b",
+      "span_bytes": 621,
+      "literal": "| `HARNESS-L2-030` | `MPR-RC-HARNESS-L2-030-002` | `docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md#L59` | `1.0 target candidate` | `Stage 2c` | `original 250 carry-forward` |\n| `HARNESS-L2-031` | `MPR-RC-HARNESS-L2-031-002` | `docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md#L60` | `1.0 target candidate` | `Stage 2c` | `original 250 carry-forward` |\n| `HARNESS-L2-032` | `MPR-RC-HARNESS-L2-032-002` | `docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md#L61` | `1.0 target candidate` | `Stage 2c` | `original 250 carry-forward` |\n"
+    },
+    {
+      "kind": "G0 stage/version addendum machine record",
+      "asset_id": null,
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
+      "full_file_sha256": "ec970df79eaaf693f8825045b235c43ea10aefa7925701b1fff2a974df3e4e0a",
+      "byte_length": 1823772,
+      "physical_line_count": 21954,
+      "purpose": null
+    },
+    {
+      "kind": "9/27 original Stage 2c assignment JSON",
+      "asset_id": null,
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-assignments-2026-09-27.json",
+      "full_file_sha256": "78db3c793c17dbd80ad663a63aadd5f3c1c1e403da6b3bba75518ecfe5ba7f25",
+      "byte_length": 122862,
+      "physical_line_count": 3439,
+      "purpose": null
+    },
+    {
+      "kind": "old L3 process definition",
+      "asset_id": "LEGACY-ASSET-F542125805B777D8A56A",
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "full_file_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "byte_length": 15617,
+      "physical_line_count": 284,
+      "physical_lines": [
+        148,
+        168
+      ],
+      "raw_lf_inclusive_span_sha256": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9",
+      "span_bytes": 1214,
+      "literal": "### L3 要件定義\n\n| 項目 | 内容 |\n|------|------|\n| 名称 | 要件定義 (System Requirements) |\n| 目的 | システム機能要件 (FR-*) + 受入条件 (AC-*) を確定し、設計への入力とする |\n| 主要成果物 ① | 3 sub-doc: functional-requirement / business-requirement / nfr-grade |\n| ③ テスト設計ペア | UX受入テスト設計（L10で実施） |\n| V-pair (右腕) | **L10** UX受入検証 |\n| 主要ゲート | **G3** 機能要件凍結 (FR+AC ⇔ L10 UX受入テスト設計 pair freeze) |\n| 入口 | G1/G2 exit 後 (L1 業務要求 BR-* が入力) |\n| 出口 | G3 通過 (FR+AC 全件確定 + 受入テスト設計 pair 揃い) |\n| 主要 role | `tl` 必須 (FR+AC 仕様化)、`po` 必須 (受入条件確認) |\n\n注: FR-* は L1 BR-* から双方向 trace する。AC 不在での G3 通過は fail (AP-4)。\nG3では`engineering_discipline_required: true`のPLAN契約により、no-code-first判断、責務owner、\n許容complexity、L10で観測する振る舞いをfreezeする。ここでobject modelを一律採用せず、\n`none` / `pure_function`を含む最小のmodeling判断を許可する。\n出典: concept v3.1 §3.1.2 / requirements v1.3.12 §2.2 G3\n\n---\n"
+    },
+    {
+      "kind": "old L3 layout/index",
+      "asset_id": "LEGACY-ASSET-9A772391C7FB1298D45F",
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md",
+      "full_file_sha256": "949b0da00d2a417e1b36d3679b89735de7adadf831f567dbe383dfe6337f19e4",
+      "byte_length": 4297,
+      "physical_line_count": 56,
+      "physical_lines": [
+        16,
+        56
+      ],
+      "raw_lf_inclusive_span_sha256": "fbb50e1ed591235cba594d8b8a10d5f1c55be865e3df9c9daf75f3814a18ab6a",
+      "span_bytes": 3915,
+      "literal": "# L3 機能要件 sub-doc (harness)\n\nL1 業務要求 / 機能要求 / NFR を L3 機能要件 (FR-* + AC-* + IPA グレード値) に詳細化する sub-doc 群。\n\n## 構成 (3 sub-doc)\n\n| sub-doc | 役割 | status | 担当 PLAN |\n|---------|------|--------|-----------|\n| `functional-requirements.md` | FR-* + AC-* (Given-When-Then) 詳細化、画面紐付き / mode / drive / 人間判断点 | confirmed | PLAN-L3-01-functional-detail |\n| `business-detail.md` | BR-21 詳細化 + HM-08 連動 + FR-L1-36/38/43 (Learning Engine evaluation projection) | confirmed | PLAN-L3-02-business-detail |\n| `nfr-grade.md` | NFR-01〜17 の IPA グレード Lv + 受入閾値 + 測定方法 + pass 条件 | confirmed | PLAN-L3-03-nfr-grade |\n\n> **scope 分離**: L3 では screen / technical sub-doc を起こさない。screen は L1 + L2-screen で完結 (L10 UX 磨きへ continue)、technical は L4 ADR / L4 基本設計に直送。\n\n## companion doc (sub_doc ではない)\n\n| doc | 役割 | status |\n|-----|------|--------|\n| `roadmap.md` | 検証/改善ロードマップ (L0-L14 を横断する 7 フェーズ + 2 ゲート、PO /goal 2026-06-04)。L3 マイルストーンで起票する**設計層の計画 doc**。V-model の標準 sub_doc (テスト設計と pair する artifact) ではなく、L12 受入テストとは pair しない companion。CLAUDE.md Read Order / AGENTS.md Core Reads には含めず、V-model freeze 境界で検証サイクルを実行するときだけ動的に参照する | draft |\n\n> roadmap.md は `sub_doc` enum (functional-requirement / business-requirement / nfr-grade) の対象外。G3 pair freeze の trace 対象にも含めない (pair artifact を持たないため)。詳細・配置根拠は roadmap.md §6 / IMP-036 を参照。\n\n## L1 ↔ L3 ↔ L12 接続\n\n- **上流 (L1 baton)**: L1 5 sub-doc + L2-screen placeholder を全件 `dependencies.requires` で列挙 (G1-trace R4 充足規約、screen §4.1 参照)。L2-screen は L3 の未充足依存ではなく、L2 着手時に PLAN-L2-01〜04 で本起票する明示 carry として扱う。\n- **下流 (L3 → L12 pair)**: 本 sub-doc 3 件全体 ↔ `docs/test-design/harness/L3-acceptance-test-design.md` 1 doc (V-model L3↔L12 pair)\n- **下流 (L3 → L4)**: L4 PLAN (PLAN-L4-01〜05) は本 sub-doc 全件を `dependencies.requires` に列挙\n\n## 横断原則継承 (CC2 carry)\n\nscreen §4.1 の CC2 carry は、現行 HELIX の「AI 自律を既定、不可逆・高影響だけ人間 residue」へ読み替える。L3 全機能要件では「**人間判断点**」を L0-L3 承認、不可逆 cutover、本番・認証・PII・secret・license・destructive 操作、異常時 override に限定して明示し、L4 以降の通常 GitHub 運用や検証実行に per-gate の人間承認を要求しない。\n\n## G3 ゲート (L3 pair freeze)\n\nL3 3 sub-doc + L12 受入テスト 1 doc の pair freeze を **G3** で確定する。**正規式モデル (PLAN-RECOVERY-02)**: L3 の検証本質 = 本番受入 (L12)。画面要求は L1 (screen sub-doc) が担い L3 では起こさない。L2=L1 フェーズ分離の根拠は L1/L2 設計本文と L12 受入テスト trace に置き、本 README は索引として扱う。G3 内 sub-gate 候補 (L1 G1-trace と同様の構造):\n\n- **G3-content**: 各 sub-doc の必須 § 完備\n- **G3-pair**: L3 sub-doc ⇔ L12 受入テスト pair 整合\n- **G3-trace**: FR-L1 → FR-L3 / FR-L3 → AC / AC → 受入テスト / NFR → 閾値 → 受入テスト の 4 方向 trace 整合 (機械検証、`helix plan lint --gate G3-trace`)\n\n詳細は L3 sub-doc 本起票 + PLAN-L3-01〜03 Step 6 で確定する。`helix plan lint --gate G3-trace` は L7 実装済みで、G3-trace は `helix doctor` の hard gate としても集約される。G3 freeze 前は機械検証結果と L12 acceptance test design の宣言 trace を合わせてレビューする。\n"
+    },
+    {
+      "kind": "old L3 functional requirements",
+      "asset_id": "LEGACY-ASSET-B5B5E71B2AF1459D59A1",
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+      "full_file_sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a",
+      "byte_length": 72114,
+      "physical_line_count": 974,
+      "physical_lines": [
+        95,
+        118
+      ],
+      "raw_lf_inclusive_span_sha256": "6d5e718fec1ffacec13c6ed7e12c38f49ba98bb5cd39a3fd326923dce14e34c3",
+      "span_bytes": 1499,
+      "literal": "### FR-02: TDD 強制フロー (テストファースト順序)\n\n- **L1 上流**: FR-L1-02\n- **入力**: L6 機能設計 (関数仕様 / クラス設計 / エッジケース)\n- **出力**: テストコード (Red 状態) → 本体実装 (Green) → refactor の 3 段階記録\n- **振る舞い**: `helix sprint start` で L7 実装入り → Red テスト未存在で本体実装試行 → fail-close で block\n\n#### AC-FR-02-01 (正常系)\n- **前提**: L6 機能設計確定 + Red テスト先行作成 (test ファイルあり、コミット済)\n- **操作**: 本体実装ファイル commit\n- **期待結果**: `helix sprint check` が Red→Green 順序を確認 / TDD trace に Red commit ID → Green commit ID 記録 / pass\n\n#### AC-FR-02-02 (異常系)\n- **前提**: 本体実装ファイルだけ存在、対応 test ファイル無し\n- **操作**: `helix gate G7` 実行\n- **期待結果**: fail-close `Error: 本体実装 src/X.ts に対応する Red テストが見つからない (TDD 違反、FR-02 / FR-L1-02)` / next_action: `tests/X.test.ts を Red 状態で先行作成してください` / 終了コード 1\n\n#### AC-FR-02-03 (境界系)\n- **前提**: Red テスト存在、本体実装空 (関数 stub のみ)、テスト pass 可能 (assertion 緩い)\n- **操作**: `helix sprint check`\n- **期待結果**: warn `Warning: Red テストが緑のままです (assertion 不十分の可能性、AC 観点抜け確認)` / fail-close せず継続可 / 修正は人間判断\n\n---\n\n"
+    },
+    {
+      "kind": "old L3 functional requirements",
+      "asset_id": "LEGACY-ASSET-B5B5E71B2AF1459D59A1",
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+      "full_file_sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a",
+      "byte_length": 72114,
+      "physical_line_count": 974,
+      "physical_lines": [
+        119,
+        148
+      ],
+      "raw_lf_inclusive_span_sha256": "4d7ef3be3bd9bf3f213c9cfdd9eaec43a8d44cfc3a0964a49c27a40d49e4e043",
+      "span_bytes": 2502,
+      "literal": "### FR-03: V字双方向 trace (設計 ⇔ テスト設計 4 artifact pair)\n\n- **L1 上流**: FR-L1-03\n- **入力**: 設計 PLAN + テスト設計 PLAN\n- **出力**: trace 整合レポート (`.helix/artifact/trace/`) / 抜け漏れ検出ログ\n- **振る舞い**: `helix trace check` で 4 artifact (設計 / 実装 / テスト設計 / テストコード) の双方向 12 directed edge を全件照合\n- **振る舞い (descent obligation、PLAN-L6-35 add-design)**: 宣言された link の照合だけでなく、上流 (要件 FR) + 層隣接 obligation matrix から「在るべき下流/pair 成果物」を**生成**し、不在 (= 取りこぼし) を fail-close で検出する (absence-blind 是正)。src/test 着地済の trace key に未 discharge の設計/テスト設計 defer があれば impl-ahead 違反とする (機能設計 = `descent-obligation.md`)\n\n#### AC-FR-03-01 (正常系)\n- **前提**: PLAN-005 が generates: 設計 doc + 実装 + テスト設計 + テストコード 4 artifact 全件指定\n- **操作**: `helix trace check --plan PLAN-005`\n- **期待結果**: 4 artifact 全件存在確認 / 双方向 ID 照合 pass / レポート出力 `trace integrity: PASS (12/12 edges)`\n\n#### AC-FR-03-02 (異常系)\n- **前提**: PLAN-005 設計 doc あり、対応テスト設計欠落\n- **操作**: `helix trace check`\n- **期待結果**: fail-close `Error: PLAN-005 で設計 doc → テスト設計の trace 断絶` / next_action: `pair_artifact フィールド確認、テスト設計 PLAN 追加起票` / 終了コード 1\n\n#### AC-FR-03-03 (境界系)\n- **前提**: PLAN-005 が pair_artifact のみ宣言、generates なし (片方向のみ)\n- **操作**: `helix trace check`\n- **期待結果**: warn `Warning: generates 未宣言、L7 実装前に補完推奨` / fail-close せず / 終了コード 0\n\n#### AC-FR-03-04 (descent obligation — 不在検出 / impl-ahead、PLAN-L6-35)\n- **前提**: trace key K の src/test が着地済だが、K の L6 単体テスト設計が不在 (= skill 片肺と同型)\n- **操作**: `helix doctor` (descent-obligation 検査)\n- **期待結果**: fail-close `unmet obligation: K の L6→L7 pair が不在` または `impl-ahead: K は src 着地済だが設計/テスト設計 defer 未 discharge` / next_action: `機能設計⇔単体テスト設計 pair を back-fill、または有効 defer (discharge条件+owner) を宣言` / 上流が park/placeholder のときは obligation を生成しない (誤検出しない)\n\n---\n\n"
+    },
+    {
+      "kind": "old L3 functional requirements",
+      "asset_id": "LEGACY-ASSET-B5B5E71B2AF1459D59A1",
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+      "full_file_sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a",
+      "byte_length": 72114,
+      "physical_line_count": 974,
+      "physical_lines": [
+        454,
+        477
+      ],
+      "raw_lf_inclusive_span_sha256": "cfde1d76617b7f88ad81c6c097030097374c3d332ff024742772fd21ac84f306",
+      "span_bytes": 1100,
+      "literal": "### FR-16: Incident ワークフロー (本番障害)\n\n- **L1 上流**: FR-L1-16 (Reverse fullback で V モデル昇華)\n- **入力**: 本番障害アラート / SLO 逸脱\n- **出力**: troubleshoot / recovery PLAN / postmortem / L14 フィードバック\n- **振る舞い**: 緊急 hotfix → 即リリース → 収束後 Reverse fullback で V モデル昇華\n\n#### AC-FR-16-01 (正常系)\n- **前提**: 本番 SLO 逸脱検出 (例: error rate > 5%)\n- **操作**: `helix incident open --severity P0`\n- **期待結果**: kind=troubleshoot PLAN 自動起票 / 通常 gate 順序 bypass 許可 (PO 自動承認 S-03 + audit) / hotfix 経路提示\n\n#### AC-FR-16-02 (異常系)\n- **前提**: Incident 開放後 hotfix 未実装で 24h 経過\n- **操作**: `helix doctor`\n- **期待結果**: warn `Warning: Incident PLAN-XXX 未収束 24h 超 (postmortem 要起票)` / next_action 提示\n\n#### AC-FR-16-03 (境界系)\n- **前提**: 複数 Incident 同時オープン (P0 + P1)\n- **操作**: 並列管理\n- **期待結果**: P0 優先 routing / P1 は queue / audit に同時オープン記録\n\n---\n\n"
+    },
+    {
+      "kind": "old L3 functional requirements",
+      "asset_id": "LEGACY-ASSET-B5B5E71B2AF1459D59A1",
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+      "full_file_sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a",
+      "byte_length": 72114,
+      "physical_line_count": 974,
+      "physical_lines": [
+        478,
+        501
+      ],
+      "raw_lf_inclusive_span_sha256": "f102215ec05f79b1959a624fd94851921947e83bb14a71ab5352cd1cf2a835b8",
+      "span_bytes": 1109,
+      "literal": "### FR-17: CI/PR 連携 (ローカル証跡 → CI 検証 → branch protection)\n\n- **L1 上流**: FR-L1-17\n- **入力**: ゲート証跡、push イベント\n- **出力**: PR 許可 / 拒否、CI チェック結果\n- **振る舞い**: GitHub Actions で `helix gate <G-ID>` 再実行 → ローカル証跡と照合 → branch protection 連動\n\n#### AC-FR-17-01 (正常系)\n- **前提**: ローカルで G7 pass、push\n- **操作**: GHA workflow `.github/workflows/helix-gate.yml` 起動\n- **期待結果**: CI 側 G7 再実行 pass / branch protection check pass / PR merge 可\n\n#### AC-FR-17-02 (異常系)\n- **前提**: ローカル G7 pass、CI G7 fail (環境差異)\n- **操作**: PR\n- **期待結果**: PR block / CI 側 fail 詳細を `.helix/audit/ci-divergence/` に記録 / next_action `ローカル環境差異調査 (NFR-13 dev-local+CI 整合)`\n\n#### AC-FR-17-03 (境界系)\n- **前提**: hotfix branch (Incident mode) で CI 全 gate skip 要請\n- **操作**: PR\n- **期待結果**: workflow が Incident PLAN 存在を確認 / G7 のみ pass 必須、他 gate skip 許可 / audit 記録\n\n---\n\n"
+    },
+    {
+      "kind": "old L3 functional requirements",
+      "asset_id": "LEGACY-ASSET-B5B5E71B2AF1459D59A1",
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+      "full_file_sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a",
+      "byte_length": 72114,
+      "physical_line_count": 974,
+      "physical_lines": [
+        574,
+        612
+      ],
+      "raw_lf_inclusive_span_sha256": "7f95e6f7a1607db6959bbd791390a1dc65fed5f93cf96f16312ed9a350102ecd",
+      "span_bytes": 2585,
+      "literal": "### FR-25: Refactor ワークフロー (workflow core、A-50、振る舞い不変ガード)\n\n- **L1 上流**: FR-L1-25\n- **入力**: 対象コード、既存テスト (保護網)\n- **出力**: refactor PLAN、module、テスト緑確認結果 (axis-11 regression 機械検証)\n- **振る舞い**: kind=refactor、振る舞い不変を axis-11 regression で機械検証、G7 通過後 Forward 復帰\n\n#### AC-FR-25-01 (正常系)\n- **前提**: 既存 src/X.ts (test 保護網あり) を refactor、kind=refactor PLAN 起票\n- **操作**: `helix sprint check --regression-only`\n- **期待結果**: 既存 test 全件 green 維持確認 / axis-11 regression pass / 振る舞い不変 audit 記録\n\n#### AC-FR-25-02 (異常系: 既存テスト fail)\n- **前提**: refactor 後に既存 test 1 件 fail\n- **操作**: sprint check\n- **期待結果**: fail-close `Error: refactor で既存 test 破壊 (振る舞い不変違反、FR-25)` / 終了コード 1\n\n#### AC-FR-25-03 (境界系: test 保護網が薄い)\n- **前提**: refactor 対象 module の test coverage < 60%\n- **操作**: refactor PLAN 起票\n- **期待結果**: warn `Warning: test 保護網が薄い (coverage 60% 未満、refactor リスク高)` / 起票続行可 / next_action `先に test 補強 PLAN 起票推奨`\n\n#### AC-FR-25-04 (正常系: TDD brush-up green requires test IDs)\n- **前提**: kind=refactor PLAN が既存振る舞いを変えずに構造変更を完了した\n- **操作**: `assertRefactorInvariant` を評価する\n- **期待結果**: before/after behavior が一致し、regression exit_code=0 で、少なくとも 1 件の regression `test_id` が紐づく場合のみ Green とする\n\n#### AC-FR-25-05 (DB trigger: relation graph / feedback 起点)\n- **前提**: `harness.db` の `findings` / `quality_signals` / `feedback_events` / `impact_results` / `artifact_progress` に structural debt、missing dependency check、missing linked test ID のいずれかが記録されている\n- **操作**: Refactor 候補を抽出する\n- **期待結果**: `debt_degradation` / `code_smell` / `structural` signal として kind=refactor PLAN 入力を生成でき、source docs は直接書き換えない\n\n#### AC-FR-25-06 (異常系: dependency impact 未解消)\n- **前提**: refactor 対象ファイルに relation-graph の open action が残っている\n- **操作**: PLAN を Green / completed 扱いにしようとする\n- **期待結果**: Red のまま維持し、required action (sibling test / L6 contract review / paired design update / DB rebuild check) を evidence として返す\n\n---\n\n"
+    },
+    {
+      "kind": "old L3 business scope only",
+      "asset_id": "LEGACY-ASSET-A6E2C7F0565E5F804F06",
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md",
+      "full_file_sha256": "99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d",
+      "byte_length": 16399,
+      "physical_line_count": 256,
+      "physical_lines": [
+        21,
+        37
+      ],
+      "raw_lf_inclusive_span_sha256": "5ab6c280e2fcce2244d5b5ab80b603d9d1a2c24cd0fd359137f3dacda01c517e",
+      "span_bytes": 1534,
+      "literal": "> **SSoT 参照**: BR-21 全文 = business-requirements.md §11 / HM-08 = screen-requirements.md §1.HM.08 / FR-L1-36/38/43 = functional-requirements.md §1 (P2 起点、現行 projection 実装済み)。\n> **適用範囲**: BR-21 (AI 実行成果評価) + HM-08 画面連動 + FR-L1-36/38/43 (Learning Engine 系、P2) のみ。FR 一般詳細化は functional-requirements.md (PLAN-L3-01) 担当 (重複回避)。\n> **L12 接続**: 全 AC を AT-* で被覆 (孤児 0)。\n\n# HELIX-HARNESS — L3 業務要件詳細 (business-detail) — BR-21 + HM-08 + 評価 projection\n\n## §1 評価対象 (U-BR21-1 採用、PLAN 単位を既定 + 補助単位)\n\nL1 BR-21 で宣言した「AI 実行成果評価」の評価単位を以下で確定する:\n\n| 評価単位 | 役割 | 計測時点 | 主担当指標 |\n|---------|------|---------|----------|\n| **PLAN 単位** (既定) | harness 最小遂行単位、KPI D-07 と直結 | PLAN status=completed 時 | 成功率 / トークンコスト / 所要時間 / 再実行回数 |\n| **skill 単位** (補助) | skill 推奨精度評価 | skill 注入 → 利用 → PLAN 完了 サイクル末 | skill 採用率 / 採用後成功率 |\n| **model 単位** (補助、opt-in) | model 選択基準改善 | task 委譲完了時 | model 別成功率 / コスト効率 |\n\n> **TL 採用根拠**: PLAN 単位 = harness の業務単位、skill / model は補助メトリクス (drift 計測用)。3 単位を超える単位 (sprint 全体 / FR 単位) は集計コスト過大のためスキップする。\n"
+    },
+    {
+      "kind": "old L3 NFR taxonomy/value context",
+      "asset_id": "LEGACY-ASSET-DB669724249A14A665F0",
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+      "full_file_sha256": "2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d",
+      "byte_length": 17431,
+      "physical_line_count": 243,
+      "physical_lines": [
+        21,
+        24
+      ],
+      "raw_lf_inclusive_span_sha256": "9d3183955372926cc392ce88e5213d7cdf711d080ce2ec1d63b253acda818d49",
+      "span_bytes": 806,
+      "literal": "> **SSoT 参照**: L1 NFR-01〜17 (15 件、NFR-09/10 連動欠番) = nfr.md / IPA グレード Lv = IPA 非機能要求グレード 2018 公式 sample (社内内製ツール想定) / ISO 25010:2023 = 品質特性 catalog / KPI D-01〜D-09 = business-requirements.md §6.5。\n> **scope**: L1 NFR-01〜17 (15 件、NFR-09/10 連動欠番) の IPA グレード Lv + 受入閾値 + 測定方法 + pass 条件確定。NFR-17 = 統合セキュリティ (A-54 audit 軸1 I-01 back-propagation、§5)。さらなる NFR 体系追加は L4 carry。NFR-18 (telemetry PII redaction、Phase B 新規候補) は §7.3 carry で宣言 (旧 NFR-17 を A-54 で NFR-18 にリネーム、統合セキュリティとの ID 衝突解消)。\n> **L12 接続**: 全 NFR-* に AT-* 紐付け (孤児 NFR = 0、機械検証)。\n\n"
+    },
+    {
+      "kind": "old L3 paired acceptance-test design",
+      "asset_id": "LEGACY-ASSET-1B92155F959D7905DD1E",
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L3-acceptance-test-design.md",
+      "full_file_sha256": "27a92c3be07aa06b9e8a598b7b2b7bcc357ccb6afa876e27e45cd85e7f3d00c1",
+      "byte_length": 28107,
+      "physical_line_count": 247,
+      "physical_lines": [
+        26,
+        40
+      ],
+      "raw_lf_inclusive_span_sha256": "e5ad84e9eff2b2d15f5ce2f33ceaf16abdade7dc89e58d469681cce6c96d612d",
+      "span_bytes": 1327,
+      "literal": "# HELIX-HARNESS — L3 受入テスト設計 (④ / AT-*)\n\n> **layer (作成層 = V-pair key)**: L3 (要件) / **executed_at_layer (実施層)**: L12 (受入) / **artifact**: ④ 受入テスト設計 (V-model 右、② L3 全 sub-doc と対)\n> **pair (V-model L3↔L12)**: `docs/design/harness/L3-functional/{functional-requirements,business-detail,nfr-grade}.md` 3 sub-doc 全体 ↔ 本書 1 doc\n> **status**: confirmed (A-100 で ① と対の G3 pair freeze 両側揃い、2026-06-04。PLAN-L3-01/02/03 と並行確定)\n> **正規式モデル (PLAN-RECOVERY-02、2026-06-04)**: L3⇔L12 の検証本質 = **本番受入** (本番環境で要件 FR+AC が満たせるか)。データ実在性エスカレーションの本番 band (画面の実データ検証 L10 の後に位置)。\n> **PLAN**: `docs/plans/PLAN-L3-{01..03}-*.md` Step 6 / DoD で本書参照\n\n## §0 量閉じ原則 (L3 ↔ L12)\n\n- 全 L3 FR-* (26 件 = FR-01〜18 + FR-45 + workflow core 7 件 [FR-23〜27/29/30]) / AT 対応必須\n- 全 AC-FR-* (85 件、functional sub-doc) / AT 対応必須\n- 全 BR-21 派生 (FR-BR21-36/38/43) / AT 対応必須\n- 全 NFR-* (15 件、NFR-09/10 欠番。NFR-17 = 統合セキュリティ A-54 追加) / AT 対応必須 (carry の場合は placeholder AT)\n- 孤児 = 0 (機械検証 `helix plan lint --gate G3-trace`)\n"
+    },
+    {
+      "kind": "old L3 paired acceptance-test design",
+      "asset_id": "LEGACY-ASSET-1B92155F959D7905DD1E",
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L3-acceptance-test-design.md",
+      "full_file_sha256": "27a92c3be07aa06b9e8a598b7b2b7bcc357ccb6afa876e27e45cd85e7f3d00c1",
+      "byte_length": 28107,
+      "physical_line_count": 247,
+      "physical_lines": [
+        100,
+        104
+      ],
+      "raw_lf_inclusive_span_sha256": "466b98a5d2fc5b4cdd3d58bd90ab60f8904ea17905fd986463c958c20b108d22",
+      "span_bytes": 714,
+      "literal": "| **AT-FR-15-02** | AC-FR-15-02 (S4 decision_outcome 欠落) | 欠落 → schema fail / exit 1 | vitest schema test (既存カバー) |\n| **AT-FR-15-03** | AC-FR-15-03 (pivot 仮説変更) | decision_outcome=pivot → 旧 PLAN archive / 新 PLAN 案内 | vitest discovery test |\n| **AT-FR-16-01** | AC-FR-16-01 (Incident open P0) | `helix incident open --severity P0` → troubleshoot PLAN 生成 + bypass 付与 + audit 記録 | vitest incident test |\n| **AT-FR-16-02** | AC-FR-16-02 (24h 未収束) | Incident 24h 超 → warn + postmortem next_action | vitest doctor + incident test |\n| **AT-FR-16-03** | AC-FR-16-03 (複数 P0/P1 並列) | 同時 open → P0 優先 / P1 queue / audit | vitest incident test |\n"
+    },
+    {
+      "kind": "old L3 paired acceptance-test design",
+      "asset_id": "LEGACY-ASSET-1B92155F959D7905DD1E",
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L3-acceptance-test-design.md",
+      "full_file_sha256": "27a92c3be07aa06b9e8a598b7b2b7bcc357ccb6afa876e27e45cd85e7f3d00c1",
+      "byte_length": 28107,
+      "physical_line_count": 247,
+      "physical_lines": [
+        121,
+        126
+      ],
+      "raw_lf_inclusive_span_sha256": "5f1c6b0ed41a9621c381579ac141d5b5752ad7d4c8c39e59b40d4c3d1f9d1e76",
+      "span_bytes": 1182,
+      "literal": "| **AT-FR-25-01** | (A-50 workflow core) AC-FR-25-01 (Refactor 振る舞い不変正常) | 既存 test 緑維持 + axis-11 regression pass | vitest sprint + regression test |\n| **AT-FR-25-02** | AC-FR-25-02 (既存 test 破壊) | refactor 後 test fail → fail-close error | vitest sprint test |\n| **AT-FR-25-03** | AC-FR-25-03 (test 保護網薄い) | coverage < 60% → warn / 続行可 | vitest sprint test |\n| **AT-FR-25-04** | AC-FR-25-04 (refactor green requires test IDs) | `assertRefactorInvariant` が before/after 一致、regression exit_code=0、linked regression test_id ありの場合だけ Green とする | vitest refactor invariant test |\n| **AT-FR-25-05** | AC-FR-25-05 (DB trigger: relation graph / feedback 起点) | harness.db findings / quality_signals / feedback_events / impact_results / artifact_progress から refactor PLAN 入力を生成でき、source docs を直接書き換えない | vitest workflow signal test |\n| **AT-FR-25-06** | AC-FR-25-06 (dependency impact 未解消) | relation-graph open action が残る refactor PLAN は Green/completed にせず、required action を evidence として返す | vitest relation graph readiness test |\n"
+    },
+    {
+      "kind": "old L8 integration fixture/mock boundary context",
+      "asset_id": "LEGACY-ASSET-73B5C6C7D281E28EC541",
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L8-integration-test-design.md",
+      "full_file_sha256": "c8b287ee4e103255081f00439b7fb2f3dfd259e0fb35a2760b48ad583524fe15",
+      "byte_length": 33496,
+      "physical_line_count": 203,
+      "physical_lines": [
+        122,
+        136
+      ],
+      "raw_lf_inclusive_span_sha256": "41b25babb699c5fce13423c92ab534f79a94416b6d314c2a411a047c8ab0916f",
+      "span_bytes": 5039,
+      "literal": "本節は前段の candidate skeleton（候補骨子）を confirmed integration-test design（確定済み結合テスト設計）粒度へ引き上げる。すべての IT-* 行は GWT、fixture、module boundary setup、assertion、negative/edge coverage を持つ。L6/L7 carry items は implementation-detail carry（実装詳細の持ち越し）に限り、本節では integration boundary（結合境界）と期待 behavior を凍結する。\n\nDDD/TDD strictness automation (`src/lint/ddd-tdd-rules.ts` / `integration-gwt`) は本節を機械検査する。明示的な GWT を欠く `IT-*` 行は freeze evidence として confirm 不可とする。この定量 check は qualitative review より前に実行し、gate-significant integration evidence は両方を要求する。\n\n| IT-ID | Given（前提） | When（操作） | Then（期待結果） | Fixture / Boundary（境界） | Assertions（検証） | Negative / Edge（異常・境界） |\n|---|---|---|---|---|---|---|\n| IT-CONTRACT-01 | valid / invalid な `plan draft` request、temp `docs/plans` workspace、空の plan registry。 | plan draft flow が frontmatter を validate し、PLAN を write し、registry evidence を update する。 | valid input は PLAN と registry entry を作成し、invalid input は write 前に fail する。 | CLI -> plan module -> schema -> fs boundary。temp fs fixture。 | file+registry postcondition 付き Exit 0、または partial write なしの exit 1。 | `plan_id` 欠落、invalid layer、duplicate ID、readonly target。 |\n| IT-CONTRACT-02 | prior phase state と gate-design ledger fixture を持つ gate request。 | gate flow が pass/fail evidence を記録し、phase state を update する。 | gate pass は gate_runs evidence を作成し、V-model order invariant を保持する。 | gate module -> phase state -> audit ledger boundary。 | gate status、audit record、phase transition が一致する。 | out-of-order な gate skip、evidence 欠落、stale park state。 |\n| IT-CONTRACT-03 | edge annotation と mapped AT references を持つ functions / docs。 | edge docstring scan を L5 DbC と AT trace と比較する。 | 各 edge 5-8 class は AT または explicit carry に map される。 | code/doc parser -> trace map boundary。 | orphan `@edge-*` がなく、source contract なしの AT もない。 | unknown edge tag、normal/error classification の衝突。 |\n| IT-ADAPTER-01 | mock provider adapter と provider-independent worker intent。 | adapter が worker/reviewer intent を invoke し、result を normalize する。 | result は provider-independent `InvokeResult` として返る。 | core -> adapter -> mock provider boundary。 | intent fields が保持され、result/error union が valid。 | provider が malformed payload または missing output を返す。 |\n| IT-ADAPTER-02 | absent provider、auth failure、rate limit、timeout の adapter error fixtures。 | adapter が各 error を fail-close/degradation/skip policy へ map する。 | auth は fail close、absent provider は許可箇所だけ degrade、timeout は bounded。 | adapter -> policy mapper -> CLI exit boundary。 | error class、exit code、next_action が D-CONTRACT と一致する。 | retry exhaustion、mixed partial success、unknown provider error。 |\n| IT-ADAPTER-03 | `mode-routing.yaml` と `gate-checks.yaml` fixtures。 | D-CONTRACT DSL を load して validate する。 | valid DSL は parse され、invalid routing/gate definitions は execution 前に fail する。 | config loader -> zod schema -> workflow boundary。 | schema parse の success/failure が deterministic。 | unknown mode、missing gate、circular routing。 |\n| IT-MODULE-01 | 期待する schema-first dependency direction を含む module import graph。 | import graph check が public / internal module imports を walk する。 | cycle は存在せず、schema は one-way dependency root のまま維持される。 | src module graph -> dependency analyzer boundary。 | cycle count 0、forbidden reverse import count 0。 | injected cycle、helper importing CLI、lint importing doctor。 |\n| IT-MODULE-02 | `loadX` と pure `analyzeX` を持つ lint module fixture。 | loader が fixtures を read し、与えられた docs で analyzer を実行する。 | I/O は loader に留まり、analyzer は deterministic かつ side-effect free。 | fs loader -> pure analyzer -> message boundary。 | 同一 input は同一 result を返し、messages は violation set と一致する。 | analyzer reading fs、loader hiding parse failure、unstable message order。 |\n| IT-STATE-01 | valid / invalid な `.helix` state files と schema fixtures。 | state を write し、read back し、zod で parse する。 | valid state は round-trip し、invalid state は use 前に fail closed する。 | state fs -> zod schema -> doctor boundary。 | parse result は schema と一致し、IDs を保持する。 | missing required field、unknown enum、corrupt JSON/YAML。 |\n"
+    },
+    {
+      "kind": "C13 historical review comment; not exact current cutout review",
+      "asset_id": null,
+      "revision": null,
+      "full_file_sha256": "4d837e616451040cb15762e98b65cb9f104db8856f0319f4f376a47459644f1c",
+      "byte_length": 32525,
+      "physical_line_count": 270,
+      "physical_lines": [
+        251,
+        251
+      ],
+      "raw_lf_inclusive_span_sha256": "9687ac63440079ddd0bfac4db9175e28793b8e1f3bf9235fd8514363ef69822b",
+      "span_bytes": 116,
+      "literal": "- **HARNESS**：028〜032、037、038、040〜043、046の個別句は、前回の判定に依拠しています。\n",
+      "source_locator": "PR #2564 Claude review response RH-PR2564-L3L10-274-13; exact reviewed HEAD/base recorded in c13_carry",
+      "evidence_capture": "private captured comment body; the repository record binds its full and bounded span SHA-256"
+    },
+    {
+      "kind": "old paired acceptance-test design; AT-FR-17 table",
+      "asset_id": "LEGACY-ASSET-1B92155F959D7905DD1E",
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L3-acceptance-test-design.md",
+      "full_file_sha256": "27a92c3be07aa06b9e8a598b7b2b7bcc357ccb6afa876e27e45cd85e7f3d00c1",
+      "byte_length": 28107,
+      "physical_line_count": 247,
+      "physical_lines": [
+        105,
+        107
+      ],
+      "raw_lf_inclusive_span_sha256": "b30a1b121c2c47105d86264a389ca4155fd6904b2beb9163e6603b906d4792d2",
+      "span_bytes": 404,
+      "literal": "| **AT-FR-17-01** | AC-FR-17-01 (CI G7 pass) | ローカル G7 pass → GHA workflow G7 pass / PR merge 可 | GHA workflow test |\n| **AT-FR-17-02** | AC-FR-17-02 (ローカル/CI divergence) | ローカル pass / CI fail → PR block / divergence 記録 | GHA workflow test |\n| **AT-FR-17-03** | AC-FR-17-03 (hotfix skip) | Incident PLAN → G7 のみ pass 必須 / 他 skip 許可 | GHA workflow test |\n"
+    }
+  ],
+  "trace_map": [
+    {
+      "parent": "HARNESS-L2-030",
+      "fr": "FR-HARNESS-L3-030",
+      "acs": [
+        "AC-HARNESS-L3-030-01",
+        "AC-HARNESS-L3-030-02",
+        "AC-HARNESS-L3-030-03",
+        "AC-HARNESS-L3-030-04"
+      ],
+      "cases": [
+        "CASE-HARNESS-L10-030-01",
+        "CASE-HARNESS-L10-030-02",
+        "CASE-HARNESS-L10-030-03",
+        "CASE-HARNESS-L10-030-04"
+      ],
+      "nfr": "NFR-C-HARNESS-030-01",
+      "nfr_case": "CASE-HARNESS-L10-NFR-030-01"
+    },
+    {
+      "parent": "HARNESS-L2-031",
+      "fr": "FR-HARNESS-L3-031",
+      "acs": [
+        "AC-HARNESS-L3-031-01",
+        "AC-HARNESS-L3-031-02",
+        "AC-HARNESS-L3-031-03",
+        "AC-HARNESS-L3-031-04",
+        "AC-HARNESS-L3-031-05"
+      ],
+      "cases": [
+        "CASE-HARNESS-L10-031-01",
+        "CASE-HARNESS-L10-031-02",
+        "CASE-HARNESS-L10-031-03",
+        "CASE-HARNESS-L10-031-04",
+        "CASE-HARNESS-L10-031-05"
+      ],
+      "nfr": "NFR-C-HARNESS-031-01",
+      "nfr_case": "CASE-HARNESS-L10-NFR-031-01"
+    },
+    {
+      "parent": "HARNESS-L2-032",
+      "fr": "FR-HARNESS-L3-032",
+      "acs": [
+        "AC-HARNESS-L3-032-01",
+        "AC-HARNESS-L3-032-02",
+        "AC-HARNESS-L3-032-03",
+        "AC-HARNESS-L3-032-04",
+        "AC-HARNESS-L3-032-05"
+      ],
+      "cases": [
+        "CASE-HARNESS-L10-032-01",
+        "CASE-HARNESS-L10-032-02",
+        "CASE-HARNESS-L10-032-03",
+        "CASE-HARNESS-L10-032-04",
+        "CASE-HARNESS-L10-032-05"
+      ],
+      "nfr": "NFR-C-HARNESS-032-01",
+      "nfr_case": "CASE-HARNESS-L10-NFR-032-01"
+    }
+  ],
+  "counts": {
+    "fr": 3,
+    "ac": 14,
+    "functional_case": 14,
+    "business_requirement": 0,
+    "business_case": 0,
+    "nfr_candidate": 3,
+    "nfr_measurement_case": 3,
+    "source_pin_items": 17,
+    "bounded_spans": 30,
+    "prefix_files_byte_identical": 6
+  },
+  "c13_carry": {
+    "review_identity": "RH-PR2564-L3L10-274-13",
+    "review_request_comment_id": 5980975435,
+    "supplement_comment_id": 5981056423,
+    "reviewed_head": "ef5b402bd0c67165531d25f4dca27783d301a186",
+    "reviewed_base": "a56f486a40d7ee925c781c8037ee8f42f566c4fe",
+    "review_body_sha256": "4d837e616451040cb15762e98b65cb9f104db8856f0319f4f376a47459644f1c",
+    "review_body_line_251_sha256": "9687ac63440079ddd0bfac4db9175e28793b8e1f3bf9235fd8514363ef69822b",
+    "relevant_statement": "HARNESS 028-032 individual clauses relied on prior review; this did not inspect this future/exact Stage2c cutout body. Prior findings potentially applicable to these clauses remain carried until exact receiver clauses are independently revalidated. No C13 closure claimed; do not move 022/025/026 findings to these parents.",
+    "exact_current_independent_review": "not_done",
+    "review_body_locator": "PR #2564 Claude review response RH-PR2564-L3L10-274-13; creator request comment IDs recorded separately"
+  },
+  "static_checks": {
+    "prefix_byte_identical": true,
+    "six_body_full_sha256_recorded": true,
+    "fr_ac_case_trace_inventory": "PASS: all 14 Stage2c AC IDs referenced by paired functional L10; each parent has FR and CASE set",
+    "nfr_pairing": "PASS: 3 candidates each map to one L10 measurement case",
+    "normalized_fixed_and_legacy_source_full_raw_span_hashes": "PASS 16 pin items / 29 spans",
+    "scfctl_validate": "PASS bindings=147 fail=0",
+    "scfctl_stale": "PASS stale=0",
+    "scfctl_residuals": "PASS residuals=0",
+    "govcheck": "PASS atoms=7622 requirements=57 files=58",
+    "git_diff_check": "PASS",
+    "old_runtime_test_ci_bun_executed": false,
+    "l10_execution_performed": false
+  },
+  "limitations": [
+    "これは作成側の静的検収であり、独立review・POのL3承認・実装・実行・releaseを生成しない。",
+    "NFR values are evidence-based technical candidates; no workload performance threshold was found or invented.",
+    "Stage 1/2a 草稿は未承認contextのまま。Stage 2b/全前stage完了gateを生成しない。",
+    "C13 historical review did not cover this exact body; applicable prior clauses remain carried for exact-head independent review."
+  ],
+  "documents": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "body_commit": "53387c4c6b08a6cee8766affda815f4c60829106",
+      "full_file_sha256": "b61017cd9fe8d5b383687043eb7c96085de379058624c3c96c23b603775e7cd1",
+      "byte_length": 50876,
+      "physical_line_count": 183
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "body_commit": "53387c4c6b08a6cee8766affda815f4c60829106",
+      "full_file_sha256": "356788a8538f25e6275873df9b47c385db71aa5267b9f359abca5c25b7c10d81",
+      "byte_length": 4165,
+      "physical_line_count": 36
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "body_commit": "53387c4c6b08a6cee8766affda815f4c60829106",
+      "full_file_sha256": "8172de602456706a381ebc067ffaad657884494cebc12d85fc5199dbcf9ecb8f",
+      "byte_length": 15081,
+      "physical_line_count": 74
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "body_commit": "53387c4c6b08a6cee8766affda815f4c60829106",
+      "full_file_sha256": "79cf89542a4f389cbffe63a8d0fb70a757c50db656d499bbb1c0e1bb85be0496",
+      "byte_length": 24908,
+      "physical_line_count": 68
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "body_commit": "53387c4c6b08a6cee8766affda815f4c60829106",
+      "full_file_sha256": "6d7da79ffc566c65a4cc9070a0b82dbe79826f3b210e004c9f9a735dff58b3a3",
+      "byte_length": 2808,
+      "physical_line_count": 23
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "body_commit": "53387c4c6b08a6cee8766affda815f4c60829106",
+      "full_file_sha256": "3c938e3efd747bc8c1aca27f782b79d39ae63cadb7e315da4b1e10c635baa2ca",
+      "byte_length": 9078,
+      "physical_line_count": 43
+    }
+  ],
+  "prefix_records": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "base_revision": "8361b16f556cabd5dbaa646ab95045792db3a367",
+      "prefix_bytes": 35865,
+      "prefix_sha256": "ededfbea6c0dc438900243376503aa60d921c9a4c001e6c752ed758f4a24c43d",
+      "prefix_byte_identical": true
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "base_revision": "8361b16f556cabd5dbaa646ab95045792db3a367",
+      "prefix_bytes": 2711,
+      "prefix_sha256": "7a9ada36f834ec3a6ae81eeae8ec0fa46d08fc08f98a55a6ea0adccbb0e582db",
+      "prefix_byte_identical": true
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "base_revision": "8361b16f556cabd5dbaa646ab95045792db3a367",
+      "prefix_bytes": 12117,
+      "prefix_sha256": "a628c1b1c90515a64a3142a3ddfb156095812fe4cca1874ff5a1c3061b1e698a",
+      "prefix_byte_identical": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "base_revision": "8361b16f556cabd5dbaa646ab95045792db3a367",
+      "prefix_bytes": 18558,
+      "prefix_sha256": "7fb33edacdc2fbc51f4775ad0550461214a7a12ca47d10487f700bc2ba732abe",
+      "prefix_byte_identical": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "base_revision": "8361b16f556cabd5dbaa646ab95045792db3a367",
+      "prefix_bytes": 2155,
+      "prefix_sha256": "ba10272edfc8d62c47d9e699a8bb47a8a3ac2a3a3da40c1ecbdc2c16139ffa2e",
+      "prefix_byte_identical": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "base_revision": "8361b16f556cabd5dbaa646ab95045792db3a367",
+      "prefix_bytes": 6341,
+      "prefix_sha256": "11563daab34d432cf592ccfc6ac2568ae210a8ae2c416a25c539335fb52bb7ed",
+      "prefix_byte_identical": true
+    }
+  ],
+  "source_pin_item_definition": "Unique source path + revision/asset; normalized source_pins records preserve one record per bounded span or full-file-only pin."
+}

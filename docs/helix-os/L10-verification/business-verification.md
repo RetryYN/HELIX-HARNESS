@@ -10,6 +10,10 @@
 
 文書追加、stage record、pack green、OS operation resultから1.0到達・製品release・external publication・L3 approval・人の判断を生成しない。business failureをtransport/handoff状態で置き換えない。人手担当は既存L2のscopeに限り、追加approvalではない。
 
+## Stage 2c — HELIXOS-L2-028 / HELIXOS-L2-029 business scope
+
+固定L2-028/029に独立したbusiness outcomeは定義されていないため、このpairはbusiness caseを作らない。機能要件/受入とのtrace参照は `../L3-requirements/functional-requirements.md` の FR-OS-028/029、AC-OS-028-01、AC-OS-028-02、AC-OS-028-03、AC-OS-028-04、AC-OS-028-05、AC-OS-028-06、AC-OS-028-07、AC-OS-029-01、AC-OS-029-02、AC-OS-029-03、AC-OS-029-04、AC-OS-029-05、AC-OS-029-06を参照する。functional CASEはfunctional-verification.mdだけに宣言し、この文書はbusiness CASEを宣言しない。新BR/BCASE、業務KPI、独立owner、business pass条件を追加しない。ここから別のbusiness outcomeを推定しない。
+
 ## Stage 2a — 8親の業務総合検証（015/016/017/018/019/020/023/027）
 
 状態: L3業務要件との対になるverification設計候補。業務達成、user acceptance、L3承認は生成しない。正本は `../L3-requirements/business-requirements.md`、functional oracleは `functional-verification.md` である。

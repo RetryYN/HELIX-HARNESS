@@ -1,0 +1,88 @@
+{
+  "record_kind": "delegated_decision_pins",
+  "authority_effect": "none; pin record only, does not itself admit or create approval",
+  "latest_main": "4729c34ec29c2c72f345993958bbc94e1ed6f131",
+  "review_base": "5397b1ef9a6ab251cd32148b2c2202cdd5858a7e",
+  "reviewed_head": "fdb5cbfff04fb555278242065957336a6e6f21f1",
+  "body_revision": "fdb5cbfff04fb555278242065957336a6e6f21f1",
+  "delegation": {
+    "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+    "source_revision": "4729c34ec29c2c72f345993958bbc94e1ed6f131",
+    "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220"
+  },
+  "formal_comments": [
+    {
+      "role": "Opus no_findings",
+      "id": 5988999466,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2597#issuecomment-5988999466",
+      "body_utf8_bytes": 2880,
+      "body_sha256": "1c3c845458263a7e86126c89358e597fadab45063c05f3fd0a8730236d24787a"
+    },
+    {
+      "role": "Fable独立確認・Opus一致",
+      "id": 5989070752,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2597#issuecomment-5989070752",
+      "body_utf8_bytes": 9667,
+      "body_sha256": "9dde6f56088b0f59c08262e6e25162f23aac195e68cabc62189abee611029cab"
+    }
+  ],
+  "approved_parents": [
+    {
+      "identity": "HELIXINTELLIGENCE-L2-068",
+      "registration": "MPR-RC-HELIXINTELLIGENCE-L2-068-002",
+      "kind": "unit",
+      "version": "1.0",
+      "stage": "Stage 2c"
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-075",
+      "registration": "MPR-RC-HELIXINTELLIGENCE-L2-075-002",
+      "kind": "unit",
+      "version": "1.0",
+      "stage": "Stage 2c"
+    }
+  ],
+  "fixed_requirements": {
+    "l2_l11_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "po_decision_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "l2_075_later_adoption_record": "1880c422311a7f8321dbb0e2b98fa12c69449201"
+  },
+  "documents": [
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "sha256": "9f8049fd3e7bdfe6550f5de9a444d1f44449c1b61769bf79e85b47c2c5906e81",
+      "bytes": 5680
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "sha256": "192e980c2b4c6c7a78d2651ae30e23c5072ee1ff4ae7366bd01be155bf88aac6",
+      "bytes": 31138
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "sha256": "a8f2e0c4bc1d482d6cfd68cd5f9638fcf8575104aafc7bdcb5214b162190f876",
+      "bytes": 12464
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "sha256": "5839b4cd42af9d57b0e01e8da6014838097671738297e2a343bcc4739d67809d",
+      "bytes": 5552
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "sha256": "cb9cc91c9f2646e2272fd18c6fd2b176285ba3b0f36409805e5a2879adad6017",
+      "bytes": 33090
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "sha256": "046a3b23b5070e339e579da2428d7773cb91da2b9ebad520971be3803e2e1a80",
+      "bytes": 14314
+    }
+  ],
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-intelligence-stage2c-l3-l10-po-decision-2026-10-05.md",
+    "revision": "cba1579cf6008f41026f3622b3b5032271ba3393",
+    "sha256": "4b997629ab37cd8c95f6fe0bc13f456b019c72b92f3b5ea73fe983a313c6b140"
+  },
+  "verification": "2 formal comments were fetched as UTF-8 bodies and their bytes/SHA match root-provided pins. Six canonical document blobs at reviewed content HEAD match the recorded SHA and worktree bytes. Decision record is a separate prior commit. No canonical document was modified by these records."
+}
