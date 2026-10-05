@@ -78,3 +78,21 @@ HARNESS-L2-011/L11は期限切れをsuccessにしないが、expiry時刻と比�
 - **`NFR-C-HARNESS-022-01` trace integrity（候補）**：選択scope内の各必須FR/ACを一つ以上の適切なL10 oracleへ追跡し、oracle/result/evidenceのartifact revisionとscopeを一致させる。FR/ACとCASEの対応は必要に応じ多対多でよく、一対一制約を追加しない。候補境界は、選択scope内の必須FR/AC trace completeness 100%、未解消の必須trace/evidence tuple mismatch 0件。これは必須traceの完全性を測る技術候補であり、quality/security/acceptanceの品質閾値ではない。IDの重複は別の識別子不備として検出する。根拠はL2-022の段階証明・同一revision/scope条件とL11:268のoracle結果とtrace/evidence存在の区別、数値thresholdを追加しない共通前提であり、G13 receiptは品質判定をstage別oracleへ結び結果から承認を生成しないことを補足する。L10で対応漏れ・重複・revision違い・scope違い・必須証拠欠落を独立変異し、各条件がpassにならないことを測る。別fixtureでtrace completeness 100%とtuple mismatch 0件を満たしたままstage-specific quality oracle未達を与え、trace計測は完全でも品質pass・上位state・Acceptedを生成しないことを確認する。固定sourceが定めない旧51/102件の分母を流用しない。
 
 この親だけからthroughput/latency/availabilityの数値義務は導出しない。別の固定根拠から測定値が必要になった場合はL3で根拠・比較案・測定方法・判定境界を持つ候補を起草し、対のL10へ結ぶ。数値根拠がなければ当該数値NFRは設定しない。
+## Stage 2c suffix — HARNESS-L2-030/031/032 技術候補
+
+以下は固定親に根拠がある完全性・整合性の計測候補であり、実測結果、性能SLO、要求承認またはrelease eligibilityではない。分母は当該固定revision/scopeで明示必須かつ選択された操作に限定する。未選択・未測定、失敗、欠測、打切り、unknown/staleは独立stateで記録し、母集団から消さない。分母0では割合を出さず「測定対象なし」と記録する。候補値はL4へ渡す技術候補であり、個別parameterのPO承認gateを作らない。
+
+| NFR候補ID / 親 | 候補値 | 根拠・測定案 | 適用限界 |
+|---|---|---|---|
+| `NFR-C-HARNESS-030-01` / `HARNESS-L2-030` | 選択scopeで必要なdeclared case fieldとrequirement/design/oracle/source/scope traceの保持率100%；根拠のないexpected value・permission・boundaryまたは未選択source適用の推論0件。 | L2-030の再現可能case提案、022 oracleと014 designのtraceから候補化。予定必須field/traceごとにpresent/valid, missing, conflict, unknown, not-selectedを数え、生成caseの意味を同一input/source版/scopeで比較する。 | sourceが宣言しない値は判定不能として保持。case数、mutation score、coverage目標、実行成功率は追加しない。分母0では率なし。 |
+| `NFR-C-HARNESS-031-01` / `HARNESS-L2-031` | 選択reduction stepに必要なsource/revision/scope/oracle/result-receipt trace完全率100%；receiptなし・症状不一致でsame-failureと断定する件数0；original failure履歴削除0。 | L2-031とL11 step-by-step例に従い、planned selected stepsを母集団に各stepのpermission/sanitization/oracle/receipt状態を独立集計する。unselected future fix/passは母集団へ加えない。 | 未選択・失敗・missing・censored・unknown状態を別記し、合計母集団を偽らない。最大step数、削減率、再現SLAや成功率を作らない。 |
+| `NFR-C-HARNESS-032-01` / `HARNESS-L2-032` | 選択packetに必須のartifact/source/revision/scope/oracle/consumer schema/permission trace保持率100%；unknown/incompatible/undeclared consumer contractをvalid接続扱いする件数0；handoffからrun/passを推論する件数0。 | 明示選択されたpacket obligationごとにplanned, valid, failed, missing, stale, mismatch, unknown, unselected/unmeasuredを集計し、receipt slotを含むschema bindingを照合する。 | 母集団は選択操作だけ。未選択consumerは未観測、分母0は割合なし。負荷根拠のないlatency/throughput閾値を追加しない。 |
+
+数値候補の必要な根拠・比較案・測定方法・判定境界を本L3と対のL10へ記し、L4設計へ渡す。固定sourceが明示しない値・互換range・permissionはunknownのままとし、上流要求の意味・範囲・owner・version_target変更を伴う場合だけL2へ戻す。
+
+
+### Stage 2c測定分類の補足
+
+Nrequiredは対象revision/scopeで選択操作に適用する契約必須項目の集合であり、missing/unknown/不一致も分母に残す。Nmatchedはsource/意味/版/範囲がoracleと一致して保持された項目数、保持率候補はNmatched/Nrequired。名前やpresenceだけの案Aと、意味/source tupleまで照合する案Bを比較し、意味差分を見逃さないBを候補とする。契約必須項目の定義自体が不明な状態をNrequired=0へ変換しない。既知の対象集合が0なら率なし、必須定義不足なら未評価と理由を別記する。
+
+plannedは総予定試行数。観測可否はvalid（判定できる観測が得られた、不合格も含む）、failed（処理エラーで判定可能な観測を得られない）、missing（必要入力/結果がない）、censored（停止/打切りで観測未完）を排他的に記録し、Nplanned=Nvalid+Nfailed+Nmissing+Ncensoredを確認する。意味状態のvalid/missing/stale/mismatch/conflict/unknownは別軸で、観測状態の件数へ重ねて加算しない。未選択consumer/sourceは未観測の背景として別記し選択操作の分母外。未実施は未測定、欠測/停止を0の観測や成功にしない。
