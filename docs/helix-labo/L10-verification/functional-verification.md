@@ -1799,7 +1799,7 @@ input observation identity/source revision；episode candidate identityとrelati
 
 ### L10-LABO-035-C11 — 一般評価材料とBench専用接続の正常分離
 
-- 対応AC: `LABO-035-AC-01`。固定親: `HELIXLABO-L2-035`、固定L11:121。
+- 対応AC: `LABO-035-AC-01`。固定親: `HELIXLABO-L2-035`、固定L11:86（035評価材料境界）および94（054 Bench専用接続）。
 - 正常fixture: 035/052の一般評価packetと、055が生成して054が渡すBench水準packetを別identity・契約として与える。それぞれsource revision・scope・根拠・未評価状態が揃う。
 - 期待oracle: 一般評価材料は035/052で、Bench水準は055/054の別契約で保持する。035 payloadへBench水準を重複定義せず、転送を学習・配置・bot実行の許可にしない。
 
