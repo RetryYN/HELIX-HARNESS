@@ -1,0 +1,86 @@
+{
+  "record_kind": "exact-main-rechain-audit",
+  "record_date": "2026-10-05",
+  "authority_effect": "none",
+  "base_revision": "3b63e2a99f82d83e8ad76e9b33dc1199924f9a7c",
+  "body_revision": "c1c7e68bddfd034573d41204bef9552de2861062",
+  "draft_source_revision": "58db910080c4ccf631d15868ffb89567a961ee93",
+  "draft_source_base_revision": "4729c34ec29c2c72f345993958bbc94e1ed6f131",
+  "canonical_documents": [
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "full_sha256": "ca5242813debd8ba7c253fca7eab03a33d41afd8629aa4bd49cb607358f56426",
+      "bytes": 78655,
+      "approved_main_prefix_sha256": "76ae6b34b41f5c4a2311c8b9b6674985e200d6d12e653e2a31f03deb01a18370",
+      "approved_main_prefix_bytes": 32180,
+      "draft_suffix_sha256": "0903cd4738114ffecefff490c28beea0945821aaf369180913c92a0443c9885d",
+      "draft_suffix_bytes": 46475,
+      "prefix_exact": true,
+      "suffix_exact": true
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "full_sha256": "962e1e8e69ed1741df81e8cbde8d6e3dd2b20065fdd3fbd6a670ad9fc4e14320",
+      "bytes": 11491,
+      "approved_main_prefix_sha256": "0511d67950ecc9af9540700f9500157ccc4a733c26908a07cdd7c2495a1c3037",
+      "approved_main_prefix_bytes": 1388,
+      "draft_suffix_sha256": "118e8f67b158ac8f9c590c538c02b9b2a8fdddb3637aa3ffa212878b54f54383",
+      "draft_suffix_bytes": 10103,
+      "prefix_exact": true,
+      "suffix_exact": true
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "full_sha256": "7bc05bf76903ac81705d333f4c5183d9d04b3a30e4429fde6903e2455abcf681",
+      "bytes": 16041,
+      "approved_main_prefix_sha256": "ba53cc9dce1e311882b655e8880300f0eb09397cf8f0d3ff7cf85c15148f5d15",
+      "approved_main_prefix_bytes": 7021,
+      "draft_suffix_sha256": "391fc56d69453d7588da1e3aaecfaf1ccdfb831bcbf7025e9d7d177e7deaa8e3",
+      "draft_suffix_bytes": 9020,
+      "prefix_exact": true,
+      "suffix_exact": true
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "full_sha256": "e0f8668fc4136f3008367179516cfe45f804335186fd465f698dc7c40ab3f8c0",
+      "bytes": 89649,
+      "approved_main_prefix_sha256": "3d02b6230eff98cf85698b1e5eb2de0710b3459f87993e7d990509c7d63613e5",
+      "approved_main_prefix_bytes": 40276,
+      "draft_suffix_sha256": "3c81d73a9a935da736c72dfd22f282c326fd0654239a597701fd070d29774118",
+      "draft_suffix_bytes": 49373,
+      "prefix_exact": true,
+      "suffix_exact": true
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "full_sha256": "b609bd995910f89c25bc2fed790463c4573509ed5b331f7716395d6c5fdb657a",
+      "bytes": 7937,
+      "approved_main_prefix_sha256": "8a5d1a53b632e349394ee3c17cc607a288aa2ba7ca1c6903533414c015bb1cb9",
+      "approved_main_prefix_bytes": 1651,
+      "draft_suffix_sha256": "95c5c61810b7acc419b8825b6b9512c8a29d0d997dec2f8d74dd670075928392",
+      "draft_suffix_bytes": 6286,
+      "prefix_exact": true,
+      "suffix_exact": true
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "full_sha256": "37a5ce98c2d7a868b6c951e6bc1cea3a95b2010c23651e1129625ba0958c539c",
+      "bytes": 14456,
+      "approved_main_prefix_sha256": "c031e19bb2fdf69b7f2663a9a404fc3694dd8e617ab98e5b51f31025a312cb92",
+      "approved_main_prefix_bytes": 6232,
+      "draft_suffix_sha256": "97a0b4b412ea69095644a7aa5ae308a0b26d124262a269ad4f9f8d8b8ffca0f0",
+      "draft_suffix_bytes": 8224,
+      "prefix_exact": true,
+      "suffix_exact": true
+    }
+  ],
+  "previous_correction_audit": {
+    "path": "docs/governance/audits/requirements-stage/l3-l10-os-stage2a-review03-correction-2026-10-05.json",
+    "sha256": "6478b8c0ddb704bfe618943c5b89fe6d3fd13add7fc936a91ef86afe9847c23e"
+  },
+  "limits": [
+    "独立レビューと委任判断は未了。旧レビュー結果の承認を継承しない。",
+    "C13未解消項目と下流実行は今回の承認対象外。",
+    "過去の監査・正式レビューコメントは変更しない。本文の修正と現在の引用位置は新記録へ固定する。"
+  ]
+}

@@ -1,0 +1,416 @@
+{
+  "kind": "append-only-review-repair-audit",
+  "title": "SECURITY Stage 3 Opus review02修正の時点監査",
+  "recorded_date": "2026-10-05",
+  "status": "作成側修正を記録。独立再review・finding closure・PO承認は未成立。",
+  "review_comment": {
+    "id": 5989803834,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2599#issuecomment-5989803834",
+    "raw_body_utf8_bytes": 7182,
+    "raw_body_utf8_sha256": "e43fda5a17970badf34a92515e8fe0807f970a495bc3eede14c2386452d19bcf",
+    "source": "GitHub API issues/comments/5989803834",
+    "disposition": "正式指摘本文を全件確認。添付wrapperのhashを正式comment body hashとしていない。"
+  },
+  "revisions": {
+    "base": "3b63e2a99f82d83e8ad76e9b33dc1199924f9a7c",
+    "reviewed_content_head": "45a17041a20c12ddfb6aee035c0f2b91f4c4f16c",
+    "repaired_body_commit": "180e67559bfad4946be9e8e544d9b496cd6d94ce",
+    "repair_commit_subject": "docs: repair Security Stage 3 review findings",
+    "scope": [
+      "SECURITY-029",
+      "SECURITY-030",
+      "SECURITY-032",
+      "SECURITY-034",
+      "SECURITY-035"
+    ],
+    "stage": "Stage 3 only"
+  },
+  "finding_dispositions": [
+    {
+      "id": "M1",
+      "status": "修正済み",
+      "repair_summary": "AC-029-04とCASE-029-04に常時/該当operation field欠落・unknownの結果、005 missingのdeny/stop、field別既存戻し先、参照専用旧資料の境界を追記。",
+      "independent_review": "未実施"
+    },
+    {
+      "id": "M2",
+      "status": "修正済み",
+      "repair_summary": "CASE-035-01にprovider flagだけの成功主張を独立fixtureとして追加し、不適格・拒否/保留を明記。",
+      "independent_review": "未実施"
+    },
+    {
+      "id": "M3",
+      "status": "修正済み",
+      "repair_summary": "前回候補のCASE-035-03でINFRASTRUCTUREを戻し先に含めた誤りを除去。policy意味はSECURITY、enforcement/cleanup強制はWorker実行環境、assignment/未完義務はOSと固定配置に合わせた。",
+      "independent_review": "未実施"
+    },
+    {
+      "id": "m1",
+      "status": "修正済み",
+      "repair_summary": "CASE-029-05の偽装と主Worker条件欠落に各既存ownerへの戻し先を追加。",
+      "independent_review": "未実施"
+    },
+    {
+      "id": "m2",
+      "status": "修正済み",
+      "repair_summary": "CASE-029-06に確認先返却とOS assignmentへの未完義務継承を追加。",
+      "independent_review": "未実施"
+    },
+    {
+      "id": "m3",
+      "status": "修正済み",
+      "repair_summary": "CASE-030-04に不足field/scopeの依存owner返却と昇格前状態・未完義務保持を追加。",
+      "independent_review": "未実施"
+    },
+    {
+      "id": "m4",
+      "status": "修正済み",
+      "repair_summary": "CASE-032-03の031単独受入claimを不合格とし032を未評価/unknown保持に追加。",
+      "independent_review": "未実施"
+    },
+    {
+      "id": "m5",
+      "status": "修正済み",
+      "repair_summary": "FR-032で候補はpolicy変更/失効主体、解除、追加承認、bypass許可を定義しないことを明示し、OSがactor新設しない役割と分けた。",
+      "independent_review": "未実施"
+    },
+    {
+      "id": "m6",
+      "status": "修正済み",
+      "repair_summary": "CASE-034-04を既存L2-008 authority/L2-007制約へ戻し、本候補から許可を作らない表現へ修正。",
+      "independent_review": "未実施"
+    },
+    {
+      "id": "m7",
+      "status": "修正済み",
+      "repair_summary": "FR-035-02のrun終端未確認は当該run完了を成功扱いしない表現へ揃えた。",
+      "independent_review": "未実施"
+    },
+    {
+      "id": "m8",
+      "status": "修正済み",
+      "repair_summary": "AC-035-04、CASE-035-04、NFR-035-01のL3/L10両行へ006/007/008/OS-018非相殺を同期。前回Opus/Claude記録も008を落としていたため、本補正でcoverage漏れを記録する。",
+      "independent_review": "未実施"
+    },
+    {
+      "id": "m9",
+      "status": "修正済み",
+      "repair_summary": "CASE-035-04のrevision/scope流用=hold、申告のみ=unknown、非相殺=不合格をfixture別に固定し、適用状態のみの申告変異を追加。",
+      "independent_review": "未実施"
+    }
+  ],
+  "prior_review_omission_corrections": [
+    {
+      "finding": "M3",
+      "prior_omission": "今回の本文ではINFRASTRUCTURE戻し先を除いた。過去本文に存在した誤配置を、前回review summaryが明確にclosure照合しなかった点を記録。",
+      "fixed_owner_boundary": "policy/authority=SECURITY; enforcement/cleanup=Worker実行環境; run/assignment=OS。"
+    },
+    {
+      "finding": "m8",
+      "prior_omission": "前回のClaude所見文もL2-008 operation authorityを列挙から落としていた。",
+      "fixed_scope": "006/007/008/OS-018の各失敗は互いに相殺しない。"
+    }
+  ],
+  "canonical_documents": [
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "sha256": "0b2894925bc80895ff61723377f27b14b4cca32289756747c566e35cba049dee",
+      "bytes": 1958,
+      "approved_main_prefix_commit": "3b63e2a99f82d83e8ad76e9b33dc1199924f9a7c",
+      "approved_prefix_bytes": 1430,
+      "approved_prefix_sha256": "e6cfb2b5abff73254f0f8d860ffbd0590085fed224cf8f2fb61a02271d780ff9",
+      "prefix_byte_identical": true
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "sha256": "8b0babb74dd5d5d2f7aee2742de5aecf07407c3029b1198ef6ad6d950fdf316b",
+      "bytes": 100534,
+      "approved_main_prefix_commit": "3b63e2a99f82d83e8ad76e9b33dc1199924f9a7c",
+      "approved_prefix_bytes": 76904,
+      "approved_prefix_sha256": "8e4c5064a0ab84345c31d6abf6a764c84eb34ad2c4ee41405c074507e175b165",
+      "prefix_byte_identical": true
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "sha256": "abfb8ce0c2ec8f8baa035b301402f1f6e13b9ac31bfed27b27230d3daf2403cd",
+      "bytes": 12910,
+      "approved_main_prefix_commit": "3b63e2a99f82d83e8ad76e9b33dc1199924f9a7c",
+      "approved_prefix_bytes": 9983,
+      "approved_prefix_sha256": "bc2476eafc5922b451a7c967e9d05aa477e6649c58b77427cd24ed1d4de12427",
+      "prefix_byte_identical": true
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "sha256": "8683764bb26d0d1f582828096c050c264df45a4f0fdc2c94e34bb4dbf9e1eb7a",
+      "bytes": 1461,
+      "approved_main_prefix_commit": "3b63e2a99f82d83e8ad76e9b33dc1199924f9a7c",
+      "approved_prefix_bytes": 933,
+      "approved_prefix_sha256": "d136764cfef2b6eeca900c5046a1228764e414591cc58bd9b6e076fca62fc933",
+      "prefix_byte_identical": true
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "sha256": "1047babfefeda159b7157dae4e7a718a325c46ccedac604eb34c629c7250d473",
+      "bytes": 75382,
+      "approved_main_prefix_commit": "3b63e2a99f82d83e8ad76e9b33dc1199924f9a7c",
+      "approved_prefix_bytes": 62505,
+      "approved_prefix_sha256": "f679d21ad0b707ac450473f6b21d1d1feb29d8c2982ed83c6d67133dc2ffe507",
+      "prefix_byte_identical": true
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "sha256": "ec648c78a3d4e164ab8ef8b4e23c30a2756cfed70b47c4514b3c0eb67db02be2",
+      "bytes": 9670,
+      "approved_main_prefix_commit": "3b63e2a99f82d83e8ad76e9b33dc1199924f9a7c",
+      "approved_prefix_bytes": 7420,
+      "approved_prefix_sha256": "683fd29048418b6e8d1e78ab27bc727dc026d7c5555c7a63662d27da7746fd18",
+      "prefix_byte_identical": true
+    }
+  ],
+  "current_changed_literal_pins": [
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 377,
+      "literal": "- **`SECURITY-AC-029-04` 依存条件の区分**：常時条件としてsource/target revision、runtime identity/version/config、OS-018 assignment、029 scope、SECURITY-007 isolation/applicability、既存006/007条件とL2-016 asset分類記録を同一判定へ束ねる。分類記録のowner/source/revisionは資産identityに束縛する。credential-use requestがある場合は既存L2-005 tupleを照合し、credential-useがない操作へ未発生request fieldを要求しない。network allowlist/egressはnetwork operation時、FS差分はwrite operation時だけ要求する。L2:413の005/006/007/016依存を適用し、既存の有効scoped credential-useを拒否しない。参照資料のみの旧runtime、provider UI、HR/HAC/HAT-HIL-23は実行dependencyでも適合proofでもない。",
+      "raw_lf_sha256": "d8811e419dbd0961e173a62c799387e44e70d9986764ba691734ac704c9f87bb",
+      "raw_bytes": 816
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 393,
+      "literal": "主Worker/追加runtimeを問わず、repository-level bypassを試みる操作へ、対象repository/operationと既存policy revision・適用状態、one-shot marker/provider flagを束縛する。有効なpermanent denyに下位機構から許可・解除を与えず、unknown/staleは既存fail-closeへ返す。deny非適用を確認した操作は既存008 authorityへ戻し、本要件から新しいallow/denyを発行しない。既存Worker実行環境を下位機構から迂回しない。候補はpolicyの変更・失効主体、解除手順、追加承認、bypass許可を定義しない。OSは本要件から新しいpolicy actor/解除手続き/承認者を作らず、既存assignmentと未完義務を扱う。",
+      "raw_lf_sha256": "020031a6d4f659c5b81ecba83a319c67141ece5a7809ce24d05b1b11ba50ee6b",
+      "raw_bytes": 735
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 414,
+      "literal": "選ばれたbypass/YOLO/auto-approve設定はsuccess/failure/cancelの各終端で除去し、未確認/残置は当該runの完了を成功扱いせず、次runへ持ち越さない。repositoryから恒久denyを設定でき、その適用がcleanup後も維持されることを観測する。032の優先順位は再利用するが、優先順位の成立だけでswitch能力を証明しない。能力・policy・適用状態unknown/staleは該当選択を保留し既存ownerへ戻す。bypass非選択の通常操作を本要件だけで新規gateへ置かない。",
+      "raw_lf_sha256": "6984e5bee828ca3d0f096b7099b221f9797b4d5c1a4e9c376a94fdc26d382a3a",
+      "raw_bytes": 574
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 420,
+      "literal": "- **`SECURITY-AC-035-04` 同一scope・証拠の非流用**：対象revision不一致、別repositoryのdeny適用state流用、別runtimeのallowlist能力流用をそれぞれ独立negativeとする。旧repository設定/provider UI/宣言/remote flagだけのdeny能力・適用申告、および実適用の観測なしに適用状態だけを申告する変異はunknownとして扱う。allowlist正常fixtureは現行対象revision、既存authority、repository policy/deny stateを含む。既存006/007/008/OS-018の失敗を035成功で相殺しない。",
+      "raw_lf_sha256": "c23d7708bfeabfddcfa82e5be94f94971df78af0c49c2d92aa947f1efb74aeee",
+      "raw_bytes": 566
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "physical_line": 72,
+      "literal": "| `SEC-NFR-035-01` / `SECURITY-AC-035-01..04` | run設定残置/次run継承0、allowlist対応時のYOLO代替0、deny能力未観測の成功claim0。 | PO scope A/配置Aと旧NFR38四条件。successだけcleanupするAと全終端照合Bを比較しBを候補とする。 | success/failure/cancel各終端、対応/非対応/unknown能力、deny前後を独立計測する。timeoutや経過期限・runtime一覧は未規定であり数値を追加しない。035-04でtarget revision/authority/repository policy・deny binding、repo/runtime間非流用、claim-only unknown、および006/007/008/OS-018非相殺を測る。 |",
+      "raw_lf_sha256": "026831508d8cbf9916d9a078bfcf25c96107eb268894e61572cffede98c6fa35",
+      "raw_bytes": 635
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 317,
+      "literal": "| `SECURITY-CASE-029-04` | `SECURITY-AC-029-04` | 常時必須のsource/target revision、runtime identity/version/config、OS-018 assignment、scope、SECURITY-007 isolation/applicability、006/007条件と、L2-016のasset identityに束縛したclassification/owner/source/revisionを正常入力へ含める。6分類は別asset fixtureで各々記録し、既存029の分類条件で判定する。credential-use requestを伴う正常fixtureにはL2-005のactor/operation/target/environment/scope/expiry/purpose/classificationを束縛し、credential-useが発生しない正常対照では未発生fieldを捏造しない。network operation時だけallowlist/egress、write operation時だけFS差分を加える。常時fieldと適用時fieldを一つずつmissing/unknownへ変える。005各fieldのnegativeはcredential-use request fixture内、016のasset identity/classification owner/source/revisionの欠落・unknownは各々独立fixtureにする。reference-only旧runtime/provider UI/旧test記述だけの根拠は別fixtureにする。 | 常時条件・該当operation条件・該当する005/016 fieldを照合する。常時fieldまたは該当operation fieldのmissing/unknownは成功claimなし・unknown保持として該当委譲を拒否し、分類はdata owner、検査は検査元、適用/観測はINFRASTRUCTUREへ返す。005 field missingはdeny/stopとし、該当する既存data/runtime条件ownerへ返す。assignment不成立はOSへ戻し未完義務を残す。classification unknownをpublicへ写像しない。005のscope条件成立済みscoped credential-use自体は拒否理由にしない。旧runtime/provider UI/HR/HAC/HAT-HIL-23は実行dependencyでも適合proofでもない。 |",
+      "raw_lf_sha256": "90805f88cdf7e0897b1a48e9f68076caa4bd0beeb93fd20187f4f1c6fcd183e0",
+      "raw_bytes": 1739
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 318,
+      "literal": "| `SECURITY-CASE-029-05` | `SECURITY-AC-029-05` | 追加runtimeがmain Workerを偽装する単独変異と、主Workerの既存006/007/016条件欠落を別fixtureにする。有効な既存scoped credential-useは正常対照とする。 | 偽装fixtureは拒否してpolicy/identity不足をSECURITYへ返す。主Worker条件欠落fixtureは拒否し、欠けた006/007/016既存条件のownerへ戻す。どちらも主Worker条件を拡大しない。scoped credential-useだけを理由に拒否しない（L2-005、P0補足に基づく）。 |",
+      "raw_lf_sha256": "84ec74c51782610773b1b41f8fa249711840ed026588326b17573b0ea99e1af3",
+      "raw_bytes": 552
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 319,
+      "literal": "| `SECURITY-CASE-029-06` | `SECURITY-AC-029-06` | public code fixtureで送信先/目的/authority/expiry/isolationを一項目ずつ免除しようとする。別runtime、classification変更、検査不能payload、evidence喪失を各独立fixtureにする。 | 免除を拒否し、変更・未観測をrisk zeroとしない。runtime/classification/検査evidenceの不足は該当ownerへ確認先とともに返し、未完義務をOS assignment側へ引き継ぐ。 |",
+      "raw_lf_sha256": "146c585d48b1251af2eaa5199eb97994faff5c079f11aab111ee6c8268f5ace2",
+      "raw_bytes": 477
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 323,
+      "literal": "| `SECURITY-CASE-030-04` | `SECURITY-AC-030-04` | 008 authority、010 update acceptance、011 capability delta、012/013該当conditionの依存fieldを独立に欠落/unknownへ変える。capability追加、permission変更、接続先変更、data範囲変更、rollbackを各々既存差分へ束ねる。 | 対象の拡大だけを保留し、旧確認を流用しない。不足した各依存のownerへ不足fieldとscopeを返し、昇格前の状態と未完義務を保持する。1.x Web保護運用を1.0へ含めない。 |",
+      "raw_lf_sha256": "1a240615e7d006000ad55df6db3c26001387fd0ee9b938d0421d5b7c90453ec4",
+      "raw_bytes": 538
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 326,
+      "literal": "| `SECURITY-CASE-032-03` | `SECURITY-AC-032-03` | 下位機構がWorker環境を迂回する変異、policy変更/失効主体を増やす変異、新承認者を作る変異、旧runtime/enforcer復帰を成功根拠にする変異を別fixtureにする。031受入結果だけで032充足を主張する例も含む。 | 越境/追加主体/旧実装、および031受入だけで032を満たしたとするclaimを不合格とし、032は未評価/unknownのまま保持する。既存assignment/未完義務はOSへ戻す。新しいpolicy actorは作らない。 |",
+      "raw_lf_sha256": "2a7ed96b5e82ebd23a5e5da1b40acf1ac2b0b1e18f71655c9a3e32e1d90f05bb",
+      "raw_bytes": 570
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 330,
+      "literal": "| `SECURITY-CASE-034-04` | `SECURITY-AC-034-04` | CONNECTによるcredential/egress/tool safety policy発行、SECURITYによるprofile registry/業務意味所有、Workerの自己制約拡張を独立negativeにする。実操作のread-only越境、L2-018 1.x probeで旧read-only契約を満たしたとする入力も分ける。 | 各越境を拒否して既存ownerへ戻す。read-only scope越境は既存L2-008 operation authorityとL2-007実行制約へ戻し、この候補から許可を作らない。1.x観測から旧契約の充足を作らない。 |",
+      "raw_lf_sha256": "a1a1b657995e9d4da4feba4f1257503e859cc245c9d401d8426b5a4305d0454d",
+      "raw_bytes": 569
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 331,
+      "literal": "| `SECURITY-CASE-035-01` | `SECURITY-AC-035-01` | 追加runtimeの明示allowlist対応正例、非対応確認済み経過措置正例、対応なのにYOLO代替、provider flagだけで成功を主張する変異、能力unknown/staleを別々に与える。既存authorityは他条件として固定する。 | 対応時はallowlist、非対応の有効policy内経過措置はrun限定。対応/unknownからYOLO許可を作らず、provider flagのみの成功claimは不適格として拒否・保留する。既存authorityなしは本case正常にせず既存ownerへ戻す。 |",
+      "raw_lf_sha256": "d1ce17ee1d0bf6b5d0aa7056aab8e0f9bf5f906031b1bbfa71e0a284b8c567c5",
+      "raw_bytes": 588
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 333,
+      "literal": "| `SECURITY-CASE-035-03` | `SECURITY-AC-035-03` | repository deny switchの設定能力あり/なし/unknownと適用状態を分け、同一対象有効denyへのrun設定/provider flag試行、cleanup後、主Workerとbypass非選択正常操作を対照にする。 | 能力と適用を別に観測し、032のdeny優先・cleanup後denyを維持。優先成立だけからswitch能力を推定しない。主Workerに035を拡張せず既存条件の適用を免除しない。policy/deny applicabilityの意味・状態不足はSECURITY、実適用の観測不足とcleanup強制はWorker実行環境、assignment/未完義務はOSへ返す。 |",
+      "raw_lf_sha256": "7c8c9feb4954960cce8a8aa5ac72fb5f31a895ab79384fd41e73ddece535450a",
+      "raw_bytes": 651
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 334,
+      "literal": "| `SECURITY-CASE-035-04` | `SECURITY-AC-035-04` | allowlist正常例に同一target revision/既存authority/current repository policy/deny stateを与える。target revision不一致、別repositoryのdeny state流用、別runtimeのallowlist能力流用、旧repo設定/provider UI/remote flagだけでdeny能力を申告する変異、適用状態だけを申告する変異を別fixtureにする。006/007/008/OS-018既存条件の失敗も035成功から相殺しようとする独立negativeを含む。 | 正常は同一scopeの既存状態を照合する。target/repository/runtime間の証拠流用はhold（L11-035:165）、provider/UI/remote flagまたは適用状態だけの申告はunknown（L2-035:492）、既存006/007/008/OS-018条件の相殺は不合格（L11-035:166）とする。policy不足はSECURITY、assignment/未完義務はOS、enforcement/cleanup強制はWorker実行環境へ戻す。 |",
+      "raw_lf_sha256": "8abc12288970322b3109f38f0e42d2042272bdec67799cc63843231f7e2443ad",
+      "raw_bytes": 922
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "physical_line": 42,
+      "literal": "| `CASE-NFR-SECURITY-035-01` | `SEC-NFR-035-01` | CASE-035-01..04で全三終端と次run、allowlist能力、deny設定能力/適用、006/007/008/OS-018非相殺を別々に観測する。 | 残置・継承・YOLO代替・未観測成功claim候補0。能力/cleanupunknownは未完へ返す。主Workerは035の測定母集団に含めない。CASE-035-04はtarget/repository/runtime間binding、申告のみの能力、非相殺条件を分離する。 |",
+      "raw_lf_sha256": "aaa9b2f78debbb3bdf915469303162ce1602cc839b050b00959a4fa7fcab9b48",
+      "raw_bytes": 459
+    }
+  ],
+  "fixed_authority_sources": [
+    {
+      "id": "L2-full",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "full_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf"
+    },
+    {
+      "id": "L2-005",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "lines": "110-118",
+      "raw_lf_sha256": "8e8689912796e8fb3e22210619cb1283f6b27ab1804353dfa93fe43eec10a784"
+    },
+    {
+      "id": "L2-029",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "lines": "413-414",
+      "raw_lf_sha256": "489252370b656d9e2aa7905dbc2a99e4955eca55c028a57568a1ccab77402715"
+    },
+    {
+      "id": "L2-032",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "lines": "451",
+      "raw_lf_sha256": "1e1f993678f53cad362a9997c13d74ba162fe541d7740f5304d5442cfdb1748a"
+    },
+    {
+      "id": "L2-034",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "lines": "473",
+      "raw_lf_sha256": "d5997d418abdb7ed2dfc850e392d0bad5cd39b51ed4d5f8ab168341f01db2c5b"
+    },
+    {
+      "id": "L2-035",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "lines": "491-494",
+      "raw_lf_sha256": "2d50bf12761ee3040c0cba47242107c3f4f3bd2c50d62e6821e800e8ce4366dc"
+    },
+    {
+      "id": "L11-full",
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "full_sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0"
+    },
+    {
+      "id": "L11-029-NFR",
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "lines": "215-218",
+      "raw_lf_sha256": "42ab2937a9ea079cf665586c0627cd1f45a50260e0c631c4fdee192b6c5fc2f3"
+    },
+    {
+      "id": "L11-032/035",
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "lines": "161-166",
+      "raw_lf_sha256": "535ebfd16a7e948a1d07f0917e6febb791f346120c4845678ebd0b037da80a4a"
+    },
+    {
+      "id": "L11-029-AC",
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "lines": "95",
+      "raw_lf_sha256": "d29abcea224cfaa06d737ea102c21401fce98bc90474ee269bc19181be170478"
+    },
+    {
+      "id": "PO-placement-A",
+      "path": "docs/governance/decisions/po-decision-2026-10-03-additions10.md",
+      "lines": "43",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "full_sha256": "a42baefd1f1c24461b6abb62e4daa88aec3fba36e5409170f8660cdbc8f6c8ad",
+      "raw_lf_sha256": "bf296189b6c294e36b4defedb0573ca496df189a853a8d44a790df580de11ffd"
+    }
+  ],
+  "previous_immutable_records": [
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-security-stage3-public-cutout-2026-10-05.json",
+      "source_commit": "45a17041a20c12ddfb6aee035c0f2b91f4c4f16c",
+      "sha256": "a006159344512b6c473e0c981dafe6ce42b4c0aa37b073508f4583e3f3d941f5",
+      "current_unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-security-stage3-public-cutout-2026-10-05.md",
+      "source_commit": "45a17041a20c12ddfb6aee035c0f2b91f4c4f16c",
+      "sha256": "7ddb4ce7916a69eac186e857ae952d5d5c2aa91eb6dc3e8fa527c0c8f40e5cad",
+      "current_unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-security-stage3-review01-repair-2026-10-05.json",
+      "source_commit": "45a17041a20c12ddfb6aee035c0f2b91f4c4f16c",
+      "sha256": "05b83dc8f9881a7ff8defdb21860215ce0e62ac53af313d3f9e003cb588e1002",
+      "current_unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-security-stage3-review01-repair-2026-10-05.md",
+      "source_commit": "45a17041a20c12ddfb6aee035c0f2b91f4c4f16c",
+      "sha256": "54f3c407bfaf64611957e9b0d22ddcf15d5e5beb9beba107a6f784d9e71e1295",
+      "current_unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-security-stage3-root-correction-2026-10-05.json",
+      "source_commit": "45a17041a20c12ddfb6aee035c0f2b91f4c4f16c",
+      "sha256": "024c1fd5797e5a1d4b80fe1bede09bf1b82398cce1a511559f6e884a08fd0d0d",
+      "current_unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-security-stage3-root-correction-2026-10-05.md",
+      "source_commit": "45a17041a20c12ddfb6aee035c0f2b91f4c4f16c",
+      "sha256": "7cdd326ce39ba507f44f9374cb1b0b52f9b8cb43a0f5913d24398cc53a1df5ed",
+      "current_unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-security-stage3-030-source-pin-followup-2026-10-05.json",
+      "source_commit": "45a17041a20c12ddfb6aee035c0f2b91f4c4f16c",
+      "sha256": "16f66a8713c7f9d0be55071f3f95701b933243f85545c591312d5eedd0b7c6a9",
+      "current_unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-security-stage3-030-source-pin-followup-2026-10-05.md",
+      "source_commit": "45a17041a20c12ddfb6aee035c0f2b91f4c4f16c",
+      "sha256": "aed7c23d6943eca596130a77324f3b60736517a243d42cdb05cdae75d7cd58ec",
+      "current_unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-security-stage3-root-main-integration-2026-10-05.json",
+      "source_commit": "45a17041a20c12ddfb6aee035c0f2b91f4c4f16c",
+      "sha256": "678cee16665d2edcda633f0b0815490cb46c50882f16dc4600500d3fbd505836",
+      "current_unchanged": true
+    }
+  ],
+  "static_validation": {
+    "scfctl_validate": "bindings=147 fail=0",
+    "scfctl_stale": "stale=0",
+    "scfctl_residuals": "residuals=0",
+    "govcheck": "ok atoms=7622 requirements=57 files=58",
+    "git_diff_check": "pass",
+    "old_runtime_test_ci_bun": "not run"
+  },
+  "legacy_sources_and_limits": {
+    "basis": "既存公開cutout監査、review01修正監査、補正/補足監査に固定された旧sourceと今回のformal commentを引継いだ。旧CLI/runtime/test/CIは実行していない。",
+    "unverified": "独立reviewは未成立。source coverageの独立再確認・全ての履歴主張の再審査はこの作業の範囲外。",
+    "candidate_scope": "対象はSECURITY Stage 3の5親のみ。未承認状態を承認済みと扱わず、1.xを前倒しせず、別Stageを追加していない。"
+  }
+}
