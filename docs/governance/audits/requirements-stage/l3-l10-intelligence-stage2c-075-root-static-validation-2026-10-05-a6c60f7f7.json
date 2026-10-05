@@ -1,0 +1,2558 @@
+{
+  "schema": "root-l3-l10-static-validation.v1",
+  "status": "local_creator_acceptance_only",
+  "mechanism": "HELIX-INTELLIGENCE",
+  "stage": "Stage 2c",
+  "parent": "HELIXINTELLIGENCE-L2-075",
+  "base_commit": "ac463c88edd6794367f8c9594a1e91dc990cf81e",
+  "content_source_commit": "a6c60f7f7693320ede54e578f5480f682ed8fc21",
+  "fixed_l2_l11_revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+  "adopted_l1_l2_009_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+  "documents": [
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "full_sha256": "6a92a3d5c910fa503a84fb0c5f3a8989ea2dc39bbc760c7f1971f20fb4021b33",
+      "bytes": 26091,
+      "line_count": 93,
+      "prefix_sha256": "96c4e2a9d05c2ecc46ef5ed116953dc9e2b51d74da6603c8653d7178bcd97eaf",
+      "prefix_bytes": 17674,
+      "prefix_byte_exact": true,
+      "suffix_raw_lf_sha256": "abfe86b279c9d8c2f4b3393f06a655247dc702c6879f4d090e2770cba03f861c"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "full_sha256": "f01e601cbb24da50ac43fdb0b3a9df61966f32faf8e723a6c0f41682f02a3153",
+      "bytes": 4594,
+      "line_count": 30,
+      "prefix_sha256": "18afdbba30d60f293ae970731bcf7ce06c0c3a7b3f141a6fe74b19bfc75dd718",
+      "prefix_bytes": 4080,
+      "prefix_byte_exact": true,
+      "suffix_raw_lf_sha256": "f5bef00bd8889693fa1c01ce1693d101ee24a5457e9abde0ae0b46acda0c3c2d"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "full_sha256": "9b26c1c8b639db233b3ab0ef3e87b7a3fb643be464d4a3489e50a286bb82026a",
+      "bytes": 12544,
+      "line_count": 47,
+      "prefix_sha256": "92794e2f6f3ff83769710061ac621419ebc491fe25742497df825832cd7de924",
+      "prefix_bytes": 9912,
+      "prefix_byte_exact": true,
+      "suffix_raw_lf_sha256": "de328f5dc688c30c5c4b96d508e6ef0e0bc82c84b842ac219dfdf5f2e34fd735"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "full_sha256": "5975948f0ead77baec2a4decd551b369000bea560840745fa7f89854bc8407cd",
+      "bytes": 23572,
+      "line_count": 175,
+      "prefix_sha256": "47756f20a5d0c5a762babca47a1b6289b414273baebe888a82a42b5aaaae5093",
+      "prefix_bytes": 17667,
+      "prefix_byte_exact": true,
+      "suffix_raw_lf_sha256": "0663f7d6b892e0dc00e7a87c34586f95c8610b6f95f04c8c0b5c0f7e9dd65575"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "full_sha256": "f3b1aaa378a2482a95956033c4f8e1970c09e872078aebbaccdb29150ab40d67",
+      "bytes": 4251,
+      "line_count": 34,
+      "prefix_sha256": "9f2ce755bb6f75fb8597498834e8b0d5a4165ee7d07ddf7ac0e476adc1500e5f",
+      "prefix_bytes": 3848,
+      "prefix_byte_exact": true,
+      "suffix_raw_lf_sha256": "3318386c830b47019875086ac5830fde4b19084e7760e5588279e716470d6de1"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "full_sha256": "e379d76ff4e93de34a69a0066c4cdc7675e564c9ebd5222867ecd783b0b0891e",
+      "bytes": 10405,
+      "line_count": 44,
+      "prefix_sha256": "f329d3b9886ff27e5fab0375f20778b0242d0408691f805c2e5b4e7304cc2d5f",
+      "prefix_bytes": 8601,
+      "prefix_byte_exact": true,
+      "suffix_raw_lf_sha256": "462ed6161e94c23f0835732799aa1e90db76397f5baa43a7b64d0efdc4b8b8ce"
+    }
+  ],
+  "source_pins": [
+    {
+      "label": "fixed_l2_075",
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 618,
+        "end": 625
+      },
+      "full_file_bytes": 151600,
+      "full_file_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "raw_lf_inclusive_span_bytes": 3611,
+      "raw_lf_inclusive_span_sha256": "c302d45ef008b8d73f71c9484c1c9e2432c8e195f23c559b513d36309cdb80f6",
+      "line_count": 687,
+      "asset_id": null,
+      "role": "fixed adopted parent semantic clauses; body metadata status is superseded by matching PO decision"
+    },
+    {
+      "label": "fixed_l11_075",
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 337,
+        "end": 343
+      },
+      "full_file_bytes": 123549,
+      "full_file_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "raw_lf_inclusive_span_bytes": 2181,
+      "raw_lf_inclusive_span_sha256": "b81bd9e52df97cc92f0f228fb9effab476012836e7e113b985641ea2c99ac08e",
+      "line_count": 434,
+      "asset_id": null,
+      "role": "paired accepted-parent acceptance clauses"
+    },
+    {
+      "label": "po_075",
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "docs/governance/decisions/po-decision-2026-10-03-later35.md",
+      "physical_lines": {
+        "start": 33,
+        "end": 33
+      },
+      "full_file_bytes": 31614,
+      "full_file_sha256": "e3ea2cc8d79c2568985bc086fbc4d08d25e162fcc546858d6db47bba768ac3d3",
+      "raw_lf_inclusive_span_bytes": 253,
+      "raw_lf_inclusive_span_sha256": "f96c3473f9289f9087b9d8d7f3c4076d0592bdd23de64e8a67ecd212c8ab4d46",
+      "line_count": 182,
+      "asset_id": null,
+      "role": "later exact PO adoption decision with matching semantic digests"
+    },
+    {
+      "label": "g0_075",
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "physical_lines": {
+        "start": 473,
+        "end": 473
+      },
+      "full_file_bytes": 183432,
+      "full_file_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "raw_lf_inclusive_span_bytes": 915,
+      "raw_lf_inclusive_span_sha256": "fcbb515c3593e94472fc674d41b04eeda6533e761015f37ed9d9c5e3dc486bf1",
+      "line_count": 552,
+      "asset_id": null,
+      "role": "selected Stage 2c assignment; no 2b completion gate or adopted L2 prerequisite"
+    },
+    {
+      "label": "legacy_075_req",
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "physical_lines": {
+        "start": 23,
+        "end": 41
+      },
+      "full_file_bytes": 6358,
+      "full_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "raw_lf_inclusive_span_bytes": 1191,
+      "raw_lf_inclusive_span_sha256": "970a4c70b6502d197ca2c79b4e0e972872be1c300c475e49877a4a4ae11da50e",
+      "line_count": 126,
+      "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+      "role": "legacy AAFD-R01..03 field/identity/qualification source"
+    },
+    {
+      "label": "legacy_075_ac",
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+      "physical_lines": {
+        "start": 15,
+        "end": 17
+      },
+      "full_file_bytes": 3639,
+      "full_file_sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+      "raw_lf_inclusive_span_bytes": 400,
+      "raw_lf_inclusive_span_sha256": "9f4becbb16f448ce63f3c56243e3825a72d027811415131ce1e7f86b5b64046d",
+      "line_count": 47,
+      "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
+      "role": "actual legacy AC-001..003 acceptance rows; 15-17 includes all three; line16 alone is AC002 only"
+    },
+    {
+      "label": "adopted_L1_009",
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+      "physical_lines": {
+        "start": 51,
+        "end": 51
+      },
+      "full_file_bytes": 19834,
+      "full_file_sha256": "8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8",
+      "raw_lf_inclusive_span_bytes": 462,
+      "raw_lf_inclusive_span_sha256": "84ab3a57b798f75b99747422017af094f065f619be354cbda7a07e76e73da5c3",
+      "line_count": 122,
+      "asset_id": null,
+      "role": "adopted L1 audit trace meaning; exact fixed L1 bytes"
+    },
+    {
+      "label": "adopted_L2_009",
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 98,
+        "end": 100
+      },
+      "full_file_bytes": 101004,
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_lf_inclusive_span_bytes": 1371,
+      "raw_lf_inclusive_span_sha256": "68bfa62f77f64dfcda38b3e42d4607e3e424ec0a6257c032e2de9bbb4a5c58b8",
+      "line_count": 559,
+      "asset_id": null,
+      "role": "adopted audit finding trace and existing AAFD/UIL owner boundary"
+    },
+    {
+      "label": "adopted_L11_009",
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 70,
+        "end": 70
+      },
+      "full_file_bytes": 76601,
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_lf_inclusive_span_bytes": 272,
+      "raw_lf_inclusive_span_sha256": "45442c32028e984cc98e36dbd8cb9a56f69bffb2d6c1f624d6d6967a593d8838",
+      "line_count": 287,
+      "asset_id": null,
+      "role": "paired acceptance summary for L2-009"
+    },
+    {
+      "label": "PO_adopted_L1_revision",
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "physical_lines": {
+        "start": 31,
+        "end": 38
+      },
+      "full_file_bytes": 13446,
+      "full_file_sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+      "raw_lf_inclusive_span_bytes": 1070,
+      "raw_lf_inclusive_span_sha256": "d89707cef8932b6e5e778e0b436ea0983d1eafa8f15347506203e64e3c386e5d",
+      "line_count": 140,
+      "asset_id": null,
+      "role": "PO confirmed fixed L1/L2/L11 target blobs"
+    },
+    {
+      "label": "PO_adopted_L2_009_registration",
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "physical_lines": {
+        "start": 56,
+        "end": 56
+      },
+      "full_file_bytes": 13446,
+      "full_file_sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+      "raw_lf_inclusive_span_bytes": 84,
+      "raw_lf_inclusive_span_sha256": "982c646740ccaf54becdfef1d3cc0c658f3962171baee47e1a08358e55c3c7af",
+      "line_count": 140,
+      "asset_id": null,
+      "role": "PO registration identity for adopted L2-009"
+    },
+    {
+      "label": "legacy_L3_layer_definition",
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "physical_lines": {
+        "start": 148,
+        "end": 168
+      },
+      "full_file_bytes": 15617,
+      "full_file_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "raw_lf_inclusive_span_bytes": 1214,
+      "raw_lf_inclusive_span_sha256": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9",
+      "line_count": 284,
+      "asset_id": "LEGACY-ASSET-F542125805B777D8A56A",
+      "role": "legacy L3 FR+AC/paired verification/approval boundary; format source only"
+    },
+    {
+      "label": "current_L3_L10_authoring_layout",
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "docs/governance/l3-l10-authoring-layout.md",
+      "physical_lines": {
+        "start": 1,
+        "end": 71
+      },
+      "full_file_bytes": 12199,
+      "full_file_sha256": "d1fb0c89df30aca6bb828f28e58329d57c40bb7593df540625562b5ac920a7ca",
+      "raw_lf_inclusive_span_bytes": 12199,
+      "raw_lf_inclusive_span_sha256": "d1fb0c89df30aca6bb828f28e58329d57c40bb7593df540625562b5ac920a7ca",
+      "line_count": 71,
+      "asset_id": null,
+      "role": "current six-document pair placement and per-item legacy disposition rule"
+    }
+  ],
+  "current_line_pins": [
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 1,
+      "raw_lf_sha256": "7d6564d3818ce1782a31998716403dbcc0197e09ee1741b926aaabfd789cc766"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 2,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 3,
+      "raw_lf_sha256": "5a42c0f3b5e8edfa0f0caec15ab5e9e5ed4ce55252549ca918a367dfed6e04e1"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 4,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 5,
+      "raw_lf_sha256": "1446b9620ce6c13aeabb38a0cfcd7748ee623635f84dc3cbc0530315f7d70d68"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 6,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 7,
+      "raw_lf_sha256": "3d970ca933f2cd25d514a469a3ac0068251317f9428ed5d8a4435416d784e3a9"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 8,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 9,
+      "raw_lf_sha256": "23e454779898780a4104aad213baba513e9a3c18b52b2ea5fa6a767c9359492d"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 10,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 11,
+      "raw_lf_sha256": "f9bcc6addcba565a3a89b2e27a19e1b5fd99a7a9a946205b4db6b5f04a1aa662"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 12,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 13,
+      "raw_lf_sha256": "003ff4158cf47fbff31f5a4118282f837b684011a7ac8710946221c879bafd7e"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 14,
+      "raw_lf_sha256": "174ae733585f5d772f3b6f5d5703a54c33b5c1b6f02eb6f99a437409925cc264"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 15,
+      "raw_lf_sha256": "ff196e24a6ec908269799f035b551218296e5eea6c3abf357a57f0d7017eb60a"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 16,
+      "raw_lf_sha256": "3623925df8f875655c9ec0f2a686bbeeada139296cf323d6c4a7b1fee0013a65"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 17,
+      "raw_lf_sha256": "c79ab437d25cbde79cb3011ce41e8ec9b4ff310d8e5a5118b38164e0f66ec4af"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 18,
+      "raw_lf_sha256": "832d75b390e2ce48e94436877785d2cc09e2f6cef59aa6199a2ac2aec1881b52"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 19,
+      "raw_lf_sha256": "bf1771366e1337fd9360e426be2aa586bff77b351f4ebbabd4557bbe508a77bd"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 20,
+      "raw_lf_sha256": "5eb9eb72971923737e918e6ad72c908dbaaaf49b41dce278440dd789a5f6565d"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 21,
+      "raw_lf_sha256": "537f1a1b07018345774299516cd7deb6c52ced5e4f856c56b03726aa1e25a149"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 22,
+      "raw_lf_sha256": "9d7f00cb4db83bda395092987f11b60fc31e25d106413278e093a1fe77193aef"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 23,
+      "raw_lf_sha256": "61c87cb345e56b6126a003aee3f4094e338193b71e0916d0e86c5434159b850e"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 24,
+      "raw_lf_sha256": "1e848379c544a26958ab1b8355e786c8aa5fd034a3bd3929dac623e7ff17fd53"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 25,
+      "raw_lf_sha256": "703a5858c2331c2dc11309e342cb4c97c1bee7e3c5c60142096de2bd65f98c2b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 26,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 27,
+      "raw_lf_sha256": "594fe4934bba4e6777a55441ff13d13c7e27e7b2438396e237ba173e67048f35"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 28,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 29,
+      "raw_lf_sha256": "2a77bf7e4e7b21b2f1a78b8985344d358ac82806cf228794dd9d1eb3a13c103b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 30,
+      "raw_lf_sha256": "728dd12c199d9acf263f14990ca9e25b261c89ad263b948937474cc4ccb850c3"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 31,
+      "raw_lf_sha256": "0b2109674ef405411f7292582196b3f6c9db4a995114cdaf96291cc23bf51b4c"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 32,
+      "raw_lf_sha256": "f092a145007060ee2381dabb2512537a0e09510b6481d6a6e777cf685c5e8fe3"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 33,
+      "raw_lf_sha256": "1a822338506392584d3ba682dddb3a3a365ead413d5905233f3103dd7bbc9ddb"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 34,
+      "raw_lf_sha256": "14ad833958724965d3a73aa7b9db885fbcd8a1404d26e46b7db1cd12a4a27d6a"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 35,
+      "raw_lf_sha256": "bf1771366e1337fd9360e426be2aa586bff77b351f4ebbabd4557bbe508a77bd"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 36,
+      "raw_lf_sha256": "c6a1ef856b5d831522e4d593e94f15ac0fdd7cabfa865629f6c7c39ce7fd00bd"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 37,
+      "raw_lf_sha256": "80be8d3af7da332f71ecc428c48994a46ada7876a4d1f6c833e7601177c1a512"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 38,
+      "raw_lf_sha256": "9254b87c5a57bb75676bd1be82a0490a1e11f1aa083dbe38c5378df8010b884b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 39,
+      "raw_lf_sha256": "0a3594fc473c32b790acf308f5f0e4f5856e5932c62a08cd719a3ac0d31caf0c"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 40,
+      "raw_lf_sha256": "fb0b325871197218fc2b5ad39126e6d561d25880b7d90ecb84c0c1c0211ef363"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 41,
+      "raw_lf_sha256": "bebe84d44464722295f3b096c5284c69fce43f2be7b976df256d2756750a0f87"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 42,
+      "raw_lf_sha256": "74b7fb811f57e254790ea43084e007cb1ae7f55c011b848aac2ef82a2adfbf62"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 43,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 44,
+      "raw_lf_sha256": "e437b60f1a4e7232b31df2a20e49a0ace66e6d324c5cb14dcf773bff0041086a"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 45,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 46,
+      "raw_lf_sha256": "6d1e77e87633db06d707aab2b35af140c13b1780b174e314aee5ee5d900b4615"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 47,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 48,
+      "raw_lf_sha256": "d88f66de3cd642cda0e68f195e5591e9225c8ec6a19e141bc325169e239c1bf3"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 49,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 50,
+      "raw_lf_sha256": "ae774f0f38f19c2a31d9bce1a0656b42d6349455f19ff6b8b202fe3a7da0e466"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 51,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 52,
+      "raw_lf_sha256": "02a647d37191e0329099a4ea05eadd1cce53f7ac0faec16e8d7a463ce52f08ee"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 53,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 54,
+      "raw_lf_sha256": "43ff35269510aea80965046093f297118c4cc61854a724257144b5a471c80125"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 55,
+      "raw_lf_sha256": "d8ea9919e55f8c95bff235b07b91315ea155f59819fe3190365a6132faaa9008"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 56,
+      "raw_lf_sha256": "0dbdb0a08d6386f407ec52994aada9f75c3bf1995d42abfa7f702041d256ca81"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 57,
+      "raw_lf_sha256": "6b5fba211a4680e70fd12c7c59f16b40509c9b59ebb84a0c8886f81c07b2e272"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 58,
+      "raw_lf_sha256": "3d76f3735ead4c1a56f8b401950e37decb5dcca2cd43bfa9d8b74addca9e11bc"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 59,
+      "raw_lf_sha256": "69e035a8abe7c06dec2e8b6fb99a285f7457dffa472a7b282c9740b2ffa89aae"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 60,
+      "raw_lf_sha256": "dc7046c22015e0b03b0cef9aa47922103de737344163049c64c511918ac0e5a5"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 61,
+      "raw_lf_sha256": "e2e908d3776b79feeec9016df9f8e44299f8597a56a387a624f35cb62097c7c3"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 62,
+      "raw_lf_sha256": "1b9047f3c2fcc50355dc4b5351785f1538eb65e93a5124916838a7afb2abeaf9"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 63,
+      "raw_lf_sha256": "08599a7abfc9c01b6c49d2dcdc1de4709ef54005e0141cc6d292f58fb19e86f5"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 64,
+      "raw_lf_sha256": "790581e19d6df11eda06d46bdf9cf9ffcc51253edc2a5555da7b8cce8e0f5fe2"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 65,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 66,
+      "raw_lf_sha256": "55aaf423fba4d12c9dbe70c75f1df1c72033f259c8fe863c34b78dffefe816ae"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 67,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 68,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 69,
+      "raw_lf_sha256": "e8db5b5de7ddaf7d2f58d0b131255cc1ef0ab47a68b10a8de6c3b98bbe04f419"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 70,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 71,
+      "raw_lf_sha256": "b4b2181bc28a8e65d736af7a81bee498aa18f257680599711d8fd0284aee8cfb"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 72,
+      "raw_lf_sha256": "761e83ab8e880e9682ccb3d3a582ab129b03616c0731a7e4eeed71e5ff20139a"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 73,
+      "raw_lf_sha256": "035c071464fd29fd73da266716b5b23cc86f6d56f2a319cde1ce204da0bf4e32"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 74,
+      "raw_lf_sha256": "430ff152971af3c0357c8867005c25dfe60630e9a37107f9664a0794a5e730a1"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 75,
+      "raw_lf_sha256": "94ef7ed3f5c30fc76b2b0f475e19b45c9ab0bc076622ec109bdadea77e62cd73"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 76,
+      "raw_lf_sha256": "d828252407f60d49381ff99d3175606b6b5c8996a6e8bab08c2072bd782fc4f4"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 77,
+      "raw_lf_sha256": "896d71a2daa2f8358652d1f1e84762bb713054710e8a17d434c5b3afcba90400"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 78,
+      "raw_lf_sha256": "a4c07f3eabcf6106ea9d5e874ff7379f70bb1b68e7870d7bea78d4b5ea6bf652"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 79,
+      "raw_lf_sha256": "45bf28789d696e6a675ec82ece0b0c80a377cc62f91e4e877f8ab3cd1fa3ee1d"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 80,
+      "raw_lf_sha256": "88c0226b4764dc34888b5aaf5d9a42c87efb522f9e9de8b878fd60c63d3615d8"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 81,
+      "raw_lf_sha256": "633f1e4501c058acb68812396535b12fd972ffc110e8e054ae4dd5657b9e8aa7"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 82,
+      "raw_lf_sha256": "3f6f8750294f3d2414a25ccb181f537d94b3ccb81ec9f9d4a11da6b1f86a0866"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 83,
+      "raw_lf_sha256": "5b21367d4506d7108f2707e9ccb3778bda37eaf45e3968c34a5ce223f5883538"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 84,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 85,
+      "raw_lf_sha256": "575a5c50e6b0f6dd593b061d0b4df55cb1119cc4ab80bcd63d8a796b819189b4"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 86,
+      "raw_lf_sha256": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 87,
+      "raw_lf_sha256": "231f2cbd3517178b9c87eba145183da250d587c70636dd9dcde18e949f32db12"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 88,
+      "raw_lf_sha256": "c6b822a7b2aef18b2b41138fa42fe1450ee32afd9ed60d83f236748801ec5a4d"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 89,
+      "raw_lf_sha256": "0959e9e99cecc54f2cb29a536fae2bb71d7e9595f4c655703be491c620cdc2ef"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 90,
+      "raw_lf_sha256": "84c9bfa7e3d879812bc6bf6ec33f125da0811156ab81ea229a793c8dcc75a7fb"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 91,
+      "raw_lf_sha256": "95b9f7d8a6171b463be75466982a97e6881d794fa3308deaedf715135d558820"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 92,
+      "raw_lf_sha256": "e90e2228d0302680b27764b7cf6144ae47f3b235c1830f73fe9e39ba797ee2e2"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 93,
+      "raw_lf_sha256": "069c87a6f6fe6b5c3fe06770878a2374edd7c31e53615258f9fe0c9797fb4cf3"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "line": 1,
+      "raw_lf_sha256": "ce5f83d6f1da2fc3347dee03ec023c1235c6c9f2a44f2292b8bd4dede4195e88"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "line": 2,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "line": 3,
+      "raw_lf_sha256": "40ea6b8b79993acaad26c4558391d6447e752c29408cc0988f9f5ae26fedb142"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "line": 4,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "line": 5,
+      "raw_lf_sha256": "3999d38276829484016b2c081a8fe2aa8409518daef7375af77e8f55e70e5fd9"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "line": 6,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "line": 7,
+      "raw_lf_sha256": "f94228cff60a38d71a16a4f7807d8c8d3e9ce56795cccd231c366f9f1cd7669b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "line": 8,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "line": 9,
+      "raw_lf_sha256": "f3a3e30591be7ed715b3dae91ed26d31e82fd887bf829044ae2e233e815cf13b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "line": 10,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "line": 11,
+      "raw_lf_sha256": "ba72b96912017a4528314cb2ad2f8bd153775b6b5c8ac47e74bcd70e43c639d4"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "line": 12,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "line": 13,
+      "raw_lf_sha256": "97684db362def8df2e52670adf29e133e0b2ea8aa82128de131239ef80cd57bf"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "line": 14,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "line": 15,
+      "raw_lf_sha256": "6a10a111b73aebb6386ca8510556fe2cd07b555c9991d4ea242a0b7fffd73a5b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "line": 16,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "line": 17,
+      "raw_lf_sha256": "9e9514602ef43bde51803ce627ed28edda3e7b8d49ef0ae8db3c47c187c1ea3a"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "line": 18,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "line": 19,
+      "raw_lf_sha256": "abf92b9fe6edd9066255f76dc8f49b4e4963f843e79d6e29be867ec182f9110d"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "line": 20,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "line": 21,
+      "raw_lf_sha256": "3699933f35a29da563d526e3e0057ce54977ec06f5b245e6cf23acaff9a41035"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "line": 22,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "line": 23,
+      "raw_lf_sha256": "94049b37ffc852217b0163ff5c792e7e314025c032d38ccce047cbe31a531ade"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "line": 24,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "line": 25,
+      "raw_lf_sha256": "bfd2aa26153603720d8e6d0f11d43941d4055c8bd0f7398e12b72b3bd77ba994"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "line": 26,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "line": 27,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "line": 28,
+      "raw_lf_sha256": "7ba54f04710be5b7f2aa1667606d3aa0bbbca2a7035248ab2ba2661e13fc7624"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "line": 29,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "line": 30,
+      "raw_lf_sha256": "3dbe2e43a21d5d97cfa3b3e5822c90f39aed4559f2cc9240df3c215b7b551392"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 1,
+      "raw_lf_sha256": "5d75415d81afc3de9877171ac310be672d8a55c0ffc1af2527871aaeb7d702a2"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 2,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 3,
+      "raw_lf_sha256": "5108fc423046ce4b89606cdced869221aa5d2415c7624254645a838edb98bb23"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 4,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 5,
+      "raw_lf_sha256": "4dcd8fa612fc3b05f7c80e4fa7f3074183b19616c8b56ad4815a680083938a78"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 6,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 7,
+      "raw_lf_sha256": "7d7575607019a07970d40f7a0a3361a8ce33a24835420135eef193b962d3d1be"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 8,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 9,
+      "raw_lf_sha256": "f933c51dd18996b3b535cdc4f10f2ff4165433a3296e296bfa6c0c79e0318bf9"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 10,
+      "raw_lf_sha256": "78946ac744c80e0459f9fce648d1c08432adb32614ec78016d2c38a1829a66d1"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 11,
+      "raw_lf_sha256": "c000758124180fb1bb914061c9f2babca1f9d06a03685db94a4b46b361f9ccc6"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 12,
+      "raw_lf_sha256": "4ebc444b19e4b941dbb824c4764922f5159c69b4b447b63a5b3a3e59a8b944de"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 13,
+      "raw_lf_sha256": "3e88b54d1aa6d13b95b212b442082e4a84f1c143ee68f0103be742dd86a06e6d"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 14,
+      "raw_lf_sha256": "ca2d9721883627fa75764df51fbdf8cc05cdbe1b9d08a66f7f113b5d8817adde"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 15,
+      "raw_lf_sha256": "1498a43dba75402008dca81aa133b461a289a93345e5dcbc78b76d82061eca78"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 16,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 17,
+      "raw_lf_sha256": "1afb81c2823eae3eb4375632f08144bb6680de710c8c397600ba76fb407a20bd"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 18,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 19,
+      "raw_lf_sha256": "c41e9bdde4ac4303b41ee40861551e8f06e6a222219197517c85146c4f42b8ba"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 20,
+      "raw_lf_sha256": "3b1aaed2106f4e0ffc599a3c7db48e041482f253e348638540f1ea8a5b5ee7de"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 21,
+      "raw_lf_sha256": "fefc796162ae9daa0ef8cc5dfa46379e56202a698f2e45ca6feef9a8b905d6cd"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 22,
+      "raw_lf_sha256": "f30138399b49587f89e5824d1ba52d08a8741d3a5250555a4ad2ff2b18ffedd1"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 23,
+      "raw_lf_sha256": "6ccfc02a7d361a593887e857791cdbdbe2af6619d3335f9f5b81c527a1f902cd"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 24,
+      "raw_lf_sha256": "eeb0cbd2177b96d35a18a2675abb69bf8f3f76b8618169135de5986c396ba0f8"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 25,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 26,
+      "raw_lf_sha256": "e0f38fc0b1be70661fed2b8fbea5d27ba91d8d18e50bd6db032f50afebeff402"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 27,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 28,
+      "raw_lf_sha256": "c40be7457bf6d7f871ab182ebb5f8c43ef95180d0ea6f235055f0356f8dd34ec"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 29,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 30,
+      "raw_lf_sha256": "14f5784e58c4fb77740e56383263144d4a37f32f2a6325236850e7772b7677e1"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 31,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 32,
+      "raw_lf_sha256": "3392c68001bbd7acd15a2b45599b85197909c6fbf6b1b1cbe70f329b90345ba5"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 33,
+      "raw_lf_sha256": "332a1a81fefee18754f6c8a0300805148c37b78a812a57099c92e082d15ec084"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 34,
+      "raw_lf_sha256": "79532d1e671728419ce099a52a6bd982d7c0be0f40cff2d7d2784aba84dea1dc"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 35,
+      "raw_lf_sha256": "76dda4946d69d24ff84456d67beb0c3d5d47c6c12ca06db97a26cd2585bc2a50"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 36,
+      "raw_lf_sha256": "653d2162a6fafd7bd9f9539f85241b45b3c176e0e61475ea0b4bdcfceaac1fda"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 37,
+      "raw_lf_sha256": "40b083c65821dadb6dc89b0d48634af877a0caebb4626d2870088b76185e336d"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 38,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 39,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 40,
+      "raw_lf_sha256": "bafedc5a154499638d8b6d31a005270ee254267bc40713f593ccfa1ff342d5f1"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 41,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 42,
+      "raw_lf_sha256": "6ecce6a300e5abb23b667507987b9a3ee437adfc4658a1fad526bd44c49513ac"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 43,
+      "raw_lf_sha256": "975f1b9df1dff3538c9dd1033df76d13d14adfffadeced6265ee51ae0aae238d"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 44,
+      "raw_lf_sha256": "e64ce3d96388f74eb40ece172508737c60d8e6f8ba1c315bba24eb96eaad422e"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 45,
+      "raw_lf_sha256": "263ce1a7094a0db5aa4a9efbd690807b963bcb123871eca016e5c72b31d607c5"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 46,
+      "raw_lf_sha256": "a719acede70cdbcd9af1c7403dcbf350ff2999becec40d23f7330b51da1eda56"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 47,
+      "raw_lf_sha256": "fd085dd1575363459f22e98bf9e7a1048c1fceecf536b7e0eb0e4223a9714ae4"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 1,
+      "raw_lf_sha256": "10ada28dc2fd6c62419ef3748997e406c4535c6671687b398d0a1cc3860fd960"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 2,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 3,
+      "raw_lf_sha256": "e511f8c5cd9b80a44d35ddfaa79e409649c3197d3e4891eab1d91fa51c1ebb9b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 4,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 5,
+      "raw_lf_sha256": "c613a0e5830154013c67a3b378a8c999a6c2d3697b7c6d18005871eb6e9667e8"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 6,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 7,
+      "raw_lf_sha256": "38e57ef3ff53be086b0de516132b82f12e958dbad9d47ffe781a994b1163d348"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 8,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 9,
+      "raw_lf_sha256": "d4baebb2b30be7921cec37ed7a3705475e4cd829485eefa199f18757e6a54e38"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 10,
+      "raw_lf_sha256": "070f66e4f10ea2fdb0474f7b617776b4a6d9f90205dd6a18108320ad0ee264a4"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 11,
+      "raw_lf_sha256": "5578dd08e9bcfbd5d2c3cab451b910a2c0598d2edf7b2347e61073d424de5366"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 12,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 13,
+      "raw_lf_sha256": "21de3afea4f23d06ac7a6fbef40292714ba90f4a60949d5e5fb3801bb6e05feb"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 14,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 15,
+      "raw_lf_sha256": "fd89307e13483c2679fd382ce7c93ce213e960fd3c6bb1e8aae9155ee7a3a956"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 16,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 17,
+      "raw_lf_sha256": "4a563c6aed74ee05cd3cafa839bd8da3528db5150c87423fbf9b28c4acbb31dc"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 18,
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 19,
+      "raw_lf_sha256": "e0e7ff1fa6a3864cd2dd36986e37bf1958d0665e17133e62545709b3eb9082f4"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 20,
+      "raw_lf_sha256": "3d8fbd608d84aa7a071dba17c778b23e012365d444e3c52db25f9fdbd4524d76"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 21,
+      "raw_lf_sha256": "f84e36233a9b4f53e2bd3716ece3c7e7e5db1c151a7d59ee9064d9b53429d3e6"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 22,
+      "raw_lf_sha256": "4531d8da7cce5b3de8649e194d4c73af15c0860d04f5e497bfd12672c5b9ab51"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 23,
+      "raw_lf_sha256": "95a1ade1e630264a2e60b794aa74d2a069f05229992436d7885f0ad42ed3d4e5"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 24,
+      "raw_lf_sha256": "53843b90cb5bf7b51e682538f1e54889b87f39ae46af16f8b1d6245217f92158"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 25,
+      "raw_lf_sha256": "f869f6f2820138956b698084d3a6cc73d9e2669bcd260cd54d14658490c45a7c"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 26,
+      "raw_lf_sha256": "589f8bc3aa524dcfbce0262971ebb162f19da7c566c50967007d1a7b1afc34d0"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 27,
+      "raw_lf_sha256": "726fba516c619c0e55d020d81a3fdf534d8157d41920c7aeac6565a822994371"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 28,
+      "raw_lf_sha256": "37e6cf872a625e59fa81cc59d71f832ea9224263cb146c48895b2f8a1ab5f8d2"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 29,
+      "raw_lf_sha256": "6857cdd2e3b1c54f903515a048243d7b9d3a6d72a3624e4992a36703173a61b8"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 30,
+      "raw_lf_sha256": "af701fdbc5a9723901935f9a98c48eaab4fc1cd0e1c359f9029285d90fe6d893"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 31,
+      "raw_lf_sha256": "8cd58ad4232a8a0aaf7ff62bad0beb565101d45b1c1cb4b885c9d496ff574268"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 32,
+      "raw_lf_sha256": "d6cc84b6ae542b021c985574aefe1226d0f62134277daa5ecc979f2b430594ef"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 33,
+      "raw_lf_sha256": "d26e9fe7b69c73e9b1ebd30ad435fe349a5909e69d6d773d1113b0dd8edd268d"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 34,
+      "raw_lf_sha256": "20dd9ffd30345cdd1af4ccbbf4ac892304d249f0e374dad05b2c00a01482af8d"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 35,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 36,
+      "raw_lf_sha256": "5cffd8712a7dd19c48eff36b1fcb3fee771671371735748b2de1f3b24614295c"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 37,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 38,
+      "raw_lf_sha256": "f68d8bd46730d28061b56941a10cfc4a90bde8e6f754f1561ed4ff232afd161e"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 39,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 40,
+      "raw_lf_sha256": "00cf847dfa0768ab2a9f2a77da21565c246e16875e8acdeee3ffb59308d382bf"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 41,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 42,
+      "raw_lf_sha256": "dfb41879b9046aa26dcbbe244b1405a32053ad90366867724d9d2f38d7db24f7"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 43,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 44,
+      "raw_lf_sha256": "4cc918b5fba6675d346b15aa9b019450fe41e849b3b631a9654a2cef8b75ce41"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 45,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 46,
+      "raw_lf_sha256": "75c15f18f68d2e326a67f68fad4ead3248e689b35f4e7a0a632e21822a5ca648"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 47,
+      "raw_lf_sha256": "cbc4eb3e0c12a435291155868923ab2c5f36d1f1140f58d3a7854f3f6f769a6a"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 48,
+      "raw_lf_sha256": "2155fdb7c077175e437ef1fbd91179bbc4f729c1e30566f30a6db704665eb760"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 49,
+      "raw_lf_sha256": "e14b31c3809d68101d8cc5a833700875532f3e515a1318421441a27a0b7bba29"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 50,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 51,
+      "raw_lf_sha256": "46172f0a4d6f2a7e8d0cd6de8321fb8080b7b2f76f89fdae4dd53bcc8ded540f"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 52,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 53,
+      "raw_lf_sha256": "131b5defb94e30843372056cfae25d0398e3598ec391be34326dca7bf943beb2"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 54,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 55,
+      "raw_lf_sha256": "24b3d8796cfa0eed0c62ed029b9bf5b8e91f4685ca495197577c586b0162559b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 56,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 57,
+      "raw_lf_sha256": "4a563c6aed74ee05cd3cafa839bd8da3528db5150c87423fbf9b28c4acbb31dc"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 58,
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 59,
+      "raw_lf_sha256": "9b02457eb4ac8f659175f0518c318bb1a2a4a03f765a63a49897b546e82fa0c5"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 60,
+      "raw_lf_sha256": "ec098e28b4cb4582797a3667e369bb19f898f474cb077996e720d525c394ab57"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 61,
+      "raw_lf_sha256": "636f9510bdb1cca2a911806b9a5ce94f650ee3c90d27368b307a896ad165d626"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 62,
+      "raw_lf_sha256": "24e9766e6019c9e1fdf66e1b6c17de6ad7941d852a72642f8ac815fd243bd216"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 63,
+      "raw_lf_sha256": "43bacfb81c5f229b4755e14ef21689a29d3b29b6009a318920b9845535ba0aec"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 64,
+      "raw_lf_sha256": "f770e7a2abbefbadc48bb9ed73c343c5e09fd89e66ffb4029edd1e64c64060e1"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 65,
+      "raw_lf_sha256": "58e20878801c77ae83035de8da2bded3a64f84a087a41ba3dfa476ba3d5796e7"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 66,
+      "raw_lf_sha256": "d3f29c81d82289d89511c9569164db45221f316872d364f23101aab8b4b7ca15"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 67,
+      "raw_lf_sha256": "d3cba55c699f852316e020f3aae2d0ed7e8e4dddf983c782bfba2e8f0138e24e"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 68,
+      "raw_lf_sha256": "17e7a66dc2b37ce4372ac8bf24b796c52bc762c3bfe6e11ebb14a42db9b0278e"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 69,
+      "raw_lf_sha256": "028f0c3dc71fb3e41f8596abe70324dbe49d3c278f0f3a67258dc5c8231f8afa"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 70,
+      "raw_lf_sha256": "bf34b18037e0c3039dc77751be2dc68eb073fb69a8dcb18aa54acb27400d29b7"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 71,
+      "raw_lf_sha256": "d9758207802e3f43f1cf0933ac15381e4266cca7b33da5d532e94f263bbdf610"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 72,
+      "raw_lf_sha256": "8ca0f19e82664ad42f70d62c204324e1c2d4fda0c659aad57537be756ad74fe2"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 73,
+      "raw_lf_sha256": "f18c3374263f01a0e80253fb50d54bae2996235094ac8376bbc668d42b3d74c2"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 74,
+      "raw_lf_sha256": "97f25e3dcdaaab1f230cc3a65f9dc90f9e4910127908deafcab1ccd2116605ba"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 75,
+      "raw_lf_sha256": "c03bc2cfe620d96d4b5c694a92842090a329d11f28a58aa13e0f8bf579a93451"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 76,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 77,
+      "raw_lf_sha256": "b6cc0e9ad12f0ed75c7424374f3f90368e85cf6e59a43a5203587048605be2c1"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 78,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 79,
+      "raw_lf_sha256": "05b266e35f8b469cf48bbb076ee32cc4d334826c9affcc5d387a5f227204825d"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 80,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 81,
+      "raw_lf_sha256": "103581d84a499191a431d1efc10362922f9d942ca458bb212708df3e1137a44b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 82,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 83,
+      "raw_lf_sha256": "32a2e0d43d9f23aa971574438c3ac518c25d5b9671d146eb53a8b9e816f044a4"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 84,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 85,
+      "raw_lf_sha256": "d88f66de3cd642cda0e68f195e5591e9225c8ec6a19e141bc325169e239c1bf3"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 86,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 87,
+      "raw_lf_sha256": "25ad937c1ffec0b4b022507bdf52af7a09a1a4a36391e120ed3042c99c71b17e"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 88,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 89,
+      "raw_lf_sha256": "e92df7807f05dc32b5fca760ce8305cc801be7177b39b12ae5b1a4a3498172c6"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 90,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 91,
+      "raw_lf_sha256": "0685fdbdd3563d769e31d9bdd1b3ceb3469db394efab63bb5ba97cde178aa7be"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 92,
+      "raw_lf_sha256": "fa1ecd1d7c15bbb07bfbc1d2b80395730e3680c541a8c19e6e910fa94591b061"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 93,
+      "raw_lf_sha256": "c0b18157b1263d366dc7f3a8d4dba23aac23d5b8c9bc9dca9f2b7f7a35957005"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 94,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 95,
+      "raw_lf_sha256": "304a67320039288e81b501683b27a4d1d2ab51b099ed4d5378e30745522c4d16"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 96,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 97,
+      "raw_lf_sha256": "0a6f502de407ae227c71a6e673bcb4acb9b17ef9be60557027cae68f8e784ad8"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 98,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 99,
+      "raw_lf_sha256": "ea69c9f9c2806725f4778ac01e9549fe5e5ffdd5f3e46e5bb7679c2c9554a3e7"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 100,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 101,
+      "raw_lf_sha256": "941af9b4b9b0e37c91471b8cb7dc3c98f8cb0143fdb4b245cbb4591d99dd9d59"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 102,
+      "raw_lf_sha256": "cbda9b0c265c548d64a3aa451c5aa862538aa87b09f2f0a26b27225edfe1c5c7"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 103,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 104,
+      "raw_lf_sha256": "e60fa0b505b697d87158d6ba0aca764d6df13c6c7765dc41aafe6a52a0c5585c"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 105,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 106,
+      "raw_lf_sha256": "403b6d14b8ad22c3bcd92657a99f116013c322f46a1ac644d8603d6fafaf524a"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 107,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 108,
+      "raw_lf_sha256": "a30ae4443c19f3fda57cadd99d7d5269cf82114373c821fb77913c92e8842d98"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 109,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 110,
+      "raw_lf_sha256": "83b777668ac12af93e76363907f1b102158adcb7df56dcb5fb191894a2576bf6"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 111,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 112,
+      "raw_lf_sha256": "14354ddd649a3903da750c59f18ebe52b46d17aeb0c1a4f2c4608a775f218a99"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 113,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 114,
+      "raw_lf_sha256": "5309891d2af3443d12a51eb6e2d40155b86aa862a043cda7ecd8d522c96c6471"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 115,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 116,
+      "raw_lf_sha256": "64e438c0a4848b26e8f03c551ab2b11fc0b59d85698a0b0888e777558b3b1d1e"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 117,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 118,
+      "raw_lf_sha256": "d0c13a3fb252c9b63990d9351d2839cc77ccaac91f591c271813897b8b10c915"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 119,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 120,
+      "raw_lf_sha256": "94a8a8177a67fcbe2c83ee0045a4ddb52c694ea52f086509befc0671b9cdfd04"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 121,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 122,
+      "raw_lf_sha256": "1d684e873b8f147968e0d2bd5a20643a4fbd0f31325e77cda98afd1bf48af279"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 123,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 124,
+      "raw_lf_sha256": "be3a791d3c141b538ab64beabc7f1f43c905354d6ffb2e36d736e8d30bd544d6"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 125,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 126,
+      "raw_lf_sha256": "6a1d3f7287037b8b88869a899b368507f613a8983776873fb92706236c1e6cc4"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 127,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 128,
+      "raw_lf_sha256": "488de361d94d03ecb660dce8cfa62dd7c038fb77e62392f50d1c72b81e02628b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 129,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 130,
+      "raw_lf_sha256": "2018a20ddeaa6a90b8ebcd85c6ff420d67540cd70991e5585158e02b30ffd2cb"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 131,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 132,
+      "raw_lf_sha256": "18bc7890e9299739ccbdd5d9fd81cae0dd5e35ea81541f8d9ecf5bef3657926c"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 133,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 134,
+      "raw_lf_sha256": "bafbde6b7d9377e30e80574a2c2ce6a9158fb8338f43b66706a46e66108a861f"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 135,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 136,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 137,
+      "raw_lf_sha256": "239d4166b704a639fdf9ef938e62ea95d35c2c68a3abf03d2c013bde6fb716be"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 138,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 139,
+      "raw_lf_sha256": "80d39bbec33142d6eef957a63d14b32f42dc50ed97d19e96a5118a85ee25f439"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 140,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 141,
+      "raw_lf_sha256": "1b23713192aed168fdbb0895ff10d761fc5f476190acfb091f17ff82618ff7b2"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 142,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 143,
+      "raw_lf_sha256": "ed044ace93a008df69dcf2c1b68912345bfc22ec42d604ea408d17f0fbb5c241"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 144,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 145,
+      "raw_lf_sha256": "20ba38a3334ff1b250b15044e889269b4079f54080d1bf15cbdb1a82749f4c0a"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 146,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 147,
+      "raw_lf_sha256": "3fd42673667190c888f6e6e49d8e3a76c2ec15bf42cbf43a3131b8f5dcc2eed0"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 148,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 149,
+      "raw_lf_sha256": "81d27c382258a146bce2cb1dcdc43b5cf0aec9fcb86a27913beb86e6a5749bda"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 150,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 151,
+      "raw_lf_sha256": "3938521901a2280c2bdcad3fc90d815911f047cf8d4e5a34b33b17487814a51d"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 152,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 153,
+      "raw_lf_sha256": "d911ca072dae341634fc48f1d88987707c8f4fb08124e07612b35138dd3dbde8"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 154,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 155,
+      "raw_lf_sha256": "c1be73a0059036f4ea301304337155ecb6792c850cc38361b968068e698c56a1"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 156,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 157,
+      "raw_lf_sha256": "290cd494b816d2eaddb0444d13183bf82fe2b12adfdf4a768c9d2e5dcdd575a6"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 158,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 159,
+      "raw_lf_sha256": "d8d52599eccc737dd1d12f13869051df3799ef3f407e961532e0b23fe9d67c46"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 160,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 161,
+      "raw_lf_sha256": "50485ea12899690f1351c2c9bc6d78db29b96d5078a4af4e94edd3cd0c1e17e5"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 162,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 163,
+      "raw_lf_sha256": "675e9db6927317f83a04549ccb5e71806c1c85f3a0f396374bab84917fee5a14"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 164,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 165,
+      "raw_lf_sha256": "4757c762a98c9b44fb20612caeee293d14194ca67cc4113d70bf9bc0a323681d"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 166,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 167,
+      "raw_lf_sha256": "72d11d80f13cc94ecf18d0e112454d3c25b54c6fa7fec50e912b65966b49f8fc"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 168,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 169,
+      "raw_lf_sha256": "c286e3e455a9241c13337377141c341acaaee673876fb64edb97b4f06f2d1baa"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 170,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 171,
+      "raw_lf_sha256": "f4ebc7b780790b837f016f70f8f09479c9f853596ab827fb0c4a71617aaa9cf2"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 172,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 173,
+      "raw_lf_sha256": "78394d4526224bcbfb825c8e528e0d67ef9fd0a66f50b17f821b68361042b791"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 174,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 175,
+      "raw_lf_sha256": "bb25e1ba0ec79d1d3e2dbe72bb8c7fb3b99fa6d1a5f916c8ac8918a95e933148"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 1,
+      "raw_lf_sha256": "0a6555107d0c35ca554e30decd0e0002655a8ea2b845bd145013957eafb00d72"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 2,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 3,
+      "raw_lf_sha256": "2afe212a2b55e023cf79a3e0532e313f5d9d9d935ddc5b2f7475d09080ddd2af"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 4,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 5,
+      "raw_lf_sha256": "6fef5fa1d4e2c0255aea3967e66edb1eb6d04d3ad18ae1bd0fb9151e8f1f61bd"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 6,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 7,
+      "raw_lf_sha256": "f94228cff60a38d71a16a4f7807d8c8d3e9ce56795cccd231c366f9f1cd7669b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 8,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 9,
+      "raw_lf_sha256": "978df27e193803423972884f0912a45ea21e4d6913b1efb7c563d7b75c517470"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 10,
+      "raw_lf_sha256": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 11,
+      "raw_lf_sha256": "728f8d64fcd625d11c2236ca0c3d819f56d2483df169ae04ffbef34f69f2a31d"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 12,
+      "raw_lf_sha256": "d3b7199e8480654bf67449176e182059208237e6c7a20b10d383ead829da21e2"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 13,
+      "raw_lf_sha256": "f60e617b68304f99af8472d81037ffef618abea0b481d2e252fafa61557df618"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 14,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 15,
+      "raw_lf_sha256": "52e1a5e1e073cf38ffbf0ab432d70c7ee97d239f9d2505582eb647fe44cb6454"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 16,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 17,
+      "raw_lf_sha256": "97684db362def8df2e52670adf29e133e0b2ea8aa82128de131239ef80cd57bf"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 18,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 19,
+      "raw_lf_sha256": "978df27e193803423972884f0912a45ea21e4d6913b1efb7c563d7b75c517470"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 20,
+      "raw_lf_sha256": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 21,
+      "raw_lf_sha256": "1d1e3ced3cca371924cdb9e1eff5402924a073c0523d18b52790535110b3ff2a"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 22,
+      "raw_lf_sha256": "9e9d42b5cb138eb2355368197f474ddfe405607462906f9337e65fec647f5216"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 23,
+      "raw_lf_sha256": "a3820bfefe616e41616771f4de24b577ede6aabb3b80427aa30633e62980f305"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 24,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 25,
+      "raw_lf_sha256": "61bf7e0227f04eebe52b7557c6ed67e575e1f216fdc8ba5d9332e9db02912a0c"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 26,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 27,
+      "raw_lf_sha256": "1d84217a9d8cbe4bb7a1b2449f28b70bb3242847eb0bdf14ff12e32114376bf5"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 28,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 29,
+      "raw_lf_sha256": "fb1a08ba27c1be2d5d6d8421996db44227d0b7867a254b10a73dc6ffbb93f8db"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 30,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 31,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 32,
+      "raw_lf_sha256": "b4afca2eb72f2bddba1e0c3f30fc468f46ea285473d65da8ddf7fc26d4d5343f"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 33,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "line": 34,
+      "raw_lf_sha256": "9ce742ee703366198e4615d09f9391d7b13add343230421c26e0b96d5ff2f3d4"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 1,
+      "raw_lf_sha256": "0987631571502da528da1e378617621912f4a2d695abf15e13a6e8808a654b9c"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 2,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 3,
+      "raw_lf_sha256": "93f07ee7992640faf809f5632f977d0253bc1221b30d5134b312529e6b81d4e1"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 4,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 5,
+      "raw_lf_sha256": "839bb5b65697e0127c45ee121df0e92dc321aeb075b22740febf923adaadc3f0"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 6,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 7,
+      "raw_lf_sha256": "82849b812218316bcb1403fb648e41a93b44b0263d4a320373025f8fda7d368d"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 8,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 9,
+      "raw_lf_sha256": "e4f7a6456e7e1f5e3515314dbde95ffbd827e49624f97e63b84e88904cbb8b50"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 10,
+      "raw_lf_sha256": "091a06f1a75806e007016d3137eb7d99392abc21cfa792c9c78d1fd49ecf2a7a"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 11,
+      "raw_lf_sha256": "ebf79283d47e98c38279bef3f5aaf1fc1a2884d718a17b23361ae96f85a676ea"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 12,
+      "raw_lf_sha256": "55d90f32d575b5eb89e3333f1c53a3efdac375ddc884e1c5fe1c8692993257d0"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 13,
+      "raw_lf_sha256": "fdc2144f8031448a916c5fe713ce45c17f9034865240b0035a4c226767933973"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 14,
+      "raw_lf_sha256": "6573358e1e85147095543897049c0c3f2d1a621429387559b5d5e01e77ec7167"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 15,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 16,
+      "raw_lf_sha256": "1e9cabead82a58549d48b23c89148047a8ab093958eecbf4b1df8657c75f068d"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 17,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 18,
+      "raw_lf_sha256": "daf4998c1a80c1137b50f655db73bb3c9608e0ee660a29dd8a62e54e4312df29"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 19,
+      "raw_lf_sha256": "14b4d1f1e91ea7eabdade7a4468c9f9d0346cd7ae7ff270cd286e17594a42369"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 20,
+      "raw_lf_sha256": "31d9def833468d135bb84dcb1d75c87ba71490944c61b029126589f0de397049"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 21,
+      "raw_lf_sha256": "e94911af248c770a2ffbfa0108109df1172ccc322f67447111604cf95a2479f4"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 22,
+      "raw_lf_sha256": "2723e54637773eb1239832d945fdc0ded1280c7299aa9eedffef8c40288932df"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 23,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 24,
+      "raw_lf_sha256": "7e6221a201ba806ec60027d9d37600acd2f9fa3d4cbfe4751554ffce018242fa"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 25,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 26,
+      "raw_lf_sha256": "309510f12396588af760486d55bbdea2ec99b4bcc2537245d7f677b71727c347"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 27,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 28,
+      "raw_lf_sha256": "8952d0aa38fd3f7780bb3d19e12feb9d983563d790806110792d2307d34e0dd0"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 29,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 30,
+      "raw_lf_sha256": "bf3b3d6c9dda5dfc1f56be5e7127d47213d288e6f4e8328819a538b1b20c17bb"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 31,
+      "raw_lf_sha256": "99abfeff43ce97aaf7178b0a0182345be3d836b0d98c0197088e0bedce59fb97"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 32,
+      "raw_lf_sha256": "dcb08b90faac9b36d61197db1521de4719b15e9ab29812c48984a1b89bd8cb15"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 33,
+      "raw_lf_sha256": "5b3a9b78c9249df91e99de076dca57a4c1ab5c8e27e8e959c1cc3370c79d905a"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 34,
+      "raw_lf_sha256": "ae415f97da287c44458cca2d334bd23b7a45ab47ef3b9dc23349189884256b59"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 35,
+      "raw_lf_sha256": "16539da0e0e7f3280e933fc86f8ee45f5a8fef85f7f494159c66cde6d1ceee0f"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 36,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 37,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 38,
+      "raw_lf_sha256": "3a5f2f15c8ed8339186c1600df58ba260bb582ec976646967c4bdf87dbbe908f"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 39,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 40,
+      "raw_lf_sha256": "643511de84d458f8b990e5d8ff5e83ffa8381d6550f677453330d6010c009087"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 41,
+      "raw_lf_sha256": "db32003e7ec36648f5d0ed5057bb7d71334c3d64912200b2dd85b2606784227a"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 42,
+      "raw_lf_sha256": "2b8e73a8a3ac99f03f0078e0278a060c601ef1e3b810fe616f94b266cacfa96f"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 43,
+      "raw_lf_sha256": "7f192bc131b94b1580486778c019f1190b79dc784b58826219dffe2848f4d27a"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 44,
+      "raw_lf_sha256": "22631fc65d5a8f39e21902f6126dcc99ff61cf259bd3b8b5f4e95fc58e606c52"
+    }
+  ],
+  "condition_trace": [
+    {
+      "parent": "L2-075:618-620 + L11-075:339",
+      "meaning": "adopted L1-009/L2-009 audit trace; only AAFD R01-03; 1.0 target; Stage 2c no 2b gate",
+      "targets": [
+        "FR-INT-075-01",
+        "AC-INT-075-01",
+        "AC-INT-075-06"
+      ],
+      "cases": [
+        "CASE-INT-075-01",
+        "CASE-INT-075-05",
+        "CASE-INT-075-09"
+      ]
+    },
+    {
+      "parent": "L2-075:621 + L11-075:340",
+      "meaning": "complete proposal fields, digest binding, PR-review/system-proposal separation, finding/remediation distinct",
+      "targets": [
+        "FR-INT-075-01",
+        "AC-INT-075-01",
+        "AC-INT-075-02"
+      ],
+      "cases": [
+        "CASE-INT-075-01",
+        "CASE-INT-075-02",
+        "CASE-INT-075-07"
+      ]
+    },
+    {
+      "parent": "L2-075:622 + L11-075:341",
+      "meaning": "exact HEAD/worktree/authority digest/session/owner/evidence independent missing/altered/revision and individual reason; current/compatibility/historical",
+      "targets": [
+        "FR-INT-075-02",
+        "AC-INT-075-03",
+        "AC-INT-075-04"
+      ],
+      "cases": [
+        "CASE-INT-075-02",
+        "CASE-INT-075-03",
+        "CASE-INT-075-06"
+      ]
+    },
+    {
+      "parent": "L2-075:623 + L11-075:342",
+      "meaning": "no AI self-qualification; duplicate/owner, independent reproduction, counterevidence, expiry, supersession go to existing UIL-01..04; no merged identities",
+      "targets": [
+        "FR-INT-075-03",
+        "AC-INT-075-05"
+      ],
+      "cases": [
+        "CASE-INT-075-04",
+        "CASE-INT-075-07",
+        "CASE-INT-075-08"
+      ]
+    },
+    {
+      "parent": "L2-075:624 + L11-075:343",
+      "meaning": "unknown/conflict/stale/historical retained incomplete; existing owner handoff; no runtime/Issue/Requirement/CI/merge action; R04 stays L2-073",
+      "targets": [
+        "FR-INT-075-02",
+        "FR-INT-075-03",
+        "AC-INT-075-06"
+      ],
+      "cases": [
+        "CASE-INT-075-03",
+        "CASE-INT-075-06",
+        "CASE-INT-075-09"
+      ]
+    },
+    {
+      "parent": "L2-075:625 / old-source limits",
+      "meaning": "legacy AC field failure reason is individual but vocabulary/schema not fixed; future adapter/runtime outside scope",
+      "targets": [
+        "FR-INT-075-02",
+        "FR-INT-075-03"
+      ],
+      "cases": [
+        "CASE-INT-075-02",
+        "CASE-INT-075-06"
+      ]
+    }
+  ],
+  "inventory": {
+    "fr": 3,
+    "ac": 6,
+    "functional_cases": 9,
+    "nfr": 1,
+    "nfr_cases": 1,
+    "independent_business_ac": 0
+  },
+  "creator_corrections": [
+    "075固定本文はf6でなく1880の618-625/337-343。旧監査authority headerの誤記は現記録で訂正、旧時点記録不変",
+    "PR findingとsystem proposalのidentity/schema分離と汎用reason集約のnegativeを追加",
+    "R04は075対象外で073の担当範囲。075から実行・新routeを生成しない",
+    "人間向け見出しを日本語へ訂正。既存BR-068は存在しないため業務範囲参照へ訂正"
+  ],
+  "checks": {
+    "source_pins": 13,
+    "mismatch": 0,
+    "prefix_byte_exact": 6,
+    "canonical_sha": 6,
+    "current_line_pins": 423,
+    "scfctl": "147 fail0",
+    "stale": 0,
+    "residuals": 0,
+    "govcheck": "7622/57/58",
+    "diff_check": "pass"
+  },
+  "legacy_disposition": [
+    {
+      "old": "F542 L3 definition 148-168",
+      "action": "meaning rederived",
+      "decision": "FR+AC and paired L10 oracle relationship retained; G3/old runtime/approval implementation replaced by current layout and normal L3 approval boundary"
+    },
+    {
+      "old": "AAFD-R-01 requirements 27-31",
+      "action": "rederived from fixed L2-075",
+      "decision": "use current AgenticAuditProbeProposalV1 fields and identities; old implementation/control names not reused"
+    },
+    {
+      "old": "AAFD-R-02 requirements 33-36",
+      "action": "rederived",
+      "decision": "six current identity checks and per-field reason retained; reason enum/schema is not fixed"
+    },
+    {
+      "old": "AAFD-R-03 requirements 38-41",
+      "action": "rederived",
+      "decision": "no self-qualification and UIL handoff preserved; UIL qualification process not reimplemented"
+    },
+    {
+      "old": "AAFD-AC-001 acceptance 15",
+      "action": "rederived",
+      "decision": "full fields/digest and distinct advisories become CASE-075-01/07"
+    },
+    {
+      "old": "AAFD-AC-002 acceptance 16",
+      "action": "rederived",
+      "decision": "individual identity field failures/reasons become CASE-075-02"
+    },
+    {
+      "old": "AAFD-AC-003 acceptance 17",
+      "action": "rederived",
+      "decision": "qualification failure facets become independent CASE-075-04/06/08"
+    },
+    {
+      "old": "AAFD-R-04/AC-004 onward",
+      "action": "excluded",
+      "decision": "R04 detector priority/direct projection is outside fixed 075 and remains within adopted L2-073; no 075 condition derived"
+    }
+  ],
+  "limits": [
+    "No standalone canonical document specifying UIL-01..04 was found in searched current docs; the draft follows the explicit fixed-parent referral and does not infer detailed UIL contracts/routes.",
+    "No R04/AC004 or later AAFD behavior was analyzed as a 075 requirement.",
+    "No runtime, tests, CI or deployment was performed.",
+    "Claude独立reviewとPO対象revision L3承認は未成立",
+    "068を含むC13carryをこの075で閉じない"
+  ]
+}

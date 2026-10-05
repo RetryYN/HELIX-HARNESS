@@ -1,0 +1,1043 @@
+{
+  "schema": "HELIX-L3-L10-cutout-audit/v1",
+  "record_status": "immutable repair-stage source audit; candidate remains unapproved; not independent review",
+  "created_on": "2026-10-05",
+  "scope": {
+    "mechanism": "HELIX-INTELLIGENCE",
+    "parent_identity": "HELIXINTELLIGENCE-L2-068",
+    "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-068-002",
+    "stage": "Stage 2c (G0 selected order, parallel with Stage 2b)",
+    "version_target": "1.0 candidate",
+    "base_head": "86bfa878f818f65f612b715b902cbd2538d41b63",
+    "accepted_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "po_adoption_main": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "stage_source_revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+    "excluded": [
+      "HELIXINTELLIGENCE-L2-076",
+      "HELIXINTELLIGENCE-L2-079",
+      "OS-L2-028 consult completion",
+      "OS-L2-029 composite completion",
+      "HARNESS-L2-022 oracle ownership transfer",
+      "runtime/test/CI/Bun execution",
+      "BRAIN direct promotion",
+      "unapproved Stage 1/2a drafts as authority"
+    ],
+    "body_commit": "7ff0b5d2c576de425442eedef0ce840bc8c61f2b",
+    "body_revision": "a4610274ff213c8a81624e5c5df78e05cbdd585b"
+  },
+  "authority_and_nonclaims": {
+    "PO_decision": "L2/L11 fixed bytes adopted only; this L3/L10 candidate remains unapproved",
+    "commit": "body revision a4610274ff213c8a81624e5c5df78e05cbdd585b",
+    "approval_or_execution": "none; L3 approval, runtime, test, CI, implementation, and release are not established",
+    "requirement_meaning_changes": "none intended; any observed need to change meaning/scope/owner/version routes to upstream owner",
+    "release_or_web": "no release/Web successor claim"
+  },
+  "canonical_documents": [
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "baseline_revision": "86bfa878f818f65f612b715b902cbd2538d41b63",
+      "baseline_bytes": 11264,
+      "baseline_sha256": "56bcd82393cbf48b2b47c8d4107cc247a50e0deea91075e568bab467db5baae2",
+      "prefix_preserved_byte_exact": true,
+      "prefix_sha256_after": "56bcd82393cbf48b2b47c8d4107cc247a50e0deea91075e568bab467db5baae2",
+      "final_bytes": 17674,
+      "final_sha256": "96c4e2a9d05c2ecc46ef5ed116953dc9e2b51d74da6603c8653d7178bcd97eaf",
+      "final_lines": 66,
+      "appended_start_line": 51,
+      "appended_end_line": 66,
+      "appended_bytes": 6410,
+      "appended_raw_lf_sha256": "066e4c41b8e318776ad1707dfcc1e0dfe2900878b7ecf5f702447d5ef9f8a4b1",
+      "source_revision": "a4610274ff213c8a81624e5c5df78e05cbdd585b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "baseline_revision": "86bfa878f818f65f612b715b902cbd2538d41b63",
+      "baseline_bytes": 3558,
+      "baseline_sha256": "479400d0dc86ced49caaa1860a98a6577e2e6684aaa84cbe659fd718ca349c1a",
+      "prefix_preserved_byte_exact": true,
+      "prefix_sha256_after": "479400d0dc86ced49caaa1860a98a6577e2e6684aaa84cbe659fd718ca349c1a",
+      "final_bytes": 4080,
+      "final_sha256": "18afdbba30d60f293ae970731bcf7ce06c0c3a7b3f141a6fe74b19bfc75dd718",
+      "final_lines": 25,
+      "appended_start_line": 22,
+      "appended_end_line": 25,
+      "appended_bytes": 522,
+      "appended_raw_lf_sha256": "f7bb622d6eae8ce0da1968fb622b1be0208607829295f4af91129c45c363d41f",
+      "source_revision": "a4610274ff213c8a81624e5c5df78e05cbdd585b"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "baseline_revision": "86bfa878f818f65f612b715b902cbd2538d41b63",
+      "baseline_bytes": 5598,
+      "baseline_sha256": "5e7e541997323e89bc4501503aaf37214f52afaaad0f1f6a9062d74968113ba5",
+      "prefix_preserved_byte_exact": true,
+      "prefix_sha256_after": "5e7e541997323e89bc4501503aaf37214f52afaaad0f1f6a9062d74968113ba5",
+      "final_bytes": 9912,
+      "final_sha256": "92794e2f6f3ff83769710061ac621419ebc491fe25742497df825832cd7de924",
+      "final_lines": 37,
+      "appended_start_line": 29,
+      "appended_end_line": 37,
+      "appended_bytes": 4314,
+      "appended_raw_lf_sha256": "6e43cb2f227950b53ae7d8a30c6df2196f6574a37231e93bcb904565c24699f6",
+      "source_revision": "a4610274ff213c8a81624e5c5df78e05cbdd585b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "baseline_revision": "86bfa878f818f65f612b715b902cbd2538d41b63",
+      "baseline_bytes": 10572,
+      "baseline_sha256": "3275b3b8e838aed7b31f4f35d18857fe7e266f9640f002bf1b9958c43cbda1ca",
+      "prefix_preserved_byte_exact": true,
+      "prefix_sha256_after": "3275b3b8e838aed7b31f4f35d18857fe7e266f9640f002bf1b9958c43cbda1ca",
+      "final_bytes": 17667,
+      "final_sha256": "47756f20a5d0c5a762babca47a1b6289b414273baebe888a82a42b5aaaae5093",
+      "final_lines": 134,
+      "appended_start_line": 88,
+      "appended_end_line": 134,
+      "appended_bytes": 7095,
+      "appended_raw_lf_sha256": "4c0ee8ca2d05f903d1b7a2411e5d7e69bf08b5dc971b483c83b05edd165a61db",
+      "source_revision": "a4610274ff213c8a81624e5c5df78e05cbdd585b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "baseline_revision": "86bfa878f818f65f612b715b902cbd2538d41b63",
+      "baseline_bytes": 3410,
+      "baseline_sha256": "71553dfa1a5ce136af4aa11f4e8b69e8bc29064fadefc9db567fab9f4a344a96",
+      "prefix_preserved_byte_exact": true,
+      "prefix_sha256_after": "71553dfa1a5ce136af4aa11f4e8b69e8bc29064fadefc9db567fab9f4a344a96",
+      "final_bytes": 3848,
+      "final_sha256": "9f2ce755bb6f75fb8597498834e8b0d5a4165ee7d07ddf7ac0e476adc1500e5f",
+      "final_lines": 29,
+      "appended_start_line": 26,
+      "appended_end_line": 29,
+      "appended_bytes": 438,
+      "appended_raw_lf_sha256": "91549cd605bd70e1f44a54896183fdf2fa9230059b77386a19a35ef058f5c313",
+      "source_revision": "a4610274ff213c8a81624e5c5df78e05cbdd585b"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "baseline_revision": "86bfa878f818f65f612b715b902cbd2538d41b63",
+      "baseline_bytes": 5193,
+      "baseline_sha256": "c214f1939619f28728bd88cb1da3caa3a3d487cf1abfe0842e71fe843d67f8d8",
+      "prefix_preserved_byte_exact": true,
+      "prefix_sha256_after": "c214f1939619f28728bd88cb1da3caa3a3d487cf1abfe0842e71fe843d67f8d8",
+      "final_bytes": 8601,
+      "final_sha256": "f329d3b9886ff27e5fab0375f20778b0242d0408691f805c2e5b4e7304cc2d5f",
+      "final_lines": 35,
+      "appended_start_line": 27,
+      "appended_end_line": 35,
+      "appended_bytes": 3408,
+      "appended_raw_lf_sha256": "27ba1d8926bb6ce8cebed41902573ae07aa9a13f0437aa3cbe2d47d0061e72c8",
+      "source_revision": "a4610274ff213c8a81624e5c5df78e05cbdd585b"
+    }
+  ],
+  "condition_trace": [
+    {
+      "source": "L2:494-495",
+      "conditions": "primary/context L1 and supporting unit; output stays proposal",
+      "target": [
+        "FR-INT-068",
+        "AC-INT-068-01",
+        "AC-INT-068-04"
+      ],
+      "cases": [
+        "CASE-INT-068-01",
+        "CASE-INT-068-10"
+      ]
+    },
+    {
+      "source": "L2:495",
+      "conditions": "existing L2 capacities supported, not replaced; 028/029 separated; HARNESS022 and OS020 roles",
+      "target": [
+        "AC-INT-068-01",
+        "AC-INT-068-05"
+      ],
+      "cases": [
+        "CASE-INT-068-09"
+      ]
+    },
+    {
+      "source": "L2:496",
+      "conditions": "common and operation-conditional inputs; no failure evidence for preparation; packet only when used",
+      "target": [
+        "AC-INT-068-01",
+        "AC-INT-068-02",
+        "AC-INT-068-03"
+      ],
+      "cases": [
+        "CASE-INT-068-01",
+        "CASE-INT-068-02",
+        "CASE-INT-068-03"
+      ]
+    },
+    {
+      "source": "L2:497-498",
+      "conditions": "candidate outputs, fact/inference/hypothesis/unknown, trace to accepted oracle, worker responsibility and forbidden authority",
+      "target": [
+        "AC-INT-068-04",
+        "AC-INT-068-05"
+      ],
+      "cases": [
+        "CASE-INT-068-05",
+        "CASE-INT-068-06",
+        "CASE-INT-068-08"
+      ]
+    },
+    {
+      "source": "L2:499-500",
+      "conditions": "always required identity/source/IO/authority/evidence; operation+trigger+expected output+scope; execution routes",
+      "target": [
+        "AC-INT-068-01",
+        "AC-INT-068-04",
+        "AC-INT-068-05",
+        "AC-INT-068-06"
+      ],
+      "cases": [
+        "CASE-INT-068-01",
+        "CASE-INT-068-07",
+        "CASE-INT-068-09"
+      ]
+    },
+    {
+      "source": "L2:501-502",
+      "conditions": "selected source fields and selective stop; unselected references not mandatory; preserve existing oracle/budget/stop/unfinished obligations",
+      "target": [
+        "AC-INT-068-03",
+        "AC-INT-068-06"
+      ],
+      "cases": [
+        "CASE-INT-068-02",
+        "CASE-INT-068-04",
+        "CASE-INT-068-06"
+      ]
+    },
+    {
+      "source": "L2:503",
+      "conditions": "version_target 1.0 candidate; listed INT/OS/HARNESS/LABO deps; separate execution/consult/composite; unassessed remains so",
+      "target": [
+        "AC-INT-068-01",
+        "AC-INT-068-05",
+        "AC-INT-068-06"
+      ],
+      "cases": [
+        "CASE-INT-068-01",
+        "CASE-INT-068-09"
+      ]
+    },
+    {
+      "source": "L2:504-505",
+      "conditions": "owner-specific return, stop/resume and unmet evidence; existing bundled conditions",
+      "target": [
+        "AC-INT-068-02",
+        "AC-INT-068-03",
+        "AC-INT-068-06"
+      ],
+      "cases": [
+        "CASE-INT-068-03",
+        "CASE-INT-068-04",
+        "CASE-INT-068-07",
+        "CASE-INT-068-08"
+      ]
+    },
+    {
+      "source": "L11:201",
+      "conditions": "parent heading only; not an acceptance atom; C13 M12 heading-locator finding remains unresolved",
+      "target": [],
+      "cases": []
+    },
+    {
+      "source": "L11:203",
+      "conditions": "valid inputs/version; standalone; pretest no failure; diagnosis evidence conditional",
+      "target": [
+        "AC-INT-068-01",
+        "AC-INT-068-02"
+      ],
+      "cases": [
+        "CASE-INT-068-01",
+        "CASE-INT-068-03",
+        "CASE-INT-068-09"
+      ]
+    },
+    {
+      "source": "L11:204",
+      "conditions": "PATCH state normal and independent diagnostic example; source binds selected source",
+      "target": [
+        "AC-INT-068-01",
+        "AC-INT-068-02",
+        "AC-INT-068-03",
+        "AC-INT-068-04"
+      ],
+      "cases": [
+        "CASE-INT-068-01",
+        "CASE-INT-068-02",
+        "CASE-INT-068-03"
+      ]
+    },
+    {
+      "source": "L11:205",
+      "conditions": "wrong advice, dropped source revision/scope, guesses, new oracle, helper self-review rejected",
+      "target": [
+        "AC-INT-068-03",
+        "AC-INT-068-04",
+        "AC-INT-068-05"
+      ],
+      "cases": [
+        "CASE-INT-068-04",
+        "CASE-INT-068-05",
+        "CASE-INT-068-06"
+      ]
+    },
+    {
+      "source": "L11:206",
+      "conditions": "unseen endpoint/state returns evidence, owner question and unknown; no generic rule/pass",
+      "target": [
+        "AC-INT-068-02",
+        "AC-INT-068-04",
+        "AC-INT-068-06"
+      ],
+      "cases": [
+        "CASE-INT-068-08"
+      ]
+    },
+    {
+      "source": "L11:207",
+      "conditions": "output trace; AIDOC/CLR-R06; no secret/private reasoning/unapproved conclusion",
+      "target": [
+        "AC-INT-068-03",
+        "AC-INT-068-04"
+      ],
+      "cases": [
+        "CASE-INT-068-02",
+        "CASE-INT-068-05"
+      ]
+    },
+    {
+      "source": "L11:208",
+      "conditions": "candidate/consult/execution/composite/review are separate owners and states",
+      "target": [
+        "AC-INT-068-01",
+        "AC-INT-068-05"
+      ],
+      "cases": [
+        "CASE-INT-068-09"
+      ]
+    },
+    {
+      "source": "L11:209",
+      "conditions": "operation-scoped hold/return; diagnostic missing evidence does not block prep; no unsupported effectiveness claim",
+      "target": [
+        "AC-INT-068-02",
+        "AC-INT-068-06"
+      ],
+      "cases": [
+        "CASE-INT-068-03",
+        "CASE-INT-068-07",
+        "CASE-INT-068-10"
+      ]
+    }
+  ],
+  "counts": {
+    "FR": [
+      "FR-INT-068"
+    ],
+    "AC": [
+      "AC-INT-068-01",
+      "AC-INT-068-02",
+      "AC-INT-068-03",
+      "AC-INT-068-04",
+      "AC-INT-068-05",
+      "AC-INT-068-06"
+    ],
+    "functional_CASE": [
+      "CASE-INT-068-01",
+      "CASE-INT-068-02",
+      "CASE-INT-068-03",
+      "CASE-INT-068-04",
+      "CASE-INT-068-05",
+      "CASE-INT-068-06",
+      "CASE-INT-068-07",
+      "CASE-INT-068-08",
+      "CASE-INT-068-09",
+      "CASE-INT-068-10"
+    ],
+    "BR": [],
+    "business_CASE": [],
+    "NFR": [
+      "NFR-INT-068-01"
+    ],
+    "NFR_CASE": [
+      "CASE-NFR-INT-068-01"
+    ]
+  },
+  "business_pair_disposition": {
+    "business_requirements": "Stage2c scope-reference suffix added; BR0",
+    "business_verification": "Stage2c scope-reference suffix added; business CASE0",
+    "reason": "No independent outcome in fixed parent"
+  },
+  "nfr_method": {
+    "numeric_thresholds": null,
+    "operation_population": "operation ID/scope/source-revision fixed before inspecting inputs; all in-scope operation IDs including missing required inputs remain in denominator",
+    "denominators": "operation coverage denominator is full fixed operation population; per-field denominator is operations where the contract marks that field applicable and required; denominator zero means no rate",
+    "orthogonal_axes": "one operation disposition; observation status; per-field input status; preparation vs diagnosis/consult populations kept separate",
+    "claim_census": "exclusive claim kind fact/inference/hypothesis/unknown/unclassifiable; source-support status and error-event counts are independent dimensions",
+    "elapsed": "valid only when existing OS record identifies same-operation start/end events, same clock/unit and consistent timestamps start<=end; valid is observational only, not pass; missing/inconsistent/censored/unknown/observed-zero are distinguished; valid failed/stopped observations remain countable",
+    "values": "no unsupported numeric threshold, sample minimum, window, reset, budget increase, or reserved percentage"
+  },
+  "legacy_source_disposition": [
+    {
+      "old_source": "legacy L3 definition 148-168",
+      "disposition": "meaning rederived: FR→AC and paired L10 shape retained; approval/detailed design layer mapping uses current L3/L10 only; old plan engineering-discipline/runtime requirements excluded"
+    },
+    {
+      "old_source": "old shared pillar FR/AC HR-FR-P2-04 and HAC-P2-04b",
+      "disposition": "format and trace pattern reused; old IDs, authority model, workflow and implementation assertions replaced by fixed L2-068 contract"
+    },
+    {
+      "old_source": "worker-common-contract.md",
+      "disposition": "source-bound worker support, original implementer accountability, bounded return and source/owner distinctions rederived; old provider/runtime/CLI and old work lane mechanics excluded"
+    },
+    {
+      "old_source": "worker-common-contract-acceptance.md; resident-lane-orchestration-acceptance.md",
+      "disposition": "normal/negative fixture and independent-review separation form rederived; old receipt/PLAN/issue authority and executable test conditions excluded"
+    },
+    {
+      "old_source": "legacy L10 process 162-170,195-207",
+      "disposition": "paired verification/backflow form rederived; do not copy L12/readiness/gating discrepancy or old stage acceptance"
+    },
+    {
+      "old_source": "legacy L3 functional README 16-56",
+      "disposition": "three-subdocument organization used as format reference only; its L12 successor wording differs from legacy L10 process; current six-document layout and fixed sources govern"
+    },
+    {
+      "old_source": "legacy NFR grade 21-34,58-81",
+      "disposition": "measure-to-oracle table form rederived; IPA grade, thresholds, sample sizes, old SLA values are not reused"
+    }
+  ],
+  "c13_carry": {
+    "source": "Claude review comment RH-PR2564-L3L10-274-13",
+    "source_snapshot_path": "/tmp/pr2564-claude13-comment-full.txt",
+    "source_snapshot_sha256": "4d837e616451040cb15762e98b65cb9f104db8856f0319f4f376a47459644f1c",
+    "physical_locator": "M12 INTELLIGENCE subsection, physical line 168",
+    "finding_text": "068のatomをheadingだけにしない（今もheading_locator_only）",
+    "source_pin_locator": "/tmp/pr2564-fix13-int-labo-source-pins.json fixed_l11_atom_source_pins[144] -> main633 L11 line 201, registration MPR-RC-HELIXINTELLIGENCE-L2-068-002; source class heading_locator_only, cell role not_acceptance_condition, raw SHA f9eb3926fb800ae7294536cd6e406c5f3cf6d231105a1f57645b49cf73a3b317",
+    "resolution_state": "unresolved pending root/independent review; draft maps semantic L11 clauses 202-209 and does not claim closure",
+    "snapshot_bytes": 32525,
+    "physical_span": {
+      "start_line": 168,
+      "end_line": 168,
+      "bytes": 83,
+      "raw_lf_sha256": "ce74243e61d656a70966d65ccaf8bc24ff2f20e890091580897cb0c350919d15",
+      "literal": "  - 「068のatomをheadingだけにしない」（今も`heading_locator_only`）"
+    }
+  },
+  "source_pins": [
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 491,
+        "end": 506
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "152bd91c5e660815f0ac6cabcfc501d527adb18973db329f95c0d16e544a02d9",
+      "role": "fixed adopted L2-068 semantic clauses"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 201,
+        "end": 209
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "f9733900a979eebc6058056ea6b51370f4acd5b602955988985bb1dbf97b3d26",
+      "role": "L11-068 heading locator and acceptance clauses"
+    },
+    {
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "source_path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "physical_lines": {
+        "start": 98,
+        "end": 98
+      },
+      "full_file_sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+      "raw_span_sha256_lf_inclusive": "e67c4a4fda50180a66bc823eaae0a809351c3c0ed677542de912b846c20aa896",
+      "role": "PO adoption row for parent 068"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
+      "physical_lines": {
+        "start": 21365,
+        "end": 21390
+      },
+      "full_file_sha256": "ec970df79eaaf693f8825045b235c43ea10aefa7925701b1fff2a974df3e4e0a",
+      "raw_span_sha256_lf_inclusive": "d583aebbfbb23c608e2bff088445bd5135e35a66a3d7d4a8800bc2f9287553d6",
+      "role": "G0 Stage 2c registration and stage membership"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "docs/governance/audits/requirements-stage/implementation-order-assignments-2026-09-27.json",
+      "physical_lines": {
+        "start": 1859,
+        "end": 1865
+      },
+      "full_file_sha256": "78db3c793c17dbd80ad663a63aadd5f3c1c1e403da6b3bba75518ecfe5ba7f25",
+      "raw_span_sha256_lf_inclusive": "f801f1449705deb417054fa9c2c2e165985478576da1729669d1e5a0a0b4196e",
+      "role": "stage assignment source; candidate membership only"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "docs/governance/decisions/implementation-order-po-decision-2026-10-03.md",
+      "physical_lines": {
+        "start": 5,
+        "end": 46
+      },
+      "full_file_sha256": "c06e922bfd26947f22afebcc5dbd44f57aa04579728872350229792a1c7f1224",
+      "raw_span_sha256_lf_inclusive": "6ae3ef60149b2d3f71cd828d8ad443ce4a17012838e290bedc3969d3cdee229d",
+      "role": "G0 PO choice and sequence"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "docs/governance/l3-l10-authoring-layout.md",
+      "physical_lines": {
+        "start": 1,
+        "end": 71
+      },
+      "full_file_sha256": "d1fb0c89df30aca6bb828f28e58329d57c40bb7593df540625562b5ac920a7ca",
+      "raw_span_sha256_lf_inclusive": "d1fb0c89df30aca6bb828f28e58329d57c40bb7593df540625562b5ac920a7ca",
+      "role": "current L3/L10 placement and paired-doc layout"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "physical_lines": {
+        "start": 148,
+        "end": 168
+      },
+      "full_file_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "raw_span_sha256_lf_inclusive": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9",
+      "role": "legacy L3 definition; requirement/AC and approval boundary"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "physical_lines": {
+        "start": 147,
+        "end": 147
+      },
+      "full_file_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "raw_span_sha256_lf_inclusive": "80e5e1458b29a3a528da1363136da617fc21bc6212b46074b871e2ef0d6964cf",
+      "role": "legacy shared FR/AC support examples"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "physical_lines": {
+        "start": 224,
+        "end": 224
+      },
+      "full_file_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "raw_span_sha256_lf_inclusive": "727dd6e270f6f0fdf2c1ae597c70366bf4db298b4476a073c408c5b8e2bdbd47",
+      "role": "legacy shared FR/AC support examples"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+      "physical_lines": {
+        "start": 26,
+        "end": 45
+      },
+      "full_file_sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+      "raw_span_sha256_lf_inclusive": "da0c7c2017143bd6128e0d84227c341fbcaedb9027276d427de11e51f706974f",
+      "role": "legacy worker-common support/owner/source conditions"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+      "physical_lines": {
+        "start": 47,
+        "end": 110
+      },
+      "full_file_sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+      "raw_span_sha256_lf_inclusive": "29aee7e56d632ab40cddf6311876300b43aa04ace80eefbe414820439a53a419",
+      "role": "legacy worker-common support/owner/source conditions"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+      "physical_lines": {
+        "start": 123,
+        "end": 137
+      },
+      "full_file_sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+      "raw_span_sha256_lf_inclusive": "69673a3f57962479e561a52991ff5bebb584d83a4054af849c3fdbecf3b42f77",
+      "role": "legacy worker-common support/owner/source conditions"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/worker-common-contract-acceptance.md",
+      "physical_lines": {
+        "start": 18,
+        "end": 37
+      },
+      "full_file_sha256": "c8dff734891a6a7350feb9b698c40e1616946cdd424433d662f1da49d8ac800d",
+      "raw_span_sha256_lf_inclusive": "b6114f9e9fda413b29b97693836562e55efc2b084f4f199dc839cee78c106b7b",
+      "role": "legacy worker-common paired acceptance"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/worker-common-contract-acceptance.md",
+      "physical_lines": {
+        "start": 39,
+        "end": 64
+      },
+      "full_file_sha256": "c8dff734891a6a7350feb9b698c40e1616946cdd424433d662f1da49d8ac800d",
+      "raw_span_sha256_lf_inclusive": "ea7c842d97f64693f2a9242209f79805f2b0aff9f0fc1f84371634296ae89473",
+      "role": "legacy worker-common paired acceptance"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+      "physical_lines": {
+        "start": 17,
+        "end": 55
+      },
+      "full_file_sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+      "raw_span_sha256_lf_inclusive": "36e097a074fe674fddd2719b6c196163a6aa625908c90f0125ff42a99e2a41da",
+      "role": "legacy resident/assistant role and independent review acceptance"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md",
+      "physical_lines": {
+        "start": 162,
+        "end": 170
+      },
+      "full_file_sha256": "d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a",
+      "raw_span_sha256_lf_inclusive": "d8e3f0e9afaa03c20985808ccade01279952ea5366655e3d4e95ca9e97dd3df5",
+      "role": "legacy L10 paired-verification and backflow form"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md",
+      "physical_lines": {
+        "start": 195,
+        "end": 207
+      },
+      "full_file_sha256": "d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a",
+      "raw_span_sha256_lf_inclusive": "9a91c1d2094be6c1c0463b9f3af280f41abb15b0503f8520c7e72be12c27c75b",
+      "role": "legacy L10 paired-verification and backflow form"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md",
+      "physical_lines": {
+        "start": 16,
+        "end": 56
+      },
+      "full_file_sha256": "949b0da00d2a417e1b36d3679b89735de7adadf831f567dbe383dfe6337f19e4",
+      "raw_span_sha256_lf_inclusive": "fbb50e1ed591235cba594d8b8a10d5f1c55be865e3df9c9daf75f3814a18ab6a",
+      "role": "legacy three-subdocument format; L12 discrepancy source"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+      "physical_lines": {
+        "start": 21,
+        "end": 34
+      },
+      "full_file_sha256": "2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d",
+      "raw_span_sha256_lf_inclusive": "0392a485245f3de9165f2d3fc17f222b33ef0bbdfc059b3efe466b997576e007",
+      "role": "legacy NFR measure/acceptance form; old values not reused"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+      "physical_lines": {
+        "start": 58,
+        "end": 81
+      },
+      "full_file_sha256": "2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d",
+      "raw_span_sha256_lf_inclusive": "092d9b2750c81d8c05857a45692cb1f64996554cc3e679cf7a6e74c6d0990838",
+      "role": "legacy NFR measure/acceptance form; old values not reused"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "docs/helix-harness/sources/capability-reinforcement-po-original-2026-09-27.md",
+      "physical_lines": {
+        "start": 1,
+        "end": 60
+      },
+      "full_file_sha256": "ab8bb6ae8cd418053d6baaafccaa80ee8ef2e715caab1576e5a00c306e97d1f8",
+      "raw_span_sha256_lf_inclusive": "ab8bb6ae8cd418053d6baaafccaa80ee8ef2e715caab1576e5a00c306e97d1f8",
+      "role": "PO support intent source item 5"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "docs/governance/decisions/worker-support-derivation-2026-09-27.md",
+      "physical_lines": {
+        "start": 1,
+        "end": 44
+      },
+      "full_file_sha256": "433e3887f834f9c0c9054282c4c25b9caee59334c1121a15fb7dad86661b014d",
+      "raw_span_sha256_lf_inclusive": "433e3887f834f9c0c9054282c4c25b9caee59334c1121a15fb7dad86661b014d",
+      "role": "support unit derivation and owner split"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 491,
+        "end": 491
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "819f8f3fddf420ed261a6ca76857789fe35959c5f69cb35f049d939e6ab27570",
+      "role": "fixed L2-068 condition atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 492,
+        "end": 492
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "role": "fixed L2-068 condition atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 493,
+        "end": 493
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "5fecb9cb29701fd4fbe27d6461df006db6752452fa6010743c0982f3e6a3f482",
+      "role": "fixed L2-068 condition atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 494,
+        "end": 494
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "6d4fa3a48144d63cc93e7e69bc4359473a1352deaa8da848d1d18d50cdc79dd2",
+      "role": "fixed L2-068 condition atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 495,
+        "end": 495
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "cae0ac6a4b0430e473dc8567453e83f881eaaabadc0526228857255f96ffb254",
+      "role": "fixed L2-068 condition atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 496,
+        "end": 496
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "d99d02eb77d0d4aabd81a81bbfbcfb192528707e580e6c4c643a9a122f789d9a",
+      "role": "fixed L2-068 condition atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 497,
+        "end": 497
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "24d70736f4286906ff5e1f01182c641bd9fc3ec418dace3b729694f1f5deb1f5",
+      "role": "fixed L2-068 condition atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 498,
+        "end": 498
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "cf4b2e3c99a9ec8adc9786575c1473dcd295b44673571309b66e5afa1c91c285",
+      "role": "fixed L2-068 condition atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 499,
+        "end": 499
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "a6a0fd1abc7a6334ba2d11b904617735fd83f83575ff7a7381d64d5e8bfa137f",
+      "role": "fixed L2-068 condition atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 500,
+        "end": 500
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "51c605c7744ac38df2798a83d1eba908d1d2ea95127d0d3b98cd4c0e3b58b5ac",
+      "role": "fixed L2-068 condition atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 501,
+        "end": 501
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "ba5f0d3a5e8ff9fe385b0716e30e01a96554c018d470b3a692e44e225ca454b3",
+      "role": "fixed L2-068 condition atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 502,
+        "end": 502
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "61a26dbd8286229202d6f1f2c2b466a39db5b17786c762b885a260ca62491c8c",
+      "role": "fixed L2-068 condition atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 503,
+        "end": 503
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "c4b40730dddd21509af64fee4a3bfe29ca9fad54c243315dcd3e8e25a15229df",
+      "role": "fixed L2-068 condition atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 504,
+        "end": 504
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "dbc1a18d14f9e7b5949fc97449a35d7a0dfe3e4445ba16f19aa103b7d5891473",
+      "role": "fixed L2-068 condition atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 505,
+        "end": 505
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "c14e31e041af81d4c358fad4712e5923c69db4b724f3acd8bae87ce92a92672c",
+      "role": "fixed L2-068 condition atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 506,
+        "end": 506
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "role": "fixed L2-068 condition atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 201,
+        "end": 201
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "f9eb3926fb800ae7294536cd6e406c5f3cf6d231105a1f57645b49cf73a3b317",
+      "role": "fixed L11-068 line atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 202,
+        "end": 202
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "role": "fixed L11-068 line atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 203,
+        "end": 203
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "7ad925302c336c6bfc5cb72485992cb53550263006e7f20b5a790274c13ecb2e",
+      "role": "fixed L11-068 line atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 204,
+        "end": 204
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "471789aff707e132d9ff318b62b62260703c265bf1c1ff3c4274595500c71060",
+      "role": "fixed L11-068 line atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 205,
+        "end": 205
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "427ea51c8d6e36b43311661c9222bcbe9a5a3bf24ce3831447d886c16f118fb2",
+      "role": "fixed L11-068 line atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 206,
+        "end": 206
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "f601171060eb24e8df36f5b4f1ae6db80d511ecdf7a1ccd4d3ce0c5a95d310b8",
+      "role": "fixed L11-068 line atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 207,
+        "end": 207
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "952ac4ed5db919441f2d402b7f94e8d660c63da479c17ec481d1c762f5f8b513",
+      "role": "fixed L11-068 line atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 208,
+        "end": 208
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "78adfe2c392506ee3f9fa8490c6614aeb5c68cbd11671672bf1c10930d1593b7",
+      "role": "fixed L11-068 line atoms"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 209,
+        "end": 209
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "8b49c6fa27929c59966d08495a69d8144aabbcb10c09adcdeda3e2d15102c580",
+      "role": "fixed L11-068 line atoms"
+    }
+  ],
+  "static_checks": {
+    "prefix_bytes_equal_to_base": "PASS: six canonical prefixes compared byte-for-byte with base 86bfa878f818f65f612b715b902cbd2538d41b63",
+    "identifier_inventory": "PASS: FR=1, AC=6, functional CASE=10, BR=0, business CASE=0, NFR=1, NFR CASE=1; manual declared-ID and scope-reference checks pass",
+    "source_pin_validation": "PASS: all 42 source pins; immutable source full-file and LF-inclusive span bytes/hash match",
+    "elapsed_oracle": "PASS: NFR specification now states source-defined same-operation/same-clock/unit endpoints, consistency, zero-vs-unknown, and failure/missing/censor states",
+    "scfctl_validate": "PASS bindings147 fail0; root rerun",
+    "scfctl_stale": "PASS stale0; root rerun",
+    "scfctl_residuals": "PASS residuals0; root rerun",
+    "govcheck": "PASS atoms7622 requirements57 files58; root rerun",
+    "git_diff_check": "PASS",
+    "legacy_runtime_test_ci_bun": "not run by instruction",
+    "review_and_approval": "root static local acceptance; formal Claude exact-head review and PO L3 approval pending"
+  },
+  "nfr_condition_trace": [
+    {
+      "source": "L2:496-502",
+      "conditions": "operation-specific inputs, required source and existing unfinished obligations; failure evidence only on diagnosis/consult",
+      "target": [
+        "NFR-INT-068-01"
+      ],
+      "oracle": "operation census fixed before input inspection; all-in-scope denominator; separate per-field applicability/coverage; operation disposition, observation status, and field state are orthogonal",
+      "case": "CASE-NFR-INT-068-01"
+    },
+    {
+      "source": "L2:497-499",
+      "conditions": "candidate claims remain source-bound; facts/inference/hypothesis/unknown remain distinct; missing/conflicting source is not synthesized as success",
+      "target": [
+        "NFR-INT-068-01"
+      ],
+      "oracle": "exclusive claim-kind census plus independent source-support and error-event dimensions; reconcile kind total to total claims",
+      "case": "CASE-NFR-INT-068-01"
+    },
+    {
+      "source": "L2:496,503-504",
+      "conditions": "original OS budget/deadline/stop preserved; owner-specific return and incomplete obligations retained",
+      "target": [
+        "NFR-INT-068-01"
+      ],
+      "oracle": "original OS budget/deadline/stop; source-defined valid elapsed endpoint/clock/unit and missing/inconsistent/censored/unknown/zero classification",
+      "case": "CASE-NFR-INT-068-01"
+    },
+    {
+      "source": "L11:203,209",
+      "conditions": "preparation works without failure evidence; diagnosis needs relevant evidence; a missing diagnostic input does not stop valid preparation",
+      "target": [
+        "NFR-INT-068-01"
+      ],
+      "oracle": "separate preparation/diagnosis populations; incomplete input remains in census; per-operation hold; measurement-only boundary fixtures",
+      "case": "CASE-NFR-INT-068-01"
+    }
+  ],
+  "repair_findings": [
+    {
+      "id": "INT2C-NFR-01",
+      "status": "addressed in candidate",
+      "change": "fixed operation IDs/scope/revision before field inspection; missing required inputs remain in operation denominator; per-field and operation denominators separated; disposition, observation and field state orthogonal"
+    },
+    {
+      "id": "INT2C-NFR-02",
+      "status": "addressed in candidate",
+      "change": "elapsed valid requires existing OS-defined same-operation start/end, clock and unit, consistent timestamps; failed/stopped valid observations retained; missing/inconsistent/censored/unknown/zero distinguished"
+    },
+    {
+      "id": "INT2C-NFR-03",
+      "status": "addressed in candidate",
+      "change": "NFR CASE adds boundary fixtures for missing fields, cross-axis combinations, zero denominator, missing/inconsistent/censored elapsed, zero vs unknown, exclusive claim kinds and independent support/error events"
+    },
+    {
+      "id": "INT2C-NFR-04",
+      "status": "addressed in candidate",
+      "change": "claim kind is exclusive; support state and error events are independent axes; claim-kind totals reconcile to total claims"
+    }
+  ],
+  "review_source": "read-only supplemental review /tmp/pr257x-intelligence-stage2c-root-review01.json; findings were root-adopted and corrected in this candidate; no independent review closure claimed",
+  "root_acceptance": {
+    "state": "accepted local draft",
+    "source_bounded_spans": 48,
+    "prefix_count": 6,
+    "measurement_disposition": "Minor4修正、軸分離、時刻validity、censored/missing分類優先。valid≠pass。親の新しい実行義務なし。",
+    "authority_effect": "none"
+  }
+}

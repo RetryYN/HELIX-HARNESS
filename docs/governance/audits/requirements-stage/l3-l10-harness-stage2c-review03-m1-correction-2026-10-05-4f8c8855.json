@@ -1,0 +1,220 @@
+{
+  "record_kind": "HARNESS Stage 2c Opus review03 M1 remaining-finding creator-side correction; append-only evidence",
+  "authority_effect": "none; no version, scope, parent ownership, approval gate, or authority changed; this is not an independent review or PO/L3 approval",
+  "content_commit": "4f8c8855cb42b7ed54d9c3e3e587ec4ad55bb02a",
+  "previous_content_head": "22d9759c4383c7841bf4fed04a48ef428c4ebff4",
+  "base_commit": "191ebab8c0b1871d7c8c84354976d7c0bc11c26e",
+  "scope": {
+    "mechanism": "HELIX-HARNESS",
+    "stage": "Stage 2c",
+    "parents": [
+      "HARNESS-L2-030",
+      "HARNESS-L2-031",
+      "HARNESS-L2-032"
+    ],
+    "not_included": [
+      "HARNESS-L2-033",
+      "other stages/mechanisms"
+    ]
+  },
+  "formal_review_comment": {
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2595#issuecomment-5988748345",
+    "comment_id": "5988748345",
+    "local_full_body_path": "/tmp/pr2595-review03-formal-5988748345.md",
+    "local_body_sha256": "4d95874344ef33d29fdb3c5c88ba33b81dbe15ed5a75930e09424721adf2f6a0"
+  },
+  "fixed_source_pin": {
+    "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+    "physical_lines": [
+      459,
+      460
+    ],
+    "full_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+    "raw_span_sha256_lf_inclusive": "2d191b16b902bbbc705866a3ea3f1a1ee643b534dcf761a080a9c9ec9b9e7f63",
+    "role": "fixed L11-030/031/032 ownership table errors and unseen-combination axes"
+  },
+  "correction": [
+    {
+      "finding": "M1 remaining, 1(a)",
+      "AC": "AC-HARNESS-L3-030-03",
+      "CASE": "CASE-HARNESS-L10-030-05",
+      "axes": [
+        "主owner候補",
+        "利用先",
+        "選択操作の依存閉包"
+      ],
+      "rule": "各軸を別々に照合し、そのうえで所属ラベルを互換性・内容oracleの代替にしない。未宣言組合せはunknownで該当pack/service ownerへ返す。"
+    },
+    {
+      "finding": "M1 remaining, 1(a)",
+      "AC": "AC-HARNESS-L3-031-01",
+      "CASE": "CASE-HARNESS-L10-031-06",
+      "axes": [
+        "主owner候補",
+        "利用先",
+        "選択操作の依存閉包"
+      ],
+      "rule": "各軸を別々に照合し、そのうえで所属ラベルを互換性・内容oracleの代替にしない。未宣言組合せはunknownで該当pack/service ownerへ返す。"
+    },
+    {
+      "finding": "M1 remaining, 1(a)(b)",
+      "AC": "AC-HARNESS-L3-032-05",
+      "CASE": "CASE-HARNESS-L10-032-06",
+      "axes": [
+        "主owner候補",
+        "利用先",
+        "選択操作の依存閉包"
+      ],
+      "rule": "各軸を別々に照合し、そのうえで所属ラベルを互換性・内容oracleの代替にしない。未宣言組合せはunknownで該当pack/service ownerへ返す。ACには共有pack利用を理由に未選択service/OS内部構成を必須化する反例を追加。"
+    }
+  ],
+  "current_line_pins": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "physical_line": 255,
+      "literal": "- **`AC-HARNESS-L3-030-03` doubleと生成物の非実行性**：selected external contractのみを表すdoubleの正常fixtureと、実service呼出し、未選択provider/schemaの模擬、generator自身の自己oracle化、未承認actorを許可する候補、固定oracleにない取消/境界の発明、承認後編集の許容、oracleと逆のstate transitionを個別に与える。後者は各々不合格であり、さらに生成物からrun、pass、acceptance、approvalをそれぞれ独立に推論する変異も不合格とする。追加case数/coverageでこの矛盾を相殺する候補も独立に不合格とする。同じpackの複数サービスによる二重所有と、共有packの利用を理由に未選択サービスまたはOS内部構成を必須化する変異を不合格とする。未見のサービス／pack組合せでは、主owner候補、利用先、選択操作の依存閉包を別々に照合する。未宣言の組合せは受入を推定せずunknownとして該当packまたはservice ownerへ戻し、所属ラベルだけで互換性・内容oracleの検証を代替しない。",
+      "line_sha256_without_lf": "210d0090519e70542adb470a593a400545e6971686d06bebe1e0492f5a2d5910",
+      "line_sha256_lf_inclusive": "53bd08f2ceb0702d4bad28400bc6d4fca658aa4ecd124928e04767ee59427b67"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "physical_line": 268,
+      "literal": "- **`AC-HARNESS-L3-031-01` permission・sanitizationとoriginal保持（FR-HARNESS-L3-031）**：010/011 pack-call契約、対象revision関係、security/data handling契約、input source identity、取得時刻またはrevision結合情報、redaction結果が揃う許可済みsanitized inputの正常fixtureからcandidateを出し、original failureを保持する。各必須項目のmissing/unknown/conflict/staleを適用可能な範囲で独立に変異し、permission欠落、sanitized inputに残るprotected field、明示bounded inputからの逸脱、副作用を伴う再送もそれぞれ独立に拒否し、機微入力を保留してreasonを返す。期待挙動未決は003/004の意味owner、権限/data-use不足はsecurity/data ownerへ戻す。同じpackの複数サービスによる二重所有、共有packの利用を理由に未選択サービスまたはOS内部構成を必須化する変異は不合格とする。未見のサービス／pack組合せでは、主owner候補、利用先、選択操作の依存閉包を別々に照合する。未宣言の組合せは受入を推定せずunknownとして該当packまたはservice ownerへ戻し、所属ラベルだけで互換性・内容oracleの検証を代替しない。",
+      "line_sha256_without_lf": "d7107a9442d62b2acf047f8046a07074d949fbfd977796b1be93382bf0d1bb25",
+      "line_sha256_lf_inclusive": "b8d2ec599f3b8eabbcaa39c3ae0e77fd3fd34d4fbc20f0261457373c36b459e0"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "physical_line": 288,
+      "literal": "- **`AC-HARNESS-L3-032-05` handoffとexecutionの分離**：正常なpacket delivery後にまだ実行receiptがない状態を正しく表し、deliveryをrun/pass/ticket/approval/acceptanceに変換する各変異、後続receiptなしのartifact state昇格変異、resume時に選択artifact/receipt stateを失う変異を個別に拒否する。実行・隔離・結果回収・再開は選択OS-020または利用者CIの責務に残し、HARNESSが実行主体にならない。同じpackを複数サービスが所有する変異は不合格とする。未見のサービス／pack組合せでは、主owner候補、利用先、選択操作の依存閉包を別々に照合する。未宣言の組合せから受入を推定せずunknownとして該当packまたはservice ownerへ戻し、所属ラベルだけで互換性・内容oracleの検証を代替しない。共有packを利用するという理由だけで未選択サービスまたはOS内部構成を必須化する変異も拒否する。",
+      "line_sha256_without_lf": "0ed0b50d0ea2cfed5e6d3e95d2d39b8b3128e5fd22ca5ad43ce3fce5ebaeca6c",
+      "line_sha256_lf_inclusive": "0f04f0538d33bb3b998eb9b4ccdcf77d7a2151a8134cafefaa271289d93c6e52"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "physical_line": 127,
+      "literal": "| `CASE-HARNESS-L10-030-05` | `FR-HARNESS-L3-030` / `AC-HARNESS-L3-030-03` | 既存fixtureにないサービス／pack組合せを未見正常入力として与え、主owner候補、利用先、選択操作の依存閉包を別々に照合し、その後に宣言済み互換性・内容oracleを照合する。未宣言ならunknownを保ち該当pack/service ownerへ戻す。 | 所属ラベルだけで主owner候補、利用先、選択操作の依存閉包を決めたり、受入・互換性・内容oracleを推定したりする変異を拒否する。同一packの二重サービス所有、共有packを理由に未選択service/OS内部構成を必須化する変異も拒否し、未選択を未観測に保つ。 |",
+      "line_sha256_without_lf": "7ae18edc3eacc19b834c985e39a1640e949bec50d25ffa8ec6781c395fd525c4",
+      "line_sha256_lf_inclusive": "5bfc271a1265cd9548f95e515a1e0a0de1ee843500608328449784bc55593d59"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "physical_line": 133,
+      "literal": "| `CASE-HARNESS-L10-031-06` | `FR-HARNESS-L3-031` / `AC-HARNESS-L3-031-01` | 既存fixtureにないサービス／pack組合せを未見正常入力として与え、主owner候補、利用先、選択操作の依存閉包を別々に照合し、その後に宣言済み互換性・内容oracleを照合する。未宣言ならunknownを保ち該当pack/service ownerへ戻す。 | 所属ラベルだけで主owner候補、利用先、選択操作の依存閉包を決めたり、受入・互換性・内容oracleを推定したりする変異を拒否する。共有packを理由に未選択service/OS内部構成を必須化せず、未選択を未観測に保つ。 |",
+      "line_sha256_without_lf": "3d10d1cd6051a122fb913e52a281f2c627ab04b6ba599a7c918ebc6a474ab18d",
+      "line_sha256_lf_inclusive": "27bb21d46a5f722f8a6d5a37cbb526e1d239e70f12c53a899f35ee8d02c6068f"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "physical_line": 139,
+      "literal": "| `CASE-HARNESS-L10-032-06` | `FR-HARNESS-L3-032` / `AC-HARNESS-L3-032-05` | 既存fixtureにないサービス／pack組合せを未見正常入力として与え、主owner候補、利用先、選択操作の依存閉包を別々に照合し、その後に宣言済み互換性・内容oracleを照合する。未宣言ならunknownを保ち該当pack/service ownerへ戻す。 | 同一packの二重サービス所有、所属ラベルだけで主owner候補・利用先・選択操作の依存閉包を決めること、所属ラベルだけによる互換性・内容oracleの代替、未宣言組合せの受入推定を拒否する。共有packを理由に未選択service/OS内部構成を必須化せず、未選択を未観測に保つ。 |",
+      "line_sha256_without_lf": "4fbba6f849af36d91e33dfafe4874a00af0545e6cc40f9c044bfca696801839d",
+      "line_sha256_lf_inclusive": "0d1931b2020fab216eecfb8d8146b9c5a5784836c59a7a157090d70346eaeb9c"
+    }
+  ],
+  "current_line_pin_count": 6,
+  "canonical_documents": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "full_sha256": "6c94aed4826b32319abe0cd09afa176e783508e35df24a14060c2005fe0667a9",
+      "bytes": 88922,
+      "main_prefix_commit": "191ebab8c0b1871d7c8c84354976d7c0bc11c26e",
+      "main_prefix_bytes": 66882,
+      "main_prefix_sha256": "280658542c51186f0f3dc509ad9d1e070e1f56224509046d344239b95bb36069",
+      "main_prefix_byte_identical": true,
+      "stage2c_suffix_sha256_lf_inclusive": "5849b32c4f8dc056496eeae94e535d3114875947c5ea5121f250c597866d5fa9"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "full_sha256": "ccb3f6ec5d7b3c51f629f8615977ef25319eae9426fc52d4dae0962fd3f41d5b",
+      "bytes": 6310,
+      "main_prefix_commit": "191ebab8c0b1871d7c8c84354976d7c0bc11c26e",
+      "main_prefix_bytes": 4857,
+      "main_prefix_sha256": "9ed7ce73cb08dab385ea95a7ea10527fb0b2e7ba600da6189705bc987c62f01f",
+      "main_prefix_byte_identical": true,
+      "stage2c_suffix_sha256_lf_inclusive": "6f74b3962b41a59a843bd258e5bd8f19f03c488a082e75e4d917079ae0e59434"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "full_sha256": "65c899c65f3f76c3d36d65ab750305e2460afc1e3d4c77067547c26a7b4aa2a9",
+      "bytes": 23892,
+      "main_prefix_commit": "191ebab8c0b1871d7c8c84354976d7c0bc11c26e",
+      "main_prefix_bytes": 19618,
+      "main_prefix_sha256": "1200a1126a0b35c2cc2a7a663dd8d92061bec6cea79bea04f73ef905123b99b9",
+      "main_prefix_byte_identical": true,
+      "stage2c_suffix_sha256_lf_inclusive": "68f2748223f071d74ed6573e0c9f0dcb34c7ae794710c67a572819bc7a3ac8f1"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "full_sha256": "111f2a72bb9299069d21529d65ab47bf1afe73c1a11946e38e81f79a5b0a7ad9",
+      "bytes": 60666,
+      "main_prefix_commit": "191ebab8c0b1871d7c8c84354976d7c0bc11c26e",
+      "main_prefix_bytes": 48258,
+      "main_prefix_sha256": "4fcc42b00175efcf16385e2faad69225dad805ec437566f2f54ff24c4615910d",
+      "main_prefix_byte_identical": true,
+      "stage2c_suffix_sha256_lf_inclusive": "5589427c0f499ebaceae2ba92ca32fbf4d8565f4a47c25f11d494477d5be06ff"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "full_sha256": "48d60b8752a8bc404cc7a3c0874f3322f93405fabaabe358067daa0945542acf",
+      "bytes": 3875,
+      "main_prefix_commit": "191ebab8c0b1871d7c8c84354976d7c0bc11c26e",
+      "main_prefix_bytes": 3223,
+      "main_prefix_sha256": "58126fbd50da8f652ebe82e4a24594e86d24a3aa130a98473047ab268122ffe2",
+      "main_prefix_byte_identical": true,
+      "stage2c_suffix_sha256_lf_inclusive": "ae652eeec0dc5b4f0d0f4071e16036026ab4abc9d442237c726d89d6c7cc7110"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "full_sha256": "b9e844b83dbbdbac8f79b1cbc4f7df5d9fc32cfbe06a963cd1777d8ccced4c60",
+      "bytes": 16954,
+      "main_prefix_commit": "191ebab8c0b1871d7c8c84354976d7c0bc11c26e",
+      "main_prefix_bytes": 12918,
+      "main_prefix_sha256": "c453fe97f167f89ca66817299ed8b30d34e2951dbb481fc898cc0a93ea251f1d",
+      "main_prefix_byte_identical": true,
+      "stage2c_suffix_sha256_lf_inclusive": "0e7d08108b140d1c5a260216b6eb1ddbb465b86325de51c14f75949a6df55911"
+    }
+  ],
+  "counts": {
+    "parents": 3,
+    "FR": 3,
+    "AC": 14,
+    "functional_CASE": 17,
+    "NFR_candidate": 3,
+    "L10_NFR_measurement": 3,
+    "BR": 0,
+    "counts_changed": false
+  },
+  "preserved_prior_records": [
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-harness-stage2c-review02-2026-10-05-c6f17484.json",
+      "sha256": "eeb998e5d22be023c5fbf5b713fc0c696422577c32c6583460360f2d13342423",
+      "unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-harness-stage2c-review02-root-main-integration-2026-10-05.json",
+      "sha256": "5177213e5a1443a84daf0f8464439b168011184216c8cee3408d7d71f42226a6",
+      "unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-harness-stage2c-current-po-summary-c6f17484.md",
+      "sha256": "6b501e69c015bc3e0a625bf28ad120c032a7f50a30667ba81b4f108a1934b217",
+      "unchanged": true
+    }
+  ],
+  "static_checks": {
+    "scfctl_validate_bindings": 147,
+    "fail": 0,
+    "stale": 0,
+    "residuals": 0,
+    "govcheck_atoms": 7622,
+    "requirements": 57,
+    "files": 58,
+    "git_diff_check": "pass"
+  },
+  "limitations": [
+    "独立reviewはこの修正後HEADについて未実施。",
+    "新世代の実行・test/CI・runtimeは対象外。"
+  ]
+}
