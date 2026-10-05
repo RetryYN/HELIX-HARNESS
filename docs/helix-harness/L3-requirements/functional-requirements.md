@@ -291,7 +291,7 @@ G0の順序案BはStage 2a後に2cを2bと並行する段階配置であり、03
 
 ### Stage 3: 要求別計測・設計追跡・workflow・専門Worker
 
-以下はfixed L2/L11の候補意味を機能条件・ACへ具体化する。L2の固定authority・採択anchorは`633bf12ea8f948db8ba3d6600179c4a9507377a7`（全文SHA `9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d`）。`c28f71f`は13親L2 span bytesとsemantic digestが同一であることを独立に照合した検証snapshotであり、別authorityではない。L11は親別pinに従う。大半は`318ec4a`（全文SHA `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5`）、041は`e94838f:699–715`、046/047は`5b8f4a7:...`、049は`f659c18:802–816`、054は`e94838f:865–876`。この親別範囲のsemantic digestは後続登録metadataではなく、これらのfixed source本文から照合する。L11全文SHAは`318ec4a`=`3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5`、`e94838f`=`216a8dccfff723408fd4b54701933a8e257f29e5c775aaef2a4458d1f36d3cc7`、`633bf12`=`1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4`。候補はL3承認・実装・実行・releaseを生成しない。
+以下はfixed L2/L11の候補意味を機能条件・ACへ具体化する。L2の固定authority・採択anchorは`633bf12ea8f948db8ba3d6600179c4a9507377a7`（全文SHA `9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d`）。`c28f71f`は13親L2 span bytesとsemantic digestが同一であることを独立に照合した検証snapshotであり、別authorityではない。L11は親別pinに従う。大半は`318ec4a`（全文SHA `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5`）、041は`e94838f:699–715`、046/047は`5b8f4a7f1926b490f0f9cf08dcf03b2e78594f3c:759–788`、049は`f659c18:802–816`、054は`e94838f:865–876`。この親別範囲のsemantic digestは後続登録metadataではなく、これらのfixed source本文から照合する。L11全文SHAは`318ec4a`=`3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5`、`e94838f`=`216a8dccfff723408fd4b54701933a8e257f29e5c775aaef2a4458d1f36d3cc7`、`633bf12`=`1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4`。候補はL3承認・実装・実行・releaseを生成しない。
 
 | 親 | 固定L2登録・意味digest | 固定L11根拠 | L11意味digest |
 |---|---|---|---|
