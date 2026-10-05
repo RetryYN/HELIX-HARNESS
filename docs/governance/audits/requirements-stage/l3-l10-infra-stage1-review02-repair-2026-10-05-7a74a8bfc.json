@@ -1,0 +1,161 @@
+{
+  "status": "作成側修正記録。独立再review・PO承認未成立",
+  "reviewed_head": "64d981da105b5c7629803bd0eed31f3a71fff4ab",
+  "body_commit": "7a74a8bfce440f5bd40c8d7da9be0ebdcdaf8f0d",
+  "prior_audit": {
+    "path": "docs/governance/audits/requirements-stage/l3-l10-infra-stage1-review01-repair-2026-10-05-758e47598.json",
+    "sha256": "87f55a1e010c66f16fd48ae601cfd16d09d0886a3297a7c775b166cbdf952eaf",
+    "effect": "不変で保持"
+  },
+  "source_pins": {
+    "L2-001": {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "inclusive_lines": [
+        32,
+        40
+      ],
+      "raw_sha256": "1f419d31826a8f6627f0595822cd99d5b8c55db0bfd5faa25a735bca92b529c6",
+      "full_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "physical_line_count": 430
+    },
+    "L2-006": {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "inclusive_lines": [
+        82,
+        90
+      ],
+      "raw_sha256": "546bf30c3fca163f1ccb8303cbf26d3be45baa700c77099ddc7d3f6a4701fcbc",
+      "full_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "physical_line_count": 430
+    },
+    "L11-001": {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "inclusive_lines": [
+        34,
+        41
+      ],
+      "raw_sha256": "8f3f16b4e477ebac56a251d64f56d86afc7c2987bb623951689c988ffe2e625c",
+      "full_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "physical_line_count": 318
+    },
+    "L11-001-failure-return": {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "inclusive_lines": [
+        41,
+        41
+      ],
+      "raw_sha256": "d294388b98245f7495f8594e9aada9424fefa40872fa0d4cc72118d19046c518",
+      "full_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "physical_line_count": 318
+    },
+    "L11-006": {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "inclusive_lines": [
+        84,
+        91
+      ],
+      "raw_sha256": "4c35de5ae026df947330c2ecd0245e07fe4ec460c01fbaf7c85d06074019a08f",
+      "full_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "physical_line_count": 318
+    },
+    "L11-006-failure-return": {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "inclusive_lines": [
+        91,
+        91
+      ],
+      "raw_sha256": "abdfffcc1922cef8a3436f8be5fee957859a6058c34fe9bda5991a59a9c374c6",
+      "full_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "physical_line_count": 318
+    },
+    "L2-010-cross-cutting-input-worker-contract": {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "inclusive_lines": [
+        126,
+        134
+      ],
+      "raw_sha256": "c6b93eb12b5bfe8deb36485c688ce02709bfa49da40086b0d4b59cf6cdc45f37",
+      "full_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "physical_line_count": 430
+    },
+    "L2-010-limited-operation-input": {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "inclusive_lines": [
+        129,
+        129
+      ],
+      "raw_sha256": "7699e6cca40382fb0e0227826dd1e41558aa49c241837a480160dcaaac145684",
+      "full_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "physical_line_count": 430
+    },
+    "L2-010-authority-and-worker-dependency": {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "inclusive_lines": [
+        132,
+        132
+      ],
+      "raw_sha256": "b690da9344c3b3b5dc728d837f991250dd7d0756cdc97fe75c51da137116e654",
+      "full_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "physical_line_count": 430
+    },
+    "PO-decision": {
+      "path": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "inclusive_lines": [
+        48,
+        50
+      ],
+      "raw_sha256": "72e90806b818c5b4f0e4dbf69fb564520e15ddeb5ca81d81e9d8f3c32ed35fee",
+      "full_sha256": "0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f",
+      "physical_line_count": 64
+    }
+  },
+  "documents": [
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "sha256": "22d90beb7fcec36e33b63cc3fa7921e224ff6ced66ea8f9a5f2fdb71570d28b6",
+      "physical_line_count": 95
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "sha256": "c2b22bc5af8bf721c9f6e4594e81046dde2ed2a9555fa0643accb76f8a37f97e",
+      "physical_line_count": 21
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "sha256": "a381b4b88fe6b5621fecf1195470b45bd5fbfd1f1dc88fee7dc3cf259abbb3ab",
+      "physical_line_count": 45
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "sha256": "e9e3132d779e3ea9c8e4cfef2d066d0f5394cfb76069cb2af90468c4930172a7",
+      "physical_line_count": 79
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "sha256": "8801b848f6b16d5214a45b3652446a228e829c687f9203e50c02ad2bf5ddbe70",
+      "physical_line_count": 19
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "sha256": "562545cfb95e81bce5db29628b5fbb3a82c20fbb41db6867364ff60b2c84c63a",
+      "physical_line_count": 38
+    }
+  ],
+  "findings": {
+    "N-1": "001のowner未解決はunknown/未完観測保持・成功利用可能にしないへ修正。006の停止は維持。",
+    "N-2": "NFR006-01の入力action/expiryはL2-010 L129/L132横断参照と記録。",
+    "N-3": "AC006-02へfailoverの有無を5操作適格判定に用いない句を追加。",
+    "006-3r": "C02の対象operationを5種各々と明記。"
+  },
+  "validation": "6本文SHAとbodyblob一致、旧監査SHA不変、diff-check PASS。静的・文書検証のみ。"
+}

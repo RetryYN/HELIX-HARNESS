@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "evidence_kind": "cutout audit; not approval",
+  "mechanism": "HELIX-LABO",
+  "stage": "Stage 1",
+  "base_commit": "4f10325a4a27a8b0390be895b881d2596e56b261",
+  "publication_body_commit": "559d60f1c756f3ee9a64bbce9b637e6494bcca76",
+  "source_body_commit": "1eab4a92900ed216d288e0b9faf94b37d212fbb3",
+  "source_head": "0c26a4bb6351daf74454727e33c3bb861b42a244",
+  "parents": [
+    "HELIXLABO-L2-001",
+    "HELIXLABO-L2-011"
+  ],
+  "files": [
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "sha256": "3b1a76165ae47cdeafbbe530a5829872236d4d2996fbbb616aa6360a2a6c7ec9",
+      "line_count": 115
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "sha256": "af7c875eb2e43b99f85c092baf7cbb0379ec6b8c5c08c9e01f39f8b72f1192d0",
+      "line_count": 3
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "sha256": "7f5814109129d2c9d981bb351f9f355081575f2353eafa2015a701856ae01dc0",
+      "line_count": 15
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "sha256": "6e06d0cfcb96f9523f3c6eacf594a6a2aa5eed4e23f2bb29233f2ada68ed26fc",
+      "line_count": 64
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "sha256": "603612c09603d6be3c5b1d45bcbafbe7281457454474acef38d4ddb6e7e13d37",
+      "line_count": 3
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "sha256": "f9617dc7379fde42ab473d2a3f8e7bc966c63f818ac9f13abac04b4255d48ee8",
+      "line_count": 13
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-labo-stage1-static-validation-2026-10-05-1eab4a929.json",
+      "sha256": "82deb0894115119a9c4f31b3902e98d8dd60d116a381b6f91ad81a17e4ada35c",
+      "line_count": 781
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-labo-stage1-po-review-2026-10-05-1eab4a929.md",
+      "sha256": "6e7ca6d5a79ca89460a0d343f917791d822b619465b52bb96d491cb6c46b443c",
+      "line_count": 22
+    }
+  ],
+  "checks": {
+    "canonical_source_byte_equal": 6,
+    "source_audit_byte_equal": 2,
+    "atomic_diff_files": 8,
+    "scfctl_validate": "147; fail=0",
+    "stale": 0,
+    "residuals": 0,
+    "govcheck": "PASS atoms=7622 requirements=57 files=58",
+    "diff_check": "PASS"
+  },
+  "limits": [
+    "未承認のL3/L10設計。独立reviewとPOの対象revision承認が必要。",
+    "既存監査は作成時点の証拠として保持し、今回のbaseでの切出しを本監査に記録する。",
+    "旧runtime/test/CI/Bunは実行していない。#2564旧findingのclosureを生成しない。"
+  ]
+}

@@ -29,7 +29,7 @@
       "note": "旧HELIXの調べ方（LEGACY-ASSET-32BC69F146336853F188）。primary source、本文確認、取得日を保持し、commit固定を強めた。静的read-only参照のみ"
     }
   ],
-  "role": "HELIX-BRAINの素材として、公開OSSの実装・設計文書から読んだ設計構造の観察（33テーマ、420件）",
+  "role": "HELIX-BRAINの素材として、公開OSSの実装・設計文書から読んだ設計構造の観察（35テーマ、448件）",
   "obligations": [
     "各観察に、repository、固定commit SHA、path、行範囲、permalink、SPDXライセンス、取得日、信頼性ラベルを記録する",
     "固定commitで実際に読んだ行だけを引用し、全permalinkの実在と行範囲を機械照合する",
@@ -103,7 +103,9 @@
     "scaffold/research/brain-oss-design-pattern-observation-20261004/materials/P30-stateful-application-state-placement.md",
     "scaffold/research/brain-oss-design-pattern-observation-20261004/materials/P31-time-timezone-clock.md",
     "scaffold/research/brain-oss-design-pattern-observation-20261004/materials/P32-public-api-operations-webhooks.md",
-    "scaffold/research/brain-oss-design-pattern-observation-20261004/materials/P33-data-model-persistence-mapping.md"
+    "scaffold/research/brain-oss-design-pattern-observation-20261004/materials/P33-data-model-persistence-mapping.md",
+    "scaffold/research/brain-oss-design-pattern-observation-20261004/materials/P34-data-visualization-grammar.md",
+    "scaffold/research/brain-oss-design-pattern-observation-20261004/materials/P35-onboarding-empty-state-docs.md"
   ],
   "verification": {
     "evidence_kind": "scaffold",

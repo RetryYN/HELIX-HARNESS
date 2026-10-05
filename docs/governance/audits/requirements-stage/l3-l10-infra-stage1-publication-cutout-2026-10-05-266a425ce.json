@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "evidence_kind": "cutout audit; not approval",
+  "mechanism": "HELIX-INFRASTRUCTURE",
+  "stage": "Stage 1",
+  "base_commit": "b048299b59a94146d74294bd49728a031e27796b",
+  "publication_body_commit": "266a425cecb1834041cacc10bff3602db4e755ba",
+  "source_body_commit": "98c79e0e15e50b371db83e0a2a9829d6fbf89ffd",
+  "source_head": "0f5bda5ee906afbe483e04044e690b5aed5a4468",
+  "parents": [
+    "HELIXINFRASTRUCTURE-L2-001",
+    "HELIXINFRASTRUCTURE-L2-006"
+  ],
+  "files": [
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "sha256": "127992ba5cda5964a3ecf847295da5e2fbd97c8f390ce1bdca4a54de30fbf204",
+      "line_count": 94
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "sha256": "c2b22bc5af8bf721c9f6e4594e81046dde2ed2a9555fa0643accb76f8a37f97e",
+      "line_count": 21
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "sha256": "1b5f2f3ee6d44ed095efd018b4ab03d548cba7b46bdf66b16a45d8a0966bdd1e",
+      "line_count": 45
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "sha256": "d467ee3c5ea4d7537d13425ef4e320ca98d4c04b7ba918768b3f95062880a3ac",
+      "line_count": 75
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "sha256": "8801b848f6b16d5214a45b3652446a228e829c687f9203e50c02ad2bf5ddbe70",
+      "line_count": 19
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "sha256": "eaadd079c205564a84a9b221d9ca3c0393e79ac7ff98cc96f8603e5eba69b4d5",
+      "line_count": 38
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-infra-stage1-static-validation-2026-10-05-98c79e0e1.json",
+      "sha256": "18976cd08d5c1df878f40eba7e62286744ca2b738251348c78930ab8578963b0",
+      "line_count": 1523
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-infra-stage1-po-review-2026-10-05-98c79e0e1.md",
+      "sha256": "4ea50fa1efd5532c068bc89326ad9bb3a6a2598d7d5d9ad680a7cc36138fc588",
+      "line_count": 24
+    }
+  ],
+  "checks": {
+    "canonical_source_byte_equal": 6,
+    "source_audit_byte_equal": 2,
+    "atomic_diff_files": 8,
+    "scfctl_validate": "147; fail=0",
+    "stale": 0,
+    "residuals": 0,
+    "govcheck": "PASS atoms=7622 requirements=57 files=58",
+    "diff_check": "PASS"
+  },
+  "limits": [
+    "未承認のL3/L10設計。独立reviewとPOの対象revision承認が必要。",
+    "既存監査は作成時点の証拠として保持し、今回のbaseでの切出しを本監査に記録する。",
+    "旧runtime/test/CI/Bunは実行していない。#2564旧findingのclosureを生成しない。"
+  ]
+}
