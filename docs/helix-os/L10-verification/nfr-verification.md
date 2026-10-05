@@ -134,3 +134,16 @@ NFR候補は計測対象と比較値であり、POごとのparameter gateでは�
 | `CASE-OS-L10-NFR-047-01` | `NFR-OS-L3-047-01` | `CASE-OS-L10-047-01`–`26` | reason/evidence/root revisionの独立欠落、Assignment/Attempt/result/authority非継承、unknown軸、双方向参照・owner backflowをCASE別集計する。|
 
 これらはdocumented fixtureの静的集計候補であり、実測やoperational NFR達成を示さない。
+
+### Stage 5 review01補正overlay — 集計対象と重複の扱い
+
+下表はfunctional verificationに定義した個別CASEだけを参照する。既存の範囲表に記した終端IDは補正後の最終IDへ更新し、CASE-031-025（031-006と同一fixture）とCASE-047-020（047-004と同一fixture）はindex aliasのため独立母数にしない。CASE行数は文書化fixtureの数であり、実測母集団・合格率ではない。
+
+| NFR CASE | 親 / NFR / AC | 補正後functional CASE集合 | 観測 |
+|---|---|---|---|
+| `CASE-OS-L10-NFR-025-01` | 025 / NFR-025-01 / AC-025-01〜03 | CASE-025-01〜30、aliasなし | 固定L2入力の個別欠落、unit・connection・composite区分、document/mechanism existenceのみの誤成立。|
+| `CASE-OS-L10-NFR-026-01` | 026 / NFR-026-01 / AC-026-01〜04 | CASE-026-01〜54、全ID個別判定 | 入力単独欠落、依存/安全/比較状態、結果から状態生成、scope・環境・更新/rollback、資源不足の返却。|
+| `CASE-OS-L10-NFR-031-01` | 031 / NFR-031-01 / AC-031-01〜04 | CASE-031-01〜77、ただし031-025は031-006のalias | 予算/母集団/改善前後値、base/scope/authority/contract変化、必要集合保持、正常回収、誤baselineを分離。|
+| `CASE-OS-L10-NFR-047-01` | 047 / NFR-047-01 / AC-047-01〜04 | CASE-047-01〜36、ただし047-020は047-004のalias | r1/r2、source scope/revision/issuer/conflict、proposal authority、Ticket→Ticket参照をそれぞれ観測。|
+
+既存CASE-025-017の戻し先、026-025の空pack除外とdependency unknownの区別、031-026〜030のAC-031-03/04 trace、047-011の明示的適格化なしという前提はfunctional overlayに従う。未知の実測値・適用分母は未評価のまま残し、旧followupが述べるcoverageを実測または独立review成立とは解釈しない。

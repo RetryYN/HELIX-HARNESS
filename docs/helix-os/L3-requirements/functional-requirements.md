@@ -590,6 +590,24 @@ HELIX自身と複数projectの対象revisionごとに、L2-015〜024のunit、�
 | 031 | receipt source atoms `CI-PERF-79B70809D0A1EE2D5392` github-ci-performance L3 `github-ci-performance-requirements.md:14-34`；`CI-PERF-58CBC57F44DFDD288961` atomic-development L3 `github-atomic-development-requirements.md:52-64`；`CI-PERF-DA012A9B04D5BE9419CE` confirmed CI synthesis L3 `ci-system-synthesis-requirements.md:94-124`；paired `CI-PERF-8B7FCC6ED4A9FDDFDEB5` test design `github-ci-performance-system-test-design.md:20-28`。各full/span raw-LF SHAは追補auditに収録。 | source/head・環境・検査集合・cache・区間計測・母集団を結ぶ、p50/p95の説明可能性、correctnessと性能の分離、必須obligation不変、安全性も含む改善回収、paired oracleを意味再導出する。 | 旧p95 60s/3mは旧環境/検査集合限定の比較値。普遍的現行SLOへ転記しない。全件main/nightly固定回収の旧運転も現行L2-031/PO判断に沿って再導出する。旧CIは動かさず実装を置換する。 |
 | 047 | old ticket requirement source atoms O1-* in `execution-ticket-requirements.md:101-105,212-214,282` and paired acceptance `execution-ticket-acceptance.md`（exact full/span pinsは追補audit。legacy consumer lines 18-20, 40-70, 127-135 を照合）。 | immutable/revisioned ticket、operational attributesの分離、proposalによる上書き禁止、typed relation、旧revision closureを新revisionへ流用しないconsumer oracleを限定範囲で保持する。 | 現行L2-047のOS issuerとPOが固定したTicket非参照境界へ再導出。旧schema/runtimeおよび未確定のgraph配置を移植・新設せず、receiptの5 atomsをsource全体のclosureと扱わない。 |
 
+### Stage 5 review01補正 — AC traceの優先追補
+
+以下はStage 5の既存ACを置換せず不足を補う。旧AC本文のうち「failure解消を作らない」は固定L2/L11にない追加条件なので適用しない。「部分成立から構成体の成立を推定しない」という境界は維持する。以降のL10 review01補正overlayは、同じCASE IDに明記した限定訂正を優先し、それ以外の既存要件・owner・versionは保持する。
+
+**AC-OS-L3-025-03 — 入力束縛と構成体境界**：採用済みtarget revision、選択HARNESS構成版、各該当unitのidentity/revision/state/evidence、既存人間判断と停止条件を同一対象に束縛する。単独不足は該当source/unit/connectionの既存ownerへ返し、他の成立状態を保持する。文書または機構の存在だけではunit・connection・compositeを成立扱いしない。
+
+**AC-OS-L3-026-04 — 入力完全性と導出境界**：目的、仕事範囲、検証範囲、利用可能環境、比較基準、適格性条件、input/output、更新条件、rollback条件を独立に照合する。欠落は候補を成立とせず固定L2記載の既存要求/source/pack/HARNESS/依存/SECURITY/INFRASTRUCTURE ownerへ原因別に返す。許可された人による作業も依存契約・安全義務を閉包から外さない。導出だけで採択・実装・受入・tag・配布を生成しない。
+
+**AC-OS-L3-031-04 — 対象・証拠の再照合**：base HEAD、scope、authority、HARNESS contractの変化ごとに影響する既存証拠だけをstale/未完にし、無関係scopeの状態を保つ。回収成功には固定L2が要求する修正後independent review、同条件再検証、必須集合非縮退、安全指標、改善前後値を別証拠として結ぶ。資源不足はINFRASTRUCTUREへ返し、性能だけの不適切な高速化を新baselineとして採用しない。
+
+**AC-OS-L3-047-04 — 返却とrevision境界**：r1のbytesと履歴を保持し、r2は新revisionとして既存relationで結ぶ。issuer、対象条件、理由/evidence、scope、revisionが欠落・conflictなら完了扱いせずOS issuerへ戻す。LABO/INTELLIGENCE proposalだけから発行しない。Ticket→Ticket参照を依存の結節点にせず、Ticket→artifactとartifact→Ticketの両境界を個別に保持する。
+
+**Stage 5 review01 CASE→AC対応補正**：既存025-01〜21は元の割当を保ち、025-022〜030をAC-025-03へ結ぶ。026ではAC-026-01をCASE-026-01/06および031〜042、AC-026-02を02/03・07〜29・043〜054、AC-026-03を04/05・030・039へ対応させる（CASE-026-040のunit/connection境界はAC-026-01にも参照する）。031ではAC-031-01を測定入力CASEへ、AC-031-02を03/04/073へ、AC-031-03を05・26〜30・31〜51・069/070へ、AC-031-04を030・064〜068・071/072・074〜077へ対応させる。031-029をAC-031-01から外してAC-031-03へ移し、031-030はreview HEAD変化をAC-031-03と04の双方で追跡する。047ではAC-047-01を返却/元revision、AC-047-02を新revision/非継承、AC-047-03をunknown/stale、AC-047-04を027〜036へ対応させる。既存の未trace割当はL10 overlayの個別CASE定義に従い、同じCASEを複数の独立fixtureとして重複計上しない。
+
+**旧source locator訂正**：Stage 5対応表の031旧要件文書は`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/`配下にある。047旧sourceは`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/`配下にある。本文に短縮名だけある箇所はこのlocatorで読む。既存表の誤った`governance/requirements/` locatorを正しいsource pathとして扱わず、追補監査でfull/raw pinを記録する。
+
+**authority状態の読み分け**：`po-decision-2026-09-29-57candidates.md`の行54（031）・70（047）は採択を記録する。固定L2本文の「未採択候補」という記述はその時点の本文表現として保持するが、現時点の採択状態を表すものとしては使わない。既存の監査文がL2の候補語を現在のPO状態として扱った場合、その読みは今回の追補監査で訂正する。本文の固定L2文言自体は変更しない。
+
 ### source pinと固定情報
 
 固定L2/L11とdecision行、MPR物理行、G0のStage 5/1.0対応は `docs/governance/audits/requirements-stage/helix-os-stage5-four-parent-l3-l10-draft-2026-10-06.json` のpinsを参照する。L2のauthoritative text、PO採択範囲、G0の順序分類、現register metadataは同一概念として上書きしない。固定親が未採択候補と記載する031/047、候補表示を持つ025/026の文言を保持する。

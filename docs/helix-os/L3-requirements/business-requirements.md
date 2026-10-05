@@ -104,3 +104,14 @@
 | `HELIXOS-L2-047` | 独立BRなし | reason/evidence/root revision、assignment/attempt/result/authority非継承、provider-only変更、参照両方向、旧証拠とnew revision、split/scope/backflow既存ownerを独立照合する。|
 
 この表は機能CASEへの参照境界だけを示す。Stage一式の承認待ちを新たなgateとせず、上流意味変更が必要な個別項目だけを既存authorityへ戻す。
+
+### Stage 5 review01補正 — business trace更新
+
+固定L2/L11にこの4親独自のbusiness outcomeはないため、BR/KPI/合否を追加しない。以下はfunctional fixture参照範囲だけを更新し、独立したbusiness判定を作らない。
+
+| 親 | business扱い | 補正後functional CASE範囲 | 境界 |
+|---|---|---|---|
+| 025 | 独立BRなし | CASE-025-01〜30 | target/version/unit状態の欠落、document/mechanismの存在だけによる誤成立を区別し、failure消去やHELIX-OS製品化を作らない。|
+| 026 | 独立BRなし | CASE-026-01〜54 | 導出結果から採択/実装/受入/tag/外部配布を生成せず、適用scope外の機構完成を追加条件にしない。|
+| 031 | 独立BRなし | CASE-031-01〜77、CASE-031-025はCASE-031-006のalias | correctness/performance、必須集合、回収、scope・authority・contract変更を分け、実測SLO/merge基準を作らない。|
+| 047 | 独立BRなし | CASE-047-01〜36、CASE-047-020はCASE-047-004のalias | issuerからの返却・revision lineage・参照境界を保ち、独立のticket効率KPIを作らない。|

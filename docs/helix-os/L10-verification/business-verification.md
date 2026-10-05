@@ -93,3 +93,16 @@ fixtureと実観測を分けて記録し、各親についてtrace正確性、un
 | `CASE-OS-L10-BIZ-047-01` | 047 / `CASE-OS-L10-047-01..26` | 返却根拠、全非継承軸、provider-only identity、双方向参照、revision証拠、split/scope/backflow境界を保ちIssue/PR完了を要求完了としない。| ticket処理時間・再発行率。|
 
 上表は機能CASEへの静的参照であり、独自のbusiness acceptanceやstage完了条件ではない。
+
+### Stage 5 review01補正overlay — 参照範囲
+
+この補正はfunctional L10 fixtureの参照先だけを同期し、business acceptanceや実績を生成しない。
+
+| business CASE | 親 / 参照functional CASE | 照合境界 |
+|---|---|---|
+| `CASE-OS-L10-BIZ-025-01` | 025 / CASE-025-01〜30 | 個別入力束縛・単位境界のみ。fixture行数を製品完成率へ換算しない。|
+| `CASE-OS-L10-BIZ-026-01` | 026 / CASE-026-01〜54 | 導出状態と採択・実装・受入・配布を分離し、business成功を主張しない。|
+| `CASE-OS-L10-BIZ-031-01` | 031 / CASE-031-01〜77（031-025は031-006のalias） | 改善条件の記述上の照合のみ。実測、SLO、速度KPI、merge admissionを生成しない。|
+| `CASE-OS-L10-BIZ-047-01` | 047 / CASE-047-01〜36（047-020は047-004のalias） | ticket返却とrevision境界のtraceのみ。ticket効率や処理成功率を追加しない。|
+
+NFR/functional overlayと矛盾するときは独立fixture・aliasの区別を優先する。既存business CASEを追加分母としてfunctional CASEと二重計上しない。
