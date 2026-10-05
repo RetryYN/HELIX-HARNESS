@@ -223,6 +223,7 @@ input observation identity/source revision；episode candidate identityとrelati
 - **L10-LABO-007-CASE-17 negative dependency evidence variants and return** (`LABO-007-AC-01`, `LABO-007-AC-02`) — L2-006/016由来の比較可能性欠落、interrupted/undecidable、counterexample欠落、experiment identity stale、revision staleを独立fixtureとする。期待：条件をunknown/unresolvedに保ち、該当L2-006/016 experiment/evidence ownerへ理由付きで戻す。CASE-03〜08の単独条件欠落も、その条件 evidence ownerへ返す。
 
 - **L10-LABO-007-CASE-18 negative maximize systemization rate** (`LABO-007-AC-02`, `LABO-007-AC-03`) — 同一のcandidate/evidence populationに対し、operation continuation候補を減らすことをsystemization率最大化の目的として追加する変異だけを与える。期待：systemization率を目的・成功指標にせず、六条件評価・両candidate・未完条件を保持し、新しい合格率/thresholdを作らない。
+- **L10-LABO-007-CASE-19 negative candidate mislabeled as unfinished operation** (`LABO-007-AC-02`) — CASE-01/02と同様、operation continuationを支えるevidenceがあり同候補を成立させる入力を使う。候補評価と実operationの実行/完了状態は別に保持し、実在する未完義務があればそのidentity/stateも独立して保持する。入力・evidenceは変更せず、出力だけでoperation continuation candidate自体を「未完成」と表示する単独変異を与える。期待：誤表示を不成立とし、根拠に沿うcandidateを保持し、実operation/未完義務の状態と混同しない。実operationを実行・完了したことにせず、authorityや新gateを生成しない。
 
 ### HELIXLABO-L2-008 — Operational Fallback Engine (`LABO-008-FR-01`)
 

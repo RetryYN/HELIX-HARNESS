@@ -234,7 +234,7 @@ baseline/current、candidate、hybridの仮説、条件、適用scope、oracle�
 L2-016が供給するconnectionをまたぐ比較可能性、counterexample保持、oracle/interruption/undecidable stateも入力証拠として追跡する。比較可能性・oracle・experiment identity/revisionの不足は同じ入力成果とみなさない。`Operation → Repeated Stable Decision → Rule Candidate → Shadow → Mechanism Candidate`は評価を説明する状態名であり、自動昇格、資格判定、新承認手続きではない。LABOはoperationの採択・実行、system化の承認を行わない。
 
 - **LABO-007-AC-01 — 六条件の独立評価**：6条件をそれぞれsupported / contradicted / unknownと証拠locator付きで示す。同じscope・条件・oracleに基づく比較可能な証拠を保ち、1条件の証拠で他条件を補わない。
-- **LABO-007-AC-02 — 両候補と運用継続**：systemizationとoperation continuationを同じ証拠範囲で評価し、文脈依存等の限界・反例・未完条件を保持する。未知条件があるがoperation継続を支える根拠がある場合、その候補を消さずunresolved条件を併記する。六つのoperation候補条件のどれかを根拠にsystemization-onlyへ限定する場合は不成立。比較不能・中断・判定不能・stale identity/revisionは保持し、実験evidence ownerへ戻す。
+- **LABO-007-AC-02 — 両候補と運用継続**：systemizationとoperation continuationを同じ証拠範囲で評価し、文脈依存等の限界・反例・未完条件を保持する。未知条件があるがoperation継続を支える根拠がある場合、その候補を消さずunresolved条件を併記する。六つのoperation候補条件のどれかを根拠にsystemization-onlyへ限定する場合は不成立。operation continuation candidate自体の評価状態と、実operationの実行/完了および実在する未完義務の状態を分離し、継続候補を実operationの未完状態として表示しない。比較不能・中断・判定不能・stale identity/revisionは保持し、実験evidence ownerへ戻す。実operationを実行・完了したことにはしない。
 - **LABO-007-AC-03 — 段階とauthorityの分離**：候補段階を観測記述として扱い、自動昇格・新gate・承認・qualification・operation実行を生成しない。experiment/oracle不足は元source ownerへ、system/operation責任文脈は現在の責務ownerへ戻し、新ownerを作らない。
 
 ### HELIXLABO-L2-008 — `LABO-008-FR-01` Operational Fallback Engine
@@ -272,7 +272,7 @@ Feedbackは非権威の提案であり、登録とroutingはOS、内容変更は
 | 006 baseline/current・candidate・hybridの比較、親が列挙する全evaluation dimensions、失敗/反例/費用/限界、およびoracleまたは宣言済み比較条件の必要品質を速度で相殺しない | `LABO-006-FR-01`; `LABO-006-AC-01`, `LABO-006-AC-03`; L10: `L10-LABO-006-CASE-01`, `L10-LABO-006-CASE-14`, `L10-LABO-006-CASE-15`, `L10-LABO-006-CASE-16`（品質違反と速度改善を別軸で保持し全体改善としない） |
 | 006 OS assignment下のWorker実行結果、同じticket/experiment/target versionへのlink、LABOは割当しない | `LABO-006-FR-01`; `LABO-006-AC-02`, `LABO-006-AC-03` |
 | 007 six conditionsを個別評価、比較可能なL2-006/016 evidence、systemization率最大化を目的にしない | `LABO-007-FR-01`; `LABO-007-AC-01`, `LABO-007-AC-02` |
-| 007 systemizationとoperation continuation、適用限界、段階は説明用で自動昇格・新承認なし | `LABO-007-FR-01`; `LABO-007-AC-02`, `LABO-007-AC-03` |
+| 007 systemizationとoperation continuation、候補評価と実operation/未完義務の状態分離、段階は説明用で自動昇格・新承認なし | `LABO-007-FR-01`; `LABO-007-AC-02`, `LABO-007-AC-03`; L10: `L10-LABO-007-CASE-19` |
 | 008 continue/modify/operation fallback、根拠・条件・保証・未完義務、L2-007/017依存、LABO切替なし | `LABO-008-FR-01`; `LABO-008-AC-01`, `LABO-008-AC-02`, `LABO-008-AC-03` |
 | 009 five scope levels、標本条件/反例/applicability、counterexampleでnarrow | `LABO-009-FR-01`; `LABO-009-AC-01`, `LABO-009-AC-02`, `LABO-009-AC-03` |
 | 009 scope別Feedback先、product-specificをBRAINへ送らずgeneric structureを推測しない | `LABO-009-FR-01`; `LABO-009-AC-02`, `LABO-009-AC-03` |
