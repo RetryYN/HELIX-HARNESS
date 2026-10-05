@@ -39,3 +39,59 @@
 | `HELIXBRAIN-L2-INFRA-015` | 固定Domain-pair relationのdirection/evidence/uncertaintyを保持する候補。根拠のないassertive relationを誤受理0候補とする。 | endpoint/direction欠落とunlisted pairを測り、may-affect＋unknownは許容、causesへの根拠ない強化をnegativeとする。 | relationの全件適用率や新しいevidence gateは作らない。 |
 | `HELIXBRAIN-L2-INFRA-016` | 11 anti-pattern×4要素(condition/manifestation/detection clue/alternative)=44 cellを照合する候補。L11 signalはmanifestationとdetection clueの双方へ対応。 | 44 cellとsignalの二つの対応先を別々に欠落変異し、条件外のuniversal banをnegativeにする。 | legacy NIO-L10-06 secret/PIIは独立要件にせず、固定INFRA-016親外として除外。 |
 | `HELIXBRAIN-L2-INFRA-017` | 6 maturity states、BRAIN version、project usage version、および利用実績/failure/反例/LABO評価の固定4入力を保持する候補。 | 3軸・4入力をそれぞれ欠落/不一致変異し、C06の一回success保持/誤昇格とC08のfailure保持/隠蔽を対にして測る。 | scopeを新規必須入力にしない。state閾値や普遍適用基準を作らない。 |
+
+## Stage 2b追補 — 採択済み001〜006の部分草稿
+
+形式比較元は旧`LEGACY-ASSET-DB669724249A14A665F0`（`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md:21–34,58–74`、全文SHA-256 `2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d`）。001–006では測定・判定構造だけを再導出し、旧IPA値・pass条件・runtimeは置換する。
+
+**状態：候補のみ（独立review／L3承認前）。** Stage 1 prefixはPO承認済みのbytesを保持し、既存INFRA Stage2b 17親suffixは最新main `4729c34ec29c2c72f345993958bbc94e1ed6f131`のbytesをそのまま保持する。本追補はPO main `633bf12ea8f948db8ba3d6600179c4a9507377a7`の採択registrationと、固定L2/L11 `f6dad2a33e24f000b87d7f09b8d40288257e74cc`の001〜006だけを候補として具体化する。各親のversion targetは1.0、G0配属はStage 2bであり、release収載や全前Stage完了gate、実装・実行許可を生成しない。後続版・Web条件付き・保留/不採択を親にしない。
+
+### BRAIN-001-NFR-01 — 意味条件の照合可能性（候補）
+
+根拠：固定HELIXBRAIN-L2-001と対応L11の列挙条件。比較案Aは件数/名称だけの照合、案Bはidentity/source/意味/state/戻し先を個別照合する。本案はBを候補とする。Nrequiredは固定親の初期10 Domain全てと追加・分割・統合・退役の4操作を別母集団で含める。追加可能6領域の初版充実は必須母集団に含めず、fixture選択で固定10領域/4操作を狭めない。各対象内100%照合候補、missing/unknown/意味不整合を誤成功へ変換した件数0候補。これは全製品・全欠陥の性能保証ではない。
+
+測定は計画試行Nplannedをvalid観測/Nfailed/Nmissing/Ncensoredの互いに重ならない区分へ記録する。validは合格件数でなく比較できる観測件数であり、不合格を正しく観測した試行も入る。Nfailedは処理エラーにより判定可能な観測を得られなかった試行に限り、観測できたoracle不合格と区別する。Nplanned=Nvalid+Nfailed+Nmissing+Ncensoredを照合する。missingは入力欠落と観測欠落を別表示、censoredは停止/打切りで判定未完のもの。各行の理由を保ち、未実施は未測定。対象scopeで契約が要求する項目Nrequired（値不明や欠落も母集団に残す）と、期待oracleどおり照合したNchecked（正しい不足/不合格判定も含む）、誤成功Nfalseを併記する。Nrequired=0なら照合率は算出せず、必須入力自体の欠落を『対象なし』へ変換しない。時間を測る場合は既存の単位/開始終了条件とvalid標本数を記録し、valid=0では分位値を出さない。固定SLA/保持期間/最低sample数は設定しない。
+
+### BRAIN-002-NFR-01 — 意味条件の照合可能性（候補）
+
+根拠：固定HELIXBRAIN-L2-002と対応L11の列挙条件。比較案Aは件数/名称だけの照合、案Bは4階層それぞれのidentity/source/親/責務/stateを照合する。本案はBを候補とする。NrequiredにはDomain→Pattern→Design Unit→Part以上という固定4段階と、提示されたidentity/parent/relation/responsibilityを全て含め、fixture選択で列挙階層を狭めない。各対象内100%照合候補、missing/unknown/誤対応を誤成功へ変換した件数0候補。これは全製品・全欠陥の性能保証ではない。
+
+測定は計画試行Nplannedをvalid観測/Nfailed/Nmissing/Ncensoredの互いに重ならない区分へ記録する。validは合格件数でなく比較できる観測件数であり、不合格を正しく観測した試行も入る。Nfailedは処理エラーにより判定可能な観測を得られなかった試行に限り、観測できたoracle不合格と区別する。Nplanned=Nvalid+Nfailed+Nmissing+Ncensoredを照合する。missingは入力欠落と観測欠落を別表示、censoredは停止/打切りで判定未完のもの。各行の理由を保ち、未実施は未測定。対象scopeで契約が要求する項目Nrequired（値不明や欠落も母集団に残す）と、期待oracleどおり照合したNchecked（正しい不足/不合格判定も含む）、誤成功Nfalseを併記する。Nrequired=0なら照合率は算出せず、必須入力自体の欠落を『対象なし』へ変換しない。時間を測る場合は既存の単位/開始終了条件とvalid標本数を記録し、valid=0では分位値を出さない。固定SLA/保持期間/最低sample数は設定しない。
+
+### BRAIN-003-NFR-01 — 意味条件の照合可能性（候補）
+
+根拠：固定HELIXBRAIN-L2-003と対応L11の列挙条件。比較案Aは件数/名称だけの照合、案Bはdescriptor 12要素それぞれのidentity/source/意味/状態/戻し先を照合する。本案はBを候補とする。Nrequiredには親が列挙する12要素を全て含め、fixture選択で項目を狭めない。利用時required inputや条件充足/不充足/unknownは要素母集団と別の状態軸で記録する。各対象内100%照合候補、missing/unknown/意味不整合を誤成功へ変換した件数0候補。これは全製品・全欠陥の性能保証ではない。
+
+測定は計画試行Nplannedをvalid観測/Nfailed/Nmissing/Ncensoredの互いに重ならない区分へ記録する。validは合格件数でなく比較できる観測件数であり、不合格を正しく観測した試行も入る。Nfailedは処理エラーにより判定可能な観測を得られなかった試行に限り、観測できたoracle不合格と区別する。Nplanned=Nvalid+Nfailed+Nmissing+Ncensoredを照合する。missingは入力欠落と観測欠落を別表示、censoredは停止/打切りで判定未完のもの。各行の理由を保ち、未実施は未測定。対象scopeで契約が要求する項目Nrequired（値不明や欠落も母集団に残す）と、期待oracleどおり照合したNchecked（正しい不足/不合格判定も含む）、誤成功Nfalseを併記する。Nrequired=0なら照合率は算出せず、必須入力自体の欠落を『対象なし』へ変換しない。時間を測る場合は既存の単位/開始終了条件とvalid標本数を記録し、valid=0では分位値を出さない。固定SLA/保持期間/最低sample数は設定しない。
+
+### BRAIN-004-NFR-01 — 意味条件の照合可能性（候補）
+
+根拠：固定HELIXBRAIN-L2-004と対応L11の列挙条件。比較案Aは件数/名称だけ、案Bは固定3例の各6比較軸とsource/意味/state/戻し先を照合する。本案はBを候補とする。Nrequiredは3比較例×6軸を個別に保ち、fixture選択で例や軸を狭めない。各対象内100%照合候補、missing/unknown/不整合を誤成功へ変換した件数0候補。これは全製品・全欠陥の性能保証ではない。
+
+測定は計画試行Nplannedをvalid観測/Nfailed/Nmissing/Ncensoredの互いに重ならない区分へ記録する。validは合格件数でなく比較できる観測件数であり、不合格を正しく観測した試行も入る。Nfailedは処理エラーにより判定可能な観測を得られなかった試行に限り、観測できたoracle不合格と区別する。Nplanned=Nvalid+Nfailed+Nmissing+Ncensoredを照合する。missingは入力欠落と観測欠落を別表示、censoredは停止/打切りで判定未完のもの。各行の理由を保ち、未実施は未測定。対象scopeで契約が要求する項目Nrequired（値不明や欠落も母集団に残す）と、期待oracleどおり照合したNchecked（正しい不足/不合格判定も含む）、誤成功Nfalseを併記する。Nrequired=0なら照合率は算出せず、必須入力自体の欠落を『対象なし』へ変換しない。時間を測る場合は既存の単位/開始終了条件とvalid標本数を記録し、valid=0では分位値を出さない。固定SLA/保持期間/最低sample数は設定しない。
+
+### BRAIN-005-NFR-01 — 意味条件の照合可能性（候補）
+
+根拠：固定HELIXBRAIN-L2-005とL11:33の7 relation種、およびL2:135の二つのrelation chain。比較案Aは件数/名称だけ、案Bは各relationのidentity/source/意味/状態/戻し先を照合する。Bを候補とし、7種と二つのchainを母集団に含め、fixture選択で狭めない。全製品・全欠陥の性能保証ではない。必要項目の有限集合を各々照合（対象内100%候補）し、missing/unknown/意味不整合を成功に丸める件数0を候補判定とする。未選択のsource/将来候補は必須母集団へ足さない。
+
+測定は計画試行Nplannedをvalid観測/Nfailed/Nmissing/Ncensoredの互いに重ならない区分へ記録する。validは合格件数でなく比較できる観測件数であり、不合格を正しく観測した試行も入る。Nfailedは処理エラーにより判定可能な観測を得られなかった試行に限り、観測できたoracle不合格と区別する。Nplanned=Nvalid+Nfailed+Nmissing+Ncensoredを照合する。missingは入力欠落と観測欠落を別表示、censoredは停止/打切りで判定未完のもの。各行の理由を保ち、未実施は未測定。対象scopeで契約が要求する項目Nrequired（値不明や欠落も母集団に残す）と、期待oracleどおり照合したNchecked（正しい不足/不合格判定も含む）、誤成功Nfalseを併記する。Nrequired=0なら照合率は算出せず、必須入力自体の欠落を『対象なし』へ変換しない。時間を測る場合は既存の単位/開始終了条件とvalid標本数を記録し、valid=0では分位値を出さない。固定SLA/保持期間/最低sample数は設定しない。
+
+### BRAIN-006-NFR-01 — 意味条件の照合可能性（候補）
+
+根拠：固定HELIXBRAIN-L2-006とL11:34の15知識例。比較案Aは件数/名称だけ、案Bは各知識例のidentity/source/意味/状態/戻し先を照合する。Bを候補とし、15例を母集団に含め、fixture選択で狭めない。全製品・全欠陥の性能保証ではない。必要項目の有限集合を各々照合（対象内100%候補）し、missing/unknown/意味不整合を成功に丸める件数0を候補判定とする。未選択のsource/将来候補は必須母集団へ足さない。
+
+測定は計画試行Nplannedをvalid観測/Nfailed/Nmissing/Ncensoredの互いに重ならない区分へ記録する。validは合格件数でなく比較できる観測件数であり、不合格を正しく観測した試行も入る。Nfailedは処理エラーにより判定可能な観測を得られなかった試行に限り、観測できたoracle不合格と区別する。Nplanned=Nvalid+Nfailed+Nmissing+Ncensoredを照合する。missingは入力欠落と観測欠落を別表示、censoredは停止/打切りで判定未完のもの。各行の理由を保ち、未実施は未測定。対象scopeで契約が要求する項目Nrequired（値不明や欠落も母集団に残す）と、期待oracleどおり照合したNchecked（正しい不足/不合格判定も含む）、誤成功Nfalseを併記する。Nrequired=0なら照合率は算出せず、必須入力自体の欠落を『対象なし』へ変換しない。時間を測る場合は既存の単位/開始終了条件とvalid標本数を記録し、valid=0では分位値を出さない。固定SLA/保持期間/最低sample数は設定しない。
+
+## Stage 2b追補 — 採択済み009/010/011/012/029（技術候補）
+
+値は固定L2/L11を照合可能にする技術候補で、PO指定SLAや実測値ではない。001–006の測定形式は旧NFR `LEGACY-ASSET-DB669724249A14A665F0`（`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md:21-34,58-74`, full SHA-256 `2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d`）の測定・判定構造から再導出し、旧IPA grade/value/pass/runtimeは置換する。009以降の測定候補も同じ旧NFR assetを参照する。旧IPA grade、placeholder、固定比率、CI/runtime条件は置換する。BRAIN固有NFRの旧直接一致根拠は検索範囲で確認できず、以下は固定親と機能CASEの独立oracleからの候補である。
+
+| 親L2 | 候補比較と判定材料 | 測定母集団・境界 |
+|---|---|---|
+| `HELIXBRAIN-L2-009` / `BRAIN-009-NFR-01` | 案A: relation名・candidate件数だけを確認。案B: 選択されたUnit/relationのsource、両端identity、意味、scope、version、owner別評価/登録/検証状態を照合する。案BはL2-009の構成根拠とcandidate-only保証を直接検査できるため候補。選択relationごとの必須要素を照合し、欠落・unknown・不一致を昇格成功へ変換した数を別計数する。 | C01–C13の選択fixtureのみ。未選択sourceを分母へ入れない。owner状態、missing Unit根拠、L2-025不成立/成立を分離し、全体成功件数で個別欠落を相殺しない。 |
+| `HELIXBRAIN-L2-010` / `BRAIN-010-NFR-01` | 案A: failure名だけの照合。案B: 選択failureの成立条件、影響、反例、evidence/source/scopeと条件付き適用を項目ごとに照合する。固定L2/L11が求める意味を測るBを候補とする。sourceにあるalternative candidateと条件付き禁止構造の保持、sourceにないalternativeのunknown維持も照合する。 | C01–C11の選択failure fixture。L11列挙全種を一律に全条件へ適用しない。unknown scope、source/evidence欠落、success-only retention、Regression case固有条件欠落は各々区別し、未見normal C09を含む。 |
+| `HELIXBRAIN-L2-011` / `BRAIN-011-NFR-01` | 案A:製品固有語の件数だけを見る。案B:選択sourceごとに一般化根拠、製品固有残余、source/provenanceを照合する。意味漏れとsource喪失を検出するBを候補とする。 | C01–C12で選択された対象sourceだけを分母候補にし、製品名・requirement・製品固有screen・business rule・user judgment・provenance・根拠を超えた一般化（C11）・候補事実化（C12）を独立計数する。未選択sourceは未観測。 |
+| `HELIXBRAIN-L2-012` / `BRAIN-012-NFR-01` | 案A:返却候補数だけを見る。案B:返却 tuple（candidate、required input、relation、alternative、constraint、evidence、version）とdecision未決状態を対応付ける。採用authorityの誤生成とtuple各field欠落を独立に観測するBを候補とする。 | C01–C13のquery/選択候補scope。問い合わせ側required input欠落、sourceが宣言した返却field欠落、sourceにrelation/alternativeがない正常不在を別区分で測る。候補数と必須field充足を混ぜず、意味不明を空母集団や選択成功へ変えない。 |
+| `HELIXBRAIN-L2-029` / `BRAIN-029-NFR-01` | 案A:構成数とrelation labelだけを見る。案B:選択したPattern/Unit/Part tuple（identity/source/version、applicability、required input、constraint、trade-off、negative/failure、relation type/endpoint/meaning）を追跡し、unknown・stale・矛盾とowner境界を別軸で照合する。列挙されたrelation例とL2-003/005/008の必須条件を直接検査できるBを候補とする。 | C01–C53の選択構成fixture。5 relation typeと各必須情報を独立に照合し、missing/unknown/stale/mismatchを区別する。未選択CORE/LABO sourceは未観測。参照資料は分母・oracleにしない。 |
+
+共通の測定報告候補：対象scopeで契約上要求される要素数を分母として明示し、値欠落・unknownも対象要素から除かない。観測可能、観測した不合格、処理失敗、入力/観測欠落、打切りを別々に数え、分母0では率を算出しない。正しい不合格判定は判定可能な観測であり失敗件数へ隠さない。未実行は未測定であり、欠測を0や成功へ変換しない。時間を測る場合は根拠ある開始/終了条件と単位を併記し、valid時間標本が0なら分位値なしとする。これは測定形式の候補であり、新しいSLA、最低標本数、承認gateを設けない。

@@ -1,0 +1,3 @@
+# BRAIN Stage2b review02 root補正
+
+本文 `b9b622a41a7b4fbd836ab97b84105f485abea0e6`、main `2e9e9f2267aab50bc1c22e3b3ca9c9d0ce808832`。Worker全6本文差分とsummaryを実読し、source26/変更62/旧3記録SHAを再計算した。m2/m5/m12の未反映をACとCASEへ補い、005 relation chainの出典をL2:135へ訂正した。旧RDJ本文を読み、stable identityと未解決templateを別source句へ分けた。全6文書の最新main prefixを保持し、追補全行literalと6SHAをJSONへ固定する。旧監査は不変。独立review・承認は未成立。
