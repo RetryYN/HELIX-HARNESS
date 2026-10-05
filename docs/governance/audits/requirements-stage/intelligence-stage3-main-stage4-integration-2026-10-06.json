@@ -1,0 +1,78 @@
+{
+  "old_head": "aa386e5c6c3080ed4bf63bbd25c8febd62ee5aa9",
+  "main": "1d7f57491b1e8b4337f1933aec2c1649df5f2ea2",
+  "documents": [
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "old_full_sha256": "52881cbca3596750d9ae6845e57e02c821ed628f0ec3de67ccb4fc1d3190811d",
+      "old_suffix_sha256": "60aeceb5eb467340b18998e6e3525cdcac4d771e0a1d9f955413cdbb578e7ae4",
+      "admitted_main_sha256": "d17dcaf9e5b69121200874e6183ed2e3e1d54467d01954fb948cf9ec811123bb",
+      "main_prefix_preserved": true,
+      "new_full_sha256": "f5da5d569f483d36aed039b80e0aadeadf48715a4dd854e6f20a5949310ea0e6"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "old_full_sha256": "d8815e2da610280764207379dd9ac94b50c9ac1b33ba4f2a6b170e137cf45c87",
+      "old_suffix_sha256": "b50161b2228ba2b08c51ab98f79676a9ea3e8b1866a062e4eb6c3ea53003fc9b",
+      "admitted_main_sha256": "f8c5ef63ec7af57303e5ddac90f9042d28a0fbec21b963e6424c58d9f61df6b5",
+      "main_prefix_preserved": true,
+      "new_full_sha256": "58432c78c93035c69cdb08ffe775d04c6339ef8ae26348f04024413279bab720"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "old_full_sha256": "13d332c30065f9f69e1191c17252573c5c24ad9a15fbca93fd8b07df0e735fef",
+      "old_suffix_sha256": "84a66670adf70b28a53fe0aa1a16bcab284cbfe258c230ce6ac20fda576d4af3",
+      "admitted_main_sha256": "1fb1b928e91c060a4f45061d743f32cb9a528f726bb12555d0489376cc0c647e",
+      "main_prefix_preserved": true,
+      "new_full_sha256": "24f00c4e7c4e3415aac73116851c1d5d953688a741bf6d3bd400171c7177670f"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "old_full_sha256": "47ff208d647c176378da650821c91a176f5d232e3e044b63c6ce00aeaf2820a7",
+      "old_suffix_sha256": "c55d85b857d1f4b585ede39a7673d0430318a8f9a31aa877b2cbebd246a5e59a",
+      "admitted_main_sha256": "a7f96a9feb279af62d746ee8f9ef372f557256d8f7126df017c4d429ce844795",
+      "main_prefix_preserved": true,
+      "new_full_sha256": "3bae5af7db872ec2eca907f7a51d48b22c6c2637aaef8b7a54e5c6f9555fc59f"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "old_full_sha256": "38434b5da4b86657435ac4f8e5c3506bcabfa7b2b0184637d3af08e03117d3bf",
+      "old_suffix_sha256": "99b8ddd56b1ba723946d1dbebb97aa6fe4132b1e6833f028a7a4f129991b380c",
+      "admitted_main_sha256": "17a453efcc7f5a85fa67051c8f3bed2b22496b78916d21a89cf07977d5d2b3d4",
+      "main_prefix_preserved": true,
+      "new_full_sha256": "2b6cbaad0292ba16df5ba65458779d2c9abc8c1f36298141d736df945e8d7029"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "old_full_sha256": "48177ad4fa3303981d59c0ed84031a8b8eaddfd47f3822d6a1618f5964e998d0",
+      "old_suffix_sha256": "007429495ffc983ee4bce38fb2407d865fe00e0b45da29bc40a120159aefa196",
+      "admitted_main_sha256": "28b7feee18ec722a6f48b205ca5986fd5f79c9b5af7554481d7add54c4e25d23",
+      "main_prefix_preserved": true,
+      "new_full_sha256": "0ddcfb85e1fdafbb2aab6aed1bc16dfb49fd2554dedea4112f6aeef1283e78bd"
+    }
+  ],
+  "authority_effect": "none",
+  "body_revision": "7c39f1fc0553114214bb582e60297c62d61f3283",
+  "limits": [
+    "Stage3 suffix bytes不変、承認済みStage4本文prefixを統合",
+    "旧Stage3監査SHAは統合前revisionを指し不変保持",
+    "新六全文SHAはこの記録、旧独立判断継承なし、CASE実行なし"
+  ],
+  "static": [
+    {
+      "command": "validate",
+      "exit": 0,
+      "summary": "bindings=147 fail=0"
+    },
+    {
+      "command": "stale",
+      "exit": 0,
+      "summary": "stale=0"
+    },
+    {
+      "command": "residuals",
+      "exit": 0,
+      "summary": "residuals=0"
+    }
+  ]
+}

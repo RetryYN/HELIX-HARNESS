@@ -1,0 +1,5 @@
+# INTELLIGENCE Stage3の最新main統合
+
+本文 `7c39f1fc0553114214bb582e60297c62d61f3283`、旧HEAD `aa386e5c6c3080ed4bf63bbd25c8febd62ee5aa9`、最新main `1d7f57491b1e8b4337f1933aec2c1649df5f2ea2`。六文書の同一追記位置競合を、main全文＋旧Stage3 suffixとして解消。main全文はprefixとしてbytes完全保持、旧Stage3 suffixもbytes完全保持。旧監査は旧revisionの証拠として不変保持し、新六全文SHAと境界をJSONへ固定した。CASE追加削除やStage3の意味変更なし。
+
+validate147/fail0、stale0、residuals0、diffcheck。旧review判断を継承せず、新HEAD独立reviewが必要。L10実行・下流実装は未成立。

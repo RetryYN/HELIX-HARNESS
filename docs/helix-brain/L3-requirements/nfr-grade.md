@@ -111,3 +111,15 @@
 | `BRAIN-030-NFR-01` / `HELIXBRAIN-L2-030` | 常時contract群、選択知識群、trace/open obligation群を別分母とし、各required field coverageと誤受領/誤昇格0を候補にする。単純なreceipt件数だけの案と比較する。 | `L10-BRAIN-030-C01`, `L10-BRAIN-030-C02`, `L10-BRAIN-030-C03`, `L10-BRAIN-030-C04`, `L10-BRAIN-030-C05`, `L10-BRAIN-030-C06`, `L10-BRAIN-030-C07`, `L10-BRAIN-030-C08`, `L10-BRAIN-030-C09`, `L10-BRAIN-030-C10`, `L10-BRAIN-030-C11`, `L10-BRAIN-030-C12`, `L10-BRAIN-030-C13`, `L10-BRAIN-030-C14`, `L10-BRAIN-030-C15`, `L10-BRAIN-030-C16`, `L10-BRAIN-030-C17`, `L10-BRAIN-030-C18`, `L10-BRAIN-030-C19`, `L10-BRAIN-030-C20`, `L10-BRAIN-030-C21`, `L10-BRAIN-030-C22`, `L10-BRAIN-030-C23`, `L10-BRAIN-030-C24`, `L10-BRAIN-030-C25`, `L10-BRAIN-030-C26`, `L10-BRAIN-030-C27`, `L10-BRAIN-030-C28`, `L10-BRAIN-030-C29`, `L10-BRAIN-030-C30`, `L10-BRAIN-030-C31`, `L10-BRAIN-030-C32`, `L10-BRAIN-030-C33`, `L10-BRAIN-030-C34`, `L10-BRAIN-030-C35`, `L10-BRAIN-030-R-compatibility-range-missing`, `L10-BRAIN-030-R-reference-substitution`, `L10-BRAIN-030-R-correlation-mismatch`, `L10-BRAIN-030-R-version-stale`, `L10-BRAIN-030-R-version-mismatch`, `L10-BRAIN-030-R-source-mismatch`, `L10-BRAIN-030-R-applicability-unknown`, `L10-BRAIN-030-R-reverse-revision`, `L10-BRAIN-030-R-reverse-field`, `L10-BRAIN-030-R-reverse-scope`, `L10-BRAIN-030-R-obligation-receipt`, `L10-BRAIN-030-R-design-completion`, `L10-BRAIN-030-R-implementation-ready`, `L10-BRAIN-030-R-state-conclusion`, `L10-BRAIN-030-R-permission-conclusion`, `L10-BRAIN-030-R-design-conclusion`, `L10-BRAIN-030-R-screen-conclusion`, `L10-BRAIN-030-R-db-conclusion`, `L10-BRAIN-030-R-mixed-fields`, `L10-BRAIN-030-R-relation-conflict`, `L10-BRAIN-030-C36`, `L10-BRAIN-030-C37`, `L10-BRAIN-030-C38`, `L10-BRAIN-030-C39`, `L10-BRAIN-030-C40` | compatibility syntax/value、性能SLA、製品値は固定親にないため提案しない。 |
 
 共通の分母はcaseで選択され固定親が必須とするfield/relationである。`Nplanned`、`Nrequired`、`Nchecked`、false acceptance数、missing/unknown/stale/conflict/unexecuted理由を区別する。未選択sourceは未観測であり、必須field欠落を対象外へ移さない。`Nrequired=0`では割合なし、valid fixtureが未実行なら未測定とする。正しいoracle rejectionも照合可能な観測であり処理失敗に隠さない。時間値、最低標本数、固定SLA、承認gateは新設しない。
+
+
+## Stage 5 — HELIXBRAIN-L2-024/025 NFR disposition
+
+固定L2/L11に時間、率、容量等の独立したNFR targetや数値thresholdはない。新しいSLA/KPIを作らず、data-flow/owner/state/oracleの意味はfunctional AC/CASEで検証する。旧NFRの測定と判定を分ける形式だけ再導出し、旧runtime値やshadow/cross-project基準は移さない。
+
+| 親L2 | 独立NFR候補 | 根拠・照合対象 |
+|---|---|---|
+| `HELIXBRAIN-L2-024` | 固定親に独立数値NFRなし。 | `BRAIN-024-AC-01/02`、functional fixture `L10-BRAIN-024-C01`–`C45`の機能CASEで各route、直接read/write/learning、実server/network/database状態、provider account、credential、操作権限、実log/metrics、owner境界を照合。時間・性能値を追加しない。 |
+| `HELIXBRAIN-L2-025` | 固定親に独立数値NFRなし。 | `BRAIN-025-AC-01`〜`BRAIN-025-AC-05`、functional fixture `L10-BRAIN-025-C01`–`C52`の機能CASEでowner別state/revision/独立検証/hold-rejectを照合。cross-project sample countやshadow thresholdを追加しない。 |
+
+本欄は「未測定の数値要件」を意味しない。固定親が定義していない独立NFRを創作しない。

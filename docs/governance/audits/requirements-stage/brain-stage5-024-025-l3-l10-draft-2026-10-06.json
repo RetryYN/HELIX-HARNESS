@@ -1,0 +1,1168 @@
+{
+  "record_type": "immutable_stage5_l3_l10_draft_source_and_trace_audit",
+  "date": "2026-10-06",
+  "language": "ja",
+  "authority_effect": "none",
+  "status": "worker_draft_pending_root_review",
+  "repository": "RetryYN/HELIX-HARNESS",
+  "branch": "codex/brain-stage5-main-publication",
+  "base_revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+  "body_revision": "727a14d49b43cc2921502b7281a7008d0ac1fcd3",
+  "scope": {
+    "parents": [
+      "HELIXBRAIN-L2-024",
+      "HELIXBRAIN-L2-025"
+    ],
+    "version_target": "1.0",
+    "sequence_stage": "Stage 5",
+    "canonical_documents": [
+      "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "docs/helix-brain/L3-requirements/business-requirements.md",
+      "docs/helix-brain/L3-requirements/nfr-grade.md",
+      "docs/helix-brain/L10-verification/functional-verification.md",
+      "docs/helix-brain/L10-verification/business-verification.md",
+      "docs/helix-brain/L10-verification/nfr-verification.md"
+    ],
+    "changed_documents": [
+      "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "docs/helix-brain/L3-requirements/business-requirements.md",
+      "docs/helix-brain/L3-requirements/nfr-grade.md",
+      "docs/helix-brain/L10-verification/functional-verification.md",
+      "docs/helix-brain/L10-verification/business-verification.md",
+      "docs/helix-brain/L10-verification/nfr-verification.md"
+    ]
+  },
+  "authority_and_registration": {
+    "po_fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "po_decision_record_path": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+    "decision_rows": {
+      "role": "BRAIN-PO-adoption-024-025",
+      "revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+      "path": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+      "full_sha256_raw_lf": "fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a",
+      "full_bytes": 11307,
+      "start_line": 83,
+      "end_line": 84,
+      "span_raw_lf_sha256": "bb26accf0d87fa4f529892e27787edd672ed30a1437f84965bb3d7d5158d3169",
+      "span_bytes": 150,
+      "literal": "| `HELIXBRAIN-L2-024` | `MPR-RC-HELIXBRAIN-L2-024-002` | composite / 1.0 |\n| `HELIXBRAIN-L2-025` | `MPR-RC-HELIXBRAIN-L2-025-002` | composite / 1.0 |\n"
+    },
+    "registration_proposal_only": true,
+    "g0_registration_authority_effect": "none",
+    "g0_is_acceptance_or_implementation_approval": false
+  },
+  "legacy_and_current_source_pins": {
+    "fixed_l2_l11_and_dependency_spans": [
+      {
+        "role": "BRAIN-L2-024",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+        "full_sha256_raw_lf": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+        "full_bytes": 71594,
+        "start_line": 454,
+        "end_line": 463,
+        "span_raw_lf_sha256": "c91976bfc0f128dd8628b8d3448ddac57af0e4531f8d54f996ed094cd3b018c3",
+        "span_bytes": 1805,
+        "literal": "### HELIXBRAIN-L2-024 Infrastructure設計知識と実績のCORE/LABO経由分離（composite）\n\n- **親L1**：`HELIXBRAIN-L1-007`、`HELIXBRAIN-L1-008`、`HELIXBRAIN-L1-010`。\n- **受け取るもの**：BRAIN→製品COREの設計知識契約（L2-019/022）、Runtime owner→LABO→BRAINの実績評価契約（L2-020）、および各ownerの境界receipt。Runtime実データそのものをBRAINが直接受け取らない。\n- **提供するもの**：設計知識はL2-019/022に従い製品HELIX-HARNESS-CORE/HARNESSへ渡し、実績はRuntime owner→LABO評価→L2-020の候補接続としてのみBRAINへ戻す分離したflow contract。\n- **保証すること**：BRAINとInfrastructure Runtime間に直接のread/write/learning connectionを作らない。BRAINは実server/network/database状態、provider account、credential、操作権限、実log/metricsを保存・所有しない。Runtimeの実状態はHELIX自身ならHELIX-INFRASTRUCTURE、対象製品なら当該Runtime ownerに残る。製品で採用した設計はCOREを通り、実績はLABO評価を通る。\n- **依存・検証／版**：L2-INFRA-009/010/012/017、L2-019/020/022およびCORE/Runtime/LABO contract。Infrastructure設計知識の受渡し先がCOREであること、実績のsource/scopeがLABO評価を経てcandidateへ結ばれること、BRAINへ直接Runtime dataが流れないことを確認する。1.0。\n- **失敗時の戻し先**：実状態・操作はRuntime owner、評価はLABO、製品固有の採用設計はCORE、汎用Pattern意味はBRAINへ戻す。credential/raw runtime dataの直接流入やLABOを迂回した昇格があれば受領を止める。\n- **束ねる条件**：Infrastructure candidate「持ち手」表・接続表、Concept HELIX-INFRASTRUCTURE境界。\n\n",
+        "span_full_recomputed": true,
+        "full_recomputed": true,
+        "base_main_source": {
+          "revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+          "full_sha256_raw_lf": "421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa",
+          "full_bytes": 73642,
+          "span_raw_lf_sha256": "c91976bfc0f128dd8628b8d3448ddac57af0e4531f8d54f996ed094cd3b018c3",
+          "span_matches_po_fixed_revision": true
+        }
+      },
+      {
+        "role": "BRAIN-L2-025",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+        "full_sha256_raw_lf": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+        "full_bytes": 71594,
+        "start_line": 464,
+        "end_line": 473,
+        "span_raw_lf_sha256": "a65af00d769a3e2ef3dbe5fedc6034ab67e1c4e44d5e2baa8b8d8ad381df6be5",
+        "span_bytes": 1644,
+        "literal": "### HELIXBRAIN-L2-025 内部知識候補の独立検証・採否（composite）\n\n- **親L1**：`HELIXBRAIN-L1-007`、`HELIXBRAIN-L1-008`、`HELIXBRAIN-L1-009`、`HELIXBRAIN-L1-011`。\n- **受け取るもの**：製品Core由来または構成候補、source/provenance、LABOの評価結果、OSの登録・振分け状態、BRAINの変更candidateと独立検証結果。\n- **提供するもの**：提案・評価・登録・独立検証・採否状態を分離したBRAIN knowledge revisionと、未完義務・finding・反例のowner付きreceipt。\n- **保証すること**：AI生成、単一実績、LABO評価、OS ticket、文書存在のいずれだけでも汎用知識へ昇格させない。L1-007が定めるLABO評価→OS登録/振分け→BRAIN変更手続き内の独立検証→採否の順序と責務を保持する。製品固有意味を汎用化しない。意味を変えない技術差分に新たな人間approvalを足さない。\n- **依存・検証／版**：L2-007/008/009/011/012/020、Infrastructure候補のmaturity状態を扱う場合はL2-INFRA-017、LABO/OS/BRAIN change contracts。各state・owner・対象revisionを照合し、candidateと採用済みの識別、独立検証結果、rejection/holdの戻しを確認する。1.0。\n- **失敗時の戻し先**：source/evaluation不足はLABO、登録/進行状態はOS、知識意味は該当L1、BRAIN変更検証はBRAIN change ownerへ戻す。未知・差戻しはaccepted/matureへ進めない。\n- **束ねる条件**：BRAIN L1-007/009、旧RCLS-BR-004/006の保持点と、2026-09-26 PO判断（OSが登録・振分け、LABOは評価）。\n\n",
+        "span_full_recomputed": true,
+        "full_recomputed": true,
+        "base_main_source": {
+          "revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+          "full_sha256_raw_lf": "421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa",
+          "full_bytes": 73642,
+          "span_raw_lf_sha256": "a65af00d769a3e2ef3dbe5fedc6034ab67e1c4e44d5e2baa8b8d8ad381df6be5",
+          "span_matches_po_fixed_revision": true
+        }
+      },
+      {
+        "role": "BRAIN-L2-INFRA-009",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+        "full_sha256_raw_lf": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+        "full_bytes": 71594,
+        "start_line": 302,
+        "end_line": 311,
+        "span_raw_lf_sha256": "2286996c4a51098e495d602c94d5e641420d8f7110ba00a8ceed59e075f13f9c",
+        "span_bytes": 940,
+        "literal": "### HELIXBRAIN-L2-INFRA-009 Observability知識\n\n- **親L1**：`HELIXBRAIN-L1-003`。\n- **受け取るもの**：Infrastructure Patternと成立を検証する観測ニーズ。\n- **提供するもの**：Metrics、Logs、Traces、Health、Dependency status、Capacity、Saturation、Error、Latency、Deployment state、Recovery stateの観測点と意味。\n- **保証すること**：構成を作っただけで成立としない。BRAINには設計上の観測定義を置き、実際のlogs/metricsを保存しない。\n- **依存・検証／版**：`HELIXBRAIN-L2-003`、`HELIXBRAIN-L2-INFRA-003`、`HELIXBRAIN-L2-INFRA-005`。各観測例と対応Pattern/失敗のtrace、実データ非保存を確認する。1.0。\n- **失敗時の戻し先**：runtime evidenceはInfrastructure Runtime/LABOのownerへ、設計観測点の不足はL1-003へ戻す。\n- **束ねる条件**：Infrastructure PO原文INFRA-009、旧NIO-L3-03/09。\n\n",
+        "span_full_recomputed": true,
+        "full_recomputed": true,
+        "base_main_source": {
+          "revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+          "full_sha256_raw_lf": "421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa",
+          "full_bytes": 73642,
+          "span_raw_lf_sha256": "2286996c4a51098e495d602c94d5e641420d8f7110ba00a8ceed59e075f13f9c",
+          "span_matches_po_fixed_revision": true
+        }
+      },
+      {
+        "role": "BRAIN-L2-INFRA-010",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+        "full_sha256_raw_lf": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+        "full_bytes": 71594,
+        "start_line": 312,
+        "end_line": 321,
+        "span_raw_lf_sha256": "e3d673a5ec89eb201512750f9cdef510099a2a1c69ccf3e706effe63696de6a9",
+        "span_bytes": 959,
+        "literal": "### HELIXBRAIN-L2-INFRA-010 Backup・Restore・Recoverability\n\n- **親L1**：`HELIXBRAIN-L1-003`、`HELIXBRAIN-L1-010`。\n- **受け取るもの**：Backup/Restore設計候補、保持・複製・復旧条件。\n- **提供するもの**：backup strategy、retention pattern、replication、restore pattern、recovery validationを相互relationで結ぶ設計知識。\n- **保証すること**：BackupとRestoreを分離して成立扱いせず、Backup + Restore verification + required recovery conditionsをRecoverability Evidence Candidateとして区別する。実際のRTO/RPO値は製品要求が所有する。\n- **依存・検証／版**：L2-005/INFRA-006。backupのみ、restore検証あり、要求条件充足を別々に判定する。1.0。\n- **失敗時の戻し先**：実際のbackup/restore実行と値は製品/Runtime、知識構造はL1-003/010へ戻す。\n- **束ねる条件**：Infrastructure PO原文INFRA-010、旧NIO-L3-06。\n\n",
+        "span_full_recomputed": true,
+        "full_recomputed": true,
+        "base_main_source": {
+          "revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+          "full_sha256_raw_lf": "421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa",
+          "full_bytes": 73642,
+          "span_raw_lf_sha256": "e3d673a5ec89eb201512750f9cdef510099a2a1c69ccf3e706effe63696de6a9",
+          "span_matches_po_fixed_revision": true
+        }
+      },
+      {
+        "role": "BRAIN-L2-INFRA-012",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+        "full_sha256_raw_lf": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+        "full_bytes": 71594,
+        "start_line": 332,
+        "end_line": 341,
+        "span_raw_lf_sha256": "6321d9a2fa5685f623d8256c8aa156f6061b284694bfbbe1047b0f7b074e9c51",
+        "span_bytes": 888,
+        "literal": "### HELIXBRAIN-L2-INFRA-012 Provider抽象と実装例\n\n- **親L1**：`HELIXBRAIN-L1-005`、`HELIXBRAIN-L1-011`。\n- **受け取るもの**：provider非依存Patternとprovider別実装知識。\n- **提供するもの**：Object Storage等の抽象PatternとS3、GCS、Azure Blob、MinIO等のimplementation例をimplements、compatible_with、constraint_of等で接続する知識。\n- **保証すること**：汎用PatternをAWS等の一providerへ固定しない。provider固有の事実は根拠と版を伴う実装知識に留める。\n- **依存・検証／版**：L2-005/011/INFRA-002。providerを入替えて抽象identityを維持し、適合性が未確認ならunknownを返す。1.0。\n- **失敗時の戻し先**：互換条件のownerまたは該当Patternへ戻し、無根拠な互換宣言をしない。\n- **束ねる条件**：Infrastructure PO原文INFRA-012。\n\n",
+        "span_full_recomputed": true,
+        "full_recomputed": true,
+        "base_main_source": {
+          "revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+          "full_sha256_raw_lf": "421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa",
+          "full_bytes": 73642,
+          "span_raw_lf_sha256": "6321d9a2fa5685f623d8256c8aa156f6061b284694bfbbe1047b0f7b074e9c51",
+          "span_matches_po_fixed_revision": true
+        }
+      },
+      {
+        "role": "BRAIN-L2-INFRA-017",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+        "full_sha256_raw_lf": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+        "full_bytes": 71594,
+        "start_line": 382,
+        "end_line": 391,
+        "span_raw_lf_sha256": "d7e5a7a4d029db3bd92db437043b07c7dc4d6923c481a338815382e23c6f4795",
+        "span_bytes": 828,
+        "literal": "### HELIXBRAIN-L2-INFRA-017 Pattern maturity\n\n- **親L1**：`HELIXBRAIN-L1-007`、`HELIXBRAIN-L1-008`。\n- **受け取るもの**：Patternの利用実績、failure、反例、LABO評価。\n- **提供するもの**：experimental、observed、validated、mature、deprecated、retired等の成熟度と根拠relation。\n- **保証すること**：内部Productで一度成功しただけでuniversal Patternへ昇格しない。maturity状態とBRAIN version、projectでの利用版を分ける。\n- **依存・検証／版**：L2-007/008/020/025。1回だけの成功、複数条件の評価、failure発見の例で状態遷移を区別する。1.0。\n- **失敗時の戻し先**：評価不足はexperimental/observed候補に留め、採用を推定しない。\n- **束ねる条件**：Infrastructure PO原文INFRA-017。\n\n",
+        "span_full_recomputed": true,
+        "full_recomputed": true,
+        "base_main_source": {
+          "revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+          "full_sha256_raw_lf": "421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa",
+          "full_bytes": 73642,
+          "span_raw_lf_sha256": "d7e5a7a4d029db3bd92db437043b07c7dc4d6923c481a338815382e23c6f4795",
+          "span_matches_po_fixed_revision": true
+        }
+      },
+      {
+        "role": "BRAIN-L2-019",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+        "full_sha256_raw_lf": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+        "full_bytes": 71594,
+        "start_line": 404,
+        "end_line": 413,
+        "span_raw_lf_sha256": "e410ff28aaf5e2f5368441b407ab7044829a94e57cbd747d029a21e2fac916b5",
+        "span_bytes": 1116,
+        "literal": "### HELIXBRAIN-L2-019 BRAIN知識候補の製品Coreへの提供（connection）\n\n- **親L1**：`HELIXBRAIN-L1-003`、`HELIXBRAIN-L1-004`、`HELIXBRAIN-L1-012`。\n- **受け取るもの**：製品Coreの対象課題、必要inputと制約、参照可能なBRAIN knowledge identity/version。\n- **提供するもの**：候補Pattern、Design Unit、Part、必要input、適用条件、代替、relation、trade-off、反例、根拠、maturityとexact version。\n- **保証すること**：候補の存在やmaturityを今回案件への採用判断に変換しない。複数成立するPatternを消さず比較可能にし、今回の選択は製品Core等の接続先が行う。\n- **依存・検証／版**：L2-003/004/008/012、HARNESS-CORE受領contract。提供identity/versionと参照revisionが一致し、required input/制約/反例を欠落させず返す。1.0。\n- **失敗時の戻し先**：不足inputは製品Coreへ照会し、knowledge meaning/versionの矛盾はL2-003/008または親L1へ戻す。unknownは推薦なしとして扱う。\n- **束ねる条件**：BRAIN L1-003/004/008/012。\n\n",
+        "span_full_recomputed": true,
+        "full_recomputed": true,
+        "base_main_source": {
+          "revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+          "full_sha256_raw_lf": "421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa",
+          "full_bytes": 73642,
+          "span_raw_lf_sha256": "e410ff28aaf5e2f5368441b407ab7044829a94e57cbd747d029a21e2fac916b5",
+          "span_matches_po_fixed_revision": true
+        }
+      },
+      {
+        "role": "BRAIN-L2-020",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+        "full_sha256_raw_lf": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+        "full_bytes": 71594,
+        "start_line": 414,
+        "end_line": 423,
+        "span_raw_lf_sha256": "28d2b53bfdd0db2353942c4e880a4cc9d48069d302ecffc0cded0f94cc08fbc6",
+        "span_bytes": 1242,
+        "literal": "### HELIXBRAIN-L2-020 LABO評価結果の知識候補への接続（connection）\n\n- **親L1**：`HELIXBRAIN-L1-007`、`HELIXBRAIN-L1-009`、`HELIXBRAIN-L1-010`。\n- **受け取るもの**：LABOが評価対象・評価scope・方法・evidence・結果・反例を紐付けた構造候補。\n- **提供するもの**：評価結果を保持したBRAIN候補入力と、対象のsource/version/evaluation identityを結ぶreceipt。\n- **保証すること**：単一実績、AI生成、評価resultのみで確立Patternとしない。candidateの評価scopeと限界を保ち、OSの登録・振分けとBRAIN内独立検証の後まで採否・成熟状態を先取りしない。\n- **依存・検証／版**：L2-007/008/009/010のgeneric provenance/identity/state、Infrastructure candidateのmaturityを扱う場合に限りL2-INFRA-017、およびLABO評価contract。候補revisionと評価対象revision、成功・failure・反例・未評価範囲の対応を確認する。1.0。\n- **失敗時の戻し先**：評価と対象revisionが結べないときはunknown候補として止め、LABOへ評価を返す。OS登録状態の正本はOSへ戻す。\n- **束ねる条件**：BRAIN L1-007/009/010、HELIX-LABOの評価責務。\n\n",
+        "span_full_recomputed": true,
+        "full_recomputed": true,
+        "base_main_source": {
+          "revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+          "full_sha256_raw_lf": "421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa",
+          "full_bytes": 73642,
+          "span_raw_lf_sha256": "28d2b53bfdd0db2353942c4e880a4cc9d48069d302ecffc0cded0f94cc08fbc6",
+          "span_matches_po_fixed_revision": true
+        }
+      },
+      {
+        "role": "BRAIN-L2-022",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+        "full_sha256_raw_lf": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+        "full_bytes": 71594,
+        "start_line": 434,
+        "end_line": 443,
+        "span_raw_lf_sha256": "590abf50787f50c3d1fd640e34e75bd337d52829aff9cea9474f2601f7ef4a42",
+        "span_bytes": 1548,
+        "literal": "### HELIXBRAIN-L2-022 BRAINのrequired inputからHARNESS設計義務への接続（connection）\n\n- **親L1**：`HELIXBRAIN-L1-003`、`HELIXBRAIN-L1-005`、`HELIXBRAIN-L1-012`。\n- **受け取るもの**：BRAIN Patternが要求する設計input、前提、constraint、関連Patternと根拠。\n- **提供するもの**：HARNESS-L2-009へ対応付けられた設計input、Pattern/Unit/Partとdependency relation、元knowledge identity/versionへのtrace。接続先が工程表・遷移図・実装優先順位を導くための構造材料。\n- **保証すること**：Patternのrequired inputとdependencyを設計義務へ落とさず渡すが、BRAINが製品固有の要求値や設計選択、工程表、遷移図、実装優先順位を単独で決めない。HARNESS-CORE/HARNESSは自らの要求・設計契約に従って導出・管理する。\n- **依存・検証／版**：L2-003/005/008、HARNESS-L2-009 contract。Pattern inputから受入側義務まで双方向traceし、値未定と未充足を区別する。1.0。\n- **失敗時の戻し先**：意味関係不明はBRAIN L1-003/005へ、設計義務の受領方法はHARNESSへ戻す。欠落は完了扱いしない。\n- **束ねる条件**：2026-09-25 POのBRAIN/Core指示「設計ユニット・パーツと依存から工程表・遷移図・実装優先順位を導く」、Concept「HARNESS-COREは製品固有の意味と設計、Pythonで要求導出」。L2-022はその入力構造の受渡しを担い、導出の所有はHARNESS-CORE/HARNESSに置く。\n\n",
+        "span_full_recomputed": true,
+        "full_recomputed": true,
+        "base_main_source": {
+          "revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+          "full_sha256_raw_lf": "421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa",
+          "full_bytes": 73642,
+          "span_raw_lf_sha256": "590abf50787f50c3d1fd640e34e75bd337d52829aff9cea9474f2601f7ef4a42",
+          "span_matches_po_fixed_revision": true
+        }
+      },
+      {
+        "role": "BRAIN-L11-024",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+        "full_sha256_raw_lf": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+        "full_bytes": 23699,
+        "start_line": 64,
+        "end_line": 64,
+        "span_raw_lf_sha256": "aff2c5df94b1b823fa92d879ae7625c791d623f28eed0851ed7d4d585fa6f440",
+        "span_bytes": 404,
+        "literal": "| HELIXBRAIN-L2-024 | 1.0 | Infrastructure設計知識はCORE経由、実利用結果はRuntime owner→LABO評価→L2-020経由とし、BRAIN↔Runtimeの直接read/write/learning pathを作らない。Runtime実状態とBRAIN knowledgeを別owner/identityに保ち、実log/metrics/credential/account/操作権限をBRAINに入れない。Runtime操作またはraw runtime data保存は不合格。 |\n",
+        "span_full_recomputed": true,
+        "full_recomputed": true,
+        "base_main_source": {
+          "revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+          "full_sha256_raw_lf": "833e80f6b27e6f20461f4c57dd8021d146badcd3a6296e2dd7148649a4389ed5",
+          "full_bytes": 25082,
+          "span_raw_lf_sha256": "aff2c5df94b1b823fa92d879ae7625c791d623f28eed0851ed7d4d585fa6f440",
+          "span_matches_po_fixed_revision": true
+        }
+      },
+      {
+        "role": "BRAIN-L11-025",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+        "full_sha256_raw_lf": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+        "full_bytes": 23699,
+        "start_line": 65,
+        "end_line": 65,
+        "span_raw_lf_sha256": "820a9905a103a6993004f6db6bfad8222091898c704a56eb51e865c75a81b895",
+        "span_bytes": 484,
+        "literal": "| HELIXBRAIN-L2-025 | 1.0 | Candidate→LABO evaluation→OS registration/routing→BRAIN change independent verification→adoptionの各状態とowner、対象revisionを別に追う。AI生成、単一実績、LABO評価、OS ticket、文書存在だけでaccepted/matureへ昇格、または意味を変えない差分へ新たなhuman approvalを加えたら不合格。Infrastructure candidateのmaturity判定は該当時のみL2-INFRA-017のstate/evidenceを確認する。 |\n",
+        "span_full_recomputed": true,
+        "full_recomputed": true,
+        "base_main_source": {
+          "revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+          "full_sha256_raw_lf": "833e80f6b27e6f20461f4c57dd8021d146badcd3a6296e2dd7148649a4389ed5",
+          "full_bytes": 25082,
+          "span_raw_lf_sha256": "820a9905a103a6993004f6db6bfad8222091898c704a56eb51e865c75a81b895",
+          "span_matches_po_fixed_revision": true
+        }
+      }
+    ],
+    "current_l1_po_support": [
+      {
+        "role": "BRAIN-L1-007",
+        "revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "path": "docs/helix-brain/L1-planning/brain-intent.md",
+        "full_sha256_raw_lf": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0",
+        "full_bytes": 13336,
+        "start_line": 44,
+        "end_line": 44,
+        "span_raw_lf_sha256": "eea36c06309aa1799947ec3e4d37e0c0608ad4cb5e6cc0b1c5298dfc18111d20",
+        "span_bytes": 615,
+        "literal": "| HELIXBRAIN-L1-007 | 人間は、Pattern・Unit・Partの出所、由来、根拠、採用の理由、評価した範囲、反例、限界を辿れる。AIが生成したことだけで汎用の知識へ昇格させない。昇格は、LABOの評価を経た提案としてOSが登録・振り分け、BRAINの変更の手続きの中で独立した検証を経て採否する（旧RCLS-BR-004の段階。人の判断は、人が持つ上流の意味に関わる場合に限る。[2026-09-26のPO判断](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)） | BRAIN-L1-007 | 1.0 | 単体 |\n"
+      },
+      {
+        "role": "BRAIN-L1-008-and-009-promotion-route",
+        "revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "path": "docs/helix-brain/L1-planning/brain-intent.md",
+        "full_sha256_raw_lf": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0",
+        "full_bytes": 13336,
+        "start_line": 45,
+        "end_line": 46,
+        "span_raw_lf_sha256": "d7a393c69d95b39b1831edd64abf15dd2e6eff16297e4279249ad6e9a9f52f7b",
+        "span_bytes": 810,
+        "literal": "| HELIXBRAIN-L1-008 | 人間は、再利用できる構造ごとのidentityと版を持ち、current、superseded、deprecated、experimental、retired等を区別できる。旧いPatternを黙って新しいものへ置き換えない。どの製品のHELIX-HARNESS-COREがどの版を参照したかを辿れる。実際のprojectで使った版と状態の管理はHELIX-OSに委ねる | BRAIN-L1-008 | 1.0 | 単体 |\n| HELIXBRAIN-L1-009 | 人間は、既存のPatternのUnitを組み合わせ、新しい関係を足した構成の候補を表せる。構成の候補を、すぐに確立したPatternへ昇格させず、LABO等の評価の経路を通す。昇格の登録と振り分けはOSが行う（HELIXBRAIN-L1-007と同じ経路） | BRAIN-L1-009 | 1.0 | 単体（評価はLABOとの接続） |\n"
+      },
+      {
+        "role": "BRAIN-L1-source-crosswalk-RCLS",
+        "revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "path": "docs/helix-brain/L1-planning/brain-intent.md",
+        "full_sha256_raw_lf": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0",
+        "full_bytes": 13336,
+        "start_line": 87,
+        "end_line": 87,
+        "span_raw_lf_sha256": "4b72831f6d02f9d946c3e74f1e045f1eb7545b65624e618da5aff7a94b51e1e9",
+        "span_bytes": 597,
+        "literal": "| HELIXBRAIN-L1-007、009（昇格の経路） | 旧RCLS-BR-004（`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md:37-39`：project内の知識を独立検証、横断検証、shadowを経たものだけ仕組みへ昇格する）、旧RCLS-BR-006（同`:45-47`：学習は提案であり、既存のauthorityを直接変えない） | 段階を踏んだ独立の検証を経て昇格し、提案で既存のauthorityを変えない | 提案の登録と振り分けをOSが行う（OSはPM、LABOはPMO。2026-09-26のPO判断） |\n"
+      },
+      {
+        "role": "BRAIN-PO-adoption-024-025",
+        "revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "path": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+        "full_sha256_raw_lf": "fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a",
+        "full_bytes": 11307,
+        "start_line": 83,
+        "end_line": 84,
+        "span_raw_lf_sha256": "bb26accf0d87fa4f529892e27787edd672ed30a1437f84965bb3d7d5158d3169",
+        "span_bytes": 150,
+        "literal": "| `HELIXBRAIN-L2-024` | `MPR-RC-HELIXBRAIN-L2-024-002` | composite / 1.0 |\n| `HELIXBRAIN-L2-025` | `MPR-RC-HELIXBRAIN-L2-025-002` | composite / 1.0 |\n"
+      },
+      {
+        "role": "PO-handoff-OS-PM-LABO-PMO",
+        "revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "path": "docs/governance/decisions/handoff-integration-po-decisions-2026-09-26.md",
+        "full_sha256_raw_lf": "3f12d5a53b05dc478cc7138e362730d38c6aa835079b41b6124cb569f0fc6b9d",
+        "full_bytes": 20787,
+        "start_line": 85,
+        "end_line": 92,
+        "span_raw_lf_sha256": "f0f16427aaafa1481ad6ce0c4dfdfa7d77719c1d32ceaaf91a7ebcf1a443519d",
+        "span_bytes": 1231,
+        "literal": "### OSはPM、周辺機構はPMO\n\n- OSはPMにあたる。ticket、工程管理、割当て、優先度、依存、予算、進行、再試行・再割当てを決めて回す。\n- 周辺機構はPMOにあたる。INTELLIGENCEは計画と配置の案、LABOは実績の評価・改善の提案・Workerの水準、HARNESSは工程の標準と検証義務、BRAINは設計知識、SECURITYは制約とauthority、実行基盤（HELIX-INFRASTRUCTUREの案）は資源を出す。\n- PMOは案・標準・評価・制約を出すが、PMの決定を直接書き換えない。PMもPMOの案を無条件に実行せず、適格性を確かめて決める（Conceptの「決めるのはOS」、OSの「しないこと」の「INTELLIGENCEの案の無条件実行」と同じ）。\n- 改善ループの主語は、中身（観測・評価・改善の提案）はLABO、登録・振り分け・ticket化して回すのはOSとなる。\n- LABOの評価の渡し方は、評価済みの材料（汎用の構造の候補、判断・モデル改善の材料、Workerの水準）をLABOからBRAIN・INTELLIGENCEへコネクタで渡し、改善の提案はOSが登録・振り分け、採否へ回す（LABO原文18章・23章と整合）。\n\n"
+      }
+    ],
+    "legacy_sources_read_and_pinned": [
+      {
+        "role": "three-doc L3 structure / FR+AC placement",
+        "revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md",
+        "full_sha256_raw_lf": "949b0da00d2a417e1b36d3679b89735de7adadf831f567dbe383dfe6337f19e4",
+        "full_bytes": 4297,
+        "asset_id": "LEGACY-ASSET-9A772391C7FB1298D45F",
+        "spans": [
+          {
+            "start_line": 16,
+            "end_line": 56,
+            "span_raw_lf_sha256": "fbb50e1ed591235cba594d8b8a10d5f1c55be865e3df9c9daf75f3814a18ab6a",
+            "span_bytes": 3915,
+            "literal": "# L3 機能要件 sub-doc (harness)\n\nL1 業務要求 / 機能要求 / NFR を L3 機能要件 (FR-* + AC-* + IPA グレード値) に詳細化する sub-doc 群。\n\n## 構成 (3 sub-doc)\n\n| sub-doc | 役割 | status | 担当 PLAN |\n|---------|------|--------|-----------|\n| `functional-requirements.md` | FR-* + AC-* (Given-When-Then) 詳細化、画面紐付き / mode / drive / 人間判断点 | confirmed | PLAN-L3-01-functional-detail |\n| `business-detail.md` | BR-21 詳細化 + HM-08 連動 + FR-L1-36/38/43 (Learning Engine evaluation projection) | confirmed | PLAN-L3-02-business-detail |\n| `nfr-grade.md` | NFR-01〜17 の IPA グレード Lv + 受入閾値 + 測定方法 + pass 条件 | confirmed | PLAN-L3-03-nfr-grade |\n\n> **scope 分離**: L3 では screen / technical sub-doc を起こさない。screen は L1 + L2-screen で完結 (L10 UX 磨きへ continue)、technical は L4 ADR / L4 基本設計に直送。\n\n## companion doc (sub_doc ではない)\n\n| doc | 役割 | status |\n|-----|------|--------|\n| `roadmap.md` | 検証/改善ロードマップ (L0-L14 を横断する 7 フェーズ + 2 ゲート、PO /goal 2026-06-04)。L3 マイルストーンで起票する**設計層の計画 doc**。V-model の標準 sub_doc (テスト設計と pair する artifact) ではなく、L12 受入テストとは pair しない companion。CLAUDE.md Read Order / AGENTS.md Core Reads には含めず、V-model freeze 境界で検証サイクルを実行するときだけ動的に参照する | draft |\n\n> roadmap.md は `sub_doc` enum (functional-requirement / business-requirement / nfr-grade) の対象外。G3 pair freeze の trace 対象にも含めない (pair artifact を持たないため)。詳細・配置根拠は roadmap.md §6 / IMP-036 を参照。\n\n## L1 ↔ L3 ↔ L12 接続\n\n- **上流 (L1 baton)**: L1 5 sub-doc + L2-screen placeholder を全件 `dependencies.requires` で列挙 (G1-trace R4 充足規約、screen §4.1 参照)。L2-screen は L3 の未充足依存ではなく、L2 着手時に PLAN-L2-01〜04 で本起票する明示 carry として扱う。\n- **下流 (L3 → L12 pair)**: 本 sub-doc 3 件全体 ↔ `docs/test-design/harness/L3-acceptance-test-design.md` 1 doc (V-model L3↔L12 pair)\n- **下流 (L3 → L4)**: L4 PLAN (PLAN-L4-01〜05) は本 sub-doc 全件を `dependencies.requires` に列挙\n\n## 横断原則継承 (CC2 carry)\n\nscreen §4.1 の CC2 carry は、現行 HELIX の「AI 自律を既定、不可逆・高影響だけ人間 residue」へ読み替える。L3 全機能要件では「**人間判断点**」を L0-L3 承認、不可逆 cutover、本番・認証・PII・secret・license・destructive 操作、異常時 override に限定して明示し、L4 以降の通常 GitHub 運用や検証実行に per-gate の人間承認を要求しない。\n\n## G3 ゲート (L3 pair freeze)\n\nL3 3 sub-doc + L12 受入テスト 1 doc の pair freeze を **G3** で確定する。**正規式モデル (PLAN-RECOVERY-02)**: L3 の検証本質 = 本番受入 (L12)。画面要求は L1 (screen sub-doc) が担い L3 では起こさない。L2=L1 フェーズ分離の根拠は L1/L2 設計本文と L12 受入テスト trace に置き、本 README は索引として扱う。G3 内 sub-gate 候補 (L1 G1-trace と同様の構造):\n\n- **G3-content**: 各 sub-doc の必須 § 完備\n- **G3-pair**: L3 sub-doc ⇔ L12 受入テスト pair 整合\n- **G3-trace**: FR-L1 → FR-L3 / FR-L3 → AC / AC → 受入テスト / NFR → 閾値 → 受入テスト の 4 方向 trace 整合 (機械検証、`helix plan lint --gate G3-trace`)\n\n詳細は L3 sub-doc 本起票 + PLAN-L3-01〜03 Step 6 で確定する。`helix plan lint --gate G3-trace` は L7 実装済みで、G3-trace は `helix doctor` の hard gate としても集約される。G3 freeze 前は機械検証結果と L12 acceptance test design の宣言 trace を合わせてレビューする。\n"
+          }
+        ]
+      },
+      {
+        "role": "old L3 definition and pair relation",
+        "revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+        "full_sha256_raw_lf": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+        "full_bytes": 15617,
+        "asset_id": "LEGACY-ASSET-F542125805B777D8A56A",
+        "spans": [
+          {
+            "start_line": 148,
+            "end_line": 168,
+            "span_raw_lf_sha256": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9",
+            "span_bytes": 1214,
+            "literal": "### L3 要件定義\n\n| 項目 | 内容 |\n|------|------|\n| 名称 | 要件定義 (System Requirements) |\n| 目的 | システム機能要件 (FR-*) + 受入条件 (AC-*) を確定し、設計への入力とする |\n| 主要成果物 ① | 3 sub-doc: functional-requirement / business-requirement / nfr-grade |\n| ③ テスト設計ペア | UX受入テスト設計（L10で実施） |\n| V-pair (右腕) | **L10** UX受入検証 |\n| 主要ゲート | **G3** 機能要件凍結 (FR+AC ⇔ L10 UX受入テスト設計 pair freeze) |\n| 入口 | G1/G2 exit 後 (L1 業務要求 BR-* が入力) |\n| 出口 | G3 通過 (FR+AC 全件確定 + 受入テスト設計 pair 揃い) |\n| 主要 role | `tl` 必須 (FR+AC 仕様化)、`po` 必須 (受入条件確認) |\n\n注: FR-* は L1 BR-* から双方向 trace する。AC 不在での G3 通過は fail (AP-4)。\nG3では`engineering_discipline_required: true`のPLAN契約により、no-code-first判断、責務owner、\n許容complexity、L10で観測する振る舞いをfreezeする。ここでobject modelを一律採用せず、\n`none` / `pure_function`を含む最小のmodeling判断を許可する。\n出典: concept v3.1 §3.1.2 / requirements v1.3.12 §2.2 G3\n\n---\n"
+          }
+        ]
+      },
+      {
+        "role": "old L10 behavior and backflow",
+        "revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md",
+        "full_sha256_raw_lf": "d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a",
+        "full_bytes": 19615,
+        "asset_id": "LEGACY-ASSET-34DF3B535879CC73FA86",
+        "spans": [
+          {
+            "start_line": 162,
+            "end_line": 170,
+            "span_raw_lf_sha256": "d8e3f0e9afaa03c20985808ccade01279952ea5366655e3d4e95ca9e97dd3df5",
+            "span_bytes": 306,
+            "literal": "### L10 機能要件・UX受入\n\n| 項目 | 内容 |\n|---|---|\n| 目的 | L3 FR/ACをsystem behavior、実データ表示、accessibilityを含めて検証する |\n| V-pair | **L3↔L10** |\n| gate | **G10** |\n| 出口 | G10 green → L11 |\n| 差し戻し | L3機能要件または対応するL4-L6設計 |\n"
+          },
+          {
+            "start_line": 195,
+            "end_line": 207,
+            "span_raw_lf_sha256": "9a91c1d2094be6c1c0463b9f3af280f41abb15b0503f8520c7e72be12c27c75b",
+            "span_bytes": 782,
+            "literal": "## 右腕差し戻しルール\n\n検証工程で失敗した場合の差し戻し先を明示する (concept v3.1 §3.1.5):\n\n| 失敗工程 | 差し戻し先 |\n|---------|-----------|\n| L8 結合テスト失敗 | L5 詳細設計 または L7 実装 |\n| L9 総合テスト失敗 | L4 基本設計 |\n| L10 機能要件・UX受入失敗 | L3要件または対応するL4-L6設計 |\n| L11 人間受入フィードバック | L2要求。system behavior変更時はL3 add-design |\n| L12 価値・運用品質失敗 | L1事業要求へfeedback。本番回帰はIncident mode、軽微なrelease問題はG12 evidenceを再取得 |\n\n差し戻し記録は PLAN の carry log に残す。右側工程で「ペア未凍結のテスト設計を後付け」することは V-model 違反 (AP-7)。\n"
+          }
+        ]
+      },
+      {
+        "role": "RCLS-BR-004/006; request source read in full",
+        "revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md",
+        "full_sha256_raw_lf": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c",
+        "full_bytes": 2335,
+        "asset_id": "LEGACY-ASSET-F2C2755C8809C2C0DEAD",
+        "spans": [
+          {
+            "start_line": 1,
+            "end_line": 49,
+            "span_raw_lf_sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c",
+            "span_bytes": 2335,
+            "literal": "---\ncanonical_vmodel: L1-L12\ncandidate_layer: L1\ncanonical_pair: L12\ntitle: \"責務中心Learning System要求\"\nlayer: L1\nkind: redesign\nstatus: draft_candidate\ncreated: 2026-09-02\nupdated: 2026-09-02\nowner: PO / Codex TL\nplan: PLAN-L3-80-responsibility-centric-learning-system\nrelated_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md\nnext_pair_freeze: L12_after_po_approval\n---\n\n# 責務中心Learning System要求\n\n- 文書ID: `HELIX-RCLS-BRQ-001`\n- Behavior Contract: `RESPONSIBILITY-CENTRIC-LEARNING-001`\n- 主Issue: `#1384`\n\n## 要求\n\n### RCLS-BR-001 責務を学習主体にする\n\nRequirement、Design、Runtime、GitHub、CI、Security、Release、Provider、Recovery等のstableな`responsibility_id`が、経験、反例、検証済み知識のprimary ownerになる。folder、文書、agent persona、skill名をownerにしない。\n\n### RCLS-BR-002 Vモデルと運用事実を学習入力にする\n\n学習入力を`CASE`、`SCENE`、`PATTERN`、`LOG`と横断検証`VERIFY`へ分離し、artifact class、責務、case、revisionへ束縛する。相関を因果へ、自己評価を独立検証へ昇格しない。\n\n### RCLS-BR-003 必要最小限の知識だけを供給する\n\nAssignmentごとに責務、案件、scene、risk、provider、task class、context budgetへ適合する最小packetを決定的にcompileする。全Skill、全memory、全failure logを一括注入しない。\n\n### RCLS-BR-004 知恵を段階的に仕組みへ昇格する\n\nproject-local knowledgeから独立検証、cross-project検証、shadow enforcementを経たものだけをMechanismへ昇格する。機械化後は同じ規則をSkill proseへ重複保持しない。\n\n### RCLS-BR-005 学習の失効と隔離を保証する\n\n反例、authority revision、provider/model/version変更、expiry、security／license条件によりqualificationをstale、contradicted、revoked、revalidation requiredへ戻せる。\n\n### RCLS-BR-006 既存authorityを奪わない\n\nLearning SystemはRequirement、Design、merge、releaseを直接変更せず、proposal、evidence、retrieval packetを提供する。Requirement Discovery、UIL、System Synthesis、Pattern Promotion、HELIX-Bench、Resident Laneを再実装しない。\n\n本candidateはplan固有承認とcanonical promotionまでcurrent authorityへ加算しない。\n"
+          },
+          {
+            "start_line": 37,
+            "end_line": 39,
+            "span_raw_lf_sha256": "fa124ee34e385d50ae82b75a7f78d78c8cca6f46f38758f5a2fb5e8a1bda60ba",
+            "span_bytes": 267,
+            "literal": "### RCLS-BR-004 知恵を段階的に仕組みへ昇格する\n\nproject-local knowledgeから独立検証、cross-project検証、shadow enforcementを経たものだけをMechanismへ昇格する。機械化後は同じ規則をSkill proseへ重複保持しない。\n",
+            "selected_clause": "RCLS-BR-004 / RCLS-BR-006"
+          },
+          {
+            "start_line": 45,
+            "end_line": 47,
+            "span_raw_lf_sha256": "b3e24cab42efaaf2984a0eafd7022090e72d0a573d0b4f382c84e2382ffea0d5",
+            "span_bytes": 305,
+            "literal": "### RCLS-BR-006 既存authorityを奪わない\n\nLearning SystemはRequirement、Design、merge、releaseを直接変更せず、proposal、evidence、retrieval packetを提供する。Requirement Discovery、UIL、System Synthesis、Pattern Promotion、HELIX-Bench、Resident Laneを再実装しない。\n",
+            "selected_clause": "RCLS-BR-004 / RCLS-BR-006"
+          }
+        ]
+      },
+      {
+        "role": "paired RCLS L3 requirements read in full",
+        "revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requirements.md",
+        "full_sha256_raw_lf": "0d395f7ccd81a8c749ef4c3b8c0a660505b6183531992b4678267b5b51c929eb",
+        "full_bytes": 6636,
+        "asset_id": "LEGACY-ASSET-5841D44AE1255A061667",
+        "spans": [
+          {
+            "start_line": 1,
+            "end_line": 80,
+            "span_raw_lf_sha256": "0d395f7ccd81a8c749ef4c3b8c0a660505b6183531992b4678267b5b51c929eb",
+            "span_bytes": 6636,
+            "literal": "---\ncanonical_vmodel: L1-L12\ncandidate_layer: L3\ncanonical_pair: L10\ntitle: \"責務中心Learning System要件\"\nlayer: L3\nkind: redesign\nstatus: draft_candidate\ncreated: 2026-09-02\nupdated: 2026-09-02\nowner: PO / Codex TL\nplan: PLAN-L3-80-responsibility-centric-learning-system\nparent_design: docs/governance/candidates/responsibility-centric-learning-requests.md\npair_artifact: docs/governance/candidates/responsibility-centric-learning-acceptance.md\nnext_pair_freeze: L10_after_po_approval\n---\n\n# 責務中心Learning System要件\n\n- 文書ID: `HELIX-RCLS-REQ-001`\n- 主Issue: `#1384`\n- L3候補承認: [`L3-PO-1384-001`](https://github.com/RetryYN/HELIX-HARNESS/issues/1384#issuecomment-5544537975)。canonical昇格、IR admission、runtime実装は別工程。\n\n## Feature契約\n\n### RCLS-FR-001 Learning profileとowner\n\n- `RCLS-R-01`: `ResponsibilityLearningProfileV1`はstable responsibility、owner、source requirement/design/contract、channel policy、asset、mechanism、retention、sensitivity、promotion、revision、digestを持つ。\n- `RCLS-R-02`: 各assetはexactly one primary ownerを持ち、複数責務との関係はconsumer edgeで表す。split／merge／supersede時はlineageを保持する。\n- `RCLS-R-03`: 責務間転用はsource/target、理由、適用条件、失う前提、反例、target admissionを持つproposalとする。\n\n### RCLS-FR-002 学習asset\n\n- `RCLS-R-04`: `CaseKnowledgeV1`は目的、制約、non-goal、assumption、unknown、episode内selection、runtime judgment、ADR／versioned decision recordへのtyped reference、evidence、valid revisionを別fieldで保持する。会話、memory、学習結果からaccepted decisionを生成しない。\n- `RCLS-R-05`: `SceneKnowledgeV1`はactor、trigger、context、goal、friction、selection／escalation point、observed outcome、counterexampleを保持する。selection pointをarchitecture decisionへ投影しない。\n- `RCLS-R-06`: `PatternKnowledgeV1`はproblem shape、applicability、structure、invariant、trade-off、alternative、failure、counterexample、scope、confidence、revalidation条件を保持する。\n- `RCLS-R-07`: `OperationalExperienceV1`は状況、`runtime_judgment`、行動、観測、outcome、cost、downstream impact、correlation、causal statusを再現可能に束縛する。`runtime_judgment`は根拠、counterevidence、expiryを持ち、human approvalまたはaccepted ADRへ昇格しない。\n- `RCLS-R-08`: `VerificationAssessmentV1`はtarget revision、class、producer/verifier独立性、oracle、counterevidence、environment、reproduction、expiryを保持する。\n\n### RCLS-FR-003 IndexとRetrieval Packet\n\n- `RCLS-R-09`: primary indexを`responsibility_id`とし、case/channel/scene/pattern/failure/task/domain/risk/provider/workflow/revision/sensitivity/verificationをfacetにする。domainはownerを決めない。\n- `RCLS-R-10`: `LearningRetrievalPacketV1`はassignment、responsibility、case、task、scene hypothesis、risk、provider lane、budget、authority digest、included/excluded exact set、mechanism、runtime judgment pack、counterexample、unknown、expiry、digestを持つ。approval／decisionは本文を複製せず、検証可能なtyped authority pointerだけを運ぶ。\n- `RCLS-R-11`: 同一input、source revision、registry/policy versionから同一asset exact setとpacket digestを生成する。semantic/vector searchは候補順位付けだけに使う。\n\n### RCLS-FR-004 Promotionとmechanization\n\n- `RCLS-R-12`: lifecycleを`CAPTURED→NORMALIZED→RESPONSIBILITY_BOUND→PROJECT_LOCAL→SUPPORTED→VERIFIED→CROSS_PROJECT_CANDIDATE→CROSS_PROJECT_VALIDATED→MECHANIZATION_CANDIDATE→SHADOW→ACTIVE`とし、段階飛越を拒否する。\n- `RCLS-R-13`: `CONTRADICTED/SUPERSEDED/EXPIRED/REVOKED/REVALIDATION_REQUIRED`への縮退を保持する。\n- `RCLS-R-14`: Scene Skillは非決定的な`runtime_judgment`、適用／非適用scene、追加価値、before/after測定、provider-native比較、expiryが揃う場合だけ昇格する。\n- `RCLS-R-15`: `MechanizationCandidateV1`はtrigger、invariant、enforcement point、deterministic evaluator、shadow、false-positive/escaped-defect budget、rollback、verification、必要なtyped approval pointerを持つ。学習eventやruntime評価をapproval provenanceとして代用しない。\n- `RCLS-R-16`: ACTIVE mechanismと同じ規則をSkill proseへ重複保持しない。\n\n### RCLS-FR-005 レーン、security、replay\n\n- `RCLS-R-17`: Codex、Cursor、Claudeへprovider-neutralな同一責務packetを投影し、provider-native内部reviewを独立reviewへ昇格しない。\n- `RCLS-R-18`: secret、PII、raw private transcript、license不明source、hidden-oracle contamination、境界外cross-project取得を拒否する。\n- `RCLS-R-19`: event journalをsourceとし、index、confidence、promotionを再構築可能な`harness.db` projectionにする。別DB authorityを作らない。\n- `RCLS-R-20`: provider/model/config/version driftで関連assetとSkill qualificationをrevalidationへ戻す。\n\n### RCLS-FR-006 Authority語彙と非昇格境界\n\n- `RCLS-R-21`: Learning assetとpacketは`selection`、`approval`、`disposition`、`runtime_judgment`、ADR系`decision`を別identityとして保持し、単一の`decision` fieldへ畳み込まない。\n- `RCLS-R-22`: accepted decisionはADRまたはversioned decision recordへ、approvalは対象artifact／actionと検証可能なprovenanceへ一意に解決する場合だけ参照できる。会話、相談、叱責、作業依頼、memory prose、同一GitHub actor名から生成または推測しない。\n- `RCLS-R-23`: Learning Systemは候補、反例、runtime judgment、retrieval packetを出力できるが、人の指示、承認、決定を発明・補完・再解釈しない。曖昧なlegacy値はauthorityへ昇格せず隔離する。\n\n## Owner境界\n\n| Owner | Learning Systemとの境界 |\n|---|---|\n| #397 Requirement IR | CASE authorityを供給。Learningから要求を書き換えない |\n| #1033/#1035 System Synthesis/Pattern Promotion | validated patternとpromotion authorityを再利用 |\n| UIL | LOG intakeとmechanization findingを供給 |\n| #1318/#1324 RSTDD | responsibility knowledgeのproducer/consumer |\n| #1295/#1296 HELIX-Bench | skill/pattern/mechanismの再現性を測定 |\n| #1370 | startup packetへ最小subsetを投影 |\n| #1372 | knowledge文書のauthority driftを監査 |\n| #1382 | usage/utility/context costをconsumeしてsurfaceを処分 |\n\n新workflow route、development style、provider内部subagent構成を追加しない。\n"
+          },
+          {
+            "start_line": 46,
+            "end_line": 60,
+            "span_raw_lf_sha256": "dbeab7c9a73f6ced2f669121d3848a10b88ff646cdf57b43c123ce0d2fa7b4bc",
+            "span_bytes": 1628,
+            "literal": "### RCLS-FR-004 Promotionとmechanization\n\n- `RCLS-R-12`: lifecycleを`CAPTURED→NORMALIZED→RESPONSIBILITY_BOUND→PROJECT_LOCAL→SUPPORTED→VERIFIED→CROSS_PROJECT_CANDIDATE→CROSS_PROJECT_VALIDATED→MECHANIZATION_CANDIDATE→SHADOW→ACTIVE`とし、段階飛越を拒否する。\n- `RCLS-R-13`: `CONTRADICTED/SUPERSEDED/EXPIRED/REVOKED/REVALIDATION_REQUIRED`への縮退を保持する。\n- `RCLS-R-14`: Scene Skillは非決定的な`runtime_judgment`、適用／非適用scene、追加価値、before/after測定、provider-native比較、expiryが揃う場合だけ昇格する。\n- `RCLS-R-15`: `MechanizationCandidateV1`はtrigger、invariant、enforcement point、deterministic evaluator、shadow、false-positive/escaped-defect budget、rollback、verification、必要なtyped approval pointerを持つ。学習eventやruntime評価をapproval provenanceとして代用しない。\n- `RCLS-R-16`: ACTIVE mechanismと同じ規則をSkill proseへ重複保持しない。\n\n### RCLS-FR-005 レーン、security、replay\n\n- `RCLS-R-17`: Codex、Cursor、Claudeへprovider-neutralな同一責務packetを投影し、provider-native内部reviewを独立reviewへ昇格しない。\n- `RCLS-R-18`: secret、PII、raw private transcript、license不明source、hidden-oracle contamination、境界外cross-project取得を拒否する。\n- `RCLS-R-19`: event journalをsourceとし、index、confidence、promotionを再構築可能な`harness.db` projectionにする。別DB authorityを作らない。\n- `RCLS-R-20`: provider/model/config/version driftで関連assetとSkill qualificationをrevalidationへ戻す。\n\n",
+            "selected_clause": "RCLS-FR-004 / RCLS-FR-006"
+          },
+          {
+            "start_line": 61,
+            "end_line": 65,
+            "span_raw_lf_sha256": "c218b4d7e19e815ad4ba74d90b78af94b233b208f606aa0fda35e916640278d6",
+            "span_bytes": 812,
+            "literal": "### RCLS-FR-006 Authority語彙と非昇格境界\n\n- `RCLS-R-21`: Learning assetとpacketは`selection`、`approval`、`disposition`、`runtime_judgment`、ADR系`decision`を別identityとして保持し、単一の`decision` fieldへ畳み込まない。\n- `RCLS-R-22`: accepted decisionはADRまたはversioned decision recordへ、approvalは対象artifact／actionと検証可能なprovenanceへ一意に解決する場合だけ参照できる。会話、相談、叱責、作業依頼、memory prose、同一GitHub actor名から生成または推測しない。\n- `RCLS-R-23`: Learning Systemは候補、反例、runtime judgment、retrieval packetを出力できるが、人の指示、承認、決定を発明・補完・再解釈しない。曖昧なlegacy値はauthorityへ昇格せず隔離する。\n",
+            "selected_clause": "RCLS-FR-004 / RCLS-FR-006"
+          }
+        ]
+      },
+      {
+        "role": "paired RCLS acceptance read in full",
+        "revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+        "full_sha256_raw_lf": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7",
+        "full_bytes": 3729,
+        "asset_id": "LEGACY-ASSET-B1F192F46FC3AC336094",
+        "spans": [
+          {
+            "start_line": 1,
+            "end_line": 42,
+            "span_raw_lf_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7",
+            "span_bytes": 3729,
+            "literal": "---\ncanonical_vmodel: L1-L12\ncandidate_layer: L10\ncanonical_pair: L3\ntitle: \"責務中心Learning System受入設計\"\nlayer: L10\nkind: redesign\nstatus: draft_candidate\ncreated: 2026-09-02\nupdated: 2026-09-02\nowner: QA / Codex TL\nplan: PLAN-L3-80-responsibility-centric-learning-system\nparent_design: docs/governance/candidates/responsibility-centric-learning-requirements.md\npair_artifact: docs/governance/candidates/responsibility-centric-learning-requirements.md\n---\n\n# 責務中心Learning System受入設計\n\n| AC | Requirement | 合格条件 | Negative oracle |\n|---|---|---|---|\n| `RCLS-AC-001` | RCLS-R-01..03 | 全assetがexactly one primary ownerとlineageを持つ | owner不明、暗黙shared、複数primaryを拒否 |\n| `RCLS-AC-002` | RCLS-R-04..08 | 5 channelを別contractで保持 | 自由文tag／単一enumへの畳込みを拒否 |\n| `RCLS-AC-003` | RCLS-R-07 | failure、高cost、human rejectも分母へ残る | 成功例だけでconfidenceを上げない |\n| `RCLS-AC-004` | RCLS-R-08 | independent VERIFYが別producer/session/contextを証明 | 自己評価、旧HEAD reviewを独立検証に数えない |\n| `RCLS-AC-005` | RCLS-R-09..11 | 同一input/revision/policyから同一packet exact set/digest | vector similarityだけでowner/authorityを決めない |\n| `RCLS-AC-006` | RCLS-R-10 | stale/contradicted/expired/restricted assetがexcluded receiptへ出る | current packetへの混入を拒否 |\n| `RCLS-AC-007` | RCLS-R-12..13 | promotionと全縮退状態を再生可能 | 単一事例・頻度・自己評価による段階飛越を拒否 |\n| `RCLS-AC-008` | RCLS-R-14 | Skillにscene trigger、非適用条件、効果測定、expiryがある | generic procedureの既定注入を拒否 |\n| `RCLS-AC-009` | RCLS-R-15 | mechanismにVERIFY、shadow、FP評価、rollback、approvalがある | event件数だけのACTIVE化を拒否 |\n| `RCLS-AC-010` | RCLS-R-16 | ACTIVE後の重複Skill proseが0 | machine policy化済み規則の再注入を拒否 |\n| `RCLS-AC-011` | RCLS-R-17 | lane内部reviewと独立review receiptを分離 | provider内部reviewによるmerge admissionを拒否 |\n| `RCLS-AC-012` | RCLS-R-18 | sensitivity/license/holdout policyが全外部assetを検査 | secret/PII/license不明/hidden oracleを拒否 |\n| `RCLS-AC-013` | RCLS-R-19 | event journalからindex/confidence/promotionが一致再構築 | DB rowだけのauthority化を拒否 |\n| `RCLS-AC-014` | RCLS-R-20 | provider/model/version変更で対象qualificationがstale化 | 旧bench/Skill資格の無条件継承を拒否 |\n| `RCLS-AC-015` | RCLS-R-01..20 | #1370/#1372/#1382/#1035/#1318/#1295とのowner重複0 | 既存Capabilityの再実装を拒否 |\n| `RCLS-AC-016` | RCLS-R-10/14..16 | context bytes/task、defect、acceptance、reworkをbefore/after測定 | token削減だけで品質改善を主張しない |\n| `RCLS-AC-017` | RCLS-R-18 | project-local→cross-projectにsource/license/redaction/human approvalがある | 一案件知識の自動横展開を拒否 |\n| `RCLS-AC-018` | RCLS-R-19 | Learning System出力がproposal/evidenceに限定される | Requirement/Design/merge/release直接変更を拒否 |\n| `RCLS-AC-019` | RCLS-R-21..23 | selection／approval／disposition／runtime_judgment／ADR decisionが別identityで、decision・approvalはtyped authorityへ解決する | 相談、叱責、作業依頼、memory prose、学習結果をhuman decision／approvalへ昇格する入力を拒否 |\n| `RCLS-AC-020` | 全件 | targeted/full、mutation、doctor、DB、consumer smoke、Claude exact-HEAD、main read-afterがgreen | 局所greenで終端しない |\n\n20 oracleを独立failure classとして保持し、legacy/historical successでcurrent failureを相殺しない。\n"
+          },
+          {
+            "start_line": 24,
+            "end_line": 24,
+            "span_raw_lf_sha256": "786972f342547c9f2ffc10da0cc75cc24815f485d636414c6456ac7df6fa97f4",
+            "span_bytes": 152,
+            "literal": "| `RCLS-AC-004` | RCLS-R-08 | independent VERIFYが別producer/session/contextを証明 | 自己評価、旧HEAD reviewを独立検証に数えない |\n",
+            "selected_clause": "RCLS-AC row"
+          },
+          {
+            "start_line": 27,
+            "end_line": 27,
+            "span_raw_lf_sha256": "7b0a281ee8bf1d6b82d4ac147f9e917259a8af4371018243c91830231da6bf88",
+            "span_bytes": 148,
+            "literal": "| `RCLS-AC-007` | RCLS-R-12..13 | promotionと全縮退状態を再生可能 | 単一事例・頻度・自己評価による段階飛越を拒否 |\n",
+            "selected_clause": "RCLS-AC row"
+          },
+          {
+            "start_line": 37,
+            "end_line": 37,
+            "span_raw_lf_sha256": "d09d4a4ca96a8ff68ac8b759540abfba8906e7b801f0f3c709a841165c7e0410",
+            "span_bytes": 158,
+            "literal": "| `RCLS-AC-017` | RCLS-R-18 | project-local→cross-projectにsource/license/redaction/human approvalがある | 一案件知識の自動横展開を拒否 |\n",
+            "selected_clause": "RCLS-AC row"
+          },
+          {
+            "start_line": 39,
+            "end_line": 39,
+            "span_raw_lf_sha256": "674dfd8e0cac2f25a1d2e971d1871b55393e6659d5b8f52cb25d4de992d9e221",
+            "span_bytes": 298,
+            "literal": "| `RCLS-AC-019` | RCLS-R-21..23 | selection／approval／disposition／runtime_judgment／ADR decisionが別identityで、decision・approvalはtyped authorityへ解決する | 相談、叱責、作業依頼、memory prose、学習結果をhuman decision／approvalへ昇格する入力を拒否 |\n",
+            "selected_clause": "RCLS-AC row"
+          }
+        ]
+      }
+    ],
+    "asset_ledger_rows": [
+      {
+        "asset_id": "LEGACY-ASSET-9A772391C7FB1298D45F",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 347,
+        "raw_lf_sha256": "060aa9293da5f635e44a0fd89a51e4280cd2a620ef40a34e933ffa89f9a8d376",
+        "literal": "{\"asset_id\":\"LEGACY-ASSET-9A772391C7FB1298D45F\",\"revision\":1,\"source_revision\":\"legacy-generation-2026-09-14\",\"source_path\":\"docs/design/harness/L3-functional/README.md\",\"source_sha256\":\"949b0da00d2a417e1b36d3679b89735de7adadf831f567dbe383dfe6337f19e4\",\"source_surface\":\"docs\",\"source_provenance_ref\":\"archive/legacy-generation-2026-09-14/MANIFEST.sha256\",\"asset_class\":\"Historical\",\"reuse_exclusion_class\":null,\"product_target\":\"unresolved\",\"authority_status\":\"historical\",\"upstream_ids\":[],\"pair_ids\":[],\"disposition\":\"unresolved\",\"implementation_status\":\"unknown\",\"decision_record_ref\":null,\"approval_revision\":null,\"target_path\":null,\"target_sha256\":null,\"meaning_interface_invariance_reason\":null,\"consumer_refs\":[],\"rights_status\":\"unreviewed\",\"executability_status\":\"unreviewed\",\"secret_status\":\"unreviewed\",\"external_effect_status\":\"unreviewed\",\"decided_by\":null,\"decided_at\":null,\"copy_performed_by\":null,\"copy_performed_at\":null,\"read_after_record_ref\":null,\"migration_preconditions\":[\"semantic_atom_inventory\",\"product_owner_decision\",\"parent_requirement_binding\",\"consumer_check\",\"rights_check\",\"executability_check\",\"secret_check\",\"external_effect_check\"]}\n"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-B1F192F46FC3AC336094",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 859,
+        "raw_lf_sha256": "344a7aa11db7c751ed9e8e20dc1f628715e6d5b2da47c1e0621ca3c919a11bf5",
+        "literal": "{\"asset_id\":\"LEGACY-ASSET-B1F192F46FC3AC336094\",\"revision\":1,\"source_revision\":\"legacy-generation-2026-09-14\",\"source_path\":\"docs/governance/candidates/responsibility-centric-learning-acceptance.md\",\"source_sha256\":\"92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7\",\"source_surface\":\"docs\",\"source_provenance_ref\":\"archive/legacy-generation-2026-09-14/MANIFEST.sha256\",\"asset_class\":\"Historical\",\"reuse_exclusion_class\":null,\"product_target\":\"unresolved\",\"authority_status\":\"historical\",\"upstream_ids\":[],\"pair_ids\":[],\"disposition\":\"unresolved\",\"implementation_status\":\"unknown\",\"decision_record_ref\":null,\"approval_revision\":null,\"target_path\":null,\"target_sha256\":null,\"meaning_interface_invariance_reason\":null,\"consumer_refs\":[],\"rights_status\":\"unreviewed\",\"executability_status\":\"unreviewed\",\"secret_status\":\"unreviewed\",\"external_effect_status\":\"unreviewed\",\"decided_by\":null,\"decided_at\":null,\"copy_performed_by\":null,\"copy_performed_at\":null,\"read_after_record_ref\":null,\"migration_preconditions\":[\"semantic_atom_inventory\",\"product_owner_decision\",\"parent_requirement_binding\",\"consumer_check\",\"rights_check\",\"executability_check\",\"secret_check\",\"external_effect_check\"]}\n"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-F2C2755C8809C2C0DEAD",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 860,
+        "raw_lf_sha256": "fddaf93cfdb3fef6917ddf8127930c26b6408f80258d7944dba75d4be1c6ea87",
+        "literal": "{\"asset_id\":\"LEGACY-ASSET-F2C2755C8809C2C0DEAD\",\"revision\":1,\"source_revision\":\"legacy-generation-2026-09-14\",\"source_path\":\"docs/governance/candidates/responsibility-centric-learning-requests.md\",\"source_sha256\":\"c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c\",\"source_surface\":\"docs\",\"source_provenance_ref\":\"archive/legacy-generation-2026-09-14/MANIFEST.sha256\",\"asset_class\":\"Historical\",\"reuse_exclusion_class\":null,\"product_target\":\"unresolved\",\"authority_status\":\"historical\",\"upstream_ids\":[],\"pair_ids\":[],\"disposition\":\"unresolved\",\"implementation_status\":\"unknown\",\"decision_record_ref\":null,\"approval_revision\":null,\"target_path\":null,\"target_sha256\":null,\"meaning_interface_invariance_reason\":null,\"consumer_refs\":[],\"rights_status\":\"unreviewed\",\"executability_status\":\"unreviewed\",\"secret_status\":\"unreviewed\",\"external_effect_status\":\"unreviewed\",\"decided_by\":null,\"decided_at\":null,\"copy_performed_by\":null,\"copy_performed_at\":null,\"read_after_record_ref\":null,\"migration_preconditions\":[\"semantic_atom_inventory\",\"product_owner_decision\",\"parent_requirement_binding\",\"consumer_check\",\"rights_check\",\"executability_check\",\"secret_check\",\"external_effect_check\"]}\n"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-5841D44AE1255A061667",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 861,
+        "raw_lf_sha256": "a52c2d595b4e3fab0ed35e3c5f8c7b03f52750e9e477700ed654ce46b7208178",
+        "literal": "{\"asset_id\":\"LEGACY-ASSET-5841D44AE1255A061667\",\"revision\":1,\"source_revision\":\"legacy-generation-2026-09-14\",\"source_path\":\"docs/governance/candidates/responsibility-centric-learning-requirements.md\",\"source_sha256\":\"0d395f7ccd81a8c749ef4c3b8c0a660505b6183531992b4678267b5b51c929eb\",\"source_surface\":\"docs\",\"source_provenance_ref\":\"archive/legacy-generation-2026-09-14/MANIFEST.sha256\",\"asset_class\":\"Historical\",\"reuse_exclusion_class\":null,\"product_target\":\"unresolved\",\"authority_status\":\"historical\",\"upstream_ids\":[],\"pair_ids\":[],\"disposition\":\"unresolved\",\"implementation_status\":\"unknown\",\"decision_record_ref\":null,\"approval_revision\":null,\"target_path\":null,\"target_sha256\":null,\"meaning_interface_invariance_reason\":null,\"consumer_refs\":[],\"rights_status\":\"unreviewed\",\"executability_status\":\"unreviewed\",\"secret_status\":\"unreviewed\",\"external_effect_status\":\"unreviewed\",\"decided_by\":null,\"decided_at\":null,\"copy_performed_by\":null,\"copy_performed_at\":null,\"read_after_record_ref\":null,\"migration_preconditions\":[\"semantic_atom_inventory\",\"product_owner_decision\",\"parent_requirement_binding\",\"consumer_check\",\"rights_check\",\"executability_check\",\"secret_check\",\"external_effect_check\"]}\n"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-F542125805B777D8A56A",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 2291,
+        "raw_lf_sha256": "73883376b2014725eb88baf3ac4c81313978bd219898e034fa2c6f1f94f6b73d",
+        "literal": "{\"asset_id\":\"LEGACY-ASSET-F542125805B777D8A56A\",\"revision\":1,\"source_revision\":\"legacy-generation-2026-09-14\",\"source_path\":\"docs/process/forward/L00-L06-design-phase.md\",\"source_sha256\":\"9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3\",\"source_surface\":\"docs\",\"source_provenance_ref\":\"archive/legacy-generation-2026-09-14/MANIFEST.sha256\",\"asset_class\":\"Historical\",\"reuse_exclusion_class\":null,\"product_target\":\"unresolved\",\"authority_status\":\"historical\",\"upstream_ids\":[],\"pair_ids\":[],\"disposition\":\"unresolved\",\"implementation_status\":\"unknown\",\"decision_record_ref\":null,\"approval_revision\":null,\"target_path\":null,\"target_sha256\":null,\"meaning_interface_invariance_reason\":null,\"consumer_refs\":[],\"rights_status\":\"unreviewed\",\"executability_status\":\"unreviewed\",\"secret_status\":\"unreviewed\",\"external_effect_status\":\"unreviewed\",\"decided_by\":null,\"decided_at\":null,\"copy_performed_by\":null,\"copy_performed_at\":null,\"read_after_record_ref\":null,\"migration_preconditions\":[\"semantic_atom_inventory\",\"product_owner_decision\",\"parent_requirement_binding\",\"consumer_check\",\"rights_check\",\"executability_check\",\"secret_check\",\"external_effect_check\"]}\n"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-34DF3B535879CC73FA86",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 2293,
+        "raw_lf_sha256": "aef4a3bc6a59b13511917d11b63b7b297a599f84baafbe8d8c116c625b6f542c",
+        "literal": "{\"asset_id\":\"LEGACY-ASSET-34DF3B535879CC73FA86\",\"revision\":1,\"source_revision\":\"legacy-generation-2026-09-14\",\"source_path\":\"docs/process/forward/L08-L14-verification-phase.md\",\"source_sha256\":\"d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a\",\"source_surface\":\"docs\",\"source_provenance_ref\":\"archive/legacy-generation-2026-09-14/MANIFEST.sha256\",\"asset_class\":\"Historical\",\"reuse_exclusion_class\":null,\"product_target\":\"unresolved\",\"authority_status\":\"historical\",\"upstream_ids\":[],\"pair_ids\":[],\"disposition\":\"unresolved\",\"implementation_status\":\"unknown\",\"decision_record_ref\":null,\"approval_revision\":null,\"target_path\":null,\"target_sha256\":null,\"meaning_interface_invariance_reason\":null,\"consumer_refs\":[],\"rights_status\":\"unreviewed\",\"executability_status\":\"unreviewed\",\"secret_status\":\"unreviewed\",\"external_effect_status\":\"unreviewed\",\"decided_by\":null,\"decided_at\":null,\"copy_performed_by\":null,\"copy_performed_at\":null,\"read_after_record_ref\":null,\"migration_preconditions\":[\"semantic_atom_inventory\",\"product_owner_decision\",\"parent_requirement_binding\",\"consumer_check\",\"rights_check\",\"executability_check\",\"secret_check\",\"external_effect_check\"]}\n"
+      }
+    ],
+    "inventory_input": {
+      "path": "/tmp/stage5-other-mechanisms-source-inventory.json",
+      "sha256_raw_lf": "dd5e393d384dbaadad74b148b8629703cdce097ad86d63e93bd88e00fe45f27d",
+      "bytes": 354871
+    },
+    "inventory_fixed_parent_recompute": [
+      {
+        "identity": "HELIXBRAIN-L2-024",
+        "inventory_base_main_l2_full_sha_equal": true,
+        "inventory_l2_span_equal": true,
+        "adopted_l2_span_matches_base_main": true,
+        "inventory_base_main_l11_full_sha_equal": true,
+        "inventory_l11_span_equal": true,
+        "adopted_l11_span_matches_base_main": true,
+        "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "inventory_revision": "5acae384305b01d10e88eeb2e6406f847baf66df"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-025",
+        "inventory_base_main_l2_full_sha_equal": true,
+        "inventory_l2_span_equal": true,
+        "adopted_l2_span_matches_base_main": true,
+        "inventory_base_main_l11_full_sha_equal": true,
+        "inventory_l11_span_equal": true,
+        "adopted_l11_span_matches_base_main": true,
+        "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "inventory_revision": "5acae384305b01d10e88eeb2e6406f847baf66df"
+      }
+    ]
+  },
+  "legacy_item_disposition": [
+    {
+      "parent": "024",
+      "old_source": "RCLS-BR-006 / RCLS-AC-018/019 authority boundaries",
+      "disposition": "semantic_rederive",
+      "retained": "learning/candidate output does not seize existing authority; distinct owners and non-promotion without the specified route",
+      "changed": "current owner path is Runtime owner→LABO evaluation→OS registration/routing→BRAIN independent verification; design knowledge goes through Product Core",
+      "reason": "fixed L2-024 and PO 2026-09-26 name the concrete current owners and directly forbid BRAIN↔Runtime read/write/learning"
+    },
+    {
+      "parent": "024",
+      "old_source": "old L3 and paired RCLS consumer lacked direct Infrastructure flow successor",
+      "disposition": "replace",
+      "retained": "separate engineering requirement and paired system oracle",
+      "changed": "old runtime/schema/storage details replaced with current Core/Runtime/LABO/OS owner contracts",
+      "reason": "no direct old successor asserted; fixed current L2/L11 control"
+    },
+    {
+      "parent": "025",
+      "old_source": "RCLS-BR-004; RCLS-FR-004; RCLS-AC-004/007/019",
+      "disposition": "semantic_rederive",
+      "retained": "stage/state distinction, independent verification, stale/hold/reject and typed authority separation",
+      "changed": "use L2-025 fixed sequence and current LABO/OS/BRAIN responsibilities and exact revisions",
+      "reason": "current L1-007 and fixed L2/L11 supply current path"
+    },
+    {
+      "parent": "025",
+      "old_source": "RCLS-BR-006; RCLS-FR-006; RCLS-AC-018/019",
+      "disposition": "semantic_rederive",
+      "retained": "proposal and evidence cannot directly mutate requirement/design/merge/release authority",
+      "changed": "human decision only if upstream meaning changes; non-semantic technical difference does not gain a new approval gate",
+      "reason": "current fixed L2-025 and PO boundary"
+    },
+    {
+      "parent": "025",
+      "old_source": "RCLS-AC-017 cross-project human approval; RCLS-FR-004 shadow lifecycle",
+      "disposition": "replace / do not carry forward",
+      "retained": "provenance, independent verification and promotion state remain observable",
+      "changed": "no mandatory shadow state, cross-project test or per-promotion human approval",
+      "reason": "not required by current fixed L2-025; current L1-007 names OS registration/routing and LABO evaluation, while PO reserves human decision for upstream meaning"
+    }
+  ],
+  "crosswalk_body_literals": [
+    {
+      "line": 708,
+      "raw_lf_sha256": "9e6a5e2ad771c91373c72dadb1c764225acf014b94889e9ad3979f72f91131ea",
+      "literal": "旧L3区分とFR+ACを対L10へ結ぶ配置は `LEGACY-ASSET-9A772391C7FB1298D45F`（旧 `docs/design/harness/L3-functional/README.md:16-56`）と `LEGACY-ASSET-F542125805B777D8A56A`（旧 `docs/process/forward/L00-L06-design-phase.md:148-168`）から形式を再導出する。L10側がL3のsystem behaviorを照合する関係は `LEGACY-ASSET-34DF3B535879CC73FA86`（旧 `docs/process/forward/L08-L14-verification-phase.md:162-170,195-207`）から再導出する。旧G3/旧層番号やsub-gateは移さない。"
+    },
+    {
+      "line": 710,
+      "raw_lf_sha256": "f50d9999c89e6e83438ec0edd6db32efe195d90de8236ff4013c98cfbb7f7e3e",
+      "literal": "### BRAIN-024-FR-01 — HELIXBRAIN-L2-024 Infrastructure設計知識と実績のCORE/LABO経由分離"
+    },
+    {
+      "line": 721,
+      "raw_lf_sha256": "df16192e4ee4c3f4faea371eabbda6fb42abffc0be4cdc10020a43fa4601da02",
+      "literal": "### BRAIN-025-FR-01 — HELIXBRAIN-L2-025 内部知識candidateの独立検証・採否"
+    },
+    {
+      "line": 738,
+      "raw_lf_sha256": "8432968f892ddfbbf33f637172af3a7df0949a8de82724b0c968a4a1a5d44bbe",
+      "literal": "| `HELIXBRAIN-L2-024` | `BRAIN-024-AC-01` | `L10-BRAIN-024-C01`, `L10-BRAIN-024-C02` |"
+    },
+    {
+      "line": 739,
+      "raw_lf_sha256": "b82c7676ee1b19e307faea10a83f627d393214a63f76f4886f72e43220a0603b",
+      "literal": "| `HELIXBRAIN-L2-024` | `BRAIN-024-AC-02` | `L10-BRAIN-024-C03`, `L10-BRAIN-024-C04`, `L10-BRAIN-024-C05`, `L10-BRAIN-024-C06`, `L10-BRAIN-024-C07`, `L10-BRAIN-024-C08`, `L10-BRAIN-024-C09`, `L10-BRAIN-024-C10`, `L10-BRAIN-024-C11`, `L10-BRAIN-024-C12`, `L10-BRAIN-024-C13`, `L10-BRAIN-024-C14`, `L10-BRAIN-024-C15` |"
+    },
+    {
+      "line": 740,
+      "raw_lf_sha256": "74c43af4b516f65d62db4448a6e750e34e4a8a2b7988b9671e08d5765d85af09",
+      "literal": "| `HELIXBRAIN-L2-025` | `BRAIN-025-AC-01` | `L10-BRAIN-025-C01`, `L10-BRAIN-025-C33` |"
+    },
+    {
+      "line": 741,
+      "raw_lf_sha256": "6b4400a467c768a5cf8288b2de59891947b661187787131ba8089e329694dd01",
+      "literal": "| `HELIXBRAIN-L2-025` | `BRAIN-025-AC-02` | `L10-BRAIN-025-C02`, `L10-BRAIN-025-C03`, `L10-BRAIN-025-C04`, `L10-BRAIN-025-C05`, `L10-BRAIN-025-C06`, `L10-BRAIN-025-C10`, `L10-BRAIN-025-C11`, `L10-BRAIN-025-C12`, `L10-BRAIN-025-C13`, `L10-BRAIN-025-C14`, `L10-BRAIN-025-C15`, `L10-BRAIN-025-C16`, `L10-BRAIN-025-C17`, `L10-BRAIN-025-C18`, `L10-BRAIN-025-C19`, `L10-BRAIN-025-C20`, `L10-BRAIN-025-C21`, `L10-BRAIN-025-C22` |"
+    },
+    {
+      "line": 742,
+      "raw_lf_sha256": "13f376f4961d19aed016f321e02228be8b3a07aa882c0a13d2301977c70d6e77",
+      "literal": "| `HELIXBRAIN-L2-025` | `BRAIN-025-AC-03` | `L10-BRAIN-025-C07`, `L10-BRAIN-025-C08`, `L10-BRAIN-025-C09`, `L10-BRAIN-025-C23`, `L10-BRAIN-025-C24`, `L10-BRAIN-025-C25`, `L10-BRAIN-025-C26`, `L10-BRAIN-025-C34` |"
+    },
+    {
+      "line": 743,
+      "raw_lf_sha256": "668d25279903bea64e424ef6765d48ec1cfb3822f9acea36a730bebad264ea7f",
+      "literal": "| `HELIXBRAIN-L2-025` | `BRAIN-025-AC-04` | `L10-BRAIN-025-C27`, `L10-BRAIN-025-C28`, `L10-BRAIN-025-C29`, `L10-BRAIN-025-C30` |"
+    },
+    {
+      "line": 744,
+      "raw_lf_sha256": "eef36e12e6a18e09c36ab8d92462136af043e20a7b4fe13ba781e973bbb59eaa",
+      "literal": "| `HELIXBRAIN-L2-025` | `BRAIN-025-AC-05` | `L10-BRAIN-025-C31`, `L10-BRAIN-025-C32` |"
+    }
+  ],
+  "canonical_document_pins": [
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "base_revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+      "base_prefix_sha256_raw_lf": "65b3119ef9bf207574de320f980092f06e6236857fea50e827ba9bbd201f2914",
+      "base_prefix_bytes": 161225,
+      "body_revision": "727a14d49b43cc2921502b7281a7008d0ac1fcd3",
+      "full_sha256_raw_lf": "c0e633448390a9fd70251e1ce8502293db654692051b610d6ec1fde7b6513171",
+      "full_bytes": 170864,
+      "prefix_byte_equal": true,
+      "suffix_sha256_raw_lf": "40edb7c529b2ee5eb32b86bdda7a24a0bd69d8ac0d7ceff7e9eedd30684d7edf",
+      "suffix_bytes": 9639,
+      "suffix_lf_count": 43,
+      "suffix_ends_lf": true
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.md",
+      "base_revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+      "base_prefix_sha256_raw_lf": "7add96df2bb8e062259caf05bf1885c994f3c2778455ef52b1a599309065f68a",
+      "base_prefix_bytes": 11272,
+      "body_revision": "727a14d49b43cc2921502b7281a7008d0ac1fcd3",
+      "full_sha256_raw_lf": "0109f4c67bceefb16004e2d560d5a4e87bcedf63cb8676211e5028d319350c92",
+      "full_bytes": 12451,
+      "prefix_byte_equal": true,
+      "suffix_sha256_raw_lf": "72c69671a095fa3db5728c2d4cf1a6bc6bbdc4b74e105d1a92ce13266c2cb60e",
+      "suffix_bytes": 1179,
+      "suffix_lf_count": 12,
+      "suffix_ends_lf": true
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/nfr-grade.md",
+      "base_revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+      "base_prefix_sha256_raw_lf": "b6262e71e2344e91fead3478dabf63ac7b953df995a45c3d8f4f0f24ee5f4694",
+      "base_prefix_bytes": 37184,
+      "body_revision": "727a14d49b43cc2921502b7281a7008d0ac1fcd3",
+      "full_sha256_raw_lf": "08ce2c313220c50549c6995f601d39f4cea679dd39ea10f522aeddceeb424846",
+      "full_bytes": 38221,
+      "prefix_byte_equal": true,
+      "suffix_sha256_raw_lf": "3fd47efae2e1fcc9920630d20130f2aa52cf7377d104148a4f872769cbffee28",
+      "suffix_bytes": 1037,
+      "suffix_lf_count": 12,
+      "suffix_ends_lf": true
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "base_revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+      "base_prefix_sha256_raw_lf": "bc902e6c9931b1d1ee75b0481515b09b8ca5737ff0ca8ce427fa6922deaae7fe",
+      "base_prefix_bytes": 192861,
+      "body_revision": "727a14d49b43cc2921502b7281a7008d0ac1fcd3",
+      "full_sha256_raw_lf": "a6f9b53d3122021735c0fd789fb357ae53c1ee1df78656b5001561afa0954ec8",
+      "full_bytes": 205326,
+      "prefix_byte_equal": true,
+      "suffix_sha256_raw_lf": "4e98a38dd906d828da0aeaa71ec6961d99a6320c30a05e970e9e8b0f8e16b1e4",
+      "suffix_bytes": 12465,
+      "suffix_lf_count": 64,
+      "suffix_ends_lf": true
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.md",
+      "base_revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+      "base_prefix_sha256_raw_lf": "27fb59f0f47a5aaa47c2e42dc9b73ed740b2f65c4ff51d2e2848cb5349006762",
+      "base_prefix_bytes": 9808,
+      "body_revision": "727a14d49b43cc2921502b7281a7008d0ac1fcd3",
+      "full_sha256_raw_lf": "af82bd198c33f4d0a346d29fcf193b0bb850c8e58b483107444817d78712e5d4",
+      "full_bytes": 10406,
+      "prefix_byte_equal": true,
+      "suffix_sha256_raw_lf": "7a8ff4da9067c748a55f6cd78378b3317c3ccc8f43594e36df2e2d8ca922d09a",
+      "suffix_bytes": 598,
+      "suffix_lf_count": 12,
+      "suffix_ends_lf": true
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/nfr-verification.md",
+      "base_revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+      "base_prefix_sha256_raw_lf": "ddbe41218e47bbe52a626cb2c18377bddb47d6287956c47608938b6ceb728ec5",
+      "base_prefix_bytes": 27766,
+      "body_revision": "727a14d49b43cc2921502b7281a7008d0ac1fcd3",
+      "full_sha256_raw_lf": "b06aa26ba28852524ac2beba06b69ebc25bd615c9adf439e95f87f31834e5838",
+      "full_bytes": 28464,
+      "prefix_byte_equal": true,
+      "suffix_sha256_raw_lf": "244e48b70ebf35a01841dfe35016113084532f930951b0622f5ef02110ad9dce",
+      "suffix_bytes": 698,
+      "suffix_lf_count": 12,
+      "suffix_ends_lf": true
+    }
+  ],
+  "case_inventory": [
+    {
+      "id": "L10-BRAIN-024-C01",
+      "line": 828,
+      "raw_lf_sha256": "bcf6c5e46216ce0213718b7d684cd89d968cc686eea40111a8d3618b16baa619",
+      "literal": "- **L10-BRAIN-024-C01 — 正常な設計知識route（AC-01）**：Infrastructure設計候補にsource identity/revisionを与え、Core向けreceiptでgeneric design knowledgeとrequired conditionを返す。Runtime actual stateやProduct Coreの具体設計選択は含めない。**期待oracle**：Core経路が特定され、製品採用判断をBRAINが行わず、runtime dataも返さない。"
+    },
+    {
+      "id": "L10-BRAIN-024-C02",
+      "line": 829,
+      "raw_lf_sha256": "13eb83caaf37c3e4d8cca7be8c49d924c1f432d84fe0d9ba5f60056f4d1cc400",
+      "literal": "- **L10-BRAIN-024-C02 — 正常なLABO評価route（AC-01）**：Runtime ownerが自ら保持する実利用結果から、LABOが評価対象revision/scope/method/result/failure/counterexample/unassessed rangeを記録し、同じcandidate revisionに結んだL2-020 receiptを返す。**期待oracle**：Runtime owner、LABO評価、BRAIN candidateが別identityで追跡でき、BRAINがRuntimeを直接読まない。"
+    },
+    {
+      "id": "L10-BRAIN-024-C03",
+      "line": 830,
+      "raw_lf_sha256": "d647144e632f1bebe67956c81252f1083dbf2286d8f057f2c899936bb6ce162a",
+      "literal": "- **L10-BRAIN-024-C03 — 実状態readの迂回（AC-02）**：BRAINがInfrastructure Runtimeの実server/network/database stateを直接readする。**期待oracle**：readを拒否しRuntime ownerを明記する。"
+    },
+    {
+      "id": "L10-BRAIN-024-C04",
+      "line": 831,
+      "raw_lf_sha256": "c3f0c258f17b87b42c6cf4ec792b146148c6d06759184456cf11d916ec1fc486",
+      "literal": "- **L10-BRAIN-024-C04 — 実状態writeの迂回（AC-02）**：BRAINがRuntime ownerの実状態を変更または書き込む。**期待oracle**：writeを拒否しRuntime ownerを明記する。"
+    },
+    {
+      "id": "L10-BRAIN-024-C05",
+      "line": 832,
+      "raw_lf_sha256": "2d55d40c1a33cdafd81d1c0e3b7becb78d634529bed4016d87429cdac7dd6f71",
+      "literal": "- **L10-BRAIN-024-C05 — 実績からの直接learning（AC-02）**：Runtime resultがLABO evaluationを経ずBRAIN knowledge stateへ直接反映される。**期待oracle**：candidate promotionを止め、評価経路をLABO、registration/routingをOSとして示す。"
+    },
+    {
+      "id": "L10-BRAIN-024-C06",
+      "line": 833,
+      "raw_lf_sha256": "db1033c1aca905b4a7870e2b663399527361698beed22bff4b818fd6367f7d71",
+      "literal": "- **L10-BRAIN-024-C06 — runtime state保存（AC-02）**：実server/network/database stateをBRAIN knowledgeへ保存する。**期待oracle**：保存/所有を拒否し、当該実状態ownerへ返す。"
+    },
+    {
+      "id": "L10-BRAIN-024-C07",
+      "line": 834,
+      "raw_lf_sha256": "8eaeba571a19a184f2f5dca27cf64abd752004747a1c827fec9f12e7cc3e794f",
+      "literal": "- **L10-BRAIN-024-C07 — provider account保存（AC-02）**：provider account identity/stateをBRAIN knowledgeへ保存する。**期待oracle**：保存/所有を拒否し、runtime ownerへ返す。"
+    },
+    {
+      "id": "L10-BRAIN-024-C08",
+      "line": 835,
+      "raw_lf_sha256": "35599a1485098adf33cc4b35bde37ffe2ba9a07296caa99b13034a3bffc5371d",
+      "literal": "- **L10-BRAIN-024-C08 — credential保存（AC-02）**：credentialまたはcredential参照をBRAINへ保存する。**期待oracle**：保存を拒否し、runtime ownerへ返す。"
+    },
+    {
+      "id": "L10-BRAIN-024-C09",
+      "line": 836,
+      "raw_lf_sha256": "08e56dcbe2509fd2255a4dba1c271e22d4f9035053ac72b6f8b603e07e79d782",
+      "literal": "- **L10-BRAIN-024-C09 — 操作権限保存（AC-02）**：runtime操作権限をBRAIN knowledgeとして保持する。**期待oracle**：保存/所有を拒否し、権限のruntime ownerへ返す。"
+    },
+    {
+      "id": "L10-BRAIN-024-C10",
+      "line": 837,
+      "raw_lf_sha256": "c5db1cddb3d40dd89574711cd3b26666f7acef5662178d86d931d60bcde73683",
+      "literal": "- **L10-BRAIN-024-C10 — raw log/metrics保存（AC-02）**：実runtime log/metricsを直接BRAINへ永続化する。**期待oracle**：保存を拒否しRuntime owner/LABO経路を示す。"
+    },
+    {
+      "id": "L10-BRAIN-024-C11",
+      "line": 838,
+      "raw_lf_sha256": "f6af747cca167967fe300648ec88ca679ce7da5103b1cca3cab583b32a9bbcb8",
+      "literal": "- **L10-BRAIN-024-C11 — Core経路の省略（AC-02）**：BRAIN候補を製品固有設計として直接採択する。**期待oracle**：採択を行わず製品HARNESS-COREへ戻す。"
+    },
+    {
+      "id": "L10-BRAIN-024-C12",
+      "line": 839,
+      "raw_lf_sha256": "a753216aada628281e1a2bdfca66aed85f69dcc46e338e77dc6808ef14e931d3",
+      "literal": "- **L10-BRAIN-024-C12 — LABO迂回promotion（AC-02）**：Runtime ownerの実績があるがLABO評価receiptがない。**期待oracle**：候補をaccepted/matureにせずLABOへ返す。"
+    },
+    {
+      "id": "L10-BRAIN-024-C13",
+      "line": 840,
+      "raw_lf_sha256": "aede60034096b0e208fe2fb77338b745cdb4a53c99cb331b2569368271b04cae",
+      "literal": "- **L10-BRAIN-024-C13 — owner identityの混同（AC-02）**：Runtime actual state、LABO evaluation、BRAIN generic knowledgeのowner identityを同一recordへ畳み込む。**期待oracle**：混同を拒否し、別ownerと対象revisionを維持する。"
+    },
+    {
+      "id": "L10-BRAIN-024-C14",
+      "line": 841,
+      "raw_lf_sha256": "c7a846954b3d809cde4df160cbdb73e70bf03e932ed9b5347b8f176b67f1139d",
+      "literal": "- **L10-BRAIN-024-C14 — 評価対象revision不一致（AC-02）**：LABO evaluationが別candidate revisionまたは別source/scopeを指す。**期待oracle**：L2-020との不一致を示し、unknown/保留でLABOへ返す。"
+    },
+    {
+      "id": "L10-BRAIN-024-C15",
+      "line": 842,
+      "raw_lf_sha256": "f991bfdbd85c0dac4d353231b7c5342c25d1636426f9c3b03eca62e4f1a6993f",
+      "literal": "- **L10-BRAIN-024-C15 — 選択したdependencyが未解決（AC-02）**：選択したL2-INFRA-009/010/012/017、Core、RuntimeまたはLABO contractのidentity/revisionがunknownまたは不一致。**期待oracle**：適用可能と推定せず、不明なcontract ownerを創作しない。"
+    },
+    {
+      "id": "L10-BRAIN-025-C01",
+      "line": 847,
+      "raw_lf_sha256": "a40b1386d5a67993d2ad48b204abce19b8ab4507de91e0d8998f8c75905fb6cd",
+      "literal": "- **L10-BRAIN-025-C01 — 正常な全段階trace（AC-01）**：source/provenance/revisionを持つ内部candidate、LABOの評価scope/method/result/failure/counterexample/unassessed range、OS registration/routing state、BRAIN change revisionへのindependent verificationとその結果、採否を別owner receiptで与える。**期待oracle**：状態順と対象revisionが揃い、adoptionと独立検証の根拠を追跡する。"
+    },
+    {
+      "id": "L10-BRAIN-025-C02",
+      "line": 848,
+      "raw_lf_sha256": "8c223a330460ee949fde4468e0c2a2e1a9d6e11381708cb98872c4f2341eb4ff",
+      "literal": "- **L10-BRAIN-025-C02（AC-02、単独誤昇格）** AI生成だけを根拠にaccepted/matureを要求。**期待**：昇格を拒否しcandidateを維持。"
+    },
+    {
+      "id": "L10-BRAIN-025-C03",
+      "line": 849,
+      "raw_lf_sha256": "8f212cacdc5dd66b8eb2632ec202cac99ab01441402870d0ed07181a76d1f278",
+      "literal": "- **L10-BRAIN-025-C03（AC-02、単独誤昇格）** 単一実績だけを根拠にaccepted/matureを要求。**期待**：昇格を拒否し実績件数から閾値を作らない。"
+    },
+    {
+      "id": "L10-BRAIN-025-C04",
+      "line": 850,
+      "raw_lf_sha256": "a4912c2777dd6287ee44aeb4d5fc651dfce845a32dabfa3c991702ccbb57b94e",
+      "literal": "- **L10-BRAIN-025-C04（AC-02、単独誤昇格）** LABO evaluationだけでOS registration/routingとBRAIN verificationを省略して採用する。**期待**：LABO評価状態だけを返し後段を完了扱いしない。"
+    },
+    {
+      "id": "L10-BRAIN-025-C05",
+      "line": 851,
+      "raw_lf_sha256": "694f4f524284410992cbdd7048f56efeeb2200aa33f1c168e42690f1f3118a14",
+      "literal": "- **L10-BRAIN-025-C05（AC-02、単独誤昇格）** OS ticketだけでLABO evaluationまたはBRAIN verificationを省略して採用する。**期待**：OS登録状態のみを返す。"
+    },
+    {
+      "id": "L10-BRAIN-025-C06",
+      "line": 852,
+      "raw_lf_sha256": "a02ee5731a4d090ecf3ac1072d75c8dc55ba4726367c340da997f6ae06b04083",
+      "literal": "- **L10-BRAIN-025-C06（AC-02、単独誤昇格）** documentが存在するだけでaccepted/matureにする。**期待**：document existenceを状態根拠にしない。"
+    },
+    {
+      "id": "L10-BRAIN-025-C07",
+      "line": 853,
+      "raw_lf_sha256": "4af15fe5dfc6ee8786375817d2469234effc7d13db53a21f75d982c77c30c8d9",
+      "literal": "- **L10-BRAIN-025-C07（AC-03、順序逆転）** LABO評価前にOSがcandidateを登録/routing済みとして扱う。**期待**：未実施評価はunknownであり、その状態を完了済みに見せない。"
+    },
+    {
+      "id": "L10-BRAIN-025-C08",
+      "line": 854,
+      "raw_lf_sha256": "6ebe20f5a0858961a6fb4a510d7101e013d44d7751969c29dc1db8861d358baa",
+      "literal": "- **L10-BRAIN-025-C08（AC-03、順序逆転）** OS registration/routing前にBRAIN独立検証を済みとする。**期待**：BRAIN verification resultをOS状態の代替にしない。"
+    },
+    {
+      "id": "L10-BRAIN-025-C09",
+      "line": 855,
+      "raw_lf_sha256": "69c9da2b325a2ebfcfb7813702def98a225ae8ccf97ad07a09e353f04f285466",
+      "literal": "- **L10-BRAIN-025-C09（AC-03、順序逆転）** BRAIN change independent verification前にadoptionを確定する。**期待**：adoptionを拒否しBRAIN change ownerへ返す。"
+    },
+    {
+      "id": "L10-BRAIN-025-C10",
+      "line": 856,
+      "raw_lf_sha256": "89f2876bc692aaa6e80a81236f78d2e7461f2fb0a92d5dc43dd025d6a7332fa8",
+      "literal": "- **L10-BRAIN-025-C10（AC-02、単独欠落）** source identityを欠落させる。**期待**：source不足を特定しLABOへ返す。"
+    },
+    {
+      "id": "L10-BRAIN-025-C11",
+      "line": 857,
+      "raw_lf_sha256": "5e92c9f9f8cdcbbf7ef225d14ca02d132861acb92bec727db6deaa31fa822064",
+      "literal": "- **L10-BRAIN-025-C11（AC-02、単独欠落）** provenanceを欠落させる。**期待**：由来不明でcandidateを保留する。"
+    },
+    {
+      "id": "L10-BRAIN-025-C12",
+      "line": 858,
+      "raw_lf_sha256": "706f924df465c9910a375b174602125aab8706cea10869d966c7f6214eb85723",
+      "literal": "- **L10-BRAIN-025-C12（AC-02、単独欠落）** candidate revisionを欠落させる。**期待**：revisionを推定せずLABO/該当knowledge ownerへ返す。"
+    },
+    {
+      "id": "L10-BRAIN-025-C13",
+      "line": 859,
+      "raw_lf_sha256": "7369842ff70865b6fe6800ac97fb5e5aa002d20a1255b73bde34e05fbdd025ed",
+      "literal": "- **L10-BRAIN-025-C13（AC-02、単独欠落）** LABO evaluation identityを欠落させる。**期待**：評価済みと扱わずLABOへ返す。"
+    },
+    {
+      "id": "L10-BRAIN-025-C14",
+      "line": 860,
+      "raw_lf_sha256": "450b823fb5dac6298cd765763f6318b420c6c3605f069dea9c533c61c0a5a551",
+      "literal": "- **L10-BRAIN-025-C14（AC-02、単独欠落）** evaluation scopeを欠落させる。**期待**：評価範囲を推定せずLABOへ返す。"
+    },
+    {
+      "id": "L10-BRAIN-025-C15",
+      "line": 861,
+      "raw_lf_sha256": "d753a56b6ff6948dc712565767d010d99f563c922f0240797fddfc9c3361cb5b",
+      "literal": "- **L10-BRAIN-025-C15（AC-02、単独欠落）** evaluation methodを欠落させる。**期待**：評価方法を推定せずLABOへ返す。"
+    },
+    {
+      "id": "L10-BRAIN-025-C16",
+      "line": 862,
+      "raw_lf_sha256": "4196890211d585dbbb4167ee582cfcfacc21dba86d2383bbba10554f8050d6bf",
+      "literal": "- **L10-BRAIN-025-C16（AC-02、単独欠落）** evaluation resultを欠落させる。**期待**：成功/失敗を推定せずLABOへ返す。"
+    },
+    {
+      "id": "L10-BRAIN-025-C17",
+      "line": 863,
+      "raw_lf_sha256": "cacf5fd409b5766295ca480ca446c09288b771c78619e07d50f7d529b4392187",
+      "literal": "- **L10-BRAIN-025-C17（AC-02、単独欠落）** failure情報を欠落させる一方でsourceがfailureを記録している。**期待**：failure evidenceを隠さずLABOへ返す。"
+    },
+    {
+      "id": "L10-BRAIN-025-C18",
+      "line": 864,
+      "raw_lf_sha256": "afaf4d1b3a58416fe9ecb053512dc010ee9822b0fc43ea89ea8dc75d43e59640",
+      "literal": "- **L10-BRAIN-025-C18（AC-02、単独欠落）** counterexampleを欠落させる一方でsourceが反例を記録している。**期待**：反例欠落を特定しLABOへ返す。"
+    },
+    {
+      "id": "L10-BRAIN-025-C19",
+      "line": 865,
+      "raw_lf_sha256": "2ce31dc20958f43b17eec46243c89a8b5ee47b0f04078fdb1855efdcfaee3259",
+      "literal": "- **L10-BRAIN-025-C19（AC-02、単独欠落）** unassessed rangeを欠落させる。**期待**：未評価範囲を成功範囲に丸めずLABOへ返す。"
+    },
+    {
+      "id": "L10-BRAIN-025-C20",
+      "line": 866,
+      "raw_lf_sha256": "bff2066ac42e6b4f6c50fd61b8fc8d7f346754a5ab90c8e37391f456f427b8e3",
+      "literal": "- **L10-BRAIN-025-C20（AC-02、単独欠落）** OS registration/routing stateを欠落させる。**期待**：OS状態を推定せずOSへ返す。"
+    },
+    {
+      "id": "L10-BRAIN-025-C21",
+      "line": 867,
+      "raw_lf_sha256": "abcc5821f7e739fa09c8827626bf8bd252ecea6272ad79a5df51af9f63d4f609",
+      "literal": "- **L10-BRAIN-025-C21（AC-02、単独欠落）** BRAIN change identity/revisionを欠落させる。**期待**：変更対象を推定せずBRAIN change ownerへ返す。"
+    },
+    {
+      "id": "L10-BRAIN-025-C22",
+      "line": 868,
+      "raw_lf_sha256": "7fd02ba4d44b45cb0a5a5b49fd462118192523379560b09117f8c094badba8e6",
+      "literal": "- **L10-BRAIN-025-C22（AC-02、単独欠落）** independent verification evidence/resultを欠落させる。**期待**：独立検証済みと扱わずBRAIN change ownerへ返す。"
+    },
+    {
+      "id": "L10-BRAIN-025-C23",
+      "line": 869,
+      "raw_lf_sha256": "228f6abd45e50477c19dbe82d03cc56264a06d7dfb89276a37a4f9d19a001669",
+      "literal": "- **L10-BRAIN-025-C23（AC-03、revision mismatch）** evaluation target revisionをcandidate revisionと異ならせる。**期待**：評価対象不一致として保留しLABOへ返す。"
+    },
+    {
+      "id": "L10-BRAIN-025-C24",
+      "line": 870,
+      "raw_lf_sha256": "efe9834f64e766534320289ffab28fd13ead507e20c1e338e240f41c3c20d401",
+      "literal": "- **L10-BRAIN-025-C24（AC-03、post-evaluation mutation）** LABO評価後にcandidateだけrevision更新し、古い評価を新revisionへ流用する。**期待**：評価を新revisionに継承せずLABOへ再評価を返す。"
+    },
+    {
+      "id": "L10-BRAIN-025-C25",
+      "line": 871,
+      "raw_lf_sha256": "7ea5af4de7053e17aa1cef2902ef90a167f7bedfe7a9678ad9c3db5f13ac6a72",
+      "literal": "- **L10-BRAIN-025-C25（AC-03、owner/state mismatch）** LABO評価、OS registration、BRAIN verification/adoptionのowner/stateを互いに取り違える。**期待**：各状態を元ownerへ戻し、identityを分離する。"
+    },
+    {
+      "id": "L10-BRAIN-025-C26",
+      "line": 872,
+      "raw_lf_sha256": "9349c678711597332e0c73de3ad1719b12ab2a8ad2c649b087c3cdba157d6e16",
+      "literal": "- **L10-BRAIN-025-C26（AC-03、verification target mismatch）** independent verificationは存在するが別BRAIN change revisionを対象にしている。**期待**：現revisionの検証を未確認としてBRAIN change ownerへ返す。"
+    },
+    {
+      "id": "L10-BRAIN-025-C27",
+      "line": 873,
+      "raw_lf_sha256": "986480d0f45ff686f7e10b8abefdfdff276403dd978436d68dfe0029d1b8d78e",
+      "literal": "- **L10-BRAIN-025-C27（AC-04、正常hold）** evidence不足を明示した正当なholdを与える。**期待**：holdを正規状態として保持し、accepted/matureへ進めない。"
+    },
+    {
+      "id": "L10-BRAIN-025-C28",
+      "line": 874,
+      "raw_lf_sha256": "5f48634ddf819a4165db7cf6bfb8d63f0b7392857d2644d1279777d919a3a1bb",
+      "literal": "- **L10-BRAIN-025-C28（AC-04、正常reject）** scope条件に不適合なcandidateの根拠付きrejectを与える。**期待**：rejectと理由を保持し、失敗を汎用knowledgeへ自動昇格しない。"
+    },
+    {
+      "id": "L10-BRAIN-025-C29",
+      "line": 875,
+      "raw_lf_sha256": "11bb957bc8cee0cbf20a1d7cc1fa161c972d3643c92e3a44487092b86fd88c8a",
+      "literal": "- **L10-BRAIN-025-C29（AC-04、Infrastructure maturity適用）** Infrastructure candidateがmaturity評価対象で、L2-INFRA-017のstate/evidenceが同じcandidate revisionを指す。**期待**：当該stateとevidenceを照合し、maturityを独立の採用権限にしない。"
+    },
+    {
+      "id": "L10-BRAIN-025-C30",
+      "line": 876,
+      "raw_lf_sha256": "3ac17f93ce144c7dc1dc7d3d2cf291155082773b224dc41854c4daa5d86ef2d1",
+      "literal": "- **L10-BRAIN-025-C30（AC-04、maturity非該当の正常）** 非-Infrastructure internal candidateが固定L2-025の他条件を満たし、Infrastructure maturity fieldを要求されない。**期待**：不要なL2-INFRA-017 fieldを強制せず他の正しい経路を認める。"
+    },
+    {
+      "id": "L10-BRAIN-025-C31",
+      "line": 877,
+      "raw_lf_sha256": "4de0ad5375f22d0a8fd835b75bc5973cd66cf93a441b985d202d66e69ac1759d",
+      "literal": "- **L10-BRAIN-025-C31（AC-05、製品固有意味）** sourceに製品要求、業務規則または製品固有判断が含まれる。**期待**：generic BRAIN knowledgeへの採用を拒否し該当Product Coreへ戻す。"
+    },
+    {
+      "id": "L10-BRAIN-025-C32",
+      "line": 878,
+      "raw_lf_sha256": "9b9b616a76bceedf902c4b9d4ba0eb4c6ed2ced96c2a1fa1c27985a03907fb6a",
+      "literal": "- **L10-BRAIN-025-C32（AC-05、generic meaning正常）** product-specific remainderを除いたgeneric design knowledge candidateにsource/provenanceがあり、他の段階も満たす。**期待**：製品意味を混ぜず通常のLABO→OS→BRAIN pathで評価・検証できる。"
+    },
+    {
+      "id": "L10-BRAIN-025-C33",
+      "line": 879,
+      "raw_lf_sha256": "d8452722e2da819e0e571e95356d07913f38c68ed2adf783df40a15f4e4c53c1",
+      "literal": "- **L10-BRAIN-025-C33（AC-01、技術差分正常）** 上流の要求/Pattern意味を変更しない、親契約に適合したBRAIN candidateの技術的差分が全owner evidenceを備える。**期待**：固定L2-025の通常状態経路で処理し、追加human approval field/gateを要求しない。"
+    },
+    {
+      "id": "L10-BRAIN-025-C34",
+      "line": 880,
+      "raw_lf_sha256": "1d9edededb4b437085f741e33e5a4b3c3159ab314a60b58d75df872f0c005d73",
+      "literal": "- **L10-BRAIN-025-C34（AC-03、unknown保持）** registration, evaluation, verificationのいずれかがunknownで、他のfieldは整っている。**期待**：unknownをそのownerへ保持し、accepted/matureにしない。"
+    }
+  ],
+  "case_checks": {
+    "definition_count": 49,
+    "unique_count": 49,
+    "missing_expected_ids": [],
+    "extra_ids": [],
+    "duplicate_ids": [],
+    "AC_to_case_trace": {
+      "BRAIN-024-AC-01": [
+        "L10-BRAIN-024-C01",
+        "L10-BRAIN-024-C02"
+      ],
+      "BRAIN-024-AC-02": [
+        "L10-BRAIN-024-C03",
+        "L10-BRAIN-024-C04",
+        "L10-BRAIN-024-C05",
+        "L10-BRAIN-024-C06",
+        "L10-BRAIN-024-C07",
+        "L10-BRAIN-024-C08",
+        "L10-BRAIN-024-C09",
+        "L10-BRAIN-024-C10",
+        "L10-BRAIN-024-C11",
+        "L10-BRAIN-024-C12",
+        "L10-BRAIN-024-C13",
+        "L10-BRAIN-024-C14",
+        "L10-BRAIN-024-C15"
+      ],
+      "BRAIN-025-AC-01": [
+        "L10-BRAIN-025-C01",
+        "L10-BRAIN-025-C33"
+      ],
+      "BRAIN-025-AC-02": [
+        "L10-BRAIN-025-C02",
+        "L10-BRAIN-025-C03",
+        "L10-BRAIN-025-C04",
+        "L10-BRAIN-025-C05",
+        "L10-BRAIN-025-C06",
+        "L10-BRAIN-025-C10",
+        "L10-BRAIN-025-C11",
+        "L10-BRAIN-025-C12",
+        "L10-BRAIN-025-C13",
+        "L10-BRAIN-025-C14",
+        "L10-BRAIN-025-C15",
+        "L10-BRAIN-025-C16",
+        "L10-BRAIN-025-C17",
+        "L10-BRAIN-025-C18",
+        "L10-BRAIN-025-C19",
+        "L10-BRAIN-025-C20",
+        "L10-BRAIN-025-C21",
+        "L10-BRAIN-025-C22"
+      ],
+      "BRAIN-025-AC-03": [
+        "L10-BRAIN-025-C07",
+        "L10-BRAIN-025-C08",
+        "L10-BRAIN-025-C09",
+        "L10-BRAIN-025-C23",
+        "L10-BRAIN-025-C24",
+        "L10-BRAIN-025-C25",
+        "L10-BRAIN-025-C26",
+        "L10-BRAIN-025-C34"
+      ],
+      "BRAIN-025-AC-04": [
+        "L10-BRAIN-025-C27",
+        "L10-BRAIN-025-C28",
+        "L10-BRAIN-025-C29",
+        "L10-BRAIN-025-C30"
+      ],
+      "BRAIN-025-AC-05": [
+        "L10-BRAIN-025-C31",
+        "L10-BRAIN-025-C32"
+      ]
+    },
+    "all_trace_ids_exist": true,
+    "parents_case_count": {
+      "024": 15,
+      "025": 34
+    }
+  },
+  "other_document_disposition": {
+    "business": {
+      "024": "fixed L2/L11 has no independent business outcome/KPI/owner; no separate business AC",
+      "025": "fixed L2/L11 has no independent business outcome/KPI/owner; no separate business AC"
+    },
+    "nfr": {
+      "024": "no independent quantified NFR or threshold in fixed parent; no numeric NFR added",
+      "025": "no independent quantified NFR or threshold in fixed parent; no numeric NFR added"
+    }
+  },
+  "limitations": [
+    "旧RCLS要求・paired L3/acceptanceとL3/L10定義を対象文書範囲で全文読了した。archive全4020資産や全consumer閉包を読了・検収したとは主張しない。",
+    "旧RCLS-AC-017のhuman approval/shadow/cross-project条件は現行parentへ移さず、過去source自体の歴史的意味は変更しない。",
+    "Root意味検収、統合tree stale/residual、独立review、L3 approval、実装/実行検証は未実施。",
+    "旧runtime/test/CI/Bunは起動していない。"
+  ]
+}
