@@ -28,6 +28,10 @@ execution_status: designed_only_not_executed
 
 固定030/031/032から独立business requirement/oracleを導出しないため、別個のbusiness acceptance caseは追加しない。030のproposal、031の許可failureからのcandidateとoriginal failure保持、032のselected consumerへのpacket handoffおよび責務境界は、対の[functional-verification.md](functional-verification.md)にある同一AC IDで確認する。case数/coverageやhandoffを事業価値、利用者受入、run/pass、ticket、承認へ読み替えない。旧business-detail BR-21/HM-08/KPI ownerはこれらの固定親に適用せず、再利用しない。
 
+## Stage 4 suffix — HARNESS-L2-026/027/028/029
+
+固定4親に独立business requirement/oracleはないため、別個のbusiness acceptance caseを追加しない。各親の設計対応、source observation、saved-design comparison、proposal境界は対の[functional-verification.md](functional-verification.md)にある同一FR/AC/CASEで照合する。これらの候補を利用者価値、商業成果、業務完了、受入やreleaseへ読み替えず、旧business-detailのowner/KPIを追加しない。
+
 ## Stage 3（1.0対象13親）の業務総合検証境界
 
 固定親 HARNESS-L2-034/036/038/039/040/041/042/043/044/046/047/049/054 には独立business criterion/oracleを導出しない。functional ACごとの正常・独立反例・未評価は対の[functional-verification.md](functional-verification.md)を同じIDで用いる。この判断はHARNESS全体のbusiness requirementを否定せず、ROI・市場価値・利用者受入・採否を技術証拠から生成しない。

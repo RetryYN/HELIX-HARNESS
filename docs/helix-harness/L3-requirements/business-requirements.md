@@ -54,6 +54,17 @@ paired_l10: ../L10-verification/business-verification.md
 
 旧business-detailは参考範囲を読んだが、BR-21/HM-08/Learning Engineの業務意味・owner・KPIはこれら固定親に対応しないため移さない。Stage 2c草稿から商業価値や追加承認条件を作らない。
 
+## Stage 4 suffix — HARNESS-L2-026/027/028/029
+
+この4親から独立business requirement、business owner、事業価値閾値、commercial acceptanceは導出しない。設計・source observation・差分・proposalの意味と境界は対の[functional-requirements.md](functional-requirements.md)にあるFR/ACで確認する。旧business-detailの業務意味・owner・KPIは固定親に対応する根拠がないため再利用しない。これはHARNESS全体にbusiness要件がないことを意味しない。
+
+| 親L2 | business要件への扱い | 境界 |
+|---|---|---|
+| `HARNESS-L2-026` | 独立business requirementなし。既存requirementと設計要素の対応はFR/ACで確認する。 | 設計の存在から利用者価値、受入、product優先順位を導出しない。 |
+| `HARNESS-L2-027` | 独立business requirementなし。選択sourceからの静的観測とunknown保持はFR/ACで確認する。 | 観測候補を業務上の正しさ、顧客成果、完了に読み替えない。 |
+| `HARNESS-L2-028` | 独立business requirementなし。saved designとの比較・影響範囲はFR/ACで確認する。 | affected setやbackflowを事業判断、要求承認、release判定としない。 |
+| `HARNESS-L2-029` | 独立business requirementなし。五要素のproposal bundleと責務境界はFR/ACで確認する。 | proposalを実変更、migration完了、事業成果、利用者受入へ昇格しない。 |
+
 ## Stage 3 business範囲
 
 この1.0 sliceの13固定親から独立したbusiness requirement/oracleは導出しない。各親の業務意味を否定せず、売上・ROI・市場価値・事業優先順位・利用者受入を機能/NFR測定から作らない。各親の機能条件は対のfunctional verificationにある同一ACで照合する。

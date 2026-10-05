@@ -1,0 +1,161 @@
+{
+  "record_kind": "delegated_l3_l10_decision_pin",
+  "review_base": "1a7933157fef8327a0e2747348cbe57e596019aa",
+  "review_content_head": "c6fefcad164455a63f2da47227f4a8af741ad8bc",
+  "body_revision": "a09fbcbb11c5a031aaf2248810f8874cb3c951a0",
+  "delegation": {
+    "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+    "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220"
+  },
+  "formal_comments": [
+    {
+      "id": 5996305509,
+      "bytes": 2702,
+      "sha256": "549422087d8da450a8ec278f3c9faac75b0525f61f12a94aecffba6697f767e4"
+    },
+    {
+      "id": 5996619779,
+      "bytes": 16491,
+      "sha256": "c4c7f1be9248704eb6f867c0740f268bfba71a7b9c2f1742b8591f86b8da8af6"
+    }
+  ],
+  "approved_parents": [
+    {
+      "parent": "HARNESS-L2-026",
+      "adopted_registration_id": "MPR-RC-HARNESS-L2-026-002",
+      "metadata_successor_registration_id": "MPR-RC-HARNESS-L2-026-003",
+      "semantic_digest": "sha256:d797f5d29526059783ea6e469f762b6d51373dbece7223f2941894130c73b880",
+      "po": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "line": 55,
+        "raw_lf_sha256": "1d99dc64d0a60bc8235913cd08de8be6d24d3a2142d55c422bce601bdac2acfd",
+        "literal": "| HARNESS-L2-026 | MPR-RC-HARNESS-L2-026-002 | unit / registered_proposal; authority_effect=none | 1.0 | [docs/governance/audits/requirement-registration/helix-harness-design-composition-coverage-receipt-2026-09-27-r2.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/helix-harness-design-composition-coverage-receipt-2026-09-27-r2.json) / 9bec4244981a8852a501d5578becd2d796cd7fd44ef8c1f7717d2922a6e437ec |\n"
+      },
+      "adopted_register": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 406,
+        "raw_lf_sha256": "395e854dcfba143fa631333ecf3011c06a12a06c266b2998edf935a7401f017e"
+      },
+      "metadata_successor": {
+        "revision": "1a7933157fef8327a0e2747348cbe57e596019aa",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 901,
+        "raw_lf_sha256": "0c3abbf1abce96fb0948b593ad854c1d47e571e3d0627db30822ee90c7367569"
+      }
+    },
+    {
+      "parent": "HARNESS-L2-027",
+      "adopted_registration_id": "MPR-RC-HARNESS-L2-027-003",
+      "metadata_successor_registration_id": "MPR-RC-HARNESS-L2-027-004",
+      "semantic_digest": "sha256:fb81f7e465ebd7db2f06a7115f14b6a651b2886ead17d493618475c61aa60032",
+      "po": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "line": 56,
+        "raw_lf_sha256": "be4c2ce7a7115c4c04d6739e6dd2b45641575bf930ed1a5885d7facadd034b39",
+        "literal": "| HARNESS-L2-027 | MPR-RC-HARNESS-L2-027-003 | unit / registered_proposal; authority_effect=none | 1.0 | [docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json) / c6c3b2863eaf026ac61c4e272acc197c6021c24e74b4899a23631c74b67b8860 |\n"
+      },
+      "adopted_register": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 444,
+        "raw_lf_sha256": "e184157e7957719df7505c5fa10023edb9c18166a836600d11c9e5f1c6f19e80"
+      },
+      "metadata_successor": {
+        "revision": "1a7933157fef8327a0e2747348cbe57e596019aa",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 922,
+        "raw_lf_sha256": "449e19b3347339faeb95da2d73a88372e32f5585eebd8d53bae024f99edfd489"
+      }
+    },
+    {
+      "parent": "HARNESS-L2-028",
+      "adopted_registration_id": "MPR-RC-HARNESS-L2-028-003",
+      "metadata_successor_registration_id": "MPR-RC-HARNESS-L2-028-004",
+      "semantic_digest": "sha256:2a53752750ef477ad34862966fbe220c9e0849bdbec05e101d0125de234fc174",
+      "po": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "line": 57,
+        "raw_lf_sha256": "8e395792e3256c724d01a4639f3a247bb3f8b09c4b443a031b85340a26c701be",
+        "literal": "| HARNESS-L2-028 | MPR-RC-HARNESS-L2-028-003 | connection / registered_proposal; authority_effect=none | 1.0 | [docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json) / c6c3b2863eaf026ac61c4e272acc197c6021c24e74b4899a23631c74b67b8860 |\n"
+      },
+      "adopted_register": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 445,
+        "raw_lf_sha256": "14f0bf959b1466e65d4463d22f43ddec3f714fc5ff0a0609a3869107b56d4a53"
+      },
+      "metadata_successor": {
+        "revision": "1a7933157fef8327a0e2747348cbe57e596019aa",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 923,
+        "raw_lf_sha256": "e787a2d2a5f017754c69d31d6f8152b6dc0d2cc1b7b25c6cbe7a4731ff7ccf68"
+      }
+    },
+    {
+      "parent": "HARNESS-L2-029",
+      "adopted_registration_id": "MPR-RC-HARNESS-L2-029-003",
+      "metadata_successor_registration_id": "MPR-RC-HARNESS-L2-029-004",
+      "semantic_digest": "sha256:6838658a8b4cf61e1b519675d87ea86ea68b66928af0990ee23a161d99d88e5b",
+      "po": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "line": 58,
+        "raw_lf_sha256": "1e813eccb7e66e0ccad549147313bc24c99116822c102bbe76fd3f2c6dee827b",
+        "literal": "| HARNESS-L2-029 | MPR-RC-HARNESS-L2-029-003 | composite / registered_proposal; authority_effect=none | 1.0 | [docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json) / c6c3b2863eaf026ac61c4e272acc197c6021c24e74b4899a23631c74b67b8860 |\n"
+      },
+      "adopted_register": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 446,
+        "raw_lf_sha256": "67670dbc2afcab9b4deb74c9d1251c67ca7a74220917ba73d3107f0ea1fa6c28"
+      },
+      "metadata_successor": {
+        "revision": "1a7933157fef8327a0e2747348cbe57e596019aa",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 924,
+        "raw_lf_sha256": "4af9d9f806b0f866161ac17453207e4bd4a6085ac8dcf92e57cd001d1917cff4"
+      }
+    }
+  ],
+  "documents": [
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "full_sha256": "ee401cfd216fd3f3f14d329e21ef919f2be84887784d52067f5bb9113cd90812",
+      "base_prefix_sha256": "48d60b8752a8bc404cc7a3c0874f3322f93405fabaabe358067daa0945542acf"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "full_sha256": "4fbe36227888ca2ba0b955d88d883d2c1a3eae832fd161f0fb3f9354b874d197",
+      "base_prefix_sha256": "111f2a72bb9299069d21529d65ab47bf1afe73c1a11946e38e81f79a5b0a7ad9"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "full_sha256": "d579f983194734093753d0361e7613dc28792d124421c40d703fc8c0b5e0625b",
+      "base_prefix_sha256": "b9e844b83dbbdbac8f79b1cbc4f7df5d9fc32cfbe06a963cd1777d8ccced4c60"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "full_sha256": "b15d4bccf9261dd05f9f4ff6018c8ec922d13501a5fcfbf9df99075e4bc1a5b7",
+      "base_prefix_sha256": "ccb3f6ec5d7b3c51f629f8615977ef25319eae9426fc52d4dae0962fd3f41d5b"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "full_sha256": "b869de423632daaa4fcdebd5af5bd6a8aaea3c3d378d4c8cdec87bd95e092760",
+      "base_prefix_sha256": "6c94aed4826b32319abe0cd09afa176e783508e35df24a14060c2005fe0667a9"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "full_sha256": "a822b1db81e630f5e8c6900d899e18991da6e9ca40735dffacb0df740bf2fa9f",
+      "base_prefix_sha256": "65c899c65f3f76c3d36d65ab750305e2460afc1e3d4c77067547c26a7b4aa2a9"
+    }
+  ],
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-harness-stage4-l3-l10-po-decision-2026-10-05.md",
+    "sha256": "23dd22896cd82f835ac1f5e82e59227c51424ccd1d9ebdf164b3a45583fab0e6"
+  },
+  "authority_effect": "effective_when_decision_record_admitted_to_main"
+}
