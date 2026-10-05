@@ -1,0 +1,41 @@
+{
+  "record_kind": "root-repair-acceptance-main-integration",
+  "authority_effect": "none",
+  "pr": 2595,
+  "base": "191ebab8c0b1871d7c8c84354976d7c0bc11c26e",
+  "body_revision": "c6f17484cb821a9b001f4e8d61edc192c3c27063",
+  "integration_commit": "a25cddf5ec6f130dc1063d53aef7260635e12465",
+  "repair_audit": {
+    "path": "docs/governance/audits/requirements-stage/l3-l10-harness-stage2c-review02-2026-10-05-c6f17484.json",
+    "sha256": "eeb998e5d22be023c5fbf5b713fc0c696422577c32c6583460360f2d13342423"
+  },
+  "documents": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "sha256": "a85d99d933e2aa199e70990d91f5d9be0da067fc4e669d952833840562ce4d81"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "sha256": "ccb3f6ec5d7b3c51f629f8615977ef25319eae9426fc52d4dae0962fd3f41d5b"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "sha256": "65c899c65f3f76c3d36d65ab750305e2460afc1e3d4c77067547c26a7b4aa2a9"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "sha256": "4c7ceb4cb12579812de157e9b9288abe0db845a498b6df80fdda12e238ab106f"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "sha256": "48d60b8752a8bc404cc7a3c0874f3322f93405fabaabe358067daa0945542acf"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "sha256": "b9e844b83dbbdbac8f79b1cbc4f7df5d9fc32cfbe06a963cd1777d8ccced4c60"
+    }
+  ],
+  "root_verification": "全FR/FV差分・固定L11:404–461・JPsummary実読、41source fullraw/682literal/6SHA-prefix-suffix/4旧監査検算PASS。main通常mergeで6本文不変、static147/0 stale0 res0 gov7622/57/58 diffPASS。",
+  "summary_locator_correction": "旧時点summary末尾current-po-summary-c6f17484.jsonは存在しない。対監査の実locatorはrepair_audit.path。旧summaryは履歴として不変、正しい参照を本追補に固定。",
+  "independent_review": "pending"
+}

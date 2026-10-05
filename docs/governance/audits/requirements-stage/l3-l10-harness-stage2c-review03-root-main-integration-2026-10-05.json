@@ -1,0 +1,78 @@
+{
+  "record_kind": "root-repair-main-integration",
+  "authority_effect": "none",
+  "pr": 2595,
+  "base": "dcc72fc16a8058ee7da1e0cd5c9907dc125c90f4",
+  "body_revision": "4f8c8855cb42b7ed54d9c3e3e587ec4ad55bb02a",
+  "integration_commit": "e4630c7fb75a6e321199d82720bb7ad43f9e1113",
+  "documents": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "full_sha256": "6c94aed4826b32319abe0cd09afa176e783508e35df24a14060c2005fe0667a9",
+      "bytes": 88922,
+      "main_prefix_commit": "191ebab8c0b1871d7c8c84354976d7c0bc11c26e",
+      "main_prefix_bytes": 66882,
+      "main_prefix_sha256": "280658542c51186f0f3dc509ad9d1e070e1f56224509046d344239b95bb36069",
+      "main_prefix_byte_identical": true,
+      "stage2c_suffix_sha256_lf_inclusive": "5849b32c4f8dc056496eeae94e535d3114875947c5ea5121f250c597866d5fa9"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "full_sha256": "ccb3f6ec5d7b3c51f629f8615977ef25319eae9426fc52d4dae0962fd3f41d5b",
+      "bytes": 6310,
+      "main_prefix_commit": "191ebab8c0b1871d7c8c84354976d7c0bc11c26e",
+      "main_prefix_bytes": 4857,
+      "main_prefix_sha256": "9ed7ce73cb08dab385ea95a7ea10527fb0b2e7ba600da6189705bc987c62f01f",
+      "main_prefix_byte_identical": true,
+      "stage2c_suffix_sha256_lf_inclusive": "6f74b3962b41a59a843bd258e5bd8f19f03c488a082e75e4d917079ae0e59434"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "full_sha256": "65c899c65f3f76c3d36d65ab750305e2460afc1e3d4c77067547c26a7b4aa2a9",
+      "bytes": 23892,
+      "main_prefix_commit": "191ebab8c0b1871d7c8c84354976d7c0bc11c26e",
+      "main_prefix_bytes": 19618,
+      "main_prefix_sha256": "1200a1126a0b35c2cc2a7a663dd8d92061bec6cea79bea04f73ef905123b99b9",
+      "main_prefix_byte_identical": true,
+      "stage2c_suffix_sha256_lf_inclusive": "68f2748223f071d74ed6573e0c9f0dcb34c7ae794710c67a572819bc7a3ac8f1"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "full_sha256": "111f2a72bb9299069d21529d65ab47bf1afe73c1a11946e38e81f79a5b0a7ad9",
+      "bytes": 60666,
+      "main_prefix_commit": "191ebab8c0b1871d7c8c84354976d7c0bc11c26e",
+      "main_prefix_bytes": 48258,
+      "main_prefix_sha256": "4fcc42b00175efcf16385e2faad69225dad805ec437566f2f54ff24c4615910d",
+      "main_prefix_byte_identical": true,
+      "stage2c_suffix_sha256_lf_inclusive": "5589427c0f499ebaceae2ba92ca32fbf4d8565f4a47c25f11d494477d5be06ff"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "full_sha256": "48d60b8752a8bc404cc7a3c0874f3322f93405fabaabe358067daa0945542acf",
+      "bytes": 3875,
+      "main_prefix_commit": "191ebab8c0b1871d7c8c84354976d7c0bc11c26e",
+      "main_prefix_bytes": 3223,
+      "main_prefix_sha256": "58126fbd50da8f652ebe82e4a24594e86d24a3aa130a98473047ab268122ffe2",
+      "main_prefix_byte_identical": true,
+      "stage2c_suffix_sha256_lf_inclusive": "ae652eeec0dc5b4f0d0f4071e16036026ab4abc9d442237c726d89d6c7cc7110"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "full_sha256": "b9e844b83dbbdbac8f79b1cbc4f7df5d9fc32cfbe06a963cd1777d8ccced4c60",
+      "bytes": 16954,
+      "main_prefix_commit": "191ebab8c0b1871d7c8c84354976d7c0bc11c26e",
+      "main_prefix_bytes": 12918,
+      "main_prefix_sha256": "c453fe97f167f89ca66817299ed8b30d34e2951dbb481fc898cc0a93ea251f1d",
+      "main_prefix_byte_identical": true,
+      "stage2c_suffix_sha256_lf_inclusive": "0e7d08108b140d1c5a260216b6eb1ddbb465b86325de51c14f75949a6df55911"
+    }
+  ],
+  "root_verification": "全FR/FV修正diffとJPsummary実読、固定L11459–460既読。1source fullraw/6literal/6全文-prefix-suffixSHA/旧3監査不変PASS、latestmain通常merge6本文不変、static147/0 stale0 res0 gov7622/57/58 diffPASS。",
+  "comment_byte_distinction": {
+    "comment_id": 5988748345,
+    "github_body_utf8_sha256": "ee90959e150562ee63a2e28ea170195a825c5845390dcb8d7e3fb5fee72fbf72",
+    "local_snapshot_with_appended_lf_sha256": "4d95874344ef33d29fdb3c5c88ba33b81dbe15ed5a75930e09424721adf2f6a0",
+    "note": "旧creator記録のlocal_body_sha256は末尾LF追加snapshotのhashで正しい。GitHub生body hashと混同しない。初回root照合は同一bytesと仮定して失敗、この区別で本文源を検算した。"
+  },
+  "independent_review": "pending"
+}
