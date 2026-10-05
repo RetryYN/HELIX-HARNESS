@@ -543,3 +543,28 @@ SECURITY policy/authorityとINFRASTRUCTUREが保持する実資源・runtime res
 - **`SECURITY-AC-026-01` Guard remains deterministic**：Guardに定義済みの決定的条件をBot不在時にも判定し、Bot response待ちを理由にルールを飛ばさず、Botがいる場合も決定規則で強制できる条件をBotの判断へ委譲しない。
 - **`SECURITY-AC-026-02` semantic input boundary**：必要時のsemantic inputは限定scope/由来/確度を識別するdecision inputとして区別し、Guard結果やauthorityそのものに変換しない。Security Botを選択する場合はINTELLIGENCE発行の目的・authority限定Workerという固定境界を保持し、独立の包括権限主体へ昇格させない。semantic判断不能（unknown結果）はpassにせず、unknown/制限として返す。判断由来欠落、確度欠落、由来と確度の混同は、有効なdecision inputとして受理せずunknown/制限として保持しINTELLIGENCEの意味責務へ返す。この照合は契約境界を対象としBot runtimeの1.0稼働を要求しない。
 - **`SECURITY-AC-026-03` version and owner boundary**：semantic probing/exfiltration実利用とBot runtimeは1.xまたは必要な後続版として残す。全例示Botを1.0 runtime必須にせず、SECURITYがmodel/routingを選ばない。
+
+
+## Stage 5 — 永続化promotion構成体（HELIXSECURITY-L2-027）
+
+未承認のL3/L10対候補。採択済み親027、1.0に限る。固定L2:332–341、paired L11:51、PO採択記録:65、現行MPR-RC-HELIXSECURITY-L2-027-002。要求基準633bf12、固定親/登録/旧sourceのfull SHA・raw-LF pinは時点監査へ記録する。Stage 5を全Stage完了gateへ変換しない。
+
+### SECURITY-FR-027-01 — 三つの独立永続化境界
+
+Context→Memory、Episode→Training Dataset、Product Knowledge→BRAINを別flow identityとして保持する。各flowでsource identity/revision、provenance、classification、promotion request、SECURITY判定receipt、対象sink受渡し結果またはdeny/holdを結ぶ。source/provenance/classification不足は永続化前にhold/deny。unknownな経路から構成体成立を主張せず、他経路の有効証拠を保持する。SECURITYは境界判定を所有し、保存・評価・登録手順は各sink ownerの接続契約に残る。意味差はL1-014、sink手順不足は当該owner契約へ戻す。
+
+旧sourceとの対応：旧security-capability-broker-authority.md:97–113（LEGACY-ASSET-B62E49D2E156232B8C63、全文SHAは監査）とpaired security-capability-broker-acceptance.md:23（LEGACY-ASSET-170112AB2FA2FFDBFEE9）はclassificationとsinkを分け、unknownを成功扱いしない隣接条件である。その区分とnegative oracle形式を意味再導出する。三永続化経路を直接定義する旧sourceはinventoryの全archive検索で見つからず、旧atom集合は0であり旧資産の全移管を主張しない。三経路は採択済み現行L1-014/PO§15/L2-027から導出する。旧broker sink enum、runtime、CLI、全external default denyの規則をこの親へコピーしない。旧L3工程定義L00-L06:148–168のFR/ACと三sub-doc対L10の形式を再導出し、旧G3 gateは移さない。
+
+- **SECURITY-AC-027-01**：Context→Memoryの正常allowと正当なdeny/holdを区別して追跡する。source/provenance/classification/request/判定/受渡し結果の単独欠落・unknown、tuple不一致、deny/holdの保存success化、allowのみの保存成功推定を拒否する。未見正常入力は宣言契約で照合し、sink固有手順をSECURITYへ移さない。
+- **SECURITY-AC-027-02**：Episode→Training Datasetの正常allowと正当なdeny/holdを区別して追跡する。source/provenance/classification/request/判定/受渡し結果の単独欠落・unknown、tuple不一致、deny/holdの保存success化、allowのみの保存成功推定を拒否する。未見正常入力は宣言契約で照合し、sink固有手順をSECURITYへ移さない。
+- **SECURITY-AC-027-03**：Product Knowledge→BRAINの正常allowと正当なdeny/holdを区別して追跡する。source/provenance/classification/request/判定/受渡し結果の単独欠落・unknown、tuple不一致、deny/holdの保存success化、allowのみの保存成功推定を拒否する。未見正常入力は宣言契約で照合し、sink固有手順をSECURITYへ移さない。
+- **SECURITY-AC-027-04**：三経路を別証拠で確認し、単体014または一経路成功、経路間receipt流用から構成体成功を生成しない。unknownな経路は未完で保持。他経路の有効証拠を失効させない。
+- **SECURITY-AC-027-05**：sink固有契約だけを照合し、LABO評価・OS登録を全経路必須に追加しない。契約で選択されたsink固有工程は保持する。
+
+| AC | 独立CASE |
+|---|---|
+| `SECURITY-AC-027-01` | `SECURITY-CASE-027-001`, `SECURITY-CASE-027-002`, `SECURITY-CASE-027-003`, `SECURITY-CASE-027-004`, `SECURITY-CASE-027-005`, `SECURITY-CASE-027-006`, `SECURITY-CASE-027-007`, `SECURITY-CASE-027-008`, `SECURITY-CASE-027-009`, `SECURITY-CASE-027-010`, `SECURITY-CASE-027-011`, `SECURITY-CASE-027-012`, `SECURITY-CASE-027-013`, `SECURITY-CASE-027-014`, `SECURITY-CASE-027-015`, `SECURITY-CASE-027-016`, `SECURITY-CASE-027-017`, `SECURITY-CASE-027-018`, `SECURITY-CASE-027-019`, `SECURITY-CASE-027-020`, `SECURITY-CASE-027-021`, `SECURITY-CASE-027-022`, `SECURITY-CASE-027-023`, `SECURITY-CASE-027-024`, `SECURITY-CASE-027-025` |
+| `SECURITY-AC-027-02` | `SECURITY-CASE-027-026`, `SECURITY-CASE-027-027`, `SECURITY-CASE-027-028`, `SECURITY-CASE-027-029`, `SECURITY-CASE-027-030`, `SECURITY-CASE-027-031`, `SECURITY-CASE-027-032`, `SECURITY-CASE-027-033`, `SECURITY-CASE-027-034`, `SECURITY-CASE-027-035`, `SECURITY-CASE-027-036`, `SECURITY-CASE-027-037`, `SECURITY-CASE-027-038`, `SECURITY-CASE-027-039`, `SECURITY-CASE-027-040`, `SECURITY-CASE-027-041`, `SECURITY-CASE-027-042`, `SECURITY-CASE-027-043`, `SECURITY-CASE-027-044`, `SECURITY-CASE-027-045`, `SECURITY-CASE-027-046`, `SECURITY-CASE-027-047`, `SECURITY-CASE-027-048`, `SECURITY-CASE-027-049`, `SECURITY-CASE-027-050` |
+| `SECURITY-AC-027-03` | `SECURITY-CASE-027-051`, `SECURITY-CASE-027-052`, `SECURITY-CASE-027-053`, `SECURITY-CASE-027-054`, `SECURITY-CASE-027-055`, `SECURITY-CASE-027-056`, `SECURITY-CASE-027-057`, `SECURITY-CASE-027-058`, `SECURITY-CASE-027-059`, `SECURITY-CASE-027-060`, `SECURITY-CASE-027-061`, `SECURITY-CASE-027-062`, `SECURITY-CASE-027-063`, `SECURITY-CASE-027-064`, `SECURITY-CASE-027-065`, `SECURITY-CASE-027-066`, `SECURITY-CASE-027-067`, `SECURITY-CASE-027-068`, `SECURITY-CASE-027-069`, `SECURITY-CASE-027-070`, `SECURITY-CASE-027-071`, `SECURITY-CASE-027-072`, `SECURITY-CASE-027-073`, `SECURITY-CASE-027-074`, `SECURITY-CASE-027-075` |
+| `SECURITY-AC-027-04` | `SECURITY-CASE-027-076`, `SECURITY-CASE-027-077`, `SECURITY-CASE-027-078`, `SECURITY-CASE-027-079`, `SECURITY-CASE-027-080`, `SECURITY-CASE-027-081`, `SECURITY-CASE-027-082`, `SECURITY-CASE-027-083`, `SECURITY-CASE-027-084` |
+| `SECURITY-AC-027-05` | `SECURITY-CASE-027-085`, `SECURITY-CASE-027-086`, `SECURITY-CASE-027-087` |

@@ -853,3 +853,98 @@ HIL-BR-32、HR-FR-HIL-23/HAC-HIL-23a/b/c、HAT-HIL-23、P2-05/HAT、WCCの対応
 - **negative変異**：Bot接続と他fieldを正常に保ち、決定規則で強制できるGuard条件だけをBotのsemantic判断へ委譲する。
 - **期待oracle**：不合格。Botがいても決定的Guard ruleの判定・強制を保持する。
 - **owner戻し**：決定規則とauthorityはSECURITY、semantic意味責務はINTELLIGENCEへ返す。
+
+
+## Stage 5 — 永続化promotion構成体の検証設計
+
+固定親027/1.0、未実行・未承認。全IDは独立fixture。P1/P2/P3は合成identityであり、実account/credential/logを用いない。各negativeは指定fieldだけ変え、他fieldと他経路は有効な正常値に固定する。正常分類publicは固定L2-016の宣言語彙を使う。allowは当該合成source・scope・sink契約に適合した既存判定receiptとして与え、public一般から許可を推定しない。状態とreceiptを独立に観測する。
+
+| CASE | AC | 入力fixture | 期待oracle | 戻し先 |
+|---|---|---|---|---|
+| `SECURITY-CASE-027-001` | `SECURITY-AC-027-01` | 合成正常fixture route=P1, source=P1-src@r1, promotion=P1-req@r1, provenance=P1-origin@r1, classification=public, decision=P1-sec@r1, sink=Memory@r1, handoff=P1-handoff@r1。SECURITY判定allowと同scopeの対象sink受渡しsuccess receiptを与え、他2経路の入力・証拠は独立して保持。 | 当該経路の境界判定と受渡し結果を別identityでtraceする。allowだけを保存・評価・登録の成功へ変換しない。 | SECURITY境界判定／対象sink ownerの接続契約 |
+| `SECURITY-CASE-027-002` | `SECURITY-AC-027-01` | 同じP1入力でSECURITY判定をdeny、sink handoffをnot_performedとする有効な通常拒否fixture。 | denyと未実施handoffを保持する。境界制約の成立は確認できるが保存成功とは表示しない。 | SECURITY L1-014／当該sink owner |
+| `SECURITY-CASE-027-003` | `SECURITY-AC-027-01` | 同じP1入力でSECURITY判定をhold、sink handoffをnot_performedとする有効な通常拒否fixture。 | holdと未実施handoffを保持する。境界制約の成立は確認できるが保存成功とは表示しない。 | SECURITY L1-014／当該sink owner |
+| `SECURITY-CASE-027-004` | `SECURITY-AC-027-01` | P1正常fixtureのsource identityだけ欠落。他値と他経路は維持。 | source identityのmissingを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |
+| `SECURITY-CASE-027-005` | `SECURITY-AC-027-01` | P1正常fixtureのsource revisionだけ欠落。他値と他経路は維持。 | source revisionのmissingを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |
+| `SECURITY-CASE-027-006` | `SECURITY-AC-027-01` | P1正常fixtureのprovenanceだけ欠落。他値と他経路は維持。 | provenanceのmissingを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |
+| `SECURITY-CASE-027-007` | `SECURITY-AC-027-01` | P1正常fixtureのclassificationだけ欠落。他値と他経路は維持。 | classificationのmissingを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |
+| `SECURITY-CASE-027-008` | `SECURITY-AC-027-01` | P1正常fixtureのpromotion requestだけ欠落。他値と他経路は維持。 | promotion requestのmissingを特定し当該経路を未完で保持する。有効promotionの前提を満たしたと表示せず、他fieldの実在receiptを保持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |
+| `SECURITY-CASE-027-009` | `SECURITY-AC-027-01` | P1正常fixtureのSECURITY判定receiptだけ欠落。他値と他経路は維持。 | SECURITY判定receiptのmissingを特定し当該経路を未完で保持する。有効promotionの前提を満たしたと表示せず、他fieldの実在receiptを保持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |
+| `SECURITY-CASE-027-010` | `SECURITY-AC-027-01` | P1正常fixtureのsink受渡し結果だけ欠落。他値と他経路は維持。 | sink受渡し結果のmissingを特定し当該経路を未完で保持する。SECURITY判定の既存状態を保ち、sink受領・保存成功を推測しない。 | 当該sink ownerの接続契約 |
+| `SECURITY-CASE-027-011` | `SECURITY-AC-027-01` | P1正常fixtureのsource identityだけ明示unknown。他値と他経路は維持。 | source identityのunknownを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |
+| `SECURITY-CASE-027-012` | `SECURITY-AC-027-01` | P1正常fixtureのprovenanceだけ明示unknown。他値と他経路は維持。 | provenanceのunknownを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |
+| `SECURITY-CASE-027-013` | `SECURITY-AC-027-01` | P1正常fixtureのclassificationだけ明示unknown。他値と他経路は維持。 | classificationのunknownを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |
+| `SECURITY-CASE-027-014` | `SECURITY-AC-027-01` | P1正常fixtureのSECURITY判定だけ明示unknown。他値と他経路は維持。 | SECURITY判定のunknownを特定し当該経路を未完で保持する。有効promotionの前提を満たしたと表示せず、他fieldの実在receiptを保持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |
+| `SECURITY-CASE-027-015` | `SECURITY-AC-027-01` | P1正常fixtureのsink受渡し結果だけ明示unknown。他値と他経路は維持。 | sink受渡し結果のunknownを特定し当該経路を未完で保持する。SECURITY判定の既存状態を保ち、sink受領・保存成功を推測しない。 | 当該sink ownerの接続契約 |
+| `SECURITY-CASE-027-016` | `SECURITY-AC-027-01` | P1正常fixtureで判定のsource identityだけ別の既知identity/revisionへ変える。 | tuple不一致を検出し当該経路の証拠へ流用しない。原receiptと他経路の有効証拠を保持する。 | SECURITY判定意味はL1-014、sink receipt不一致は当該sink接続契約 |
+| `SECURITY-CASE-027-017` | `SECURITY-AC-027-01` | P1正常fixtureで判定のsource revisionだけ別の既知identity/revisionへ変える。 | tuple不一致を検出し当該経路の証拠へ流用しない。原receiptと他経路の有効証拠を保持する。 | SECURITY判定意味はL1-014、sink receipt不一致は当該sink接続契約 |
+| `SECURITY-CASE-027-018` | `SECURITY-AC-027-01` | P1正常fixtureで判定の対象sinkだけ別の既知identity/revisionへ変える。 | tuple不一致を検出し当該経路の証拠へ流用しない。原receiptと他経路の有効証拠を保持する。 | SECURITY判定意味はL1-014、sink receipt不一致は当該sink接続契約 |
+| `SECURITY-CASE-027-019` | `SECURITY-AC-027-01` | P1正常fixtureで受渡し結果のpromotion identityだけ別の既知identity/revisionへ変える。 | tuple不一致を検出し当該経路の証拠へ流用しない。原receiptと他経路の有効証拠を保持する。 | SECURITY判定意味はL1-014、sink receipt不一致は当該sink接続契約 |
+| `SECURITY-CASE-027-020` | `SECURITY-AC-027-01` | P1正常fixtureで受渡し結果のsource revisionだけ別の既知identity/revisionへ変える。 | tuple不一致を検出し当該経路の証拠へ流用しない。原receiptと他経路の有効証拠を保持する。 | SECURITY判定意味はL1-014、sink receipt不一致は当該sink接続契約 |
+| `SECURITY-CASE-027-021` | `SECURITY-AC-027-01` | P1の有効deny receiptとnot_performed handoffを固定し、表示だけ保存successへ変える。 | denyを成功保存へ昇格させる表示を拒否する。元状態と未完義務を保持。 | SECURITY L1-014／当該sink接続契約 |
+| `SECURITY-CASE-027-022` | `SECURITY-AC-027-01` | P1の有効hold receiptとnot_performed handoffを固定し、表示だけ保存successへ変える。 | holdを成功保存へ昇格させる表示を拒否する。元状態と未完義務を保持。 | SECURITY L1-014／当該sink接続契約 |
+| `SECURITY-CASE-027-023` | `SECURITY-AC-027-01` | P1正常fixtureのallow receiptだけからsink保存成功を生成し、実handoff receiptを与えない。 | SECURITY判定とsink処理を分離し、sink側の結果を未確認のまま保持する。 | 当該sink接続契約 |
+| `SECURITY-CASE-027-024` | `SECURITY-AC-027-01` | P1正常fixtureのsource/classification判定を保ち、sink固有の保存・評価・登録方法だけSECURITYが決定する。 | sink固有手順をSECURITYの判断結果へ畳み込まず、当該owner契約へ戻す。 | 当該sink接続契約 |
+| `SECURITY-CASE-027-025` | `SECURITY-AC-027-01` | 初見の宣言済みP1 source@r2を同経路の有効なsource/provenance/classification、判定、sink receiptへ全て一致させる。 | 未見という理由だけで新たなapprovalや他経路の工程を要求せず、同じ宣言契約でtraceを確認する。 | SECURITY境界判定／当該sink接続契約 |
+| `SECURITY-CASE-027-026` | `SECURITY-AC-027-02` | 合成正常fixture route=P2, source=P2-src@r1, promotion=P2-req@r1, provenance=P2-origin@r1, classification=public, decision=P2-sec@r1, sink=Training Dataset@r1, handoff=P2-handoff@r1。SECURITY判定allowと同scopeの対象sink受渡しsuccess receiptを与え、他2経路の入力・証拠は独立して保持。 | 当該経路の境界判定と受渡し結果を別identityでtraceする。allowだけを保存・評価・登録の成功へ変換しない。 | SECURITY境界判定／対象sink ownerの接続契約 |
+| `SECURITY-CASE-027-027` | `SECURITY-AC-027-02` | 同じP2入力でSECURITY判定をdeny、sink handoffをnot_performedとする有効な通常拒否fixture。 | denyと未実施handoffを保持する。境界制約の成立は確認できるが保存成功とは表示しない。 | SECURITY L1-014／当該sink owner |
+| `SECURITY-CASE-027-028` | `SECURITY-AC-027-02` | 同じP2入力でSECURITY判定をhold、sink handoffをnot_performedとする有効な通常拒否fixture。 | holdと未実施handoffを保持する。境界制約の成立は確認できるが保存成功とは表示しない。 | SECURITY L1-014／当該sink owner |
+| `SECURITY-CASE-027-029` | `SECURITY-AC-027-02` | P2正常fixtureのsource identityだけ欠落。他値と他経路は維持。 | source identityのmissingを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |
+| `SECURITY-CASE-027-030` | `SECURITY-AC-027-02` | P2正常fixtureのsource revisionだけ欠落。他値と他経路は維持。 | source revisionのmissingを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |
+| `SECURITY-CASE-027-031` | `SECURITY-AC-027-02` | P2正常fixtureのprovenanceだけ欠落。他値と他経路は維持。 | provenanceのmissingを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |
+| `SECURITY-CASE-027-032` | `SECURITY-AC-027-02` | P2正常fixtureのclassificationだけ欠落。他値と他経路は維持。 | classificationのmissingを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |
+| `SECURITY-CASE-027-033` | `SECURITY-AC-027-02` | P2正常fixtureのpromotion requestだけ欠落。他値と他経路は維持。 | promotion requestのmissingを特定し当該経路を未完で保持する。有効promotionの前提を満たしたと表示せず、他fieldの実在receiptを保持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |
+| `SECURITY-CASE-027-034` | `SECURITY-AC-027-02` | P2正常fixtureのSECURITY判定receiptだけ欠落。他値と他経路は維持。 | SECURITY判定receiptのmissingを特定し当該経路を未完で保持する。有効promotionの前提を満たしたと表示せず、他fieldの実在receiptを保持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |
+| `SECURITY-CASE-027-035` | `SECURITY-AC-027-02` | P2正常fixtureのsink受渡し結果だけ欠落。他値と他経路は維持。 | sink受渡し結果のmissingを特定し当該経路を未完で保持する。SECURITY判定の既存状態を保ち、sink受領・保存成功を推測しない。 | 当該sink ownerの接続契約 |
+| `SECURITY-CASE-027-036` | `SECURITY-AC-027-02` | P2正常fixtureのsource identityだけ明示unknown。他値と他経路は維持。 | source identityのunknownを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |
+| `SECURITY-CASE-027-037` | `SECURITY-AC-027-02` | P2正常fixtureのprovenanceだけ明示unknown。他値と他経路は維持。 | provenanceのunknownを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |
+| `SECURITY-CASE-027-038` | `SECURITY-AC-027-02` | P2正常fixtureのclassificationだけ明示unknown。他値と他経路は維持。 | classificationのunknownを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |
+| `SECURITY-CASE-027-039` | `SECURITY-AC-027-02` | P2正常fixtureのSECURITY判定だけ明示unknown。他値と他経路は維持。 | SECURITY判定のunknownを特定し当該経路を未完で保持する。有効promotionの前提を満たしたと表示せず、他fieldの実在receiptを保持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |
+| `SECURITY-CASE-027-040` | `SECURITY-AC-027-02` | P2正常fixtureのsink受渡し結果だけ明示unknown。他値と他経路は維持。 | sink受渡し結果のunknownを特定し当該経路を未完で保持する。SECURITY判定の既存状態を保ち、sink受領・保存成功を推測しない。 | 当該sink ownerの接続契約 |
+| `SECURITY-CASE-027-041` | `SECURITY-AC-027-02` | P2正常fixtureで判定のsource identityだけ別の既知identity/revisionへ変える。 | tuple不一致を検出し当該経路の証拠へ流用しない。原receiptと他経路の有効証拠を保持する。 | SECURITY判定意味はL1-014、sink receipt不一致は当該sink接続契約 |
+| `SECURITY-CASE-027-042` | `SECURITY-AC-027-02` | P2正常fixtureで判定のsource revisionだけ別の既知identity/revisionへ変える。 | tuple不一致を検出し当該経路の証拠へ流用しない。原receiptと他経路の有効証拠を保持する。 | SECURITY判定意味はL1-014、sink receipt不一致は当該sink接続契約 |
+| `SECURITY-CASE-027-043` | `SECURITY-AC-027-02` | P2正常fixtureで判定の対象sinkだけ別の既知identity/revisionへ変える。 | tuple不一致を検出し当該経路の証拠へ流用しない。原receiptと他経路の有効証拠を保持する。 | SECURITY判定意味はL1-014、sink receipt不一致は当該sink接続契約 |
+| `SECURITY-CASE-027-044` | `SECURITY-AC-027-02` | P2正常fixtureで受渡し結果のpromotion identityだけ別の既知identity/revisionへ変える。 | tuple不一致を検出し当該経路の証拠へ流用しない。原receiptと他経路の有効証拠を保持する。 | SECURITY判定意味はL1-014、sink receipt不一致は当該sink接続契約 |
+| `SECURITY-CASE-027-045` | `SECURITY-AC-027-02` | P2正常fixtureで受渡し結果のsource revisionだけ別の既知identity/revisionへ変える。 | tuple不一致を検出し当該経路の証拠へ流用しない。原receiptと他経路の有効証拠を保持する。 | SECURITY判定意味はL1-014、sink receipt不一致は当該sink接続契約 |
+| `SECURITY-CASE-027-046` | `SECURITY-AC-027-02` | P2の有効deny receiptとnot_performed handoffを固定し、表示だけ保存successへ変える。 | denyを成功保存へ昇格させる表示を拒否する。元状態と未完義務を保持。 | SECURITY L1-014／当該sink接続契約 |
+| `SECURITY-CASE-027-047` | `SECURITY-AC-027-02` | P2の有効hold receiptとnot_performed handoffを固定し、表示だけ保存successへ変える。 | holdを成功保存へ昇格させる表示を拒否する。元状態と未完義務を保持。 | SECURITY L1-014／当該sink接続契約 |
+| `SECURITY-CASE-027-048` | `SECURITY-AC-027-02` | P2正常fixtureのallow receiptだけからsink保存成功を生成し、実handoff receiptを与えない。 | SECURITY判定とsink処理を分離し、sink側の結果を未確認のまま保持する。 | 当該sink接続契約 |
+| `SECURITY-CASE-027-049` | `SECURITY-AC-027-02` | P2正常fixtureのsource/classification判定を保ち、sink固有の保存・評価・登録方法だけSECURITYが決定する。 | sink固有手順をSECURITYの判断結果へ畳み込まず、当該owner契約へ戻す。 | 当該sink接続契約 |
+| `SECURITY-CASE-027-050` | `SECURITY-AC-027-02` | 初見の宣言済みP2 source@r2を同経路の有効なsource/provenance/classification、判定、sink receiptへ全て一致させる。 | 未見という理由だけで新たなapprovalや他経路の工程を要求せず、同じ宣言契約でtraceを確認する。 | SECURITY境界判定／当該sink接続契約 |
+| `SECURITY-CASE-027-051` | `SECURITY-AC-027-03` | 合成正常fixture route=P3, source=P3-src@r1, promotion=P3-req@r1, provenance=P3-origin@r1, classification=public, decision=P3-sec@r1, sink=BRAIN@r1, handoff=P3-handoff@r1。SECURITY判定allowと同scopeの対象sink受渡しsuccess receiptを与え、他2経路の入力・証拠は独立して保持。 | 当該経路の境界判定と受渡し結果を別identityでtraceする。allowだけを保存・評価・登録の成功へ変換しない。 | SECURITY境界判定／対象sink ownerの接続契約 |
+| `SECURITY-CASE-027-052` | `SECURITY-AC-027-03` | 同じP3入力でSECURITY判定をdeny、sink handoffをnot_performedとする有効な通常拒否fixture。 | denyと未実施handoffを保持する。境界制約の成立は確認できるが保存成功とは表示しない。 | SECURITY L1-014／当該sink owner |
+| `SECURITY-CASE-027-053` | `SECURITY-AC-027-03` | 同じP3入力でSECURITY判定をhold、sink handoffをnot_performedとする有効な通常拒否fixture。 | holdと未実施handoffを保持する。境界制約の成立は確認できるが保存成功とは表示しない。 | SECURITY L1-014／当該sink owner |
+| `SECURITY-CASE-027-054` | `SECURITY-AC-027-03` | P3正常fixtureのsource identityだけ欠落。他値と他経路は維持。 | source identityのmissingを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |
+| `SECURITY-CASE-027-055` | `SECURITY-AC-027-03` | P3正常fixtureのsource revisionだけ欠落。他値と他経路は維持。 | source revisionのmissingを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |
+| `SECURITY-CASE-027-056` | `SECURITY-AC-027-03` | P3正常fixtureのprovenanceだけ欠落。他値と他経路は維持。 | provenanceのmissingを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |
+| `SECURITY-CASE-027-057` | `SECURITY-AC-027-03` | P3正常fixtureのclassificationだけ欠落。他値と他経路は維持。 | classificationのmissingを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |
+| `SECURITY-CASE-027-058` | `SECURITY-AC-027-03` | P3正常fixtureのpromotion requestだけ欠落。他値と他経路は維持。 | promotion requestのmissingを特定し当該経路を未完で保持する。有効promotionの前提を満たしたと表示せず、他fieldの実在receiptを保持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |
+| `SECURITY-CASE-027-059` | `SECURITY-AC-027-03` | P3正常fixtureのSECURITY判定receiptだけ欠落。他値と他経路は維持。 | SECURITY判定receiptのmissingを特定し当該経路を未完で保持する。有効promotionの前提を満たしたと表示せず、他fieldの実在receiptを保持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |
+| `SECURITY-CASE-027-060` | `SECURITY-AC-027-03` | P3正常fixtureのsink受渡し結果だけ欠落。他値と他経路は維持。 | sink受渡し結果のmissingを特定し当該経路を未完で保持する。SECURITY判定の既存状態を保ち、sink受領・保存成功を推測しない。 | 当該sink ownerの接続契約 |
+| `SECURITY-CASE-027-061` | `SECURITY-AC-027-03` | P3正常fixtureのsource identityだけ明示unknown。他値と他経路は維持。 | source identityのunknownを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |
+| `SECURITY-CASE-027-062` | `SECURITY-AC-027-03` | P3正常fixtureのprovenanceだけ明示unknown。他値と他経路は維持。 | provenanceのunknownを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |
+| `SECURITY-CASE-027-063` | `SECURITY-AC-027-03` | P3正常fixtureのclassificationだけ明示unknown。他値と他経路は維持。 | classificationのunknownを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |
+| `SECURITY-CASE-027-064` | `SECURITY-AC-027-03` | P3正常fixtureのSECURITY判定だけ明示unknown。他値と他経路は維持。 | SECURITY判定のunknownを特定し当該経路を未完で保持する。有効promotionの前提を満たしたと表示せず、他fieldの実在receiptを保持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |
+| `SECURITY-CASE-027-065` | `SECURITY-AC-027-03` | P3正常fixtureのsink受渡し結果だけ明示unknown。他値と他経路は維持。 | sink受渡し結果のunknownを特定し当該経路を未完で保持する。SECURITY判定の既存状態を保ち、sink受領・保存成功を推測しない。 | 当該sink ownerの接続契約 |
+| `SECURITY-CASE-027-066` | `SECURITY-AC-027-03` | P3正常fixtureで判定のsource identityだけ別の既知identity/revisionへ変える。 | tuple不一致を検出し当該経路の証拠へ流用しない。原receiptと他経路の有効証拠を保持する。 | SECURITY判定意味はL1-014、sink receipt不一致は当該sink接続契約 |
+| `SECURITY-CASE-027-067` | `SECURITY-AC-027-03` | P3正常fixtureで判定のsource revisionだけ別の既知identity/revisionへ変える。 | tuple不一致を検出し当該経路の証拠へ流用しない。原receiptと他経路の有効証拠を保持する。 | SECURITY判定意味はL1-014、sink receipt不一致は当該sink接続契約 |
+| `SECURITY-CASE-027-068` | `SECURITY-AC-027-03` | P3正常fixtureで判定の対象sinkだけ別の既知identity/revisionへ変える。 | tuple不一致を検出し当該経路の証拠へ流用しない。原receiptと他経路の有効証拠を保持する。 | SECURITY判定意味はL1-014、sink receipt不一致は当該sink接続契約 |
+| `SECURITY-CASE-027-069` | `SECURITY-AC-027-03` | P3正常fixtureで受渡し結果のpromotion identityだけ別の既知identity/revisionへ変える。 | tuple不一致を検出し当該経路の証拠へ流用しない。原receiptと他経路の有効証拠を保持する。 | SECURITY判定意味はL1-014、sink receipt不一致は当該sink接続契約 |
+| `SECURITY-CASE-027-070` | `SECURITY-AC-027-03` | P3正常fixtureで受渡し結果のsource revisionだけ別の既知identity/revisionへ変える。 | tuple不一致を検出し当該経路の証拠へ流用しない。原receiptと他経路の有効証拠を保持する。 | SECURITY判定意味はL1-014、sink receipt不一致は当該sink接続契約 |
+| `SECURITY-CASE-027-071` | `SECURITY-AC-027-03` | P3の有効deny receiptとnot_performed handoffを固定し、表示だけ保存successへ変える。 | denyを成功保存へ昇格させる表示を拒否する。元状態と未完義務を保持。 | SECURITY L1-014／当該sink接続契約 |
+| `SECURITY-CASE-027-072` | `SECURITY-AC-027-03` | P3の有効hold receiptとnot_performed handoffを固定し、表示だけ保存successへ変える。 | holdを成功保存へ昇格させる表示を拒否する。元状態と未完義務を保持。 | SECURITY L1-014／当該sink接続契約 |
+| `SECURITY-CASE-027-073` | `SECURITY-AC-027-03` | P3正常fixtureのallow receiptだけからsink保存成功を生成し、実handoff receiptを与えない。 | SECURITY判定とsink処理を分離し、sink側の結果を未確認のまま保持する。 | 当該sink接続契約 |
+| `SECURITY-CASE-027-074` | `SECURITY-AC-027-03` | P3正常fixtureのsource/classification判定を保ち、sink固有の保存・評価・登録方法だけSECURITYが決定する。 | sink固有手順をSECURITYの判断結果へ畳み込まず、当該owner契約へ戻す。 | 当該sink接続契約 |
+| `SECURITY-CASE-027-075` | `SECURITY-AC-027-03` | 初見の宣言済みP3 source@r2を同経路の有効なsource/provenance/classification、判定、sink receiptへ全て一致させる。 | 未見という理由だけで新たなapprovalや他経路の工程を要求せず、同じ宣言契約でtraceを確認する。 | SECURITY境界判定／当該sink接続契約 |
+| `SECURITY-CASE-027-076` | `SECURITY-AC-027-04` | P1だけの有効な端から端の証拠を与え、他2経路を未観測とする。 | 一経路から構成体成功を生成しない。他2経路の未観測を保持。 | 未確認経路の既存sink契約、対象意味はL1-014 |
+| `SECURITY-CASE-027-077` | `SECURITY-AC-027-04` | P1だけ結果unknown、他2経路は有効証拠で成立。 | 構成体の成立を主張せず当該経路の未完を保持。他2経路の有効状態を失効させない。 | P1のsink契約／L1-014 |
+| `SECURITY-CASE-027-078` | `SECURITY-AC-027-04` | P2だけの有効な端から端の証拠を与え、他2経路を未観測とする。 | 一経路から構成体成功を生成しない。他2経路の未観測を保持。 | 未確認経路の既存sink契約、対象意味はL1-014 |
+| `SECURITY-CASE-027-079` | `SECURITY-AC-027-04` | P2だけ結果unknown、他2経路は有効証拠で成立。 | 構成体の成立を主張せず当該経路の未完を保持。他2経路の有効状態を失効させない。 | P2のsink契約／L1-014 |
+| `SECURITY-CASE-027-080` | `SECURITY-AC-027-04` | P3だけの有効な端から端の証拠を与え、他2経路を未観測とする。 | 一経路から構成体成功を生成しない。他2経路の未観測を保持。 | 未確認経路の既存sink契約、対象意味はL1-014 |
+| `SECURITY-CASE-027-081` | `SECURITY-AC-027-04` | P3だけ結果unknown、他2経路は有効証拠で成立。 | 構成体の成立を主張せず当該経路の未完を保持。他2経路の有効状態を失効させない。 | P3のsink契約／L1-014 |
+| `SECURITY-CASE-027-082` | `SECURITY-AC-027-04` | L2-014単体成功だけを与え、3経路のreceiptは未提示。 | 単体成功から構成体成功を生成しない。 | SECURITY L1-014 |
+| `SECURITY-CASE-027-083` | `SECURITY-AC-027-04` | P1/P2/P3のsource tupleが別なのに、同じ一つの判定・handoff receiptを全経路へ流用。 | 経路間の証拠流用を拒否し各経路の対象source/sinkへ結ぶ。 | SECURITY L1-014／各sink接続契約 |
+| `SECURITY-CASE-027-084` | `SECURITY-AC-027-04` | 3経路とも各自の有効なallow/successまたはdeny/hold/not_performedを持つ正常構成体fixture。 | 3経路の境界条件を別々に確認する。拒否・保留経路を保存successへ変えず、構成体境界の確認と全sinkへの保存成功を区別。 | 各経路のSECURITY境界／sink接続契約 |
+| `SECURITY-CASE-027-085` | `SECURITY-AC-027-05` | 3経路正常fixtureで各sink契約が要求していないLABO評価を全経路必須条件へ追加。 | 一律追加を拒否。LABO評価が当該sink契約で選択された場合の既存工程だけは保持。 | 当該sink接続契約 |
+| `SECURITY-CASE-027-086` | `SECURITY-AC-027-05` | 3経路正常fixtureで各sink契約が要求していないOS登録を全経路必須条件へ追加。 | 一律追加を拒否。OS登録が当該sink契約で選択された場合の既存工程だけは保持。 | 当該sink接続契約 |
+| `SECURITY-CASE-027-087` | `SECURITY-AC-027-05` | 選択したsink契約が固有の評価工程を要求する正常fixtureでその工程receiptを有効に与える。他sink契約に同工程はない。 | 当該sink固有工程だけを照合し、他経路へ常時依存として広げない。 | 選択したsink owner |

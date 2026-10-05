@@ -54,3 +54,10 @@ Stage 2cの分母は検査結果を読む前に適用条件から固定する。
 | `CASE-NFR-SECURITY-023-01` | `SEC-NFR-023-01` | SECURITY-CASE-023-01〜13の4段階stateとreceiptをphase別に計測し、provenance/capability deltaの各単独欠落によるunknown保持と後段holdを照合。 | failure/unknown後の段階success/promotion誤表示候補0。未実行/未観測は未評価、各段階を既存ownerへ返す。 |
 | `CASE-NFR-SECURITY-024-01` | `SEC-NFR-024-01` | SECURITY-CASE-024-01〜16でpolicy/resource/enforcement revision binding、L11が対象とする通常resource state/backup、L2-024が対象とするsnapshotの無条件保存を別々に測る。 | 誤結合・固定L11受入違反・L2-024の無条件保存違反・owner反転・観測failed/not_appliedの成功扱い・OS作業state混入候補0。L2-005/008のcredential-useだけから保存許可を導かない。INFRA stateとWorker enforcementはSECURITY policyから独立に観測する。 |
 | `CASE-NFR-SECURITY-026-01` | `SEC-NFR-026-01` | SECURITY-CASE-026-01〜17でBot absent、限定semantic input、semantic unknown、必要時のINTELLIGENCE発行/限定Worker境界を比較。 | deterministic Guard omission・Bot接続時の決定規則委譲、semantic→authority昇格、発行元/authority境界の不一致受入・SECURITYのmodel/routing決定・semantic unknownのpass・1.x能力前倒し候補0。1.x semantic runtimeは1.0分母に含めず、意味判断不足はINTELLIGENCEへ戻す。 |
+
+
+## Stage 5 — HELIXSECURITY-L2-027の測定設計
+
+CASE-NFR-SECURITY-027-01はSEC-NFR-027-01を対functional CASEで照合する。各経路のrequired-field集合を選択契約から先に固定し、planned/required/checked、false_accept、missing/unknown/not_observed/unexecuted理由を別記録する。Nrequired=0は割合なし、未実行fixtureは実測なし。正しいdeny/holdの境界確認を保存successに数えない。
+
+SECURITY-CASE-027-001〜087を対象とし、各CASEは別runで入力tupleと観測結果を保持する。各sink固有工程は選択した接続契約だけを照合し、全経路のLABO/OS工程数を分母へ追加しない。候補誤受理0件は固定親の失敗を成功へ変換しないoracle比較でありSLO/実行合格ではない。

@@ -15,3 +15,8 @@
 ## Stage 4の業務境界
 
 021/022/023/024/026に独立business ACはない。L10 functional casesの通常・negative・unknown結果を用い、transport/receiptだけからtrust昇格、requestから実行許可、SECURITY/HARNESS/OS単独greenから後段成功、policy宣言から実資源適用、Bot出力からGuard/authority/業務判断を生成する変異を不合格とする。既存のCONNECT/consumer、OS、Worker、HARNESS、INFRASTRUCTURE、INTELLIGENCEが持つ意味・状態・結果をSECURITYが代行しない。
+
+
+## Stage 5 — HELIXSECURITY-L2-027
+
+固定親に独立business outcome/KPI/ACはない。三経路のSECURITY判定とsink受渡しをbusiness成功へ変換しない。SECURITY-AC-027-01〜05とSECURITY-CASE-027-001〜087を対functional文書で照合する。各sink固有の業務意味・保存/評価/登録結果は当該owner契約に残す。

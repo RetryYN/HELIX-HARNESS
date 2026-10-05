@@ -16,3 +16,8 @@
 ## Stage 4（HELIXSECURITY-L2-021/022/023/024/026）
 
 この5親に独立したbusiness identity/ACはない。receipt・trust判断・SECURITY admission・Guard結果から下流受領のtrust、OS assignment、Worker実行、HARNESS verification、OS promotion、実資源適用やsemantic業務判断を成功として生成しない。各意味と結果はL2が示すCONNECT、LABO/INTELLIGENCE、OS、Worker、HARNESS、INFRASTRUCTUREの既存ownerへ残す。026の1.0 Guard境界からsemantic judgement/Bot runtimeの業務結果を前倒ししない。独立BR/AC/ownerは新設せず、意味・scope・owner・versionの変更が必要な場合だけ固定親L2へ戻す。
+
+
+## Stage 5 — HELIXSECURITY-L2-027
+
+固定親に独立business outcome/KPI/ACはない。三経路のSECURITY判定とsink受渡しをbusiness成功へ変換しない。SECURITY-AC-027-01〜05とSECURITY-CASE-027-001〜087を対functional文書で照合する。各sink固有の業務意味・保存/評価/登録結果は当該owner契約に残す。
