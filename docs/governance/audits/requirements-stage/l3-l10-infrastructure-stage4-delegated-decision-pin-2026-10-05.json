@@ -1,0 +1,97 @@
+{
+  "record_kind": "delegated_l3_l10_decision_pin",
+  "review_base": "0a150fba9c98fd99f491c79a0652ddb3bdf4434a",
+  "review_content_head": "d3ad240259d7efb70f5d8d6637c978fd065ed657",
+  "body_revision": "36db5874beb3c1f82ab26aa583e4a9c80afc155d",
+  "delegation": {
+    "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+    "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220"
+  },
+  "formal_comments": [
+    {
+      "id": 5992032408,
+      "bytes": 3419,
+      "sha256": "7c4c0b1edb43340f5c1700deb7cff9c60a959302f7b3925f30614dd2772ebc7c"
+    },
+    {
+      "id": 5992133970,
+      "bytes": 12112,
+      "sha256": "e10a41aaa11c3ce7e14a462d2fa69ccf46734be8f4915e230aacb2a29078c044"
+    }
+  ],
+  "approved_parents": [
+    {
+      "parent": "HELIXINFRASTRUCTURE-L2-008",
+      "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-008-002",
+      "semantic_digest": "sha256:ae2457734e68f0fa49d801f485fad5b99b08945c8ba85f405306150d8d65c925",
+      "po_line": 48,
+      "po_raw_lf_sha256": "4c8d971350ada77c36cb15632dcfc06c6342d61c3b329909bca8d289ec9cba49",
+      "register_line": 128,
+      "register_raw_lf_sha256": "e4be76c6296d4845a5bf2f8413eb8a3e0d5e0d3624f1d505d907fec4158738b2"
+    },
+    {
+      "parent": "HELIXINFRASTRUCTURE-L2-025",
+      "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-025-002",
+      "semantic_digest": "sha256:7465361b4d272cc1bf352a019272d6212a59282c938af704583ba1c0d493554c",
+      "po_line": 48,
+      "po_raw_lf_sha256": "4c8d971350ada77c36cb15632dcfc06c6342d61c3b329909bca8d289ec9cba49",
+      "register_line": 145,
+      "register_raw_lf_sha256": "d55ccda9a829f6eb46849c3a4996849df4648c1c2049b95700b0c8e152d630d1"
+    }
+  ],
+  "documents": [
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "sha256": "5870331546272a2eaaac93738b66ad3994312e9ce426ebc3fcfc59e10bf2c137",
+      "bytes": 4041,
+      "prefix_bytes": 3152,
+      "prefix_sha256": "296eb72a0fafd12cdd579d391eabf9f91827646f3cfb029522ad21d57f874fe3",
+      "prefix_unchanged": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "sha256": "4b17567033e91c39f4f8dae1867ac1ace6438b01584d121b52b4aa9d22019df7",
+      "bytes": 112748,
+      "prefix_bytes": 51754,
+      "prefix_sha256": "8ddc97daf1f12aa3b4464078f186bbcb4b0631b6a009d6ad9f5bffba4b6ecb4d",
+      "prefix_unchanged": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "sha256": "f895dbdd8e74ac2d90016b098fd03edd8ae6391df05d4ca69d0902de04b04682",
+      "bytes": 16628,
+      "prefix_bytes": 14402,
+      "prefix_sha256": "d5173bc4ccd6c321e441e3801d76a034874e7afcb3ef35e7d3159a97ea083182",
+      "prefix_unchanged": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "sha256": "346043f260c3f75cf826ba4a15ee2242b6e48c38be5c040641af5d7586f495c3",
+      "bytes": 5095,
+      "prefix_bytes": 4206,
+      "prefix_sha256": "832674b0d826631cb157b0e9a0525f8f694391dcaedd8c39783f99bce0e23913",
+      "prefix_unchanged": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "sha256": "1a8fb9915d5da9ad4ec9277ab2b1655b8eae4ed31fffa16fe4c663269345dbc5",
+      "bytes": 67681,
+      "prefix_bytes": 56174,
+      "prefix_sha256": "35c3ba6fc742ef29d53162eee5505b6bcc95d11395915a5d9c75b14897e0a08c",
+      "prefix_unchanged": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "sha256": "48bfcbda956a3808aab109c9b529acc18ba9d541bde992074cca02abbc9c97ba",
+      "bytes": 17841,
+      "prefix_bytes": 15721,
+      "prefix_sha256": "9fa10204c08312b34f17f5cdc77cf0a859aafc914fcbf1d359d202ec5631a98a",
+      "prefix_unchanged": true
+    }
+  ],
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-infrastructure-stage4-l3-l10-po-decision-2026-10-05.md",
+    "sha256": "35c0ad579fa18f8bae07c16d8f64279844fb2947152f1ac89af95698028dc60e"
+  },
+  "authority_effect": "effective_when_decision_record_admitted_to_main"
+}

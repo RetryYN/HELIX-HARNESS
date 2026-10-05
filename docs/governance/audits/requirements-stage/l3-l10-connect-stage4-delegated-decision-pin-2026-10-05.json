@@ -1,0 +1,95 @@
+{
+  "record_kind": "delegated_l3_l10_decision_pin",
+  "review_base": "54d8724a601115914793e03b2d8361f3a563d2a7",
+  "review_content_head": "075ab51a071d2cc05355e0e750d2bbfd22dfbdd8",
+  "body_revision": "52fa5d300b32939975956032c0ac01a6b686e0ac",
+  "delegation": {
+    "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+    "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220"
+  },
+  "formal_comments": [
+    {
+      "id": 5991201033,
+      "bytes": 3642,
+      "sha256": "5af62c0a04733b13a148377f8bbc5764899dcfc371442a80f679c2e728e492e5"
+    },
+    {
+      "id": 5991288330,
+      "bytes": 11581,
+      "sha256": "b4729f715922edb31569b77e35bf765339e97f71ef71ecec15277f578e25c619"
+    }
+  ],
+  "approved_parents": [
+    {
+      "parent": "HELIXCONNECT-L2-008",
+      "registration_id": "MPR-RC-HELIXCONNECT-L2-008-002",
+      "po_line": 94,
+      "po_raw_lf_sha256": "71dfba9e65926882b18cf9645aa5d302feadb4a0f2020ab63f2e7e2c22fa3732",
+      "register_line": 574,
+      "register_raw_lf_sha256": "eb137303fd68a4d92c5765b984c2a7b8709942cf6e6e659478dc6521b39b3730",
+      "semantic_digest": "sha256:4b5028444f8dfecc3ddad03d94c7de666e716e63974a2851123285af77472813"
+    },
+    {
+      "parent": "HELIXCONNECT-L2-009",
+      "registration_id": "MPR-RC-HELIXCONNECT-L2-009-002",
+      "po_line": 95,
+      "po_raw_lf_sha256": "765d6070ed419f678b00e0e7367d7a6048febb4002d04ced1baf1858cd3a4260",
+      "register_line": 600,
+      "register_raw_lf_sha256": "04cab31d2f2a3c99e91249d850ca5431a93c3e4c4b8f3227459a4791844c35de",
+      "semantic_digest": "sha256:d2fc48f4ce3049a078203b281a69a2d211789456ef4fa6a25cd074f96c04712f"
+    }
+  ],
+  "po_source": {
+    "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+    "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+  },
+  "register_source": {
+    "path": "docs/governance/management-provisional-requirement-register.jsonl",
+    "sha256": "d24a982af1c468bb32c9822777a3234d3ce065ff63b89c944b7b04447610c99b"
+  },
+  "documents": [
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.md",
+      "sha256": "682ee13c350966d8edf28e05aae6ce1940b12301cc42a61c1d0ff7c6633983c2",
+      "bytes": 1832,
+      "main_prefix_bytes": 1457,
+      "main_prefix_sha256": "b91e6ba4d37f515ce0e99ebd7de0605a73eccc406d45fb47fd5f656418341829"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "sha256": "add54593f70f9cf505a093a72765ca07334b4ce1bfb6d7e89782dca20bdaa0ce",
+      "bytes": 46428,
+      "main_prefix_bytes": 34514,
+      "main_prefix_sha256": "392501cf2dc215506b3eede2829985535a38f7d412039886ca41609c30fcec89"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "sha256": "57312a3c288c4580dd7a6c8c0bda694285509ad497fd6e78634a3173cf14cc74",
+      "bytes": 8346,
+      "main_prefix_bytes": 6673,
+      "main_prefix_sha256": "a0e6135104df9c05f6d4c9830ab58f0f112f543d12d36adc912d26c86ce6c13b"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.md",
+      "sha256": "236544161821415904f6eb4dd176e371b5f23852f4d589fd374890762475b42e",
+      "bytes": 1486,
+      "main_prefix_bytes": 1102,
+      "main_prefix_sha256": "cbe7776259524b7490aa7b9925614e394531a3b163d3909bbc6d6bd16acec387"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "sha256": "be036dd606db0d1003a6e33741c4f9ba95c84b2f287f328b73e414b18b3692f8",
+      "bytes": 69350,
+      "main_prefix_bytes": 25071,
+      "main_prefix_sha256": "5e24bc4aa7c0d396d50331035653a928446aa9814d2610fb1200ae361c124d7a"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "sha256": "144f740df3db0ce4db20334e3bb27ad41e670f1c96d5912372b2b3f5d76a7396",
+      "bytes": 7404,
+      "main_prefix_bytes": 5768,
+      "main_prefix_sha256": "3dfbbf3d809ecd8ee93fca5aabb92e4fcd4f550f5f7fc12b778c4f7327ea3eb8"
+    }
+  ],
+  "authority_effect": "effective_when_decision_record_admitted_to_main"
+}

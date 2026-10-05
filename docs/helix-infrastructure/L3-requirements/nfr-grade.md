@@ -75,3 +75,16 @@ resourceの意味上の設計はCORE、資源と観測stateはINFRASTRUCTURE、�
 | INFRA-NFR-004-01 / L2-004 | Telemetry coverage = required applicable fieldsの100%。scope applicabilityでoptional fieldはN/Aとして分母から分ける。 | Global all-field completenessは非該当fieldでfalse failure、any-fieldはblind spotを通す。L2はmissing telemetryをhealthyとしないが全signalを全resourceに適用しない。 | Resource type別applicability matrixを宣言し、required fieldごとのmissing mutationを注入してunknown/unobservedとowner returnを確認。割合をbusiness health scoreへ変えない。 |
 
 Candidateの受入/採用は一つの通常L3判断へまとめ、数値ごとの個別PO承認を新設しない。
+
+## Stage 4 追加範囲 — HELIXINFRASTRUCTURE-L2-008/025
+
+この追記は採択済み `HELIXINFRASTRUCTURE-L2-008` と `HELIXINFRASTRUCTURE-L2-025` の1.0候補である。固定要求意味はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7` のL2/L11、PO確認対象は `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。既承認prefixのbytesを保ち、この追記の承認・実装結果は別に判断する。実装順序はG0案Bに従う。後続版、自動配置最適化、高度な自動増減、Web展開を受入条件へ加えない。
+
+### Stage 4の測定候補
+
+| NFR / parent | 根拠と比較 | 測定候補 |
+|---|---|---|
+| INFRA-NFR-008-S4 / 008 | 固定L2のdesign revision/scope・target/actual分離、L11の未承認/別revision負例。名前一致だけの比較候補1に対し、宣言scopeの全必須参照を照合する比較候補2を候補とする。 | 各fixtureの必要入力・参照・ACを事前に分母化し、照合可能率100%を技術候補として観測する。missing/unknown/staleを除かず、可観測率と合格率を分ける。設計無言変更/誤承認生成は0件の期待oracle。新latency/expiry値は設けない。 |
+| INFRA-NFR-025-S4 / 025 | 固定L2/L11の資源/Worker区別、隔離、ticket/要求/責務/未完保持と元資源/移動先状態。Worker応答のみの比較候補1に対し、実stateと作業参照を別に追う比較候補2を候補とする。 | 選択Worker/resource/移動scopeの必要resource属性・隔離条件・lineage参照を事前に分母化し、全件のvalue/unknownとsource/revision追跡を候補とする。unknownを成立へ丸めた件数、未完義務消去、正本移管は0件。自動最適化の性能値は測らない。 |
+
+旧grade→測定→証拠という形式を再導出し、資源identityと実適用の意味根拠は機能本文の旧OPS/WCC/Conceptに限定する。既存NFRの数値をこの2親へ転用しない。候補値の判断は通常のL3承認へまとめ、parameter別PO質問は作らない。要求meaning/scope/owner/versionの変更は該当L2へ戻す。

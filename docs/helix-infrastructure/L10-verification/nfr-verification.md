@@ -68,3 +68,14 @@ stage: 1
 L2-009/010用の数値候補は設定しない。対のL10では宣言済みselected scopeにおける必須参照/authority/duty/evidenceの個別充足・unknown・不一致と未完件数を記録し、分母0なら割合を算出しない。数値閾値や新しいowner判定は作らない。
 
 ここにbusiness pass/fail、incident severity、placement/cost acceptanceを追加しない。数値候補は通常のL3要件承認に付し、parameter別PO確認を作らない。
+
+## Stage 4 追加範囲 — HELIXINFRASTRUCTURE-L2-008/025
+
+この追記は採択済み `HELIXINFRASTRUCTURE-L2-008` と `HELIXINFRASTRUCTURE-L2-025` の1.0候補である。固定要求意味はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7` のL2/L11、PO確認対象は `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。既承認prefixのbytesを保ち、この追記の承認・実装結果は別に判断する。実装順序はG0案Bに従う。後続版、自動配置最適化、高度な自動増減、Web展開を受入条件へ加えない。
+
+| 対NFR | 母集団・比較方法 | oracleと記録 |
+|---|---|---|
+| INFRA-NFR-008-S4 | 各CASE-INFRA-008-S4の宣言design/target/actual scopeで必要参照と対応ACを事前列挙。比較候補1（名前だけ照合）と比較候補2（全必須参照）を同じ入力集合で比較する。 | 分子は期待正常/拒否/保留を照合できた観測単位、分母は予定必須単位。missing/unknown/staleを除かない。0分母は率なし、適用不明は分母不明。可観測率とAC合格率を分け、canonical設計bytesとauthority不変を別観測する。未実行は未測定。 |
+| INFRA-NFR-025-S4 | 各CASE-INFRA-025-S4で選択Worker/資源の適用属性、隔離条件と観測、作業参照、移動前後の両資源状態/未完義務を事前列挙。比較候補1（Worker応答のみ）と比較候補2（実state/lineage観測）を比較する。 | 必須単位のvalue/unknown/source/revision、正常/保留/失敗ownerを各個別に観測する。非適用は既存契約と理由を別記し、不明を分母から除かない。未完義務消去/正本移管/unknown成立誤変換件数を記録。実隔離の可観測性を隔離合格に代用しない。 |
+
+予定単位をmissing-input、入力後の照合可能な結果、観測欠落、期間打切り等の主状態に重複なく分類し、併発理由を別に保つ。固定候補100%は可観測性の比較材料であり、未承認sourceを正常へ変えず、期待拒否の正しさを別判定する。1.0後のfreshness/confidence、自動配置/増減、business KPIをこの2親へ追加しない。旧test/runtime/CIを実行しない。

@@ -1,0 +1,176 @@
+{
+  "record_kind": "delegated_l3_l10_decision_pin",
+  "review_base": "54d8724a601115914793e03b2d8361f3a563d2a7",
+  "review_content_head": "abcd9c30baa0c53b39f1be3a68eb9062e805db44",
+  "body_revision": "6cda810b5b44038fbcda40fdc70a0678fa44609a",
+  "delegation": {
+    "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+    "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220"
+  },
+  "formal_comments": [
+    {
+      "id": 5991128461,
+      "sha256": "96de104de82e2fa595acc20e124e324cd4a949e8172f2284a3956bbfd559627d",
+      "bytes": 3931
+    },
+    {
+      "id": 5991229880,
+      "sha256": "f1b9aa9cb7ceea2e73d535fbe22f19e2c64f4bf617d9d7a0e7eb7b07e27270b9",
+      "bytes": 12822
+    }
+  ],
+  "approved_parents": [
+    {
+      "parent": "HELIXBRAIN-L2-001",
+      "registration_id": "MPR-RC-HELIXBRAIN-L2-001-002",
+      "po_line": 48,
+      "po_raw_lf_sha256": "3e1e83c42d4c3f93b9b3606e17ae1e3ef2568eb72dbb29612cad5b5cbfdd506f",
+      "register_line": 194,
+      "register_raw_lf_sha256": "914f0820ac7bc7b892e7abf0a89124511c2cd7e4db86e2c0108f7b761bdea633",
+      "semantic_digest": "sha256:e708841bf5f5560a96915866d68dd4d37cd663bb250e61084e1d19ebf2eb4abf"
+    },
+    {
+      "parent": "HELIXBRAIN-L2-002",
+      "registration_id": "MPR-RC-HELIXBRAIN-L2-002-002",
+      "po_line": 49,
+      "po_raw_lf_sha256": "377c091e7b93dcc21fa92709c010ae2a7cee123d58df0e01f7b06a64c626966a",
+      "register_line": 195,
+      "register_raw_lf_sha256": "78b26c6c27e5a4c029e76289b18ff2b04eb762babb4f8e7da5d2a008cab46b99",
+      "semantic_digest": "sha256:6ea1c1d2d7808649aaa553fbc6afcf814e72eeb24a0e83caf89c7d043fe70039"
+    },
+    {
+      "parent": "HELIXBRAIN-L2-003",
+      "registration_id": "MPR-RC-HELIXBRAIN-L2-003-002",
+      "po_line": 50,
+      "po_raw_lf_sha256": "96636010d43c24b28cc555d260abce7c9da4c1f8e142fc98a587145a540e7422",
+      "register_line": 196,
+      "register_raw_lf_sha256": "6a6f681e6c7ace504e41b2bd5c12688bc9cf54888c79c8875fd8fafbb2d4879b",
+      "semantic_digest": "sha256:0c9aa2e7b9c84e47147fc40fb2893ae58a7bbd08b5975dc925299a184824dc56"
+    },
+    {
+      "parent": "HELIXBRAIN-L2-004",
+      "registration_id": "MPR-RC-HELIXBRAIN-L2-004-002",
+      "po_line": 51,
+      "po_raw_lf_sha256": "71a47c1b14ddd4ef08916de0c567972b56bc93abc1379dc267fe027529f136bc",
+      "register_line": 197,
+      "register_raw_lf_sha256": "a13d6b58806f5e1e9e34b8f69fb03884d3bb20304be406d6daf19d404a935097",
+      "semantic_digest": "sha256:ea1ad035c22d4c34626ec52cea621e47f304c66f97c0f44507a01e1325a3686b"
+    },
+    {
+      "parent": "HELIXBRAIN-L2-005",
+      "registration_id": "MPR-RC-HELIXBRAIN-L2-005-002",
+      "po_line": 52,
+      "po_raw_lf_sha256": "e86a96a0f3ce01102ff0c111579bccbbbe3730354daa3e7b9c5f06a48e0a3579",
+      "register_line": 198,
+      "register_raw_lf_sha256": "bda274236e28774204c95bd07f4de1d974db3ae90b10be1e8dd9e75847a19659",
+      "semantic_digest": "sha256:120d16b39c985bd7f62efe6974a71849cad4cb0f234c395a509dc6793ddd9ff0"
+    },
+    {
+      "parent": "HELIXBRAIN-L2-006",
+      "registration_id": "MPR-RC-HELIXBRAIN-L2-006-002",
+      "po_line": 53,
+      "po_raw_lf_sha256": "8dcedc8e1fd0eee1b4d7de8359e151f74dc9515b06b701377019ff8b415f6682",
+      "register_line": 199,
+      "register_raw_lf_sha256": "a543e6dceb3578cfee6b8fb4133b99110c5556fa0cd4b485c28e4ae16139db4e",
+      "semantic_digest": "sha256:f031680bdd08d3b7c3286ebb1a5ecab68efb8c4bfed7b8f005a55ff9bb141900"
+    },
+    {
+      "parent": "HELIXBRAIN-L2-009",
+      "registration_id": "MPR-RC-HELIXBRAIN-L2-009-002",
+      "po_line": 56,
+      "po_raw_lf_sha256": "9bc9148680236894f986fcc5852593ed0a63caf97aa06401fa6e0a5f239ea287",
+      "register_line": 202,
+      "register_raw_lf_sha256": "90ce2fec1c578d79bf9faf811bfd5f4df00e6bdefd073260d25ca16a963d2c34",
+      "semantic_digest": "sha256:2357966979f49c70ea6881fddd664a9f121dc43849f8b2889768f931c5e89d01"
+    },
+    {
+      "parent": "HELIXBRAIN-L2-010",
+      "registration_id": "MPR-RC-HELIXBRAIN-L2-010-002",
+      "po_line": 57,
+      "po_raw_lf_sha256": "0c6aa846904e356ddf0e573f9bfbad92d9371f14a959c447231e49f923a42e04",
+      "register_line": 203,
+      "register_raw_lf_sha256": "2076b76207231f27a04c317f8595d47db8a60b81f337a4225ce97a4a7def553c",
+      "semantic_digest": "sha256:bb9b45219db15affd84fd2098e37930da414358e9170f42d9f308143a3090b2a"
+    },
+    {
+      "parent": "HELIXBRAIN-L2-011",
+      "registration_id": "MPR-RC-HELIXBRAIN-L2-011-002",
+      "po_line": 58,
+      "po_raw_lf_sha256": "f82710ece0388d35a38d78dd430cd53ca209bfac94e3814867dabd0e4fc5f57c",
+      "register_line": 204,
+      "register_raw_lf_sha256": "140f1d08565d5827d92e2d0e27e72b4a7359a83cb5dcd128fa6aca978272c904",
+      "semantic_digest": "sha256:726a83d698826a4376d6cf8bb47be6a10de671776d27d0b219ada48a38b77091"
+    },
+    {
+      "parent": "HELIXBRAIN-L2-012",
+      "registration_id": "MPR-RC-HELIXBRAIN-L2-012-002",
+      "po_line": 59,
+      "po_raw_lf_sha256": "d18d0d5afcb741c99c050053143999a69feb62acdd961dc1f3d56defaff7b0c2",
+      "register_line": 205,
+      "register_raw_lf_sha256": "9fe5d2297ed9eabd0b2b64e44f91d3799e308e80363a179cd89c93f37eff1e4c",
+      "semantic_digest": "sha256:f574ca7fda5b129544983c786c5c5881fa7c479e00d96cdeaa60757b7964493f"
+    },
+    {
+      "parent": "HELIXBRAIN-L2-029",
+      "registration_id": "MPR-RC-HELIXBRAIN-L2-029-001",
+      "po_line": 88,
+      "po_raw_lf_sha256": "fde3f6915acbe80723b5005df7ba64280a5f13bb2a1021e9ad84a14a1fca9b38",
+      "register_line": 404,
+      "register_raw_lf_sha256": "8fd4109c8cf081543147655c9fde315d0b7f01928660d52a41c9dc57c7865060",
+      "semantic_digest": "sha256:fd3bd6eaf17c5dad916dec0793c28544816c8b785e98fa854b49df843b11382d"
+    }
+  ],
+  "po_source": {
+    "path": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+    "sha256": "fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a"
+  },
+  "register_source": {
+    "path": "docs/governance/management-provisional-requirement-register.jsonl",
+    "sha256": "d24a982af1c468bb32c9822777a3234d3ce065ff63b89c944b7b04447610c99b"
+  },
+  "documents": [
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "sha256": "51323080ec1b9c8b418b1d18aebbc5144c36a52d1068745a07036c1c4420c78f",
+      "bytes": 134260,
+      "main_prefix_sha256": "1b74ae392d8c27a84741970f6c38e7c1910a52522c64808e50f032e443ea945d",
+      "main_prefix_bytes": 97617
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "sha256": "ec9964b838deaae3e032209a364f01ab9ba5228b6ad0e942afebf652bbc6976e",
+      "bytes": 132524,
+      "main_prefix_sha256": "2a614f3a3bc365a1e6cad0507f33c6cafa7c4cb5cf16034aaff11abe1d466a50",
+      "main_prefix_bytes": 58900
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.md",
+      "sha256": "8ec6476187972fbc4def388dd5a5340d98664b8930729d77789efe5fbaf5fbe5",
+      "bytes": 9302,
+      "main_prefix_sha256": "0b857e367c250e8358c0150949362c962fbe7c38e4af0e982dad55f39efedf0e",
+      "main_prefix_bytes": 5658
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.md",
+      "sha256": "fa4fbd2b22d42b8650c8f681ac79d05ff42197fd0b1e40c58a7473683493cf91",
+      "bytes": 8293,
+      "main_prefix_sha256": "405840ceb9442a769498c9cfe77e0611ec6b282742076e945b3199adaaaa6019",
+      "main_prefix_bytes": 4751
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/nfr-grade.md",
+      "sha256": "3a3bbe1d0f3718f2a4da049e4d316f988614df6d97d54aa73d6e3bc61e1d3283",
+      "bytes": 28529,
+      "main_prefix_sha256": "51dd748ff58bc89252badbcb1496e83c259a6987d543e285bef8cad79961c7ea",
+      "main_prefix_bytes": 12083
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/nfr-verification.md",
+      "sha256": "5736889cb4fb02c595affdfaab81b0cb5ac7cc6765b2586cd4e92a842d20864f",
+      "bytes": 20257,
+      "main_prefix_sha256": "c61d51bfc050cb13247c0b52f9ea575ddd6b415b1230a6f376a9e9316fe88a87",
+      "main_prefix_bytes": 10102
+    }
+  ],
+  "authority_effect": "effective_when_decision_record_admitted_to_main"
+}
