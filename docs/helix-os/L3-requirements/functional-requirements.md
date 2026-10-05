@@ -579,7 +579,7 @@ HELIX自身と複数projectの対象revisionごとに、L2-015〜024のunit、�
 
 **AC-OS-L3-047-02 — 再発行と非継承**：対処済み新ticketを別revisionとして発行し、既存typed relationで旧revisionと結ぶ。assignment、Attempt、result、authorityを契約上の適格化なしに引き継がない。provider等の運用属性だけが変わるfixtureはticket意味revisionを変えない。
 
-**AC-OS-L3-047-03 — unknownとTicket非参照境界**：reason/evidence/root revisionを別々に欠落させ、Assignment/Attempt/result/authorityの非継承を各々独立に確かめる。target/returner/source/scope/relationをそれぞれ単独でunknown/staleにした場合、当該ticketだけ未完として発行元へ返す。provider差だけでは仕事identityを変えない。Ticket→artifactとartifact→Ticketの参照を別々に拒否し、旧証拠/new revision stateを分離し、split/scope/backflowは既存ownerへ戻す。Issue/PR状態のみの完了推定も拒否する。
+**AC-OS-L3-047-03 — unknownとTicket非参照境界**：reason/evidence/根拠source revisionを別々に欠落させ、Assignment/Attempt/result/authorityの非継承を各々独立に確かめる。target/returner/source/scope/relationをそれぞれ単独でunknown/staleにした場合、当該ticketだけ未完として発行元へ返す。provider差だけでは仕事identityを変えない。Ticket→artifactとartifact→Ticketの参照を別々に拒否し、旧証拠/new revision stateを分離し、split/scope/backflowは既存ownerへ戻す。Issue/PR状態のみの完了推定も拒否する。
 
 ### Stage 5の旧source対応・保持と変更理由
 
@@ -598,11 +598,11 @@ HELIX自身と複数projectの対象revisionごとに、L2-015〜024のunit、�
 
 **AC-OS-L3-026-04 — 入力完全性と導出境界**：目的、仕事範囲、検証範囲、利用可能環境、比較基準、適格性条件、input/output、更新条件、rollback条件を独立に照合する。欠落は候補を成立とせず固定L2記載の既存要求/source/pack/HARNESS/依存/SECURITY/INFRASTRUCTURE ownerへ原因別に返す。許可された人による作業も依存契約・安全義務を閉包から外さない。導出だけで採択・実装・受入・tag・配布を生成しない。
 
-**AC-OS-L3-031-04 — 対象・証拠の再照合**：base HEAD、scope、authority、HARNESS contractの変化ごとに影響する既存証拠だけをstale/未完にし、無関係scopeの状態を保つ。回収成功には固定L2が要求する修正後independent review、同条件再検証、必須集合非縮退、安全指標、改善前後値を別証拠として結ぶ。資源不足はINFRASTRUCTUREへ返し、性能だけの不適切な高速化を新baselineとして採用しない。
+**AC-OS-L3-031-04 — 対象・証拠の再照合**：base HEAD、scope、authority、HARNESS contractの変化ごとに影響する既存証拠だけをstale/未完にし、無関係scopeの状態を保つ。回収成功には固定L2が要求する修正後independent review、同条件再検証、必須集合非縮退、安全指標、改善前後値を別証拠として結ぶ。資源不足はINFRASTRUCTUREへ返し、誤った高速化を新baselineとして採用しない。
 
 **AC-OS-L3-047-04 — 返却とrevision境界**：r1のbytesと履歴を保持し、r2は新revisionとして既存relationで結ぶ。issuer、対象条件、理由/evidence、scope、revisionが欠落・conflictなら完了扱いせずOS issuerへ戻す。LABO/INTELLIGENCE proposalだけから発行しない。Ticket→Ticket参照を依存の結節点にせず、Ticket→artifactとartifact→Ticketの両境界を個別に保持する。
 
-**Stage 5 review01 CASE→AC対応補正**：既存CASE-025-01〜21は既存の`AC-OS-L3-025-01/02`への割当を保ち、CASE-025-022〜030を`AC-OS-L3-025-03`へ結ぶ。026では`AC-OS-L3-026-01`をCASE-026-01/06および031〜038・040〜042、`AC-OS-L3-026-02`を02〜04・07〜29、`AC-OS-L3-026-03`を05・30・039へ、`AC-OS-L3-026-04`を043〜054へ対応させる（CASE-026-040のunit/connection境界は`AC-OS-L3-026-01`にも参照する）。031では`AC-OS-L3-031-01`を測定入力CASEと074/075へ、`AC-OS-L3-031-02`を03/04/073へ、`AC-OS-L3-031-03`を05・26〜30・31〜51・069/070へ、`AC-OS-L3-031-04`を30・064〜068・071/072・076/077へ対応させる。CASE-031-29を`AC-OS-L3-031-01`から外して`AC-OS-L3-031-03`へ移し、CASE-031-30はreview HEAD変化を`AC-OS-L3-031-03/04`の双方で追跡する。047では`AC-OS-L3-047-01`を返却/元revision、`AC-OS-L3-047-02`を新revision/非継承、`AC-OS-L3-047-03`をunknown/stale、`AC-OS-L3-047-04`をCASE-047-027〜036へ対応させる。既存の未trace割当はL10 overlayの個別CASE定義に従い、同じCASEを複数の独立fixtureとして重複計上しない。
+**Stage 5 review01 CASE→AC対応補正**：既存CASE-025-01〜21は既存の`AC-OS-L3-025-01/02`への割当を保ち、CASE-025-022〜031を`AC-OS-L3-025-03`へ結ぶ。026では`AC-OS-L3-026-01`をCASE-026-01/06および031〜038・040〜042、`AC-OS-L3-026-02`を02〜04・07〜29、`AC-OS-L3-026-03`を05・30・039へ、`AC-OS-L3-026-04`を043〜054へ対応させる（CASE-026-040のunit/connection境界は`AC-OS-L3-026-01`にも参照する）。031では`AC-OS-L3-031-01`を測定入力CASEと074/075へ、`AC-OS-L3-031-02`を03/04へ、`AC-OS-L3-031-03`を05・26〜30・31〜51・069/070へ、`AC-OS-L3-031-04`を30・064〜068・071/072/073・076/077へ対応させる。CASE-031-29を`AC-OS-L3-031-01`から外して`AC-OS-L3-031-03`へ移し、CASE-031-30はreview HEAD変化を`AC-OS-L3-031-03/04`の双方で追跡する。047では`AC-OS-L3-047-01`を返却/元revision、`AC-OS-L3-047-02`を新revision/非継承、`AC-OS-L3-047-03`をunknown/stale、`AC-OS-L3-047-04`をCASE-047-027〜036へ対応させる。既存の未trace割当はL10 overlayの個別CASE定義に従い、同じCASEを複数の独立fixtureとして重複計上しない。
 
 **旧source locator訂正**：Stage 5対応表の031旧要件文書は`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/`配下にある。047旧sourceは`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/`配下にある。本文に短縮名だけある箇所はこのlocatorで読む。既存表の誤った`governance/requirements/` locatorを正しいsource pathとして扱わず、追補監査でfull/raw pinを記録する。
 
