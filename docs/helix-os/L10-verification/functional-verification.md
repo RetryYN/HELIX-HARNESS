@@ -831,10 +831,10 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | `CASE-OS-L10-024-03e` | `AC-OS-L3-024-01`,`AC-OS-L3-024-03` | target project revisionだけ変更 | 別revisionのpermission/evaluationを再利用しない。OSとpermission ownerへ返す。 |
 | `CASE-OS-L10-024-03f` | `AC-OS-L3-024-01`,`AC-OS-L3-024-03` | permitted scopeだけ過大にする | 許可外部分は送信0。該当scope/permission ownerへ返す。 |
 | `CASE-OS-L10-024-03g` | `AC-OS-L3-024-01`,`AC-OS-L3-024-03` | LABO evaluation rangeだけtarget scope外にする | 不一致結果を採用せずLABOへ返す。 |
-| `CASE-OS-L10-024-03h` | `AC-OS-L3-024-03` | L2-019 dependency revisionだけstale | 接続未完としてOS既存ownerへ返す。 |
-| `CASE-OS-L10-024-03i` | `AC-OS-L3-024-03` | L2-021 dependency identityだけ欠落 | 対象提供版が分からない状態を保ちOS既存ownerへ返す。 |
-| `CASE-OS-L10-024-03j` | `AC-OS-L3-024-03` | L2-022だけ非互換（接続のrevision不一致）。staleの対照は03zで別に確認する | 還流接続を成立扱いせずOS既存ownerへ返す。 |
-| `CASE-OS-L10-024-03k` | `AC-OS-L3-024-03` | version付きLABO connectorだけ非互換 | その接続を止めLABO接続ownerへ返す。 |
+| `CASE-OS-L10-024-03h` | `AC-OS-L3-024-03` | L2-019 dependency revisionだけstale | 接続未完としてOS既存ownerへ返す。該当送信/採用を止め接続未完を保つ。 |
+| `CASE-OS-L10-024-03i` | `AC-OS-L3-024-03` | L2-021 dependency identityだけ欠落 | 対象提供版が分からない状態を保ちOS既存ownerへ返す。該当送信/採用を止め接続未完を保つ。 |
+| `CASE-OS-L10-024-03j` | `AC-OS-L3-024-03` | L2-022だけ非互換（接続のrevision不一致）。staleの対照は03zで別に確認する | 還流接続を成立扱いせずOS既存ownerへ返す。該当送信/採用を止め接続未完を保つ。 |
+| `CASE-OS-L10-024-03k` | `AC-OS-L3-024-03` | version付きLABO connectorだけ非互換 | その接続を止めLABO接続ownerへ返す。該当送信/採用を止め接続未完を保つ。 |
 | `CASE-OS-L10-024-03l` | `AC-OS-L3-024-03` | WEB-OS tenant dataを1件混入 | 本体OS正本へ混入せず、scope逸脱として送信を拒否する。 |
 | `CASE-OS-L10-046-02a` | `AC-OS-L3-046-02` | operation authorityの有効性だけを失効 | そのoperation遷移を未完としSECURITYの既存authority ownerへ返す。 |
 | `CASE-OS-L10-046-02b` | `AC-OS-L3-046-02` | content HEADだけ変更 | 旧HEAD review/verificationを流用せず新HEADの既存検証/独立reviewへ戻す。 |
@@ -876,7 +876,7 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | `CASE-OS-L10-052-02e` | `AC-OS-L3-052-02` | 上流merge後の最新baseへ独立review済みpairが既に一致し、content HEAD不変・stale=0・dependency維持 | 条件が維持される場合は既存stateを保持でき、最新base変更だけを一律の返却理由にしない。 |
 | `CASE-OS-L10-052-03a` | `AC-OS-L3-052-03` | reviewerが作成branchを修正する変異 | 修正を行わず作成側へ証拠と理由を返す。 |
 | `CASE-OS-L10-052-03b` | `AC-OS-L3-052-03` | 自動rebaseでcontent HEADを変える変異 | この要件から自動rebaseを許可しない。HEADが変わった場合は旧review bindingを失効させ、流用しない。 |
-| `CASE-OS-L10-052-03c` | `AC-OS-L3-052-03` | Issue close/要求完了をmerge後cleanupから生成する変異 | 完了を生成せず状態を個別に保つ。 |
+| `CASE-OS-L10-052-03c` | `AC-OS-L3-052-03` | mergeだけを根拠にIssue closeを生成する変異 | Issue closeを生成せず既存の個別状態を保持する。 |
 | `CASE-OS-L10-021-03o` | `AC-OS-L3-021-01`,`AC-OS-L3-021-03` | 選択済みartifact identityだけを別artifactへ切替 | 配布不成立。途中成果と復旧先を保持しHARNESS提供元へ返す。 |
 | `CASE-OS-L10-021-03p` | `AC-OS-L3-021-01`,`AC-OS-L3-021-03` | 選択外componentを1つ暗黙追加 | 不成立。追加componentを対象にせず管理/提供元へ返す。 |
 | `CASE-OS-L10-021-03q` | `AC-OS-L3-021-03` | 既存成果だけを無断消去 | 不成立。成果と未完義務を保ちownerへ返す。 |
@@ -968,5 +968,10 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | `CASE-OS-L10-024-03z` | `AC-OS-L3-024-03` | 他条件を保ちL2-022だけstale | 該当送信/採用を止め接続未完を保ち、OS既存ownerへ返す。 |
 | `CASE-OS-L10-024-03aa` | `AC-OS-L3-024-03` | 他条件を保ち版付きLABO接続だけ欠落 | 該当送信/採用を止め接続未完を保ち、LABO接続ownerへ返す。 |
 | `CASE-OS-L10-024-03ab` | `AC-OS-L3-024-03` | 他条件を保ち版付きLABO接続だけstale | 該当送信/採用を止め接続未完を保ち、LABO接続ownerへ返す。 |
-
 | `CASE-OS-L10-052-01m` | `AC-OS-L3-052-01` | 対象repository/ref/delete作用を含む現行authorityはそろうが、実施者の対象・作用・結果の記録経路だけ欠ける | remote refを削除せずcleanup未完理由を保持して該当ownerへ返す。記録不能を成功と表示しない。 |
+| `CASE-OS-L10-052-03l` | `AC-OS-L3-052-03` | 適格cleanupだけを根拠に要求完了を生成する変異。他条件の既存stateは保持する | 要求完了を生成しない。操作eventから上流判断を作らず既存ownerへ返す。 |
+| `CASE-OS-L10-052-03m` | `AC-OS-L3-052-03` | 適格cleanupだけを根拠にticket完了を生成する変異。他条件の既存stateは保持する | ticket完了を生成しない。操作eventから上流判断を作らず既存ownerへ返す。 |
+| `CASE-OS-L10-052-03n` | `AC-OS-L3-052-03` | pair一致/stale=0/依存維持の再照合だけを根拠にreview成功を生成する変異。他条件の既存stateは保持する | review成功を生成せず独立review bindingを別に確認する。操作eventから上流判断を作らず既存ownerへ返す。 |
+| `CASE-OS-L10-052-03o` | `AC-OS-L3-052-03` | pair一致/stale=0/依存維持の再照合だけを根拠にauthorityを生成する変異。他条件の既存stateは保持する | authorityを生成せず既存SECURITY authorityを別に確認する。操作eventから上流判断を作らず既存ownerへ返す。 |
+| `CASE-OS-L10-052-03p` | `AC-OS-L3-052-03` | mergeだけを根拠にReadyを生成する変異。他条件の既存stateは保持する | Readyを生成せず現行admissionの個別条件を確認する。操作eventから上流判断を作らず既存ownerへ返す。 |
+| `CASE-OS-L10-052-03q` | `AC-OS-L3-052-03` | mergeだけを根拠に要求完了を生成する変異。他条件の既存stateは保持する | 要求完了を生成しない。操作eventから上流判断を作らず既存ownerへ返す。 |
