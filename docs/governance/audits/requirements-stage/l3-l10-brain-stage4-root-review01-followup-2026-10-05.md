@@ -1,0 +1,9 @@
+# BRAIN Stage4 review01 root追補
+
+固定base `1a7933157fef8327a0e2747348cbe57e596019aa`、本文revision `e8bbf5973e675a660acde3ed068b2c3d816b5d16`。Worker修正462670eをrootが全4文書差分と記録を実読した。旧監査は不変で、今回の補正と新本文を別の時点記録に固定する。
+
+020 C02/C03のunknown保持漏れ、020固定依存009/010欠落とINFRASTRUCTURE宛先創作、019正常例の固定全field保持漏れ、030 AC01とC02の具体2候補relation不一致、C33の実入力が単一unknownで重複する残留をroot補正した。020は固定L2:419–421から対象revisionに結べない評価をLABOへ、OS登録stateをOSへ返す。030 C33は単一unknown fieldのidentityだけを欠落させる独立反例とした。
+
+55位置sourceと旧14source、共有5assetの全体/raw span/literalを再計算。6main全bytes prefix、175unique CASE、23AC、NFR二表の全CASE被覆・未定義参照0を確認。現行validate147/fail0、stale0、residuals0、govcheck7622/57/58、diff確認PASS。JSONは本文SHAとsuffix行のraw SHA/literalを固定する。
+
+これは作成側の検収である。Worker addressedを独立解消判断にせず、独立再reviewを依頼する。fixtureと旧runtime/CIは実行していない。承認・実装・releaseは生成しない。
