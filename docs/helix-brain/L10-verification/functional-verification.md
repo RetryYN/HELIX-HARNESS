@@ -561,22 +561,22 @@ CASE番号は各親見出し内で一意。各列の固定句は親source全文�
 |---|---|---|---|
 | `HELIXBRAIN-L2-018` | 候補/source/provenance/revisionとreceiver identity（L2:394–403） | `BRAIN-018-FR-01`; `BRAIN-018-AC-01` | `L10-BRAIN-018-C01` |
 | `HELIXBRAIN-L2-018` | product-specific relation保持、raw original禁止（L2:397–402） | `BRAIN-018-AC-01`, `BRAIN-018-AC-02` | `L10-BRAIN-018-C02`, `L10-BRAIN-018-C03`, `L10-BRAIN-018-C04`, `L10-BRAIN-018-C05`, `L10-BRAIN-018-C06`, `L10-BRAIN-018-C07`, `L10-BRAIN-018-C08`, `L10-BRAIN-018-R-product-relation-missing`, `L10-BRAIN-018-R-contract-identity-missing`, `L10-BRAIN-018-R-contract-version-unknown` |
-| `HELIXBRAIN-L2-018` | candidate receiptはaccepted/matureでない。分離不能はProduct Core（L2:400–403; L11:58） | `BRAIN-018-AC-02`, `BRAIN-018-AC-03` | `L10-BRAIN-018-C09`, `L10-BRAIN-018-C10`, `L10-BRAIN-018-C11`, `L10-BRAIN-018-C12`, `L10-BRAIN-018-C13`, `L10-BRAIN-018-C14`, `L10-BRAIN-018-C15` |
+| `HELIXBRAIN-L2-018` | candidate receiptはaccepted/matureでない。分離不能はProduct Core（L2:400–403; L11:58） | `BRAIN-018-AC-02`, `BRAIN-018-AC-03` | `L10-BRAIN-018-C09`, `L10-BRAIN-018-C10`, `L10-BRAIN-018-C11`, `L10-BRAIN-018-C12`, `L10-BRAIN-018-C13`, `L10-BRAIN-018-C14`, `L10-BRAIN-018-C15`, `L10-BRAIN-018-C16` |
 | `HELIXBRAIN-L2-019` | query scope/required input/constraint（L2:404–410） | `BRAIN-019-AC-01`, `BRAIN-019-AC-02` | `L10-BRAIN-019-C01`, `L10-BRAIN-019-C02`, `L10-BRAIN-019-C03`, `L10-BRAIN-019-R-query-constraint`, `L10-BRAIN-019-R-query-identity`, `L10-BRAIN-019-R-query-version`, `L10-BRAIN-019-R-contract-identity-missing`, `L10-BRAIN-019-R-contract-version-unknown` |
 | `HELIXBRAIN-L2-019` | 候補response全field・exact version（L2:407–410） | `BRAIN-019-AC-01`, `BRAIN-019-AC-02` | `L10-BRAIN-019-C04`, `L10-BRAIN-019-C05`, `L10-BRAIN-019-C06`, `L10-BRAIN-019-C07`, `L10-BRAIN-019-C08`, `L10-BRAIN-019-C09`, `L10-BRAIN-019-C10`, `L10-BRAIN-019-C11`, `L10-BRAIN-019-C12`, `L10-BRAIN-019-C13`, `L10-BRAIN-019-R-response-required`, `L10-BRAIN-019-R-response-constraint`, `L10-BRAIN-019-R-response-applicability` |
 | `HELIXBRAIN-L2-019` | 複数候補を保ちunknownを推薦化せず採用しない（L2:408–411; L11:59） | `BRAIN-019-AC-01`, `BRAIN-019-AC-02`, `BRAIN-019-AC-03` | `L10-BRAIN-019-C14`, `L10-BRAIN-019-C15`, `L10-BRAIN-019-R-multiple-candidates` |
 | `HELIXBRAIN-L2-020` | evaluation対象/candidate revision、scope/method/evidence/result/failure/counterexample/unassessed range（L2:414–420） | `BRAIN-020-AC-01`, `BRAIN-020-AC-02` | `L10-BRAIN-020-C01`, `L10-BRAIN-020-C02`, `L10-BRAIN-020-C03`, `L10-BRAIN-020-C04`, `L10-BRAIN-020-C05`, `L10-BRAIN-020-C06`, `L10-BRAIN-020-C07`, `L10-BRAIN-020-C08`, `L10-BRAIN-020-C09`, `L10-BRAIN-020-C10`, `L10-BRAIN-020-R-source-identity-missing`, `L10-BRAIN-020-R-version-missing`, `L10-BRAIN-020-R-evaluation-identity-missing`, `L10-BRAIN-020-R-contract-identity-missing`, `L10-BRAIN-020-R-contract-version-unknown` |
-| `HELIXBRAIN-L2-020` | generic provenance/identity/stateと選択時INFRA-017同revision state/evidence（L2:419–420; L11:60） | `BRAIN-020-AC-01`, `BRAIN-020-AC-02` | `L10-BRAIN-020-R-007008-provenance-missing`, `L10-BRAIN-020-R-identity-missing`, `L10-BRAIN-020-R-state-missing`, `L10-BRAIN-020-R-infra-state-normal`, `L10-BRAIN-020-R-infra-state-missing`, `L10-BRAIN-020-R-infra-evidence-missing`, `L10-BRAIN-020-R-infra-revision`, `L10-BRAIN-020-R-infra-unselected` |
+| `HELIXBRAIN-L2-020` | generic provenance/identity/stateと選択時INFRA-017同revision state/evidence（L2:419–420; L11:60） | `BRAIN-020-AC-01`, `BRAIN-020-AC-02`, `BRAIN-020-AC-03` | `L10-BRAIN-020-R-007008-provenance-missing`, `L10-BRAIN-020-R-identity-missing`, `L10-BRAIN-020-R-state-missing`, `L10-BRAIN-020-R-infra-state-normal`, `L10-BRAIN-020-R-infra-state-missing`, `L10-BRAIN-020-R-infra-evidence-missing`, `L10-BRAIN-020-R-infra-revision`, `L10-BRAIN-020-R-infra-unselected` |
 | `HELIXBRAIN-L2-020` | 単一成功/AI生成/evaluation resultのみで成熟・採用せず、OS登録・独立検証を先取りしない（L2:418–421; L11:60） | `BRAIN-020-AC-02`, `BRAIN-020-AC-03` | `L10-BRAIN-020-C11`, `L10-BRAIN-020-C12`, `L10-BRAIN-020-C13`, `L10-BRAIN-020-C14`, `L10-BRAIN-020-R-evaluation-promotion`, `L10-BRAIN-020-R-independent-verification`, `L10-BRAIN-020-R-os-registration-pending` |
-| `HELIXBRAIN-L2-021` | INTELLIGENCE query/scopeにsource/version付き判断材料を返す（L2:424–430） | `BRAIN-021-AC-01`, `BRAIN-021-AC-02` | `L10-BRAIN-021-C01`, `L10-BRAIN-021-C02`, `L10-BRAIN-021-C03`, `L10-BRAIN-021-C04`, `L10-BRAIN-021-C05`, `L10-BRAIN-021-C06`, `L10-BRAIN-021-C07`, `L10-BRAIN-021-C08`, `L10-BRAIN-021-C09`, `L10-BRAIN-021-C10`, `L10-BRAIN-021-C11`, `L10-BRAIN-021-C12`, `L10-BRAIN-021-R-version-mismatch`, `L10-BRAIN-021-R-contract-identity-missing`, `L10-BRAIN-021-R-contract-version-unknown` |
-| `HELIXBRAIN-L2-021` | BRAIN runtime conclusion/選択なし、INTELLIGENCEによる改変・採用なし（L2:429–433; L11:61） | `BRAIN-021-AC-02`, `BRAIN-021-AC-03` | `L10-BRAIN-021-C13`, `L10-BRAIN-021-C14`, `L10-BRAIN-021-C15`, `L10-BRAIN-021-R-adoption` |
+| `HELIXBRAIN-L2-021` | INTELLIGENCE query/scopeにsource/version付き判断材料を返す（L2:424–430） | `BRAIN-021-AC-01`, `BRAIN-021-AC-02` | `L10-BRAIN-021-C01`, `L10-BRAIN-021-C02`, `L10-BRAIN-021-C03`, `L10-BRAIN-021-C04`, `L10-BRAIN-021-C05`, `L10-BRAIN-021-C06`, `L10-BRAIN-021-C07`, `L10-BRAIN-021-C08`, `L10-BRAIN-021-C09`, `L10-BRAIN-021-C10`, `L10-BRAIN-021-C11`, `L10-BRAIN-021-C12`, `L10-BRAIN-021-C17`, `L10-BRAIN-021-R-version-mismatch`, `L10-BRAIN-021-R-contract-identity-missing`, `L10-BRAIN-021-R-contract-version-unknown` |
+| `HELIXBRAIN-L2-021` | BRAIN runtime conclusion/選択・INTELLIGENCEによる改変・採用・昇格なし（L2:429–433; L11:61） | `BRAIN-021-AC-02`, `BRAIN-021-AC-03`, `BRAIN-021-AC-04` | `L10-BRAIN-021-C13`, `L10-BRAIN-021-C14`, `L10-BRAIN-021-C15`, `L10-BRAIN-021-C16`, `L10-BRAIN-021-C18`, `L10-BRAIN-021-R-adoption`, `L10-BRAIN-021-R-promotion` |
 | `HELIXBRAIN-L2-022` | required input/dependencyからHARNESS-L2-009 obligationへの双方向trace（L2:434–440） | `BRAIN-022-AC-01`, `BRAIN-022-AC-02` | `L10-BRAIN-022-C01`, `L10-BRAIN-022-C03`, `L10-BRAIN-022-C04`, `L10-BRAIN-022-C05`, `L10-BRAIN-022-C06`, `L10-BRAIN-022-C07`, `L10-BRAIN-022-C08`, `L10-BRAIN-022-R-field-definition-missing` |
-| `HELIXBRAIN-L2-022` | 値unknown/open obligation、製品値/設計選択/工程表等の単独決定禁止（L2:439–443; L11:62） | `BRAIN-022-AC-01`, `BRAIN-022-AC-02`, `BRAIN-022-AC-03` | `L10-BRAIN-022-C02`, `L10-BRAIN-022-C09`, `L10-BRAIN-022-C10`, `L10-BRAIN-022-C11`, `L10-BRAIN-022-C12`, `L10-BRAIN-022-C13`, `L10-BRAIN-022-R-design-choice`, `L10-BRAIN-022-R-priority` |
-| `HELIXBRAIN-L2-023` | generic Visual Design/UXとProduct Core残余、applicability/required input/counterexample（L2:444–450） | `BRAIN-023-AC-01`, `BRAIN-023-AC-02` | `L10-BRAIN-023-C01`, `L10-BRAIN-023-C02`, `L10-BRAIN-023-C03`, `L10-BRAIN-023-C04`, `L10-BRAIN-023-C05`, `L10-BRAIN-023-C07`, `L10-BRAIN-023-C08`, `L10-BRAIN-023-R-applicability-missing`, `L10-BRAIN-023-R-required-input-missing`, `L10-BRAIN-023-R-counterexample-missing` |
-| `HELIXBRAIN-L2-023` | LABO経由利用結果、直接昇格禁止、未評価保持（L2:448–453; L11:63） | `BRAIN-023-AC-01`, `BRAIN-023-AC-02`, `BRAIN-023-AC-03` | `L10-BRAIN-023-C06`, `L10-BRAIN-023-C09`, `L10-BRAIN-023-C10` |
+| `HELIXBRAIN-L2-022` | 値unknown/open obligation、製品値/設計選択/工程表等の単独決定禁止（L2:439–443; L11:62） | `BRAIN-022-AC-01`, `BRAIN-022-AC-02`, `BRAIN-022-AC-03`, `BRAIN-022-AC-04` | `L10-BRAIN-022-C02`, `L10-BRAIN-022-C09`, `L10-BRAIN-022-C10`, `L10-BRAIN-022-C11`, `L10-BRAIN-022-C12`, `L10-BRAIN-022-C13`, `L10-BRAIN-022-C14`, `L10-BRAIN-022-C15`, `L10-BRAIN-022-C16`, `L10-BRAIN-022-R-design-choice`, `L10-BRAIN-022-R-priority` |
+| `HELIXBRAIN-L2-023` | generic Visual Design/UXとProduct Core残余、applicability/required input/counterexample（L2:444–450） | `BRAIN-023-AC-01`, `BRAIN-023-AC-02`, `BRAIN-023-AC-04` | `L10-BRAIN-023-C01`, `L10-BRAIN-023-C02`, `L10-BRAIN-023-C03`, `L10-BRAIN-023-C04`, `L10-BRAIN-023-C05`, `L10-BRAIN-023-C07`, `L10-BRAIN-023-C08`, `L10-BRAIN-023-C11`, `L10-BRAIN-023-C12`, `L10-BRAIN-023-C13`, `L10-BRAIN-023-R-applicability-missing`, `L10-BRAIN-023-R-required-input-missing`, `L10-BRAIN-023-R-counterexample-missing` |
+| `HELIXBRAIN-L2-023` | LABO経由利用結果、直接昇格禁止、未評価保持（L2:448–453; L11:63） | `BRAIN-023-AC-01`, `BRAIN-023-AC-02`, `BRAIN-023-AC-03` | `L10-BRAIN-023-C06`, `L10-BRAIN-023-C09`, `L10-BRAIN-023-C10`, `L10-BRAIN-023-C11`, `L10-BRAIN-023-C12`, `L10-BRAIN-023-C13` |
 | `HELIXBRAIN-L2-030` | 常時contract identity/version/compatibility、schema/scope/correlation、receiver HARNESS-L2-009（L2:575–584; L11:85, 97–117） | `BRAIN-030-AC-01`, `BRAIN-030-AC-02` | `L10-BRAIN-030-C01`, `L10-BRAIN-030-C03`, `L10-BRAIN-030-C04`, `L10-BRAIN-030-C05`, `L10-BRAIN-030-C06`, `L10-BRAIN-030-C07`, `L10-BRAIN-030-C08`, `L10-BRAIN-030-C09`, `L10-BRAIN-030-C10`, `L10-BRAIN-030-C11`, `L10-BRAIN-030-C12`, `L10-BRAIN-030-C13`, `L10-BRAIN-030-C14`, `L10-BRAIN-030-C15`, `L10-BRAIN-030-C16`, `L10-BRAIN-030-R-compatibility-range-missing` |
-| `HELIXBRAIN-L2-030` | 選択knowledge各field、未選択source未観測、reference-only境界（L2:576–583; L11:97–110） | `BRAIN-030-AC-01`, `BRAIN-030-AC-03`, `BRAIN-030-AC-05` | `L10-BRAIN-030-C02`, `L10-BRAIN-030-C17`, `L10-BRAIN-030-C18`, `L10-BRAIN-030-C19`, `L10-BRAIN-030-C20`, `L10-BRAIN-030-C21`, `L10-BRAIN-030-C22`, `L10-BRAIN-030-C23`, `L10-BRAIN-030-C24`, `L10-BRAIN-030-C25`, `L10-BRAIN-030-C31`, `L10-BRAIN-030-C32`, `L10-BRAIN-030-C33`, `L10-BRAIN-030-C34`, `L10-BRAIN-030-C35`, `L10-BRAIN-030-R-correlation-mismatch`, `L10-BRAIN-030-R-version-stale`, `L10-BRAIN-030-R-version-mismatch`, `L10-BRAIN-030-R-source-mismatch`, `L10-BRAIN-030-R-applicability-unknown`, `L10-BRAIN-030-R-reference-substitution`, `L10-BRAIN-030-R-relation-conflict` |
-| `HELIXBRAIN-L2-030` | 双方向trace/obligation receipt、未完義務、製品固有結論禁止・非昇格（L2:580–584; L11:85, 101–117） | `BRAIN-030-AC-04`, `BRAIN-030-AC-05` | `L10-BRAIN-030-C26`, `L10-BRAIN-030-C27`, `L10-BRAIN-030-C28`, `L10-BRAIN-030-C29`, `L10-BRAIN-030-C30`, `L10-BRAIN-030-R-reverse-revision`, `L10-BRAIN-030-R-reverse-field`, `L10-BRAIN-030-R-reverse-scope`, `L10-BRAIN-030-R-obligation-receipt`, `L10-BRAIN-030-R-design-completion`, `L10-BRAIN-030-R-implementation-ready`, `L10-BRAIN-030-R-state-conclusion`, `L10-BRAIN-030-R-permission-conclusion`, `L10-BRAIN-030-R-design-conclusion`, `L10-BRAIN-030-R-screen-conclusion`, `L10-BRAIN-030-R-db-conclusion`, `L10-BRAIN-030-R-mixed-fields` |
+| `HELIXBRAIN-L2-030` | 選択knowledge各field、未選択source未観測、reference-only境界（L2:576–583; L11:97–110） | `BRAIN-030-AC-01`, `BRAIN-030-AC-02`, `BRAIN-030-AC-03`, `BRAIN-030-AC-05` | `L10-BRAIN-030-C02`, `L10-BRAIN-030-C17`, `L10-BRAIN-030-C18`, `L10-BRAIN-030-C19`, `L10-BRAIN-030-C20`, `L10-BRAIN-030-C21`, `L10-BRAIN-030-C22`, `L10-BRAIN-030-C23`, `L10-BRAIN-030-C24`, `L10-BRAIN-030-C25`, `L10-BRAIN-030-C31`, `L10-BRAIN-030-C32`, `L10-BRAIN-030-C33`, `L10-BRAIN-030-C34`, `L10-BRAIN-030-C35`, `L10-BRAIN-030-C36`, `L10-BRAIN-030-R-correlation-mismatch`, `L10-BRAIN-030-R-version-stale`, `L10-BRAIN-030-R-version-mismatch`, `L10-BRAIN-030-R-source-mismatch`, `L10-BRAIN-030-R-applicability-unknown`, `L10-BRAIN-030-R-reference-substitution`, `L10-BRAIN-030-R-relation-conflict` |
+| `HELIXBRAIN-L2-030` | 双方向trace/obligation receipt、未完義務、製品固有結論禁止・非昇格（L2:580–584; L11:85, 101–117） | `BRAIN-030-AC-04`, `BRAIN-030-AC-05`, `BRAIN-030-AC-06` | `L10-BRAIN-030-C26`, `L10-BRAIN-030-C27`, `L10-BRAIN-030-C28`, `L10-BRAIN-030-C29`, `L10-BRAIN-030-C30`, `L10-BRAIN-030-C37`, `L10-BRAIN-030-C38`, `L10-BRAIN-030-R-reverse-revision`, `L10-BRAIN-030-R-reverse-field`, `L10-BRAIN-030-R-reverse-scope`, `L10-BRAIN-030-R-obligation-receipt`, `L10-BRAIN-030-R-design-completion`, `L10-BRAIN-030-R-implementation-ready`, `L10-BRAIN-030-R-state-conclusion`, `L10-BRAIN-030-R-permission-conclusion`, `L10-BRAIN-030-R-design-conclusion`, `L10-BRAIN-030-R-screen-conclusion`, `L10-BRAIN-030-R-db-conclusion`, `L10-BRAIN-030-R-mixed-fields` |
 
 
 ### HELIXBRAIN-L2-018 — `BRAIN-018-FR-01`
@@ -588,11 +588,11 @@ CASE番号は各親見出し内で一意。各列の固定句は親source全文�
 - **L10-BRAIN-018-C05 (AC-02, 独立negative)**：同じ親のC01正常fixtureで他fieldを保持し、画面だけをgeneric candidateへ混入する。**期待**：該当fieldだけを特定して隔離し、Product Coreへ戻す。
 - **L10-BRAIN-018-C06 (AC-02, 独立negative)**：同じ親のC01正常fixtureで他fieldを保持し、業務規則だけをgeneric candidateへ混入する。**期待**：該当fieldだけを特定して隔離し、Product Coreへ戻す。
 - **L10-BRAIN-018-C07 (AC-02, 独立negative)**：同じ親のC01正常fixtureで他fieldを保持し、利用者判断だけをgeneric candidateへ混入する。**期待**：該当fieldだけを特定して隔離し、Product Coreへ戻す。
-- **L10-BRAIN-018-C08 (AC-02, 独立negative)**：同親C01の正常fixtureで他fieldを保ち、raw originalを汎用知識として保存する試行だけを加える。**期待**：保存を拒み、原本の保持期限/破棄証拠を新設せずProduct Coreへ戻す。
+- **L10-BRAIN-018-C08 (AC-02, 独立negative)**：同親C01の正常fixtureで他fieldを保ち、raw originalを汎用知識として保存する試行だけを加える。**期待**：保存を拒み、原本の保持期限/破棄証拠を新設しない。
 - **L10-BRAIN-018-C09 (AC-02, 独立negative)**：同じ親のC01正常fixtureで他fieldを保持し、source identity欠落させる。**期待**：receiptを確定せず不足fieldを示し、由来不明はProduct Coreへ戻す。
 - **L10-BRAIN-018-C10 (AC-02, 独立negative)**：同じ親のC01正常fixtureで他fieldを保持し、source revision欠落させる。**期待**：receiptを確定せず不足fieldを示し、由来不明はProduct Coreへ戻す。
 - **L10-BRAIN-018-C11 (AC-02, 独立negative)**：同じ親のC01正常fixtureで他fieldを保持し、provenance欠落させる。**期待**：receiptを確定せず不足fieldを示し、由来不明はProduct Coreへ戻す。
-- **L10-BRAIN-018-C12 (AC-02, 独立negative)**：同じ親のC01正常fixtureで他fieldを保持し、receiver identity欠落させる。**期待**：receiptを確定せず不足fieldを示し、由来不明はProduct Coreへ戻す。
+- **L10-BRAIN-018-C12 (AC-02, 独立negative)**：同じ親のC01正常fixtureで他fieldを保持し、receiver identity欠落させる。**期待**：receiptを確定せずreceiver identity不足を記録し、戻し先を推定しない。
 - **L10-BRAIN-018-C13 (AC-02, 独立negative)**：他条件を正常に保ちreceipt受領のみでaccepted/matureへ進める変異。**期待**：candidate stateを保持し昇格を拒否する。
 - **L10-BRAIN-018-C14 (AC-03, 未見正常)**：未見製品領域の合成sourceでgeneric部分と製品固有残余を根拠付きで分離する。**期待**：分離できるcandidateのみ受領する。
 - **L10-BRAIN-018-C15 (AC-03, 局所unknown)**：同じ未見sourceの一fieldだけ意味境界が不明。**期待**：該当部分のみunknown/隔離し、既知部分のcandidateを全体昇格しない。
@@ -600,10 +600,11 @@ CASE番号は各親見出し内で一意。各列の固定句は親source全文�
 
 - **L10-BRAIN-018-R-contract-identity-missing (AC-02, 独立negative)**：同親C01正常fixtureで他fieldを保持し、HELIX-HARNESS-COREの候補出力contract identityだけを欠落させる。**期待**：contractに結び付けられない候補receiptを保留しProduct Coreへ戻す。
 - **L10-BRAIN-018-R-contract-version-unknown (AC-02, 独立negative)**：同親C01正常fixtureで他fieldを保持し、候補出力contract versionだけをunknownにする。**期待**：versionを推測せずreceiptを保留しProduct Coreへ戻す。
+- **L10-BRAIN-018-C16 (AC-02, 独立negative)**：宣言済みcontract compatibility rangeと他条件を保持し、対象contract versionだけrange外にする。**期待**：呼出しを止め、範囲不一致を記録する。
 
 ### HELIXBRAIN-L2-019 — `BRAIN-019-FR-01`
 
-- **L10-BRAIN-019-C01 (AC-01, 正常)**：scope・required input・constraintと二つ以上の成立候補A/Bを与え、両候補にsource identity/version、relation（conflicts_with/alternative_to）、condition、required input、counterexample、evidence、maturityを対応付ける。**期待**：HARNESS-CORE向けreceiptで両候補と未決選択を保持し、BRAINは採用先を選ばない。
+- **L10-BRAIN-019-C01 (AC-01, 正常)**：scope・required input・constraintと複数の成立候補A/Bを与え、両候補のsource identity/version、condition、required input、counterexample、evidence、maturityおよびsource-declared relationを対応付ける。relationの種類はconflicts_with/alternative_toに限定しない。**期待**：候補を消さず比較可能なreceiptで保持し、選択・採用は既存接続先に残す。
 - **L10-BRAIN-019-C02 (AC-02, 個別negative)**：同じ親のC01正常fixtureで他fieldを保持し、query対象scope欠落させる。**期待**：query不足はProduct Coreへ照会する。
 - **L10-BRAIN-019-C03 (AC-02, 個別negative)**：同じ親のC01正常fixtureで他fieldを保持し、query required input欠落させる。**期待**：query不足はProduct Coreへ照会する。
 - **L10-BRAIN-019-C04 (AC-02, 個別negative)**：同じ親のC01正常fixtureで他fieldを保持し、candidate identity欠落させる。**期待**：candidate identity不足をBRAINのL2-003/008または親L1へ戻し、query不足と混同しない。
@@ -624,11 +625,12 @@ CASE番号は各親見出し内で一意。各列の固定句は親source全文�
 - **L10-BRAIN-019-R-query-version (AC-02, 独立fixture)**：同親C01の正常source/revision/scopeと他必須fieldを保持し、参照可能knowledge versionだけを欠落。**期待**：不足queryをProduct Coreへ戻す。
 - **L10-BRAIN-019-R-response-required (AC-02, 独立fixture)**：同親C01の正常source/revision/scopeと他必須fieldを保持し、候補response required inputだけを欠落。**期待**：候補の欠落fieldを保持しBRAIN L2-003/008または親L1へ戻す。
 - **L10-BRAIN-019-R-response-constraint (AC-02, 独立fixture)**：同親C01の正常source/revision/scopeと他必須fieldを保持し、候補constraintだけを欠落。**期待**：候補の欠落fieldを保持しBRAIN L2-003/008または親L1へ戻す。
-- **L10-BRAIN-019-R-response-applicability (AC-02, 独立fixture)**：同親C01の正常source/revision/scopeと他必須fieldを保持し、候補applicabilityだけを欠落。**期待**：適用確定せず候補の不足をBRAINへ戻す。
+- **L10-BRAIN-019-R-response-applicability (AC-02, 独立fixture)**：同親C01の正常source/revision/scopeと他必須fieldを保持し、候補applicabilityだけを欠落。**期待**：適用確定せずL2-003/008または親L1へ戻す。
 - **L10-BRAIN-019-R-multiple-candidates (AC-02, 独立fixture)**：同親C01の正常source/revision/scopeと他必須fieldを保持し、二つの成立候補のうち一方だけを根拠なく消去。**期待**：複数成立候補を保ち選択は接続先に残す。
 
 - **L10-BRAIN-019-R-contract-identity-missing (AC-02, 独立negative)**：同親C01正常fixtureで他fieldを保持し、HARNESS-CORE受領contract identityだけを欠落させる。**期待**：受領contractへ結べないresponseを保留しProduct Coreへ照会する。
 - **L10-BRAIN-019-R-contract-version-unknown (AC-02, 独立negative)**：同親C01正常fixtureで他fieldを保持し、HARNESS-CORE受領contract versionだけをunknownにする。**期待**：versionを推測せずresponseを保留しProduct Coreへ照会する。
+- **L10-BRAIN-019-C16 (AC-02, 独立negative)**：宣言済みcontract compatibility rangeと他条件を保持し、対象contract versionだけrange外にする。**期待**：呼出しを止め、query不足やknowledge不足と混同しない。
 
 ### HELIXBRAIN-L2-020 — `BRAIN-020-FR-01`
 
@@ -658,12 +660,13 @@ CASE番号は各親見出し内で一意。各列の固定句は親source全文�
 - **L10-BRAIN-020-R-infra-revision (AC-02, 独立fixture)**：同親C01の正常source/revision/scopeと他必須fieldを保持し、Infrastructure state/evidenceだけを別candidate revisionへ結合。**期待**：対象revisionに結べない評価をunknown候補として止め、LABOへ評価を返す。昇格とOS登録state変更を行わない。
 - **L10-BRAIN-020-R-infra-unselected (AC-03, 独立fixture)**：同親C01の正常source/revision/scopeと他必須fieldを保持し、非Infrastructure candidateを未見scopeで評価し、INFRA017を選択しない。**期待**：条件付き依存を強制せず対象revisionのcandidateだけを受領。
 - **L10-BRAIN-020-R-007008-provenance-missing (AC-02, 独立negative)**：同親C01の正常fixtureで他fieldを保ち、L2-007 generic provenanceだけを欠落させる。**期待**：候補をunknown/unfinishedに保ちprovenance不足をLABOへ返す。
-- **L10-BRAIN-020-R-identity-missing (AC-02, 独立negative)**：同親C01の正常fixtureで他fieldを保ち、L2-008 identityだけを欠落させる。**期待**：L2-008 identityの欠落をunknownとして保持し、知識identityをBRAINへ戻す。
-- **L10-BRAIN-020-R-state-missing (AC-02, 独立negative)**：同親C01の正常fixtureで他fieldを保ち、L2-008 generic stateだけを欠落させる。**期待**：L2-008 generic knowledge stateの欠落をunknownとして保持し、知識stateの責務としてBRAINへ戻す。
+- **L10-BRAIN-020-R-identity-missing (AC-02, 独立negative)**：同親C01の正常fixtureで他fieldを保ち、L2-008 identityだけを欠落させる。**期待**：L2-008 identityの欠落をunknown/unfinishedとして保持し、identityを補わない。
+- **L10-BRAIN-020-R-state-missing (AC-02, 独立negative)**：同親C01の正常fixtureで他fieldを保ち、L2-008 generic stateだけを欠落させる。**期待**：L2-008 generic knowledge stateの欠落をunknown/unfinishedとして保持し、stateを補わない。
 - **L10-BRAIN-020-R-os-registration-pending (AC-02, 独立negative)**：同親C01の正常fixtureで評価が存在する一方、OS登録/振分けが未了のstateだけを与え、BRAIN maturity/採否を先取りする。**期待**：OS登録stateは未完のままOSへ戻し、BRAINは確立/採用にしない。
 
 - **L10-BRAIN-020-R-contract-identity-missing (AC-02, 独立negative)**：同親C01正常fixtureで他fieldを保持し、LABO evaluation contract identityだけを欠落させる。**期待**：evaluation receiptを受領せずLABOへ不足を返す。
 - **L10-BRAIN-020-R-contract-version-unknown (AC-02, 独立negative)**：同親C01正常fixtureで他fieldを保持し、LABO evaluation contract versionだけをunknownにする。**期待**：versionを推測せずevaluation receiptを保留しLABOへ返す。
+- **L10-BRAIN-020-C15 (AC-02, 独立negative)**：宣言済みLABO contract compatibility rangeと他条件を保持し、contract versionだけrange外にする。**期待**：呼出しを止め、評価不足としてLABOへ返す。
 
 ### HELIXBRAIN-L2-021 — `BRAIN-021-FR-01`
 
@@ -684,11 +687,15 @@ CASE番号は各親見出し内で一意。各列の固定句は親source全文�
 - **L10-BRAIN-021-C15 (AC-03, 未見正常/局所unknown)**：未知query種でも有効source/scopeの既知fieldは返し、判断内容一項目だけunknownとする。**期待**：未知部分のみunknown、runtime actionは生成しない。
 
 - **L10-BRAIN-021-R-version-mismatch (AC-02, 独立fixture)**：同親C01の正常source/revision/scopeと他必須fieldを保持し、knowledge versionだけをqueryが参照するrevisionと不一致にする。**期待**：知識版不整合をBRAIN L1へ返す。
-- **L10-BRAIN-021-R-adoption (AC-02, 独立negative)**：正常判断材料を返す同一scopeで、INTELLIGENCEがそのcandidateをBRAIN knowledgeの採用/改変済みstateとして確定する変異だけを与える。**期待**：runtime選択だけでなくknowledge adoptionも拒否し、BRAINの既存知識stateを保持する。
+- **L10-BRAIN-021-R-adoption (AC-02, 独立negative)**：正常判断材料を返す同一scopeで、INTELLIGENCEがcandidateをBRAIN knowledgeの採用済みstateとして確定する変異だけを与える。**期待**：暗黙採用を拒否する。
 
 - **L10-BRAIN-021-R-contract-identity-missing (AC-02, 独立negative)**：同親C01正常fixtureで他fieldを保持し、INTELLIGENCE query/response contract identityだけを欠落させる。**期待**：responseを確定せずINTELLIGENCEへ不足を返す。
 - **L10-BRAIN-021-R-contract-version-unknown (AC-02, 独立negative)**：同親C01正常fixtureで他fieldを保持し、INTELLIGENCE query/response contract versionだけをunknownにする。**期待**：versionを推測せずresponseを保留しINTELLIGENCEへ返す。
+- **L10-BRAIN-021-C16 (AC-02, owner return)**：正常fixtureでknowledge identityだけを欠落させ、fixtureに既存knowledge ownerを明示する。**期待**：identity不足をその既存ownerへ戻す。
 
+- **L10-BRAIN-021-C18 (AC-02, unknown)**：正常fixtureでknowledge identityだけを欠落させ、knowledge ownerの指定もない。**期待**：不足をunknownとして保留し、戻し先を創作しない。
+- **L10-BRAIN-021-C17 (AC-02, 独立negative)**：宣言済みINTELLIGENCE contract compatibility rangeと他条件を保持し、contract versionだけrange外にする。**期待**：呼出しを止めINTELLIGENCEへ戻す。
+- **L10-BRAIN-021-R-promotion (AC-04, 独立negative)**：別fixtureでINTELLIGENCEが候補を一般化済み知識へ昇格する。**期待**：昇格を拒否し、改変・個別採用と別に観測する。
 ### HELIXBRAIN-L2-022 — `BRAIN-022-FR-01`
 
 - **L10-BRAIN-022-C01 (AC-01, 正常)**：Pattern required field複数とdependencyをHARNESS-L2-009 obligationへ結び、同一source revision/fieldへのforward/reverse traceを与える。**期待**：両traceを保持する。
@@ -709,6 +716,9 @@ CASE番号は各親見出し内で一意。各列の固定句は親source全文�
 
 - **L10-BRAIN-022-R-priority (AC-02, 独立fixture)**：同親C01の正常source/revision/scopeと他必須fieldを保持し、BRAINが実装優先順位だけを単独決定する。**期待**：単独決定を拒否しHARNESSへ導出を残す。
 
+- **L10-BRAIN-022-C14 (AC-02, 独立negative)**：同親C01正常fixtureで他条件を保ち、HARNESS-L2-009 contract identityだけを欠落。**期待**：受領方法を確定せずHARNESSへ返す。
+- **L10-BRAIN-022-C15 (AC-02, 独立negative)**：同親C01正常fixtureで他条件を保ち、contract versionだけをmissingにする。**期待**：呼出しを保留しHARNESSへ返す。
+- **L10-BRAIN-022-C16 (AC-02, 独立negative)**：同親C01正常fixtureで他条件を保ち、contract versionだけをunknownにする。**期待**：呼出しを保留しHARNESSへ返す。
 ### HELIXBRAIN-L2-023 — `BRAIN-023-FR-01`
 
 - **L10-BRAIN-023-C01 (AC-01, 正常)**：Visual Design課題/source/scopeにgeneric candidateとProduct Core残余を与え、LABO経由evaluation provenanceを付ける。**期待**：区分とsource relationを保持しcandidateのまま返す。
@@ -716,15 +726,18 @@ CASE番号は各親見出し内で一意。各列の固定句は親source全文�
 - **L10-BRAIN-023-C03 (AC-02, 独立negative)**：同親C01正常fixtureで他fieldを保ち、製品固有screenだけをgeneric knowledgeへ混入する。**期待**：混入を拒み、その要素をProduct Coreへ返す。
 - **L10-BRAIN-023-C04 (AC-02, 独立negative)**：同親C01正常fixtureで他fieldを保ち、製品固有flowだけをgeneric knowledgeへ混入する。**期待**：混入を拒み、その要素をProduct Coreへ返す。
 - **L10-BRAIN-023-C05 (AC-02, 独立negative)**：同親C01正常fixtureで他fieldを保ち、製品固有tokenだけをgeneric knowledgeへ混入する。**期待**：混入を拒み、その要素をProduct Coreへ返す。
-- **L10-BRAIN-023-C06 (AC-02, 独立negative)**：LABO routeなしで利用結果をgeneric BRAIN knowledgeへ昇格する。**期待**：promotionを止めLABOへ返す。
-- **L10-BRAIN-023-C07 (AC-02, 独立negative)**：同じ親のC01正常fixtureで他fieldを保持し、Product Core scope relation欠落させる。**期待**：scope relation欠落をunknownとして保持し、該当Product Coreへ戻す。
-- **L10-BRAIN-023-C08 (AC-02, 独立negative)**：同じ親のC01正常fixtureで他fieldを保持し、source relation欠落させる。**期待**：source relation欠落をunknownとして保持し、LABOへ戻す。
+- **L10-BRAIN-023-C06 (AC-02, 独立negative)**：LABO routeなしで利用結果をgeneric BRAIN knowledgeへ昇格する。**期待**：候補昇格を止める（固定親に戻し先指定なし）。
+- **L10-BRAIN-023-C07 (AC-02, 独立negative)**：同じ親のC01正常fixtureで他fieldを保持し、Product Core scope relation欠落させる。**期待**：scope relation欠落をunknownとして保持し、固定親に戻し先指定がないためownerを推定しない。
+- **L10-BRAIN-023-C08 (AC-02, 独立negative)**：同じ親のC01正常fixtureで他fieldを保持し、source relation欠落させる。**期待**：source relation欠落をunknownとして保持し、候補昇格を止める（固定親に戻し先指定なし）。
 - **L10-BRAIN-023-C09 (AC-03, 未見正常)**：未見screen種から根拠あるgeneric部分と製品固有残余を分離する。**期待**：generic部分だけcandidateとして返す。
 - **L10-BRAIN-023-C10 (AC-03, 局所未評価)**：当該candidateの一部evaluationがLABO未経由。**期待**：未評価部分だけ保留し他の根拠ある候補を確立済みにしない。
-- **L10-BRAIN-023-R-applicability-missing (AC-02, 独立negative)**：同親C01正常fixtureで他fieldを保ち、applicability conditionだけを欠落させる。**期待**：適用可能を推定せず候補を保留しBRAINの該当親L1へ戻す。
-- **L10-BRAIN-023-R-required-input-missing (AC-02, 独立negative)**：同親C01正常fixtureで他fieldを保ち、required inputだけを欠落させる。**期待**：候補を適用確定せずBRAINの該当親L1へ戻す。
-- **L10-BRAIN-023-R-counterexample-missing (AC-02, 独立negative)**：同親C01正常fixtureで他fieldを保ち、counterexampleだけを欠落させる。**期待**：反例不明を正常適用とせずBRAINの該当親L1へ戻す。
+- **L10-BRAIN-023-R-applicability-missing (AC-02, 独立negative)**：同親C01正常fixtureで他fieldを保ち、applicability conditionだけを欠落させる。**期待**：適用可能を推定せず候補を保留しunknownを保持する（固定親に戻し先指定なし）。
+- **L10-BRAIN-023-R-required-input-missing (AC-02, 独立negative)**：同親C01正常fixtureで他fieldを保ち、required inputだけを欠落させる。**期待**：候補を適用確定せずunknownとして保持する（固定親に戻し先指定なし）。
+- **L10-BRAIN-023-R-counterexample-missing (AC-02, 独立negative)**：同親C01正常fixtureで他fieldを保ち、counterexampleだけを欠落させる。**期待**：反例不明を正常適用とせずunknownとして保持する（固定親に戻し先指定なし）。
 
+- **L10-BRAIN-023-C11 (AC-02, 独立negative)**：他条件正常でVisual Design HARNESS/LABO connection contract identityだけを欠落。**期待**：候補受渡しを保留し、固定L2に宛先指定がないためunknownを保持する。
+- **L10-BRAIN-023-C12 (AC-02, 独立negative)**：同正常fixtureでcontract versionだけをmissingにする。**期待**：候補受渡しを保留し、ownerを推定しない。
+- **L10-BRAIN-023-C13 (AC-02, 独立negative)**：同正常fixtureでcontract versionだけをunknownにする。**期待**：候補受渡しを保留し、ownerを推定しない。
 ### HELIXBRAIN-L2-030 — `BRAIN-030-FR-01`
 
 - **L10-BRAIN-030-C01 (AC-01, 正常)**：常時contract identity/version/compatibility、query/receipt schema、scope/correlation identity、receiver HARNESS-L2-009 contractを揃え、knowledge sourceを選択しない。**期待**：常時接続条件のみ照合し未選択sourceを未観測とする。
@@ -758,7 +771,7 @@ CASE番号は各親見出し内で一意。各列の固定句は親source全文�
 - **L10-BRAIN-030-C29 (AC-04, 独立negative)**：別Patternの成功で欠けた選択Pattern fieldを相殺する。**期待**：相殺を拒否する。
 - **L10-BRAIN-030-C30 (AC-04, 独立negative)**：BRAINが製品固有API結論だけを出力する。**期待**：結論を返さずHARNESSへ戻す。
 - **L10-BRAIN-030-C31 (AC-05, 未見正常)**：未見互換pairを固定source上の宣言範囲内で与え、選択knowledgeは全fieldとtraceを満たす。**期待**：同契約で照合し候補receiptを作る。
-- **L10-BRAIN-030-C32 (AC-05, 局所unknown)**：異なる未見pairで互換範囲が未宣言。**期待**：compatibilityだけunknown/holdとし範囲を創作しない。
+- **L10-BRAIN-030-C32 (AC-05, 局所unknown)**：未公開Pattern pairを用い、required field/relationのsource identity/versionとunknown理由をfixtureに含める。**期待**：適用・採用を推定せずrequired field・relationとunknownのreceipt保持を照合する。
 - **L10-BRAIN-030-C33 (AC-04/05, 独立negative)**：C23と同じ単一field unknown fixtureで、field identityだけをreceiptから欠落させる。**期待**：値unknown自体を拒むのでなく、その未決fieldを義務へ辿れないreceiptを不合格とし、対応付け不足をHARNESSへ返す。
 - **L10-BRAIN-030-C34 (AC-05, 個別negative)**：knowledge revisionにrequired-field definition自体がない。**期待**：値unknownとして受領せずBRAINへ返す。
 - **L10-BRAIN-030-C35 (AC-05, 正常境界)**：別queryでknowledgeを未選択にする。**期待**：その知識sourceを未観測として扱い、欠落扱いも適用可推定もしない。
@@ -769,7 +782,7 @@ CASE番号は各親見出し内で一意。各列の固定句は親source全文�
 - **L10-BRAIN-030-R-version-stale (AC-03, 独立fixture)**：同親C02の選択knowledge source/revision/scopeと他必須fieldを保持し、選択knowledge versionだけをstaleにする。**期待**：knowledge受渡しを保留しBRAINへ戻す。
 - **L10-BRAIN-030-R-version-mismatch (AC-03, 独立fixture)**：同親C02の選択knowledge source/revision/scopeと他必須fieldを保持し、選択knowledge versionだけをsourceと不一致にする。**期待**：誤結合を拒否しBRAINへ戻す。
 - **L10-BRAIN-030-R-source-mismatch (AC-03, 独立fixture)**：同親C02の選択knowledge source/revision/scopeと他必須fieldを保持し、選択knowledge sourceだけを別identityへ結合する。**期待**：由来不整合としてBRAINへ戻す。
-- **L10-BRAIN-030-R-applicability-unknown (AC-05, 独立fixture)**：同親C02の選択knowledge source/revision/scopeと他必須fieldを保持し、適用条件だけをunknownにして適用可能と表示する。**期待**：適用可能と推定せず当該適用を保留し、候補判断材料にunknownを保持して義務open。
+- **L10-BRAIN-030-R-applicability-unknown (AC-05, 独立fixture)**：同親C02の選択knowledge source/revision/scopeと他必須fieldを保持し、適用条件だけをunknownにして適用可能と表示する。**期待**：適用可能と推定せず当該適用を保留し、候補判断材料にunknownを保持して義務openとする。固定親で戻し先を指定する場合だけそこへ返す。
 - **L10-BRAIN-030-R-reverse-revision (AC-04, 独立fixture)**：同親C02の選択knowledge source/revision/scopeと他必須fieldを保持し、逆trace先knowledge revisionだけを別revisionへ変える。**期待**：誤結合を拒否し対応付け不備をHARNESSへ戻す。
 - **L10-BRAIN-030-R-reverse-field (AC-04, 独立fixture)**：同親C02の選択knowledge source/revision/scopeと他必須fieldを保持し、逆trace先required fieldだけを別fieldへ変える。**期待**：誤結合を拒否し対応付け不備をHARNESSへ戻す。
 - **L10-BRAIN-030-R-reverse-scope (AC-04, 独立fixture)**：同親C02の選択knowledge source/revision/scopeと他必須fieldを保持し、逆trace先scopeだけを別scopeへ変える。**期待**：scope誤結合を拒否しHARNESSへ戻す。
@@ -784,5 +797,9 @@ CASE番号は各親見出し内で一意。各列の固定句は親source全文�
 - **L10-BRAIN-030-R-mixed-fields (AC-05, 独立fixture)**：同親C02の選択knowledge source/revision/scopeと他必須fieldを保持し、C23の単一field境界とは別に、複数Pattern/Unit/Partで定義済fieldを複数選び既知値と未設定値を混在させ、field identity/理由/双方向traceを保持する。**期待**：知識receiptのみ受領可能、未設定値ごとの義務はopen、設計完成/実装準備は未成立。値を創作しない。
 
 - **L10-BRAIN-030-R-relation-conflict (AC-03, 独立negative)**：同query/scope/revisionの選択knowledge tupleとrequired fieldsを保ち、relation根拠だけをsourceと矛盾させる。**期待**：矛盾を隠さず当該knowledge受渡しを不合格としてBRAINへ戻し、他Pattern成功で相殺しない。
+
+- **L10-BRAIN-030-C36 (AC-05, 局所unknown)**：別の未見pairで互換範囲が未宣言。**期待**：compatibilityをunknown/holdとし範囲を創作しない。unknownのreceipt状態も保持する。
+- **L10-BRAIN-030-C37 (AC-06, 独立negative)**：正常C02で他fieldを保ち、BRAIN出力だけでHARNESS要求authorityを上書きする。**期待**：上書きを拒み、既存HARNESS authorityを保持する。
+- **L10-BRAIN-030-C38 (AC-06, 独立negative)**：正常C02で他fieldを保ち、LABO評価の存在だけからPattern採択・承認・実装を生成する。**期待**：生成を拒み、成功を当該identity/version/scopeだけに限定する。
 
 各caseは独立fixtureであり、親の範囲外条件を追加しない。正常caseは宣言済み合成identity/revision/valueを使い、unknown/未観測と欠落を区別する。判定はdocument-level oracle設計で、実行結果ではない。
