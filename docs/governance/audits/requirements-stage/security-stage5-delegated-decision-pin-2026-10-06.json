@@ -1,0 +1,50 @@
+{
+  "authority_effect": "none",
+  "body_revision": "a118057faf1cad936eb16f65be512d74e4db976b",
+  "reviewed_head": "43f6413f59b8f8cffe3f615c7513c4fc6e70a276",
+  "latest_base_checked": "d6a667a594b7cae35b6b9e76bffae97adc43de55",
+  "documents": [
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "sha256": "a9cdc5dcdc06c46995cf0117803efd42cff5fd7cd61648d46ea91725381327e0",
+      "bytes": 2356
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "sha256": "332100c33a03e916e2a11672b1b8a259d8545df6c64f68b0939219a6f6d4c021",
+      "bytes": 150299
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "sha256": "d48a883daf59e682bef8da78c4f3f27475cc9933f282a1ad04a52d632c6e9e40",
+      "bytes": 13172
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "sha256": "6f6785a248a8e2d2e05944e936b2fcac09311cab5115c3610d62c330442414d2",
+      "bytes": 2999
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "sha256": "6e9c8bef19fb87f01c138a8e3221dec43dfab54d7bf3b2d0499ce6e62ce90bee",
+      "bytes": 131407
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "sha256": "f2fc75329497b8a7d15bb6d60783c4eb6d67dd262051d005b953c321b2970055",
+      "bytes": 17738
+    }
+  ],
+  "formal_comment": {
+    "id": 6004760964,
+    "body": "## review04（independent review、HEAD 43f6413f59b8f8cffe3f615c7513c4fc6e70a276、body a118057faf1cad936eb16f65be512d74e4db976b）\n\nreviewer: Claude（lane `review_merge`、Fable 5.1）。review03 Minor 2の補正（FV 14行、FR不変）はreviewer本人（Opus側）が照合。Fable advisorが本revisionで再照合（差分全行・固定L2:332〜341（次節342で境界確認）・L11:51・L2-015:210・監査JSON SHA実算）。merge-base 64086f7f0、main d6a667a59に対し `git merge-tree --write-tree origin/main HEAD` 衝突なし、6本文main prefix一致。\n\n### 静的検査（w2617 = exact HEAD）\n- scfctl validate 147/0、stale 0、residuals 0、govcheck ok、`git diff --check` 0。\n- 補正記録 `security-stage5-review03-correction-2026-10-06.json`：6本文SHA一致、review03 comment（6004603649）SHA一致、固定L2:332〜341／L11:51 raw-LF SHA一致。CASE 93一意（追加・削除0）、6本文はbody a118057faと同一bytes。「SECURITY境界判定」を戻し先列に含む行0件。\n\n### review03所見の解消\n- **m1解消**：正常6行（001/025/026/050/051/075）の戻し先を当該sink契約のみへ。\n- **m2解消**：FV:860前書きに「P1はfixtureで接続契約identityを宣言。P2/P3は固定L2-015で特定できるownerとscopeに適合する合成契約・receiptを正常入力とするが、実接続契約identityは未特定のまま保持。『owner contractは正常』は合成入力の適合を指し、実契約identityの特定や実接続成立を意味しない」を追加。FR:554と整合。\n- reviewer側のL2-005:111混入訂正は補正記録JSON（:752）に記録され、027判断根拠に使われていない。\n\n### Fable見解（advisor）\n結論行（原文のまま）：「**承認してよい。**」。「前回m1・m2は本revisionで閉じており、新たな矛盾は見つからなかった。Major 0／Minor 0」。参考注記（指摘不要）：P1のowner未特定の表記が行間で異なるが意味は同一（FR:554）。\n\n### Opus側判定\n所見なし。未確認範囲なし（review01〜04でFR-027-01・AC 5・CASE 93・BV/NV・監査4件・固定親節境界・旧source対応を照合）。\n\n### 委任承認条件の状態（docs/governance/github-upstream-operating-model.md「L3／L10承認の委任」）\n- 条件1（Opus `no_findings`・未確認範囲0）：本commentで成立（HEAD 43f6413f5、本文a118057fa）。\n- 条件2（Fable「承認してよい」）：本commentに原文で記録（review03 commentの前回見解も同結論）。\n- 条件3（6本文bytes不変）：作成側が判断記録（`decider_role: PO（委任：Opus・Fable一致）`、対象revision a118057fa、6本文SHA、本comment ID/SHA、Fable見解の所在）を追加した後、reviewerが6本文SHA・本comment SHA・委任規則SHA・判断記録SHAを照合し、最新main（d6a667a59以降）との試験merge→作成側のReady化（依頼本文「Root ReadyまでReady/mergeしない」に従う）→明示mergeへ進む。POの事後確認一覧に「委任2者が同一model、laneで独立性担保」の注記を添える。本commentはmerge admissionを生成しない。\n",
+    "sha256": "4058ed48ea7d5d4e8795b8f9a0d74b858ebc5ca5e3dec3ddc4f2c9aad80a0020"
+  },
+  "delegation_sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220",
+  "rule_sha256": "eed2b774bb78545ac53c7d55f3ae3ab4e9c4f421b4eaf3ac3bcdbcdd869dd27b",
+  "decision": {
+    "path": "docs/governance/decisions/helix-security-stage5-l3-l10-po-decision-2026-10-06.md",
+    "sha256": "596954f8271ccc2f6bf310908c057c269558113e46f8b54c4d9f179e238960d7"
+  },
+  "limits": "出典と六本文不変の照合。実読範囲はRoot検収とformal review各記録に従う。"
+}
