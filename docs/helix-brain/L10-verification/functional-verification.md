@@ -84,3 +84,178 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 **判定**：正常caseは各AC候補が親のfield/state/boundaryを満たす証拠を示す。反例caseでは該当情報が拒否/unknown/保留となり、誤った成功・昇格・owner間writebackを起こさない。部分成功は部分として記録し、残作業を成功に丸めない。
 
 **旧test-design oracleの限定**：ST-DIST-001/007とWCC-FR-01/05のversion/schema drift境界を類例として使う。旧packet/schemaやrange grammarは継承しない。旧case ID・閾値・role schema・runtimeを使わず、現行L2/L11へ合わせた検証設計とする。
+
+
+## Stage 2b — HELIX-BRAIN INFRA L10 総合検証候補（001–017）
+
+**状態：部分草稿・未承認・未実行。** CASEは対応ACを親ごとに照合し、独立review/POのL3承認や実測を生成しない。通常のL3承認を超えるsub-gateを作らない。
+
+### `HELIXBRAIN-L2-INFRA-001` — BRAIN-INFRA-001-FR-01 / AC-01, AC-02
+
+固定sourceはf6dad2a33e24f000b87d7f09b8d40288257e74cc、L2 lines 220–229、L11 line 41。各caseは独立fixtureで実施し、成功は実環境の成立を意味しない。
+
+- **L10-BRAIN-INFRA-001-C01（正常／AC-01）**：20初期subdomainの全列挙と追加・分割・統合・退役可能性を全て含む宣言済み合成対象を与える。**期待oracle**：全必須要素を親の対象identityと対応付け、L2のscopeと責務を保持する。
+- **L10-BRAIN-INFRA-001-C02（個別欠落／AC-02）**：必須field/relation/列挙要素を一度に一つだけmissingにしたfixtureを列挙集合の各要素について作る。**期待oracle**：当該要素とmissing reasonを特定し、成功/適用扱いにせず止める。C02の分母は `20項目 + 追加/分割/統合/退役の4操作` とする。
+- **L10-BRAIN-INFRA-001-C03（親固有negative／AC-02）**：列挙集合を固定enum化、未列挙領域を拒否、またはprovider accountや実resource stateを分類identityへ混ぜる。**期待oracle**：不成立reasonを特定し、分類の意味はHELIXBRAIN-L1-001、実resource stateはInfrastructure Runtime。
+- **L10-BRAIN-INFRA-001-C04（unknown/stale/対象不一致／AC-02）**：固定L2が明示するidentity/condition/relationだけを対象に、unknown、矛盾、別対象を一項目ずつ変異する。L2がsource/evidenceを要求しない箇所へ新しいevidence義務を足さない。**期待oracle**：AC-02に従い不成立またはunknownと戻し先を示し、成功/適用扱いにしない。
+- **L10-BRAIN-INFRA-001-C05（未見正常／AC-01）**：既存fixtureにないが固定L2のscope内にある新しい合成例を用い、固定L2が明示する入力fieldを充足する。**期待oracle**：C01と同じAC-01を適用し、親で許可される追加知識/関係を保持する。親外・値未宣言は正常fixtureとせずunknownのまま残す。
+
+### `HELIXBRAIN-L2-INFRA-002` — BRAIN-INFRA-002-FR-01 / AC-01, AC-02
+
+固定sourceはf6dad2a33e24f000b87d7f09b8d40288257e74cc、L2 lines 230–239、L11 line 42。各caseは独立fixtureで実施し、成功は実環境の成立を意味しない。
+
+- **L10-BRAIN-INFRA-002-C01（正常／AC-01）**：Domain→Pattern→Design Unit→Part階層とActive/Passive・Blue-Green例の部品relationを全て含む宣言済み合成対象を与える。**期待oracle**：全必須要素を親の対象identityと対応付け、L2のscopeと責務を保持する。
+- **L10-BRAIN-INFRA-002-C02（個別欠落／AC-02）**：必須field/relation/列挙要素を一度に一つだけmissingにしたfixtureを列挙集合の各要素について作る。**期待oracle**：当該要素とmissing reasonを特定し、成功/適用扱いにせず止める。C02の分母は `4階層nodeと、固定L2例に含まれる部品・relation endpoint` とする。
+- **L10-BRAIN-INFRA-002-C03（親固有negative／AC-02）**：各階層、relation端点を独立に欠落させるほか、provider固有設定だけを一般Patternに見せる。**期待oracle**：不成立reasonを特定し、階層・一般性はHELIXBRAIN-L1-002、実装設定はImplementation/Runtime owner。
+- **L10-BRAIN-INFRA-002-C04（unknown/stale/対象不一致／AC-02）**：固定L2が明示するidentity/condition/relationだけを対象に、unknown、矛盾、別対象を一項目ずつ変異する。L2がsource/evidenceを要求しない箇所へ新しいevidence義務を足さない。**期待oracle**：AC-02に従い不成立またはunknownと戻し先を示し、成功/適用扱いにしない。
+- **L10-BRAIN-INFRA-002-C05（未見正常／AC-01）**：既存fixtureにないが固定L2のscope内にある新しい合成例を用い、固定L2が明示する入力fieldを充足する。**期待oracle**：C01と同じAC-01を適用し、親で許可される追加知識/関係を保持する。親外・値未宣言は正常fixtureとせずunknownのまま残す。
+
+### `HELIXBRAIN-L2-INFRA-003` — BRAIN-INFRA-003-FR-01 / AC-01, AC-02
+
+固定sourceはf6dad2a33e24f000b87d7f09b8d40288257e74cc、L2 lines 240–249、L11 line 43。各caseは独立fixtureで実施し、成功は実環境の成立を意味しない。
+
+- **L10-BRAIN-INFRA-003-C01（正常／AC-01）**：20個のL2 atomic descriptor fieldと17個のL11 groupの双方、各fieldの根拠・適用scope・unknownを全て含む宣言済み合成対象を与える。**期待oracle**：全必須要素を親の対象identityと対応付け、L2のscopeと責務を保持する。
+- **L10-BRAIN-INFRA-003-C02（個別欠落／AC-02）**：必須field/relation/列挙要素を一度に一つだけmissingにしたfixtureを列挙集合の各要素について作る。**期待oracle**：当該要素とmissing reasonを特定し、成功/適用扱いにせず止める。C02の分母は `L2 20 atomic field（L11 17 groupへの対応を併記）` とする。
+- **L10-BRAIN-INFRA-003-C03（親固有negative／AC-02）**：20 fieldそれぞれの欠落/stale/対象違いを単独変異し、一般性だけによる適用や未知値の成功丸めを試す。**期待oracle**：不成立reasonを特定し、製品要求値はProduct Core、評価不足はLABO、知識fieldの意味はHELIXBRAIN-L1-003。
+- **L10-BRAIN-INFRA-003-C04（unknown/stale/対象不一致／AC-02）**：固定L2が明示するidentity/condition/relationだけを対象に、unknown、矛盾、別対象を一項目ずつ変異する。L2がsource/evidenceを要求しない箇所へ新しいevidence義務を足さない。**期待oracle**：AC-02に従い不成立またはunknownと戻し先を示し、成功/適用扱いにしない。
+- **L10-BRAIN-INFRA-003-C05（未見正常／AC-01）**：既存fixtureにないが固定L2のscope内にある新しい合成例を用い、固定L2が明示する入力fieldを充足する。**期待oracle**：C01と同じAC-01を適用し、親で許可される追加知識/関係を保持する。親外・値未宣言は正常fixtureとせずunknownのまま残す。
+
+### `HELIXBRAIN-L2-INFRA-004` — BRAIN-INFRA-004-FR-01 / AC-01, AC-02
+
+固定sourceはf6dad2a33e24f000b87d7f09b8d40288257e74cc、L2 lines 250–259、L11 line 44。各caseは独立fixtureで実施し、成功は実環境の成立を意味しない。
+
+- **L10-BRAIN-INFRA-004-C01（正常／AC-01）**：10種の要求特性→関連Pattern→必要Design Input relationを全て含む宣言済み合成対象を与える。**期待oracle**：全必須要素を親の対象identityと対応付け、L2のscopeと責務を保持する。
+- **L10-BRAIN-INFRA-004-C02（個別欠落／AC-02）**：必須field/relation/列挙要素を一度に一つだけmissingにしたfixtureを列挙集合の各要素について作る。**期待oracle**：当該要素とmissing reasonを特定し、成功/適用扱いにせず止める。C02の分母は `列挙10特性と各Pattern/Inputのrelation` とする。
+- **L10-BRAIN-INFRA-004-C03（親固有negative／AC-02）**：各relation/inputの欠落、unknown値の確定、BRAINによる閾値/RTO/RPO生成。**期待oracle**：不成立reasonを特定し、要求値と設計義務はHARNESS/Product Core、評価はLABO。
+- **L10-BRAIN-INFRA-004-C04（unknown/stale/対象不一致／AC-02）**：固定L2が明示するidentity/condition/relationだけを対象に、unknown、矛盾、別対象を一項目ずつ変異する。L2がsource/evidenceを要求しない箇所へ新しいevidence義務を足さない。**期待oracle**：AC-02に従い不成立またはunknownと戻し先を示し、成功/適用扱いにしない。
+- **L10-BRAIN-INFRA-004-C05（未見正常／AC-01）**：既存fixtureにないが固定L2のscope内にある新しい合成例を用い、固定L2が明示する入力fieldを充足する。**期待oracle**：C01と同じAC-01を適用し、親で許可される追加知識/関係を保持する。親外・値未宣言は正常fixtureとせずunknownのまま残す。
+
+### `HELIXBRAIN-L2-INFRA-005` — BRAIN-INFRA-005-FR-01 / AC-01, AC-02
+
+固定sourceはf6dad2a33e24f000b87d7f09b8d40288257e74cc、L2 lines 260–269、L11 line 45。各caseは独立fixtureで実施し、成功は実環境の成立を意味しない。
+
+- **L10-BRAIN-INFRA-005-C01（正常／AC-01）**：13 failure例の各々についてexpected failure/detection/impact/containment/recovery/residual riskを全て含む宣言済み合成対象を与える。**期待oracle**：全必須要素を親の対象identityと対応付け、L2のscopeと責務を保持する。
+- **L10-BRAIN-INFRA-005-C02（個別欠落／AC-02）**：必須field/relation/列挙要素を一度に一つだけmissingにしたfixtureを列挙集合の各要素について作る。**期待oracle**：当該要素とmissing reasonを特定し、成功/適用扱いにせず止める。C02の分母は `13 failure例 × 6観点 = 78対応cell` とする。
+- **L10-BRAIN-INFRA-005-C03（親固有negative／AC-02）**：13例および6観点の各欠落を独立に試し、設計候補の存在を実incident証拠へ置換。**期待oracle**：不成立reasonを特定し、実incident/dataはLABO/Runtime、一般化範囲はHELIXBRAIN-L1-010。
+- **L10-BRAIN-INFRA-005-C04（unknown/stale/対象不一致／AC-02）**：固定L2が明示するidentity/condition/relationだけを対象に、unknown、矛盾、別対象を一項目ずつ変異する。L2がsource/evidenceを要求しない箇所へ新しいevidence義務を足さない。**期待oracle**：AC-02に従い不成立またはunknownと戻し先を示し、成功/適用扱いにしない。
+- **L10-BRAIN-INFRA-005-C05（未見正常／AC-01）**：既存fixtureにないが固定L2のscope内にある新しい合成例を用い、固定L2が明示する入力fieldを充足する。**期待oracle**：C01と同じAC-01を適用し、親で許可される追加知識/関係を保持する。親外・値未宣言は正常fixtureとせずunknownのまま残す。
+
+### `HELIXBRAIN-L2-INFRA-006` — BRAIN-INFRA-006-FR-01 / AC-01, AC-02
+
+固定sourceはf6dad2a33e24f000b87d7f09b8d40288257e74cc、L2 lines 270–281、L11 line 46。各caseは独立fixtureで実施し、成功は実環境の成立を意味しない。
+
+- **L10-BRAIN-INFRA-006-C01（正常／AC-01）**：10 Recovery Pattern候補における予防と復旧の役割区別を全て含む宣言済み合成対象を与える。**期待oracle**：全必須要素を親の対象identityと対応付け、L2のscopeと責務を保持する。
+- **L10-BRAIN-INFRA-006-C02（個別欠落／AC-02）**：必須field/relation/列挙要素を一度に一つだけmissingにしたfixtureを列挙集合の各要素について作る。**期待oracle**：当該要素とmissing reasonを特定し、成功/適用扱いにせず止める。C02の分母は `10 recovery候補と各候補の予防/復旧区分` とする。
+- **L10-BRAIN-INFRA-006-C03（親固有negative／AC-02）**：各Pattern名/復旧条件の欠落、予防だけのrecoverability結論、未実行を実行成功扱い。**期待oracle**：不成立reasonを特定し、実行/rollbackはProductまたはRuntime owner、意味はHELIXBRAIN-L1-010。
+- **L10-BRAIN-INFRA-006-C04（unknown/stale/対象不一致／AC-02）**：固定L2が明示するidentity/condition/relationだけを対象に、unknown、矛盾、別対象を一項目ずつ変異する。L2がsource/evidenceを要求しない箇所へ新しいevidence義務を足さない。**期待oracle**：AC-02に従い不成立またはunknownと戻し先を示し、成功/適用扱いにしない。
+- **L10-BRAIN-INFRA-006-C05（未見正常／AC-01）**：既存fixtureにないが固定L2のscope内にある新しい合成例を用い、固定L2が明示する入力fieldを充足する。**期待oracle**：C01と同じAC-01を適用し、親で許可される追加知識/関係を保持する。親外・値未宣言は正常fixtureとせずunknownのまま残す。
+
+### `HELIXBRAIN-L2-INFRA-007` — BRAIN-INFRA-007-FR-01 / AC-01, AC-02
+
+固定sourceはf6dad2a33e24f000b87d7f09b8d40288257e74cc、L2 lines 282–291、L11 line 47。各caseは独立fixtureで実施し、成功は実環境の成立を意味しない。
+
+- **L10-BRAIN-INFRA-007-C01（正常／AC-01）**：6 deployment方式をblast radius/rollback/duplication/availability/migration/observabilityで比較を全て含む宣言済み合成対象を与える。**期待oracle**：全必須要素を親の対象identityと対応付け、L2のscopeと責務を保持する。
+- **L10-BRAIN-INFRA-007-C02（個別欠落／AC-02）**：必須field/relation/列挙要素を一度に一つだけmissingにしたfixtureを列挙集合の各要素について作る。**期待oracle**：当該要素とmissing reasonを特定し、成功/適用扱いにせず止める。C02の分母は `6方式 × 6比較軸 = 36対応cell` とする。
+- **L10-BRAIN-INFRA-007-C03（親固有negative／AC-02）**：方式・比較軸欠落、migration条件推測、設計知識からのrelease/deployment実行。**期待oracle**：不成立reasonを特定し、release semanticsはProduct Core/HARNESS、実進行はOS/Runtime。
+- **L10-BRAIN-INFRA-007-C04（unknown/stale/対象不一致／AC-02）**：固定L2が明示するidentity/condition/relationだけを対象に、unknown、矛盾、別対象を一項目ずつ変異する。L2がsource/evidenceを要求しない箇所へ新しいevidence義務を足さない。**期待oracle**：AC-02に従い不成立またはunknownと戻し先を示し、成功/適用扱いにしない。
+- **L10-BRAIN-INFRA-007-C05（未見正常／AC-01）**：既存fixtureにないが固定L2のscope内にある新しい合成例を用い、固定L2が明示する入力fieldを充足する。**期待oracle**：C01と同じAC-01を適用し、親で許可される追加知識/関係を保持する。親外・値未宣言は正常fixtureとせずunknownのまま残す。
+
+### `HELIXBRAIN-L2-INFRA-008` — BRAIN-INFRA-008-FR-01 / AC-01, AC-02
+
+固定sourceはf6dad2a33e24f000b87d7f09b8d40288257e74cc、L2 lines 292–301、L11 line 48。各caseは独立fixtureで実施し、成功は実環境の成立を意味しない。
+
+- **L10-BRAIN-INFRA-008-C01（正常／AC-01）**：7 scaling/capacity候補をtrigger/bottleneck/limit/statefulness/synchronization cost/saturation behaviorで記述を全て含む宣言済み合成対象を与える。**期待oracle**：全必須要素を親の対象identityと対応付け、L2のscopeと責務を保持する。
+- **L10-BRAIN-INFRA-008-C02（個別欠落／AC-02）**：必須field/relation/列挙要素を一度に一つだけmissingにしたfixtureを列挙集合の各要素について作る。**期待oracle**：当該要素とmissing reasonを特定し、成功/適用扱いにせず止める。C02の分母は `7方式 × 6 descriptor軸 = 42対応cell` とする。
+- **L10-BRAIN-INFRA-008-C03（親固有negative／AC-02）**：候補/field欠落、unknown workloadを適用許可や自動scalingへ変換、閾値創作。**期待oracle**：不成立reasonを特定し、workload/SLOは製品要求、構造評価はLABO。
+- **L10-BRAIN-INFRA-008-C04（unknown/stale/対象不一致／AC-02）**：固定L2が明示するidentity/condition/relationだけを対象に、unknown、矛盾、別対象を一項目ずつ変異する。L2がsource/evidenceを要求しない箇所へ新しいevidence義務を足さない。**期待oracle**：AC-02に従い不成立またはunknownと戻し先を示し、成功/適用扱いにしない。
+- **L10-BRAIN-INFRA-008-C05（未見正常／AC-01）**：既存fixtureにないが固定L2のscope内にある新しい合成例を用い、固定L2が明示する入力fieldを充足する。**期待oracle**：C01と同じAC-01を適用し、親で許可される追加知識/関係を保持する。親外・値未宣言は正常fixtureとせずunknownのまま残す。
+
+### `HELIXBRAIN-L2-INFRA-009` — BRAIN-INFRA-009-FR-01 / AC-01, AC-02
+
+固定sourceはf6dad2a33e24f000b87d7f09b8d40288257e74cc、L2 lines 302–311、L11 line 49。各caseは独立fixtureで実施し、成功は実環境の成立を意味しない。
+
+- **L10-BRAIN-INFRA-009-C01（正常／AC-01）**：11設計観測点と関連Pattern/failureの関係。実telemetryはBRAIN外に置くを全て含む宣言済み合成対象を与える。**期待oracle**：全必須要素を親の対象identityと対応付け、L2のscopeと責務を保持する。
+- **L10-BRAIN-INFRA-009-C02（個別欠落／AC-02）**：必須field/relation/列挙要素を一度に一つだけmissingにしたfixtureを列挙集合の各要素について作る。**期待oracle**：当該要素とmissing reasonを特定し、成功/適用扱いにせず止める。C02の分母は `11観測点とPattern/failure relation` とする。
+- **L10-BRAIN-INFRA-009-C03（親固有negative／AC-02）**：各観測定義の欠落、raw telemetry混入、missing/stale/collector停止をhealthyへ写像。**期待oracle**：不成立reasonを特定し、runtime evidenceはInfrastructure Runtime/LABO、設計観測定義はHELIXBRAIN-L1-003。
+- **L10-BRAIN-INFRA-009-C04（unknown/stale/対象不一致／AC-02）**：固定L2が明示するidentity/condition/relationだけを対象に、unknown、矛盾、別対象を一項目ずつ変異する。L2がsource/evidenceを要求しない箇所へ新しいevidence義務を足さない。**期待oracle**：AC-02に従い不成立またはunknownと戻し先を示し、成功/適用扱いにしない。
+- **L10-BRAIN-INFRA-009-C05（未見正常／AC-01）**：既存fixtureにないが固定L2のscope内にある新しい合成例を用い、固定L2が明示する入力fieldを充足する。**期待oracle**：C01と同じAC-01を適用し、親で許可される追加知識/関係を保持する。親外・値未宣言は正常fixtureとせずunknownのまま残す。
+
+### `HELIXBRAIN-L2-INFRA-010` — BRAIN-INFRA-010-FR-01 / AC-01, AC-02
+
+固定sourceはf6dad2a33e24f000b87d7f09b8d40288257e74cc、L2 lines 312–321、L11 line 50。各caseは独立fixtureで実施し、成功は実環境の成立を意味しない。
+
+- **L10-BRAIN-INFRA-010-C01（正常／AC-01）**：backup strategy/retention/replication/restore/recovery validationの別状態とrelationを全て含む宣言済み合成対象を与える。**期待oracle**：全必須要素を親の対象identityと対応付け、L2のscopeと責務を保持する。
+- **L10-BRAIN-INFRA-010-C02（個別欠落／AC-02）**：必須field/relation/列挙要素を一度に一つだけmissingにしたfixtureを列挙集合の各要素について作る。**期待oracle**：当該要素とmissing reasonを特定し、成功/適用扱いにせず止める。C02の分母は `5 design element: strategy/retention/replication/restore/validation` とする。
+- **L10-BRAIN-INFRA-010-C03（親固有negative／AC-02）**：backupのみ、restore未検証、recovery条件欠落、製品RTO/RPO創作。**期待oracle**：不成立reasonを特定し、実行値はProduct/Runtime、知識構造はHELIXBRAIN-L1-003/010。
+- **L10-BRAIN-INFRA-010-C04（unknown/stale/対象不一致／AC-02）**：固定L2が明示するidentity/condition/relationだけを対象に、unknown、矛盾、別対象を一項目ずつ変異する。L2がsource/evidenceを要求しない箇所へ新しいevidence義務を足さない。**期待oracle**：AC-02に従い不成立またはunknownと戻し先を示し、成功/適用扱いにしない。
+- **L10-BRAIN-INFRA-010-C05（未見正常／AC-01）**：既存fixtureにないが固定L2のscope内にある新しい合成例を用い、固定L2が明示する入力fieldを充足する。**期待oracle**：C01と同じAC-01を適用し、親で許可される追加知識/関係を保持する。親外・値未宣言は正常fixtureとせずunknownのまま残す。
+
+### `HELIXBRAIN-L2-INFRA-011` — BRAIN-INFRA-011-FR-01 / AC-01, AC-02
+
+固定sourceはf6dad2a33e24f000b87d7f09b8d40288257e74cc、L2 lines 322–331、L11 line 51。各caseは独立fixtureで実施し、成功は実環境の成立を意味しない。
+
+- **L10-BRAIN-INFRA-011-C01（正常／AC-01）**：7 cost characteristicと同一scope/time/sourceの価格evidenceを全て含む宣言済み合成対象を与える。**期待oracle**：全必須要素を親の対象identityと対応付け、L2のscopeと責務を保持する。
+- **L10-BRAIN-INFRA-011-C02（個別欠落／AC-02）**：必須field/relation/列挙要素を一度に一つだけmissingにしたfixtureを列挙集合の各要素について作る。**期待oracle**：当該要素とmissing reasonを特定し、成功/適用扱いにせず止める。C02の分母は `7 cost characteristicとprice source/time/scope evidence` とする。
+- **L10-BRAIN-INFRA-011-C03（親固有negative／AC-02）**：軸欠落、source/timeなし価格の現行化、構造cost特性から価格/予算への変換。**期待oracle**：不成立reasonを特定し、価格/予算はProduct Core/OS、一般化costはLABO。
+- **L10-BRAIN-INFRA-011-C04（unknown/stale/対象不一致／AC-02）**：固定L2が明示するidentity/condition/relationだけを対象に、unknown、矛盾、別対象を一項目ずつ変異する。L2がsource/evidenceを要求しない箇所へ新しいevidence義務を足さない。**期待oracle**：AC-02に従い不成立またはunknownと戻し先を示し、成功/適用扱いにしない。
+- **L10-BRAIN-INFRA-011-C05（未見正常／AC-01）**：既存fixtureにないが固定L2のscope内にある新しい合成例を用い、固定L2が明示する入力fieldを充足する。**期待oracle**：C01と同じAC-01を適用し、親で許可される追加知識/関係を保持する。親外・値未宣言は正常fixtureとせずunknownのまま残す。
+
+### `HELIXBRAIN-L2-INFRA-012` — BRAIN-INFRA-012-FR-01 / AC-01, AC-02
+
+固定sourceはf6dad2a33e24f000b87d7f09b8d40288257e74cc、L2 lines 332–341、L11 line 52。各caseは独立fixtureで実施し、成功は実環境の成立を意味しない。
+
+- **L10-BRAIN-INFRA-012-C01（正常／AC-01）**：Object Storage等の抽象PatternとS3/GCS/Azure Blob/MinIO等の実装identityおよびimplements/compatible_with/constraint_of関係を全て含む宣言済み合成対象を与える。**期待oracle**：全必須要素を親の対象identityと対応付け、L2のscopeと責務を保持する。
+- **L10-BRAIN-INFRA-012-C02（個別欠落／AC-02）**：必須field/relation/列挙要素を一度に一つだけmissingにしたfixtureを列挙集合の各要素について作る。**期待oracle**：当該要素とmissing reasonを特定し、成功/適用扱いにせず止める。C02の分母は `1 abstract identity + 4 implementation example identity + 明示relation` とする。
+- **L10-BRAIN-INFRA-012-C03（親固有negative／AC-02）**：identity統合、provider固定、根拠のないcompatibility、各relationの欠落。**期待oracle**：不成立reasonを特定し、互換条件のownerまたは該当Patternへ戻す。未確認compatibilityはunknown。
+- **L10-BRAIN-INFRA-012-C04（unknown/stale/対象不一致／AC-02）**：固定L2が明示するidentity/condition/relationだけを対象に、unknown、矛盾、別対象を一項目ずつ変異する。L2がsource/evidenceを要求しない箇所へ新しいevidence義務を足さない。**期待oracle**：AC-02に従い不成立またはunknownと戻し先を示し、成功/適用扱いにしない。
+- **L10-BRAIN-INFRA-012-C05（未見正常／AC-01）**：既存fixtureにないが固定L2のscope内にある新しい合成例を用い、固定L2が明示する入力fieldを充足する。**期待oracle**：C01と同じAC-01を適用し、親で許可される追加知識/関係を保持する。親外・値未宣言は正常fixtureとせずunknownのまま残す。
+
+### `HELIXBRAIN-L2-INFRA-013` — BRAIN-INFRA-013-FR-01 / AC-01, AC-02
+
+固定sourceはf6dad2a33e24f000b87d7f09b8d40288257e74cc、L2 lines 342–351、L11 line 53。各caseは独立fixtureで実施し、成功は実環境の成立を意味しない。
+
+- **L10-BRAIN-INFRA-013-C01（正常／AC-01）**：Local/VPS/Dedicated/Cloud/GPU/Distributed workerのprovider非依存resource/capability表現を全て含む宣言済み合成対象を与える。**期待oracle**：全必須要素を親の対象identityと対応付け、L2のscopeと責務を保持する。
+- **L10-BRAIN-INFRA-013-C02（個別欠落／AC-02）**：必須field/relation/列挙要素を一度に一つだけmissingにしたfixtureを列挙集合の各要素について作る。**期待oracle**：当該要素とmissing reasonを特定し、成功/適用扱いにせず止める。C02の分母は `6 resource classと抽象capability relation` とする。
+- **L10-BRAIN-INFRA-013-C03（親固有negative／AC-02）**：cloud-only前提、knowledge identityとruntime stateの混同、credential/actionを知識化。**期待oracle**：不成立reasonを特定し、実stateはInfrastructure Runtime、securityはSECURITY。
+- **L10-BRAIN-INFRA-013-C04（unknown/stale/対象不一致／AC-02）**：固定L2が明示するidentity/condition/relationだけを対象に、unknown、矛盾、別対象を一項目ずつ変異する。L2がsource/evidenceを要求しない箇所へ新しいevidence義務を足さない。**期待oracle**：AC-02に従い不成立またはunknownと戻し先を示し、成功/適用扱いにしない。
+- **L10-BRAIN-INFRA-013-C05（未見正常／AC-01）**：既存fixtureにないが固定L2のscope内にある新しい合成例を用い、固定L2が明示する入力fieldを充足する。**期待oracle**：C01と同じAC-01を適用し、親で許可される追加知識/関係を保持する。親外・値未宣言は正常fixtureとせずunknownのまま残す。
+
+### `HELIXBRAIN-L2-INFRA-014` — BRAIN-INFRA-014-FR-01 / AC-01, AC-02
+
+固定sourceはf6dad2a33e24f000b87d7f09b8d40288257e74cc、L2 lines 352–361、L11 line 54。各caseは独立fixtureで実施し、成功は実環境の成立を意味しない。
+
+- **L10-BRAIN-INFRA-014-C01（正常／AC-01）**：9 topology relationのtype/両endpoint/意味を全て含む宣言済み合成対象を与える。**期待oracle**：全必須要素を親の対象identityと対応付け、L2のscopeと責務を保持する。
+- **L10-BRAIN-INFRA-014-C02（個別欠落／AC-02）**：必須field/relation/列挙要素を一度に一つだけmissingにしたfixtureを列挙集合の各要素について作る。**期待oracle**：当該要素とmissing reasonを特定し、成功/適用扱いにせず止める。C02の分母は `9 relation type × type/endpoints/meaning` とする。
+- **L10-BRAIN-INFRA-014-C03（親固有negative／AC-02）**：各relation type/端点/meaningの単独欠落、component listだけで成立、実状態の推定。**期待oracle**：不成立reasonを特定し、actual topologyはRuntime、relation意味はHELIXBRAIN-L1-005。
+- **L10-BRAIN-INFRA-014-C04（unknown/stale/対象不一致／AC-02）**：固定L2が明示するidentity/condition/relationだけを対象に、unknown、矛盾、別対象を一項目ずつ変異する。L2がsource/evidenceを要求しない箇所へ新しいevidence義務を足さない。**期待oracle**：AC-02に従い不成立またはunknownと戻し先を示し、成功/適用扱いにしない。
+- **L10-BRAIN-INFRA-014-C05（未見正常／AC-01）**：既存fixtureにないが固定L2のscope内にある新しい合成例を用い、固定L2が明示する入力fieldを充足する。**期待oracle**：C01と同じAC-01を適用し、親で許可される追加知識/関係を保持する。親外・値未宣言は正常fixtureとせずunknownのまま残す。
+
+### `HELIXBRAIN-L2-INFRA-015` — BRAIN-INFRA-015-FR-01 / AC-01, AC-02
+
+固定sourceはf6dad2a33e24f000b87d7f09b8d40288257e74cc、L2 lines 362–371、L11 line 55。各caseは独立fixtureで実施し、成功は実環境の成立を意味しない。
+
+- **L10-BRAIN-INFRA-015-C01（正常／AC-01）**：InfrastructureとAPI/Data/Security/Visual-UX等のaffects/constrains/may affect方向・根拠・不確かさを全て含む宣言済み合成対象を与える。**期待oracle**：全必須要素を親の対象identityと対応付け、L2のscopeと責務を保持する。
+- **L10-BRAIN-INFRA-015-C02（個別欠落／AC-02）**：必須field/relation/列挙要素を一度に一つだけmissingにしたfixtureを列挙集合の各要素について作る。**期待oracle**：当該要素とmissing reasonを特定し、成功/適用扱いにせず止める。C02の分母は `固定例のDomain pair × direction/evidence/uncertainty` とする。
+- **L10-BRAIN-INFRA-015-C03（親固有negative／AC-02）**：endpoint/方向/evidence欠落、可能性をcausesへ確定、他Domain ownerの判断代行。**期待oracle**：不成立reasonを特定し、関係先Domain ownerへ返す。因果確定は根拠が別途ない限り行わない。
+- **L10-BRAIN-INFRA-015-C04（unknown/stale/対象不一致／AC-02）**：固定L2が明示するidentity/condition/relationだけを対象に、unknown、矛盾、別対象を一項目ずつ変異する。L2がsource/evidenceを要求しない箇所へ新しいevidence義務を足さない。**期待oracle**：AC-02に従い不成立またはunknownと戻し先を示し、成功/適用扱いにしない。
+- **L10-BRAIN-INFRA-015-C05（未見正常／AC-01）**：既存fixtureにないが固定L2のscope内にある新しい合成例を用い、固定L2が明示する入力fieldを充足する。**期待oracle**：C01と同じAC-01を適用し、親で許可される追加知識/関係を保持する。親外・値未宣言は正常fixtureとせずunknownのまま残す。
+
+### `HELIXBRAIN-L2-INFRA-016` — BRAIN-INFRA-016-FR-01 / AC-01, AC-02
+
+固定sourceはf6dad2a33e24f000b87d7f09b8d40288257e74cc、L2 lines 372–381、L11 line 56。各caseは独立fixtureで実施し、成功は実環境の成立を意味しない。
+
+- **L10-BRAIN-INFRA-016-C01（正常／AC-01）**：11 anti-patternの各成立条件/failure sign/safer alternativeを全て含む宣言済み合成対象を与える。**期待oracle**：全必須要素を親の対象identityと対応付け、L2のscopeと責務を保持する。
+- **L10-BRAIN-INFRA-016-C02（個別欠落／AC-02）**：必須field/relation/列挙要素を一度に一つだけmissingにしたfixtureを列挙集合の各要素について作る。**期待oracle**：当該要素とmissing reasonを特定し、成功/適用扱いにせず止める。C02の分母は `11 anti-pattern × condition/sign/alternative` とする。
+- **L10-BRAIN-INFRA-016-C03（親固有negative／AC-02）**：要素欠落、条件を外したuniversal ban、evidence不足の確定分類。**期待oracle**：不成立reasonを特定し、適用証拠がunknownならLABOへ返す。
+- **L10-BRAIN-INFRA-016-C04（unknown/stale/対象不一致／AC-02）**：固定L2が明示するidentity/condition/relationだけを対象に、unknown、矛盾、別対象を一項目ずつ変異する。L2がsource/evidenceを要求しない箇所へ新しいevidence義務を足さない。**期待oracle**：AC-02に従い不成立またはunknownと戻し先を示し、成功/適用扱いにしない。
+- **L10-BRAIN-INFRA-016-C05（未見正常／AC-01）**：既存fixtureにないが固定L2のscope内にある新しい合成例を用い、固定L2が明示する入力fieldを充足する。**期待oracle**：C01と同じAC-01を適用し、親で許可される追加知識/関係を保持する。親外・値未宣言は正常fixtureとせずunknownのまま残す。
+
+### `HELIXBRAIN-L2-INFRA-017` — BRAIN-INFRA-017-FR-01 / AC-01, AC-02
+
+固定sourceはf6dad2a33e24f000b87d7f09b8d40288257e74cc、L2 lines 382–391、L11 line 57。各caseは独立fixtureで実施し、成功は実環境の成立を意味しない。
+
+- **L10-BRAIN-INFRA-017-C01（正常／AC-01）**：experimental/observed/validated/mature/deprecated/retiredと対象revision/evidence/failure/counterexample/LABO評価を全て含む宣言済み合成対象を与える。**期待oracle**：全必須要素を親の対象identityと対応付け、L2のscopeと責務を保持する。
+- **L10-BRAIN-INFRA-017-C02（個別欠落／AC-02）**：必須field/relation/列挙要素を一度に一つだけmissingにしたfixtureを列挙集合の各要素について作る。**期待oracle**：当該要素とmissing reasonを特定し、成功/適用扱いにせず止める。C02の分母は `6 maturity state × revision/evidence/scope/counterexample/LABO evaluation` とする。
+- **L10-BRAIN-INFRA-017-C03（親固有negative／AC-02）**：revision mismatch、単一内部successからuniversal/mature昇格、failure/適用限界の隠蔽。**期待oracle**：不成立reasonを特定し、不足評価は昇格推定せずexperimental/observed candidateに留める。
+- **L10-BRAIN-INFRA-017-C04（unknown/stale/対象不一致／AC-02）**：固定L2が明示するidentity/condition/relationだけを対象に、unknown、矛盾、別対象を一項目ずつ変異する。L2がsource/evidenceを要求しない箇所へ新しいevidence義務を足さない。**期待oracle**：AC-02に従い不成立またはunknownと戻し先を示し、成功/適用扱いにしない。
+- **L10-BRAIN-INFRA-017-C05（未見正常／AC-01）**：既存fixtureにないが固定L2のscope内にある新しい合成例を用い、固定L2が明示する入力fieldを充足する。**期待oracle**：C01と同じAC-01を適用し、親で許可される追加知識/関係を保持する。親外・値未宣言は正常fixtureとせずunknownのまま残す。
