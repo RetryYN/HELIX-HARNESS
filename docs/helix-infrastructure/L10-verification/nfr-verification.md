@@ -82,4 +82,4 @@ L2-009/010用の数値候補は設定しない。対のL10では宣言済みsele
 
 ## Stage 5 追加範囲 — HELIXINFRASTRUCTURE-L2-011
 
-測定対象は `INFRA-NFR-011-S5-01/02` の静的候補であり、実測結果ではない。functional CASE 76件の計画分母を親項目・variant・操作群で分ける。入力可観測性、期待とのoracle一致、未完義務保持を別に記録し、unknown/unobserved/stale/mismatchを除外しない。固定L11:146由来の誤成立0は静的分類oracleの期待に限り、実装保証や実測合格としない。新しい数値SLO、期限、閾値は設けず、分母0は率なし、未実行は未測定とする。
+測定対象は `INFRA-NFR-011-S5-01/02` の静的候補であり、実測結果ではない。functional CASE 85件の計画分母を親項目・variant・操作群で分ける。入力可観測性、期待とのoracle一致、未完義務保持を別に記録し、unknown/unobserved/stale/mismatch/unauthorizedを除外しない。固定L11:146由来のunknown/unobserved/stale/mismatch/unauthorized誤成立0は静的分類oracleの期待に限り、実装保証や実測合格としない。新しい数値SLO、期限、閾値は設けず、分母0は率なし、未実行は未測定とする。

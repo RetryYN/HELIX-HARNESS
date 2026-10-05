@@ -95,7 +95,7 @@ L2-011 1.0に数値SLO、時間/回数threshold、性能保証を追加しない
 
 | 候補 | 分母/層別 | oracleと記録 |
 |---|---|---|
-| `INFRA-NFR-011-S5-01` | functional CASE集合の全76件をunit/operation/recovery/connection-composite別、item/variant別に列挙。unknown/unobserved/stale/mismatchを分母から除かず、適用外には固定根拠と理由を記録する。 | 可観測な入力/期待/結果の有無とoracle一致を別記。L11:146が拒否するfalse acceptance分類の期待件数0は静的候補に限り、実測・runtime保証としない。分母0は率なし、未実行は未測定。|
+| `INFRA-NFR-011-S5-01` | functional CASE集合の全85件をunit/operation/recovery/connection-composite別、item/variant別に列挙。unknown/unobserved/stale/mismatch/unauthorizedを分母から除かず、適用外には固定根拠と理由を記録する。 | 可観測な入力/期待/結果の有無とoracle一致を別記。L11:146が拒否するunknown/unobserved/stale/mismatch/unauthorizedの誤受入分類の期待件数0は静的候補に限り、実測・runtime保証としない。分母0は率なし、未実行は未測定。|
 | `INFRA-NFR-011-S5-02` | 18最低項目、該当connectionとoperation/recoveryのsource/revision/owner/unfinished-duty参照をCASEごとに追跡。 | owner不明はunknown。OS停止中ticket不要と復帰後syncは別CASE。capacity観測をOS/INTELLIGENCE採否へ換算しない。率・閾値・合格を未実行で報告しない。|
 
 この候補は個別PO質問、追加owner/authority、閾値または実装scopeを作らない。
