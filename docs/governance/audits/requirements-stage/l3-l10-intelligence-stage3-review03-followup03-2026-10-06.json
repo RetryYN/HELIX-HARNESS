@@ -1,0 +1,61 @@
+{
+  "record_type": "creator_correction_followup_evidence",
+  "basis": {
+    "root_read_only_recomputation": "/tmp/pr2607-root-legacy-source-pin-recompute.json",
+    "target_file": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+    "target_head_before_correction": "01db90bc71f03f74627485482785012b71ceca14",
+    "reviewed_rows": ["014", "016"],
+    "unchanged_prior_audits": true
+  },
+  "source_semantics": {
+    "LEGACY-ASSET-17C4BF78919578FEBB18": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "span": "129-160",
+      "actual_scope": ["OPS-R-10 ChangeDiagnosis", "OPS-R-11 terminal evidence", "OPS-R-13 BackflowDecision and Forward re-entry"],
+      "not_worker_obligation": true
+    },
+    "LEGACY-ASSET-9114D4E463E95B67DD0C": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+      "sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+      "span": "47-137",
+      "actual_scope": "provider-independent worker descriptor, sandbox, receipt, reviewer separation, and context packet contract"
+    },
+    "LEGACY-ASSET-D881AF6AFD277B1DE934": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+      "span": "1-79",
+      "actual_scope": "bounded repair candidate and automatic-application/permission boundary"
+    },
+    "LEGACY-ASSET-F46AB11BD14F2C0469F4": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/product-lifecycle-operations-acceptance.md",
+      "sha256": "19c75a442154b4d17e645143f4adaaa23791a1043caa73178e5d75cc468b7d58",
+      "span": "1-53",
+      "reuse_exclusion_class": "legacy_test_design_or_oracle",
+      "use_in_016": "fixture input/result correspondence only; no oracle transfer"
+    }
+  },
+  "corrections": [
+    {
+      "parent": "014",
+      "source_column_action": "No 17C4 citation added: its OPS-R-10/11/13 lifecycle diagnosis, terminal evidence, and backflow scope does not define the Bot/Worker contract. The rationale was corrected to separate 9114 Worker contract from D881/901C bounded repair comparisons."
+    },
+    {
+      "parent": "016",
+      "source_column_action": "Kept the existing 17C4:129-160 citation and corrected rationale to describe only lifecycle diagnosis/terminal evidence/backflow re-entry. Removed the false Worker-obligation attribution; Worker execution/assignment derives from fixed L2/L11 OS boundary."
+    }
+  ],
+  "table_scope_static_facts": {
+    "parent_rows": 22,
+    "asset_occurrences": 93,
+    "unique_source_spans": 36,
+    "014_contains_17c4_citation": false,
+    "016_contains_17c4_129_160_citation": true
+  },
+  "changed_existing_audit": false,
+  "executed_legacy_or_repository_runtime": false,
+  "limitations": [
+    "Creator-side semantic/source alignment correction; not independent review.",
+    "No runtime behavior, CI, Bun, or legacy CLI/test was run."
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "record_type": "delegated_decision_pin",
+  "authority_effect": "none",
+  "body_revision": "7c39f1fc0553114214bb582e60297c62d61f3283",
+  "review_head": "c90bbfddde584991ea9315aa77db806a203945ad",
+  "base": "1d7f57491b1e8b4337f1933aec2c1649df5f2ea2",
+  "approved_parents": [
+    "HELIXINTELLIGENCE-L2-001",
+    "HELIXINTELLIGENCE-L2-002",
+    "HELIXINTELLIGENCE-L2-003",
+    "HELIXINTELLIGENCE-L2-004",
+    "HELIXINTELLIGENCE-L2-005",
+    "HELIXINTELLIGENCE-L2-006",
+    "HELIXINTELLIGENCE-L2-007",
+    "HELIXINTELLIGENCE-L2-008",
+    "HELIXINTELLIGENCE-L2-009",
+    "HELIXINTELLIGENCE-L2-011",
+    "HELIXINTELLIGENCE-L2-012",
+    "HELIXINTELLIGENCE-L2-013",
+    "HELIXINTELLIGENCE-L2-014",
+    "HELIXINTELLIGENCE-L2-015",
+    "HELIXINTELLIGENCE-L2-016",
+    "HELIXINTELLIGENCE-L2-018",
+    "HELIXINTELLIGENCE-L2-019",
+    "HELIXINTELLIGENCE-L2-020",
+    "HELIXINTELLIGENCE-L2-067",
+    "HELIXINTELLIGENCE-L2-072",
+    "HELIXINTELLIGENCE-L2-073",
+    "HELIXINTELLIGENCE-L2-078"
+  ],
+  "formal_comment": {
+    "id": 6004252416,
+    "bytes": 2519,
+    "sha256": "7531981e9117001683c597d9166fc784cb4eab4a0d3654e533af0c35ba299b8a",
+    "literal": "## review12（independent review、HEAD c90bbfddde584991ea9315aa77db806a203945ad、body 7c39f1fc0553114214bb582e60297c62d61f3283）\n\nreviewer: Claude（lane `review_merge`、Fable 5.1）。差分は監査記録2ファイルの追加のみで、reviewer本人（Opus側）が照合。merge-base＝main 1d7f57491、`git merge-tree --write-tree origin/main HEAD` 衝突なし。\n\n### 静的検査（w2607 = exact HEAD）\n- scfctl validate 147/0、stale 0、residuals 0、govcheck ok、`git diff --check` 0。\n- 6本文は4fba48a6c（review11 HEAD）・body 7c39f1fc0とbyte同一（main 1d7f57491全文prefix＋Stage 3 suffix不変）。\n- 新記録 `intelligence-stage3-review11-record-correction-2026-10-06.{md,json}`：review11 comment（6004124962）本文SHAを記録、6本文SHA一致、旧記録（review09補正JSON／root-review08 JSON）は不変で参照のみ。\n\n### review11所見の解消\n- **m1解消**：FV Stage 3表先頭列定義946一意、6本文のStage 3 CASE ID集合990一意を記録し、旧985値を撤回。補正前後の集合同一（追加削除0）。\n- **m2解消**：旧root-review08のL2:143空行pinのrevisionを633bf12と訂正（67ef7d435ではない）。raw LF・SHA再計算一致。\n\n### Fable見解\n本文67ef7d435への再々照合で「**最終：承認してよい**」、7c39f1fc0（Stage 3 suffix不変、main全文prefix）へ持ち越し可とFableが独立確認（review10追記comment 6004036385、review11 comment 6004124962に原文記録）。6本文は本HEADでも7c39f1fc0と同一のため有効。\n\n### Opus側判定\n所見なし。未確認範囲なし（review01〜12で22親・946 Stage 3 CASE・AC 101・BV/NV・監査pin・main統合を照合）。\n\n### 委任承認条件の状態（docs/governance/github-upstream-operating-model.md「L3／L10承認の委任」）\n- 条件1（Opus `no_findings`・未確認範囲0）：本commentで成立（HEAD c90bbfddd、本文7c39f1fc0）。\n- 条件2（Fable「承認してよい」）：本文7c39f1fc0に対し有効（上記）。\n- 条件3（6本文bytes不変）：作成側が判断記録（`decider_role: PO（委任：Opus・Fable一致）`、対象revision 7c39f1fc0、6本文SHA、本comment ID/SHA、Fable見解の所在＝review10追記・review11 comment）を追加した後、reviewerが6本文SHA・comment SHA・委任規則SHA・判断記録SHAを照合し、最新main（1d7f57491以降）との試験merge→Ready→明示mergeへ進む。本commentはmerge admissionを生成しない。\n"
+  },
+  "delegation": {
+    "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+    "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220"
+  },
+  "rule": {
+    "path": "docs/governance/github-upstream-operating-model.md",
+    "sha256": "eed2b774bb78545ac53c7d55f3ae3ab4e9c4f421b4eaf3ac3bcdbcdd869dd27b"
+  },
+  "documents": [
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "sha256": "58432c78c93035c69cdb08ffe775d04c6339ef8ae26348f04024413279bab720",
+      "bytes": 23581
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "sha256": "24f00c4e7c4e3415aac73116851c1d5d953688a741bf6d3bd400171c7177670f",
+      "bytes": 170428
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "sha256": "f5da5d569f483d36aed039b80e0aadeadf48715a4dd854e6f20a5949310ea0e6",
+      "bytes": 48516
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "sha256": "3bae5af7db872ec2eca907f7a51d48b22c6c2637aaef8b7a54e5c6f9555fc59f",
+      "bytes": 27701
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "sha256": "0ddcfb85e1fdafbb2aab6aed1bc16dfb49fd2554dedea4112f6aeef1283e78bd",
+      "bytes": 642259
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "sha256": "2b6cbaad0292ba16df5ba65458779d2c9abc8c1f36298141d736df945e8d7029",
+      "bytes": 44908
+    }
+  ],
+  "decision": {
+    "path": "docs/governance/decisions/helix-intelligence-stage3-l3-l10-po-decision-2026-10-06.md",
+    "sha256": "6d88abff1fee9759128759efe44664ad12197ade34db69bb384d1cee54edbf9e"
+  },
+  "six_documents_byte_unchanged": true,
+  "fable_formal_comment": {
+    "id": 6004036385,
+    "sha256": "50d7f6c2444a2b3a0a926875c88447e9774755f19f345bd416d8da67f920185d",
+    "bytes": 1213,
+    "literal": "## review10 追記：Fable見解（本文67ef7d435、HEAD aa386e5c6）\n\nFable advisorの再々照合（固定L2:142/573・L11:77/199・AC-067-04/072-02・変更行SHA・6本文SHA実読）。結論行（原文のまま）：「**最終：承認してよい**（本文67ef7d435。Stage 3 suffix不変の7c39f1fc0へも同じ見解を持ち越せるが、委任承認はそのrevisionで再記録すること）」。review09の4所見と前回m1/m2は閉じたと確認。付随Minor 2（review09補正記録JSONの `functional_verification_table_case_ids_before/after = 985` が再現できない：実測FV表946／FV内全出現966／6本文一意990。`prior_audit_locator_correction.prior_pin.revision` が67ef7d435表記で引用元root-review08 JSONの633bf12と不一致）。いずれも監査記録の記述精度で本文に影響しないが、次の補正記録で開示・訂正する。review10 M1（main prefix再構成）は本文7c39f1fc0で対応済みとFableが独立確認（`bytes(7c39f1fc0) == bytes(main 1d7f57491) + Stage3 suffix`、suffix不変、ID衝突なし）。reviewerは次の依頼（review11）でexact HEADを再照合する。本commentはmerge admissionを生成しない。"
+  }
+}

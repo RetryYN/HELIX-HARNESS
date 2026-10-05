@@ -1,0 +1,96 @@
+{
+  "record_type": "creator_correction_followup_evidence",
+  "review_scope": {
+    "pull_request": 2607,
+    "formal_comment_id": "5995930243",
+    "full_text_evidence": "/tmp/pr2607-review03-full.md",
+    "sha256": "0bf60d975734818a203412e46057bc3714d1bc01a240ffa2c289ce8f144e316b",
+    "reviewed_content_head": "8c0f2c87d0803d429e5d0c55959d5382a9ac7817",
+    "base_commit": "1a7933157fef8327a0e2747348cbe57e596019aa"
+  },
+  "prior_correction_commit_preserved": "e629622abf71c1ff4db69871c0dc733976880173",
+  "fixed_l2_l11_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+  "case_review": {
+    "functional_verification_path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+    "fixed_l2_078_lines": "646-658",
+    "fixed_l11_078_lines": "363-382",
+    "ac_078_01_cases": 106,
+    "ac_078_01_normal_dimensions": 11,
+    "ac_078_01_dimension_state_cases": 44,
+    "ac_078_01_delta_field_cases": 48,
+    "ac_078_01_invalidation_projection_missing_cases": 3,
+    "closure_cases": 66,
+    "closure_ac_078_09": 58,
+    "closure_ac_078_10": 5,
+    "closure_ac_078_08": 3,
+    "closure_field_triplets": 19,
+    "review_109_count_reconciliation": "The current table has 106 AC-078-01 rows and 3 separate AC-078-08 closure reproducibility rows, totaling 109 rows in this grouped interpretation. All 106 and all 66 closure rows were checked separately; this does not collapse their AC traces."
+  },
+  "legacy_source_scopes_read": [
+    {
+      "asset_id": "LEGACY-ASSET-BBD687399574FEE23807",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/document-authority-census-acceptance.md",
+      "lines": "22-54",
+      "whole_file": true,
+      "reuse_exclusion_class": "legacy_test_design_or_oracle"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-6FFD7F4E58066D08B053",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-workflow-ai-judgment-engine-acceptance.md",
+      "lines": "15-34"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-901CD182B52024593E41",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-acceptance.md",
+      "lines": "1-30",
+      "whole_file": true
+    },
+    {
+      "asset_id": "LEGACY-ASSET-658FF8439F9F8E694710",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/bugbot-generation-acceptance.md",
+      "lines": "15-42",
+      "whole_file": true,
+      "reuse_exclusion_class": "legacy_test_design_or_oracle"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "lines": "41-63"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-E78B8D68CC327AA00991",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "lines": "26-90"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-AD746F4F3487103519F9",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+      "lines": "16-33",
+      "reuse_exclusion_class": "legacy_test_design_or_oracle"
+    }
+  ],
+  "body_corrections": [
+    {
+      "parent": "001",
+      "action": "Narrowed old-source comparison to 5EE0 source package receipt binding and stable source_transition_id trace; current domain identity/splittable lifecycle is re-derived from fixed L2."
+    },
+    {
+      "parent": "002",
+      "action": "Narrowed comparison to 5EE0 source identity and workflow routing capability/capacity semantics; current domain capability composition and unknown state are re-derived from fixed L2."
+    },
+    {
+      "parent": "004",
+      "action": "Narrowed comparison to 5EE0 proposal trace and E78B stable-ID/revision/evidence event trace; current four-way fact classification is re-derived from fixed L2. AD74 is fixture-structure comparison only, not oracle reuse."
+    }
+  ],
+  "modified_body_paths": [
+    "docs/helix-intelligence/L3-requirements/functional-requirements.md"
+  ],
+  "previous_audit_modified": false,
+  "static_only": true,
+  "executed_tests_ci_legacy_runtime_or_bun": false,
+  "limitations": [
+    "CASE review compared documented input/oracle text with fixed L2/L11; no consumer behavior was executed.",
+    "This is creator-side evidence, not an independent review, L3 approval, or finding resolution."
+  ]
+}

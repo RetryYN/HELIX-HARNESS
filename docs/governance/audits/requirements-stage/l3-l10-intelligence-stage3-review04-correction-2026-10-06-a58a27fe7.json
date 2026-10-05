@@ -1,0 +1,2076 @@
+{
+  "schema_version": "helix.intelligence.stage3.review04.correction.audit.v1",
+  "record_type": "creator_correction_review_evidence",
+  "basis": {
+    "review": "#2607 Opus independent review04",
+    "formal_comment_id": "5999149118",
+    "formal_body_path": "/tmp/pr2607-review04-full.md",
+    "formal_body_sha256": "308334fc55f10319b45ce23e7b82eb3207a1dab7db76d2d8e5bc20f00ea120e1",
+    "review_base": "5acae384305b01d10e88eeb2e6406f847baf66df",
+    "review_content_head": "cd78b8731c1a2768f15a8c2f87f86c5e8e8265f8",
+    "parent_body_commit": "a58a27fe7bb4ab850e0d0336a0b5c99343ef87ce",
+    "initial_root_commit": "f7d22caac9b7e318e4f3c7d5e1d0b9042ff522a0",
+    "review_findings": {
+      "blocker": 0,
+      "major": 6,
+      "minor": 29
+    },
+    "current_body_files": [
+      {
+        "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+        "bytes": 106019,
+        "sha256": "751eef2d8e7f6f164701ee4f85de9c31367021fa91ed5ad5319980fd7cf254f6"
+      },
+      {
+        "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+        "bytes": 26874,
+        "sha256": "3058d1808e5935d83add66bcaab7caaf2bfd825cd20f1d6f5b4b3404dbda4c40"
+      },
+      {
+        "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+        "bytes": 442678,
+        "sha256": "05143064c168a8f9d4b44b89d595be98af17c79671ad18a29b19631d621fe42d"
+      },
+      {
+        "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+        "bytes": 28331,
+        "sha256": "d797c7c0ca62bb7802e4437bc17f6b2e85b574990061c2a7e49b272c03e06c3d"
+      }
+    ]
+  },
+  "prefix_integrity": [
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "base_bytes": 5552,
+      "current_bytes": 10025,
+      "prefix_exact": true,
+      "base_sha256": "5839b4cd42af9d57b0e01e8da6014838097671738297e2a343bcc4739d67809d",
+      "current_sha256": "9f683087c797cc4a81ac4e23773d13fda5a83e385e518c5983b99d37eebf31ff"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "base_bytes": 33090,
+      "current_bytes": 106019,
+      "prefix_exact": true,
+      "base_sha256": "cb9cc91c9f2646e2272fd18c6fd2b176285ba3b0f36409805e5a2879adad6017",
+      "current_sha256": "751eef2d8e7f6f164701ee4f85de9c31367021fa91ed5ad5319980fd7cf254f6"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "base_bytes": 14314,
+      "current_bytes": 26874,
+      "prefix_exact": true,
+      "base_sha256": "046a3b23b5070e339e579da2428d7773cb91da2b9ebad520971be3803e2e1a80",
+      "current_sha256": "3058d1808e5935d83add66bcaab7caaf2bfd825cd20f1d6f5b4b3404dbda4c40"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "base_bytes": 5680,
+      "current_bytes": 14320,
+      "prefix_exact": true,
+      "base_sha256": "9f8049fd3e7bdfe6550f5de9a444d1f44449c1b61769bf79e85b47c2c5906e81",
+      "current_sha256": "702c659ec2b3fed6a8b8377342844b807da4e0e5385556a5609df6a9d8009c52"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "base_bytes": 31138,
+      "current_bytes": 442678,
+      "prefix_exact": true,
+      "base_sha256": "192e980c2b4c6c7a78d2651ae30e23c5072ee1ff4ae7366bd01be155bf88aac6",
+      "current_sha256": "05143064c168a8f9d4b44b89d595be98af17c79671ad18a29b19631d621fe42d"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "base_bytes": 12464,
+      "current_bytes": 28331,
+      "prefix_exact": true,
+      "base_sha256": "a8f2e0c4bc1d482d6cfd68cd5f9638fcf8575104aafc7bdcb5214b162190f876",
+      "current_sha256": "d797c7c0ca62bb7802e4437bc17f6b2e85b574990061c2a7e49b272c03e06c3d"
+    }
+  ],
+  "finding_dispositions": {
+    "major": {
+      "M1": "FR/FV AC-011-02/04にupdated model nameだけの優位判定と比較結果からの自動swapを追記し、単独CASE各1件を追加。",
+      "M2": "価格比較不能の戻し先をINTELLIGENCE判断/source記録へ統一。LABO宛を除去。",
+      "M3": "Bot identity追加のみの独立CASEを追加し、AC-014-04へtrace。",
+      "M4": "Product Core acceptance/oracle authorityの戻し先をProduct Core ownerへ修正。",
+      "M5": "自由文からRequirement identity/revision、CI execution request/result/pass、merge admission/state/operation authorityを別CASEに維持・追加。各出力のoracleを単独化。",
+      "M6": "intervention cost欠落時は総費用をincomplete/unknown、内訳をLABOへ戻すAC/FVに修正。"
+    },
+    "minor": {
+      "m1": "pack applicabilityの誤読を特定の消費操作選択条件への誤読として限定。",
+      "m2": "重複pack条項をlegacy-source列から除去。",
+      "m3": "003/005旧sourceを比較起点に限定し意味を親から再導出。",
+      "m4": "005 BRAIN metadataは採択済み親013/019の関連を追記し根拠を可視化。",
+      "m5": "heldout risk-only rowをAC-005-02へtraceし、stop-only別行をAC-005-03に残す。",
+      "m6": "変異ごとの戻し先を一意の既存ownerに修正。",
+      "m7": "003の近接CASE群を索引化し単変異CASEを保持。",
+      "m8": "BBD6は22–54/full-fileとする過去記述を訂正。旧文書全54行を今回読み、実fixture表26–48を引用。L11 258–265をpin対象に追加。",
+      "m9": "007 source観測要求をLABO ownerへ返す。",
+      "m10": "assignment-only変異をAC-007-02へ分離。",
+      "m11": "閾値未決は当該decision ownerへ、stale-onlyはstale証拠へ限定。",
+      "m12": "requirement-change/release/acceptance/merge出力をAC-008-02へ個別列挙し、戻し先もartifact ownerに限定。",
+      "m13": "17C4をOPS-R-10/11/13 lifecycle diagnosis/evidence/backflowに限定しWorker obligationと呼ばない。",
+      "m14": "008/009/012/013の旧test-design引用を比較起点/隣接test-designへ限定。",
+      "m15": "001/002/004 source dispositionを実旧sourceのscopeに即して限定。",
+      "m16": "014–020の02系47 CASEのreject conditionを各単独変異に即して具体化。",
+      "m17": "014/016旧sourceの誤ったProvider/model-family/UIL意味づけを訂正。",
+      "m18": "014/018複合CASEを分割し、戻し先を一意化、016 untrusted commandのpermission/executionをSECURITY/OSへ分離。",
+      "m19": "016 worker-result normal CASEをAC-016-04へtrace。",
+      "m20": "19 common-pack親それぞれにdependency-version stale/mismatchの単独CASEを追加。",
+      "m21": "FRはAC追加CASEがreview01/pack/review03/04各表へ分散していると記述。",
+      "m22": "NFR-016 candidate denominatorを固定親の9束縛に一致させ、post-check/stopを要求fieldにしない。",
+      "m23": "067 return CASEをdecision, OS, LABO各ownerに単独化。",
+      "m24": "19 pack normal CASEを正常成立を拒否/未完化した場合のoracleへ変更。",
+      "m25": "072 same-version normalと同一revision source changeのshadow-pendingを同条件比較に束縛し、missing-evaluation CASEを保持。",
+      "m26": "AC-072-03からheld-out normal/unknown CASEを明示trace。",
+      "m27": "072 domain/capability owner名を固定親に一致させ、forced/review/rollback各CASEを分離。",
+      "m28": "旧重複2 CASEを削除、078-01 current set 107件全件一覧を下記に固定し旧106/109集計を訂正。",
+      "m29": "既存root review03 auditを不変とし、L2 072-005:673–687を新pin、073:601–608が旧072範囲561–608へ誤混入していたことを新記録で訂正。"
+    }
+  },
+  "078_01_exact_case_set": {
+    "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+    "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+    "count": 107,
+    "arithmetic": "55 dimension-state rows + 48 delta rows + 3 invalidation-projection rows + 1 provider/runtime dimension-confusion row = 107. Prior 106 omitted the final row; older 109 was pre-deduplication.",
+    "dimension_rows": 55,
+    "delta_rows": 48,
+    "invalidation_projection_rows": 3,
+    "dimension_confusion_rows": 1,
+    "cases": [
+      {
+        "line": 554,
+        "case_id": "CASE-INTELLIGENCE-L10-078-01a",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "正常fixture: authorityだけを対象に、source-bound previous/observed状態・revision/digest・対象identity・evidenceを与え、親の他10次元は独立に保持する。",
+        "expected_observation": "authorityの意味差分を他次元へ畳まず同一選択source/authorityへbindし、支持された状態だけdeltaへ反映する。",
+        "failure_condition": "authorityを別次元として扱わない、source境界を外す、または観測されていない値を補完したら不合格。",
+        "row_sha256": "d5c065bffb176704076d220abd59e9f24f8942aad319f4a5feb058f7f3fccdcd"
+      },
+      {
+        "line": 555,
+        "case_id": "CASE-INTELLIGENCE-L10-078-01b",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "正常fixture: responsibilityだけを対象に、source-bound previous/observed状態・revision/digest・対象identity・evidenceを与え、親の他10次元は独立に保持する。",
+        "expected_observation": "responsibilityの意味差分を他次元へ畳まず同一選択source/authorityへbindし、支持された状態だけdeltaへ反映する。",
+        "failure_condition": "responsibilityを別次元として扱わない、source境界を外す、または観測されていない値を補完したら不合格。",
+        "row_sha256": "62cbc08eaadbacf65cfe566ed15ec7a1f260ffe1dc3eaef4ceaadafc5db90c86"
+      },
+      {
+        "line": 556,
+        "case_id": "CASE-INTELLIGENCE-L10-078-01c",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "正常fixture: runtimeだけを対象に、source-bound previous/observed状態・revision/digest・対象identity・evidenceを与え、親の他10次元は独立に保持する。",
+        "expected_observation": "runtimeの意味差分を他次元へ畳まず同一選択source/authorityへbindし、支持された状態だけdeltaへ反映する。",
+        "failure_condition": "runtimeを別次元として扱わない、source境界を外す、または観測されていない値を補完したら不合格。",
+        "row_sha256": "fed3e24fd21631295dcd5f9da7d0c51c538abe65965e8adb31df21ba817a1757"
+      },
+      {
+        "line": 557,
+        "case_id": "CASE-INTELLIGENCE-L10-078-01d",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "正常fixture: providerだけを対象に、source-bound previous/observed状態・revision/digest・対象identity・evidenceを与え、親の他10次元は独立に保持する。",
+        "expected_observation": "providerの意味差分を他次元へ畳まず同一選択source/authorityへbindし、支持された状態だけdeltaへ反映する。",
+        "failure_condition": "providerを別次元として扱わない、source境界を外す、または観測されていない値を補完したら不合格。",
+        "row_sha256": "792eb77d8e6aadebc9d9c2a905657e97df534b3a0629c509a5d4574c94e96c77"
+      },
+      {
+        "line": 558,
+        "case_id": "CASE-INTELLIGENCE-L10-078-01e",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "正常fixture: dependencyだけを対象に、source-bound previous/observed状態・revision/digest・対象identity・evidenceを与え、親の他10次元は独立に保持する。",
+        "expected_observation": "dependencyの意味差分を他次元へ畳まず同一選択source/authorityへbindし、支持された状態だけdeltaへ反映する。",
+        "failure_condition": "dependencyを別次元として扱わない、source境界を外す、または観測されていない値を補完したら不合格。",
+        "row_sha256": "c2553a14da8c18121148cb5a5c9afe16e8d290a8f319c6c5e89a751a9e9fd964"
+      },
+      {
+        "line": 559,
+        "case_id": "CASE-INTELLIGENCE-L10-078-01f",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "正常fixture: securityだけを対象に、source-bound previous/observed状態・revision/digest・対象identity・evidenceを与え、親の他10次元は独立に保持する。",
+        "expected_observation": "securityの意味差分を他次元へ畳まず同一選択source/authorityへbindし、支持された状態だけdeltaへ反映する。",
+        "failure_condition": "securityを別次元として扱わない、source境界を外す、または観測されていない値を補完したら不合格。",
+        "row_sha256": "d1d504b6dc03c25817b0f5bf00d005047707c18594ca14d08c1c2e2fc53206c0"
+      },
+      {
+        "line": 560,
+        "case_id": "CASE-INTELLIGENCE-L10-078-01g",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "正常fixture: verificationだけを対象に、source-bound previous/observed状態・revision/digest・対象identity・evidenceを与え、親の他10次元は独立に保持する。",
+        "expected_observation": "verificationの意味差分を他次元へ畳まず同一選択source/authorityへbindし、支持された状態だけdeltaへ反映する。",
+        "failure_condition": "verificationを別次元として扱わない、source境界を外す、または観測されていない値を補完したら不合格。",
+        "row_sha256": "7867f5c1435cd887f991f89df8a93cdaf4c16a80a80c3c35576015a77f56b5de"
+      },
+      {
+        "line": 561,
+        "case_id": "CASE-INTELLIGENCE-L10-078-01h",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "正常fixture: capacityだけを対象に、source-bound previous/observed状態・revision/digest・対象identity・evidenceを与え、親の他10次元は独立に保持する。",
+        "expected_observation": "capacityの意味差分を他次元へ畳まず同一選択source/authorityへbindし、支持された状態だけdeltaへ反映する。",
+        "failure_condition": "capacityを別次元として扱わない、source境界を外す、または観測されていない値を補完したら不合格。",
+        "row_sha256": "5fca15afd44899302f9b7bd7b49653ed71d543182d032e535a351727b498ddce"
+      },
+      {
+        "line": 562,
+        "case_id": "CASE-INTELLIGENCE-L10-078-01i",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "正常fixture: costだけを対象に、source-bound previous/observed状態・revision/digest・対象identity・evidenceを与え、親の他10次元は独立に保持する。",
+        "expected_observation": "costの意味差分を他次元へ畳まず同一選択source/authorityへbindし、支持された状態だけdeltaへ反映する。",
+        "failure_condition": "costを別次元として扱わない、source境界を外す、または観測されていない値を補完したら不合格。",
+        "row_sha256": "f7e9d465ccf70ac6e9affcb883f1024cd0c7aeeed3a119e648ac02ac1ca66ce3"
+      },
+      {
+        "line": 563,
+        "case_id": "CASE-INTELLIGENCE-L10-078-01j",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "正常fixture: migrationだけを対象に、source-bound previous/observed状態・revision/digest・対象identity・evidenceを与え、親の他10次元は独立に保持する。",
+        "expected_observation": "migrationの意味差分を他次元へ畳まず同一選択source/authorityへbindし、支持された状態だけdeltaへ反映する。",
+        "failure_condition": "migrationを別次元として扱わない、source境界を外す、または観測されていない値を補完したら不合格。",
+        "row_sha256": "9112e59ac4e0002ddf0ac19a4ba285de71956d6a6794555014c3bef9020dc3a8"
+      },
+      {
+        "line": 564,
+        "case_id": "CASE-INTELLIGENCE-L10-078-01k",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "正常fixture: releaseだけを対象に、source-bound previous/observed状態・revision/digest・対象identity・evidenceを与え、親の他10次元は独立に保持する。",
+        "expected_observation": "releaseの意味差分を他次元へ畳まず同一選択source/authorityへbindし、支持された状態だけdeltaへ反映する。",
+        "failure_condition": "releaseを別次元として扱わない、source境界を外す、または観測されていない値を補完したら不合格。",
+        "row_sha256": "d348fea2d3dcb7ac1b5071f1e93490804fa16de570e2285ae05605b339b709a8"
+      },
+      {
+        "line": 565,
+        "case_id": "CASE-INTELLIGENCE-L10-078-02a",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: authority次元だけを missing / 欠落 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "authorityだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "0152cd4f7b6c70d7647b038f1dee54ef8d06890ce40633ee388bbca3e2c046a1"
+      },
+      {
+        "line": 566,
+        "case_id": "CASE-INTELLIGENCE-L10-078-02b",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: responsibility次元だけを missing / 欠落 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "responsibilityだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "9c1ee0f1033d95688f4201c98b6551e6b84f1ae08d88de034bbbfa3dcd77a901"
+      },
+      {
+        "line": 567,
+        "case_id": "CASE-INTELLIGENCE-L10-078-02c",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: runtime次元だけを missing / 欠落 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "runtimeだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "3a697985a36eae3d1a6568d80378582866049144e7b28a0e9c0a89827b69f45f"
+      },
+      {
+        "line": 568,
+        "case_id": "CASE-INTELLIGENCE-L10-078-02d",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: provider次元だけを missing / 欠落 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "providerだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "f9be4e8dd10ef0f0c39d2d9100928a6cdf888d5931f4e4c47346b473e341bf4e"
+      },
+      {
+        "line": 569,
+        "case_id": "CASE-INTELLIGENCE-L10-078-02e",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: dependency次元だけを missing / 欠落 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "dependencyだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "cc6349ee618880fbbf1c6eba92c5623ee4b7e7d79985ad6e07d5f5c6594d72bf"
+      },
+      {
+        "line": 570,
+        "case_id": "CASE-INTELLIGENCE-L10-078-02f",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: security次元だけを missing / 欠落 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "securityだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "40d39b1c8ff73cd01ff43e51f72c15ab912d5cfc0bf21de173520a5f9f16daa0"
+      },
+      {
+        "line": 571,
+        "case_id": "CASE-INTELLIGENCE-L10-078-02g",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: verification次元だけを missing / 欠落 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "verificationだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "9fb16eb1c865a47361cec62fc9be77e1e984bf502753cb3acb2f65d21e66b3cd"
+      },
+      {
+        "line": 572,
+        "case_id": "CASE-INTELLIGENCE-L10-078-02h",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: capacity次元だけを missing / 欠落 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "capacityだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "90c2edf00ececbc5f907f2f1e363427055778bc3ff7d920ad3b8ee16e88fb6e6"
+      },
+      {
+        "line": 573,
+        "case_id": "CASE-INTELLIGENCE-L10-078-02i",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: cost次元だけを missing / 欠落 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "costだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "cce736846c0ae7cb1be32c922a2b21159daf660b920588b68fc8f898af90049e"
+      },
+      {
+        "line": 574,
+        "case_id": "CASE-INTELLIGENCE-L10-078-02j",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: migration次元だけを missing / 欠落 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "migrationだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "8f31916b9877cbe379e4e88776cd6ddef439f6bed9ac874422333abd8ab4029f"
+      },
+      {
+        "line": 575,
+        "case_id": "CASE-INTELLIGENCE-L10-078-02k",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: release次元だけを missing / 欠落 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "releaseだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "c55786705094a99f500927175c7248cef38d252f8b5b3ffff08af8c47cf6556f"
+      },
+      {
+        "line": 576,
+        "case_id": "CASE-INTELLIGENCE-L10-078-03a",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: authority次元だけを unknown / 値不明 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "authorityだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "a75863b3be6dae711a282fbe1ddb65cccb4c6565f6a4a68196c10d4c773c07e0"
+      },
+      {
+        "line": 577,
+        "case_id": "CASE-INTELLIGENCE-L10-078-03b",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: responsibility次元だけを unknown / 値不明 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "responsibilityだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "b6523a60f0d87e40ed5385235881605092b7366cad42d6adb2894769875601fb"
+      },
+      {
+        "line": 578,
+        "case_id": "CASE-INTELLIGENCE-L10-078-03c",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: runtime次元だけを unknown / 値不明 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "runtimeだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "b4579cb0af6eed73687ba22f7bd2d4e334163a743741174323cd3b560520f636"
+      },
+      {
+        "line": 579,
+        "case_id": "CASE-INTELLIGENCE-L10-078-03d",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: provider次元だけを unknown / 値不明 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "providerだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "bbc526b710a5ad566bdd852cb9ed264b8453f83b08c639b98dddb09d165fb848"
+      },
+      {
+        "line": 580,
+        "case_id": "CASE-INTELLIGENCE-L10-078-03e",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: dependency次元だけを unknown / 値不明 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "dependencyだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "edd2c810e29b9dbdd9cf0af9384bffdd985ebd588d8e263491afd7a55b09ab58"
+      },
+      {
+        "line": 581,
+        "case_id": "CASE-INTELLIGENCE-L10-078-03f",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: security次元だけを unknown / 値不明 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "securityだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "09316c7b9cbd5746a2ae4665c7b648beb54ae942116e83cd7ca4d2557753d279"
+      },
+      {
+        "line": 582,
+        "case_id": "CASE-INTELLIGENCE-L10-078-03g",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: verification次元だけを unknown / 値不明 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "verificationだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "726cc00d2f2e03a85d6c807805dc528d371f42323a2e45489dacd7a1dc28ae08"
+      },
+      {
+        "line": 583,
+        "case_id": "CASE-INTELLIGENCE-L10-078-03h",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: capacity次元だけを unknown / 値不明 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "capacityだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "235979c7353fd4368600fb1395eefd6fa58653d3370e7eed4c1f55b12d97e171"
+      },
+      {
+        "line": 584,
+        "case_id": "CASE-INTELLIGENCE-L10-078-03i",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: cost次元だけを unknown / 値不明 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "costだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "ebfeff52da3e69d7c7863c530fcc81c494e6f7897cbcfd7d2d62b444322cc245"
+      },
+      {
+        "line": 585,
+        "case_id": "CASE-INTELLIGENCE-L10-078-03j",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: migration次元だけを unknown / 値不明 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "migrationだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "eaaa2454938739e02659a9462dc9d184bcfc754bea97b3563c823dce7bd02034"
+      },
+      {
+        "line": 586,
+        "case_id": "CASE-INTELLIGENCE-L10-078-03k",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: release次元だけを unknown / 値不明 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "releaseだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "3e87e834b1f3531ce82ea16acbf8d90e8137bd5b829ee5594ee88b4bc9daae87"
+      },
+      {
+        "line": 587,
+        "case_id": "CASE-INTELLIGENCE-L10-078-04a",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: authority次元だけを stale / 旧revision に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "authorityだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "22fbd9b369ab947f237d60c43f5c2cc8634574c856d7531a520c071605aa3d14"
+      },
+      {
+        "line": 588,
+        "case_id": "CASE-INTELLIGENCE-L10-078-04b",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: responsibility次元だけを stale / 旧revision に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "responsibilityだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "9c37b1756a511239a3df81427bcabdab8c3867fd7eb613d508c08a7296b5c905"
+      },
+      {
+        "line": 589,
+        "case_id": "CASE-INTELLIGENCE-L10-078-04c",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: runtime次元だけを stale / 旧revision に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "runtimeだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "e506664196d564f2261f539d9281ab99f82696842d75d4838f023c928adc2e2f"
+      },
+      {
+        "line": 590,
+        "case_id": "CASE-INTELLIGENCE-L10-078-04d",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: provider次元だけを stale / 旧revision に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "providerだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "63656bcbc2e247e84e3ff7dd2a71d1b4a408ec68d5c62fbc722f0b59b756ce4d"
+      },
+      {
+        "line": 591,
+        "case_id": "CASE-INTELLIGENCE-L10-078-04e",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: dependency次元だけを stale / 旧revision に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "dependencyだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "f50954bea655ac24632b88c83ec6af707914045b380e3495ffbad82373569232"
+      },
+      {
+        "line": 592,
+        "case_id": "CASE-INTELLIGENCE-L10-078-04f",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: security次元だけを stale / 旧revision に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "securityだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "2dc659a433f75dfef93e6c6996da34eda8a5dbb43be26ebc64544a16cad21641"
+      },
+      {
+        "line": 593,
+        "case_id": "CASE-INTELLIGENCE-L10-078-04g",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: verification次元だけを stale / 旧revision に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "verificationだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "c37fc1a3f01552620a36cc4bc1c6c39acdbbc577faacd850879304050350336f"
+      },
+      {
+        "line": 594,
+        "case_id": "CASE-INTELLIGENCE-L10-078-04h",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: capacity次元だけを stale / 旧revision に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "capacityだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "7670011a47ab2961ed4139b4f86dba3608b19cf4f191d4e097c2bb55d5d4926d"
+      },
+      {
+        "line": 595,
+        "case_id": "CASE-INTELLIGENCE-L10-078-04i",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: cost次元だけを stale / 旧revision に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "costだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "2c13b321dd098e3ba1fe3a6e96cf84739b1ed34acdd7b5607ab490e437b1a2ab"
+      },
+      {
+        "line": 596,
+        "case_id": "CASE-INTELLIGENCE-L10-078-04j",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: migration次元だけを stale / 旧revision に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "migrationだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "96b93193a49331ca75f3adb990c5344e227a9bcbacee1ea922c4b086418c1326"
+      },
+      {
+        "line": 597,
+        "case_id": "CASE-INTELLIGENCE-L10-078-04k",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: release次元だけを stale / 旧revision に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "releaseだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "331de53b90176dde81576544484d0b58abc3479b8ed434c0b3db02f5498fc01c"
+      },
+      {
+        "line": 598,
+        "case_id": "CASE-INTELLIGENCE-L10-078-05a",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: authority次元だけを mismatch / 対象・digest・authority不一致 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "authorityだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "ccf7d30cce4642a65db7697e6c9a348e9155f0bff8f88378a4c614e8fb58f5b4"
+      },
+      {
+        "line": 599,
+        "case_id": "CASE-INTELLIGENCE-L10-078-05b",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: responsibility次元だけを mismatch / 対象・digest・authority不一致 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "responsibilityだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "0b39e3a58f40458aefa7fdc78699f7ca8d47139df1f8a512e6ee8c9cfaad6008"
+      },
+      {
+        "line": 600,
+        "case_id": "CASE-INTELLIGENCE-L10-078-05c",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: runtime次元だけを mismatch / 対象・digest・authority不一致 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "runtimeだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "147a153b15d74794c680c387b8361886aec8888c4b2370be976f27d0380bc6ee"
+      },
+      {
+        "line": 601,
+        "case_id": "CASE-INTELLIGENCE-L10-078-05d",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: provider次元だけを mismatch / 対象・digest・authority不一致 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "providerだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "f0224a32a0d4a08a8372f8ae59ef07a3009ed56150547169a0c4b24cf3affcb3"
+      },
+      {
+        "line": 602,
+        "case_id": "CASE-INTELLIGENCE-L10-078-05e",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: dependency次元だけを mismatch / 対象・digest・authority不一致 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "dependencyだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "87a87842df6660be1eb55c6bdd5e649eae8c957ba84c991e4b98d2626283d841"
+      },
+      {
+        "line": 603,
+        "case_id": "CASE-INTELLIGENCE-L10-078-05f",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: security次元だけを mismatch / 対象・digest・authority不一致 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "securityだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "d4c901bd7181af2b86e20881ca5ffc3f43394622491a99d469543534a2a593de"
+      },
+      {
+        "line": 604,
+        "case_id": "CASE-INTELLIGENCE-L10-078-05g",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: verification次元だけを mismatch / 対象・digest・authority不一致 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "verificationだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "59336d35e678bd3401edefc8958dfe961720b09c9060b4f3b6aa89c0d651b566"
+      },
+      {
+        "line": 605,
+        "case_id": "CASE-INTELLIGENCE-L10-078-05h",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: capacity次元だけを mismatch / 対象・digest・authority不一致 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "capacityだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "8fb0bd90f26231d02c2c93374870f604dd23868e0856af32d513cc78702a242c"
+      },
+      {
+        "line": 606,
+        "case_id": "CASE-INTELLIGENCE-L10-078-05i",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: cost次元だけを mismatch / 対象・digest・authority不一致 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "costだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "78b5f15c502dfcc1c592ea432325da064e12e2a00f56f7c378a7f5b3d90c5353"
+      },
+      {
+        "line": 607,
+        "case_id": "CASE-INTELLIGENCE-L10-078-05j",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: migration次元だけを mismatch / 対象・digest・authority不一致 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "migrationだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "982ea38f33800a245762248be01f205e914c65e52ea09398d48dcf7972ce1f7e"
+      },
+      {
+        "line": 608,
+        "case_id": "CASE-INTELLIGENCE-L10-078-05k",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "独立negative: release次元だけを mismatch / 対象・digest・authority不一致 に変異し、他10次元と共通正常source fixtureを保つ。",
+        "expected_observation": "releaseだけunknown/incompleteとして残し、正常に結べる他次元と親の未完義務を維持する。選択source/責務ownerが明示されていればそこへ戻し、owner不明なら推測しない。",
+        "failure_condition": "異常次元を推測補完、unchanged/successへ丸める、他次元を巻き込む、または新ownerを生成したら不合格。",
+        "row_sha256": "f9a3c44ca860600af23237719b85fee113158302ac9ed3afe5be2d37ba1bb6f9"
+      },
+      {
+        "line": 612,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-01-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでstable IDだけmissing。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "stable IDだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "afef71342bc990adc780d5937a0770d659fd2d02d213c9bef4fda700d19ebe43"
+      },
+      {
+        "line": 613,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-01-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでstable IDだけunknown。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "stable IDだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "d450eb33c46ebcc5a144124abd8d5142b6397869089edb1f13e44927d8bbecbd"
+      },
+      {
+        "line": 614,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-01-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでstable IDだけstale。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "stable IDだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "4cf3eb0270b27943ad47302ff8c81ffc9ef41c2ea4a8cdbda00b08f7611e5b54"
+      },
+      {
+        "line": 615,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-02-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでsource receipt revisionだけmissing。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "source receipt revisionだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "e95cd4e9767ec494dc8dbccf05d074b66215f1995f72b4569be89d27f876d137"
+      },
+      {
+        "line": 616,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-02-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでsource receipt revisionだけunknown。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "source receipt revisionだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "e2d88d9b05403438a816a124781c6af974ca58dab958e4acaca26fb38377593b"
+      },
+      {
+        "line": 617,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-02-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでsource receipt revisionだけstale。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "source receipt revisionだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "b361468b036d5b47533fb8bdbc887d125dbbafd0fa097a126863c3838607c322"
+      },
+      {
+        "line": 618,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-03-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでsource receipt digestだけmissing。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "source receipt digestだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "194876706e607b5e2b7773ea1850774bde9e7ddb9adef01caab87cfd7a2dc0d7"
+      },
+      {
+        "line": 619,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-03-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでsource receipt digestだけunknown。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "source receipt digestだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "3f6ec290ef5a130f97c12f0499e063063842580859de53ff42bfd7c63c7d2eca"
+      },
+      {
+        "line": 620,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-03-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでsource receipt digestだけstale。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "source receipt digestだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "30fc234e3ee98719cb41423d7e229da4ed6a6ef2bf526436fea7e6f885dc552c"
+      },
+      {
+        "line": 621,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-04-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでtarget HEAD identityだけmissing。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "target HEAD identityだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "b45d63e88ece04d3bba441416c14c6197d52fce06a481ec3b6d918912c5bc886"
+      },
+      {
+        "line": 622,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-04-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでtarget HEAD identityだけunknown。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "target HEAD identityだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "4611c289b7f70e2d2c05f855843f9c0b72cce402ceb5fded99b15a8afc415fc4"
+      },
+      {
+        "line": 623,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-04-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでtarget HEAD identityだけstale。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "target HEAD identityだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "91044efd384fa44e0f99a05d2f064a3de30aee69746ef8166f79ea4666c6254c"
+      },
+      {
+        "line": 624,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-05-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでauthority identityだけmissing。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "authority identityだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "14c54865ea824c2cba321d5dbe8249f49285eb0acda80a6d324deff01d829b12"
+      },
+      {
+        "line": 625,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-05-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでauthority identityだけunknown。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "authority identityだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "be26c5812616466a8a71b5e24519962e6da89188204ec851681ee21319d3dc2a"
+      },
+      {
+        "line": 626,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-05-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでauthority identityだけstale。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "authority identityだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "fd25d5259a25d6be83d41ca043b1e9bfa51e209e7ab23b8625d51cbcf02f2c38"
+      },
+      {
+        "line": 627,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-06-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでenvironment identityだけmissing。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "environment identityだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "2e8776e581e2df98fb44d83b050b22a9ebdaa1aaf99828240b49961866615873"
+      },
+      {
+        "line": 628,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-06-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでenvironment identityだけunknown。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "environment identityだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "d20408e0494947f6fb8586e89b2a42f61cad9465e6b85bef8755f4aee7f50ddb"
+      },
+      {
+        "line": 629,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-06-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでenvironment identityだけstale。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "environment identityだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "5020677c7988241b2471a546a061718df34f6b157443f04a0c9dbfa56df29467"
+      },
+      {
+        "line": 630,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-07-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでaffected responsibilityだけmissing。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "affected responsibilityだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "e542db806a215ef2ff75ff4ea3d03f7d77335959de2b176ab602f5a4b8241845"
+      },
+      {
+        "line": 631,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-07-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでaffected responsibilityだけunknown。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "affected responsibilityだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "b11ce1ef89ddec83d2dcdcd7e317db150dda2f2c1dbe79b1575f0653fd0b9bc8"
+      },
+      {
+        "line": 632,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-07-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでaffected responsibilityだけstale。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "affected responsibilityだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "115e3cb7f08dccb5a1d20cffbb19b720f0d76bdf39aa218730a9e0c63358dae3"
+      },
+      {
+        "line": 633,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-08-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでprevious stateだけmissing。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "previous stateだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "17ec3bc02471a75f3885bf5e6ff88fb1e3a4b4c1b52fb7eef49fc83fd395ffb1"
+      },
+      {
+        "line": 634,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-08-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでprevious stateだけunknown。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "previous stateだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "525c1d93cba5ab0f60da3bb06db12b0119efeee33834c8687647dd82d94d472b"
+      },
+      {
+        "line": 635,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-08-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでprevious stateだけstale。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "previous stateだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "99b0881712c7566a70b76e7a891e4a78c039bf4f64fe7bd477baa2d5f4a1e588"
+      },
+      {
+        "line": 636,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-09-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでobserved stateだけmissing。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "observed stateだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "31a2fb6cb7d9ca514c76c622f5b1b8ddff8f25f0170333e6c7f1d09a9413e9f7"
+      },
+      {
+        "line": 637,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-09-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでobserved stateだけunknown。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "observed stateだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "d7283ea9d34c32cc57f74a4671abb3f80128469cd920c412b0e46de61a46a192"
+      },
+      {
+        "line": 638,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-09-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでobserved stateだけstale。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "observed stateだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "e3c44e9ec4caddfb177e3432c0813221666e364b5c092d1663bf1704846d2537"
+      },
+      {
+        "line": 639,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-10-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでevidenceだけmissing。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "evidenceだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "ba3c63ca765eb8f403863a4ebf7be4939a0f0e32234dfc2937517df3785144a9"
+      },
+      {
+        "line": 640,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-10-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでevidenceだけunknown。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "evidenceだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "b81e8df72a8249ecabba6e660f88c792c340065cce166d73921a7a9c27540c47"
+      },
+      {
+        "line": 641,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-10-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでevidenceだけstale。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "evidenceだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "9bc733daf1382949bdcc8714448b6e1c5a5b7b2bae0cdf4f8811268607f57860"
+      },
+      {
+        "line": 642,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-11-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでcounterevidenceだけmissing。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "counterevidenceだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "e14f0c11c92d1c5a04a2e5fe33903cc1b2f9ad957bcba71befc1184132d246d3"
+      },
+      {
+        "line": 643,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-11-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでcounterevidenceだけunknown。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "counterevidenceだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "c340febf0aaa92b1142f6995634e909c3dbcb70d9ac87f720a9244937f34fd55"
+      },
+      {
+        "line": 644,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-11-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでcounterevidenceだけstale。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "counterevidenceだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "1bbe3dbada187b19b8678abb079788b29414ca5ac324598bb3eae724e86d5dc0"
+      },
+      {
+        "line": 645,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-12-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでconfidenceだけmissing。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "confidenceだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "a926958f09a48bf4886c0b736fee08cba27a307f2d07741f8b857745db89f81f"
+      },
+      {
+        "line": 646,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-12-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでconfidenceだけunknown。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "confidenceだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "b4ae70c7fc9e7e10c7741921ff6ae1fd2639c430cb684c0e02e30d50026b692c"
+      },
+      {
+        "line": 647,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-12-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでconfidenceだけstale。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "confidenceだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "a139ec8ebd08ee570823421bf2d1d979812530061ad0ffa58362e77b46a394ce"
+      },
+      {
+        "line": 648,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-13-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでunknown stateだけmissing。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "unknown stateだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "3549f1035538a7ddc681cf38f1699798596b39528cd267e8f7c405acb5b1d50b"
+      },
+      {
+        "line": 649,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-13-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでunknown stateだけunknown。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "unknown stateだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "6566b80ec25689c39d132290c6719d6e3d7f23795896c24b7b973ddc224cabbe"
+      },
+      {
+        "line": 650,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-13-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでunknown stateだけstale。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "unknown stateだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "006cf54b705a71bdb5612b4b157e9df02473609a653e2981f05c2e924143ab3e"
+      },
+      {
+        "line": 651,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-14-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでinvalidation exact setだけmissing。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "invalidation exact setだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "3ab870b9ece03dfb52ec08daa71a56690621d769c11450f1ed3652f7f770c8ea"
+      },
+      {
+        "line": 652,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-14-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでinvalidation exact setだけunknown。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "invalidation exact setだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "db52a52b2e157d01c7041a97e142ae2dc761ed56b797982489b5b99ea3a23e01"
+      },
+      {
+        "line": 653,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-14-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでinvalidation exact setだけstale。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "invalidation exact setだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "5529a024071f2346d80b13543468f41be5338a0daaee8528787449dcb644e541"
+      },
+      {
+        "line": 654,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-15-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでre-synthesis-needed stateだけmissing。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "re-synthesis-needed stateだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "151f8450c283c50ece05a8051955badf60dc12cf295477d7d5a3357e2e690fe7"
+      },
+      {
+        "line": 655,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-15-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでre-synthesis-needed stateだけunknown。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "re-synthesis-needed stateだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "16591a40bcc565b2c86fbbe048f5a9ff8a009941552c6c5779b89d30e4f3394f"
+      },
+      {
+        "line": 656,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-15-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでre-synthesis-needed stateだけstale。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "re-synthesis-needed stateだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "b3dc90ee59593ca7d9dd7a30b51e528d25ac8c3356ff5db9269a5cb70894cdbd"
+      },
+      {
+        "line": 657,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-16-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでdelta digestだけmissing。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "delta digestだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "bdca03ffaf53ab52fdf43db0b319f5629c00275fa6f0c6bf5c38c59192d042db"
+      },
+      {
+        "line": 658,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-16-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでdelta digestだけunknown。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "delta digestだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "57adabc76d16cc41bf1a86f4db6ad51cd3755b61e22d23fe9f61418b6a573dfb"
+      },
+      {
+        "line": 659,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-delta-16-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06正常delta fixtureでdelta digestだけstale。他要素は同一scope/revision/source/authorityに束縛。",
+        "expected_observation": "delta digestだけunknown/incomplete/staleとして記録し、他の成立fieldを保持し該当source/authority ownerへ戻す。",
+        "failure_condition": "周辺値から補完、全deltaをsuccess扱い、無関係fieldまで巻き込んだら不合格。",
+        "row_sha256": "c6edb6de14a3d3563f20d675df7de1e99b6d1e6945b18474a6ee0e7c273d0e6e"
+      },
+      {
+        "line": 765,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-invalidation-projection-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06の正常deltaからprojectionのinvalidation exact setだけmissing。他の二種類のsetは正常。",
+        "expected_observation": "欠落した種類だけunknown/incompleteとして保持し、他setで欠落を埋めない。",
+        "failure_condition": "他fieldの変異で相殺、未完を成功化、又は未宣言条件/ownerを生成したら不合格。",
+        "row_sha256": "ebd666dfb9a6b97ffc37be55ea8cc04caa64f644f3e3b336fa03b128ce563f54"
+      },
+      {
+        "line": 766,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-invalidation-future-type-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06の正常deltaからfuture-typeのinvalidation exact setだけmissing。他の二種類のsetは正常。",
+        "expected_observation": "欠落した種類だけunknown/incompleteとして保持し、他setで欠落を埋めない。",
+        "failure_condition": "他fieldの変異で相殺、未完を成功化、又は未宣言条件/ownerを生成したら不合格。",
+        "row_sha256": "67b314cf41fa9aabc85f5e9756fe2c43ad7b0964aca82407eb57d9dd52d41580"
+      },
+      {
+        "line": 767,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-invalidation-assumption-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06の正常deltaからassumptionのinvalidation exact setだけmissing。他の二種類のsetは正常。",
+        "expected_observation": "欠落した種類だけunknown/incompleteとして保持し、他setで欠落を埋めない。",
+        "failure_condition": "他fieldの変異で相殺、未完を成功化、又は未宣言条件/ownerを生成したら不合格。",
+        "row_sha256": "ae9d97405ab792cfb1afc440e4ce06ce772629840e7b7774f7a6fe979d3c7b13"
+      },
+      {
+        "line": 869,
+        "case_id": "CASE-INTELLIGENCE-L10-2607X-078-16",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-01",
+        "single_mutation_input": "R-06 dimension間でproviderとruntimeを混同",
+        "expected_observation": "dimension identityを分離してsourceへ結ぶ",
+        "failure_condition": "dimensionを結合したら不合格。",
+        "row_sha256": "0a06f88128ad2b3be7ce0547b569a7fcf214425080db0bf0ceb083814e7e00d6"
+      }
+    ]
+  },
+  "078_closure_exact_case_set": {
+    "scope": "078-08/09/10 closure CASE only; excludes unrelated 072 dependency-closure-normal",
+    "counts": {
+      "08": 3,
+      "09": 58,
+      "10": 5
+    },
+    "total": 66,
+    "arithmetic": "58+5+3=66",
+    "cases": [
+      {
+        "line": 660,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-01-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでpack identityだけmissing、残りfieldは保持。",
+        "expected_observation": "pack identityだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "df6f4b04fd8c164063a6f8d26e54170958ce7dda254a24aa91ae158ed5b8e1df"
+      },
+      {
+        "line": 661,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-01-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでpack identityだけunknown、残りfieldは保持。",
+        "expected_observation": "pack identityだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "72d633258951a9c84bba2ef65b52cc50d484b0df147b11f350ec9c4f689e5c95"
+      },
+      {
+        "line": 662,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-01-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでpack identityだけstale、残りfieldは保持。",
+        "expected_observation": "pack identityだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "2127f9332c494f59beda411b0e7578e3c6fb6a8a88fc45c55460b15b098b48a8"
+      },
+      {
+        "line": 663,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-02-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでpack revisionだけmissing、残りfieldは保持。",
+        "expected_observation": "pack revisionだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "13b0ee6b3d337379677a012999e16ec55136a9edd35974653d56fbf7562fc54b"
+      },
+      {
+        "line": 664,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-02-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでpack revisionだけunknown、残りfieldは保持。",
+        "expected_observation": "pack revisionだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "3095b2f5282204c4da9ea82c2dd213655c838792a3529c9357faf1efb1a80328"
+      },
+      {
+        "line": 665,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-02-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでpack revisionだけstale、残りfieldは保持。",
+        "expected_observation": "pack revisionだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "810b80403f22ec3b52813d181f34ea01ba221ee367ae24a38e0d4be9d16d1f27"
+      },
+      {
+        "line": 666,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-03-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでHARNESS-L2-010 contract revisionだけmissing、残りfieldは保持。",
+        "expected_observation": "HARNESS-L2-010 contract revisionだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "768bf1653eb351a92dd6a4199e40ea30208e06bba86a67bc41d09d6541ae5db4"
+      },
+      {
+        "line": 667,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-03-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでHARNESS-L2-010 contract revisionだけunknown、残りfieldは保持。",
+        "expected_observation": "HARNESS-L2-010 contract revisionだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "c25df9b8ac1d8afec2129e45349a8a57b601ddbbc96f44cf571fb6b7b5c64102"
+      },
+      {
+        "line": 668,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-03-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでHARNESS-L2-010 contract revisionだけstale、残りfieldは保持。",
+        "expected_observation": "HARNESS-L2-010 contract revisionだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "789d80a2c14d6ead2126aba4f4e3337ee6ff52b74a375b841457db2d81c30099"
+      },
+      {
+        "line": 669,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-04-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでHARNESS-L2-011 contract revisionだけmissing、残りfieldは保持。",
+        "expected_observation": "HARNESS-L2-011 contract revisionだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "2e4a538f8f66d86488ccdc18fcfc189f13e3d140480c51b24e3b4c28ca9b9c47"
+      },
+      {
+        "line": 670,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-04-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでHARNESS-L2-011 contract revisionだけunknown、残りfieldは保持。",
+        "expected_observation": "HARNESS-L2-011 contract revisionだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "92a51160c46b2a39e656b6463063e006c9f5d5bff194f280e113e2b061dcd1d5"
+      },
+      {
+        "line": 671,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-04-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでHARNESS-L2-011 contract revisionだけstale、残りfieldは保持。",
+        "expected_observation": "HARNESS-L2-011 contract revisionだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "0ebe612eeea88b9f21673429883b5183caa520bc7509640a5300b90b5874684d"
+      },
+      {
+        "line": 672,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-05-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでdependency identityだけmissing、残りfieldは保持。",
+        "expected_observation": "dependency identityだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "cae8a449b2e694df566fb19eaa71742fb7e4fd10b5999a40d62c435a45f1cb74"
+      },
+      {
+        "line": 673,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-05-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでdependency identityだけunknown、残りfieldは保持。",
+        "expected_observation": "dependency identityだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "aa8ad757a28d5d2f1c868bcf56efa261edf97ed8f1f7a812b498181c0b20ce06"
+      },
+      {
+        "line": 674,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-05-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでdependency identityだけstale、残りfieldは保持。",
+        "expected_observation": "dependency identityだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "062c1192bebcaba8b4d91f71729a410b020fd8b15fd37f9c7c30013fef15109c"
+      },
+      {
+        "line": 675,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-06-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでdependency ownerだけmissing、残りfieldは保持。",
+        "expected_observation": "dependency ownerだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "0d0dcd8945a7a03895f780121ba5a47a98ae4639dd73a9d73699bb7b5a00b815"
+      },
+      {
+        "line": 676,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-06-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでdependency ownerだけunknown、残りfieldは保持。",
+        "expected_observation": "dependency ownerだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "450703de92f4cca39fe85df518409ccadecf0ee9e7eb7f2ed519a72dc7dd06af"
+      },
+      {
+        "line": 677,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-06-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでdependency ownerだけstale、残りfieldは保持。",
+        "expected_observation": "dependency ownerだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "f1a3104f594824d72420ad677c7f0806a3d24c2c4f5b00a1c7686c9c067fbaa7"
+      },
+      {
+        "line": 678,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-07-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでdependency contract versionだけmissing、残りfieldは保持。",
+        "expected_observation": "dependency contract versionだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "e6ac2df48ba6b0f299823f2c24d2e91be832f4f186e933cfee4c1f917a970862"
+      },
+      {
+        "line": 679,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-07-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでdependency contract versionだけunknown、残りfieldは保持。",
+        "expected_observation": "dependency contract versionだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "45da8b83a17e2d6e82855266a7976cba5521c4ab12e064ce6ade85fb02900780"
+      },
+      {
+        "line": 680,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-07-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでdependency contract versionだけstale、残りfieldは保持。",
+        "expected_observation": "dependency contract versionだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "e17429d310ea18b24de1283f9bb4c8ca87374ff41e278e22635a284087dce052"
+      },
+      {
+        "line": 681,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-08-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureで4区分分類だけmissing、残りfieldは保持。",
+        "expected_observation": "4区分分類だけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "9baef1c3c04c1c7a251fb48b5a9e6a8d3518b0c6fa6edd3a21b5641b4849ce35"
+      },
+      {
+        "line": 682,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-08-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureで4区分分類だけunknown、残りfieldは保持。",
+        "expected_observation": "4区分分類だけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "4c7f057c40a62a5a4e267e62237b6fcb2ecd71eee2c692268eed84774aca2ba3"
+      },
+      {
+        "line": 683,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-08-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureで4区分分類だけstale、残りfieldは保持。",
+        "expected_observation": "4区分分類だけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "4d15f6e089211775c1472b1f53503141f4b59827abbd6a4c602dd00dc04c1296"
+      },
+      {
+        "line": 684,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-09-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでapplicability conditionだけmissing、残りfieldは保持。",
+        "expected_observation": "applicability conditionだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "b92d2962e36ae5a6bf535ddefee9dd8baf84a513776d9864ad12c6b4a31f1ab2"
+      },
+      {
+        "line": 685,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-09-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでapplicability conditionだけunknown、残りfieldは保持。",
+        "expected_observation": "applicability conditionだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "fd7089fcdf1d6ac81d992aaf7d91dd304ab40ecd0c5d931a619d8a1e41f28705"
+      },
+      {
+        "line": 686,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-09-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでapplicability conditionだけstale、残りfieldは保持。",
+        "expected_observation": "applicability conditionだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "b01df73d7be5f059155f05edec556d3c50aab44d687b96d9d2a5ca02d4247570"
+      },
+      {
+        "line": 687,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-10-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでtarget operationだけmissing、残りfieldは保持。",
+        "expected_observation": "target operationだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "e82557ed79ac4833d7fbe5770c6fe9d93263ac8ed561897a3dbf43084852001f"
+      },
+      {
+        "line": 688,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-10-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでtarget operationだけunknown、残りfieldは保持。",
+        "expected_observation": "target operationだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "5f0805cc2ee991fb7e3e7e0cc6b6955d6b3163e5ae264218d8625fd8085bbe99"
+      },
+      {
+        "line": 689,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-10-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでtarget operationだけstale、残りfieldは保持。",
+        "expected_observation": "target operationだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "6d3306ca13344050df0046107201e7819fa52eb3e79e23e77dbc30e6af12d44d"
+      },
+      {
+        "line": 690,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-11-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでselected-source identityだけmissing、残りfieldは保持。",
+        "expected_observation": "selected-source identityだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "3f707f117eb0c4222351daf80a01db92b615b7da6b24d2ab2f589a7f25320749"
+      },
+      {
+        "line": 691,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-11-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでselected-source identityだけunknown、残りfieldは保持。",
+        "expected_observation": "selected-source identityだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "a3871111b8ccb2a283fd0fa021cc018bc37a57f2a3f8a616bcfccda5ea916a8c"
+      },
+      {
+        "line": 692,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-11-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでselected-source identityだけstale、残りfieldは保持。",
+        "expected_observation": "selected-source identityだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "74681794d34d91171283391d091bbdbedb4dc7440d0bbd2a6658a55581ceca3f"
+      },
+      {
+        "line": 693,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-12-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでscopeだけmissing、残りfieldは保持。",
+        "expected_observation": "scopeだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "197112ba161a50085762627ae6317e20d418fa93e03ac20bcc45a96613541b23"
+      },
+      {
+        "line": 694,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-12-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでscopeだけunknown、残りfieldは保持。",
+        "expected_observation": "scopeだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "48bc8ef637b50859cd32c3c3f207eac415c237498c3b87c0fc210d6a1d3f0fc2"
+      },
+      {
+        "line": 695,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-12-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでscopeだけstale、残りfieldは保持。",
+        "expected_observation": "scopeだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "7c0c8632cdc6d8d0d49f13b3bff78d520f20fe3d8254c1fb29ff8985dd1a0d6e"
+      },
+      {
+        "line": 696,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-13-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでauthority identityだけmissing、残りfieldは保持。",
+        "expected_observation": "authority identityだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "b65593bc81fae48deff12e3fd222efa4bf77a7f602cf8c4250e47dd0aad06593"
+      },
+      {
+        "line": 697,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-13-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでauthority identityだけunknown、残りfieldは保持。",
+        "expected_observation": "authority identityだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "043c78dcb9922e9b895c5fdd25b086f9586a64ea0eefb1d06f2e9ea8ae68404d"
+      },
+      {
+        "line": 698,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-13-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでauthority identityだけstale、残りfieldは保持。",
+        "expected_observation": "authority identityだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "ddb9a8a3fc776bff87b1877dbf2aec30fad8e701d4096fbec13228d31adcaefb"
+      },
+      {
+        "line": 699,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-14-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでevidenceだけmissing、残りfieldは保持。",
+        "expected_observation": "evidenceだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "8339c29c30e7f1dbcae52eba6873164b56cdc1c2a77fb703c3d4e0797c8aad79"
+      },
+      {
+        "line": 700,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-14-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでevidenceだけunknown、残りfieldは保持。",
+        "expected_observation": "evidenceだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "3547aec64324db8c2ae3bdca829f3495a74973589e1c06b798f2a14a11d51cc0"
+      },
+      {
+        "line": 701,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-14-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常effective-closure fixtureでevidenceだけstale、残りfieldは保持。",
+        "expected_observation": "evidenceだけそのstate/reasonで未充足として該当operationを保留し既存ownerへ戻す。成立している常時必須/他条件は維持。",
+        "failure_condition": "当該fieldをfalse/nonapplicable/reference-only/unselected/successへ読み替えたら不合格。",
+        "row_sha256": "e2df4e7f57348be0d800b1af4cedad0e5a661ddd0c52c41233a8b4547dd78b59"
+      },
+      {
+        "line": 702,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-condition-false",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "一つの適用conditionだけがsource上falseと確定。",
+        "expected_observation": "そのconditionのdependencyだけclosure外、常時必須と他の成立条件はclosure内。",
+        "failure_condition": "falseをunknownへ混ぜる、全closureを外す、又は条件を成立扱いしたら不合格。",
+        "row_sha256": "f584471a121eb804d7e3eb3db145b2f5b9ef6c3f3fe0b4356ddf8271e89da9f4"
+      },
+      {
+        "line": 703,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-condition-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-10",
+        "single_mutation_input": "conditionだけunknownで他入力は正常。",
+        "expected_observation": "該当operationだけ保留しunknown reasonとdeclared ownerを保持。",
+        "failure_condition": "unknownをfalse/nonapplicable/reference-onlyへ分類したら不合格。",
+        "row_sha256": "7e0148ff0115df11ea09799a69f5b0b6092f807f6fc1945c60ef090251ab5965"
+      },
+      {
+        "line": 704,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-ref-only",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-10",
+        "single_mutation_input": "旧schema/runtime/adapter/CLI/test等の参照資料だけをdependency候補にする。",
+        "expected_observation": "reference-onlyとしてclosure外、owner/dependencyへ昇格しない。",
+        "failure_condition": "参照資料だけでeffective dependencyを作ったら不合格。",
+        "row_sha256": "c35de0301fe3c7ea52edde7b8fdf74391cb7a9fb26cca0b4a25691fed184df03"
+      },
+      {
+        "line": 705,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-selected-omitted",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-10",
+        "single_mutation_input": "選択したsource dependencyをeffective closure入力から欠落。",
+        "expected_observation": "closureをincompleteにしsource ownerへ返し該当operationを保留。",
+        "failure_condition": "selected sourceをoptional/reference-onlyへ落としたら不合格。",
+        "row_sha256": "ba1a1bc6a02243786ca1d2e42bc4409c5b11a4463bd8d3cefe29a356ab2a0436"
+      },
+      {
+        "line": 706,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-unselected-as-success",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-10",
+        "single_mutation_input": "未選択sourceとreceipt不在を明示。",
+        "expected_observation": "未選択/未観測として保持しsuccess/qualificationを生成しない。",
+        "failure_condition": "不在をsuccess/qualifiedへ変えたら不合格。",
+        "row_sha256": "41b7bfbc173e427df577d37961a61c20332c0112f4964b5c9e9eacaedd9ab7f3"
+      },
+      {
+        "line": 707,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-version-fallback",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-10",
+        "single_mutation_input": "stale/未対応contract version-rangeと別版の正常候補を併置。",
+        "expected_observation": "宣言ownerへ戻し、別版へ黙って読み替えずclosureをunknown/incomplete。",
+        "failure_condition": "version/rangeを代替または採択したら不合格。",
+        "row_sha256": "f15e01a43dd869237108925e28931c2a1cf4e9faa99fd88a71f41751c3dd955c"
+      },
+      {
+        "line": 708,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-same-input",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-08",
+        "single_mutation_input": "同一pack/dependency/condition/operation/source/scope/authority/evidenceを独立に再評価。",
+        "expected_observation": "closure memberと適用/除外理由が一致。delta exact set/digestは別oracle。",
+        "failure_condition": "member/reason不一致を通す、又はdelta一致でclosure差異を相殺したら不合格。",
+        "row_sha256": "a4ae7bb3cbaef26b32fe9bfec751082cc016a3ab9ed0fd20c8531fce3f7fb45e"
+      },
+      {
+        "line": 747,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-dependency-contract-range-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常closure入力からdependency contract rangeだけmissingにする。他のidentity/version/scope/authority/evidenceは正常。",
+        "expected_observation": "dependency contract rangeのmissing理由を保持し該当operationだけunknown/incompleteとして宣言済みownerへ戻す。",
+        "failure_condition": "他fieldの変異で相殺、未完を成功化、又は未宣言条件/ownerを生成したら不合格。",
+        "row_sha256": "b6c6556984c20abcc3d5ba38992d723e3868cf4eb5555d9c0996a5ae6e10a007"
+      },
+      {
+        "line": 748,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-dependency-contract-range-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常closure入力からdependency contract rangeだけunknownにする。他のidentity/version/scope/authority/evidenceは正常。",
+        "expected_observation": "dependency contract rangeのunknown理由を保持し該当operationだけunknown/incompleteとして宣言済みownerへ戻す。",
+        "failure_condition": "他fieldの変異で相殺、未完を成功化、又は未宣言条件/ownerを生成したら不合格。",
+        "row_sha256": "b5d17d8ab6353031c30c13e78be2e9c92fe3ca2a4160aa408a2a2f7525106447"
+      },
+      {
+        "line": 749,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-dependency-contract-range-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常closure入力からdependency contract rangeだけstaleにする。他のidentity/version/scope/authority/evidenceは正常。",
+        "expected_observation": "dependency contract rangeのstale理由を保持し該当operationだけunknown/incompleteとして宣言済みownerへ戻す。",
+        "failure_condition": "他fieldの変異で相殺、未完を成功化、又は未宣言条件/ownerを生成したら不合格。",
+        "row_sha256": "5c2e47f5cc974b13474594a8bb0eb649c40a5bb3fe37b184123e1a7bd086ba6e"
+      },
+      {
+        "line": 750,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-selected-source-revision-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常closure入力からselected-source revisionだけmissingにする。他のidentity/version/scope/authority/evidenceは正常。",
+        "expected_observation": "selected-source revisionのmissing理由を保持し該当operationだけunknown/incompleteとして宣言済みownerへ戻す。",
+        "failure_condition": "他fieldの変異で相殺、未完を成功化、又は未宣言条件/ownerを生成したら不合格。",
+        "row_sha256": "0d45c521344dab7475cfc69a228f0a1a1bbdfe5def5ae37b46d76fe916d4b103"
+      },
+      {
+        "line": 751,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-selected-source-revision-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常closure入力からselected-source revisionだけunknownにする。他のidentity/version/scope/authority/evidenceは正常。",
+        "expected_observation": "selected-source revisionのunknown理由を保持し該当operationだけunknown/incompleteとして宣言済みownerへ戻す。",
+        "failure_condition": "他fieldの変異で相殺、未完を成功化、又は未宣言条件/ownerを生成したら不合格。",
+        "row_sha256": "7951c00b4dc1c5e220e14a5e106a5a091f03b0aa5396ed13f4987e9ecbfb8787"
+      },
+      {
+        "line": 752,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-selected-source-revision-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常closure入力からselected-source revisionだけstaleにする。他のidentity/version/scope/authority/evidenceは正常。",
+        "expected_observation": "selected-source revisionのstale理由を保持し該当operationだけunknown/incompleteとして宣言済みownerへ戻す。",
+        "failure_condition": "他fieldの変異で相殺、未完を成功化、又は未宣言条件/ownerを生成したら不合格。",
+        "row_sha256": "2ce57befc578644bd9808a86dc6bba775c53ef554dddc5d83cee99d9f0c7bade"
+      },
+      {
+        "line": 753,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-selected-source-digest-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常closure入力からselected-source digestだけmissingにする。他のidentity/version/scope/authority/evidenceは正常。",
+        "expected_observation": "selected-source digestのmissing理由を保持し該当operationだけunknown/incompleteとして宣言済みownerへ戻す。",
+        "failure_condition": "他fieldの変異で相殺、未完を成功化、又は未宣言条件/ownerを生成したら不合格。",
+        "row_sha256": "0f6a398c96fcbdb99918bef1b4bd57fa1f10dda0e432835859c5a7d8ffe8ef97"
+      },
+      {
+        "line": 754,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-selected-source-digest-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常closure入力からselected-source digestだけunknownにする。他のidentity/version/scope/authority/evidenceは正常。",
+        "expected_observation": "selected-source digestのunknown理由を保持し該当operationだけunknown/incompleteとして宣言済みownerへ戻す。",
+        "failure_condition": "他fieldの変異で相殺、未完を成功化、又は未宣言条件/ownerを生成したら不合格。",
+        "row_sha256": "dd3c4fdb7768cc57e4ed8a12c9f7de4dd07113af20fbac793c230ed75770538a"
+      },
+      {
+        "line": 755,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-selected-source-digest-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常closure入力からselected-source digestだけstaleにする。他のidentity/version/scope/authority/evidenceは正常。",
+        "expected_observation": "selected-source digestのstale理由を保持し該当operationだけunknown/incompleteとして宣言済みownerへ戻す。",
+        "failure_condition": "他fieldの変異で相殺、未完を成功化、又は未宣言条件/ownerを生成したら不合格。",
+        "row_sha256": "244c91a5670fb3de58b370b5b0ff4d1d0214b5b3615f0593aaa069ac459037d1"
+      },
+      {
+        "line": 756,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-scope-revision-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常closure入力からscope revisionだけmissingにする。他のidentity/version/scope/authority/evidenceは正常。",
+        "expected_observation": "scope revisionのmissing理由を保持し該当operationだけunknown/incompleteとして宣言済みownerへ戻す。",
+        "failure_condition": "他fieldの変異で相殺、未完を成功化、又は未宣言条件/ownerを生成したら不合格。",
+        "row_sha256": "bfb3f2b9c3bfde387f0d7c9274646adea64e53c969ec844572995ae80db37616"
+      },
+      {
+        "line": 757,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-scope-revision-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常closure入力からscope revisionだけunknownにする。他のidentity/version/scope/authority/evidenceは正常。",
+        "expected_observation": "scope revisionのunknown理由を保持し該当operationだけunknown/incompleteとして宣言済みownerへ戻す。",
+        "failure_condition": "他fieldの変異で相殺、未完を成功化、又は未宣言条件/ownerを生成したら不合格。",
+        "row_sha256": "b5f3011a0a38d7f9686fb8575be9df0aceada9d8992cbe603398b658af5f1a23"
+      },
+      {
+        "line": 758,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-scope-revision-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常closure入力からscope revisionだけstaleにする。他のidentity/version/scope/authority/evidenceは正常。",
+        "expected_observation": "scope revisionのstale理由を保持し該当operationだけunknown/incompleteとして宣言済みownerへ戻す。",
+        "failure_condition": "他fieldの変異で相殺、未完を成功化、又は未宣言条件/ownerを生成したら不合格。",
+        "row_sha256": "d5b91ea25be211eb51a7665fe9ec7efbdf2d400201feca2aa8e9471dbfb351c9"
+      },
+      {
+        "line": 759,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-compatibility-basis-missing",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常closure入力からcompatibility basisだけmissingにする。他のidentity/version/scope/authority/evidenceは正常。",
+        "expected_observation": "compatibility basisのmissing理由を保持し該当operationだけunknown/incompleteとして宣言済みownerへ戻す。",
+        "failure_condition": "他fieldの変異で相殺、未完を成功化、又は未宣言条件/ownerを生成したら不合格。",
+        "row_sha256": "c41c0dfaf9a13eac50f92f1ea853e265f18c57ddcb55ae52f0710a119eb47c0d"
+      },
+      {
+        "line": 760,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-compatibility-basis-unknown",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常closure入力からcompatibility basisだけunknownにする。他のidentity/version/scope/authority/evidenceは正常。",
+        "expected_observation": "compatibility basisのunknown理由を保持し該当operationだけunknown/incompleteとして宣言済みownerへ戻す。",
+        "failure_condition": "他fieldの変異で相殺、未完を成功化、又は未宣言条件/ownerを生成したら不合格。",
+        "row_sha256": "5ee1d073d34759879673479791cc6f005760bf4bd31a70bd5f416071853f7a6b"
+      },
+      {
+        "line": 761,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-compatibility-basis-stale",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-09",
+        "single_mutation_input": "正常closure入力からcompatibility basisだけstaleにする。他のidentity/version/scope/authority/evidenceは正常。",
+        "expected_observation": "compatibility basisのstale理由を保持し該当operationだけunknown/incompleteとして宣言済みownerへ戻す。",
+        "failure_condition": "他fieldの変異で相殺、未完を成功化、又は未宣言条件/ownerを生成したら不合格。",
+        "row_sha256": "9927aa9d5024cfee837900cdb4ea87a52334ac061fd9823f9cadb92f373b07d2"
+      },
+      {
+        "line": 768,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-member-divergence",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-08",
+        "single_mutation_input": "同一closure入力の再評価対でmember一つだけが異なる。適用理由とdelta digestは一致。",
+        "expected_observation": "member差を不合格とし、delta一致でclosure不一致を相殺しない。",
+        "failure_condition": "他fieldの変異で相殺、未完を成功化、又は未宣言条件/ownerを生成したら不合格。",
+        "row_sha256": "d253b0babae52fcb761d4a16c62c1d6de78f08f819b3bfb86f7e5feca251c809"
+      },
+      {
+        "line": 769,
+        "case_id": "CASE-INTELLIGENCE-L10-078-08-closure-reason-divergence",
+        "requirement_id": "FR-INTELLIGENCE-L3-078-01",
+        "acceptance_criterion_id": "AC-INTELLIGENCE-L3-078-08",
+        "single_mutation_input": "同一closure入力の再評価対で適用理由一つだけが異なる。memberとdelta digestは一致。",
+        "expected_observation": "理由差を不合格とし、member/delta一致で相殺しない。",
+        "failure_condition": "他fieldの変異で相殺、未完を成功化、又は未宣言条件/ownerを生成したら不合格。",
+        "row_sha256": "c81263b062fda5f26bed8f721d215275ffd98d48099f8a998e1e2d6872a8404e"
+      }
+    ]
+  },
+  "legacy_source_scope_review": [
+    {
+      "asset_id": "LEGACY-ASSET-BBD687399574FEE23807",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/document-authority-census-acceptance.md",
+      "source_sha256": "d8cddea062fa44774a44f1c2cfff5f5d1f01cd186b4abdf8d631b9577f6fd4a6",
+      "read_scope": "1-54 (full file)",
+      "reuse_exclusion_class": "legacy_test_design_or_oracle",
+      "semantic_disposition": "旧acceptance/test-design。009/013の隣接fixture構造の比較に限り、current oracle・親意味へ移さない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-6FFD7F4E58066D08B053",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-workflow-ai-judgment-engine-acceptance.md",
+      "source_sha256": "1c4e07263eba5254cfe66b920c4baf46227e0e07cb47ff60ac2e854740645db3",
+      "read_scope": "1-42 (full file)",
+      "reuse_exclusion_class": "legacy_test_design_or_oracle",
+      "semantic_disposition": "旧acceptance/test-design。012/013の隣接test-design比較に限り、oracleを移さない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-658FF8439F9F8E694710",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/bugbot-generation-acceptance.md",
+      "source_sha256": "9a76d66a85616d72fe6f96732eb529ffc31fa890c25f5adf9ab296f6469ff6b6",
+      "read_scope": "1-42 (full file)",
+      "reuse_exclusion_class": "legacy_test_design_or_oracle",
+      "semantic_disposition": "旧acceptance/test-design。parent 018関連のfixture構造比較に限定。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-901CD182B52024593E41",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-acceptance.md",
+      "source_sha256": "cd2fdd3dcfaa98935db0fef6b876d6cdb7133b11b8c8877363c3d0138c4b8cbc",
+      "read_scope": "1-30 (full file)",
+      "reuse_exclusion_class": null,
+      "semantic_disposition": "governance candidate acceptance。限定repair acceptance boundaryの比較起点に限り、現行oracleへ移さない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_sha256": "e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b",
+      "read_scope": "1-87 (full file read; parent-used UWJ-FR-001 source-package/transition/workflow atoms at 41-63)",
+      "reuse_exclusion_class": null,
+      "semantic_disposition": "UWJ-FR-001 source package inventory receipt、source_transition_id・workflow/routing/capacity等の比較起点。1/2/4/12/13で使う句をscope限定し現行意味は親から再導出。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-E78B8D68CC327AA00991",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "source_sha256": "361a9ef773f7cf36cc0953f70cad205184ca952f2cb672431e5b929121ef1f61",
+      "read_scope": "1-90 (full file read; RDJ-FR rows 1-12 are parent-used atoms)",
+      "reuse_exclusion_class": null,
+      "semantic_disposition": "Requirement discovery JSON authority・candidate/event traceの比較起点。現行authorityを継承せず親から再導出。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-AD746F4F3487103519F9",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+      "source_sha256": "3462b3da8269668c848799b07305f2fe135d8902de02121c2048d5686d98dc0e",
+      "read_scope": "17-34 (AC-001–12 only)",
+      "reuse_exclusion_class": "legacy_test_design_or_oracle",
+      "semantic_disposition": "旧acceptance/test-design。fixture構造だけの比較。test/oracle semanticsを流入させない。"
+    }
+  ],
+  "fixed_parent_span_corrections": [
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "lines": "673-687",
+      "sha256": "511c0083b8aaeab292ab348f488367b197516a9faaf92a44a27df1e80c6f21d8",
+      "literal": "### HELIXINTELLIGENCE-L2-072: HIL-NFR-34選択source変更時のstale候補（未採択revision 005）\n\n- **状態・親**：未採択の追補候補。親は固定確認済みの`HELIXINTELLIGENCE-L1-001/002/008/012/013/020`と、条件付き採択済み`HELIXINTELLIGENCE-L2-072`のrevision 004である。004のL2/L11本文と既存追補はそのまま保ち、この節は新しい候補partとして末尾に追加する。revision 005の提案から採択・実装・実行・dispatch権限を生成しない。\n- **入力**：候補pack identity/revision、対象scope/revision、生成元snapshot identity/digest、packに選択したdependencyごとの種別（`scope`、`requirement`、`template`、`skill`、`model catalog`、`allowlist`）、source identity/revision/digest、選択・適用根拠、source owner参照、現在の適用状態とunknown/conflictを受け取る。どの種別もpackが実際に選択・参照する場合に限って当該candidateの依存として対応付ける。具体provider/model、固定template、実装schema、閾値は定めない。\n- **候補能力**：候補生成またはshadow評価に使う選択済みsourceのidentity/revision/digestがsnapshot時点から変わったと分かった場合、対象pack/candidate facetを旧revisionのまま`current`または適用可能と表現しない。該当facetを`stale`として示し、source ownerへ現行revision・digestとapplicabilityを照合するために戻す。照合・候補更新・必要なshadow再評価が済むまでは、同じcandidate/shadow入力として旧facetを再利用しない。変更の適用根拠やownerが欠ける場合は`unknown`を保持し、非該当として読み替えない。\n- **変更scope**：source文の六種を維持し、選択された依存に関する変更だけをこの追補のstale判定へ結ぶ。target scope/revision自体の変更も同じ候補内で照合する。packが選択していないcatalogの変更で、無関係なpackすべてをstale化する規則は追加しない。未選択かどうかを証拠で確定できない場合は`unknown`である。\n- **依存4区分**：HARNESS-L2/L11-023の採択済み分類を再利用する。対象scope/revisionとpack identity/revision、実際に選択されたsource identity/revision/digestとapplicabilityは、この候補生成またはshadow operationで必要な選択入力である。評価時に選ばれた既存case/oracleはそのoperation時のみ必須。選ばれていないsourceは未観測であり、参照資料は依存へ昇格しない。欠落・unknown/staleは選択入力の適用状態を完了扱いせず、当該candidate facetを保留する。\n- **保証と責務境界**：本候補が返すのはcandidate/shadow段階のsource状態と戻し先である。INTELLIGENCEは要求・設計・verification義務、対象ownerの採否、HARNESS gate、OS assignment/dispatch、SECURITYのtool authorityを生成・変更しない。後続の実dispatch可否は既存OS/SECURITY契約に従い、本候補はその条件を広げず、dispatch拒否という新しい実行義務を作らない。shadow/独立review前にcandidateを判断gateの強制規則へ昇格させない004の条件を保持する。\n- **source保持と差分**：旧IR `HIL-NFR-34`の原文はsource atomとして全体を保持する。この追補が候補対応するのは、選択した六種sourceのrevision変更で該当candidateをstaleとして識別し、旧facetを再評価前にcurrent入力として再利用しない範囲だけである。snapshot/digest bindingと提案時の非権威は既存072候補の適用範囲でのみ参照する。未監査pack、tool拒否、自己検証、subagent上限、工程外completion authority、agent生成・muster全体、HR/HAC/HAT全体の閉鎖はこの追補で閉じず、`MPR-SH-IR-003#HIL-NFR-34`へ保持する。候補追加は旧sourceの意味変更やsuccessor/owner決定ではない。\n- **人の判断が残る点（sourceのscope差）**：原文は`scope/requirement/template/skill/model catalog/allowlist`の変更でstaleとする。Aは六種のいずれかに変更があれば全packをstale化する読み、B（推奨）は各packが選択・使用した依存または対象scope/revisionの変更に限って該当facetをstale化し、未選択依存を未観測のままにする読みである。005候補はBを検討用に具体化したもの。A/Bの採択は人に残し、変更が影響するのは072の適用範囲、候補/shadowの再評価対象、HARNESS-L2-010/011/023との依存閉包である。どちらもOS dispatch権限や旧要求全体の採否を決めない。\n\n#### 旧配置・採択004およびL2-076との境界（未採択revision 005）\n\n- 旧crosswalkのHIL-NFR-34行43と`PRC-HIL-NFR-34-001`は、NFR-34全体の候補配置をOSとして記録する（後者は`authority_effect:none`、`meaning_change_applied:false`のrouting候補）。一方、PO判断記録57の85行は`HELIXINTELLIGENCE-L2-072-004`をB配置として条件付き採択し、1.0を候補生成とshadow評価までに限定する。005がINTELLIGENCE-072へ置くのは、その採択済み配置に沿った選択source staleの候補/shadow facetだけであり、row 85は005の採択・配置変更を承認していない。旧NFR-34の実行時stale判定・guardとdispatch責務は既存OS契約に残り、005から新しいOS runtime義務やdispatch gateを作らない。\n- 未採択のL2-076はprovider/model/runtime/version変更をTER eventからmodel再検証proposalへつなぎ、比較・qualification evidenceを扱う。005はpackが選択したmodel-catalog sourceのrevision/digest変化で当該candidate facetをstaleとして戻すだけで、modelの適格性を再判定せず、076の採択も意味しない。model-catalogが当該packで未選択なら005では未観測のままであり、別途のqualification再検証条件は076候補の範囲に残る。\n"
+    },
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "lines": "601-608",
+      "sha256": "6120dd0cb1ceb33315148f207f32d565aad10cafa94ef1e68a7d248b2474a1ee",
+      "literal": "### HELIXINTELLIGENCE-L2-073 未知finding探索の自由文からの直接投影境界（unit candidate、version_target: 1.0）\n\n- **親と位置づけ**：親は採択済み`HELIXINTELLIGENCE-L1-009`。採択済み`HELIXINTELLIGENCE-L2-009`が定める監査finding traceと「自由文だけでauthorityを変えない」境界を補い、旧AAFD-R-04全体が独立に示す検出器優先と4つの宛先を限定して受けるcandidateである。旧sourceは`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md:45-46`（file SHA-256 `685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a`、line SHA-256は45行`e7d58c59ce05eff5e2807b1a123e36e30d95dd8eddea9b26ae8de88406fa0de3`、46行`333d4deb1ee4f9c39d411fb9749a8e3d6c5d397972bf29b5c5d52f03ba696412`）。AAFD-R-01〜03、R-05〜15と他のAAFD詳細は範囲外。\n- **種別・版・範囲**：単体candidate、`version_target: 1.0`。未知finding探索の自由文だけを入力とする時の決定論的検出器との関係、およびIssue・Requirement・CI・merge authorityへのdirect projection境界を対象にする。正確なL2/L11本文は未採択であり、この追記から採用、実装、運用変更を生成しない。\n- **要求**：Agentic Audit Probeによる未知finding探索はUILのdeterministic detectorを置換しない。未知finding探索の自由文だけを根拠に、Issueを直接作成/更新せず、Requirementの意味・revision・承認状態を直接変更せず、CIの定義・実行・結果・完了状態を直接変更せず、merge authority・admission・merge状態を直接変更しない。finding/candidateを各ownerへ提示することはできる。適格な別根拠と独立したowner判断を経る既存経路を禁止、変更、追加する要求ではない。\n- **既存owner境界**：finding検出・qualificationは既存UIL owner、Requirement意味は上流owner、CI/verificationは既存OS/HARNESS owner、PR review/merge admissionは現行GitHub authority経路に残る。本候補はIssue route、detector、CIまたはmergeの新しいgate、動作、手順、許可、禁止条件を定義せず、自由文単独のdirect projectionとdetector置換だけを対象とする。\n- **単独成立依存・戻し先**：`HELIXINTELLIGENCE-L2-009`の監査finding/source/evidence traceと、UILおよび各宛先の既存owner境界を参照する。qualificationまたは根拠が不足する場合はcandidate/findingとしてownerへ戻す。対象・根拠・適用経路が不明ならunknownのまま保つ。`version_target: 1.0`は候補の目標版であり、採択や実装許可ではない。\n\n"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "lines": "398-434",
+      "sha256": "9884a284fbaecc0134936e0b3772871974d5eb24d78c4ebbef22ebf2c6bbb194",
+      "literal": "### HELIXINTELLIGENCE-L2-072: HIL-NFR-34選択source stale候補の受入fixture（未採択revision 005）\n\n- **前提と限界**：以下は静的な期待結果であり、未実行である。candidate/shadow上の入力状態を照合する。INTELLIGENCE candidateから実runtime gate、tool dispatch、worker assignment、OS/SECURITYの権限変更を生成しない。既存採択004の候補生成・shadow scopeと非強制条件は保持する。\n- **正常：同じsnapshotの選択依存**：一つの正常candidate/shadow callとして、説明用fixture `pack-P@r1`、`scope-S@r4`、snapshot `snap-A`/digest `d-A`、HELIXINTELLIGENCE-L2/L11-072-004の固定採択pair revision、およびそのcallで選択したsource tupleを与える。各source tupleはidentity、owner参照、exact source revision/digest、契約version range、互換性根拠、applicabilityを別欄で持つ。選択tupleがsnapshot時点と一致し、適用根拠がありunknown/conflict/staleがないとき、同じrevisionのcandidate/shadow入力を`current-for-this-candidate`として返す。結果は依然candidate/shadowであり、gate/dispatch許可にはならない。以下の値は合成fixture値であり、実装schemaやversion形式を規定しない。\n- **HARNESS-L2-023四区分の合成tuple**：四区分の例を同じcandidate/shadow callに固定する。契約revisionは条件付き採択済み004のpair digest `sha256:02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4`、その適用version範囲はPO判断row 85が固定する`1.0候補生成・shadow評価のみ`である。sourceの個別revision/digestと適用性はこの契約rangeと別欄にする。\n\n| 023区分 | identity | owner | contract revision・選択source revision/digest | declared contract version range | compatibility evidence | applicability |\n| --- | --- | --- | --- | --- | --- | --- |\n| 常時必須 | candidate `HELIXINTELLIGENCE-L2-072@MPR-RC-HELIXINTELLIGENCE-L2-072-005`; target `scope-S@r4` | candidate表現はINTELLIGENCE。HARNESSの意味・gate責務とOS/SECURITYの実dispatch責務は移さず、実行ownerはunknown | 条件付き採択済み004 pair `sha256:02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4` | `1.0`: 候補生成とshadow評価のみ | PO判断`po-decision-2026-09-29-57candidates.md` row 85、004 exact pair digest、およびfixtureのtarget/snapshot pins | このcandidate/shadow callの対象scopeとrevisionに限る。実dispatch・promotionには適用しない |\n| 特定操作時のみ | operation `candidate_generation_and_shadow_evaluation`; candidate `pack-P@r1` | 候補/shadow表現はINTELLIGENCE。実行ownerはunknown | 004 exact adopted pair `sha256:02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4`; operationの選択は`pack-P@r1` | `1.0`: 候補生成とshadow評価のみ | decision row 85の固定scopeと同一callのsnapshot `snap-A`/digest `d-A` | このoperationを選んだcallのみ。評価を選ばない利用へshadow義務を広げない |\n| 選択した入力元に応じて必須 | このcallが選択する六sourceは次表の個別tupleで表す | 各tupleに合成owner参照を付す。実source ownerはreceiptで解決するまでunknown | 各tupleにsource revision/digestを個別記録し、candidate contractは004 exact adopted pair `sha256:02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4`に固定 | `1.0`: 候補生成とshadow評価のみ。各sourceのより広い互換version rangeは宣言しない | 各合成receiptがsource identity/revision/digestとapplicabilityを個別に束縛する。実receiptやregistryの存在は主張しない | 六sourceをこのcallが選択した場合だけ個別tupleを照合する。applicabilityはversion rangeと別に判定する |\n| 参照資料のみ | `historical-runtime-cli-test-context`（未選択の背景資料） | N/A（現行dependency ownerではない） | contract revisionはN/A。source/consumerの規範条件はこのtupleに含めない | N/A（実行互換version rangeを持たない） | 004採択decision row 85の候補/shadow境界と、fixtureで選択されていないこと | 背景参照だけ。normative source atom・HR/HAC/HAT consumer duty・選択入力の代用にせず、runtime dependencyにも数えない |\n\n| 選択source種別 | identity | owner参照 | source revision / digest | declared contract version range | compatibility evidence | applicability |\n| --- | --- | --- | --- | --- | --- | --- |\n| scope | `scope-S` | `owner-ref-scope`（合成。実owner unknown） | `r4` / `d-scope-r4` | `1.0` 候補生成とshadow評価のみ。source側の広い範囲は未宣言 | `receipt-scope-r4`がidentity/revision/digestを対象scopeへ束縛（合成値） | `scope-S@r4`がこのcallの対象scopeとして選択 |\n| requirement | `req-R` | `owner-ref-requirement`（合成。実owner unknown） | `r8` / `d-req-r8` | 同上 | `receipt-req-r8`がidentity/revision/digestを対象scopeへ束縛（合成値） | `req-R@r8`をこのcallのcandidate sourceとして選択 |\n| template | `template-T` | `owner-ref-template`（合成。実owner unknown） | `r2` / `d-template-r2` | 同上 | `receipt-template-r2`がidentity/revision/digestと適用根拠を束縛（合成値） | `template-T@r2`をこのcallが実際に選択した場合に限り適用 |\n| skill | `skill-K` | `owner-ref-skill`（合成。実owner unknown） | `r3` / `d-skill-r3` | 同上 | `receipt-skill-r3`がidentity/revision/digestと適用根拠を束縛（合成値） | `skill-K@r3`をこのcallが実際に選択した場合に限り適用 |\n| model catalog | `catalog-M` | `owner-ref-model`（合成。実owner unknown） | `r5` / `d-catalog-r5` | 同上 | `receipt-catalog-r5`がidentity/revision/digestと適用根拠を束縛（合成値） | `catalog-M@r5`をこのcallが実際に選択した場合に限り適用 |\n| allowlist | `allowlist-A` | `owner-ref-allowlist`（合成。実owner unknown） | `r6` / `d-allowlist-r6` | 同上 | `receipt-allowlist-r6`がidentity/revision/digestと適用根拠を束縛（合成値） | `allowlist-A@r6`をこのcallが実際に選択した場合に限り適用 |\n- **独立負例：scope revision変更**：他の入力を保持し、選択された対象scope/revisionだけを`r4`から`r5`へ変える。旧candidate facetをcurrentとして選ばずstale/再評価要として示し、scope ownerへ戻す。\n- **独立負例：requirement revision変更**：他の入力・選択状態を保持し、selected requirement sourceだけのrevisionまたはdigestを変更する。旧facetをcurrent入力として再利用せずstale/再評価要とし、該当requirement ownerへ戻す。\n- **独立負例：template revision変更**：他の入力を保持し、selected template sourceだけのrevisionまたはdigestを変更する。旧facetをcurrent入力として再利用せずstale/再評価要とし、template ownerへ戻す。\n- **独立負例：skill revision変更**：他の入力を保持し、selected skill sourceだけのrevisionまたはdigestを変更する。旧facetをcurrent入力として再利用せずstale/再評価要とし、skill ownerへ戻す。\n- **独立負例：model catalog revision変更**：他の入力を保持し、selected model-catalog sourceだけのrevisionまたはdigestを変更する。特定provider/modelを固定せず、旧適用根拠をcurrentとして再利用せずstale/再評価要とし、catalog ownerへ戻す。\n- **独立負例：allowlist revision変更**：他の入力を保持し、selected allowlist sourceだけのrevisionまたはdigestを変更する。candidate/shadowのsource facetをstaleとして扱い、該当allowlist ownerへ戻す。これだけで本候補は実tool操作の許可/拒否を実行しない。\n- **再評価後の正常**：上記各負例の一つについて、source ownerから得た新revision/digest、対象scopeへのapplicability、更新snapshotを結び、新しいcandidate revisionを作る。対応するshadow評価が実施されていない場合は未完義務として表示し、更新しただけでreview済み、active、gate強制とはしない。\n- **非選択sourceの境界**：選択tupleとapplicability証拠が明示され、変更されたsourceが当該packの非選択sourceだと確認できる例では、その変更だけで当該candidateをstale化しない。非選択の他sourceがcurrent/成功したとは表示しない。選択/非選択または適用根拠がunknownなら、非該当と推測せずunknown/保留にする。\n- **未監査/不一致/unknown**：selected source identity、revision、digest、applicability、ownerのいずれかが欠落・不一致・unknownの場合は、旧値を最新とみなしたり、未選択/非適用へ読み替えたりせず、該当candidate facetをunknown/stale/incompleteとして保留し、特定できるsource ownerへ戻す。formal ownerが不明なら所有者を捏造しない。\n- **残る旧条件**：未監査packのauthority化、未許可tool、self-verification、無上限subagent生成、工程外completion authority、専門agentの全muster/lifecycleは本fixtureの合格対象でない。既存採択pairや別候補が個別に扱う条件を参照しても、NFR-34全体またはHR-FR-HIL-21/HAC-HIL-21a/b/c/HAT-HIL-21のclosureに数えない。\n- **人の判断が残る点**：六種変更の適用scopeはL2末尾のA/B選択肢をfixture化したものである。A（いずれかのcatalog変更で全pack stale）とB（選択済み依存だけ該当pack stale、推奨）を比較し、Aは不要な広域再評価を発生させ、Bは明示されたdependency/applicabilityに沿う。選択結果は本候補の範囲と後続pairへ影響し、candidate text自体は採択を生成しない。\n\n#### 配置根拠と隣接候補の分離（未採択revision 005）\n\n- **配置境界の正常例**：crosswalk 43行とrouting `PRC-HIL-NFR-34-001`がNFR-34全体をOS配置候補としていること、decision 57 row 85が固定した条件付き採択004（B配置、候補生成・shadow評価のみ）を別々に提示する。005は004の配置に沿うINTELLIGENCE内candidate/shadow表現として評価する。row 85から005の採択を推定せず、実行時stale guard・dispatchがこのfixtureの判定対象またはINTELLIGENCEの責務になったとも扱わない。実行時の責務は既存OS契約に残る。\n- **独立境界例**：provider/model/runtime/versionのTER変更だけがあり、当該packでmodel-catalog sourceが選択されていないfixtureでは、005は選択依存のstaleを主張しない。model資格の再検証proposalは未採択L2/L11-076の範囲である。逆に、選択済みmodel-catalogのrevision/digestだけが変わった場合、005はcandidate facetをstaleとしてsource ownerへ戻すが、qualification結果を作らず、076の採択・再検証完了を推定しない。\n"
+    }
+  ],
+  "preserved_prior_audits": [
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-intelligence-stage3-review03-correction-2026-10-06.json",
+      "sha256": "93bed1c6f64a0446381220070242c55c80fedb26ed4eb8aa507076aa16ce3cca"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-intelligence-stage3-review03-followup-2026-10-06.json",
+      "sha256": "f111a6de99a887c8caadb39ffbbdec5645df4341a5cdf56e183b39c68775f82a"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-intelligence-stage3-review03-followup02-2026-10-06.json",
+      "sha256": "b6b19cbc132e218081df93bf62179377cb6ee308f4bb0760e487e4a59bce963a"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-intelligence-stage3-review03-followup03-2026-10-06.json",
+      "sha256": "73c877b44084cb13066266bb6b92bc69f0b66220f6f7a9c3dbed2ca84afa9752"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-intelligence-stage3-root-review03-followup-2026-10-06.json",
+      "sha256": "92719888361f840ade7262a19510d9f7534f360db63a24d58d41348b0c3c6839"
+    }
+  ],
+  "static_checks": {
+    "git_diff_check": "passed",
+    "six_main_prefixes_exact": true,
+    "078_01_unique_case_ids": true,
+    "078_01_total": 107,
+    "078_closure_total": 66,
+    "closure_counts_by_ac": {
+      "08": 3,
+      "09": 58,
+      "10": 5
+    },
+    "case_table_total": 959,
+    "case_ids_duplicate_count": 0
+  },
+  "limits": [
+    "本文・旧source・固定親の静的照合のみ。独立reviewではない。",
+    "旧CLI/runtime/test/CI、Bunおよびrepository CIは実行していない。",
+    "Rootの最終意味検収が残る。",
+    "正式レビューで列挙された全findingへの記録/本文対応を対象としたが、実行挙動や未読source全文の意味までは検証していない。"
+  ],
+  "changed_existing_audits": false,
+  "executed_legacy_or_repository_runtime": false,
+  "unconfirmed_scope_followup": [
+    {
+      "group": "legacy-source scopes 28FB/A952 and related source table citations",
+      "status": "limited read; not a whole-source semantic admission",
+      "inspected_scope": "Parent-used source table rows/citation bounds and the directly cited legacy spans already identified in prior audits; 28FB 21-148 and A952 19-46 were not sequentially reread end-to-end in this pass.",
+      "result": "No new universal reuse claim is made. Existing row dispositions stay restricted to cited parent-facing clauses; full sequential meaning of the unread portions remains unverified."
+    },
+    {
+      "group": "078-01 CASE set",
+      "status": "completed at row level",
+      "inspected_scope": "All 107 FV rows at exact current line, with CASE ID, single mutation, expected observation, failure condition, and row SHA-256 recorded in 078_01_exact_case_set.cases.",
+      "result": "55 dimension/state + 48 delta + 3 invalidation projection + 1 provider/runtime confusion = 107; old 106 omitted the final case and old 109 predates duplicate removal."
+    },
+    {
+      "group": "078 closure CASE set",
+      "status": "completed at row level",
+      "inspected_scope": "All 58 AC-078-09, 5 AC-078-10, 3 AC-078-08 rows at current exact lines with input/oracle/failure condition and row SHA-256; unrelated 072 dependency-closure-normal excluded.",
+      "result": "58+5+3=66."
+    },
+    {
+      "group": "register successors and prior audit pins",
+      "status": "read and bounded; no authority effect inferred",
+      "inspected_scope": "Current register rows 396/897 (067-001/002) and 699/1030 (072-005/006) read as complete JSONL records; exact row SHA-256 recorded in register_rows. Prior review03 correction/followup/followup02/followup03/root-followup JSON digests recorded under preserved_prior_audits.",
+      "result": "067-002 supersedes 067-001, and 072-006 supersedes 072-005; each is registered_proposal with authority_effect none. Equal candidate digest/metadata correction is not treated as adoption. Fixed L2/L11 remain the parent meaning; no candidate advancement inferred."
+    }
+  ],
+  "register_rows": [
+    {
+      "line": 396,
+      "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-067-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "candidate_semantic_digest": "sha256:d49b2b0301483d2ca92c4586fa52260e88e3a439a58b2e32b5fd567937d24739",
+      "source_atom_count": 0,
+      "row_sha256": "cf6a827ecc57ae51040772d8bb426f4b6dc0d114e3ef455b631261d1a412092d"
+    },
+    {
+      "line": 699,
+      "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-072-005",
+      "supersedes_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-072-004",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "candidate_semantic_digest": "sha256:d8376dc314dc4aebe7b413a40d4855e3147d6e5ec870d9790395825c5f8cc775",
+      "source_atom_count": 4,
+      "row_sha256": "98b15894f7bf98e2e13b8ba3173b60c9a0889272daad760592fb1df7fdff38a3"
+    },
+    {
+      "line": 897,
+      "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-067-002",
+      "supersedes_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-067-001",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "candidate_semantic_digest": "sha256:d49b2b0301483d2ca92c4586fa52260e88e3a439a58b2e32b5fd567937d24739",
+      "source_atom_count": 0,
+      "row_sha256": "9f427fe74ca7f3043ef9b564ec8898fd45e8bf4fb449beaade6f0bd18a43ec3e"
+    },
+    {
+      "line": 1030,
+      "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-072-006",
+      "supersedes_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-072-005",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "candidate_semantic_digest": "sha256:d8376dc314dc4aebe7b413a40d4855e3147d6e5ec870d9790395825c5f8cc775",
+      "source_atom_count": 4,
+      "row_sha256": "6145772d2251bb577f18eeb8fdefa574f0351fcac3cf53f03871f02ff9a277f3"
+    }
+  ]
+}
