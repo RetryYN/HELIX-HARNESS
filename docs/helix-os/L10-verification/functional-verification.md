@@ -141,7 +141,11 @@ L11-028:465の未見fixture。別endpointでvalidation不具合が出たが、�
 
 ### CASE-OS-029-01 — 相談なしの準備と作業（AC-OS-029-01）
 
-L11-029:473のnormal routeを別fixtureで表す。確定assignmentを持つ元Workerの作業前taskに対し、INTELLIGENCEがapproved request/designとHARNESS-022の既存oracleからtest/instruction candidateをsource revisionへ結ぶ。OS-028 receiptは発生せず、要求しない。support/consultが未選択でもapproved requirement、paired design、HARNESS-022 oracleの適用義務は残り、元Workerの実作業に対する許可済み検証の実行結果とsource-bound receiptを取得・記録する。元Workerが実装し、既存HARNESS oracleに沿う許可済み検証後、candidate authorとは別のreviewerが確認する。oracle適用はHARNESS-022に宣言された義務だけで行い、このcaseで新しいbusiness outcomeを補わない。findingがあれば元Workerへ返す。
+L11-029:473のnormal routeを別fixtureで表す。確定assignmentを持つ元Workerの作業前taskでsupportを選択した場合は、INTELLIGENCEがapproved request/designとHARNESS-022の既存oracleからtest/instruction candidateをsource revisionへ結ぶ。consultは選択せずOS-028 receiptを要求しない。approved requirement、paired design、HARNESS-022 oracleの適用、元Workerの実作業、許可済み検証の実行結果とsource-bound receipt、必要な独立reviewは維持する。oracle適用はHARNESS-022に宣言された義務だけで行い、このcaseで新しいbusiness outcomeを補わない。findingがあれば元Workerへ返す。
+
+### CASE-OS-029-07 — supportとconsultを選ばない作業・検証（AC-OS-029-01）
+
+L2-029:873のsupport-unselected条件を、CASE-OS-029-01のINTELLIGENCE事前candidate経路と分けたnormal fixtureで照合する。確定assignmentを持つ元Workerがapproved requirementとpaired designを直接用い、既存HARNESS-022 oracleの適用義務を確認して許可済み経路で実作業と実検証を行い、対象source revisionに結ばれた結果receiptを記録する。support proposalとOS-028 consult receiptはいずれも要求しないが、必要な独立review/owner receiptは維持する。独立reviewerは元Workerおよびsupport authorと別identityでcurrent resultを確認する。proposal不要を検証義務免除と扱わず、oracleやbusiness outcomeを新設しない。
 
 ### CASE-OS-029-02 — 相談選択時のPATCH oracle（AC-OS-029-02）
 
@@ -197,7 +201,7 @@ L11-029:478の全因果順を、L11-029:474のPATCH fixtureとは別のfixture i
 | 固定親 | 機能要件 | AC / CASE | L11固定oracle |
 |---|---|---|---|
 | `HELIXOS-L2-028` | `FR-OS-028` | `AC-OS-028-01`→`CASE-OS-028-01`; `AC-OS-028-02`→`CASE-OS-028-02`, `CASE-OS-028-02a`, `CASE-OS-028-02b`, `CASE-OS-028-05`; `AC-OS-028-07`→`CASE-OS-028-07a`, `CASE-OS-028-07b`, `CASE-OS-028-07c`; `AC-OS-028-03`→`CASE-OS-028-03a`, `CASE-OS-028-03b`, `CASE-OS-028-03c`, `CASE-OS-028-03d`, `CASE-OS-028-03e`, `CASE-OS-028-03f`, `CASE-OS-028-03g`, `CASE-OS-028-03h`, `CASE-OS-028-03i`, `CASE-OS-028-03j`, `CASE-OS-028-03k`, `CASE-OS-028-03l`, `CASE-OS-028-03m`, `CASE-OS-028-03n`; `AC-OS-028-04`→`CASE-OS-028-04`; `AC-OS-028-05`→`CASE-OS-028-05`; `AC-OS-028-06`→`CASE-OS-028-06a`, `CASE-OS-028-06b`, `CASE-OS-028-06c`, `CASE-OS-028-06d`, `CASE-OS-028-06e` | L11:457-466 |
-| `HELIXOS-L2-029` | `FR-OS-029` | `AC-OS-029-01`→`CASE-OS-029-01`; `AC-OS-029-02`→`CASE-OS-029-02`; `AC-OS-029-03`→`CASE-OS-029-03`; `AC-OS-029-04`→`CASE-OS-029-04a`, `CASE-OS-029-04b`, `CASE-OS-029-04c`, `CASE-OS-029-04d`, `CASE-OS-029-04e`, `CASE-OS-029-04f`, `CASE-OS-029-04g`, `CASE-OS-029-04h`, `CASE-OS-029-04i`, `CASE-OS-029-04j`; `AC-OS-029-05`→`CASE-OS-029-05`; `AC-OS-029-06`→`CASE-OS-029-06a`, `CASE-OS-029-06b`, `CASE-OS-029-06c`, `CASE-OS-029-06d`, `CASE-OS-029-06e` | L11:468-478 |
+| `HELIXOS-L2-029` | `FR-OS-029` | `AC-OS-029-01`→`CASE-OS-029-01`, `CASE-OS-029-07`; `AC-OS-029-02`→`CASE-OS-029-02`; `AC-OS-029-03`→`CASE-OS-029-03`; `AC-OS-029-04`→`CASE-OS-029-04a`, `CASE-OS-029-04b`, `CASE-OS-029-04c`, `CASE-OS-029-04d`, `CASE-OS-029-04e`, `CASE-OS-029-04f`, `CASE-OS-029-04g`, `CASE-OS-029-04h`, `CASE-OS-029-04i`, `CASE-OS-029-04j`; `AC-OS-029-05`→`CASE-OS-029-05`; `AC-OS-029-06`→`CASE-OS-029-06a`, `CASE-OS-029-06b`, `CASE-OS-029-06c`, `CASE-OS-029-06d`, `CASE-OS-029-06e` | L11:468-478 |
 
 ## C13 未解消事項の引継ぎ（identityのみ）
 
