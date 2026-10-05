@@ -92,7 +92,7 @@
 
 | 親L2 | 独立business outcome | 機能正本 |
 |---|---|---|
-| `HELIXBRAIN-L2-024` | 固定親に独立outcome/KPIなし。Runtime/Core/LABO/OS ownerをbusiness ownerへ再分類しない。 | `BRAIN-024-FR-01` / `BRAIN-024-AC-01/02`。functional L10は `L10-BRAIN-024-C01`–`C35` に正常routeと個別責務反例を定義。 |
+| `HELIXBRAIN-L2-024` | 固定親に独立outcome/KPIなし。Runtime/Core/LABO/OS ownerをbusiness ownerへ再分類しない。 | `BRAIN-024-FR-01` / `BRAIN-024-AC-01/02`。functional L10は `L10-BRAIN-024-C01`–`C39` に正常routeと個別責務反例を定義。 |
 | `HELIXBRAIN-L2-025` | 固定親に独立outcome/KPIなし。新しいcross-project成果指標やhuman approval business gateを設けない。 | `BRAIN-025-FR-01` / `BRAIN-025-AC-01`〜`BRAIN-025-AC-05`。functional L10は `L10-BRAIN-025-C01`–`C49` に状態別正常・単独欠落・順序・owner/state・maturity条件を定義。 |
 
 旧sourceではlearning promotionの責務境界はあるが、現行親を越えるbusiness outcomeはない。対象外KPIを暗黙条件にせず、固定L2/L11の責務・状態をfunctional ACで照合する。

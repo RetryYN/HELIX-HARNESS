@@ -90,7 +90,7 @@
 
 | 親L2 | 独立business判定 | functional L10参照 |
 |---|---|---|
-| `HELIXBRAIN-L2-024` | 独立business outcomeなし。 | `BRAIN-024-AC-01`、`BRAIN-024-AC-02`。functional CASE `L10-BRAIN-024-C01`–`C35` |
+| `HELIXBRAIN-L2-024` | 独立business outcomeなし。 | `BRAIN-024-AC-01`、`BRAIN-024-AC-02`。functional CASE `L10-BRAIN-024-C01`–`C39` |
 | `HELIXBRAIN-L2-025` | 独立business outcomeなし。 | `BRAIN-025-AC-01`〜`BRAIN-025-AC-05`。functional CASE `L10-BRAIN-025-C01`–`C49` |
 
 旧RCLS-AC-017由来のcross-project human approvalやshadow metricを別business acceptanceとして追加しない。

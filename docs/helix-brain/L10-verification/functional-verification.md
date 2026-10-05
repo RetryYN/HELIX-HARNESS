@@ -847,7 +847,7 @@ CASE番号は各親見出し内で一意。各列の固定句は親source全文�
 - **L10-BRAIN-024-C20 — 選択L2-INFRA-012 contract revision unknown（AC-02、単独変異）**：dependency選択にL2-INFRA-012を明示したfixtureでrevisionのみunknown。**期待oracle**：revisionを補完せず保留する。
 - **L10-BRAIN-024-C21 — 選択L2-INFRA-012 contract revision不一致（AC-02、単独変異）**：C20のrevisionだけ既知の別revisionへ変える。**期待oracle**：known mismatchを検出する。
 - **L10-BRAIN-024-C22 — 選択L2-019/022 CORE contract identity unknown（AC-02、単独変異）**：C01で選択したCORE receipt identityだけunknown。**期待oracle**：CORE contractを推定せずCOREへ確認を返す。
-- **L10-BRAIN-024-C23 — 選択L2-019/022 CORE contract revision不一致（AC-02、単独変異）**：C22のrevisionだけ既知の別revisionへ変える。**期待oracle**：known mismatchを検出する。
+- **L10-BRAIN-024-C23 — 選択L2-019/022 CORE contract revision不一致（AC-02、単独変異）**：C01の正常CORE contract identityを保持し、選択CORE contract revisionだけ既知の別revisionへ変える。**期待oracle**：known mismatchを検出する。
 - **L10-BRAIN-024-C24 — 選択Runtime owner contract identity unknown（AC-02、単独変異）**：C02で選択したRuntime owner receipt identityだけunknown。**期待oracle**：Runtime ownerを創作せずunknownを保持する。
 - **L10-BRAIN-024-C25 — 選択Runtime owner contract identity不一致（AC-02、単独変異）**：C24のidentityだけ既知の別ownerへ変える。**期待oracle**：known owner mismatchとして受領を止める。
 - **L10-BRAIN-024-C26 — 選択L2-020 LABO contract identity unknown（AC-02、単独変異）**：C02の選択L2-020 receipt identityだけunknown。**期待oracle**：evaluation receiptを適合扱いせずunknownを維持する。
@@ -855,7 +855,7 @@ CASE番号は各親見出し内で一意。各列の固定句は親source全文�
 - **L10-BRAIN-024-C28 — 選択L2-020 LABO contract revision unknown（AC-02、単独変異）**：C02のLABO contract revisionだけunknown。**期待oracle**：revisionを推定しない。
 - **L10-BRAIN-024-C29 — 選択L2-020 LABO contract revision不一致（AC-02、単独変異）**：C28のrevisionだけ既知の別revisionへ変える。**期待oracle**：known mismatchとして保留する。
 - **L10-BRAIN-024-C30 — 選択L2-INFRA-017 maturity contract identity unknown（AC-02、単独変異）**：Infrastructure candidateがmaturity relationを選択した場合だけ、そのL2-INFRA-017 identityをunknownにする。**期待oracle**：maturityを推定せずunknownを保つ。
-- **L10-BRAIN-024-C31 — 選択L2-INFRA-017 maturity contract revision不一致（AC-02、単独変異）**：C30の選択contract revisionだけ既知の別revisionへ変える。非選択candidateにはこの条件を強制しない。**期待oracle**：選択範囲でのみmismatchを返す。
+- **L10-BRAIN-024-C31 — 選択L2-INFRA-017 maturity contract revision不一致（AC-02、単独変異）**：C02に選択maturity contractの正常identity/revisionを束縛し、identityを保持してrevisionだけ既知の別revisionへ変える。非選択candidateにはこの条件を強制しない。**期待oracle**：選択範囲でのみmismatchを返す。
 
 - **L10-BRAIN-024-C32 — provider account保存（AC-02）**：C02のfixtureにprovider account identity/stateを1項目加えてBRAIN knowledgeへ保存する単独変異。**期待oracle**：保存/所有を拒否しRuntime ownerへ返す。
 - **L10-BRAIN-024-C33 — credential保存（AC-02）**：C02のfixtureにcredential valueまたはreferenceだけを加えてBRAINへ保存する単独変異。**期待oracle**：保存を拒否しRuntime ownerへ返す。
