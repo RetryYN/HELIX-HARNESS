@@ -202,9 +202,9 @@ selected internal/external sourceを別populationで集計し、CASE-INT-077-03a
 | `CASE-NFR-INT-062-03` | `CASE-INT-062-05a`–`CASE-INT-062-05e` | candidate欠落、regression、write-set、obligation変更、obligation staleを分離する。 |
 | `CASE-NFR-INT-063-03` | `CASE-INT-063-05a`–`CASE-INT-063-05d` | current judgment/contractのmissing/staleを別fixtureで計上する。除外CASE-063-02dは分母に入れない。 |
 | `CASE-NFR-INT-069-03` | `CASE-INT-069-08a`–`CASE-INT-069-08o`, `CASE-INT-069-04h`–`CASE-INT-069-04i`, `CASE-INT-069-06r`–`CASE-INT-069-06u` | model入力15field、explanation/ceiling 2条件、HARNESS-L2-011常時contract 4fieldを別populationで数え、010/011契約を通常operationにも適用する。 |
-| `CASE-NFR-INT-070-03` | `CASE-INT-070-09a`–`CASE-INT-070-09g`, `CASE-INT-070-06a`–`CASE-INT-070-06h` | stage receipt、scenario/product identity、誤予測を別に計上する。段階順は033→069→040→LABO-024。 |
+| `CASE-NFR-INT-070-03` | `CASE-INT-070-09a`–`CASE-INT-070-09g`, `CASE-INT-070-06a`–`CASE-INT-070-06i` | stage receipt、scenario/product identity、誤予測を別に計上する。段階順は033→069→040→LABO-024。 |
 | `CASE-NFR-INT-071-03` | `CASE-INT-071-05a`–`CASE-INT-071-05r`, `CASE-INT-071-02h` | oracle適用条件、未決threshold、後段順序、rollback/retry/recovery、比例仮定、HARNESS-L2-010/011常時pack契約と適用時023 dependency classを別に評価する。 |
 | `CASE-NFR-INT-074-03` | `CASE-INT-074-06a`–`CASE-INT-074-06h` | feedback入力fieldの欠落/stale/unknown状態を別々に記録し、LABO評価状態を未評価のまま保ち、未定義のapplicability ownerを作らない。 |
 | `CASE-NFR-INT-077-03` | `CASE-INT-077-06a`–`CASE-INT-077-06f`, `CASE-INT-077-03k`–`CASE-INT-077-03m` | dependency identity/revision/適用条件と4区分混同、未選択sourceを分離する。 |
 
-上記9 groupは80個の補正fixtureである。追加した別群のfixtureは、既存表への追補12件と独立補正追補5件からなる。索引・CASE参照出現数やNFR行数はfixture数に含めない。母集団の適用可否、個別fixture、unique CASE IDは別々に照合する。分母0は算出値なしとし、missing/unknown/staleを成功または未観測へ混ぜない。実行・実測・L3承認は未成立である。
+上記はCASE-to-NFR参照集合であり、既存群と重なるIDは一度だけ計上する。review01補正差分の新規IDは、独立補正表78件と既存表への追加20件の計98件である。索引・CASE参照出現数やNFR行数をfixture数に含めない。母集団の適用可否、個別fixture、unique CASE IDは別々に照合する。分母0は算出値なしとし、missing/unknown/staleを成功または未観測へ混ぜない。実行・実測・L3承認は未成立である。

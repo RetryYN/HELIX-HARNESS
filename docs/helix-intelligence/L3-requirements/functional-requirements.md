@@ -711,7 +711,7 @@ judgment packのversion/applicability/shadow/review/rollback義務を示し、�
 - AC-INT-070-03 send: CASE-INT-070-03。計算後のresultだけを既存040 contractで送達し、送信receiptを受領receiptと同一視しない。
 - AC-INT-070-04 consumer: CASE-INT-070-04。LABO-024のconsumer contract/receiptを送達後の独立段階で結び、LABO評価権限はLABOに残す。
 - AC-INT-070-05 反例: CASE-INT-070-05a〜05fを個別評価する。別model/revision/scopeを結ぶ、033 connector/authorityを飛ばす、virtualを実測とする、send receiptだけでLABO受領済みにする、correlation ID違いを同一視、対象source contractがpayloadを運べないために新fieldを黙って追加する各変異を拒否する。source identity/revision/scopeの不備はProduct Core/HARNESSの該当source ownerへ、connector登録/互換/transport failureはCONNECTへ、consumer receipt/契約不一致はLABOへ戻し、source failureをCONNECTへ一律転送しない。
-- AC-INT-070-06 未見/反例: CASE-INT-070-06a–06h。未見互換receipt版の正常例を保ち、重複receipt/遅着receiptを段階ごとの独立fixtureで照合する。欠落・stale・unknownは未受領のまま保持する。
+- AC-INT-070-06 未見/反例: CASE-INT-070-06a–06i。未見互換receipt版の正常例を保ち、重複receipt/遅着receiptを段階ごとの独立fixtureで照合する。欠落・stale・unknownは未受領のまま保持する。
 - 旧source disposition: HELIX-Bench acceptance receipt/versioned cohort、OPS typed receipt/backflow、UIL source identity/evidenceを境界比較として再導出する。これらはCORE→LABOの本connection/schemaを提供しない。現行033/040/024とCONNECTを再利用し、旧integration/authorityは置換する。
 
 ### FR-INT-071 — 条件変更・計算・比較のcomposite（Stage 5）
@@ -780,4 +780,4 @@ FR-INT-062の固定L11 locatorは行283および169である。FR-INT-063は別�
 | AC-INT-074-06 | CASE-INT-074-06a–06h | reason class、missing input/oracle、reissue verification、domain、population、LABO evaluation stateの欠落/unknown/staleを分離する。applicability ownerは固定L2にないため推測せずunknownを維持する。評価不足はLABO、task/ticket属性はOSへ戻す。 |
 | AC-INT-077-06 | CASE-INT-077-06a–06f | dependency 4区分のidentity/revision/適用条件、区分混同、未選択sourceを独立照合する。HARNESS-L2-023は分類契約として扱い、親固有ownerを決める根拠にしない。未選択sourceは未観測とする。 |
 
-既存AC-INT-062-04およびFR-INT-062の「固定L2に明記のstage ownerへ戻す」は固定L2-062:370にない戻し先なので削除し、特定不能はunknownとする。既存AC-INT-074-04/05の「applicability owner」「既存L1/L2 owner」への返却も追加しない。069-06はHARNESS-L2-010/011の採択済みpack contract identity/version/scope/provenanceを常時照合し、011のcall固有input値だけを該当operationで照合する。Stage 5既存親のowner、version、依存意味は変更しない。
+repair candidateだけが不足した場合のINTELLIGENCEへの返却は固定L2-062:370に指定がないため推測せずunknownとする。permission・実行・検証・検収の不足は、同固定句が明記するSECURITY・Worker・HARNESS・OSへの返却を保持する。既存AC-INT-074-04/05の「applicability owner」「既存L1/L2 owner」への返却も追加しない。069-06はHARNESS-L2-010/011の採択済みpack contract identity/version/scope/provenanceを常時照合し、011のcall固有input値だけを該当operationで照合する。Stage 5既存親のowner、version、依存意味は変更しない。
