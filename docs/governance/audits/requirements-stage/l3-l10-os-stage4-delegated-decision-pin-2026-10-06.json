@@ -1,0 +1,320 @@
+{
+  "record_kind": "delegated_l3_l10_decision_pin",
+  "review_base": "0757e15875f6defff8b3af41ff61882e685a1e24",
+  "merge_base": "1a7933157fef8327a0e2747348cbe57e596019aa",
+  "review_content_head": "09ce12817fba9ab88e714c6aeb1371b32065c659",
+  "body_revision": "41c1eb8e5134a0839d0afcbdf704a890f77a8f8e",
+  "delegation": {
+    "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+    "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220"
+  },
+  "formal_comments": [
+    {
+      "id": 5998318112,
+      "bytes": 6372,
+      "sha256": "ae3f82977cb779d128fe9bc74b57048b462e26fb7f7e02444a25f67cf255437a"
+    },
+    {
+      "id": 5998545064,
+      "bytes": 16655,
+      "sha256": "76a7c8e7de8b3b875760a7141c020d70c6593ed99182b5d52b7e5dc2e0b68e5c"
+    }
+  ],
+  "approved_parents": [
+    {
+      "parent": "HELIXOS-L2-021",
+      "adopted_registration_id": "MPR-RC-HELIXOS-L2-021-002",
+      "metadata_successor_registration_id": "MPR-RC-HELIXOS-L2-021-003",
+      "semantic_digest": "sha256:0656171a926f67d47263a53cdd012b64112c6143399ab5cb4ac35d00e804dc81",
+      "po": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+        "line": 48,
+        "raw_lf_sha256": "9d167c5db90b6b27d94af25d3a219f2c36ccf3b120635ab564447ca61f95b27a",
+        "literal": "HELIXOS-L2-014, HELIXOS-L2-015, HELIXOS-L2-016, HELIXOS-L2-017, HELIXOS-L2-018, HELIXOS-L2-019, HELIXOS-L2-020, HELIXOS-L2-021, HELIXOS-L2-022, HELIXOS-L2-023, HELIXOS-L2-024, HELIXOS-L2-025, HELIXOS-L2-026, HELIXOS-L2-027, HELIXOS-L2-028, HELIXOS-L2-029\n"
+      },
+      "adopted_register": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 61,
+        "raw_lf_sha256": "c35b2d42adab6fa7688cf2b77e9a22dc6b1fb950af426d196dfaacd226324381"
+      },
+      "metadata_successor": {
+        "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 726,
+        "raw_lf_sha256": "6724a635661b5cc23fb18306741aaab8977ce461f5f40a0fcf92dca62f16a11b"
+      }
+    },
+    {
+      "parent": "HELIXOS-L2-022",
+      "adopted_registration_id": "MPR-RC-HELIXOS-L2-022-001",
+      "metadata_successor_registration_id": "MPR-RC-HELIXOS-L2-022-002",
+      "semantic_digest": "sha256:0420ffc076b080ceba91b3344d149d1316c745bf36c2ea3a97e2cc07f9359aea",
+      "po": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+        "line": 48,
+        "raw_lf_sha256": "9d167c5db90b6b27d94af25d3a219f2c36ccf3b120635ab564447ca61f95b27a",
+        "literal": "HELIXOS-L2-014, HELIXOS-L2-015, HELIXOS-L2-016, HELIXOS-L2-017, HELIXOS-L2-018, HELIXOS-L2-019, HELIXOS-L2-020, HELIXOS-L2-021, HELIXOS-L2-022, HELIXOS-L2-023, HELIXOS-L2-024, HELIXOS-L2-025, HELIXOS-L2-026, HELIXOS-L2-027, HELIXOS-L2-028, HELIXOS-L2-029\n"
+      },
+      "adopted_register": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 56,
+        "raw_lf_sha256": "e75dbe86aeb7a0b336b40d5f6b2ab776aa44ce7b1a92d4e08ad7a2bef483dd2a"
+      },
+      "metadata_successor": {
+        "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 722,
+        "raw_lf_sha256": "7718d8762dbd1762d4b3dc188d1d6ad648fa92657ffdcc45d231042beeb5b166"
+      }
+    },
+    {
+      "parent": "HELIXOS-L2-024",
+      "adopted_registration_id": "MPR-RC-HELIXOS-L2-024-001",
+      "metadata_successor_registration_id": "MPR-RC-HELIXOS-L2-024-002",
+      "semantic_digest": "sha256:b84651c09401e2d58c50652d2e74942cbe3f485ec949d79a42255a947b075dcb",
+      "po": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+        "line": 48,
+        "raw_lf_sha256": "9d167c5db90b6b27d94af25d3a219f2c36ccf3b120635ab564447ca61f95b27a",
+        "literal": "HELIXOS-L2-014, HELIXOS-L2-015, HELIXOS-L2-016, HELIXOS-L2-017, HELIXOS-L2-018, HELIXOS-L2-019, HELIXOS-L2-020, HELIXOS-L2-021, HELIXOS-L2-022, HELIXOS-L2-023, HELIXOS-L2-024, HELIXOS-L2-025, HELIXOS-L2-026, HELIXOS-L2-027, HELIXOS-L2-028, HELIXOS-L2-029\n"
+      },
+      "adopted_register": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 58,
+        "raw_lf_sha256": "a8bae0be9a55ae6262d0fa04d3148aa0d03e8d35a0681e041127470247b3726b"
+      },
+      "metadata_successor": {
+        "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 723,
+        "raw_lf_sha256": "360cf0cc23f6a6602492cffc7ab7ffae1a1a6ab0bac832c47afa71af80900347"
+      }
+    },
+    {
+      "parent": "HELIXOS-L2-046",
+      "adopted_registration_id": "MPR-RC-HELIXOS-L2-046-001",
+      "metadata_successor_registration_id": "MPR-RC-HELIXOS-L2-046-002",
+      "semantic_digest": "sha256:c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d",
+      "po": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "line": 69,
+        "raw_lf_sha256": "23be4662d87c825df19a1fa91ee2c0f0e851c83799d20923738936a30646302c",
+        "literal": "| `HELIXOS-L2-046` | 採択 | `MPR-RC-HELIXOS-L2-046-001` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d` | `HELIXOS-L2-046` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0` | `docs/governance/audits/requirement-registration/helixos-rfa-scope-coverage-receipt-2026-09-28.json` |\n"
+      },
+      "adopted_register": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 568,
+        "raw_lf_sha256": "db380ceb9733bca19d4857985267a33b675745d7afef91481dafd04675b0f917"
+      },
+      "metadata_successor": {
+        "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 977,
+        "raw_lf_sha256": "dfa686f45098b88abb26f05dd286277985bcd39042a2fb2b2446584941f16df6"
+      }
+    },
+    {
+      "parent": "HELIXOS-L2-048",
+      "adopted_registration_id": "MPR-RC-HELIXOS-L2-048-001",
+      "metadata_successor_registration_id": "MPR-RC-HELIXOS-L2-048-002",
+      "semantic_digest": "sha256:0cbd66b870d6b45f739c6759ed2b325d65e69cfbf3e72b6b5638f1e530c77622",
+      "po": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "line": 71,
+        "raw_lf_sha256": "937a0d9656be08d4ce2fbe1c2441ac73e672f0c2e6bf1176d7242badc3a5c7e7",
+        "literal": "| `HELIXOS-L2-048` | 採択 | `MPR-RC-HELIXOS-L2-048-001` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:0cbd66b870d6b45f739c6759ed2b325d65e69cfbf3e72b6b5638f1e530c77622` | `HELIXOS-L2-048` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:543007c8f43b3372dee673dc94fdaceb3ca3d2a291dc9cbb674acac68369054d` | `docs/governance/audits/requirement-registration/ops-o1-o2-coverage-receipt-2026-09-29.json` |\n"
+      },
+      "adopted_register": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 576,
+        "raw_lf_sha256": "ff14003b992242e7e63f3f89e14b7ac637b3758156df0a9f46d52710d8effea9"
+      },
+      "metadata_successor": {
+        "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 955,
+        "raw_lf_sha256": "731d23101b46f2ae52f1650a1e0d07d05f130b78e8900fa107f9d1893d4fbd32"
+      }
+    },
+    {
+      "parent": "HELIXOS-L2-052",
+      "adopted_registration_id": "MPR-RC-HELIXOS-L2-052-001",
+      "metadata_successor_registration_id": "MPR-RC-HELIXOS-L2-052-002",
+      "semantic_digest": "sha256:d9e839c319c54f826bb065ce065ca5a8af126a11abd8f15c9f3183964a4e5345",
+      "po": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "line": 75,
+        "raw_lf_sha256": "cc5e9709348c4f9382380bc1ca57209eec49dcc68d5f0f3823f7a0d573a29234",
+        "literal": "| `HELIXOS-L2-052` | 採択 | `MPR-RC-HELIXOS-L2-052-001` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:d9e839c319c54f826bb065ce065ca5a8af126a11abd8f15c9f3183964a4e5345` | `HELIXOS-L2-052` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:70b5bb6bd967cfc15e85221ed6c1b842fb6fc92318b735867661223bf64ac1e2` | `docs/governance/audits/requirement-registration/ops-o6-coverage-receipt-2026-09-29.json` |\n"
+      },
+      "adopted_register": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 590,
+        "raw_lf_sha256": "ccaf9fd739d09e6ea01562adc835cb4eab3a1b929112933f31dc02f19de324d1"
+      },
+      "metadata_successor": {
+        "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 958,
+        "raw_lf_sha256": "10079e31e8dd74f0317fd6f08796513f9ddf8631937bd6afeb2e982f0cca2df5"
+      }
+    }
+  ],
+  "documents": [
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "sha256": "97241e3df82379170f748131b6599de73de9e75d075238f2b9dc3f3844cd3350",
+      "bytes": 15886,
+      "base_prefix_sha256": "cb510502fdc387dab5cbd212c3d9b6c9d56a4fee2e542c4ab9b9afb5790db125",
+      "base_prefix_bytes": 14618
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "sha256": "18160d64d5bfd2c9f55b4538b88ed81905bedbf7c465ef6f2be87b306fa4bb35",
+      "bytes": 175353,
+      "base_prefix_sha256": "e47646114f696ca3284a143b65cc36d61253587f81e0ba439aa890f4e391db0a",
+      "base_prefix_bytes": 152230
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "sha256": "acd847f2a2d670ed4c326b51ee9747249054f0ab60ff195121b5d6ed096c92a4",
+      "bytes": 27067,
+      "base_prefix_sha256": "c766bd6e73521f93c5973df56255a96f55b4839b2e41d5c7bef449365d66c7e1",
+      "base_prefix_bytes": 22679
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "sha256": "6063e4694f6a98c129695a7a998212cc3254054fc1e9a1ff50d5e16ec141f12a",
+      "bytes": 13908,
+      "base_prefix_sha256": "2829e339489fe717b22c3dd4a322fbb51b2eb6e72d1336fe4d7c0c1bb83c96d6",
+      "base_prefix_bytes": 10663
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "sha256": "06a1dd3c3eef91021d49c50c67d4e7a4734bafa2069104034e9f6769e90d3036",
+      "bytes": 172981,
+      "base_prefix_sha256": "3fa371924de7bbfbefcfe78a12fe9b8eae159337dcaa0d3deb90be8d7752219d",
+      "base_prefix_bytes": 131707
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "sha256": "0e7fa36b1c35ae03e88615c241bacec720c08b86f98944e59d31d4a635501cdd",
+      "bytes": 25056,
+      "base_prefix_sha256": "f68c1ac1c9b23ad81d138f89b8bd1d5316c18ab7d758b70257232d1bc4531a60",
+      "base_prefix_bytes": 19587
+    }
+  ],
+  "fixed_l2_spans": [
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "physical_lines": [
+        549,
+        549
+      ],
+      "raw_lf_sha256": "3aa2cf12d06d0354167ecf42007aae9fc459fd5a6113393feb0c385c39316895",
+      "head_span_equal": true,
+      "literal": "authority・権限の制約・隔離の条件はSECURITY、CPU・GPU・host等の実際の資源とその状態はHELIX-INFRASTRUCTURE（[2026-09-26 PO判断](../../governance/decisions/infrastructure-concept-placement-po-decisions-2026-09-26.md)）、Workerの配置の案はINTELLIGENCEが持ち、OSはこれらを重複して定義しない。OSが持つのは作業と変更の状態（Work／Change State）であり、HELIX-INFRASTRUCTUREの実行環境の資源の状態（Runtime Resource State）を二重に正本にしない。\n"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "physical_lines": [
+        638,
+        638
+      ],
+      "raw_lf_sha256": "b1ed2abae731dcc627861b2ec6ee6fd6d2065b804561fe4ad84ae4876b79430f",
+      "head_span_equal": true,
+      "literal": "以下は既存HELIXOS-L2-001〜014を削除・置換せず、ConceptとHELIX-OS L1の現行責務に機能単位で接続する追補候補である。既存本文・表・例外・非機能条件・数値・未決事項はそれぞれの元のIDと位置に残り、この追補は要約で置き換えない。既存条件を束ねる対応表は参照indexであり、source atomの移管、縮退、retire、採択を行わない。HELIX-OSは製品ではなく、HELIX自身と対象project群を管理・推進・検収する機構である。\n"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "physical_lines": [
+        702,
+        711
+      ],
+      "raw_lf_sha256": "c218690d2796bb4c91348c12c1d7ca5eab45004447c05f8dcdf3fd30ae735d2a",
+      "head_span_equal": true,
+      "literal": "### HELIXOS-L2-021 HARNESS構成版の対象project配布・更新・復旧（単体候補）\n\n- **親L1**：HELIXOS-L1-005／007。\n- **入力**：選択するHARNESS構成版のexact component set/source/artifact、要求revision、対象project、許可scope、互換性・適格性・運用証拠。\n- **提供**：HARNESS構成版を対象projectへ配布・更新・復旧し、candidate/active構成版、対象、artifact、操作状態、復旧先を追跡するOSの配布運転。\n- **保証**：bundleへの収載・除外を明示し、別artifactへの切替や既存成果の無断消失を拒否する。対象projectのサービス提供版の配布・更新は、HELIX自身（全機構のパック）の段階的な稼働構成・切戻しを定めるHELIXOS-L2-014と別identity・別判定である。021はHARNESS構成版をprojectへ導入する能力に限られ、HELIX全体のstage releaseをサービスの選択配布へ読み替えない。選択対象と必要な安全依存だけを配布でき、他の全製品の完成待ちを前提にしない。未決の後続能力は`version_target`を保ち、1.0の依存にしない。\n- **単独成立の依存**：L2-015／016／019／020、HARNESSの該当サービス契約・artifact、SECURITYの操作authority、INFRASTRUCTURE資源。個別project配布の構成版scopeは選択対象と必要依存に限る。HELIX自身のstage releaseはL2-014を構成体identityとして参照し、1.0全体判定はL2-025で別評価する。\n- **失敗時の戻し先／未完義務**：適格性・互換性・source digest・権限不明なら導入を止め、管理/提供元へ返す。更新失敗では直前qualified版または明示replacementの復旧先、途中成果と未完義務を保持する。tag/publication/cutoverを無許可で行わない。\n- **束ねる既存条件**：HELIXOS-L2-002／006のHARNESS構成版の対象project配布、更新・復旧条件。HELIXOS-L2-014のHELIX自身の段階リリースは別構成体identityであり、021の意味へ統合しない。FRS-BR-001〜007/009の機能単位・明示収載・成熟度・impact・再現性・rollback・安全閉包条件を参照する。旧Slice/Module/Bundle名、channel、固定構成数を正本化しない。\n\n"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "physical_lines": [
+        712,
+        721
+      ],
+      "raw_lf_sha256": "d78f600f299dfd4b9f35f7b2107d9aa076819cde6668274301c309a9e7e4b190",
+      "head_span_equal": true,
+      "literal": "### HELIXOS-L2-022 改善候補登録・還流（単体候補）\n\n- **親L1**：HELIXOS-L1-006。\n- **入力**：対象/要求revision、source event、適用範囲、HELIX-LABOの独立評価・提案・比較実験依頼、判断状態、還流先候補。\n- **提供**：観測→候補→既存判断主体の採否→ticket→変更・検証→再観測への登録・振分け・trace。\n- **保証**：OSは候補を記録しticket化を進行するが、改善の効果・退行を評価するownerはLABOであり、LABOの提案から要求・設計・authorityを直接変更しない。知識取込やローカルLLM学習など後続版の機能を1.0に持ち込まない。\n- **単独成立の依存**：L2-015／016／019、LABO評価契約、対象正本、判断主体とticket契約。改善循環の記録は1.0土台。\n- **失敗時の戻し先／未完義務**：評価・適用範囲・判断先・還流先が不明なら候補を未解決のまま保持し、評価または人間decisionの該当主体へ返す。棄却理由・再評価条件・未完の再検証義務を失わない。\n- **束ねる既存条件**：HELIXOS-L2-005／007およびHBR-P4/P7/P8由来の観測・feedback・根拠・再検証。L2-012/013の移管済み研究・横断診断ownerをOSへ戻さない。\n\n"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "physical_lines": [
+        732,
+        741
+      ],
+      "raw_lf_sha256": "c95ed2214e72795a30ee2acaa3dd96bc77ccc41b66df4b3d44f83212ebaba780",
+      "head_span_equal": true,
+      "literal": "### HELIXOS-L2-024 HARNESS提供・運用→LABO→OSの受渡し（接続候補）\n\n- **親L1**：HELIXOS-L1-005／006／007。\n- **入力**：L2-021の提供版・対象・許可scope、利用/運用実績、L2-019の共通evidence/data-use classification、LABO評価とFeedback。\n- **提供**：対象別成果をLABO評価へ渡し、その結果をOSの改善候補・判断先・採択後ticket・検証・再観測へ戻す接続。\n- **保証**：顧客/Web tenant・権限・dataと本体OS authorityを分離し、許可された範囲を越えて記録を共有しない。提供完了、運用記録、LABO評価、要求採否、改善効果を別状態にする。\n- **単独成立の依存**：L2-019／021／022、版付きLABO接続、SECURITYのdata-use/操作境界。version_target: 1.0で後続の観測受け口を用意するが、後の版の学習・推薦自体は依存にしない。\n- **失敗時の戻し先／未完義務**：利用許可・data class・対象revision・評価範囲の不一致は送信/候補採用を止め、権限ownerまたはLABOへ返す。未評価、未判断、再検証待ちを引き継ぐ。\n- **束ねる既存条件**：HELIXOS-L2-005／006／007／014、Conceptの成長循環および1.0ログ/data-use土台。\n\n"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "physical_lines": [
+        1177,
+        1184
+      ],
+      "raw_lf_sha256": "65ebd519831b293afacb839c4d632107614352ad0169c38fc2bdfb8e289f85fe",
+      "head_span_equal": true,
+      "literal": "### HELIXOS-L2-046 dispatchからmergeまでのauthority・HEAD・scope連続性（connection候補、version_target: 1.0）\n\n- **親と状態**：採択済み`HELIXOS-L1-009`／`HELIXOS-L1-010`に接続する未採択候補。管理・推進・検収の責務分離と変更・依存に応じた統合順序／検証集合を、既存の作業authorityと運用規則の範囲でつなぐ。候補本文・registerは要求採択、実装・実行・merge許可を生成しない。\n- **提供するもの**：一つの選択済み作業scopeについて、dispatch、実行、Ready化、merge admissionの各遷移で対象、適用中のauthority、HEAD/revision、scope、既存契約が要求する検証義務とその結果を照合する接続条件を示す。遷移間に対象HEAD、authority、scopeまたは適用条件が変わった場合は、その変化をstale／未完として扱い、既存の判断・検証・merge admissionを再照合する。工程の一部の成功を後続段階の成功へ伝播しない。\n- **禁止する迂回**：pathが`docs/`であることだけを理由に、既存の適用可能なauthority・review・required verificationを省略しない。探索・prototypeのmergeはその限定scopeの証拠共有に限り、本実装やproduction pathへの取り込み許可へ読み替えない。適用中の契約・設定でrequiredとされた確認を、未実施のままskipしてReady／merge可能としない。\n- **既存責務との境界**：`HELIXOS-L2-010／011`のticket、推進、統合計画責務、`HELIXOS-L2-004／007／008`のassignment・authority・証拠・CI運転、HELIX-OSのGitHub運用モデルのPR作成／独立review／merge admissionを置き換えない。検証義務の定義はHARNESS、操作authorityはSECURITY、具体的なrequired条件と除外可否はそれぞれ既存ownerの採択済みcontractが持つ。本候補は新しいapproval、check、scope、skipまたは許可方式を定義しない。\n- **source範囲と限界**：旧RFA-AC-16の一つのacceptance rowだけをこの接続候補へ対応づける。旧RFA候補全体、隣接AC行、旧engine／schema／runtime、全GitHub operationの実装・受入やsource closureは対象外で、旧条件全体のsuccessorを主張しない。\n\n"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "physical_lines": [
+        1195,
+        1204
+      ],
+      "raw_lf_sha256": "5a3bfe0f5152ef8550ffd7933d33e0cf030d4a4f6f89bf64470a45e55db3da15",
+      "head_span_equal": true,
+      "literal": "### HELIXOS-L2-048 返却・検証不成立feedbackの評価・還流接続（connection候補、version_target: 1.0）\n\n- **親と状態**：`HELIXOS-L1-006`／`HELIXOS-L1-009`に接続する未採択候補。L2-007 feedback lifecycle、L2-020の検証不足・oracle欠落時の戻し、L2-047のticket返却/revision lineage、LABOの評価候補、INTELLIGENCEの配置proposalを接続する。いずれの既存責務も置換しない。\n- **提供**：ticket返却、検証不能、oracle/input不足のfeedbackを、finding identity、ticket/assignment、対象HEAD/revision/scope、理由、欠けた入力またはoracle、発生元、既存のresolution条件へ結んで運搬する。OSは既存lifecycleでintake、分類、ack、pending、resolutionを区別し、解決証拠が既存条件を満たすまで未解決を保持する。\n- **受渡し**：OSは運転・検証観測をLABOへ評価可能なevidence付きcandidateとして渡す。LABOは理由分類、範囲、counterexample、再評価条件を評価し、提案を返す。INTELLIGENCEはLABO評価済みでtask scopeが適合する証拠だけを次回placement proposalの入力にできる。OSだけがticket発行/再発行・割当・進行を決める。\n- **還流**：再発行後のticket/resultを元findingとの因果relationで結び、LABOが同一条件での再発行後成立状況を評価できる。未評価、未ack、evidence不足、比較不能をsuccess/resolutionへ変換しない。返却が再発行を要する場合はOS-047と既存ticket契約へ戻す。\n- **境界**：LABOは評価とfeedback candidate、INTELLIGENCEは配置案、HARNESSは検証義務/oracle、SECURITYは既存authority/data-use、OSはintake/routing/status/ticket運転を担う。LABOはticket/assignmentを発行・割当せず、INTELLIGENCEはdispatchせず、自由文handoverだけでresolutionにしない。新しいevent schema、status、resolution十分条件、approvalを作らない。\n- **閉じたticketの後日finding**：後日判明した不具合/rollback/recoveryは、evidence relationで元ticketへ接続し、時間の近さや同じpathだけから原因を断定しない。元のclosureは保持し、追補assessmentを別に作る。観測window未満、未追跡、打切りをdefect 0件と数えない。\n- **旧sourceとの対応と限界**：未解決finding/evidenceを保つこと、管理提案からticket意味を直接上書きしないこと、閉じたticketのclosureを保ったまま後日findingを因果relationで接続し追補assessmentを作ることを意味起点とする。旧lifecycle store/schema/runtimeは移植しない。旧source全体のcoverage closureは主張しない。返却率などの指標は新規案であり、本候補だけでは因果効果や改善完了を確定しない。\n\n"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "physical_lines": [
+        1231,
+        1241
+      ],
+      "raw_lf_sha256": "342aee2bec0e5f89f34e969d78f7dbfc70510c98afc62ec340f861a042a66e60",
+      "head_span_equal": true,
+      "literal": "### HELIXOS-L2-052 merge後のlocal cleanupと後続PRの再照合（connection候補、version_target: 1.0）\n\n- **親と状態**：採択済みHELIXOS-L1-002／004／009／010に接続する未採択候補。`HELIXOS-L2-010／011`のticket・統合計画、`HELIXOS-L2-035`のPR lifecycle event intake、`HELIXOS-L2-046`のdispatchからmergeまでのauthority・HEAD・scope連続性を置き換えない。本文・仮登録は採択、実装、実行、remote操作の許可を生成しない。\n- **merge後のlocal cleanup**：明示mergeと所定のpost-merge read-afterが成功した後、merge済みPRとassignmentの所有関係を確認できるlocal worktreeとlocal branchだけを対象とする。所有関係を確認でき、他assignmentの使用中でなく、未完作業もない対象は、自動かつ冪等にcleanupし、対象と結果を既存の証跡経路で記録する。所有関係、使用状態、参照関係またはmerge後確認がunknown／conflictなら削除せず、未完理由を返す。再試行は同じassignment所有物だけに限定し、他のPR・worktree・branchへ波及させない。\n- **remote ref境界**：remote branch／refの削除は、PR merge、post-merge read-after、repository設定または本候補の採択から許可を生成しない。実行には、現行authorityが対象repository、refおよびdelete作用を明示して包含し、実施者が対象・作用・結果を記録できることを要する。該当するauthorityがなければremote refは削除せず、cleanup未完として記録する。旧HELIXのdelete-branch-on-merge設定を現行の削除authorityとして継承しない。\n- **base driftの再照合**：上流PRのmerge後、関係する後続PRについて最新baseとの試験merge可能性、`scfctl stale`、依存条件およびreview bindingを再照合する。試験mergeはcontent HEADを書き換えずに行う。base／content HEAD pairがreview済みbindingと一致し、stale=0、依存条件が維持される場合だけ既存状態を保持できる。conflict、stale、依存変化またはbinding不一致は根拠付きの理由とともに作成側へ返す。review／merge側は作成branchを直接修正しない。\n- **載せ直しと再review**：作成側が最新baseに合わせて修正しcontent HEADを変えた場合、新HEADとして記録し、現行review通路でそのHEADおよび適用されるbaseとの組に対する独立reviewを改めて依頼する。新HEADのreview結果、未解消blocker 0件、現行merge admissionがそろうまでReady／merge可能として扱わない。通知、ACK、merge event、branch ancestryだけではreview receiptを成立させない。\n- **自動rebase**：PR branchへbaseを自動で取り込む操作はこの候補の許容動作に含めない。これはcontent HEADを書き換えて既存review bindingを失効させるため、候補採択や自動rechainから暗黙に許可しない。自動rebaseを後日選択する場合は、本候補と分けて既存のbase不変規則との差、理由、authority境界を判断対象にし、変更後exact HEADの独立reviewとmerge admissionを取り直す。\n- **完了境界**：merge後read-afterとcleanupを別々に記録する。merge／cleanup／再照合からticketや要求の完了、Issue close、authority、review成功を生成しない。CIの不足を理由に旧CIを代用しない。\n- **旧sourceとの関係**：旧sourceが示す先行merge後のbase drift再判定と、衝突を作成責任へ返す意味を保持する。旧delete-branch-on-merge設定は現行remote delete authorityへ移さず、local cleanupとremote削除の権限を分ける。旧rebase/stackの協業記述をPR branch自動rebaseの要求根拠にしない。\n\n"
+    }
+  ],
+  "fixed_l11": {
+    "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+    "full_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+    "head_bytes_equal": true
+  },
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-os-stage4-l3-l10-po-decision-2026-10-06.md",
+    "sha256": "d20b91a8188f99198b5af80491b7b1dbfa48c3431e4550030257e9cc88c611a1"
+  },
+  "authority_effect": "effective_when_decision_record_admitted_to_main"
+}
