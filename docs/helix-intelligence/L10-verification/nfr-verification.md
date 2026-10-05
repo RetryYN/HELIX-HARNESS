@@ -95,7 +95,7 @@ historical evaluation・current judgment・OS outcome・BRAIN applicabilityのep
 
 ### CASE-NFR-INT-077-01 — source結合と非write境界
 
-selected internal/external sourceを別populationで集計し、qualified binding/unknown field/non-write attempt/owner handoffを報告する。unknown consumer/owner populationを補完しない。
+selected internal/external sourceを別populationで集計し、CASE-INT-077-03a–03jの各unknown/non-write/owner returnとqualified binding/unknown fieldを報告する。03fは旧複合索引であり独立fixture件数へ含めない。unknown consumer/owner populationを補完しない。
 
 ## CASE-to-NFR mapping
 
@@ -121,10 +121,10 @@ selected internal/external sourceを別populationで集計し、qualified bindin
 | `CASE-NFR-INT-061-02` | `CASE-INT-061-05a`–`CASE-INT-061-05e` | compatibility/task scope/OS割当/identity/revisionの別facet。 |
 | `CASE-NFR-INT-062-02` | `CASE-INT-062-04a`–`CASE-INT-062-04i` | isolation/candidate/target/scope/revision/owner/order/result別のstage状態。 |
 | `CASE-NFR-INT-063-02` | `CASE-INT-063-04a`–`CASE-INT-063-04h` | LABO/BRAIN/OS/HARNESSのsource・episode・時点・owner返却。 |
-| `CASE-NFR-INT-069-02` | `CASE-INT-069-06a`–`CASE-INT-069-06q`, `CASE-INT-069-07a`–`CASE-INT-069-07f` | 必須contract/sourceとoperation条件を別母集団で数え、通常oracle/後段receiptなしの正常を保持。 |
-| `CASE-NFR-INT-070-02` | `CASE-INT-070-07a`–`CASE-INT-070-07i`, `CASE-INT-070-08a`–`CASE-INT-070-08e` | stage contract、consumer、data-use、prediction/actual比較の別集計。 |
-| `CASE-NFR-INT-071-02` | `CASE-INT-071-04a`–`CASE-INT-071-04j` | 3固定正常scenarioと4独立negativeを分けた状態/比較件数。 |
-| `CASE-NFR-INT-074-02` | `CASE-INT-074-05a`–`CASE-INT-074-05y` | 欠落、比較不能、恒久結論、直接操作ごとのfixture件数。 |
-| `CASE-NFR-INT-077-02` | `CASE-INT-077-05a`–`CASE-INT-077-05z` | unknown補完4、write5、receipt binding12、source fallback/origin4の区分。 |
+| `CASE-NFR-INT-069-02` | `CASE-INT-069-06a`–`CASE-INT-069-06q`, `CASE-INT-069-07a`–`CASE-INT-069-07f` | L2-010 packは常時、L2-011 call fieldはcall選択時のみ必要としてoperation条件と別母集団で数え、通常oracle/後段receiptなしの正常を保持。 |
+| `CASE-NFR-INT-070-02` | `CASE-INT-070-07a`–`CASE-INT-070-07l`, `CASE-INT-070-08a`–`CASE-INT-070-08e` | 17 fixtureでstage contract、consumer、data-use、prediction/actual比較を別集計。 |
+| `CASE-NFR-INT-071-02` | `CASE-INT-071-04a`–`CASE-INT-071-04j` | 3固定正常scenarioと7独立negativeを分けた状態/比較件数。 |
+| `CASE-NFR-INT-074-02` | `CASE-INT-074-04a`–`CASE-INT-074-04c`; `CASE-INT-074-05a`–`CASE-INT-074-05z` | 独立unknown facet 3件と別fixture 26件を別母集団で数える。 |
+| `CASE-NFR-INT-077-02` | `CASE-INT-077-05a`–`CASE-INT-077-05z` | unknown補完4、write5、receipt binding12、source fallback/origin5の区分。 |
 
 全行は測定設計であり、測定結果・合格率・最低fixture数を生成しない。未実施fixtureは成功件数に含めない。

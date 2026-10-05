@@ -106,7 +106,7 @@ NFR候補の選択や運用値はPOへparameterごとの質問にせず、根拠
 ### NFR-INT-077-01 — 選択source identityと非write観測候補
 
 - 親 `HELIXINTELLIGENCE-L2-077`。選択sourceごとにidentity/revision/owner/origin/qualification bindingとunknown reasonを観測し、internal/externalを別集計する。直接authority writeを候補が行わないことをCASEで照合するが、runtime rejection rateや一律pass百分率を設定しない。consumer/owner未確定populationを埋めない。
-- 対応 `CASE-NFR-INT-077-01` はselected source / unknown / rejected write attemptのfixture件数を個別報告する。
+- 対応 `CASE-NFR-INT-077-01` はCASE-INT-077-03a–03jのnon-write/unknown/source returnとselected source / unknown / rejected write attemptの件数を個別報告し、旧03f複合索引は独立fixture数へ含めない。
 
 旧sourceは旧「characteristic→measure→acceptance」の構造のみ再導出する。技術candidateの計測軸はL2/L11から直接導き、値ごとのPO確認や新しい段階gateへしない。
 
@@ -120,8 +120,8 @@ NFR候補の選択や運用値はPOへparameterごとの質問にせず、根拠
 - `NFR-INT-061-02`：CASE-INT-061-05a–05eの5 fixtureについて、互換評価、task scope、OS割当可否、receipt identity/revisionを別facetで数える。
 - `NFR-INT-062-02`：CASE-INT-062-04a–04iの9 fixtureをstage別に数え、isolation/candidate/target/scope/revision/owner/order/resultの原因を混ぜない。
 - `NFR-INT-063-02`：CASE-INT-063-04a–04hの8 fixtureについて、LABO/BRAIN/OS/HARNESS source、時点、episode、戻し先を独立集計する。
-- `NFR-INT-069-02`：CASE-INT-069-06a–06qの17必須source/contract fixtureと07a–07fの6 operation fixtureを別母集団として報告する。通常計算のoracleなし/後段receiptなしを正常母集団に含め、指定verificationのoracle欠落をnegativeへ含める。
-- `NFR-INT-070-02`：CASE-INT-070-07a–07iと08a–08eをcontract/consumer/data-use/measurement境界別に数え、送信と受領を一つの率に統合しない。
+- `NFR-INT-069-02`：CASE-INT-069-06a–06qの17 field fixtureと07a–07fの6 operation fixtureを別母集団として報告する。HARNESS-L2-010は常時契約、HARNESS-L2-011はcallを選択したoperationだけでfield欠落を数える。通常計算のoracleなし/後段receiptなしを正常母集団に含め、指定verificationのoracle欠落をnegativeへ含める。
+- `NFR-INT-070-02`：CASE-INT-070-07a–07lと08a–08eの17 fixtureをcontract/consumer/data-use/measurement境界別に数え、送信と受領を一つの率に統合しない。
 - `NFR-INT-071-02`：CASE-INT-071-04a–04cの固定正常scenarioと04d–04jの7独立negativeを別分母で報告し、unknown/他正常scenarioを失敗数へまとめない。
-- `NFR-INT-074-02`：CASE-INT-074-05a–05yの25 fixtureを入力欠落/比較不成立/恒久結論/直接操作別に数える。proposalの正当性やWorker成功率は測定しない。
-- `NFR-INT-077-02`：CASE-INT-077-05a–05zの26 fixtureをunknown補完4、直接変更5、receipt binding 12、source fallback/origin境界4の区分で集計し、consumer/owner未確定populationを埋めない。
+- `NFR-INT-074-02`：CASE-INT-074-04a–04cの3独立unknown facetとCASE-INT-074-05a–05zの26 fixtureを別母集団として数える。scope/evidence欠落を単一fixtureへ束ねず、proposalの正当性やWorker成功率は測定しない。
+- `NFR-INT-077-02`：CASE-INT-077-05a–05zの26 fixtureをunknown補完4、直接変更5、receipt binding 12、source fallback/origin境界5の区分で集計し、consumer/owner未確定populationを埋めない。
