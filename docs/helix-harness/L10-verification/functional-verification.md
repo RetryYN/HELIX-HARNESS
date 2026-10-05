@@ -611,3 +611,42 @@ AC-018-01の入力条件はR001〜R034に加えR056/R057で個別欠落、R058�
 | CASE ID | FR / AC | 入力・単独変異 | 観測oracle |
 |---|---|---|---|
 | `CASE-HARNESS-L10-018-R058` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | R001の配備済み製品revision、owner承認済み運用要求revision、11軸の適用性・決定owner・根拠を保持し、運用要求が対応する製品revisionだけを当該配備revisionと異なるrevisionへ変える。両revisionと承認状態は既知とする。 | 対応不一致を検出し、当該配備revisionの観測設計を評価成立とせず運用要求ownerへ返す。配備recordと承認済み要求の元revision・traceを保持し、別revision向け承認を当該revisionへの承認へ変換しない。 |
+
+## Stage 5 suffix — HARNESS-L2-021/025/033/035/037機能検証CASE
+
+以下は固定親scopeの設計fixtureであり未実行である。各行は単一の意味状態または一入力条件を変え、bundle/indexから一件の独立CASEを推論しない。未見正常fixtureも同じ対象revision・scope・適用oracleの範囲だけで評価する。missing/unknown/stale/mismatch、未選択・未観測、失敗、ownerを別状態で残す。source・receipt・oracleが不足して判定不能なら未評価とする。
+
+| CASE ID | FR / AC | fixture input（変更する条件） | oracle / failure boundary |
+|---|---|---|---|
+| `CASE-HARNESS-L10-021-S5-001` | `FR-HARNESS-L3-021` / `AC-HARNESS-L3-021-01` | 正常未見の構成体scopeで、同一revisionの要求・設計・実装・022証拠・統合版・L12観測・要求戻しsourceを与える。 | relationごとのsource/revision/scopeがつながり、構成体固有traceを示す。L12結果は観測入力のまま保持し、改善実行・承認を生成しない。 |
+| `CASE-HARNESS-L10-021-S5-002` | `FR-HARNESS-L3-021` / `AC-HARNESS-L3-021-02` | `S5-001`から構成体固有の横断NFR traceだけを除き、全個別unit successを保つ。 | 構成体成立を保留し、不足relationを該当NFR/設計ownerへ戻す。unit成功で補完しない。 |
+| `CASE-HARNESS-L10-021-S5-003` | `FR-HARNESS-L3-021` / `AC-HARNESS-L3-021-01` | `S5-001`の要求revisionだけをtrace先と異なる値にする。 | stale/mismatchとして当該relationを保留し、source側または要求ownerへ返す。 |
+| `CASE-HARNESS-L10-021-S5-004` | `FR-HARNESS-L3-021` / `AC-HARNESS-L3-021-03` | rollback証拠の対象統合revisionだけを更新前の適格版と不一致にする。 | 復元成功をclaimせず、統合変更のsource ownerへ不一致を示す。 |
+| `CASE-HARNESS-L10-021-S5-005` | `FR-HARNESS-L3-021` / `AC-HARNESS-L3-021-04` | 観測・評価・改善提案を保持したまま、OS/LABOの実行receiptだけを未選択にする。 | 実行・完了・要求承認を出さない。未選択の実行は未観測として残し、HARNESSに実行責務を移さない。 |
+| `CASE-HARNESS-L10-021-S5-006` | `FR-HARNESS-L3-021` / `AC-HARNESS-L3-021-01` | L12運用観測のscopeだけを欠落させる。 | 運用検証を完了扱いせず、当該観測source ownerへscope不足を返す。 |
+| `CASE-HARNESS-L10-025-S5-001` | `FR-HARNESS-L3-025` / `AC-HARNESS-L3-025-01` | 正常未見のcompositeで026 unit、L3 revision、CORE/Template/BRAIN connector、022 oracleを与え、Patternは非選択とする。 | 常時必須のtupleと双方向traceを確認し、Pattern receiptを要求しない。未選択Patternは未観測のまま。 |
+| `CASE-HARNESS-L10-025-S5-002` | `FR-HARNESS-L3-025` / `AC-HARNESS-L3-025-01` | `S5-001`からBRAIN connector契約identityだけを欠落させる。 | Pattern非選択でも必須connector欠落として保留し、connector契約ownerへ戻す。 |
+| `CASE-HARNESS-L10-025-S5-003` | `FR-HARNESS-L3-025` / `AC-HARNESS-L3-025-02` | Patternを選択したまま030 receiptだけを欠落させる。 | 選択Pattern利用を保留し、BRAIN/選択input ownerへ返す。常時connectorを代替にしない。 |
+| `CASE-HARNESS-L10-025-S5-004` | `FR-HARNESS-L3-025` / `AC-HARNESS-L3-025-02` | 選択Pattern receiptのrevisionだけを現在のPattern revisionよりstaleにする。 | 古いreceiptを適用せずstaleとして選択input ownerへ戻す。 |
+| `CASE-HARNESS-L10-025-S5-005` | `FR-HARNESS-L3-025` / `AC-HARNESS-L3-025-03` | 承認後編集拒否traceでpermission stateだけを許可へ変える。 | 誤った許可経路とcompositeを不合格にし、該当permission/設計契約ownerへ返す。 |
+| `CASE-HARNESS-L10-025-S5-006` | `FR-HARNESS-L3-025` / `AC-HARNESS-L3-025-04` | 完全な設計traceの出力stateだけを「L3承認済み」とする。 | authority昇格を拒否し、設計結果を未承認のまま保つ。 |
+| `CASE-HARNESS-L10-033-S5-001` | `FR-HARNESS-L3-033` / `AC-HARNESS-L3-033-01` | incident sourceを選択しないnormal contract-derived case inputを与える。 | case candidateをsource/revision/oracle/scopeと共に返し、repro/run/passを未実施として保持する。 |
+| `CASE-HARNESS-L10-033-S5-002` | `FR-HARNESS-L3-033` / `AC-HARNESS-L3-033-02` | incident reductionを選択し、sanitized source permissionだけをmissingにする。 | reductionを開始せずsecurity/data ownerへpermission不足を返す。 |
+| `CASE-HARNESS-L10-033-S5-003` | `FR-HARNESS-L3-033` / `AC-HARNESS-L3-033-02` | reduction inputのfailure oracleだけをunknownにする。 | 同一failureを判定できないため成立claimを保留し、要求/設計oracle ownerへ戻す。 |
+| `CASE-HARNESS-L10-033-S5-004` | `FR-HARNESS-L3-033` / `AC-HARNESS-L3-033-03` | 縮小後receiptのfailure identityだけを縮小前と異ならせる。 | 同一failureと認めず、reduction/incident source ownerへ不一致を返す。 |
+| `CASE-HARNESS-L10-033-S5-005` | `FR-HARNESS-L3-033` / `AC-HARNESS-L3-033-03` | 回帰成立claimの三結果のうち修正前revisionのfail receiptだけを欠落させる。 | 回帰成立claimを拒否し、missing後段証拠を示す。 |
+| `CASE-HARNESS-L10-033-S5-006` | `FR-HARNESS-L3-033` / `AC-HARNESS-L3-033-03` | 回帰成立claimの修正後revision pass receiptだけを欠落させる。 | 回帰成立claimを拒否する。単なるcandidate生成は保持し、後段run ownerへ不足を返す。 |
+| `CASE-HARNESS-L10-033-S5-007` | `FR-HARNESS-L3-033` / `AC-HARNESS-L3-033-04` | 将来の修正後pass receiptだけを開始時入力へ移す。 | 未来結果を初期sourceに使う依存を拒否し、段階順序を維持する。 |
+| `CASE-HARNESS-L10-035-S5-001` | `FR-HARNESS-L3-035` / `AC-HARNESS-L3-035-01` | 正常未見の要求候補に、原指示・上流revision・候補path・受入寄与・代替案を与え、feedback履歴も別に添える。 | 上流からの導出pathを示し、feedback履歴を許容しながらcandidate自体を唯一の根拠にしない。 |
+| `CASE-HARNESS-L10-035-S5-002` | `FR-HARNESS-L3-035` / `AC-HARNESS-L3-035-01` | 原指示source identityだけを欠落させる。 | 根拠をunknown/不足として保ちsource ownerへ戻す。候補IDを根拠として補完しない。 |
+| `CASE-HARNESS-L10-035-S5-003` | `FR-HARNESS-L3-035` / `AC-HARNESS-L3-035-01` | 受入寄与relationの対象revisionだけを現在の要求scopeとmismatchにする。 | 寄与を認めず該当要求/受入ownerへrevision差を返す。 |
+| `CASE-HARNESS-L10-035-S5-004` | `FR-HARNESS-L3-035` / `AC-HARNESS-L3-035-02` | 候補の唯一の根拠edgeを候補自身に戻す自己循環へ変更する。 | 根拠充足を拒否し要求形成ownerへ戻す。 |
+| `CASE-HARNESS-L10-035-S5-005` | `FR-HARNESS-L3-035` / `AC-HARNESS-L3-035-02` | 導出edgeを非循環に保ち、別fieldのfeedback履歴だけを循環させる。 | 正常な訂正/feedback履歴を一律拒否せず、導出rootと履歴を分離する。 |
+| `CASE-HARNESS-L10-035-S5-006` | `FR-HARNESS-L3-035` / `AC-HARNESS-L3-035-03` | budget状態unknownのほかは同じ入力で、出力だけをbudget=0とする。 | 0への読み替えを拒否しunknownを保持する。新承認・運用gateを作らない。 |
+| `CASE-HARNESS-L10-037-S5-001` | `FR-HARNESS-L3-037` / `AC-HARNESS-L3-037-01` | L2-009適用結果が二段templateを示す未見対象でPhase 1の合意L2/承認L3/templateだけを与える。 | Phase 1設計を開始候補にでき、将来の設計/L9 receiptを前倒しで要求しない。 |
+| `CASE-HARNESS-L10-037-S5-002` | `FR-HARNESS-L3-037` / `AC-HARNESS-L3-037-01` | L2-009の適用状態だけをunknownにする。 | 二段適用を推定せずPhase 2開始を保留し009 ownerへ戻す。 |
+| `CASE-HARNESS-L10-037-S5-003` | `FR-HARNESS-L3-037` / `AC-HARNESS-L3-037-01` | 対象productだけをHARNESS自身にする。 | A-74に対応する自己適用除外を保ち、対象外として戻す。 |
+| `CASE-HARNESS-L10-037-S5-004` | `FR-HARNESS-L3-037` / `AC-HARNESS-L3-037-02` | Phase 1 L9 receiptだけを欠落させPhase 2開始を要求する。 | Phase 2開始を保留し、Phase 1検証ownerへ不足を返す。 |
+| `CASE-HARNESS-L10-037-S5-005` | `FR-HARNESS-L3-037` / `AC-HARNESS-L3-037-03` | Phase 2の合意L2 identityだけをPhase 1と同じものに流用する。 | phase-specific authorityを同一化せずPhase 2を未完にする。 |
+| `CASE-HARNESS-L10-037-S5-006` | `FR-HARNESS-L3-037` / `AC-HARNESS-L3-037-03` | Phase 2固有L9 receiptのscopeだけを合流scopeと異ならせる。 | 合流を保留しPhase 2検証ownerへscope不一致を返す。 |
+| `CASE-HARNESS-L10-037-S5-007` | `FR-HARNESS-L3-037` / `AC-HARNESS-L3-037-04` | L2-009適用情報を欠いたまま旧`drive=agent`値だけを追加する。 | 二段適用を開始せず、旧値を現行適用契約へ読み替えない。 |
