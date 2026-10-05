@@ -35,6 +35,13 @@ paired_l10: ../L10-verification/business-verification.md
 | `HARNESS-L2-014` | 独立business requirementなし。 | template適用・設計/Backflow条件を事業価値や利用者受入oracleへ変換しない。 |
 | `HARNESS-L2-015` | 独立business requirementなし。 | Provisional成果やatomic CI結果を品質保証・システム成立・利用者受入・releaseへ昇格させない。 |
 | `HARNESS-L2-016` | 独立business requirementなし。 | Refactor/性能比較の技術結果から製品価値やbusiness ownerを発明しない。 |
+## Stage 2a suffix — HARNESS-L2-022（1.0対象）
+
+| 親L2 | business要件ID | business要件への扱い | 境界 |
+|---|---|---|---|
+| `HARNESS-L2-022` | `BR-HARNESS-L3-022-01` | 利用者がartifact revision/scopeごとに、段階別の成立証拠、L11の能力別内容判定、利用者受入とその記録を区別して判断できる。 | L1-001/004/005および固定L2-022にtraceする。COREの検証・受入契約の結果を示すもので、service①〜⑦の業務成果、収益・製品優先順位、独立business ownerや価値閾値を追加しない。L10/oracleから利用者受入判断や記録を生成しない。 |
+
+旧business-detailの意味とownerはHARNESSへ一括移植せず、固定L1/L2から再導出する。本親から独立した商用成果や新しいownerは導出しない。business verificationは同じscopeの証拠を利用者が判読できるかを観測し、要求にない価値判断を作らない。
 ## Stage 2c suffix — HARNESS-L2-030/031/032
 
 固定030/031/032から独立したbusiness requirement、business owner、価値閾値または事業判断を導出しない。機能contractと業務境界は[functional-requirements.md](functional-requirements.md)の親別FR/ACで確認する。これはHELIX-HARNESS全体にbusiness要件がないことを意味しない。
