@@ -1,0 +1,41 @@
+{
+  "authority_effect": "none",
+  "base": "91660f403d203dff92a50ac7f5484db6ab13f96d",
+  "integration_revision": "e6b9fc82862cabea101855583a1d6cd01db6dd25",
+  "body_revision": "e7d83ef8b439945efd9f2f3c3f3bd271804fe217",
+  "documents": [
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "sha256": "35c3ba6fc742ef29d53162eee5505b6bcc95d11395915a5d9c75b14897e0a08c",
+      "unchanged_by_main_integration": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "sha256": "832674b0d826631cb157b0e9a0525f8f694391dcaedd8c39783f99bce0e23913",
+      "unchanged_by_main_integration": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "sha256": "9fa10204c08312b34f17f5cdc77cf0a859aafc914fcbf1d359d202ec5631a98a",
+      "unchanged_by_main_integration": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "sha256": "8ddc97daf1f12aa3b4464078f186bbcb4b0631b6a009d6ad9f5bffba4b6ecb4d",
+      "unchanged_by_main_integration": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "sha256": "296eb72a0fafd12cdd579d391eabf9f91827646f3cfb029522ad21d57f874fe3",
+      "unchanged_by_main_integration": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "sha256": "d5173bc4ccd6c321e441e3801d76a034874e7afcb3ef35e7d3159a97ea083182",
+      "unchanged_by_main_integration": true
+    }
+  ],
+  "root_validation": "6 main prefixes,13 full/raw sources,793 literal rows,8 historical records pass",
+  "worker_audit_revisions_note": "revisions.repaired_body retains prior review02 body; current body is revisions.review03_repaired_body",
+  "review03_comment": 5987692533
+}
