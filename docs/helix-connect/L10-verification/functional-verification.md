@@ -92,8 +92,9 @@
 ### CONNECT-CASE-006-01 — 4型の互換内一側交換
 
 - **対象AC**: `CONNECT-AC-006-01`。
-- **正常fixture**: 1登録済みconnectionについて、以下を互いに独立した4 variantとして実施する。(a)送信側機構本体交換、(b)送信側CONNECT adapter/transport交換、(c)受信側機構本体交換、(d)受信側CONNECT adapter/transport交換。各々で交換しない側の機構・意味契約revision・artifact/dependency revisionを固定し、交換側の旧新revisionと両端契約、compatibility range、変更scope、該当権限、HARNESS common-pack scope/recovery bindingを記録する。宣言範囲内の新revisionを再照合しcompatible receiptを得た後だけ、同一connection contract上でoperationを送受信する。**期待oracle**: 4/4 variantが独立に照合され、各々の固定側bytes/identity/revisionは前後一致、接続・operation/revisionとreceiptが一致する。接続技術結果を業務成立へ昇格しない。
+- **正常fixture**: 1登録済みconnectionについて、以下を互いに独立した4 variantとして実施する。(a)送信側機構本体交換、(b)送信側CONNECT adapter/transport交換、(c)受信側機構本体交換、(d)受信側CONNECT adapter/transport交換。各々で交換しない側の機構・意味契約revision・artifact/dependency revisionを固定し、交換側の旧新revisionと両端契約、compatibility range、変更scope、該当権限、HARNESS common-pack scope/recovery bindingを記録する。宣言範囲内の新revisionを再照合しcompatible receiptを得た後だけ、同一connection contract上でoperationを送受信する。**期待oracle**: 4/4 variantが独立に照合され、各々の固定側bytes/identity/revisionは前後一致する。未完operationの事前有無にかかわらず、交換側旧revision→交換後revision→同connection・scope・revision組に束縛したcurrent comparison receipt→connection/operation/attempt identity→技術結果を、一続きで順序づけられたtraceから辿れる。接続・operation/revisionとreceiptが一致し、接続技術結果を業務成立へ昇格しない。
 - **入力欠落/不一致**: 各variantで登録接続identity、固定側機構identity、固定側契約revision、固定側artifact revision、固定側dependency revision、交換側旧revision、交換側新revision、変更scope、compatibility declaration、current comparison receiptを一つずつmissing/unknown/他scopeまたは他revisionに変える。**期待oracle**: 既存の交換許可が有効なら片側交換の結果を照合し、欠落/不一致の互換入力・receiptはcompatibleへ補完せずunknown/staleとして扱って送信・再送attempt 0にする。交換許可自体のmissing/unknown/expired/scope不一致だけはCASE-006-04で交換開始前に停止する。送信許可は互換参照照合を代替しない。
+- **trace断絶negative fixtures**: 他の正常入力と各trace要素は保ち、(1)current comparison receiptが別connection・別scope・別revision組へ結び付く、(2)operation/attempt identityが現在のconnectionまたはcomparison receiptから切れる、(3)技術結果が該当operation/attemptへ結び付かない、を各々独立に変異する。**期待oracle**: どの断絶も互換送受信のpass根拠にせずtraceをunknown/staleとして保留する。正しいreceipt束縛を確認できない間はsend/retry attemptを発行しない。孤立した技術結果を成功として計上しない。
 
 ### CONNECT-CASE-006-02 — 互換・登録・意味変更failure matrix
 

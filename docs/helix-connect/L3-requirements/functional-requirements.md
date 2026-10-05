@@ -155,7 +155,7 @@
 
 **受入条件（AC候補）**
 
-- **CONNECT-AC-006-01 — 互換範囲内の一側交換**：4交換型を独立fixtureにし、各fixtureで登録済みconnection、変更側旧新revision、固定側機構・契約revision、scope、宣言互換条件を入力する。変更側を互換範囲内の新revisionへ交換し現在の両端契約を再照合した結果だけcompatibleとなり、同じconnection契約上の技術送受信ができる。固定側のidentity/content/revisionを前後で変更せず、業務意味/承認/許可を生成しない。未完operationがない場合は存在しない未完義務を作らない。
+- **CONNECT-AC-006-01 — 互換範囲内の一側交換**：4交換型を独立fixtureにし、各fixtureで登録済みconnection、変更側旧新revision、固定側機構・契約revision、scope、宣言互換条件を入力する。変更側を互換範囲内の新revisionへ交換し現在の両端契約を再照合した結果だけcompatibleとなり、同じconnection契約上の技術送受信ができる。各正常fixtureで変更側旧revision→交換後revision→同connection・scope・revision組に束縛したcurrent comparison receipt→connection/operation/attempt identity→技術結果を、一続きで順序づけられたtraceから辿れる。固定側のidentity/content/revisionを前後で変更せず、業務意味/承認/許可を生成しない。未完operationがない場合は存在しない未完義務を作らない。
 - **CONNECT-AC-006-02 — 非互換・不明・stale fail-close**：各4交換型について、不一致revision、未登録revision、意味契約変更、unknown照合、stale照合receiptをそれぞれ独立に与える（4×5の独立fixture）。交換後の互換照合で不一致・unknown・staleを検出し得るが、すべて送信・再送attempt 0で、compatibleを推定せず、固定側revisionを書き換えず、交換側の適切な技術ownerまたは両端契約ownerへ該当failureを戻す。両側を同時変更するfixtureはunknown/rejectとし、compatibleや片側交換の成功にせず、片側交換のpass計数から除外する。
 - **CONNECT-AC-006-03 — revision/未完義務continuity**：交換前に未完operationがあるfixtureで、旧revision→交換後revision→現在の互換照合receipt→connection/operation identity・attempt・技術結果を一続きのconnection traceで辿れるようにし、operation/ACK/attempt/expiry/義務を旧revisionと対応づけて交換後receipt/handoff/rollback/recoveryにも欠落なく保持する。旧新revisionの混載・旧receipt流用を拒否し、現在の互換照合と既存restart/recovery条件が確認される前は再開・retry・送信を0にする。停止位置と既存recovery先を明示する。
 - **CONNECT-AC-006-04 — authority/owner境界**：交換/復旧に適用するSECURITY許可が存在し有効な正常fixtureと、許可missing/unknown/expired/scope不一致の各反例を区別する。後者はexchange/sendを開始せず保留し、SECURITYへ戻す。契約意味の差分は両端owner、adapter/transport互換failureはadapter ownerへ戻し、receiptだけで両者の業務成立や承認を生成しない。
