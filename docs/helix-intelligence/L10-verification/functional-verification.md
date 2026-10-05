@@ -238,7 +238,7 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 
 ### CASE-INT-017-02 — 親固有fieldの独立negative（AC-INT-017-02）
 
-各行をCASE-INT-017-01の同一入力から作り、他fieldは有効な正常値に固定して一変数だけを変える。 固定L11:92の別owner代替反例は017-02h/02nに加え、permissionはCASE-INT-036-02h、acceptanceはCASE-INT-039-02c/02d/02fへtraceし、同一fixtureを重複分母へ入れない。
+各行をCASE-INT-017-01の同一入力から作り、他fieldは有効な正常値に固定して一変数だけを変える。 固定L11:92の別owner代替反例は017-02h/02nに加え、permissionはCASE-INT-036-02h、executionはCASE-INT-037-02i、acceptanceはCASE-INT-039-02c/02d/02fへtraceし、同一fixtureを重複分母へ入れない。
 
 | CASE | 単独変異 | 期待結果・戻し先 |
 |---|---|---|
