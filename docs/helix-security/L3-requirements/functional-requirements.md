@@ -510,7 +510,7 @@ INTELLIGENCE requestは案/要求入力であり実行許可ではない。SECUR
 
 ### SECURITY-FR-023-01 — update admissionからpromotionの段階別receipt
 
-更新candidate、provenanceとcapability delta、SECURITY admission、Worker実行、HARNESS verification、OS promotionを独立した段階として記録し、各段階のinput/output identity・revision・status・evidenceを連続して照合できるようにする。SECURITY acceptance単独で実行/promotionを許さず、HARNESS green単独でSECURITY admissionを代替せず、OS ticket単独で不明な条件を昇格しない。いずれかの段階でfailure/unknownなら後段状態をsuccess/promotionとして報告しない。SECURITYはpolicy/authority、Workerは実行、HARNESSはverification contract、OSはpromotion stateを所有する。
+更新candidate（provenance・capability deltaを含む）、SECURITY admission、Worker実行、HARNESS verification、OS promotionを独立した段階として記録し、各段階のinput/output identity・revision・status・evidenceを連続して照合できるようにする。SECURITY acceptance単独で実行/promotionを許さず、HARNESS green単独でSECURITY admissionを代替せず、OS ticket単独で不明な条件を昇格しない。いずれかの段階でfailure/unknownなら後段状態をsuccess/promotionとして報告しない。SECURITYはpolicy/authority、Workerは実行、HARNESSはverification contract、OSはpromotion stateを所有する。
 
 **旧HELIX対応**：CAP acceptanceの各failureを理由付きで残す構造、GH admissionのexact revision/coverage driftを照合材料として限定再利用する。security scan、CI/deploy、waiver、external settings/applyは固定親にないため要件へ昇格させず、段階責務を現L2-023から再導出する。
 
@@ -538,8 +538,8 @@ SECURITY policy/authorityとINFRASTRUCTUREが保持する実資源・runtime res
 
 **旧HELIX対応**：旧CAP:62,128–131のtyped decision/unknown拒否だけ部分参照する。旧CAP/paired全文のanalysis/semantic/Bot検索は該当0件であり、その区分の旧sourceはない。semantic判断と限定Bot Worker境界は固定採択L2-026とPO原文§21/§23から導出した案である。旧broker enum/runtimeを置換し、Bot実装能力を前倒ししない。
 
-- **固定親**：`HELIXSECURITY-L2-026` / `MPR-RC-HELIXSECURITY-L2-026-001`（PO採択、semantic digest `sha256:96119dbf9ec884d3e5556904ff5623bc18974c23cbaf0dfbfd89095cfc5aaad3`。current -002は同digestのmetadata-only後継で意味承認を生成しない）、version_target `1.x能力は1.x、Guard/Bot境界は1.0`。このStageはGuard/Bot責務境界のみ。固定L2 `633bf12...:322–331`、L11 `:50`、PO decision `:64,70`。PO:70は全操作authorityのうち026のGuard/Bot境界を1.0、意味接続能力を1.xに分ける適用条件である。ConceptのINTELLIGENCE判断・Bot発行責務（`docs/concept/helix-concept.md:222,229–230,236`、固定L2-026:330）をsourceとして対応付ける。
+- **固定親**：`HELIXSECURITY-L2-026` / `MPR-RC-HELIXSECURITY-L2-026-001`（PO採択、semantic digest `sha256:96119dbf9ec884d3e5556904ff5623bc18974c23cbaf0dfbfd89095cfc5aaad3`。current -002は同digestのmetadata-only後継で意味承認を生成しない）、version_target `1.x能力は1.x、Guard/Bot境界は1.0`。このStageはGuard/Bot責務境界のみ。固定L2 `633bf12...:322–331`、L11 `:50`、PO decision `:64,70`。PO:70は026の1.0 Guard/Bot境界と1.x意味接続能力を区別する。ConceptのINTELLIGENCE判断・Bot発行責務（`docs/concept/helix-concept.md:222,229–230,236`、固定L2-026:330）をsourceとして対応付ける。
 - **依存と戻し先**：L2-018/020、INTELLIGENCE L1/将来接続contract。Guard結果とsemantic judgement/diagnosis、判断由来と確度を区別する。semantic判断不能はunknown/制限として保持してINTELLIGENCEの意味責務へ戻す。SECURITYがmodel/routingを決めない。
-- **`SECURITY-AC-026-01` Guard remains deterministic**：Guardに定義済みの決定的条件をBot不在時にも判定し、Bot response待ちを理由にルールを飛ばさない。
-- **`SECURITY-AC-026-02` semantic input boundary**：必要時のsemantic inputは限定scope/由来/確度を識別するdecision inputとして区別し、Guard結果やauthorityそのものに変換しない。Security Botを選択する場合はINTELLIGENCE発行の目的・authority限定Workerという固定境界を保持し、独立の包括権限主体へ昇格させない。判断由来欠落、確度欠落、由来と確度の混同は、有効なdecision inputとして受理せずunknown/制限として保持しINTELLIGENCEの意味責務へ返す。この照合は契約境界を対象としBot runtimeの1.0稼働を要求しない。
+- **`SECURITY-AC-026-01` Guard remains deterministic**：Guardに定義済みの決定的条件をBot不在時にも判定し、Bot response待ちを理由にルールを飛ばさず、Botがいる場合も決定規則で強制できる条件をBotの判断へ委譲しない。
+- **`SECURITY-AC-026-02` semantic input boundary**：必要時のsemantic inputは限定scope/由来/確度を識別するdecision inputとして区別し、Guard結果やauthorityそのものに変換しない。Security Botを選択する場合はINTELLIGENCE発行の目的・authority限定Workerという固定境界を保持し、独立の包括権限主体へ昇格させない。semantic判断不能（unknown結果）はpassにせず、unknown/制限として返す。判断由来欠落、確度欠落、由来と確度の混同は、有効なdecision inputとして受理せずunknown/制限として保持しINTELLIGENCEの意味責務へ返す。この照合は契約境界を対象としBot runtimeの1.0稼働を要求しない。
 - **`SECURITY-AC-026-03` version and owner boundary**：semantic probing/exfiltration実利用とBot runtimeは1.xまたは必要な後続版として残す。全例示Botを1.0 runtime必須にせず、SECURITYがmodel/routingを選ばない。
