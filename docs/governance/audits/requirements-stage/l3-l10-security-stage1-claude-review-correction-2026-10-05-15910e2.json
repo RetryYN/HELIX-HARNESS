@@ -1,0 +1,483 @@
+{
+  "schema_version": "helix.security.stage1.claude-review-correction.v1",
+  "status": "local corrective audit; root semantic inspection and independent exact-HEAD review remain pending",
+  "mechanism": "HELIX-SECURITY",
+  "stage": "Stage 1",
+  "review_source": {
+    "path": "/tmp/pr2578-claude-review01.md",
+    "finding_count": 58,
+    "major": 26,
+    "minor": 32,
+    "response_envelope": "/tmp/pr2578-response01-envelope.json",
+    "response_result": "incomplete",
+    "response_authority_effect": "none",
+    "response_digest": "77a86201788fe9c5a4141de827c1c8e2ce208b10079663230fa01b000db18e4b"
+  },
+  "base_revision": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+  "prior_body_head": "d7008db1c3b5ff1d5ff5874b2ac6b59386ae3cc4",
+  "body_commit": "15910e2f28bf7e99b240e093bc732cfae52b01fe",
+  "body_commit_parent": "d7008db1c3b5ff1d5ff5874b2ac6b59386ae3cc4",
+  "documents": [
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "sha256": "db317622a78a2d2d978b4b3747330afc2b99f9f319732748d74df37c6ab138d3",
+      "line_count": 324
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "sha256": "c276ee71aed600834e244f908e6ed1274fe9bbbe745c7aaa49339716e0f08975",
+      "line_count": 245
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "sha256": "e2f5cdc12cda9cafb45b34e284833a5b8d6d2a88e212d5524538fe0d49e0e0b4",
+      "line_count": 45
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "sha256": "4faf61c1f5b118423dc164c11a3c534ffa8b862e4d2d7a590fd0533a9921ced2",
+      "line_count": 19
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "sha256": "fcf2504a4fef152d1829fddb1a9d65397cb16114a6edbd964c619422da75097d",
+      "line_count": 5
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "sha256": "717e206126b910a8261e5448227bb73b0961ac3dbf3f1f71a41ef487dc0f6ee5",
+      "line_count": 3
+    }
+  ],
+  "finding_dispositions": [
+    {
+      "id": "X1",
+      "severity": "Major",
+      "disposition": "addressed_in_body",
+      "response": "FR-001/002/003/005に採択L2の束ねる既存条件と旧source根拠を追記。"
+    },
+    {
+      "id": "X2",
+      "severity": "Major",
+      "disposition": "addressed_in_body",
+      "response": "015/016/020の版境界を1.0基盤・1.x適用、Guard1.0/Bot必要時へ明記。"
+    },
+    {
+      "id": "001-1",
+      "severity": "Major",
+      "disposition": "addressed_in_body",
+      "response": "AI生成物とclassificationをAC/CASEに追加、unknownを未信頼保持。"
+    },
+    {
+      "id": "001-2",
+      "severity": "Major",
+      "disposition": "addressed_in_body",
+      "response": "要求/authority/BRAIN/policy等のtarget別昇格negativeを列挙。"
+    },
+    {
+      "id": "001-3",
+      "severity": "Major",
+      "disposition": "addressed_in_body",
+      "response": "明示promotion経路/未昇格出力/read-onlyとauthority経路を分離。"
+    },
+    {
+      "id": "002-1",
+      "severity": "Major",
+      "disposition": "addressed_in_body",
+      "response": "固定5例（AGENTS.mdとmemory含む）を独立fixture化。"
+    },
+    {
+      "id": "003-1",
+      "severity": "Major",
+      "disposition": "addressed_in_body",
+      "response": "project/tenant/environment/worktreeとstate/Agent/Hook/credential/memory/artifact/Worker各軸の独立negative。"
+    },
+    {
+      "id": "003-2",
+      "severity": "Major",
+      "disposition": "addressed_in_body",
+      "response": "適用tenant照合省略をnegative化。"
+    },
+    {
+      "id": "004-1",
+      "severity": "Major",
+      "disposition": "addressed_in_body",
+      "response": "10 config種別をAC/FVに列挙し、各identity/revision/scopeの欠落・driftを照合。"
+    },
+    {
+      "id": "005-1",
+      "severity": "Major",
+      "disposition": "addressed_in_body",
+      "response": "unknown credential classとinspection impossibleを個別deny/stop。"
+    },
+    {
+      "id": "006-1",
+      "severity": "Major",
+      "disposition": "addressed_in_body",
+      "response": "known purpose/authority/source mismatchを個別negative。"
+    },
+    {
+      "id": "007-1",
+      "severity": "Major",
+      "disposition": "addressed_in_body",
+      "response": "9制御表に独立変異を追加。read-only post-state/receipt、credential provider/unknown、timeout、resource self-expansion、rollback recovery、相殺禁止を明記。"
+    },
+    {
+      "id": "007-2",
+      "severity": "Major",
+      "disposition": "addressed_in_body",
+      "response": "SECURITY policy値、Worker実適用、INFRASTRUCTURE観測へownerを修正。"
+    },
+    {
+      "id": "007-3",
+      "severity": "Major",
+      "disposition": "addressed_in_body",
+      "response": "ACへstop/rollback/resume可否を追加しunknown resumeを停止。"
+    },
+    {
+      "id": "009-1",
+      "severity": "Major",
+      "disposition": "addressed_in_body",
+      "response": "前状態identityを保持した復旧可能性と復旧不能negativeを追加。"
+    },
+    {
+      "id": "012-1",
+      "severity": "Major",
+      "disposition": "addressed_in_body",
+      "response": "unknown provenance fieldを名前付きで結果に出す。"
+    },
+    {
+      "id": "015-1",
+      "severity": "Major",
+      "disposition": "addressed_in_body",
+      "response": "同一asset/revisionの安定identity、revision/digest変更の区別を追加。"
+    },
+    {
+      "id": "020-1",
+      "severity": "Major",
+      "disposition": "addressed_in_body",
+      "response": "1.0 credential/egress/operation guard延期を個別negative、Core Asset Guard基盤のnormal範囲を明記。"
+    },
+    {
+      "id": "028-1",
+      "severity": "Major",
+      "disposition": "addressed_in_body",
+      "response": "L2にないOS/artifact-owner意味を除去。"
+    },
+    {
+      "id": "028-2",
+      "severity": "Major",
+      "disposition": "addressed_in_body",
+      "response": "L2-010/013条件falseを独立fixture化。"
+    },
+    {
+      "id": "033-1",
+      "severity": "Major",
+      "disposition": "addressed_in_body",
+      "response": "direct commit/adopt/merge/promote拒否、isolated worktree通常成果は許可、別HEAD成果拒否。"
+    },
+    {
+      "id": "033-2",
+      "severity": "Major",
+      "disposition": "addressed_in_body",
+      "response": "HEAD/authority tuple各要素/rule revision/observation/boundaryを独立変異し理由・revision・不足・戻し先を保持。"
+    },
+    {
+      "id": "033-3",
+      "severity": "Major",
+      "disposition": "addressed_in_body",
+      "response": "主Workerと選択追加runtimeの029/031境界、runtime/permission非推定を明記。"
+    },
+    {
+      "id": "033-4",
+      "severity": "Major",
+      "disposition": "addressed_in_body",
+      "response": "L11 124–133 raw spanとP0 145–151を別oracleでpin。"
+    },
+    {
+      "id": "033-5",
+      "severity": "Major",
+      "disposition": "addressed_in_body",
+      "response": "CONNECT責務を外し、HARNESSは選択task contractだけへ限定。"
+    },
+    {
+      "id": "033-6",
+      "severity": "Major",
+      "disposition": "addressed_in_body",
+      "response": "L11採択spanを124–133、SHA 6d83…60be0へ修正。"
+    },
+    {
+      "id": "x3",
+      "severity": "Minor",
+      "disposition": "addressed_in_body_or_corrective_audit",
+      "response": "旧ledger metadata-only correction (2026-10-03) の履歴を正本本文へ注記。"
+    },
+    {
+      "id": "x4",
+      "severity": "Minor",
+      "disposition": "addressed_in_body_or_corrective_audit",
+      "response": "HR-FR-P8-04をline171のみへ修正。"
+    },
+    {
+      "id": "x5",
+      "severity": "Minor",
+      "disposition": "addressed_in_body_or_corrective_audit",
+      "response": "PO decision file revision/full SHAと親ごとの採択行SHAを追記。"
+    },
+    {
+      "id": "x6",
+      "severity": "Minor",
+      "disposition": "addressed_in_body_or_corrective_audit",
+      "response": "旧static auditは改変せず、f1d269候補canonical SHAは別revision historical pinとし現在の採択本文SHAでないと訂正。"
+    },
+    {
+      "id": "002-2",
+      "severity": "Minor",
+      "disposition": "addressed_in_body_or_corrective_audit",
+      "response": "証明不能boundary時の停止fixtureを追加。"
+    },
+    {
+      "id": "003-3",
+      "severity": "Minor",
+      "disposition": "addressed_in_body_or_corrective_audit",
+      "response": "identity collisionをAC/CASEのnegativeへ追加。"
+    },
+    {
+      "id": "004-2",
+      "severity": "Minor",
+      "disposition": "addressed_in_body_or_corrective_audit",
+      "response": "revision欠落をnegative列挙へ追加。"
+    },
+    {
+      "id": "004-3",
+      "severity": "Minor",
+      "disposition": "addressed_in_body_or_corrective_audit",
+      "response": "owner unknown維持、Concept構成版/切戻し候補のsource/revision/evidenceを追加。"
+    },
+    {
+      "id": "005-2",
+      "severity": "Minor",
+      "disposition": "addressed_in_body_or_corrective_audit",
+      "response": "repository混入を明記。"
+    },
+    {
+      "id": "005-3",
+      "severity": "Minor",
+      "disposition": "addressed_in_body_or_corrective_audit",
+      "response": "purposeをL2-005 inputへ戻しL2-008 tuple外と明記。"
+    },
+    {
+      "id": "005-4",
+      "severity": "Minor",
+      "disposition": "addressed_in_body_or_corrective_audit",
+      "response": "SEC-NFR-008の005適用クロスウォークを追加。"
+    },
+    {
+      "id": "006-2",
+      "severity": "Minor",
+      "disposition": "addressed_in_body_or_corrective_audit",
+      "response": "source identity欠落とphysical path unknown→L2-024 fixtureを追加。"
+    },
+    {
+      "id": "007-4",
+      "severity": "Minor",
+      "disposition": "addressed_in_body_or_corrective_audit",
+      "response": "CASE-007 credentials:noneを入力としてscoped use positiveは033へ分離。"
+    },
+    {
+      "id": "007-5",
+      "severity": "Minor",
+      "disposition": "addressed_in_body_or_corrective_audit",
+      "response": "environment source revisionを明記。"
+    },
+    {
+      "id": "008-1",
+      "severity": "Minor",
+      "disposition": "addressed_in_body_or_corrective_audit",
+      "response": "allow/deny/constrainと判断理由をAC/FVへ追加。"
+    },
+    {
+      "id": "008-2",
+      "severity": "Minor",
+      "disposition": "addressed_in_body_or_corrective_audit",
+      "response": "11 operationを列挙しoperation置換negativeを追加。"
+    },
+    {
+      "id": "008-3",
+      "severity": "Minor",
+      "disposition": "addressed_in_body_or_corrective_audit",
+      "response": "旧CAP asset/path/行/SHAを特定。"
+    },
+    {
+      "id": "009-2",
+      "severity": "Minor",
+      "disposition": "addressed_in_body_or_corrective_audit",
+      "response": "SECURITY state代行、recipient状態の取り違えを分離。"
+    },
+    {
+      "id": "010-1",
+      "severity": "Minor",
+      "disposition": "addressed_in_body_or_corrective_audit",
+      "response": "新規実行物とcredential/hook-config差分を個別に名指し。"
+    },
+    {
+      "id": "013-1",
+      "severity": "Minor",
+      "disposition": "addressed_in_body_or_corrective_audit",
+      "response": "producer-only mismatchをCASE追加。"
+    },
+    {
+      "id": "014-1",
+      "severity": "Minor",
+      "disposition": "addressed_in_body_or_corrective_audit",
+      "response": "汎用source-owner戻し先を除去しL1-014/L2-027へ限定。"
+    },
+    {
+      "id": "015-2",
+      "severity": "Minor",
+      "disposition": "addressed_in_body_or_corrective_audit",
+      "response": "SEC-NFR-003をL2-016だけにcrosswalk。"
+    },
+    {
+      "id": "020-2",
+      "severity": "Minor",
+      "disposition": "addressed_in_body_or_corrective_audit",
+      "response": "Core Asset Guard 1.0 normal fixtureはL2-015/016基盤のみ。"
+    },
+    {
+      "id": "020-3",
+      "severity": "Minor",
+      "disposition": "addressed_in_body_or_corrective_audit",
+      "response": "Botの既存Worker/INTELLIGENCE契約迂回をnegative化。"
+    },
+    {
+      "id": "028-3",
+      "severity": "Minor",
+      "disposition": "addressed_in_body_or_corrective_audit",
+      "response": "identity/version/digest別missing/mismatchとversion_target≠実版を追加。"
+    },
+    {
+      "id": "028-4",
+      "severity": "Minor",
+      "disposition": "addressed_in_body_or_corrective_audit",
+      "response": "descriptorを拡張せずcandidateとの照合と明確化。"
+    },
+    {
+      "id": "028-5",
+      "severity": "Minor",
+      "disposition": "addressed_in_body_or_corrective_audit",
+      "response": "旧source検索範囲・不在結果をFRへ追記。"
+    },
+    {
+      "id": "033-7",
+      "severity": "Minor",
+      "disposition": "addressed_in_body_or_corrective_audit",
+      "response": "OS/Worker/SECURITY/HARNESSのowner代行を個別確認。"
+    },
+    {
+      "id": "033-8",
+      "severity": "Minor",
+      "disposition": "addressed_in_body_or_corrective_audit",
+      "response": "schema/別承認者の新設禁止をCASE追加。"
+    },
+    {
+      "id": "033-9",
+      "severity": "Minor",
+      "disposition": "addressed_in_body_or_corrective_audit",
+      "response": "raw secret-value requiredとsecret/confidential task contentを別negative。"
+    },
+    {
+      "id": "033-10",
+      "severity": "Minor",
+      "disposition": "addressed_in_body_or_corrective_audit",
+      "response": "NFR-001 environment/AC033、NFR-008 AC033とL2-005 crosswalkを追加し、初回だけ再照合案を削除。"
+    },
+    {
+      "id": "033-11",
+      "severity": "Minor",
+      "disposition": "addressed_in_body_or_corrective_audit",
+      "response": "project/assignment目的/成果形式/scope/budget-deadline、provider/追加runtimeに依存しない適用境界を追加。"
+    }
+  ],
+  "source_pin_basis": {
+    "prior_immutable_static_audit": "docs/governance/audits/requirements-stage/l3-l10-security-stage1-static-validation-2026-10-05-a95b77aad.json",
+    "prior_static_audit_sha256": "cfe1aef3ffc96b87be87298769f96bc78254585398e6179bb72e7c10e25790b1",
+    "fixed_l2_l11_pins_retained": true,
+    "po_decision_pins_retained": true,
+    "legacy_source_pins_retained": true,
+    "033_p0_adopted_decision_pins_retained": true,
+    "current_line_pins_from_prior_audit_are_historical_and_not_asserted_current": true
+  },
+  "candidate_source_pin_correction": {
+    "prior_audit_field": "candidate_source_canonical_sha",
+    "prior_candidate_source_revision": "f1d269ac90d2b757c4ff5c0180eb4835b807316d",
+    "prior_values": {
+      "docs/helix-security/L3-requirements/functional-requirements.md": {
+        "candidate_revision": "f1d269ac90d2b757c4ff5c0180eb4835b807316d",
+        "candidate_sha256": "771037f2cf5969e204be9a6de45c3e27639e17de6605d18c0805eb486e2698ac",
+        "saved_head": "a5192449766859117759118c533181eec0957c02",
+        "saved_sha256": "771037f2cf5969e204be9a6de45c3e27639e17de6605d18c0805eb486e2698ac",
+        "same_bytes": true
+      },
+      "docs/helix-security/L3-requirements/business-requirements.md": {
+        "candidate_revision": "f1d269ac90d2b757c4ff5c0180eb4835b807316d",
+        "candidate_sha256": "1af36e50331c5c2bdc81c673f27d4246f9d68431b70b086cac467a1843c4c962",
+        "saved_head": "a5192449766859117759118c533181eec0957c02",
+        "saved_sha256": "1af36e50331c5c2bdc81c673f27d4246f9d68431b70b086cac467a1843c4c962",
+        "same_bytes": true
+      },
+      "docs/helix-security/L3-requirements/nfr-grade.md": {
+        "candidate_revision": "f1d269ac90d2b757c4ff5c0180eb4835b807316d",
+        "candidate_sha256": "68551b172f001775e391b672fd8ed08656b979c73bc3568203ca4f4e584d84ed",
+        "saved_head": "a5192449766859117759118c533181eec0957c02",
+        "saved_sha256": "68551b172f001775e391b672fd8ed08656b979c73bc3568203ca4f4e584d84ed",
+        "same_bytes": true
+      },
+      "docs/helix-security/L10-verification/functional-verification.md": {
+        "candidate_revision": "f1d269ac90d2b757c4ff5c0180eb4835b807316d",
+        "candidate_sha256": "014c838d5b1b2147b4c8d7e42db44879a3a08f215a0aa28ea9576a0a94582880",
+        "saved_head": "a5192449766859117759118c533181eec0957c02",
+        "saved_sha256": "014c838d5b1b2147b4c8d7e42db44879a3a08f215a0aa28ea9576a0a94582880",
+        "same_bytes": true
+      },
+      "docs/helix-security/L10-verification/business-verification.md": {
+        "candidate_revision": "f1d269ac90d2b757c4ff5c0180eb4835b807316d",
+        "candidate_sha256": "ad08edf371718482f9419131feed915ec2f584859383de98ab90e4050c81d755",
+        "saved_head": "a5192449766859117759118c533181eec0957c02",
+        "saved_sha256": "ad08edf371718482f9419131feed915ec2f584859383de98ab90e4050c81d755",
+        "same_bytes": true
+      },
+      "docs/helix-security/L10-verification/nfr-verification.md": {
+        "candidate_revision": "f1d269ac90d2b757c4ff5c0180eb4835b807316d",
+        "candidate_sha256": "a3585872aee0da1af0df60660b5f2edd29e74655967efd09cbc6ebab0f94d528",
+        "saved_head": "a5192449766859117759118c533181eec0957c02",
+        "saved_sha256": "a3585872aee0da1af0df60660b5f2edd29e74655967efd09cbc6ebab0f94d528",
+        "same_bytes": true
+      }
+    },
+    "finding": "Those six values describe the separately saved f1d269ac90d2b757c4ff5c0180eb4835b807316d candidate, not a descendant of a95b77aad and not current reviewed body. Preserve the old audit verbatim; current exact body SHAs are in documents."
+  },
+  "old_source_disposition": {
+    "assets_count": 13,
+    "full_hashes": "Retained from the prior immutable audit; all 13 full source SHA values were previously checked there. This repair directly re-read the P8-04, HR-NFR-P8-02, CAP, SEA scoping, architecture secret predicate and cited P2-05 spans.",
+    "metadata_correction_note": "The asset EE5DB... is described as receiving the 2026-10-03 metadata-only correction reported by the review; original source SHA and semantic text remain unchanged."
+  },
+  "static_checks": {
+    "git_diff_check": "PASS",
+    "scfctl_validate": "147 bindings, fail=0",
+    "scfctl_stale": "stale=0",
+    "scfctl_residuals": "residuals=0",
+    "govcheck": "ok, atoms=7622, requirements=57, files=58",
+    "legacy_runtime_tests_ci_bun": "not run"
+  },
+  "limits": [
+    "033 semantic digest b486a0c4… was not independently recomputed; fixed PO registration value was retained.",
+    "Prior audit current_line_pins refer to its then-current file state and are explicitly not current-line evidence for this correction.",
+    "This worker correction is not independent review, PO approval, Ready decision, or merge admission."
+  ],
+  "notices": [
+    "No new business outcome/BR/BV identity was added; those two business documents were unchanged.",
+    "No prior immutable audit or response envelope was modified.",
+    "No push, PR, mailbox, old runtime, test, CI, or Bun action occurred."
+  ]
+}

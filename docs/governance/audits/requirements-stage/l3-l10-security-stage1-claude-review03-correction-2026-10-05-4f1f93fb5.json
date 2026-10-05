@@ -1,0 +1,1111 @@
+{
+  "schema_version": "helix.security.stage1.claude-review03-correction-audit.v1",
+  "status": "local corrective authoring audit; root semantic inspection and independent exact-HEAD review pending",
+  "mechanism": "HELIX-SECURITY",
+  "stage": "Stage 1",
+  "scope": "Correct all 4 Major and 14 Minor findings in official comment 5986152189; no L2/owner/scope/version/authority change.",
+  "review_source": {
+    "comment_id": 5986152189,
+    "comment_path": "/tmp/pr2578-review03.md",
+    "comment_body_sha256": "fc2dd2260d3c0e090b30794e00fabebb7180b840686e063dc25b33f926116bc7",
+    "review_head": "170272a4b562bee3f1c34a4c514f01454978a84b",
+    "finding_counts": {
+      "major": 4,
+      "minor": 14,
+      "blocker": 0
+    }
+  },
+  "body_commit": "4f1f93fb5e9eb085f7abf49a810b3da667757b85",
+  "body_commit_parent": "170272a4b562bee3f1c34a4c514f01454978a84b",
+  "body_commit_subject": "docs(security): address Stage 1 review03 findings",
+  "changed_documents": [
+    "docs/helix-security/L3-requirements/functional-requirements.md",
+    "docs/helix-security/L10-verification/functional-verification.md"
+  ],
+  "six_current_canonical_documents": [
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "full_file_sha256": "fcf2504a4fef152d1829fddb1a9d65397cb16114a6edbd964c619422da75097d",
+      "bytes": 747,
+      "physical_line_count": 5
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "full_file_sha256": "e44778ca2650289dda413f7b683453df9dc4a2ddead2e1561bb843b85317bb4a",
+      "bytes": 66445,
+      "physical_line_count": 324
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "full_file_sha256": "3fe1d98024d5a54e734ab8276ee3d55af78d743c7f1bf12b46b9d351139fe50b",
+      "bytes": 6964,
+      "physical_line_count": 45
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "full_file_sha256": "717e206126b910a8261e5448227bb73b0961ac3dbf3f1f71a41ef487dc0f6ee5",
+      "bytes": 526,
+      "physical_line_count": 3
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "full_file_sha256": "6c530f510340112ca21de3d76599a3f80ac071bbfec3131186a15b6df069affc",
+      "bytes": 50347,
+      "physical_line_count": 250
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "full_file_sha256": "37d223cb22f8a7923662967ad501200e5f2a7e5f4db436a180d7af3affd0da9c",
+      "bytes": 4983,
+      "physical_line_count": 19
+    }
+  ],
+  "finding_dispositions": [
+    {
+      "id": "M1 (X1-005)",
+      "severity": "Major",
+      "location": "FR:118",
+      "disposition": "addressed_in_body",
+      "response": "旧assetをLEGACY-ASSET-99C939E249CAF40935CBへ修正しfull SHAとlines 61–64を明記。Capability Leaseはarchive内不在の検索範囲を明記し、L1-005が指す現行判断記録とfull SHAへsource pin。"
+    },
+    {
+      "id": "M2 (020 L11 quote)",
+      "severity": "Major",
+      "location": "FV:206",
+      "disposition": "addressed_in_body",
+      "response": "L11:44原文を固定oracleへ戻し、既存contract条件をBot fixtureで判定するよう分離。"
+    },
+    {
+      "id": "M3 (033-2)",
+      "severity": "Major",
+      "location": "FR:322; FV:225–226",
+      "disposition": "addressed_in_body",
+      "response": "L2-007隔離制約の適用不能と観測不能を別変異にして、対象dispatchだけ停止・戻し先保持。"
+    },
+    {
+      "id": "M4 (033-5)",
+      "severity": "Major",
+      "location": "FR:320",
+      "disposition": "addressed_in_body",
+      "response": "固定L2:462の選択task contract文意へ再記述し「共通」「証拠交換」を削除。"
+    },
+    {
+      "id": "x3 / N2",
+      "severity": "Minor",
+      "location": "FR:38",
+      "disposition": "addressed_in_body_and_new_audit",
+      "response": "EE5 assetに2026-10-03 metadata correctionがあったとの誤記を除き、対象はL2-003 registration MPR -002と明記。旧auditは不変、新auditへ誤記訂正履歴を記録。"
+    },
+    {
+      "id": "N3 (FV:40,49)",
+      "severity": "Minor",
+      "location": "FV:40,49",
+      "disposition": "addressed_in_body",
+      "response": "固定L11:25/26のoracle文を正確に戻し、source identity/classification等はfixture側へ分離。"
+    },
+    {
+      "id": "N4 (FR:126)",
+      "severity": "Minor",
+      "location": "FR:126",
+      "disposition": "addressed_in_body",
+      "response": "assignment contextを除き、fixed L2-005 credential request actor/environmentをL2-008 tupleと照合。"
+    },
+    {
+      "id": "N5 (FV:89,91)",
+      "severity": "Minor",
+      "location": "FV: SECURITY-CASE-006-01",
+      "disposition": "addressed_in_body",
+      "response": "source identity欠落の独立fixtureと不合格oracleを明記。"
+    },
+    {
+      "id": "007-1",
+      "severity": "Minor",
+      "location": "FV:116,118",
+      "disposition": "addressed_in_body",
+      "response": "Worker自己拡張、rollback不能を独立変異として追加。"
+    },
+    {
+      "id": "007-2",
+      "severity": "Minor",
+      "location": "FV:101",
+      "disposition": "addressed_in_body",
+      "response": "owner declarationをSECURITY policy revisionの宣言値に特定。"
+    },
+    {
+      "id": "007-5",
+      "severity": "Minor",
+      "location": "FV:114",
+      "disposition": "addressed_in_body",
+      "response": "policy revisionとsource revisionを別々の束縛対象として列挙。"
+    },
+    {
+      "id": "007 timeout",
+      "severity": "Minor",
+      "location": "FV:115",
+      "disposition": "addressed_in_body",
+      "response": "L11 fixture descriptor 90sとfixture由来の記録を回復し、製品既定値でないことを維持。"
+    },
+    {
+      "id": "013-1",
+      "severity": "Minor",
+      "location": "FV:170",
+      "disposition": "addressed_in_body",
+      "response": "producerだけの変更をCASE-013の独立negative fixtureに追加。"
+    },
+    {
+      "id": "020-1",
+      "severity": "Minor",
+      "location": "FV:207",
+      "disposition": "addressed_in_body",
+      "response": "Bot応答待ちだけを変える別fixtureで決定結果/権限不変を確認。"
+    },
+    {
+      "id": "033-1",
+      "severity": "Minor",
+      "location": "FR: SECURITY-AC-033-01",
+      "disposition": "addressed_in_body",
+      "response": "別HEADで作成した成果を同一task結果として受理する変異を不合格に追加。"
+    },
+    {
+      "id": "N3-033 digest",
+      "severity": "Minor",
+      "location": "FR:318",
+      "disposition": "addressed_in_body_and_source_pin",
+      "response": "receipt candidate_digest_ruleと318ec4aでのb486値、633bf12でP0 tailが異なるため再計算値0008f6e6…となることを明記。"
+    },
+    {
+      "id": "N4-033 owner",
+      "severity": "Minor",
+      "location": "FV:235",
+      "disposition": "addressed_in_body",
+      "response": "INFRASTRUCTUREをL2-033 ownerとして割当てず、L2-007 physical application observation ownerへ返す記述に限定。"
+    },
+    {
+      "id": "N5-audit",
+      "severity": "Minor",
+      "location": "new audit legacy source reconciliation",
+      "disposition": "addressed_in_new_audit",
+      "response": "78eadc096の誤ったP8-04 range 168–171を171へ訂正し、本文に引用されるarchitecture/SEA assetsとraw spansを追加。旧audit bytes不変。"
+    }
+  ],
+  "fixed_source_pins": [
+    {
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "source_path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "physical_lines": {
+        "start": 70,
+        "end": 76
+      },
+      "full_file_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "raw_lf_inclusive_span_sha256": "b2e00a18e9f8d5a248e650c9fe3fdd7896ba7829363fe4be3c38fc24dcfbb004",
+      "span_bytes": 939,
+      "role": "採択L2-001 source identity / untrusted boundary"
+    },
+    {
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "source_path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "physical_lines": {
+        "start": 80,
+        "end": 86
+      },
+      "full_file_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "raw_lf_inclusive_span_sha256": "64cdfc66f0e8462b6c8932832fa09b5bb9bc30c1a0d427ef50ef6a4eb162f62b",
+      "span_bytes": 877,
+      "role": "採択L2-002 instruction-like data boundary"
+    },
+    {
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "source_path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "physical_lines": {
+        "start": 110,
+        "end": 117
+      },
+      "full_file_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "raw_lf_inclusive_span_sha256": "aeb8348bd1154707ea32ef43caa2977671462d8be8c7c6de998a022544481bcd",
+      "span_bytes": 1062,
+      "role": "採択L2-005 credential request and dependency"
+    },
+    {
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "source_path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "physical_lines": {
+        "start": 130,
+        "end": 138
+      },
+      "full_file_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "raw_lf_inclusive_span_sha256": "1ee4d42a1e4178d598ce11b75268845578ba83bcb8ea471e2642ff8630c49504",
+      "span_bytes": 1371,
+      "role": "採択L2-007 execution constraints and failure return"
+    },
+    {
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "source_path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "physical_lines": {
+        "start": 260,
+        "end": 266
+      },
+      "full_file_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "raw_lf_inclusive_span_sha256": "649361c0483bee6a0f0ad484ff7d7317061feaae8f37e235a3b0881f1c31dff0",
+      "span_bytes": 1197,
+      "role": "採択L2-020 Guard/Bot split and scope"
+    },
+    {
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "source_path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "physical_lines": {
+        "start": 455,
+        "end": 466
+      },
+      "full_file_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "raw_lf_inclusive_span_sha256": "4707d0a3deb5158f72f6b36e111d7c0519015181de390c06f0d2a45601b4eb0d",
+      "span_bytes": 4939,
+      "role": "採択L2-033 context binding and dispatch conditions"
+    },
+    {
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "source_path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "physical_lines": {
+        "start": 479,
+        "end": 499
+      },
+      "full_file_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "raw_lf_inclusive_span_sha256": "5a412f14079c6011921d9ede63a762e3648dcdce55ca5fdd422a2596cf43d7d8",
+      "span_bytes": 10400,
+      "role": "採択L2-033 P0 credential-use supplement and exact fixed snapshot tail"
+    },
+    {
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "source_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "physical_lines": {
+        "start": 25,
+        "end": 25
+      },
+      "full_file_sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+      "raw_lf_inclusive_span_sha256": "8e22198c3258b212cf56135925e1e6b000c1b937da6e2bf1add8a0133c51a446",
+      "span_bytes": 307,
+      "role": "採択L11-001 exact acceptance oracle"
+    },
+    {
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "source_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "physical_lines": {
+        "start": 26,
+        "end": 26
+      },
+      "full_file_sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+      "raw_lf_inclusive_span_sha256": "e3be2a9d718395db4d018280b458e3c85e508bb68c59ae9828f1e486c99c3890",
+      "span_bytes": 403,
+      "role": "採択L11-002 exact acceptance oracle"
+    },
+    {
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "source_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "physical_lines": {
+        "start": 29,
+        "end": 29
+      },
+      "full_file_sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+      "raw_lf_inclusive_span_sha256": "19f3e8c523ec522f35982ed3837c21fb6c22623c587d17fd7ae6bad1f6a3f107",
+      "span_bytes": 314,
+      "role": "採択L11-005 credential boundary"
+    },
+    {
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "source_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "physical_lines": {
+        "start": 78,
+        "end": 82
+      },
+      "full_file_sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+      "raw_lf_inclusive_span_sha256": "b5fd72f666cf30fef54dd080bd3b04b2c89e536bf74cf9670748e40c9484e12b",
+      "span_bytes": 1900,
+      "role": "採択L11-007 environment/timeout/resource/rollback fixtures"
+    },
+    {
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "source_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "physical_lines": {
+        "start": 183,
+        "end": 186
+      },
+      "full_file_sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+      "raw_lf_inclusive_span_sha256": "fad1356a0d0654fc9b5efc5204ce99f2f0848b4020d33e41da7e2d92d712c5ae",
+      "span_bytes": 2528,
+      "role": "採択L11-007 physical-application observation ownership"
+    },
+    {
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "source_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "physical_lines": {
+        "start": 44,
+        "end": 44
+      },
+      "full_file_sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+      "raw_lf_inclusive_span_sha256": "e1f35dbf0b682c5116651b9ae56775164928126e546ae8a3b8c7a57448b41fe5",
+      "span_bytes": 936,
+      "role": "採択L11-020 exact Guard/Bot oracle"
+    },
+    {
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "source_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "physical_lines": {
+        "start": 124,
+        "end": 133
+      },
+      "full_file_sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+      "raw_lf_inclusive_span_sha256": "6d83abe63e3e852d58d9a9a60ae39c6b29284b6b8ab781bdb86456e479e60be0",
+      "span_bytes": 4047,
+      "role": "採択L11-033 five eligible/refusal/output/ownership clauses"
+    },
+    {
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "source_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "physical_lines": {
+        "start": 145,
+        "end": 151
+      },
+      "full_file_sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+      "raw_lf_inclusive_span_sha256": "e4bed8944412cc5ca6effc0c6ddd2a314ea309aa23f36c88d6467e3c7010d0a6",
+      "span_bytes": 1836,
+      "role": "採択L11-033 P0 supplement"
+    },
+    {
+      "source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "source_path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "physical_lines": {
+        "start": 455,
+        "end": 466
+      },
+      "full_file_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+      "raw_lf_inclusive_span_sha256": "4707d0a3deb5158f72f6b36e111d7c0519015181de390c06f0d2a45601b4eb0d",
+      "span_bytes": 4939,
+      "role": "L2-033 candidate section at digest source revision"
+    },
+    {
+      "source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "source_path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "physical_lines": {
+        "start": 479,
+        "end": 485
+      },
+      "full_file_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+      "raw_lf_inclusive_span_sha256": "15c0ea7827a41bd6bca6ba2b0fb70597ad1e9a9d27b5073687b2b41745fdc6df",
+      "span_bytes": 1731,
+      "role": "L2-033 P0 tail at digest source revision"
+    },
+    {
+      "source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "source_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "physical_lines": {
+        "start": 124,
+        "end": 133
+      },
+      "full_file_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
+      "raw_lf_inclusive_span_sha256": "6d83abe63e3e852d58d9a9a60ae39c6b29284b6b8ab781bdb86456e479e60be0",
+      "span_bytes": 4047,
+      "role": "L11-033 candidate acceptance at source revision"
+    },
+    {
+      "source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "source_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "physical_lines": {
+        "start": 145,
+        "end": 151
+      },
+      "full_file_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
+      "raw_lf_inclusive_span_sha256": "e4bed8944412cc5ca6effc0c6ddd2a314ea309aa23f36c88d6467e3c7010d0a6",
+      "span_bytes": 1836,
+      "role": "L11-033 P0 supplement at source revision"
+    },
+    {
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "source_path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+      "physical_lines": {
+        "start": 41,
+        "end": 41
+      },
+      "full_file_sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff",
+      "raw_lf_inclusive_span_sha256": "f9cfd2c09986ba079f2ae1d769967f297449e6ea725a1c83a7a5aaa1c0edbf0a",
+      "span_bytes": 204,
+      "role": "PO registration record for L2-003 revisions"
+    },
+    {
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "source_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "physical_lines": {
+        "start": 124,
+        "end": 124
+      },
+      "full_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "raw_lf_inclusive_span_sha256": "a24ae9b3400a40b478dddcfe3374a6df602b807cb0803973faeac44f6872b35f",
+      "span_bytes": 193,
+      "role": "PO adopted P0 correction decision row"
+    },
+    {
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "source_path": "docs/governance/audits/requirement-registration/security-v13-worker-context-coverage-receipt-2026-09-28-r2.json",
+      "physical_lines": {
+        "start": 5,
+        "end": 5
+      },
+      "full_file_sha256": "723df890641b8746e5882e17e86749aa413af46de4f6aabbad182ed77319f369",
+      "raw_lf_inclusive_span_sha256": "3c9c7c95043b5ecb4e2a2265ef8e144bf2e15f1a01b7c2dfe6e57ea99bc9ed79",
+      "span_bytes": 549,
+      "role": "candidate_digest_rule for historical L2-033 digest"
+    },
+    {
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "source_path": "docs/helix-security/L1-planning/security-intent.md",
+      "physical_lines": {
+        "start": 87,
+        "end": 87
+      },
+      "full_file_sha256": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d",
+      "raw_lf_inclusive_span_sha256": "b81c1242b093d296c97121ee50ed8d639018c756a98ad14b2b21a55269464838",
+      "span_bytes": 507,
+      "role": "L1-005 identifies Capability Lease decision source"
+    },
+    {
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "source_path": "docs/governance/decisions/capability-lease-bootstrap-approval-2026-09-20.md",
+      "physical_lines": {
+        "start": 2,
+        "end": 2
+      },
+      "full_file_sha256": "536ac2b9b6d68430fc5f04863735ce87041cf25fa5ba7c06d978690a3a454388",
+      "raw_lf_inclusive_span_sha256": "9cd103c4fe62766d91d8bff1d8b7e4557097bb1b661b9fc7cdf8a63cc1babe5f",
+      "span_bytes": 82,
+      "role": "current source of Capability Lease"
+    }
+  ],
+  "legacy_source_reconciliation": {
+    "prior_audit_path": "docs/governance/audits/requirements-stage/l3-l10-security-nfr008-trace-repair-2026-10-05-78eadc096.json",
+    "prior_audit_full_sha256": "187381de8482f3b04f730ab8936741216f4002d9fb0d1fdf0f00b9d53651ae53",
+    "prior_audit_bytes_preserved": true,
+    "prior_asset_count": 13,
+    "corrected_asset_count": 15,
+    "prior_span_count": 16,
+    "corrected_span_count": 18,
+    "prior_wrong_locator": {
+      "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "locator": "HR-FR-P8-04",
+      "claimed_lines": {
+        "start": 168,
+        "end": 171
+      },
+      "correct_lines": {
+        "start": 171,
+        "end": 171
+      }
+    },
+    "prior_missing_citations": [
+      "LEGACY-ASSET-99C939E249CAF40935CB architecture.md:61-64",
+      "LEGACY-ASSET-D461943347D372ECF6DA security-engagement-authority-requirements.md:24-25"
+    ],
+    "ledger_path": "docs/governance/legacy-asset-disposition.jsonl",
+    "ledger_full_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+    "assets": [
+      {
+        "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+        "asset_revision": 1,
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+        "full_source_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+        "ledger_source_path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+        "ledger_row_physical_line": 472,
+        "ledger_row_raw_lf_sha256": "704beffeb29c9f4f4dabcecb7fbf090d4327cb70a47f52151e0207b0896c2635",
+        "prior_locator_labels": {
+          "HR-FR-P8-04": [
+            168,
+            171
+          ],
+          "HR-NFR-P8-02": [
+            186
+          ]
+        },
+        "corrected_locator_labels": {
+          "HR-FR-P8-04": [
+            171,
+            171
+          ],
+          "HR-NFR-P8-02": [
+            186,
+            186
+          ]
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-B62E49D2E156232B8C63",
+        "asset_revision": 1,
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+        "full_source_sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+        "ledger_source_path": "docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+        "ledger_row_physical_line": 482,
+        "ledger_row_raw_lf_sha256": "c838ac8569a3d988db421153232a36ed85ee71b3e3474c764b04e54b9d15ea2f",
+        "prior_locator_labels": {
+          "CAP-001..007": [
+            160,
+            166
+          ]
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-9A772391C7FB1298D45F",
+        "asset_revision": 1,
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md",
+        "full_source_sha256": "949b0da00d2a417e1b36d3679b89735de7adadf831f567dbe383dfe6337f19e4",
+        "ledger_source_path": "docs/design/harness/L3-functional/README.md",
+        "ledger_row_physical_line": 347,
+        "ledger_row_raw_lf_sha256": "060aa9293da5f635e44a0fd89a51e4280cd2a620ef40a34e933ffa89f9a8d376",
+        "prior_locator_labels": {
+          "three sub-doc/pair/G3": [
+            16,
+            56
+          ]
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-F542125805B777D8A56A",
+        "asset_revision": 1,
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+        "full_source_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+        "ledger_source_path": "docs/process/forward/L00-L06-design-phase.md",
+        "ledger_row_physical_line": 2291,
+        "ledger_row_raw_lf_sha256": "73883376b2014725eb88baf3ac4c81313978bd219898e034fa2c6f1f94f6b73d",
+        "prior_locator_labels": {
+          "L3 requirements definition/form and L10 pair": [
+            148,
+            168
+          ]
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-B5B5E71B2AF1459D59A1",
+        "asset_revision": 1,
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+        "full_source_sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a",
+        "ledger_source_path": "docs/design/harness/L3-functional/functional-requirements.md",
+        "ledger_row_physical_line": 349,
+        "ledger_row_raw_lf_sha256": "a41712a0f82ad92a8cbfe2e5b06d36d2b584c9c4eaa7c319418b016a7e4ab7b4",
+        "prior_locator_labels": {
+          "FR structure": [
+            22,
+            40
+          ]
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-A6E2C7F0565E5F804F06",
+        "asset_revision": 1,
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md",
+        "full_source_sha256": "99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d",
+        "ledger_source_path": "docs/design/harness/L3-functional/business-detail.md",
+        "ledger_row_physical_line": 348,
+        "ledger_row_raw_lf_sha256": "079da41df721dd7848879e1e2a3c462f623e0b1dabcdc1865a64cc1cff7f4cd7",
+        "prior_locator_labels": {
+          "business detail": [
+            21,
+            39
+          ],
+          "BR21/Learning projection": [
+            84,
+            104
+          ]
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-8CC5ABFC98C0D00183CA",
+        "asset_revision": 1,
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/nfr-grade.md",
+        "full_source_sha256": "ba57990cf5343e9d4ad42ca8c2340d76c80e6e1c23085ba5e496d8014acf3fc3",
+        "ledger_source_path": "docs/design/helix/L3-requirements/nfr-grade.md",
+        "ledger_row_physical_line": 468,
+        "ledger_row_raw_lf_sha256": "7dbe9066d64c91228e93b17bce523c12620d08ba3fad25268187784f3f8ed10f",
+        "prior_locator_labels": {
+          "candidate/measurement form": [
+            1,
+            73
+          ]
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-DB669724249A14A665F0",
+        "asset_revision": 1,
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+        "full_source_sha256": "2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d",
+        "ledger_source_path": "docs/design/harness/L3-functional/nfr-grade.md",
+        "ledger_row_physical_line": 350,
+        "ledger_row_raw_lf_sha256": "ce7f8a05bc3fd3ac98d977e5f9945ffa0e3af5b751f79467c1e89a82808cf175",
+        "prior_locator_labels": {
+          "NFR measurement form": [
+            21,
+            34
+          ],
+          "grade/measurement examples": [
+            58,
+            74
+          ]
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+        "asset_revision": 1,
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+        "full_source_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+        "ledger_source_path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+        "ledger_row_physical_line": 461,
+        "ledger_row_raw_lf_sha256": "6314626510e5db37edc83e5bd9fc4c17ebe1f48a6766af9164650069b6ba5451",
+        "prior_locator_labels": {
+          "FR/AC structure": [
+            1,
+            95
+          ]
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-6EBDB617A8104A7756D0",
+        "asset_revision": 1,
+        "source_path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+        "full_source_sha256": "7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb",
+        "ledger_source_path": "CLAUDE.md",
+        "ledger_row_physical_line": 211,
+        "ledger_row_raw_lf_sha256": "9abd156f1ebddb55597e2894dc92d9361f6a136b405790e9ad3fe20a013f33df",
+        "prior_locator_labels": {
+          "autonomy boundary": [
+            84,
+            85
+          ]
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-170112AB2FA2FFDBFEE9",
+        "asset_revision": 1,
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+        "full_source_sha256": "b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4",
+        "ledger_source_path": "docs/test-design/helix/security-capability-broker-acceptance.md",
+        "ledger_row_physical_line": 2842,
+        "ledger_row_raw_lf_sha256": "a0b980be1a2564d0bda914ea74074d7490353fc4103761566f9849c0f804e345",
+        "prior_locator_labels": {
+          "acceptance cases": [
+            1,
+            59
+          ]
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-44DD86E3DEC09E65EF51",
+        "asset_revision": 1,
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+        "full_source_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+        "ledger_source_path": "docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+        "ledger_row_physical_line": 2536,
+        "ledger_row_raw_lf_sha256": "f6e6b00f8cc828d6a0af42e650ab1dee9bbf84ead550dc815e403bc7e1cb0e8f",
+        "prior_locator_labels": {
+          "pillar acceptance": [
+            1,
+            200
+          ]
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+        "asset_revision": 3,
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "full_source_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "ledger_source_path": "docs/governance/helix-harness-requirements_v1.3.md",
+        "ledger_row_physical_line": 956,
+        "ledger_row_raw_lf_sha256": "30e5b492932bcbdd27fa905fe559d19d071c63a90435121bcb8bf7a3060ec243",
+        "prior_locator_labels": {
+          "HR-FR-P2-05": [
+            428,
+            428
+          ]
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-99C939E249CAF40935CB",
+        "asset_revision": 1,
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L4-basic-design/architecture.md",
+        "full_source_sha256": "f4b9fcb98b4250879955f6eca0f2916dc1a27046820a8ad687e8f816b856bea2",
+        "ledger_source_path": "docs/design/harness/L4-basic-design/architecture.md",
+        "ledger_row_physical_line": 352,
+        "ledger_row_raw_lf_sha256": "a9c4bfba92788705932465e7f6e1eab6a8199534cde2f1398ac08b1c861890ee",
+        "corrected_locator_labels": {
+          "SECRET_PATTERN/isSecretLike": [
+            61,
+            64
+          ]
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-D461943347D372ECF6DA",
+        "asset_revision": 1,
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requirements.md",
+        "full_source_sha256": "38a68e48ca26cb277b6f5d88439b33b58aecf48f5b650f7596aec04e438b6b16",
+        "ledger_source_path": "docs/governance/candidates/security-engagement-authority-requirements.md",
+        "ledger_row_physical_line": 869,
+        "ledger_row_raw_lf_sha256": "2ed335960aee7da271a319ad78e2401401dfb17fd5c780fc320ec6047b905347",
+        "corrected_locator_labels": {
+          "SEA target/environment scope": [
+            24,
+            25
+          ]
+        }
+      }
+    ],
+    "bounded_spans": [
+      {
+        "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+        "locator": "HR-FR-P8-04",
+        "prior_claimed_physical_lines": {
+          "start": 168,
+          "end": 171
+        },
+        "corrected_physical_lines": {
+          "start": 171,
+          "end": 171
+        },
+        "full_source_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+        "raw_lf_inclusive_span_sha256": "a1137abf1d89b17965b9bb8aae7ea4ed0be82f5544cac5c15826da5bab4d7d40",
+        "span_bytes": 256,
+        "correction": "P8-04 narrowed to the exact HR-FR-P8-04 line; all other prior bounded spans were recomputed."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+        "locator": "HR-NFR-P8-02",
+        "prior_claimed_physical_lines": {
+          "start": 186,
+          "end": 186
+        },
+        "corrected_physical_lines": {
+          "start": 186,
+          "end": 186
+        },
+        "full_source_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+        "raw_lf_inclusive_span_sha256": "ef254e2dbff45673f633355c9a2cfff5ebf8d77382eb398c58d4f6e0c8653efc",
+        "span_bytes": 247,
+        "correction": "Recomputed from the exact archive bytes."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-B62E49D2E156232B8C63",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+        "locator": "CAP-001..007",
+        "prior_claimed_physical_lines": {
+          "start": 160,
+          "end": 166
+        },
+        "corrected_physical_lines": {
+          "start": 160,
+          "end": 166
+        },
+        "full_source_sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+        "raw_lf_inclusive_span_sha256": "851ea0172fb9de5c90248726fc4073ca24ab58180e635fc3bb1d8f8b8c43f279",
+        "span_bytes": 1034,
+        "correction": "Recomputed from the exact archive bytes."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-9A772391C7FB1298D45F",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md",
+        "locator": "three sub-doc/pair/G3",
+        "prior_claimed_physical_lines": {
+          "start": 16,
+          "end": 56
+        },
+        "corrected_physical_lines": {
+          "start": 16,
+          "end": 56
+        },
+        "full_source_sha256": "949b0da00d2a417e1b36d3679b89735de7adadf831f567dbe383dfe6337f19e4",
+        "raw_lf_inclusive_span_sha256": "fbb50e1ed591235cba594d8b8a10d5f1c55be865e3df9c9daf75f3814a18ab6a",
+        "span_bytes": 3915,
+        "correction": "Recomputed from the exact archive bytes."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-F542125805B777D8A56A",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+        "locator": "L3 requirements definition/form and L10 pair",
+        "prior_claimed_physical_lines": {
+          "start": 148,
+          "end": 168
+        },
+        "corrected_physical_lines": {
+          "start": 148,
+          "end": 168
+        },
+        "full_source_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+        "raw_lf_inclusive_span_sha256": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9",
+        "span_bytes": 1214,
+        "correction": "Recomputed from the exact archive bytes."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-B5B5E71B2AF1459D59A1",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+        "locator": "FR structure",
+        "prior_claimed_physical_lines": {
+          "start": 22,
+          "end": 40
+        },
+        "corrected_physical_lines": {
+          "start": 22,
+          "end": 40
+        },
+        "full_source_sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a",
+        "raw_lf_inclusive_span_sha256": "ba58e5280b8a372f2123b80561227bf0eaf27d9b4fb595768690a6300332e162",
+        "span_bytes": 2407,
+        "correction": "Recomputed from the exact archive bytes."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-A6E2C7F0565E5F804F06",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md",
+        "locator": "business detail",
+        "prior_claimed_physical_lines": {
+          "start": 21,
+          "end": 39
+        },
+        "corrected_physical_lines": {
+          "start": 21,
+          "end": 39
+        },
+        "full_source_sha256": "99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d",
+        "raw_lf_inclusive_span_sha256": "ade5075e3df236216603e1e0d3fb83c8cdae007f7f319e49bd4af1c5d4efca5e",
+        "span_bytes": 1602,
+        "correction": "Recomputed from the exact archive bytes."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-A6E2C7F0565E5F804F06",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md",
+        "locator": "BR21/Learning projection",
+        "prior_claimed_physical_lines": {
+          "start": 84,
+          "end": 104
+        },
+        "corrected_physical_lines": {
+          "start": 84,
+          "end": 104
+        },
+        "full_source_sha256": "99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d",
+        "raw_lf_inclusive_span_sha256": "f79e52ce0ac3797d30c46573a61f8115656ece2f8485461c728cdcf50fa4b38f",
+        "span_bytes": 1876,
+        "correction": "Recomputed from the exact archive bytes."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-8CC5ABFC98C0D00183CA",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/nfr-grade.md",
+        "locator": "candidate/measurement form",
+        "prior_claimed_physical_lines": {
+          "start": 1,
+          "end": 73
+        },
+        "corrected_physical_lines": {
+          "start": 1,
+          "end": 73
+        },
+        "full_source_sha256": "ba57990cf5343e9d4ad42ca8c2340d76c80e6e1c23085ba5e496d8014acf3fc3",
+        "raw_lf_inclusive_span_sha256": "ba57990cf5343e9d4ad42ca8c2340d76c80e6e1c23085ba5e496d8014acf3fc3",
+        "span_bytes": 5489,
+        "correction": "Recomputed from the exact archive bytes."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-DB669724249A14A665F0",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+        "locator": "NFR measurement form",
+        "prior_claimed_physical_lines": {
+          "start": 21,
+          "end": 34
+        },
+        "corrected_physical_lines": {
+          "start": 21,
+          "end": 34
+        },
+        "full_source_sha256": "2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d",
+        "raw_lf_inclusive_span_sha256": "0392a485245f3de9165f2d3fc17f222b33ef0bbdfc059b3efe466b997576e007",
+        "span_bytes": 2105,
+        "correction": "Recomputed from the exact archive bytes."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-DB669724249A14A665F0",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+        "locator": "grade/measurement examples",
+        "prior_claimed_physical_lines": {
+          "start": 58,
+          "end": 74
+        },
+        "corrected_physical_lines": {
+          "start": 58,
+          "end": 74
+        },
+        "full_source_sha256": "2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d",
+        "raw_lf_inclusive_span_sha256": "74f6a44aeab7e88f1f97b615b6be52001e852f27f790cdba9f1cee4228f87268",
+        "span_bytes": 1375,
+        "correction": "Recomputed from the exact archive bytes."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+        "locator": "FR/AC structure",
+        "prior_claimed_physical_lines": {
+          "start": 1,
+          "end": 95
+        },
+        "corrected_physical_lines": {
+          "start": 1,
+          "end": 95
+        },
+        "full_source_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+        "raw_lf_inclusive_span_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+        "span_bytes": 18905,
+        "correction": "Recomputed from the exact archive bytes."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-6EBDB617A8104A7756D0",
+        "source_path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+        "locator": "autonomy boundary",
+        "prior_claimed_physical_lines": {
+          "start": 84,
+          "end": 85
+        },
+        "corrected_physical_lines": {
+          "start": 84,
+          "end": 85
+        },
+        "full_source_sha256": "7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb",
+        "raw_lf_inclusive_span_sha256": "0b24453d14306c6d7bd65e8072dd4c6da60b7f19022fd63c5344463c0d25adfd",
+        "span_bytes": 252,
+        "correction": "Recomputed from the exact archive bytes."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-170112AB2FA2FFDBFEE9",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+        "locator": "acceptance cases",
+        "prior_claimed_physical_lines": {
+          "start": 1,
+          "end": 59
+        },
+        "corrected_physical_lines": {
+          "start": 1,
+          "end": 59
+        },
+        "full_source_sha256": "b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4",
+        "raw_lf_inclusive_span_sha256": "b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4",
+        "span_bytes": 5198,
+        "correction": "Recomputed from the exact archive bytes."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-44DD86E3DEC09E65EF51",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+        "locator": "pillar acceptance",
+        "prior_claimed_physical_lines": {
+          "start": 1,
+          "end": 200
+        },
+        "corrected_physical_lines": {
+          "start": 1,
+          "end": 200
+        },
+        "full_source_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+        "raw_lf_inclusive_span_sha256": "e3178089c6c9f23616f0fe2ef44c604d72621b1f99dd2dc27a7a195821b55e00",
+        "span_bytes": 29821,
+        "correction": "Recomputed from the exact archive bytes."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "locator": "HR-FR-P2-05",
+        "prior_claimed_physical_lines": {
+          "start": 428,
+          "end": 428
+        },
+        "corrected_physical_lines": {
+          "start": 428,
+          "end": 428
+        },
+        "full_source_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "raw_lf_inclusive_span_sha256": "2cb8c38eb048d3404b34e1da9d0eeb05fda671e4f343bbfc4bfc35a66f00400c",
+        "span_bytes": 249,
+        "correction": "Recomputed from the exact archive bytes."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-99C939E249CAF40935CB",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L4-basic-design/architecture.md",
+        "locator": "SECRET_PATTERN/isSecretLike",
+        "corrected_physical_lines": {
+          "start": 61,
+          "end": 64
+        },
+        "full_source_sha256": "f4b9fcb98b4250879955f6eca0f2916dc1a27046820a8ad687e8f816b856bea2",
+        "raw_lf_inclusive_span_sha256": "f3e3e7a78946dcf2810c9eb7e8c2fe5c48f1d0f343460a3e5e3a78f4e7de5810",
+        "span_bytes": 1378,
+        "correction": "Added because the current FR cites this source but the prior audit did not include it."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-D461943347D372ECF6DA",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requirements.md",
+        "locator": "SEA target/environment scope",
+        "corrected_physical_lines": {
+          "start": 24,
+          "end": 25
+        },
+        "full_source_sha256": "38a68e48ca26cb277b6f5d88439b33b58aecf48f5b650f7596aec04e438b6b16",
+        "raw_lf_inclusive_span_sha256": "e6d03fa20ea2d8a21022cb3970e753e4e07f7e0ccec1b5fbabba3ad33200db33",
+        "span_bytes": 457,
+        "correction": "Added because the current FR cites this source but the prior audit did not include it."
+      }
+    ],
+    "archive_capability_lease_search": {
+      "query": "case-insensitive literal \"Capability Lease\"",
+      "scope": "archive/legacy-generation-2026-09-14/**",
+      "result": "0 matches",
+      "decision": "do not attribute the current decision record to a legacy archive asset; canonical FR references current decision record."
+    }
+  },
+  "candidate_digest_recheck": {
+    "rule_source": "security-v13-worker-context-coverage-receipt-2026-09-28-r2.json:5 at fixed 633bf12",
+    "algorithm": "normalize L2-033 section and P0 tail separately (strip trailing blank lines, append one LF), concatenate with one LF separator, SHA-256",
+    "source_revision_318ec4a04abb3c1cc17111b3d939f913facd5fd3": "b486a0c44e8f21a6f8738dedeac91dcb94da335b73409b6adeaecf8fa639bf1a",
+    "fixed_snapshot_633bf12": "0008f6e6f06f48140267ccdea4842fcf22962d81812bb22f4f6446c78fd5c623",
+    "verified": true
+  },
+  "verification_json_correction_history": {
+    "prior_audit_path": "docs/governance/audits/requirements-stage/l3-l10-security-nfr008-trace-repair-2026-10-05-78eadc096.json",
+    "prior_audit_full_sha256": "187381de8482f3b04f730ab8936741216f4002d9fb0d1fdf0f00b9d53651ae53",
+    "prior_field": "review_carry_and_limitations.verification_json_sha256",
+    "prior_recorded_sha256": "4d12a02b767bdd4cb489988f17b807b8b16377acbe4a4b8754149faaf1907377",
+    "status": "unverified_artifact_not_identifiable",
+    "path": "not supplied by prior audit; that record provides only a digest and no pathname from which to identify the corresponding artifact",
+    "correction": "Preserved as an unverified historical digest only. No PASS result or recomputed digest is asserted."
+  },
+  "old_immutable_audits": [
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-security-stage1-static-validation-2026-10-05-a95b77aad.json",
+      "full_file_sha256": "cfe1aef3ffc96b87be87298769f96bc78254585398e6179bb72e7c10e25790b1",
+      "status": "unchanged_and_hash_verified"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-security-stage1-claude-review-correction-2026-10-05-15910e2.json",
+      "full_file_sha256": "a711e975c5ece8ca269aad2a2bcfe9b7238d3c104d38621d06a6bfce6ec78192",
+      "status": "unchanged_and_hash_verified"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-security-stage1-followup-2026-10-05-1258f8023.json",
+      "full_file_sha256": "15e6beaba90e57a1e08ee54f11ed38cb6ab0e26ce6b024950584d024f2df7af5",
+      "status": "unchanged_and_hash_verified"
+    }
+  ],
+  "static_checks": {
+    "body_commit": "4f1f93fb5e9eb085f7abf49a810b3da667757b85",
+    "diff_check": "PASS: git diff --check; 0 diagnostics",
+    "scfctl_validate": "PASS: bindings=147 fail=0",
+    "scfctl_stale": "PASS: stale=0",
+    "scfctl_residuals": "PASS: residuals=0",
+    "govcheck": "PASS: atoms=7622 requirements=57 files=58",
+    "old_runtime_tests_ci_bun": "not run"
+  },
+  "authority_effect": "none; creates no approval, PO decision, finding closure, independent review, Ready, merge admission, implementation or execution authority.",
+  "publication": "no push, PR, mailbox, or external publication.",
+  "historical_review_record_correction": {
+    "15910e2_audit_path": "docs/governance/audits/requirements-stage/l3-l10-security-stage1-claude-review-correction-2026-10-05-15910e2.json",
+    "historical_error": "metadata_correction_note attributed an L2-003 registration correction to legacy asset EE5DB; this new record disambiguates MPR-RC-HELIXSECURITY-L2-003-002 and does not modify the historical JSON.",
+    "historical_audit_sha256": "a711e975c5ece8ca269aad2a2bcfe9b7238d3c104d38621d06a6bfce6ec78192"
+  }
+}
