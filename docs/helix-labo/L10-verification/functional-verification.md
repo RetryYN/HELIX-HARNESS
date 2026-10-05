@@ -659,16 +659,16 @@ input observation identity/source revision；episode candidate identityとrelati
 - 入力fixture: 未見の方式だが元意味・目的・条件のsource evidenceと変更fieldが明確なcandidateを与える。
 - 期待oracle:保持点と差分を同じ比較規則で返し、candidateを実変更へ昇格しない。
 
-### L10-LABO-015-C01 — 4比較armの一致条件
+### L10-LABO-015-C01 — 3比較armの一致条件
 
 - 対応: `LABO-015-AC-01`; 親: `HELIXLABO-L2-015`。
-- 入力fixture: baseline/current/candidate/hybrid各armにsource revision、target version、適用条件、同一evaluation oracleを付ける。
-- 期待oracle:4 armの比較条件を再構成可能にし、arm間の差は候補構成だけとして明示する。Worker実行は起動しない。
+- 入力fixture: baseline/currentを一つの比較基準armとし、candidate/hybridを加えた3 armにsource revision、target version、適用条件、同一evaluation oracleを付ける。
+- 期待oracle:3 armの比較条件を再構成可能にし、arm間の差は候補構成だけとして明示する。Worker実行は起動しない。
 
 ### L10-LABO-015-C02 — oracleまたは対象版の個別欠落
 
 - 対応: `LABO-015-AC-02`; 親: `HELIXLABO-L2-015`。
-- 入力fixture: 4 arm中のoracleを一つだけ欠落させるfixtureと、target versionを一つだけ欠落させるfixtureを別々に与える。
+- 入力fixture: 3 arm中のoracleを一つだけ欠落させるfixtureと、target versionを一つだけ欠落させるfixtureを別々に与える。
 - 期待oracle:該当armの不備を示しexperiment comparisonを成立扱いせず、oracle/対象版ownerへ戻す。
 
 ### L10-LABO-015-C03 — 比較条件の混在
@@ -680,7 +680,7 @@ input observation identity/source revision；episode candidate identityとrelati
 ### L10-LABO-015-C04 — 同一条件のheld-out正常
 
 - 対応: `LABO-015-AC-01`; 親: `HELIXLABO-L2-015`。
-- 入力fixture: 未見candidate transformationを4 armへ適用するが、全armでtarget version・oracle・適用条件を同一にする。
+- 入力fixture: 未見candidate transformationを3 armへ適用するが、全armでtarget version・oracle・適用条件を同一にする。
 - 期待oracle:比較条件を分離して追跡可能なcandidateとして返し、未見名を理由に排除しない。
 
 ### L10-LABO-016-C01 — 比較証拠から二種類の評価材料へ
