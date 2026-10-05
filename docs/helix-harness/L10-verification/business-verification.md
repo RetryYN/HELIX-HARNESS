@@ -27,3 +27,17 @@ execution_status: designed_only_not_executed
 ## Stage 2c suffix — HARNESS-L2-030/031/032
 
 固定030/031/032から独立business requirement/oracleを導出しないため、別個のbusiness acceptance caseは追加しない。030のproposal、031の許可failureからのcandidateとoriginal failure保持、032のselected consumerへのpacket handoffおよび責務境界は、対の[functional-verification.md](functional-verification.md)にある同一AC IDで確認する。case数/coverageやhandoffを事業価値、利用者受入、run/pass、ticket、承認へ読み替えない。旧business-detail BR-21/HM-08/KPI ownerはこれらの固定親に適用せず、再利用しない。
+
+## Stage 3（1.0対象13親）の業務総合検証境界
+
+固定親 HARNESS-L2-034/036/038/039/040/041/042/043/044/046/047/049/054 には独立business criterion/oracleを導出しない。functional ACごとの正常・独立反例・未評価は対の[functional-verification.md](functional-verification.md)を同じIDで用いる。この判断はHARNESS全体のbusiness requirementを否定せず、ROI・市場価値・利用者受入・採否を技術証拠から生成しない。
+
+| 固定親 | business oracle | 検証責務 |
+|---|---|---|
+| `HARNESS-L2-034` / `036` | 独立criterionなし | metric completenessとselected verification contractはfunctional ACで照合。90%運用KPIは母集団・期間付きの運用指標で、ticket acceptanceにしない。 |
+| `HARNESS-L2-038` / `039` | 独立criterionなし | source closure/Experience graph/UX evidenceをfunctional ACで照合し、UX evidenceを事業成果の代理にしない。 |
+| `HARNESS-L2-040` / `041` | 独立criterionなし | ledger catalog/template obligationの意味・traceはfunctional ACで照合。登録数や抽出数を価値基準にしない。 |
+| `HARNESS-L2-042` / `043` / `044` | 独立criterionなし | refactor route/example adequacy/portfolio completenessはfunctional ACで照合。採択・承認・部品ownerを生成しない。 |
+| `HARNESS-L2-046` / `047` / `049` / `054` | 独立criterionなし | workflow/contract candidate/measurement/handoffは各functional ACで照合。allocation、prototype generation、run/pass、利用者受入をbusiness結果にしない。 |
+
+このStage 3部分scopeに別ownerの事業判断が必要な場合、その判断は該当L1/L2 ownerへ戻し、独立business受入を本書で発明しない。

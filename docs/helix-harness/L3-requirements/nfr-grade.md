@@ -96,3 +96,27 @@ HARNESS-L2-011/L11は期限切れをsuccessにしないが、expiry時刻と比�
 Nrequiredは対象revision/scopeで選択操作に適用する契約必須項目の集合であり、missing/unknown/不一致も分母に残す。Nmatchedはsource/意味/版/範囲がoracleと一致して保持された項目数、保持率候補はNmatched/Nrequired。名前やpresenceだけの案Aと、意味/source tupleまで照合する案Bを比較し、意味差分を見逃さないBを候補とする。契約必須項目の定義自体が不明な状態をNrequired=0へ変換しない。既知の対象集合が0なら率なし、必須定義不足なら未評価と理由を別記する。
 
 plannedは総予定試行数。観測可否はvalid（判定できる観測が得られた、不合格も含む）、failed（処理エラーで判定可能な観測を得られない）、missing（必要入力/結果がない）、censored（停止/打切りで観測未完）を排他的に記録し、Nplanned=Nvalid+Nfailed+Nmissing+Ncensoredを確認する。意味状態のvalid/missing/stale/mismatch/conflict/unknownは別軸で、観測状態の件数へ重ねて加算しない。未選択consumer/sourceは未観測の背景として別記し選択操作の分母外。未実施は未測定、欠測/停止を0の観測や成功にしない。
+
+## Stage 3 技術候補（HARNESS-L2-034/036/038/039/040/041/042/043/044/046/047/049/054）
+
+以下は固定親から導出した測定可能性候補であり、実測結果・固定SLO・個別PO parameter gateではない。候補値が要求意味/範囲/owner/versionを変える場合のみL2へ戻す。
+
+| NFR候補ID / 固定親 | 根拠付き候補 | 根拠・比較案 | 適用限界 |
+|---|---|---|---|
+| `NFR-C-HARNESS-034-01` / `HARNESS-L2-034` | 適用metricについてidentity/condition/baseline/target(or N/A)/sampling/probe/evidence/oracle/owner/execution layerの対応欠落0件。 | L2-034が列挙するcontract fieldとfailure conditionに各々一対一でtraceする候補。旧NFR grade・KPI率の継承でなく、項目欠落を測る。 | 対象scopeに選択されたmetricのみ。baseline/target値自体を自動補完しない。 |
+| `NFR-C-HARNESS-036-01` / `HARNESS-L2-036` | selected profile内のunmatched required observation、duplicate level coverage、local/CI gate contract mismatchを個別集計し、誤ったsame-condition passは0件。 | 固定L2の抜け/重複・二面contract条件を直接観測する。全ticket全suite実行率を候補にしない。 | L2-005が選択したprofileとscopeに限定。実行回数SLOを追加しない。 |
+| `NFR-C-HARNESS-038-01` / `HARNESS-L2-038` | selected scope内の適用obligationの片方向relation、aggregate-only coverage、未根拠N/A/no-findingは0件を候補oracleとする。 | HIL-FR-22の両方向edgeとHIL-FR-35の段階内容閉包に根拠。後段未作成はunresolved obligationとして数え、失敗扱いと区別する。 | 全旧source走査率や全機構一括closure率にしない。 |
+| `NFR-C-HARNESS-039-01` / `HARNESS-L2-039` | 選択scopeのrequired Experience/UI/Frontend relation・target identityに対するuntraced/stale relation 0件。 | L2の三契約、screen-to-acceptance、pairwise/drift関係を照合する完全性候補。旧211 file inventoryを分母にしない。 | FE実測精度は049/036の選択scopeで扱い、039が実測結果を生成しない。 |
+| `NFR-C-HARNESS-040-01` / `HARNESS-L2-040` | canonical 12 layer、6 pair、独立L0 anchorの必要catalog relation欠落0件。片edgeを双方向成立へ数える件数0。 | HIL-FR-46のledger/pair/anchor契約から直接導出。 | 未作成ledgerはmissing obligationとして記録し、全ledgerの実装率やregistrationを主張しない。 |
+| `NFR-C-HARNESS-041-01` / `HARNESS-L2-041` | 同一active template/extractor revisionでsource obligation→個別atom-or-gap対応欠落0件、誤ったatomic semantic digest一致0件。 | L2-041と最新L11-041のatomic individual obligation・same input/extractor version semantic digest条件に対応する。 | 決まっていないextractor方式/件数/処理時間をthresholdにしない。 |
+| `NFR-C-HARNESS-042-01` / `HARNESS-L2-042` | successful Design Refactor candidateのうちsemantic/consumer/oracle/dependency evidence不足件数0、mixed feature episodeの成立件数0。 | L2-042のroute根拠と同一episode禁止を数える候補。 | refactor量、削減率、性能改善幅は要求しない。 |
+| `NFR-C-HARNESS-043-01` / `HARNESS-L2-043` | 各適用rule/branchでpositiveおよびboundary-negative例へのtrace欠落0件（coverage matrixの分母が確定したscopeに限る）。 | HIL-FR-55が各rule/branchの最小例対を要求し、risk追加を分析で限定している。 | 例の総数、未選択template、未確定分母に数値閾値を追加しない。 |
+| `NFR-C-HARNESS-044-01` / `HARNESS-L2-044` | selected obligation classのuncovered classとunexplained duplicate semantic contractを個別に表示。candidate closure時のuncovered/duplicateは各0件。 | HIL-FR-54のclass assignment・uncovered/duplicate findingに対応。 | minimum portfolioは意味上の重複判定で評価し、単純な文書件数最小化にしない。 |
+| `NFR-C-HARNESS-046-01` / `HARNESS-L2-046` | 適用workflow obligationのunmapped relation 0件を候補oracleとし、非Scrum scopeでScrum-only dutyを誤適用する件数0。 | L2-046 workflow全面性と選択条件付きScrum delta/backfillへ対応。 | Scrum非選択は欠落に数えず、style applicability不明は未評価。 |
+| `NFR-C-HARNESS-047-01` / `HARNESS-L2-047` | muster候補のうち適用比較根拠欠落0件、single-worker-sufficientを専門化した誤route0件、worker/verifier authority conflation 0件。 | HIL-BR-30/HIL-FR-60の測定利益・既存role十分性・分離条件に対応。 | 固定benefit score、worker count、provider/model quality thresholdを新設しない。 |
+| `NFR-C-HARNESS-049-01` / `HARNESS-L2-049` | 5 check別のTP/FP/FN/TN件数とprecision=TP/(TP+FP)、recall=TP/(TP+FN)を数値で報告し、分母0・適用不明・fixture不足は未評価とする。 | fixed L11-049の既知positive/negative fixture精度評価と未評価warningを観測する。案Aは事前のprecision/recall合格閾値を置かず、数値結果と混同行列を報告し、現在の草稿ではこれを推奨する。案Bは代表性のあるcalibration後に候補閾値を比較し、別holdoutで検証するが、初回実測前に数値を固定しない。案Aは閾値を指定しないL2/L11とwarning要求に忠実で、検査精度候補を毎回の人間gateへ変えない。 | prototype生成・Pattern/ID要件は追加しない。誤検出/見逃しの実測を保ち、閾値案はL3候補として比較する。 |
+| `NFR-C-HARNESS-054-01` / `HARNESS-L2-054` | handoffとOS assignmentのtask/scope/revision mismatch、未解決axisを成功扱いする件数各0。 | L2-054と固定L11のcontract/assignment identity対応から導出。 | assignment実行数/成功率やlifecycle方式をHARNESS NFRにしない。 |
+
+034の必須母集団は選択scope内で適用される全要求metricと全14項目、そのsource authority/target surfaceであり、特定metricやfieldだけを選んで分母を狭めない。target、error budget、hard limitは区別する。比較案は、単純なfield presence集計と、identity/condition/source/revision/evidence/oracleまで一致させる意味tuple照合である。後者を候補とし、適用metric別のtrace欠落・stale・非代表・未測定・未達を別状態で報告する。13 quality domainとAI適用時の7条件（判断再現性、Worker/verifier独立性、根拠対応、反復停止性、費用、provider縮退、memory汚染耐性）は適用範囲と理由を明示する。DB/projection/継続state利用時には選択された実装方式に応じたp95/p99、lock/busy縮退、再構築、保守、並行実行、soakを含める。分母0は率なし、適用性unknownは未評価。
+
+036は四つのcross-detection軸（dependency leak、contract leak、connection missing、regression）を別々に数え、各軸の未検出0候補と全体も明示する。gate通過率90%以上は運用母集団・対象期間・selected scopeを付した運用KPIとしてのみ報告し、ticket個別合否や全ticket実行率へ変換しない。画面5軸は合意済screen scopeの各軸を独立母集団にし、適用性unknownは未評価、非screen理由付きのみ対象外。
