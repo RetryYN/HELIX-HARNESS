@@ -18,3 +18,8 @@
 固定parent HELIXLABO-L2-055-002、056-003、057-002には、機能条件と独立した追加business outcome/ownerがない。独立BR/ACは作らず、成果・失敗・戻し先はfunctional requirementの `LABO-055-AC-01`〜`LABO-055-AC-04`、`LABO-056-AC-01`〜`LABO-056-AC-05`、`LABO-057-AC-01`〜`LABO-057-AC-04` を正本としてL10で照合する。LABOは観測・評価の記録を担い、OS assignment/進行、Worker実行、SECURITY許可/data-use、外部oracle/criteria source ownershipを引き受けない。055の水準は配置材料であり、配置案・選択・割当・資格を生成しない。Benchは056履歴の記録先であってoracle owner/訂正先ではない。oracle適用不足は履歴をunassessedに維持し、訂正は元oracle/criteria sourceへ戻す。
 
 旧business-detailの業務目的や旧benchmark outcomeはこの固定親にないためStage 2aへ移さない。BR/BVにfunctional outcomeを重複記載したり、別BCASEを増やしたりしない。
+
+
+## Stage 4 — HELIXLABO-L2-036/037/038/039/040/041/052/054
+
+固定L2/L11にfunctional outcomeと独立した追加business outcome/ownerは定義されていない。独立BR/AC/BCASEは追加しない。結果、失敗、owner戻しは[L3 functional requirements](functional-requirements.md)のLABO-036/037/038/039/040/041/052/054-AC-01/02を唯一の条件正本として、対となるfunctional verificationで照合する。LABOはFeedback candidateまたは受領traceを扱い、HARNESS要求・OS運転・SECURITY authority・Worker実行/割当・CONNECT契約・Product Core meaning・INTELLIGENCE判断/配置/学習を実行しない。L2-040/041の適用scopeは各上流採択scopeに従う。
