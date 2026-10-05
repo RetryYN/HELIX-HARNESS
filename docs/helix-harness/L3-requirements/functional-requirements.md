@@ -112,7 +112,7 @@ paired_l10: ../L10-verification/functional-verification.md
 
 **対象・入力**：対象HARNESS artifactのrevisionとscope、Provisional成果物、対のL5詳細設計/L4基本設計、固定L2要求・L11条件、L3要件、L8/L9/L10の対の検証設計・oracle・結果・証拠を受ける。④を前提にせずCORE traceと対の設計を用いる。成果物は④出力またはHARNESS-L2-019経由で持ち込まれたものでもよい。
 
-**状態と出力**：対象revision/scopeに結び、段階ごとの状態・判定理由・結果・証拠参照を出力する。Provisional→IntegratedはL8でL5、L9でL4をそれぞれScoped Reverseし、境界照合、必要なRefactor、結合証明が揃ったときに限る。Integrated→VerifiedはL10でL3を照合し、下位証拠に加えてシステム固有義務との差分が確認されたときに限る。Verified→AcceptedはL11条件（成功条件と反例）による内容判定と、同じrevision/scopeに対する利用者受入およびその記録を別々に満たしたときに限る。各段階の品質・security・acceptance oracleと適用scopeは別々に結び、設計・実装・refactorの各受入結果についてそのscope内で何を確かめたかを次段階へ引き継ぐ。oracle、適用scopeまたはreceipt不足で品質を確かめられない場合、その品質は未評価のままとする。各段階は別状態として保持し、未達部分を満たしたかのように昇格させない。効果比較や改善scoreは証拠として扱い、意思決定・要求承認・Acceptedを生成しない。
+**状態と出力**：対象revision/scopeに結び、段階ごとの状態・判定理由・結果・証拠参照を出力する。Provisional→IntegratedはL8でL5、L9でL4をそれぞれScoped Reverseし、境界照合、必要なRefactor、結合証明が揃ったときに限る。Integrated→VerifiedはL10でL3を照合し、下位証拠に加えてシステム固有義務との差分が確認されたときに限る。Verified→AcceptedはL11条件（成功条件と反例）による内容判定と、同じrevision/scopeに対する利用者受入およびその記録を別々に満たしたときに限る。各段階の品質・security・acceptance oracleと適用scopeは別々に結び、設計・実装・refactorの各受入結果についてそのscope内で何を確かめたかを次段階へ引き継ぐ。oracle、適用scopeまたはreceipt不足で品質を確かめられない場合、その品質は未評価のままとする。各段階は別状態として保持し、未達部分を満たしたかのように昇格させない。効果比較や改善scoreは参照情報に留め、意思決定・要求承認・Acceptedを生成しない。
 
 **不一致と戻し先**：振る舞い・契約・要求の意味を保てる不一致は右側をRefactorし、同じ段階の検証を再実施する。意味変更が必要な場合は発見した検証層だけで戻し先を決めず、HARNESS-L2-003/004に従って意味を所有する左側へBackflowする。L11で見つかった意味差は要求へ戻し、コードを直接変更して合わせない。上位oracleが欠落・失効・scope不一致、必要証拠欠落、またはrevision不一致なら、その上位stateを作らず、実際に満たした段階までを保持して未評価/保留理由を示す。
 

@@ -26,6 +26,6 @@ execution_status: designed_only_not_executed
 
 | L10 case ID | L3 NFR候補 | 入力・比較 | oracleと失敗境界 |
 |---|---|---|---|
-| `CASE-HARNESS-L10-NFR-022-01` | `NFR-C-HARNESS-022-01` | 選択scope内の各必須FR/ACを一つ以上の適切なL10 oracleへ対応させる正常traceを作る（FR/ACとCASEは多対多でよく、一対一制約を置かない）。対応漏れ、重複ID、artifact revision違い、scope違い、必須result/evidence欠落を一fieldずつ独立に変異する。quality/security/acceptanceのstage別oracle結果はtrace completeness測定と別に記録する。 | 正常は選択scopeの全必須FR/ACに必要なCASE対応がありtupleが一致する。候補境界の100%と0件は必須traceの完全性・不一致測定だけを表し、品質判定thresholdを新設しない（固定L11:268）。ID重複は識別子不備として別に拒否し、正当な複数CASE/AC対応は保持する。各変異をpassにせず理由を記録する。対象集合や必要oracleが欠ける場合は未評価、oracle/receipt不足の品質も未評価のままにする。 |
+| `CASE-HARNESS-L10-NFR-022-01` | `NFR-C-HARNESS-022-01` | 選択scope内の各必須FR/ACを一つ以上の適切なL10 oracleへ対応させる正常traceを作る（FR/ACとCASEは多対多でよく、一対一制約を置かない）。対応漏れ、重複ID、artifact revision違い、scope違い、必須result/evidence欠落を一fieldずつ独立に変異する。さらに、すべての必須tupleが一致する完全trace（completeness 100%、mismatch 0件）のままstage-specific quality oracleだけを未達にするnegative fixtureを与える。quality/security/acceptanceのstage別oracle結果はtrace completeness測定と別に記録する。 | 正常は選択scopeの全必須FR/ACに必要なCASE対応がありtupleが一致する。完全traceでもstage-specific quality oracle未達なら、trace integrity候補は完全のまま記録する一方、品質pass・上位state・Acceptedを生成せず実際に満たしたstageに留める。候補境界の100%と0件は必須traceの完全性・不一致測定だけを表し、品質判定thresholdを新設しない（固定L11:268）。ID重複は識別子不備として別に拒否し、正当な複数CASE/AC対応は保持する。各変異をpassにせず理由を記録する。対象集合や必要oracleが欠ける場合は未評価、oracle/receipt不足の品質も未評価のままにする。 |
 
 この候補値は技術案であり、L3要件の承認や実測達成を示さない。比較条件が不足する場合は未評価と記録する。固定親に根拠のない性能SLAの数値は設定しない。
