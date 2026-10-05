@@ -36,21 +36,21 @@
 | `HELIXLABO-L2-013` | 独立BRなし | `LABO-013-AC-01`, `LABO-013-AC-02` | `L10-LABO-013-C01` と各単独negative/held-out normal case |
 | `HELIXLABO-L2-014` | 独立BRなし | `LABO-014-AC-01`, `LABO-014-AC-02` | `L10-LABO-014-C01` と各単独negative/held-out normal case |
 | `HELIXLABO-L2-015` | 独立BRなし | `LABO-015-AC-01`, `LABO-015-AC-02` | `L10-LABO-015-C01` と各単独negative/held-out normal case |
-| `HELIXLABO-L2-016` | 独立BRなし | `LABO-016-AC-01`, `LABO-016-AC-02` | `L10-LABO-016-C01` と各単独negative/held-out normal case |
-| `HELIXLABO-L2-017` | 独立BRなし | `LABO-017-AC-01`, `LABO-017-AC-02` | `L10-LABO-017-C01` と各単独negative/held-out normal case |
+| `HELIXLABO-L2-016` | 独立BRなし | `LABO-016-AC-01`, `LABO-016-AC-02` | `L10-LABO-016-C01` と各単独negative/held-out normal case。追加CASE: `L10-LABO-016-C11` |
+| `HELIXLABO-L2-017` | 独立BRなし | `LABO-017-AC-01`, `LABO-017-AC-02` | `L10-LABO-017-C01` と各単独negative/held-out normal case。追加CASE: `L10-LABO-017-C11`, `L10-LABO-017-C12`, `L10-LABO-017-C13` |
 | `HELIXLABO-L2-018` | 独立BRなし | `LABO-018-AC-01`, `LABO-018-AC-02` | `L10-LABO-018-C01` と各単独negative/held-out normal case |
 | `HELIXLABO-L2-019` | 独立BRなし | `LABO-019-AC-01`, `LABO-019-AC-02` | `L10-LABO-019-C01` と各単独negative/held-out normal case |
 | `HELIXLABO-L2-020` | 独立BRなし | `LABO-020-AC-01`, `LABO-020-AC-02` | `L10-LABO-020-C01` と各単独negative/held-out normal case |
-| `HELIXLABO-L2-021` | 独立BRなし | `LABO-021-AC-01`, `LABO-021-AC-02` | `L10-LABO-021-C01` と各単独negative/held-out normal case |
-| `HELIXLABO-L2-022` | 独立BRなし | `LABO-022-AC-01`, `LABO-022-AC-02` | `L10-LABO-022-C01` と各単独negative/held-out normal case |
-| `HELIXLABO-L2-023` | 独立BRなし | `LABO-023-AC-01`, `LABO-023-AC-02` | `L10-LABO-023-C01` と各単独negative/held-out normal case |
-| `HELIXLABO-L2-024` | 独立BRなし | `LABO-024-AC-01`, `LABO-024-AC-02` | `L10-LABO-024-C01` と各単独negative/held-out normal case |
+| `HELIXLABO-L2-021` | 独立BRなし | `LABO-021-AC-01`, `LABO-021-AC-02` | `L10-LABO-021-C01` と各単独negative/held-out normal case。追加CASE: `L10-LABO-021-C13` |
+| `HELIXLABO-L2-022` | 独立BRなし | `LABO-022-AC-01`, `LABO-022-AC-02` | `L10-LABO-022-C01` と各単独negative/held-out normal case。追加CASE: `L10-LABO-022-C15`, `L10-LABO-022-C17`, `L10-LABO-022-C18` |
+| `HELIXLABO-L2-023` | 独立BRなし | `LABO-023-AC-01`, `LABO-023-AC-02` | `L10-LABO-023-C01` と各単独negative/held-out normal case。追加CASE: `L10-LABO-023-C13` |
+| `HELIXLABO-L2-024` | 独立BRなし | `LABO-024-AC-01`, `LABO-024-AC-02` | `L10-LABO-024-C01` と各単独negative/held-out normal case。追加CASE: `L10-LABO-024-C17` |
 | `HELIXLABO-L2-025` | 独立BRなし | `LABO-025-AC-01`, `LABO-025-AC-02` | `L10-LABO-025-C01` と各単独negative/held-out normal case |
 | `HELIXLABO-L2-026` | 独立BRなし | `LABO-026-AC-01`, `LABO-026-AC-02` | `L10-LABO-026-C01` と各単独negative/held-out normal case |
 | `HELIXLABO-L2-027` | 独立BRなし | `LABO-027-AC-01`, `LABO-027-AC-02` | `L10-LABO-027-C01` と各単独negative/held-out normal case |
 | `HELIXLABO-L2-028` | 独立BRなし | `LABO-028-AC-01`, `LABO-028-AC-02` | `L10-LABO-028-C01` と各単独negative/held-out normal case |
-| `HELIXLABO-L2-029` | 独立BRなし | `LABO-029-AC-01`, `LABO-029-AC-02` | `L10-LABO-029-C01` と各単独negative/held-out normal case |
+| `HELIXLABO-L2-029` | 独立BRなし | `LABO-029-AC-01`, `LABO-029-AC-02` | `L10-LABO-029-C01` と各単独negative/held-out normal case。追加CASE: `L10-LABO-029-C19` |
 | `HELIXLABO-L2-030` | 独立BRなし | `LABO-030-AC-01`, `LABO-030-AC-02` | `L10-LABO-030-C01` と各単独negative/held-out normal case |
-| `HELIXLABO-L2-034` | 独立BRなし | `LABO-034-AC-01`, `LABO-034-AC-02` | `L10-LABO-034-C01` と各単独negative/held-out normal case |
-| `HELIXLABO-L2-035` | 独立BRなし | `LABO-035-AC-01`, `LABO-035-AC-02` | `L10-LABO-035-C01` と各単独negative/held-out normal case |
-| `HELIXLABO-L2-058` | 独立BRなし | `LABO-058-AC-01`, `LABO-058-AC-02` | `L10-LABO-058-C01` と各単独negative/held-out normal case |
+| `HELIXLABO-L2-034` | 独立BRなし | `LABO-034-AC-01`, `LABO-034-AC-02` | `L10-LABO-034-C01` と各単独negative/held-out normal case。追加CASE: `L10-LABO-034-C11`, `L10-LABO-034-C12` |
+| `HELIXLABO-L2-035` | 独立BRなし | `LABO-035-AC-01`, `LABO-035-AC-02` | `L10-LABO-035-C01` と各単独negative/held-out normal case。追加CASE: `L10-LABO-035-C18`, `L10-LABO-035-C19` |
+| `HELIXLABO-L2-058` | 独立BRなし | `LABO-058-AC-01`, `LABO-058-AC-02` | `L10-LABO-058-C01` と各単独negative/held-out normal case。追加CASE: `L10-LABO-058-C40` |
