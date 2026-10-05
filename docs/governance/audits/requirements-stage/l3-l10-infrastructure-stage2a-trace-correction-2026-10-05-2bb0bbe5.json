@@ -1,0 +1,79 @@
+{
+  "record_type": "append-only short trace-correction audit",
+  "recorded_at": "2026-10-05",
+  "authority_effect": "none",
+  "scope": {
+    "mechanism": "HELIX-INFRASTRUCTURE",
+    "stage": "2a",
+    "parent": "HELIXINFRASTRUCTURE-L2-010",
+    "correction": "CASE-INFRA-010-02 normal success maps to INFRA-010-FR-04 / INFRA-010-AC-04 because its existing fixture already observes the Worker result and separately linked actual-state observation."
+  },
+  "revisions": {
+    "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "previous_body_revision": "2b6b1f1f115ebc6c07e48eeb6db582e5fcb1bd29",
+    "body_revision": "2bb0bbe577cd80732ac465fe39285613d58596a7",
+    "parent_body_revision": "20fdbfbd78a5403b5641e3ab9156ae9410cc3f01",
+    "published": false
+  },
+  "finding_resolution": {
+    "classification": "trace completeness correction; case input/oracle unchanged",
+    "before": "CASE-INFRA-010-02 traced only FR-01/FR-02 and AC-01/AC-02",
+    "after": "CASE-INFRA-010-02 traces FR-01/FR-02/FR-04 and AC-01/AC-02/AC-04",
+    "case_line_pin": {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 212,
+      "literal": "| CASE-INFRA-010-02 normal state-changing | INFRA-010-FR-01, INFRA-010-FR-02, INFRA-010-FR-04 / INFRA-010-AC-01, INFRA-010-AC-02, INFRA-010-AC-04 | 有効SECURITY authority/Worker contract/ticket/009 ref/update admission acceptedと、該当actionに適用される005 dutyを個別宣言し、Worker result receiptとは別のactual-state observationをtarget/action/revisionで相互参照する。 | 指定範囲のみ開始し、Worker resultとactual stateを別evidenceとして参照で結ぶ。適用不要な005義務は持ち込まない。 |",
+      "raw_lf_sha256": "5200115f342e62aee5cdc83dd6a8fe49fa39af263c0c28e6a9b320b7907f25bb",
+      "full_file_sha256": "b4322d8fb263306d9d2427dee1edf4e0ee560498fa32eb8d0710931509458f89",
+      "bytes": 47229,
+      "physical_lines": 229
+    },
+    "AC04_line_pin": {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 339,
+      "literal": "**INFRA-010-AC-04**: 完了normal fixtureではWorker result receiptと別個のactual-state observationをtarget/action/revision参照で結ぶ。Worker応答だけでactual stateを推定しない。mismatched authority/credential scope/target/revisionは個別negative fixtureで確認しoperation-startがない。途中失敗fixtureでは実際に変わったstateと未完dutyを保持し、SECURITY/OSまたは実状態のInfrastructure ownerへ戻す。",
+      "raw_lf_sha256": "8f02e1d9289c95a3b69fcb9d5486103033c31edfdbe672dae8716d8b68b71b66",
+      "full_file_sha256": "48136f5991159c36e6d7af62e21383ee32f19e971e9869540d8feb4733f01774",
+      "bytes": 54057,
+      "physical_lines": 339
+    },
+    "fixed_L11_source": {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "full_file_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "bytes": 40777,
+      "physical_lines": 318,
+      "span_start_line": 132,
+      "span_end_line": 134,
+      "raw_lf_span_sha256": "8c4bcf6b1e890da0ed830f3da34865460cf1f5aefc26b1de97a50cada16c2829",
+      "literal": "- **受入手順**：SECURITY authority scope内の許可操作、範囲外対象、期限切れauthority、credential不足、revision不一致、部分操作を使い、通常OS/Worker operationと独立bootstrap/recovery operationを別fixtureにする。update/change actionは同じtarget/revision/scopeでSECURITY update-admission accepted/denied/unknown/mismatchを比較し、OS assignment/ticket、Worker result、Infrastructure before/after evidenceを対応づける。read-only fixtureは対象scope、read target、空のwrite-setと許可対象resourceのoperation前後値を定義する。\n- **成功条件**：Worker操作はSECURITYが認めたtarget/action/revision/scope/expiry内に限られ、結果と実状態が別evidenceとして結びつく。更新・変更はupdate admission acceptedかつ通常authorityが有効な場合だけ許可範囲内で適用し、denied/unknown/mismatch/期限切れ/失効なら変更前に停止しSECURITYへ戻す。read-onlyではwrite禁止の適用と、宣言したscope/write-set内で当該操作が変更を起こしていないこと、許可対象resourceの前後状態を確認する。実行中の無関係な状態変化まで不変と要求しない。OS/通常Control Plane停止中の独立bootstrap/recoveryもSECURITY制約下のWorker実行契約を通し、L2-006の独立resource/pathと別SECURITY authorityが有効な場合に限り、通常OS ticket/assignmentやL2-009応答なしで限定された点検/停止/recoveryを開始できる。OS復旧後は結果を通常のWork/Change traceへ同期する。credential値は通常resource stateへ漏らさず、停止時・部分実行では実状態・未完操作と該当する復旧/rollback義務を引き継ぐ。\n- **反例・失敗条件**：INFRASTRUCTURE自身がpolicy/authorityを発行する、範囲外操作が実行される、Workerの成功返答だけで実状態変更を受入れる、又は部分実行を成功として閉じる場合は不合格。read-onlyの宣言だけでwrite禁止・対象scopeのbefore/after確認を省く、writeが許される、または全resource状態digestが不変でないことだけを理由に失敗とする場合も不合格。update admission欠如だけを理由にread-onlyを拒否しないが、read-onlyにも対象・action・scope・authority条件は適用する。"
+    }
+  },
+  "preserved_prior_audits": [
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-infrastructure-stage2a-review01-repair-2026-10-05-0885955.json",
+      "sha256": "00cecd03727afa43eb8d78c2510228fe3cf6df5d1bd47e3aace5e763c546b465",
+      "bytes": 190016,
+      "unchanged_from_pre_followup_body": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-infrastructure-stage2a-review01-repair-followup-2026-10-05-2b6b1f1.json",
+      "sha256": "dacdd28226db390bcdddcd97d0374e029a5f5c38fda4df4d507dcbabc45f2505",
+      "bytes": 9814,
+      "unchanged_from_pre_followup_body": true
+    }
+  ],
+  "static_validation": {
+    "scfctl_validate": "PASS bindings=147 fail=0",
+    "scfctl_stale": "PASS stale=0",
+    "scfctl_residuals": "PASS residuals=0",
+    "govcheck": "PASS atoms=7622 requirements=57 files=58",
+    "git_diff_check": "PASS",
+    "legacy_runtime_test_ci": "not run"
+  },
+  "limitations": [
+    "作成側の短いtrace修正記録であり独立reviewではない。",
+    "PO承認は未了。",
+    "pushなし。"
+  ]
+}

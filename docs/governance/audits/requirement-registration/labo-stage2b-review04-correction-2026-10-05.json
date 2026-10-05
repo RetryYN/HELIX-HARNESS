@@ -1,0 +1,60 @@
+{
+  "record_kind": "review04_correction",
+  "authority_effect": "none",
+  "base": "91660f403d203dff92a50ac7f5484db6ab13f96d",
+  "reviewed_head": "9ae710c3df8b8b30bade15c02f39faa39246eac1",
+  "body_revision": "5755890234cbe9d849e5d6dac58ad92b28d618bc",
+  "formal_comment_id": 5988154961,
+  "scope": "HELIXLABO-L2-002–010 Stage 2b",
+  "corrections": {
+    "n1": "固定L2:129にないsource責務への依頼手続きだけを削除。現行責務ownerへ戻す条件は保持。",
+    "n2": "002–005技術候補表全体を表す見出しに変更し、NVのslugを同期。候補値・測定方法・判定材料は不変。"
+  },
+  "prior_record": {
+    "path": "docs/governance/audits/requirement-registration/labo-stage2b-review03-root-main-integration-2026-10-05.json",
+    "sha256": "e62dcd6ee6f024d9a44d888ee05bbe2cfa9b3b878697f5685d0c0959240d3bdf",
+    "unchanged": true
+  },
+  "documents": [
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "sha256": "d89b00da2c10cb4b1f7f4fd0d97e4bca6889210c623c5ce3f6181de61cc52501",
+      "base_prefix_sha256": "603612c09603d6be3c5b1d45bcbafbe7281457454474acef38d4ddb6e7e13d37",
+      "base_prefix_bytes": 529
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "sha256": "aa3e1b6a56da1423537f8331cb3681fcdd909f0af0f8597110b6582cb8d02c58",
+      "base_prefix_sha256": "79a5e56ca68681136355c1f2d62bff8e9b8bb0b119565edeb4c75a71fad6e8d8",
+      "base_prefix_bytes": 15814
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "sha256": "3645a0d137d71990b4528657f413a2284aac6657f1ddc52229487a006fb9ef5e",
+      "base_prefix_sha256": "97545f30c540e63141e8cb53e27969b9f3d094d12580be03c99836086b7bc4eb",
+      "base_prefix_bytes": 3298
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "sha256": "a67c94c2f457b3d0b0421df7e4c49bd15455444e207a0435a35bb642d421b6ef",
+      "base_prefix_sha256": "af7c875eb2e43b99f85c092baf7cbb0379ec6b8c5c08c9e01f39f8b72f1192d0",
+      "base_prefix_bytes": 522
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "sha256": "ceffcc982c5c0f4c73956504fb7c3ed1e9a2c75289feb0b944f5594697ffc930",
+      "base_prefix_sha256": "6a2909c6163350025eadaa8fe028b9ab50376ebb07b6f2bd7666c17540261fb8",
+      "base_prefix_bytes": 22967
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "sha256": "ba7ddc50a34eb54e4dbf8b3b652e552cd28dcf796bcb1c95ddb9ee57441b68da",
+      "base_prefix_sha256": "95faea76e433f4144bf8b255b6b83a602161084b625a0bc095bda39d4bd416e8",
+      "base_prefix_bytes": 3200
+    }
+  ],
+  "limitations": [
+    "旧時点記録の行pinは旧revisionを指す。新本文で全796行不変とは主張しない。",
+    "未実行・未承認。独立再reviewと同本文Fable照合を要する。"
+  ]
+}
