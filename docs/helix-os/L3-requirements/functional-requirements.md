@@ -443,33 +443,33 @@ taskごとのscope/role/authority/task class、LABO適性evidence、INTELLIGENCE
 
 ### `FR-OS-L3-021` — `HELIXOS-L2-021`
 
-一つの選択project、要求revision、許可scopeについて、HARNESS構成版のexact component set・source/artifact digest・互換性・適格性と必要安全依存を照合し、配布・更新・復旧の状態、candidate/active版、対象artifact、未完義務、復旧先を追跡する。選択した対象と必要依存だけを扱い、未指定componentを暗黙に含めず、他projectや全製品の完成を待つ条件を加えない。L2-014の段階構成へ配布結果を合算しない。
+一つの選択project、要求revision、許可scopeについて、HARNESS構成版のexact component set・source/artifact digest・互換性・適格性・運用証拠と必要安全依存を照合し、配布・更新・復旧の状態、candidate/active版、対象artifact、未完義務、復旧先を追跡する。選択した対象と必要依存だけを扱い、未指定componentを暗黙に含めず、他projectや他の全6製品の完成を待つ条件を加えない。L2-014の段階構成へ配布結果を合算しない。未決の後続能力は`version_target`で保持し、1.0依存へ昇格しない。
 
 **責務／依存境界**：OSはproject別operationと状態/evidenceを管理し、HARNESSはサービス①〜⑦のうち選択構成に該当するservice契約・artifactとその適格性evidence、SECURITYは既存operation authority、INFRASTRUCTUREは資源/実環境を所有する。単独成立はOS-L2-015/016/019/020、該当HARNESS契約・artifact、SECURITY authority、INFRASTRUCTURE資源に依存する。source digest、互換性、scope、権限が不明・不一致なら対象operationを止め、管理または提供元へ返す。既存qualified版または明示された復旧先、途中成果、未完義務を保つ。新しいtag、publication、cutoverはこの要件から許可しない。
 
 **受入条件**
 
-- **`AC-OS-L3-021-01` 選択構成と7サービス証拠**：project、要求revision、operation scope、選択component identity/version、source/artifact digest、必要安全依存、active/candidate状態と復旧先を同じoperationへ結ぶ。HARNESSのサービス①〜⑦はそれぞれ独立して判定でき、当該構成で選択したサービスだけに対応する適格性・配布証拠を個別に照合し、別サービスの証拠で代用しない。明示選択集合だけが対象になる。
+- **`AC-OS-L3-021-01` 選択構成と7サービス証拠**：project、要求revision、operation scope、選択component identity/version、source/artifact digest、運用証拠、必要安全依存、active/candidate状態と復旧先を同じoperationへ結ぶ。HARNESSのサービス①〜⑦はそれぞれ独立して判定でき、当該構成で選択したサービスだけに対応する適格性・配布証拠を個別に照合し、別サービスの証拠で代用しない。FRS-BR-001〜007/009を参照する成熟度・impact・再現性・rollback・安全閉包の既存条件を対応するHARNESS contractで照合し、明示選択集合だけを対象にする。未決後続能力の`version_target`を維持し、1.0 dependencyへ変換しない。
 - **`AC-OS-L3-021-02` 独立判定・部分導入**：一つの適格project向け構成を配布可能とし、別project/他の全製品の未完了を理由に妨げない。個別service構成成功をHELIX全体段階成立とせず、L2-014とは別状態に置く。
-- **`AC-OS-L3-021-03` 不成立と復旧**：各サービスを単独に選択した7つの対照構成それぞれについて証拠を一つずつ欠落させた変異、選択後の別artifact切替、component/digest/互換性/authorityの不一致を配布成立扱いしない。部分適用後の中断では途中成果・未完義務・復旧先を保持し、rollback後の再開でも同じ選択・artifact・scopeを照合する。未指定componentの包含、成果消去、scope外operationを許さず、該当ownerへ返す。
+- **`AC-OS-L3-021-03` 不成立と復旧**：各サービスを単独に選択した対照構成で、そのサービスの証拠を一つずつ欠落させる変異、選択後の別artifact切替、未指定componentの暗黙収載、既存成果の消去、成熟度・impact・再現性・互換性・source digest・authorityの各単独不一致を配布成立扱いしない。tag・publication・cutoverは明示された既存authorityがない限り行わない。部分適用後の中断では途中成果・未完義務・復旧先を保持し、rollback後の再開でも同じ選択・artifact・scopeを照合する。未指定componentの包含、成果消去、scope外operationを許さず、該当ownerへ返す。
 
 ### `FR-OS-L3-022` — `HELIXOS-L2-022`
 
 対象revision・適用scopeを持つsource eventと運用evidenceを改善candidateへ結び、LABOの独立評価・提案・比較実験依頼、既存判断ownerの採否、OSのticket化、変更・検証、再観測を因果関係として記録する。OSは登録・振分け・状態保持を行い、効果/退行評価はLABO、要求/設計/authorityの意味判断は既存ownerが行う。L2-012/013の移管済み研究・横断診断をOSの責務として引き受けない。知識取込や自動学習を1.0要件にしない。
 
-**責務／依存境界**：OS-L2-015/016/019、対象正本、source event、scope、判断owner、LABO評価契約、既存ticket契約に依存する。入力にはLABOの独立評価結果、提案、比較実験依頼、判断状態と還流先候補をそれぞれ区別して結ぶ。候補生成・登録件数は採択や効果の証拠ではない。評価範囲、採否、戻し先または再評価条件が不足する場合は未解決のまま保持し、LABOまたは該当判断ownerへ返す。L2-012/013が所有する研究・横断診断の実行や結果解釈をOSへ再割当しない。
+**責務／依存境界**：OS-L2-015/016/019、対象正本、source event、scope、判断owner、LABO評価契約、既存ticket契約に依存する。入力にはLABOの独立評価結果、提案、比較実験依頼、判断状態と還流先候補をそれぞれ区別して結ぶ。候補生成・登録件数や再観測件数を改善効果の証拠・指標にしない。評価範囲、採否、戻し先または再評価条件が不足する場合は未解決のまま保持し、LABOまたは該当判断ownerへ返す。移管済みL2-012/013の研究・横断診断の実行や結果解釈はLABO側へ戻し、OSへ再割当しない。
 
 **受入条件**
 
 - **`AC-OS-L3-022-01` 還流trace**：同一対象revision/scopeの観測→candidate→LABO評価→既存判断→ticket→変更/検証→再観測の各状態とownerを辿れる。評価結果とOSの登録・routingは別actor/stateである。
-- **`AC-OS-L3-022-02` authority非昇格**：観測、登録、LABO提案、ticket変更だけを個別に変えても要求・設計・authorityの意味は変わらない。採択は既存の判断ownerに属し、OSから生成しない。
-- **`AC-OS-L3-022-03` unknown/negative保持**：source、対象revision、scope、LABO評価、採否、戻し先または再評価条件を一つずつ欠落/不一致にした場合、候補を未解決に保ち、棄却理由と未完検証義務を消さずownerへ戻す。
+- **`AC-OS-L3-022-02` authority非昇格**：観測、登録、LABO提案、ticket変更だけを個別に変えても要求・設計・authorityの意味は変わらず、件数のみから改善効果を主張しない。採択は既存の判断ownerに属し、OSから生成しない。
+- **`AC-OS-L3-022-03` unknown/negative保持**：source、対象revision、scope、LABO評価、採否、戻し先または再評価条件を一つずつ欠落/不一致にした場合、候補を未解決に保ち、棄却理由と未完検証義務を消さず、明示された戻し先または再評価条件を保持してLABO/既存判断ownerへ戻す。
 
 ### `FR-OS-L3-024` — `HELIXOS-L2-024`
 
-対象projectのHARNESS提供版、運用実績、対象revision、data-use class、許可範囲、LABO評価evidenceを結び、許可されたscopeだけをLABOへ渡す。OS-L2-019/021/022および版付きLABO接続の各revision・適合性を照合し、sourceの結合だけで接続成立としない。評価・feedback後は候補、既存判断、ticket、検証、再観測の状態をOSが接続する。提供完了、LABO評価、要求採否、利用者受入、改善効果を別々に記録する。後続版の学習/推薦機能を前提依存にしない。
+対象projectのHARNESS提供版、運用実績、対象revision、data-use class、許可範囲、LABO評価evidenceを結び、許可されたscopeだけをLABOへ渡す。OS-L2-019/021/022および版付きLABO接続の各revision・適合性を照合し、sourceの結合だけで接続成立としない。評価・feedback後は候補、既存判断、ticket、検証、再観測の状態をOSが接続する。提供完了、LABO評価、要求採否、利用者受入、改善効果を別々に記録する。利用者受入や改善成功を提供完了から推定しない。後続版の学習/推薦機能を前提依存にしない。
 
-**責務／依存境界**：OSは接続と状態、HARNESSは提供版・証拠契約、SECURITYは既存のdata-use/operation authority、LABOは評価と効果判断、要求判断ownerは採否を所有する。L2-019/021/022と版付きLABO接続のそれぞれについて、互換性・欠落・staleを独立に検出する。tenant/customer dataや権限をOSのauthorityへ混ぜず、許可範囲を越えて送らない。許可/data class/scopeが欠落・不一致なら送信と候補採用を保留し、権限ownerまたはLABOへ返す。未評価・未判断・再検証待ちをそのまま保持する。
+**責務／依存境界**：OSは接続と状態、HARNESSは提供版・証拠契約、SECURITYは既存のdata-use/operation authority、LABOは評価と効果判断、要求判断ownerは採否を所有する。L2-019/021/022と版付きLABO接続のそれぞれについて、互換性・欠落・staleを独立に検出する。tenant/customer dataや権限をOSのauthorityへ混ぜず、許可範囲を越えて送らない。許可/data class/scopeが欠落・不一致なら送信と候補採用を保留し、権限ownerまたはLABOへ返す。未評価・未判断・再検証待ちをそれぞれ別の未完状態として保持する。WEB-OSのjob・credential・deployment情報を本体OSの対象正本へ混入させない。
 
 **受入条件**
 
@@ -485,33 +485,33 @@ taskごとのscope/role/authority/task class、LABO適性evidence、INTELLIGENCE
 
 **受入条件**
 
-- **`AC-OS-L3-046-01` exact transition chain**：有効authority、target/scope/head/base、assignment/ticket、適用HARNESS contractとrequired verificationを固定し、同じ対象scopeに結ばれた遷移だけをReady/merge admission候補として記録する。
-- **`AC-OS-L3-046-02` 独立遷移stale**：authority、HEAD、base、scope、適用contractを一つずつ変え、影響する次遷移だけをstale/未完に戻す。旧HEAD review/verification、失効authority、別scopeの結果は流用しない。
+- **`AC-OS-L3-046-01` exact transition chain**：有効authority、target/scope/head/base、assignment/ticket、適用HARNESS contractとrequired verificationを固定し、同じ対象scopeに結ばれた遷移だけをReady/merge admission候補として記録する。最終admissionはmerge対象content HEADと最新baseのpairに結び、read-afterで一致を照合する。dispatch等一段の成功だけでは次段成功を生成しない。
+- **`AC-OS-L3-046-02` 独立遷移stale**：authority、HEAD、base、scope、ticket/assignment identity、適用contractを一つずつ変え、影響する次遷移だけをstale/未完に戻す。旧HEAD review/verification、失効authority、別scopeの結果は流用しない。
 - **`AC-OS-L3-046-03` 除外迂回拒否**：docs path、prototype、未実施required verification、同じticketでの別HEAD結果を各独立変異として投入する。既存契約上必要な確認を省かず、適用契約が別scopeに独立許可する遷移は一律停止しない。
 
 ### `FR-OS-L3-048` — `HELIXOS-L2-048`
 
-ticket返却、検証不能、oracle/input不足のfindingを、finding identity、ticket/assignment、target HEAD/revision/scope、根拠・不足条件、発生元、既存resolution条件へ結び、既存L2-007 lifecycleでpending/evidence-backed resolutionを保つ。OSはintake/routing/statusとticket運転、LABOはfindingの理由分類・scope・counterexample・再評価条件を含む評価、INTELLIGENCEはLABO評価済みでtask scopeが適合する場合の次回配置案、HARNESSはoracle/verification義務を所有する。OSだけが再発行/割当を決め、再発行後のresultを元findingへ因果relationで結び、LABOが同一条件での成立状況を評価する。閉じたticketは保持し、後日findingを因果relation付き追補assessmentとして扱う。
+ticket返却、検証不能、oracle/input不足のfindingを、finding identity、ticket/assignment、target HEAD/revision/scope、根拠・不足条件、発生元、既存resolution条件へ結び、既存L2-007 lifecycleでpending/evidence-backed resolutionを保つ。L2-007、L2-020、L2-047と既存ticket契約に依存する。OSは運転・検証観測をevidence付きcandidateとしてLABOへ渡す。OSはintake/routing/statusとticket運転、LABOはfindingの理由分類・scope・counterexample・再評価条件を含む評価、INTELLIGENCEはLABO評価済みでtask scopeが適合する場合の次回配置案、HARNESSはoracle/verification義務を所有する。OSだけが再発行/割当を決め、再発行後のresultを元findingへ因果relationで結び、LABOが同一条件での成立状況を評価する。閉じたticketは保持し、後日findingを因果relation付き追補assessmentとして扱う。
 
 **責務／依存境界**：OSは新しいevent schema、status、resolution十分条件、priorityまたはapprovalを作らない。LABO評価やINTELLIGENCE案からticket/assignmentを発行しない。自由文handover、同じpathまたは時間的近さだけでresolution/因果関係を断定せず、ownerに既存条件を照合させる。
 
 **受入条件**
 
-- **`AC-OS-L3-048-01` finding traceと評価受渡し**：ticket返却findingとoracle不足findingの両方で対象revision/scope、ticket/assignment、発生元、理由、不足入力、既存resolution条件が保持される。LABOの分類、適用scope、counterexample、再評価条件を含む評価結果が届き、かつtask scopeが合う場合だけINTELLIGENCEは次回配置案を返せる。OSはその案を自動実行しない。
-- **`AC-OS-L3-048-02` pending/resolution境界**：自由文だけ、未評価、未ack、evidence不足、別scope/revision、比較不能ではpendingを維持する。観測window未満、未追跡、打切りはdefect 0としない。既存L2-007 resolution条件を満たすcurrent evidenceがある場合だけresolvedとし、LABO/INTELLIGENCE/OSのowner境界を維持する。
+- **`AC-OS-L3-048-01` finding traceと評価受渡し**：ticket返却findingとoracle不足findingの両方で対象revision/scope、ticket/assignment、発生元、理由、不足入力、既存resolution条件が保持される。OSがevidence付きcandidateをLABOへ渡し、LABOの分類、適用scope、counterexample、再評価条件を含む評価結果が届き、かつtask scopeが合う場合だけINTELLIGENCEは次回配置案を返せる。finding identityは欠落させない。OSはその案を自動実行せず、LABO/INTELLIGENCEからticket/assignmentを作らない。feedbackだけでauthority、要求意味、priorityを変更しない。
+- **`AC-OS-L3-048-02` pending/resolution境界**：自由文だけ、未評価、未ack、evidence不足、別scope/revision、比較不能、評価母数unknownではpending/未評価を維持する。観測window未満、未追跡、打切りはdefect 0としない。既存L2-007 resolution条件を満たすcurrent evidenceがある場合だけresolvedとし、LABO/INTELLIGENCE/OSのowner境界を維持する。
 - **`AC-OS-L3-048-03` 再発行後評価・後日finding**：LABO評価済みでtask scope適合のfixtureではINTELLIGENCE配置案をOSが判断し、OSが元findingへの因果relation付きticket/assignmentを再発行する。再発行resultをLABOが同じ条件で評価し、未評価・不一致なら未解決を保つ。既に閉じたticketへの後日findingはclosureを保持して追補assessmentとし、source/scope/因果関係がunknown/staleなら該当ownerへ返す。
 
 ### `FR-OS-L3-052` — `HELIXOS-L2-052`
 
-明示mergeとread-after後に、PR assignmentが所有し、他assignmentが使用せず、未完作業のないlocal worktree/branchだけをcleanupし、対象・結果・未完義務を記録する。後続PRはcontent HEADを書換えずに最新baseとのtrial merge可能性、`scfctl stale`、依存とreview bindingを再照合する。最新baseを再確認したうえでconflict、stale、依存変化またはreview binding不一致が残る場合だけ根拠を付けて作成側へ返し、修正後HEADへ独立reviewを取り直す。baseが変化してもpairが一致しstale=0かつ依存が維持されれば既存stateを保つ。Remote refの削除は既存の対象・作用を含む明示authorityがある場合に限る。
+明示mergeとread-after後に、PR assignmentが所有し、他assignmentが使用せず、未完作業のないlocal worktree/branchだけを自動・冪等にcleanupし、read-after結果とcleanup結果を別々に記録する。後続PRはcontent HEADを書換えずに最新baseとのtrial merge可能性、`scfctl stale`、依存とreview bindingを再照合する。最新baseを再確認したうえでconflict、stale、依存変化またはreview binding不一致が残る場合だけ根拠を付けて作成側へ返し、修正後HEADへ独立reviewを取り直す。baseが変化してもpairが一致しstale=0かつ依存が維持される場合、既存stateを保持できる。Remote refの削除は既存の対象・作用を含む明示authorityがある場合に限る。
 
 **責務／依存境界**：OSはassignment/cleanup/rechainの記録、作成側は自身のbranch修正、review/merge側は独立照合を担う。merge/cleanupからticket完了、Issue close、review成功、要求完了を生成しない。branch自動rebaseやremote削除はこの要件から許可しない。
 
 **受入条件**
 
 - **`AC-OS-L3-052-01` local cleanup適格性**：PR-A merge/read-after後にassignment所有、未使用、未完作業なしのlocal worktree/branchだけをcleanupし、同一cleanup再実行でも他assignmentの資源を変更しない。remote refは対象・削除作用を含むauthorityがなければ残す。
-- **`AC-OS-L3-052-02` 後続PR再照合**：PR-A merge後にPR-Bのtrial merge、最新base、stale、dependency、review bindingをcontent HEAD不変のまま再照合する。一致しstale=0なら既存review bindingを保つ。
-- **`AC-OS-L3-052-03` 作成側への返却と再review**：最新base再照合後もconflict/stale/依存変化/review binding不一致がある場合は、merge/review側が作成branchを修正せず差分と根拠を作成側へ返す。baseだけが変化してもpair一致・stale=0・依存維持なら既存stateを保持する。作成側がHEADを変えた後は新HEADの独立reviewを取り直し、旧reviewを流用しない。
+- **`AC-OS-L3-052-02` 後続PR再照合**：PR-A merge後にPR-Bのtrial merge、最新base、stale、dependency、review bindingをcontent HEAD不変のまま再照合する。一致しstale=0なら既存review bindingを保持できる。
+- **`AC-OS-L3-052-03` 作成側への返却と再review**：最新base再照合後もconflict/stale/依存変化/review binding不一致がある場合は、merge/review側が作成branchを修正せず差分と根拠を作成側へ返す。旧CI結果はread-afterの代用にしない。最新baseが変化した後のreviewed pairが一致しstale=0・依存維持なら既存stateを保持できる。作成側がHEADを変えた後は新HEADの独立reviewを取り直し、旧reviewを流用しない。
 
 ## Stage 4 親・旧source crosswalk（旧項目ごとの判断）
 
@@ -522,8 +522,8 @@ ticket返却、検証不能、oracle/input不足のfindingを、finding identity
 | `HELIXOS-L2-021` | `LEGACY-ASSET-B75E46DBE77592351574` FRS要求04–09、`LEGACY-ASSET-201EED9C5D6D2FF4D41B` FRS依頼001–009、`LEGACY-ASSET-67ADFAB856D954B3C5D2` FRS受入004–026とBR crosswalk。各範囲は本追補監査の固定span参照。 | 選択componentの明示収載、成熟度/適格性、安全依存、impact、再現性、rollbackを現行HARNESS contractとproject scopeへ再導出。旧Slice/Module/Bundle/channel、固定構成数、promotion runtime・schemaは置換し、HELIX自身の全機構stage release（L2-014）とproject向けHARNESS構成（021）を別identityにする。 |
 | `HELIXOS-L2-022` | `LEGACY-ASSET-02D897E62EF2FA267267` UIL-FR-004/005、UIL-R-07–10の全体範囲と、`LEGACY-ASSET-0B5B38F146D9538C9A36` UIL-AC-011–016を起点とする。 | event→candidate→判断→ticket→変更/検証→再観測のtraceと前後比較を意味上再利用。LABOの評価/提案/比較実験依頼とOS登録、既存decision ownerの採否を区別して再導出。旧terminal route、database/schema、threshold、runtimeは置換。 |
 | `HELIXOS-L2-024` | `LEGACY-ASSET-EE5DBACC7F28F7D1F605` のHR-FR-P4-03、HAC-P4-03a/b、`LEGACY-ASSET-44DD86E3DEC09E65EF51` のHAT-P4-03。 | event/evidenceから候補・評価へ至るtraceだけを再利用し、HARNESS提供/運用、SECURITY permission/data-use、LABO評価、OS routing、既存要求ownerの判断を別状態として再導出。旧収集器・DB・閾値は移植しない。 |
-| `HELIXOS-L2-046` | `LEGACY-ASSET-F38874B2497742797010` のRFA-GH-02と`LEGACY-ASSET-00C7DF9250F8A9A25B24` のRFA-AC-16一行だけ。RFA全体、隣接acceptance行、engine/schema/runtimeはsource closureに含めない。 | authority/HEAD/scope連続性とstale invalidationの意味を再利用し、現行dispatch/execute/Ready/merge admissionの既存契約へ再導出する。required verification ownerはHARNESS、operation authorityはSECURITY、独立reviewとadmissionは既存GitHub運用モデルに残す。追加approval/check/skipは作らない。 |
-| `HELIXOS-L2-048` | `LEGACY-ASSET-02D897E62EF2FA267267` のUIL-FR-005／UIL-R-09/10部分と`LEGACY-ASSET-0B5B38F146D9538C9A36` のUIL-AC-015/016。 | pendingとevidence-backed resolution、閉じたticket履歴保持、後日findingの因果relationを意味起点にする。OS intake/routing/ticket、LABO assessment、INTELLIGENCE placement proposal、HARNESS oracle、SECURITY authorityを個別に再導出。旧lifecycle store/schema/thresholdは移植しない。 |
-| `HELIXOS-L2-052` | `LEGACY-ASSET-23D3D9769B093AFDCC25` のMIC-R-02/06、`LEGACY-ASSET-8F1DD8A985CF85749507` のMIC-AC-009。 | post-merge base driftの再照合と衝突を作成側へ返す意味を再利用。現L2からlocal resourceのassignment ownership/未使用/未完確認を再導出する。旧delete-branch-on-merge、自動rebase、旧branch/runtime/CI運転は置換し、remote削除は明示authorityの既存境界に残す。 |
+| `HELIXOS-L2-046` | `LEGACY-ASSET-00C7DF9250F8A9A25B24` のRFA-AC-16指定acceptance row一行だけ。RFA-GH-02をこの候補の意味起点にせず、RFA全体、隣接acceptance行、engine/schema/runtimeはsource closureに含めない。 | authority/HEAD/scope連続性とstale invalidationの意味を再利用し、現行dispatch/execute/Ready/merge admissionの既存契約へ再導出する。required verification ownerはHARNESS、operation authorityはSECURITY、独立reviewとadmissionは既存GitHub運用モデルに残す。追加approval/check/skipは作らない。 |
+| `HELIXOS-L2-048` | `LEGACY-ASSET-3A15E5645D2D2A59DFF5` の`execution-ticket-requirements.md:282`（O1-MANAGEMENT-PROPOSAL-NOT-OVERWRITE）および`:319`（O2-POSTCLOSE-ASSESSMENT）を起点とする。UIL-R-09/10・UIL-AC-015/016は効果測定/terminal outcomeの限定条件にとどめ、閉じたticketの因果関係・追補assessment・未追跡/打切りを0扱いしない根拠にはしない。 | pendingとevidence-backed resolution、閉じたticket履歴保持、後日findingの因果relationを意味起点にする。OS intake/routing/ticket、LABO assessment、INTELLIGENCE placement proposal、HARNESS oracle、SECURITY authorityを個別に再導出。旧lifecycle store/schema/thresholdは移植しない。 |
+| `HELIXOS-L2-052` | `LEGACY-ASSET-23D3D9769B093AFDCC25` のMIC-R-02/06、`LEGACY-ASSET-8F1DD8A985CF85749507` のMIC-AC-009、および`LEGACY-ASSET-F172CBC75CAA4FCFC2EB` `three-lane-capacity-profile-requirements.md:43`（衝突を作成側へ返す／reviewerがworker branchを修正しない）。旧`archive/legacy-generation-2026-09-14/root/CLAUDE.md:201`のdelete-branch-on-merge設定もsource path/lineとしてのみpinし、legacy asset IDは台帳にないため割当を捏造しない。 | post-merge base driftの再照合と衝突を作成側へ返す意味を再利用。現L2からlocal resourceのassignment ownership/未使用/未完確認を再導出する。旧delete-branch-on-merge、自動rebase、旧branch/runtime/CI運転は置換し、remote削除は明示authorityの既存境界に残す。 |
 
 固定親の参照範囲はL2 `governance-requirements.md` 702–711、712–721、732–741、1177–1184、1195–1204、1231–1241と、L11 `governance-acceptance.md` 366–371、373–378、387–392、794–800、812–819、847–854である。登録revision・採択履歴・各raw-byte span hashはStage4新規監査に個別pinする。旧READMEのL3→L12と旧processのL3↔L10等の層対応表記は現行層の権威にせず、現行6 canonical構成で意味を再配置する。

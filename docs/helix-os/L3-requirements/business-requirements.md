@@ -82,7 +82,7 @@
 
 | 親L2 | business扱い | L10観測・境界 |
 |---|---|---|
-| `HELIXOS-L2-021` | 機能要件のみ。 | project構成配布を別判定に保ち、全製品/HELIX段階releaseの価値指標へしない。 |
+| `HELIXOS-L2-021` | 機能要件のみ。 | project構成配布を別判定に保ち、HELIX-WEB-HARNESSの7製品の製品群としての意味を保ち、7機構やHELIX自身のstage releaseと同一視しない。 |
 | `HELIXOS-L2-022` | 機能要件のみ。 | observation/candidate/ticket/effect evaluationを別状態とし、候補件数を改善成功にしない。 |
 | `HELIXOS-L2-024` | 機能要件のみ。 | 許可data handoff、LABO評価、OS routing、user acceptanceを分ける。 |
 | `HELIXOS-L2-046` | 機能要件のみ。 | 既存遷移の証拠照合を観測し、merge rateや新承認の基準を加えない。 |

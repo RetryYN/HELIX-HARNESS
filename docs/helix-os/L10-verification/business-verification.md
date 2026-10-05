@@ -73,7 +73,7 @@ fixtureと実観測を分けて記録し、各親についてtrace正確性、un
 | `HELIXOS-L2-022` / `MPR-RC-HELIXOS-L2-022-001` | 独立BRなし | `FR-OS-L3-022`; `AC-OS-L3-022-01`〜`AC-OS-L3-022-03`; `CASE-OS-L10-022-*` | event/candidate数、ticket登録、再観測を改善効果・採択判断へ読み替えない。 |
 | `HELIXOS-L2-024` / `MPR-RC-HELIXOS-L2-024-001` | 独立BRなし | `FR-OS-L3-024`; `AC-OS-L3-024-01`〜`AC-OS-L3-024-03`; `CASE-OS-L10-024-*` | 許可scope内handoff、LABO評価、要求採否、user acceptanceを別状態に保つ。 |
 | `HELIXOS-L2-046` / `MPR-RC-HELIXOS-L2-046-001` | 独立BRなし | `FR-OS-L3-046`; `AC-OS-L3-046-01`〜`AC-OS-L3-046-03`; `CASE-OS-L10-046-*` | 既存authority/review/verification/admissionの照合から新approvalやmerge KPIを作らない。 |
-| `HELIXOS-L2-048` / `MPR-RC-HELIXOS-L2-048-001` | 独立BRなし | `FR-OS-L3-048`; `AC-OS-L3-048-01`〜`AC-OS-L3-048-03`; `CASE-OS-L10-048-*` | pending/resolution evidenceとLABO評価、INTELLIGENCE案、OS ticketを分離し、finding数を効果指標にしない。 |
+| `HELIXOS-L2-048` / PO採択 `MPR-RC-HELIXOS-L2-048-001`、現行metadata successor `MPR-RC-HELIXOS-L2-048-002`（R2289-02、semantic digest `sha256:0cbd66b870d6b45f739c6759ed2b325d65e69cfbf3e72b6b5638f1e530c77622`同一） | 独立BRなし | `FR-OS-L3-048`; `AC-OS-L3-048-01`〜`AC-OS-L3-048-03`; `CASE-OS-L10-048-*` | pending/resolution evidenceとLABO評価、INTELLIGENCE案、OS ticketを分離し、finding数を効果指標にしない。 |
 | `HELIXOS-L2-052` / `MPR-RC-HELIXOS-L2-052-001` | 独立BRなし | `FR-OS-L3-052`; `AC-OS-L3-052-01`〜`AC-OS-L3-052-03`; `CASE-OS-L10-052-*` | local cleanupと後続PR再照合をissue/要求完了・remote削除・生産性へ拡張しない。 |
 
 合否はこの文書で別途生成しない。上表は業務failureをtransport/handoff stateで置換せず、機能CASEの同じ入力・scope・ownerを保つためのtraceである。
