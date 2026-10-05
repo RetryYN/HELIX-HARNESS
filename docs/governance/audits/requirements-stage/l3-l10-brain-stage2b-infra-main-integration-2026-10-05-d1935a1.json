@@ -1,0 +1,129 @@
+{
+  "record_type": "append-only main integration audit",
+  "authority_effect": "none",
+  "date": "2026-10-05",
+  "mechanism": "HELIX-BRAIN",
+  "stage": "2b",
+  "parents": [
+    "HELIXBRAIN-L2-INFRA-001",
+    "HELIXBRAIN-L2-INFRA-002",
+    "HELIXBRAIN-L2-INFRA-003",
+    "HELIXBRAIN-L2-INFRA-004",
+    "HELIXBRAIN-L2-INFRA-005",
+    "HELIXBRAIN-L2-INFRA-006",
+    "HELIXBRAIN-L2-INFRA-007",
+    "HELIXBRAIN-L2-INFRA-008",
+    "HELIXBRAIN-L2-INFRA-009",
+    "HELIXBRAIN-L2-INFRA-010",
+    "HELIXBRAIN-L2-INFRA-011",
+    "HELIXBRAIN-L2-INFRA-012",
+    "HELIXBRAIN-L2-INFRA-013",
+    "HELIXBRAIN-L2-INFRA-014",
+    "HELIXBRAIN-L2-INFRA-015",
+    "HELIXBRAIN-L2-INFRA-016",
+    "HELIXBRAIN-L2-INFRA-017"
+  ],
+  "main_revision": "02f40864ecfbe64d97f45fa67daafc9d9928e264",
+  "body_revision": "d1935a1fe44882a22b460dec969d99d3e9e46674",
+  "previous_body_revision": "d91c767efe47133f3dccb1c9b960e462ad044918",
+  "canonical_documents": [
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.md",
+      "sha256": "61d820adf8c0c33ef794c6a2966254bbf20991cd5b8345741d5f8da8bfcbe209",
+      "bytes": 4751,
+      "approved_prefix_sha256": "5224d78282a60ef1ac2dd0fc4bbc2bfaf3073e738e0baf7ad697d3656040c804",
+      "approved_prefix_bytes": 1059,
+      "unchanged_from_reviewed_candidate": true
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "sha256": "4287338958371e9655949bdff8f6e212b66d9a9a4224dbccc64b2017219f2a46",
+      "bytes": 53884,
+      "approved_prefix_sha256": "031fccb6716b42e693983d2c3789b80070ec4910afcc198243a5b26a3eaaa216",
+      "approved_prefix_bytes": 19080,
+      "unchanged_from_reviewed_candidate": true
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/nfr-verification.md",
+      "sha256": "0f21ce9efa956a25c66cb3b2f4b3d351b536b0dcfbe63f9481613537ee98c930",
+      "bytes": 16154,
+      "approved_prefix_sha256": "21a47fed4e9269367d765111b05e3541c8ee3649f474990fdc5b27f20798e237",
+      "approved_prefix_bytes": 3909,
+      "unchanged_from_reviewed_candidate": true
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.md",
+      "sha256": "0b857e367c250e8358c0150949362c962fbe7c38e4af0e982dad55f39efedf0e",
+      "bytes": 5658,
+      "approved_prefix_sha256": "98c768a580ea16fffb5c11dfaa6508c91e7dba6d6d55f8d097f540ff9092c264",
+      "approved_prefix_bytes": 1586,
+      "unchanged_from_reviewed_candidate": true
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "sha256": "21010ba4031b601e3b84a99dd62208a15a1a27377e4e73280d6ffe9f8cd3a971",
+      "bytes": 94276,
+      "approved_prefix_sha256": "537ff96382641b614c4f256d30403d4b5df5154ea7fb623c0a809c263c030a9a",
+      "approved_prefix_bytes": 27100,
+      "unchanged_from_reviewed_candidate": true
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/nfr-grade.md",
+      "sha256": "45ea36ce2ea81e0394dd562e42b7dc272a34df256a2fad73934db2aecbeb7ae2",
+      "bytes": 18520,
+      "approved_prefix_sha256": "8d987bddc9d4625937c5c7c16d1754a475ca699d27e09eb39e04489681288fbc",
+      "approved_prefix_bytes": 4739,
+      "unchanged_from_reviewed_candidate": true
+    }
+  ],
+  "preserved_records": [
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-brain-stage2b-infra-followup-d91c767-static-validation-2026-10-05.json",
+      "sha256": "3a349a0d1f304ac41aaa4dc600b1b8462f383c8d83748b153c00ea9e79e9de92",
+      "bytes": 642736,
+      "byte_identical": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-brain-stage2b-infra-followup-d91c767-summary-2026-10-05.md",
+      "sha256": "625f582d632ac4e15e46a2c8396489442c8c99356afb6589344922e75af83fc7",
+      "bytes": 1267,
+      "byte_identical": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-brain-stage2b-infra-handoff-2026-10-05-691f7a6179.md",
+      "sha256": "14fc2a10026cd313893a96697bde28ef910b414a2e5315752e0d0bff3b1f0869",
+      "bytes": 3232,
+      "byte_identical": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-brain-stage2b-infra-repair-dcc17fd-static-validation-2026-10-05.json",
+      "sha256": "d9464e3fb6b23976d5b4a0f9cde76a45c6f84f0f40ca74b344d8f8ae1b8de6e4",
+      "bytes": 624689,
+      "byte_identical": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-brain-stage2b-infra-repair-dcc17fd-summary-2026-10-05.md",
+      "sha256": "752c3b02c593944730458604ca2438e8cfdb05087b8c43ce4dc4512c6ede4d92",
+      "bytes": 2182,
+      "byte_identical": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-brain-stage2b-infra-static-validation-2026-10-05-691f7a6179.json",
+      "sha256": "ebd9c73cac5d1ea1712321052a81d49df59d87067651d1a83d7993c533c88a4a",
+      "bytes": 337448,
+      "byte_identical": true
+    }
+  ],
+  "source_validation_reference": "l3-l10-brain-stage2b-infra-followup-d91c767-static-validation-2026-10-05.json",
+  "root_validation": "119 source full SHA / 97 spans and 17 object references / 847 current lines previously checked; canonical bytes remain identical after clean merge",
+  "static_validation": {
+    "bindings": 147,
+    "fail": 0,
+    "stale": 0,
+    "residuals": 0,
+    "govcheck": "7622/57/58",
+    "diff_check": "PASS"
+  },
+  "approval_state": "Stage1 approved prefix retained; 17 Stage2b parents unapproved; no implementation permission",
+  "carry_forward": "Old #2564 C13/M12 and out-of-scope findings are not closed by this audit; new exact HEAD review required"
+}

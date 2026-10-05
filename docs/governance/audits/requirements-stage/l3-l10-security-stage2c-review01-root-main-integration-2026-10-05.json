@@ -1,0 +1,65 @@
+{
+  "record_kind": "creator-stage2c-review01-root-main-integration.v1",
+  "status": "未承認・独立再review待ち",
+  "base": "191ebab8c0b1871d7c8c84354976d7c0bc11c26e",
+  "integration_commit": "2c7f3e01f6a147cb187e45c2531ca4334e02ed90",
+  "body_revision": "b0f8ac21a9137d67d68ac5b6dd09ac24707b2cf6",
+  "documents": [
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "sha256": "d136764cfef2b6eeca900c5046a1228764e414591cc58bd9b6e076fca62fc933",
+      "main_prefix_sha256": "717e206126b910a8261e5448227bb73b0961ac3dbf3f1f71a41ef487dc0f6ee5",
+      "main_prefix_bytes": 526,
+      "body_unchanged": true
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "sha256": "f679d21ad0b707ac450473f6b21d1d1feb29d8c2982ed83c6d67133dc2ffe507",
+      "main_prefix_sha256": "36cff0854ed103c387616e91e3c6b032d9a0b0b14e749dc220e9ea97300e96d5",
+      "main_prefix_bytes": 50511,
+      "body_unchanged": true
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "sha256": "683fd29048418b6e8d1e78ab27bc727dc026d7c5555c7a63662d27da7746fd18",
+      "main_prefix_sha256": "37d223cb22f8a7923662967ad501200e5f2a7e5f4db436a180d7af3affd0da9c",
+      "main_prefix_bytes": 4983,
+      "body_unchanged": true
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "sha256": "e6cfb2b5abff73254f0f8d860ffbd0590085fed224cf8f2fb61a02271d780ff9",
+      "main_prefix_sha256": "fcf2504a4fef152d1829fddb1a9d65397cb16114a6edbd964c619422da75097d",
+      "main_prefix_bytes": 747,
+      "body_unchanged": true
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "sha256": "8e4c5064a0ab84345c31d6abf6a764c84eb34ad2c4ee41405c074507e175b165",
+      "main_prefix_sha256": "54d038fd20d5380aaee039682ecc07668f224d4b01143b48fcf37f4903ddeb4e",
+      "main_prefix_bytes": 67008,
+      "body_unchanged": true
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "sha256": "bc2476eafc5922b451a7c967e9d05aa477e6649c58b77427cd24ed1d4de12427",
+      "main_prefix_sha256": "3fe1d98024d5a54e734ab8276ee3d55af78d743c7f1bf12b46b9d351139fe50b",
+      "main_prefix_bytes": 6964,
+      "body_unchanged": true
+    }
+  ],
+  "checks": {
+    "root_diff": "FR/FV全文、他4本文差分なし",
+    "sources": 25,
+    "delta_current_lines": 14,
+    "prior_records_unchanged": 5,
+    "prefix": 6
+  },
+  "scope": [
+    "HELIXSECURITY-L2-031"
+  ],
+  "limits": [
+    "独立review/委任承認/実測未成立。",
+    "旧runtime/test/CI/Bun未実行。"
+  ]
+}
