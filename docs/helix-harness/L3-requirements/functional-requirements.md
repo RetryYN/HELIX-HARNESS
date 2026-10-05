@@ -310,7 +310,7 @@ G0の順序案BはStage 2a後に2cを2bと並行する段階配置であり、03
 
 - `AC-HARNESS-L3-026-01` 固定要求「承認後は編集不可」を同一revisionでstate・API/command・actor・data invariant・oracleへ結ぶnormalと、同scopeの未見actor/競合更新normalを満たす。
 - `AC-HARNESS-L3-026-02` Template/CORE/BRAIN connector/paired outputの常時依存を個別に欠落・unknown・stale・mismatchとして拒否し、要件意味不足はHARNESS-L2-008、L3 authority不足はそのauthority owner、TemplateはHARNESS-L2-009/template owner、PatternはBRAIN、設計/pairはHARNESSの設計/pair ownerへ戻す。014 completion receiptは要求しない。
-- `AC-HARNESS-L3-026-03` 選択PatternとUI適用条件を区別する。未選択Patternは未観測のまま正常成立し、選択Patternの版/互換/入力不備と、UI対象でのagreement/screen欠落は個別保留する。
+- `AC-HARNESS-L3-026-03` 選択PatternとUI適用条件を区別する。未選択Patternは未観測のまま正常成立し、選択Patternの版/互換/入力不備、対象scope/revisionに結び付くHELIXBRAIN-L2-030 connection receipt欠落と、UI対象でのagreement/screen欠落は個別保留する。選択Patternを使う場合だけ既存connection receiptを受入入力とし、未選択には要求しない。
 - `AC-HARNESS-L3-026-04` UIが隠してもAPI更新を許す、actor permissionが残る、競合更新でinvariantを破る、または別revisionへtraceする各変異を不合格にし、要求意味はL2-008/authority owner、TemplateはL2-009、PatternはBRAIN、設計/pairはHARNESS ownerへ返す。
 - `AC-HARNESS-L3-026-05` 選択Pattern間のconstraint conflictでは競合条件・根拠・影響scopeを示し、固定invariantを満たす代替案を比較する。満たす案がないときは要求不足/矛盾としてL2-008へ返し、意味を変える案で埋めない。
 
@@ -331,7 +331,7 @@ G0の順序案BはStage 2a後に2cを2bと並行する段階配置であり、03
 - `AC-HARNESS-L3-028-01` 同一scope/source revisionのobservationとidentified saved design/requirementを比較し、known relationの変更だけをaffected setとowner別backflowへ結ぶnormal。
 - `AC-HARNESS-L3-028-02` source receipt/source revision/design revision/requirement revision/product/scope/authority/known relationを各々単独変異し、stale/mismatch/unknownを保留し正しいsource/design/requirement ownerへ戻す。
 - `AC-HARNESS-L3-028-03` 対象revisionに結び付く既存approval receiptがあるnormalと、receipt欠落または別revision receiptのままapprovedを主張する各negativeを分ける。approved状態は完全一致receiptがある既存状態としてのみ認識し、比較やL3候補から承認を生成しない。不一致・欠落時はapprovedを与えずreceipt issuer/authority ownerへ戻す。
-- `AC-HARNESS-L3-028-04` 未見helper/API edgeを加え、known traced edgeのみaffected、未表現edgeはunknownとする。類似名/pathだけでUnaffectedにしない。通常のbounded diffを全体reverseへ拡張しない。
+- `AC-HARNESS-L3-028-04` 未見helper/API edgeを加え、known traced edgeのみaffected、未表現edgeはunknownとする。類似名/pathだけでUnaffectedにしない。通常のbounded diffを全体reverseへ拡張しない。trace欠落はunknownとして全体Reverse/reobservation候補へ返し、意味変更をright-side patchへ隠す変異は該当層へのBackflowへ返す。
 - `AC-HARNESS-L3-028-05` source observation更新後は新revisionへcompareを再束縛し、old comparison resultをstaleとして残す。L2-003/004 impact/backflowの既存契約を保持する。
 
 ### `FR-HARNESS-L3-029` 差分に基づく往復改修proposalを束ねる（親: `HARNESS-L2-029`）
@@ -339,7 +339,7 @@ G0の順序案BはStage 2a後に2cを2bと並行する段階配置であり、03
 027/028の同じproduct/scope/source revisionに基づき、(1)対象を限定したdesign delta、(2)API repair proposal（選択時のみ）、(3)schema/data migration proposal（必要と判断して選択したときのみ）、(4)保持するcustom logicと理由、(5)backflow・verification・unknownを別要素として相互traceする。current saved design/requirement revisionは比較基準として識別し、approved主張には一致するapproval receiptを要する。API/data未選択時にそれらのcontract/ownerを強制しない。proposalは非実行の候補であり、patch、migration、commit、releaseを実行しない。
 
 - `AC-HARNESS-L3-029-01` 同じrevision/sourceから五要素を区別したbundleを作るnormal。APIまたはmigrationを選ばない場合もno-change理由を出し、custom logicを保持する。
-- `AC-HARNESS-L3-029-02` 027 receipt、028 receipt、source/destination revision、product/scope、saved design identity/authority、affected set、custom ownershipを個別にmissing/unknown/stale/mismatch化し、影響部分のみ保留して既存の該当ownerへ返す。
+- `AC-HARNESS-L3-029-02` 027 receipt、028 receipt、source/destination revision、product/scope、saved design identity/authority、affected set、custom ownershipを個別にmissing/unknown/stale/mismatch化し、影響部分のみ保留して既存の該当ownerへ返す。approval receipt欠落または別revision receiptのままapprovedと主張する各変異も拒否し、candidate比較を承認へ昇格しない。
 - `AC-HARNESS-L3-029-03` 選択API修復のAPI contract/oracleと、選択migrationのschema/data owner/source-target compatibility/loss/rollback oracleをそれぞれ単独で欠落させる。非選択operationの依存は要求しない。
 - `AC-HARNESS-L3-029-04` custom logic削除、無関係API混入、migration data-loss隠し、cross-revision trace、candidateからの自動実行を各々独立negativeとする。未見の第二custom processor/過去migrationはunknownとして依存proposalを保留する。
 - `AC-HARNESS-L3-029-05` source edit後に027再抽出→028再比較→bundle再生成を行うnormalを設け、旧revision receipt流用を拒否する。戻し先は意味L2-008/upstream、設計L2-014/design owner、oracleL2-022、API/dataの既存ownerとし、新ownerを作らない。
