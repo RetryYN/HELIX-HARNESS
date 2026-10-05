@@ -143,15 +143,15 @@
 | `CONNECT-CASE-008-12` | `CONNECT-AC-008-01` | L2:278/L11:91 | read-only descriptor型違いだけを正常fixtureへ変異 | usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない | profile提供元 |
 | `CONNECT-CASE-008-13` | `CONNECT-AC-008-01` | L2:278/L11:91 | descriptorの別profile束縛だけを正常fixtureへ変異 | usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない | profile提供元 |
 | `CONNECT-CASE-008-14` | `CONNECT-AC-008-01` | L2:278/L11:91 | descriptorの別revision束縛だけを正常fixtureへ変異 | usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない | profile提供元 |
-| `CONNECT-CASE-008-15` | `CONNECT-AC-008-02` | L2:276,280/L11:89,91 | descriptor存在・読出しだけからauthorizationを生成する | 生成を拒否。descriptor供給状態とSECURITY判定/実行は別 | SECURITY/元probe意味owner |
-| `CONNECT-CASE-008-16` | `CONNECT-AC-008-02` | L2:276,280/L11:89,91 | descriptor存在・読出しだけからprobe起動を生成する | 生成を拒否。descriptor供給状態とSECURITY判定/実行は別 | SECURITY/元probe意味owner |
-| `CONNECT-CASE-008-17` | `CONNECT-AC-008-02` | L2:276,280/L11:89,91 | descriptor存在・読出しだけからtool実行を生成する | 生成を拒否。descriptor供給状態とSECURITY判定/実行は別 | SECURITY/元probe意味owner |
-| `CONNECT-CASE-008-18` | `CONNECT-AC-008-02` | L2:276,280/L11:89,91 | descriptor存在・読出しだけから実安全性を生成する | 生成を拒否。descriptor供給状態とSECURITY判定/実行は別 | SECURITY/元probe意味owner |
-| `CONNECT-CASE-008-19` | `CONNECT-AC-008-02` | L2:276,280/L11:89,91 | descriptor存在・読出しだけから実行資格を生成する | 生成を拒否。descriptor供給状態とSECURITY判定/実行は別 | SECURITY/元probe意味owner |
-| `CONNECT-CASE-008-20` | `CONNECT-AC-008-02` | L11:89 | descriptorへ合成raw secret markerを混入 | 不合格、値を証拠へ出さず元入力のownerへ返す | profile提供元/SECURITY |
-| `CONNECT-CASE-008-21` | `CONNECT-AC-008-02` | L11:89 | descriptorへ合成credential値 markerを混入 | 不合格、値を証拠へ出さず元入力のownerへ返す | profile提供元/SECURITY |
+| `CONNECT-CASE-008-15` | `CONNECT-AC-008-02` | L2:276,280/L11:89,91 | descriptor存在・読出しだけからauthorizationを生成する | 生成を拒否。descriptor供給状態とSECURITY判定/実行は別 | SECURITY |
+| `CONNECT-CASE-008-16` | `CONNECT-AC-008-02` | L2:276,280/L11:89,91 | descriptor存在・読出しだけからprobe起動を生成する | 生成を拒否。descriptor供給状態とSECURITY判定/実行は別 | SECURITY |
+| `CONNECT-CASE-008-17` | `CONNECT-AC-008-02` | L2:276,280/L11:89,91 | descriptor存在・読出しだけからtool実行を生成する | 生成を拒否。descriptor供給状態とSECURITY判定/実行は別 | SECURITY |
+| `CONNECT-CASE-008-18` | `CONNECT-AC-008-02` | L2:276,280/L11:89,91 | descriptor存在・読出しだけから実安全性を生成する | 生成を拒否。descriptor供給状態とSECURITY判定/実行は別 | SECURITY |
+| `CONNECT-CASE-008-19` | `CONNECT-AC-008-02` | L2:276,280/L11:89,91 | descriptor存在・読出しだけから実行資格を生成する | 生成を拒否。descriptor供給状態とSECURITY判定/実行は別 | SECURITY |
+| `CONNECT-CASE-008-20` | `CONNECT-AC-008-02` | L11:89 | descriptorへ合成raw secret markerを混入 | 不合格、値を証拠へ出さず元入力のownerへ返す | profile提供元 |
+| `CONNECT-CASE-008-21` | `CONNECT-AC-008-02` | L11:89 | descriptorへ合成credential値 markerを混入 | 不合格、値を証拠へ出さず元入力のownerへ返す | profile提供元 |
 | `CONNECT-CASE-008-22` | `CONNECT-AC-008-02` | L2:280/L11:91 | 034の別policy oracleまたはその採択を008のpass必須にする | 008供給oracleとして使用しない。SECURITY safetyは既存責務で別照合 | SECURITY |
-| `CONNECT-CASE-008-23` | `CONNECT-AC-008-03` | L2:278/L11:91 | 登録契約revisionだけを更新、旧descriptorは残す | 当該revisionはstale。再照合前はusable/適格にせず正しい新組だけ解除 | profile提供元/契約owner |
+| `CONNECT-CASE-008-23` | `CONNECT-AC-008-03` | L2:278/L11:91 | 登録契約revisionだけを更新、旧descriptorは残す | 当該revisionはstale。再照合前はusable/適格にせず正しい新組だけ解除 | profile提供元 |
 | `CONNECT-CASE-008-24` | `CONNECT-AC-008-03` | L2:282/L11:93 | identity不正をprofile Aへ入力、Bは正常 | Aは理由付き不成立で提供元へ、無関係B状態は維持 | profile提供元 |
 | `CONNECT-CASE-008-25` | `CONNECT-AC-008-03` | L2:282/L11:93 | config不正をprofile Aへ入力、Bは正常 | Aは理由付き不成立で提供元へ、無関係B状態は維持 | profile提供元 |
 | `CONNECT-CASE-008-26` | `CONNECT-AC-008-03` | L2:282/L11:93 | descriptor不正をprofile Aへ入力、Bは正常 | Aは理由付き不成立で提供元へ、無関係B状態は維持 | profile提供元 |
@@ -159,8 +159,8 @@
 | `CONNECT-CASE-008-28` | `CONNECT-AC-008-03` | L2:282/L11:93 | safety unknownをprofile Aへ入力、Bは正常 | SECURITYへ戻しCONNECTが判定上書きしない。B状態は維持 | SECURITY |
 | `CONNECT-CASE-008-29` | `CONNECT-AC-008-03` | L2:282/L11:93 | policy拒否をprofile Aへ入力、Bは正常 | SECURITYへ戻しCONNECTが判定上書きしない。B状態は維持 | SECURITY |
 | `CONNECT-CASE-008-30` | `CONNECT-AC-008-03` | L2:282/L11:93 | safety拒否をprofile Aへ入力、Bは正常 | SECURITYへ戻しCONNECTが判定上書きしない。B状態は維持 | SECURITY |
-| `CONNECT-CASE-008-31` | `CONNECT-AC-008-03` | L11:93 | 供給証拠が未観測 | unknown、passにしない。実probe/runtimeを要求しない | profile提供元/CONNECT供給owner |
-| `CONNECT-CASE-008-32` | `CONNECT-AC-008-01` | L2:278/L11:91 | 伏せた新profile名で同契約の正しい登録組／別fixtureで未登録 | 登録組は同oracleで供給、未登録はunknownでusableにせず名前から推定しない | profile提供元 |
+| `CONNECT-CASE-008-31` | `CONNECT-AC-008-03` | L11:93 | 供給証拠が未観測 | unknown、passにしない。実probe/runtimeを要求しない | profile提供元 |
+| `CONNECT-CASE-008-32` | `CONNECT-AC-008-01` | L2:278/L11:91 | 伏せた新profile名で同契約の正しい登録組を入力 | 同じ登録・型・束縛oracleでcatalog/descriptorを供給。未見名だけで拒否せず名前から値を補完しない | profile提供元 |
 | `CONNECT-CASE-009-01` | `CONNECT-AC-009-01` | L11:96 | A→B one_way正常、B→A feedbackは逆connection/許可なし | 初回辺は独立eligible、feedbackは未送信return relationで送信成功にしない | 逆endpoint/authority owner |
 | `CONNECT-CASE-009-02` | `CONNECT-AC-009-01` | L2:289/L11:96 | 独立逆connection・contract/scope/適用authorityを成立させB→Aを宣言 | 宣言二方向を別識別し各操作を照合。前向きだけの権限を使い回さない | 両endpoint/SECURITY |
 | `CONNECT-CASE-009-03` | `CONNECT-AC-009-01` | L2:289/L11:99 | one_way登録だけから逆送信許可を生成 | 逆送信不可。初回辺の独立適格性は維持 | SECURITY |
@@ -297,7 +297,14 @@
 | `CONNECT-CASE-009-71` | `CONNECT-AC-009-06` | L2:290,294/L11:100–104 | 伏せた同scope新endpoint/topologyで宣言契約成立／別fixtureは宣言外 | 成立範囲は同操作別oracle、宣言外はunknownで外挿しない | 該当endpoint/contract owner |
 | `CONNECT-CASE-009-72` | `CONNECT-AC-009-06` | L2:287,294 | endpointだけ変更して旧receiptを再使用 | 既存L2-002で再照合、旧未完・累積attemptを保持し他scopeへ流用しない | 変更したendpoint/contract/authority/policy owner |
 | `CONNECT-CASE-009-73` | `CONNECT-AC-009-06` | L2:287,294 | contract revisionだけ変更して旧receiptを再使用 | 既存L2-002で再照合、旧未完・累積attemptを保持し他scopeへ流用しない | 変更したendpoint/contract/authority/policy owner |
-| `CONNECT-CASE-009-74` | `CONNECT-AC-009-06` | L2:287,294 | authorityだけ変更して旧receiptを再使用 | 既存L2-002で再照合、旧未完・累積attemptを保持し他scopeへ流用しない | 変更したendpoint/contract/authority/policy owner |
-| `CONNECT-CASE-009-75` | `CONNECT-AC-009-06` | L2:287,294 | execution topologyだけ変更して旧receiptを再使用 | 既存L2-002で再照合、旧未完・累積attemptを保持し他scopeへ流用しない | 変更したendpoint/contract/authority/policy owner |
-| `CONNECT-CASE-009-76` | `CONNECT-AC-009-06` | L2:287,294 | feedback bindingだけ変更して旧receiptを再使用 | 既存L2-002で再照合、旧未完・累積attemptを保持し他scopeへ流用しない | 変更したendpoint/contract/authority/policy owner |
-| `CONNECT-CASE-009-77` | `CONNECT-AC-009-06` | L2:287,294 | termination policyだけ変更して旧receiptを再使用 | 既存L2-002で再照合、旧未完・累積attemptを保持し他scopeへ流用しない | 変更したendpoint/contract/authority/policy owner |
+| `CONNECT-CASE-009-74` | `CONNECT-AC-009-06` | L2-002:71/L2-009:289,294 | authorityだけ変更して旧receiptを再使用 | 既存SECURITY authorityのactor/target/operation/revision/environment/scope/expiry/data-useを操作時照合し、欠落/失効/不一致ならwithheld・当該送信attempt0。互換成立だけで許可せず旧累積試行は保持 | SECURITY |
+| `CONNECT-CASE-009-75` | `CONNECT-AC-009-06` | L2-009:290,292,294 | execution topologyだけ変更して旧receiptを再使用 | 旧receiptを流用せず変更された対象条件が不明な操作をunknown/unfinishedで保留。topologyは順序/join、feedbackは当該送信、policyは追加retryだけを扱い、別独立適格辺と旧未完・累積試行を保持 | 構成体/順序contract owner |
+| `CONNECT-CASE-009-76` | `CONNECT-AC-009-06` | L2-009:290,292,294 | feedback bindingだけ変更して旧receiptを再使用 | 旧receiptを流用せず変更された対象条件が不明な操作をunknown/unfinishedで保留。topologyは順序/join、feedbackは当該送信、policyは追加retryだけを扱い、別独立適格辺と旧未完・累積試行を保持 | feedback contract owner |
+| `CONNECT-CASE-009-77` | `CONNECT-AC-009-06` | L2-009:290,292,294 | termination policyだけ変更して旧receiptを再使用 | 旧receiptを流用せず変更された対象条件が不明な操作をunknown/unfinishedで保留。topologyは順序/join、feedbackは当該送信、policyは追加retryだけを扱い、別独立適格辺と旧未完・累積試行を保持 | 既存termination policy owner |
+| `CONNECT-CASE-008-33` | `CONNECT-AC-008-01` | L2:278/L11:91 | 伏せた新profile名だけを未登録として入力 | usableにせず拒否理由と対象profile/revisionを記録。名前から登録や互換を推定しない | profile提供元 |
+| `CONNECT-CASE-008-34` | `CONNECT-AC-008-01` | L2:278 | 設定契約そのものの欠落を単独変異、他組は正常 | 当該不明/欠落要素と対象profile/revisionを記録しusableにしない、既定や他組で補完しない | profile提供元 |
+| `CONNECT-CASE-008-35` | `CONNECT-AC-008-01` | L2:278 | profile revisionだけunknownを単独変異、他組は正常 | 当該不明/欠落要素と対象profile/revisionを記録しusableにしない、既定や他組で補完しない | profile提供元 |
+| `CONNECT-CASE-008-36` | `CONNECT-AC-008-01` | L2:278 | 設定契約だけunknownを単独変異、他組は正常 | 当該不明/欠落要素と対象profile/revisionを記録しusableにしない、既定や他組で補完しない | profile提供元 |
+| `CONNECT-CASE-008-37` | `CONNECT-AC-008-01` | L2:278 | typed descriptorだけunknownを単独変異、他組は正常 | 当該不明/欠落要素と対象profile/revisionを記録しusableにしない、既定や他組で補完しない | profile提供元 |
+| `CONNECT-CASE-008-38` | `CONNECT-AC-008-02` | L2:280 | descriptorの存在/読出しだけからpolicyを生成/代替する | policy生成/代替を拒否し既存SECURITY判定を保持する | SECURITY |
+| `CONNECT-CASE-009-78` | `CONNECT-AC-009-02` | L2:290 | serialの先行必要結果は成立、先行契約条件だけ不成立にする | 後続辺を実行せず契約条件不成立を理由としてunknown/unfinished保持。必要結果だけで相殺しない | 先行contract owner |
