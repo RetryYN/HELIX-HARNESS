@@ -64,7 +64,7 @@
 
 ### L10-BRAIN-005-NFR-01 — 列挙意味条件と誤確定の観測
 
-対応 `BRAIN-005-NFR-01`、`BRAIN-005-AC-01`〜`BRAIN-005-AC-04`。L2-005/L11:33の7 relation種と、L2:135/L11:33の二つのrelation chainを全て必須母集団に含め、機能CASE表の正常・項目別変異・未見・owner戻しfixtureを使用する。実出力の値がfixture source/期待oracleと一致するNchecked、選択された必須項目Nrequired、missing/unknown/意味不整合を誤成功へ変換したNfalse、各不足理由/戻し先を照合する。件数だけ/名称だけの案Aが意味変異を見逃すかを案Bと比較する。未選択sourceを分母に加えず、入力必須欠落を未適用扱いにしない。Nplannedのvalid/failed/missing/censored分類、単位、分母0、valid0、未測定をL3候補どおりに観測する。実行済みの測定値はまだなく、候補の成立を断定しない。
+対応 `BRAIN-005-NFR-01`、`BRAIN-005-AC-01`〜`BRAIN-005-AC-04`。L2-005/L11:33の7 relation種と、L2:135の二つのrelation chainを全て必須母集団に含め、機能CASE表の正常・項目別変異・未見・owner戻しfixtureを使用する。実出力の値がfixture source/期待oracleと一致するNchecked、選択された必須項目Nrequired、missing/unknown/意味不整合を誤成功へ変換したNfalse、各不足理由/戻し先を照合する。件数だけ/名称だけの案Aが意味変異を見逃すかを案Bと比較する。未選択sourceを分母に加えず、入力必須欠落を未適用扱いにしない。Nplannedのvalid/failed/missing/censored分類、単位、分母0、valid0、未測定をL3候補どおりに観測する。実行済みの測定値はまだなく、候補の成立を断定しない。
 
 ### L10-BRAIN-006-NFR-01 — 列挙意味条件と誤確定の観測
 

@@ -72,7 +72,7 @@
 
 ### BRAIN-005-NFR-01 — 意味条件の照合可能性（候補）
 
-根拠：固定HELIXBRAIN-L2-005とL11:33の7 relation種、およびL2:135/L11:33の二つのrelation chain。比較案Aは件数/名称だけ、案Bは各relationのidentity/source/意味/状態/戻し先を照合する。Bを候補とし、7種と二つのchainを母集団に含め、fixture選択で狭めない。全製品・全欠陥の性能保証ではない。必要項目の有限集合を各々照合（対象内100%候補）し、missing/unknown/意味不整合を成功に丸める件数0を候補判定とする。未選択のsource/将来候補は必須母集団へ足さない。
+根拠：固定HELIXBRAIN-L2-005とL11:33の7 relation種、およびL2:135の二つのrelation chain。比較案Aは件数/名称だけ、案Bは各relationのidentity/source/意味/状態/戻し先を照合する。Bを候補とし、7種と二つのchainを母集団に含め、fixture選択で狭めない。全製品・全欠陥の性能保証ではない。必要項目の有限集合を各々照合（対象内100%候補）し、missing/unknown/意味不整合を成功に丸める件数0を候補判定とする。未選択のsource/将来候補は必須母集団へ足さない。
 
 測定は計画試行Nplannedをvalid観測/Nfailed/Nmissing/Ncensoredの互いに重ならない区分へ記録する。validは合格件数でなく比較できる観測件数であり、不合格を正しく観測した試行も入る。Nfailedは処理エラーにより判定可能な観測を得られなかった試行に限り、観測できたoracle不合格と区別する。Nplanned=Nvalid+Nfailed+Nmissing+Ncensoredを照合する。missingは入力欠落と観測欠落を別表示、censoredは停止/打切りで判定未完のもの。各行の理由を保ち、未実施は未測定。対象scopeで契約が要求する項目Nrequired（値不明や欠落も母集団に残す）と、期待oracleどおり照合したNchecked（正しい不足/不合格判定も含む）、誤成功Nfalseを併記する。Nrequired=0なら照合率は算出せず、必須入力自体の欠落を『対象なし』へ変換しない。時間を測る場合は既存の単位/開始終了条件とvalid標本数を記録し、valid=0では分位値を出さない。固定SLA/保持期間/最低sample数は設定しない。
 
