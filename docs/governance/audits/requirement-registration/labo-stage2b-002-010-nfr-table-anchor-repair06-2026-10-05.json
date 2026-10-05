@@ -1,0 +1,71 @@
+{
+  "record_type": "append-only-review-repair-evidence",
+  "title": "LABO Stage2b NFR timing profile table and link anchor correction",
+  "date": "2026-10-05",
+  "finding_source": {
+    "pr": 2585,
+    "review": "review03 supplemental finding from root inspection",
+    "scope": "NFR table placement and stale Markdown anchor"
+  },
+  "body_revision": "9be55312fb1fa16b9cf2e584dbd9071163f1c06a",
+  "changes": [
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "line": 24,
+      "change": "Added a unique ASCII heading adjacent to the Stage2b 002–005 NFR candidate table so L10 links to a real heading anchor.",
+      "current_line": {
+        "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+        "line": 24,
+        "sha256_raw_lf": "babf9d7da4e5cfd079acd244171fc99e4e9222333787e9ca55148d1286de479b",
+        "literal": "### Stage 2b timing volume profile candidates 002 003 004 005"
+      }
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "line": 29,
+      "change": "Rearranged the timing/volume profile row into the four declared columns: candidate, measured property, input/trial design, and decision material. Removed the empty trailing cell.",
+      "current_line": {
+        "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+        "line": 29,
+        "sha256_raw_lf": "7910cd4b67281a58ec4dc61fe07b86411cfac111ac351f446c3b61552928da55",
+        "literal": "| [新規測定設計候補（002–005 timing/volume profile）](../L3-requirements/nfr-grade.md#stage-2b-timing-volume-profile-candidates-002-003-004-005) | workload条件ごとの観測latency（p50/p95）とthroughput（items/second）。固定閾値・容量上限・retention・SLAは置かない。 | 入力件数・episode数・source数・evidence payload sizeを事前宣言した合成条件ごとにplanned trialを定める。各trialのdisposition（valid/failed/missing/censored）とoracle verdict（pass/fail/unknown）を別記録する。validは観測と判定材料が完了、failedは測定機構故障で信頼できる結果なし、missingはplanned runのreceipt/startなし、censoredは開始後の予定観測窓未完。対象scope/母集団不明はunknownとし0件としない。意図的negative fixtureのfield欠落はrun disposition=missingではない。 | 4分類は排他的で合計=`N_planned`。p50/p95はvalid latency標本だけで算出し、`N_valid/N_planned`とoracle verdict別件数を併記する。分母0は算出値なし。throughputは有効処理件数/正の明示秒数で、`N_planned>0`かつ時間が正のcount=0だけを真の0 items/secondとする。時間欠測/0やvalid観測なしは算出不能。missing/failed/censoredを成功へ数えず、可観測性とoracle合格を混同しない。 |"
+      }
+    }
+  ],
+  "current_files": {
+    "docs/helix-labo/L3-requirements/nfr-grade.md": {
+      "sha256": "aa22a792535253acb0a3f0f6c5b044b85453e44784917448f7fb4603f75f8d46",
+      "bytes": 20901
+    },
+    "docs/helix-labo/L10-verification/nfr-verification.md": {
+      "sha256": "23fdb9bcc635d369e811568c87e308b924d9d244b09692cc9a68157873abd55f",
+      "bytes": 18097
+    }
+  },
+  "link_check": {
+    "target": "../L3-requirements/nfr-grade.md#stage-2b-timing-volume-profile-candidates-002-003-004-005",
+    "target_path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+    "unique_heading": "Stage 2b timing volume profile candidates 002 003 004 005"
+  },
+  "table_check": {
+    "header_cells": 4,
+    "data_cells": 4,
+    "all_cells_nonempty": true
+  },
+  "historical_records_unchanged": [
+    {
+      "path": "docs/governance/audits/requirement-registration/labo-stage2b-002-010-nfr-trace-reconciliation-repair05-2026-10-05.json",
+      "sha256": "2e4a7890241f79ead87b1116443a07cc1d58bad40fc9c49fcad6a63f81dc69f4"
+    }
+  ],
+  "validation": {
+    "git_diff_check": "pass",
+    "markdown_row_cell_count": "pass",
+    "link_target_file_exists": "pass",
+    "heading_text_unique": "pass"
+  },
+  "limitations": [
+    "No independent review or approval is claimed.",
+    "No runtime, CI, or test suite was run; this was a documentation and static structure correction."
+  ]
+}
