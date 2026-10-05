@@ -12,3 +12,9 @@
 ## Stage 2b — HELIXLABO-L2-006/007/008/009/010
 
 固定L2/L11には機能要件と独立したbusiness outcome/ownerがない。独立BR/AC/BCASEを追加せず、結果・失敗・戻し先はL3 functional requirementの `LABO-006-AC-01`〜`LABO-006-AC-03`、`LABO-007-AC-01`〜`LABO-007-AC-03`、`LABO-008-AC-01`〜`LABO-008-AC-03`、`LABO-009-AC-01`〜`LABO-009-AC-03`、`LABO-010-AC-01`〜`LABO-010-AC-03` を唯一の条件正本としてL10 functional verificationで照合する。LABOは実験の実行・Worker割当、system化の自動昇格、system/operation切替、scopeの根拠なき拡大、Feedback登録/routing/target変更を行わない。独立したbusiness要件を複製しない。
+
+## Stage 2a — HELIXLABO-L2-055/056/057
+
+固定parent HELIXLABO-L2-055-002、056-003、057-002には、機能条件と独立した追加business outcome/ownerがない。独立BR/ACは作らず、成果・失敗・戻し先はfunctional requirementの `LABO-055-AC-01`〜`LABO-055-AC-04`、`LABO-056-AC-01`〜`LABO-056-AC-05`、`LABO-057-AC-01`〜`LABO-057-AC-04` を正本としてL10で照合する。LABOは観測・評価の記録を担い、OS assignment/進行、Worker実行、SECURITY許可/data-use、外部oracle/criteria source ownershipを引き受けない。055の水準は配置材料であり、配置案・選択・割当・資格を生成しない。Benchは056履歴の記録先であってoracle owner/訂正先ではない。oracle適用不足は履歴をunassessedに維持し、訂正は元oracle/criteria sourceへ戻す。
+
+旧business-detailの業務目的や旧benchmark outcomeはこの固定親にないためStage 2aへ移さない。BR/BVにfunctional outcomeを重複記載したり、別BCASEを増やしたりしない。
