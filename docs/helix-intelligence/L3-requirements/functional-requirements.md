@@ -55,4 +55,4 @@
 
 ## Stage 2a（PR #2594）carry-forward記録
 
-以下はStage 2a（PR #2594）の旧review carry状態を示す時点説明であり、Stage 2cの要求・受入条件・親依存ではない。C13-M10（L2-010）、C13-M7（L2-066）、C13-M12 audit-record correction、Minor INT-010、Minor INT-060-078は当該Stage 2a範囲で未解消として引き継ぐ。`C13-U-INT-NFR-060-078`と`C13-U-all-crosswalk-and-legacy`も当該監査範囲で未確認のまま保持する。この本文と監査は独立reviewやfinding closureを意味しない。
+以下は旧reviewのscope別carry状態を示す時点説明であり、Stage 2cの要求・受入条件・親依存ではない。C13-M7（L2-066）、C13-M10（L2-010）、Minor INT-010はStage 2aで扱った親範囲の履歴として記録する。C13-M12は複数機構・stageにまたがる監査記録整合性のfindingであり、INTELLIGENCE L2-068に関するcomment line 168の指摘はStage 2c本文で解消したとは扱わず、未解消のまま残す。Minor INT-060-078は複数親にまたがる範囲で、Stage 2aで扱った部分だけから全範囲を解消・確認済みとはしない。`C13-U-INT-NFR-060-078`と`C13-U-all-crosswalk-and-legacy`も共通監査の未確認範囲であり、L2-068に関わる未確認はStage 2cを含め引き続きopenである。この本文と監査は独立reviewやfinding closureを意味しない。
