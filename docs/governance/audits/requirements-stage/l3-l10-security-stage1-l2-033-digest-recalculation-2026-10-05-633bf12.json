@@ -1,0 +1,117 @@
+{
+  "schema_version": "helix.security.l2-033-candidate-digest-recalculation.v1",
+  "record_kind": "append-only source digest recalculation evidence",
+  "status": "source digest recalculation reproduced; creator evidence only; root inspection and independent review pending",
+  "mechanism": "HELIX-SECURITY",
+  "candidate": "HELIXSECURITY-L2-033",
+  "authority_effect": "none",
+  "trigger": "Follow-up to #2578 review04 correction audit; review03 historical candidate digest values were independently recalculated from the fixed receipt rule.",
+  "prior_review04_record": {
+    "path": "docs/governance/audits/requirements-stage/l3-l10-security-stage1-review04-correction-2026-10-05-3f8e6f2.json",
+    "full_file_sha256": "1746af9f421de2356498fc94afab5ffae04b466654bf87b6732f9784546465dc",
+    "status_at_creation": "recalculation had not yet been performed at that time; this later append-only record supplies the result; old record unchanged"
+  },
+  "digest_rule": {
+    "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "source_path": "docs/governance/audits/requirement-registration/security-v13-worker-context-coverage-receipt-2026-09-28-r2.json",
+    "rule_line": 5,
+    "rule_raw_lf_inclusive_sha256": "3c9c7c95043b5ecb4e2a2265ef8e144bf2e15f1a01b7c2dfe6e57ea99bc9ed79",
+    "normalized_l2_section": "Existing HELIXSECURITY-L2-033 heading through the next heading; exact source lines 455–466; trim trailing CR/LF blank lines and append one LF.",
+    "normalized_document_tail": "Heading `## P0訂正追補（対象: HELIXSECURITY-L2-033）` through EOF; source lines 479–EOF; trim trailing CR/LF blank lines and append one LF.",
+    "concatenation": "UTF-8 source bytes: normalized L2 section + one LF byte separator + normalized document tail; SHA-256 the concatenated bytes.",
+    "normalization_implementation": "Python bytes.splitlines(keepends=True); select exact physical lines above; block.rstrip(b\"\\r\\n\") + b\"\\n\"; concatenate with b\"\\n\"; hashlib.sha256."
+  },
+  "recalculations": [
+    {
+      "source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "full_file_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+      "candidate_digest": "b486a0c44e8f21a6f8738dedeac91dcb94da335b73409b6adeaecf8fa639bf1a",
+      "expected_from_review03": "b486a0c44e8f21a6f8738dedeac91dcb94da335b73409b6adeaecf8fa639bf1a",
+      "match": true,
+      "source_line_count": 485,
+      "tail_span_end_line": 485
+    },
+    {
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "full_file_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "candidate_digest": "0008f6e6f06f48140267ccdea4842fcf22962d81812bb22f4f6446c78fd5c623",
+      "expected_from_review03": "0008f6e6f06f48140267ccdea4842fcf22962d81812bb22f4f6446c78fd5c623",
+      "match": true,
+      "source_line_count": 499,
+      "tail_span_end_line": 499
+    }
+  ],
+  "interpretation": "L2-033 section bytes are identical in the two pinned source revisions (section span SHA matches). The composite digest changes because its prescribed tail runs through EOF; 318ec4 has the shorter document tail, while 633bf12 includes the later appended content after the P0 appendix. The recalculation reproduces both historical values and does not imply candidate adoption or alter any source.",
+  "source_pins": [
+    {
+      "source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "source_path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "physical_lines": {
+        "start": 455,
+        "end": 466
+      },
+      "full_file_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+      "raw_lf_inclusive_span_sha256": "4707d0a3deb5158f72f6b36e111d7c0519015181de390c06f0d2a45601b4eb0d",
+      "span_bytes": 4939,
+      "role": "HELIXSECURITY-L2-033 section"
+    },
+    {
+      "source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "source_path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "physical_lines": {
+        "start": 479,
+        "end": 485
+      },
+      "full_file_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+      "raw_lf_inclusive_span_sha256": "15c0ea7827a41bd6bca6ba2b0fb70597ad1e9a9d27b5073687b2b41745fdc6df",
+      "span_bytes": 1731,
+      "role": "document-tail section beginning P0 appendix"
+    },
+    {
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "source_path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "physical_lines": {
+        "start": 455,
+        "end": 466
+      },
+      "full_file_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "raw_lf_inclusive_span_sha256": "4707d0a3deb5158f72f6b36e111d7c0519015181de390c06f0d2a45601b4eb0d",
+      "span_bytes": 4939,
+      "role": "HELIXSECURITY-L2-033 section"
+    },
+    {
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "source_path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "physical_lines": {
+        "start": 479,
+        "end": 499
+      },
+      "full_file_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "raw_lf_inclusive_span_sha256": "5a412f14079c6011921d9ede63a762e3648dcdce55ca5fdd422a2596cf43d7d8",
+      "span_bytes": 10400,
+      "role": "document-tail section beginning P0 appendix"
+    },
+    {
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "source_path": "docs/governance/audits/requirement-registration/security-v13-worker-context-coverage-receipt-2026-09-28-r2.json",
+      "physical_lines": {
+        "start": 5,
+        "end": 5
+      },
+      "full_file_sha256": "723df890641b8746e5882e17e86749aa413af46de4f6aabbad182ed77319f369",
+      "raw_lf_inclusive_span_sha256": "3c9c7c95043b5ecb4e2a2265ef8e144bf2e15f1a01b7c2dfe6e57ea99bc9ed79",
+      "span_bytes": 549,
+      "role": "candidate_digest_rule"
+    }
+  ],
+  "historical_unresolved_items": {
+    "verification_json_sha256": "The referenced prior digest still has no identifiable artifact path; no artifact identity or verification result is inferred."
+  },
+  "scope_limits": {
+    "canonical_documents_modified": false,
+    "old_audits_modified": false,
+    "source_runtime_test_ci_executed": false,
+    "independent_review_or_po_approval_created": false,
+    "push_or_pr": false
+  }
+}

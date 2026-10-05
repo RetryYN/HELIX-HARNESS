@@ -1,0 +1,19 @@
+# HELIX-SECURITY L10 NFR候補検証 — Stage 1（19親の候補）
+
+> 状態：技術候補と測定設計。下記の数値・比較案は根拠付き候補で、実装値・PO承認値・実測結果ではない。parameterごとのPO確認は追加しない。要求の意味・scope・owner・versionを変える場合だけL2へ戻す。1.x/Web sinkや後続Stageは含めない。
+
+## Stage 1の適用条件
+
+| 候補 / parent AC | 入力・測定方法 | 候補oracle | 失敗・未評価のowner |
+|---|---|---|---|
+| `SEC-NFR-001` / `SECURITY-AC-005-01`, `SECURITY-AC-033-01` | 合成secret markerをcontext/log/artifact/Tool result/Worker payload/environmentを含むtask contextへ投入し、全出力を値非記録matcherで走査する。 | raw secret値露出0。fixture/result自体にも値を記録しない。 | 露出でoperationを停止し、credential/security ownerへ返す。 |
+| `SEC-NFR-002` / `SECURITY-AC-008-01` | actor/target/operation/revision/environment/scope/expiryの7要素を一つずつdriftさせ、exact tuple正例とnegativeを測る。purposeはL2-006のegress条件で、このcaseへ混ぜない。 | exact 7要素tupleだけ対象operationを許可。各要素の欠落/不一致でallow 0。 | 拒否理由をSECURITY authority ownerへ返す。 |
+| `SEC-NFR-003` / `SECURITY-AC-016-01` | public/customer-owned/service-internal/HELIX-confidential/HELIX-restricted/secretの各classとmissing/unknownを1つずつ入力し記録完全性を測る。 | 6/6 classを区別し、unknownをpublic/allowへ写像した件数0。1.x sink enforcementは対象外。 | missing/unknownをSECURITY分類ownerへ返し、unknown状態を維持する。 |
+| `SEC-NFR-004` / `SECURITY-AC-020-01` | 8 Guard責務ごとに同一入力のBotなし/任意Bot補助と、rule未定義・適用不能・必要観測欠落入力を比較し、決定的判定/必須条件抜け/owner返却状態を測る。 | 決定ruleをBotに委ねた件数0、Guard条件抜け0。未定義・不適用・観測欠落は成功判定にせず該当enforcement ownerへunknown/holdを返す。候補Botの稼働数はpass条件でない。1.x sink enforcementを1.0 pass条件に含めない。 | policy/rule意味はSECURITY、物理実行・適用観測の不足は既存Worker/INFRASTRUCTURE ownerへ返す。 |
+| `SEC-NFR-005` / `SECURITY-AC-009-01` | target scopeごとのrecipient集合と各受領/適用/未達/未観測を照合。無関係scopeも対照入力する。 | 該当recipientの未達/未観測をsuccess扱い0。無関係操作のglobal stopも0。固定latency値は置かない。 | 未達の該当recipient ownerへ返す。新しい汎用owner宛先を作らない。 |
+| `SEC-NFR-006` / `SECURITY-AC-007-01` | 適用可能な9制御とSECURITY policy revisionの宣言値を入力。各宣言境界の直前/到達/超過状態を測り、request→Worker実行環境のeffective enforcement evidenceを突合する。 | 適用/観測証拠欠落0。宣言値超過やunknownをsuccessとして継続しない。未宣言timeout/resource値を補わない。 | 未定義値はunknownのままL1-007へ戻し、適用/観測はWorker実行環境とINFRASTRUCTUREが確認する。 |
+| `SEC-NFR-007` / `SECURITY-AC-005-01`, `SECURITY-AC-008-01`, `SECURITY-AC-009-01`, `SECURITY-AC-033-01` | expiry `t`の直前、同時刻、直後にdispatch/resume/retryを試す。候補Aは有効条件`now < t`、候補Bは`now <= t`。revoke後とbinding/HEAD変更後も再照合する。 | 比較の推奨候補Aでは`t`到達時点でdeny、revoke/stale後のresume/retryも再照合前はallow 0。時間長さは新設しない。 | semanticsのscope変更が必要ならL2/POへ戻す。 |
+| `SEC-NFR-008` / `SECURITY-AC-005-01`, `SECURITY-AC-009-01`, `SECURITY-AC-010-01`, `SECURITY-AC-013-01`, `SECURITY-AC-033-01` | decision evidence window中、source identity/revision・reason・recipient/owner stateが照合可能かを測る。raw secret scanも併行する。 | owner宣言window内の必要evidence参照可能、raw secret値0。未宣言retention期間を推定しない。 | evidence ownerへ不足を返す。retention期間の追加で要求meaningが変わる場合だけL2へ戻す。 |
+| `SEC-NFR-014-01` / `SECURITY-AC-014-01` | 合成入力でmemory、training dataset、BRAIN knowledgeの3 target classを個別に入力し、source/provenance/classification、allow/deny/hold、理由のfield対応を測る。missing/unknown/wrong-targetも別fixtureにする。 | target別decision traceの欠落0件。handoff、LABO評価、保存、BRAIN登録の成立件数をこの候補の成功へ含めない。 | 不足したsource/classificationをhold/denyし、policy意味の不足はL1-014 ownerへ返す。実secretや実保存をfixtureに使わない。 |
+
+共通機能caseと同じ合成入力を使い、未観測を0件実績にしない。値はcandidateでありL3承認・実装値・実行許可ではない。

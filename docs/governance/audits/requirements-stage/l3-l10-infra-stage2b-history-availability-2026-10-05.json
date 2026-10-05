@@ -1,0 +1,141 @@
+{
+  "record_kind": "historical_source_availability_addendum",
+  "authority_effect": "none",
+  "date": "2026-10-05",
+  "current_body_revision": "b45edd1337e1e4bf8eecd74193fe4d791dd28cef",
+  "current_publication_audit": {
+    "path": "docs/governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08.json",
+    "sha256": "dda8c362731e9b08015500ef5420a9c3da1411e1a6c0cfad8e5eeed6c5a91769"
+  },
+  "source_availability": [
+    {
+      "kind": "prior_candidate_body_revision",
+      "commit": "e12514cb9666c1ae4e9daff658b4f2f92827672a",
+      "remote_observation": "GitHub GET /commits/{sha}: HTTP 422 No commit found for SHA",
+      "availability": "local Git object only at 2026-10-05 observation"
+    },
+    {
+      "kind": "prior_cutout_body_revision",
+      "commit": "08c5d0632edcd1832158c95d1098f22ec829870b",
+      "remote_observation": "GitHub GET /commits/{sha}: HTTP 422 No commit found for SHA",
+      "availability": "local Git object only at 2026-10-05 observation"
+    },
+    {
+      "kind": "prior_root_static_audit_commit",
+      "commit": "fc6002190138102ec93a5135cf98d02c10bc27f2",
+      "remote_observation": "GitHub GET /commits/{sha}: HTTP 422 No commit found for SHA",
+      "availability": "local Git object only at 2026-10-05 observation"
+    },
+    {
+      "kind": "prior_cutout_audit_commit",
+      "commit": "c7cf9be5c6a7e7eb1060e3278cb887e73e637eca",
+      "remote_observation": "GitHub GET /commits/{sha}: HTTP 422 No commit found for SHA",
+      "availability": "local Git object only at 2026-10-05 observation"
+    }
+  ],
+  "old_body_document_pins": [
+    {
+      "revision": "e12514cb9666c1ae4e9daff658b4f2f92827672a",
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "full_sha256": "731afe867b990f704f1a74b2ea9dbf2e95d07e427c19d4039fd779b72e420ac2",
+      "bytes": 3572
+    },
+    {
+      "revision": "e12514cb9666c1ae4e9daff658b4f2f92827672a",
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "full_sha256": "75f18f49778e6d44a78efcb872a5be5fc8ace4335c0ed70b9f706890627faef3",
+      "bytes": 47178
+    },
+    {
+      "revision": "e12514cb9666c1ae4e9daff658b4f2f92827672a",
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "full_sha256": "1674f63572a4666b8f9110dbdbff5c2e1140a1f61871f8ae16eef9a8e860bb40",
+      "bytes": 13963
+    },
+    {
+      "revision": "e12514cb9666c1ae4e9daff658b4f2f92827672a",
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "full_sha256": "2ff06eaa9e9c7f7a3da2b2d5b074671a43370a67b8763a31721f3cf0847d3378",
+      "bytes": 2500
+    },
+    {
+      "revision": "e12514cb9666c1ae4e9daff658b4f2f92827672a",
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "full_sha256": "f514d8cf472be2f980248c363390829abcc9a7c64b9c8eb15193fe80e0dff389",
+      "bytes": 35240
+    },
+    {
+      "revision": "e12514cb9666c1ae4e9daff658b4f2f92827672a",
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "full_sha256": "27145b64b11f969c8d487f2d1ef3f33c50c07b0c982a52db95838fc48906667f",
+      "bytes": 12418
+    },
+    {
+      "revision": "08c5d0632edcd1832158c95d1098f22ec829870b",
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "full_sha256": "ddb6d1a07b38b96f0176e8111fbc4acd97202dd0ada64275b43ed47af46aa033",
+      "bytes": 1255
+    },
+    {
+      "revision": "08c5d0632edcd1832158c95d1098f22ec829870b",
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "full_sha256": "e9b178d326a6ab2b9398aab2c792357efa88875a32083519c157317a311cd743",
+      "bytes": 10001
+    },
+    {
+      "revision": "08c5d0632edcd1832158c95d1098f22ec829870b",
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "full_sha256": "004b4cc98f34e443a708a95af4b03ef10abcfeab0431e27339de060318cfecdf",
+      "bytes": 2309
+    },
+    {
+      "revision": "08c5d0632edcd1832158c95d1098f22ec829870b",
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "full_sha256": "88b2982abf5ff2f0a8533bb4e8c81215c0ac4caae4b9febfb41d59de6f998cac",
+      "bytes": 1306
+    },
+    {
+      "revision": "08c5d0632edcd1832158c95d1098f22ec829870b",
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "full_sha256": "6f48ca46bdaec9005acc953bc1c55388bb8c4482c59472398c2aefcfb507bf73",
+      "bytes": 7683
+    },
+    {
+      "revision": "08c5d0632edcd1832158c95d1098f22ec829870b",
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "full_sha256": "c54418821fe65d6e858d05e6c5de5d795cf3e5083c24153f8c330af996d7d211",
+      "bytes": 3001
+    }
+  ],
+  "preserved_old_records": [
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-infra-stage2b-root-static-validation-2026-10-05-e12514cb9.json",
+      "source_commit": "fc6002190138102ec93a5135cf98d02c10bc27f2",
+      "source_blob_sha256": "5e2673aa60306551d89c5030057c349acde0ee527b672f775cc20c0b3aaa75a9",
+      "bytes": 165599,
+      "copied_byte_identically": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-infra-stage2b-root-po-summary-2026-10-05-e12514cb9.md",
+      "source_commit": "fc6002190138102ec93a5135cf98d02c10bc27f2",
+      "source_blob_sha256": "c19ffcfb07282e03bde53f4f296dccb0bbac371104eb098cc9ac00a78709d940",
+      "bytes": 1509,
+      "copied_byte_identically": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-infra-stage2b-002-007-publication-cutout-2026-10-05-08c5d063.json",
+      "source_commit": "c7cf9be5c6a7e7eb1060e3278cb887e73e637eca",
+      "source_blob_sha256": "787481c89a158e2626428443a5670df34ea2f782a55b944178a76875cd25fb02",
+      "bytes": 44599,
+      "copied_byte_identically": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-infra-stage2b-002-007-publication-cutout-2026-10-05-08c5d063.md",
+      "source_commit": "c7cf9be5c6a7e7eb1060e3278cb887e73e637eca",
+      "source_blob_sha256": "ab9487d65f7d96e7c9afcf84658cb65aaebdee10299472ff560059c98c815f37",
+      "bytes": 1523,
+      "copied_byte_identically": true
+    }
+  ],
+  "limits": "元4commitはlocal限定。収載した4旧記録は元blobとbyte一致、旧本文はfullrevision/fullSHAで参照する。独立review・承認・L10合格を生成しない。"
+}
