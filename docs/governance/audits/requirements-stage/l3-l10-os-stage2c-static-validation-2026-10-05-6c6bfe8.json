@@ -1,0 +1,160 @@
+{
+  "record_kind": "作成側の追補修正・静的検証記録（独立review・PO L3承認前）",
+  "authority_effect": "none",
+  "content_head": "6c6bfe8ad0bf01978632599a18290db182c67151",
+  "body_commits": [
+    "a92bac083ab9f20fdb33083bf93f51d15b1b9ef9",
+    "6c6bfe8ad0bf01978632599a18290db182c67151"
+  ],
+  "base_content_head": "d17aafbe79d611b5a444e6aa5f513c63c5f89249",
+  "fixed_input_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+  "po_decision_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+  "scope": "R-OS2C-01 нэм: L2-028常時SECURITY authority/execution constraints and INFRA resource condition preservation; preserve choice-specific source permissions; Japanese translation of OS-028/029 legacy crosswalk prose. No changes to OS-029 semantics or other unresolved findings.",
+  "parents": [
+    {
+      "id": "HELIXOS-L2-028",
+      "version_target": "1.0 target candidate",
+      "stage": "Stage 2c",
+      "FR": [
+        "FR-OS-028"
+      ],
+      "AC": [
+        "AC-OS-028-01",
+        "AC-OS-028-02",
+        "AC-OS-028-03",
+        "AC-OS-028-04",
+        "AC-OS-028-05",
+        "AC-OS-028-06",
+        "AC-OS-028-07"
+      ],
+      "new_cases": [
+        "CASE-OS-028-07a",
+        "CASE-OS-028-07b",
+        "CASE-OS-028-07c"
+      ],
+      "normal_common_fields": [
+        "task/revision/scope/ticket owner/original assignment and attempt/budget/deadline/stop/HARNESS duties and oracle/existing authority",
+        "該当operationのSECURITY authorityと実行制約",
+        "該当INFRASTRUCTURE資源状態"
+      ],
+      "choice_specific": "consult有無と独立。入力sourceを実際に選んだ場合のみidentity/revision/provenance/use permission/relevance/scope/constraintsを照合。未選択sourceにはpermissionを要求しない。",
+      "expected_negative": "authority, execution constraint, resource stateをそれぞれ単独missing/unknownにし該当operationだけhold; source owner/SECURITY/INFRA/OSへ戻す."
+    },
+    {
+      "id": "HELIXOS-L2-029",
+      "version_target": "1.0 target candidate",
+      "stage": "Stage 2c",
+      "new_scope_change": false
+    }
+  ],
+  "source_pins": [
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "physical_lines": [
+        855,
+        857
+      ],
+      "full_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "raw_lf_inclusive_span_sha256": "de3c6fa4a302b598252375cc368ba02dbe29a6e5e1d10972ecc8a501c70f9972",
+      "description": "HELIXOS-L2-028常時必須/操作時/選択入力の固定source"
+    },
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "physical_lines": [
+        457,
+        466
+      ],
+      "full_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "raw_lf_inclusive_span_sha256": "4eb5b74e57c0d8441d5bb41fc3cba5f5cb31d58d780c31e0f735692a6e060b93",
+      "description": "HELIXOS-L2-028対L11 oracle"
+    }
+  ],
+  "canonical_documents": [
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "bytes": 41547,
+      "physical_lines": 147,
+      "full_file_sha256": "06eb5193e3d26c2490e7b76b39941471c6e4aa0d8d6c3effb9c8bf55e0830b21",
+      "preserved_prefix_lines": 106,
+      "prefix_sha256": "4a7cd38bf18e99771b1fddf3df8655cf5b3002bf37f7e986a6ec03e32c86d0fd",
+      "prefix_matches_pre_stage2c": true
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "bytes": 7784,
+      "physical_lines": 46,
+      "full_file_sha256": "093ad648cc1c4ee56a0f182dd28fba40779ff2d3f89d7ed8225f7172cdb3da87",
+      "preserved_prefix_lines": 41,
+      "prefix_sha256": "63fbc1015bd3201e865aadebdaf4a1c8e90d9aac0d22f499f3c1e8dae64f16a8",
+      "prefix_matches_pre_stage2c": true
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "bytes": 11027,
+      "physical_lines": 60,
+      "full_file_sha256": "ac10099a86330b6835ef5279202dfbea4b7fde87135d5653d7f9968fffb87596",
+      "preserved_prefix_lines": 41,
+      "prefix_sha256": "e6ce8baa339d98e0e8c9035da88af2ec0b13187ab09825cbf843cadbf591fab4",
+      "prefix_matches_pre_stage2c": true
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "bytes": 34552,
+      "physical_lines": 342,
+      "full_file_sha256": "3cf8109b40ae1868b76fabef1fb6209de91703519d5c49cd359198aec0f2df20",
+      "preserved_prefix_lines": 207,
+      "prefix_sha256": "bcb7716aaaa1a2b059c228a7ea3d5e6770f89bc4d989fa54aef1e2f8c2086724",
+      "prefix_matches_pre_stage2c": true
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "bytes": 5073,
+      "physical_lines": 27,
+      "full_file_sha256": "2adbcc7b5cd82ada866fd8131e9a419fdfc4873e887a418c5366dc2acd194e04",
+      "preserved_prefix_lines": 22,
+      "prefix_sha256": "5340970c819e4f55c510fd8ac07dd76a5d5aab8f20da82e8b610b642210836e7",
+      "prefix_matches_pre_stage2c": true
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "bytes": 8542,
+      "physical_lines": 56,
+      "full_file_sha256": "e1e7acde55cb9616a8073d3155d4521d96b9fbee40427359009838c33276123b",
+      "preserved_prefix_lines": 39,
+      "prefix_sha256": "01531f013063076f1f94dca60799ad9fbbd2a1cd436766911ed04d883ac04ea0",
+      "prefix_matches_pre_stage2c": true
+    }
+  ],
+  "inventories": {
+    "stage2c_parents": 2,
+    "FR_parent_requirements": 2,
+    "AC_parent_requirements": 13,
+    "functional_CASEs": 41,
+    "NFR_parent_requirements": 2,
+    "CASE_NFR": 3,
+    "business_requirements": 0,
+    "business_CASEs": 0,
+    "functional_CASE_count_method": "fixture definitions: 028 standalone normal/unseen 4 + subtask negatives 5 + consult negatives 10 + security/infra negatives 3; 029 standalone normal/unseen 4 + authority/composite negatives 10 + ordered composite cases 5"
+  },
+  "checks": {
+    "python3_-B_scaffold_validate": "PASS bindings=147 fail=0",
+    "python3_-B_scaffold_stale": "PASS stale=0",
+    "python3_-B_scaffold_residuals": "PASS residuals=0",
+    "python3_-B_govcheck": "PASS atoms=7622 requirements=57 files=58",
+    "git_diff_check": "PASS",
+    "prefix6": "PASS all six original prefix SHA matched /tmp/pr257x-os-stage2c-prefix.json"
+  },
+  "review_state": {
+    "independent_review": "not performed",
+    "PO_L3_approval": "not performed",
+    "C13_findings": "prior open/unreviewed identities carried; no closure inferred",
+    "implementation_or_runtime": "not performed"
+  },
+  "limitations": [
+    "This addendum audits only the bounded OS-028 repair and current six-document hashes; it is not a full independent review.",
+    "No business acceptance requirement exists for these parents; business documents remain reference-only.",
+    "NFR inventory explicitly means 2 NFR requirement parents and 3 NFR CASEs (028-01, 029-01, 029-02)."
+  ]
+}

@@ -1,0 +1,895 @@
+{
+  "record_kind": "作成側の修正後静的検収（独立review・PO L3承認前）",
+  "authority_effect": "none",
+  "content_source_commit": "6c6bfe8ad0bf01978632599a18290db182c67151",
+  "base_commit": "648346ecfe3a9083f4d8fd6c9c6f259df3a62d14",
+  "fixed_input_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+  "po_decision_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+  "parents": [
+    {
+      "id": "HELIXOS-L2-028",
+      "l2_source_lines": [
+        847,
+        862
+      ],
+      "l11_source_lines": [
+        457,
+        466
+      ],
+      "registration_id": "MPR-RC-HELIXOS-L2-028-001",
+      "candidate_semantic_digest": "f41238ee4660d455d6f6a144bdab4a35ef9704aac190835a24589853ed3e4fab",
+      "version_target": "1.0 target candidate",
+      "stage": "Stage 2c",
+      "FR": [
+        "FR-OS-028"
+      ],
+      "AC": [
+        "AC-OS-028-01",
+        "AC-OS-028-02",
+        "AC-OS-028-03",
+        "AC-OS-028-04",
+        "AC-OS-028-05",
+        "AC-OS-028-06",
+        "AC-OS-028-07"
+      ],
+      "CASE": [
+        "CASE-OS-028-01",
+        "CASE-OS-028-02",
+        "CASE-OS-028-03a",
+        "CASE-OS-028-03b",
+        "CASE-OS-028-03c",
+        "CASE-OS-028-03d",
+        "CASE-OS-028-03e",
+        "CASE-OS-028-03f",
+        "CASE-OS-028-03g",
+        "CASE-OS-028-03h",
+        "CASE-OS-028-03i",
+        "CASE-OS-028-03j",
+        "CASE-OS-028-04",
+        "CASE-OS-028-05",
+        "CASE-OS-028-06a",
+        "CASE-OS-028-06b",
+        "CASE-OS-028-06c",
+        "CASE-OS-028-06d",
+        "CASE-OS-028-06e",
+        "CASE-OS-028-07a",
+        "CASE-OS-028-07b",
+        "CASE-OS-028-07c"
+      ],
+      "trace_coverage": {
+        "L2-028 lines 851-854": [
+          "AC-OS-028-01",
+          "CASE-OS-028-01"
+        ],
+        "L2-028 lines 855-856": [
+          "AC-OS-028-02",
+          "AC-OS-028-05",
+          "AC-OS-028-06",
+          "CASE-OS-028-02",
+          "CASE-OS-028-05",
+          "CASE-OS-028-06a",
+          "CASE-OS-028-06b",
+          "CASE-OS-028-06c",
+          "CASE-OS-028-06d",
+          "CASE-OS-028-06e"
+        ],
+        "L2-028 lines 857-858": [
+          "AC-OS-028-03",
+          "AC-OS-028-06"
+        ],
+        "L2-028 lines 859-861": [
+          "AC-OS-028-04",
+          "CASE-OS-028-04"
+        ],
+        "L11-028 lines 461-466": [
+          "CASE-OS-028-01",
+          "CASE-OS-028-02",
+          "CASE-OS-028-03a",
+          "CASE-OS-028-03b",
+          "CASE-OS-028-03c",
+          "CASE-OS-028-03d",
+          "CASE-OS-028-03e",
+          "CASE-OS-028-03f",
+          "CASE-OS-028-03g",
+          "CASE-OS-028-03h",
+          "CASE-OS-028-03i",
+          "CASE-OS-028-03j",
+          "CASE-OS-028-04",
+          "CASE-OS-028-05",
+          "CASE-OS-028-06a",
+          "CASE-OS-028-06b",
+          "CASE-OS-028-06c",
+          "CASE-OS-028-06d",
+          "CASE-OS-028-06e"
+        ],
+        "L2-028 line855 common SECURITY/INFRA": [
+          "AC-OS-028-02",
+          "AC-OS-028-07",
+          "CASE-OS-028-02",
+          "CASE-OS-028-07a",
+          "CASE-OS-028-07b",
+          "CASE-OS-028-07c"
+        ],
+        "L2-028 line857 selected source independent of consultation": [
+          "AC-OS-028-02",
+          "AC-OS-028-03",
+          "CASE-OS-028-02",
+          "CASE-OS-028-03b"
+        ]
+      }
+    },
+    {
+      "id": "HELIXOS-L2-029",
+      "l2_source_lines": [
+        863,
+        877
+      ],
+      "l11_source_lines": [
+        468,
+        478
+      ],
+      "registration_id": "MPR-RC-HELIXOS-L2-029-003",
+      "candidate_semantic_digest": "59a37b8d83fb269c12263089d937e696d0b9bfe8684d46822e267588802878f8",
+      "version_target": "1.0 target candidate",
+      "stage": "Stage 2c",
+      "FR": [
+        "FR-OS-029"
+      ],
+      "AC": [
+        "AC-OS-029-01",
+        "AC-OS-029-02",
+        "AC-OS-029-03",
+        "AC-OS-029-04",
+        "AC-OS-029-05",
+        "AC-OS-029-06"
+      ],
+      "CASE": [
+        "CASE-OS-029-01",
+        "CASE-OS-029-02",
+        "CASE-OS-029-03",
+        "CASE-OS-029-04a",
+        "CASE-OS-029-04b",
+        "CASE-OS-029-04c",
+        "CASE-OS-029-04d",
+        "CASE-OS-029-04e",
+        "CASE-OS-029-04f",
+        "CASE-OS-029-04g",
+        "CASE-OS-029-04h",
+        "CASE-OS-029-04i",
+        "CASE-OS-029-04j",
+        "CASE-OS-029-05",
+        "CASE-OS-029-06a",
+        "CASE-OS-029-06b",
+        "CASE-OS-029-06c",
+        "CASE-OS-029-06d",
+        "CASE-OS-029-06e"
+      ],
+      "trace_coverage": {
+        "L2-029 lines 867-870": [
+          "AC-OS-029-01",
+          "AC-OS-029-02",
+          "CASE-OS-029-01",
+          "CASE-OS-029-02",
+          "CASE-OS-029-06a",
+          "CASE-OS-029-06b"
+        ],
+        "L2-029 lines 871-874": [
+          "AC-OS-029-03",
+          "AC-OS-029-04",
+          "CASE-OS-029-04i",
+          "CASE-OS-029-04j"
+        ],
+        "L2-029 lines 875-877": [
+          "AC-OS-029-05",
+          "CASE-OS-029-05"
+        ],
+        "L11-029 lines 473-475": [
+          "CASE-OS-029-01",
+          "CASE-OS-029-02",
+          "CASE-OS-029-03",
+          "CASE-OS-029-06a",
+          "CASE-OS-029-06b"
+        ],
+        "L11-029 lines 476-478": [
+          "CASE-OS-029-04a",
+          "CASE-OS-029-04b",
+          "CASE-OS-029-04c",
+          "CASE-OS-029-04d",
+          "CASE-OS-029-04e",
+          "CASE-OS-029-05",
+          "CASE-OS-029-06c",
+          "CASE-OS-029-06d",
+          "CASE-OS-029-06e",
+          "CASE-OS-029-04i",
+          "CASE-OS-029-04j"
+        ]
+      }
+    }
+  ],
+  "version_intent": "G0 fixed target only: 1.0 target candidate",
+  "stage": "Stage 2c",
+  "canonical_documents": [
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "prefix_bytes": 24118,
+      "prefix_lines": 106,
+      "prefix_sha256": "4a7cd38bf18e99771b1fddf3df8655cf5b3002bf37f7e986a6ec03e32c86d0fd",
+      "stage2c_suffix_physical_lines": [
+        107,
+        147
+      ],
+      "stage2c_suffix_sha256_lf_inclusive": "e37d9d7b7ca18cfa95ca3379a39b92f573d23b38a1aab3a01c5e72bd44c2f303",
+      "full_body_sha256": "06eb5193e3d26c2490e7b76b39941471c6e4aa0d8d6c3effb9c8bf55e0830b21",
+      "full_body_bytes": 41547,
+      "full_body_lines": 147
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "prefix_bytes": 7250,
+      "prefix_lines": 41,
+      "prefix_sha256": "63fbc1015bd3201e865aadebdaf4a1c8e90d9aac0d22f499f3c1e8dae64f16a8",
+      "stage2c_suffix_physical_lines": [
+        42,
+        46
+      ],
+      "stage2c_suffix_sha256_lf_inclusive": "bfe4edf634230df565e2ed4765e8f5a9373ee394c691049a5e7d4427b04cb3c7",
+      "full_body_sha256": "093ad648cc1c4ee56a0f182dd28fba40779ff2d3f89d7ed8225f7172cdb3da87",
+      "full_body_bytes": 7784,
+      "full_body_lines": 46
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "prefix_bytes": 7082,
+      "prefix_lines": 41,
+      "prefix_sha256": "e6ce8baa339d98e0e8c9035da88af2ec0b13187ab09825cbf843cadbf591fab4",
+      "stage2c_suffix_physical_lines": [
+        42,
+        60
+      ],
+      "stage2c_suffix_sha256_lf_inclusive": "74bbebfe7f10f43344c29630e3b7dc613be49e42fb98e273165bf2aea23e4af9",
+      "full_body_sha256": "ac10099a86330b6835ef5279202dfbea4b7fde87135d5653d7f9968fffb87596",
+      "full_body_bytes": 11027,
+      "full_body_lines": 60
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "prefix_bytes": 18744,
+      "prefix_lines": 207,
+      "prefix_sha256": "bcb7716aaaa1a2b059c228a7ea3d5e6770f89bc4d989fa54aef1e2f8c2086724",
+      "stage2c_suffix_physical_lines": [
+        208,
+        342
+      ],
+      "stage2c_suffix_sha256_lf_inclusive": "0b9914cd3a783f53d7a3f05c70168a31a9edcda7e6df76cc551038d5dbc4e7ad",
+      "full_body_sha256": "3cf8109b40ae1868b76fabef1fb6209de91703519d5c49cd359198aec0f2df20",
+      "full_body_bytes": 34552,
+      "full_body_lines": 342
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "prefix_bytes": 4357,
+      "prefix_lines": 22,
+      "prefix_sha256": "5340970c819e4f55c510fd8ac07dd76a5d5aab8f20da82e8b610b642210836e7",
+      "stage2c_suffix_physical_lines": [
+        23,
+        27
+      ],
+      "stage2c_suffix_sha256_lf_inclusive": "337b71115e4e5f568eec17071b437f1c0307da0c3cee68668a562bcb393fc8bb",
+      "full_body_sha256": "2adbcc7b5cd82ada866fd8131e9a419fdfc4873e887a418c5366dc2acd194e04",
+      "full_body_bytes": 5073,
+      "full_body_lines": 27
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "prefix_bytes": 5330,
+      "prefix_lines": 39,
+      "prefix_sha256": "01531f013063076f1f94dca60799ad9fbbd2a1cd436766911ed04d883ac04ea0",
+      "stage2c_suffix_physical_lines": [
+        40,
+        56
+      ],
+      "stage2c_suffix_sha256_lf_inclusive": "a0e544699975ccfa13b06c9f5f4febf24ab6f88718f73a1d710e60d65287ba31",
+      "full_body_sha256": "e1e7acde55cb9616a8073d3155d4521d96b9fbee40427359009838c33276123b",
+      "full_body_bytes": 8542,
+      "full_body_lines": 56
+    }
+  ],
+  "source_pins": [
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "physical_lines": [
+        847,
+        862
+      ],
+      "full_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "raw_span_sha256_lf_inclusive": "1b81d41d7aba1f2801978e81d39b132eac4d2b6818a332d484152bd23330e313",
+      "asset_id": null,
+      "role": "fixed-L2-028-parent"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "physical_lines": [
+        863,
+        877
+      ],
+      "full_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "raw_span_sha256_lf_inclusive": "59a37b8d83fb269c12263089d937e696d0b9bfe8684d46822e267588802878f8",
+      "asset_id": null,
+      "role": "fixed-L2-029-parent"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "physical_lines": [
+        457,
+        466
+      ],
+      "full_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "raw_span_sha256_lf_inclusive": "4eb5b74e57c0d8441d5bb41fc3cba5f5cb31d58d780c31e0f735692a6e060b93",
+      "asset_id": null,
+      "role": "fixed-L11-028-acceptance"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "physical_lines": [
+        468,
+        478
+      ],
+      "full_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "raw_span_sha256_lf_inclusive": "921d184ab89892a7a257600e13e80290053dc49749e9f708909f27f2bd2f42ea",
+      "asset_id": null,
+      "role": "fixed-L11-029-acceptance"
+    },
+    {
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "physical_lines": [
+        27,
+        48
+      ],
+      "full_file_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "raw_span_sha256_lf_inclusive": "f03fedf075b729d6907b5b438d2381d7e6241cc4e0f60cf7f641a0154f801c14",
+      "asset_id": null,
+      "role": "PO-adoption-and-candidate-set"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "docs/governance/decisions/implementation-order-po-decision-2026-10-03.md",
+      "physical_lines": [
+        12,
+        46
+      ],
+      "full_file_sha256": "c06e922bfd26947f22afebcc5dbd44f57aa04579728872350229792a1c7f1224",
+      "raw_span_sha256_lf_inclusive": "7fc6ac93b2530742fd5910f7aea3cbb736e05b5ca1597ccda48da3dd46444f23",
+      "asset_id": null,
+      "role": "PO-stage-order-and-exact-registrations"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "physical_lines": [
+        1,
+        28
+      ],
+      "full_file_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "raw_span_sha256_lf_inclusive": "933ca5303f839cca75f021cf1f08b83488d5da99b5503d139a017064c57daa19",
+      "asset_id": null,
+      "role": "G0-version-and-stage-method"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "physical_lines": [
+        327,
+        328
+      ],
+      "full_file_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "raw_span_sha256_lf_inclusive": "c7b042e23fda2ee5b3d7babd2a1594b3758a902dcabaf3aa48589c81c0980f20",
+      "asset_id": null,
+      "role": "G0-028-029-version-stage-rows"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
+      "physical_lines": [
+        16388,
+        16447
+      ],
+      "full_file_sha256": "ec970df79eaaf693f8825045b235c43ea10aefa7925701b1fff2a974df3e4e0a",
+      "raw_span_sha256_lf_inclusive": "03c1df7900cd83e84dc6e5fc22eec0e347dc869be068e08b7882ef96637f0dae",
+      "asset_id": null,
+      "role": "G0-028-exact-join-and-semantic-digest"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
+      "physical_lines": [
+        16450,
+        16512
+      ],
+      "full_file_sha256": "ec970df79eaaf693f8825045b235c43ea10aefa7925701b1fff2a974df3e4e0a",
+      "raw_span_sha256_lf_inclusive": "9fa5ce537adc61c18d96f42ab08e276885b1bededd9030bbfb4419ef85f6491a",
+      "asset_id": null,
+      "role": "G0-029-exact-join-and-semantic-digest"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
+      "physical_lines": [
+        21380,
+        21396
+      ],
+      "full_file_sha256": "ec970df79eaaf693f8825045b235c43ea10aefa7925701b1fff2a974df3e4e0a",
+      "raw_span_sha256_lf_inclusive": "d939284bd327e0a4664cf952ea4e99dcd2b2fd37dda58258688afd9bb70617f4",
+      "asset_id": null,
+      "role": "G0-original-stage2c-exact-set-028-029"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "docs/governance/l3-l10-authoring-layout.md",
+      "physical_lines": [
+        1,
+        71
+      ],
+      "full_file_sha256": "d1fb0c89df30aca6bb828f28e58329d57c40bb7593df540625562b5ac920a7ca",
+      "raw_span_sha256_lf_inclusive": "d1fb0c89df30aca6bb828f28e58329d57c40bb7593df540625562b5ac920a7ca",
+      "asset_id": null,
+      "role": "current-L3-L10-layout-rule"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "docs/governance/decisions/worker-support-derivation-2026-09-27.md",
+      "physical_lines": [
+        1,
+        44
+      ],
+      "full_file_sha256": "433e3887f834f9c0c9054282c4c25b9caee59334c1121a15fb7dad86661b014d",
+      "raw_span_sha256_lf_inclusive": "433e3887f834f9c0c9054282c4c25b9caee59334c1121a15fb7dad86661b014d",
+      "asset_id": null,
+      "role": "G19-origin-derivation-context"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "docs/helix-harness/sources/capability-reinforcement-po-original-2026-09-27.md",
+      "physical_lines": [
+        44,
+        60
+      ],
+      "full_file_sha256": "ab8bb6ae8cd418053d6baaafccaa80ee8ef2e715caab1576e5a00c306e97d1f8",
+      "raw_span_sha256_lf_inclusive": "daf49edfe61f0e08c746b42182e5c7d0e542502ac0194312e6eb52dc8844c39d",
+      "asset_id": null,
+      "role": "PO-original-worker-support-context"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "physical_lines": [
+        13,
+        21
+      ],
+      "full_file_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "raw_span_sha256_lf_inclusive": "d16597b2119b4b6d89a48c97777397f983d404059799ab440e76d02f821e1a69",
+      "asset_id": "LEGACY-ASSET-F542125805B777D8A56A",
+      "role": "legacy-L3-L10-pair-process"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "physical_lines": [
+        148,
+        166
+      ],
+      "full_file_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "raw_span_sha256_lf_inclusive": "dd94d271bc924f93244ae9ef92258154b943aa464b2639cec0be0e1266bd1e4f",
+      "asset_id": "LEGACY-ASSET-F542125805B777D8A56A",
+      "role": "legacy-L3-FR-and-L10-test-design-pair"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "physical_lines": [
+        147,
+        147
+      ],
+      "full_file_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "raw_span_sha256_lf_inclusive": "80e5e1458b29a3a528da1363136da617fc21bc6212b46074b871e2ef0d6964cf",
+      "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "role": "legacy-HR-FR-P2-04-heading"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "physical_lines": [
+        224,
+        235
+      ],
+      "full_file_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "raw_span_sha256_lf_inclusive": "bb574069713ae60c9ce9c0e8b790cd3fe192235761213b7af3557ba55df5b6e6",
+      "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "role": "legacy-worker-consult-review-return-semantic"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "physical_lines": [
+        213,
+        315
+      ],
+      "full_file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "raw_span_sha256_lf_inclusive": "a581087d27dda4a373117927b2d0b3476e81dfef86c9485cec05f269e9148cec",
+      "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+      "role": "legacy-assignment-control-and-owner-roles"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "physical_lines": [
+        351,
+        376
+      ],
+      "full_file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "raw_span_sha256_lf_inclusive": "f6aea052d52705774623cfcede8a02efc7e67217a8d69b4b25e9914f79381b9d",
+      "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+      "role": "legacy-independent-review-and-exact-head"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "physical_lines": [
+        532,
+        559
+      ],
+      "full_file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "raw_span_sha256_lf_inclusive": "df530b4f1cd1b5201b26ee0e2df4850c3750ec2fe765a228a039146f13e5e8b0",
+      "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+      "role": "legacy-review-return-and-revision-binding"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "physical_lines": [
+        865,
+        905
+      ],
+      "full_file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "raw_span_sha256_lf_inclusive": "1125dc5db03f0543598b1acbd80ee680fc9e9cf46c22afd322e68f59ec25834c",
+      "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+      "role": "legacy-requirement-verification-crosswalk"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/three-lane-cloud-governance-requirements.md",
+      "physical_lines": [
+        31,
+        62
+      ],
+      "full_file_sha256": "4b388cda67484f1808b0f4b8834d5d234a47de49f7db6dcb12d92d2dcfbee185",
+      "raw_span_sha256_lf_inclusive": "61338a30f6a1187fcec9c0b893ab5262a5ea0754e84d2add160655af8c63cece",
+      "asset_id": "LEGACY-ASSET-A26561A0EF7396D8F017",
+      "role": "legacy-lane-governance-and-separation"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/harness-agent-lifecycle.md",
+      "physical_lines": [
+        34,
+        120
+      ],
+      "full_file_sha256": "894500dee389a2fab00961697bae4baa71427c5ffe1431bbc77592497b2b3fd7",
+      "raw_span_sha256_lf_inclusive": "8279192dc0164261da340571de77b5239d1064f2693385c98935f1b09fad052d",
+      "asset_id": "LEGACY-ASSET-1D32912A9A194FEAA7DE",
+      "role": "legacy-worker-lifecycle-authority-and-consult"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/harness-agent-lifecycle.md",
+      "physical_lines": [
+        159,
+        191
+      ],
+      "full_file_sha256": "894500dee389a2fab00961697bae4baa71427c5ffe1431bbc77592497b2b3fd7",
+      "raw_span_sha256_lf_inclusive": "2795eacc69d9d985f123b8dbad2bc33fbed21f6c0b22232c6b547e0135a8cb25",
+      "asset_id": "LEGACY-ASSET-1D32912A9A194FEAA7DE",
+      "role": "legacy-checkpoint-verification-and-release"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/harness-agent-lifecycle.md",
+      "physical_lines": [
+        222,
+        278
+      ],
+      "full_file_sha256": "894500dee389a2fab00961697bae4baa71427c5ffe1431bbc77592497b2b3fd7",
+      "raw_span_sha256_lf_inclusive": "28a169d1ec4d44cf445921b7581c74152338c39456e801393b3242bf444ca598",
+      "asset_id": "LEGACY-ASSET-1D32912A9A194FEAA7DE",
+      "role": "legacy-failure-return-and-acceptance-crosswalk"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/harness-agent-lifecycle.md",
+      "physical_lines": [
+        27,
+        65
+      ],
+      "full_file_sha256": "7c3fbb7c6f0ea8dcbdb8cdb7e06143331455f48c59263f29f970ae5c79a9e275",
+      "raw_span_sha256_lf_inclusive": "a16ee0bf1ce5979eb79e2ecddb175483511930d196954a849731e228fe2fb446",
+      "asset_id": "LEGACY-ASSET-D4E9C31E6AE7D18CA11D",
+      "role": "legacy-worker-verifier-consult-functions"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/harness-agent-lifecycle.md",
+      "physical_lines": [
+        82,
+        130
+      ],
+      "full_file_sha256": "7c3fbb7c6f0ea8dcbdb8cdb7e06143331455f48c59263f29f970ae5c79a9e275",
+      "raw_span_sha256_lf_inclusive": "35de254caf6a4040a1ce8f1630beb8645442db6594e0de9c5b611e0c604c73b8",
+      "asset_id": "LEGACY-ASSET-D4E9C31E6AE7D18CA11D",
+      "role": "legacy-role-boundaries-and-verification"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/harness-agent-lifecycle.md",
+      "physical_lines": [
+        291,
+        305
+      ],
+      "full_file_sha256": "7c3fbb7c6f0ea8dcbdb8cdb7e06143331455f48c59263f29f970ae5c79a9e275",
+      "raw_span_sha256_lf_inclusive": "8ec9c7c99ea86bab1da37efd48708d8cb8e7d4f6b3fdf55803593a9d0d6cf5c0",
+      "asset_id": "LEGACY-ASSET-D4E9C31E6AE7D18CA11D",
+      "role": "legacy-invariants"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/worker-budget-lifecycle.md",
+      "physical_lines": [
+        9,
+        55
+      ],
+      "full_file_sha256": "dc366afb9d17229d3d963b4323bb3dad98a39ea0df268847f930cd9385acc8a2",
+      "raw_span_sha256_lf_inclusive": "b803a6a78ec308ae3a0fa69fe71dad771b13d6e71748e9380025500d955d7bf1",
+      "asset_id": "LEGACY-ASSET-15D88CCE539AA79ED788",
+      "role": "legacy-budget-deadline-stop-and-retention-semantics"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "physical_lines": [
+        104,
+        104
+      ],
+      "full_file_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+      "raw_span_sha256_lf_inclusive": "c2d5905826996429f528a247e4781d58609a6f753eb5776498dda78629f8eb49",
+      "asset_id": "LEGACY-ASSET-44DD86E3DEC09E65EF51",
+      "role": "legacy-HAT-P2-04-paired-acceptance-oracle"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+      "physical_lines": [
+        17,
+        58
+      ],
+      "full_file_sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+      "raw_span_sha256_lf_inclusive": "56e01b21db8e007093c5491c0e043ea0a319a2eb100dd3946621d10696349a54",
+      "asset_id": "LEGACY-ASSET-437A6A68F9A9E0AE1B9E",
+      "role": "legacy-independent-review-current-head-return-negative-cases"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L5-harness-agent-lifecycle-integration-test-design.md",
+      "physical_lines": [
+        9,
+        45
+      ],
+      "full_file_sha256": "8b821ca4d5774f9e510a5ceb7b8c338735a1ba79c693c79478b4c62cf73dccce",
+      "raw_span_sha256_lf_inclusive": "af6ce5affab4b597ed69c42c7d122beffa4efa4ebdb7e2d606d0ee6bd38a3649",
+      "asset_id": "LEGACY-ASSET-3CDF4110625C2E6BA1CC",
+      "role": "legacy-L5-integration-test-design-context"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L5-harness-agent-lifecycle-integration-test-design.md",
+      "physical_lines": [
+        72,
+        90
+      ],
+      "full_file_sha256": "8b821ca4d5774f9e510a5ceb7b8c338735a1ba79c693c79478b4c62cf73dccce",
+      "raw_span_sha256_lf_inclusive": "4d24e808c497670a2733064d18f79068502be3cf77fcd7562b37ec7daed35234",
+      "asset_id": "LEGACY-ASSET-3CDF4110625C2E6BA1CC",
+      "role": "legacy-L5-paired-verification-cases"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L6-harness-agent-lifecycle-unit-test-design.md",
+      "physical_lines": [
+        9,
+        45
+      ],
+      "full_file_sha256": "224bc00a7e225287033310972204bc9fff3efbc3b379758e9540139e16d46faa",
+      "raw_span_sha256_lf_inclusive": "0d6839505eb850e8acb2eb2d756ef6f7dc7be871eea5074e5298874055d7a9de",
+      "asset_id": "LEGACY-ASSET-73667F8811A042DCFE1D",
+      "role": "legacy-L6-unit-test-design-context"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L6-harness-agent-lifecycle-unit-test-design.md",
+      "physical_lines": [
+        72,
+        98
+      ],
+      "full_file_sha256": "224bc00a7e225287033310972204bc9fff3efbc3b379758e9540139e16d46faa",
+      "raw_span_sha256_lf_inclusive": "db131e8648e177ef985a361b2af5f62a96fcce2d896db88afd3a55e1eb5b5f24",
+      "asset_id": "LEGACY-ASSET-73667F8811A042DCFE1D",
+      "role": "legacy-L6-failure-and-role-separation-cases"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L8-worker-budget-lifecycle.md",
+      "physical_lines": [
+        9,
+        28
+      ],
+      "full_file_sha256": "d0c5b43ec2d155f4a0d8d095da8c2fcac387085d5fb8fcadad862e36bb786136",
+      "raw_span_sha256_lf_inclusive": "0c75f39cc92a9ec7a7b55cf7296123cf0380dad7413152583f7398a6a2640a34",
+      "asset_id": "LEGACY-ASSET-CEA6314CB8C2329F2EB6",
+      "role": "legacy-L8-budget-paired-test-oracles"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "physical_lines": [
+        855,
+        857
+      ],
+      "full_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "raw_span_sha256_lf_inclusive": "de3c6fa4a302b598252375cc368ba02dbe29a6e5e1d10972ecc8a501c70f9972",
+      "asset_id": null,
+      "role": "HELIXOS-L2-028常時必須/操作時/選択入力の固定source"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "physical_lines": [
+        457,
+        466
+      ],
+      "full_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "raw_span_sha256_lf_inclusive": "4eb5b74e57c0d8441d5bb41fc3cba5f5cb31d58d780c31e0f735692a6e060b93",
+      "asset_id": null,
+      "role": "HELIXOS-L2-028対L11 oracle"
+    }
+  ],
+  "source_pin_count": 39,
+  "canonical_prefix_preservation": "6 canonicalファイルすべてのbase prefix bytes/hashが一致。追補suffixのみを更新。",
+  "business_scope": "固定L2-028/029に独立business outcomeがないためBR/BCASE/business KPIは追加しない。business docsはFR/ACを参照する。",
+  "nfr_candidates": [
+    "NFR-OS-028-01",
+    "NFR-OS-029-01"
+  ],
+  "measurement_design": [
+    "028母集団は固定scope/revision内で選択・認可済みconsult attempt。認可後dispatch前停止も未完として含め、認可拒否は適格性観測として別記。",
+    "028経過時間は同一attemptのauthorization receiptからreturn receiptまで。同単位の有効標本のみp50/p95、n_validとfailed/missing/censored/dispatch前停止を分ける。n_valid=0と未観測を区別。",
+    "budget比は同assignment・同次元・単位・期間の許可/消費値で、許可分母が正の場合のみ算出。"
+  ],
+  "carry_forward": {
+    "source_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/2564#issuecomment-5981101754",
+    "source_comment_sha256": "4d837e616451040cb15762e98b65cb9f104db8856f0319f4f376a47459644f1c",
+    "C13_findings": [
+      "Claude13 OS minor 015-07 deletion oracle",
+      "Claude13 OS minor AC-017-29 impact candidates and Unknown",
+      "Claude13 OS minor AC-018-01 failure return boundary",
+      "Claude13 OS minor L11-31 planner/executor separation",
+      "Claude13 OS minor L11-227 / L2-470 promotion and identity conditions",
+      "Claude13 OS minor crosswalk source index",
+      "Claude13 OS minor non-promotion/state retention",
+      "Claude13 M12 / OS audit-map mismatch"
+    ],
+    "C13_unreviewed": [
+      "OS legacy table cells only keyword checked",
+      "OS global source and coverage limits"
+    ],
+    "status": "未解消持越し。作成側の起草・静的照合から独立解消判定を生成しない。"
+  },
+  "checks": {
+    "case_count": 41,
+    "AC_count": 13,
+    "FR_count": 2,
+    "duplicate_AC": 0,
+    "duplicate_CASE": 0,
+    "unresolved_ID_mapping": 0,
+    "prefix_byte_checks": "pass",
+    "source_pin_checks": "pass",
+    "legacy_asset_full_sha_matches_ledger": "pass",
+    "scfctl_validate": {
+      "bindings": 147,
+      "fail": 0
+    },
+    "scfctl_stale": 0,
+    "scfctl_residuals": 0,
+    "govcheck": {
+      "result": "pass",
+      "atoms": 7622,
+      "requirements": 57,
+      "files": 58
+    },
+    "git_diff_check": "pass",
+    "NFR_count": 2,
+    "NFR_CASE_count": 3
+  },
+  "limitations": [
+    "この静的作成記録は独立review、PO L3承認、実行許可、runtime測定、L10実行を意味しない。",
+    "Stage 2a草稿はcontextに限り、authorityまたはdependencyとして使っていない。",
+    "旧runtime、test、CI、Bunは実行していない。",
+    "C13 identityと未review範囲はopen/carryのまま。本修正で解消を生成していない。",
+    "固定parent、business outcome、global stage gate、新approval requirementを追加していない。"
+  ],
+  "errors": [],
+  "creator_dispositions": [
+    "R-OS2C-01: L2-028分解handoffの5 bindingをFR/AC/CASEへ具体化し、各一項目のnegativeで元Worker/ownerへの戻しを明記。",
+    "R-OS2C-02: 相談前の初回失敗差分と、認可→request→response/return→元Worker修正差分を別artifactとして固定。相談なし経路はreceipt不要。",
+    "R-OS2C-03: review条件、Verified candidate、利用者acceptanceによるAcceptedを別oracleにし、review=0だけの昇格を拒否。",
+    "R-OS2C-04/05/06: consult分母、時刻、n_valid、budget同次元要件をL3/L10で同期。",
+    "R-OS2C-07: 通常入力と相談操作時入力を分離し、G0はversion/stage配属、意味は固定L2/L11とPO decisionに帰属。",
+    "R-OS2C-08: 旧P2-04/HATの同一側test author/reviewerから、固定L2/L11に沿う別identity/context/authorityへ変更する理由を記録。",
+    "R-OS2C-09: CASE見出し、crosswalk説明、C13持越しstatusを日本語化。",
+    "R-OS2C-10/11: SECURITY操作authority/実行制約・INFRA該当資源は相談有無と独立に常時保持。source利用条件はsource選択時に限定し、consult選択と分離。AC/CASE02807追加、02803b適用補足。"
+  ],
+  "root_acceptance": {
+    "state": "accepted local draft",
+    "findings": "Root initial nine dispositions and repair02 always SECURITY/INFRA/source-choice correction verified.",
+    "authority_effect": "none; Claude review and PO pending"
+  },
+  "trace_map_current": {
+    "stage2c_parents": 2,
+    "FR_parent_requirements": 2,
+    "AC_parent_requirements": 13,
+    "functional_CASEs": 41,
+    "NFR_parent_requirements": 2,
+    "CASE_NFR": 3,
+    "business_requirements": 0,
+    "business_CASEs": 0,
+    "functional_CASE_count_method": "fixture definitions: 028 standalone normal/unseen 4 + subtask negatives 5 + consult negatives 10 + security/infra negatives 3; 029 standalone normal/unseen 4 + authority/composite negatives 10 + ordered composite cases 5"
+  },
+  "repair02_dispositions": [
+    {
+      "id": "HELIXOS-L2-028",
+      "version_target": "1.0 target candidate",
+      "stage": "Stage 2c",
+      "FR": [
+        "FR-OS-028"
+      ],
+      "AC": [
+        "AC-OS-028-01",
+        "AC-OS-028-02",
+        "AC-OS-028-03",
+        "AC-OS-028-04",
+        "AC-OS-028-05",
+        "AC-OS-028-06",
+        "AC-OS-028-07"
+      ],
+      "new_cases": [
+        "CASE-OS-028-07a",
+        "CASE-OS-028-07b",
+        "CASE-OS-028-07c"
+      ],
+      "normal_common_fields": [
+        "task/revision/scope/ticket owner/original assignment and attempt/budget/deadline/stop/HARNESS duties and oracle/existing authority",
+        "該当operationのSECURITY authorityと実行制約",
+        "該当INFRASTRUCTURE資源状態"
+      ],
+      "choice_specific": "consult有無と独立。入力sourceを実際に選んだ場合のみidentity/revision/provenance/use permission/relevance/scope/constraintsを照合。未選択sourceにはpermissionを要求しない。",
+      "expected_negative": "authority, execution constraint, resource stateをそれぞれ単独missing/unknownにし該当operationだけhold; source owner/SECURITY/INFRA/OSへ戻す."
+    },
+    {
+      "id": "HELIXOS-L2-029",
+      "version_target": "1.0 target candidate",
+      "stage": "Stage 2c",
+      "new_scope_change": false
+    }
+  ]
+}
