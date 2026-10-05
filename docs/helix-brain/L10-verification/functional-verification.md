@@ -116,7 +116,7 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 
 - **L10-BRAIN-INFRA-003-C01（正常／AC-01）**：20個のL2 atomic descriptor fieldと18個のL11列挙group（trade-off/evidenceを別々に含む）を保持する。L2が求めていないfield別evidence義務や適用scopeは加えず、欠落fieldはunknownとする宣言済み合成対象を与える。**期待oracle**：全必須要素を親の対象identityと対応付け、L2のscopeと責務を保持する。
 - **L10-BRAIN-INFRA-003-C02（個別欠落／AC-02）**：必須field/relation/列挙要素を一度に一つだけmissingにしたfixtureを列挙集合の各要素について作る。**期待oracle**：当該要素とmissing reasonを特定し、成功/適用扱いにせず止める。C02の分母はL2の20 atomic fieldとL11の18列挙groupへの対応。両集合を別分母として記録し、trade-offとevidenceは別々に検査する。
-- **L10-BRAIN-INFRA-003-C03（親固有negative／AC-02）**：20 fieldそれぞれの欠落/stale/対象違いを単独変異し、一般性だけによる適用や未知値の成功丸めを試す。**期待oracle**：不成立reasonを特定し、要求値と設計義務はHARNESS／製品CORE、知識fieldの意味はHELIXBRAIN-L1-003。
+- **L10-BRAIN-INFRA-003-C03（親固有negative／AC-02）**：20 fieldそれぞれの欠落/stale/対象違いを単独変異し、一般性だけによる適用や未知値の成功丸めを試す。別fixtureでは根拠のないRTO/RPO数値をdescriptor条件として生成・確定する一変異を与える。**期待oracle**：各fixtureで不成立reasonを特定し、数値条件を適用・成功扱いにせず、要求値はProduct Core、評価不足はLABO、知識fieldの意味はHELIXBRAIN-L1-003へ戻す。
 - **L10-BRAIN-INFRA-003-C04（unknown/stale/対象不一致／AC-02）**：固定L2が明示するidentity/condition/relationだけを対象に、unknown、矛盾、別対象を一項目ずつ変異する。L2がsource/evidenceを要求しない箇所へ新しいevidence義務を足さない。**期待oracle**：AC-02に従い不成立またはunknownと戻し先を示し、成功/適用扱いにしない。
 - **L10-BRAIN-INFRA-003-C05（未見正常／AC-01）**：既存例と異なる合成Queue-based Patternに20 atomic fieldを全て与え、L11の18 groupでtrade-offとevidenceも別々に表現する。**期待oracle**：全fieldと対応groupを同じPattern identityに結び、未指定の製品値をunknownのままにする。
 
