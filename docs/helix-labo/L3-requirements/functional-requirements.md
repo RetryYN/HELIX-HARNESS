@@ -361,7 +361,7 @@ OS execution resultをLABO-028へ受け取り、同一のticket/task/assignment/
 
 ## Stage 4 — HELIXLABO-L2-036/037/038/039/040/041/052/054（候補）
 
-状態：固定親から再導出した未承認L3/L10候補。対象は列記8 parentだけで、意味・範囲・owner・版は変更しない。本文はL3承認、実装/実行/配布許可を生成しない。親の採択authorityは633bf12時点のPO記録とf6dad2aの固定L2/L11に従う。
+状態：固定親から再導出した未承認L3/L10候補。対象は列記8 parentだけで、意味・範囲・owner・版は変更しない。本文はL3承認、実装/実行/配布許可を生成しない。要求段階のmain basisは633bf12、PO adoption registrationは `docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md` の導入revision `08652ec0fca77957deb66106926e3c5bafc14fff` に記録される。要件意味の正本はf6dad2aの固定L2/L11である。
 
 ### 固定親・版・対L11
 
