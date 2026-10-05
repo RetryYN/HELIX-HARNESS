@@ -529,7 +529,6 @@ input observation identity/source revision；episode candidate identityとrelati
 | `L10-LABO-054-CASE-14` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 個別negative：scoreによるmerge authority変更。正常055出力とscoreは一定のままscoreを理由にmerge authorityだけを変更する。 | authority変更を拒否し既存ownerへ残す。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |
 | `L10-LABO-054-CASE-15` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 個別negative：INTELLIGENCE connector欠落。055 output tupleを保ちINTELLIGENCE connectorだけを欠落。 | 受領済みとせずconnection未完了を保持する。 | 誤判定：禁止作用、欠落、unknownまたは不一致を成立candidate/受領済み/成功/authority変更として受け入れる。期待oracleの不成立・unknown保持と固定親のowner戻しを無視する。 |
 | `L10-LABO-054-CASE-16` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 個別negative：評価scope欠落。055 outputのwork-kind/model-class/evidence/stateは保ち評価scopeだけを欠落させる。 | unknownを保持して水準生成側へ再評価を戻し、範囲外成功を保証しない。 | 誤判定：scope不明を有効tupleとし、未知scopeへ水準を適用する。 |
-
 | `L10-LABO-036-CASE-11` | `HELIXLABO-L2-036` / `LABO-036-AC-02` | 単独negative：別接続のconnectorをHARNESS接続へ代用する。source、revision、scopeは正常baselineのままconnector identityだけを別connectionのものにする。 | 固有connectorとの一致を要求し、代用connectorでhandoffを成立させない。 | 誤判定：別connectionのconnectorを同一接続のものとして成功扱いする。 |
 | `L10-LABO-036-CASE-12` | `HELIXLABO-L2-036` / `LABO-036-AC-02` | 単独negative：HARNESS接続の片側だけ成功し他方に未完義務が残る。 | 片側成功で接続全体を成功扱いせず、未完義務を保持する。 | 誤判定：一方の成功を接続全体の成立とする。 |
 | `L10-LABO-037-CASE-12` | `HELIXLABO-L2-037` / `LABO-037-AC-02` | 単独negative：別OS接続のconnectorを選択OS connectionへ代用する。 | 接続固有connectorでないものを拒否しroutingを未完了にする。 | 誤判定：別接続のconnectorでOS向けcandidateを成功扱いする。 |
