@@ -91,7 +91,7 @@
 
 | 対象 | 根拠付き測定候補 | 比較・判定方法 | 限界 |
 |---|---|---|---|
-| 036–041 Feedback identity/owner fidelity | planned candidate populationに対する対象identity、source revision、scope、既存recipient一致数とmissing/unknown/mismatch数を個別記録する。| exact selected-target bindingとtarget名だけの曖昧照合を比較し、親で列挙されたsource/target tupleごとの誤routeとunknownを数える。期待は正しい候補だけを該当recipientへ束縛し、不明を推測しないこと。| 業務成果率、最小標本、target選択順位は定めない。040/041は選択された上流scopeだけを母集団にし、未選択scopeを不成立に数えない。|
+| 036–041 Feedback identity/owner fidelity | 各親の具体baseline/held-out fixtureとL10のidentity/revision/scope/connector欠落CASEからなるplanned candidate populationに対し、対象identity、source revision、scope、既存recipient一致数とmissing/unknown/mismatch数を個別記録する。| exact selected-target bindingとtarget名だけの曖昧照合を比較し、親で列挙されたsource/target tupleごとの誤routeとunknownを数える。期待は正しい候補だけを該当recipientへ束縛し、不明を推測しないこと。| 業務成果率、最小標本、target選択順位は定めない。040/041は選択された上流scopeだけを母集団にし、未選択scopeを不成立に数えない。|
 | 036–041 authority/operation separation | 各親の非許可作用（直接編集、ticket/state操作、authority変更、Worker操作、contract変更、generic化）の独立fixtureを母集団として各誤作用件数を別々に記録する。| operation/candidate/authorityを一つにまとめる方式と個別状態を保持する方式を比較し、親が禁じる作用が候補から生成されないことを照合する。| これらはoracle上の不成立条件であり、実環境での運転値・安全閾値を主張しない。|
 | 052 revision/scope/state lineage | planned source-to-receipt traceごとにrevision、適用scope、評価/未評価状態の一致・欠測・不一致を分ける。| 035 payloadと同一revision/scope/stateのreceiptを照合し、別revision/scopeや状態変換を独立変異で計数する。| schemaや受領SLAを追加せず、INTELLIGENCE判断成功を測らない。|
 | 054 waterline/evidence fidelity | planned selected work-kind/model-class packetごとに水準、根拠、適用範囲、未評価状態の保持/unknown/mismatchを記録する。| 055出力のexact tuple保持と、別classへの流用・未評価の実績化を比較する。未知classをunknownとして保つ。| 055の生成品質、INTELLIGENCE配置精度、OS割当成果を新たに評価しない。|

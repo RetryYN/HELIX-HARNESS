@@ -361,7 +361,7 @@ OS execution resultをLABO-028へ受け取り、同一のticket/task/assignment/
 
 ## Stage 4 — HELIXLABO-L2-036/037/038/039/040/041/052/054（候補）
 
-状態：固定親から再導出した未承認L3/L10候補。対象は列記8 parentだけで、意味・範囲・owner・版は変更しない。本文はL3承認、実装/実行/配布許可を生成しない。要求段階のmain basisは633bf12、PO adoption registrationは `docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md` の導入revision `08652ec0fca77957deb66106926e3c5bafc14fff` に記録される。要件意味の正本はf6dad2aの固定L2/L11である。
+状態：固定親から再導出した未承認L3/L10候補。対象は列記8 parentだけで、意味・範囲・owner・版は変更しない。本文はL3承認、実装/実行/配布許可を生成しない。要求段階のmain basis、PO決定記録、候補登録はすべて `633bf12ea8f948db8ba3d6600179c4a9507377a7` に存在する。PO決定は候補採択を記録し、registerは8候補を `registered_proposal` として登録する。要件意味の正本は `f6dad2a33e24f000b87d7f09b8d40288257e74cc` の固定L2/L11であり、登録状態からL3承認を推定しない。
 
 ### 固定親・版・対L11
 
@@ -395,7 +395,7 @@ UIL旧L3 `LEGACY-ASSET-02D897E62EF2FA267267`（`archive/legacy-generation-2026-0
 | `HELIXLABO-L2-040` | 同UIL旧L3 candidate/backflow FR-004/005 | source/target identity保持をconnection固有evidenceへ再導出。旧transport/retry implementationを置換し、connector contract責務をCONNECTに残す。
 | `HELIXLABO-L2-041` | 同UIL旧L3 semantic impact FR-003とtyped route FR-004 | meaning impactをProduct Core別に返す意味を再導出。generic portfolio routingは置換し、製品固有meaningをBRAINへ移さない。
 | `HELIXLABO-L2-052` | 同UIL旧L3 provenance/observation FR-001/005/007 | source revisionからreceiptまでのlineageを、固定L2-035 payloadのcomposite traceとして再導出。旧merge/post-main promotion lifecycleは置換し、評価/受領をモデル更新へ結ばない。
-| `HELIXLABO-L2-054` | `LEGACY-ASSET-28FB139B26CD61CC51EE` Bench L3 §0/R-03/R-08、`helix-bench-evaluation.md:19-36,96-169`; `LEGACY-ASSET-A952A3A175EB82A4781B` paired acceptance `helix-bench-evaluation-acceptance.md:28-41` | 直交した評価軸、version/scopeとunassessed evidenceの区別を再導出して055出力の専用handoffに限る。旧category/metric/scorer/runner/provider順位/admissionは置換・除外。
+| `HELIXLABO-L2-054` | `LEGACY-ASSET-28FB139B26CD61CC51EE` Bench L3 §0/R-03/R-08、`helix-bench-evaluation.md:19-36,96-169`; `LEGACY-ASSET-A952A3A175EB82A4781B` paired acceptance `helix-bench-evaluation-acceptance.md:28-41` | 直交した評価軸、version/scopeとunassessed evidenceの区別を再導出して055出力の専用handoffに限る。旧category/metric/scorer/runner/provider順位/admissionは置換・除外。 |
 
 同一の旧sourceを複数親が利用する場合も、各行の現行意味はそれぞれの固定L2が定める。旧sourceは出自・失敗形態の起点であり、旧要求・ID・実装・承認状態の自動継承ではない。
 
@@ -409,6 +409,8 @@ HELIXLABO-L2-036の入力はV-model、要求形成、design obligation、verific
 - LABOがverification contractを直接変更する。 直接変更を拒否し、contractはHARNESSの正本に残す。
 - 単一実験の結果だけで工程contractを即時変更済みと表示する。 変更済みとせずcandidateを保持し、上流ownerへ渡す。
 - Feedback target revisionを欠落させる。 candidateの適用対象を確定せず、target不明をLABO routing候補へ戻す。
+- source/evidence identityだけが欠落する。 identity不明をunknownとして保持し、対象を推測せずLABO routing候補へ戻す。
+- HARNESS connectorだけが欠落する。接続先を推測せずhandoff未完了として保持する。
 
 ### LABO-037-FR-01 — LABO → HELIX-OS
 
@@ -422,6 +424,9 @@ HELIXLABO-L2-037の入力はticket、WIP、worker placement、priority、CI prof
 - LABOが運転stateを更新する。 stateを変更せず、OSが持つ既存記録を参照したcandidateに留める。
 - FeedbackをOS routingへ渡さず迂回する。 OS routing迂回を拒否し、ticket/operationを作らない。
 - LABOがoperationを運転済みとして記録する。 運転を生成せずOSの記録を参照したcandidateに留める。
+- OS target identityだけが欠落する。target不明をOSへ戻し、ticket/routing/operationを生成しない。
+- 選択scopeだけが欠落する。scopeを推測せずOSへ戻す。
+- 選択OS connectorだけが欠落する。routing未確定として保持しOSへ戻す。
 
 ### LABO-038-FR-01 — LABO → SECURITY
 
@@ -432,6 +437,8 @@ HELIXLABO-L2-038の入力は認可・隔離・credential・情報保護に関す
 - LABOがauthorityを直接変更する。 authority変更を拒否し、candidateに留める。
 - 合成restricted-data markerを通常packetへ含める。 packetを成立扱いせず、情報保護責務をSECURITYへ戻す。実secret値はfixtureにも記録しない。
 - 選択scopeが不明なevidenceを許可evidenceとして扱う。 許可判定を推測せずunknownとしてSECURITYへ戻す。
+- 許可evidence identityだけが欠落する。許可evidenceとして確定せずunknownをSECURITYへ戻す。
+- SECURITY data-handling/target contractだけが欠落する。許可範囲を推測せずSECURITYへ戻す。
 
 ### LABO-039-FR-01 — LABO → Worker execution（OS/SECURITY経由）
 
@@ -445,6 +452,8 @@ HELIXLABO-L2-039の入力はWorker実行、停止、復旧に関する許可結�
 - result identityを別Workerのresultへ差し替える。 resultとWorker identityの不一致をunknownとして保持する。
 - OS routingを欠いた結果をtarget-specificとして受け入れる。 target-specific candidateとして確定せずOSへ戻す。
 - SECURITY routingを要する結果で同routingを欠落させる。 許可結果として確定せずSECURITYへ戻す。
+- Worker result identityだけが欠落する。resultをtarget-specificとせずunknownとしてOSへ戻す。
+- 親上必要なOSまたはSECURITY routingだけが欠落する。該当routing ownerへ戻し許可結果として確定しない。
 
 ### LABO-040-FR-01 — LABO → HELIX-CONNECT
 
@@ -456,6 +465,7 @@ HELIXLABO-L2-040の入力は内外connection、retry、contract version、trace�
 - 選択connectionのcontract versionを別revisionへ差し替える。 異revision evidenceを成功扱いせずCONNECTへ戻す。
 - 接続traceを欠落させる。 trace欠落を保ち候補を完了扱いしない。
 - LABOがconnector contractを直接変更する。 contract変更を拒否しCONNECT ownerへ返す。
+- CONNECT connectorだけが欠落する。CONNECT先を推測せずcandidateを未完了として保持する.
 
 ### LABO-041-FR-01 — LABO → 該当Product Core
 
@@ -466,6 +476,8 @@ HELIXLABO-L2-041の入力はproduct固有meaning、要求、設計、domain、UX
 - product identityを欠落させる。 製品を推測せずowner不明として戻す。
 - 別のProduct Coreをtargetとして指定する。 誤routeを拒否し正しいowner確認まで確定しない。
 - product固有meaningをBRAIN向けgeneric structureとして送る。 generic化を拒否し製品側の意味を保持する。
+- 選択製品のversionだけが欠落する。版を推測せず該当Product Core ownerへ戻す。
+- 当該製品の個別connectorだけが欠落する。別製品へ迂回せず該当Product Core ownerへ戻す。
 
 ### LABO-052-FR-01 — INTELLIGENCE評価材料循環（L2-035 payload）
 
@@ -480,21 +492,27 @@ HELIXLABO-L2-052の入力はL2-035で定義する評価済みsource revisionとp
 - receiptからmodel変更を自動生成する。 変更を生成せずINTELLIGENCE判断に残す。
 - receiptからtrainingを自動生成する。 training許可を生成せずsource状態を保持する。
 - receiptからbot稼働を自動生成する。 bot稼働を生成せずINTELLIGENCE判断に残す。
+- source identity、source revision、適用scope、INTELLIGENCE receiptのいずれか一つが欠落する。欠落項目を個別にunknownとして保持し、該当source/evidence ownerへ戻して循環を未完了とする。
 
 ### LABO-054-FR-01 — HELIX-Bench水準のINTELLIGENCE専用接続
 
 HELIXLABO-L2-054の入力はL2-055が生成したwork-kind/model-class別の水準、根拠、適用範囲、未評価状態。出力はINTELLIGENCE向けFeedback candidate（052は受領trace、054はL2-055生成結果の専用接続）とする。055の出力を同じwork kind、model class、評価範囲、根拠、unassessed状態でINTELLIGENCEへ渡す。 LABOは親が持つ意味、operation、権限、割当、正本を変更せず、入力のsource identity/revision・適用scope・根拠を保つ。対象が未選択または未発生なら候補を捏造せず、親で定める適用範囲を保持する。
 
 **LABO-054-AC-01 — 正常・未見正常**：055の出力を同じwork kind、model class、評価範囲、根拠、unassessed状態でINTELLIGENCEへ渡す。 未見正常条件として、未見のwork-kind/model-classでも適用可能な既存055出力のみ受け渡し、unknownを成功実績へ外挿しない。
-**LABO-054-AC-02 — 不成立・owner境界**：次のfixtureは独立に不成立とし、原因を併発で代用しない。未評価またはscope不明は水準生成側の再評価へ。配置案はINTELLIGENCE、指定/割当はOSへ残す。
+**LABO-054-AC-02 — 不成立・owner境界**：次のfixtureは独立に不成立とし、原因を併発で代用しない。未評価またはscope不明は水準生成側へ戻して再評価する。配置案はINTELLIGENCE、指定/割当はOSへ残す。unknown jobの成功保証とscoreによるscope/branch/merge authorityの変更を拒否する。
 - 接続中に水準だけを変更する。 055の水準を不変に保ち不一致を不成立とする。
 - work-kindだけを別値へ変える。 別work kindへ水準を流用せず再評価へ戻す。
 - model classだけを別値へ変える。 別model classへ水準を流用せず再評価へ戻す。
 - 評価範囲だけを別scopeへ変える。 別scopeへ水準を流用せず再評価へ戻す。
 - 根拠を欠落させる。 evidence欠落をunknownのまま保持し再評価へ戻す。
 - unassessedをassessedとして表示する。 未評価のまま保持し実績化を拒否する。
-- LABOがmodelを指定または変更する。 model指定/変更を生成せずINTELLIGENCEへ残す。
+- LABOがmodelを指定または変更する。 model指定/変更を生成せず、配置案はINTELLIGENCE、指定/割当はOSへ残す。
+- 過去水準だけで未評価のjobを成功保証する。 成功保証を生成せず、055水準生成側へunknownとして戻す。
+- scoreだけで適用scopeを変更する。 scopeを変更せず、055が示す評価範囲を保つ。
+- scoreだけでbranchを変更する。 branchを変更せず、接続candidateに留める。
+- scoreだけでmerge authorityを変更する。 authorityを変更せず、既存ownerへ残す。
 - LABOがworkerを割当する。 assignmentを生成せずOSへ残す。
+- INTELLIGENCE connectorだけが欠落する。受領済みとせずconnection未完了を保持する。
 
 ### Stage 4 共通の意味境界
 
