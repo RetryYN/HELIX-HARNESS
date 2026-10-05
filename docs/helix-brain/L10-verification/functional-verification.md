@@ -693,7 +693,7 @@ CASE番号は各親見出し内で一意。各列の固定句は親source全文�
 - **L10-BRAIN-021-R-contract-version-unknown (AC-02, 独立negative)**：同親C01正常fixtureで他fieldを保持し、INTELLIGENCE query/response contract versionだけをunknownにする。**期待**：versionを推測せずresponseを保留しINTELLIGENCEへ返す。
 - **L10-BRAIN-021-C16 (AC-02, owner return)**：正常fixtureでknowledge identityだけを欠落させ、fixtureに既存knowledge ownerを明示する。**期待**：identity不足をその既存ownerへ戻す。
 
-- **L10-BRAIN-021-C18 (AC-02, unknown)**：正常fixtureでknowledge identityだけを欠落させ、knowledge ownerの指定もない。**期待**：不足をunknownとして保留し、戻し先を創作しない。
+- **L10-BRAIN-021-C18 (AC-02, unknown)**：正常fixtureでknowledge identityだけを欠落させ、個別knowledge ownerの指定はないが固定親のBRAIN L1経路は存在する。**期待**：identity不足をunknownとして保持し、知識意味・版の照合不足をBRAIN L1へ戻す。個別owner名は創作しない。
 - **L10-BRAIN-021-C17 (AC-02, 独立negative)**：宣言済みINTELLIGENCE contract compatibility rangeと他条件を保持し、contract versionだけrange外にする。**期待**：呼出しを止めINTELLIGENCEへ戻す。
 - **L10-BRAIN-021-R-promotion (AC-04, 独立negative)**：別fixtureでINTELLIGENCEが候補を一般化済み知識へ昇格する。**期待**：昇格を拒否し、改変・個別採用と別に観測する。
 ### HELIXBRAIN-L2-022 — `BRAIN-022-FR-01`
