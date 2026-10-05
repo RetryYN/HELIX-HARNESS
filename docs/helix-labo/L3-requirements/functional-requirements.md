@@ -607,20 +607,22 @@ episode、evidence、relation版を受けて分類対象を出力する。根拠
 
 ### 受入条件候補
 
-- **LABO-012-AC-01 — 正常・trace**：分類入力全てに元episode/source evidence/relation revisionが追跡できる。
-- **LABO-012-AC-02 — failure/owner boundary**：relation版不一致、根拠欠落、unknown消去を受理しない。 上流のepisodeとrelation authorityを変更しない。
+- **LABO-012-AC-01 — 正常・trace**：分類入力全てに元episode/source evidence/relation revisionが追跡でき、根拠と反証が残る。
+- **LABO-012-AC-02 — failure/owner boundary**：relation版不一致、根拠欠落、反証脱落、unknown消去、相関の因果化を受理しない。 上流のepisodeとrelation authorityを変更しない。
 
 ### 補正ACと個別fixtureの対応
 
-- `LABO-012-AC-02` は次の各fixtureをそれぞれ一変数で照合し、各々に記載した固定ownerへ戻す。 `L10-LABO-012-C07`。集約fixtureの件数は個別negativeの代替にしない。
+- `LABO-012-AC-02` の個別fixtureは下の「個別negative検証対象」に列挙する。各CASEの一条件変異・oracle・固定戻し先をそれぞれ照合し、summary/indexを代替にしない。
+
+個別negative検証対象（summary/indexを除く）: `L10-LABO-012-C02`, `L10-LABO-012-C05`, `L10-LABO-012-C06`, `L10-LABO-012-C07`, `L10-LABO-012-C08`, `L10-LABO-012-C09`, `L10-LABO-012-C10`。
 
 ### 固定親句trace
 
 | 親句／条件 | FR/AC | L10 case | oracle |
 |---|---|---|---|
 | parentの入力→出力とprovenance/version guarantee | `LABO-012-FR-01 / LABO-012-AC-01` | `L10-LABO-012-C01`, `L10-LABO-012-C04` | 許可input・source identity/revision・出力状態が対応 |
-| 不一致/欠落/unknown/staleの失敗規則 | `LABO-012-FR-01 / LABO-012-AC-02` | `L10-LABO-012-C02`, `L10-LABO-012-C03` | 個別および併発mutationを成功へ昇格しない |
-| 責務ownerと変更禁止境界 | `LABO-012-FR-01 / LABO-012-AC-02` | `L10-LABO-012-C03` | LABOの書戻し/dispatch/owner変更0、親指定ownerへ戻す |
+| 不一致/欠落/unknown/staleの失敗規則 | `LABO-012-FR-01 / LABO-012-AC-02` | `L10-LABO-012-C02`, `L10-LABO-012-C05`, `L10-LABO-012-C06`, `L10-LABO-012-C07`, `L10-LABO-012-C08`, `L10-LABO-012-C09`, `L10-LABO-012-C10` | 各独立CASEの一条件変異を成功へ昇格せず、そのCASEの固定戻し先を照合 |
+| 責務ownerと変更禁止境界 | `LABO-012-FR-01 / LABO-012-AC-02` | `L10-LABO-012-C08`, `L10-LABO-012-C10` | 各CASEの責務区分と変更禁止oracleを独立に照合し、記載した固定戻し先を保持 |
 | 親範囲内のheld-out正常fixture | `LABO-012-FR-01 / LABO-012-AC-01` | `L10-LABO-012-C04` | 未見typeだけを理由に落とさず同じ親契約で照合 |
 
 ## LABO-013-FR-01 — HELIXLABO-L2-013 Decompose → Vector Shu-Ha-Ri
@@ -650,15 +652,17 @@ episode、evidence、relation版を受けて分類対象を出力する。根拠
 
 ### 補正ACと個別fixtureの対応
 
-- `LABO-013-AC-02` は次の各fixtureをそれぞれ一変数で照合し、各々に記載した固定ownerへ戻す。 `L10-LABO-013-C07`, `L10-LABO-013-C08`, `L10-LABO-013-C09`, `L10-LABO-013-C10`, `L10-LABO-013-C11`, `L10-LABO-013-C12`, `L10-LABO-013-C13`, `L10-LABO-013-C14`, `L10-LABO-013-C15`, `L10-LABO-013-C16`。集約fixtureの件数は個別negativeの代替にしない。
+- `LABO-013-AC-02` の個別fixtureは下の「個別negative検証対象」に列挙する。各CASEの一条件変異・oracle・固定戻し先をそれぞれ照合し、summary/indexを代替にしない。
+
+個別negative検証対象（summary/indexを除く）: `L10-LABO-013-C05`, `L10-LABO-013-C06`, `L10-LABO-013-C07`, `L10-LABO-013-C08`, `L10-LABO-013-C09`, `L10-LABO-013-C10`, `L10-LABO-013-C11`, `L10-LABO-013-C12`, `L10-LABO-013-C13`, `L10-LABO-013-C14`, `L10-LABO-013-C15`, `L10-LABO-013-C16`, `L10-LABO-013-C17`。
 
 ### 固定親句trace
 
 | 親句／条件 | FR/AC | L10 case | oracle |
 |---|---|---|---|
 | parentの入力→出力とprovenance/version guarantee | `LABO-013-FR-01 / LABO-013-AC-01` | `L10-LABO-013-C01`, `L10-LABO-013-C04` | 許可input・source identity/revision・出力状態が対応 |
-| 不一致/欠落/unknown/staleの失敗規則 | `LABO-013-FR-01 / LABO-013-AC-02` | `L10-LABO-013-C02`, `L10-LABO-013-C03` | 個別および併発mutationを成功へ昇格しない |
-| 責務ownerと変更禁止境界 | `LABO-013-FR-01 / LABO-013-AC-02` | `L10-LABO-013-C03` | LABOの書戻し/dispatch/owner変更0、親指定ownerへ戻す |
+| 不一致/欠落/unknown/staleの失敗規則 | `LABO-013-FR-01 / LABO-013-AC-02` | `L10-LABO-013-C05`, `L10-LABO-013-C06`, `L10-LABO-013-C07`, `L10-LABO-013-C08`, `L10-LABO-013-C09`, `L10-LABO-013-C10`, `L10-LABO-013-C11`, `L10-LABO-013-C12`, `L10-LABO-013-C13`, `L10-LABO-013-C14`, `L10-LABO-013-C15`, `L10-LABO-013-C16`, `L10-LABO-013-C17` | 各独立CASEの一条件変異を成功へ昇格せず、そのCASEの固定戻し先を照合 |
+| 責務ownerと変更禁止境界 | `LABO-013-FR-01 / LABO-013-AC-02` | `L10-LABO-013-C17` | 各CASEの責務区分と変更禁止oracleを独立に照合し、記載した固定戻し先を保持 |
 | 親範囲内のheld-out正常fixture | `LABO-013-FR-01 / LABO-013-AC-01` | `L10-LABO-013-C04` | 未見typeだけを理由に落とさず同じ親契約で照合 |
 
 ## LABO-014-FR-01 — HELIXLABO-L2-014 Vector → Transformation
@@ -688,15 +692,17 @@ episode、evidence、relation版を受けて分類対象を出力する。根拠
 
 ### 補正ACと個別fixtureの対応
 
-- `LABO-014-AC-02` は次の各fixtureをそれぞれ一変数で照合し、各々に記載した固定ownerへ戻す。 `L10-LABO-014-C08`, `L10-LABO-014-C09`。集約fixtureの件数は個別negativeの代替にしない。
+- `LABO-014-AC-02` の個別fixtureは下の「個別negative検証対象」に列挙する。各CASEの一条件変異・oracle・固定戻し先をそれぞれ照合し、summary/indexを代替にしない。
+
+個別negative検証対象（summary/indexを除く）: `L10-LABO-014-C05`, `L10-LABO-014-C06`, `L10-LABO-014-C07`, `L10-LABO-014-C08`, `L10-LABO-014-C09`, `L10-LABO-014-C10`。
 
 ### 固定親句trace
 
 | 親句／条件 | FR/AC | L10 case | oracle |
 |---|---|---|---|
-| parentの入力→出力とprovenance/version guarantee | `LABO-014-FR-01 / LABO-014-AC-01` | `L10-LABO-014-C01`, `L10-LABO-014-C04` | 許可input・source identity/revision・出力状態が対応 |
-| 不一致/欠落/unknown/staleの失敗規則 | `LABO-014-FR-01 / LABO-014-AC-02` | `L10-LABO-014-C02`, `L10-LABO-014-C03` | 個別および併発mutationを成功へ昇格しない |
-| 責務ownerと変更禁止境界 | `LABO-014-FR-01 / LABO-014-AC-02` | `L10-LABO-014-C03` | LABOの書戻し/dispatch/owner変更0、親指定ownerへ戻す |
+| parentの入力→出力とprovenance/version guarantee | `LABO-014-FR-01 / LABO-014-AC-01` | `L10-LABO-014-C01`, `L10-LABO-014-C04`, `L10-LABO-014-C11`, `L10-LABO-014-C12` | 許可input・source identity/revision・出力状態が対応 |
+| 不一致/欠落/unknown/staleの失敗規則 | `LABO-014-FR-01 / LABO-014-AC-02` | `L10-LABO-014-C05`, `L10-LABO-014-C06`, `L10-LABO-014-C07`, `L10-LABO-014-C08`, `L10-LABO-014-C09`, `L10-LABO-014-C10` | 各独立CASEの一条件変異を成功へ昇格せず、そのCASEの固定戻し先を照合 |
+| 責務ownerと変更禁止境界 | `LABO-014-FR-01 / LABO-014-AC-02` | `L10-LABO-014-C07` | 各CASEの責務区分と変更禁止oracleを独立に照合し、記載した固定戻し先を保持 |
 | 親範囲内のheld-out正常fixture | `LABO-014-FR-01 / LABO-014-AC-01` | `L10-LABO-014-C04` | 未見typeだけを理由に落とさず同じ親契約で照合 |
 
 ## LABO-015-FR-01 — HELIXLABO-L2-015 Transformation → Experiment
@@ -726,15 +732,17 @@ episode、evidence、relation版を受けて分類対象を出力する。根拠
 
 ### 補正ACと個別fixtureの対応
 
-- `LABO-015-AC-02` は次の各fixtureをそれぞれ一変数で照合し、各々に記載した固定ownerへ戻す。 `L10-LABO-015-C09`。集約fixtureの件数は個別negativeの代替にしない。
+- `LABO-015-AC-02` の個別fixtureは下の「個別negative検証対象」に列挙する。各CASEの一条件変異・oracle・固定戻し先をそれぞれ照合し、summary/indexを代替にしない。
+
+個別negative検証対象（summary/indexを除く）: `L10-LABO-015-C05`, `L10-LABO-015-C06`, `L10-LABO-015-C07`, `L10-LABO-015-C08`, `L10-LABO-015-C09`, `L10-LABO-015-C10`, `L10-LABO-015-C11`, `L10-LABO-015-C12`。
 
 ### 固定親句trace
 
 | 親句／条件 | FR/AC | L10 case | oracle |
 |---|---|---|---|
 | parentの入力→出力とprovenance/version guarantee | `LABO-015-FR-01 / LABO-015-AC-01` | `L10-LABO-015-C01`, `L10-LABO-015-C04` | 許可input・source identity/revision・出力状態が対応 |
-| 不一致/欠落/unknown/staleの失敗規則 | `LABO-015-FR-01 / LABO-015-AC-02` | `L10-LABO-015-C02`, `L10-LABO-015-C03` | 個別および併発mutationを成功へ昇格しない |
-| 責務ownerと変更禁止境界 | `LABO-015-FR-01 / LABO-015-AC-02` | `L10-LABO-015-C03` | LABOの書戻し/dispatch/owner変更0、親指定ownerへ戻す |
+| 不一致/欠落/unknown/staleの失敗規則 | `LABO-015-FR-01 / LABO-015-AC-02` | `L10-LABO-015-C05`, `L10-LABO-015-C06`, `L10-LABO-015-C07`, `L10-LABO-015-C08`, `L10-LABO-015-C09`, `L10-LABO-015-C10`, `L10-LABO-015-C11`, `L10-LABO-015-C12` | 各独立CASEの一条件変異を成功へ昇格せず、そのCASEの固定戻し先を照合 |
+| 責務ownerと変更禁止境界 | `LABO-015-FR-01 / LABO-015-AC-02` | `L10-LABO-015-C10`, `L10-LABO-015-C11`, `L10-LABO-015-C12` | 各CASEの責務区分と変更禁止oracleを独立に照合し、記載した固定戻し先を保持 |
 | 親範囲内のheld-out正常fixture | `LABO-015-FR-01 / LABO-015-AC-01` | `L10-LABO-015-C04` | 未見typeだけを理由に落とさず同じ親契約で照合 |
 
 ## LABO-016-FR-01 — HELIXLABO-L2-016 Experiment → Assurance Allocation
@@ -766,13 +774,15 @@ episode、evidence、relation版を受けて分類対象を出力する。根拠
 
 - `LABO-016-AC-01` は正常fixture `L10-LABO-016-C08` の個別oracleを満たし、同一性/未完・unknown状態を保持する。
 
+個別negative検証対象（summary/indexを除く）: `L10-LABO-016-C03`, `L10-LABO-016-C05`, `L10-LABO-016-C06`, `L10-LABO-016-C07`, `L10-LABO-016-C09`。
+
 ### 固定親句trace
 
 | 親句／条件 | FR/AC | L10 case | oracle |
 |---|---|---|---|
 | parentの入力→出力とprovenance/version guarantee | `LABO-016-FR-01 / LABO-016-AC-01` | `L10-LABO-016-C01`, `L10-LABO-016-C04` | 許可input・source identity/revision・出力状態が対応 |
-| 不一致/欠落/unknown/staleの失敗規則 | `LABO-016-FR-01 / LABO-016-AC-02` | `L10-LABO-016-C02`, `L10-LABO-016-C03` | 個別および併発mutationを成功へ昇格しない |
-| 責務ownerと変更禁止境界 | `LABO-016-FR-01 / LABO-016-AC-02` | `L10-LABO-016-C03` | LABOの書戻し/dispatch/owner変更0、親指定ownerへ戻す |
+| 不一致/欠落/unknown/staleの失敗規則 | `LABO-016-FR-01 / LABO-016-AC-02` | `L10-LABO-016-C03`, `L10-LABO-016-C05`, `L10-LABO-016-C06`, `L10-LABO-016-C07`, `L10-LABO-016-C09` | 各独立CASEの一条件変異を成功へ昇格せず、そのCASEの固定戻し先を照合 |
+| 責務ownerと変更禁止境界 | `LABO-016-FR-01 / LABO-016-AC-02` | `L10-LABO-016-C09` | 各CASEの責務区分と変更禁止oracleを独立に照合し、記載した固定戻し先を保持 |
 | 親範囲内のheld-out正常fixture | `LABO-016-FR-01 / LABO-016-AC-01` | `L10-LABO-016-C04` | 未見typeだけを理由に落とさず同じ親契約で照合 |
 
 ## LABO-017-FR-01 — HELIXLABO-L2-017 Assurance Allocation → Operational Fallback
@@ -798,16 +808,20 @@ system/operation適格性とcurrent guaranteeから再評価candidate/unfinished
 ### 受入条件候補
 
 - **LABO-017-AC-01 — 正常・trace**：current rule version、適格性材料、未完義務とownerを結ぶ。
-- **LABO-017-AC-02 — failure/owner boundary**：current version/evidence不足を切替完了にしない。 LABOはoperational switchを実行しない。
+- **LABO-017-AC-02 — failure/owner boundary**：current version/evidence不足、例外記録・現行保証の消失を切替完了や成功にしない。 LABOはoperational switchを実行しない。
+
+個別negative検証対象（summary/indexを除く）: `L10-LABO-017-C03`, `L10-LABO-017-C05`, `L10-LABO-017-C06`, `L10-LABO-017-C07`, `L10-LABO-017-C08`, `L10-LABO-017-C09`。
 
 ### 固定親句trace
 
 | 親句／条件 | FR/AC | L10 case | oracle |
 |---|---|---|---|
 | parentの入力→出力とprovenance/version guarantee | `LABO-017-FR-01 / LABO-017-AC-01` | `L10-LABO-017-C01`, `L10-LABO-017-C04` | 許可input・source identity/revision・出力状態が対応 |
-| 不一致/欠落/unknown/staleの失敗規則 | `LABO-017-FR-01 / LABO-017-AC-02` | `L10-LABO-017-C02`, `L10-LABO-017-C03` | 個別および併発mutationを成功へ昇格しない |
-| 責務ownerと変更禁止境界 | `LABO-017-FR-01 / LABO-017-AC-02` | `L10-LABO-017-C03` | LABOの書戻し/dispatch/owner変更0、親指定ownerへ戻す |
+| 不一致/欠落/unknown/staleの失敗規則 | `LABO-017-FR-01 / LABO-017-AC-02` | `L10-LABO-017-C03`, `L10-LABO-017-C05`, `L10-LABO-017-C06`, `L10-LABO-017-C07`, `L10-LABO-017-C08`, `L10-LABO-017-C09` | 各独立CASEの一条件変異を成功へ昇格せず、そのCASEの固定戻し先を照合 |
+| 責務ownerと変更禁止境界 | `LABO-017-FR-01 / LABO-017-AC-02` | `L10-LABO-017-C08`, `L10-LABO-017-C09` | 各CASEの責務区分と変更禁止oracleを独立に照合し、記載した固定戻し先を保持 |
 | 親範囲内のheld-out正常fixture | `LABO-017-FR-01 / LABO-017-AC-01` | `L10-LABO-017-C04` | 未見typeだけを理由に落とさず同じ親契約で照合 |
+
+例外記録と現行保証の消失を成功にしない。
 
 ## LABO-018-FR-01 — HELIXLABO-L2-018 Experiment → Generalization
 
@@ -836,15 +850,17 @@ comparison result、sample condition、counterexampleからsupported applicabili
 
 ### 補正ACと個別fixtureの対応
 
-- `LABO-018-AC-02` は次の各fixtureをそれぞれ一変数で照合し、各々に記載した固定ownerへ戻す。 `L10-LABO-018-C08`。集約fixtureの件数は個別negativeの代替にしない。
+- `LABO-018-AC-02` の個別fixtureは下の「個別negative検証対象」に列挙する。各CASEの一条件変異・oracle・固定戻し先をそれぞれ照合し、summary/indexを代替にしない。
+
+個別negative検証対象（summary/indexを除く）: `L10-LABO-018-C03`, `L10-LABO-018-C05`, `L10-LABO-018-C06`, `L10-LABO-018-C07`, `L10-LABO-018-C08`, `L10-LABO-018-C09`, `L10-LABO-018-C10`。
 
 ### 固定親句trace
 
 | 親句／条件 | FR/AC | L10 case | oracle |
 |---|---|---|---|
 | parentの入力→出力とprovenance/version guarantee | `LABO-018-FR-01 / LABO-018-AC-01` | `L10-LABO-018-C01`, `L10-LABO-018-C04` | 許可input・source identity/revision・出力状態が対応 |
-| 不一致/欠落/unknown/staleの失敗規則 | `LABO-018-FR-01 / LABO-018-AC-02` | `L10-LABO-018-C02`, `L10-LABO-018-C03` | 個別および併発mutationを成功へ昇格しない |
-| 責務ownerと変更禁止境界 | `LABO-018-FR-01 / LABO-018-AC-02` | `L10-LABO-018-C03` | LABOの書戻し/dispatch/owner変更0、親指定ownerへ戻す |
+| 不一致/欠落/unknown/staleの失敗規則 | `LABO-018-FR-01 / LABO-018-AC-02` | `L10-LABO-018-C03`, `L10-LABO-018-C05`, `L10-LABO-018-C06`, `L10-LABO-018-C07`, `L10-LABO-018-C08`, `L10-LABO-018-C09`, `L10-LABO-018-C10` | 各独立CASEの一条件変異を成功へ昇格せず、そのCASEの固定戻し先を照合 |
+| 責務ownerと変更禁止境界 | `LABO-018-FR-01 / LABO-018-AC-02` | `L10-LABO-018-C09`, `L10-LABO-018-C10` | 各CASEの責務区分と変更禁止oracleを独立に照合し、記載した固定戻し先を保持 |
 | 親範囲内のheld-out正常fixture | `LABO-018-FR-01 / LABO-018-AC-01` | `L10-LABO-018-C04` | 未見typeだけを理由に落とさず同じ親契約で照合 |
 
 ## LABO-019-FR-01 — HELIXLABO-L2-019 Generalization → Feedback Derivation
@@ -874,15 +890,17 @@ scope-bound insight/target candidateからtarget別Feedback candidateへ渡す�
 
 ### 補正ACと個別fixtureの対応
 
-- `LABO-019-AC-02` は次の各fixtureをそれぞれ一変数で照合し、各々に記載した固定ownerへ戻す。 `L10-LABO-019-C09`。集約fixtureの件数は個別negativeの代替にしない。
+- `LABO-019-AC-02` の個別fixtureは下の「個別negative検証対象」に列挙する。各CASEの一条件変異・oracle・固定戻し先をそれぞれ照合し、summary/indexを代替にしない。
+
+個別negative検証対象（summary/indexを除く）: `L10-LABO-019-C05`, `L10-LABO-019-C06`, `L10-LABO-019-C07`, `L10-LABO-019-C08`, `L10-LABO-019-C09`, `L10-LABO-019-C10`, `L10-LABO-019-C11`。
 
 ### 固定親句trace
 
 | 親句／条件 | FR/AC | L10 case | oracle |
 |---|---|---|---|
 | parentの入力→出力とprovenance/version guarantee | `LABO-019-FR-01 / LABO-019-AC-01` | `L10-LABO-019-C01`, `L10-LABO-019-C04` | 許可input・source identity/revision・出力状態が対応 |
-| 不一致/欠落/unknown/staleの失敗規則 | `LABO-019-FR-01 / LABO-019-AC-02` | `L10-LABO-019-C02`, `L10-LABO-019-C03` | 個別および併発mutationを成功へ昇格しない |
-| 責務ownerと変更禁止境界 | `LABO-019-FR-01 / LABO-019-AC-02` | `L10-LABO-019-C03` | LABOの書戻し/dispatch/owner変更0、親指定ownerへ戻す |
+| 不一致/欠落/unknown/staleの失敗規則 | `LABO-019-FR-01 / LABO-019-AC-02` | `L10-LABO-019-C05`, `L10-LABO-019-C06`, `L10-LABO-019-C07`, `L10-LABO-019-C08`, `L10-LABO-019-C09`, `L10-LABO-019-C10`, `L10-LABO-019-C11` | 各独立CASEの一条件変異を成功へ昇格せず、そのCASEの固定戻し先を照合 |
+| 責務ownerと変更禁止境界 | `LABO-019-FR-01 / LABO-019-AC-02` | `L10-LABO-019-C10`, `L10-LABO-019-C11` | 各CASEの責務区分と変更禁止oracleを独立に照合し、記載した固定戻し先を保持 |
 | 親範囲内のheld-out正常fixture | `LABO-019-FR-01 / LABO-019-AC-01` | `L10-LABO-019-C04` | 未見typeだけを理由に落とさず同じ親契約で照合 |
 
 ## LABO-020-FR-01 — HELIXLABO-L2-020 Operational Fallback → Aggregate
@@ -912,15 +930,17 @@ operationへ戻った後の結果と旧/新rule versionをnew observationへ集�
 
 ### 補正ACと個別fixtureの対応
 
-- `LABO-020-AC-02` は次の各fixtureをそれぞれ一変数で照合し、各々に記載した固定ownerへ戻す。 `L10-LABO-020-C09`, `L10-LABO-020-C10`。集約fixtureの件数は個別negativeの代替にしない。
+- `LABO-020-AC-02` の個別fixtureは下の「個別negative検証対象」に列挙する。各CASEの一条件変異・oracle・固定戻し先をそれぞれ照合し、summary/indexを代替にしない。
+
+個別negative検証対象（summary/indexを除く）: `L10-LABO-020-C05`, `L10-LABO-020-C06`, `L10-LABO-020-C07`, `L10-LABO-020-C08`, `L10-LABO-020-C09`, `L10-LABO-020-C10`。
 
 ### 固定親句trace
 
 | 親句／条件 | FR/AC | L10 case | oracle |
 |---|---|---|---|
 | parentの入力→出力とprovenance/version guarantee | `LABO-020-FR-01 / LABO-020-AC-01` | `L10-LABO-020-C01`, `L10-LABO-020-C04` | 許可input・source identity/revision・出力状態が対応 |
-| 不一致/欠落/unknown/staleの失敗規則 | `LABO-020-FR-01 / LABO-020-AC-02` | `L10-LABO-020-C02`, `L10-LABO-020-C03` | 個別および併発mutationを成功へ昇格しない |
-| 責務ownerと変更禁止境界 | `LABO-020-FR-01 / LABO-020-AC-02` | `L10-LABO-020-C03` | LABOの書戻し/dispatch/owner変更0、親指定ownerへ戻す |
+| 不一致/欠落/unknown/staleの失敗規則 | `LABO-020-FR-01 / LABO-020-AC-02` | `L10-LABO-020-C05`, `L10-LABO-020-C06`, `L10-LABO-020-C07`, `L10-LABO-020-C08`, `L10-LABO-020-C09`, `L10-LABO-020-C10` | 各独立CASEの一条件変異を成功へ昇格せず、そのCASEの固定戻し先を照合 |
+| 責務ownerと変更禁止境界 | `LABO-020-FR-01 / LABO-020-AC-02` | `L10-LABO-020-C08` | 各CASEの責務区分と変更禁止oracleを独立に照合し、記載した固定戻し先を保持 |
 | 親範囲内のheld-out正常fixture | `LABO-020-FR-01 / LABO-020-AC-01` | `L10-LABO-020-C04` | 未見typeだけを理由に落とさず同じ親契約で照合 |
 
 ## LABO-021-FR-01 — HELIXLABO-L2-021 HELIX-HARNESS → Aggregate
@@ -951,15 +971,17 @@ operationへ戻った後の結果と旧/新rule versionをnew observationへ集�
 
 ### 補正ACと個別fixtureの対応
 
-- `LABO-021-AC-02` は次の各fixtureをそれぞれ一変数で照合し、各々に記載した固定ownerへ戻す。 `L10-LABO-021-C09`, `L10-LABO-021-C10`。集約fixtureの件数は個別negativeの代替にしない。
+- `LABO-021-AC-02` の個別fixtureは下の「個別negative検証対象」に列挙する。各CASEの一条件変異・oracle・固定戻し先をそれぞれ照合し、summary/indexを代替にしない。
+
+個別negative検証対象（summary/indexを除く）: `L10-LABO-021-C05`, `L10-LABO-021-C06`, `L10-LABO-021-C07`, `L10-LABO-021-C08`, `L10-LABO-021-C09`, `L10-LABO-021-C10`, `L10-LABO-021-C11`。
 
 ### 固定親句trace
 
 | 親句／条件 | FR/AC | L10 case | oracle |
 |---|---|---|---|
 | parentの入力→出力とprovenance/version guarantee | `LABO-021-FR-01 / LABO-021-AC-01` | `L10-LABO-021-C01`, `L10-LABO-021-C04` | 許可input・source identity/revision・出力状態が対応 |
-| 不一致/欠落/unknown/staleの失敗規則 | `LABO-021-FR-01 / LABO-021-AC-02` | `L10-LABO-021-C02`, `L10-LABO-021-C03` | 個別および併発mutationを成功へ昇格しない |
-| 責務ownerと変更禁止境界 | `LABO-021-FR-01 / LABO-021-AC-02` | `L10-LABO-021-C03` | LABOの書戻し/dispatch/owner変更0、親指定ownerへ戻す |
+| 不一致/欠落/unknown/staleの失敗規則 | `LABO-021-FR-01 / LABO-021-AC-02` | `L10-LABO-021-C05`, `L10-LABO-021-C06`, `L10-LABO-021-C07`, `L10-LABO-021-C08`, `L10-LABO-021-C09`, `L10-LABO-021-C10`, `L10-LABO-021-C11` | 各独立CASEの一条件変異を成功へ昇格せず、そのCASEの固定戻し先を照合 |
+| 責務ownerと変更禁止境界 | `LABO-021-FR-01 / LABO-021-AC-02` | `L10-LABO-021-C08`, `L10-LABO-021-C10` | 各CASEの責務区分と変更禁止oracleを独立に照合し、記載した固定戻し先を保持 |
 | 親範囲内のheld-out正常fixture | `LABO-021-FR-01 / LABO-021-AC-01` | `L10-LABO-021-C04` | 未見typeだけを理由に落とさず同じ親契約で照合 |
 
 ## LABO-022-FR-01 — HELIXLABO-L2-022 HELIX-OS → Aggregate
@@ -990,15 +1012,17 @@ operationへ戻った後の結果と旧/新rule versionをnew observationへ集�
 
 ### 補正ACと個別fixtureの対応
 
-- `LABO-022-AC-02` は次の各fixtureをそれぞれ一変数で照合し、各々に記載した固定ownerへ戻す。 `L10-LABO-022-C09`, `L10-LABO-022-C10`, `L10-LABO-022-C11`。集約fixtureの件数は個別negativeの代替にしない。
+- `LABO-022-AC-02` の個別fixtureは下の「個別negative検証対象」に列挙する。各CASEの一条件変異・oracle・固定戻し先をそれぞれ照合し、summary/indexを代替にしない。
+
+個別negative検証対象（summary/indexを除く）: `L10-LABO-022-C05`, `L10-LABO-022-C06`, `L10-LABO-022-C07`, `L10-LABO-022-C08`, `L10-LABO-022-C09`, `L10-LABO-022-C10`, `L10-LABO-022-C11`。
 
 ### 固定親句trace
 
 | 親句／条件 | FR/AC | L10 case | oracle |
 |---|---|---|---|
 | parentの入力→出力とprovenance/version guarantee | `LABO-022-FR-01 / LABO-022-AC-01` | `L10-LABO-022-C01`, `L10-LABO-022-C04` | 許可input・source identity/revision・出力状態が対応 |
-| 不一致/欠落/unknown/staleの失敗規則 | `LABO-022-FR-01 / LABO-022-AC-02` | `L10-LABO-022-C02`, `L10-LABO-022-C03` | 個別および併発mutationを成功へ昇格しない |
-| 責務ownerと変更禁止境界 | `LABO-022-FR-01 / LABO-022-AC-02` | `L10-LABO-022-C03` | LABOの書戻し/dispatch/owner変更0、親指定ownerへ戻す |
+| 不一致/欠落/unknown/staleの失敗規則 | `LABO-022-FR-01 / LABO-022-AC-02` | `L10-LABO-022-C05`, `L10-LABO-022-C06`, `L10-LABO-022-C07`, `L10-LABO-022-C08`, `L10-LABO-022-C09`, `L10-LABO-022-C10`, `L10-LABO-022-C11` | 各独立CASEの一条件変異を成功へ昇格せず、そのCASEの固定戻し先を照合 |
+| 責務ownerと変更禁止境界 | `LABO-022-FR-01 / LABO-022-AC-02` | `L10-LABO-022-C08` | 各CASEの責務区分と変更禁止oracleを独立に照合し、記載した固定戻し先を保持 |
 | 親範囲内のheld-out正常fixture | `LABO-022-FR-01 / LABO-022-AC-01` | `L10-LABO-022-C04` | 未見typeだけを理由に落とさず同じ親契約で照合 |
 
 ## LABO-023-FR-01 — HELIXLABO-L2-023 BRAIN → Aggregate
@@ -1029,15 +1053,19 @@ operationへ戻った後の結果と旧/新rule versionをnew observationへ集�
 
 ### 補正ACと個別fixtureの対応
 
-- `LABO-023-AC-02` は次の各fixtureをそれぞれ一変数で照合する。`C08`の許可不明はSECURITY既存permission owner、`C09`のBRAIN source利用scope不明はBRAIN source contract owner、呼出し側の選択/scope自体がunknownの場合は固定L2-058の既存call-scope ownerへ戻す。`C10`はcanonical writeを拒否し元authorityを保持する。 `L10-LABO-023-C08`, `L10-LABO-023-C09`, `L10-LABO-023-C10`。集約fixtureの件数は個別negativeの代替にしない。
+- `LABO-023-AC-02` の個別fixtureは下の「個別negative検証対象」に列挙する。各CASEの一条件変異・oracle・固定戻し先をそれぞれ照合し、summary/indexを代替にしない。
+
+`L10-LABO-023-C08`の許可不明はSECURITY既存permission ownerへ、`L10-LABO-023-C09`のsource利用scope不明はBRAIN source contract ownerへ戻す。呼出し側の選択/scope自体がunknownの場合に限りL2-058の既存call-scope ownerへ戻す。canonical write拒否は`L10-LABO-023-C07`で照合しC10はその索引である。
+
+個別negative検証対象（summary/indexを除く）: `L10-LABO-023-C05`, `L10-LABO-023-C06`, `L10-LABO-023-C07`, `L10-LABO-023-C08`, `L10-LABO-023-C09`。
 
 ### 固定親句trace
 
 | 親句／条件 | FR/AC | L10 case | oracle |
 |---|---|---|---|
 | parentの入力→出力とprovenance/version guarantee | `LABO-023-FR-01 / LABO-023-AC-01` | `L10-LABO-023-C01`, `L10-LABO-023-C04` | 許可input・source identity/revision・出力状態が対応 |
-| 不一致/欠落/unknown/staleの失敗規則 | `LABO-023-FR-01 / LABO-023-AC-02` | `L10-LABO-023-C02`, `L10-LABO-023-C03` | 個別および併発mutationを成功へ昇格しない |
-| 責務ownerと変更禁止境界 | `LABO-023-FR-01 / LABO-023-AC-02` | `L10-LABO-023-C03` | LABOの書戻し/dispatch/owner変更0、親指定ownerへ戻す |
+| 不一致/欠落/unknown/staleの失敗規則 | `LABO-023-FR-01 / LABO-023-AC-02` | `L10-LABO-023-C05`, `L10-LABO-023-C06`, `L10-LABO-023-C07`, `L10-LABO-023-C08`, `L10-LABO-023-C09` | 各独立CASEの一条件変異を成功へ昇格せず、そのCASEの固定戻し先を照合 |
+| 責務ownerと変更禁止境界 | `LABO-023-FR-01 / LABO-023-AC-02` | `L10-LABO-023-C07` | 各CASEの責務区分と変更禁止oracleを独立に照合し、記載した固定戻し先を保持 |
 | 親範囲内のheld-out正常fixture | `LABO-023-FR-01 / LABO-023-AC-01` | `L10-LABO-023-C04` | 未見typeだけを理由に落とさず同じ親契約で照合 |
 
 ## LABO-024-FR-01 — HELIXLABO-L2-024 INTELLIGENCE → Aggregate
@@ -1068,15 +1096,17 @@ operationへ戻った後の結果と旧/新rule versionをnew observationへ集�
 
 ### 補正ACと個別fixtureの対応
 
-- `LABO-024-AC-02` は次の各fixtureをそれぞれ一変数で照合し、各々に記載した固定ownerへ戻す。 `L10-LABO-024-C08`, `L10-LABO-024-C09`。集約fixtureの件数は個別negativeの代替にしない。
+- `LABO-024-AC-02` の個別fixtureは下の「個別negative検証対象」に列挙する。各CASEの一条件変異・oracle・固定戻し先をそれぞれ照合し、summary/indexを代替にしない。
+
+個別negative検証対象（summary/indexを除く）: `L10-LABO-024-C05`, `L10-LABO-024-C06`, `L10-LABO-024-C07`, `L10-LABO-024-C08`, `L10-LABO-024-C09`。
 
 ### 固定親句trace
 
 | 親句／条件 | FR/AC | L10 case | oracle |
 |---|---|---|---|
 | parentの入力→出力とprovenance/version guarantee | `LABO-024-FR-01 / LABO-024-AC-01` | `L10-LABO-024-C01`, `L10-LABO-024-C04` | 許可input・source identity/revision・出力状態が対応 |
-| 不一致/欠落/unknown/staleの失敗規則 | `LABO-024-FR-01 / LABO-024-AC-02` | `L10-LABO-024-C02`, `L10-LABO-024-C03` | 個別および併発mutationを成功へ昇格しない |
-| 責務ownerと変更禁止境界 | `LABO-024-FR-01 / LABO-024-AC-02` | `L10-LABO-024-C03` | LABOの書戻し/dispatch/owner変更0、親指定ownerへ戻す |
+| 不一致/欠落/unknown/staleの失敗規則 | `LABO-024-FR-01 / LABO-024-AC-02` | `L10-LABO-024-C05`, `L10-LABO-024-C06`, `L10-LABO-024-C07`, `L10-LABO-024-C08`, `L10-LABO-024-C09` | 各独立CASEの一条件変異を成功へ昇格せず、そのCASEの固定戻し先を照合 |
+| 責務ownerと変更禁止境界 | `LABO-024-FR-01 / LABO-024-AC-02` | `L10-LABO-024-C06`, `L10-LABO-024-C07` | 各CASEの責務区分と変更禁止oracleを独立に照合し、記載した固定戻し先を保持 |
 | 親範囲内のheld-out正常fixture | `LABO-024-FR-01 / LABO-024-AC-01` | `L10-LABO-024-C04` | 未見typeだけを理由に落とさず同じ親契約で照合 |
 
 ## LABO-025-FR-01 — HELIXLABO-L2-025 SECURITY → Aggregate
@@ -1107,15 +1137,17 @@ SECURITYが許可したsafety/incident evidenceだけを範囲付きobservation�
 
 ### 補正ACと個別fixtureの対応
 
-- `LABO-025-AC-02` は次の各fixtureをそれぞれ一変数で照合し、各々に記載した固定ownerへ戻す。 `L10-LABO-025-C08`, `L10-LABO-025-C09`。集約fixtureの件数は個別negativeの代替にしない。
+- `LABO-025-AC-02` の個別fixtureは下の「個別negative検証対象」に列挙する。各CASEの一条件変異・oracle・固定戻し先をそれぞれ照合し、summary/indexを代替にしない。
+
+個別negative検証対象（summary/indexを除く）: `L10-LABO-025-C05`, `L10-LABO-025-C06`, `L10-LABO-025-C07`, `L10-LABO-025-C08`, `L10-LABO-025-C09`。
 
 ### 固定親句trace
 
 | 親句／条件 | FR/AC | L10 case | oracle |
 |---|---|---|---|
 | parentの入力→出力とprovenance/version guarantee | `LABO-025-FR-01 / LABO-025-AC-01` | `L10-LABO-025-C01`, `L10-LABO-025-C04` | 許可input・source identity/revision・出力状態が対応 |
-| 不一致/欠落/unknown/staleの失敗規則 | `LABO-025-FR-01 / LABO-025-AC-02` | `L10-LABO-025-C02`, `L10-LABO-025-C03` | 個別および併発mutationを成功へ昇格しない |
-| 責務ownerと変更禁止境界 | `LABO-025-FR-01 / LABO-025-AC-02` | `L10-LABO-025-C03` | LABOの書戻し/dispatch/owner変更0、親指定ownerへ戻す |
+| 不一致/欠落/unknown/staleの失敗規則 | `LABO-025-FR-01 / LABO-025-AC-02` | `L10-LABO-025-C05`, `L10-LABO-025-C06`, `L10-LABO-025-C07`, `L10-LABO-025-C08`, `L10-LABO-025-C09` | 各独立CASEの一条件変異を成功へ昇格せず、そのCASEの固定戻し先を照合 |
+| 責務ownerと変更禁止境界 | `LABO-025-FR-01 / LABO-025-AC-02` | `L10-LABO-025-C07`, `L10-LABO-025-C09` | 各CASEの責務区分と変更禁止oracleを独立に照合し、記載した固定戻し先を保持 |
 | 親範囲内のheld-out正常fixture | `LABO-025-FR-01 / LABO-025-AC-01` | `L10-LABO-025-C04` | 未見typeだけを理由に落とさず同じ親契約で照合 |
 
 ## LABO-026-FR-01 — HELIXLABO-L2-026 INFRASTRUCTURE → Aggregate
@@ -1146,15 +1178,17 @@ SECURITYが許可したsafety/incident evidenceだけを範囲付きobservation�
 
 ### 補正ACと個別fixtureの対応
 
-- `LABO-026-AC-02` は次の各fixtureをそれぞれ一変数で照合し、各々に記載した固定ownerへ戻す。 `L10-LABO-026-C08`, `L10-LABO-026-C09`。集約fixtureの件数は個別negativeの代替にしない。
+- `LABO-026-AC-02` の個別fixtureは下の「個別negative検証対象」に列挙する。各CASEの一条件変異・oracle・固定戻し先をそれぞれ照合し、summary/indexを代替にしない。
+
+個別negative検証対象（summary/indexを除く）: `L10-LABO-026-C05`, `L10-LABO-026-C06`, `L10-LABO-026-C07`, `L10-LABO-026-C08`, `L10-LABO-026-C09`。
 
 ### 固定親句trace
 
 | 親句／条件 | FR/AC | L10 case | oracle |
 |---|---|---|---|
 | parentの入力→出力とprovenance/version guarantee | `LABO-026-FR-01 / LABO-026-AC-01` | `L10-LABO-026-C01`, `L10-LABO-026-C04` | 許可input・source identity/revision・出力状態が対応 |
-| 不一致/欠落/unknown/staleの失敗規則 | `LABO-026-FR-01 / LABO-026-AC-02` | `L10-LABO-026-C02`, `L10-LABO-026-C03` | 個別および併発mutationを成功へ昇格しない |
-| 責務ownerと変更禁止境界 | `LABO-026-FR-01 / LABO-026-AC-02` | `L10-LABO-026-C03` | LABOの書戻し/dispatch/owner変更0、親指定ownerへ戻す |
+| 不一致/欠落/unknown/staleの失敗規則 | `LABO-026-FR-01 / LABO-026-AC-02` | `L10-LABO-026-C05`, `L10-LABO-026-C06`, `L10-LABO-026-C07`, `L10-LABO-026-C08`, `L10-LABO-026-C09` | 各独立CASEの一条件変異を成功へ昇格せず、そのCASEの固定戻し先を照合 |
+| 責務ownerと変更禁止境界 | `LABO-026-FR-01 / LABO-026-AC-02` | `L10-LABO-026-C07`, `L10-LABO-026-C09` | 各CASEの責務区分と変更禁止oracleを独立に照合し、記載した固定戻し先を保持 |
 | 親範囲内のheld-out正常fixture | `LABO-026-FR-01 / LABO-026-AC-01` | `L10-LABO-026-C04` | 未見typeだけを理由に落とさず同じ親契約で照合 |
 
 ## LABO-027-FR-01 — HELIXLABO-L2-027 HELIX-CONNECT → Aggregate
@@ -1181,19 +1215,21 @@ CONNECT経由の個別connection observation/traceをprovenance/schema version�
 ### 受入条件候補
 
 - **LABO-027-AC-01 — 正常・trace**：source connection ID/schema version/traceと受領内容を照合できる。
-- **LABO-027-AC-02 — failure/owner boundary**：schema drift/unknownを正常接続として扱わない。 logical connection contractをLABOで改定しない。
+- **LABO-027-AC-02 — failure/owner boundary**：schema drift/unknownを正常接続として扱わない。 logical connection contractをLABOで改定せず、全sourceへのconnector暗黙共用を拒否する。
 
 ### 補正ACと個別fixtureの対応
 
-- `LABO-027-AC-02` は次の各fixtureをそれぞれ一変数で照合し、各々に記載した固定ownerへ戻す。 `L10-LABO-027-C09`, `L10-LABO-027-C10`, `L10-LABO-027-C11`。集約fixtureの件数は個別negativeの代替にしない。
+- `LABO-027-AC-02` の個別fixtureは下の「個別negative検証対象」に列挙する。各CASEの一条件変異・oracle・固定戻し先をそれぞれ照合し、summary/indexを代替にしない。
+
+個別negative検証対象（summary/indexを除く）: `L10-LABO-027-C05`, `L10-LABO-027-C06`, `L10-LABO-027-C07`, `L10-LABO-027-C08`, `L10-LABO-027-C09`, `L10-LABO-027-C10`, `L10-LABO-027-C11`, `L10-LABO-027-C12`。
 
 ### 固定親句trace
 
 | 親句／条件 | FR/AC | L10 case | oracle |
 |---|---|---|---|
 | parentの入力→出力とprovenance/version guarantee | `LABO-027-FR-01 / LABO-027-AC-01` | `L10-LABO-027-C01`, `L10-LABO-027-C04` | 許可input・source identity/revision・出力状態が対応 |
-| 不一致/欠落/unknown/staleの失敗規則 | `LABO-027-FR-01 / LABO-027-AC-02` | `L10-LABO-027-C02`, `L10-LABO-027-C03` | 個別および併発mutationを成功へ昇格しない |
-| 責務ownerと変更禁止境界 | `LABO-027-FR-01 / LABO-027-AC-02` | `L10-LABO-027-C03` | LABOの書戻し/dispatch/owner変更0、親指定ownerへ戻す |
+| 不一致/欠落/unknown/staleの失敗規則 | `LABO-027-FR-01 / LABO-027-AC-02` | `L10-LABO-027-C05`, `L10-LABO-027-C06`, `L10-LABO-027-C07`, `L10-LABO-027-C08`, `L10-LABO-027-C09`, `L10-LABO-027-C10`, `L10-LABO-027-C11`, `L10-LABO-027-C12` | 各独立CASEの一条件変異を成功へ昇格せず、そのCASEの固定戻し先を照合 |
+| 責務ownerと変更禁止境界 | `LABO-027-FR-01 / LABO-027-AC-02` | `L10-LABO-027-C11`, `L10-LABO-027-C12` | 各CASEの責務区分と変更禁止oracleを独立に照合し、記載した固定戻し先を保持 |
 | 親範囲内のheld-out正常fixture | `LABO-027-FR-01 / LABO-027-AC-01` | `L10-LABO-027-C04` | 未見typeだけを理由に落とさず同じ親契約で照合 |
 
 ## LABO-028-FR-01 — HELIXLABO-L2-028 Worker → Aggregate
@@ -1225,16 +1261,20 @@ CONNECT経由の個別connection observation/traceをprovenance/schema version�
 ### 補正ACと個別fixtureの対応
 
 - `LABO-028-AC-01` は正常fixture `L10-LABO-028-C09` の個別oracleを満たし、同一性/未完・unknown状態を保持する。
-- `LABO-028-AC-02` は次の各fixtureをそれぞれ一変数で照合する。`C10`の誤experiment identityと`C11`の誤target versionは当該Worker result source ownerへ、`C12`のOS receipt欠落はOS assignment/receipt ownerへ、result-source欠落はそのresult source ownerへ戻す。正常なassignment/receiptとresult-source不一致を相互補完しない。 `L10-LABO-028-C10`, `L10-LABO-028-C11`, `L10-LABO-028-C12`。集約fixtureの件数は個別negativeの代替にしない。
+- `LABO-028-AC-02` は次の各fixtureをそれぞれ一変数で照合する。`C10`の誤experiment identityと`C11`の誤target versionは当該Worker result source ownerへ、`C12`は有効receiptを保ったresult-source欠落であり、そのresult source ownerへ戻す。OS receipt欠落だけは`L10-LABO-028-C14`でOS assignment/receipt ownerへ戻す。正常なassignment/receiptとresult-source不一致を相互補完しない。 `L10-LABO-028-C10`, `L10-LABO-028-C11`, `L10-LABO-028-C12`。集約fixtureの件数は個別negativeの代替にしない。
+
+個別negative検証対象（summary/indexを除く）: `L10-LABO-028-C03`, `L10-LABO-028-C05`, `L10-LABO-028-C06`, `L10-LABO-028-C07`, `L10-LABO-028-C08`, `L10-LABO-028-C10`, `L10-LABO-028-C11`, `L10-LABO-028-C12`, `L10-LABO-028-C13`, `L10-LABO-028-C14`, `L10-LABO-028-C15`。
 
 ### 固定親句trace
 
 | 親句／条件 | FR/AC | L10 case | oracle |
 |---|---|---|---|
 | parentの入力→出力とprovenance/version guarantee | `LABO-028-FR-01 / LABO-028-AC-01` | `L10-LABO-028-C01`, `L10-LABO-028-C04` | 許可input・source identity/revision・出力状態が対応 |
-| 不一致/欠落/unknown/staleの失敗規則 | `LABO-028-FR-01 / LABO-028-AC-02` | `L10-LABO-028-C02`, `L10-LABO-028-C03` | 個別および併発mutationを成功へ昇格しない |
-| 責務ownerと変更禁止境界 | `LABO-028-FR-01 / LABO-028-AC-02` | `L10-LABO-028-C03` | LABOの書戻し/dispatch/owner変更0、親指定ownerへ戻す |
+| 不一致/欠落/unknown/staleの失敗規則 | `LABO-028-FR-01 / LABO-028-AC-02` | `L10-LABO-028-C03`, `L10-LABO-028-C05`, `L10-LABO-028-C06`, `L10-LABO-028-C07`, `L10-LABO-028-C08`, `L10-LABO-028-C10`, `L10-LABO-028-C11`, `L10-LABO-028-C12`, `L10-LABO-028-C13`, `L10-LABO-028-C14`, `L10-LABO-028-C15` | 各独立CASEの一条件変異を成功へ昇格せず、そのCASEの固定戻し先を照合 |
+| 責務ownerと変更禁止境界 | `LABO-028-FR-01 / LABO-028-AC-02` | `L10-LABO-028-C13`, `L10-LABO-028-C15` | 各CASEの責務区分と変更禁止oracleを独立に照合し、記載した固定戻し先を保持 |
 | 親範囲内のheld-out正常fixture | `LABO-028-FR-01 / LABO-028-AC-01` | `L10-LABO-028-C04` | 未見typeだけを理由に落とさず同じ親契約で照合 |
+
+Workerを機構・authority ownerにしない。
 
 ## LABO-029-FR-01 — HELIXLABO-L2-029 CI/test → Aggregate
 
@@ -1264,15 +1304,17 @@ CONNECT経由の個別connection observation/traceをprovenance/schema version�
 
 ### 補正ACと個別fixtureの対応
 
-- `LABO-029-AC-02` は次の各fixtureをそれぞれ一変数で照合し、各々に記載した固定ownerへ戻す。 `L10-LABO-029-C09`。集約fixtureの件数は個別negativeの代替にしない。
+- `LABO-029-AC-02` の個別fixtureは下の「個別negative検証対象」に列挙する。各CASEの一条件変異・oracle・固定戻し先をそれぞれ照合し、summary/indexを代替にしない。
+
+個別negative検証対象（summary/indexを除く）: `L10-LABO-029-C05`, `L10-LABO-029-C06`, `L10-LABO-029-C07`, `L10-LABO-029-C08`, `L10-LABO-029-C09`, `L10-LABO-029-C10`, `L10-LABO-029-C11`, `L10-LABO-029-C12`。
 
 ### 固定親句trace
 
 | 親句／条件 | FR/AC | L10 case | oracle |
 |---|---|---|---|
 | parentの入力→出力とprovenance/version guarantee | `LABO-029-FR-01 / LABO-029-AC-01` | `L10-LABO-029-C01`, `L10-LABO-029-C04` | 許可input・source identity/revision・出力状態が対応 |
-| 不一致/欠落/unknown/staleの失敗規則 | `LABO-029-FR-01 / LABO-029-AC-02` | `L10-LABO-029-C02`, `L10-LABO-029-C03` | 個別および併発mutationを成功へ昇格しない |
-| 責務ownerと変更禁止境界 | `LABO-029-FR-01 / LABO-029-AC-02` | `L10-LABO-029-C03` | LABOの書戻し/dispatch/owner変更0、親指定ownerへ戻す |
+| 不一致/欠落/unknown/staleの失敗規則 | `LABO-029-FR-01 / LABO-029-AC-02` | `L10-LABO-029-C05`, `L10-LABO-029-C06`, `L10-LABO-029-C07`, `L10-LABO-029-C08`, `L10-LABO-029-C09`, `L10-LABO-029-C10`, `L10-LABO-029-C11`, `L10-LABO-029-C12` | 各独立CASEの一条件変異を成功へ昇格せず、そのCASEの固定戻し先を照合 |
+| 責務ownerと変更禁止境界 | `LABO-029-FR-01 / LABO-029-AC-02` | `L10-LABO-029-C10`, `L10-LABO-029-C11`, `L10-LABO-029-C12` | 各CASEの責務区分と変更禁止oracleを独立に照合し、記載した固定戻し先を保持 |
 | 親範囲内のheld-out正常fixture | `LABO-029-FR-01 / LABO-029-AC-01` | `L10-LABO-029-C04` | 未見typeだけを理由に落とさず同じ親契約で照合 |
 
 ## LABO-030-FR-01 — HELIXLABO-L2-030 Product Core → Aggregate
@@ -1303,16 +1345,20 @@ CONNECT経由の個別connection observation/traceをprovenance/schema version�
 
 ### 補正ACと個別fixtureの対応
 
-- `LABO-030-AC-02` は次の各fixtureをそれぞれ一変数で照合し、各々に記載した固定ownerへ戻す。 `L10-LABO-030-C09`, `L10-LABO-030-C10`。集約fixtureの件数は個別negativeの代替にしない。
+- `LABO-030-AC-02` の個別fixtureは下の「個別negative検証対象」に列挙する。各CASEの一条件変異・oracle・固定戻し先をそれぞれ照合し、summary/indexを代替にしない。
+
+個別negative検証対象（summary/indexを除く）: `L10-LABO-030-C05`, `L10-LABO-030-C06`, `L10-LABO-030-C07`, `L10-LABO-030-C08`, `L10-LABO-030-C09`, `L10-LABO-030-C10`。
 
 ### 固定親句trace
 
 | 親句／条件 | FR/AC | L10 case | oracle |
 |---|---|---|---|
 | parentの入力→出力とprovenance/version guarantee | `LABO-030-FR-01 / LABO-030-AC-01` | `L10-LABO-030-C01`, `L10-LABO-030-C04` | 許可input・source identity/revision・出力状態が対応 |
-| 不一致/欠落/unknown/staleの失敗規則 | `LABO-030-FR-01 / LABO-030-AC-02` | `L10-LABO-030-C02`, `L10-LABO-030-C03` | 個別および併発mutationを成功へ昇格しない |
-| 責務ownerと変更禁止境界 | `LABO-030-FR-01 / LABO-030-AC-02` | `L10-LABO-030-C03` | LABOの書戻し/dispatch/owner変更0、親指定ownerへ戻す |
+| 不一致/欠落/unknown/staleの失敗規則 | `LABO-030-FR-01 / LABO-030-AC-02` | `L10-LABO-030-C05`, `L10-LABO-030-C06`, `L10-LABO-030-C07`, `L10-LABO-030-C08`, `L10-LABO-030-C09`, `L10-LABO-030-C10` | 各独立CASEの一条件変異を成功へ昇格せず、そのCASEの固定戻し先を照合 |
+| 責務ownerと変更禁止境界 | `LABO-030-FR-01 / LABO-030-AC-02` | `L10-LABO-030-C08` | 各CASEの責務区分と変更禁止oracleを独立に照合し、記載した固定戻し先を保持 |
 | 親範囲内のheld-out正常fixture | `LABO-030-FR-01 / LABO-030-AC-01` | `L10-LABO-030-C04` | 未見typeだけを理由に落とさず同じ親契約で照合 |
+
+本接続自身のPO/G0採択区分はconnection / 1.0。個々の接続対象製品・sourceの版とscopeは当該採択契約に従い、将来Webの稼働を1.0へ前倒ししない。
 
 ## LABO-034-FR-01 — HELIXLABO-L2-034 LABO → BRAIN
 
@@ -1340,16 +1386,20 @@ CONNECT経由の個別connection observation/traceをprovenance/schema version�
 
 ### 補正ACと個別fixtureの対応
 
-- `LABO-034-AC-02` は次の各fixtureをそれぞれ一変数で照合し、各々に記載した固定ownerへ戻す。 `L10-LABO-034-C08`。集約fixtureの件数は個別negativeの代替にしない。
+- `LABO-034-AC-02` の個別fixtureは下の「個別negative検証対象」に列挙する。各CASEの一条件変異・oracle・固定戻し先をそれぞれ照合し、summary/indexを代替にしない。
+
+個別negative検証対象（summary/indexを除く）: `L10-LABO-034-C03`, `L10-LABO-034-C05`, `L10-LABO-034-C06`, `L10-LABO-034-C07`, `L10-LABO-034-C08`, `L10-LABO-034-C09`。
 
 ### 固定親句trace
 
 | 親句／条件 | FR/AC | L10 case | oracle |
 |---|---|---|---|
 | parentの入力→出力とprovenance/version guarantee | `LABO-034-FR-01 / LABO-034-AC-01` | `L10-LABO-034-C01`, `L10-LABO-034-C04` | 許可input・source identity/revision・出力状態が対応 |
-| 不一致/欠落/unknown/staleの失敗規則 | `LABO-034-FR-01 / LABO-034-AC-02` | `L10-LABO-034-C02`, `L10-LABO-034-C03` | 個別および併発mutationを成功へ昇格しない |
-| 責務ownerと変更禁止境界 | `LABO-034-FR-01 / LABO-034-AC-02` | `L10-LABO-034-C03` | LABOの書戻し/dispatch/owner変更0、親指定ownerへ戻す |
+| 不一致/欠落/unknown/staleの失敗規則 | `LABO-034-FR-01 / LABO-034-AC-02` | `L10-LABO-034-C03`, `L10-LABO-034-C05`, `L10-LABO-034-C06`, `L10-LABO-034-C07`, `L10-LABO-034-C08`, `L10-LABO-034-C09` | 各独立CASEの一条件変異を成功へ昇格せず、そのCASEの固定戻し先を照合 |
+| 責務ownerと変更禁止境界 | `LABO-034-FR-01 / LABO-034-AC-02` | `L10-LABO-034-C06`, `L10-LABO-034-C09` | 各CASEの責務区分と変更禁止oracleを独立に照合し、記載した固定戻し先を保持 |
 | 親範囲内のheld-out正常fixture | `LABO-034-FR-01 / LABO-034-AC-01` | `L10-LABO-034-C04` | 未見typeだけを理由に落とさず同じ親契約で照合 |
+
+一事例・scope不足・固有meaning混入の戻し先はL2-009である。source ownerを追加しない。
 
 ## LABO-035-FR-01 — HELIXLABO-L2-035 LABO → INTELLIGENCE 評価材料境界
 
@@ -1380,14 +1430,18 @@ judgment accuracy、failure corpus、counterexample、model/provider comparison�
 - `LABO-035-AC-01` は正常fixture `L10-LABO-035-C11` の個別oracleを満たし、同一性/未完・unknown状態を保持する。
 - `LABO-035-AC-02` は各fixtureを一変数ずつ照合する。C09/C10のsource version欠落・staleは該当source ownerへ戻し、同一revisionのpacket/receipt不一致はL2-052の境界条件と区別する。C12はunassessedを保ったままINTELLIGENCE境界へ渡し、C13/C14はLABOがplacement・bot判断/実行を生成せず既存INTELLIGENCE/OS責務を保持する。`L10-LABO-035-C09`, `L10-LABO-035-C10`, `L10-LABO-035-C12`, `L10-LABO-035-C13`, `L10-LABO-035-C14`。集約fixtureの件数は個別negativeの代替にしない。
 
+個別negative検証対象（summary/indexを除く）: `L10-LABO-035-C05`, `L10-LABO-035-C06`, `L10-LABO-035-C07`, `L10-LABO-035-C08`, `L10-LABO-035-C09`, `L10-LABO-035-C10`, `L10-LABO-035-C12`, `L10-LABO-035-C13`, `L10-LABO-035-C14`, `L10-LABO-035-C15`。
+
 ### 固定親句trace
 
 | 親句／条件 | FR/AC | L10 case | oracle |
 |---|---|---|---|
 | parentの入力→出力とprovenance/version guarantee | `LABO-035-FR-01 / LABO-035-AC-01` | `L10-LABO-035-C01`, `L10-LABO-035-C04` | 許可input・source identity/revision・出力状態が対応 |
-| 不一致/欠落/unknown/staleの失敗規則 | `LABO-035-FR-01 / LABO-035-AC-02` | `L10-LABO-035-C02`, `L10-LABO-035-C03` | 個別および併発mutationを成功へ昇格しない |
-| 責務ownerと変更禁止境界 | `LABO-035-FR-01 / LABO-035-AC-02` | `L10-LABO-035-C03` | LABOの書戻し/dispatch/owner変更0、親指定ownerへ戻す |
+| 不一致/欠落/unknown/staleの失敗規則 | `LABO-035-FR-01 / LABO-035-AC-02` | `L10-LABO-035-C05`, `L10-LABO-035-C06`, `L10-LABO-035-C07`, `L10-LABO-035-C08`, `L10-LABO-035-C09`, `L10-LABO-035-C10`, `L10-LABO-035-C12`, `L10-LABO-035-C13`, `L10-LABO-035-C14`, `L10-LABO-035-C15` | 各独立CASEの一条件変異を成功へ昇格せず、そのCASEの固定戻し先を照合 |
+| 責務ownerと変更禁止境界 | `LABO-035-FR-01 / LABO-035-AC-02` | `L10-LABO-035-C07`, `L10-LABO-035-C08`, `L10-LABO-035-C13`, `L10-LABO-035-C14`, `L10-LABO-035-C15` | 各CASEの責務区分と変更禁止oracleを独立に照合し、記載した固定戻し先を保持 |
 | 親範囲内のheld-out正常fixture | `LABO-035-FR-01 / LABO-035-AC-01` | `L10-LABO-035-C04` | 未見typeだけを理由に落とさず同じ親契約で照合 |
+
+source revision欠落・staleはL2接続共通前置き（159–162行）のsource authority保持と元evidenceのsource責務から該当source ownerへ戻す。connector contract自体の不成立だけCONNECT契約ownerへ戻す。
 
 ## LABO-058-FR-01 — HELIXLABO-L2-058 観測集積の入力元ごとの依存条件
 
@@ -1420,17 +1474,23 @@ judgment accuracy、failure corpus、counterexample、model/provider comparison�
 - `LABO-058-AC-01` は正常fixture `L10-LABO-058-C12` の各選択source閉包を個別に照合する。
 - `LABO-058-AC-02` は各一変数fixtureを個別に照合し、未選択・未完・unknownを成功へ変えず固定ownerへ戻す: `L10-LABO-058-C13`, `L10-LABO-058-C14`, `L10-LABO-058-C15`, `L10-LABO-058-C16`, `L10-LABO-058-C17`, `L10-LABO-058-C18`, `L10-LABO-058-C19`, `L10-LABO-058-C20`, `L10-LABO-058-C21`, `L10-LABO-058-C22`, `L10-LABO-058-C23`, `L10-LABO-058-C24`, `L10-LABO-058-C25`。集約fixtureの件数は個別negativeの代替にしない。
 
+個別negative検証対象（summary/indexを除く）: `L10-LABO-058-C06`, `L10-LABO-058-C07`, `L10-LABO-058-C08`, `L10-LABO-058-C09`, `L10-LABO-058-C10`, `L10-LABO-058-C11`, `L10-LABO-058-C13`, `L10-LABO-058-C14`, `L10-LABO-058-C15`, `L10-LABO-058-C16`, `L10-LABO-058-C17`, `L10-LABO-058-C18`, `L10-LABO-058-C19`, `L10-LABO-058-C20`, `L10-LABO-058-C21`, `L10-LABO-058-C22`, `L10-LABO-058-C23`, `L10-LABO-058-C24`, `L10-LABO-058-C25`, `L10-LABO-058-C26`, `L10-LABO-058-C27`, `L10-LABO-058-C28`, `L10-LABO-058-C29`, `L10-LABO-058-C30`, `L10-LABO-058-C31`。
+
 ### 固定親句trace
 
 | 親句／条件 | FR/AC | L10 case | oracle |
 |---|---|---|---|
-| 呼出しscope/selected source/operation/permission/versionを入力として選択理由とunselectedを表示 | `LABO-058-FR-01 / LABO-058-AC-01` | `L10-LABO-058-C01`, `L10-LABO-058-C02` | 入力集合と選択/未選択一覧が一致 |
-| 常時001 contractとselected-source dependency closure | `LABO-058-FR-01 / LABO-058-AC-01` | `L10-LABO-058-C01`, `L10-LABO-058-C03`, `L10-LABO-058-C12` | 選択した全sourceの接続/安全/版条件を検査 |
-| unselectedはunobserved、selected-missingはunmet dependency | `LABO-058-FR-01 / LABO-058-AC-02` | `L10-LABO-058-C02`, `L10-LABO-058-C03`, `L10-LABO-058-C13`, `L10-LABO-058-C19` | 未選択≠成功観測、選択欠落≠未選択化 |
-| unknown selection/scopeはcall-scope owner、permission/classificationはSECURITYへ戻し、no selectionは未許可取込を許可しない | `LABO-058-FR-01 / LABO-058-AC-02` | `L10-LABO-058-C04`, `L10-LABO-058-C18`, `L10-LABO-058-C22` | 入力成立拒否と条件別の既存戻し先、unauthorized intake 0 |
-| WEB/WEB-OSは選択時だけ既存contract、external 2.0を1.0へ含めない | `LABO-058-FR-01 / LABO-058-AC-01/02` | `L10-LABO-058-C05`, `L10-LABO-058-C21` | 未選択時の実稼働依存0、2.0 external intake 0 |
+| 呼出しscope/selected source/operation/permission/versionを入力として選択理由とunselectedを表示 | `LABO-058-FR-01 / LABO-058-AC-01` | `L10-LABO-058-C01`, `L10-LABO-058-C12` | 入力集合と選択/未選択一覧が一致 |
+| 常時001 contractとselected-source dependency closure | `LABO-058-FR-01 / LABO-058-AC-01` | `L10-LABO-058-C01`, `L10-LABO-058-C12` | 選択した全sourceの接続/安全/版条件を検査 |
+| unselectedはunobserved、selected-missingはunmet dependency | `LABO-058-FR-01 / LABO-058-AC-02` | `L10-LABO-058-C07`, `L10-LABO-058-C13`, `L10-LABO-058-C19` | 未選択≠成功観測、選択欠落≠未選択化 |
+| unknown selection/scopeはcall-scope owner、permission/classificationはSECURITYへ戻し、no selectionは未許可取込を許可しない | `LABO-058-FR-01 / LABO-058-AC-02` | `L10-LABO-058-C06`, `L10-LABO-058-C09`, `L10-LABO-058-C18`, `L10-LABO-058-C22` | 入力成立拒否と条件別の既存戻し先、unauthorized intake 0 |
+| WEB/WEB-OSは選択時だけ既存contract、external 2.0を1.0へ含めない | `LABO-058-FR-01 / LABO-058-AC-01/02` | `L10-LABO-058-C08`, `L10-LABO-058-C21` | 未選択時の実稼働依存0、2.0 external intake 0 |
 | source集合/operation/scope/contract版の明示変更後にclosureを再検証 | `LABO-058-FR-01 / LABO-058-AC-02` | `L10-LABO-058-C14`, `L10-LABO-058-C15`, `L10-LABO-058-C16`, `L10-LABO-058-C17`, `L10-LABO-058-C24`, `L10-LABO-058-C25` | 旧receiptを流用せず新条件で再closureする。不足はsource/CONNECTまたはSECURITYへ、selection自体がunknownの場合だけcall-scope ownerへ戻す |
 | 未選択sourceを観測成功化／単一call passを全source完了化しない | `LABO-058-FR-01 / LABO-058-AC-02` | `L10-LABO-058-C19`, `L10-LABO-058-C20` | unselected remains not_observed、単一callは対応範囲だけを成功として保持 |
+| 観測成功をBench評価済み・割当許可へ昇格しない | `LABO-058-FR-01 / LABO-058-AC-02` | `L10-LABO-058-C26`, `L10-LABO-058-C27` | 観測成立を評価・割当authorityへ変換しない |
+| 1.0義務と既存001契約を保全 | `LABO-058-FR-01 / LABO-058-AC-02` | `L10-LABO-058-C28`, `L10-LABO-058-C29` | 未選択を理由に完成義務を削除せず001出力を改定しない |
+
+CONNECT契約とOS assignment責務の戻し先は固定L2の接続共通前置き159–162行とL2-022/028から再導出し、各sourceとLABOの観測責務を移さない。
 
 ## 未承認事項
 
@@ -1463,3 +1523,5 @@ judgment accuracy、failure corpus、counterexample、model/provider comparison�
 | `HELIXLABO-L2-034` | 固定親のscope/owner/version、条件句を保持 | `LABO-034-AC-02` | `L10-LABO-034-C08` |
 | `HELIXLABO-L2-035` | 固定親のscope/owner/version、条件句を保持 | `LABO-035-AC-01`, `LABO-035-AC-02` | `L10-LABO-035-C09`, `L10-LABO-035-C10`, `L10-LABO-035-C11`, `L10-LABO-035-C12`, `L10-LABO-035-C13`, `L10-LABO-035-C14` |
 | `HELIXLABO-L2-058` | 固定親のscope/owner/version、条件句を保持 | `LABO-058-AC-01`, `LABO-058-AC-02` | `L10-LABO-058-C12`, `L10-LABO-058-C13`, `L10-LABO-058-C14`, `L10-LABO-058-C15`, `L10-LABO-058-C16`, `L10-LABO-058-C17`, `L10-LABO-058-C18`, `L10-LABO-058-C19`, `L10-LABO-058-C20`, `L10-LABO-058-C21`, `L10-LABO-058-C22`, `L10-LABO-058-C23`, `L10-LABO-058-C24`, `L10-LABO-058-C25` |
+
+Stage 2b review01の集約CASEは索引としてのみ保持する。個別fixtureとnegative/NFR分母から除外し、上の親句traceでは個別CASEのoracleを照合する。
