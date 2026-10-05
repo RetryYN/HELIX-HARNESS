@@ -1,0 +1,437 @@
+{
+  "schema_version": "helix.l3-l10.review-repair-audit.v1",
+  "status": "author repair snapshot; root acceptance and independent exact-HEAD review pending",
+  "mechanism": "HELIX-INFRASTRUCTURE",
+  "stage": "Stage 1",
+  "base_commit": "b048299b59a94146d74294bd49728a031e27796b",
+  "reviewed_content_head": "2ea2d9053998da2ddbe7c4da15169ce124dc613f",
+  "repair_body_commit": "758e4759873b3ec2c2083eebb355af62e9047552",
+  "parents": [
+    "HELIXINFRASTRUCTURE-L2-001",
+    "HELIXINFRASTRUCTURE-L2-006"
+  ],
+  "authority_boundary": "The review response has authority_effect none. This repair resolves author-side text gaps only; it does not approve L3 or create merge admission.",
+  "unchanged_prior_audit": {
+    "path": "docs/governance/audits/requirements-stage/l3-l10-infra-stage1-static-validation-2026-10-05-98c79e0e1.json",
+    "sha256": "18976cd08d5c1df878f40eba7e62286744ca2b738251348c78930ab8578963b0",
+    "status": "preserved unchanged; its source map contains the attribution now corrected below"
+  },
+  "documents": [
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "sha256": "090abe7d14111faf97e4ee17d6e4a3f3f2ac32d70d3c7da55d7120dd11d1f32a",
+      "physical_line_count": 95
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "sha256": "c2b22bc5af8bf721c9f6e4594e81046dde2ed2a9555fa0643accb76f8a37f97e",
+      "physical_line_count": 21
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "sha256": "c75f6cd1617c814ea77f187394965c7742af3049081420f81978e55c6ba951fd",
+      "physical_line_count": 45
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "sha256": "189ec082296877692f73679390a080f0b3710c2618fe4a0cf9144cc9c7ce88f9",
+      "physical_line_count": 79
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "sha256": "8801b848f6b16d5214a45b3652446a228e829c687f9203e50c02ad2bf5ddbe70",
+      "physical_line_count": 19
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "sha256": "8152b8a6b59b319b6c3322ba917720769841e850560c802bfa8e22862789b7d8",
+      "physical_line_count": 38
+    }
+  ],
+  "source_pins": {
+    "L2-001": {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "inclusive_lines": [
+        32,
+        40
+      ],
+      "raw_sha256": "1f419d31826a8f6627f0595822cd99d5b8c55db0bfd5faa25a735bca92b529c6",
+      "full_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "physical_line_count": 430
+    },
+    "L2-006": {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "inclusive_lines": [
+        82,
+        90
+      ],
+      "raw_sha256": "546bf30c3fca163f1ccb8303cbf26d3be45baa700c77099ddc7d3f6a4701fcbc",
+      "full_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "physical_line_count": 430
+    },
+    "L11-001": {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "inclusive_lines": [
+        34,
+        41
+      ],
+      "raw_sha256": "8f3f16b4e477ebac56a251d64f56d86afc7c2987bb623951689c988ffe2e625c",
+      "full_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "physical_line_count": 318
+    },
+    "L11-001-failure-return": {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "inclusive_lines": [
+        41,
+        41
+      ],
+      "raw_sha256": "d294388b98245f7495f8594e9aada9424fefa40872fa0d4cc72118d19046c518",
+      "full_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "physical_line_count": 318
+    },
+    "L11-006": {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "inclusive_lines": [
+        84,
+        91
+      ],
+      "raw_sha256": "4c35de5ae026df947330c2ecd0245e07fe4ec460c01fbaf7c85d06074019a08f",
+      "full_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "physical_line_count": 318
+    },
+    "L11-006-failure-return": {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "inclusive_lines": [
+        91,
+        91
+      ],
+      "raw_sha256": "abdfffcc1922cef8a3436f8be5fee957859a6058c34fe9bda5991a59a9c374c6",
+      "full_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "physical_line_count": 318
+    },
+    "L2-010-cross-cutting-input-worker-contract": {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "inclusive_lines": [
+        126,
+        134
+      ],
+      "raw_sha256": "c6b93eb12b5bfe8deb36485c688ce02709bfa49da40086b0d4b59cf6cdc45f37",
+      "full_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "physical_line_count": 430
+    },
+    "L2-010-limited-operation-input": {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "inclusive_lines": [
+        129,
+        129
+      ],
+      "raw_sha256": "7699e6cca40382fb0e0227826dd1e41558aa49c241837a480160dcaaac145684",
+      "full_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "physical_line_count": 430
+    },
+    "L2-010-authority-and-worker-dependency": {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "inclusive_lines": [
+        132,
+        132
+      ],
+      "raw_sha256": "b690da9344c3b3b5dc728d837f991250dd7d0756cdc97fe75c51da137116e654",
+      "full_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "physical_line_count": 430
+    },
+    "PO-decision": {
+      "path": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "inclusive_lines": [
+        48,
+        50
+      ],
+      "raw_sha256": "72e90806b818c5b4f0e4dbf69fb564520e15ddeb5ca81d81e9d8f3c32ed35fee",
+      "full_sha256": "0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f",
+      "physical_line_count": 64
+    }
+  },
+  "legacy_sources": {
+    "old_l3_ops": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "asset_full_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "physical_line_count": 209,
+      "spans": [
+        {
+          "inclusive_lines": [
+            68,
+            73
+          ],
+          "raw_sha256": "90ec4ca119bf860db25efd2126095d80376a2fa1ce3db2159a5da49fc5610f14"
+        },
+        {
+          "inclusive_lines": [
+            74,
+            98
+          ],
+          "raw_sha256": "3432d94b427f4156a468d9f5d6a2cd52b538e87d486678f7b8112a5e1ba8902b"
+        },
+        {
+          "inclusive_lines": [
+            108,
+            119
+          ],
+          "raw_sha256": "8b6a4d033f4f20e529356d5264c9a68acc1467d08f50f6e77aefe0b6439bf946"
+        },
+        {
+          "inclusive_lines": [
+            140,
+            171
+          ],
+          "raw_sha256": "585937e062e49aad5f3e89bb7408eb329ff488d258c0afae22b7c4ab16f56f35"
+        }
+      ],
+      "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18"
+    },
+    "old_test_ops": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/product-lifecycle-operations-acceptance.md",
+      "asset_full_sha256": "19c75a442154b4d17e645143f4adaaa23791a1043caa73178e5d75cc468b7d58",
+      "physical_line_count": 53,
+      "spans": [
+        {
+          "inclusive_lines": [
+            20,
+            39
+          ],
+          "raw_sha256": "932f33434e4e462de57e511de5a2c9dcc99e367c5d45ccba41bbf672986e64fa"
+        },
+        {
+          "inclusive_lines": [
+            26,
+            26
+          ],
+          "raw_sha256": "f14b760580d8ec6a8b1a01bd0d4ef197a9b9b670fb8201f4ff8c1c8630b20657"
+        }
+      ],
+      "asset_id": "LEGACY-ASSET-F46AB11BD14F2C0469F4"
+    },
+    "old_l3_definition": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "asset_full_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "physical_line_count": 284,
+      "spans": [
+        {
+          "inclusive_lines": [
+            148,
+            168
+          ],
+          "raw_sha256": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9"
+        }
+      ],
+      "asset_id": "LEGACY-ASSET-F542125805B777D8A56A"
+    },
+    "old_business_layout": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md",
+      "asset_full_sha256": "99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d",
+      "physical_line_count": 256,
+      "spans": [
+        {
+          "inclusive_lines": [
+            21,
+            39
+          ],
+          "raw_sha256": "ade5075e3df236216603e1e0d3fb83c8cdae007f7f319e49bd4af1c5d4efca5e"
+        },
+        {
+          "inclusive_lines": [
+            84,
+            104
+          ],
+          "raw_sha256": "f79e52ce0ac3797d30c46573a61f8115656ece2f8485461c728cdcf50fa4b38f"
+        }
+      ],
+      "asset_id": "LEGACY-ASSET-A6E2C7F0565E5F804F06"
+    },
+    "old_nfr_format": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/nfr-grade.md",
+      "asset_full_sha256": "ba57990cf5343e9d4ad42ca8c2340d76c80e6e1c23085ba5e496d8014acf3fc3",
+      "physical_line_count": 73,
+      "spans": [
+        {
+          "inclusive_lines": [
+            1,
+            73
+          ],
+          "raw_sha256": "ba57990cf5343e9d4ad42ca8c2340d76c80e6e1c23085ba5e496d8014acf3fc3"
+        }
+      ],
+      "asset_id": "LEGACY-ASSET-8CC5ABFC98C0D00183CA"
+    }
+  },
+  "corrected_source_attribution": {
+    "prior_map_issue": "Prior static audit source map treated operation action/expiry details and Worker execution contract as if they were solely sourced by L2-006, and recorded removal of L2-010 as an NFR scope correction. This repair retains L2-006 as the only L3 parent for the independent recovery path, and records adopted L2-010 lines 129/132 as cross-cutting evidence for operation input fields and SECURITY-constrained Worker execution. L2-010 is not promoted to a Stage 1 parent and does not replace the distinct-authority condition from L2-006.",
+    "source_rows": [
+      "L2-006 lines 82-90: limited bootstrap/recovery path, separate SECURITY authority, independent resource/path, no full automatic failover.",
+      "L2-010 line 129: operation input (target/project/action/revision/scope/expiry), SECURITY conditions, receipt timing, independent recovery input.",
+      "L2-010 line 132: applicable SECURITY authority, Worker execution contract, state-changing recovery obligations and exception boundary."
+    ]
+  },
+  "review_findings": {
+    "received": {
+      "blocker": 0,
+      "major": 3,
+      "minor": 11,
+      "total": 14
+    },
+    "addressed_by_author_repair": [
+      {
+        "id": "001-1",
+        "change": "AC-01 now routes resource/owner/environment/location/version/dependency unknown to resource source or CORE design owner; unknown destination stops and records unresolved owner. L10 C04 changed from L2-002 design-observation conflict to unknown owner/location/dependency."
+      },
+      {
+        "id": "001-2",
+        "change": "AC-04 prohibits deriving authority/permission from resource state; new L10 C15 separately mutates ready lifecycle and production environment."
+      },
+      {
+        "id": "001-3",
+        "change": "L10 C02 adds dependency-missing as an independent mutation."
+      },
+      {
+        "id": "001-4",
+        "change": "L10 C01 enumerates the fixed L11-001 mechanism, Worker/Model Runtime, and store fixture families by environment."
+      },
+      {
+        "id": "001-5",
+        "change": "AC-02 now independently names all eight environment separation axes; C02 applies separate mutations."
+      },
+      {
+        "id": "001-6",
+        "change": "FR-01-01 records approved CORE design reference as a dependency and Runner/Sandbox execution as Worker reference per PO decision."
+      },
+      {
+        "id": "001-7",
+        "change": "FR-01-01 states runtime revision is the Infrastructure side of minimum item 13 and distinct from OS stage release identity."
+      },
+      {
+        "id": "006-1",
+        "change": "FR/AC require a separate applicable SECURITY authority; C17 individually rejects an authority valid only for ordinary operation."
+      },
+      {
+        "id": "006-2",
+        "change": "FR-006 cross-reference names adopted L2-010 lines 126-134, especially 129/132, as a cross-cutting source; L2-010 is explicitly not a new Stage 1 parent."
+      },
+      {
+        "id": "006-3",
+        "change": "New C18 tests unknown/unfulfilled recovery duty separately from C15 rollback."
+      },
+      {
+        "id": "006-4",
+        "change": "FR/AC/C04 stop and preserve unresolved owner when provider owner is itself unknown, avoiding return-to-unknown-owner loops."
+      },
+      {
+        "id": "006-5",
+        "change": "C02 independently mutates credential scope and policy unknown, without exposing credential values."
+      },
+      {
+        "id": "006-6",
+        "change": "New C19 is an individual negative for treating fully automatic failover as a 1.0 criterion."
+      },
+      {
+        "id": "006-7",
+        "change": "NFR-006-03 and NFR verification return unknown incident/health meaning to the applicable L2-004 owner outside this Stage; no system incident owner is invented."
+      }
+    ],
+    "remaining_process": "All findings await root author-side acceptance and a separate exact-HEAD independent review; no finding is recorded as independently closed."
+  },
+  "trace_inventory": {
+    "functional_ac_ids": [
+      "INFRA-001-AC-01",
+      "INFRA-001-AC-02",
+      "INFRA-001-AC-03",
+      "INFRA-001-AC-04",
+      "INFRA-006-AC-01",
+      "INFRA-006-AC-02",
+      "INFRA-006-AC-03"
+    ],
+    "functional_ac_count": 7,
+    "functional_case_ids": [
+      "L10-INFRA-001-C01",
+      "L10-INFRA-001-C02",
+      "L10-INFRA-001-C03",
+      "L10-INFRA-001-C04",
+      "L10-INFRA-001-C05",
+      "L10-INFRA-001-C06",
+      "L10-INFRA-001-C07",
+      "L10-INFRA-001-C08",
+      "L10-INFRA-001-C09",
+      "L10-INFRA-001-C10",
+      "L10-INFRA-001-C11",
+      "L10-INFRA-001-C12",
+      "L10-INFRA-001-C13",
+      "L10-INFRA-001-C14",
+      "L10-INFRA-001-C15",
+      "L10-INFRA-006-C01",
+      "L10-INFRA-006-C02",
+      "L10-INFRA-006-C03",
+      "L10-INFRA-006-C04",
+      "L10-INFRA-006-C05",
+      "L10-INFRA-006-C06",
+      "L10-INFRA-006-C07",
+      "L10-INFRA-006-C08",
+      "L10-INFRA-006-C09",
+      "L10-INFRA-006-C10",
+      "L10-INFRA-006-C11",
+      "L10-INFRA-006-C12",
+      "L10-INFRA-006-C13",
+      "L10-INFRA-006-C14",
+      "L10-INFRA-006-C15",
+      "L10-INFRA-006-C16",
+      "L10-INFRA-006-C17",
+      "L10-INFRA-006-C18",
+      "L10-INFRA-006-C19"
+    ],
+    "functional_case_count": 34,
+    "functional_case_unique_count": 34,
+    "nfr_requirement_ids": [
+      "INFRA-NFR-001-01",
+      "INFRA-NFR-001-02",
+      "INFRA-NFR-001-03",
+      "INFRA-NFR-006-01",
+      "INFRA-NFR-006-02",
+      "INFRA-NFR-006-03"
+    ],
+    "nfr_requirement_count": 6,
+    "nfr_verification_ids": [
+      "INFRA-NFR-001-01",
+      "INFRA-NFR-001-02",
+      "INFRA-NFR-001-03",
+      "INFRA-NFR-006-01",
+      "INFRA-NFR-006-02",
+      "INFRA-NFR-006-03"
+    ],
+    "nfr_verification_count": 6,
+    "business_ac_case_count": 0
+  },
+  "static_checks": {
+    "revision": "758e4759873b3ec2c2083eebb355af62e9047552",
+    "commands": {
+      "validate": "python3 -B scaffold/tools/scfctl.py validate",
+      "stale": "python3 -B scaffold/tools/scfctl.py stale",
+      "residuals": "python3 -B scaffold/tools/scfctl.py residuals",
+      "govcheck": "python3 -B scaffold/governance/tools/govcheck.py",
+      "diff_check": "git diff --check"
+    },
+    "results": {
+      "validate": "bindings=147 fail=0",
+      "stale": "stale=0",
+      "residuals": "residuals=0",
+      "govcheck": "ok atoms=7622 requirements=57 files=58",
+      "diff_check": "pass"
+    },
+    "limitations": "文書revision/trace/source/責務の静的検査のみ。archive runtime/test/CI、実resource操作・health・recovery実測は実施せず。"
+  }
+}
