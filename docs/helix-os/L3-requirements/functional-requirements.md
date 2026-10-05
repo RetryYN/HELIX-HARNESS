@@ -451,7 +451,7 @@ taskごとのscope/role/authority/task class、LABO適性evidence、INTELLIGENCE
 
 - **`AC-OS-L3-021-01` 選択構成と7サービス証拠**：project、要求revision、operation scope、選択component identity/version、source/artifact digest、運用証拠、必要安全依存、active/candidate状態と復旧先を同じoperationへ結ぶ。HARNESSのサービス①〜⑦はそれぞれ独立して判定でき、当該構成で選択したサービスだけに対応する適格性・配布証拠を個別に照合し、別サービスの証拠で代用しない。FRS-BR-001〜007/009を参照する成熟度・impact・再現性・rollback・安全閉包の既存条件を対応するHARNESS contractで照合し、明示選択集合だけを対象にする。未決後続能力の`version_target`を維持し、1.0 dependencyへ変換しない。
 - **`AC-OS-L3-021-02` 独立判定・部分導入**：一つの適格project向け構成を配布可能とし、別project/他の全製品の未完了を理由に妨げない。個別service構成成功をHELIX全体段階成立とせず、L2-014とは別状態に置く。
-- **`AC-OS-L3-021-03` 不成立と復旧**：各サービスを単独に選択した対照構成で、そのサービスの証拠を一つずつ欠落させる変異、選択後の別artifact切替、未指定componentの暗黙収載、既存成果の消去、成熟度・impact・再現性・互換性・source digest・authorityの各単独不一致を配布成立扱いしない。tag・publication・cutoverは明示された既存authorityがない限り行わない。部分適用後の中断では途中成果・未完義務・復旧先を保持し、rollback後の再開でも同じ選択・artifact・scopeを照合する。未指定componentの包含、成果消去、scope外operationを許さず、該当ownerへ返す。
+- **`AC-OS-L3-021-03` 不成立と復旧**：各サービスを単独に選択した対照構成で、そのサービスの証拠を一つずつ欠落させる変異、選択後の別artifact切替、未指定componentの暗黙収載、既存成果の消去、成熟度・impact・再現性・互換性・source digest・authority・component version・project binding・必要安全依存の各単独欠落/不一致を配布成立扱いしない。tag・publication・cutoverは明示された既存authorityがない限り行わない。部分適用後の中断では途中成果・未完義務・復旧先を保持し、rollback後の再開でも同じ選択・artifact・scopeを照合する。未指定componentの包含、成果消去、scope外operationを許さず、該当ownerへ返す。
 
 ### `FR-OS-L3-022` — `HELIXOS-L2-022`
 
@@ -493,7 +493,7 @@ taskごとのscope/role/authority/task class、LABO適性evidence、INTELLIGENCE
 
 ticket返却、検証不能、oracle/input不足のfindingを、finding identity、ticket/assignment、target HEAD/revision/scope、根拠・不足条件、発生元、既存resolution条件へ結び、既存L2-007 lifecycleでpending/evidence-backed resolutionを保つ。L2-007、L2-020、L2-047と既存ticket契約に依存する。OSは運転・検証観測をevidence付きcandidateとしてLABOへ渡す。OSはintake/routing/statusとticket運転、LABOはfindingの理由分類・scope・counterexample・再評価条件を含む評価、INTELLIGENCEはLABO評価済みでtask scopeが適合する場合の次回配置案、HARNESSはoracle/verification義務を所有する。OSだけが再発行/割当を決め、返却が再発行を要する場合はOS-047と既存ticket契約へ戻す。再発行後のresultを元findingへ因果relationで結び、LABOが同一条件での成立状況を評価する。閉じたticketは保持し、後日findingを因果relation付き追補assessmentとして扱う。
 
-**責務／依存境界**：OSは新しいevent schema、status、resolution十分条件、priorityまたはapprovalを作らない。LABO評価やINTELLIGENCE案からticket/assignmentを発行しない。自由文handover、同じpathまたは時間的近さだけでresolution/因果関係を断定せず、ownerに既存条件を照合させる。
+**責務／依存境界**：SECURITYは既存authority/data-useを所有する。OSは新しいevent schema、status、resolution十分条件、priorityまたはapprovalを作らない。LABO評価やINTELLIGENCE案からticket/assignmentを発行しない。自由文handover、同じpathまたは時間的近さだけでresolution/因果関係を断定せず、ownerに既存条件を照合させる。
 
 **受入条件**
 
@@ -511,7 +511,7 @@ ticket返却、検証不能、oracle/input不足のfindingを、finding identity
 
 - **`AC-OS-L3-052-01` local cleanup適格性**：PR-A merge/read-after後にassignment所有、未使用、未完作業なしのlocal worktree/branchだけをcleanupし、同一cleanup再実行でも他assignmentの資源を変更しない。remote refは対象・削除作用を含むauthorityがなければ残す。
 - **`AC-OS-L3-052-02` 後続PR再照合**：PR-A merge後にPR-Bのtrial merge、最新base、stale、dependency、review bindingをcontent HEAD不変のまま再照合する。一致しstale=0なら既存review bindingを保持できる。
-- **`AC-OS-L3-052-03` 作成側への返却と再review**：最新base再照合後もconflict/stale/依存変化/review binding不一致がある場合は、merge/review側が作成branchを修正せず差分と根拠を作成側へ返す。旧CI結果はread-afterの代用にしない。最新baseが変化した後のreviewed pairが一致しstale=0・依存維持なら既存stateを保持できる。作成側がHEADを変えた後は新HEADの独立reviewを取り直し、旧reviewを流用しない。
+- **`AC-OS-L3-052-03` 作成側への返却と再review**：最新base再照合後もconflict/stale/依存変化/review binding不一致がある場合は、merge/review側が作成branchを修正せず差分と根拠を作成側へ返す。旧CI結果はread-afterの代用にしない。最新baseが変化した後のreviewed pairが一致しstale=0・依存維持なら既存stateを保持できる。作成側がHEADを変えた後は新HEADの独立reviewを取り直し、旧reviewを流用しない。新HEADの独立review結果、未解消blocker 0件、現行merge admissionがそろうまでReady/merge可能として扱わない。通知、ACK、merge event、branch ancestryだけではreview receiptを成立させない。
 
 ## Stage 4 親・旧source crosswalk（旧項目ごとの判断）
 

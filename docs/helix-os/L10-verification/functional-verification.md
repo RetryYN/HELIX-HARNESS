@@ -900,7 +900,7 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | `CASE-OS-L10-022-03n` | `AC-OS-L3-022-01`,`AC-OS-L3-022-03` | L2-013移管済み横断診断の解釈先だけOSへ変更 | OSは引き受けずLABO側既存責務へ返す。 |
 | `CASE-OS-L10-022-03o` | `AC-OS-L3-022-02` | source observationだけで要求意味を変更 | 変更を拒否し既存判断ownerへ返す。 |
 | `CASE-OS-L10-022-03p` | `AC-OS-L3-022-02` | LABO proposalだけでpriorityを変更 | 変更を拒否し既存判断ownerへ返す。 |
-| `CASE-OS-L10-022-03q` | `AC-OS-L3-022-03` | return destination/re-evaluation conditionだけ欠落 | 未解決/義務を保持しLABO/判断ownerへの戻し先か再評価条件を求める。 |
+| `CASE-OS-L10-022-03q` | `AC-OS-L3-022-03` | return destinationだけ欠落 | 未解決/義務を保持しLABO/判断ownerへ戻し先の不足を返す。 |
 | `CASE-OS-L10-024-03m` | `AC-OS-L3-024-02` | 提供完了だけを利用者受入へ昇格 | 提供と受入を分離し受入を生成しない。 |
 | `CASE-OS-L10-024-03n` | `AC-OS-L3-024-02` | 提供完了だけを改善成功へ昇格 | LABO効果評価を分離し成功を生成しない。 |
 | `CASE-OS-L10-024-03o` | `AC-OS-L3-024-03` | WEB-OS job情報だけを本体OS正本へ混入 | 拒否しWEB-OS scopeに保つ。 |
@@ -911,7 +911,7 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | `CASE-OS-L10-024-03t` | `AC-OS-L3-024-02`,`AC-OS-L3-024-03` | 再検証待ちstateだけを削除 | 再検証待ちを保持し検証済みにしない。 |
 | `CASE-OS-L10-046-03e` | `AC-OS-L3-046-01`,`AC-OS-L3-046-02` | dispatch successだけ、Ready/admission未完 | successを次段へ伝播せず後続未完を保つ。 |
 | `CASE-OS-L10-046-03f` | `AC-OS-L3-046-01` | final admissionのreviewed content HEADだけ不一致 | admission未成立。現HEADの独立reviewへ返す。 |
-| `CASE-OS-L10-046-03g` | `AC-OS-L3-046-01` | latest base/read-after bindingだけ欠落 | admission/read-after未成立。既存ownerへ返す。 |
+| `CASE-OS-L10-046-03g` | `AC-OS-L3-046-01` | latest base bindingだけ欠落 | 最新baseとのadmission未成立。既存ownerへ返す。 |
 | `CASE-OS-L10-048-01i` | `AC-OS-L3-048-01`,`AC-OS-L3-048-03` | finding identityだけresolution/evaluationへ結ばない | finding relation未完を保持し発生元へ返す。 |
 | `CASE-OS-L10-048-01j` | `AC-OS-L3-048-01` | OSからLABOへ渡すcandidateのevidenceだけ欠落 | 評価可能candidateとして渡さずOS ownerへ返す。 |
 | `CASE-OS-L10-048-02i` | `AC-OS-L3-048-02` | unacknowledged findingだけをresolvedへ変更 | pendingを維持しack欠落をownerへ返す。 |
@@ -939,3 +939,9 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | `CASE-OS-L10-052-03h` | `AC-OS-L3-052-03` | ACKだけ存在し独立review receiptなし | receipt成立とせず、現HEADのreviewを待つ。 |
 | `CASE-OS-L10-052-03i` | `AC-OS-L3-052-03` | merge eventだけ存在し独立review receiptなし | receipt成立とせず、現HEADのreviewを待つ。 |
 | `CASE-OS-L10-052-03j` | `AC-OS-L3-052-03` | branch ancestryだけ存在し独立review receiptなし | receipt成立とせず、現HEADのreviewを待つ。 |
+| `CASE-OS-L10-022-03r` | `AC-OS-L3-022-03` | re-evaluation conditionだけ欠落 | 未解決/義務を保持しLABO/既存判断ownerへ再評価条件不足を返す。 |
+| `CASE-OS-L10-046-03h` | `AC-OS-L3-046-01` | 最終admission成立後のread-after evidenceだけ欠落 | read-after未完を保ち最終pair一致を推定せずOS既存ownerへ返す。 |
+| `CASE-OS-L10-046-03i` | `AC-OS-L3-046-02` | 別scopeで得た成功receiptだけを当該scopeの成功として流用 | 当該scopeを未完に保ち別scopeの成功を伝播せず発生元へ返す。 |
+| `CASE-OS-L10-046-03j` | `AC-OS-L3-046-01` | 未見normal:最終admissionとread-afterを同content HEAD/最新base pairに結ぶ | 同pairを追跡できる場合だけ最終admission/read-afterの成立を別段階で表す。 |
+| `CASE-OS-L10-021-03ag` | `AC-OS-L3-021-03` | 選択service①のevidenceだけをservice②のevidenceへ入替 | ①の適格性を代用せず未完としてHARNESS提供元へ返す。 |
+| `CASE-OS-L10-021-03ah` | `AC-OS-L3-021-03` | operation scopeだけを別project scopeへ変える | 対象scope外導入を止めOS/既存authority ownerへ返す。 |
