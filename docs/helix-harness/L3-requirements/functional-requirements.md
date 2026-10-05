@@ -370,7 +370,7 @@ G0の順序案BはStage 2a後に2cを2bと並行する段階配置であり、03
 
 | 親 | 追加AC | 追加する判定条件 |
 |---|---|---|
-| 034 | `AC-HARNESS-L3-034-04` | L2:712のAI条件7項目（判断再現性、Worker/verifier独立性、根拠対応、反復停止性、費用、provider縮退、memory汚染耐性）を適用時に個別照合し、非AI対象へ無理由で課さない。L11:470/472/473/475/480のmetric意味流用、許容差、oracle、probe、旧層・local代替、ownerによる黙示変更、資源不足、session交代時の未完消失、error-budget誤分類、再現のない根因断定、手法導入だけの完了を別判定する。 |
+| 034 | `AC-HARNESS-L3-034-04` | L2:712のAI条件7項目（判断再現性、Worker/verifier独立性、根拠対応、反復停止性、費用、provider縮退、memory汚染耐性）を適用時に個別照合し、非AI対象へ無理由で課さない。L11:470/472/473/475/480のmetric意味流用、許容差、oracle、probe、旧層・local代替、ownerによる黙示変更、資源不足、session交代時の未完消失、error-budget誤分類、再現のない根因断定、手法導入だけの完了を別判定する。対象scopeで適用する計測contract設計・probe・fixture・局所検証・system検証・利用実態受入・時間軸評価・measurement process overhead・再現条件・requirement/release/regression/改善episodeのtraceを個別照合し、選択riskに基づくfault/race/soak/crash recoveryの適用と選択根拠を別々に保持する。 |
 | 036 | `AC-HARNESS-L3-036-04` | 固定gate identity/content/version/scopeと両面結果を照合し、未観測はpassにしない。FE oracle unknownは該当gate全体を保留するが、未見正常だけで拒否しない。非適用記録は判定者・理由・対象revision・HEAD・再評価条件を持ち、OSは固定適用性を変更しない。acceptanceをgate結果から推定しない。90% KPI候補はticket合否に使わない。 |
 | 038 | `AC-HARNESS-L3-038-04` | capabilityごとに既存義務への採用、強化、再設計候補、根拠とauthority付き却下/対象外、吸収先付き吸収、未決/unknownを区別する。空coverage、本文貼付をtraceとすること、複数能力への根拠ない複製、後段を前段から推定することを別々に拒否する。共有oracleの再利用自体は拒否理由にしない。 |
 | 038 | `AC-HARNESS-L3-038-05` | L11:612の5段階（source/scope map、observation contract、as-is design/test、intent/PO状態、gap/owner/routing）を順序とclaim scope付きで照合し、未claim後段は未完義務に保つ。各段階の主張はその段階に必要な内容だけを要求し、後段成果を初期観測/要求形成の前提にしない。 |
