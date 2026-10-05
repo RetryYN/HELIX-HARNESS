@@ -1,0 +1,7 @@
+# HARNESS Stage3 review04補正・最新main照合
+
+本文 `90948968311c30bdf6fc11bf4a09a8ef749b3a33`、最新main `0757e15875f6defff8b3af41ff61882e685a1e24`。未承認、独立再レビュー待ち。
+
+Workerの26所見対応後、Rootが変更FR/FV差分を読み、8索引の省略展開で落ちた参照を復元した。同じ変異6行を参照索引にし、適用oracleを持つ未見screen/textの正常結果を修正した。Stage4を含む6承認本文は最新main全bytesと一致するprefixとして保持。全869 CASE ID、実AC、重複0・dangling0、全suffixとsource pinを実計算した。Stage3単独の実行成功や所見解消は主張しない。
+
+レビュー04の旧source未確認4群はWorker追補に実読範囲を記録した。Rootのsource検査はhash照合であり全文意味レビューの代用ではない。独立側へ同exact base/HEADの意味照合を依頼する。旧runtime/test/CI/Bunは実行せず、新承認・Ready・merge・Issue closeを生成しない。
