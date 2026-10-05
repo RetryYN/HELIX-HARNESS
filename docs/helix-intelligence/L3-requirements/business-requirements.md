@@ -40,3 +40,26 @@ Acceptance/evidenceは `functional-requirements.md` のFR-INT-066およびAC-INT
 ## Stage 2c — L2-075の業務範囲
 
 固定親 `HELIXINTELLIGENCE-L2-075` はproposal identityとqualification handoffの機能条件を持つが、独立business outcome・business owner・business metricを追加で定めない。そのためBR-INT-075およびbusiness CASEは起草せず、受入/evidenceは `FR-INT-075` の `AC-INT-075-01`〜`AC-INT-075-06` とfunctional L10の `CASE-INT-075-01`〜`CASE-INT-075-09` を参照する。承認済みStage 2aのBR-INT-010/066とL2-068の業務範囲を075へ広げない。
+
+
+## Stage 4 — 業務上の独立成果なし
+
+固定親HELIXINTELLIGENCE-L2-017/030–041/044/045は接続・source handoff・境界保持・candidateを定め、独立業務成果やKPIを定めない。従って新BR、業務owner、business pass gateは追加しない。確認はfunctional ACと固定L11 R2187-01の当該行を参照する。
+
+| 固定親 | business outcome | 検証参照 |
+|---|---|---|
+| `HELIXINTELLIGENCE-L2-017` | 固定L2に独立business outcomeなし | `AC-INT-017-01`〜`-04`; `CASE-INT-017-01`, `CASE-INT-017-02a`〜`-02f`, `CASE-INT-017-03`, `CASE-INT-017-04`, `CASE-INT-017-05a`〜`-05k` |
+| `HELIXINTELLIGENCE-L2-030` | 固定L2に独立business outcomeなし | `AC-INT-030-01`〜`-04`; `CASE-INT-030-01`, `CASE-INT-030-02a`〜`-02f`, `CASE-INT-030-03`, `CASE-INT-030-04`, `CASE-INT-030-05a`〜`-05k` |
+| `HELIXINTELLIGENCE-L2-031` | 固定L2に独立business outcomeなし | `AC-INT-031-01`〜`-04`; `CASE-INT-031-01`, `CASE-INT-031-02a`〜`-02f`, `CASE-INT-031-03`, `CASE-INT-031-04`, `CASE-INT-031-05a`〜`-05k` |
+| `HELIXINTELLIGENCE-L2-032` | 固定L2に独立business outcomeなし | `AC-INT-032-01`〜`-04`; `CASE-INT-032-01`, `CASE-INT-032-02a`〜`-02f`, `CASE-INT-032-03`, `CASE-INT-032-04`, `CASE-INT-032-05a`〜`-05k` |
+| `HELIXINTELLIGENCE-L2-033` | 固定L2に独立business outcomeなし | `AC-INT-033-01`〜`-04`; `CASE-INT-033-01`, `CASE-INT-033-02a`〜`-02f`, `CASE-INT-033-03`, `CASE-INT-033-04`, `CASE-INT-033-05a`〜`-05k` |
+| `HELIXINTELLIGENCE-L2-034` | 固定L2に独立business outcomeなし | `AC-INT-034-01`〜`-04`; `CASE-INT-034-01`, `CASE-INT-034-02a`〜`-02f`, `CASE-INT-034-03`, `CASE-INT-034-04`, `CASE-INT-034-05a`〜`-05k` |
+| `HELIXINTELLIGENCE-L2-035` | 固定L2に独立business outcomeなし | `AC-INT-035-01`〜`-04`; `CASE-INT-035-01`, `CASE-INT-035-02a`〜`-02f`, `CASE-INT-035-03`, `CASE-INT-035-04`, `CASE-INT-035-05a`〜`-05k` |
+| `HELIXINTELLIGENCE-L2-036` | 固定L2に独立business outcomeなし | `AC-INT-036-01`〜`-04`; `CASE-INT-036-01`, `CASE-INT-036-02a`〜`-02f`, `CASE-INT-036-03`, `CASE-INT-036-04`, `CASE-INT-036-05a`〜`-05k` |
+| `HELIXINTELLIGENCE-L2-037` | 固定L2に独立business outcomeなし | `AC-INT-037-01`〜`-04`; `CASE-INT-037-01`, `CASE-INT-037-02a`〜`-02f`, `CASE-INT-037-03`, `CASE-INT-037-04`, `CASE-INT-037-05a`〜`-05k` |
+| `HELIXINTELLIGENCE-L2-038` | 固定L2に独立business outcomeなし | `AC-INT-038-01`〜`-04`; `CASE-INT-038-01`, `CASE-INT-038-02a`〜`-02f`, `CASE-INT-038-03`, `CASE-INT-038-04`, `CASE-INT-038-05a`〜`-05k` |
+| `HELIXINTELLIGENCE-L2-039` | 固定L2に独立business outcomeなし | `AC-INT-039-01`〜`-04`; `CASE-INT-039-01`, `CASE-INT-039-02a`〜`-02f`, `CASE-INT-039-03`, `CASE-INT-039-04`, `CASE-INT-039-05a`〜`-05k` |
+| `HELIXINTELLIGENCE-L2-040` | 固定L2に独立business outcomeなし | `AC-INT-040-01`〜`-04`; `CASE-INT-040-01`, `CASE-INT-040-02a`〜`-02f`, `CASE-INT-040-03`, `CASE-INT-040-04`, `CASE-INT-040-05a`〜`-05k` |
+| `HELIXINTELLIGENCE-L2-041` | 固定L2に独立business outcomeなし | `AC-INT-041-01`〜`-04`; `CASE-INT-041-01`, `CASE-INT-041-02a`〜`-02f`, `CASE-INT-041-03`, `CASE-INT-041-04`, `CASE-INT-041-05a`〜`-05k` |
+| `HELIXINTELLIGENCE-L2-044` | 固定L2に独立business outcomeなし | `AC-INT-044-01`〜`-04`; `CASE-INT-044-01`, `CASE-INT-044-02a`〜`-02f`, `CASE-INT-044-03`, `CASE-INT-044-04`, `CASE-INT-044-05a`〜`-05k` |
+| `HELIXINTELLIGENCE-L2-045` | 固定L2に独立business outcomeなし | `AC-INT-045-01`〜`-04`; `CASE-INT-045-01`, `CASE-INT-045-02a`〜`-02f`, `CASE-INT-045-03`, `CASE-INT-045-04`, `CASE-INT-045-05a`〜`-05k` |

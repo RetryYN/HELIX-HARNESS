@@ -44,3 +44,26 @@
 ## Stage 2c — L2-075の業務検証範囲
 
 固定親 `HELIXINTELLIGENCE-L2-075` は独立business outcomeを要求しないため、BR-INT-075/Business CASEは追加しない。Stage 2c evidenceは `FR-INT-075` の `AC-INT-075-01`〜`AC-INT-075-06` およびfunctional CASE `CASE-INT-075-01`〜`CASE-INT-075-09` を参照する。qualification owner、business KPI、新しいgateは作らない。
+
+
+## Stage 4 — business pair参照
+
+独立business resultを要求する固定親がないためBusiness CASEは追加しない。各機能CASEが確認する固定L11のowner・scope・source revision・unknown/returnを業務境界の観測として参照する。
+
+| 固定親 | 内容oracle | 検証参照 |
+|---|---|---|
+| `HELIXINTELLIGENCE-L2-017` | L11 R2187-01該当行とL2 owner/return | `CASE-INT-017-01`, `CASE-INT-017-02a`〜`-02f`, `CASE-INT-017-03`, `CASE-INT-017-04`, `CASE-INT-017-05a`〜`-05k` |
+| `HELIXINTELLIGENCE-L2-030` | L11 R2187-01該当行とL2 owner/return | `CASE-INT-030-01`, `CASE-INT-030-02a`〜`-02f`, `CASE-INT-030-03`, `CASE-INT-030-04`, `CASE-INT-030-05a`〜`-05k` |
+| `HELIXINTELLIGENCE-L2-031` | L11 R2187-01該当行とL2 owner/return | `CASE-INT-031-01`, `CASE-INT-031-02a`〜`-02f`, `CASE-INT-031-03`, `CASE-INT-031-04`, `CASE-INT-031-05a`〜`-05k` |
+| `HELIXINTELLIGENCE-L2-032` | L11 R2187-01該当行とL2 owner/return | `CASE-INT-032-01`, `CASE-INT-032-02a`〜`-02f`, `CASE-INT-032-03`, `CASE-INT-032-04`, `CASE-INT-032-05a`〜`-05k` |
+| `HELIXINTELLIGENCE-L2-033` | L11 R2187-01該当行とL2 owner/return | `CASE-INT-033-01`, `CASE-INT-033-02a`〜`-02f`, `CASE-INT-033-03`, `CASE-INT-033-04`, `CASE-INT-033-05a`〜`-05k` |
+| `HELIXINTELLIGENCE-L2-034` | L11 R2187-01該当行とL2 owner/return | `CASE-INT-034-01`, `CASE-INT-034-02a`〜`-02f`, `CASE-INT-034-03`, `CASE-INT-034-04`, `CASE-INT-034-05a`〜`-05k` |
+| `HELIXINTELLIGENCE-L2-035` | L11 R2187-01該当行とL2 owner/return | `CASE-INT-035-01`, `CASE-INT-035-02a`〜`-02f`, `CASE-INT-035-03`, `CASE-INT-035-04`, `CASE-INT-035-05a`〜`-05k` |
+| `HELIXINTELLIGENCE-L2-036` | L11 R2187-01該当行とL2 owner/return | `CASE-INT-036-01`, `CASE-INT-036-02a`〜`-02f`, `CASE-INT-036-03`, `CASE-INT-036-04`, `CASE-INT-036-05a`〜`-05k` |
+| `HELIXINTELLIGENCE-L2-037` | L11 R2187-01該当行とL2 owner/return | `CASE-INT-037-01`, `CASE-INT-037-02a`〜`-02f`, `CASE-INT-037-03`, `CASE-INT-037-04`, `CASE-INT-037-05a`〜`-05k` |
+| `HELIXINTELLIGENCE-L2-038` | L11 R2187-01該当行とL2 owner/return | `CASE-INT-038-01`, `CASE-INT-038-02a`〜`-02f`, `CASE-INT-038-03`, `CASE-INT-038-04`, `CASE-INT-038-05a`〜`-05k` |
+| `HELIXINTELLIGENCE-L2-039` | L11 R2187-01該当行とL2 owner/return | `CASE-INT-039-01`, `CASE-INT-039-02a`〜`-02f`, `CASE-INT-039-03`, `CASE-INT-039-04`, `CASE-INT-039-05a`〜`-05k` |
+| `HELIXINTELLIGENCE-L2-040` | L11 R2187-01該当行とL2 owner/return | `CASE-INT-040-01`, `CASE-INT-040-02a`〜`-02f`, `CASE-INT-040-03`, `CASE-INT-040-04`, `CASE-INT-040-05a`〜`-05k` |
+| `HELIXINTELLIGENCE-L2-041` | L11 R2187-01該当行とL2 owner/return | `CASE-INT-041-01`, `CASE-INT-041-02a`〜`-02f`, `CASE-INT-041-03`, `CASE-INT-041-04`, `CASE-INT-041-05a`〜`-05k` |
+| `HELIXINTELLIGENCE-L2-044` | L11 R2187-01該当行とL2 owner/return | `CASE-INT-044-01`, `CASE-INT-044-02a`〜`-02f`, `CASE-INT-044-03`, `CASE-INT-044-04`, `CASE-INT-044-05a`〜`-05k` |
+| `HELIXINTELLIGENCE-L2-045` | L11 R2187-01該当行とL2 owner/return | `CASE-INT-045-01`, `CASE-INT-045-02a`〜`-02f`, `CASE-INT-045-03`, `CASE-INT-045-04`, `CASE-INT-045-05a`〜`-05k` |

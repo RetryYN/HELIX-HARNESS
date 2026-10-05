@@ -113,3 +113,173 @@ C13-M10、C13-M7、C13-M12 audit-record correction、Minor INT-010、Minor INT-0
 ## Stage 2a（PR #2594）carry-forward記録
 
 以下は旧reviewのscope別carry状態を示す時点説明であり、Stage 2cの要求・受入条件・親依存ではない。C13-M7（L2-066）、C13-M10（L2-010）、Minor INT-010はStage 2aで扱った親範囲の履歴として記録する。C13-M12は複数機構・stageにまたがる監査記録整合性のfindingであり、INTELLIGENCE L2-068に関するcomment line 168の指摘はStage 2c本文で解消したとは扱わず、未解消のまま残す。Minor INT-060-078は複数親にまたがる範囲で、Stage 2aで扱った部分だけから全範囲を解消・確認済みとはしない。`C13-U-INT-NFR-060-078`と`C13-U-all-crosswalk-and-legacy`も共通監査の未確認範囲であり、L2-068に関わる未確認はStage 2cを含め引き続きopenである。この本文と監査は独立reviewやfinding closureを意味しない。
+
+
+## Stage 4 — 採択済み1.0接続15親
+
+状態: 以下はL3承認前の候補要件であり、実装・実行・受入済みを意味しない。対象はPO採択済みHELIXINTELLIGENCE-L2-017/030–041/044/045のみ。指定version_targetは1.0、041はsourceごとに定義する。全Stage3/前Stage完了をgateにしない。旧L3 shared FR/ACとpaired acceptanceのtrace・独立failure oracleを形式起点に再導出し、旧ID、旧runtime/route/approval/CIを移さない。根拠の旧L3定義は`LEGACY-ASSET-F542125805B777D8A56A` (`archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md:148-168`)、shared FR/ACは`LEGACY-ASSET-EE5DBACC7F28F7D1F605` (`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md:38-57,134-197,198-307`)、対のtest designは`LEGACY-ASSET-44DD86E3DEC09E65EF51` (`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md:32-90,91-216`)。旧sourceごとの再利用/再導出/置換は各節と時点監査へ記録する。
+
+### FR-INT-017 — 限定修復の接続横断境界（Stage 4）
+
+- 固定親 `HELIXINTELLIGENCE-L2-017`（L2 633bf12行202–206、L11 R2187-01行266）、version_target `1.0`。固定L2/L11・PO採択revisionをsource authorityとする。
+- 入力: 同一target revision/scopeに対するSECURITY permission/isolation・Worker実行・HARNESS検証義務・OS検収の各結果。出力: 境界別の未完/完了状態を保つ統合修復結果。責務: SECURITY permission/isolation; OS/Worker assignment/result; HARNESS obligation; OS acceptance。
+- 正常条件: 四段階の各receiptを別source/revision/ownerで結び、操作時のpermission有効性と後日の失効を分離。HARNESS-L2-010/011共通packのidentity、契約/成果物/依存版、declared compatibility、交換・更新・rollbackを各parent operationで保持する。pack failureを個別source authorityの代替にせず、pack/sourceに応じたownerへ返す。
+- AC-INT-017-01 (正常): 四段階の各receiptを別source/revision/ownerで結び、操作時のpermission有効性と後日の失効を分離。各source identity/revision/scopeとownerを個別に保持する。INTELLIGENCE自身はpermission・ticket・acceptance・canonical更新を生成しない。
+- AC-INT-017-02 (独立negative): 下記CASE-INT-017-02a〜fの各一変数変異をそれぞれ拒否し、理由とSECURITY permission/isolation; OS/Worker assignment/result; HARNESS obligation; OS acceptanceを返す。共通packの各single-field変異CASE-INT-017-05a〜05kも別々に拒否し、HARNESS pack contract ownerへ戻す。
+- AC-INT-017-03 (未見正常): 未見の段階順でも同一target/scopeの証拠を照合し、実行時点で有効だったpermissionを後日失効で消去しない。L11 R2187-01に記載された内容意味を照合する。
+- AC-INT-017-04 (unknown/scope): 未宣言source/version/scopeまたは必須情報unknownは推測せず局所保留し、SECURITY permission/isolation; OS/Worker assignment/result; HARNESS obligation; OS acceptanceへ戻す。無関係な有効source/operationは維持する。
+- 旧source disposition: 旧System Synthesis stable node/edge identityと部分合成、SYN-AC-001の誤bind変異を意味再導出。旧automation/DB authorityは置換。
+
+### FR-INT-030 — HELIX-HARNESS → Situation Model（Stage 4）
+
+- 固定親 `HELIXINTELLIGENCE-L2-030`（L2 633bf12行208–215、L11 R2187-01行267）、version_target `1.0`。固定L2/L11・PO採択revisionをsource authorityとする。
+- 入力: 許可されたHARNESS requirement/design revision、process contract、verification obligation、admitted connector contract。出力: source revision付きSituation Model情報。責務: HARNESS source owner; 適用されるCONNECT contract owner。
+- 正常条件: 同一HARNESS source identity/revisionの契約と義務を反映しHARNESSを正本ownerとして残す。HARNESS-L2-010/011共通packのidentity、契約/成果物/依存版、declared compatibility、交換・更新・rollbackを各parent operationで保持する。pack failureを個別source authorityの代替にせず、pack/sourceに応じたownerへ返す。
+- AC-INT-030-01 (正常): 同一HARNESS source identity/revisionの契約と義務を反映しHARNESSを正本ownerとして残す。各source identity/revision/scopeとownerを個別に保持する。INTELLIGENCE自身はpermission・ticket・acceptance・canonical更新を生成しない。
+- AC-INT-030-02 (独立negative): 下記CASE-INT-030-02a〜fの各一変数変異をそれぞれ拒否し、理由とHARNESS source owner; 適用されるCONNECT contract ownerを返す。共通packの各single-field変異CASE-INT-030-05a〜05kも別々に拒否し、HARNESS pack contract ownerへ戻す。
+- AC-INT-030-03 (未見正常): 宣言済compatibility範囲内の未見version pairを当該契約内で扱い、外はunknown。L11 R2187-01に記載された内容意味を照合する。
+- AC-INT-030-04 (unknown/scope): 未宣言source/version/scopeまたは必須情報unknownは推測せず局所保留し、HARNESS source owner; 適用されるCONNECT contract ownerへ戻す。無関係な有効source/operationは維持する。
+- 旧source disposition: 旧SYN exact identity、HARNESS source ownershipとstale receipt oracleを再導出。旧CI projectionは移植しない。
+
+### FR-INT-031 — HELIX-OS → Situation Model（Stage 4）
+
+- 固定親 `HELIXINTELLIGENCE-L2-031`（L2 633bf12行217–224、L11 R2187-01行268）、version_target `1.0`。固定L2/L11・PO採択revisionをsource authorityとする。
+- 入力: 許可ticket/current state/dependency/evidence、OS source revision、admitted connector contract。出力: OS revision付きSituation Model情報。OSがstate/authorityを保持。責務: OS source owner; 適用されるCONNECT contract owner。
+- 正常条件: 同一ticket state revisionとdependency/evidenceを関連づけ、OS stateを変更しない。HARNESS-L2-010/011共通packのidentity、契約/成果物/依存版、declared compatibility、交換・更新・rollbackを各parent operationで保持する。pack failureを個別source authorityの代替にせず、pack/sourceに応じたownerへ返す。
+- AC-INT-031-01 (正常): 同一ticket state revisionとdependency/evidenceを関連づけ、OS stateを変更しない。各source identity/revision/scopeとownerを個別に保持する。INTELLIGENCE自身はpermission・ticket・acceptance・canonical更新を生成しない。
+- AC-INT-031-02 (独立negative): 下記CASE-INT-031-02a〜fの各一変数変異をそれぞれ拒否し、理由とOS source owner; 適用されるCONNECT contract ownerを返す。共通packの各single-field変異CASE-INT-031-05a〜05kも別々に拒否し、HARNESS pack contract ownerへ戻す。
+- AC-INT-031-03 (未見正常): 宣言済state/event contractにある未見値はticket/revisionへ結び、範囲外だけunknown。L11 R2187-01に記載された内容意味を照合する。
+- AC-INT-031-04 (unknown/scope): 未宣言source/version/scopeまたは必須情報unknownは推測せず局所保留し、OS source owner; 適用されるCONNECT contract ownerへ戻す。無関係な有効source/operationは維持する。
+- 旧source disposition: 旧RLO stale-event/authority分離とuniversal workflowのsource revision shapeを再導出。Issue/event runtime authorityは置換。
+
+### FR-INT-032 — BRAIN → INTELLIGENCE（Stage 4）
+
+- 固定親 `HELIXINTELLIGENCE-L2-032`（L2 633bf12行226–233、L11 R2187-01行269）、version_target `1.0`。固定L2/L11・PO採択revisionをsource authorityとする。
+- 入力: BRAIN Pattern/Unit/Part、applicability、exception、counterexampleおよびrevision。出力: source-bound INTELLIGENCE判断材料。BRAIN knowledge canonicalを保持。責務: BRAIN source owner; 適用されるCONNECT contract owner。
+- 正常条件: 適用条件と反例を同じPattern identity/revisionへ結び、判断材料にする。HARNESS-L2-010/011共通packのidentity、契約/成果物/依存版、declared compatibility、交換・更新・rollbackを各parent operationで保持する。pack failureを個別source authorityの代替にせず、pack/sourceに応じたownerへ返す。
+- AC-INT-032-01 (正常): 適用条件と反例を同じPattern identity/revisionへ結び、判断材料にする。各source identity/revision/scopeとownerを個別に保持する。INTELLIGENCE自身はpermission・ticket・acceptance・canonical更新を生成しない。
+- AC-INT-032-02 (独立negative): 下記CASE-INT-032-02a〜fの各一変数変異をそれぞれ拒否し、理由とBRAIN source owner; 適用されるCONNECT contract ownerを返す。共通packの各single-field変異CASE-INT-032-05a〜05kも別々に拒否し、HARNESS pack contract ownerへ戻す。
+- AC-INT-032-03 (未見正常): 未見kind/versionは宣言済範囲内だけ、未宣言/範囲外はunknown。L11 R2187-01に記載された内容意味を照合する。
+- AC-INT-032-04 (unknown/scope): 未宣言source/version/scopeまたは必須情報unknownは推測せず局所保留し、BRAIN source owner; 適用されるCONNECT contract ownerへ戻す。無関係な有効source/operationは維持する。
+- 旧source disposition: 旧DAC class/disposition/input_policy/bindingの区別を意味再導出。旧registry taxonomy/schemaは現行へ固定せず置換。
+
+### FR-INT-033 — Product Core / HARNESS → INTELLIGENCE（Stage 4）
+
+- 固定親 `HELIXINTELLIGENCE-L2-033`（L2 633bf12行235–242、L11 R2187-01行270）、version_target `1.0`。固定L2/L11・PO採択revisionをsource authorityとする。
+- 入力: Product Core requirement/design/meaningとHARNESS process contract/verification obligationを別source/revisionで受領。出力: source別revisionを保持するINTELLIGENCE理解材料。責務: 該当Product Core owner; HARNESS owner; CONNECT contract owner。
+- 正常条件: 二sourceの類似語彙もowner/meaning/revision別に保ち、独断で統合しない。HARNESS-L2-010/011共通packのidentity、契約/成果物/依存版、declared compatibility、交換・更新・rollbackを各parent operationで保持する。pack failureを個別source authorityの代替にせず、pack/sourceに応じたownerへ返す。
+- AC-INT-033-01 (正常): 二sourceの類似語彙もowner/meaning/revision別に保ち、独断で統合しない。各source identity/revision/scopeとownerを個別に保持する。INTELLIGENCE自身はpermission・ticket・acceptance・canonical更新を生成しない。
+- AC-INT-033-02 (独立negative): 下記CASE-INT-033-02a〜dの各一変数変異をそれぞれ拒否し、理由と該当Product Core owner; HARNESS owner; CONNECT contract ownerを返す。共通packの各single-field変異CASE-INT-033-05a〜05kも別々に拒否し、HARNESS pack contract ownerへ戻す。
+- AC-INT-033-03 (未見正常): 宣言済schema compatibility内の未見pairでも別source edgeを保ち、未知schemaはunsupported。L11 R2187-01に記載された内容意味を照合する。
+- AC-INT-033-04 (unknown/scope): 未宣言source/version/scopeまたは必須情報unknownは推測せず局所保留し、該当Product Core owner; HARNESS owner; CONNECT contract ownerへ戻す。無関係な有効source/operationは維持する。
+- 旧source disposition: 旧DAC owner/binding/semantic conflictとDAC-AC-003/006 negative shapeを再導出。旧classifier implementationは置換。
+
+### FR-INT-034 — LABO → INTELLIGENCE（1.0評価材料）（Stage 4）
+
+- 固定親 `HELIXINTELLIGENCE-L2-034`（L2 633bf12行244–251、L11 R2187-01行271）、version_target `1.0`。固定L2/L11・PO採択revisionをsource authorityとする。
+- 入力: 過去evaluation、success/failure/counterexample、Worker/model実績、Bench level、explicitly unevaluatedと各source scope/revision。出力: scope付き判断材料。過去評価ownerはLABO、配置候補ownerはINTELLIGENCE。責務: LABO evaluation/source owner。
+- 正常条件: 評価済み同scope材料と明示的未評価caseを分け、未評価を維持。HARNESS-L2-010/011共通packのidentity、契約/成果物/依存版、declared compatibility、交換・更新・rollbackを各parent operationで保持する。pack failureを個別source authorityの代替にせず、pack/sourceに応じたownerへ返す。
+- AC-INT-034-01 (正常): 評価済み同scope材料と明示的未評価caseを分け、未評価を維持。各source identity/revision/scopeとownerを個別に保持する。INTELLIGENCE自身はpermission・ticket・acceptance・canonical更新を生成しない。
+- AC-INT-034-02 (独立negative): 下記CASE-INT-034-02a〜fの各一変数変異をそれぞれ拒否し、理由とLABO evaluation/source ownerを返す。共通packの各single-field変異CASE-INT-034-05a〜05kも別々に拒否し、HARNESS pack contract ownerへ戻す。
+- AC-INT-034-03 (未見正常): 未fixtureのLABO定義済status/versionを同scopeで扱い、explicitly unevaluatedは未評価として保持する。L11 R2187-01に記載された内容意味を照合する。
+- AC-INT-034-04 (unknown/scope): 未宣言source/version/scopeまたは必須情報unknownは推測せず局所保留し、LABO evaluation/source ownerへ戻す。無関係な有効source/operationは維持する。
+- 旧source disposition: 旧HELIX-Bench success/failure/missing/scope-bound evidenceを意味再導出。旧score/threshold/provider axisは移さない。
+
+### FR-INT-035 — INTELLIGENCE → OS（計画・判断候補）（Stage 4）
+
+- 固定親 `HELIXINTELLIGENCE-L2-035`（L2 633bf12行253–260、L11 R2187-01行272）、version_target `1.0`。固定L2/L11・PO採択revisionをsource authorityとする。
+- 入力: plan/placement/diagnosis/review/repair candidate、根拠、停止条件、依存、source revision。出力: OSが受け取れる候補。ticket登録・割当・実行・進行はOS。責務: INTELLIGENCE candidate owner; OS ticket/assignment owner。
+- 正常条件: 完全なcandidate receiptを渡し、OSによるticket化とは分離。HARNESS-L2-010/011共通packのidentity、契約/成果物/依存版、declared compatibility、交換・更新・rollbackを各parent operationで保持する。pack failureを個別source authorityの代替にせず、pack/sourceに応じたownerへ返す。
+- AC-INT-035-01 (正常): 完全なcandidate receiptを渡し、OSによるticket化とは分離。各source identity/revision/scopeとownerを個別に保持する。INTELLIGENCE自身はpermission・ticket・acceptance・canonical更新を生成しない。
+- AC-INT-035-02 (独立negative): 下記CASE-INT-035-02a〜fの各一変数変異をそれぞれ拒否し、理由とINTELLIGENCE candidate owner; OS ticket/assignment ownerを返す。共通packの各single-field変異CASE-INT-035-05a〜05kも別々に拒否し、HARNESS pack contract ownerへ戻す。
+- AC-INT-035-03 (未見正常): 未fixture task inputで既知のtask/scope contractを満たす候補を作り、OSのticket化とは分離する。L11 R2187-01に記載された内容意味を照合する。
+- AC-INT-035-04 (unknown/scope): 未宣言source/version/scopeまたは必須情報unknownは推測せず局所保留し、INTELLIGENCE candidate owner; OS ticket/assignment ownerへ戻す。無関係な有効source/operationは維持する。
+- 旧source disposition: 旧RLO authority split/candidate-vs-ticketのfailure shapeを再導出。Issue/branch/lease/control planeは現行OSへ置換。
+
+### FR-INT-036 — INTELLIGENCE ↔ SECURITY（Stage 4）
+
+- 固定親 `HELIXINTELLIGENCE-L2-036`（L2 633bf12行262–269、L11 R2187-01行273）、version_target `1.0`。固定L2/L11・PO採択revisionをsource authorityとする。
+- 入力: operation candidateのactor/action/target/scope/revisionとSECURITY permission/constraint/revocation結果。出力: 修復candidateに付くpermission照合結果。permission/isolation authorityはSECURITY。責務: SECURITY permission/isolation owner。
+- 正常条件: 同じactor/action/target/scopeに対するpermission状態を保持、許可発行/変更なし。HARNESS-L2-010/011共通packのidentity、契約/成果物/依存版、declared compatibility、交換・更新・rollbackを各parent operationで保持する。pack failureを個別source authorityの代替にせず、pack/sourceに応じたownerへ返す。
+- AC-INT-036-01 (正常): 同じactor/action/target/scopeに対するpermission状態を保持、許可発行/変更なし。各source identity/revision/scopeとownerを個別に保持する。INTELLIGENCE自身はpermission・ticket・acceptance・canonical更新を生成しない。
+- AC-INT-036-02 (独立negative): 下記CASE-INT-036-02a〜fの各一変数変異をそれぞれ拒否し、理由とSECURITY permission/isolation ownerを返す。共通packの各single-field変異CASE-INT-036-05a〜05kも別々に拒否し、HARNESS pack contract ownerへ戻す。
+- AC-INT-036-03 (未見正常): 未見actionは別actionの許可から類推せずunknownとして保留。L11 R2187-01に記載された内容意味を照合する。
+- AC-INT-036-04 (unknown/scope): 未宣言source/version/scopeまたは必須情報unknownは推測せず局所保留し、SECURITY permission/isolation ownerへ戻す。無関係な有効source/operationは維持する。
+- 旧source disposition: 旧SEC capability/target/provenance/permission axis独立性を再導出。SEC-AC-CAP-001/002/005 mutation形を使い、broker runtimeは移さない。
+
+### FR-INT-037 — OS → Worker（INTELLIGENCE candidate実行）（Stage 4）
+
+- 固定親 `HELIXINTELLIGENCE-L2-037`（L2 633bf12行271–278、L11 R2187-01行274）、version_target `1.0`。固定L2/L11・PO採択revisionをsource authorityとする。
+- 入力: OS発行・割当ticket、Worker actor、task scope、ticket revision、admitted contract。出力: Worker actor/scope付き実行結果を同ticketに結びOS/INTELLIGENCEへ返す。責務: OS ticket/assignment owner; Worker result integrity owner。
+- 正常条件: OS発行と割当済ticketに対して指定Workerが実行し、resultを同scopeで返す。HARNESS-L2-010/011共通packのidentity、契約/成果物/依存版、declared compatibility、交換・更新・rollbackを各parent operationで保持する。pack failureを個別source authorityの代替にせず、pack/sourceに応じたownerへ返す。
+- AC-INT-037-01 (正常): OS発行と割当済ticketに対して指定Workerが実行し、resultを同scopeで返す。各source identity/revision/scopeとownerを個別に保持する。INTELLIGENCE自身はpermission・ticket・acceptance・canonical更新を生成しない。
+- AC-INT-037-02 (独立negative): 下記CASE-INT-037-02a〜fの各一変数変異をそれぞれ拒否し、理由とOS ticket/assignment owner; Worker result integrity ownerを返す。共通packの各single-field変異CASE-INT-037-05a〜05kも別々に拒否し、HARNESS pack contract ownerへ戻す。
+- AC-INT-037-03 (未見正常): 未fixture Worker versionでも宣言済compatibilityとtask scope内ならticket/assignmentに結び付け、結果を同じticketに返す。L11 R2187-01に記載された内容意味を照合する。
+- AC-INT-037-04 (unknown/scope): 未宣言source/version/scopeまたは必須情報unknownは推測せず局所保留し、OS ticket/assignment owner; Worker result integrity ownerへ戻す。無関係な有効source/operationは維持する。
+- 旧source disposition: 旧WCC versioned descriptor/actor-scope resultとHAT-WCC wrong actor/scope/stale receiptを再導出。provider CLI/sandboxは移さない。
+
+### FR-INT-038 — HARNESS → 限定修復の検証義務（Stage 4）
+
+- 固定親 `HELIXINTELLIGENCE-L2-038`（L2 633bf12行280–287、L11 R2187-01行275）、version_target `1.0`。固定L2/L11・PO採択revisionをsource authorityとする。
+- 入力: requirement revision、oracle、expected failure、independent verification、consumer acceptance、backflow condition。出力: 修復scopeに束縛した検証義務一式。責務: HARNESS requirement/verification owner。
+- 正常条件: 修復前後の同じ義務を保ち、repairerが追加/削除しない。HARNESS-L2-010/011共通packのidentity、契約/成果物/依存版、declared compatibility、交換・更新・rollbackを各parent operationで保持する。pack failureを個別source authorityの代替にせず、pack/sourceに応じたownerへ返す。
+- AC-INT-038-01 (正常): 修復前後の同じ義務を保ち、repairerが追加/削除しない。各source identity/revision/scopeとownerを個別に保持する。INTELLIGENCE自身はpermission・ticket・acceptance・canonical更新を生成しない。
+- AC-INT-038-02 (独立negative): 下記CASE-INT-038-02a〜fの各一変数変異をそれぞれ拒否し、理由とHARNESS requirement/verification ownerを返す。共通packの各single-field変異CASE-INT-038-05a〜05kも別々に拒否し、HARNESS pack contract ownerへ戻す。
+- AC-INT-038-03 (未見正常): 宣言済み義務種別の未fixture oracleを使い、全必須証拠があれば同一義務を評価し、義務集合は変えない。L11 R2187-01に記載された内容意味を照合する。
+- AC-INT-038-04 (unknown/scope): 未宣言source/version/scopeまたは必須情報unknownは推測せず局所保留し、HARNESS requirement/verification ownerへ戻す。無関係な有効source/operationは維持する。
+- 旧source disposition: 旧SYN-AC-004 required verification omissionのoracleを再導出。CI executionは移さない。
+
+### FR-INT-039 — OS → 限定修復の検収（Stage 4）
+
+- 固定親 `HELIXINTELLIGENCE-L2-039`（L2 633bf12行289–296、L11 R2187-01行276）、version_target `1.0`。固定L2/L11・PO採択revisionをsource authorityとする。
+- 入力: scope付きrepair candidate、Worker execution evidence、HARNESS verification resultと各revision/receipt。出力: OS acceptanceへの検収入力。acceptance/progressはOS。責務: candidate/Worker/HARNESSの各source owner; OS acceptance owner。
+- 正常条件: candidate、execution、verificationを同一repair scopeで別段階として渡す。HARNESS-L2-010/011共通packのidentity、契約/成果物/依存版、declared compatibility、交換・更新・rollbackを各parent operationで保持する。pack failureを個別source authorityの代替にせず、pack/sourceに応じたownerへ返す。
+- AC-INT-039-01 (正常): candidate、execution、verificationを同一repair scopeで別段階として渡す。各source identity/revision/scopeとownerを個別に保持する。INTELLIGENCE自身はpermission・ticket・acceptance・canonical更新を生成しない。
+- AC-INT-039-02 (独立negative): 下記CASE-INT-039-02a〜fの各一変数変異をそれぞれ拒否し、理由とcandidate/Worker/HARNESSの各source owner; OS acceptance ownerを返す。共通packの各single-field変異CASE-INT-039-05a〜05kも別々に拒否し、HARNESS pack contract ownerへ戻す。
+- AC-INT-039-03 (未見正常): 未fixture receipt versionでもadmitted compatibilityとcorrelation/scopeが成立する範囲なら段階別に受領する。L11 R2187-01に記載された内容意味を照合する。
+- AC-INT-039-04 (unknown/scope): 未宣言source/version/scopeまたは必須情報unknownは推測せず局所保留し、candidate/Worker/HARNESSの各source owner; OS acceptance ownerへ戻す。無関係な有効source/operationは維持する。
+- 旧source disposition: 旧RLO stale receipt/wrong actor-scope/misordered handoff oracleを再導出。merge/CI acceptance authorityは移さない。
+
+### FR-INT-040 — INTELLIGENCE → LABO（1.0実績）（Stage 4）
+
+- 固定親 `HELIXINTELLIGENCE-L2-040`（L2 633bf12行298–305、L11 R2187-01行277）、version_target `1.0`。固定L2/L11・PO採択revisionをsource authorityとする。
+- 入力: prediction/diagnosis/review/placement/repair result、source revision、episode/scope、actual evidence/observation window。出力: LABOの過去評価材料。長期効果評価ownerはLABO。責務: INTELLIGENCE source/result owner; LABO evaluation owner。
+- 正常条件: predictionとactualを同episode/scopeへ別eventで結び、source revision/windowを区別。HARNESS-L2-010/011共通packのidentity、契約/成果物/依存版、declared compatibility、交換・更新・rollbackを各parent operationで保持する。pack failureを個別source authorityの代替にせず、pack/sourceに応じたownerへ返す。
+- AC-INT-040-01 (正常): predictionとactualを同episode/scopeへ別eventで結び、source revision/windowを区別。各source identity/revision/scopeとownerを個別に保持する。INTELLIGENCE自身はpermission・ticket・acceptance・canonical更新を生成しない。
+- AC-INT-040-02 (独立negative): 下記CASE-INT-040-02a〜fの各一変数変異をそれぞれ拒否し、理由とINTELLIGENCE source/result owner; LABO evaluation ownerを返す。共通packの各single-field変異CASE-INT-040-05a〜05kも別々に拒否し、HARNESS pack contract ownerへ戻す。
+- AC-INT-040-03 (未見正常): 遅着actualを元episode/revisionに結び、duplicateを追加成功に数えない。L11 R2187-01に記載された内容意味を照合する。
+- AC-INT-040-04 (unknown/scope): 未宣言source/version/scopeまたは必須情報unknownは推測せず局所保留し、INTELLIGENCE source/result owner; LABO evaluation ownerへ戻す。無関係な有効source/operationは維持する。
+- 旧source disposition: 旧HELIX-Bench failure/missing denominatorとRLO duplicate/late event distinctionを再導出。旧metric taxonomy/score thresholdは継承しない。
+
+### FR-INT-041 — 各source mechanism → Situation Model（Stage 4）
+
+- 固定親 `HELIXINTELLIGENCE-L2-041`（L2 633bf12行307–314、L11 R2187-01行278）、version_target `sourceごとに定義`。固定L2/L11・PO採択revisionをsource authorityとする。
+- 入力: 各admitted mechanismの許可current state/evidence、個別revision、connector/authority contract。出力: source別Situation Model input。個別connector/authority identityを維持。責務: 各source owner; CONNECT contract owner。
+- 正常条件: 選択・admitted sourceだけをそのsource authority/revisionで反映。Web/WEB-OSはcontractがなければ未観測。HARNESS-L2-010/011共通packのidentity、契約/成果物/依存版、declared compatibility、交換・更新・rollbackを各parent operationで保持する。pack failureを個別source authorityの代替にせず、pack/sourceに応じたownerへ返す。
+- AC-INT-041-01 (正常): 選択・admitted sourceだけをそのsource authority/revisionで反映。Web/WEB-OSはcontractがなければ未観測。各source identity/revision/scopeとownerを個別に保持する。INTELLIGENCE自身はpermission・ticket・acceptance・canonical更新を生成しない。
+- AC-INT-041-02 (独立negative): 下記CASE-INT-041-02a〜fの各一変数変異をそれぞれ拒否し、理由と各source owner; CONNECT contract ownerを返す。共通packの各single-field変異CASE-INT-041-05a〜05kも別々に拒否し、HARNESS pack contract ownerへ戻す。
+- AC-INT-041-03 (未見正常): sourceで宣言された互換rangeを照合し、range定義とcapability versionを分離。未宣言rangeはunknown。L11 R2187-01に記載された内容意味を照合する。
+- AC-INT-041-04 (unknown/scope): 未宣言source/version/scopeまたは必須情報unknownは推測せず局所保留し、各source owner; CONNECT contract ownerへ戻す。無関係な有効source/operationは維持する。
+- 旧source disposition: 旧DAC個別source identityとWCC source revisionを意味再導出。旧共通registry/connectorを新authorityとして採用しない。
+
+### FR-INT-044 — INTELLIGENCE → BRAINへの非直接更新境界（Stage 4）
+
+- 固定親 `HELIXINTELLIGENCE-L2-044`（L2 633bf12行334–341、L11 R2187-01行279）、version_target `1.0`。固定L2/L11・PO採択revisionをsource authorityとする。
+- 入力: INTELLIGENCE decision/candidate、genericization proposal、evidence/scope、LABO evaluation handoff。出力: candidateをLABO経路へ渡す。BRAIN knowledge canonicalを保持し直接出力しない。責務: LABO evaluation owner; BRAIN knowledge owner。
+- 正常条件: scope/evidence/評価状態を明示したcandidateをLABOへ渡す。HARNESS-L2-010/011共通packのidentity、契約/成果物/依存版、declared compatibility、交換・更新・rollbackを各parent operationで保持する。pack failureを個別source authorityの代替にせず、pack/sourceに応じたownerへ返す。
+- AC-INT-044-01 (正常): scope/evidence/評価状態を明示したcandidateをLABOへ渡す。各source identity/revision/scopeとownerを個別に保持する。INTELLIGENCE自身はpermission・ticket・acceptance・canonical更新を生成しない。
+- AC-INT-044-02 (独立negative): 下記CASE-INT-044-02a〜dの各一変数変異をそれぞれ拒否し、理由とLABO evaluation owner; BRAIN knowledge ownerを返す。共通packの各single-field変異CASE-INT-044-05a〜05kも別々に拒否し、HARNESS pack contract ownerへ戻す。
+- AC-INT-044-03 (未見正常): 既知の候補種別でも未fixtureのevidence/scopeをcandidateとしてLABOへ渡し、評価済みとはしない。L11 R2187-01に記載された内容意味を照合する。
+- AC-INT-044-04 (unknown/scope): 未宣言source/version/scopeまたは必須情報unknownは推測せず局所保留し、LABO evaluation owner; BRAIN knowledge ownerへ戻す。無関係な有効source/operationは維持する。
+- 旧source disposition: 旧SYN observation→candidate分離とDAC historical/candidate non-promotionを再導出。旧human gateを追加せずLABO/BRAIN現ownerへ置換。
+
+### FR-INT-045 — INTELLIGENCE → Product Core Backflow（Stage 4）
+
+- 固定親 `HELIXINTELLIGENCE-L2-045`（L2 633bf12行343–350、L11 R2187-01行280）、version_target `1.0`。固定L2/L11・PO採択revisionをsource authorityとする。
+- 入力: Product Core meaning conflict/gap/improvement candidate、source revision、target identity。出力: 該当Product Core向けbackflow candidate。canonical変更はProduct Core owner。責務: 該当Product Core owner; target不明なら未route。
+- 正常条件: target product/owner/revisionに結び付く照会candidateを返し、sourceを直接変更しない。HARNESS-L2-010/011共通packのidentity、契約/成果物/依存版、declared compatibility、交換・更新・rollbackを各parent operationで保持する。pack failureを個別source authorityの代替にせず、pack/sourceに応じたownerへ返す。
+- AC-INT-045-01 (正常): target product/owner/revisionに結び付く照会candidateを返し、sourceを直接変更しない。各source identity/revision/scopeとownerを個別に保持する。INTELLIGENCE自身はpermission・ticket・acceptance・canonical更新を生成しない。
+- AC-INT-045-02 (独立negative): 下記CASE-INT-045-02a〜dの各一変数変異をそれぞれ拒否し、理由と該当Product Core owner; target不明なら未routeを返す。共通packの各single-field変異CASE-INT-045-05a〜05kも別々に拒否し、HARNESS pack contract ownerへ戻す。
+- AC-INT-045-03 (未見正常): 未fixture product identityでもtarget/owner/revisionが明示される場合はcandidateを返し、canonical変更はしない。L11 R2187-01に記載された内容意味を照合する。
+- AC-INT-045-04 (unknown/scope): 未宣言source/version/scopeまたは必須情報unknownは推測せず局所保留し、該当Product Core owner; target不明なら未routeへ戻す。無関係な有効source/operationは維持する。
+- 旧source disposition: 旧BBG-R03 false claim/scope expansionおよびAC03 negative oracleを再導出。旧CLI/generator/direct writebackは移さない。

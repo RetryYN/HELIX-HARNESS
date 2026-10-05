@@ -57,3 +57,113 @@ NFR候補の選択や運用値はPOへparameterごとの質問にせず、根拠
 - qualification測定候補: AI self-rating、duplicate/existing owner、独立再現、counterevidence、expiry、supersessionを別facetとしてfixture母集団・unknown件数・既存owner handoff件数とともに報告する。finding/remediation identity混同、または親が禁止する資格/authorityの自己確定は各fixture oracleで拒否されることを記録する。複数facetを単一scoreへ畳み込まず、候補別の件数とscopeを示す。
 - 母集団/分母: L10の全field mutationとqualification fixtureをoperation・authority class（current/compatibility/historical）ごとに全数列挙し、未見normal fixtureとnegative fixtureを分ける。field matrix上の宣言field数をcoverage分母とし、未作成fixtureを成功件数へ含めない。identity条件が欠落・不明なら別fieldやhistorical sourceで埋めずunknown/incompleteとする。
 - 根拠: 固定L2-075 `618-625` / L11 `337-343` が要求する全field、6 identity条件、個別reason、時制区分、qualification handoffを測定対象にする。旧AAFD/旧ACは数値閾値やruntime性能値を与えないため持ち込まない。candidate値の比較はfield単位の観測可能性と各oracleの成立を並べ、parameterごとのPO判断や追加gateを作らない。
+
+
+## Stage 4 — source/contract trace候補
+
+親が有限個で明示するrequired source/field/ownerを照合するNFR候補。技術値は全required fieldの充足率100%候補と、誤ったsource/owner bind 0候補（親の完全保持条件から導出）に限定し、既定SLA、minimum sample、runtime latencyを新設しない。missing/unknown/stale/conflictは別stateで保持し、未選択sourceを母集団へ入れない。
+
+### NFR-INT-017-01 — required source binding completeness候補
+
+- 固定親: `HELIXINTELLIGENCE-L2-017`。
+- 対象測定: 同一target revision/scopeに対するSECURITY permission/isolation・Worker実行・HARNESS検証義務・OS検収の各結果。
+- 候補値: applicable required-field coverage 100%、wrong source/owner binding 0。固定親が要求する全必須情報の保持を示す候補で、任意性能/SLA基準ではない。適用範囲外のfieldは分母に入れず、unknownを成功に含めない。
+- 根拠CASE: CASE-INT-017-01/02a/03/04, CASE-INT-017-01/02b/03/04, CASE-INT-017-01/02c/03/04, CASE-INT-017-01/02d/03/04, CASE-INT-017-01/02e/03/04。
+
+### NFR-INT-030-01 — required source binding completeness候補
+
+- 固定親: `HELIXINTELLIGENCE-L2-030`。
+- 対象測定: 許可されたHARNESS requirement/design revision、process contract、verification obligation、admitted connector contract。
+- 候補値: applicable required-field coverage 100%、wrong source/owner binding 0。固定親が要求する全必須情報の保持を示す候補で、任意性能/SLA基準ではない。適用範囲外のfieldは分母に入れず、unknownを成功に含めない。
+- 根拠CASE: CASE-INT-030-01/02a/03/04, CASE-INT-030-01/02b/03/04, CASE-INT-030-01/02c/03/04, CASE-INT-030-01/02d/03/04, CASE-INT-030-01/02e/03/04。
+
+### NFR-INT-031-01 — required source binding completeness候補
+
+- 固定親: `HELIXINTELLIGENCE-L2-031`。
+- 対象測定: 許可ticket/current state/dependency/evidence、OS source revision、admitted connector contract。
+- 候補値: applicable required-field coverage 100%、wrong source/owner binding 0。固定親が要求する全必須情報の保持を示す候補で、任意性能/SLA基準ではない。適用範囲外のfieldは分母に入れず、unknownを成功に含めない。
+- 根拠CASE: CASE-INT-031-01/02a/03/04, CASE-INT-031-01/02b/03/04, CASE-INT-031-01/02c/03/04, CASE-INT-031-01/02d/03/04, CASE-INT-031-01/02e/03/04。
+
+### NFR-INT-032-01 — required source binding completeness候補
+
+- 固定親: `HELIXINTELLIGENCE-L2-032`。
+- 対象測定: BRAIN Pattern/Unit/Part、applicability、exception、counterexampleおよびrevision。
+- 候補値: applicable required-field coverage 100%、wrong source/owner binding 0。固定親が要求する全必須情報の保持を示す候補で、任意性能/SLA基準ではない。適用範囲外のfieldは分母に入れず、unknownを成功に含めない。
+- 根拠CASE: CASE-INT-032-01/02a/03/04, CASE-INT-032-01/02b/03/04, CASE-INT-032-01/02c/03/04, CASE-INT-032-01/02d/03/04, CASE-INT-032-01/02e/03/04。
+
+### NFR-INT-033-01 — required source binding completeness候補
+
+- 固定親: `HELIXINTELLIGENCE-L2-033`。
+- 対象測定: Product Core requirement/design/meaningとHARNESS process contract/verification obligationを別source/revisionで受領。
+- 候補値: applicable required-field coverage 100%、wrong source/owner binding 0。固定親が要求する全必須情報の保持を示す候補で、任意性能/SLA基準ではない。適用範囲外のfieldは分母に入れず、unknownを成功に含めない。
+- 根拠CASE: CASE-INT-033-01/02a/03/04, CASE-INT-033-01/02b/03/04, CASE-INT-033-01/02c/03/04, CASE-INT-033-01/02d/03/04。
+
+### NFR-INT-034-01 — required source binding completeness候補
+
+- 固定親: `HELIXINTELLIGENCE-L2-034`。
+- 対象測定: 過去evaluation、success/failure/counterexample、Worker/model実績、Bench level、explicitly unevaluatedと各source scope/revision。
+- 候補値: applicable required-field coverage 100%、wrong source/owner binding 0。固定親が要求する全必須情報の保持を示す候補で、任意性能/SLA基準ではない。適用範囲外のfieldは分母に入れず、unknownを成功に含めない。
+- 根拠CASE: CASE-INT-034-01/02a/03/04, CASE-INT-034-01/02b/03/04, CASE-INT-034-01/02c/03/04, CASE-INT-034-01/02d/03/04, CASE-INT-034-01/02e/03/04。
+
+### NFR-INT-035-01 — required source binding completeness候補
+
+- 固定親: `HELIXINTELLIGENCE-L2-035`。
+- 対象測定: plan/placement/diagnosis/review/repair candidate、根拠、停止条件、依存、source revision。
+- 候補値: applicable required-field coverage 100%、wrong source/owner binding 0。固定親が要求する全必須情報の保持を示す候補で、任意性能/SLA基準ではない。適用範囲外のfieldは分母に入れず、unknownを成功に含めない。
+- 根拠CASE: CASE-INT-035-01/02a/03/04, CASE-INT-035-01/02b/03/04, CASE-INT-035-01/02c/03/04, CASE-INT-035-01/02d/03/04, CASE-INT-035-01/02e/03/04。
+
+### NFR-INT-036-01 — required source binding completeness候補
+
+- 固定親: `HELIXINTELLIGENCE-L2-036`。
+- 対象測定: operation candidateのactor/action/target/scope/revisionとSECURITY permission/constraint/revocation結果。
+- 候補値: applicable required-field coverage 100%、wrong source/owner binding 0。固定親が要求する全必須情報の保持を示す候補で、任意性能/SLA基準ではない。適用範囲外のfieldは分母に入れず、unknownを成功に含めない。
+- 根拠CASE: CASE-INT-036-01/02a/03/04, CASE-INT-036-01/02b/03/04, CASE-INT-036-01/02c/03/04, CASE-INT-036-01/02d/03/04, CASE-INT-036-01/02e/03/04。
+
+### NFR-INT-037-01 — required source binding completeness候補
+
+- 固定親: `HELIXINTELLIGENCE-L2-037`。
+- 対象測定: OS発行・割当ticket、Worker actor、task scope、ticket revision、admitted contract。
+- 候補値: applicable required-field coverage 100%、wrong source/owner binding 0。固定親が要求する全必須情報の保持を示す候補で、任意性能/SLA基準ではない。適用範囲外のfieldは分母に入れず、unknownを成功に含めない。
+- 根拠CASE: CASE-INT-037-01/02a/03/04, CASE-INT-037-01/02b/03/04, CASE-INT-037-01/02c/03/04, CASE-INT-037-01/02d/03/04, CASE-INT-037-01/02e/03/04, CASE-INT-037-01/02f/03/04。
+
+### NFR-INT-038-01 — required source binding completeness候補
+
+- 固定親: `HELIXINTELLIGENCE-L2-038`。
+- 対象測定: requirement revision、oracle、expected failure、independent verification、consumer acceptance、backflow condition。
+- 候補値: applicable required-field coverage 100%、wrong source/owner binding 0。固定親が要求する全必須情報の保持を示す候補で、任意性能/SLA基準ではない。適用範囲外のfieldは分母に入れず、unknownを成功に含めない。
+- 根拠CASE: CASE-INT-038-01/02a/03/04, CASE-INT-038-01/02b/03/04, CASE-INT-038-01/02c/03/04, CASE-INT-038-01/02d/03/04, CASE-INT-038-01/02e/03/04。
+
+### NFR-INT-039-01 — required source binding completeness候補
+
+- 固定親: `HELIXINTELLIGENCE-L2-039`。
+- 対象測定: scope付きrepair candidate、Worker execution evidence、HARNESS verification resultと各revision/receipt。
+- 候補値: applicable required-field coverage 100%、wrong source/owner binding 0。固定親が要求する全必須情報の保持を示す候補で、任意性能/SLA基準ではない。適用範囲外のfieldは分母に入れず、unknownを成功に含めない。
+- 根拠CASE: CASE-INT-039-01/02a/03/04, CASE-INT-039-01/02b/03/04, CASE-INT-039-01/02c/03/04, CASE-INT-039-01/02d/03/04, CASE-INT-039-01/02e/03/04。
+
+### NFR-INT-040-01 — required source binding completeness候補
+
+- 固定親: `HELIXINTELLIGENCE-L2-040`。
+- 対象測定: prediction/diagnosis/review/placement/repair result、source revision、episode/scope、actual evidence/observation window。
+- 候補値: applicable required-field coverage 100%、wrong source/owner binding 0。固定親が要求する全必須情報の保持を示す候補で、任意性能/SLA基準ではない。適用範囲外のfieldは分母に入れず、unknownを成功に含めない。
+- 根拠CASE: CASE-INT-040-01/02a/03/04, CASE-INT-040-01/02b/03/04, CASE-INT-040-01/02c/03/04, CASE-INT-040-01/02d/03/04, CASE-INT-040-01/02e/03/04。
+
+### NFR-INT-041-01 — required source binding completeness候補
+
+- 固定親: `HELIXINTELLIGENCE-L2-041`。
+- 対象測定: 各admitted mechanismの許可current state/evidence、個別revision、connector/authority contract。
+- 候補値: applicable required-field coverage 100%、wrong source/owner binding 0。固定親が要求する全必須情報の保持を示す候補で、任意性能/SLA基準ではない。適用範囲外のfieldは分母に入れず、unknownを成功に含めない。
+- 根拠CASE: CASE-INT-041-01/02a/03/04, CASE-INT-041-01/02b/03/04, CASE-INT-041-01/02c/03/04, CASE-INT-041-01/02d/03/04, CASE-INT-041-01/02e/03/04。
+
+### NFR-INT-044-01 — required source binding completeness候補
+
+- 固定親: `HELIXINTELLIGENCE-L2-044`。
+- 対象測定: INTELLIGENCE decision/candidate、genericization proposal、evidence/scope、LABO evaluation handoff。
+- 候補値: applicable required-field coverage 100%、wrong source/owner binding 0。固定親が要求する全必須情報の保持を示す候補で、任意性能/SLA基準ではない。適用範囲外のfieldは分母に入れず、unknownを成功に含めない。
+- 根拠CASE: CASE-INT-044-01/02a/03/04, CASE-INT-044-01/02b/03/04, CASE-INT-044-01/02c/03/04, CASE-INT-044-01/02d/03/04。
+
+### NFR-INT-045-01 — required source binding completeness候補
+
+- 固定親: `HELIXINTELLIGENCE-L2-045`。
+- 対象測定: Product Core meaning conflict/gap/improvement candidate、source revision、target identity。
+- 候補値: applicable required-field coverage 100%、wrong source/owner binding 0。固定親が要求する全必須情報の保持を示す候補で、任意性能/SLA基準ではない。適用範囲外のfieldは分母に入れず、unknownを成功に含めない。
+- 根拠CASE: CASE-INT-045-01/02a/03/04, CASE-INT-045-01/02b/03/04, CASE-INT-045-01/02c/03/04, CASE-INT-045-01/02d/03/04。
