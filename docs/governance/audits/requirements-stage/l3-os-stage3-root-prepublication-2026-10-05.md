@@ -1,0 +1,7 @@
+# OS Stage 3 root公開前検収記録
+
+本文revision `3a9c19f3766d46c4a6b1565937bb65cd968bfa8b`、最新main `5f3def5af1524377c94284b79f8d45ce6678bd35`。15親の本文差分とWorker日本語summaryを読み、固定L2/L11 30件・PO15件・旧source51件を再計算した。6文書は最新main全prefixと修正済みStage3 suffixに再連結し、suffixは不変。
+
+rootはBR037の既存OS優先順位責務を保持し、NG042の再承認コストを再検証コストへ訂正、NG051のrerun誤記を訂正した。旧監査の飛び飛び引用11件は選択行連結SHAとして一致する。旧項目名と連続envelopeの混同を、このJSONの選択行番号・選択行SHA・連続envelope SHAで訂正する。旧監査は不変。
+
+現在の6本文SHAと追補全行literalをJSONに固定。作成側検収であり、独立review・承認・実行・下流実装・Issue closeは未成立。
