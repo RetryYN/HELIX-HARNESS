@@ -571,9 +571,9 @@ input observation identity/source revision；episode candidate identityとrelati
 |---|---|---|---|
 | `L10-LABO-050-CASE-03a` | `LABO-050-AC-03` | ticket identityだけ欠落 | 完了扱いしない。OSへ戻す。 |
 | `L10-LABO-050-CASE-03b` | `LABO-050-AC-03` | experiment identityだけ別値 | receipt結合を拒否しOSへ戻す。 |
-| `L10-LABO-050-CASE-03c` | `LABO-050-AC-03` | target revisionだけstale | historical保持しcurrent effectに使わない。target/source ownerへ戻す。 戻し先: target owner。 |
+| `L10-LABO-050-CASE-03c` | `LABO-050-AC-03` | target revisionだけstale | historical保持しcurrent effectに使わない。target ownerへ戻す。 |
 | `L10-LABO-050-CASE-03d` | `LABO-050-AC-03` | assignmentだけ欠落 | 実行根拠にせずOSへ戻す。 |
-| `L10-LABO-050-CASE-03e` | `LABO-050-AC-03` | Worker resultだけ別対象 | candidateを比較不能にする。OS/source ownerへ戻す。 戻し先: OS。 |
+| `L10-LABO-050-CASE-03e` | `LABO-050-AC-03` | Worker resultだけ別対象 | candidateを比較不能にする。OSへ戻す。 |
 | `L10-LABO-050-CASE-03f` | `LABO-050-AC-03` | post-change re-observationだけ欠落 | cycle openのままにする。LABOへ戻す。 |
 | `L10-LABO-050-CASE-03g` | `LABO-050-AC-03` | effect/regression evaluationだけ欠落 | 改善完了を出さない。LABOへ戻す。 |
 | `L10-LABO-050-CASE-04a` | `LABO-050-AC-03` | LABOがOS registrationを生成 | 拒否。registration/routingはOS。 |
@@ -587,7 +587,7 @@ input observation identity/source revision；episode candidate identityとrelati
 | CASE | 対応AC | 単独変異 | 期待oracle / 戻し先 |
 |---|---|---|---|
 | `L10-LABO-059-CASE-03a` | `LABO-059-AC-03` | task scopeだけ異なる | 同条件比較を不成立にする。 |
-| `L10-LABO-059-CASE-03b` | `LABO-059-AC-03` | quality oracle revisionだけ異なる | 比較不能。HARNESS/要求ownerへ。 戻し先: HARNESS。 |
+| `L10-LABO-059-CASE-03b` | `LABO-059-AC-03` | quality oracle revisionだけ異なる | 比較不能。HARNESSへ戻す。 |
 | `L10-LABO-059-CASE-03c` | `LABO-059-AC-03` | decision scopeだけ適用境界外 | decisionを流用せず既存ownerへ戻す。 戻し先: unknown（decision ownerは固定親から個別特定できない）。 |
 | `L10-LABO-059-CASE-03d` | `LABO-059-AC-03` | priority/toleranceだけ未決 | 値を創作せず判断待ちとする。 |
 | `L10-LABO-059-CASE-03e` | `LABO-059-AC-03` | human intervention timeだけ欠落 | amount unknown、総金額不完全を表示。 |
@@ -625,8 +625,8 @@ input observation identity/source revision；episode candidate identityとrelati
 | CASE | 対応AC | 単独変異 | 期待oracle / 戻し先 |
 |---|---|---|---|
 | `L10-LABO-061-CASE-03a` | `LABO-061-AC-03` | fixture digestだけ欠落 | 適用runを比較対象にしない。 |
-| `L10-LABO-061-CASE-03b` | `LABO-061-AC-03` | oracle revisionだけstale | HARNESS/要求ownerへ戻す。 戻し先: HARNESS。 |
-| `L10-LABO-061-CASE-03c` | `LABO-061-AC-03` | Worker-visible contextだけ漏洩 | 比較を無効にしdata ownerへ戻す。 戻し先: SECURITY。 |
+| `L10-LABO-061-CASE-03b` | `LABO-061-AC-03` | oracle revisionだけstale | HARNESSへ戻す。 |
+| `L10-LABO-061-CASE-03c` | `LABO-061-AC-03` | Worker-visible contextだけ漏洩 | 比較を無効にしSECURITYへ戻す。 |
 | `L10-LABO-061-CASE-03d` | `LABO-061-AC-03` | judge identity/contextだけ不一致 | blind/役割条件を成立扱いしない。 |
 | `L10-LABO-061-CASE-03e` | `LABO-061-AC-03` | hidden oracle適用性だけunknown | 非適用と推論せずunknown。 |
 | `L10-LABO-061-CASE-03f` | `LABO-061-AC-03` | task IDだけ欠落 | 対象を確定しない。 |
@@ -644,7 +644,7 @@ input observation identity/source revision；episode candidate identityとrelati
 | `L10-LABO-061-CASE-03q` | `LABO-061-AC-03` | retry policyだけ異なる | 条件差を保持し比較しない。 |
 | `L10-LABO-061-CASE-03r` | `LABO-061-AC-03` | cache policyだけ欠落 | 非適用と推測せず保留。 |
 | `L10-LABO-061-CASE-03s` | `LABO-061-AC-03` | hardware classだけ異なる | 比較条件差として分離する。 |
-| `L10-LABO-061-CASE-04a` | `LABO-061-AC-03` | LABOがtask/oracleを変更 | 拒否。HARNESS/要求ownerへ。 戻し先: HARNESS。 |
+| `L10-LABO-061-CASE-04a` | `LABO-061-AC-03` | LABOがtask/oracleを変更 | 拒否。HARNESSへ戻す。 |
 
 | `L10-LABO-061-CASE-24` | `LABO-061-AC-01` | 正常: canonical judge oracleは秘匿されたままjudgeが検証に使い、Workerへ答えを見せない。 | canonical judge oracleの使用をWorker leakageと誤分類せず、他の条件が揃う比較を有効に保つ。 |
 | `L10-LABO-061-CASE-25` | `LABO-061-AC-03` | 索引（独立fixtureではない）: `L10-LABO-061-CASE-21`と同一の単独入力変異。 | 主fixture `L10-LABO-061-CASE-21` のoracleを参照し、同じケースを重複計上しない。 |
@@ -658,11 +658,11 @@ input observation identity/source revision；episode candidate identityとrelati
 
 | CASE | 対応AC | 単独変異 | 期待oracle / 戻し先 |
 |---|---|---|---|
-| `L10-LABO-063-CASE-03a` | `LABO-063-AC-03` | HARNESS verificationだけ欠落 | 成功ful recipeにしない。HARNESSへ。 |
+| `L10-LABO-063-CASE-03a` | `LABO-063-AC-03` | HARNESS verificationだけ欠落 | 成功したrecipeにしない。HARNESSへ。 |
 | `L10-LABO-063-CASE-03b` | `LABO-063-AC-03` | target revisionだけ別 | evidenceを混ぜずtarget ownerへ。 戻し先: target owner。 |
 | `L10-LABO-063-CASE-03c` | `LABO-063-AC-03` | recurrence relationだけ欠落 | 再発効果を確定せずsource ownerへ。 戻し先: unknown（observation source ownerは固定親から個別特定できない）。 |
 | `L10-LABO-063-CASE-03d` | `LABO-063-AC-03` | counterexampleだけ除外 | 予防candidate範囲を支持済みとしない。 |
-| `L10-LABO-063-CASE-04a` | `LABO-063-AC-03` | LABOがcanonical recipeへwrite | 拒否し既存ownerを保つ。 戻し先: LABO。 |
+| `L10-LABO-063-CASE-04a` | `LABO-063-AC-03` | LABOがcanonical recipeへwrite | 拒否し既存ownerを保つ。 戻し先: canonical recipeの既存owner。 |
 | `L10-LABO-063-CASE-04b` | `LABO-063-AC-03` | 一件から汎用knowledgeへpromotion | 拒否。既存knowledge ownerへ戻す。 |
 
 ### CASE-LABO-064 — 選択scopeのblind評価
@@ -739,7 +739,7 @@ input observation identity/source revision；episode candidate identityとrelati
 
 ### CASE-LABO-068 — 異なるAttempt identity数
 
-- `L10-LABO-068-CASE-01`（対応AC: `LABO-068-AC-01`） 正常: OSが完全性を示す選択範囲でidentity A/B/C/Dを各一度数え、`attempt_count=4` を返す。成功/失敗/interrupted/identity付きdeniedは数えるがintake-だけ拒否は数えず、deniedとintakeを区別する。状態は合算しない。
+- `L10-LABO-068-CASE-01`（対応AC: `LABO-068-AC-01`） 正常: OSが完全性を示す選択範囲でidentity A/B/C/Dを各一度数え、`attempt_count=4` を返す。成功/失敗/interrupted/identity付きdeniedは数えるがintakeだけで終わった拒否は数えず、deniedとintakeを区別する。状態は合算しない。
 - `L10-LABO-068-CASE-02`（対応AC: `LABO-068-AC-02`） 未見正常: 未見範囲も全件receipt/completenessが確認できる場合だけ総数を出す。
 
 | CASE | 対応AC | 単独変異 | 期待oracle / 戻し先 |
@@ -779,14 +779,14 @@ input observation identity/source revision；episode candidate identityとrelati
 | `L10-LABO-070-CASE-03b` | `LABO-070-AC-03` | active timeのunitだけ異なる | 別fieldのまま比較不能。 戻し先: OS。 |
 | `L10-LABO-070-CASE-03c` | `LABO-070-AC-03` | review waitのunitだけ異なる | 別fieldのまま比較不能。 戻し先: OS。 |
 | `L10-LABO-070-CASE-03d` | `LABO-070-AC-03` | Human waitのunitだけ異なる | 別fieldのまま比較不能。 戻し先: OS。 |
-| `L10-LABO-070-CASE-03e` | `LABO-070-AC-03` | escaped-defect oracle/relationだけ欠落 | defect countを確定しない。 戻し先: OS。 |
+| `L10-LABO-070-CASE-03e` | `LABO-070-AC-03` | escaped-defect quality oracleだけ欠落（relationと他入力は保持） | defect countを確定しない。 戻し先: HARNESS。 |
 | `L10-LABO-070-CASE-03f` | `LABO-070-AC-03` | rollback result receiptだけ欠落 | event不在とせずunknown。 戻し先: OS。 |
 | `L10-LABO-070-CASE-03g` | `LABO-070-AC-03` | Recovery result receiptだけ欠落 | event不在とせずunknown。 戻し先: OS。 |
-| `L10-LABO-070-CASE-03h` | `LABO-070-AC-03` | observer overhead sourceだけなし | 推計0を使わずunknown。 戻し先: OS。 |
-| `L10-LABO-070-CASE-03i` | `LABO-070-AC-03` | evidence timestampだけ不正 | freshness age invalid/unknown。 戻し先: OS。 |
-| `L10-LABO-070-CASE-03j` | `LABO-070-AC-03` | 067 repair roundを068 countへ加算 | 換算/合算を拒否。 戻し先: OS。 |
-| `L10-LABO-070-CASE-03k` | `LABO-070-AC-03` | receiptを059 costへ二重計上 | duplicate costを拒否。 戻し先: OS。 |
-| `L10-LABO-070-CASE-04a` | `LABO-070-AC-03` | LABOがtelemetry thresholdを作成 | 拒否し既存decision ownerへ。 戻し先: OS。 |
+| `L10-LABO-070-CASE-03h` | `LABO-070-AC-03` | observer overhead sourceだけなし | 推計0を使わずunknown。 戻し先: unknown（固定親は当該sourceまたは判断ownerを個別特定しない）。 |
+| `L10-LABO-070-CASE-03i` | `LABO-070-AC-03` | evidence timestampだけ不正 | freshness age invalid/unknown。 戻し先: unknown（固定親は当該sourceまたは判断ownerを個別特定しない）。 |
+| `L10-LABO-070-CASE-03j` | `LABO-070-AC-03` | 067 repair roundを068 countへ加算 | 換算/合算を拒否。 戻し先: LABO。 |
+| `L10-LABO-070-CASE-03k` | `LABO-070-AC-03` | receiptを059 costへ二重計上 | duplicate costを拒否。 戻し先: LABO。 |
+| `L10-LABO-070-CASE-04a` | `LABO-070-AC-03` | LABOがtelemetry thresholdを作成 | 拒否し既存decision ownerへ。 戻し先: unknown（固定親は当該sourceまたは判断ownerを個別特定しない）。 |
 | `L10-LABO-070-CASE-04b` | `LABO-070-AC-03` | LABOがrollback authorityを作成 | 拒否し既存operation ownerへ。 戻し先: OS。 |
 
 ### CASE-LABO-071 — task-class/model-revision qualification
@@ -892,52 +892,52 @@ input observation identity/source revision；episode candidate identityとrelati
 | `L10-LABO-061-CASE-21` | `LABO-061-AC-03` | 単独変異: actor identity だけ欠落。その他の入力は `CASE-01` と同一。 | runを評価対象にしない 戻し先: OS。 |
 | `L10-LABO-061-CASE-22` | `LABO-061-AC-03` | 単独変異: permission evidence だけ欠落。その他の入力は `CASE-01` と同一。 | 許可済み比較としない 戻し先: SECURITY。 |
 | `L10-LABO-061-CASE-23` | `LABO-061-AC-03` | 単独変異: run receipt だけ欠落。その他の入力は `CASE-01` と同一。 | runを評価対象にしない 戻し先: OS。 |
-| `L10-LABO-061-CASE-28` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `task_id` だけをtask_idだけ欠落。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-29` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `task_id` だけをtask_idだけが記録後にstaleとなり現行task契約へ適用できない。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-30` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `task_id` だけをtask_idだけが実runの値と不一致。残る14条件と他入力は `CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-31` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `task_version` だけをtask_versionだけ欠落。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-32` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `task_version` だけをtask_versionだけが記録後にstaleとなり現行task契約へ適用できない。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-33` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `task_version` だけをtask_versionだけが実runの値と不一致。残る14条件と他入力は `CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-34` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `fixture_digest` だけをfixture_digestだけ欠落。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-35` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `fixture_digest` だけをfixture_digestだけが記録後にstaleとなり現行task契約へ適用できない。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-36` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `fixture_digest` だけをfixture_digestだけが実runの値と不一致。残る14条件と他入力は `CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-37` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `requirement_ids` だけをrequirement_idsだけ欠落。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: 要求owner。 |
-| `L10-LABO-061-CASE-38` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `requirement_ids` だけをrequirement_idsだけが記録後にstaleとなり現行task契約へ適用できない。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: 要求owner。 |
-| `L10-LABO-061-CASE-39` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `requirement_ids` だけをrequirement_idsだけが実runの値と不一致。残る14条件と他入力は `CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: 要求owner。 |
-| `L10-LABO-061-CASE-40` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `acceptance_ids` だけをacceptance_idsだけ欠落。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: HARNESS。 |
-| `L10-LABO-061-CASE-41` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `acceptance_ids` だけをacceptance_idsだけが記録後にstaleとなり現行task契約へ適用できない。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: HARNESS。 |
-| `L10-LABO-061-CASE-42` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `acceptance_ids` だけをacceptance_idsだけが実runの値と不一致。残る14条件と他入力は `CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: HARNESS。 |
-| `L10-LABO-061-CASE-43` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `base_head` だけをbase_headだけ欠落。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-44` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `base_head` だけをbase_headだけが記録後にstaleとなり現行task契約へ適用できない。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-45` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `base_head` だけをbase_headだけが実runの値と不一致。残る14条件と他入力は `CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-46` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `allowed_paths` だけをallowed_pathsだけ欠落。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-47` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `allowed_paths` だけをallowed_pathsだけが記録後にstaleとなり現行task契約へ適用できない。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-48` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `allowed_paths` だけをallowed_pathsだけが実runの値と不一致。残る14条件と他入力は `CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-49` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `forbidden_paths` だけをforbidden_pathsだけ欠落。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-50` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `forbidden_paths` だけをforbidden_pathsだけが記録後にstaleとなり現行task契約へ適用できない。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-51` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `forbidden_paths` だけをforbidden_pathsだけが実runの値と不一致。残る14条件と他入力は `CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-52` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `hidden_oracle_digest` だけをhidden_oracle_digestだけ欠落。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: HARNESS。 |
-| `L10-LABO-061-CASE-53` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `hidden_oracle_digest` だけをhidden_oracle_digestだけが記録後にstaleとなり現行task契約へ適用できない。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: HARNESS。 |
-| `L10-LABO-061-CASE-54` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `hidden_oracle_digest` だけをhidden_oracle_digestだけが実runの値と不一致。残る14条件と他入力は `CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: HARNESS。 |
-| `L10-LABO-061-CASE-55` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `seed` だけをseedだけ欠落。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-56` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `seed` だけをseedだけが記録後にstaleとなり現行task契約へ適用できない。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-57` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `seed` だけをseedだけが実runの値と不一致。残る14条件と他入力は `CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-58` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `toolchain_versions` だけをtoolchain_versionsだけ欠落。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-59` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `toolchain_versions` だけをtoolchain_versionsだけが記録後にstaleとなり現行task契約へ適用できない。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-60` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `toolchain_versions` だけをtoolchain_versionsだけが実runの値と不一致。残る14条件と他入力は `CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-61` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `timeout_policy` だけをtimeout_policyだけ欠落。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-62` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `timeout_policy` だけをtimeout_policyだけが記録後にstaleとなり現行task契約へ適用できない。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-63` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `timeout_policy` だけをtimeout_policyだけが実runの値と不一致。残る14条件と他入力は `CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-64` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `retry_policy` だけをretry_policyだけ欠落。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-65` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `retry_policy` だけをretry_policyだけが記録後にstaleとなり現行task契約へ適用できない。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-66` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `retry_policy` だけをretry_policyだけが実runの値と不一致。残る14条件と他入力は `CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-67` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `cache_policy` だけをcache_policyだけ欠落。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-68` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `cache_policy` だけをcache_policyだけが記録後にstaleとなり現行task契約へ適用できない。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-69` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `cache_policy` だけをcache_policyだけが実runの値と不一致。残る14条件と他入力は `CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-70` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `hardware_class` だけをhardware_classだけ欠落。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-71` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `hardware_class` だけをhardware_classだけが記録後にstaleとなり現行task契約へ適用できない。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
-| `L10-LABO-061-CASE-72` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `hardware_class` だけをhardware_classだけが実runの値と不一致。残る14条件と他入力は `CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: task契約owner。 |
-| `L10-LABO-063-CASE-05` | `LABO-063-AC-03` | 単独変異: OS backlog registration待ちの間もLABOが成功ful recipe evidenceを保持。その他の入力は `CASE-01` と同一。 | LABO評価知識を保持し、backlog未登録を未完義務としてOSへ戻す 戻し先: OS（backlog登録）。 |
+| `L10-LABO-061-CASE-28` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `task_id`だけ欠落。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-29` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `task_id`だけが記録後にstaleとなり現行task契約へ適用できない。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-30` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `task_id`だけが実runの値と不一致。残る14条件と他入力は `CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-31` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `task_version`だけ欠落。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-32` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `task_version`だけが記録後にstaleとなり現行task契約へ適用できない。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-33` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `task_version`だけが実runの値と不一致。残る14条件と他入力は `CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-34` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `fixture_digest`だけ欠落。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-35` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `fixture_digest`だけが記録後にstaleとなり現行task契約へ適用できない。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-36` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `fixture_digest`だけが実runの値と不一致。残る14条件と他入力は `CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-37` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `requirement_ids`だけ欠落。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: 要求owner。 |
+| `L10-LABO-061-CASE-38` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `requirement_ids`だけが記録後にstaleとなり現行task契約へ適用できない。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: 要求owner。 |
+| `L10-LABO-061-CASE-39` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `requirement_ids`だけが実runの値と不一致。残る14条件と他入力は `CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: 要求owner。 |
+| `L10-LABO-061-CASE-40` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `acceptance_ids`だけ欠落。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: HARNESS。 |
+| `L10-LABO-061-CASE-41` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `acceptance_ids`だけが記録後にstaleとなり現行task契約へ適用できない。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: HARNESS。 |
+| `L10-LABO-061-CASE-42` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `acceptance_ids`だけが実runの値と不一致。残る14条件と他入力は `CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: HARNESS。 |
+| `L10-LABO-061-CASE-43` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `base_head`だけ欠落。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-44` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `base_head`だけが記録後にstaleとなり現行task契約へ適用できない。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-45` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `base_head`だけが実runの値と不一致。残る14条件と他入力は `CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-46` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `allowed_paths`だけ欠落。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-47` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `allowed_paths`だけが記録後にstaleとなり現行task契約へ適用できない。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-48` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `allowed_paths`だけが実runの値と不一致。残る14条件と他入力は `CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-49` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `forbidden_paths`だけ欠落。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-50` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `forbidden_paths`だけが記録後にstaleとなり現行task契約へ適用できない。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-51` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `forbidden_paths`だけが実runの値と不一致。残る14条件と他入力は `CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-52` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `hidden_oracle_digest`だけ欠落。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: HARNESS。 |
+| `L10-LABO-061-CASE-53` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `hidden_oracle_digest`だけが記録後にstaleとなり現行task契約へ適用できない。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: HARNESS。 |
+| `L10-LABO-061-CASE-54` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `hidden_oracle_digest`だけが実runの値と不一致。残る14条件と他入力は `CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: HARNESS。 |
+| `L10-LABO-061-CASE-55` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `seed`だけ欠落。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-56` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `seed`だけが記録後にstaleとなり現行task契約へ適用できない。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-57` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `seed`だけが実runの値と不一致。残る14条件と他入力は `CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-58` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `toolchain_versions`だけ欠落。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-59` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `toolchain_versions`だけが記録後にstaleとなり現行task契約へ適用できない。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-60` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `toolchain_versions`だけが実runの値と不一致。残る14条件と他入力は `CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-61` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `timeout_policy`だけ欠落。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-62` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `timeout_policy`だけが記録後にstaleとなり現行task契約へ適用できない。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-63` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `timeout_policy`だけが実runの値と不一致。残る14条件と他入力は `CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-64` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `retry_policy`だけ欠落。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-65` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `retry_policy`だけが記録後にstaleとなり現行task契約へ適用できない。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-66` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `retry_policy`だけが実runの値と不一致。残る14条件と他入力は `CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-67` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `cache_policy`だけ欠落。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-68` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `cache_policy`だけが記録後にstaleとなり現行task契約へ適用できない。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-69` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `cache_policy`だけが実runの値と不一致。残る14条件と他入力は `CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-70` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `hardware_class`だけ欠落。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-71` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `hardware_class`だけが記録後にstaleとなり現行task契約へ適用できない。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
+| `L10-LABO-061-CASE-72` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `hardware_class`だけが実runの値と不一致。残る14条件と他入力は `CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: task契約owner。 |
+| `L10-LABO-063-CASE-05` | `LABO-063-AC-03` | 単独変異: OS backlog registration待ちの間もLABOが成功したrecipe evidenceを保持。その他の入力は `CASE-01` と同一。 | LABO評価知識を保持し、backlog未登録を未完義務としてOSへ戻す 戻し先: OS（backlog登録）。 |
 | `L10-LABO-063-CASE-06` | `LABO-063-AC-03` | 単独変異: OS backlog registration failsだけを変更。その他の入力は `CASE-01` と同一。 | 評価知識を保持しregistration未完をOSへ戻す 戻し先: OS。 |
 | `L10-LABO-063-CASE-07` | `LABO-063-AC-03` | 単独変異: 同一identity/cause/condition/revision/episodeのrepairを反復。その他の入力は `CASE-01` と同一。 | 同一性のある反復だけ集計する 戻し先: LABO。 |
 | `L10-LABO-063-CASE-08` | `LABO-063-AC-03` | 単独変異: 同一observationをduplicate receiptで再送だけを変更。その他の入力は `CASE-01` と同一。 | 重複事例を増やさない 戻し先: LABO。 |
@@ -1072,8 +1072,8 @@ input observation identity/source revision；episode candidate identityとrelati
 | `L10-LABO-065-CASE-24` | `LABO-065-AC-03` | 単独変異: rescue cost receiptだけ欠落。その他の入力は `CASE-05` と同一。 | 費用内訳を不完全としてunknownを保ち、0補完しない。戻し先: OS。 |
 | `L10-LABO-065-CASE-25` | `LABO-065-AC-03` | 単独変異: human retry cost receiptだけ欠落。その他の入力は `CASE-05` と同一。 | 費用内訳を不完全としてunknownを保ち、0補完しない。戻し先: OS。 |
 | `L10-LABO-069-CASE-19` | `LABO-069-AC-03` | 単独変異: LABOがticket identityだけを変更。その他の入力は `CASE-01` と同一。 | ticket identityの変更を拒否しOSへ戻す。戻し先: OS。 |
-| `L10-LABO-070-CASE-52` | `LABO-070-AC-03` | 単独変異: 4種durationを加算。その他の入力は `CASE-01` と同一。 | 各durationを別fieldのまま保持し、059のend-to-end時間へ合算しない。戻し先: LABO。 戻し先: LABO。 |
-| `L10-LABO-070-CASE-53` | `LABO-070-AC-03` | 単独変異: 重複する待ち時間を排他的に按分。その他の入力は `CASE-01` と同一。 | 重複時間を推測按分せず各durationを保持する。戻し先: LABO。 戻し先: LABO。 |
+| `L10-LABO-070-CASE-52` | `LABO-070-AC-03` | 単独変異: 4種durationを加算。その他の入力は `CASE-01` と同一。 | 各durationを別fieldのまま保持し、059のend-to-end時間へ合算しない。戻し先: LABO。 |
+| `L10-LABO-070-CASE-53` | `LABO-070-AC-03` | 単独変異: 重複する待ち時間を排他的に按分。その他の入力は `CASE-01` と同一。 | 重複時間を推測按分せず各durationを保持する。戻し先: LABO。 |
 | `L10-LABO-071-CASE-05` | `LABO-071-AC-03` | 単独変異: task class だけ欠落。その他の入力は `CASE-01` と同一。 | qualification unknown 戻し先: LABO。 |
 | `L10-LABO-071-CASE-06` | `LABO-071-AC-03` | 単独変異: model revision だけ欠落。その他の入力は `CASE-01` と同一。 | qualification unknown 戻し先: LABO。 |
 | `L10-LABO-071-CASE-07` | `LABO-071-AC-03` | 単独変異: evaluation scope だけ欠落。その他の入力は `CASE-01` と同一。 | qualification unknown 戻し先: LABO。 |
