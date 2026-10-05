@@ -221,15 +221,15 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 固定L2 `intelligence-requirements.md:618-625`、L11 `intelligence-acceptance.md:337-343` とPO採択行 `po-decision-2026-10-03-later35.md:33` のsource pinはrevision-specific auditに収録する。L2 snapshotの旧「未採択」表示はこのrevisionの後続PO判断と同一semantic digestにより読み替える。旧AAFD AC-001〜003の実行/受入条件を15-17行で照合し、L2-075に含まれるidentity/evidence/qualificationを本FR/AC/CASEへ配置した。旧AC-004/R-04 detector条件は対象外。source再導出記録はclosureや独立reviewを意味しない。
 
 
-## Stage 5 — INTELLIGENCE functional fixtures (adopted L2 9 parents)
+## Stage 5 — INTELLIGENCE機能fixture（採択済みL2の9親）
 
 状態: 以下は未実行fixture設計。対象はこの9親と個別operationのscopeに限り、L3承認や実動作合格を示さない。各negative rowは列記した一変数だけを変え、独立した反例と期待oracleを持つ。
 
-### CASE-INT-060-01 — plan proposal normal (AC-INT-060-01)
+### CASE-INT-060-01 — 計画候補の正常例 (AC-INT-060-01)
 
 入力: approved requirement revision, HARNESS process contract, current OS state, applicable BRAIN source, graph A→B plus independent C and stop condition. 期待oracle: node/source/edge traceとcandidateの順序はL11-060/005 oracleに一致する。OSだけが別途ticket/進行する。
 
-### CASE-INT-060-02 — isolated plan negatives (AC-INT-060-02)
+### CASE-INT-060-02 — 独立計画反例 (AC-INT-060-02)
 
 | CASE | 単独変異 | 期待oracle・戻し先 |
 |---|---|---|
@@ -240,22 +240,22 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 | `CASE-INT-060-02e` | 4.0 workflowだけを1.0必要条件へ追加する | 不合格。4.0を要求せずcandidateをL2-060の範囲へ戻す。 |
 | `CASE-INT-060-02f` | INTELLIGENCEがOS ticketを発行する | 発行を拒否しticket/推進authorityをOSへ保持する。 |
 
-### CASE-INT-060-03 — held-out plan graph (AC-INT-060-03)
+### CASE-INT-060-03 — 未見計画graph (AC-INT-060-03)
 
 入力: 未公開task graph, declared dependency edge, independent task node, one stop condition. 期待oracle: declared edgeだけ順序化し、独立nodeは依存させず、OS assignment/ticketを生成しない。
 
-### CASE-INT-060-04 — unknown dependency inputs (AC-INT-060-04)
+### CASE-INT-060-04 — 依存入力unknown (AC-INT-060-04)
 
 | CASE | 単独変異 | 期待oracle・戻し先 |
 |---|---|---|
 | `CASE-INT-060-04a` | selected BRAIN knowledge applicabilityだけunknown | source fieldをunknownに保ちBRAIN ownerへ返す。 |
 | `CASE-INT-060-04b` | graphの一dependency identityだけ未宣言 | dependencyを解消済みに扱わず該当source/contract ownerへ返し、独立branchは保持する。 |
 
-### CASE-INT-061-01 — same-scope evidence placement proposal (AC-INT-061-01)
+### CASE-INT-061-01 — 同scope根拠に基づく配置案 (AC-INT-061-01)
 
 入力: task identity/capability/tool/domain、2 Worker profile、同作業種別/classのLABO evaluation evidence. 期待oracle: evidenceに適合する候補と除外理由/未評価を出し、OS assignmentとは別のproposalにする。
 
-### CASE-INT-061-02 — isolated placement negatives (AC-INT-061-02)
+### CASE-INT-061-02 — 独立配置反例 (AC-INT-061-02)
 
 | CASE | 単独変異 | 期待oracle・戻し先 |
 |---|---|---|
@@ -268,19 +268,19 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 | `CASE-INT-061-02g` | INTELLIGENCE proposalをassignment済み扱いする | assignmentを生成せずOSへhandoffする。 |
 | `CASE-INT-061-02h` | selected evidence revisionだけstale | stale evidenceをcurrent評価へ使わずLABOへ戻す。 |
 
-### CASE-INT-061-03 — unseen task class (AC-INT-061-03)
+### CASE-INT-061-03 — 未見task class (AC-INT-061-03)
 
 未見task classと宣言済み互換評価scopeを入力する。互換が確認できるfieldのみ照合し、評価なしを未評価として保持し実assignmentを作らない。
 
-### CASE-INT-061-04 — unknown class applicability (AC-INT-061-04)
+### CASE-INT-061-04 — task class適用unknown (AC-INT-061-04)
 
 未宣言task-class compatibilityだけunknownにし、範囲内の他evidenceを保持したままLABO/該当ownerへ返す。
 
-### CASE-INT-062-01 — repair stage receipts normal (AC-INT-062-01)
+### CASE-INT-062-01 — 修復段階receiptの正常例 (AC-INT-062-01)
 
 入力: 同じtarget revision/scopeを持つ個別SECURITY permission、Worker result、HARNESS verification、OS acceptance-stage input receipts. 期待oracle: 四段階を別receiptで順序づけ、各owner authorityを保ち、acceptance inputまで未完状態を落とさない。
 
-### CASE-INT-062-02 — isolated repair-stage negatives (AC-INT-062-02)
+### CASE-INT-062-02 — 修復段階の独立反例 (AC-INT-062-02)
 
 | CASE | 単独変異 | 期待oracle・戻し先 |
 |---|---|---|
@@ -293,15 +293,15 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 | `CASE-INT-062-02g` | 正しいreceiptの順序だけ逆転 | 後段を成立扱いせず、最初の欠落stage ownerへ戻す。 |
 | `CASE-INT-062-02h` | intermediate successだけでrepair完了claim | 不合格。先行段階成功は後段を代替しない。 |
 
-### CASE-INT-062-03 — unseen receipt version (AC-INT-062-03)
+### CASE-INT-062-03 — 未見receipt版 (AC-INT-062-03)
 
 一stageの未見receipt版だけを与える。互換性unknownならそのstageのみ保留し、無関係な成立receiptを維持する。duplicate receiptは同一stageを二重計上しない。
 
-### CASE-INT-063-01 — owner and episode-separated improvement loop (AC-INT-063-01)
+### CASE-INT-063-01 — ownerとepisodeを分けた改善trace (AC-INT-063-01)
 
 入力: LABO past evaluation、BRAIN applicable knowledge、current INT judgment、OS execution、HARNESS process evidenceを一episode/target revision/scopeに束ねる。期待oracle: historical effect, current state, candidate knowledge, execution resultを区別し、effect is LABO-owned/BRAIN canonical is BRAIN-owned.
 
-### CASE-INT-063-02 — isolated self-improvement negatives (AC-INT-063-02)
+### CASE-INT-063-02 — 自己改善の独立反例 (AC-INT-063-02)
 
 | CASE | 単独変異 | 期待oracle・戻し先 |
 |---|---|---|
@@ -313,23 +313,23 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 | `CASE-INT-063-02f` | BRAIN applicabilityだけ未承認/unknown | BRAIN candidateをgeneric knowledgeにしない。 |
 | `CASE-INT-063-02g` | duplicate/out-of-order resultだけ別episodeへbinding | original episode/time lineageを維持しLABO ownerへ戻す。 |
 
-### CASE-INT-063-03 — delayed historical outcome (AC-INT-063-03)
+### CASE-INT-063-03 — 遅着した過去結果 (AC-INT-063-03)
 
 遅着outcomeだけを与える。元episodeへ記録しcurrent judgmentを変更せず、applicability unknownはBRAIN/LABO ownerへ返す。
 
-### CASE-INT-069-01 — queue finite calculation (AC-INT-069-01)
+### CASE-INT-069-01 — queue有限計算 (AC-INT-069-01)
 
 model/rule/unit/revisionを固定しL2 fixtureの5/5 baselineと5/10 scenario, service cap 8を入力する。期待oracle: baseline served 5/5,end queue 0/0; scenario served 5/8,end queue 0/2。
 
-### CASE-INT-069-02 — explicit DB failure edge propagation (AC-INT-069-02)
+### CASE-INT-069-02 — 明示DB failure edgeの伝播 (AC-INT-069-02)
 
 DB disconnect eventと要求されたdependency/failure/retry edgeを入力する。期待oracle: dependent order processだけwaiting/retryへ進み、edgeなしreporting stateは変化せず、未定義recoveryを作らない。
 
-### CASE-INT-069-03 — virtual worker bottleneck arithmetic (AC-INT-069-03)
+### CASE-INT-069-03 — 仮想Worker bottleneckの算術 (AC-INT-069-03)
 
 18 jobs, service 3 jobs/min/worker, DB cap 8 jobs/min, worker cost 0.20 credit/(worker·min), DB 0.10 credit/minを入力する。期待oracle: n=2は6 jobs/min/3 min/1.50 credits、n=4は8 jobs/min/2.25 min/2.025 credits。仮想数はOS assignmentを変えない。
 
-### CASE-INT-069-04 — isolated unsupported/malformed model inputs (AC-INT-069-04)
+### CASE-INT-069-04 — 未対応・不正model入力の独立反例 (AC-INT-069-04)
 
 | CASE | 単独変異 | 期待oracle・戻し先 |
 |---|---|---|
@@ -341,27 +341,27 @@ DB disconnect eventと要求されたdependency/failure/retry edgeを入力す�
 | `CASE-INT-069-04f` | recovery ruleだけ不在 | recovery/retry成功を補完しない。 |
 | `CASE-INT-069-04g` | virtual resultを実環境結果と表示 | virtual/actualを区別し不合格。 |
 
-### CASE-INT-069-05 — held-out finite state/rule (AC-INT-069-05)
+### CASE-INT-069-05 — 未見の有限state/rule (AC-INT-069-05)
 
 未見state name/edgeを明示rule内に与え、独立small interpreter結果を照合する。外側のdomainだけunknown/unsupportedで返す。
 
-### CASE-INT-070-01 — CORE input stage (AC-INT-070-01)
+### CASE-INT-070-01 — CORE入力段階 (AC-INT-070-01)
 
 許可sourceとadmitted 033 connectorの正常receiptを同一source/model revision/scopeへ束縛する。
 
-### CASE-INT-070-02 — calculation result binding (AC-INT-070-02)
+### CASE-INT-070-02 — 計算結果のbinding (AC-INT-070-02)
 
 069 result identity/assumptions/unknownを元033 inputと同scenarioへ結ぶ。
 
-### CASE-INT-070-03 — result send stage (AC-INT-070-03)
+### CASE-INT-070-03 — 結果送信段階 (AC-INT-070-03)
 
 計算後resultのみを040 contractで送り、send receiptを記録する。
 
-### CASE-INT-070-04 — LABO consumer receive (AC-INT-070-04)
+### CASE-INT-070-04 — LABO consumer受領 (AC-INT-070-04)
 
 040送達後にLABO-024 consumer receiptを別に取得し、LABO evaluation authorityをLABOに残す。
 
-### CASE-INT-070-05 — isolated connection failures (AC-INT-070-05)
+### CASE-INT-070-05 — 接続失敗の独立反例 (AC-INT-070-05)
 
 | CASE | 単独変異 | 期待oracle・戻し先 |
 |---|---|---|
@@ -372,15 +372,15 @@ DB disconnect eventと要求されたdependency/failure/retry edgeを入力す�
 | `CASE-INT-070-05e` | correlation IDだけ異なる | receiptを同一scenarioに混ぜない。 |
 | `CASE-INT-070-05f` | payload missing relationを新必須fieldへ黙って変換 | ownerへ不足を戻しcandidate独自schema追加を拒否する。 |
 
-### CASE-INT-070-06 — delayed and unseen receipt (AC-INT-070-06)
+### CASE-INT-070-06 — 遅延・未見receipt (AC-INT-070-06)
 
 未見compatible receipt版を各stage単独で与える。重複/遅着を記録し、欠落compatibilityをunknown/not receivedに保つ。
 
-### CASE-INT-071-01 — end-to-end finite scenario comparison fixture (AC-INT-071-01)
+### CASE-INT-071-01 — 有限scenario比較fixture (AC-INT-071-01)
 
 L11 R2187-01のbaseline 5/5、load 5/10、per-step cap 8でqueue oracleを照合する。独立scenarioとしてload increase、DB disconnect、virtual Worker 2→4を実行設計し、3→2.25 minおよび1.50→2.025 credits fixture arithmeticをtraceに束ねる。DB断時は明示order edgeのみblocked、recovery未定義。送達後のLABO-024 receiptがそろって初めてconnection段階を反映する。
 
-### CASE-INT-071-02 — isolated composite negatives (AC-INT-071-02)
+### CASE-INT-071-02 — compositeの独立反例 (AC-INT-071-02)
 
 | CASE | 単独変異 | 期待oracle・戻し先 |
 |---|---|---|
@@ -392,15 +392,15 @@ L11 R2187-01のbaseline 5/5、load 5/10、per-step cap 8でqueue oracleを照合
 | `CASE-INT-071-02f` | unsupported cost fieldだけ0へ補完 | 不合格。cost unknownを保持する。 |
 | `CASE-INT-071-02g` | 069単体結果だけcomposite完了と表示 | 不合格。071比較/後続receiptを成立扱いしない。 |
 
-### CASE-INT-071-03 — held-out finite comparison (AC-INT-071-03)
+### CASE-INT-071-03 — 未見有限比較 (AC-INT-071-03)
 
 held-out graphで宣言済ruleのみ照合し、unknown edgeと未取得actual receiptは該当scenarioだけ未対応/未比較にする。
 
-### CASE-INT-074-01 — eligible LABO feedback in later proposal (AC-INT-074-01)
+### CASE-INT-074-01 — 後続proposalで使う適格LABO feedback (AC-INT-074-01)
 
 評価済み返却feedbackがtask-class/revision/scope/window/source completenessと一致するfixtureを与える。既存L2-010への引用と適用条件を示し、OS ticket/assignmentは作らない。
 
-### CASE-INT-074-02 — isolated feedback negatives (AC-INT-074-02)
+### CASE-INT-074-02 — feedbackの独立反例 (AC-INT-074-02)
 
 | CASE | 単独変異 | 期待oracle・戻し先 |
 |---|---|---|
@@ -411,23 +411,23 @@ held-out graphで宣言済ruleのみ照合し、unknown edgeと未取得actual r
 | `CASE-INT-074-02e` | feedbackからmodel/requirementを更新する | writeを拒否しexisting ownerへ返す。 |
 | `CASE-INT-074-02f` | INTELLIGENCEからOS ticket/assignmentを発行 | 発行拒否、OS authorityを維持する。 |
 
-### CASE-INT-074-03 — unseen feedback reason class (AC-INT-074-03)
+### CASE-INT-074-03 — 未見feedback理由class (AC-INT-074-03)
 
 未見reason classと明示互換範囲を入力する。適用範囲が確定するfieldだけを引用し、他をunknown/未評価とする。
 
-### CASE-INT-074-04 — unknown feedback scope/owner (AC-INT-074-04)
+### CASE-INT-074-04 — feedback scope/owner unknown (AC-INT-074-04)
 
 source completeness, window, applicability ownerのいずれか一つをunknownにし、同fieldだけ保留してLABOまたは既存L1/L2 ownerへ返す。
 
-### CASE-INT-077-01 — qualified internal source delta candidate (AC-INT-077-01)
+### CASE-INT-077-01 — qualified internal source delta候補 (AC-INT-077-01)
 
 internal selected receiptのsource identity/revision/owner/originを束ね、qualified sourceの根拠が示すdelta candidateを返す。Requirements/Design/Release/Assignmentは変更しない。
 
-### CASE-INT-077-02 — qualified external source remains separate (AC-INT-077-02)
+### CASE-INT-077-02 — qualified external sourceの分離維持 (AC-INT-077-02)
 
 qualified external receiptを別origin typeで示す。external observationだけからHELIX defectを確定せずinternal sourceと合併しない。
 
-### CASE-INT-077-03 — isolated non-authority negatives (AC-INT-077-03)
+### CASE-INT-077-03 — authorityを変更しない独立反例 (AC-INT-077-03)
 
 | CASE | 単独変異 | 期待oracle・戻し先 |
 |---|---|---|
@@ -439,6 +439,146 @@ qualified external receiptを別origin typeで示す。external observationだ�
 | `CASE-INT-077-03f` | Release/Assignment/merge stateだけ変更 | state/authority変更を拒否する。 |
 | `CASE-INT-077-03g` | unknown consumerから新route/ownerを推測 | route/ownerを作らずunknownとして既存requirement ownerへ照合する。 |
 
-### CASE-INT-077-04 — unseen source/consumer (AC-INT-077-04)
+### CASE-INT-077-04 — 未見source/consumer (AC-INT-077-04)
 
 未見source typeまたはconsumer identityを一項目だけ与える。未宣言のsource owner/consumerを作らずunknown/incompleteで保持する。
+
+
+
+#### Stage 5 独立fixture補完（AC参照はL3補完表に対応）
+
+各行は別fixtureで一項目だけ変え、表にない条件は正常のまま固定する。正常/未見正常は既存CASE-INT-*-01/03/04を保持し、下表を同じCASE IDの集約negative件数として数えない。
+
+| CASE | 親/AC | 入力の単独変異 | 期待oracle・戻し先 |
+|---|---|---|---|
+| `CASE-INT-060-05a` | 060/AC-INT-060-05 | approved requirementだけ欠落 | planを実行可能にせず、該当requirement ownerへ戻す。 |
+| `CASE-INT-060-05b` | 060/AC-INT-060-05 | HARNESS process contractだけ欠落 | 影響nodeを未完にしHARNESSへ戻す。 |
+| `CASE-INT-060-05c` | 060/AC-INT-060-05 | current OS stateだけ欠落 | state依存nodeを未確定にしOSへ戻す。 |
+| `CASE-INT-060-05d` | 060/AC-INT-060-05 | 選択BRAIN knowledgeだけ欠落 | knowledge依存をunknownとしてBRAINへ戻す。 |
+| `CASE-INT-060-05e` | 060/AC-INT-060-05 | stop conditionだけ欠落 | stop条件を推測せずplan candidateを未完にする。 |
+| `CASE-INT-060-05f` | 060/AC-INT-060-05 | 宣言済みstop時のfallbackだけ欠落 | fallbackを補完せず影響nodeとstop理由を保持してsource ownerへ戻す。 |
+| `CASE-INT-060-05g` | 060/AC-INT-060-05 | dependency cycleだけ存在 | 解決済み順序を出さず該当dependency ownerへ戻す。 |
+| `CASE-INT-060-05h` | 060/AC-INT-060-05 | dependency identityだけ未知 | unknown dependencyを保ちsource ownerへ戻す。 |
+| `CASE-INT-060-05i` | 060/AC-INT-060-05 | declared stop後の指定fallback（正常） | 指定fallbackだけを同じsource/scopeで適用し、ticket発行はOSに残す。 |
+| `CASE-INT-061-05a` | 061/AC-INT-061-05 | compatibility evidenceだけ未見 | 評価互換性をunknownに保ちLABOへ戻す。 |
+| `CASE-INT-061-05b` | 061/AC-INT-061-05 | task scopeだけunknown | 適用範囲を確定せずINTELLIGENCEへ戻す。 |
+| `CASE-INT-061-05c` | 061/AC-INT-061-05 | assignment可否だけunknown | proposalをassignmentにせずOSへ戻す。 |
+| `CASE-INT-061-05d` | 061/AC-INT-061-05 | task identityだけ別段階receiptから流用 | identity不一致を検出し対応stage ownerへ戻す。 |
+| `CASE-INT-061-05e` | 061/AC-INT-061-05 | revisionだけ異なる段階receiptから流用 | stale/別revisionを混ぜず該当producer ownerへ戻す。 |
+| `CASE-INT-062-04a` | 062/AC-INT-062-04 | isolation evidenceだけ欠落 | 実行成立にせずSECURITYへ戻す。 |
+| `CASE-INT-062-04b` | 062/AC-INT-062-04 | repair candidateだけ欠落 | repair目的を推測せずINTELLIGENCEへ戻す。 |
+| `CASE-INT-062-04c` | 062/AC-INT-062-04 | targetだけ別revision | receiptを結ばず実行stage ownerへ戻す。 |
+| `CASE-INT-062-04d` | 062/AC-INT-062-04 | scopeだけ別 | 他scopeの成功を流用せず該当stage ownerへ戻す。 |
+| `CASE-INT-062-04e` | 062/AC-INT-062-04 | revisionだけstale | stale evidenceを拒否しそのstage ownerへ戻す。 |
+| `CASE-INT-062-04f` | 062/AC-INT-062-04 | owner identityだけ別 | owner不一致を保留し既存stage ownerへ返す。 |
+| `CASE-INT-062-04g` | 062/AC-INT-062-04 | 順序だけ逆転（全receiptは存在） | 「最初の欠落」と誤表示せず、順序不成立を検出した既存stage ownerへ戻す。 |
+| `CASE-INT-062-04h` | 062/AC-INT-062-04 | repair resultだけ失敗 | acceptanceを作らず失敗したstage ownerへ戻す。 |
+| `CASE-INT-062-04i` | 062/AC-INT-062-04 | repair stageだけ未完了 | 未完stageを完了化せず対応ownerへ戻す。 |
+| `CASE-INT-063-04a` | 063/AC-INT-063-04 | LABO評価だけ不足 | 効果結論を保留しLABOへ戻す。 |
+| `CASE-INT-063-04b` | 063/AC-INT-063-04 | BRAIN sourceだけ不明 | knowledge適用をunknownとしBRAINへ戻す。 |
+| `CASE-INT-063-04c` | 063/AC-INT-063-04 | OS実行だけ未完 | loop完了をclaimせずOSへ戻す。 |
+| `CASE-INT-063-04d` | 063/AC-INT-063-04 | historical evaluationだけcurrent stateへ上書き | 時点を分け、current stateを保持する。 |
+| `CASE-INT-063-04e` | 063/AC-INT-063-04 | 未承認BRAIN candidateだけ一般知識扱い | canonical知識化せずBRAINへ戻す。 |
+| `CASE-INT-063-04f` | 063/AC-INT-063-04 | delayed outcome（正常）を元episodeへ遅着 | 元episode/source/timeを保ちcurrent judgmentは上書きしない。 |
+| `CASE-INT-063-04g` | 063/AC-INT-063-04 | out-of-order outcome（正常）を元episodeへ到着 | 到着順でcurrent episodeを巻き戻さず履歴へ結ぶ。 |
+| `CASE-INT-063-04h` | 063/AC-INT-063-04 | duplicate outcomeだけ別episodeへ適用 | 二重計上せず元episodeを保持する。 |
+| `CASE-INT-069-06a` | 069/AC-INT-069-06 | HARNESS-010 pack identityだけ欠落 | input contractを成立扱いせずHARNESS ownerへ戻す。 |
+| `CASE-INT-069-06b` | 069/AC-INT-069-06 | HARNESS-010 contract revisionだけstale | calculationを保留しHARNESSへ戻す。 |
+| `CASE-INT-069-06c` | 069/AC-INT-069-06 | HARNESS-010 scopeだけ不一致 | 別scope契約を流用せずHARNESSへ戻す。 |
+| `CASE-INT-069-06d` | 069/AC-INT-069-06 | HARNESS-010 provenanceだけ欠落 | 出所不明をunknownにしHARNESSへ戻す。 |
+| `CASE-INT-069-06e` | 069/AC-INT-069-06 | HARNESS-011 pack identityだけ欠落 | acceptance contractを推測せずHARNESSへ戻す。 |
+| `CASE-INT-069-06f` | 069/AC-INT-069-06 | HARNESS-011 contract revisionだけstale | paired acceptance contractを成立扱いせずHARNESSへ戻す。 |
+| `CASE-INT-069-06g` | 069/AC-INT-069-06 | HARNESS-011 scopeだけ不一致 | 別scopeを混ぜずHARNESSへ戻す。 |
+| `CASE-INT-069-06h` | 069/AC-INT-069-06 | HARNESS-011 provenanceだけ欠落 | 出所を推測せずHARNESSへ戻す。 |
+| `CASE-INT-069-06i` | 069/AC-INT-069-06 | 選択model/source identityだけ不一致 | model resultを結ばずsource ownerへ戻す。 |
+| `CASE-INT-069-06j` | 069/AC-INT-069-06 | L2-033 input receiptだけ欠落 | 単体計算のCORE入力を作らずsource ownerへ戻す。 |
+| `CASE-INT-069-06k` | 069/AC-INT-069-06 | L2-003 current state sourceだけ欠落 | source-owned stateを補完せず当該source ownerへ戻す。 |
+| `CASE-INT-069-06l` | 069/AC-INT-069-06 | L2-004 fact/inference区分だけ欠落 | 区分不明を保持しINT/source ownerへ戻す。 |
+| `CASE-INT-069-06m` | 069/AC-INT-069-06 | L2-012 unknown/source attributionだけ欠落 | 不確実性を確定値にせず当該source ownerへ戻す。 |
+| `CASE-INT-069-06n` | 069/AC-INT-069-06 | L2-013 trace/source revisionだけ欠落 | traceを結ばず該当source ownerへ戻す。 |
+| `CASE-INT-069-06o` | 069/AC-INT-069-06 | 適用data-use/authority条件だけ欠落 | 利用可能と推測せず該当security/source ownerへ戻す。 |
+| `CASE-INT-069-06p` | 069/AC-INT-069-06 | stop conditionだけ欠落 | 完了を作らずsource/model ownerへ戻す。 |
+| `CASE-INT-069-06q` | 069/AC-INT-069-06 | unselected model/sourceへのfallbackだけ追加 | 未選択sourceを未観測に保ちfallbackを拒否する。 |
+| `CASE-INT-069-07a` | 069/AC-INT-069-07 | 通常計算で期待値oracleなし（正常） | 明示model/ruleから結果・trace・unknownを算出し、oracleなしを理由に保留しない。 |
+| `CASE-INT-069-07b` | 069/AC-INT-069-07 | 通常計算で070/040/LABO-024後段receiptなし（正常） | 計算結果を返し、後段connection未完を別保持する。 |
+| `CASE-INT-069-07c` | 069/AC-INT-069-07 | 利用者指定verificationの期待値oracleだけ欠落 | そのverificationだけ保留しscenario author/選択source ownerへ戻す。 |
+| `CASE-INT-069-07d` | 069/AC-INT-069-07 | stop/cutoff位置だけ欠落 | 成功完了にせず打切り位置unknownを保持する。 |
+| `CASE-INT-069-07e` | 069/AC-INT-069-07 | 計算resourceだけ不足 | 途中resultと停止位置を保持し、OS運転成功に変換しない。 |
+| `CASE-INT-069-07f` | 069/AC-INT-069-07 | 選択source/permissionだけ期限切れ | 該当operationだけ保留し既存source/SECURITY ownerへ戻す。 |
+| `CASE-INT-070-07a` | 070/AC-INT-070-07 | L2-040 send contractだけ欠落 | send未成立としてCONNECT/既存source ownerへ戻す。 |
+| `CASE-INT-070-07b` | 070/AC-INT-070-07 | send contract revisionだけ不一致 | send receiptを結ばずcontract ownerへ戻す。 |
+| `CASE-INT-070-07c` | 070/AC-INT-070-07 | correlationだけ別 | 別operationのreceiptを混ぜない。 |
+| `CASE-INT-070-07d` | 070/AC-INT-070-07 | target scopeだけ別 | 対象scopeのsend未完として保持する。 |
+| `CASE-INT-070-07e` | 070/AC-INT-070-07 | LABO-024 consumer contractだけ欠落 | consumer受領を成立させずLABOへ戻す。 |
+| `CASE-INT-070-07f` | 070/AC-INT-070-07 | LABO-024 contract revisionだけ不一致 | 別版consumer契約を流用せずLABOへ戻す。 |
+| `CASE-INT-070-07g` | 070/AC-INT-070-07 | input source identityだけ不一致 | stage bindingを失敗にし該当source ownerへ戻す。 |
+| `CASE-INT-070-07h` | 070/AC-INT-070-07 | model identityだけ不一致 | resultを結ばずmodel ownerへ戻す。 |
+| `CASE-INT-070-07i` | 070/AC-INT-070-07 | data-use bindingだけ欠落 | 計算/送達への利用を成立扱いせず該当SECURITY/source ownerへ戻す。 |
+| `CASE-INT-070-08a` | 070/AC-INT-070-08 | simulation statusだけactualへ変更 | virtual結果を実測へ昇格しない。 |
+| `CASE-INT-070-08b` | 070/AC-INT-070-08 | predictionとactual source identityだけ同一化 | 二つのsource/時点を分離する。 |
+| `CASE-INT-070-08c` | 070/AC-INT-070-08 | later observation windowだけ不一致 | 比較不能としてLABOへ戻す。 |
+| `CASE-INT-070-08d` | 070/AC-INT-070-08 | 未決閾値だけpass/failへ変異 | 測定値のみ保持し閾値判断を作らない。 |
+| `CASE-INT-070-08e` | 070/AC-INT-070-08 | 未選択consumer fieldだけ一般互換と解釈 | 外挿せずunknownを保持する。 |
+| `CASE-INT-071-04a` | 071/AC-INT-071-04 | 固定baseline/load正常scenario | 5/5・5/10 arrival、cap 8の計算と6出力facetを独立照合する。 |
+| `CASE-INT-071-04b` | 071/AC-INT-071-04 | 固定DB断正常scenario | 明示order edgeだけblocked、recovery未定義を保持する。 |
+| `CASE-INT-071-04c` | 071/AC-INT-071-04 | 固定virtual worker 2→4正常scenario | 3→2.25 min、1.50→2.025 creditsを算術照合しOS assignmentを不変にする。 |
+| `CASE-INT-071-04d` | 071/AC-INT-071-04 | comparison coefficientだけ不一致 | 該当scenarioだけを未比較にする。 |
+| `CASE-INT-071-04e` | 071/AC-INT-071-04 | observation windowだけ不一致 | 該当scenarioだけを未比較にする。 |
+| `CASE-INT-071-04f` | 071/AC-INT-071-04 | modelにretry ruleだけ存在しない | retry成功を補わずmodel ownerへ戻す。 |
+| `CASE-INT-071-04g` | 071/AC-INT-071-04 | modelにrecovery ruleだけ存在しない | recoveryを創作せずmodel ownerへ戻す。 |
+| `CASE-INT-071-04h` | 071/AC-INT-071-04 | edge外failureだけ伝播 | edge外stateを不変にしmodel ownerへ戻す。 |
+| `CASE-INT-071-04i` | 071/AC-INT-071-04 | simulationだけactualへ昇格 | 実測へ昇格しない。 |
+| `CASE-INT-071-04j` | 071/AC-INT-071-04 | simulationだけLABO評価済みへ昇格 | 評価済みへ昇格せずLABOへ戻す。 |
+| `CASE-INT-074-05a` | 074/AC-INT-074-05 | source completenessだけ欠落 | 評価済み適用をclaimせずLABOへ戻す。 |
+| `CASE-INT-074-05b` | 074/AC-INT-074-05 | observation windowだけ欠落 | windowを推測せずLABOへ戻す。 |
+| `CASE-INT-074-05c` | 074/AC-INT-074-05 | applicability ownerだけ不明 | ownerを推測せずunknownを保持する。 |
+| `CASE-INT-074-05d` | 074/AC-INT-074-05 | task attributeだけ欠落 | task/ticket条件をOSへ戻す。 |
+| `CASE-INT-074-05e` | 074/AC-INT-074-05 | scope/evidenceだけ不足 | 評価不足としてLABOへ戻す。 |
+| `CASE-INT-074-05f` | 074/AC-INT-074-05 | evaluation stateだけ未評価 | eligible evidenceにしない。 |
+| `CASE-INT-074-05g` | 074/AC-INT-074-05 | comparisonだけ不能 | 比較不能をunknownのままLABOへ戻す。 |
+| `CASE-INT-074-05h` | 074/AC-INT-074-05 | comparison sourceだけ欠落 | sourceを補完せずLABOへ戻す。 |
+| `CASE-INT-074-05i` | 074/AC-INT-074-05 | comparison revisionだけstale | current evidenceへ流用しない。 |
+| `CASE-INT-074-05j` | 074/AC-INT-074-05 | comparison scopeだけ別 | 別scopeへ転用せずLABOへ戻す。 |
+| `CASE-INT-074-05k` | 074/AC-INT-074-05 | feedback target revisionだけ別 | current evidenceへ流用しない。 |
+| `CASE-INT-074-05l` | 074/AC-INT-074-05 | task classだけ異なる | 別taskへの転用を拒否する。 |
+| `CASE-INT-074-05m` | 074/AC-INT-074-05 | 単一feedbackから恒久除外 | 永続状態を作らない。 |
+| `CASE-INT-074-05n` | 074/AC-INT-074-05 | 単一feedbackから恒久昇格 | 永続状態を作らない。 |
+| `CASE-INT-074-05o` | 074/AC-INT-074-05 | feedbackだけから因果能力差を確定 | 因果結論を作らない。 |
+| `CASE-INT-074-05p` | 074/AC-INT-074-05 | feedbackだけから恒久順位を更新 | rankを更新しない。 |
+| `CASE-INT-074-05q` | 074/AC-INT-074-05 | feedbackからmodelを直接更新 | writeを拒否する。 |
+| `CASE-INT-074-05r` | 074/AC-INT-074-05 | feedbackからRequirementを直接更新 | writeを拒否する。 |
+| `CASE-INT-074-05s` | 074/AC-INT-074-05 | INTELLIGENCEからticketを直接発行 | 発行を拒否しOSへ戻す。 |
+| `CASE-INT-074-05t` | 074/AC-INT-074-05 | INTELLIGENCEからreissueを直接発行 | 発行を拒否しOSへ戻す。 |
+| `CASE-INT-074-05u` | 074/AC-INT-074-05 | INTELLIGENCEからassignmentを直接変更 | 変更を拒否しOSへ戻す。 |
+| `CASE-INT-074-05v` | 074/AC-INT-074-05 | INTELLIGENCEからdispatchを実行 | 実行を拒否しOSへ戻す。 |
+| `CASE-INT-074-05w` | 074/AC-INT-074-05 | 正常feedbackのtrace | return reason、missing input/oracle、再発行後verification状態、母集団/window、再評価条件を同一評価receiptへ結ぶ。 |
+| `CASE-INT-074-05x` | 074/AC-INT-074-05 | 同じ理由class・宣言済み同scopeの未見正常例 | 根拠の引用と再評価条件を保ち、成功や適格性は自動生成しない。 |
+| `CASE-INT-074-05y` | 074/AC-INT-074-05 | 同じ理由classだが異なるscope | feedbackを転用せず適用外/unknownを保持しLABOへ戻す。 |
+| `CASE-INT-077-05a` | 077/AC-INT-077-05 | unknownを0へ変異 | unknownを保持する。 |
+| `CASE-INT-077-05b` | 077/AC-INT-077-05 | unknownをneutralへ変異 | unknownを保持する。 |
+| `CASE-INT-077-05c` | 077/AC-INT-077-05 | unknownをunchangedへ変異 | unknownを保持する。 |
+| `CASE-INT-077-05d` | 077/AC-INT-077-05 | unknownをobservedへ変異 | unknownを保持する。 |
+| `CASE-INT-077-05e` | 077/AC-INT-077-05 | Requirementへ直接write | writeを拒否し既存正本を不変にする。 |
+| `CASE-INT-077-05f` | 077/AC-INT-077-05 | Designへ直接write | writeを拒否する。 |
+| `CASE-INT-077-05g` | 077/AC-INT-077-05 | Releaseへ直接write | writeを拒否する。 |
+| `CASE-INT-077-05h` | 077/AC-INT-077-05 | Assignmentへ直接write | writeを拒否する。 |
+| `CASE-INT-077-05i` | 077/AC-INT-077-05 | merge authority/stateを直接変更 | authority/stateを変更しない。 |
+| `CASE-INT-077-05j` | 077/AC-INT-077-05 | selected receipt identityだけ欠落 | 別sourceで補完せず選択source ownerへ戻す。 |
+| `CASE-INT-077-05k` | 077/AC-INT-077-05 | selected receipt identityだけ不一致 | receiptを結ばず選択source ownerへ戻す。 |
+| `CASE-INT-077-05l` | 077/AC-INT-077-05 | selected receipt revisionだけ欠落 | 別revisionで補完せず選択source ownerへ戻す。 |
+| `CASE-INT-077-05m` | 077/AC-INT-077-05 | selected receipt revisionだけ不一致 | stale/unknownのまま選択source ownerへ戻す。 |
+| `CASE-INT-077-05n` | 077/AC-INT-077-05 | origin typeだけ欠落 | internal/externalを推測しない。 |
+| `CASE-INT-077-05o` | 077/AC-INT-077-05 | origin typeだけ不一致 | originを統合せずsource ownerへ戻す。 |
+| `CASE-INT-077-05p` | 077/AC-INT-077-05 | source owner identityだけ欠落 | ownerを推測しない。 |
+| `CASE-INT-077-05q` | 077/AC-INT-077-05 | source owner identityだけ不一致 | owner不一致をunknownに保つ。 |
+| `CASE-INT-077-05r` | 077/AC-INT-077-05 | qualification evidenceだけ欠落 | qualified扱いせずselected source ownerへ戻す。 |
+| `CASE-INT-077-05s` | 077/AC-INT-077-05 | qualification evidenceだけ不一致 | qualificationを継承せずselected source ownerへ戻す。 |
+| `CASE-INT-077-05t` | 077/AC-INT-077-05 | selected receiptだけstale | candidateをincompleteに保つ。 |
+| `CASE-INT-077-05u` | 077/AC-INT-077-05 | selected receiptだけread failure | candidateをincompleteに保つ。 |
+| `CASE-INT-077-05v` | 077/AC-INT-077-05 | unselected receiptへfallback | unselectedを未観測のまま保つ。 |
+| `CASE-INT-077-05w` | 077/AC-INT-077-05 | reference-only資料をselected sourceへ昇格 | 参照資料を資格根拠へしない。 |
+| `CASE-INT-077-05x` | 077/AC-INT-077-05 | internal sourceをexternal/TERへ付替 | source identity/originを維持しHELIX defectを推定しない。 |
+| `CASE-INT-077-05y` | 077/AC-INT-077-05 | external sourceをinternal/UILだけへ付替 | source identity/originを維持し必要ならunknownで戻す。 |
+| `CASE-INT-077-05z` | 077/AC-INT-077-05 | external release observationだけからHELIX defectを確定 | defectを確定せずfinding/candidateを未確定で保持する。 |
+
+この補完表は候補fixture設計である。execution、実環境qualification、成功率、実測済み性能、またはL3承認を示さない。

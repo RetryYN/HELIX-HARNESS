@@ -46,7 +46,7 @@
 固定親 `HELIXINTELLIGENCE-L2-075` は独立business outcomeを要求しないため、BR-INT-075/Business CASEは追加しない。Stage 2c evidenceは `FR-INT-075` の `AC-INT-075-01`〜`AC-INT-075-06` およびfunctional CASE `CASE-INT-075-01`〜`CASE-INT-075-09` を参照する。qualification owner、business KPI、新しいgateは作らない。
 
 
-## Stage 5 — business evidence scope (INTELLIGENCE 9 parents)
+## Stage 5 — business evidence範囲（INTELLIGENCE 9親）
 
 固定9親は独立した業務結果やbusiness owner/KPIを要求しない。以下はbusiness CASEではなく、FR/functional CASEを業務責務境界と照合する索引である。業務成果の実測、proposalの採択、L3承認を主張しない。
 
@@ -61,5 +61,7 @@
 | `HELIXINTELLIGENCE-L2-071` | finite fixture comparisonのみ。operational outcomeではない | `FR-INT-071`, `CASE-INT-071-*` |
 | `HELIXINTELLIGENCE-L2-074` | 独立業務指標なし。LABO feedbackは後続proposal材料 | `FR-INT-074`, `CASE-INT-074-*` |
 | `HELIXINTELLIGENCE-L2-077` | 独立業務指標なし。delta candidateはnon-authoritative | `FR-INT-077`, `CASE-INT-077-*` |
+
+補完CASEは各親のfunctional fixture索引として上表の`CASE-INT-*-*` wildcardに含める。業務結果や別business CASEとは数えない。
 
 新KPI、成功率target、qualification gate、OS/LABO判断の代行は追加しない。

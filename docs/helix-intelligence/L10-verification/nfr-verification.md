@@ -57,43 +57,43 @@ CASEごとにfixture/input digest、対象親の固定PO/L2/L11 revision、metri
 - 判定: 候補NFRはテストmatrixの可観測性・coverage比較に限定する。合否閾値、最低件数、SLA、schema enum、Qualification algorithm、UIL runtime、Issue/CI/merge実行を追加しない。採択済みL2-009/L1-009とのtraceが不足する場合はunknownとして既存ownerへ返す。
 
 
-## Stage 5 — NFR candidate measurement oracles
+## Stage 5 — NFR候補の測定oracle
 
 状態: 各CASEは未実行の静的測定設計であり、実測・閾値達成・L3承認を示さない。分母とunknown/missing/staleは別記し、固定fixture数以外のminimum N、SLA、pass値を置かない。
 
-### CASE-NFR-INT-060-01 — source/edge plan trace
+### CASE-NFR-INT-060-01 — source/edge計画trace
 
 同じ060-01/held-out inputからselected source数、宣言edge数、trace可能edge数、unknown/stale数を再計算し、母集団へ欠落を残す。
 
-### CASE-NFR-INT-061-01 — LABO evidence applicability
+### CASE-NFR-INT-061-01 — LABO evidence適用可能性
 
 同じtask-class/scope内外の評価件数とproposalに参照した件数を独立に集計し、別revisionを混ぜず未評価をpositive扱いしない。
 
-### CASE-NFR-INT-062-01 — stagewise receipt inventory
+### CASE-NFR-INT-062-01 — 段階別receipt台帳
 
 SECURITY/Worker/HARNESS/OS各stageのavailable/missing/unknown/stale/return件数を別分母で再計算し、先行stage successで次段の欠損が消えないことを照合する。
 
-### CASE-NFR-INT-063-01 — episode/time identity
+### CASE-NFR-INT-063-01 — episode/時点identity
 
 historical evaluation・current judgment・OS outcome・BRAIN applicabilityのepisode/revision/time bindingを別々に数え、late resultを元episodeへ戻す。
 
-### CASE-NFR-INT-069-01 — finite calculation replay and units
+### CASE-NFR-INT-069-01 — 有限計算再現とunit
 
 069 queue/worker fixed fixturesを再計算し、同一source/rule/inputでtrace/resultが一致するか記録する。計算不能/unknown/unsupported/stop件数を分け、unknownを0へ置換しない。運用性能分布へ外挿しない。
 
-### CASE-NFR-INT-070-01 — connection stage receipt ledger
+### CASE-NFR-INT-070-01 — 接続段階receipt台帳
 
 033 input, 069 result, 040 send, LABO-024 receiptを独立集計し、同一model/scenario/target/correlationで結ばれたstageとmissing/duplicate/stale stageを別表示する。
 
-### CASE-NFR-INT-071-01 — scenario comparability
+### CASE-NFR-INT-071-01 — scenario比較可能性
 
 固定L11の3 scenario (load increase, DB disconnect, virtual worker 2→4)をfixture母集団として、同model/rule/unit, numeric oracle, downstream receipt状態を別々に照合する。3件を運用sample minimumや精度targetとはしない。
 
-### CASE-NFR-INT-074-01 — feedback eligibility counts
+### CASE-NFR-INT-074-01 — feedback適格性件数
 
 同一fixture feedbackをevaluated/unassessed, matching/mismatching scope/revision, complete/incomplete sourceへ層別しeligible/unknown/excluded数を再計算する。未知と欠測を合格率へ押し込まない。
 
-### CASE-NFR-INT-077-01 — source binding and non-write boundary
+### CASE-NFR-INT-077-01 — source結合と非write境界
 
 selected internal/external sourceを別populationで集計し、qualified binding/unknown field/non-write attempt/owner handoffを報告する。unknown consumer/owner populationを補完しない。
 
@@ -110,3 +110,21 @@ selected internal/external sourceを別populationで集計し、qualified bindin
 | `CASE-NFR-INT-071-01` | 071 | three fixed scenario comparison |
 | `CASE-NFR-INT-074-01` | 074 | feedback applicability |
 | `CASE-NFR-INT-077-01` | 077 | selected-source identity/non-write |
+
+
+
+### 補完fixtureの件数・状態trace（未実行）
+
+| NFR CASE | functional fixture母集団 | 観測項目 |
+|---|---|---|
+| `CASE-NFR-INT-060-02` | `CASE-INT-060-05a`–`CASE-INT-060-05i` | 四sourceとstop/fallback/dependencyの各単独変異、影響node、既存owner返却。 |
+| `CASE-NFR-INT-061-02` | `CASE-INT-061-05a`–`CASE-INT-061-05e` | compatibility/task scope/OS割当/identity/revisionの別facet。 |
+| `CASE-NFR-INT-062-02` | `CASE-INT-062-04a`–`CASE-INT-062-04i` | isolation/candidate/target/scope/revision/owner/order/result別のstage状態。 |
+| `CASE-NFR-INT-063-02` | `CASE-INT-063-04a`–`CASE-INT-063-04h` | LABO/BRAIN/OS/HARNESSのsource・episode・時点・owner返却。 |
+| `CASE-NFR-INT-069-02` | `CASE-INT-069-06a`–`CASE-INT-069-06q`, `CASE-INT-069-07a`–`CASE-INT-069-07f` | 必須contract/sourceとoperation条件を別母集団で数え、通常oracle/後段receiptなしの正常を保持。 |
+| `CASE-NFR-INT-070-02` | `CASE-INT-070-07a`–`CASE-INT-070-07i`, `CASE-INT-070-08a`–`CASE-INT-070-08e` | stage contract、consumer、data-use、prediction/actual比較の別集計。 |
+| `CASE-NFR-INT-071-02` | `CASE-INT-071-04a`–`CASE-INT-071-04j` | 3固定正常scenarioと4独立negativeを分けた状態/比較件数。 |
+| `CASE-NFR-INT-074-02` | `CASE-INT-074-05a`–`CASE-INT-074-05y` | 欠落、比較不能、恒久結論、直接操作ごとのfixture件数。 |
+| `CASE-NFR-INT-077-02` | `CASE-INT-077-05a`–`CASE-INT-077-05z` | unknown補完4、write5、receipt binding12、source fallback/origin4の区分。 |
+
+全行は測定設計であり、測定結果・合格率・最低fixture数を生成しない。未実施fixtureは成功件数に含めない。
