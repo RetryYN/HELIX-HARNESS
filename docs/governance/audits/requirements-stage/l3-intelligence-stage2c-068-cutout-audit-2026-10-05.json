@@ -1,0 +1,1067 @@
+{
+  "schema": "HELIX-L3-L10-cutout-audit/v1",
+  "record_status": "immutable candidate-stage audit; not approval or independent review",
+  "created_on": "2026-10-05",
+  "scope": {
+    "mechanism": "HELIX-INTELLIGENCE",
+    "parent_identity": "HELIXINTELLIGENCE-L2-068",
+    "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-068-002",
+    "stage": "Stage 2c (G0 selected order, parallel with Stage 2b)",
+    "version_target": "1.0 candidate",
+    "base_head": "86bfa878f818f65f612b715b902cbd2538d41b63",
+    "accepted_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "po_adoption_main": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "stage_source_revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+    "excluded": [
+      "HELIXINTELLIGENCE-L2-076",
+      "HELIXINTELLIGENCE-L2-079",
+      "OS-L2-028 consult completion",
+      "OS-L2-029 composite completion",
+      "HARNESS-L2-022 oracle ownership transfer",
+      "runtime/test/CI/Bun execution",
+      "BRAIN direct promotion",
+      "unapproved Stage 1/2a drafts as authority"
+    ]
+  },
+  "authority_and_nonclaims": {
+    "PO_decision": "L2/L11 fixed bytes adopted only; this L3/L10 candidate remains unapproved",
+    "commit": "worker made no commit; body commit SHA not yet applicable",
+    "approval_or_execution": "none",
+    "requirement_meaning_changes": "none intended; any observed need to change meaning/scope/owner/version routes to upstream owner",
+    "release_or_web": "no release/Web successor claim"
+  },
+  "canonical_documents": [
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "baseline_revision": "86bfa878f818f65f612b715b902cbd2538d41b63",
+      "baseline_bytes": 11264,
+      "baseline_sha256": "56bcd82393cbf48b2b47c8d4107cc247a50e0deea91075e568bab467db5baae2",
+      "prefix_preserved_byte_exact": true,
+      "prefix_sha256_after": "56bcd82393cbf48b2b47c8d4107cc247a50e0deea91075e568bab467db5baae2",
+      "final_bytes": 17674,
+      "final_sha256": "96c4e2a9d05c2ecc46ef5ed116953dc9e2b51d74da6603c8653d7178bcd97eaf",
+      "final_lines": 66,
+      "appended_start_line": 51,
+      "appended_end_line": 66,
+      "appended_bytes": 6410,
+      "appended_raw_lf_sha256": "066e4c41b8e318776ad1707dfcc1e0dfe2900878b7ecf5f702447d5ef9f8a4b1"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "baseline_revision": "86bfa878f818f65f612b715b902cbd2538d41b63",
+      "baseline_bytes": 3558,
+      "baseline_sha256": "479400d0dc86ced49caaa1860a98a6577e2e6684aaa84cbe659fd718ca349c1a",
+      "prefix_preserved_byte_exact": true,
+      "prefix_sha256_after": "479400d0dc86ced49caaa1860a98a6577e2e6684aaa84cbe659fd718ca349c1a",
+      "final_bytes": 3558,
+      "final_sha256": "479400d0dc86ced49caaa1860a98a6577e2e6684aaa84cbe659fd718ca349c1a",
+      "final_lines": 21,
+      "appended_start_line": 22,
+      "appended_end_line": 21,
+      "appended_bytes": 0,
+      "appended_raw_lf_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "baseline_revision": "86bfa878f818f65f612b715b902cbd2538d41b63",
+      "baseline_bytes": 5598,
+      "baseline_sha256": "5e7e541997323e89bc4501503aaf37214f52afaaad0f1f6a9062d74968113ba5",
+      "prefix_preserved_byte_exact": true,
+      "prefix_sha256_after": "5e7e541997323e89bc4501503aaf37214f52afaaad0f1f6a9062d74968113ba5",
+      "final_bytes": 8385,
+      "final_sha256": "5f39a874ab157d7bda714df81c0e2015f2a829fe15965b529f0ecc832ed512be",
+      "final_lines": 37,
+      "appended_start_line": 29,
+      "appended_end_line": 37,
+      "appended_bytes": 2787,
+      "appended_raw_lf_sha256": "7fc8807cd2bb07fc866f0f2a595c78eb57220d6f7213d2c62c201c6f59352866"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "baseline_revision": "86bfa878f818f65f612b715b902cbd2538d41b63",
+      "baseline_bytes": 10572,
+      "baseline_sha256": "3275b3b8e838aed7b31f4f35d18857fe7e266f9640f002bf1b9958c43cbda1ca",
+      "prefix_preserved_byte_exact": true,
+      "prefix_sha256_after": "3275b3b8e838aed7b31f4f35d18857fe7e266f9640f002bf1b9958c43cbda1ca",
+      "final_bytes": 17667,
+      "final_sha256": "47756f20a5d0c5a762babca47a1b6289b414273baebe888a82a42b5aaaae5093",
+      "final_lines": 134,
+      "appended_start_line": 88,
+      "appended_end_line": 134,
+      "appended_bytes": 7095,
+      "appended_raw_lf_sha256": "4c0ee8ca2d05f903d1b7a2411e5d7e69bf08b5dc971b483c83b05edd165a61db"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "baseline_revision": "86bfa878f818f65f612b715b902cbd2538d41b63",
+      "baseline_bytes": 3410,
+      "baseline_sha256": "71553dfa1a5ce136af4aa11f4e8b69e8bc29064fadefc9db567fab9f4a344a96",
+      "prefix_preserved_byte_exact": true,
+      "prefix_sha256_after": "71553dfa1a5ce136af4aa11f4e8b69e8bc29064fadefc9db567fab9f4a344a96",
+      "final_bytes": 3410,
+      "final_sha256": "71553dfa1a5ce136af4aa11f4e8b69e8bc29064fadefc9db567fab9f4a344a96",
+      "final_lines": 25,
+      "appended_start_line": 26,
+      "appended_end_line": 25,
+      "appended_bytes": 0,
+      "appended_raw_lf_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "baseline_revision": "86bfa878f818f65f612b715b902cbd2538d41b63",
+      "baseline_bytes": 5193,
+      "baseline_sha256": "c214f1939619f28728bd88cb1da3caa3a3d487cf1abfe0842e71fe843d67f8d8",
+      "prefix_preserved_byte_exact": true,
+      "prefix_sha256_after": "c214f1939619f28728bd88cb1da3caa3a3d487cf1abfe0842e71fe843d67f8d8",
+      "final_bytes": 7672,
+      "final_sha256": "7625adaeedd20c3ecc5ca21bc8f388e7b6bf10efd8ff9cf7f82d46aa6b8c1983",
+      "final_lines": 35,
+      "appended_start_line": 27,
+      "appended_end_line": 35,
+      "appended_bytes": 2479,
+      "appended_raw_lf_sha256": "abc3349fb82266e4d2ed725390a44eaffb3468fdc6c70297d9682363e83a5283"
+    }
+  ],
+  "condition_trace": [
+    {
+      "source": "L2:494-495",
+      "conditions": "primary/context L1 and supporting unit; output stays proposal",
+      "target": [
+        "FR-INT-068",
+        "AC-INT-068-01",
+        "AC-INT-068-04"
+      ],
+      "cases": [
+        "CASE-INT-068-01",
+        "CASE-INT-068-10"
+      ]
+    },
+    {
+      "source": "L2:495",
+      "conditions": "existing L2 capacities supported, not replaced; 028/029 separated; HARNESS022 and OS020 roles",
+      "target": [
+        "AC-INT-068-01",
+        "AC-INT-068-05"
+      ],
+      "cases": [
+        "CASE-INT-068-09"
+      ]
+    },
+    {
+      "source": "L2:496",
+      "conditions": "common and operation-conditional inputs; no failure evidence for preparation; packet only when used",
+      "target": [
+        "AC-INT-068-01",
+        "AC-INT-068-02",
+        "AC-INT-068-03"
+      ],
+      "cases": [
+        "CASE-INT-068-01",
+        "CASE-INT-068-02",
+        "CASE-INT-068-03"
+      ]
+    },
+    {
+      "source": "L2:497-498",
+      "conditions": "candidate outputs, fact/inference/hypothesis/unknown, trace to accepted oracle, worker responsibility and forbidden authority",
+      "target": [
+        "AC-INT-068-04",
+        "AC-INT-068-05"
+      ],
+      "cases": [
+        "CASE-INT-068-05",
+        "CASE-INT-068-06",
+        "CASE-INT-068-08"
+      ]
+    },
+    {
+      "source": "L2:499-500",
+      "conditions": "always required identity/source/IO/authority/evidence; operation+trigger+expected output+scope; execution routes",
+      "target": [
+        "AC-INT-068-01",
+        "AC-INT-068-04",
+        "AC-INT-068-05",
+        "AC-INT-068-06"
+      ],
+      "cases": [
+        "CASE-INT-068-01",
+        "CASE-INT-068-07",
+        "CASE-INT-068-09"
+      ]
+    },
+    {
+      "source": "L2:501-502",
+      "conditions": "selected source fields and selective stop; unselected references not mandatory; preserve existing oracle/budget/stop/unfinished obligations",
+      "target": [
+        "AC-INT-068-03",
+        "AC-INT-068-06"
+      ],
+      "cases": [
+        "CASE-INT-068-02",
+        "CASE-INT-068-04",
+        "CASE-INT-068-06"
+      ]
+    },
+    {
+      "source": "L2:503",
+      "conditions": "version_target 1.0 candidate; listed INT/OS/HARNESS/LABO deps; separate execution/consult/composite; unassessed remains so",
+      "target": [
+        "AC-INT-068-01",
+        "AC-INT-068-05",
+        "AC-INT-068-06"
+      ],
+      "cases": [
+        "CASE-INT-068-01",
+        "CASE-INT-068-09"
+      ]
+    },
+    {
+      "source": "L2:504-505",
+      "conditions": "owner-specific return, stop/resume and unmet evidence; existing bundled conditions",
+      "target": [
+        "AC-INT-068-02",
+        "AC-INT-068-03",
+        "AC-INT-068-06"
+      ],
+      "cases": [
+        "CASE-INT-068-03",
+        "CASE-INT-068-04",
+        "CASE-INT-068-07",
+        "CASE-INT-068-08"
+      ]
+    },
+    {
+      "source": "L11:201",
+      "conditions": "parent heading only; not an acceptance atom; C13 M12 heading-locator finding remains unresolved",
+      "target": [],
+      "cases": []
+    },
+    {
+      "source": "L11:203",
+      "conditions": "valid inputs/version; standalone; pretest no failure; diagnosis evidence conditional",
+      "target": [
+        "AC-INT-068-01",
+        "AC-INT-068-02"
+      ],
+      "cases": [
+        "CASE-INT-068-01",
+        "CASE-INT-068-03",
+        "CASE-INT-068-09"
+      ]
+    },
+    {
+      "source": "L11:204",
+      "conditions": "PATCH state normal and independent diagnostic example; source binds selected source",
+      "target": [
+        "AC-INT-068-01",
+        "AC-INT-068-02",
+        "AC-INT-068-03",
+        "AC-INT-068-04"
+      ],
+      "cases": [
+        "CASE-INT-068-01",
+        "CASE-INT-068-02",
+        "CASE-INT-068-03"
+      ]
+    },
+    {
+      "source": "L11:205",
+      "conditions": "wrong advice, dropped source revision/scope, guesses, new oracle, helper self-review rejected",
+      "target": [
+        "AC-INT-068-03",
+        "AC-INT-068-04",
+        "AC-INT-068-05"
+      ],
+      "cases": [
+        "CASE-INT-068-04",
+        "CASE-INT-068-05",
+        "CASE-INT-068-06"
+      ]
+    },
+    {
+      "source": "L11:206",
+      "conditions": "unseen endpoint/state returns evidence, owner question and unknown; no generic rule/pass",
+      "target": [
+        "AC-INT-068-02",
+        "AC-INT-068-04",
+        "AC-INT-068-06"
+      ],
+      "cases": [
+        "CASE-INT-068-08"
+      ]
+    },
+    {
+      "source": "L11:207",
+      "conditions": "output trace; AIDOC/CLR-R06; no secret/private reasoning/unapproved conclusion",
+      "target": [
+        "AC-INT-068-03",
+        "AC-INT-068-04"
+      ],
+      "cases": [
+        "CASE-INT-068-02",
+        "CASE-INT-068-05"
+      ]
+    },
+    {
+      "source": "L11:208",
+      "conditions": "candidate/consult/execution/composite/review are separate owners and states",
+      "target": [
+        "AC-INT-068-01",
+        "AC-INT-068-05"
+      ],
+      "cases": [
+        "CASE-INT-068-09"
+      ]
+    },
+    {
+      "source": "L11:209",
+      "conditions": "operation-scoped hold/return; diagnostic missing evidence does not block prep; no unsupported effectiveness claim",
+      "target": [
+        "AC-INT-068-02",
+        "AC-INT-068-06"
+      ],
+      "cases": [
+        "CASE-INT-068-03",
+        "CASE-INT-068-07",
+        "CASE-INT-068-10"
+      ]
+    }
+  ],
+  "counts": {
+    "FR": [
+      "FR-INT-068"
+    ],
+    "AC": [
+      "AC-INT-068-01",
+      "AC-INT-068-02",
+      "AC-INT-068-03",
+      "AC-INT-068-04",
+      "AC-INT-068-05",
+      "AC-INT-068-06"
+    ],
+    "functional_CASE": [
+      "CASE-INT-068-01",
+      "CASE-INT-068-02",
+      "CASE-INT-068-03",
+      "CASE-INT-068-04",
+      "CASE-INT-068-05",
+      "CASE-INT-068-06",
+      "CASE-INT-068-07",
+      "CASE-INT-068-08",
+      "CASE-INT-068-09",
+      "CASE-INT-068-10"
+    ],
+    "BR": [],
+    "business_CASE": [],
+    "NFR": [
+      "NFR-INT-068-01"
+    ],
+    "NFR_CASE": [
+      "CASE-NFR-INT-068-01"
+    ]
+  },
+  "business_pair_disposition": {
+    "business_requirements": "unchanged",
+    "business_verification": "unchanged",
+    "reason": "fixed L2-068 specifies a support proposal and authority/owner/result boundaries but no separate independently owned business outcome or business metric beyond functional behavior; duplicating proposal/unknown/return criteria as BR would not create a distinct business obligation"
+  },
+  "nfr_method": {
+    "numeric_thresholds": null,
+    "removed_unsupported_grid": "3/5/10 source pieces; 5/10/20 percent budget; 30/60/120 seconds",
+    "basis": "operation-specific input-field coverage, source-supported claims, unknown misresolution, existing OS budget consumption and separate normal/failed/missing/censored populations",
+    "denominators": "state each eligible operation/claim/population; denominator zero means no rate; no missing-as-zero; quantiles only valid elapsed samples, n_valid=0 no quantile; distinguish no measurement from observed failures"
+  },
+  "legacy_source_disposition": [
+    {
+      "old_source": "legacy L3 definition 148-168",
+      "disposition": "meaning rederived: FR→AC and paired L10 shape retained; approval/detailed design layer mapping uses current L3/L10 only; old plan engineering-discipline/runtime requirements excluded"
+    },
+    {
+      "old_source": "old shared pillar FR/AC HR-FR-P2-04 and HAC-P2-04b",
+      "disposition": "format and trace pattern reused; old IDs, authority model, workflow and implementation assertions replaced by fixed L2-068 contract"
+    },
+    {
+      "old_source": "worker-common-contract.md",
+      "disposition": "source-bound worker support, original implementer accountability, bounded return and source/owner distinctions rederived; old provider/runtime/CLI and old work lane mechanics excluded"
+    },
+    {
+      "old_source": "worker-common-contract-acceptance.md; resident-lane-orchestration-acceptance.md",
+      "disposition": "normal/negative fixture and independent-review separation form rederived; old receipt/PLAN/issue authority and executable test conditions excluded"
+    },
+    {
+      "old_source": "legacy L10 process 162-170,195-207",
+      "disposition": "paired verification/backflow form rederived; do not copy L12/readiness/gating discrepancy or old stage acceptance"
+    },
+    {
+      "old_source": "legacy L3 functional README 16-56",
+      "disposition": "three-subdocument organization used as format reference only; its L12 successor wording differs from legacy L10 process; current six-document layout and fixed sources govern"
+    },
+    {
+      "old_source": "legacy NFR grade 21-34,58-81",
+      "disposition": "measure-to-oracle table form rederived; IPA grade, thresholds, sample sizes, old SLA values are not reused"
+    }
+  ],
+  "c13_carry": {
+    "source": "Claude review comment RH-PR2564-L3L10-274-13",
+    "source_snapshot_path": "/tmp/pr2564-claude13-comment-full.txt",
+    "source_snapshot_sha256": "4d837e616451040cb15762e98b65cb9f104db8856f0319f4f376a47459644f1c",
+    "physical_locator": "M12 INTELLIGENCE subsection, physical line 168",
+    "finding_text": "068のatomをheadingだけにしない（今もheading_locator_only）",
+    "source_pin_locator": "/tmp/pr2564-fix13-int-labo-source-pins.json fixed_l11_atom_source_pins[144] -> main633 L11 line 201, registration MPR-RC-HELIXINTELLIGENCE-L2-068-002; source class heading_locator_only, cell role not_acceptance_condition, raw SHA f9eb3926fb800ae7294536cd6e406c5f3cf6d231105a1f57645b49cf73a3b317",
+    "resolution_state": "unresolved pending root/independent review; draft maps semantic L11 clauses 202-209 and does not claim closure",
+    "snapshot_bytes": 32525,
+    "physical_span": {
+      "start_line": 168,
+      "end_line": 168,
+      "bytes": 83,
+      "raw_lf_sha256": "ce74243e61d656a70966d65ccaf8bc24ff2f20e890091580897cb0c350919d15",
+      "literal": "  - 「068のatomをheadingだけにしない」（今も`heading_locator_only`）"
+    }
+  },
+  "source_pins": [
+    {
+      "label": "fixed adopted L2-068 semantic clauses",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "full_bytes": 101004,
+      "full_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "spans": [
+        {
+          "start_line": 491,
+          "end_line": 506,
+          "bytes": 8073,
+          "raw_lf_sha256": "152bd91c5e660815f0ac6cabcfc501d527adb18973db329f95c0d16e544a02d9",
+          "literal": null
+        }
+      ]
+    },
+    {
+      "label": "L11-068 heading locator and acceptance clauses",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "full_bytes": 76601,
+      "full_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "spans": [
+        {
+          "start_line": 201,
+          "end_line": 209,
+          "bytes": 4186,
+          "raw_lf_sha256": "f9733900a979eebc6058056ea6b51370f4acd5b602955988985bb1dbf97b3d26",
+          "literal": null
+        }
+      ]
+    },
+    {
+      "label": "PO adoption row for parent 068",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "full_bytes": 13446,
+      "full_sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+      "spans": [
+        {
+          "start_line": 98,
+          "end_line": 98,
+          "bytes": 84,
+          "raw_lf_sha256": "e67c4a4fda50180a66bc823eaae0a809351c3c0ed677542de912b846c20aa896",
+          "literal": "| `HELIXINTELLIGENCE-L2-068` | `MPR-RC-HELIXINTELLIGENCE-L2-068-002` | unit / 1.0 |"
+        }
+      ]
+    },
+    {
+      "label": "G0 Stage 2c registration and stage membership",
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
+      "full_bytes": 1823772,
+      "full_sha256": "ec970df79eaaf693f8825045b235c43ea10aefa7925701b1fff2a974df3e4e0a",
+      "spans": [
+        {
+          "start_line": 21365,
+          "end_line": 21390,
+          "bytes": 1602,
+          "raw_lf_sha256": "d583aebbfbb23c608e2bff088445bd5135e35a66a3d7d4a8800bc2f9287553d6",
+          "literal": null
+        }
+      ]
+    },
+    {
+      "label": "stage assignment source; candidate membership only",
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-assignments-2026-09-27.json",
+      "full_bytes": 122862,
+      "full_sha256": "78db3c793c17dbd80ad663a63aadd5f3c1c1e403da6b3bba75518ecfe5ba7f25",
+      "spans": [
+        {
+          "start_line": 1859,
+          "end_line": 1865,
+          "bytes": 294,
+          "raw_lf_sha256": "f801f1449705deb417054fa9c2c2e165985478576da1729669d1e5a0a0b4196e",
+          "literal": null
+        }
+      ]
+    },
+    {
+      "label": "G0 PO choice and sequence",
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "docs/governance/decisions/implementation-order-po-decision-2026-10-03.md",
+      "full_bytes": 11477,
+      "full_sha256": "c06e922bfd26947f22afebcc5dbd44f57aa04579728872350229792a1c7f1224",
+      "spans": [
+        {
+          "start_line": 5,
+          "end_line": 46,
+          "bytes": 5336,
+          "raw_lf_sha256": "6ae3ef60149b2d3f71cd828d8ad443ce4a17012838e290bedc3969d3cdee229d",
+          "literal": null
+        }
+      ]
+    },
+    {
+      "label": "current L3/L10 placement and paired-doc layout",
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "docs/governance/l3-l10-authoring-layout.md",
+      "full_bytes": 12199,
+      "full_sha256": "d1fb0c89df30aca6bb828f28e58329d57c40bb7593df540625562b5ac920a7ca",
+      "spans": [
+        {
+          "start_line": 1,
+          "end_line": 71,
+          "bytes": 12199,
+          "raw_lf_sha256": "d1fb0c89df30aca6bb828f28e58329d57c40bb7593df540625562b5ac920a7ca",
+          "literal": null
+        }
+      ]
+    },
+    {
+      "label": "legacy L3 definition; requirement/AC and approval boundary",
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "full_bytes": 15617,
+      "full_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "spans": [
+        {
+          "start_line": 148,
+          "end_line": 168,
+          "bytes": 1214,
+          "raw_lf_sha256": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9",
+          "literal": null
+        }
+      ]
+    },
+    {
+      "label": "legacy shared FR/AC support examples",
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "full_bytes": 65731,
+      "full_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "spans": [
+        {
+          "start_line": 147,
+          "end_line": 147,
+          "bytes": 1118,
+          "raw_lf_sha256": "80e5e1458b29a3a528da1363136da617fc21bc6212b46074b871e2ef0d6964cf",
+          "literal": "| HR-FR-P2-04 | HBR-P2 / HBR-P3 / HBR-P4 | agent loop は API/SDK 採用前提ではなく、外部 API/SDK 呼び出し前提でもなく、PLAN 駆動で動く。plan/tool/handoff/guardrail/eval outcome を harness DB の trace span として記録し、simple-composable workflow から eval green を確認してから multi-agent / long-running autonomy へ昇格する。TDD 実装では smart review agent が先に test/oracle を作り、light implementation agent が最小実装し、smart review agent が指示・テスト・レビューして fail 時に修正ループへ戻す pair programming route を持つ。light implementation は changed-files / targeted-test-command / implementation-notes の実装証跡、または consultation question を出し、consultation は pass ではなく smart review の implementation directive / fix response を経て次の light fix cycle に戻す。consultation question がある出力は、同時に implementation evidence を含んでも pending consultation として扱い、smart response 無しに pass へ進めない | HAC-P2-04a / HAC-P2-04b |"
+        },
+        {
+          "start_line": 224,
+          "end_line": 224,
+          "bytes": 2710,
+          "raw_lf_sha256": "727dd6e270f6f0fdf2c1ae597c70366bf4db298b4476a073c408c5b8e2bdbd47",
+          "literal": "| HAC-P2-04b | loop が tool/handoff/guardrail/eval を実行する | trace collector / pair-agent planner を検査 | plan id、span id、tool contract id、handoff target、guardrail decision、eval outcome、duration/cost が replay 可能に残る。TDD pair route では smart review agent が `smart_test_author` で Red/oracle を先に作り、`RED_TEST_COMMAND` と非ゼロ `RED_EXIT_CODE` で Red 実行を証明してから、light implementation agent が `light_implementation` で実装し、smart review agent が `smart_review` でテスト・レビュー・VERDICT を出す。light agent は closing authority を持たず、`light_implementation` は changed-files / targeted-test-command / implementation-notes の実装証跡、または consultation question を出す。light output が `VERDICT` / `FINAL_VERDICT` / `COMPLETION_CLAIM` / `CLOSE_PLAN` / `PLAN_STATUS` / `READY_FOR_REVIEW` / `APPROVAL` marker を出した場合は、light agent が完了/承認を主張したものとして error にする。consultation question は pass ではなく、smart review の implementation directive / fix response を bounded transcript に残して次の light fix cycle へ戻す。consultation question が実装証跡と混在しても pending consultation を優先し、smart response を欠く場合は error にする。fail verdict は smart review の bounded transcript / fix instruction を次の light implementation prompt に渡して修正ループへ戻る。difficulty policy は `trivial/simple=1`, `standard=2`, `complex=3`, `critical=4` の fix-cycle 予算を導出し、明示上書きと区別して evidence に残す。max cycle 到達は `max-fix-cycles-exhausted` finding を返す。`helix pair-agent plan --save-evidence` は adapter plan / prompt digest / frontier guardrail decision を `.helix/evidence/pair-agent/` に永続化し、DB rebuild は plan phase agent を `model_runs`、plan gate を `gate_runs`、frontier approval を `guardrail_decisions` へ投影する。`helix pair-agent run --save-evidence` は plan/run/transcript と replay 用 trace fields（run/span/tool/handoff/guardrail/eval/duration/cost）、`loop_summary`、`transcript_digest`、phase `output_excerpt_digest` を永続化する。DB rebuild は保存済み `phase_spans` の `smart_test_author` -> `light_implementation` -> `smart_review` 順序を再検査し、順序違反を `pair-agent-run-evidence` gate blocked と finding に投影する。`quality_signals` は phase、smart test author、light implementation、smart review、consultation、pending consultation、failed review、fix cycle の count を投影し、stdout だけの一過性証跡にしない |"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605"
+    },
+    {
+      "label": "legacy worker-common support/owner/source conditions",
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+      "full_bytes": 14499,
+      "full_sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+      "spans": [
+        {
+          "start_line": 26,
+          "end_line": 45,
+          "bytes": 2171,
+          "raw_lf_sha256": "da0c7c2017143bd6128e0d84227c341fbcaedb9027276d427de11e51f706974f",
+          "literal": null
+        },
+        {
+          "start_line": 47,
+          "end_line": 110,
+          "bytes": 7029,
+          "raw_lf_sha256": "29aee7e56d632ab40cddf6311876300b43aa04ace80eefbe414820439a53a419",
+          "literal": null
+        },
+        {
+          "start_line": 123,
+          "end_line": 137,
+          "bytes": 2455,
+          "raw_lf_sha256": "69673a3f57962479e561a52991ff5bebb584d83a4054af849c3fdbecf3b42f77",
+          "literal": null
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-9114D4E463E95B67DD0C"
+    },
+    {
+      "label": "legacy worker-common paired acceptance",
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/worker-common-contract-acceptance.md",
+      "full_bytes": 7122,
+      "full_sha256": "c8dff734891a6a7350feb9b698c40e1616946cdd424433d662f1da49d8ac800d",
+      "spans": [
+        {
+          "start_line": 18,
+          "end_line": 37,
+          "bytes": 5052,
+          "raw_lf_sha256": "b6114f9e9fda413b29b97693836562e55efc2b084f4f199dc839cee78c106b7b",
+          "literal": null
+        },
+        {
+          "start_line": 39,
+          "end_line": 64,
+          "bytes": 1421,
+          "raw_lf_sha256": "ea7c842d97f64693f2a9242209f79805f2b0aff9f0fc1f84371634296ae89473",
+          "literal": null
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-C6ADB99F1353965C5449"
+    },
+    {
+      "label": "legacy resident/assistant role and independent review acceptance",
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+      "full_bytes": 4078,
+      "full_sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+      "spans": [
+        {
+          "start_line": 17,
+          "end_line": 55,
+          "bytes": 3316,
+          "raw_lf_sha256": "36e097a074fe674fddd2719b6c196163a6aa625908c90f0125ff42a99e2a41da",
+          "literal": null
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-437A6A68F9A9E0AE1B9E"
+    },
+    {
+      "label": "legacy L10 paired-verification and backflow form",
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md",
+      "full_bytes": 19615,
+      "full_sha256": "d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a",
+      "spans": [
+        {
+          "start_line": 162,
+          "end_line": 170,
+          "bytes": 306,
+          "raw_lf_sha256": "d8e3f0e9afaa03c20985808ccade01279952ea5366655e3d4e95ca9e97dd3df5",
+          "literal": null
+        },
+        {
+          "start_line": 195,
+          "end_line": 207,
+          "bytes": 782,
+          "raw_lf_sha256": "9a91c1d2094be6c1c0463b9f3af280f41abb15b0503f8520c7e72be12c27c75b",
+          "literal": null
+        }
+      ]
+    },
+    {
+      "label": "legacy three-subdocument format; L12 discrepancy source",
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md",
+      "full_bytes": 4297,
+      "full_sha256": "949b0da00d2a417e1b36d3679b89735de7adadf831f567dbe383dfe6337f19e4",
+      "spans": [
+        {
+          "start_line": 16,
+          "end_line": 56,
+          "bytes": 3915,
+          "raw_lf_sha256": "fbb50e1ed591235cba594d8b8a10d5f1c55be865e3df9c9daf75f3814a18ab6a",
+          "literal": null
+        }
+      ]
+    },
+    {
+      "label": "legacy NFR measure/acceptance form; old values not reused",
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+      "full_bytes": 17431,
+      "full_sha256": "2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d",
+      "spans": [
+        {
+          "start_line": 21,
+          "end_line": 34,
+          "bytes": 2105,
+          "raw_lf_sha256": "0392a485245f3de9165f2d3fc17f222b33ef0bbdfc059b3efe466b997576e007",
+          "literal": null
+        },
+        {
+          "start_line": 58,
+          "end_line": 81,
+          "bytes": 1742,
+          "raw_lf_sha256": "092d9b2750c81d8c05857a45692cb1f64996554cc3e679cf7a6e74c6d0990838",
+          "literal": null
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-DB669724249A14A665F0"
+    },
+    {
+      "label": "PO support intent source item 5",
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "docs/helix-harness/sources/capability-reinforcement-po-original-2026-09-27.md",
+      "full_bytes": 7151,
+      "full_sha256": "ab8bb6ae8cd418053d6baaafccaa80ee8ef2e715caab1576e5a00c306e97d1f8",
+      "spans": [
+        {
+          "start_line": 1,
+          "end_line": 60,
+          "bytes": 7151,
+          "raw_lf_sha256": "ab8bb6ae8cd418053d6baaafccaa80ee8ef2e715caab1576e5a00c306e97d1f8",
+          "literal": null
+        }
+      ]
+    },
+    {
+      "label": "support unit derivation and owner split",
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "docs/governance/decisions/worker-support-derivation-2026-09-27.md",
+      "full_bytes": 6022,
+      "full_sha256": "433e3887f834f9c0c9054282c4c25b9caee59334c1121a15fb7dad86661b014d",
+      "spans": [
+        {
+          "start_line": 1,
+          "end_line": 44,
+          "bytes": 6022,
+          "raw_lf_sha256": "433e3887f834f9c0c9054282c4c25b9caee59334c1121a15fb7dad86661b014d",
+          "literal": null
+        }
+      ]
+    },
+    {
+      "label": "fixed L2-068 condition atoms",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "start_line": 491,
+      "end_line": 491,
+      "bytes": 106,
+      "raw_lf_sha256": "819f8f3fddf420ed261a6ca76857789fe35959c5f69cb35f049d939e6ab27570",
+      "literal": "### HELIXINTELLIGENCE-L2-068 作業中Workerへの診断・設計/テスト支援候補（単体候補）",
+      "semantic_role": "source_condition_or_context"
+    },
+    {
+      "label": "fixed L2-068 condition atoms",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "start_line": 492,
+      "end_line": 492,
+      "bytes": 1,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": "",
+      "semantic_role": "source_condition_or_context"
+    },
+    {
+      "label": "fixed L2-068 condition atoms",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "start_line": 493,
+      "end_line": 493,
+      "bytes": 207,
+      "raw_lf_sha256": "5fecb9cb29701fd4fbe27d6461df006db6752452fa6010743c0982f3e6a3f482",
+      "literal": "- **PO起点**：[補強原文](../../helix-harness/sources/capability-reinforcement-po-original-2026-09-27.md)第5項、[判断記録](../../governance/decisions/worker-support-derivation-2026-09-27.md)。",
+      "semantic_role": "source_condition_or_context"
+    },
+    {
+      "label": "fixed L2-068 condition atoms",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "start_line": 494,
+      "end_line": 494,
+      "bytes": 684,
+      "raw_lf_sha256": "6d4fa3a48144d63cc93e7e69bc4359473a1352deaa8da848d1d18d50cdc79dd2",
+      "literal": "- **親L1**：primary parentはHELIXINTELLIGENCE-L1-002（能力選択）、HELIXINTELLIGENCE-L1-005（計画候補）、HELIXINTELLIGENCE-L1-007（異常/停滞の診断）、HELIXINTELLIGENCE-L1-008（test/code/design review）。contextはHELIXINTELLIGENCE-L1-003（source-owned situation）、HELIXINTELLIGENCE-L1-012（unknownと不足入力）、HELIXINTELLIGENCE-L1-013（根拠trace）、HELIXINTELLIGENCE-L1-019（BRAIN適用候補とLABO汎用化の分離）、HELIXINTELLIGENCE-L1-020（製品固有meaningのBackflow）。HELIXINTELLIGENCE-L1-010の配置判断はこの能力の親/出力ではなく、元WorkerのOS assignment identityを入力として引き継ぐ。",
+      "semantic_role": "source_condition_or_context"
+    },
+    {
+      "label": "fixed L2-068 condition atoms",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "start_line": 495,
+      "end_line": 495,
+      "bytes": 1378,
+      "raw_lf_sha256": "cae0ac6a4b0430e473dc8567453e83f881eaaabadc0526228857255f96ffb254",
+      "literal": "- **関係・既存条件**：既存HELIXINTELLIGENCE-L2-002（領域×能力の選択）、HELIXINTELLIGENCE-L2-005（作業計画候補）、HELIXINTELLIGENCE-L2-007（稼働中診断）、HELIXINTELLIGENCE-L2-008（review判断）の能力を、Worker作業を支える限定処理へ補強するunit candidateである。これら既存要求の所有能力を置換・重複所有しない。元Workerの作業前または作業中に、必要な設計、code、過去のfailure例、BRAIN候補を選択し、限定相談、subtask、修正指示とtest/oracle候補を返す。詰まりの診断・consultは必要なoperationだけであり、事前test/指示準備や相談不要の支援candidateを妨げない。HARNESS-L2-022が対の検証・受入義務とoracleのauthorityを持ち、HELIXOS-L2-020がOS管理下のtest/CI実行を運転する。INTELLIGENCEのtest/oracle案はこの契約を満たす材料の候補であり、既存oracle・requirement・受入を変更/追加確定しない。HELIXOS-L2-028は別connectionとして支援案を実相談/Worker handoffへ渡し、HELIXOS-L2-029は実作業・検証・必要な修正往復までの構成体を扱う。本単体はHELIXOS-L2-028の相談完了やHELIXOS-L2-029の一周成功を前提にせず、有効なticket/input/output contractがあれば不足・候補・相談案を作れる。",
+      "semantic_role": "source_condition_or_context"
+    },
+    {
+      "label": "fixed L2-068 condition atoms",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "start_line": 496,
+      "end_line": 496,
+      "bytes": 770,
+      "raw_lf_sha256": "d99d02eb77d0d4aabd81a81bbfbcfb192528707e580e6c4c643a9a122f789d9a",
+      "literal": "- **受け取るもの**：OSが選択した元Worker assignmentまたは着手予定assignmentとtask/ticket identity、対象scopeとrequirement/design revision、HARNESS-L2-022 pair・oracle・受入条件と既存検証義務、選択可能な設計/code/failure/BRAIN sourceのprovenance/applicability、割当budget/期限/停止条件、OSから渡される最小context/restart packet（利用時）。事前test/指示準備ではfailure/blocked evidenceを要求しない。作業中diagnosis/consult operationの場合に限り詰まり/失敗source・再現材料を加える。packetを使う場合はAIDOCのsource/revision/authority・要約非authority条件とOS L2のCLR-R06最小restart packet条件を保ち、必要情報の欠落を隠さない。",
+      "semantic_role": "source_condition_or_context"
+    },
+    {
+      "label": "fixed L2-068 condition atoms",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "start_line": 497,
+      "end_line": 497,
+      "bytes": 534,
+      "raw_lf_sha256": "24d70736f4286906ff5e1f01182c641bd9fc3ec418dace3b729694f1f5deb1f5",
+      "literal": "- **提供するもの**：詰まりの観測・解釈・仮説/unknownを分けた診断候補、問題に関係する最小限の設計/code/過去failure contextと出典、subtaskと依存/受入条件/停止条件案、必要時の限定相談質問と期待する返答、元Workerへの修正案、HARNESS-L2-022既存oracleに紐づく追加test case/oracle拡張の提案、検証者向けevidence/coverage checklist。いずれもcandidateで、採択済み要求・test/oracle変更・OS ticket・assignmentではない。",
+      "semantic_role": "source_condition_or_context"
+    },
+    {
+      "label": "fixed L2-068 condition atoms",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "start_line": 498,
+      "end_line": 498,
+      "bytes": 653,
+      "raw_lf_sha256": "cf4b2e3c99a9ec8adc9786575c1473dcd295b44673571309b66e5afa1c91c285",
+      "literal": "- **保証すること**：sourceのfact、AI推論、unknownを区別し、必要な時だけ相談を提案する。test/oracle候補は承認済みrequirement・HARNESS-L2-022の対象scopeと対にtraceし、境界値・権限・状態遷移等の欠落を指摘しても、oracleをINTELLIGENCE単独で確定しない。作業を支援した相談者/助言者/修正指示者は、その変更の独立reviewerや利用者受入者にならない。元Workerは修正・実装の責任を維持する。INTELLIGENCEは割当、test実行、CI、受入、merge、requirement/design authority、BRAINへの直接generic promotionを行わない。",
+      "semantic_role": "source_condition_or_context"
+    },
+    {
+      "label": "fixed L2-068 condition atoms",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "start_line": 499,
+      "end_line": 499,
+      "bytes": 504,
+      "raw_lf_sha256": "a6a0fd1abc7a6334ba2d11b904617735fd83f83575ff7a7381d64d5e8bfa137f",
+      "literal": "- **常時必須**：元task/ticket identity・scope、source revision/ownerと状態、入力/output contract、必要な既存requirement/pair/oracleと停止条件、data-use/authorityに関係する制約、入力根拠と不確実性（診断operationでは失敗evidenceを追加）。sourceが不明、stale、conflictまたはrestrictedならそのsource利用/候補を止め、不足として返す。元Workerが未評価ならBench未評価を保ち、配置適性判断を代行しない。",
+      "semantic_role": "source_condition_or_context"
+    },
+    {
+      "label": "fixed L2-068 condition atoms",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "start_line": 500,
+      "end_line": 500,
+      "bytes": 440,
+      "raw_lf_sha256": "51c605c7744ac38df2798a83d1eba908d1d2ea95127d0d3b98cd4c0e3b58b5ac",
+      "literal": "- **操作時必須**：停滞の診断、相談提案、task分解、test/oracle候補生成、修正指示のうち実施したoperationとそのtrigger、期待する出力・scopeを記録する。相談自体の実行はHELIXOS-L2-028の別handoff/assignmentを通す。HARNESS-L2-022の契約に従うtestを実行する場合はHELIXOS-L2-020の実行・証拠に渡し、INTELLIGENCE自身の提案を実行結果と扱わない。",
+      "semantic_role": "source_condition_or_context"
+    },
+    {
+      "label": "fixed L2-068 condition atoms",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "start_line": 501,
+      "end_line": 501,
+      "bytes": 343,
+      "raw_lf_sha256": "ba5f0d3a5e8ff9fe385b0716e30e01a96554c018d470b3a692e44e225ca454b3",
+      "literal": "- **選択入力時必須**：実際に選んだdesign/code/failure/BRAIN/context sourceについてidentity/version/scope/provenance、利用許可、applicability・制約を保持する。必要sourceが選択済みなのに入手/判定不能ならcandidateを閉じず不足へ戻す。未選択のsourceを無条件依存にしない。",
+      "semantic_role": "source_condition_or_context"
+    },
+    {
+      "label": "fixed L2-068 condition atoms",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "start_line": 502,
+      "end_line": 502,
+      "bytes": 265,
+      "raw_lf_sha256": "61a26dbd8286229202d6f1f2c2b466a39db5b17786c762b885a260ca62491c8c",
+      "literal": "- **参照のみ**：未選択のpattern/source候補や一般会話は背景参照のみ。対象ticketに課されたHARNESS-L2-022 oracle、必要sourceの制約、OS budget/停止条件、選択済packetに含む未完義務は参照のみへ落とさない。",
+      "semantic_role": "source_condition_or_context"
+    },
+    {
+      "label": "fixed L2-068 condition atoms",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "start_line": 503,
+      "end_line": 503,
+      "bytes": 983,
+      "raw_lf_sha256": "c4b40730dddd21509af64fee4a3bfe29ca9fad54c243315dcd3e8e25a15229df",
+      "literal": "- **版・単独成立の依存**：`version_target: 1.0`（候補目標で実版・採択・v0.1収載を決めない）。HELIXINTELLIGENCE-L2-002／HELIXINTELLIGENCE-L2-003／HELIXINTELLIGENCE-L2-005／HELIXINTELLIGENCE-L2-007／HELIXINTELLIGENCE-L2-008／HELIXINTELLIGENCE-L2-012／HELIXINTELLIGENCE-L2-013／HELIXINTELLIGENCE-L2-019／HELIXINTELLIGENCE-L2-020と対象判断の契約、OSからの有効task/scope context、HARNESS-L2-022の既存検証/受入契約。相談の実実行はHELIXOS-L2-028、端から端の作業往復はHELIXOS-L2-029に依存する別能力であり、この単体候補の生成依存にしない。HELIXOS-L2-020は契約に沿う実行結果を求めるoperation時の実行経路であり、提案生成を可能にする常時runtime dependencyではない。AIDOC/CLR-R06はpacket/contextを使うときその意味契約を参照する。HELIXLABO-L2-055は利用できる場合の歴史材料であり未評価は未評価のまま。",
+      "semantic_role": "source_condition_or_context"
+    },
+    {
+      "label": "fixed L2-068 condition atoms",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "start_line": 504,
+      "end_line": 504,
+      "bytes": 385,
+      "raw_lf_sha256": "dbc1a18d14f9e7b5949fc97449a35d7a0dfe3e4445ba16f19aa103b7d5891473",
+      "literal": "- **失敗時の戻し先／未完義務**：状況sourceはowner、requirement/design/oracleの意味はHARNESS/対象owner、権限はOS/SECURITY、BRAIN applicabilityはBRAIN、長期効果評価はLABOへ返す。候補が役立つ証拠や必要入力が足りないとき、推測で修正指示やpassを作らず、未解決点・必要証拠・停止/再開条件を返す。",
+      "semantic_role": "source_condition_or_context"
+    },
+    {
+      "label": "fixed L2-068 condition atoms",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "start_line": 505,
+      "end_line": 505,
+      "bytes": 819,
+      "raw_lf_sha256": "c14e31e041af81d4c358fad4712e5923c69db4b724f3acd8bae87ce92a92672c",
+      "literal": "- **束ねる既存条件**：HELIXINTELLIGENCE-L1-002/HELIXINTELLIGENCE-L1-003/HELIXINTELLIGENCE-L1-005/HELIXINTELLIGENCE-L1-007/HELIXINTELLIGENCE-L1-008/HELIXINTELLIGENCE-L1-012/HELIXINTELLIGENCE-L1-013/HELIXINTELLIGENCE-L1-019/HELIXINTELLIGENCE-L1-020、HELIXINTELLIGENCE-L2-002/HELIXINTELLIGENCE-L2-003/HELIXINTELLIGENCE-L2-005/HELIXINTELLIGENCE-L2-007/HELIXINTELLIGENCE-L2-008/HELIXINTELLIGENCE-L2-012/HELIXINTELLIGENCE-L2-013/HELIXINTELLIGENCE-L2-019/HELIXINTELLIGENCE-L2-020。HARNESS-L2-022はverification/acceptance authority、HELIXOS-L2-020は検収・CI運転、HELIXOS-L2-028は支援handoff、HELIXOS-L2-029は構成体の一周をそれぞれ維持する。AIDOCのsource/summary authority boundaryとOS-CLR-R06のpacket completenessを使い、最小packet/会話継続能力を重複実装しない。",
+      "semantic_role": "source_condition_or_context"
+    },
+    {
+      "label": "fixed L2-068 condition atoms",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "start_line": 506,
+      "end_line": 506,
+      "bytes": 1,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": "",
+      "semantic_role": "source_condition_or_context"
+    },
+    {
+      "label": "fixed L11-068 line atoms",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "start_line": 201,
+      "end_line": 201,
+      "bytes": 115,
+      "raw_lf_sha256": "f9eb3926fb800ae7294536cd6e406c5f3cf6d231105a1f57645b49cf73a3b317",
+      "literal": "### HELIXINTELLIGENCE-L2-068 作業中Workerへの診断・設計/テスト支援候補の受入（単体候補）",
+      "semantic_role": "heading_locator_only_not_condition"
+    },
+    {
+      "label": "fixed L11-068 line atoms",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "start_line": 202,
+      "end_line": 202,
+      "bytes": 1,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": "",
+      "semantic_role": "source_condition_or_context"
+    },
+    {
+      "label": "fixed L11-068 line atoms",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "start_line": 203,
+      "end_line": 203,
+      "bytes": 745,
+      "raw_lf_sha256": "7ad925302c336c6bfc5cb72485992cb53550263006e7f20b5a790274c13ecb2e",
+      "literal": "- **入力・版**：元Workerの有効ticket/scopeまたは着手予定assignment、approved requirement/design revision、HARNESS-L2-022の事前oracle、source/use contractを共通入力とする。failure/詰まりのsourceは全operation共通の必須入力ではない。事前test・指示準備ではfailure報告がなくても候補を作成できる。詰まりの診断や既発生failureの原因推定を行うoperationでは、その症状・観測・再現材料と出典を追加入力として求める。INTELLIGENCEは有効なoperation別入力があれば支援候補を単独で返せること。HELIXOS-L2-028の実相談完了/HELIXOS-L2-029のloop成立を候補生成の依存にしない。`version_target: 1.0`。",
+      "semantic_role": "source_condition_or_context"
+    },
+    {
+      "label": "fixed L11-068 line atoms",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "start_line": 204,
+      "end_line": 204,
+      "bytes": 1260,
+      "raw_lf_sha256": "471789aff707e132d9ff318b62b62260703c265bf1c1ff3c4274595500c71060",
+      "literal": "- **正常例とoracle**：作業開始前、`PATCH /applications/{id}`の実装ticketと、`draft`申請は許可・保存され、`approved`申請は編集拒否・保存値不変とする承認済み要求/API状態遷移設計、HARNESS-L2-022の既存oracleを受け取る。失敗報告や過去failure例がまだなくても、要求とoracleからtest candidateを準備できる。validator設計/codeや他の過去例を実際に選択した場合は出典identity/revision/scopeを付す。candidateは`draft`更新の許可・永続化、`approved`更新の拒否・永続値不変、境界値および無関係なfieldへの副作用を区別する。別途、診断operationとして`approved`状態へのPATCHが200を返した観測とrequest/responseまたは再現材料を受けた場合は、その証拠に結び付けて症状・仮説・unknownを分け、必要なら相談問いを「approved判定の契約と拒否時にDBを書換えない条件を確認」に限定する。受入oracleは、準備candidateが要求条件にtraceし、診断candidateは入力された観測を越えて原因を断定せず、未知のoracle差分はHARNESS ownerへ戻し、INTELLIGENCE自身がtestを実行/承認しないことである。",
+      "semantic_role": "source_condition_or_context"
+    },
+    {
+      "label": "fixed L11-068 line atoms",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "start_line": 205,
+      "end_line": 205,
+      "bytes": 487,
+      "raw_lf_sha256": "427ea51c8d6e36b43311661c9222bcbe9a5a3bf24ce3831447d886c16f118fb2",
+      "literal": "- **誤りを含む例**：似たコードの過去例から「approvedでも編集可」と助言し要求意味を拡張する、過去例のsource/版/適用scopeを落とす、相談が必要な未知入力を推測、INTELLIGENCEが新しいaccepted oracleを確定する、支援者のtest作成結果を独立reviewに使う。oracleは候補にmissing/contradictory sourceとして表示し、正しいownerへBackflowし、requirement/oracleを勝手に変更しないこと。",
+      "semantic_role": "source_condition_or_context"
+    },
+    {
+      "label": "fixed L11-068 line atoms",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "start_line": 206,
+      "end_line": 206,
+      "bytes": 317,
+      "raw_lf_sha256": "f601171060eb24e8df36f5b4f1ae6db80d511ecdf7a1ccd4d3ce0c5a95d310b8",
+      "literal": "- **未見例**：別のendpoint/state modelで類似の承認後不変条件が現れるが、同じoracleの適用性や更新操作の副作用が不明。INTELLIGENCEは必要なrequirement/design evidence、oracle ownerへの質問候補、適用可能性unknownを返し、generic ruleやpassを作らない。",
+      "semantic_role": "source_condition_or_context"
+    },
+    {
+      "label": "fixed L11-068 line atoms",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "start_line": 207,
+      "end_line": 207,
+      "bytes": 354,
+      "raw_lf_sha256": "952ac4ed5db919441f2d402b7f94e8d660c63da479c17ec481d1c762f5f8b513",
+      "literal": "- **出力oracle**：selected source, assumption, observed fact, inference, uncertainty, alternative, return targetと、候補にしたtest caseが対象requirement/oracleへ追跡できる。AIDOC/CLR-R06 packet利用時にはsource authority/revisionと必要情報を維持し、secret/private reasoning/未承認結論をpacketへ注入しない。",
+      "semantic_role": "source_condition_or_context"
+    },
+    {
+      "label": "fixed L11-068 line atoms",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "start_line": 208,
+      "end_line": 208,
+      "bytes": 424,
+      "raw_lf_sha256": "78adfe2c392506ee3f9fa8490c6614aeb5c68cbd11671672bf1c10930d1593b7",
+      "literal": "- **相談/実行/独立review境界**：INT単体の相談案作成は合格可能だが実相談は未成立である。実相談はHELIXOS-L2-028のreceipt、元Workerの変更・検証までの一周はHELIXOS-L2-029、OS管理下のoracle/test実行はHELIXOS-L2-020、oracle/段階/受入契約はHARNESS-L2-022により別評価する。元Worker/助言者/支援者を同じ作業の独立reviewerに数えない。",
+      "semantic_role": "source_condition_or_context"
+    },
+    {
+      "label": "fixed L11-068 line atoms",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "start_line": 209,
+      "end_line": 209,
+      "bytes": 483,
+      "raw_lf_sha256": "8b49c6fa27929c59966d08495a69d8144aabbcb10c09adcdeda3e2d15102c580",
+      "literal": "- **失敗・未完義務**：共通入力、選択source/version/authority/oracle applicabilityが欠ける場合、または診断operationに必要な症状・証拠が欠ける場合、そのoperationのcandidateを保留し不足とownerを返す。ただし診断証拠の欠落を理由に、入力が揃った事前test/指示準備candidateまで保留しない。実相談の返答やworker change、評価結果がない候補を有用・採用済みと断定しない。",
+      "semantic_role": "source_condition_or_context"
+    }
+  ],
+  "static_checks": {
+    "prefix_bytes_equal_to_base": true,
+    "identifier_inventory": "PASS: 1 FR, 6 AC, 10 functional CASE, 0 BR, 0 business CASE, 1 NFR, 1 NFR CASE; full IDs and all AC/CASE/NFR cross-references resolve",
+    "source_pin_validation": "PASS: git source object/full-file and LF-inclusive span bytes recomputed; source line bounds exist; L2 491-506 and L11 201-209 atom pins present; L11 201 typed heading-only",
+    "scfctl_validate": "PASS: bindings=147 fail=0",
+    "scfctl_stale": "PASS: stale=0",
+    "scfctl_residuals": "PASS: residuals=0",
+    "govcheck": "PASS: atoms=7622 requirements=57 files=58",
+    "git_diff_check": "PASS",
+    "legacy_runtime_test_ci_bun": "not run by instruction",
+    "review_and_approval": "not established; root review pending; PO L3 approval absent"
+  },
+  "nfr_condition_trace": [
+    {
+      "source": "L2:496-502",
+      "conditions": "operation-specific inputs, required source and existing unfinished obligations; failure evidence only on diagnosis/consult",
+      "target": [
+        "NFR-INT-068-01"
+      ],
+      "oracle": "field-level required-input matrix, diagnosis/preparation split, selected-source/unfinished-obligation disposition",
+      "case": "CASE-NFR-INT-068-01"
+    },
+    {
+      "source": "L2:497-499",
+      "conditions": "candidate claims remain source-bound; facts/inference/hypothesis/unknown remain distinct; missing/conflicting source is not synthesized as success",
+      "target": [
+        "NFR-INT-068-01"
+      ],
+      "oracle": "claim census; unsupported fact and unknown-to-fact/pass counted separately",
+      "case": "CASE-NFR-INT-068-01"
+    },
+    {
+      "source": "L2:496,503-504",
+      "conditions": "original OS budget/deadline/stop preserved; owner-specific return and incomplete obligations retained",
+      "target": [
+        "NFR-INT-068-01"
+      ],
+      "oracle": "initial and before/after budget/elapsed/stop state by operation; no reset or invented threshold",
+      "case": "CASE-NFR-INT-068-01"
+    },
+    {
+      "source": "L11:203,209",
+      "conditions": "preparation works without failure evidence; diagnosis needs relevant evidence; a missing diagnostic input does not stop valid preparation",
+      "target": [
+        "NFR-INT-068-01"
+      ],
+      "oracle": "separate normal/failed/missing-input/missing-observation/cancelled/censored populations",
+      "case": "CASE-NFR-INT-068-01"
+    }
+  ]
+}
