@@ -53,3 +53,26 @@ paired_l10: ../L10-verification/business-verification.md
 | `HARNESS-L2-032` | 独立business requirementなし。選択consumerへのschema-bound packet handoffは機能要件で確認する。 | deliveryを業務完了、run/pass、ticket、承認または利用者受入と扱わない。CONNECTの責務を032 business ownerへ移さない。 |
 
 旧business-detailは参考範囲を読んだが、BR-21/HM-08/Learning Engineの業務意味・owner・KPIはこれら固定親に対応しないため移さない。Stage 2c草稿から商業価値や追加承認条件を作らない。
+
+## Stage 4 suffix — HARNESS-L2-026/027/028/029
+
+この4親から独立business requirement、business owner、事業価値閾値、commercial acceptanceは導出しない。設計・source observation・差分・proposalの意味と境界は対の[functional-requirements.md](functional-requirements.md)にあるFR/ACで確認する。旧business-detailの業務意味・owner・KPIは固定親に対応する根拠がないため再利用しない。これはHARNESS全体にbusiness要件がないことを意味しない。
+
+| 親L2 | business要件への扱い | 境界 |
+|---|---|---|
+| `HARNESS-L2-026` | 独立business requirementなし。既存requirementと設計要素の対応はFR/ACで確認する。 | 設計の存在から利用者価値、受入、product優先順位を導出しない。 |
+| `HARNESS-L2-027` | 独立business requirementなし。選択sourceからの静的観測とunknown保持はFR/ACで確認する。 | 観測候補を業務上の正しさ、顧客成果、完了に読み替えない。 |
+| `HARNESS-L2-028` | 独立business requirementなし。saved designとの比較・影響範囲はFR/ACで確認する。 | affected setやbackflowを事業判断、要求承認、release判定としない。 |
+| `HARNESS-L2-029` | 独立business requirementなし。五要素のproposal bundleと責務境界はFR/ACで確認する。 | proposalを実変更、migration完了、事業成果、利用者受入へ昇格しない。 |
+
+## Stage 2b 残件追補 — HARNESS-L2-017/018/019/020/024
+
+本追補5親は未承認の起草。既承認prefixを変更せず、実行結果や下流許可を生成しない。
+
+| 親L2 | business要件への扱い | 境界 |
+|---|---|---|
+| `HARNESS-L2-017` | 独立したbusiness requirementを導出しない | Release Portと適格条件は親に従い、販売・顧客優先順位・配備決定を追加しない。 |
+| `HARNESS-L2-018` | 独立したbusiness requirementを導出しない | 運用品質要求のownerは製品側にあり、共通SLOや費用閾値をHARNESSが決定しない。 |
+| `HARNESS-L2-019` | 独立したbusiness requirementを導出しない | 既存成果の逆方向変換は企画・事業判断を自動承認しない。 |
+| `HARNESS-L2-020` | 独立したbusiness requirementを導出しない | 隣接リリース単位handoffの互換性確認から新しい価値基準や優先順位を作らない。 |
+| `HARNESS-L2-024` | 独立したbusiness requirementを導出しない | 質問優先と形成資料の十分性は工程契約であり、事業価値・優先順位・人間の合意を推定しない。 |

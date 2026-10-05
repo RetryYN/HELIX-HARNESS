@@ -1,0 +1,1523 @@
+{
+  "record_type": "root-review01-correction-acceptance",
+  "language": "ja",
+  "authority_effect": "none",
+  "base": "5acae384305b01d10e88eeb2e6406f847baf66df",
+  "body_revision": "1341e3475f70f223fff0d5d962c90b46205171c6",
+  "worker_audit": {
+    "path": "docs/governance/audits/requirements-stage/connect-stage5-review01-correction-2026-10-06.json",
+    "sha256": "1e18e53ed419253859eb4f2453550e94c1c8b10a5b1924e8e955f01283330ee2"
+  },
+  "formal_review": {
+    "id": 6002099800,
+    "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2615#issuecomment-6002099800",
+    "body": "## Opus独立review01：findings（Blocker 0／Major 1／Minor 3）\n\n依頼 RH-PR2615-CONNECT-STAGE5-01 への回答です。\n\n- exact base：`5acae384305b01d10e88eeb2e6406f847baf66df`（現main。HEADの祖先。`merge-tree` 衝突なし）\n- content HEAD：`f40ffa481d2855afe6188e58852cea3cf6f5c2e3`\n- 本文revision：`46a4f2e48`（HEADは監査追加のみ）\n\n対象は採択1.0親 `HELIXCONNECT-L2-007` のみ（4 AC・39 CASE）なので1体で全件照合しました。略号：FR／FV／NG／NV／BR／BV＝`docs/helix-connect/` のL3 functional-requirements／L10 functional-verification／L3 nfr-grade／L10 nfr-verification／L3 business-requirements／L10 business-verification。L2／L11＝固定親（PO固定f6dad2a33のL2:128〜138、L11:74〜77）。\n\n### 機械照合（所見なし）\n- **差分・prefix**：6文書ともmainの全bytesがHEADの先頭と一致（17/210/35/15/310/30行、追加のみ・削除0、末尾LF）。`46a4f2e48..HEAD` は監査のみ。\n- **固定親**：L2:128〜138・L11:74〜77はf6dad2a33／633bf12／HEADで同bytes。L11全体を007で検索した結果は一覧38行と74〜77行のみで、別表への追補なし。\n- **採択・register・G0**：PO判断（helix-connect 09-28）L48の採用集合に007、version_target 1.0。register L336 `MPR-RC-HELIXCONNECT-L2-007-001`（requirement_identity一致、supersedes null）、L874 `-002` は後継。G0 addendum 159行でStage 5／1.0 target candidate。\n- **監査（root-draft-audit、全pin実計算）**：source pin 15（L2:128〜138、L11:74〜77・38、PO判断L27〜33・L48、register L336、旧L00-L06:148〜168、旧harness L3 README:1〜56、旧distribution:24〜83、旧paired test:1〜58、旧Concept:100、HARNESS L2:339〜362）、PO判断full、receipt、G0 json、台帳2行、6本文full／main prefix、追補87行、CASE 39行がすべて一致（113 pin）。\n- **ID・表**：CASE 39重複0、AC 4すべて被覆・dangling 0、表6列・区切り行あり・空行分断0。Stage 1〜4の既存CONNECT ID・見出しと衝突なし。\n- **静的検査**：validate 147/fail 0、stale=0、residuals=0、govcheck ok（atoms=7622）、`git diff --check origin/main HEAD` ok。\n\n### Major（1件）\n- **M1（L11:76の受入句「SECURITY/data-use識別子」「送受信結果」の辺ごと記録に対応するfixtureなし）**：固定L11:76は各辺について登録・互換照合、operation/correlation/idempotency引継ぎ、expiry/result state、**SECURITY/data-use識別子**、**送受信結果**が辺ごとに記録され構成体の追跡から辿れることを求める。FR:217〜227（入力列挙・AC-007-01〜04）とFV:311〜357に「data-use」は0件。CASE-007-01のoracleが辿る対象は辺順・operation lineage・端点・revision・結果までで、CASE-007-13は「適用SECURITY許可」の欠落のみ。固定L2:134の入力は「SECURITY許可」だけだが、ACは固定L11の受入句も被覆する必要がある。AC-007-01とCASE-007-01のoracleに「辺ごとのSECURITY/data-use識別子と送受信結果をtraceに記録」を加え、data-use識別子だけ欠落の単独negativeを1件追加（戻し先はStage 1〜4のL2-001/004の扱いに合わせSECURITY／source owner）。NGの母集団記述も同期。\n\n### Minor（3件）\n- **m1（fixtureの構造が行内で矛盾）**：共通の正常入力は「合成fixture A→B→C（辺e1/e2）」だが、CASE-007-21〜28の8行は同じセル内で「A→B→C→Dの3辺fixture」とも書き、CASE-007-29〜33はA→B→C前提のまま「e3未実行」を参照、CASE-007-02はDとe3を未見の追加として宣言。21〜33の正常入力を「A→B→C→D（e1/e2/e3）」に統一し、各行に単独で読めるfixture定義を置く。\n- **m2（中間failure行の戻し先に変異と無関係な句）**：CASE-007-21〜28の戻し先列8行すべてに「許可失効はSECURITYへ照合し」が入るが、該当するのはCASE-007-26のみ。固定L2:136の戻し先は「失敗辺connection owner／業務判断・再計画は元機構/OS等owner」。SECURITY句は26行だけに。\n- **m3（旧source探索の検索語が狭い）**：監査 `legacy_relation.direct_old_source_search.terms` は4語のみでpartial／correlation／idempotency／saga／multi-hopを含まない。archive grepで隣接sourceが見つかる：`security-capability-broker-acceptance.md:28`（SEC-AC-CAP-009「部分成功はRecoveryへ送る」＝007のpartial保持oracleの隣接）、`L5-detail/event-projection-checkpoint-replay.md:35`（`correlation_id`定義）。いずれもCONNECT compositeの直接atomではなく「直接旧atom 0件」は崩れないが、検索語を広げて2件を「隣接比較のみ」としてcrosswalkか監査に記録。\n\n### 所見なしの主な句\n- **入力欠落12件**（CASE-03〜14）はL2:134の12項目（辺identity／順序／correlation／scope／登録／現revision照合／operation mapping／期限／idempotency／result state／SECURITY許可／recovery先）と1対1。\n- **束縛不一致6件**（CASE-15〜20）はL2:130「端点・契約revision・operation・再送境界」に対応。\n- **中間failure 7件＋unknown**（CASE-21〜28）はL11の7種にL2のunknownを加えたもの。\n- **引継ぎ不足5件**（CASE-29〜33）はL2出力「停止位置／未完辺／義務／owner／recovery handoff」に対応。\n- **先行成功の保持・後続未実行**（CASE-34・35）はL2:136、**業務成立・承認・許可の非生成**（CASE-36〜38）はL2:130/135に対応。CASE-39（GUI不在だけで拒否しない）はL2:132が参照するHARNESS-L2-010/011共通packから導ける。CASE-13の宛先SECURITYは既承認L2-002/004の戻し先と整合。\n- **NFR**：被覆100%と禁止状態0のみを固定L2:130〜138・L11:76から導出。SLA・retry数・新gateなし。**BR/BV**：独立business ACなし、業務成立は元ownerに残す。1.x／Web前倒しなし。\n- **PO判断L54〜の共通条件**（旧sourceの未完引継ぎ保持、デグレ検証必須）は草稿本文に明記されていないが反してもおらず、これまでのStageと同じ扱い。\n\n### 未確認範囲\n- 旧archiveの探索はroot/docs配下の `*.md` の正規表現grepまで。他拡張子と意味まで含めた網羅は未確認。\n- Stage 1〜4のL3全文はID・見出し衝突とL2-001/002/004の戻し先確認に必要な範囲のみ。\n- 旧distribution L3とpaired testはpin一致と先頭数行のみで、引用趣旨の精読は未実施。\n"
+  },
+  "recomputation": [
+    {
+      "check": "formal raw UTF8",
+      "result": "MATCH"
+    },
+    {
+      "check": "full docs/helix-connect/L2-requirements/connect-requirements.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "span docs/helix-connect/L2-requirements/connect-requirements.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "literal docs/helix-connect/L2-requirements/connect-requirements.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "full docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "span docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "literal docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "full archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "span archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "literal archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "full archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/event-projection-checkpoint-replay.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "span archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/event-projection-checkpoint-replay.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "literal archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/event-projection-checkpoint-replay.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "full docs/helix-connect/L3-requirements/functional-requirements.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "span docs/helix-connect/L3-requirements/functional-requirements.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "literal docs/helix-connect/L3-requirements/functional-requirements.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "full docs/helix-connect/L3-requirements/functional-requirements.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "span docs/helix-connect/L3-requirements/functional-requirements.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "literal docs/helix-connect/L3-requirements/functional-requirements.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "full docs/helix-connect/L3-requirements/nfr-grade.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "span docs/helix-connect/L3-requirements/nfr-grade.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "literal docs/helix-connect/L3-requirements/nfr-grade.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "full docs/helix-connect/L10-verification/nfr-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "span docs/helix-connect/L10-verification/nfr-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "literal docs/helix-connect/L10-verification/nfr-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "full docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "span docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "literal docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "full docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "span docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "literal docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "full docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "span docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "literal docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "full docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "span docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "literal docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "full docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "span docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "literal docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "full docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "span docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "literal docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "full docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "span docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "literal docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "full docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "span docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "literal docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "full docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "span docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "literal docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "full docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "span docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "literal docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "full docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "span docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "literal docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "full docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "span docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "literal docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "full docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "span docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "literal docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "full docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "span docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "literal docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "full docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "span docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "literal docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "Worker docs/helix-connect/L3-requirements/functional-requirements.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "base docs/helix-connect/L3-requirements/functional-requirements.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "Worker docs/helix-connect/L3-requirements/nfr-grade.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "base docs/helix-connect/L3-requirements/nfr-grade.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "Worker docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "base docs/helix-connect/L10-verification/functional-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "Worker docs/helix-connect/L10-verification/nfr-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "base docs/helix-connect/L10-verification/nfr-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "Worker docs/helix-connect/L3-requirements/business-requirements.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "base docs/helix-connect/L3-requirements/business-requirements.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "Worker docs/helix-connect/L10-verification/business-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "base docs/helix-connect/L10-verification/business-verification.md",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-01",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-02",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-03",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-04",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-05",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-06",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-07",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-08",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-09",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-10",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-11",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-12",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-13",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-14",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-15",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-16",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-17",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-18",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-19",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-20",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-21",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-22",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-23",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-24",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-25",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-26",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-27",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-28",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-29",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-30",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-31",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-32",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-33",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-34",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-35",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-36",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-37",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-38",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-39",
+      "result": "MATCH"
+    },
+    {
+      "check": "CONNECT-CASE-007-40",
+      "result": "MATCH"
+    },
+    {
+      "check": "old immutable",
+      "result": "MATCH"
+    }
+  ],
+  "root_followups": [
+    "AC00701と正常/未見正常oracleに辺ごとの識別子/送受信結果の期待receipt突合を明示",
+    "AC00702の取り違え反例は既存6項目へ保持し、新項目の未設計反例を完了としない",
+    "CASE35も3辺構成で未実行e3を明示",
+    "CASE21–33でe3の未実行を実送受信結果に補完しない"
+  ],
+  "canonical_documents": [
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "full_sha256": "ff213112054dd71e656977c5493e8cf8b634c540976db8dad43a57e1621eab3c",
+      "base_sha256": "add54593f70f9cf505a093a72765ca07334b4ce1bfb6d7e89782dca20bdaa0ce",
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "full_sha256": "d507a1e7f1caf32a13e760f7f7e237e8128b099050b5fcf4437a433195f121ca",
+      "base_sha256": "57312a3c288c4580dd7a6c8c0bda694285509ad497fd6e78634a3173cf14cc74",
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "full_sha256": "d3828058aba9fca1f4aac79f5585a6a0be104b0db166de652c410f54698c06cb",
+      "base_sha256": "be036dd606db0d1003a6e33741c4f9ba95c84b2f287f328b73e414b18b3692f8",
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "full_sha256": "3f7c1c302f6b4e6b45dfd8215f68a34c9cf911ecb1bc9702bbca982fbc5416d1",
+      "base_sha256": "144f740df3db0ce4db20334e3bb27ad41e670f1c96d5912372b2b3f5d76a7396",
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.md",
+      "full_sha256": "f70569a905b26b80285be1a1cf715dbeed9c0a6951cd09fd9975ba09a652c4a9",
+      "base_sha256": "682ee13c350966d8edf28e05aae6ce1940b12301cc42a61c1d0ff7c6633983c2",
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.md",
+      "full_sha256": "1b6029a48203d756f053b05853de3c7a5ab36181685180bc4b0d2bcb72f0082a",
+      "base_sha256": "236544161821415904f6eb4dd176e371b5f23852f4d589fd374890762475b42e",
+      "prefix_exact": true
+    }
+  ],
+  "suffix_line_pins": [
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 211,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": "\n"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 212,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": "\n"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 213,
+      "raw_lf_sha256": "a87ab05af3a88fafc932c295b0999972451907c2bad50bf39e180ba64887cf94",
+      "literal": "## Stage 5 — 複数機構の接続完全性（007、1.0草稿）\n"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 214,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": "\n"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 215,
+      "raw_lf_sha256": "f0d5420ae57272511162f4b8d6a5a0d6bba1b9eaaf291cc9aae8a3e2ea07ed28",
+      "literal": "対象は採択親`HELIXCONNECT-L2-007`のみ（`MPR-RC-HELIXCONNECT-L2-007-001`、semantic digest `44dac7757466d487bbfc30f3201b6c282c5ab72e3cb660ad528876ada555f75b`）。PO記録 `docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md` が固定したrevision `f6dad2a33e24f000b87d7f09b8d40288257e74cc` のL2:128–138、L11:74–77と一覧38を正本とする。L2 full SHA `31e3f234172bb5a92b26d41db2de21534cd4301274fc7e2800b4f8a935ce598b`、L11 full SHA `bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad`。各現行本文のcandidate表記から採否を生成しない。Stage5配属は既存G0追補の007対応を用いる。これは要件・検証設計草稿で、送信・実装・承認・検証実行を許可しない。\n"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 216,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": "\n"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 217,
+      "raw_lf_sha256": "4cabf1289c1fdea1a8e44c08341e1233e936b66f4a9fb59a0ccad5e84aac3a96",
+      "literal": "### CONNECT-FR-007-01 — 全辺の技術終端と未完引継ぎ\n"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 218,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": "\n"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 219,
+      "raw_lf_sha256": "81d86791244b237204258758b0eaff7e171f7521258688769efd130ab7153e34",
+      "literal": "入力は構成体の辺identity/順序/correlation/scope、各辺登録と現revision照合、端点operation mapping、expiry/idempotency/result state、適用SECURITY許可識別子とdata-use識別子（別々に辺へ束縛）および辺ごとのrecovery先。出力は各辺の送信結果・受信結果を個別に含む構成体trace、技術的終端state、停止時の未完辺/義務/owner/recovery handoffである。各辺の端点・契約revision・順序・operation lineage・SECURITY許可識別子・data-use識別子・送信結果・受信結果・再送境界・終端結果を構成体の追跡から辿る。全必須辺の個別登録・互換確認・終端までの受渡しが揃った場合だけ技術通信completeとする。単辺greenから残辺を推定せず、未実行・unknownを成功に丸めない。\n"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 220,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": "\n"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 221,
+      "raw_lf_sha256": "3d8025f7d663fe41337dd81aac9d3389ee75258a3bb1351f22dca87a7219c1ad",
+      "literal": "中間辺のstale/失敗/部分成功/unknownでは停止位置、先行成功、未完辺、未完義務と既存owner/recoveryを保持する。未許可の後続send/retryを伝播せず、後続未実行を実行済みにしない。failureは当該connection owner、業務判断/再計画は元機構/OS等の既存ownerへ返す。CONNECTは業務成立・結果承認を判定せずSECURITY許可を発行しない。\n"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 222,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": "\n"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 223,
+      "raw_lf_sha256": "7fcc00de3e1fb955da069083fee177148b7dc69aa1d6baa9318431bf52afb42d",
+      "literal": "依存は構成体を成す全辺の固定L2-001..005、HARNESS-L2-010/011の宣言I/O・依存版・統合検証範囲・構成更新/切戻し/未完義務、各ownerの意味契約と適用SECURITY条件である。既承認の001..005機能ACを辺ごとに参照して再定義しない。特定transport/GUI/provider/CI製品、共通latency/retry数、DB/schema、業務完了、Web後続機能を定めない。接続の具体的revision/期限/retryはowner契約の入力で、未知を候補上の確定値に補わない。意味・scope・owner・版変更が必要な場合だけL2へ戻す。\n"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 224,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": "\n"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 225,
+      "raw_lf_sha256": "bf62e22a9b4f60fadde0fbc4ff960f899e39dd19f3f85ae41ed6706f6469df19",
+      "literal": "- `CONNECT-AC-007-01`：全宣言辺の入力と登録・現在互換receiptを個別に照合し、辺ごとのSECURITY/data-use識別子と送信結果・受信結果を期待fixture receiptと突合できるtraceが揃う場合だけ技術complete。13必須入力の単独欠落を推測で補わず未完とし、同契約内の未見機構/辺は適合なら拒否しない。\n"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 226,
+      "raw_lf_sha256": "270e5785cccffc040de7385c1bbd140e008e7df525651edc2206729dca26bed7",
+      "literal": "- `CONNECT-AC-007-02`：端点/契約revision/operation/correlation/scope/idempotencyを辺ごとに束縛し、各一つだけの取り違えを拒否する。順序・再送境界・終端を一つのtraceへ結び、他辺のreceiptで補完しない。\n"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 227,
+      "raw_lf_sha256": "4022c47a1f94518ae41b7c765ed06b7510ab5b772f64a78c19bcc497b6529972",
+      "literal": "- `CONNECT-AC-007-03`：固定L11の7中間failureとunknownを独立fixtureにする。全体成功を止め、先行成功と後続未実行を保持し、停止位置/未完辺/義務/owner/recoveryを個別に照合する。後続の未許可send/retryを発行せず既存ownerへ返す。\n"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 228,
+      "raw_lf_sha256": "a415623fcf5c8e16edc16303d80ac06fbe0e4218fa67636368bc90a656b91cde",
+      "literal": "- `CONNECT-AC-007-04`：全辺技術completeから業務成立・結果承認・送信許可を生成しない。HARNESS010/011の共通pack境界を保ち、GUIの不在だけで契約適合fixtureを拒否しない。\n"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 229,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": "\n"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 230,
+      "raw_lf_sha256": "af962d82d03d16e5a454b449e194083cd8e0946bde34e5b91f1085b64140af24",
+      "literal": "**旧HELIX項目対応**：旧L3 process `archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md:148–168` と旧HARNESS L3 README `archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md:1–56` のFR+AC、3 sub-doc、paired oracle形式を保持し、旧L10 UX/L12層番号・gate/CLIを現行L3/L10の3対へ置換する。旧distribution L3 asset `LEGACY-ASSET-9B7682EBDEA171005D45` の24–83とpaired system test `LEGACY-ASSET-6C9D2BE4E3C77D78F8EB` の1–58はsource/consumerの分離、identity、正常/個別negative/証拠の隣接比較に限り、release/promotion/allowlistやremote権限を007に転用しない。直接のCONNECT007旧atomは既存receiptで0件であり、旧全資産の不在や網羅を意味しない。archive/docs全textの指定語「接続完全性」「connection completeness」「複数機構」「connection inventory」のWorker検索は直接L3/paired consumer未同定、複数機構は一般Concept分類1件のみで直接sourceにしない。固定L2/L11から接続完全性と失敗oracleを意味再導出し、旧の具体実装・値を置換する。変更理由はPO採択済みCONNECT責務と現行層への対応である。検索範囲・原文/SHA・未確認範囲は時点監査へ固定する。\n"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "line": 36,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": "\n"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "line": 37,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": "\n"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "line": 38,
+      "raw_lf_sha256": "91c9fcabe2cfcc1a725532d14c1fb4607b762462eb52668e78137526573afb33",
+      "literal": "## Stage 5 — 007の観測候補（未実測）\n"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "line": 39,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": "\n"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "line": 40,
+      "raw_lf_sha256": "444923df85af05fd60a3c5fb2206777ba57466ddac4d4a3c273dac6e33454854",
+      "literal": "`CON-NFR-007` / `CONNECT-AC-007-01..04`：母集団はfixtureで宣言した必須辺集合と各辺の必要入出力・receipt・SECURITY許可識別子・data-use識別子・送信結果・受信結果・終端/引継ぎである。候補基準はこれら各辺別要素を結ぶ終端trace被覆100%、unknown/部分成功からの全体成功生成0、停止後の未許可後続attempt0、先行成功記録の消失0、業務承認/許可生成0。根拠は固定L2:130–138/L11:76の全必須辺・partial保持・未許可伝播禁止・業務非判定であり、共通SLAやretry回数ではない。分母欠落/不明は達成でなくunknown。辺ごとの期限/再送上限/回復は既存契約を入力し、未指定を無制限にしない。\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 311,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": "\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 312,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": "\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 313,
+      "raw_lf_sha256": "a674e06ff134d9dc3cfeac744e8b7d6d9f2e5905e02b0094cf8e58266e24234f",
+      "literal": "## Stage 5 — HELIXCONNECT-L2-007の総合検証（未実行）\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 314,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": "\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 315,
+      "raw_lf_sha256": "7576749fffe7a0988c95d29ab1a590ee4517b5426f1a7a21f1366deb0ea14257",
+      "literal": "固定親はf6dad2a33のL2:128–138/L11:74–77。各fixtureは合成の機構/辺identityと宣言済み契約を使い、実送信・旧runtime/test/CIを実行しない。正常fixtureの全要素は変異指定された一項目以外保持する。4ACはL3のCONNECT-FR-007-01へ対応し、下表は全て個別定義で索引CASEを含まない。未観測はpassにしない。\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 316,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": "\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 317,
+      "raw_lf_sha256": "8c1bd79984800880407f7eae043dc295f4263a67f987280331d51e98a73db6f9",
+      "literal": "| CASE ID | L3 AC | 正常入力 | 単独変異／正常分岐 | 期待oracle | 戻し先 |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 318,
+      "raw_lf_sha256": "386dd7132ff82a3235473307d1e9d483ef7e0a9ae30607085abe2edd440cdcf7",
+      "literal": "|---|---|---|---|---|---|\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 319,
+      "raw_lf_sha256": "6606f9523d0ff5e867ab4988a77e6d6ab3d07754eba0bee1fe8fdfcb66935c6c",
+      "literal": "| `CONNECT-CASE-007-01` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、各辺の登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・適用SECURITY許可識別子・data-use識別子を同対象revisionへ束縛。各辺のsend結果とreceive結果を別々にtraceへ記録し、authority/recoveryも記録する | なし（正常） | 全必須辺の技術的終端だけcomplete。辺順・operation lineage・端点・revision・結果を構成体traceから辿る。各辺のSECURITY許可識別子・data-use識別子・送信結果・受信結果を個別の期待fixture receiptと突合し、構成体traceから同じ辺/revisionへ辿れることを照合する | 構成体connection owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 320,
+      "raw_lf_sha256": "d14ddef3488d09fb21d01b0f45fdbc8eb053f5e46b6a795ca1d53f29b496df31",
+      "literal": "| `CONNECT-CASE-007-02` | `CONNECT-AC-007-01` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)の能力名・契約revision・scopeを区別し、各辺の登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を同対象revisionへ束縛して個別traceへ記録。同scope/契約内の未見fixture | なし（未見正常） | 固定契約適合なら未見という理由で拒否せず全宣言辺を照合する。過去e1/e2のgreenだけでe3を補わない。各辺のSECURITY許可識別子・data-use識別子・送信結果・受信結果を個別の期待fixture receiptと突合し、構成体traceから同じ辺/revisionへ辿れることを照合する | 構成体connection owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 321,
+      "raw_lf_sha256": "e513bd309c05a613e15f709fbf2f925347414f7937e60a2ccbd0cc84865abe37",
+      "literal": "| `CONNECT-CASE-007-03` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 辺identityだけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 322,
+      "raw_lf_sha256": "30ac146c98820125dc43a46e938df509d43fb62fe1c5fa7f4c59eea60e86856f",
+      "literal": "| `CONNECT-CASE-007-04` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 辺順序だけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 323,
+      "raw_lf_sha256": "6e90df4365f26335fb29d31d351c81b63b9570dff7080d9c09f81ebfe604f67b",
+      "literal": "| `CONNECT-CASE-007-05` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | correlationだけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 324,
+      "raw_lf_sha256": "a1a8f47cc089f07d15639d9854b540402aa796152533d7181bbb6e0182dc4366",
+      "literal": "| `CONNECT-CASE-007-06` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | scopeだけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 325,
+      "raw_lf_sha256": "220a4849a49c2d915ca1e3f6ffbd05c5ae89339a372ff0cb012cf498380de2b2",
+      "literal": "| `CONNECT-CASE-007-07` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 辺登録receiptだけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 326,
+      "raw_lf_sha256": "e2cc427a8f81978f8a4fb77ca852853e108208d8b94d1dc0fd609f3dc287caeb",
+      "literal": "| `CONNECT-CASE-007-08` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 現revision互換receiptだけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 327,
+      "raw_lf_sha256": "607c486e95cd741bcab213298ebdad0a57463175761340f55f8086d75991a90b",
+      "literal": "| `CONNECT-CASE-007-09` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 端点operation mappingだけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 328,
+      "raw_lf_sha256": "9f4da39d08858ff40ac9e21c33d1dc1d1f97e866349c35f00cd549210476dc89",
+      "literal": "| `CONNECT-CASE-007-10` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | expiryだけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 329,
+      "raw_lf_sha256": "f07a28bcd844dee4475d528bb4e01f9573913c920bcc3ad7001affe418f2e46a",
+      "literal": "| `CONNECT-CASE-007-11` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | idempotency identityだけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 330,
+      "raw_lf_sha256": "b0e4e9252abdc482f832cfa2f0467d800514e27e4511f0d43d74ec6af9da1642",
+      "literal": "| `CONNECT-CASE-007-12` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | result stateだけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 331,
+      "raw_lf_sha256": "99027b27da09bcc378e711ea1ca2237e0d330fa944583d6c1b2e453b9e325cb0",
+      "literal": "| `CONNECT-CASE-007-13` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 適用SECURITY許可だけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。当該操作と後続の未許可send/retryを0に保ち、許可を生成しない | SECURITY |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 332,
+      "raw_lf_sha256": "2b46d33a0f981d275c4fe47575673c69779b4f8e191948455cbd8657da5ff9f6",
+      "literal": "| `CONNECT-CASE-007-14` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | recovery先だけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 333,
+      "raw_lf_sha256": "3eee4f1b1584e999f0a459b79a9c30d5a051fa0e61862f39f3eb4a4ef7d63a28",
+      "literal": "| `CONNECT-CASE-007-15` | `CONNECT-AC-007-02` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 端点identityだけ別辺または別対象revisionへ付け替える。他束縛は有効 | 構成体lineage不一致を拒否し、停止位置と未完辺を示す。別辺receiptで欠落を補わない | 当該辺connection owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 334,
+      "raw_lf_sha256": "6167b025a64d6d6cea16484b703563081e11ab1c480bfc11d11919b03fbe8c8a",
+      "literal": "| `CONNECT-CASE-007-16` | `CONNECT-AC-007-02` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 契約revisionだけ別辺または別対象revisionへ付け替える。他束縛は有効 | 構成体lineage不一致を拒否し、停止位置と未完辺を示す。別辺receiptで欠落を補わない | 当該辺connection owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 335,
+      "raw_lf_sha256": "fd49e251233852baea1f7604c0d8c68bd33f806319e3af4764f9a6b84b5982d0",
+      "literal": "| `CONNECT-CASE-007-17` | `CONNECT-AC-007-02` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | operation対応だけ別辺または別対象revisionへ付け替える。他束縛は有効 | 構成体lineage不一致を拒否し、停止位置と未完辺を示す。別辺receiptで欠落を補わない | 当該辺connection owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 336,
+      "raw_lf_sha256": "153e2ddcac3d90920dd4be76c38e98b4fa1580ea2d624243bb4f688075dc8546",
+      "literal": "| `CONNECT-CASE-007-18` | `CONNECT-AC-007-02` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | correlationだけ別辺または別対象revisionへ付け替える。他束縛は有効 | 構成体lineage不一致を拒否し、停止位置と未完辺を示す。別辺receiptで欠落を補わない | 当該辺connection owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 337,
+      "raw_lf_sha256": "ee44720b51a3356620770512e59bf3bbfc6eb19cb97b58da7e801be8a1c59567",
+      "literal": "| `CONNECT-CASE-007-19` | `CONNECT-AC-007-02` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | scopeだけ別辺または別対象revisionへ付け替える。他束縛は有効 | 構成体lineage不一致を拒否し、停止位置と未完辺を示す。別辺receiptで欠落を補わない | 当該辺connection owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 338,
+      "raw_lf_sha256": "e170ee880190171c4ec671d115d8d5b36aebb9e1468cab41b20a3e874032607a",
+      "literal": "| `CONNECT-CASE-007-20` | `CONNECT-AC-007-02` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | idempotency identityだけ別辺または別対象revisionへ付け替える。他束縛は有効 | 構成体lineage不一致を拒否し、停止位置と未完辺を示す。別辺receiptで欠落を補わない | 当該辺connection owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 339,
+      "raw_lf_sha256": "271a039131e2b7bc39db1dbab699863e21e2873568334855350137b4354ead2d",
+      "literal": "| `CONNECT-CASE-007-21` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功を記録し、e2を中間辺、e3を後続辺とする | e2だけstale。e1記録とe3契約は保持 | 全体成功を報告せずe1成功を保持、e2の停止理由/結果/未完義務と未実行e3を区別。未許可の後続send/retryを0とし、接続failureと業務判断/再計画の戻しを分ける | e2 connection owner。業務判断/再計画は元機構/OSの既存owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 340,
+      "raw_lf_sha256": "dbd1536c43bed1ded5a324406cfecb02c985ae12b0d9877cdbc8242e327441c1",
+      "literal": "| `CONNECT-CASE-007-22` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功を記録し、e2を中間辺、e3を後続辺とする | e2だけtimeout。e1記録とe3契約は保持 | 全体成功を報告せずe1成功を保持、e2の停止理由/結果/未完義務と未実行e3を区別。未許可の後続send/retryを0とし、接続failureと業務判断/再計画の戻しを分ける | e2 connection owner。業務判断/再計画は元機構/OSの既存owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 341,
+      "raw_lf_sha256": "f127654cb3f90e7d282ad5bbf1e9a8ab95c967275b51bd7e43c813b16aff94c1",
+      "literal": "| `CONNECT-CASE-007-23` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功を記録し、e2を中間辺、e3を後続辺とする | e2だけ異digest再送衝突。e1記録とe3契約は保持 | 全体成功を報告せずe1成功を保持、e2の停止理由/結果/未完義務と未実行e3を区別。未許可の後続send/retryを0とし、接続failureと業務判断/再計画の戻しを分ける | e2 connection owner。業務判断/再計画は元機構/OSの既存owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 342,
+      "raw_lf_sha256": "0ddebafcb345eafbf335fab702a6df01e5ee0dd2ff6138c184203cd900ef292e",
+      "literal": "| `CONNECT-CASE-007-24` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功を記録し、e2を中間辺、e3を後続辺とする | e2だけ期限切れ。e1記録とe3契約は保持 | 全体成功を報告せずe1成功を保持、e2の停止理由/結果/未完義務と未実行e3を区別。未許可の後続send/retryを0とし、接続failureと業務判断/再計画の戻しを分ける | e2 connection owner。業務判断/再計画は元機構/OSの既存owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 343,
+      "raw_lf_sha256": "ebd04d4f17e22b3d92fb7234771a764c05194abc54b7ca3165ff762ddfa598b6",
+      "literal": "| `CONNECT-CASE-007-25` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功を記録し、e2を中間辺、e3を後続辺とする | e2だけ取消。e1記録とe3契約は保持 | 全体成功を報告せずe1成功を保持、e2の停止理由/結果/未完義務と未実行e3を区別。未許可の後続send/retryを0とし、接続failureと業務判断/再計画の戻しを分ける | e2 connection owner。業務判断/再計画は元機構/OSの既存owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 344,
+      "raw_lf_sha256": "356d715e503a8839acc007ecb989eb590efaa7eaa405ca2f98374abb136f9ea8",
+      "literal": "| `CONNECT-CASE-007-26` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功を記録し、e2を中間辺、e3を後続辺とする | e2だけ許可失効。e1記録とe3契約は保持 | 全体成功を報告せずe1成功を保持、e2の停止理由/結果/未完義務と未実行e3を区別。未許可の後続send/retryを0とし、接続failureと業務判断/再計画の戻しを分ける | e2 connection owner。許可失効はSECURITYへ照合し、業務判断/再計画は元機構/OSの既存owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 345,
+      "raw_lf_sha256": "1514867558323c498ceca7f4c0a96cebac4e9b358d844145f266a8567127a016",
+      "literal": "| `CONNECT-CASE-007-27` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功を記録し、e2を中間辺、e3を後続辺とする | e2だけ部分成功。e1記録とe3契約は保持 | 全体成功を報告せずe1成功を保持、e2の停止理由/結果/未完義務と未実行e3を区別。未許可の後続send/retryを0とし、接続failureと業務判断/再計画の戻しを分ける | e2 connection owner。業務判断/再計画は元機構/OSの既存owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 346,
+      "raw_lf_sha256": "fbae7548760ba8bd14530a735ae8588dc07a9a5077025627725b6b6f82476603",
+      "literal": "| `CONNECT-CASE-007-28` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功を記録し、e2を中間辺、e3を後続辺とする | e2だけunknown。e1記録とe3契約は保持 | 全体成功を報告せずe1成功を保持、e2の停止理由/結果/未完義務と未実行e3を区別。未許可の後続send/retryを0とし、接続failureと業務判断/再計画の戻しを分ける | e2 connection owner。業務判断/再計画は元機構/OSの既存owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 347,
+      "raw_lf_sha256": "b1b1457e67b17766cb11f4c05947e71b660409ae4bdcee3c9f6b2d59f8b5b3c3",
+      "literal": "| `CONNECT-CASE-007-29` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功、e2 timeout、宣言済みe3は未実行 | 停止位置だけ出力から欠落 | handoff未完を示し全体成功にしない。先行成功/後続未実行を保持し、欠落を既存connection ownerへ返す | 失敗辺connection owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 348,
+      "raw_lf_sha256": "26eabe195ca77667e8d094f0d5b8cb3109c59ed820bd8a9b3b576586e868852c",
+      "literal": "| `CONNECT-CASE-007-30` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功、e2 timeout、宣言済みe3は未実行 | 未完辺identityだけ出力から欠落 | handoff未完を示し全体成功にしない。先行成功/後続未実行を保持し、欠落を既存connection ownerへ返す | 失敗辺connection owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 349,
+      "raw_lf_sha256": "791ea8580889160e0fb19d1cbdff6c64148eb526a6905e669e521a4e19cf1463",
+      "literal": "| `CONNECT-CASE-007-31` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功、e2 timeout、宣言済みe3は未実行 | 未完義務だけ出力から欠落 | handoff未完を示し全体成功にしない。先行成功/後続未実行を保持し、欠落を既存connection ownerへ返す | 失敗辺connection owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 350,
+      "raw_lf_sha256": "2fa4d44691e526dd4bb68a609b02ba3eed09bd1b6f0251c2f72e6f210838e56b",
+      "literal": "| `CONNECT-CASE-007-32` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功、e2 timeout、宣言済みe3は未実行 | ownerだけ出力から欠落 | handoff未完を示し全体成功にしない。先行成功/後続未実行を保持し、欠落を既存connection ownerへ返す | 失敗辺connection owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 351,
+      "raw_lf_sha256": "36061521cde604bc0a6ae152ddfcf58d94f7ea1248126a3d0191a4f5f849b844",
+      "literal": "| `CONNECT-CASE-007-33` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功、e2 timeout、宣言済みe3は未実行 | recovery handoffだけ出力から欠落 | handoff未完を示し全体成功にしない。先行成功/後続未実行を保持し、欠落を既存connection ownerへ返す | 失敗辺connection owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 352,
+      "raw_lf_sha256": "145e8f4acb561da30d6ed735a15159eb2d05b7f24c5042e5b14f1f780057b06d",
+      "literal": "| `CONNECT-CASE-007-34` | `CONNECT-AC-007-03` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。e1成功、e2 timeout。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | e1成功記録だけを消して全辺失敗に丸める | 部分状態の消失を拒否し先行結果を不変に保持する | 構成体connection owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 353,
+      "raw_lf_sha256": "9ade60f5f0af7fa55c59c5441c0ee321c5fdb535dcc2f0ba3a7da53262a56720",
+      "literal": "| `CONNECT-CASE-007-35` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。e1成功、e2 unknown、e3は未実行。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 未実行後続辺e3だけを実行済みとして記録 | 証拠のない後続実行を拒否し未完辺を保持する | 構成体connection owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 354,
+      "raw_lf_sha256": "ce1ef43864d0c9aea9d09c7e2af08a4d8d80cb7c40fc42bedde81c82f22deec9",
+      "literal": "| `CONNECT-CASE-007-36` | `CONNECT-AC-007-04` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。全辺の技術通信完了。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 業務成立だけを技術receiptから生成 | 生成を拒否する。技術completeと元ownerの業務結果/承認、SECURITY authorityを分離する | 元業務owner／承認主体。送信許可はSECURITY |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 355,
+      "raw_lf_sha256": "2e84291382f030d7f34c160cfc391e40ec48e2422aff33cac28acebb3e02f6b8",
+      "literal": "| `CONNECT-CASE-007-37` | `CONNECT-AC-007-04` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。全辺の技術通信完了。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 結果承認だけを技術receiptから生成 | 生成を拒否する。技術completeと元ownerの業務結果/承認、SECURITY authorityを分離する | 元業務owner／承認主体。送信許可はSECURITY |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 356,
+      "raw_lf_sha256": "9c6e7ecbb3ce0319ac4d6246e3f9c9a6a45253d9a22480091a9f8384f5e030a6",
+      "literal": "| `CONNECT-CASE-007-38` | `CONNECT-AC-007-04` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。全辺の技術通信完了。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 新しい送信許可だけを技術receiptから生成 | 生成を拒否する。技術completeと元ownerの業務結果/承認、SECURITY authorityを分離する | 元業務owner／承認主体。送信許可はSECURITY |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 357,
+      "raw_lf_sha256": "1c770b055344fe06ee4b9853e8e60675ffceb7d3d79c4eb35da112a72d27bd0a",
+      "literal": "| `CONNECT-CASE-007-39` | `CONNECT-AC-007-04` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。共通packはGUI/provider/CI製品に依存しない宣言済みI/O。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 特定GUIの不在だけで契約適合構成体を拒否する | 固定HARNESS010/011に従いGUI不在だけで拒否しない。Web能力の追加を導出しない | 構成体contract owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 358,
+      "raw_lf_sha256": "0c94c4cd3c4d1601d32a9632f30da723c42af5072f6b06ac2756942fdcef356a",
+      "literal": "| `CONNECT-CASE-007-40` | `CONNECT-AC-007-01` | 合成fixture A→B→C。e1/e2各辺の登録・現互換receipt、operation mapping、correlation/idempotency/expiry/result、適用SECURITY許可識別子とsend/receive結果は有効で、全他入力は現revisionへ束縛 | e2のdata-use識別子だけ欠落。他のSECURITY許可・辺入力・結果は有効 | 技術completeにせずe2のdata-use識別子をunknown/欠落として記録し、当該辺のsend/retryを許可しない。SECURITY許可欠落とは混同せず、不足data-use識別子をその識別子を宣言するsource ownerへ返す | 当該辺の宣言元source owner |\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "line": 31,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": "\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "line": 32,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": "\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "line": 33,
+      "raw_lf_sha256": "c9c2fd5a42f2589d7a5f8b6ccb072a9cdc30e24aaea9c68d9d67570c2bc04c60",
+      "literal": "## Stage 5 — 007のNFR観測設計（未実行）\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "line": 34,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": "\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "line": 35,
+      "raw_lf_sha256": "8d26b4bde64ff82e793d4875459e5e475bc2732af0abf22206196c64e8c80959",
+      "literal": "`CON-NFR-007`は同じ機能CASE集合を観測し別のCASEを重複計上しない。宣言辺ごとの入力/receipt/lineage/SECURITY許可識別子/data-use識別子/送信結果/受信結果/終端被覆、failureでの全体成功数、未許可後続attempt、先行結果消失、業務承認/許可生成を個別に数える。data-use識別子だけ欠落する独立negativeは`CONNECT-CASE-007-40`で測り、他の有効入力やSECURITY許可欠落と混同しない。固定fixture分母の被覆100%、禁止状態生成/未許可attempt/結果消失は各0を候補判定とする。分母不明・証拠欠落・別revision結果はunknownとし、達成扱いしない。connection不備は失敗辺owner、authorityはSECURITY、業務判断/再計画は元機構/OS等ownerへ分けて戻す。latencyや期限値はowner契約の宣言を照合し製品共通SLAを生成しない。\n"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.md",
+      "line": 18,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": "\n"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.md",
+      "line": 19,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": "\n"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.md",
+      "line": 20,
+      "raw_lf_sha256": "0e18fa60ac973e7c898216840097c585190c055fc095a288f1a4be59925958a3",
+      "literal": "## Stage 5 — 007\n"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.md",
+      "line": 21,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": "\n"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.md",
+      "line": 22,
+      "raw_lf_sha256": "86051a07920944a3e7ed4f1628a64c1235c072b472bfdcbbc0d32bc0d9ca0ac3",
+      "literal": "007はcompositeの技術通信完全性であり独立business ACを追加しない。業務成立と結果承認は元ownerへ残す。CONNECT-AC-007-04と対応機能CASEで、全辺技術completeからの業務成立・承認・許可生成を拒否する。\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.md",
+      "line": 16,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": "\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.md",
+      "line": 17,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": "\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.md",
+      "line": 18,
+      "raw_lf_sha256": "0e18fa60ac973e7c898216840097c585190c055fc095a288f1a4be59925958a3",
+      "literal": "## Stage 5 — 007\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.md",
+      "line": 19,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": "\n"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.md",
+      "line": 20,
+      "raw_lf_sha256": "bb25b19ae68ff0498bdd5f99dc89c0961e4d97b647ca719705953dfda37e2fe2",
+      "literal": "独立business ACを追加せず、CONNECT-AC-007-04に対する業務成立・結果承認・許可生成の3独立negative CASEを照合する。全辺の技術完了を元ownerの業務結果/承認へ昇格しない。未実行の検証設計である。\n"
+    }
+  ],
+  "case_inventory": [
+    {
+      "id": "CONNECT-CASE-007-01",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 319,
+      "raw_lf_sha256": "6606f9523d0ff5e867ab4988a77e6d6ab3d07754eba0bee1fe8fdfcb66935c6c",
+      "literal": "| `CONNECT-CASE-007-01` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、各辺の登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・適用SECURITY許可識別子・data-use識別子を同対象revisionへ束縛。各辺のsend結果とreceive結果を別々にtraceへ記録し、authority/recoveryも記録する | なし（正常） | 全必須辺の技術的終端だけcomplete。辺順・operation lineage・端点・revision・結果を構成体traceから辿る。各辺のSECURITY許可識別子・data-use識別子・送信結果・受信結果を個別の期待fixture receiptと突合し、構成体traceから同じ辺/revisionへ辿れることを照合する | 構成体connection owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-01"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-02",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 320,
+      "raw_lf_sha256": "d14ddef3488d09fb21d01b0f45fdbc8eb053f5e46b6a795ca1d53f29b496df31",
+      "literal": "| `CONNECT-CASE-007-02` | `CONNECT-AC-007-01` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)の能力名・契約revision・scopeを区別し、各辺の登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を同対象revisionへ束縛して個別traceへ記録。同scope/契約内の未見fixture | なし（未見正常） | 固定契約適合なら未見という理由で拒否せず全宣言辺を照合する。過去e1/e2のgreenだけでe3を補わない。各辺のSECURITY許可識別子・data-use識別子・送信結果・受信結果を個別の期待fixture receiptと突合し、構成体traceから同じ辺/revisionへ辿れることを照合する | 構成体connection owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-01"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-03",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 321,
+      "raw_lf_sha256": "e513bd309c05a613e15f709fbf2f925347414f7937e60a2ccbd0cc84865abe37",
+      "literal": "| `CONNECT-CASE-007-03` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 辺identityだけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-01"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-04",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 322,
+      "raw_lf_sha256": "30ac146c98820125dc43a46e938df509d43fb62fe1c5fa7f4c59eea60e86856f",
+      "literal": "| `CONNECT-CASE-007-04` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 辺順序だけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-01"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-05",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 323,
+      "raw_lf_sha256": "6e90df4365f26335fb29d31d351c81b63b9570dff7080d9c09f81ebfe604f67b",
+      "literal": "| `CONNECT-CASE-007-05` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | correlationだけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-01"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-06",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 324,
+      "raw_lf_sha256": "a1a8f47cc089f07d15639d9854b540402aa796152533d7181bbb6e0182dc4366",
+      "literal": "| `CONNECT-CASE-007-06` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | scopeだけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-01"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-07",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 325,
+      "raw_lf_sha256": "220a4849a49c2d915ca1e3f6ffbd05c5ae89339a372ff0cb012cf498380de2b2",
+      "literal": "| `CONNECT-CASE-007-07` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 辺登録receiptだけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-01"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-08",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 326,
+      "raw_lf_sha256": "e2cc427a8f81978f8a4fb77ca852853e108208d8b94d1dc0fd609f3dc287caeb",
+      "literal": "| `CONNECT-CASE-007-08` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 現revision互換receiptだけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-01"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-09",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 327,
+      "raw_lf_sha256": "607c486e95cd741bcab213298ebdad0a57463175761340f55f8086d75991a90b",
+      "literal": "| `CONNECT-CASE-007-09` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 端点operation mappingだけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-01"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-10",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 328,
+      "raw_lf_sha256": "9f4da39d08858ff40ac9e21c33d1dc1d1f97e866349c35f00cd549210476dc89",
+      "literal": "| `CONNECT-CASE-007-10` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | expiryだけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-01"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-11",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 329,
+      "raw_lf_sha256": "f07a28bcd844dee4475d528bb4e01f9573913c920bcc3ad7001affe418f2e46a",
+      "literal": "| `CONNECT-CASE-007-11` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | idempotency identityだけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-01"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-12",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 330,
+      "raw_lf_sha256": "b0e4e9252abdc482f832cfa2f0467d800514e27e4511f0d43d74ec6af9da1642",
+      "literal": "| `CONNECT-CASE-007-12` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | result stateだけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-01"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-13",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 331,
+      "raw_lf_sha256": "99027b27da09bcc378e711ea1ca2237e0d330fa944583d6c1b2e453b9e325cb0",
+      "literal": "| `CONNECT-CASE-007-13` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 適用SECURITY許可だけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。当該操作と後続の未許可send/retryを0に保ち、許可を生成しない | SECURITY |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-01"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-14",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 332,
+      "raw_lf_sha256": "2b46d33a0f981d275c4fe47575673c69779b4f8e191948455cbd8657da5ff9f6",
+      "literal": "| `CONNECT-CASE-007-14` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | recovery先だけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-01"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-15",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 333,
+      "raw_lf_sha256": "3eee4f1b1584e999f0a459b79a9c30d5a051fa0e61862f39f3eb4a4ef7d63a28",
+      "literal": "| `CONNECT-CASE-007-15` | `CONNECT-AC-007-02` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 端点identityだけ別辺または別対象revisionへ付け替える。他束縛は有効 | 構成体lineage不一致を拒否し、停止位置と未完辺を示す。別辺receiptで欠落を補わない | 当該辺connection owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-02"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-16",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 334,
+      "raw_lf_sha256": "6167b025a64d6d6cea16484b703563081e11ab1c480bfc11d11919b03fbe8c8a",
+      "literal": "| `CONNECT-CASE-007-16` | `CONNECT-AC-007-02` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 契約revisionだけ別辺または別対象revisionへ付け替える。他束縛は有効 | 構成体lineage不一致を拒否し、停止位置と未完辺を示す。別辺receiptで欠落を補わない | 当該辺connection owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-02"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-17",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 335,
+      "raw_lf_sha256": "fd49e251233852baea1f7604c0d8c68bd33f806319e3af4764f9a6b84b5982d0",
+      "literal": "| `CONNECT-CASE-007-17` | `CONNECT-AC-007-02` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | operation対応だけ別辺または別対象revisionへ付け替える。他束縛は有効 | 構成体lineage不一致を拒否し、停止位置と未完辺を示す。別辺receiptで欠落を補わない | 当該辺connection owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-02"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-18",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 336,
+      "raw_lf_sha256": "153e2ddcac3d90920dd4be76c38e98b4fa1580ea2d624243bb4f688075dc8546",
+      "literal": "| `CONNECT-CASE-007-18` | `CONNECT-AC-007-02` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | correlationだけ別辺または別対象revisionへ付け替える。他束縛は有効 | 構成体lineage不一致を拒否し、停止位置と未完辺を示す。別辺receiptで欠落を補わない | 当該辺connection owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-02"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-19",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 337,
+      "raw_lf_sha256": "ee44720b51a3356620770512e59bf3bbfc6eb19cb97b58da7e801be8a1c59567",
+      "literal": "| `CONNECT-CASE-007-19` | `CONNECT-AC-007-02` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | scopeだけ別辺または別対象revisionへ付け替える。他束縛は有効 | 構成体lineage不一致を拒否し、停止位置と未完辺を示す。別辺receiptで欠落を補わない | 当該辺connection owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-02"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-20",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 338,
+      "raw_lf_sha256": "e170ee880190171c4ec671d115d8d5b36aebb9e1468cab41b20a3e874032607a",
+      "literal": "| `CONNECT-CASE-007-20` | `CONNECT-AC-007-02` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | idempotency identityだけ別辺または別対象revisionへ付け替える。他束縛は有効 | 構成体lineage不一致を拒否し、停止位置と未完辺を示す。別辺receiptで欠落を補わない | 当該辺connection owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-02"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-21",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 339,
+      "raw_lf_sha256": "271a039131e2b7bc39db1dbab699863e21e2873568334855350137b4354ead2d",
+      "literal": "| `CONNECT-CASE-007-21` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功を記録し、e2を中間辺、e3を後続辺とする | e2だけstale。e1記録とe3契約は保持 | 全体成功を報告せずe1成功を保持、e2の停止理由/結果/未完義務と未実行e3を区別。未許可の後続send/retryを0とし、接続failureと業務判断/再計画の戻しを分ける | e2 connection owner。業務判断/再計画は元機構/OSの既存owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-03"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-22",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 340,
+      "raw_lf_sha256": "dbd1536c43bed1ded5a324406cfecb02c985ae12b0d9877cdbc8242e327441c1",
+      "literal": "| `CONNECT-CASE-007-22` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功を記録し、e2を中間辺、e3を後続辺とする | e2だけtimeout。e1記録とe3契約は保持 | 全体成功を報告せずe1成功を保持、e2の停止理由/結果/未完義務と未実行e3を区別。未許可の後続send/retryを0とし、接続failureと業務判断/再計画の戻しを分ける | e2 connection owner。業務判断/再計画は元機構/OSの既存owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-03"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-23",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 341,
+      "raw_lf_sha256": "f127654cb3f90e7d282ad5bbf1e9a8ab95c967275b51bd7e43c813b16aff94c1",
+      "literal": "| `CONNECT-CASE-007-23` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功を記録し、e2を中間辺、e3を後続辺とする | e2だけ異digest再送衝突。e1記録とe3契約は保持 | 全体成功を報告せずe1成功を保持、e2の停止理由/結果/未完義務と未実行e3を区別。未許可の後続send/retryを0とし、接続failureと業務判断/再計画の戻しを分ける | e2 connection owner。業務判断/再計画は元機構/OSの既存owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-03"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-24",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 342,
+      "raw_lf_sha256": "0ddebafcb345eafbf335fab702a6df01e5ee0dd2ff6138c184203cd900ef292e",
+      "literal": "| `CONNECT-CASE-007-24` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功を記録し、e2を中間辺、e3を後続辺とする | e2だけ期限切れ。e1記録とe3契約は保持 | 全体成功を報告せずe1成功を保持、e2の停止理由/結果/未完義務と未実行e3を区別。未許可の後続send/retryを0とし、接続failureと業務判断/再計画の戻しを分ける | e2 connection owner。業務判断/再計画は元機構/OSの既存owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-03"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-25",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 343,
+      "raw_lf_sha256": "ebd04d4f17e22b3d92fb7234771a764c05194abc54b7ca3165ff762ddfa598b6",
+      "literal": "| `CONNECT-CASE-007-25` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功を記録し、e2を中間辺、e3を後続辺とする | e2だけ取消。e1記録とe3契約は保持 | 全体成功を報告せずe1成功を保持、e2の停止理由/結果/未完義務と未実行e3を区別。未許可の後続send/retryを0とし、接続failureと業務判断/再計画の戻しを分ける | e2 connection owner。業務判断/再計画は元機構/OSの既存owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-03"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-26",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 344,
+      "raw_lf_sha256": "356d715e503a8839acc007ecb989eb590efaa7eaa405ca2f98374abb136f9ea8",
+      "literal": "| `CONNECT-CASE-007-26` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功を記録し、e2を中間辺、e3を後続辺とする | e2だけ許可失効。e1記録とe3契約は保持 | 全体成功を報告せずe1成功を保持、e2の停止理由/結果/未完義務と未実行e3を区別。未許可の後続send/retryを0とし、接続failureと業務判断/再計画の戻しを分ける | e2 connection owner。許可失効はSECURITYへ照合し、業務判断/再計画は元機構/OSの既存owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-03"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-27",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 345,
+      "raw_lf_sha256": "1514867558323c498ceca7f4c0a96cebac4e9b358d844145f266a8567127a016",
+      "literal": "| `CONNECT-CASE-007-27` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功を記録し、e2を中間辺、e3を後続辺とする | e2だけ部分成功。e1記録とe3契約は保持 | 全体成功を報告せずe1成功を保持、e2の停止理由/結果/未完義務と未実行e3を区別。未許可の後続send/retryを0とし、接続failureと業務判断/再計画の戻しを分ける | e2 connection owner。業務判断/再計画は元機構/OSの既存owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-03"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-28",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 346,
+      "raw_lf_sha256": "fbae7548760ba8bd14530a735ae8588dc07a9a5077025627725b6b6f82476603",
+      "literal": "| `CONNECT-CASE-007-28` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功を記録し、e2を中間辺、e3を後続辺とする | e2だけunknown。e1記録とe3契約は保持 | 全体成功を報告せずe1成功を保持、e2の停止理由/結果/未完義務と未実行e3を区別。未許可の後続send/retryを0とし、接続failureと業務判断/再計画の戻しを分ける | e2 connection owner。業務判断/再計画は元機構/OSの既存owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-03"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-29",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 347,
+      "raw_lf_sha256": "b1b1457e67b17766cb11f4c05947e71b660409ae4bdcee3c9f6b2d59f8b5b3c3",
+      "literal": "| `CONNECT-CASE-007-29` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功、e2 timeout、宣言済みe3は未実行 | 停止位置だけ出力から欠落 | handoff未完を示し全体成功にしない。先行成功/後続未実行を保持し、欠落を既存connection ownerへ返す | 失敗辺connection owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-03"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-30",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 348,
+      "raw_lf_sha256": "26eabe195ca77667e8d094f0d5b8cb3109c59ed820bd8a9b3b576586e868852c",
+      "literal": "| `CONNECT-CASE-007-30` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功、e2 timeout、宣言済みe3は未実行 | 未完辺identityだけ出力から欠落 | handoff未完を示し全体成功にしない。先行成功/後続未実行を保持し、欠落を既存connection ownerへ返す | 失敗辺connection owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-03"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-31",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 349,
+      "raw_lf_sha256": "791ea8580889160e0fb19d1cbdff6c64148eb526a6905e669e521a4e19cf1463",
+      "literal": "| `CONNECT-CASE-007-31` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功、e2 timeout、宣言済みe3は未実行 | 未完義務だけ出力から欠落 | handoff未完を示し全体成功にしない。先行成功/後続未実行を保持し、欠落を既存connection ownerへ返す | 失敗辺connection owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-03"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-32",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 350,
+      "raw_lf_sha256": "2fa4d44691e526dd4bb68a609b02ba3eed09bd1b6f0251c2f72e6f210838e56b",
+      "literal": "| `CONNECT-CASE-007-32` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功、e2 timeout、宣言済みe3は未実行 | ownerだけ出力から欠落 | handoff未完を示し全体成功にしない。先行成功/後続未実行を保持し、欠落を既存connection ownerへ返す | 失敗辺connection owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-03"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-33",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 351,
+      "raw_lf_sha256": "36061521cde604bc0a6ae152ddfcf58d94f7ea1248126a3d0191a4f5f849b844",
+      "literal": "| `CONNECT-CASE-007-33` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功、e2 timeout、宣言済みe3は未実行 | recovery handoffだけ出力から欠落 | handoff未完を示し全体成功にしない。先行成功/後続未実行を保持し、欠落を既存connection ownerへ返す | 失敗辺connection owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-03"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-34",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 352,
+      "raw_lf_sha256": "145e8f4acb561da30d6ed735a15159eb2d05b7f24c5042e5b14f1f780057b06d",
+      "literal": "| `CONNECT-CASE-007-34` | `CONNECT-AC-007-03` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。e1成功、e2 timeout。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | e1成功記録だけを消して全辺失敗に丸める | 部分状態の消失を拒否し先行結果を不変に保持する | 構成体connection owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-03"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-35",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 353,
+      "raw_lf_sha256": "9ade60f5f0af7fa55c59c5441c0ee321c5fdb535dcc2f0ba3a7da53262a56720",
+      "literal": "| `CONNECT-CASE-007-35` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。e1成功、e2 unknown、e3は未実行。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 未実行後続辺e3だけを実行済みとして記録 | 証拠のない後続実行を拒否し未完辺を保持する | 構成体connection owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-03"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-36",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 354,
+      "raw_lf_sha256": "ce1ef43864d0c9aea9d09c7e2af08a4d8d80cb7c40fc42bedde81c82f22deec9",
+      "literal": "| `CONNECT-CASE-007-36` | `CONNECT-AC-007-04` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。全辺の技術通信完了。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 業務成立だけを技術receiptから生成 | 生成を拒否する。技術completeと元ownerの業務結果/承認、SECURITY authorityを分離する | 元業務owner／承認主体。送信許可はSECURITY |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-04"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-37",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 355,
+      "raw_lf_sha256": "2e84291382f030d7f34c160cfc391e40ec48e2422aff33cac28acebb3e02f6b8",
+      "literal": "| `CONNECT-CASE-007-37` | `CONNECT-AC-007-04` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。全辺の技術通信完了。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 結果承認だけを技術receiptから生成 | 生成を拒否する。技術completeと元ownerの業務結果/承認、SECURITY authorityを分離する | 元業務owner／承認主体。送信許可はSECURITY |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-04"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-38",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 356,
+      "raw_lf_sha256": "9c6e7ecbb3ce0319ac4d6246e3f9c9a6a45253d9a22480091a9f8384f5e030a6",
+      "literal": "| `CONNECT-CASE-007-38` | `CONNECT-AC-007-04` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。全辺の技術通信完了。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 新しい送信許可だけを技術receiptから生成 | 生成を拒否する。技術completeと元ownerの業務結果/承認、SECURITY authorityを分離する | 元業務owner／承認主体。送信許可はSECURITY |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-04"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-39",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 357,
+      "raw_lf_sha256": "1c770b055344fe06ee4b9853e8e60675ffceb7d3d79c4eb35da112a72d27bd0a",
+      "literal": "| `CONNECT-CASE-007-39` | `CONNECT-AC-007-04` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。共通packはGUI/provider/CI製品に依存しない宣言済みI/O。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 特定GUIの不在だけで契約適合構成体を拒否する | 固定HARNESS010/011に従いGUI不在だけで拒否しない。Web能力の追加を導出しない | 構成体contract owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-04"
+      ]
+    },
+    {
+      "id": "CONNECT-CASE-007-40",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 358,
+      "raw_lf_sha256": "0c94c4cd3c4d1601d32a9632f30da723c42af5072f6b06ac2756942fdcef356a",
+      "literal": "| `CONNECT-CASE-007-40` | `CONNECT-AC-007-01` | 合成fixture A→B→C。e1/e2各辺の登録・現互換receipt、operation mapping、correlation/idempotency/expiry/result、適用SECURITY許可識別子とsend/receive結果は有効で、全他入力は現revisionへ束縛 | e2のdata-use識別子だけ欠落。他のSECURITY許可・辺入力・結果は有効 | 技術completeにせずe2のdata-use識別子をunknown/欠落として記録し、当該辺のsend/retryを許可しない。SECURITY許可欠落とは混同せず、不足data-use識別子をその識別子を宣言するsource ownerへ返す | 当該辺の宣言元source owner |\n",
+      "ac_ids": [
+        "CONNECT-AC-007-01"
+      ]
+    }
+  ],
+  "checks": {
+    "case_count": 40,
+    "ac_count": 4,
+    "dangling_acs": 0,
+    "published_case_loss": 0,
+    "integrated_tree": "60fc9de9fd90fe68ba047a05ebafc2fb940ef92d",
+    "static": {
+      "validate": {
+        "returncode": 0,
+        "stdout": "ok   scaffold/bindings/SCF-B-0001.json  SCF-B-0001 [active]\nok   scaffold/bindings/SCF-B-0002.json  SCF-B-0002 [active]\nok   scaffold/bindings/SCF-B-0003.json  SCF-B-0003 [active]\nok   scaffold/bindings/SCF-B-0004.json  SCF-B-0004 [active]\nok   scaffold/bindings/SCF-B-0005.json  SCF-B-0005 [active]\nok   scaffold/bindings/SCF-B-0006.json  SCF-B-0006 [active]\nok   scaffold/bindings/SCF-B-0007.json  SCF-B-0007 [active]\nok   scaffold/bindings/SCF-B-0008.json  SCF-B-0008 [active]\nok   scaffold/bindings/SCF-B-0009.json  SCF-B-0009 [active]\nok   scaffold/bindings/SCF-B-0010.json  SCF-B-0010 [active]\nok   scaffold/bindings/SCF-B-0011.json  SCF-B-0011 [active]\nok   scaffold/bindings/SCF-B-0012.json  SCF-B-0012 [active]\nok   scaffold/bindings/SCF-B-0013.json  SCF-B-0013 [active]\nok   scaffold/bindings/SCF-B-0014.json  SCF-B-0014 [active]\nok   scaffold/bindings/SCF-B-0015.json  SCF-B-0015 [active]\nok   scaffold/bindings/SCF-B-0016.json  SCF-B-0016 [active]\nok   scaffold/bindings/SCF-B-0017.json  SCF-B-0017 [active]\nok   scaffold/bindings/SCF-B-0018.json  SCF-B-0018 [active]\nok   scaffold/bindings/SCF-B-0019.json  SCF-B-0019 [active]\nok   scaffold/bindings/SCF-B-0020.json  SCF-B-0020 [active]\nok   scaffold/bindings/SCF-B-0021.json  SCF-B-0021 [active]\nok   scaffold/bindings/SCF-B-0022.json  SCF-B-0022 [active]\nok   scaffold/bindings/SCF-B-0023.json  SCF-B-0023 [registered]\nok   scaffold/bindings/SCF-B-0024.json  SCF-B-0024 [active]\nok   scaffold/bindings/SCF-B-0025.json  SCF-B-0025 [active]\nok   scaffold/bindings/SCF-B-0027.json  SCF-B-0027 [registered]\nok   scaffold/bindings/SCF-B-0028.json  SCF-B-0028 [active]\nok   scaffold/bindings/SCF-B-0029.json  SCF-B-0029 [registered]\nok   scaffold/bindings/SCF-B-0030.json  SCF-B-0030 [active]\nok   scaffold/bindings/SCF-B-0031.json  SCF-B-0031 [active]\nok   scaffold/bindings/SCF-B-0032.json  SCF-B-0032 [registered]\nok   scaffold/bindings/SCF-B-0033.json  SCF-B-0033 [registered]\nok   scaffold/bindings/SCF-B-0034.json  SCF-B-0034 [registered]\nok   scaffold/bindings/SCF-B-0035.json  SCF-B-0035 [registered]\nok   scaffold/bindings/SCF-B-0036.json  SCF-B-0036 [registered]\nok   scaffold/bindings/SCF-B-0037.json  SCF-B-0037 [registered]\nok   scaffold/bindings/SCF-B-0038.json  SCF-B-0038 [registered]\nok   scaffold/bindings/SCF-B-0039.json  SCF-B-0039 [registered]\nok   scaffold/bindings/SCF-B-0040.json  SCF-B-0040 [registered]\nok   scaffold/bindings/SCF-B-0041.json  SCF-B-0041 [registered]\nok   scaffold/bindings/SCF-B-0042.json  SCF-B-0042 [registered]\nok   scaffold/bindings/SCF-B-0043.json  SCF-B-0043 [registered]\nok   scaffold/bindings/SCF-B-0044.json  SCF-B-0044 [registered]\nok   scaffold/bindings/SCF-B-0045.json  SCF-B-0045 [registered]\nok   scaffold/bindings/SCF-B-0046.json  SCF-B-0046 [registered]\nok   scaffold/bindings/SCF-B-0047.json  SCF-B-0047 [registered]\nok   scaffold/bindings/SCF-B-0048.json  SCF-B-0048 [registered]\nok   scaffold/bindings/SCF-B-0049.json  SCF-B-0049 [registered]\nok   scaffold/bindings/SCF-B-0050.json  SCF-B-0050 [registered]\nok   scaffold/bindings/SCF-B-0051.json  SCF-B-0051 [active]\nok   scaffold/bindings/SCF-B-0052.json  SCF-B-0052 [registered]\nok   scaffold/bindings/SCF-B-0053.json  SCF-B-0053 [registered]\nok   scaffold/bindings/SCF-B-0054.json  SCF-B-0054 [registered]\nok   scaffold/bindings/SCF-B-0055.json  SCF-B-0055 [registered]\nok   scaffold/bindings/SCF-B-0056.json  SCF-B-0056 [registered]\nok   scaffold/bindings/SCF-B-0057.json  SCF-B-0057 [registered]\nok   scaffold/bindings/SCF-B-0058.json  SCF-B-0058 [registered]\nok   scaffold/bindings/SCF-B-0059.json  SCF-B-0059 [registered]\nok   scaffold/bindings/SCF-B-0060.json  SCF-B-0060 [registered]\nok   scaffold/bindings/SCF-B-0061.json  SCF-B-0061 [registered]\nok   scaffold/bindings/SCF-B-0062.json  SCF-B-0062 [registered]\nok   scaffold/bindings/SCF-B-0063.json  SCF-B-0063 [registered]\nok   scaffold/bindings/SCF-B-0064.json  SCF-B-0064 [registered]\nok   scaffold/bindings/SCF-B-0065.json  SCF-B-0065 [registered]\nok   scaffold/bindings/SCF-B-0066.json  SCF-B-0066 [registered]\nok   scaffold/bindings/SCF-B-0067.json  SCF-B-0067 [registered]\nok   scaffold/bindings/SCF-B-0068.json  SCF-B-0068 [registered]\nok   scaffold/bindings/SCF-B-0069.json  SCF-B-0069 [registered]\nok   scaffold/bindings/SCF-B-0070.json  SCF-B-0070 [registered]\nok   scaffold/bindings/SCF-B-0071.json  SCF-B-0071 [registered]\nok   scaffold/bindings/SCF-B-0072.json  SCF-B-0072 [registered]\nok   scaffold/bindings/SCF-B-0073.json  SCF-B-0073 [registered]\nok   scaffold/bindings/SCF-B-0074.json  SCF-B-0074 [registered]\nok   scaffold/bindings/SCF-B-0075.json  SCF-B-0075 [registered]\nok   scaffold/bindings/SCF-B-0076.json  SCF-B-0076 [registered]\nok   scaffold/bindings/SCF-B-0077.json  SCF-B-0077 [registered]\nok   scaffold/bindings/SCF-B-0078.json  SCF-B-0078 [registered]\nok   scaffold/bindings/SCF-B-0079.json  SCF-B-0079 [registered]\nok   scaffold/bindings/SCF-B-0080.json  SCF-B-0080 [registered]\nok   scaffold/bindings/SCF-B-0081.json  SCF-B-0081 [registered]\nok   scaffold/bindings/SCF-B-0082.json  SCF-B-0082 [registered]\nok   scaffold/bindings/SCF-B-0083.json  SCF-B-0083 [registered]\nok   scaffold/bindings/SCF-B-0084.json  SCF-B-0084 [registered]\nok   scaffold/bindings/SCF-B-0085.json  SCF-B-0085 [registered]\nok   scaffold/bindings/SCF-B-0086.json  SCF-B-0086 [registered]\nok   scaffold/bindings/SCF-B-0087.json  SCF-B-0087 [registered]\nok   scaffold/bindings/SCF-B-0088.json  SCF-B-0088 [registered]\nok   scaffold/bindings/SCF-B-0089.json  SCF-B-0089 [registered]\nok   scaffold/bindings/SCF-B-0090.json  SCF-B-0090 [registered]\nok   scaffold/bindings/SCF-B-0091.json  SCF-B-0091 [registered]\nok   scaffold/bindings/SCF-B-0092.json  SCF-B-0092 [registered]\nok   scaffold/bindings/SCF-B-0093.json  SCF-B-0093 [registered]\nok   scaffold/bindings/SCF-B-0094.json  SCF-B-0094 [registered]\nok   scaffold/bindings/SCF-B-0095.json  SCF-B-0095 [registered]\nok   scaffold/bindings/SCF-B-0096.json  SCF-B-0096 [registered]\nok   scaffold/bindings/SCF-B-0097.json  SCF-B-0097 [registered]\nok   scaffold/bindings/SCF-B-0099.json  SCF-B-0099 [registered]\nok   scaffold/bindings/SCF-B-0100.json  SCF-B-0100 [registered]\nok   scaffold/bindings/SCF-B-0101.json  SCF-B-0101 [registered]\nok   scaffold/bindings/SCF-B-0102.json  SCF-B-0102 [registered]\nok   scaffold/bindings/SCF-B-0103.json  SCF-B-0103 [registered]\nok   scaffold/bindings/SCF-B-0104.json  SCF-B-0104 [registered]\nok   scaffold/bindings/SCF-B-0105.json  SCF-B-0105 [registered]\nok   scaffold/bindings/SCF-B-0106.json  SCF-B-0106 [registered]\nok   scaffold/bindings/SCF-B-0107.json  SCF-B-0107 [registered]\nok   scaffold/bindings/SCF-B-0108.json  SCF-B-0108 [registered]\nok   scaffold/bindings/SCF-B-0109.json  SCF-B-0109 [registered]\nok   scaffold/bindings/SCF-B-0110.json  SCF-B-0110 [registered]\nok   scaffold/bindings/SCF-B-0111.json  SCF-B-0111 [registered]\nok   scaffold/bindings/SCF-B-0112.json  SCF-B-0112 [registered]\nok   scaffold/bindings/SCF-B-0113.json  SCF-B-0113 [registered]\nok   scaffold/bindings/SCF-B-0114.json  SCF-B-0114 [registered]\nok   scaffold/bindings/SCF-B-0115.json  SCF-B-0115 [registered]\nok   scaffold/bindings/SCF-B-0116.json  SCF-B-0116 [registered]\nok   scaffold/bindings/SCF-B-0117.json  SCF-B-0117 [registered]\nok   scaffold/bindings/SCF-B-0118.json  SCF-B-0118 [registered]\nok   scaffold/bindings/SCF-B-0119.json  SCF-B-0119 [registered]\nok   scaffold/bindings/SCF-B-0120.json  SCF-B-0120 [registered]\nok   scaffold/bindings/SCF-B-0121.json  SCF-B-0121 [registered]\nok   scaffold/bindings/SCF-B-0122.json  SCF-B-0122 [registered]\nok   scaffold/bindings/SCF-B-0123.json  SCF-B-0123 [registered]\nok   scaffold/bindings/SCF-B-0124.json  SCF-B-0124 [registered]\nok   scaffold/bindings/SCF-B-0125.json  SCF-B-0125 [registered]\nok   scaffold/bindings/SCF-B-0126.json  SCF-B-0126 [registered]\nok   scaffold/bindings/SCF-B-0127.json  SCF-B-0127 [registered]\nok   scaffold/bindings/SCF-B-0128.json  SCF-B-0128 [registered]\nok   scaffold/bindings/SCF-B-0129.json  SCF-B-0129 [registered]\nok   scaffold/bindings/SCF-B-0130.json  SCF-B-0130 [registered]\nok   scaffold/bindings/SCF-B-0131.json  SCF-B-0131 [registered]\nok   scaffold/bindings/SCF-B-0132.json  SCF-B-0132 [registered]\nok   scaffold/bindings/SCF-B-0133.json  SCF-B-0133 [registered]\nok   scaffold/bindings/SCF-B-0134.json  SCF-B-0134 [registered]\nok   scaffold/bindings/SCF-B-0141.json  SCF-B-0141 [registered]\nok   scaffold/bindings/SCF-B-0142.json  SCF-B-0142 [registered]\nok   scaffold/bindings/SCF-B-0144.json  SCF-B-0144 [registered]\nok   scaffold/bindings/SCF-B-0145.json  SCF-B-0145 [registered]\nok   scaffold/bindings/SCF-B-0146.json  SCF-B-0146 [registered]\nok   scaffold/bindings/SCF-B-0147.json  SCF-B-0147 [registered]\nok   scaffold/bindings/SCF-B-0148.json  SCF-B-0148 [registered]\nok   scaffold/bindings/SCF-B-0149.json  SCF-B-0149 [registered]\nok   scaffold/bindings/SCF-B-0150.json  SCF-B-0150 [registered]\nok   scaffold/bindings/SCF-B-0151.json  SCF-B-0151 [registered]\nok   scaffold/bindings/SCF-B-0152.json  SCF-B-0152 [registered]\nok   scaffold/bindings/SCF-B-0153.json  SCF-B-0153 [registered]\nok   scaffold/bindings/SCF-B-0154.json  SCF-B-0154 [registered]\nok   scaffold/bindings/SCF-B-0155.json  SCF-B-0155 [registered]\nok   scaffold/bindings/SCF-B-0156.json  SCF-B-0156 [registered]\nbindings=147 fail=0\n",
+        "stderr": ""
+      },
+      "stale": {
+        "returncode": 0,
+        "stdout": "stale=0\n",
+        "stderr": ""
+      },
+      "residuals": {
+        "returncode": 0,
+        "stdout": "residuals=0\n",
+        "stderr": ""
+      }
+    }
+  },
+  "read_extent": [
+    "正式review01全文、Worker日本語概要全文、Worker本文129行差分全行、Root差分",
+    "旧SEC受入24–30、旧checkpoint/replay31–38の隣接比較限定読解",
+    "固定L2/L11及び旧L3形式の前回限定読解を保持"
+  ],
+  "limits": [
+    "This is not independent review, L3 approval, L10 execution, or implementation evidence.",
+    "Older immutable audit remains unchanged; its original search basis is preserved.",
+    "Old partial-success and correlation materials are adjacent comparisons only, not source atoms.",
+    "The extra asset/source search does not claim full semantic exhaustion of the archive.",
+    "追加検索の全hit意味分類は未確認",
+    "L10実測・独立review・L3承認をこの検収から生成しない"
+  ]
+}

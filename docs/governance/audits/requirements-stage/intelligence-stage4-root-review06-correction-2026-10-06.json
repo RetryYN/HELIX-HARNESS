@@ -1,0 +1,128 @@
+{
+  "record_type": "root_review06_correction",
+  "authority_effect": "none",
+  "body_revision": "5c15678656e5632127429b499d4ca500061e8623",
+  "previous_head": "82bab54b3300d7d1565fc0148603d52a50d9b0bb",
+  "latest_main": "14dbdb6ae562d19d7fc49b33e36c18efcd3bafc0",
+  "integration_tree": "a4c61ada5426a5248b750ac81c71af21e1b90655",
+  "formal_comment": {
+    "id": 6003241941,
+    "sha256": "f1bac5c35f95f0e60ef26bd149c11ccb89e5ead30b9b66790a6596ab11e12fa0",
+    "literal": "## review06（independent review、HEAD 82bab54b3300d7d1565fc0148603d52a50d9b0bb、body 5886127463349c6cf9c94ba4ed181b3ef0dd1d6c）\n\nreviewer: Claude（lane `review_merge`、Fable 5.1）。Opus agent 1本（review05 M1/M2/m1〜m10の解消、ついで変更、Root訂正の実体）＋Fable advisor（6本文Stage4全CASE・固定L2 633bf12:200–350・L11 88–108/140–200/258–287を実読）＋reviewer本人の静的検査・固定親照合。merge-base 1a7933157（main 14dbdb6ae はHEADの祖先でない。review05 commentの「HEADの祖先」表現は不正確で訂正）、`git merge-tree --write-tree origin/main HEAD` 衝突なし。\n\n### 静的検査（w2612 = exact HEAD）\n- scfctl validate 147/0、stale 0、residuals 0、govcheck ok、`git diff --check` 0。\n- Worker補正 `l3-l10-intelligence-stage4-review05-correction-2026-10-06.json` pin 670/670、Root検収 `intelligence-stage4-root-review05-acceptance-2026-10-06.json` pin 606/606一致。review05 comment（6002191280）SHA一致。CASE定義657行一意（純増2：035-02m、037-04h。消失0）、6本文はbody 588612746と同一bytes、main prefix一致。\n\n### review05所見の解消（全12件、本文で確認）\n- **M1解消**：035-02m（FV:669、INTELLIGENCEがOS ticketを生成・発行する単独変異。生成・発行拒否、OS ticket authority維持、L2:259）。AC-035-02は02a〜m。\n- **M2解消**：033-02h（FV:529、意味変更の確定拒否・Product Core意味/正本不変・Product Core ownerへ。L2:241）。\n- **m1解消**：017-03（FV:264）に四段階の対応証拠とauthority確認時のみ完了、017-04a（FV:277）は操作時SECURITY authority確認不能の単独変異で当該段階のみ保留（L11 L2-017未見列と一致、AC-017-03より強くない）。Root検収「旧Worker記録『CASE03反映済』は旧本文では未反映」はWorker 73ddeff50/388920833では未反映、Root 588612746で反映を確認（訂正は正しい）。\n- **m2〜m10解消**：FR:131 SYN pin、FR:262「96/103」、037-04g/04h分離（AC-037-04は04a〜04h）、039-02g/04e「OS acceptanceを成立させない」、FR:210 code span閉じ＋pin 20–24（archive実物でCAP-001/002/005を含む）、045-03のNG:171復帰とNG:170/BR:67/BV:71/NV:85同期、FR:275/286 path、045-02i/02j前提明記。\n- ついで変更はFR-017旧source disposition文言のみ（補助比較に限る位置づけ不変）。\n\n### Fable見解（advisor、FR:118–298・FV:224–1320・BR/BV/NG/NV・固定L2/L11・旧SEC pin・review05 comment・Root監査実読）\n結論行（原文のまま）：「**承認してよい**（Minor 5件は承認を止めない）」。所見5件（下記m1〜m4とM1に対応。Fableはすべて Minor）。\n\n### 所見（Major 1／Minor 4。Fable所見をreviewerが固定親・本文で再検証し、reviewer基準で重大度を付け直し）\n- **M1（034：固定L2:247の入力「success/failure」値そのものの単独変異なし。Fable m3をMajorへ）**：L2:247「入力：LABOの過去evaluation、success/failure/counterexample、Worker/model実績、Bench水準、未評価印」。FV:580の入力にsuccess/failureはあるが、034-02a〜02j（evaluation identity/revision/scope/未評価変換/counterexample/Bench level/owner/stale/history割当/Bench source）と04a〜04fに、success/failure結果値の反転・欠落を単独で検査する行がない（034行に「success/failure／結果値／反転」0件）。固定L2入力列挙の単独欠落なしは本laneの基準でMajor（#2607 connector、#2614 source contract、#2615 data-use/送受信結果と同基準）。「評価結果のsuccess/failure値だけを反転／欠落→evidenceにせずLABO evaluation ownerへ」の各1行を追加。\n- **m1（017-02i：期限切れとrevokedの束ね）**：FV:253「実行時点ですでに期限切れまたはrevokedのpermissionで実行」。L11:266も「期限切れ/revoked」と並記するが、036では02f（revoked）と02i（期限切れ）に分けている。review05 m4（037-04g）と同型。2行に分けるか「2状態を別runで実施」と明記。\n- **m2（04表の「A/B」表記が1 fixtureか2 runか未確定）**：FV:340 `030-04a`「requirement/design revision」、FV:615 `034-04b`「scope/Worker identity」、FV:835–836 `037-04a/04b`、FV:905 `038-04a`、FV:980–981 `039-04a/04b`、FV:1154–1155 `041-04a/04b`、FV:1222 `044-04b`。各04表前書き「各行は独立したfixture」とACの「一つのfieldのみunknown」に対し「/」が一変数か二変数か未決。Stage4前書き（FV:226）か各04表前書きに「A/B表記は各fieldを別runで一変数ずつunknownにする」と一文足すか行を分ける。02表側に同fieldの単独negativeは揃う。\n- **m3（041-03aとL11:278の読みの根拠未記録）**：FV:1138–1141 `041-03a` は宣言済互換範囲内の未見版を受け入れる。L11:278未見列は「選択済みで未知版なら該当source ownerへ戻す」のみで、030（L11:267）・032（L11:269）・037（L11:274）にある「宣言済み範囲内なら受ける」句を持たない。FR:273 AC-INT-041-03は03a/03bを区別するが、「L11:278の『未知版』は03b（互換性unknown/未宣言）に当たる」導出（L11:260前書き、L2:314共通pack compatibility句）を一文記録する。\n- **m4（L11:92類型反例の017節内索引）**：L11:92「いずれかの結果で別ownerのpermission/execution/verification/acceptanceを代替する」に対し017表の実例は02n・02hのみ。acceptance代替は039-02c/02f/02d、permission代替は036-02hに依存するがFR:128／FV:239前書きに索引がない。索引一文か017側1行の追加。\n\n### 判定\nblocker 0、Major 1、Minor 4。Readyは未可。M1補正で本文revisionが変わるため、新revisionでOpus `no_findings`（未確認範囲0）とFable見解を再成立させる。本HEADでのFable見解「承認してよい」は本commentに記録。merge admissionは本commentから生成しない。\n"
+  },
+  "source_lines": [
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "line": 247,
+      "sha256": "9cbe8314893993eea8e9e1f99e52e1f427b50b1e320f70b99f17fd2a85935705",
+      "literal": "- 入力：LABOの過去evaluation、success/failure/counterexample、Worker/model実績、Bench水準、未評価印。\n"
+    },
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "line": 314,
+      "sha256": "9bda3ed84b0bae518738b3dba64c57e948a902585eff355bbafb592de7eb6d15",
+      "literal": "- 失敗時戻し先：source scope/revision欠落はそのsourceへ戻す。Web/WEB-OSはadmitted contractがない限り依存しない。`version_target: sourceごとに定義`。契約/成果物/依存版・compatibility・交換更新rollbackはHARNESS-L2-010/011共通pack contractを適用する。\n"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "line": 92,
+      "sha256": "9f5b1b808d8188ae2a1f261996db714bb95466998c955d249150cbfc54eb9ef1",
+      "literal": "| HELIXINTELLIGENCE-L2-017 | 同一target revision/scopeでHELIXINTELLIGENCE-L2-036～HELIXINTELLIGENCE-L2-039のpermission/Worker/HARNESS/OS各結果を別々に保持し、未完義務を引き継ぐ | いずれかの結果で別ownerのpermission/execution/verification/acceptanceを代替する | 欠落stageのSECURITY/Worker/HARNESS/OS ownerへ戻し修復未完了 |\n"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "line": 260,
+      "sha256": "7a6afaf420f3a7317403365c33cd3d1f7417b0ab0c5a21b32bcc720c0eccc35d",
+      "literal": "この追補はG12 PO判断が求める内容oracleを、監査で指定された1.0対象だけ具体化する。各fixtureは対象IDの能力とscopeを固定し、正常・誤り・未見入力について結果の意味を照合する。項目やreceiptの存在だけでは合格にしない。source authority、各owner、既存L2条件、操作ごとの依存を維持する。適用scopeまたは宣言済み互換範囲の外、または判定基準が未決の結果はunknown/未評価として該当ownerへ戻し、万能能力を主張しない。\n"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "line": 266,
+      "sha256": "274886b420955f6772ddbc2d6243566b4292ecd31329a1cb4f7cf020e159cd2e",
+      "literal": "| `HELIXINTELLIGENCE-L2-017` | 同一target revision/scopeについて、SECURITY permission、Worker実行結果、HARNESS検証、OS検収の別々の証拠を受ける。操作時点で有効だったpermissionと、その後の失効時刻を区別し、各段階の対応する証拠がそろった場合だけ完了する。 | 実行時点ですでに期限切れ/revoked、または別scopeのpermissionで実行した場合は不許可として扱い、完了にしない。HARNESS obligationが欠落した修復成功もOS検収済みに昇格させずHARNESS/OSへ戻す。 | 未見の段階順序では対象scopeとreceiptを照合する。後日失効したpermissionでも、実行時点に有効であった記録があれば過去の実行証拠として保持し、後日の失効で消去しない。実行時点のauthorityが確認できない場合だけ当該段階を保留する。 |\n"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "line": 278,
+      "sha256": "36caff44a1293bb41a6c6bd3a05d2a29eaa5b9448699f5851c4e9023b68c3f46",
+      "literal": "| `HELIXINTELLIGENCE-L2-041` | HARNESSとOSを個別connector/source identityで読む。各sourceのrevision、scope、authorityを個別に保持する。 | 同名fieldをOSとHARNESSの同一identityへ統合した場合は不合格とし、sourceごとに分離する。 | Web/WEB-OS connector契約が未選択または未採択なら未観測として記録し、既存機構に常時必須のsourceとして要求しない。選択済みで未知版なら該当source ownerへ戻す。 |\n"
+    }
+  ],
+  "documents": [
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "sha256": "5e2b263400bf08465045123eb767b58ce421a797b3c1ba65b06ffad189d41c4e",
+      "bytes": 18746
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "sha256": "139855fc60241e151bc5562700979648d8b0b8b5f47d7de60cecb886370e137a",
+      "bytes": 206352
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "sha256": "96f6a65b553d73d3fe890916f036e65eb1380ed1b645687f4008b4f9b1136743",
+      "bytes": 28071
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "sha256": "18a8d89a94f68e92bdd6597028468e563b6de73417f45f38a5b0065b0b69fcb1",
+      "bytes": 18793
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "sha256": "c39679f66076304142fb1fc08297251769c2c9925297385d1d6a03fa2a18ef4b",
+      "bytes": 93582
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "sha256": "ccb8f9b6fe6e67739b8306c708fe26c6ea872a5e8ff7c37dcbce5b092222d91d",
+      "bytes": 34986
+    }
+  ],
+  "case_definition_count": {
+    "all_FV_heading_and_first_cell": 688,
+    "Stage4_suffix_heading_and_first_cell": 603,
+    "previous_Stage4_suffix": 599,
+    "added": 4,
+    "public_loss": 0,
+    "scope_note": "headingの親CASE/summaryも定義として数える。reviewer657は別selectorであり同じ分母と読み替えない。planned field別run数ではない。"
+  },
+  "new_cases": [
+    "CASE-INT-017-02o",
+    "CASE-INT-034-02l",
+    "CASE-INT-034-02m",
+    "CASE-INT-034-02n"
+  ],
+  "findings": {
+    "M1": "034結果値をsuccess→failure/failure→success/欠落の3独立CASEへ。",
+    "m1": "017期限切れ02iとrevoked02o分離。",
+    "m2": "04表A/Bはfieldを別runにして単一変異、runキーと分母を明記。",
+    "m3": "L11:260共通条件/L2:314契約によりL11:278未知版は互換unknown03b、宣言範囲内03aと区別。",
+    "m4": "017節とFRへpermission03602h/acceptance03902c02d02f参照。"
+  },
+  "static_checks": {
+    "validate": {
+      "exit": 0,
+      "last_line": "bindings=147 fail=0"
+    },
+    "stale": {
+      "exit": 0,
+      "last_line": "stale=0"
+    },
+    "residuals": {
+      "exit": 0,
+      "last_line": "residuals=0"
+    }
+  },
+  "limits": [
+    "4本文の追加変更全行と固定親6行・formal全文をRoot実読。旧consumer全量再読なし。",
+    "CASEは設計で未実行。新revision承認/独立review未成立。"
+  ]
+}

@@ -1,0 +1,615 @@
+{
+  "record_kind": "security-stage4-semantic-boundary-correction.v1",
+  "status": "作成側限定補正。root最終意味検収待ち。独立review・L3承認・実装・実行は未成立。",
+  "authority_effect": "none",
+  "base_revision": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+  "fixed_parent_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+  "prior_body_revision": "87d16322001faa087715b65f0df3369b8aa69533",
+  "body_revision": "8704e078995ae316b6fda05b358f84c20594f707",
+  "body_commit": "8704e078995ae316b6fda05b358f84c20594f707",
+  "prior_authoring_audit": {
+    "path": "docs/governance/audits/requirements-stage/l3-l10-security-stage4-authoring-2026-10-05.json",
+    "revision": "9c279b2a5d41de5cbdf8cdedecf7d662b4afb35b",
+    "raw_lf_sha256": "9c53e7b6f9b3712653472e1a4a95c702a59ae019705a8653eee9cdfa8a9f378a",
+    "bytes": 84177
+  },
+  "prior_authoring_summary": {
+    "path": "docs/governance/audits/requirements-stage/l3-l10-security-stage4-authoring-2026-10-05.md",
+    "revision": "9c279b2a5d41de5cbdf8cdedecf7d662b4afb35b",
+    "raw_lf_sha256": "5dceb4a09f8ea280fba3e641715fea46e22f5fd98817ca1935bb732aed2b6e1f",
+    "bytes": 1657
+  },
+  "scope": {
+    "mechanism": "SECURITY",
+    "stage": "Stage 4",
+    "parents": [
+      "HELIXSECURITY-L2-021",
+      "HELIXSECURITY-L2-022",
+      "HELIXSECURITY-L2-023",
+      "HELIXSECURITY-L2-024",
+      "HELIXSECURITY-L2-026"
+    ],
+    "version_target": "1.0 per prior record",
+    "changed_parents": [
+      "HELIXSECURITY-L2-024",
+      "HELIXSECURITY-L2-026"
+    ],
+    "excluded": [
+      "HELIXSECURITY-L2-025",
+      "all other mechanisms/stages"
+    ]
+  },
+  "corrections": [
+    {
+      "finding": "024のL2限定語を絶対禁止へ一般化していた。",
+      "fixed_semantics": "L2-024:307は通常資源状態/backup/snapshotへの無条件保存を禁じる。L11-024:48は通常資源状態/backupへの保存を不合格とし、snapshotは列挙しない。L2-005/008は既存のcredential-use capability/operation authorityを定めるが、保存許可を作らない。",
+      "changes": [
+        "FR024にL2/L11の対象差と限定語を明記",
+        "AC024-03をsourceごとの保存境界oracleへ修正",
+        "CASE024-09 state、024-10 backup、024-11 snapshotを独立化",
+        "NFR024候補と対CASEを対象別に同期",
+        "旧CAPのdefault-deny credential accessを現行storage規則として移さない旨をitemwise表へ追記"
+      ]
+    },
+    {
+      "finding": "026固定L2のBot発行者・限定Worker・非包括authority boundaryがFR/CASEで直接検証されていなかった。",
+      "fixed_semantics": "必要時にINTELLIGENCEが発行し、目的とauthorityを限定したWorkerであり、独立包括権限主体でない。Guard 1.0、semantic exfiltration/probing実利用とBot runtimeは1.x/後続版。",
+      "changes": [
+        "FR026とAC026-02に限定Worker境界を明記",
+        "CASE026-08条件付き正常契約fixture、026-09発行元不一致、026-10包括authorityの独立negativeを追加",
+        "全CASEで1.0 Bot runtimeの実装・稼働を必須にしないことを明示",
+        "NFR026候補と対CASEの範囲を同期"
+      ]
+    }
+  ],
+  "source_pins": [
+    {
+      "key": "fixed-L2-024",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "physical_lines": [
+        302,
+        311
+      ],
+      "full_bytes": 94568,
+      "full_raw_lf_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "span_bytes": 1231,
+      "span_raw_lf_sha256": "873045e83bea3519766839557e281eb6d345be698f422ddf492ace8f095fc71b",
+      "meaning": "L2-024 three-owner boundary and qualified credential storage condition",
+      "literal_excerpt": "### HELIXSECURITY-L2-024 SECURITY方針とINFRASTRUCTURE実資源（接続）\n\n- **親L1**：L1-005/006/007/009。\n- **受け取るもの**：SECURITYのnetwork/credential/environment/project-isolation/operation-authority/update/egress policyと、INFRASTRUCTUREの資源・実環境・実際の状態。\n- **提供するもの**：方針を資源上で実施した状態と、その観測・失敗・不明のreceipt。\n- **保証すること**：SECURITYがpolicy/authority owner、INFRASTRUCTUREが実資源とruntime resource state owner、Worker実行環境がconstraint enforcerである。INFRASTRUCTUREはsecurity policyを作らず、credential値を通常資源状態・backup・snapshotへ無条件に保存しない。\n- **依存／検証範囲／版**：Infrastructure L1-004/006/016/028/029、Security L2-005/006/007/008/009。policyと実際のenvironment/network/credential boundaryのtrace、未適用/unknownの観測。1.0。\n- **失敗時の戻し先**：policy意味差はSECURITY L1、資源状態/実適用差はINFRASTRUCTURE L1/L2候補へ戻す。OSが持つ作業状態へ混ぜない。\n- **束ねる既存条件**：Infrastructure L1-028/029、ConceptのSECURITY・INFRASTRUCTURE・Workerの分担。"
+    },
+    {
+      "key": "fixed-L11-024",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "physical_lines": [
+        48,
+        48
+      ],
+      "full_bytes": 58006,
+      "full_raw_lf_sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+      "span_bytes": 313,
+      "span_raw_lf_sha256": "efce6df4ce18371035b1b4772da986eaf88f065ed6224546b82afd15dd49aedd",
+      "meaning": "L11 acceptance for normal resource state/backup; snapshot not enumerated",
+      "literal_excerpt": "| HELIXSECURITY-L2-024 | 1.0 | SECURITYのpolicy/authorityとINFRASTRUCTUREの実資源/観測状態、Workerの物理強制がreceiptで対応する。INFRASTRUCTUREがpolicyを作る、credential値を通常資源状態やbackupへ保存する、またはSECURITYが資源配置を所有したら不合格。 |"
+    },
+    {
+      "key": "fixed-L2-005",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "physical_lines": [
+        110,
+        118
+      ],
+      "full_bytes": 94568,
+      "full_raw_lf_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "span_bytes": 1215,
+      "span_raw_lf_sha256": "8e8689912796e8fb3e22210619cb1283f6b27ab1804353dfa93fe43eec10a784",
+      "meaning": "existing credential-use capability, value exposure limits, and return to L2-024",
+      "literal_excerpt": "### HELIXSECURITY-L2-005 Credential / Secret境界\n\n- **受け取るもの**：credential requestのactor、operation、target、environment、scope、expiry、目的とcredential classification。\n- **提供するもの**：生値を露出しない、範囲・操作・期限付きのcredential-use capability、検査・失効状態。\n- **保証すること**：raw secretをAI contextへ渡さない。credential storeをWorkerに直接見せない。repository混入と外部送信を検査し、revokeを伝播する。単一のsecret判定正本を使う。secret値は通常artifact/receiptに出さない。\n- **単独依存**：L2-008 authority、L2-006 egress、Worker境界L2-007、INFRASTRUCTUREの安全な実資源境界。\n- **検証範囲／版**：context、file/artifact、log、Tool result、外部sinkへの値露出と期限/operation mismatch。1.0。\n- **失敗時の戻し先**：欠落scope、期限切れ、未知のcredential class、検査不能はdeny/stop。方針の不足はL1-005へ、保存・注入境界はL2-024へ戻す。\n- **束ねる既存条件**：L1-005、PO §6、旧secret predicate一元化とCapability Leaseのscope/expiry。旧実装自体は復帰させない。"
+    },
+    {
+      "key": "fixed-L2-008",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "physical_lines": [
+        140,
+        148
+      ],
+      "full_bytes": 94568,
+      "full_raw_lf_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "span_bytes": 1091,
+      "span_raw_lf_sha256": "6135842a799b9883cb29c5ce9e6ffcf601997d66cb3d314c8031ba9cbbae9f2c",
+      "meaning": "operation-specific credential-use authority; no blanket storage grant",
+      "literal_excerpt": "### HELIXSECURITY-L2-008 操作ごとのauthority\n\n- **受け取るもの**：actor、target、operation、revision、environment、scope、expiryと操作要求。\n- **提供するもの**：operation-specific allow/deny/constrainの判断と判断理由。\n- **保証すること**：read/write/execute/network/install/delete/merge/release/deploy/credential-use/security-change等を別authorityとして扱う。「Agentを使える」から包括write/deployを生成しない。高影響操作は全tupleが一致する個別authorityを求める。\n- **単独依存**：L2-003 identity、L2-004構成integrity、L2-005 credential、L2-006 egress、OSの進行。\n- **検証範囲／版**：操作名、主体、対象、revision、環境、scope、expiryの一致と未知・欠落時の拒否。1.0。\n- **失敗時の戻し先**：未認可、drift、expiry、unknownではdenyし、意味の変更はL1-008へ戻す。停止伝播はL2-009/022で検証。\n- **束ねる既存条件**：L1-008、PO §9、旧SEAのaction-specific authorityとtarget/environment/scope/expiry拘束。"
+    },
+    {
+      "key": "fixed-L2-026",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "physical_lines": [
+        322,
+        331
+      ],
+      "full_bytes": 94568,
+      "full_raw_lf_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "span_bytes": 1154,
+      "span_raw_lf_sha256": "6187c8fa6abec3a3ed307f923661c23d06db832007d7703a56a7b7c8692cc1df",
+      "meaning": "INTELLIGENCE-issued limited-purpose/authority Worker, non-independent broad authority, version boundary",
+      "literal_excerpt": "### HELIXSECURITY-L2-026 INTELLIGENCEの意味判断・検出（接続）\n\n- **親L1**：L1-017/018/020。\n- **受け取るもの**：SECURITY Guardの観測・分類済みeventと、限定scope付きの意味判断依頼。\n- **提供するもの**：INTELLIGENCEのsemantic judgement/diagnosisと、SECURITYが適用するdecision input。判断由来と確度を分ける。\n- **保証すること**：決定規則で強制できる条件をBotへ委譲しない。Security Botは必要時にINTELLIGENCE機構が発行し、目的とauthorityを限定したWorkerであり、独立の包括的権限主体ではない。\n- **依存／検証範囲／版**：L2-018/020、INTELLIGENCE L1/将来接続contract。SECURITYのGuard結果とINTELLIGENCEの判断・診断を区別。Guard 1.0、Semantic exfiltration/probing実利用とBotは1.xまたは必要な後続版。\n- **失敗時の戻し先**：semantic判断不能はunknownとして出力/操作を制限。INTELLIGENCEの意味責務へ戻し、SECURITYが独自にmodel/routingを決めない。\n- **束ねる既存条件**：PO §21/§23、ConceptのINTELLIGENCE判断・Bot発行責務。"
+    },
+    {
+      "key": "fixed-L11-026",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "physical_lines": [
+        50,
+        50
+      ],
+      "full_bytes": 58006,
+      "full_raw_lf_sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+      "span_bytes": 288,
+      "span_raw_lf_sha256": "29279c52cffa7deeca6a3d4353b495e006998d9f41587332d29df6d7635d2772",
+      "meaning": "deterministic Guard, unknown restriction, Bot absence and owner boundary",
+      "literal_excerpt": "| HELIXSECURITY-L2-026 | Guard 1.0、意味判断/観測の1.x | SECURITY Guardの決定とINTELLIGENCE semantic judgementを区別し、判断不能をunknown/制限として返す。BotなしでGuard条件を見逃す、またはSECURITYがmodel/routingを決定したら不合格。 |"
+    },
+    {
+      "key": "PO-decision-024",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+      "physical_lines": [
+        62,
+        62
+      ],
+      "full_bytes": 11584,
+      "full_raw_lf_sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff",
+      "span_bytes": 179,
+      "span_raw_lf_sha256": "8888e30aee8da8342ca7f34a4bbe1927228e630d886aa317f5b05d3e93794ba3",
+      "meaning": "registration/authority record for parent 024",
+      "literal_excerpt": "| `HELIXSECURITY-L2-024` | `connection` | 1.0 | `MPR-RC-HELIXSECURITY-L2-024-001` | `SECURITY-functional` | `registered_proposal` / authority_effect `none` / coverage `no_loss` |"
+    },
+    {
+      "key": "PO-decision-026",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+      "physical_lines": [
+        64,
+        64
+      ],
+      "full_bytes": 11584,
+      "full_raw_lf_sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff",
+      "span_bytes": 215,
+      "span_raw_lf_sha256": "eb79912d9fdc74ab58c7d18edbd5332cb98093568f5dc106dc1c500b7412eb5b",
+      "meaning": "registration/authority record for parent 026",
+      "literal_excerpt": "| `HELIXSECURITY-L2-026` | `connection` | 1.x能力は1.x、Guard/Bot境界は1.0 | `MPR-RC-HELIXSECURITY-L2-026-001` | `SECURITY-functional` | `registered_proposal` / authority_effect `none` / coverage `no_loss` |"
+    },
+    {
+      "key": "old-CAP-stage4-relevant-1",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "physical_lines": [
+        46,
+        66
+      ],
+      "full_bytes": 10302,
+      "full_raw_lf_sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+      "span_bytes": 1333,
+      "span_raw_lf_sha256": "7ebe0ba78e53176b6861bb6a46e746eebcfcbf03b2a704f28cf52940cc326880",
+      "meaning": "legacy capability/target boundary; treated as reference, not current blanket storage requirement",
+      "literal_excerpt": "### 1.1 operation capability（操作能力）\n\n`operation_capability`は次のclosed setからexactly oneを選ぶ。\n\n| capability | 例 | 初期判定 |\n|---|---|---|\n| `read` | read、build、test、status | bounded inputなら許可候補 |\n| `create` | 新規repo内artifactの生成 | targetとscopeを検証 |\n| `modify` | 明示された単一artifactの変更 | physical identityを検証 |\n| `delete` | 明示された単一artifactの削除 | narrow fenceを検証 |\n| `truncate` | file、DB、blobの内容消去 | high以上、既定拒否 |\n| `overwrite_replace` | 既存targetへの上書き・置換 | high以上、既定拒否 |\n| `permission_process_service` | permission、process、service操作 | high以上、既定拒否 |\n| `container_cloud_repository` | container、cloud、GitHub targetの変更 | typed targetとaction binding必須 |\n| `network_egress` | 外部network sinkへの送信 | data/sink broker必須 |\n| `credential_access` | secret、credential、tokenの取得・利用 | default deny |\n| `unknown` | parse不能、内容不明、分類衝突 | 必ず拒否 |\n\n`delete`と`truncate`、`modify`と`overwrite_replace`を同じsafe操作として扱わない。\npackage script、interpreter、nested shell、alias相当の実行も、字面ではなく解決後のcapabilityを\n判定する。"
+    },
+    {
+      "key": "old-CAP-stage4-relevant-2",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "physical_lines": [
+        116,
+        166
+      ],
+      "full_bytes": 10302,
+      "full_raw_lf_sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+      "span_bytes": 3690,
+      "span_raw_lf_sha256": "e15a979018200c0966c4689a81ad211f1fd52650535b644dbd9e88964dbe6529",
+      "meaning": "legacy credential and value-free evidence/authority; not runtime/permission source for current storage",
+      "literal_excerpt": "`impact_profile`はproduction影響、破壊性、credential access、external side effect、blast radius、\nrollback可否を個別boolean／enumで保持する。これらから導出した`risk_class`は要約値であり、\n入力の代替や承認の根拠として単独利用しない。\n\n- repo内の明示的な単一file read/build/testは、identityとprovenanceが検証できれば許可候補。\n- truncate、overwrite/replace、permission/process/service、host root、container/cloud/GitHubの\n  destructive操作は、exact target、dry-run、postcondition、rollback情報がない限り拒否。\n- credential access、credentialを含むdataのegress、repository archiveの外部送信は既定拒否。\n- irreversible、production、external publish、state cutoverは`human_approval`境界を維持。\n- reversibleだが高影響な操作は、同一HEAD・同一target identity・同一policy digestへ束縛した\n  `action_binding`を要求する。approval receiptがない状態でcommandを実行しない。\n\n結果receiptは`decision`を`allow`、`blocked`、`unresolved`、`approval_required`のexact setで返し、\noperation（操作）、target（対象）、provenance（来歴）、data（データ）、sink（送信先）、policy version（ポリシー版）、identity digest（同一性ダイジェスト）、reason code（理由コード）、\npostcondition、rollback、expiryを値非表示で保存する。secret、PII、個人absolute path、raw command、\nraw payloadをログ・DB・PRへ出力しない。\n\n## 3. runtime coverage とAND admission\n\nClaude Code hook、Codex CLI/IDE hook、Cursor、hosted tool、worker sandboxは別surfaceとして\ncoverage matrixへ登録する。hook非強制surfaceは「hookがある」と扱わず、capability brokerまたは\nsandboxを唯一の実行境界とする。matcher drift、hook trust drift、coverage unknown、sandbox\nunavailableはfail-closeする。\n\ncanonical authorityの失敗をlegacy guardや別scannerのgreenで相殺しない。admissionは次のAND条件を\n満たす場合だけ後続実行へ進む。\n\n```text\nrequirements / policy current\nAND physical target current\nAND provenance bounded\nAND data-sink policy current\nAND approval binding current (必要時)\nAND runtime surface covered\nAND postcondition / rollback / expiry valid\n```\n\n## 4. current要件と後続slice\n\n以下のIDはrequirements v1.3.12へ昇格済みのcurrent FR/ACである。runtime実装の完了を意味せず、\n各sliceは対応する実装・検証・独立review・main read-afterを別途要求する。\n\n| 要件ID | 要件 | 対応受入 |\n|---|---|---|\n| `SEC-FR-CAP-001` | operation capabilityとimpactを独立typed fieldで保持し、未知・混同・欠落を拒否する | `SEC-AC-CAP-001` |\n| `SEC-FR-CAP-002` | lexical/physical target、target set、TOCTOU identityを実行直前に検証する | `SEC-AC-CAP-002` |\n| `SEC-FR-CAP-003` | direct/bounded/script/generated/unknown provenanceを区別し、未検証間接実行をhostへ渡さない | `SEC-AC-CAP-003` |\n| `SEC-FR-CAP-004` | data classificationとsink authorityを分離し、credential／PII／archive egressをbroker外で拒否する | `SEC-AC-CAP-004` |\n| `SEC-FR-CAP-005` | external/destructive actionをexact target、dry-run、postcondition、rollback、expiry、action bindingへ束縛する | `SEC-AC-CAP-005` |\n| `SEC-FR-CAP-006` | hook/sandbox coverageをruntime別に検査し、unsupported surfaceをhost実行へfallbackしない | `SEC-AC-CAP-006` |\n| `SEC-FR-CAP-007` | canonical safety failureをlegacy greenで相殺せず、値非表示のreceiptへ全reasonを記録する | `SEC-AC-CAP-007` |"
+    },
+    {
+      "key": "legacy-asset-ledger-CAP",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "physical_lines": [
+        482,
+        482
+      ],
+      "full_bytes": 4857919,
+      "full_raw_lf_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "span_bytes": 1200,
+      "span_raw_lf_sha256": "c838ac8569a3d988db421153232a36ed85ee71b3e3474c764b04e54b9d15ea2f",
+      "meaning": "LEGACY-ASSET-B62E49D2E156232B8C63 remains Historical/unresolved",
+      "literal_excerpt": "{\"asset_id\":\"LEGACY-ASSET-B62E49D2E156232B8C63\",\"revision\":1,\"source_revision\":\"legacy-generation-2026-09-14\",\"source_path\":\"docs/design/helix/L3-requirements/security-capability-broker-authority.md\",\"source_sha256\":\"161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7\",\"source_surface\":\"docs\",\"source_provenance_ref\":\"archive/legacy-generation-2026-09-14/MANIFEST.sha256\",\"asset_class\":\"Historical\",\"reuse_exclusion_class\":null,\"product_target\":\"unresolved\",\"authority_status\":\"historical\",\"upstream_ids\":[],\"pair_ids\":[],\"disposition\":\"unresolved\",\"implementation_status\":\"unknown\",\"decision_record_ref\":null,\"approval_revision\":null,\"target_path\":null,\"target_sha256\":null,\"meaning_interface_invariance_reason\":null,\"consumer_refs\":[],\"rights_status\":\"unreviewed\",\"executability_status\":\"unreviewed\",\"secret_status\":\"unreviewed\",\"external_effect_status\":\"unreviewed\",\"decided_by\":null,\"decided_at\":null,\"copy_performed_by\":null,\"copy_performed_at\":null,\"read_after_record_ref\":null,\"migration_preconditions\":[\"semantic_atom_inventory\",\"product_owner_decision\",\"parent_requirement_binding\",\"consumer_check\",\"rights_check\",\"executability_check\",\"secret_check\",\"external_effect_check\"]}"
+    }
+  ],
+  "canonical_documents": [
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "label": "L3-FR",
+      "base_revision": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "base_prefix_bytes": 100534,
+      "base_prefix_raw_lf_sha256": "8b0babb74dd5d5d2f7aee2742de5aecf07407c3029b1198ef6ad6d950fdf316b",
+      "body_revision": "8704e078995ae316b6fda05b358f84c20594f707",
+      "body_full_bytes": 118911,
+      "body_full_raw_lf_sha256": "8e42b8497b7bab2f9f34e1a143f89d5abcaa6cb5959f946271d358f946eefb4f",
+      "body_line_count": 543,
+      "prefix_byte_exact": true
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "label": "L3-BR",
+      "base_revision": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "base_prefix_bytes": 1958,
+      "base_prefix_raw_lf_sha256": "0b2894925bc80895ff61723377f27b14b4cca32289756747c566e35cba049dee",
+      "body_revision": "8704e078995ae316b6fda05b358f84c20594f707",
+      "body_full_bytes": 2644,
+      "body_full_raw_lf_sha256": "d1c856e5d0a2d2cd2060ce63340cf63dbe424b81ad7ebf56d6e3cc498df99a83",
+      "body_line_count": 18,
+      "prefix_byte_exact": true
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "label": "L3-NFR",
+      "base_revision": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "base_prefix_bytes": 12910,
+      "base_prefix_raw_lf_sha256": "abfb8ce0c2ec8f8baa035b301402f1f6e13b9ac31bfed27b27230d3daf2403cd",
+      "body_revision": "8704e078995ae316b6fda05b358f84c20594f707",
+      "body_full_bytes": 16472,
+      "body_full_raw_lf_sha256": "84f1bdde161bef9a3a32126e1e7d660b7b1a66cdcc28b6dc6be7be227fe66ad3",
+      "body_line_count": 86,
+      "prefix_byte_exact": true
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "label": "L10-FV",
+      "base_revision": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "base_prefix_bytes": 75382,
+      "base_prefix_raw_lf_sha256": "1047babfefeda159b7157dae4e7a718a325c46ccedac604eb34c629c7250d473",
+      "body_revision": "8704e078995ae316b6fda05b358f84c20594f707",
+      "body_full_bytes": 98909,
+      "body_full_raw_lf_sha256": "3c6d798b8742bd85248e2e17480b711d5a3cebf5fec348d50e131c22e61eb4c0",
+      "body_line_count": 684,
+      "prefix_byte_exact": true
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "label": "L10-BV",
+      "base_revision": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "base_prefix_bytes": 1461,
+      "base_prefix_raw_lf_sha256": "8683764bb26d0d1f582828096c050c264df45a4f0fdc2c94e34bb4dbf9e1eb7a",
+      "body_revision": "8704e078995ae316b6fda05b358f84c20594f707",
+      "body_full_bytes": 2001,
+      "body_full_raw_lf_sha256": "c29747d5ec7e9091ff9de01fd043f070b1e577097722edafa2a062e6b5627e2f",
+      "body_line_count": 17,
+      "prefix_byte_exact": true
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "label": "L10-NFR",
+      "base_revision": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "base_prefix_bytes": 9670,
+      "base_prefix_raw_lf_sha256": "ec648c78a3d4e164ab8ef8b4e23c30a2756cfed70b47c4514b3c0eb67db02be2",
+      "body_revision": "8704e078995ae316b6fda05b358f84c20594f707",
+      "body_full_bytes": 11839,
+      "body_full_raw_lf_sha256": "c860c97fd3e5a2b0659d1dd6fb0dfb82fc7440849df5dc19bce7933da4691f5d",
+      "body_line_count": 56,
+      "prefix_byte_exact": true
+    }
+  ],
+  "current_changed_literal_line_pins": [
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 542,
+      "literal": "- **固定L11 oracle**（L2-024、L11:48）：SECURITY policy/authority、INFRASTRUCTURE resource state/観測、Worker physical enforcementをreceiptで対応付ける。INFRASTRUCTUREがpolicyを作らず、credential値を通常資源状態/backupへ保存しない。L2-024:307のsnapshot条件は「無条件に保存しない」であり、L11にないsnapshot絶対禁止は加えない。",
+      "line_raw_lf_sha256": "038ca65de8f942351b5da14255edc617690cfd362e8afe4396a51c8f14c3ea93"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 594,
+      "literal": "### SECURITY-CASE-024-09 — raw credentialの通常resource state保存",
+      "line_raw_lf_sha256": "cad8fbf4c24bf511e4c040b8ad2ca5c790187076de40ce30d37d93d51d8a5392"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 597,
+      "literal": "- **negative変異**：通常resource stateに合成credential markerを保存する。",
+      "line_raw_lf_sha256": "80d6aae1f4accfa680188b67c793da83eb551ff073d6af585594b8c62ab54003"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 598,
+      "literal": "- **期待oracle**：固定L11:48の通常資源状態保存条件に照らして不合格とする。実値は使わずreceiptにも値を記録しない。credential-use capability/authorityだけから保存許可を導かない。",
+      "line_raw_lf_sha256": "36166258890b4539d1cf296be70d1849f08cae8e8c79e4541b55ea13aaade636"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 601,
+      "literal": "### SECURITY-CASE-024-10 — raw credentialのbackup保存",
+      "line_raw_lf_sha256": "45c49cea413238346b18e848a71a2f1fe2b315ed7c2f9c2299347e362182c046"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 604,
+      "literal": "- **negative変異**：通常resource stateを保ち、backupだけに合成markerを置く。",
+      "line_raw_lf_sha256": "c65f669f314ba1ec2dcaa6ac03385a22170374c7fe27c828abb4b587a4da49aa"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 605,
+      "literal": "- **期待oracle**：固定L11:48のbackup保存条件に照らして不合格。実値は使わずreceiptにも値を記録しない。credential-use capability/authorityだけから保存許可を導かない。",
+      "line_raw_lf_sha256": "696f15025fc2c091749612d5b16ea97ab5182ca9dea2bb2cebcbf4bd159496aa"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 608,
+      "literal": "### SECURITY-CASE-024-11 — raw credentialのsnapshot保存境界",
+      "line_raw_lf_sha256": "f4e4edd29d933a5b0993e1cebe4503c5d29fa3fba6f5e3f6c7e3dcf6ed693dfe"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 609,
+      "literal": "",
+      "line_raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 610,
+      "literal": "- **対象AC**：`SECURITY-AC-024-03`",
+      "line_raw_lf_sha256": "5328a1f787ccf085bbcc738fb619b50febd03e0482c2da903dfb26feb54cf069"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 611,
+      "literal": "- **negative変異**：通常resource stateとbackupを変えず、snapshotだけへcredential-use capability/authorityのみを根拠に合成markerを無条件で保存する。",
+      "line_raw_lf_sha256": "5917c954fbfe2758873e3585ae639484ca7b67be38d58e0bb7c84c131ef7115c"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 612,
+      "literal": "- **期待oracle**：固定L2-024:307の「無条件に保存しない」に照らし不合格とする。固定L11:48はsnapshotを列挙しないため、それをsnapshotへの絶対禁止へ拡張しない。実値を使わずreceiptにも値を記録せず、新しい保存許可も生成しない。",
+      "line_raw_lf_sha256": "68a09c703fb6df9790289c0b48ccfeeb754bafa7e98a01b917c98f2de35d1532"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 613,
+      "literal": "- **owner戻し**：credential boundaryはSECURITY、snapshot resource stateはINFRASTRUCTUREへ返す。",
+      "line_raw_lf_sha256": "482d91965db3117c7135087b55ff3a05789460efb5e8fd07e565761910ba0a00"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 614,
+      "literal": "",
+      "line_raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 664,
+      "literal": "",
+      "line_raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 665,
+      "literal": "### SECURITY-CASE-026-08 — 必要時の限定INTELLIGENCE Worker input",
+      "line_raw_lf_sha256": "6763aee06d3a220ed7ca11193329711ac0e12453ac61ed8653647b0c76778cc6"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 666,
+      "literal": "",
+      "line_raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 667,
+      "literal": "- **対象AC**：`SECURITY-AC-026-02`",
+      "line_raw_lf_sha256": "b006e5319f0d8eea1f9a0aff2e3e114a792e5462fbc1277780f7b1ba1f5122c3"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 668,
+      "literal": "- **条件付き正常fixture**：semantic judgementが必要な合成入力について、契約記述上INTELLIGENCE発行・目的/authority限定Workerの境界を保ち、その結果を限定scope/由来/確度付きのdecision inputとしてGuard結果と分離する。Bot runtimeの実装・稼働は実行せず、1.0成功条件にも含めない。",
+      "line_raw_lf_sha256": "20d9fcc138d6f6361b18bf9838bb23d21ac1276d7dece3b5392bb1765ee6b220"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 669,
+      "literal": "- **期待oracle**：固定L2-026の発行元・Worker・authority境界が保たれ、入力がGuard rule/operation authorityにならない。必要条件がそろう契約記述だけを正常とし、Botの不存在は通常の1.0 Guard正常fixtureの妨げにならない。",
+      "line_raw_lf_sha256": "429adecb89f1bfba40c5b870f7b78f5e09eaac1c2bc9bceecb2a17caa60fb51d"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 670,
+      "literal": "- **owner戻し**：semantic judgement/Bot発行契約はINTELLIGENCEへ、Guard/operation authorityはSECURITYへ返す。",
+      "line_raw_lf_sha256": "28d68b1eecbbeb175ae0de6ea825bff148299af8dc8e1740081b2a7d874ed520"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 671,
+      "literal": "",
+      "line_raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 672,
+      "literal": "### SECURITY-CASE-026-09 — INTELLIGENCE以外が発行したBot input",
+      "line_raw_lf_sha256": "ae20a4042c112cfd69662cd19802aae069a09f683b114eccfdd1330afae8ba5a"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 673,
+      "literal": "",
+      "line_raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 674,
+      "literal": "- **対象AC**：`SECURITY-AC-026-02`",
+      "line_raw_lf_sha256": "b006e5319f0d8eea1f9a0aff2e3e114a792e5462fbc1277780f7b1ba1f5122c3"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 675,
+      "literal": "- **negative変異**：他条件を保ち、Bot発行元だけをINTELLIGENCE以外としてsemantic inputに使う。",
+      "line_raw_lf_sha256": "4b71d2b2420ba8983c09b64378739033072695b5d7e9a33dae244dfc60253d31"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 676,
+      "literal": "- **期待oracle**：固定L2-026の発行元境界と不一致のため有効なINTELLIGENCE semantic inputとして扱わず、Guard/authorityへ昇格しない。Bot runtimeを1.0で実行して拒否することは要求しない。",
+      "line_raw_lf_sha256": "575bfd2d9180e302e344eafb1c0eea9328fa0660fe1b2209a55f48000dcf2664"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 677,
+      "literal": "- **owner戻し**：発行契約はINTELLIGENCE、Guard/authorityはSECURITYへ返す。",
+      "line_raw_lf_sha256": "498e152385dd38f952a5369d2f981caee87886bf9592ef2fb0df9c7550427442"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 678,
+      "literal": "",
+      "line_raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 679,
+      "literal": "### SECURITY-CASE-026-10 — Botへ独立包括authorityを与える",
+      "line_raw_lf_sha256": "3fe00242c8188b66a4838fcc15deb8c35588290b7dc091140b67e0d1d8fc4725"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 680,
+      "literal": "",
+      "line_raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 681,
+      "literal": "- **対象AC**：`SECURITY-AC-026-02/03`",
+      "line_raw_lf_sha256": "cc4ff89efe89e90ea87625987848559cea6b6bb00f1d06ec3a36f642b3604900"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 682,
+      "literal": "- **negative変異**：Botのauthority scopeだけを目的限定Workerの範囲から独立の包括権限へ広げる。",
+      "line_raw_lf_sha256": "efbaea7cdd85de209a0f1af6caab8f23a3de68a2c711b42363e102f7145e0d85"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 683,
+      "literal": "- **期待oracle**：固定L2-026境界に反するためsemantic inputのauthority化を不合格とする。対象Bot runtimeを1.0へ実装・稼働必須化しない。",
+      "line_raw_lf_sha256": "e12f447ddacf51ae2f0453b6e9658bb0c236d18b309ab3a8b7e4d20e4b7f7756"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 684,
+      "literal": "- **owner戻し**：目的/発行契約はINTELLIGENCE、operation authorityはSECURITYへ返す。",
+      "line_raw_lf_sha256": "b43dfefcc13c684023467f63229703f3da2f87f67038954f7431ffbd811427b0"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "physical_line": 55,
+      "literal": "| `CASE-NFR-SECURITY-024-01` | `SEC-NFR-024-01` | CASE-SECURITY-024-01〜11でpolicy/resource/enforcement revision binding、L11が対象とする通常resource state/backup、L2-024が対象とするsnapshotの無条件保存を別々に測る。 | 誤結合・固定L11受入違反・L2-024の無条件保存違反候補0。L2-005/008のcredential-useだけから保存許可を導かない。INFRA stateとWorker enforcementはSECURITY policyから独立に観測する。 |",
+      "line_raw_lf_sha256": "7520c5d8ed5f1a5b83352d27106fb40e0b4a5adccd4baded8c3c295493d9a18a"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "physical_line": 56,
+      "literal": "| `CASE-NFR-SECURITY-026-01` | `SEC-NFR-026-01` | CASE-SECURITY-026-01〜10でBot absent、限定semantic input、semantic unknown、必要時のINTELLIGENCE発行/限定Worker境界を比較。 | deterministic Guard omission、semantic→authority昇格、発行元/authority境界の不一致受入候補0。1.x semantic runtimeは1.0分母に含めず、意味判断不足はINTELLIGENCEへ戻す。 |",
+      "line_raw_lf_sha256": "fdf1e77eeaa447a417d844d29874becf836114d0ecf9daa87514846bbd513845"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 480,
+      "literal": "| HELIXSECURITY-L2-024 | 旧CAP `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md:46–66,116–166`のtarget/runtime enforcementとCAP-006適用観測だけを部分再利用。旧CAPのcredential-access既定拒否とvalue-free evidenceは参照形として扱い、現行credential-use契約へ移さない。 | SECURITY policy/authority、INFRASTRUCTURE実資源・runtime resource state/観測、Worker物理強制の責務を再導出。INFRAがpolicyを作る/SECURITYがresource placementを所有する方式は置換する。credential値の保存境界は固定L2-024の「無条件に保存しない」と固定L11-024の通常資源状態/backup受入条件をそれぞれ保持し、L2-005/008 credential-useから保存許可を導かない。 |",
+      "line_raw_lf_sha256": "12f7438b189868b92a015787eef7108ff00168b0188a55c87bcf2b4b4755fe3c"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 523,
+      "literal": "SECURITY policy/authorityとINFRASTRUCTUREが保持する実資源・runtime resource state/観測、ならびにWorker execution environmentによる制約強制を、同一対象・revision・scopeのreceiptで対応付ける。policy宣言と実状態/適用観測は別のevidenceとして保持し、一方から他方を推定しない。INFRASTRUCTUREはsecurity policyを作らず、SECURITYはresource placement/stateを所有しない。固定L2-024の範囲でraw credential値を通常資源状態・backup・snapshotへ無条件に保存しない。固定L11-024は通常資源状態・backupへの保存を不合格とするため、その受入条件も保持する。L2-005/008のcredential-use capability/authorityだけから保存許可を生成せず、保存境界の不足は既存SECURITY policy ownerへ戻す。本FRはsnapshotへの新しい絶対禁止も保存許可も追加しない。",
+      "line_raw_lf_sha256": "07ca891ebf60e7272ddb7490b2a58169a0cc5ac999686cf10c8d8038d328d2cd"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 525,
+      "literal": "**旧HELIX対応**：旧CAP target identity/runtime coverageとvalue-free reason receiptの形だけ部分再利用する。現行のpolicy/resource/enforcer/observation ownershipとcredential保存境界は固定L2-024/L11-024から再導出し、旧resource broker、hook enforcement/runtime schemaとcredential-access既定拒否を置換する。",
+      "line_raw_lf_sha256": "2a82b77f9b3cb88ca9d78891f7c64efcfbfa64b47fdace247c134605d7096eb3"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 531,
+      "literal": "- **`SECURITY-AC-024-03` credential storage boundary**：合成markerで、固定L2-024の「無条件に保存しない」と固定L11-024の通常資源状態/backup受入条件を別々に照合する。credential-useは既存L2-005/008に従い、その利用だけから保存許可を推定しない。snapshotはL2-024の無条件保存条件だけを照合し、L11にない絶対禁止を足さない。新しい保存許可は生成せず、上流境界が不足する場合はunknownとして既存ownerへ戻す。",
+      "line_raw_lf_sha256": "fb90221f65b101aab0fa25a4f204586ae68872e59e680e662732a4411cdf424f"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 535,
+      "literal": "1.0ではL2-020に列挙された決定的Guard条件をSECURITY側の既存rule/authorityにより判定し、BotやINTELLIGENCE semantic responseの有無でrule適用を省かない。semantic judgement/diagnosisが必要な場合は、限定scope付きの判断依頼とその由来/確度をINTELLIGENCE接続の範囲で扱い、decision inputとGuard結果を区別する。Security Botを必要時に用いる場合は、固定L2-026に従いINTELLIGENCE機構が発行する目的・authority限定Workerとして扱い、独立の包括的権限主体へ昇格させない。semantic judgement不能はunknown/制限として扱い、SECURITYはmodelやroutingを決めない。1.0要件はGuard/Bot責務境界に限り、この記述はBot発行runtimeの実装・稼働を1.0に要求しない。L2-026が後続版としているsemantic exfiltration/probingの実利用やBot runtimeを前倒ししない。",
+      "line_raw_lf_sha256": "4a9d4ed615601a50832483ef8cd50e9a90bc4208734a114adc39c2007778af1e"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 542,
+      "literal": "- **`SECURITY-AC-026-02` semantic input boundary**：必要時のsemantic inputは限定scope/由来/確度を識別するdecision inputとして区別し、Guard結果やauthorityそのものに変換しない。Security Botを選択する場合はINTELLIGENCE発行の目的・authority限定Workerという固定境界を保持し、独立の包括権限主体へ昇格させない。判断不能はunknown/制限とする。この照合は契約境界を対象としBot runtimeの1.0稼働を要求しない。",
+      "line_raw_lf_sha256": "091247e51f80e2a47f9deba711b753fbfb6b31ec5cabafaba4b2f154dffc6ca3"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "physical_line": 83,
+      "literal": "| `SEC-NFR-024-01` / `SECURITY-AC-024-01..03` | policy/effective resource/enforcement evidenceの誤結合0、固定L11が不合格とする通常資源状態/backup保存0、固定L2-024に反してsnapshotへの無条件保存をcredential-useから導く件数0。 | policy設定だけを実適用とみなす案と、INFRA/Workerの観測を別receiptとして束ねる案を比較し、L2-024の三者境界を保つ後者を候補とする。storage oracleはL2-024の限定語とL11:48の対象を分け、L2-005/008は保存許可を生成しない。 | synthetic resource identity/revision、policy revision、Worker適用観測の結合を測る。secret markerは値を記録せず合成fixtureで検出する。snapshot絶対禁止や保存許可は候補化しない。 |",
+      "line_raw_lf_sha256": "e25540f87b0420b5803426dd53157554c351b6ae648e8955fcfab37a8445b946"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "physical_line": 84,
+      "literal": "| `SEC-NFR-026-01` / `SECURITY-AC-026-01..03` | Bot不在による決定的Guard条件抜け0、semantic judgementのauthority化0、必要時に選択したBot inputの発行元/目的/authority限定Worker境界の不一致受入0。 | Guardを常にBotへ委譲する案と、1.0 deterministic ruleを保持し必要時のsemantic inputを別に扱う案を比較し、固定L2-020/026に沿う後者を候補とする。 | Bot absent/optional input/unknown semantic resultと選択時のINTELLIGENCE発行・限定Worker境界を比較する。全Bot稼働率やsemantic runtimeの1.0完成は測定母集団に含めない。 |",
+      "line_raw_lf_sha256": "787c4cf0248003d64498fc4851584147a6df1f6311f346063486e79d1f561663"
+    }
+  ],
+  "coverage": {
+    "stage4_FR": 5,
+    "stage4_AC": 15,
+    "stage4_CASE": 49,
+    "per_parent_CASE": {
+      "021": 7,
+      "022": 13,
+      "023": 8,
+      "024": 11,
+      "026": 10
+    },
+    "business_AC_added": false,
+    "total_functional_case_ids_in_document": 74,
+    "total_case_ids_unique": 74
+  },
+  "static_checks": {
+    "git_diff_check": "PASS",
+    "scfctl_validate": "PASS",
+    "scfctl_stale": "PASS stale=0",
+    "scfctl_residuals": "PASS residuals=0",
+    "govcheck": "PASS atoms=7622 requirements=57 files=58",
+    "six_main_prefixes_byte_exact": true,
+    "case_ids_unique": true,
+    "all_case_ac_refs_resolve": true,
+    "markdown_table_widths_checked": [
+      "functional-requirements.md",
+      "nfr-grade.md",
+      "functional-verification.md",
+      "nfr-verification.md"
+    ]
+  },
+  "limitations": [
+    "今回の確認は作成側補助検収であり独立reviewではない。",
+    "CASEは文書上の合成fixture設計で未実行。",
+    "旧runtime/CLI/hook/test/CI/Bunは起動していない。",
+    "rootによる最終意味検収は残る。"
+  ]
+}

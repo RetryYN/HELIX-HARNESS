@@ -208,3 +208,24 @@ bounded loopはforward/feedback辺と既存ownerのretry/budget/stop policy参�
 **旧HELIX項目対応**：CONNECT固有typed relationの旧一致定義はL2:295とcoverage receiptの限定検索では未発見。新規type構成はPO採択登録002を起点に再導出し、旧sourceの不在を承認と読み替えない。旧UWJ-FR-006 `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md:50`（asset `LEGACY-ASSET-5EE032D657C221184B00`）のreturn/continue/stop/上限/terminal/再開はloop形状の隣接比較、旧HIL-NFR-04 `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:184`（asset `LEGACY-ASSET-719D5EC9C06FC4AAD0FF`）の停止理由/checkpointは既存owner参照へ意味再導出する。旧MIC-R-02とflow `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/management-integration-cell-requirements.md:66,132`（asset `LEGACY-ASSET-23D3D9769B093AFDCC25`）のserial後base再照合は隣接failure形状だけを保持し、TL/DB/CI運用をCONNECTへ移さない。旧HIL-BR-25同L1:77の上下/左右pair双方向は層の関係であり、機構間方向・送信authorityの根拠に置換しない。各5旧lineはreference-onlyで直接candidate input0件。旧engineのUWJ-AC-006形状は新L11操作別oracleへ置換し、旧実行/合格を証拠にしない。検索限界はL3-requirements/governance-candidates/L1-requirementsの既存receipt範囲でありarchive全体の不在を主張しない。
 
 **review01表記補足**：008のPO採択対象は登録002。現行register:1029の `MPR-RC-HELIXCONNECT-L2-008-003` は002のlocator訂正であり、意味/候補digestは同じ。現行holdingは `MPR-SH-SUPPLEMENTARY-004` と `MPR-SH-V13-BASELINE-001`、coverage receiptは `connect-v13-hyb-002-profile-supply-coverage-receipt-2026-09-29-r2.json` へ対応する。過去receiptの未採択metadataをPO採択状態へ継承しない。009のL2:290の宣言join条件は構成体のjoin成立・完了の条件として、PO:95と訂正L11:103に従い読む。join条件の欠落だけで各独立適格辺の送信を一括停止せず、join/composite完了だけ保留する。
+
+
+## Stage 5 — 複数機構の接続完全性（007、1.0草稿）
+
+対象は採択親`HELIXCONNECT-L2-007`のみ（`MPR-RC-HELIXCONNECT-L2-007-001`、semantic digest `44dac7757466d487bbfc30f3201b6c282c5ab72e3cb660ad528876ada555f75b`）。PO記録 `docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md` が固定したrevision `f6dad2a33e24f000b87d7f09b8d40288257e74cc` のL2:128–138、L11:74–77と一覧38を正本とする。L2 full SHA `31e3f234172bb5a92b26d41db2de21534cd4301274fc7e2800b4f8a935ce598b`、L11 full SHA `bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad`。各現行本文のcandidate表記から採否を生成しない。Stage5配属は既存G0追補の007対応を用いる。これは要件・検証設計草稿で、送信・実装・承認・検証実行を許可しない。
+
+### CONNECT-FR-007-01 — 全辺の技術終端と未完引継ぎ
+
+入力は構成体の辺identity/順序/correlation/scope、各辺登録と現revision照合、端点operation mapping、expiry/idempotency/result state、適用SECURITY許可識別子とdata-use識別子（別々に辺へ束縛）および辺ごとのrecovery先。出力は各辺の送信結果・受信結果を個別に含む構成体trace、技術的終端state、停止時の未完辺/義務/owner/recovery handoffである。各辺の端点・契約revision・順序・operation lineage・SECURITY許可識別子・data-use識別子・送信結果・受信結果・再送境界・終端結果を構成体の追跡から辿る。送信結果と受信結果は別々に期待receiptと照合し、どちらか一方の欠落または結果状態の相互不一致があれば、その辺をunknown/未完として全体completeにしない。全必須辺の個別登録・互換確認・終端までの受渡しが揃った場合だけ技術通信completeとする。単辺greenから残辺を推定せず、未実行・unknownを成功に丸めない。
+
+中間辺のstale/失敗/部分成功/unknownでは停止位置、先行成功、未完辺、未完義務と既存owner/recoveryを保持する。未許可の後続send/retryを伝播せず、後続未実行を実行済みにしない。failureは当該connection owner、業務判断/再計画は元機構/OS等の既存ownerへ返す。CONNECTは業務成立・結果承認を判定せずSECURITY許可を発行しない。
+
+依存は構成体を成す全辺の固定L2-001..005、HARNESS-L2-010/011の宣言I/O・依存版・統合検証範囲・構成更新/切戻し/未完義務、各ownerの意味契約と適用SECURITY条件である。既承認の001..005機能ACを辺ごとに参照して再定義しない。特定transport/GUI/provider/CI製品、共通latency/retry数、DB/schema、業務完了、Web後続機能を定めない。接続の具体的revision/期限/retryはowner契約の入力で、未知を候補上の確定値に補わない。意味・scope・owner・版変更が必要な場合だけL2へ戻す。
+
+- `CONNECT-AC-007-01`：全宣言辺の入力と登録・現在互換receiptを個別に照合し、辺ごとのSECURITY/data-use識別子、送信結果、受信結果をそれぞれ期待fixture receiptと突合できるtraceが揃う場合だけ技術complete。送信結果のみ欠落、受信結果のみ欠落、両receiptの結果状態不一致は独立に検出し、その辺をunknown/未完に保つ。13必須入力の単独欠落を推測で補わず、同契約内の未見機構/辺は適合なら拒否しない。
+  CASE-007-40の戻し先は、L2-007:136が依存するL2-001..005のうちdata-use不明を扱うL2-005:111「SECURITY/source owner」へ導く。これは技術failure一般を失敗辺connection ownerへ返すL2-007:137の経路とは区別する。
+- `CONNECT-AC-007-02`：端点/契約revision/operation/correlation/scope/idempotencyを辺ごとに束縛し、各一つだけの取り違えを拒否する。順序・再送境界・終端を一つのtraceへ結び、他辺のreceiptで補完しない。
+- `CONNECT-AC-007-03`：固定L11の7中間failureとunknownを独立fixtureにする。全体成功を止め、先行成功と後続未実行を保持し、停止位置/未完辺/義務/owner/recoveryを個別に照合する。後続の未許可send/retryを発行せず既存ownerへ返す。
+- `CONNECT-AC-007-04`：全辺技術completeから業務成立・結果承認・送信許可を生成しない。HARNESS010/011の共通pack境界を保ち、GUIの不在だけで契約適合fixtureを拒否しない。
+
+**旧HELIX項目対応**：旧L3 process `archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md:148–168` と旧HARNESS L3 README `archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md:1–56` のFR+AC、3 sub-doc、paired oracle形式を保持し、旧L10 UX/L12層番号・gate/CLIを現行L3/L10の3対へ置換する。旧distribution L3 asset `LEGACY-ASSET-9B7682EBDEA171005D45` の24–83とpaired system test `LEGACY-ASSET-6C9D2BE4E3C77D78F8EB` の1–58はsource/consumerの分離、identity、正常/個別negative/証拠の隣接比較に限り、release/promotion/allowlistやremote権限を007に転用しない。直接のCONNECT007旧atomは既存receiptで0件であり、旧全資産の不在や網羅を意味しない。archive/docs全textの指定語「接続完全性」「connection completeness」「複数機構」「connection inventory」のWorker検索は直接L3/paired consumer未同定、複数機構は一般Concept分類1件のみで直接sourceにしない。固定L2/L11から接続完全性と失敗oracleを意味再導出し、旧の具体実装・値を置換する。変更理由はPO採択済みCONNECT責務と現行層への対応である。検索範囲・原文/SHA・未確認範囲は時点監査へ固定する。

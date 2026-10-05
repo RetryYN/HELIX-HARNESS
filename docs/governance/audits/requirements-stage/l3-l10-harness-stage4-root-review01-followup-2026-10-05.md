@@ -1,0 +1,9 @@
+# HARNESS Stage4 review01 root検収追補
+
+本文 `3be3f21ce8fda4d820373d4cd424b4a39a13b5e5` に対する作成側の検収記録であり、独立review・L3承認・Ready・merge・実装を表さない。正式review5992596048の25指摘はWorker補正記録と本追補に対応を記録し、既存監査は変更していない。
+
+rootは補正本文と固定親を照合し、026に残った027–029共通条件を対象親へ移した。028/029の⑤専用化を実際のnegativeに直し、019境界・read authorization・data-useを個別CASEへ補った。026 pack欠落、部分抽出保留、commit/release及びunknown/staleの分割を追加した。PO正常例029-25はAPI変更とcode repair案、custom処理保護、migration不要のoracle根拠を観測し、API未選択の例と取り違えない。
+
+22件のsource全体SHAと16件のraw span SHAを再計算した。JSONには値・対象revision・path・物理行とspan原文を固定する。6本文はmain `29e814a92af2aa52afcbcdd60549b32a2448513a` の全bytesをprefixとして保持し、本文全体/prefix/suffixのSHAと全suffix原文も記録した。Stage4は28AC・186unique CASEで、未解決AC参照0件。validate147/失敗0、stale0、residuals0、govcheck7622 atoms/57 requirements/58 files、diff-checkが合格した。
+
+対象外の旧source全面再監査は主張しない。次は同本文の独立再reviewであり、指摘の全解消・承認・実行結果を本記録から生成しない。
