@@ -87,7 +87,6 @@ INT runtimeを呼べないfixtureで、人がL2-010と同じaccepted schema/cont
 | `CASE-INT-066-05o` | `AC-INT-066-05` | 推奨Worker fieldを欠落/別Workerへ変更 | receipt binding不成立、OSへ戻す |
 | `CASE-INT-066-05p` | `AC-INT-066-05` | 根拠fieldを欠落/改変 | receipt binding不成立、proposalを未確定にする |
 | `CASE-INT-066-05q` | `AC-INT-066-05` | 除外理由fieldを欠落/改変 | receipt binding不成立、proposalを未確定にする |
-| `CASE-INT-066-05r` | `AC-INT-066-05` | 不確実性fieldを欠落/確実へ改変 | receipt binding不成立、不確実性を保持 |
 | `CASE-INT-066-05s` | `AC-INT-066-05` | unknown fieldを欠落 | receipt binding不成立、欠落fieldを特定して元ownerへ戻す |
 | `CASE-INT-066-05t` | `AC-INT-066-05` | 未評価表示を欠落/qualifiedへ改変 | receipt binding不成立、未評価を保持しLABOへ戻す |
 | `CASE-INT-066-06a` | `AC-INT-066-06` | proposalだけでauthorityを拡張 | 拒否。authority境界を変えない |
@@ -223,13 +222,18 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 
 ## Stage 4 — 1.0接続15親の総合検証
 
-状態: 未実行のL10設計候補。各CASEは固定633 L2/L11 parentとR2187-01の内容oracleに束縛し、PR/review/implementation/approvalから受入を生成しない。HARNESS-L2-010/011共通packは017・036・039では実際に消費するoperationだけに結び、他の対象親ではoperationごとに常時契約として照合する。これを個別sourceの選択条件へ弱めない。
+状態: 未実行のL10設計候補。各CASEは固定633 L2/L11 parentとR2187-01の内容oracleに束縛し、PR/review/implementation/approvalから受入を生成しない。HARNESS-L2-010/011共通packは固定L2が消費operationに限定する017では消費時だけ、036・039および他の固定親では各operationに常時適用する。これを個別sourceの選択条件へ弱めない。
 
 ### CASE-INT-017-01 — source-bound正常（AC-INT-017-01）
 
 入力: 同一target revision/scopeに対するSECURITY permission/isolation・Worker実行・HARNESS検証義務・OS検収の各結果。出力: 境界別の未完/完了状態を保つ統合修復結果。責務: SECURITY permission/isolation; OS/Worker assignment/result; HARNESS obligation; OS acceptance。
 
-**期待oracle:** 同一target revision/scopeについてSECURITY permission、Worker実行結果、HARNESS検証、OS検収を別々の証拠で受ける。操作時点permissionと後日の失効時刻を区別し、各段階の対応証拠がそろった時だけ完了する。 L3に明記したowner/authorityとL11 R2187-01の当該親rowの正常条件を照合し、receiptの存在だけでは合格にしない。
+**期待oracle:** 同一target revision/scopeについてSECURITY permission、Worker実行結果、HARNESS検証、OS検収を別々の証拠で受ける。操作時点permissionと後日の失効時刻を区別し、未完義務は統合結果に未完として残し、各段階の対応証拠がそろった時だけ完了する。 L3に明記したowner/authorityとL11 R2187-01の当該親rowの正常条件を照合し、receiptの存在だけでは合格にしない。
+
+### CASE-INT-017-01a — 未完義務の保持（AC-INT-017-01）
+
+入力: SECURITY permission、Worker result、HARNESS obligation、OS acceptanceのうち、他の有効結果をそろえHARNESS obligationだけを未完にする。
+期待oracle: 未完義務を統合結果の未完状態に残し、全段階完了へ昇格させない。未完義務を消したり、無関係な有効sourceを止めたりしない。
 
 ### CASE-INT-017-02 — 親固有fieldの独立negative（AC-INT-017-02）
 
@@ -242,14 +246,18 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 | `CASE-INT-017-02c` | HARNESS verification obligationを欠落 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、HARNESS requirement/verification ownerへ戻す。他の正常source/operationは維持する。 |
 | `CASE-INT-017-02d` | OS acceptance receiptを欠落 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、OS acceptance ownerへ戻す。他の正常source/operationは維持する。 |
 | `CASE-INT-017-02e` | permissionのtarget scopeだけを別scopeへ差し替える | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、SECURITY permission/isolation ownerへ戻す。他の正常source/operationは維持する。 |
-| `CASE-INT-017-02f` | 実行時点のpermission statusだけを後日の失効statusへ差し替える | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、SECURITY permission/isolation ownerへ戻す。他の正常source/operationは維持する。 |
+| `CASE-INT-017-02f` | permissionは実行時点で有効、receipt到着前に後日失効 | 実行時点の有効証拠を保持し、失効を過去へ遡及させず完了状態を維持する。 |
 | `CASE-INT-017-02g` | 四段階のsource/revisionを一つへ統合 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、該当する各source ownerへ戻す。他の正常source/operationは維持する。 |
 | `CASE-INT-017-02h` | 修復candidateに包括write authorityを付与 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、既存の該当authority ownerへ戻す。他の正常source/operationは維持する。 |
 | `CASE-INT-017-02i` | 実行時点ですでに期限切れまたはrevokedのpermissionで実行 | 操作を実行可能にせず、完了扱いしない。SECURITY permission/isolation ownerへ戻す。 |
+| `CASE-INT-017-02j` | Worker result target revisionだけを別revisionへ変更 | 当該Worker証拠を不一致として完了から除外し、Worker execution/result ownerへ戻す。 |
+| `CASE-INT-017-02k` | HARNESS検証対象revisionだけを別revisionへ変更 | 当該検証証拠を不一致として完了から除外し、HARNESS verification ownerへ戻す。 |
+| `CASE-INT-017-02l` | OS検収対象revisionだけを別revisionへ変更 | 当該検収証拠を不一致として完了から除外し、OS acceptance ownerへ戻す。 |
+| `CASE-INT-017-02m` | 接続契約を未admitted contractへ差し替える | 当該接続を未admitted/unknownとして修復を未完了にし、適用CONNECT contract ownerへ戻す。 |
 
 ### CASE-INT-017-03 — 未見入力の親oracle（AC-INT-017-03）
 
-入力: 段階receiptの到着順が変わる未見fixtureでもtarget/scopeを照合し、実行時点permissionが当時有効なら後日失効で過去証拠を消さない。段階順そのものを変更/必須化しない。
+入力: 段階receiptの到着順が変わる未見fixtureでもtarget/scopeを照合し、実行時点permissionが当時有効なら後日失効でも実行時点証拠を保持し、当時有効なら過去の完了判定を維持する。段階順そのものを変更/必須化しない。
 
 期待: この親のsource identity/revision/scopeとownerを保つ。正常に照合できない情報を補完せず、該当fieldだけをAC-INT-017-04のunknown変異として別に扱う。
 
@@ -267,28 +275,27 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 
 ### 共通HARNESS-L2-010/011 pack — 個別field negative（AC-INT-017-02）
 
-この親でHARNESS-L2-010/011共通packを実際に消費するoperationに限り、pack contractを照合する。非消費operationにpack依存を追加しない。L2-017は036〜039各接続のadmitted contractに依存する。以下はpackを消費するoperationに限る別fixtureであり、一度にpack field一つだけを変えて親固有source authorityは有効のままにする。pack不成立なら当該親の成立を未完了に保ち、HARNESS pack/contract ownerへ戻す。無関係なoperationは継続する。
+この親の各operationにHARNESS-L2-010/011共通pack contractを適用する。以下は一度にpack field一つだけを変えた別fixtureであり、親固有source authorityは有効のままにする。pack不成立なら当該親の成立を未完了に保ち、HARNESS pack/contract ownerへ戻す。無関係なoperationは継続する。
 
 | CASE | 単独変異 | 期待結果・戻し先 |
 |---|---|---|
-| `CASE-INT-017-05a` | pack identityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-017-05b` | contract revisionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-017-05c` | artifact revisionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-017-05d` | artifact digestを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-017-05e` | dependency versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-017-05f` | declared compatibilityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-017-05g` | exchange contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-017-05h` | update contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-017-05i` | rollback conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-017-05j` | pack scopeを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-017-05k` | provenanceを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-017-05l` | contract revisionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-017-05m` | artifact revisionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-017-05n` | artifact digestだけを一致しない値にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-017-05o` | dependency versionだけを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-017-05p` | 宣言済compatibility rangeは保持したまま入力version pairだけを範囲外にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-017-05q` | provenanceだけを異なるsource identityへ結ぶ | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-017-05r` | rollback contractだけを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-017-05a` | pack/ability identityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-017-05b` | contract versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-017-05c` | pack versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-017-05d` | declared input contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-017-05e` | required dependency versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-017-05f` | declared compatibility rangeを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-017-05g` | exchange conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-017-05h` | update conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-017-05i` | rollback先として直前の適格版または明示replacementを宣言しない | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-017-05j` | declared verification scopeを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-017-05k` | declared output contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-017-05l` | contract versionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-017-05m` | pack versionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-017-05n` | 同じ入力とversionから異なるartifactを生成する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-017-05o` | required dependency versionを非互換値へ変更する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-017-05p` | 宣言済compatibility range外のversion pairを入力する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-017-05q` | 宣言されていないdependencyを暗黙に使用する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
 
 ### CASE-INT-030-01 — source-bound正常（AC-INT-030-01）
 
@@ -331,28 +338,27 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 
 ### 共通HARNESS-L2-010/011 pack — 個別field negative（AC-INT-030-02）
 
-この固定親の各対象operationで共通HARNESS-L2-010/011 packを照合する。L2-017は036〜039各接続のadmitted contractに依存する。以下は各々別fixtureで、一度にpack field一つだけを変え、親固有source authorityは有効のままにする。pack不成立なら当該親の成立を未完了に保ち、HARNESS pack/contract ownerへ戻す。無関係なoperationは継続する。
+この固定親の各対象operationで共通HARNESS-L2-010/011 packを照合する。以下は各々別fixtureで、一度にpack field一つだけを変え、親固有source authorityは有効のままにする。pack不成立なら当該親の成立を未完了に保ち、HARNESS pack/contract ownerへ戻す。無関係なoperationは継続する。
 
 | CASE | 単独変異 | 期待結果・戻し先 |
 |---|---|---|
-| `CASE-INT-030-05a` | pack identityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-030-05b` | contract revisionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-030-05c` | artifact revisionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-030-05d` | artifact digestを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-030-05e` | dependency versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-030-05f` | declared compatibilityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-030-05g` | exchange contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-030-05h` | update contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-030-05i` | rollback conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-030-05j` | pack scopeを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-030-05k` | provenanceを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-030-05l` | contract revisionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-030-05m` | artifact revisionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-030-05n` | artifact digestだけを一致しない値にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-030-05o` | dependency versionだけを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-030-05p` | 宣言済compatibility rangeは保持したまま入力version pairだけを範囲外にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-030-05q` | provenanceだけを異なるsource identityへ結ぶ | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-030-05r` | rollback contractだけを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-030-05a` | pack/ability identityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-030-05b` | contract versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-030-05c` | pack versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-030-05d` | declared input contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-030-05e` | required dependency versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-030-05f` | declared compatibility rangeを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-030-05g` | exchange conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-030-05h` | update conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-030-05i` | rollback先として直前の適格版または明示replacementを宣言しない | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-030-05j` | declared verification scopeを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-030-05k` | declared output contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-030-05l` | contract versionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-030-05m` | pack versionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-030-05n` | 同じ入力とversionから異なるartifactを生成する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-030-05o` | required dependency versionを非互換値へ変更する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-030-05p` | 宣言済compatibility range外のversion pairを入力する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-030-05q` | 宣言されていないdependencyを暗黙に使用する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
 
 ### CASE-INT-031-01 — source-bound正常（AC-INT-031-01）
 
@@ -361,8 +367,6 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 **期待oracle:** OS ticketのstate revisionとdependencyをSituation Modelへ表示し、OS stateは変更しない。revision 8後に届いたrevision 7 eventでcurrent stateを巻き戻さない。 L3に明記したowner/authorityとL11 R2187-01の当該親rowの正常条件を照合し、receiptの存在だけでは合格にしない。
 
 ### CASE-INT-031-02 — 親固有fieldの独立negative（AC-INT-031-02）
-
-親固有の追加negative oracle: 古いeventはcurrent stateを巻き戻さず、OSの最新state revisionを保持する。
 
 各行をCASE-INT-031-01の同一入力から作り、他fieldは有効な正常値に固定して一変数だけを変える。
 
@@ -374,8 +378,7 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 | `CASE-INT-031-02d` | 遅延state eventをcurrent stateへ誤結合 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、OS state ownerへ戻す。他の正常source/operationは維持する。 |
 | `CASE-INT-031-02e` | source scopeを別ticketへ結ぶ | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、OS source ownerへ戻す。他の正常source/operationは維持する。 |
 | `CASE-INT-031-02f` | OS authorityをINTELLIGENCEへ移す | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、OS authority ownerへ戻す。他の正常source/operationは維持する。 |
-| `CASE-INT-031-02g` | 未選択connectorを必須依存として提案へ追加 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、OS source ownerへ戻す。他の正常source/operationは維持する。 |
-| `CASE-INT-031-02h` | dependency revisionをstaleにする | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、OS source ownerへ戻す。他の正常source/operationは維持する。 |
+| `CASE-INT-031-02g` | dependency revisionをstaleにする | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、OS source ownerへ戻す。他の正常source/operationは維持する。 |
 
 ### CASE-INT-031-03 — 未見入力の親oracle（AC-INT-031-03）
 
@@ -384,8 +387,6 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 期待: この親のsource identity/revision/scopeとownerを保つ。正常に照合できない情報を補完せず、該当fieldだけをAC-INT-031-04のunknown変異として別に扱う。
 
 ### CASE-INT-031-04 — fieldごとのunknown/未宣言/範囲外（AC-INT-031-04）
-
-親固有の追加negative oracle: 古いeventはcurrent stateを巻き戻さず、OSの最新state revisionを保持する。
 
 各行は独立したfixtureであり、他のsource/fieldはCASE-INT-031-01の有効値を保つ。
 
@@ -399,28 +400,27 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 
 ### 共通HARNESS-L2-010/011 pack — 個別field negative（AC-INT-031-02）
 
-この固定親の各対象operationで共通HARNESS-L2-010/011 packを照合する。L2-017は036〜039各接続のadmitted contractに依存する。以下は各々別fixtureで、一度にpack field一つだけを変え、親固有source authorityは有効のままにする。pack不成立なら当該親の成立を未完了に保ち、HARNESS pack/contract ownerへ戻す。無関係なoperationは継続する。
+この固定親の各対象operationで共通HARNESS-L2-010/011 packを照合する。以下は各々別fixtureで、一度にpack field一つだけを変え、親固有source authorityは有効のままにする。pack不成立なら当該親の成立を未完了に保ち、HARNESS pack/contract ownerへ戻す。無関係なoperationは継続する。
 
 | CASE | 単独変異 | 期待結果・戻し先 |
 |---|---|---|
-| `CASE-INT-031-05a` | pack identityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-031-05b` | contract revisionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-031-05c` | artifact revisionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-031-05d` | artifact digestを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-031-05e` | dependency versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-031-05f` | declared compatibilityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-031-05g` | exchange contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-031-05h` | update contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-031-05i` | rollback conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-031-05j` | pack scopeを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-031-05k` | provenanceを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-031-05l` | contract revisionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-031-05m` | artifact revisionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-031-05n` | artifact digestだけを一致しない値にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-031-05o` | dependency versionだけを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-031-05p` | 宣言済compatibility rangeは保持したまま入力version pairだけを範囲外にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-031-05q` | provenanceだけを異なるsource identityへ結ぶ | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-031-05r` | rollback contractだけを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-031-05a` | pack/ability identityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-031-05b` | contract versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-031-05c` | pack versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-031-05d` | declared input contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-031-05e` | required dependency versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-031-05f` | declared compatibility rangeを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-031-05g` | exchange conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-031-05h` | update conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-031-05i` | rollback先として直前の適格版または明示replacementを宣言しない | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-031-05j` | declared verification scopeを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-031-05k` | declared output contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-031-05l` | contract versionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-031-05m` | pack versionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-031-05n` | 同じ入力とversionから異なるartifactを生成する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-031-05o` | required dependency versionを非互換値へ変更する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-031-05p` | 宣言済compatibility range外のversion pairを入力する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-031-05q` | 宣言されていないdependencyを暗黙に使用する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
 
 ### CASE-INT-032-01 — source-bound正常（AC-INT-032-01）
 
@@ -430,21 +430,19 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 
 ### CASE-INT-032-02 — 親固有fieldの独立negative（AC-INT-032-02）
 
-親固有の追加negative oracle: scope内counterexampleが成立する場合は適用を拒否し、BRAIN knowledgeを変更しない。
-
 各行をCASE-INT-032-01の同一入力から作り、他fieldは有効な正常値に固定して一変数だけを変える。
 
 | CASE | 単独変異 | 期待結果・戻し先 |
 |---|---|---|
 | `CASE-INT-032-02a` | Pattern identityを欠落 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、BRAIN knowledge ownerへ戻す。他の正常source/operationは維持する。 |
-| `CASE-INT-032-02i` | Pattern revisionを欠落 | revisionだけinvalid/incompleteにしBRAIN knowledge ownerへ戻す。適用を成立させない。 |
+| `CASE-INT-032-02h` | Pattern revisionを欠落 | revisionだけinvalid/incompleteにしBRAIN knowledge ownerへ戻す。適用を成立させない。 |
 | `CASE-INT-032-02b` | applicability stateをunknownのまま適用済みにする | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、BRAIN knowledge ownerへ戻す。他の正常source/operationは維持する。 |
 | `CASE-INT-032-02c` | 現在scopeで成立するcounterexampleを除外 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、BRAIN knowledge ownerへ戻す。他の正常source/operationは維持する。 |
 | `CASE-INT-032-02d` | exception scopeをPattern scopeと不一致にする | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、BRAIN knowledge ownerへ戻す。他の正常source/operationは維持する。 |
 | `CASE-INT-032-02e` | applicability conditionが満たされないPatternを適用候補として出す | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、BRAIN knowledge ownerへ戻す。他の正常source/operationは維持する。 |
 | `CASE-INT-032-02f` | BRAIN canonicalをINTELLIGENCEから変更 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、BRAIN knowledge ownerへ戻す。他の正常source/operationは維持する。 |
-| `CASE-INT-032-02g` | 未選択connectorを必須依存として提案へ追加 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、BRAIN knowledge ownerへ戻す。他の正常source/operationは維持する。 |
-| `CASE-INT-032-02h` | Pattern revisionの反例を別revisionへ混合 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、BRAIN knowledge ownerへ戻す。他の正常source/operationは維持する。 |
+| `CASE-INT-032-02g` | Pattern revisionの反例を別revisionへ混合 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、BRAIN knowledge ownerへ戻す。他の正常source/operationは維持する。 |
+| `CASE-INT-032-02i` | 同名だが異なるPattern identity/revisionを一つへ統合 | 不合格。重複Patternは別identity/revisionのまま保持し、BRAIN canonicalを変更せずBRAIN knowledge ownerへ戻す。 |
 
 ### CASE-INT-032-03 — 未見入力の親oracle（AC-INT-032-03）
 
@@ -453,8 +451,6 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 期待: この親のsource identity/revision/scopeとownerを保つ。正常に照合できない情報を補完せず、該当fieldだけをAC-INT-032-04のunknown変異として別に扱う。
 
 ### CASE-INT-032-04 — fieldごとのunknown/未宣言/範囲外（AC-INT-032-04）
-
-親固有の追加negative oracle: scope内counterexampleが成立する場合は適用を拒否し、BRAIN knowledgeを変更しない。
 
 各行は独立したfixtureであり、他のsource/fieldはCASE-INT-032-01の有効値を保つ。
 
@@ -469,28 +465,27 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 
 ### 共通HARNESS-L2-010/011 pack — 個別field negative（AC-INT-032-02）
 
-この固定親の各対象operationで共通HARNESS-L2-010/011 packを照合する。L2-017は036〜039各接続のadmitted contractに依存する。以下は各々別fixtureで、一度にpack field一つだけを変え、親固有source authorityは有効のままにする。pack不成立なら当該親の成立を未完了に保ち、HARNESS pack/contract ownerへ戻す。無関係なoperationは継続する。
+この固定親の各対象operationで共通HARNESS-L2-010/011 packを照合する。以下は各々別fixtureで、一度にpack field一つだけを変え、親固有source authorityは有効のままにする。pack不成立なら当該親の成立を未完了に保ち、HARNESS pack/contract ownerへ戻す。無関係なoperationは継続する。
 
 | CASE | 単独変異 | 期待結果・戻し先 |
 |---|---|---|
-| `CASE-INT-032-05a` | pack identityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-032-05b` | contract revisionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-032-05c` | artifact revisionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-032-05d` | artifact digestを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-032-05e` | dependency versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-032-05f` | declared compatibilityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-032-05g` | exchange contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-032-05h` | update contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-032-05i` | rollback conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-032-05j` | pack scopeを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-032-05k` | provenanceを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-032-05l` | contract revisionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-032-05m` | artifact revisionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-032-05n` | artifact digestだけを一致しない値にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-032-05o` | dependency versionだけを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-032-05p` | 宣言済compatibility rangeは保持したまま入力version pairだけを範囲外にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-032-05q` | provenanceだけを異なるsource identityへ結ぶ | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-032-05r` | rollback contractだけを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-032-05a` | pack/ability identityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-032-05b` | contract versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-032-05c` | pack versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-032-05d` | declared input contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-032-05e` | required dependency versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-032-05f` | declared compatibility rangeを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-032-05g` | exchange conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-032-05h` | update conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-032-05i` | rollback先として直前の適格版または明示replacementを宣言しない | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-032-05j` | declared verification scopeを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-032-05k` | declared output contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-032-05l` | contract versionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-032-05m` | pack versionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-032-05n` | 同じ入力とversionから異なるartifactを生成する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-032-05o` | required dependency versionを非互換値へ変更する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-032-05p` | 宣言済compatibility range外のversion pairを入力する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-032-05q` | 宣言されていないdependencyを暗黙に使用する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
 
 ### CASE-INT-033-01 — source-bound正常（AC-INT-033-01）
 
@@ -516,10 +511,15 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 
 ### CASE-INT-033-03 — 未見入力の親oracle（AC-INT-033-03）
 
-入力: 宣言済schema compatibility内の未見pairでもProduct Core/HARNESS source edgeを別々に保つ。未宣言schemaはunsupportedとして各source ownerへ返す。
+入力: 宣言済schema compatibility内の未見pairでもProduct Core/HARNESS source edgeを別々に保つ。未宣言schemaはunsupportedとして各source ownerへ返す。各sourceを分離保持したままそれぞれのownerへ戻す。
 
 期待: この親のsource identity/revision/scopeとownerを保つ。正常に照合できない情報を補完せず、該当fieldだけをAC-INT-033-04のunknown変異として別に扱う。
 
+
+### CASE-INT-033-03a — 未宣言schemaのunsupported保持（AC-INT-033-03 / AC-INT-033-04）
+
+入力: 033-01と同じProduct Core/HARNESS source pairからschema compatibility declarationだけを外した未見pairを与える。
+期待oracle: pairをunsupported/unknownとして受領完了にせず、二sourceを別々に保持して各source ownerへ返す。未宣言schemaを正常未見versionとして受け入れない。
 ### CASE-INT-033-04 — fieldごとのunknown/未宣言/範囲外（AC-INT-033-04）
 
 各行は独立したfixtureであり、他のsource/fieldはCASE-INT-033-01の有効値を保つ。
@@ -531,31 +531,31 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 | `CASE-INT-033-04c` | 二sourceの意味衝突が未解決 | 該当fieldだけunknown/incompleteとして推測を止め、該当Product Core ownerとHARNESS ownerを別々に保持する。無関係な正常source/operationは保持する。 |
 | `CASE-INT-033-04d` | selected connector contract identityがunknown | 該当fieldだけunknown/incompleteとして推測を止め、該当CONNECT contract ownerへ戻す。無関係な正常source/operationは保持する。 |
 | `CASE-INT-033-04e` | 片方のsource scopeが未宣言 | 該当fieldだけunknown/incompleteとして推測を止め、該当する当該source ownerへ戻す。無関係な正常source/operationは保持する。 |
+| `CASE-INT-033-04f` | schema compatibility宣言を欠落 | 未宣言schemaをunsupported/unknownとして保持し、両sourceを別々に保って各source ownerへ返す。 |
 
 ### 共通HARNESS-L2-010/011 pack — 個別field negative（AC-INT-033-02）
 
-この固定親の各対象operationで共通HARNESS-L2-010/011 packを照合する。L2-017は036〜039各接続のadmitted contractに依存する。以下は各々別fixtureで、一度にpack field一つだけを変え、親固有source authorityは有効のままにする。pack不成立なら当該親の成立を未完了に保ち、HARNESS pack/contract ownerへ戻す。無関係なoperationは継続する。
+この固定親の各対象operationで共通HARNESS-L2-010/011 packを照合する。以下は各々別fixtureで、一度にpack field一つだけを変え、親固有source authorityは有効のままにする。pack不成立なら当該親の成立を未完了に保ち、HARNESS pack/contract ownerへ戻す。無関係なoperationは継続する。
 
 | CASE | 単独変異 | 期待結果・戻し先 |
 |---|---|---|
-| `CASE-INT-033-05a` | pack identityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-033-05b` | contract revisionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-033-05c` | artifact revisionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-033-05d` | artifact digestを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-033-05e` | dependency versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-033-05f` | declared compatibilityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-033-05g` | exchange contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-033-05h` | update contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-033-05i` | rollback conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-033-05j` | pack scopeを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-033-05k` | provenanceを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-033-05l` | contract revisionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-033-05m` | artifact revisionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-033-05n` | artifact digestだけを一致しない値にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-033-05o` | dependency versionだけを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-033-05p` | 宣言済compatibility rangeは保持したまま入力version pairだけを範囲外にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-033-05q` | provenanceだけを異なるsource identityへ結ぶ | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-033-05r` | rollback contractだけを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-033-05a` | pack/ability identityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-033-05b` | contract versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-033-05c` | pack versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-033-05d` | declared input contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-033-05e` | required dependency versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-033-05f` | declared compatibility rangeを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-033-05g` | exchange conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-033-05h` | update conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-033-05i` | rollback先として直前の適格版または明示replacementを宣言しない | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-033-05j` | declared verification scopeを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-033-05k` | declared output contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-033-05l` | contract versionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-033-05m` | pack versionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-033-05n` | 同じ入力とversionから異なるartifactを生成する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-033-05o` | required dependency versionを非互換値へ変更する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-033-05p` | 宣言済compatibility range外のversion pairを入力する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-033-05q` | 宣言されていないdependencyを暗黙に使用する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
 
 ### CASE-INT-034-01 — source-bound正常（AC-INT-034-01）
 
@@ -564,8 +564,6 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 **期待oracle:** LABO評価済み結果と別caseの明示的未評価結果を受け、評価済みscopeだけ証拠とし未評価はそのまま保持する。 L3に明記したowner/authorityとL11 R2187-01の当該親rowの正常条件を照合し、receiptの存在だけでは合格にしない。
 
 ### CASE-INT-034-02 — 親固有fieldの独立negative（AC-INT-034-02）
-
-親固有の追加negative oracle: 異なるscopeのBench/evaluationは対象scopeのqualificationに使わない。
 
 各行をCASE-INT-034-01の同一入力から作り、他fieldは有効な正常値に固定して一変数だけを変える。
 
@@ -579,6 +577,7 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 | `CASE-INT-034-02f` | Bench levelを根拠なく別水準へ変換 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、LABO evaluation ownerへ戻す。他の正常source/operationは維持する。 |
 | `CASE-INT-034-02g` | 評価結果のownerをINTELLIGENCEへ変更 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、LABO evaluation ownerへ戻す。他の正常source/operationは維持する。 |
 | `CASE-INT-034-02h` | stale evaluationをcurrent evidenceとして使う | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、LABO evaluation ownerへ戻す。他の正常source/operationは維持する。 |
+| `CASE-INT-034-02i` | LABO historyだけを入力にINTELLIGENCEが現在のOS assignmentを書き換える | 不合格。過去評価はLABOへ戻し、現在割当はOSに残す。 |
 
 ### CASE-INT-034-03 — 未見入力の親oracle（AC-INT-034-03）
 
@@ -587,8 +586,6 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 期待: この親のsource identity/revision/scopeとownerを保つ。正常に照合できない情報を補完せず、該当fieldだけをAC-INT-034-04のunknown変異として別に扱う。
 
 ### CASE-INT-034-04 — fieldごとのunknown/未宣言/範囲外（AC-INT-034-04）
-
-親固有の追加negative oracle: 異なるscopeのBench/evaluationは対象scopeのqualificationに使わない。
 
 各行は独立したfixtureであり、他のsource/fieldはCASE-INT-034-01の有効値を保つ。
 
@@ -599,31 +596,31 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 | `CASE-INT-034-04c` | statusが未定義で評価済み/未評価を区別できない | 該当fieldだけunknown/incompleteとして推測を止め、LABO evaluation ownerへ戻す。無関係な正常source/operationは保持する。 |
 | `CASE-INT-034-04d` | evidence source/provenanceがunknown | 該当fieldだけunknown/incompleteとして推測を止め、LABO source ownerへ戻す。無関係な正常source/operationは保持する。 |
 | `CASE-INT-034-04e` | compatibility range外の評価version | 該当fieldだけunknown/incompleteとして推測を止め、LABO evaluation ownerへ戻す。無関係な正常source/operationは保持する。 |
+| `CASE-INT-034-04f` | 専用HELIX-CONNECT connector contractがunknownまたは未選択 | connector依存を追加/選択せずunknownのまま保持し、CONNECT contract ownerへ照会する。 |
 
 ### 共通HARNESS-L2-010/011 pack — 個別field negative（AC-INT-034-02）
 
-この固定親の各対象operationで共通HARNESS-L2-010/011 packを照合する。L2-017は036〜039各接続のadmitted contractに依存する。以下は各々別fixtureで、一度にpack field一つだけを変え、親固有source authorityは有効のままにする。pack不成立なら当該親の成立を未完了に保ち、HARNESS pack/contract ownerへ戻す。無関係なoperationは継続する。
+この固定親の各対象operationで共通HARNESS-L2-010/011 packを照合する。以下は各々別fixtureで、一度にpack field一つだけを変え、親固有source authorityは有効のままにする。pack不成立なら当該親の成立を未完了に保ち、HARNESS pack/contract ownerへ戻す。無関係なoperationは継続する。
 
 | CASE | 単独変異 | 期待結果・戻し先 |
 |---|---|---|
-| `CASE-INT-034-05a` | pack identityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-034-05b` | contract revisionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-034-05c` | artifact revisionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-034-05d` | artifact digestを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-034-05e` | dependency versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-034-05f` | declared compatibilityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-034-05g` | exchange contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-034-05h` | update contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-034-05i` | rollback conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-034-05j` | pack scopeを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-034-05k` | provenanceを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-034-05l` | contract revisionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-034-05m` | artifact revisionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-034-05n` | artifact digestだけを一致しない値にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-034-05o` | dependency versionだけを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-034-05p` | 宣言済compatibility rangeは保持したまま入力version pairだけを範囲外にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-034-05q` | provenanceだけを異なるsource identityへ結ぶ | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-034-05r` | rollback contractだけを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-034-05a` | pack/ability identityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-034-05b` | contract versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-034-05c` | pack versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-034-05d` | declared input contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-034-05e` | required dependency versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-034-05f` | declared compatibility rangeを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-034-05g` | exchange conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-034-05h` | update conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-034-05i` | rollback先として直前の適格版または明示replacementを宣言しない | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-034-05j` | declared verification scopeを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-034-05k` | declared output contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-034-05l` | contract versionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-034-05m` | pack versionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-034-05n` | 同じ入力とversionから異なるartifactを生成する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-034-05o` | required dependency versionを非互換値へ変更する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-034-05p` | 宣言済compatibility range外のversion pairを入力する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-034-05q` | 宣言されていないdependencyを暗黙に使用する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
 
 ### CASE-INT-035-01 — source-bound正常（AC-INT-035-01）
 
@@ -648,6 +645,7 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 | `CASE-INT-035-02g` | 未選択connectorを必須依存として提案へ追加 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、INTELLIGENCE candidate ownerへ戻す。他の正常source/operationは維持する。 |
 | `CASE-INT-035-02h` | candidate source scopeを別taskへ結ぶ | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、INTELLIGENCE candidate ownerへ戻す。他の正常source/operationは維持する。 |
 | `CASE-INT-035-02k` | 目標未承認のcandidateをticket化可能としてOSへ渡す | 承認を創作せずcandidateを保留し、OS ticket/assignmentを成立させない。INTELLIGENCE candidate ownerへ戻す。 |
+| `CASE-INT-035-02l` | INTELLIGENCEがOS assignmentを生成・確定する | 不合格。INTELLIGENCEはplacement proposalまでとし、assignmentの発行・確定はOSへ残す。 |
 
 ### CASE-INT-035-03 — 未見入力の親oracle（AC-INT-035-03）
 
@@ -670,28 +668,27 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 
 ### 共通HARNESS-L2-010/011 pack — 個別field negative（AC-INT-035-02）
 
-この固定親の各対象operationで共通HARNESS-L2-010/011 packを照合する。L2-017は036〜039各接続のadmitted contractに依存する。以下は各々別fixtureで、一度にpack field一つだけを変え、親固有source authorityは有効のままにする。pack不成立なら当該親の成立を未完了に保ち、HARNESS pack/contract ownerへ戻す。無関係なoperationは継続する。
+この固定親の各対象operationで共通HARNESS-L2-010/011 packを照合する。以下は各々別fixtureで、一度にpack field一つだけを変え、親固有source authorityは有効のままにする。pack不成立なら当該親の成立を未完了に保ち、HARNESS pack/contract ownerへ戻す。無関係なoperationは継続する。
 
 | CASE | 単独変異 | 期待結果・戻し先 |
 |---|---|---|
-| `CASE-INT-035-05a` | pack identityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-035-05b` | contract revisionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-035-05c` | artifact revisionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-035-05d` | artifact digestを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-035-05e` | dependency versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-035-05f` | declared compatibilityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-035-05g` | exchange contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-035-05h` | update contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-035-05i` | rollback conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-035-05j` | pack scopeを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-035-05k` | provenanceを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-035-05l` | contract revisionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-035-05m` | artifact revisionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-035-05n` | artifact digestだけを一致しない値にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-035-05o` | dependency versionだけを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-035-05p` | 宣言済compatibility rangeは保持したまま入力version pairだけを範囲外にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-035-05q` | provenanceだけを異なるsource identityへ結ぶ | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-035-05r` | rollback contractだけを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-035-05a` | pack/ability identityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-035-05b` | contract versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-035-05c` | pack versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-035-05d` | declared input contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-035-05e` | required dependency versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-035-05f` | declared compatibility rangeを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-035-05g` | exchange conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-035-05h` | update conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-035-05i` | rollback先として直前の適格版または明示replacementを宣言しない | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-035-05j` | declared verification scopeを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-035-05k` | declared output contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-035-05l` | contract versionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-035-05m` | pack versionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-035-05n` | 同じ入力とversionから異なるartifactを生成する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-035-05o` | required dependency versionを非互換値へ変更する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-035-05p` | 宣言済compatibility range外のversion pairを入力する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-035-05q` | 宣言されていないdependencyを暗黙に使用する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
 
 ### CASE-INT-036-01 — source-bound正常（AC-INT-036-01）
 
@@ -700,8 +697,6 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 **期待oracle:** actor/action/target/scopeに対する操作時点で有効なSECURITY permissionと制約を照合し、permissionを発行/変更しない。期限切れ/revoked permissionでは操作を実行可能にしない。 L3に明記したowner/authorityとL11 R2187-01の当該親rowの正常条件を照合し、receiptの存在だけでは合格にしない。
 
 ### CASE-INT-036-02 — 親固有fieldの独立negative（AC-INT-036-02）
-
-親固有の追加negative oracle: 期限切れ/revoked permissionでは操作を実行可能にしない。
 
 各行をCASE-INT-036-01の同一入力から作り、他fieldは有効な正常値に固定して一変数だけを変える。
 
@@ -715,7 +710,10 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 | `CASE-INT-036-02f` | 操作時点ですでにrevokedのpermissionを有効扱いする | 変異fieldだけを不成立として保持し、SECURITY permission/isolation ownerへ不足情報を戻す。無関係な正常field/operationは保持する。 |
 | `CASE-INT-036-02g` | 別actor/action/targetのpermissionを流用 | 変異fieldだけを不成立として保持し、SECURITY permission/isolation ownerへ不足情報を戻す。無関係な正常field/operationは保持する。 |
 | `CASE-INT-036-02h` | INTELLIGENCEがpermissionを発行/変更 | 変異fieldだけを不成立として保持し、SECURITY permission/isolation ownerへ不足情報を戻す。無関係な正常field/operationは保持する。 |
-| `CASE-INT-036-02i` | 操作時点ですでに期限切れのpermissionを有効扱いする | 操作timestamp時点の期限を照合して実行可能にせずSECURITY permission/isolation ownerへ戻す。後刻のrevocationを過去の操作へ遡及させない。 |
+| `CASE-INT-036-02i` | 操作時点ですでに期限切れのpermissionを有効扱いする | 操作timestamp時点の期限を照合して実行可能にせずSECURITY permission/isolation ownerへ戻す。 |
+| `CASE-INT-036-02j` | INTELLIGENCEがSECURITY permissionを新規発行する | 不合格。permissionはSECURITY authorityに残し、SECURITY ownerへ戻す。 |
+| `CASE-INT-036-02k` | INTELLIGENCEが既存SECURITY permissionを変更する | 不合格。permissionはSECURITY authorityに残し、SECURITY ownerへ戻す。 |
+| `CASE-INT-036-02l` | permissionは有効だがSECURITY constraintに違反するactionを許可扱いする | 不合格。operationを実行可能にせず、SECURITY permission/constraint ownerへ戻す。 |
 
 ### CASE-INT-036-03 — 未見入力の親oracle（AC-INT-036-03）
 
@@ -729,8 +727,6 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 
 ### CASE-INT-036-04 — fieldごとのunknown/未宣言/範囲外（AC-INT-036-04）
 
-親固有の追加negative oracle: 期限切れ/revoked permissionでは操作を実行可能にしない。
-
 各行は独立したfixtureであり、他のsource/fieldはCASE-INT-036-01の有効値を保つ。
 
 | CASE | 単独変異 | 期待結果・戻し先 |
@@ -743,31 +739,32 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 | `CASE-INT-036-04g` | permission revisionがunknown | revisionだけunknownとしてSECURITYへ戻し、実行可能にしない。 |
 | `CASE-INT-036-04d` | revocation時点がunknown | 該当fieldだけunknown/incompleteとして推測を止め、SECURITY permission/isolation ownerへ戻す。無関係な正常source/operationは保持する。 |
 | `CASE-INT-036-04e` | actionがsourceに未宣言 | 該当fieldだけunknown/incompleteとして推測を止め、SECURITY permission/isolation ownerへ戻す。無関係な正常source/operationは保持する。 |
+| `CASE-INT-036-04i` | SECURITY constraintが欠落 | constraint適用性をunknownとして実行可能にせず、SECURITY permission/constraint ownerへ戻す。 |
+| `CASE-INT-036-04j` | 専用HELIX-CONNECT connector contractがunknownまたは未選択 | permission authorityを作らずunknownのまま保持し、CONNECT contract ownerへ照会する。operationは実行可能にしない。 |
 
 ### 共通HARNESS-L2-010/011 pack — 個別field negative（AC-INT-036-02）
 
-この親でHARNESS-L2-010/011共通packを実際に消費するoperationに限り、pack contractを照合する。非消費operationにpack依存を追加しない。L2-017は036〜039各接続のadmitted contractに依存する。以下はpackを消費するoperationに限る別fixtureであり、一度にpack field一つだけを変えて親固有source authorityは有効のままにする。pack不成立なら当該親の成立を未完了に保ち、HARNESS pack/contract ownerへ戻す。無関係なoperationは継続する。
+この親の各operationにHARNESS-L2-010/011共通pack contractを適用する。以下は一度にpack field一つだけを変えた別fixtureであり、親固有source authorityは有効のままにする。pack不成立なら当該親の成立を未完了に保ち、HARNESS pack/contract ownerへ戻す。無関係なoperationは継続する。
 
 | CASE | 単独変異 | 期待結果・戻し先 |
 |---|---|---|
-| `CASE-INT-036-05a` | pack identityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-036-05b` | contract revisionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-036-05c` | artifact revisionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-036-05d` | artifact digestを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-036-05e` | dependency versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-036-05f` | declared compatibilityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-036-05g` | exchange contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-036-05h` | update contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-036-05i` | rollback conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-036-05j` | pack scopeを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-036-05k` | provenanceを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-036-05l` | contract revisionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-036-05m` | artifact revisionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-036-05n` | artifact digestだけを一致しない値にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-036-05o` | dependency versionだけを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-036-05p` | 宣言済compatibility rangeは保持したまま入力version pairだけを範囲外にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-036-05q` | provenanceだけを異なるsource identityへ結ぶ | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-036-05r` | rollback contractだけを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-036-05a` | pack/ability identityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-036-05b` | contract versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-036-05c` | pack versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-036-05d` | declared input contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-036-05e` | required dependency versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-036-05f` | declared compatibility rangeを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-036-05g` | exchange conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-036-05h` | update conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-036-05i` | rollback先として直前の適格版または明示replacementを宣言しない | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-036-05j` | declared verification scopeを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-036-05k` | declared output contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-036-05l` | contract versionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-036-05m` | pack versionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-036-05n` | 同じ入力とversionから異なるartifactを生成する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-036-05o` | required dependency versionを非互換値へ変更する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-036-05p` | 宣言済compatibility range外のversion pairを入力する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-036-05q` | 宣言されていないdependencyを暗黙に使用する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
 
 ### CASE-INT-037-01 — source-bound正常（AC-INT-037-01）
 
@@ -781,14 +778,15 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 
 | CASE | 単独変異 | 期待結果・戻し先 |
 |---|---|---|
-| `CASE-INT-037-02a` | OS-issued ticket identityを欠落 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、OS ticket/assignment ownerへ戻す。他の正常source/operationは維持する。 |
-| `CASE-INT-037-02b` | Worker assignmentを欠落 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、OS ticket/assignment ownerへ戻す。他の正常source/operationは維持する。 |
-| `CASE-INT-037-02c` | Worker identityを欠落 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、OS ticket/assignment ownerへ戻す。他の正常source/operationは維持する。 |
-| `CASE-INT-037-02d` | Worker versionをassignmentと不一致にする | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、OS ticket/assignment ownerへ戻す。他の正常source/operationは維持する。 |
-| `CASE-INT-037-02e` | task scopeを別ticketへ結ぶ | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、OS ticket/assignment ownerへ戻す。他の正常source/operationは維持する。 |
-| `CASE-INT-037-02f` | Worker result actorをassignmentと不一致にする | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、Worker execution/result ownerへ戻す。他の正常source/operationは維持する。 |
-| `CASE-INT-037-02g` | Worker result provenanceを欠落 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、Worker execution/result ownerへ戻す。他の正常source/operationは維持する。 |
-| `CASE-INT-037-02h` | INTELLIGENCEから実行許可を追加 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、OS ticket/assignment ownerへ戻す。他の正常source/operationは維持する。 |
+| `CASE-INT-037-02a` | OS-issued ticket identityを欠落 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、OS ticket/assignment ownerへ戻し、Worker実行へ渡さない。他の正常source/operationは維持し、unknown/不適合ticketをWorker実行へ渡さない。 |
+| `CASE-INT-037-02b` | Worker assignmentを欠落 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、OS ticket/assignment ownerへ戻し、Worker実行へ渡さない。他の正常source/operationは維持し、unknown/不適合ticketをWorker実行へ渡さない。 |
+| `CASE-INT-037-02c` | Worker identityを欠落 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、OS ticket/assignment ownerへ戻し、Worker実行へ渡さない。他の正常source/operationは維持し、unknown/不適合ticketをWorker実行へ渡さない。 |
+| `CASE-INT-037-02d` | Worker versionをassignmentと不一致にする | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、OS ticket/assignment ownerへ戻し、Worker実行へ渡さない。他の正常source/operationは維持し、unknown/不適合ticketをWorker実行へ渡さない。 |
+| `CASE-INT-037-02e` | task scopeを別ticketへ結ぶ | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、OS ticket/assignment ownerへ戻し、Worker実行へ渡さない。他の正常source/operationは維持し、unknown/不適合ticketをWorker実行へ渡さない。 |
+| `CASE-INT-037-02f` | Worker result actorをassignmentと不一致にする | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、Worker execution/result ownerへ戻す。他の正常source/operationは維持し、unknown/不適合ticketをWorker実行へ渡さない。 |
+| `CASE-INT-037-02g` | Worker result declared output contractを欠落 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、Worker execution/result ownerへ戻す。他の正常source/operationは維持し、unknown/不適合ticketをWorker実行へ渡さない。 |
+| `CASE-INT-037-02h` | INTELLIGENCEから実行許可を追加 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、OS ticket/assignment ownerへ戻し、Worker実行へ渡さない。他の正常source/operationは維持し、unknown/不適合ticketをWorker実行へ渡さない。 |
+| `CASE-INT-037-02i` | actor/executorをINTELLIGENCEに差し替える | 不合格。INTELLIGENCEをWorkerとして扱わず、OSへ戻しWorker実行に渡さない。 |
 
 ### CASE-INT-037-03 — 未見入力の親oracle（AC-INT-037-03）
 
@@ -802,36 +800,35 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 
 | CASE | 単独変異 | 期待結果・戻し先 |
 |---|---|---|
-| `CASE-INT-037-04a` | OS ticket identity/stateがunknown | 該当fieldだけunknown/incompleteとして推測を止め、OS ticket/assignment ownerへ戻す。無関係な正常source/operationは保持する。 |
-| `CASE-INT-037-04b` | Worker assignment/versionがunknown | 該当fieldだけunknown/incompleteとして推測を止め、OS ticket/assignment ownerへ戻す。無関係な正常source/operationは保持する。 |
-| `CASE-INT-037-04c` | task scope compatibilityがunknown | 該当fieldだけunknown/incompleteとして推測を止め、OS ticket/assignment ownerへ戻す。無関係な正常source/operationは保持する。 |
+| `CASE-INT-037-04a` | OS ticket identity/stateがunknown | 該当fieldだけunknown/incompleteとして推測を止め、OS ticket/assignment ownerへ戻し、Worker実行へ渡さない。無関係な正常source/operationは保持する。 |
+| `CASE-INT-037-04b` | Worker assignment/versionがunknown | 該当fieldだけunknown/incompleteとして推測を止め、OS ticket/assignment ownerへ戻し、Worker実行へ渡さない。無関係な正常source/operationは保持する。 |
+| `CASE-INT-037-04c` | task scope compatibilityがunknown | 該当fieldだけunknown/incompleteとして推測を止め、OS ticket/assignment ownerへ戻し、Worker実行へ渡さない。無関係な正常source/operationは保持する。 |
 | `CASE-INT-037-04d` | Worker result provenanceがunknown | 該当fieldだけunknown/incompleteとして推測を止め、Worker execution/result ownerへ戻す。無関係な正常source/operationは保持する。 |
 | `CASE-INT-037-04e` | selected connector contract identityがunknown | 該当fieldだけunknown/incompleteとして推測を止め、該当CONNECT contract ownerへ戻す。無関係な正常source/operationは保持する。 |
 
 ### 共通HARNESS-L2-010/011 pack — 個別field negative（AC-INT-037-02）
 
-この固定親の各対象operationで共通HARNESS-L2-010/011 packを照合する。L2-017は036〜039各接続のadmitted contractに依存する。以下は各々別fixtureで、一度にpack field一つだけを変え、親固有source authorityは有効のままにする。pack不成立なら当該親の成立を未完了に保ち、HARNESS pack/contract ownerへ戻す。無関係なoperationは継続する。
+この固定親の各対象operationで共通HARNESS-L2-010/011 packを照合する。以下は各々別fixtureで、一度にpack field一つだけを変え、親固有source authorityは有効のままにする。pack不成立なら当該親の成立を未完了に保ち、HARNESS pack/contract ownerへ戻す。無関係なoperationは継続する。
 
 | CASE | 単独変異 | 期待結果・戻し先 |
 |---|---|---|
-| `CASE-INT-037-05a` | pack identityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-037-05b` | contract revisionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-037-05c` | artifact revisionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-037-05d` | artifact digestを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-037-05e` | dependency versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-037-05f` | declared compatibilityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-037-05g` | exchange contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-037-05h` | update contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-037-05i` | rollback conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-037-05j` | pack scopeを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-037-05k` | provenanceを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-037-05l` | contract revisionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-037-05m` | artifact revisionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-037-05n` | artifact digestだけを一致しない値にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-037-05o` | dependency versionだけを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-037-05p` | 宣言済compatibility rangeは保持したまま入力version pairだけを範囲外にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-037-05q` | provenanceだけを異なるsource identityへ結ぶ | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-037-05r` | rollback contractだけを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-037-05a` | pack/ability identityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-037-05b` | contract versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-037-05c` | pack versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-037-05d` | declared input contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-037-05e` | required dependency versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-037-05f` | declared compatibility rangeを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-037-05g` | exchange conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-037-05h` | update conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-037-05i` | rollback先として直前の適格版または明示replacementを宣言しない | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-037-05j` | declared verification scopeを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-037-05k` | declared output contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-037-05l` | contract versionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-037-05m` | pack versionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-037-05n` | 同じ入力とversionから異なるartifactを生成する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-037-05o` | required dependency versionを非互換値へ変更する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-037-05p` | 宣言済compatibility range外のversion pairを入力する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-037-05q` | 宣言されていないdependencyを暗黙に使用する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
 
 ### CASE-INT-038-01 — source-bound正常（AC-INT-038-01）
 
@@ -840,8 +837,6 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 **期待oracle:** HARNESS requirement revisionのverification obligation一式をrepair ticketへ渡し、実行後も同じobligationを照合する。oracle/obligationの除去・弱化後を検証完了としない。 L3に明記したowner/authorityとL11 R2187-01の当該親rowの正常条件を照合し、receiptの存在だけでは合格にしない。
 
 ### CASE-INT-038-02 — 親固有fieldの独立negative（AC-INT-038-02）
-
-親固有の追加negative oracle: oracle/verification obligationを除去または弱化した後を検証完了にしない。
 
 各行をCASE-INT-038-01の同一入力から作り、他fieldは有効な正常値に固定して一変数だけを変える。
 
@@ -855,6 +850,10 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 | `CASE-INT-038-02f` | backflow conditionを欠落 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、HARNESS verification ownerへ戻す。他の正常source/operationは維持する。 |
 | `CASE-INT-038-02g` | 未選択connectorを必須依存として提案へ追加 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、HARNESS requirement/verification ownerへ戻す。他の正常source/operationは維持する。 |
 | `CASE-INT-038-02h` | 修復器がoracleを弱化し検証済みにする | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、HARNESS verification ownerへ戻す。他の正常source/operationは維持する。 |
+| `CASE-INT-038-02i` | repairerがverification obligationを1件削除 | 不合格。元の義務を保持しHARNESSへ戻す。 |
+| `CASE-INT-038-02j` | repairerがverification obligationを1件追加 | 不合格。新規義務を作らずHARNESSへ戻す。 |
+| `CASE-INT-038-02k` | repair後結果がoracle不合格なのに検証済み扱いする | 不合格。修復を未完了としHARNESSへ戻す。 |
+| `CASE-INT-038-02l` | obligationを別repair scopeへ束縛する | 不合格。修復scopeに結び付く検証義務を再照合するためHARNESSへ戻す。 |
 
 ### CASE-INT-038-03 — 未見入力の親oracle（AC-INT-038-03）
 
@@ -863,8 +862,6 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 期待: この親のsource identity/revision/scopeとownerを保つ。正常に照合できない情報を補完せず、該当fieldだけをAC-INT-038-04のunknown変異として別に扱う。
 
 ### CASE-INT-038-04 — fieldごとのunknown/未宣言/範囲外（AC-INT-038-04）
-
-親固有の追加negative oracle: oracle/verification obligationを除去または弱化した後を検証完了にしない。
 
 各行は独立したfixtureであり、他のsource/fieldはCASE-INT-038-01の有効値を保つ。
 
@@ -878,28 +875,27 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 
 ### 共通HARNESS-L2-010/011 pack — 個別field negative（AC-INT-038-02）
 
-この固定親の各対象operationで共通HARNESS-L2-010/011 packを照合する。L2-017は036〜039各接続のadmitted contractに依存する。以下は各々別fixtureで、一度にpack field一つだけを変え、親固有source authorityは有効のままにする。pack不成立なら当該親の成立を未完了に保ち、HARNESS pack/contract ownerへ戻す。無関係なoperationは継続する。
+この固定親の各対象operationで共通HARNESS-L2-010/011 packを照合する。以下は各々別fixtureで、一度にpack field一つだけを変え、親固有source authorityは有効のままにする。pack不成立なら当該親の成立を未完了に保ち、HARNESS pack/contract ownerへ戻す。無関係なoperationは継続する。
 
 | CASE | 単独変異 | 期待結果・戻し先 |
 |---|---|---|
-| `CASE-INT-038-05a` | pack identityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-038-05b` | contract revisionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-038-05c` | artifact revisionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-038-05d` | artifact digestを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-038-05e` | dependency versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-038-05f` | declared compatibilityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-038-05g` | exchange contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-038-05h` | update contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-038-05i` | rollback conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-038-05j` | pack scopeを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-038-05k` | provenanceを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-038-05l` | contract revisionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-038-05m` | artifact revisionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-038-05n` | artifact digestだけを一致しない値にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-038-05o` | dependency versionだけを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-038-05p` | 宣言済compatibility rangeは保持したまま入力version pairだけを範囲外にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-038-05q` | provenanceだけを異なるsource identityへ結ぶ | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-038-05r` | rollback contractだけを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-038-05a` | pack/ability identityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-038-05b` | contract versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-038-05c` | pack versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-038-05d` | declared input contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-038-05e` | required dependency versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-038-05f` | declared compatibility rangeを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-038-05g` | exchange conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-038-05h` | update conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-038-05i` | rollback先として直前の適格版または明示replacementを宣言しない | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-038-05j` | declared verification scopeを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-038-05k` | declared output contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-038-05l` | contract versionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-038-05m` | pack versionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-038-05n` | 同じ入力とversionから異なるartifactを生成する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-038-05o` | required dependency versionを非互換値へ変更する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-038-05p` | 宣言済compatibility range外のversion pairを入力する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-038-05q` | 宣言されていないdependencyを暗黙に使用する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
 
 ### CASE-INT-039-01 — source-bound正常（AC-INT-039-01）
 
@@ -908,8 +904,6 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 **期待oracle:** 同一修復scopeのcandidate、execution evidence、HARNESS resultを区別してOSへhandoffし、OSが独自に受入判断できる証拠を残す。Worker成功だけではOS acceptanceを成立させない。 L3に明記したowner/authorityとL11 R2187-01の当該親rowの正常条件を照合し、receiptの存在だけでは合格にしない。
 
 ### CASE-INT-039-02 — 親固有fieldの独立negative（AC-INT-039-02）
-
-親固有の追加negative oracle: Worker成功receiptだけではOS acceptanceを成立させない。
 
 各行をCASE-INT-039-01の同一入力から作り、他fieldは有効な正常値に固定して一変数だけを変える。
 
@@ -930,10 +924,17 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 入力: 未見receipt versionでも宣言済互換契約/correlation/scopeを満たすなら段階別に受領し、OS独自acceptanceを残す。範囲外は未受領としてproducer/OSへ返す。
 
 期待: この親のsource identity/revision/scopeとownerを保つ。正常に照合できない情報を補完せず、該当fieldだけをAC-INT-039-04のunknown変異として別に扱う。
+### CASE-INT-039-03a — correlation ID不一致（AC-INT-039-03）
+
+入力: 他のreceipt fieldは正常値のまま、correlation IDだけを対応operationと不一致にする。
+期待oracle: receiptを未受領として保持し、該当source/consumer ownerへ戻す。
+
+### CASE-INT-039-03b — 範囲外receipt version（AC-INT-039-03）
+
+入力: 他のreceipt fieldは正常値のまま、versionだけを宣言済compatibility range外にする。
+期待oracle: receiptを未受領/unknownとして保持し、適用CONNECT contract ownerへ戻す。
 
 ### CASE-INT-039-04 — fieldごとのunknown/未宣言/範囲外（AC-INT-039-04）
-
-親固有の追加negative oracle: Worker成功receiptだけではOS acceptanceを成立させない。
 
 各行は独立したfixtureであり、他のsource/fieldはCASE-INT-039-01の有効値を保つ。
 
@@ -947,28 +948,27 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 
 ### 共通HARNESS-L2-010/011 pack — 個別field negative（AC-INT-039-02）
 
-この親でHARNESS-L2-010/011共通packを実際に消費するoperationに限り、pack contractを照合する。非消費operationにpack依存を追加しない。L2-017は036〜039各接続のadmitted contractに依存する。以下はpackを消費するoperationに限る別fixtureであり、一度にpack field一つだけを変えて親固有source authorityは有効のままにする。pack不成立なら当該親の成立を未完了に保ち、HARNESS pack/contract ownerへ戻す。無関係なoperationは継続する。
+この親の各operationにHARNESS-L2-010/011共通pack contractを適用する。以下は一度にpack field一つだけを変えた別fixtureであり、親固有source authorityは有効のままにする。pack不成立なら当該親の成立を未完了に保ち、HARNESS pack/contract ownerへ戻す。無関係なoperationは継続する。
 
 | CASE | 単独変異 | 期待結果・戻し先 |
 |---|---|---|
-| `CASE-INT-039-05a` | pack identityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-039-05b` | contract revisionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-039-05c` | artifact revisionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-039-05d` | artifact digestを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-039-05e` | dependency versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-039-05f` | declared compatibilityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-039-05g` | exchange contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-039-05h` | update contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-039-05i` | rollback conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-039-05j` | pack scopeを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-039-05k` | provenanceを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-039-05l` | contract revisionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-039-05m` | artifact revisionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-039-05n` | artifact digestだけを一致しない値にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-039-05o` | dependency versionだけを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-039-05p` | 宣言済compatibility rangeは保持したまま入力version pairだけを範囲外にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-039-05q` | provenanceだけを異なるsource identityへ結ぶ | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-039-05r` | rollback contractだけを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-039-05a` | pack/ability identityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-039-05b` | contract versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-039-05c` | pack versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-039-05d` | declared input contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-039-05e` | required dependency versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-039-05f` | declared compatibility rangeを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-039-05g` | exchange conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-039-05h` | update conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-039-05i` | rollback先として直前の適格版または明示replacementを宣言しない | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-039-05j` | declared verification scopeを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-039-05k` | declared output contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-039-05l` | contract versionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-039-05m` | pack versionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-039-05n` | 同じ入力とversionから異なるartifactを生成する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-039-05o` | required dependency versionを非互換値へ変更する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-039-05p` | 宣言済compatibility range外のversion pairを入力する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-039-05q` | 宣言されていないdependencyを暗黙に使用する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
 
 ### CASE-INT-040-01 — source-bound正常（AC-INT-040-01）
 
@@ -976,9 +976,32 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 
 **期待oracle:** predictionと後続actual outcomeを同一episode/scopeへ結び、source revisionと観測windowを分けてLABOへ渡す。prediction単独はactual receiptでない。 L3に明記したowner/authorityとL11 R2187-01の当該親rowの正常条件を照合し、receiptの存在だけでは合格にしない。
 
-### CASE-INT-040-02 — 親固有fieldの独立negative（AC-INT-040-02）
+### CASE-INT-040-01a — prediction結果のsource binding（AC-INT-040-01）
 
-親固有の追加negative oracle: predictionをactual outcome/receiptとして扱わず、actual欠落はLABOへ返す。
+入力: prediction result、source identity/revision、episode/scope、observation window。
+期待oracle: prediction種別とsourceを固定し、actual outcomeとして扱わずLABOへ渡す。
+
+### CASE-INT-040-01b — diagnosis結果のsource binding（AC-INT-040-01）
+
+入力: diagnosis result、source identity/revision、episode/scope、observation window。
+期待oracle: diagnosis種別とsourceを固定し、predictionまたはactualへ読み替えずLABOへ渡す。
+
+### CASE-INT-040-01c — review結果のsource binding（AC-INT-040-01）
+
+入力: review result、source identity/revision、episode/scope、observation window。
+期待oracle: review種別とsourceを固定し、predictionまたはactualへ読み替えずLABOへ渡す。
+
+### CASE-INT-040-01d — placement結果のsource binding（AC-INT-040-01）
+
+入力: placement result、source identity/revision、episode/scope、observation window。
+期待oracle: placement種別とsourceを固定し、predictionまたはactualへ読み替えずLABOへ渡す。
+
+### CASE-INT-040-01e — repair resultのsource binding（AC-INT-040-01）
+
+入力: repair result、source identity/revision、episode/scope、observation window。
+期待oracle: repair result種別とsourceを固定し、predictionまたはactualへ読み替えずLABOへ渡す。
+
+### CASE-INT-040-02 — 親固有fieldの独立negative（AC-INT-040-02）
 
 各行をCASE-INT-040-01の同一入力から作り、他fieldは有効な正常値に固定して一変数だけを変える。
 
@@ -993,6 +1016,8 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 | `CASE-INT-040-02f` | 重複actualを別成功に数える | 変異fieldだけを不成立として保持し、LABO evaluation ownerへ不足情報を戻す。無関係な正常field/operationは保持する。 |
 | `CASE-INT-040-02g` | 未選択connectorを必須依存として提案へ追加 | 変異fieldだけを不成立として保持し、該当する親source ownerへ不足情報を戻す。無関係な正常field/operationは保持する。 |
 | `CASE-INT-040-02h` | evaluation ownershipをINTELLIGENCEへ変更 | 変異fieldだけを不成立として保持し、LABO evaluation ownerへ不足情報を戻す。無関係な正常field/operationは保持する。 |
+| `CASE-INT-040-02j` | actual resultのsource revisionだけを欠落させる | actualを未検証/unknownとして保持し、当該source ownerへ戻す。 |
+| `CASE-INT-040-02k` | actual resultのsource revisionをpredictionと同一扱いにする | sourceを取り違えたactualを拒否し、両sourceを分離して該当ownerへ戻す。 |
 
 ### CASE-INT-040-03 — 未見入力の親oracle（AC-INT-040-03）
 
@@ -1001,8 +1026,6 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 期待: この親のsource identity/revision/scopeとownerを保つ。正常に照合できない情報を補完せず、該当fieldだけをAC-INT-040-04のunknown変異として別に扱う。
 
 ### CASE-INT-040-04 — fieldごとのunknown/未宣言/範囲外（AC-INT-040-04）
-
-親固有の追加negative oracle: predictionをactual outcome/receiptとして扱わず、actual欠落はLABOへ返す。
 
 各行は独立したfixtureであり、他のsource/fieldはCASE-INT-040-01の有効値を保つ。
 
@@ -1017,28 +1040,27 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 
 ### 共通HARNESS-L2-010/011 pack — 個別field negative（AC-INT-040-02）
 
-この固定親の各対象operationで共通HARNESS-L2-010/011 packを照合する。L2-017は036〜039各接続のadmitted contractに依存する。以下は各々別fixtureで、一度にpack field一つだけを変え、親固有source authorityは有効のままにする。pack不成立なら当該親の成立を未完了に保ち、HARNESS pack/contract ownerへ戻す。無関係なoperationは継続する。
+この固定親の各対象operationで共通HARNESS-L2-010/011 packを照合する。以下は各々別fixtureで、一度にpack field一つだけを変え、親固有source authorityは有効のままにする。pack不成立なら当該親の成立を未完了に保ち、HARNESS pack/contract ownerへ戻す。無関係なoperationは継続する。
 
 | CASE | 単独変異 | 期待結果・戻し先 |
 |---|---|---|
-| `CASE-INT-040-05a` | pack identityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-040-05b` | contract revisionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-040-05c` | artifact revisionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-040-05d` | artifact digestを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-040-05e` | dependency versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-040-05f` | declared compatibilityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-040-05g` | exchange contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-040-05h` | update contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-040-05i` | rollback conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-040-05j` | pack scopeを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-040-05k` | provenanceを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-040-05l` | contract revisionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-040-05m` | artifact revisionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-040-05n` | artifact digestだけを一致しない値にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-040-05o` | dependency versionだけを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-040-05p` | 宣言済compatibility rangeは保持したまま入力version pairだけを範囲外にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-040-05q` | provenanceだけを異なるsource identityへ結ぶ | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-040-05r` | rollback contractだけを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-040-05a` | pack/ability identityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-040-05b` | contract versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-040-05c` | pack versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-040-05d` | declared input contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-040-05e` | required dependency versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-040-05f` | declared compatibility rangeを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-040-05g` | exchange conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-040-05h` | update conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-040-05i` | rollback先として直前の適格版または明示replacementを宣言しない | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-040-05j` | declared verification scopeを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-040-05k` | declared output contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-040-05l` | contract versionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-040-05m` | pack versionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-040-05n` | 同じ入力とversionから異なるartifactを生成する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-040-05o` | required dependency versionを非互換値へ変更する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-040-05p` | 宣言済compatibility range外のversion pairを入力する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-040-05q` | 宣言されていないdependencyを暗黙に使用する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
 
 ### CASE-INT-041-01 — source-bound正常（AC-INT-041-01）
 
@@ -1047,8 +1069,6 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 **期待oracle:** HARNESSとOSを個別source identity/connectorで読み、各revision/scope/authorityを個別に保つ。 L3に明記したowner/authorityとL11 R2187-01の当該親rowの正常条件を照合し、receiptの存在だけでは合格にしない。
 
 ### CASE-INT-041-02 — 親固有fieldの独立negative（AC-INT-041-02）
-
-親固有の追加negative oracle: 各source identity/revision/authorityを分離して保持し、統合で消さない。
 
 各行をCASE-INT-041-01の同一入力から作り、他fieldは有効な正常値に固定して一変数だけを変える。
 
@@ -1062,6 +1082,7 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 | `CASE-INT-041-02f` | 選択sourceの互換範囲外revisionを採用 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、該当source機構ownerとCONNECT contract ownerへ戻す。他の正常source/operationは維持する。 |
 | `CASE-INT-041-02g` | 未選択Web/WEB-OSを常時依存へ追加 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、未選択sourceは未観測として保持し依存ownerを追加しない。他の正常source/operationは維持する。 |
 | `CASE-INT-041-02h` | source authorityをINTELLIGENCEへ移す | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、該当source機構ownerへ戻す。他の正常source/operationは維持する。 |
+| `CASE-INT-041-02i` | 同一connectorをHARNESS sourceとOS source間で共有し、source identity/revision/scopeを分けず結ぶ | 不合格。source別bindingを保ち、各source ownerおよびCONNECT contract ownerへ戻す。 |
 
 ### CASE-INT-041-03 — 未見入力の親oracle（AC-INT-041-03）
 
@@ -1070,8 +1091,6 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 期待: この親のsource identity/revision/scopeとownerを保つ。正常に照合できない情報を補完せず、該当fieldだけをAC-INT-041-04のunknown変異として別に扱う。
 
 ### CASE-INT-041-04 — fieldごとのunknown/未宣言/範囲外（AC-INT-041-04）
-
-親固有の追加negative oracle: 各source identity/revision/authorityを分離して保持し、統合で消さない。
 
 各行は独立したfixtureであり、他のsource/fieldはCASE-INT-041-01の有効値を保つ。
 
@@ -1085,28 +1104,27 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 
 ### 共通HARNESS-L2-010/011 pack — 個別field negative（AC-INT-041-02）
 
-この固定親の各対象operationで共通HARNESS-L2-010/011 packを照合する。L2-017は036〜039各接続のadmitted contractに依存する。以下は各々別fixtureで、一度にpack field一つだけを変え、親固有source authorityは有効のままにする。pack不成立なら当該親の成立を未完了に保ち、HARNESS pack/contract ownerへ戻す。無関係なoperationは継続する。
+この固定親の各対象operationで共通HARNESS-L2-010/011 packを照合する。以下は各々別fixtureで、一度にpack field一つだけを変え、親固有source authorityは有効のままにする。pack不成立なら当該親の成立を未完了に保ち、HARNESS pack/contract ownerへ戻す。無関係なoperationは継続する。
 
 | CASE | 単独変異 | 期待結果・戻し先 |
 |---|---|---|
-| `CASE-INT-041-05a` | pack identityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-041-05b` | contract revisionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-041-05c` | artifact revisionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-041-05d` | artifact digestを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-041-05e` | dependency versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-041-05f` | declared compatibilityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-041-05g` | exchange contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-041-05h` | update contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-041-05i` | rollback conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-041-05j` | pack scopeを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-041-05k` | provenanceを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-041-05l` | contract revisionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-041-05m` | artifact revisionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-041-05n` | artifact digestだけを一致しない値にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-041-05o` | dependency versionだけを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-041-05p` | 宣言済compatibility rangeは保持したまま入力version pairだけを範囲外にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-041-05q` | provenanceだけを異なるsource identityへ結ぶ | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-041-05r` | rollback contractだけを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-041-05a` | pack/ability identityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-041-05b` | contract versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-041-05c` | pack versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-041-05d` | declared input contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-041-05e` | required dependency versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-041-05f` | declared compatibility rangeを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-041-05g` | exchange conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-041-05h` | update conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-041-05i` | rollback先として直前の適格版または明示replacementを宣言しない | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-041-05j` | declared verification scopeを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-041-05k` | declared output contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-041-05l` | contract versionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-041-05m` | pack versionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-041-05n` | 同じ入力とversionから異なるartifactを生成する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-041-05o` | required dependency versionを非互換値へ変更する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-041-05p` | 宣言済compatibility range外のversion pairを入力する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-041-05q` | 宣言されていないdependencyを暗黙に使用する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
 
 ### CASE-INT-044-01 — source-bound正常（AC-INT-044-01）
 
@@ -1129,6 +1147,7 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 | `CASE-INT-044-02f` | 汎用性を根拠なく確定 | 変異fieldだけを不成立として保持し、LABO evaluation ownerへ不足情報を戻す。無関係な正常field/operationは保持する。 |
 | `CASE-INT-044-02g` | 未選択connectorを必須依存として提案へ追加 | 変異fieldだけを不成立として保持し、LABO evaluation ownerへ不足情報を戻す。無関係な正常field/operationは保持する。 |
 | `CASE-INT-044-02h` | INTELLIGENCEからBRAINへ直接出力 | 変異fieldだけを不成立として保持し、BRAIN knowledge ownerへ不足情報を戻す。無関係な正常field/operationは保持する。 |
+| `CASE-INT-044-02j` | evidenceが欠落したcandidateからBRAIN canonicalを更新する | 不合格。BRAIN canonicalを不変に保ち、evidence/candidateをLABO evaluation ownerへ戻す。 |
 
 ### CASE-INT-044-03 — 未見入力の親oracle（AC-INT-044-03）
 
@@ -1152,28 +1171,27 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 
 ### 共通HARNESS-L2-010/011 pack — 個別field negative（AC-INT-044-02）
 
-この固定親の各対象operationで共通HARNESS-L2-010/011 packを照合する。L2-017は036〜039各接続のadmitted contractに依存する。以下は各々別fixtureで、一度にpack field一つだけを変え、親固有source authorityは有効のままにする。pack不成立なら当該親の成立を未完了に保ち、HARNESS pack/contract ownerへ戻す。無関係なoperationは継続する。
+この固定親の各対象operationで共通HARNESS-L2-010/011 packを照合する。以下は各々別fixtureで、一度にpack field一つだけを変え、親固有source authorityは有効のままにする。pack不成立なら当該親の成立を未完了に保ち、HARNESS pack/contract ownerへ戻す。無関係なoperationは継続する。
 
 | CASE | 単独変異 | 期待結果・戻し先 |
 |---|---|---|
-| `CASE-INT-044-05a` | pack identityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-044-05b` | contract revisionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-044-05c` | artifact revisionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-044-05d` | artifact digestを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-044-05e` | dependency versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-044-05f` | declared compatibilityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-044-05g` | exchange contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-044-05h` | update contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-044-05i` | rollback conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-044-05j` | pack scopeを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-044-05k` | provenanceを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-044-05l` | contract revisionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-044-05m` | artifact revisionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-044-05n` | artifact digestだけを一致しない値にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-044-05o` | dependency versionだけを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-044-05p` | 宣言済compatibility rangeは保持したまま入力version pairだけを範囲外にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-044-05q` | provenanceだけを異なるsource identityへ結ぶ | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-044-05r` | rollback contractだけを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-044-05a` | pack/ability identityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-044-05b` | contract versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-044-05c` | pack versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-044-05d` | declared input contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-044-05e` | required dependency versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-044-05f` | declared compatibility rangeを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-044-05g` | exchange conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-044-05h` | update conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-044-05i` | rollback先として直前の適格版または明示replacementを宣言しない | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-044-05j` | declared verification scopeを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-044-05k` | declared output contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-044-05l` | contract versionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-044-05m` | pack versionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-044-05n` | 同じ入力とversionから異なるartifactを生成する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-044-05o` | required dependency versionを非互換値へ変更する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-044-05p` | 宣言済compatibility range外のversion pairを入力する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-044-05q` | 宣言されていないdependencyを暗黙に使用する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
 
 ### CASE-INT-045-01 — source-bound正常（AC-INT-045-01）
 
@@ -1187,16 +1205,17 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 
 | CASE | 単独変異 | 期待結果・戻し先 |
 |---|---|---|
-| `CASE-INT-045-02a` | Product Core target identityを欠落 | 変異fieldだけを不成立として保持し、INTELLIGENCE candidate owner（unroutedとして保持）へ不足情報を戻す。無関係な正常field/operationは保持する。 |
-| `CASE-INT-045-02b` | target product revisionを欠落 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、該当Product Core ownerが判明するまでunroutedのまま保持する。他の正常source/operationは維持する。 |
-| `CASE-INT-045-02c` | source meaning/conflict evidenceを欠落 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、該当Product Core ownerが判明するまでunroutedのまま保持する。他の正常source/operationは維持する。 |
-| `CASE-INT-045-02d` | 誤ったProduct Core ownerへrouting | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、該当Product Core ownerが判明するまでunroutedのまま保持する。他の正常source/operationは維持する。 |
+| `CASE-INT-045-02a` | Product Core target identityを欠落 | 変異fieldだけを不成立として保持し、該当Product Core ownerへ照会し、対象ownerの特定/確認を求める。無関係な正常field/operationは保持する。 |
+| `CASE-INT-045-02b` | target product revisionを欠落 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、targetが未識別ならunroutedを保ち、該当Product Core ownerへ照会する。他の正常source/operationは維持する。 |
+| `CASE-INT-045-02c` | source meaning/conflict evidenceを欠落 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、targetが未識別ならunroutedを保ち、該当Product Core ownerへ照会する。他の正常source/operationは維持する。 |
+| `CASE-INT-045-02d` | 誤ったProduct Core ownerへrouting | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、targetが未識別ならunroutedを保ち、該当Product Core ownerへ照会する。他の正常source/operationは維持する。 |
 | `CASE-INT-045-02e` | INTELLIGENCEがProduct Core正本を変更 | 変異fieldだけを不成立として保持し、該当Product Core ownerへ不足情報を戻す。無関係な正常field/operationは保持する。 |
 | `CASE-INT-045-02f` | candidateを既決修正として扱う | 変異fieldだけを不成立として保持し、INTELLIGENCE candidate ownerへ不足情報を戻す。無関係な正常field/operationは保持する。 |
 | `CASE-INT-045-02g` | 未選択connectorを必須依存として提案へ追加 | 変異fieldだけを不成立として保持し、INTELLIGENCE candidate owner（unrouted保持）へ不足情報を戻す。無関係な正常field/operationは保持する。 |
-| `CASE-INT-045-02h` | source identityを欠落 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、該当Product Core ownerが判明するまでunroutedのまま保持する。他の正常source/operationは維持する。 |
-| `CASE-INT-045-02i` | source revisionを欠落 | revisionだけinvalid/incompleteにし、適切なProduct Core ownerが判明するまでunrouted保持する。 |
-| `CASE-INT-045-02j` | source scopeを欠落 | scopeだけinvalid/incompleteにし、適切なProduct Core ownerが判明するまでunrouted保持する。 |
+| `CASE-INT-045-02h` | source identityを欠落 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、targetが未識別ならunroutedを保ち、該当Product Core ownerへ照会する。他の正常source/operationは維持する。 |
+| `CASE-INT-045-02i` | source revisionを欠落 | revisionだけinvalid/incompleteにし、target未識別ならunroutedを保ち、該当Product Core ownerへ照会する。 |
+| `CASE-INT-045-02j` | source scopeを欠落 | scopeだけinvalid/incompleteにし、target未識別ならunroutedを保ち、該当Product Core ownerへ照会する。 |
+| `CASE-INT-045-02k` | Product Core target identityが判明しているが対象owner照会を省く | 不合格。推測routeせず該当Product Core ownerへ照会し、owner特定を求める。 |
 
 ### CASE-INT-045-03 — 未見入力の親oracle（AC-INT-045-03）
 
@@ -1220,25 +1239,24 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 
 ### 共通HARNESS-L2-010/011 pack — 個別field negative（AC-INT-045-02）
 
-この固定親の各対象operationで共通HARNESS-L2-010/011 packを照合する。L2-017は036〜039各接続のadmitted contractに依存する。以下は各々別fixtureで、一度にpack field一つだけを変え、親固有source authorityは有効のままにする。pack不成立なら当該親の成立を未完了に保ち、HARNESS pack/contract ownerへ戻す。無関係なoperationは継続する。
+この固定親の各対象operationで共通HARNESS-L2-010/011 packを照合する。以下は各々別fixtureで、一度にpack field一つだけを変え、親固有source authorityは有効のままにする。pack不成立なら当該親の成立を未完了に保ち、HARNESS pack/contract ownerへ戻す。無関係なoperationは継続する。
 
 | CASE | 単独変異 | 期待結果・戻し先 |
 |---|---|---|
-| `CASE-INT-045-05a` | pack identityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-045-05b` | contract revisionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-045-05c` | artifact revisionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-045-05d` | artifact digestを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-045-05e` | dependency versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-045-05f` | declared compatibilityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-045-05g` | exchange contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-045-05h` | update contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-045-05i` | rollback conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-045-05j` | pack scopeを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-045-05k` | provenanceを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-045-05l` | contract revisionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-045-05m` | artifact revisionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-045-05n` | artifact digestだけを一致しない値にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-045-05o` | dependency versionだけを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-045-05p` | 宣言済compatibility rangeは保持したまま入力version pairだけを範囲外にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-045-05q` | provenanceだけを異なるsource identityへ結ぶ | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
-| `CASE-INT-045-05r` | rollback contractだけを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-045-05a` | pack/ability identityを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-045-05b` | contract versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-045-05c` | pack versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-045-05d` | declared input contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-045-05e` | required dependency versionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-045-05f` | declared compatibility rangeを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-045-05g` | exchange conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-045-05h` | update conditionを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-045-05i` | rollback先として直前の適格版または明示replacementを宣言しない | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-045-05j` | declared verification scopeを不一致にする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-045-05k` | declared output contractを欠落 | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-045-05l` | contract versionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-045-05m` | pack versionだけをstaleにする | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-045-05n` | 同じ入力とversionから異なるartifactを生成する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-045-05o` | required dependency versionを非互換値へ変更する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-045-05p` | 宣言済compatibility range外のversion pairを入力する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
+| `CASE-INT-045-05q` | 宣言されていないdependencyを暗黙に使用する | pack照合だけをinvalid/incompleteとし、HARNESS-L2-010/011共通pack contractの定義ownerへ不足field/実値を戻す。親固有sourceのauthorityや別operationへ波及させない。 |
