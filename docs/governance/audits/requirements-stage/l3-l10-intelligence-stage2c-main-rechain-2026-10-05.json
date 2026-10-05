@@ -1,0 +1,83 @@
+{
+  "record_kind": "root_stage2c_rechain",
+  "authority_effect": "none",
+  "latest_main": "5397b1ef9a6ab251cd32148b2c2202cdd5858a7e",
+  "previous_head": "7dc40b42f0834adf986102062005942d41ce9061",
+  "scope": "HELIXINTELLIGENCE-L2-068/075 Stage2c 1.0 candidate",
+  "method": "通常mergeのadd/addをmain全bytes+Stage2c対象suffixで解消。承認済みStage2a prefix不変。業務suffixのStage2a不収載表記のみ収載済み範囲分離へ訂正。旧Stage2cのsource/再導出序文も追補内へ保持し、Stage2a不収載表記を対象範囲分離へ訂正。",
+  "documents": [
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "main_prefix_sha256": "8bcb4d3c8b9c389c73537c765cba800347cc8807757b16715f9f9dff7d4ea833",
+      "source_sha256": "b6df5e718a41779bcd02a9b1dfa7ab6b6560657c90e50a604249989e1b656bfc",
+      "source_suffix_start_line": 9,
+      "source_suffix_sha256": "415a40511d2288f4dd4d69953b90a1519df06b2391c0fc01fae4e5a012ef79e7",
+      "published_suffix_sha256": "142cc7c9b4348f145e8806938c06d021fd21aec95e321edf729343f14684b978",
+      "sha256": "9f8049fd3e7bdfe6550f5de9a444d1f44449c1b61769bf79e85b47c2c5906e81",
+      "main_prefix_byte_identical": true,
+      "preserved_stage2c_intro_sha256": "682bf8bcf6e55e50d982b1ebe17edc10af4c2563f6cce3f91438d86831eeb625"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "main_prefix_sha256": "fab1115e08628841b6e48e951b749769b5070be6ed4e4cbdd548467c07d037fc",
+      "source_sha256": "37135ee8b5c49a8a6c99870f33ecf2b2c12def02f2f8785447a698fd5b551146",
+      "source_suffix_start_line": 9,
+      "source_suffix_sha256": "cea9282d3f5e5e187a2cfb1cd44f19274f5ca4737f9711e840eff41f8aafb100",
+      "published_suffix_sha256": "cea9282d3f5e5e187a2cfb1cd44f19274f5ca4737f9711e840eff41f8aafb100",
+      "sha256": "192e980c2b4c6c7a78d2651ae30e23c5072ee1ff4ae7366bd01be155bf88aac6",
+      "main_prefix_byte_identical": true,
+      "preserved_stage2c_intro_sha256": "4e7201131f5acb40df58b1afaac060c827d2650156723312b3d0d2e66d6fff49"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "main_prefix_sha256": "9008bc9c23a8bbfc60a6ec308695b1cb37911e4066205725e16cc50a8786e2d7",
+      "source_sha256": "9a261ee29c0dd0f504770f04dc469fca93c7d4b5736d80d12a92c84a799c6eb6",
+      "source_suffix_start_line": 9,
+      "source_suffix_sha256": "52b9568536349ead0397a14feaeb6d7fc0cf07c5793e29358d8b7e11a639c41e",
+      "published_suffix_sha256": "52b9568536349ead0397a14feaeb6d7fc0cf07c5793e29358d8b7e11a639c41e",
+      "sha256": "a8f2e0c4bc1d482d6cfd68cd5f9638fcf8575104aafc7bdcb5214b162190f876",
+      "main_prefix_byte_identical": true,
+      "preserved_stage2c_intro_sha256": "ae86eb367da598b4b75935e196e4e1554600678488ba8ca2341caaebf0832ca3"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "main_prefix_sha256": "1f5c5fad4239f6738cd196bdb4af7a853db4bf0b383f958a3fa4c734b0506ad3",
+      "source_sha256": "adc15e2f4217d0271fc6db1ac90f5810fbeea8705808c771cd72266eef89bc2f",
+      "source_suffix_start_line": 9,
+      "source_suffix_sha256": "3cb7103ffca8dd0939067d5009ea970989504a7950f085d20ec1b5054d932b39",
+      "published_suffix_sha256": "fcbc8d90cd095ddf48d79bd46ea4f76b94ca3bee453c4a44e09574e3a05169b2",
+      "sha256": "5839b4cd42af9d57b0e01e8da6014838097671738297e2a343bcc4739d67809d",
+      "main_prefix_byte_identical": true,
+      "preserved_stage2c_intro_sha256": "ca78be1ed68a85d909ab0d3f399349aef298cd2487f5541ffaccdffdac73d34f"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "main_prefix_sha256": "acdf2c47ca838e309fac30241ae913e261b296c9489bc9509c0329a2a5addfe5",
+      "source_sha256": "70b5ee77c19109515d98c82505a19ad50c3df4fa842839e5c4904576c7c7dbd0",
+      "source_suffix_start_line": 13,
+      "source_suffix_sha256": "68de345dd7d13bbf7ac22fdf9174bcba85c4cab300abc9a1d396efd8a9bc043d",
+      "published_suffix_sha256": "68de345dd7d13bbf7ac22fdf9174bcba85c4cab300abc9a1d396efd8a9bc043d",
+      "sha256": "cb9cc91c9f2646e2272fd18c6fd2b176285ba3b0f36409805e5a2879adad6017",
+      "main_prefix_byte_identical": true,
+      "preserved_stage2c_intro_sha256": "69abb95503a83a043ea189f93fd8b48f01e8a135fbe94e3bc9a11b58321ebe61"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "main_prefix_sha256": "0bf3903295c32f65147c45535a7143616274521eca6a71cb52204841ebaf4311",
+      "source_sha256": "e2585be9f3e27184f30b62a645816f000612ea0760e26e00dc08e28a44b7d22e",
+      "source_suffix_start_line": 9,
+      "source_suffix_sha256": "c1eac3f03ebe247f7aa29c9a2c4ab58a0bf169415e1e27fb5df27df3de77f49f",
+      "published_suffix_sha256": "c1eac3f03ebe247f7aa29c9a2c4ab58a0bf169415e1e27fb5df27df3de77f49f",
+      "sha256": "046a3b23b5070e339e579da2428d7773cb91da2b9ebad520971be3803e2e1a80",
+      "main_prefix_byte_identical": true,
+      "preserved_stage2c_intro_sha256": "8a9437d7a897a4998f8f2d36ad32967bbb9aac6eae3f04581f9d1d4d092cd157"
+    }
+  ],
+  "review_requirement": "新6本文revisionのOpus/Fable独立確認をやり直す。旧no_findingsから承認を継承しない。",
+  "c13_public_source": {
+    "comment_id": 5981101754,
+    "raw_body_sha256": "ec73191641cef5fc5135049f6243212dd2e3972291800b50bced366da87ab6d2",
+    "historical_local_snapshot_sha256": "4d837e616451040cb15762e98b65cb9f104db8856f0319f4f376a47459644f1c",
+    "note": "別bytesの記録を区別する。過去監査は変更しない。"
+  }
+}
