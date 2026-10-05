@@ -775,9 +775,9 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 
 | case ID | L3 FR | L3 AC | 入力fixture／観測 | 合格oracle | 反例・未評価 |
 |---|---|---|---|---|---|
-| `CASE-OS-L10-021-01` | `FR-OS-L3-021` | `AC-OS-L3-021-01` | 一つのproject/scopeでHARNESSサービス①〜⑦の各component identity/version、個別のsource/artifact digest・適格性evidence、必要安全依存、candidate/active版と復旧先を与える。 | 7サービスの各evidenceが対応serviceと個別に結び、選択構成とoperation stateが正確に追跡される。未選択componentは含まれない。 | 別service evidenceの流用、digest/component/scope欠落は不合格またはunknown。 |
+| `CASE-OS-L10-021-01` | `FR-OS-L3-021` | `AC-OS-L3-021-01` | 各サービスを個別に選択した7つの独立project構成の対照で、選択serviceのcomponent identity/version、個別のsource/artifact digest・適格性evidence、必要安全依存、candidate/active版と復旧先を与える。 | 各対照の選択service evidenceが対応serviceと個別に結び、選択構成とoperation stateが正確に追跡される。未選択componentは含まれない。 | 別service evidenceの流用、digest/component/scope欠落は不合格またはunknown。 |
 | `CASE-OS-L10-021-02` | `FR-OS-L3-021` | `AC-OS-L3-021-02` | 適格な単一project構成と、他projectが未完了の並行fixtureを比較する。別にOS-L2-014段階identityを与える。 | 対象projectの限定operationは他project完成待ちなしに進み、021状態と014状態は分離する。 | 他製品gateまたは全OS stage成立への昇格は不合格。 |
-| `CASE-OS-L10-021-03` | `FR-OS-L3-021` | `AC-OS-L3-021-03` | 7サービス①〜⑦の証拠を各一つずつ欠落させる7 mutation、選択済みartifactを別artifactへ切替えるmutation、部分apply後の中断→rollback→再開を与える。qualified prior版あり/なしも対照にする。 | いずれの欠落/切替も導入成立にせずownerへ返す。中断時の途中成果・未完義務・復旧先を保ち、再開時も元の選択・artifact・scopeを再照合する。 | 成果消去、異artifact受入、未指定component包含、rollbackで義務消失なら不合格。 |
+| `CASE-OS-L10-021-03` | `FR-OS-L3-021` | `AC-OS-L3-021-03` | 各サービス単独選択の7対照構成で当該serviceの証拠だけを欠落させる7 mutation、選択済みartifactを別artifactへ切替えるmutation、部分apply後の中断→rollback→再開を与える。qualified prior版あり/なしも対照にする。 | いずれの欠落/切替も導入成立にせずownerへ返す。中断時の途中成果・未完義務・復旧先を保ち、再開時も元の選択・artifact・scopeを再照合する。 | 成果消去、異artifact受入、未指定component包含、rollbackで義務消失なら不合格。 |
 | `CASE-OS-L10-022-01` | `FR-OS-L3-022` | `AC-OS-L3-022-01` | 同じtarget revision/scopeのsource eventから、LABO独立評価・提案・比較実験依頼、既存decision、ticket、change/verification、再観測までのcomplete fixtureを与える。各LABO出力は別々の入力欄・owner/stateで観測する。 | eventから再観測まで因果traceが辿れ、LABO評価/提案と比較実験依頼、OS registrar、判断ownerは分離される。 | 各edgeまたはLABO出力の欠落、revision/scope不一致はtrace未完。 |
 | `CASE-OS-L10-022-02` | `FR-OS-L3-022` | `AC-OS-L3-022-02` | source event、LABO independent evaluation/proposal/comparison-experiment request、ticket updateのいずれか一つだけを変えるが既存decision receiptは固定する。L2-012/013の横断診断結果をOSへ移管する変異も比較する。 | candidate/registrationは残るが要求・設計・authority stateは変化せず、研究/横断診断ownerもLABOのままである。 | proposal/registration/ticketのみから採択を生成、またはOSがL2-012/013の診断ownerになれば不合格。 |
 | `CASE-OS-L10-022-03` | `FR-OS-L3-022` | `AC-OS-L3-022-03` | source、target revision、scope、LABO evaluation, decision, return routeを独立に欠落/不一致にする。negativeと、適用可能な正当な棄却＋再評価条件付きfixtureを比較する。 | missing/conflict時は未解決、棄却理由と未完義務を保持しownerへ返す。棄却は別の正常terminalである。 | unknownをsuccess扱い、または棄却理由を消去すれば不合格。 |
@@ -799,81 +799,81 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 
 | CASE ID | 親AC | 単独変異入力 | 期待oracle／戻し先 |
 |---|---|---|---|
-| `CASE-OS-L10-021-03a` | `AC-OS-L3-021-01`,`AC-OS-L3-021-03` | HARNESS service ①の適格性evidenceだけ欠落 | ①の導入成立を作らず該当service契約ownerへ返す。 |
-| `CASE-OS-L10-021-03b` | 同上 | HARNESS service ②の適格性evidenceだけ欠落 | ②だけ未完。別serviceのevidenceで補わない。 |
-| `CASE-OS-L10-021-03c` | 同上 | HARNESS service ③の適格性evidenceだけ欠落 | ③だけ未完。 |
-| `CASE-OS-L10-021-03d` | 同上 | HARNESS service ④の適格性evidenceだけ欠落 | ④だけ未完。 |
-| `CASE-OS-L10-021-03e` | 同上 | HARNESS service ⑤の適格性evidenceだけ欠落 | ⑤だけ未完。 |
-| `CASE-OS-L10-021-03f` | 同上 | HARNESS service ⑥の適格性evidenceだけ欠落 | ⑥だけ未完。 |
-| `CASE-OS-L10-021-03g` | 同上 | HARNESS service ⑦の適格性evidenceだけ欠落 | ⑦だけ未完。7 serviceはHARNESS構成の要素であり7製品または7機構の数ではない。 |
+| `CASE-OS-L10-021-03a` | `AC-OS-L3-021-01`,`AC-OS-L3-021-03` | ①だけを選択した適格構成でHARNESS service ①の適格性evidenceだけ欠落 | ①の導入成立を作らず該当service契約ownerへ返す。 |
+| `CASE-OS-L10-021-03b` | `AC-OS-L3-021-01`,`AC-OS-L3-021-03` | ②だけを選択した適格構成でHARNESS service ②の適格性evidenceだけ欠落 | ②だけ未完。別serviceのevidenceで補わない。 |
+| `CASE-OS-L10-021-03c` | `AC-OS-L3-021-01`,`AC-OS-L3-021-03` | ③だけを選択した適格構成でHARNESS service ③の適格性evidenceだけ欠落 | ③だけ未完。 |
+| `CASE-OS-L10-021-03d` | `AC-OS-L3-021-01`,`AC-OS-L3-021-03` | ④だけを選択した適格構成でHARNESS service ④の適格性evidenceだけ欠落 | ④だけ未完。 |
+| `CASE-OS-L10-021-03e` | `AC-OS-L3-021-01`,`AC-OS-L3-021-03` | ⑤だけを選択した適格構成でHARNESS service ⑤の適格性evidenceだけ欠落 | ⑤だけ未完。 |
+| `CASE-OS-L10-021-03f` | `AC-OS-L3-021-01`,`AC-OS-L3-021-03` | ⑥だけを選択した適格構成でHARNESS service ⑥の適格性evidenceだけ欠落 | ⑥だけ未完。 |
+| `CASE-OS-L10-021-03g` | `AC-OS-L3-021-01`,`AC-OS-L3-021-03` | ⑦だけを選択した適格構成でHARNESS service ⑦の適格性evidenceだけ欠落 | ⑦だけ未完。7 serviceはHARNESS構成の要素であり7製品または7機構の数ではない。 |
 | `CASE-OS-L10-021-03h` | `AC-OS-L3-021-01` | 選択component identityだけを別値にする | 選択したidentityとartifactの結束不一致で導入不成立。HARNESS契約ownerへ返す。 |
-| `CASE-OS-L10-021-03i` | 同上 | 選択versionだけをstaleにする | stale版で成功にしない。HARNESS契約ownerへ返す。 |
-| `CASE-OS-L10-021-03j` | 同上 | source digestだけを不一致にする | source/artifact一致未確認として未完。source ownerへ返す。 |
-| `CASE-OS-L10-021-03k` | 同上 | 対象projectだけを変更する | 別projectの証拠は流用しない。OSの既存対象責務へ返す。 |
+| `CASE-OS-L10-021-03i` | `AC-OS-L3-021-01` | 選択versionだけをstaleにする | stale版で成功にしない。HARNESS契約ownerへ返す。 |
+| `CASE-OS-L10-021-03j` | `AC-OS-L3-021-01` | source digestだけを不一致にする | source/artifact一致未確認として未完。source ownerへ返す。 |
+| `CASE-OS-L10-021-03k` | `AC-OS-L3-021-01` | 対象projectだけを変更する | 別projectの証拠は流用しない。OSの既存対象責務へ返す。 |
 | `CASE-OS-L10-021-03l` | `AC-OS-L3-021-02` | 他projectが未完である事実だけを加える | 対象projectが適格なら個別判定を維持し、他project待ちgateを作らない。 |
 | `CASE-OS-L10-021-03m` | `AC-OS-L3-021-01` | 必要安全依存の証拠だけを欠落させる | その依存を未完にし、既存依存ownerへ返す。 |
 | `CASE-OS-L10-021-03n` | `AC-OS-L3-021-03` | rollback先だけを欠落させた中断入力 | recovery成立を作らず、部分適用・未完義務を残して管理/提供元へ返す。 |
 | `CASE-OS-L10-022-03a` | `AC-OS-L3-022-01`,`AC-OS-L3-022-03` | source eventだけ欠落 | candidateを未解決で保持しsource ownerへ返す。 |
-| `CASE-OS-L10-022-03b` | 同上 | 対象revisionだけ不一致 | 別revisionの評価/結果を流用しない。正本ownerへ返す。 |
-| `CASE-OS-L10-022-03c` | 同上 | 適用scopeだけ不一致 | scope外candidateを適用せず元のscope ownerへ返す。 |
+| `CASE-OS-L10-022-03b` | `AC-OS-L3-022-01`,`AC-OS-L3-022-03` | 対象revisionだけ不一致 | 別revisionの評価/結果を流用しない。正本ownerへ返す。 |
+| `CASE-OS-L10-022-03c` | `AC-OS-L3-022-01`,`AC-OS-L3-022-03` | 適用scopeだけ不一致 | scope外candidateを適用せず元のscope ownerへ返す。 |
 | `CASE-OS-L10-022-03d` | `AC-OS-L3-022-01` | LABO独立評価だけ欠落 | OSは評価を補わず未解決でLABOへ返す。 |
-| `CASE-OS-L10-022-03e` | 同上 | LABO提案だけ欠落 | 評価と提案の差を保持しLABOへ返す。 |
-| `CASE-OS-L10-022-03f` | 同上 | 比較実験依頼だけ欠落 | 依頼がない状態を記録し、OSで代作しない。 |
+| `CASE-OS-L10-022-03e` | `AC-OS-L3-022-01` | LABO提案だけ欠落 | 評価と提案の差を保持しLABOへ返す。 |
+| `CASE-OS-L10-022-03f` | `AC-OS-L3-022-01` | 比較実験依頼だけ欠落 | 依頼がない状態を記録し、OSで代作しない。 |
 | `CASE-OS-L10-022-03g` | `AC-OS-L3-022-02` | 既存判断ownerの採否receiptだけ欠落 | ticket/changeを採択済みへ進めず、既存判断ownerへ返す。 |
 | `CASE-OS-L10-022-03h` | `AC-OS-L3-022-01` | OS ticketだけ欠落 | LABO評価や採否をticket成立としない。OSの既存ticket経路へ戻す。 |
-| `CASE-OS-L10-022-03i` | 同上 | 変更後検証だけ欠落 | 未完検証義務を保持し、該当HARNESS/変更ownerへ返す。 |
-| `CASE-OS-L10-022-03j` | 同上 | 再観測だけ欠落 | 改善効果を確定せず未観測として保持しLABOへ返す。 |
+| `CASE-OS-L10-022-03i` | `AC-OS-L3-022-01` | 変更後検証だけ欠落 | 未完検証義務を保持し、該当HARNESS/変更ownerへ返す。 |
+| `CASE-OS-L10-022-03j` | `AC-OS-L3-022-01` | 再観測だけ欠落 | 改善効果を確定せず未観測として保持しLABOへ返す。 |
 | `CASE-OS-L10-022-03k` | `AC-OS-L3-022-02` | ticket statusだけを採択へ変える | 既存判断receiptなしに要求/設計/authorityを変えない。 |
 | `CASE-OS-L10-024-03a` | `AC-OS-L3-024-01`,`AC-OS-L3-024-03` | SECURITY data-use permissionだけ欠落 | 対象データを送らずpermission ownerへ返す。 |
-| `CASE-OS-L10-024-03b` | 同上 | permissionだけ拒否へ変更 | 送信/採用を停止し、拒否状態を保持する。 |
-| `CASE-OS-L10-024-03c` | 同上 | data-use classだけunknownにする | classを推測せず送信保留、分類/permission ownerへ返す。 |
-| `CASE-OS-L10-024-03d` | 同上 | data-use classのsource revisionだけstale | stale分類を適用せず既存分類ownerへ返す。 |
-| `CASE-OS-L10-024-03e` | 同上 | target project revisionだけ変更 | 別revisionのpermission/evaluationを再利用しない。OSとpermission ownerへ返す。 |
-| `CASE-OS-L10-024-03f` | 同上 | permitted scopeだけ過大にする | 許可外部分は送信0。該当scope/permission ownerへ返す。 |
+| `CASE-OS-L10-024-03b` | `AC-OS-L3-024-01`,`AC-OS-L3-024-03` | permissionだけ拒否へ変更 | 送信/採用を停止し、拒否状態を保持する。 |
+| `CASE-OS-L10-024-03c` | `AC-OS-L3-024-01`,`AC-OS-L3-024-03` | data-use classだけunknownにする | classを推測せず送信保留、分類/permission ownerへ返す。 |
+| `CASE-OS-L10-024-03d` | `AC-OS-L3-024-01`,`AC-OS-L3-024-03` | data-use classのsource revisionだけstale | stale分類を適用せず既存分類ownerへ返す。 |
+| `CASE-OS-L10-024-03e` | `AC-OS-L3-024-01`,`AC-OS-L3-024-03` | target project revisionだけ変更 | 別revisionのpermission/evaluationを再利用しない。OSとpermission ownerへ返す。 |
+| `CASE-OS-L10-024-03f` | `AC-OS-L3-024-01`,`AC-OS-L3-024-03` | permitted scopeだけ過大にする | 許可外部分は送信0。該当scope/permission ownerへ返す。 |
 | `CASE-OS-L10-024-03g` | `AC-OS-L3-024-01` | LABO evaluation rangeだけtarget scope外にする | 不一致結果を採用せずLABOへ返す。 |
 | `CASE-OS-L10-024-03h` | `AC-OS-L3-024-03` | L2-019 dependency revisionだけstale | 接続未完としてOS既存ownerへ返す。 |
-| `CASE-OS-L10-024-03i` | 同上 | L2-021 dependency identityだけ欠落 | 対象提供版が分からない状態を保ちOS既存ownerへ返す。 |
-| `CASE-OS-L10-024-03j` | 同上 | L2-022 dependency revisionだけ不一致 | 還流接続を成立扱いせずOS既存ownerへ返す。 |
-| `CASE-OS-L10-024-03k` | 同上 | version付きLABO connectorだけ非互換 | その接続を止めLABO接続ownerへ返す。 |
-| `CASE-OS-L10-024-03l` | 同上 | WEB-OS tenant dataを1件混入 | 本体OS正本へ混入せず、scope逸脱として送信を拒否する。 |
+| `CASE-OS-L10-024-03i` | `AC-OS-L3-024-03` | L2-021 dependency identityだけ欠落 | 対象提供版が分からない状態を保ちOS既存ownerへ返す。 |
+| `CASE-OS-L10-024-03j` | `AC-OS-L3-024-03` | L2-022 dependency revisionだけ不一致 | 還流接続を成立扱いせずOS既存ownerへ返す。 |
+| `CASE-OS-L10-024-03k` | `AC-OS-L3-024-03` | version付きLABO connectorだけ非互換 | その接続を止めLABO接続ownerへ返す。 |
+| `CASE-OS-L10-024-03l` | `AC-OS-L3-024-03` | WEB-OS tenant dataを1件混入 | 本体OS正本へ混入せず、scope逸脱として送信を拒否する。 |
 | `CASE-OS-L10-046-02a` | `AC-OS-L3-046-02` | operation authorityの有効性だけを失効 | そのoperation遷移を未完としSECURITYの既存authority ownerへ返す。 |
-| `CASE-OS-L10-046-02b` | 同上 | content HEADだけ変更 | 旧HEAD review/verificationを流用せず新HEADの既存検証/独立reviewへ戻す。 |
-| `CASE-OS-L10-046-02c` | `AC-OS-L3-046-01`,`AC-OS-L3-046-02` | baseだけ変更し他fieldとpairが一致・stale=0・依存維持 | 最新baseとの既存照合を記録し、それだけでstateを失効させない。 |
+| `CASE-OS-L10-046-02b` | `AC-OS-L3-046-02` | content HEADだけ変更 | 旧HEAD review/verificationを流用せず新HEADの既存検証/独立reviewへ戻す。 |
+| `CASE-OS-L10-046-02c` | `AC-OS-L3-046-01`,`AC-OS-L3-046-02` | baseだけ変更し、旧baseへのreview bindingと他fieldを保持 | 新baseとのpair不一致として当該遷移をstale/未完に戻し、既存独立review/admissionを再照合する。 |
 | `CASE-OS-L10-046-02d` | `AC-OS-L3-046-02` | selected scopeだけ変更 | 影響する遷移だけstale/未完。無関係scopeは一律停止しない。 |
-| `CASE-OS-L10-046-02e` | 同上 | ticket/assignment identityだけ変更 | 別assignment証拠を流用せずOS既存assignment ownerへ返す。 |
-| `CASE-OS-L10-046-02f` | 同上 | 適用HARNESS contract revisionだけ変更 | 適用範囲/required条件をHARNESS既存ownerで再照合する。 |
+| `CASE-OS-L10-046-02e` | `AC-OS-L3-046-02` | ticket/assignment identityだけ変更 | 別assignment証拠を流用せずOS既存assignment ownerへ返す。 |
+| `CASE-OS-L10-046-02f` | `AC-OS-L3-046-02` | 適用HARNESS contract revisionだけ変更 | 適用範囲/required条件をHARNESS既存ownerで再照合する。 |
 | `CASE-OS-L10-046-03a` | `AC-OS-L3-046-03` | `docs/` pathだけを根拠に既存reviewを除外 | 既存適用契約のreview義務を維持する。 |
-| `CASE-OS-L10-046-03b` | 同上 | prototype mergeをproduction実装許可へ読み替える | prototype scopeを越える遷移を許可しない。 |
-| `CASE-OS-L10-046-03c` | 同上 | required verification結果だけ欠落 | Ready/admission候補へ進めずHARNESS既存ownerへ返す。 |
-| `CASE-OS-L10-046-03d` | 同上 | 別HEADのverification receiptを流用 | exact HEAD mismatchで不成立。 |
+| `CASE-OS-L10-046-03b` | `AC-OS-L3-046-03` | prototype mergeをproduction実装許可へ読み替える | prototype scopeを越える遷移を許可しない。 |
+| `CASE-OS-L10-046-03c` | `AC-OS-L3-046-03` | required verification結果だけ欠落 | Ready/admission候補へ進めずHARNESS既存ownerへ返す。 |
+| `CASE-OS-L10-046-03d` | `AC-OS-L3-046-03` | 別HEADのverification receiptを流用 | exact HEAD mismatchで不成立。 |
 | `CASE-OS-L10-048-01a` | `AC-OS-L3-048-01` | finding identityだけ欠落 | ticket/finding結合を未完にして発生元へ返す。 |
-| `CASE-OS-L10-048-01b` | 同上 | ticket/assignmentだけ不一致 | 別ticketのresolutionを使わずOS ticket ownerへ返す。 |
-| `CASE-OS-L10-048-01c` | 同上 | target revisionだけstale | stale evidenceをpendingのまま保ち対象正本ownerへ返す。 |
-| `CASE-OS-L10-048-01d` | 同上 | scopeだけ不一致 | scope外evaluation/placement案を採用せず元ownerへ返す。 |
-| `CASE-OS-L10-048-01e` | 同上 | source/originだけ欠落 | source provenanceを推定せずorigin ownerへ返す。 |
-| `CASE-OS-L10-048-01f` | 同上 | oracle/input不足条件だけ削除 | resolution条件を満たさずHARNESS oracle ownerへ返す。 |
-| `CASE-OS-L10-048-01g` | 同上 | LABO evaluationだけ未着 | INTELLIGENCE案の入力にせずLABOへ返す。 |
-| `CASE-OS-L10-048-01h` | 同上 | LABO評価scopeだけ不一致 | 配置案に使わずLABOへ返す。 |
+| `CASE-OS-L10-048-01b` | `AC-OS-L3-048-01` | ticket/assignmentだけ不一致 | 別ticketのresolutionを使わずOS ticket ownerへ返す。 |
+| `CASE-OS-L10-048-01c` | `AC-OS-L3-048-01` | target revisionだけstale | stale evidenceをpendingのまま保ち対象正本ownerへ返す。 |
+| `CASE-OS-L10-048-01d` | `AC-OS-L3-048-01` | scopeだけ不一致 | scope外evaluation/placement案を採用せず元ownerへ返す。 |
+| `CASE-OS-L10-048-01e` | `AC-OS-L3-048-01` | source/originだけ欠落 | source provenanceを推定せずorigin ownerへ返す。 |
+| `CASE-OS-L10-048-01f` | `AC-OS-L3-048-01` | oracle/input不足条件だけ削除 | resolution条件を満たさずHARNESS oracle ownerへ返す。 |
+| `CASE-OS-L10-048-01g` | `AC-OS-L3-048-01` | LABO evaluationだけ未着 | INTELLIGENCE案の入力にせずLABOへ返す。 |
+| `CASE-OS-L10-048-01h` | `AC-OS-L3-048-01` | LABO評価scopeだけ不一致 | 配置案に使わずLABOへ返す。 |
 | `CASE-OS-L10-048-02a` | `AC-OS-L3-048-02` | required current evidenceをprose-onlyへ変更 | pendingを維持し、既存resolution ownerへ返す。 |
-| `CASE-OS-L10-048-02b` | 同上 | current evidence revisionだけstale | pendingを維持し元のevidence ownerへ返す。 |
-| `CASE-OS-L10-048-02c` | 同上 | comparison evidenceだけ欠落 | resolutionせず比較可能なevidenceをownerへ求める。 |
-| `CASE-OS-L10-048-02d` | 同上 | closure済ticketのprior recordだけ上書き | closureを保持し追補assessmentを別記録する。 |
-| `CASE-OS-L10-048-02e` | 同上 | post-closure causal relationだけ欠落 | 時間/path近接で因果を作らずunknownのまま返す。 |
-| `CASE-OS-L10-048-02f` | 同上 | observation window未満を0 defectにする変異 | 未観測として別集計し0件に換算しない。 |
-| `CASE-OS-L10-048-02g` | 同上 | observationが未追跡 | 未追跡状態を保持しdefect 0へ換算しない。 |
-| `CASE-OS-L10-048-02h` | 同上 | observationを打切りにする | 打切り件数を保持し欠陥なしへ丸めない。 |
+| `CASE-OS-L10-048-02b` | `AC-OS-L3-048-02` | current evidence revisionだけstale | pendingを維持し元のevidence ownerへ返す。 |
+| `CASE-OS-L10-048-02c` | `AC-OS-L3-048-02` | comparison evidenceだけ欠落 | resolutionせず比較可能なevidenceをownerへ求める。 |
+| `CASE-OS-L10-048-02d` | `AC-OS-L3-048-02` | closure済ticketのprior recordだけ上書き | closureを保持し追補assessmentを別記録する。 |
+| `CASE-OS-L10-048-02e` | `AC-OS-L3-048-02` | post-closure causal relationだけ欠落 | 時間/path近接で因果を作らずunknownのまま返す。 |
+| `CASE-OS-L10-048-02f` | `AC-OS-L3-048-02` | observation window未満を0 defectにする変異 | 未観測として別集計し0件に換算しない。 |
+| `CASE-OS-L10-048-02g` | `AC-OS-L3-048-02` | observationが未追跡 | 未追跡状態を保持しdefect 0へ換算しない。 |
+| `CASE-OS-L10-048-02h` | `AC-OS-L3-048-02` | observationを打切りにする | 打切り件数を保持し欠陥なしへ丸めない。 |
 | `CASE-OS-L10-048-03a` | `AC-OS-L3-048-03` | LABO再評価だけ欠落 | 再発行結果を改善成功へ確定せずLABOへ戻す。 |
 | `CASE-OS-L10-052-01a` | `AC-OS-L3-052-01` | local worktreeのassignment ownerだけが異なる | cleanupせず現所有assignmentへ返す。 |
-| `CASE-OS-L10-052-01b` | 同上 | 他assignmentが同じworktreeを使用中 | cleanupせずその使用状態を保持する。 |
-| `CASE-OS-L10-052-01c` | 同上 | unfinished local workだけ存在 | cleanupを保留し未完義務を作成側へ返す。 |
-| `CASE-OS-L10-052-01d` | 同上 | merge read-afterだけ欠落 | cleanupせずpost-merge確認未完としてOS既存ownerへ返す。 |
-| `CASE-OS-L10-052-01e` | 同上 | remote refのみを対象にする | local cleanupへ含めず、対象/作用を含む明示authorityがなければ削除しない。 |
-| `CASE-OS-L10-052-01f` | `AC-OS-L3-052-02` | cleanupの2回目実行 | 同じ適格local対象のみ冪等に扱い、別assignmentを変更しない。 |
-| `CASE-OS-L10-052-02a` | 同上 | trial merge conflictだけ存在 | content HEADを書き換えず理由を作成側へ返す。 |
-| `CASE-OS-L10-052-02b` | 同上 | stale判定だけ発生 | 古いreview bindingを使わず該当範囲を未完にする。 |
-| `CASE-OS-L10-052-02c` | 同上 | dependencyだけ変化 | affected bindingを再照合し作成側へ理由を返す。 |
-| `CASE-OS-L10-052-02d` | 同上 | review bindingだけ不一致 | merge側でbranchを変更せず、新HEAD後のreviewを待つ。 |
-| `CASE-OS-L10-052-02e` | 同上 | baseだけ変わりcontent HEAD/pair一致、stale=0、dependency維持 | stateを保持し、base-only changeを単独の返却理由にしない。 |
+| `CASE-OS-L10-052-01b` | `AC-OS-L3-052-01` | 他assignmentが同じworktreeを使用中 | cleanupせずその使用状態を保持する。 |
+| `CASE-OS-L10-052-01c` | `AC-OS-L3-052-01` | unfinished local workだけ存在 | cleanupを保留し未完義務を作成側へ返す。 |
+| `CASE-OS-L10-052-01d` | `AC-OS-L3-052-01` | merge read-afterだけ欠落 | cleanupせずpost-merge確認未完としてOS既存ownerへ返す。 |
+| `CASE-OS-L10-052-01e` | `AC-OS-L3-052-01` | remote refのみを対象にする | local cleanupへ含めず、対象/作用を含む明示authorityがなければ削除しない。 |
+| `CASE-OS-L10-052-01f` | `AC-OS-L3-052-01` | cleanupの2回目実行 | 同じ適格local対象のみ冪等に扱い、別assignmentを変更しない。 |
+| `CASE-OS-L10-052-02a` | `AC-OS-L3-052-02` | trial merge conflictだけ存在 | content HEADを書き換えず理由を作成側へ返す。 |
+| `CASE-OS-L10-052-02b` | `AC-OS-L3-052-02` | stale判定だけ発生 | 古いreview bindingを使わず該当範囲を未完にする。 |
+| `CASE-OS-L10-052-02c` | `AC-OS-L3-052-02` | dependencyだけ変化 | affected bindingを再照合し作成側へ理由を返す。 |
+| `CASE-OS-L10-052-02d` | `AC-OS-L3-052-02` | review bindingだけ不一致 | merge側でbranchを変更せず、新HEAD後のreviewを待つ。 |
+| `CASE-OS-L10-052-02e` | `AC-OS-L3-052-02` | 上流merge後の最新baseへ独立review済みpairが既に一致し、content HEAD不変・stale=0・dependency維持 | stateを保持し、base-only changeを単独の返却理由にしない。 |
 | `CASE-OS-L10-052-03a` | `AC-OS-L3-052-03` | reviewerが作成branchを修正する変異 | 修正を行わず作成側へ証拠と理由を返す。 |
-| `CASE-OS-L10-052-03b` | 同上 | 自動rebaseでcontent HEADを変える変異 | この要件から自動rebaseを許可しない。 |
-| `CASE-OS-L10-052-03c` | 同上 | Issue close/要求完了をmerge後cleanupから生成する変異 | 完了を生成せず状態を個別に保つ。 |
+| `CASE-OS-L10-052-03b` | `AC-OS-L3-052-03` | 自動rebaseでcontent HEADを変える変異 | この要件から自動rebaseを許可しない。 |
+| `CASE-OS-L10-052-03c` | `AC-OS-L3-052-03` | Issue close/要求完了をmerge後cleanupから生成する変異 | 完了を生成せず状態を個別に保つ。 |

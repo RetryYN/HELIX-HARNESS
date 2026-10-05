@@ -445,13 +445,13 @@ taskごとのscope/role/authority/task class、LABO適性evidence、INTELLIGENCE
 
 一つの選択project、要求revision、許可scopeについて、HARNESS構成版のexact component set・source/artifact digest・互換性・適格性と必要安全依存を照合し、配布・更新・復旧の状態、candidate/active版、対象artifact、未完義務、復旧先を追跡する。選択した対象と必要依存だけを扱い、未指定componentを暗黙に含めず、他projectや全製品の完成を待つ条件を加えない。L2-014の段階構成へ配布結果を合算しない。
 
-**責務／依存境界**：OSはproject別operationと状態/evidenceを管理し、HARNESSは7つの該当service契約・artifactと各サービスの適格性evidence、SECURITYは既存operation authority、INFRASTRUCTUREは資源/実環境を所有する。単独成立はOS-L2-015/016/019/020、該当HARNESS契約・artifact、SECURITY authority、INFRASTRUCTURE資源に依存する。source digest、互換性、scope、権限が不明・不一致なら対象operationを止め、管理または提供元へ返す。既存qualified版または明示された復旧先、途中成果、未完義務を保つ。新しいtag、publication、cutoverはこの要件から許可しない。
+**責務／依存境界**：OSはproject別operationと状態/evidenceを管理し、HARNESSはサービス①〜⑦のうち選択構成に該当するservice契約・artifactとその適格性evidence、SECURITYは既存operation authority、INFRASTRUCTUREは資源/実環境を所有する。単独成立はOS-L2-015/016/019/020、該当HARNESS契約・artifact、SECURITY authority、INFRASTRUCTURE資源に依存する。source digest、互換性、scope、権限が不明・不一致なら対象operationを止め、管理または提供元へ返す。既存qualified版または明示された復旧先、途中成果、未完義務を保つ。新しいtag、publication、cutoverはこの要件から許可しない。
 
 **受入条件**
 
-- **`AC-OS-L3-021-01` 選択構成と7サービス証拠**：project、要求revision、operation scope、選択component identity/version、source/artifact digest、必要安全依存、active/candidate状態と復旧先を同じoperationへ結ぶ。HARNESSのサービス①〜⑦は各サービスに対応する適格性・配布証拠を個別に照合し、別サービスの証拠で代用しない。明示選択集合だけが対象になる。
+- **`AC-OS-L3-021-01` 選択構成と7サービス証拠**：project、要求revision、operation scope、選択component identity/version、source/artifact digest、必要安全依存、active/candidate状態と復旧先を同じoperationへ結ぶ。HARNESSのサービス①〜⑦はそれぞれ独立して判定でき、当該構成で選択したサービスだけに対応する適格性・配布証拠を個別に照合し、別サービスの証拠で代用しない。明示選択集合だけが対象になる。
 - **`AC-OS-L3-021-02` 独立判定・部分導入**：一つの適格project向け構成を配布可能とし、別project/他の全製品の未完了を理由に妨げない。個別service構成成功をHELIX全体段階成立とせず、L2-014とは別状態に置く。
-- **`AC-OS-L3-021-03` 不成立と復旧**：7サービスそれぞれについて証拠を一つずつ欠落させた変異、選択後の別artifact切替、component/digest/互換性/authorityの不一致を配布成立扱いしない。部分適用後の中断では途中成果・未完義務・復旧先を保持し、rollback後の再開でも同じ選択・artifact・scopeを照合する。未指定componentの包含、成果消去、scope外operationを許さず、該当ownerへ返す。
+- **`AC-OS-L3-021-03` 不成立と復旧**：各サービスを単独に選択した7つの対照構成それぞれについて証拠を一つずつ欠落させた変異、選択後の別artifact切替、component/digest/互換性/authorityの不一致を配布成立扱いしない。部分適用後の中断では途中成果・未完義務・復旧先を保持し、rollback後の再開でも同じ選択・artifact・scopeを照合する。未指定componentの包含、成果消去、scope外operationを許さず、該当ownerへ返す。
 
 ### `FR-OS-L3-022` — `HELIXOS-L2-022`
 
