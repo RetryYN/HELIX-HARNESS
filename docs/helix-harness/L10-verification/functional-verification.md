@@ -777,7 +777,7 @@ AC-018-01の入力条件はR001〜R034に加えR056/R057で個別欠落、R058�
 | `CASE-HARNESS-L10-033-S5-033` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-06` | pack revisionだけを更新し、旧receiptを新revisionの結果として再利用する。 | 旧receipt流用を拒否し010/011照合へ戻す。 |
 | `CASE-HARNESS-L10-033-S5-034` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-03` | regression candidateを作るだけの選択操作で、修正後run receiptは未生成。 | candidate生成を許し、後続pass未観測を失敗扱いしない。 |
 | `CASE-HARNESS-L10-033-S5-035` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-03` | candidate生成時に修正後receiptが未生成という一点だけを理由に開始を拒否する。 | 初回candidateを開始可能とし、将来receipt要求を拒否する。 |
-| `CASE-HARNESS-L10-033-S5-036` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-07` | incident inputがsanitizationを経ていない。他のsource permission/oracleは正常。 | 操作を保留しsecurity/data ownerへ戻す。 |
+| `CASE-HARNESS-L10-033-S5-036` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-07` | incident reductionを選択した入力でsanitizationだけ未実施。他のsource permission/oracleは正常。 | 操作を保留しsecurity/data ownerへ戻す。 |
 | `CASE-HARNESS-L10-035-S5-027` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-05` | 候補起草段階で測定前後値は未取得だが、三観点の対象・方法・scopeを列挙。 | 候補起草を開始可能とし、測定完了を開始条件にしない。 |
 | `CASE-HARNESS-L10-035-S5-028` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-05` | scope拡張前後の複雑さ、公開面、運用負債を各々同じ対象・方法・条件で提示。 | 三観点を追加機能数と別に照合し、数式/閾値は作らない。 |
 | `CASE-HARNESS-L10-035-S5-029` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-06` | 三観点中、複雑さ測定だけ欠落し、残る二つと追加機能数は有利な結果。 | 欠測を相殺せずscope判定を未完にし要求形成ownerへ戻す。 |
@@ -799,3 +799,18 @@ AC-018-01の入力条件はR001〜R034に加えR056/R057で個別欠落、R058�
 | `CASE-HARNESS-L10-037-S5-055` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-04` | 現行phase artifactが旧実装と異なる構造だが、L2 oracle・trace・receiptは一致する。 | 旧構造との相違だけで拒否しない。 |
 | `CASE-HARNESS-L10-037-S5-056` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-04` | 全適用L2/L3/phase/oracle evidenceは正常だが、固定されていない追加人承認だけ未取得。 | 新しい人承認を要求せず、既存authority条件だけを評価する。 |
 | `CASE-HARNESS-L10-037-S5-057` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-03` | 全contract versionは適用range内だが、未解消invariant gap fieldだけが欠落して空のgap listとしてsuccessを返す。 | gap欠落からsuccessを生成せず、gap listを再照合する。 |
+
+### Stage 5 Root検収追補 — 035計測と未完候補の独立反例
+
+各行は未実行の単独変異候補である。三観点の正常入力はCASE-HARNESS-L10-035-S5-028を参照し、他条件とsource/revision/scopeを保持する。根拠は固定L2-035:931–941・L11-035:678–686およびL2-035:727・L11-035:492であり、新しいthresholdやapprovalを追加しない。
+
+| CASE ID | FR / AC | fixture input（変更する条件） | oracle / failure boundary |
+|---|---|---|---|
+| `CASE-HARNESS-L10-035-S5-033` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-06` | scope拡張の同一対象・revision・方法・条件を保持し、運用負債の結果だけを欠落させる。複雑さ・公開面の結果は有利。 | 欠測を他観点で相殺せずscope判定を未完にし、要求形成ownerへ返す。 |
+| `CASE-HARNESS-L10-035-S5-034` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-06` | 同じ正常測定入力から公開面の結果だけを欠落させる。複雑さ・運用負債は測定済み。 | 三観点のうち公開面の不足を保持しscope判定を未完にし、要求形成ownerへ返す。 |
+| `CASE-HARNESS-L10-035-S5-035` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-05` | 現在のcandidate revisionに対し、複雑さの測定結果の対象revisionだけを旧revisionにする。他の条件は一致。 | 旧計測を現在のscope判定へ流用せず該当結果をstaleとして保持し、source/要求形成ownerへ返す。 |
+| `CASE-HARNESS-L10-035-S5-036` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-05` | 測定・公開面増加・運用義務増加の証拠を保持し、少ない追加機能数だけを理由に最小必要性が成立したと主張する。 | 追加数だけの最小必要性claimを拒否し、三観点・受入寄与・代替案・minimum-necessary proofへ戻す。 |
+| `CASE-HARNESS-L10-035-S5-037` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-05` | 三観点の対象・方法・条件・結果は揃うが、上流にない共通閾値だけを追加し許可を生成する。 | 閾値による許可を生成せず、根拠のあるscope判定と別の実行authorityを保持する。 |
+| `CASE-HARNESS-L10-035-S5-038` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-05` | 同じ正常測定入力へ上流にない共通閾値だけを追加し候補を拒否する。 | 閾値による拒否を成立させず、固定035の必要性・寄与・代替案の照合を保持する。 |
+| `CASE-HARNESS-L10-035-S5-039` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-08` | 受入寄与が未完の候補を保持し、出力の人間合意状態だけを合意済みへ変える。 | 未完候補から人の合意を生成せず、該当候補の未完根拠と既存判断を分ける。 |
+| `CASE-HARNESS-L10-035-S5-040` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-08` | 受入寄与が未完の候補を保持し、出力の実行authorityだけを許可済みへ変える。 | 未完候補から実行権限を生成せず、COREの意味照合とOSの登録・実行許可を分ける。 |

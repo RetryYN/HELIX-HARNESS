@@ -526,9 +526,9 @@ scope: 本追補5親のみ / G0 version_class 1.0
 - **`AC-HARNESS-L3-035-04` scope最小性と代替**：原指示、Concept/L1/既存要求の対象revision・authority、purpose/non-goal/scope、受入条件への寄与、必要性relation、代替案relation、選択budget根拠を別fieldで照合し、いずれか一つの欠落/unknown/stale/mismatchを個別に保留する。budget unknownを0にも無制限にも読み替えない。根拠のある後続版/先行投資候補を初版の最小構成に入らないという理由だけで削除しない。technical-only差分は新approvalを作らず、意味/authority/scope差は上流へ返す。既存OS操作の実行結果を要求候補の採択証拠にしない。
 
 - **`AC-HARNESS-L3-035-05` scope計測**：L2:931–941の三観点（複雑さ、外部公開面、運用負債）を変更前後で測るnormalを置き、追加機能数だけを用いて最小性を結論しない。起草開始時は測定未完を許容する。
-- **`AC-HARNESS-L3-035-06` 欠測非相殺**：三観点のうち複雑さ測定だけを欠落させ、他の二観点と追加機能数が正常でもscope判定を未完にする。閾値を補わず、要求形成ownerへ戻す。
+- **`AC-HARNESS-L3-035-06` 欠測非相殺**：三観点それぞれの測定結果だけを欠落させる個別CASEで、残る観点と追加機能数が正常でもscope判定を未完にする。閾値を補わず、要求形成ownerへ戻す。
 - **`AC-HARNESS-L3-035-07` 上流訂正後の再導出**：上流revisionを訂正した状態で旧導出receiptだけを与え、現revisionのcandidate根拠として受け入れない。該当要求形成/source ownerへ戻す。
-- **`AC-HARNESS-L3-035-08` CORE/OS分離**：OS登録・ticket・実行receiptがなくてもCOREの意味照合を正常に行う。逆にOS登録だけから意味照合成立や人の合意を作らない。
+- **`AC-HARNESS-L3-035-08` CORE/OS分離**：OS登録・ticket・実行receiptがなくてもCOREの意味照合を正常に行う。逆にOS登録だけから意味照合成立、人の合意、実行権限を作らない。
 
 ### `FR-HARNESS-L3-037` — 適用可能なW二段設計のtraceと合流
 
@@ -542,3 +542,7 @@ scope: 本追補5親のみ / G0 version_class 1.0
 - **`AC-HARNESS-L3-037-02` phase分離とhandoff**：Phase 1設計に対するL9 receiptを得た後でのみ選択scopeをPhase 2へ渡し、対象・revision・oracle一致を確認する。Phase 1 approvalをPhase 2 approvalへ流用しない。
 - **`AC-HARNESS-L3-037-03` 合流条件**：各phaseの固有L2/L3/design/L9 tupleが同一scopeにそろった場合だけ合流候補を返す。片方のreceipt・authority・scopeを一つずつ欠落/不一致にしたfixtureでは未完義務を保持する。
 - **`AC-HARNESS-L3-037-04` 現行pair/状態境界**：旧phase.yamlや旧層番号を入力必須にせず、現行L3↔L10、L2↔L11、L1↔L12の別状態を保つ。設計の存在から実行・受入・観測を推定しない。
+
+### Stage 5 Root検収追補 — scope計測の反例対応
+
+AC-035-05はS5-027/028および035〜038（旧revision計測、機能数だけの最小性、根拠外閾値の許可と拒否をそれぞれ別CASE）、AC-035-06は029/033/034（複雑さ・運用負債・公開面の各欠測）、AC-035-08は031/032/039/040（CORE単体正常、OS登録非代替、未完候補からの合意生成と実行権限生成の各反例）へ結ぶ。固定035の意味・scope・owner・版は変更しない。
