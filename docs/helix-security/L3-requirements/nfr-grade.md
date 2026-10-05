@@ -59,3 +59,14 @@ L10はSECURITY-CASE-031-01〜06の通常・個別negative・未見正常fixture�
 候補結果の状態は適用条件外、未選択/未観測、missing/unknown/stale、fixture不成立、negative不合格、未見正常不成立、owner返却保留、測定可能な結果を混同せず記録する。これらはL3候補の測定語彙であり、固定sourceにない新しい製品status/schemaを決めない。実行可能性に数値が必要な場合は、根拠・比較案・測定方法・判定境界付き候補としてL3/L10対でL4へ渡す。
 
 Stage 2cの分母は検査結果を読む前に適用条件から固定する。適用される必須条件のmissing/unknown/stale/未観測は分母に残し、coverage未達または未評価として記録する。適用条件自体を決定できない場合は分母不明であり、「該当なし」や0件へ丸めない。
+
+
+## Stage 3 — 技術候補と比較・測定
+
+| 候補ID／親AC | 候補値 | 根拠・比較案 | L10測定／未評価境界 |
+|---|---|---|---|
+| `SEC-NFR-029-01` / `SECURITY-AC-029-01..03` | 適用証拠の欠落を他型で相殺する件数0、別tupleの証拠流用0、未完opt-outからの採用生成0。 | 固定029と二part L11から直接観測。A=全操作へ四型必須、B=適用条件別照合。非該当を追加停止にしないBを候補とする。 | 適用性・根拠・出所を型別に計数しread-only/非networkを対照にする。適用性unknownを非該当と数えない。訓練停止の実保証値はローカル観測から測れない。 |
+| `SEC-NFR-030-01` / `SECURITY-AC-030-01..03` | 独立条件不足の昇格許容0、正常同一条件反復への新規都度approve要求0。 | 固定030の独立条件を個別照合するBを、監査ログなど総合点で相殺するAと比較しBを候補とする。 | 各条件欠落と範囲変更、十分な未見正常入力を対比する。owner責務や監視を未観測なら未評価。平均risk score・頻度閾値を作らない。 |
+| `SEC-NFR-032-01` / `SECURITY-AC-032-01..02` | 有効permanent denyの下位機構上書き0、確認済み非適用への新規allow/deny生成0。 | 032の対象scopeと優先順位。主/追加双方を照合するBを追加runtimeだけのAと比較し、固定親どおりBを候補とする。 | 同一対象のmarker/flag各変異とpolicy状態を測る。switch設定能力は035で別観測し032成功で補わない。 |
+| `SEC-NFR-034-01` / `SECURITY-AC-034-01..03` | profile/revision間の条件流用0、write-capable probeをread-onlyとする件数0、正常scoped credential-useへの追加一律deny0。 | profile束縛Bを全接続一括判定Aと比較し、固定034どおりBを候補とする。 | capability・authority・egress各変異と未見正常profileを比較する。catalog/typed供給の未完はそのまま保持し全source closureを数えない。 |
+| `SEC-NFR-035-01` / `SECURITY-AC-035-01..03` | run設定残置/次run継承0、allowlist対応時のYOLO代替0、deny能力未観測の成功claim0。 | PO scope A/配置Aと旧NFR38四条件。successだけcleanupするAと全終端照合Bを比較しBを候補とする。 | success/failure/cancel各終端、対応/非対応/unknown能力、deny前後を独立計測する。timeoutや経過期限・runtime一覧は未規定であり数値を追加しない。 |

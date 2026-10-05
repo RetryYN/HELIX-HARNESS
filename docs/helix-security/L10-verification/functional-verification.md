@@ -303,3 +303,25 @@ L2-002の命令様入力からsecurity policy変更へ直結させない条件�
 ### 旧oracleとの限定対応
 
 HIL-BR-32、HR-FR-HIL-23/HAC-HIL-23a/b/c、HAT-HIL-23、P2-05/HAT、WCCの対応項目はSECURITY-FR-031-01〜06に割り当て、ACごとの通常・negative・未見正常・owner oracleは上記CASEで確認する。旧quota閾値、HAC-HIL-23cの閾値oracle、環境浄化全般、permanent bypass、runtime固有audit、Python semanticsの完了を推定しない。旧test-designの実行結果も含まない。
+
+
+## Stage 3 — 029／030／032／034／035のpaired総合検証
+
+固定親・PO判断・旧asset pinsは[L3機能要件](../L3-requirements/functional-requirements.md)の同じStage 3節を使う。caseは合成入力と観測契約の設計であり未実行。正常と各変異は他条件を保った独立fixtureとし、owner別出力・未完義務を観測する。未見正常入力は必要なscope/revision/根拠が揃えば受け入れ、未知の能力や証拠を成功へ補作しない。
+
+| case ID | 親L3 AC | fixture／観測点 | 合格oracle／反例・未評価の戻し先 |
+|---|---|---|---|
+| `SECURITY-CASE-029-01` | `SECURITY-AC-029-01` | 同一追加runtimeのpublic、機密、secret/PII、分類unknownを別入力とし、opt-out完了/未完/不明と有効既存authorityを組合せる。path allowlistと検査結果も欠落させる。 | 機密以上・未分類・検査不明を委譲成功にしない。未完opt-out下の適格public限定委譲は可能だが採用未完。opt-out完了で機密許可にせず、raw値非到達のscoped credential-use正例を一律拒否しない。不足はdata/検査/runtime条件ownerへ返す。 |
+| `SECURITY-CASE-029-02` | `SECURITY-AC-029-02` | 四証拠が適用されるwrite+network fixtureからsandbox適用claim-only、allowlist scope不一致、egress unknown、FS scope外差分を一つずつ作る。networkなしとread-only正例、型適用性unknownも比較する。 | 一型不足は他型で相殺しない。実観測と同一tupleを照合し、policyはSECURITY、適用/測定はINFRASTRUCTURE/Workerへ返しOSに未完を残す。read-onlyは既存007のwrite禁止/不変観測を用い、新しいFS-diff必須条件を加えない。根拠付き非該当とunknownは別状態。 |
+| `SECURITY-CASE-029-03` | `SECURITY-AC-029-03` | runtime config/target revision/scopeのみ変え旧証拠を残す。provider privacy UI/remote flagだけの入力と、ローカル観測のみの入力を分ける。主Workerをscope外対照にする。 | 異tuple流用なし。provider側確認とローカル強制の出所/状態を独立に返し、片方から他方の保証を生成しない。未観測は該当ownerへ、主Workerへの029制限拡張は不合格。十分な新tupleの未見正常入力は評価可能。 |
+| `SECURITY-CASE-030-01` | `SECURITY-AC-030-01` | 限定段階の自動適用拡大に操作permission、最小権限、監査、巻戻し/停止、risk owner責務/受領先、監視/異常検知、threat model、継続risk reviewを揃える。各条件を個別欠落/unknownにする。 | 正常は条件ごとに同じrevision/scopeへの充足根拠。各不足は拡大を保留し未完をownerへ返す。owner名だけ、ログだけ、外部API/code executionにrevert/disableなしを充足扱いしたら不合格。 |
+| `SECURITY-CASE-030-02` | `SECURITY-AC-030-02` | 新接続先・能力・未分類dataを一つずつ加え、旧確認の無検査流用を試す。運転中の監視による条件喪失と無関係scope正常も与える。 | 対象拡大のみ不足/unknownを保持し、条件喪失は既存009へ渡す。無関係正常scopeの一律停止や未観測をriskなしにしたら不合格。 |
+| `SECURITY-CASE-030-03` | `SECURITY-AC-030-03` | 有効な同一revision/scope/条件で通常operationを反復し、SECURITY確認だけでOS昇格した入力、新しい中央risk承認者を要求する入力を対照にする。 | 既存有効条件を再利用できる。新しい都度approve・中央owner追加0、他ownerの意味/昇格/実行許可代行0。必要根拠が不明なら該当ownerへunknownを返す。 |
+| `SECURITY-CASE-032-01` | `SECURITY-AC-032-01` | 主Workerと追加runtime各々に同一repository/operationの有効permanent denyを与え、one-shot markerとprovider flagを別々に変える。別repository flagも対照にする。 | 下位marker/flagがあってもdeny維持。主Worker漏れ、追加runtimeだけに限定、別対象policyの流用、無権限解除は不合格。 |
+| `SECURITY-CASE-032-02` | `SECURITY-AC-032-02` | policy unknown/stale、適用unknown、確認済み非適用を別fixtureにする。非適用には既存008 authorityのvalid/invalid双方を与える。 | unknown/staleは既存fail-closeへ、確認済み非適用は既存authority評価へ返す。032単独で新allow/denyを作らない。035条件の主Worker拡張や無関係operation停止は不合格。 |
+| `SECURITY-CASE-034-01` | `SECURITY-AC-034-01` | 同一profile/revisionのread-only capability正例へwrite-capable probe、operation不一致、profile/revision/capability欠落/unknown/staleを独立変異する。別profile正常も対照にする。 | 正例は当該operation評価可能、各反例は該当profileだけdeny/hold。別profileのcapabilityで補わず、能力供給が不明ならそのownerへ返す。 |
+| `SECURITY-CASE-034-02` | `SECURITY-AC-034-02` | 有効scoped credential-use+既存authority/egress/Worker条件正例と、raw secret要求、未許可destination、authority tuple要素欠落を独立に与える。 | 正例をcredential利用だけで拒否せず、各反例は005/006/008へ戻す。CONNECT互換性でsecurity許可を代替しない。実secretをfixture/証拠へ書かない。 |
+| `SECURITY-CASE-034-03` | `SECURITY-AC-034-03` | CONNECT identity/互換、SECURITY条件判定、Worker/INFRA適用観測を分け、catalog/typed設定/probe供給ownerが未確定の入力と十分な未見正常profileを比較する。 | 未完の意味は未closureとしてownerへ残す。catalog/schema/probe方式を補作せず、正常profileの反復に毎回の人間approveや無関係profile停止を加えない。 |
+| `SECURITY-CASE-035-01` | `SECURITY-AC-035-01` | 追加runtimeの明示allowlist対応正例、非対応確認済み経過措置正例、対応なのにYOLO代替、能力unknown/staleを別々に与える。既存authorityは他条件として固定する。 | 対応時はallowlist、非対応の有効policy内経過措置はrun限定。対応/unknownからYOLO許可を作らない。既存authorityなしは本case正常にせず既存ownerへ戻す。 |
+| `SECURITY-CASE-035-02` | `SECURITY-AC-035-02` | run限定設定を持つ追加runtimeでsuccess/failure/cancel各終端と次runを与える。各終端の設定残置・cleanup観測欠落を別変異する。 | 全終端で除去し次runへ継承しない。残置/未観測はcleanup未完としてWorker/OSへ返し完了成功にしない。固定期限や設定schemaは作らない。 |
+| `SECURITY-CASE-035-03` | `SECURITY-AC-035-03` | repository deny switchの設定能力あり/なし/unknownと適用状態を分け、同一対象有効denyへのrun設定/provider flag試行、cleanup後、主Workerとbypass非選択正常操作を対照にする。 | 能力と適用を別に観測し、032のdeny優先・cleanup後denyを維持。優先成立だけからswitch能力を推定しない。主Workerに035を拡張せず既存条件の適用を免除しない。policy不足はSECURITY、cleanup/適用不足はWorker/OSへ返す。 |
