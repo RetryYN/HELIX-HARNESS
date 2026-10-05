@@ -22,8 +22,8 @@
 | `HELIXBRAIN-L2-INFRA-003` | 固定L2/L11から独立business outcomeなし。 | `BRAIN-INFRA-003-AC-01/02` をfunctional-verification.mdの`L10-BRAIN-INFRA-003-C01–C05`で照合。 |
 | `HELIXBRAIN-L2-INFRA-004` | 固定L2/L11から独立business outcomeなし。 | `BRAIN-INFRA-004-AC-01/02` をfunctional-verification.mdの`L10-BRAIN-INFRA-004-C01–C05`で照合。 |
 | `HELIXBRAIN-L2-INFRA-005` | 固定L2/L11から独立business outcomeなし。 | `BRAIN-INFRA-005-AC-01/02` をfunctional-verification.mdの`L10-BRAIN-INFRA-005-C01–C05`で照合。 |
-| `HELIXBRAIN-L2-INFRA-006` | 固定L2/L11から独立business outcomeなし。 | `BRAIN-INFRA-006-AC-01/02` をfunctional-verification.mdの`L10-BRAIN-INFRA-006-C01–C05`で照合。 |
-| `HELIXBRAIN-L2-INFRA-007` | 固定L2/L11から独立business outcomeなし。 | `BRAIN-INFRA-007-AC-01/02` をfunctional-verification.mdの`L10-BRAIN-INFRA-007-C01–C05`で照合。 |
+| `HELIXBRAIN-L2-INFRA-006` | 固定L2/L11から独立business outcomeなし。 | `BRAIN-INFRA-006-AC-01/02` をfunctional-verification.mdの`L10-BRAIN-INFRA-006-C01–C06`で照合。 |
+| `HELIXBRAIN-L2-INFRA-007` | 固定L2/L11から独立business outcomeなし。 | `BRAIN-INFRA-007-AC-01/02` をfunctional-verification.mdの`L10-BRAIN-INFRA-007-C01–C06`で照合。 |
 | `HELIXBRAIN-L2-INFRA-008` | 固定L2/L11から独立business outcomeなし。 | `BRAIN-INFRA-008-AC-01/02` をfunctional-verification.mdの`L10-BRAIN-INFRA-008-C01–C05`で照合。 |
 | `HELIXBRAIN-L2-INFRA-009` | 固定L2/L11から独立business outcomeなし。 | `BRAIN-INFRA-009-AC-01/02` をfunctional-verification.mdの`L10-BRAIN-INFRA-009-C01–C05`で照合。 |
 | `HELIXBRAIN-L2-INFRA-010` | 固定L2/L11から独立business outcomeなし。 | `BRAIN-INFRA-010-AC-01/02` をfunctional-verification.mdの`L10-BRAIN-INFRA-010-C01–C05`で照合。 |
@@ -33,6 +33,6 @@
 | `HELIXBRAIN-L2-INFRA-014` | 固定L2/L11から独立business outcomeなし。 | `BRAIN-INFRA-014-AC-01/02` をfunctional-verification.mdの`L10-BRAIN-INFRA-014-C01–C05`で照合。 |
 | `HELIXBRAIN-L2-INFRA-015` | 固定L2/L11から独立business outcomeなし。 | `BRAIN-INFRA-015-AC-01/02` をfunctional-verification.mdの`L10-BRAIN-INFRA-015-C01–C05`で照合。 |
 | `HELIXBRAIN-L2-INFRA-016` | 固定L2/L11から独立business outcomeなし。 | `BRAIN-INFRA-016-AC-01/02` をfunctional-verification.mdの`L10-BRAIN-INFRA-016-C01–C05`で照合。 |
-| `HELIXBRAIN-L2-INFRA-017` | 固定L2/L11から独立business outcomeなし。 | `BRAIN-INFRA-017-AC-01/02` をfunctional-verification.mdの`L10-BRAIN-INFRA-017-C01–C05`で照合。 |
+| `HELIXBRAIN-L2-INFRA-017` | 固定L2/L11から独立business outcomeなし。 | `BRAIN-INFRA-017-AC-01/02` をfunctional-verification.mdの`L10-BRAIN-INFRA-017-C01–C08`で照合。 |
 
 別のbusiness metric/owner/gateを作らず、対象外の成果指標を暗黙条件にしない。
