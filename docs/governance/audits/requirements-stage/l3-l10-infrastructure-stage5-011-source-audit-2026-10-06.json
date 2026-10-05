@@ -1,0 +1,996 @@
+{
+  "record_type": "immutable source-and-draft audit",
+  "status": "draft candidate; unapproved and unexecuted",
+  "scope": {
+    "identity": "HELIXINFRASTRUCTURE-L2-011",
+    "registration": "MPR-RC-HELIXINFRASTRUCTURE-L2-011-003",
+    "version": "1.0",
+    "stage": 5,
+    "basis_main_commit": "64086f7f03b283247d0cfd18a5b729420caadf29",
+    "worktree_branch": "codex/infrastructure-stage5-main-publication"
+  },
+  "fixed_sources": [
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "basis_commit": "64086f7f03b283247d0cfd18a5b729420caadf29",
+      "start_line": 138,
+      "end_line": 147,
+      "literal": "### HELIXINFRASTRUCTURE-L2-011 HELIX自身のInfrastructure 1.0構成体\n\n- **親L1**：`HELIXINFRASTRUCTURE-L1-001`、`HELIXINFRASTRUCTURE-L1-002`、`HELIXINFRASTRUCTURE-L1-003`、`HELIXINFRASTRUCTURE-L1-004`、`HELIXINFRASTRUCTURE-L1-005`、`HELIXINFRASTRUCTURE-L1-006`、`HELIXINFRASTRUCTURE-L1-007`、`HELIXINFRASTRUCTURE-L1-009`、`HELIXINFRASTRUCTURE-L1-010`、`HELIXINFRASTRUCTURE-L1-011`、`HELIXINFRASTRUCTURE-L1-014`、`HELIXINFRASTRUCTURE-L1-016`、`HELIXINFRASTRUCTURE-L1-017`、`HELIXINFRASTRUCTURE-L1-018`、`HELIXINFRASTRUCTURE-L1-019`、`HELIXINFRASTRUCTURE-L1-020`、`HELIXINFRASTRUCTURE-L1-021`、`HELIXINFRASTRUCTURE-L1-022`、`HELIXINFRASTRUCTURE-L1-028`、`HELIXINFRASTRUCTURE-L1-029`、`HELIXINFRASTRUCTURE-L1-038`、`HELIXINFRASTRUCTURE-L1-039`。\n- **入力**：L2-001〜010および025の必要なversioned identities/evidence、HELIX-HARNESS-COREの設計、OS/SECURITY/Worker接続、対象runtime・recovery environment。\n- **提供**：HELIX自身の構成に対する1.0 Infrastructure実行環境、状態、観測、操作、backup/restore/rollback、独立recoveryとrebuildabilityのend-to-end結果。\n- **保証**：POが列挙した18最低項目すべてを一つずつ検証範囲に含む。resource/topology/environment/design-target-vs-actual/drift/compute-network-storage/model-worker/capacity/observability/incident/backup-restore/rollback/deployment-version/SECURITY/OS/Worker/bootstrap-recovery/rebuildabilityを個別に確認した後、機構接続と構成体受入を別に行う。HELIX-WEB-OSの顧客runtimeを含めず、後続版の機能を1.0構成の前提にしない。\n- **単独成立の依存・版**：L2-001〜010および025の必要な採択済み要求/verification、必要なCORE/OS/SECURITY/Worker契約と実資源。`version_target: 1.0`。この要求は設計/実装/運用許可ではない。\n- **失敗時の戻し先・未完義務**：個別unit/connection/最低項目が一つでも欠ける、unknown/stale/未認可が残る、独立recovery/rebuildabilityが不成立なら構成体を未成立に保ち、欠けたunit/connectionのownerへ戻す。部分成功・未完義務・既存稼働版/適格rollback先を引き継ぐ。\n- **束ねる条件**：18最低項目と、L1の単体/接続/構成体表のうち1.0対象。HELIXOS-L2-014は本構成をHELIX自身の段階releaseへ収載するときだけstage contractとして参照し、独立したInfrastructure 1.0受入の依存にはしない。OSがInfrastructure stateを所有することも意味しない。\n\n",
+      "sha256": "ddedb41002d72be9322e99d6f82233d231795f3e9cc167d2bc048c2bbe765791",
+      "file_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "basis_commit": "64086f7f03b283247d0cfd18a5b729420caadf29",
+      "start_line": 144,
+      "end_line": 152,
+      "literal": "- **受入手順**：対象範囲と除外範囲を固定し、L2-001〜010および025の採択済み要求と必要契約を同一構成manifestへpinする。最低18項目それぞれにtest input、expected outcome、observed evidence、結果を記録し、正常構成と失敗/rollback構成を端から端まで評価する。通常のInfrastructure構成体受入と、HELIXOS-L2-014のstageへ収載する場合のstage integration evidenceを区別する。\n- **成功条件**：1〜18の各minimum itemに対応する証拠があり、単体機能、CORE/OS/SECURITY/Worker接続、構成体の成立が別に判定される。Backup/Restore/Rollbackと独立Bootstrap/Recovery、Rebuildabilityの復旧端まで確認される。未完義務は次のowner/ticket/recovery pathに残り、稼働中構成と適格rollback先が特定できる。stageへ収載する場合は、そのstage identityとの対応も確認するが、HELIXOS-L2-014自体を通常のInfrastructure構成体受入の前提にはしない。\n- **反例・失敗条件**：18項目のいずれかが欠落、unobserved/unknown/stale/mismatch/unauthorizedがpass扱い、backupだけでrestore合格、部分接続の成功だけで構成体pass、又は後続版条件を暗黙に必須化する場合は不合格。HELIX-WEB顧客runtimeを本体Infrastructure構成体へ混ぜても不合格。\n- **操作別の追加oracle**：最低18項目の構成体全体ではBackup/Restore/Rollback・独立Bootstrap/Recovery・Rebuildabilityをすべて確認する。個々の操作では、許可済み更新、read-only/no-change、適用復旧義務付きstate change、OS停止中の独立recoveryを別fixtureにする。更新はL2-010のupdate admission、read-onlyは適用scope内のwrite禁止と操作起因の変更なし、変更操作はそのactionに適用される復旧義務を照合する。無関係なread-only操作までbackup全件を必須にはしないが、構成体の最低18項目から復旧能力を除外しない。\n- **独立復旧の追加oracle**：停止中OSのticket/assignmentまたは通常L2-009応答なしでも、独立path/resourceと別SECURITY authority、SECURITY制約下のWorker実行契約により限定recoveryを開始し、復旧後にoperation/resultをOSへ同期する。許可欠落、適用復旧義務unknownの変更、通常操作へのticket免除、または同期欠落は構成体成功にしない。\n- **失敗戻し先**：失敗したunit/connectionのownerへ戻し、構成体は未成立のままにする。部分成功と未完義務は各ownerへ引継ぎ、rollbackまたは現行stage維持の判断材料を残す。\n- **最低範囲対応**：1–18すべて。L2の「1.0最低18項目と要求IDの対応」表を証拠indexとして使うが、表自体は原要求や個別試験の代用ではない。\n\n## 後続版境界の受入確認\n",
+      "sha256": "0ba6651c45516e0140c3c88a8e42ae1775f40c7a9f178a5694b37624517ac995",
+      "file_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada"
+    },
+    {
+      "path": "docs/helix-infrastructure/sources/runtime-infrastructure-l1-po-original-2026-09-26.md",
+      "basis_commit": "64086f7f03b283247d0cfd18a5b729420caadf29",
+      "start_line": 1060,
+      "end_line": 1079,
+      "literal": "1.0では少なくとも、\n\n1. Runtime Resource Identity\n2. Topology\n3. Environment\n4. Desired / Actual separation\n5. Drift\n6. Compute / Network / Storage\n7. Model / Worker Runtime\n8. Capacity\n9. Observability\n10. Incident state\n11. Backup / Restore\n12. Rollback\n13. Deployment version\n14. Security connection\n15. OS connection\n16. Runner execution\n17. Bootstrap / Out-of-Band Recovery\n18. Rebuildability\n",
+      "sha256": "1e4910d6063d74272cb475d8480e63ff590c2702f5a2873a0cd12ab2606b13c5",
+      "file_sha256": "a76dfdd2106f6aa5b0dc94c65a2cfbc64d2a57298bba7dd07f5b24d1b1589522"
+    },
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "basis_commit": "64086f7f03b283247d0cfd18a5b729420caadf29",
+      "start_line": 376,
+      "end_line": 405,
+      "literal": "## 1.0最低18項目と要求IDの対応\n\nPOの配置決定が列挙する18 scope itemをそのまま保持する。各itemはL2-001〜011のどこで受け入れるかを示す。1.0条件はこの集合で閉じ、後続項目を足さない。\n\n| 原文minimum item | 対応L2候補 | 具体的な範囲 |\n|---|---|---|\n| 1 Resource identity | 001 | identity/role/環境/場所/版/依存/lifecycle |\n| 2 Topology | 001 | 機構・resource関係、物理runtime path |\n| 3 Environment | 001 | 環境identityと分離 |\n| 4 Design/Deployment Target/Actual separation | 002／008 | CORE設計、target、actualを別stateにする |\n| 5 Drift | 002 | missing/unexpected/version/config/network/permission/capacity/unknown dependency |\n| 6 Compute/Network/Storage | 001／003 | 共通resource modelと観測 |\n| 7 Model/Worker Runtime | 001／003／025 | model/workerのruntime resource inventory。評価と割当案は他機構 |\n| 8 Capacity | 003 | capacity/utilization/queue/saturation/admission input |\n| 9 Observability | 004 | health/metric/log/resource/dependency/queue/error/latency/deployment/recovery |\n| 10 Incident state | 004 | degraded/unavailable/capacity/dependency/data/network/security-isolated/unknown |\n| 11 Backup/Restore | 005 | backupの状態と実restore/verificationを別にする |\n| 12 Rollback | 005 | 適格target、版/config/artifact/dependency/data compatibility/procedure |\n| 13 Deployment version | 001／009 | runtime revisionとOS stage release identityを区別 |\n| 14 SECURITY connection | 010 | policy/authority/credential/isolation/egressを受ける |\n| 15 OS connection | 009 | Work/Change StateとRuntime Resource Stateをつなぎ、二重正本を防ぐ |\n| 16 Worker execution | 010／025 | OS assignment、SECURITY authority内のWorkerによる操作 |\n| 17 Bootstrap/Out-of-Band Recovery | 006 | HELIXから独立する最小recovery pathと別SECURITY authority |\n| 18 Rebuildability | 007／011 | approved design/config/artifact/dependency/data backup/version/evidenceから再構築 |\n\n### 既存要求・sourceからの対応\n\n| Source/condition | 行き先 | 対応 |\n|---|---|---|\n| HRI-L1-001〜007/009〜011/014/016〜022/028/029/038/039 | L2-001〜011の上記scope | L1要求の意味を維持。1.0 assignmentはPOの18項目表で明示された範囲のみ |\n",
+      "sha256": "310b0e67d434126051ad971565a154d478b2b47268462dc17a4d1db281110fe7",
+      "file_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b"
+    },
+    {
+      "path": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+      "basis_commit": "64086f7f03b283247d0cfd18a5b729420caadf29",
+      "start_line": 46,
+      "end_line": 50,
+      "literal": "POは以下の全26件を、確認資料に記載された各version_targetと適用条件を保持して採用した。\n\nHELIXINFRASTRUCTURE-L2-001, HELIXINFRASTRUCTURE-L2-002, HELIXINFRASTRUCTURE-L2-003, HELIXINFRASTRUCTURE-L2-004, HELIXINFRASTRUCTURE-L2-005, HELIXINFRASTRUCTURE-L2-006, HELIXINFRASTRUCTURE-L2-007, HELIXINFRASTRUCTURE-L2-008, HELIXINFRASTRUCTURE-L2-009, HELIXINFRASTRUCTURE-L2-010, HELIXINFRASTRUCTURE-L2-011, HELIXINFRASTRUCTURE-L2-012, HELIXINFRASTRUCTURE-L2-013, HELIXINFRASTRUCTURE-L2-014, HELIXINFRASTRUCTURE-L2-015, HELIXINFRASTRUCTURE-L2-016, HELIXINFRASTRUCTURE-L2-017, HELIXINFRASTRUCTURE-L2-018, HELIXINFRASTRUCTURE-L2-019, HELIXINFRASTRUCTURE-L2-020, HELIXINFRASTRUCTURE-L2-021, HELIXINFRASTRUCTURE-L2-022, HELIXINFRASTRUCTURE-L2-023, HELIXINFRASTRUCTURE-L2-024, HELIXINFRASTRUCTURE-L2-025, HELIXINFRASTRUCTURE-L2-026\n\nL2-001〜011および025の1.0、L2-012〜024/026の「1.0より後（版は未定）」を各適用条件とともに維持する。PO既決の最低18項目を変更せず、後続版を1.0へ前倒ししない。\n",
+      "sha256": "40c4bbf73bc749c55314e6dbc3a22f09a02092e7a2f394b19835fa9515646ceb",
+      "file_sha256": "0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f"
+    }
+  ],
+  "legacy_sources": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "basis_commit": "64086f7f03b283247d0cfd18a5b729420caadf29",
+      "start_line": 148,
+      "end_line": 168,
+      "literal": "### L3 要件定義\n\n| 項目 | 内容 |\n|------|------|\n| 名称 | 要件定義 (System Requirements) |\n| 目的 | システム機能要件 (FR-*) + 受入条件 (AC-*) を確定し、設計への入力とする |\n| 主要成果物 ① | 3 sub-doc: functional-requirement / business-requirement / nfr-grade |\n| ③ テスト設計ペア | UX受入テスト設計（L10で実施） |\n| V-pair (右腕) | **L10** UX受入検証 |\n| 主要ゲート | **G3** 機能要件凍結 (FR+AC ⇔ L10 UX受入テスト設計 pair freeze) |\n| 入口 | G1/G2 exit 後 (L1 業務要求 BR-* が入力) |\n| 出口 | G3 通過 (FR+AC 全件確定 + 受入テスト設計 pair 揃い) |\n| 主要 role | `tl` 必須 (FR+AC 仕様化)、`po` 必須 (受入条件確認) |\n\n注: FR-* は L1 BR-* から双方向 trace する。AC 不在での G3 通過は fail (AP-4)。\nG3では`engineering_discipline_required: true`のPLAN契約により、no-code-first判断、責務owner、\n許容complexity、L10で観測する振る舞いをfreezeする。ここでobject modelを一律採用せず、\n`none` / `pure_function`を含む最小のmodeling判断を許可する。\n出典: concept v3.1 §3.1.2 / requirements v1.3.12 §2.2 G3\n\n---\n",
+      "sha256": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9",
+      "file_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/archive/intake/infrastructure-operations-requirements-and-connections-source_v0.1.md",
+      "basis_commit": "64086f7f03b283247d0cfd18a5b729420caadf29",
+      "start_line": 9,
+      "end_line": 11,
+      "literal": "既存mainの§4.3には、requirement/NFRからverification_measurement_contractを生成する要求がある。[S01] `src/requirements/nfr-registry.ts`には品質分類・authority role・NfrEntryV1の型が存在し、`config/nfr-registry.json`にも設定が存在する。[S02][S03] したがって「NFR taxonomyやregistryがない」という前提には立たず、対象領域のprofile・導出規則・設計義務・接続の差分を要求化する。\n\n#219/#220/#221は取得時にclosed、#290/#1033/#1318/#222/#223/#1160はopenだった。[S04–S12] この状態は実装・統合・実運用の完全性を証明しない。本案は、既存責務を拡張する**提案**であり、未実装箇所を網羅的に断定する監査報告ではない。\n",
+      "sha256": "3398d839e2a63c2f1dd1d19c5d08f29b029b29223b87cd4af6dbfe5cc2b9b7c7",
+      "file_sha256": "4d94b4b887a356fb9b17eaddc4df7a9c6e0eaed955d151c48a6efba667be7344"
+    }
+  ],
+  "legacy_asset_ledger_rows": [
+    {
+      "asset_id": "LEGACY-ASSET-F542125805B777D8A56A",
+      "row_literal": "{\"asset_id\":\"LEGACY-ASSET-F542125805B777D8A56A\",\"revision\":1,\"source_revision\":\"legacy-generation-2026-09-14\",\"source_path\":\"docs/process/forward/L00-L06-design-phase.md\",\"source_sha256\":\"9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3\",\"source_surface\":\"docs\",\"source_provenance_ref\":\"archive/legacy-generation-2026-09-14/MANIFEST.sha256\",\"asset_class\":\"Historical\",\"reuse_exclusion_class\":null,\"product_target\":\"unresolved\",\"authority_status\":\"historical\",\"upstream_ids\":[],\"pair_ids\":[],\"disposition\":\"unresolved\",\"implementation_status\":\"unknown\",\"decision_record_ref\":null,\"approval_revision\":null,\"target_path\":null,\"target_sha256\":null,\"meaning_interface_invariance_reason\":null,\"consumer_refs\":[],\"rights_status\":\"unreviewed\",\"executability_status\":\"unreviewed\",\"secret_status\":\"unreviewed\",\"external_effect_status\":\"unreviewed\",\"decided_by\":null,\"decided_at\":null,\"copy_performed_by\":null,\"copy_performed_at\":null,\"read_after_record_ref\":null,\"migration_preconditions\":[\"semantic_atom_inventory\",\"product_owner_decision\",\"parent_requirement_binding\",\"consumer_check\",\"rights_check\",\"executability_check\",\"secret_check\",\"external_effect_check\"]}\n",
+      "row_sha256": "73883376b2014725eb88baf3ac4c81313978bd219898e034fa2c6f1f94f6b73d"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-E239B45CE3FFE8B34D2B",
+      "row_literal": "{\"asset_id\":\"LEGACY-ASSET-E239B45CE3FFE8B34D2B\",\"revision\":1,\"source_revision\":\"legacy-generation-2026-09-14\",\"source_path\":\"docs/archive/intake/infrastructure-operations-requirements-and-connections-source_v0.1.md\",\"source_sha256\":\"4d94b4b887a356fb9b17eaddc4df7a9c6e0eaed955d151c48a6efba667be7344\",\"source_surface\":\"docs\",\"source_provenance_ref\":\"archive/legacy-generation-2026-09-14/MANIFEST.sha256\",\"asset_class\":\"Historical\",\"reuse_exclusion_class\":null,\"product_target\":\"unresolved\",\"authority_status\":\"historical\",\"upstream_ids\":[],\"pair_ids\":[],\"disposition\":\"unresolved\",\"implementation_status\":\"unknown\",\"decision_record_ref\":null,\"approval_revision\":null,\"target_path\":null,\"target_sha256\":null,\"meaning_interface_invariance_reason\":null,\"consumer_refs\":[],\"rights_status\":\"unreviewed\",\"executability_status\":\"unreviewed\",\"secret_status\":\"unreviewed\",\"external_effect_status\":\"unreviewed\",\"decided_by\":null,\"decided_at\":null,\"copy_performed_by\":null,\"copy_performed_at\":null,\"read_after_record_ref\":null,\"migration_preconditions\":[\"semantic_atom_inventory\",\"product_owner_decision\",\"parent_requirement_binding\",\"consumer_check\",\"rights_check\",\"executability_check\",\"secret_check\",\"external_effect_check\"]}\n",
+      "row_sha256": "7cddd9eb051027a9f0cba2a8b05b9176ece2236a1e4ee4d74802fb63602d3401"
+    }
+  ],
+  "six_document_prefix_suffix_pins": [
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "preappend_file_sha256": "1a8fb9915d5da9ad4ec9277ab2b1655b8eae4ed31fffa16fe4c663269345dbc5",
+      "preappend_prefix_sha256": "1a8fb9915d5da9ad4ec9277ab2b1655b8eae4ed31fffa16fe4c663269345dbc5",
+      "preappend_prefix_bytes": 67681,
+      "appended_suffix_sha256": "284bdff573cb0a740783582df6d982f980a52d2f55213b57fd8da201339f8749",
+      "current_file_sha256": "63a67f62a14cacdb5d9bf5615c0c8075522e5a8b350a3e7ddd51663055b517be",
+      "current_bytes": 120192
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "preappend_file_sha256": "346043f260c3f75cf826ba4a15ee2242b6e48c38be5c040641af5d7586f495c3",
+      "preappend_prefix_sha256": "346043f260c3f75cf826ba4a15ee2242b6e48c38be5c040641af5d7586f495c3",
+      "preappend_prefix_bytes": 5095,
+      "appended_suffix_sha256": "46b4529aca390f97593316d6ea96a22e7f39ddce0db8ecdfdd5369560c792424",
+      "current_file_sha256": "0054dd44a6fdbffe6dcc1557db5276eccf599adfbaf9fdf5d5d6284cdc25e7d2",
+      "current_bytes": 5619
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "preappend_file_sha256": "48bfcbda956a3808aab109c9b529acc18ba9d541bde992074cca02abbc9c97ba",
+      "preappend_prefix_sha256": "48bfcbda956a3808aab109c9b529acc18ba9d541bde992074cca02abbc9c97ba",
+      "preappend_prefix_bytes": 17841,
+      "appended_suffix_sha256": "3575f9f441e0e98dff6030f701d58af36621e51b8f700c516295ead44541d387",
+      "current_file_sha256": "7bf3e43d46c9c42e10544be4afc502a84d9d16cc716ac8cf9298570aae5d6899",
+      "current_bytes": 19649
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "preappend_file_sha256": "4b17567033e91c39f4f8dae1867ac1ace6438b01584d121b52b4aa9d22019df7",
+      "preappend_prefix_sha256": "4b17567033e91c39f4f8dae1867ac1ace6438b01584d121b52b4aa9d22019df7",
+      "preappend_prefix_bytes": 112748,
+      "appended_suffix_sha256": "2d1ed8129f2b7e5feb21223563775a10417a51a64d3951760f20e099338fc5c5",
+      "current_file_sha256": "cf13b3a3392efeb657fb77f92501ef159be97d4a6db2ffb8e7a9b9621d8ebc3f",
+      "current_bytes": 212020
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "preappend_file_sha256": "5870331546272a2eaaac93738b66ad3994312e9ce426ebc3fcfc59e10bf2c137",
+      "preappend_prefix_sha256": "5870331546272a2eaaac93738b66ad3994312e9ce426ebc3fcfc59e10bf2c137",
+      "preappend_prefix_bytes": 4041,
+      "appended_suffix_sha256": "86ffa39682268aa251bb78a180f4e4c3cee07425f1e43f80ae6b43d723c596cc",
+      "current_file_sha256": "3dfcb1dd1c55b7dca1ace737015edd924dda757b65675789c0214918687f0787",
+      "current_bytes": 4429
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "preappend_file_sha256": "f895dbdd8e74ac2d90016b098fd03edd8ae6391df05d4ca69d0902de04b04682",
+      "preappend_prefix_sha256": "f895dbdd8e74ac2d90016b098fd03edd8ae6391df05d4ca69d0902de04b04682",
+      "preappend_prefix_bytes": 16628,
+      "appended_suffix_sha256": "d9550645ed306fad9e055b2a1b053799c49693e3f6aa7ad20e07c0b5f009057f",
+      "current_file_sha256": "e763a4dbb0d3151026fed8636b4d04ecb3084230952912ef4ac3158b6a487521",
+      "current_bytes": 17289
+    }
+  ],
+  "ac_literals": [
+    {
+      "ac_id": "INFRA-011-AC-01",
+      "literal": "**INFRA-011-AC-01**: 18項目それぞれについて、宣言されたscope、入力identity/revision、source/owner、期待、観測結果、dispositionを個別に追跡できる。対象を網羅したとの主張は18項目の全行を根拠とし、mapping tableの存在だけでは成立しない。欠落・unknown・未観測・stale・不一致・無権限の項目を明示し、部分成功/未完義務/返却ownerを保持する。\n",
+      "sha256": "60d44f1e591b0b5297ef9c5c1a406daffd0b9fb7fdf6c91fcf115018e3bd4ff1"
+    },
+    {
+      "ac_id": "INFRA-011-AC-02",
+      "literal": "**INFRA-011-AC-02**: connectionはCORE設計、OS work/change、SECURITY authority、Worker実行契約/resourceの各契約を適用範囲に応じ個別照合する。資源のunit成功をconnection成功やcomposite成功に昇格しない。各connection failureはその契約/source ownerへ戻し、owner不明を推測で埋めずunknownとして残す。\n",
+      "sha256": "9eb0046b90ae1128d37ea82aabf6365bf4798766b36d74d498f0a42907cd959d"
+    },
+    {
+      "ac_id": "INFRA-011-AC-03",
+      "literal": "**INFRA-011-AC-03**: composite acceptanceは18項目と適用されるconnection結果の全参照を同じ対象scope/revisionへ結び付ける。backup artifact存在だけではrestore成立にせず、restore成功だけではindependent recoveryまたはrebuildability成立にせず、各resultと未完義務を保持する。\n",
+      "sha256": "c2eaa3f734bdae29d8fdae1771ff739e1ba79e4865b9b54ac7604d1995c5c5cb"
+    },
+    {
+      "ac_id": "INFRA-011-AC-04",
+      "literal": "**INFRA-011-AC-04**: runtime revisionをOS stage release identityと別に保持する。OS-014はこの候補scopeが実際にOS Stage releaseへ収載される場合だけ照合する。OS停止中の独立recoveryをOS ticket/assignmentまたは通常L2-009応答へ依存させず、独立path、別SECURITY authority、制約下Workerの実証拠で判定し、OS復帰後はoperation/resultを同期する。\n",
+      "sha256": "5a983ab9673706bcf24314fd156625a23b8b96d713d1895218dcba79c3d84d6e"
+    }
+  ],
+  "case_literals": [
+    {
+      "case_id": "CASE-INFRA-011-S5-001",
+      "literal_sha256": "ef924a68abb3fdb5b6e60fa3befc319b36f20bb648cdaa4001f704c1a163bb9a",
+      "literal": "#### CASE-INFRA-011-S5-001 — 項目01 資源identity / normal\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目01「資源identity」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: resource identity・type・role・source/revision・CORE design identity/revision。\n- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-002",
+      "literal_sha256": "14d40cfa9d17acc4d9cfb0383c79394dd9678b32a8a2d767073527badcec2f80",
+      "literal": "#### CASE-INFRA-011-S5-002 — 項目01 資源identity / missing\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目01「資源identity」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: resource identity・type・role・source/revision・CORE design identity/revision。\n- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-003",
+      "literal_sha256": "a9c37f5b87650b8f4e4b43c0d85663969d65f8785593f8f79255f99ad9167df4",
+      "literal": "#### CASE-INFRA-011-S5-003 — 項目01 資源identity / unknown\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目01「資源identity」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の値をunknownにする。必須evidence: resource identity・type・role・source/revision・CORE design identity/revision。\n- 期待結果: unknownを正常/非適用/availableへ昇格しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-004",
+      "literal_sha256": "19b648a2b5737a520e0d3005a6d386e2f01b81ecef13a948ee568e55d7c90932",
+      "literal": "#### CASE-INFRA-011-S5-004 — 項目01 資源identity / unobserved\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目01「資源identity」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 必要な観測結果だけを未観測にする。必須evidence: resource identity・type・role・source/revision・CORE design identity/revision。\n- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-005",
+      "literal_sha256": "32ed91e2aa3bb8b73522492615d565e3bb4ddfd3f4d2e2e3d5d68ba3529f319c",
+      "literal": "#### CASE-INFRA-011-S5-005 — 項目01 資源identity / stale\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目01「資源identity」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: resource identity・type・role・source/revision・CORE design identity/revision。\n- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-006",
+      "literal_sha256": "84b058aaf32a6cf5ee0f8dd087ba78138ea909e61446df25816de224db31d31e",
+      "literal": "#### CASE-INFRA-011-S5-006 — 項目01 資源identity / mismatch\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目01「資源identity」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: resource identity・type・role・source/revision・CORE design identity/revision。\n- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-007",
+      "literal_sha256": "9fa6617f6c6104c936f057ff8d3acf56b7c9dae65704e15b6bb856914dc02453",
+      "literal": "#### CASE-INFRA-011-S5-007 — 項目01 資源identity / unauthorized\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目01「資源identity」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: resource identity・type・role・source/revision・CORE design identity/revision。\n- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-008",
+      "literal_sha256": "c69e685c2ffc48b855a9c2328d1ea68e0177529522ee5763b594ee3cc62b5efd",
+      "literal": "#### CASE-INFRA-011-S5-008 — 項目02 Topology / normal\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目02「Topology」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: declared topology・dependency・scope・source/revision。\n- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE topology source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-009",
+      "literal_sha256": "d52108b57711ae2ef841c0260a71c165281dc91e864294d662dd3fc17e636c6d",
+      "literal": "#### CASE-INFRA-011-S5-009 — 項目02 Topology / missing\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目02「Topology」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: declared topology・dependency・scope・source/revision。\n- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE topology source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-010",
+      "literal_sha256": "a646f7993d33597bd888e952b314a66e7e6ae1817d6d37ab3c706b8b6ab57918",
+      "literal": "#### CASE-INFRA-011-S5-010 — 項目02 Topology / unknown\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目02「Topology」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の値をunknownにする。必須evidence: declared topology・dependency・scope・source/revision。\n- 期待結果: unknownを正常/非適用/availableへ昇格しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE topology source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-011",
+      "literal_sha256": "8bb6525bfaa991e181ad1eaf9b1a62461835d0e23c515d4f8c1d5dd9411ffa62",
+      "literal": "#### CASE-INFRA-011-S5-011 — 項目02 Topology / unobserved\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目02「Topology」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 必要な観測結果だけを未観測にする。必須evidence: declared topology・dependency・scope・source/revision。\n- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE topology source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-012",
+      "literal_sha256": "ebb1f6673cbf589abf69ea246c1f6684e2aa55fc56efbe3f6523d571be390deb",
+      "literal": "#### CASE-INFRA-011-S5-012 — 項目02 Topology / stale\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目02「Topology」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: declared topology・dependency・scope・source/revision。\n- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE topology source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-013",
+      "literal_sha256": "da825ac347848eb91c64f45186777003b9a728f3e421ed1b963270a7c72e2601",
+      "literal": "#### CASE-INFRA-011-S5-013 — 項目02 Topology / mismatch\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目02「Topology」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: declared topology・dependency・scope・source/revision。\n- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE topology source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-014",
+      "literal_sha256": "f1d6b0e63e5ac550588989b95addb5140f8fdb93e9b94757611d66d5873884db",
+      "literal": "#### CASE-INFRA-011-S5-014 — 項目02 Topology / unauthorized\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目02「Topology」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: declared topology・dependency・scope・source/revision。\n- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE topology source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-015",
+      "literal_sha256": "24ce19f01d1c7f88857089de0759bc574e8cf6f2af45264cc2b3deaf99f22bd3",
+      "literal": "#### CASE-INFRA-011-S5-015 — 項目03 Environment / normal\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目03「Environment」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: environment identity・resource mapping・source/revision。\n- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE environment source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-016",
+      "literal_sha256": "749ca7b60a3ba22e283e39ac72d7918a6367a30fbb4f56590deb19ae09939c83",
+      "literal": "#### CASE-INFRA-011-S5-016 — 項目03 Environment / missing\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目03「Environment」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: environment identity・resource mapping・source/revision。\n- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE environment source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-017",
+      "literal_sha256": "269d1ff35e5791182612da10533b4742c10a3e93659600a0b81f35cb69be037e",
+      "literal": "#### CASE-INFRA-011-S5-017 — 項目03 Environment / unknown\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目03「Environment」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の値をunknownにする。必須evidence: environment identity・resource mapping・source/revision。\n- 期待結果: unknownを正常/非適用/availableへ昇格しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE environment source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-018",
+      "literal_sha256": "52719377c6135fc283fc6e4e79b400c233bba9030f2fa08c97ba8ff2ecdd8b17",
+      "literal": "#### CASE-INFRA-011-S5-018 — 項目03 Environment / unobserved\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目03「Environment」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 必要な観測結果だけを未観測にする。必須evidence: environment identity・resource mapping・source/revision。\n- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE environment source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-019",
+      "literal_sha256": "41f5e2d174f21144b42e66306788c9893d8595b59bd4e00685a93fc3d5c64cf2",
+      "literal": "#### CASE-INFRA-011-S5-019 — 項目03 Environment / stale\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目03「Environment」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: environment identity・resource mapping・source/revision。\n- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE environment source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-020",
+      "literal_sha256": "219d7fbc495f87b4f2035c5c69b64f94bb2d8cad0f760628967ad43d33cda723",
+      "literal": "#### CASE-INFRA-011-S5-020 — 項目03 Environment / mismatch\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目03「Environment」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: environment identity・resource mapping・source/revision。\n- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE environment source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-021",
+      "literal_sha256": "1ae6102fd2949b0a297c4a072c54b23b9b43ad7061b1350359c4b4b02923f9a5",
+      "literal": "#### CASE-INFRA-011-S5-021 — 項目03 Environment / unauthorized\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目03「Environment」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: environment identity・resource mapping・source/revision。\n- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE environment source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-022",
+      "literal_sha256": "0f6348c9cb121113394ff6d3d1e725472c4730250ffff0a9836ee448b630199e",
+      "literal": "#### CASE-INFRA-011-S5-022 — 項目04 Desired/Actual分離 / normal\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目04「Desired/Actual分離」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: desiredとactualの別identity・revision・scope・source。\n- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。\n- AC / 差戻し: `INFRA-011-AC-01`; CORE desired/design owner / INFRASTRUCTURE actual resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-023",
+      "literal_sha256": "75459e0d44b0ef921ca540d41e2e98af260d8cdbbc524898f47866ab5dec90af",
+      "literal": "#### CASE-INFRA-011-S5-023 — 項目04 Desired/Actual分離 / missing\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目04「Desired/Actual分離」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: desiredとactualの別identity・revision・scope・source。\n- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; CORE desired/design owner / INFRASTRUCTURE actual resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-024",
+      "literal_sha256": "21998298b7e7e2bfa15ddfc4bff6cc72c9ac7db49ac7563adf2e0b989561fe9d",
+      "literal": "#### CASE-INFRA-011-S5-024 — 項目04 Desired/Actual分離 / unknown\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目04「Desired/Actual分離」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の値をunknownにする。必須evidence: desiredとactualの別identity・revision・scope・source。\n- 期待結果: unknownを正常/非適用/availableへ昇格しない。\n- AC / 差戻し: `INFRA-011-AC-01`; CORE desired/design owner / INFRASTRUCTURE actual resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-025",
+      "literal_sha256": "10ff805f1be3d071263ff0683e98d05a915335563ff2f5e85d51c844dadbe731",
+      "literal": "#### CASE-INFRA-011-S5-025 — 項目04 Desired/Actual分離 / unobserved\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目04「Desired/Actual分離」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 必要な観測結果だけを未観測にする。必須evidence: desiredとactualの別identity・revision・scope・source。\n- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。\n- AC / 差戻し: `INFRA-011-AC-01`; CORE desired/design owner / INFRASTRUCTURE actual resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-026",
+      "literal_sha256": "ce9b266b3621e9585f665fdd8e04740ec0bdd0e1403060600d66736c1c0e3dec",
+      "literal": "#### CASE-INFRA-011-S5-026 — 項目04 Desired/Actual分離 / stale\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目04「Desired/Actual分離」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: desiredとactualの別identity・revision・scope・source。\n- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; CORE desired/design owner / INFRASTRUCTURE actual resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-027",
+      "literal_sha256": "41f3296afba5b22b32c57e5ff6dc93494b609112a8d4a22bf5b90932d22176ec",
+      "literal": "#### CASE-INFRA-011-S5-027 — 項目04 Desired/Actual分離 / mismatch\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目04「Desired/Actual分離」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: desiredとactualの別identity・revision・scope・source。\n- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。\n- AC / 差戻し: `INFRA-011-AC-01`; CORE desired/design owner / INFRASTRUCTURE actual resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-028",
+      "literal_sha256": "991bb587ab614ca2644d053401b4a728cd1010b1f597e414edf27aae79bdac00",
+      "literal": "#### CASE-INFRA-011-S5-028 — 項目04 Desired/Actual分離 / unauthorized\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目04「Desired/Actual分離」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: desiredとactualの別identity・revision・scope・source。\n- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。\n- AC / 差戻し: `INFRA-011-AC-01`; CORE desired/design owner / INFRASTRUCTURE actual resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-029",
+      "literal_sha256": "a9bf393b263d84302b72c694fc2946fc716fc33c378d479cffaa405be1fb0d2f",
+      "literal": "#### CASE-INFRA-011-S5-029 — 項目05 Drift / normal\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目05「Drift」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: expected/actual comparison input・revision・difference evidence。\n- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。\n- AC / 差戻し: `INFRA-011-AC-01`; CORE approved expected-state owner / INFRASTRUCTURE actual source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-030",
+      "literal_sha256": "d959ceea15f7e74cc16dffadcc8fdd762c9decfaa7bd3ec249717d9b01e33172",
+      "literal": "#### CASE-INFRA-011-S5-030 — 項目05 Drift / missing\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目05「Drift」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: expected/actual comparison input・revision・difference evidence。\n- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; CORE approved expected-state owner / INFRASTRUCTURE actual source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-031",
+      "literal_sha256": "68c3f1e2e6d6a51f6f8856c2bc3da3834eba40efcfed70a5a642c70fa3808b32",
+      "literal": "#### CASE-INFRA-011-S5-031 — 項目05 Drift / unknown\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目05「Drift」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の値をunknownにする。必須evidence: expected/actual comparison input・revision・difference evidence。\n- 期待結果: unknownを正常/非適用/availableへ昇格しない。\n- AC / 差戻し: `INFRA-011-AC-01`; CORE approved expected-state owner / INFRASTRUCTURE actual source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-032",
+      "literal_sha256": "bf71fb714abc32e9f7dc5ef1a22989bcf3481809632b70c04168d9f67266a854",
+      "literal": "#### CASE-INFRA-011-S5-032 — 項目05 Drift / unobserved\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目05「Drift」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 必要な観測結果だけを未観測にする。必須evidence: expected/actual comparison input・revision・difference evidence。\n- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。\n- AC / 差戻し: `INFRA-011-AC-01`; CORE approved expected-state owner / INFRASTRUCTURE actual source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-033",
+      "literal_sha256": "af337606e0a02b02643922167092f18a5180953c7e3e8710de26cb9ab6c3ab37",
+      "literal": "#### CASE-INFRA-011-S5-033 — 項目05 Drift / stale\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目05「Drift」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: expected/actual comparison input・revision・difference evidence。\n- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; CORE approved expected-state owner / INFRASTRUCTURE actual source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-034",
+      "literal_sha256": "5e9209727b6bcd19fb9551d8f95d13e8348270cd7057df8e049ec47437fb9142",
+      "literal": "#### CASE-INFRA-011-S5-034 — 項目05 Drift / mismatch\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目05「Drift」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: expected/actual comparison input・revision・difference evidence。\n- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。\n- AC / 差戻し: `INFRA-011-AC-01`; CORE approved expected-state owner / INFRASTRUCTURE actual source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-035",
+      "literal_sha256": "6e44d1ae05ba93efaac7e33009eade60127df60e2d65e8afbee01672f16087e7",
+      "literal": "#### CASE-INFRA-011-S5-035 — 項目05 Drift / unauthorized\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目05「Drift」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: expected/actual comparison input・revision・difference evidence。\n- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。\n- AC / 差戻し: `INFRA-011-AC-01`; CORE approved expected-state owner / INFRASTRUCTURE actual source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-036",
+      "literal_sha256": "74592fc5f1250c5ef8ef124c439f83b62de08e8c38bf7c06cdf140a461334ade",
+      "literal": "#### CASE-INFRA-011-S5-036 — 項目06 Compute/Network/Storage / normal\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目06「Compute/Network/Storage」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: 適用resource属性・network path・storage state・source/revision。\n- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource/path/storage owner; CONNECT path contract where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-037",
+      "literal_sha256": "a072c237bb02b9992d95b8e34072ea6e9b986f914de995cbbb28ba22778a7f2e",
+      "literal": "#### CASE-INFRA-011-S5-037 — 項目06 Compute/Network/Storage / missing\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目06「Compute/Network/Storage」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: 適用resource属性・network path・storage state・source/revision。\n- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource/path/storage owner; CONNECT path contract where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-038",
+      "literal_sha256": "2177066bbfa94107ccda8cdf1a8fd837b2fa48d044e363913ec5c679cb17c540",
+      "literal": "#### CASE-INFRA-011-S5-038 — 項目06 Compute/Network/Storage / unknown\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目06「Compute/Network/Storage」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の値をunknownにする。必須evidence: 適用resource属性・network path・storage state・source/revision。\n- 期待結果: unknownを正常/非適用/availableへ昇格しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource/path/storage owner; CONNECT path contract where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-039",
+      "literal_sha256": "ccf9e34ec9a03a0d70f31f197ee6fb0be6b1c04af199ca8e101cc2396a994fe6",
+      "literal": "#### CASE-INFRA-011-S5-039 — 項目06 Compute/Network/Storage / unobserved\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目06「Compute/Network/Storage」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 必要な観測結果だけを未観測にする。必須evidence: 適用resource属性・network path・storage state・source/revision。\n- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource/path/storage owner; CONNECT path contract where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-040",
+      "literal_sha256": "439a2f14b286514571567cd01158019c319fb19ac6d482357b2fa4f01e15315d",
+      "literal": "#### CASE-INFRA-011-S5-040 — 項目06 Compute/Network/Storage / stale\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目06「Compute/Network/Storage」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: 適用resource属性・network path・storage state・source/revision。\n- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource/path/storage owner; CONNECT path contract where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-041",
+      "literal_sha256": "d90f2b28299f8f673cefb8d830592adcda52d92f913b210a7828bb61b71387fa",
+      "literal": "#### CASE-INFRA-011-S5-041 — 項目06 Compute/Network/Storage / mismatch\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目06「Compute/Network/Storage」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: 適用resource属性・network path・storage state・source/revision。\n- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource/path/storage owner; CONNECT path contract where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-042",
+      "literal_sha256": "97e39dc486158ad1073d043471984ea10ac56b524c6fbefc65b17cd336c621f6",
+      "literal": "#### CASE-INFRA-011-S5-042 — 項目06 Compute/Network/Storage / unauthorized\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目06「Compute/Network/Storage」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: 適用resource属性・network path・storage state・source/revision。\n- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource/path/storage owner; CONNECT path contract where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-043",
+      "literal_sha256": "18fac16b54adaa10ba6e2c72bcc5494d635b5f202c9efc7c74bcd05c502cd90e",
+      "literal": "#### CASE-INFRA-011-S5-043 — 項目07 Model/Worker Runtime / normal\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目07「Model/Worker Runtime」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: runtime/model/Worker identity・version・resource relationship・source。\n- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime/resource owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-044",
+      "literal_sha256": "cd52bc648beb4e2ae90144b9004cdc3c17f3487cb702e6d7a12e5db074e4d6f5",
+      "literal": "#### CASE-INFRA-011-S5-044 — 項目07 Model/Worker Runtime / missing\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目07「Model/Worker Runtime」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: runtime/model/Worker identity・version・resource relationship・source。\n- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime/resource owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-045",
+      "literal_sha256": "e048b22bc03f874e6944734ed043ae19ad114802cb48a42a2b8a125a00aeb829",
+      "literal": "#### CASE-INFRA-011-S5-045 — 項目07 Model/Worker Runtime / unknown\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目07「Model/Worker Runtime」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の値をunknownにする。必須evidence: runtime/model/Worker identity・version・resource relationship・source。\n- 期待結果: unknownを正常/非適用/availableへ昇格しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime/resource owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-046",
+      "literal_sha256": "1fc44d5a6407dd116141407f02248b65648c04e2c688afbb8ff8cd8ca33c792b",
+      "literal": "#### CASE-INFRA-011-S5-046 — 項目07 Model/Worker Runtime / unobserved\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目07「Model/Worker Runtime」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 必要な観測結果だけを未観測にする。必須evidence: runtime/model/Worker identity・version・resource relationship・source。\n- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime/resource owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-047",
+      "literal_sha256": "637380e42e74198b84a6954e30c491c6c4dd27ca18784ebce2c67c31ac86e847",
+      "literal": "#### CASE-INFRA-011-S5-047 — 項目07 Model/Worker Runtime / stale\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目07「Model/Worker Runtime」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: runtime/model/Worker identity・version・resource relationship・source。\n- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime/resource owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-048",
+      "literal_sha256": "594c77f6d3730cf6bafd66b43dcd015c21b518b4e3485a5e62874e7198793050",
+      "literal": "#### CASE-INFRA-011-S5-048 — 項目07 Model/Worker Runtime / mismatch\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目07「Model/Worker Runtime」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: runtime/model/Worker identity・version・resource relationship・source。\n- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime/resource owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-049",
+      "literal_sha256": "89e0135de5695a7a4507f4dcf2fa6f93d8476344ae910091522904114f43fea7",
+      "literal": "#### CASE-INFRA-011-S5-049 — 項目07 Model/Worker Runtime / unauthorized\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目07「Model/Worker Runtime」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: runtime/model/Worker identity・version・resource relationship・source。\n- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime/resource owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-050",
+      "literal_sha256": "37d8a9db5da9f014ee479e8b6a90a42848743f596f513ea9ea624c591985d18f",
+      "literal": "#### CASE-INFRA-011-S5-050 — 項目08 Capacity / normal\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目08「Capacity」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: declared capacity・observation・source/revision・decision reference。\n- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE measurement owner / OS or INTELLIGENCE decision owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-051",
+      "literal_sha256": "ebb5609dd8b65ce8e93da04355e5cfc7d0947c90e14630e47a13fcf778940359",
+      "literal": "#### CASE-INFRA-011-S5-051 — 項目08 Capacity / missing\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目08「Capacity」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: declared capacity・observation・source/revision・decision reference。\n- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE measurement owner / OS or INTELLIGENCE decision owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-052",
+      "literal_sha256": "ec3d6f7c55a564d1a12db42ecc662ab09f82e66343d11b38080af4252ce36334",
+      "literal": "#### CASE-INFRA-011-S5-052 — 項目08 Capacity / unknown\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目08「Capacity」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の値をunknownにする。必須evidence: declared capacity・observation・source/revision・decision reference。\n- 期待結果: unknownを正常/非適用/availableへ昇格しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE measurement owner / OS or INTELLIGENCE decision owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-053",
+      "literal_sha256": "b1994fcbab5f63457e0c235b9afb4a5019161ef53b39d036daba8e337a017dbf",
+      "literal": "#### CASE-INFRA-011-S5-053 — 項目08 Capacity / unobserved\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目08「Capacity」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 必要な観測結果だけを未観測にする。必須evidence: declared capacity・observation・source/revision・decision reference。\n- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE measurement owner / OS or INTELLIGENCE decision owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-054",
+      "literal_sha256": "0680c8c5ba0c7b9c880b02f2c859d58ab1a20450177878b4c118750372b1ada8",
+      "literal": "#### CASE-INFRA-011-S5-054 — 項目08 Capacity / stale\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目08「Capacity」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: declared capacity・observation・source/revision・decision reference。\n- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE measurement owner / OS or INTELLIGENCE decision owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-055",
+      "literal_sha256": "f5aa111cdeb0af305686694c36fcf084f8b9648e711ebba7f83fcb06af8d527d",
+      "literal": "#### CASE-INFRA-011-S5-055 — 項目08 Capacity / mismatch\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目08「Capacity」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: declared capacity・observation・source/revision・decision reference。\n- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE measurement owner / OS or INTELLIGENCE decision owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-056",
+      "literal_sha256": "b8bd690ecdfe39997308683b73e9f47e6fd32808f27cac383768dff35be737aa",
+      "literal": "#### CASE-INFRA-011-S5-056 — 項目08 Capacity / unauthorized\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目08「Capacity」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: declared capacity・observation・source/revision・decision reference。\n- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE measurement owner / OS or INTELLIGENCE decision owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-057",
+      "literal_sha256": "31e492173f93d17006097f1c199904f7865c261d573a4ba61183d07bffe5a257",
+      "literal": "#### CASE-INFRA-011-S5-057 — 項目09 Observability / normal\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目09「Observability」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: observation value or explicit unknown・source/revision・coverage。\n- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。\n- AC / 差戻し: `INFRA-011-AC-01`; observation source/collector owner; INFRASTRUCTURE state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-058",
+      "literal_sha256": "b86455270bc26ce714ae26af53449be366b090f7a0e75a40f5a4c45da7f2b6a5",
+      "literal": "#### CASE-INFRA-011-S5-058 — 項目09 Observability / missing\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目09「Observability」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: observation value or explicit unknown・source/revision・coverage。\n- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; observation source/collector owner; INFRASTRUCTURE state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-059",
+      "literal_sha256": "fdc6d2ab5fc0d59e43538ef49f43d6e01f5aeff267f737e6de152aa052bdaf65",
+      "literal": "#### CASE-INFRA-011-S5-059 — 項目09 Observability / unknown\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目09「Observability」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の値をunknownにする。必須evidence: observation value or explicit unknown・source/revision・coverage。\n- 期待結果: unknownを正常/非適用/availableへ昇格しない。\n- AC / 差戻し: `INFRA-011-AC-01`; observation source/collector owner; INFRASTRUCTURE state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-060",
+      "literal_sha256": "877705dc18b8da7b0b71f65e75120f5c5715aafc599cffc8a91c3496cb95cf0a",
+      "literal": "#### CASE-INFRA-011-S5-060 — 項目09 Observability / unobserved\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目09「Observability」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 必要な観測結果だけを未観測にする。必須evidence: observation value or explicit unknown・source/revision・coverage。\n- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。\n- AC / 差戻し: `INFRA-011-AC-01`; observation source/collector owner; INFRASTRUCTURE state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-061",
+      "literal_sha256": "dd582b503555ee9dac2a6bbea18e352f8352e8b22fe85e8b563b40464fc4c1a0",
+      "literal": "#### CASE-INFRA-011-S5-061 — 項目09 Observability / stale\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目09「Observability」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: observation value or explicit unknown・source/revision・coverage。\n- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; observation source/collector owner; INFRASTRUCTURE state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-062",
+      "literal_sha256": "a36656ab036e6bf0c44507c54e9e6bc04c6184b4b71ebf09f2437401e7fffaf5",
+      "literal": "#### CASE-INFRA-011-S5-062 — 項目09 Observability / mismatch\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目09「Observability」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: observation value or explicit unknown・source/revision・coverage。\n- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。\n- AC / 差戻し: `INFRA-011-AC-01`; observation source/collector owner; INFRASTRUCTURE state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-063",
+      "literal_sha256": "3137542237008856e4c6cabf27c4076f5d47d9928c602b6de0db13c0db159923",
+      "literal": "#### CASE-INFRA-011-S5-063 — 項目09 Observability / unauthorized\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目09「Observability」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: observation value or explicit unknown・source/revision・coverage。\n- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。\n- AC / 差戻し: `INFRA-011-AC-01`; observation source/collector owner; INFRASTRUCTURE state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-064",
+      "literal_sha256": "480d40cc0e44026776f381debff6fc92a2f13bc522c11718d3cd4ecb48317547",
+      "literal": "#### CASE-INFRA-011-S5-064 — 項目10 Incident state / normal\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目10「Incident state」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: approved source classification・incident reference・source/revision。\n- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。\n- AC / 差戻し: `INFRA-011-AC-01`; approved incident-meaning owner / INFRASTRUCTURE observation source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-065",
+      "literal_sha256": "bbbecc83b85f54a47b131522c80dbb6aeb6bfa863a87e935206ad4eb7c2037a4",
+      "literal": "#### CASE-INFRA-011-S5-065 — 項目10 Incident state / missing\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目10「Incident state」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: approved source classification・incident reference・source/revision。\n- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; approved incident-meaning owner / INFRASTRUCTURE observation source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-066",
+      "literal_sha256": "15f45977f0b92c6fcca0c4f708edc65a8617fba341123b77bbf0b9c65a97fabd",
+      "literal": "#### CASE-INFRA-011-S5-066 — 項目10 Incident state / unknown\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目10「Incident state」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の値をunknownにする。必須evidence: approved source classification・incident reference・source/revision。\n- 期待結果: unknownを正常/非適用/availableへ昇格しない。\n- AC / 差戻し: `INFRA-011-AC-01`; approved incident-meaning owner / INFRASTRUCTURE observation source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-067",
+      "literal_sha256": "6e6367e6d820d2b23c80038a861b504efe78b02f716736c0635035a2a582d013",
+      "literal": "#### CASE-INFRA-011-S5-067 — 項目10 Incident state / unobserved\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目10「Incident state」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 必要な観測結果だけを未観測にする。必須evidence: approved source classification・incident reference・source/revision。\n- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。\n- AC / 差戻し: `INFRA-011-AC-01`; approved incident-meaning owner / INFRASTRUCTURE observation source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-068",
+      "literal_sha256": "2788bf9d80f06841e3916a57106e269d2e8fb63a6de8ae58e720e29539586515",
+      "literal": "#### CASE-INFRA-011-S5-068 — 項目10 Incident state / stale\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目10「Incident state」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: approved source classification・incident reference・source/revision。\n- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; approved incident-meaning owner / INFRASTRUCTURE observation source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-069",
+      "literal_sha256": "8adcad6611a63129c0a1fb736cfafb7f6471811bb0f6f5f1127d4eacedb20680",
+      "literal": "#### CASE-INFRA-011-S5-069 — 項目10 Incident state / mismatch\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目10「Incident state」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: approved source classification・incident reference・source/revision。\n- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。\n- AC / 差戻し: `INFRA-011-AC-01`; approved incident-meaning owner / INFRASTRUCTURE observation source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-070",
+      "literal_sha256": "04e21e60dd2ba306098d5cfeef18801c0cf8f4006142aa5a4d9979809fe2bbae",
+      "literal": "#### CASE-INFRA-011-S5-070 — 項目10 Incident state / unauthorized\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目10「Incident state」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: approved source classification・incident reference・source/revision。\n- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。\n- AC / 差戻し: `INFRA-011-AC-01`; approved incident-meaning owner / INFRASTRUCTURE observation source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-071",
+      "literal_sha256": "347d914975dfca4131ec130d3f607e445f894b695908cd13048503a0a476a0ff",
+      "literal": "#### CASE-INFRA-011-S5-071 — 項目11 Backup/Restore / normal\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目11「Backup/Restore」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: backup artifact and separate actual restore evidence・scope/revision。\n- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。\n- AC / 差戻し: `INFRA-011-AC-01`; state owner / recovery design owner; INFRASTRUCTURE evidence source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-072",
+      "literal_sha256": "4d865c31fcc55188589836d55b9d239e7621fb396bcd97bc6ac91c80fd0840e4",
+      "literal": "#### CASE-INFRA-011-S5-072 — 項目11 Backup/Restore / missing\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目11「Backup/Restore」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: backup artifact and separate actual restore evidence・scope/revision。\n- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; state owner / recovery design owner; INFRASTRUCTURE evidence source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-073",
+      "literal_sha256": "34017d0c547c266ba357541f5a24a68f4554a1e4c7e519bcf270b70e011d4635",
+      "literal": "#### CASE-INFRA-011-S5-073 — 項目11 Backup/Restore / unknown\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目11「Backup/Restore」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の値をunknownにする。必須evidence: backup artifact and separate actual restore evidence・scope/revision。\n- 期待結果: unknownを正常/非適用/availableへ昇格しない。\n- AC / 差戻し: `INFRA-011-AC-01`; state owner / recovery design owner; INFRASTRUCTURE evidence source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-074",
+      "literal_sha256": "d476f25c2c0f9cdcbde0c7dc27f9da4c2606537afeec37b1bb0e23c19c2d57d0",
+      "literal": "#### CASE-INFRA-011-S5-074 — 項目11 Backup/Restore / unobserved\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目11「Backup/Restore」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 必要な観測結果だけを未観測にする。必須evidence: backup artifact and separate actual restore evidence・scope/revision。\n- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。\n- AC / 差戻し: `INFRA-011-AC-01`; state owner / recovery design owner; INFRASTRUCTURE evidence source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-075",
+      "literal_sha256": "789b6384e51deb857fb4fac36cc219703beb2870831fb2a47eff903b003bf850",
+      "literal": "#### CASE-INFRA-011-S5-075 — 項目11 Backup/Restore / stale\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目11「Backup/Restore」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: backup artifact and separate actual restore evidence・scope/revision。\n- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; state owner / recovery design owner; INFRASTRUCTURE evidence source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-076",
+      "literal_sha256": "3a077c3cd6e6325938ab089c8853220e500592d1741d1f92ecf93fb06ec9e7a4",
+      "literal": "#### CASE-INFRA-011-S5-076 — 項目11 Backup/Restore / mismatch\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目11「Backup/Restore」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: backup artifact and separate actual restore evidence・scope/revision。\n- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。\n- AC / 差戻し: `INFRA-011-AC-01`; state owner / recovery design owner; INFRASTRUCTURE evidence source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-077",
+      "literal_sha256": "081b898cc09c1c418f3a024c7d0dae72eb44727ed3e331621ada782d8fc87a93",
+      "literal": "#### CASE-INFRA-011-S5-077 — 項目11 Backup/Restore / unauthorized\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目11「Backup/Restore」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: backup artifact and separate actual restore evidence・scope/revision。\n- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。\n- AC / 差戻し: `INFRA-011-AC-01`; state owner / recovery design owner; INFRASTRUCTURE evidence source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-078",
+      "literal_sha256": "c2d527c59594b8125866d7bb7938549a122f388d142ade55272f7b7b3c5615d7",
+      "literal": "#### CASE-INFRA-011-S5-078 — 項目12 Rollback / normal\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目12「Rollback」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: eligible rollback target・procedure・result・unfinished duty。\n- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。\n- AC / 差戻し: `INFRA-011-AC-01`; recovery design owner / OS operation owner where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-079",
+      "literal_sha256": "d33ee151fabd8010b5227862cffb0e18cad299d2a7660caeecb2db3697e0ab99",
+      "literal": "#### CASE-INFRA-011-S5-079 — 項目12 Rollback / missing\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目12「Rollback」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: eligible rollback target・procedure・result・unfinished duty。\n- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; recovery design owner / OS operation owner where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-080",
+      "literal_sha256": "4412c02fa5d336fc87722a78672cf0b881fcb45513dfd244032db53499632755",
+      "literal": "#### CASE-INFRA-011-S5-080 — 項目12 Rollback / unknown\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目12「Rollback」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の値をunknownにする。必須evidence: eligible rollback target・procedure・result・unfinished duty。\n- 期待結果: unknownを正常/非適用/availableへ昇格しない。\n- AC / 差戻し: `INFRA-011-AC-01`; recovery design owner / OS operation owner where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-081",
+      "literal_sha256": "337b94fbd582d27e2073d57d45f5875165ca4ee1dae6aa0fdcc8e44d3331e0db",
+      "literal": "#### CASE-INFRA-011-S5-081 — 項目12 Rollback / unobserved\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目12「Rollback」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 必要な観測結果だけを未観測にする。必須evidence: eligible rollback target・procedure・result・unfinished duty。\n- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。\n- AC / 差戻し: `INFRA-011-AC-01`; recovery design owner / OS operation owner where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-082",
+      "literal_sha256": "72fe486a4e24c5b59bbb97b0d11806cfac1a92d8711d69cac28d5eb7f34f3f88",
+      "literal": "#### CASE-INFRA-011-S5-082 — 項目12 Rollback / stale\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目12「Rollback」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: eligible rollback target・procedure・result・unfinished duty。\n- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; recovery design owner / OS operation owner where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-083",
+      "literal_sha256": "e7a70f2029143516de499fe92b6db2424234263912abea2c579fcdf4e397d970",
+      "literal": "#### CASE-INFRA-011-S5-083 — 項目12 Rollback / mismatch\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目12「Rollback」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: eligible rollback target・procedure・result・unfinished duty。\n- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。\n- AC / 差戻し: `INFRA-011-AC-01`; recovery design owner / OS operation owner where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-084",
+      "literal_sha256": "745a12fe5df395f5a8a1b315e66f00ce9384a643b9a070ea2a1c6e82c8e3ceda",
+      "literal": "#### CASE-INFRA-011-S5-084 — 項目12 Rollback / unauthorized\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目12「Rollback」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: eligible rollback target・procedure・result・unfinished duty。\n- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。\n- AC / 差戻し: `INFRA-011-AC-01`; recovery design owner / OS operation owner where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-085",
+      "literal_sha256": "06fd59b514c3209f334e5df901e846cb676867ade20dbfc0f94783329b25a878",
+      "literal": "#### CASE-INFRA-011-S5-085 — 項目13 Deployment version / normal\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目13「Deployment version」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: runtime revision distinct from OS stage release identity。\n- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime version owner / OS stage identity owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-086",
+      "literal_sha256": "9bcd3bb8e79d0a9330f8bf62a8605055255364f2a40a38eb5ce1c2b7c8895347",
+      "literal": "#### CASE-INFRA-011-S5-086 — 項目13 Deployment version / missing\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目13「Deployment version」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: runtime revision distinct from OS stage release identity。\n- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime version owner / OS stage identity owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-087",
+      "literal_sha256": "44084b46993718d3c7ed107c2efe3a82f1ee33d00af29fc1974c6b894443a987",
+      "literal": "#### CASE-INFRA-011-S5-087 — 項目13 Deployment version / unknown\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目13「Deployment version」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の値をunknownにする。必須evidence: runtime revision distinct from OS stage release identity。\n- 期待結果: unknownを正常/非適用/availableへ昇格しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime version owner / OS stage identity owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-088",
+      "literal_sha256": "fce5effe6cdd15cd96ad4763d9beaf0e7ef16dbc7a696cf56c8393ad92081943",
+      "literal": "#### CASE-INFRA-011-S5-088 — 項目13 Deployment version / unobserved\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目13「Deployment version」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 必要な観測結果だけを未観測にする。必須evidence: runtime revision distinct from OS stage release identity。\n- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime version owner / OS stage identity owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-089",
+      "literal_sha256": "bf9701d11af2f929253a4e7db670b8c5748f3db8255e1d9046d44888947b3d08",
+      "literal": "#### CASE-INFRA-011-S5-089 — 項目13 Deployment version / stale\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目13「Deployment version」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: runtime revision distinct from OS stage release identity。\n- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime version owner / OS stage identity owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-090",
+      "literal_sha256": "5ca9911bea775fb5be05d39f6aa791e95456ae96c4da619e10280f8189b32852",
+      "literal": "#### CASE-INFRA-011-S5-090 — 項目13 Deployment version / mismatch\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目13「Deployment version」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: runtime revision distinct from OS stage release identity。\n- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime version owner / OS stage identity owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-091",
+      "literal_sha256": "9d05045f89817cbf4611daf9ef121b901a3ab512be8d7376d1528cbf36df277c",
+      "literal": "#### CASE-INFRA-011-S5-091 — 項目13 Deployment version / unauthorized\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目13「Deployment version」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: runtime revision distinct from OS stage release identity。\n- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime version owner / OS stage identity owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-092",
+      "literal_sha256": "6260bf7c8083fde6630a82a942673b02264a1b758e6f74ff75bd4d1410e1f014",
+      "literal": "#### CASE-INFRA-011-S5-092 — 項目14 Security connection / normal\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目14「Security connection」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: separate SECURITY authority reference・condition・source/revision。\n- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。\n- AC / 差戻し: `INFRA-011-AC-01`; SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-093",
+      "literal_sha256": "e22a3f423be8813c82135b94fa5fe8393de9621ef7280229c1f7d2b77fb8bb1e",
+      "literal": "#### CASE-INFRA-011-S5-093 — 項目14 Security connection / missing\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目14「Security connection」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: separate SECURITY authority reference・condition・source/revision。\n- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-094",
+      "literal_sha256": "434e3e55733aa4e561568d4afb1753f61cb4a12908fbfda5e1ced2e6c69eaca8",
+      "literal": "#### CASE-INFRA-011-S5-094 — 項目14 Security connection / unknown\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目14「Security connection」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の値をunknownにする。必須evidence: separate SECURITY authority reference・condition・source/revision。\n- 期待結果: unknownを正常/非適用/availableへ昇格しない。\n- AC / 差戻し: `INFRA-011-AC-01`; SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-095",
+      "literal_sha256": "353f87f836dd70433f8c756f85504e682221c5ead36f94ca9521c4482377f317",
+      "literal": "#### CASE-INFRA-011-S5-095 — 項目14 Security connection / unobserved\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目14「Security connection」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 必要な観測結果だけを未観測にする。必須evidence: separate SECURITY authority reference・condition・source/revision。\n- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。\n- AC / 差戻し: `INFRA-011-AC-01`; SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-096",
+      "literal_sha256": "6a289ede1d2ce74983b21fd63533ffca13eca1600d16a2d6358dba8dad6ded28",
+      "literal": "#### CASE-INFRA-011-S5-096 — 項目14 Security connection / stale\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目14「Security connection」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: separate SECURITY authority reference・condition・source/revision。\n- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-097",
+      "literal_sha256": "17ea70d0970ea30680851e8b0ce331a0a824fe718496c356908939a1c2620614",
+      "literal": "#### CASE-INFRA-011-S5-097 — 項目14 Security connection / mismatch\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目14「Security connection」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: separate SECURITY authority reference・condition・source/revision。\n- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。\n- AC / 差戻し: `INFRA-011-AC-01`; SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-098",
+      "literal_sha256": "0d0b091f4e9e44837e2e3f4942338f56c538170b6991cfd5e2fc8b283d874c8b",
+      "literal": "#### CASE-INFRA-011-S5-098 — 項目14 Security connection / unauthorized\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目14「Security connection」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: separate SECURITY authority reference・condition・source/revision。\n- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。\n- AC / 差戻し: `INFRA-011-AC-01`; SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-099",
+      "literal_sha256": "49cf6c7fe52a00d50af04410d5a5465631d8c1fb4ad0e97093175a61df6e003d",
+      "literal": "#### CASE-INFRA-011-S5-099 — 項目15 OS connection / normal\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目15「OS connection」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: OS ticket/reference and runtime-state link・source/revision。\n- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。\n- AC / 差戻し: `INFRA-011-AC-01`; OS work/change owner / INFRASTRUCTURE runtime state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-100",
+      "literal_sha256": "48f4b57cbc6ad15ee1266a9e2d23199ea30ddef1492c1cf2149c9f2b7de9e2b0",
+      "literal": "#### CASE-INFRA-011-S5-100 — 項目15 OS connection / missing\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目15「OS connection」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: OS ticket/reference and runtime-state link・source/revision。\n- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; OS work/change owner / INFRASTRUCTURE runtime state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-101",
+      "literal_sha256": "1e92d48ca92fedae5b98e2ef8cc7449ed002b7db83346730306f3d2a72ff7ab9",
+      "literal": "#### CASE-INFRA-011-S5-101 — 項目15 OS connection / unknown\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目15「OS connection」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の値をunknownにする。必須evidence: OS ticket/reference and runtime-state link・source/revision。\n- 期待結果: unknownを正常/非適用/availableへ昇格しない。\n- AC / 差戻し: `INFRA-011-AC-01`; OS work/change owner / INFRASTRUCTURE runtime state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-102",
+      "literal_sha256": "acb7dc003be4396cef366263f3f10d0c8ee1cfb08effefacb9090e129722d098",
+      "literal": "#### CASE-INFRA-011-S5-102 — 項目15 OS connection / unobserved\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目15「OS connection」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 必要な観測結果だけを未観測にする。必須evidence: OS ticket/reference and runtime-state link・source/revision。\n- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。\n- AC / 差戻し: `INFRA-011-AC-01`; OS work/change owner / INFRASTRUCTURE runtime state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-103",
+      "literal_sha256": "f90915686f56e183e2f61ec47c6e43d3f790bb9a72fc77b19bcc1597240636ed",
+      "literal": "#### CASE-INFRA-011-S5-103 — 項目15 OS connection / stale\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目15「OS connection」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: OS ticket/reference and runtime-state link・source/revision。\n- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; OS work/change owner / INFRASTRUCTURE runtime state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-104",
+      "literal_sha256": "622adedcf3bfa61ceb29f71f52ad449a8b1d8daf17a55f8209f852363d3a725a",
+      "literal": "#### CASE-INFRA-011-S5-104 — 項目15 OS connection / mismatch\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目15「OS connection」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: OS ticket/reference and runtime-state link・source/revision。\n- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。\n- AC / 差戻し: `INFRA-011-AC-01`; OS work/change owner / INFRASTRUCTURE runtime state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-105",
+      "literal_sha256": "4cf9b24e966fe018e151d9911d75d856c24f741244634bd076d94915b916a1dc",
+      "literal": "#### CASE-INFRA-011-S5-105 — 項目15 OS connection / unauthorized\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目15「OS connection」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: OS ticket/reference and runtime-state link・source/revision。\n- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。\n- AC / 差戻し: `INFRA-011-AC-01`; OS work/change owner / INFRASTRUCTURE runtime state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-106",
+      "literal_sha256": "442c51510e8aa1093d95c1221e49931435fe168fb73c35fe69fac1b35367321b",
+      "literal": "#### CASE-INFRA-011-S5-106 — 項目16 Runner execution (current Worker) / normal\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目16「Runner execution (current Worker)」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: Worker identity and execution contract / resource mapping / authority refs。\n- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。\n- AC / 差戻し: `INFRA-011-AC-01`; Worker contract owner / OS work owner / SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-107",
+      "literal_sha256": "9f595fea0fc96d3b313f06931bf576175f6a640a8a0aa80828504d2daf243266",
+      "literal": "#### CASE-INFRA-011-S5-107 — 項目16 Runner execution (current Worker) / missing\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目16「Runner execution (current Worker)」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: Worker identity and execution contract / resource mapping / authority refs。\n- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; Worker contract owner / OS work owner / SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-108",
+      "literal_sha256": "8effc68dc5b094a77ffdb5dd2673be4b25596cad079185720bd362563b1e775d",
+      "literal": "#### CASE-INFRA-011-S5-108 — 項目16 Runner execution (current Worker) / unknown\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目16「Runner execution (current Worker)」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の値をunknownにする。必須evidence: Worker identity and execution contract / resource mapping / authority refs。\n- 期待結果: unknownを正常/非適用/availableへ昇格しない。\n- AC / 差戻し: `INFRA-011-AC-01`; Worker contract owner / OS work owner / SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-109",
+      "literal_sha256": "fc22407f3eb9966b39cbe1cf804c1f3bf39a5c313b78c27c1c98f49e22905819",
+      "literal": "#### CASE-INFRA-011-S5-109 — 項目16 Runner execution (current Worker) / unobserved\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目16「Runner execution (current Worker)」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 必要な観測結果だけを未観測にする。必須evidence: Worker identity and execution contract / resource mapping / authority refs。\n- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。\n- AC / 差戻し: `INFRA-011-AC-01`; Worker contract owner / OS work owner / SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-110",
+      "literal_sha256": "d5b996aafc0bf164f84ad43e062e47358b2901a9695c3a6d81be57824b1652b3",
+      "literal": "#### CASE-INFRA-011-S5-110 — 項目16 Runner execution (current Worker) / stale\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目16「Runner execution (current Worker)」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: Worker identity and execution contract / resource mapping / authority refs。\n- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; Worker contract owner / OS work owner / SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-111",
+      "literal_sha256": "eb846dc8cbc0bb29014ef41a0e9ed5528f97b07f0bdebcccd9df3186da7f611f",
+      "literal": "#### CASE-INFRA-011-S5-111 — 項目16 Runner execution (current Worker) / mismatch\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目16「Runner execution (current Worker)」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: Worker identity and execution contract / resource mapping / authority refs。\n- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。\n- AC / 差戻し: `INFRA-011-AC-01`; Worker contract owner / OS work owner / SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-112",
+      "literal_sha256": "68cdf9c0bfe6da7142c4bd5a7dbe9e2491ba8dd9f31ea713753f4cdb46133f2e",
+      "literal": "#### CASE-INFRA-011-S5-112 — 項目16 Runner execution (current Worker) / unauthorized\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目16「Runner execution (current Worker)」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: Worker identity and execution contract / resource mapping / authority refs。\n- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。\n- AC / 差戻し: `INFRA-011-AC-01`; Worker contract owner / OS work owner / SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-113",
+      "literal_sha256": "0ea7923c49aecc6ba391201b8505556c0464855ae0dbde946cfa0739875ff1f3",
+      "literal": "#### CASE-INFRA-011-S5-113 — 項目17 Bootstrap/Out-of-Band Recovery / normal\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目17「Bootstrap/Out-of-Band Recovery」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: independent path/resource・separate authority・Worker contract・result。\n- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE recovery-path owner / SECURITY authority owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-114",
+      "literal_sha256": "a074060c275c87157e0118f157bf73ae9b29c7346866992070c3eb73ae7ec612",
+      "literal": "#### CASE-INFRA-011-S5-114 — 項目17 Bootstrap/Out-of-Band Recovery / missing\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目17「Bootstrap/Out-of-Band Recovery」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: independent path/resource・separate authority・Worker contract・result。\n- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE recovery-path owner / SECURITY authority owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-115",
+      "literal_sha256": "55625ef3b80ceb6834ebcd45675e9e1d9843b40fc274824807a3fac798ece4cb",
+      "literal": "#### CASE-INFRA-011-S5-115 — 項目17 Bootstrap/Out-of-Band Recovery / unknown\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目17「Bootstrap/Out-of-Band Recovery」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の値をunknownにする。必須evidence: independent path/resource・separate authority・Worker contract・result。\n- 期待結果: unknownを正常/非適用/availableへ昇格しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE recovery-path owner / SECURITY authority owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-116",
+      "literal_sha256": "375f3beb6c333b1b36a35ed4e469def60053218c2deea0497dc947b3832107de",
+      "literal": "#### CASE-INFRA-011-S5-116 — 項目17 Bootstrap/Out-of-Band Recovery / unobserved\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目17「Bootstrap/Out-of-Band Recovery」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 必要な観測結果だけを未観測にする。必須evidence: independent path/resource・separate authority・Worker contract・result。\n- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE recovery-path owner / SECURITY authority owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-117",
+      "literal_sha256": "ffe49e9ec9f08aebe64e1bb1cb75f85e7fc8645fa20cbd302294346d4babdebb",
+      "literal": "#### CASE-INFRA-011-S5-117 — 項目17 Bootstrap/Out-of-Band Recovery / stale\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目17「Bootstrap/Out-of-Band Recovery」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: independent path/resource・separate authority・Worker contract・result。\n- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE recovery-path owner / SECURITY authority owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-118",
+      "literal_sha256": "6d95d7e11d7a8a52ec9f5d769300c3fd582e67f7960ff2202667bcf52980a088",
+      "literal": "#### CASE-INFRA-011-S5-118 — 項目17 Bootstrap/Out-of-Band Recovery / mismatch\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目17「Bootstrap/Out-of-Band Recovery」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: independent path/resource・separate authority・Worker contract・result。\n- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE recovery-path owner / SECURITY authority owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-119",
+      "literal_sha256": "1299597247238ef850f4cf2bf9ce2b1986c6bfb373eb4912155e069f9b46a7a9",
+      "literal": "#### CASE-INFRA-011-S5-119 — 項目17 Bootstrap/Out-of-Band Recovery / unauthorized\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目17「Bootstrap/Out-of-Band Recovery」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: independent path/resource・separate authority・Worker contract・result。\n- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE recovery-path owner / SECURITY authority owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-120",
+      "literal_sha256": "460a70eec8fdf1ce1b0ac0d4ee8f416b2a4ec6f923a5e848216c5868e84adee4",
+      "literal": "#### CASE-INFRA-011-S5-120 — 項目18 Rebuildability / normal\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目18「Rebuildability」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: rebuild input inventory・dependency reconnection・startup verification・result。\n- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE rebuild/recovery owner; CORE/OS/SECURITY/Worker owners by input。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-121",
+      "literal_sha256": "daa550966c800c69a0df984ce489015d06875dfd854898817ef5044a9d7923c7",
+      "literal": "#### CASE-INFRA-011-S5-121 — 項目18 Rebuildability / missing\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目18「Rebuildability」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: rebuild input inventory・dependency reconnection・startup verification・result。\n- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE rebuild/recovery owner; CORE/OS/SECURITY/Worker owners by input。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-122",
+      "literal_sha256": "3b1be578c9d05a4c2441040234ae6f8f152899ce7457863dc204e1c48b7f116e",
+      "literal": "#### CASE-INFRA-011-S5-122 — 項目18 Rebuildability / unknown\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目18「Rebuildability」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有の値をunknownにする。必須evidence: rebuild input inventory・dependency reconnection・startup verification・result。\n- 期待結果: unknownを正常/非適用/availableへ昇格しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE rebuild/recovery owner; CORE/OS/SECURITY/Worker owners by input。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-123",
+      "literal_sha256": "f9085f3c2e29d34247b6214fa7de84eced4f088083a61de694b9de9cac00cf1f",
+      "literal": "#### CASE-INFRA-011-S5-123 — 項目18 Rebuildability / unobserved\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目18「Rebuildability」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 必要な観測結果だけを未観測にする。必須evidence: rebuild input inventory・dependency reconnection・startup verification・result。\n- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE rebuild/recovery owner; CORE/OS/SECURITY/Worker owners by input。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-124",
+      "literal_sha256": "d17961c8f51539368388455040b7e1b5b8a4dd663bdf756fb6cba13b511ba136",
+      "literal": "#### CASE-INFRA-011-S5-124 — 項目18 Rebuildability / stale\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目18「Rebuildability」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: rebuild input inventory・dependency reconnection・startup verification・result。\n- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE rebuild/recovery owner; CORE/OS/SECURITY/Worker owners by input。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-125",
+      "literal_sha256": "440f8f13c16a01f4a45f4b0033bd5572f078cd951cd946704296672ea5edb347",
+      "literal": "#### CASE-INFRA-011-S5-125 — 項目18 Rebuildability / mismatch\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目18「Rebuildability」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: rebuild input inventory・dependency reconnection・startup verification・result。\n- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE rebuild/recovery owner; CORE/OS/SECURITY/Worker owners by input。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-126",
+      "literal_sha256": "7e56eb99978b7246b24d9a9fbaed71b0c622b0dc2f25eff46887c60f74019d35",
+      "literal": "#### CASE-INFRA-011-S5-126 — 項目18 Rebuildability / unauthorized\n\n- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目18「Rebuildability」だけを変異する。他17項目と適用connectionは固定。\n- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: rebuild input inventory・dependency reconnection・startup verification・result。\n- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。\n- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE rebuild/recovery owner; CORE/OS/SECURITY/Worker owners by input。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。\n\n### 4 operation-specific oracle — 個別CASE\n\n| CASE | 操作 | 入力と単独判定 | 期待結果 / 戻し先 |\n|---|---|---|---|\n| `CASE-INFRA-011-S5-127` | 通常read-only / no-change | 既存許可範囲内のread-only要求。operation前後のstate/revisionを別記し、operationに適用されないbackup/restore義務をこの操作の前提にしない。 | state不変を確認。要求外のread/write/operationを推定しない。観測不能はunknownとして該当source ownerへ戻す。 |\n| `CASE-INFRA-011-S5-128` | 適用recovery duty付きstate change | state-changing requestと、そのoperationに適用される既存recovery dutyだけを入力する。duty input、実行、結果を別に追跡する。 | 適用dutyが未完/unknownならoperation/compositeを成功にせず未完義務を保持し、recovery design/state ownerへ戻す。無関係なrecovery要件を追加しない。 |\n| `CASE-INFRA-011-S5-129` | 許可済みupdate | L2-010に基づくtarget/action/revision/scope、別SECURITY authority、Worker契約、許可とresultを個別入力する。 | 既存契約で許可されたupdateだけを照合。いずれか欠落/unknown/stale/mismatch/unauthorizedなら拒否しSECURITY/Worker/OS/resourceの該当ownerへ返す。L3候補から許可を生成しない。 |\n| `CASE-INFRA-011-S5-130` | OS停止中independent recovery | OS ticket/assignment/通常L2-009 responseは前提にしない。OS停止中にも利用可能な独立path/resource、別SECURITY authority、SECURITY制約下のWorker契約、recovery action/resultを入力する。再起動後のOS operation/result同期は独立に観測する。 | 停止OS経由を要求せず独立経路を評価する。SECURITY authority/path/Worker欠落は該当ownerへ戻す。OS復帰後syncが欠ければcomposite完了扱いせず未完義務を保持する。ticket不要は他操作のticket/authorityを免除しない。 |\n\n### Recovery/composite境界の固定反例\n\n| CASE | 単独変異 | oracle |\n|---|---|---|\n| `CASE-INFRA-011-S5-131` | backup artifact/job successだけを提示しrestore resultを欠く | backup evidenceと実restoreを別に判定。backupだけではrestore成功にしない。state/recovery ownerへrestore evidence不足を返す。 |\n| `CASE-INFRA-011-S5-132` | backup成功、restore integrity/reconnect/startup/verificationのうち1結果だけ失敗 | restore failureを記録し、成功・rollback完了へ昇格しない。recovery design ownerへ戻し未完を保持する。 |\n| `CASE-INFRA-011-S5-133` | artifact backup/restore成功を保ったままindependent bootstrap/recovery pathを欠落させる | restore successからindependent recoveryを推定せず、L2-006 ownerへpath欠落を戻す。 |\n| `CASE-INFRA-011-S5-134` | restoreとindependent recoveryを保ち、rebuild dependency reconnectionまたはstartup verificationだけ失敗させる | rebuildabilityを別oracleで失敗にし、部分結果と未完義務をrebuild/recovery ownerへ戻す。 |\n| `CASE-INFRA-011-S5-135` | OS ticketを欠く一方でOS停止中の独立recoveryの全契約入力/証拠を提示 | ticket欠落だけでindependent recoveryを拒否しない。OS復帰後のoperation/result syncは別に要求する。 |\n| `CASE-INFRA-011-S5-136` | independent routeのSECURITY authorityを欠落 | route/Worker結果があっても許可された独立recoveryとしない。SECURITY ownerへ戻す。 |\n| `CASE-INFRA-011-S5-137` | recovery resultはあるがOS復帰後同期だけ欠落 | recovery実行結果を保持するがcomposite closureは保留し、OS connection ownerへ未同期義務を戻す。 |\n| `CASE-INFRA-011-S5-138` | stage対象外の通常受入でOS-014 evidenceを要求 | OS-014を通常受入条件にせずscopeを維持。実際にOS Stage releaseへ収載する場合のみ該当収載証拠を別照合。 |\n| `CASE-INFRA-011-S5-139` | WEB顧客runtimeまたは後続version機能を1.0 inputへ追加 | 対象外scopeの追加を拒否し、L2-011 1.0 scopeを保持する。上流意味を変更しない。 |\n\n18項目それぞれの正常/6 variant全CASEは上記001–126で行単位に定義する。全CASEでresultに加えsource/revision、owner、unknown/unfinished state、期待拒否と未実施を区別して記録する。旧CLI、runtime、test、CIは起動しない。\n\n### Connection/composite独立fixture\n\n| CASE | connection | 単独入力とoracle |\n|---|---|---|\n| `CASE-INFRA-011-S5-140` | CORE design | design identity/revision/scope参照を一つずつ欠落/unknown/stale/mismatchにする。CORE connectionだけを保留し、CORE design ownerへ返す。 |\n| `CASE-INFRA-011-S5-141` | OS work/change | OS work referenceを欠落させる。OS connectionを保留するが、OS停止中独立recoveryのCASE-130にticket必須を追加しない。 |\n| `CASE-INFRA-011-S5-142` | SECURITY | separate authorityだけを欠落/unknown/mismatchにする。許可されたconnection/operationとして扱わずSECURITY ownerへ返す。 |\n| `CASE-INFRA-011-S5-143` | Worker | Worker execution contractだけを欠落/unknown/staleにする。resource unit成功だけでWorker connectionを成立させない。 |\n| `CASE-INFRA-011-S5-144` | composite | 18項目すべての必須evidenceと適用connectionを同じ対象scope/revisionへ束縛し、部分成功/未完義務がない正常入力を与える。composite判定を個別unit結果と別に記録する。 |\n\n**CASE-INFRA-011-S5-145**：composite正常入力から項目11のrestore evidenceだけを除く。backup/他17項目/connectionを維持し、compositeを保留してstate/recovery ownerへ返す。\n\n**CASE-INFRA-011-S5-146**：composite正常入力からCORE design revisionだけを不一致にする。unit項目結果を保持しつつCORE connectionとcompositeを保留する。\n\n**CASE-INFRA-011-S5-147**：composite正常入力で項目8 capacity値は観測できるがdecision ownerの判断は未提示にする。観測とOS/INTELLIGENCE採否を分け、INFRASTRUCTUREからcapacity approvalを生成しない。\n\n**CASE-INFRA-011-S5-148**：composite全体の入力・各item result・owner/revision traceが揃っても、外部承認/実行/配布状態は生成しない。L3候補から実装許可やoperation executionを推定しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-127",
+      "literal_sha256": "a47d4b0e35aeeba874e7ae8249eb642d77865902929a7b185269870eca6ee040",
+      "literal": "| `CASE-INFRA-011-S5-127` | 通常read-only / no-change | 既存許可範囲内のread-only要求。operation前後のstate/revisionを別記し、operationに適用されないbackup/restore義務をこの操作の前提にしない。 | state不変を確認。要求外のread/write/operationを推定しない。観測不能はunknownとして該当source ownerへ戻す。 |\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-128",
+      "literal_sha256": "cdacb168463ab79604dbc24ef502818e25dd4e253f64af022fcb9c04f727b8c2",
+      "literal": "| `CASE-INFRA-011-S5-128` | 適用recovery duty付きstate change | state-changing requestと、そのoperationに適用される既存recovery dutyだけを入力する。duty input、実行、結果を別に追跡する。 | 適用dutyが未完/unknownならoperation/compositeを成功にせず未完義務を保持し、recovery design/state ownerへ戻す。無関係なrecovery要件を追加しない。 |\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-129",
+      "literal_sha256": "7c127edbe84f1c054a2083c4c1e08fad38f7722521c2f57619fe05dcc37b127e",
+      "literal": "| `CASE-INFRA-011-S5-129` | 許可済みupdate | L2-010に基づくtarget/action/revision/scope、別SECURITY authority、Worker契約、許可とresultを個別入力する。 | 既存契約で許可されたupdateだけを照合。いずれか欠落/unknown/stale/mismatch/unauthorizedなら拒否しSECURITY/Worker/OS/resourceの該当ownerへ返す。L3候補から許可を生成しない。 |\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-130",
+      "literal_sha256": "22f64d09c9bffaee3ce9668ba8e8d001f326111efb46e5ad61eb18ad693b954d",
+      "literal": "| `CASE-INFRA-011-S5-130` | OS停止中independent recovery | OS ticket/assignment/通常L2-009 responseは前提にしない。OS停止中にも利用可能な独立path/resource、別SECURITY authority、SECURITY制約下のWorker契約、recovery action/resultを入力する。再起動後のOS operation/result同期は独立に観測する。 | 停止OS経由を要求せず独立経路を評価する。SECURITY authority/path/Worker欠落は該当ownerへ戻す。OS復帰後syncが欠ければcomposite完了扱いせず未完義務を保持する。ticket不要は他操作のticket/authorityを免除しない。 |\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-131",
+      "literal_sha256": "7f9363cfc4d20000ddc5dacebaf80a6c2a579b477c2f80e432eec0a447f1615c",
+      "literal": "| `CASE-INFRA-011-S5-131` | backup artifact/job successだけを提示しrestore resultを欠く | backup evidenceと実restoreを別に判定。backupだけではrestore成功にしない。state/recovery ownerへrestore evidence不足を返す。 |\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-132",
+      "literal_sha256": "aad32584652c5c441695c5ea55c91a75ff8e48066680191869ce10890924dac7",
+      "literal": "| `CASE-INFRA-011-S5-132` | backup成功、restore integrity/reconnect/startup/verificationのうち1結果だけ失敗 | restore failureを記録し、成功・rollback完了へ昇格しない。recovery design ownerへ戻し未完を保持する。 |\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-133",
+      "literal_sha256": "2cf52a6e61a5c44f80a41aaacc1152ed6eb9bb5b9ce7a1482449194f8125d31e",
+      "literal": "| `CASE-INFRA-011-S5-133` | artifact backup/restore成功を保ったままindependent bootstrap/recovery pathを欠落させる | restore successからindependent recoveryを推定せず、L2-006 ownerへpath欠落を戻す。 |\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-134",
+      "literal_sha256": "495ecdfbdb154424725024b2c8df7a81a3c42f3e67155bf920f3724529fb8fb7",
+      "literal": "| `CASE-INFRA-011-S5-134` | restoreとindependent recoveryを保ち、rebuild dependency reconnectionまたはstartup verificationだけ失敗させる | rebuildabilityを別oracleで失敗にし、部分結果と未完義務をrebuild/recovery ownerへ戻す。 |\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-135",
+      "literal_sha256": "905a1173e6d42fd431f6613af78e29750d88c729d4567d51d0b3ef5a5b846ef2",
+      "literal": "| `CASE-INFRA-011-S5-135` | OS ticketを欠く一方でOS停止中の独立recoveryの全契約入力/証拠を提示 | ticket欠落だけでindependent recoveryを拒否しない。OS復帰後のoperation/result syncは別に要求する。 |\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-136",
+      "literal_sha256": "5108b3a6cd2be87bf79cee91af46588defad84a860ed10fba46bda39a0475a7c",
+      "literal": "| `CASE-INFRA-011-S5-136` | independent routeのSECURITY authorityを欠落 | route/Worker結果があっても許可された独立recoveryとしない。SECURITY ownerへ戻す。 |\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-137",
+      "literal_sha256": "e3760e7eed7e39a5937d6458171024e2f574b929f531ce1e7dd1d71be5304099",
+      "literal": "| `CASE-INFRA-011-S5-137` | recovery resultはあるがOS復帰後同期だけ欠落 | recovery実行結果を保持するがcomposite closureは保留し、OS connection ownerへ未同期義務を戻す。 |\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-138",
+      "literal_sha256": "624a48fc4b480706101b48382b7de0661ef723fafee863d091160c392f683091",
+      "literal": "| `CASE-INFRA-011-S5-138` | stage対象外の通常受入でOS-014 evidenceを要求 | OS-014を通常受入条件にせずscopeを維持。実際にOS Stage releaseへ収載する場合のみ該当収載証拠を別照合。 |\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-139",
+      "literal_sha256": "cecd99ca8434047ee2f3b277fadb37d47125ce4f65775ce339abe9bb3614a20d",
+      "literal": "| `CASE-INFRA-011-S5-139` | WEB顧客runtimeまたは後続version機能を1.0 inputへ追加 | 対象外scopeの追加を拒否し、L2-011 1.0 scopeを保持する。上流意味を変更しない。 |\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-140",
+      "literal_sha256": "5a2c7f1d328f05a9388497b4c324d25a235d9cd666f604a69a4f0edc25e01c13",
+      "literal": "| `CASE-INFRA-011-S5-140` | CORE design | design identity/revision/scope参照を一つずつ欠落/unknown/stale/mismatchにする。CORE connectionだけを保留し、CORE design ownerへ返す。 |\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-141",
+      "literal_sha256": "b6c7dd8a08b5ebf78d0d9afc42bc450d21b08b47d7782d97db27f4e96fb59143",
+      "literal": "| `CASE-INFRA-011-S5-141` | OS work/change | OS work referenceを欠落させる。OS connectionを保留するが、OS停止中独立recoveryのCASE-130にticket必須を追加しない。 |\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-142",
+      "literal_sha256": "b6abc34b500bf43fc0467783f23afc6a78141b297f29d1ab397e0357e9ca05fd",
+      "literal": "| `CASE-INFRA-011-S5-142` | SECURITY | separate authorityだけを欠落/unknown/mismatchにする。許可されたconnection/operationとして扱わずSECURITY ownerへ返す。 |\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-143",
+      "literal_sha256": "b6f591676d0d792ca7798a596f822b33cbb96c9f59ccbe0907fb79bad835a279",
+      "literal": "| `CASE-INFRA-011-S5-143` | Worker | Worker execution contractだけを欠落/unknown/staleにする。resource unit成功だけでWorker connectionを成立させない。 |\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-144",
+      "literal_sha256": "584aa7630e133d2b00cc87cb04cf1ed0c420ffcc9522f591154b6c1508103d7e",
+      "literal": "| `CASE-INFRA-011-S5-144` | composite | 18項目すべての必須evidenceと適用connectionを同じ対象scope/revisionへ束縛し、部分成功/未完義務がない正常入力を与える。composite判定を個別unit結果と別に記録する。 |\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-145",
+      "literal_sha256": "0e136e22fefc2edb0c0df85cfa6e09c945963e66158ceab193d87cb8c5f6ccff",
+      "literal": "**CASE-INFRA-011-S5-145**：composite正常入力から項目11のrestore evidenceだけを除く。backup/他17項目/connectionを維持し、compositeを保留してstate/recovery ownerへ返す。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-146",
+      "literal_sha256": "a52641c07dd23eeb697988ad57383ae1105f7ddcf4329940059fa8be1998255d",
+      "literal": "**CASE-INFRA-011-S5-146**：composite正常入力からCORE design revisionだけを不一致にする。unit項目結果を保持しつつCORE connectionとcompositeを保留する。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-147",
+      "literal_sha256": "596e9da2be750ccfb0330b117310a496826afdd3e698d7559bdb98ffebf24ebb",
+      "literal": "**CASE-INFRA-011-S5-147**：composite正常入力で項目8 capacity値は観測できるがdecision ownerの判断は未提示にする。観測とOS/INTELLIGENCE採否を分け、INFRASTRUCTUREからcapacity approvalを生成しない。\n"
+    },
+    {
+      "case_id": "CASE-INFRA-011-S5-148",
+      "literal_sha256": "21d92bf38b0a9f8a37b7dd9d55a87d357a082c6d0fe9057232912c08207e863d",
+      "literal": "**CASE-INFRA-011-S5-148**：composite全体の入力・各item result・owner/revision traceが揃っても、外部承認/実行/配布状態は生成しない。L3候補から実装許可やoperation executionを推定しない。\n"
+    }
+  ],
+  "fr_stage5_suffix_sha256": "9a4204adc06452bbc93e675b1a42afd1be0413eaceb1ee78603f11f0782cea13",
+  "fv_stage5_suffix_sha256": "9ec110d60d3ece856c7e5615668d6181025871ab35f013ff5b79f36a2b095025",
+  "limits": [
+    "archive exact identity / phrase search did not identify direct parent-specific old L3 requirement or paired consumer; semantic full archive search remains unconfirmed",
+    "legacy infrastructure intake is comparison-only, not claimed as direct lineage",
+    "no legacy CLI/runtime/test/CI executed",
+    "NFR numeric SLOs are not introduced; 0 false-success is a static classification oracle candidate only",
+    "G0 pin is its published 2026-10-03 artifact and reports basis_main 633bf12ea8f948db8ba3d6600179c4a9507377a7; this audit does not relabel that artifact as basis 64086f or infer approval from sequence placement."
+  ],
+  "registration_pin": {
+    "path": "docs/governance/management-provisional-requirement-register.jsonl",
+    "line": 443,
+    "literal": "{\"registration_id\":\"MPR-RC-HELIXINFRASTRUCTURE-L2-011-003\",\"supersedes_registration_id\":\"MPR-RC-HELIXINFRASTRUCTURE-L2-011-002\",\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HELIXINFRASTRUCTURE-L2-011\",\"requirement_kind\":\"composite\",\"product_target\":\"HELIX-INFRASTRUCTURE\",\"candidate_source_path\":\"docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md#helixinfrastructure-l2-011\",\"candidate_semantic_digest\":\"sha256:6bebc7a8fecafca8fa776e06bf718c0774ef7ae9c96de4bce50155b203a54351\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@c9fc9aa463a82b8a11b0132dddd5e05a82bbbf0c sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（上位の対象revisionと候補状態を独立に扱う）\",\"parent_planning_revision\":\"docs/helix-infrastructure/L1-planning/infrastructure-intent.md@c9fc9aa463a82b8a11b0132dddd5e05a82bbbf0c sha256:1673cf1333c762b817e1031cb610de90b6e967f7c2d851ab2a4b71e4959ebc37（現行候補親。対象revision確認・採択を生成しない）\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/helix-infrastructure-stage-review-coverage-receipt-2026-09-27.json#HELIXINFRASTRUCTURE-L2-011\",\"source_atom_set_digest\":\"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"source_atom_count\":0,\"source_collection_scope\":\"現行L1/POからの新L2候補の起草。旧sourceは意味比較資料として参照し、旧atomを候補へ移管・採択・retireしない。入力旧atom集合は空集合であり、no_lossは空集合についてのみ。現行L1/POの条件対応はparent_source_conditionsと本文/L11を独立照合する。旧資産全体の被覆を主張しない。\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/helix-infrastructure-stage-review-coverage-receipt-2026-09-27.json\",\"coverage_result\":\"no_loss\",\"carried_atom_refs\":[],\"preserved_pending_registration_refs\":[\"MPR-SH-CANDIDATE-003\"],\"human_decision_disposition_refs\":[],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex execution lane\",\"registered_at\":\"2026-09-27T21:00:52+09:00\",\"evidence_refs\":[\"docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md\",\"docs/helix-infrastructure/L1-planning/infrastructure-intent.md\",\"docs/helix-infrastructure/sources/runtime-infrastructure-l1-po-original-2026-09-26.md\",\"docs/governance/decisions/infrastructure-l1-idea-po-decisions-2026-09-26.md\",\"docs/governance/decisions/infrastructure-concept-placement-po-decisions-2026-09-26.md\",\"docs/governance/audits/requirement-registration/helixinfrastructure-functional-units-coverage-receipt-2026-09-27-r2.json\",\"docs/governance/audits/requirement-registration/helix-infrastructure-stage-review-coverage-receipt-2026-09-27.json\",\"docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md\",\"docs/governance/audits/requirements-stage/helix-infrastructure-internal-audit-2026-09-27.md\",\"docs/governance/audits/requirements-stage/helix-infrastructure-internal-resolution-2026-09-27.md\"],\"correction_reason\":\"C1/C2操作別update admissionと独立復旧、C3モデル資源属性oracleを具体化。最低18項目を保持。\"}\n",
+    "sha256": "f83c4f6aa159658db67650015645b49a0a00f3b55a233786aea961c18c6f56d1"
+  },
+  "g0_pin": {
+    "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
+    "file_sha256": "ec970df79eaaf693f8825045b235c43ea10aefa7925701b1fff2a974df3e4e0a",
+    "artifact_basis_main": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "identity_record": {
+      "identity": "HELIXINFRASTRUCTURE-L2-011",
+      "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-011-003",
+      "disposition": "adopted",
+      "version_class": "1.0",
+      "stage_proposal": "Stage 5",
+      "decision_locator": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md#L48",
+      "decision_row": "HELIXINFRASTRUCTURE-L2-001, HELIXINFRASTRUCTURE-L2-002, HELIXINFRASTRUCTURE-L2-003, HELIXINFRASTRUCTURE-L2-004, HELIXINFRASTRUCTURE-L2-005, HELIXINFRASTRUCTURE-L2-006, HELIXINFRASTRUCTURE-L2-007, HELIXINFRASTRUCTURE-L2-008, HELIXINFRASTRUCTURE-L2-009, HELIXINFRASTRUCTURE-L2-010, HELIXINFRASTRUCTURE-L2-011, HELIXINFRASTRUCTURE-L2-012, HELIXINFRASTRUCTURE-L2-013, HELIXINFRASTRUCTURE-L2-014, HELIXINFRASTRUCTURE-L2-015, HELIXINFRASTRUCTURE-L2-016, HELIXINFRASTRUCTURE-L2-017, HELIXINFRASTRUCTURE-L2-018, HELIXINFRASTRUCTURE-L2-019, HELIXINFRASTRUCTURE-L2-020, HELIXINFRASTRUCTURE-L2-021, HELIXINFRASTRUCTURE-L2-022, HELIXINFRASTRUCTURE-L2-023, HELIXINFRASTRUCTURE-L2-024, HELIXINFRASTRUCTURE-L2-025, HELIXINFRASTRUCTURE-L2-026",
+      "source_l2_locator": "docs/governance/audits/requirements-stage/implementation-order-assignments-2026-09-27.json#HELIXINFRASTRUCTURE-L2-011",
+      "candidate_source_path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md#helixinfrastructure-l2-011",
+      "candidate_semantic_digest": "sha256:6bebc7a8fecafca8fa776e06bf718c0774ef7ae9c96de4bce50155b203a54351",
+      "stage_basis": "9/27 assignment JSON exact identity mapping",
+      "title_or_section": "9/27 order existing identity",
+      "product_target": "HELIX-INFRASTRUCTURE",
+      "register_row_locator": "docs/governance/management-provisional-requirement-register.jsonl#L443",
+      "register_row_sha256": "60bd4dcae6867e4927294bde4f85684b4e77576c0b4c254cb88f43d2f9730a8b",
+      "register_identity_confirmed": true,
+      "decision_join_method": "grouped 2026-09-28 PO decision adopts identity set; exact latest registration pinned independently by register row and semantic digest",
+      "decision_scope_locator": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md#L27",
+      "decision_identity_exact_in_decision": true,
+      "decision_registration_exact_in_decision": false,
+      "source_section_locator": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md#L138",
+      "source_section_line_start": 138,
+      "source_section_line_end": 147,
+      "source_section_heading": "HELIXINFRASTRUCTURE-L2-011 HELIX自身のInfrastructure 1.0構成体",
+      "version_intent": "1.0",
+      "version_intent_label": "1.0 target candidate",
+      "version_basis": "9/27 implementation order classification_sets.recommended_core_1_0_ids (214 identities) + adopted PO decision exact identity/revision; source target clauses retained when explicit. This denotes 1.0 target candidate/order only, not release contents.",
+      "l3_scope_basis": "1.0 target / PO-adopted identity; eligible to draft L3 candidate for that target. Not a release-wide inclusion or implementation authorization.",
+      "version_evidence_lines": [
+        {
+          "line": 144,
+          "text": "- **単独成立の依存・版**：L2-001〜010および025の必要な採択済み要求/verification、必要なCORE/OS/SECURITY/Worker契約と実資源。`version_target: 1.0`。この要求は設計/実装/運用許可ではない。"
+        }
+      ],
+      "stage_dependency_evidence_lines": [
+        {
+          "line": 144,
+          "text": "- **単独成立の依存・版**：L2-001〜010および025の必要な採択済み要求/verification、必要なCORE/OS/SECURITY/Worker契約と実資源。`version_target: 1.0`。この要求は設計/実装/運用許可ではない。"
+        }
+      ],
+      "stage_prerequisite_ids": [
+        "HELIXINFRASTRUCTURE-L2-001"
+      ],
+      "stage_dependency_ids_not_adopted": [],
+      "sequence_stage": "Stage 5",
+      "sequence_stage_scope_note": "既存9/27 orderの正本配置を保持。version status is separate; no release, implementation, or all-prior-stage completion gate is implied.",
+      "sequence_population": "original 250 carry-forward",
+      "sequence_stage_rationale": "9/27 assignment JSON exact identity mapping",
+      "source_section_normalized_text_sha256": "sha256:6bebc7a8fecafca8fa776e06bf718c0774ef7ae9c96de4bce50155b203a54351",
+      "source_section_raw_bytes_sha256": "sha256:ddedb41002d72be9322e99d6f82233d231795f3e9cc167d2bc048c2bbe765791",
+      "source_section_line_span": {
+        "start_line": 138,
+        "end_line": 147,
+        "end_line_inclusive": true,
+        "raw_byte_span_rule": "concatenate source file physical lines [start_line..end_line] including original line terminators"
+      },
+      "approval_parent_pin": {
+        "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-011-003",
+        "candidate_semantic_digest": "sha256:6bebc7a8fecafca8fa776e06bf718c0774ef7ae9c96de4bce50155b203a54351",
+        "po_decision_locator": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md#L48",
+        "approval_attribution": "Exact PO decision row at basis main 633bf12 only; the post-basis latest register row, including R2289 metadata/locator corrections, does not itself alter the PO-fixed registration revision or candidate semantic digest and is not approval."
+      }
+    },
+    "identity_record_sha256": "796bf581366fefc9fa30fa80b02559dbb4ba0390398ea593b43b4369bc392a9b"
+  }
+}
