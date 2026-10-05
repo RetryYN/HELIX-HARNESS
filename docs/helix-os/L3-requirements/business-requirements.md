@@ -21,7 +21,7 @@
 | HELIXOS-L2-034 | 機能要件のみ。disposition正当性やリスク受容をOSが評価しない。 | 元source/PO authority。FR-OS-L3-034 AC-01..05。 |
 | HELIXOS-L2-035 | 機能要件のみ。job登録数を監査完了率に読み替えない。 | OS-L2-010 ticket owner、HARNESS接続は別scope。FR-OS-L3-035 AC-01..05。 |
 | HELIXOS-L2-036 | 機能要件のみ。Retrofit成否の技術判定は各owner。 | OSはpreflight-plan/apply trace。FR-OS-L3-036 AC-01..04。 |
-| HELIXOS-L2-037 | 機能要件のみ。負債の価値・優先度はLABO/source owner。 | ticket登録はOS-L2-010。FR-OS-L3-037 AC-01..05。 |
+| HELIXOS-L2-037 | 機能要件のみ。負債分類・評価はsource owner/LABO、既存OSの優先順位決定責務を保持する。 | ticket登録はOS-L2-010。FR-OS-L3-037 AC-01..05。 |
 | HELIXOS-L2-038 | 機能要件のみ。snapshot/proposal appendは採択・coverage完了でない。 | HARNESS semantic contract owner。FR-OS-L3-038 AC-01..04。 |
 | HELIXOS-L2-040 | 機能要件のみ。retryを回復成功と数えない。 | 既存typed return owner。FR-OS-L3-040 AC-01..06。 |
 | HELIXOS-L2-041 | 機能要件のみ。resumeを未完義務解消と数えない。 | OS-L2-009、正本/authority owner。FR-OS-L3-041 AC-01..04。 |
