@@ -12,3 +12,7 @@
 ## Stage 3の業務意味境界
 
 029、030、032、034、035は独立した新しい業務価値・価格・risk受容owner・保存完了基準を導出しない。runtime採用条件、profile別policy、run cleanup、拡大条件照合の成功を、事業採用・利益・包括許可・OS昇格へ昇格させない。riskの実責務は030の既存ownerへ保つ。機能ACとpaired L10の正常・反例・未評価を業務境界の照合にも用い、他機構全体の業務要件非適用へ一般化しない。
+
+## Stage 4（HELIXSECURITY-L2-021/022/023/024/026）
+
+この5親に独立したbusiness identity/ACはない。receipt・trust判断・SECURITY admission・Guard結果から下流受領のtrust、OS assignment、Worker実行、HARNESS verification、OS promotion、実資源適用やsemantic業務判断を成功として生成しない。各意味と結果はL2が示すCONNECT、LABO/INTELLIGENCE、OS、Worker、HARNESS、INFRASTRUCTUREの既存ownerへ残す。026の1.0 Guard境界からsemantic judgement/Bot runtimeの業務結果を前倒ししない。独立BR/AC/ownerは新設せず、意味・scope・owner・versionの変更が必要な場合だけ固定親L2へ戻す。
