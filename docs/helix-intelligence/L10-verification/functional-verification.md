@@ -917,7 +917,6 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 | `CASE-INTELLIGENCE-L10-R2607-072-24` | `FR-INTELLIGENCE-L3-072-01` | `AC-INTELLIGENCE-L3-072-11` | system化/operation配分評価を選択しLABO-007条件を満たす。 | 選択operationの条件を照合しLABOの評価責務を保持する。 | 個別条件を別source/operationで代替したら不合格。 |
 | `CASE-INTELLIGENCE-L10-R2607-072-25` | `FR-INTELLIGENCE-L3-072-01` | `AC-INTELLIGENCE-L3-072-11` | 選択したsystem化/operation配分評価でLABO-007条件だけをmissingにする。 | 評価部分を未完としてLABOへ返す。 | 個別条件を別source/operationで代替したら不合格。 |
 | `CASE-INTELLIGENCE-L10-R2607-078-26` | `FR-INTELLIGENCE-L3-078-01` | `AC-INTELLIGENCE-L3-078-11` | 正常sourceのprojection revisionだけをstaleにして再利用する。 | stale projectionをcurrentとして使わず該当sourceへ戻す。 | 個別条件を別source/operationで代替したら不合格。 |
-
 | `CASE-INTELLIGENCE-L10-R2607-073-route-issue` | `FR-INTELLIGENCE-L3-073-01` | `AC-INTELLIGENCE-L3-073-01` | Issue宛先について、自由文単独のProbe候補とは独立に適格根拠・対象revision・既存ownerの判断を満たす既存経路のfixtureを与える。 | Probeから直接投影せず、既存経路はその根拠とowner条件に従って成立可能なまま保つ。 | Probe候補の拒否を理由にIssue宛先の既存経路を恒久禁止したら不合格。 |
 | `CASE-INTELLIGENCE-L10-R2607-073-route-requirement` | `FR-INTELLIGENCE-L3-073-01` | `AC-INTELLIGENCE-L3-073-01` | Requirement宛先について、自由文単独のProbe候補とは独立に適格根拠・対象revision・既存ownerの判断を満たす既存経路のfixtureを与える。 | Probeから直接投影せず、既存経路はその根拠とowner条件に従って成立可能なまま保つ。 | Probe候補の拒否を理由にRequirement宛先の既存経路を恒久禁止したら不合格。 |
 | `CASE-INTELLIGENCE-L10-R2607-073-route-ci` | `FR-INTELLIGENCE-L3-073-01` | `AC-INTELLIGENCE-L3-073-01` | CI宛先について、自由文単独のProbe候補とは独立に適格根拠・対象revision・既存ownerの判断を満たす既存経路のfixtureを与える。 | Probeから直接投影せず、既存経路はその根拠とowner条件に従って成立可能なまま保つ。 | Probe候補の拒否を理由にCI宛先の既存経路を恒久禁止したら不合格。 |
