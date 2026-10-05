@@ -361,7 +361,7 @@ HIL-BR-32、HR-FR-HIL-23/HAC-HIL-23a/b/c、HAT-HIL-23、P2-05/HAT、WCCの対応
 
 ### SECURITY-CASE-021-04 — classification unknown
 
-- **対象AC**：`SECURITY-AC-021-02`
+- **対象AC**：`SECURITY-AC-021-01/02`
 - **negative変異**：sourceとcontractは保ちclassificationのみunknownにする。
 - **期待oracle**：未信頼/unknownを保持し同一flowの選択consumerへunknown停止を伝播する。data受領を成功扱いせず、consumer receiptやtransport成功をtrust昇格に使わない。
 - **owner戻し**：classification/policyの意味不足をSECURITY L1-001/002へ返す。
@@ -780,3 +780,10 @@ HIL-BR-32、HR-FR-HIL-23/HAC-HIL-23a/b/c、HAT-HIL-23、P2-05/HAT、WCCの対応
 - **negative変異**：正常origin/confidenceを保持したままoriginをconfidence判定そのものとして解釈する。
 - **期待oracle**：由来と確度の混同を不合格とし別field/判断材料として保持する。
 - **owner戻し**：INTELLIGENCE意味判断責務へ返す。
+
+### SECURITY-CASE-022-18 — 実行前denyの停止伝播
+
+- **対象AC**：`SECURITY-AC-022-02`
+- **negative変異**：正常authority flowでSECURITYのoperation decisionだけをdenyにする。
+- **期待oracle**：denyを同一scopeのOS/Workerへ伝播し、OSは新規進行を止め、Workerは該当操作を開始しない。無関係scopeは継続する。
+- **owner戻し**：SECURITY authority、OS進行、Worker実行へ返す。
