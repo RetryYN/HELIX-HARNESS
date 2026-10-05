@@ -1,0 +1,298 @@
+{
+  "record_kind": "delegated_l3_l10_decision_pin",
+  "review_base": "1a7933157fef8327a0e2747348cbe57e596019aa",
+  "review_content_head": "49c34bd2f8ac92e7e6de95eb835c90b5d308929f",
+  "body_revision": "bc67191cc9c14e3ebd16c3a11493aac8897e373a",
+  "delegation": {
+    "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+    "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220"
+  },
+  "formal_comments": [
+    {
+      "id": 5997105403,
+      "bytes": 3778,
+      "sha256": "25b774cee81a78b1cf0325cb1cc1afc50796290281dccbf9a9697f857f49f6a2"
+    },
+    {
+      "id": 5997284303,
+      "bytes": 18946,
+      "sha256": "a0944c69693da26fd62aa5eb459a24084e477fe6b35bb6e273dd547bf843f9d3"
+    }
+  ],
+  "approved_parents": [
+    {
+      "parent": "HELIXBRAIN-L2-018",
+      "adopted_registration_id": "MPR-RC-HELIXBRAIN-L2-018-002",
+      "metadata_successor_registration_id": "MPR-RC-HELIXBRAIN-L2-018-003",
+      "semantic_digest": "sha256:ae31cde4ec8dd5a0fa336b4161e68771344ce30ca42bd0ee375845e032481e29",
+      "po": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+        "line": 77,
+        "raw_lf_sha256": "417bbc44529a1259dbf6f6e2ca339c24d93fe1580a53abadf100c4c4fca55670",
+        "literal": "| `HELIXBRAIN-L2-018` | `MPR-RC-HELIXBRAIN-L2-018-002` | connection / 1.0 |\n"
+      },
+      "adopted_register": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 223,
+        "raw_lf_sha256": "3927d6890c86fa1fbd9aae59341abd95da2630de397325cc84807e8f4bd194a0"
+      },
+      "metadata_successor": {
+        "revision": "1a7933157fef8327a0e2747348cbe57e596019aa",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 803,
+        "raw_lf_sha256": "f03a2a3fd76a7edb37cf2cd1d168dc69bcc4311dfd22b0487551787b58761d3b"
+      }
+    },
+    {
+      "parent": "HELIXBRAIN-L2-019",
+      "adopted_registration_id": "MPR-RC-HELIXBRAIN-L2-019-002",
+      "metadata_successor_registration_id": "MPR-RC-HELIXBRAIN-L2-019-003",
+      "semantic_digest": "sha256:8502faa7d18a6668ebaa852cd7b09700544574816253b4705dc87f7ac83ad786",
+      "po": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+        "line": 78,
+        "raw_lf_sha256": "0082f1f4e33d49edfefd8b95e11090ff2ebf25dded66a62da5ff9ca0cf92e833",
+        "literal": "| `HELIXBRAIN-L2-019` | `MPR-RC-HELIXBRAIN-L2-019-002` | connection / 1.0 |\n"
+      },
+      "adopted_register": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 224,
+        "raw_lf_sha256": "398bb19aa965a9cb4e98218df52679a445f9ea704240d25c2138eaef8b5bf26a"
+      },
+      "metadata_successor": {
+        "revision": "1a7933157fef8327a0e2747348cbe57e596019aa",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 804,
+        "raw_lf_sha256": "0156f4ddd253150476126bbc1312ef53be7c16250eac63cfdb28293b18020304"
+      }
+    },
+    {
+      "parent": "HELIXBRAIN-L2-020",
+      "adopted_registration_id": "MPR-RC-HELIXBRAIN-L2-020-002",
+      "metadata_successor_registration_id": "MPR-RC-HELIXBRAIN-L2-020-003",
+      "semantic_digest": "sha256:2b6f40a524fa611797652318ee4eb6e986727d8f3abea9a3063669d28c51cc1d",
+      "po": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+        "line": 79,
+        "raw_lf_sha256": "b2061cbad4060f0ce98e59151ee9522f315bdf5e1797502957a3b745da3d46e1",
+        "literal": "| `HELIXBRAIN-L2-020` | `MPR-RC-HELIXBRAIN-L2-020-002` | connection / 1.0 |\n"
+      },
+      "adopted_register": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 225,
+        "raw_lf_sha256": "99e4e4e75c863ecd01f6bf23de2a52ecf38bb7382299ff48bf467df0031427a3"
+      },
+      "metadata_successor": {
+        "revision": "1a7933157fef8327a0e2747348cbe57e596019aa",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 805,
+        "raw_lf_sha256": "32a6c921553da13d7b140b75502bb530d27c7af2abb035f70ddc3e0e8545412c"
+      }
+    },
+    {
+      "parent": "HELIXBRAIN-L2-021",
+      "adopted_registration_id": "MPR-RC-HELIXBRAIN-L2-021-002",
+      "metadata_successor_registration_id": "MPR-RC-HELIXBRAIN-L2-021-003",
+      "semantic_digest": "sha256:6908ff21f39e72df2dd6cfa0f71b9c1d4a9e7d693896835bdf2ef24e5e1ab38a",
+      "po": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+        "line": 80,
+        "raw_lf_sha256": "db5bd5e5d70d562d67356c95933ac1f824ce79d8b9b538842ef5bfbe9db9a4be",
+        "literal": "| `HELIXBRAIN-L2-021` | `MPR-RC-HELIXBRAIN-L2-021-002` | connection / 1.0 |\n"
+      },
+      "adopted_register": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 226,
+        "raw_lf_sha256": "c759bd6184661b8ec109e23a3bd434dcb3a67dea47f08fb6ab73bf73b4721ff4"
+      },
+      "metadata_successor": {
+        "revision": "1a7933157fef8327a0e2747348cbe57e596019aa",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 806,
+        "raw_lf_sha256": "207839dfeaca0d141f4987038e39e4f3fa82314be929ad8e3d0f725eb99165a0"
+      }
+    },
+    {
+      "parent": "HELIXBRAIN-L2-022",
+      "adopted_registration_id": "MPR-RC-HELIXBRAIN-L2-022-002",
+      "metadata_successor_registration_id": "MPR-RC-HELIXBRAIN-L2-022-003",
+      "semantic_digest": "sha256:c199e33e57a16d7199e7e8d15804c08736e0838ec2469d88b5f343285c0960e8",
+      "po": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+        "line": 81,
+        "raw_lf_sha256": "d3b6f0f1e8d9c339bb27c67338dc99986fa246b8539a7625576b40cf91b99403",
+        "literal": "| `HELIXBRAIN-L2-022` | `MPR-RC-HELIXBRAIN-L2-022-002` | connection / 1.0 |\n"
+      },
+      "adopted_register": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 227,
+        "raw_lf_sha256": "9d50c081028b74ed3a004750e8f4cf4353bf6ec649cfa85be01f6824fce36cfb"
+      },
+      "metadata_successor": {
+        "revision": "1a7933157fef8327a0e2747348cbe57e596019aa",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 807,
+        "raw_lf_sha256": "86b5c2b15619ec202c8310e9499409f7099fd6ab2ef35495a812b9693a91922c"
+      }
+    },
+    {
+      "parent": "HELIXBRAIN-L2-023",
+      "adopted_registration_id": "MPR-RC-HELIXBRAIN-L2-023-002",
+      "metadata_successor_registration_id": "MPR-RC-HELIXBRAIN-L2-023-003",
+      "semantic_digest": "sha256:d85f4c42ffda3539d43c9bb20fb2da9700122d42313ee6e5addd0a4dd84a27c6",
+      "po": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+        "line": 82,
+        "raw_lf_sha256": "5c9f5d17bb38c9623cf35781d43ae44db31a6d23e0b6c7a1f056a9fb4ab18532",
+        "literal": "| `HELIXBRAIN-L2-023` | `MPR-RC-HELIXBRAIN-L2-023-002` | connection / 1.0 |\n"
+      },
+      "adopted_register": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 228,
+        "raw_lf_sha256": "7ad54baeeb5a3c06c6f21ed39e931a53ec51844461801eac91b6dbf090186ff6"
+      },
+      "metadata_successor": {
+        "revision": "1a7933157fef8327a0e2747348cbe57e596019aa",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 808,
+        "raw_lf_sha256": "49c4096b9c8855ff4422a6880e0f76977f2f4501a0b842c3be89e4c578d860ed"
+      }
+    },
+    {
+      "parent": "HELIXBRAIN-L2-030",
+      "adopted_registration_id": "MPR-RC-HELIXBRAIN-L2-030-002",
+      "metadata_successor_registration_id": "MPR-RC-HELIXBRAIN-L2-030-003",
+      "semantic_digest": "sha256:2a5c1cb842fa1f431d6a07a23506ef4304671b9b407b32527684ddfed987a2a0",
+      "po": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+        "line": 89,
+        "raw_lf_sha256": "4e804fb18b05ca9d5c8185776b58c490fe4fc1d1a8677da39484c3bb43a5f34d",
+        "literal": "| `HELIXBRAIN-L2-030` | `MPR-RC-HELIXBRAIN-L2-030-002` | connection / 1.0 |\n"
+      },
+      "adopted_register": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 438,
+        "raw_lf_sha256": "c9ebe98b992391d121697e904d648d5ab64b06160984e91d846a5fb3600f3914"
+      },
+      "metadata_successor": {
+        "revision": "1a7933157fef8327a0e2747348cbe57e596019aa",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 916,
+        "raw_lf_sha256": "8187b7165e49a8f1406ef6566f615eeb2981c24188f1f249f12d5cbcb38fdeae"
+      }
+    }
+  ],
+  "fixed_PO_parent_blobs": [
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03"
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b"
+    }
+  ],
+  "fixed_parent_span_identity": [
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "start": 29,
+      "end_inclusive": 33,
+      "PO_body_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adoption_main": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "same_raw_lf_sha256": "55889b4d804acd51888dd99eac3c93e083b9ad34cc583fa67118ba24a5267219"
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "start": 394,
+      "end_inclusive": 453,
+      "PO_body_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adoption_main": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "same_raw_lf_sha256": "dee171487681a37605a0360cca3a056b650c2b12710571a766f0b1a74ac97985"
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "start": 575,
+      "end_inclusive": 584,
+      "PO_body_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adoption_main": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "same_raw_lf_sha256": "2a5c1cb842fa1f431d6a07a23506ef4304671b9b407b32527684ddfed987a2a0"
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "start": 58,
+      "end_inclusive": 63,
+      "PO_body_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adoption_main": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "same_raw_lf_sha256": "cc72778617e255f8013b9887345ffadcc1233502c80c34f5c157006770ce97f7"
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "start": 85,
+      "end_inclusive": 85,
+      "PO_body_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adoption_main": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "same_raw_lf_sha256": "0440f6b07bcd28289ba3f4a72897337abf0b398c413c33c642193f7c72f69136"
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "start": 97,
+      "end_inclusive": 117,
+      "PO_body_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adoption_main": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "same_raw_lf_sha256": "eb83f7f5d2904713d6c8705d14dfbfe4d312b2704e33cb255018ff6eaf237d21"
+    }
+  ],
+  "documents": [
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.md",
+      "full_sha256": "7add96df2bb8e062259caf05bf1885c994f3c2778455ef52b1a599309065f68a",
+      "prefix_sha256": "8ec6476187972fbc4def388dd5a5340d98664b8930729d77789efe5fbaf5fbe5"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "full_sha256": "65b3119ef9bf207574de320f980092f06e6236857fea50e827ba9bbd201f2914",
+      "prefix_sha256": "51323080ec1b9c8b418b1d18aebbc5144c36a52d1068745a07036c1c4420c78f"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/nfr-grade.md",
+      "full_sha256": "b6262e71e2344e91fead3478dabf63ac7b953df995a45c3d8f4f0f24ee5f4694",
+      "prefix_sha256": "3a3bbe1d0f3718f2a4da049e4d316f988614df6d97d54aa73d6e3bc61e1d3283"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.md",
+      "full_sha256": "27fb59f0f47a5aaa47c2e42dc9b73ed740b2f65c4ff51d2e2848cb5349006762",
+      "prefix_sha256": "fa4fbd2b22d42b8650c8f681ac79d05ff42197fd0b1e40c58a7473683493cf91"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "full_sha256": "bc902e6c9931b1d1ee75b0481515b09b8ca5737ff0ca8ce427fa6922deaae7fe",
+      "prefix_sha256": "ec9964b838deaae3e032209a364f01ab9ba5228b6ad0e942afebf652bbc6976e"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/nfr-verification.md",
+      "full_sha256": "ddbe41218e47bbe52a626cb2c18377bddb47d6287956c47608938b6ceb728ec5",
+      "prefix_sha256": "5736889cb4fb02c595affdfaab81b0cb5ac7cc6765b2586cd4e92a842d20864f"
+    }
+  ],
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-brain-stage4-l3-l10-po-decision-2026-10-06.md",
+    "sha256": "72a93f74686bf88533e672217291278f798e0bddde32e3bbae4c48bfc33709d1"
+  },
+  "authority_effect": "effective_when_decision_record_admitted_to_main"
+}
