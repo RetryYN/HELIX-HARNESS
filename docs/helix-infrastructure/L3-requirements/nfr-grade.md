@@ -84,7 +84,7 @@ Candidateの受入/採用は一つの通常L3判断へまとめ、数値ごと�
 
 | NFR / parent | 根拠と比較 | 測定候補 |
 |---|---|---|
-| INFRA-NFR-008-S4 / 008 | 固定L2のdesign revision/scope・target/actual分離、L11の未承認/別revision負例。名前一致だけの案Aに対し、宣言scopeの全必須参照を照合する案Bを候補とする。 | 各fixtureの必要入力・参照・ACを事前に分母化し、照合可能率100%を技術候補として観測する。missing/unknown/staleを除かず、可観測率と合格率を分ける。設計無言変更/誤承認生成は0件の期待oracle。新latency/expiry値は設けない。 |
-| INFRA-NFR-025-S4 / 025 | 固定L2/L11の資源/Worker区別、隔離、ticket/要求/責務/未完保持と元資源/移動先状態。Worker応答のみの案Aに対し、実stateと作業参照を別に追う案Bを候補とする。 | 選択Worker/resource/移動scopeの必要resource属性・隔離条件・lineage参照を事前に分母化し、全件のvalue/unknownとsource/revision追跡を候補とする。unknownを成立へ丸めた件数、未完義務消去、正本移管は0件。自動最適化の性能値は測らない。 |
+| INFRA-NFR-008-S4 / 008 | 固定L2のdesign revision/scope・target/actual分離、L11の未承認/別revision負例。名前一致だけの比較候補1に対し、宣言scopeの全必須参照を照合する比較候補2を候補とする。 | 各fixtureの必要入力・参照・ACを事前に分母化し、照合可能率100%を技術候補として観測する。missing/unknown/staleを除かず、可観測率と合格率を分ける。設計無言変更/誤承認生成は0件の期待oracle。新latency/expiry値は設けない。 |
+| INFRA-NFR-025-S4 / 025 | 固定L2/L11の資源/Worker区別、隔離、ticket/要求/責務/未完保持と元資源/移動先状態。Worker応答のみの比較候補1に対し、実stateと作業参照を別に追う比較候補2を候補とする。 | 選択Worker/resource/移動scopeの必要resource属性・隔離条件・lineage参照を事前に分母化し、全件のvalue/unknownとsource/revision追跡を候補とする。unknownを成立へ丸めた件数、未完義務消去、正本移管は0件。自動最適化の性能値は測らない。 |
 
 旧grade→測定→証拠という形式を再導出し、資源identityと実適用の意味根拠は機能本文の旧OPS/WCC/Conceptに限定する。既存NFRの数値をこの2親へ転用しない。候補値の判断は通常のL3承認へまとめ、parameter別PO質問は作らない。要求meaning/scope/owner/versionの変更は該当L2へ戻す。

@@ -370,29 +370,30 @@ CORE所有のapproved Infrastructure designのidentity/exact revision/scopeとve
 
 **INFRA-008-AC-01**：適用design identity/revision/scope・承認状態・interfaceを確認できる入力からだけtargetを導く。別revision、scope不一致、未承認、missing/unknown/stale、interface/contract不一致ではtarget確定と比較成立に進めず、CORE/上流design ownerへ返して比較保留を保持する。必要なL2-001/002参照が不明なら比較の未確認範囲を保持し、他resource/environmentや旧証拠で補完しない。sourceの既存currentness条件を照合し、独自expiry値は作らない。
 
-**INFRA-008-AC-02**：targetとactualのidentity/revision/scope/sourceおよびCORE設計参照を追跡できる。いずれかが不足/不明/非current/不一致ならその比較を保留し、設計・target対応はCORE/design owner、actual観測は資源source ownerへ該当問題を戻す。同一対象の一致とdriftを分け、actualからdesign/targetのcanonical bytesや設計承認を生成・変更しない。design意味ownerとruntime state ownerを移さず、変更提案だけでは設計変更・実操作を実施しない。適用する同じ契約に明示的に対応する未見design/target/actualでも、未見名称だけで拒否しない。
+**INFRA-008-AC-02**：targetとactualのidentity/revision/scope/sourceおよびCORE設計参照を追跡できる。いずれかが不足/不明/非current/不一致ならその比較を保留し、設計・target対応はCORE/design owner、actual観測は資源source ownerへ該当問題を戻す。同一対象の一致とdriftを分け、actualから要求/design/targetのcanonical bytesや設計承認を生成・変更しない。actual観測の資源source ownerへの戻しは依存L2-002の固定L11:51（欠落/stale observationはそのownerへ戻す）を再導出したものである。design意味ownerとruntime state ownerを移さず、変更提案だけでは設計変更・実操作を実施しない。適用する同じ契約に明示的に対応する未見design/target/actualでも、未見名称だけで拒否しない。
 
 ### INFRA-025-FR-01 — Workerと実資源の対応
 
-Worker identity、OS ticket・要求・作業責務の参照、必要なCPU/memory/GPU/storage/networkとprocess/container等の実行環境、SECURITY隔離条件を受け取る。L2-001/003のresource identity、実際の容量・状態へWorkerを対応づける。Workerとresourceは別identityとして関連づけ、同じ名称でも混同しない。INFRASTRUCTUREは実資源/stateを所有し、その資源で利用できる方式で隔離条件を適用する。隔離policyの意味/認可はSECURITY、作業参照の正本はOS/要求・責務ownerに保持する。
+Worker identity、Worker実行契約、OS ticket・要求・作業責務の参照、必要なCPU/memory/GPU/storage/networkとprocess/container等の実行環境、SECURITY隔離条件を受け取る。L2-001/003のresource identity、実際の容量・状態へWorkerを対応づける。Workerとresourceは別identityとして関連づけ、同じ名称でも混同しない。INFRASTRUCTUREは実資源/stateを所有し、その資源で利用できる方式で隔離条件を適用する。隔離policyの意味/認可はSECURITY、作業参照の正本はOS/要求・責務ownerに保持する。
 
-**INFRA-025-AC-01**：必要な資源・環境の要求と実capacity/state/source/revisionをWorker参照へ結び、各CPU/memory/GPU/storage/network/process/container等の適用対象を宣言して照合する。非適用は既存契約で明示し、不明を非適用や十分へ丸めない。Workerを計算機のidentity/stateで置換しない。新たなWorker/resource種でも既存契約に適用できる場合は正常に対応づける。
+**INFRA-025-AC-01**：Worker実行契約と必要な資源・環境の要求、実capacity/state/source/revisionをWorker参照へ結び、各CPU/memory/GPU/storage/network/process/container等の適用対象を宣言して照合する。非適用は既存契約で明示し、不明を非適用や十分へ丸めない。Workerを計算機のidentity/stateで置換しない。新たなWorker/resource種でも既存契約に適用できる場合は正常に対応づける。
 
-**INFRA-025-AC-02**：対象資源で利用できる隔離方式による実適用の観測をSECURITY条件へ対応づける。宣言・policy存在・Worker応答だけでは隔離成立にしない。資源不足/容量・状態不明および隔離実適用の観測問題は資源owner、隔離不能/条件不明はSECURITY、ticket/要求/作業参照不明はOSまたはその既存参照ownerへ戻す。該当ownerを特定できなければ推測せず未解決を保持する。これらの状態では接続成立を示さない。
+**INFRA-025-AC-02**：対象資源で利用できる隔離方式による実適用の観測をSECURITY条件へ対応づける。宣言・policy存在・Worker応答だけでは隔離成立にしない。資源不足/容量・状態不明および隔離実適用の観測問題は資源owner、隔離不能/条件不明はSECURITY、ticket/要求/作業参照不明はOSまたはその既存参照ownerへ戻す。該当ownerを特定できなければ推測せず未解決を保持する。Worker実行契約の不足/不明/非current/不一致もOSまたは既存作業参照ownerへ返す。これらの状態では接続成立を示さず、未完作業と元資源の観測状態、移動がある場合は移動先の観測状態を保持する。
 
 ### INFRA-025-FR-02 — 資源移動時の作業lineage
 
 必要に応じ別資源へ移る場合も、ticket、要求、Worker責務、未完義務を同じ作業へ辿れるよう保持し、元資源と移動先の観測状態を別々に残す。計算機変更でWorker責務を消さず、INFRASTRUCTUREへticket正本を移さない。実操作の認可から実行までの構成体L2-010は別契約として参照し、本接続の検証で権限や新しい移動許可を生成しない。
 
-**INFRA-025-AC-03**：既存契約下の移動の前後でWorker、ticket、要求、責務、未完作業の参照を辿り、元資源/移動先のidentity/revision/状態を保持する。移動失敗・部分移動・停止/再開で義務を消さず、資源ownerまたはOS/SECURITYの原因に対応するownerへ戻す。旧資源の結果を移動先の現在状態へ流用しない。
+**INFRA-025-AC-03**：既存契約下の移動の前後でWorker、ticket、要求、責務、未完作業の参照を辿り、元資源/移動先のidentity/revision/状態を保持する。移動失敗・部分移動・停止/再開で義務を消さず、資源ownerまたはOS/SECURITYの原因に対応するownerへ戻す。旧資源の結果を移動先の現在状態へ流用しない。既存契約に適用できる未見Worker/資源の移動も、未見名称だけで拒否しない。
 
 **INFRA-025-AC-04**：自動配置最適化や高度な自動増減の未成立だけで接続を不合格にしない。INFRASTRUCTUREがWorker assignment、SECURITY policy/authority、ticket/要求/責務の意味正本を所有する変異は成立させない。資源対応の正常結果をL2-010の操作許可や構成体受入へ代用しない。
 
 | 親句 | FR/AC | 対L10 |
 |---|---|---|
-| 008入力・依存・失敗戻し | INFRA-008-FR-01 / INFRA-008-AC-01 | CASE-INFRA-008-S4-01および固定入力の個別negative |
-| 008提供・設計/target/actual分離・提案境界 | INFRA-008-FR-01 / INFRA-008-AC-02 | CASE-INFRA-008-S4の一致/drift/未見正常/owner変異 |
+| 008入力・依存・失敗戻し | INFRA-008-FR-01 / INFRA-008-AC-01 | CASE-INFRA-008-S4-01/03–32 |
+| 008提供・設計/target/actual分離・提案境界 | INFRA-008-FR-01 / INFRA-008-AC-02 | CASE-INFRA-008-S4-01–03/33–39/40–73 |
 | 025入力・capacity/state・資源/Worker区別 | INFRA-025-FR-01 / INFRA-025-AC-01 | CASE-INFRA-025-S4の資源/参照fixture |
 | 025隔離実適用・失敗owner | INFRA-025-FR-01 / INFRA-025-AC-02 | CASE-INFRA-025-S4の隔離/容量/作業参照の個別negative |
 | 025移動後の作業lineage・未完と両資源状態 | INFRA-025-FR-02 / INFRA-025-AC-03 | CASE-INFRA-025-S4の移動/失敗/再開fixture |
 | 025版・最適化非依存・010別契約 | INFRA-025-FR-02 / INFRA-025-AC-04 | CASE-INFRA-025-S4の境界変異 |
+| 025束ねる条件：最低項目7・16のWorker/資源区別と2026-09-26 Worker判断（固定L2:295） | INFRA-025-FR-01 / INFRA-025-AC-01 | CASE-INFRA-025-S4-01–02/93 |
