@@ -19,4 +19,4 @@ profile catalog/typed descriptorとdirection/order/feedback relationは技術契
 
 ## Stage 5 — 007
 
-007はcompositeの技術通信完全性であり独立business ACを追加しない。業務成立と結果承認は元ownerへ残す。CONNECT-AC-007-04と対応機能CASEで、全辺技術completeからの業務成立・承認・許可生成を拒否する。
+007はcompositeの技術通信完全性であり独立business ACを追加しない。業務成立と結果承認は元ownerへ残す。CONNECT-AC-007-04と対応機能CASEで、全辺技術completeからの業務成立・承認・許可生成を拒否する。送信結果のみ/受信結果のみの欠落と送受信結果の不一致（CASE-007-41〜43）は技術traceの未完/unknownとして扱い、業務結果・承認を生成しない。

@@ -32,4 +32,4 @@
 
 ## Stage 5 — 007のNFR観測設計（未実行）
 
-`CON-NFR-007`は同じ機能CASE集合を観測し別のCASEを重複計上しない。宣言辺ごとの入力/receipt/lineage/SECURITY許可識別子/data-use識別子/送信結果/受信結果/終端被覆、failureでの全体成功数、未許可後続attempt、先行結果消失、業務承認/許可生成を個別に数える。data-use識別子だけ欠落する独立negativeは`CONNECT-CASE-007-40`で測り、他の有効入力やSECURITY許可欠落と混同しない。固定fixture分母の被覆100%、禁止状態生成/未許可attempt/結果消失は各0を候補判定とする。分母不明・証拠欠落・別revision結果はunknownとし、達成扱いしない。connection不備は失敗辺owner、authorityはSECURITY、業務判断/再計画は元機構/OS等ownerへ分けて戻す。latencyや期限値はowner契約の宣言を照合し製品共通SLAを生成しない。
+`CON-NFR-007`は同じ機能CASE集合を観測し別のCASEを重複計上しない。宣言辺ごとの入力/receipt/lineage/SECURITY許可識別子/data-use識別子/送信結果/受信結果/終端被覆、failureでの全体成功数、未許可後続attempt、先行結果消失、業務承認/許可生成を個別に数える。data-use識別子だけ欠落する独立negativeは`CONNECT-CASE-007-40`、送信結果のみ欠落/受信結果のみ欠落/送受信結果不一致は`CONNECT-CASE-007-41`〜`43`で測り、各CASEの他の有効fieldを保って個別計数する。固定fixture分母の被覆100%、禁止状態生成/未許可attempt/結果消失は各0を候補判定とする。分母不明・証拠欠落・別revision結果はunknownとし、達成扱いしない。connection不備は失敗辺owner、authorityはSECURITY、業務判断/再計画は元機構/OS等ownerへ分けて戻す。latencyや期限値はowner契約の宣言を照合し製品共通SLAを生成しない。
