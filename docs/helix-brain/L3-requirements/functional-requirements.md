@@ -439,7 +439,7 @@ L2は20 atomic field、L11は18列挙groupを持ち、trade-offとevidenceは別
 - **BRAIN-001-AC-03 — 不明と戻し先**：領域の分類意味が重複または不明なら候補のまま停止し、意味差をHELIXBRAIN-L1-001へ返す。
 - **BRAIN-001-AC-04 — 未見と責務境界**：未見Domainを初期enumにないことだけで拒否しない。意味と既存参照を照合し、追加/分割/統合/退役のいずれでも旧参照利用者を消さない。
 
-旧sourceとの対応：RDJ-FR-009のstable identityと未解決情報を隠さない意味を再導出する。旧RDJのunknown enum拒否は現行の「固定enumにしない」と異なるため置換し、enum初版にないことだけで候補を拒否しない。Domainの10領域・4変化操作は旧RDJにあるとはせず、固定L2-001から再導出する。 旧sourceのasset ID・full/raw-LF SHAは本追補の静的監査へ固定する。旧実行、旧test、旧CIは現行の合格証拠にしない。
+旧sourceとの対応：RDJ-FR-009（旧source:54）のstable identityと、同文書§2.1（旧source:68–73）の未解決templateを隠さず保持する形を、別々の比較起点として再導出する。旧RDJのunknown enum拒否は現行の「固定enumにしない」と異なるため置換し、enum初版にないことだけで候補を拒否しない。Domainの10領域・4変化操作は旧RDJにあるとはせず、固定L2-001から再導出する。 旧sourceのasset ID・full/raw-LF SHAは本追補の静的監査へ固定する。旧実行、旧test、旧CIは現行の合格証拠にしない。
 
 親句→AC→L10の対応：正常入力/提供構造はAC-01とC01、列挙field/relationおよびL11反例はAC-02と各個別case、不明/失敗戻し先はAC-03、未見適用とauthority境界はAC-04へ結ぶ。親句とCASEの固定対応は本書のStage 2b親句→FR/AC→CASE trace表（後段）と`../L10-verification/functional-verification.md`の各親別case表で照合する。
 
