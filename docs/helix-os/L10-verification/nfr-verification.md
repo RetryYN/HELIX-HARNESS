@@ -30,7 +30,7 @@
 
 ### CASE-NFR-OS-018-01 — attempt binding/cumulative-control census
 
-親 `HELIXOS-L2-018`; HIL-NFR-36追補 `MPR-RC-HELIXOS-L2-018-002`（main633 PO decision row 34。L2 physical locator 1604–1619 registered semantic digest `5e2a621be8b4bda140bd796a48bedf2b3369daf5fad2665060ac41aa1a3174d2`、L11 physical locator 1259–1276 registered semantic digest `e32e45319a3ac91004e3e1a985c7ff44e91b9e86f05b85c266d6b8d67acf87b5`）を固定f6dad2a本文と別pinで適用する。全fixtureで重複claim/run、counter reset、binding欠落/不一致、SECURITY/INFRA stateのOS代替、実行中のbudget/deadline超過停止を数える。各停止について停止理由と最初のOS管理/推進受領recordを照合し、外部sourceの不足/不一致がある場合はそのrecordを起点にした既存ownerへの訂正依頼も記録する。実測ではticket/revision/scopeごとに消費budgetと許可budget値を別記し、許可値が存在して0より大きい場合のみ比率を算出する。zero/missing budgetは算出不可として扱う。期限はabsolute deadline表現と経過時間を分け、現在のticket契約入力に計測開始点・単位付きduration/windowが明示されている場合だけ同単位の比率を算出する。absolute deadline、duration/windowのzero/missing、開始点/単位不明は算出不可とする。attempt/failure数を層別する。HIL-NFR-36では適用sourceの選択/不選択、revision-bound deviation receipt、実際に通った各step/順序、結果/理由、未選択consult/support receipt不生成を検査する。新しいfailure cap/default/orderは置かない。
+親 `HELIXOS-L2-018`; HIL-NFR-36追補 `MPR-RC-HELIXOS-L2-018-002`（main633 PO decision row 34。L2 physical locator 1604–1619 registered semantic digest `5e2a621be8b4bda140bd796a48bedf2b3369daf5fad2665060ac41aa1a3174d2`（raw LF-inclusive span SHA-256 `634b700e1ed79c60f53235f6fb0e73348b7cc07264d4e4f8afb69e107aa1996d`）、L11 physical locator 1259–1276 registered semantic digest `e32e45319a3ac91004e3e1a985c7ff44e91b9e86f05b85c266d6b8d67acf87b5`（raw LF-inclusive span SHA-256 `ba303351c99a385506d9f151d0b51c03fb08922ce7d2848ffb3b1f485c4c221c`））を固定f6dad2a本文と別pinで適用する。全fixtureで重複claim/run、counter reset、binding欠落/不一致、SECURITY/INFRA stateのOS代替、実行中のbudget/deadline超過停止を数える。実際に停止した場合は停止理由と最初のOS管理/推進受領recordを照合し、外部sourceの不足/不一致がある場合はそのrecordを起点にした既存ownerへの訂正依頼も記録する。018-002のreceipt missing/unknown/conflict/scope-unknownは該当facetの未完として集計し、assignment可否/継続は既存authority/制約で別集計する。receipt状態だけによる新たな事前gate/全assignment停止を測定条件にしない。実測ではticket/revision/scopeごとに消費budgetと許可budget値を別記し、許可値が存在して0より大きい場合のみ比率を算出する。zero/missing budgetは算出不可として扱う。期限はabsolute deadline表現と経過時間を分け、現在のticket契約入力に計測開始点・単位付きduration/windowが明示されている場合だけ同単位の比率を算出する。absolute deadline、duration/windowのzero/missing、開始点/単位不明は算出不可とする。attempt/failure数を層別する。HIL-NFR-36では適用sourceの選択/不選択、revision-bound deviation receipt、実際に通った各step/順序、結果/理由、未選択consult/support receipt不生成を検査する。新しいfailure cap/default/orderは置かない。
 
 ### CASE-NFR-OS-019-01 — event/replay classification
 
@@ -42,7 +42,7 @@
 
 ### CASE-NFR-OS-023-01 — handoff binding census
 
-親 `HELIXOS-L2-023`; 実際のhandoff edgeごとにrevision/digest/causal ID/scope/unfinished duty/stop reason/evidence presence/valueを照合する。実測timestampがある場合はsenderからreceiver acceptanceまでを分布で示すだけで、任意latency KPIは設けない。
+親 `HELIXOS-L2-023`; 実際のhandoff edgeごとにrevision/digest/causal ID/scope/unfinished duty/stop reason/evidence presence/valueを照合する。unit-successからconnection acceptance、composite acceptance、next-stage acceptanceを個別に生成しないnegative fixtureを別々に数え、transport receiptとbusiness acceptanceを分ける。実測timestampがある場合はsenderからreceiver acceptanceまでを分布で示すだけで、任意latency KPIは設けない。
 
 ### CASE-NFR-OS-027-01 — eligibility/evaluation evidence
 

@@ -234,21 +234,23 @@ ticket/head/authority/Worker/caller lane/scope/lease/cumulative budget/deadline�
 
 期限またはlease expiryの後、Worker交代/再開を行う。Oracleはunfinished dutiesとbudget/deadline/failure count/scopeを維持し、期限後の旧assignmentを流用しない。
 
-### CASE-OS-018-04a〜04i — conditional HIL-NFR-36 evidence（AC-OS-018-04）
+### CASE-OS-018-04a〜04k — conditional HIL-NFR-36 evidence（AC-OS-018-04）
 
-L2-018-002の選択分岐を分ける。`CASE-OS-018-04a`は適用default/order sourceが選択され有効なときのnormalで、対象revisionと根拠receipt、予定step、実際に通ったstepと順序、結果、逸脱理由を別々に記録する。`04b`は逸脱根拠receipt欠落、`04c`は逸脱根拠receiptの別revision、`04d`は実際に通ったstep receipt欠落、`04e`はstep順序不整合、`04f`はdefault/order source不在、`04g`はそのsource stale、`04h`はowner unknownを各独立variantとし、unknown/unfinishedで止めsource ownerを補完しない。`04i`は適用sourceなしのnormalで、未選択consult/supportのreceiptを作らない。provider名だけで独立性を判定せず、FR-63・別scope・INT案からdefault/orderを補わない。追加default、retry上限、全件共通対応順は作らない。
+L2-018-002の選択分岐を分ける。`CASE-OS-018-04a`は適用default/order sourceが選択され有効なときのnormalで、対象revisionと根拠receipt、予定step、実際に通ったstepと順序、結果、逸脱理由を別々に記録する。`04b`は逸脱根拠receipt欠落、`04c`は逸脱根拠receiptの別revision、`04d`は実際に通ったstep receipt欠落、`04e`はstep順序不整合、`04f`は既存sourceから適用対象と確認できる選択default/order source referenceの欠落、`04g`は選択source stale、`04h`はsource owner unknown、`04j`はsource scope unknown、`04k`はsource間conflictをそれぞれ独立variantとする。これらでは該当するreceipt facetだけをunknown/未完にし、assignmentの可否・継続は既存authority/制約で別判定する。receipt欠落だけで事前gateまたは全assignment停止を加えない。sourceが適用可能で選択対象だがその参照が欠落した場合（04f）と、適用sourceのない非選択branch（04i）を区別する。`04i`は後者のnormalで、未選択consult/supportのreceiptを作らない。provider名だけで独立性を判定せず、FR-63・別scope・INT案からdefault/orderを補わない。追加default、retry上限、全件共通対応順は作らない。
 
 | CASE | fixture | expected / owner |
 |---|---|---|
 | `CASE-OS-018-04a` | 適用可能なdefault/order sourceと根拠receiptを選択 | 対象revision、予定/実施stepと順序、結果、逸脱理由を記録し、実績と予定を分ける |
-| `CASE-OS-018-04b` | deviation reason receiptを欠落 | unknown/unfinishedで停止し、固定L2の既存source ownerへ返す |
-| `CASE-OS-018-04c` | deviation reason receiptのrevisionを不一致にする | stale/unresolvedで停止し、固定L2の既存source ownerへ返す |
-| `CASE-OS-018-04d` | 実際に通ったstepのreceiptを欠落 | 実績を確定せず、未完義務と理由を固定L2の既存source ownerへ返す |
-| `CASE-OS-018-04e` | step receipt順序を不一致にする | 実績順序を修復推測せず、unknown/unfinishedで停止する |
-| `CASE-OS-018-04f` | default/order sourceを欠落 | FR-63等から補完せずunknown/unfinishedで停止する |
-| `CASE-OS-018-04g` | default/order sourceをstaleにする | 古いsourceで採択せずunknown/unfinishedで停止する |
-| `CASE-OS-018-04h` | default/order source ownerをunknownにする | ownerを新設せずunknown/unfinishedで停止する |
-| `CASE-OS-018-04i` | 適用sourceがない非選択branch | optional consult/support receiptを生成しない |
+| `CASE-OS-018-04b` | 適用sourceが選択され逸脱reason receiptだけを欠落 | 当該receipt facetをunknown/未完にし、assignment可否・継続は既存authority/制約で別判定する。追加gateを作らず、既存source ownerへ戻す |
+| `CASE-OS-018-04c` | deviation reason receiptのrevisionを不一致にする | 当該receipt facetをstale/unknownとして未完保持し、assignment可否・継続は既存authority/制約で別判定する |
+| `CASE-OS-018-04d` | 実際に通ったstepのreceiptだけを欠落 | 該当stepの実績receipt facetを未完とし、assignment可否・継続は既存authority/制約で別判定する |
+| `CASE-OS-018-04e` | step receipt順序を不一致にする | 順序receipt facetだけunknown/未完とし、実績順序を推測しない。assignment可否・継続は既存authority/制約で別判定する |
+| `CASE-OS-018-04f` | 既存の適用根拠はdefault/order sourceを選択しているが、その参照が欠落 | 当該receipt facetをunknown/未完とし、FR-63等から補完しない。assignment可否・継続は既存authority/制約で別判定する |
+| `CASE-OS-018-04g` | default/order sourceをstaleにする | 当該receipt facetをstale/unknownで保持し、古いsourceで採択しない。assignment可否・継続は既存authority/制約で別判定する |
+| `CASE-OS-018-04h` | default/order source ownerをunknownにする | 当該receipt facetのownerをunknownで保持し、新ownerを作らない。assignment可否・継続は既存authority/制約で別判定する |
+| `CASE-OS-018-04i` | 適用可能なdefault/order sourceがない非選択branch | optional consult/support receiptを生成せず、receipt欠落を未完条件として扱わない |
+| `CASE-OS-018-04j` | 適用sourceのscopeを特定できない | 当該receipt facetだけscope unknown/未完とし、別scopeから補完しない。assignment可否・継続は既存authority/制約で別判定する |
+| `CASE-OS-018-04k` | 適用source間のconflict | 当該receipt facetだけconflict/未完とし、優先sourceを推測しない。assignment可否・継続は既存authority/制約で別判定する |
 
 ### CASE-OS-019-01 — episode reconstruction normal（AC-OS-019-01）
 
@@ -313,6 +315,9 @@ OS-016から対象要求revision、unit/connection/composite relationとsource-b
 | `CASE-OS-023-02i` | versioned interface identity/versionを欠落 | connectionをunresolvedに保ちinterface ownerへ戻す |
 | `CASE-OS-023-02j` | SECURITY/INFRA境界を別ownerに置換 | source authorityを生成せず該当既存ownerへ戻す |
 | `CASE-OS-023-02k` | unit successからticket completionを生成 | completionを拒否しticketと別判定を保つ |
+| `CASE-OS-023-02l` | 他のhandoff bindingを正常に保ち、unit successだけからconnection acceptedを生成 | connection acceptanceを拒否しunit outcomeを保つ |
+| `CASE-OS-023-02m` | 他のhandoff bindingを正常に保ち、unit successだけからcomposite acceptedを生成 | composite acceptanceを拒否しunit/connection stateを保つ |
+| `CASE-OS-023-02n` | 他のhandoff bindingを正常に保ち、unit successだけからnext-stage acceptedを生成 | 次段acceptanceを拒否しunit/connection/composite判定を別に保つ |
 
 ### CASE-OS-023-03 — mixed-duties unseen handoff（AC-OS-023-03）
 
