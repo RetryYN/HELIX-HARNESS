@@ -126,7 +126,7 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 
 - **L10-BRAIN-INFRA-004-C01（正常／AC-01）**：10種の要求特性→関連Pattern→必要Design Input relationを全て含む宣言済み合成対象を与える。**期待oracle**：全必須要素を親の対象identityと対応付け、L2のscopeと責務を保持する。
 - **L10-BRAIN-INFRA-004-C02（個別欠落／AC-02）**：必須field/relation/列挙要素を一度に一つだけmissingにしたfixtureを列挙集合の各要素について作る。**期待oracle**：当該要素とmissing reasonを特定し、成功/適用扱いにせず止める。C02の分母は `列挙10特性と各Pattern/Inputのrelation` とする。
-- **L10-BRAIN-INFRA-004-C03（親固有negative／AC-02）**：各relation/inputの欠落、unknown値の確定、BRAINによる閾値/RTO/RPO生成。**期待oracle**：不成立reasonを特定し、要求値と設計義務はHARNESS/Product Core、評価はLABO。
+- **L10-BRAIN-INFRA-004-C03（親固有negative／AC-02）**：各relation/inputの欠落、unknown値の確定、BRAINによる閾値/RTO/RPO生成。**期待oracle**：不成立reasonを特定し、要求値と設計義務はHARNESS／製品COREへ戻す。
 - **L10-BRAIN-INFRA-004-C04（unknown/stale/対象不一致／AC-02）**：固定L2が明示するidentity/condition/relationだけを対象に、unknown、矛盾、別対象を一項目ずつ変異する。L2がsource/evidenceを要求しない箇所へ新しいevidence義務を足さない。**期待oracle**：AC-02に従い不成立またはunknownと戻し先を示し、成功/適用扱いにしない。
 - **L10-BRAIN-INFRA-004-C05（未見正常／AC-01）**：未見のPrivacy requirement characteristicからPattern、required design inputへの合成relationを用意し、要求値だけをunknownと宣言する。**期待oracle**：relation経路は保持し、値を創作せずHARNESS／製品COREの要求・設計義務へ戻す。
 
