@@ -446,8 +446,8 @@ judgment packのversion/applicability/shadow/review/rollback義務を示し、�
 |---|---|---|
 | `005` | `AC-INTELLIGENCE-L3-005-04` | `CASE-INTELLIGENCE-L10-R08-005-prerequisite-unfulfilled` |
 | `016` | `AC-INTELLIGENCE-L3-016-03` | `CASE-INTELLIGENCE-L10-R08-016-heldout-result-same-scope` |
-| `067` | `AC-INTELLIGENCE-L3-067-03` | `CASE-INTELLIGENCE-L10-R08-067-evaluation-scope-missing` |
-| `067` | `AC-INTELLIGENCE-L3-067-03` | `CASE-INTELLIGENCE-L10-R08-067-evaluation-revision-missing` |
+| `067` | `AC-INTELLIGENCE-L3-067-04` | `CASE-INTELLIGENCE-L10-R08-067-evaluation-scope-missing` |
+| `067` | `AC-INTELLIGENCE-L3-067-04` | `CASE-INTELLIGENCE-L10-R08-067-evaluation-revision-missing` |
 | `072` | `AC-INTELLIGENCE-L3-072-07` | `CASE-INTELLIGENCE-L10-R08-072-shadow-pair-normal` |
 | `072` | `AC-INTELLIGENCE-L3-072-07` | `CASE-INTELLIGENCE-L10-R08-072-invented-threshold-reject` |
 | `072` | `AC-INTELLIGENCE-L3-072-07` | `CASE-INTELLIGENCE-L10-R08-072-added-case-success-reject` |
