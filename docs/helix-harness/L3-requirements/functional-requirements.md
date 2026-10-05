@@ -411,7 +411,7 @@ scope: 本追補5親のみ / G0 version_class 1.0
 **不変条件**：どのリリース単位からも既存内容を要求形成へ戻せる。単独成立依存はCOREであり、入った先のリリース単位や先行単位の実行を必須にしない。由来不明、旧資産、設計trace欠落からの復旧には全体のReverseを使い、既存資産という属性だけで拒否しない。正規pairへの変換は既存物の権威を推測せず、未確定内容をunknownとして残す。Conceptの「入口：フルリバース」とHARNESS-L2-003/004のScoped Reverse・全体のReverseを束ねる。変換結果は草稿であり、要求・設計・releaseの承認済状態を生成しない。
 
 - **`AC-HARNESS-L3-019-01`**：各リリース単位からの入力例について、入力範囲・source・既知の親revisionを保ったpair候補とtraceを作る。入力が部分的でも変換可能部分を返す。COREだけを与えた未見リリース単位の入力でも、対象リリース単位の実行を追加要求しない。
-- **`AC-HARNESS-L3-019-02`**：source/revision/owner/意味の欠落・矛盾を個別にunknownまたは変換不能として一覧化し、暗黙に補った成功出力を拒否する。由来不明・旧資産・設計trace欠落の入力は全体Reverseで復旧候補を形成し、unknownと原入力traceを保持する。
+- **`AC-HARNESS-L3-019-02`**：source/revision/owner/意味の欠落・矛盾を個別にunknownまたは変換不能として一覧化し、暗黙に補った成功出力を拒否する。選択変換scopeの対象一層が変換結果・理由付き非影響・変換不能/unknown一覧のすべてから脱落した出力も完了扱いせず、未分類部分と元traceを保持してHARNESS Reverse要求ownerへ返す。由来不明・旧資産・設計trace欠落の入力は全体Reverseで復旧候補を形成し、unknownと原入力traceを保持する。
 - **`AC-HARNESS-L3-019-03`**：逆方向候補の完成・pair生成だけで既存要求や下流artifactを承認済み・release可能へ変更しない。
 
 #### `FR-HARNESS-L3-020` — 隣接リリース単位間の接続契約（親: `HARNESS-L2-020`）
@@ -440,7 +440,7 @@ scope: 本追補5親のみ / G0 version_class 1.0
 
 - **`AC-HARNESS-L3-024-04` 領域状態と条件付き合意**：各要求領域を解決済み／明示保留／非適用／必須事項unknownに分ける。明示保留はownerとre-entry、非適用は理由・判断者・対象revision・再評価条件を保持する。actor/task、正常・取消・failure・timeout・recovery、P0/P1、矛盾、implicit matrix、利用可能履歴の差分が不足なら個別の形成資料不足を返す。既回答なしの初回は明示空履歴とし、既存記録の紛失と区別する。prototype／非UIが該当し合意前でもcandidateと未決packetを返して合意待ちを保持し、既存合意記録の紛失は別の資料不足とする。prototype agreementは対象revision/scopeに結び付け、旧revisionの合意を新revisionへ流用しない。
 - **`AC-HARNESS-L3-024-05` timeoutと再開**：timeout時は進行を止め、actor、scope、対象revision、最後の確定revisionとevent、open itemのidentity・owner・状態、re-entry条件を保持する。timeoutそのものを成功・回答・合意・収束へ変換せず、条件が揃うまで回答や合意を生成しない。再開時は新eventを追記して影響差分を再評価する。対象source/revision/scope変更は影響項目へ限定し、影響範囲unknownを未影響へ変換しない。
-- **`AC-HARNESS-L3-024-06` 補助計測と権限境界**：同じfixtureと未見fixtureにおいて質問量・訂正率・必須条件見逃しを、engine/pack revisionと比較母集団を固定して再測定可能にする。未観測訂正を0とせず、必要質問の省略を改善にせず、計測改善から必須未決・合意・freezeを生成しない。金額・権限・法務等の人間専決値を推定せず原文・選択肢・推奨・影響候補の判断待ちへ返す。OSへ要求意味の重複所有や別engineを作らない。HARNESS-L2-008/013を単独成立依存とし、REQENG-HARNESS-001〜007の抽出・意味差分・質問・影響処理、製品pack分離・決定論、提案と人承認の境界を保持する。prototype/PoC結果はL2-008へBackflowし、単体/connection/compositeのidentity、failure/timeout、trace、owner/re-entryを保持する。PoC Backflowではfailure/timeout状態とowner/re-entryの欠落をそれぞれ独立に照合し、結果や宛先・再入条件を補完しない。記録・対象L1 revision・根拠source scope・actor/owner・適用matrixがmissing/unknown/staleならHARNESS要求ownerへ不足を戻す。上流の目的・scope・人が決める値が不明ならHARNESS-L1-008または意味を持つPOへ戻す。操作・記録・採否の実行はOS側既存consumerへ戻し、HARNESSに登録/承認権限を追加しない。
+- **`AC-HARNESS-L3-024-06` 補助計測と権限境界**：同じfixtureと未見fixtureにおいて質問量・訂正率・必須条件見逃しを、engine/pack revisionと比較母集団を固定して再測定可能にする。未観測訂正を0とせず、必要質問の省略を改善にせず、計測改善から必須未決・合意・freezeを生成しない。金額・権限・法務等の人間専決値を推定せず原文・選択肢・推奨・影響候補の判断待ちへ返す。OSへ要求意味の重複所有や別engineを作らない。HARNESS-L2-008/013を単独成立依存とし、REQENG-HARNESS-001〜007の抽出・意味差分・質問・影響処理、製品pack分離・決定論、提案と人承認の境界を保持する。別製品packの語彙・policy・質問・品質matrixをそれぞれ単独に混入させても対象製品の版付きpackへ漏らさず、混入をpack契約ownerへ示す。当該pack欠落や版不一致は別製品packで補わず未確定として同ownerへ返す。prototype/PoC結果はL2-008へBackflowし、単体/connection/compositeのidentity、failure/timeout、trace、owner/re-entryを保持する。PoC Backflowではfailure/timeout状態とowner/re-entryの欠落をそれぞれ独立に照合し、結果や宛先・再入条件を補完しない。記録・対象L1 revision・根拠source scope・actor/owner・適用matrixがmissing/unknown/staleならHARNESS要求ownerへ不足を戻す。上流の目的・scope・人が決める値が不明ならHARNESS-L1-008または意味を持つPOへ戻す。操作・記録・採否の実行はOS側既存consumerへ戻し、HARNESSに登録/承認権限を追加しない。
 
 ### 項目別旧資産の再導出・置換
 
