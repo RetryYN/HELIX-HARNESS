@@ -729,14 +729,14 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 | `CASE-INT-036-02d` | scopeだけを不一致にする | 変異fieldだけを不成立として保持し、SECURITY permission/isolation ownerへ不足情報を戻す。無関係な正常field/operationは保持する。 当該operationを実行せず、実行可能にも昇格させない。 |
 | `CASE-INT-036-02e` | permission revisionをstaleにする | 変異fieldだけを不成立として保持し、SECURITY permission/isolation ownerへ不足情報を戻す。無関係な正常field/operationは保持する。 当該operationを実行せず、実行可能にも昇格させない。 |
 | `CASE-INT-036-02f` | 操作時点ですでにrevokedのpermissionを有効扱いする | 変異fieldだけを不成立として保持し、SECURITY permission/isolation ownerへ不足情報を戻す。無関係な正常field/operationは保持する。 当該operationを実行せず、実行可能にも昇格させない。 |
-| `CASE-INT-036-02g` | 別actorのpermissionを流用（action/targetは一致） | actor mismatchだけを拒否し、当該operationを実行可能にしない。SECURITY permission/constraint ownerへ照合を戻し、他fieldは保持する。 |
+| `CASE-INT-036-02g` | 別actorのpermissionを流用（action/targetは一致） | actor mismatchだけを拒否し、当該operationを実行可能にしない。SECURITY permission/isolation ownerへ照合を戻し、他fieldは保持する。 |
 | `CASE-INT-036-02h` | INTELLIGENCEがSECURITY permissionを新規発行する | 不合格。permission発行はSECURITY authorityに残し、SECURITYへ戻す。 |
 | `CASE-INT-036-02i` | 操作時点ですでに期限切れのpermissionを有効扱いする | 操作timestamp時点の期限を照合して実行可能にせずSECURITY permission/isolation ownerへ戻す。 |
 | `CASE-INT-036-02j` | 索引：新規permission発行変異はCASE-INT-036-02hを参照 | CASE-INT-036-02hで検証し、この行を独立fixture/分母へ重複算入しない。 |
 | `CASE-INT-036-02k` | INTELLIGENCEが既存SECURITY permissionを変更する | 不合格。permissionはSECURITY authorityに残し、SECURITY ownerへ戻す。 |
 | `CASE-INT-036-02l` | permissionは有効だがSECURITY constraintに違反するactionを許可扱いする | 不合格。operationを実行可能にせず、SECURITY permission/isolation ownerへ戻す。 |
-| `CASE-INT-036-02n` | 別actionのpermissionを流用（actor/targetは一致） | action mismatchだけを拒否し、当該operationを実行可能にしない。SECURITY permission/constraint ownerへ照合を戻し、他fieldは保持する。 |
-| `CASE-INT-036-02o` | 別targetのpermissionを流用（actor/actionは一致） | target mismatchだけを拒否し、当該operationを実行可能にしない。SECURITY permission/constraint ownerへ照合を戻し、他fieldは保持する。 |
+| `CASE-INT-036-02n` | 別actionのpermissionを流用（actor/targetは一致） | action mismatchだけを拒否し、当該operationを実行可能にしない。SECURITY permission/isolation ownerへ照合を戻し、他fieldは保持する。 |
+| `CASE-INT-036-02o` | 別targetのpermissionを流用（actor/actionは一致） | target mismatchだけを拒否し、当該operationを実行可能にしない。SECURITY permission/isolation ownerへ照合を戻し、他fieldは保持する。 |
 
 ### CASE-INT-036-03 — 未見入力の親oracle（AC-INT-036-03）
 
@@ -752,7 +752,7 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 
 入力: 未見actionの許可結果だけを欠落させ、同一actor/target/scopeに一致する別actionの有効permissionは存在する。
 
-期待: 別actionの有効permissionを流用せず、未見actionをunknownとしてSECURITY permission/constraint ownerへ戻す。当該operationは実行可能にしない。
+期待: 別actionの有効permissionを流用せず、未見actionをunknownとしてSECURITY permission/isolation ownerへ戻す。当該operationは実行可能にしない。
 
 ### CASE-INT-036-04 — fieldごとのunknown/未宣言/範囲外（AC-INT-036-04）
 
@@ -770,7 +770,7 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 | `CASE-INT-036-04e` | actionがsourceに未宣言 | 該当fieldだけunknown/incompleteとして推測を止め、SECURITY permission/isolation ownerへ戻す。無関係な正常source/operationは保持する。  当該operationを実行せず、実行可能にも昇格させない。 |
 | `CASE-INT-036-04i` | SECURITY constraintが欠落 | constraint適用性をunknownとして実行可能にせず、SECURITY permission/isolation ownerへ戻す。 |
 | `CASE-INT-036-04j` | 選択された専用HELIX-CONNECT connector contractのidentityだけをunknownにする | 契約unknownを保持してCONNECT contract ownerへ照会し、操作を実行可能にしない。SECURITY authorityは保持する。 |
-| `CASE-INT-036-04k` | 既知action/actor/target/scopeは有効だがSECURITY permission結果だけを欠落させる | permission結果欠落をunknown/incompleteとしてSECURITY permission/constraint ownerへ戻す。INTELLIGENCEは許可を推測せず、operationを実行可能にしない。 |
+| `CASE-INT-036-04k` | 既知action/actor/target/scopeは有効だがSECURITY permission結果だけを欠落させる | permission結果欠落をunknown/incompleteとしてSECURITY permission/isolation ownerへ戻す。INTELLIGENCEは許可を推測せず、operationを実行可能にしない。 |
 
 ### 共通HARNESS-L2-010/011 pack — 個別field negative（AC-INT-036-02）
 
