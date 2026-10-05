@@ -4,4 +4,4 @@
 
 ## Stage 2a — 055/056/057
 
-固定親に独立business outcomeがないため、別BR/AC/BCASEは作らない。L10の業務結果は[L3 functional AC](../L3-requirements/functional-requirements.md)の `LABO-055-AC-01, LABO-055-AC-02, LABO-055-AC-03`、`LABO-056-AC-01, LABO-056-AC-02, LABO-056-AC-03, LABO-056-AC-04`、`LABO-057-AC-01, LABO-057-AC-02, LABO-057-AC-03`を参照する。owner境界と戻し先を確認する際も同じfunctional caseを用い、重複business oracleを追加しない。
+固定親に独立business outcomeがないため、別BR/AC/BCASEは作らない。L10の業務結果は[L3 functional AC](../L3-requirements/functional-requirements.md)の `LABO-055-AC-01`〜`LABO-055-AC-04`、`LABO-056-AC-01`〜`LABO-056-AC-05`、`LABO-057-AC-01`〜`LABO-057-AC-04`を参照する。owner境界と戻し先を確認する際も同じfunctional caseを用い、重複business oracleを追加しない。
