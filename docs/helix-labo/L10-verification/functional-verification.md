@@ -1223,7 +1223,7 @@ input observation identity/source revision；episode candidate identityとrelati
 
 - 対応AC: `LABO-016-AC-02`。固定親: `HELIXLABO-L2-016`。
 - 独立fixture（一条件だけ変更）: 比較結果・scope・condition・counterexample・oracleを有効のまま、比較可能性fieldだけを出力から落とす。
-- 期待oracle: system適格/完了とせず、比較可能性欠落をunknownとして保持しexperiment evaluationへ戻す。
+- 期待oracle: system適格/完了とせず、比較可能性欠落をunknownとして保持しoperation候補として保留する。
 
 ### L10-LABO-021-C16 — HARNESS source identityの混合
 
@@ -1364,19 +1364,19 @@ input observation identity/source revision；episode candidate identityとrelati
 
 - 対応AC: `LABO-016-AC-02`。親: `HELIXLABO-L2-016`。
 - 入力fixture: 他の比較材料を保ち、固定scope内のcounterexampleだけを出力から欠落させる。期待：評価材料不成立を記録し、反例を保持する。
-- 失敗時戻し先: operation候補として保留しexperiment evaluationへ不足・不一致を返す。LABOはsource正本を変更しない。
+- 失敗時戻し先: operation候補として保留し、不足・不一致を結果に記録する。LABOはsource正本を変更しない。
 
 ### L10-LABO-016-C06 — oracleと結果の不一致
 
 - 対応AC: `LABO-016-AC-02`。親: `HELIXLABO-L2-016`。
 - 入力fixture: 比較結果を保ち、oracle判定だけが結果と矛盾するfixtureにする。期待：判定不能を維持しsystem適格へ昇格しない。
-- 失敗時戻し先: operation候補として保留しexperiment evaluationへ不足・不一致を返す。LABOはsource正本を変更しない。
+- 失敗時戻し先: operation候補として保留し、不足・不一致を結果に記録する。LABOはsource正本を変更しない。
 
 ### L10-LABO-016-C07 — 中断状態の消去
 
 - 対応AC: `LABO-016-AC-02`。親: `HELIXLABO-L2-016`。
 - 入力fixture: 一つの比較armを中断し、その状態だけを未記録にする。期待：中断と未取得結果を記録し、比較完了としない。
-- 失敗時戻し先: operation候補として保留しexperiment evaluationへ不足・不一致を返す。LABOはsource正本を変更しない。
+- 失敗時戻し先: operation候補として保留し、不足・不一致を結果に記録する。LABOはsource正本を変更しない。
 
 ### L10-LABO-017-C05 — 現行rule版の欠落
 
@@ -2188,7 +2188,7 @@ input observation identity/source revision；episode candidate identityとrelati
 
 - 対応AC: `LABO-016-AC-02`。固定親: `HELIXLABO-L2-016`。
 - 独立fixture（変更は一条件だけ）: 比較可能な結果・反例・oracleを維持し実験実行完了だけを根拠とするsystem適格claimを加える。
-- 期待oracle: 自動system適格化を拒みoperation候補として保留しexperiment evaluationへ戻す。
+- 期待oracle: 自動system適格化を拒みoperation候補として保留し、判定不能を記録する。
 
 ### L10-LABO-017-C09 — 例外記録脱落
 
@@ -2547,11 +2547,11 @@ input observation identity/source revision；episode candidate identityとrelati
 ### L10-LABO-024-C18 — 稼働中判断を過去実績へ混入
 
 - 対応AC: `LABO-024-AC-02`。固定親: `HELIXLABO-L2-024`。
-- 入力fixture: 有効な稼働中判断と過去評価をそれぞれ区別できる同一source identity/revision/evidenceを用い、出力分類だけを「稼働中判断を過去実績」とする。
+- 入力fixture: 有効な稼働中判断と過去評価それぞれのsource identity/revision/evidenceを保持し、出力分類だけを「稼働中判断を過去実績」とする。
 - 期待oracle: 混入を拒否し、現行判断と過去評価を別状態で保持する。これだけで新たな権威・判断を生成しない。固定親に戻し先指定がないため、返却先を創作せず不合格を記録する。
 
 ### L10-LABO-058-C41 — 058補足を001実行の再帰前提にしない
 
 - 対応AC: `LABO-058-AC-02`。固定親: `HELIXLABO-L2-058`。
 - 入力fixture: L2-001の必須入力・選択source・適用される安全/版条件は満たし、058 supplementは未実行で存在しない正常baselineを固定する。001の実行判定条件だけに「058 supplementが必須」という再帰前提を追加する一変異を与える。
-- 期待oracle: supplementがないことだけで001固有の有効な観測を拒否しない。同時に、058を実行済み、採択済み、または他のsource dependencyを満たしたと扱わない。固定L2:058に戻し先が指定されていないため追加しない。
+- 期待oracle: supplementがないことだけで001固有の有効な観測を拒否しない。同時に、058を実行済み、採択済み、または他のsource dependencyを満たしたと扱わない。固定L2-058に戻し先が指定されていないため追加しない。

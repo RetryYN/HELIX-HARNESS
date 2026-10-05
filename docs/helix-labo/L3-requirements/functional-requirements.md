@@ -768,7 +768,7 @@ episode、evidence、relation版を受けて分類対象を出力する。根拠
 ### 受入条件候補
 
 - **LABO-016-AC-01 — 正常・trace**：比較可能性、反例、oracle、run interruptionが評価材料へ個別に残る。
-- **LABO-016-AC-02 — failure/owner boundary**：判定不能をsystem候補成立へ読み替えない。反例を欠落させず評価材料に保持する。oracle identity欠落はunknownのまま保持し、system適格性を導かない。比較結果はoperation候補として保留し、固定親にないowner routeを追加しない。自動system化/昇格をしない.
+- **LABO-016-AC-02 — failure/owner boundary**：判定不能をsystem候補成立へ読み替えない。反例を欠落させず評価材料に保持する。oracle identity欠落はunknownのまま保持し、system適格性を導かない。比較結果はoperation候補として保留し、固定親にないowner routeを追加しない。自動system化/昇格をしない。
 
 ### 補正ACと個別fixtureの対応
 
@@ -1343,7 +1343,7 @@ Workerを機構・authority ownerにしない。
 ### 受入条件候補
 
 - **LABO-030-AC-01 — 正常・trace**：source/product identityと適用版/許可が観測ごとに追跡可能。
-- **LABO-030-AC-02 — failure boundary**：product identity欠落、source revision不一致、異なるsource統合、authority移管、source contract欠落を成功扱いしない。親が戻し先を定めないidentity欠落・source統合・authority移管は拒否のみとし、返却先を新設しない。未採択source/productを暗黙必須化せず製品stateを書き換えない。
+- **LABO-030-AC-02 — failure boundary**：product identity欠落、source revision不一致、異なるsource統合、authority移管、source contract欠落を成功扱いしない。親が戻し先を定めないidentity欠落・source統合・authority移管は拒否のみとし、返却先を新設しない。選択Product Core sourceのrevision不一致・source contract欠落の返却は、L2-030が001へ渡す入力接続であることと固定L2-058:413のsource条件から再導出し、該当Product Core source ownerの接続契約へ戻す。L2-030単独に明記のない返却先を推定しているものではない。未採択source/productを暗黙必須化せず製品stateを書き換えない。
 
 ### 補正ACと個別fixtureの対応
 
