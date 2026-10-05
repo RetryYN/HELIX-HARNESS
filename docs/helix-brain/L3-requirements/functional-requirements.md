@@ -596,3 +596,81 @@ Pattern/Unit/Partのidentity・source/version、一般化された課題、appli
 | HELIXBRAIN-L2-006 | L2:139–149 / L11:34（main 633 fixed bytes） | FR-01、AC-01〜04。15知識例、製品固有要素、Visual Design HARNESSとの責務境界 | C01–C19。15例C01–C16、独立反例C17、戻し先C18、未見C19 |
 
 各CASEのexpected oracleは同じStage 2b L10表のcase rowに記録する。CASE→ACのみで固定句の被覆を主張しない。
+
+## Stage 4 — 採択済み親018/019/020/021/022/023/030の部分草稿
+
+**状態：候補のみ・未承認。** この追補は固定PO登録`MPR-RC-HELIXBRAIN-L2-018/019/020/021/022/023/030-002`とL2/L11 revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`の7親だけを対象にする。main `633bf12ea8f948db8ba3d6600179c4a9507377a7`の採択記録とmain `0f3ae318af1730f37123667e3efd914dda38dbda`の実装順序G0を根拠に、各親の`version_target: 1.0`、Stage 4を記録する。これは先行Stage完了gate、release収載、実装許可ではない。後続版、version未指定、Web、保留・不採択親および未承認candidateは依存authorityにしない。
+
+旧L3起点は`LEGACY-ASSET-F542125805B777D8A56A`（L00-L06-design-phase.md:148–168）とfunctional/business/NFRの三分割`LEGACY-ASSET-9A772391C7FB1298D45F`（旧Harness L3-functional README.md:16–56）である。旧L3のFR/AC/paired verificationの関係を再導出するが、旧G3名・runtime・gateを継承しない。以下の旧要求/試験設計は各項目の意味類例に限定し、固定親にないschema、enum、閾値、承認手続きは置換または除外する。完全な旧asset、physical span、ledger row、固定L2/L11、PO decision、G0のfull/raw pinは対応する時点監査へ記録する。
+
+### BRAIN-018-FR-01 — 製品Core由来candidateのintake
+
+HELIX-HARNESS-COREから受け取る入力を、抽出済みの汎用Pattern/Unit/Part候補、source/provenance、source revision、製品固有要素との関係、受取側identityに限定する。利用者raw originalは入力にしない。候補と製品固有意味を分離し、candidate stateでintake receiptを返す。receiptはPatternの成立・成熟・採用を意味しない。原本のConcept上の扱いを保持するが、保持期限・破棄証拠を追加しない。
+
+- **BRAIN-018-AC-01 — 正常**：抽出candidateが汎用部分と製品固有残余をsource付きで区別でき、受取側identityとsource revisionが対応する場合に限りcandidate receiptを作る。
+- **BRAIN-018-AC-02 — 個別反例**：raw original添付、個別製品名、製品要求、画面、業務規則、利用者判断の各混入、source identity/revision/provenanceの各欠落、receiver identity欠落、receiptだけによるaccepted/mature昇格を別々に拒否する。分離不能・由来不明は隔離し製品Coreへ返す。採否はL2-025の既存経路に残す。
+- **BRAIN-018-AC-03 — 未見正常/unknown**：未見製品scopeでも根拠を示せる汎用部分をcandidateとして受ける。分離不能な一部分だけunknown/隔離とし、全体を確立済み汎用知識へ昇格しない。
+
+旧Synthesisの安定source identity/revision/provenanceと推測接続拒否を再導出し、旧runtime/system synthesis能力は置換する。旧paired acceptanceのidentity/revision/digest/authority欠落を照合する形だけ再導出し、旧case/gateは実行・移植しない。raw original除外とcandidate-onlyは固定L2から起草する。
+
+### BRAIN-019-FR-01 — Product Coreへの知識候補提供
+
+Product Coreの対象課題、required input、constraint、参照可能なknowledge identity/versionを受け、Pattern/Unit/Part候補ごとに適用条件、alternative、relation、trade-off、counterexample、evidence、maturity、exact versionを比較可能な判断材料として返す。複数成立候補を消さず、選択・採用はProduct Core等の既存接続先に残す。unknownは推薦へ変換しない。
+
+- **BRAIN-019-AC-01 — 正常**：scopeとrequired inputを備えるqueryに対し、候補ごとの固定親必須fieldとidentity/versionを返し、利用側の選択・採用stateを未決で保つ。
+- **BRAIN-019-AC-02 — 個別反例**：scope欠落、required input欠落、候補identity欠落、version/revision不一致を個別に与え、不足queryはProduct Coreへ、knowledge meaning/version矛盾はBRAIN L1-003/008または該当知識ownerへ返す。alternative、relation、trade-off、counterexample、evidence、maturityの各field欠落、unknownの推薦化、候補返却の採用昇格をそれぞれ独立に拒否する。
+- **BRAIN-019-AC-03 — 未見正常/局所unknown**：未見課題でquery必須fieldがそろい、一候補の適用可否だけunknownのfixtureでは、既知候補の情報を保って当該候補だけ保留し、未知を不存在・適用可能と推定しない。
+
+旧UWJのfact/candidate/condition/alternative/counterevidenceの区分とpaired acceptanceのfield欠落oracleを再導出する。旧interview schema、score、固定質問、承認階層は現行candidate-only境界に置換し、provider固定・精度/性能閾値を追加しない。
+
+### BRAIN-020-FR-01 — LABO評価のcandidateへの接続
+
+LABO evaluation receiptの対象revisionとcandidate revision、scope、method、evidence、result、failure、counterexample、unassessed rangeを、source/version/evaluation identityに結んで候補入力として保持する。部分評価の範囲を保ち、単一成功、AI生成、評価resultのみでPattern確立・採用・成熟に進めない。OS登録・振分け、BRAIN内独立検証、採否を先取りしない。L2-INFRA-017はInfrastructure candidateのmaturityを扱う場合だけ参照する。
+
+- **BRAIN-020-AC-01 — 正常**：対象revisionが一致するevaluation receiptの全列挙要素と未評価範囲をsource/version/evaluation identityに結び、candidate input receiptとして返す。
+- **BRAIN-020-AC-02 — 個別反例**：target/candidate revision不一致、scope/method/evidence/result/failure/counterexample/unassessed range各単独欠落、単一成功だけの昇格、AI生成だけの昇格、receiptからOS登録stateを決める変異をそれぞれ個別に拒否する。evaluation不足・不一致はLABOへ返し、OS登録stateはOSへ返す。
+- **BRAIN-020-AC-03 — 未見正常/未評価範囲**：未見scopeの測定済部分と未評価部分を区分し、同candidate revisionに結ぶ。未評価部分からscope全体へ一般化しない。
+
+旧HELIX-Benchのscope/method/failure/missing保持とself-reported score拒否を類例として再導出する。旧benchmark数値、category、runner/provider、admission thresholdは置換し、runtimeは実行しない。
+
+### BRAIN-021-FR-01 — INTELLIGENCEへのsource付き判断材料
+
+INTELLIGENCE query/scopeに対してBRAIN knowledge identity/version、candidate、required input、条件、alternative、constraint、counterexample、evidenceを判断材料として返す。BRAINはruntime結論・選択を確定せず、INTELLIGENCEはBRAIN knowledgeを暗黙に改変・昇格しない。
+
+- **BRAIN-021-AC-01 — 正常**：有効なquery scopeとsource/versionに結ばれた候補および固定親列挙fieldを返し、runtime decisionとknowledge adoptionを行わない。
+- **BRAIN-021-AC-02 — 個別反例**：query scope欠落/別対象、knowledge source identity欠落、version欠落、stale、mismatchを個別に試す。required input、condition、alternative、constraint、counterexample、evidence各単独欠落、BRAINによるruntime結論、INTELLIGENCEによるBRAIN knowledge改変を別々に拒否する。query不足はINTELLIGENCE、知識meaning/version不整合はBRAINまたは該当knowledge ownerへ返す。
+- **BRAIN-021-AC-03 — 未見正常/局所unknown**：未見query種別でもscope/sourceが有効な範囲の候補情報を返し、未知の判断内容だけunknownに保つ。固定親外runtime actionを生成しない。
+
+旧UWJのcandidate/proposalとcounterevidence/unresolved分離を限定再導出し、旧workflow decision engine・承認gateを置換する。旧case形式を実行せず、一般的判断精度/latency値も設けない。
+
+### BRAIN-022-FR-01 — required inputからHARNESS-L2-009設計義務へのtrace
+
+Pattern required input、前提、constraint、関連Pattern/evidence、Unit/Part dependencyをHARNESS-L2-009 obligationへ対応付け、source knowledge identity/versionを保つforward traceと、obligationから同じ元revision/fieldへ戻るreverse traceを保持する。BRAINは製品固有値、設計選択、工程表、遷移図、実装優先順位を単独決定しない。定義済みfieldのunknown valueとfield定義欠落を分け、未充足義務をopenにする。
+
+- **BRAIN-022-AC-01 — 正常**：既知required fieldとdependencyをHARNESS-L2-009 obligationへ結び、両方向traceのsource revision/fieldが一致する。値が一つunknownでもfield identityと理由を渡し義務をopenで保つ。
+- **BRAIN-022-AC-02 — 個別反例**：required input欠落、dependency endpoint欠落、dependency誤revision、reverse trace欠落、reverse trace誤field、製品固有値決定、工程表/遷移図/優先順位の決定、未充足義務の完了化を別々に拒否する。知識field/meaning/definition不足はBRAIN L1-003/005、receiver contract/mapping/義務受領不足はHARNESS-CORE/HARNESSへ返す。
+- **BRAIN-022-AC-03 — 未見正常/unknown**：未見Patternでfield定義は存在し値一つだけunknownならreceiptとopen obligationを維持する。field定義そのものが欠ける別fixtureは値unknownと扱わずBRAINへ戻す。
+
+Design Registryのtyped identity/edge、orphan検出、双方向traceを局所再導出する。旧registry implementation/ID/parser/runtimeは置換する。旧L3の他項目を流用しない。固定L2が指定するHARNESS-L2-009 obligationを独立に保持する。
+
+### BRAIN-023-FR-01 — Visual Design/UX知識と製品固有設計の分離
+
+Visual Design HARNESSの課題と製品scopeから、汎用Visual Design/UX Pattern/Unit/Part、条件、反例、required inputをcandidateとして渡す。利用・評価結果はLABOを経由したsource/evaluation relationとしてcandidateに戻す。Visual Identity、screen、flow、token等の製品固有設計は各Product Coreに残す。ここでは未承認Visual Design candidateをauthorityにしない。
+
+- **BRAIN-023-AC-01 — 正常**：課題/source/scopeが識別され、根拠あるgeneric candidateと製品固有残余が区別される。利用・評価resultはLABO経由のsource relationを保ち、採用・昇格しない。
+- **BRAIN-023-AC-02 — 個別反例**：Visual Identity混入、screen混入、flow混入、token混入を独立に拒否する。LABO routeなしのgeneric knowledge昇格、Product Coreとのscope relation欠落、source relation欠落も各独立に拒否する。製品固有要素は該当Product Core、利用/evaluation source不足はLABOへ返す。
+- **BRAIN-023-AC-03 — 未見正常/未評価**：未見screen種・製品scopeから根拠あるgeneric部分だけをcandidateとして保持し、製品固有残余はProduct Coreへ、未評価部分はcandidate/未評価のまま残す。
+
+旧VDH Pattern Contractのrequired/forbiddenとcommon/product separationを限定再導出する。旧UI profile、screen ledger、token semantics/runtimeは移植しない。旧paired acceptanceはsemantic ID/source-to-evidence traceの形だけを参照する。
+
+### BRAIN-030-FR-01 — BRAIN知識からHARNESS-COREへのconnection receipt
+
+BRAIN→HARNESS-CORE query/receipt接続において、常時必須のconnection contract identity/version/compatibility、query schema、receipt schema、scope/correlation identity、receiver HARNESS-L2-009 contractを照合する。選択知識についてのみknowledge identity/version/source/applicability/required input/relation/negative caseを照合して設計義務材料receiptへ結び、未充足input/relationを保持する。定義済fieldの値unknownはreceipt可能だが義務はopen、field定義欠落は通常受領しない。未選択knowledgeは未観測、参照資料は背景のみ。receiptは義務充足・connection/design complete・implementation readyを意味しない。製品固有API/state/permission/design conclusionは返さない。
+
+- **BRAIN-030-AC-01 — 正常**：常時contract群がそろったfixtureで、選択knowledgeなしを未観測として処理できる。別fixtureでは複数選択Patternのidentity/version/sourceと全required fieldsをHARNESS-L2-009へ対応付け、未決fieldと未充足義務を残したreceiptを返す。
+- **BRAIN-030-AC-02 — 個別negative**：常時contractのidentity missing、version missing/stale/unknown、compatibility mismatch、query schema欠落、不一致、receipt schema欠落、不一致、scope/correlation identity欠落、不一致、receiver L2-009 contract欠落、不一致を個別変異する。各々呼出しを保留しconnection contract ownerまたはHARNESSへ戻す。
+- **BRAIN-030-AC-03 — 選択knowledge negative**：選択knowledge identity、version、source、applicability、required-field definition、required value、relation、negative caseについてmissing/stale/mismatchを別々に試す。定義欠落を値unknownとして受領せず、知識意味/field不足はBRAIN、receiver scope/schema/mappingはHARNESSへ返す。
+- **BRAIN-030-AC-04 — traceと未完義務**：Pattern/Unit/Part/inputからHARNESS obligationへのforward trace、およびobligationから同じknowledge revision/fieldへのreverse traceをそれぞれ単独で欠落・誤結合させる。未充足義務を閉じる、receiptを設計完成/実装準備に昇格する、別Pattern成功で穴を相殺する変異を個別に拒否する。
+- **BRAIN-030-AC-05 — unknown/未見**：選択knowledgeのfield定義がある値unknown fixtureではreceiptとfield identity/理由を保ち義務openとする。定義不在fixtureは受領不可としてBRAINへ返す。未見互換pairは固定sourceに宣言済範囲があるときだけ照合し、未宣言rangeはunknownで停止する。未選択knowledgeは常に未観測のままとする。
+
+旧System Synthesisのstable identity/provenance graphとpartial acceptanceを局所再導出する。旧whole synthesis、CI completion、自動authority/runtimeは置換する。paired testからID/revision/digest/authority欠落とverification omission・単発成功promotion拒否のoracle形式のみ再導出し、実行しない。

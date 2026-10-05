@@ -83,3 +83,19 @@
 | `HELIXBRAIN-L2-029` / `BRAIN-029-NFR-01` | C01–C53の選択構成を対象とし、identity/source/version、applicability、required input、constraint、trade-off、negative/failure、5 relation type/端点/意味の必要項目を列挙し、各項目のmissing/unknown/stale/mismatchと誤適用を別記する。 | relation label数だけと条件付きtuple照合を比較。常時必須・操作時・選択source条件を分け、未選択source/参照資料は未観測。L2-030のreceipt義務は測定対象外。 |
 
 各測定の計画母集団を`Nplanned`、契約scope内の必須要素数を`Nrequired`、期待oracleと照合できた数を`Nchecked`、unknown/欠落を成功へ誤変換した数を`Nfalse`として記録する。処理失敗、入力欠落、観測欠落、打切りは重ねず理由付きで分ける。正しいoracle不合格も判定可能な観測に含め、処理失敗へ隠さない。`Nrequired=0`では率を算出せず、欠けた必須条件を対象外にしない。未実施は未測定。時間測定には根拠ある開始/終了条件と単位を要し、valid時間標本0なら分位値なしとする。固定SLA、最低標本数、追加承認gateは設けない。
+
+## Stage 4 — 根拠付きNFR候補の対測定（未実行）
+
+以下は`nfr-grade.md`の候補を対応L10 fixtureで測る設計で、測定結果・承認・runtime合格を意味しない。必須field/relation母集団は固定親の列挙に限る。未選択sourceは未観測で分母外、missing/unknown/stale/conflictを成功や未適用へ変換しない。
+
+| NFR候補 | functional CASEと測定分母 | 候補判定・記録 |
+|---|---|---|
+| `BRAIN-018-NFR-01` | C01–C15のselected intakeでsource/revision/provenance, extraction/product relation, receiver identityを個別に測る。 | required field coverage候補100%、raw original受領・誤昇格0。unknown/隔離とProduct Core戻しを個別記録。 |
+| `BRAIN-019-NFR-01` | C01–C15のquery scopeおよびcandidate response fieldを分母にする。 | candidate field coverage候補100%、unsupported suggestion/採用昇格0。unknown fieldとquery不足を別分類。 |
+| `BRAIN-020-NFR-01` | C01–C14のevaluation tuple各要素とtarget/candidate revision一致を測る。 | 列挙field coverage候補100%、不一致/部分評価からの誤昇格0。OS stateの不変更を確認。 |
+| `BRAIN-021-NFR-01` | C01–C15のscope/source/version/required candidate fieldを測る。 | 必須field coverage候補100%、runtime conclusion/BRAIN mutation 0。 |
+| `BRAIN-022-NFR-01` | C01–C13のforward/reverse trace、source revision/field、open obligation stateを分母にする。 | 両方向required trace coverage候補100%、未充足義務誤完了0。値unknownとfield definition missingは別母集団。 |
+| `BRAIN-023-NFR-01` | C01–C10のgeneric/product separation field、source relation、LABO routeを測る。 | required coverage候補100%、製品固有要素の誤混入/direct promotion 0。未評価部分は未評価。 |
+| `BRAIN-030-NFR-01` | C01–C34を常時contract group、選択knowledge group、trace/open obligation groupに分けて測る。未選択knowledgeを分母に含めない。 | 各適用母集団coverage候補100%、誤受領/誤昇格0。required definition missingとvalue unknown、未選択と未観測を別にする。 |
+
+各測定は`Nplanned`, `Nrequired`, `Nchecked`, false-accept count、およびvalid/failed/missing/censored/unexecuted理由を記録する。`Nrequired=0`では割合を算出せず、valid fixture数0では結果率/実績を作らない。正しいoracle rejectionも照合可能な測定として扱い、処理失敗と混ぜない。候補100%/0境界は要求field照合の技術候補で、製品SLAや採択値ではない。固定性能期限・最低標本数・新承認gateを加えない。

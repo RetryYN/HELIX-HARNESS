@@ -95,3 +95,19 @@
 | `HELIXBRAIN-L2-029` / `BRAIN-029-NFR-01` | 案A:構成数とrelation labelだけを見る。案B:選択したPattern/Unit/Part tuple（identity/source/version、applicability、required input、constraint、trade-off、negative/failure、relation type/endpoint/meaning）を追跡し、unknown・stale・矛盾とowner境界を別軸で照合する。列挙されたrelation例とL2-003/005/008の必須条件を直接検査できるBを候補とする。 | C01–C53の選択構成fixture。5 relation typeと各必須情報を独立に照合し、missing/unknown/stale/mismatchを区別する。未選択CORE/LABO sourceは未観測。参照資料は分母・oracleにしない。 |
 
 共通の測定報告候補：対象scopeで契約上要求される要素数を分母として明示し、値欠落・unknownも対象要素から除かない。観測可能、観測した不合格、処理失敗、入力/観測欠落、打切りを別々に数え、分母0では率を算出しない。正しい不合格判定は判定可能な観測であり失敗件数へ隠さない。未実行は未測定であり、欠測を0や成功へ変換しない。時間を測る場合は根拠ある開始/終了条件と単位を併記し、valid時間標本が0なら分位値なしとする。これは測定形式の候補であり、新しいSLA、最低標本数、承認gateを設けない。
+
+## Stage 4 — 採択済み親018/019/020/021/022/023/030の技術候補
+
+**状態：根拠付き候補・未測定。** 旧NFR形式の起点`LEGACY-ASSET-DB669724249A14A665F0`（旧Harness nfr-grade.md:21–34,58–74）は測定方法と判定材料を分ける骨格だけ再導出する。旧IPA grade、数値、pass条件、runtime/CIは移さない。候補値は各親で列挙された要求field・state・境界を測るもので、SLAや採択済閾値ではない。比較案、測定方法、判定境界を対のL10へ結び、parameterごとのPO確認は作らない。要求意味・範囲・owner・版を変える必要が出た場合だけL2へ戻す。
+
+| 親／測定対象 | 根拠付き候補と比較案 | L10測定方法・判定境界 | 限界 |
+|---|---|---|---|
+| `HELIXBRAIN-L2-018` source intake | source identity/revision/provenance、抽出candidate/製品固有relation、receiver identityを項目別に照合する案Bを候補とする。総receipt数だけの案Aと比較。誤受理・raw-original受領・誤昇格0を候補境界とする。 | C01–C15。各required field被覆と各単独negativeを測定。 | 製品性能SLA・原本保持期間なし。 |
+| `HELIXBRAIN-L2-019` query response | 固定親の全response field/scope/versionを候補別に照合する。candidate suggestionまたは採用昇格の誤判定0を候補とし、単なる候補件数集計と比較。 | C01–C15。selected queryの各fieldを分母とし、missing/unknown/unsupported suggestionを別記録。 | 精度目標、provider、性能閾値なし。 |
+| `HELIXBRAIN-L2-020` LABO receipt | evaluation target/candidate revision一致とscope/method/evidence/result/failure/counterexample/unassessed rangeの個別被覆を候補化。不一致/部分評価からの昇格0。 | C01–C14。各項目欠落・revision差分・一回成功/AI-onlyを独立測定。 | benchmark件数、runtime、期限を追加しない。 |
+| `HELIXBRAIN-L2-021` INTELLIGENCE query | source/version/scopeと固定判断材料fieldの個別一致率を候補化。runtime conclusionまたはBRAIN mutation誤生成0を候補とする。 | C01–C15。field欠落/identity/version/scopeの各変異と未見queryを個別照合。 | 判断精度・latency SLAは範囲外。 |
+| `HELIXBRAIN-L2-022` obligation trace | required input/dependency→obligationと逆trace双方のrequired relation coverage 100%を候補とし、単方向trace案と比較する。未充足義務の誤完了0を候補境界とする。 | C01–C13。forward/reverse、revision/field一致を独立に数え、unknown valueと定義欠落を分離。 | 新registry schema/edge enum/性能閾値なし。 |
+| `HELIXBRAIN-L2-023` generic/product separation | generic-vs-product-specific分類とLABO provenance routeのrequired field coverage 100%、誤混入/direct promotion 0を候補とする。単純な候補存在だけの案と比較。 | C01–C10。Visual Identity/screen/flow/token、scope/source relation、LABO routeを個別変異。 | 未承認Visual Design candidateをsource/authorityにしない。 |
+| `HELIXBRAIN-L2-030` connection/receipt | 常時必須contract群と、選択知識群を別分母にし、各required field・trace coverage 100%、誤受領/誤昇格0を候補とする。 | C01–C34。未選択knowledgeは分母外・未観測。field定義missingと値unknownを別計数し、未充足obligationをclosedにしない。 | compatibility syntax/value、性能SLA、製品値は固定親にないため提案しない。 |
+
+候補の分母は各caseで選択され固定親が必須とするfield/relationである。`Nplanned`、`Nrequired`、`Nchecked`、誤受理数とmissing/unknown/stale/conflict/unexecuted理由を区別して記録する。未選択sourceは未観測であり、必須field欠落を対象外へ移さない。`Nrequired=0`は割合なし、valid fixtureが未実行なら未測定とする。誤受理0は候補判定境界であり製品実績ではない。時間値、最低標本数、固定SLA、承認gateは新設しない。

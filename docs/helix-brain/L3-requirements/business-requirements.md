@@ -68,3 +68,19 @@
 | `HELIXBRAIN-L2-011` | 固定親に独立成果なし。 | `BRAIN-011-FR-01`、AC-01〜04と機能L10 C01〜C12 |
 | `HELIXBRAIN-L2-012` | 固定親に独立成果なし。 | `BRAIN-012-FR-01`、AC-01〜04と機能L10 C01〜C13 |
 | `HELIXBRAIN-L2-029` | 固定親に独立成果なし。 | `BRAIN-029-FR-01`、AC-01〜05と機能L10 C01〜C53 |
+
+## Stage 4 — 採択済み親018/019/020/021/022/023/030の業務分類
+
+固定L2/L11はconnection、知識候補、evaluation/resultの責務・field・戻し先を定義するが、functional behaviorから独立したbusiness outcome、KPI、business ownerを追加していない。旧business分類の分離形式だけ再導出し、旧HARNESS業務値をBRAINへ移さない。各親の業務欄は空の根拠を記録し、通常のL3対象は以下のFR/ACに限る。
+
+| 親L2 | 業務分類 | 機能正本 |
+|---|---|---|
+| `HELIXBRAIN-L2-018` | 固定親に独立business outcomeなし。別business AC/KPI/ownerを追加しない。 | `BRAIN-018-FR-01` / AC-01〜03 |
+| `HELIXBRAIN-L2-019` | 固定親に独立business outcomeなし。別business AC/KPI/ownerを追加しない。 | `BRAIN-019-FR-01` / AC-01〜03 |
+| `HELIXBRAIN-L2-020` | 固定親に独立business outcomeなし。別business AC/KPI/ownerを追加しない。 | `BRAIN-020-FR-01` / AC-01〜03 |
+| `HELIXBRAIN-L2-021` | 固定親に独立business outcomeなし。別business AC/KPI/ownerを追加しない。 | `BRAIN-021-FR-01` / AC-01〜03 |
+| `HELIXBRAIN-L2-022` | 固定親に独立business outcomeなし。別business AC/KPI/ownerを追加しない。 | `BRAIN-022-FR-01` / AC-01〜03 |
+| `HELIXBRAIN-L2-023` | 固定親に独立business outcomeなし。別business AC/KPI/ownerを追加しない。 | `BRAIN-023-FR-01` / AC-01〜03 |
+| `HELIXBRAIN-L2-030` | 固定親に独立business outcomeなし。別business AC/KPI/ownerを追加しない。 | `BRAIN-030-FR-01` / AC-01〜05 |
+
+旧business起点`LEGACY-ASSET-A6E2C7F0565E5F804F06`（旧HARNESS `business-detail.md`、source span 21–39/84–104等）はHARNESS固有のBR-21/HM-08・集計条件である。旧区分構造を再導出し、当該値や条件は本対象へ適用しない。独立business outcomeを持つ後続固定親が起草対象になった場合だけ、同じ通常L3内で本書へ記録する。

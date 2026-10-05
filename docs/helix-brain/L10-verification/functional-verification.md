@@ -547,3 +547,88 @@ L2-029の常時必須・操作時のみ・入力元に応じて必須・参照�
 | `L10-BRAIN-029-C51` | `BRAIN-029-AC-02` | 正常tupleからrelation type/両端identity/meaningだけを欠落させる。期待oracleは当該fieldだけを不足として識別し、他の正常fieldで補完せずcandidate構成を止める。relation意味・端点の不足をprimary L1-005へ返す。 |
 | `L10-BRAIN-029-C52` | `BRAIN-029-AC-01` | 比較操作なし・構成candidate操作あり、CORE/LABO source未選択の正常入力を与える。期待oracleは未選択sourceを未観測として扱い、L2-004/018/020の値を要求せず、L2-009の構成条件と常時必須L2-003/005/008を照合してcandidate stateを返す。 |
 | `L10-BRAIN-029-C53` | `BRAIN-029-AC-02` | sourceが互換不能と示す二Patternを選び、relation edgeを記録せず同じ構成candidateへ入れる。 期待oracle：L11:91の反例を個別検出し、関係のない二候補をcompatibleと推定せず構成成立を止める。relation意味・構成根拠の不足をprimary L1-005/009へ返す。 |
+
+## Stage 4 — 採択済み親018/019/020/021/022/023/030のL10候補
+
+**状態：未承認・未実行。** 固定L2/L11 `f6dad2a33e24f000b87d7f09b8d40288257e74cc`とmain `633bf12ea8f948db8ba3d6600179c4a9507377a7`の採択登録を対象とし、Stage 4の7親だけを照合する。全caseは宣言済み合成fixtureで、製品値を決定しない。旧test/runtime/CIを実行せず、旧case ID・閾値を移植しない。source / full-span pinsは本追補の時点監査へ記録する。
+
+### HELIXBRAIN-L2-018 — `BRAIN-018-FR-01`
+
+- **L10-BRAIN-018-C01 (AC-01, 正常)**：HELIX-HARNESS-COREが抽出済candidate、source/provenance/revision、generic candidateと製品固有残余の関係、receiver identityを渡し、raw originalなし。**期待**：candidate receiptを返すがaccepted/matureにはしない。
+- **C02 (AC-02, 個別negative)**：raw originalを入力に追加する。**期待**：intakeを拒否しProduct Coreへ戻す。
+- **C03/C04/C05/C06/C07/C08 (AC-02, 独立negative)**：製品名、要求、画面、業務規則、利用者判断をそれぞれ単独でgeneric candidateへ混入する。**期待**：該当fieldだけを特定して隔離し、Product Coreへ戻す。
+- **C09/C10/C11/C12 (AC-02, 独立negative)**：source identity、source revision、provenance、receiver identityをそれぞれ欠落させる。**期待**：receiptを確定せず不足fieldを示し、由来不明はProduct Coreへ戻す。
+- **C13 (AC-02, 独立negative)**：他条件を正常に保ちreceipt受領のみでaccepted/matureへ進める変異。**期待**：candidate stateを保持し昇格を拒否する。
+- **C14 (AC-03, 未見正常)**：未見製品領域の合成sourceでgeneric部分と製品固有残余を根拠付きで分離する。**期待**：分離できるcandidateのみ受領する。
+- **C15 (AC-03, 局所unknown)**：同じ未見sourceの一fieldだけ意味境界が不明。**期待**：該当部分のみunknown/隔離し、既知部分のcandidateを全体昇格しない。
+
+### HELIXBRAIN-L2-019 — `BRAIN-019-FR-01`
+
+- **C01 (AC-01, 正常)**：queryに対象課題、required input、constraint、参照可能identity/versionを与え、複数成立候補の固定fieldを揃える。**期待**：候補別にconditions/alternative/relation/trade-off/counterexample/evidence/maturity/exact versionを返し、選択を未決に保つ。
+- **C02/C03/C04 (AC-02, 個別negative)**：対象scope、required input、candidate identityのいずれか一つを欠落させる。**期待**：query不足はProduct Coreへ戻す。
+- **C05/C06 (AC-02, 個別negative)**：candidate versionを欠落、または参照revisionと不一致にする。**期待**：その候補を推薦せず、知識meaning/version不整合はBRAIN L1-003/008または知識ownerへ返す。
+- **C07–C12 (AC-02, 6独立negative)**：alternative、relation、trade-off、counterexample、evidence、maturityを各々単独で欠落。**期待**：当該response field不足を示し、その候補を適用確定・推薦扱いにしない。
+- **C13 (AC-02, 独立negative)**：候補の適用可能性unknownを推薦へ変換。**期待**：推薦なし/保留を維持する。
+- **C14 (AC-02, 独立negative)**：candidate responseを案件採用決定として返す。**期待**：採用stateを作らず候補として返す。
+- **C15 (AC-03, 未見正常/局所unknown)**：未見課題でquery fieldは揃い、候補A/BのうちBだけ適用可否unknown。**期待**：Aは既知情報を返し、Bだけ保留し、未知を不存在または適用可能としない。
+
+### HELIXBRAIN-L2-020 — `BRAIN-020-FR-01`
+
+- **C01 (AC-01, 正常)**：candidate revisionと一致するLABO evaluation receiptにscope/method/evidence/result/failure/counterexample/unassessed rangeおよびsource/version/evaluation identityを与える。**期待**：全項目を結び、候補input receiptとして返す。OS登録・独立検証・採否は未決。
+- **C02/C03 (AC-02, 個別negative)**：evaluation target revisionをcandidate revisionと別々に不一致とする。**期待**：評価を止めLABOへ戻す。
+- **C04–C10 (AC-02, 7独立negative)**：scope、method、evidence、result、failure、counterexample、unassessed rangeの各一つだけを欠落。**期待**：当該項目不足を示し、mature/acceptedにしない。
+- **C11 (AC-02, 独立negative)**：一回の成功だけで成熟/採用へ進める。**期待**：昇格しない。
+- **C12 (AC-02, 独立negative)**：AI生成だけで確立Patternにする。**期待**：昇格しない。
+- **C13 (AC-02, 独立negative)**：receipt内容からOS registration stateを決める。**期待**：OS状態を変更せずOSへ返す。
+- **C14 (AC-03, 未見正常)**：未見scopeの測定済範囲と未評価範囲を分け同一candidate revisionへ結ぶ。**期待**：測定済部分のみ保持し未評価範囲を全体へ一般化しない。
+
+### HELIXBRAIN-L2-021 — `BRAIN-021-FR-01`
+
+- **C01 (AC-01, 正常)**：有効scope/source/revisionとrequired input、conditions、alternative、constraint、counterexample、evidenceを与える。**期待**：source付き判断材料を返すがruntime結論・knowledge adoptionを行わない。
+- **C02/C03/C04/C05/C06 (AC-02, 独立negative)**：query scope欠落、scope別対象、source identity欠落、version欠落、stale、mismatchを一変数ずつ与える。**期待**：query不足はINTELLIGENCE、knowledge不整合はBRAIN/該当知識ownerへ返す。
+- **C07–C12 (AC-02, 独立negative)**：required input、condition、alternative、constraint、counterexample、evidenceを各々単独欠落。**期待**：該当fieldを欠いた回答を完全な判断材料として扱わない。
+- **C13 (AC-02, 独立negative)**：BRAINがruntime選択/結論を回答へ追加する。**期待**：結論を確定しない。
+- **C14 (AC-02, 独立negative)**：INTELLIGENCEがBRAIN knowledge revisionを暗黙変更する。**期待**：変更を拒み既存knowledge ownerへ返す。
+- **C15 (AC-03, 未見正常/局所unknown)**：未知query種でも有効source/scopeの既知fieldは返し、判断内容一項目だけunknownとする。**期待**：未知部分のみunknown、runtime actionは生成しない。
+
+### HELIXBRAIN-L2-022 — `BRAIN-022-FR-01`
+
+- **C01 (AC-01, 正常)**：Pattern required field複数とdependencyをHARNESS-L2-009 obligationへ結び、同一source revision/fieldへのforward/reverse traceを与える。**期待**：両traceを保持する。
+- **C02 (AC-01/03, 未見正常)**：未見Patternでfield定義が存在し、value一つだけunknown。**期待**：identityとunknown理由を渡し、該当obligationをopenにする。
+- **C03–C08 (AC-02, 独立negative)**：required input欠落、dependency endpoint欠落、dependency誤revision、reverse trace欠落、reverse traceのfield誤結合、forward trace誤結合を別fixtureで与える。**期待**：完了扱いせず、知識定義はBRAIN L1-003/005、receiver mappingはHARNESSへ返す。
+- **C09/C10/C11 (AC-02, 独立negative)**：BRAINによる製品固有値決定、工程表決定、遷移図/実装優先順位決定を個別に要求する。**期待**：BRAINは決定せずHARNESS-CORE/HARNESSへ戻す。
+- **C12 (AC-02, 独立negative)**：未充足inputを完了義務とする。**期待**：義務をopenのまま保つ。
+- **C13 (AC-03, unknown)**：field definition自体が存在しない。**期待**：value unknownへ読み替えずBRAINへ返す。
+
+### HELIXBRAIN-L2-023 — `BRAIN-023-FR-01`
+
+- **C01 (AC-01, 正常)**：Visual Design課題/source/scopeにgeneric candidateとProduct Core残余を与え、LABO経由evaluation provenanceを付ける。**期待**：区分とsource relationを保持しcandidateのまま返す。
+- **C02/C03/C04/C05 (AC-02, 独立negative)**：Visual Identity、screen、flow、tokenを各々単独でgeneric knowledgeへ混入する。**期待**：当該fieldを拒みProduct Coreへ返す。
+- **C06 (AC-02, 独立negative)**：LABO routeなしで利用結果をgeneric BRAIN knowledgeへ昇格する。**期待**：promotionを止めLABOへ返す。
+- **C07/C08 (AC-02, 独立negative)**：Product Core scope relation、またはsource relationを個別に欠落させる。**期待**：由来が結べないcandidateを受領しない。
+- **C09 (AC-03, 未見正常)**：未見screen種から根拠あるgeneric部分と製品固有残余を分離する。**期待**：generic部分だけcandidateとして返す。
+- **C10 (AC-03, 局所未評価)**：当該candidateの一部evaluationがLABO未経由。**期待**：未評価部分だけ保留し他の根拠ある候補を確立済みにしない。
+
+### HELIXBRAIN-L2-030 — `BRAIN-030-FR-01`
+
+- **C01 (AC-01, 正常)**：常時contract identity/version/compatibility、query/receipt schema、scope/correlation identity、receiver HARNESS-L2-009 contractを揃え、knowledge sourceを選択しない。**期待**：常時接続条件のみ照合し未選択sourceを未観測とする。
+- **C02 (AC-01, 正常)**：同じ常時条件と複数選択knowledge identity/version/source/required fieldを用いる。**期待**：各fieldをobligationへ結び、receiptを返すが義務openを保つ。
+- **C03–C06 (AC-02, 独立negative)**：contract identity missing、version missing、version stale、version unknownを各々単独で与える。**期待**：呼出しを保留しconnection contract ownerへ返す。
+- **C07 (AC-02, 独立negative)**：compatibility mismatchのみを与える。**期待**：宣言rangeを補わず保留。
+- **C08/C09/C10/C11 (AC-02, 独立negative)**：query schema missing、query schema mismatch、receipt schema missing、receipt schema mismatch。**期待**：各々保留し接続契約owner/HARNESSへ戻す。
+- **C12/C13 (AC-02, 独立negative)**：scope identity欠落、correlation identity欠落。**期待**：曖昧な呼出しを受領しない。
+- **C14 (AC-02, 独立negative)**：scope mismatchのみを与える。**期待**：誤対象のreceiptを拒む。
+- **C15 (AC-02, 独立negative)**：receiver HARNESS-L2-009 contract missingのみを与える。**期待**：receiver不整合としてHARNESSへ返す。
+- **C16 (AC-02, 独立negative)**：receiver HARNESS-L2-009 contract mismatchのみを与える。**期待**：receiver不整合としてHARNESSへ返す。
+- **C17–C25 (AC-03, 独立negative)**：選択knowledgeのidentity、version、source、applicability、required-field definition missing、required-field definition mismatch、required value missing、relation、negative caseを各々一つずつ変異する。他fieldは正常に保つ。**期待**：選択knowledgeの当該受渡しだけを止め、知識不足はBRAIN、受取schema/scopeはHARNESSへ返す。field定義missingはvalue unknownにしない。
+- **C26/C27 (AC-04, 独立negative)**：forward trace欠落、reverse trace欠落を別々に試す。**期待**：obligation receiptを不成立にし、対応付け側のownerへ返す。
+- **C28 (AC-04, 独立negative)**：未充足義務を閉じる、またはreceiptをdesign complete/implementation readyへ昇格する。**期待**：義務openと候補stateを保つ。
+- **C29 (AC-04, 独立negative)**：別Patternの成功で欠けた選択Pattern fieldを相殺する。**期待**：相殺を拒否する。
+- **C30 (AC-04, 独立negative)**：BRAINが製品固有API/state/permission/design conclusionを出力する。**期待**：結論を返さずProduct Core/HARNESSへ戻す。
+- **C31 (AC-05, 未見正常)**：未見互換pairを固定source上の宣言範囲内で与え、選択knowledgeは全fieldとtraceを満たす。**期待**：同契約で照合し候補receiptを作る。
+- **C32 (AC-05, 局所unknown)**：異なる未見pairで互換範囲が未宣言。**期待**：compatibilityだけunknown/holdとし範囲を創作しない。
+- **C33 (AC-05, 局所unknown)**：選択knowledgeに定義済みfieldがあり値だけunknown。**期待**：receiptにfield identity/reasonを残しobligation open。
+- **C34 (AC-05, 個別negative)**：knowledge revisionにrequired-field definition自体がない。**期待**：値unknownとして受領せずBRAINへ返す。
+- **C35 (AC-05, 正常境界)**：別queryでknowledgeを未選択にする。**期待**：その知識sourceを未観測として扱い、欠落扱いも適用可推定もしない。
+
+各caseは独立fixtureであり、親の範囲外条件を追加しない。正常caseは宣言済み合成identity/revision/valueを使い、unknown/未観測と欠落を区別する。判定はdocument-level oracle設計で、実行結果ではない。
