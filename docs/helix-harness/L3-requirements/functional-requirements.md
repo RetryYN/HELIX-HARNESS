@@ -110,9 +110,9 @@ paired_l10: ../L10-verification/functional-verification.md
 
 ### `FR-HARNESS-L3-012` — PrototypeとPoCを分けた単体判定（親: `HARNESS-L2-012`）
 
-**保持／再導出**：合意前のL2要求、screenの有無、技術的成立性の不確定要素を対象scopeとrevisionに結ぶ。screen prototypeの適用性とPoCの適用性・結果は別々の判定であり、片方からもう片方を推定しない。画面がないことだけをPoC非適用の根拠にせず、PoCが適用可能なtechnical uncertaintyも個別に判定する。入力条件としてL2要求に記述された対象だけを使い、prototype／PoCの結果をDecide前にproduction成果へ昇格させない。screen prototypeの成果物形式は固定L2どおりHTMLとする。
+**保持／再導出**：合意前のL2要求、screenの有無、技術的成立性の不確定要素を対象scopeとrevisionに結ぶ。screen prototypeの適用性とPoCの適用性・結果は別々の判定であり、片方からもう片方を推定しない。画面がないことだけをPoC非適用の根拠にせず、PoCが適用可能なtechnical uncertaintyも個別に判定する。①は②〜⑦なしで単独利用でき、screen prototypeの入力となる要求記述は②の出力、またはHARNESS-L2-019で持ち込まれた既存文書のどちらでもよい。入力条件はL2要求に記述された対象に限り、prototype／PoCの結果をDecide前にproduction成果へ昇格させない。screen prototypeの成果物形式は固定L2どおりHTMLとする。
 
-**入力**：対象L2要求・対象revision/scope、screenの有無、prototype適用性の判定根拠、技術的不確定要素とPoC適用性の判定根拠、各判定者。prototypeまたはPoCを非適用と判定する場合は固定L2どおり非適用理由・判定者・対象HEAD・要求への影響・再評価条件を記録する。
+**入力**：対象L2要求・対象revision/scope、screenの有無、prototype適用性の判定根拠、技術的不確定要素とPoC適用性の判定根拠、各判定者。①のscreen prototype入力となる要求記述は、②の出力またはHARNESS-L2-019で持ち込まれた既存文書のいずれでもよい。prototypeまたはPoCを非適用と判定する場合は固定L2どおり非適用理由・判定者・対象HEAD・要求への影響・再評価条件を記録する。
 
 **出力**：screen prototypeの適用性とartifact/result、技術PoCの適用性と成立性evidence/resultを別々に返す。各々の結果と根拠を対象revision/scopeへtraceし、要求へ戻す候補を示す。候補や試作物から要求合意、Decide裁定、L3承認を生成しない。
 
@@ -122,7 +122,7 @@ paired_l10: ../L10-verification/functional-verification.md
 
 - **`AC-HARNESS-L3-012-01` 独立した適用判定と結果分離（FR-HARNESS-L3-012）**：screen prototypeとtechnical PoCの双方が適用可能な正常fixtureを使い、別々のscope/適用判定/evidence/resultを返す。Prototypeの成功からPoC成立を導く変異とPoCの成功からPrototype成立を導く変異は独立negativeとして拒否する。
 - **`AC-HARNESS-L3-012-02` 非適用記録・Backflow（FR-HARNESS-L3-012）**：Prototype非適用・PoC適用の正常fixtureを置き、screenなしだけではPoC非適用を決めない。非適用理由、判定者、対象HEAD、要求への影響、再評価条件を一つずつ欠落させる独立negativeを置き、必要fieldと戻し先を示す。適用性や要求への影響を判定できないfixtureは製品成功/失敗へ丸めず未評価とする。
-- **`AC-HARNESS-L3-012-03` Decide前の境界（FR-HARNESS-L3-012）**：Backflow候補をL2要求へ返す正常fixtureを確認する。Decide前に試作/PoC成果をproduction成果、要求合意、承認済み要件と表示する各変異を個別に拒否する。Decide後のproduction化条件や権限はこの親から追加しない。これはDecideやL3承認の新gateを作らず、固定L2の状態境界を確認する。
+- **`AC-HARNESS-L3-012-03` Decide前の境界と①単独入力経路（FR-HARNESS-L3-012）**：①のみを導入する正常fixtureで、screen prototype入力の要求記述を②の出力から受け取る場合と、HARNESS-L2-019で持ち込まれた既存文書から受け取る場合を個別に確認する。どちらも②〜⑦を必須にせず、①単独の適用、結果とBackflow候補を確認する。Decide前に試作/PoC成果をproduction成果、要求合意、承認済み要件と表示する各変異を個別に拒否する。Decide後のproduction化条件や権限はこの親から追加しない。これはDecideやL3承認の新gateを作らず、固定L2の状態境界を確認する。
 
 ### `FR-HARNESS-L3-013` — 根拠付き要件対の1次・適用時2次形成（親: `HARNESS-L2-013`）
 
@@ -198,6 +198,6 @@ RDJ-FR-003/007とAC-003/007の質問priority・固定iteration詳細は、親L2-
 | AC ID | 受入条件 |
 |---|---|
 | `AC-HARNESS-L3-016-01` | paired sourceがある場合、変更前後の要求・contract・observable behavior・consumer/oracleを比較し、同じ意味の変更だけをRefactor候補として残す。 |
-| `AC-HARNESS-L3-016-02` | paired design/contractがない場合はL2-019 reverse designの必要性を示し、⑤完了・Refactor済みと偽らない。④を一律の依存にしない。 |
-| `AC-HARNESS-L3-016-03` | 意味を変えるfailureは、詳細contractをL5、architecture/boundaryをL4、要求/acceptanceをL3/L2、価値をL1の該当ownerへそれぞれ戻し、右側の実装修正で要求authorityを書き換えない。 |
+| `AC-HARNESS-L3-016-02` | paired design/contractがない場合はL2-019 reverse designの必要性を示し、構造改善理由とそのsourceを保持したうえで⑤完了・Refactor済みと偽らない。④を一律の依存にしない。 |
+| `AC-HARNESS-L3-016-03` | 構造改善理由とそのsourceを保持し、意味を変えるfailureは詳細contractをL5、architecture/boundaryをL4、要求/acceptanceをL3/L2、価値をL1の該当ownerへそれぞれ戻す。sourceが示す戻し先を使い、sourceが示さない場合はownerをunknownとして残す。右側の実装修正で要求authorityを書き換えない。 |
 | `AC-HARNESS-L3-016-04` | Performance Refactorでは測定条件と全ての該当回帰oracleを事前固定し、プロファイル対象の比較可能な前後結果を示す。比較不能、予算違反、回帰または測定不能な改善主張は成功扱いしない。 |
