@@ -313,7 +313,7 @@ repair candidateと修復結果の照合を区別する。candidateではtarget 
 
 - **`AC-INTELLIGENCE-L3-016-01` 正常成立とtrace**：candidate inputで9束縛（target revision, actor, write-set, side effect, budget, deadline, retry, impact scope, recovery）と期待結果を明示する。別fixtureで既存authority/OS assignmentに対応するWorker resultを受け、実target差分・write-set内外・side effect・実budget/deadline/retry結果・recovery/post-checkをcandidateの宣言と照合する。候補生成は結果検証を前提とせず、結果検証は実行/許可を作らない。
 - **`AC-INTELLIGENCE-L3-016-02` 個別変異・owner境界**：candidate入力では9束縛を一つずつ欠落/不一致にする。result fixtureではstale target、scope外書込、循環、二重実行、予算超過、不明副作用を個別に投入し、Worker result/after-state/recovery evidenceを観測する。要求/設計/verification obligationの意味差はcandidate上のdiffと上流ownerを示す。不足時は該当source/責務ownerへ戻し、別責務の状態を生成しない。
-- **`AC-INTELLIGENCE-L3-016-03` held-out正常／局所unknown**：未見targetでも9束縛が揃う場合はcandidateを作り、別に既存assignmentに結ぶresult fixtureがある場合だけ結果照合を行う。actual result/recoveryが欠ける場合はcandidate状態を維持し、結果だけunknownにする。 未見性自体を失敗と扱わず、親contractで成立する部分を評価する。
+- **`AC-INTELLIGENCE-L3-016-03` held-out正常／局所unknown**：未見targetでも9束縛が揃う場合はcandidateを作り、別に既存assignmentに結ぶresult fixtureがある場合だけ結果照合を行う。candidateの束縛sourceが欠ける場合は既知fieldを保持して適用を確定せず該当source ownerへ返す。actual result/recoveryが欠ける場合はcandidate状態を維持し、結果だけunknownにする。 未見性自体を失敗と扱わず、親contractで成立する部分を評価する。
 ### `FR-INTELLIGENCE-L3-018-01` — `HELIXINTELLIGENCE-L2-018`
 
 **要件：現在判断と長期効果の境界**
@@ -324,7 +324,7 @@ repair candidateと修復結果の照合を区別する。candidateではtarget 
 
 - **`AC-INTELLIGENCE-L3-018-01` 正常成立とtrace**：同じ方法のcurrent proposalと複数時点のLABO測定を入力し、時点/scope/ownerを保持して別statusで表示すること。
 - **`AC-INTELLIGENCE-L3-018-02` 個別変異・owner境界**：古い効果をcurrent truthへ昇格、INTELLIGENCEが自己改善を採択、owner判断なしの変更を起こす変異を拒否する。不足時は該当source/責務ownerへ戻し、別責務の状態を生成しない。
-- **`AC-INTELLIGENCE-L3-018-03` held-out正常／局所unknown**：未見期間のLABO historyでもsource/scopeが揃う範囲をcurrent proposalから分離して示し、比較期間欠落だけunknownとする。 未見性自体を失敗と扱わず、親contractで成立する部分を評価する。
+- **`AC-INTELLIGENCE-L3-018-03` held-out正常／局所unknown**：未見期間のLABO historyでもsource/scopeが揃う範囲をcurrent proposalから分離して示し、historical sourceのscope/時点の欠落は該当評価だけunknownとしてLABOへ照合を戻す。 未見性自体を失敗と扱わず、親contractで成立する部分を評価する。
 ### `FR-INTELLIGENCE-L3-019-01` — `HELIXINTELLIGENCE-L2-019`
 
 **要件：BRAIN applicability candidate**
@@ -334,7 +334,7 @@ BRAIN知識の適用性を根拠付きcandidateとして評価し、knowledgeの
 **受入条件（各ACの入力条件を対応CASEで照合）**
 
 - **`AC-INTELLIGENCE-L3-019-01` 正常成立とtrace**：Pattern/Unit/Partのsourceと対象scopeが揃う例を候補評価し、適用根拠をBRAIN sourceへ結ぶこと。
-- **`AC-INTELLIGENCE-L3-019-02` 個別変異・owner境界**：domain/scope不一致、根拠不足、INTELLIGENCEによるBRAIN knowledge書換え、LABO評価の代行を個別に拒否する。不足時は該当source/責務ownerへ戻し、別責務の状態を生成しない。
+- **`AC-INTELLIGENCE-L3-019-02` 個別変異・owner境界**：domain/scope不一致、根拠不足/非current、candidateからknowledge採用状態生成、INTELLIGENCEによるBRAIN knowledge書換え、LABO評価の代行を個別に拒否する。不足時は該当source/責務ownerへ戻し、別責務の状態を生成しない。
 - **`AC-INTELLIGENCE-L3-019-03` held-out正常／局所unknown**：未見Pattern/Unit/PartでもBRAIN sourceと適用scopeが一致する正常候補を評価し、source欠落部分だけunknownとしてBRAINへ戻す。 未見性自体を失敗と扱わず、親contractで成立する部分を評価する。
 ### `FR-INTELLIGENCE-L3-020-01` — `HELIXINTELLIGENCE-L2-020`
 
@@ -345,7 +345,7 @@ Product Coreとの意味整合・backflow候補をsource/target revision付き�
 **受入条件（各ACの入力条件を対応CASEで照合）**
 
 - **`AC-INTELLIGENCE-L3-020-01` 正常成立とtrace**：同一Product Core meaningと対象revisionの差分proposalを入力し、参照根拠・差分・戻し先ownerを示すこと。
-- **`AC-INTELLIGENCE-L3-020-02` 個別変異・owner境界**：meaning source欠落、異版を同一視、INTELLIGENCEが要求/designを直接変更する変異を拒否する。不足時は該当source/責務ownerへ戻し、別責務の状態を生成しない。
+- **`AC-INTELLIGENCE-L3-020-02` 個別変異・owner境界**：meaning source欠落、別product identityの流用、owner不明、異版を同一視、INTELLIGENCEが要求/design/acceptance authority/固有meaning正本を直接変更する変異を拒否する。不足時は該当source/責務ownerへ戻し、別責務の状態を生成しない。
 - **`AC-INTELLIGENCE-L3-020-03` held-out正常／局所unknown**：未見Product Core対象でも双方のmeaning revisionが揃う差分候補を扱い、片側revision未解決ならその差分だけunknownとする。 未見性自体を失敗と扱わず、親contractで成立する部分を評価する。
 ### `FR-INTELLIGENCE-L3-067-01` — `HELIXINTELLIGENCE-L2-067`
 
@@ -379,13 +379,12 @@ judgment packのversion/applicability/shadow/review/rollback義務を示し、�
 
 **要件：AAFD R-04検出境界**
 
-採択済みL2-073に従うdetector priorityを適用し、free textからIssue/Requirement/CI/mergeへ直接投影しない。
+旧AAFD-R-04の「決定論的検出器の優先」は順位値/priority enumの宣言ではなく、Agentic Audit Probeが既存UIL deterministic detectorを置換しない意味として固定L2/L11へ再導出する。未知finding探索の自由文単独からIssue・Requirement・CI・merge authorityへ直接投影せず、finding/candidateの提示と未判断状態を保持する。
 
-**受入条件（各ACの入力条件を対応CASEで照合）**
+- **`AC-INTELLIGENCE-L3-073-01` 正常成立とtrace**：既存detectorの役割・結果を保持し、探索自由文のcandidate提示と4宛先への非投影を各々照合する。別途適格根拠とownerの独立判断が揃う既存経路はその既存条件に従い、一律禁止や新gateを作らない。
+- **`AC-INTELLIGENCE-L3-073-02` 個別変異・owner境界**：detector置換、自由文単独からのIssue作成/更新・Requirement本文/承認状態変更・CI定義/実行要求/結果状態変更・merge authority/admission/状態変更を独立に拒否する。根拠不明はunknownのfinding/candidateとして既存ownerへ提示し、宛先ownerを特定できなければ推測しない。検出/qualificationはUIL、要求意味は上流、CI/verificationは既存OS/HARNESS、review/mergeは現行GitHub経路に残す。
+- **`AC-INTELLIGENCE-L3-073-03` 未見正常／局所unknown**：既知fixtureとは別の未知finding文でもdetector非置換と4宛先の非投影を別々に照合する。欠けた根拠だけunknownを維持し、candidate提示と成立した他のsourceを保持する。未見性自体で拒否せず、新しいpriority宣言や数値条件を作らない。
 
-- **`AC-INTELLIGENCE-L3-073-01` 正常成立とtrace**：detector対象/priorityが宣言された入力で判定をcandidateとして出し、対応根拠を保持すること。
-- **`AC-INTELLIGENCE-L3-073-02` 個別変異・owner境界**：自由文や低優先detectorからIssue等へ直接生成、priority不定、evidence欠落を個別に拒否する。不足時は該当source/責務ownerへ戻し、別責務の状態を生成しない。
-- **`AC-INTELLIGENCE-L3-073-03` held-out正常／局所unknown**：未見free-text findingでもdetector/priority根拠が揃うcandidateは同一契約で評価し、priority未解決だけunknownとしてIssue等へ投影しない。 未見性自体を失敗と扱わず、親contractで成立する部分を評価する。
 ### `FR-INTELLIGENCE-L3-078-01` — `HELIXINTELLIGENCE-L2-078`
 
 **要件：AAFD delta意味・再現性・境界**
