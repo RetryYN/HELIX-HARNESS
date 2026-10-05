@@ -1,0 +1,39 @@
+{
+  "record_kind": "root_os_stage2c_fable_id_correction",
+  "authority_effect": "none",
+  "body_revision": "c0574867e711251bb49ec057965d40395406ed64",
+  "previous_body_revision": "a66e6fb798e7dec00c2c43597bc55d5b69f6147a",
+  "finding_source": {
+    "comment_id": 5989297661,
+    "raw_utf8_bytes": 13170,
+    "raw_utf8_sha256": "762c2e0015d38891876fc5c271338a99c23a0991c9383dd9af637e2bad2c192c"
+  },
+  "correction": "既存effort/time/cost段落の前へNFR-OS-029-02見出しと既存親参照を追加。測定内容・owner・値・scope変更なし。追加4行を除くと旧全文bytesに一致。",
+  "documents": [
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "sha256": "8a5d1a53b632e349394ee3c17cc607a288aa2ba7ca1c6903533414c015bb1cb9"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "sha256": "3d02b6230eff98cf85698b1e5eb2de0710b3459f87993e7d990509c7d63613e5"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "sha256": "c031e19bb2fdf69b7f2663a9a404fc3694dd8e617ab98e5b51f31025a312cb92"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "sha256": "0511d67950ecc9af9540700f9500157ccc4a733c26908a07cdd7c2495a1c3037"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "sha256": "76ae6b34b41f5c4a2311c8b9b6674985e200d6d12e653e2a31f03deb01a18370"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "sha256": "ba53cc9dce1e311882b655e8880300f0eb09397cf8f0d3ff7cf85c15148f5d15"
+    }
+  ],
+  "limitations": "旧Opus/Fable確認を修正後承認へ継承せず両確認やり直し。C13範囲外未解消。旧監査不変。"
+}

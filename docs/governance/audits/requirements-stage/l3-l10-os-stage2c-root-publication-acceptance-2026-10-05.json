@@ -1,0 +1,48 @@
+{
+  "record_kind": "root-publication-acceptance",
+  "authority_effect": "none",
+  "base": "dcc72fc16a8058ee7da1e0cd5c9907dc125c90f4",
+  "body_revision": "e5dca5dd4051358d0725a13ab38cce50a488911c",
+  "integration_commit": "5c325ed35d3ca28ca03341f4e1d9028d0de41a13",
+  "documents": [
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "sha256": "276aa19b54ed27a1dff84972267106b6d47962c6b1414af82abc4cfd8e86d477",
+      "bytes": 31325,
+      "lines": 91
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "sha256": "0511d67950ecc9af9540700f9500157ccc4a733c26908a07cdd7c2495a1c3037",
+      "bytes": 1388,
+      "lines": 11
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "sha256": "95d56d864b78382dc91d76b986987bdf51b6e47920502ae00100dcbef9ae03e5",
+      "bytes": 6934,
+      "lines": 33
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "sha256": "07afaa2f3b7d33905f92e7c843e5543d535b4eb0f996d778fbaec97874637a45",
+      "bytes": 37825,
+      "lines": 219
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "sha256": "371c14bef224730973c94c0815ae0f4a80621e162075584dc51de5a14148a25e",
+      "bytes": 1606,
+      "lines": 15
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "sha256": "9595fc9c7415fd59a1a297cc5794846a0e6181b6b04bfc16d41f2cf9644a8b34",
+      "bytes": 6177,
+      "lines": 29
+    }
+  ],
+  "root_verification": "6 Stage2c本文・旧source・固定親を既読。公開cutout66source/394literal/6prefix-suffix/旧9記録不変、無支援経路修正全diff/固定L2872–873とL11473/JPsummary実読、2source/7literal/6SHA-prefix/旧2監査不変PASS。最新main通常mergeで6本文不変。static147/0 stale0 res0 gov7622/57/58 diffPASS。",
+  "scope": "OS028029 only; Stage2a unapproved prefix excluded; approved OS014 main prefix preserved",
+  "independent_review": "pending"
+}
