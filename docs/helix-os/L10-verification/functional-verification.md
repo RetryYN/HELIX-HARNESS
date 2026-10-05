@@ -867,7 +867,7 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | `CASE-OS-L10-052-01b` | `AC-OS-L3-052-01` | 他assignmentが同じworktreeを使用中 | cleanupせずその使用状態を保持する。 |
 | `CASE-OS-L10-052-01c` | `AC-OS-L3-052-01` | unfinished local workだけ存在 | cleanupを保留し未完義務を作成側へ返す。 |
 | `CASE-OS-L10-052-01d` | `AC-OS-L3-052-01` | merge read-afterだけ欠落 | cleanupせずpost-merge確認未完としてOS既存ownerへ返す。 |
-| `CASE-OS-L10-052-01e` | `AC-OS-L3-052-01` | remote refのみを対象にする | local cleanupへ含めず、対象/作用を含む明示authorityがなければ削除しない。 |
+| `CASE-OS-L10-052-01e` | `AC-OS-L3-052-01` | remote refのみを対象にする | local cleanupへ含めず、対象repository/ref/delete作用を含む現行authorityがなければ削除しない。cleanup未完を理由付きで記録しownerへ返す。 |
 | `CASE-OS-L10-052-01f` | `AC-OS-L3-052-01` | cleanupの2回目実行 | 同じ適格local対象のみ冪等に扱い、別assignmentを変更しない。 |
 | `CASE-OS-L10-052-02a` | `AC-OS-L3-052-02` | trial merge conflictだけ存在 | content HEADを書き換えず理由を作成側へ返す。 |
 | `CASE-OS-L10-052-02b` | `AC-OS-L3-052-02` | stale判定だけ発生 | 古いreview bindingを使わず該当範囲を未完にする。 |
@@ -956,3 +956,15 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | `CASE-OS-L10-022-03s` | `AC-OS-L3-022-02` | LABO proposalだけで設計意味を変更 | 変更を拒否し既存判断ownerへ返す。 |
 | `CASE-OS-L10-022-03t` | `AC-OS-L3-022-02` | LABO proposalだけでauthorityを書換える | 変更を拒否し既存判断ownerへ返す。 |
 | `CASE-OS-L10-022-03u` | `AC-OS-L3-022-03` | 棄却理由だけを消去する | 棄却理由を保持し消失を拒否する。 |
+| `CASE-OS-L10-052-03k` | `AC-OS-L3-052-03` | 作成側が新content HEADを出し、他条件を保ったまま旧HEADのreview receiptだけを与える | 旧receiptを流用せずReady/merge未完を保持し、現HEADの独立reviewを待つ。 |
+| `CASE-OS-L10-052-01l` | `AC-OS-L3-052-01` | repositoryのdelete-branch-on-merge設定だけがあり対象repository/ref/delete作用を含む現行authorityはない | 設定から削除許可を生成せずremote refを残す。cleanup未完を理由付きで記録しownerへ返す。 |
+| `CASE-OS-L10-022-03v` | `AC-OS-L3-022-02` | source observationだけで設計意味を変更 | 変更を拒否し設計意味を保ち既存判断ownerへ返す。 |
+| `CASE-OS-L10-022-03w` | `AC-OS-L3-022-02` | source observationだけでauthorityを書換える | 変更を拒否しauthorityを保ち既存判断ownerへ返す。 |
+| `CASE-OS-L10-024-03u` | `AC-OS-L3-024-03` | 他条件を保ちL2-019だけ欠落 | 該当送信/採用を止め接続未完を保ち、OS既存ownerへ返す。 |
+| `CASE-OS-L10-024-03v` | `AC-OS-L3-024-03` | 他条件を保ちL2-019だけ非互換 | 該当送信/採用を止め接続未完を保ち、OS既存ownerへ返す。 |
+| `CASE-OS-L10-024-03w` | `AC-OS-L3-024-03` | 他条件を保ちL2-021だけ非互換 | 該当送信/採用を止め接続未完を保ち、OS既存ownerへ返す。 |
+| `CASE-OS-L10-024-03x` | `AC-OS-L3-024-03` | 他条件を保ちL2-021だけstale | 該当送信/採用を止め接続未完を保ち、OS既存ownerへ返す。 |
+| `CASE-OS-L10-024-03y` | `AC-OS-L3-024-03` | 他条件を保ちL2-022だけ欠落 | 該当送信/採用を止め接続未完を保ち、OS既存ownerへ返す。 |
+| `CASE-OS-L10-024-03z` | `AC-OS-L3-024-03` | 他条件を保ちL2-022だけstale | 該当送信/採用を止め接続未完を保ち、OS既存ownerへ返す。 |
+| `CASE-OS-L10-024-03aa` | `AC-OS-L3-024-03` | 他条件を保ち版付きLABO接続だけ欠落 | 該当送信/採用を止め接続未完を保ち、LABO接続ownerへ返す。 |
+| `CASE-OS-L10-024-03ab` | `AC-OS-L3-024-03` | 他条件を保ち版付きLABO接続だけstale | 該当送信/採用を止め接続未完を保ち、LABO接続ownerへ返す。 |
