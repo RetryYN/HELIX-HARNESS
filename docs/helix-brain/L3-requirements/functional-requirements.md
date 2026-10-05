@@ -172,7 +172,7 @@ HARNESS-L2-010/011の根拠は、PO判断記録 `docs/governance/decisions/helix
 - **固定source**：L2 `docs/helix-brain/L2-requirements/brain-requirements.md:220–229`（f6dad2a33e24f000b87d7f09b8d40288257e74cc、span SHA-256 `fcddad5c8f225147186c49fa08da577ae04be86a89f84d112dccf18956e21d6b`）；L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:41`（同revision、line SHA-256 `b632016e7b0fb5e3c0ac0e3080f86283eac8e4bb39bee246d9e8373086f5e5a1`）。
 - **機能要件候補**：20初期subdomain（Compute, Network, Storage, Database Infrastructure, Cache, Queue/Messaging, Load Balancing, Service Discovery, Deployment, Scaling, Availability, Reliability, Backup/Restore, DR, Observability, Capacity, Cost Architecture, Infrastructure Security, Environment, Runtime/Execution Platform）を固定enum化せず、追加/分割/統合/退役可能にする。 BRAINは知識候補と根拠relationを扱い、実resource/actionまたは他ownerの決定を代行しない。
 - **BRAIN-INFRA-001-AC-01（正常）**：20初期subdomainを識別し、追加・分割・統合・退役を許容する分類候補として表す、固定L2/L11の必須意味を全て識別できる。明記のない製品値・実行結果はunknownとして残す。
-- **BRAIN-INFRA-001-AC-02（負例）**：列挙集合を固定enum化、未列挙領域を拒否、またはprovider accountや実resource stateを分類identityへ混ぜる。どの必須field/relationが欠けるか、unknown/stale/conflict状態、上記owner戻し先を返し、適用・成功・完了へ丸めない。
+- **BRAIN-INFRA-001-AC-02（負例）**：列挙集合を固定enum化、未列挙領域を拒否、またはprovider accountや実resource stateを分類identityへ混ぜる。どの必須field/relationが欠けるか、unknown/stale/conflict状態、固定L2の戻し先（実resource状態との混同はInfrastructure Runtime owner、分類意味はHELIXBRAIN-L1-001）を返し、適用・成功・完了へ丸めない。
 - **旧source対応**：INFRA-001–017の原案sourceは`docs/helix-brain/sources/brain-infrastructure-domain-po-original-2026-09-26.md:39–71`（1880c422311a7f8321dbb0e2b98fa12c69449201）であり、fixed L2採択意味の歴史的起点で独立authorityではない。NIO L3類例 `NIO-L3-01`、NIO L10類例 `該当oracleなし`。旧候補との比較：NIO-L3-01はtyped inputの広い類例に限り、workload/environment/failure fieldは20 domain taxonomyを定義しない。NIO-L10-01は閾値固有で、本親のoracleから除外する。
 - **L2/L11→L3→L10 trace**：固定L2 lines 220–229の受取・提供・保証・依存/版・戻し先と、固定L11 line 41の正常/不合格条件を`BRAIN-INFRA-001-FR-01 / AC-01, AC-02`へ対応付ける。`AC-01 → L10-BRAIN-INFRA-001-C01,C05`、`AC-02 → C02,C03,C04`。未見正常C05も通常条件と同じAC-01を用いる。
 
@@ -183,7 +183,7 @@ HARNESS-L2-010/011の根拠は、PO判断記録 `docs/governance/decisions/helix
 - **固定source**：L2 `docs/helix-brain/L2-requirements/brain-requirements.md:230–239`（f6dad2a33e24f000b87d7f09b8d40288257e74cc、span SHA-256 `8aaa447b505de8ad93744994b01e5285fd496a7f11165912b14b83c9fdde7159`）；L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:42`（同revision、line SHA-256 `3e262257957673c43a631480d175578b3cf9feb50f31230299ce1d5cd9c880a8`）。
 - **機能要件候補**：Domain→Pattern→Design Unit→Partを表現。Availability Active/Passive、Blue-Greenの例と部品relationを保持しprovider-specific settingだけを一般Patternにしない。 BRAINは知識候補と根拠relationを扱い、実resource/actionまたは他ownerの決定を代行しない。
 - **BRAIN-INFRA-002-AC-01（正常）**：Domain→Pattern→Design Unit→Part階層とActive/Passive・Blue-Green例の部品relationを同じ親対象identityへ結び、固定L2/L11の必須意味を全て識別できる。明記のない製品値・実行結果はunknownとして残す。
-- **BRAIN-INFRA-002-AC-02（負例）**：各階層、relation端点を独立に欠落させるほか、provider固有設定だけを一般Patternに見せる。どの必須field/relationが欠けるか、unknown/stale/conflict状態、上記owner戻し先を返し、適用・成功・完了へ丸めない。
+- **BRAIN-INFRA-002-AC-02（負例）**：各階層、relation端点を独立に欠落させるほか、provider固有設定だけを一般Patternに見せる。どの必須field/relationが欠けるか、unknown/stale/conflict状態、固定L2の戻し先（一般Pattern階層はHELIXBRAIN-L1-002、provider固有設定はimplementation knowledge候補へ分離し、階層/一般性の判断はHELIXBRAIN-L1-002へ戻す）を返し、適用・成功・完了へ丸めない。
 - **旧source対応**：INFRA-001–017の原案sourceは`docs/helix-brain/sources/brain-infrastructure-domain-po-original-2026-09-26.md:72–112`（1880c422311a7f8321dbb0e2b98fa12c69449201）であり、fixed L2採択意味の歴史的起点で独立authorityではない。NIO L3類例 `NIO-L3-01, NIO-L3-02`、NIO L10類例 `該当oracleなし`。旧候補との比較：NIO-L3-01/02は分類・graphの広い類例に限る。NIO-L3-04 loggingおよびNIO-L10-01/04は階層と無関係なため除外する。
 - **L2/L11→L3→L10 trace**：固定L2 lines 230–239の受取・提供・保証・依存/版・戻し先と、固定L11 line 42の正常/不合格条件を`BRAIN-INFRA-002-FR-01 / AC-01, AC-02`へ対応付ける。`AC-01 → L10-BRAIN-INFRA-002-C01,C05`、`AC-02 → C02,C03,C04`。未見正常C05も通常条件と同じAC-01を用いる。
 
@@ -193,15 +193,15 @@ HARNESS-L2-010/011の根拠は、PO判断記録 `docs/governance/decisions/helix
 - **固定依存**：HELIXBRAIN-L2-003、HELIXBRAIN-L2-INFRA-002。これは固定L2が示す知識参照であり、全BRAIN Stageや未採択候補の完了gateではない。
 - **固定source**：L2 `docs/helix-brain/L2-requirements/brain-requirements.md:240–249`（f6dad2a33e24f000b87d7f09b8d40288257e74cc、span SHA-256 `015454d12eb883ec17e4cd5752633486ebeb289378a7d00b24d2e8e2c6350f0b`）；L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:43`（同revision、line SHA-256 `339434e6d8c6b7438f3c67efe7aa50788314c4fd6f1778fd557d7ff9e4759f6e`）。
 - **機能要件候補**：problem, workload/load, availability, consistency, latency, capacity, scaling, failure/recovery, durability, network/security, operational complexity, cost, observability, applicability, negative, tradeoff, evidenceを条件群として扱い、一般的だから適用を拒否。 BRAINは知識候補と根拠relationを扱い、実resource/actionまたは他ownerの決定を代行しない。
-- **BRAIN-INFRA-003-AC-01（正常）**：20個のL2 atomic descriptor fieldと17個のL11 groupの双方、各fieldの根拠・適用scope・unknownを同じ親対象identityへ結び、固定L2/L11の必須意味を全て識別できる。明記のない製品値・実行結果はunknownとして残す。
-- **BRAIN-INFRA-003-AC-02（負例）**：20 fieldそれぞれの欠落/stale/対象違いを単独変異し、一般性だけによる適用や未知値の成功丸めを試す。どの必須field/relationが欠けるか、unknown/stale/conflict状態、上記owner戻し先を返し、適用・成功・完了へ丸めない。
+- **BRAIN-INFRA-003-AC-01（正常）**：20個のL2 atomic descriptor fieldと18個のL11列挙groupの双方、各fieldの根拠・適用scope・unknownを同じ親対象identityへ結び、固定L2/L11の必須意味を全て識別できる。明記のない製品値・実行結果はunknownとして残す。
+- **BRAIN-INFRA-003-AC-02（負例）**：20 atomic fieldそれぞれ、およびL11 18 groupとの対応それぞれの欠落/stale/対象違いを単独変異し、一般性だけによる適用や未知値の成功丸めを試す。どの必須field/relationが欠けるか、unknown/stale/conflict状態、固定L2の戻し先（製品要求値はProduct Core、評価不足はLABO、知識field意味はHELIXBRAIN-L1-003）を返し、適用・成功・完了へ丸めない。
 - **旧source対応**：INFRA-001–017の原案sourceは`docs/helix-brain/sources/brain-infrastructure-domain-po-original-2026-09-26.md:113–143`（1880c422311a7f8321dbb0e2b98fa12c69449201）であり、fixed L2採択意味の歴史的起点で独立authorityではない。NIO L3類例 `NIO-L3-01, NIO-L3-02, NIO-L3-03`、NIO L10類例 `NIO-L10-01, NIO-L10-02, NIO-L10-03`。旧候補との比較：NIO-L3-01/02/03はtyped context、applicability、evidenceの類例。NIO-L10-01/02は創作値およびunknown/stale evidenceのnegative類例。NIO-L10-03はscope上の注意に限り、BRAINへproduction operationの証明を要求しない。
 - **L2/L11→L3→L10 trace**：固定L2 lines 240–249の受取・提供・保証・依存/版・戻し先と、固定L11 line 43の正常/不合格条件を`BRAIN-INFRA-003-FR-01 / AC-01, AC-02`へ対応付ける。`AC-01 → L10-BRAIN-INFRA-003-C01,C05`、`AC-02 → C02,C03,C04`。未見正常C05も通常条件と同じAC-01を用いる。
 
 
-#### INFRA-003：固定L2の20 atomic fieldとL11の17 groupを別々に追跡
+#### INFRA-003：固定L2の20 atomic fieldとL11の18 groupを別々に追跡
 
-L2は20 field、L11は17 groupを列挙する。L3/L10はL2のfield identityを保持し、下表に従ってL11 groupにも対応付ける。L11の束ね方でL2 fieldを縮約せず、L10 C02は20 fieldの個別欠落を照合する。固定sourceはL2 lines 240–248（semantic section hash `4009bed040b56dae56d064690b489f9c71e3e3b4f54cec68d17f695c94be58f2`）とL11 line 43（line hash `339434e6d8c6b7438f3c67efe7aa50788314c4fd6f1778fd557d7ff9e4759f6e`）、いずれも`f6dad2a33e24f000b87d7f09b8d40288257e74cc`。
+L2は20 atomic field、L11は18列挙groupを持ち、trade-offとevidenceは別groupとして扱う。L3/L10はL2のfield identityを保持し、下表に従ってL11 groupにも対応付ける。L11の束ね方でL2 fieldを縮約せず、L10 C02は20 fieldの個別欠落を照合する。固定sourceはL2 lines 240–248（semantic section hash `4009bed040b56dae56d064690b489f9c71e3e3b4f54cec68d17f695c94be58f2`）とL11 line 43（line hash `339434e6d8c6b7438f3c67efe7aa50788314c4fd6f1778fd557d7ff9e4759f6e`）、いずれも`f6dad2a33e24f000b87d7f09b8d40288257e74cc`。
 
 | 固定L2 atomic field | 固定L11 group |
 |---|---|
@@ -223,17 +223,17 @@ L2は20 field、L11は17 groupを列挙する。L3/L10はL2のfield identityを�
 | required observability | observability |
 | applicability | applicability |
 | negative case | negative case |
-| trade-off | trade-off/evidence |
-| evidence | trade-off/evidence |
+| trade-off | trade-off |
+| evidence | evidence |
 
 ### BRAIN-INFRA-004-FR-01 — NFR→Pattern→Design Input relation
 
-- **親と版**：`HELIXBRAIN-L2-INFRA-004`（`HELIXBRAIN-L1-003`）、PO登録 `MPR-RC-HELIXBRAIN-L2-INFRA-004-002`、version 1.0。G0のStage 2bは順序記録で、先行Stage完了gateを作らない。
+- **親と版**：`HELIXBRAIN-L2-INFRA-004`（`HELIXBRAIN-L1-003 / HELIXBRAIN-L1-005`）、PO登録 `MPR-RC-HELIXBRAIN-L2-INFRA-004-002`、version 1.0。G0のStage 2bは順序記録で、先行Stage完了gateを作らない。
 - **固定依存**：HELIXBRAIN-L2-003/005/022。これは固定L2が示す知識参照であり、全BRAIN Stageや未採択候補の完了gateではない。
 - **固定source**：L2 `docs/helix-brain/L2-requirements/brain-requirements.md:250–259`（f6dad2a33e24f000b87d7f09b8d40288257e74cc、span SHA-256 `d11834af6cc5a20da98d97ada275cd8bcdc17ec930daa1e8ce03b3b2d904bb84`）；L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:44`（同revision、line SHA-256 `e78120ffe0c33badd64289c6b45c9d0b9010c23fc7b4f597be63deef04ccdbb0`）。
 - **機能要件候補**：Availability/Performance/Capacity/Reliability/Recoverability/Security/Privacy/Observability/Maintainability/Cost等のNFR特性を関連Patternおよび必要Design Inputへ対応。要求値・製品NFR値はBRAINが設定しない。 BRAINは知識候補と根拠relationを扱い、実resource/actionまたは他ownerの決定を代行しない。
 - **BRAIN-INFRA-004-AC-01（正常）**：10種の要求特性→関連Pattern→必要Design Input relationを同じ親対象identityへ結び、固定L2/L11の必須意味を全て識別できる。明記のない製品値・実行結果はunknownとして残す。
-- **BRAIN-INFRA-004-AC-02（負例）**：各relation/inputの欠落、unknown値の確定、BRAINによる閾値/RTO/RPO生成。どの必須field/relationが欠けるか、unknown/stale/conflict状態、上記owner戻し先を返し、適用・成功・完了へ丸めない。
+- **BRAIN-INFRA-004-AC-02（負例）**：各relation/inputの欠落、unknown値の確定、BRAINによる閾値/RTO/RPO生成。どの必須field/relationが欠けるか、unknown/stale/conflict状態、固定L2の戻し先（要求値と設計義務はHARNESS／製品CORE。BRAINは閾値を創作しない）を返し、適用・成功・完了へ丸めない。
 - **旧source対応**：INFRA-001–017の原案sourceは`docs/helix-brain/sources/brain-infrastructure-domain-po-original-2026-09-26.md:144–180`（1880c422311a7f8321dbb0e2b98fa12c69449201）であり、fixed L2採択意味の歴史的起点で独立authorityではない。NIO L3類例 `NIO-L3-03`、NIO L10類例 `NIO-L10-01, NIO-L10-02`。旧候補との比較：NIO-L3-03はmeasurement input/evidenceの類例でありNFR ownerを与えない。NIO-L10-01/02は裏付けのない値・欠落evidenceの境界類例に限り、製品値を生成しない。
 - **L2/L11→L3→L10 trace**：固定L2 lines 250–259の受取・提供・保証・依存/版・戻し先と、固定L11 line 44の正常/不合格条件を`BRAIN-INFRA-004-FR-01 / AC-01, AC-02`へ対応付ける。`AC-01 → L10-BRAIN-INFRA-004-C01,C05`、`AC-02 → C02,C03,C04`。未見正常C05も通常条件と同じAC-01を用いる。
 
@@ -244,18 +244,18 @@ L2は20 field、L11は17 groupを列挙する。L3/L10はL2のfield identityを�
 - **固定source**：L2 `docs/helix-brain/L2-requirements/brain-requirements.md:260–269`（f6dad2a33e24f000b87d7f09b8d40288257e74cc、span SHA-256 `6421070da28271408c2276ea905ad647f4917e0a42a36d9aec81bc306540ff90`）；L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:45`（同revision、line SHA-256 `027ec51b1800b025e0d7b8e4077316c8cadeea469e59638701e03548571833a8`）。
 - **機能要件候補**：13 failure例（SPOF, Network Partition, Dependency Failure, Storage Exhaustion, Queue Saturation, Connection Exhaustion, Resource Starvation, Cascading Failure, Region/Zone Failure, Deployment, Backup, Restore Failure, Config Drift）それぞれに想定failure/detection/impact/containment/recovery/residual riskを関係付ける。 BRAINは知識候補と根拠relationを扱い、実resource/actionまたは他ownerの決定を代行しない。
 - **BRAIN-INFRA-005-AC-01（正常）**：13 failure例の各々についてexpected failure/detection/impact/containment/recovery/residual riskを同じ親対象identityへ結び、固定L2/L11の必須意味を全て識別できる。明記のない製品値・実行結果はunknownとして残す。
-- **BRAIN-INFRA-005-AC-02（負例）**：13例および6観点の各欠落を独立に試し、設計候補の存在を実incident証拠へ置換。どの必須field/relationが欠けるか、unknown/stale/conflict状態、上記owner戻し先を返し、適用・成功・完了へ丸めない。
+- **BRAIN-INFRA-005-AC-02（負例）**：13例および6観点の各欠落を独立に試し、設計候補の存在を実incident証拠へ置換。どの必須field/relationが欠けるか、unknown/stale/conflict状態、固定L2の戻し先（実際のincident/測定値はLABO／Runtime、一般化範囲はHELIXBRAIN-L1-010）を返し、適用・成功・完了へ丸めない。
 - **旧source対応**：INFRA-001–017の原案sourceは`docs/helix-brain/sources/brain-infrastructure-domain-po-original-2026-09-26.md:181–217`（1880c422311a7f8321dbb0e2b98fa12c69449201）であり、fixed L2採択意味の歴史的起点で独立authorityではない。NIO L3類例 `NIO-L3-02, NIO-L3-06`、NIO L10類例 `NIO-L10-02, NIO-L10-04, NIO-L10-05`。旧候補との比較：obligation graphとrecovery procedureを直接のsource themeとして再導出し、evidence loss、restore名だけの成功、rollbackと修正の混同を限定negativeに使う。NIO-L3-07の広いruntime traceは本親の必須要件にせず、NIO-L10-07 authority/admissionは除外する。
 - **L2/L11→L3→L10 trace**：固定L2 lines 260–269の受取・提供・保証・依存/版・戻し先と、固定L11 line 45の正常/不合格条件を`BRAIN-INFRA-005-FR-01 / AC-01, AC-02`へ対応付ける。`AC-01 → L10-BRAIN-INFRA-005-C01,C05`、`AC-02 → C02,C03,C04`。未見正常C05も通常条件と同じAC-01を用いる。
 
 ### BRAIN-INFRA-006-FR-01 — Recovery Pattern
 
-- **親と版**：`HELIXBRAIN-L2-INFRA-006`（`HELIXBRAIN-L1-010`）、PO登録 `MPR-RC-HELIXBRAIN-L2-INFRA-006-003`、version 1.0。G0のStage 2bは順序記録で、先行Stage完了gateを作らない。
+- **親と版**：`HELIXBRAIN-L2-INFRA-006`（`HELIXBRAIN-L1-002 / HELIXBRAIN-L1-010`）、PO登録 `MPR-RC-HELIXBRAIN-L2-INFRA-006-003`、version 1.0。G0のStage 2bは順序記録で、先行Stage完了gateを作らない。
 - **固定依存**：HELIXBRAIN-L2-002、HELIXBRAIN-L2-INFRA-005。INFRA-010の成立待ちを前提にしない。これは固定L2が示す知識参照であり、全BRAIN Stageや未採択候補の完了gateではない。
 - **固定source**：L2 `docs/helix-brain/L2-requirements/brain-requirements.md:270–281`（f6dad2a33e24f000b87d7f09b8d40288257e74cc、span SHA-256 `3815313a4d7eb5d3ddbf42d7131f9a285cc865fb26105ba5b6cf64c27f221f23`）；L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:46`（同revision、line SHA-256 `4d27eac75001098de566731352d2edf45c0f08c635044a26d1eaf83fab494d82`）。
 - **機能要件候補**：Retry, Timeout, Circuit Breaker, Failover, Graceful Degradation, Rollback, Restore, Rebuild, Reconciliation, DRの10知識候補。防止と復旧を分離し、存在だけで成功を推定しない。 BRAINは知識候補と根拠relationを扱い、実resource/actionまたは他ownerの決定を代行しない。
 - **BRAIN-INFRA-006-AC-01（正常）**：10 Recovery Pattern候補における予防と復旧の役割区別を同じ親対象identityへ結び、固定L2/L11の必須意味を全て識別できる。明記のない製品値・実行結果はunknownとして残す。
-- **BRAIN-INFRA-006-AC-02（負例）**：各Pattern名/復旧条件の欠落、予防だけのrecoverability結論、未実行を実行成功扱い。どの必須field/relationが欠けるか、unknown/stale/conflict状態、上記owner戻し先を返し、適用・成功・完了へ丸めない。
+- **BRAIN-INFRA-006-AC-02（負例）**：各Pattern名/復旧条件の欠落、予防だけのrecoverability結論、未実行を実行成功扱い。どの必須field/relationが欠けるか、unknown/stale/conflict状態、固定L2の戻し先（実行・rollbackは製品またはRuntime owner、復旧構造の意味はHELIXBRAIN-L1-010）を返し、適用・成功・完了へ丸めない。
 - **旧source対応**：INFRA-001–017の原案sourceは`docs/helix-brain/sources/brain-infrastructure-domain-po-original-2026-09-26.md:218–240`（1880c422311a7f8321dbb0e2b98fa12c69449201）であり、fixed L2採択意味の歴史的起点で独立authorityではない。NIO L3類例 `NIO-L3-06`、NIO L10類例 `NIO-L10-02, NIO-L10-04, NIO-L10-05`。旧候補との比較：NIO-L3-06のrecovery procedureを直接類例とし、NIO-L10-04/05のrestore/rollback主張の区別、NIO-L10-02のevidence uncertaintyだけを使う。NIO-L3-07のoperation trace ownershipは要求せず、NIO-L10-06/07は対象外。
 - **L2/L11→L3→L10 trace**：固定L2 lines 270–281の受取・提供・保証・依存/版・戻し先と、固定L11 line 46の正常/不合格条件を`BRAIN-INFRA-006-FR-01 / AC-01, AC-02`へ対応付ける。`AC-01 → L10-BRAIN-INFRA-006-C01,C05`、`AC-02 → C02,C03,C04`。未見正常C05も通常条件と同じAC-01を用いる。
 
@@ -266,7 +266,7 @@ L2は20 field、L11は17 groupを列挙する。L3/L10はL2のfield identityを�
 - **固定source**：L2 `docs/helix-brain/L2-requirements/brain-requirements.md:282–291`（f6dad2a33e24f000b87d7f09b8d40288257e74cc、span SHA-256 `79954786ae654f5969fcc002cfe57803966f0205f59305f90de56a7295ccb188`）；L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:47`（同revision、line SHA-256 `8bcf9023a543c1772d888fabce7b4df40fb23c46e419475a52284be9aef0d2b2`）。
 - **機能要件候補**：Rolling, Blue-Green, Canary, Immutable, In-place, Staged Rolloutをblast radius/rollback/duplication/availability/migration/observabilityで比較。BRAINはrelease/deploymentを実行しない。 BRAINは知識候補と根拠relationを扱い、実resource/actionまたは他ownerの決定を代行しない。
 - **BRAIN-INFRA-007-AC-01（正常）**：6 deployment方式をblast radius/rollback/duplication/availability/migration/observabilityで比較を同じ親対象identityへ結び、固定L2/L11の必須意味を全て識別できる。明記のない製品値・実行結果はunknownとして残す。
-- **BRAIN-INFRA-007-AC-02（負例）**：方式・比較軸欠落、migration条件推測、設計知識からのrelease/deployment実行。どの必須field/relationが欠けるか、unknown/stale/conflict状態、上記owner戻し先を返し、適用・成功・完了へ丸めない。
+- **BRAIN-INFRA-007-AC-02（負例）**：方式・比較軸欠落、migration条件推測、設計知識からのrelease/deployment実行。どの必須field/relationが欠けるか、unknown/stale/conflict状態、固定L2の戻し先（製品release semanticsはProduct Core/HARNESS、実進行はOS/Runtime）を返し、適用・成功・完了へ丸めない。
 - **旧source対応**：INFRA-001–017の原案sourceは`docs/helix-brain/sources/brain-infrastructure-domain-po-original-2026-09-26.md:241–270`（1880c422311a7f8321dbb0e2b98fa12c69449201）であり、fixed L2採択意味の歴史的起点で独立authorityではない。NIO L3類例 `NIO-L3-02, NIO-L3-06`、NIO L10類例 `NIO-L10-03, NIO-L10-05`。旧候補との比較：deployment適用性とrecoveryを類例とし、NIO-L10-03は環境固有主張のscope注意、NIO-L10-05はrollbackと恒久修正の区別に限定する。実deployment/runtime authorityを移さずNIO-L10-07は除外する。
 - **L2/L11→L3→L10 trace**：固定L2 lines 282–291の受取・提供・保証・依存/版・戻し先と、固定L11 line 47の正常/不合格条件を`BRAIN-INFRA-007-FR-01 / AC-01, AC-02`へ対応付ける。`AC-01 → L10-BRAIN-INFRA-007-C01,C05`、`AC-02 → C02,C03,C04`。未見正常C05も通常条件と同じAC-01を用いる。
 
@@ -275,9 +275,9 @@ L2は20 field、L11は17 groupを列挙する。L3/L10はL2のfield identityを�
 - **親と版**：`HELIXBRAIN-L2-INFRA-008`（`HELIXBRAIN-L1-003`）、PO登録 `MPR-RC-HELIXBRAIN-L2-INFRA-008-003`、version 1.0。G0のStage 2bは順序記録で、先行Stage完了gateを作らない。
 - **固定依存**：HELIXBRAIN-L2-003、HELIXBRAIN-L2-INFRA-003/004。これは固定L2が示す知識参照であり、全BRAIN Stageや未採択候補の完了gateではない。
 - **固定source**：L2 `docs/helix-brain/L2-requirements/brain-requirements.md:292–301`（f6dad2a33e24f000b87d7f09b8d40288257e74cc、span SHA-256 `fd25f8a5431b39e11266b4cf65f056706d6a27932fb0af9fb5cf4ff703055fe8`）；L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:48`（同revision、line SHA-256 `9c51887b271b926e70c837a48a05aa66e55f53ffb3f6337f53d613f4ae4de1f3`）。
-- **機能要件候補**：Vertical/Horizontal, Queue-based Load Leveling, Sharding, Read Replica, Cache, Worker Pool, Backpressureの7候補とtrigger/bottleneck/limit/statefulness/sync cost/saturation behavior。負荷thresholdを創作しない。 BRAINは知識候補と根拠relationを扱い、実resource/actionまたは他ownerの決定を代行しない。
-- **BRAIN-INFRA-008-AC-01（正常）**：7 scaling/capacity候補をtrigger/bottleneck/limit/statefulness/synchronization cost/saturation behaviorで記述を同じ親対象identityへ結び、固定L2/L11の必須意味を全て識別できる。明記のない製品値・実行結果はunknownとして残す。
-- **BRAIN-INFRA-008-AC-02（負例）**：候補/field欠落、unknown workloadを適用許可や自動scalingへ変換、閾値創作。どの必須field/relationが欠けるか、unknown/stale/conflict状態、上記owner戻し先を返し、適用・成功・完了へ丸めない。
+- **機能要件候補**：Vertical Scaling, Horizontal Scaling, Queue-based Load Leveling, Sharding, Read Replica, Cache, Worker Pool, Backpressureの8候補とtrigger/bottleneck/limit/statefulness/sync cost/saturation behavior。負荷thresholdを創作しない。 BRAINは知識候補と根拠relationを扱い、実resource/actionまたは他ownerの決定を代行しない。
+- **BRAIN-INFRA-008-AC-01（正常）**：8 scaling/capacity候補をtrigger/bottleneck/limit/statefulness/synchronization cost/saturation behaviorで記述を同じ親対象identityへ結び、固定L2/L11の必須意味を全て識別できる。明記のない製品値・実行結果はunknownとして残す。
+- **BRAIN-INFRA-008-AC-02（負例）**：候補/field欠落、unknown workloadを適用許可や自動scalingへ変換、閾値創作。どの必須field/relationが欠けるか、unknown/stale/conflict状態、固定L2の戻し先（workload値・SLOは製品要求、構造評価はLABO）を返し、適用・成功・完了へ丸めない。
 - **旧source対応**：INFRA-001–017の原案sourceは`docs/helix-brain/sources/brain-infrastructure-domain-po-original-2026-09-26.md:271–300`（1880c422311a7f8321dbb0e2b98fa12c69449201）であり、fixed L2採択意味の歴史的起点で独立authorityではない。NIO L3類例 `NIO-L3-01, NIO-L3-02, NIO-L3-03`、NIO L10類例 `NIO-L10-01, NIO-L10-02`。旧候補との比較：workload/capacity/evidenceをsource themeとし、NIO-L10-01/02は創作閾値と欠測からhealthyへの変換を避けるnegative類例。NIO-L10-03をproduction telemetry/evidence義務へしない。
 - **L2/L11→L3→L10 trace**：固定L2 lines 292–301の受取・提供・保証・依存/版・戻し先と、固定L11 line 48の正常/不合格条件を`BRAIN-INFRA-008-FR-01 / AC-01, AC-02`へ対応付ける。`AC-01 → L10-BRAIN-INFRA-008-C01,C05`、`AC-02 → C02,C03,C04`。未見正常C05も通常条件と同じAC-01を用いる。
 
@@ -288,7 +288,7 @@ L2は20 field、L11は17 groupを列挙する。L3/L10はL2のfield identityを�
 - **固定source**：L2 `docs/helix-brain/L2-requirements/brain-requirements.md:302–311`（f6dad2a33e24f000b87d7f09b8d40288257e74cc、span SHA-256 `2286996c4a51098e495d602c94d5e641420d8f7110ba00a8ceed59e075f13f9c`）；L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:49`（同revision、line SHA-256 `841445aa41dff273200edc6259212d00314c2058b2f9d6166a69a8fc64dc8693`）。
 - **機能要件候補**：Metrics/Logs/Traces/Health/Dependency/Capacity/Saturation/Error/Latency/Deployment/Recoveryを設計観測点としてrelation付ける。BRAINは実telemetryを保持せず、未観測を正常にしない。 BRAINは知識候補と根拠relationを扱い、実resource/actionまたは他ownerの決定を代行しない。
 - **BRAIN-INFRA-009-AC-01（正常）**：11設計観測点と関連Pattern/failureの関係。実telemetryはBRAIN外に置くを同じ親対象identityへ結び、固定L2/L11の必須意味を全て識別できる。明記のない製品値・実行結果はunknownとして残す。
-- **BRAIN-INFRA-009-AC-02（負例）**：各観測定義の欠落、raw telemetry混入、missing/stale/collector停止をhealthyへ写像。どの必須field/relationが欠けるか、unknown/stale/conflict状態、上記owner戻し先を返し、適用・成功・完了へ丸めない。
+- **BRAIN-INFRA-009-AC-02（負例）**：各観測定義の欠落、raw telemetry混入、missing/stale/collector停止をhealthyへ写像。どの必須field/relationが欠けるか、unknown/stale/conflict状態、固定L2の戻し先（runtime evidenceはInfrastructure Runtime/LABO owner、設計観測点不足はHELIXBRAIN-L1-003）を返し、適用・成功・完了へ丸めない。
 - **旧source対応**：INFRA-001–017の原案sourceは`docs/helix-brain/sources/brain-infrastructure-domain-po-original-2026-09-26.md:301–330`（1880c422311a7f8321dbb0e2b98fa12c69449201）であり、fixed L2採択意味の歴史的起点で独立authorityではない。NIO L3類例 `NIO-L3-03, NIO-L3-04`、NIO L10類例 `NIO-L10-02, NIO-L10-06`。旧候補との比較：measurement/logging evidenceは観測定義の類例。missing/staleをhealthyにしないこととsecret/PIIをevidenceへ入れないことを限定negativeにする。NIO-L3-05 alert routing、L3-07 operation trace、L3-09 lifecycle stateはINFRA-009へ追加せず、NIO-L10-03/04/05/07/09は直接oracleにしない。
 - **L2/L11→L3→L10 trace**：固定L2 lines 302–311の受取・提供・保証・依存/版・戻し先と、固定L11 line 49の正常/不合格条件を`BRAIN-INFRA-009-FR-01 / AC-01, AC-02`へ対応付ける。`AC-01 → L10-BRAIN-INFRA-009-C01,C05`、`AC-02 → C02,C03,C04`。未見正常C05も通常条件と同じAC-01を用いる。
 
@@ -299,7 +299,7 @@ L2は20 field、L11は17 groupを列挙する。L3/L10はL2のfield identityを�
 - **固定source**：L2 `docs/helix-brain/L2-requirements/brain-requirements.md:312–321`（f6dad2a33e24f000b87d7f09b8d40288257e74cc、span SHA-256 `e3d673a5ec89eb201512750f9cdef510099a2a1c69ccf3e706effe63696de6a9`）；L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:50`（同revision、line SHA-256 `0d82dcad9c63929ef29003277754ad41eb50d85bb54d93193f0de5dfbf839687`）。
 - **機能要件候補**：backup strategy/retention/replication/restore/recovery validationを関係付ける。backupだけで復旧可能と結論せず、実RTO/RPOは製品要求に残す。 BRAINは知識候補と根拠relationを扱い、実resource/actionまたは他ownerの決定を代行しない。
 - **BRAIN-INFRA-010-AC-01（正常）**：backup strategy/retention/replication/restore/recovery validationの別状態とrelationを同じ親対象identityへ結び、固定L2/L11の必須意味を全て識別できる。明記のない製品値・実行結果はunknownとして残す。
-- **BRAIN-INFRA-010-AC-02（負例）**：backupのみ、restore未検証、recovery条件欠落、製品RTO/RPO創作。どの必須field/relationが欠けるか、unknown/stale/conflict状態、上記owner戻し先を返し、適用・成功・完了へ丸めない。
+- **BRAIN-INFRA-010-AC-02（負例）**：backupのみ、restore未検証、recovery条件欠落、製品RTO/RPO創作。どの必須field/relationが欠けるか、unknown/stale/conflict状態、固定L2の戻し先（実backup/restore実行と値は製品/Runtime、知識構造はHELIXBRAIN-L1-003/010）を返し、適用・成功・完了へ丸めない。
 - **旧source対応**：INFRA-001–017の原案sourceは`docs/helix-brain/sources/brain-infrastructure-domain-po-original-2026-09-26.md:331–364`（1880c422311a7f8321dbb0e2b98fa12c69449201）であり、fixed L2採択意味の歴史的起点で独立authorityではない。NIO L3類例 `NIO-L3-02, NIO-L3-06`、NIO L10類例 `NIO-L10-02, NIO-L10-04, NIO-L10-05`。旧候補との比較：recovery procedureとrestore evidenceを直接類例とし、NIO-L10-04はbackup名だけの成功、L10-05はrollbackと修正の混同、L10-02はunknown evidence保持のnegativeに使う。実backup/dataやruntime authorizationは要求しない。
 - **L2/L11→L3→L10 trace**：固定L2 lines 312–321の受取・提供・保証・依存/版・戻し先と、固定L11 line 50の正常/不合格条件を`BRAIN-INFRA-010-FR-01 / AC-01, AC-02`へ対応付ける。`AC-01 → L10-BRAIN-INFRA-010-C01,C05`、`AC-02 → C02,C03,C04`。未見正常C05も通常条件と同じAC-01を用いる。
 
@@ -308,9 +308,9 @@ L2は20 field、L11は17 groupを列挙する。L3/L10はL2のfield identityを�
 - **親と版**：`HELIXBRAIN-L2-INFRA-011`（`HELIXBRAIN-L1-004`）、PO登録 `MPR-RC-HELIXBRAIN-L2-INFRA-011-002`、version 1.0。G0のStage 2bは順序記録で、先行Stage完了gateを作らない。
 - **固定依存**：HELIXBRAIN-L2-004、HELIXBRAIN-L2-INFRA-003。これは固定L2が示す知識参照であり、全BRAIN Stageや未採択候補の完了gateではない。
 - **固定source**：L2 `docs/helix-brain/L2-requirements/brain-requirements.md:322–331`（f6dad2a33e24f000b87d7f09b8d40288257e74cc、span SHA-256 `ca1ab62c895b7cea2e8f92d29609affb34f3fc0163697ea9d7f814d4a9f60855`）；L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:51`（同revision、line SHA-256 `865b51ab2c0cc7d3914201937ed583bfe61a13e1f5330038615fc71835fe048b`）。
-- **機能要件候補**：fixed/variable/idle/scaling/redundancy/storage/network/operation costを特性として比較し、構造的傾向とprovider/time依存の価格を分離する。 BRAINは知識候補と根拠relationを扱い、実resource/actionまたは他ownerの決定を代行しない。
-- **BRAIN-INFRA-011-AC-01（正常）**：7 cost characteristicと同一scope/time/sourceの価格evidenceを同じ親対象identityへ結び、固定L2/L11の必須意味を全て識別できる。明記のない製品値・実行結果はunknownとして残す。
-- **BRAIN-INFRA-011-AC-02（負例）**：軸欠落、source/timeなし価格の現行化、構造cost特性から価格/予算への変換。どの必須field/relationが欠けるか、unknown/stale/conflict状態、上記owner戻し先を返し、適用・成功・完了へ丸めない。
+- **機能要件候補**：7つのcost characteristic groupに含まれる8 atomic characteristic（fixed cost、variable cost、idle resource、scaling、redundancy、storage、network、operational cost）を区別して比較する。構造上のcost特性だけの記述を許容し、具体価格を提示するときに限りprovider・時点・source・scopeをその価格へ結び、構造的傾向とprovider/time依存の価格を分離する。 BRAINは知識候補と根拠relationを扱い、実resource/actionまたは他ownerの決定を代行しない。
+- **BRAIN-INFRA-011-AC-01（正常）**：7 cost characteristic groupと8 atomic characteristicを別々に識別し、固定L2/L11の必須意味を同じ親対象identityへ結ぶ。構造cost特性だけでも正常とする。具体価格を含む場合だけ、その価格値にprovider・時点・source・scopeを対応付ける。明記のない製品値・実行結果はunknownとして残す。
+- **BRAIN-INFRA-011-AC-02（負例）**：8 atomic characteristicの各欠落と7 group対応の各欠落を独立に試す。具体価格のprovider/time/source/scope欠落またはsource/timeなし価格の現行化、構造cost特性から具体価格/予算への変換も個別に拒否する。価格を提示しない構造比較は不成立にしない。どの必須field/relationが欠けるか、unknown/stale/conflict状態、固定L2の戻し先（具体価格/予算はProduct Core/OS owner、一般化cost characteristicはLABO評価）を返し、適用・成功・完了へ丸めない。
 - **旧source対応**：INFRA-001–017の原案sourceは`docs/helix-brain/sources/brain-infrastructure-domain-po-original-2026-09-26.md:365–384`（1880c422311a7f8321dbb0e2b98fa12c69449201）であり、fixed L2採択意味の歴史的起点で独立authorityではない。NIO L3類例 `NIO-L3-02, NIO-L3-03`、NIO L10類例 `NIO-L10-01, NIO-L10-02`。旧候補との比較：cost適用性とmeasurement provenanceを類例とし、NIO-L10-01はprovider/時点価格の創作回避、L10-02は欠落evidenceをunknownに保つnegativeに使う。L10-07のcost/billing action admissionはcost知識要件ではない。
 - **L2/L11→L3→L10 trace**：固定L2 lines 322–331の受取・提供・保証・依存/版・戻し先と、固定L11 line 51の正常/不合格条件を`BRAIN-INFRA-011-FR-01 / AC-01, AC-02`へ対応付ける。`AC-01 → L10-BRAIN-INFRA-011-C01,C05`、`AC-02 → C02,C03,C04`。未見正常C05も通常条件と同じAC-01を用いる。
 
@@ -321,7 +321,7 @@ L2は20 field、L11は17 groupを列挙する。L3/L10はL2のfield identityを�
 - **固定source**：L2 `docs/helix-brain/L2-requirements/brain-requirements.md:332–341`（f6dad2a33e24f000b87d7f09b8d40288257e74cc、span SHA-256 `6321d9a2fa5685f623d8256c8aa156f6061b284694bfbbe1047b0f7b074e9c51`）；L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:52`（同revision、line SHA-256 `4b9c41a61d3d6b032bacec1a588fe17e14026957888fdbba196cb14d38a55b07`）。
 - **機能要件候補**：Object Storage等の抽象PatternとS3/GCS/Azure Blob/MinIOの実装例を別identityで保持しimplements/compatible_with/constraint_of関係を表現。未確認適合はunknown。 BRAINは知識候補と根拠relationを扱い、実resource/actionまたは他ownerの決定を代行しない。
 - **BRAIN-INFRA-012-AC-01（正常）**：Object Storage等の抽象PatternとS3/GCS/Azure Blob/MinIO等の実装identityおよびimplements/compatible_with/constraint_of関係を同じ親対象identityへ結び、固定L2/L11の必須意味を全て識別できる。明記のない製品値・実行結果はunknownとして残す。
-- **BRAIN-INFRA-012-AC-02（負例）**：identity統合、provider固定、根拠のないcompatibility、各relationの欠落。どの必須field/relationが欠けるか、unknown/stale/conflict状態、上記owner戻し先を返し、適用・成功・完了へ丸めない。
+- **BRAIN-INFRA-012-AC-02（負例）**：identity統合、provider固定、根拠のないcompatibility、各relationの欠落。どの必須field/relationが欠けるか、unknown/stale/conflict状態、固定L2の戻し先（互換条件のownerまたは該当Pattern owner）を返し、適用・成功・完了へ丸めない。
 - **旧source対応**：INFRA-001–017の原案sourceは`docs/helix-brain/sources/brain-infrastructure-domain-po-original-2026-09-26.md:385–417`（1880c422311a7f8321dbb0e2b98fa12c69449201）であり、fixed L2採択意味の歴史的起点で独立authorityではない。NIO L3類例 `NIO-L3-01, NIO-L3-02`、NIO L10類例 `NIO-L10-03`。旧候補との比較：環境固有evidenceはprovider実装事実のscope類例に限る。NIO-L10-01/02はprovider compatibilityを定義しない。provider/source acceptanceを作らず根拠がなければcompatibilityはunknown。
 - **L2/L11→L3→L10 trace**：固定L2 lines 332–341の受取・提供・保証・依存/版・戻し先と、固定L11 line 52の正常/不合格条件を`BRAIN-INFRA-012-FR-01 / AC-01, AC-02`へ対応付ける。`AC-01 → L10-BRAIN-INFRA-012-C01,C05`、`AC-02 → C02,C03,C04`。未見正常C05も通常条件と同じAC-01を用いる。
 
@@ -332,7 +332,7 @@ L2は20 field、L11は17 groupを列挙する。L3/L10はL2のfield identityを�
 - **固定source**：L2 `docs/helix-brain/L2-requirements/brain-requirements.md:342–351`（f6dad2a33e24f000b87d7f09b8d40288257e74cc、span SHA-256 `915285630ae5080ac424fe09f181239d97410b0e9c6442a75c15ad3c33e38173`）；L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:53`（同revision、line SHA-256 `87dab47321ea76f2ddd63ac283d420d153a7923e2d9960a80a2843424b009fb9`）。
 - **機能要件候補**：Local/VPS/dedicated/cloud/GPU/distributed workerをprovider/環境非依存resource/capability model上で表す。実資源状態/credential/操作権限は所有しない。 BRAINは知識候補と根拠relationを扱い、実resource/actionまたは他ownerの決定を代行しない。
 - **BRAIN-INFRA-013-AC-01（正常）**：Local/VPS/Dedicated/Cloud/GPU/Distributed workerのprovider非依存resource/capability表現を同じ親対象identityへ結び、固定L2/L11の必須意味を全て識別できる。明記のない製品値・実行結果はunknownとして残す。
-- **BRAIN-INFRA-013-AC-02（負例）**：cloud-only前提、knowledge identityとruntime stateの混同、credential/actionを知識化。どの必須field/relationが欠けるか、unknown/stale/conflict状態、上記owner戻し先を返し、適用・成功・完了へ丸めない。
+- **BRAIN-INFRA-013-AC-02（負例）**：cloud-only前提、knowledge identityとruntime stateの混同、credential/actionを知識化。どの必須field/relationが欠けるか、unknown/stale/conflict状態、固定L2の戻し先（実環境identity/stateはInfrastructure Runtime、security境界はSECURITY）を返し、適用・成功・完了へ丸めない。
 - **旧source対応**：INFRA-001–017の原案sourceは`docs/helix-brain/sources/brain-infrastructure-domain-po-original-2026-09-26.md:418–438`（1880c422311a7f8321dbb0e2b98fa12c69449201）であり、fixed L2採択意味の歴史的起点で独立authorityではない。NIO L3類例 `NIO-L3-01`、NIO L10類例 `NIO-L10-03`。旧候補との比較：typed environmentとenvironment-scoped evidenceはresource abstractionの類例。NIO-L10-03はproduction環境証明や特定provider/deviceをBRAINへ要求しない。
 - **L2/L11→L3→L10 trace**：固定L2 lines 342–351の受取・提供・保証・依存/版・戻し先と、固定L11 line 53の正常/不合格条件を`BRAIN-INFRA-013-FR-01 / AC-01, AC-02`へ対応付ける。`AC-01 → L10-BRAIN-INFRA-013-C01,C05`、`AC-02 → C02,C03,C04`。未見正常C05も通常条件と同じAC-01を用いる。
 
@@ -343,7 +343,7 @@ L2は20 field、L11は17 groupを列挙する。L3/L10はL2のfield identityを�
 - **固定source**：L2 `docs/helix-brain/L2-requirements/brain-requirements.md:352–361`（f6dad2a33e24f000b87d7f09b8d40288257e74cc、span SHA-256 `adc8d9d3b668980f2912b120e3d13889419670ed190ac7f78589d8f692d14479`）；L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:54`（同revision、line SHA-256 `6d45f4349873d7a7365ad23af8a0a7e24a99755f7ed8d9feb33c96248663d28e`）。
 - **機能要件候補**：topology relation depends_on/communicates_with/replicated_by/backed_up_by/monitored_by/failover_to/secured_by/deployed_on/scales_withを両端点・意味付きで表現。component一覧だけでは成立しない。 BRAINは知識候補と根拠relationを扱い、実resource/actionまたは他ownerの決定を代行しない。
 - **BRAIN-INFRA-014-AC-01（正常）**：9 topology relationのtype/両endpoint/意味を同じ親対象identityへ結び、固定L2/L11の必須意味を全て識別できる。明記のない製品値・実行結果はunknownとして残す。
-- **BRAIN-INFRA-014-AC-02（負例）**：各relation type/端点/meaningの単独欠落、component listだけで成立、実状態の推定。どの必須field/relationが欠けるか、unknown/stale/conflict状態、上記owner戻し先を返し、適用・成功・完了へ丸めない。
+- **BRAIN-INFRA-014-AC-02（負例）**：各relation type/端点/meaningの単独欠落、component listだけで成立、実状態の推定。どの必須field/relationが欠けるか、unknown/stale/conflict状態、固定L2の戻し先（topology実状態はRuntime、構造relation意味はHELIXBRAIN-L1-005）を返し、適用・成功・完了へ丸めない。
 - **旧source対応**：INFRA-001–017の原案sourceは`docs/helix-brain/sources/brain-infrastructure-domain-po-original-2026-09-26.md:439–480`（1880c422311a7f8321dbb0e2b98fa12c69449201）であり、fixed L2採択意味の歴史的起点で独立authorityではない。NIO L3類例 `NIO-L3-02`、NIO L10類例 `該当oracleなし`。旧候補との比較：obligation graphは広いgraph構造の類例に限り、9種のtopology relationやendpoint意味は与えない。NIO-L3-07/L10-08はrequirement-operation traceでtopologyと異なるため直接対応にしない。
 - **L2/L11→L3→L10 trace**：固定L2 lines 352–361の受取・提供・保証・依存/版・戻し先と、固定L11 line 54の正常/不合格条件を`BRAIN-INFRA-014-FR-01 / AC-01, AC-02`へ対応付ける。`AC-01 → L10-BRAIN-INFRA-014-C01,C05`、`AC-02 → C02,C03,C04`。未見正常C05も通常条件と同じAC-01を用いる。
 
@@ -354,7 +354,7 @@ L2は20 field、L11は17 groupを列挙する。L3/L10はL2のfield identityを�
 - **固定source**：L2 `docs/helix-brain/L2-requirements/brain-requirements.md:362–371`（f6dad2a33e24f000b87d7f09b8d40288257e74cc、span SHA-256 `11b9eff2eaac4b17aace22ac405581b9ceb7dab34b260320f246992b28f600af`）；L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:55`（同revision、line SHA-256 `58e16ddb2d0ad5943173c42620ce1efba738620f464f2131dd2df242f7b5232f`）。
 - **機能要件候補**：InfrastructureとAPI/Data/Security/Visual-UX等のaffects/constrains/may affectを方向/根拠/不確かさと共に保持し可能性を因果確定へしない。 BRAINは知識候補と根拠relationを扱い、実resource/actionまたは他ownerの決定を代行しない。
 - **BRAIN-INFRA-015-AC-01（正常）**：InfrastructureとAPI/Data/Security/Visual-UX等のaffects/constrains/may affect方向・根拠・不確かさを同じ親対象identityへ結び、固定L2/L11の必須意味を全て識別できる。明記のない製品値・実行結果はunknownとして残す。
-- **BRAIN-INFRA-015-AC-02（負例）**：endpoint/方向/evidence欠落、可能性をcausesへ確定、他Domain ownerの判断代行。どの必須field/relationが欠けるか、unknown/stale/conflict状態、上記owner戻し先を返し、適用・成功・完了へ丸めない。
+- **BRAIN-INFRA-015-AC-02（負例）**：endpoint/方向/evidence欠落、可能性をcausesへ確定、他Domain ownerの判断代行。どの必須field/relationが欠けるか、unknown/stale/conflict状態、固定L2の戻し先（関係先Domainの責務owner）を返し、適用・成功・完了へ丸めない。
 - **旧source対応**：INFRA-001–017の原案sourceは`docs/helix-brain/sources/brain-infrastructure-domain-po-original-2026-09-26.md:481–514`（1880c422311a7f8321dbb0e2b98fa12c69449201）であり、fixed L2採択意味の歴史的起点で独立authorityではない。NIO L3類例 `該当oracleなし`、NIO L10類例 `該当oracleなし`。旧候補との比較：参照した候補表にaffects/constrains/may-affectのcross-domain意味へ直接対応するNIO L3/L10 oracleはない。NIO-L3-02は一般obligation graphであり、方向を持つdomain relationのsourceと同一視しない。
 - **L2/L11→L3→L10 trace**：固定L2 lines 362–371の受取・提供・保証・依存/版・戻し先と、固定L11 line 55の正常/不合格条件を`BRAIN-INFRA-015-FR-01 / AC-01, AC-02`へ対応付ける。`AC-01 → L10-BRAIN-INFRA-015-C01,C05`、`AC-02 → C02,C03,C04`。未見正常C05も通常条件と同じAC-01を用いる。
 
@@ -365,7 +365,7 @@ L2は20 field、L11は17 groupを列挙する。L3/L10はL2のfield identityを�
 - **固定source**：L2 `docs/helix-brain/L2-requirements/brain-requirements.md:372–381`（f6dad2a33e24f000b87d7f09b8d40288257e74cc、span SHA-256 `835303e5f143675783dbef7891d035b443472a05847cdaaecb199eb801c2b7c9`）；L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:56`（同revision、line SHA-256 `54fc593f9197339f43229875d327cf4e78ca084c7b146f44c4c16157fd8a026f`）。
 - **機能要件候補**：11例: SPOF, Shared Mutable Production State, Unbounded Retry/Queue/Resource Growth, Missing Timeout, Backup Without Restore Test, Monitoring Without Action, Manual-only Recovery, Hidden Dependency, Undocumented Egress。条件/兆候/safer alternative保持し、条件を外して全域禁止にしない。 BRAINは知識候補と根拠relationを扱い、実resource/actionまたは他ownerの決定を代行しない。
 - **BRAIN-INFRA-016-AC-01（正常）**：11 anti-patternの各成立条件/failure sign/safer alternativeを同じ親対象identityへ結び、固定L2/L11の必須意味を全て識別できる。明記のない製品値・実行結果はunknownとして残す。
-- **BRAIN-INFRA-016-AC-02（負例）**：要素欠落、条件を外したuniversal ban、evidence不足の確定分類。どの必須field/relationが欠けるか、unknown/stale/conflict状態、上記owner戻し先を返し、適用・成功・完了へ丸めない。
+- **BRAIN-INFRA-016-AC-02（負例）**：要素欠落、条件を外したuniversal ban、evidence不足の確定分類。どの必須field/relationが欠けるか、unknown/stale/conflict状態、固定L2の戻し先（検出証拠/適用状況が不明ならfindingをunknownとしてLABO評価へ）を返し、適用・成功・完了へ丸めない。
 - **旧source対応**：INFRA-001–017の原案sourceは`docs/helix-brain/sources/brain-infrastructure-domain-po-original-2026-09-26.md:515–546`（1880c422311a7f8321dbb0e2b98fa12c69449201）であり、fixed L2採択意味の歴史的起点で独立authorityではない。NIO L3類例 `NIO-L3-02, NIO-L3-06`、NIO L10類例 `NIO-L10-02, NIO-L10-04, NIO-L10-05, NIO-L10-06`。旧候補との比較：obligation/recovery sourceはanti-pattern成立条件の類例。NIO-L10-04/05/06は一致するrestore、rollback、sensitive evidence例に限り、runtime admission/logging contractを追加しない。NIO-L10-07は明示的に除外する。
 - **L2/L11→L3→L10 trace**：固定L2 lines 372–381の受取・提供・保証・依存/版・戻し先と、固定L11 line 56の正常/不合格条件を`BRAIN-INFRA-016-FR-01 / AC-01, AC-02`へ対応付ける。`AC-01 → L10-BRAIN-INFRA-016-C01,C05`、`AC-02 → C02,C03,C04`。未見正常C05も通常条件と同じAC-01を用いる。
 
@@ -374,9 +374,9 @@ L2は20 field、L11は17 groupを列挙する。L3/L10はL2のfield identityを�
 - **親と版**：`HELIXBRAIN-L2-INFRA-017`（`HELIXBRAIN-L1-007 / HELIXBRAIN-L1-008`）、PO登録 `MPR-RC-HELIXBRAIN-L2-INFRA-017-002`、version 1.0。G0のStage 2bは順序記録で、先行Stage完了gateを作らない。
 - **固定依存**：HELIXBRAIN-L2-007/008/020/025。これは固定L2が示す知識参照であり、全BRAIN Stageや未採択候補の完了gateではない。
 - **固定source**：L2 `docs/helix-brain/L2-requirements/brain-requirements.md:382–391`（f6dad2a33e24f000b87d7f09b8d40288257e74cc、span SHA-256 `d7e5a7a4d029db3bd92db437043b07c7dc4d6923c481a338815382e23c6f4795`）；L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:57`（同revision、line SHA-256 `9209db4b4e0810bad881e9a714120abaae22beb29bc0490e259d281423133420`）。
-- **機能要件候補**：experimental/observed/validated/mature/deprecated/retiredをevidence/revisionへ結び、単一内部Product成功をuniversal maturityへ昇格しない。 BRAINは知識候補と根拠relationを扱い、実resource/actionまたは他ownerの決定を代行しない。
-- **BRAIN-INFRA-017-AC-01（正常）**：experimental/observed/validated/mature/deprecated/retiredと対象revision/evidence/failure/counterexample/LABO評価を同じ親対象identity・対象revisionへ結び、固定L2/L11の必須意味を全て識別できる。明記のない製品値・実行結果はunknownとして残す。
-- **BRAIN-INFRA-017-AC-02（負例）**：revision mismatch、単一内部successからuniversal/mature昇格、failure/適用限界の隠蔽。どの必須field/relationが欠けるか、unknown/stale/conflict状態、上記owner戻し先を返し、適用・成功・完了へ丸めない。
+- **機能要件候補**：experimental/observed/validated/mature/deprecated/retiredのmaturity state、BRAIN knowledge version、projectで使った版を3つの別軸として記録し、それぞれを対象revisionとevidenceへ結ぶ。単一内部Product成功をuniversal maturityへ昇格せず、failure発見と複数条件の評価結果を両方保持する。 BRAINは知識候補と根拠relationを扱い、実resource/actionまたは他ownerの決定を代行しない。
+- **BRAIN-INFRA-017-AC-01（正常）**：maturity state、BRAIN version、project usage versionを別軸として対象revision/evidence/failure/counterexample/LABO評価へ結び、複数条件の評価結果とfailure発見が同時にある入力も保持し、固定L2/L11の必須意味を全て識別できる。明記のない製品値・実行結果はunknownとして残す。
+- **BRAIN-INFRA-017-AC-02（負例）**：maturity state/BRAIN version/project usage versionの混同、各軸の独立欠落またはrevision不一致、単一内部successからuniversal/mature昇格、failure/適用限界の隠蔽をそれぞれ検出する。どの必須field/relationが欠けるか、unknown/stale/conflict状態、固定L2の戻し先（評価不足はexperimental/observed候補に留め、採用や昇格を推定しない）を返し、適用・成功・完了へ丸めない。
 - **旧source対応**：INFRA-001–017の原案sourceは`docs/helix-brain/sources/brain-infrastructure-domain-po-original-2026-09-26.md:547–633`（1880c422311a7f8321dbb0e2b98fa12c69449201）であり、fixed L2採択意味の歴史的起点で独立authorityではない。NIO L3類例 `NIO-L3-09`、NIO L10類例 `NIO-L10-02, NIO-L10-09`。旧候補との比較：NIO-L3-09はlifecycle/evidenceの類例でありmaturity語彙は同一視しない。NIO-L10-02/09は欠落evidenceや文書だけからhealthy/completionへしない注意として使う。NIO-L10-09は実consumer evidenceをBRAINのmaturity inputにせず、普遍適用の証明にも使わない。
 - **L2/L11→L3→L10 trace**：固定L2 lines 382–391の受取・提供・保証・依存/版・戻し先と、固定L11 line 57の正常/不合格条件を`BRAIN-INFRA-017-FR-01 / AC-01, AC-02`へ対応付ける。`AC-01 → L10-BRAIN-INFRA-017-C01,C05`、`AC-02 → C02,C03,C04`。未見正常C05も通常条件と同じAC-01を用いる。
 
