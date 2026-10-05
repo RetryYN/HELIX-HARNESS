@@ -1,0 +1,420 @@
+{
+  "schema_version": "helix.l3-l10.static-audit.v1",
+  "status": "local draft; independent exact-HEAD review and PO L3 approval pending",
+  "mechanism": "HELIX-SECURITY",
+  "stage": "Stage 2c",
+  "base_commit": "4f1d07e57e9586b1382dd0132123488db77aa735",
+  "content_source_commit": "9c9375d167695e6a0df7e749d382f25842efdc04",
+  "parent": "HELIXSECURITY-L2-031",
+  "decision": "MPR-RC-HELIXSECURITY-L2-031-001 adopted; version_target 1.0; Stage2c",
+  "documents": [
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "sha256": "d136764cfef2b6eeca900c5046a1228764e414591cc58bd9b6e076fca62fc933",
+      "line_count": 8,
+      "prefix_sha256": "717e206126b910a8261e5448227bb73b0961ac3dbf3f1f71a41ef487dc0f6ee5",
+      "prefix_bytes": 526,
+      "prefix_byte_exact": true
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "sha256": "b1b76f4b2ef0262da567d840e03c829b0c5916470c5c7df5d9c600a5abc43f83",
+      "line_count": 295,
+      "prefix_sha256": "a6ebe9cb3d918de940257f79cffe125bcce51dadb1ef6306dd43cb2e35420275",
+      "prefix_bytes": 43956,
+      "prefix_byte_exact": true
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "sha256": "71f9cc446551b1fb2ed4ff9e963700b3450f4f90ee5cbf8ebfae0ccad91d2f7f",
+      "line_count": 29,
+      "prefix_sha256": "31f2d36232ba1ab590c86ddc3dd5600b4b031992893bd066a72d094ede0912c5",
+      "prefix_bytes": 4845,
+      "prefix_byte_exact": true
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "sha256": "e6cfb2b5abff73254f0f8d860ffbd0590085fed224cf8f2fb61a02271d780ff9",
+      "line_count": 9,
+      "prefix_sha256": "fcf2504a4fef152d1829fddb1a9d65397cb16114a6edbd964c619422da75097d",
+      "prefix_bytes": 747,
+      "prefix_byte_exact": true
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "sha256": "306b06399b644fba7988c425cb3026575ced6bb4fd687cf18100c8d8dcf51fa3",
+      "line_count": 337,
+      "prefix_sha256": "d0e8611b486c64e8e605ab72a6dba7a69dc3e43a2d9e6f96bed505b27bcc8588",
+      "prefix_bytes": 57884,
+      "prefix_byte_exact": true
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "sha256": "4ecf61b951012e298211a6cfdfe2493840c4f20e6be383a3dd34ae200ca50b34",
+      "line_count": 59,
+      "prefix_sha256": "d494ece7e7fdf6ab886cd0f16abf47f9dc6cda587c417955585a7e1ede4b3c5b",
+      "prefix_bytes": 6650,
+      "prefix_byte_exact": true
+    }
+  ],
+  "inventory_counts": {
+    "FR": 6,
+    "AC": 6,
+    "functional_CASE": 6,
+    "NFR_parent": 1,
+    "NFR_CASE": 1,
+    "business_AC": 0
+  },
+  "source_pins": [
+    {
+      "key": "fixed_l2_031",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "physical_lines": [
+        427,
+        446
+      ],
+      "line_count": 499,
+      "identity_or_asset": "HELIXSECURITY-L2-031",
+      "full_file_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "raw_lf_inclusive_span_sha256": "3ff72f9130d888213e2f3e5226a22bfedb965b9e80beebea810b8fec04cd964a",
+      "span_bytes": 10269
+    },
+    {
+      "key": "fixed_l11_031",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "physical_lines": [
+        104,
+        115
+      ],
+      "line_count": 222,
+      "identity_or_asset": "HELIXSECURITY-L2-031",
+      "full_file_sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+      "raw_lf_inclusive_span_sha256": "3b2700d511ea0feb8bbeb3dcedd7dd3eb9d1a26a2aeb9c79f57f835c045c0cd7",
+      "span_bytes": 6536
+    },
+    {
+      "key": "security_005_009",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "physical_lines": [
+        110,
+        159
+      ],
+      "line_count": 499,
+      "identity_or_asset": "HELIXSECURITY-L2-005..009",
+      "full_file_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "raw_lf_inclusive_span_sha256": "97b6fbdd0a67945e18e81bd49ec474a13a0ff9bb95c1dd231649503f5762f435",
+      "span_bytes": 6492
+    },
+    {
+      "key": "security_022_023",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "physical_lines": [
+        282,
+        300
+      ],
+      "line_count": 499,
+      "identity_or_asset": "HELIXSECURITY-L2-022/023",
+      "full_file_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "raw_lf_inclusive_span_sha256": "0f54c985b5c8692516f8eba204565a1d5f907a58944d674868e07f13e3bfc52e",
+      "span_bytes": 2462
+    },
+    {
+      "key": "security_029",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "physical_lines": [
+        405,
+        416
+      ],
+      "line_count": 499,
+      "identity_or_asset": "HELIXSECURITY-L2-029",
+      "full_file_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "raw_lf_inclusive_span_sha256": "de390bb30ef5f7ed4f3644109c7b9051a2e7d2a05e6f5f5c162dddf442d243c4",
+      "span_bytes": 4019
+    },
+    {
+      "key": "infra_010",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "physical_lines": [
+        126,
+        136
+      ],
+      "line_count": 430,
+      "identity_or_asset": "HELIXINFRASTRUCTURE-L2-010",
+      "full_file_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "raw_lf_inclusive_span_sha256": "1af016e7d2484f93c0daeaa21485e2b1cc146a599e2edc329276a88c109dba60",
+      "span_bytes": 2884
+    },
+    {
+      "key": "os_018",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "physical_lines": [
+        672,
+        700
+      ],
+      "line_count": 1670,
+      "identity_or_asset": "HELIXOS-L2-018",
+      "full_file_sha256": "c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a",
+      "raw_lf_inclusive_span_sha256": "c6d07aacc172c8344990603690d0ed743ffef9e5e623efd3d73421ff186d85b7",
+      "span_bytes": 4047
+    },
+    {
+      "key": "harness_023",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "physical_lines": [
+        463,
+        499
+      ],
+      "line_count": 1544,
+      "identity_or_asset": "HELIX-HARNESS-L2-023",
+      "full_file_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+      "raw_lf_inclusive_span_sha256": "1df02d0481a8100d5f7e7acf9dde242e09cbfc7a1903f1a4cfe480f72644716d",
+      "span_bytes": 6889
+    },
+    {
+      "key": "harness_l11_023",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "physical_lines": [
+        219,
+        226
+      ],
+      "line_count": 1340,
+      "identity_or_asset": "HELIX-HARNESS-L2-023",
+      "full_file_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+      "raw_lf_inclusive_span_sha256": "a8fa13e030a09903589a58610008346f3842cef98f2f2f599542607d0eeac3fc",
+      "span_bytes": 1392
+    },
+    {
+      "key": "l1_security",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-security/L1-planning/security-intent.md",
+      "physical_lines": [
+        52,
+        53
+      ],
+      "line_count": 97,
+      "identity_or_asset": "HELIXSECURITY-L1-007/008",
+      "full_file_sha256": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d",
+      "raw_lf_inclusive_span_sha256": "138af6cb58297d970a296bc4ffab4b6399cb60f5ee0035cc4ef11eb4cfd6cbfb",
+      "span_bytes": 1100
+    },
+    {
+      "key": "po_l1_security",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+      "physical_lines": [
+        29,
+        29
+      ],
+      "line_count": 80,
+      "identity_or_asset": "採択L1 exact revision HELIXSECURITY",
+      "full_file_sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff",
+      "raw_lf_inclusive_span_sha256": "7a8f74f05d52d09d4b2416dd9e947a7618806c4e448b91d10eadf2644324d499",
+      "span_bytes": 310
+    },
+    {
+      "key": "po_harness_023",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "physical_lines": [
+        52,
+        52
+      ],
+      "line_count": 76,
+      "identity_or_asset": "MPR-RC-HARNESS-L2-023-002 adopted; reference contract only",
+      "full_file_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "raw_lf_inclusive_span_sha256": "f65d4e45e1530273cc0e6af68db65e906dc198efade2cd12b8e606f329d30172",
+      "span_bytes": 504
+    },
+    {
+      "key": "po_031",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "physical_lines": [
+        90,
+        90
+      ],
+      "line_count": 150,
+      "identity_or_asset": "MPR-RC-HELIXSECURITY-L2-031-001",
+      "full_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "raw_lf_inclusive_span_sha256": "379137e4c6eeebab8e4291ed17c87dbbfb8f77e9074fdab642144ee4a6bd644a",
+      "span_bytes": 626
+    },
+    {
+      "key": "g0_031",
+      "commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "physical_lines": [
+        542,
+        542
+      ],
+      "line_count": 552,
+      "identity_or_asset": "G0 Stage2c SECURITY-031",
+      "full_file_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "raw_lf_inclusive_span_sha256": "c710cee7e8c5de03ad0fad6d51a4db0890b71182a05a32c88107936cdcd5e87e",
+      "span_bytes": 997
+    },
+    {
+      "key": "old_br32",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "physical_lines": [
+        84,
+        84
+      ],
+      "line_count": 257,
+      "identity_or_asset": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF HIL-BR-32",
+      "full_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "raw_lf_inclusive_span_sha256": "461d471b4d49649b44e3ff4001c0a78cca3f251ef43c8752970a148cb1869ad1",
+      "span_bytes": 352
+    },
+    {
+      "key": "old_hil67",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "physical_lines": [
+        157,
+        157
+      ],
+      "line_count": 257,
+      "identity_or_asset": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF HIL-FR-67",
+      "full_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "raw_lf_inclusive_span_sha256": "c63f114102e4abd662b9f09dec1a691723b5217bb6fb9803237d88da2f7561da",
+      "span_bytes": 338
+    },
+    {
+      "key": "old_hr23",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "physical_lines": [
+        57,
+        57
+      ],
+      "line_count": 95,
+      "identity_or_asset": "LEGACY-ASSET-C7F0C3B79CBAA72960BF HR-FR-HIL-23",
+      "full_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "raw_lf_inclusive_span_sha256": "34609b4d44fc891b508fc38f804641ccdab870f9fd2db70dc9133b4adc1e6c6c",
+      "span_bytes": 645
+    },
+    {
+      "key": "old_hac23",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "physical_lines": [
+        86,
+        86
+      ],
+      "line_count": 95,
+      "identity_or_asset": "LEGACY-ASSET-C7F0C3B79CBAA72960BF HAC-HIL-23a/b/c",
+      "full_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "raw_lf_inclusive_span_sha256": "65d4b0a663859c3517f21845e29f5d245f35de702856256d10c32cae109bb1bd",
+      "span_bytes": 255
+    },
+    {
+      "key": "old_hat23",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "physical_lines": [
+        55,
+        55
+      ],
+      "line_count": 63,
+      "identity_or_asset": "LEGACY-ASSET-FA8C6E69463183D6A19B HAT-HIL-23",
+      "full_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "raw_lf_inclusive_span_sha256": "bb14d999661859cdfe7d0a5d557859fdbe1c0a35d56fb9daf5cc3a3b74c9688c",
+      "span_bytes": 251
+    },
+    {
+      "key": "old_p2",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "physical_lines": [
+        148,
+        148
+      ],
+      "line_count": 354,
+      "identity_or_asset": "LEGACY-ASSET-EE5DBACC7F28F7D1F605 HR-FR-P2-05",
+      "full_file_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "raw_lf_inclusive_span_sha256": "b2dc621fc80d1946c401094574a64c49d99160072d68c251b636cea7afa3b342",
+      "span_bytes": 502
+    },
+    {
+      "key": "old_hacp2",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "physical_lines": [
+        225,
+        226
+      ],
+      "line_count": 354,
+      "identity_or_asset": "LEGACY-ASSET-EE5DBACC7F28F7D1F605 HAC-P2-05a/b",
+      "full_file_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "raw_lf_inclusive_span_sha256": "a1fcea5a04b0ef76b1c84cf17e7fdbaf066efa7a22ac736e3ff7a10f338fcfe4",
+      "span_bytes": 570
+    },
+    {
+      "key": "old_hatp2",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "physical_lines": [
+        105,
+        105
+      ],
+      "line_count": 216,
+      "identity_or_asset": "LEGACY-ASSET-44DD86E3DEC09E65EF51 HAT-P2-05",
+      "full_file_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+      "raw_lf_inclusive_span_sha256": "1d4b2ea8b187f288790a3908fd13eb8e01fe4cd6c9baad98b4b465d3e7a8b301",
+      "span_bytes": 413
+    },
+    {
+      "key": "old_wcc",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+      "physical_lines": [
+        57,
+        58
+      ],
+      "line_count": 146,
+      "identity_or_asset": "LEGACY-ASSET-9114D4E463E95B67DD0C WCC-FR-03/04",
+      "full_file_sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+      "raw_lf_inclusive_span_sha256": "9562a57b48f91ee40556b9d9731f287b464413fa3421395805dd951e738454b8",
+      "span_bytes": 622
+    },
+    {
+      "key": "old_wccac",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+      "physical_lines": [
+        128,
+        128
+      ],
+      "line_count": 146,
+      "identity_or_asset": "LEGACY-ASSET-9114D4E463E95B67DD0C WCC-AC-02",
+      "full_file_sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+      "raw_lf_inclusive_span_sha256": "f3513cf838af76f05f74fc2a63661127a331d3560768a9090a9317db53b94f9a",
+      "span_bytes": 261
+    }
+  ],
+  "verification": {
+    "scfctl_validate": "bindings=147 fail=0",
+    "scfctl_stale": "stale=0",
+    "scfctl_residuals": "residuals=0",
+    "govcheck": "ok atoms=7622 requirements=57 files=58",
+    "git_diff_check": "PASS",
+    "runtime_or_tests": "not run; prohibited/out of scope"
+  },
+  "limitations": [
+    "No runtime, test, old CLI, old hook, old CI, real secrets, real credentials, or canonical state exercised.",
+    "No independent review, L3 approval, implementation permission, or acceptance generated.",
+    "Technical coverage values are candidates for the selected scope only; no quota/rate/latency/retention product threshold is derived.",
+    "Legacy HR-FR-HIL-23 and HAT-HIL-23 were treated as bounded historical clauses, not complete fulfillment or execution evidence."
+  ]
+}

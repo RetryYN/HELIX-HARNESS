@@ -1,0 +1,91 @@
+{
+  "record_kind": "creator_review02_acceptance",
+  "authority_effect": "none",
+  "base": "91660f403d203dff92a50ac7f5484db6ab13f96d",
+  "body_revision": "68d48bfc7ba3030bf055dc67e78c11ebef679156",
+  "worker_head": "c3eae88370b3d1a0abf54b896e06cfbb4e31def7",
+  "root_read": "6 canonical full diffs (business requirement diff empty); fixed six source spans and PO historical originals",
+  "recalculated": {
+    "git_source_pin_count": 127,
+    "latest_formal_comment": 5988011236,
+    "current_literal_raw_pins": 852,
+    "whole_sha_main_prefix_suffix": 6,
+    "prior_trace_audit_unchanged": true
+  },
+  "audit": {
+    "path": "docs/governance/audits/requirements-stage/l3-l10-brain-stage2b-infra-opus-review02-repair-68d48bfc7-static-validation-2026-10-05.json",
+    "sha256": "87702fb6e58f9759d7e43d9c31f1b3a01580900736fbe458ad4ec124b251fac2"
+  },
+  "documents": [
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "full_sha256": "1b74ae392d8c27a84741970f6c38e7c1910a52522c64808e50f032e443ea945d",
+      "bytes": 97617,
+      "line_count": 425,
+      "base_prefix_sha256": "537ff96382641b614c4f256d30403d4b5df5154ea7fb623c0a809c263c030a9a",
+      "base_prefix_bytes": 27100,
+      "base_prefix_exact": true,
+      "stage2b_suffix_sha256": "3fa6bc956a4f351b30d69ce18dba133eed75dd78b619202032d511be1acb5323",
+      "stage2b_suffix_bytes": 70517
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.md",
+      "full_sha256": "0b857e367c250e8358c0150949362c962fbe7c38e4af0e982dad55f39efedf0e",
+      "bytes": 5658,
+      "line_count": 40,
+      "base_prefix_sha256": "98c768a580ea16fffb5c11dfaa6508c91e7dba6d6d55f8d097f540ff9092c264",
+      "base_prefix_bytes": 1586,
+      "base_prefix_exact": true,
+      "stage2b_suffix_sha256": "b716c5980a295e28e2a14eea568fa9d70fb161b9cf8f9b64338bd14ba27ade24",
+      "stage2b_suffix_bytes": 4072
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/nfr-grade.md",
+      "full_sha256": "51dd748ff58bc89252badbcb1496e83c259a6987d543e285bef8cad79961c7ea",
+      "bytes": 12083,
+      "line_count": 41,
+      "base_prefix_sha256": "8d987bddc9d4625937c5c7c16d1754a475ca699d27e09eb39e04489681288fbc",
+      "base_prefix_bytes": 4739,
+      "base_prefix_exact": true,
+      "stage2b_suffix_sha256": "d1bcd4254c67bdc7dac32497938b5bfcc23891e87b4b3a081572de8f292d8835",
+      "stage2b_suffix_bytes": 7344
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "full_sha256": "2a614f3a3bc365a1e6cad0507f33c6cafa7c4cb5cf16034aaff11abe1d466a50",
+      "bytes": 58900,
+      "line_count": 267,
+      "base_prefix_sha256": "031fccb6716b42e693983d2c3789b80070ec4910afcc198243a5b26a3eaaa216",
+      "base_prefix_bytes": 19080,
+      "base_prefix_exact": true,
+      "stage2b_suffix_sha256": "1cbf5d6cf26d432fe7da16c56dceae480670c59a3ce3948f9e50edb8dbf28809",
+      "stage2b_suffix_bytes": 39820
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.md",
+      "full_sha256": "405840ceb9442a769498c9cfe77e0611ec6b282742076e945b3199adaaaa6019",
+      "bytes": 4751,
+      "line_count": 38,
+      "base_prefix_sha256": "5224d78282a60ef1ac2dd0fc4bbc2bfaf3073e738e0baf7ad697d3656040c804",
+      "base_prefix_bytes": 1059,
+      "base_prefix_exact": true,
+      "stage2b_suffix_sha256": "1116024a4e2e651cc4e1cb8a5a6b1c9ef5921fb600928ceee3060649eedb38df",
+      "stage2b_suffix_bytes": 3692
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/nfr-verification.md",
+      "full_sha256": "c61d51bfc050cb13247c0b52f9ea575ddd6b415b1230a6f376a9e9316fe88a87",
+      "bytes": 10102,
+      "line_count": 41,
+      "base_prefix_sha256": "21a47fed4e9269367d765111b05e3541c8ee3649f474990fdc5b27f20798e237",
+      "base_prefix_bytes": 3909,
+      "base_prefix_exact": true,
+      "stage2b_suffix_sha256": "d2ee4b1964c3fa5651a2dbbb6b57c8bae9378a986bb17ecbcd28c76c42316529",
+      "stage2b_suffix_bytes": 6193
+    }
+  ],
+  "limitations": [
+    "既存github comment pinsは前回検算、今回は再取得していない。新formal commentはUTF8 SHA再計算。",
+    "独立再review・委任承認は未完了。旧C13等を閉じない。"
+  ]
+}

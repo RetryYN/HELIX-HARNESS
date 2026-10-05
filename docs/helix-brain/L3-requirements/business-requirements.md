@@ -12,9 +12,36 @@
 
 後続の承認済みL2が独立business outcomeを与えた場合に限り、通常のL3起草内で本書へ配置する。旧HARNESS業務値をBRAINへ移さない。
 
+
+## Stage 2b — 業務分類の確認（INFRA-001〜017）
+
+固定L2/L11のINFRA-001〜017は設計知識、分類、relation、根拠、owner境界を要求し、functional/system conditionと独立したbusiness outcome・指標・ownerを定義していない。旧HELIXのHARNESS業務detailはこの機構の意味根拠ではない。旧区分の保持点は「business項目を独立に確認する」構造のみとし、BRAINのbusiness内容は固定親から再導出した結果なしに追加しない。
+
+| 親L2 | 業務分類 | 機能正本 |
+|---|---|---|
+| `HELIXBRAIN-L2-INFRA-001` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-001-FR-01` / `BRAIN-INFRA-001-AC-01, AC-02` |
+| `HELIXBRAIN-L2-INFRA-002` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-002-FR-01` / `BRAIN-INFRA-002-AC-01, AC-02` |
+| `HELIXBRAIN-L2-INFRA-003` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-003-FR-01` / `BRAIN-INFRA-003-AC-01, AC-02` |
+| `HELIXBRAIN-L2-INFRA-004` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-004-FR-01` / `BRAIN-INFRA-004-AC-01, AC-02` |
+| `HELIXBRAIN-L2-INFRA-005` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-005-FR-01` / `BRAIN-INFRA-005-AC-01, AC-02` |
+| `HELIXBRAIN-L2-INFRA-006` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-006-FR-01` / `BRAIN-INFRA-006-AC-01, AC-02` |
+| `HELIXBRAIN-L2-INFRA-007` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-007-FR-01` / `BRAIN-INFRA-007-AC-01, AC-02` |
+| `HELIXBRAIN-L2-INFRA-008` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-008-FR-01` / `BRAIN-INFRA-008-AC-01, AC-02` |
+| `HELIXBRAIN-L2-INFRA-009` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-009-FR-01` / `BRAIN-INFRA-009-AC-01, AC-02` |
+| `HELIXBRAIN-L2-INFRA-010` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-010-FR-01` / `BRAIN-INFRA-010-AC-01, AC-02` |
+| `HELIXBRAIN-L2-INFRA-011` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-011-FR-01` / `BRAIN-INFRA-011-AC-01, AC-02` |
+| `HELIXBRAIN-L2-INFRA-012` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-012-FR-01` / `BRAIN-INFRA-012-AC-01, AC-02` |
+| `HELIXBRAIN-L2-INFRA-013` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-013-FR-01` / `BRAIN-INFRA-013-AC-01, AC-02` |
+| `HELIXBRAIN-L2-INFRA-014` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-014-FR-01` / `BRAIN-INFRA-014-AC-01, AC-02` |
+| `HELIXBRAIN-L2-INFRA-015` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-015-FR-01` / `BRAIN-INFRA-015-AC-01, AC-02` |
+| `HELIXBRAIN-L2-INFRA-016` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-016-FR-01` / `BRAIN-INFRA-016-AC-01, AC-02` |
+| `HELIXBRAIN-L2-INFRA-017` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-017-FR-01` / `BRAIN-INFRA-017-AC-01, AC-02` |
+
+旧business起点は`LEGACY-ASSET-A6E2C7F0565E5F804F06`（`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md:21–39,84–104`、全文SHA-256 `99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d`、該当span SHA-256 `ade5075e3df236216603e1e0d3fb83c8cdae007f7f319e49bd4af1c5d4efca5e` / `f79e52ce0ac3797d30c46573a61f8115656ece2f8485461c728cdcf50fa4b38f`）。これはHARNESS固有のBR-21/HM-08である。旧business分類の分離だけを比較し、旧HARNESS BR-21、HM-08、Learning Engine評価、screen/mode/drive条件は移植しない。businessの独立成果が現行固定親に現れないため、通常のL3承認対象はfunctional ACで示す親条件に限る。
+
 ## Stage 2b追補 — 採択済み001〜006の部分草稿
 
-**状態：候補のみ（独立review／L3承認前）。** Stage 1 prefixは最新main `a7ae47c0bd97cd53298594086923c73dfb2a712b`で承認済みのbytesを保持する。本追補はPO main `633bf12ea8f948db8ba3d6600179c4a9507377a7`の採択registrationと、固定L2/L11 `f6dad2a33e24f000b87d7f09b8d40288257e74cc`の001〜006だけを候補として具体化する。各親のversion targetは1.0、G0配属はStage 2bであり、release収載や全前Stage完了gate、実装・実行許可を生成しない。後続版・Web条件付き・保留/不採択を親にしない。
+**状態：候補のみ（独立review／L3承認前）。** Stage 1 prefixはPO承認済みのbytesを保持し、既存INFRA Stage2b 17親suffixは最新main `4729c34ec29c2c72f345993958bbc94e1ed6f131`のbytesをそのまま保持する。本追補はPO main `633bf12ea8f948db8ba3d6600179c4a9507377a7`の採択registrationと、固定L2/L11 `f6dad2a33e24f000b87d7f09b8d40288257e74cc`の001〜006だけを候補として具体化する。各親のversion targetは1.0、G0配属はStage 2bであり、release収載や全前Stage完了gate、実装・実行許可を生成しない。後続版・Web条件付き・保留/不採択を親にしない。
 
 - `HELIXBRAIN-L2-001`：独立business成果は固定親にない。機能正本 `BRAIN-001-FR-01` / AC-01〜04に配置し、別ownerや業務KPIを作らない。
 
