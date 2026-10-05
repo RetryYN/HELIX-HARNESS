@@ -434,7 +434,7 @@ L2は20 atomic field、L11は18列挙groupを持ち、trade-offとevidenceは別
 
 設計知識のDomain identity・意味・状態とPattern参照を保持する。初期10領域を識別し、一覧を固定enumにせず追加・分割・統合・退役を表す。各変更後も既存relationの利用者と参照先を識別する。追加・分割・統合・退役の4操作を個別に表現できる。製品/projectをDomain化せず、追加候補6領域の初版充実を必須にしない。
 
-- **BRAIN-001-AC-01 — 正常**：10初期領域を別identity/意味/状態で与え、各Patternの参照先を照合する。Visual DesignとUX / Interactionも初期集合に残る。
+- **BRAIN-001-AC-01 — 正常**：10初期領域を別identity/意味/状態で与え、各Patternの参照先を照合する。Visual DesignとUX / Interactionも初期集合に残る。追加・分割・統合・退役を各々独立に与え、操作後も既存参照先とrelation利用者を識別できることを確認する。
 - **BRAIN-001-AC-02 — 反例**：初期10領域のいずれかの欠落・誤識別・意味対応不明を個別に不成立とする。製品/project名をDomainに固定する入力、追加可能6領域の初版充実を必須とする入力、既存relation利用者を消す入力もそれぞれ個別に拒否する。
 - **BRAIN-001-AC-03 — 不明と戻し先**：領域の分類意味が重複または不明なら候補のまま停止し、意味差をHELIXBRAIN-L1-001へ返す。
 - **BRAIN-001-AC-04 — 未見と責務境界**：未見Domainを初期enumにないことだけで拒否しない。意味と既存参照を照合し、追加/分割/統合/退役のいずれでも旧参照利用者を消さない。
@@ -530,7 +530,7 @@ BRAINは知識identity/meaning/stateを保持する。LABOは評価、OSは登�
 
 親`HELIXBRAIN-L2-009`（固定L2 `brain-requirements.md:172-182`、L11 `brain-acceptance.md:37`）。採択registration `MPR-RC-HELIXBRAIN-L2-009-002`、semantic digest `sha256:2357966979f49c70ea6881fddd664a9f121dc43849f8b2889768f931c5e89d01`（PO採択main 633）。L1-009とL2-005/007/025を前提とする。既存PatternのUnit、source/evaluation scope、新relation案から、両端identityと構成根拠が追跡できるcandidate Patternを返す。Unit自体またはrelation根拠のどちらかが不明な構成はcandidateとしても適用せず、該当するL1-009へ戻す。構成candidateの生成を確立済みPatternへの昇格と同一視しない。LABO評価・OS登録・BRAIN独立検証とL2-025の既存経路が成立した場合は、既存経路が定める次状態への遷移を確認するが、BRAIN自身は昇格を決定しない。LABO評価・OS登録・BRAIN独立検証とL2-025 promotion経路は、candidate作成を阻止する前提条件ではなく、昇格時に満たす既存条件である。
 
-- **BRAIN-009-AC-01 — 正常**：異なるidentityとsource/versionを持つ既存Unit二つへsource-backed relation案を加え、両端identity、scope、構成根拠とcandidate状態を保つ。成立したrelationの採用・Pattern昇格は返さない。
+- **BRAIN-009-AC-01 — 正常**：異なるPattern A/Bに属するUnit A1/B1を有効なidentityとsource/versionで与え、source-backed relation案を加える。両端identity、scope、構成根拠をcandidate状態で保持し、構成だけでは採用・昇格を返さない。別の正常fixtureではLABO評価・OS登録・BRAIN独立検証と既存L2-025経路が全て成立したことを同一candidate identity/revisionへ束ね、既存経路の次状態への遷移を観測する。BRAINが昇格を決定することや新しい遷移条件を作ることは認めない。
 - **BRAIN-009-AC-02 — 個別反例**：relation端点欠落、relation意味の根拠欠落、必須Unit自体のsource/根拠欠落、選択source/versionの欠落または不一致をそれぞれ独立に検出する。L2-025昇格経路の未完はBRAIN change owner（固定L2-025:471）へ返し、他ownerの状態で代用しない。LABO評価前、OS登録前、BRAIN独立検証／L2-025経路前の昇格要求も各々独立に拒否し、他ownerの状態で代用しない。
 - **BRAIN-009-AC-03 — unknownと戻し先**：relationまたは必須部品の意味・根拠が不明ならcandidateの適用可能性を作らず、未解決箇所を記録してBRAIN-L1-009へ返す。
 - **BRAIN-009-AC-04 — 未見**：既知例と異なるがsourceで定義されたUnit組合せも同じidentity、端点、relation意味、scopeを照合する。fixture未定義条件はunknownとし、candidate状態を保つ。未見例をもって広範な知識網羅を保証しない。
