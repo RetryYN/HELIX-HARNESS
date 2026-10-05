@@ -1,0 +1,3 @@
+# HARNESS Stage3 root公開前検収
+
+本文 `e76227921a91ec8188a4473595603de58c5687b2`、latest main `2e9e9f2267aab50bc1c22e3b3ca9c9d0ce808832`。rootは全6本文差分と日本語summaryを読み、source35/worker現行252literal/fixed26/PO13のpinを再計算した。NV2行末尾区切り欠落と根拠のないcontract12項目数を訂正し、列挙全fieldを保持。Worker監査にない固定L2/L11 26pinをこのJSONへ補った。旧監査は不変。6main prefix完全一致、現在の表幅不一致0、6本文SHAと追補全行を固定する。独立review・承認・実装・実行は未成立。
