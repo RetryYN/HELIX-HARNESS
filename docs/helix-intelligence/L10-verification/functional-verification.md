@@ -261,7 +261,7 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 
 入力: 同一target R17/scope S1のSECURITY permission P1（操作時有効）、Worker execution W1、HARNESS verification H1、OS acceptance O1を、受信順 O1/H1/P1/W1で与える。各receiptには別source revisionと対象scopeを付す。
 
-期待oracle: 到着順が逆でもreceiptごとのsource, revision, target, scopeを照合し、同一target/scopeに一致する証拠だけを各境界へ結ぶ。新しい段階順を生成しない。操作時permissionは受領順と独立して評価し、後日失効の判定は03aへ分ける。
+期待oracle: 到着順が逆でもreceiptごとのsource, revision, target, scopeを照合し、同一target/scopeに一致する証拠だけを各境界へ結ぶ。新しい段階順を生成しない。操作時permissionは受領順と独立して評価し、後日失効の判定は03aへ分ける。 四段階すべての有効な対応証拠と各段階のauthorityを確認できる場合だけ統合修復結果を完了とする。いずれかのauthorityが確認できない場合は当該段階を保留し、統合結果を未完了に保つ。
 
 ### CASE-INT-017-03a — 後日失効の非遡及正常（AC-INT-017-03）
 
@@ -274,7 +274,7 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 
 | CASE | 単独変異 | 期待結果・戻し先 |
 |---|---|---|
-| `CASE-INT-017-04a` | 操作時点のSECURITY permission authorityを確認できない（他の三段階は有効） | 該当fieldだけunknown/incompleteとして推測を止め、SECURITY permission/isolation ownerへ戻す。無関係な正常source/operationは保持する。 |
+| `CASE-INT-017-04a` | 操作時点のSECURITY permission authorityを確認できない（他の三段階は有効） | 該当fieldだけunknown/incompleteとして推測を止め、SECURITY permission/isolation ownerへ戻す。当該段階を保留し統合修復結果を未完了に保つ。無関係な正常source/operationは保持する。 |
 | `CASE-INT-017-04b` | Worker execution receiptのrevisionがunknown | 該当fieldだけunknown/incompleteとして推測を止め、Worker execution/result ownerへ戻す。無関係な正常source/operationは保持する。 |
 | `CASE-INT-017-04c` | HARNESS obligation適用scopeがunknown | 該当fieldだけunknown/incompleteとして推測を止め、HARNESS verification ownerへ戻す。無関係な正常source/operationは保持する。 |
 | `CASE-INT-017-04d` | OS acceptance対象revisionがunknown | 該当fieldだけunknown/incompleteとして推測を止め、OS acceptance ownerへ戻す。無関係な正常source/operationは保持する。 |
