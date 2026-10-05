@@ -1207,12 +1207,12 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | `CASE-OS-L10-031-076` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | 改善に必要な資源だけ不足。 | 改善を完了扱いせずINFRASTRUCTUREへ返す。|
 | `CASE-OS-L10-031-077` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | 不正に速い結果だけを新しいbaselineへ黙って採用。 | baseline更新を拒否し、原因と未完義務を保持する。|
 | `CASE-OS-L10-031-078` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | 旧60秒/3分を現行の全run共通SLOへ転記する。 | 旧環境・検査集合に限定した比較値として保持し、適用scope不明を未評価にする（L2-031:908）。|
-| `CASE-OS-L10-031-079` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | 旧比較値の数値そのものは保持し、適用対象の意味変更だけを要求ownerへ戻さずL3計測案で確定する。 | 意味判断とL3測定具体化を分け、値の意味は既存source/要求ownerへ返す（L2-031:908）。|
+| `CASE-OS-L10-031-079` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | 旧比較値の数値そのものは保持し、適用対象の意味変更だけを要求ownerへ戻さずL3計測案で確定する。 | 意味判断とL3測定具体化を分け、値の意味は既存source/要求ownerへ返す（L2-031:908、L11-031:508）。|
 | `CASE-OS-L10-031-080` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | ticketが定める必要義務・回収は記録されるが、固定nightly/full回収が未指定。 | 固定nightly/full runを追加要求せず、ticket駆動の義務・状態を保つ（L2-031:902, 908）。|
 | `CASE-OS-L10-031-081` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | 夜間補完が未実施で、ticketが要求するobligationは未回収のまま残る。 | 夜間補完未実施を義務消去に使わず、未回収義務を保持する（L2-031:908）。|
 | `CASE-OS-L10-031-082` | `HELIXOS-L2-031` / `AC-OS-L3-031-02` | correctness greenのみを性能予算達成の根拠として渡す。 | 正しさ証拠を性能状態へ流用せず、性能測定・予算根拠を独立して保持する（L2-031:905）。|
 | `CASE-OS-L10-031-083` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | LABOの観測proposalだけを入力にCI設定を変更する。 | proposalからCI設定を変更せず、修正は既存ticket/assignmentと許可へ戻す（L2-031:909）。|
-| `CASE-OS-L10-031-084` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | HARNESS検証契約を保持したまま、観測結果だけを根拠にauthorityを変更する。 | 観測からauthorityを変更せず、既存authorityとHARNESS検証契約を保持する（L2-031:907, 910）。|
+| `CASE-OS-L10-031-084` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | HARNESS検証契約を保持したまま、観測結果だけを根拠にauthorityを変更する。 | 観測からauthorityを変更せず、既存authorityとHARNESS検証契約を保持する（L2-031:907）。|
 | `CASE-OS-L10-031-085` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | 他の比較条件を保持し、旧比較値だけを根拠なく廃止する。 | 意味変更を現行の達成判定へ反映せず、既存source/要求ownerへ意味判断として返す（L2-031:908；L11-031:508）。|
 | `CASE-OS-L10-031-086` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | 旧比較値を存続させたまま、数値だけを根拠なく緩和する。 | 緩和した値を達成判定へ反映せず、旧比較値を保持して既存source/要求ownerへ意味判断を返す（L2-031:908；L11-031:508）。|
 | `CASE-OS-L10-031-087` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | authorityを保持したまま、観測結果だけを根拠にHARNESS検証契約を変更する。 | 観測から検証契約を変更せず、HARNESSの既存契約とauthorityを保持する（L2-031:907, 910）。|
