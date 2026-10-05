@@ -634,8 +634,8 @@ Stage 1 prefixはmain 28b3d3645e6298c159758700c2edd3d396c336f5の既存bytesを�
 
 | L10 case ID | FR / AC | 正常入力 | 単独変異 | 期待oracle・既存戻し先 |
 |---|---|---|---|---|
-| `CASE-HARNESS-L10-039-r03-api-permission-mismatch` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-04` | 同一screen scopeの画面/API permissionと対象revisionを照合する。 | APIだけ許可にしscreen側の拒否契約を保持する。 | mismatchをunknownにし、要求意味差は008、design trace/compositionなら026/025へ返す。 |
-| `CASE-HARNESS-L10-039-r03-css-token-mismatch` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-04` | CSS/component実体と選択token/design契約のsource/revisionが一致する。 | CSS/component側だけを不一致にする。 | 影響をunknownにし026/025へ返す。 |
+| `CASE-HARNESS-L10-039-r03-api-permission-mismatch` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-04` | `CASE-HARNESS-L10-039-r02-l11-648-api-permission`の索引参照。 | 独立変異として数えない。 | 参照先CASEの同じoracleを照合し二重計上しない。 |
+| `CASE-HARNESS-L10-039-r03-css-token-mismatch` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-04` | `CASE-HARNESS-L10-039-r02-l11-648-token`の索引参照。 | 独立変異として数えない。 | 参照先CASEの同じoracleを照合し二重計上しない。 |
 | `CASE-HARNESS-L10-039-r03-content-success-mismatch` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-04` | contentと要求された成功条件が同じscope/revisionで一致する。 | contentだけを成功条件と不一致にする。 | 内容差を成功扱いせず、意味差は008、設計関係は026/025へ返す。 |
 | `CASE-HARNESS-L10-039-r03-analytics-success-mismatch` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-04` | analytics eventと成功条件のrelationがcurrent。 | event/relationだけを成功条件と不一致にする。 | relationをunknownにし008/026/025の既存境界へ返す。 |
 | `CASE-HARNESS-L10-039-r03-screen-scope-stale` | `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-04` | selected screen scopeのidentity/revisionがcurrent。 | screen scopeだけをstaleにする。 | non-applicableへ落とさず024へ戻し、影響はunknownにする。 |
@@ -653,6 +653,6 @@ Stage 1 prefixはmain 28b3d3645e6298c159758700c2edd3d396c336f5の既存bytesを�
 | `CASE-HARNESS-L10-054-r03-authority-revision-change` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | authority revisionとhandoffがcurrent。 | authority revisionだけを変更する。 | dependent handoffをstaleとして再照合し、許可を推定しない。 |
 | `CASE-HARNESS-L10-054-r03-profile-revision-change` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | profile revisionとhandoffがcurrent。 | profile revisionだけを変更する。 | dependent handoffをstaleとしてOSの既存profile ownerへ返す。 |
 | `CASE-HARNESS-L10-054-r03-oracle-revision-change` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | verification oracle revisionとhandoffがcurrent。 | oracle revisionだけを変更する。 | dependent handoffをstaleとしてHARNESS oracle ownerへ返す。 |
-| `CASE-HARNESS-L10-054-r03-unseen-valid` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | 未見task-kind/domain/riskでも既存input relation・scope・revision・assignment/profileが有効な正常例。 | 未見であることだけを理由にrejectする。 | unknown意味範囲は保持しつつcandidate mappingを許容し、新enum/assignment/launch/permissionを作らない。 |
+| `CASE-HARNESS-L10-054-r03-unseen-valid` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | `CASE-HARNESS-L10-054-r02-unseen-valid`の索引参照。 | 独立変異として数えない。 | 参照先CASEの同じoracleを照合し二重計上しない。 |
 | `CASE-HARNESS-L10-054-r03-unselected-profile-unknown` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | 対象profile/oracleの選択状態を特定する。 | 未選択profile/oracleを選択済みとして推定する。 | unknown/deferを保ちHARNESS/OSの既存ownerへ戻す。 |
 | `CASE-HARNESS-L10-054-r03-l11-1156-unrevisioned-po` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | 配置Bまたは新必須artifactを必要とする場合、対象revision付きPO判断を照合する。 | 判断の対象revisionを欠落させる。 | 意味変更を確定せず、既存PO authorityへ対象revisionを添えて戻す。 |
