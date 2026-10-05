@@ -15,7 +15,7 @@ GitHubのIssue、PR、label、checkを追いかけて要求を推定する運用
 
 ## authority順序
 
-1. 対象revisionへ束縛した人間decision record。
+1. 対象revisionへ束縛した人間decision record。L3／L10では、POの委任による判断記録を含む（「L3／L10承認の委任」）。
 2. decision recordにより承認されたrepo-owned Concept、Vision、対象別L1、対象別L2とL11、および旧要求の無損失carry-forward記録。
 3. 承認済み要求から導出しfreezeしたL3とL10、以降の正規V-pair。
 4. 判断論点、known／assumption／unknown／conflict／staleを持つpremise packet、research、限定PoC、prototype、人間反応。これらは上流判断の証拠入力であり、単独では意味authorityを持たない。
@@ -111,6 +111,52 @@ PRの中でも要求identityごとにL3とL10の対を分けて書き、別の�
 
 二つ目から四つ目の理由となった事例は#2564である。8機構・全Stageの274件のL3／L10を一つの`design_verification` PRで扱い、
 11回の往復でmajorを減らせなかった。毎回、規則の書き写しと兄弟対象の取りこぼしが再発した。新しい人間承認手続きは加えない。
+
+## L3／L10承認の委任
+
+2026-10-05のPO判断（[判断記録](decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md)）により、
+`design_verification` PRのL3／L10の対象revision承認は、Opus（Claudeの`review_merge` lane）とFable（Claudeのadvisor）の見解が一致した場合に成立する。
+委任はL3／L10に限る。Concept、企画（L1）、要求とprototype／非UIの合意（L2）は人が判断する。要求の意味・範囲・担当・版を変える必要が出た場合は、L2へ戻してPOへ上げる。
+
+### 見解の一致
+
+次の三つが、同じ対象の本文revisionについてそろった場合だけ、見解が一致したとする。
+
+1. Opusの独立reviewが、exact base／content HEADについてBlocker、Major、Minor、未確認範囲をすべて0としている（`no_findings`）。
+2. Fableが、同じ本文revisionの6文書と固定親を自分で読み、承認を止める問題がないと結論している。Fableには、review経過を入力として渡してよいが、結論は本文と固定親を読んだうえでFable自身が出す。
+3. 1と2の後で、6文書のbytesが変わっていない。
+
+Fableが承認を止める問題を挙げた場合は、一致しない。Opusがその問題を固定親に照らして確かめ、妥当なら作成側へfindingとして返す。
+修正で本文revisionが変わった場合は、新しいrevisionについて1と2をやり直す。OpusとFableの判断が分かれたまま解けない場合は、両方の見解を添えてPOへ上げる。
+Fableが挙げたMinorだけの場合も、返すかどうかはOpusが固定親に照らして決める。返した場合は本文revisionが変わるので、1と2をやり直す。
+
+### 記録とmerge
+
+- Opusは、Fableの結論（承認可否、残る問題、照合した対象revision）を、Fableの本文から要約せずにPR commentへ記録する。Opusの`no_findings`も、従来どおりPR commentとmailboxで返す。
+- 作成側は、従来のPO判断記録と同じ形式で判断記録を加える。`decider_role`は`PO（委任：Opus・Fable一致）`とし、次を固定する。
+  - 本委任の判断記録
+  - Opusの`no_findings` commentとFableの結論commentのIDと、取得したbodyのSHA-256
+  - 承認対象の本文revisionと、6文書のSHA-256
+- review側は、判断記録の引用と、6文書が承認対象から変わっていないことを照合する。照合の後は、従来どおり作成側がReady化し、review側がmerge admissionを再照合して明示mergeする。
+- 委任による承認は、POの承認を待たない。本委任より前に受けたPO承認は、そのまま有効である。
+
+### POの事後確認
+
+機構のStageについて委任による承認がまとまった時点で、review側はPOへ一覧を出す。一覧には、PR、承認対象の本文revision、判断記録、OpusとFableの結論commentを並べる。
+POが差し戻すと判断した場合は、差し戻しの判断記録を作る。対象revisionの承認は、その判断記録で取り消し、該当する本文を修正のPRへ戻す。事後確認の前にmergeした内容は、差し戻しの判断記録が入るまで有効とする。
+
+### 旧HELIXとの対応
+
+- 旧`CLAUDE.md`（`LEGACY-ASSET-6EBDB617A8104A7756D0`、SHA-256 `7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb`）82–85行「自律境界」：人は企画・要求・デザインモックを持ち、L3要件は承認のみ、L3起草以下はAIが自走する。
+- 同195–197行：mainのbranch protectionで「人間 approve 不要 (PO 明示承認)」とし、品質ゲートをCIとクロスランタイムのreview証拠に置いた。
+
+保持する点は三つある。Concept、企画、要求とprototype／非UIの合意は人が持つ。L3はAIが起草する。不可逆な外部作用は、対象と作用を明示した許可を要する。
+
+変更する点は、L3要件の承認を、人が毎回行う形から、POの委任によりOpusとFableの見解の一致で成立する形へ移し、POは機構×Stageの区切りで事後確認することである。
+旧195–197行は、POの明示承認により、人のapproveを異なるruntimeのreview証拠へ置き換えていた。本節はこの置換えを、PRのapproveからL3の対象revision承認へ広げる。
+
+変更の理由は、POが「毎回承認するのは骨が折れるから最終チェックに周りてくれ」と指示したことである。影響として、L3／L10のPRは、PO承認待ちで止まらずにmergeまで進む。
+POの判断は、Concept・L1・L2と、L2へ戻す意味変更、および事後確認での差し戻しに残る。
 
 ## IssueとFeature Ticket
 

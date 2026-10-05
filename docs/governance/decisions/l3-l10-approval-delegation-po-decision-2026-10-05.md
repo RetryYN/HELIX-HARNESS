@@ -1,0 +1,64 @@
+---
+title: "L3／L10承認のAI 2者一致への委任 decision record（2026-10-05）"
+decision_record_id: HDEC-L3-L10-APPROVAL-DELEGATION-2026-10-05
+decision_status: recorded
+decider_role: PO
+decided_at: 2026-10-05
+recorded_at: 2026-10-05
+source_repository_revision: f54ea028ddd37fd9aea2924e500dafe9dbd72a62
+authority_effect: effective_when_this_record_is_admitted_to_main
+---
+
+# L3／L10承認のAI 2者一致への委任（2026-10-05）
+
+## 記録の範囲
+
+2026-10-05（Asia/Tokyo）のClaude作業session（`review_merge` lane、session `66d9c527-e899-4091-b8bb-240e5cdce85e`）で、
+POが今後の運用としてL3承認の委任を指示し、AIの問いに対して委任の範囲と事後確認の時期を選んだ。本書はその記録である。
+POの発言と選択はそのまま引用し、AIの整理と区別する。POが選んだ選択肢は、選択肢の説明文も含めてPOが選んだ内容として扱う。
+本記録は、本書がmainへ入った後のL3／L10承認の手続きを定める。本書より前のPO承認（CONNECT、HARNESS、BRAIN、INFRASTRUCTUREの各Stage 1）を取り消したり作り直したりしない。
+本記録から、Concept、企画（L1）、要求とprototype／非UIの合意（L2）、実装許可、release、Issue closeを生成しない。
+
+## POの指示
+
+AIが#2579（INFRASTRUCTURE Stage 1）の承認の扱いを報告した後の、POの指示：
+
+> あと今後の運用だが、FableとOpusの両見解が一致したら承認を通していいものとする。毎回承認するのは骨が折れるから最終チェックに周りてくれ。
+
+## AIの問いとPOの選択
+
+AIは、旧HELIXの自律境界ではL3が人の承認だけを行う層であり、これを委任する変更になることを示して、二つを問うた。
+
+一つ目の問い：
+
+> FableとOpusの見解が一致したら承認とする範囲はどこまで？（旧HELIXの自律境界では、L3は人が承認だけする層。今回はそこを委任する変更になる）
+
+POの選択：
+
+> L3／L10だけ（推奨）
+>
+> 要件と総合検証設計の承認だけを委任する。Concept・L1企画・L2要求・prototypeの合意は今までどおり人が判断する。要求の意味や範囲を変えるときは、今までどおりL2へ戻してPOへ上げる。
+
+選ばれなかった選択肢は「L3以下すべて」（L3に加えて、その下の層で人の判断を求められる箇所もAI 2者の一致で通す）である。
+
+二つ目の問い：
+
+> 「最終チェック」は、いつやる？
+
+POの選択：
+
+> 機構×Stageの区切りで一括（推奨）
+>
+> AI 2者が一致したPRはそのままmergeまで進める。機構のStageがまとまったら、承認したものの一覧をPOがまとめて事後確認する。問題があれば差し戻しの判断記録を作る。
+
+選ばれなかった選択肢は「merge前に毎回ひと目」（AI 2者の一致を見てから、merge前にPOがOKかNGを一言返す）である。
+
+## 決まったこと
+
+1. L3要件とL10総合検証設計の対象revisionの承認は、Opus（Claudeの`review_merge` lane）の独立reviewと、Fable（Claudeのadvisor）の独立確認の見解が、同じ対象revisionについて一致した場合に成立する。
+2. 委任はL3／L10に限る。Concept、企画（L1）、要求とprototype／非UIの合意（L2）は、今までどおり人が判断する。要求の意味・範囲・担当・版を変える必要が出た場合は、今までどおりL2へ戻してPOへ上げる。
+3. 一致したPRは、PO承認を待たずに判断記録の追加、Ready化、merge admission、mergeまで進める。
+4. POは、機構×Stageの区切りで、委任により承認したものの一覧をまとめて事後確認する。問題があれば差し戻しの判断記録を作る。
+
+手続きの詳細（「見解の一致」の条件、記録の形、一致しない場合の扱い、事後確認の一覧）は、
+[GitHub上流運用モデル](../github-upstream-operating-model.md)「L3／L10承認の委任」に置く。
