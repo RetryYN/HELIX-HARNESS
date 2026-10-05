@@ -1,0 +1,81 @@
+{
+  "record_kind": "delegated_decision_pins",
+  "authority_effect": "none",
+  "latest_main": "dcc72fc16a8058ee7da1e0cd5c9907dc125c90f4",
+  "review_base": "191ebab8c0b1871d7c8c84354976d7c0bc11c26e",
+  "reviewed_head": "bab8e2032dba1cedcf5c1b2d7f8a9579e4175750",
+  "body_revision": "6170f4d73afdf8537c2e67f38f61f020fd1e0240",
+  "delegation": {
+    "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+    "source_revision": "dcc72fc16a8058ee7da1e0cd5c9907dc125c90f4",
+    "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220"
+  },
+  "formal_comments": [
+    {
+      "role": "Opus no_findings",
+      "id": 5988561080,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2594#issuecomment-5988561080",
+      "body_utf8_bytes": 2795,
+      "body_sha256": "0e1756a227930564a9903d886a00c77514f7aea56bde736e24d9425f00b8beda"
+    },
+    {
+      "role": "Fable独立確認・Opus一致",
+      "id": 5988645503,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2594#issuecomment-5988645503",
+      "body_utf8_bytes": 13604,
+      "body_sha256": "6455b0e2f510e1b098851bad1ff55fa4c85e40ca8d9543c7d9b08c28a735546c"
+    }
+  ],
+  "approved_parents": [
+    {
+      "identity": "HELIXINTELLIGENCE-L2-010",
+      "registration": "MPR-RC-HELIXINTELLIGENCE-L2-010-004",
+      "kind": "unit",
+      "version": "1.0",
+      "stage": "Stage 2a"
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-066",
+      "registration": "MPR-RC-HELIXINTELLIGENCE-L2-066-003",
+      "kind": "connection",
+      "version": "1.0",
+      "stage": "Stage 2a"
+    }
+  ],
+  "fixed_requirements": {
+    "l2_l11_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "po_decision_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7"
+  },
+  "documents": [
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "sha256": "8bcb4d3c8b9c389c73537c765cba800347cc8807757b16715f9f9dff7d4ea833"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "sha256": "fab1115e08628841b6e48e951b749769b5070be6ed4e4cbdd548467c07d037fc"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "sha256": "9008bc9c23a8bbfc60a6ec308695b1cb37911e4066205725e16cc50a8786e2d7"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "sha256": "1f5c5fad4239f6738cd196bdb4af7a853db4bf0b383f958a3fa4c734b0506ad3"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "sha256": "acdf2c47ca838e309fac30241ae913e261b296c9489bc9509c0329a2a5addfe5"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "sha256": "0bf3903295c32f65147c45535a7143616274521eca6a71cb52204841ebaf4311"
+    }
+  ],
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-intelligence-stage2a-l3-l10-po-decision-2026-10-05.md",
+    "revision": "43d97859bdec9af7e0541ba0239b8c374e2a53fb",
+    "sha256": "e3238abcac25490218bbadcf340346df04a6aff742bfbdb3c953b56ded6cf279"
+  },
+  "verification": "6本文はcontent revision 6170f4d73とreviewed HEAD bab8e2032でbyte一致。両formal commentのUTF-8 body bytes/SHAと委任決定recordのSHAを取得本文・固定Git blobから検算。既存source時点記録を変更していない。"
+}
