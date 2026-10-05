@@ -149,7 +149,7 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 - **L10-BRAIN-INFRA-006-C03（親固有negative／AC-02）**：各Pattern名/復旧条件の欠落、予防だけのrecoverability結論、未実行を実行成功扱い。**期待oracle**：不成立reasonを特定し、実行/rollbackはProductまたはRuntime owner、意味はHELIXBRAIN-L1-010。
 - **L10-BRAIN-INFRA-006-C04（unknown/stale/対象不一致／AC-02）**：固定L2が明示するidentity/condition/relationだけを対象に、unknown、矛盾、別対象を一項目ずつ変異する。L2がsource/evidenceを要求しない箇所へ新しいevidence義務を足さない。**期待oracle**：AC-02に従い不成立またはunknownと戻し先を示し、成功/適用扱いにしない。
 - **L10-BRAIN-INFRA-006-C05（未見正常／AC-01）**：C01とは異なる合成fixtureで列挙外のCross-region Restore Rehearsal候補で予防策と復旧時の役割を別fieldに置き、実行結果は未観測とする。**期待oracle**：候補知識を保持し、実行・rollback成功を推定しない。
-- **L10-BRAIN-INFRA-006-C06（親固有negative／AC-02）**：C01の10候補を維持したままINFRA-010 relationがunknownであることだけを変える。**期待oracle**：006候補の評価を010完成待ちにせず、relation unknownを保つ。
+- **L10-BRAIN-INFRA-006-C06（親固有pair／AC-01/02）**：通常fixtureでは10候補を維持しINFRA-010 relationをunknownとして与える。**AC-01期待oracle**：006候補を独立に保持し、unknown relationのまま評価する。独立した一変異fixtureでは006成立に010完成を要求する。**AC-02期待oracle**：その追加gateを不成立として検出し、006候補を010完成待ちにせずrelation unknownを保つ。
 
 ### `HELIXBRAIN-L2-INFRA-007` — BRAIN-INFRA-007-FR-01 / AC-01, AC-02
 
@@ -261,6 +261,6 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 - **L10-BRAIN-INFRA-017-C03（親固有negative／AC-02）**：3軸の代入/欠落、4入力categoryの個別欠落、universal/mature誤昇格、failure隠蔽を個別fixtureで試す。**期待oracle**：不成立reasonを特定し、不足評価は昇格推定せずexperimental/observed candidateに留める。failureを保持したまま複数条件評価の入力として記録し、3軸の相互代入でstateを変更しない。
 - **L10-BRAIN-INFRA-017-C04（unknown/stale/対象不一致／AC-02）**：固定L2が明示するidentity/condition/relationだけを対象に、unknown、矛盾、別対象を一項目ずつ変異する。L2がsource/evidenceを要求しない箇所へ新しいevidence義務を足さない。**期待oracle**：AC-02に従い不成立またはunknownと戻し先を示し、成功/適用扱いにしない。
 - **L10-BRAIN-INFRA-017-C05（未見正常／AC-01）**：既存fixtureと異なるPatternへ4入力を揃え、maturity state/BRAIN version/project usage versionを異なる値で与える。複数条件評価やfailureは混ぜず、C06–C08で個別に照合する。**期待oracle**：3軸と固定4入力を同一対象revisionに保ち、failureを隠さず状態遷移を新閾値から推定しない。scopeは固定L2が列挙する必須inputに追加しない。
-- **L10-BRAIN-INFRA-017-C06（個別例／AC-01/02）**：他入力は同じまま、一回だけの内部Product success inputのみ与える。**期待oracle**：一回のsuccessとして記録し、universal/matureへ自動遷移しない。
+- **L10-BRAIN-INFRA-017-C06（個別pair／AC-01/02）**：通常fixtureでは他入力を同じまま一回だけの内部Product success inputを与える。**AC-01期待oracle**：一回のsuccessとして記録し、固定親が定めないmaturity値を推定しない。独立した一変異fixtureでは同じsuccessだけからuniversal/matureへ昇格する。**AC-02期待oracle**：誤昇格を不成立として検出する。
 - **L10-BRAIN-INFRA-017-C07（個別例／AC-01）**：別fixtureで、複数条件のLABO評価inputを与える。**期待oracle**：評価入力・対象revisionを保持し、成功/成熟状態への遷移値は固定親に無いため推定しない。
-- **L10-BRAIN-INFRA-017-C08（個別例／AC-02）**：別fixtureでfailure発見inputだけを与える。**期待oracle**：failureを隠さず対象revisionへ結び、C06/C07の入力と混合せず、成功へ変換しない。
+- **L10-BRAIN-INFRA-017-C08（個別pair／AC-01/02）**：通常fixtureではfailure発見inputだけを与える。**AC-01期待oracle**：failureを対象revisionへ結び、C06/C07の入力と混合せず保持する。独立した一変異fixtureではfailureを隠すか成功inputへ変換する。**AC-02期待oracle**：failure隠蔽・success変換を不成立として検出し、maturity昇格を推定しない。

@@ -27,7 +27,7 @@
 | `HELIXBRAIN-L2-INFRA-003` | L2 20 atomic fieldとL11 18 groupを各100%照合する候補。trade-offとevidenceは別group。根拠は固定列挙。 | 20 fieldと18 groupを別分母にし、各欠落・stale・対象違いを個別測定。field別evidence/scope義務の追加もnegativeにする。 | 重み付き総合値は欠落を相殺するため使わない。 |
 | `HELIXBRAIN-L2-INFRA-004` | 10 NFR characteristicと親記載のPattern/Input relationの保持候補100%。NIO-L3-01/02のtyped input/design obligationを類例にする。 | characteristic、Pattern、Input/relationの個別欠落・unknownを測る。要求閾値は新設しない。 | evidence義務やNFR ownerをNIOから移さない。 |
 | `HELIXBRAIN-L2-INFRA-005` | 13 failure×6観点=78 cellを保持する候補100%。正常構成と同一knowledge identity/hierarchy/relationで結ぶことも照合。 | 各cellと正常構成relationの欠落を独立変異し、未見failure候補は別normal fixtureで測る。 | 設計候補の存在を実incident証拠とみなさない。 |
-| `HELIXBRAIN-L2-INFRA-006` | 10 recovery候補と予防/復旧区分の保持候補100%。INFRA-010 relation unknownでも独立評価できる。 | 各候補/区分を個別欠落し、C06で010 relation unknown時も006を保つ。 | 他親完成待ちや実復旧成功の尺度にしない。 |
+| `HELIXBRAIN-L2-INFRA-006` | 10 recovery候補と予防/復旧区分の保持候補100%。INFRA-010 relation unknownでも独立評価できる。 | 各候補/区分を個別欠落し、C06でunknown relation保持と誤った010完成gateを対にして測る。 | 他親完成待ちや実復旧成功の尺度にしない。 |
 | `HELIXBRAIN-L2-INFRA-007` | 6 deployment方式×6比較軸=36 cellの保持候補100%。 | 各方式/軸を変異し、release actionと段階/state進行を別々に負例測定。 | NIO-L10-05はrollback/permanent-fix区別の類例に限る。実deploy結果を測らない。 |
 | `HELIXBRAIN-L2-INFRA-008` | Vertical/Horizontal 8候補×6軸=48 cellの保持候補100%。size/scale増大を目的化しない。 | 各cellを欠落/unknown/stale/wrong-targetへ変異し、size/scale目的化negativeとworkload未指定normalを個別測定。 | workload/SLO閾値や自動scaling実行能力を追加しない。 |
 | `HELIXBRAIN-L2-INFRA-009` | 11 design observation pointとPattern/failure relationの保持候補100%。 | 各点/relation欠落、raw telemetry知識化、missing/stale/collector停止の誤healthy化を個別測定。 | 固定親外のsecret/PII処理契約は設けない。 |
@@ -38,4 +38,4 @@
 | `HELIXBRAIN-L2-INFRA-014` | 9 relation typeのtype/endpoints/meaning、および固定2 topology例を保持する候補。 | 2例・relation fieldを照合し、unlisted topologyでも未指定edgeをunknownで保持するか測る。 | actual topologyの正しさを測定しない。 |
 | `HELIXBRAIN-L2-INFRA-015` | 固定Domain-pair relationのdirection/evidence/uncertaintyを保持する候補。根拠のないassertive relationを誤受理0候補とする。 | endpoint/direction欠落とunlisted pairを測り、may-affect＋unknownは許容、causesへの根拠ない強化をnegativeとする。 | relationの全件適用率や新しいevidence gateは作らない。 |
 | `HELIXBRAIN-L2-INFRA-016` | 11 anti-pattern×4要素(condition/manifestation/detection clue/alternative)=44 cellを照合する候補。L11 signalはmanifestationとdetection clueの双方へ対応。 | 44 cellとsignalの二つの対応先を別々に欠落変異し、条件外のuniversal banをnegativeにする。 | legacy NIO-L10-06 secret/PIIは独立要件にせず、固定INFRA-016親外として除外。 |
-| `HELIXBRAIN-L2-INFRA-017` | 6 maturity states、BRAIN version、project usage version、および利用実績/failure/反例/LABO評価の固定4入力を保持する候補。 | 3軸・4入力をそれぞれ欠落/不一致変異し、一回success、複数条件評価、failureを独立fixtureで測る。 | scopeを新規必須入力にしない。state閾値や普遍適用基準を作らない。 |
+| `HELIXBRAIN-L2-INFRA-017` | 6 maturity states、BRAIN version、project usage version、および利用実績/failure/反例/LABO評価の固定4入力を保持する候補。 | 3軸・4入力をそれぞれ欠落/不一致変異し、C06の一回success保持/誤昇格とC08のfailure保持/隠蔽を対にして測る。 | scopeを新規必須入力にしない。state閾値や普遍適用基準を作らない。 |

@@ -26,7 +26,7 @@
 | `HELIXBRAIN-L2-INFRA-003` | L2 20 atomic fieldとL11 18 groupの別分母。trade-off/evidenceは別field。field別evidence/scope義務の追加も変異。 | `L10-BRAIN-INFRA-003-C01–C05`。各分母のcoverage候補100%、missing/unknown/stale/対象違いを別記録。 | 2分母を統合した加重scoreを作らない。 |
 | `HELIXBRAIN-L2-INFRA-004` | 10 characteristic、Pattern、required Design Input/relationを個別欠落・unknown化。NIO-L3-01/02はtyped input/design obligation類例。 | `L10-BRAIN-INFRA-004-C01–C05`。値を創作せず、HARNESS/Product Core戻し先を照合。 | 製品閾値、NFR ownerを新設しない。 |
 | `HELIXBRAIN-L2-INFRA-005` | 13 failure×6観点=78 cellと、normal configurationへの同一identity/hierarchy/relationを測定。未見failureは別normal fixture。 | `L10-BRAIN-INFRA-005-C01–C05`。各cellと正常構成relationの欠落を別記録。 | 設計候補を実incident証拠にしない。 |
-| `HELIXBRAIN-L2-INFRA-006` | 10 recovery候補と予防/復旧区分を独立に欠落。010 relation unknownのまま006を照合。 | `L10-BRAIN-INFRA-006-C01–C06`。各候補/区分に加えC06の独立成立を記録。 | INFRA-010 completionをgateにしない。 |
+| `HELIXBRAIN-L2-INFRA-006` | 10 recovery候補と予防/復旧区分を独立に欠落。010 relation unknownのまま006を照合。 | `L10-BRAIN-INFRA-006-C01–C06`。C06のunknown relation通常fixtureと010完成gate誤変異を対で測る。 | INFRA-010 completionをgateにしない。 |
 | `HELIXBRAIN-L2-INFRA-007` | 6方式×6軸=36 cell。release/deployment actionとstage/state進行を別々にnegative投入。 | `L10-BRAIN-INFRA-007-C01–C06`。36 cellとC06 progress negativeを別集計。 | 実deployの結果を主張しない。 |
 | `HELIXBRAIN-L2-INFRA-008` | 8候補×6軸=48 cell。size/scale目的化negative、unknown workload normalを個別測定。 | `L10-BRAIN-INFRA-008-C01–C05`。cell欠落と未知workload扱いを観測し、unknownを適用可へ変換しない。 | 実行能力、workload閾値、SLOを追加しない。 |
 | `HELIXBRAIN-L2-INFRA-009` | 11 design observation pointsとPattern/failure relations。raw telemetry知識化、missing/stale/collector停止をnegative投入。 | `L10-BRAIN-INFRA-009-C01–C05`。設計観測点の被覆とfalse healthyを別に記録する。 | 独立secret/PII契約を追加しない。 |
@@ -37,5 +37,5 @@
 | `HELIXBRAIN-L2-INFRA-014` | 固定2 topology例と9 relation type/type/endpoints/meaning。 | `L10-BRAIN-INFRA-014-C01–C05`。固定例とunlisted topologyを照合し、undeclared edgeはunknownで保持。 | 実topology完全性を主張しない。 |
 | `HELIXBRAIN-L2-INFRA-015` | 固定Domain pair relationとunlisted pair。direction/evidence/uncertaintyを個別変異。 | `L10-BRAIN-INFRA-015-C01–C05`。may-affect＋unknownを許容し、根拠ないcauses強化だけを誤受理扱い。 | 全pair適用率やevidence gateなし。 |
 | `HELIXBRAIN-L2-INFRA-016` | 11 anti-pattern×4要素=44 cell。L11 signalはmanifestation/detection clue両方へ対応。 | `L10-BRAIN-INFRA-016-C01–C05`。44 cell、signal対応、条件外universal banを別観測。 | 固定親にないsecret/PII条件を追加しない。 |
-| `HELIXBRAIN-L2-INFRA-017` | 6 state、BRAIN version/project versionの別軸と固定4入力を個別欠落・不一致。success、複数条件評価、failureは別fixture。 | `L10-BRAIN-INFRA-017-C01–C08`。対象revisionとの結合、failure保持と非昇格を測る。 | scopeを新規必須にせず、state閾値を作らない。 |
+| `HELIXBRAIN-L2-INFRA-017` | 6 state、BRAIN version/project versionの別軸と固定4入力を個別欠落・不一致。success、複数条件評価、failureは別fixture。 | `L10-BRAIN-INFRA-017-C01–C08`。C06は一回success保持と誤昇格、C08はfailure保持と隠蔽/成功変換を対で測る。 | scopeを新規必須にせず、state閾値を作らない。 |
 値は起草候補で未承認・未実測であり、結果をL3承認、実装許可、運用実績へ読み替えない。
