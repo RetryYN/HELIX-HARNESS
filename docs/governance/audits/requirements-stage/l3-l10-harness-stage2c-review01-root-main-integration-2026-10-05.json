@@ -1,0 +1,129 @@
+{
+  "record_kind": "creator_review01_acceptance_and_main_integration",
+  "authority_effect": "none",
+  "base": "afd1d491842bd9715241f2d092bca54b39cc8810",
+  "merge_revision": "d01f8c4e83762e5c16ea39116c158780e30781ee",
+  "body_revision": "94cc206b3c85537b4779d721bb7d43c0abd36da6",
+  "worker_head": "764f832631c9e742103d821175a9674152a8bbc6",
+  "six_body_bytes_unchanged_by_main_merge": true,
+  "root_read": "initial 6 complete correction diffs and added2 full diffs;fixed L11408–461 plus six added historical spans",
+  "recalculated": {
+    "source_full_and_raw": 40,
+    "current_literal_raw": 679,
+    "whole_sha_main_prefix_suffix": 6,
+    "old_4_records_unchanged": true,
+    "prior_correction_audit_and_summary_unchanged": true,
+    "current_summary_sha": true
+  },
+  "documents": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "body_revision": "94cc206b3c85537b4779d721bb7d43c0abd36da6",
+      "full_file_sha256": "0507e96d15a2a5b9c617001ab5ea63c91bb201e768f73adbe215b53a7cc09d62",
+      "physical_line_count": 290,
+      "approved_main_prefix_revision": "91660f403d203dff92a50ac7f5484db6ab13f96d",
+      "approved_main_prefix_scope": "approved main bytes; preserve exact parent/stage prefix",
+      "approved_main_prefix_sha256": "280658542c51186f0f3dc509ad9d1e070e1f56224509046d344239b95bb36069",
+      "approved_main_prefix_byte_length": 66882,
+      "stage2c_suffix_sha256": "47ca09c784d527761eff95db07518dc467adff296b225ffc94eafcfa5a598645",
+      "stage2c_suffix_byte_length": 20061,
+      "stage2c_suffix_line_count": 55,
+      "stage2c_suffix_target_physical_lines": {
+        "start": 236,
+        "end": 290
+      }
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "body_revision": "94cc206b3c85537b4779d721bb7d43c0abd36da6",
+      "full_file_sha256": "ccb3f6ec5d7b3c51f629f8615977ef25319eae9426fc52d4dae0962fd3f41d5b",
+      "physical_line_count": 55,
+      "approved_main_prefix_revision": "91660f403d203dff92a50ac7f5484db6ab13f96d",
+      "approved_main_prefix_scope": "approved main bytes; preserve exact parent/stage prefix",
+      "approved_main_prefix_sha256": "9ed7ce73cb08dab385ea95a7ea10527fb0b2e7ba600da6189705bc987c62f01f",
+      "approved_main_prefix_byte_length": 4857,
+      "stage2c_suffix_sha256": "6f74b3962b41a59a843bd258e5bd8f19f03c488a082e75e4d917079ae0e59434",
+      "stage2c_suffix_byte_length": 1453,
+      "stage2c_suffix_line_count": 11,
+      "stage2c_suffix_target_physical_lines": {
+        "start": 45,
+        "end": 55
+      }
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "body_revision": "94cc206b3c85537b4779d721bb7d43c0abd36da6",
+      "full_file_sha256": "65c899c65f3f76c3d36d65ab750305e2460afc1e3d4c77067547c26a7b4aa2a9",
+      "physical_line_count": 98,
+      "approved_main_prefix_revision": "91660f403d203dff92a50ac7f5484db6ab13f96d",
+      "approved_main_prefix_scope": "approved main bytes; preserve exact parent/stage prefix",
+      "approved_main_prefix_sha256": "1200a1126a0b35c2cc2a7a663dd8d92061bec6cea79bea04f73ef905123b99b9",
+      "approved_main_prefix_byte_length": 19618,
+      "stage2c_suffix_sha256": "68f2748223f071d74ed6573e0c9f0dcb34c7ae794710c67a572819bc7a3ac8f1",
+      "stage2c_suffix_byte_length": 4274,
+      "stage2c_suffix_line_count": 18,
+      "stage2c_suffix_target_physical_lines": {
+        "start": 81,
+        "end": 98
+      }
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "body_revision": "94cc206b3c85537b4779d721bb7d43c0abd36da6",
+      "full_file_sha256": "5e3bbd8ca5371aa16d3f7433de0553c769340726c3cbb9e40603353a010304cf",
+      "physical_line_count": 138,
+      "approved_main_prefix_revision": "91660f403d203dff92a50ac7f5484db6ab13f96d",
+      "approved_main_prefix_scope": "approved main bytes; preserve exact parent/stage prefix",
+      "approved_main_prefix_sha256": "4fcc42b00175efcf16385e2faad69225dad805ec437566f2f54ff24c4615910d",
+      "approved_main_prefix_byte_length": 48258,
+      "stage2c_suffix_sha256": "92bb731df8818914e3da6b56b82c70ce923e1dfd7fc0a3a1fddedc0fd1a73880",
+      "stage2c_suffix_byte_length": 9924,
+      "stage2c_suffix_line_count": 22,
+      "stage2c_suffix_target_physical_lines": {
+        "start": 117,
+        "end": 138
+      }
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "body_revision": "94cc206b3c85537b4779d721bb7d43c0abd36da6",
+      "full_file_sha256": "48d60b8752a8bc404cc7a3c0874f3322f93405fabaabe358067daa0945542acf",
+      "physical_line_count": 29,
+      "approved_main_prefix_revision": "91660f403d203dff92a50ac7f5484db6ab13f96d",
+      "approved_main_prefix_scope": "approved main bytes; preserve exact parent/stage prefix",
+      "approved_main_prefix_sha256": "58126fbd50da8f652ebe82e4a24594e86d24a3aa130a98473047ab268122ffe2",
+      "approved_main_prefix_byte_length": 3223,
+      "stage2c_suffix_sha256": "ae652eeec0dc5b4f0d0f4071e16036026ab4abc9d442237c726d89d6c7cc7110",
+      "stage2c_suffix_byte_length": 652,
+      "stage2c_suffix_line_count": 3,
+      "stage2c_suffix_target_physical_lines": {
+        "start": 27,
+        "end": 29
+      }
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "body_revision": "94cc206b3c85537b4779d721bb7d43c0abd36da6",
+      "full_file_sha256": "b9e844b83dbbdbac8f79b1cbc4f7df5d9fc32cfbe06a963cd1777d8ccced4c60",
+      "physical_line_count": 69,
+      "approved_main_prefix_revision": "91660f403d203dff92a50ac7f5484db6ab13f96d",
+      "approved_main_prefix_scope": "approved main bytes; preserve exact parent/stage prefix",
+      "approved_main_prefix_sha256": "c453fe97f167f89ca66817299ed8b30d34e2951dbb481fc898cc0a93ea251f1d",
+      "approved_main_prefix_byte_length": 12918,
+      "stage2c_suffix_sha256": "0e7d08108b140d1c5a260216b6eb1ddbb465b86325de51c14f75949a6df55911",
+      "stage2c_suffix_byte_length": 4036,
+      "stage2c_suffix_line_count": 18,
+      "stage2c_suffix_target_physical_lines": {
+        "start": 52,
+        "end": 69
+      }
+    }
+  ],
+  "audit": {
+    "path": "docs/governance/audits/requirements-stage/l3-l10-harness-stage2c-review01-followup-2026-10-05-94cc206b3.json",
+    "sha256": "9cce200230fb19d5273705656c9f2ef97bb5db603f96ee0c60b6686e6acb131e"
+  },
+  "limitations": [
+    "独立再review・委任承認・旧C13 closureを生成しない。"
+  ]
+}
