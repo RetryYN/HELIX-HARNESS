@@ -1,0 +1,71 @@
+{
+  "authority_effect": "なし。本文修正の作成側記録。旧判断を継承せず独立再reviewを依頼する。",
+  "exact_base": "3b63e2a99f82d83e8ad76e9b33dc1199924f9a7c",
+  "body_revision": "5ade9866f0b184e6f3da78551e123e2b33b5859c",
+  "formal_review_comment": 5989812640,
+  "formal_review_raw_utf8_sha256": "1c5acb738e95f5634d42288471c2cf0b0230529011328ff0fec4a1ec7cd7b79b",
+  "returned_observation": 1,
+  "retained_observations": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "source": {
+    "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+    "full_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+    "physical_line": 699,
+    "literal": "- **失敗時の戻し先／未完義務**：検証不足・oracle欠落・環境違いは未完としてHARNESS契約またはticketへ返す。中断・失敗では同じHEAD/義務/許可境界に束縛した未完状態を引き継ぐ。",
+    "raw_lf_sha256": "583e88a726a3c44e9597ce32459451dbb39192b428b2681557a48d721235bfc2"
+  },
+  "change": {
+    "path": "docs/helix-os/L10-verification/functional-verification.md",
+    "physical_line": 451,
+    "old_locator": "L2:700",
+    "new_locator": "L2:699",
+    "new_literal": "| `CASE-OS-020-02h` | declared environment identityを別環境へ変更 | resultを対象runへ流用せずunfinishedとし、HARNESS契約またはticketへ戻す（固定L2:699、L11:364） |",
+    "raw_lf_sha256": "22976f6108b3300dce3ecd90d3b829353ee738747f951a8f9298b4c362630409"
+  },
+  "canonical_documents": [
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "sha256": "ca5242813debd8ba7c253fca7eab03a33d41afd8629aa4bd49cb607358f56426",
+      "bytes": 78655,
+      "approved_main_prefix_preserved": true
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "sha256": "962e1e8e69ed1741df81e8cbde8d6e3dd2b20065fdd3fbd6a670ad9fc4e14320",
+      "bytes": 11491,
+      "approved_main_prefix_preserved": true
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "sha256": "7bc05bf76903ac81705d333f4c5183d9d04b3a30e4429fde6903e2455abcf681",
+      "bytes": 16041,
+      "approved_main_prefix_preserved": true
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "sha256": "a925e5c84143cecb4e479f8f5bfb36f84515cfdc69effad3192a2dcc88da427c",
+      "bytes": 89649,
+      "approved_main_prefix_preserved": true
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "sha256": "b609bd995910f89c25bc2fed790463c4573509ed5b331f7716395d6c5fdb657a",
+      "bytes": 7937,
+      "approved_main_prefix_preserved": true
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "sha256": "37a5ce98c2d7a868b6c951e6bc1cea3a95b2010c23651e1129625ba0958c539c",
+      "bytes": 14456,
+      "approved_main_prefix_preserved": true
+    }
+  ],
+  "previous_audits": "全て不変。旧review03/04の見落としをこの追補に記録。"
+}

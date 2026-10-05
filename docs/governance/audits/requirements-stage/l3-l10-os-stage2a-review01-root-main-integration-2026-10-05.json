@@ -1,0 +1,48 @@
+{
+  "record_kind": "root-repair-acceptance-main-integration",
+  "authority_effect": "none",
+  "pr": 2593,
+  "base": "dcc72fc16a8058ee7da1e0cd5c9907dc125c90f4",
+  "body_revision": "bd501fd65c5ad682742abccc6892b15978d8e8f5",
+  "integration_commit": "76b856689f452f8a35b6c15e7e4d3904ef7d7c7e",
+  "documents": [
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "full_sha256": "ca00181fc2c2c72e369fcef2cd3841334c4fdde3b90d510cd0a3fe30cb3ab1a5",
+      "byte_length": 48837,
+      "physical_lines": 177
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "full_sha256": "7705468af6fcab66fad891656823822da6c5db6c0d80b12d400e3427f9003396",
+      "byte_length": 10610,
+      "physical_lines": 49
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "full_sha256": "7256cd547370037e81f8051051c267b50fa057f1e8073ca2aa9aed1c5db5f18f",
+      "byte_length": 11524,
+      "physical_lines": 57
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "full_sha256": "7fe2b69c44f5a74bea9d99796499b01b1112b826cfc6efce500574b15b3c634e",
+      "byte_length": 63686,
+      "physical_lines": 417
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "full_sha256": "f05878da21e3367323b2d06de55bd93d1a944d953e499e912d3ad571d3bb5b75",
+      "byte_length": 6931,
+      "physical_lines": 34
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "full_sha256": "c9dd3e24c9f84d770a3d1d6485a6eab9dbe8c5e4c228fba304e462492e68b2f1",
+      "byte_length": 10497,
+      "physical_lines": 53
+    }
+  ],
+  "root_verification": "最初のreview01修正6本文/固定018002 sourceを実読し51source/210literal検算。追加修正6差分・JPsummary実読、3source/29literal/6SHA-prefix/旧4時点記録不変を再検算。最新main通常mergeで6本文不変、static147/0 stale0 res0 gov7622/57/58 diffPASS。",
+  "independent_review": "pending"
+}
