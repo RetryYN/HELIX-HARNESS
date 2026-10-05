@@ -20,4 +20,4 @@
 
 ## Stage 5 — HELIXSECURITY-L2-027
 
-固定親に独立business outcome/KPI/ACはない。三経路のSECURITY判定とsink受渡しをbusiness成功へ変換しない。SECURITY-AC-027-01〜05とSECURITY-CASE-027-001〜087を対functional文書で照合する。各sink固有の業務意味・保存/評価/登録結果は当該owner契約に残す。
+固定親に独立business outcome/KPI/ACはない。三経路のSECURITY判定とsink受渡しをbusiness成功へ変換しない。SECURITY-AC-027-01〜05とSECURITY-CASE-027-001〜093を対functional文書で照合する。各sink固有の業務意味・保存/評価/登録結果は当該owner契約に残す。

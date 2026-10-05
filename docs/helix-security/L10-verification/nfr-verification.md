@@ -60,4 +60,4 @@ Stage 2cの分母は検査結果を読む前に適用条件から固定する。
 
 CASE-NFR-SECURITY-027-01はSEC-NFR-027-01を対functional CASEで照合する。各経路のrequired-field集合を選択契約から先に固定し、planned/required/checked、false_accept、missing/unknown/not_observed/unexecuted理由を別記録する。Nrequired=0は割合なし、未実行fixtureは実測なし。正しいdeny/holdの境界確認を保存successに数えない。
 
-SECURITY-CASE-027-001〜087を対象とし、各CASEは別runで入力tupleと観測結果を保持する。各sink固有工程は選択した接続契約だけを照合し、全経路のLABO/OS工程数を分母へ追加しない。候補誤受理0件は固定親の失敗を成功へ変換しないoracle比較でありSLO/実行合格ではない。
+SECURITY-CASE-027-001〜093を対象とし、各CASEは別runで入力tupleと観測結果を保持する。各sink固有工程は選択した接続契約だけを照合し、全経路のLABO/OS工程数を分母へ追加しない。候補誤受理0件は固定親の失敗を成功へ変換しないoracle比較でありSLO/実行合格ではない。

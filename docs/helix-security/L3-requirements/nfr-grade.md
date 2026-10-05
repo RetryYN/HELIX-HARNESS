@@ -90,4 +90,4 @@ Stage 2cの分母は検査結果を読む前に適用条件から固定する。
 
 SEC-NFR-027-01：対象source/provenance/classification・判定・sink結果のrequired-field照合、経路間証拠流用とdeny/hold→保存successの誤変換0件を候補oracleとする。集約green一つで確認する案と各経路を独立traceする案を比較し、固定親L2:337–339/L11:51を保つ後者を候補とする。latency、retention、最低標本数、実保存成功率を追加しない。
 
-対象CASEはSECURITY-CASE-027-001〜087、AC-027-01〜05。0件は定義された合成fixtureでの誤受理候補であり実測値ではない。missing/unknown/未選択/未観測/未実行は達成0へ丸めない。
+対象CASEはSECURITY-CASE-027-001〜093、AC-027-01〜05。0件は定義された合成fixtureでの誤受理候補であり実測値ではない。missing/unknown/未選択/未観測/未実行は達成0へ丸めない。
