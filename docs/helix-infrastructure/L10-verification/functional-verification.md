@@ -421,3 +421,936 @@ L2-005は採択済み依存入力であり、L3/L10対象ではない。005の�
 | CASE-INFRA-008-S4-73 | INFRA-008-AC-02 | 承認生成負例 | actual/design/targetのbytesは一切変更せず、actualにapproved designの承認状態だけを付ける。 | 承認状態の生成を拒否し、入力bytesと既存承認状態を保持してCORE/design ownerへ返す。actualを承認designへ昇格しない。 |
 
 全CASEでinput/output identity、source/revision/scope、適用条件、対象owner、target確定/比較/接続の各状態、保持した未完義務を記録する。025移動は元資源と移動先を別に観測する。必要観測missingは設計上の期待拒否と、後続検証そのものの未実行を分ける。
+
+## Stage 5 追加範囲 — HELIXINFRASTRUCTURE-L2-011
+
+このL10候補はINFRA-011-FR-01 / AC-01..04と対を成す。固定親は `f6dad2a33e24f000b87d7f09b8d40288257e74cc` のL2/L11、Stage5 scopeはregistration `MPR-RC-HELIXINFRASTRUCTURE-L2-011-003`。候補設計であり実行結果ではない。
+
+### CASE-INFRA-011-S5-001–126 — 18項目×7 variant
+
+各行は単独fixtureで、当該項目のvariantだけを変える。正常行は同じ契約に適合する未見identity/typeでも、未見名称だけを理由に拒否しない。負例は他入力を正常に固定し、期待拒否/保留と未完義務をsource-qualifiedに確認する。
+
+#### CASE-INFRA-011-S5-001 — 項目01 資源identity / normal
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目01「資源identity」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: resource identity・type・role・source/revision・CORE design identity/revision。
+- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-002 — 項目01 資源identity / missing
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目01「資源identity」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: resource identity・type・role・source/revision・CORE design identity/revision。
+- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-003 — 項目01 資源identity / unknown
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目01「資源identity」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の値をunknownにする。必須evidence: resource identity・type・role・source/revision・CORE design identity/revision。
+- 期待結果: unknownを正常/非適用/availableへ昇格しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-004 — 項目01 資源identity / unobserved
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目01「資源identity」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 必要な観測結果だけを未観測にする。必須evidence: resource identity・type・role・source/revision・CORE design identity/revision。
+- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-005 — 項目01 資源identity / stale
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目01「資源identity」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: resource identity・type・role・source/revision・CORE design identity/revision。
+- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-006 — 項目01 資源identity / mismatch
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目01「資源identity」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: resource identity・type・role・source/revision・CORE design identity/revision。
+- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-007 — 項目01 資源identity / unauthorized
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目01「資源identity」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: resource identity・type・role・source/revision・CORE design identity/revision。
+- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-008 — 項目02 Topology / normal
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目02「Topology」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: declared topology・dependency・scope・source/revision。
+- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE topology source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-009 — 項目02 Topology / missing
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目02「Topology」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: declared topology・dependency・scope・source/revision。
+- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE topology source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-010 — 項目02 Topology / unknown
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目02「Topology」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の値をunknownにする。必須evidence: declared topology・dependency・scope・source/revision。
+- 期待結果: unknownを正常/非適用/availableへ昇格しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE topology source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-011 — 項目02 Topology / unobserved
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目02「Topology」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 必要な観測結果だけを未観測にする。必須evidence: declared topology・dependency・scope・source/revision。
+- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE topology source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-012 — 項目02 Topology / stale
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目02「Topology」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: declared topology・dependency・scope・source/revision。
+- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE topology source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-013 — 項目02 Topology / mismatch
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目02「Topology」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: declared topology・dependency・scope・source/revision。
+- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE topology source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-014 — 項目02 Topology / unauthorized
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目02「Topology」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: declared topology・dependency・scope・source/revision。
+- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE topology source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-015 — 項目03 Environment / normal
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目03「Environment」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: environment identity・resource mapping・source/revision。
+- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE environment source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-016 — 項目03 Environment / missing
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目03「Environment」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: environment identity・resource mapping・source/revision。
+- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE environment source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-017 — 項目03 Environment / unknown
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目03「Environment」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の値をunknownにする。必須evidence: environment identity・resource mapping・source/revision。
+- 期待結果: unknownを正常/非適用/availableへ昇格しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE environment source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-018 — 項目03 Environment / unobserved
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目03「Environment」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 必要な観測結果だけを未観測にする。必須evidence: environment identity・resource mapping・source/revision。
+- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE environment source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-019 — 項目03 Environment / stale
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目03「Environment」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: environment identity・resource mapping・source/revision。
+- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE environment source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-020 — 項目03 Environment / mismatch
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目03「Environment」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: environment identity・resource mapping・source/revision。
+- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE environment source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-021 — 項目03 Environment / unauthorized
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目03「Environment」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: environment identity・resource mapping・source/revision。
+- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE environment source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-022 — 項目04 Desired/Actual分離 / normal
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目04「Desired/Actual分離」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: desiredとactualの別identity・revision・scope・source。
+- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
+- AC / 差戻し: `INFRA-011-AC-01`; CORE desired/design owner / INFRASTRUCTURE actual resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-023 — 項目04 Desired/Actual分離 / missing
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目04「Desired/Actual分離」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: desiredとactualの別identity・revision・scope・source。
+- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; CORE desired/design owner / INFRASTRUCTURE actual resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-024 — 項目04 Desired/Actual分離 / unknown
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目04「Desired/Actual分離」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の値をunknownにする。必須evidence: desiredとactualの別identity・revision・scope・source。
+- 期待結果: unknownを正常/非適用/availableへ昇格しない。
+- AC / 差戻し: `INFRA-011-AC-01`; CORE desired/design owner / INFRASTRUCTURE actual resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-025 — 項目04 Desired/Actual分離 / unobserved
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目04「Desired/Actual分離」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 必要な観測結果だけを未観測にする。必須evidence: desiredとactualの別identity・revision・scope・source。
+- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
+- AC / 差戻し: `INFRA-011-AC-01`; CORE desired/design owner / INFRASTRUCTURE actual resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-026 — 項目04 Desired/Actual分離 / stale
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目04「Desired/Actual分離」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: desiredとactualの別identity・revision・scope・source。
+- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; CORE desired/design owner / INFRASTRUCTURE actual resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-027 — 項目04 Desired/Actual分離 / mismatch
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目04「Desired/Actual分離」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: desiredとactualの別identity・revision・scope・source。
+- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
+- AC / 差戻し: `INFRA-011-AC-01`; CORE desired/design owner / INFRASTRUCTURE actual resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-028 — 項目04 Desired/Actual分離 / unauthorized
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目04「Desired/Actual分離」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: desiredとactualの別identity・revision・scope・source。
+- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
+- AC / 差戻し: `INFRA-011-AC-01`; CORE desired/design owner / INFRASTRUCTURE actual resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-029 — 項目05 Drift / normal
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目05「Drift」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: expected/actual comparison input・revision・difference evidence。
+- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
+- AC / 差戻し: `INFRA-011-AC-01`; CORE approved expected-state owner / INFRASTRUCTURE actual source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-030 — 項目05 Drift / missing
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目05「Drift」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: expected/actual comparison input・revision・difference evidence。
+- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; CORE approved expected-state owner / INFRASTRUCTURE actual source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-031 — 項目05 Drift / unknown
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目05「Drift」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の値をunknownにする。必須evidence: expected/actual comparison input・revision・difference evidence。
+- 期待結果: unknownを正常/非適用/availableへ昇格しない。
+- AC / 差戻し: `INFRA-011-AC-01`; CORE approved expected-state owner / INFRASTRUCTURE actual source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-032 — 項目05 Drift / unobserved
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目05「Drift」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 必要な観測結果だけを未観測にする。必須evidence: expected/actual comparison input・revision・difference evidence。
+- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
+- AC / 差戻し: `INFRA-011-AC-01`; CORE approved expected-state owner / INFRASTRUCTURE actual source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-033 — 項目05 Drift / stale
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目05「Drift」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: expected/actual comparison input・revision・difference evidence。
+- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; CORE approved expected-state owner / INFRASTRUCTURE actual source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-034 — 項目05 Drift / mismatch
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目05「Drift」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: expected/actual comparison input・revision・difference evidence。
+- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
+- AC / 差戻し: `INFRA-011-AC-01`; CORE approved expected-state owner / INFRASTRUCTURE actual source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-035 — 項目05 Drift / unauthorized
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目05「Drift」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: expected/actual comparison input・revision・difference evidence。
+- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
+- AC / 差戻し: `INFRA-011-AC-01`; CORE approved expected-state owner / INFRASTRUCTURE actual source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-036 — 項目06 Compute/Network/Storage / normal
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目06「Compute/Network/Storage」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: 適用resource属性・network path・storage state・source/revision。
+- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource/path/storage owner; CONNECT path contract where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-037 — 項目06 Compute/Network/Storage / missing
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目06「Compute/Network/Storage」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: 適用resource属性・network path・storage state・source/revision。
+- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource/path/storage owner; CONNECT path contract where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-038 — 項目06 Compute/Network/Storage / unknown
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目06「Compute/Network/Storage」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の値をunknownにする。必須evidence: 適用resource属性・network path・storage state・source/revision。
+- 期待結果: unknownを正常/非適用/availableへ昇格しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource/path/storage owner; CONNECT path contract where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-039 — 項目06 Compute/Network/Storage / unobserved
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目06「Compute/Network/Storage」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 必要な観測結果だけを未観測にする。必須evidence: 適用resource属性・network path・storage state・source/revision。
+- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource/path/storage owner; CONNECT path contract where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-040 — 項目06 Compute/Network/Storage / stale
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目06「Compute/Network/Storage」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: 適用resource属性・network path・storage state・source/revision。
+- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource/path/storage owner; CONNECT path contract where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-041 — 項目06 Compute/Network/Storage / mismatch
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目06「Compute/Network/Storage」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: 適用resource属性・network path・storage state・source/revision。
+- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource/path/storage owner; CONNECT path contract where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-042 — 項目06 Compute/Network/Storage / unauthorized
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目06「Compute/Network/Storage」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: 適用resource属性・network path・storage state・source/revision。
+- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource/path/storage owner; CONNECT path contract where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-043 — 項目07 Model/Worker Runtime / normal
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目07「Model/Worker Runtime」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: runtime/model/Worker identity・version・resource relationship・source。
+- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime/resource owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-044 — 項目07 Model/Worker Runtime / missing
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目07「Model/Worker Runtime」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: runtime/model/Worker identity・version・resource relationship・source。
+- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime/resource owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-045 — 項目07 Model/Worker Runtime / unknown
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目07「Model/Worker Runtime」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の値をunknownにする。必須evidence: runtime/model/Worker identity・version・resource relationship・source。
+- 期待結果: unknownを正常/非適用/availableへ昇格しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime/resource owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-046 — 項目07 Model/Worker Runtime / unobserved
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目07「Model/Worker Runtime」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 必要な観測結果だけを未観測にする。必須evidence: runtime/model/Worker identity・version・resource relationship・source。
+- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime/resource owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-047 — 項目07 Model/Worker Runtime / stale
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目07「Model/Worker Runtime」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: runtime/model/Worker identity・version・resource relationship・source。
+- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime/resource owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-048 — 項目07 Model/Worker Runtime / mismatch
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目07「Model/Worker Runtime」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: runtime/model/Worker identity・version・resource relationship・source。
+- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime/resource owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-049 — 項目07 Model/Worker Runtime / unauthorized
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目07「Model/Worker Runtime」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: runtime/model/Worker identity・version・resource relationship・source。
+- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime/resource owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-050 — 項目08 Capacity / normal
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目08「Capacity」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: declared capacity・observation・source/revision・decision reference。
+- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE measurement owner / OS or INTELLIGENCE decision owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-051 — 項目08 Capacity / missing
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目08「Capacity」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: declared capacity・observation・source/revision・decision reference。
+- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE measurement owner / OS or INTELLIGENCE decision owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-052 — 項目08 Capacity / unknown
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目08「Capacity」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の値をunknownにする。必須evidence: declared capacity・observation・source/revision・decision reference。
+- 期待結果: unknownを正常/非適用/availableへ昇格しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE measurement owner / OS or INTELLIGENCE decision owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-053 — 項目08 Capacity / unobserved
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目08「Capacity」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 必要な観測結果だけを未観測にする。必須evidence: declared capacity・observation・source/revision・decision reference。
+- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE measurement owner / OS or INTELLIGENCE decision owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-054 — 項目08 Capacity / stale
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目08「Capacity」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: declared capacity・observation・source/revision・decision reference。
+- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE measurement owner / OS or INTELLIGENCE decision owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-055 — 項目08 Capacity / mismatch
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目08「Capacity」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: declared capacity・observation・source/revision・decision reference。
+- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE measurement owner / OS or INTELLIGENCE decision owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-056 — 項目08 Capacity / unauthorized
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目08「Capacity」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: declared capacity・observation・source/revision・decision reference。
+- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE measurement owner / OS or INTELLIGENCE decision owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-057 — 項目09 Observability / normal
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目09「Observability」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: observation value or explicit unknown・source/revision・coverage。
+- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
+- AC / 差戻し: `INFRA-011-AC-01`; observation source/collector owner; INFRASTRUCTURE state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-058 — 項目09 Observability / missing
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目09「Observability」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: observation value or explicit unknown・source/revision・coverage。
+- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; observation source/collector owner; INFRASTRUCTURE state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-059 — 項目09 Observability / unknown
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目09「Observability」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の値をunknownにする。必須evidence: observation value or explicit unknown・source/revision・coverage。
+- 期待結果: unknownを正常/非適用/availableへ昇格しない。
+- AC / 差戻し: `INFRA-011-AC-01`; observation source/collector owner; INFRASTRUCTURE state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-060 — 項目09 Observability / unobserved
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目09「Observability」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 必要な観測結果だけを未観測にする。必須evidence: observation value or explicit unknown・source/revision・coverage。
+- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
+- AC / 差戻し: `INFRA-011-AC-01`; observation source/collector owner; INFRASTRUCTURE state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-061 — 項目09 Observability / stale
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目09「Observability」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: observation value or explicit unknown・source/revision・coverage。
+- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; observation source/collector owner; INFRASTRUCTURE state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-062 — 項目09 Observability / mismatch
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目09「Observability」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: observation value or explicit unknown・source/revision・coverage。
+- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
+- AC / 差戻し: `INFRA-011-AC-01`; observation source/collector owner; INFRASTRUCTURE state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-063 — 項目09 Observability / unauthorized
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目09「Observability」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: observation value or explicit unknown・source/revision・coverage。
+- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
+- AC / 差戻し: `INFRA-011-AC-01`; observation source/collector owner; INFRASTRUCTURE state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-064 — 項目10 Incident state / normal
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目10「Incident state」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: approved source classification・incident reference・source/revision。
+- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
+- AC / 差戻し: `INFRA-011-AC-01`; approved incident-meaning owner / INFRASTRUCTURE observation source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-065 — 項目10 Incident state / missing
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目10「Incident state」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: approved source classification・incident reference・source/revision。
+- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; approved incident-meaning owner / INFRASTRUCTURE observation source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-066 — 項目10 Incident state / unknown
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目10「Incident state」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の値をunknownにする。必須evidence: approved source classification・incident reference・source/revision。
+- 期待結果: unknownを正常/非適用/availableへ昇格しない。
+- AC / 差戻し: `INFRA-011-AC-01`; approved incident-meaning owner / INFRASTRUCTURE observation source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-067 — 項目10 Incident state / unobserved
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目10「Incident state」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 必要な観測結果だけを未観測にする。必須evidence: approved source classification・incident reference・source/revision。
+- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
+- AC / 差戻し: `INFRA-011-AC-01`; approved incident-meaning owner / INFRASTRUCTURE observation source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-068 — 項目10 Incident state / stale
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目10「Incident state」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: approved source classification・incident reference・source/revision。
+- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; approved incident-meaning owner / INFRASTRUCTURE observation source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-069 — 項目10 Incident state / mismatch
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目10「Incident state」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: approved source classification・incident reference・source/revision。
+- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
+- AC / 差戻し: `INFRA-011-AC-01`; approved incident-meaning owner / INFRASTRUCTURE observation source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-070 — 項目10 Incident state / unauthorized
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目10「Incident state」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: approved source classification・incident reference・source/revision。
+- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
+- AC / 差戻し: `INFRA-011-AC-01`; approved incident-meaning owner / INFRASTRUCTURE observation source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-071 — 項目11 Backup/Restore / normal
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目11「Backup/Restore」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: backup artifact and separate actual restore evidence・scope/revision。
+- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
+- AC / 差戻し: `INFRA-011-AC-01`; state owner / recovery design owner; INFRASTRUCTURE evidence source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-072 — 項目11 Backup/Restore / missing
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目11「Backup/Restore」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: backup artifact and separate actual restore evidence・scope/revision。
+- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; state owner / recovery design owner; INFRASTRUCTURE evidence source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-073 — 項目11 Backup/Restore / unknown
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目11「Backup/Restore」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の値をunknownにする。必須evidence: backup artifact and separate actual restore evidence・scope/revision。
+- 期待結果: unknownを正常/非適用/availableへ昇格しない。
+- AC / 差戻し: `INFRA-011-AC-01`; state owner / recovery design owner; INFRASTRUCTURE evidence source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-074 — 項目11 Backup/Restore / unobserved
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目11「Backup/Restore」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 必要な観測結果だけを未観測にする。必須evidence: backup artifact and separate actual restore evidence・scope/revision。
+- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
+- AC / 差戻し: `INFRA-011-AC-01`; state owner / recovery design owner; INFRASTRUCTURE evidence source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-075 — 項目11 Backup/Restore / stale
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目11「Backup/Restore」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: backup artifact and separate actual restore evidence・scope/revision。
+- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; state owner / recovery design owner; INFRASTRUCTURE evidence source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-076 — 項目11 Backup/Restore / mismatch
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目11「Backup/Restore」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: backup artifact and separate actual restore evidence・scope/revision。
+- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
+- AC / 差戻し: `INFRA-011-AC-01`; state owner / recovery design owner; INFRASTRUCTURE evidence source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-077 — 項目11 Backup/Restore / unauthorized
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目11「Backup/Restore」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: backup artifact and separate actual restore evidence・scope/revision。
+- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
+- AC / 差戻し: `INFRA-011-AC-01`; state owner / recovery design owner; INFRASTRUCTURE evidence source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-078 — 項目12 Rollback / normal
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目12「Rollback」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: eligible rollback target・procedure・result・unfinished duty。
+- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
+- AC / 差戻し: `INFRA-011-AC-01`; recovery design owner / OS operation owner where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-079 — 項目12 Rollback / missing
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目12「Rollback」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: eligible rollback target・procedure・result・unfinished duty。
+- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; recovery design owner / OS operation owner where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-080 — 項目12 Rollback / unknown
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目12「Rollback」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の値をunknownにする。必須evidence: eligible rollback target・procedure・result・unfinished duty。
+- 期待結果: unknownを正常/非適用/availableへ昇格しない。
+- AC / 差戻し: `INFRA-011-AC-01`; recovery design owner / OS operation owner where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-081 — 項目12 Rollback / unobserved
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目12「Rollback」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 必要な観測結果だけを未観測にする。必須evidence: eligible rollback target・procedure・result・unfinished duty。
+- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
+- AC / 差戻し: `INFRA-011-AC-01`; recovery design owner / OS operation owner where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-082 — 項目12 Rollback / stale
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目12「Rollback」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: eligible rollback target・procedure・result・unfinished duty。
+- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; recovery design owner / OS operation owner where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-083 — 項目12 Rollback / mismatch
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目12「Rollback」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: eligible rollback target・procedure・result・unfinished duty。
+- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
+- AC / 差戻し: `INFRA-011-AC-01`; recovery design owner / OS operation owner where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-084 — 項目12 Rollback / unauthorized
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目12「Rollback」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: eligible rollback target・procedure・result・unfinished duty。
+- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
+- AC / 差戻し: `INFRA-011-AC-01`; recovery design owner / OS operation owner where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-085 — 項目13 Deployment version / normal
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目13「Deployment version」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: runtime revision distinct from OS stage release identity。
+- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime version owner / OS stage identity owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-086 — 項目13 Deployment version / missing
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目13「Deployment version」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: runtime revision distinct from OS stage release identity。
+- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime version owner / OS stage identity owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-087 — 項目13 Deployment version / unknown
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目13「Deployment version」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の値をunknownにする。必須evidence: runtime revision distinct from OS stage release identity。
+- 期待結果: unknownを正常/非適用/availableへ昇格しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime version owner / OS stage identity owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-088 — 項目13 Deployment version / unobserved
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目13「Deployment version」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 必要な観測結果だけを未観測にする。必須evidence: runtime revision distinct from OS stage release identity。
+- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime version owner / OS stage identity owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-089 — 項目13 Deployment version / stale
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目13「Deployment version」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: runtime revision distinct from OS stage release identity。
+- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime version owner / OS stage identity owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-090 — 項目13 Deployment version / mismatch
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目13「Deployment version」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: runtime revision distinct from OS stage release identity。
+- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime version owner / OS stage identity owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-091 — 項目13 Deployment version / unauthorized
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目13「Deployment version」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: runtime revision distinct from OS stage release identity。
+- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime version owner / OS stage identity owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-092 — 項目14 Security connection / normal
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目14「Security connection」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: separate SECURITY authority reference・condition・source/revision。
+- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
+- AC / 差戻し: `INFRA-011-AC-01`; SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-093 — 項目14 Security connection / missing
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目14「Security connection」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: separate SECURITY authority reference・condition・source/revision。
+- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-094 — 項目14 Security connection / unknown
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目14「Security connection」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の値をunknownにする。必須evidence: separate SECURITY authority reference・condition・source/revision。
+- 期待結果: unknownを正常/非適用/availableへ昇格しない。
+- AC / 差戻し: `INFRA-011-AC-01`; SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-095 — 項目14 Security connection / unobserved
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目14「Security connection」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 必要な観測結果だけを未観測にする。必須evidence: separate SECURITY authority reference・condition・source/revision。
+- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
+- AC / 差戻し: `INFRA-011-AC-01`; SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-096 — 項目14 Security connection / stale
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目14「Security connection」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: separate SECURITY authority reference・condition・source/revision。
+- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-097 — 項目14 Security connection / mismatch
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目14「Security connection」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: separate SECURITY authority reference・condition・source/revision。
+- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
+- AC / 差戻し: `INFRA-011-AC-01`; SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-098 — 項目14 Security connection / unauthorized
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目14「Security connection」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: separate SECURITY authority reference・condition・source/revision。
+- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
+- AC / 差戻し: `INFRA-011-AC-01`; SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-099 — 項目15 OS connection / normal
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目15「OS connection」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: OS ticket/reference and runtime-state link・source/revision。
+- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
+- AC / 差戻し: `INFRA-011-AC-01`; OS work/change owner / INFRASTRUCTURE runtime state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-100 — 項目15 OS connection / missing
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目15「OS connection」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: OS ticket/reference and runtime-state link・source/revision。
+- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; OS work/change owner / INFRASTRUCTURE runtime state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-101 — 項目15 OS connection / unknown
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目15「OS connection」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の値をunknownにする。必須evidence: OS ticket/reference and runtime-state link・source/revision。
+- 期待結果: unknownを正常/非適用/availableへ昇格しない。
+- AC / 差戻し: `INFRA-011-AC-01`; OS work/change owner / INFRASTRUCTURE runtime state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-102 — 項目15 OS connection / unobserved
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目15「OS connection」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 必要な観測結果だけを未観測にする。必須evidence: OS ticket/reference and runtime-state link・source/revision。
+- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
+- AC / 差戻し: `INFRA-011-AC-01`; OS work/change owner / INFRASTRUCTURE runtime state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-103 — 項目15 OS connection / stale
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目15「OS connection」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: OS ticket/reference and runtime-state link・source/revision。
+- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; OS work/change owner / INFRASTRUCTURE runtime state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-104 — 項目15 OS connection / mismatch
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目15「OS connection」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: OS ticket/reference and runtime-state link・source/revision。
+- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
+- AC / 差戻し: `INFRA-011-AC-01`; OS work/change owner / INFRASTRUCTURE runtime state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-105 — 項目15 OS connection / unauthorized
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目15「OS connection」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: OS ticket/reference and runtime-state link・source/revision。
+- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
+- AC / 差戻し: `INFRA-011-AC-01`; OS work/change owner / INFRASTRUCTURE runtime state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-106 — 項目16 Runner execution (current Worker) / normal
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目16「Runner execution (current Worker)」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: Worker identity and execution contract / resource mapping / authority refs。
+- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
+- AC / 差戻し: `INFRA-011-AC-01`; Worker contract owner / OS work owner / SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-107 — 項目16 Runner execution (current Worker) / missing
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目16「Runner execution (current Worker)」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: Worker identity and execution contract / resource mapping / authority refs。
+- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; Worker contract owner / OS work owner / SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-108 — 項目16 Runner execution (current Worker) / unknown
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目16「Runner execution (current Worker)」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の値をunknownにする。必須evidence: Worker identity and execution contract / resource mapping / authority refs。
+- 期待結果: unknownを正常/非適用/availableへ昇格しない。
+- AC / 差戻し: `INFRA-011-AC-01`; Worker contract owner / OS work owner / SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-109 — 項目16 Runner execution (current Worker) / unobserved
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目16「Runner execution (current Worker)」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 必要な観測結果だけを未観測にする。必須evidence: Worker identity and execution contract / resource mapping / authority refs。
+- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
+- AC / 差戻し: `INFRA-011-AC-01`; Worker contract owner / OS work owner / SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-110 — 項目16 Runner execution (current Worker) / stale
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目16「Runner execution (current Worker)」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: Worker identity and execution contract / resource mapping / authority refs。
+- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; Worker contract owner / OS work owner / SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-111 — 項目16 Runner execution (current Worker) / mismatch
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目16「Runner execution (current Worker)」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: Worker identity and execution contract / resource mapping / authority refs。
+- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
+- AC / 差戻し: `INFRA-011-AC-01`; Worker contract owner / OS work owner / SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-112 — 項目16 Runner execution (current Worker) / unauthorized
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目16「Runner execution (current Worker)」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: Worker identity and execution contract / resource mapping / authority refs。
+- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
+- AC / 差戻し: `INFRA-011-AC-01`; Worker contract owner / OS work owner / SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-113 — 項目17 Bootstrap/Out-of-Band Recovery / normal
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目17「Bootstrap/Out-of-Band Recovery」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: independent path/resource・separate authority・Worker contract・result。
+- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE recovery-path owner / SECURITY authority owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-114 — 項目17 Bootstrap/Out-of-Band Recovery / missing
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目17「Bootstrap/Out-of-Band Recovery」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: independent path/resource・separate authority・Worker contract・result。
+- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE recovery-path owner / SECURITY authority owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-115 — 項目17 Bootstrap/Out-of-Band Recovery / unknown
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目17「Bootstrap/Out-of-Band Recovery」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の値をunknownにする。必須evidence: independent path/resource・separate authority・Worker contract・result。
+- 期待結果: unknownを正常/非適用/availableへ昇格しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE recovery-path owner / SECURITY authority owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-116 — 項目17 Bootstrap/Out-of-Band Recovery / unobserved
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目17「Bootstrap/Out-of-Band Recovery」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 必要な観測結果だけを未観測にする。必須evidence: independent path/resource・separate authority・Worker contract・result。
+- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE recovery-path owner / SECURITY authority owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-117 — 項目17 Bootstrap/Out-of-Band Recovery / stale
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目17「Bootstrap/Out-of-Band Recovery」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: independent path/resource・separate authority・Worker contract・result。
+- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE recovery-path owner / SECURITY authority owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-118 — 項目17 Bootstrap/Out-of-Band Recovery / mismatch
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目17「Bootstrap/Out-of-Band Recovery」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: independent path/resource・separate authority・Worker contract・result。
+- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE recovery-path owner / SECURITY authority owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-119 — 項目17 Bootstrap/Out-of-Band Recovery / unauthorized
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目17「Bootstrap/Out-of-Band Recovery」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: independent path/resource・separate authority・Worker contract・result。
+- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE recovery-path owner / SECURITY authority owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-120 — 項目18 Rebuildability / normal
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目18「Rebuildability」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: rebuild input inventory・dependency reconnection・startup verification・result。
+- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE rebuild/recovery owner; CORE/OS/SECURITY/Worker owners by input。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-121 — 項目18 Rebuildability / missing
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目18「Rebuildability」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: rebuild input inventory・dependency reconnection・startup verification・result。
+- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE rebuild/recovery owner; CORE/OS/SECURITY/Worker owners by input。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-122 — 項目18 Rebuildability / unknown
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目18「Rebuildability」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有の値をunknownにする。必須evidence: rebuild input inventory・dependency reconnection・startup verification・result。
+- 期待結果: unknownを正常/非適用/availableへ昇格しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE rebuild/recovery owner; CORE/OS/SECURITY/Worker owners by input。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-123 — 項目18 Rebuildability / unobserved
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目18「Rebuildability」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 必要な観測結果だけを未観測にする。必須evidence: rebuild input inventory・dependency reconnection・startup verification・result。
+- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE rebuild/recovery owner; CORE/OS/SECURITY/Worker owners by input。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-124 — 項目18 Rebuildability / stale
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目18「Rebuildability」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: rebuild input inventory・dependency reconnection・startup verification・result。
+- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE rebuild/recovery owner; CORE/OS/SECURITY/Worker owners by input。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-125 — 項目18 Rebuildability / mismatch
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目18「Rebuildability」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: rebuild input inventory・dependency reconnection・startup verification・result。
+- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE rebuild/recovery owner; CORE/OS/SECURITY/Worker owners by input。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+#### CASE-INFRA-011-S5-126 — 項目18 Rebuildability / unauthorized
+
+- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目18「Rebuildability」だけを変異する。他17項目と適用connectionは固定。
+- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: rebuild input inventory・dependency reconnection・startup verification・result。
+- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
+- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE rebuild/recovery owner; CORE/OS/SECURITY/Worker owners by input。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+
+### 4 operation-specific oracle — 個別CASE
+
+| CASE | 操作 | 入力と単独判定 | 期待結果 / 戻し先 |
+|---|---|---|---|
+| `CASE-INFRA-011-S5-127` | 通常read-only / no-change | 既存許可範囲内のread-only要求。operation前後のstate/revisionを別記し、operationに適用されないbackup/restore義務をこの操作の前提にしない。 | state不変を確認。要求外のread/write/operationを推定しない。観測不能はunknownとして該当source ownerへ戻す。 |
+| `CASE-INFRA-011-S5-128` | 適用recovery duty付きstate change | state-changing requestと、そのoperationに適用される既存recovery dutyだけを入力する。duty input、実行、結果を別に追跡する。 | 適用dutyが未完/unknownならoperation/compositeを成功にせず未完義務を保持し、recovery design/state ownerへ戻す。無関係なrecovery要件を追加しない。 |
+| `CASE-INFRA-011-S5-129` | 許可済みupdate | L2-010に基づくtarget/action/revision/scope、別SECURITY authority、Worker契約、許可とresultを個別入力する。 | 既存契約で許可されたupdateだけを照合。いずれか欠落/unknown/stale/mismatch/unauthorizedなら拒否しSECURITY/Worker/OS/resourceの該当ownerへ返す。L3候補から許可を生成しない。 |
+| `CASE-INFRA-011-S5-130` | OS停止中independent recovery | OS ticket/assignment/通常L2-009 responseは前提にしない。OS停止中にも利用可能な独立path/resource、別SECURITY authority、SECURITY制約下のWorker契約、recovery action/resultを入力する。再起動後のOS operation/result同期は独立に観測する。 | 停止OS経由を要求せず独立経路を評価する。SECURITY authority/path/Worker欠落は該当ownerへ戻す。OS復帰後syncが欠ければcomposite完了扱いせず未完義務を保持する。ticket不要は他操作のticket/authorityを免除しない。 |
+
+### Recovery/composite境界の固定反例
+
+| CASE | 単独変異 | oracle |
+|---|---|---|
+| `CASE-INFRA-011-S5-131` | backup artifact/job successだけを提示しrestore resultを欠く | backup evidenceと実restoreを別に判定。backupだけではrestore成功にしない。state/recovery ownerへrestore evidence不足を返す。 |
+| `CASE-INFRA-011-S5-132` | backup成功、restore integrity/reconnect/startup/verificationのうち1結果だけ失敗 | restore failureを記録し、成功・rollback完了へ昇格しない。recovery design ownerへ戻し未完を保持する。 |
+| `CASE-INFRA-011-S5-133` | artifact backup/restore成功を保ったままindependent bootstrap/recovery pathを欠落させる | restore successからindependent recoveryを推定せず、L2-006 ownerへpath欠落を戻す。 |
+| `CASE-INFRA-011-S5-134` | restoreとindependent recoveryを保ち、rebuild dependency reconnectionまたはstartup verificationだけ失敗させる | rebuildabilityを別oracleで失敗にし、部分結果と未完義務をrebuild/recovery ownerへ戻す。 |
+| `CASE-INFRA-011-S5-135` | OS ticketを欠く一方でOS停止中の独立recoveryの全契約入力/証拠を提示 | ticket欠落だけでindependent recoveryを拒否しない。OS復帰後のoperation/result syncは別に要求する。 |
+| `CASE-INFRA-011-S5-136` | independent routeのSECURITY authorityを欠落 | route/Worker結果があっても許可された独立recoveryとしない。SECURITY ownerへ戻す。 |
+| `CASE-INFRA-011-S5-137` | recovery resultはあるがOS復帰後同期だけ欠落 | recovery実行結果を保持するがcomposite closureは保留し、OS connection ownerへ未同期義務を戻す。 |
+| `CASE-INFRA-011-S5-138` | stage対象外の通常受入でOS-014 evidenceを要求 | OS-014を通常受入条件にせずscopeを維持。実際にOS Stage releaseへ収載する場合のみ該当収載証拠を別照合。 |
+| `CASE-INFRA-011-S5-139` | WEB顧客runtimeまたは後続version機能を1.0 inputへ追加 | 対象外scopeの追加を拒否し、L2-011 1.0 scopeを保持する。上流意味を変更しない。 |
+
+18項目それぞれの正常/6 variant全CASEは上記001–126で行単位に定義する。全CASEでresultに加えsource/revision、owner、unknown/unfinished state、期待拒否と未実施を区別して記録する。旧CLI、runtime、test、CIは起動しない。
+
+### Connection/composite独立fixture
+
+| CASE | connection | 単独入力とoracle |
+|---|---|---|
+| `CASE-INFRA-011-S5-140` | CORE design | design identity/revision/scope参照を一つずつ欠落/unknown/stale/mismatchにする。CORE connectionだけを保留し、CORE design ownerへ返す。 |
+| `CASE-INFRA-011-S5-141` | OS work/change | OS work referenceを欠落させる。OS connectionを保留するが、OS停止中独立recoveryのCASE-130にticket必須を追加しない。 |
+| `CASE-INFRA-011-S5-142` | SECURITY | separate authorityだけを欠落/unknown/mismatchにする。許可されたconnection/operationとして扱わずSECURITY ownerへ返す。 |
+| `CASE-INFRA-011-S5-143` | Worker | Worker execution contractだけを欠落/unknown/staleにする。resource unit成功だけでWorker connectionを成立させない。 |
+| `CASE-INFRA-011-S5-144` | composite | 18項目すべての必須evidenceと適用connectionを同じ対象scope/revisionへ束縛し、部分成功/未完義務がない正常入力を与える。composite判定を個別unit結果と別に記録する。 |
+
+**CASE-INFRA-011-S5-145**：composite正常入力から項目11のrestore evidenceだけを除く。backup/他17項目/connectionを維持し、compositeを保留してstate/recovery ownerへ返す。
+
+**CASE-INFRA-011-S5-146**：composite正常入力からCORE design revisionだけを不一致にする。unit項目結果を保持しつつCORE connectionとcompositeを保留する。
+
+**CASE-INFRA-011-S5-147**：composite正常入力で項目8 capacity値は観測できるがdecision ownerの判断は未提示にする。観測とOS/INTELLIGENCE採否を分け、INFRASTRUCTUREからcapacity approvalを生成しない。
+
+**CASE-INFRA-011-S5-148**：composite全体の入力・各item result・owner/revision traceが揃っても、外部承認/実行/配布状態は生成しない。L3候補から実装許可やoperation executionを推定しない。

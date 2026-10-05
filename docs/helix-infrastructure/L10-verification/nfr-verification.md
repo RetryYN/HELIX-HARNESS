@@ -79,3 +79,7 @@ L2-009/010用の数値候補は設定しない。対のL10では宣言済みsele
 | INFRA-NFR-025-S4 | 各CASE-INFRA-025-S4で選択Worker/資源の適用属性、隔離条件と観測、作業参照、移動前後の両資源状態/未完義務を事前列挙。比較候補1（Worker応答のみ）と比較候補2（実state/lineage観測）を比較する。 | 必須単位のvalue/unknown/source/revision、正常/保留/失敗ownerを各個別に観測する。非適用は既存契約と理由を別記し、不明を分母から除かない。未完義務消去/正本移管/unknown成立誤変換件数を記録。実隔離の可観測性を隔離合格に代用しない。 |
 
 予定単位をmissing-input、入力後の照合可能な結果、観測欠落、期間打切り等の主状態に重複なく分類し、併発理由を別に保つ。固定候補100%は可観測性の比較材料であり、未承認sourceを正常へ変えず、期待拒否の正しさを別判定する。1.0後のfreshness/confidence、自動配置/増減、business KPIをこの2親へ追加しない。旧test/runtime/CIを実行しない。
+
+## Stage 5 追加範囲 — HELIXINFRASTRUCTURE-L2-011
+
+測定対象は `INFRA-NFR-011-S5-01/02` の静的候補で、実行結果ではない。fixtureごとにparent/item/variant/operation、planned denominator、source/revision/owner、expected/observed disposition、unfinished dutyを記録する。固定L11:146由来のfalse acceptance 0は分類oracleの期待値としてだけ扱い、実装保証や実測合格としない。数値SLOを設けず、分母0なら率なし、未実行は未測定とする。CASE-127..130の4操作、CASE-131..139のrecovery/boundary反例、CASE-140..148のconnection/composite反例を混ぜて集計しない。

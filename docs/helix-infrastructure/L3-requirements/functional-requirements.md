@@ -397,3 +397,195 @@ Worker identity、Worker実行契約、OS ticket・要求・作業責務の参�
 | 025移動後の作業lineage・未完と両資源状態 | INFRA-025-FR-02 / INFRA-025-AC-03 | CASE-INFRA-025-S4の移動/失敗/再開fixture |
 | 025版・最適化非依存・010別契約 | INFRA-025-FR-02 / INFRA-025-AC-04 | CASE-INFRA-025-S4の境界変異 |
 | 025束ねる条件：最低項目7・16のWorker/資源区別と2026-09-26 Worker判断（固定L2:295） | INFRA-025-FR-01 / INFRA-025-AC-01 | CASE-INFRA-025-S4-01–02/93 |
+
+## Stage 5 追加範囲 — HELIXINFRASTRUCTURE-L2-011
+
+本追記の対象は採択済み `HELIXINFRASTRUCTURE-L2-011`、registration `MPR-RC-HELIXINFRASTRUCTURE-L2-011-003`、version 1.0 / Stage 5 のみ。固定L2/L11の意味・scope・ownerを保つ候補であり、L3承認、実装・操作・配布許可を生成しない。Stage 1–4の既存prefixは保持する。後続版、WEB顧客runtime、OS-014は通常の独立受入条件へ加えない。OS-014は実際にOS Stage releaseへ収載されるときだけ、その収載証拠を別に照合する。
+
+### 旧source起点と処置
+
+旧L3のFR+ACと対のL10検証という形式は `LEGACY-ASSET-F542125805B777D8A56A`（`archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md:148–168`）を起点に意味再導出する。旧gate/runtime/testの実行・権限は移さない。L2-011に直接対応する旧L3 requirement / paired consumer はinventoryの登録receiptでsource atom 0件。指定identity・指定語句の完全一致検索でも直接sourceは特定できていない。旧`infrastructure-operations-requirements-and-connections-source_v0.1.md:9–11`（`LEGACY-ASSET-`登録と資産台帳での全文pinは監査に記録）はNFR registry/measurement contractの隣接提案であり、直接successorではないため比較限定とする。意味上の全archive検索は未完で、旧source不在とは断定しない。
+
+POの18最低項目とL2最低項目対応表を起点にし、旧sourceの未確認箇所を推測で埋めず現在の採択済み固定L2/L11から再導出する。項目別の扱いは各行のowner/source boundaryに限定する。
+
+| # | 固定PO最低項目 | 固定L2対応 | 必須source/責務owner入力（項目固有） |
+|---:|---|---|---|
+| 01 | 資源identity | L2-001 | INFRASTRUCTURE resource source owner / CORE design owner: resource identity・type・role・source/revision・CORE design identity/revision |
+| 02 | Topology | L2-001/003 | INFRASTRUCTURE topology source owner / CORE design owner: declared topology・dependency・scope・source/revision |
+| 03 | Environment | L2-001 | INFRASTRUCTURE environment source owner: environment identity・resource mapping・source/revision |
+| 04 | Desired/Actual分離 | L2-002/008 | CORE desired/design owner / INFRASTRUCTURE actual resource owner: desiredとactualの別identity・revision・scope・source |
+| 05 | Drift | L2-002 | CORE approved expected-state owner / INFRASTRUCTURE actual source owner: expected/actual comparison input・revision・difference evidence |
+| 06 | Compute/Network/Storage | L2-001/003 | INFRASTRUCTURE resource/path/storage owner; CONNECT path contract where applicable: 適用resource属性・network path・storage state・source/revision |
+| 07 | Model/Worker Runtime | L2-001/003/025 | INFRASTRUCTURE runtime/resource owner / Worker contract owner: runtime/model/Worker identity・version・resource relationship・source |
+| 08 | Capacity | L2-003 | INFRASTRUCTURE measurement owner / OS or INTELLIGENCE decision owner: declared capacity・observation・source/revision・decision reference |
+| 09 | Observability | L2-004 | observation source/collector owner; INFRASTRUCTURE state owner: observation value or explicit unknown・source/revision・coverage |
+| 10 | Incident state | L2-004 | approved incident-meaning owner / INFRASTRUCTURE observation source owner: approved source classification・incident reference・source/revision |
+| 11 | Backup/Restore | L2-005 | state owner / recovery design owner; INFRASTRUCTURE evidence source owner: backup artifact and separate actual restore evidence・scope/revision |
+| 12 | Rollback | L2-005 | recovery design owner / OS operation owner where applicable: eligible rollback target・procedure・result・unfinished duty |
+| 13 | Deployment version | L2-001/009 | INFRASTRUCTURE runtime version owner / OS stage identity owner: runtime revision distinct from OS stage release identity |
+| 14 | Security connection | L2-010 | SECURITY authority owner / INFRASTRUCTURE resource owner: separate SECURITY authority reference・condition・source/revision |
+| 15 | OS connection | L2-009 | OS work/change owner / INFRASTRUCTURE runtime state owner: OS ticket/reference and runtime-state link・source/revision |
+| 16 | Runner execution (current Worker) | L2-010/025 | Worker contract owner / OS work owner / SECURITY authority owner / INFRASTRUCTURE resource owner: Worker identity and execution contract / resource mapping / authority refs |
+| 17 | Bootstrap/Out-of-Band Recovery | L2-006 | INFRASTRUCTURE recovery-path owner / SECURITY authority owner / Worker contract owner: independent path/resource・separate authority・Worker contract・result |
+| 18 | Rebuildability | L2-007/011 | INFRASTRUCTURE rebuild/recovery owner; CORE/OS/SECURITY/Worker owners by input: rebuild input inventory・dependency reconnection・startup verification・result |
+
+各項目は個別のevidence/resultを持つ。正常、欠落、unknown、未観測、stale、不一致、無権限は項目単独のfixtureとして列挙し、ひとつの失敗から複数field欠落を推定しない。staleは各sourceが持つ既存currentness条件との照合であり、新しい期限を定義しない。unit、CORE/OS/SECURITY/Worker接続、全項目を束ねるcomposite acceptanceは別判定とする。
+
+### INFRA-011-FR-01 — runtime infrastructure 1.0の最小要件閉包
+
+選択されたruntime infrastructure scopeについて、上表18項目それぞれの入力・期待・結果・evidenceをowner/source/revision付きで追跡する。各項目のunit成立、適用するCORE/OS/SECURITY/Worker connection、composite acceptanceを別々に判定する。親minimumが欠落、unknown、未観測、stale、不一致または無権限ならcompositeを成立させず、部分成功と未完義務を残す。容量の採否、incident意味、SECURITY authority、OS作業意味、Worker契約は対応する各ownerに保持し、INFRASTRUCTURE観測から生成しない。
+
+**INFRA-011-AC-01**: 18項目それぞれについて、宣言されたscope、入力identity/revision、source/owner、期待、観測結果、dispositionを個別に追跡できる。対象を網羅したとの主張は18項目の全行を根拠とし、mapping tableの存在だけでは成立しない。欠落・unknown・未観測・stale・不一致・無権限の項目を明示し、部分成功/未完義務/返却ownerを保持する。
+
+**INFRA-011-AC-02**: connectionはCORE設計、OS work/change、SECURITY authority、Worker実行契約/resourceの各契約を適用範囲に応じ個別照合する。資源のunit成功をconnection成功やcomposite成功に昇格しない。各connection failureはその契約/source ownerへ戻し、owner不明を推測で埋めずunknownとして残す。
+
+**INFRA-011-AC-03**: composite acceptanceは18項目と適用されるconnection結果の全参照を同じ対象scope/revisionへ結び付ける。backup artifact存在だけではrestore成立にせず、restore成功だけではindependent recoveryまたはrebuildability成立にせず、各resultと未完義務を保持する。
+
+**INFRA-011-AC-04**: runtime revisionをOS stage release identityと別に保持する。OS-014はこの候補scopeが実際にOS Stage releaseへ収載される場合だけ照合する。OS停止中の独立recoveryをOS ticket/assignmentまたは通常L2-009応答へ依存させず、独立path、別SECURITY authority、制約下Workerの実証拠で判定し、OS復帰後はoperation/resultを同期する。
+
+### INFRA-011-S5 各項目の単独変異fixture設計
+
+各行は基準入力から一つの項目/variantだけを変える候補である。全行で対象parent identity/version、scope、source/revision、expected result、観測結果、未完義務、ownerを記録する。以下は設計候補であり、未実行である。
+
+| fixture | item | variant | 単独入力変異 | oracle / 戻し先 |
+|---|---:|---|---|---|
+| `INFRA-011-S5-001` | 01 資源identity | normal | 対象source/current revisionを固定し、項目固有の必要入力を全て提示。scope/source/revisionは他の17項目で不変。 | その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。責務owner: INFRASTRUCTURE resource source owner / CORE design owner。 |
+| `INFRA-011-S5-002` | 01 資源identity | missing | 項目固有の必須入力を1つだけ除く。scope/source/revisionは他の17項目で不変。 | 欠落を明示し、その項目を未完として該当ownerへ返す。責務owner: INFRASTRUCTURE resource source owner / CORE design owner。 |
+| `INFRA-011-S5-003` | 01 資源identity | unknown | 項目固有の値をunknownにする。scope/source/revisionは他の17項目で不変。 | unknownを正常/非適用/availableへ昇格しない。責務owner: INFRASTRUCTURE resource source owner / CORE design owner。 |
+| `INFRA-011-S5-004` | 01 資源identity | unobserved | 必要な観測結果だけを未観測にする。scope/source/revisionは他の17項目で不変。 | unobservedをhealthy/成功へ丸めず、観測範囲を残す。責務owner: INFRASTRUCTURE resource source owner / CORE design owner。 |
+| `INFRA-011-S5-005` | 01 資源identity | stale | 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。scope/source/revisionは他の17項目で不変。 | staleをcurrentとして採用せず、該当source ownerへ返す。責務owner: INFRASTRUCTURE resource source owner / CORE design owner。 |
+| `INFRA-011-S5-006` | 01 資源identity | mismatch | 項目固有identity/revision/scopeの一つだけを不一致にする。scope/source/revisionは他の17項目で不変。 | 不一致を明示し、別revision/環境の証拠で補完しない。責務owner: INFRASTRUCTURE resource source owner / CORE design owner。 |
+| `INFRA-011-S5-007` | 01 資源identity | unauthorized | 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。scope/source/revisionは他の17項目で不変。 | 無権限入力で項目成立・意味変更・操作許可を生成しない。責務owner: INFRASTRUCTURE resource source owner / CORE design owner。 |
+| `INFRA-011-S5-008` | 02 Topology | normal | 対象source/current revisionを固定し、項目固有の必要入力を全て提示。scope/source/revisionは他の17項目で不変。 | その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。責務owner: INFRASTRUCTURE topology source owner / CORE design owner。 |
+| `INFRA-011-S5-009` | 02 Topology | missing | 項目固有の必須入力を1つだけ除く。scope/source/revisionは他の17項目で不変。 | 欠落を明示し、その項目を未完として該当ownerへ返す。責務owner: INFRASTRUCTURE topology source owner / CORE design owner。 |
+| `INFRA-011-S5-010` | 02 Topology | unknown | 項目固有の値をunknownにする。scope/source/revisionは他の17項目で不変。 | unknownを正常/非適用/availableへ昇格しない。責務owner: INFRASTRUCTURE topology source owner / CORE design owner。 |
+| `INFRA-011-S5-011` | 02 Topology | unobserved | 必要な観測結果だけを未観測にする。scope/source/revisionは他の17項目で不変。 | unobservedをhealthy/成功へ丸めず、観測範囲を残す。責務owner: INFRASTRUCTURE topology source owner / CORE design owner。 |
+| `INFRA-011-S5-012` | 02 Topology | stale | 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。scope/source/revisionは他の17項目で不変。 | staleをcurrentとして採用せず、該当source ownerへ返す。責務owner: INFRASTRUCTURE topology source owner / CORE design owner。 |
+| `INFRA-011-S5-013` | 02 Topology | mismatch | 項目固有identity/revision/scopeの一つだけを不一致にする。scope/source/revisionは他の17項目で不変。 | 不一致を明示し、別revision/環境の証拠で補完しない。責務owner: INFRASTRUCTURE topology source owner / CORE design owner。 |
+| `INFRA-011-S5-014` | 02 Topology | unauthorized | 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。scope/source/revisionは他の17項目で不変。 | 無権限入力で項目成立・意味変更・操作許可を生成しない。責務owner: INFRASTRUCTURE topology source owner / CORE design owner。 |
+| `INFRA-011-S5-015` | 03 Environment | normal | 対象source/current revisionを固定し、項目固有の必要入力を全て提示。scope/source/revisionは他の17項目で不変。 | その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。責務owner: INFRASTRUCTURE environment source owner。 |
+| `INFRA-011-S5-016` | 03 Environment | missing | 項目固有の必須入力を1つだけ除く。scope/source/revisionは他の17項目で不変。 | 欠落を明示し、その項目を未完として該当ownerへ返す。責務owner: INFRASTRUCTURE environment source owner。 |
+| `INFRA-011-S5-017` | 03 Environment | unknown | 項目固有の値をunknownにする。scope/source/revisionは他の17項目で不変。 | unknownを正常/非適用/availableへ昇格しない。責務owner: INFRASTRUCTURE environment source owner。 |
+| `INFRA-011-S5-018` | 03 Environment | unobserved | 必要な観測結果だけを未観測にする。scope/source/revisionは他の17項目で不変。 | unobservedをhealthy/成功へ丸めず、観測範囲を残す。責務owner: INFRASTRUCTURE environment source owner。 |
+| `INFRA-011-S5-019` | 03 Environment | stale | 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。scope/source/revisionは他の17項目で不変。 | staleをcurrentとして採用せず、該当source ownerへ返す。責務owner: INFRASTRUCTURE environment source owner。 |
+| `INFRA-011-S5-020` | 03 Environment | mismatch | 項目固有identity/revision/scopeの一つだけを不一致にする。scope/source/revisionは他の17項目で不変。 | 不一致を明示し、別revision/環境の証拠で補完しない。責務owner: INFRASTRUCTURE environment source owner。 |
+| `INFRA-011-S5-021` | 03 Environment | unauthorized | 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。scope/source/revisionは他の17項目で不変。 | 無権限入力で項目成立・意味変更・操作許可を生成しない。責務owner: INFRASTRUCTURE environment source owner。 |
+| `INFRA-011-S5-022` | 04 Desired/Actual分離 | normal | 対象source/current revisionを固定し、項目固有の必要入力を全て提示。scope/source/revisionは他の17項目で不変。 | その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。責務owner: CORE desired/design owner / INFRASTRUCTURE actual resource owner。 |
+| `INFRA-011-S5-023` | 04 Desired/Actual分離 | missing | 項目固有の必須入力を1つだけ除く。scope/source/revisionは他の17項目で不変。 | 欠落を明示し、その項目を未完として該当ownerへ返す。責務owner: CORE desired/design owner / INFRASTRUCTURE actual resource owner。 |
+| `INFRA-011-S5-024` | 04 Desired/Actual分離 | unknown | 項目固有の値をunknownにする。scope/source/revisionは他の17項目で不変。 | unknownを正常/非適用/availableへ昇格しない。責務owner: CORE desired/design owner / INFRASTRUCTURE actual resource owner。 |
+| `INFRA-011-S5-025` | 04 Desired/Actual分離 | unobserved | 必要な観測結果だけを未観測にする。scope/source/revisionは他の17項目で不変。 | unobservedをhealthy/成功へ丸めず、観測範囲を残す。責務owner: CORE desired/design owner / INFRASTRUCTURE actual resource owner。 |
+| `INFRA-011-S5-026` | 04 Desired/Actual分離 | stale | 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。scope/source/revisionは他の17項目で不変。 | staleをcurrentとして採用せず、該当source ownerへ返す。責務owner: CORE desired/design owner / INFRASTRUCTURE actual resource owner。 |
+| `INFRA-011-S5-027` | 04 Desired/Actual分離 | mismatch | 項目固有identity/revision/scopeの一つだけを不一致にする。scope/source/revisionは他の17項目で不変。 | 不一致を明示し、別revision/環境の証拠で補完しない。責務owner: CORE desired/design owner / INFRASTRUCTURE actual resource owner。 |
+| `INFRA-011-S5-028` | 04 Desired/Actual分離 | unauthorized | 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。scope/source/revisionは他の17項目で不変。 | 無権限入力で項目成立・意味変更・操作許可を生成しない。責務owner: CORE desired/design owner / INFRASTRUCTURE actual resource owner。 |
+| `INFRA-011-S5-029` | 05 Drift | normal | 対象source/current revisionを固定し、項目固有の必要入力を全て提示。scope/source/revisionは他の17項目で不変。 | その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。責務owner: CORE approved expected-state owner / INFRASTRUCTURE actual source owner。 |
+| `INFRA-011-S5-030` | 05 Drift | missing | 項目固有の必須入力を1つだけ除く。scope/source/revisionは他の17項目で不変。 | 欠落を明示し、その項目を未完として該当ownerへ返す。責務owner: CORE approved expected-state owner / INFRASTRUCTURE actual source owner。 |
+| `INFRA-011-S5-031` | 05 Drift | unknown | 項目固有の値をunknownにする。scope/source/revisionは他の17項目で不変。 | unknownを正常/非適用/availableへ昇格しない。責務owner: CORE approved expected-state owner / INFRASTRUCTURE actual source owner。 |
+| `INFRA-011-S5-032` | 05 Drift | unobserved | 必要な観測結果だけを未観測にする。scope/source/revisionは他の17項目で不変。 | unobservedをhealthy/成功へ丸めず、観測範囲を残す。責務owner: CORE approved expected-state owner / INFRASTRUCTURE actual source owner。 |
+| `INFRA-011-S5-033` | 05 Drift | stale | 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。scope/source/revisionは他の17項目で不変。 | staleをcurrentとして採用せず、該当source ownerへ返す。責務owner: CORE approved expected-state owner / INFRASTRUCTURE actual source owner。 |
+| `INFRA-011-S5-034` | 05 Drift | mismatch | 項目固有identity/revision/scopeの一つだけを不一致にする。scope/source/revisionは他の17項目で不変。 | 不一致を明示し、別revision/環境の証拠で補完しない。責務owner: CORE approved expected-state owner / INFRASTRUCTURE actual source owner。 |
+| `INFRA-011-S5-035` | 05 Drift | unauthorized | 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。scope/source/revisionは他の17項目で不変。 | 無権限入力で項目成立・意味変更・操作許可を生成しない。責務owner: CORE approved expected-state owner / INFRASTRUCTURE actual source owner。 |
+| `INFRA-011-S5-036` | 06 Compute/Network/Storage | normal | 対象source/current revisionを固定し、項目固有の必要入力を全て提示。scope/source/revisionは他の17項目で不変。 | その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。責務owner: INFRASTRUCTURE resource/path/storage owner; CONNECT path contract where applicable。 |
+| `INFRA-011-S5-037` | 06 Compute/Network/Storage | missing | 項目固有の必須入力を1つだけ除く。scope/source/revisionは他の17項目で不変。 | 欠落を明示し、その項目を未完として該当ownerへ返す。責務owner: INFRASTRUCTURE resource/path/storage owner; CONNECT path contract where applicable。 |
+| `INFRA-011-S5-038` | 06 Compute/Network/Storage | unknown | 項目固有の値をunknownにする。scope/source/revisionは他の17項目で不変。 | unknownを正常/非適用/availableへ昇格しない。責務owner: INFRASTRUCTURE resource/path/storage owner; CONNECT path contract where applicable。 |
+| `INFRA-011-S5-039` | 06 Compute/Network/Storage | unobserved | 必要な観測結果だけを未観測にする。scope/source/revisionは他の17項目で不変。 | unobservedをhealthy/成功へ丸めず、観測範囲を残す。責務owner: INFRASTRUCTURE resource/path/storage owner; CONNECT path contract where applicable。 |
+| `INFRA-011-S5-040` | 06 Compute/Network/Storage | stale | 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。scope/source/revisionは他の17項目で不変。 | staleをcurrentとして採用せず、該当source ownerへ返す。責務owner: INFRASTRUCTURE resource/path/storage owner; CONNECT path contract where applicable。 |
+| `INFRA-011-S5-041` | 06 Compute/Network/Storage | mismatch | 項目固有identity/revision/scopeの一つだけを不一致にする。scope/source/revisionは他の17項目で不変。 | 不一致を明示し、別revision/環境の証拠で補完しない。責務owner: INFRASTRUCTURE resource/path/storage owner; CONNECT path contract where applicable。 |
+| `INFRA-011-S5-042` | 06 Compute/Network/Storage | unauthorized | 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。scope/source/revisionは他の17項目で不変。 | 無権限入力で項目成立・意味変更・操作許可を生成しない。責務owner: INFRASTRUCTURE resource/path/storage owner; CONNECT path contract where applicable。 |
+| `INFRA-011-S5-043` | 07 Model/Worker Runtime | normal | 対象source/current revisionを固定し、項目固有の必要入力を全て提示。scope/source/revisionは他の17項目で不変。 | その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。責務owner: INFRASTRUCTURE runtime/resource owner / Worker contract owner。 |
+| `INFRA-011-S5-044` | 07 Model/Worker Runtime | missing | 項目固有の必須入力を1つだけ除く。scope/source/revisionは他の17項目で不変。 | 欠落を明示し、その項目を未完として該当ownerへ返す。責務owner: INFRASTRUCTURE runtime/resource owner / Worker contract owner。 |
+| `INFRA-011-S5-045` | 07 Model/Worker Runtime | unknown | 項目固有の値をunknownにする。scope/source/revisionは他の17項目で不変。 | unknownを正常/非適用/availableへ昇格しない。責務owner: INFRASTRUCTURE runtime/resource owner / Worker contract owner。 |
+| `INFRA-011-S5-046` | 07 Model/Worker Runtime | unobserved | 必要な観測結果だけを未観測にする。scope/source/revisionは他の17項目で不変。 | unobservedをhealthy/成功へ丸めず、観測範囲を残す。責務owner: INFRASTRUCTURE runtime/resource owner / Worker contract owner。 |
+| `INFRA-011-S5-047` | 07 Model/Worker Runtime | stale | 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。scope/source/revisionは他の17項目で不変。 | staleをcurrentとして採用せず、該当source ownerへ返す。責務owner: INFRASTRUCTURE runtime/resource owner / Worker contract owner。 |
+| `INFRA-011-S5-048` | 07 Model/Worker Runtime | mismatch | 項目固有identity/revision/scopeの一つだけを不一致にする。scope/source/revisionは他の17項目で不変。 | 不一致を明示し、別revision/環境の証拠で補完しない。責務owner: INFRASTRUCTURE runtime/resource owner / Worker contract owner。 |
+| `INFRA-011-S5-049` | 07 Model/Worker Runtime | unauthorized | 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。scope/source/revisionは他の17項目で不変。 | 無権限入力で項目成立・意味変更・操作許可を生成しない。責務owner: INFRASTRUCTURE runtime/resource owner / Worker contract owner。 |
+| `INFRA-011-S5-050` | 08 Capacity | normal | 対象source/current revisionを固定し、項目固有の必要入力を全て提示。scope/source/revisionは他の17項目で不変。 | その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。責務owner: INFRASTRUCTURE measurement owner / OS or INTELLIGENCE decision owner。 |
+| `INFRA-011-S5-051` | 08 Capacity | missing | 項目固有の必須入力を1つだけ除く。scope/source/revisionは他の17項目で不変。 | 欠落を明示し、その項目を未完として該当ownerへ返す。責務owner: INFRASTRUCTURE measurement owner / OS or INTELLIGENCE decision owner。 |
+| `INFRA-011-S5-052` | 08 Capacity | unknown | 項目固有の値をunknownにする。scope/source/revisionは他の17項目で不変。 | unknownを正常/非適用/availableへ昇格しない。責務owner: INFRASTRUCTURE measurement owner / OS or INTELLIGENCE decision owner。 |
+| `INFRA-011-S5-053` | 08 Capacity | unobserved | 必要な観測結果だけを未観測にする。scope/source/revisionは他の17項目で不変。 | unobservedをhealthy/成功へ丸めず、観測範囲を残す。責務owner: INFRASTRUCTURE measurement owner / OS or INTELLIGENCE decision owner。 |
+| `INFRA-011-S5-054` | 08 Capacity | stale | 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。scope/source/revisionは他の17項目で不変。 | staleをcurrentとして採用せず、該当source ownerへ返す。責務owner: INFRASTRUCTURE measurement owner / OS or INTELLIGENCE decision owner。 |
+| `INFRA-011-S5-055` | 08 Capacity | mismatch | 項目固有identity/revision/scopeの一つだけを不一致にする。scope/source/revisionは他の17項目で不変。 | 不一致を明示し、別revision/環境の証拠で補完しない。責務owner: INFRASTRUCTURE measurement owner / OS or INTELLIGENCE decision owner。 |
+| `INFRA-011-S5-056` | 08 Capacity | unauthorized | 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。scope/source/revisionは他の17項目で不変。 | 無権限入力で項目成立・意味変更・操作許可を生成しない。責務owner: INFRASTRUCTURE measurement owner / OS or INTELLIGENCE decision owner。 |
+| `INFRA-011-S5-057` | 09 Observability | normal | 対象source/current revisionを固定し、項目固有の必要入力を全て提示。scope/source/revisionは他の17項目で不変。 | その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。責務owner: observation source/collector owner; INFRASTRUCTURE state owner。 |
+| `INFRA-011-S5-058` | 09 Observability | missing | 項目固有の必須入力を1つだけ除く。scope/source/revisionは他の17項目で不変。 | 欠落を明示し、その項目を未完として該当ownerへ返す。責務owner: observation source/collector owner; INFRASTRUCTURE state owner。 |
+| `INFRA-011-S5-059` | 09 Observability | unknown | 項目固有の値をunknownにする。scope/source/revisionは他の17項目で不変。 | unknownを正常/非適用/availableへ昇格しない。責務owner: observation source/collector owner; INFRASTRUCTURE state owner。 |
+| `INFRA-011-S5-060` | 09 Observability | unobserved | 必要な観測結果だけを未観測にする。scope/source/revisionは他の17項目で不変。 | unobservedをhealthy/成功へ丸めず、観測範囲を残す。責務owner: observation source/collector owner; INFRASTRUCTURE state owner。 |
+| `INFRA-011-S5-061` | 09 Observability | stale | 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。scope/source/revisionは他の17項目で不変。 | staleをcurrentとして採用せず、該当source ownerへ返す。責務owner: observation source/collector owner; INFRASTRUCTURE state owner。 |
+| `INFRA-011-S5-062` | 09 Observability | mismatch | 項目固有identity/revision/scopeの一つだけを不一致にする。scope/source/revisionは他の17項目で不変。 | 不一致を明示し、別revision/環境の証拠で補完しない。責務owner: observation source/collector owner; INFRASTRUCTURE state owner。 |
+| `INFRA-011-S5-063` | 09 Observability | unauthorized | 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。scope/source/revisionは他の17項目で不変。 | 無権限入力で項目成立・意味変更・操作許可を生成しない。責務owner: observation source/collector owner; INFRASTRUCTURE state owner。 |
+| `INFRA-011-S5-064` | 10 Incident state | normal | 対象source/current revisionを固定し、項目固有の必要入力を全て提示。scope/source/revisionは他の17項目で不変。 | その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。責務owner: approved incident-meaning owner / INFRASTRUCTURE observation source owner。 |
+| `INFRA-011-S5-065` | 10 Incident state | missing | 項目固有の必須入力を1つだけ除く。scope/source/revisionは他の17項目で不変。 | 欠落を明示し、その項目を未完として該当ownerへ返す。責務owner: approved incident-meaning owner / INFRASTRUCTURE observation source owner。 |
+| `INFRA-011-S5-066` | 10 Incident state | unknown | 項目固有の値をunknownにする。scope/source/revisionは他の17項目で不変。 | unknownを正常/非適用/availableへ昇格しない。責務owner: approved incident-meaning owner / INFRASTRUCTURE observation source owner。 |
+| `INFRA-011-S5-067` | 10 Incident state | unobserved | 必要な観測結果だけを未観測にする。scope/source/revisionは他の17項目で不変。 | unobservedをhealthy/成功へ丸めず、観測範囲を残す。責務owner: approved incident-meaning owner / INFRASTRUCTURE observation source owner。 |
+| `INFRA-011-S5-068` | 10 Incident state | stale | 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。scope/source/revisionは他の17項目で不変。 | staleをcurrentとして採用せず、該当source ownerへ返す。責務owner: approved incident-meaning owner / INFRASTRUCTURE observation source owner。 |
+| `INFRA-011-S5-069` | 10 Incident state | mismatch | 項目固有identity/revision/scopeの一つだけを不一致にする。scope/source/revisionは他の17項目で不変。 | 不一致を明示し、別revision/環境の証拠で補完しない。責務owner: approved incident-meaning owner / INFRASTRUCTURE observation source owner。 |
+| `INFRA-011-S5-070` | 10 Incident state | unauthorized | 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。scope/source/revisionは他の17項目で不変。 | 無権限入力で項目成立・意味変更・操作許可を生成しない。責務owner: approved incident-meaning owner / INFRASTRUCTURE observation source owner。 |
+| `INFRA-011-S5-071` | 11 Backup/Restore | normal | 対象source/current revisionを固定し、項目固有の必要入力を全て提示。scope/source/revisionは他の17項目で不変。 | その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。責務owner: state owner / recovery design owner; INFRASTRUCTURE evidence source owner。 |
+| `INFRA-011-S5-072` | 11 Backup/Restore | missing | 項目固有の必須入力を1つだけ除く。scope/source/revisionは他の17項目で不変。 | 欠落を明示し、その項目を未完として該当ownerへ返す。責務owner: state owner / recovery design owner; INFRASTRUCTURE evidence source owner。 |
+| `INFRA-011-S5-073` | 11 Backup/Restore | unknown | 項目固有の値をunknownにする。scope/source/revisionは他の17項目で不変。 | unknownを正常/非適用/availableへ昇格しない。責務owner: state owner / recovery design owner; INFRASTRUCTURE evidence source owner。 |
+| `INFRA-011-S5-074` | 11 Backup/Restore | unobserved | 必要な観測結果だけを未観測にする。scope/source/revisionは他の17項目で不変。 | unobservedをhealthy/成功へ丸めず、観測範囲を残す。責務owner: state owner / recovery design owner; INFRASTRUCTURE evidence source owner。 |
+| `INFRA-011-S5-075` | 11 Backup/Restore | stale | 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。scope/source/revisionは他の17項目で不変。 | staleをcurrentとして採用せず、該当source ownerへ返す。責務owner: state owner / recovery design owner; INFRASTRUCTURE evidence source owner。 |
+| `INFRA-011-S5-076` | 11 Backup/Restore | mismatch | 項目固有identity/revision/scopeの一つだけを不一致にする。scope/source/revisionは他の17項目で不変。 | 不一致を明示し、別revision/環境の証拠で補完しない。責務owner: state owner / recovery design owner; INFRASTRUCTURE evidence source owner。 |
+| `INFRA-011-S5-077` | 11 Backup/Restore | unauthorized | 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。scope/source/revisionは他の17項目で不変。 | 無権限入力で項目成立・意味変更・操作許可を生成しない。責務owner: state owner / recovery design owner; INFRASTRUCTURE evidence source owner。 |
+| `INFRA-011-S5-078` | 12 Rollback | normal | 対象source/current revisionを固定し、項目固有の必要入力を全て提示。scope/source/revisionは他の17項目で不変。 | その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。責務owner: recovery design owner / OS operation owner where applicable。 |
+| `INFRA-011-S5-079` | 12 Rollback | missing | 項目固有の必須入力を1つだけ除く。scope/source/revisionは他の17項目で不変。 | 欠落を明示し、その項目を未完として該当ownerへ返す。責務owner: recovery design owner / OS operation owner where applicable。 |
+| `INFRA-011-S5-080` | 12 Rollback | unknown | 項目固有の値をunknownにする。scope/source/revisionは他の17項目で不変。 | unknownを正常/非適用/availableへ昇格しない。責務owner: recovery design owner / OS operation owner where applicable。 |
+| `INFRA-011-S5-081` | 12 Rollback | unobserved | 必要な観測結果だけを未観測にする。scope/source/revisionは他の17項目で不変。 | unobservedをhealthy/成功へ丸めず、観測範囲を残す。責務owner: recovery design owner / OS operation owner where applicable。 |
+| `INFRA-011-S5-082` | 12 Rollback | stale | 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。scope/source/revisionは他の17項目で不変。 | staleをcurrentとして採用せず、該当source ownerへ返す。責務owner: recovery design owner / OS operation owner where applicable。 |
+| `INFRA-011-S5-083` | 12 Rollback | mismatch | 項目固有identity/revision/scopeの一つだけを不一致にする。scope/source/revisionは他の17項目で不変。 | 不一致を明示し、別revision/環境の証拠で補完しない。責務owner: recovery design owner / OS operation owner where applicable。 |
+| `INFRA-011-S5-084` | 12 Rollback | unauthorized | 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。scope/source/revisionは他の17項目で不変。 | 無権限入力で項目成立・意味変更・操作許可を生成しない。責務owner: recovery design owner / OS operation owner where applicable。 |
+| `INFRA-011-S5-085` | 13 Deployment version | normal | 対象source/current revisionを固定し、項目固有の必要入力を全て提示。scope/source/revisionは他の17項目で不変。 | その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。責務owner: INFRASTRUCTURE runtime version owner / OS stage identity owner。 |
+| `INFRA-011-S5-086` | 13 Deployment version | missing | 項目固有の必須入力を1つだけ除く。scope/source/revisionは他の17項目で不変。 | 欠落を明示し、その項目を未完として該当ownerへ返す。責務owner: INFRASTRUCTURE runtime version owner / OS stage identity owner。 |
+| `INFRA-011-S5-087` | 13 Deployment version | unknown | 項目固有の値をunknownにする。scope/source/revisionは他の17項目で不変。 | unknownを正常/非適用/availableへ昇格しない。責務owner: INFRASTRUCTURE runtime version owner / OS stage identity owner。 |
+| `INFRA-011-S5-088` | 13 Deployment version | unobserved | 必要な観測結果だけを未観測にする。scope/source/revisionは他の17項目で不変。 | unobservedをhealthy/成功へ丸めず、観測範囲を残す。責務owner: INFRASTRUCTURE runtime version owner / OS stage identity owner。 |
+| `INFRA-011-S5-089` | 13 Deployment version | stale | 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。scope/source/revisionは他の17項目で不変。 | staleをcurrentとして採用せず、該当source ownerへ返す。責務owner: INFRASTRUCTURE runtime version owner / OS stage identity owner。 |
+| `INFRA-011-S5-090` | 13 Deployment version | mismatch | 項目固有identity/revision/scopeの一つだけを不一致にする。scope/source/revisionは他の17項目で不変。 | 不一致を明示し、別revision/環境の証拠で補完しない。責務owner: INFRASTRUCTURE runtime version owner / OS stage identity owner。 |
+| `INFRA-011-S5-091` | 13 Deployment version | unauthorized | 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。scope/source/revisionは他の17項目で不変。 | 無権限入力で項目成立・意味変更・操作許可を生成しない。責務owner: INFRASTRUCTURE runtime version owner / OS stage identity owner。 |
+| `INFRA-011-S5-092` | 14 Security connection | normal | 対象source/current revisionを固定し、項目固有の必要入力を全て提示。scope/source/revisionは他の17項目で不変。 | その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。責務owner: SECURITY authority owner / INFRASTRUCTURE resource owner。 |
+| `INFRA-011-S5-093` | 14 Security connection | missing | 項目固有の必須入力を1つだけ除く。scope/source/revisionは他の17項目で不変。 | 欠落を明示し、その項目を未完として該当ownerへ返す。責務owner: SECURITY authority owner / INFRASTRUCTURE resource owner。 |
+| `INFRA-011-S5-094` | 14 Security connection | unknown | 項目固有の値をunknownにする。scope/source/revisionは他の17項目で不変。 | unknownを正常/非適用/availableへ昇格しない。責務owner: SECURITY authority owner / INFRASTRUCTURE resource owner。 |
+| `INFRA-011-S5-095` | 14 Security connection | unobserved | 必要な観測結果だけを未観測にする。scope/source/revisionは他の17項目で不変。 | unobservedをhealthy/成功へ丸めず、観測範囲を残す。責務owner: SECURITY authority owner / INFRASTRUCTURE resource owner。 |
+| `INFRA-011-S5-096` | 14 Security connection | stale | 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。scope/source/revisionは他の17項目で不変。 | staleをcurrentとして採用せず、該当source ownerへ返す。責務owner: SECURITY authority owner / INFRASTRUCTURE resource owner。 |
+| `INFRA-011-S5-097` | 14 Security connection | mismatch | 項目固有identity/revision/scopeの一つだけを不一致にする。scope/source/revisionは他の17項目で不変。 | 不一致を明示し、別revision/環境の証拠で補完しない。責務owner: SECURITY authority owner / INFRASTRUCTURE resource owner。 |
+| `INFRA-011-S5-098` | 14 Security connection | unauthorized | 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。scope/source/revisionは他の17項目で不変。 | 無権限入力で項目成立・意味変更・操作許可を生成しない。責務owner: SECURITY authority owner / INFRASTRUCTURE resource owner。 |
+| `INFRA-011-S5-099` | 15 OS connection | normal | 対象source/current revisionを固定し、項目固有の必要入力を全て提示。scope/source/revisionは他の17項目で不変。 | その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。責務owner: OS work/change owner / INFRASTRUCTURE runtime state owner。 |
+| `INFRA-011-S5-100` | 15 OS connection | missing | 項目固有の必須入力を1つだけ除く。scope/source/revisionは他の17項目で不変。 | 欠落を明示し、その項目を未完として該当ownerへ返す。責務owner: OS work/change owner / INFRASTRUCTURE runtime state owner。 |
+| `INFRA-011-S5-101` | 15 OS connection | unknown | 項目固有の値をunknownにする。scope/source/revisionは他の17項目で不変。 | unknownを正常/非適用/availableへ昇格しない。責務owner: OS work/change owner / INFRASTRUCTURE runtime state owner。 |
+| `INFRA-011-S5-102` | 15 OS connection | unobserved | 必要な観測結果だけを未観測にする。scope/source/revisionは他の17項目で不変。 | unobservedをhealthy/成功へ丸めず、観測範囲を残す。責務owner: OS work/change owner / INFRASTRUCTURE runtime state owner。 |
+| `INFRA-011-S5-103` | 15 OS connection | stale | 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。scope/source/revisionは他の17項目で不変。 | staleをcurrentとして採用せず、該当source ownerへ返す。責務owner: OS work/change owner / INFRASTRUCTURE runtime state owner。 |
+| `INFRA-011-S5-104` | 15 OS connection | mismatch | 項目固有identity/revision/scopeの一つだけを不一致にする。scope/source/revisionは他の17項目で不変。 | 不一致を明示し、別revision/環境の証拠で補完しない。責務owner: OS work/change owner / INFRASTRUCTURE runtime state owner。 |
+| `INFRA-011-S5-105` | 15 OS connection | unauthorized | 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。scope/source/revisionは他の17項目で不変。 | 無権限入力で項目成立・意味変更・操作許可を生成しない。責務owner: OS work/change owner / INFRASTRUCTURE runtime state owner。 |
+| `INFRA-011-S5-106` | 16 Runner execution (current Worker) | normal | 対象source/current revisionを固定し、項目固有の必要入力を全て提示。scope/source/revisionは他の17項目で不変。 | その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。責務owner: Worker contract owner / OS work owner / SECURITY authority owner / INFRASTRUCTURE resource owner。 |
+| `INFRA-011-S5-107` | 16 Runner execution (current Worker) | missing | 項目固有の必須入力を1つだけ除く。scope/source/revisionは他の17項目で不変。 | 欠落を明示し、その項目を未完として該当ownerへ返す。責務owner: Worker contract owner / OS work owner / SECURITY authority owner / INFRASTRUCTURE resource owner。 |
+| `INFRA-011-S5-108` | 16 Runner execution (current Worker) | unknown | 項目固有の値をunknownにする。scope/source/revisionは他の17項目で不変。 | unknownを正常/非適用/availableへ昇格しない。責務owner: Worker contract owner / OS work owner / SECURITY authority owner / INFRASTRUCTURE resource owner。 |
+| `INFRA-011-S5-109` | 16 Runner execution (current Worker) | unobserved | 必要な観測結果だけを未観測にする。scope/source/revisionは他の17項目で不変。 | unobservedをhealthy/成功へ丸めず、観測範囲を残す。責務owner: Worker contract owner / OS work owner / SECURITY authority owner / INFRASTRUCTURE resource owner。 |
+| `INFRA-011-S5-110` | 16 Runner execution (current Worker) | stale | 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。scope/source/revisionは他の17項目で不変。 | staleをcurrentとして採用せず、該当source ownerへ返す。責務owner: Worker contract owner / OS work owner / SECURITY authority owner / INFRASTRUCTURE resource owner。 |
+| `INFRA-011-S5-111` | 16 Runner execution (current Worker) | mismatch | 項目固有identity/revision/scopeの一つだけを不一致にする。scope/source/revisionは他の17項目で不変。 | 不一致を明示し、別revision/環境の証拠で補完しない。責務owner: Worker contract owner / OS work owner / SECURITY authority owner / INFRASTRUCTURE resource owner。 |
+| `INFRA-011-S5-112` | 16 Runner execution (current Worker) | unauthorized | 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。scope/source/revisionは他の17項目で不変。 | 無権限入力で項目成立・意味変更・操作許可を生成しない。責務owner: Worker contract owner / OS work owner / SECURITY authority owner / INFRASTRUCTURE resource owner。 |
+| `INFRA-011-S5-113` | 17 Bootstrap/Out-of-Band Recovery | normal | 対象source/current revisionを固定し、項目固有の必要入力を全て提示。scope/source/revisionは他の17項目で不変。 | その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。責務owner: INFRASTRUCTURE recovery-path owner / SECURITY authority owner / Worker contract owner。 |
+| `INFRA-011-S5-114` | 17 Bootstrap/Out-of-Band Recovery | missing | 項目固有の必須入力を1つだけ除く。scope/source/revisionは他の17項目で不変。 | 欠落を明示し、その項目を未完として該当ownerへ返す。責務owner: INFRASTRUCTURE recovery-path owner / SECURITY authority owner / Worker contract owner。 |
+| `INFRA-011-S5-115` | 17 Bootstrap/Out-of-Band Recovery | unknown | 項目固有の値をunknownにする。scope/source/revisionは他の17項目で不変。 | unknownを正常/非適用/availableへ昇格しない。責務owner: INFRASTRUCTURE recovery-path owner / SECURITY authority owner / Worker contract owner。 |
+| `INFRA-011-S5-116` | 17 Bootstrap/Out-of-Band Recovery | unobserved | 必要な観測結果だけを未観測にする。scope/source/revisionは他の17項目で不変。 | unobservedをhealthy/成功へ丸めず、観測範囲を残す。責務owner: INFRASTRUCTURE recovery-path owner / SECURITY authority owner / Worker contract owner。 |
+| `INFRA-011-S5-117` | 17 Bootstrap/Out-of-Band Recovery | stale | 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。scope/source/revisionは他の17項目で不変。 | staleをcurrentとして採用せず、該当source ownerへ返す。責務owner: INFRASTRUCTURE recovery-path owner / SECURITY authority owner / Worker contract owner。 |
+| `INFRA-011-S5-118` | 17 Bootstrap/Out-of-Band Recovery | mismatch | 項目固有identity/revision/scopeの一つだけを不一致にする。scope/source/revisionは他の17項目で不変。 | 不一致を明示し、別revision/環境の証拠で補完しない。責務owner: INFRASTRUCTURE recovery-path owner / SECURITY authority owner / Worker contract owner。 |
+| `INFRA-011-S5-119` | 17 Bootstrap/Out-of-Band Recovery | unauthorized | 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。scope/source/revisionは他の17項目で不変。 | 無権限入力で項目成立・意味変更・操作許可を生成しない。責務owner: INFRASTRUCTURE recovery-path owner / SECURITY authority owner / Worker contract owner。 |
+| `INFRA-011-S5-120` | 18 Rebuildability | normal | 対象source/current revisionを固定し、項目固有の必要入力を全て提示。scope/source/revisionは他の17項目で不変。 | その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。責務owner: INFRASTRUCTURE rebuild/recovery owner; CORE/OS/SECURITY/Worker owners by input。 |
+| `INFRA-011-S5-121` | 18 Rebuildability | missing | 項目固有の必須入力を1つだけ除く。scope/source/revisionは他の17項目で不変。 | 欠落を明示し、その項目を未完として該当ownerへ返す。責務owner: INFRASTRUCTURE rebuild/recovery owner; CORE/OS/SECURITY/Worker owners by input。 |
+| `INFRA-011-S5-122` | 18 Rebuildability | unknown | 項目固有の値をunknownにする。scope/source/revisionは他の17項目で不変。 | unknownを正常/非適用/availableへ昇格しない。責務owner: INFRASTRUCTURE rebuild/recovery owner; CORE/OS/SECURITY/Worker owners by input。 |
+| `INFRA-011-S5-123` | 18 Rebuildability | unobserved | 必要な観測結果だけを未観測にする。scope/source/revisionは他の17項目で不変。 | unobservedをhealthy/成功へ丸めず、観測範囲を残す。責務owner: INFRASTRUCTURE rebuild/recovery owner; CORE/OS/SECURITY/Worker owners by input。 |
+| `INFRA-011-S5-124` | 18 Rebuildability | stale | 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。scope/source/revisionは他の17項目で不変。 | staleをcurrentとして採用せず、該当source ownerへ返す。責務owner: INFRASTRUCTURE rebuild/recovery owner; CORE/OS/SECURITY/Worker owners by input。 |
+| `INFRA-011-S5-125` | 18 Rebuildability | mismatch | 項目固有identity/revision/scopeの一つだけを不一致にする。scope/source/revisionは他の17項目で不変。 | 不一致を明示し、別revision/環境の証拠で補完しない。責務owner: INFRASTRUCTURE rebuild/recovery owner; CORE/OS/SECURITY/Worker owners by input。 |
+| `INFRA-011-S5-126` | 18 Rebuildability | unauthorized | 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。scope/source/revisionは他の17項目で不変。 | 無権限入力で項目成立・意味変更・操作許可を生成しない。責務owner: INFRASTRUCTURE rebuild/recovery owner; CORE/OS/SECURITY/Worker owners by input。 |
+
+上記単独fixtureとは別に、4種類のoperation oracle（read-only/no-change、該当recovery dutyを伴うstate-changing operation、L2-010で許可されたupdate、OS停止中independent recovery）を独立に判定する。各operationは適用されるauthority/scope/result/未完義務のみを評価し、無関係なrecovery要件を操作ごとの前提へ一律拡張しない。4 oracleをひとつのcaseに束ねない。
+
+### 接続とcompositeの独立fixture境界
+
+個別項目のunit判定から独立させ、適用されるconnection ownerごとのfixtureと、18項目+connectionのcomposite fixtureを追加する。各接続はその接続入力だけを変異し、ほかの項目/connectionを不変とする。
+
+| fixture | unit/接続 | 単独変異とoracle | owner |
+|---|---|---|---|
+| `INFRA-011-S5-140` | CORE connection | approved CORE design identity/revision/scope参照を照合。参照欠落・unknown・stale・mismatchを個別に保留しCORE design ownerへ返す。 | CORE design owner |
+| `INFRA-011-S5-141` | OS connection | OS work/change referenceとruntime state linkを照合。OS停止中独立recoveryの例外を通常connection全般へ拡張しない。 | OS work/change owner |
+| `INFRA-011-S5-142` | SECURITY connection | 適用操作の別SECURITY authority/条件を照合。欠落・unknown・mismatch・unauthorizedを許可へ昇格しない。 | SECURITY authority owner |
+| `INFRA-011-S5-143` | Worker connection | Worker identity/contractをresource mappingと別に照合。Worker名だけで実resourceや契約を成立にしない。 | Worker contract owner / INFRASTRUCTURE resource owner |
+| `INFRA-011-S5-144` | composite acceptance | 18項目のevidenceと適用connection全てが同一scope/source revisionに束縛され、未完義務がない場合だけ候補成立。 | INFRASTRUCTURE composite owner; 各source ownerは自領域を保持 |

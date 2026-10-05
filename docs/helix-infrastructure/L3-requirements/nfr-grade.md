@@ -88,3 +88,14 @@ Candidateの受入/採用は一つの通常L3判断へまとめ、数値ごと�
 | INFRA-NFR-025-S4 / 025 | 固定L2/L11の資源/Worker区別、隔離、ticket/要求/責務/未完保持と元資源/移動先状態。Worker応答のみの比較候補1に対し、実stateと作業参照を別に追う比較候補2を候補とする。 | 選択Worker/resource/移動scopeの必要resource属性・隔離条件・lineage参照を事前に分母化し、全件のvalue/unknownとsource/revision追跡を候補とする。unknownを成立へ丸めた件数、未完義務消去、正本移管は0件。自動最適化の性能値は測らない。 |
 
 旧grade→測定→証拠という形式を再導出し、資源identityと実適用の意味根拠は機能本文の旧OPS/WCC/Conceptに限定する。既存NFRの数値をこの2親へ転用しない。候補値の判断は通常のL3承認へまとめ、parameter別PO質問は作らない。要求meaning/scope/owner/versionの変更は該当L2へ戻す。
+
+## Stage 5 追加範囲 — HELIXINFRASTRUCTURE-L2-011
+
+L2-011 1.0に数値SLO、時間/回数閾値、performance thresholdは追加しない。最低18項目の適用scope・source/revision・unit/connection/composite結果を、FR/ACと対のL10で照合する設計候補だけを置く。測定実行やruntimeの実態を示さない。
+
+| 候補 | 測定母集団と方法 | oracle境界と記録 |
+|---|---|---|
+| `INFRA-NFR-011-S5-01` | CASE-INFRA-011-S5-001–126の予定単独観測、CASE-127–139のoperation/recovery観測、CASE-140–148のconnection/composite観測の操作/recovery観測を、親項目・variant・operation別に固定する。必要入力と観測結果を別記し、unknown/stale/unobservedを分母から除かない。 | 固定L11:146が明示する誤成立（missing/unobserved/unknown/stale/mismatch/unauthorizedをpass扱い）の期待誤成立件数0を静的分類候補として照合する。これは実測結果・runtime保証・数値SLOではない。可観測性とoracle合致を分離し、分母0は率なし、未実施は未測定とする。 |
+| `INFRA-NFR-011-S5-02` | 18項目のsource/owner/revision参照、unit/connection/compositeの別判定、部分結果/未完義務の保持をfixture単位で追跡する。 | 計画fixture集合を分母として欠落・unknown・stale・不一致・無権限・未観測を理由別に記録する。owner不明はunknownのまま残す。OS ticket不要のindependent recoveryと復帰後syncを別観測する。実行なしの率・閾値・合格を報告しない。 |
+
+技術候補は既存L2/L11から再導出した測定設計であり、別のparameter approvalや新しいowner/authorityを作らない。旧NFR sourceの数値、旧runtime/test/CIを再利用・実行しない。
