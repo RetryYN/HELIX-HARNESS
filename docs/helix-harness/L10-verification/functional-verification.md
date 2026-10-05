@@ -28,3 +28,18 @@ execution_status: designed_only_not_executed
 | `CASE-HARNESS-L10-023-03` | `FR-HARNESS-L3-023` | `AC-HARNESS-L3-023-03` | 権限・隔離・版・検証・記録が必要なsourceを人が代行するfixture、口頭のみの受領反例、後続版依存、1.0安全依存、dependency unknown fixtureを評価し、同じinput/revisionを反復する。closure出力に機能・owner・上位要求・版成熟度を変更させる変異、または未採択候補/対象機能の成立・実装許可を生成させる変異を個別に与える。 | 人代行でもsource/actor/revision/scope/受領/検証receiptが返り口頭のみは証拠にならない。classification-onlyはmissing/unknownを出せる。後続版を1.0へ強制せず1.0安全依存は必須。同一評価closure/reason差分0。未選択能力については親に明記された1.0全体義務を削除・延期しないが、当該fixture自体を全1.0能力の実装完了gateにしない。closureからtarget feature/owner/version/maturity change、candidate adoption、implementation permissionは生成しない。 | 義務・receipt欠落、安全依存削除、unknownを実行可能扱い、再評価差分、closure単独でのfeature/owner/version/authority生成は不合格。authority定義を新設しない。 |
 | `CASE-HARNESS-L10-010-04` | `FR-HARNESS-L3-010` | `AC-HARNESS-L3-010-04` | L11:205: function/folder一覧だけのfixtureとpack identity・owner・contract・release-unit収載のfixtureを比較する。 | pack identity・契約版・単一owner・release-unit収載が揃うfixtureだけ受理し、function/folder catalogはpack identityやownerの代替としない。 | function/folder一覧だけの入力は拒否し、不足箇所を示す。 |
 | `CASE-HARNESS-L10-011-05` | `FR-HARNESS-L3-011` | `AC-HARNESS-L3-011-02` | L11:206: HARNESS要求だけの正常fixtureと、そこからWEB要求・設計を導出する変異を比較する。 | HARNESS要求は対象内とし、WEB要求・設計は導出しない。 | WEB導出は不合格。HARNESS正常scopeは拒否しない。 |
+
+## Stage 2a suffix — HARNESS-L2-022 L10総合検証
+
+対象は`FR-HARNESS-L3-022`と同一の固定L2/L11親、revision、scopeである。Stage 1 #2572の承認から本022のfixture成立や承認を生成しない。以下は合成fixtureによる設計であり、実装・旧runtime・CIを実行せず、合格結果や承認を主張しない。
+
+| L10 case ID | L3 AC | fixture・観測oracle | 反例・未評価 |
+|---|---|---|---|
+| `CASE-HARNESS-L10-022-01` | `AC-HARNESS-L3-022-01` | 同一artifact revision/scope、対L5/L4設計、L8/L9のScoped Reverse・境界・Refactor・結合証拠、L3とL10のシステム固有義務差分証拠、L11内容oracle、別個の利用者受入recordを段階ごとに与える。各段階の状態、証拠参照とtupleが一致し、Acceptedまで段階的に到達することを照合する。 | いずれかの入力・oracle・result/evidence不足は不足箇所を示し未評価/保留。recordはoracleが生成しない。 |
+| `CASE-HARNESS-L10-022-02` | `AC-HARNESS-L3-022-02` | 段階skip、L8/L9だけ、システム固有義務delta欠落、L10だけ、L11 oracleだけを一変異ずつ与える。 | 各々対応する上位stateを作らず、最後に成立した段階を維持する。存在する下位証拠のみで上位passにしない。 |
+| `CASE-HARNESS-L10-022-03` | `AC-HARNESS-L3-022-03` | 意味を保つ不一致の右側Refactorと同stage再検証をnormal fixtureで照合する。独立negativeとして一律左Backflow、発見層だけで宛先固定、意味変更を右側で黙って修正、L11意味差をコードで合わせる、を与える。 | normalは同stage再検証。各negativeは不合格とし、意味ownerに応じL2-003/004へ戻す。試験sourceが欠けて規則を選べなければ未評価。 |
+| `CASE-HARNESS-L10-022-04` | `AC-HARNESS-L3-022-04` | CORE契約の正常fixtureに加え、段階をservice①〜⑦へ移す、HARNESS/INTELLIGENCEがOS/利用者のCI・test運転/ticket/検収を代行する、利用者recordをCORE/service成果へ置く、OSなし構成を拒む、を各々独立に変異する。利用者自身のCI/受入手段による正常構成も置く。 | 各責務移転とOS必須化を拒否し、OSなし利用者構成は契約を満たせる。新ownerや独立した受入actorを作らない。 |
+| `CASE-HARNESS-L10-022-05` | `AC-HARNESS-L3-022-05` | 外部artifactの完全tuple（revision/scope/paired design/requirements/oracle/result/evidence）が揃うnormal fixtureで段階評価し、到達した段階だけ⑥へ渡す。negativeはartifact存在のみ、wrong revision、wrong scope、paired design欠落、requirements欠落、oracle欠落、result欠落、evidence欠落、expired oracleを個別に与える。 | normalは証明済み段階までを移送。各negativeで未達stateを作らず、欠落を列挙し、その段階までに留める。oracleの適用条件自体が不明なら未評価。 |
+| `CASE-HARNESS-L10-022-06` | `AC-HARNESS-L3-022-06` | ④なしでCORE traceとpaired designを使うfixture、および既存fixtureにない同scope artifact/外部持込artifactを用い、各段階のoracleとrevision/scope bindingを再適用する。 | 同scopeの未見例に固定契約を適用する。異なるscopeや新しい意味を持つ例から一般化しない。証拠不足は未評価/保留。 |
+
+全caseで親ID/revision、artifact revision/scope、対応AC、oracle/result/evidenceの対応を照合する。未見正常例は親の宣言範囲内の新しいartifact/callを少なくとも一つ含める。試験入力やoracleが欠ける状態は製品の不合格と混同せず未評価とし、製品側の必須証拠欠落は当該上位stateを保留する。
