@@ -15,3 +15,8 @@
 ## Stage 4 — 008/009
 
 profile catalog/typed descriptorとdirection/order/feedback relationは技術契約であり、独立business criterionを新設しない。供給・技術eventから業務解決・要求採択・ticket発行・許可を生成しない。L3機能AC-008-02および009-03/05とL10個別CASEで境界を確認し、業務意味は元ownerへ残す。
+
+
+## Stage 5 — 007
+
+007はcompositeの技術通信完全性であり独立business ACを追加しない。業務成立と結果承認は元ownerへ残す。CONNECT-AC-007-04と対応機能CASEで、全辺技術completeからの業務成立・承認・許可生成を拒否する。
