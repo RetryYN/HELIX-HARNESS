@@ -1154,7 +1154,7 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 
 ## Stage 5 review01補正overlay — 独立fixtureとtrace
 
-本overlayは既存CASE IDを消去せず、ここで指定した別IDは各々入力1項目だけを変える独立fixtureである。古い集約文は単独変異数へ算入しない。CASE-OS-L10-031-025は031-006と同じ「internal receiptをexternal環境へ転用」の履歴的別記述としてindex aliasであり、031-004と031-020も同一provider-only変異のaliasである。各pairは1 fixtureとして数え、aliasを独立oracle・coverageとして重ねない。既存CASE-025-020の「訂正」は是正行為を要求せず、HELIX-OSを外販製品と誤分類しないoracleに限定する。CASE-047-025の「複数primary responsibilityを一ticketへまとめ直す」判定語は適用せず、固定親にあるsplit/責務境界だけを照合する。
+本overlayは既存CASE IDを消去せず、ここで指定した別IDは各々入力1項目だけを変える独立fixtureである。古い集約文は単独変異数へ算入しない。CASE-OS-L10-031-25は031-06と同じ「internal receiptをexternal環境へ転用」の履歴的別記述としてindex aliasであり、047-04と047-20も同一provider-only変異のaliasである。各pairは1 fixtureとして数え、aliasを独立oracle・coverageとして重ねない。既存CASE-025-20の「訂正」は是正行為を要求せず、HELIX-OSを外販製品と誤分類しないoracleに限定する。CASE-047-25の「複数primary responsibilityを一ticketへまとめ直す」判定語は適用せず、固定親にあるsplit/責務境界だけを照合する。
 
 | CASE ID | 親 / AC | 入力・単独変異（他条件は固定） | 期待oracle・戻し先 |
 |---|---|---|---|
@@ -1190,7 +1190,7 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | `CASE-OS-L10-026-051` | `HELIXOS-L2-026` / `AC-OS-L3-026-04` | 更新条件だけ欠落。 | update成立を推測せず該当pack ownerへ返す。|
 | `CASE-OS-L10-026-052` | `HELIXOS-L2-026` / `AC-OS-L3-026-04` | rollback条件だけ欠落。 | recovery成立を推測せずINFRASTRUCTUREまたは該当source ownerへ返す。|
 | `CASE-OS-L10-026-053` | `HELIXOS-L2-026` / `AC-OS-L3-026-04` | 必要資源だけ不足。 | 成立/実行可能を偽らず資源不足をINFRASTRUCTUREへ返す。|
-| `CASE-OS-L10-026-054` | `HELIXOS-L2-026` / `AC-OS-L3-026-04` | 比較前より速いが誤った結果を新baselineにする。 | 誤った結果をbaselineへ採らず、未完義務を保持し該当ownerへ返す。|
+| `CASE-OS-L10-026-054` | `HELIXOS-L2-026` / `AC-OS-L3-026-04` | 他入力・依存閉包を保持し、必要な検証結果だけ不合格にする。 | 実構成の成立表示を拒み、未完義務と証拠を保持して検収・要求の既存戻し先へ返す。導出能力の候補出力と実構成の受入を分ける。|
 | `CASE-OS-L10-031-064` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | 実行中のbase HEADだけ変化。 | 影響する証拠のみstaleにし再照合、他scopeは保持。|
 | `CASE-OS-L10-031-065` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | 実行scopeだけ変化。 | 旧scope証拠を新scopeに流用せず影響対象だけ未完。|
 | `CASE-OS-L10-031-066` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | authorityだけ失効。 | 失効後の作用/証拠を有効化せず、既存authority ownerへ返す。|
@@ -1198,7 +1198,7 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | `CASE-OS-L10-031-068` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | **正常対照**：無関係scopeだけ変化し、この実行の入力契約・base・authorityは同じ。 | 当該scopeの有効証拠を維持し、無関係変更を誤stale化しない。|
 | `CASE-OS-L10-031-069` | `HELIXOS-L2-031` / `AC-OS-L3-031-03` | `docs/` pathだけを理由に既存required review/verificationを除外。 | required集合の除外を拒否し、HARNESS contract ownerへ返す。|
 | `CASE-OS-L10-031-070` | `HELIXOS-L2-031` / `AC-OS-L3-031-03` | exploratory/prototype mergeだけを本実装許可にする。 | 探索結果から実装許可を生成せず既存authorityを保持。|
-| `CASE-OS-L10-031-071` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | HEADまたはbaseが変わった後、旧reviewだけで次遷移を進める。 | 旧reviewをstale扱いし現行pairを再照合。|
+| `CASE-OS-L10-031-071` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | content HEADだけが変わった後、旧reviewだけで次遷移を進める。 | 旧reviewをstale扱いし現行pairを再照合。|
 | `CASE-OS-L10-031-072` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | 一段の成功だけを次段完了へ伝播。 | 次段固有の未完義務を保持し成功を推測しない。|
 | `CASE-OS-L10-031-073` | `HELIXOS-L2-031` / `AC-OS-L3-031-02` | **正常回収**：同一ticket/source/base/required-setで、予算超過から改善し、独立review・同条件再検証・必須集合非縮退・安全指標・改善前後値を別証拠として持つ。 | 正しさと性能を別々に回収し、完了したepisodeだけを閉じる。merge許可を生成しない。|
 | `CASE-OS-L10-031-074` | `HELIXOS-L2-031` / `AC-OS-L3-031-01` | 改善前値だけ欠落。 | 比較を未評価にし前回値で補わない。|
@@ -1216,4 +1216,4 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | `CASE-OS-L10-047-035` | `HELIXOS-L2-047` / `AC-OS-L3-047-04` | Ticketだけが別Ticketを参照する。 | Ticket→Ticket依存結節を拒否し、既存要求/設計/契約の正本へ戻す。|
 | `CASE-OS-L10-047-036` | `HELIXOS-L2-047` / `AC-OS-L3-047-04` | 対象条件だけ欠落。 | 対象を推測せずticketを未完のままOS issuerへ返す。|
 
-**既存CASE補正**：CASE-OS-L10-025-017は未許可だけを示す既存入力を保ち、AC-025-03に従って欠けた許可source/unitの既存ownerへ返す。CASE-OS-L10-026-025の空pack集合は候補除外であり、dependency stateをunknownへ書き換えない。CASE-OS-L10-031-006/025は同一fixture aliasで、031-025は独立分母へ数えない。031-026〜030（warm/cold cacheは031-029を含む）はAC-031-03へtraceし、031-030のHEAD変更はAC-031-04にもtraceする。CASE-OS-L10-047-004/020はprovider-only同一fixture aliasで、047-020は独立分母に数えない。047-011の入力前提はCASE-047-012〜014同様、明示的適格化がない状態で他の項目と元revisionを保持する。047-025は固定親のsplit/責務境界だけを判定し、複数primary responsibility統合を独立禁止条件にしない。
+**既存CASE補正**：CASE-OS-L10-025-17は未許可だけを示す既存入力を保ち、AC-025-03に従って欠けた許可source/unitの既存ownerへ返す。CASE-OS-L10-026-25の空pack集合は候補除外であり、dependency stateをunknownへ書き換えない。CASE-OS-L10-031-06 / CASE-OS-L10-031-25は同一fixture aliasで、031-25は独立分母へ数えない。031-26〜30（warm/cold cacheは031-29を含む）はAC-031-03へtraceし、031-30のHEAD変更はAC-031-04にもtraceする。CASE-OS-L10-047-04 / CASE-OS-L10-047-20はprovider-only同一fixture aliasで、047-20は独立分母に数えない。047-11の入力前提はCASE-047-12〜14同様、明示的適格化がない状態で他の項目と元revisionを保持する。047-25は固定親のsplit/責務境界だけを判定し、複数primary responsibility統合を独立禁止条件にしない。

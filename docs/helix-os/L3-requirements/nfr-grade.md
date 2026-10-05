@@ -131,13 +131,13 @@ NFR集約CASEはFVの個別functional CASEだけを集計する。fixture数は�
 
 ### Stage 5 review01補正 — 個別fixture参照の拡張
 
-機能CASEの補正範囲は次のとおり。alias CASE-031-025とCASE-047-020はそれぞれ同一入力のindex aliasであり独立分母に数えない。旧CASEの範囲記述だけで新fixtureを含むと推定しない。
+機能CASEの補正範囲は次のとおり。alias CASE-031-25とCASE-047-20はそれぞれ同一入力のindex aliasであり独立分母に数えない。旧CASEの範囲記述だけで新fixtureを含むと推定しない。
 
 | NFR候補 | 補正後のAC | 個別fixture範囲 | 観測内容と限界 |
 |---|---|---|---|
 | `NFR-OS-L3-025-01` | AC-025-01〜03 | CASE-025-01〜30。ただしCASE-025-022〜030はreview01補正個別fixture。 | target revision、選択構成版、unit identity/revision/state/evidence、既存判断/停止条件の束縛をfixtureごとに観測。doc/mechanism existenceのみの誤成立は0候補。全運転達成率ではない。|
-| `NFR-OS-L3-026-01` | AC-026-01〜04 | CASE-026-01〜54。ただしCASE-026-031〜054を追加単独変異fixtureとして含む。 | 後続版/外部配布/結果生成、過小・過大構成、能力表示、入力9軸、資源不足/baselineを分ける。空pack除外とdependency unknownは別state。SLO/固定pack数なし。|
-| `NFR-OS-L3-031-01` | AC-031-01〜04 | CASE-031-01〜77。ただし031-025は031-006のalias。 | 個別値、base/scope/authority/contract変化、回収正常、docs/prototype/stale-review/段階伝播、INFRA returnをfixture内で観測。母集団・適用予算不明は未評価。|
-| `NFR-OS-L3-047-01` | AC-047-01〜04 | CASE-047-01〜36。ただし047-020は047-004のalias。 | 元revision・issuer/target/reason/evidence/scope/relationの保持、参照両方向、提案authority境界をfixture内で観測。ticket処理KPIを作らない。|
+| `NFR-OS-L3-026-01` | AC-026-01〜04 | CASE-026-01〜54。ただしCASE-026-031〜054を追加単独変異fixtureとして含む。 | 後続版/外部配布/結果生成、過小・過大構成、能力表示、入力10軸、資源不足/検証不合格を分ける。空pack除外とdependency unknownは別state。SLO/固定pack数なし。|
+| `NFR-OS-L3-031-01` | AC-031-01〜04 | CASE-031-01〜77。ただし031-25は031-06のalias。 | 個別値、base/scope/authority/contract変化、回収正常、docs/prototype/stale-review/段階伝播、INFRA returnをfixture内で観測。母集団・適用予算不明は未評価。|
+| `NFR-OS-L3-047-01` | AC-047-01〜04 | CASE-047-01〜36。ただし047-20は047-04のalias。 | 元revision・issuer/target/reason/evidence/scope/relationの保持、参照両方向、提案authority境界をfixture内で観測。ticket処理KPIを作らない。|
 
 実測値はなく、fixture coverageをruntime母集団や達成率へ換算しない。既存review followupの個別coverage主張はこの表のcase identity/alias規則に従って読む。

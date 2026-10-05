@@ -113,5 +113,5 @@
 |---|---|---|---|
 | 025 | 独立BRなし | CASE-025-01〜30 | target/version/unit状態の欠落、document/mechanismの存在だけによる誤成立を区別し、failure消去やHELIX-OS製品化を作らない。|
 | 026 | 独立BRなし | CASE-026-01〜54 | 導出結果から採択/実装/受入/tag/外部配布を生成せず、適用scope外の機構完成を追加条件にしない。|
-| 031 | 独立BRなし | CASE-031-01〜77、CASE-031-025はCASE-031-006のalias | correctness/performance、必須集合、回収、scope・authority・contract変更を分け、実測SLO/merge基準を作らない。|
-| 047 | 独立BRなし | CASE-047-01〜36、CASE-047-020はCASE-047-004のalias | issuerからの返却・revision lineage・参照境界を保ち、独立のticket効率KPIを作らない。|
+| 031 | 独立BRなし | CASE-031-01〜77、CASE-031-25はCASE-031-06のalias | correctness/performance、必須集合、回収、scope・authority・contract変更を分け、実測SLO/merge基準を作らない。|
+| 047 | 独立BRなし | CASE-047-01〜36、CASE-047-20はCASE-047-04のalias | issuerからの返却・revision lineage・参照境界を保ち、独立のticket効率KPIを作らない。|
