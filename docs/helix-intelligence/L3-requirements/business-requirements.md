@@ -40,3 +40,22 @@ Acceptance/evidenceは `functional-requirements.md` のFR-INT-066およびAC-INT
 ## Stage 2c — L2-075の業務範囲
 
 固定親 `HELIXINTELLIGENCE-L2-075` はproposal identityとqualification handoffの機能条件を持つが、独立business outcome・business owner・business metricを追加で定めない。そのためBR-INT-075およびbusiness CASEは起草せず、受入/evidenceは `FR-INT-075` の `AC-INT-075-01`〜`AC-INT-075-06` とfunctional L10の `CASE-INT-075-01`〜`CASE-INT-075-09` を参照する。承認済みStage 2aのBR-INT-010/066とL2-068の業務範囲を075へ広げない。
+
+
+## Stage 5 — business outcome scope (INTELLIGENCE 9親)
+
+状態: L3未承認の起草候補。旧L3のbusiness-detail分離形を起点とし、固定L2/L11が独立のbusiness outcome owner/metricを置く場合だけBR化する。今回の9親はfunction/acceptance/evidence ownershipを定めるが、独立事業KPIや成果閾値を定めないため新しいBR・business metric・Business CASEを追加しない。
+
+| 固定親 | 機能上の対象 | BR/business CASE | 正本trace |
+|---|---|---|---|
+| `HELIXINTELLIGENCE-L2-060` | 依存/停止条件付きplan candidateからOS ticketへ | 独立BRなし | `FR-INT-060` / `AC-INT-060-*` / `CASE-INT-060-*` |
+| `HELIXINTELLIGENCE-L2-061` | LABO evidence→INT placement proposal→OS assignment | 独立BRなし | `FR-INT-061` / `AC-INT-061-*` / `CASE-INT-061-*` |
+| `HELIXINTELLIGENCE-L2-062` | repairの四段階別evidenceとOS acceptance input | 独立BRなし | `FR-INT-062` / `AC-INT-062-*` / `CASE-INT-062-*` |
+| `HELIXINTELLIGENCE-L2-063` | LABO/BRAIN/INTELLIGENCE/OS/HARNESS別ownerを維持したloop | 独立BRなし | `FR-INT-063` / `AC-INT-063-*` / `CASE-INT-063-*` |
+| `HELIXINTELLIGENCE-L2-069` | source-bound finite model calculation | fixture算術は技術oracleで、business KPIではない | `FR-INT-069` / `AC-INT-069-*` / `CASE-INT-069-*` |
+| `HELIXINTELLIGENCE-L2-070` | CORE→INT→LABO receipt stages | 独立BRなし | `FR-INT-070` / `AC-INT-070-*` / `CASE-INT-070-*` |
+| `HELIXINTELLIGENCE-L2-071` | scenario comparison and downstream evidence receipt | fixed fixture oracle only | `FR-INT-071` / `AC-INT-071-*` / `CASE-INT-071-*` |
+| `HELIXINTELLIGENCE-L2-074` | LABO-evaluated feedback used in later proposal | 独立BRなし | `FR-INT-074` / `AC-INT-074-*` / `CASE-INT-074-*` |
+| `HELIXINTELLIGENCE-L2-077` | selected qualified delta evidence, non-authoritative candidate | 独立BRなし | `FR-INT-077` / `AC-INT-077-*` / `CASE-INT-077-*` |
+
+LABO評価、OS assignment/acceptance、source owner判断、consumer受領をbusiness outcomeへ先取りしない。技術oracle、提案数、試験pass、候補採択から業務成果を生成しない。

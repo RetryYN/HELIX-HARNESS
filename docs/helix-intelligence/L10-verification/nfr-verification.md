@@ -55,3 +55,58 @@ CASEごとにfixture/input digest、対象親の固定PO/L2/L11 revision、metri
 - qualification matrix: self-rating、duplicate/existing owner、independent reproduction、counterevidence、expiry、supersession、finding/remediation identityを別facetとし、各facetの正常・negative・unknown fixture数とexpected/observed未qualified・owner handoff結果を記録する。facet間を単一scoreで相殺せず、未確認をpositive件数に含めない。
 - authority population: current / compatibility / historicalを分け、歴史sourceをcurrent denominatorまたはcurrent passへ混ぜない。別producer/session/HEAD/stale/expired/superseded/duplicate fixtureはunseen/incomplete populationに分類し、理由と既存ownerを保持する。
 - 判定: 候補NFRはテストmatrixの可観測性・coverage比較に限定する。合否閾値、最低件数、SLA、schema enum、Qualification algorithm、UIL runtime、Issue/CI/merge実行を追加しない。採択済みL2-009/L1-009とのtraceが不足する場合はunknownとして既存ownerへ返す。
+
+
+## Stage 5 — NFR candidate measurement oracles
+
+状態: 各CASEは未実行の静的測定設計であり、実測・閾値達成・L3承認を示さない。分母とunknown/missing/staleは別記し、固定fixture数以外のminimum N、SLA、pass値を置かない。
+
+### CASE-NFR-INT-060-01 — source/edge plan trace
+
+同じ060-01/held-out inputからselected source数、宣言edge数、trace可能edge数、unknown/stale数を再計算し、母集団へ欠落を残す。
+
+### CASE-NFR-INT-061-01 — LABO evidence applicability
+
+同じtask-class/scope内外の評価件数とproposalに参照した件数を独立に集計し、別revisionを混ぜず未評価をpositive扱いしない。
+
+### CASE-NFR-INT-062-01 — stagewise receipt inventory
+
+SECURITY/Worker/HARNESS/OS各stageのavailable/missing/unknown/stale/return件数を別分母で再計算し、先行stage successで次段の欠損が消えないことを照合する。
+
+### CASE-NFR-INT-063-01 — episode/time identity
+
+historical evaluation・current judgment・OS outcome・BRAIN applicabilityのepisode/revision/time bindingを別々に数え、late resultを元episodeへ戻す。
+
+### CASE-NFR-INT-069-01 — finite calculation replay and units
+
+069 queue/worker fixed fixturesを再計算し、同一source/rule/inputでtrace/resultが一致するか記録する。計算不能/unknown/unsupported/stop件数を分け、unknownを0へ置換しない。運用性能分布へ外挿しない。
+
+### CASE-NFR-INT-070-01 — connection stage receipt ledger
+
+033 input, 069 result, 040 send, LABO-024 receiptを独立集計し、同一model/scenario/target/correlationで結ばれたstageとmissing/duplicate/stale stageを別表示する。
+
+### CASE-NFR-INT-071-01 — scenario comparability
+
+固定L11の3 scenario (load increase, DB disconnect, virtual worker 2→4)をfixture母集団として、同model/rule/unit, numeric oracle, downstream receipt状態を別々に照合する。3件を運用sample minimumや精度targetとはしない。
+
+### CASE-NFR-INT-074-01 — feedback eligibility counts
+
+同一fixture feedbackをevaluated/unassessed, matching/mismatching scope/revision, complete/incomplete sourceへ層別しeligible/unknown/excluded数を再計算する。未知と欠測を合格率へ押し込まない。
+
+### CASE-NFR-INT-077-01 — source binding and non-write boundary
+
+selected internal/external sourceを別populationで集計し、qualified binding/unknown field/non-write attempt/owner handoffを報告する。unknown consumer/owner populationを補完しない。
+
+## CASE-to-NFR mapping
+
+| NFR CASE | functional parents/fixtures | measured dimension |
+|---|---|---|
+| `CASE-NFR-INT-060-01` | 060 | source/edge trace |
+| `CASE-NFR-INT-061-01` | 061 | evidence applicability |
+| `CASE-NFR-INT-062-01` | 062 | per-stage evidence |
+| `CASE-NFR-INT-063-01` | 063 | episode/time lineage |
+| `CASE-NFR-INT-069-01` | 069 | deterministic arithmetic/unit/unknown |
+| `CASE-NFR-INT-070-01` | 070 | separate receipts |
+| `CASE-NFR-INT-071-01` | 071 | three fixed scenario comparison |
+| `CASE-NFR-INT-074-01` | 074 | feedback applicability |
+| `CASE-NFR-INT-077-01` | 077 | selected-source identity/non-write |

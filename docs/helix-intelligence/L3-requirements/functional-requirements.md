@@ -113,3 +113,100 @@ C13-M10、C13-M7、C13-M12 audit-record correction、Minor INT-010、Minor INT-0
 ## Stage 2a（PR #2594）carry-forward記録
 
 以下は旧reviewのscope別carry状態を示す時点説明であり、Stage 2cの要求・受入条件・親依存ではない。C13-M7（L2-066）、C13-M10（L2-010）、Minor INT-010はStage 2aで扱った親範囲の履歴として記録する。C13-M12は複数機構・stageにまたがる監査記録整合性のfindingであり、INTELLIGENCE L2-068に関するcomment line 168の指摘はStage 2c本文で解消したとは扱わず、未解消のまま残す。Minor INT-060-078は複数親にまたがる範囲で、Stage 2aで扱った部分だけから全範囲を解消・確認済みとはしない。`C13-U-INT-NFR-060-078`と`C13-U-all-crosswalk-and-legacy`も共通監査の未確認範囲であり、L2-068に関わる未確認はStage 2cを含め引き続きopenである。この本文と監査は独立reviewやfinding closureを意味しない。
+
+
+## Stage 5 — 採択済みHELIXINTELLIGENCE-L2 9親の起草範囲
+
+状態: 本追補はStage 5対象のL3起草候補・未実行の検証設計であり、独立reviewやL3承認、実装・実行・releaseを生成しない。採択対象は `HELIXINTELLIGENCE-L2-060/061/062/063/069/070/071/074/077` の各 `version_target: 1.0`。060–063・069–071はMPR-RC `-002`、074は`MPR-RC-HELIXINTELLIGENCE-L2-074-002`、077は選択適用範囲を持つ`MPR-RC-HELIXINTELLIGENCE-L2-077-001`を、それぞれG0と該当PO判断の固定行へ結ぶ。069–071のL2は採択済みStage 5親であり、未承認という記述をL2採択状態へ読み替えない。未承認なのはこのL3 draftである。
+
+旧HELIXのL3 layer definition、親ごとの旧L3 sourceとpaired consumerの受入形をsource起点にし、項目別の保持・意味再導出・置換は各FRへ示す。旧L3/L10のID、provider・runtime・旧workflow・採否/approval運用は移さない。旧pair artifactは設計材料であり実行証拠ではない。固定L2/L11の意味、対象、owner、版、scopeを越える依存や一括Stage完了gateを作らない。
+
+### FR-INT-060 — 根拠付き自動開発計画候補（Stage 5）
+
+- 親: `HELIXINTELLIGENCE-L2-060`、親L1 `HELIXINTELLIGENCE-L1-005`、`version_target: 1.0`。固定source: L2 5acae384:354–359、L11 basic row 114およびplan-proposal row 281、PO decision 2026-09-28 row 90、G0 `MPR-RC-HELIXINTELLIGENCE-L2-060-002`。
+- 責務: INTELLIGENCEは承認済み要求・HARNESS工程contract・現状・BRAIN知識から根拠、依存、停止条件付きplan candidateを作る。要求/contract/state/knowledgeは各source owner、ticket・推進・assignmentはOSが持つ。4.0動的workflowを1.0の前提にしない。
+- 入出力: source identity/revision/owner/scope、approved requirement state、HARNESS process contract、current OS state、BRAIN applicability、依存/stop条件を入力し、各nodeと根拠・依存・未知・停止理由を結ぶ候補をOSへ渡す。実行可能化、ticket発行、OS state変更は出力しない。
+- AC-INT-060-01 正常: CASE-INT-060-01。承認済み要求のA→B依存と独立C、valid HARNESS contract/current state/applicable BRAIN sourceを与え、plan candidateはA前にBを置かずCを独立化し、stop/fallback理由・source traceが固定L11 oracleと一致する。OS ticket発行は別状態のまま。
+- AC-INT-060-02 negative: CASE-INT-060-02a〜02fを各一変異とする。未承認requirementを実行可能化、HARNESS contractまたはOS stateをstale化、依存順序を逆転、4.0 workflowを必須化、INTELLIGENCEからticket/assignmentを生成する各変異を拒否し、最初の不成立source/OS ownerへ戻す。
+- AC-INT-060-03 未見正常: CASE-INT-060-03。held-out graphで適合済み依存だけを順序化し、独立nodeと停止条件を保つ。
+- AC-INT-060-04 unknown/範囲外: CASE-INT-060-04a/04b。source owner/依存の適用性が不明なら該当branchだけをunknownとして保持し、循環・未宣言依存を解決済みに並べず該当source ownerへ返す。
+- 旧source: LEGACY-ASSET-02D897E62EF2FA267267 (`universal-improvement-loop-requirements.md:43–59,125–160`)、LEGACY-ASSET-0B5B38F146D9538C9A36 (`universal-improvement-loop-acceptance.md:17–38`)、LEGACY-ASSET-C7F0C3B79CBAA72960BF (`infinity-loop-functional-requirements.md:25–60`)、LEGACY-ASSET-FA8C6E69463183D6A19B (paired `L3-infinity-loop-acceptance-test-design.md:17–40`)、LEGACY-ASSET-5EE032D657C221184B00 (`universal-workflow-ai-judgment-engine.md:31–52,113–145`)、LEGACY-ASSET-6FFD7F4E58066D08B053 (paired `universal-workflow-ai-judgment-engine-acceptance.md:17–34`)。decision proposal、source trace、negative oracleの形を意味再導出する。旧Universal Improvementの自治的lifecycle/route、UWJのinterview/schema、Infinity Loopのprovider/runtimeは置換しない。
+
+### FR-INT-061 — LABO評価根拠に基づくWorker配置proposal（Stage 5）
+
+- 親: `HELIXINTELLIGENCE-L2-061`、親L1 `HELIXINTELLIGENCE-L1-010`、`version_target: 1.0`。固定source: L2 5acae384:360–365、L11 rows 115/163、PO row 91、G0 `MPR-RC-HELIXINTELLIGENCE-L2-061-002`。
+- 責務: LABOは作業種別別水準・同scope評価証拠、INTELLIGENCEはtask別配置案、OSは指定・割当てを持つ。price/name/benchmark単独では決めない。task identity、scope、Worker evidence適用性を保ち、実assignmentとproposalを混同しない。
+- AC-INT-061-01 正常: CASE-INT-061-01。task capability/tool/domain、複数Worker profileと同task-class/scopeのLABO evidenceを与え、適合理由・除外・未評価・根拠を示したproposalを返しOSへ渡す。
+- AC-INT-061-02 negative: CASE-INT-061-02a〜02hを個別変異する。priceのみ、model nameのみ、benchmark値のみで順位確定、別task/scope evidence流用、未評価をqualified化、LABOがassignment、INTELLIGENCEがassignment、またはstale evidenceをcurrent扱いする変異を拒否する。evidence評価/適用不一致はLABOへ、task scope不明はINTELLIGENCEへ、割当不可はOSへ戻す。
+- AC-INT-061-03 未見正常: CASE-INT-061-03。未見task/class組合せでも同じ明示capability/evidence scopeだけを照合し、LABO evidenceがなければ未評価のproposalを保つ。
+- AC-INT-061-04 unknown: CASE-INT-061-04。未宣言task classまたは互換範囲不明を推測適格化せず、該当scopeをLABO/OSの固定ownerへ返す。
+- 旧source: LEGACY-ASSET-9114D4E463E95B67DD0C (`worker-common-contract.md:47–64`)、LEGACY-ASSET-C6ADB99F1353965C5449 (`worker-common-contract-acceptance.md:18–64`)、LEGACY-ASSET-28FB139B26CD61CC51EE (`helix-bench-evaluation.md:30–82`)、LEGACY-ASSET-A952A3A175EB82A4781B (paired `helix-bench-evaluation-acceptance.md:30–41`)。同task条件、評価範囲、重大失敗の非相殺を比較材料として再導出する。旧provider descriptor/CLI/sandbox、blind score、旧採否・価格・admissionを移さず、能力判断はLABO、実割当はOSへ置換する。
+
+### FR-INT-062 — 限定修復の段階別evidence接続（Stage 5）
+
+- 親: `HELIXINTELLIGENCE-L2-062`、親L1 `HELIXINTELLIGENCE-L1-016/017`、`version_target: 1.0`。固定source: L2 5acae384:366–371、L11 rows 116/117/202、PO row 92、G0 `MPR-RC-HELIXINTELLIGENCE-L2-062-002`。
+- 責務: 同じtarget revision/scope上で、SECURITY permission/isolation、Worker execution、HARNESS verification obligation/result、OS acceptanceを独立段階として結ぶ。各ownerの成立は他段階を代替せず、最初の不足段階をそのownerへ戻す。
+- AC-INT-062-01 正常: CASE-INT-062-01。全段階のsource/owner/revision/target/scopeが一致する別receiptを順序どおり保持し、最後のOS acceptance inputまで別状態で追跡する。
+- AC-INT-062-02 negative: CASE-INT-062-02a〜02hを一項目ずつ変える。permission欠落/actor-scope不一致はSECURITY、Worker result欠落/別targetはWorker execution owner、HARNESS verification欠落はHARNESS owner、OS acceptance欠落はOS ownerへ戻す。receipt順序逆転または途中段階だけで修復完了をclaimしても後段成立を生成しない。正常な別stage evidenceは保持する。
+- AC-INT-062-03 未見: CASE-INT-062-03。未見receipt versionの互換性不明を該当stageだけ保留し、重複receiptは一段階を二度完了させない。
+- 旧source: LEGACY-ASSET-02D897E62EF2FA267267 (`universal-improvement-loop-requirements.md:84–120,164–183`)、LEGACY-ASSET-0B5B38F146D9538C9A36 (paired UIL acceptance `:1–46`)、LEGACY-ASSET-C7F0C3B79CBAA72960BF (`infinity-loop-functional-requirements.md:31–60`)、LEGACY-ASSET-FA8C6E69463183D6A19B (paired Infinity acceptance `:1–63`)、LEGACY-ASSET-17C4BF78919578FEBB18 (`product-lifecycle-operations-requirements.md:105–154`)、LEGACY-ASSET-F46AB11BD14F2C0469F4 (paired OPS acceptance `:17–46`)。候補/修正の証拠・各return ownerとfalse-closure反例を意味再導出する。旧terminal, route, runtime, deployment/rollback authorityは適用せず、現行の四段階ownerへ置換する。
+
+### FR-INT-063 — LABO評価/BRAIN知識/現判断/OS実行の循環trace（Stage 5）
+
+- 親: `HELIXINTELLIGENCE-L2-063`、親L1 `HELIXINTELLIGENCE-L1-018/019`、`version_target: 1.0`。固定source: L2 5acae384:372–377、L11 rows 118/119/206、PO row 93、G0 `MPR-RC-HELIXINTELLIGENCE-L2-063-002`。
+- 責務: episode/source/revision/scopeと時点を維持して、LABO past-effect evaluation、BRAIN general knowledge, INTELLIGENCE current judgment, OS execution, HARNESS process evidenceを結ぶ。effectivenessはLABO、knowledge canonicalはBRAIN、execution/assignmentはOS、process contractはHARNESS。INTELLIGENCEはloop evidenceを結ぶだけで改善採択・正本writeをしない。
+- AC-INT-063-01 正常: CASE-INT-063-01。episodeを同一target revision/scopeへ結び、過去評価とcurrent judgmentを別時点で保持し、未完stageとownerを明示する。
+- AC-INT-063-02 negative: CASE-INT-063-02a〜02gを独立評価する。INT self-evaluationからlong-term effect確定、INTからBRAIN canonical write、stale LABO resultをcurrent扱い、predictionをactualにする、OS execution未完を完了化、未承認general knowledgeをcurrentize、out-of-order/duplicate resultで別episodeを上書きする各変異を拒否し、LABO/BRAIN/OS/HARNESSの該当ownerへ戻す。
+- AC-INT-063-03 未見: CASE-INT-063-03。遅着・別順historical outcomeは元episodeへ結び、current judgmentを上書きしない。applicability unknownはBRAIN/LABOへ戻す。
+- 旧source: LEGACY-ASSET-02D897E62EF2FA267267 (`universal-improvement-loop-requirements.md:59–76,162–196`)、LEGACY-ASSET-0B5B38F146D9538C9A36 (paired UIL acceptance `:1–46`)、LEGACY-ASSET-EE5DBACC7F28F7D1F605 (`pillar-functional-requirements.md:154–156,237–242`)、LEGACY-ASSET-44DD86E3DEC09E65EF51 (paired `L3-pillar-acceptance-test-design.md:32–90,91–216`)、LEGACY-ASSET-5EE032D657C221184B00 (`universal-workflow-ai-judgment-engine.md:31–52,113–145`) とLEGACY-ASSET-6FFD7F4E58066D08B053 (paired UWJ acceptance `:17–34`)。before/after effect、fact/unknown、owner distinctionだけを再導出し、旧recipe promotion, memory, runtime loop, approval workflowを置換・実行しない。
+
+### FR-INT-069 — 有限設計modelの条件付き計算（Stage 5）
+
+- 親: `HELIXINTELLIGENCE-L2-069`、unit、`version_target: 1.0`、PO-fixed adopted `MPR-RC-HELIXINTELLIGENCE-L2-069-002`。L2 5acae384:513–527、L11 common/detail rows 213/231–238、PO row 99、G0をsource pinする。L2-006の既存予測責務を置換せず、HARNESS/Product Core source-owned finite modelの明示規則だけを計算する。
+- 常時入力: 許可model identity/revision/digest/owner/scope、schema/rule版、initial state、finite state/edge/process/load rule、scenario identity、単位・境界・data-use条件、停止条件。時間・費用・failure/worker計算の特定operationに限り明示率/単価/通貨/effective time/edge/recovery/schedulerを要求し、不足した数値を作らない。出力はsource/rule-bound trace、計算可能値、assumption・unknown・unsupported・打切りを含むvirtual resultであり実測/設計変更/実resource stateではない。
+- AC-INT-069-01 normal queue: CASE-INT-069-01。L2明記の2-step到着5/5、service上限8、`served=min(q+arrival,8)`でbaseline処理5/5・終端q=0/0、load 5/10で処理5/8・終端q=0/2を独立算術oracleと照合する。
+- AC-INT-069-02 normal propagation: CASE-INT-069-02。L2明示のDB available→unavailable event、`order_processor requires DB.available` edgeとwaiting/retry規則だけを辿り、edgeのないreporting branchを変更せず、recovery未定義なら復旧を作らない。
+- AC-INT-069-03 normal capacity/cost: CASE-INT-069-03。L2明記の18 jobs、worker rate 3 jobs/min、shared DB ceiling 8 jobs/min、worker rate 0.20 credit/(worker·min)、DB rate 0.10 credit/minから、2 workers=6 jobs/min, 3 min, 1.50 credits; 4 workers=8 jobs/min, 2.25 min, 2.025 creditsを再計算する。差分は-0.75 min/+0.525 credits。全数値は固定fixtureの算術oracleで製品閾値/実性能ではない。仮想worker数はOS配置を変えない。
+- AC-INT-069-04 negative: CASE-INT-069-04a〜04gを一変数ずつ評価する。未宣言rule/係数を補う、別revisionの率を混ぜる、単位不一致を換算根拠なしに結ぶ、欠落価格を0にする、明示edge外へfailure伝播、recoveryを創作、virtual resultをphysical resultと呼ぶ各変異を拒否し、source/model ownerへ戻す。
+- AC-INT-069-05 unseen: CASE-INT-069-05。held-out finite state/edge/ruleが宣言範囲内ならtrace/outputを独立算術/graph oracleと照合し、未対応領域のみunknownとする。
+- 旧source照合: HELIX-Bench/UIL/OPSの観測、versioned evidence、failure/cost分離は隣接意味として再導出する。設計modelを条件変更して有限計算する旧requirement/runtimeはinventory検索で特定できず、旧`pre-merge simulation`（LEGACY-ASSET-50CA1C554747F12266D3, `resident-lane-orchestration-requirements.md:1114–1124`）はgovernance projection検査のため対象外。有限計算能力はPO原文第3項/G17導出記録と固定L2から意味新規に具体化する。未知外挿や旧runtime移植の根拠にしない。
+
+### FR-INT-070 — CORE入力からLABO consumer受領までの段階別接続（Stage 5）
+
+- 親: `HELIXINTELLIGENCE-L2-070`、connection、`version_target: 1.0`、PO-fixed adopted `MPR-RC-HELIXINTELLIGENCE-L2-070-002`。L2 5acae384:528–543、L11 common/detail rows 213/229–238、PO row 100、G0。既存L2-033入力、L2-040送達、LABO-024受領と専用CONNECT contractを再利用し、payload/schema/正本を複製しない。
+- 段階: 033 CORE input receipt → 069 calculation result → 040 send → LABO-024 consumer receipt。段階ごとにsource/consumer contract version, model/scenario, target scope/window, correlation, simulated-vs-observed statusを保つ。後続receiptはその段階に達する前の入力条件にしない。
+- AC-INT-070-01 input: CASE-INT-070-01。許可された同一Product Core source/model revision, scope, 033専用connector contractのinput receiptを保持する。
+- AC-INT-070-02 result binding: CASE-INT-070-02。069 resultを同じinput revision/scenarioへ結び、virtual statusとassumption/unknownを保持する。
+- AC-INT-070-03 send: CASE-INT-070-03。計算後のresultだけを既存040 contractで送達し、送信receiptを受領receiptと同一視しない。
+- AC-INT-070-04 consumer: CASE-INT-070-04。LABO-024のconsumer contract/receiptを送達後の独立段階で結び、LABO評価権限はLABOに残す。
+- AC-INT-070-05 negative: CASE-INT-070-05a〜05fを個別評価する。別model/revision/scopeを結ぶ、033 connector/authorityを飛ばす、virtualを実測とする、send receiptだけでLABO受領済みにする、correlation ID違いを同一視、対象source contractがpayloadを運べないために新fieldを黙って追加する各変異を拒否し、Product Core/HARNESS/CONNECT/LABOの原因ownerへ返す。
+- AC-INT-070-06 unseen: CASE-INT-070-06。未見互換版・遅延/重複/out-of-order receiptは段階/版/相関が一致する範囲だけ結び、欠落・stale・unknownを未受領で保持する。
+- 旧source disposition: HELIX-Bench acceptance receipt/versioned cohort、OPS typed receipt/backflow、UIL source identity/evidenceを境界比較として再導出する。これらはCORE→LABOの本connection/schemaを提供しない。現行033/040/024とCONNECTを再利用し、旧integration/authorityは置換する。
+
+### FR-INT-071 — 条件変更・計算・比較のcomposite（Stage 5）
+
+- 親: `HELIXINTELLIGENCE-L2-071`、composite、`version_target: 1.0`、PO-fixed adopted `MPR-RC-HELIXINTELLIGENCE-L2-071-002`。L2 5acae384:544–560、L11 R2187-01 rows 213,239–251、PO row 101、G0。069計算と070送達を束ねるが、単体結果/送達のみでcomposite成立としない。
+- AC-INT-071-01 正常: CASE-INT-071-01。L11 finite fixtureで033同一model revisionを固定し、baseline arrivals 5/5とload scenario 5/10、per-step service ceiling 8のqueue oracleを照合する。次にload increase、DB disconnect、virtual worker 2→4を別scenario runとして計算し、変更/invariant、順序付きtrace、queue/bottleneck/blocking state、数値可能時間/費用delta、unknown/unsupported、040 sendとLABO-024 receiptを比較表で結ぶ。worker例ではcompletion 3→2.25 min、cost 1.50→2.025 credits。DB断では明示edgeのorder processだけblockedとなり、recovery未定義を保つ。
+- AC-INT-071-02 negative: CASE-INT-071-02a〜02gを各一変異で拒否する。baseline/scenario model revision不一致、同じ比較で単位/係数混在、edge外failure propagation、モデルにないrollback/retry/recovery、virtual worker changeでOS assignment更新、LABO receipt不在の完了claim、unsupported/未定義costを0化する変異はそのscenarioだけを不成立にし、他の独立正常scenarioを止めない。
+- AC-INT-071-03 unseen: CASE-INT-071-03。held-out finite modelは明示rule範囲内だけoracle照合し、unsupported edge/domainと後続actual receipt欠落を局所unknown/未比較にする。
+- 旧sourceとの差分: G17 (HDEC-DESIGN-MODEL-CALCULATION-2026-09-27) はPO第3項の条件付き有限モデル計算を再導出した現行の意味根拠で、旧assetではない。旧source網羅検索は完全不在を証明しない。RLO pre-merge projectionは製品設計計算ではなく、実装移植の根拠にしない。保持は予測・反証・実測比較の目的、変更は有限model/schema/ruleに限定したvirtual calculationである。
+
+### FR-INT-074 — 評価済み返却feedbackの配置proposal入力（Stage 5）
+
+- 親: `HELIXINTELLIGENCE-L2-074`、単体、`version_target: 1.0`、PO-fixed adopted `MPR-RC-HELIXINTELLIGENCE-L2-074-002`、candidate digest `5605649c…71719c`。snapshotのL2「未採択」文はG0・PO row 87の後続採択判断を覆さない。L2 5acae384:609–617、L11 heading 328、G0, empty-coverage receiptを束ねる。
+- 責務: LABOがtask class/domain, target revision, scope, observation population/window, source completeness, evaluation state付き返却reason/missing input/oracle/reissue evidenceを評価する。INTELLIGENCEは同scopeに適用可能なfeedbackを次回proposalの根拠として引用し、範囲と未評価/不確実性を保つ。OSはticket/reissue/assignmentを所有する。
+- AC-INT-074-01 normal: CASE-INT-074-01。評価済み・scope/revision一致のfeedbackを既存L2-010 proposalの入力材料として結び、配置理由と適用範囲を提示するが、feedbackだけでproposal正当性や成功をclaimしない。
+- AC-INT-074-02 negative: CASE-INT-074-02a〜02fを個別に評価する。未評価feedbackを適合化、別task/scope/revisionを流用、source completeness欠落を補完、単一feedbackで恒久資格/順位を更新、feedbackからmodel/要求を更新、INTELLIGENCEからticket/reissue/assignmentを発行する変異を拒否し、評価不足はLABO、task/ticket不足はOSへ返す。
+- AC-INT-074-03 unseen: CASE-INT-074-03。未見reason classはdeclared compatible scope内だけで再利用し、未知/比較不能を適合証拠にしない。
+- AC-INT-074-04 unknown: CASE-INT-074-04。window/source completeness/compatibility/owner不明は該当fieldをunknownとしてLABOまたは既存L1/L2 ownerへ返す。新しいconsumer/ownerは設けない。
+- 旧source: LEGACY-ASSET-9114D4E463E95B67DD0C / C6ADB99F1353965C5449 (WCC L3/L10), LEGACY-ASSET-28FB139B26CD61CC51EE / A952A3A175EB82A4781B (Bench L3/L10), LEGACY-ASSET-3A15E5645D2D2A59DFF5 (`execution-ticket-requirements.md:399`, adjacent old ticket source) を比較する。feedback利用は既存L2-010への限定接続として意味再導出し、旧provider/score/admission/reissue controlを再利用しない。
+
+### FR-INT-077 — AAFD qualified delta sourceのidentity・unknown・非write境界（Stage 5）
+
+- 親: `HELIXINTELLIGENCE-L2-077`、unit、`version_target: 1.0`、選択・適用範囲付き採択 `MPR-RC-HELIXINTELLIGENCE-L2-077-001` / digest `885656dd…7d344e`。固定L2 5acae384:635–645、L11 heading 352、PO `later35` row 53、G0で対象revisionを束ねる。固定L2本文内の「未採択candidate」snapshot文よりG0/PO decisionを優先するが、選択条件外への意味拡張はしない。
+- scope: selected qualified internal/UIL-like or external/TER-like source receiptのidentity/revision/owner/origin typeを分離し、対応範囲内のdelta candidateへ結ぶ。実在するconsumer/route/ownerが明らかでない領域はunknownとして保持し、existing requirement ownerへの照合へ返す。旧UIL/TER/Future Synthesis名を現行機構や新ownerとして作らない。
+- AC-INT-077-01 normal internal: CASE-INT-077-01。qualified internal source receiptをsource owner・revision・origin typeへ束縛し、unknown fieldを埋めずnon-authoritative delta candidateとして提示する。
+- AC-INT-077-02 normal external: CASE-INT-077-02。external receiptも別origin identityとして結ぶ。external observationだけからHELIX defectを確定せず、internal receiptと同一sourceへ統合しない。
+- AC-INT-077-03 negative: CASE-INT-077-03a〜03gを一変数ずつ拒否する。unknownを0/neutral/unchanged/observedに補完、internal/external origin swap、未qualified/stale receipt受入、Requirement/Design/Release/Assignmentへの直接write、merge authority/state変化、未特定consumer/routeの新設を許可しない。原因をselected source ownerまたは該当existing L1/L2 ownerへ返す。
+- AC-INT-077-04 unseen/unknown: CASE-INT-077-04。新source type・consumer・ownerが未宣言ならunknown/incompleteのまま保持し、未選択reference資料へfallbackしない。
+- 旧source: LEGACY-ASSET-EB3700B0088F311C2295 (`development-investment-stage-directives-source_v1.0.md:52–53,71`), LEGACY-ASSET-CAC0C64EB7540180B1FE (paired `agentic-audit-future-state-delta-acceptance.md:19–22,39–44`)。AAFD-R-05/R-08のselected-source/origin/unknown/non-write意味を再導出する。旧UIL/TER/Future Synthesis runtime, route, API/schema, qualification algorithmは置換または範囲外であり、現行consumer/ownerを推定しない。
