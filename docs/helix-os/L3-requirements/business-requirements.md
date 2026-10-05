@@ -88,3 +88,19 @@
 | `HELIXOS-L2-046` | 機能要件のみ。 | 既存遷移の証拠照合を観測し、merge rateや新承認の基準を加えない。 |
 | `HELIXOS-L2-048` | 機能要件のみ。 | pending/resolution stateの根拠を照合し、registrationやclosed finding数をKPIにしない。 |
 | `HELIXOS-L2-052` | 機能要件のみ。 | local cleanupと後続PR再照合を分け、Issue/要求完了や生産性を主張しない。 |
+
+
+## Stage 5追補 — HELIXOS-L2-025/026/031/047 のbusiness境界候補
+
+この追補は既存文書のStage 2b/Stage 2a/Stage 3/Stage 4 scope欄を遡及変更せず、ここに列挙したStage 5対象だけを追加する候補である。先頭のstatusは先行scopeの状態を示す。
+
+この追補はHELIX-OSの4親をL3/L10へ対形成する候補であり、独立したbusiness outcome、business owner、KPI、承認者を追加しない。G0のStage 5は実装順序・version intentの記録で、Stage5全親の完了を個別作業や単独成立の前提にしない。対象revision・scope・owner・状態は各機能要件と固定L2/L11を参照する。
+
+| 親 | business扱い | L10で照合する境界 |
+|---|---|---|
+| `HELIXOS-L2-025` | 独立BRなし | unit・connection・compositeの証拠を区別し、構成体の未完義務・unknownを個別成功で隠さない。|
+| `HELIXOS-L2-026` | 独立BRなし | 要求導出・依存閉包・比較範囲・最小性の未立証を別状態にし、実構成の受入へ読み替えない。|
+| `HELIXOS-L2-031` | 独立BRなし | 正しさ、性能計測、性能未達、改善回収を分け、既存性能予算の有無・条件を保つ。|
+| `HELIXOS-L2-047` | 独立BRなし | ticket返却・再発行と要求意味変更、assignment/result/authority継承を分ける。|
+
+この表は機能CASEへの参照境界だけを示す。Stage一式の承認待ちを新たなgateとせず、上流意味変更が必要な個別項目だけを既存authorityへ戻す。

@@ -529,3 +529,67 @@ ticket返却、検証不能、oracle/input不足のfindingを、finding identity
 021が束ねる既存条件はHELIXOS-L2-002/006、FRS-BR-001〜007/009であり、L2-014は別identityとして存続する。022が束ねる既存条件はHELIXOS-L2-005/007、HBR-P4/P7/P8の観測・feedback・根拠・再検証。024はHELIXOS-L2-005/006/007/014、Conceptの成長循環と1.0ログ/data-use土台。各参照は既存条件のindexで、意味を置換しない。
 
 固定親の参照範囲はL2 `governance-requirements.md` 702–711、712–721、732–741、1177–1184、1195–1204、1231–1241と、L11 `governance-acceptance.md` 366–371、373–378、387–392、794–800、812–819、847–854である。登録revision・採択履歴・各raw-byte span hashはStage4新規監査に個別pinする。旧READMEのL3→L12と旧processのL3↔L10等の層対応表記は現行層の権威にせず、現行6 canonical構成で意味を再配置する。
+
+
+## Stage 5追補 — HELIXOS-L2-025/026/031/047（起草候補）
+
+この追補は既存文書のStage 2b/Stage 2a/Stage 3/Stage 4 scope欄を遡及変更せず、ここに列挙したStage 5対象だけを追加する候補である。先頭のstatusは先行scopeの状態を示す。
+
+この4件はL3候補であり、実装・実行・merge・配布を許可しない。G0は36件をversion_class 1.0／Stage 5へ割り当てる順序判断だが、Stage 5全件の完了を各親の単独成立や操作の新規前提にしない。固定L2/L11のrevisionとPO行、G0配置、管理registerの `registered_proposal` / `authority_effect=none`、各L2本文の `candidate`／`未採択`／`version_target` 表示は別の情報として保持する。特に025/026のregisterは旧atom 0件を示すだけで意味全体の移管・closureを示さない。031は旧source atom 51件、047は選択5 atomのreceipt範囲のみを保持する。
+
+### `FR-OS-L3-025` — `HELIXOS-L2-025` 統合運転構成体
+
+HELIX自身と複数projectの対象revisionごとに、L2-015〜024のunit、必要なconnection、composite固有の端から端義務、owner、証拠、未完状態、戻し先を別identityとして束ねる。project単位の各HARNESS製品と選択接続の単独状態を保持し、構成体の成立はL2が定める1.0全体確認の範囲でのみ判定候補にする。個別の初期配布・単独成立を7製品すべての完成待ちにせず、後続version_targetの能力も前提にしない。単位の成功からconnection/compositeを推定せず、unknown、stale、未許可、人判断待ち、未完義務をそのまま記録する。欠落したsource/unit/connectionの既存ownerへ返し、未完義務を保持する。
+
+**責務／依存**：OSは統合状態とtrace、各unit ownerは自身の契約・証拠、HARNESS/周辺機構は明示済み接続契約を担う。新しいowner・承認・KPIを作らない。固定L2に列挙された既存L2と必要な接続だけを依存として扱う。
+
+**AC-OS-L3-025-01 — 単独/接続/composite分離**：各project・対象revisionでunit、選択connection、composite固有端から端証拠を個別に参照する。固定L2/L11の1.0全体確認条件と単独作業の対象範囲を混同しない。
+
+**AC-OS-L3-025-02 — 部分成立と保持**：あるHARNESS製品の単独成立、別projectの未完了、L1-011/012のLABO移管状態をそれぞれ独立に扱う。部分成立から7製品群・HELIX-OS全体の成立やfailure解消を作らない。
+
+### `FR-OS-L3-026` — `HELIXOS-L2-026` 段階release構成の導出能力
+
+対象revision、source authority、目的・仕事範囲、候補pack境界、各要求の状態、入出力・契約版、機能/安全依存、owner、人の許容分担、検証範囲、更新・復旧条件を同じ導出入力へ束縛し、候補pack集合・除外・依存閉包・未解決不足・代替構成比較を返す。機能の必要性、依存/安全閉包、実行・受入証拠、最小性の立証を別状態で記録する。代替構成の探索空間・境界・比較が不足する場合は「最小候補／未立証」とし、候補の局所的な除去試験だけで全候補空間に対する最小性を証明済みとしない。trace上の循環だけから実行前提の自己依存と断定しない。unknown/missing/conflict/stale/非互換は不足のまま残し、空集合や暗黙の代替packで閉じない。候補導出、段階採択、実装・受入、配布/tagを別状態とし、結果から権限を作らない。欠落は要求/authority owner、pack境界は当該機構とHARNESS、依存・安全はそのowner/SECURITY、資源・復旧はINFRASTRUCTUREへ返す。
+
+**責務／依存**：L2-014、HARNESS-L2-010/011/022、各入力候補のsource ownerと明示済み契約を参照する。G1〜G7候補の存在や記載だけを採択・依存充足・実行証拠にしない。
+
+**AC-OS-L3-026-01 — 導出結果と証拠の分離**：validな入力では目的、scope、要求revision、許容分担、境界、依存と安全依存、閉包、未立証、代替比較を同一入力revisionへ束縛して返す。導出能力の確認を実構成の実行・復旧・composite受入へ読み替えない。
+
+**AC-OS-L3-026-02 — 欠落・不整合の独立保持**：要求source、通常依存、安全依存、互換性、復旧条件の一項目のみをそれぞれ欠落/stale/不一致にし、当該不足を特定ownerへ返して成立構成を主張しない。trace参照だけのcycleと実行前提のcycleを区別する。
+
+**AC-OS-L3-026-03 — 最小性の境界**：候補空間または適格条件・代替比較が不足した例を、閉包状態を保持した「最小性未立証」とする。代替比較がある通常例でも、固定L2が定めない段階数、pack数、taxonomyを追加せず、stage採択や外部作用を生成しない。
+
+### `FR-OS-L3-031` — `HELIXOS-L2-031` CI性能計測と非縮退回収
+
+適用性能予算とその根拠、target/source/base HEAD、HARNESSが要求した検証義務・selected/skipped集合digest、profile、runner/environment/toolchain/platform/lockfile/artifact、cache、resource/exclusive状態、区間計測、exit code、output digest、母集団・期間・除外理由を同一run/receiptへ結ぶ。正しさ状態と性能状態を独立に返し、性能超過は同episodeの改善候補・未完義務へ結ぶ。内部CIと外部CIは環境・receiptを分ける。p50/p95の母集団・期間・不足を保持し、0や前回値で補わない。必須obligationを保った順序・並列度・runner・artifact reuseの改善だけを候補とし、検査削減、oracle緩和、timeout延長、外部CI先送り、security指標劣化を改善完了にしない。変更の再実行は既存ticket/assignment/authorityへ委ね、LABO提案や観測からCI設定・authorityを直接変更しない。計測条件不明は実行/計測owner、検証義務差分はHARNESS、資源不足はINFRASTRUCTUREへ戻す。
+
+**旧数値との境界**：旧GH-NFR-009の重要検査p95 60秒とGH-NFR-010のFull verification p95 3分は、旧sourceが指定したCI環境・検査集合・profile・母集団に紐付いた比較値としてのみ記録する。現行全run共通のSLOや達成条件へ転記しない。現行予算は適用scopeの明示契約から入力する。未計測・母集団不足を達成にしない。旧main/nightlyの固定回収運用は、L2-031が記録する後続PO判断後のticket駆動導出・差分証明・LABO分析へ変更された条件と分け、復活させない。
+
+**AC-OS-L3-031-01 — 測定束縛と分布**：適用予算・根拠がある入力はHEAD、環境、cache、検査集合、区間計測、母集団・期間・除外理由と結び、内部/外部環境を別receiptで観測する。根拠・母集団不足は未測定/比較不能のまま保持する。
+
+**AC-OS-L3-031-02 — 性能と正しさの独立**：correctness成立・性能超過、性能内・correctness不成立をそれぞれ別stateとして観測する。超過時は同episodeのRecovery義務を保持し、合否・merge admissionをこの親から作らない。
+
+**AC-OS-L3-031-03 — 非縮退回収**：必須検証削減、oracle閾値緩和、timeout延長、外部環境への義務先送りの各単独変異を改善と認定しない。改善前後receipt、必須集合非縮退、review、再検証が揃わなければ未完を保持する。
+
+### `FR-OS-L3-047` — `HELIXOS-L2-047` 理由付きticket返却と新revision
+
+発行済ticketの誤り・不足・矛盾を、理由、対象条件、source/revision/evidence、未完義務、returning actor/scopeとともに発行元OSへ戻し、元ticket identity/revision/assignmentとの因果関係を記録する。元revision bytesは保持し、対処内容を含む再発行は既存typed relation/lineageで新revisionへ結ぶ。旧assignment、Attempt、結果、authorityを新revisionへ暗黙に継承せず、新revisionの現行契約が明示的に適格化した場合だけ参照する。provider/actor/model/session/branch/worktree/lease/priority/progress/measurement等の運用属性変更だけでticket意味revisionを変えない。要求意味・scope変更やsplitは既存authority/Backflow ownerへ戻す。OSが発行/再発行を担い、LABO/INTELLIGENCE proposalやIssue/PRのclose/mergeからticket意味や完了を作らない。Ticket本文を成果物参照の結節点にしない。既存のplanning/typed relation適用範囲だけを照合し、特定graph配置や新relation型を導入しない。
+
+**AC-OS-L3-047-01 — 理由付き返却とimmutable元revision**：正常入力では返却理由・対象条件・source/revision・未完義務・発行元と元ticket revisionを結び、OSへ因果的に返す。受け手による本文変更や旧revision上書きは成立させない。
+
+**AC-OS-L3-047-02 — 再発行と非継承**：対処済み新ticketを別revisionとして発行し、既存typed relationで旧revisionと結ぶ。assignment、Attempt、result、authorityを契約上の適格化なしに引き継がない。provider等の運用属性だけが変わるfixtureはticket意味revisionを変えない。
+
+**AC-OS-L3-047-03 — unknownとTicket非参照境界**：source/revision/scope/returner/relationをそれぞれ単独でunknown/staleにした場合、当該ticketだけ未完として発行元へ返す。Ticket内の他成果物参照、成果物からTicketへの要求根拠/実装部品参照、Issue/PR状態のみの完了推定を拒否し、根拠正本へ戻す。
+
+### Stage 5の旧source対応・保持と変更理由
+
+| 親 | 読んだ旧source / paired consumer | 保持する意味（再利用または再導出） | 変更・限定する点と理由 |
+|---|---|---|---|
+| 025 | 旧L3 process形式 `archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md:148-168`（full SHA `9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3`）。個別旧L3要件/paired consumerはinventoryの限定exact phrase search（`統合運転`, `統合運転構成体`, `HELIX-OS統合`）で特定できず、意味不存在とはしない。 | 旧L3のfunctional/business/NFR + acceptance pairの形式、L1 BRからのtrace、ownerとL10観測境界の考え方を形式比較として再利用。 | OS統合運転の直接旧requirement/successorを主張しない。固定L2と既存採択L2から構成体/owner/状態を再導出し、別BR・独自KPIを作らない。対象範囲の意味確認は追加旧source探索が必要。 |
+| 026 | `LEGACY-ASSET-201EED9C5D6D2FF4D41B` FRS requests `functional-release-slice-requests.md:23-67`; `LEGACY-ASSET-B75E46DBE77592351574` FRS requirements `functional-release-slice-requirements.md:31-219`; `LEGACY-ASSET-67ADFAB856D954B3C5D2` FRS acceptance `functional-release-slice-acceptance.md:32-59`（詳細digestは追補audit）。 | 機能境界、収載/除外、dependency/safety closure、unknown/stale fail-close、rollback/reproducibility、構成体固有受入と個別成功の分離は意味の再導出対象。 | FRS/Slice/Module/Bundle/channelを現行OS identity・必須実装へ持ち込まない。登録old-atom 0は移管不存在を示す範囲だけ。固定L2-014、HARNESS契約とG1-G7候補から導出し、代替空間不足では「最小候補／未立証」とし、旧実装/CLI/runtimeを置換する。 |
+| 031 | receipt source atoms `CI-PERF-79B70809D0A1EE2D5392` github-ci-performance L3 `github-ci-performance-requirements.md:14-34`；`CI-PERF-58CBC57F44DFDD288961` atomic-development L3 `github-atomic-development-requirements.md:52-64`；`CI-PERF-DA012A9B04D5BE9419CE` confirmed CI synthesis L3 `ci-system-synthesis-requirements.md:94-124`；paired `CI-PERF-8B7FCC6ED4A9FDDFDEB5` test design `github-ci-performance-system-test-design.md:20-28`。各full/span raw-LF SHAは追補auditに収録。 | source/head・環境・検査集合・cache・区間計測・母集団を結ぶ、p50/p95の説明可能性、correctnessと性能の分離、必須obligation不変、安全性も含む改善回収、paired oracleを意味再導出する。 | 旧p95 60s/3mは旧環境/検査集合限定の比較値。普遍的現行SLOへ転記しない。全件main/nightly固定回収の旧運転も現行L2-031/PO判断に沿って再導出する。旧CIは動かさず実装を置換する。 |
+| 047 | old ticket requirement source atoms O1-* in `execution-ticket-requirements.md:101-105,212-214,282` and paired acceptance `execution-ticket-acceptance.md`（exact full/span pinsは追補audit。legacy consumer lines 18-20, 40-70, 127-135 を照合）。 | immutable/revisioned ticket、operational attributesの分離、proposalによる上書き禁止、typed relation、旧revision closureを新revisionへ流用しないconsumer oracleを限定範囲で保持する。 | 現行L2-047のOS issuerとPOが固定したTicket非参照境界へ再導出。旧schema/runtimeおよび未確定のgraph配置を移植・新設せず、receiptの5 atomsをsource全体のclosureと扱わない。 |
+
+### source pinと固定情報
+
+固定L2/L11とdecision行、MPR物理行、G0のStage 5/1.0対応は `harness-os-stage5-four-parent-followup-2026-10-06.json` のpinsを参照する。L2のauthoritative text、PO採択範囲、G0の順序分類、現register metadataは同一概念として上書きしない。固定親が未採択候補と記載する031/047、候補表示を持つ025/026の文言を保持する。

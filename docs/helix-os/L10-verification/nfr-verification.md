@@ -120,3 +120,17 @@ NFR候補は計測対象と比較値であり、POごとのparameter gateでは�
 | `CASE-OS-L10-NFR-046-01` | `NFR-OS-L3-046-01` | authority/HEAD/base/scope/contract各一変異と無関係scope対照。 | required binding一致100%、変更後の古い証拠流用0、無関係scopeの誤stale0。 | 適用contractを特定できない遷移は未完として測定外へ理由付き分離。 |
 | `CASE-OS-L10-NFR-048-01` | `NFR-OS-L3-048-01` | existing resolution conditionを満たす完全evidence、各field欠落、stale/wrong scope/prose-only、再発行後同条件LABO評価、closed-ticket追補、window未満/未追跡/打切り観測を比較。 | false resolution=0、original closure上書き=0、censored/untracked observationからのdefect 0誤認=0。 | resolution適格性・evaluation population unknownは成功分母へ混ぜず、unacknowledged/unevaluated/finding disappearance/別scope successを別々に照合する。 |
 | `CASE-OS-L10-NFR-052-01` | `NFR-OS-L3-052-01` | owner/other-use/open-work/remote-authority/実施者の対象・作用・結果の記録経路、content HEAD/base/review pairを一つずつ変異し、cleanupを反復する。trial merge/stale/dependencyの個別unknownとreview bindingのmissingも与える。new HEAD review欠落、blocker残存、merge admission欠落、notification/ACK/merge event/ancestryだけのreceipt誤認も個別fixtureで測る。base変更後にpair一致/stale=0/依存維持する対照は保持可能状態として観測し、reviewed pair一致後の一律returnを要求しない。 | 不適格資源誤削除=0、実不一致後のold-review利用=0、eligible local cleanup再実行で副作用なし。read-afterとcleanup記録の混同0、旧CIによる代替0。 | ownership/未完/authority unknownは削除せず未評価へ。authorityがあっても記録経路欠落なら削除せずcleanup未完理由を該当ownerへ返す。最新base再照合後にreviewed pair一致・stale=0・依存維持の場合は、既存stateを保持可能な状態として報告する。 |
+
+
+## Stage 5 — 4親のNFR測定CASE候補
+
+この追補は既存文書のStage 2b/Stage 2a/Stage 3/Stage 4 scope欄を遡及変更せず、ここに列挙したStage 5対象だけを追加する候補である。先頭のstatusは先行scopeの状態を示す。
+
+| NFR CASE | NFR候補 | 集計対象 functional CASE | 観測と未評価条件 |
+|---|---|---|---|
+| `CASE-OS-L10-NFR-025-01` | `NFR-OS-L3-025-01` | `CASE-OS-L10-025-01`–`04` | unit/connection/compositeの誤結合と未完義務をfixture単位で計数。全運転KPIではない。|
+| `CASE-OS-L10-NFR-026-01` | `NFR-OS-L3-026-01` | `CASE-OS-L10-026-01`–`06` | closure、unknown、安全不足、代替space、minimum-proof stateを分離。未探索spaceを成功・失敗件数へ補完しない。|
+| `CASE-OS-L10-NFR-031-01` | `NFR-OS-L3-031-01` | `CASE-OS-L10-031-01`–`07` | old 60s/3m comparisonと現在適用budgetを混同しない。環境/母集団/期間/除外理由が不明ならpercentile未評価。|
+| `CASE-OS-L10-NFR-047-01` | `NFR-OS-L3-047-01` | `CASE-OS-L10-047-01`–`07` | original/successor lineage、return reason/evidence/owner、非継承の独立欠落をそれぞれ集計する。|
+
+これらはdocumented fixtureの静的集計候補であり、実測やoperational NFR達成を示さない。
