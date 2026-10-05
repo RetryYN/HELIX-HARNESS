@@ -500,7 +500,7 @@ scope: 本追補5親のみ / G0 version_class 1.0
 
 ### `FR-HARNESS-L3-033` — failure-to-regressionの段階別trace
 
-**入力**：対象revision/scopeと022 oracle、通常caseではcontract-derived input、incident/reproを選択する場合は許可されたsanitized source・031契約・reduction step、030/031 unit identity/schema/version、選択した場合の032 consumer compatibility、各段階後に返るisolated run result receipt。
+**入力**：対象revision/scopeと022 oracle、通常caseではcontract-derived input、incident/reproを選択する場合は許可されたsanitized source・031契約・reduction step、030/031 unit identity/schema/version、選択された操作に必要な014対設計と032 run-request/consumer contract、選択executor（OS-020または利用者CI）のidentity/互換範囲、各段階後に返るisolated run result receipt。未選択operationは未実施として保つ。
 
 **出力**：case/repro source→original failure→reduction candidate→選択時の隔離run request/result→同一failure比較→regression candidate→回帰成立を主張する操作だけに限る修正前failureと修正後pass→選択consumer packet/resultの、順序とsource/revision/scope/ownerを保つtrace。初期入力で将来receiptや修正後passを要求しない。通常case生成ではincident inputを不要とし、reproduction、run、修正後run、consumerを未選択のまま成功とも失敗とも数えない。
 
