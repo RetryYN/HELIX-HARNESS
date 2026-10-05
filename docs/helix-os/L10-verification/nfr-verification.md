@@ -67,3 +67,34 @@
 ### L10測定記録
 
 各caseはfixture digest、exact parent revision、入力母集団/scope、source oracle、期待/実測state、owner routeを記録する。割合を出す場合は対象母集団、分子・分母、単位、scope/revisionを記し、分母0/missingは算出値なしとして件数を別記する。unknown/未判定を成功扱いまたは分母へ黙って含めない。p50/p95は定義と単位が同じ有効な時間標本だけから算出し、n_validとfailed/missing/censored各件数を分ける。欠測/censoredを0に置き換えない。n_valid=0なら分位値なしと記録し、実測自体がない場合だけ未実測とする。失敗/missing/censored等の観測件数は保持する。fixture数と実観測数を混ぜない。この記録形式はSLA、threshold、pass gateを作らない。static trace/pin checkは実行成功や独立reviewの証拠ではない。
+
+## Stage 3：非機能測定設計
+
+NFR候補は計測対象と比較値であり、POごとのparameter gateではない。測定不能、source/scope mismatch、unknown applicabilityは成功率の分母から隠さず未評価として別表示する。
+
+| CASE ID | NFR trace | 計測fixture・oracle |
+|---|---|---|
+| CASE-OS-L10-NFR-032-01 | NFR-OS-L3-032-01 | 完全一致positiveと全列挙field個別mutation。selected case coverageと誤eligible数を計測し、policy operationごとの既存SECURITY-L2-008 authority欠落/不一致を独立件数にする。 |
+| CASE-OS-L10-NFR-033-01 | NFR-OS-L3-033-01 | selected capabilityごと2回、stressで3回same snapshot rerun。digest/fingerprint equalityと未実行選択数、dedupe evidence loss、差異のquarantine/unfinished保持、registry参照のみの権限誤認を計測。 |
+| CASE-OS-L10-NFR-034-01 | NFR-OS-L3-034-01 | dispositionごと所定evidence set、各欠落mutation。required-evidence coverage/誤terminal数。 |
+| CASE-OS-L10-NFR-035-01 | NFR-OS-L3-035-01 | 同一eventを3回delivery、headを変えた次eventも投入。registration cardinalityとold-head reuse数。 |
+| CASE-OS-L10-NFR-036-01 | NFR-OS-L3-036-01 | 複数upgrade ticketの全Retrofit upgradeごとにplan前/apply直前のsource/authority capture。upgrade単位境界網羅率・stale pass数。 |
+| CASE-OS-L10-NFR-037-01 | NFR-OS-L3-037-01 | 旧BR §3.3/FR-L1-11の週次観測についてReverse/Backflow経路と負債分類後のLABO/OS経路を分ける。fixtureの連続週・週境界・missing/staleを比較し、欠測をno-driftとした件数を観測する。週次は親の保持条件、fixture期間数は測定設計。 |
+| CASE-OS-L10-NFR-038-01 | NFR-OS-L3-038-01 | proposal ID重送とappend/snapshot/receipt各中断点、041-003非原子的finding・same-input nondeterminism。row増分、current update、snapshot bytes/digest一致、部分成功claim数。 |
+| CASE-OS-L10-NFR-040-01 | NFR-OS-L3-040-01 | 入力された適用中retry policy上限に対する到達/未到達、ledger欠落、同一lineage、実験budget分離を個別fixtureで照合する。OSがretry回数候補を追加しない。 |
+| CASE-OS-L10-NFR-041-01 | NFR-OS-L3-041-01 | restart/resumeごとcanonical sourceをdriftさせる。reacquisition coverage、stale continuation数。 |
+| CASE-OS-L10-NFR-042-01 | NFR-OS-L3-042-01 | strict failureと、選択済み既存契約が実際にexpiryを指定する場合だけその期限の境界前後を比較する。期限/適用scope/再検証欠落による誤昇格を観測し、新期限値は設けない。 |
+| CASE-OS-L10-NFR-043-01 | NFR-OS-L3-043-01 | request必須operationのrequest/call/result順序・correlation欠落と、request不要operationの許可済みcall/result対照を入力。chain completeness、誤approval数、不要request件数。 |
+| CASE-OS-L10-NFR-044-01 | NFR-OS-L3-044-01 | prose-only handoverと固定された既存source lifecycle/evidence conditionを比較する。unknown/stale/conflictの保留と理由保持を観測し、source HEAD mismatchを新たな判定条件にしない。 |
+| CASE-OS-L10-NFR-049-01 | NFR-OS-L3-049-01 | 同task traceを15/60min bucketで比較しlimitとstate countsを別確認し、成果・予算・未完義務のlineageを保持する。無根拠dispatchと誤状態数。 |
+| CASE-OS-L10-NFR-050-01 | NFR-OS-L3-050-01 | fixed parent/sourceから入力された設定閾値・capacity・縮退条件の通常/境界/spike/downstream blocker fixtureを比較。親にない数値やbucket境界は追加しない。誤増枠・backpressure漏れを観測する。 |
+| CASE-OS-L10-NFR-051-01 | NFR-OS-L3-051-01 | expiryを持つsourceではその値を照合し、持たないsourceではexpiry条件を課さず適用scope/class/revisionで判定する。scope change・同名別providerを個別fixtureで照合する。freshness日数を新設しない。 |
+
+#### 追加NFR測定ケース
+
+| CASE ID | NFR trace | 観測・分母・未知の扱い |
+|---|---|---|
+| CASE-OS-L10-NFR-037-02 | NFR-OS-L3-037-01 | weekly drift route と cumulative debt route を別scope/ownerで測定し、観測済み対象期間数を分母、欠測をnot observedとして残す。成功候補・価値判定はOSが生成しない。 |
+| CASE-OS-L10-NFR-049-02 | NFR-OS-L3-049-01 | configured capacity × 有効な経過秒を時間分母として別記し、assignment/task count、unused capacity、unfinished lineageを独立集計する。時間0/欠測capacityは算出不能、分母が有効でcount 0なら実測0。 |
+| CASE-OS-L10-NFR-050-02 | NFR-OS-L3-050-01 | 同期間のtyped metricとeligible reviewer capacityを集計し、cause unknown/metric missing/lease staleは分母から除外せず未評価数として別表示。評価値だけでquality/merge stateを作らない。 |
+| CASE-OS-L10-NFR-051-02 | NFR-OS-L3-051-01 | scope/class/revisionごとの適格evidence件数を母集団にし、期限欠測・source stale・availability unknownを別状態で報告する。provider名は適格性の代理値にしない。 |
