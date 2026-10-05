@@ -62,3 +62,18 @@ fixtureと実観測を分けて記録し、各親についてtrace正確性、un
 | CASE-OS-L10-BIZ-049 | HELIXOS-L2-049 / FR-OS-L3-049 AC-01..05 | configured capacity・実行状態・割当候補を別集計する。 | utilization目標 |
 | CASE-OS-L10-BIZ-050 | HELIXOS-L2-050 / FR-OS-L3-050 AC-01..05 | 原因別backpressureとreview assignmentを分ける。 | merge pass rate |
 | CASE-OS-L10-BIZ-051 | HELIXOS-L2-051 / FR-OS-L3-051 AC-01..09 | suitability evidenceと配置案をreview結果から分ける。 | provider優劣score |
+
+## Stage 4：採択済み6親の業務境界照合（独立business CASEなし）
+
+この6親に独立したbusiness outcome、KPI、業務ownerは固定L2/L11に定義されていない。したがって新しいBR/BCASEやbusiness pass条件を作らず、各行は機能ACと対応するCASEを参照して、状態と担当の混同がないことだけを照合する。
+
+| 親・登録 | 業務要件 | 対応機能要件／AC／CASE | business境界の照合 |
+|---|---|---|---|
+| `HELIXOS-L2-021` / `MPR-RC-HELIXOS-L2-021-002` | 独立BRなし | `FR-OS-L3-021`; `AC-OS-L3-021-01`〜`AC-OS-L3-021-03`; `CASE-OS-L10-021-*` | project別のHARNESS構成配布を7 service/製品群全体の完成やOS stage releaseへ拡張しない。 |
+| `HELIXOS-L2-022` / `MPR-RC-HELIXOS-L2-022-001` | 独立BRなし | `FR-OS-L3-022`; `AC-OS-L3-022-01`〜`AC-OS-L3-022-03`; `CASE-OS-L10-022-*` | event/candidate数、ticket登録、再観測を改善効果・採択判断へ読み替えない。 |
+| `HELIXOS-L2-024` / `MPR-RC-HELIXOS-L2-024-001` | 独立BRなし | `FR-OS-L3-024`; `AC-OS-L3-024-01`〜`AC-OS-L3-024-03`; `CASE-OS-L10-024-*` | 許可scope内handoff、LABO評価、要求採否、user acceptanceを別状態に保つ。 |
+| `HELIXOS-L2-046` / `MPR-RC-HELIXOS-L2-046-001` | 独立BRなし | `FR-OS-L3-046`; `AC-OS-L3-046-01`〜`AC-OS-L3-046-03`; `CASE-OS-L10-046-*` | 既存authority/review/verification/admissionの照合から新approvalやmerge KPIを作らない。 |
+| `HELIXOS-L2-048` / `MPR-RC-HELIXOS-L2-048-001` | 独立BRなし | `FR-OS-L3-048`; `AC-OS-L3-048-01`〜`AC-OS-L3-048-03`; `CASE-OS-L10-048-*` | pending/resolution evidenceとLABO評価、INTELLIGENCE案、OS ticketを分離し、finding数を効果指標にしない。 |
+| `HELIXOS-L2-052` / `MPR-RC-HELIXOS-L2-052-001` | 独立BRなし | `FR-OS-L3-052`; `AC-OS-L3-052-01`〜`AC-OS-L3-052-03`; `CASE-OS-L10-052-*` | local cleanupと後続PR再照合をissue/要求完了・remote削除・生産性へ拡張しない。 |
+
+合否はこの文書で別途生成しない。上表は業務failureをtransport/handoff stateで置換せず、機能CASEの同じ入力・scope・ownerを保つためのtraceである。

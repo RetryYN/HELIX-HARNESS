@@ -99,3 +99,16 @@
 | NFR-OS-L3-049-01 / 049 / AC-01..05 | observation bucket 15min candidate、configured max/WIP/state countsは別軸。15minは短期状態遷移の視認候補で固定worker数でない。 | 1minはnoise/high overhead、60minは短い競合を隠す。15/60分fixtureで状態誤分類と観測負荷を比較。 | 同じtask traceを各windowでreplayしstate conservation、後段capacity確保なしのdispatch 0。 |
 | NFR-OS-L3-050-01 / 050 / AC-01..05 | 適用中の既存設定閾値・capacity・縮退条件に対する判定、原因別backpressure、lease保全を測る。 | 閾値・bucket時間・増枠数値はこの親で新設しない。1/2 bucketや15/60minは採択候補にもせず、比較はfixtureに与えた設定値だけで行う。 | 設定上のspike/持続状態、downstream blocker、縮退、stale returnを別々に与え、誤増枠・backpressure漏れを確認。 |
 | NFR-OS-L3-051-01 / 051 / AC-01..09 | task class/scope/revisionに対する既存適性evidenceの適用条件・版照合と、task単位選択を測る。expiry fieldはsourceが持つ場合のみ照合し、expiryなしをunknownとしない。 | evidence freshness期限/thresholdの新設は対象外。期限が既存sourceにある場合のみ、その入力値を用いる。 | 既存期限のある/ないsourceを分け、scope変更・stale・同名別providerを独立fixtureで照合する。 |
+
+## Stage 4：NFR候補と測定案（6件）
+
+候補値は固定L2/L11の機能境界を測るための比較可能な初期値で、承認済み業務閾値・実測・追加PO gateではない。親の意味・scope・owner・版を変えず、測定後に限界や適用性を記録する。
+
+| NFR候補ID / 親 / AC | 候補値と根拠 | 比較案 | L10測定と適用限界 |
+|---|---|---|---|
+| `NFR-OS-L3-021-01` / 021 / `AC-OS-L3-021-01`, `AC-OS-L3-021-02`, `AC-OS-L3-021-03` | 選択component/artifact/scopeとの誤照合0件、7サービス各々の証拠代用0件、scope外配布0件を候補とする。誤配布・黙示収載を許すと復旧先と成果物の同一性を証明できないため。 | 厳密なidentity/digest/scopeとservice別evidence照合を、tag/名前一致や他service evidence流用と比較する。 | 7 service evidenceを一つずつ欠落/入替し、binding誤り・scope外導入を計測する。対象project以外の完成度・全体release価値は測らない。 |
+| `NFR-OS-L3-022-01` / 022 / `AC-OS-L3-022-01`, `AC-OS-L3-022-02`, `AC-OS-L3-022-03` | 与えた完全fixtureの必須因果edge追跡100%、候補/観測からの誤authority変更0件を候補とする。L2は一連の還流とLABO独立評価・提案・比較実験依頼およびowner分離を要求する。 | 完全event traceと、candidate件数だけの集計を比較する。 | 各edge/LABO出力欠落・identity driftを注入し、trace coverageと誤変更を数える。業務効果・退行率の評価はLABO ownerの責務なのでここでは目標値にしない。 |
+| `NFR-OS-L3-024-01` / 024 / `AC-OS-L3-024-01`, `AC-OS-L3-024-02`, `AC-OS-L3-024-03` | 非許可data送信0件、提供/評価/採否state誤統合0件を候補とする。親のpermission/data-use境界を直接観測できる。 | 既存許可scopeに限定した送信と、過大scope/tenant混入を比較する。 | permission/data class/revision/scopeを一軸ずつ変え、送信範囲・actor/stateを照合。後続学習/推薦や顧客価値を測定対象にしない。 |
+| `NFR-OS-L3-046-01` / 046 / `AC-OS-L3-046-01`, `AC-OS-L3-046-02`, `AC-OS-L3-046-03` | dispatchからadmission候補までの必須binding field一致100%、変更影響後のstale証拠流用0件を候補とする。 | current exact pair照合と、HEAD/base/authorityを固定扱いする比較案を対比する。 | authority/HEAD/base/scope/contractの単一mutationを計測し、影響範囲だけstaleになることを確認。新規check/approvalや本番merge回数は測らない。 |
+| `NFR-OS-L3-048-01` / 048 / `AC-OS-L3-048-01`, `AC-OS-L3-048-02`, `AC-OS-L3-048-03` | 既存条件未充足でのfalse resolution 0件、closed ticketの履歴上書き0件、未追跡/打切り/観測window未満からのdefect 0誤認0件を候補とする。 | evidence-backed resolutionとprose/time/path-only解決、完全観測とcensored observationを比較する。 | complete current evidence、各欠落/古いevidence、再発行後の同条件LABO評価、後日findingをfixture化。L2-007の十分条件は変更せず、改善効果のKPIを作らない。 |
+| `NFR-OS-L3-052-01` / 052 / `AC-OS-L3-052-01`, `AC-OS-L3-052-02`, `AC-OS-L3-052-03` | 適格性未確認local/remote資源の誤削除0件、conflict/stale/依存変化/review binding不一致後の旧review流用0件、base-only適合状態の誤返却0件を候補とする。 | 最新baseで再照合して各実不一致で返却する案と、base変更だけで一律返却する案を比較する。 | 条件ごとにmutationしcleanup結果、remote authority、content HEAD不変、review bindingを測る。時間短縮/削除数を成果指標とせず、pair一致・stale=0・依存維持ではstateを保つ。 |

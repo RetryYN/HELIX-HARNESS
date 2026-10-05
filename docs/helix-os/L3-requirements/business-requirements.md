@@ -75,3 +75,16 @@
 | HELIXOS-L2-051 | 独立business outcomeなし。配車適性候補は新しいperformance評価ではない。 | FR-OS-L3-051 AC-01..09を参照。 |
 
 独立business criterionを必要とする上流意味はここで補作せず対応するL2/L1 ownerへ戻す。HELIXOS-L2-039はH045とのhold scopeとして対象外のままである。
+
+## Stage 4：business分類（6件、部分草稿）
+
+この6件に独立したbusiness value、KPI、金額閾値は導出しない。各parentの業務判断は固定L2/L1 ownerに残し、機能ACに対するpaired L10でstateと責務境界のみを照合する。
+
+| 親L2 | business扱い | L10観測・境界 |
+|---|---|---|
+| `HELIXOS-L2-021` | 機能要件のみ。 | project構成配布を別判定に保ち、全製品/HELIX段階releaseの価値指標へしない。 |
+| `HELIXOS-L2-022` | 機能要件のみ。 | observation/candidate/ticket/effect evaluationを別状態とし、候補件数を改善成功にしない。 |
+| `HELIXOS-L2-024` | 機能要件のみ。 | 許可data handoff、LABO評価、OS routing、user acceptanceを分ける。 |
+| `HELIXOS-L2-046` | 機能要件のみ。 | 既存遷移の証拠照合を観測し、merge rateや新承認の基準を加えない。 |
+| `HELIXOS-L2-048` | 機能要件のみ。 | pending/resolution stateの根拠を照合し、registrationやclosed finding数をKPIにしない。 |
+| `HELIXOS-L2-052` | 機能要件のみ。 | local cleanupと後続PR再照合を分け、Issue/要求完了や生産性を主張しない。 |
