@@ -410,6 +410,7 @@ HELIXLABO-L2-036の入力はV-model、要求形成、design obligation、verific
 - 単一実験の結果だけで工程contractを即時変更済みと表示する。 変更済みとせずcandidateを保持し、上流ownerへ渡す。
 - Feedback target revisionを欠落させる。 candidateの適用対象を確定せず、target不明をLABO routing候補へ戻す。
 - source/evidence identityだけが欠落する。 identity不明をunknownとして保持し、対象を推測せずLABO routing候補へ戻す。
+- 適用scopeだけが欠落する。scopeを推測せずtarget不明としてLABO routing候補へ戻す。
 - HARNESS connectorだけが欠落する。接続先を推測せずhandoff未完了として保持する。
 
 ### LABO-037-FR-01 — LABO → HELIX-OS
@@ -463,6 +464,7 @@ HELIXLABO-L2-040の入力は内外connection、retry、contract version、trace�
 **LABO-040-AC-02 — 不成立・owner境界**：次のfixtureは独立に不成立とし、原因を併発で代用しない。接続契約不一致はCONNECTへ。target scope/version不明は既存上流ownerへ戻す。
 - connection identityを欠落させる。 接続単位のcandidateとして確定せずunknownにする。
 - 選択connectionのcontract versionを別revisionへ差し替える。 異revision evidenceを成功扱いせずCONNECTへ戻す。
+- 上流採択scopeだけを欠落させる。scopeを推測せず既存上流ownerへ戻す。
 - 接続traceを欠落させる。 trace欠落を保ち候補を完了扱いしない。
 - LABOがconnector contractを直接変更する。 contract変更を拒否しCONNECT ownerへ返す。
 - CONNECT connectorだけが欠落する。CONNECT先を推測せずcandidateを未完了として保持する.
@@ -506,6 +508,7 @@ HELIXLABO-L2-054の入力はL2-055が生成したwork-kind/model-class別の水�
 - 評価範囲だけを別scopeへ変える。 別scopeへ水準を流用せず再評価へ戻す。
 - 根拠を欠落させる。 evidence欠落をunknownのまま保持し再評価へ戻す。
 - unassessedをassessedとして表示する。 未評価のまま保持し実績化を拒否する。
+- 評価scopeだけを欠落させる。範囲を推測せず水準生成側へ再評価を戻す。
 - LABOがmodelを指定または変更する。 model指定/変更を生成せず、配置案はINTELLIGENCE、指定/割当はOSへ残す。
 - 過去水準だけで未評価のjobを成功保証する。 成功保証を生成せず、055水準生成側へunknownとして戻す。
 - scoreだけで適用scopeを変更する。 scopeを変更せず、055が示す評価範囲を保つ。
