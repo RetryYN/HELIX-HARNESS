@@ -517,7 +517,7 @@ INTELLIGENCE requestは案/要求入力であり実行許可ではない。SECUR
 - **固定親**：`HELIXSECURITY-L2-023` / `MPR-RC-HELIXSECURITY-L2-023-001`（採択）/ 現行metadata successor `MPR-RC-HELIXSECURITY-L2-023-002`（R2289-02、row 744、semantic digest `sha256:c2e3deb8aea7a46916c9c39943643c33e28e0487e31422f3e4e6236cf266ae35`で採択row85と同一）をsource-pinする。version_target `1.0`。固定L2 `633bf12...:292–301`、L11 `:47`、PO decision `:61`。
 - **依存と戻し先**：L2-007/010/011/012/013、HARNESS verification contract、OS promotion state。provenance/capability/authority問題はSECURITY L1（L1-010〜013）、実行環境失敗はWorker/INFRA、検証失敗はHARNESS対応pair、進行/promotion失敗はOSへ戻す。
 - **`SECURITY-AC-023-01` distinct stage state**：candidate identity/revision、provenance、capability delta→SECURITY admission→Worker execution→HARNESS verification→OS promotionの各状態とreceiptを別々に記録し、各境界の入力/出力identityとrevisionを結ぶ。provenanceまたはcapability deltaの欠落はadmission unknownとしてWorkerを未実行に保つ。
-- **`SECURITY-AC-023-02` no substitute success**：SECURITY acceptanceだけ、HARNESS greenだけ、OS ticketだけでは次段階の成功・promotionを生成しない。
+- **`SECURITY-AC-023-02` no substitute success**：SECURITY acceptanceだけ、HARNESS greenだけ、OS ticketだけでは次段階の成功・promotionを生成しない。HARNESS greenだけでSECURITY admissionを代替しない。
 - **`SECURITY-AC-023-03` failure propagation**：各段階のfailure/unknown/missing/stale evidenceは該当段階を未完として保持し、その後の段階を成功表示しない。戻し先ownerをそのfailure kindに対応させる。
 
 ### SECURITY-FR-024-01 — policyと実資源状態の境界receipt
