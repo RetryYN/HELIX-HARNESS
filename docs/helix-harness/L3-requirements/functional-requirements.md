@@ -288,3 +288,58 @@ G0の順序案BはStage 2a後に2cを2bと並行する段階配置であり、03
 - **`AC-HARNESS-L3-032-05` handoffとexecutionの分離**：正常なpacket delivery後にまだ実行receiptがない状態を正しく表し、deliveryをrun/pass/ticket/approval/acceptanceに変換する各変異、後続receiptなしのartifact state昇格変異、resume時に選択artifact/receipt stateを失う変異を個別に拒否する。実行・隔離・結果回収・再開は選択OS-020または利用者CIの責務に残し、HARNESSが実行主体にならない。同じpackを複数サービスが所有する変異は不合格とする。未見のサービス／pack組合せでは、主owner候補、利用先、選択操作の依存閉包を別々に照合する。未宣言の組合せから受入を推定せずunknownとして該当packまたはservice ownerへ戻し、所属ラベルだけで互換性・内容oracleの検証を代替しない。共有packを利用するという理由だけで未選択サービスまたはOS内部構成を必須化する変異も拒否する。
 
 固定L2-033のfailure/reduction/run/composite traceは独立親である。033全周を030/031/032の受入にしない。independent reviewは草稿作成の工程であり、いずれの親の製品要件・生成結果でもない。
+
+## Stage 4 suffix — HARNESS-L2-026/027/028/029（1.0対象）
+
+このsuffixはmainの承認済みStage 1/2b/2a/2c本文に追記する、POが1.0対象として登録した4親のL3候補である。候補登録はL3承認、実装、releaseを許可しない。各FRは対象product・parent revision・requirement revision・selected scopeを束縛し、unknownを成功や不存在へ読み替えない。
+
+### 旧HELIX項目別起点
+
+| 旧項目とsource | 扱い | 現行との差と理由 |
+|---|---|---|
+| stable identity、requirement/design relation、候補比較: `LEGACY-ASSET-F1F753F31DB8D874EF21` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/system-synthesis-requirements.md:29–102` | identity・relationの意味を再利用し、026の固定親から再導出 | 旧REFACTORING/旧layer lifecycleは現行scopeではないため移さない。 |
+| pair identity/negative: `LEGACY-ASSET-BEAB5EE27CD04F5E866F` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/system-synthesis-acceptance.md:19–48` | 個別identityとnegative oracleの形を再利用 | 旧gate/runtime結果はauthorityにしない。 |
+| template obligation: `LEGACY-ASSET-4F5A1F0739EC1111D91D` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md:1–100` | trace/template obligationの起点として再導出 | 旧JSON schema、runtime、lifecycleは採用しない。 |
+| UI/action/state/data/permission relationと対: `LEGACY-ASSET-335176749F6322C3CD8D` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md:41–51`; `LEGACY-ASSET-879D95C07B789C9502CF` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/ai-vision-design-harness-engine-acceptance.md:18–30` | semantic relation・UI適用時と非UIの分離・orphan negativeを再導出 | 固定026が求めるCORE/BRAIN connectorと通常のL3/L10へ置換し、旧UI専用gateを移さない。 |
+| source-bound extraction、unknown/gap/return: `LEGACY-ASSET-B5B5E71B2AF1459D59A1` `archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md:406–426`; paired AT-FR-14: `LEGACY-ASSET-1B92155F959D7905DD1E` `archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L3-acceptance-test-design.md:96–98` | 027–029のstatic observation・source-bound positive・missing型・gap-onlyの試験形状へ再導出 | R0–R4、`helix reverse` CLI、`.helix` artifact schemaは置換。019の入力/結果境界は保つが019完了receiptやsaved designを027の単独入力にしない。 |
+| HIL-FR-04/HAT-HIL-04/HST-HIL-002/018（各assetとspanは時点監査pin） | hollow/skip/re-entryの隣接failure形だけを参照 | FR-14とは別identity。旧phase、gate、runtimeを本親へ移さない。 |
+
+### `FR-HARNESS-L3-026` 要求から相互参照する具体設計を構成する（親: `HARNESS-L2-026`）
+
+対象は指定product・L3/requirement revision・design scopeのunitである。固定L11:396–403に従い、027/028/029は019 input/result境界、010/011 pack/call、source identity・revision・read authorizationを保つ。003/004 impact/backflowとrequirement authorityは028/029のcomparison operationで必須だが、027 raw extractionへ課さない。selected API/migration契約とsource-specific extractor契約は該当操作時のみ必須である。L4/L5/L6の設計と対のL9/L8/L7検証設計へ、requirement→state/flow→APIまたはcommand→actor permission→domain data invariant→適用oracleのidentity付き双方向relationを渡す。Design Template、HELIX-HARNESS-CORE契約、BRAIN connector契約、HARNESS-L2-009 template義務、010/011 pack/call境界、022 paired-verification契約は常時照合する。個別Patternは実際に選択したときだけidentity/version/compatibility/applicability/required-input/relation/conflictを照合し、未選択は未観測である。UI対象ではUI agreement/screen evidenceを追加し、非UI対象へUI条件を強制しない。014の完了receiptなしで宣言済入力から構成できる。014交換時は入出力contract・scope・compatibilityとpairを再照合し、旧receiptを流用しない。
+
+- `AC-HARNESS-L3-026-01` 固定要求「承認後は編集不可」を同一revisionでstate・API/command・actor・data invariant・oracleへ結ぶnormalと、同scopeの未見actor/競合更新normalを満たす。
+- `AC-HARNESS-L3-026-02` Template/CORE/BRAIN connector/paired outputの常時依存を個別に欠落・unknown・stale・mismatchとして拒否し、L11:445–462/750の責務境界で該当ownerへ戻す。014 completion receiptは要求しない。
+- `AC-HARNESS-L3-026-03` 選択PatternとUI適用条件を区別する。未選択Patternは未観測のまま正常成立し、選択Patternの版/互換/入力不備と、UI対象でのagreement/screen欠落は個別保留する。
+- `AC-HARNESS-L3-026-04` UIが隠してもAPI更新を許す、actor permissionが残る、競合更新でinvariantを破る、または別revisionへtraceする各変異を不合格にし、要求意味はL2-008/authority owner、TemplateはL2-009、PatternはBRAIN、設計/pairはHARNESS ownerへ返す。
+- `AC-HARNESS-L3-026-05` 選択Pattern間のconstraint conflictでは競合条件・根拠・影響scopeを示し、固定invariantを満たす代替案を比較する。満たす案がないときは要求不足/矛盾としてL2-008へ返し、意味を変える案で埋めない。
+
+### `FR-HARNESS-L3-027` 外部実物からsource-bound構造・挙動候補を抽出する（親: `HARNESS-L2-027`）
+
+利用者が明示選択した静的code、DB定義/schema、API定義またはconfigと、そのsource identity/revision/digest/read scope/permissionから、根拠span付きの構造・branch・guard・limit・persist順候補、未対応/未知/矛盾を返す。これはsource observationでありruntime実測、要求正しさ、承認設計を主張しない。HARNESS-L2-019のintake/result boundaryへ接続できるが019処理完了receiptやsaved design revisionは単独抽出の必須入力でない。010/011契約と選択されたsource typeの契約は照合し、未選択sourceは未観測、unsupportedはunsupported、unknownはunknownを保つ。黙示parser fallbackや未選択sourceへの切替はしない。
+
+- `AC-HARNESS-L3-027-01` 明示sourceを固定revision/digest/scopeで読み、コード構造と条件分岐・副作用順候補をspanへ結び、019 completion receiptやsaved designなしの正常抽出を示す。
+- `AC-HARNESS-L3-027-02` source type/identity/revision/digest/scope/read permission、010 pack、011 call/input contract、選択type固有parser supportをそれぞれ独立変異し、missing/unknown/stale/mismatch/unsupportedを区別して該当source/契約ownerへ戻す。
+- `AC-HARNESS-L3-027-03` 一度にguard、limit、persist順またはsource spanの一つだけを変えた正常対照・negativeを比較する。観測候補は変化したsourceどおりとなり、古い期待値で合格せず、runtime/customer data/writeのclaimをしない。
+- `AC-HARNESS-L3-027-04` 未見schema field/API versionをsourceに加え、対応するspan付き観測とunknown/unsupportedを分離する。未選択typeの存在・不在を推論しない。source更新後は古いreceiptをstaleとし再抽出する。
+- `AC-HARNESS-L3-027-05` source digest/revision更新後のreceiptと旧observationを区別し、古い結果を現行として扱わない。HARNESS-L2-019への接続は同じ対象/source/scopeを保ち、019の完了receiptを027開始条件にしない。
+
+### `FR-HARNESS-L3-028` source observationを保存設計へ接続する（親: `HARNESS-L2-028`）
+
+同じproduct/scopeのvalid 027 receiptを、identity・revision・authority状態が特定されたcurrent saved design/requirement revisionおよびL2-003/004のimpact/backflow境界へ比較し、既知traceからadd/change/delete候補とaffected exact identity setを返す。候補revisionは比較できるがapprovalではない。approvedとの主張にはそのrevisionに結び付いたapproval receiptが必要で、unknown/staleをapprovedへ昇格しない。名称/path類似で影響やUnaffectedを推定せず、未表現relationはunknownとして残す。
+
+- `AC-HARNESS-L3-028-01` 同一scope/source revisionのobservationとidentified saved design/requirementを比較し、known relationの変更だけをaffected setとowner別backflowへ結ぶnormal。
+- `AC-HARNESS-L3-028-02` source receipt/source revision/design revision/requirement revision/product/scope/authority/known relationを各々単独変異し、stale/mismatch/unknownを保留し正しいsource/design/requirement ownerへ戻す。
+- `AC-HARNESS-L3-028-03` 異なるrevisionのapproval receiptを単独で与えたnegativeと、receiptが一致するcandidate comparisonを分ける。一致しないreceiptはapprovedを与えない。
+- `AC-HARNESS-L3-028-04` 未見helper/API edgeを加え、known traced edgeのみaffected、未表現edgeはunknownとする。類似名/pathだけでUnaffectedにしない。通常のbounded diffを全体reverseへ拡張しない。
+- `AC-HARNESS-L3-028-05` source observation更新後は新revisionへcompareを再束縛し、old comparison resultをstaleとして残す。L2-003/004 impact/backflowの既存契約を保持する。
+
+### `FR-HARNESS-L3-029` 差分に基づく往復改修proposalを束ねる（親: `HARNESS-L2-029`）
+
+027/028の同じproduct/scope/source revisionに基づき、(1)対象を限定したdesign delta、(2)API repair proposal（選択時のみ）、(3)schema/data migration proposal（必要と判断して選択したときのみ）、(4)保持するcustom logicと理由、(5)backflow・verification・unknownを別要素として相互traceする。current saved design/requirement revisionは比較基準として識別し、approved主張には一致するapproval receiptを要する。API/data未選択時にそれらのcontract/ownerを強制しない。proposalは非実行の候補であり、patch、migration、commit、releaseを実行しない。
+
+- `AC-HARNESS-L3-029-01` 同じrevision/sourceから五要素を区別したbundleを作るnormal。APIまたはmigrationを選ばない場合もno-change理由を出し、custom logicを保持する。
+- `AC-HARNESS-L3-029-02` 027 receipt、028 receipt、source/destination revision、product/scope、saved design identity/authority、affected set、custom ownershipを個別にmissing/unknown/stale/mismatch化し、影響部分のみ保留して既存の該当ownerへ返す。
+- `AC-HARNESS-L3-029-03` 選択API修復のAPI contract/oracleと、選択migrationのschema/data owner/source-target compatibility/loss/rollback oracleをそれぞれ単独で欠落させる。非選択operationの依存は要求しない。
+- `AC-HARNESS-L3-029-04` custom logic削除、無関係API混入、migration data-loss隠し、cross-revision trace、candidateからの自動実行を各々独立negativeとする。未見の第二custom processor/過去migrationはunknownとして依存proposalを保留する。
+- `AC-HARNESS-L3-029-05` source edit後に027再抽出→028再比較→bundle再生成を行うnormalを設け、旧revision receipt流用を拒否する。戻し先は意味L2-008/upstream、設計L2-014/design owner、oracleL2-022、API/dataの既存ownerとし、新ownerを作らない。
