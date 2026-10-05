@@ -206,6 +206,8 @@ Stage 1 prefixはmain 28b3d3645e6298c159758700c2edd3d396c336f5の既存bytesを�
 | `CASE-HARNESS-L10-028-11` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-04 | 未知のedgeをUnaffectedへ分類する。 | unknownを保ち該当relation/design ownerへ戻す。 |
 | `CASE-HARNESS-L10-028-12` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-04 | 未見helper/API edgeを含む通常範囲内fixture。 | 既知edgeだけaffected、未見edge unknownの未見正常を確認する。 |
 | `CASE-HARNESS-L10-028-13` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-05 | source snapshotを更新する。 | 旧receiptをstaleとし027再抽出後に028比較をやり直す。 |
+| `CASE-HARNESS-L10-028-14` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-03 | 保存designの同一対象revisionに結び付いた既存approval receiptと、そのrevisionのcandidate comparisonを入力する。 | exact bindingを照合し、入力済みのapproved状態を認識する。比較または候補から新しい承認・receiptを生成しない。 |
+| `CASE-HARNESS-L10-028-15` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-03 | CASE-028-14と同じcandidateにapproval receiptだけを欠落させ、approvedを主張する独立変異を与える。 | approved claimを拒否し、candidate比較と未承認/unknown状態を区別してreceipt issuer/authority ownerへ戻す。 |
 | `CASE-HARNESS-L10-029-01` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-01 | 同一source/product/scopeのvalid 027/028結果と識別済みsaved designを与え、design delta、選択API案、選択migration案、custom保持、backflowを区別する。 | 五要素のtraceと未実行proposalを確認する。migration不採用なら理由を返し、実変更しない。 |
 | `CASE-HARNESS-L10-029-02` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-01 | API修復もmigrationも選択しない同scope fixtureを与える。 | API/data contractを要求せず、custom保持・design delta・unknown/backflowは評価する。 |
 | `CASE-HARNESS-L10-029-03` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-02 | 027 receiptだけをmissingにする。 | 全proposalを有効化せずsource extraction ownerへ戻す。 |
@@ -226,4 +228,4 @@ Stage 1 prefixはmain 28b3d3645e6298c159758700c2edd3d396c336f5の既存bytesを�
 | `CASE-HARNESS-L10-029-18` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-04 | 未見の第二custom processor/過去migrationを入力する。 | 確認可能なknown edgeだけを保持し、owner/互換不明をunknownとする未見正常。 |
 | `CASE-HARNESS-L10-029-19` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-05 | source edit後に旧receiptを再利用しようとする。 | stale扱いにし027再抽出→028再比較→bundle再生成を要求する。 |
 
-全caseの通常・negative・未見normalは固定parent revisionと選択scope内に限る。各不足はL11:445–462/750および各固定親の既存ownerへ返す。参照資料の存在、fieldの有無、旧test合格だけで内容oracleを代替しない。
+全caseの通常・negative・未見normalは固定parent revisionと選択scope内に限る。不足は各固定親の境界へ返す。026はL2-008/L3 authority、L2-009/template、BRAIN/Pattern、HARNESS design/pair ownerへ、027は選択source/providerまたは019/010/011の該当ownerへ、028は027 source、saved-design authority/HARNESS-L2-014、requirement/L2-008、003/004 impact/backflowの該当ownerへ、029はL2-008/L3 authority、HARNESS-L2-014/022、選択API/data authority/source ownerへ返す。参照資料の存在、fieldの有無、旧test合格だけで内容oracleを代替しない。

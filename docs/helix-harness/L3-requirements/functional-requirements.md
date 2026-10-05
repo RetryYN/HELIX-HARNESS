@@ -309,7 +309,7 @@ G0の順序案BはStage 2a後に2cを2bと並行する段階配置であり、03
 対象は指定product・L3/requirement revision・design scopeのunitである。固定L11:396–403に従い、027/028/029は019 input/result境界、010/011 pack/call、source identity・revision・read authorizationを保つ。003/004 impact/backflowとrequirement authorityは028/029のcomparison operationで必須だが、027 raw extractionへ課さない。selected API/migration契約とsource-specific extractor契約は該当操作時のみ必須である。L4/L5/L6の設計と対のL9/L8/L7検証設計へ、requirement→state/flow→APIまたはcommand→actor permission→domain data invariant→適用oracleのidentity付き双方向relationを渡す。Design Template、HELIX-HARNESS-CORE契約、BRAIN connector契約、HARNESS-L2-009 template義務、010/011 pack/call境界、022 paired-verification契約は常時照合する。個別Patternは実際に選択したときだけidentity/version/compatibility/applicability/required-input/relation/conflictを照合し、未選択は未観測である。UI対象ではUI agreement/screen evidenceを追加し、非UI対象へUI条件を強制しない。014の完了receiptなしで宣言済入力から構成できる。014交換時は入出力contract・scope・compatibilityとpairを再照合し、旧receiptを流用しない。
 
 - `AC-HARNESS-L3-026-01` 固定要求「承認後は編集不可」を同一revisionでstate・API/command・actor・data invariant・oracleへ結ぶnormalと、同scopeの未見actor/競合更新normalを満たす。
-- `AC-HARNESS-L3-026-02` Template/CORE/BRAIN connector/paired outputの常時依存を個別に欠落・unknown・stale・mismatchとして拒否し、L11:445–462/750の責務境界で該当ownerへ戻す。014 completion receiptは要求しない。
+- `AC-HARNESS-L3-026-02` Template/CORE/BRAIN connector/paired outputの常時依存を個別に欠落・unknown・stale・mismatchとして拒否し、要件意味不足はHARNESS-L2-008、L3 authority不足はそのauthority owner、TemplateはHARNESS-L2-009/template owner、PatternはBRAIN、設計/pairはHARNESSの設計/pair ownerへ戻す。014 completion receiptは要求しない。
 - `AC-HARNESS-L3-026-03` 選択PatternとUI適用条件を区別する。未選択Patternは未観測のまま正常成立し、選択Patternの版/互換/入力不備と、UI対象でのagreement/screen欠落は個別保留する。
 - `AC-HARNESS-L3-026-04` UIが隠してもAPI更新を許す、actor permissionが残る、競合更新でinvariantを破る、または別revisionへtraceする各変異を不合格にし、要求意味はL2-008/authority owner、TemplateはL2-009、PatternはBRAIN、設計/pairはHARNESS ownerへ返す。
 - `AC-HARNESS-L3-026-05` 選択Pattern間のconstraint conflictでは競合条件・根拠・影響scopeを示し、固定invariantを満たす代替案を比較する。満たす案がないときは要求不足/矛盾としてL2-008へ返し、意味を変える案で埋めない。
@@ -330,7 +330,7 @@ G0の順序案BはStage 2a後に2cを2bと並行する段階配置であり、03
 
 - `AC-HARNESS-L3-028-01` 同一scope/source revisionのobservationとidentified saved design/requirementを比較し、known relationの変更だけをaffected setとowner別backflowへ結ぶnormal。
 - `AC-HARNESS-L3-028-02` source receipt/source revision/design revision/requirement revision/product/scope/authority/known relationを各々単独変異し、stale/mismatch/unknownを保留し正しいsource/design/requirement ownerへ戻す。
-- `AC-HARNESS-L3-028-03` 異なるrevisionのapproval receiptを単独で与えたnegativeと、receiptが一致するcandidate comparisonを分ける。一致しないreceiptはapprovedを与えない。
+- `AC-HARNESS-L3-028-03` 対象revisionに結び付く既存approval receiptがあるnormalと、receipt欠落または別revision receiptのままapprovedを主張する各negativeを分ける。approved状態は完全一致receiptがある既存状態としてのみ認識し、比較やL3候補から承認を生成しない。不一致・欠落時はapprovedを与えずreceipt issuer/authority ownerへ戻す。
 - `AC-HARNESS-L3-028-04` 未見helper/API edgeを加え、known traced edgeのみaffected、未表現edgeはunknownとする。類似名/pathだけでUnaffectedにしない。通常のbounded diffを全体reverseへ拡張しない。
 - `AC-HARNESS-L3-028-05` source observation更新後は新revisionへcompareを再束縛し、old comparison resultをstaleとして残す。L2-003/004 impact/backflowの既存契約を保持する。
 
