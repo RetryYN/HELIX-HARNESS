@@ -588,9 +588,9 @@ Pattern/Unit/Partのidentity・source/version、一般化された課題、appli
 
 | 固定親 | 親句・source pin | FR/AC | 照合CASE |
 |---|---|---|---|
-| HELIXBRAIN-L2-001 | L2:84–94 / L11:29（main 633 fixed bytes） | FR-01、AC-01〜04。状態・10領域、変更4操作、追加6領域の非必須、unknown戻し、未見拡張を区別 | C01、C02–C12/C19–C21、C13、C14–C18 |
-| HELIXBRAIN-L2-002 | L2:95–105 / L11:30（main 633 fixed bytes） | FR-01、AC-01〜04。4階層、parent/責務、孤立/誤種別unknownを対応 | C01–C09、C10–C11、C12、C13 |
-| HELIXBRAIN-L2-003 | L2:106–116 / L11:31（main 633 fixed bytes） | FR-01、AC-01〜04。descriptor12要素/required input/条件充足・不充足・unknown・不足を別対応 | C01–C13、C14–C15、C16、C17–C18 |
-| HELIXBRAIN-L2-004 | L2:117–127 / L11:32（main 633 fixed bytes） | FR-01、AC-01〜04。並列候補/6比較軸/選択非委任/判断不能を分離 | C01–C07、C08–C09/C11–C12、C10 |
+| HELIXBRAIN-L2-001 | L2:84–94 / L11:29（main 633 fixed bytes） | FR-01、AC-01〜04。状態・10領域、変更4操作、追加6領域の非必須、unknown戻し、未見拡張を区別 | C01–C21。初期領域欠落/誤識別はC02–C11、独立反例はC12/C19/C20/C21、不明はC13、未見はC14、4操作正常はC15–C18 |
+| HELIXBRAIN-L2-002 | L2:95–105 / L11:30（main 633 fixed bytes） | FR-01、AC-01〜04。4階層、parent/責務、孤立/誤種別unknownを対応 | C01–C12。構成/項目反例はC02–C09、孤立/誤種別unknownはC10/C11、未見はC12 |
+| HELIXBRAIN-L2-003 | L2:106–116 / L11:31（main 633 fixed bytes） | FR-01、AC-01〜04。descriptor12要素/required input/条件充足・不充足・unknown・不足を別対応 | C01–C23。12要素はC01–C13、独立不足/誤昇格はC14/C19–C23、不明はC18、不充足はC17、未見はC16、required input/条件未定戻しはC15 |
+| HELIXBRAIN-L2-004 | L2:117–127 / L11:32（main 633 fixed bytes） | FR-01、AC-01〜04。並列候補/6比較軸/選択非委任/判断不能を分離 | C01–C12。6軸はC02–C07/C12、独立上書き・選択権否定はC08/C11、判断不能はC09、未見はC10 |
 
 各CASEのexpected oracleは同じStage 2b L10表のcase rowに記録する。CASE→ACのみで固定句の被覆を主張しない。
