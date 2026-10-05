@@ -657,6 +657,7 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | CASE-OS-L10-049-04 | AC-OS-L3-049-04 | 同一scope/time window内でconfigured capacity・経過観測秒・assignment/task counts・unused capacity・unfinished lineageを別々に固定しutilizationを算出する。 | denominatorが明示され、counts/未完系譜と別指標。dummy taskを作らない。missing time/capacityは未評価で成功分母に入れない。 |
 | CASE-OS-L10-049-05 | AC-OS-L3-049-05 | downstream owner/capacity、READY、priority、deadline、lease、authority、config revisionを一項目ずつ不適合化する。 | 不適合範囲のみ保留、HARNESS義務と未完理由を保持。OSはimpactを判定しない。 |
 | CASE-OS-L10-050-01b | AC-OS-L3-050-01 | review待ち件数・待ち時間・rework占有率・reviewer稼働率、scope/period、主因、eligible reviewer availability、authority/context/leaseが揃う正常fixtureを作る。 | capacity causeに対応するassignment候補だけ記録し、quality/Ready/merge stateは別に保つ。 |
+| CASE-OS-L10-050-01c | AC-OS-L3-050-01 | 現行review_merge担当者が既存merge admissionを満たしたreview結果を使ってmergeを行う正常case。 | 既存admission後のmerge可能状態を保ち、本候補だけで拒否/追加許可を作らない。 |
 | CASE-OS-L10-050-05 | AC-OS-L3-050-05 | reviewer capacity/lease/priority/deadline/downstream owner/capacity/authorityを個々に欠落・失効させ、別fixtureでcreator/subagent reviewer、HEAD drift、base drift、scope drift、複数PRの片方merge後に残りのbaseを再取得しない条件を与える。 | 不当増枠0。capacityからindependence、branch edit、Ready、merge authorityを生成しない。 |
 | CASE-OS-L10-051-04 | AC-OS-L3-051-04 | 要求/設計taskのClaude-create/Codex-review、適格性が成立する逆配置、非要求/設計taskの適格配置を別fixtureにする。 | Claude優先は要求/設計taskに限り、各正常配置のscope/evidenceを維持。 |
 | CASE-OS-L10-051-05 | AC-OS-L3-051-05 | Cursor reviewer、同一runtime/context、stale evidence、wrong scope/authority/HEAD、provider-name-only independence、通知/ACK/reviewer名だけのassignment/review receiptを各々独立に変異。 | 各誤配置/receiptを拒否し既存ownerへ戻す。 |
@@ -685,14 +686,19 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | CASE-OS-L10-034-06c | AC-OS-L3-034-02 | Issue番号一致だけの候補を入力。 | digest/source/target根拠なしに統合しない。 |
 | CASE-OS-L10-034-06d | AC-OS-L3-034-02 | closed targetのみを入力。 | duplicate terminalizationを成立させずownerへ返す。 |
 | CASE-OS-L10-034-06e | AC-OS-L3-034-02 | 元finding/evidence欠落のfalse-positive claim。 | 元eventを消さず反証根拠不足として保留。 |
-| CASE-OS-L10-034-06f | AC-OS-L3-034-02 | 反証source identityがunknown/stale。 | false-positive終端を拒否し不足sourceを返す。 |
+| CASE-OS-L10-034-06f1 | AC-OS-L3-034-02 | 反証source identityがunknown。 | false-positive終端を拒否し不足sourceを返す。 |
+| CASE-OS-L10-034-06f2 | AC-OS-L3-034-02 | 反証source identityがstale。 | false-positive終端を拒否し現行sourceを再取得する。 |
 | CASE-OS-L10-034-06g | AC-OS-L3-034-04 | CI greenだけのdirective/finding確定を入力。 | authority receiptとして流用しない。 |
 | CASE-OS-L10-034-06h | AC-OS-L3-034-04 | 別scope/古いPO receiptだけを入力。 | action binding不一致として保留。 |
 | CASE-OS-L10-034-06i | AC-OS-L3-034-03 | PR updateだけを与えappeal reopen済みと表示する変異。 | reopenを生成せず、既存dispositionとeventを保持。 |
 | CASE-OS-L10-034-06j | AC-OS-L3-034-03 | dispositionに異議経路/receiptがない状態でterminal表示。 | terminal化せずunknown/未完。 |
 | CASE-OS-L10-034-06k | AC-OS-L3-034-03 | finding source kind unknown。 | 種別を推測せずunknown保持。 |
 | CASE-OS-L10-035-07a | AC-OS-L3-035-02 | delivery filterが一部base/stacked scopeを除外しているのに全scope網羅表示。 | coverageをpartialとして保持し全scope claimを拒否。 |
-| CASE-OS-L10-035-07b | AC-OS-L3-035-01 | event受領だけでjob complete/reviewed/CI pass/mergeable/approvedへ昇格。 | registration eventだけ記録し後続statusを作らない。 |
+| CASE-OS-L10-035-07b1 | AC-OS-L3-035-01 | event受領だけでjob completeと表示。 | registrationだけ記録しjob completeを生成しない。 |
+| CASE-OS-L10-035-07b2 | AC-OS-L3-035-01 | event受領だけでreviewedと表示。 | registrationだけ記録しreview resultを生成しない。 |
+| CASE-OS-L10-035-07b3 | AC-OS-L3-035-01 | event受領だけでCI passと表示。 | registrationだけ記録しCI resultを生成しない。 |
+| CASE-OS-L10-035-07b4 | AC-OS-L3-035-01 | event受領だけでmergeableと表示。 | registrationだけ記録しmergeabilityを生成しない。 |
+| CASE-OS-L10-035-07b5 | AC-OS-L3-035-01 | event受領だけでrequirement approvedと表示。 | registrationだけ記録しrequirement approvalを生成しない。 |
 | CASE-OS-L10-035-07c | AC-OS-L3-035-05 | job登録後receipt受領前に停止し、再起動後既存job identityで再相関。 | receipt受領前を完了扱いせず、既存jobへ結ぶ。 |
 | CASE-OS-L10-035-07d | AC-OS-L3-035-03 | 未見の新base branchでscope内PR event。 | 固定契約が支持する範囲でeventを扱い、未対応部だけunknownとして戻す。 |
 | CASE-OS-L10-036-05 | AC-OS-L3-036-01 | 未見package manager/dependency種類/config形式だが選択oracleが対応する正常upgrade。 | OSは方式/schema名だけを理由に拒否せずscope/revisionを結ぶ。 |
@@ -704,10 +710,19 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | CASE-OS-L10-037-06f | AC-OS-L3-037-03 | 未見project/scope/revisionとLABO-063適用可能性あり/unknown。 | 適用可能なsourceだけ接続し、unknownは未評価のままownerへ戻す。 |
 | CASE-OS-L10-038-05a | AC-OS-L3-038-02 | 同じproposal/correlation IDでpayloadだけ異なる再送。 | appendしない、元snapshot維持しHARNESS/source ownerへ戻す。 |
 | CASE-OS-L10-038-05b | AC-OS-L3-038-02 | 同じproposal/correlation IDでbaseだけ異なる再送。 | stale/mismatchとして拒否し既存rowを変更しない。 |
-| CASE-OS-L10-038-05c | AC-OS-L3-038-02 | HARNESS-040/041が未採択/無効またはL2-009 applicability unknown。 | commit/appendを保留しauthority/contract ownerへ戻す。 |
-| CASE-OS-L10-038-05d | AC-OS-L3-038-02 | OSがHARNESS proposalを補完・統合・削除する。 | OSによるsemantic editを拒否し原proposalを保持する。 |
-| CASE-OS-L10-038-05e | AC-OS-L3-038-02 | append結果を採択/L3開始/CI green/merge readinessと表示。 | append receiptを記録するだけで、後続authority stateは変えない。 |
-| CASE-OS-L10-038-05f | AC-OS-L3-038-03 | HARNESS finding欠落、別input束縛、または不明。 | outcome unknown/staleで保留しOS側でfinding意味を再評価しない。 |
+| CASE-OS-L10-038-05c1 | AC-OS-L3-038-02 | HARNESS-L2-040が未採択または無効。 | commit/appendを保留しHARNESS ownerへ戻す。 |
+| CASE-OS-L10-038-05c2 | AC-OS-L3-038-02 | HARNESS-L2-041-003が未採択または無効。 | commit/appendを保留しHARNESS ownerへ戻す。 |
+| CASE-OS-L10-038-05c3 | AC-OS-L3-038-02 | L2-009 applicabilityがunknown。 | commit/appendを保留し既存契約ownerへ戻す。 |
+| CASE-OS-L10-038-05d1 | AC-OS-L3-038-02 | OSがHARNESS proposalを補完する。 | semantic editを拒否し原proposalを保持する。 |
+| CASE-OS-L10-038-05d2 | AC-OS-L3-038-02 | OSがHARNESS proposalを統合する。 | semantic editを拒否し原proposalを保持する。 |
+| CASE-OS-L10-038-05d3 | AC-OS-L3-038-02 | OSがHARNESS proposalを削除する。 | semantic editを拒否し原proposalを保持する。 |
+| CASE-OS-L10-038-05e1 | AC-OS-L3-038-02 | append結果を採択と表示。 | append receiptだけを記録し採択stateを生成しない。 |
+| CASE-OS-L10-038-05e2 | AC-OS-L3-038-02 | append結果をL3開始許可と表示。 | append receiptだけを記録し開始許可を生成しない。 |
+| CASE-OS-L10-038-05e3 | AC-OS-L3-038-02 | append結果をCI greenと表示。 | append receiptだけを記録しCI stateを生成しない。 |
+| CASE-OS-L10-038-05e4 | AC-OS-L3-038-02 | append結果をmerge readinessと表示。 | append receiptだけを記録しmerge readinessを生成しない. |
+| CASE-OS-L10-038-05f1 | AC-OS-L3-038-03 | HARNESS finding欠落。 | outcome unknown/staleで保留しOS側で意味を再評価しない。 |
+| CASE-OS-L10-038-05f2 | AC-OS-L3-038-03 | HARNESS findingが別inputへ束縛。 | outcome unknown/staleで保留しOS側で意味を再評価しない。 |
+| CASE-OS-L10-038-05f3 | AC-OS-L3-038-03 | HARNESS finding状態が不明。 | outcome unknown/staleで保留しOS側で意味を再評価しない。 |
 | CASE-OS-L10-040-07a | AC-OS-L3-040-02 | 要求意味不足をRecovery成功で隠す。 | typed routeは成立せず要求engine/ownerへ戻す。 |
 | CASE-OS-L10-040-07b | AC-OS-L3-040-02 | context復旧要件をBackflowで代替。 | Recoveryの既存中断工程境界を保持する。 |
 | CASE-OS-L10-040-07c | AC-OS-L3-040-02 | route待ちをclose/successへ昇格。 | open dutyと停止理由を保持する。 |
@@ -722,7 +737,10 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | CASE-OS-L10-042-07c | AC-OS-L3-042-02 | 適用HARNESS oracle欠落。 | authority/validationを推測せずHARNESSへ戻す。 |
 | CASE-OS-L10-042-07d | AC-OS-L3-042-05 | receiptのoracleが異なる。 | 緩和成果を昇格せず既存contract ownerへ戻す。 |
 | CASE-OS-L10-042-07e | AC-OS-L3-042-05 | receiptが別成果/revisionに属する。 | receiptを流用しない。 |
-| CASE-OS-L10-042-07f | AC-OS-L3-042-02 | OSがschema/digest/oracle/SECURITY許可を発行・変更する。 | semantic/authority editを拒否しそれぞれ固定ownerへ戻す。 |
+| CASE-OS-L10-042-07f1 | AC-OS-L3-042-02 | OSがschemaを発行/変更する。 | semantic editを拒否し契約ownerへ戻す。 |
+| CASE-OS-L10-042-07f2 | AC-OS-L3-042-02 | OSがdigest algorithmを発行/変更する。 | semantic editを拒否し契約ownerへ戻す。 |
+| CASE-OS-L10-042-07f3 | AC-OS-L3-042-02 | OSがHARNESS oracleを発行/変更する。 | oracleを変更せずHARNESS ownerへ戻す。 |
+| CASE-OS-L10-042-07f4 | AC-OS-L3-042-02 | OSがSECURITY permissionを発行/変更する。 | authorityを作らずSECURITY ownerへ戻す。 |
 | CASE-OS-L10-043-06a | AC-OS-L3-043-04 | chainがassignmentへ束縛されずresultを別assignmentと混同。 | chain unknown/unfinished、該当operation ownerへ返す。 |
 | CASE-OS-L10-043-06b | AC-OS-L3-043-05 | SECURITYがOS assignment/progressを所有すると表示。 | 所有境界を変更せずSECURITY/OS既存sourceへ戻す。 |
 | CASE-OS-L10-043-06c | AC-OS-L3-043-05 | 旧Node専有条件を本候補だけで現行へ移す。 | 未決authorityを採用せずunknown維持。 |
