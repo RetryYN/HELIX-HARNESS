@@ -57,6 +57,6 @@ HARNESS-L2-011/L11は期限切れをsuccessにしないが、expiry時刻と比�
 
 固定L2-022/L11は段階別証拠と同一artifact revision/scopeの追跡を要求するが、性能SLAの数値を定めない。以下は根拠付きのL3技術候補であり、要求済みの固定値ではない。個別parameterのPO承認gateを作らない。
 
-- **`NFR-C-HARNESS-022-01` trace integrity（候補）**：選択scope内の各必須FR/ACを一つ以上の適切なL10 oracleへ追跡し、oracle/result/evidenceのartifact revisionとscopeを一致させる。FR/ACとCASEの対応は必要に応じ多対多でよく、一対一制約を追加しない。候補境界は、対象FR/ACの必要trace coverage 100%、未解消の必須trace/evidence mismatch 0件。IDの重複は別の識別子不備として検出する。L2-022の段階証明とL11同一revision/scope受入記録、現行配置規則のtrace義務から再導出する。L10で対応漏れ・重複・revision違い・scope違い・必須証拠欠落を独立変異し、各条件がpassにならないことを測る。固定sourceが定めない旧51/102件の分母を流用しない。
+- **`NFR-C-HARNESS-022-01` trace integrity（候補）**：選択scope内の各必須FR/ACを一つ以上の適切なL10 oracleへ追跡し、oracle/result/evidenceのartifact revisionとscopeを一致させる。FR/ACとCASEの対応は必要に応じ多対多でよく、一対一制約を追加しない。候補境界は、選択scope内の必須FR/AC trace completeness 100%、未解消の必須trace/evidence tuple mismatch 0件。これは必須traceの完全性を測る技術候補であり、quality/security/acceptanceの品質閾値ではない。IDの重複は別の識別子不備として検出する。根拠はL2-022の段階証明・同一revision/scope条件とL11:268のoracle結果とtrace/evidence存在の区別、数値thresholdを追加しない共通前提であり、G13 receiptは品質判定をstage別oracleへ結び結果から承認を生成しないことを補足する。L10で対応漏れ・重複・revision違い・scope違い・必須証拠欠落を独立変異し、各条件がpassにならないことを測る。固定sourceが定めない旧51/102件の分母を流用しない。
 
 この親だけからthroughput/latency/availabilityの数値義務は導出しない。別の固定根拠から測定値が必要になった場合はL3で根拠・比較案・測定方法・判定境界を持つ候補を起草し、対のL10へ結ぶ。数値根拠がなければ当該数値NFRは設定しない。
