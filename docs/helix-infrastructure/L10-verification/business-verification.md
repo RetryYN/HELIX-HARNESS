@@ -31,3 +31,9 @@ stage: 1
 ## Stage 2a 追加範囲 — business総合検証
 
 Stage 2a直接親 `HELIXINFRASTRUCTURE-L2-003/004/005/009/010` に独立business outcome/oracleはないため、独立BCASE、business KPI、incident severity、費用/配置の合否を新設しない。対象条件の総合検証は[機能要件FR/AC](../L3-requirements/functional-requirements.md)と[機能検証case](functional-verification.md)に一本化する。L10から要求やownerを追加せず、Business文書は重複定義の代わりに該当FR/ACを参照する。
+
+## Stage 4 追加範囲 — HELIXINFRASTRUCTURE-L2-008/025
+
+この追記は採択済み `HELIXINFRASTRUCTURE-L2-008` と `HELIXINFRASTRUCTURE-L2-025` の1.0候補である。固定要求意味はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7` のL2/L11、PO確認対象は `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。既承認prefixのbytesを保ち、この追記の承認・実装結果は別に判断する。実装順序はG0案Bに従う。後続版、自動配置最適化、高度な自動増減、Web展開を受入条件へ加えない。
+
+固定008/025に独立business outcome/oracleはないため、独立BR/BCASEは追加しない。機能正本 INFRA-008-FR-01/AC-01/02、INFRA-025-FR-01/02・AC-01..04と対のL10を参照する。設計接続・資源対応・隔離・未完保持から業務成功、release、incident close、費用/配置採用を生成しない。
