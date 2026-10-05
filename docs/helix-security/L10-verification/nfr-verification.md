@@ -17,3 +17,15 @@
 | `SEC-NFR-014-01` / `SECURITY-AC-014-01` | 合成入力でmemory、training dataset、BRAIN knowledgeの3 target classを個別に入力し、source/provenance/classification、allow/deny/hold、理由のfield対応を測る。missing/unknown/wrong-targetも別fixtureにする。 | target別decision traceの欠落0件。handoff、LABO評価、保存、BRAIN登録の成立件数をこの候補の成功へ含めない。 | 不足したsource/classificationをhold/denyし、policy意味の不足はL1-014 ownerへ返す。実secretや実保存をfixtureに使わない。 |
 
 共通機能caseと同じ合成入力を使い、未観測を0件実績にしない。値はcandidateでありL3承認・実装値・実行許可ではない。
+
+## SECURITY-NFR-CASE-031-01 — 選択scopeの必須検査coverage
+
+- **対応候補**: `SEC-NFR-031-01`（`SECURITY-AC-031-01..06`）
+- **測定対象**：選択されたHELIXSECURITY-L2-031 operationのSECURITY-CASE-031-01〜06に結び付く、固定L2/L11必須条件の文書上の検証coverage候補。runtime実行、実credential、実canonical stateは測定対象外。
+- **入力・分母**：親が明示する常時条件を分母へ置く。006/009/022/023/HARNESS/OS条件はそれぞれ外部送信、停止/逸脱、verification/adoptionへ進むfixtureに該当する場合だけ分母へ置く。選択payloadに限るmanifest条件はsource選択fixtureだけに適用する。条件外は未適用として別記し、missing/unknown/stale/未観測を成功0件へ混ぜない。
+- **測定方法**：各FR/AC obligationとnormal・個別negative・未見正常CASEの対応表を作る。固定L2に記載された各必須conditionについて対応caseがあるか、各negativeが他条件と独立に変異されるか、failureのowner/未完義務/対象scopeが戻るかを照合する。多対多traceを許し、重複IDと未対応obligationを別に検出する。分母0は「該当なし」とし割合を算出しない。
+- **根拠付き候補oracle**：選択scopeで必須condition fixture coverage 100%、各必須negativeの誤受入0件、対応必須証拠/owner戻しの未解消不一致0件。候補値は固定要求の受入検査に限定し、performance/quota/retention等の一般thresholdではない。
+- **結果区分**：適用条件外、未選択/未観測、missing/unknown/stale、fixture不成立、negative不合格、未見正常不成立、owner返却保留、測定可能な結果を分けて記録する。測定不能や分母0をpassへ変換しない。
+- **owner/限界**：policy/authorityはSECURITY、assignmentと未完義務はOS、enforcementはWorker、実資源・network・storage観測はINFRASTRUCTURE、proposal oracleはHARNESS。候補metricはL3承認、実装・実行許可、実測成功を生成しない。
+
+Stage 2cの分母は検査結果を読む前に適用条件から固定する。適用される必須条件のmissing/unknown/stale/未観測は分母に残し、coverage未達または未評価として記録する。適用条件自体を決定できない場合は分母不明であり、「該当なし」や0件へ丸めない。

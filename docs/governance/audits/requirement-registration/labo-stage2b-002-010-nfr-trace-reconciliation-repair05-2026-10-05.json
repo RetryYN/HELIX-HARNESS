@@ -1,0 +1,273 @@
+{
+  "record_type": "append-only LABO Stage2b NFR trace-column reconciliation",
+  "record_date": "2026-10-05",
+  "authority_effect": "none",
+  "mechanism": "HELIX-LABO",
+  "stage": "Stage 2b",
+  "scope": {
+    "parents": [
+      "HELIXLABO-L2-008",
+      "HELIXLABO-L2-009"
+    ],
+    "version_target": "1.0",
+    "semantic_requirement_change": false,
+    "owner_change": false
+  },
+  "parent_record": {
+    "path": "docs/governance/audits/requirement-registration/labo-stage2b-002-010-review01-repair04-2026-10-05.json",
+    "body_revision": "3d0823850147a849546cd43b82c17199efa07c49",
+    "audit_commit": "532ca1ba9a01e6448156210e4ecf071620230e47",
+    "sha256": "05d2b6978a81ef35b3943284a612f91ffa58886d759cd051bcaf3f21c1f5b943",
+    "bytes": 388868,
+    "immutable_unchanged": true
+  },
+  "body_revision": "b6a7af2c07fbac209a1ae745a9a8c827b0b7a97c",
+  "body_parent_revision": "532ca1ba9a01e6448156210e4ecf071620230e47",
+  "body_change_summary": "L10 NFR verification trace column for 008/009 exactly matches the corresponding complete L3 NFR case column; only these two table rows changed. Oracle cells are unchanged.",
+  "canonical_documents": [
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "full_sha256": "96205e3b333f2f143c2828e35f58974fd930aac9dbca51d253b5c27372b7fa16",
+      "bytes": 62912,
+      "physical_lines": 306,
+      "changed_from_repair04": false
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "full_sha256": "a67c94c2f457b3d0b0421df7e4c49bd15455444e207a0435a35bb642d421b6ef",
+      "bytes": 2465,
+      "physical_lines": 14,
+      "changed_from_repair04": false
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "full_sha256": "9d9ea267c863b298a90171dd196cefa99d1587e14bf859d4bf6a54771ca6f504",
+      "bytes": 20767,
+      "physical_lines": 71,
+      "changed_from_repair04": false
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "full_sha256": "8e7da2e15e77a7f7b95c1142fae42bf2d1f2ef4b2028087c65e54f3eb810787e",
+      "bytes": 70877,
+      "physical_lines": 333,
+      "changed_from_repair04": false
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "full_sha256": "d89b00da2c10cb4b1f7f4fd0d97e4bca6889210c623c5ce3f6181de61cc52501",
+      "bytes": 2194,
+      "physical_lines": 14,
+      "changed_from_repair04": false
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "full_sha256": "8ed18217d98ccf21be8f32edd2a4941fc7027f9d2c0fa6e799806ea9e3b0ae86",
+      "bytes": 15971,
+      "physical_lines": 52,
+      "changed_from_repair04": true
+    }
+  ],
+  "row_reconciliation": [
+    {
+      "nfr_id": "NFR-LABO-008-01",
+      "l3_grade_row": {
+        "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+        "physical_line": 64,
+        "literal": "| `NFR-LABO-008-01` | continue/modify/fallback候補のsource、guarantee、unfinished duty、owner返却を候補ごとに記録する。 | `L10-LABO-008-CASE-01`, `L10-LABO-008-CASE-02`, `L10-LABO-008-CASE-03`, `L10-LABO-008-CASE-09`, `L10-LABO-008-CASE-10`, `L10-LABO-008-CASE-13`, `L10-LABO-008-CASE-14`, `L10-LABO-008-CASE-15`, `L10-LABO-008-CASE-16`, `L10-LABO-008-CASE-17` |",
+        "raw_line_sha256_lf_inclusive": "cdb86c4b707581e63f75dc569835476fb16abfa4e567f77f31ed4aee054bcede",
+        "cells": [
+          "`NFR-LABO-008-01`",
+          "continue/modify/fallback候補のsource、guarantee、unfinished duty、owner返却を候補ごとに記録する。",
+          "`L10-LABO-008-CASE-01`, `L10-LABO-008-CASE-02`, `L10-LABO-008-CASE-03`, `L10-LABO-008-CASE-09`, `L10-LABO-008-CASE-10`, `L10-LABO-008-CASE-13`, `L10-LABO-008-CASE-14`, `L10-LABO-008-CASE-15`, `L10-LABO-008-CASE-16`, `L10-LABO-008-CASE-17`"
+        ],
+        "full_sha256": "9d9ea267c863b298a90171dd196cefa99d1587e14bf859d4bf6a54771ca6f504",
+        "bytes": 20767
+      },
+      "old_nv_row_from_repair04_body": {
+        "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+        "physical_line": 43,
+        "literal": "| `NFR-LABO-008-01` evidence・unfinished duty保持 | `LABO-008-AC-01`, `LABO-008-AC-02`, `LABO-008-AC-03`; `L10-LABO-008-CASE-01`, `L10-LABO-008-CASE-02`, `L10-LABO-008-CASE-03`, `L10-LABO-008-CASE-09`, `L10-LABO-008-CASE-13`, `L10-LABO-008-CASE-14`, `L10-LABO-008-CASE-15`, `L10-LABO-008-CASE-16`, `L10-LABO-008-CASE-17` | planned reevaluation候補を分母にcurrent version、owner result、例外、FP、workaround/cost、guarantee、operation condition、unfinished-duty identityを個別present/missing/unknown/stale/conflictで数える。L10-LABO-008-CASE-10ではduty lossを検出し、別fieldや候補種別で補完しない。candidate種別はcontinue/modify/fallback別に記録し、率目標を置かない。 |",
+        "raw_line_sha256_lf_inclusive": "a6aa69d637640819244799cb5bd7556088f2cb194a5f8972b91d5759f0671997",
+        "cells": [
+          "`NFR-LABO-008-01` evidence・unfinished duty保持",
+          "`LABO-008-AC-01`, `LABO-008-AC-02`, `LABO-008-AC-03`; `L10-LABO-008-CASE-01`, `L10-LABO-008-CASE-02`, `L10-LABO-008-CASE-03`, `L10-LABO-008-CASE-09`, `L10-LABO-008-CASE-13`, `L10-LABO-008-CASE-14`, `L10-LABO-008-CASE-15`, `L10-LABO-008-CASE-16`, `L10-LABO-008-CASE-17`",
+          "planned reevaluation候補を分母にcurrent version、owner result、例外、FP、workaround/cost、guarantee、operation condition、unfinished-duty identityを個別present/missing/unknown/stale/conflictで数える。L10-LABO-008-CASE-10ではduty lossを検出し、別fieldや候補種別で補完しない。candidate種別はcontinue/modify/fallback別に記録し、率目標を置かない。"
+        ],
+        "full_sha256": "1da09494237925f9b3e237a8a6209a051d0dff2bfff5186830b2d4f7e1d60fa0",
+        "bytes": 15779
+      },
+      "current_nv_row": {
+        "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+        "physical_line": 43,
+        "literal": "| `NFR-LABO-008-01` evidence・unfinished duty保持 | `LABO-008-AC-01`, `LABO-008-AC-02`, `LABO-008-AC-03`; `L10-LABO-008-CASE-01`, `L10-LABO-008-CASE-02`, `L10-LABO-008-CASE-03`, `L10-LABO-008-CASE-09`, `L10-LABO-008-CASE-10`, `L10-LABO-008-CASE-13`, `L10-LABO-008-CASE-14`, `L10-LABO-008-CASE-15`, `L10-LABO-008-CASE-16`, `L10-LABO-008-CASE-17` | planned reevaluation候補を分母にcurrent version、owner result、例外、FP、workaround/cost、guarantee、operation condition、unfinished-duty identityを個別present/missing/unknown/stale/conflictで数える。L10-LABO-008-CASE-10ではduty lossを検出し、別fieldや候補種別で補完しない。candidate種別はcontinue/modify/fallback別に記録し、率目標を置かない。 |",
+        "raw_line_sha256_lf_inclusive": "53af9d8122a4ceabb3ca82992490fb64c6830f435bd1bdd241ce01891179894a",
+        "cells": [
+          "`NFR-LABO-008-01` evidence・unfinished duty保持",
+          "`LABO-008-AC-01`, `LABO-008-AC-02`, `LABO-008-AC-03`; `L10-LABO-008-CASE-01`, `L10-LABO-008-CASE-02`, `L10-LABO-008-CASE-03`, `L10-LABO-008-CASE-09`, `L10-LABO-008-CASE-10`, `L10-LABO-008-CASE-13`, `L10-LABO-008-CASE-14`, `L10-LABO-008-CASE-15`, `L10-LABO-008-CASE-16`, `L10-LABO-008-CASE-17`",
+          "planned reevaluation候補を分母にcurrent version、owner result、例外、FP、workaround/cost、guarantee、operation condition、unfinished-duty identityを個別present/missing/unknown/stale/conflictで数える。L10-LABO-008-CASE-10ではduty lossを検出し、別fieldや候補種別で補完しない。candidate種別はcontinue/modify/fallback別に記録し、率目標を置かない。"
+        ],
+        "full_sha256": "8ed18217d98ccf21be8f32edd2a4941fc7027f9d2c0fa6e799806ea9e3b0ae86",
+        "bytes": 15971
+      },
+      "table_column_indexes_zero_based": {
+        "L3_NFR_grade_case_list": 2,
+        "L10_NFR_trace_cell": 1,
+        "L10_NFR_oracle_cell": 2
+      },
+      "l3_trace_case_ids": [
+        "L10-LABO-008-CASE-01",
+        "L10-LABO-008-CASE-02",
+        "L10-LABO-008-CASE-03",
+        "L10-LABO-008-CASE-09",
+        "L10-LABO-008-CASE-10",
+        "L10-LABO-008-CASE-13",
+        "L10-LABO-008-CASE-14",
+        "L10-LABO-008-CASE-15",
+        "L10-LABO-008-CASE-16",
+        "L10-LABO-008-CASE-17"
+      ],
+      "old_nv_trace_case_ids": [
+        "L10-LABO-008-CASE-01",
+        "L10-LABO-008-CASE-02",
+        "L10-LABO-008-CASE-03",
+        "L10-LABO-008-CASE-09",
+        "L10-LABO-008-CASE-13",
+        "L10-LABO-008-CASE-14",
+        "L10-LABO-008-CASE-15",
+        "L10-LABO-008-CASE-16",
+        "L10-LABO-008-CASE-17"
+      ],
+      "new_nv_trace_case_ids": [
+        "L10-LABO-008-CASE-01",
+        "L10-LABO-008-CASE-02",
+        "L10-LABO-008-CASE-03",
+        "L10-LABO-008-CASE-09",
+        "L10-LABO-008-CASE-10",
+        "L10-LABO-008-CASE-13",
+        "L10-LABO-008-CASE-14",
+        "L10-LABO-008-CASE-15",
+        "L10-LABO-008-CASE-16",
+        "L10-LABO-008-CASE-17"
+      ],
+      "oracle_case_ids_in_current_nv_row": [
+        "L10-LABO-008-CASE-10"
+      ],
+      "column_check": {
+        "l3_trace_equals_nv_trace": true,
+        "ordered_case_sequence_exactly_equal": true,
+        "oracle_column_used_for_trace_comparison": false
+      }
+    },
+    {
+      "nfr_id": "NFR-LABO-009-01",
+      "l3_grade_row": {
+        "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+        "physical_line": 65,
+        "literal": "| `NFR-LABO-009-01` | 5 scope段階、support/counterexample/sample condition/applicability boundaryをclaim母集団ごとに記録する。 | `L10-LABO-009-CASE-01`, `L10-LABO-009-CASE-06`, `L10-LABO-009-CASE-07`, `L10-LABO-009-CASE-08`, `L10-LABO-009-CASE-09`, `L10-LABO-009-CASE-10`, `L10-LABO-009-CASE-11`, `L10-LABO-009-CASE-12`, `L10-LABO-009-CASE-13`, `L10-LABO-009-CASE-14`, `L10-LABO-009-CASE-15`, `L10-LABO-009-CASE-16` |",
+        "raw_line_sha256_lf_inclusive": "a8e3d05fbc778436acb8a4436cce49f96125e605b132ea819bf02714c6e421aa",
+        "cells": [
+          "`NFR-LABO-009-01`",
+          "5 scope段階、support/counterexample/sample condition/applicability boundaryをclaim母集団ごとに記録する。",
+          "`L10-LABO-009-CASE-01`, `L10-LABO-009-CASE-06`, `L10-LABO-009-CASE-07`, `L10-LABO-009-CASE-08`, `L10-LABO-009-CASE-09`, `L10-LABO-009-CASE-10`, `L10-LABO-009-CASE-11`, `L10-LABO-009-CASE-12`, `L10-LABO-009-CASE-13`, `L10-LABO-009-CASE-14`, `L10-LABO-009-CASE-15`, `L10-LABO-009-CASE-16`"
+        ],
+        "full_sha256": "9d9ea267c863b298a90171dd196cefa99d1587e14bf859d4bf6a54771ca6f504",
+        "bytes": 20767
+      },
+      "old_nv_row_from_repair04_body": {
+        "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+        "physical_line": 44,
+        "literal": "| `NFR-LABO-009-01` five-level scope evidence matrix | `LABO-009-AC-01`, `LABO-009-AC-03`; `L10-LABO-009-CASE-01`, `L10-LABO-009-CASE-06`, `L10-LABO-009-CASE-09`, `L10-LABO-009-CASE-15`, `L10-LABO-009-CASE-16` | scope claims全件を分母に5段階別claim数、supporting evidence、counterexample、sample condition、applicability boundaryを記録する。各claimの最大supported scopeと主張scopeが一致するか照合し、L10-LABO-009-CASE-07, L10-LABO-009-CASE-08, L10-LABO-009-CASE-09, L10-LABO-009-CASE-10, L10-LABO-009-CASE-11, L10-LABO-009-CASE-12, L10-LABO-009-CASE-13, L10-LABO-009-CASE-14の欠損・過大主張はunknown/unassessedで保持する。最小sample数やgeneralization率は設けない。 |",
+        "raw_line_sha256_lf_inclusive": "cc48b470d45a96c0b3dc890579117ae7ef4a60a17b506b6ecc46eafe56f7b6f6",
+        "cells": [
+          "`NFR-LABO-009-01` five-level scope evidence matrix",
+          "`LABO-009-AC-01`, `LABO-009-AC-03`; `L10-LABO-009-CASE-01`, `L10-LABO-009-CASE-06`, `L10-LABO-009-CASE-09`, `L10-LABO-009-CASE-15`, `L10-LABO-009-CASE-16`",
+          "scope claims全件を分母に5段階別claim数、supporting evidence、counterexample、sample condition、applicability boundaryを記録する。各claimの最大supported scopeと主張scopeが一致するか照合し、L10-LABO-009-CASE-07, L10-LABO-009-CASE-08, L10-LABO-009-CASE-09, L10-LABO-009-CASE-10, L10-LABO-009-CASE-11, L10-LABO-009-CASE-12, L10-LABO-009-CASE-13, L10-LABO-009-CASE-14の欠損・過大主張はunknown/unassessedで保持する。最小sample数やgeneralization率は設けない。"
+        ],
+        "full_sha256": "1da09494237925f9b3e237a8a6209a051d0dff2bfff5186830b2d4f7e1d60fa0",
+        "bytes": 15779
+      },
+      "current_nv_row": {
+        "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+        "physical_line": 44,
+        "literal": "| `NFR-LABO-009-01` five-level scope evidence matrix | `LABO-009-AC-01`, `LABO-009-AC-03`; `L10-LABO-009-CASE-01`, `L10-LABO-009-CASE-06`, `L10-LABO-009-CASE-07`, `L10-LABO-009-CASE-08`, `L10-LABO-009-CASE-09`, `L10-LABO-009-CASE-10`, `L10-LABO-009-CASE-11`, `L10-LABO-009-CASE-12`, `L10-LABO-009-CASE-13`, `L10-LABO-009-CASE-14`, `L10-LABO-009-CASE-15`, `L10-LABO-009-CASE-16` | scope claims全件を分母に5段階別claim数、supporting evidence、counterexample、sample condition、applicability boundaryを記録する。各claimの最大supported scopeと主張scopeが一致するか照合し、L10-LABO-009-CASE-07, L10-LABO-009-CASE-08, L10-LABO-009-CASE-09, L10-LABO-009-CASE-10, L10-LABO-009-CASE-11, L10-LABO-009-CASE-12, L10-LABO-009-CASE-13, L10-LABO-009-CASE-14の欠損・過大主張はunknown/unassessedで保持する。最小sample数やgeneralization率は設けない。 |",
+        "raw_line_sha256_lf_inclusive": "4ecaa7cb0569c6d85e362573fda4be7bbaae86ceec85631e7fb6128a942226ca",
+        "cells": [
+          "`NFR-LABO-009-01` five-level scope evidence matrix",
+          "`LABO-009-AC-01`, `LABO-009-AC-03`; `L10-LABO-009-CASE-01`, `L10-LABO-009-CASE-06`, `L10-LABO-009-CASE-07`, `L10-LABO-009-CASE-08`, `L10-LABO-009-CASE-09`, `L10-LABO-009-CASE-10`, `L10-LABO-009-CASE-11`, `L10-LABO-009-CASE-12`, `L10-LABO-009-CASE-13`, `L10-LABO-009-CASE-14`, `L10-LABO-009-CASE-15`, `L10-LABO-009-CASE-16`",
+          "scope claims全件を分母に5段階別claim数、supporting evidence、counterexample、sample condition、applicability boundaryを記録する。各claimの最大supported scopeと主張scopeが一致するか照合し、L10-LABO-009-CASE-07, L10-LABO-009-CASE-08, L10-LABO-009-CASE-09, L10-LABO-009-CASE-10, L10-LABO-009-CASE-11, L10-LABO-009-CASE-12, L10-LABO-009-CASE-13, L10-LABO-009-CASE-14の欠損・過大主張はunknown/unassessedで保持する。最小sample数やgeneralization率は設けない。"
+        ],
+        "full_sha256": "8ed18217d98ccf21be8f32edd2a4941fc7027f9d2c0fa6e799806ea9e3b0ae86",
+        "bytes": 15971
+      },
+      "table_column_indexes_zero_based": {
+        "L3_NFR_grade_case_list": 2,
+        "L10_NFR_trace_cell": 1,
+        "L10_NFR_oracle_cell": 2
+      },
+      "l3_trace_case_ids": [
+        "L10-LABO-009-CASE-01",
+        "L10-LABO-009-CASE-06",
+        "L10-LABO-009-CASE-07",
+        "L10-LABO-009-CASE-08",
+        "L10-LABO-009-CASE-09",
+        "L10-LABO-009-CASE-10",
+        "L10-LABO-009-CASE-11",
+        "L10-LABO-009-CASE-12",
+        "L10-LABO-009-CASE-13",
+        "L10-LABO-009-CASE-14",
+        "L10-LABO-009-CASE-15",
+        "L10-LABO-009-CASE-16"
+      ],
+      "old_nv_trace_case_ids": [
+        "L10-LABO-009-CASE-01",
+        "L10-LABO-009-CASE-06",
+        "L10-LABO-009-CASE-09",
+        "L10-LABO-009-CASE-15",
+        "L10-LABO-009-CASE-16"
+      ],
+      "new_nv_trace_case_ids": [
+        "L10-LABO-009-CASE-01",
+        "L10-LABO-009-CASE-06",
+        "L10-LABO-009-CASE-07",
+        "L10-LABO-009-CASE-08",
+        "L10-LABO-009-CASE-09",
+        "L10-LABO-009-CASE-10",
+        "L10-LABO-009-CASE-11",
+        "L10-LABO-009-CASE-12",
+        "L10-LABO-009-CASE-13",
+        "L10-LABO-009-CASE-14",
+        "L10-LABO-009-CASE-15",
+        "L10-LABO-009-CASE-16"
+      ],
+      "oracle_case_ids_in_current_nv_row": [
+        "L10-LABO-009-CASE-07",
+        "L10-LABO-009-CASE-08",
+        "L10-LABO-009-CASE-09",
+        "L10-LABO-009-CASE-10",
+        "L10-LABO-009-CASE-11",
+        "L10-LABO-009-CASE-12",
+        "L10-LABO-009-CASE-13",
+        "L10-LABO-009-CASE-14"
+      ],
+      "column_check": {
+        "l3_trace_equals_nv_trace": true,
+        "ordered_case_sequence_exactly_equal": true,
+        "oracle_column_used_for_trace_comparison": false
+      }
+    }
+  ],
+  "checks": {
+    "rows_reconciled": "2/2",
+    "L3_case_list_equals_L10_trace_column": "2/2 exact ordered sequences",
+    "oracle_column_not_used_as_trace_evidence": true,
+    "scope_only_008_009": true,
+    "old_repair04_audit_unchanged": true,
+    "git_diff_check": "PASS"
+  },
+  "limits": [
+    "Creator-side trace-table correction only.",
+    "Does not claim independent review, PO approval, admission, or measurement.",
+    "No old runtime, CI, tests, or Bun executed."
+  ]
+}

@@ -1,0 +1,553 @@
+{
+  "record_kind": "creator static source/content audit; independent review and PO decision pending",
+  "authority_effect": "none",
+  "content_source_commit": "56868ac8c1eb8bc100b1d261119111b0ce22bc42",
+  "base_commit": "cf8c41f73b436d5cc088d2fc67ee3dbc1e40b98a",
+  "fixed_parent_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+  "po_adoption_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+  "g0_order_source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+  "legacy_source_commit": "f712a56460457e3202cf034ea71b578eafcd0280",
+  "parents": [
+    "HELIXLABO-L2-002",
+    "HELIXLABO-L2-003",
+    "HELIXLABO-L2-004",
+    "HELIXLABO-L2-005"
+  ],
+  "version_intent": "1.0 target only",
+  "documents": [
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "sha256": "6a04d7a3e0c5605edda0916536f351fd8c4f4fe48c3964bcf0a16636523b9e27",
+      "line_count": 244,
+      "prefix_source_commit": "cf8c41f73b436d5cc088d2fc67ee3dbc1e40b98a",
+      "prefix_bytes": 31304,
+      "prefix_sha256": "dd79efdc84e2419a63c2ac30d4df10d6b05d1537d6949ddf4340aaf64cedc8ea",
+      "prefix_exact": true,
+      "suffix_start_physical_line": 165
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "sha256": "750843fb87bd8a7a3eb9afab6508cc5db658926adc1c500005b3e286a5db3df1",
+      "line_count": 13,
+      "prefix_source_commit": "cf8c41f73b436d5cc088d2fc67ee3dbc1e40b98a",
+      "prefix_bytes": 1635,
+      "prefix_sha256": "36c21708c0b72cfc900697ec85b569f7ec48418d9f42431f4af874f3d7f73912",
+      "prefix_exact": true,
+      "suffix_start_physical_line": 10
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "sha256": "c3cffff8137e7bef8e72722b2116e014f858c6623981b1718780dd5b56184820",
+      "line_count": 43,
+      "prefix_source_commit": "cf8c41f73b436d5cc088d2fc67ee3dbc1e40b98a",
+      "prefix_bytes": 7582,
+      "prefix_sha256": "78a29ac7bb4f3e0777b9b752d4c3b716510e2a8ac4b0036625535f6443ffbbb4",
+      "prefix_exact": true,
+      "suffix_start_physical_line": 29
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "sha256": "6203d52f44a8fbab51b47e8caad5549af9a43911f00a44fcfcfb04334fc9fe43",
+      "line_count": 203,
+      "prefix_source_commit": "cf8c41f73b436d5cc088d2fc67ee3dbc1e40b98a",
+      "prefix_bytes": 27910,
+      "prefix_sha256": "a81a089e77d273450fd5906136384790fadc141402db00f05a9ef748b23a49f0",
+      "prefix_exact": true,
+      "suffix_start_physical_line": 139
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "sha256": "ff9e43ba3f1bd4c57a6c49e0fe233aeb87e49c423a8d5d92f26aca3926a18205",
+      "line_count": 11,
+      "prefix_source_commit": "cf8c41f73b436d5cc088d2fc67ee3dbc1e40b98a",
+      "prefix_bytes": 1037,
+      "prefix_sha256": "9c1406ddb4c26d0445724817053188c6effc35933270289115b0d5d41b0cb9da",
+      "prefix_exact": true,
+      "suffix_start_physical_line": 8
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "sha256": "d04742d37592f52a857c8a611525b9569b34126bc0f228408f5a9a8bd359407b",
+      "line_count": 41,
+      "prefix_source_commit": "cf8c41f73b436d5cc088d2fc67ee3dbc1e40b98a",
+      "prefix_bytes": 4824,
+      "prefix_sha256": "4971620056d6443f5471474adfad29c664d77b2a266c992543810b7ba2c0bbbb",
+      "prefix_exact": true,
+      "suffix_start_physical_line": 27
+    }
+  ],
+  "parent_coverage": [
+    {
+      "parent": "HELIXLABO-L2-002",
+      "fr": "LABO-002-FR-01",
+      "acs": [
+        "LABO-002-AC-01",
+        "LABO-002-AC-02",
+        "LABO-002-AC-03"
+      ],
+      "cases": [
+        "L10-LABO-002-CASE-01",
+        "L10-LABO-002-CASE-02",
+        "L10-LABO-002-CASE-03",
+        "L10-LABO-002-CASE-04",
+        "L10-LABO-002-CASE-05",
+        "L10-LABO-002-CASE-06",
+        "L10-LABO-002-CASE-07",
+        "L10-LABO-002-CASE-08"
+      ]
+    },
+    {
+      "parent": "HELIXLABO-L2-003",
+      "fr": "LABO-003-FR-01",
+      "acs": [
+        "LABO-003-AC-01",
+        "LABO-003-AC-02",
+        "LABO-003-AC-03"
+      ],
+      "cases": [
+        "L10-LABO-003-CASE-01",
+        "L10-LABO-003-CASE-02",
+        "L10-LABO-003-CASE-03",
+        "L10-LABO-003-CASE-04",
+        "L10-LABO-003-CASE-05",
+        "L10-LABO-003-CASE-06",
+        "L10-LABO-003-CASE-07"
+      ]
+    },
+    {
+      "parent": "HELIXLABO-L2-004",
+      "fr": "LABO-004-FR-01",
+      "acs": [
+        "LABO-004-AC-01",
+        "LABO-004-AC-02",
+        "LABO-004-AC-03"
+      ],
+      "cases": [
+        "L10-LABO-004-CASE-01",
+        "L10-LABO-004-CASE-02",
+        "L10-LABO-004-CASE-03",
+        "L10-LABO-004-CASE-04",
+        "L10-LABO-004-CASE-05",
+        "L10-LABO-004-CASE-06",
+        "L10-LABO-004-CASE-07"
+      ]
+    },
+    {
+      "parent": "HELIXLABO-L2-005",
+      "fr": "LABO-005-FR-01",
+      "acs": [
+        "LABO-005-AC-01",
+        "LABO-005-AC-02",
+        "LABO-005-AC-03"
+      ],
+      "cases": [
+        "L10-LABO-005-CASE-01",
+        "L10-LABO-005-CASE-02",
+        "L10-LABO-005-CASE-03",
+        "L10-LABO-005-CASE-04",
+        "L10-LABO-005-CASE-05",
+        "L10-LABO-005-CASE-06",
+        "L10-LABO-005-CASE-07",
+        "L10-LABO-005-CASE-08"
+      ]
+    }
+  ],
+  "counts": {
+    "stage2b_parents": 4,
+    "stage2b_FR": 4,
+    "stage2b_AC": 12,
+    "stage2b_CASE": 30,
+    "stage2b_BR": 0,
+    "stage2b_BV": 0,
+    "stage2b_BCASE": 0,
+    "stage2b_NFR_candidate_rows": 5,
+    "dangling_L3_AC_refs": 0,
+    "dangling_L10_CASE_refs": 0
+  },
+  "source_pins": [
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "physical_lines": [
+        77,
+        84
+      ],
+      "full_file_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "raw_span_sha256_lf_inclusive": "d4ecde864ac4129741f32ac65d0075d1d0704cc7166b86491bbae6ef8865bf28",
+      "asset_id": null,
+      "role": "fixed-adopted-L2-parent",
+      "verification": "git-show raw bytes, inclusive physical LF lines; match"
+    },
+    {
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      "physical_lines": [
+        49,
+        49
+      ],
+      "full_file_sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0",
+      "raw_span_sha256_lf_inclusive": "00d5bf598acf6df6dd773c706d683bfa442586356d74e6dbb5a7c4b6d63151bf",
+      "asset_id": null,
+      "role": "PO-adopted-parent-revision-row",
+      "verification": "git-show raw bytes, inclusive physical LF lines; match"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "physical_lines": [
+        249,
+        249
+      ],
+      "full_file_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "raw_span_sha256_lf_inclusive": "b6fb2dd33667cc4287d64f2b1ddc1379015eef06179306f8e5d0f56a4f9e08cf",
+      "asset_id": null,
+      "role": "G0-stage-order-evidence-not-authority",
+      "verification": "git-show raw bytes, inclusive physical LF lines; match"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "physical_lines": [
+        46,
+        46
+      ],
+      "full_file_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "raw_span_sha256_lf_inclusive": "ce062011fb183b86d221549f02b2885afe619ec15acbd3e3442e9fbe12fc3465",
+      "asset_id": null,
+      "role": "fixed-adopted-L11-acceptance-oracle",
+      "verification": "git-show raw bytes, inclusive physical LF lines; match"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "physical_lines": [
+        114,
+        114
+      ],
+      "full_file_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "raw_span_sha256_lf_inclusive": "85dd1ad759c8e06a1127551a7b68f4d552bc3885b003fd57ebb9f8be3fb777d2",
+      "asset_id": null,
+      "role": "fixed-adopted-L11-acceptance-oracle",
+      "verification": "git-show raw bytes, inclusive physical LF lines; match"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "physical_lines": [
+        85,
+        92
+      ],
+      "full_file_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "raw_span_sha256_lf_inclusive": "5a5472b632726e3b6069e251024c59dbb4c076889bf48771d4cd306907922901",
+      "asset_id": null,
+      "role": "fixed-adopted-L2-parent",
+      "verification": "git-show raw bytes, inclusive physical LF lines; match"
+    },
+    {
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      "physical_lines": [
+        50,
+        50
+      ],
+      "full_file_sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0",
+      "raw_span_sha256_lf_inclusive": "9fe42482d8fd220934e0ab7c403905505b3e12b1405b6fc1db6a0ce837074e65",
+      "asset_id": null,
+      "role": "PO-adopted-parent-revision-row",
+      "verification": "git-show raw bytes, inclusive physical LF lines; match"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "physical_lines": [
+        250,
+        250
+      ],
+      "full_file_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "raw_span_sha256_lf_inclusive": "4444e65f99f11b69a4eb37054f60de57623179b6bfb305328eb973bf6b3d6439",
+      "asset_id": null,
+      "role": "G0-stage-order-evidence-not-authority",
+      "verification": "git-show raw bytes, inclusive physical LF lines; match"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "physical_lines": [
+        47,
+        47
+      ],
+      "full_file_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "raw_span_sha256_lf_inclusive": "3ae2ba712bfb8343c1e8b451c3c5803e1fddecaa94137dbe1ae6f793a340852f",
+      "asset_id": null,
+      "role": "fixed-adopted-L11-acceptance-oracle",
+      "verification": "git-show raw bytes, inclusive physical LF lines; match"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "physical_lines": [
+        93,
+        100
+      ],
+      "full_file_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "raw_span_sha256_lf_inclusive": "6f1751ca2ca2dddd1e1065a68421d63e3c18ce656786c9c1fe318b1a4e458889",
+      "asset_id": null,
+      "role": "fixed-adopted-L2-parent",
+      "verification": "git-show raw bytes, inclusive physical LF lines; match"
+    },
+    {
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      "physical_lines": [
+        51,
+        51
+      ],
+      "full_file_sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0",
+      "raw_span_sha256_lf_inclusive": "f754373d18b5dfd41abe564758dabbd0c2d0734eb6b427c0d31f82d6a68e4b95",
+      "asset_id": null,
+      "role": "PO-adopted-parent-revision-row",
+      "verification": "git-show raw bytes, inclusive physical LF lines; match"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "physical_lines": [
+        251,
+        251
+      ],
+      "full_file_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "raw_span_sha256_lf_inclusive": "e040eea316d68be9daf2748fc0d683306f5da97a4645cdcde1dcb10c2abb47db",
+      "asset_id": null,
+      "role": "G0-stage-order-evidence-not-authority",
+      "verification": "git-show raw bytes, inclusive physical LF lines; match"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "physical_lines": [
+        48,
+        48
+      ],
+      "full_file_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "raw_span_sha256_lf_inclusive": "8bb5f1bb12ea7acac957089b86ed6a9743027e21d3d8d8082f265cf181d73025",
+      "asset_id": null,
+      "role": "fixed-adopted-L11-acceptance-oracle",
+      "verification": "git-show raw bytes, inclusive physical LF lines; match"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "physical_lines": [
+        101,
+        108
+      ],
+      "full_file_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "raw_span_sha256_lf_inclusive": "3b7f37f57a9db5df451275962aa0a90f951cf61e23496828cb9a078f52bc36ee",
+      "asset_id": null,
+      "role": "fixed-adopted-L2-parent",
+      "verification": "git-show raw bytes, inclusive physical LF lines; match"
+    },
+    {
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      "physical_lines": [
+        52,
+        52
+      ],
+      "full_file_sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0",
+      "raw_span_sha256_lf_inclusive": "a8e645e6ea6b44c21c3ab6e4459433c214370c78a322cd9510a58c5160db644d",
+      "asset_id": null,
+      "role": "PO-adopted-parent-revision-row",
+      "verification": "git-show raw bytes, inclusive physical LF lines; match"
+    },
+    {
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "physical_lines": [
+        252,
+        252
+      ],
+      "full_file_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "raw_span_sha256_lf_inclusive": "4ebb16aba324cc769713022d1b68fca2c5e35cc7f8b99436ceca20aabda806e0",
+      "asset_id": null,
+      "role": "G0-stage-order-evidence-not-authority",
+      "verification": "git-show raw bytes, inclusive physical LF lines; match"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "physical_lines": [
+        49,
+        49
+      ],
+      "full_file_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "raw_span_sha256_lf_inclusive": "01dc15d6bd73a2b3ebc8e72c4deb42746c8eadc43d54010791472345a10d5a92",
+      "asset_id": null,
+      "role": "fixed-adopted-L11-acceptance-oracle",
+      "verification": "git-show raw bytes, inclusive physical LF lines; match"
+    },
+    {
+      "source_commit": "f712a56460457e3202cf034ea71b578eafcd0280",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+      "physical_lines": [
+        35,
+        106
+      ],
+      "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+      "raw_span_sha256_lf_inclusive": "defc92ec2fd6817d3bee69a183661df9b63e8984d78614cab660c09a17eb5571",
+      "asset_id": "LEGACY-ASSET-28FB139B26CD61CC51EE",
+      "role": "legacy-L3-or-paired-verification-reference",
+      "verification": "git-show raw bytes, inclusive physical LF lines; match"
+    },
+    {
+      "source_commit": "f712a56460457e3202cf034ea71b578eafcd0280",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+      "physical_lines": [
+        96,
+        126
+      ],
+      "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+      "raw_span_sha256_lf_inclusive": "b1e1ad5ce41e266e13b9469c20e87d57d46cf9f7d80773ce2a9c65c96102aae1",
+      "asset_id": "LEGACY-ASSET-28FB139B26CD61CC51EE",
+      "role": "legacy-L3-or-paired-verification-reference",
+      "verification": "git-show raw bytes, inclusive physical LF lines; match"
+    },
+    {
+      "source_commit": "f712a56460457e3202cf034ea71b578eafcd0280",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+      "physical_lines": [
+        25,
+        34
+      ],
+      "full_file_sha256": "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185",
+      "raw_span_sha256_lf_inclusive": "e5ec702da7e6aa732bda4d81e5388c0415106aa60d4730b0350b6a2a9be365f5",
+      "asset_id": "LEGACY-ASSET-A952A3A175EB82A4781B",
+      "role": "legacy-L3-or-paired-verification-reference",
+      "verification": "git-show raw bytes, inclusive physical LF lines; match"
+    },
+    {
+      "source_commit": "f712a56460457e3202cf034ea71b578eafcd0280",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+      "physical_lines": [
+        76,
+        94
+      ],
+      "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+      "raw_span_sha256_lf_inclusive": "78e36e944f81b3d86848540620e4836a1f7ce35e58f290fdb84f7d0a640480e4",
+      "asset_id": "LEGACY-ASSET-28FB139B26CD61CC51EE",
+      "role": "legacy-L3-or-paired-verification-reference",
+      "verification": "git-show raw bytes, inclusive physical LF lines; match"
+    },
+    {
+      "source_commit": "f712a56460457e3202cf034ea71b578eafcd0280",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+      "physical_lines": [
+        22,
+        24
+      ],
+      "full_file_sha256": "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185",
+      "raw_span_sha256_lf_inclusive": "111268a4e97a66f6b6caccd88a57cbf6fa32510bcecde33a06973088206c4f22",
+      "asset_id": "LEGACY-ASSET-A952A3A175EB82A4781B",
+      "role": "legacy-L3-or-paired-verification-reference",
+      "verification": "git-show raw bytes, inclusive physical LF lines; match"
+    },
+    {
+      "source_commit": "f712a56460457e3202cf034ea71b578eafcd0280",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+      "physical_lines": [
+        121,
+        141
+      ],
+      "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+      "raw_span_sha256_lf_inclusive": "eb6b076cc591a88b1057cae1bb81cde6da94fd9474eabf4c86c39f24785d57de",
+      "asset_id": "LEGACY-ASSET-28FB139B26CD61CC51EE",
+      "role": "legacy-L3-or-paired-verification-reference",
+      "verification": "git-show raw bytes, inclusive physical LF lines; match"
+    },
+    {
+      "source_commit": "f712a56460457e3202cf034ea71b578eafcd0280",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+      "physical_lines": [
+        25,
+        37
+      ],
+      "full_file_sha256": "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185",
+      "raw_span_sha256_lf_inclusive": "f650a2cd806e0d3375d2fd594c456bd2da0776614a97e28b0ed0972a4a803ff0",
+      "asset_id": "LEGACY-ASSET-A952A3A175EB82A4781B",
+      "role": "legacy-L3-or-paired-verification-reference",
+      "verification": "git-show raw bytes, inclusive physical LF lines; match"
+    },
+    {
+      "source_commit": "f712a56460457e3202cf034ea71b578eafcd0280",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "physical_lines": [
+        13,
+        21
+      ],
+      "full_file_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "raw_span_sha256_lf_inclusive": "d16597b2119b4b6d89a48c97777397f983d404059799ab440e76d02f821e1a69",
+      "asset_id": "LEGACY-ASSET-F542125805B777D8A56A",
+      "role": "legacy-L3-process-definition",
+      "verification": "git-show raw bytes, inclusive physical LF lines; match"
+    },
+    {
+      "source_commit": "f712a56460457e3202cf034ea71b578eafcd0280",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "physical_lines": [
+        101,
+        101
+      ],
+      "full_file_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "raw_span_sha256_lf_inclusive": "9a48e962ded1a655d4d467b146034189604c8545efe963446a06d5230e32889c",
+      "asset_id": "LEGACY-ASSET-F542125805B777D8A56A",
+      "role": "legacy-L3-approval-boundary",
+      "verification": "git-show raw bytes, inclusive physical LF lines; match"
+    },
+    {
+      "source_commit": "f712a56460457e3202cf034ea71b578eafcd0280",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "physical_lines": [
+        148,
+        168
+      ],
+      "full_file_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "raw_span_sha256_lf_inclusive": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9",
+      "asset_id": "LEGACY-ASSET-F542125805B777D8A56A",
+      "role": "legacy-L3-completion-and-handoff",
+      "verification": "git-show raw bytes, inclusive physical LF lines; match"
+    },
+    {
+      "source_commit": "f712a56460457e3202cf034ea71b578eafcd0280",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md",
+      "physical_lines": [
+        19,
+        56
+      ],
+      "full_file_sha256": "949b0da00d2a417e1b36d3679b89735de7adadf831f567dbe383dfe6337f19e4",
+      "raw_span_sha256_lf_inclusive": "cbd7356688626e471f9f99065ef3ea5ff0f68d8b0b17365f62c9ff72f41b4ce2",
+      "asset_id": "LEGACY-ASSET-9A772391C7FB1298D45F",
+      "role": "legacy-L3-layout-and-gate-model",
+      "verification": "git-show raw bytes, inclusive physical LF lines; match"
+    }
+  ],
+  "checks": {
+    "scfctl_validate": "bindings=147 fail=0",
+    "scfctl_stale": "stale=0",
+    "scfctl_residuals": "residuals=0",
+    "govcheck": "ok atoms=7622 requirements=57 files=58",
+    "git_diff_check": "pass",
+    "canonical_prefixes": "6/6 exact bytes",
+    "trace_resolver": "all L3 AC/L10 CASE references resolve; dangling=0"
+  },
+  "status": {
+    "l3": "draft; not approved",
+    "l10": "verification design only; not executed",
+    "independent_review": "pending exact body HEAD",
+    "po_decision": "pending"
+  },
+  "limits": [
+    "No old runtime, CLI, tests, CI, hooks, or Bun executed.",
+    "No operation, Worker assignment/qualification, benchmark outcome, business oracle, or new authority was created.",
+    "Stage 1/Stage 2a local text is prefix/context only, not authority; only fixed L2/L11, PO decision, and G0 ordering pins were used."
+  ]
+}
