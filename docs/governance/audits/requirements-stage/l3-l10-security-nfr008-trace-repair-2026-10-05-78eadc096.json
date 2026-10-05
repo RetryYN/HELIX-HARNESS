@@ -1,0 +1,717 @@
+{
+  "schema_version": "helix.security.stage1.nfr008-trace-repair-audit.v1",
+  "status": "local corrective authoring audit; root inspection and independent exact-HEAD review pending",
+  "mechanism": "HELIX-SECURITY",
+  "stage": "Stage 1",
+  "scope": "Repair the NFR-008 AC trace for the already adopted L2-005 parent mapping; no requirement scope/meaning/owner/version change.",
+  "body_commit": "78eadc0967a378e06049a4b2c4b3591c662ed233",
+  "body_commit_parent": "a776a9fa0b8ad0fed6ca84634ee58039d0ffc6ae",
+  "body_commit_subject": "docs: connect security NFR 008 to credential evidence AC",
+  "change": {
+    "paths": [
+      "docs/helix-security/L3-requirements/nfr-grade.md",
+      "docs/helix-security/L10-verification/nfr-verification.md"
+    ],
+    "before": "SEC-NFR-008 AC list omitted SECURITY-AC-005-01 in both L3 candidate and L10 measurement row.",
+    "after": "Both rows list SECURITY-AC-005-01 plus existing AC-009/010/013/033. L2-005→SEC-NFR-008 crosswalk and existing evidence-retention candidate/source remain unchanged.",
+    "reason": "NFR-008 cites L2-005 and measures raw-secret absence alongside evidence availability; fixed L2-005 and AC-005-01 supply the credential secret-boundary oracle."
+  },
+  "trace": {
+    "fixed_parent": "HELIXSECURITY-L2-005",
+    "parent_crosswalk_row": "| `HELIXSECURITY-L2-005` | SEC-NFR-001, SEC-NFR-007, SEC-NFR-008 |",
+    "candidate_id": "SEC-NFR-008",
+    "nfr_grade_line": 42,
+    "nfr_verification_line": 16,
+    "ac_ids": [
+      "SECURITY-AC-005-01",
+      "SECURITY-AC-009-01",
+      "SECURITY-AC-010-01",
+      "SECURITY-AC-013-01",
+      "SECURITY-AC-033-01"
+    ],
+    "ac_005_literal": "**L3 acceptance (`SECURITY-AC-005-01`)**：全credential consumerは同一canonical secret classifier identity/revisionと判定を参照する。repositoryへのsecret混入（file一般へ言い換えない）、直接Worker store露出、egress漏れ、値入りreceipt、consumer別classifier作成/不一致は独立negativeにする。未知のcredential classと検査不能状態も別々に与え、いずれもdeny/stopする。通常positiveはactor・operation・target・environment・scope・expiry・purposeが既存条件に一致した非公開capability useとし、生値はcontext/log/artifactへ現れない。expired/revoked後続利用を個別に止める。purposeはL2-005 credential-use requestの入力であり、L2-008の7要素authority tupleの一部とは記述しない。"
+  },
+  "fixed_source_pins": [
+    {
+      "authority": "L2",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "physical_lines": [
+        110,
+        119
+      ],
+      "full_file_sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+      "raw_lf_inclusive_span_sha256": "5eccc4d1683c144c57800071294756713aff52f78db467382665002c8ed39cad",
+      "literal": "### HELIXSECURITY-L2-005 Credential / Secret境界\n\n- **受け取るもの**：credential requestのactor、operation、target、environment、scope、expiry、目的とcredential classification。\n- **提供するもの**：生値を露出しない、範囲・操作・期限付きのcredential-use capability、検査・失効状態。\n- **保証すること**：raw secretをAI contextへ渡さない。credential storeをWorkerに直接見せない。repository混入と外部送信を検査し、revokeを伝播する。単一のsecret判定正本を使う。secret値は通常artifact/receiptに出さない。\n- **単独依存**：L2-008 authority、L2-006 egress、Worker境界L2-007、INFRASTRUCTUREの安全な実資源境界。\n- **検証範囲／版**：context、file/artifact、log、Tool result、外部sinkへの値露出と期限/operation mismatch。1.0。\n- **失敗時の戻し先**：欠落scope、期限切れ、未知のcredential class、検査不能はdeny/stop。方針の不足はL1-005へ、保存・注入境界はL2-024へ戻す。\n- **束ねる既存条件**：L1-005、PO §6、旧secret predicate一元化とCapability Leaseのscope/expiry。旧実装自体は復帰させない。\n\n"
+    },
+    {
+      "authority": "L11",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "physical_lines": [
+        29,
+        29
+      ],
+      "full_file_sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01",
+      "raw_lf_inclusive_span_sha256": "19f3e8c523ec522f35982ed3837c21fb6c22623c587d17fd7ae6bad1f6a3f107",
+      "literal": "| HELIXSECURITY-L2-005 | 1.0 | raw credentialはcontext/log/artifactに現れず、範囲・operation・target・expiry付き利用だけが許可され、期限切れ/revoked credentialの後続利用が止まる。repository混入、直接Worker露出、egress漏れ、値入りreceiptがあれば不合格。 |\n"
+    },
+    {
+      "authority": "PO registration decision",
+      "source_revision": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "source_path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+      "physical_lines": [
+        43,
+        43
+      ],
+      "full_file_sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff",
+      "raw_lf_inclusive_span_sha256": "39163f6602d9d9794fad41dffc1c10619f517063a22f9d5dfb9f3b118b9356d5",
+      "literal": "| `HELIXSECURITY-L2-005` | `unit` | 1.0 | `MPR-RC-HELIXSECURITY-L2-005-001` | `SECURITY-functional` | `registered_proposal` / authority_effect `none` / coverage `no_loss` |"
+    }
+  ],
+  "six_current_canonical_documents": [
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "full_file_sha256": "fcf2504a4fef152d1829fddb1a9d65397cb16114a6edbd964c619422da75097d",
+      "bytes": 747,
+      "physical_line_count": 5
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "full_file_sha256": "43f95d98b1c1d0bda7f0be3948baa17f15c979a18bd807720cf87db955ee8dd3",
+      "bytes": 64994,
+      "physical_line_count": 324
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "full_file_sha256": "3fe1d98024d5a54e734ab8276ee3d55af78d743c7f1bf12b46b9d351139fe50b",
+      "bytes": 6964,
+      "physical_line_count": 45
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "full_file_sha256": "717e206126b910a8261e5448227bb73b0961ac3dbf3f1f71a41ef487dc0f6ee5",
+      "bytes": 526,
+      "physical_line_count": 3
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "full_file_sha256": "9854850a1c9b8ab3b504c241d86ce78d2152fbd11bf80784eaedafa9887b5936",
+      "bytes": 49441,
+      "physical_line_count": 249
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "full_file_sha256": "37d223cb22f8a7923662967ad501200e5f2a7e5f4db436a180d7af3affd0da9c",
+      "bytes": 4983,
+      "physical_line_count": 19
+    }
+  ],
+  "review_carry_and_limitations": {
+    "result": "PASS_WITH_TRACE_GAP",
+    "initial_58_finding_ids_and_severity": [
+      {
+        "id": "X1",
+        "severity": "Major"
+      },
+      {
+        "id": "X2",
+        "severity": "Major"
+      },
+      {
+        "id": "001-1",
+        "severity": "Major"
+      },
+      {
+        "id": "001-2",
+        "severity": "Major"
+      },
+      {
+        "id": "001-3",
+        "severity": "Major"
+      },
+      {
+        "id": "002-1",
+        "severity": "Major"
+      },
+      {
+        "id": "003-1",
+        "severity": "Major"
+      },
+      {
+        "id": "003-2",
+        "severity": "Major"
+      },
+      {
+        "id": "004-1",
+        "severity": "Major"
+      },
+      {
+        "id": "005-1",
+        "severity": "Major"
+      },
+      {
+        "id": "006-1",
+        "severity": "Major"
+      },
+      {
+        "id": "007-1",
+        "severity": "Major"
+      },
+      {
+        "id": "007-2",
+        "severity": "Major"
+      },
+      {
+        "id": "007-3",
+        "severity": "Major"
+      },
+      {
+        "id": "009-1",
+        "severity": "Major"
+      },
+      {
+        "id": "012-1",
+        "severity": "Major"
+      },
+      {
+        "id": "015-1",
+        "severity": "Major"
+      },
+      {
+        "id": "020-1",
+        "severity": "Major"
+      },
+      {
+        "id": "028-1",
+        "severity": "Major"
+      },
+      {
+        "id": "028-2",
+        "severity": "Major"
+      },
+      {
+        "id": "033-1",
+        "severity": "Major"
+      },
+      {
+        "id": "033-2",
+        "severity": "Major"
+      },
+      {
+        "id": "033-3",
+        "severity": "Major"
+      },
+      {
+        "id": "033-4",
+        "severity": "Major"
+      },
+      {
+        "id": "033-5",
+        "severity": "Major"
+      },
+      {
+        "id": "033-6",
+        "severity": "Major"
+      },
+      {
+        "id": "x3",
+        "severity": "Minor"
+      },
+      {
+        "id": "x4",
+        "severity": "Minor"
+      },
+      {
+        "id": "x5",
+        "severity": "Minor"
+      },
+      {
+        "id": "x6",
+        "severity": "Minor"
+      },
+      {
+        "id": "002-2",
+        "severity": "Minor"
+      },
+      {
+        "id": "003-3",
+        "severity": "Minor"
+      },
+      {
+        "id": "004-2",
+        "severity": "Minor"
+      },
+      {
+        "id": "004-3",
+        "severity": "Minor"
+      },
+      {
+        "id": "005-2",
+        "severity": "Minor"
+      },
+      {
+        "id": "005-3",
+        "severity": "Minor"
+      },
+      {
+        "id": "005-4",
+        "severity": "Minor"
+      },
+      {
+        "id": "006-2",
+        "severity": "Minor"
+      },
+      {
+        "id": "007-4",
+        "severity": "Minor"
+      },
+      {
+        "id": "007-5",
+        "severity": "Minor"
+      },
+      {
+        "id": "008-1",
+        "severity": "Minor"
+      },
+      {
+        "id": "008-2",
+        "severity": "Minor"
+      },
+      {
+        "id": "008-3",
+        "severity": "Minor"
+      },
+      {
+        "id": "009-2",
+        "severity": "Minor"
+      },
+      {
+        "id": "010-1",
+        "severity": "Minor"
+      },
+      {
+        "id": "013-1",
+        "severity": "Minor"
+      },
+      {
+        "id": "014-1",
+        "severity": "Minor"
+      },
+      {
+        "id": "015-2",
+        "severity": "Minor"
+      },
+      {
+        "id": "020-2",
+        "severity": "Minor"
+      },
+      {
+        "id": "020-3",
+        "severity": "Minor"
+      },
+      {
+        "id": "028-3",
+        "severity": "Minor"
+      },
+      {
+        "id": "028-4",
+        "severity": "Minor"
+      },
+      {
+        "id": "028-5",
+        "severity": "Minor"
+      },
+      {
+        "id": "033-7",
+        "severity": "Minor"
+      },
+      {
+        "id": "033-8",
+        "severity": "Minor"
+      },
+      {
+        "id": "033-9",
+        "severity": "Minor"
+      },
+      {
+        "id": "033-10",
+        "severity": "Minor"
+      },
+      {
+        "id": "033-11",
+        "severity": "Minor"
+      }
+    ],
+    "followup_ids": [
+      "004-3",
+      "005-2",
+      "007-3"
+    ],
+    "original_response_digest": "77a86201788fe9c5a4141de827c1c8e2ce208b10079663230fa01b000db18e4b",
+    "old_immutable_audits": [
+      {
+        "path": "docs/governance/audits/requirements-stage/l3-l10-security-stage1-static-validation-2026-10-05-a95b77aad.json",
+        "full_file_sha256": "cfe1aef3ffc96b87be87298769f96bc78254585398e6179bb72e7c10e25790b1",
+        "status": "unchanged"
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/l3-l10-security-stage1-claude-review-correction-2026-10-05-15910e2.json",
+        "full_file_sha256": "a711e975c5ece8ca269aad2a2bcfe9b7238d3c104d38621d06a6bfce6ec78192",
+        "status": "unchanged"
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/l3-l10-security-stage1-followup-2026-10-05-1258f8023.json",
+        "full_file_sha256": "15e6beaba90e57a1e08ee54f11ed38cb6ab0e26ce6b024950584d024f2df7af5",
+        "status": "unchanged"
+      }
+    ],
+    "legacy_assets_13": [
+      {
+        "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+        "full_source_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+        "bounded_locator_labels": {
+          "HR-FR-P8-04": [
+            168,
+            171
+          ],
+          "HR-NFR-P8-02": [
+            186
+          ]
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-B62E49D2E156232B8C63",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+        "full_source_sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+        "bounded_locator_labels": {
+          "CAP-001..007": [
+            160,
+            166
+          ]
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-9A772391C7FB1298D45F",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md",
+        "full_source_sha256": "949b0da00d2a417e1b36d3679b89735de7adadf831f567dbe383dfe6337f19e4",
+        "bounded_locator_labels": {
+          "three sub-doc/pair/G3": [
+            16,
+            56
+          ]
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-F542125805B777D8A56A",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+        "full_source_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+        "bounded_locator_labels": {
+          "L3 requirements definition/form and L10 pair": [
+            148,
+            168
+          ]
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-B5B5E71B2AF1459D59A1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+        "full_source_sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a",
+        "bounded_locator_labels": {
+          "FR structure": [
+            22,
+            40
+          ]
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-A6E2C7F0565E5F804F06",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md",
+        "full_source_sha256": "99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d",
+        "bounded_locator_labels": {
+          "business detail": [
+            21,
+            39
+          ],
+          "BR21/Learning projection": [
+            84,
+            104
+          ]
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-8CC5ABFC98C0D00183CA",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/nfr-grade.md",
+        "full_source_sha256": "ba57990cf5343e9d4ad42ca8c2340d76c80e6e1c23085ba5e496d8014acf3fc3",
+        "bounded_locator_labels": {
+          "candidate/measurement form": [
+            1,
+            73
+          ]
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-DB669724249A14A665F0",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+        "full_source_sha256": "2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d",
+        "bounded_locator_labels": {
+          "NFR measurement form": [
+            21,
+            34
+          ],
+          "grade/measurement examples": [
+            58,
+            74
+          ]
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+        "full_source_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+        "bounded_locator_labels": {
+          "FR/AC structure": [
+            1,
+            95
+          ]
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-6EBDB617A8104A7756D0",
+        "path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+        "full_source_sha256": "7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb",
+        "bounded_locator_labels": {
+          "autonomy boundary": [
+            84,
+            85
+          ]
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-170112AB2FA2FFDBFEE9",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+        "full_source_sha256": "b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4",
+        "bounded_locator_labels": {
+          "acceptance cases": [
+            1,
+            59
+          ]
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-44DD86E3DEC09E65EF51",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+        "full_source_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+        "bounded_locator_labels": {
+          "pillar acceptance": [
+            1,
+            200
+          ]
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "full_source_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "bounded_locator_labels": {
+          "HR-FR-P2-05": [
+            428,
+            428
+          ]
+        }
+      }
+    ],
+    "bounded_legacy_spans_16": [
+      {
+        "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+        "label": "HR-FR-P8-04",
+        "physical_lines": [
+          168,
+          171
+        ],
+        "computed_raw_lf_sha256": "e8a9bb380860412a602572814f10c7dbc792863f7858f596fa930534d8d01511",
+        "span_bytes": 912
+      },
+      {
+        "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+        "label": "HR-NFR-P8-02",
+        "physical_lines": [
+          186,
+          186
+        ],
+        "computed_raw_lf_sha256": "ef254e2dbff45673f633355c9a2cfff5ebf8d77382eb398c58d4f6e0c8653efc",
+        "span_bytes": 247
+      },
+      {
+        "asset_id": "LEGACY-ASSET-B62E49D2E156232B8C63",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+        "label": "CAP-001..007",
+        "physical_lines": [
+          160,
+          166
+        ],
+        "computed_raw_lf_sha256": "851ea0172fb9de5c90248726fc4073ca24ab58180e635fc3bb1d8f8b8c43f279",
+        "span_bytes": 1034
+      },
+      {
+        "asset_id": "LEGACY-ASSET-9A772391C7FB1298D45F",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md",
+        "label": "three sub-doc/pair/G3",
+        "physical_lines": [
+          16,
+          56
+        ],
+        "computed_raw_lf_sha256": "fbb50e1ed591235cba594d8b8a10d5f1c55be865e3df9c9daf75f3814a18ab6a",
+        "span_bytes": 3915
+      },
+      {
+        "asset_id": "LEGACY-ASSET-F542125805B777D8A56A",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+        "label": "L3 requirements definition/form and L10 pair",
+        "physical_lines": [
+          148,
+          168
+        ],
+        "computed_raw_lf_sha256": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9",
+        "span_bytes": 1214
+      },
+      {
+        "asset_id": "LEGACY-ASSET-B5B5E71B2AF1459D59A1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+        "label": "FR structure",
+        "physical_lines": [
+          22,
+          40
+        ],
+        "computed_raw_lf_sha256": "ba58e5280b8a372f2123b80561227bf0eaf27d9b4fb595768690a6300332e162",
+        "span_bytes": 2407
+      },
+      {
+        "asset_id": "LEGACY-ASSET-A6E2C7F0565E5F804F06",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md",
+        "label": "business detail",
+        "physical_lines": [
+          21,
+          39
+        ],
+        "computed_raw_lf_sha256": "ade5075e3df236216603e1e0d3fb83c8cdae007f7f319e49bd4af1c5d4efca5e",
+        "span_bytes": 1602
+      },
+      {
+        "asset_id": "LEGACY-ASSET-A6E2C7F0565E5F804F06",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md",
+        "label": "BR21/Learning projection",
+        "physical_lines": [
+          84,
+          104
+        ],
+        "computed_raw_lf_sha256": "f79e52ce0ac3797d30c46573a61f8115656ece2f8485461c728cdcf50fa4b38f",
+        "span_bytes": 1876
+      },
+      {
+        "asset_id": "LEGACY-ASSET-8CC5ABFC98C0D00183CA",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/nfr-grade.md",
+        "label": "candidate/measurement form",
+        "physical_lines": [
+          1,
+          73
+        ],
+        "computed_raw_lf_sha256": "ba57990cf5343e9d4ad42ca8c2340d76c80e6e1c23085ba5e496d8014acf3fc3",
+        "span_bytes": 5489
+      },
+      {
+        "asset_id": "LEGACY-ASSET-DB669724249A14A665F0",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+        "label": "NFR measurement form",
+        "physical_lines": [
+          21,
+          34
+        ],
+        "computed_raw_lf_sha256": "0392a485245f3de9165f2d3fc17f222b33ef0bbdfc059b3efe466b997576e007",
+        "span_bytes": 2105
+      },
+      {
+        "asset_id": "LEGACY-ASSET-DB669724249A14A665F0",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+        "label": "grade/measurement examples",
+        "physical_lines": [
+          58,
+          74
+        ],
+        "computed_raw_lf_sha256": "74f6a44aeab7e88f1f97b615b6be52001e852f27f790cdba9f1cee4228f87268",
+        "span_bytes": 1375
+      },
+      {
+        "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+        "label": "FR/AC structure",
+        "physical_lines": [
+          1,
+          95
+        ],
+        "computed_raw_lf_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+        "span_bytes": 18905
+      },
+      {
+        "asset_id": "LEGACY-ASSET-6EBDB617A8104A7756D0",
+        "path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+        "label": "autonomy boundary",
+        "physical_lines": [
+          84,
+          85
+        ],
+        "computed_raw_lf_sha256": "0b24453d14306c6d7bd65e8072dd4c6da60b7f19022fd63c5344463c0d25adfd",
+        "span_bytes": 252
+      },
+      {
+        "asset_id": "LEGACY-ASSET-170112AB2FA2FFDBFEE9",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+        "label": "acceptance cases",
+        "physical_lines": [
+          1,
+          59
+        ],
+        "computed_raw_lf_sha256": "b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4",
+        "span_bytes": 5198
+      },
+      {
+        "asset_id": "LEGACY-ASSET-44DD86E3DEC09E65EF51",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+        "label": "pillar acceptance",
+        "physical_lines": [
+          1,
+          200
+        ],
+        "computed_raw_lf_sha256": "e3178089c6c9f23616f0fe2ef44c604d72621b1f99dd2dc27a7a195821b55e00",
+        "span_bytes": 29821
+      },
+      {
+        "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "label": "HR-FR-P2-05",
+        "physical_lines": [
+          428,
+          428
+        ],
+        "computed_raw_lf_sha256": "2cb8c38eb048d3404b34e1da9d0eeb05fda671e4f343bbfc4bfc35a66f00400c",
+        "span_bytes": 249
+      }
+    ],
+    "scope_limit": "Prior static audit stores legacy full source SHA and semantic locator ranges, but no expected per-span raw SHA/literal. Recomputed raw span hashes and bounds are recorded; semantic literal closure was not inferred.",
+    "verification_json_sha256": "4d12a02b767bdd4cb489988f17b807b8b16377acbe4a4b8754149faaf1907377"
+  },
+  "static_checks": {
+    "git_show_check": "PASS",
+    "scfctl_validate": "PASS: 147 bindings, fail=0",
+    "scfctl_stale": "PASS: stale=0",
+    "scfctl_residuals": "PASS: residuals=0",
+    "govcheck": "PASS: atoms=7622 requirements=57 files=58",
+    "nfr_ac_reference_resolution": "PASS: all AC IDs in NFR-008 candidate and measurement row exist in functional requirements",
+    "old_runtime_test_ci_bun": "not run"
+  },
+  "authority_effect": "none; no L3 approval, PO approval, finding closure, independent review, Ready, merge admission, implementation or execution authority created.",
+  "publication": "no push, PR, or mailbox action."
+}

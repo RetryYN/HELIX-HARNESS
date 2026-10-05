@@ -20,6 +20,16 @@ stage: 1
 
 旧HELIXのbusiness文書を分けた構成は初回配置の起点として保持した（`LEGACY-ASSET-A6E2C7F0565E5F804F06`, `archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md` L21–39,84–104、全文SHA-256 `99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d`）。保持するのは分離配置という形式だけで、旧BR分類、metric、owner、runtimeや承認動作を現行の独立business outcomeとして継承しない。固定親にない業務上の成功、障害severity、recovery完了、placement/cost採否を作らない。
 
+## Stage 2b suffix — HELIXINFRASTRUCTURE-L2-002/007 業務境界
+
+状態：候補のみ。対象は採択済み HELIXINFRASTRUCTURE-L2-002/007、version_target 1.0。固定L2/L11が要求意味のauthority、PO決定は親identity/revision/versionの採択登録、G0は実装順序のみを記録する。このL3/L10本文は未承認・未実行であり、実装・実行・配布の許可を生成しない。対象範囲とsource pinsは[Stage2b公開cutout監査](../../governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08.json)に固定する。
+
+### 対象・適用範囲 — HELIXINFRASTRUCTURE-L2-002/007
+
+対象は採択済みHELIXINFRASTRUCTURE-L2-002/007のみ、version_target 1.0。固定L2/L11の意味・scope・担当・版を保持する。本cutoutはこの2親だけを対象とし、他の親やstageを追加しない。候補草稿・未承認・未実行。
+
+固定親HELIXINFRASTRUCTURE-L2-002/007は三状態・差異比較と再構築結果を定め、独立business outcome/oracleはない。独立BR/業務ACは0件。機能正本INFRA-002/007-FR-01、各AC-01/02と対のL10 case（002はC01〜C09、007はC01〜C08）へ参照を一本化し、incident close、配置/費用採否、release成功を生成しない。
+
 ## Stage 2a 追加範囲 — business要件
 
 このStage 2a追記で直接扱う採択済み親は `HELIXINFRASTRUCTURE-L2-003`、`-004`、`-005`、`-009`、`-010` である。これらの固定親は資源観測、runtime state、recovery、OS Work/Changeとの接続、SECURITY authority下の操作責務を定めるが、独立したbusiness outcomeまたは業務成功oracleを定義しない。したがってStage 2aにも独立BR、業務成功条件、business受入caseは追加しない。親に基づく機能要件と検証は[機能要件](functional-requirements.md)のFR/ACおよび対の[L10機能検証](../L10-verification/functional-verification.md)を参照する。

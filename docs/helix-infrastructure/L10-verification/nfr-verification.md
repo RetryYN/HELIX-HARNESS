@@ -37,6 +37,21 @@ stage: 1
 - 006のhealth probeは5秒×3回を1秒×1回、10秒×5回と比較する。選定理由は測定可能な上限と一過性遅延観測の両立で、製品SLO/incident policyではない。実際のtimeout retryがHELIX control plane依存の場合は独立性違反として扱う。
 - 候補の承認・修正はL3要件承認にまとめ、個別parameterごとにPOへ質問しない。要求の意味、scope、owner、versionが変わる場合だけL2へ戻す。
 
+## Stage 2b suffix — HELIXINFRASTRUCTURE-L2-002/007 NFR総合検証
+
+状態：候補のみ。対象は採択済み HELIXINFRASTRUCTURE-L2-002/007、version_target 1.0。固定L2/L11が要求意味のauthority、PO決定は親identity/revision/versionの採択登録、G0は実装順序のみを記録する。このL3/L10本文は未承認・未実行であり、実装・実行・配布の許可を生成しない。対象範囲とsource pinsは[Stage2b公開cutout監査](../../governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08.json)に固定する。
+
+### 対象・適用範囲 — HELIXINFRASTRUCTURE-L2-002/007
+
+対象は採択済みHELIXINFRASTRUCTURE-L2-002/007のみ、version_target 1.0。固定L2/L11の意味・scope・担当・版を保持する。本cutoutはこの2親だけを対象とし、他の親やstageを追加しない。候補草稿・未承認・未実行。
+
+| NFR | 母集団・入力/変異 | 判定材料と限界 |
+|---|---|---|
+| INFRA-NFR-002-01 | 各C01〜09の選択resource/environment/revisionで9差異類型と三sourceを固定。個別差・未見複合、各source missing/stale/互換不明、正本/authority自動変更を独立投入。 | 種類別照合9/9候補、各三state/sourceのbefore/after、未確認scope、unknownの一致誤変換件数、返却ownerを観測。version一致だけで全差異なしとしない。 |
+| INFRA-NFR-007-01 | 各C01〜08の宣言復旧scopeで4段階と必要input/version/authorityを固定。正常/未見正常、記録存在だけ、machine限定情報、各入力欠落、各段階failure/unknown、停止再開を独立投入。 | 4/4段階trace候補、元machine限定依存0、部分復元/未完/成功、入力版/実結果/owner戻しを観測。4段階の観測だけを合格へ代用せず、各既存oracle一致を別判定する。 |
+
+必要要素・変異をscopeから計画分母にし、missing/unknown/stale/未観測も保持。処理失敗、入力欠落、観測欠落、打切りは理由付きで同一観測を重ねない。 技術候補として予定観測単位ごとにprimary dispositionを一つ記録する。必要入力欠落をmissing-input、入力充足後の照合可能な処理失敗をfailed、処理失敗を確定できず観測期間が打ち切られたものをcensored、残る必要観測欠落をmissing-observation、照合可能な結果をobservedの順で分類する。併発理由は別fieldにすべて残し、primary countは重複させない。unknown/stale入力は欠落へ同一化せず理由を保持し、その結果が照合可能かで同じ分類に従う。この候補を理由別複数count案と比較し、分母保持・再計算可能性を確認する。正しいoracle不合格は照合可能で、可観測率と合格率を分離する。分母0なら率なし、適用不明なら分母不明。未実施の値を0や実測合格にしない。旧CLI/runtime/test/CIは実行しない。
+
 ## Stage 2a 追加範囲 — NFR測定候補
 
 測定対象は[Stage 2a NFR candidates](../L3-requirements/nfr-grade.md)にある6候補。測定設計であり、実行結果、実装合否、product SLOの決定ではない。各candidateのsource/revisionとselected resource/operation scopeを固定してから計測する。normal/negative/unseen-normal/owner-returnを同じ具体fixtureの重複宣言にせず、field failureは個別にmutationする。

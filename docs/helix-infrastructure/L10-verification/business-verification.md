@@ -18,6 +18,16 @@ stage: 1
 
 対象は採択済み `HELIXINFRASTRUCTURE-L2-001` (`MPR-RC-HELIXINFRASTRUCTURE-L2-001-003`) と `HELIXINFRASTRUCTURE-L2-006` (`MPR-RC-HELIXINFRASTRUCTURE-L2-006-002`) のみ。固定L2/L11 source revisionは `f6dad2a33e24f000b87d7f09b8d40288257e74cc`、L2全文SHA-256 `569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b`、L11全文SHA-256 `7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada`。L2-005は006の採択済み入力依存であり、このbusiness pairの受入対象ではない。
 
+## Stage 2b suffix — HELIXINFRASTRUCTURE-L2-002/007 業務総合検証
+
+状態：候補のみ。対象は採択済み HELIXINFRASTRUCTURE-L2-002/007、version_target 1.0。固定L2/L11が要求意味のauthority、PO決定は親identity/revision/versionの採択登録、G0は実装順序のみを記録する。このL3/L10本文は未承認・未実行であり、実装・実行・配布の許可を生成しない。対象範囲とsource pinsは[Stage2b公開cutout監査](../../governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08.json)に固定する。
+
+### 対象・適用範囲 — HELIXINFRASTRUCTURE-L2-002/007
+
+対象は採択済みHELIXINFRASTRUCTURE-L2-002/007のみ、version_target 1.0。固定L2/L11の意味・scope・担当・版を保持する。本cutoutはこの2親だけを対象とし、他の親やstageを追加しない。候補草稿・未承認・未実行。
+
+固定親HELIXINFRASTRUCTURE-L2-002/007は三状態・差異比較と再構築結果を定め、独立business outcome/oracleはない。独立BR/業務ACは0件。機能正本INFRA-002/007-FR-01と対のL10 functional verification各case（002はC01〜C09、007はC01〜C08）へ参照を一本化し、incident close、配置/費用採否、release成功を生成しない。
+
 ## Stage 2a 追加範囲 — business総合検証
 
 Stage 2a直接親 `HELIXINFRASTRUCTURE-L2-003/004/005/009/010` に独立business outcome/oracleはないため、独立BCASE、business KPI、incident severity、費用/配置の合否を新設しない。対象条件の総合検証は[機能要件FR/AC](../L3-requirements/functional-requirements.md)と[機能検証case](functional-verification.md)に一本化する。L10から要求やownerを追加せず、Business文書は重複定義の代わりに該当FR/ACを参照する。

@@ -1,0 +1,166 @@
+{
+  "schema_version": "helix.security.stage1.claude-review-correction-followup.v1",
+  "status": "local follow-up candidate; root semantic inspection and independent exact-HEAD review remain pending",
+  "mechanism": "HELIX-SECURITY",
+  "stage": "Stage 1",
+  "scope": "Only follow-up corrections for review findings 004-3, 005-2, 007-3 plus Japanese human-facing prose/version labels.",
+  "base_revision": "375dd460655d6085dd2f83880bcd3c9c5dbae532",
+  "body_commit": "1258f80230a5d90978a592493fb23cefc1198747",
+  "body_commit_parent": "375dd460655d6085dd2f83880bcd3c9c5dbae532",
+  "prior_immutable_audit": {
+    "path": "docs/governance/audits/requirements-stage/l3-l10-security-stage1-claude-review-correction-2026-10-05-15910e2.json",
+    "sha256": "a711e975c5ece8ca269aad2a2bcfe9b7238d3c104d38621d06a6bfce6ec78192",
+    "modified": false
+  },
+  "review_scope": {
+    "source": "/tmp/pr2578-claude-review01.md",
+    "finding_ids": [
+      "004-3",
+      "005-2",
+      "007-3"
+    ],
+    "independent_review_effect": "none"
+  },
+  "finding_dispositions": [
+    {
+      "id": "004-3",
+      "severity": "Minor",
+      "prior_repair_claim": "FR recorded owner unknown and Concept configuration version/rollback candidate source-revision-evidence, but L10 fixture coverage was absent.",
+      "followup_status": "addressed_in_body_candidate",
+      "current_locator": "docs/helix-security/L10-verification/functional-verification.md#SECURITY-CASE-004-01",
+      "change": "Added a normal fixture recording Concept configuration version and rollback candidate source/revision/evidence without deciding meaning; owner-missing remains unknown and stops to L1-004; missing/stale/cross-project rollback evidence is not promoted to an approved rollback target."
+    },
+    {
+      "id": "005-2",
+      "severity": "Minor",
+      "prior_repair_claim": "Fixed oracle named repository contamination, but the negative fixture only stated file-level exposure.",
+      "followup_status": "addressed_in_body_candidate",
+      "current_locator": "docs/helix-security/L10-verification/functional-verification.md#SECURITY-CASE-005-01",
+      "change": "Added an isolated synthetic repository-contamination fixture using a non-real fixed marker, separate from generic file/artifact leakage; evidence excludes marker value and file content."
+    },
+    {
+      "id": "007-3",
+      "severity": "Major",
+      "prior_repair_claim": "L3 AC included resume eligibility, but L10 had no result field, normal output, or unknown-resume negative.",
+      "followup_status": "addressed_in_body_candidate",
+      "current_locator": "docs/helix-security/L10-verification/functional-verification.md#SECURITY-CASE-007-01",
+      "change": "Added a normal fixture binding stop/rollback/resume eligibility output to the same assignment, SECURITY policy revision and execution observation; added independent resume-unknown negative that does not infer resume from other green/stop/rollback states and preserves unknown/revision/missing evidence/existing owner return."
+    }
+  ],
+  "language_cleanup": [
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "locator": "fixed-source note immediately before legacy-source table",
+      "change": "Translated previously added English human-facing ledger/source hash note into Japanese; identifiers and hashes preserved."
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "locator": "fixed parent mapping table rows L2-015, L2-016, L2-020",
+      "change": "Translated version-scope descriptions into Japanese without changing version scope."
+    }
+  ],
+  "fixed_source_pins": {
+    "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "full_file_sha256": {
+      "docs/helix-security/L2-requirements/security-requirements.md": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+      "docs/helix-security/L11-acceptance/security-acceptance.md": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01"
+    },
+    "selected_spans": [
+      {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "start_line": 100,
+        "end_line_inclusive": 109,
+        "raw_lf_sha256": "1373d55273872771775be0d6f770431d2675d52f23af0606989503eedeb0bc44"
+      },
+      {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "start_line": 110,
+        "end_line_inclusive": 118,
+        "raw_lf_sha256": "8e8689912796e8fb3e22210619cb1283f6b27ab1804353dfa93fe43eec10a784"
+      },
+      {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "start_line": 130,
+        "end_line_inclusive": 138,
+        "raw_lf_sha256": "1ee4d42a1e4178d598ce11b75268845578ba83bcb8ea471e2642ff8630c49504"
+      },
+      {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "start_line": 28,
+        "end_line_inclusive": 31,
+        "raw_lf_sha256": "470e7e3423a2c9b7dbda64ff6cf0f0b62bc8b7f88b48df5539ea9b2c63db585a"
+      },
+      {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "start_line": 69,
+        "end_line_inclusive": 87,
+        "raw_lf_sha256": "f822478a4bedd49b733e314df049bc59a56399f491ab53066dbcffd141141a92"
+      }
+    ],
+    "old_main_acceptance_semantic_change": "none; additions are L10 fixtures and Japanese phrasing only."
+  },
+  "documents": [
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "sha256": "fcf2504a4fef152d1829fddb1a9d65397cb16114a6edbd964c619422da75097d",
+      "bytes": 747,
+      "line_count": 5
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "sha256": "43f95d98b1c1d0bda7f0be3948baa17f15c979a18bd807720cf87db955ee8dd3",
+      "bytes": 64994,
+      "line_count": 324
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "sha256": "e2f5cdc12cda9cafb45b34e284833a5b8d6d2a88e212d5524538fe0d49e0e0b4",
+      "bytes": 6942,
+      "line_count": 45
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "sha256": "717e206126b910a8261e5448227bb73b0961ac3dbf3f1f71a41ef487dc0f6ee5",
+      "bytes": 526,
+      "line_count": 3
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "sha256": "9854850a1c9b8ab3b504c241d86ce78d2152fbd11bf80784eaedafa9887b5936",
+      "bytes": 49441,
+      "line_count": 249
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "sha256": "4faf61c1f5b118423dc164c11a3c534ffa8b862e4d2d7a590fd0533a9921ced2",
+      "bytes": 4961,
+      "line_count": 19
+    }
+  ],
+  "static_checks": {
+    "git_diff_check": "PASS",
+    "custom_scope_assertions": "PASS: AC-004 owner unknown, Concept rollback evidence fixture, AC-005 repository contamination fixture, AC-007 resume normal/unknown negative, Japanese version labels, L3 AC/L10 case references resolved",
+    "l3_ac_count": 19,
+    "l10_case_count": 19,
+    "scfctl_validate": "147 bindings, fail=0",
+    "scfctl_stale": "stale=0",
+    "scfctl_residuals": "residuals=0",
+    "govcheck": "ok, atoms=7622, requirements=57, files=58",
+    "legacy_runtime_tests_ci_bun": "not run"
+  },
+  "limits": [
+    "Only the three listed findings and language corrections were changed; other review findings are not revalidated by this supplement.",
+    "This is not Claude independent review, root acceptance, L3 PO approval, Ready decision, or merge admission.",
+    "No implementation, runtime, release or external operation is performed or inferred."
+  ],
+  "notices": [
+    "Prior corrective audit is immutable and remains unchanged.",
+    "Business L3/L10 and NFR canonical documents were not edited.",
+    "No push, PR, mailbox, tests, old runtime, old CI or Bun action occurred."
+  ]
+}
