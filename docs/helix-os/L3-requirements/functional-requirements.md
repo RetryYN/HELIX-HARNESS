@@ -97,7 +97,7 @@ OSは、固定L2-014の内部段階releaseについて、stage identityと範囲
 - **FR-OS-018**: ticket revision/digest、assignment/attempt、lane/Worker/model-class level、SECURITY制約、INFRA resource、scope/budget/deadline、成果/evidenceを関連づけ、既存authority内で割当・進行・停止・回収・handoffを記録する。assignmentはSECURITY認可、実resource state、独立reviewを代行しない。
 - Owner: OS assignment/attempt/handoff、SECURITY permission、INFRA actual resource、LABO performance/evaluation、INTELLIGENCE placement proposalはそれぞれsource ownerを維持する。
 - **AC-OS-018-01 正常**: exact ticket/head/authority/Worker/caller lane/scope/lease/budget/deadlineと成果/evidenceを辿り、独立review担当へ意味とunfinished dutiesを渡す。author Workerの出力を自己承認/独立review済みにしない。
-- **AC-OS-018-02 negative**: duplicate claim/run、期限・budget・failure count reset、unassessed Workerをassessed化、OSによるSECURITY/INFRA state代行、author self-approvalを個別に拒否する。scope/head/lease/capability/authority不一致はstart/continueを止め、partial outputを隔離しdutiesをhandoffする。
+- **AC-OS-018-02 negative**: duplicate claim/run、期限・budget・failure count reset、unassessed Workerをassessed化、OSによるSECURITY/INFRA state代行、author self-approvalを個別に拒否する。scope/head/lease/capability/authority不一致ではstart/continueを止め、停止したattempt/bindingと停止理由、partial outputの扱い、累積制約、未完義務を記録し、まず固定L2-018の管理/推進へ返す。外部sourceの値・状態が不足または不一致なら、管理/推進がその記録から該当する既存source ownerへ訂正を依頼する。OS管理/推進はsource authorityを代行せず、新しいownerや承認gateを作らない。
 - **AC-OS-018-03 unseen normal**: Worker/lease handoffまたは再開時にcumulative limits、scope、unfinished dutiesを保持し、期限/lease失効後も別の適格担当へ戻せる。
 - **AC-OS-018-04 追加採択条件**: HIL-NFR-36の予定対応と実際の対応を区別し、default逸脱の事実/理由、品質問題で実際に通った手順/結果を記録する。新default・共通対応順序は作らない。
 

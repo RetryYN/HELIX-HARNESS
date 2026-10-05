@@ -152,18 +152,18 @@ ticket/head/authority/Worker/caller lane/scope/lease/cumulative budget/deadline�
 
 | CASE | mutation（他条件は正常） | expected / owner |
 |---|---|---|
-| `CASE-OS-018-02a` | 同一leaseでduplicate claim | 重複claimを拒否 |
-| `CASE-OS-018-02b` | 同一attemptでduplicate run | duplicate executionを防ぎOS stop evidenceを記録 |
-| `CASE-OS-018-02c` | restart時にcumulative budgetをreset | attempt継続を止め元の制約を維持 |
-| `CASE-OS-018-02d` | restart時にdeadlineをreset | attempt継続を止め元の制約を維持 |
-| `CASE-OS-018-02e` | failure count reset | resetを拒否し既存attempt状態を保つ |
-| `CASE-OS-018-02f` | unassessed Workerをassessedと表示 | LABO状態を改変せず未評価に保つ |
-| `CASE-OS-018-02g` | author Workerが自分をapprove/independent-review済みにする | 独立性不成立として別reviewへ戻す |
-| `CASE-OS-018-02h` | assignment scope mismatch | start/continueを停止しpartial output隔離、OSへ返す |
-| `CASE-OS-018-02i` | target HEAD mismatch | start/continueを停止しpartial output隔離、OSへ返す |
-| `CASE-OS-018-02j` | expired lease | 継続を停止しhandoff dutiesを保持 |
-| `CASE-OS-018-02k` | Worker capability mismatch | start/continueを停止しLABO/OS ownerへ返す |
-| `CASE-OS-018-02l` | authority stale/mismatch | start/continueを停止しSECURITY/source ownerへ返す |
+| `CASE-OS-018-02a` | 同一leaseでduplicate claim | 重複claimを拒否しattemptと停止理由を記録、OS管理/推進へ返す |
+| `CASE-OS-018-02b` | 同一attemptでduplicate run | 二重実行を防ぎ停止理由を記録、OS管理/推進へ返す |
+| `CASE-OS-018-02c` | restart時にcumulative budgetをreset | 継続を止め元budget/attempt/未完義務を保持し、停止理由とともにOS管理/推進へ返す |
+| `CASE-OS-018-02d` | restart時にdeadlineをreset | 継続を止め元deadline/attempt/未完義務を保持し、停止理由とともにOS管理/推進へ返す |
+| `CASE-OS-018-02e` | failure count reset | resetを拒否し元failure count/attemptを保ち、停止理由とともにOS管理/推進へ返す |
+| `CASE-OS-018-02f` | unassessed Workerをassessedと表示 | assignment/continueを保留し未評価と停止理由を記録、OS管理/推進へ返す。recordからLABOの既存水準source ownerへ訂正依頼する |
+| `CASE-OS-018-02g` | author Workerが自分をapprove/independent-review済みにする | review完了扱いを止め停止理由と未完review dutyを記録、OS管理/推進へ返し、既存の独立review担当へhandoffする |
+| `CASE-OS-018-02h` | assignment scope mismatch | start/continueを停止しpartial outputを隔離、停止理由・scope・未完義務を記録してOS管理/推進へ返す。recordから元のticket/scope ownerへ訂正依頼する |
+| `CASE-OS-018-02i` | target HEAD mismatch | start/continueを停止しpartial outputを隔離、停止理由・expected/observed HEAD・未完義務を記録してOS管理/推進へ返す。recordから要求revision/ticketの既存source ownerへ確認を依頼する |
+| `CASE-OS-018-02j` | expired lease | 継続を止め停止理由（lease失効）・未完義務・累積制約を記録し、OS管理/推進へ返す。再開は新しい適格assignmentに結び、失効leaseを再利用しない |
+| `CASE-OS-018-02k` | Worker capability mismatch | start/continueを停止し停止理由（capability不一致）・attempt・未完義務を記録してOS管理/推進へ返す。管理recordから既存LABO capability source ownerへ訂正依頼する |
+| `CASE-OS-018-02l` | authority stale/mismatch | start/continueを停止し停止理由（authority mismatch）・attempt・未完義務を記録してOS管理/推進へ返す。管理recordから既存SECURITY authority source ownerへ訂正依頼する |
 
 ### CASE-OS-018-03 — unseen replacement/resume（AC-OS-018-03）
 

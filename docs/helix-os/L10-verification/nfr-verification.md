@@ -30,7 +30,7 @@
 
 ### CASE-NFR-OS-018-01 — attempt binding/cumulative-control census
 
-親 `HELIXOS-L2-018`; 全fixtureで重複claim/run、counter reset、binding欠落/不一致を数える。実測ではticket/revision/scopeごとに消費budgetと許可budget値を別記し、許可値が存在して0より大きい場合のみ比率を算出する。zero/missing budgetは算出不可として扱う。期限はabsolute deadline表現と経過時間を分け、現在のticket契約入力に計測開始点・単位付きduration/windowが明示されている場合だけ同単位の比率を算出する。absolute deadline、duration/windowのzero/missing、開始点/単位不明は算出不可とする。attempt/failure数を層別する。HIL-NFR-36ではdefault逸脱の理由、予定対応/実施対応、結果の各記録fieldが揃うか検査する。新しいfailure cap/default/orderは置かない。
+親 `HELIXOS-L2-018`; 全fixtureで重複claim/run、counter reset、binding欠落/不一致を数える。各停止について停止理由と最初のOS管理/推進受領recordを照合し、外部sourceの不足/不一致がある場合はそのrecordを起点にした既存ownerへの訂正依頼も記録する。実測ではticket/revision/scopeごとに消費budgetと許可budget値を別記し、許可値が存在して0より大きい場合のみ比率を算出する。zero/missing budgetは算出不可として扱う。期限はabsolute deadline表現と経過時間を分け、現在のticket契約入力に計測開始点・単位付きduration/windowが明示されている場合だけ同単位の比率を算出する。absolute deadline、duration/windowのzero/missing、開始点/単位不明は算出不可とする。attempt/failure数を層別する。HIL-NFR-36ではdefault逸脱の理由、予定対応/実施対応、結果の各記録fieldが揃うか検査する。新しいfailure cap/default/orderは置かない。
 
 ### CASE-NFR-OS-019-01 — event/replay classification
 
