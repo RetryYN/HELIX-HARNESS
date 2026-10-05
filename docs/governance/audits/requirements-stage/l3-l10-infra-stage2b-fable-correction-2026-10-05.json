@@ -1,0 +1,214 @@
+{
+  "record_kind": "immutable_corrective_audit",
+  "authority_effect": "none",
+  "scope": [
+    "HELIXINFRASTRUCTURE-L2-002",
+    "HELIXINFRASTRUCTURE-L2-007"
+  ],
+  "finding": "F-m1",
+  "finding_source": {
+    "comment_id": 5986755070,
+    "body_utf8_bytes": 5863,
+    "body_sha256": "c3a8c7fea44b325993e4683767eda3161d7bf954e82f324226779483f708e044"
+  },
+  "reviewed_head": "45d55a27eae079d1da2bab2940969b6fb77b504d",
+  "body_revision": "22710d02e88abf72ef1c9fb2276770cc3fee2be6",
+  "disposition": "NFR 2文書の4母集団を002 C01〜09、007 C01〜08へ合わせる。条件・値・scope・owner・版変更なし。前no_findingsを最新本文へ継承せずOpus/Fableを再実施する。",
+  "six_canonical_documents": [
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "sha256": "dc7938e18b325de4c61c7dbf1e23375dc5c33147ca4fac1eb0c31aaf79f2c68d",
+      "bytes": 2614,
+      "lines": 29
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "sha256": "3201b68d5538960c800db9bea40ae2dc0ecb7b1fb4b159616d56c2522abb2df3",
+      "bytes": 24579,
+      "lines": 124
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "sha256": "68e8a54bb53b0778ca5c2cea51d0160fff5dba978e7e0ac62f1630a5d8062d3a",
+      "bytes": 9467,
+      "lines": 53
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "sha256": "3266179c3434aae291d19fc48d5f6d739f387a27389173d0610e704e614bab4c",
+      "bytes": 3255,
+      "lines": 31
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "sha256": "74b762b0200d38cac2c9a905a24cabb89b080d44099a9013822724538af85c98",
+      "bytes": 26791,
+      "lines": 161
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "sha256": "33b7ca57fe358340d961f64d4c14173a9c16ceeaf6c6a66e44d7044fe186f828",
+      "bytes": 10848,
+      "lines": 60
+    }
+  ],
+  "approved_prefixes": [
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "commit": "fa642cddc3c4446e3635f1c6badd90209862cfac",
+      "sha256": "8801b848f6b16d5214a45b3652446a228e829c687f9203e50c02ad2bf5ddbe70",
+      "bytes": 1293
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "commit": "fa642cddc3c4446e3635f1c6badd90209862cfac",
+      "sha256": "e9e3132d779e3ea9c8e4cfef2d066d0f5394cfb76069cb2af90468c4930172a7",
+      "bytes": 15888
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "commit": "fa642cddc3c4446e3635f1c6badd90209862cfac",
+      "sha256": "562545cfb95e81bce5db29628b5fbb3a82c20fbb41db6867364ff60b2c84c63a",
+      "bytes": 6449
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "commit": "fa642cddc3c4446e3635f1c6badd90209862cfac",
+      "sha256": "c2b22bc5af8bf721c9f6e4594e81046dde2ed2a9555fa0643accb76f8a37f97e",
+      "bytes": 1952
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "commit": "fa642cddc3c4446e3635f1c6badd90209862cfac",
+      "sha256": "22d90beb7fcec36e33b63cc3fa7921e224ff6ced66ea8f9a5f2fdb71570d28b6",
+      "bytes": 16146
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "commit": "fa642cddc3c4446e3635f1c6badd90209862cfac",
+      "sha256": "a381b4b88fe6b5621fecf1195470b45bd5fbfd1f1dc88fee7dc3cf259abbb3ab",
+      "bytes": 8514
+    }
+  ],
+  "changed_lines": [
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "line": 50,
+      "old": "| INFRA-NFR-002-01 | 各C01〜07の選択resource/environment/revisionで9差異類型と三sourceを固定。個別差・未見複合、各source missing/stale/互換不明、正本/authority自動変更を独立投入。 | 種類別照合9/9候補、各三state/sourceのbefore/after、未確認scope、unknownの一致誤変換件数、返却ownerを観測。version一致だけで全差異なしとしない。 |",
+      "new": "| INFRA-NFR-002-01 | 各C01〜09の選択resource/environment/revisionで9差異類型と三sourceを固定。個別差・未見複合、各source missing/stale/互換不明、正本/authority自動変更を独立投入。 | 種類別照合9/9候補、各三state/sourceのbefore/after、未確認scope、unknownの一致誤変換件数、返却ownerを観測。version一致だけで全差異なしとしない。 |",
+      "raw_lf_sha256": "c94a499c22909c245542959eece594560d5516489a665157c5769521ff801561"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "line": 51,
+      "old": "| INFRA-NFR-007-01 | 各C01〜06の宣言復旧scopeで4段階と必要input/version/authorityを固定。正常/未見正常、記録存在だけ、machine限定情報、各入力欠落、各段階failure/unknown、停止再開を独立投入。 | 4/4段階trace候補、元machine限定依存0、部分復元/未完/成功、入力版/実結果/owner戻しを観測。4段階の観測だけを合格へ代用せず、各既存oracle一致を別判定する。 |",
+      "new": "| INFRA-NFR-007-01 | 各C01〜08の宣言復旧scopeで4段階と必要input/version/authorityを固定。正常/未見正常、記録存在だけ、machine限定情報、各入力欠落、各段階failure/unknown、停止再開を独立投入。 | 4/4段階trace候補、元machine限定依存0、部分復元/未完/成功、入力版/実結果/owner戻しを観測。4段階の観測だけを合格へ代用せず、各既存oracle一致を別判定する。 |",
+      "raw_lf_sha256": "446626bd005478dcbda806b7f6f95944b15f30395f69c8c2098a513780f93fd0"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "line": 57,
+      "old": "| L2-002 / INFRA-NFR-002-01 | TER-R-02/05の宣言・実効分離とversion不変driftを部分再導出。固定親の9差異類型を独立照合する案Bと、versionだけを比べる案Aを比較しBを候補とする。 | C01〜07の宣言scopeで9/9類型識別、design/target/actual三state無言変更0、unknownから一致0を候補として測る。freshness時間や全環境SLAは新設しない。 |",
+      "new": "| L2-002 / INFRA-NFR-002-01 | TER-R-02/05の宣言・実効分離とversion不変driftを部分再導出。固定親の9差異類型を独立照合する案Bと、versionだけを比べる案Aを比較しBを候補とする。 | C01〜09の宣言scopeで9/9類型識別、design/target/actual三state無言変更0、unknownから一致0を候補として測る。freshness時間や全環境SLAは新設しない。 |",
+      "raw_lf_sha256": "b1377fdc4aa54b9563b1b1dc25fcca2fa963fd4fa4b6725c2878c491d3d95488"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "line": 58,
+      "old": "| L2-007 / INFRA-NFR-007-01 | 旧distributionのclean consumer/入力版/実結果照合を隣接例として部分再導出。backup/文書存在だけの案Aに対し、再構築・再接続・起動・検証の4段階を結ぶ案Bを候補とする。 | C01〜06で4/4段階source trace、元machineにしかない必要情報依存0、未完から誤success0を測る。固定RTO/RPO・機種値や旧release standing authorizationを継承しない。 |",
+      "new": "| L2-007 / INFRA-NFR-007-01 | 旧distributionのclean consumer/入力版/実結果照合を隣接例として部分再導出。backup/文書存在だけの案Aに対し、再構築・再接続・起動・検証の4段階を結ぶ案Bを候補とする。 | C01〜08で4/4段階source trace、元machineにしかない必要情報依存0、未完から誤success0を測る。固定RTO/RPO・機種値や旧release standing authorizationを継承しない。 |",
+      "raw_lf_sha256": "2c1676c96ab03f7d14ac9f51f5397773638cf297812656a739fa400feab10c15"
+    }
+  ],
+  "fixed_parent_pins": [
+    {
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "lines": [
+        44,
+        53
+      ],
+      "full_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "raw_lf_sha256": "710b5ef8b55bbef350573769de70e255962fde93e9421fbf4a9c2f43ac4dacfb",
+      "literal": "### HELIXINFRASTRUCTURE-L2-002 Desired Target・Actual State・Drift\n\n- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-002`、`HELIXINFRASTRUCTURE-L1-003`。\n\n- **受入手順**：approved configuration/design revisionとdeployment targetを入力し、同じ対象の一致状態、missing resource、unexpected resource、version/config/network/permission/capacity差異、unknown dependency、stale observationを含むactual fixturesを比較する。\n- **成功条件**：design, target, actual, drift resultが相互参照できる別stateとして記録される。差異の種類とsourceが示され、観測値から設計や要求を変更しない。\n- **反例・失敗条件**：実環境にある値をapproved designへ自動昇格する、unknown/staleを一致として扱う、unexpected resourceを承認済みとみなす、差異を消すために比較入力を上書きする場合は不合格。\n- **失敗戻し先**：stale/欠落したdesign・target・observationのownerへ返し、drift判定を保留する。\n- **対応する1.0 minimum**：4 Design/Deployment Target/Actual separation、5 Drift。\n\n"
+    },
+    {
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "lines": [
+        94,
+        103
+      ],
+      "full_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "raw_lf_sha256": "671533fadb07000ed569641feaee10a4d186d105b58a23a34a763a4e58e7aa1b",
+      "literal": "### HELIXINFRASTRUCTURE-L2-007 Runtime Rebuildability\n\n- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-038`。\n\n- **受入手順**：必要環境を消失したfixtureからapproved design、config、artifact、dependency、data backup、version、deployment evidenceを使って隔離環境へ再構築し、再接続・起動・検証を行う。\n- **成功条件**：必要な環境を再現でき、入力artifact/revisionから結果まで追跡可能である。machine内だけの情報やbackup記録の存在を再構築成功に代えない。\n- **反例・失敗条件**：依存/data/credential authorityが欠けたまま起動だけでpassする、文書やbackupがあるだけでrebuildableと判定する場合は不合格。\n- **失敗戻し先**：欠落したdesign/artifact/dependency/data ownerへ戻し、復元部分と未完義務を区別する。\n- **対応する1.0 minimum**：18 Rebuildability。\n\n"
+    }
+  ],
+  "previous_records_unchanged": [
+    {
+      "commit": "45d55a27eae079d1da2bab2940969b6fb77b504d",
+      "path": "docs/governance/audits/requirements-stage/l3-l10-infra-stage2b-002-007-publication-cutout-2026-10-05-08c5d063.json",
+      "sha256": "787481c89a158e2626428443a5670df34ea2f782a55b944178a76875cd25fb02"
+    },
+    {
+      "commit": "45d55a27eae079d1da2bab2940969b6fb77b504d",
+      "path": "docs/governance/audits/requirements-stage/l3-l10-infra-stage2b-002-007-publication-cutout-2026-10-05-08c5d063.md",
+      "sha256": "ab9487d65f7d96e7c9afcf84658cb65aaebdee10299472ff560059c98c815f37"
+    },
+    {
+      "commit": "45d55a27eae079d1da2bab2940969b6fb77b504d",
+      "path": "docs/governance/audits/requirements-stage/l3-l10-infra-stage2b-history-availability-2026-10-05.json",
+      "sha256": "6d15d286cca60b10e08866d63d7bbfff4500097c03f0c1e3ac1ba844ce9d54ac"
+    },
+    {
+      "commit": "45d55a27eae079d1da2bab2940969b6fb77b504d",
+      "path": "docs/governance/audits/requirements-stage/l3-l10-infra-stage2b-history-availability-2026-10-05.md",
+      "sha256": "1ffd5ab545f7afea3a534c5912b3a3131905e685c796a1934e3b1c51bd1e5f8b"
+    },
+    {
+      "commit": "45d55a27eae079d1da2bab2940969b6fb77b504d",
+      "path": "docs/governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08-summary.md",
+      "sha256": "931c855cdd561a66e96b05408e1f56fc04ddb63894ff5d55082c4a34f0add407"
+    },
+    {
+      "commit": "45d55a27eae079d1da2bab2940969b6fb77b504d",
+      "path": "docs/governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08.json",
+      "sha256": "dda8c362731e9b08015500ef5420a9c3da1411e1a6c0cfad8e5eeed6c5a91769"
+    },
+    {
+      "commit": "45d55a27eae079d1da2bab2940969b6fb77b504d",
+      "path": "docs/governance/audits/requirements-stage/l3-l10-infra-stage2b-review01-correction-2026-10-05-9ed70d03.json",
+      "sha256": "a7ab0f796235c2410a7d95d16f4b4ac7428a5e01d5bb742edf8d96ce310c5eae"
+    },
+    {
+      "commit": "45d55a27eae079d1da2bab2940969b6fb77b504d",
+      "path": "docs/governance/audits/requirements-stage/l3-l10-infra-stage2b-review01-correction-2026-10-05-9ed70d03.md",
+      "sha256": "fffcda68e8b03a08e876c97a2d0be72243082951882e4fa651ddff94b8c5707c"
+    },
+    {
+      "commit": "45d55a27eae079d1da2bab2940969b6fb77b504d",
+      "path": "docs/governance/audits/requirements-stage/l3-l10-infra-stage2b-review01-correction-followup-2026-10-05-9f6020a3.json",
+      "sha256": "6355c0c92942950e928ae5548382847a8eec14baa94bdd0df1124454e11ab3f6"
+    },
+    {
+      "commit": "45d55a27eae079d1da2bab2940969b6fb77b504d",
+      "path": "docs/governance/audits/requirements-stage/l3-l10-infra-stage2b-review01-correction-followup-2026-10-05-9f6020a3.md",
+      "sha256": "966d080ab9eeb454126fbd868cd861bf669cb745b480947511fe2a5f8c04183f"
+    },
+    {
+      "commit": "45d55a27eae079d1da2bab2940969b6fb77b504d",
+      "path": "docs/governance/audits/requirements-stage/l3-l10-infra-stage2b-root-po-summary-2026-10-05-e12514cb9.md",
+      "sha256": "c19ffcfb07282e03bde53f4f296dccb0bbac371104eb098cc9ac00a78709d940"
+    },
+    {
+      "commit": "45d55a27eae079d1da2bab2940969b6fb77b504d",
+      "path": "docs/governance/audits/requirements-stage/l3-l10-infra-stage2b-root-static-validation-2026-10-05-e12514cb9.json",
+      "sha256": "5e2673aa60306551d89c5030057c349acde0ee527b672f775cc20c0b3aaa75a9"
+    }
+  ],
+  "execution": "designed_only_not_executed",
+  "limitations": [
+    "旧監査を訂正しない。作成側検証は独立review・委任承認を生成しない。",
+    "技術計数は既存親とcase母集団の候補、製品閾値ではない。"
+  ]
+}

@@ -1,0 +1,227 @@
+{
+  "record_kind": "#2588 CASE-006-01 正常trace連続性の追補監査",
+  "authority_effect": "none",
+  "scope": {
+    "mechanism": "HELIX-CONNECT",
+    "stage": "Stage 2a",
+    "parents": [
+      "HELIXCONNECT-L2-006"
+    ],
+    "version_target": "1.0",
+    "other_parent_or_stage_added": false
+  },
+  "correction": {
+    "prior_repair_audit": "docs/governance/audits/requirements-stage/l3-l10-connect-stage2a-review01-repair-2026-10-05.json",
+    "prior_m1_correction_limitation": "前回は未完operationがあるCASE-006-03にtraceを束縛したが、未完operationなしのCASE-006-01正常交換4型にも連続traceが必要とのfindingを閉じていなかった。",
+    "current_disposition": "CASE-006-01の各正常交換型で旧revision→交換後revision→同じconnection/scope/revision組に束縛したcurrent comparison receipt→connection/operation/attempt identity→技術結果を一続きの順序traceにした。3種のtrace切断（receiptのscope/revision/connection束縛違い、operation/attemptのreceiptからの切断、技術結果のattemptからの孤立）を独立negativeとしてunknown/stale・pass不可・束縛確認前send/retry 0にした。CASE-006-03の未完operation義務は維持。"
+  },
+  "body_revision": "df5e784bdd04b770f48e767259cb129e4492bc16",
+  "body_parent_revision": "1ce155735b143881cd0d63a0c478effe5e856c62",
+  "canonical_documents": [
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "sha256": "392501cf2dc215506b3eede2829985535a38f7d412039886ca41609c30fcec89",
+      "bytes": 34514,
+      "physical_lines": 172,
+      "approved_stage1_prefix_sha256": "f5df086977de2f707b6d9aff8878adff80e6e0acd95d9edee9979a30a3e14e09",
+      "approved_stage1_prefix_bytes": 24322,
+      "approved_stage1_prefix_matches_prior_record": true,
+      "focused_current_line_pins": [
+        {
+          "physical_line": 158,
+          "literal": "- **CONNECT-AC-006-01 — 互換範囲内の一側交換**：4交換型を独立fixtureにし、各fixtureで登録済みconnection、変更側旧新revision、固定側機構・契約revision、scope、宣言互換条件を入力する。変更側を互換範囲内の新revisionへ交換し現在の両端契約を再照合した結果だけcompatibleとなり、同じconnection契約上の技術送受信ができる。各正常fixtureで変更側旧revision→交換後revision→同connection・scope・revision組に束縛したcurrent comparison receipt→connection/operation/attempt identity→技術結果を、一続きで順序づけられたtraceから辿れる。固定側のidentity/content/revisionを前後で変更せず、業務意味/承認/許可を生成しない。未完operationがない場合は存在しない未完義務を作らない。",
+          "raw_line_sha256": "377bef2078482e60a01abd389e09d5e6509b0b2417af298e3882b45667717913",
+          "raw_line_byte_length": 868
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.md",
+      "sha256": "b91e6ba4d37f515ce0e99ebd7de0605a73eccc406d45fb47fd5f656418341829",
+      "bytes": 1457,
+      "physical_lines": 12,
+      "approved_stage1_prefix_sha256": "7cbbfe2095d182a1e4244255c8dc40d55fe3bc4692a6e62e417d749c677b7087",
+      "approved_stage1_prefix_bytes": 785,
+      "approved_stage1_prefix_matches_prior_record": true,
+      "focused_current_line_pins": []
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "sha256": "a0e6135104df9c05f6d4c9830ab58f0f112f543d12d36adc912d26c86ce6c13b",
+      "bytes": 6673,
+      "physical_lines": 25,
+      "approved_stage1_prefix_sha256": "1ca36cdf1fef00f75e24b71fd65ee12d677453dde0d6a67eec2493574275e78b",
+      "approved_stage1_prefix_bytes": 4601,
+      "approved_stage1_prefix_matches_prior_record": true,
+      "focused_current_line_pins": [
+        {
+          "physical_line": 23,
+          "literal": "| `CON-NFR-006` / `CONNECT-AC-006-01..04` | L11が列挙する4交換型すべてを独立照合（4/4）。固定側identity/契約revision変更0、非互換・unknown・stale時のsend/retry attempt 0、許可不足時のexchange/send/retry attempt 0、旧新revision混載0。未完operation/ACK/attempt/expiry/義務は交換前後receipt間で全て保持し、未完operationの事前有無を問わず旧→新revision・current comparison receipt・operation/attempt・技術結果のtraceを一続きで追跡する。CASE-006-01でreceipt/operation/attempt/resultのtrace断絶をlinkごとにnegative測定し、operation identity欠落、attempt履歴欠落、再照合前retryもCASE-006-03で別々に測る。両側変更はunknown/rejectで片側交換のpass計数に含めない。 | 4型、互換時の固定側不変、失敗時停止、未完引継ぎは固定L2-006/L11-006の明示条件から採る。compatibility failureは片側交換後の照合で検出し得るため、交換自体を事前禁止せず送信・再送を0にする。交換開始禁止は該当する既存許可が不足するauthority反例に限る。共通latency、transport、compatibility range数値は親が定めていないため新しい値を置かず、端点ownerの宣言済み互換条件を入力する。これは測定候補で実装値やPO承認値ではなく、個別parameterごとの質問/gateを作らない。 | CASE-006-01の4正常型で旧新revisionから技術結果までのtraceを検証し、receipt/current comparison/operation/attempt/resultそれぞれの断絶をnegativeとして測る。failure class別send/retry attempt、未完義務、scope・許可も観測する。根拠不足/比較不能はunknown/staleで停止する。 |",
+          "raw_line_sha256": "bae7cba9d0ff7527eea43d7364f29a3a27fe019b8d647f64ac874466dded8555",
+          "raw_line_byte_length": 1774
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "sha256": "5e24bc4aa7c0d396d50331035653a928446aa9814d2610fb1200ae361c124d7a",
+      "bytes": 25071,
+      "physical_lines": 121,
+      "approved_stage1_prefix_sha256": "09f4e572f0c282ac51a914995c744b7b0fcc02d1e424d907a22a23044f61ee4a",
+      "approved_stage1_prefix_bytes": 16296,
+      "approved_stage1_prefix_matches_prior_record": true,
+      "focused_current_line_pins": [
+        {
+          "physical_line": 92,
+          "literal": "### CONNECT-CASE-006-01 — 4型の互換内一側交換",
+          "raw_line_sha256": "51524916f1f854e5d706b5fa86692a2ef5ac495d94a41a4329a22baa77b9fd73",
+          "raw_line_byte_length": 57
+        },
+        {
+          "physical_line": 97,
+          "literal": "- **trace断絶negative fixtures**: 他の正常入力と各trace要素は保ち、(1)current comparison receiptが別connection・別scope・別revision組へ結び付く、(2)operation/attempt identityが現在のconnectionまたはcomparison receiptから切れる、(3)技術結果が該当operation/attemptへ結び付かない、を各々独立に変異する。**期待oracle**: どの断絶も互換送受信のpass根拠にせずtraceをunknown/staleとして保留する。正しいreceipt束縛を確認できない間はsend/retry attemptを発行しない。孤立した技術結果を成功として計上しない。",
+          "raw_line_sha256": "41948572e5f0e9233de880269662a5c8ea7347b9a196d99cb2079eace7357979",
+          "raw_line_byte_length": 632
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.md",
+      "sha256": "cbe7776259524b7490aa7b9925614e394531a3b163d3909bbc6d6bd16acec387",
+      "bytes": 1102,
+      "physical_lines": 10,
+      "approved_stage1_prefix_sha256": "0ecd6905b16568d54f13ed3ae807eb588be3dfefaa41f9c2e3a6daf372b9e012",
+      "approved_stage1_prefix_bytes": 587,
+      "approved_stage1_prefix_matches_prior_record": true,
+      "focused_current_line_pins": []
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "sha256": "3dfbbf3d809ecd8ee93fca5aabb92e4fcd4f550f5f7fc12b778c4f7327ea3eb8",
+      "bytes": 5768,
+      "physical_lines": 20,
+      "approved_stage1_prefix_sha256": "796c0644a92d40e6ee18f4dc505737ffe225b5c606db400609bc45ebdef07a3c",
+      "approved_stage1_prefix_bytes": 3635,
+      "approved_stage1_prefix_matches_prior_record": true,
+      "focused_current_line_pins": [
+        {
+          "physical_line": 18,
+          "literal": "| `CON-NFR-006` / `CONNECT-AC-006-01..04` | 4交換型×positive compatibility、4×{incompatible, unregistered, meaning-contract-change, unknown, stale}を独立実行。CASE-006-01の各正常交換traceとlink断絶negative、未完operation continuity、authority fieldを別fixture群で測る。CASE-006-03でoperation identity欠落、過去attempt履歴欠落、再照合前retryを個別に測り、CASE-006-02では両側変更fixtureを別に測る。 | 各型を一度ずつ照合（4/4）。互換内で固定側identity/revision delta 0。20件のcompatibility failure fixtureは交換後に結果を分類し、20/20でsend/retry attempt 0（互換failure判定のための交換・照合は許す）。CASE-006-01では旧revision→新revision→同じconnection/scope/revision組のcurrent comparison receipt→connection/operation/attempt→技術結果を一つのtraceで辿れる。receiptの別connection/scope/revision束縛、operation/attempt identityの切断、技術結果の孤立を各々別negativeとし、trace断絶時はpassにせずunknown/stale、束縛が確認できるまでsend/retry attempt 0。両側変更はunknown/rejectとし片側交換のpass計数から除外する。旧新revision混載0。入力したoperation/ACK/attempt/expiry/unfinished obligation/recovery referenceの各identityが出力receipt/handoffに保持され、再照合と既存restart条件の成立前に再開attempt 0。許可missing/unknown/expired/scope不一致のauthority反例だけはexchange/send/retry attempt 0。 | 不一致・unknown・staleは送信保留、adapter compatibilityはadapter owner、意味差は両端owner、権限問題はSECURITYへ返す。NFR候補に共通transport latency/compatibility thresholdを追加せず、採択親にある宣言範囲だけを使う。 |",
+          "raw_line_sha256": "74ff264f0f02f496ab93b6c131ee2c5fc14320aef6ec18b9b0c1471a7c4b6014",
+          "raw_line_byte_length": 1824
+        }
+      ]
+    }
+  ],
+  "fixed_approved_source_pins": [
+    {
+      "label": "採択済みCONNECT-L2-006 条件",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "full_sha256": "31e3f234172bb5a92b26d41db2de21534cd4301274fc7e2800b4f8a935ce598b",
+      "byte_length": 37543,
+      "physical_lines": [
+        115,
+        124
+      ],
+      "raw_span_sha256": "876d54895668800e8a3f1866523fb65fb68bb7c13bad936396ecf43ecff30db7",
+      "raw_span_byte_length": 1656
+    },
+    {
+      "label": "CONNECT-L11-006 4交換型・trace・failure",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "full_sha256": "bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad",
+      "byte_length": 10908,
+      "physical_lines": [
+        68,
+        70
+      ],
+      "raw_span_sha256": "971546cffcd567e8c74ed7525e1111c1a391d5c61cb978b811da01260eebc992",
+      "raw_span_byte_length": 1071
+    },
+    {
+      "label": "PO採択親集合・version_target",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md",
+      "full_sha256": "82db2060dbaa77b5b9e6f38fa11219ec811b108b1870e6a86ca112810f9bae69",
+      "byte_length": 5460,
+      "physical_lines": [
+        44,
+        50
+      ],
+      "raw_span_sha256": "f1dd17af78c19cb171d58f5326b29aacbddcc947adc66441500a87ded5a7f08c",
+      "raw_span_byte_length": 446
+    }
+  ],
+  "prior_review_finding_reference": {
+    "reviewer": "Opus",
+    "comment_id": 5986679382,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2588#issuecomment-5986679382",
+    "raw_body_sha256": "368f7145f01115e55c60acd9dde3b6fe66d2961cc816598831d82ebc100b30f2",
+    "finding_m1": "CASE00601の正常4交換fixtureで証拠連続性を追跡可能にする。"
+  },
+  "immutable_prior_records": [
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-connect-stage2a-static-validation-2026-10-05-1efb66344.json",
+      "revision": "e12207dba40229ee58aaa4ac38456952c8284d1e",
+      "sha256": "809c7274af2bb73d8ad581c1a8b506c4f2aadc3d99c40780e8a6a5a7c2633dd2",
+      "bytes": 40011,
+      "matches_recorded": true,
+      "unchanged_in_current_worktree": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-connect-stage2a-po-review-2026-10-05-1efb66344.md",
+      "revision": "e12207dba40229ee58aaa4ac38456952c8284d1e",
+      "sha256": "8e2fd453effa6e7e3f24f83d0c18c17ebc4658c4ed63dcf045a64fe2d31c3de4",
+      "bytes": 3686,
+      "matches_recorded": true,
+      "unchanged_in_current_worktree": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-connect-stage2a-main-publication-2026-10-05.md",
+      "revision": "e12207dba40229ee58aaa4ac38456952c8284d1e",
+      "sha256": "aad52f81dc14613f785ca41b5c03da399922099ea385952d3845de9e5a9b259d",
+      "bytes": 1427,
+      "matches_recorded": true,
+      "unchanged_in_current_worktree": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-connect-stage2a-main-publication-2026-10-05.json",
+      "revision": "e12207dba40229ee58aaa4ac38456952c8284d1e",
+      "sha256": "a9d632826c3772c2960635def54b376901d0da0d98ac49b8d0d3f4029cf851f2",
+      "bytes": 41214,
+      "matches_recorded": true,
+      "unchanged_in_current_worktree": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-connect-stage2a-review01-repair-2026-10-05.json",
+      "revision": "1ce155735b143881cd0d63a0c478effe5e856c62",
+      "sha256": "abe71bf0ee836851486d4e9f2d239c53dbf29c82354f7aacc5ccbcb03748145b",
+      "bytes": 21343,
+      "matches_worktree": true,
+      "unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-connect-stage2a-review01-repair-2026-10-05.md",
+      "revision": "1ce155735b143881cd0d63a0c478effe5e856c62",
+      "sha256": "8c8eee062edc7326861467ad9028f88605cb3df56edf6810ff9bb332669a4255",
+      "bytes": 1997,
+      "matches_worktree": true,
+      "unchanged": true
+    }
+  ],
+  "verification": {
+    "git_diff_check": "PASS",
+    "scfctl_validate": "PASS (147 bindings, fail 0)",
+    "stage1_prefixes": "6/6 prefix bytes equal prior approved publication pins",
+    "focused_current_line_pins": "CASE006-01 AC/CASE/NFR grade/NFR verification + trace断絶negativeをcurrent bytesから採取",
+    "execution": "旧CLI/runtime/test/CI/Bun、L10実行なし",
+    "worktree_changes_before_audit": "本文追補commit df5e784bdd04b770f48e767259cb129e4492bc16; no push"
+  },
+  "limits": [
+    "本文・source pinの静的整合のみ。独立review未実施。",
+    "L3承認、L10実行、通信成功を主張しない。",
+    "pushなし。"
+  ]
+}

@@ -1,0 +1,922 @@
+{
+  "title": "HELIX-CONNECT Stage 2a L3/L10 source pins and handoff evidence",
+  "status": "起草候補・root検収済み・独立review/PO承認/実装/検証実行は未成立",
+  "base_head": "e89ca224043575d440f5672f81c681ec6a76df4a",
+  "branch": "codex/l3-connect-stage2a-pair",
+  "scope": {
+    "parent": "HELIXCONNECT-L2-006",
+    "accepted_version_intent": "1.0 target per main 633 PO row",
+    "other_parents_added": false,
+    "stage1_scope": "001-005 existing six canonical prefixes byte-exact and unchanged",
+    "not_in_scope": [
+      "Stage2a other parents",
+      "Stage2b",
+      "Stage2c",
+      "L2-007 composite",
+      "implementation or runtime execution"
+    ]
+  },
+  "canonical_documents": [
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "stage1_approved_sha256": "f5df086977de2f707b6d9aff8878adff80e6e0acd95d9edee9979a30a3e14e09",
+      "stage1_approved_bytes": 24322,
+      "stage1_approved_lines": 123,
+      "current_sha256": "6b2b5718b6ac5fa15d0037dc5ca1cea8a36d46e89f23243ad9c1dd490aeda4bf",
+      "current_bytes": 34023,
+      "current_lines": 172,
+      "append_physical_lines": [
+        124,
+        172
+      ],
+      "append_raw_sha256": "3d625b0f4fd11146f788ba551fa662312ea316ff12a43d0e015c7f37e6e1a566",
+      "stage1_prefix_byte_exact": true
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.md",
+      "stage1_approved_sha256": "7cbbfe2095d182a1e4244255c8dc40d55fe3bc4692a6e62e417d749c677b7087",
+      "stage1_approved_bytes": 785,
+      "stage1_approved_lines": 7,
+      "current_sha256": "b91e6ba4d37f515ce0e99ebd7de0605a73eccc406d45fb47fd5f656418341829",
+      "current_bytes": 1457,
+      "current_lines": 12,
+      "append_physical_lines": [
+        8,
+        12
+      ],
+      "append_raw_sha256": "218d66d81e8c61dd871713d339004f3731c4483686adbc890fd85f3a97d8e396",
+      "stage1_prefix_byte_exact": true
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "stage1_approved_sha256": "1ca36cdf1fef00f75e24b71fd65ee12d677453dde0d6a67eec2493574275e78b",
+      "stage1_approved_bytes": 4601,
+      "stage1_approved_lines": 16,
+      "current_sha256": "a157d7188f306a2424b6521be3845c0e2c011f8cc2c1d01253712bcbd71a792a",
+      "current_bytes": 6121,
+      "current_lines": 25,
+      "append_physical_lines": [
+        17,
+        25
+      ],
+      "append_raw_sha256": "e13eb981b765e4eb24abb0341aceb7655df71f09b1548a183c26d47490f941b1",
+      "stage1_prefix_byte_exact": true
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "stage1_approved_sha256": "09f4e572f0c282ac51a914995c744b7b0fcc02d1e424d907a22a23044f61ee4a",
+      "stage1_approved_bytes": 16296,
+      "stage1_approved_lines": 76,
+      "current_sha256": "f6139e6b277a7d5994c0806bf09949846275ab55bee5dc3ab1a77777fc55838b",
+      "current_bytes": 23338,
+      "current_lines": 120,
+      "append_physical_lines": [
+        77,
+        120
+      ],
+      "append_raw_sha256": "211071c933df68647373884698a0c1e2ddce3ec4097e1880cd1124a1d6b50dec",
+      "stage1_prefix_byte_exact": true
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.md",
+      "stage1_approved_sha256": "0ecd6905b16568d54f13ed3ae807eb588be3dfefaa41f9c2e3a6daf372b9e012",
+      "stage1_approved_bytes": 587,
+      "stage1_approved_lines": 5,
+      "current_sha256": "cbe7776259524b7490aa7b9925614e394531a3b163d3909bbc6d6bd16acec387",
+      "current_bytes": 1102,
+      "current_lines": 10,
+      "append_physical_lines": [
+        6,
+        10
+      ],
+      "append_raw_sha256": "a6a70804ea9d567a8378bf3e69ff8da450692e4ae5b4fdffbfa82fc7ddec9e7d",
+      "stage1_prefix_byte_exact": true
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "stage1_approved_sha256": "796c0644a92d40e6ee18f4dc505737ffe225b5c606db400609bc45ebdef07a3c",
+      "stage1_approved_bytes": 3635,
+      "stage1_approved_lines": 11,
+      "current_sha256": "5039c2441663001907a97fde79fe0ebe5368bdaab5cc4757c4ea0f5e35ddc75a",
+      "current_bytes": 5048,
+      "current_lines": 20,
+      "append_physical_lines": [
+        12,
+        20
+      ],
+      "append_raw_sha256": "c3fa2086f3b54dc3b087517accfdcda9bc0976c5f27b6b3e3c340177587c5b41",
+      "stage1_prefix_byte_exact": true
+    }
+  ],
+  "fixed_authority_source_pins": [
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "full_sha256": "31e3f234172bb5a92b26d41db2de21534cd4301274fc7e2800b4f8a935ce598b",
+      "byte_length": 37543,
+      "physical_lines": [
+        115,
+        125
+      ],
+      "raw_span_sha256": "f5e21133232013d16d0306fd333c1c2e216c0163e3570f746242fd636b295db7",
+      "raw_span_byte_length": 1657
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "full_sha256": "bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad",
+      "byte_length": 10908,
+      "physical_lines": [
+        37,
+        37
+      ],
+      "raw_span_sha256": "5bd8bae5f18be3e5b9e7e9539efc559220c816f69022093df5751a71b515f70c",
+      "raw_span_byte_length": 174
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "full_sha256": "bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad",
+      "byte_length": 10908,
+      "physical_lines": [
+        68,
+        70
+      ],
+      "raw_span_sha256": "971546cffcd567e8c74ed7525e1111c1a391d5c61cb978b811da01260eebc992",
+      "raw_span_byte_length": 1071
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md",
+      "full_sha256": "82db2060dbaa77b5b9e6f38fa11219ec811b108b1870e6a86ca112810f9bae69",
+      "byte_length": 5460,
+      "physical_lines": [
+        27,
+        33
+      ],
+      "raw_span_sha256": "6308d443db6a55051cd5a95ce6b3b866fa19009f3e81eabb3cd85601d4ed3642",
+      "raw_span_byte_length": 850
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md",
+      "full_sha256": "82db2060dbaa77b5b9e6f38fa11219ec811b108b1870e6a86ca112810f9bae69",
+      "byte_length": 5460,
+      "physical_lines": [
+        44,
+        50
+      ],
+      "raw_span_sha256": "f1dd17af78c19cb171d58f5326b29aacbddcc947adc66441500a87ded5a7f08c",
+      "raw_span_byte_length": 446
+    }
+  ],
+  "accepted_parent": {
+    "identity": "HELIXCONNECT-L2-006",
+    "registration": "MPR-RC-HELIXCONNECT-L2-006-002",
+    "semantic_digest": "876d54895668800e8a3f1866523fb65fb68bb7c13bad936396ecf43ecff30db7",
+    "version_target": "1.0",
+    "authority": "PO accepted set exact row at main 633 line 48; fixed L2/L11 content from f6; no other L3 used as authority",
+    "registration_exactness": "main633 exact accepted parent row used; later register metadata is not treated as changing the decision"
+  },
+  "approved_stage1_dependency_pins": [
+    {
+      "parent_reference": "CONNECT-FR-001-01",
+      "revision": "e89ca224043575d440f5672f81c681ec6a76df4a",
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "full_sha256": "f5df086977de2f707b6d9aff8878adff80e6e0acd95d9edee9979a30a3e14e09",
+      "byte_length": 24322,
+      "physical_lines": [
+        33,
+        48
+      ],
+      "raw_span_sha256": "2a6913784630928db2a4a448f8361eb9e01e8d5e5e0ce9e045d845877e8ae0e0",
+      "raw_span_byte_length": 3022
+    },
+    {
+      "parent_reference": "CONNECT-FR-002-01",
+      "revision": "e89ca224043575d440f5672f81c681ec6a76df4a",
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "full_sha256": "f5df086977de2f707b6d9aff8878adff80e6e0acd95d9edee9979a30a3e14e09",
+      "byte_length": 24322,
+      "physical_lines": [
+        49,
+        64
+      ],
+      "raw_span_sha256": "780d77fc44220872249c9dc8f646afaf5be99101d42e61ebc227cbeca7f9b6a4",
+      "raw_span_byte_length": 3957
+    },
+    {
+      "parent_reference": "CONNECT-FR-003-01",
+      "revision": "e89ca224043575d440f5672f81c681ec6a76df4a",
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "full_sha256": "f5df086977de2f707b6d9aff8878adff80e6e0acd95d9edee9979a30a3e14e09",
+      "byte_length": 24322,
+      "physical_lines": [
+        65,
+        80
+      ],
+      "raw_span_sha256": "721446d948ec1743c0f7d609d5954f5701156ffb45edd0c19022214ca42e008d",
+      "raw_span_byte_length": 3202
+    },
+    {
+      "parent_reference": "CONNECT-CASE-001-01",
+      "revision": "e89ca224043575d440f5672f81c681ec6a76df4a",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "full_sha256": "09f4e572f0c282ac51a914995c744b7b0fcc02d1e424d907a22a23044f61ee4a",
+      "byte_length": 16296,
+      "physical_lines": [
+        32,
+        40
+      ],
+      "raw_span_sha256": "a81574893718f4055bb7f24ab537e505f8a58996c4421c685c4243b7fb9e7711",
+      "raw_span_byte_length": 1744
+    },
+    {
+      "parent_reference": "CONNECT-CASE-002-01",
+      "revision": "e89ca224043575d440f5672f81c681ec6a76df4a",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "full_sha256": "09f4e572f0c282ac51a914995c744b7b0fcc02d1e424d907a22a23044f61ee4a",
+      "byte_length": 16296,
+      "physical_lines": [
+        41,
+        49
+      ],
+      "raw_span_sha256": "92ab4e9e6f7f373918dec9977086e7c248a3e1bf0e4ed54adcce8dc69405c6f2",
+      "raw_span_byte_length": 2452
+    },
+    {
+      "parent_reference": "CONNECT-CASE-003-01",
+      "revision": "e89ca224043575d440f5672f81c681ec6a76df4a",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "full_sha256": "09f4e572f0c282ac51a914995c744b7b0fcc02d1e424d907a22a23044f61ee4a",
+      "byte_length": 16296,
+      "physical_lines": [
+        50,
+        58
+      ],
+      "raw_span_sha256": "e816af8ee77a684f7e7ddd448a78e14ae27c946ea4b0dd57350b0ce450c278c7",
+      "raw_span_byte_length": 2064
+    }
+  ],
+  "old_source_crosswalk": [
+    {
+      "asset_id": "LEGACY-ASSET-F542125805B777D8A56A",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "physical_lines": [
+        148,
+        168
+      ],
+      "full_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "raw_span_sha256": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9",
+      "asset_ledger_record": {
+        "asset_id": "LEGACY-ASSET-F542125805B777D8A56A",
+        "revision": 1,
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_path": "docs/process/forward/L00-L06-design-phase.md",
+        "source_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+        "source_surface": "docs",
+        "source_provenance_ref": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+        "asset_class": "Historical",
+        "reuse_exclusion_class": null,
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "decision_record_ref": null,
+        "approval_revision": null,
+        "target_path": null,
+        "target_sha256": null,
+        "meaning_interface_invariance_reason": null,
+        "consumer_refs": [],
+        "rights_status": "unreviewed",
+        "executability_status": "unreviewed",
+        "secret_status": "unreviewed",
+        "external_effect_status": "unreviewed",
+        "decided_by": null,
+        "decided_at": null,
+        "copy_performed_by": null,
+        "copy_performed_at": null,
+        "read_after_record_ref": null,
+        "migration_preconditions": [
+          "semantic_atom_inventory",
+          "product_owner_decision",
+          "parent_requirement_binding",
+          "consumer_check",
+          "rights_check",
+          "executability_check",
+          "secret_check",
+          "external_effect_check"
+        ]
+      },
+      "reuse_and_change": "FR+AC paired with L10; authoring/approval semantics preserved; old layer approvals/gates not imported.",
+      "read_only": true
+    },
+    {
+      "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "physical_lines": [
+        38,
+        57
+      ],
+      "full_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "raw_span_sha256": "bdb56ad09b5ce182466bcfaa9494d2ceaf60be075fc76efd65bfa6709e2278dc",
+      "asset_ledger_record": {
+        "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+        "revision": 1,
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+        "source_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+        "source_surface": "docs",
+        "source_provenance_ref": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+        "asset_class": "Historical",
+        "reuse_exclusion_class": null,
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "decision_record_ref": null,
+        "approval_revision": null,
+        "target_path": null,
+        "target_sha256": null,
+        "meaning_interface_invariance_reason": null,
+        "consumer_refs": [],
+        "rights_status": "unreviewed",
+        "executability_status": "unreviewed",
+        "secret_status": "unreviewed",
+        "external_effect_status": "unreviewed",
+        "decided_by": null,
+        "decided_at": null,
+        "copy_performed_by": null,
+        "copy_performed_at": null,
+        "read_after_record_ref": null,
+        "migration_preconditions": [
+          "semantic_atom_inventory",
+          "product_owner_decision",
+          "parent_requirement_binding",
+          "consumer_check",
+          "rights_check",
+          "executability_check",
+          "secret_check",
+          "external_effect_check"
+        ]
+      },
+      "reuse_and_change": "Old FR/AC trace and completeness format re-derived; no old IDs or late addenda copied.",
+      "read_only": true
+    },
+    {
+      "asset_id": "LEGACY-ASSET-44DD86E3DEC09E65EF51",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "physical_lines": [
+        32,
+        216
+      ],
+      "full_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+      "raw_span_sha256": "09d046544d4dc2648038cae0e1bcf49316eb37c0a81e1bacd2a490b9fbb4bd38",
+      "asset_ledger_record": {
+        "asset_id": "LEGACY-ASSET-44DD86E3DEC09E65EF51",
+        "revision": 1,
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_path": "docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+        "source_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+        "source_surface": "docs",
+        "source_provenance_ref": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+        "asset_class": "Historical",
+        "reuse_exclusion_class": "legacy_test_design_or_oracle",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "decision_record_ref": null,
+        "approval_revision": null,
+        "target_path": null,
+        "target_sha256": null,
+        "meaning_interface_invariance_reason": null,
+        "consumer_refs": [],
+        "rights_status": "unreviewed",
+        "executability_status": "unreviewed",
+        "secret_status": "unreviewed",
+        "external_effect_status": "unreviewed",
+        "decided_by": null,
+        "decided_at": null,
+        "copy_performed_by": null,
+        "copy_performed_at": null,
+        "read_after_record_ref": null,
+        "migration_preconditions": [
+          "semantic_atom_inventory",
+          "product_owner_decision",
+          "parent_requirement_binding",
+          "consumer_check",
+          "rights_check",
+          "executability_check",
+          "secret_check",
+          "external_effect_check"
+        ]
+      },
+      "reuse_and_change": "Paired positive/negative/trace oracle shape re-derived; old L12/HAT/runtime not imported.",
+      "read_only": true
+    },
+    {
+      "asset_id": "LEGACY-ASSET-34DF3B535879CC73FA86",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md",
+      "physical_lines": [
+        162,
+        207
+      ],
+      "full_sha256": "d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a",
+      "raw_span_sha256": "d3e081158fcdfcad50bffedd1ecfdbf0c04ed2f1b504ab8dd8a87dc8dad8a6de",
+      "asset_ledger_record": {
+        "asset_id": "LEGACY-ASSET-34DF3B535879CC73FA86",
+        "revision": 1,
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_path": "docs/process/forward/L08-L14-verification-phase.md",
+        "source_sha256": "d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a",
+        "source_surface": "docs",
+        "source_provenance_ref": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+        "asset_class": "Historical",
+        "reuse_exclusion_class": null,
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "decision_record_ref": null,
+        "approval_revision": null,
+        "target_path": null,
+        "target_sha256": null,
+        "meaning_interface_invariance_reason": null,
+        "consumer_refs": [],
+        "rights_status": "unreviewed",
+        "executability_status": "unreviewed",
+        "secret_status": "unreviewed",
+        "external_effect_status": "unreviewed",
+        "decided_by": null,
+        "decided_at": null,
+        "copy_performed_by": null,
+        "copy_performed_at": null,
+        "read_after_record_ref": null,
+        "migration_preconditions": [
+          "semantic_atom_inventory",
+          "product_owner_decision",
+          "parent_requirement_binding",
+          "consumer_check",
+          "rights_check",
+          "executability_check",
+          "secret_check",
+          "external_effect_check"
+        ]
+      },
+      "reuse_and_change": "L10 verification and failure/backflow definition re-derived; old execution/gate semantics not imported.",
+      "read_only": true
+    },
+    {
+      "asset_id": "LEGACY-ASSET-7F8960532611D89D03E1",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md",
+      "physical_lines": [
+        32,
+        94
+      ],
+      "full_sha256": "65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc",
+      "raw_span_sha256": "3843dc4125242ec0411f1a1b0042738aa96f4dd704a413619e437bf5f83d2670",
+      "asset_ledger_record": {
+        "asset_id": "LEGACY-ASSET-7F8960532611D89D03E1",
+        "revision": 1,
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_path": "docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md",
+        "source_sha256": "65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc",
+        "source_surface": "docs",
+        "source_provenance_ref": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+        "asset_class": "Historical",
+        "reuse_exclusion_class": null,
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "decision_record_ref": null,
+        "approval_revision": null,
+        "target_path": null,
+        "target_sha256": null,
+        "meaning_interface_invariance_reason": null,
+        "consumer_refs": [],
+        "rights_status": "unreviewed",
+        "executability_status": "unreviewed",
+        "secret_status": "unreviewed",
+        "external_effect_status": "unreviewed",
+        "decided_by": null,
+        "decided_at": null,
+        "copy_performed_by": null,
+        "copy_performed_at": null,
+        "read_after_record_ref": null,
+        "migration_preconditions": [
+          "semantic_atom_inventory",
+          "product_owner_decision",
+          "parent_requirement_binding",
+          "consumer_check",
+          "rights_check",
+          "executability_check",
+          "secret_check",
+          "external_effect_check"
+        ]
+      },
+      "reuse_and_change": "Adjacent analogy for version drift/evidence/adapter separation only; not direct CONNECT source.",
+      "read_only": true
+    },
+    {
+      "asset_id": "LEGACY-ASSET-30FFE84409079C9B06D1",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/technology-environment-reconciliation-acceptance.md",
+      "physical_lines": [
+        18,
+        39
+      ],
+      "full_sha256": "aa61d626e7e5d5ee61f6bc96532cec931da4a1dbd104be805e4c03a0c9a2fd7d",
+      "raw_span_sha256": "c003087cb8b6b7fdde422a6bdfbd8e368f3a11de890b4836d048a27dee64bf7b",
+      "asset_ledger_record": {
+        "asset_id": "LEGACY-ASSET-30FFE84409079C9B06D1",
+        "revision": 1,
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_path": "docs/test-design/helix/technology-environment-reconciliation-acceptance.md",
+        "source_sha256": "aa61d626e7e5d5ee61f6bc96532cec931da4a1dbd104be805e4c03a0c9a2fd7d",
+        "source_surface": "docs",
+        "source_provenance_ref": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+        "asset_class": "Historical",
+        "reuse_exclusion_class": "legacy_test_design_or_oracle",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "decision_record_ref": null,
+        "approval_revision": null,
+        "target_path": null,
+        "target_sha256": null,
+        "meaning_interface_invariance_reason": null,
+        "consumer_refs": [],
+        "rights_status": "unreviewed",
+        "executability_status": "unreviewed",
+        "secret_status": "unreviewed",
+        "external_effect_status": "unreviewed",
+        "decided_by": null,
+        "decided_at": null,
+        "copy_performed_by": null,
+        "copy_performed_at": null,
+        "read_after_record_ref": null,
+        "migration_preconditions": [
+          "semantic_atom_inventory",
+          "product_owner_decision",
+          "parent_requirement_binding",
+          "consumer_check",
+          "rights_check",
+          "executability_check",
+          "secret_check",
+          "external_effect_check"
+        ]
+      },
+      "reuse_and_change": "Independent oracle/unknown/fail-close form re-derived; external provider lifecycle not imported.",
+      "read_only": true
+    },
+    {
+      "asset_id": "LEGACY-ASSET-9B7682EBDEA171005D45",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/distribution-package-release-requirements.md",
+      "physical_lines": [
+        24,
+        83
+      ],
+      "full_sha256": "c854d77696bba4904bc91c1d32b8f1bd714408480f16538b7eb7e77291104f1c",
+      "raw_span_sha256": "60f558ed4c14b1b235e060dad063c8a07c202b02868a1004ae8f4855671e6c2e",
+      "asset_ledger_record": {
+        "asset_id": "LEGACY-ASSET-9B7682EBDEA171005D45",
+        "revision": 1,
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_path": "docs/design/helix/L3-requirements/distribution-package-release-requirements.md",
+        "source_sha256": "c854d77696bba4904bc91c1d32b8f1bd714408480f16538b7eb7e77291104f1c",
+        "source_surface": "docs",
+        "source_provenance_ref": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+        "asset_class": "Historical",
+        "reuse_exclusion_class": null,
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "decision_record_ref": null,
+        "approval_revision": null,
+        "target_path": null,
+        "target_sha256": null,
+        "meaning_interface_invariance_reason": null,
+        "consumer_refs": [],
+        "rights_status": "unreviewed",
+        "executability_status": "unreviewed",
+        "secret_status": "unreviewed",
+        "external_effect_status": "unreviewed",
+        "decided_by": null,
+        "decided_at": null,
+        "copy_performed_by": null,
+        "copy_performed_at": null,
+        "read_after_record_ref": null,
+        "migration_preconditions": [
+          "semantic_atom_inventory",
+          "product_owner_decision",
+          "parent_requirement_binding",
+          "consumer_check",
+          "rights_check",
+          "executability_check",
+          "secret_check",
+          "external_effect_check"
+        ]
+      },
+      "reuse_and_change": "Fixed source/consumer and artifact identity adjacent comparison only; release authority not imported.",
+      "read_only": true
+    },
+    {
+      "asset_id": "LEGACY-ASSET-6C9D2BE4E3C77D78F8EB",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/distribution-package-release-system-test-design.md",
+      "physical_lines": [
+        1,
+        58
+      ],
+      "full_sha256": "3b3e8b72c51ac418ed58c9278cb07f683c37eaf723d6710d12c1ddfb34a811fc",
+      "raw_span_sha256": "3b3e8b72c51ac418ed58c9278cb07f683c37eaf723d6710d12c1ddfb34a811fc",
+      "asset_ledger_record": {
+        "asset_id": "LEGACY-ASSET-6C9D2BE4E3C77D78F8EB",
+        "revision": 1,
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_path": "docs/test-design/helix/distribution-package-release-system-test-design.md",
+        "source_sha256": "3b3e8b72c51ac418ed58c9278cb07f683c37eaf723d6710d12c1ddfb34a811fc",
+        "source_surface": "docs",
+        "source_provenance_ref": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+        "asset_class": "Historical",
+        "reuse_exclusion_class": "legacy_test_design_or_oracle",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "decision_record_ref": null,
+        "approval_revision": null,
+        "target_path": null,
+        "target_sha256": null,
+        "meaning_interface_invariance_reason": null,
+        "consumer_refs": [],
+        "rights_status": "unreviewed",
+        "executability_status": "unreviewed",
+        "secret_status": "unreviewed",
+        "external_effect_status": "unreviewed",
+        "decided_by": null,
+        "decided_at": null,
+        "copy_performed_by": null,
+        "copy_performed_at": null,
+        "read_after_record_ref": null,
+        "migration_preconditions": [
+          "semantic_atom_inventory",
+          "product_owner_decision",
+          "parent_requirement_binding",
+          "consumer_check",
+          "rights_check",
+          "executability_check",
+          "secret_check",
+          "external_effect_check"
+        ]
+      },
+      "reuse_and_change": "Before/after consumer-boundary and independent negative form only; not executed.",
+      "read_only": true
+    },
+    {
+      "asset_id": "LEGACY-ASSET-8CC5ABFC98C0D00183CA",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/nfr-grade.md",
+      "physical_lines": [
+        1,
+        73
+      ],
+      "full_sha256": "ba57990cf5343e9d4ad42ca8c2340d76c80e6e1c23085ba5e496d8014acf3fc3",
+      "raw_span_sha256": "ba57990cf5343e9d4ad42ca8c2340d76c80e6e1c23085ba5e496d8014acf3fc3",
+      "asset_ledger_record": {
+        "asset_id": "LEGACY-ASSET-8CC5ABFC98C0D00183CA",
+        "revision": 1,
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_path": "docs/design/helix/L3-requirements/nfr-grade.md",
+        "source_sha256": "ba57990cf5343e9d4ad42ca8c2340d76c80e6e1c23085ba5e496d8014acf3fc3",
+        "source_surface": "docs",
+        "source_provenance_ref": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+        "asset_class": "Historical",
+        "reuse_exclusion_class": null,
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "decision_record_ref": null,
+        "approval_revision": null,
+        "target_path": null,
+        "target_sha256": null,
+        "meaning_interface_invariance_reason": null,
+        "consumer_refs": [],
+        "rights_status": "unreviewed",
+        "executability_status": "unreviewed",
+        "secret_status": "unreviewed",
+        "external_effect_status": "unreviewed",
+        "decided_by": null,
+        "decided_at": null,
+        "copy_performed_by": null,
+        "copy_performed_at": null,
+        "read_after_record_ref": null,
+        "migration_preconditions": [
+          "semantic_atom_inventory",
+          "product_owner_decision",
+          "parent_requirement_binding",
+          "consumer_check",
+          "rights_check",
+          "executability_check",
+          "secret_check",
+          "external_effect_check"
+        ]
+      },
+      "reuse_and_change": "Candidate/measurement/acceptance format re-derived; old projection thresholds not inherited.",
+      "read_only": true
+    }
+  ],
+  "current_added_span_pins": [
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_lines": [
+        137,
+        162
+      ],
+      "literal_first_line": "### CONNECT-FR-006-01 — 片側交換時の接続互換性",
+      "raw_span_sha256": "22841e5ac5cbb49442f3847e7a1b7f2cd3c569833fda81c8c751c57fa446ba68",
+      "raw_span_byte_length": 6271
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.md",
+      "physical_lines": [
+        10,
+        12
+      ],
+      "literal_first_line": "## Stage 2a 追加 — HELIXCONNECT-L2-006のみ",
+      "raw_span_sha256": "6c7b5aa2c4e6ad1dd593b055407ec4034950999c7b0c7038b928e1e1291b5ec9",
+      "raw_span_byte_length": 670
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "physical_lines": [
+        23,
+        25
+      ],
+      "literal_first_line": "| `CON-NFR-006` / `CONNECT-AC-006-01..04` | L11が列挙する4交換型すべてを独立照合（4/4）。固定側identity/契約revision変更0、非互換・unknown・stale時のsend/retry attempt 0、許可不足時のexchange/send/retry attempt 0、旧新revision混載0。未完operation/ACK/attempt/expiry/義務は交換前後receipt間で全て保持。 | 4型、互換時の固定側不変、失敗時停止、未完引継ぎは固定L2-006/L11-006の明示条件から採る。compatibility failureは片側交換後の照合で検出し得るため、交換自体を事前禁止せず送信・再送を0にする。交換開始禁止は該当する既存許可が不足するauthority反例に限る。共通latency、transport、compatibility range数値は親が定めていないため新しい値を置かず、端点ownerの宣言済み互換条件を入力する。これは測定候補で実装値やPO承認値ではなく、個別parameterごとの質問/gateを作らない。 | 4型ごとの固定側前後revisionと互換receiptを比較し、failure class別send/retry attempt、receipt継続field、scope・許可を観測する。根拠不足/比較不能はunknown/staleで停止する。 |",
+      "raw_span_sha256": "1407d040174f91cc01c2ad7fb0188a118b5f4e886ce96cb9cbab5a78ced17bbc",
+      "raw_span_byte_length": 1375
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_lines": [
+        92,
+        97
+      ],
+      "literal_first_line": "### CONNECT-CASE-006-01 — 4型の互換内一側交換",
+      "raw_span_sha256": "31e1ac107e5a62a70c1181edea1d0f36cda85cc313de9fdb275f8de48312673e",
+      "raw_span_byte_length": 1769
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.md",
+      "physical_lines": [
+        8,
+        10
+      ],
+      "literal_first_line": "## Stage 2a 追加 — HELIXCONNECT-L2-006のみ",
+      "raw_span_sha256": "63d23df71f230d9b15a718f12716793e8eb46f62d048762c49829c7e0dc8134b",
+      "raw_span_byte_length": 513
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "physical_lines": [
+        18,
+        20
+      ],
+      "literal_first_line": "| `CON-NFR-006` / `CONNECT-AC-006-01..04` | 4交換型×positive compatibility、4×{incompatible, unregistered, meaning-contract-change, unknown, stale}を独立実行。未完operation continuityとauthority fieldは別fixture群で測る。 | 各型を一度ずつ照合（4/4）。互換内で固定側identity/revision delta 0。20件のcompatibility failure fixtureは交換後に結果を分類し、20/20でsend/retry attempt 0（互換failure判定のための交換・照合は許す）。旧新revision混載0。入力したoperation/ACK/attempt/expiry/unfinished obligation/recovery referenceの各identityが出力receipt/handoffに保持され、再照合と既存restart条件の成立前に再開attempt 0。許可missing/unknown/expired/scope不一致のauthority反例だけはexchange/send/retry attempt 0。 | 不一致・unknown・staleは送信保留、adapter compatibilityはadapter owner、意味差は両端owner、権限問題はSECURITYへ返す。NFR候補に共通transport latency/compatibility thresholdを追加せず、採択親にある宣言範囲だけを使う。 |",
+      "raw_span_sha256": "3da2271bd9e2ea57ad38b01888c7952e15821148cc7a9a1ed528b9007a829e2d",
+      "raw_span_byte_length": 1279
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_lines": [
+        87,
+        90
+      ],
+      "literal_first_line": "| 4種類の一側交換、固定側/契約revisionを固定、互換時だけ同契約で送受信 | `CONNECT-AC-006-01` | `CONNECT-CASE-006-01`, `006-05` | 4型を独立に照合し、固定側変更0、互換receipt/送受信のidentity・revision束縛 |",
+      "raw_span_sha256": "9a64067fe49157fbceab8c92c9a5f095b6aa9496aee93d0db70078ded776f167",
+      "raw_span_byte_length": 879
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_lines": [
+        98,
+        102
+      ],
+      "literal_first_line": "### CONNECT-CASE-006-02 — 互換・登録・意味変更failure matrix",
+      "raw_span_sha256": "c132b17ec78b4d5c6e8be9e3a69e422b4011cfd4b14fb6d9b62da7217b24cc67",
+      "raw_span_byte_length": 1096
+    }
+  ],
+  "crosswalk_summary": [
+    {
+      "fixed_meaning": "single registered connection; change only one side; unchanged side identity/revision fixed; declared compatibility rechecked; send only after compatible current receipt",
+      "old_basis": "old process FR+AC/L10 structure; TER drift/evidence and distribution identity only as adjacent analogies",
+      "classification": "format reuse + semantic re-derivation; direct old CONNECT exchange source not found in scoped L3 folder"
+    },
+    {
+      "fixed_meaning": "incompatible/unregistered/meaning-change/unknown/stale blocks send; existing owner routes preserved",
+      "old_basis": "TER independent failure-oracle form and old verification backflow form",
+      "classification": "semantic re-derivation from fixed L2/L11; no old gates/CI/threshold imported"
+    },
+    {
+      "fixed_meaning": "unfinished operation/ACK/attempt/expiry/recovery reference continuity across exchange",
+      "old_basis": "old pair acceptance trace patterns; adjacent TER trace analogies",
+      "classification": "re-derived; no runtime/source copied"
+    },
+    {
+      "fixed_meaning": "technical outcome does not produce business result, approval, or permission",
+      "old_basis": "old L3 responsibility separation structure; current L2/L11 establish scope",
+      "classification": "re-derived with fixed current boundary"
+    }
+  ],
+  "findings_and_unreviewed_carry_forward": {
+    "finding_refs": [
+      "C13-M12-audit-record-correction-cross-check"
+    ],
+    "unreviewed_scope_refs": [
+      "C13-U-all-crosswalk-and-legacy"
+    ],
+    "status": "carried, not resolved; no independent review claimed"
+  },
+  "static_checks": {
+    "six_only_canonical_files_changed": true,
+    "stage1_prefix_byte_exact_all_six": true,
+    "only_stage2a_parent_heading_is_006": true,
+    "four_exchange_variants_explicit": true,
+    "five_failure_classes_and_20_matrix": true,
+    "all_four_cases_traced": true,
+    "business_no_derived_outcome": true,
+    "nfr_parameter_no_new_threshold": true,
+    "no_external_git_actions": true,
+    "functional_links_current": true,
+    "compatibility_failure_exchange_permitted": true,
+    "authority_negative_exchange_start_blocked": true,
+    "compatibility_failure_send_retry_attempts_zero": true,
+    "body_committed": true
+  },
+  "limits": [
+    "No independent review or PO approval of this Stage 2a candidate.",
+    "No direct old CONNECT L3 source for one-sided exchange was found in the scoped old L3 folder; old sources are structure/adjacent analogies, not direct authority.",
+    "Numerical thresholds beyond fixed L2/L11 counts are not asserted; no per-parameter PO question/gate introduced.",
+    "No old runtime/test/CI/Bun was run."
+  ],
+  "review_correction": {
+    "finding": "CONNECT-006 compatibility outcomes are evaluated after the one-sided exchange; incompatible/unknown/stale stops communication and allows zero send/retry, while missing/unknown/expired/out-of-scope authority blocks exchange start.",
+    "modified_append_sections": [
+      "CONNECT-AC-006-02",
+      "CONNECT-CASE-006-01 input-missing oracle",
+      "CONNECT-CASE-006-02 oracle/AC-to-case trace",
+      "CON-NFR-006 L3",
+      "CON-NFR-006 L10"
+    ],
+    "stage1_prefix_recomputed": true,
+    "commit_push_mailbox": false,
+    "current_pin_records_added": [
+      [
+        "docs/helix-connect/L10-verification/functional-verification.md",
+        [
+          87,
+          90
+        ]
+      ],
+      [
+        "docs/helix-connect/L10-verification/functional-verification.md",
+        [
+          98,
+          102
+        ]
+      ]
+    ]
+  },
+  "body_revision": "1efb663447a95b8947b3fc960542d92c29a81714",
+  "root_validation": {
+    "current_full_append_and_approved_prefix_sha": "6文書すべて一致",
+    "fixed_and_approved_stage1_and_legacy_sha": "全文・行末LFを含むraw spanすべて一致",
+    "scfctl_validate": "bindings=147 fail=0",
+    "scfctl_stale": "stale=0",
+    "govcheck": "ok atoms=7622 requirements=57 files=58",
+    "git_diff_check": "PASS",
+    "meaning_check": "L2-006/L11-006と追補6文書を読み、通信停止と交換開始停止を分け、owner/revision/未完義務の保持を照合した。独立reviewではない。"
+  }
+}

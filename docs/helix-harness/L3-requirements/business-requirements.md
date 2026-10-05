@@ -14,3 +14,31 @@ paired_l10: ../L10-verification/business-verification.md
 | `HARNESS-L2-023` | 独立したbusiness requirementを導出しない | 条件別dependency classificationから新しい利用方針やownerを作らない。 |
 
 旧business-detailは機能要件へ一括移植せず、意味とownerを現在の固定L2で再導出する。3親の境界は上表のとおりで、収益、製品優先順位、release decision、条件別利用方針を追加しない。
+
+## Stage 2b suffix — HARNESS-L2-012/013
+
+固定HARNESS-L2-012/013から独立した事業成果、business owner、価値閾値、commercial acceptanceを導出しない。これはHELIX-HARNESS全体にbusiness要件がないことを意味しない。
+
+| 親L2 | business要件への扱い | 境界 |
+|---|---|---|
+| `HARNESS-L2-012` | 独立business requirementなし。screen prototype/technical PoCの適用性・結果・Backflowはfunctional-requirements.mdのFR/ACで確認する。 | prototype/PoC成果を価値達成、事業判断、利用者要求合意、production成果へ変換しない。 |
+| `HARNESS-L2-013` | 独立business requirementなし。1次/条件付き2次の根拠付き候補と人間判断待ちはfunctional FR/ACで確認する。 | 要件候補を商業成果、要求合意、承認済み要件、business ownerや価値閾値へ昇格させない。 |
+
+旧business-detailの意味とownerはこの2親から一括移植しない。業務意味が必要な差分は固定L1/L2を起点に別途再導出し、既存範囲の追加business requirementにしない。
+
+## Stage 2b suffix — HARNESS-L2-014/015/016
+
+この3親から独立business requirement/oracleを導出しない。設計義務とBackflow、Provisional実装・CI境界、意味保存Refactorと上流戻しは対の[functional-requirements.md](functional-requirements.md)にある同一FR/ACで確認する。これらを事業価値、利用者受入、release、CI運転、意味変更の承認へ読み替えない。旧business-detailのowner/KPIを追加しない。
+
+| 親L2 | business requirementの扱い | 境界 |
+|---|---|---|
+| `HARNESS-L2-014` | 独立business requirementなし。 | template適用・設計/Backflow条件を事業価値や利用者受入oracleへ変換しない。 |
+| `HARNESS-L2-015` | 独立business requirementなし。 | Provisional成果やatomic CI結果を品質保証・システム成立・利用者受入・releaseへ昇格させない。 |
+| `HARNESS-L2-016` | 独立business requirementなし。 | Refactor/性能比較の技術結果から製品価値やbusiness ownerを発明しない。 |
+## Stage 2a suffix — HARNESS-L2-022（1.0対象）
+
+| 親L2 | business要件ID | business要件への扱い | 境界 |
+|---|---|---|---|
+| `HARNESS-L2-022` | `BR-HARNESS-L3-022-01` | 利用者がartifact revision/scopeごとに、段階別の成立証拠、L11の能力別内容判定、利用者受入とその記録を区別して判断できる。 | L1-001/004/005および固定L2-022にtraceする。COREの検証・受入契約の結果を示すもので、service①〜⑦の業務成果、収益・製品優先順位、独立business ownerや価値閾値を追加しない。L10/oracleから利用者受入判断や記録を生成しない。 |
+
+旧business-detailの意味とownerはHARNESSへ一括移植せず、固定L1/L2から再導出する。本親から独立した商用成果や新しいownerは導出しない。business verificationは同じscopeの証拠を利用者が判読できるかを観測し、要求にない価値判断を作らない。
