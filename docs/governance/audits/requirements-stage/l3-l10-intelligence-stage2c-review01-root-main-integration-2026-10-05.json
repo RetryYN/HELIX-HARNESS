@@ -1,0 +1,42 @@
+{
+  "record_kind": "root-main-integration",
+  "pr": 2597,
+  "base": "191ebab8c0b1871d7c8c84354976d7c0bc11c26e",
+  "body_revision": "f0debdad3ad979a380a3e680df3ecc6c29b51285",
+  "integration_commit": "5782a81be324a0861ba2a9323b7a57f0cedd7f22",
+  "body_documents_unchanged": [
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "sha256": "b6df5e718a41779bcd02a9b1dfa7ab6b6560657c90e50a604249989e1b656bfc"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "sha256": "37135ee8b5c49a8a6c99870f33ecf2b2c12def02f2f8785447a698fd5b551146"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "sha256": "9a261ee29c0dd0f504770f04dc469fca93c7d4b5736d80d12a92c84a799c6eb6"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "sha256": "adc15e2f4217d0271fc6db1ac90f5810fbeea8705808c771cd72266eef89bc2f"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "sha256": "70b5ee77c19109515d98c82505a19ad50c3df4fa842839e5c4904576c7c7dbd0"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "sha256": "e2585be9f3e27184f30b62a645816f000612ea0760e26e00dc08e28a44b7d22e"
+    }
+  ],
+  "root_verification": [
+    "prior repair six body diff and fixed parents read",
+    "53 source and 240 literal pins verified before carry correction",
+    "carry correction 2 source, C13 full bytes and 3 spans, 6 documents, 2 literal lines and prior audit verified",
+    "normal merge main leaves all six documents identical",
+    "validate147/fail0 stale0 residuals0 gov7622/57/58 diff pass"
+  ],
+  "independent_review": "pending",
+  "authority_effect": "none"
+}
