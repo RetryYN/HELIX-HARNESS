@@ -62,3 +62,14 @@
 |`HELIXLABO-L2-050`|独立KPIなし。LABO evaluation/re-observation、OS registration/routing、target ownerのchange/verification/deployment/operationを別状態に保つ。|`LABO-050-AC-01/02/03`、`L10-LABO-050-CASE-01`〜`CASE-30`。CASE-03gは非独立ラベル、CASE-07/08/09/10は非独立索引でfixture数へ重ねない。|
 
 本行は固定L2-050の業務上の責務分離を示す。candidate count、CI成功率等の独立業務指標やthresholdを追加しない。
+
+
+## Stage 5 — HELIXLABO-L2-059 業務証拠
+
+独立BR/KPI/thresholdは追加しない。業務証拠は選択scopeにおけるquality/既決priority適用、費用・時間・人介入の分離表示とし、ticket、registration、routing、permission、merge authorityや実業務成果を生成しない。
+
+| 固定親 | 業務evidence / owner境界 | 正本evidence |
+|---|---|---|
+| HELIXLABO-L2-059 | 独立KPIなし。LABOは選択比較と既決decision適用のevidenceを返す。OS assignment、source measurement、既存decision、HARNESS/要求oracleの区分を保持する。 | LABO-059-AC-01/02/03 と L10-LABO-059-CASE-*。各CASEの正常/negative/index/compound分類はL10 functional verificationを参照し、範囲表示だけでfixtureを数えない。 |
+
+本行は機能evidenceの業務索引であり、比較の実行やbusiness outcomeを示さない。
