@@ -467,7 +467,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 - 変異: 正常fixture。変異なし。
 - 入力: nodes=[api-sim,db-sim]; path={id=path-sim-01,source=api-sim,destination=db-sim,protocol=tcp,endpoint=db-sim:sim-port,direction=outbound,purpose=state-read,security_boundary=app-to-data,dependency=db-sim,revision=sim-r1}; declared_edge=api-sim→db-sim
 - oracle: 宣言edgeと8 path axesを同じsource/revisionで記録し、nodesおよびdependencyと一致させる。
-- owner/戻し先: 正常時は戻し先なし。path source ownerは固定親で未特定=unknown。宣言設計との不一致はCORE design owner。
+- owner/戻し先: 正常時は戻し先なし。resource source ownerは固定親で未特定=unknown。宣言設計との不一致はCORE design owner。
 - trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
 
 #### CASE-INFRA-011-S5-005 — 項目02 Topology / missing
@@ -476,7 +476,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 - 変異: `path.purpose`だけを空欄にする。
 - 入力: nodes=[api-sim,db-sim]; path={id=path-sim-01,source=api-sim,destination=db-sim,protocol=tcp,endpoint=db-sim:sim-port,direction=outbound,purpose=state-read,security_boundary=app-to-data,dependency=db-sim,revision=sim-r1}; declared_edge=api-sim→db-sim
 - oracle: topology照合を保留し、未完fieldを保持する。宣言設計との差異が確認されない限り、CORE設計責務を原因にしない。
-- owner/戻し先: path/resource source ownerは固定親で未特定=unknown。宣言設計との不一致が確認された場合だけCORE design owner。
+- owner/戻し先: resource source ownerは固定親で未特定=unknown。宣言設計との不一致が確認された場合だけCORE design owner。
 - trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
 
 #### CASE-INFRA-011-S5-006 — 項目02 Topology / mismatch
@@ -1202,7 +1202,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 #### CASE-INFRA-011-S5-086 — read-only write試行の拒否
 
 - 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baselineはCASE-INFRA-011-S5-055正常fixture（write_set=empty; writes=none; before=sim-r1; after=sim-r1）。対象scopeは `infra-011-stage5-sim`、環境identityは `verification-sim`、親source revisionは `sim-r1`。
-- 変異: `write_attempt`だけを`{target=api-db-sim-01,action=write-sim,scope=infra-011-stage5-sim}`へ変更し、他fieldはbaselineのまま。
+- 変異: `write_attempt={target=api-db-sim-01,action=write-sim,scope=infra-011-stage5-sim}`だけを追加する。baselineの他fieldはそのまま。
 - 入力: request={target=api-db-sim-01,action=inspect-sim,revision=infra-runtime-sim@sim-r17,scope=infra-011-stage5-sim,environment=verification-sim,expiry=sim-expiry-01}; security_authority={ref=security-authority-sim-01,source=SECURITY-sim@sim-r3,revision=sim-r3,target=api-db-sim-01,target_revision=infra-runtime-sim@sim-r17,action=inspect-sim,scope=infra-011-stage5-sim,environment=verification-sim,expiry=sim-expiry-01}; worker={contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01,resource=worker-host-sim@sim-r1}; os={ticket=os-work-sim-01,change=os-change-sim-01,revision=os-rev-sim-4,scope=infra-011-stage5-sim,environment=verification-sim,runtime=api-db-sim-01@infra-runtime-sim@sim-r17}; write_scope=declared; write_set=empty; writes=none; before=sim-r1; after=sim-r1
 - oracle: empty write-setへの試行を拒否し、writeを実行しない。前後状態が同一でも拒否を省略しない。通常read-onlyのwrite禁止はOS停止中independent recovery例外によって緩和しない。
 - owner/戻し先: 正常baselineへの戻し先なし。試行が拒否されず変更された場合、該当operation source ownerが特定できなければunknown。
