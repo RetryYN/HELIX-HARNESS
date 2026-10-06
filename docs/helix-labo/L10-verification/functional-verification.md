@@ -2937,7 +2937,7 @@ CASE-01は旧snapshot上の高水準正常説明である。各下記candidate�
 
 L10定義の単独変異候補を固定sourceへ照合する。cause/applicability、対象版、修復手順/result、OS execution/registration、LABO evaluation、HARNESS verification、post-operation observationのmissing/staleを分ける。観測または対象版を提供する既存sourceが欠ける場合はその提供主体へ返し、identityが根拠から定まらなければunknownを維持する。修復成功/再発防止/effect evidence不足はLABO評価へ、OS assignment/execution/registration/routing欠落はOSへ、HARNESS契約/verification不足はHARNESSへ返す。新しい汎用ownerを作らない。
 
-**段階境界**: warning → candidate → OS registration/routing → target owner adoption → target change → HARNESS verification → post-operation observation/effect evaluation は別状態。順序飛越、別episode/revisionの証拠混載、候補/登録/修復成功のみからの完了主張を拒否する。LABOはknowledgeを評価・保持するが、canonical sourceへ直接writeせず、gateを有効化せず、採否/assignment/permission/authorityを生成しない。変更後条件での観測が無ければ旧成功を現行有効性へ流用しない。
+**段階境界**: 予防candidateと未処理頻出warningは、固定L2の条件に従って並列に返す出力であり、warningの先行をcandidate発行の前提にしない。候補発行、OS registration/routing、target owner adoption、target change、HARNESS verification、post-operation observation/effect evaluationは別状態で追跡する。別episode/revisionの証拠混載、候補/登録/修復成功のみからの完了主張を拒否する。LABOはknowledgeを評価・保持するが、canonical sourceへ直接writeせず、gateを有効化せず、採否/assignment/permission/authorityを生成しない。変更後条件での観測が無ければ旧成功を現行有効性へ流用しない。
 
 #### 旧source・consumerからの再導出
 
