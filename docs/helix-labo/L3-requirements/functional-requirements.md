@@ -1560,10 +1560,10 @@ Stage 2b review01の集約CASEは索引としてのみ保持する。個別fixtu
 |固定条件|現行要件で保つ意味|対応FR/AC|L10根拠|
 |---|---|---|---|
 |L2-050:300の11段階|Observed → Correlated → Hypothesized → Experimented → Evaluated → Feedback Candidate → OS registration/target routing → target change process → verification → deployment/operation → LABO re-observationをそれぞれ別状態として追う。|FR-01 / AC-01|CASE-01の一つの正常traceで段階をすべて表示|
-|L2-050:300,302 identity/未完義務|ticket、experiment、target revision、source/target revision、OS assignment、Worker result、未完義務を結ぶ。|FR-01 / AC-01,03|CASE-01正常、CASE-03a–e/24–28の各binding負例、CASE-16–19/21の部分完了主張、CASE-20のchange receipt欠落|
+|L2-050:300,302 identity/未完義務|ticket、experiment、target revision、source/target revision、OS assignment、Worker result、未完義務を結ぶ。|FR-01 / AC-01,03|CASE-01正常、CASE-03a–e/24–28の各binding負例、CASE-16–19/21/30の部分完了主張、CASE-20のchange receipt欠落|
 |L2-050:300採択前candidate|採択前はcandidateのまま。candidate数/発行のみでは完了しない。|FR-01 / AC-03|CASE-11,17,21|
-|L2-050:300,302 target authority|OS registration/routingに必要なassignmentを含め、registration/routingはOS、target change/verification/deployment/operationはtarget owner、evaluation/re-observationはLABO。|FR-01 / AC-01,03|CASE-04a/b、CASE-16–19/21|
-|L2-050:300,302変更後|変更後のverification、deployment、operation、re-observation、effectとregression評価を未完義務として別々に保つ。|FR-01 / AC-01,03|CASE-13–16,20,22,23,26,29|
+|L2-050:300,302 target authority|registration/routingはOS、target change/verification/deployment/operationはtarget owner、evaluation/re-observationはLABO。OS assignmentは実験の依存として扱い、target authorityへ混ぜない。|FR-01 / AC-01,03|CASE-04a/b、CASE-16–19/21|
+|L2-050:300,302変更後|変更後のverification、deployment、operation、re-observation、effectとregression評価を未完義務として別々に保つ。|FR-01 / AC-01,03|CASE-03f,13–16,19,20,22,23,30|
 |L2-050:300過去記録|同一target identity・ticket・episodeの遅着観測は既存episodeへ追加し、元source recordを上書きしない。|FR-01 / AC-02,03|CASE-02,12|
 
 ### LABO-050-FR-01 — 内部改善循環
@@ -1576,7 +1576,7 @@ LABOはFeedbackの評価・candidate提示・変更後re-observationを担う。
 
 - `LABO-050-AC-01` 正常: 11段階すべてを独立した状態として表示する。同一ticket/experiment/target revisionのassignmentとWorker result、評価済みFeedback candidate、OS registration/routing、target-owner change/verification/deployment/operation、変更後のLABO re-observationを結び、source/target revisionと未完義務を保持する。effect評価とregression評価を別の判定結果として記録する。CASE-01をこの正常traceに使う。
 - `LABO-050-AC-02` 未見正常: 同一target identity・ticket・episodeに属する、許可された後続target revisionの遅着re-observationを追加し、既存source recordを上書きせず、過去と現在のrevisionおよび未完義務を区別する。CASE-02を未見正常例に使う。
-- `LABO-050-AC-03` 不成立・責務境界: ticket/experiment/target revision/OS assignment/Worker resultの各欠落・不一致をCASE-03a–e/24–28の単独入力で照合する。registration/target change/verification/deployment/operation/re-observationの各未完、採択前candidateの正本化、過去record上書き、stage順序違反、effectまたはregression評価の欠落、candidate countだけ・Feedback発行だけ・registrationだけ・target changeだけ・CI成功だけの完了主張も、それぞれの独立CASEで完了に補完しない。OS、target owner、LABOの固定責務区分へ原因別に戻し、新ownerを作らない。
+- `LABO-050-AC-03` 不成立・責務境界: ticket/experiment/target revision/OS assignment/Worker resultの各欠落・不一致をCASE-03a–e/24–28の単独入力で照合する。OS assignment側のticket/receipt不備は既存OS境界、Worker-resultのexperiment/target binding不成立（CASE-03b/03c/03e/25/26）は実験評価bindingとしてLABOへ戻し、target authority・変更・検証はtarget ownerに残す。registration/target change/verification/deployment/operation/re-observationの各未完、採択前candidateの正本化、過去record上書き、stage順序違反、effectまたはregression評価の欠落、candidate countだけ・Feedback発行だけ・registrationだけ・target changeだけ・CI成功だけ・verificationだけの完了主張も、それぞれの独立CASEで完了に補完しない。OS、target owner、LABOの固定責務区分へ原因別に戻し、新ownerを作らない。
 
 #### 旧source起点と対応
 
@@ -1584,6 +1584,7 @@ LABOはFeedbackの評価・candidate提示・変更後re-observationを担う。
 |---|---|---|
 |`LEGACY-ASSET-02D897E62EF2FA267267` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md:43–76,162–196`|source/effect/recurrence evidence、before/after、過去baselineを現在のrevisionと混同しないことを再導出。|旧自律loop、recipe promotion、old terminal/routing機構は移さず、固定L2-050のLABO→OS→target ownerへ置換。|
 |`LEGACY-ASSET-0B5B38F146D9538C9A36` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-improvement-loop-acceptance.md:20–42`|source欠落/identity不一致、effectとregressionの別評価、単一greenで採択しないfailure境界を設計材料にする。|旧HAT/HIA実行、命令、runtime、failure codeは移植・実行しない。|
+|`LEGACY-ASSET-EE5DBACC7F28F7D1F605` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md:154–156,237–242`|HAC-P4-02aの条件「repairが成功し再発防止が明確」なら、その修復単位をcloseしrecipeをharness memoryとimprovement backlogへ保存する。反復時のgate/detector/backlog候補化とP4 metricsの改善候補化も保持点として扱う。|旧unit repairのclose/recipe保存と固定050の全循環完了を分離する。後者はtarget変更後の再観測とeffect/regression評価がないと未完了。旧close・memory runtimeは移植せず、既存のLABO評価、OS登録/routing、target ownerの変更/検証境界へ再導出する。|
 |`LEGACY-ASSET-C7F0C3B79CBAA72960BF` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md:33–83`|observable FR/ACと責務/失敗条件を対にする構成を再導出。|旧HR/HAC IDや旧system operationを現行ID/ownerとして流用しない。|
 |`LEGACY-ASSET-FA8C6E69463183D6A19B` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md:31–56`|paired scenario / observable / negative を結ぶ読み方だけを再導出。|旧CI実行・旧oracle passを新しい合格根拠にしない。|
 |UIL-AC-020（LEGACY-ASSET-0B5B38F146D9538C9A36:39）|state order/HEAD/baseline/scope照合とstage skip・別candidate証拠混載の拒否を保持し、固定L2-050の順序・同一identityへ再導出する。|旧state machine/runtime/controlや旧stage固有gateは移植しない。|
@@ -1592,4 +1593,4 @@ LABOはFeedbackの評価・candidate提示・変更後re-observationを担う。
 
 #### L10 CASE索引との対応
 
-`CASE-03g` は同時欠落の非独立ラベルとして保持し、現行fixtureを指す索引にしない。`CASE-10` は既存識別子を保ち、effect-only `CASE-22` と regression-only `CASE-23` の両fixtureを直接参照する。`CASE-07/08/09`も対応先を明示した非独立索引として保持し、これらを追加negativeとして数えない。これらのID分類は現在の定義であり、先行snapshot [a4a365dcdfe824ebb28d040c8bc3bc924556efad](https://github.com/RetryYN/HELIX-HARNESS/blob/a4a365dcdfe824ebb28d040c8bc3bc924556efad/docs/governance/audits/requirements-stage/labo-stage5-review04-root-correction-2026-10-06.md)にある当時の表現とは区別する。先行記録の該当blobは次のappend-only監査で固定する。
+`CASE-03g` は同時欠落案を示す非独立ラベルとして保持し、現行fixtureや索引先を持たない。`CASE-10` は既存識別子を保ち、effect-only `CASE-22` と regression-only `CASE-23` の両fixtureを直接参照する。`CASE-07/08/09`も対応先を明示した非独立索引として保持し、これらを追加negativeとして数えない。先行snapshotは[a4a365dcdfe824ebb28d040c8bc3bc924556efad](https://github.com/RetryYN/HELIX-HARNESS/blob/a4a365dcdfe824ebb28d040c8bc3bc924556efad/docs/governance/audits/requirements-stage/labo-stage5-review04-root-correction-2026-10-06.md)であり、その本文SHA-256は`23c30525763520ff05c41e5da2997cd2ef3604b5ef738d6559fc3981f5776f91`。これは履歴上の参照であり、現在のfixture分類は本本文の定義に従う。
