@@ -589,7 +589,7 @@ AC-035-05はS5-027/028/042および035〜038（旧revision計測、機能数だ�
 
 画面ありかつ合意済みscreen scopeの対象は`mock-promotion`、`design-token-drift`、`a11y-regression`、`visual-regression`、`state-transition-drift`を各々評価する。一軸でもfail/input/schema/oracle/evidence欠落なら該当FE gate全体をfailまたは未評価/保留とし、N/A/passへ変換しない。根拠付き非画面のみFE 5軸の適用外となる。原因別の既存戻し先は、screen有無・適用性・合意scopeの不足がHARNESS-L2-003/008の既存requirement/design責務、ticket/profile選択・省略・回収がHARNESS-L2-005、契約入力・schema・要求意味がHARNESS-L2-008、段階oracleの意味/不足がHARNESS-L2-008/022、選択済みrun/result/receiptがHELIX-OSである。既存親にない024/025/026を戻し先にしない。
 
-選択済み上位testを省略する場合はHARNESS-L2-005に従って理由と回収先ticketを保ち、未回収を完了と扱わない。gate pass、CI green、artifact存在、他scopeのresultからsystem completion、L10 Verified、L11 Accepted、利用者受入を生成しない。90%は運用KPIでありticket合否ではない。
+選択済み上位testを省略する場合はHARNESS-L2-005に従って理由と回収先ticketを保ち、未回収を完了と扱わない。gate pass、CI green、artifact存在、他scopeのresultからsystem completion、L10 Verified、L11 Accepted、利用者受入を生成しない。90%は運用KPIでありticket合否ではない。KPI D-02の適用母集団・期間・分母はL3で照合し、その要求意味を変更する場合はL2へ戻しPO判断を求める。判断前に新しい意味へ置換しない。
 
 | AC | 受入条件と主fixture | 境界 |
 |---|---|---|
