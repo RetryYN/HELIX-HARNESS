@@ -69,3 +69,8 @@ execution_status: designed_only_not_executed
 | L2親 | 独立criterion | 対応関係 |
 |---|---|---|
 | `HARNESS-L2-038` | 独立criterionなし | source closureをfunctional ACで照合し、technical closureを事業成果の代理にしない。 |
+
+
+## Stage 3 親039の業務検証
+
+独立business criterion/oracle/CASEは追加しない。`functional-requirements.md`の039 ACと`functional-verification.md`の同じ対象scope/revisionのfixtureを参照する。UX evidence、PoC、画面数、prototype agreement、L10–L12 observationを事業KPI、事業成果、利用者acceptance、authorityへ読み替えない。
