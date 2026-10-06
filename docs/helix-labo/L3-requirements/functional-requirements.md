@@ -1630,3 +1630,54 @@ LABOはFeedbackの評価・candidate提示・変更後re-observationを担う。
 | paired acceptance consumer | LEGACY-ASSET-437A6A68F9A9E0AE1B、resident-lane-orchestration-acceptance.md:43 | 上記RLO要件のacceptance consumerとして区別する。 | 059への直接要件sourceではない。 |
 | related worker contract | LEGACY-ASSET-9114D4E463E95B67DD0C、worker-common-contract.md:61–62,130–131 | 共通Worker契約の関係範囲を確認する。 | 固定L2-059の比較意味・ownerを上書きしない。 |
 | separate three-lane scope | LEGACY-ASSET-A6926200F28B26300432、three-lane-cloud-governance-requests.md:67–69; LEGACY-ASSET-A26561A0EF7396D8F017、three-lane-cloud-governance-requirements.md:78–79; LEGACY-ASSET-E9D6CA411D75485A0984、three-lane-cloud-governance-acceptance.md:44–47 | 別L1/qualification candidateとそのcontext/consumerとして区別する。 | 059からadmission・qualification lifecycleを新設/必須化しない。 |
+
+
+## Stage 5 — HELIXLABO-L2-060 支援有無の同一設定比較
+
+親: `HELIXLABO-L2-060`、PO登録 `MPR-RC-HELIXLABO-L2-060-002`、`version_target: 1.0`、`unit`。対象は固定採択revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc` の一親だけ。以下はL3/L10候補であり、実測、実験実行、Worker割当、採用判断、受入、実装・運用許可を生成しない。L2本文のdraft metadataと、POが対象revisionを採択した事実は別の状態として扱う。
+
+`HELIXLABO-L2-060` は、同じtask/scope/oracleと同じ元Worker/model/provider/version/effortの下で、選択した作業中支援経路の利用有無だけが異なる比較結果を評価する。支援を実行・割当する能力ではなく、効果・品質・費用・人介入を記録する評価能力である。HELIXLABO-L2-059の比較・全費用原則を再利用し、重複所有しない。
+
+| 固定source | 保つ条件 | 対応ACとL10 | 適用区分 |
+|---|---|---|---|
+| L2:445–449、L11:180–182 | task/scope/oracle、環境・protocolと元Worker設定をarm間で一致させる。支援だけで品質不成立を相殺しない。支援側の追加model/provider/上位Worker/effortは支援の測定対象として費用・時間と共に保持する。 | AC-01/03、CASE-01/03a/05/06/07/09/10/11/18 | 常時の比較条件。支援追加resource自体は禁止しない。 |
+| L2:446–447/449、L11:180–181/184 | OS assignment/result receipt、source/use、review/test、retry/rework/CI/review、追加支援と人の時間・費用、価格source/currency/effective timeを条件に応じて対応づける。 | AC-01/02/03、CASE-01/02/03d/e/12–17/20–25/33–45 | receipt/費用は該当run・選択項目の証拠。既知の人時間量を換算率不明だけで消去しない。 |
+| L2:448/451/453、L11:181/183 | 支援あり/なしの選択経路とgroup leakageを分け、未選択consult/sourceを実行依存にしない。OS-028相談receiptは実相談を選ぶ場合だけ、OS-029は完了したcomposite roundtripを評価対象として選ぶ場合だけ使う。 | AC-01/02/03、CASE-01/02/03b/19/26–28/43 | 選択時依存。未選択経路は非必須。 |
+| L2:449–454、L11:182–185 | 新runの適用OS assignment・必要なSECURITY許可、事前固定HARNESS-L2-022 oracle、原因別の既存戻し先、unknown/unassessedを保持する。 | AC-01/02/03、CASE-01/02/03c/34–38/46 | assignment/許可は新runで該当する場合。片群receiptまたは適用oracleが欠ければ比較成立としない。 |
+
+### LABO-060-AC-01 — 正常候補
+
+合成givenとして、固定L11:181の `PATCH /applications/{id}` oracleを使う。対応する二runは同じtask snapshot、scope、対象revision、environment/toolchain/protocol、元Worker/model identityとmodel/provider/version/effort、開始前に固定したHARNESS-L2-022 oracleを持つ。両runで `draft` 編集は受理し、`approved` 編集は拒否され保存値を変えない。対応OS assignment/result receiptsと、選択した支援source/useの記録を与える。新しいrunのfixtureなら該当OS assignmentとSECURITY許可もgivenに置く。支援側のみINTELLIGENCEの設計/validator/regression sourceと相談・修正指示を選び、元Workerが作業する。支援者、元Worker、independent reviewerは別identityである。必要なconsultation receiptはconsultを選んだ当該runだけに付す。支援に伴う追加model/provider、上位Worker、retry/review、相談、人の調査・修正・確認時間と実費は省略しない。両runの結果receiptを同じoracleで照合する。この合成fixtureは実測済みrunの主張ではない。
+
+### LABO-060-AC-02 — 未見正常候補
+
+未見taskの合成givenでも、task/scope/対象revision/environment/protocol、元Worker/model/provider/version/effort、当該taskの事前oracle、対応する両群のOS assignment/result receiptを揃え、支援経路の選択有無だけを比較する。選択したsupport source/consult/compositeだけを記録し、未選択経路を必須化しない。unknown/missingなreceiptを正常fixtureへ混ぜず、一taskの結果を一般有効性へ拡張しない。これも実測済みrunの主張ではない。
+
+### LABO-060-AC-03 — 不成立・既存責務への返却
+
+L10に置く一項目変異候補を個別に照合し、単一点性は独立reviewで確認する。群間で元Worker設定が異なる比較、対照側への助言漏れ、oracle/task/scope/protocol不一致、選択証拠・assignment・receipt・費用の欠落、failed/unknown runの除外、未価格人時間の0円化、品質不成立の費用相殺、LABOによるrun/assignment生成は成功比較にしない。選択支援proposal/use sourceの欠落はINTELLIGENCE、OS handoff/assignment/result receiptの欠落はOS、oracleの適用・契約不足はHARNESS/requirement owner、必要なdata-use/実行permissionはSECURITY、比較scope/evaluation capabilityはLABOへ原因別に返す。固定sourceでownerを識別できないfieldはunknownを保持し、ownerを創作しない。非独立indexは指定した完全IDの主fixtureを指し、独立fixture・negative分母へ重ねない。
+
+#### 旧source起点と差分
+
+| 旧役割 | 旧asset/path・span | 保持・再導出 | 置換・非継承 |
+|---|---|---|---|
+| 支援loopの直接行動祖先（同一設定の支援有無比較要件そのものではない） | `LEGACY-ASSET-EE5DBACC7F28F7D1F605` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md:147` HR-FR-P2-04。paired acceptance atomは同asset:224 HAC-P2-04b。 | test/oracle→実装/相談→review/指示→修正loop、相談pendingと完了authority境界を意味起点として再導出。 | 旧段階/agent/runtime、harness DB trace、CLI、budgetやapproval markerは移さない。支援有無の同条件効果比較はPO採択L2-060で具体化した差分。 |
+| 旧consumer | `LEGACY-ASSET-44DD86E3DEC09E65EF51` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md:104` HAT-P2-04。`LEGACY-ASSET-20B1CF42FF88724DE8AD` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L6-pillar-unit-test-design.md:49` HU-PILLAR-P2-04。 | 旧要件と対応consumerの関係を識別する。 | 旧test/runtime/CIの実行結果を新acceptance evidenceにしない。 |
+| 関連比較手法sourceとpaired consumer | `LEGACY-ASSET-28FB139B26CD61CC51EE` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md:76–147` R-03..08。consumer `LEGACY-ASSET-A952A3A175EB82A4781B` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md:30–41` AC-003..014。 | 比較軸、task/oracle/protocol、receipt、quality非相殺、cost/provenance/historyを評価方法の関連材料として再導出。 | 同一支援有無の直接要件sourceではない。旧固定provider加点、accepted-change denominator、admission、runtime/CIを移さない。 |
+| 関連effort要件とconsumer | `LEGACY-ASSET-50CA1C554747F12266D3` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md:659–666` RLO-FR-040。consumer `LEGACY-ASSET-437A6A68F9A9E0AE1B9E` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md:43` RLO-AC-030。 | effort evidence、未評価表示、score単独でauthority変更しない意味を関連根拠とする。 | 060はeffortを比較条件/測定fieldとして扱い、旧defaultを実測値・assignmentとして流用しない。 |
+| 関連Worker benchmark要件・paired consumers | `LEGACY-ASSET-9114D4E463E95B67DD0C` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md:61–62,130–131` WCC-FR-07/08、WCC-AC-04/05。consumer `LEGACY-ASSET-C6ADB99F1353965C5449` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/worker-common-contract-acceptance.md:29–30,36` HAT-WCC-01/02/08。 | blind comparisonと重大failure非相殺は比較方法の関連材料。 | worker admission/retirement、blind score authorityを060へ足さない。限定検索では同一元Worker設定のsupport/no-support直接要件を特定していないが、archive全体の不在は主張しない。 |
+| 関連詳細設計/Worker budget（G19 derivationで参照された資料） | `LEGACY-ASSET-1D32912A9A194FEAA7DE` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/harness-agent-lifecycle.md:34–303`、`LEGACY-ASSET-D4E9C31E6AE7D18CA11D` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/harness-agent-lifecycle.md:27–359`、`LEGACY-ASSET-15D88CCE539AA79ED788` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/worker-budget-lifecycle.md:9–55`。 | support actor/lifecycle/effort contextとして役割を区別し、fixed L2-060の同条件比較と費用・時間表示へ必要部分だけ再導出する。 | 旧registry/runtime/adapter/process implementation/worker-budget enforcementを移植せず、L2-060の比較要件sourceや実測値と扱わない。 |
+
+
+限定された旧source検索範囲は `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/` と `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/`。検索語は `worker.*support`、`support.*worker`、`assistance`、`assisted`、`unassisted`、`same.*configuration`、`same.*setting`、「支援有無」、「同一設定」。この範囲では同一元Worker設定で支援有無だけを比較する直接要件source identityを同定していない。archive全体に存在しないとは主張しない。
+
+#### CASE inventoryと固定source trace
+
+現在のCASE定義IDは51件（正常候補2、negative候補41、非独立索引候補8）。単一点性・独立性は独立review未確認であり、ID数や一意性は完全性の証明ではない。L10行はoracleの固定source意味を代替しない。全定義: `L10-LABO-060-CASE-01`, `L10-LABO-060-CASE-02`, `L10-LABO-060-CASE-03a`, `L10-LABO-060-CASE-03b`, `L10-LABO-060-CASE-03c`, `L10-LABO-060-CASE-03d`, `L10-LABO-060-CASE-03e`, `L10-LABO-060-CASE-04a`, `L10-LABO-060-CASE-04b`, `L10-LABO-060-CASE-05`, `L10-LABO-060-CASE-06`, `L10-LABO-060-CASE-07`, `L10-LABO-060-CASE-08`, `L10-LABO-060-CASE-09`, `L10-LABO-060-CASE-10`, `L10-LABO-060-CASE-11`, `L10-LABO-060-CASE-12`, `L10-LABO-060-CASE-13`, `L10-LABO-060-CASE-14`, `L10-LABO-060-CASE-15`, `L10-LABO-060-CASE-16`, `L10-LABO-060-CASE-17`, `L10-LABO-060-CASE-18`, `L10-LABO-060-CASE-19`, `L10-LABO-060-CASE-20`, `L10-LABO-060-CASE-21`, `L10-LABO-060-CASE-22`, `L10-LABO-060-CASE-23`, `L10-LABO-060-CASE-24`, `L10-LABO-060-CASE-25`, `L10-LABO-060-CASE-26`, `L10-LABO-060-CASE-27`, `L10-LABO-060-CASE-28`, `L10-LABO-060-CASE-29`, `L10-LABO-060-CASE-30`, `L10-LABO-060-CASE-31`, `L10-LABO-060-CASE-32`, `L10-LABO-060-CASE-33`, `L10-LABO-060-CASE-34`, `L10-LABO-060-CASE-35`, `L10-LABO-060-CASE-36`, `L10-LABO-060-CASE-37`, `L10-LABO-060-CASE-38`, `L10-LABO-060-CASE-39`, `L10-LABO-060-CASE-40`, `L10-LABO-060-CASE-41`, `L10-LABO-060-CASE-42`, `L10-LABO-060-CASE-43`, `L10-LABO-060-CASE-44`, `L10-LABO-060-CASE-45`, `L10-LABO-060-CASE-46`.
+
+| L10対応条件 | 固定根拠 | fixture |
+|---|---|---|
+| 同一task/scope/oracle・元Worker設定、支援有無のみを比較 | L2:445–449、L11:180–182 | AC-01/03、CASE-01/03a/05–11 |
+| 選択した支援経路、control leakage、consult/composite選択依存 | L2:448/451/453、L11:181/183 | AC-01/02/03、CASE-01/02/03b/19/26–28/43 |
+| receipt、費用・人時間・unknown、quality非相殺 | L2:446–449/454、L11:181–184 | AC-01/02/03、CASE-01/02/03d/e/12–17/18/20–25/33–45 |
+| 事前HARNESS oracle、OS assignment、原因別owner、scope/権限境界 | L2:449–454、L11:181–185 | AC-01/02/03、CASE-01/02/03c/04a/b/34–38/46 |

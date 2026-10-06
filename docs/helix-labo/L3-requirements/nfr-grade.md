@@ -174,3 +174,12 @@
 - NFR-LABO-059-01 比較可能性・費用/時間内訳: 選択されたscope/cohortごとにtask/snapshot、quality/acceptance oracle、decision scope、protocol/scorer/hardware/toolchain、receipt completeness、費目、human quantity、duration、未選択群/未測定状態を別々に記録する。欠測・unknown・未価格化・未完を成功/0へ変えない。分母0/不明では率を出さない。
 - 対象定義はL10-LABO-059の全定義83件。正常/未見正常とnegative、compound CASE-30、non-independent index CASE-22/33–36を分類別に集計する。独立fixture設計は77件（既存54＋追加23）、compound1件・index5件は分母外。これは設計上の件数で、実測母集団や成功件数ではない。
 - CASE-NFR-LABO-059-01は実行記録ではない。CASE-64ではprovider labelのみの入力差とactual model identityを分離し、score invarianceを別観点として数える。人間調査/検証時間は貨幣費用と別fieldとする。
+
+
+## Stage 5 — HELIXLABO-L2-060 技術計測候補
+
+以下は未計測の候補設計であり、固定L2/L11の意味・owner・version_targetを変更せず、最低N・成功率・SLA・順位閾値を加えない。
+
+- `NFR-LABO-060-01` 比較条件・quality・費用/人時間trace: 選択scope内のtask/snapshot、同一元Worker設定、支援有無、事前oracle、OS assignment/result receipt、選択support source/use、追加resource、retry/rework/review/CI、人作業数量・実費、price source/currency/effective time、failed/unknown/missingを個別に記録する。human quantityと金額は分離し、unknown/missing/未完をsuccess/0へ変換しない。これは測定設計であって測定値ではない。
+- L10の現在のCASE定義IDは51件（正常候補2、negative候補41、非独立索引候補8）。単一点性・独立性は独立review未確認で、ID数や一意性は完全性を証明しない。CASE-22/23/26/27/29/30/31/32は案上の索引で、個別fixture/negative分母へ重ねない。詳細をL10 functional verificationで照合する。
+- 分母0/不明なら率を算出しない。source/owner不明はunknownのまま保持する。固定親にない数値thresholdや試行条件を新設せず、実行済み結果を主張しない。
