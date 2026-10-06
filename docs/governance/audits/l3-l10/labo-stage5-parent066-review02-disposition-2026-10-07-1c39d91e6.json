@@ -1,0 +1,74 @@
+{
+  "record_type": "review02-residual-disposition",
+  "body_revision": "1c39d91e6ce26f1b8dee2a92c1f4fab8c94fcf11",
+  "prior_review_head": "927f906559359383cdeee7728ce840c1e0c0826d",
+  "formal_review02": {
+    "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6021867857",
+    "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2635#issuecomment-6021867857",
+    "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2635",
+    "id": 6021867857,
+    "node_id": "IC_kwDOTG8BRc8AAAABZu5pUQ",
+    "user": {
+      "login": "RetryYN",
+      "id": 131282486,
+      "node_id": "U_kgDOB9M2Ng",
+      "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/RetryYN",
+      "html_url": "https://github.com/RetryYN",
+      "followers_url": "https://api.github.com/users/RetryYN/followers",
+      "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+      "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+      "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+      "repos_url": "https://api.github.com/users/RetryYN/repos",
+      "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "created_at": "2026-10-06T17:34:58Z",
+    "updated_at": "2026-10-06T17:34:58Z",
+    "author_association": "OWNER",
+    "body": "## review02（independent review、PR #2635 親HELIXLABO-L2-066、HEAD 927f906559359383cdeee7728ce840c1e0c0826d、本文 bea34ae00、base main a1bcdba15）：Opus no_findings／Fable「承認してよい」\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。\n\n### Opus（条件1）\n- **本文の差分**：b4349a53cからの本文の差分は、FR-03・AC-02・AC-03の3行、NV-01の1行、FVのCASE-02/17/18/19/46/48の6行の書き換えと、CASE-49〜56の8行の追加だけ。\n- **review01 M1の解消**：\n  - CASE-49〜56が、評価材料だけから`effect_achieved`、`experiment_run_permission`、`selected_worker`、`selected_repair_method`、`worker_assignment`、`repair_method_assignment`、`worker_started`、`repair_method_execution`を生成する誤出力を、それぞれ入力不変・誤出力1点で拒否する。定型8行は代表行を全文で読み、可変語（field名）以外が全行で一致することを確かめた。\n  - CASE-46/48の「assignment一般の境界は追加しない」「effect_achieved等の隣接fieldへ禁止範囲を広げない」は消え、別CASEで照合する書き方になった。\n  - FR-03とAC-03の生成禁止の列挙に、効果達成、実験/run許可、Worker/修復器の選定・割当・起動・実行が入った。\n  - 固定L11「未見・権限境界」（318ec4a labo-acceptance.md:267）、L2-066（labo-requirements.md:520、:526）と一致する。\n- **review01 M2の解消**：CASE-17/18/19、FR-03、NV-01が、task/scope/target revisionの入力recordの不一致を「OSまたは観測source」へ返す。oracle/acceptance適用性はHARNESSまたは要求owner、comparison scopeはLABOに置いた。L2-066:526、L2-059:429、L2-060:454と一致する。\n- **review01 M3の解消**：AC-02とCASE-02が、未見caseのoracle適用性不足をHARNESSまたは要求ownerへ返し、A identity/conditionの不足はその入力の既存sourceへ戻す。L11:267、L2-066:526と一致する。\n- **差分外の行**：review01（comment 6021667388）のブラインド照合と継続照合で、全行を照合済み。未確認範囲は0。\n- **新しい処置監査**：review01 commentのbytes（7801）とSHA `028f68b0…`がJSONに入っていて、APIのbody原文と一致した。JSONのSHAは`33019837…`。JSONは引き続き`/tmp/root-labo066-body-checkpoint.json`を参照している（R10）。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功（baseからは追加だけ）\n  - origin/mainとの`merge-tree`は衝突なし\n  - CASE定義行は60\n\n**判定：no_findings（未確認範囲0）**。\n\n### Fable（条件2）\nFable advisor（Fable 5.1）は、本HEADでブラインドに照合した。監査、PR comment、旧所見は見ていない。読んだのは次のとおり。\n- 318ec4aのL2-066（518–528）とL11-066（261–268）、§24表の関係行\n- 依存先のL2-055/059/060/061の該当箇所\n- 採択記録（PO判断記録の81行）\n- 6本文の追補137行（削除0）\n\n固定文を24群に種類分けし、対応CASE・ACに結び付けた。pin digestがPO採択行と一致すること、CASE 60行・ID重複0、定型行群の一致も機械確認している。\n\n結論は原文のまま「**承認してよい**」。Majorは0件。\n- 比較条件7要素と、固定L2の生成禁止5要素の全部に単独fixtureがある。L11の禁止列挙も、authorityの総称を除いて具体fieldで被覆されている。\n- 生成拒否fixtureはCASE-44〜56の13行。\n- 戻し先は固定親の区分名（HARNESS/要求owner、OS、観測source、SECURITY、LABO）か、066が再利用する059の戻し先行に辿れる。宛先のない項目はunknownを保持し、個別ownerを作っていない。\n- 人の判断は不要。\n\n### 後で直す残余（承認を止めない）\nreview01の残余R1〜R12（comment 6021667388の原文）を引き継ぐ。Fableの今回の残余のうち、次のものは既存の残余と重なる。\n- `LABO-066-BV-01`のL3側の対応がない → R2\n- CASE-09の戻し先の狭さ、CASE-42の宛先 → R5・R7\n- 「review05 m3/m5/m6」の由来記述 → R9\n\n既存の残余と重ならないものは、次のとおり追加する。\n- **R13（表の構造、優先）**：FV:3243の段落（「この表は候補fixture設計である…」）の直後に、空行とheader行なしでCASE-49〜56（3244–3251）が続いている。GFMではこの8行は表として読まれず、段落の続きになる。review01 M1を解消したfixtureがこの8行なので、機械で表を読むと生成拒否fixtureが落ちる。同じ段落の「CASE-44..48はこの候補内の安定ID」も、49〜56に触れていない。\n- **R14（件数）**：L10の見出しは「52 CASE」（FV:3176）だが、定義行は60（索引2行を除いて58）。本文の「旧47 CASE ID」との関係も本文内で説明されていない。\n- **R15（時点の文言）**：FR-01の「比較開始後に…変更しない」は、固定親の「結果後／結果を見る前」より早い時点を指しうる。CASE-21/09/43は固定親どおり「結果後」で書かれている。\n- **R16（単独fixtureの不足）**：「修復器の実装」の生成拒否（L2:520）、「authority」総称の生成拒否（L11:267）、「欠測caseを除いて率を改善」の単独変異（L2:525）。いずれも近接fixtureで間接に被覆されている。\n- **R17（索引）**：CASE-04aだけがあり、CASE-04が存在しない。\n\n### 条件3：6本文のbytes（本HEAD）\n| path | SHA-256 |\n|---|---|\n| docs/helix-labo/L3-requirements/business-requirements.md | `77f70aa2429d3aa7e447b1892eeb7f761606a9da945760f9415e0c64648ecd39` |\n| docs/helix-labo/L3-requirements/functional-requirements.md | `8827b5e3ae820b31b29745ecebc50b7f7cbbc0051f6c9eae083be49cbf2faafe` |\n| docs/helix-labo/L3-requirements/nfr-grade.md | `548dfc3f85f9b27f1926a9d2e5883bfb6e14768a61cf4cbf87f95cdfca89009c` |\n| docs/helix-labo/L10-verification/business-verification.md | `b2af1cc8c934864d211219b4a60fd563a5fa159ea6552f58e01b34bcdaf0cb7d` |\n| docs/helix-labo/L10-verification/functional-verification.md | `4244a25c5e85c4903bc68d39fa2bafdf4b29d2ce3010291bdb2c1c1734ff5564` |\n| docs/helix-labo/L10-verification/nfr-verification.md | `82f8deea7c1840cbd8141434583a1eb2fac5369ea900a9355df4a2153e89d01b` |\n\n### 判定\n- 本HEAD（本文bea34ae00）で、委任条件1と条件2がそろった。\n- 作成側は、判断記録を追加してよい。判断記録には、本comment、6本文のSHA、残余R1〜R17を固定する。\n- 追加後のHEADで、reviewer側が条件3とpinを照合する。\n- merge admissionは、本commentから生成しない。\n",
+    "reactions": {
+      "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6021867857/reactions",
+      "total_count": 0,
+      "+1": 0,
+      "-1": 0,
+      "laugh": 0,
+      "hooray": 0,
+      "confused": 0,
+      "heart": 0,
+      "rocket": 0,
+      "eyes": 0
+    },
+    "performed_via_github_app": null,
+    "minimized": null,
+    "pin": null
+  },
+  "formal_body_bytes": 6805,
+  "formal_body_sha256": "758d6023f71dd701a96506ba3530f28fc7b709c99171223a827100055ff0a53c",
+  "changes": {
+    "R13": "49–56行を同じGFM表へ移動。row bytes不変。",
+    "R14": "60定義、旧47+追加13、索引2を除く58を明記。",
+    "R15": "結果閲覧前固定・結果後変更拒否へ固定親どおり補正。"
+  },
+  "remaining": "review01 R1–12/review02 R16–17は原文保持。R13–15補正は独立review待ち。",
+  "six_full_sha256": {
+    "docs/helix-labo/L3-requirements/business-requirements.md": "77f70aa2429d3aa7e447b1892eeb7f761606a9da945760f9415e0c64648ecd39",
+    "docs/helix-labo/L3-requirements/functional-requirements.md": "39f1eafefbe17238a6c797655dbf6690e3c0e089c1076a464e17d4bb2add1c9d",
+    "docs/helix-labo/L3-requirements/nfr-grade.md": "548dfc3f85f9b27f1926a9d2e5883bfb6e14768a61cf4cbf87f95cdfca89009c",
+    "docs/helix-labo/L10-verification/business-verification.md": "b2af1cc8c934864d211219b4a60fd563a5fa159ea6552f58e01b34bcdaf0cb7d",
+    "docs/helix-labo/L10-verification/functional-verification.md": "9f144a92252a61d9b6bdace46ccb0c385b4be026da791adcc0ad1f5731bd1e2c",
+    "docs/helix-labo/L10-verification/nfr-verification.md": "82f8deea7c1840cbd8141434583a1eb2fac5369ea900a9355df4a2153e89d01b"
+  },
+  "checks": {
+    "contiguous_six_column_rows": 60,
+    "govcheck": "ok atoms7622 requirements57 files58",
+    "diff_check": "passed"
+  },
+  "authority": "新HEADのOpus/Fable判断を待つ。旧HEADの承認を継承しない。"
+}
