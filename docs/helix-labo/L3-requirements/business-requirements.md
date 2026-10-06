@@ -125,3 +125,13 @@
 | `HELIXLABO-L2-064` | 比較条件と対象scopeに結びついた評価材料を保持し、通常履歴へblindを一律要求しない。評価receiptから実行・採否・assignment/admissionを生成しない。 | `LABO-064-AC-01/02/03`; `functional-verification.md` の064 CASE定義。索引は個別fixtureや独立KPIへ数えない。 |
 
 実測値、成功率、利用者acceptance、OS assignment/admissionの状態は本表から生成しない。
+
+## Stage 5 — HELIXLABO-L2-067 business evidence
+
+固定L2/L11から機能要件と独立したbusiness outcome/KPI/ownerは導かれないため、独立BR/AC/BV/BCASEは追加しない。first-eligible candidate結果と同一Attempt内repair eventはLABO-067 functional ACとFV fixtureで照合する業務上の観測証拠に限り、業務完了、候補採用、資格、実験実行、Worker割当やauthorityを表さない。
+
+| 固定親 | 独立業務条件 | 正本AC / 照合先 |
+|---|---|---|
+| `HELIXLABO-L2-067` | 独立outcome/KPIなし。既存predicate/oracleに基づくcandidate結果と同一Attempt内修復の観測証拠だけ。 | `LABO-067-AC-01/02/03`; `L10-LABO-067-CASE-01/02/03a–g/04a–b/05–23/24–38` |
+
+これは未実行design索引であり、実business outcomeを示さない。
