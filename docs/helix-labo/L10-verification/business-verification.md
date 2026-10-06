@@ -86,3 +86,14 @@
 ## Stage 5 — HELIXLABO-L2-061 業務証拠
 
 `HELIXLABO-L2-061`には固定L2/L11上の独立business outcomeを追加しない。業務側の照合は `LABO-061-AC-01/02/03` と `L10-LABO-061-CASE-01`〜`CASE-114`を使う。実験実行・判断・authorityの発生はこの設計から主張しない。個別fixtureと索引の区別はL10本文に従う。
+
+
+## Stage 5 — HELIXLABO-L2-063 業務証拠
+
+親063に独立KPIや修復成功率targetを追加しない。評価対象episodeの知識保持、再発/反例、未完義務の可視化が業務証拠であり、候補・registration・変更・単一greenだけでは業務完了を示さない。
+
+| 固定親 | 業務上の区分 | 対応先 |
+|---|---|---|
+| `HELIXLABO-L2-063` | LABOは許可された修復観測とepisode知識の範囲評価/保持、OSは既存Feedbackのregistration/routing、対象ownerはadoption/change、HARNESSは選択された変更のverificationを担う。post-operation observation/effect evaluationは後続状態として残す。 | `LABO-063-AC-01/02/03`。L10には旧ID保持、単独候補と非独立索引候補を区別して記録する。 |
+
+個体source/owner identityが固定sourceから決まらない場合はunknownのままにする。G0順序metadata、CASE数、candidate、OS receiptから承認・実行許可・完了を生成しない。

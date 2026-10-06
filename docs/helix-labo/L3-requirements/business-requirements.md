@@ -90,3 +90,14 @@
 | 親 | 独立業務outcome | 正本AC/照合先 |
 |---|---|---|
 | `HELIXLABO-L2-061` | 固定L2/L11から独立したbusiness KPI・ownerは導かれない。task比較の適格/不成立、unknown、既存責務への返却を保持し、比較receiptから判断・permission・assignmentを生成しない。 | `LABO-061-AC-01/02/03` と `L10-LABO-061-CASE-01`〜`CASE-114`。索引行は個別fixtureへ参照し、独立outcomeや二重計数にしない。 |
+
+
+## Stage 5 — HELIXLABO-L2-063 業務境界
+
+`HELIXLABO-L2-063`から独立したbusiness KPI、頻度閾値、修復効果目標は追加しない。業務上の証拠は、修復知識のLABO評価/保持、OSへの登録/routing、対象ownerの採否/変更/検証/運用後観測を別状態でたどれること。candidate、登録receipt、修復成功、局所greenのいずれも全循環の完了を意味しない。
+
+| 固定親 | 業務evidence / 責務 | 正本参照 |
+|---|---|---|
+| `HELIXLABO-L2-063` | LABOは再発・適用範囲・根拠・未完義務を評価知識として保持する。OSは既存Feedback登録/routingを扱う。対象ownerが採否と変更を持ち、HARNESSは選択された変更の検証を担う。source identityが分からない場合はunknownを保持し、generic ownerを追加しない。 | `LABO-063-AC-01/02/03`; fixture・索引・分類候補はL10 `functional-verification.md` の063 sectionに記録する。 |
+
+旧P4-02のrepair単位のclose/recipe保存は現063 cycleの全段階完了とは分ける。HMC-BR-003に基づくknowledge responsibilityを保持し、旧memory runtimeや自動採用権限を戻さない。
