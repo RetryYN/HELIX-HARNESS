@@ -192,3 +192,26 @@ NFRの分母は許可された選択scope内のrunであり、CASE定義数で�
 | unknown routing | CASE-20–25/28–32でroute roleが固定L2にある状態とspecific source/person identityが不明な状態を組合せる。 | 既存OSまたは識別可能なsource-owner roleを保持する。個別identity unknownを既知ownerまたは新ownerで埋めない。 |
 
 固定数値threshold、severity分類、観測期間の値、性能目標は測定案に含めない。測定不能/未観測は失敗0または成功ではなくunknown/未評価のままにする。
+
+## Stage 5 — HELIXLABO-L2-070 補助運用telemetryとAttempt scorecard併記
+
+固定親はPO live26の49行が採択した `MPR-RC-HELIXLABO-L2-070-001`。source revision `ea6f756f96a7370de78e412d737c7a7ed472114a` のL2:561–574 SHA `07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533`、L11:297–307 SHA `c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1`をraw-LFで照合した。旧候補が参照した0abb2894の同範囲とbytesは一致し、採択状態はPO記録で確認する。
+
+実行前の測定設計候補。旧84 literalとraw ID/hashはJSON監査側に保持し、現行FVは旧84 IDを6列へ意味再導出し、CASE-85およびCASE-86..98を加えた98行の候補とする。以下は各測定軸に対する観測/判定材料で、実測結果ではない。
+
+| 測定軸 | 合成入力・比較 | 判定材料 |
+|---|---|---|
+| duration | 4個別fieldのsource-defined start/end, clock, unit, occurred/observed time, scope/windowを与え、既存CASEの単独欠落/unit mismatch/overlap変異を適用。 | 各field独立。欠落/invalidはunknown。重複を排他按分せず、059 wall-clockへ再定義しない。 |
+| escaped defect | 既存oracle/revision、受入済対象・scope・acceptance boundary後のverified event relationを与え、CASE-03e/10/11/56–58/64の各条件を別々に欠落。 | 対象/oracle/event relationが検証できた範囲だけ提示。CASE-10は入力oracleが有効なままescaped-defect誤出力を拒否し070出力処理を訂正する。母数・完全性不明はunknownでcount/rateなし。severity/window/thresholdを足さない。 |
+| rollback/Recovery | source event・result receiptを正常観測し、CASE-03f/g/59–62/70とCASE-85の単一field変異を適用。 | missing receiptはunknown。059と同一receiptを一回参照。観測値をrollback action/permissionへ変換しない。CASE-85/90/91はtrigger/permission/execution出力を各単独で拒否する。 |
+| overhead | direct measured observer-resource receiptを与え、CASE-03h/12/71でreceiptだけ欠落・対象workへの二重算入を変異。 | source定義単位の直接計測だけ保持。unknownはunknown、0や根拠なき推計値にしない。 |
+| freshness | source effective/occurred timeとobserved timeを正常に与え、CASE-03i/14/15でtimestamp不正/欠落とage起点の権限生成を個別に変異。 | age観測値またはunknown/invalidのみ。CASE-15の入力は有効であり、ageからのauthority/permission誤出力を拒否して070出力処理を訂正する。expiry/適格性/採否/許可を生成しない。 |
+| co-present metrics | 適用可能な067 first-eligible/same-Attempt repair fieldsと068 total Attempt fieldを各元receipt・revisionで示し、CASE-16–21/65–73を照合。 | identity/grain/revision/scope/receiptを分離し換算・合算・代替しない。CASE-19は正常な067/068入力の換算誤出力を拒否して070出力処理を訂正し、CASE-68はtotal Attempt countとresult stateの双方をunknownとする。欠落は原因別の既存責務区分へ返し、個別identity unknownを分ける。 |
+
+window/threshold/severity/expiryの数値評価は行わない。固定親にない性能値や集計閾値を合否oracleへ足さない。
+
+### 固定親の出力境界
+
+| 検証対象 | 合成入力・比較 | 判定材料 |
+|---|---|---|
+| authority/操作・source生成拒否 | 有効CASE-01 inputへ、CASE-85–93/96–98の各出力fieldを一つずつ単独生成する変異を適用。 | 各禁止fieldの生成を拒否し、他の根拠あるscorecard値および既存owner状態を保つ。CASE-10/15/19は正常入力の誤出力として070出力処理を訂正し、入力側ownerへ責務を移さない。 |

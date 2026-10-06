@@ -143,3 +143,19 @@
 | 評価candidate | 提案として返り、ticket・assignment・permission・採否・execution/completionは元ownerの状態で残る。 | 評価結果を操作許可、要求採択、発行、実行、完了へ変換する。 |
 
 これは業務成果の実測やquality closureの認定ではない。
+
+## Stage 5 — HELIXLABO-L2-070 補助運用telemetryとAttempt scorecard併記
+
+固定親はPO live26の49行が採択した `MPR-RC-HELIXLABO-L2-070-001`。source revision `ea6f756f96a7370de78e412d737c7a7ed472114a` のL2:561–574 SHA `07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533`、L11:297–307 SHA `c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1`をraw-LFで照合した。旧候補が参照した0abb2894の同範囲とbytesは一致し、採択状態はPO記録で確認する。
+
+独立した業務成果・採否・運用完了の判定は追加せず、FR-01の観測scorecard境界をbusiness viewから照合する。
+
+| 観測対象 | business-level oracle | 禁止する読替え |
+|---|---|---|
+| 4種duration | 各値は別のsource event境界・clock/unit・scopeに結ばれる。 | queue/review/Human/activeを推定按分または合算して059 wall-clockとする。 |
+| escaped defect | 既存oracle/revisionと、受入済対象への受入境界後verified eventを追跡する。 | 未確認findingをdefectにする、severity/window/合否を新設する。 |
+| rollback/Recovery | 観測済みevent/result receiptを表示する。 | 観測からtrigger・rollback実行・復旧許可を生成する。 |
+| overhead/freshness | overhead直接観測値とtask workを分け、freshness ageをsource時刻に束ねる。 | unknown overhead=0、ageからexpiry/admissionを決める。 |
+| 067/068同時表示 | 各fieldが適用可能なら独立定義とreceiptを同時に示す。 | 換算・合算・代替、未採択値の採択推定。 |
+
+CASE-10/15/19は有効入力に対する070自身の出力誤りを拒否し、正常source/oracle/metricへ不足責務を返さない。CASE-85–93/96–98はFV主fixtureを参照し、固定親が禁じる各単独出力fieldの生成拒否と既存状態保持をbusiness viewから照合する。これらは業務成果や新しい採否/permissionを追加しない。
