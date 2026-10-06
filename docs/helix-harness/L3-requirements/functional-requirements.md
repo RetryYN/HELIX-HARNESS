@@ -761,7 +761,7 @@ FR/ACと対のL10候補CASEは`functional-verification.md`に同じAC IDで置�
 
 HARNESS-L2-041から独立business requirement、business owner、ROI/KPI/商業閾値は導出しない。template atom/gap/candidate rowの存在、coverage、fixture数から事業価値・利用者受入・要求合意・承認を作らない。技術的な抽出contractとbusiness outcomeを混同しない。
 
-### HELIX-HARNESS L2-046 — 機能要件（Stage 3、version_target: 1.0、起草候補）
+## Stage 3 親046の機能要件候補
 
 起草候補。Stage 3、`version_target: 1.0`。対象は採択済みHARNESS-L2-046のFull V workflow条件と、明示的にProduction Scrumが選択・許可されたscopeのScrum slice/backfill条件に限る。候補文書・検証fixtureは採択済みL2/L11本文や運転結果を置換せず、releaseやruntime authorityを付与しない。
 
@@ -777,7 +777,7 @@ HARNESS-L2-041から独立business requirement、business owner、ROI/KPI/商業
 
 **FR-HARNESS-L3-046-03 — scope/source状態と返却先**：style selection、scope/revision、system workflow、applicability、oracle、必要なScrum checkpointがmissing/unknown/conflict/staleなら、他scopeや別revisionから補完せずunknown/未完にする。Full Vの義務不足はScrum条件へ置換しない。workflow/style意味または既存trigger適用条件の不足は、そのscope/revisionや具体source identityを特定できるかにかかわらずHARNESS-L2-002/003の既存責務区分へ返す。verification obligation/V-pair oracleの不足も、個別source identityを特定できるかにかかわらずHARNESS-L2-004/022の既存責務区分へ返す。不足対象の種類で既存責務区分を選び、具体owner identityのunknownは別に保持する。identityの不明を返却停止条件にしない。新しいownerや分類を作らない。
 
-**FR-HARNESS-L3-046-04 — authority非生成**：候補／coverage receiptからL2/L11採択、要求合意、要件承認、OS ticket、OS workflow instance、実行結果、release許可、利用者受入を生成しない。OSはticket/workflow instance/state/runtimeの生成・記録・運転を所有する。
+**FR-HARNESS-L3-046-04 — authority非生成**：候補／coverage receiptからL2/L11採択、要求合意、要件承認、OS ticket、OS workflow instance、OS保存state、OS runtime、実行結果、release許可、利用者受入を生成しない。OSはticket/workflow instance/state/runtimeの生成・記録・運転を所有し、候補は既存のOS保存state/runtimeを変更しない。
 
 **AC-HARNESS-L3-046-01 — Full V正常・12条件**：baselineでFull V style、system workflow revision、適用L1–L5層と段階freeze、12条件各々のapplicability・対応V-pair/oracleを固定する。これらが同scope/revisionで確認できる場合に限り対象workflow coverageを閉じる。Scrum delta/reverse/SR0–SR4/SR4はbaselineにも必須条件にも含めない。
 
@@ -785,4 +785,4 @@ HARNESS-L2-041から独立business requirement、business owner、ROI/KPI/商業
 
 **AC-HARNESS-L3-046-03 — 未見／誤scope／owner**：Full Vで一つの条件またはfreezeを欠落させればscope未完、Scrum scopeで一つのbackfill/SR4 fieldを欠落させれば該当scope未完。Full V fixtureにScrum artifactがないだけなら不合格にせずAC-01を評価する。workflow/style/trigger適用条件の不明はHARNESS-L2-002/003、verification obligation/V-pair oracleの不明はHARNESS-L2-004/022の既存責務区分へ返し、個別source/owner identityのunknownは別に保持する。一般化したownerや新しい分類を作らない。
 
-**AC-HARNESS-L3-046-04 — authority出力の単独拒否**：採択、要求合意、要件承認、OS ticket、OS workflow instance、実行結果、release許可、利用者受入の各出力を個別fixtureで一つずつ生成させる変異を拒否し、他output fieldは変えない。
+**AC-HARNESS-L3-046-04 — authority出力の単独拒否**：採択、要求合意、要件承認、OS ticket、OS workflow instance、OS保存state、OS runtime、実行結果、release許可、利用者受入の各出力を個別fixtureで一つずつ生成させる変異を拒否し、他output fieldおよび既存OS-owned state/runtimeは変えない。

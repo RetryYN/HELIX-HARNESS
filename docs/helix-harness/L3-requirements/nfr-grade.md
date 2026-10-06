@@ -203,7 +203,7 @@ fixture definition数と実測母集団は異なる。対のL10機能総合検�
 
 NFR候補はL10定義の測定母集団の設計にとどまり、抽出器の性能や実行成功を主張しない。
 
-### HELIX-HARNESS L2-046 — NFR候補（Stage 3、version_target: 1.0、起草候補）
+## Stage 3 親046の非機能要件候補
 
 起草候補。Stage 3、`version_target: 1.0`。対象は採択済みHARNESS-L2-046のFull V workflow条件と、明示的にProduction Scrumが選択・許可されたscopeのScrum slice/backfill条件に限る。候補文書・検証fixtureは採択済みL2/L11本文や運転結果を置換せず、releaseやruntime authorityを付与しない。
 
