@@ -202,3 +202,19 @@
 | `LABO-063-NFR-03` authority境界と未完状態 | LABOは知識を評価・保持し、gate強制、canonical write、採否/assignment/permission/authority生成をしない。OS registration、対象owner adoption/change、HARNESS verification、post-operation observation/effect evaluationを別状態に保ち、candidate/receipt/修復成功を完了へ丸めない。 | L3 `LABO-063-AC-03` とL10 `LABO-063-NFR-03` の状態境界を対応させる。固定L2/L11の既存責務区分のみを適用し、generic owner・新threshold・新authorityを追加しない。 |
 
 L10は69個の完全ID定義を保持する。literalから抽出した分類候補は正常5、negative 53、非独立索引11だが、独立性や意味的被覆の検収結果ではない。L10-LABO-063-CASE-58はL10-LABO-063-CASE-13と同じ観測欠落軸を含むため、単独負例の実測分母へ二重計上しない。実測母集団とCASE inventoryを混同しない。固定再発閾値、観測窓、最低試行数、SLA、合格率を新設せず、入力された母集団/閾値が不明ならunknownとする。
+
+### HELIXLABO-L2-065 — 根拠付き測定候補（1.0候補）
+
+以下は固定L2-065/L11-065の測定条件に沿った技術候補であり、実測値・承認値・実装値ではない。各値は対象scopeのreceipt・版に結び付ける。parameterごとのPO確認を要求しない。
+
+| 指標・比較 | 候補と根拠 | 判定時の境界 |
+|---|---|---|
+| qualification | smoke結果とblind full-bench結果を別々に保持し、8軸を同じscope/fixture集合・revision/rubric/scorer/oracleへ結ぶ。必要軸は全8軸を列挙する | 欠落・比較不能は未完/未評価。smoke passのみでfull資格としない |
+| 初回と再試行 | `first_pass`は最初のAttemptに対する適用oracle結果、`retry_count`は初回後のretry数 | 初回失敗・retry成功は`false`とretry数を別fieldに残す。067のfirst-eligible candidate指標へ換算しない |
+| diff/lint | 選択task scopeへ適用する場合のみ、その定義・単位・tool/profile版・receiptを併記 | 全製品共通単位を置かない。適用外は理由付き、適用するが観測不能はunknown、実測0は根拠付き0 |
+| quality/cost | L2-059の品質gateと固定L2-065の費用境界、price source/currency/effective timeを再利用 | 品質/security/scope/検証不能を安価・短時間・平均で相殺しない。欠損費用を0にしない |
+| trend/failure | 同task class・scope・測定定義・revisionの記録を比較候補とする | 条件の違う期間・taskを混ぜない。母集団・件数・sample数の新規規則を作らない |
+
+対象scopeが未選択の通常Worker作業にfull-benchを課さず、別runtime・task・versionへの適格性も推論しない。L2-059等の既決条件外で比較条件や許容差が未決なら値を発明せず、固定L2-065:514に従い該当ownerへ返す。
+
+**旧資産との対応**：形式・測定候補の起点は旧HIL-FR-61/62、HIL-NFR-35、Bench R04/R08である。blind judgeと8軸の同条件評価、taskごとのfirst/retry/費用記録は保持・再導出する。旧sample設定、旧runtime値、旧閾値、旧admission条件は移さない。
