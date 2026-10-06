@@ -3295,7 +3295,7 @@ FVの現行baseline/mutation/oracle文は旧公開文書のliteral copyではな
 
 同一source/revision/scopeでの比較条件、resultごとの成立/不成立/未評価、元closureの不変、evidence-backed relationの根拠、route roleとsource個別identityの別々の記録、評価出力によるticket/authority状態変更の有無を観測する。合格・実行結果は未取得である。本表はfixture候補であり、その行数やID保持から完全性・実行合格を推論しない。
 
-### HELIXLABO-L2-066 — 同条件比較のfunctional verification / 74 CASE
+### HELIXLABO-L2-066 — 同条件比較のfunctional verification / 76 CASE
 
 状態：未承認のL10候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。
 
@@ -3388,7 +3388,7 @@ FVの現行baseline/mutation/oracle文は旧公開文書のliteral copyではな
 | `L10-LABO-066-CASE-62` | `LABO-066-FR-03` | `LABO-066-AC-03` | 合成B0有効比較fixtureの入力・比較目的・両群receiptは固定し、Repairer implementation startは生成されていない。固定PO/L2状態と全入力は不変。 固定L2-066のPO状態を変更しない。 | 単一field mutation: 修復器実装開始状態だけを新規生成する。 他の全入力・出力は不変。 | 修復器実装開始を生成せず、比較材料だけを返す。 旧Bugbot候補の採択/実装禁止を固定L2/L11の範囲で維持し、実装・実験権限や別の人間承認条件を追加しない。 |
 | `L10-LABO-066-CASE-63` | `LABO-066-FR-03` | `LABO-066-AC-03` | 合成B0有効比較fixtureの入力・比較目的・両群receiptは固定し、Repairer implementation artifactは生成されていない。固定PO/L2状態と全入力は不変。 固定L2-066のPO状態を変更しない。 | 単一field mutation: 修復器実装成果だけを新規生成する。 他の全入力・出力は不変。 | 修復器実装成果を生成せず、比較材料だけを返す。 旧Bugbot候補の採択/実装禁止を固定L2/L11の範囲で維持し、実装・実験権限や別の人間承認条件を追加しない。 |
 
-この表は候補fixture設計である。実行、実測、合法control、oracle適用、independent reviewは未実施であり、合格・完全性を主張しない。CASE-44..63はこの候補内の安定IDで、canonical採番の確定ではない。
+この表は候補fixture設計である。実行、実測、合法control、oracle適用、independent reviewは未実施であり、合格・完全性を主張しない。CASE-44..67はこの候補内の安定IDで、canonical採番の確定ではない。
 
 ### unknown理由・影響caseの出力照合
 
@@ -3401,3 +3401,5 @@ FVの現行baseline/mutation/oracle文は旧公開文書のliteral copyではな
 | `L10-LABO-066-r08-affected-case-mismatch` | `LABO-066-FR-02/03` | `LABO-066-AC-03` | Bu: B0と同じ事前固定条件・両群eligible集合Nに合成case Qunknownを含む。Qunknownの既存oracle適用結果receiptは適用不能、その理由は当該sourceが示すscope不一致である。他case/receiptは有効。正常表示は当該理由と影響case Qunknownを示し、Nを保持して比較は未評価・率非出力。 | 出力の影響case identityだけを元receiptと異なる値へ変える。入力・N・他出力は不変。 | 影響case identity表示の誤りを拒否し、当該LABO表示処理の訂正を要する。入力側ownerへ出力訂正責務を移さない。理由がsourceのscope不一致に一致し、影響case identityがQunknownに一致して表示される。QunknownをNから除かず比較を未評価/比較不能・率非出力に保つ。 |
 | `L10-LABO-066-CASE-64` | `LABO-066-FR-02/03` | `LABO-066-AC-03` | CASE-01と同じ有効B0入力・全case receipt。正しい出力はA=(misrepair 1/4, unresolved 1/4)、candidate=(misrepair 2/4, unresolved 2/4)で、群帰属・分母も正しい。 | 出力の`candidate.misrepair_count`だけ2から1へ変える。ほかの分子・分母・群帰属・全receiptは不変。 | candidate側誤修復数の出力だけがreceipt再構成値と不一致なので拒否し、当該数値を2へLABOの比較出力内で訂正する。入力receipt/ownerへ返さず、費用・oracle・分母・他出力を変更しない。合成fixtureで実測ではない。 |
 | `L10-LABO-066-CASE-65` | `LABO-066-FR-02/03` | `LABO-066-AC-03` | CASE-01と同じ有効B0入力・全case receipt。A bundle=(1/4,1/4)、candidate bundle=(2/4,2/4)という各bundle値、N=4、receiptは正しい。 | 出力の単一`group_result_binding` mapだけでAラベルとcandidateラベルへのbundle帰属を入れ替える。各bundle内の値、N、全入力receiptは不変。 | 各bundleの群帰属がreceipt再構成と不一致なので入替出力を拒否し、正しい群bindingへLABOの比較出力内で訂正する。正常なoracle/input receiptを原因扱いしてHARNESS/要求ownerやOSへ返さない。費用や率の閾値を追加しない。合成fixtureで実測ではない。 |
+| `L10-LABO-066-CASE-66` | `LABO-066-FR-02` | `LABO-066-AC-02` | Q1–Q5からなる共通eligible集合N={Q1,Q2,Q3,Q4,Q5}を結果閲覧前に固定し、A/candidate identity/version、task/scope/target revision、適用可能な同一oracle/scorer+revision、protocol/toolchain/environment、period/cutoff、両群の各case result・判定・retry/rework/rescue・費用・時間receiptを提示する。全て合成値。全caseのoracle適用性と比較条件は正常。A群とcandidate群のQ1–Q5 result receiptおよびA群Q5判定receiptは存在する。唯一の欠測はcandidate群Q5のoracle判定receiptである。 | receipt欠測に対する正しいunknown出力対照。入力fieldは変更しない。 | N={Q1,Q2,Q3,Q4,Q5}を保持しQ5をunknownとしてcase ledgerに残す。判定receipt欠測を理由として表示し影響case Q5を明示する。比較を未評価/比較不能とし、両群の割合fieldを出さない。欠測oracle判定receiptを既知のHARNESS/要求owner責務区分へ返し、個別owner identity unknownは別に保持する。合成値で実測ではない。 |
+| `L10-LABO-066-CASE-67` | `LABO-066-FR-02/03` | `LABO-066-AC-03` | CASE-66と同じ判定receipt欠測入力と正しいunknown出力状態を基準とする。N={Q1,Q2,Q3,Q4,Q5}は閲覧前に固定し、candidate群Q5のoracle判定receiptだけが欠測。Q5 unknown・欠測理由/影響case表示・未評価状態・rate非出力は正しい。その他の入力/出力は不変。 | 単独誤出力変異: `eligible_denominator_case_ids` output fieldだけを{Q1,Q2,Q3,Q4}へ変え、NからQ5を黙って除外する。rate fieldはCASE-66どおり未評価/非出力のまま変更しない。 | 誤った分母fieldを拒否し、LABOの出力処理で{Q1,Q2,Q3,Q4,Q5}へ訂正する。Q5はN内unknownのまま、欠測理由/影響caseを保ち、rateは出さない。これはCASE-66の欠測入力に対する正しいunknown出力を壊すLABO出力誤りなので、分母出力の訂正責務をoracle判定receiptのHARNESS/要求owner供給責務へ転嫁しない。個別owner identity unknownは別記する。単一output field変異。 |
