@@ -1824,7 +1824,7 @@ CASE定義数・ID保持だけでfixtureの独立性や意味完全性を認定�
 
 same-attempt修復回数は、最初にeligibleなcandidateから同じOS assignment Attempt内の最終提出までにreceiptで観測できたrepair eventの数とする。eventの順序・identity・重複排除根拠が不明ならunknownとし、0と推定しない。別Attemptを混ぜず、複数Attemptの総Attempt countは算出しない。
 
-065のPO採択指標（最初のAttemptの結果／first_passとpost-initial retry_count）とは別grainである。たとえば最初のAttempt内でineligible C0の後にeligible C1があり、その後修復される場合も、067はC1のoracle結果と同じAttemptのrepair roundを観測する。065 first_attempt/first_passやretry_countへ換算・代替・加算しない。065の採択を依存条件にせず、065の有無にかかわらず同じ入力証拠から067の観測だけを返す。059のquality priority、比較条件、費用・時間・手戻り定義も変更しない。
+065のPO判断「最初のAttemptの結果」とは別grainである。065のfixed本文にあるfirst_pass/post-initial retry_count定義も変更しない。たとえば最初のAttempt内でineligible C0の後にeligible C1があり、その後修復される場合も、067はC1のoracle結果と同じAttemptのrepair roundを観測する。065 first_attempt/first_passやretry_countへ換算・代替・加算しない。065の採択を依存条件にせず、065の有無にかかわらず同じ入力証拠から067の観測だけを返す。059のquality priority、比較条件、費用・時間・手戻り定義も変更しない。
 
 - `LABO-067-AC-01` 正常: 事前に選択されたexisting predicate/oracle revision、OS assignment/AttemptID、候補identity/digestと順序付きreceiptを対応づけ、first-eligible candidateの既存oracle結果と同一Attempt内roundだけを保持する。後続結果でfirst-eligible resultを上書きせず、065と別field/分母にする。
 - `LABO-067-AC-02` 未見正常: 未見task classでも同じ既存predicate/oracleが適用されることをtask/要求owner sourceが示す範囲だけ観測する。適用可否や新revisionを推測しない。

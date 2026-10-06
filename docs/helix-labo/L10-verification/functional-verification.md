@@ -3177,31 +3177,31 @@ CASE IDは旧公開a4 revisionの42定義IDを保持する。索引は定義行�
 
 状態: 未承認L3/L10設計候補。PO row 82のD1条件付き親採択はこのL3 candidateの承認、fixture実行、資格/assignment/permission/completion/Worker起動を生成しない。
 
-**共通正常基準 B0（合成fixture）**: 合成B0: task=T0/scope=S0/revision=V0。既存task contractが事前に定めたeligibility predicate=P0/revision=P0rとoracle=O0/revision=O0rを候補結果前に入力。OS assignment=ASG0、AttemptID=AT0は既存・current・同一scope。比較実施に必要な既存SECURITY許可=SEC0もcurrent/適用scope一致。candidate/event identity・digest・order・eligibility判定receipt・変更receipt・oracle receiptは全て合成値で揃う。C0はP0でineligible、次のC1が最初のeligible candidateでO0結果fail、同じAT0内のrepair event E1でC1→C2、C2の既存O0結果passとして最終提出する。LABOはこの既存receiptを観測するだけ。これは設計用fixtureで、実比較・実権限・実承認・実完了ではない。 すべてsynthetic値で実績ではない。既存30 definitionsはIDと意味を保持しており、raw source literal/hashをauthoring companion JSONに全件収録する。fixture/owner/data valuesは新規authorityではない。
+**共通正常基準 B0（合成fixture）**: 合成B0: task=T0/scope=S0/revision=V0。既存task contractが事前に定めたeligibility predicate=P0/revision=P0rとoracle=O0/revision=O0rを候補結果前に入力。OS assignment=ASG0、AttemptID=AT0は既存・current・同一scope。比較実施に必要な既存SECURITY許可=SEC0もcurrent/適用scope一致。candidate/event identity・digest・order・eligibility判定receipt・変更receipt・oracle receiptは全て合成値で揃う。このfixtureではcandidate identity/digestを含む実行event観測sourceをSRC0、既知責務区分をOS event/record sourceとし、具体的個体owner IDはunknownのままにする。入力identity/digest欠落時もSRC0/OS観測source責務へ不足を返し、個体IDの不明を戻し先欠落に変えない。C0はP0でineligible、次のC1が最初のeligible candidateでO0結果fail、同じAT0内のrepair event E1でC1→C2、C2の既存O0結果passとして最終提出する。LABOはこの既存receiptを観測するだけ。これは設計用fixtureで、実比較・実権限・実承認・実完了ではない。 すべてsynthetic値で実績ではない。既存30 definitionsはIDと意味を保持しており、raw source literal/hashをauthoring companion JSONに全件収録する。fixture/owner/data valuesは新規authorityではない。
 
 | CASE ID | FR ID | AC ID | baseline / fixture入力 | 単独変異・索引役割 | 期待oracle / 戻し先 |
 |---|---|---|---|---|---|
 | `L10-LABO-067-CASE-01` | `LABO-067-FR-01` | `LABO-067-AC-01` | B0（共通fixture定義。未見正常は当該既存predicateの適用範囲内） | 正常fixture（変異なし） | 事前predicate/oracle、Attempt identity、順序付きcandidate digest/eventからfirst eligibleと同一Attempt内roundを再構成し、元digestを維持する。 |
 | `L10-LABO-067-CASE-02` | `LABO-067-FR-01` | `LABO-067-AC-02` | B0とは別の未見task class T1を選び、既存predicate/oracleの適用範囲内である根拠をtask/要求ownerのsourceから与える。残るreceiptはB0相当。 | 未見正常fixture（変異なし） | 既存predicateの適用可能な未見taskだけ照合し、総Attempt countを出さない。 |
 | `L10-LABO-067-CASE-03a` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | predicate revisionだけ欠落 | first eligibleを決めずtask/要求 ownerへ戻す。 |
-| `L10-LABO-067-CASE-03b` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 単独変異: candidate digestだけ欠落。その他の入力はCASE-01と同一。 | candidate resultをunknown/未完としてLABOに保持し、digest提供元が選択入力として識別できる場合はその既存source ownerへ不足を返す。 |
+| `L10-LABO-067-CASE-03b` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 単独変異: candidate digestだけ欠落。その他の入力はCASE-01と同一。 | candidate resultをunknown/未評価として保持し、B0で既知のSRC0/OS event観測source責務へdigest不足を返す。個体owner IDはunknownのまま、既知責務区分とLABO観測義務を維持する。 |
 | `L10-LABO-067-CASE-03c` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 単独変異: repair event orderだけ不明。その他の入力はCASE-01と同一。 | repair countを確定せず、Attempt/event順序を記録するOSへ不足を返す。event identity自体が特定不能ならunknownを保つ。 |
 | `L10-LABO-067-CASE-03d` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 単独変異: eventが別Attempt identityに属する。その他の入力はCASE-01と同一。 | 別Attemptのeventを同一repair roundへ混ぜず、Attempt/assignment receiptを記録するOSへ返す。identityが特定不能ならunknownを保つ。 |
 | `L10-LABO-067-CASE-03e` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 単独変異: duplicate deliveryだけ追加。その他の入力はCASE-01と同一。 | duplicate deliveryを追加roundに数えず、既存OS event receiptへ返す。event identityが特定不能ならunknownを保つ。 |
 | `L10-LABO-067-CASE-03f` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 最終提出から初回candidateを逆算 | first-eligible identity/resultを推定で補わずunknown/未評価を保持し、候補の順序付きeventを持つ既存OS sourceへ不足を返す。 |
 | `L10-LABO-067-CASE-03g` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 単独変異: eligible判定eventだけ欠落。predicate・oracle・candidate digest・Attempt入力はCASE-01と同一。 | first eligibleを推測せず未評価とし、欠落eventの記録はOSへ戻す。event identity不明はunknownを保つ。 |
-| `L10-LABO-067-CASE-04a` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | LABOがcandidateを修復 | 修復を拒否し、既存task/要求ownerのcandidateとOS実行状態を保つ。 |
+| `L10-LABO-067-CASE-04a` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | LABOがcandidateを修復 | 修復を拒否し、受領したcandidate/digestと既存OS実行状態を保つ。candidateの所有者をtask/要求ownerと推測しない。 |
 | `L10-LABO-067-CASE-04b` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | LABOがWorkerを割当 | 拒否しOSへ。 |
 | `L10-LABO-067-CASE-15` | `LABO-067-FR-01` | `LABO-067-AC-03` | 索引参照のみ。独立fixtureではない。 | 索引（独立fixtureではない）: CASE-03aのpredicate revision欠落を参照する。 | 主fixtureのoracleを使い、同じ変異を二重計上しない。 |
 | `L10-LABO-067-CASE-16` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 適用oracleだけ欠落 | 結果をunknownとしtask/要求ownerへ戻す。 |
 | `L10-LABO-067-CASE-17` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 総Attempt countを本候補指標とする | 拒否し本候補のscope外としてsource holdingに残す。 |
 | `L10-LABO-067-CASE-18` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 065 first_passをcandidate resultへ置換 | 別指標を保持し置換しない。 |
 | `L10-LABO-067-CASE-19` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 065 retry_countへ内部repair roundを加算 | 別指標を保持し加算しない。 |
-| `L10-LABO-067-CASE-20` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 入力の059品質gateを不変に保ち、そのquality不成立を許容するgate変更だけをLABO出力へ追加する。 | 拒否し固定親の比較意味を保つ。 |
+| `L10-LABO-067-CASE-20` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 入力の059品質条件を変更せず、quality不成立を許容する新しいquality_gate値だけをLABO出力へ誤追加する。 | 拒否し固定親の比較意味を保つ。 |
 | `L10-LABO-067-CASE-21` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | result receiptだけ欠落 | candidate resultをunknownとしOS record ownerへ戻す。 |
 | `L10-LABO-067-CASE-22` | `LABO-067-FR-01` | `LABO-067-AC-03` | 索引参照のみ。独立fixtureではない。 | 索引（独立fixtureではない）: `L10-LABO-067-CASE-03d` の別Attempt event混入を参照する。 | 主fixture03dを直接参照し、同じ変異を二重計上しない。 |
 | `L10-LABO-067-CASE-23` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 単独変異: first-eligible candidateに適用するoracle revisionだけ欠落。oracle本体・predicate・candidate/event receiptはCASE-01と同一。 | first-eligible resultを確定せずunknown/未評価とし、task/要求ownerへ戻す。 |
-| `L10-LABO-067-CASE-05` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 単独変異: candidate identityだけ欠落。その他の入力は `CASE-01` と同一。 | first eligibleを特定せず、candidate/result source ownerが識別できる場合そのowner、識別できない場合unknown。 |
+| `L10-LABO-067-CASE-05` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 単独変異: candidate identityだけ欠落。その他の入力は `CASE-01` と同一。 | first eligibleを特定せずunknown/未評価に保ち、B0で既知のSRC0/OS event観測source責務へcandidate identity不足を返す。個体owner IDはunknownのまま、既知責務区分とLABO観測義務を維持する。 |
 | `L10-LABO-067-CASE-06` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 単独変異: assignment identityだけ欠落。その他の入力は `CASE-01` と同一。 | 実行を選択Attemptに結ばない 戻し先: OS。 |
 | `L10-LABO-067-CASE-07` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 単独変異: Attempt identityだけ欠落。その他の入力は `CASE-01` と同一。 | roundを数えない 戻し先: OS。 |
 | `L10-LABO-067-CASE-08` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 単独変異: oracle revisionだけが選択scopeの版と異なる。oracle本体・predicate・candidate/event receiptはCASE-01と同一。 | stale/別revisionのoracle判定をfirst-eligible resultへ流用せずunknown/未評価とし、task/要求ownerへ戻す。 |
@@ -3228,3 +3228,4 @@ CASE IDは旧公開a4 revisionの42定義IDを保持する。索引は定義行�
 | `L10-LABO-067-CASE-38` | `LABO-067-FR-01` | `LABO-067-AC-03` | B0の観測入力を不変とし、既存candidate選択状態を入力状態のまま保持する。 | LABO観測出力に新しい`selected_candidate`だけを生成する誤出力を加える。 | `selected_candidate`を生成せず観測材料だけを返し、既存candidate選択状態を変更しない。個体identityが不明でも固定L2の既知責務区分を保持する。 |
 
 新CASE-24–38はCASE-01–23と照合する追加fixture候補であり、欠落個体identityではknown role classを保つ。CASE-29/30/31/32はassignment/SECURITY permission/採否/Worker-start生成という別出力を単独で拒否する。old CASE-04bのWorker assignment拒否もそのまま残し、ID数から意味完全性を主張しない。
+| `L10-LABO-067-CASE-39` | `LABO-067-FR-01` | `LABO-067-AC-03` | B0の観測入力と既存059の費用定義・比較条件を保持する。LABOは既存cost gateを変更していない。 | 入力を変更せず、LABOの観測出力へ既存059のcost gateを変更する値だけを誤追加する。 | cost gateの変更を拒否し、059の費用・比較条件を保持する。067は観測材料だけを返し、誤出力をLABO評価責務へ戻す。 |
