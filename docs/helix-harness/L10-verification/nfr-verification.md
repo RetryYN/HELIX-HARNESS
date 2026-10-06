@@ -145,3 +145,11 @@ NFR CASEは測定candidate分類であり、実測・CI success・performance SL
 |---|---|---|---|
 | `CASE-HARNESS-L10-NFR-036-01` | `NFR-C-HARNESS-036-01` | selected scope内のW観点、4 cross-detection軸、local/CI selected gate契約と条件付きscreen 5軸を区別して記録する。対応するnormal/negative/index CASEはfunctional verificationの036 tableにあり、索引はfixture分母に重ねない。 | 適用scopeごとに観測状態と意味状態を分けて記録し、unobservedを0へ丸めない。全件実行率やperformance SLOを作らない。 |
 | `CASE-HARNESS-L10-NFR-036-02` | `NFR-C-HARNESS-036-02` | NFR-13のKPI D-02について、eligible gate opportunity population、測定window、分子/分母、excluded/missing/failed/censored状態を示す。functional normal fixture `CASE-HARNESS-L10-036-r11-operational-kpi-window-population-normal`は合成9/10例であり固定分母・window長ではない。 | 固定`≥90%`運用目標との比較だけを報告する。ticket-level pass/failへ転用せず、母集団/windowがunknownなら未評価とする。候補windowやcohort比較は技術案であり新しいPO parameter gateを作らない。適用母集団・期間・分母はL3で照合し、KPI D-02の要求意味を変更する場合はL2へ戻しPO判断を求める。その判断前に新しい意味で成立扱いせず、要求意味の変更と技術候補の比較を区別する。 |
+
+## Stage 3 親038のNFR測定CASE
+
+| L10 case ID | NFR候補 | 入力／母集団 | 独立変異 | oracle・限界 |
+|---|---|---|---|---|
+| `CASE-HARNESS-L10-NFR-038-01` | `NFR-C-HARNESS-038-01` | selected source scopeの各適用obligation/endpointのforward・reverse relationと理由付きN/A。 | asymmetric relation/aggregate-only/unjustified N-A/no-finding countを測る。後段未作成はunresolvedとして別count。 | unknownをzeroにしない。全旧source一括走査なし。 |
+| `CASE-HARNESS-L10-NFR-038-03` | `NFR-C-HARNESS-038-01` | capability処置の根拠/authority、吸収先、採択状態、共有oracleを別fieldとして与える。根拠なし却下=`CASE-HARNESS-L10-038-r11-reject-without-basis`、authority欠落却下=`CASE-HARNESS-L10-038-r17-reject-without-authority`、吸収先なし=`CASE-HARNESS-L10-038-r11-absorb-without-target`、unknown採択=`CASE-HARNESS-L10-038-r11-unknown-as-adopted`、candidate承認化=`CASE-HARNESS-L10-038-r11-redesign-as-approved`、共有oracle正常=`CASE-HARNESS-L10-038-r11-shared-oracle-normal`。 | 根拠だけの欠落（`CASE-HARNESS-L10-038-r11-reject-without-basis`）とauthorityだけの欠落（`CASE-HARNESS-L10-038-r17-reject-without-authority`）、吸収先なし、unknownの採択、candidateの承認化を各々測り、共有oracle正常利用も測る。 | authorityまたはsource未提示はunknownとして残す。 |
+| `CASE-HARNESS-L10-NFR-038-02` | `NFR-C-HARNESS-038-01` | 全selected capability identity/count manifest、source atom relation、endpoint/obligation per-stage set。 | set equality、unique IDs、forward/reverse edge、per-stage outstanding obligationsを個別に測る。初期要求形成成立と後続完了claimを別stateに記録する。 | unsupported/unknownとbudget/checkpoint残義務は未完で分母から除外しない。未選択は未観測として別記。 |

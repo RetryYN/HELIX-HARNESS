@@ -1,0 +1,577 @@
+{
+  "record_type": "HARNESS Stage 3 親038 review01作成側補正・監査候補",
+  "status": "tmp候補。本文commit固定済み。Rootの最終検収・独立review未完了。承認/Ready/mergeを生成しない。",
+  "scope": {
+    "pr": 2628,
+    "parent": "HARNESS-L2-038",
+    "old_body_revision": "7dd2072de74b21ecf5d6c11b39d237e2b335efac",
+    "body_revision": "e8fc42a7c304cfe4c1f2a3247fc7a22c6f253f6c",
+    "base_revision": "af93d1f171d994f9fae2e78026b39ac27f896f5c",
+    "changed_canonical_rows": 4,
+    "old_and_current_case_definition_count": 70,
+    "old_and_current_id_sets_equal": true
+  },
+  "formal_comment": {
+    "comment_id": 6017165254,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2628#issuecomment-6017165254",
+    "body_bytes_utf8": 6812,
+    "body_sha256_utf8": "a49cf851b3ad15632c8b5e490454713a174de2ee59c71148388e4481a3a16729",
+    "raw_body_exact": "## review01（independent review、PR #2628 親HARNESS-L2-038、HEAD 7dd2072de74b21ecf5d6c11b39d237e2b335efac、本文 7a70a1e8f、base main af93d1f17）\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。新しい基準（責務優先・変更耐性前提）で照合した。\n- **Opus・ブラインド照合**：固定親（@318ec4a のL2-038:834–889、L11-038:574–636、依存先003/004/008/014/019/022/027/028）と、6本文の追補（+153）だけを渡した。固定親を1文ずつ種類分けし、自分で対応表を作らせた。\n- **Opus・継続照合**：旧#2602の038所見の判定、追補全行、監査、pinの再計算を行った。\n\nFableは、Opusの`no_findings`後の同じHEADでだけ回す。今回は回していない。\n\n### 静的検査（exact HEAD）\n- scfctl：validate 147/0、stale 0、residuals 0。govcheck：ok。`git diff --check`：成功。\n- origin/main af93d1f17との`merge-tree`：衝突なし。6本文はmainの全bytesをprefixとして保持し、追補だけである。\n- PO判断 `po-decision-2026-09-29-57candidates.md` の43行に、HARNESS-L2-038の採択行がある。\n- CASE：038のCASEは70定義で、重複・参照切れは0件。FRのAC表とFVのAC帰属は1対1で一致した。\n- 監査のpin：15件、MPRのsemantic digest 2件、6正本、census 70行、comment本文を継続照合で再計算した。すべて一致した。\n\n### 旧#2602の038所見\n- **解消**：review17 M3、M4、m7、review18 M3、M4、m20、m21、review19 m1、m2。\n- **残余へ移す**：review19 M4（source span不足、selection変更後のstaleの単独fixture）と、review19 m22・review17 m3の一部（英文）。新しい基準では受け皿があり、完了・authorityも生成していないため。\n\n### 所見（Major 2）\n- **M1（観測契約の欠落を、原因の区分に合わないHARNESS-L2-022へ戻している）**：\n  - `CASE-HARNESS-L10-038-r09-004`（observation contractを欠落）と、`r11-as-is-before-observation-contract`は、観測契約の不足を「HARNESS-L2-022の既存stage-oracle owner」へ戻している。\n  - 観測契約は、Reverse段階(2)の内容である。固定親は、source解析の不足を「選択sourceの再観測へ」戻すとし、004/022へ戻すのは「検証義務/oracle」に限っている。022が持つのはProvisional→Integrated→Verified→Acceptedの検証・受入契約で、Reverseの観測契約は持たない。\n  - したがって、直せないownerへ返る経路になっている。#2623 review01 M2、review02 M1（原因に合わない戻し先）と同じ型である。\n  - ブラインド照合はMajor、継続照合は残余とした。Opus側の最終判断は、上の先例にそろえてMajorとする。\n  - →守るべき行：HARNESS-L2-038「保証すること」の不一致の戻し先（L2@318ec4a:862）、「失敗・戻し先」（:873）、L11-038「中断・順序違反の反例」（:636）。\n- **M2（ownerやroutingだけが欠けた完了claimを、どこへ戻すかが決まっていない）**：\n  - `r09-015`は「固定L2/L11に個別owner identityの指定がない」を理由に、owner unknownを返すだけである。\n  - `r09-016`は「戻し先unknownを保持」だけで、どこへも戻さない。\n  - claimの拒否はできているが、欠陥を返す宛先がない。固定親は、不一致をHARNESS-L2-003/004のBackflowに従って最上流へ戻す一般規則（:862）と、trace/impact欠落は003/004という区分（:873）を定めている。L11:614も「既存authorityのownerへ戻す」としている。\n  - 同じ段階(5)の`r09-002`は003/004へ戻しており、扱いがそろっていない。\n  - #2624 review02 M1（担当identityの不明を、戻し区分の未決と混同した）と同じ型である。ブラインド照合はMajor、継続照合は残余とした。Opus側の最終判断はMajorとする。\n  - →守るべき行：HARNESS-L2-038 :862、:873、L11-038 :614。\n\n### 後で直す残余（承認を止めない）\n- **R1（review19 M4の持ち越し）**：source span不足とselection変更後のstaleに、単独fixtureがない（L2:873、L11:602）。同じ型で、L11:604「新規scopeのunknownを過去scopeの失敗へ外挿しない」、scopeだけを変えたときの旧closedの流用拒否、L11:636の再開時の正常例もない。\n- **R2（英文の残存）**：NV-038-01/02、FVの038-01（collection completion unknownなど）、038-02（positive closure）、r09系の「completion claim」など。\n- **R3（戻し先がない）**：`r11-heading-stage-skip`は「戻し先や追加ownerを生成しない」としている。欠けた段階ごとの戻し先は、r09-003/004/017で決まる。\n- **R4（文言）**：`r09-001/005`は「003/004の既存authority境界」と書いている。固定の語は「既存authority owner」（L2:861、L11:613）。\n- **R5（戻し先の分岐が入力で決まらない）**：`r05-root-one-edge/aggregate-only/digest-copy/no-finding-unbound/na-unreasoned`は3つの宛先を併記している。`r05-manifest-*`は、再観測と003/004を併記している。\n- **R6（重複の余地・索引）**：038-12と`r11-shared-oracle-normal`、038-13と`r05-root-aggregate-only`。CASE-08/10/11は互換別名、01〜06/09/13は索引である。L11:600 (d)の「別段階の証拠として再掲」は、digest-copyに束ねている。\n- **R7（明示の不足）**：L2:864–871の依存区分4種、027を条件付きにすること、OS/CIを必須にしないこと、L2:838の029 proposalとCONNECTを持たないことについて、明示の行がない。\n- **R8（ACの定義箇所）**：FR表のAC列はAC-01〜03だけで、AC-04/05は「段階別判定補足」表で初めて出てくる。NFR CASEの行順は01、03、02になっている。\n- **R9（旧sourceの欄）**：HST-HIL-011/018のpathに前置きがない。HAT-HIL-09を直接consumerから外す理由が薄い。\n- **R10（監査の記載）**：\n  - repository外の参照として、`/tmp/harness-stage3-parent038-review19-final-audit-worker.json`、`/tmp/root-harness038-final-body-check.json`、`/tmp/root-harness038-freeze-source-pin-check.json`がある。\n  - md／JSONの「予定path（未配置）」「/tmp候補」という記載が、配置済みの現状と合わない。\n  - 「602を612へ訂正」という説明は、review19 M4がL11:602（未見scope）を正しく指していた経緯と合わない。\n\n### 判定\nblocker 2（M1、M2）。Major 2、残余10。委任承認は成立しない。Readyにはしない。merge admissionは本commentから生成しない。M1・M2を直したHEADでOpusが`no_findings`なら、同じHEADでFableを回す。\n",
+    "raw_comment_source": "/tmp/root-pr2628-current-comments.jsonから抽出したGitHub API body。raw body bytes/hashを保持。"
+  },
+  "review_method_reference": {
+    "id": 6013171449,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2623#issuecomment-6013171449",
+    "body_bytes": 2797,
+    "body_sha256": "0b006af0afa42c32b0ae36f105d8f909d237fea019e087a6cb6a2b373fbcf730",
+    "raw_comment_body_utf8": "## review基準の見直し：責務を優先し、変更耐性を前提にする（review_merge lane）\n\nこのcommentは、review結果ではない。承認、Ready、merge admissionは生成しない。人（ユーザー）と相談して決めた、review側の基準の変更を伝える。直前のcomment「網羅表を1文単位にすること」のうち、完全性を求める部分は、この内容で置き換える。\n\n### 根拠\n`docs/governance/github-upstream-operating-model.md`「人に承認を求める回数を減らす」は、次のように定めている。\n- 承認済みの文書は、やってみて分かったことで直してよい（変更耐性）。\n- 承認済みのL3／L10は、親L2の意味・範囲・担当・版が変わらない限り、新しいrevisionで見解の一致をやり直すだけで直せる。\n\nこれまでのreview側は、「固定L2/L11の列挙項目ごとに単独fixtureがなければMajor」という基準で完全性を求めていた。この基準は運用モデルより厳しく、照合が収束しない主な原因だった。これはreview側の判断の誤りである。\n\n### 新しい扱い\n**Major（承認を止める）**：責務と境界の誤りに限る。\n- 戻し先が固定親の区分にない、または宛先が決まらない。\n- 承認・合意・完了・authorityを生成する。または、生成を拒否するfixtureがない。\n- L3がL2の意味・範囲・担当・版を変える。\n- oracleが弱く、誤った完了が通る。\n- 既存の境界チェックを消している。\n\n**残余（承認を止めない）**：次のものは記録し、後の変更で直す。\n- 例示・列挙の項目ごとに単独fixtureが足りないこと。ただし、上のMajorに当たる禁止は除く。\n- 束ね。\n- 索引・別名・件数・行参照・文言・英文の不一致。\n\n**残余の扱い**：\n- 運用モデルでは、Minorを返すかどうかはOpusが決める。残余は返却findingにせず、PR commentと判断記録に「後続で直す残余」として残す。\n- 返却findingが0件で、未確認範囲が0件なら、Opusは`no_findings`とする。\n- 作成側は、残余を同じPRで直してもよい。次の機会に回してもよい。\n\n**網羅表**：完全性の証明には使わない。変更のときに影響範囲をたどる索引として残す。表に行のない固定文があっても、それ自体は残余として扱う。\n\n### すでに出したreviewの扱い\n- 未解消のreview所見は、次のreviewのとき、この基準で読み直す。上のMajorに当たらないものは、残余へ移す。\n- 移した結果は、次のreview commentに一覧で記録する。\n- 過去のcommentは書き換えない。\n",
+    "principle": "責務・境界・誤完了をMajor基準とし、例示列挙不足だけではfixture追加を強制しない。",
+    "interpretation": "comment 6013171449で定められた影響索引/件数の扱いを参照。review結果や承認ではない。"
+  },
+  "body_and_prefix": {
+    "canonical_document_pins": [
+      {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "body_revision": "e8fc42a7c304cfe4c1f2a3247fc7a22c6f253f6c",
+        "body_bytes": 192140,
+        "body_sha256": "1c98e9a404814d92e45e4ef5a0c2c072279cdd84ec549c0db6796460b60d62eb",
+        "base_revision": "af93d1f171d994f9fae2e78026b39ac27f896f5c",
+        "base_bytes": 183844,
+        "base_sha256": "52c4508e1132d968164817ba149b86a065774f734923179315b5139472cc6e71",
+        "base_prefix_exact": true,
+        "suffix_bytes": 8296,
+        "suffix_sha256": "c3a37f4daf53052bac46c323eca01bf7cdb14b6aedffebff809a886730f47830",
+        "worktree_equals_body": true
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+        "body_revision": "e8fc42a7c304cfe4c1f2a3247fc7a22c6f253f6c",
+        "body_bytes": 12211,
+        "body_sha256": "441ac72d8cfeb31140cc5def235506c126c905c362a088b6cf22b04356ea7b46",
+        "base_revision": "af93d1f171d994f9fae2e78026b39ac27f896f5c",
+        "base_bytes": 11947,
+        "base_sha256": "8d9ff117985de5c3565ebb6923e334cbcffff8c01583d64fc007450feb5a24f3",
+        "base_prefix_exact": true,
+        "suffix_bytes": 264,
+        "suffix_sha256": "e047ec92a31c82c8c339796ea13082175f94e732a2ea9f24734858f0db25439c",
+        "worktree_equals_body": true
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+        "body_revision": "e8fc42a7c304cfe4c1f2a3247fc7a22c6f253f6c",
+        "body_bytes": 41391,
+        "body_sha256": "1200f38ebf67857c8886ca0fdf0c9d00855142b662b6bb789336cf0f87cf77fd",
+        "base_revision": "af93d1f171d994f9fae2e78026b39ac27f896f5c",
+        "base_bytes": 40853,
+        "base_sha256": "880d3bd3d41ab93a1c9ffd1fdf16916903dbff37707d19b569e7d378338e6c21",
+        "base_prefix_exact": true,
+        "suffix_bytes": 538,
+        "suffix_sha256": "a8d946e9d75a687fe927bf7bbb86ec31d5a032878565de70892179a226e25c60",
+        "worktree_equals_body": true
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "body_revision": "e8fc42a7c304cfe4c1f2a3247fc7a22c6f253f6c",
+        "body_bytes": 511260,
+        "body_sha256": "8fbd2ba308ced39a78a28844daf6b2e094d71d58d6e87ca8470a282a24660992",
+        "base_revision": "af93d1f171d994f9fae2e78026b39ac27f896f5c",
+        "base_bytes": 479788,
+        "base_sha256": "cc318cd891f6a61682a9c593d65ba9da5173fdffd32b9150e752cfaea38dbbfd",
+        "base_prefix_exact": true,
+        "suffix_bytes": 31472,
+        "suffix_sha256": "741e575bb3667ca51d9ac3e07602e88d50b772f11388de2f33d3f6c7e7a00cdb",
+        "worktree_equals_body": true
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/business-verification.md",
+        "body_revision": "e8fc42a7c304cfe4c1f2a3247fc7a22c6f253f6c",
+        "body_bytes": 7920,
+        "body_sha256": "2973a00bfcb83ac1cc0d46dc53a2de4556a6d89fae2c7835ec1e36085c346565",
+        "base_revision": "af93d1f171d994f9fae2e78026b39ac27f896f5c",
+        "base_bytes": 7679,
+        "base_sha256": "fe7eea1c182863b0f523dd32fbb3a14a13e4ef72fad57796452dc2e2a6e29ddd",
+        "base_prefix_exact": true,
+        "suffix_bytes": 241,
+        "suffix_sha256": "f1b43a91c216ce1d495bdaaa546159b3881a0a942f9acf1fb867f7f7b1738f42",
+        "worktree_equals_body": true
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+        "body_revision": "e8fc42a7c304cfe4c1f2a3247fc7a22c6f253f6c",
+        "body_bytes": 34729,
+        "body_sha256": "620094997cbd66e07ac32f94c16c8632f323569ff752d99774575b354bf72385",
+        "base_revision": "af93d1f171d994f9fae2e78026b39ac27f896f5c",
+        "base_bytes": 32824,
+        "base_sha256": "c93b4d45340f3a219e074af9d031999de7883c955ebb97ab1a7856412e32bc7f",
+        "base_prefix_exact": true,
+        "suffix_bytes": 1905,
+        "suffix_sha256": "84663af365ace1f389063d1c0c5229651405519f0547a29f615cb92b059248bc",
+        "worktree_equals_body": true
+      }
+    ],
+    "root_reported_static": "Root報告: govcheck 7622/57/58 pass、本文4行/70 IDs/main prefix unchanged。作成側独立検算: 六本文がbody revisionと一致、各文書がaf93 base blobをbyte prefixとして保持、ID集合70一致。"
+  },
+  "changed_rows": [
+    {
+      "case_id": "CASE-HARNESS-L10-038-r09-004",
+      "old_line": 1273,
+      "old_bytes": 368,
+      "old_raw_lf_sha256": "df97905bab6b79e0e65522345ecedc75f3930ca8396a163ac3b43d5013cd92b0",
+      "old_literal_with_lf": "| `CASE-HARNESS-L10-038-r09-004` | `FR-HARNESS-L3-038` | `AC-HARNESS-L3-038-05` | 同一選択source/revision/scopeと他段階evidenceを固定する。 | observation contractだけを欠落させる。 | 観測成立claimを止める。 observation contract不足はHARNESS-L2-022の既存stage-oracle ownerへ戻し、trace不足はHARNESS-L2-003/004へ戻す。 |\n",
+      "current_line": 1273,
+      "current_bytes": 453,
+      "current_raw_lf_sha256": "bb8e2cc9a2c61968245095a6c7fa8681da2920786654adc21d5525efcc7bd4ac",
+      "current_literal_with_lf": "| `CASE-HARNESS-L10-038-r09-004` | `FR-HARNESS-L3-038` | `AC-HARNESS-L3-038-05` | 同一選択source/revision/scopeと他段階evidenceを固定する。 | observation contractだけを欠落させる。 | 観測成立claimを止め、観測契約不足をunknown/未完に保持する。HARNESS-L2-038の固定条件に従って選択sourceを再観測する。source identityに結ばれた既存authorityが未特定ならunknownを維持する。 |\n"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-038-r09-015",
+      "old_line": 1282,
+      "old_bytes": 396,
+      "old_raw_lf_sha256": "387d9c10923a24308a1d55dca2d3f5d6ca57b89de45eff879f822a5e4609a6f4",
+      "old_literal_with_lf": "| `CASE-HARNESS-L10-038-r09-015` | `FR-HARNESS-L3-038` | `AC-HARNESS-L3-038-05` | 同一選択scope内の他段階evidence、gap disposition、routingを固定する。 | completion findingのownerだけを欠落させる。 | completion claimを拒否しowner unknownを保持する。ownerを推測せず、固定L2/L11に個別owner identityの指定がないためowner unknownを返す。 |\n",
+      "current_line": 1282,
+      "current_bytes": 489,
+      "current_raw_lf_sha256": "22b7ab7607eef5bfbb359ce9e44201a4f7b2490fcb211ca324c67da6c7a2ea80",
+      "current_literal_with_lf": "| `CASE-HARNESS-L10-038-r09-015` | `FR-HARNESS-L3-038` | `AC-HARNESS-L3-038-05` | 同一選択scope内の他段階evidence、gap disposition、routingを固定する。 | completion findingのownerだけを欠落させる。 | completion claimを拒否し、具体owner identityのunknownを保持する。trace/impactの不足はHARNESS-L2-003/004の既存Backflow責務区分へ戻す。既知の責務区分と未特定の個別identityを区別し、個別ownerを推測しない。 |\n"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-038-r09-016",
+      "old_line": 1283,
+      "old_bytes": 268,
+      "old_raw_lf_sha256": "d98a3347e38aba8397daa07370f74d03e81727e38f2f5e88fc5be4b698b9ad27",
+      "old_literal_with_lf": "| `CASE-HARNESS-L10-038-r09-016` | `FR-HARNESS-L3-038` | `AC-HARNESS-L3-038-05` | 同一選択scope内の他evidence、gap disposition、ownerを固定する。 | routing先だけを欠落させる。 | completion claimを拒否し戻し先unknownを保持する。 |\n",
+      "current_line": 1283,
+      "current_bytes": 450,
+      "current_raw_lf_sha256": "3384ccd8c2d8affe25374c5439bf86fa11904f5469ee2321c5af69ccba1bf009",
+      "current_literal_with_lf": "| `CASE-HARNESS-L10-038-r09-016` | `FR-HARNESS-L3-038` | `AC-HARNESS-L3-038-05` | 同一選択scope内の他evidence、gap disposition、ownerを固定する。 | routing先だけを欠落させる。 | completion claimを拒否し、trace/impactの不足はHARNESS-L2-003/004の既存Backflow責務区分へ戻す。既知の責務区分を保持し、具体routing先identityが入力から特定できない部分だけunknownとして残す。 |\n"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-038-r11-as-is-before-observation-contract",
+      "old_line": 1289,
+      "old_bytes": 490,
+      "old_raw_lf_sha256": "31ecfc0a42a802240f60702076b347ea147645bc5ddaf8722305c1d1085ab5b2",
+      "old_literal_with_lf": "| `CASE-HARNESS-L10-038-r11-as-is-before-observation-contract` | `FR-HARNESS-L3-038`|`AC-HARNESS-L3-038-05`| 選択scopeにas-is設計/testの証拠はあるが、observation contractはまだ提示されていない。 | observation contractより先にas-is observation成立をclaimする。 | observation contractがない範囲をunknown/未完とし、as-is observation claimを成立させない。observation contract不足はHARNESS-L2-022の既存stage-oracle ownerへ戻す。 |\n",
+      "current_line": 1289,
+      "current_bytes": 570,
+      "current_raw_lf_sha256": "b5f6b0ef006fdceac1e6867f4bb45bb2502308fe2342fac917cc41738dad8a72",
+      "current_literal_with_lf": "| `CASE-HARNESS-L10-038-r11-as-is-before-observation-contract` | `FR-HARNESS-L3-038`|`AC-HARNESS-L3-038-05`| 選択scopeにas-is設計/testの証拠はあるが、observation contractはまだ提示されていない。 | observation contractより先にas-is observation成立をclaimする。 | observation contractがない範囲をunknown/未完とし、as-is observation claimを成立させない。HARNESS-L2-038の固定条件に従って選択sourceを再観測する。source identityに結ばれた既存authorityが未特定ならunknownを維持する。 |\n"
+    }
+  ],
+  "fixed_parent_and_decision": {
+    "fixed_l2_l11_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+    "po_decision_revision": "17a2f310358ee7fe209b9d37cddf4a927c740248",
+    "parent": "HARNESS-L2-038",
+    "mpr_id": "MPR-RC-HARNESS-L2-038-001",
+    "po_row_status": "採択（decision row 43）",
+    "l2_semantic_digest": "dd5b5450801617bbd6cc1dfd2e522420399ec58fb7675a286221dd0d9415767c",
+    "l11_semantic_digest": "dfa3b4c245af3987ee7738cc4a3aa758bb8f113b9d06079362d978ff63731297",
+    "fixed_pins": [
+      {
+        "label": "固定L2-038全文節",
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "start_line": 834,
+        "end_line": 889,
+        "file_bytes": 254934,
+        "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "span_bytes": 12867,
+        "span_sha256": "dd5b5450801617bbd6cc1dfd2e522420399ec58fb7675a286221dd0d9415767c",
+        "literal_with_lf": "### HARNESS-L2-038 候補 — 選択Reverse scopeの内容閉包\n\n**状態**：新規unit候補、`version_target: 1.0`候補、未採択。これはrequirements-stageで照合したHIL-FR-22/35の元条件を、利用者が選んだsource/Full Reverse scopeの内容評価へ限定する提案である。候補の記載はPO判断・実装許可・設計承認を生成しない。\n\n**候補identity / 所属**：`HARNESS-L2-038`、unit、HELIX-HARNESS-CORE候補。旧target crosswalkはFR-22を「HARNESS／OS、コア」(`infinity-functional-target-crosswalk.md:31`)としている。038が定めるのはsource capabilityと要求・設計・検証対の意味上の照合契約である。source型ごとの抽出は共通部品候補027、入口/HELIX形式の変換とunknownは019、保存設計との比較は028、差分改修proposalの構成は029が所有する。038は抽出parser、CONNECT、OSのticket/実行、設計authority、test実行を所有しない。\n\n**親L1候補**：primary `HARNESS-L1-001`, `HARNESS-L1-003`, `HARNESS-L1-004`, `HARNESS-L1-006`, `HARNESS-L1-008`。001/003/004はV-pair・trace、変更影響/stale、対象revisionに合う検証義務・反例・証拠・戻し先を根拠とし、006はfreeze/完了の区別、008は指示と根拠からの要求形成を根拠とする。`HARNESS-L1-005`は038の結果を外部利用者向けsurfaceとして提供するoperationに限り適用し、内部CORE処理には外部提供条件を一律適用しない。L1は現行revisionのまま扱い、候補から親意味の改訂を推定しない。\n\n**既存要求と境界**：HARNESS-L2-019はFull Reverse入口、変換結果・unknown一覧を所有する。027は明示選択されたsource typeの静的なsource-bound observation、source span、抽出限界を返す。HARNESS-L2-008/024は要求候補の形成・質問・人の訂正/合意への収束を、HARNESS-L2-004はrequirementから設計/testへの影響・traceを、HARNESS-L2-035は候補要求の上流根拠と受入寄与をそれぞれ所有する。038はこれらの責務を置き換えず、「選択した能力を調べた/完了した」と主張できる内容根拠・個別閉包を定める。\n\n**対象とscope**：Full Reverseまたは旧資産の意味照合を明示選択した1つの対象revision・source snapshot・source type・scopeに限るunit。全archive/全製品/全4020 assetを常時走査する要求ではない。作業途中の抽出・調査では未選択sourceや未調査能力をunknown/未完として返せる。\n\n**受け取るもの**：\n\n- 対象製品/projectと対象L1/要求revision・authority状態、選択したFull Reverse/legacy-source scopeと適用範囲。\n- HARNESS-L2-019のintake/result契約。該当source typeを利用する場合は027のsource observation receipt（source revision/digest、選択範囲、根拠span、unsupported/unknownを含む）。019の完了receiptをsource inspectionの開始前提にしない。\n- 対象scopeの能力候補ごとのidentity/source locator/provenance、観測内容、既存要求/候補要求とのrelation、理由付き処置または未決/未観測の記録。外部/旧asset由来の能力とHARNESSが現在所有する要求の意味を混同しない。\n- 当該段階で既に存在する要求・設計・対の検証義務とoracleのrevision/authority状態。まだ生成していない後段artifactは入力必須としない。\n\n**提供するもの**：選択された各能力について、個別に追跡できるcoverage resultを返す。最低限、能力のsource identityと根拠span、内容/適用scope、選ばれた既存処置または候補処置と理由、関連する要求identity/候補、対象revision上で既に存在する設計要素・test/oracle・gateへのrelation、未完義務/unknown/矛盾/戻し先を区別する。旧文にあるdisposition語を必須enumとして固定しない。状態語・採否authorityは現行対象の既存契約とauthority状態に従い、038が決定を発行しない。\n\n**保証すること**：\n\n- 選択scope内で個別能力をまとめた一つのcomposite IDだけで全件閉包としない。完了claimの分母は、選択scopeとsource snapshotに束縛された観測manifest中の全抽出capabilityとする。各capabilityは一意IDで一度ずつ結果へ現れ、抽出manifestと結果の件数・identityが一致しなければならない。未調査、未決、根拠のない却下、要求や適用される検証義務へ孤立した能力を、coverage-completeまたはpair-freeze成立と表示しない。manifestにunsupported/unknown範囲があればゼロ件や対象外へ読み替えず、そのscopeの閉包は未完とする。\n- 各工程の開始時に将来の設計/test/detector完成を要求しない。能力の観測/要求形成段階は、現段階のsource evidenceと上流判断待ち/後段義務を明記すれば成立し得る。設計、対のtest/oracle、適用gate等の証拠は、それぞれの後段artifactがあり、当該段階の閉包・pair-freeze・完了を主張する時点でのみ該当義務について要求する。\n- 各capabilityと、適用対象となるrequirement・basic design・test・detector/gateは、該当endpointが存在する段階では両方向に照合できるrelationを持つ。relationの片側だけが存在し、逆向き照会で孤立が分からない状態を閉包としない。後段endpointがまだ作成されていない途中段階では、将来成果を要求せず未完義務として保持する。適用外をN/A/却下に読み替えず、理由と権限根拠がある場合に限ってその状態を示す。根拠のない`no finding`、空欄、placeholder、旧source文の機械複製、同内容/digestの重複を内容評価または完了根拠にしない。根拠が足りない時はunknown/未完とする。\n- capability observation/candidateと採用済み要求、承認設計、実装、実行成功、利用者受入を別状態にする。処置表現は旧enumを固定しないが、現行status/authority上で「既存義務への採用」「既存義務の強化」「意味を変える再設計候補」「根拠・authority付きの却下/対象外」「既存義務への吸収」「未決/unknown」を区別し、理由と吸収先を追跡可能にする。人の意味判断が既存authority modelで必要ならそこへ返し、038は新しい承認者・承認手順を作らない。\n- 完了claimが対象にするReverse段階では、固定された旧R0–R4名/schemaを要求せず、現行artifact上で以下の内容を検査できること：根拠とsource範囲のmap、観測された契約、現状(as-is)設計とtest、意図仮説と既存authorityによるPO検証状態、残差とowner/routing。R3相当のPO検証は既存authorityへ接続し、038が承認や検証を生成しない。初期観測・要求形成だけの結果は後段内容未完を明示して成立し得るが、当該段階またはFull Reverse完了を主張するのに必要な内容が欠ければclaimを成立させない。\n- 不一致はHARNESS-L2-003/004のBackflowに従い、意味が変わる最上流へ戻す。source解析不足は選択sourceの再観測へ、要求意味は008/024の形成へ、設計境界は014/028へ、検証義務/oracleは004/022へ返す。\n\n**依存区分**：\n\n- **常時必須**：対象revisionとauthority状態、明示されたscope/非対象、HARNESS-L2-010/011の適用pack/input/version契約、038が呼ばれるoperationの019 intake/result境界、要求の形成/trace/Backflowを担う008/024/004の適用契約。作業途中でも選択source identityと観測済み範囲/未完表示は必須。\n- **特定操作時のみ必須**：pair-freeze/coverage-complete/Full Reverse完了/no-findingを主張する時は、当該claimが対象とする全selected capability、適用範囲、個別処置理由と、その完了段階で要求されるdesign/test/oracle/gateの証拠。設計または検証をまだclaimしない段階では未来artifactを要求しない。approvedを主張する場合は既存の対象revision付きapproval evidenceが必要。\n- **選択した入力元に応じて必須**：019 operationで選択されたsource typeの027 observation/receiptと、選択scopeのasset locator・source span・digest・分類/読取許可。未選択sourceや別revisionは未観測とし、存在/不存在、無影響、空と推定しない。\n- **参照資料のみ**：未選択source、背景説明、旧asset全件一覧、旧固定phase名/R0–R4 schema、旧enum、旧runtime/registry/receipt実装。参照しただけでcoverage分母・authority・適用義務にしない。\n\n**単独成立依存**：HARNESS-L2-019の選択scope/結果境界、HARNESS-L2-010/011のpack/input契約、要求形成・trace/Backflowを扱う008/024/004。027は038の特定operationがsource型抽出を要する場合だけ呼び出す入力producerで、027非対応sourceを含む全Reverseに一律依存させない。HARNESS-L2-014/022は該当する設計/検証段階のauthority/oracleとして利用するが、調査開始時の完了receiptを要求しない。OS/CI/実行環境はHARNESS単体成立に必須としない。\n\n**失敗・戻し先**：source revision/scope/span不足、unsupported構文、重複identity、selection変更後のstaleは該当箇所をunknownとして再観測へ戻す。能力の意味/採否根拠が上流にない場合はHARNESS-L2-008/024へ、trace/impact欠落は003/004へ、設計・test/oracleの不整合は014/022または該当ownerへ戻す。工程開始時に将来artifactがないことだけでは失敗とせず、完了claim時に必要な後段義務が未完ならそのclaimを成立させない。\n\n**正常・誤り・未見の判定点**：対L11受入案 [`HARNESS-L2-038`対応のL11受入](../L11-acceptance/product-acceptance.md) に、manifest分母、双方向join、処置意味区分、stage内容のoracleを置く。\n\n**旧HELIXからの再導出（保持と差分）**：\n\n- `LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:112`（SHA-256 `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`）のHIL-FR-22を起点にする。能力ごとのID、扱いと理由、HIL requirement/basic design/test/detector-gateへの双方向関係、未判断/根拠なし却下/孤児/集約だけの閉包をpair-freeze不成立にする意味を保持する。\n- HIL-FR-35は同旧L1 `:125`、同じSHA（旧target crosswalk `infinity-functional-target-crosswalk.md:44`）から、5つの段階内容・PO検証と、空/placeholder/同文/同digest/対象義務未被覆/根拠なしno-findingを内容成立にしない条件を導出する。\n- 差分は対象を明示選択したscopeに限定し、旧固定R0–R4のラベル/schema、状態enum、全旧source一括走査、全製品への一律gateを復活させないこと。ただしFR-35で列挙された段階の意味内容とFR-22の全件・双方向閉包条件は、省略せず現行artifactで検査する。旧FR-22/35のL1/IR atomは新identityの採択、過去データの完了、実装の証拠とは扱わない。\n\n**旧FR-24との境界**：HIL-FR-24は `concept-requirement-po-decision-packet.md:979` と機構crosswalk JSONL:94の既存記録どおり2.0候補（1.0は接続/記録土台）として保持し、本候補へ取り込まない。038はsourceから能力と意味根拠を照合するHARNESS契約であり、外部Product Dataの取得、full/incremental snapshot、watermark、canonical entity mapping、tombstone、schema driftを実装/所有しない。\n\n\n\n**固定照合基準**：草稿が照合した現行本文の基準commitは `afc3963085b53a4bf86ac5da8f7663aef1bed144`。旧source・現行L1/L2/L11のfile SHAは下記出典の固定値を参照する。\n\n**段階の内容依存と中断**：source根拠から観測契約、観測契約からas-is設計/test、これらを根拠とした意図仮説/PO検証、最後に差分/routingという内容の依存を保持する。見出し名を変えただけで段階を飛ばせない。選択scopeで必要なobligationが100%に満たなければcheckpoint後も未完とし、budget途中停止を完了へ丸めない。既存契約上不要な操作の追加はしない。旧受入根拠は `LEGACY-ASSET-AFE91778057B7E76BEEC`、`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md:62`（HOT-HIL-35）、SHA-256 `4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576`。\n"
+      },
+      {
+        "label": "L2-038 source不一致からの戻し先",
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "start_line": 862,
+        "end_line": 862,
+        "file_bytes": 254934,
+        "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "span_bytes": 252,
+        "span_sha256": "e2de8e2568306f833cb1bcb2ade39b1c01f4bea47831ed5c64770cc68a317e8f",
+        "literal_with_lf": "- 不一致はHARNESS-L2-003/004のBackflowに従い、意味が変わる最上流へ戻す。source解析不足は選択sourceの再観測へ、要求意味は008/024の形成へ、設計境界は014/028へ、検証義務/oracleは004/022へ返す。\n"
+      },
+      {
+        "label": "L2-038 source/trace別戻し先",
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "start_line": 873,
+        "end_line": 873,
+        "file_bytes": 254934,
+        "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "span_bytes": 531,
+        "span_sha256": "ea1332ff7495353d5486556609cee636ef3e1483fded62ebbf26348db608aad9",
+        "literal_with_lf": "**失敗・戻し先**：source revision/scope/span不足、unsupported構文、重複identity、selection変更後のstaleは該当箇所をunknownとして再観測へ戻す。能力の意味/採否根拠が上流にない場合はHARNESS-L2-008/024へ、trace/impact欠落は003/004へ、設計・test/oracleの不整合は014/022または該当ownerへ戻す。工程開始時に将来artifactがないことだけでは失敗とせず、完了claim時に必要な後段義務が未完ならそのclaimを成立させない。\n"
+      },
+      {
+        "label": "L2-038既存authority ownerへのbackflow",
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "start_line": 861,
+        "end_line": 861,
+        "file_bytes": 254934,
+        "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "span_bytes": 645,
+        "span_sha256": "9c9baaca98cb4f03703b38d4d14cbe6a3534f0d27cf22be3479a6df74ed922b0",
+        "literal_with_lf": "- 完了claimが対象にするReverse段階では、固定された旧R0–R4名/schemaを要求せず、現行artifact上で以下の内容を検査できること：根拠とsource範囲のmap、観測された契約、現状(as-is)設計とtest、意図仮説と既存authorityによるPO検証状態、残差とowner/routing。R3相当のPO検証は既存authorityへ接続し、038が承認や検証を生成しない。初期観測・要求形成だけの結果は後段内容未完を明示して成立し得るが、当該段階またはFull Reverse完了を主張するのに必要な内容が欠ければclaimを成立させない。\n"
+      },
+      {
+        "label": "固定L11-038全文節",
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "start_line": 574,
+        "end_line": 636,
+        "file_bytes": 172806,
+        "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "span_bytes": 10439,
+        "span_sha256": "dfa3b4c245af3987ee7738cc4a3aa758bb8f113b9d06079362d978ff63731297",
+        "literal_with_lf": "### HARNESS-L2-038 対応L11受入候補\n\n本節はHARNESS-L2-038 unit candidate（`version_target: 1.0`候補、未採択）に対する内容oracle案。詳細な要求は[HARNESS-L2-038](../L2-requirements/product-requirements.md)を参照する。COREが契約と結果を評価し、HARNESS-L2-019はFull Reverseの入口/result境界、選択source型の抽出は必要時に027、設計authorityは014、検証/受入契約は022、requirements formationは008/024、trace/Backflowは003/004が既存ownerである。OSはHELIX管理下のticket/run/証拠運転を担当するが、HARNESS単体の受入成立をOS実行に依存させない。source extraction成功、L2候補、登録receiptだけで採択/承認/Acceptedを推定しない。\n\n全fixtureは対象project、対象L1/要求revision、source snapshot revision/digest、選択source type/scope、authority状態を固定する。status語彙や採否権限は新設せず、既存契約のauthority/statusを入力し、038は当該scopeの内容照合結果と未完義務を返す。\n\n**作業中の観測/要求形成は後段成果を要求しない**\n\n**正常例**：選択した旧API/source fixtureに2つの観測可能な能力がある。027 receiptが各source spanとrevisionを示す。target requirementのauthorityが未決、保存design/testがまだない状態で038を呼ぶ。038は能力を別identityで記録し、各内容の根拠、要求候補/既存要求への関連または未確定、authority未決、将来のdesign/test/oracle義務と戻し先を分けて返す。調査・要求形成段階の結果を未完として明示し、pair-freeze/Full Reverse完了とは宣言しない。この段階で保存design、test result、detector runを要求しない。\n\n**誤り**：設計/testがまだ生成されていないことだけを理由にsource observationや初期要求候補を不合格にする。または逆に、後段成果が未作成なのにcoverage-complete/pair-freeze/Acceptedと表示する。\n\n**選択scope内の閉包claimは個々の能力で確認する**\n\n**正常例**：既存authorityの下で要求が確定し、該当設計要素・test/oracleが作られた後、同一scopeを再評価する。能力Aはsource span→要求r1→design d1→test/oracle t1へrevision-bound relationを持つ。能力Bは適用外または別要求へ戻す根拠と既存status/ownerを持つ。038は選択scopeの個々の能力とclaimされた完了段階だけを照合し、対応済みと未完を分離する。該当するすべての能力が各段階義務へ閉じた場合だけ、そのscope/段階に限った閉包を返す。\n\n**誤り**：能力A/Bを一つのaggregate IDでまとめる、同じ要求/design/testを根拠なしに複数能力へ複製joinする、上流の意味判断をAIが作った候補で自己正当化する、理由のない「不要/却下」でobligationを除外する、source scope外の機能を不存在とする、1段階の完了から後段stageの証明/受入まで推定する。個別relation・根拠・適用scopeが欠ける、または一つでも未判断/孤立が残るときは当該閉包claimを不成立にする。\n\n**正常例（分母と双方向join）**：選択scopeのsource observation manifestがcapability `c1,c2,c3`を含み、038の結果にもこの3件が各一度ずつ現れる。各項目から該当requirement/basic design/test/detector-gateへ辿れ、該当endpoint側からも根拠capabilityへ戻れる。適用されるendpointが後段でまだ無い場合はその義務を未完として表示し、途中結果だけを返す。完了claimではmanifestと結果のidentity集合・件数が一致する。\n\n**誤り例（欠落・重複・片方向）**：manifestに`c1,c2,c3`があるのに結果から`c3`を落としclosedとする、`c2`を同一identityで2回計上する、capabilityから要求へだけrelationがあり逆方向には孤立する、または適用されるdetector/gate endpointとの接続がないのにpair-freezeを返す。それぞれ閉包を拒否し、欠落/重複/孤立するidentityと戻し先を示す。\n\n**空・複製・no-findingの偽閉包を拒否する**\n\n**誤りfixture**：同じselected source setに対して (a) 空のcoverage表、(b) `TODO`等placeholderのみ、(c) source本文を貼り直しただけで意味/根拠を照合していない結果、(d) 同一内容/digestを別capabilityまたは別段階の証拠として再掲、(e) 対象obligationへのrelationがないのに「findingなし/対応不要」とする結果、を個別に与える。これらをsubstantive completion、negative oracle合格、pair-freeze成立として受け入れず、具体的な欠落・unknown・未完を返す。異なる正当な能力が同じ共通oracleを参照すること自体は拒否せず、個別source根拠と適用理由が確認できるかを判定する。\n\n**未見source/変更scope**\n\n**未見例**：同じsource typeの未見fieldまたは新しいselected source revisionを追加する。以前のscope receiptを流用せず、選択範囲とdigestを再固定する。対応可能な範囲はsource span/契約根拠を返し、未知のfield/behaviorはunsupported/unknownとして残す。新規scopeのunknownを無影響/不存在や過去scopeの失敗へ外挿しない。scope変更後に以前のclosed resultを新scopeの成立根拠として使わない。\n\n**処置状態の意味区分**\n\n**正常例**：選択scope内の能力について、現行status/authorityに基づき「既存義務への採用」「既存義務の強化」「再設計候補」「根拠とauthority付きの却下/対象外」「特定の既存義務への吸収」「未決/unknown」を区別する。旧語をenumとして要求せず、処置理由と適用先を辿れる。\n\n**誤り例**：根拠なし却下、吸収先のないabsorbed相当、未決なのに採択済み表示、再設計候補を承認済み要求にする結果を拒否する。対象外の理由と決定authorityが欠ける場合も閉包しない。\n\n**FR-35段階内容のoracle**\n\n**正常例**：固定R0–R4ラベル/schemaを使わない現行artifact一式から、完了claimが対象とする範囲について、(1) source根拠と範囲のmap、(2) 観測契約、(3) as-is設計/test、(4) intent仮説と既存authorityによるPO検証状態、(5) gapとowner/routingを個別に辿れる。設計/test未作成の初期観測では(3)以降を未完として明示し、初期観測結果だけを成立させる。Full Reverseや該当stage完了をclaimする際は、そのclaimに必要な内容が欠けない。\n\n**誤り例**：AIが生成した仮説だけをPO検証済み扱いする、残gap/owner/routingがないのに完了claimする、as-is design/testを含むべき段階なのにそれがなくcoverage表だけで完了する結果を拒否する。R3相当のPO検証が未実施なら、その判断を要する完了claimを保留し、既存authorityのownerへ戻す。新しい承認手続きは作らない。\n\n**受入判定と段階境界**\n\n受入では、選択scope、個別能力identity、provenance/source span、内容根拠、既存authority/status、該当段階のrequirement/design/oracle relation、未完義務、戻し先が辿れることを確認する。L2候補受入は要求採択やL3承認、実装/CI成功、利用者のAcceptedを生成しない。初期観測・要求候補形成では将来のdesign/test/detectorを前提にせず、pair-freeze/段階完了を主張するoperationに限って、その段階で適用する後段義務の閉包を求める。\n\n旧HIL-FR-22/35の個別記録・内容oracleを選択scopeに対して照合する。固定R0–R4ラベルやschemaを使わなくても、FR-35の5つの段階内容とR3相当のPO検証を現行artifactで検査する。旧R0–R4のラベル、phase schema、固定enum、旧runtime、全4020 assetへの一括適用は受入条件に戻さない。Product Data Ingestionのfull/incremental取得等は旧HIL-FR-24の2.0候補に保持し、本fixtureへ含めない。\n\n**出典**\n\n- 旧HIL-FR-22: `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:112`、SHA-256 `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`。\n- 旧HIL-FR-35: 同上 `:125`、同SHA。FR-22の旧target crosswalkは `docs/governance/audits/source-rebaseline/infinity-functional-target-crosswalk.md:31`、FR-35は `:44`。\n- 現行親L1: `docs/helix-harness/L1-planning/product-intent.md:31-39`、SHA-256 `238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f`。\n- 現行L2根拠: `docs/helix-harness/L2-requirements/product-requirements.md:59-60,419-425,499-520,559-570,711-725`、SHA-256 `a80de323f18dffd36aef90536986b9284372117bc5dfa0fd6d733a3a87ac49d9`。\n- 現行L11根拠: `docs/helix-harness/L11-acceptance/product-acceptance.md:45,214,365-373,479-485`、SHA-256 `103705cf8840fec1feaa9ff930af89f80222d746390cf2fa2cf950c6350ee1e5`。\n\n\n\n**固定照合基準**：草稿が照合した現行本文の基準commitは `afc3963085b53a4bf86ac5da8f7663aef1bed144`。旧source・現行L1/L2/L11のfile SHAは出典に示す固定値を参照する。\n\n**段階の内容依存と中断**：source根拠から観測契約、観測契約からas-is設計/test、これらを根拠とした意図仮説/PO検証、最後に差分/routingという内容の依存を保持する。見出し名を変えただけで段階を飛ばせない。選択scopeで必要なobligationが100%に満たなければcheckpoint後も未完とし、budget途中停止を完了へ丸めない。既存契約上不要な操作の追加はしない。旧受入根拠は `LEGACY-ASSET-AFE91778057B7E76BEEC`、`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md:62`（HOT-HIL-35）、SHA-256 `4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576`。\n\n**中断・順序違反の反例**：観測contractがないのにas-is設計の根拠充足を主張、PO検証を飛ばして仮説確定、budget切れcheckpoint後に残obligationを分母から落とし100%とする入力を拒否する。再開時は同revisionと残義務を確認し、source変更なら該当内容を再照合する。\n"
+      },
+      {
+        "label": "L11 line 602: 未見scope clause（review19 M4の引用。正しい）",
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "start_line": 602,
+        "end_line": 602,
+        "file_bytes": 172806,
+        "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "span_bytes": 489,
+        "span_sha256": "718bbb9fe75fb8063de2d9f0db9eef5ab2a7b34566f9dfe052b0bbd97789c6ea",
+        "literal_with_lf": "**未見例**：同じsource typeの未見fieldまたは新しいselected source revisionを追加する。以前のscope receiptを流用せず、選択範囲とdigestを再固定する。対応可能な範囲はsource span/契約根拠を返し、未知のfield/behaviorはunsupported/unknownとして残す。新規scopeのunknownを無影響/不存在や過去scopeの失敗へ外挿しない。scope変更後に以前のclosed resultを新scopeの成立根拠として使わない。\n"
+      },
+      {
+        "label": "L11 line 612: 五段階normal clause（従前locator correctionの対象）",
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "start_line": 612,
+        "end_line": 612,
+        "file_bytes": 172806,
+        "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "span_bytes": 550,
+        "span_sha256": "ee54d2b96340a6299b57ab879c7876d3306d203b3e7d8a25d896cbadeab4ed09",
+        "literal_with_lf": "**正常例**：固定R0–R4ラベル/schemaを使わない現行artifact一式から、完了claimが対象とする範囲について、(1) source根拠と範囲のmap、(2) 観測契約、(3) as-is設計/test、(4) intent仮説と既存authorityによるPO検証状態、(5) gapとowner/routingを個別に辿れる。設計/test未作成の初期観測では(3)以降を未完として明示し、初期観測結果だけを成立させる。Full Reverseや該当stage完了をclaimする際は、そのclaimに必要な内容が欠けない。\n"
+      },
+      {
+        "label": "L11既存authority ownerへのbackflow clause",
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "start_line": 614,
+        "end_line": 614,
+        "file_bytes": 172806,
+        "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "span_bytes": 418,
+        "span_sha256": "2012998d875ddf4af27437cbc67e229648018eb7d3d75fcb5a8c3da8043b0dde",
+        "literal_with_lf": "**誤り例**：AIが生成した仮説だけをPO検証済み扱いする、残gap/owner/routingがないのに完了claimする、as-is design/testを含むべき段階なのにそれがなくcoverage表だけで完了する結果を拒否する。R3相当のPO検証が未実施なら、その判断を要する完了claimを保留し、既存authorityのownerへ戻す。新しい承認手続きは作らない。\n"
+      },
+      {
+        "label": "HARNESS-L2-038採択PO row 43",
+        "revision": "17a2f310358ee7fe209b9d37cddf4a927c740248",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "start_line": 43,
+        "end_line": 43,
+        "file_bytes": 45099,
+        "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "span_bytes": 603,
+        "span_sha256": "75a5adf0b31c21c847f196860bcf39b47139e10d6657b3e209c8a3b0a09d3a60",
+        "literal_with_lf": "| `HARNESS-L2-038` | 採択 | `MPR-RC-HARNESS-L2-038-001` | `docs/helix-harness/L2-requirements/product-requirements.md` | `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09` | `sha256:dd5b5450801617bbd6cc1dfd2e522420399ec58fb7675a286221dd0d9415767c` | `HARNESS-L2-038` | `docs/helix-harness/L11-acceptance/product-acceptance.md` | `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5` | `sha256:dfa3b4c245af3987ee7738cc4a3aa758bb8f113b9d06079362d978ff63731297` | `docs/governance/audits/requirement-registration/harness-reverse-substance-coverage-receipt-2026-09-28.json` |\n"
+      }
+    ],
+    "locator_distinction": "L11:602は未見scope clause。L11:612は五段階normal clause。review19のM4引用602は正しく、以前のFR locator 602→612訂正は別の五段階normal clauseを指す。"
+  },
+  "legacy_sources_and_disposition": {
+    "source_revision": "3fd20391f842310012d09c33f5383497898b3afe",
+    "pins": [
+      {
+        "label": "legacy HIL-FR-22",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "start_line": 112,
+        "end_line": 112,
+        "file_bytes": 56091,
+        "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "span_bytes": 405,
+        "span_sha256": "9949fa84689a98d41b8db3fa8571e424465dea2243d932c536cf76d695c4b96b",
+        "literal_utf8": "| **HIL-FR-22** | Source Capability Coverage Gateは各抽出capabilityに一意IDを付け、`adopt/harden/redesign/reject/absorbed`、根拠、HIL要件、基本設計、test、detector/gateを双方向joinする。未判断、根拠なしreject、孤立capability、複合IDによる一括合格が1件でもあればpair-freezeを拒否する。 | capability ledger、coverage matrix、failure code |\n"
+      },
+      {
+        "label": "legacy HIL-FR-35",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "start_line": 125,
+        "end_line": 125,
+        "file_bytes": 56091,
+        "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "span_bytes": 373,
+        "span_sha256": "c999b1f5729c6313853e15a326d2b9c71f0dab1afd7237d00b06a8ad1df0c6dc",
+        "literal_utf8": "| **HIL-FR-35** | Reverse Substance GateはR0 evidence map、R1 observed contracts、R2 as-is design/test、R3 intent hypothesis＋PO検証、R4 gap/routingをstage別schemaで検査し、空、placeholder、同文、同digest、対象obligation未被覆、根拠なし`no finding`を拒否する。 | phase assertion、coverage、content digest、substance failure code |\n"
+      },
+      {
+        "label": "legacy HOT-HIL-35",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+        "start_line": 62,
+        "end_line": 62,
+        "file_bytes": 16537,
+        "file_sha256": "4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+        "span_bytes": 296,
+        "span_sha256": "9d63ba22ea475134e06a96a5f4bd0d1a8b0bde39d8cf2fce531e1f54a5a4b1d4",
+        "literal_utf8": "| **HOT-HIL-35** | HIL-FR-04/35, HIL-NFR-03/20 | R0–R4へ空、placeholder、同文、同digest、対象漏れ、根拠なしno-findingを投入し、budget途中停止も発生させる | 各phase固有assertionで拒否し、obligation 100%未満はcheckpoint後も未完了。phase skip 0 |\n"
+      },
+      {
+        "label": "legacy HST-HIL-011",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L9-infinity-loop-platform-system-test-design.md",
+        "start_line": 38,
+        "end_line": 38,
+        "file_bytes": 12926,
+        "file_sha256": "e518b0cfe15ca4b999bd85120b8d74941a18ab0939ff6cda3dc20a8b7611b705",
+        "span_bytes": 327,
+        "span_sha256": "cd70f8b04836e04ff28043f9aa02929169b1ff781e3fc5dfe5dde0710a1080b4",
+        "literal_utf8": "| HST-HIL-011 | HIL-BR-14, HIL-FR-16, HIL-FR-21, HIL-FR-22, HIL-NFR-12 | HST-A-011 | Source snapshot→coverage Gate | ZIP entry、remote ref、current symbolを個別に追加または削除する | 旧receipt stale化、pendingまたはorphan 1件でfreeze拒否 | `HIL_SOURCE_CAPABILITY_ORPHAN` | 設計済み | 未実装 |\n",
+        "relationship": "paired consumer source identified for parent038"
+      },
+      {
+        "label": "legacy HST-HIL-018",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L9-infinity-loop-platform-system-test-design.md",
+        "start_line": 45,
+        "end_line": 45,
+        "file_bytes": 12926,
+        "file_sha256": "e518b0cfe15ca4b999bd85120b8d74941a18ab0939ff6cda3dc20a8b7611b705",
+        "span_bytes": 350,
+        "span_sha256": "64d99a87977af103e4d9b8112de61297da0751d1832681c9cb15b0bd41960465",
+        "literal_utf8": "| HST-HIL-018 | HIL-FR-04, HIL-FR-35, HIL-NFR-03, HIL-NFR-20 | HST-A-018 | Reverse Substance Gate | R0からR4へ空、placeholder、同文、同digest、obligation漏れを個別投入する | phase固有schemaとsemantic assertionで全件拒否し、incompleteを完了扱いしない | `HIL_REVERSE_SUBSTANCE_HOLLOW` | 設計済み | 未実装 |\n",
+        "relationship": "paired consumer source identified for parent038"
+      },
+      {
+        "label": "legacy R0-R4 supporting FR",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+        "start_line": 50,
+        "end_line": 79,
+        "file_bytes": 18905,
+        "file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+        "span_bytes": 7853,
+        "span_sha256": "cfc464b2c90ace4d5814aceda5184bf0bcddadd8de625b5213ffafd677a5c6ad",
+        "literal_utf8": "| HR-FR-HIL-16 | HIL-BR-21, HIL-FR-39, HIL-FR-40, HIL-NFR-24, HIL-NFR-25 | DesignRefactor候補をsemantic/consumer/oracle同等性で評価し、behavior保存はRefactor、contract変更はRedesign、state変更はRetrofitへ送る | before graph/oracle/consumer/role catalog → 最小plan、pair/oracle/rollback | lexical-only rename、根拠なし抽象化、誤route、consumer漏れ / signatures、graph、oracle、role/name、route receipt | HAC-HIL-16a, HAC-HIL-16b, HAC-HIL-16c |\n| HR-FR-HIL-17 | HIL-BR-22, HIL-BR-23, HIL-BR-24, HIL-FR-41, HIL-FR-42, HIL-FR-43, HIL-FR-44, HIL-FR-45, HIL-NFR-26, HIL-NFR-27, HIL-NFR-28 | 原文をauthority付きatomic requirementへ翻訳し、design obligationとstable revision/edge/change receiptを正本化、template gapをshadow reviewへ送る | custodied source/authority、versioned template → active atomに全typed edge、未消込/ambiguity 0 | 原文消失、aggregate/TBD/偽N/A、self-promotion、stale伝播欠落 / revision、challenge、template、obligation、gap/review/change receipt | HAC-HIL-17a, HAC-HIL-17b, HAC-HIL-17c |\n| HR-FR-HIL-18 | HIL-BR-25, HIL-FR-46, HIL-FR-47, HIL-FR-48, HIL-FR-49, HIL-FR-50, HIL-NFR-29 | canonical L1–L12 ledgerと層外L0 charter anchorをversion管理しtemplate obligationを抽出、上下隣接edge、正規5 V-pair、L6↔L7 TDD closureを同一revision/snapshot/oracleで閉じ、refactorも全pairを保存する | active registry/template/snapshot/pair map → 全atom disposition、双方向edge、実行oracle | type/抽出/TBD/aggregate、片edge、revision/oracle不一致、pair破壊 / ledger、addition、pair、execution、refactor receipt | HAC-HIL-18a, HAC-HIL-18b, HAC-HIL-18c |\n| HR-FR-HIL-19 | HIL-BR-26, HIL-FR-51, HIL-FR-52, HIL-FR-53, HIL-NFR-30, HIL-NFR-31, HIL-NFR-32 | AI AuthoringをProposalとして許可し、意味差分・authority・pair・impactを検査した変更だけを原子的にCanonical化し、asset identityとrevision履歴を維持する | proposal、base revision、policyあり → 自動Admission又は明示decision、部分current 0 | 過剰確認、無権限変更、partial write、stale base、identity/oracle消失 / admission、transaction、revision、rollback receipt | HAC-HIL-19a, HAC-HIL-19b, HAC-HIL-19c |\n| HR-FR-HIL-20 | HIL-BR-27, HIL-BR-28, HIL-FR-54, HIL-FR-55, HIL-FR-56, HIL-NFR-33 | 要求義務から必要十分な設計契約と見本を導出し、Forward各layerとScrum S0–S4へ同一snapshot・返却edge付きでbindする | requirement/obligation/risk/templateあり → 未被覆・重複0のportfolioとworkflow binding | 固定冊数、positive-only、別正本Scrum、S4前昇格 / portfolio、example、phase、back-propagation receipt | HAC-HIL-20a, HAC-HIL-20b, HAC-HIL-20c |\n| HR-FR-HIL-21 | HIL-BR-29, HIL-BR-30, HIL-FR-57, HIL-FR-58, HIL-FR-59, HIL-FR-60, HIL-NFR-34 | taskの工程/domain/riskから判断packと最小専門agent contractを生成し、shadow reviewとruntime guard後だけmusterする | task/skill/model catalog/allowlistあり → versioned pack、最小team、独立verify | self-promotion、未許可tool、過剰agent、自己検証、stale contract / pack、shadow、generation、muster/lifecycle receipt | HAC-HIL-21a, HAC-HIL-21b, HAC-HIL-21c |\n| HR-FR-HIL-22 | HIL-BR-31, HIL-FR-61, HIL-FR-62, HIL-FR-63, HIL-NFR-35, HIL-NFR-36 | 候補worker/model/effortを再現可能benchと実task scorecardで比較し、品質・安全・retry込みcostから用途別にadmit又はretireする | fixed fixture/rubric/task/riskあり → blind score、実効cost、選択receipt | smoke-only採用、重大failure相殺、単価最適化、根拠なしeffort固定 / bench、scorecard、routing、exception receipt | HAC-HIL-22a, HAC-HIL-22b, HAC-HIL-22c |\n| HR-FR-HIL-23 | HIL-BR-32, HIL-FR-64, HIL-FR-65, HIL-FR-66, HIL-FR-67, HIL-FR-68, HIL-FR-69, HIL-NFR-37, HIL-NFR-38, HIL-NFR-39, HIL-NFR-40 | 第三者worker委譲をsandbox契約、環境浄化、最小払い出し、proposal再検証、audit付きで実行し、安全境界の充足をローカル強制機構だけで判定する | sandbox template・分類ゲート・opt-out receiptあり → 隔離実行、検証済みproposal、完全なaudit chain | allowlist外egress、scope外diff、bypass常態化、機密委譲、vendor設定依拠 / sandbox digest、egress計測、FS diff、audit row | HAC-HIL-23a, HAC-HIL-23b, HAC-HIL-23c |\n| HR-FR-HIL-24 | HIL-BR-33 | 配布パッケージを正本indexと手編集禁止の生成indexで構成し、first/third-party分離と免責を保持する | 正本indexあり → 生成indexは決定論導出のみ、手編集0 | 手編集index、party混在、cutover未承認切替 / index digest、derivation receipt、cutover approval | HAC-HIL-24a, HAC-HIL-24b, HAC-HIL-24c |\n\n## §2 受入条件\n\n| FR | 正常系 | 異常系 | 境界・回復系 |\n|---|---|---|---|\n| HR-FR-HIL-01 | HAC-HIL-01a: 全source入力が同一contract形へ収束 | HAC-HIL-01b: duplicateは副作用0、異payloadはconflict | HAC-HIL-01c: injection本文を隔離しdispatch 0 |\n| HR-FR-HIL-02 | HAC-HIL-02a: 正常loopが順序・causalityを保持 | HAC-HIL-02b: transition/edge欠落を拒否 | HAC-HIL-02c: budget境界で停止し同checkpoint再開 |\n| HR-FR-HIL-03 | HAC-HIL-03a: 全PR lifecycleを各一回監査 | HAC-HIL-03b: stale/duplicateからjob 0 | HAC-HIL-03c: promotionは全commitまたはrollback |\n| HR-FR-HIL-04 | HAC-HIL-04a: R0–R4＋正route後のみclaim | HAC-HIL-04b: hollow/skip/漏れをphase別拒否 | HAC-HIL-04c: L1/L2/L0をstale/re-entry/escalationへ分岐 |\n| HR-FR-HIL-05 | HAC-HIL-05a: 全receipt＋acyclic authorityで遷移 | HAC-HIL-05b: AI終端/cycle/欠落を拒否 | HAC-HIL-05c: high-impactはsnapshot-bound approval待ち |\n| HR-FR-HIL-06 | HAC-HIL-06a: 同一lineage三段green | HAC-HIL-06b: failure/別lineageで後続0 | HAC-HIL-06c: exact既知だけ期限付きquarantine |\n| HR-FR-HIL-07 | HAC-HIL-07a: knowledgeとcontinuationを分離 | HAC-HIL-07b: 禁止内容/self-promotionを拒否 | HAC-HIL-07c: shadow改善だけ昇格、退行rollback |\n| HR-FR-HIL-08 | HAC-HIL-08a: 同入力から同team/lifecycle | HAC-HIL-08b: drift/二重claim/旧fence拒否 | HAC-HIL-08c: checkpoint再開とquarantine/retire維持 |\n| HR-FR-HIL-09 | HAC-HIL-09a: ZIP＋exact 2 sealed Git authorities＋current HEADからreceipt由来のref/content/edge分母とatomic trace生成 | HAC-HIL-09b: parent-only/child欠落/overlap、advertised ref omission/extra、unverified objectでfreeze拒否 | HAC-HIL-09c: remote identity、advertisement A/B、namespace policy、source/extractor変更で旧authority以降をstale |\n| HR-FR-HIL-10 | HAC-HIL-10a: 全engine/detectorが再現可能 | HAC-HIL-10b: unknown/evidence欠落/partial拒否 | HAC-HIL-10c: rerun差異をquarantine |\n| HR-FR-HIL-11 | HAC-HIL-11a: full/incrementalをlineage付きcurrentへ | HAC-HIL-11b: drift/regression/PIIで昇格0 | HAC-HIL-11c: stale/tombstoneを明示し再取得 |\n| HR-FR-HIL-12 | HAC-HIL-12a: 正常resultを一回commit | HAC-HIL-12b: IPC異常をterminal化しpartial 0 | HAC-HIL-12c: cancel/timeout後late/direct write拒否 |\n| HR-FR-HIL-13 | HAC-HIL-13a: Bun-less Linuxでend-to-end green | HAC-HIL-13b: 全active残存形を検出 | HAC-HIL-13c: historical allowlistをactiveと分離 |\n| HR-FR-HIL-14 | HAC-HIL-14a: 3 OSが定義scopeをgreen | HAC-HIL-14b: adapter leak/path/process/lock異常拒否 | HAC-HIL-14c: online/offline同一lock/SBOM/policy |\n| HR-FR-HIL-15 | HAC-HIL-15a: no-UI構造skipでfreeze | HAC-HIL-15b: UIはprototype/walkthrough/agreement前freeze拒否 | HAC-HIL-15c: scope変更でstale化しL2再entry |\n| HR-FR-HIL-16 | HAC-HIL-16a: semantic同等の最小改善だけRefactor | HAC-HIL-16b: lexical-only/汎用化を拒否 | HAC-HIL-16c: internal/public/DBを3 routeへ分岐 |\n"
+      },
+      {
+        "label": "legacy UIL-AC-001–025 acceptance table (related comparative reference; not direct parent038 consumer)",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-improvement-loop-acceptance.md",
+        "start_line": 18,
+        "end_line": 45,
+        "file_bytes": 4977,
+        "file_sha256": "f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943",
+        "span_bytes": 4379,
+        "span_sha256": "f09c96ab8dcbaf2bc00c53e2680a165ab773769f042bbff3a0da30dfd0d45c4e",
+        "literal_utf8": "| AC ID | 対応 | 合格条件 | Negative Oracle |\n|---|---|---|---|\n| UIL-AC-001 | UIL-R-01 | source registryがID、owner、schema、detector、authority、freshnessを保持する | unknown source、任意log、AI感想を拒否 |\n| UIL-AC-002 | UIL-R-02 | 同一event集合とregistryから同一normalized exact set／digestを返す | event順序、retryで結果を変えない |\n| UIL-AC-003 | UIL-R-02 | baseline、observed、missing、forecastを別fieldにする | 予測値を観測値へ昇格しない |\n| UIL-AC-004 | UIL-R-03 | invariant／threshold／release boundary／safety-netを別triggerとして記録する | cronだけでauthority変更しない |\n| UIL-AC-005 | UIL-R-03 | 同一原因・scope・baselineの候補をdedupeしexpiryを持つ | rejected候補を無限再生成しない |\n| UIL-AC-006 | UIL-R-04 | candidate必須fieldのexact setを検証する | 必須field欠落、wrong revision、stale evidenceを個別拒否 |\n| UIL-AC-007 | UIL-R-05 | value、behavior、AC、responsibility、ownership、public boundary mutationを意味変更として検出する | 意味変更をREFACTORINGへ送らない |\n| UIL-AC-008 | UIL-R-05 | affected Requirement／Design／Contract／Module／V-pairをstable IDで算出し、`local_issue`／`system_synthesis`／`requirement_portfolio_resynthesis`を別scopeとして導出する | 名称一致、Issue件数、file overlap、単一logだけで上位scopeへ昇格しない |\n| UIL-AC-009 | UIL-R-06 | baseline、予測、反例、副作用、rollbackを比較する | 予測を実測完了証拠にしない |\n| UIL-AC-010 | UIL-R-06 | 局所metric改善と全体metric悪化を同時評価する | test時間短縮だけでadoptedにしない |\n| UIL-AC-011 | UIL-R-07 | change class、capability expansion、routeを別fieldにする | 同一enumへ畳み込まない |\n| UIL-AC-012 | UIL-R-07 | candidate scope、change class、capability expansionから既存routeとverification obligationを決定的に導出する | scope classを新routeにせず、ambiguous findingを推測配車しない |\n| UIL-AC-013 | UIL-R-08 | candidate生成だけではauthorityが変わらない | Requirement、merge、publishを直接実行しない |\n| UIL-AC-014 | UIL-R-08 | route先のPLAN、V-pair、approval、review、CIを再利用する | 独自completion gateを作らない |\n| UIL-AC-015 | UIL-R-09 | 同一scope／revision／artifactでbefore-afterとside effectを測る | 件数減少、局所green、自己評価で効果確定しない |\n| UIL-AC-016 | UIL-R-10 | 5 terminal outcomeを別々に保持する | mergedをadoptedへ丸めない |\n| UIL-AC-017 | UIL-R-11 | 複数episode、counterexample、mutation、version、expiry後だけrecipe候補になる | 単一project成功をgeneral ruleにしない |\n| UIL-AC-018 | UIL-R-12 | recurrence windowで再発と効果消失を因果接続する | 過去greenで再発を相殺しない |\n| UIL-AC-019 | UIL-R-13 | DB削除後もrepo authority＋event journalから同一projectionを再構築する | DB rowを意味正本にしない |\n| UIL-AC-020 | UIL-R-13 | state machine順序、HEAD、baseline、scopeをexact照合する | 段階飛越、別候補証拠混載を拒否 |\n| UIL-AC-021 | UIL-R-14 | AIなしのdetectorだけでcandidate→route→verificationを生成する | AI proposal除去でcontrol loopを壊さない |\n| UIL-AC-022 | UIL-R-14 | AI利用時にruntime／model／session／context／HEAD／scopeをreceiptへ束縛する | AI出力をdetector evidenceとして偽装しない |\n| UIL-AC-023 | UIL-R-15 | 同一payload／HEADでもbaseline、candidate、post-mainを別generation ID／digestへ投影し、各registry／detector／environment identityを保持する | generation kindをidentityから除去して同一eventへ畳み込まない |\n| UIL-AC-024 | UIL-R-15 | historical baselineを生成時identityで再構築し、compatible／reobservation required／incomparable／detector transitionを個別判定する | candidate registryで旧baselineを再解釈せず、比較不能をgreenへ変換しない |\n| UIL-AC-025 | UIL-R-15 | canonical merge後のpost-main read-afterだけがnew baseline promotionを許可し、source admissionのfirst causeからdownstream dispositionまでlineageを保持する | candidate close／abandonやgeneric missing errorからbaselineを更新しない |\n\n",
+        "relationship": "related comparative source only; its literal is UIL acceptance material and does not establish direct parent038 consumer coverage"
+      },
+      {
+        "label": "legacy HAT-HIL-09 (consumer scope comparison)",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+        "start_line": 41,
+        "end_line": 41,
+        "file_bytes": 7819,
+        "file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+        "span_bytes": 246,
+        "span_sha256": "f79226d0cb02a0a433a95e3c0578f7643ebe10df62affc67a069da1ec22b511e",
+        "literal_with_lf": "| HAT-HIL-09 | HR-FR-HIL-09 / HAC-HIL-09a, HAC-HIL-09b, HAC-HIL-09c | HST-HIL-011, HST-HIL-020 | 三sourceをsnapshot/atom/coverageへ処理 | manifests、atom spans、decision/edge/stale receipt | branch/child欠落、aggregate-only、pending |\n"
+      },
+      {
+        "label": "legacy asset ledger row for HAT-HIL-09 source",
+        "revision": "17a2f310358ee7fe209b9d37cddf4a927c740248",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "start_line": 2535,
+        "end_line": 2535,
+        "file_bytes": 4857919,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "span_bytes": 1218,
+        "span_sha256": "dcc3a040f92977eca9494f82a3959b668a90cdf564b62226ff27054b0a2e96f0",
+        "literal_with_lf": "{\"asset_id\":\"LEGACY-ASSET-FA8C6E69463183D6A19B\",\"revision\":1,\"source_revision\":\"legacy-generation-2026-09-14\",\"source_path\":\"docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md\",\"source_sha256\":\"a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a\",\"source_surface\":\"docs\",\"source_provenance_ref\":\"archive/legacy-generation-2026-09-14/MANIFEST.sha256\",\"asset_class\":\"Historical\",\"reuse_exclusion_class\":\"legacy_test_design_or_oracle\",\"product_target\":\"unresolved\",\"authority_status\":\"historical\",\"upstream_ids\":[],\"pair_ids\":[],\"disposition\":\"unresolved\",\"implementation_status\":\"unknown\",\"decision_record_ref\":null,\"approval_revision\":null,\"target_path\":null,\"target_sha256\":null,\"meaning_interface_invariance_reason\":null,\"consumer_refs\":[],\"rights_status\":\"unreviewed\",\"executability_status\":\"unreviewed\",\"secret_status\":\"unreviewed\",\"external_effect_status\":\"unreviewed\",\"decided_by\":null,\"decided_at\":null,\"copy_performed_by\":null,\"copy_performed_at\":null,\"read_after_record_ref\":null,\"migration_preconditions\":[\"semantic_atom_inventory\",\"product_owner_decision\",\"parent_requirement_binding\",\"consumer_check\",\"rights_check\",\"executability_check\",\"secret_check\",\"external_effect_check\"]}\n"
+      }
+    ],
+    "direct_paired_consumers": [
+      "HST-HIL-011 at L9 system test design line 38",
+      "HST-HIL-018 at L9 system test design line 45"
+    ],
+    "disposition": "HIL-FR-22の個別capability identity、理由、双方向join、未判断/孤立/composite-only closure拒否とHIL-FR-35/HOT-HIL-35の段階内容・hollow evidence拒否を意味再導出。旧R0–R4 schema/enum/runtime/testをcopyまたは実行していない。HST-HIL-011/018は直接paired consumerとして記録。",
+    "pin_count": 9
+  },
+  "review01_findings": {
+    "M1": {
+      "status": "作成側変更を反映、独立review未確認",
+      "cases": [
+        "CASE-HARNESS-L10-038-r09-004",
+        "CASE-HARNESS-L10-038-r11-as-is-before-observation-contract"
+      ],
+      "change": "観測契約の不足はunknown/未完として保持し、HARNESS-L2-038の固定条件に従って選択sourceを再観測する。source identityに結ばれた既存authorityが未特定ならunknown。HARNESS-L2-022のstage-oracle ownerへ誤配送しない。"
+    },
+    "M2": {
+      "status": "作成側変更を反映、独立review未確認",
+      "cases": [
+        "CASE-HARNESS-L10-038-r09-015",
+        "CASE-HARNESS-L10-038-r09-016"
+      ],
+      "change": "completion claimは拒否し、trace/impact不足をHARNESS-L2-003/004の既存Backflow責務区分へ戻す。責務区分が既知であることと個別owner/routing identityが不明であることを分離し、個別identityだけunknownに保持。"
+    },
+    "R1-R10": [
+      {
+        "id": "R1",
+        "status": "未変更・残余として保持",
+        "summary": "source span不足とselection変更後staleの独立fixture不足。今回の4行修正はこの2条件を扱わない。line 602は未見scope clauseとして正しい引用。"
+      },
+      {
+        "id": "R2",
+        "status": "未変更・残余として保持",
+        "summary": "NV/FV等に残る英語表現の残余。今回変更した4行の修正理由とは別。"
+      },
+      {
+        "id": "R3",
+        "status": "未変更・残余として保持",
+        "summary": "heading-stage-skip行の戻し先未指定。今回の観測契約戻し先修正から一般化しない。"
+      },
+      {
+        "id": "R4",
+        "status": "未変更・残余として保持",
+        "summary": "r09-001/005の既存authority wording。今回のM2修正は015/016に限定。"
+      },
+      {
+        "id": "R5",
+        "status": "未変更・残余として保持",
+        "summary": "r05系の複数戻し先分岐。今回のM1は選択source再観測、M2はtrace/impact Backflowの固定区分へ限定。"
+      },
+      {
+        "id": "R6",
+        "status": "未変更・残余として保持",
+        "summary": "旧索引・互換alias・重複計数の整理。70 ID保持確認は意味完備性を証明せず、新しい索引整理も本修正には含めない。"
+      },
+      {
+        "id": "R7",
+        "status": "未変更・残余として保持",
+        "summary": "依存区分や027条件付き、OS/CI非必須、029/CONNECT境界の明示不足。今回修正対象外。"
+      },
+      {
+        "id": "R8",
+        "status": "未変更・残余として保持",
+        "summary": "FR表と段階別補足のAC定義配置、NFR順序。今回修正対象外。"
+      },
+      {
+        "id": "R9",
+        "status": "未変更・残余として保持",
+        "summary": "旧HST source pathとHAT-HIL-09 consumer説明の残余。今回修正対象外。"
+      },
+      {
+        "id": "R10",
+        "status": "監査記録の区別を明示",
+        "summary": "一時パス依存を避ける監査候補を作る。旧review19監査の602→612補正は五段階normal clause（612）を指す。一方、review19 M4が引用したL11:602は未見scope clauseで正しい。両locatorを混同しない。"
+      }
+    ],
+    "R1-R10_raw_blocks": [
+      {
+        "id": "R1",
+        "raw_block_exact": "- **R1（review19 M4の持ち越し）**：source span不足とselection変更後のstaleに、単独fixtureがない（L2:873、L11:602）。同じ型で、L11:604「新規scopeのunknownを過去scopeの失敗へ外挿しない」、scopeだけを変えたときの旧closedの流用拒否、L11:636の再開時の正常例もない。\n",
+        "utf8_bytes": 338,
+        "sha256_utf8": "c6d01ccd3a9c4db70e2f901d1fa89ca03fdf7f076a84799da2de442f96da60fe"
+      },
+      {
+        "id": "R2",
+        "raw_block_exact": "- **R2（英文の残存）**：NV-038-01/02、FVの038-01（collection completion unknownなど）、038-02（positive closure）、r09系の「completion claim」など。\n",
+        "utf8_bytes": 174,
+        "sha256_utf8": "6f14b4c88dc963ee0454c5db95cf69f9a356491c505959facf8582197d0f6362"
+      },
+      {
+        "id": "R3",
+        "raw_block_exact": "- **R3（戻し先がない）**：`r11-heading-stage-skip`は「戻し先や追加ownerを生成しない」としている。欠けた段階ごとの戻し先は、r09-003/004/017で決まる。\n",
+        "utf8_bytes": 197,
+        "sha256_utf8": "9e0c394bb537ea126abb964542f261b127692f5cac138e1822a7ff97ce145d7d"
+      },
+      {
+        "id": "R4",
+        "raw_block_exact": "- **R4（文言）**：`r09-001/005`は「003/004の既存authority境界」と書いている。固定の語は「既存authority owner」（L2:861、L11:613）。\n",
+        "utf8_bytes": 165,
+        "sha256_utf8": "90d5c275482f70f1b490360813f14a39826a860c5d5fc4ffa95d87de4ee66c2e"
+      },
+      {
+        "id": "R5",
+        "raw_block_exact": "- **R5（戻し先の分岐が入力で決まらない）**：`r05-root-one-edge/aggregate-only/digest-copy/no-finding-unbound/na-unreasoned`は3つの宛先を併記している。`r05-manifest-*`は、再観測と003/004を併記している。\n",
+        "utf8_bytes": 247,
+        "sha256_utf8": "edc20bf93c48c691a9d70398c2c80fbf7be9e06235239d04058a42274f303e2b"
+      },
+      {
+        "id": "R6",
+        "raw_block_exact": "- **R6（重複の余地・索引）**：038-12と`r11-shared-oracle-normal`、038-13と`r05-root-aggregate-only`。CASE-08/10/11は互換別名、01〜06/09/13は索引である。L11:600 (d)の「別段階の証拠として再掲」は、digest-copyに束ねている。\n",
+        "utf8_bytes": 273,
+        "sha256_utf8": "16dcfede7e16a2b43a3439f83be8888c5809d5f56f3606a1d99aacaed610ebb3"
+      },
+      {
+        "id": "R7",
+        "raw_block_exact": "- **R7（明示の不足）**：L2:864–871の依存区分4種、027を条件付きにすること、OS/CIを必須にしないこと、L2:838の029 proposalとCONNECTを持たないことについて、明示の行がない。\n",
+        "utf8_bytes": 229,
+        "sha256_utf8": "43529d14ddadafc412f1b1fd0e2345b87703a4546f7013845c9265b5bea58018"
+      },
+      {
+        "id": "R8",
+        "raw_block_exact": "- **R8（ACの定義箇所）**：FR表のAC列はAC-01〜03だけで、AC-04/05は「段階別判定補足」表で初めて出てくる。NFR CASEの行順は01、03、02になっている。\n",
+        "utf8_bytes": 194,
+        "sha256_utf8": "179ce031ef015a1a1ccc94ece903e5ec17d8070a28763a9f4b3d9b2982a20fb1"
+      },
+      {
+        "id": "R9",
+        "raw_block_exact": "- **R9（旧sourceの欄）**：HST-HIL-011/018のpathに前置きがない。HAT-HIL-09を直接consumerから外す理由が薄い。\n",
+        "utf8_bytes": 136,
+        "sha256_utf8": "a1addb7cd0e7a22a0a13e802c4343f3147e0c704c364f808a8fc4b6f42ca6d17"
+      },
+      {
+        "id": "R10",
+        "raw_block_exact": "- **R10（監査の記載）**：\n  - repository外の参照として、`/tmp/harness-stage3-parent038-review19-final-audit-worker.json`、`/tmp/root-harness038-final-body-check.json`、`/tmp/root-harness038-freeze-source-pin-check.json`がある。\n  - md／JSONの「予定path（未配置）」「/tmp候補」という記載が、配置済みの現状と合わない。\n  - 「602を612へ訂正」という説明は、review19 M4がL11:602（未見scope）を正しく指していた経緯と合わない。\n",
+        "utf8_bytes": 513,
+        "sha256_utf8": "92c09ae56998f551692484a88073e459de0b00b77a58d8150c00f05facba1fc2"
+      }
+    ],
+    "locator_distinction": {
+      "L11_line_602": "未見scope clause。review19 M4の引用先として正しい。",
+      "L11_line_612": "五段階normal clause。旧監査におけるFR locator 602→612補正が対象とした句。",
+      "non_equivalence": "一方のlocator訂正を、他方の引用誤りとして扱わない。"
+    }
+  },
+  "previous_immutable_record": {
+    "path": "docs/governance/audits/requirements-stage/harness-stage3-parent038-review19-authoring-correction-2026-10-06-7a70a1e8.json",
+    "revision": "e8fc42a7c304cfe4c1f2a3247fc7a22c6f253f6c",
+    "bytes": 185518,
+    "sha256": "96fa234fd4ad3ef55949c29176625cc6fc9787211c90a1b337d124cf8a458067",
+    "note": "既存review19記録のGit blobをbody revisionから取得。本文も監査も変更していない。"
+  },
+  "verification": {
+    "commands_and_results": [
+      "git diff --check 7dd2072..e8fc42a: pass",
+      "six canonical blobs equal body commit; each begins with exact af93 base blob: pass",
+      "038 CASE definition IDs old/current: 70/70, removed=0, added=0, duplicate=0",
+      "changed FV row count: 4; exact before/after literal, byte length, raw-LF SHA recorded in changed_rows",
+      "fixed and legacy source pins from immutable git revisions re-read and literal/span/full file SHA rechecked"
+    ],
+    "not_run": [
+      "旧runtime/旧CLI/旧hook/旧CI/Bun",
+      "独立review",
+      "製品実行"
+    ]
+  },
+  "limitations": [
+    "この作成側監査は独立reviewではない。M1/M2の意味受入は未確認。",
+    "R1–R9は今回の4行差分では変更されておらず残余のまま。",
+    "70定義ID保持は意味完全性の証明ではない。",
+    "Rootのgovcheck報告値は独立実行ログを受け取っていないため、Root報告として記録。"
+  ],
+  "status_note": "Canonical body commitは固定。新監査はtmp上の作成側候補であり、まだrepositoryに保存/commitしていない。",
+  "publication_target": {
+    "json_path": "docs/governance/audits/requirements-stage/harness-stage3-parent038-review01-disposition-2026-10-06-e8fc42a7c.json",
+    "md_path": "docs/governance/audits/requirements-stage/harness-stage3-parent038-review01-disposition-2026-10-06-e8fc42a7c.md",
+    "state": "immutable authoring disposition accompanies re-review; approval pending"
+  },
+  "root_recomputation": {
+    "checks": 155,
+    "errors": [],
+    "scope": "static full/span/4case/6body/prior-audit/formal-raw; no semantic approval"
+  }
+}

@@ -102,3 +102,9 @@ HARNESS-L2-034から独立business requirement、事業KPI、ROI閾値または�
 ## Stage 3 親036の業務要件
 
 `HARNESS-L2-036`はCOREの検証契約を扱うため、独立business requirement、business owner、事業価値閾値、商業acceptanceを導出しない。W/cross-detection、local/CI parity、画面条件付き検証の結果を製品価値・事業判断へ読み替えない。旧business-detailのBR-21/Learning Engine評価を本親へ移植しない。
+
+## Stage 3 親038の業務要件
+
+| L2親 | business requirement | 理由 |
+|---|---|---|
+| `HARNESS-L2-038` | 独立したbusiness requirementを導出しない | reverse content closureは選択scopeの意味traceであり、事業判断を新設しない。 |
