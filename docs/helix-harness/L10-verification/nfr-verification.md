@@ -135,3 +135,13 @@ Stage 5の索引aliasは021-S5-011→004、033-S5-024/025→005/006、037-S5-023
 | `CASE-HARNESS-L10-NFR-034-03` / `NFR-C-HARNESS-034-01` | 条件付き品質領域、AI7および6risk techniqueの選択/理由付き非適用。 | Applicability unknownは未評価。N/Aには選択profile上の根拠を要求し、新しい閾値・method obligationを作らない。 |
 
 NFR CASEは測定candidate分類であり、実測・CI success・performance SLOではない。
+
+
+## Stage 3 親036のNFR測定CASE
+
+測定候補であり実測ではない。母集団は選択されたticket/profile/scopeと、運用KPIではL3に明示したeligible windowに限る。未選択・未観測・missing/failed/censoredを成功または0へ変換しない。
+
+| L10 case ID | NFR候補 | 入力／母集団 | oracle・限界 |
+|---|---|---|---|
+| `CASE-HARNESS-L10-NFR-036-01` | `NFR-C-HARNESS-036-01` | selected scope内のW観点、4 cross-detection軸、local/CI selected gate契約と条件付きscreen 5軸を区別して記録する。対応するnormal/negative/index CASEはfunctional verificationの036 tableにあり、索引はfixture分母に重ねない。 | 適用scopeごとに観測状態と意味状態を分けて記録し、unobservedを0へ丸めない。全件実行率やperformance SLOを作らない。 |
+| `CASE-HARNESS-L10-NFR-036-02` | `NFR-C-HARNESS-036-02` | NFR-13のKPI D-02について、eligible gate opportunity population、測定window、分子/分母、excluded/missing/failed/censored状態を示す。functional normal fixture `CASE-HARNESS-L10-036-r11-operational-kpi-window-population-normal`は合成9/10例であり固定分母・window長ではない。 | 固定`≥90%`運用目標との比較だけを報告する。ticket-level pass/failへ転用せず、母集団/windowがunknownなら未評価とする。候補windowやcohort比較は技術案であり新しいPO parameter gateを作らない。 |
