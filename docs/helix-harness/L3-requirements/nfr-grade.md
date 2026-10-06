@@ -141,11 +141,13 @@ plannedは総予定試行数。観測可否はvalid（判定できる観測が�
 | 親 | 追加CASE集合 | 母集団と状態分類 |
 |---|---|---|
 | `HARNESS-L2-021` | `CASE-HARNESS-L10-021-S5-001–006` + `CASE-HARNESS-L10-021-S5-007–016` | E2E trace、統合update/rollback、L12 observation/return、LABO/OS責務を独立planned obligationにし、source/revision/scopeとrelease/operation stateを分ける。 |
-| `HARNESS-L2-025` | `CASE-HARNESS-L10-025-S5-001–006` + `CASE-HARNESS-L10-025-S5-007–033` | 常時必須tuple、selected Patternのrequired input/relation/version、双方向trace、permission/data/oracle、unit/connection/compositeを別planned obligationにする。nonselected Patternは未観測で分母外。 |
-| `HARNESS-L2-033` | `CASE-HARNESS-L10-033-S5-001–007` + `CASE-HARNESS-L10-033-S5-008–036` | source/unit/oracle/consumer fieldとstage receiptを分ける。S5-024/025はS5-005/006の索引aliasとして独立fixture母集団へ重複加算せず、repro、regression claim、修正後pass非選択を別状態にする。 |
-| `HARNESS-L2-035` | `CASE-HARNESS-L10-035-S5-001–006` + `CASE-HARNESS-L10-035-S5-007–041` | root source、authority/revision、non-goal/scope、acceptance contribution、necessity/alternative、budgetをfield単独planned化しunknown/stale/mismatchを分母に保持。 |
-| `HARNESS-L2-037` | `CASE-HARNESS-L10-037-S5-001–007` + `CASE-HARNESS-L10-037-S5-008–057` | 009 applicability、各phaseのL2/L3 authority、template、022 oracle/state、L4/L9、handoff、UI選択/非選択を別 obligationにする。S5-023はS5-005の索引aliasとして独立fixture母集団へ重複加算せず、S5-006（receipt対Phase 2設計scope）とS5-027（receipt対merge scope）は異なる比較条件として保持し、nonselected operationは未観測。 |
+| `HARNESS-L2-025` | `CASE-HARNESS-L10-025-S5-001–006` + `CASE-HARNESS-L10-025-S5-007–035` | 常時必須tuple、selected Patternのrequired input/relation/version、双方向trace、permission/data/oracle、unit/connection/compositeを別planned obligationにする。nonselected Patternは未観測で分母外。 |
+| `HARNESS-L2-033` | `CASE-HARNESS-L10-033-S5-001–007` + `CASE-HARNESS-L10-033-S5-008–037` | source/unit/oracle/consumer fieldとstage receiptを分ける。S5-024/025はS5-005/006の索引aliasとして独立fixture母集団へ重複加算せず、repro、regression claim、修正後pass非選択を別状態にする。 |
+| `HARNESS-L2-035` | `CASE-HARNESS-L10-035-S5-001–006` + `CASE-HARNESS-L10-035-S5-007–042` | root source、authority/revision、non-goal/scope、acceptance contribution、necessity/alternative、budgetをfield単独planned化しunknown/stale/mismatchを分母に保持。 |
+| `HARNESS-L2-037` | `CASE-HARNESS-L10-037-S5-001–007` + `CASE-HARNESS-L10-037-S5-008–058` | 009 applicability、各phaseのL2/L3 authority、template、022 oracle/state、L4/L9、handoff、UI選択/非選択を別 obligationにする。S5-023はS5-005の索引aliasとして独立fixture母集団へ重複加算せず、S5-006（receipt対Phase 2設計scope）とS5-027（receipt対merge scope）は異なる比較条件として保持し、nonselected operationは未観測。 |
 
 100% trace coverageと誤ったsuccess/merge/authority 0件は静的分類の技術候補であり、実測ではない。planned denominatorを個別CASE集合で固定する。観測状態valid/failed/missing/censoredと意味状態missing/unknown/stale/mismatch/conflict/unselectedを分離する。分母不明を0へ変換せず、未実行は未測定とする。数値SLO・CI実行・性能測定は作らない。
 
-Stage 5の索引aliasは021-S5-011→004、033-S5-024/025→005/006、035-S5-033→041、037-S5-023→005と037-S5-057→053。これら6索引は個別fixture分母へ重複加算しない。
+Stage 5の索引aliasは021-S5-011→004、033-S5-024/025→005/006、037-S5-023→005と037-S5-057→053。これら5索引は個別fixture分母へ重複加算しない。
+
+035-S5-033は撤去した旧変異のID保全用時点注記であり、同一変異aliasではない。個別fixture分母から除外し、運用負債欠測の個別変異は035-S5-041だけで評価する。
