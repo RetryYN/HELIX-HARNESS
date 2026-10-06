@@ -1,0 +1,73 @@
+{
+  "target_head": "e3fa946be93e7351db5fc8be9bcda900f17b173a",
+  "body_revision": "44707b9f128a1ea35ebc05be6915eaf20fb3b27e",
+  "formal_comment": 6002292475,
+  "source_pins": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-REVERSE-107-reverse-fullback-scope-gate.md",
+      "revision": "e3fa946be93e7351db5fc8be9bcda900f17b173a",
+      "lines": [
+        16,
+        24
+      ],
+      "full_sha256": "06a704446447af76be455c618718041f02dd33f62d4bab5ec15e3f54826999dd",
+      "raw_lf_sha256": "26ee645a1a77f7538cf98db76100a306ffd15c7c98f2c77cd0d66f709aab7dd8",
+      "literal": "  - layer: requirements\n    decision: updated\n    evidence_path: docs/governance/helix-harness-requirements_v1.2.md\n    reason: \"Requirements は明示的な Reverse fullback scope gate を定義している。\"\n  - layer: L4-basic-design\n    decision: not_impacted\n    reason: \"governance gate は外部 runtime function design を変更しない。\"\n  - layer: L5-detailed-design\n    decision: not_impacted\n"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-REVERSE-107-reverse-fullback-scope-gate.md",
+      "revision": "e3fa946be93e7351db5fc8be9bcda900f17b173a",
+      "lines": [
+        65,
+        70
+      ],
+      "full_sha256": "06a704446447af76be455c618718041f02dd33f62d4bab5ec15e3f54826999dd",
+      "raw_lf_sha256": "8961eb0f46398df423504316a4b22a47cf1e39e7a954dd5e148ecb8859fe17be",
+      "literal": "\n`plan-governance` は R4 fullback に `backprop_scope` を要求するようになった。\n各 fullback は `requirements`、`L4-basic-design`、`L5-detailed-design` を\n`updated`、`not_impacted`、`deferred` のいずれかに分類しなければならない。\n`updated` entry は生成された evidence path を示す必要がある。現行の 2026-06-22\nfullback には、明示的な scope decision を backfill 済みである。\n"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "lines": [
+        419,
+        423
+      ],
+      "full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+      "raw_lf_sha256": "a9a340565cf50301ca37f84f076d46f6c074c3e72cabee940e49d3af9a8b85c1",
+      "literal": "### HARNESS-L2-019 入口：フルリバース（単体）\n\n- **受け取るもの**：持ち込まれた既存の要件、コード、PoC。\n- **提供するもの**：HELIXの形（要求・設計・検証の対とtrace）へ変換した成果と、変換できなかった部分・由来の不明な部分の一覧。\n- **保証すること**：どのリリース単位からでも入れる。由来が不明、旧資産、設計traceの欠落のときの復旧の手段として全体のReverseを使い、変換の結果を承認済みの要求・設計にしない。変換できない部分をunknownとして残し、推定で埋めない。\n"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "lines": [
+        499,
+        521
+      ],
+      "full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+      "raw_lf_sha256": "0255c4e9da34202f43e625e4819566107c11b44e27d242ed1d18b644f47fce35",
+      "literal": "### HARNESS-L2-024 — 要求形成の質問優先と収束根拠\n\n**親L1**：primaryはHARNESS-L1-008（要求形成の収束）。HARNESS-L1-006は形成・合意・freeze等の状態分離を保持するcontext parent。HARNESS-L1-005／007／001は単独service・Version 1・V-modelのcontext。現行親はdraft_candidateで、対象revisionの確認・採択を生成しない。`version_target: 1.0`。\n\n**kind / boundary**：単体（HARNESS要求形成engineの利用条件）。既存HARNESS-L2-008の意味処理能力を追補し、HARNESS-L2-013の② serviceで単独利用できる補強。HARNESS-L2-008/013を置換せず、OS側に別engine・question service・approval ledgerを作らない。\n\n**入力**：engine／product pack revision、対象ConceptとL1 revision、利用者の指示・参照根拠のidentity/revision/scope、現在とprior candidate、既回答・訂正・defer・agreementの記録とactor/owner、利用可能な過去iteration履歴と差分（履歴の固定件数を必須としない）、候補間の矛盾・重複、actor/task、正常/取消/failure/timeout/recovery、P0/P1 surface、implicit requirement matrix、prototype/非UIの適用性と、該当時には現行HARNESS-L2-008の工程で得た合意・根拠（非適用時には理由と再評価条件）、各不足の不確実性・影響・下流変更cost・人間専決区分。\n\n**出力**：version/scope/sourceに結び付いた構造化要求候補と意味差分、質問・既存open questionの継続状態、優先理由と影響範囲、矛盾・欠落・未確定事項、deferのowner/re-entry条件、適用対象と非適用根拠、残る必須人間判断（原文、決める選択肢、推奨案、影響候補）、収束判定と不足理由を返す。候補は人間の訂正・合意・採否待ちであり、approved requirement、L3承認、操作許可へ昇格しない。\n\n**収束契約**：\n\n1. 同一対象revision・scope・既回答を照合して質問履歴を再利用する。回答済み質問を同じ意味で聞き直さない。既に開いて未回答の質問は新規重複で再発行せず同じopen item、owner、状態を提示する。再質問が必要なら回答された事実を消さず、変わった根拠・revision・scopeと意味差分を明示する。\n2. 未解決質問候補の順序は旧RDJ-FR-003の影響度×不確実性×下流変更cost×人間専決度の各要素に対応する入力根拠を示し、影響の大きい不足・未決事項から先に提示する。数値weight、閾値、固定質問数を根拠なく新設せず、同順位なら、packのversioned inputとして固定したtie-break規則と根拠を適用し、同じ候補・既回答・入力revisionから次の質問と順序を一意に再現する。規則が未定義または同じ入力から複数の選択が残る場合は選択未確定を示し、pack契約ownerへ不足を戻す。実装方式や根拠のない数値weightをこの候補で固定しない。risk/authority等の人間専決値はエンジンが補完せず、原文・選択肢・推奨・影響候補を持つ判断待ちへ送る。\n3. 合意済みの回答・要求を再開する場合は、新しいsource/revision、矛盾を示すfinding、影響するscopeと差分を特定する。エンジンは再開を自動確定せず、影響を受ける項目だけを対象ownerへ理由付きで照会する。新しい根拠がない同じscopeでの再確認は拒否する。\n4. 収束判定は、actor/task、正常・取消・failure・timeout・recovery、P0/P1 surface、矛盾/deferとowner/re-entry、暗黙matrixの必須領域、利用可能なiteration履歴と差分根拠、prototype/非UI適用性について現行HARNESS-L2-008の工程で得た合意・根拠（該当時）を確認する。旧条件の「直近2 iteration」を最低件数にせず、過去履歴がない/少ないこと自体を必須事項unknownと同一視しない。各要求領域を解決済み／明示保留／非適用（理由・判断者・対象revision・再評価条件）／必須事項unknownで区別する。必須事項unknown、未ownerの必須事項、未説明の矛盾、P0/P1の未分類欠落は形成資料の不足として提示し、PO確認待ちそのものとは区別する。必要な形成情報と根拠・残存判断一覧が揃った場合は「人の確認・合意待ちの候補」として提示できるが、これは合意・freeze・採択完了ではない。人の合意状態は別個に確認し、engineが収束判定から生成しない。prototype／非UI合意が該当して未了でも、要求候補・根拠・未決判断packetを形成して当該合意待ちの状態で提示できる。既存合意がある前提の記録欠落は形成資料不足として区別し、合意前のfreeze・下流承認を生成しない。\n5. score、fixture score、質問回数、訂正率、反復iteration数、無変更iteration、timeoutを単独の収束判定にしない。固定iteration上限は設けない。timeout時は進行停止・状態保持・actor/scope/最後の確定revision/open item/再入条件を返し、回答や合意を捏造せず、再開条件が揃うまで待つ。\n\n**保証と既存engine対応**：HARNESS-L2-008とREQENG-HARNESS-001/002/003/004の既存抽出・意味差分・質問・影響処理へ、revision/scope単位の既回答照合、質問順序の説明、合意再開根拠、必須条件の収束判定を補う。REQENG-HARNESS-005/006の製品pack分離と決定論を保持し、REQENG-HARNESS-007およびHARNESS-L2-013の提案・人承認境界を保持する。OSは人の反応/採否eventを登録・監視する既存責務に留まり、要求の意味を重複所有しない。prototype/PoC結果からHARNESS-L2-008へ戻る現行Backflow、単体/connection/compositeのidentity、failure/timeout、trace、owner/re-entryも落とさない。\n\n**単独成立依存と戻し先**：HARNESS-L2-008（要求候補・意味質問）とHARNESS-L2-013（②単独service）およびその候補revision付きHARNESS-L1親。初回で既回答がないことは明示的な空の履歴として区別する。存在するはずの回答・合意の記録、対象revisionのL1、根拠scope、actor/ownerまたは適用matrixがmissing/unknown/staleなら影響する質問の確定・収束を保留し、HARNESS要求ownerへ不足を戻す。上流の目的・scope・人が決める値が不明ならHARNESS-L1-008または意味を持つPOへ戻す。操作・記録・採否の実行はOS側既存consumerへ戻し、HARNESSに登録/承認権限を追加しない。\n\n**旧RDJとの関係**：RDJ-FR-003/007とRDJ-AC-003/007の意味を保持し、RDJ-FR-002のevent履歴・決定論replay、FR-004のsuccess/cancel/failure/timeout/recovery、FR-006の暗黙matrixと人間decision、AC-006の自動accept拒否を関連条件として結ぶ。変更点は固定反復回数・旧手続きを新設せず、利用可能な履歴と変更根拠を照合し履歴件数を成立条件にせず、現行HARNESS engine候補のquestion-volume/correction-rateを同じ／未見fixtureで補助計測すること。質問/訂正measurementの改善値だけでは必須要件未決を閉じない。\n"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "revision": "e3fa946be93e7351db5fc8be9bcda900f17b173a",
+      "lines": [
+        25,
+        39
+      ],
+      "full_sha256": "9734e536774f62ba6d53a8804ca16649e00dda307ae60114431f61ad21daa3b4",
+      "raw_lf_sha256": "52ff45e7f9b0e43436cc1b2895a7d012c689260d8231fbe0b66b525cbac87651",
+      "literal": "### `FR-HARNESS-L3-010` — パックの境界（親: `HARNESS-L2-010`）\n\n**保持／再導出**：固定L2:350が束ねる既存FRS-BR-001/002/003/005/009とL2-008の単体・接続・構成体の区別を追跡する。固定L2:320に従い、この束ね直しで既存条件の所在や意味を移さない。一つのbehavior contractまたは意味を保つ密結合contractをpackとして識別し、入力・出力・依存・検証範囲・owner・版、リリース単位への収載／非収載を明示する。依存は他のpack、component、core、外部実行接続の種別・identity・版を宣言し、宣言のない依存は実行時に利用しない。未検証または未適格のpackを暗黙に含めず、同じ宣言入力と版の成果物を再現可能にする。単一packの差し替えで他packの版と証拠を変えない。packの版と成熟度、release unitの版、統合製品の版を別々に保持する。packの成熟度昇格・成功・差し替えだけでrelease unitまたは統合製品の版・成熟度を昇格させず、上位の未完部分で適格packを隠さない。複数release unitで使う能力はcomponentまたはcoreに置く。全部を巨大packへ戻さず、交換・更新不能な大きさならDesign-refactorへ戻す。ownerはrelease unit・component・coreのいずれか一つであり、classと具体identityをともに宣言する。失敗時は直前の適格版または明示された置換先へ戻せることを確認する。\n\n**入力**：pack identity/version/maturity、入力・出力contract、owner classと具体identity（release unit identity ①〜⑦／component identity／core identity）、依存の種別（他pack／component／core／外部実行接続）・identity・版／互換範囲、検証範囲とoracle、収載／非収載のrelease unitとその版、統合製品の版、差し替え対象、失敗時に戻す直前の適格pack identity・version・evidence、または明示replacement identity・version・evidence。\n\n**出力**：packごとの宣言manifest、検証scopeと証拠参照、pack適格性、release unit／統合製品それぞれの版との対応、差し替え差分、失敗時の復帰結果と証拠。復帰後のpack identity・version・evidenceが直前の適格版または明示replacementに一致することを確認できるようにする。これらの出力単独ではrelease eligibility、release実行、上位版・成熟度の昇格、未採択候補または対象機能の成立を認可しない。\n\n**境界・失敗時**：pack宣言の依存identity・区分・condition・version rangeの欠落／曖昧さはpack契約ownerへ、呼出し固有のoperation/source/scope/権限/receiptの不足または版不一致は呼出しownerへ理由と戻し先を返す。authority、安全条件、親scopeの不明・矛盾はauthority ownerまたはHARNESS-L1-005の利用境界の意味を持つPOへ戻す（固定L2:480）。複数packを意図して更新する操作は単一pack差し替えと区別する。固定L2-010から依存循環の独立した拒否条件は導出せず、依存closure条件は固定L2-023の範囲で扱う。交換・更新不能な巨大packはDesign-refactorへ戻す。旧PLAN graph schemaや旧gateは導入しない。\n\n**受入条件**\n\n- **`AC-HARNESS-L3-010-01` 宣言と収載（FR-HARNESS-L3-010）**：各packのidentity、version/maturity、入力・出力、必須依存の種別・identity・版、検証範囲／oracle、owner classと具体identityの組が一つだけであること、収載または非収載が追跡できる。release unit版と統合製品版はpack版と別fieldで照合する。複数release unitから使う能力はcomponentまたはcore所有である。依存manifestが完備していても実行時に宣言外の他pack、component、core、外部実行接続のいずれかを使う場合、owner identityが複数の場合、検証済みでも未適格または未検証のpackを暗黙収載した場合は不合格。pack宣言不備はpack契約ownerへ、呼出し固有の不成立は呼出しownerへ理由を返す。\n- **`AC-HARNESS-L3-010-02` 単一pack差し替えの隔離（FR-HARNESS-L3-010）**：一つの対象packを置換した比較で、対象外packの版と証拠が完全に維持される。対象外の変化が一件でもあれば不合格。複数pack更新はこのACに混ぜない。\n- **`AC-HARNESS-L3-010-03` 再現・版境界・分割可能性（FR-HARNESS-L3-010）**：同じ宣言入力とpack版から同じ宣言成果物を得る。失敗する差替えfixtureでは、失敗後のpack identity・version・evidenceが差替え直前の適格版または明示replacementと一致することを確認する。pack成熟度の昇格・成功・差し替えを個別に与えてもrelease unit／統合製品の版・成熟度は変わらない。上位release unit／製品が未完でも適格packを一覧から隠さず、巨大で交換・更新不能なpackは合格にせずDesign-refactorの戻り先を示す。pack契約に関する不成立はpack契約ownerへ、呼出し操作固有の不成立は呼出しownerへ返す。\n"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "revision": "e3fa946be93e7351db5fc8be9bcda900f17b173a",
+      "lines": [
+        63,
+        82
+      ],
+      "full_sha256": "9734e536774f62ba6d53a8804ca16649e00dda307ae60114431f61ad21daa3b4",
+      "raw_lf_sha256": "2f13c8145de5c12d77f5217fc93296bc3583a32b2325ba28520a427a67431715",
+      "literal": "\n1. 常時必須。\n2. 特定operation時のみ必須。\n3. 明示選択されたsource/providerに応じて必須。\n4. 実行条件・成果・authorityを左右しない参照資料のみ。\n\n入力条件から有効closureを決定し、同じ要求inputとrevisionで同じclosureと理由を再現する。未選択sourceは未観測とし、存在・不在・適格性・成功を推測しない。安全依存は該当条件下で必須のまま保持し、依存condition自体がunknownなら保留する。\n\n**入力**：pack identity/source revision、HARNESS-L2-010/011のcontract revision、operation・target/scope、明示的source選択、依存identity・owner・contract版／rangeと条件、必要な既存権限・隔離・data-use識別子。\n\n**出力**：依存ごとのclass・condition・version・ownerと、有効closure。必要、条件不成立による対象外、未選択／未観測、参照のみ、unknown/stale／保留を区別し、利用した依存の版・scope・理由をHARNESS-L2-011の相関付き結果／証拠へ結び付ける。この分類はtarget packの機能・owner・上位要求・版成熟度を変更せず、後続版依存を1.0へ強制せず、1.0で必要な安全依存を削らず、今回未選択の能力について1.0全体の完成義務を削除・延期しない。分類能力自身は全依存実装の存在を要件とせずmissing/unknownを出力でき、closure単独で未採択候補や利用対象機能の成立・実装許可を生成しない（固定L2:488,490）。\n\n**境界・失敗時**：依存identity・区分・condition・version rangeの欠落／曖昧さ、条件の矛盾、unknown/stale、互換性不明、source選択状態のunknownでは、条件をfalse、参照のみ、未選択へ暗黙に読み替えず該当操作を保留する。依存の種別・identity・versionを実行時manifestと突き合わせ、宣言外のdependencyをclosureから黙って除かない。同一要求のclosure欠落を口頭の人代行、暗黙の別source、参照資料で迂回しない。宣言dependency同士の循環などにより固定条件に沿ったclosureを解決できない場合は、暗黙に依存を落とさずunknown/保留としpack契約ownerへ戻す。人が代行しても同じ権限・隔離・版照合・検証・記録とreceiptを要する。利用者が別sourceを明示選択した新入力は別要求としてclosureを再評価する。戻し先はpack契約owner、呼出しowner、authority ownerまたは上流L1/POのうち、欠落した意味を所有する者である。\n\n**受入条件**\n\n- **`AC-HARNESS-L3-023-01` 4分類と条件束縛（FR-HARNESS-L3-023）**：4分類、owner、版／range、適用condition、対象operation/sourceがpack revisionに結び付く。各fixtureで分類を別の分類へ暗黙変換しない。実行条件・成果・authority・検証oracle・安全制約を左右するsourceをreference-onlyへ偽装する変異は拒否し、pack契約ownerへ戻す（固定L2:474、L11:229）。\n- **`AC-HARNESS-L3-023-02` 有効closureと状態区別（FR-HARNESS-L3-023）**：常時必須、成立したoperation条件、選択source条件だけを有効closureに含める。依存ごとの版・scope・判定根拠をHARNESS-L2-011の相関ID付き結果／証拠と結び付ける。条件不成立、未選択／未観測、参照のみ、unknown/staleは別状態として出す。未選択sourceについて存在・不在・適格性・成功を推測しない。source選択自体がunknownなら未選択へ読み替えず保留する。選択sourceの失敗から同じ入力のまま別sourceへ暗黙fallbackしない。利用者がsourceを明示再選択した新入力は別要求として再評価する。宣言された依存closureを解決できない循環はclosure欠落として保留する。未選択source・条件不成立の依存・無関係な能力全体の完成を有効closureまたは当該operationの保留条件に含めない。単体packのgreenだけではserviceの接続・構成体を成立扱いしない。\n- **`AC-HARNESS-L3-023-03` 安全依存と決定性（FR-HARNESS-L3-023）**：依存区分はtarget packの機能・owner・上位要求・版成熟度を変更しない。依存closureの出力単独で未採択候補や利用対象機能の成立・実装許可を生成しない。該当条件下の安全依存は必須としてclosureに残し、unknownな条件は保留にする。人が代行する場合も既存の権限・隔離・版照合・検証・記録を省略せず、source／actor／revision／scope／受領／検証receiptを返す。口頭受領だけではclosure evidenceにならない。分類能力自体は全依存実装の存在を成立条件にせず、missing／unknown状態を出せる。後続版の依存を1.0へ強制せず、1.0で必要な安全依存を後続版扱いで削らない。同じinput・pack revisionの再評価でclosureと根拠が一致する。今回選択しなかった能力も、1.0全体に属する完成義務を削除・延期したことにはしない。\n\n"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+# LABO Stage 2b残22親 Root検収の部分補正
+
+authority_effect: none
+
+旧UILの26–31行は見出しとfront matter末尾であり、source identity/revision/correlation/counterevidenceの説明を支えなかった。実読した43–57行へ9親の引用とraw LF digestを修正した。旧監査記録は変更しない。
+
+固定L2とFRのbaseline/current・candidate・hybridの3比較armにFVを同期し、baselineとcurrentを別armとして必須化しない。019の自己依存誤記をtarget identity/evidenceへ修正した。既承認Stage 2b基本9親を未承認とする文を本追補22親だけの未承認へ限定した。末尾trace表のseparatorを補い、根拠を持たないp50/p95測定候補を除いた。
+
+6本文は最新mainの全bytes prefixを保持し、git diff --checkを通過した。参照82 occurrenceの旧pin hash一致は初期稿の機械照合であり、説明の意味一致や全変異被覆の認定ではない。FRの親固有意味とFV全追補を読んだが、定型source表の反復は共通sourceと代表行を照合した範囲に限る。
+
+残件はJSONに明記した。集約familyに残る未被覆変異、固定L11の詳細と各source責務を補正し、修正後本文に新しい全pinを付けてClaudeの独立reviewへ渡す。L3承認・実行・受入成立はまだない。

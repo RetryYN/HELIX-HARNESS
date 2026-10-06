@@ -1,0 +1,7 @@
+# INTELLIGENCE Stage 4 review02検収追補
+
+本文revision fc7e27a758c15e2886f0eb75313e2815c0d03659、対象main 5acae384305b01d10e88eeb2e6406f847baf66df。正式所見6000193669（Major 8、Minor 26）に沿って6正本を修正した。旧監査は変更していない。
+
+6本文のfull SHA・main prefix一致・追加1431行・CASE定義580件をJSONへ固定した。summary/index33件、個別fixture定義547件、AC60。旧source97pinと追加15pinはgit objectから機械的に再計算した。CASE意味変更履歴と過去の/tmp locatorの再現限界を記録した。
+
+Root実読範囲と未確認はJSONを参照。pin一致を引用趣旨全体の保証へ広げない。静的検証のみ、L10未実行。独立再レビュー、Opus/Fable一致、委任decisionは未成立。

@@ -1,0 +1,2545 @@
+{
+  "record_type": "root-review08-correction-acceptance",
+  "authority_effect": "none",
+  "base": "5acae384305b01d10e88eeb2e6406f847baf66df",
+  "body_revision": "3aa88a697dbc8e726bdf23c27c8bb364867bb173",
+  "review_content_head": "34a8bba29bcec407f9330f818e606504ca8c1cb7",
+  "formal_comment": {
+    "id": 6002850302,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2613#issuecomment-6002850302",
+    "body": "## review08（independent review、HEAD 34a8bba29bcec407f9330f818e606504ca8c1cb7、body 588ff96a34eb84205c72d1e4d59913d4fcda356e）\n\nreviewer: Claude（lane `review_merge`、Fable 5.1）。Opus agent 1本（新4 CASE・AC文言・NV範囲・旧source根拠）＋Fable advisor再照合（前回見解の本revisionでの維持可否）＋reviewer本人の静的検査・固定親照合。merge-base 0757e1587、`git merge-tree --write-tree origin/main HEAD` 衝突なし。\n\n### 静的検査（w2613 = exact HEAD）\n- scfctl validate 147/0、stale 0、residuals 0、govcheck ok、`git diff --check` 0。\n- Root検収 `harness-stage2b-remainder-root-review07-acceptance-2026-10-06.json`：pin 606/606一致、case_inventory 219 = FV行219（017:20／018:57／019:24／020:23／024:95）、review06・review07 comment本文SHAとも一致（review07 m3解消）。FV/NVはbody 588ff96a3と同一bytes、FR不変、main prefix一致。公開CASE消失0。\n\n### review07所見の解消\n- **M1解消**：018-R056（配備済み製品revisionだけ欠落→配備record提供元へ）、018-R057（owner承認だけ欠落・未承認draft→運用要求ownerへ、文書・CI・実装から承認を生成しない）。各1変異、L2:413・415、AC-018-01「対応付く場合だけ」の範囲内。戻し先はJSON `owner_derivation` に再導出を記録。\n- **m1解消**：017-R020 rollback正例（直前適格版identity/version/evidenceを与え、rollback先一致とevidence到達を観測。配備・rollback操作・Observedを生成しない）。R013の負例と対比。L2:407・L11:212。\n- **m2解消**：024-R095（固定iteration上限到達だけを理由とする打切り拒否→HARNESS要求ownerへ、L2:515・519。R047とは親句が別）。旧RDJ-FR-007「直近2 iteration」（`archive/.../L3-requirements/requirement-discovery-json-authority.md:52`、`.../test-design/helix/requirement-discovery-json-authority-acceptance.md:26`、`.../L6-function-design/requirement-discovery-event-projection.md:64`）を移植しない変更点に旧source根拠あり。\n- **m3解消**：review06本文SHAをJSONに追補。\n\n### Fable見解（advisor、本文588ff96a3・HEAD 34a8bba29、差分全文と固定L2 403–416／505–521・L11:212–215、関連CASE実読）\n結論行（原文のまま）：「**承認してよい。**」。前回見解は本revisionでも維持。付随所見2件（下記m1・m2と同内容）は「承認を止めるものではない」「Opusが固定親に照らして採否を決めてよい」。\n\n### 所見（Major 0／Minor 2）\n- **m1（FV:607 節注の固定親行参照）**：「固定親L2:407/413–416/517およびL11:212–213」のうち、R095の根拠「固定iteration上限は設けない」はL2:515（収束契約5）、HARNESS要求ownerへの戻し先はL2:519、旧RDJとの関係はL2:521。L2:517は「保証と既存engine対応」で上限禁止の根拠ではない。JSON `read_extent`「513–523」は正しいので意味の誤りではなく本文注の参照精度。「L2:407/413–416/515/519/521」へ。\n- **m2（018 AC-018-01：対応不一致の単独変異なし）**：L2:413「配備済みの製品と、その製品が承認した運用品質の要求」、AC-018-01「対応付く場合だけ」。R056/R057で欠落側は閉じたが、「両方が存在するが対応しない（別製品／別revision向けに承認された運用要求を当該配備revisionへ当てる）」の単独変異がAC-018-01配下にない。018-R047はAC-018-03（観測record↔再要求化candidate）、024-R094はpack版不一致で代替にならない。本PRで不一致型を個別fixture化してきた経緯（R047・R094）に揃え1件追加（戻し先：運用要求owner）、またはR056/R057＋R047で代表する理由を記録。欠落ではなく値変異のためMinor。\n\n### 判定\nblocker 0、Major 0、Minor 2。Readyは未可。m1は6本文の一部（FV）なので修正でrevisionが変わる。次revisionでOpus `no_findings`（未確認範囲0）とFable見解を再成立させる。本HEADでのFable見解「承認してよい」は本commentに記録。merge admissionは本commentから生成しない。\n",
+    "body_utf8_sha256": "ff8dfcb3c74afdb832eee4dde406c1c1f17590adb779a72dfde1f750eb7e2697"
+  },
+  "previous_immutable_audit": {
+    "path": "docs/governance/audits/requirements-stage/harness-stage2b-remainder-root-review07-acceptance-2026-10-06.json",
+    "sha256": "cea902a271f653258eadf1e4099c38d922bebaa8e35d0f6044733d50650566bc"
+  },
+  "findings": {
+    "m1": "固定参照行を407/413–416/515/519/521へ訂正",
+    "m2": "018-R058：両revisionと承認が既知で対応revisionだけ不一致。運用要求ownerへ返す"
+  },
+  "source_pins": [
+    {
+      "revision": "633bf12",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "lines": [
+        403,
+        416
+      ],
+      "full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+      "raw_lf_span_sha256": "9ad6f0acb4cac8d0735f8295bb484933efcda011aea17e252af2f2d1ade1fd1b",
+      "literal": "### HARNESS-L2-017 ⑥ リリース（単体）\n\n- **受け取るもの**：HARNESS-L2-022の契約で検証・受入を通った成果物（Verified、Accepted）と、開発の開始時から持つRelease Portの条件。HELIXの外で検証・受入を行った成果物も、HARNESS-L2-022の「外部の成果の持ち込み」の条件を満たせば受け取る。\n- **提供するもの**：対象製品のリリースの仕組み（成果物の識別、対象環境、依存、securityの条件、rollback、配備の条件）。これは利用者の製品のための仕組みであり、HELIX自身の実行環境（HELIX-INFRASTRUCTURE）ではない。\n- **保証すること**：Release Portの必須条件を満たしたものだけをRelease-eligibleにする。回収されない省いた検査が残っていれば止める。同じ入力から同じ成果物を再現でき、失敗時は直前の適格な版へ戻せる。配備（Deployed）を運用評価（Observed）と区別する。\n- **単独で成り立つための依存**：検証済みの成果物とRelease Portの条件だけで使える。配布の実行はHELIX管理下ではHELIX-OSが運転し、利用者の環境では利用者の配備手段へ仕組みを渡す。\n- 束ねる既存の条件：HARNESS-L2-003（Release Port、成果物の状態）、HARNESS-L2-005（省いた検査の回収）、FRS-BR-005、「外部提供の条件」。\n\n### HARNESS-L2-018 ⑦ 運用保守（単体）\n\n- **受け取るもの**：配備済みの製品と、その製品が承認した運用品質の要求（可用性、信頼性、性能、容量、費用、security、privacy、運用、保守、回復、observabilityの適用・非適用・unknown・決定owner）。\n- **提供するもの**：ログを取り、改善し続ける仕組み。L12運用評価、観測、観測から要求へ戻す再要求化の経路。\n- **保証すること**：designed、implemented、verified、observed、operatedを別の状態とし、文書・実装・CIの存在だけで後の状態を成立させない。L12の観測から再要求化へ、同じ要求revisionで接続する。品質の値、対象環境、RTO／RPO、保持期間、予算を全製品へ固定しない。\n- **単独で成り立つための依存**：配備済みの製品と運用品質の要求だけで使え、①〜⑥を必須にしない。HELIX管理下の監視・incident・復旧の運転はHELIX-OS、改善効果の評価はHELIX-LABOであり、HARNESSは仕組みの契約を持つ。\n"
+    },
+    {
+      "revision": "633bf12",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "lines": [
+        513,
+        523
+      ],
+      "full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+      "raw_lf_span_sha256": "f5382943ad220f9d06f3f1e1bdca53cfba359cea68fc55d6a8ba04ed37199295",
+      "literal": "3. 合意済みの回答・要求を再開する場合は、新しいsource/revision、矛盾を示すfinding、影響するscopeと差分を特定する。エンジンは再開を自動確定せず、影響を受ける項目だけを対象ownerへ理由付きで照会する。新しい根拠がない同じscopeでの再確認は拒否する。\n4. 収束判定は、actor/task、正常・取消・failure・timeout・recovery、P0/P1 surface、矛盾/deferとowner/re-entry、暗黙matrixの必須領域、利用可能なiteration履歴と差分根拠、prototype/非UI適用性について現行HARNESS-L2-008の工程で得た合意・根拠（該当時）を確認する。旧条件の「直近2 iteration」を最低件数にせず、過去履歴がない/少ないこと自体を必須事項unknownと同一視しない。各要求領域を解決済み／明示保留／非適用（理由・判断者・対象revision・再評価条件）／必須事項unknownで区別する。必須事項unknown、未ownerの必須事項、未説明の矛盾、P0/P1の未分類欠落は形成資料の不足として提示し、PO確認待ちそのものとは区別する。必要な形成情報と根拠・残存判断一覧が揃った場合は「人の確認・合意待ちの候補」として提示できるが、これは合意・freeze・採択完了ではない。人の合意状態は別個に確認し、engineが収束判定から生成しない。prototype／非UI合意が該当して未了でも、要求候補・根拠・未決判断packetを形成して当該合意待ちの状態で提示できる。既存合意がある前提の記録欠落は形成資料不足として区別し、合意前のfreeze・下流承認を生成しない。\n5. score、fixture score、質問回数、訂正率、反復iteration数、無変更iteration、timeoutを単独の収束判定にしない。固定iteration上限は設けない。timeout時は進行停止・状態保持・actor/scope/最後の確定revision/open item/再入条件を返し、回答や合意を捏造せず、再開条件が揃うまで待つ。\n\n**保証と既存engine対応**：HARNESS-L2-008とREQENG-HARNESS-001/002/003/004の既存抽出・意味差分・質問・影響処理へ、revision/scope単位の既回答照合、質問順序の説明、合意再開根拠、必須条件の収束判定を補う。REQENG-HARNESS-005/006の製品pack分離と決定論を保持し、REQENG-HARNESS-007およびHARNESS-L2-013の提案・人承認境界を保持する。OSは人の反応/採否eventを登録・監視する既存責務に留まり、要求の意味を重複所有しない。prototype/PoC結果からHARNESS-L2-008へ戻る現行Backflow、単体/connection/compositeのidentity、failure/timeout、trace、owner/re-entryも落とさない。\n\n**単独成立依存と戻し先**：HARNESS-L2-008（要求候補・意味質問）とHARNESS-L2-013（②単独service）およびその候補revision付きHARNESS-L1親。初回で既回答がないことは明示的な空の履歴として区別する。存在するはずの回答・合意の記録、対象revisionのL1、根拠scope、actor/ownerまたは適用matrixがmissing/unknown/staleなら影響する質問の確定・収束を保留し、HARNESS要求ownerへ不足を戻す。上流の目的・scope・人が決める値が不明ならHARNESS-L1-008または意味を持つPOへ戻す。操作・記録・採否の実行はOS側既存consumerへ戻し、HARNESSに登録/承認権限を追加しない。\n\n**旧RDJとの関係**：RDJ-FR-003/007とRDJ-AC-003/007の意味を保持し、RDJ-FR-002のevent履歴・決定論replay、FR-004のsuccess/cancel/failure/timeout/recovery、FR-006の暗黙matrixと人間decision、AC-006の自動accept拒否を関連条件として結ぶ。変更点は固定反復回数・旧手続きを新設せず、利用可能な履歴と変更根拠を照合し履歴件数を成立条件にせず、現行HARNESS engine候補のquestion-volume/correction-rateを同じ／未見fixtureで補助計測すること。質問/訂正measurementの改善値だけでは必須要件未決を閉じない。\n\n**原文と旧資産**：[PO補強原文](../../helix-os/sources/body-reinforcement-po-original-2026-09-27.md)第3項を起点とする。旧RDJ-FR-003/007は `LEGACY-ASSET-E78B8D68CC327AA00991`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/requirement-discovery-json-authority.md:48,52`、SHA-256 `361a9ef773f7cf36cc0953f70cad205184ca952f2cb672431e5b929121ef1f61`。対のAC003/007は `LEGACY-ASSET-AD746F4F3487103519F9`、`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/requirement-discovery-json-authority-acceptance.md:22,26`、SHA-256 `3462b3da8269668c848799b07305f2fe135d8902de02121c2048d5686d98dc0e`。旧FR007の固定「直近2 iteration」は原条件として記録するが、PO指示に従い現行の最低回数にしない。履歴・差分・必須条件の照合という意味を再導出する。`LEGACY-ASSET-4A7A45BC495D1B2677A2`、`archive/legacy-generation-2026-09-14/root/requirements-ir/refinement_contracts.json:1-2828`、SHA-256 `6230d6c0ae341ea45eba1e9bf1d40389363b9f1f12c158e5b5c15799122e1443`には該当RDJ契約がなく、他機能の契約を代替根拠にしない。旧runtime・schema実装は移植/実行しない。\n"
+    }
+  ],
+  "canonical_documents": [
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "full_sha256": "a1c0ed86d63a523ebad07105ceb6dbbca602bb1bd3c6a76af5c8a9e10fbab4b2",
+      "base_sha256": "b15d4bccf9261dd05f9f4ff6018c8ec922d13501a5fcfbf9df99075e4bc1a5b7",
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "full_sha256": "9734e536774f62ba6d53a8804ca16649e00dda307ae60114431f61ad21daa3b4",
+      "base_sha256": "b869de423632daaa4fcdebd5af5bd6a8aaea3c3d378d4c8cdec87bd95e092760",
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "full_sha256": "ab37418cb9d3004d6ba0467b4c82bfe4d75f90eb8f4c136902f691e8e3c876b6",
+      "base_sha256": "a822b1db81e630f5e8c6900d899e18991da6e9ca40735dffacb0df740bf2fa9f",
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "full_sha256": "788c690368c3be1721410f65d5970dad1731b8e79a0a5b7b80c26e3475698309",
+      "base_sha256": "ee401cfd216fd3f3f14d329e21ef919f2be84887784d52067f5bb9113cd90812",
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "full_sha256": "0a7fb5d4cc88d6fec1576260d5b3bd2adf71d0ed6939b1168cf4ee621dd538dc",
+      "base_sha256": "4fbe36227888ca2ba0b955d88d883d2c1a3eae832fd161f0fb3f9354b874d197",
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "full_sha256": "245f1c655276338ac163ba35ded36e8453769197638412a305a2b0aec658fd82",
+      "base_sha256": "d579f983194734093753d0361e7613dc28792d124421c40d703fc8c0b5e0625b",
+      "prefix_exact": true
+    }
+  ],
+  "case_inventory": [
+    {
+      "id": "CASE-HARNESS-L10-017-R001",
+      "parent": "017",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 382,
+      "raw_lf_sha256": "f2b3f7e3f270e4ab73f35733ce183cc85e62336fab080a4c59413863c0f37f4a",
+      "literal": "| `CASE-HARNESS-L10-017-R001` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-01` | normal：同一の製品artifact identity/revision/scopeについて、HARNESS-L2-022のVerified・Accepted段階evidence、開始時点からのRelease Port、対象環境・依存・security・rollback・配備条件を与える。 | 全条件と同じartifactへのtraceを確認しRelease-eligible候補を返す。配備せず、Observedを生成しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-017-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R001",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 383,
+      "raw_lf_sha256": "5f8fb5474cfed38214cf5257b09c03c0ba5b0413f499d0f95157b1c73723a360",
+      "literal": "| `CASE-HARNESS-L10-018-R001` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | normal：配備済み製品revisionと、そのownerが承認した可用性・信頼性・性能・容量・費用・security・privacy・運用・保守・回復・observability各要求について、適用/N/A/unknownと決定owner・根拠を与える。 | 各軸の個別基準と状態を対象revisionへ結び、L12観測設計と同じ要求revisionへの再要求化経路を返す。実観測・運用済みとはしない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-019-R001",
+      "parent": "019",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 384,
+      "raw_lf_sha256": "20f120ed6af2e278424e7359b03b9b6e3f3f52216da44e43ac801cdd1d16fa6d",
+      "literal": "| `CASE-HARNESS-L10-019-R001` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-01` | normal：COREだけを使い、対象stageを指定しない既存要件、既知のsource/revision/scope、対応する要求・設計・検証根拠を入力する。 | HELIX形式のpair候補と元入力へのtraceを返し、部分情報は該当箇所だけunknownとして保持する。先行stage実行や候補の承認を要求しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-019-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-020-R001",
+      "parent": "020",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 385,
+      "raw_lf_sha256": "868849a9c702ae613bfcf8083617a87d4b5d5a1ae0da30934d475241cb482647",
+      "literal": "| `CASE-HARNESS-L10-020-R001` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-01` | normal：隣接する前単位のoutput contractと次単位のinput contractが同版で互換し、artifact identity/revision、両契約owner、必要evidenceが同じhandoff scopeへ結び付く。未完義務の有無も明示する。 | field対応とownerを記録しhandoff候補を返す。未完義務は状態・owner付きで保持し、handoffを完了・release実行にしない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-020-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R001",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 386,
+      "raw_lf_sha256": "647bedae8454f3fb67f3fee97518c923ea8037f68f16e5aa8c503c09e2aa3e37",
+      "literal": "| `CASE-HARNESS-L10-024-R001` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-01` | normal：同一target revision/scopeの既回答「対象actorはproject owner」と、未回答「data retentionの決定owner」「表示ラベル」を与える。影響・不確実性・下流変更cost・人間専決度の根拠とpackのtie-breakを付ける。 | actorを再質問せず、authority/data-useへの影響を持つretention ownerを表示ラベルより先に理由付き提示し、残る未決を同じscopeで保持する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-017-R002",
+      "parent": "017",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 387,
+      "raw_lf_sha256": "4ed911aee520a4cae65cad80c0e6cbcdd8ca3228c4ce8f2206702aafec334a95",
+      "literal": "| `CASE-HARNESS-L10-017-R002` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-01` | external-normal：L2-022相当のVerified/Accepted evidenceと開始時Release Portを持つ外部成果。出所だけを未見外部へ替える。 | 同じcriteriaでRelease-eligible候補を照合する。出所やOS未使用だけで拒否しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-017-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-017-R003",
+      "parent": "017",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 388,
+      "raw_lf_sha256": "873fab25b26b3557bd00031fca1fdf50f9d45695f76c2e53ef869684eef5719f",
+      "literal": "| `CASE-HARNESS-L10-017-R003` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-01` | no-os-normal：R001と同じ成果物・証拠・開始時Release Portを保持し、OSを未使用として利用者配備手段へ渡す。 | 同じcriteriaでRelease-eligible候補を照合する。出所やOS未使用だけで拒否しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-017-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-017-R004",
+      "parent": "017",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 389,
+      "raw_lf_sha256": "0c70c400f165ee3c9ac27741a40d6af8f62d993fb25858130a24d54f35c77c72",
+      "literal": "| `CASE-HARNESS-L10-017-R004` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | 未回収の省略検査：正常fixtureで回収済みだった省略検査一件だけを未回収へ変え、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、未回収検査を扱うL2-022の検証・受入へ不足・不一致を示す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-017-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-017-R005",
+      "parent": "017",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 390,
+      "raw_lf_sha256": "6084b1c77c2ed51ff16b8fa5b98623aa52f3b6b3e6d45a6ac6e5b88d22ba2cca",
+      "literal": "| `CASE-HARNESS-L10-017-R005` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | Release Port必須条件：正常fixtureのRelease Port必須条件だけを欠落させ、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、開発開始時のRelease Port条件の提供元へ不足・不一致を示す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-017-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-017-R006",
+      "parent": "017",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 391,
+      "raw_lf_sha256": "0c7f0b03fc0cf1d281a8ce13479e79e258131f80c22c2046000cf843abba6ff2",
+      "literal": "| `CASE-HARNESS-L10-017-R006` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | artifact revision：正常fixtureのartifact revisionだけを別revisionにし、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、対象artifactとそのevidenceの提供元へ不足・不一致を示す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-017-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-017-R007",
+      "parent": "017",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 392,
+      "raw_lf_sha256": "31acb4c5dbd8830eb8743dbfa479d824cdfea8b9859e074dfa4b186ff9bd4fc7",
+      "literal": "| `CASE-HARNESS-L10-017-R007` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | artifact identity：正常fixtureのartifact identityだけを別identityにし、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、対象artifactとそのevidenceの提供元へ不足・不一致を示す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-017-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-017-R008",
+      "parent": "017",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 393,
+      "raw_lf_sha256": "30208e0df650060a2992d09df77f5f107c5b6d4aba43964abe78421665c82479",
+      "literal": "| `CASE-HARNESS-L10-017-R008` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | 対象環境：正常fixtureの対象環境だけを欠落させ、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、対象環境条件の提供元へ不足・不一致を示す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-017-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-017-R009",
+      "parent": "017",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 394,
+      "raw_lf_sha256": "e1c3d71d8167d7be93a4b6acb81c36263350ec1abaaf788feff14ec8de7c20ea",
+      "literal": "| `CASE-HARNESS-L10-017-R009` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | 依存条件：正常fixtureの依存条件だけを不一致にし、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、依存条件の提供元へ不足・不一致を示す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-017-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-017-R010",
+      "parent": "017",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 395,
+      "raw_lf_sha256": "696e11d4791bc4a16f1bc3446dbc8bc3f6b12f2c5559b8d8f841f055f4d77187",
+      "literal": "| `CASE-HARNESS-L10-017-R010` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | security条件：正常fixtureのsecurity条件だけを欠落させ、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、security条件の提供元へ不足・不一致を示す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-017-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-017-R011",
+      "parent": "017",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 396,
+      "raw_lf_sha256": "93fe1042f2819ab290610d786436ab4b66d2a9067bd8243108b763d73876b3eb",
+      "literal": "| `CASE-HARNESS-L10-017-R011` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | 配備条件：正常fixtureの配備条件だけを不一致にし、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、配備条件の提供元へ不足・不一致を示す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-017-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-017-R012",
+      "parent": "017",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 397,
+      "raw_lf_sha256": "ffb62c608ecaa4a3d4db86922380c3669444549625a4d667a11bea322f2d8442",
+      "literal": "| `CASE-HARNESS-L10-017-R012` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-03` | reproduce：同じ宣言input/revisionで成果物を2回再構成する。 | 同じ成果物identityとdigestを得る。差を隠す正規化や別inputでの一致を再現性にしない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-017-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-017-R013",
+      "parent": "017",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 398,
+      "raw_lf_sha256": "7037e7606ef1ed7bf30e195d04a5ec0e756e69d1bef13269172fcf0a0383f3b7",
+      "literal": "| `CASE-HARNESS-L10-017-R013` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-03` | rollback：直前適格版だけを未特定にする。 | rollback可能とせず、直前適格版のartifact/evidence提供元へ不足を返す。提供元ownerを特定できない場合はunknownを保持し、ownerを推測しない。配備実行をこのfixtureで行わない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-017-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-017-R014",
+      "parent": "017",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 399,
+      "raw_lf_sha256": "19426a69656bc65ea797efb7dc0bc005abb124f83925532e8f24f550bb20d235",
+      "literal": "| `CASE-HARNESS-L10-017-R014` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-03` | deployed-only：Deployed evidenceだけがありObserved evidenceは未着。 | Deployedを保持しObservedへ昇格しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-017-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R002",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 400,
+      "raw_lf_sha256": "eaa44ba5a9196cf0ae71f70e05102dab2f965bcb3ed594e3f457922defd01f69",
+      "literal": "| `CASE-HARNESS-L10-018-R002` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 可用性適用：配備済みrevisionとowner承認運用要求で可用性だけを適用へ設定し根拠と決定ownerを与える。 | 当該軸の適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R003",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 401,
+      "raw_lf_sha256": "de98cd0cdfd41f51e004c719c73d7337aaf7300cc75b1f649bcfb4cf5c4370f6",
+      "literal": "| `CASE-HARNESS-L10-018-R003` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 可用性非適用：配備済みrevisionとowner承認運用要求で可用性だけを非適用へ設定し根拠と決定ownerを与える。 | 当該軸の非適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R004",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 402,
+      "raw_lf_sha256": "fece8e8c68b604a9417b9a604add49a3776c5bb6ea8cda38fd7616eef8af50a4",
+      "literal": "| `CASE-HARNESS-L10-018-R004` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 可用性unknown：配備済みrevisionとowner承認運用要求で可用性だけをunknownへ設定し根拠と決定ownerを与える。 | 当該軸のunknownを保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R005",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 403,
+      "raw_lf_sha256": "91dd27abbf65e430d71679263d9aea645415c1187e559044e5979f18480cf533",
+      "literal": "| `CASE-HARNESS-L10-018-R005` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 信頼性適用：配備済みrevisionとowner承認運用要求で信頼性だけを適用へ設定し根拠と決定ownerを与える。 | 当該軸の適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R006",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 404,
+      "raw_lf_sha256": "ac9a813edc692f37cd6b2ced0eb7b21d8cfa3f47997ffb0c4083252ac6923af0",
+      "literal": "| `CASE-HARNESS-L10-018-R006` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 信頼性非適用：配備済みrevisionとowner承認運用要求で信頼性だけを非適用へ設定し根拠と決定ownerを与える。 | 当該軸の非適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R007",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 405,
+      "raw_lf_sha256": "40826f3395a166467f6694396a81d632aa4bf513b4789382d0d2342488b94ce4",
+      "literal": "| `CASE-HARNESS-L10-018-R007` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 信頼性unknown：配備済みrevisionとowner承認運用要求で信頼性だけをunknownへ設定し根拠と決定ownerを与える。 | 当該軸のunknownを保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R008",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 406,
+      "raw_lf_sha256": "ea89b86ca1d7a9c800d197994b1e9fbea039ecb0e9f7a3bcd90963c4450a4c3e",
+      "literal": "| `CASE-HARNESS-L10-018-R008` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 性能適用：配備済みrevisionとowner承認運用要求で性能だけを適用へ設定し根拠と決定ownerを与える。 | 当該軸の適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R009",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 407,
+      "raw_lf_sha256": "d55a1f89df490260a919686eb3b684eb19a5675207b9f69c586fc35d6d18fc0e",
+      "literal": "| `CASE-HARNESS-L10-018-R009` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 性能非適用：配備済みrevisionとowner承認運用要求で性能だけを非適用へ設定し根拠と決定ownerを与える。 | 当該軸の非適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R010",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 408,
+      "raw_lf_sha256": "5eb24a1db8228f8ffe56ceaa9f1b9751ee0880b5b41e2d2a26dd906bcabe8166",
+      "literal": "| `CASE-HARNESS-L10-018-R010` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 性能unknown：配備済みrevisionとowner承認運用要求で性能だけをunknownへ設定し根拠と決定ownerを与える。 | 当該軸のunknownを保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R011",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 409,
+      "raw_lf_sha256": "11584766b819d500ce9b0c4bfa18896a3e117ba9ce30f00e868860626aef736c",
+      "literal": "| `CASE-HARNESS-L10-018-R011` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 容量適用：配備済みrevisionとowner承認運用要求で容量だけを適用へ設定し根拠と決定ownerを与える。 | 当該軸の適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R012",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 410,
+      "raw_lf_sha256": "fa3984ac29c3ef6f812f125da44d7779062d69db1ceb5923f1fc2ffd38cca986",
+      "literal": "| `CASE-HARNESS-L10-018-R012` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 容量非適用：配備済みrevisionとowner承認運用要求で容量だけを非適用へ設定し根拠と決定ownerを与える。 | 当該軸の非適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R013",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 411,
+      "raw_lf_sha256": "158e10031190b40b1e6c542b45f5be10a73ee9cf05543a52260ec7089d4297a6",
+      "literal": "| `CASE-HARNESS-L10-018-R013` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 容量unknown：配備済みrevisionとowner承認運用要求で容量だけをunknownへ設定し根拠と決定ownerを与える。 | 当該軸のunknownを保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R014",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 412,
+      "raw_lf_sha256": "65f6409760132438cf5b4177a96d83884339d77aaa706f50f6b01f8b264018b9",
+      "literal": "| `CASE-HARNESS-L10-018-R014` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 費用適用：配備済みrevisionとowner承認運用要求で費用だけを適用へ設定し根拠と決定ownerを与える。 | 当該軸の適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R015",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 413,
+      "raw_lf_sha256": "e31e8d7d0f8d1ec2eafe5bc3716b95239a56929131971faf5dace1173498f4bc",
+      "literal": "| `CASE-HARNESS-L10-018-R015` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 費用非適用：配備済みrevisionとowner承認運用要求で費用だけを非適用へ設定し根拠と決定ownerを与える。 | 当該軸の非適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R016",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 414,
+      "raw_lf_sha256": "b3a09472121e79b5196bcfe9ea15ecfe8bffefa9a6287c613a242f26f40a78b0",
+      "literal": "| `CASE-HARNESS-L10-018-R016` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 費用unknown：配備済みrevisionとowner承認運用要求で費用だけをunknownへ設定し根拠と決定ownerを与える。 | 当該軸のunknownを保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R017",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 415,
+      "raw_lf_sha256": "69694c105002bdff766ac3cc29ea7a39f67d4822d27de84f519b7348851169ee",
+      "literal": "| `CASE-HARNESS-L10-018-R017` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | security適用：配備済みrevisionとowner承認運用要求でsecurityだけを適用へ設定し根拠と決定ownerを与える。 | 当該軸の適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R018",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 416,
+      "raw_lf_sha256": "7c5627797d669096d40f28b4b29883b5546aafd0a5b5498d1d902e3ce3412af5",
+      "literal": "| `CASE-HARNESS-L10-018-R018` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | security非適用：配備済みrevisionとowner承認運用要求でsecurityだけを非適用へ設定し根拠と決定ownerを与える。 | 当該軸の非適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R019",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 417,
+      "raw_lf_sha256": "7caef47ff6d47f797d6c19b7d939f626b38c182d72b3455ac36adfd945bb1532",
+      "literal": "| `CASE-HARNESS-L10-018-R019` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | securityunknown：配備済みrevisionとowner承認運用要求でsecurityだけをunknownへ設定し根拠と決定ownerを与える。 | 当該軸のunknownを保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R020",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 418,
+      "raw_lf_sha256": "688624407cb8ce32368c6c79f6ec838806f06c2885dabac3707e1fcc68686400",
+      "literal": "| `CASE-HARNESS-L10-018-R020` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | privacy適用：配備済みrevisionとowner承認運用要求でprivacyだけを適用へ設定し根拠と決定ownerを与える。 | 当該軸の適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R021",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 419,
+      "raw_lf_sha256": "76a028b097cd79b4bd2591dbc5678937d345a8b0236698b8a18a3e53aaee49f3",
+      "literal": "| `CASE-HARNESS-L10-018-R021` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | privacy非適用：配備済みrevisionとowner承認運用要求でprivacyだけを非適用へ設定し根拠と決定ownerを与える。 | 当該軸の非適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R022",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 420,
+      "raw_lf_sha256": "51a17336eb4a0bb68a65b237f816994f4cfe17d9a97bc51acd32fa3920eaf23a",
+      "literal": "| `CASE-HARNESS-L10-018-R022` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | privacyunknown：配備済みrevisionとowner承認運用要求でprivacyだけをunknownへ設定し根拠と決定ownerを与える。 | 当該軸のunknownを保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R023",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 421,
+      "raw_lf_sha256": "d39ce0a886acc1f5ea5ba668d80e3c864c3d8190fcc7de26d83da822952baf52",
+      "literal": "| `CASE-HARNESS-L10-018-R023` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 運用適用：配備済みrevisionとowner承認運用要求で運用だけを適用へ設定し根拠と決定ownerを与える。 | 当該軸の適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R024",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 422,
+      "raw_lf_sha256": "e52e98cca4b4e6f73c9d4d7d77c0f99a7a3cd14ba9cdca098d797c62314b1de2",
+      "literal": "| `CASE-HARNESS-L10-018-R024` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 運用非適用：配備済みrevisionとowner承認運用要求で運用だけを非適用へ設定し根拠と決定ownerを与える。 | 当該軸の非適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R025",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 423,
+      "raw_lf_sha256": "0867b5189183594dac09cd2319b8a393aad821e51206d7ab266ddb93c529bc03",
+      "literal": "| `CASE-HARNESS-L10-018-R025` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 運用unknown：配備済みrevisionとowner承認運用要求で運用だけをunknownへ設定し根拠と決定ownerを与える。 | 当該軸のunknownを保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R026",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 424,
+      "raw_lf_sha256": "bafb548b6aea713592ac14e836efb79ff5c38cfad282f9e3d3d1fd71d30d9d2a",
+      "literal": "| `CASE-HARNESS-L10-018-R026` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 保守適用：配備済みrevisionとowner承認運用要求で保守だけを適用へ設定し根拠と決定ownerを与える。 | 当該軸の適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R027",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 425,
+      "raw_lf_sha256": "962753442d57c599c6000a73b86a59ac77a4e533090756187fe8c81eb00b825c",
+      "literal": "| `CASE-HARNESS-L10-018-R027` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 保守非適用：配備済みrevisionとowner承認運用要求で保守だけを非適用へ設定し根拠と決定ownerを与える。 | 当該軸の非適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R028",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 426,
+      "raw_lf_sha256": "43dd90b8fcbb21ed829d2d11096f749b36d85df3ddea1579bf1845e5013a71c6",
+      "literal": "| `CASE-HARNESS-L10-018-R028` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 保守unknown：配備済みrevisionとowner承認運用要求で保守だけをunknownへ設定し根拠と決定ownerを与える。 | 当該軸のunknownを保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R029",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 427,
+      "raw_lf_sha256": "ec6c1c0c8ce8cbdca1ee115fac169b965a832df92abd68f02a523fd84a0d6c4a",
+      "literal": "| `CASE-HARNESS-L10-018-R029` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 回復適用：配備済みrevisionとowner承認運用要求で回復だけを適用へ設定し根拠と決定ownerを与える。 | 当該軸の適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R030",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 428,
+      "raw_lf_sha256": "e69453adb8776b1e78aa4e239c0c942323e713e19fdf3e582b6a3c11f2a2e7ea",
+      "literal": "| `CASE-HARNESS-L10-018-R030` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 回復非適用：配備済みrevisionとowner承認運用要求で回復だけを非適用へ設定し根拠と決定ownerを与える。 | 当該軸の非適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R031",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 429,
+      "raw_lf_sha256": "8b01ade02b861415c271ce24ed307d6ca82541a4d6ef105cba3e2fda5fa4bb5d",
+      "literal": "| `CASE-HARNESS-L10-018-R031` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 回復unknown：配備済みrevisionとowner承認運用要求で回復だけをunknownへ設定し根拠と決定ownerを与える。 | 当該軸のunknownを保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R032",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 430,
+      "raw_lf_sha256": "20997fed4d107366898b165f30943ba6523b14775ba253e121b499f561d2e942",
+      "literal": "| `CASE-HARNESS-L10-018-R032` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | observability適用：配備済みrevisionとowner承認運用要求でobservabilityだけを適用へ設定し根拠と決定ownerを与える。 | 当該軸の適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R033",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 431,
+      "raw_lf_sha256": "2d62413688b7e815c8277a1d82c0f07443a4b125d562d5c22f1b4cd2d02a2440",
+      "literal": "| `CASE-HARNESS-L10-018-R033` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | observability非適用：配備済みrevisionとowner承認運用要求でobservabilityだけを非適用へ設定し根拠と決定ownerを与える。 | 当該軸の非適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R034",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 432,
+      "raw_lf_sha256": "b1fa8d8ca978d0bea627046ab05c0061862c6d585b31678694cd4aa2641b4f24",
+      "literal": "| `CASE-HARNESS-L10-018-R034` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | observabilityunknown：配備済みrevisionとowner承認運用要求でobservabilityだけをunknownへ設定し根拠と決定ownerを与える。 | 当該軸のunknownを保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R035",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 433,
+      "raw_lf_sha256": "616fcb11dec710175bf0a487dd6bab984dc858bd33dd79d17816848bf5ccf485",
+      "literal": "| `CASE-HARNESS-L10-018-R035` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-02` | 要求owner：正常な観測recordの要求ownerだけを欠落する。 | 観測/運用済みとせず不足を特定し、record提供元へowner欠落を返す。要求ownerを推測で補わずunknownを保持する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R036",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 434,
+      "raw_lf_sha256": "3dec411371ea946c02e18414bcccb40242da8defe6eff8691a3a2d465f2e506d",
+      "literal": "| `CASE-HARNESS-L10-018-R036` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-02` | 観測evidence：正常な観測recordの観測evidenceだけを欠落する。 | 観測/運用済みとせず不足を特定し、観測recordの提供元へ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R037",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 435,
+      "raw_lf_sha256": "b098e14422f34b896dcef9e9176400e18dace6f156718416c3075f98dc53bece",
+      "literal": "| `CASE-HARNESS-L10-018-R037` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-02` | 対象revision：正常な観測recordの対象revisionだけを欠落する。 | 観測/運用済みとせず不足を特定し、観測recordの提供元へ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R038",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 436,
+      "raw_lf_sha256": "f726406418cdc9c53ff8c6c9cca546d8bd71a76a5705e0041856ce55281ef3b0",
+      "literal": "| `CASE-HARNESS-L10-018-R038` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-02` | 観測時点：正常な観測recordの観測時点だけを欠落する。 | 観測/運用済みとせず不足を特定し、観測recordの提供元へ返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R039",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 437,
+      "raw_lf_sha256": "07d74990e1224cc890ce85ac9e8578b2e9a329cc35476e8c2c0defe7cef4e18a",
+      "literal": "| `CASE-HARNESS-L10-018-R039` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-02` | designed：当該designedを支える根拠だけがあり、残る4状態の根拠はない。 | 根拠のある状態だけを示し、残る状態を推測しない。observedをoperatedと扱わない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R040",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 438,
+      "raw_lf_sha256": "d60d97001d585ad89f043bc7cc55d8bd8b89b9cc904525ee5e6ee334a25430d2",
+      "literal": "| `CASE-HARNESS-L10-018-R040` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-02` | implemented：当該implementedを支える根拠だけがあり、残る4状態の根拠はない。 | 根拠のある状態だけを示し、残る状態を推測しない。observedをoperatedと扱わない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R041",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 439,
+      "raw_lf_sha256": "1135eacc2f5358b2be48888b3fa81e5ea4ff31e39a9cee78ea37c1f437adb7b4",
+      "literal": "| `CASE-HARNESS-L10-018-R041` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-02` | verified：当該verifiedを支える根拠だけがあり、残る4状態の根拠はない。 | 根拠のある状態だけを示し、残る状態を推測しない。observedをoperatedと扱わない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R042",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 440,
+      "raw_lf_sha256": "22f38ef819b8251b87825d3f1afff983041d96e032525176b79d2d3d6bd15231",
+      "literal": "| `CASE-HARNESS-L10-018-R042` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-02` | observed：当該observedを支える根拠だけがあり、残る4状態の根拠はない。 | 根拠のある状態だけを示し、残る状態を推測しない。observedをoperatedと扱わない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R043",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 441,
+      "raw_lf_sha256": "99d9239fd9289e49396d6c6052a45e9e728aa76dd1c657a8e421a64eb975bca8",
+      "literal": "| `CASE-HARNESS-L10-018-R043` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-02` | operated：当該operatedを支える根拠だけがあり、残る4状態の根拠はない。 | 根拠のある状態だけを示し、残る状態を推測しない。observedをoperatedと扱わない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R044",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 442,
+      "raw_lf_sha256": "b1f02bd5889ba87a300dd247ab1c7e0f26075856008209b1235f26ba5977b1aa",
+      "literal": "| `CASE-HARNESS-L10-018-R044` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-03` | backflow：同じ要求revisionのL12観測が製品ownerの個別基準に不適合。 | 当該revisionの再要求化候補・根拠・ownerへ結び、要求自体を勝手に変更しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R045",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 443,
+      "raw_lf_sha256": "dc62d7dc96174e39cc1cb4a82c25225cf3bc7c468ccc8380c215be2cdd063be8",
+      "literal": "| `CASE-HARNESS-L10-018-R045` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-03` | independent：①〜⑥、OS運転、LABO効果評価を使わず、外部配備済み製品とowner運用要求だけを与える。 | 契約候補と観測/再要求化経路を返す。先行工程や他機構runtimeの完成を追加条件にしない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R046",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 444,
+      "raw_lf_sha256": "f73d899884dc520bc9ca12ec5c308ab33969773a724c7be1fd98a3acba393830",
+      "literal": "| `CASE-HARNESS-L10-018-R046` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-03` | owner-criteria：共通RTO/RPO、保持期間、予算値、対象環境の一律指定はなく、製品ownerの個別基準はある。 | 個別基準を維持し、一律閾値なしだけで拒否しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-019-R002",
+      "parent": "019",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 445,
+      "raw_lf_sha256": "4fca5bea92b924e8cf6719706adecb324e853c19514f802478e9ba6e6e2cf4d4",
+      "literal": "| `CASE-HARNESS-L10-019-R002` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-01` | 要求：COREだけを使い、要求と既知source/revision/scopeを持ち込む。 | 入力traceを持つ要求・設計・検証pair候補を返し、入口先や先行単位実行を強制しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-019-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-019-R003",
+      "parent": "019",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 446,
+      "raw_lf_sha256": "5298c4062fc124d3e892e398bee77838f37680614d1c9a86bf61c4e766d02bcc",
+      "literal": "| `CASE-HARNESS-L10-019-R003` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-01` | コード：COREだけを使い、コードと既知source/revision/scopeを持ち込む。 | 入力traceを持つ要求・設計・検証pair候補を返し、入口先や先行単位実行を強制しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-019-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-019-R004",
+      "parent": "019",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 447,
+      "raw_lf_sha256": "6b1642ff7b7d74c62c3d41bcec885bb78d96a12d34b79771419272c550084cfd",
+      "literal": "| `CASE-HARNESS-L10-019-R004` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-01` | PoC：COREだけを使い、PoCと既知source/revision/scopeを持ち込む。 | 入力traceを持つ要求・設計・検証pair候補を返し、入口先や先行単位実行を強制しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-019-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-019-R005",
+      "parent": "019",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 448,
+      "raw_lf_sha256": "cb3e8436568c0c2d9488b90ae548e50a2c765972f5ac0ff9731ccc7e721379b6",
+      "literal": "| `CASE-HARNESS-L10-019-R005` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-01` | 未見リリース単位：COREだけを使い、未見リリース単位と既知source/revision/scopeを持ち込む。 | 入力traceを持つ要求・設計・検証pair候補を返し、入口先や先行単位実行を強制しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-019-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-019-R006",
+      "parent": "019",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 449,
+      "raw_lf_sha256": "eea3b0aa7a1607a1a725873106c6db0718392bdd5f82f0e09a6734adf6a07f10",
+      "literal": "| `CASE-HARNESS-L10-019-R006` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-02` | 由来不明：由来不明の既存成果と、変換できる部分のsource情報を与える。 | 全体Reverseの復旧候補と変換不能/unknown一覧を返す。由来を推定で埋めず、変換可能部分を捨てない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-019-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-019-R007",
+      "parent": "019",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 450,
+      "raw_lf_sha256": "e42a59f51a94451a582ca266b7891ab2ff01e6d290fbc8f1ad57ffeef61ad82b",
+      "literal": "| `CASE-HARNESS-L10-019-R007` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-02` | 旧資産：旧資産の既存成果と、変換できる部分のsource情報を与える。 | 全体Reverseの復旧候補と変換不能/unknown一覧を返す。由来を推定で埋めず、変換可能部分を捨てない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-019-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-019-R008",
+      "parent": "019",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 451,
+      "raw_lf_sha256": "ae3b2b56f2a8adb23a6d04a41ad0a87a472eeacd9b3b6841bd8bc4c144b724d5",
+      "literal": "| `CASE-HARNESS-L10-019-R008` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-02` | 設計trace欠落：設計trace欠落の既存成果と、変換できる部分のsource情報を与える。 | 全体Reverseの復旧候補と変換不能/unknown一覧を返す。由来を推定で埋めず、変換可能部分を捨てない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-019-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-019-R009",
+      "parent": "019",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 452,
+      "raw_lf_sha256": "c01b275a11ae34ff2377813554d5829628bde68dbf45f80f950aa167773c1901",
+      "literal": "| `CASE-HARNESS-L10-019-R009` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-02` | source：入力のsourceだけをunknownにし他の既知情報を維持する。 | 当該未知箇所と理由を保持し、既知部分のtraceを返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-019-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-019-R010",
+      "parent": "019",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 453,
+      "raw_lf_sha256": "1bd3adb37666677fb432c4e0a142320afc519f7db17ba586b7d6ac60ef838f25",
+      "literal": "| `CASE-HARNESS-L10-019-R010` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-02` | revision：入力のrevisionだけをunknownにし他の既知情報を維持する。 | 当該未知箇所と理由を保持し、既知部分のtraceを返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-019-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-019-R011",
+      "parent": "019",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 454,
+      "raw_lf_sha256": "0d7e0ebcc447ac3191d968eaed4a6ac2b41852ee879fb7b83a6f1cfd09cd239f",
+      "literal": "| `CASE-HARNESS-L10-019-R011` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-02` | owner：入力のownerだけをunknownにし他の既知情報を維持する。 | 当該未知箇所と理由を保持し、既知部分のtraceを返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-019-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-019-R012",
+      "parent": "019",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 455,
+      "raw_lf_sha256": "d161f650b9a17ffa7776d86ad27333892dd270fd786d2a0d4ab818f84cc16d88",
+      "literal": "| `CASE-HARNESS-L10-019-R012` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-02` | 意味：入力の意味だけをunknownにし他の既知情報を維持する。 | 当該未知箇所と理由を保持し、既知部分のtraceを返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-019-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-019-R013",
+      "parent": "019",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 456,
+      "raw_lf_sha256": "168e4ae96c13d21e55b031cf591820d7ea97895ffc8fea16094e28202184f7c4",
+      "literal": "| `CASE-HARNESS-L10-019-R013` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-03` | authority：pair候補を形成し、承認recordは与えない。 | 要求/設計の承認、実装・release可否を生成せず草稿として返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-019-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-020-R002",
+      "parent": "020",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 457,
+      "raw_lf_sha256": "065d7d2c5c408dd9a68bf7e3ae08aaa860f3c86214ab88b0662a4618b608d74d",
+      "literal": "| `CASE-HARNESS-L10-020-R002` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-01` | 省いた検査：互換する隣接リリース単位契約に省いた検査のidentity/owner/stateだけを残す。 | 同じ項目を継続義務として引継ぎ、合流先の回収証拠まで未完を保つ。引継ぎだけで閉じない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-020-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-020-R003",
+      "parent": "020",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 458,
+      "raw_lf_sha256": "97347616cd9faac03d9344a3aca307ceaec99a80a19daaf0aaf4d61a4f8c86dc",
+      "literal": "| `CASE-HARNESS-L10-020-R003` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-01` | 未解決事項：互換する隣接リリース単位契約に未解決事項のidentity/owner/stateだけを残す。 | 同じ項目を継続義務として引継ぎ、合流先の回収証拠まで未完を保つ。引継ぎだけで閉じない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-020-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-020-R004",
+      "parent": "020",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 459,
+      "raw_lf_sha256": "5c0219beda854f4e5a703b304816164a9be9d254d21a7ee27e7d4294d24f29fd",
+      "literal": "| `CASE-HARNESS-L10-020-R004` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-01` | unknown：互換する隣接リリース単位契約にunknownのidentity/owner/stateだけを残す。 | 同じ項目を継続義務として引継ぎ、合流先の回収証拠まで未完を保つ。引継ぎだけで閉じない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-020-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-020-R005",
+      "parent": "020",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 460,
+      "raw_lf_sha256": "01c065a8795edfe727eea5395a798a6cb4d0688f009a73f1a5e5181632f6e186",
+      "literal": "| `CASE-HARNESS-L10-020-R005` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-01` | 人間判断待ち：互換する隣接リリース単位契約に人間判断待ちのidentity/owner/stateだけを残す。 | 同じ項目を継続義務として引継ぎ、合流先の回収証拠まで未完を保つ。引継ぎだけで閉じない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-020-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-020-R006",
+      "parent": "020",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 461,
+      "raw_lf_sha256": "ed403b1880ebf5dc5a428a07d7abac3c4f7c10c08ba7eedf057a97cc7accfc59",
+      "literal": "| `CASE-HARNESS-L10-020-R006` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-02` | 契約版：隣接契約の契約版だけを不一致にし、他fieldを保つ。 | 具体的な不一致箇所を示しhandoffを保留し、欠落・不一致のfieldを供給する前単位output contract ownerまたは要求する次単位input contract ownerへ根拠付きで返す。契約側を特定できなければownerをunknownに保持する。暗黙版変換や単一汎用errorで差を消さない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-020-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-020-R007",
+      "parent": "020",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 462,
+      "raw_lf_sha256": "7713dcd4205595c00855ec4814435d85ed31e20fca0f15f80b37fff348ceead2",
+      "literal": "| `CASE-HARNESS-L10-020-R007` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-02` | 必須field：隣接契約の必須fieldを一つだけ欠落させ、他fieldを保つ。 | 具体的な不一致箇所を示しhandoffを保留し、欠落・不一致のfieldを供給する前単位output contract ownerまたは要求する次単位input contract ownerへ根拠付きで返す。契約側を特定できなければownerをunknownに保持する。暗黙版変換や単一汎用errorで差を消さない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-020-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-020-R008",
+      "parent": "020",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 463,
+      "raw_lf_sha256": "c306df7f91ee44fba2a634574898940841a54569063456144dc6a9d0c4ead14b",
+      "literal": "| `CASE-HARNESS-L10-020-R008` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-02` | artifact identity：隣接契約のartifact identityだけを不一致にし、他fieldを保つ。 | 具体的な不一致箇所を示しhandoffを保留し、欠落・不一致のfieldを供給する前単位output contract ownerまたは要求する次単位input contract ownerへ根拠付きで返す。契約側を特定できなければownerをunknownに保持する。暗黙版変換や単一汎用errorで差を消さない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-020-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-020-R009",
+      "parent": "020",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 464,
+      "raw_lf_sha256": "e3dff06e85a8962fa621bede427701159fc3dd10323634977d665371448b332d",
+      "literal": "| `CASE-HARNESS-L10-020-R009` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-02` | artifact revision：隣接契約のartifact revisionだけを不一致にし、他fieldを保つ。 | 具体的な不一致箇所を示しhandoffを保留し、欠落・不一致のfieldを供給する前単位output contract ownerまたは要求する次単位input contract ownerへ根拠付きで返す。契約側を特定できなければownerをunknownに保持する。暗黙版変換や単一汎用errorで差を消さない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-020-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-020-R010",
+      "parent": "020",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 465,
+      "raw_lf_sha256": "cdf33ea2c7a9c8b7d38f66f9a93df830b3c53972d84081ee8e33ef619958a554",
+      "literal": "| `CASE-HARNESS-L10-020-R010` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-02` | owner：隣接契約のownerだけを欠落させ、他fieldを保つ。 | 具体的な不一致箇所を示しhandoffを保留し、欠落・不一致のfieldを供給する前単位output contract ownerまたは要求する次単位input contract ownerへ根拠付きで返す。契約側を特定できなければownerをunknownに保持する。暗黙版変換や単一汎用errorで差を消さない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-020-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-020-R011",
+      "parent": "020",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 466,
+      "raw_lf_sha256": "b95473c9760633157feb22feccaba5c9420998942b477e16d1cb73408027675c",
+      "literal": "| `CASE-HARNESS-L10-020-R011` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-02` | 必要evidence：隣接契約の必要evidenceを一つだけ欠落させ、他fieldを保つ。 | 具体的な不一致箇所を示しhandoffを保留し、欠落・不一致のfieldを供給する前単位output contract ownerまたは要求する次単位input contract ownerへ根拠付きで返す。契約側を特定できなければownerをunknownに保持する。暗黙版変換や単一汎用errorで差を消さない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-020-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-020-R012",
+      "parent": "020",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 467,
+      "raw_lf_sha256": "1094ba70d9d6a683ec30b4f17aee8db359470a628aa2fa2e80bee8cf6f0f8695",
+      "literal": "| `CASE-HARNESS-L10-020-R012` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-02` | external：前単位を実行せず、同じ入力契約とL2-019の条件を満たす外部成果を与える。 | 互換contractなら正常候補を返し、前単位実行を追加条件にしない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-020-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-020-R013",
+      "parent": "020",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 468,
+      "raw_lf_sha256": "b8883ee65379ba0df79e4b907047be91c147c8eb50e5025b8c2143d97145a530",
+      "literal": "| `CASE-HARNESS-L10-020-R013` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-02` | extension：宣言contractが許容する未見fieldだけを追加する。 | 契約が許す範囲で受け入れ、無関係な直列依存を追加しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-020-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-020-R014",
+      "parent": "020",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 469,
+      "raw_lf_sha256": "171e1534ae7b40dc5359a025232baace87c229b881bae136a80a92e515cfd58c",
+      "literal": "| `CASE-HARNESS-L10-020-R014` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-03` | provisional：④のProvisionalだけを⑥へ渡す。 | handoffを止め、L2-022の必要検証・受入状態不足を返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-020-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-020-R015",
+      "parent": "020",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 470,
+      "raw_lf_sha256": "7f9436789def866042f290b0ad348c6789f51257e5f42582e73a7b1c3c4a1b73",
+      "literal": "| `CASE-HARNESS-L10-020-R015` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-03` | verified-accepted：L2-022のVerified/Acceptedまで同条件を満たした成果を⑥へ渡す。 | 受渡し候補だけを返し、release実行・全段階完了を生成しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-020-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-020-R016",
+      "parent": "020",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 471,
+      "raw_lf_sha256": "ad5cc21fe93cb332a9b5bd57c07a1f54e51299d7f8ec9527c4b30407f75b6831",
+      "literal": "| `CASE-HARNESS-L10-020-R016` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-03` | backflow：接続contractに上流要求意味を変える差分を一つだけ与える。 | 下流で意味を変更せず、意味が変わる最上流の層とownerへBackflowする。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-020-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-020-R017",
+      "parent": "020",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 472,
+      "raw_lf_sha256": "ffa7e55c7397a65fd66ce4f3f17de82629bd993c10259149bb2edea9db9c704d",
+      "literal": "| `CASE-HARNESS-L10-020-R017` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-01` | unit-pass：各単体passだけを与え接続contractの照合evidenceを欠く。 | 接続固有義務を未完として保持し単体passから接続成功を推測しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-020-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R002",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 473,
+      "raw_lf_sha256": "4b1fa3c64eeacbc62c9f973dcc14592431620413c31e85167c7c87d29bba5832",
+      "literal": "| `CASE-HARNESS-L10-024-R002` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-01` | 影響：同順位候補を含む正常入力の影響根拠だけを欠落させる。 | 順位を捏造せず選択未確定を示し、HARNESS要求ownerへ不足を返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R003",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 474,
+      "raw_lf_sha256": "99e04683b1d6ce1553c82dd8057c0b946bf7fc18179b004de3ea8f24e102b909",
+      "literal": "| `CASE-HARNESS-L10-024-R003` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-01` | 不確実性：同順位候補を含む正常入力の不確実性根拠だけを欠落させる。 | 順位を捏造せず選択未確定を示し、HARNESS要求ownerへ不足を返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R004",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 475,
+      "raw_lf_sha256": "67fd742eb535501ce9ae064db8639f1190b60986061a491c51ee80fe314635d1",
+      "literal": "| `CASE-HARNESS-L10-024-R004` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-01` | 下流変更cost：同順位候補を含む正常入力の下流変更cost根拠だけを欠落させる。 | 順位を捏造せず選択未確定を示し、HARNESS要求ownerへ不足を返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R005",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 476,
+      "raw_lf_sha256": "5f6c07b9477fdc1b17d8207f3c7536b5907bd383f7e15e5af2a00a816e1ceb07",
+      "literal": "| `CASE-HARNESS-L10-024-R005` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-01` | 人間専決度：同順位候補を含む正常入力の人間専決度根拠だけを欠落させる。 | 順位を捏造せず選択未確定を示し、HARNESS要求ownerへ不足を返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R006",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 477,
+      "raw_lf_sha256": "a76f0f10f33a39c1d9187486ca90acac691e7a3c91f465b3906590a1405448ac",
+      "literal": "| `CASE-HARNESS-L10-024-R006` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-01` | versioned tie-break：同順位候補を含む正常入力のversioned tie-break根拠だけを欠落させる。 | 順位を捏造せず選択未確定を示しpack契約ownerへ不足を返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R007",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 478,
+      "raw_lf_sha256": "863b0f316025997d68af1412c57ebfe00150a8c98dbfc26ff12c465de8a244e9",
+      "literal": "| `CASE-HARNESS-L10-024-R007` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-01` | determinism：同じcandidate・既回答・engine/pack/target revisionとscopeを2回与える。 | 質問順、理由、状態が同じになる。数値weightや質問数上限を新設しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R008",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 479,
+      "raw_lf_sha256": "c2097fb00105a1981936f1685a55612171a3522e5e2f0c3e99a6782257bc3c3d",
+      "literal": "| `CASE-HARNESS-L10-024-R008` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-02` | answered：同じrevision/scopeの既回答質問を別表現にする。 | 回答事実を残し再質問を拒否する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R009",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 480,
+      "raw_lf_sha256": "4a756ede391f6ebcfe820d6cd2527c03bd6fac72a959af357fcc9a6ea7dfda1c",
+      "literal": "| `CASE-HARNESS-L10-024-R009` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-02` | open：同じidentity/owner/stateの未回答open itemを与える。 | 新規重複発行せず同じopen itemを継続する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R010",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 481,
+      "raw_lf_sha256": "a00297c0e22151d42447b6a7adee55814f4187dcabe63b67f0e012429d278ae2",
+      "literal": "| `CASE-HARNESS-L10-024-R010` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-02` | new-source：新source/revision/findingと影響scope、意味差分を明示する。 | 影響項目だけをownerへ理由付き照会し自動で合意を再開しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R011",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 482,
+      "raw_lf_sha256": "b443b5ede0d7e64238117243ce55153f5457a6c2d8a3125cbcc04644bf1354e1",
+      "literal": "| `CASE-HARNESS-L10-024-R011` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-02` | no-source：合意済み項目を新根拠なしに再開しようとする。 | 再開/再確認を拒否し合意記録を消さない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R012",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 483,
+      "raw_lf_sha256": "8faff8493579d6d6587fd59f755ced641b11b75094200901a87797cba6234dd9",
+      "literal": "| `CASE-HARNESS-L10-024-R012` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-02` | contradiction：回答間の矛盾だけを理由なく自動解消する変異。 | 自動解消を拒否し、HARNESS要求ownerへ不足を返す。入力に記録された矛盾側ownerは保持し、別の宛先ownerを推測しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R013",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 484,
+      "raw_lf_sha256": "0418a6a1a40e5d1d2ee8f1a3c902fbc2f4cec11bcc23c7fd60ff86c4ad0e2297",
+      "literal": "| `CASE-HARNESS-L10-024-R013` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-02` | unrelated-stale：一項目の変更で無関係な合意までstaleにする。 | 影響範囲に限定し無関係状態を保持する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R014",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 485,
+      "raw_lf_sha256": "ce7ce0de169d634b2219939adc3e1f3635d625bb4531c07e5b70c263180e3ee2",
+      "literal": "| `CASE-HARNESS-L10-024-R014` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | actor：必須形成項目actorだけをmissingにし他条件を保持する。 | 当該項目を具体的な形成資料不足としてHARNESS要求ownerへ返し、整った資料で人間判断だけが残る状態と区別する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-04"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R015",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 486,
+      "raw_lf_sha256": "fc4d00de521c7956968ee5ccd4a5be9debddd7c45bcb4edfc48b754b96c4712e",
+      "literal": "| `CASE-HARNESS-L10-024-R015` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | task：必須形成項目taskだけをmissingにし他条件を保持する。 | 当該項目を具体的な形成資料不足としてHARNESS要求ownerへ返し、整った資料で人間判断だけが残る状態と区別する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-04"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R016",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 487,
+      "raw_lf_sha256": "d12edffe93950208341eda9e7e5fc9200caee3f9036637f61a4d81036fd597df",
+      "literal": "| `CASE-HARNESS-L10-024-R016` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | 正常：必須形成項目正常だけをmissingにし他条件を保持する。 | 当該項目を具体的な形成資料不足としてHARNESS要求ownerへ返し、整った資料で人間判断だけが残る状態と区別する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-04"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R017",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 488,
+      "raw_lf_sha256": "df523df790790d07920a15ded6db602e3b4d543b60cc1180672c93cf5765e685",
+      "literal": "| `CASE-HARNESS-L10-024-R017` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | 取消：必須形成項目取消だけをmissingにし他条件を保持する。 | 当該項目を具体的な形成資料不足としてHARNESS要求ownerへ返し、整った資料で人間判断だけが残る状態と区別する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-04"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R018",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 489,
+      "raw_lf_sha256": "3ca7474c52c7114de5bb682e868cbe6aef6e615e418d0c6cded297889708c47a",
+      "literal": "| `CASE-HARNESS-L10-024-R018` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | failure：必須形成項目failureだけをmissingにし他条件を保持する。 | 当該項目を具体的な形成資料不足としてHARNESS要求ownerへ返し、整った資料で人間判断だけが残る状態と区別する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-04"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R019",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 490,
+      "raw_lf_sha256": "b5a2aa05edf86c72ed75deb1a07d9ae60363b30d428021eeef06030554e8541c",
+      "literal": "| `CASE-HARNESS-L10-024-R019` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | timeout：必須形成項目timeoutだけをmissingにし他条件を保持する。 | 当該項目を具体的な形成資料不足としてHARNESS要求ownerへ返し、整った資料で人間判断だけが残る状態と区別する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-04"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R020",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 491,
+      "raw_lf_sha256": "d50256816f0d4c011744a49f28a7c0486d2082e38b7fa64dd1d7fe37b2feb437",
+      "literal": "| `CASE-HARNESS-L10-024-R020` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | recovery：必須形成項目recoveryだけをmissingにし他条件を保持する。 | 当該項目を具体的な形成資料不足としてHARNESS要求ownerへ返し、整った資料で人間判断だけが残る状態と区別する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-04"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R021",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 492,
+      "raw_lf_sha256": "7f02a3e180845f81485b2d16faa647a2dcc46853e345bea996d8269769efb37f",
+      "literal": "| `CASE-HARNESS-L10-024-R021` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | P0：必須形成項目P0だけをmissingにし他条件を保持する。 | 当該項目を具体的な形成資料不足としてHARNESS要求ownerへ返し、整った資料で人間判断だけが残る状態と区別する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-04"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R022",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 493,
+      "raw_lf_sha256": "2c5e78ab39415ba65b08f7723d8da98497c539d0d016117891f0e4176a50fb93",
+      "literal": "| `CASE-HARNESS-L10-024-R022` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | P1：必須形成項目P1だけをmissingにし他条件を保持する。 | 当該項目を具体的な形成資料不足としてHARNESS要求ownerへ返し、整った資料で人間判断だけが残る状態と区別する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-04"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R023",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 494,
+      "raw_lf_sha256": "7a55be8f6b2339c3a92f50d54a7c4d5ce5c4b5e4758d1bf57c37a7b1f2740127",
+      "literal": "| `CASE-HARNESS-L10-024-R023` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | implicit matrix：必須形成項目implicit matrixだけをmissingにし他条件を保持する。 | 当該項目を具体的な形成資料不足としてHARNESS要求ownerへ返し、整った資料で人間判断だけが残る状態と区別する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-04"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R024",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 495,
+      "raw_lf_sha256": "ea81667db8fae6b3ff4cfea387a51c8ab24eeb8fc9a0374675ed636888d8f036",
+      "literal": "| `CASE-HARNESS-L10-024-R024` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | defer owner：必須形成項目defer ownerだけをmissingにし他条件を保持する。 | 当該項目を具体的な形成資料不足としてHARNESS要求ownerへ返し、整った資料で人間判断だけが残る状態と区別する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-04"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R025",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 496,
+      "raw_lf_sha256": "1074771a2398b053763f1d968440390ba09d36971f17df2d0c32cf30488c6358",
+      "literal": "| `CASE-HARNESS-L10-024-R025` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | re-entry：必須形成項目re-entryだけをmissingにし他条件を保持する。 | 当該項目を具体的な形成資料不足としてHARNESS要求ownerへ返し、整った資料で人間判断だけが残る状態と区別する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-04"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R026",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 497,
+      "raw_lf_sha256": "f1dd168943c12195aa51ba4b3b3d149381557328f4f7ef062b1be3026e20a246",
+      "literal": "| `CASE-HARNESS-L10-024-R026` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | 対象Concept/L1 revision：必須形成項目対象Concept/L1 revisionだけをmissingにし他条件を保持する。 | 当該項目を具体的な形成資料不足としてHARNESS要求ownerへ返し、整った資料で人間判断だけが残る状態と区別する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-06"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R027",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 498,
+      "raw_lf_sha256": "f303ce81ab62ce1554da347843a7411cce194254fe250f0e667154c1d0fb8703",
+      "literal": "| `CASE-HARNESS-L10-024-R027` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | source scope：必須形成項目source scopeだけをmissingにし他条件を保持する。 | 当該項目を具体的な形成資料不足としてHARNESS要求ownerへ返し、整った資料で人間判断だけが残る状態と区別する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-06"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R028",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 499,
+      "raw_lf_sha256": "acfc88362f6f960575a34a444b254254619a4baea8a1176c09fa81f1ce12d014",
+      "literal": "| `CASE-HARNESS-L10-024-R028` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | 解決済み：当該領域を解決済みとし、各状態の理由とactor/owner/revisionを与える。 | 4状態を混同しない。保留はowner/re-entry、非適用は理由・判断者・対象revision・再評価条件、unknownは不足を保持する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-04"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R029",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 500,
+      "raw_lf_sha256": "536cf75fcc56d3e025a6959ac940d43ae097cc7bd50082a82270653d7348f169",
+      "literal": "| `CASE-HARNESS-L10-024-R029` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | 明示保留：当該領域を明示保留とし、各状態の理由とactor/owner/revisionを与える。 | 4状態を混同しない。保留はowner/re-entry、非適用は理由・判断者・対象revision・再評価条件、unknownは不足を保持する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-04"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R030",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 501,
+      "raw_lf_sha256": "aa587f8d65790115025620ab9033fb36e4727af21b6cb50a1407dc892c34c18b",
+      "literal": "| `CASE-HARNESS-L10-024-R030` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | 非適用：当該領域を非適用とし、各状態の理由とactor/owner/revisionを与える。 | 4状態を混同しない。保留はowner/re-entry、非適用は理由・判断者・対象revision・再評価条件、unknownは不足を保持する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-04"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R031",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 502,
+      "raw_lf_sha256": "7856d4555e1ab092cf2964f4fb60347695ec540b8727bc1adbff96a962986e3d",
+      "literal": "| `CASE-HARNESS-L10-024-R031` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | 必須事項unknown：当該領域を必須事項unknownとし、各状態の理由とactor/owner/revisionを与える。 | 4状態を混同しない。保留はowner/re-entry、非適用は理由・判断者・対象revision・再評価条件、unknownは不足を保持する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-04"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R032",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 503,
+      "raw_lf_sha256": "69d4f526a0314cba5dc4aac7b2e0f540c284abf0f1b88e9c32d337a959ee0b12",
+      "literal": "| `CASE-HARNESS-L10-024-R032` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | na-理由：非適用領域の理由だけを欠く。 | 根拠付き非適用を成立扱いせず、HARNESS要求ownerへ当該資料不足を返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-04"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R033",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 504,
+      "raw_lf_sha256": "d920f7277f5d6fb5f025fdbd9f4d7b712c82bf91f344c1fa8443595826cb476d",
+      "literal": "| `CASE-HARNESS-L10-024-R033` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | na-判断者：非適用領域の判断者だけを欠く。 | 根拠付き非適用を成立扱いせず、HARNESS要求ownerへ当該資料不足を返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-04"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R034",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 505,
+      "raw_lf_sha256": "606372eeeb0bbfcfad73abc11580fab3a7991e7eea56d5c99ca6cee0021caa5e",
+      "literal": "| `CASE-HARNESS-L10-024-R034` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | na-対象revision：非適用領域の対象revisionだけを欠く。 | 根拠付き非適用を成立扱いせず、HARNESS要求ownerへ当該資料不足を返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-04"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R035",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 506,
+      "raw_lf_sha256": "bf4f5a94e203f0b1b991f016355fb609a8d4e24e93b2ed44aad072220a8f6aeb",
+      "literal": "| `CASE-HARNESS-L10-024-R035` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | na-再評価条件：非適用領域の再評価条件だけを欠く。 | 根拠付き非適用を成立扱いせず、HARNESS要求ownerへ当該資料不足を返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-04"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R036",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 507,
+      "raw_lf_sha256": "f21245aa3db81dbfa4874e1fbde9d2597170a644c15be1e4fbbe86d9cbdab5b9",
+      "literal": "| `CASE-HARNESS-L10-024-R036` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | empty-history：初回形成で既回答なしを明示的な空履歴とする。 | 履歴なしだけで拒否せず候補を形成する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-04"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R037",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 508,
+      "raw_lf_sha256": "b9522696a5d95c8ea5e292b248fe5e503430615ef264c5e257497b2df40e8051",
+      "literal": "| `CASE-HARNESS-L10-024-R037` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | lost-answer：既回答がある前提で記録だけを紛失する。 | 初回空履歴へ変換せず形成資料不足を返す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-04"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R038",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 509,
+      "raw_lf_sha256": "41db456972f931d06ce02bdff81d28d86a9ecb3eb2c7f8414144191e2d722eb1",
+      "literal": "| `CASE-HARNESS-L10-024-R038` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | agreement-pending：prototype/非UIが適用され合意は未了だが候補資料は揃う。 | 候補・根拠・未決packetを返し合意待ちを保持する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-04"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R039",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 510,
+      "raw_lf_sha256": "4142295a5d71e3b86f1d6fede31ca0b5641490c8869a7eb45225330ebc27ddfb",
+      "literal": "| `CASE-HARNESS-L10-024-R039` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | lost-agreement：既存合意ありの前提でrecordだけを紛失する。 | 合意前とは区別した資料不足とし合意を捏造しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-04"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R040",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 511,
+      "raw_lf_sha256": "7517127348afbf3e62ef40365f51605760a3286cc91dde202a86b13ce588df12",
+      "literal": "| `CASE-HARNESS-L10-024-R040` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | non-ui-na：非UI合意が非適用で理由・actor・revision・再評価条件が揃う。 | 非適用根拠を返しprototypeを全対象へ強制しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-04"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R041",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 512,
+      "raw_lf_sha256": "e4f0fe051d37c880fd76dd39fed5ee3e1a987287b81f2a2d1fe4ebbf11bd08cc",
+      "literal": "| `CASE-HARNESS-L10-024-R041` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-05` | timeout-preserve：timeoutだけを発生させ、actor/scope/target/最後の確定revision/event/open item/owner/re-entryが記録されている。 | 進行停止し全記録を保持する。回答・合意・採択を作らない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-05"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R042",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 513,
+      "raw_lf_sha256": "248bed52a9c194f7142b593880efcc78a57a530e3b2da336fd7e8dc6a3ddab3b",
+      "literal": "| `CASE-HARNESS-L10-024-R042` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-05` | resume：再入条件を満たす新しい回答eventだけを追記する。 | 元履歴を維持して影響差分だけ再評価する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-05"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R043",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 514,
+      "raw_lf_sha256": "9bb8bf70476623ca44ca8c5d19a222bf15ad64e94dee849bf6e2f6c91c2f34a1",
+      "literal": "| `CASE-HARNESS-L10-024-R043` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-05` | unknown-impact：source変更による影響scopeだけがunknown。 | unknownを未影響とせず当該範囲の確定を保留する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-05"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R044",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 515,
+      "raw_lf_sha256": "5845af51c15e7f15f04b12be0fa9f3427f617e9d253efc6388d2483c76877697",
+      "literal": "| `CASE-HARNESS-L10-024-R044` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | score：他の必須未決を残しscoreだけを収束または承認根拠にする。 | 単独根拠で未決を閉じず合意・freeze・採択・操作許可を生成しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R045",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 516,
+      "raw_lf_sha256": "8c4457e0f83177b77764e6984afee123b07360809a50cbc509bf3865e7ff5f91",
+      "literal": "| `CASE-HARNESS-L10-024-R045` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | 質問数：他の必須未決を残し質問数だけを収束または承認根拠にする。 | 単独根拠で未決を閉じず合意・freeze・採択・操作許可を生成しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R046",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 517,
+      "raw_lf_sha256": "1ce600347118c72c6b48a0b3132523f15812621efb860d15228861d8bac7c780",
+      "literal": "| `CASE-HARNESS-L10-024-R046` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | 訂正率：他の必須未決を残し訂正率だけを収束または承認根拠にする。 | 単独根拠で未決を閉じず合意・freeze・採択・操作許可を生成しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R047",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 518,
+      "raw_lf_sha256": "189188fa1b76471d67215fc6a94e5d111eefae1cd6548e84e3f0b70be52c3b6f",
+      "literal": "| `CASE-HARNESS-L10-024-R047` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | iteration数：他の必須未決を残しiteration数だけを収束または承認根拠にする。 | 単独根拠で未決を閉じず合意・freeze・採択・操作許可を生成しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R048",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 519,
+      "raw_lf_sha256": "98a8d58baca68363e4d92c07cf306cafee81637cfc791480d9a4af0309093d97",
+      "literal": "| `CASE-HARNESS-L10-024-R048` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | 無変更iteration：他の必須未決を残し無変更iterationだけを収束または承認根拠にする。 | 単独根拠で未決を閉じず合意・freeze・採択・操作許可を生成しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R049",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 520,
+      "raw_lf_sha256": "9754d239aa7403c3eafc1322807820f357c1551f2fbf85597fd1d9bccd321d76",
+      "literal": "| `CASE-HARNESS-L10-024-R049` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-05` | timeout-success：必須のdata-retention owner回答がopenのまま応答timeout eventだけが到着し、engine出力が当該候補を完了扱いする変異。 | timeoutを成功/回答/合意に変換せず、retention owner open item・actor/scope/target revision・最後のevent・owner/re-entryを保持して停止する。timeout単独からfreeze・採択・操作許可を生成しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-05"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R050",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 521,
+      "raw_lf_sha256": "89b639819d407ebcf103cbd97416872dfba3f9fd719fd4b8321dfe642d6c20db",
+      "literal": "| `CASE-HARNESS-L10-024-R050` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | Issue：他の必須未決を残しIssueだけを収束または承認根拠にする。 | 単独根拠で未決を閉じず合意・freeze・採択・操作許可を生成しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R051",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 522,
+      "raw_lf_sha256": "ae41fada02d65ce9779d66b0b28447c6e5204f27a0ba450c0a0e0dc4bdd30b10",
+      "literal": "| `CASE-HARNESS-L10-024-R051` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | PR：他の必須未決を残しPRだけを収束または承認根拠にする。 | 単独根拠で未決を閉じず合意・freeze・採択・操作許可を生成しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R052",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 523,
+      "raw_lf_sha256": "ffb3c2e9bebf7bf3977eb18c1b014f211c19b8ce4ed658b846668b7cc4a7f62a",
+      "literal": "| `CASE-HARNESS-L10-024-R052` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | CI：他の必須未決を残しCIだけを収束または承認根拠にする。 | 単独根拠で未決を閉じず合意・freeze・採択・操作許可を生成しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R053",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 524,
+      "raw_lf_sha256": "cb2397eeb7a32ba6067b380139622a6d7c8a1e5d5b7e763bf52c53f9baa2a17d",
+      "literal": "| `CASE-HARNESS-L10-024-R053` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | 沈黙：他の必須未決を残し沈黙だけを収束または承認根拠にする。 | 単独根拠で未決を閉じず合意・freeze・採択・操作許可を生成しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R054",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 525,
+      "raw_lf_sha256": "162e4dcd5ee3814102d96b3e7c5c89600e9edc628333b5432a7ce857d4a699e7",
+      "literal": "| `CASE-HARNESS-L10-024-R054` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | same-fixture：固定した同一fixture母集団に質問量・訂正率・必須見逃しのoracleを付ける。 | engine/pack revision、scope、分母・測定方法を固定し再測定可能にする。実測値は未実行のまま。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-06"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R055",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 526,
+      "raw_lf_sha256": "96c76ffd04366265ddc9b5fa6a19367040b4bc4c690528514ee9bfc079f91e6f",
+      "literal": "| `CASE-HARNESS-L10-024-R055` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | no-observation：訂正が未観測で値はunknown。 | 未観測を0にしない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-06"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R056",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 527,
+      "raw_lf_sha256": "426cd9b24287b16a11a95261da3ef5f1a9056f6937331ea8cdb22ac467aa461f",
+      "literal": "| `CASE-HARNESS-L10-024-R056` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | omitted-question：質問量だけ下がるが必要な一質問を落とす。 | 改善成立とせず必須見逃しを保持する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-06"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R057",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 528,
+      "raw_lf_sha256": "db786792def0d4d2bbb4555a404cddf4be62a8a1b7c6fb9486d4ede27a6f4318",
+      "literal": "| `CASE-HARNESS-L10-024-R057` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | human-value：金額/権限/法務等の人間専決値をengineが推定する。 | 原文/選択肢/推奨/影響候補付き判断待ちへ返し値やauthorityを確定しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-06"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R058",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 529,
+      "raw_lf_sha256": "88b58147e04b461bddb64c9164924746471c2e8db4a3bbeacf17ba22768b9c40",
+      "literal": "| `CASE-HARNESS-L10-024-R058` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | os-engine：OSに別engine/question service/approval ledgerの意味所有を追加する。 | 責務追加を拒否しHARNESS意味と既存OS event責務を分ける。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-06"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R059",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 530,
+      "raw_lf_sha256": "82857678b002e3ca646a2e821282349b3184e06e1a58c987a9a56949bf55dd71",
+      "literal": "| `CASE-HARNESS-L10-024-R059` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | unseen-fixture：同じscopeの未見fixture母集団を固定し質問量・訂正率・必須見逃しのoracleを付ける。 | same-fixture母集団と別に結果を対応し、engine/pack revision、scope、分母・測定方法で再測定可能にする。実測値は未実行のまま。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-06"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-017-R015",
+      "parent": "017",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 531,
+      "raw_lf_sha256": "67e4f4928c390902f0c0fbed036c1ceac18e991f11d6c683e6adf5e832240788",
+      "literal": "| `CASE-HARNESS-L10-017-R015` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | provisional：R001のartifact、Release Port、対象環境、依存、security、rollback、必要evidenceを保ち、成果物stateだけを④のProvisionalへ変える。 | Verified/Acceptedとして扱わずRelease-eligibleにしない。満たした段階にとどめ、HARNESS-L2-022の検証・受入へ回す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-017-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-017-R016",
+      "parent": "017",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 532,
+      "raw_lf_sha256": "827cd363cb5c889e0ff31d6d9616a0d22b9d8409cc3b1da0f636f9e80181df5d",
+      "literal": "| `CASE-HARNESS-L10-017-R016` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | external-022-contract-mismatch：外部成果のartifact・環境・Release Port等をR001相当に揃え、HARNESS-L2-022のacceptance evidenceが参照する対象L2 requirement revisionだけを現在の要求revisionと異なる版にする。 | 外部成果の自己申告を現在の契約でのVerified/Acceptedの代替にせずeligibleにしない。不一致を具体化し、満たした段階にとどめてL2-022の検証・受入へ回し、外部証拠の提供元へ不足を示す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-017-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-020-R018",
+      "parent": "020",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 533,
+      "raw_lf_sha256": "3f5618ec1c04f822195cbd44a2d824d27e49f29a9e8ad4648588039cc2f04f13",
+      "literal": "| `CASE-HARNESS-L10-020-R018` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-02` | owner-out-of-scope：R001の隣接契約・版・artifact・必要evidenceを保ち、handoff義務一件のowner割当だけを前後いずれの契約責務も持たない主体へ変える。 | 誤った割当で義務を閉じずhandoffを保留する。該当する前単位output contract ownerまたは次単位input contract ownerへ割当不一致を返し、正しいownerを根拠なく補わない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-020-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R060",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 534,
+      "raw_lf_sha256": "64926b28bab9c9e3e199301e67797133987494c1327e028031c132944aa00c3f",
+      "literal": "| `CASE-HARNESS-L10-024-R060` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-01` | priority-order-only：R001と同じ既回答・未回答・priority evidenceを保ち、engineの質問順だけを「表示ラベルをretention ownerより先」に入れ替える。 | priority-order-onlyの結果を不合格とし、既回答actorは再質問せず、authority/data-useへの影響があるretention ownerを先に提示する。根拠のない数値weightは要求しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R061",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 535,
+      "raw_lf_sha256": "c590b4f93b11d18af4131f39923f399b033215caf331912331f5ae36cf2e83fb",
+      "literal": "| `CASE-HARNESS-L10-024-R061` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-02` | stale-target-answer：既回答は過去のtarget L1 revisionに結び付いているが、現在target revisionだけを新revisionへ変える。他のsource、scope、回答内容は保持する。 | 旧回答を現在revisionへ流用せず対象回答をstale/再確認要として示す。影響identityだけを、HARNESS要求ownerへ不足を返し、新回答・合意を生成しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R062",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 536,
+      "raw_lf_sha256": "5f212c74cd3a3227400bcc2ca6ad26cfe69b8b3a05975e55ccb1b41c7c33f31b",
+      "literal": "| `CASE-HARNESS-L10-024-R062` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-02` | stale-source-answer：既回答が参照するsource revisionだけを現行入力と異なるものへ変える。他のtarget revision、scope、回答内容は保持する。 | source revision不一致を記録し、旧回答をcurrentへ流用しない。影響identityだけをHARNESS要求ownerへ不足を戻し、owner/差分の意味が未知ならunknownを保持する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R063",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 537,
+      "raw_lf_sha256": "d367ae83bda71dc80874ce139cf1f1eaa3aca0720ad7c2f414ed4292e73b6967",
+      "literal": "| `CASE-HARNESS-L10-024-R063` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | stale-prototype-agreement：prototype合意が結び付くtarget revisionだけをcandidateの現行target revisionと異ならせる。scopeと他の形成項目は保持する。 | 古い合意を適用済み扱いせず当該適用性を未確定として保持し、HARNESS要求ownerへ対象revisionの合意根拠不足を返す。identityがなければunknownを残し、新しい合意やfreezeを生成しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-04"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-017-R017",
+      "parent": "017",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 538,
+      "raw_lf_sha256": "28ce65db0b7fae0daad3cdac2b71db403225c7117dcd88520742d1c69b50ce9c",
+      "literal": "| `CASE-HARNESS-L10-017-R017` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | output-target-runtime：R001の正常条件を保持し、出力対象環境だけを利用者製品からHELIX自身の実行環境（HELIX-INFRASTRUCTURE）へ変更する。 | 利用者製品のrelease契約とは異なる対象としてeligible候補にせず、対象条件の提供元へ戻す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-017-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-020-R019",
+      "parent": "020",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 539,
+      "raw_lf_sha256": "4240f35e6e80bd5ecc8df8097c30f8b2f4ae44eac5500dc42a1fcea082fff629",
+      "literal": "| `CASE-HARNESS-L10-020-R019` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-01` | collected-obligations-normal：引継いだ各未完義務のidentity/revisionに一致する回収証拠を合流先で与える。 | 一致した各義務を回収済みとして個別照合し、引継ぎreceipt単独での完了と区別する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-020-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-020-R020",
+      "parent": "020",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 540,
+      "raw_lf_sha256": "bd95fcce80b0d80c56e0678437052881b8746944aedd82c7811c22a14463f8a9",
+      "literal": "| `CASE-HARNESS-L10-020-R020` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-01` | collection-identity-mismatch：回収証拠の義務identity一件だけを対象と異ならせる。 | 該当義務を未完に保持し、合流先の当該義務ownerへidentity不一致を戻す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-020-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-020-R021",
+      "parent": "020",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 541,
+      "raw_lf_sha256": "80f8ef7923e1d726162559d8244eb225af310e0821bdc48ded89e1cee24a102d",
+      "literal": "| `CASE-HARNESS-L10-020-R021` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-01` | collection-revision-mismatch：回収証拠の義務revision一件だけを対象と異ならせる。 | 該当義務を未完に保持し、合流先の当該義務ownerへrevision不一致を戻す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-020-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R064",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 542,
+      "raw_lf_sha256": "36239961ce1b7f4a13a4e0d5733166d3977a0f9bf6c2f12d46a22f8da1854d02",
+      "literal": "| `CASE-HARNESS-L10-024-R064` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | os-registration-receipt-as-authority：正常な要求candidateの他条件を保持し、OS登録receiptだけを採択・操作権限の根拠とする。 | 採択と操作権限を生成せずcandidateと人の判断待ちを保持する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R065",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 543,
+      "raw_lf_sha256": "a5d29305b90fc3dac6e3d752d093dfdcbebc44864d9f6afd3c03bbfdffd3130d",
+      "literal": "| `CASE-HARNESS-L10-024-R065` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | engine-candidate-as-authority：正常な要求candidateの他条件を保持し、engine candidateだけを採択・操作権限の根拠とする。 | 採択と操作権限を生成せずcandidateと人の判断待ちを保持する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R066",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 544,
+      "raw_lf_sha256": "ab2d0a1a6a07447ec7dce8668692ef0e78ea7749a7c7bd00251b6583cee1f51d",
+      "literal": "| `CASE-HARNESS-L10-024-R066` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | consultation-as-authority：正常な要求candidateの他条件を保持し、相談だけを採択・操作権限の根拠とする。 | 採択と操作権限を生成せずcandidateと人の判断待ちを保持する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R067",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 545,
+      "raw_lf_sha256": "94addb30ab3eb5eee6118cb4849bd0190eaaf0155a0b85b1c88dfe63b799304e",
+      "literal": "| `CASE-HARNESS-L10-024-R067` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | history-ignored：利用可能な履歴差分がある正常入力で、その履歴だけを収束判断から無視する。 | 履歴差分を用いない収束主張を拒否し、HARNESS要求ownerへ不足を戻す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R068",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 546,
+      "raw_lf_sha256": "8c85c42cc4a0620926fb9eec59f97b26493c42dec8dab517415318eea6d79d0b",
+      "literal": "| `CASE-HARNESS-L10-024-R068` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | agreement-ignored：対象revisionの現行合意がある正常入力で、その合意だけを無視する。 | 現行合意を保持し、無視した収束判断を不合格としてHARNESS要求ownerへ戻す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R069",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 547,
+      "raw_lf_sha256": "777b6154ba09ce71072f33ae10d770918d7217215afc8da57deb002f1e47c8dd",
+      "literal": "| `CASE-HARNESS-L10-024-R069` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | contradiction-owner-missing：未解決矛盾に必要なownerだけを欠落させ、re-entryは保持する。 | 形成資料不足としてHARNESS要求ownerへ戻し、確認待ちだけの状態と区別する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R070",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 548,
+      "raw_lf_sha256": "8b271f9495bc9fdc4d6b01f277bd8ee2d25e3fdf6dd2e657ef42fc1055e881b3",
+      "literal": "| `CASE-HARNESS-L10-024-R070` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | contradiction-reentry-missing：未解決矛盾に必要なre-entryだけを欠落させ、ownerは保持する。 | 形成資料不足としてHARNESS要求ownerへ戻し、矛盾を解消済みにしない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R071",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 549,
+      "raw_lf_sha256": "749042a31367b48a1f3afb291afef13980c461dd6dd98ab57aac39cfdd4dd16d",
+      "literal": "| `CASE-HARNESS-L10-024-R071` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-01` | tie-break-normal：同順位の二質問候補と版付きtie-breakを与え、規則が一方を一意選択する。 | 両候補を保持して規則どおり一方を先に提示し、他方もopen itemとして残す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R072",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 550,
+      "raw_lf_sha256": "bbfc6777051dc6a65d2f21280723abdd193b53de97ac45239beea059ab29d0db",
+      "literal": "| `CASE-HARNESS-L10-024-R072` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-01` | tie-candidate-erased：R071の入力を保持し、選ばれなかった候補だけを出力から消す。 | 候補消失を不合格とし、両候補のidentityと状態を保持する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R073",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 551,
+      "raw_lf_sha256": "bd2a86aa299657068ec18c5b558d9723c04c1c2dadf682ffafef14714ff06913",
+      "literal": "| `CASE-HARNESS-L10-024-R073` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-01` | tie-rule-ambiguous：R071の規則だけを同じ入力から複数の選択が残る規則に替える。 | 選択未確定としてpack contract ownerへ戻し、順位を捏造しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R074",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 552,
+      "raw_lf_sha256": "e4fe7b72eb4214837d3f51553009e1cd8dcaaaaab2c701e00b0c045826128057",
+      "literal": "| `CASE-HARNESS-L10-024-R074` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | human-decision-pending-normal：必須形成項目は解決済みで、残る人の専決判断に原文・選択肢・推奨・影響・判断ownerが揃ったpacketを与える。 | 人の確認・合意待ちの候補として提示し、合意・freeze・L3承認はpendingのまま保持する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R075",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 553,
+      "raw_lf_sha256": "9f699aa19f2a1e6a634dab8f4668e2fd89be560420c6917d2fc7ab141f8d0764",
+      "literal": "| `CASE-HARNESS-L10-024-R075` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | upstream-purpose-unknown：正常形成入力の上流目的だけをunknownにする。 | HARNESS-L1-008または意味を持つPOへ目的の意味を戻し、engineで補完しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-06"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R076",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 554,
+      "raw_lf_sha256": "4385dd74942f14ee687d0785c7e19e54526068b0aaa2bd235b63147d0993c379",
+      "literal": "| `CASE-HARNESS-L10-024-R076` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | harness-registration-authority：正常candidateの生成からHARNESSの採否登録権限だけを追加する。 | HARNESSへの登録権限追加を拒否し、採否登録はOS側既存consumerへ残す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-06"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R077",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 555,
+      "raw_lf_sha256": "8b53da094a0322167801faaa3c40c68487cf75a531d0fc53cf65890837305548",
+      "literal": "| `CASE-HARNESS-L10-024-R077` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | harness-approval-authority：正常candidateの生成からHARNESSの承認権限だけを追加する。 | HARNESSへの承認権限追加を拒否し、既存の人の判断を生成しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-06"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-019-R014",
+      "parent": "019",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 556,
+      "raw_lf_sha256": "a867ce773becb0a0f3484521e525636b8743b998f43b863577475592ab3fda5e",
+      "literal": "| `CASE-HARNESS-L10-019-R014` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-02` | pair-absent：既存設計とそのtraceを持つ正常入力から、対応する検証対だけを不在にする。 | 検証対の不在を一覧化し、存在や合格を推定せず、既知設計traceと未承認の復旧候補を保持する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-019-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-019-R015",
+      "parent": "019",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 557,
+      "raw_lf_sha256": "0ed138520bf2bcc020ee4ebb249866ee7b324b79f32b1be407546184d71ddcb0",
+      "literal": "| `CASE-HARNESS-L10-019-R015` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-02` | unconvertible：入力の一箇所だけを現行要求・設計・検証対へ変換不能とし、理由を与える。 | 当該箇所と理由を変換不能一覧に残し、変換可能な他の箇所を保持する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-019-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-019-R016",
+      "parent": "019",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 558,
+      "raw_lf_sha256": "611b427ff58d89bc1ad1ec11d4e2f8aae3d2b9e61c58c9286b594311f7667a92",
+      "literal": "| `CASE-HARNESS-L10-019-R016` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-02` | contradictory：二つの既知sourceが同じ対象の意味について相反する状態を与える。 | 矛盾する両sourceと理由を一覧化し、一方を根拠なく採用せず当該箇所をunknownとして保持する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-019-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R047",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 559,
+      "raw_lf_sha256": "6579c8b79e90c08db8a3f2b223579bf35b7adfc51e089c31796f2056bd6fb1f2",
+      "literal": "| `CASE-HARNESS-L10-018-R047` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-03` | backflow-revision-mismatch：R044の観測recordが参照する要求revisionだけを再要求化candidateと異ならせる。 | 同じ要求revisionでの接続とみなさず、製品の運用要求ownerへ不一致を戻す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-019-R017",
+      "parent": "019",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 560,
+      "raw_lf_sha256": "35a42561fe6952dd4d88f0e5fb223b837c46228356c76718f3c3a09d0237a319",
+      "literal": "| `CASE-HARNESS-L10-019-R017` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-01` | entry-unit-1：第1リリース単位から既知source/revision付き成果を持ち込む。COREのみを使い、当該単位の実行は要求しない。 | 持ち込んだsourceと対象単位を保持した要求・設計・検証対候補を返し、当該単位や先行単位の実行を追加条件にしない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-019-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-019-R018",
+      "parent": "019",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 561,
+      "raw_lf_sha256": "31a9c566c67869618098b251c9b8d520f5e9a3da75022829f3d9bb2b4bf5bf62",
+      "literal": "| `CASE-HARNESS-L10-019-R018` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-01` | entry-unit-2：第2リリース単位から既知source/revision付き成果を持ち込む。COREのみを使い、当該単位の実行は要求しない。 | 持ち込んだsourceと対象単位を保持した要求・設計・検証対候補を返し、当該単位や先行単位の実行を追加条件にしない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-019-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-019-R019",
+      "parent": "019",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 562,
+      "raw_lf_sha256": "99b758c7fa0e3b2753357ce6574e83947664ccdd9770e85df40d9635687f84d6",
+      "literal": "| `CASE-HARNESS-L10-019-R019` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-01` | entry-unit-3：第3リリース単位から既知source/revision付き成果を持ち込む。COREのみを使い、当該単位の実行は要求しない。 | 持ち込んだsourceと対象単位を保持した要求・設計・検証対候補を返し、当該単位や先行単位の実行を追加条件にしない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-019-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-019-R020",
+      "parent": "019",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 563,
+      "raw_lf_sha256": "d29296283b1ca8a3286c1b14083f70bf6b32930d2306b8707565be8ba52e6896",
+      "literal": "| `CASE-HARNESS-L10-019-R020` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-01` | entry-unit-4：第4リリース単位から既知source/revision付き成果を持ち込む。COREのみを使い、当該単位の実行は要求しない。 | 持ち込んだsourceと対象単位を保持した要求・設計・検証対候補を返し、当該単位や先行単位の実行を追加条件にしない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-019-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-019-R021",
+      "parent": "019",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 564,
+      "raw_lf_sha256": "6651fe8ab38d697833134f4b3e8b33cf795caeb73eac655d4b3caf294a8d4fd9",
+      "literal": "| `CASE-HARNESS-L10-019-R021` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-01` | entry-unit-5：第5リリース単位から既知source/revision付き成果を持ち込む。COREのみを使い、当該単位の実行は要求しない。 | 持ち込んだsourceと対象単位を保持した要求・設計・検証対候補を返し、当該単位や先行単位の実行を追加条件にしない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-019-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-019-R022",
+      "parent": "019",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 565,
+      "raw_lf_sha256": "18c5f5f1bd82e98b3d1110e46a62bc141932c8baa9e433cdb80804e0872dce37",
+      "literal": "| `CASE-HARNESS-L10-019-R022` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-01` | entry-unit-6：第6リリース単位から既知source/revision付き成果を持ち込む。COREのみを使い、当該単位の実行は要求しない。 | 持ち込んだsourceと対象単位を保持した要求・設計・検証対候補を返し、当該単位や先行単位の実行を追加条件にしない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-019-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-019-R023",
+      "parent": "019",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 566,
+      "raw_lf_sha256": "371375f01c738bbeeb5c0b1e0d8daa2a8dc9b7aeb8ac994c8cf9d615d7ead5b4",
+      "literal": "| `CASE-HARNESS-L10-019-R023` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-01` | entry-unit-7：第7リリース単位から既知source/revision付き成果を持ち込む。COREのみを使い、当該単位の実行は要求しない。 | 持ち込んだsourceと対象単位を保持した要求・設計・検証対候補を返し、当該単位や先行単位の実行を追加条件にしない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-019-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-017-R018",
+      "parent": "017",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 567,
+      "raw_lf_sha256": "678799399421c403d80e2fd9075f4ca27ff928ce4ef5607495ac5a1c78ed1593",
+      "literal": "| `CASE-HARNESS-L10-017-R018` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-01` | release-unit-alone：①〜⑤を使わず、L2-022のVerified/Accepted成果と開始時Release Portだけを⑥へ与える。 | release-unit候補を同じ条件で評価し、①〜⑤の利用を追加必須にしない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-017-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-017-R019",
+      "parent": "017",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 568,
+      "raw_lf_sha256": "e49edb353f0dac3b410f124178ed83219dd5c72ae7e8c11c891b58567c58c36a",
+      "literal": "| `CASE-HARNESS-L10-017-R019` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | release-port-added-late：他の正常条件を保持し、Release Portを開発開始時に持たず後付けで与える。 | 開始時条件の不足を示しeligibleにせず、Release Port条件の提供元へ戻す。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-017-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R048",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 569,
+      "raw_lf_sha256": "377441e4df00a06b4f84842cbd951064acbe8ca946d2468c7d6d2ec43f81c159",
+      "literal": "| `CASE-HARNESS-L10-018-R048` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-03` | organization-wide-quality-override：R046のowner別運用基準を保ち、qualityの値だけを全製品共通値で上書きする。SLO・環境・RTO/RPO・保持期間・予算はowner定義のまま。 | qualityだけの共通固定・上書きを拒否し、各製品ownerの個別基準を維持する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R049",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 570,
+      "raw_lf_sha256": "b45c4dd18a062bcb27ac5cbf8bb882281730b8cafcd6d45dcdf350db246a1b1b",
+      "literal": "| `CASE-HARNESS-L10-018-R049` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-03` | requirement-omitted：ownerが承認した運用要求一式から要求項目一つだけを除き、配備済みrevision、観測値、残る要求とevidenceを保つ。 | 要求自体の不足を検出し、当該製品の運用要求ownerへ再要求化候補と不足理由を返す。観測不適合（R044）と区別し要求を捏造しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-020-R022",
+      "parent": "020",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 571,
+      "raw_lf_sha256": "4ef3fc2a0b47e30a860cb40c57cf66e3a63547683422422dedfe15e7a8a73026",
+      "literal": "| `CASE-HARNESS-L10-020-R022` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-02` | external-contract-mismatch：R012の外部成果、契約、artifact、revision、owner、evidenceを保ち、外部成果の入力contract versionだけを次単位の要求versionと不一致にする。 | 外部成果を候補として受け入れずhandoffを保留し、不一致を次単位入力契約ownerへ返し、外部成果の提供元に不一致を示す。提供元または契約ownerを特定できなければunknownを保持して推測しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-020-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R078",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 572,
+      "raw_lf_sha256": "fd453197538630e059a19b6cd1de8b42e910c91524a12625ef6f5aa1a39677e8",
+      "literal": "| `CASE-HARNESS-L10-024-R078` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | upstream-scope-unknown：正常形成入力の上流scopeだけをunknownにし、目的・target revision・source identityとsourceに付くscopeを保持する。source自体のscope欠落（R027）とは別fixtureにする。 | scopeを補完せず形成内容を確定しない。HARNESS-L1-008または意味を持つPOへ上流scopeの意味を戻し、HARNESS要求ownerへ戻すsource-scope欠落とは区別する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-06"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R079",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 573,
+      "raw_lf_sha256": "8023941d2dd06df4f7e45627ba6a0e1678ccd935ab31f9d6944de24bf2e55fb3",
+      "literal": "| `CASE-HARNESS-L10-024-R079` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | fixture-score-only：R001の正常candidateと他の未決状態を保ち、fixture scoreだけを収束・承認根拠とする。 | score一般（R044）とは別にfixture score単独の根拠を拒否し、必須未決、合意・freeze・採択・操作許可を生成しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R050",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 574,
+      "raw_lf_sha256": "5982980ff4f07b047ace5a59472908b1d852127039940ac713a75ad2ec6f3a1c",
+      "literal": "| `CASE-HARNESS-L10-018-R050` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-03` | organization-wide-SLO-override：R046の製品owner別基準・要求revision・観測値を保ち、SLOだけを全製品共通値へ上書きする。他の品質値・対象環境・回復値・保持期間・予算はowner定義のまま。 | SLOだけの共通固定・上書きを拒否し、当該製品ownerの個別基準を維持する。別の正常値で相殺しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R051",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 575,
+      "raw_lf_sha256": "7069c86c9696434e9d0196544fdd92564501b0cc44875f709b60047fe3013181",
+      "literal": "| `CASE-HARNESS-L10-018-R051` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-03` | organization-wide-対象環境-override：R046の製品owner別基準・要求revision・観測値を保ち、対象環境だけを全製品共通値へ上書きする。他の品質値・SLO・回復値・保持期間・予算はowner定義のまま。 | 対象環境だけの共通固定・上書きを拒否し、当該製品ownerの個別基準を維持する。別の正常値で相殺しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R052",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 576,
+      "raw_lf_sha256": "409d610531d9d0f2a0b02e3d346576cb007782c35925323e3c2061dfb3c513bf",
+      "literal": "| `CASE-HARNESS-L10-018-R052` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-03` | organization-wide-RTO-override：R046の製品owner別基準・要求revision・観測値を保ち、RTOだけを全製品共通値へ上書きする。他の品質値・SLO・対象環境・RPO・保持期間・予算はowner定義のまま。 | RTOだけの共通固定・上書きを拒否し、当該製品ownerの個別基準を維持する。別の正常値で相殺しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R053",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 577,
+      "raw_lf_sha256": "d96b5698b995f1db69105fe7465ed2fa919c0c3e7e2e2fd30595d0d845794491",
+      "literal": "| `CASE-HARNESS-L10-018-R053` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-03` | organization-wide-RPO-override：R046の製品owner別基準・要求revision・観測値を保ち、RPOだけを全製品共通値へ上書きする。他の品質値・SLO・対象環境・RTO・保持期間・予算はowner定義のまま。 | RPOだけの共通固定・上書きを拒否し、当該製品ownerの個別基準を維持する。別の正常値で相殺しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R054",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 578,
+      "raw_lf_sha256": "9b49d9c00a5f4e890996153ee653cdd37e25c25d2538aeed1c2fc3c6f9627014",
+      "literal": "| `CASE-HARNESS-L10-018-R054` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-03` | organization-wide-保持期間-override：R046の製品owner別基準・要求revision・観測値を保ち、保持期間だけを全製品共通値へ上書きする。他の品質値・SLO・対象環境・回復値・予算はowner定義のまま。 | 保持期間だけの共通固定・上書きを拒否し、当該製品ownerの個別基準を維持する。別の正常値で相殺しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R055",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 579,
+      "raw_lf_sha256": "da833b54b7a961a7c262e4543fff5524692ca4cb1467e54061acba7d2f2001cc",
+      "literal": "| `CASE-HARNESS-L10-018-R055` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-03` | organization-wide-予算-override：R046の製品owner別基準・要求revision・観測値を保ち、予算だけを全製品共通値へ上書きする。他の品質値・SLO・対象環境・回復値・保持期間はowner定義のまま。 | 予算だけの共通固定・上書きを拒否し、当該製品ownerの個別基準を維持する。別の正常値で相殺しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-020-R023",
+      "parent": "020",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 580,
+      "raw_lf_sha256": "1c4a873100c89c6c3500ea1c062ca05878a6c8cc57fbd464f62886cd8f58197b",
+      "literal": "| `CASE-HARNESS-L10-020-R023` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-03` | external-022-gate-mismatch：外部成果のartifact・release port・入力契約版・owner等は正常で、HARNESS-L2-022と同じ検証・受入evidenceの対象要求revisionだけを現在の要求revisionと不一致にする。この成果を⑥へ渡そうとする。 | 外部成果をVerified/Accepted相当と読み替えず⑥への受渡しを止める。満たした段階に保持しL2-022の検証・受入へ回し、証拠提供元へ不足を示す。入力contract version不一致R022と区別する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-020-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R080",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 581,
+      "raw_lf_sha256": "faaa69a70bacb6405a43231d3001aaafb7dd1008af91c3150a5f3fdd8f622997",
+      "literal": "| `CASE-HARNESS-L10-024-R080` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | poc-meaning-backflow：同一target/scopeのPoC結果が要求candidateの特定意味との違いを示す。単体/connection/composite identity、source revision、failure/timeout状態、trace、owner/re-entryは揃い、他の回答は適合する。 | engineが上流意味を書き換えず、PoCの結果と影響identity・trace・意味差をHARNESS-L2-008へBackflow候補として返す。無関係な回答をstaleにせず、人の合意・承認を生成しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-06"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R081",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 582,
+      "raw_lf_sha256": "b27913fc7bdd8a58460ca1e4fd1f20428ae2207d239e79171ac35d3f578e2d72",
+      "literal": "| `CASE-HARNESS-L10-024-R081` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | poc-単体-identity-missing：R080のPoC Backflow入力から単体のidentityだけを欠落させ、他のidentity、source revision、意味差、trace、owner/re-entryは保持する。 | 当該identity不足を明示してHARNESS要求ownerへ戻し、影響するBackflow先の確定を保留する。identityを補完して成功・収束にしない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-06"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R082",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 583,
+      "raw_lf_sha256": "fe61ebc5e9df5dbfaa0f0a0407587fdf9f63199949c35783f09792759c9499db",
+      "literal": "| `CASE-HARNESS-L10-024-R082` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | poc-connection-identity-missing：R080のPoC Backflow入力からconnectionのidentityだけを欠落させ、他のidentity、source revision、意味差、trace、owner/re-entryは保持する。 | 当該identity不足を明示してHARNESS要求ownerへ戻し、影響するBackflow先の確定を保留する。identityを補完して成功・収束にしない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-06"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R083",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 584,
+      "raw_lf_sha256": "a70d62673b0324923f5b577a6fe8d61bc62100a8d1f0ab25c9f95e963ee3e363",
+      "literal": "| `CASE-HARNESS-L10-024-R083` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | poc-composite-identity-missing：R080のPoC Backflow入力からcompositeのidentityだけを欠落させ、他のidentity、source revision、意味差、trace、owner/re-entryは保持する。 | 当該identity不足を明示してHARNESS要求ownerへ戻し、影響するBackflow先の確定を保留する。identityを補完して成功・収束にしない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-06"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R084",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 585,
+      "raw_lf_sha256": "0de861e8f8828ebef193e392ee1f32034049a398be8635350fc5832a453b6b5a",
+      "literal": "| `CASE-HARNESS-L10-024-R084` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | poc-trace-missing：R080のPoC結果・identity・意味差・revision・owner/re-entryを保ち、結果と要求candidateのtrace関係だけを欠落させる。 | trace不足をHARNESS要求ownerへ返し、影響先を推測してL2-008へ確定しない。PoC結果や候補を承認済みにしない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-06"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R085",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 586,
+      "raw_lf_sha256": "874e6835e69dff67d9995bde1d8e2256fc77d881f2d70d56cd302d57d0a32336",
+      "literal": "| `CASE-HARNESS-L10-024-R085` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-02` | unexplained-contradiction-ignored：同じtarget/scopeの回答矛盾に説明根拠がなく、engineが回答内容を変更せず矛盾を収束候補から黙って除外する。自動解消R012と区別する。 | 矛盾の無視を拒否して該当回答identityと未説明矛盾を維持し、HARNESS要求ownerへ不足を示す。収束・合意を生成しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R086",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 587,
+      "raw_lf_sha256": "687b50c9be67195317eafbba2229f6effe1ed39dd9be36a2a364032dc1300eb6",
+      "literal": "| `CASE-HARNESS-L10-024-R086` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | human-value-unknown：正常形成資料で人が決める値一件だけがunknownであり、目的・scope・source identity・revisionと他の入力は保持する。 | 当該値を推定せずHARNESS-L1-008または意味を持つPOへ、原文・選択肢・推奨・影響候補の判断待ちを返す。上流目的R075・scopeR078・専決値推定R057と区別する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-06"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R087",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 588,
+      "raw_lf_sha256": "55dff97ad96ca67127da2fb4c4744fe7d4683e04df933216c74a854300047272",
+      "literal": "| `CASE-HARNESS-L10-024-R087` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | poc-failure-timeout-state-missing：R080のPoC Backflow入力で単体/connection/composite identity、source revision、意味差、trace、owner/re-entryと他の回答を保ち、failure/timeout状態だけを欠落させる。 | 状態をsuccessや失敗のいずれにも推定せずunknown/保留とし、PoC result recordのfailure/timeout状態不足をHARNESS要求ownerへ返す。Backflow先の意味を補完せず、人の合意・承認を生成しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-06"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R088",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 589,
+      "raw_lf_sha256": "df37825deb2300a2b2a12f50751583d427014b2a82202849345c4588c1eb9a29",
+      "literal": "| `CASE-HARNESS-L10-024-R088` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | poc-owner-reentry-missing：R080のPoC Backflow入力で単体/connection/composite identity、source revision、failure/timeout状態、意味差、traceと他の回答を保ち、owner/re-entryだけを欠落させる。 | Backflowを確定・再開せず形成資料不足としてHARNESS要求ownerへ戻し、ownerまたはre-entry条件を推測しない。PoC結果から人の合意・承認を生成しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-06"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R089",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 590,
+      "raw_lf_sha256": "50805e18c3db505b15562f24b551de50ac5a12fbd736ed80f926bda9f58d84d6",
+      "literal": "| `CASE-HARNESS-L10-024-R089` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | product-pack-89-leak：R001の正常engine/対象製品P/pack-P@r1/target revision/scope/既回答と他のpack fieldを保持し、別製品Qのpack-Q@r2の語彙だけをPの意味入力へ混入する。 | 他製品語彙の混入を拒否し、Pの現行packだけで質問順・理由・状態を形成する。混入fieldと由来revisionをpack契約ownerへ示し、Qの規則・承認・scopeをPへ生成しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-06"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R090",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 591,
+      "raw_lf_sha256": "e4cdd063cf5186cef04f131cc1ada48fe9502b2eb83ab24d51e2862a043df95c",
+      "literal": "| `CASE-HARNESS-L10-024-R090` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | product-pack-90-leak：R001の正常engine/対象製品P/pack-P@r1/target revision/scope/既回答と他のpack fieldを保持し、別製品Qのpack-Q@r2のpolicyだけをPの意味入力へ混入する。 | 他製品policyの混入を拒否し、Pの現行packだけで質問順・理由・状態を形成する。混入fieldと由来revisionをpack契約ownerへ示し、Qの規則・承認・scopeをPへ生成しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-06"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R091",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 592,
+      "raw_lf_sha256": "e6782951c4a25682af944d76d030b2b84fc505b09b69d1fb5354e58fab11db9b",
+      "literal": "| `CASE-HARNESS-L10-024-R091` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | product-pack-91-leak：R001の正常engine/対象製品P/pack-P@r1/target revision/scope/既回答と他のpack fieldを保持し、別製品Qのpack-Q@r2の質問だけをPの意味入力へ混入する。 | 他製品質問の混入を拒否し、Pの現行packだけで質問順・理由・状態を形成する。混入fieldと由来revisionをpack契約ownerへ示し、Qの規則・承認・scopeをPへ生成しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-06"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R092",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 593,
+      "raw_lf_sha256": "1735ff294d8656d6a2624fb5fe78af03db0881d231eb49f0c793025939b339c3",
+      "literal": "| `CASE-HARNESS-L10-024-R092` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | product-pack-92-leak：R001の正常engine/対象製品P/pack-P@r1/target revision/scope/既回答と他のpack fieldを保持し、別製品Qのpack-Q@r2の品質matrixだけをPの意味入力へ混入する。 | 他製品品質matrixの混入を拒否し、Pの現行packだけで質問順・理由・状態を形成する。混入fieldと由来revisionをpack契約ownerへ示し、Qの規則・承認・scopeをPへ生成しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-06"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R093",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 594,
+      "raw_lf_sha256": "b7d97e85102c819dde34a0ef8bbe65001d4b2b1508abf88700da56a773c17327",
+      "literal": "| `CASE-HARNESS-L10-024-R093` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | product-pack-missing：R001の正常engine/対象製品/target revision/scope/既回答とpack identityを保持し、当該製品packの内容だけを欠落させる。他製品packは利用可能だが未選択。 | 当該製品pack不足をunknown/未確定としてpack契約ownerへ返し、別製品packで補わず質問選択・収束を確定しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-06"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R094",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 595,
+      "raw_lf_sha256": "1cbcad603de7b130ec5053ba3a56e2ee5f671785bbbe80ba13f91ee452ff0d79",
+      "literal": "| `CASE-HARNESS-L10-024-R094` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | product-pack-revision-mismatch：R001の対象製品と指定pack-P@r1/engine/target/scope/既回答を保持し、意味入力のpack content revisionだけをP@r2へ変える。 | pack版不一致をpack契約ownerへ返し、r1/r2の語彙・policy・質問・matrixを混合せず質問順・理由・収束の確定を保留する。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-06"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-019-R024",
+      "parent": "019",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 596,
+      "raw_lf_sha256": "38afe517360b21c7d1768271e6dbde2b8336ce061e7d371e84206fdf0d8436f1",
+      "literal": "| `CASE-HARNESS-L10-019-R024` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-02` | reverse-output-coverage-gap：R001の選択source/変換scope/revision/ownerと他層の対応を保持し、変換対象一層の結果だけを変換済み・理由付き非影響・変換不能/unknown一覧のいずれからも除去した出力を成功扱いする。 | 対応欠落を検出し変換候補を完了扱いせず、当該層の未分類部分と元traceをunknownとして保持しHARNESS Reverse要求ownerへ不足を返す。対象外層や未選択sourceへ義務を拡張しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-019-02"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R056",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 602,
+      "raw_lf_sha256": "eac5b3185b0f5cfa99bf855b5e386c9f432e0c2d8aff73aece2d3155d7c5d605",
+      "literal": "| `CASE-HARNESS-L10-018-R056` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | R001のowner承認済み運用要求revision、11軸の適用性・決定owner・根拠は有効のまま、配備済み製品revisionだけを欠落させる。配備record提供元identityは既知とする。 | 当該製品revisionに対応する観測設計を評価済み・successとせず、不足した配備revisionを配備record提供元へ返す。運用要求と元traceを保持し、配備・観測・運用状態を補完しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R057",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 603,
+      "raw_lf_sha256": "be51d8d40ad9d93bc723ac2ba742bd539eefeeb48a098065aebc7eead96d5fbd",
+      "literal": "| `CASE-HARNESS-L10-018-R057` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | R001の配備済み製品revision、運用要求revision、11軸の適用性・決定owner・根拠は有効のまま、運用要求ownerの承認だけを欠落させ未承認draftとする。 | 未承認要求を承認済みへ変換せず観測設計の評価成立を保留し、当該運用要求ownerへ承認状態の不足を返す。配備済みrevisionを保持し、文書・CI・実装から承認を生成しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-017-R020",
+      "parent": "017",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 604,
+      "raw_lf_sha256": "7357d347c250d4333607314da678f3bc9a2a20c63778bd884021c9b8ed427a51",
+      "literal": "| `CASE-HARNESS-L10-017-R020` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-03` | rollback正常：同一対象scopeのrelease失敗fixtureに、直前適格版artifact identity/versionと適格性evidenceを与える。対象環境・Release Port・元artifact・提供元ownerは確定済みとする。 | release packetのrollback先identity/versionが与えた直前適格版と一致し、そのevidenceへtraceが到達する。別版を選ばず、実際の配備・rollback操作やObservedを生成しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-017-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-024-R095",
+      "parent": "024",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 605,
+      "raw_lf_sha256": "1c16569b13d9c13a1a0a6c3d3061f380d94e38366ba5be40bef438e3747e4a6a",
+      "literal": "| `CASE-HARNESS-L10-024-R095` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | R001のcandidate・既回答・target revision/scope・ownerと利用可能履歴を保持する。必須形成情報が残る状態で、根拠のない固定iteration上限への到達だけを理由に形成を打ち切り完了とする出力を与える。 | 固定上限だけによる打切り・完了を拒否し、残る必須形成情報とopen item/owner/re-entryを保持してHARNESS要求ownerへ返す。履歴件数を最低条件にも上限にもせず、人の合意・採択を生成しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-024-03"
+      ]
+    },
+    {
+      "id": "CASE-HARNESS-L10-018-R058",
+      "parent": "018",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 613,
+      "raw_lf_sha256": "d6777531a061804ef54e79b22602670c246d8460a285f40be7497739b648b5d1",
+      "literal": "| `CASE-HARNESS-L10-018-R058` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | R001の配備済み製品revision、owner承認済み運用要求revision、11軸の適用性・決定owner・根拠を保持し、運用要求が対応する製品revisionだけを当該配備revisionと異なるrevisionへ変える。両revisionと承認状態は既知とする。 | 対応不一致を検出し、当該配備revisionの観測設計を評価成立とせず運用要求ownerへ返す。配備recordと承認済み要求の元revision・traceを保持し、別revision向け承認を当該revisionへの承認へ変換しない。 |\n",
+      "ac_ids": [
+        "AC-HARNESS-L3-018-01"
+      ]
+    }
+  ],
+  "checks": {
+    "cases": 220,
+    "acs": 18,
+    "parent_counts": {
+      "017": 20,
+      "018": 58,
+      "019": 24,
+      "020": 23,
+      "024": 95
+    },
+    "published_case_loss": 0,
+    "dangling_acs": 0,
+    "integrated_tree": "6120ecc8d8edcba62c451aac03d63063419c1e6d",
+    "static": {
+      "validate": {
+        "returncode": 0,
+        "stdout": "ok   scaffold/bindings/SCF-B-0001.json  SCF-B-0001 [active]\nok   scaffold/bindings/SCF-B-0002.json  SCF-B-0002 [active]\nok   scaffold/bindings/SCF-B-0003.json  SCF-B-0003 [active]\nok   scaffold/bindings/SCF-B-0004.json  SCF-B-0004 [active]\nok   scaffold/bindings/SCF-B-0005.json  SCF-B-0005 [active]\nok   scaffold/bindings/SCF-B-0006.json  SCF-B-0006 [active]\nok   scaffold/bindings/SCF-B-0007.json  SCF-B-0007 [active]\nok   scaffold/bindings/SCF-B-0008.json  SCF-B-0008 [active]\nok   scaffold/bindings/SCF-B-0009.json  SCF-B-0009 [active]\nok   scaffold/bindings/SCF-B-0010.json  SCF-B-0010 [active]\nok   scaffold/bindings/SCF-B-0011.json  SCF-B-0011 [active]\nok   scaffold/bindings/SCF-B-0012.json  SCF-B-0012 [active]\nok   scaffold/bindings/SCF-B-0013.json  SCF-B-0013 [active]\nok   scaffold/bindings/SCF-B-0014.json  SCF-B-0014 [active]\nok   scaffold/bindings/SCF-B-0015.json  SCF-B-0015 [active]\nok   scaffold/bindings/SCF-B-0016.json  SCF-B-0016 [active]\nok   scaffold/bindings/SCF-B-0017.json  SCF-B-0017 [active]\nok   scaffold/bindings/SCF-B-0018.json  SCF-B-0018 [active]\nok   scaffold/bindings/SCF-B-0019.json  SCF-B-0019 [active]\nok   scaffold/bindings/SCF-B-0020.json  SCF-B-0020 [active]\nok   scaffold/bindings/SCF-B-0021.json  SCF-B-0021 [active]\nok   scaffold/bindings/SCF-B-0022.json  SCF-B-0022 [active]\nok   scaffold/bindings/SCF-B-0023.json  SCF-B-0023 [registered]\nok   scaffold/bindings/SCF-B-0024.json  SCF-B-0024 [active]\nok   scaffold/bindings/SCF-B-0025.json  SCF-B-0025 [active]\nok   scaffold/bindings/SCF-B-0027.json  SCF-B-0027 [registered]\nok   scaffold/bindings/SCF-B-0028.json  SCF-B-0028 [active]\nok   scaffold/bindings/SCF-B-0029.json  SCF-B-0029 [registered]\nok   scaffold/bindings/SCF-B-0030.json  SCF-B-0030 [active]\nok   scaffold/bindings/SCF-B-0031.json  SCF-B-0031 [active]\nok   scaffold/bindings/SCF-B-0032.json  SCF-B-0032 [registered]\nok   scaffold/bindings/SCF-B-0033.json  SCF-B-0033 [registered]\nok   scaffold/bindings/SCF-B-0034.json  SCF-B-0034 [registered]\nok   scaffold/bindings/SCF-B-0035.json  SCF-B-0035 [registered]\nok   scaffold/bindings/SCF-B-0036.json  SCF-B-0036 [registered]\nok   scaffold/bindings/SCF-B-0037.json  SCF-B-0037 [registered]\nok   scaffold/bindings/SCF-B-0038.json  SCF-B-0038 [registered]\nok   scaffold/bindings/SCF-B-0039.json  SCF-B-0039 [registered]\nok   scaffold/bindings/SCF-B-0040.json  SCF-B-0040 [registered]\nok   scaffold/bindings/SCF-B-0041.json  SCF-B-0041 [registered]\nok   scaffold/bindings/SCF-B-0042.json  SCF-B-0042 [registered]\nok   scaffold/bindings/SCF-B-0043.json  SCF-B-0043 [registered]\nok   scaffold/bindings/SCF-B-0044.json  SCF-B-0044 [registered]\nok   scaffold/bindings/SCF-B-0045.json  SCF-B-0045 [registered]\nok   scaffold/bindings/SCF-B-0046.json  SCF-B-0046 [registered]\nok   scaffold/bindings/SCF-B-0047.json  SCF-B-0047 [registered]\nok   scaffold/bindings/SCF-B-0048.json  SCF-B-0048 [registered]\nok   scaffold/bindings/SCF-B-0049.json  SCF-B-0049 [registered]\nok   scaffold/bindings/SCF-B-0050.json  SCF-B-0050 [registered]\nok   scaffold/bindings/SCF-B-0051.json  SCF-B-0051 [active]\nok   scaffold/bindings/SCF-B-0052.json  SCF-B-0052 [registered]\nok   scaffold/bindings/SCF-B-0053.json  SCF-B-0053 [registered]\nok   scaffold/bindings/SCF-B-0054.json  SCF-B-0054 [registered]\nok   scaffold/bindings/SCF-B-0055.json  SCF-B-0055 [registered]\nok   scaffold/bindings/SCF-B-0056.json  SCF-B-0056 [registered]\nok   scaffold/bindings/SCF-B-0057.json  SCF-B-0057 [registered]\nok   scaffold/bindings/SCF-B-0058.json  SCF-B-0058 [registered]\nok   scaffold/bindings/SCF-B-0059.json  SCF-B-0059 [registered]\nok   scaffold/bindings/SCF-B-0060.json  SCF-B-0060 [registered]\nok   scaffold/bindings/SCF-B-0061.json  SCF-B-0061 [registered]\nok   scaffold/bindings/SCF-B-0062.json  SCF-B-0062 [registered]\nok   scaffold/bindings/SCF-B-0063.json  SCF-B-0063 [registered]\nok   scaffold/bindings/SCF-B-0064.json  SCF-B-0064 [registered]\nok   scaffold/bindings/SCF-B-0065.json  SCF-B-0065 [registered]\nok   scaffold/bindings/SCF-B-0066.json  SCF-B-0066 [registered]\nok   scaffold/bindings/SCF-B-0067.json  SCF-B-0067 [registered]\nok   scaffold/bindings/SCF-B-0068.json  SCF-B-0068 [registered]\nok   scaffold/bindings/SCF-B-0069.json  SCF-B-0069 [registered]\nok   scaffold/bindings/SCF-B-0070.json  SCF-B-0070 [registered]\nok   scaffold/bindings/SCF-B-0071.json  SCF-B-0071 [registered]\nok   scaffold/bindings/SCF-B-0072.json  SCF-B-0072 [registered]\nok   scaffold/bindings/SCF-B-0073.json  SCF-B-0073 [registered]\nok   scaffold/bindings/SCF-B-0074.json  SCF-B-0074 [registered]\nok   scaffold/bindings/SCF-B-0075.json  SCF-B-0075 [registered]\nok   scaffold/bindings/SCF-B-0076.json  SCF-B-0076 [registered]\nok   scaffold/bindings/SCF-B-0077.json  SCF-B-0077 [registered]\nok   scaffold/bindings/SCF-B-0078.json  SCF-B-0078 [registered]\nok   scaffold/bindings/SCF-B-0079.json  SCF-B-0079 [registered]\nok   scaffold/bindings/SCF-B-0080.json  SCF-B-0080 [registered]\nok   scaffold/bindings/SCF-B-0081.json  SCF-B-0081 [registered]\nok   scaffold/bindings/SCF-B-0082.json  SCF-B-0082 [registered]\nok   scaffold/bindings/SCF-B-0083.json  SCF-B-0083 [registered]\nok   scaffold/bindings/SCF-B-0084.json  SCF-B-0084 [registered]\nok   scaffold/bindings/SCF-B-0085.json  SCF-B-0085 [registered]\nok   scaffold/bindings/SCF-B-0086.json  SCF-B-0086 [registered]\nok   scaffold/bindings/SCF-B-0087.json  SCF-B-0087 [registered]\nok   scaffold/bindings/SCF-B-0088.json  SCF-B-0088 [registered]\nok   scaffold/bindings/SCF-B-0089.json  SCF-B-0089 [registered]\nok   scaffold/bindings/SCF-B-0090.json  SCF-B-0090 [registered]\nok   scaffold/bindings/SCF-B-0091.json  SCF-B-0091 [registered]\nok   scaffold/bindings/SCF-B-0092.json  SCF-B-0092 [registered]\nok   scaffold/bindings/SCF-B-0093.json  SCF-B-0093 [registered]\nok   scaffold/bindings/SCF-B-0094.json  SCF-B-0094 [registered]\nok   scaffold/bindings/SCF-B-0095.json  SCF-B-0095 [registered]\nok   scaffold/bindings/SCF-B-0096.json  SCF-B-0096 [registered]\nok   scaffold/bindings/SCF-B-0097.json  SCF-B-0097 [registered]\nok   scaffold/bindings/SCF-B-0099.json  SCF-B-0099 [registered]\nok   scaffold/bindings/SCF-B-0100.json  SCF-B-0100 [registered]\nok   scaffold/bindings/SCF-B-0101.json  SCF-B-0101 [registered]\nok   scaffold/bindings/SCF-B-0102.json  SCF-B-0102 [registered]\nok   scaffold/bindings/SCF-B-0103.json  SCF-B-0103 [registered]\nok   scaffold/bindings/SCF-B-0104.json  SCF-B-0104 [registered]\nok   scaffold/bindings/SCF-B-0105.json  SCF-B-0105 [registered]\nok   scaffold/bindings/SCF-B-0106.json  SCF-B-0106 [registered]\nok   scaffold/bindings/SCF-B-0107.json  SCF-B-0107 [registered]\nok   scaffold/bindings/SCF-B-0108.json  SCF-B-0108 [registered]\nok   scaffold/bindings/SCF-B-0109.json  SCF-B-0109 [registered]\nok   scaffold/bindings/SCF-B-0110.json  SCF-B-0110 [registered]\nok   scaffold/bindings/SCF-B-0111.json  SCF-B-0111 [registered]\nok   scaffold/bindings/SCF-B-0112.json  SCF-B-0112 [registered]\nok   scaffold/bindings/SCF-B-0113.json  SCF-B-0113 [registered]\nok   scaffold/bindings/SCF-B-0114.json  SCF-B-0114 [registered]\nok   scaffold/bindings/SCF-B-0115.json  SCF-B-0115 [registered]\nok   scaffold/bindings/SCF-B-0116.json  SCF-B-0116 [registered]\nok   scaffold/bindings/SCF-B-0117.json  SCF-B-0117 [registered]\nok   scaffold/bindings/SCF-B-0118.json  SCF-B-0118 [registered]\nok   scaffold/bindings/SCF-B-0119.json  SCF-B-0119 [registered]\nok   scaffold/bindings/SCF-B-0120.json  SCF-B-0120 [registered]\nok   scaffold/bindings/SCF-B-0121.json  SCF-B-0121 [registered]\nok   scaffold/bindings/SCF-B-0122.json  SCF-B-0122 [registered]\nok   scaffold/bindings/SCF-B-0123.json  SCF-B-0123 [registered]\nok   scaffold/bindings/SCF-B-0124.json  SCF-B-0124 [registered]\nok   scaffold/bindings/SCF-B-0125.json  SCF-B-0125 [registered]\nok   scaffold/bindings/SCF-B-0126.json  SCF-B-0126 [registered]\nok   scaffold/bindings/SCF-B-0127.json  SCF-B-0127 [registered]\nok   scaffold/bindings/SCF-B-0128.json  SCF-B-0128 [registered]\nok   scaffold/bindings/SCF-B-0129.json  SCF-B-0129 [registered]\nok   scaffold/bindings/SCF-B-0130.json  SCF-B-0130 [registered]\nok   scaffold/bindings/SCF-B-0131.json  SCF-B-0131 [registered]\nok   scaffold/bindings/SCF-B-0132.json  SCF-B-0132 [registered]\nok   scaffold/bindings/SCF-B-0133.json  SCF-B-0133 [registered]\nok   scaffold/bindings/SCF-B-0134.json  SCF-B-0134 [registered]\nok   scaffold/bindings/SCF-B-0141.json  SCF-B-0141 [registered]\nok   scaffold/bindings/SCF-B-0142.json  SCF-B-0142 [registered]\nok   scaffold/bindings/SCF-B-0144.json  SCF-B-0144 [registered]\nok   scaffold/bindings/SCF-B-0145.json  SCF-B-0145 [registered]\nok   scaffold/bindings/SCF-B-0146.json  SCF-B-0146 [registered]\nok   scaffold/bindings/SCF-B-0147.json  SCF-B-0147 [registered]\nok   scaffold/bindings/SCF-B-0148.json  SCF-B-0148 [registered]\nok   scaffold/bindings/SCF-B-0149.json  SCF-B-0149 [registered]\nok   scaffold/bindings/SCF-B-0150.json  SCF-B-0150 [registered]\nok   scaffold/bindings/SCF-B-0151.json  SCF-B-0151 [registered]\nok   scaffold/bindings/SCF-B-0152.json  SCF-B-0152 [registered]\nok   scaffold/bindings/SCF-B-0153.json  SCF-B-0153 [registered]\nok   scaffold/bindings/SCF-B-0154.json  SCF-B-0154 [registered]\nok   scaffold/bindings/SCF-B-0155.json  SCF-B-0155 [registered]\nok   scaffold/bindings/SCF-B-0156.json  SCF-B-0156 [registered]\nbindings=147 fail=0\n",
+        "stderr": ""
+      },
+      "stale": {
+        "returncode": 0,
+        "stdout": "stale=0\n",
+        "stderr": ""
+      },
+      "residuals": {
+        "returncode": 0,
+        "stdout": "residuals=0\n",
+        "stderr": ""
+      }
+    }
+  },
+  "read_extent": [
+    "正式review08全文",
+    "変更2本文全diff",
+    "固定L2 403–416/513–523"
+  ],
+  "limits": [
+    "過去監査全pin/旧source全量を今回再検証したとは主張しない",
+    "独立review・Opus/Fable一致・L3承認・実測・merge admissionは未成立"
+  ]
+}

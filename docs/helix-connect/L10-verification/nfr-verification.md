@@ -28,3 +28,8 @@
 | `CON-NFR-008-02` / `CONNECT-AC-008-02` | 008のdescriptor読出しからの各状態生成CASEと合成marker混入CASEを別測定する。 | 各実行/許可生成0・各混入0。descriptorへの不正混入はprofile提供元へ、policy/authorizationの生成・代替はSECURITYへ区別して返す。CONNECTは安全判定を行わず値を出力しない。 |
 | `CON-NFR-009-01` / `CONNECT-AC-009-04` | 既存policy上限を入力し、到達前/到達/到達後、session交換、各欠落state CASEで追加retryと累積attemptを観測する。policy単位・期限・routeも同revisionに束縛する。 | 欠落/上限到達後の追加retry0・session交換reset0。未完/理由/累積試行をOS-040等の既存適用ownerへ、初回適格性は遡って変えない。技術値を新設しない。 |
 | `CON-NFR-009-02` / `CONNECT-AC-009-01/02/03/05` | 操作別missing/unknown/stale/conflict CASEで保留範囲と独立適格な対照初回辺を観測し、ACK待ちと完了を区別する。 | 範囲外一括停止0・未成立受領/完了生成0。初回、feedback、loop、join、ACKの該当ownerを別々に記録。未観測は達成でなくunknown。 |
+
+
+## Stage 5 — 007のNFR観測設計（未実行）
+
+`CON-NFR-007`は同じ機能CASE集合を観測し別のCASEを重複計上しない。宣言辺ごとの入力/receipt/lineage/SECURITY許可識別子/data-use識別子/送信結果/受信結果/終端被覆、failureでの全体成功数、未許可後続attempt、先行結果消失、業務承認/許可生成を個別に数える。data-use識別子だけ欠落する独立negativeは`CONNECT-CASE-007-40`、送信結果のみ欠落/受信結果のみ欠落/送受信結果不一致は`CONNECT-CASE-007-41`〜`43`で測り、各CASEの他の有効fieldを保って個別計数する。固定fixture分母の被覆100%、禁止状態生成/未許可attempt/結果消失は各0を候補判定とする。分母不明・証拠欠落・別revision結果はunknownとし、達成扱いしない。connection不備は失敗辺owner、authorityはSECURITY、業務判断/再計画は元機構/OS等ownerへ分けて戻す。latencyや期限値はowner契約の宣言を照合し製品共通SLAを生成しない。

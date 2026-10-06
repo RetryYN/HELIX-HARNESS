@@ -1,0 +1,1769 @@
+{
+  "record_type": "immutable append-only correction record for #2607 review01; creator-side correction evidence",
+  "date": "2026-10-05",
+  "authority_effect": "none",
+  "mechanism": "HELIX-INTELLIGENCE",
+  "stage": "Stage 3 1.0 adopted-parent L3/L10",
+  "status": "draft candidate; root semantic verification pending; no independent review, PO L3 acceptance, implementation, runtime execution, release, or merge claimed",
+  "base_main_commit": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+  "body_revision": "92e2ba2ac330c7cf9ca7c71a7c4876d1b5cdb3b6",
+  "body_commit": "92e2ba2ac330c7cf9ca7c71a7c4876d1b5cdb3b6",
+  "previous_immutable_records": [
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-intelligence-stage3-072-078-closure-cases-2026-10-05.json",
+      "sha256": "32700ed9d7bf3c884073a4731e04a646dbe4b145b818f21cda055c9551e91aac",
+      "bytes": 223865,
+      "immutable": "preserved byte-for-byte"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-intelligence-stage3-case-split-correction-2026-10-05-491542dd.json",
+      "sha256": "933f921083d943a9f15226d0c4f243b99081701ef415bbb26249d497fd6a154c",
+      "bytes": 164977,
+      "immutable": "preserved byte-for-byte"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-intelligence-stage3-fv001-006-case-split-correction-2026-10-05-f5f4dd23.json",
+      "sha256": "5759062054030bcce7b6d3280bae7b4334d5f7fb20f969e15aa45ce05cf86d27",
+      "bytes": 53444,
+      "immutable": "preserved byte-for-byte"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-intelligence-stage3-main-publication-cutout-2026-10-05.json",
+      "sha256": "7ebc26b06178d4cd40cab3d5a020a46ba08aa2c05f19ca39f58374c510db8ad8",
+      "bytes": 564964,
+      "immutable": "preserved byte-for-byte"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-intelligence-stage3-root-prepublication-2026-10-05.json",
+      "sha256": "039257eda203c0a09087df3ccaae80b61c0d6c36b8ac68c1eb57268a83afee6f",
+      "bytes": 591615,
+      "immutable": "preserved byte-for-byte"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-intelligence-stage3-source-pin-bounds-correction-2026-10-05-2fcbf08d.json",
+      "sha256": "3bd5812a0ea87bf47e0f9dc996d7eb62c488cbf78f200d0e963e90ca26dbaa1a",
+      "bytes": 4081,
+      "immutable": "preserved byte-for-byte"
+    }
+  ],
+  "scope": {
+    "parents": [
+      "001",
+      "002",
+      "003",
+      "004",
+      "005",
+      "006",
+      "007",
+      "008",
+      "009",
+      "011",
+      "012",
+      "013",
+      "014",
+      "015",
+      "016",
+      "018",
+      "019",
+      "020",
+      "067",
+      "072",
+      "073",
+      "078"
+    ],
+    "finding_count": 38,
+    "finding_ids": [
+      "M1",
+      "M2",
+      "M3",
+      "M4",
+      "M5",
+      "M6",
+      "M7",
+      "M8",
+      "M9",
+      "M10",
+      "M11",
+      "M12",
+      "M13",
+      "M14",
+      "M15",
+      "M16",
+      "M17",
+      "M18",
+      "M19",
+      "M20",
+      "M21",
+      "M22",
+      "M23",
+      "M24",
+      "m1",
+      "m2",
+      "m3",
+      "m4",
+      "m5",
+      "m6",
+      "m7",
+      "m8",
+      "m9",
+      "m10",
+      "m11",
+      "m12",
+      "m13",
+      "m14"
+    ],
+    "excluded": "no additional parent/version/authority introduced"
+  },
+  "fixed_source_basis": {
+    "L2_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "L2_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+    "L2_full_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+    "L11_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "L11_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+    "L11_full_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+    "main_parent_base": "29e814a92af2aa52afcbcdd60549b32a2448513a"
+  },
+  "corrected_PO_basis": {
+    "incorrect_prior_attribution": "The immutable 9/28 decision is only L1/L2/L11 context and does not select implementation order B.",
+    "correct_decision_path": "docs/governance/decisions/implementation-order-po-decision-2026-10-03.md",
+    "correct_decision_commit": "59336627f11475456038db80ce6232ee39bbfa8f",
+    "full_sha256": "c06e922bfd26947f22afebcc5dbd44f57aa04579728872350229792a1c7f1224",
+    "decision_line": 26,
+    "decision_line_literal": "> POの選択：「案B：支援・テスト生成を前倒し (Recommended)」",
+    "decision_line_raw_lf_sha256": "d30edd115a358b8831018835ff7b6d263f2e8ae0e17b4751454a45dd1a622b28"
+  },
+  "six_canonical_documents": [
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "base_prefix_commit": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "base_prefix_sha256": "cb9cc91c9f2646e2272fd18c6fd2b176285ba3b0f36409805e5a2879adad6017",
+      "base_prefix_bytes": 33090,
+      "current_full_sha256": "1a48061fcb2d7e4145cc8fe4613533a786c1f556bb62be9e564d907a3f5048cf",
+      "current_bytes": 91800,
+      "current_lines": 436,
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "base_prefix_commit": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "base_prefix_sha256": "5839b4cd42af9d57b0e01e8da6014838097671738297e2a343bcc4739d67809d",
+      "base_prefix_bytes": 5552,
+      "current_full_sha256": "9f683087c797cc4a81ac4e23773d13fda5a83e385e518c5983b99d37eebf31ff",
+      "current_bytes": 10025,
+      "current_lines": 71,
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "base_prefix_commit": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "base_prefix_sha256": "046a3b23b5070e339e579da2428d7773cb91da2b9ebad520971be3803e2e1a80",
+      "base_prefix_bytes": 14314,
+      "current_full_sha256": "462594ae1b14af668c6e4f5763664f5e410526168e90435cf94b76f0c3e12be7",
+      "current_bytes": 26442,
+      "current_lines": 90,
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "base_prefix_commit": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "base_prefix_sha256": "192e980c2b4c6c7a78d2651ae30e23c5072ee1ff4ae7366bd01be155bf88aac6",
+      "base_prefix_bytes": 31138,
+      "current_full_sha256": "3c81ffa7bcfc79c71f6846c76684c150587866b622be584f118f4c2694eab177",
+      "current_bytes": 298318,
+      "current_lines": 881,
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "base_prefix_commit": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "base_prefix_sha256": "9f8049fd3e7bdfe6550f5de9a444d1f44449c1b61769bf79e85b47c2c5906e81",
+      "base_prefix_bytes": 5680,
+      "current_full_sha256": "702c659ec2b3fed6a8b8377342844b807da4e0e5385556a5609df6a9d8009c52",
+      "current_bytes": 14320,
+      "current_lines": 75,
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "base_prefix_commit": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "base_prefix_sha256": "a8f2e0c4bc1d482d6cfd68cd5f9638fcf8575104aafc7bdcb5214b162190f876",
+      "base_prefix_bytes": 12464,
+      "current_full_sha256": "eaee5c9f8c84a37a0502a6167837c43956d24a9075e8265d95d32d0b0ac93822",
+      "current_bytes": 27287,
+      "current_lines": 86,
+      "prefix_exact": true
+    }
+  ],
+  "changed_current_line_pins": {
+    "docs/helix-intelligence/L3-requirements/functional-requirements.md": [
+      {
+        "line": 127,
+        "literal": "| `001` | `MPR-RC-HELIXINTELLIGENCE-L2-001-002` Stage 3 / 1.0 | L2 48–53; L11 62, 146, 264–265 | LEGACY-ASSET-F1F753F31DB8D874EF21 40–68; LEGACY-ASSET-5EE032D657C221184B00 41–63; LEGACY-ASSET-BEAB5EE27CD04F5E866F 25–42; LEGACY-ASSET-6FFD7F4E58066D08B053 15–34 |再利用stable identity/lifecycle graphの意味。L2 domain対象へ再導出し、旧route registry/fixed enumは置換対象。 |",
+        "line_raw_lf_sha256": "6d29da40014af5823f79ea5c5035ba7aaecd3b1ebb02d0038504807bee65283c"
+      },
+      {
+        "line": 128,
+        "literal": "| `002` | `MPR-RC-HELIXINTELLIGENCE-L2-002-002` Stage 3 / 1.0 | L2 54–59; L11 63, 146, 264–265 | LEGACY-ASSET-5EE032D657C221184B00 41–63; LEGACY-ASSET-F1F753F31DB8D874EF21 40–68; LEGACY-ASSET-6FFD7F4E58066D08B053 15–34; LEGACY-ASSET-BEAB5EE27CD04F5E866F 25–42 |再利用capability/source linkの意味。domainごとの必要能力・未構成unknownをL2から再導出し、旧global capability rulesを置換対象。 |",
+        "line_raw_lf_sha256": "8c7d3d48918bb80978140940b92de4c7c82b83a41d1d10407b2d85b70ab4d33a"
+      },
+      {
+        "line": 129,
+        "literal": "| `003` | `MPR-RC-HELIXINTELLIGENCE-L2-003-003` Stage 3 / 1.0 | L2 60–65; L11 64, 146, 156–157 | LEGACY-ASSET-C6936A5DA79A6DAE4FE4 27–82; LEGACY-ASSET-F1F753F31DB8D874EF21 40–68; LEGACY-ASSET-BBD687399574FEE23807 22–54; LEGACY-ASSET-BEAB5EE27CD04F5E866F 25–42 |再利用source revision/provenance graph。Situation Model全field結合は現行親句から再導出し、旧snapshot/runtimeを置換対象。 |",
+        "line_raw_lf_sha256": "7b0770666cc156d5644a3baf4c56ef37ef777dbf07f04634e2d26993f68e12e1"
+      },
+      {
+        "line": 130,
+        "literal": "| `004` | `MPR-RC-HELIXINTELLIGENCE-L2-004-003` Stage 3 / 1.0 | L2 66–71; L11 65, 146, 157–158 | LEGACY-ASSET-5EE032D657C221184B00 41–63; LEGACY-ASSET-E78B8D68CC327AA00991 26–90; LEGACY-ASSET-6FFD7F4E58066D08B053 15–34; LEGACY-ASSET-AD746F4F3487103519F9 16–33 |再利用fact/candidate/evidence trace。4値分類はL2語彙へ再導出し、旧scoring/state schemaを置換対象。 |",
+        "line_raw_lf_sha256": "33257b642d2b502e65c495ab48b44d9d91763fa5bf46e21a47f03c760411892e"
+      },
+      {
+        "line": 131,
+        "literal": "| `005` | `MPR-RC-HELIXINTELLIGENCE-L2-005-003` Stage 3 / 1.0 | L2 72–77; L11 66, 146, 158–159 | LEGACY-ASSET-5EE032D657C221184B00 41–63; LEGACY-ASSET-F1F753F31DB8D874EF21 40–68; LEGACY-ASSET-6FFD7F4E58066D08B053 15–34; LEGACY-ASSET-BEAB5EE27CD04F5E866F 25–42 |再利用candidate-vs-authority separationとplan trace。OS ticket境界や現行requirements contractから再導出し、旧workflow compiler/routeを置換対象。 |",
+        "line_raw_lf_sha256": "acd9ac2ec2f32a26c603a705664a7c16d697735ccf72c9c11b590dc110961b15"
+      },
+      {
+        "line": 132,
+        "literal": "| `006` | `MPR-RC-HELIXINTELLIGENCE-L2-006-003` Stage 3 / 1.0 | L2 78–83; L11 67, 146, 159–160 | LEGACY-ASSET-F1F753F31DB8D874EF21 40–68; LEGACY-ASSET-28FB139B26CD61CC51EE 21–148; LEGACY-ASSET-BEAB5EE27CD04F5E866F 25–42; LEGACY-ASSET-A952A3A175EB82A4781B 19–46 |隣接参照のみ（当該spanはprediction/assumption/falsificationの直接根拠ではない）。現行risk categoryとLABO handoffは固定L2/L11から再導出し、legacy prediction score/SLOを置換対象。 |",
+        "line_raw_lf_sha256": "352c1d7b07602332d754172d9c6fd6b87c46be67f21c03df6776eb8c9c41b4c4"
+      },
+      {
+        "line": 133,
+        "literal": "| `007` | `MPR-RC-HELIXINTELLIGENCE-L2-007-003` Stage 3 / 1.0 | L2 84–89; L11 68, 146, 160–161 | LEGACY-ASSET-17C4BF78919578FEBB18 129–160; LEGACY-ASSET-9B6FC1ED349F96394497 34–75; LEGACY-ASSET-D881AF6AFD277B1DE934 1–79; LEGACY-ASSET-658FF8439F9F8E694710 15–42; LEGACY-ASSET-0B5B38F146D9538C9A36 16–46; LEGACY-ASSET-901CD182B52024593E41 1–30 |再導出は採択済みL2のepisode境界・不完全/矛盾証拠下のdiagnosisとLABO長期history分担を起点に行う。BBGはsource/generator/output/consumer区分の隣接例だけ。BBR candidateはdiagnosisとrepairの分離参照に限り、既存incident/repair runtimeは置換対象。 |",
+        "line_raw_lf_sha256": "af22869c7e713a82226603b6d42979edba39ce39ea461b4b6569e59fb68ad9d3"
+      },
+      {
+        "line": 134,
+        "literal": "| `008` | `MPR-RC-HELIXINTELLIGENCE-L2-008-003` Stage 3 / 1.0 | L2 90–95; L11 69, 146, 161–162 | LEGACY-ASSET-9114D4E463E95B67DD0C 47–137; LEGACY-ASSET-28FB139B26CD61CC51EE 21–148; LEGACY-ASSET-C6ADB99F1353965C5449 18–60; LEGACY-ASSET-A952A3A175EB82A4781B 19–46 |再利用revision-bound review evidence/counterexample。review result non-authorityを固定親から再導出し、old merge/release gate mechanicsを置換対象。 |",
+        "line_raw_lf_sha256": "7a4df3ff932d78d48721a0e8a8fc536964c6cb19e7765abd22b190951c253c73"
+      },
+      {
+        "line": 135,
+        "literal": "| `009` | `MPR-RC-HELIXINTELLIGENCE-L2-009-003` Stage 3 / 1.0 | L2 96–101; L11 70, 146, 162–163 | LEGACY-ASSET-C6936A5DA79A6DAE4FE4 27–82; LEGACY-ASSET-02D897E62EF2FA267267 41–201; LEGACY-ASSET-BBD687399574FEE23807 22–54; LEGACY-ASSET-0B5B38F146D9538C9A36 16–46 |再利用typed finding/provenance/backflow atoms。current mechanismsとexact HEAD ownerを固定親から再導出し、Census全工程/UIL/TER runtime移管を置換対象。 |",
+        "line_raw_lf_sha256": "376ea40c2c4adf0dc67782310cc36caefc80537c0a1fe552518c4f6a8af6f2df"
+      },
+      {
+        "line": 136,
+        "literal": "| `011` | `MPR-RC-HELIXINTELLIGENCE-L2-011-004` Stage 3 / 1.0 | L2 108–113; L11 72, 146, 164, 198 | LEGACY-ASSET-28FB139B26CD61CC51EE 21–148; LEGACY-ASSET-9114D4E463E95B67DD0C 47–137; LEGACY-ASSET-A952A3A175EB82A4781B 19–46; LEGACY-ASSET-C6ADB99F1353965C5449 18–60 |再利用controlled comparison dimensionsとhistorical cohort separation。固定L2のsame corpus/scopeへ再導出し、legacy benchmark scoring/qualification thresholdsを置換対象。 |",
+        "line_raw_lf_sha256": "8d4a68e6f7754a9fcf1b14ec1e88f2a340b0267651e8605ff7e71ed117735515"
+      },
+      {
+        "line": 137,
+        "literal": "| `012` | `MPR-RC-HELIXINTELLIGENCE-L2-012-003` Stage 3 / 1.0 | L2 114–119; L11 73, 146, 165 | LEGACY-ASSET-5EE032D657C221184B00 41–63; LEGACY-ASSET-E78B8D68CC327AA00991 26–90; LEGACY-ASSET-6FFD7F4E58066D08B053 15–34; LEGACY-ASSET-AD746F4F3487103519F9 16–33 |再利用uncertainty-preserving source attribution。L2 uncertainty labels/next-evidence routesへ再導出し、legacy confidence score-as-authorityを置換対象。 |",
+        "line_raw_lf_sha256": "dffee3be178e406ae02e7dc260648666ae77a7cfea592d5b8b3e0f0bfd573d11"
+      },
+      {
+        "line": 138,
+        "literal": "| `013` | `MPR-RC-HELIXINTELLIGENCE-L2-013-003` Stage 3 / 1.0 | L2 120–125; L11 74, 146, 166 | LEGACY-ASSET-C6936A5DA79A6DAE4FE4 27–82; LEGACY-ASSET-5EE032D657C221184B00 41–63; LEGACY-ASSET-BBD687399574FEE23807 22–54; LEGACY-ASSET-6FFD7F4E58066D08B053 15–34 |再利用trace edges and inspectability. L2 fields/data-use boundaryへ再導出し、full regeneration/schema/runtime mechanicsを置換対象。 |",
+        "line_raw_lf_sha256": "f1d73b67a02572030ec80e242f8c5249f93fa4fabae2ccb83a248032907da359"
+      },
+      {
+        "line": 139,
+        "literal": "| `014` | `MPR-RC-HELIXINTELLIGENCE-L2-014-003` Stage 3 / 1.0 | L2 126–131; L11 75, 146, 167 | LEGACY-ASSET-9B6FC1ED349F96394497 34–75; LEGACY-ASSET-9114D4E463E95B67DD0C 47–137; LEGACY-ASSET-D881AF6AFD277B1DE934 1–79; LEGACY-ASSET-658FF8439F9F8E694710 15–42; LEGACY-ASSET-C6ADB99F1353965C5449 18–60; LEGACY-ASSET-901CD182B52024593E41 1–30 |Bot候補のidentity/OS assignmentは採択済みL2から再導出する。BBGは定型生成のsource/generator/output/consumer境界だけ隣接参照し、BBR candidateは下流の限定修復scope/許可境界比較のみ。old Bot CLI/automatic authoringは置換対象。 |",
+        "line_raw_lf_sha256": "e61b6521db1fb12389a2e6474f06726cb8f76b182ee1ec5cd00ea8efd67a0c73"
+      },
+      {
+        "line": 140,
+        "literal": "| `015` | `MPR-RC-HELIXINTELLIGENCE-L2-015-003` Stage 3 / 1.0 | L2 132–137; L11 76, 146, 168 | LEGACY-ASSET-9B6FC1ED349F96394497 34–75; LEGACY-ASSET-02D897E62EF2FA267267 41–201; LEGACY-ASSET-D881AF6AFD277B1DE934 1–79; LEGACY-ASSET-658FF8439F9F8E694710 15–42; LEGACY-ASSET-0B5B38F146D9538C9A36 16–46; LEGACY-ASSET-901CD182B52024593E41 1–30 |BBG/BBRのfailure-pattern、independent-episode、near-miss意味を参照再利用し、候補範囲/episodes意味を固定L2-015から再導出する。頻度thresholdと旧Bot runtime/authorityは移さない。 |",
+        "line_raw_lf_sha256": "b243cefce1a04f4ddc485adf86eb67ee2f6badb4f724e186519ca035648d9b7b"
+      },
+      {
+        "line": 141,
+        "literal": "| `016` | `MPR-RC-HELIXINTELLIGENCE-L2-016-003` Stage 3 / 1.0 | L2 138–143; L11 77, 146, 169 | LEGACY-ASSET-02D897E62EF2FA267267 41–201; LEGACY-ASSET-17C4BF78919578FEBB18 129–160; LEGACY-ASSET-D881AF6AFD277B1DE934 1–79; LEGACY-ASSET-0B5B38F146D9538C9A36 16–46; LEGACY-ASSET-F46AB11BD14F2C0469F4 1–53; LEGACY-ASSET-901CD182B52024593E41 1–30 | BBR-R03–R05のrepair proposal/write-set/recovery/post-check境界を意味の起点として再利用し、untrusted candidateとactual resultの区別を固定L2から再導出する。旧実行runtime・authorityは置換し、現行へ移さない。 |",
+        "line_raw_lf_sha256": "b9ae352a6e5dbd206a5ddddcceaa1185080d7f21d4847f235c64dafe9cddb350"
+      },
+      {
+        "line": 142,
+        "literal": "| `018` | `MPR-RC-HELIXINTELLIGENCE-L2-018-003` Stage 3 / 1.0 | L2 144–149; L11 78, 146, 170 | LEGACY-ASSET-28FB139B26CD61CC51EE 21–148; LEGACY-ASSET-02D897E62EF2FA267267 41–201; LEGACY-ASSET-A952A3A175EB82A4781B 19–46; LEGACY-ASSET-0B5B38F146D9538C9A36 16–46 |再利用historical cohort/time-series separation. Current/historical labelsとLABO/OS/target-owner dutiesを再導出し、old self-improvement adoption loopを置換対象。 |",
+        "line_raw_lf_sha256": "f154ab869cd2e5033ea3f106ef631865a26bcf69596a3e5929018a36cf6ae10a"
+      },
+      {
+        "line": 143,
+        "literal": "| `019` | `MPR-RC-HELIXINTELLIGENCE-L2-019-003` Stage 3 / 1.0 | L2 150–155; L11 79, 146, 171 | LEGACY-ASSET-9114D4E463E95B67DD0C 47–137; LEGACY-ASSET-899A61905AFBC415F595 34–53; LEGACY-ASSET-C6ADB99F1353965C5449 18–60 |旧BRAIN専用同一要件なし。隣接worker/memoryは用語照合だけに再利用し、Pattern/Unit/Part適用とBRAIN/LABO backflowは固定L2から再導出、BRAIN runtime/writebackは移さない。 |",
+        "line_raw_lf_sha256": "c2fa86d11899308a9d902f6255d16977da82f60df14ff6f1598b07cf78534d77"
+      },
+      {
+        "line": 144,
+        "literal": "| `020` | `MPR-RC-HELIXINTELLIGENCE-L2-020-003` Stage 3 / 1.0 | L2 156–161; L11 80, 146, 172 | LEGACY-ASSET-E78B8D68CC327AA00991 26–90; LEGACY-ASSET-335176749F6322C3CD8D 35–58; LEGACY-ASSET-AD746F4F3487103519F9 16–33; LEGACY-ASSET-879D95C07B789C9502CF 15–43 |Product Coreのrequirement/design/acceptance meaningとbackflowの旧sourceは意味比較の起点として再利用し、現行L2-020の差分候補と正本owner境界へ再導出する。旧Product Core変更runtime・authorityは置換し、INTELLIGENCEから直接変更しない。 |",
+        "line_raw_lf_sha256": "cc3bb7b21dc78502ea91cfc6a055f7604bc37ef66e7afccd6e19746faffd7568"
+      },
+      {
+        "line": 145,
+        "literal": "| `067` | `MPR-RC-HELIXINTELLIGENCE-L2-067-001` Stage 3 / 1.0 | L2 466–490; L11 199, 197 | LEGACY-ASSET-50CA1C554747F12266D3 663–666; LEGACY-ASSET-28FB139B26CD61CC51EE 21–148; LEGACY-ASSET-9114D4E463E95B67DD0C 47–137; LEGACY-ASSET-437A6A68F9A9E0AE1B9E 43–43; LEGACY-ASSET-A952A3A175EB82A4781B 19–46; LEGACY-ASSET-C6ADB99F1353965C5449 18–60 |再利用RLO-FR-040/AC-030のscope-bound effort/evidence atomsとBench comparisons。PO採択L2-067でsource applicability/priority decision and existing LABO 034 handoffへ再導出し、old ranker/route/worker executionは置換対象。 |",
+        "line_raw_lf_sha256": "400e785797913edfb8c92e3e834422cfdb794325feed70eb5f84b4c0ea34a277"
+      },
+      {
+        "line": 146,
+        "literal": "| `072` | `MPR-RC-HELIXINTELLIGENCE-L2-072-005` Stage 3 / 1.0 | L2 561–598, 673–687; L11 289–314, 398–434 (6 part) | LEGACY-ASSET-719D5EC9C06FC4AAD0FF 81, 147–148; LEGACY-ASSET-A60CF91DD2AF6693E6F9 `requirements.json#/HIL-NFR-34`; LEGACY-ASSET-9114D4E463E95B67DD0C 47–137; LEGACY-ASSET-C6ADB99F1353965C5449 18–60 |再利用HIL-BR-29 versioned pack/shadow/non-force atoms。fixed adopted 005 scopeへINT candidate, HARNESS common contract, OS state, LABO effect separationを再導出し、old placement/runtime/hard gate mechanicsは移さない。 |",
+        "line_raw_lf_sha256": "bbf0b9a1ed7658567d8fb21374f38084536296be7a0e7dfb5d7cc2436e8733d9"
+      },
+      {
+        "line": 147,
+        "literal": "| `073` | `MPR-RC-HELIXINTELLIGENCE-L2-073-002` Stage 3 / 1.0 | L2 601–608; L11 317–326 | LEGACY-ASSET-EB3700B0088F311C2295 45–46; LEGACY-ASSET-CAC0C64EB7540180B1FE 20–27, 43, 46 |AAFD-R-04のdetector優先度と直接projection制約は旧候補の意味として参照再利用し、採択PO親L2-009/073のscopeへ再導出する。旧probe/UIL runtimeとissue/CI/merge routeは置換対象。 |",
+        "line_raw_lf_sha256": "fab0fc7fcc1aa4182b569c5f983dd9ec81c4e29d28affdf88e5a571b02455736"
+      },
+      {
+        "line": 148,
+        "literal": "| `078` | `MPR-RC-HELIXINTELLIGENCE-L2-078-001` Stage 3 / 1.0 | L2 646–658; L11 363–382 | LEGACY-ASSET-EB3700B0088F311C2295 55–67, 73–89; LEGACY-ASSET-CAC0C64EB7540180B1FE 20–27, 43, 46 | 再利用AAFD R-06/07/09-12 semantic atoms per bounded old source span; current parent L2-009/012 plus accepted HARNESS-023 dependency classificationへ再導出し、old schema/DB/event runtime/owner assignmentを置換対象。 |",
+        "line_raw_lf_sha256": "cd6c48eea65d23a81afbbb92cecba873bcda93b14702bc2c48958d48a69a1dca"
+      },
+      {
+        "line": 156,
+        "literal": "新domainの安定identityを付与し、split/merge時は旧identityとの関係を記録し、retire後も参照可能な履歴を保つ。identity語彙を固定enumとして固定せず、別authorityも新設しない。",
+        "line_raw_lf_sha256": "09b03002668f6c070e7ec55de08bd780e7f5a204a8740ab487dce2816514ee20"
+      },
+      {
+        "line": 161,
+        "literal": "- **`AC-INTELLIGENCE-L3-001-02` 個別変異・owner境界**：identity欠落、active domain間のidentity衝突、split/merge後のrelation消失・履歴混同を個別に変異させる。誤ったrelationを候補確定しない。lifecycle候補の評価は固定L2/L11のidentity履歴・authority境界で行い、retire後の履歴を失わせず、固定sourceにないidentity enum/独立authorityも追加しない。不足時は該当source/責務ownerへ戻し、別責務の状態を生成しない。",
+        "line_raw_lf_sha256": "3d8770cd367acc4038451ae341279986d64caa5a1c3e8ad75f36dab9539a40d8"
+      },
+      {
+        "line": 200,
+        "literal": "goal/target、prerequisite/dependency/order、並列可能性、期待結果、risk/uncertainty、stop/fallback、必要時に選択されたBRAIN knowledgeのidentity/revision/applicability/provenance/data-use範囲を承認済み要求・現行contract revisionに結ぶ。OS ticket/authorityを生成しない。",
+        "line_raw_lf_sha256": "35ec1cf61bfb932532652ac5f9871c4503d53ab0b3e63eccbb97e9bf05fbd099"
+      },
+      {
+        "line": 369,
+        "literal": "- **`AC-INTELLIGENCE-L3-072-11` 6-part親保持**：6-part保持に加えて、採択済みB配置と1.0 candidate-generation/shadow評価境界を適用する。selected sourceのruntimeが同じ/異なることだけで独立性を判断しない。AC-072-02と02tの併発例に代えて、依存missing/stale/unsupported版、reference-onlyの依存昇格、domain/capability非結合、default-checklist fallback、comparison-condition mismatch、候補を判断結果とする誤り、再評価後normalを独立CASEで照合する。PO採択済み6-part登録（`MPR-RC-HELIXINTELLIGENCE-L2-072-004`の4 partと`MPR-RC-HELIXINTELLIGENCE-L2-072-005`の2 part）を個別に保持する。登録`MPR-RC-HELIXINTELLIGENCE-L2-072-004`の既存4-part/shadow layoutと登録`MPR-RC-HELIXINTELLIGENCE-L2-072-005`のselected-source stale facetを一つの条件へ畳まず、後発PO追加partは追加判断記録のexact sourceに結ぶ。6-part保持自体をこのACへtraceする。",
+        "line_raw_lf_sha256": "1018fc78c5174f7a0d76ea18b890c0491f45c369251a255048e26683df24aebf"
+      },
+      {
+        "line": 377,
+        "literal": "- **`AC-INTELLIGENCE-L3-072-08` candidate生成と独立reviewの段階分離**：scope/sourceだけでcandidate identity/versionを作成でき、shadow/review receiptが未取得なら後続義務として未完保持する。candidate生成時にshadow/review receiptを事前要求しない。reviewを実施する場合は作成側と異なるreviewer identity/context/authority/routeを個別に照合する。作成側が起用したsubagentは独立reviewerに数えない。provider/modelの一致だけで独立性を否定/肯定しない。identity/context/authority/routeの一致はそれぞれ単独で独立reviewを不成立にする。validな既存shadow/evaluation evidenceが同じscope/revision/case/oracleに適用できる場合は再利用でき、新しいWorker実験を毎回要求しない。1.0でfinding/reversal/retry/escaped defect/skill efficacyからpackを自動改善しない。BRAIN知識は実際に選択したときだけsource identity/revision/applicability/provenance/宣言互換範囲を照合し、非選択なら要求しない。全証拠完了後も既存ownerの採択記録なしにactive/gateへしない。at-least-once deliveryの重複は別候補/episodeとして数えず、同一入力の重複受信を重複拒否CASEで照合する。runtimeの同一/相違だけで独立性を決めず、他の明示された独立性条件を照合する。",
+        "line_raw_lf_sha256": "3a4974fd30bcfaf4c2509993b9d7c71f0777c41ae2ddb1a6fed4fd1c9b497e1b"
+      },
+      {
+        "line": 398,
+        "literal": "- **`AC-INTELLIGENCE-L3-078-01` R-06 delta意味**: 変更次元を authority / responsibility / runtime / provider / dependency / security / verification / capacity / cost / migration / release の11個として区別する。各次元について前状態と観測状態、そのsource receipt revision/digest、対象HEAD/authority/environment identity、affected responsibility、evidence/counterevidence、confidence/unknown、invalidation exact set、re-synthesis要否を意味要素として保ち、stable IDとdelta digestを別々に照合し、存在しない値を埋めない。各dimensionのnormal・missing・unknown・stale・mismatchを個別CASEで評価する。",
+        "line_raw_lf_sha256": "0873a04f7966d32076c16029488aba4913087f85d1d75ab026cefb2597019c22"
+      },
+      {
+        "line": 399,
+        "literal": "- **`AC-INTELLIGENCE-L3-078-02` R-07 再現・重複拒否**: 同一source receipt/registry/policyならdelta exact set/digestを再現する。at-least-onceの重複受信は別delta/episodeにしない。stale revision、wrong HEAD、wrong authority、missing receipt、duplicate changeはそれぞれ単独変異CASEで拒否し、retryやevent順序変更で別episodeを増殖させない。",
+        "line_raw_lf_sha256": "9e0aab8932de27b6676eca5f37ef136f8f8d1bb863ada1b1e111cdcc300b9f70"
+      },
+      {
+        "line": 408,
+        "literal": "- **`AC-INTELLIGENCE-L3-078-11` source scope・非直接変更**：不足/不一致は影響fieldだけunknown/incompleteとして保持し、固定source/責務上の既存ownerが特定できる場合はそこへ戻す。ownerをsourceから特定できなければowner名を作らずunknownを残す。PO限定Aを保ち、fresh/resolved/receipt済みでも直接変更0件を維持する。R-06/R-07/R-09–12のsource scopeは旧source実spanに限る。",
+        "line_raw_lf_sha256": "a14e08250df916198484b6213863a22ce7722b581b6e05f8081502e08b80b298"
+      },
+      {
+        "line": 409,
+        "literal": "### Stage 3 — 固定L11追補の受入条件（#2607 review01補正）",
+        "line_raw_lf_sha256": "ac33229ead8a57582327313675f56eac8e2fd47166b72b8bea65ba6242218589"
+      },
+      {
+        "line": 410,
+        "literal": "",
+        "line_raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+      },
+      {
+        "line": 411,
+        "literal": "以下は既決L2/L11の同一親に含まれる受入oracleを明示する補足で、要求の版・owner・意味を変更せず、数値gateも追加しない。001/002はL11 R2187-01、003–020はL11 G12および共通判定146、011はさらにG13、067/072/073/078は表記した固定L11範囲を用いる。001–020でHARNESS-L2-010/011 pack契約を実際に消費する操作は、contract identity、contract/artifact/dependency version、適用compatibility rangeをnormal入力で結び、各欠落・stale・不一致は個別にunknown/未完としてpack ownerへ戻す。packを消費しない操作へ依存を追加しない。単独親の成功を接続成功とせず、005のOS ticket、006のLABO実測、018のLABO/OS登録等は該当固定L2/L11の別条件として判定する。",
+        "line_raw_lf_sha256": "de55a68174607d85811cc3e2f48ee1b8b27f3a26f13ef8df89b54af235fed962"
+      },
+      {
+        "line": 412,
+        "literal": "",
+        "line_raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+      },
+      {
+        "line": 413,
+        "literal": "| 親 | 追加AC | 固定oracleと判定範囲 |",
+        "line_raw_lf_sha256": "db774afec96914187be0bace0112fc021fc6d94a675c9d045104e7f0b9ea2a12"
+      },
+      {
+        "line": 414,
+        "literal": "|---|---|---|",
+        "line_raw_lf_sha256": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea"
+      },
+      {
+        "line": 415,
+        "literal": "| `001` | `AC-INTELLIGENCE-L3-001-04` | 固定 `L2 48–53; L11 62, 146, 264–265`: 責務を勝手に統合しない。明示共有責務だけを共有し、未定義capabilityのownerを作らない。固定enum・独立authorityを導入しない。 |",
+        "line_raw_lf_sha256": "3d26e37f2bffa11e03db28050c1f9b5260de91d6c9325c9713af584973546c40"
+      },
+      {
+        "line": 416,
+        "literal": "| `002` | `AC-INTELLIGENCE-L3-002-04` | 固定 `L2 54–59; L11 63, 146, 264–265`: domainごとの能力だけを適用し、全能力を全domainへ広げない。未構成はunknown。 |",
+        "line_raw_lf_sha256": "dbb81bd531780ba9e414d401ad270924cfdbb7e758375a242279f55781060a8d"
+      },
+      {
+        "line": 417,
+        "literal": "| `003` | `AC-INTELLIGENCE-L3-003-04` | 固定 `L2 60–65; L11 64, 146, 156–157`: 別ticket dependencyを混ぜず、field欠落/順序変化を保持し、一覧・traceの存在だけで成功としない。 |",
+        "line_raw_lf_sha256": "dee40a9a2f333af63842cd3953c599192c830a5ff675170302a0ff82976600a9"
+      },
+      {
+        "line": 418,
+        "literal": "| `004` | `AC-INTELLIGENCE-L3-004-04` | 固定 `L2 66–71; L11 65, 146, 157–158`: unknownを事実で補わず、別source表現の同じ根拠関係を許す。分類不能はL2既存ownerへ戻す。 |",
+        "line_raw_lf_sha256": "ddd0497bf71bf85b5308f1389d0989ceacc4a276ac19cdc01a51e2ab6452547e"
+      },
+      {
+        "line": 419,
+        "literal": "| `005` | `AC-INTELLIGENCE-L3-005-04` | 固定 `L2 72–77; L11 66, 146, 158–159`: A→Bの依存順を保ち、stale contractを未完とする。ticket発行/割当の権限を持たず、欠けたOS ticket情報は固定L2/L11上のOS側へ戻す。必要時に選択されたBRAIN knowledgeの根拠不足は当該knowledge ownerへ戻し、未選択時に依存を要求しない。 |",
+        "line_raw_lf_sha256": "25a7219153fda0a932e4b31df31050f5492b3c7d06848ef2ed959e4029c7704a"
+      },
+      {
+        "line": 420,
+        "literal": "| `006` | `AC-INTELLIGENCE-L3-006-04` | 固定 `L2 78–83; L11 67, 146, 159–160`: target/scope/windowを先に固定し、後続実測を別LABO recordで比較する。不一致/missing/stale/scopeずれは成功扱いせずunknown。予測は実測でなく、LABO送達は別条件。 |",
+        "line_raw_lf_sha256": "b2e65de1da6c4e4312e9f9682fa061c210ff9d9771ef85268a99e52f2cf90636"
+      },
+      {
+        "line": 421,
+        "literal": "| `007` | `AC-INTELLIGENCE-L3-007-04` | 固定 `L2 84–89; L11 68, 146, 160–161`: 追加観測・検査へ辿れること、反証無視・無関係検査指示を拒否すること。repair判断/実行はL2-007にないのでINTからOSへ生成しない。 |",
+        "line_raw_lf_sha256": "7fafcf340333d3341bd75879bf767e6b92e409eca8a3718b9174370b8562b3c9"
+      },
+      {
+        "line": 422,
+        "literal": "| `008` | `AC-INTELLIGENCE-L3-008-04` | 固定 `L2 90–95; L11 69, 146, 161–162`: review対象範囲に従いTP/FN/FPを分類し、scope外は未評価。seeded must-fix見逃し、clean artifact誤指摘、severity誤り、反例誤結合、route誤りをそれぞれ個別に拒否。 |",
+        "line_raw_lf_sha256": "9b9bace819355a1dca6c6349aefc59381891849173c31ae07514ccaec71c2a6a"
+      },
+      {
+        "line": 423,
+        "literal": "| `009` | `AC-INTELLIGENCE-L3-009-04` | 固定 `L2 96–101; L11 70, 146, 162–163`: 固定L2のfinding型を保持し、UIL/TER/Future Synthesisの重複実装・根拠なしfinding・別finding反証結合を拒否。 |",
+        "line_raw_lf_sha256": "b88aef9342ac2fc5bb2c8f2752030a5327bcee7a78ba598f3df1cf803818d17f"
+      },
+      {
+        "line": 424,
+        "literal": "| `011` | `AC-INTELLIGENCE-L3-011-04` | 固定 `L2 108–113; L11 72, 146, 164, 198`: task snapshot、scoring version、run protocol、hardware class、独立oracle、cache/人介入、costのprice basis/currency/time/billing categoryを個別保持。rescue/rework/intervention、condition/cohort、priority/toleranceなしの勝敗、欠測costを0化、price単独優位を拒否。current/candidate実行版は各々記録し、同一版を要求しない。 |",
+        "line_raw_lf_sha256": "d6f849b0189c28795b0384b9144e5051bc07ad1e0559db6046e6799cf85c7036"
+      },
+      {
+        "line": 425,
+        "literal": "| `012` | `AC-INTELLIGENCE-L3-012-04` | 固定 `L2 114–119; L11 73, 146, 165`: uncertainをprobable/knownへ縮めず、閾値未決は判定不能として既存ownerへ戻す。staleと相反証拠を個別に保持。 |",
+        "line_raw_lf_sha256": "237f4d274e2a54e028a58a89c840209ed7097dfe2d9c205868bb2d0c1c821663"
+      },
+      {
+        "line": 426,
+        "literal": "| `013` | `AC-INTELLIGENCE-L3-013-04` | 固定 `L2 120–125; L11 74, 146, 166`: sourceにない事実・異版source・完全再生成なしを理由に根拠を省かない。source/version/data-useを保持。 |",
+        "line_raw_lf_sha256": "b935b5987104c64735d3c6fb70293cd663a7e2412a4d1c288fa433ff19ecfcd7"
+      },
+      {
+        "line": 427,
+        "literal": "| `014` | `AC-INTELLIGENCE-L3-014-04` | 固定 `L2 126–131; L11 75, 146, 167`: 反復可能taskを入力し、scope外操作・停止後実行・manifest authority追加・Bot追加によるauthority推論を個別拒否。manifest不足は通常INTELLIGENCE判断candidate、assignment/evidence不足はOSへ。 |",
+        "line_raw_lf_sha256": "afb6a10a6e4a047eec3f1148dc4d088a3a2b054aa8004a134ee3a3c7f31ffb45"
+      },
+      {
+        "line": 428,
+        "literal": "| `015` | `AC-INTELLIGENCE-L3-015-04` | 固定 `L2 132–137; L11 76, 146, 168`: 非該当near-missを変異した過検出と別の実装表現のheld-outを分ける。候補で停止し昇格しない。独立episodeの意味だけを照合し数値回数thresholdを設けない。 |",
+        "line_raw_lf_sha256": "41fa12f1184afff49df760ce6846540490ca318a028c7d1626241be016b1fa9d"
+      },
+      {
+        "line": 429,
+        "literal": "| `016` | `AC-INTELLIGENCE-L3-016-04` | 固定 `L2 138–143; L11 77, 146, 169`: untrusted candidate境界を保ち、登録から包括write権限を得ず、seeded反例を修正し、既存正常回帰を検査し、scope外/新種は未評価。actual result欠落は結果のみunknown。 |",
+        "line_raw_lf_sha256": "8cfd578ea11a25aae7d1b5b4ac5121c199cf930bb9e36e7bb60180dcd87482ed"
+      },
+      {
+        "line": 430,
+        "literal": "| `018` | `AC-INTELLIGENCE-L3-018-04` | 固定 `L2 144–149; L11 78, 146, 170`: LABO評価だけで採択せず、OS登録を省かない。遅延/順序逆転outcomeを保持し、current conflict/時点欠落を未完として既存ownerへ戻す。 |",
+        "line_raw_lf_sha256": "f0f02ebef9bc00a5f4eff0158fe003f718a6ce818eb94f12d6acdeeaaa9f9954"
+      },
+      {
+        "line": 431,
+        "literal": "| `019` | `AC-INTELLIGENCE-L3-019-04` | 固定 `L2 150–155; L11 79, 146, 171`: applicability/exception/counterexampleの各条件を別に成立確認し、counterexample成立中は適用しない。 |",
+        "line_raw_lf_sha256": "1242b25c8de913651ed9312b4bf53a447f55fcac4932070205fefaf3c4227762"
+      },
+      {
+        "line": 432,
+        "literal": "| `020` | `AC-INTELLIGENCE-L3-020-04` | 固定 `L2 156–161; L11 80, 146, 172`: 戻し先は意味を変える層に一致させ、誤ownerへ送らない。 |",
+        "line_raw_lf_sha256": "8a4a86d87b0dbf3c71c29cc8cac64bcfa1331649baafa6f0069ee001029f214b"
+      },
+      {
+        "line": 433,
+        "literal": "| `067` | `AC-INTELLIGENCE-L3-067-04` | 固定 `L2 466–490; L11 199, 197`: decision expiry/conflictを識別し、有効decisionを毎run再確認しない。LABO035→INT034 contract version/compatibility/result receiptを確認。quality gateを先に判定し相殺しない。cost/human timeを0化せず、condition/cohort軸とno-Harnessを分ける。不明oracleはHARNESS/requirement ownerへ戻す。 |",
+        "line_raw_lf_sha256": "b55bf4e2fc50711901fcb18ee31133ddf97b7265f9e9dfc637898edd46a3e8f4"
+      },
+      {
+        "line": 434,
+        "literal": "| `073` | `AC-INTELLIGENCE-L3-073-04` | 固定 `L2 601–608; L11 317–326`: Requirement identity/revision、CI result、merge-operation authorityを個別に保ち、4 destinationへの恒久禁止を一括化せず個別に照合する。detectorは置換しない。 |",
+        "line_raw_lf_sha256": "d5c0cab00799523d37daf5e4ec3ae0e621b9860726f9a77310e0b60dd7faeb58"
+      },
+      {
+        "line": 435,
+        "literal": "",
+        "line_raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+      },
+      {
+        "line": 436,
+        "literal": "各補足ACの対CASEはFVの「#2607 review01個別補正fixture」表に同じAC IDで列挙する。NFRはそれらの既存機能oracleを測定対象に結び、独立thresholdは追加しない。",
+        "line_raw_lf_sha256": "d2747cdbf4b53db96ebd5103ebbcada72575f2fc4c94320d5cc720877bf31336"
+      }
+    ],
+    "docs/helix-intelligence/L3-requirements/business-requirements.md": [],
+    "docs/helix-intelligence/L3-requirements/nfr-grade.md": [
+      {
+        "line": 80,
+        "literal": "| `NFR-INTELLIGENCE-015-01` | `HELIXINTELLIGENCE-L2-015` | 候補NFRは複数の独立failure episodeという固定L2の意味を測る。旧BBG/BBR sourceに頻度thresholdの正本はなく、episode独立性・scope・分母は明示して観測する。 | 同一patternの独立episode、同一episodeの重複、別scope混在を区別して入力しfalse-positive/miss/reproducibilityを同一scope・分母で計測。実装候補と実測結果は別fixtureにする。 | 単発episodeを複数と数えず、数値回数thresholdを追加しない。independence/scope/denominator未確定ならunknown。 |",
+        "line_raw_lf_sha256": "e64a8f33cc9b84cc1134faefcffe3c333d9fe0da476c79146721cd5612123194"
+      }
+    ],
+    "docs/helix-intelligence/L10-verification/functional-verification.md": [
+      {
+        "line": 241,
+        "literal": "| `CASE-INTELLIGENCE-L10-001-13` | `FR-INTELLIGENCE-L3-001-01` | `AC-INTELLIGENCE-L3-001-04` | 有効なdomain候補を固定enumの一員でなければ拒否する変異だけを与える。 | 新しいdomain語彙をenum外という理由だけで拒否せず、意味が未確定ならdomain編成へ返す。 | 未宣言enumを要求するか、根拠なしに意味を確定したら不合格。 |",
+        "line_raw_lf_sha256": "f25ee4e1363b1c68481a1d83cd6c55647e05bdd4298ca26429e59ca9d3ecbe87"
+      },
+      {
+        "line": 242,
+        "literal": "| `CASE-INTELLIGENCE-L10-001-14` | `FR-INTELLIGENCE-L3-001-01` | `AC-INTELLIGENCE-L3-001-04` | domain追加をINTELLIGENCE外の独立authority追加として扱う変異だけを与える。 | 独立authorityを生成せず、domain編成candidateに留める。 | 新authorityを追加したら不合格。編成粒度不明はdomain編成へ戻す。 |",
+        "line_raw_lf_sha256": "ca45d108a76482132555a17c0b4ee304d80b1d81d9ec315c1a9cf7562d54212d"
+      },
+      {
+        "line": 270,
+        "literal": "| `CASE-INTELLIGENCE-L10-005-05` | `FR-INTELLIGENCE-L3-005-01` | `AC-INTELLIGENCE-L3-005-04` | dependency edgeだけ循環し、他のplan fieldsは正常に保つ。 | 循環依存部分を未確定として関係source ownerへ戻す。 | 順序を捏造、循環を正常としたら不合格。循環edgeの意味は関係source ownerへ戻す。 |",
+        "line_raw_lf_sha256": "8379ba68610c5848d32027bd7fd35ef57b448f530431b5966b4f820ea82eb2a2"
+      },
+      {
+        "line": 275,
+        "literal": "| `CASE-INTELLIGENCE-L10-005-10` | `FR-INTELLIGENCE-L3-005-01` | `AC-INTELLIGENCE-L3-005-04` | 他入力を正常に保ちcurrent state sourceだけを欠落させる。 | stateを推測せずaffected plan部分だけ未確定にし、current state source ownerへ照合を戻す。 | 欠落stateを補完してplanを確定したら不合格。 |",
+        "line_raw_lf_sha256": "b99bc04bdc422b3bb67ba0b6c00583931390e36440a3828cd24249c13073872f"
+      },
+      {
+        "line": 279,
+        "literal": "| `CASE-INTELLIGENCE-L10-006-04` | `FR-INTELLIGENCE-L3-006-01` | `AC-INTELLIGENCE-L3-006-04` | 一予測のassumptionだけを欠落させる。 | 該当predictionを未確定にし、assumption source ownerへ戻す。 | assumptionを暗黙補完したら不合格。 |",
+        "line_raw_lf_sha256": "2a325316c283020d0641b253a40c37cc119c40c434d44a6e832526f02d5c3e3a"
+      },
+      {
+        "line": 280,
+        "literal": "| `CASE-INTELLIGENCE-L10-006-05` | `FR-INTELLIGENCE-L3-006-01` | `AC-INTELLIGENCE-L3-006-04` | 一予測のuncertaintyだけを欠落させる。 | uncertainty不足を保持し、確度を捏造せず該当source ownerへ戻す。 | 不確実性を隠して確定表示したら不合格。 |",
+        "line_raw_lf_sha256": "0789b33f87a51bad0202b13500dc9475e4be323a872d34880e4da474144a4c98"
+      },
+      {
+        "line": 281,
+        "literal": "| `CASE-INTELLIGENCE-L10-006-05b` | `FR-INTELLIGENCE-L3-006-01` | `AC-INTELLIGENCE-L3-006-04` | 一予測のuncertaintyを根拠なく確定値へ偽装する。 | 元のuncertaintyを保持し、確度を捏造せず該当source ownerへ戻す。 | 不確実性を隠して確定表示したら不合格。 |",
+        "line_raw_lf_sha256": "3b21cfc99633f9e233a8661f769b1c837dac1f90574e60bdb74d807a2c2c7b4f"
+      },
+      {
+        "line": 286,
+        "literal": "| `CASE-INTELLIGENCE-L10-006-10` | `FR-INTELLIGENCE-L3-006-01` | `AC-INTELLIGENCE-L3-006-04` | current Situation Model source revisionだけをstaleにし、predictionの他fieldは保つ。 | stale sourceを使わず影響predictionのみunknown/未評価にして該当source ownerへ照合する。 | stale stateから予測を確定したら不合格。 |",
+        "line_raw_lf_sha256": "2f22fe26ce29c4f0d5f9e2dc9b3a233175844bc3ec2eea0007099e756832bb4a"
+      },
+      {
+        "line": 287,
+        "literal": "| `CASE-INTELLIGENCE-L10-007-01` | `FR-INTELLIGENCE-L3-007-01` | `AC-INTELLIGENCE-L3-007-01` | episode内の複数source・反証を評価する診断candidate。repair実行、長期効果評価は生成しない。 | 固定source条件と入力scope/revisionを保持し、candidateの範囲だけを評価する。該当source ownerへ追加観測、長期効果はLABO、repair実行/assignmentは本親から生成しない。 | normal oracleと異なる、または新authority/ownerを生成したら不合格。 |",
+        "line_raw_lf_sha256": "f587c823f49f6fac26ba0fb60980a5d27a459ce807fb1fc2595952aecbe11f91"
+      },
+      {
+        "line": 288,
+        "literal": "| `CASE-INTELLIGENCE-L10-007-02a` | `FR-INTELLIGENCE-L3-007-01` | `AC-INTELLIGENCE-L3-007-02` | 同一正常baselineから独立変異: 単独相関だけを入力し、独立sourceを除く。 | 相関だけではroot cause確定を拒みprobable/unknownを保つ 戻し先: 該当source ownerへ照合し、長期効果はLABOへ戻す。repair実行/assignmentはL2-007の責務として生成せず、必要なら該当既存要件ownerに戻す。| 他の正常fieldは保持し、失敗fieldと戻し先を個別記録する。 |",
+        "line_raw_lf_sha256": "be5692a2de15d89da5d8e9b3b707d67e138d252ac1518c74a8f09db24ea7522b"
+      },
+      {
+        "line": 289,
+        "literal": "| `CASE-INTELLIGENCE-L10-007-02b` | `FR-INTELLIGENCE-L3-007-01` | `AC-INTELLIGENCE-L3-007-02` | 同一正常baselineから独立変異: counterevidenceを一つ欠落。 | 反証不足を表示し確定度を上げない 戻し先: 該当source ownerへ照合し、長期効果はLABOへ戻す。repair実行/assignmentはL2-007の責務として生成せず、必要なら該当既存要件ownerに戻す。| 他の正常fieldは保持し、失敗fieldと戻し先を個別記録する。 |",
+        "line_raw_lf_sha256": "c4c36fe1c30ce33477ac1e9841fe4911e10d516a9e4961cee2f6ff911a878195"
+      },
+      {
+        "line": 290,
+        "literal": "| `CASE-INTELLIGENCE-L10-007-02c` | `FR-INTELLIGENCE-L3-007-01` | `AC-INTELLIGENCE-L3-007-04` | 同一正常baselineから独立変異: episode identityを別episodeへ変更。 | episode外証拠を分離し対象diagnosisだけunknown 戻し先: 該当source ownerへ照合し、長期効果はLABOへ戻す。repair実行/assignmentはL2-007の責務として生成せず、必要なら該当既存要件ownerに戻す。| 他の正常fieldは保持し、失敗fieldと戻し先を個別記録する。 |",
+        "line_raw_lf_sha256": "8f8c1ac5a2e784f278c45e8d43331c05d1a35bfc8f5808c917be3cea9672203a"
+      },
+      {
+        "line": 291,
+        "literal": "| `CASE-INTELLIGENCE-L10-007-02d` | `FR-INTELLIGENCE-L3-007-01` | `AC-INTELLIGENCE-L3-007-04` | 同一正常baselineから独立変異: episode source revisionをstale化。 | 該当根拠のみ無効としてsource ownerへ戻す 戻し先: 該当source ownerへ照合し、長期効果はLABOへ戻す。repair実行/assignmentはL2-007の責務として生成せず、必要なら該当既存要件ownerに戻す。| 他の正常fieldは保持し、失敗fieldと戻し先を個別記録する。 |",
+        "line_raw_lf_sha256": "cebce8697c2e1129916d8d9d8ee6c5c99c991de63c2f393a078365fd6fa73397"
+      },
+      {
+        "line": 292,
+        "literal": "| `CASE-INTELLIGENCE-L10-007-02e` | `FR-INTELLIGENCE-L3-007-01` | `AC-INTELLIGENCE-L3-007-02` | 同一正常baselineから独立変異: diagnosisからrepair実行済み状態を生成。 | 診断とrepairを分離しrepairを未実施のまま保つ 戻し先: 該当source ownerへ照合し、長期効果はLABOへ戻す。repair実行/assignmentはL2-007の責務として生成せず、必要なら該当既存要件ownerに戻す。| 他の正常fieldは保持し、失敗fieldと戻し先を個別記録する。 |",
+        "line_raw_lf_sha256": "c0a343184ed94234b449b248268aa68aecb16cd173978c7a619bcd1aa3cc1c64"
+      },
+      {
+        "line": 293,
+        "literal": "| `CASE-INTELLIGENCE-L10-007-02f` | `FR-INTELLIGENCE-L3-007-01` | `AC-INTELLIGENCE-L3-007-02` | 同一正常baselineから独立変異: diagnosisからLABO長期評価を生成。 | 長期効果を生成せずLABO責務へ残す 戻し先: 該当source ownerへ照合し、長期効果はLABOへ戻す。repair実行/assignmentはL2-007の責務として生成せず、必要なら該当既存要件ownerに戻す。| 他の正常fieldは保持し、失敗fieldと戻し先を個別記録する。 |",
+        "line_raw_lf_sha256": "a2e25cb228a3a47b339b6718e495005d2922257a97dfaf73b352607345afe50c"
+      },
+      {
+        "line": 294,
+        "literal": "| `CASE-INTELLIGENCE-L10-007-02z` | `FR-INTELLIGENCE-L3-007-01` | `AC-INTELLIGENCE-L3-007-02` | 同一正常baselineで併発fixture: episode外証拠混入+counterevidence欠落を同時投入し、両理由を別々に保持。 | 併発した各異常を別々に検出し、成立している無関係fieldを維持する。該当source ownerへ追加観測、長期効果はLABO、repair実行/assignmentは本親から生成しない。 戻し先: 該当source ownerへ照合し、長期効果はLABOへ戻す。repair実行/assignmentはL2-007の責務として生成せず、必要なら該当既存要件ownerに戻す。| 一方の変異で他方を隠す、または正常条件を失敗fixtureへ混ぜたら不合格。 |",
+        "line_raw_lf_sha256": "eb2944096df722890a26b9f2191532a486196d83ced26f0371db962dc346c769"
+      },
+      {
+        "line": 311,
+        "literal": "| `CASE-INTELLIGENCE-L10-009-02b` | `FR-INTELLIGENCE-L3-009-01` | `AC-INTELLIGENCE-L3-009-04` | 同一正常baselineから独立変異: producer identityを欠落。 | producer不明としてfinding未確定 戻し先: 該当authority/source owner。AAFD/UIL/TER判断は既存責務owner。| 他の正常fieldは保持し、失敗fieldと戻し先を個別記録する。 |",
+        "line_raw_lf_sha256": "eeae49d4bae7c11a1664cc0d347ab74b8a950fd9e825b7351c8094954e15e55d"
+      },
+      {
+        "line": 313,
+        "literal": "| `CASE-INTELLIGENCE-L10-009-02d` | `FR-INTELLIGENCE-L3-009-01` | `AC-INTELLIGENCE-L3-009-04` | 同一正常baselineから独立変異: reproductionを欠落。 | 再現未確認のfindingとして保つ 戻し先: 該当authority/source owner。AAFD/UIL/TER判断は既存責務owner。| 他の正常fieldは保持し、失敗fieldと戻し先を個別記録する。 |",
+        "line_raw_lf_sha256": "66578586ae8f9ba787152b1cea25ca764302720e87e790cb80ca9fd288db2fe8"
+      },
+      {
+        "line": 314,
+        "literal": "| `CASE-INTELLIGENCE-L10-009-02e` | `FR-INTELLIGENCE-L3-009-01` | `AC-INTELLIGENCE-L3-009-04` | 同一正常baselineから独立変異: falsificationを欠落。 | 反証未確認の範囲だけunknown 戻し先: 該当authority/source owner。AAFD/UIL/TER判断は既存責務owner。| 他の正常fieldは保持し、失敗fieldと戻し先を個別記録する。 |",
+        "line_raw_lf_sha256": "473372020acf9ad33726185e0499b30805d7b68a55e8e4e79fe524f9fa05bae3"
+      },
+      {
+        "line": 337,
+        "literal": "| `CASE-INTELLIGENCE-L10-012-02e` | `FR-INTELLIGENCE-L3-012-01` | `AC-INTELLIGENCE-L3-012-04` | 同一正常baselineから独立変異: missing fieldを補完済みにする。 | 不足fieldを特定しownerへ戻す 戻し先: 該当source owner、または必要なDiscovery/test/review/human decisionの既存owner。| 他の正常fieldは保持し、失敗fieldと戻し先を個別記録する。 |",
+        "line_raw_lf_sha256": "014e2e39c0ec01431096653629cb985a6f4e88fc06cc581ef7c14a33ad7fa5f2"
+      },
+      {
+        "line": 342,
+        "literal": "| `CASE-INTELLIGENCE-L10-013-02a` | `FR-INTELLIGENCE-L3-013-01` | `AC-INTELLIGENCE-L3-013-02` | 同一正常baselineから独立変異: input revisionを一つ欠落。 | 該当input edgeだけunknown 戻し先: 該当input/rule/BRAIN source owner。data-use permissionは固定sourceで特定されるauthority owner（不明ならunknown）。| 他の正常fieldは保持し、失敗fieldと戻し先を個別記録する。 |",
+        "line_raw_lf_sha256": "cba3c1fcc3d208247421579eb055c81117d1d4a61d3c181573613fbb216c7519"
+      },
+      {
+        "line": 343,
+        "literal": "| `CASE-INTELLIGENCE-L10-013-02b` | `FR-INTELLIGENCE-L3-013-01` | `AC-INTELLIGENCE-L3-013-02` | 同一正常baselineから独立変異: rule revisionを一つ欠落。 | rule source ownerへ照合 戻し先: 該当input/rule/BRAIN source owner。data-use permissionは固定sourceで特定されるauthority owner（不明ならunknown）。| 他の正常fieldは保持し、失敗fieldと戻し先を個別記録する。 |",
+        "line_raw_lf_sha256": "53a54c1456c9cca59a80875bffd99f84e691885ddc5caa1cc13b5bece7b1f904"
+      },
+      {
+        "line": 344,
+        "literal": "| `CASE-INTELLIGENCE-L10-013-02c` | `FR-INTELLIGENCE-L3-013-01` | `AC-INTELLIGENCE-L3-013-02` | 同一正常baselineから独立変異: BRAIN knowledge revisionを一つ欠落。 | knowledge edgeだけunknown、BRAINへ戻す 戻し先: 該当input/rule/BRAIN source owner。data-use permissionは固定sourceで特定されるauthority owner（不明ならunknown）。| 他の正常fieldは保持し、失敗fieldと戻し先を個別記録する。 |",
+        "line_raw_lf_sha256": "f7d62432463866972c42075a93b3db293e0c150e9b1a94dd910884c11d354142"
+      },
+      {
+        "line": 345,
+        "literal": "| `CASE-INTELLIGENCE-L10-013-02d` | `FR-INTELLIGENCE-L3-013-01` | `AC-INTELLIGENCE-L3-013-04` | 同一正常baselineから独立変異: observationとassumptionを混同。 | 観測/仮定を分け直す 戻し先: 該当input/rule/BRAIN source owner。data-use permissionは固定sourceで特定されるauthority owner（不明ならunknown）。| 他の正常fieldは保持し、失敗fieldと戻し先を個別記録する。 |",
+        "line_raw_lf_sha256": "7962949e67ce882401f83643112c0c7e463a13a5ad2ebd1c32d56748e185b311"
+      },
+      {
+        "line": 346,
+        "literal": "| `CASE-INTELLIGENCE-L10-013-02e` | `FR-INTELLIGENCE-L3-013-01` | `AC-INTELLIGENCE-L3-013-04` | 同一正常baselineから独立変異: model/provider/version edgeを欠落。 | 実行identityをunknownにする 戻し先: 該当input/rule/BRAIN source owner。data-use permissionは固定sourceで特定されるauthority owner（不明ならunknown）。| 他の正常fieldは保持し、失敗fieldと戻し先を個別記録する。 |",
+        "line_raw_lf_sha256": "6909904cb128822d66c9f38e54908ed293a7e1c72fc0637cde6791f43e8aed0f"
+      },
+      {
+        "line": 347,
+        "literal": "| `CASE-INTELLIGENCE-L10-013-02f` | `FR-INTELLIGENCE-L3-013-01` | `AC-INTELLIGENCE-L3-013-04` | 同一正常baselineから独立変異: reasoning edgeを欠落。 | 理由の不足を表示 戻し先: 該当input/rule/BRAIN source owner。data-use permissionは固定sourceで特定されるauthority owner（不明ならunknown）。| 他の正常fieldは保持し、失敗fieldと戻し先を個別記録する。 |",
+        "line_raw_lf_sha256": "eb289e277d2cbc9575de830ba5fdcc99ab71e71f2492634dfc726fd5479fbb9e"
+      },
+      {
+        "line": 348,
+        "literal": "| `CASE-INTELLIGENCE-L10-013-02g` | `FR-INTELLIGENCE-L3-013-01` | `AC-INTELLIGENCE-L3-013-04` | 同一正常baselineから独立変異: uncertaintyを落とす。 | 確度を確定せず不確実性を保持 戻し先: 該当input/rule/BRAIN source owner。data-use permissionは固定sourceで特定されるauthority owner（不明ならunknown）。| 他の正常fieldは保持し、失敗fieldと戻し先を個別記録する。 |",
+        "line_raw_lf_sha256": "dde2922081636cf5ef74d9e6203907ac5151473000b989136d80e45e52381989"
+      },
+      {
+        "line": 349,
+        "literal": "| `CASE-INTELLIGENCE-L10-013-02h` | `FR-INTELLIGENCE-L3-013-01` | `AC-INTELLIGENCE-L3-013-02` | 同一正常baselineから独立変異: rejected alternativeを一つ省略。 | 省略alternativeをtrace不足として示す 戻し先: 該当input/rule/BRAIN source owner。data-use permissionは固定sourceで特定されるauthority owner（不明ならunknown）。| 他の正常fieldは保持し、失敗fieldと戻し先を個別記録する。 |",
+        "line_raw_lf_sha256": "c12bcf982285919fc9422ce1bf93394432269a4d98357a87d7e24755daab37a8"
+      },
+      {
+        "line": 350,
+        "literal": "| `CASE-INTELLIGENCE-L10-013-02i` | `FR-INTELLIGENCE-L3-013-01` | `AC-INTELLIGENCE-L3-013-02` | 同一正常baselineから独立変異: data-use classからtraining permissionを推論。 | permission生成を拒否しSECURITY/authority ownerへ戻す 戻し先: 該当input/rule/BRAIN source owner。data-use permissionは固定sourceで特定されるauthority owner（不明ならunknown）。| 他の正常fieldは保持し、失敗fieldと戻し先を個別記録する。 |",
+        "line_raw_lf_sha256": "0f97bfadee77cdd3ac6df22e35c440f8e421fba47a7d99f9d592507a7c11aaaa"
+      },
+      {
+        "line": 351,
+        "literal": "| `CASE-INTELLIGENCE-L10-013-02z` | `FR-INTELLIGENCE-L3-013-01` | `AC-INTELLIGENCE-L3-013-02` | 同一正常baselineで併発fixture: rule revision欠落+alternative省略を併発し各edge不足を別記。 | 併発した各異常を別々に検出し、成立している無関係fieldを維持する。欠落根拠は該当source ownerへ。data-use permissionはSECURITY/該当authority ownerへ戻す。 戻し先: 該当input/rule/BRAIN source owner。data-use permissionは固定sourceで特定されるauthority owner（不明ならunknown）。| 一方の変異で他方を隠す、または正常条件を失敗fixtureへ混ぜたら不合格。 |",
+        "line_raw_lf_sha256": "e76fb8564d4230bfeafa8439eefa69aba38db02a604ce5fcb846426fc0622589"
+      },
+      {
+        "line": 551,
+        "literal": "| `CASE-INTELLIGENCE-L10-072-02t` | `FR-INTELLIGENCE-L3-072-01` | `AC-INTELLIGENCE-L3-072-11` | 正常6-part candidateで選択sourceのrevisionだけをstaleにする。review receiptは有効な別fixtureで保持する。 | 選択facetだけstaleとしてsource ownerへ戻し、他partを保つ。 | staleをfreshへ読み替え、または非選択sourceまで失効させたら不合格。 |",
+        "line_raw_lf_sha256": "b25f24f7399edd5e917288d231637fd90c31a6ae75e2d099aaf2e2fa997c4caf"
+      },
+      {
+        "line": 609,
+        "literal": "| `CASE-INTELLIGENCE-L10-078-02` | `FR-INTELLIGENCE-L3-078-01` | `AC-INTELLIGENCE-L3-078-02` | 同一source receipt/registry/policyをat-least-onceで2回受信する正常対を与える。 | 同じdelta exact set/digestを再現し、retry/重複配信を別episodeにしない。 | 重複受信だけで別delta/episodeを作成したら不合格。 |",
+        "line_raw_lf_sha256": "74629e76b34b3a7be5660f0de07d7e4b5afafec5b825c18fd84db690282cbe1b"
+      },
+      {
+        "line": 610,
+        "literal": "| `CASE-INTELLIGENCE-L10-078-03` | `FR-INTELLIGENCE-L3-078-01` | `AC-INTELLIGENCE-L3-078-02` | 正常fixtureのsource receipt revisionだけをstaleにする。 | staleとして不成立にし、source ownerへ戻す。 | staleをcurrent successへ読み替えたら不合格。 |",
+        "line_raw_lf_sha256": "3735a068f50b0bbb41042816fc591968d78f25c5c98ba2b6ccb6cdc9c643f90c"
+      },
+      {
+        "line": 611,
+        "literal": "| `CASE-INTELLIGENCE-L10-078-04` | `FR-INTELLIGENCE-L3-078-01` | `AC-INTELLIGENCE-L3-078-02` | 正常fixtureの対象HEADだけをwrong HEADへ変える。 | 対象HEAD不一致を個別に不成立とする。 | 別HEADのdeltaをcurrent扱いしたら不合格。 |",
+        "line_raw_lf_sha256": "4495055be9c4820e95d8554aac4de51305c2e19c2f0c499e02d75b8884a2ccd4"
+      },
+      {
+        "line": 612,
+        "literal": "| `CASE-INTELLIGENCE-L10-078-05` | `FR-INTELLIGENCE-L3-078-01` | `AC-INTELLIGENCE-L3-078-02` | 正常fixtureのauthority identityだけを別authorityへ変える。 | authority不一致を個別に不成立とする。 | authorityを推測補完しcurrent成功にしたら不合格。 |",
+        "line_raw_lf_sha256": "5bbc142b12ab67aac4ed824c037bc3ef3e2adda6d90564d2edab61f7d84bf2ad"
+      },
+      {
+        "line": 777,
+        "literal": "",
+        "line_raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+      },
+      {
+        "line": 778,
+        "literal": "### #2607 review01 個別補正fixture",
+        "line_raw_lf_sha256": "31644588a59ff91e09cfe270886693e4cee02a901d3364f55c2e6bf79af85edf"
+      },
+      {
+        "line": 779,
+        "literal": "",
+        "line_raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+      },
+      {
+        "line": 780,
+        "literal": "以下は固定L2/L11の既決句に対応する単独変異または未見正常であり、結果は機能ACに限る。新しい実行・承認・authorityを生成しない。",
+        "line_raw_lf_sha256": "e1aed2930122ff90a4913aa708577d155800c4aa401f7583359883b3c0dcaaf0"
+      },
+      {
+        "line": 781,
+        "literal": "",
+        "line_raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+      },
+      {
+        "line": 782,
+        "literal": "| L10 CASE | L3 FR | L3 AC | 入力・独立変異 | 期待oracle・戻し先 | 不合格条件 |",
+        "line_raw_lf_sha256": "97155a680189fcf5ea8189157c7eb45357703de5612f8214e858414fdf708389"
+      },
+      {
+        "line": 783,
+        "literal": "|---|---|---|---|---|---|",
+        "line_raw_lf_sha256": "386dd7132ff82a3235473307d1e9d483ef7e0a9ae30607085abe2edd440cdcf7"
+      },
+      {
+        "line": 784,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-001-01` | `FR-INTELLIGENCE-L3-001-01` | `AC-INTELLIGENCE-L3-001-04` | 責務sourceで二つの別domainを指定し、共有は明示された一責務だけ | 共有責務のみ共有し、各domain別責務を保持する | 根拠のないdomain統合があれば不合格。責務定義のない能力は割当てずunknownで既存source ownerへ戻す。 |",
+        "line_raw_lf_sha256": "bf256ad55485cdf1b8fe79a66e8f7b0c10828111529ebf80f99b819c2b7ebac2"
+      },
+      {
+        "line": 785,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-001-02` | `FR-INTELLIGENCE-L3-001-01` | `AC-INTELLIGENCE-L3-001-04` | normalから責務定義だけを除く未見data-governance capability | 未定義capabilityだけunknown、残るdomain lifecycleは評価 | capability ownerや固定enumを作成したら不合格。 |",
+        "line_raw_lf_sha256": "c82a4b923a7e37489993cf7d051da6d55f49060f209243ddbcf4b79e7bbda822"
+      },
+      {
+        "line": 786,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-001-03` | `FR-INTELLIGENCE-L3-001-01` | `AC-INTELLIGENCE-L3-001-04` | active domain identityを固定enumの一つへ強制する | 固定enumを要求せずidentity relationとauthorityを別記する | enum/別authorityの新設、またはretired履歴消失で不合格。 |",
+        "line_raw_lf_sha256": "8e5b6cd75b711475c6d812054b415d25b756948fad4e52c080501f415e654b3a"
+      },
+      {
+        "line": 787,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-002-04` | `FR-INTELLIGENCE-L3-002-01` | `AC-INTELLIGENCE-L3-002-04` | 二つのdomainへ異なる能力集合、一つを未構成として入力 | domain別能力のみ適用し未構成をunknownで保持 | 全能力を全domainへ適用したら不合格。 |",
+        "line_raw_lf_sha256": "d7659cdc37c1be1f461d071849e5ea564a555b39c0788c75571b37c44067d159"
+      },
+      {
+        "line": 788,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-003-05` | `FR-INTELLIGENCE-L3-003-01` | `AC-INTELLIGENCE-L3-003-04` | 同一Situation Modelへ別ticketのdependencyを混ぜる | ticket境界を分離し、混入dependencyを結ばない | dependencyを横断結合したら不合格。 |",
+        "line_raw_lf_sha256": "5e681321237fcf3c760abb8ce8c51735f84b658ad0c6079a706273b53184527b"
+      },
+      {
+        "line": 789,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-003-06` | `FR-INTELLIGENCE-L3-003-01` | `AC-INTELLIGENCE-L3-003-04` | source fieldの順序だけ変更し、同一identity/revisionを保持 | 同じ結合結果を返し、trace全fieldを照合 | field/traceがあるだけで成功判定したら不合格。 |",
+        "line_raw_lf_sha256": "5aa5b3bc8e64bfdab28a5c9721879f2102e4aa28ea361f690a12a1164addae0d"
+      },
+      {
+        "line": 790,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-003-07` | `FR-INTELLIGENCE-L3-003-01` | `AC-INTELLIGENCE-L3-003-04` | dependency source revision一つだけmissingにする | 該当edgeだけunknownとしてsource ownerへ戻す | 推測補完や全体成功化で不合格。 |",
+        "line_raw_lf_sha256": "019551570edcf177b447a31588ba679da2adb95e445a865b84555e2a0431c186"
+      },
+      {
+        "line": 791,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-004-08` | `FR-INTELLIGENCE-L3-004-01` | `AC-INTELLIGENCE-L3-004-04` | unknown fieldへ事実値を補完するmutation | unknownを保持しclassificationを未完にする | 補完値をObserved Fact扱いしたら不合格。 |",
+        "line_raw_lf_sha256": "0efd0786a794cf4df1ad576be5e246bcc341d702952cf5b5722515312022d0dc"
+      },
+      {
+        "line": 792,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-004-09` | `FR-INTELLIGENCE-L3-004-01` | `AC-INTELLIGENCE-L3-004-04` | 同じ根拠関係を別source表現で与えるheld-out normal | source identity/revisionと関係が一致する範囲を同一分類 | 表現が未見なだけで拒否したら不合格。 |",
+        "line_raw_lf_sha256": "e30d15d4fc92f4a06a4f1a6e94176e8a934d1b2d7de27328e25ad8d4218d618b"
+      },
+      {
+        "line": 793,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-005-10` | `FR-INTELLIGENCE-L3-005-01` | `AC-INTELLIGENCE-L3-005-04` | dependency orderをA→BからB→Aへ逆転 | plan candidateを未確定として順序矛盾を表示 | 逆順をsuccessにしたら不合格。 |",
+        "line_raw_lf_sha256": "828d0fcfd20c2db076d036e7a44b3cbcc8e3efd08d2801d80a584493704342d0"
+      },
+      {
+        "line": 794,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-005-11` | `FR-INTELLIGENCE-L3-005-01` | `AC-INTELLIGENCE-L3-005-04` | stale contractと、ticket発行要求を個別に与える2 fixture | staleはINTへ戻し、ticket発行/割当不足はOS ownerへ戻す | INTがticketを発行/割当、またはstale成功なら不合格。 |",
+        "line_raw_lf_sha256": "7a206cef8d2af3f684a4d081402129a7eb00d4260f2c8a2188bf4ea25acc429e"
+      },
+      {
+        "line": 795,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-006-12` | `FR-INTELLIGENCE-L3-006-01` | `AC-INTELLIGENCE-L3-006-04` | target/scope/observation windowを先固定し、後日LABO actualを別recordで投入 | predictionとactualを分離して比較し、LABO deliveryを独立評価 | predictionを実測事実へ昇格またはLABO成立を推論したら不合格。 |",
+        "line_raw_lf_sha256": "d66d2e92fb586bf9a4f248e19cd31f5752cc6410a1809808c34ecfac57bd31f7"
+      },
+      {
+        "line": 796,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-006-13` | `FR-INTELLIGENCE-L3-006-01` | `AC-INTELLIGENCE-L3-006-04` | 後続actualをpredictionと不一致に変える | 不一致を保持し、予測をactualへ上書きしない | 不一致を成功へ読み替えたら不合格。 |",
+        "line_raw_lf_sha256": "ba5608d66cc74f789bef52214b424ae2a8b7cd9f49a582b8cb0da5d5c4f26d85"
+      },
+      {
+        "line": 797,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-006-14` | `FR-INTELLIGENCE-L3-006-01` | `AC-INTELLIGENCE-L3-006-04` | scopeずれ、stale actual、missing actualを各別fixtureにする | 各々をunknown/incompleteとしてLABOへ戻す | いずれかをvalid actualとしたら不合格。 |",
+        "line_raw_lf_sha256": "a0f965b3e3d85800ce0a495f646d5c9a5ec4b2b7d31cea21ac9e184b94501a0b"
+      },
+      {
+        "line": 798,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-007-15` | `FR-INTELLIGENCE-L3-007-01` | `AC-INTELLIGENCE-L3-007-04` | 反証を含む正常診断へ反証無視を一変数注入 | 追加観測/検査へ辿り、反証を残す | 反証無視または無関係検査を指示したら不合格。 |",
+        "line_raw_lf_sha256": "9ca1403d121324ffbeafea434ec6f977bae13d6508d5c65c3ecd1d12b240d78e"
+      },
+      {
+        "line": 799,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-007-16` | `FR-INTELLIGENCE-L3-007-01` | `AC-INTELLIGENCE-L3-007-04` | repair提案を診断結果へ付加する | 診断とrepairを分離し、L2-007外の実行/assignmentを生成しない | INTがrepair実行またはOS assignmentを生成したら不合格。 |",
+        "line_raw_lf_sha256": "25675e842411b9850a2dadd5fcfd9751d6854031914190b9e0810db3a5238c1e"
+      },
+      {
+        "line": 800,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-008-17` | `FR-INTELLIGENCE-L3-008-01` | `AC-INTELLIGENCE-L3-008-04` | seeded must-fixを一件だけ見逃す | そのfindingだけfalse-negativeとして記録 | 見逃しをpassとしたら不合格。 |",
+        "line_raw_lf_sha256": "bab2b591b45762f279a4dce2e6c0966e2b4152207bcd5a0c7a457126ec15154e"
+      },
+      {
+        "line": 801,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-008-18` | `FR-INTELLIGENCE-L3-008-01` | `AC-INTELLIGENCE-L3-008-04` | clean artifactを一件だけ誤指摘する | false-positiveとして区別し、scope外は未評価 | severity/routeの誤りを許容したら不合格。 |",
+        "line_raw_lf_sha256": "338dc715f7bd43fc0a13499cce7dce404ab09d74f9b86a839e00140dadfc459e"
+      },
+      {
+        "line": 802,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-008-19` | `FR-INTELLIGENCE-L3-008-01` | `AC-INTELLIGENCE-L3-008-04` | 反例種別/routeだけを入れ替えるheld-out review | TP/FN/FPと未評価をscopeごと照合 | 未見分類を成功扱いしたら不合格。 |",
+        "line_raw_lf_sha256": "d7de9f60b7e2c55895ae9a08673cb3ee8b01f7e08812e3b8f7c6d4461bd90b19"
+      },
+      {
+        "line": 803,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-009-20` | `FR-INTELLIGENCE-L3-009-01` | `AC-INTELLIGENCE-L3-009-04` | UIL/TER/Future Synthesisと重複するfindingを一つ入力 | 重複実装を避け既存機構へ戻す | 重複機能をINTが実装要件化したら不合格。 |",
+        "line_raw_lf_sha256": "ef9c2b99417fff8dd74d8a995e2ed1bd232afb7df82cbea3528a44ffa4b43460"
+      },
+      {
+        "line": 804,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-009-21` | `FR-INTELLIGENCE-L3-009-01` | `AC-INTELLIGENCE-L3-009-04` | 根拠sourceなしfindingを一つ入力 | findingを根拠不足として未完保持 | 根拠なしを確定findingにしたら不合格。 |",
+        "line_raw_lf_sha256": "0cf71c084611dc81b96cbdc1004f529916960cd1aea791ada883fb94085d6f1a"
+      },
+      {
+        "line": 805,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-009-22` | `FR-INTELLIGENCE-L3-009-01` | `AC-INTELLIGENCE-L3-009-04` | 別findingの反証を誤結合するmutation | 反証の対象finding mismatchを拒否 | 誤結合したまま成立したら不合格。 |",
+        "line_raw_lf_sha256": "205ea6087462ebbdae2f5eb8cb824c78122af867126eccfc5dc21ab3c8920a22"
+      },
+      {
+        "line": 806,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-011-23` | `FR-INTELLIGENCE-L3-011-01` | `AC-INTELLIGENCE-L3-011-04` | 比較normalでcurrent/candidate provider実行版を異なる値にし共通評価基準revisionは同じにする | 両実行版と共通評価revisionを別軸で記録し比較可能性を評価 | 実行版同一を要求したり版更新だけで優位判定したら不合格。 |",
+        "line_raw_lf_sha256": "ca7f073b3312147bb82c9c54aafabaf8688edbc5e52e77a475029fe51638590a"
+      },
+      {
+        "line": 807,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-011-24` | `FR-INTELLIGENCE-L3-011-01` | `AC-INTELLIGENCE-L3-011-04` | task snapshot / scoring version / run protocol / hardware class / independent oracleを各別欠落fixture | 欠落した条件だけcomparison unknownとしてLABOへ戻す | 条件を補完または版更新を勝敗根拠にしたら不合格。 |",
+        "line_raw_lf_sha256": "ce3bde52db666ae309e62c03ab800bb0b1a89a4b26e30b885f4de275372762c9"
+      },
+      {
+        "line": 808,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-011-25` | `FR-INTELLIGENCE-L3-011-01` | `AC-INTELLIGENCE-L3-011-04` | rescue/rework/human intervention、cohort/conditionを一軸ずつ入れ替える | 各軸を独立記録し、priority/toleranceなき勝敗を出さない | 軸を束ねてwinnerを決めたら不合格。 |",
+        "line_raw_lf_sha256": "7417d8f61d7c047e71ef31ea2f2c354491de4476a6f383d6ee8efd30f65e8208"
+      },
+      {
+        "line": 809,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-011-26` | `FR-INTELLIGENCE-L3-011-01` | `AC-INTELLIGENCE-L3-011-04` | cost price basis/currency/time/billing categoryを個別欠落、次にcost欠測を投入 | cost unknownとして保持し、costを0にしない | 価格単独で上位にしたら不合格。 |",
+        "line_raw_lf_sha256": "cc1509a620d564aac5a492e2a9d6f4105333520c7d59b3afcc560f3a4027e75f"
+      },
+      {
+        "line": 810,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-012-27` | `FR-INTELLIGENCE-L3-012-01` | `AC-INTELLIGENCE-L3-012-04` | uncertainをprobableへ縮め、別fixtureでknownへ縮める | どちらも原uncertainを保持する | stateを狭めたら不合格。 |",
+        "line_raw_lf_sha256": "20478773e651d4498e234362bc08e899ebf3ebbfc573a473eaac38a9256fa327"
+      },
+      {
+        "line": 811,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-012-28` | `FR-INTELLIGENCE-L3-012-01` | `AC-INTELLIGENCE-L3-012-04` | 境界規則未決で確定判断を要求 | 判定不能として既存要件/source ownerへ戻す | 新閾値を設けたら不合格。 |",
+        "line_raw_lf_sha256": "67e4f848d9ce6a503e9bd0628863705e7c9ba60290d7069562b00b493529c17f"
+      },
+      {
+        "line": 812,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-012-29` | `FR-INTELLIGENCE-L3-012-01` | `AC-INTELLIGENCE-L3-012-04` | stale sourceと相反する証拠を別fixtureにする | stale/conflictを個別unknownで保持 | 相反証拠を単一factに統合したら不合格。 |",
+        "line_raw_lf_sha256": "5664ce6a0f6fa753d8477a2ee83b6c34d51ef7b51585c1ea70432344c7c18c6c"
+      },
+      {
+        "line": 813,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-013-30` | `FR-INTELLIGENCE-L3-013-01` | `AC-INTELLIGENCE-L3-013-04` | sourceにない事実をtrace edgeに追加する | 根拠なしedgeを未完拒否 | source事実として表示したら不合格。 |",
+        "line_raw_lf_sha256": "2646f63bc6f1d6e17e1f27c658f7cc52d25ed0bc6bab864dec729c570746894a"
+      },
+      {
+        "line": 814,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-013-31` | `FR-INTELLIGENCE-L3-013-01` | `AC-INTELLIGENCE-L3-013-04` | current根拠に異版sourceを付ける | revision mismatchを検知しsource ownerへ戻す | 異版をcurrent根拠として通したら不合格。 |",
+        "line_raw_lf_sha256": "3987dacd64549ee423a2cd51a2278460b1e0f2488a550b973a58d099356c81b3"
+      },
+      {
+        "line": 815,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-013-32` | `FR-INTELLIGENCE-L3-013-01` | `AC-INTELLIGENCE-L3-013-04` | 完全再生成を行わないことだけを理由に根拠を省く | 存在するsource/revision/data-use traceを保持 | 根拠省略を許したら不合格。 |",
+        "line_raw_lf_sha256": "8f848e2358921573a082a04d402dfcc4ae88a659a3b7396de238025b2a1dff33"
+      },
+      {
+        "line": 816,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-014-33` | `FR-INTELLIGENCE-L3-014-01` | `AC-INTELLIGENCE-L3-014-04` | 反復可能task normalでscope外操作を一つだけ追加 | scope外operationだけ保留 | 許可範囲を拡張したら不合格。 |",
+        "line_raw_lf_sha256": "0b445b22a443acf6a6669b7cc8273c6501ec4db56d4b27533b829a3cd4ed9fd4"
+      },
+      {
+        "line": 817,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-014-34` | `FR-INTELLIGENCE-L3-014-01` | `AC-INTELLIGENCE-L3-014-04` | stop成立後に操作を一件実行する | 停止後executionを拒否しINT candidateを未完保持 | 停止後実行を許可したら不合格。 |",
+        "line_raw_lf_sha256": "47dfd4dd4dc3c46e4ecef9082d00ba32985a4136f202086c1f36d39a902ae4ec"
+      },
+      {
+        "line": 818,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-014-35` | `FR-INTELLIGENCE-L3-014-01` | `AC-INTELLIGENCE-L3-014-04` | manifestへauthorityを追加、別fixtureでBot追加をauthority追加と解釈 | 両方を個別拒否し既存authorityを保持 | manifest/Botからauthorityを生成したら不合格。 |",
+        "line_raw_lf_sha256": "30542ddf6e9a437359b7992ca89ec17bc83e5d1b8f820ef0a41b598a4bead270"
+      },
+      {
+        "line": 819,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-015-36` | `FR-INTELLIGENCE-L3-015-01` | `AC-INTELLIGENCE-L3-015-04` | 正常near-miss clean exampleにだけ変異を加え過検出させる | 非該当exampleの誤検出を明示しcandidateを止める | 全変異を適用可能と誤判定したら不合格。 |",
+        "line_raw_lf_sha256": "67153f783e21229833897d40a25bbf51ea81c73fb56e1e8dd2db63fcceaaf169"
+      },
+      {
+        "line": 820,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-015-37` | `FR-INTELLIGENCE-L3-015-01` | `AC-INTELLIGENCE-L3-015-04` | 別実装表現の未見正常exampleを与える | 固定親の意味軸で評価し候補状態を維持 | 未見表現だけで拒否、またはcandidateを昇格したら不合格。 |",
+        "line_raw_lf_sha256": "cef9c0d5ee67790806e1367eeba7ba9382f8dec5a4c8b84d5264f4b48de07b05"
+      },
+      {
+        "line": 821,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-015-38` | `FR-INTELLIGENCE-L3-015-01` | `AC-INTELLIGENCE-L3-015-04` | 同一episodeを重複複製したfixture | 重複を独立episodeとして数えない。回数閾値は導入しない | 数値回数thresholdで判定したら不合格。 |",
+        "line_raw_lf_sha256": "01a5ae9a87ba6ca56b6665eebf62b39ebe9d0414e71e5756e2e4909f6e52ccf7"
+      },
+      {
+        "line": 822,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-016-39` | `FR-INTELLIGENCE-L3-016-01` | `AC-INTELLIGENCE-L3-016-04` | 登録候補へ包括write権限を付与するmutation | untrusted/candidateのまま保持しwrite権限を付与しない | 権限昇格で不合格。 |",
+        "line_raw_lf_sha256": "aa474ee3e3815f1b7ea4e75b677aa582db6355ac89eb02e8b62e88c2fc57c983"
+      },
+      {
+        "line": 823,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-016-40` | `FR-INTELLIGENCE-L3-016-01` | `AC-INTELLIGENCE-L3-016-04` | seeded counterexampleを修正しないfixture、既存normal regressionを各別に壊すfixture | 反例未修正/回帰を別々に検知し、scope外新種は局所未評価 | 結果fieldだけunknownにせず全体successなら不合格。 |",
+        "line_raw_lf_sha256": "248647a95358f766710b18a80e7f6f9010030e3397088d41e68d948de51896cb"
+      },
+      {
+        "line": 824,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-016-41` | `FR-INTELLIGENCE-L3-016-01` | `AC-INTELLIGENCE-L3-016-04` | actual result fieldのみmissing、candidate fieldsは有効 | result部分のみunknown、candidate条件は保持 | candidateまで一括失敗/成功扱いしたら不合格。 |",
+        "line_raw_lf_sha256": "070c61cb08e9f900fc51faa77147fa5d0b7549ec1cb54b89e205201992d6cdbd"
+      },
+      {
+        "line": 825,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-018-42` | `FR-INTELLIGENCE-L3-018-01` | `AC-INTELLIGENCE-L3-018-04` | LABO評価のみで採択、別fixtureでOS登録を省く | 各々を独立して採択不成立として保持 | LABOのみ/OS省略を成功扱いしたら不合格。 |",
+        "line_raw_lf_sha256": "04bff2d570c55a1d290fe0813b9c79e02b89c6da7046bda025f088c3a84e3eb0"
+      },
+      {
+        "line": 826,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-018-43` | `FR-INTELLIGENCE-L3-018-01` | `AC-INTELLIGENCE-L3-018-04` | outcome receiptを遅延し、別fixtureで順序逆転・current conflict・時点missing | 遅延/順序/競合/時点を区別して該当ownerへ戻す | どれかを推測補完したら不合格。 |",
+        "line_raw_lf_sha256": "61f5a38a0d44f6e1eedde211c53693ead299cd6e022be4677216cacf8d37bdf9"
+      },
+      {
+        "line": 827,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-019-44` | `FR-INTELLIGENCE-L3-019-01` | `AC-INTELLIGENCE-L3-019-04` | applicability、exception、counterexampleを各一つずつ欠落またはmismatch | 不足条件だけ未完。counterexample成立中は適用しない | 条件の一つを他条件で代替したら不合格。 |",
+        "line_raw_lf_sha256": "47f044935df14dd804a4b08246f206f3c038f4ddf3d11751853b30af8ad0562e"
+      },
+      {
+        "line": 828,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-020-45` | `FR-INTELLIGENCE-L3-020-01` | `AC-INTELLIGENCE-L3-020-04` | 正常戻し先ownerと意味変更層を一致させるheld-out | 戻し先が意味を変える層に一致する | 誤ownerへ戻したら不合格。 |",
+        "line_raw_lf_sha256": "40aad660334e2d43d48a01ee27c38a9c82045efc37399b709ebc1f9570c37915"
+      },
+      {
+        "line": 829,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-067-46` | `FR-INTELLIGENCE-L3-067-01` | `AC-INTELLIGENCE-L3-067-04` | valid decisionをrun毎に再確認するmutationと、expired/conflicting decisionを別fixture | 有効decisionは再利用、失効/矛盾だけownerへ戻す | valid decisionへの余分な確認要求またはstale採用で不合格。 |",
+        "line_raw_lf_sha256": "5f871e052d644420c7aef380662cd1094179a3cf286115987b8334a1d1d472d8"
+      },
+      {
+        "line": 830,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-067-47` | `FR-INTELLIGENCE-L3-067-01` | `AC-INTELLIGENCE-L3-067-04` | quality failureに低price/人時間を加え相殺するmutation | quality gateを先に判定し、cost/timeを0扱いしない | quality failureを相殺したら不合格。 |",
+        "line_raw_lf_sha256": "b29b0bb6628757c1890e02cf19f59b21b3e14b70e7413a62a928419f18d2d88a"
+      },
+      {
+        "line": 831,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-067-48` | `FR-INTELLIGENCE-L3-067-01` | `AC-INTELLIGENCE-L3-067-04` | condition/cohort軸を混同し、別fixtureでno-Harnessを誤分類 | 軸を分離し不明oracleはHARNESS/requirement ownerへ戻す | LABO035→INT034の版/互換/同結果receipt欠落を成功扱いしたら不合格。 |",
+        "line_raw_lf_sha256": "3866aa7cd9f305b5e1740edbc6df6c2a205a3f2aeed35087ce98aba605bf530d"
+      },
+      {
+        "line": 832,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-072-49` | `FR-INTELLIGENCE-L3-072-01` | `AC-INTELLIGENCE-L3-072-11` | 必須selected dependency一件missing、別fixtureでstale/unsupported version | 各変異を個別拒否しpack ownerへ戻す | 参照資料を依存化/旧版読み替えしたら不合格。 |",
+        "line_raw_lf_sha256": "ba907274e4d1d09a5b9146a044fb0d7d4c9f1a67dd0f00e11fea91cd64184b05"
+      },
+      {
+        "line": 833,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-072-50` | `FR-INTELLIGENCE-L3-072-01` | `AC-INTELLIGENCE-L3-072-11` | domain/capabilityへ結べないcandidate、別fixtureでdefault checklistへfallback | 各々をunknown/未完としfallbackしない | 候補結果を判断結果扱いしたら不合格。 |",
+        "line_raw_lf_sha256": "92f9ebf32d286d2c506fd59d25261cc4045410863fc8e80988cbd07f5a65a035"
+      },
+      {
+        "line": 834,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-072-51` | `FR-INTELLIGENCE-L3-072-01` | `AC-INTELLIGENCE-L3-072-11` | same evaluation condition normalでre-evaluation receipt後に正常更新 | 同じsource scope/versionで比較し正常を保持 | 比較条件不一致やreceipt後評価を落としたら不合格。 |",
+        "line_raw_lf_sha256": "401d8f57261cda9f0bf5782002470d5b44ce975837833ab5904c57bf21d8719b"
+      },
+      {
+        "line": 835,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-073-52` | `FR-INTELLIGENCE-L3-073-01` | `AC-INTELLIGENCE-L3-073-04` | Requirement identity欠落、revision mismatchを別 fixtureにする | 各 mismatchを該当requirement ownerへ戻す | identity/revisionを推定補完したら不合格。 |",
+        "line_raw_lf_sha256": "b323fa217bf5cb028ec3f1f3c446bc14379df0672e798b98be26b80e2dd8d4f7"
+      },
+      {
+        "line": 836,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-073-53` | `FR-INTELLIGENCE-L3-073-01` | `AC-INTELLIGENCE-L3-073-04` | CI execution resultをmissingにする | CI ownerへ戻してunknown | merge evidenceとして扱ったら不合格。 |",
+        "line_raw_lf_sha256": "b10e83b0f0336c6f6a979c4694770c05293b383fdf6030dfffb27246a1969071"
+      },
+      {
+        "line": 837,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-073-54` | `FR-INTELLIGENCE-L3-073-01` | `AC-INTELLIGENCE-L3-073-04` | merge-operation authorityをmissingにする | 既存権限ownerへ戻して未完 | detector candidateから操作権限を生成したら不合格。 |",
+        "line_raw_lf_sha256": "271d1043fa106924715ea5b20634965854d8f92c18a48bb6791e07adf259ce8c"
+      },
+      {
+        "line": 838,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-073-55` | `FR-INTELLIGENCE-L3-073-01` | `AC-INTELLIGENCE-L3-073-04` | 4 destinationsをそれぞれ別normal/negativeで照合する | 各destinationの恒久禁止を新設せず対象L2の既存routeを維持 | 4宛先を一条件へまとめたら不合格。 |",
+        "line_raw_lf_sha256": "262f12154d4c30bc0eaa35fdfdcdd845778aa8a2dec0db9f347312a4781bd328"
+      },
+      {
+        "line": 839,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-078-56` | `FR-INTELLIGENCE-L3-078-01` | `AC-INTELLIGENCE-L3-078-11` | R-06 sourceを正しい55–67 span以外のR-08行へ置換する | source mismatchとして不合格 | R-08/他parent atomを078根拠としたら不合格。 |",
+        "line_raw_lf_sha256": "0280b60b8489894026497a687ad13174a959fce45ed66d9f00ed589995237473"
+      },
+      {
+        "line": 840,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-078-57` | `FR-INTELLIGENCE-L3-078-01` | `AC-INTELLIGENCE-L3-078-11` | R-07 retry/順序変更を各個別fixtureで投入 | 同じepisode/digest、retryでepisode増殖なし | 順序やretryで新episode扱いしたら不合格。 |",
+        "line_raw_lf_sha256": "601f8b46c009a32827c9f2d420a4ca0e665f5646331b0494d617618fa7394d08"
+      },
+      {
+        "line": 841,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-078-58` | `FR-INTELLIGENCE-L3-078-01` | `AC-INTELLIGENCE-L3-078-11` | R-06 delta dimensionを他要素と混同する | dimensionを独立識別し各値をsource-boundに保持 | dimension混同なら不合格。 |",
+        "line_raw_lf_sha256": "4543f0299e81fa63b8f69f765c86f6a5ea8a390d0b1ad89a5357a2d796b98a76"
+      },
+      {
+        "line": 842,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607-078-59` | `FR-INTELLIGENCE-L3-078-01` | `AC-INTELLIGENCE-L3-078-11` | stale projection再利用とfresh/resolved receipt済みdirect changeを別 fixture | staleは拒否、R-11 normalでも直接変更0件 | 提案から要求/設計/割当へ直接変更したら不合格。 |",
+        "line_raw_lf_sha256": "0f00994d5a4ee730fa9a9953ad1136c99a20fb200add1ab927e3cb03cae6b498"
+      },
+      {
+        "line": 843,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607X-072-01` | `FR-INTELLIGENCE-L3-072-01` | `AC-INTELLIGENCE-L3-072-11` | 必須依存を一つだけmissingにする | 該当pack operationのみ未完としてHARNESS共通contract ownerへ戻す | missingをsuccess扱いしたら不合格。 |",
+        "line_raw_lf_sha256": "652817e3bbc50fac72703d8c6df2e2c24287024b968c2575ecc7e0ac74f20ff9"
+      },
+      {
+        "line": 844,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607X-072-02` | `FR-INTELLIGENCE-L3-072-01` | `AC-INTELLIGENCE-L3-072-11` | 正常依存から一つだけstaleにする | 当該selected facetだけstaleとしてsource ownerへ戻す | 非選択sourceへ波及したら不合格。 |",
+        "line_raw_lf_sha256": "ea8028c22b636059b9eac67793b17e6f2330d56932616288d6691586bf54c9a2"
+      },
+      {
+        "line": 845,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607X-072-03` | `FR-INTELLIGENCE-L3-072-01` | `AC-INTELLIGENCE-L3-072-11` | dependency contract versionをunsupportedへ変える | 未完を保持しHARNESSへ戻す | 旧versionを読み替えたら不合格。 |",
+        "line_raw_lf_sha256": "bf5a971941324b5b646d7280c2beb8ed4ffe13798f7a20867476e45db7a4afa3"
+      },
+      {
+        "line": 846,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607X-072-04` | `FR-INTELLIGENCE-L3-072-01` | `AC-INTELLIGENCE-L3-072-11` | reference-only資料をrequired dependencyへ昇格 | reference-onlyのまま保持する | 依存化したら不合格。 |",
+        "line_raw_lf_sha256": "fce7cb9804a917274aa854a387bf5e637ffa41a194f74ce2883f8362ae7e0c00"
+      },
+      {
+        "line": 847,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607X-072-05` | `FR-INTELLIGENCE-L3-072-01` | `AC-INTELLIGENCE-L3-072-11` | pack domain/capability bindingを一つ欠落 | binding unknownとしてHARNESS ownerへ戻す | 未結合をsuccess扱いしたら不合格。 |",
+        "line_raw_lf_sha256": "a5eab1d758536af3154f1fd56c17c8ccea5a068bd07f5c1ba0f12acd7dff2272"
+      },
+      {
+        "line": 848,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607X-072-06` | `FR-INTELLIGENCE-L3-072-01` | `AC-INTELLIGENCE-L3-072-11` | 採択済checklistがない時にdefault checklistへfallback | fallbackせずunknown/incompleteを保持 | default checklistを用いたら不合格。 |",
+        "line_raw_lf_sha256": "9a6f968b5a4c351995726c76b4b037cab991929dbd198bd0eb34359b1bb44edd"
+      },
+      {
+        "line": 849,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607X-072-07` | `FR-INTELLIGENCE-L3-072-01` | `AC-INTELLIGENCE-L3-072-11` | comparison condition revisionだけ不一致 | 比較結果unknownとしてLABO/source ownerへ戻す | 不一致結果を同一比較へ混ぜたら不合格。 |",
+        "line_raw_lf_sha256": "51713feda3c3da39735b32ed5c62681d25a2e30f2b9408f17ef8654e492654ce"
+      },
+      {
+        "line": 850,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607X-072-08` | `FR-INTELLIGENCE-L3-072-01` | `AC-INTELLIGENCE-L3-072-11` | candidate resultをfinal judgmentとして扱う | candidate状態を保ち既存ownerの判断を待つ | 判断authorityを生成したら不合格。 |",
+        "line_raw_lf_sha256": "a7b8d528ac33b5aaa5646d36bf7d1f00417734b882d1f8eed94777262a9577bc"
+      },
+      {
+        "line": 851,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607X-072-09` | `FR-INTELLIGENCE-L3-072-01` | `AC-INTELLIGENCE-L3-072-11` | 同一case/oracleの後続re-evaluationが正常に一致 | same-case結果を保持しreceipt後続義務を記録 | 変化がないのにcandidate/source全体をstale化したら不合格。 |",
+        "line_raw_lf_sha256": "1bfc264853ee1cbc6944edba0e448b97c66a32ce9ee708b6272e2b0237cf55e2"
+      },
+      {
+        "line": 852,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607X-073-10` | `FR-INTELLIGENCE-L3-073-01` | `AC-INTELLIGENCE-L3-073-04` | Issue destinationだけへ自由文を直接投影 | candidate提示に留め既存Issue ownerへ返す | Issueを作成/更新したら不合格。 |",
+        "line_raw_lf_sha256": "2384462566a7144a3e1668d0fdb3306c1bd9f03fb9eeed1d50327dae916f19ae"
+      },
+      {
+        "line": 853,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607X-073-11` | `FR-INTELLIGENCE-L3-073-01` | `AC-INTELLIGENCE-L3-073-04` | Requirement destinationだけへ自由文を直接投影 | candidate提示に留めrequirement ownerへ返す | requirement本文/承認状態を変更したら不合格。 |",
+        "line_raw_lf_sha256": "a517cd083b1ef403a5a59180305fe9e8cbd63128c09cda8c5d4b8a2eedbb7884"
+      },
+      {
+        "line": 854,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607X-073-12` | `FR-INTELLIGENCE-L3-073-01` | `AC-INTELLIGENCE-L3-073-04` | CI destinationだけへ自由文を直接投影 | candidate提示に留めCI/verification ownerへ返す | CI定義/実行/結果状態を変更したら不合格。 |",
+        "line_raw_lf_sha256": "877634c58fab1120a7939481473368ff301b3e722ac2d4b8c2b67c1e48ae0d60"
+      },
+      {
+        "line": 855,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607X-073-13` | `FR-INTELLIGENCE-L3-073-01` | `AC-INTELLIGENCE-L3-073-04` | merge destinationだけへ自由文を直接投影 | candidate提示に留め既存review/merge routeへ返す | merge authority/admission/stateを変更したら不合格。 |",
+        "line_raw_lf_sha256": "e8e52f5da1502fc9bc9a937bb0f6ace13c29b782ba6771d24bc49fe5b3627780"
+      },
+      {
+        "line": 856,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607X-078-14` | `FR-INTELLIGENCE-L3-078-01` | `AC-INTELLIGENCE-L3-078-11` | R-07 retryだけを変更しsource inputは固定 | 同じepisode/digestへ束ね、別deltaを作らない | retryでepisodeを増やしたら不合格。 |",
+        "line_raw_lf_sha256": "85cb1e8756237357c876b5dff8f2ea2c2764a4084290ded835ff325d67af673a"
+      },
+      {
+        "line": 857,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607X-078-15` | `FR-INTELLIGENCE-L3-078-01` | `AC-INTELLIGENCE-L3-078-11` | R-07 event orderingだけを変更する | 同じinput event集合で同一exact set/digestを照合 | ordering差で新episodeにしたら不合格。 |",
+        "line_raw_lf_sha256": "391c11a70a06bec701396d3e9a3331df4dd436e7d9fcf2353cc4939fa14463f1"
+      },
+      {
+        "line": 858,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607X-078-16` | `FR-INTELLIGENCE-L3-078-01` | `AC-INTELLIGENCE-L3-078-11` | R-06 dimension間でproviderとruntimeを混同 | dimension identityを分離してsourceへ結ぶ | dimensionを結合したら不合格。 |",
+        "line_raw_lf_sha256": "83d40c5dfa506f30784447cb8e2fbd8062a3028b50b200d08001f5a8de3c0250"
+      },
+      {
+        "line": 859,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607X-078-17` | `FR-INTELLIGENCE-L3-078-01` | `AC-INTELLIGENCE-L3-078-11` | R-11 fresh/resolved/receipt済みからdirect requirement changeを試みる | 直接変更数0のまま、候補として既存ownerへ戻す | proposalから直接変更したら不合格。 |",
+        "line_raw_lf_sha256": "9f7bc78c4057e3c3a229bc739d132cd34bde568857cf4f3aefcdccc52731905b"
+      },
+      {
+        "line": 860,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607X-067-18` | `FR-INTELLIGENCE-L3-067-01` | `AC-INTELLIGENCE-L3-067-04` | LABO035→INT034 receiptのcontract versionだけをstale化 | 同一結果receiptを有効扱いせず、LABO/contract ownerへ戻す | stale receiptを使ってsuccessにしたら不合格。 |",
+        "line_raw_lf_sha256": "a9fa6a13411b97d20562fc74c96ad7cfe7714f1e4e80ee5d69bfb1dc0c7a4168"
+      },
+      {
+        "line": 861,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607X-067-19` | `FR-INTELLIGENCE-L3-067-01` | `AC-INTELLIGENCE-L3-067-04` | no-Harness条件をnormal入力で保持する | condition軸とcohort軸を別記してno-Harnessを適切に表す | Harness不在をfailureまたはcost 0へ暗黙変換したら不合格。 |",
+        "line_raw_lf_sha256": "4b7bceaa6a3de9bcd96966fbfc04a8acfe0d21fbb18d2ca8d6dcbf50b8b38799"
+      },
+      {
+        "line": 862,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607X-016-20` | `FR-INTELLIGENCE-L3-016-01` | `AC-INTELLIGENCE-L3-016-04` | candidate fixtureは正常、actual resultだけmissingのheld-out対象 | candidateは保持し結果のみunknownとする | 実結果を推測補完したら不合格。 |",
+        "line_raw_lf_sha256": "9b6af758bd85f9bf1c114aeb948027b627151e4e630017a6327a1b0b9545f248"
+      },
+      {
+        "line": 863,
+        "literal": "",
+        "line_raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+      },
+      {
+        "line": 864,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607Y-005-01` | `FR-INTELLIGENCE-L3-005-01` | `AC-INTELLIGENCE-L3-005-04` | stale工程contractだけをnormalから変異 | 該当planを未完として固定contract ownerへ照合を戻す | stale contractを使って確定したら不合格。 |",
+        "line_raw_lf_sha256": "7529d0eb278bef7c245951f863b106112d315677a123b574c67a602fa2995bb6"
+      },
+      {
+        "line": 865,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607Y-005-02` | `FR-INTELLIGENCE-L3-005-01` | `AC-INTELLIGENCE-L3-005-04` | INTELLIGENCEにOS ticket発行を要求する | 候補はOS handoffのまま、ticket identity/assignmentを生成しない | ticketを発行または割り当てたら不合格。 |",
+        "line_raw_lf_sha256": "551268ae0b6dc22912c2af04fb927b02f613af5351f04d5272c920dd0b07556b"
+      },
+      {
+        "line": 866,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607Y-008-03` | `FR-INTELLIGENCE-L3-008-01` | `AC-INTELLIGENCE-L3-008-04` | seeded must-fixのseverityだけを誤分類する | finding自体とseverity mismatchを分けて記録 | 誤severityを期待値一致としたら不合格。 |",
+        "line_raw_lf_sha256": "f88e9bb94f7a45c25936224bd3360195dad5168714c3f1bb186c110d39e18b94"
+      },
+      {
+        "line": 867,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607Y-008-04` | `FR-INTELLIGENCE-L3-008-01` | `AC-INTELLIGENCE-L3-008-04` | seeded must-fixの反例だけを別欠陥へ取り違える | counterexample mismatchで不成立にする | 別反例を結んだら不合格。 |",
+        "line_raw_lf_sha256": "411139a3ca09471055149a071c0ddc65a79e89f07b6640d289e7b43913629bcd"
+      },
+      {
+        "line": 868,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607Y-008-05` | `FR-INTELLIGENCE-L3-008-01` | `AC-INTELLIGENCE-L3-008-04` | seeded must-fix routeだけを誤る | finding内容を保ちroute mismatchをownerへ戻す | 誤routeで合格したら不合格。 |",
+        "line_raw_lf_sha256": "056b1b1b81198ef95ac36bf2007db850b858cb9485c0d4d04ba1ab5164a68926"
+      },
+      {
+        "line": 869,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607Y-008-06` | `FR-INTELLIGENCE-L3-008-01` | `AC-INTELLIGENCE-L3-008-04` | scope外欠陥のheld-out inputを与える | 未評価と記録しscope内oracleに混ぜない | scope外をFP/FNの確定判定に混ぜたら不合格。 |",
+        "line_raw_lf_sha256": "56634e54a124affd0327f6ba8e47d440e3090641cc6096000eef7caf03395ee3"
+      },
+      {
+        "line": 870,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607Y-067-07` | `FR-INTELLIGENCE-L3-067-01` | `AC-INTELLIGENCE-L3-067-04` | 同じsourceで有効decisionがある通常runを再評価 | 有効decisionを同scope内で再利用し追加PO確認を要求しない | 既決判断を毎回確認要求したら不合格。 |",
+        "line_raw_lf_sha256": "b0e44f25e25d6ba8834d7da15831e13528731f90d6d0dcffe5e0b44f2574260b"
+      },
+      {
+        "line": 871,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607Y-067-08` | `FR-INTELLIGENCE-L3-067-01` | `AC-INTELLIGENCE-L3-067-04` | priceだけを上げ、quality gate failureは維持 | quality failureを先に判定し価格が相殺しない | 価格で品質未達を通したら不合格。 |",
+        "line_raw_lf_sha256": "5aa963efa47b289efb1de3fdec0c459b574d5cfb5f176b18f876e9b71feadc05"
+      },
+      {
+        "line": 872,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607Y-078-09` | `FR-INTELLIGENCE-L3-078-01` | `AC-INTELLIGENCE-L3-078-11` | R-06 provider/runtime dimensionsを混同する | 二次元を別々のdelta itemとして保つ | 別dimensionをまとめたら不合格。 |",
+        "line_raw_lf_sha256": "9b71f4bb8fe4104f49c8ab4c9bb10a385ef920353550b2643eb68ee50403ebab"
+      },
+      {
+        "line": 873,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607Y-078-10` | `FR-INTELLIGENCE-L3-078-01` | `AC-INTELLIGENCE-L3-078-11` | R-12 DB deletion後のsame input replayを期待値で照合 | same event inputから同一projection/digestを返す設計を照合し、物理DB操作はしない | ACCEPTED expected output mismatchを隠したら不合格。 |",
+        "line_raw_lf_sha256": "abfdfe90e8daa425701b2e04783db47371b0b05f254471476932f8ef8f048731"
+      },
+      {
+        "line": 874,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607Z-078-01` | `FR-INTELLIGENCE-L3-078-01` | `AC-INTELLIGENCE-L3-078-02` | 正常fixtureからsource receiptだけを欠落させ、他fieldは固定する。 | missing receiptとして個別に不成立とし、推測補完しない。 | receipt欠落を正常deltaとして返したら不合格。 |",
+        "line_raw_lf_sha256": "71c9b323218b3dc04a9bbe7a82d19e6e875019b237cc20f69df312766b22af77"
+      },
+      {
+        "line": 875,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607Z-078-02` | `FR-INTELLIGENCE-L3-078-01` | `AC-INTELLIGENCE-L3-078-02` | 同一scopeのdelta changeを一件だけ重複登録する。 | duplicate changeを一件の同一入力として拒否し、episodeを増やさない。 | 重複changeを独立deltaとして数えたら不合格。 |",
+        "line_raw_lf_sha256": "b264955450e2b9ecc2d02cbe3c05a64f91e31e23efa3011516a929a05ba85900"
+      },
+      {
+        "line": 876,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607Z-078-03` | `FR-INTELLIGENCE-L3-078-01` | `AC-INTELLIGENCE-L3-078-03` | F0 snapshotのrevisionだけをdelta source revisionと不一致にする。 | join不一致をstale/reobservation requiredとして保持する。 | 異版snapshotを一致扱いしたら不合格。 |",
+        "line_raw_lf_sha256": "0bfc07de8b35beccf94021f916b7d65e6997f3378f1bc767f5402414f4252e2c"
+      },
+      {
+        "line": 877,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607Z-078-04` | `FR-INTELLIGENCE-L3-078-01` | `AC-INTELLIGENCE-L3-078-03` | F0 snapshotのdigestだけをdelta source digestと不一致にする。 | digest不一致をstale/reobservation requiredとして保持する。 | 不一致digestを一致扱いしたら不合格。 |",
+        "line_raw_lf_sha256": "b53d12c55da3f3d8d36c1c48411c59efbb2565d807824303163a3efb20df1c51"
+      },
+      {
+        "line": 878,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607Z-078-05` | `FR-INTELLIGENCE-L3-078-01` | `AC-INTELLIGENCE-L3-078-04` | affected itemだけをexact setから欠落させる。 | 影響対象欠落を検出しunaffected projectionを維持する。 | 欠落を成功扱い、または全体再投影したら不合格。 |",
+        "line_raw_lf_sha256": "5942185b0ad760f85ffd218a8262998da12f2cfc6d5fb92da335ba59a869c1e2"
+      },
+      {
+        "line": 879,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607Z-078-06` | `FR-INTELLIGENCE-L3-078-01` | `AC-INTELLIGENCE-L3-078-04` | unaffected item一件だけをinvalidation対象へ追加する。 | 不要なinvalidationを拒否し、exact affected setを保つ。 | 無関係projectionをstale化したら不合格。 |",
+        "line_raw_lf_sha256": "4f5fdd5e58f7db6e65ec751ba49617686b7531fe0357a899e353dc056ae28b0c"
+      },
+      {
+        "line": 880,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607Z-078-07` | `FR-INTELLIGENCE-L3-078-01` | `AC-INTELLIGENCE-L3-078-01` | 正常R-06 fixtureでstable IDだけを欠落させ、delta digestと他fieldを固定する。 | stable ID欠落だけをunknown/incompleteとして該当source ownerへ戻す。 | digestからIDを補完、または全deltaをsuccess扱いしたら不合格。 |",
+        "line_raw_lf_sha256": "cab5d9789b7f5e9ff92846313399272006e32a0d996018c6d4e32ebf13963ebb"
+      },
+      {
+        "line": 881,
+        "literal": "| `CASE-INTELLIGENCE-L10-2607Z-078-08` | `FR-INTELLIGENCE-L3-078-01` | `AC-INTELLIGENCE-L3-078-01` | 正常R-06 fixtureでdelta digestだけを欠落させ、stable IDと他fieldを固定する。 | digest欠落だけをunknown/incompleteとして該当source ownerへ戻す。 | stable IDからdigestを推測、または全deltaをsuccess扱いしたら不合格。 |",
+        "line_raw_lf_sha256": "33ea1705b8ac9b015b51dc167099f211aba396e071f164976da2a272c6e649a8"
+      }
+    ],
+    "docs/helix-intelligence/L10-verification/business-verification.md": [],
+    "docs/helix-intelligence/L10-verification/nfr-verification.md": [
+      {
+        "line": 78,
+        "literal": "| `CASE-INTELLIGENCE-L10-NFR-015-01` | `NFR-INTELLIGENCE-015-01` (根拠付き機能/NFR測定候補（閾値未承認）) | 実装candidate fixtureと、別のactual result fixtureを分け、failure-patternの独立episode identity/reproduction/detection evidence、同一episode重複、別scopeを記録する。 | `AC-INTELLIGENCE-L3-015-01/-02`と照合する: candidateで停止し昇格しないこと、固定L2の「複数独立episode」意味、false-positive/miss/reproducibilityを同scopeで測る。回数thresholdなし。 | 分母不明はunknown。NFR独立合否値/数値閾値は導出しない。 |",
+        "line_raw_lf_sha256": "23fe4a8c275d10ee896f7b3db344286acc1f07b4bbd12f34ad0b8cd9fb590c30"
+      },
+      {
+        "line": 79,
+        "literal": "| `CASE-INTELLIGENCE-L10-NFR-016-01` | `NFR-INTELLIGENCE-016-01` (根拠付き機能/NFR測定候補（閾値未承認）) | repair candidate fixtureとactual-result fixtureを分離する。候補にはtarget/actor/write-set/side-effect/budget/deadline/retry/impact/recovery/post-check/stopを、結果fixtureには宣言target・実actual・source revisionを入れ、各欠落/逸脱は独立fixtureにする。 | `AC-INTELLIGENCE-L3-016-01/-02`と照合し、candidate/actualを混同せず、逸脱/超過をsuccessにしない。親にないbudget額は生成しない。 | 分母・親scope不明はunknown。NFR独立threshold/authorityを作らない。 |",
+        "line_raw_lf_sha256": "077914fc83b11516740a35a4f12d2c757eb0d03e29c47e17bf9e86c81f0360df"
+      }
+    ]
+  },
+  "finding_dispositions": {
+    "M1": {
+      "status": "addressed_in_body_revision",
+      "disposition": "L11 G12/G13/R2187 fixed supplemental crosswalk now represented in parent disposition and supplement AC rows; normal/error/held-out cases; see fixed-source pins and added AC-*-04/AC-067-04/AC-073-04/AC-078-11."
+    },
+    "M2": {
+      "status": "addressed_in_body_revision",
+      "disposition": "Common HARNESS pack is conditional on operation consumption; contract/artifact/dependency version and declared compatibility range are traced; no dependency added to unrelated operation; separate ticket/LABO/OS conditions retained."
+    },
+    "M3": {
+      "status": "addressed_in_body_revision",
+      "disposition": "001/002 shared duties and held-out unassigned capability handled by AC-001-04/002-04 with dedicated fixtures."
+    },
+    "M4": {
+      "status": "addressed_in_body_revision",
+      "disposition": "003–006 dependency, order, field/provenance, target/scope/window, stale/mismatch, alternate representation and LABO separation added to AC-*-04 and isolated cases."
+    },
+    "M5": {
+      "status": "addressed_in_body_revision",
+      "disposition": "005 stale contract, ticket failure return to OS, no INT ticket issuance, selected BRAIN source boundary addressed."
+    },
+    "M6": {
+      "status": "addressed_in_body_revision",
+      "disposition": "model-as-authority, inferred unknown, derived-as-fact, prediction-as-actual and wrong actual overwrite corrected with individual cases."
+    },
+    "M7": {
+      "status": "addressed_in_body_revision",
+      "disposition": "Unsupported retired identity reuse permission removed; no fixed enum or separate authority introduced."
+    },
+    "M8": {
+      "status": "addressed_in_body_revision",
+      "disposition": "007 additional observation/inspection output and counterevidence/irrelevant inspection cases added."
+    },
+    "M9": {
+      "status": "addressed_in_body_revision",
+      "disposition": "008 review scope, five separate mistakes and held-out TP/FN/FP/scope-out classification covered individually."
+    },
+    "M10": {
+      "status": "addressed_in_body_revision",
+      "disposition": "009 finding-kind set, duplicate implementation, unsupported finding, wrong counterevidence and held-out mismatch covered."
+    },
+    "M11": {
+      "status": "addressed_in_body_revision",
+      "disposition": "011 comparison dimensions explicitly enumerated and G13 axes separated; cost missing is not zero; no winner without fixed priority/tolerance."
+    },
+    "M12": {
+      "status": "addressed_in_body_revision",
+      "disposition": "012 uncertain/probable/known, undecided boundary no invented threshold, stale and conflicting evidence separated."
+    },
+    "M13": {
+      "status": "addressed_in_body_revision",
+      "disposition": "013 source-free fact, revision mismatch and no-full-regeneration omission represented as independent cases."
+    },
+    "M14": {
+      "status": "addressed_in_body_revision",
+      "disposition": "014 fixed L2 return split: manifest/scope to INT decision candidate; assignment/evidence to OS; repeatable task and four independent boundary negatives."
+    },
+    "M15": {
+      "status": "addressed_in_body_revision",
+      "disposition": "015 near-miss over-detection, different representation held-out, candidate-only/nonpromotion covered."
+    },
+    "M16": {
+      "status": "addressed_in_body_revision",
+      "disposition": "Unsupported 2-vs-3 episodes threshold removed from NFR and fixtures; fixed “multiple independent episodes” meaning and denominator remain, unknown if indeterminate."
+    },
+    "M17": {
+      "status": "addressed_in_body_revision",
+      "disposition": "016 untrusted candidate, no comprehensive write rights, seeded counterexample, normal regression, scope-out unknown and actual-result-only unknown covered."
+    },
+    "M18": {
+      "status": "addressed_in_body_revision",
+      "disposition": "018 LABO/OS duties, delayed/reordered result, conflict/time missing; 019 applicability/exception/counterexample; 020 correct meaning-layer return addressed."
+    },
+    "M19": {
+      "status": "addressed_in_body_revision",
+      "disposition": "067 decision expiration/conflict, no per-run reconfirmation, LABO035→INT034 contract/result, quality-before-cost, cohort/condition axes, no-HARNESS and unknown-owner return addressed."
+    },
+    "M20": {
+      "status": "addressed_in_body_revision",
+      "disposition": "072 mandatory composition/experiment conditions, 6-part source decisions, missing/stale/unsupported/reference-only, default checklist, mismatch, re-evaluation and candidate-not-judgement cases; runtime sameness is not independence."
+    },
+    "M21": {
+      "status": "addressed_in_body_revision",
+      "disposition": "072 PO B boundary and 078 PO A limited scope specified; fresh/resolved receipt still zero direct changes; no downstream owner invented."
+    },
+    "M22": {
+      "status": "addressed_in_body_revision",
+      "disposition": "072 fixed source disposition now contains legacy HIL-FR-57/58 and whole HIL-NFR-34 identity pin."
+    },
+    "M23": {
+      "status": "addressed_in_body_revision",
+      "disposition": "073 identity/revision, CI result, merge authority and four destination cases separated; 078 retry/order, R06 dimension mix, stale projection and duplicate/source failures isolated."
+    },
+    "M24": {
+      "status": "addressed_in_body_revision",
+      "disposition": "078 R-06/R-07 corrected to exact physical old source lines 55–67/73–89; CAC0 corrected to 20–27/43/46; unrelated R-08/R-13/14 excluded."
+    },
+    "m1": {
+      "status": "addressed_in_body_revision",
+      "disposition": "007 repair language tied to parent’s actual candidate/owner boundary; 013 does not invent SECURITY return without fixed source."
+    },
+    "m2": {
+      "status": "addressed_in_body_revision",
+      "disposition": "listed CASE mutations are reflected in AC bodies; 078 stable ID/delta digest, at-least-once and DB replay, 072 runtime-independence are explicit."
+    },
+    "m3": {
+      "status": "addressed_in_body_revision",
+      "disposition": "007–013 mutation oracles are individualized rather than generic unchanged-field prose."
+    },
+    "m4": {
+      "status": "addressed_in_body_revision",
+      "disposition": "trailing slash removed from all 19 disposition rows."
+    },
+    "m5": {
+      "status": "addressed_in_body_revision",
+      "disposition": "001 now explicitly says no fixed enum and no separate authority."
+    },
+    "m6": {
+      "status": "addressed_in_body_revision",
+      "disposition": "006 old source is labeled neighboring-only for unsupported prediction/falsification claims."
+    },
+    "m7": {
+      "status": "addressed_in_body_revision",
+      "disposition": "new audit points implementation-order B to 2026-10-03 decision, correcting attribution to 9/28 decision."
+    },
+    "m8": {
+      "status": "addressed_in_body_revision",
+      "disposition": "015/016/020 old-source dispositions identify specific historical meaning reused/rederived/replaced."
+    },
+    "m9": {
+      "status": "addressed_in_body_revision",
+      "disposition": "NFR015/016 trace both AC-01 and AC-02."
+    },
+    "m10": {
+      "status": "addressed_in_body_revision",
+      "disposition": "016 candidate and actual-result fixture are separate in CASE and NFR."
+    },
+    "m11": {
+      "status": "addressed_in_body_revision",
+      "disposition": "020 explicitly preserves Product Core requirement/design/acceptance meaning and returns changes to existing owner."
+    },
+    "m12": {
+      "status": "addressed_in_body_revision",
+      "disposition": "6-part retention and 078 source insufficiency/mismatch have explicit AC IDs."
+    },
+    "m13": {
+      "status": "addressed_in_body_revision",
+      "disposition": "072-02t is stale-only and now traces to 072-11; independent 072 cases cover the former bundle."
+    },
+    "m14": {
+      "status": "addressed_in_body_revision",
+      "disposition": "register evidence includes exact raw-LF hashes for 072-006 and HARNESS 078-002 metadata records; INT 078-001 remains the adopted identity record."
+    }
+  },
+  "source_pins": [
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "asset_id": null,
+      "physical_lines": [
+        48,
+        83
+      ],
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "full_file_bytes": 101004,
+      "physical_line_count": 559,
+      "raw_lf_span_sha256": "49547331b4576a58bbb0cdc1cd1b86a5d9688b671cd4024c8f1a5ca1e1ab82cb",
+      "raw_lf_span_bytes": 5560
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "asset_id": null,
+      "physical_lines": [
+        84,
+        119
+      ],
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "full_file_bytes": 101004,
+      "physical_line_count": 559,
+      "raw_lf_span_sha256": "5117e0e7f832bdae0a973157a63567dc76ba78925091820753ee62cdb5457d9a",
+      "raw_lf_span_bytes": 6726
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "asset_id": null,
+      "physical_lines": [
+        120,
+        143
+      ],
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "full_file_bytes": 101004,
+      "physical_line_count": 559,
+      "raw_lf_span_sha256": "cba2db7ab7d97dde755b54936b85a3bf8586fcb51a74c8dde5550ddd42a16c4e",
+      "raw_lf_span_bytes": 4763
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "asset_id": null,
+      "physical_lines": [
+        144,
+        161
+      ],
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "full_file_bytes": 101004,
+      "physical_line_count": 559,
+      "raw_lf_span_sha256": "c67b63f138484f64a4d7eb1470c3954efeabe5397b21fc06b0fe6c3016783e2c",
+      "raw_lf_span_bytes": 3159
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "asset_id": null,
+      "physical_lines": [
+        466,
+        490
+      ],
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "full_file_bytes": 101004,
+      "physical_line_count": 559,
+      "raw_lf_span_sha256": "1b014aca5a6695d47f5bda2b2a0d7135265da95160b471bfccd141da9cb53378",
+      "raw_lf_span_bytes": 8387
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "asset_id": null,
+      "physical_lines": [
+        561,
+        608
+      ],
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "full_file_bytes": 101004,
+      "physical_line_count": 559,
+      "raw_lf_span_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_lf_span_bytes": 0
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "asset_id": null,
+      "physical_lines": [
+        646,
+        658
+      ],
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "full_file_bytes": 101004,
+      "physical_line_count": 559,
+      "raw_lf_span_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_lf_span_bytes": 0
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "asset_id": null,
+      "physical_lines": [
+        19,
+        19
+      ],
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "full_file_bytes": 76601,
+      "physical_line_count": 287,
+      "raw_lf_span_sha256": "18cf02a029bff6e302c86fe2f4bd1d268010e92d8542f25ea5b2863bbb5083ee",
+      "raw_lf_span_bytes": 425
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "asset_id": null,
+      "physical_lines": [
+        62,
+        80
+      ],
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "full_file_bytes": 76601,
+      "physical_line_count": 287,
+      "raw_lf_span_sha256": "a0ad3820678ec48c85f8e6c846989f82cb3ff8b7207b8068221f250689bb0e1f",
+      "raw_lf_span_bytes": 5608
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "asset_id": null,
+      "physical_lines": [
+        146,
+        172
+      ],
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "full_file_bytes": 76601,
+      "physical_line_count": 287,
+      "raw_lf_span_sha256": "af5a16d084af484765f1dc437625b017dee5879b0a3c7eb1e6b73d689ebb5b88",
+      "raw_lf_span_bytes": 16447
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "asset_id": null,
+      "physical_lines": [
+        197,
+        199
+      ],
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "full_file_bytes": 76601,
+      "physical_line_count": 287,
+      "raw_lf_span_sha256": "33731be8acc58fc615b246af9910ecbd4d8f3ddbc2f13e47a3caa2eb4795aaa2",
+      "raw_lf_span_bytes": 2385
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "asset_id": null,
+      "physical_lines": [
+        264,
+        265
+      ],
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "full_file_bytes": 76601,
+      "physical_line_count": 287,
+      "raw_lf_span_sha256": "af2fd5a079571e75c4bf4b42be38aeaff5e7d5c6ad102d1ee6a32da1efda10a5",
+      "raw_lf_span_bytes": 969
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "asset_id": null,
+      "physical_lines": [
+        289,
+        314
+      ],
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "full_file_bytes": 76601,
+      "physical_line_count": 287,
+      "raw_lf_span_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_lf_span_bytes": 0
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "asset_id": null,
+      "physical_lines": [
+        317,
+        326
+      ],
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "full_file_bytes": 76601,
+      "physical_line_count": 287,
+      "raw_lf_span_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_lf_span_bytes": 0
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "asset_id": null,
+      "physical_lines": [
+        363,
+        382
+      ],
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "full_file_bytes": 76601,
+      "physical_line_count": 287,
+      "raw_lf_span_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_lf_span_bytes": 0
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "asset_id": null,
+      "physical_lines": [
+        398,
+        434
+      ],
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "full_file_bytes": 76601,
+      "physical_line_count": 287,
+      "raw_lf_span_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_lf_span_bytes": 0
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "asset_id": null,
+      "physical_lines": [
+        425,
+        425
+      ],
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "full_file_bytes": 76601,
+      "physical_line_count": 287,
+      "raw_lf_span_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_lf_span_bytes": 0
+    },
+    {
+      "revision": "64e37a6c3783576dce21b9a3656364b225407de7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+      "physical_lines": [
+        55,
+        67
+      ],
+      "full_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "full_file_bytes": 6358,
+      "physical_line_count": 126,
+      "raw_lf_span_sha256": "674223b90f59e2d48182882b73d0bce2bfbdbae0d6b6862a324f760e3b193f2d",
+      "raw_lf_span_bytes": 819
+    },
+    {
+      "revision": "64e37a6c3783576dce21b9a3656364b225407de7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+      "physical_lines": [
+        73,
+        89
+      ],
+      "full_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "full_file_bytes": 6358,
+      "physical_line_count": 126,
+      "raw_lf_span_sha256": "d57e98a69f479dd5c3f2c4b0cba7bd0cfeb79ecfb285bd89bd1b2b00ce216efe",
+      "raw_lf_span_bytes": 851
+    },
+    {
+      "revision": "64e37a6c3783576dce21b9a3656364b225407de7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+      "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
+      "physical_lines": [
+        20,
+        27
+      ],
+      "full_file_sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+      "full_file_bytes": 3639,
+      "physical_line_count": 47,
+      "raw_lf_span_sha256": "75b91120d99b0d929953e2011123c9dc6bf42a573913b4c476d9c4e448bae2e1",
+      "raw_lf_span_bytes": 1043
+    },
+    {
+      "revision": "64e37a6c3783576dce21b9a3656364b225407de7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+      "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
+      "physical_lines": [
+        43,
+        43
+      ],
+      "full_file_sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+      "full_file_bytes": 3639,
+      "physical_line_count": 47,
+      "raw_lf_span_sha256": "7e33bd66a80ce3ee1cdc0b9972aad27ad1b9117eed4a894261fd2c92f69cd307",
+      "raw_lf_span_bytes": 58
+    },
+    {
+      "revision": "64e37a6c3783576dce21b9a3656364b225407de7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+      "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
+      "physical_lines": [
+        46,
+        46
+      ],
+      "full_file_sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+      "full_file_bytes": 3639,
+      "physical_line_count": 47,
+      "raw_lf_span_sha256": "4704d17ce64b8bf4a29eaf4bd64bd9dde3317a5096842d2099c7d55f4f7b7ea2",
+      "raw_lf_span_bytes": 69
+    },
+    {
+      "revision": "64e37a6c3783576dce21b9a3656364b225407de7",
+      "path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "physical_lines": [
+        147,
+        148
+      ],
+      "full_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "full_file_bytes": 56091,
+      "physical_line_count": 257,
+      "raw_lf_span_sha256": "a0b0d0cd38da6f92b2009d2c299c3ec0f3a2f1b4e1d67c55b3a73d002cf9f158",
+      "raw_lf_span_bytes": 837
+    },
+    {
+      "revision": "64e37a6c3783576dce21b9a3656364b225407de7",
+      "path": "docs/governance/requirements-source/requirements-ir/requirements.json",
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "full_file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "full_file_bytes": 284683,
+      "physical_line_count": 6636
+    },
+    {
+      "revision": "92e2ba2ac330c7cf9ca7c71a7c4876d1b5cdb3b6",
+      "path": "docs/governance/requirements-source/requirements-ir/requirements.json",
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "identity_pointer": "#/HIL-NFR-34",
+      "identity_locator_lines": [
+        5842,
+        5884
+      ],
+      "full_file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "full_file_bytes": 284683,
+      "physical_line_count": 6636,
+      "note": "whole IR identity atom; the full object is retained as identity evidence, not asserted to be all independently adopted conditions",
+      "identity_raw_lf_span_sha256": "b8338371c9441004370d821b9f4ebbdc284ef4a2f7c8474353baebae3809e8cd",
+      "identity_raw_lf_span_bytes": 1903
+    }
+  ],
+  "register_metadata_row_pins": {
+    "path": "docs/governance/management-provisional-requirement-register.jsonl",
+    "full_sha256": "d24a982af1c468bb32c9822777a3234d3ce065ff63b89c944b7b04447610c99b",
+    "full_bytes": 3370048,
+    "rows": [
+      {
+        "line": 664,
+        "literal": "{\"registration_id\":\"MPR-RC-HELIXINTELLIGENCE-L2-078-001\",\"supersedes_registration_id\":null,\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HELIXINTELLIGENCE-L2-078\",\"requirement_kind\":\"unit\",\"product_target\":\"HELIX-INTELLIGENCE\",\"candidate_source_path\":\"docs/helix-intelligence/L2-requirements/intelligence-requirements.md#helixintelligence-l2-078\",\"candidate_semantic_digest\":\"sha256:855512dea63dfe30bdd768d8c59f75f278a3b8c2cceccc0177be6c81020dc292\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@b537706c85a7258a6e46c0a50d85eaa5268b2502 sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（現行parent固定bytesを参照、078未採択）\",\"parent_planning_revision\":\"docs/helix-intelligence/L1-planning/intelligence-intent.md@b537706c85a7258a6e46c0a50d85eaa5268b2502 sha256:8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8（L1-009親。078未採択）\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/aafd-r06-r12-source-lines-2026-10-02.jsonl#LEGACY-CAND-LINE-000055,LEGACY-CAND-LINE-000056,LEGACY-CAND-LINE-000058,LEGACY-CAND-LINE-000059,LEGACY-CAND-LINE-000060,LEGACY-CAND-LINE-000061,LEGACY-CAND-LINE-000076,LEGACY-CAND-LINE-000079,LEGACY-CAND-LINE-000149,LEGACY-CAND-LINE-000150,LEGACY-CAND-LINE-000151,LEGACY-CAND-LINE-000152,LEGACY-CAND-LINE-000153,LEGACY-CAND-LINE-000155,LEGACY-CAND-LINE-000156,LEGACY-CAND-LINE-000161,LEGACY-CAND-LINE-000162,LEGACY-CAND-LINE-000164,LEGACY-CAND-LINE-000165,LEGACY-CAND-LINE-000167,LEGACY-CAND-LINE-000168,LEGACY-CAND-LINE-000170\",\"source_atom_set_digest\":\"sha256:468493409d710ca0b6f7ce0f6d034c68ceaf0e50745bc7aa07dc1e72d9fb0a8e\",\"source_atom_count\":22,\"source_collection_scope\":\"旧AAFD-R-06/R-07/R-09〜12とAC-006/007/009〜012、否定oracle 43/46。R-01〜05/R-08/R-13〜15、旧E2E/runtime/CI条件、AAFD全体closureを含まない。\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/aafd-r06-r12-coverage-receipt-2026-10-02.json\",\"coverage_result\":\"no_loss_limited_to_selected_R06_R07_R09_R12_and_acceptance_atoms\",\"carried_atom_refs\":[\"LEGACY-CAND-LINE-000055\",\"LEGACY-CAND-LINE-000056\",\"LEGACY-CAND-LINE-000058\",\"LEGACY-CAND-LINE-000059\",\"LEGACY-CAND-LINE-000060\",\"LEGACY-CAND-LINE-000061\",\"LEGACY-CAND-LINE-000076\",\"LEGACY-CAND-LINE-000079\",\"LEGACY-CAND-LINE-000149\",\"LEGACY-CAND-LINE-000150\",\"LEGACY-CAND-LINE-000151\",\"LEGACY-CAND-LINE-000152\",\"LEGACY-CAND-LINE-000153\",\"LEGACY-CAND-LINE-000155\",\"LEGACY-CAND-LINE-000156\",\"LEGACY-CAND-LINE-000161\",\"LEGACY-CAND-LINE-000162\",\"LEGACY-CAND-LINE-000164\",\"LEGACY-CAND-LINE-000165\",\"LEGACY-CAND-LINE-000167\",\"LEGACY-CAND-LINE-000168\",\"LEGACY-CAND-LINE-000170\"],\"preserved_pending_registration_refs\":[\"MPR-SH-CANDIDATE-001\"],\"human_decision_disposition_refs\":[],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex execution lane\",\"registered_at\":\"2026-10-02T09:24:31+09:00\",\"evidence_refs\":[\"docs/helix-intelligence/L1-planning/intelligence-intent.md#HELIXINTELLIGENCE-L1-009\",\"docs/governance/audits/requirement-registration/aafd-r06-r12-source-lines-2026-10-02.jsonl\",\"docs/governance/audits/requirement-registration/aafd-r06-r12-coverage-receipt-2026-10-02.json\",\"docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md\",\"docs/governance/decisions/po-decision-2026-09-29-57candidates.md\",\"docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md#HELIXINTELLIGENCE-L11-078\"],\"correction_reason\":\"First registration. Candidate expresses only old AAFD R-06/R-07/R-09-R-12 selected conditions as an unadopted proposal; adoption and formal Future Synthesis owner remain undecided.\"}",
+        "raw_lf_sha256": "6ddbcd8a82460c8fd9ee4f676fd276bd73a653c9c7fcee4f01df5650a4990bdb"
+      },
+      {
+        "line": 686,
+        "literal": "{\"registration_id\":\"MPR-RC-HARNESS-L2-078-002\",\"supersedes_registration_id\":\"MPR-RC-HARNESS-L2-078-001\",\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HARNESS-L2-078\",\"requirement_kind\":\"unit\",\"product_target\":\"HELIX-HARNESS\",\"candidate_source_path\":\"docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-078\",\"candidate_semantic_digest\":\"sha256:475b9340765d0b74fcad48102a433d836f654ce72213e689b2822b4ccdacebbc\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@f38bde044a7dfbf12aec0203b21a9384eef6ad8f sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78 (fixed concept bytes; candidate adoption not inherited)\",\"parent_planning_revision\":\"docs/helix-harness/L1-planning/product-intent.md@f38bde044a7dfbf12aec0203b21a9384eef6ad8f sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f (fixed/adopted HARNESS L1 target; candidate adoption not inherited)\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/hil-fr45-nfr28-candidate-source-lines-2026-10-02-r2.jsonl#IR153-HIL-FR-45-TYPED-LEDGER-RECEIPT+IR153-HIL-NFR-28-ACTIVE-REQUIREMENT-BINDING\",\"source_atom_set_digest\":\"sha256:d1c3d686f58bdd005332c2518169b1dcce397c2f9ef2ca94c10eb88b6fba64aa\",\"source_atom_count\":2,\"source_collection_scope\":\"Two selected source identities: HIL-FR-45 line 135 (one selected old source line atom) and the whole HIL-NFR-28 Requirement IR identity at #/HIL-NFR-28 (one IR atom). NFR-28 old L1 line 208 is corroborating wording, not an additional atom. The selected source atom count (2) is not the target active-requirement denominator: for the explicitly authority-scoped target, enumerate every active requirement revision from its membership source and bind all six NFR-28 conditions per requirement. NFR-28 contributes its scope-bounded active-requirement population, six individual binding conditions, and ambiguity/orphan/stale not-green conditions. No universal all-4,020 or all-mechanism population is added.\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/hil-fr45-candidate-coverage-receipt-2026-10-02-r2.json\",\"coverage_receipt_sha256\":\"sha256:7e54787414f3a5beda3069895a9e9e9e6a6c9ce4e669c944a0683c05b9c55243\",\"coverage_result\":\"candidate_input_scoped; NFR-28 justified service/capability non-applicability is retained only in that field as an evidence-bound value; other twelve fields retain required meaning/values unless separately evidenced; all active target-scope requirements remain in denominator; FR-45 change-operation N/A remains receipt-gated.\",\"carried_atom_refs\":[\"IR153-HIL-FR-45-TYPED-LEDGER-RECEIPT\",\"IR153-HIL-NFR-28-ACTIVE-REQUIREMENT-BINDING\"],\"preserved_pending_registration_refs\":[\"MPR-SH-IR-003#HIL-FR-45 remains live; successor_requirement_ids empty.\",\"MPR-SH-IR-003#HIL-NFR-28 remains live; successor_requirement_ids empty; no adoption/formal source transfer.\"],\"human_decision_disposition_refs\":[\"A/B/C in coverage receipt PO material; A recommended; B leaves NFR-28 clause unresolved; C records explicit meaning-decision option.\"],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex execution lane\",\"registered_at\":\"2026-10-02T12:42:30+09:00\",\"evidence_refs\":[\"docs/helix-harness/L2-requirements/product-requirements.md\",\"docs/helix-harness/L11-acceptance/product-acceptance.md\",\"docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl#REQSRC-LINE-01886\",\"archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:135\",\"docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md\",\"docs/governance/decisions/po-decision-2026-09-29-57candidates.md\",\"docs/governance/decisions/po-decision-2026-09-29-11candidates.md\",\"docs/governance/decisions/po-decision-2026-09-30-live26.md\",\"docs/governance/audits/requirements-stage/hil-fr42-fr45-current-contract-composition-audit-2026-10-02.json\",\"docs/governance/audits/requirement-registration/hil-fr45-nfr28-candidate-source-lines-2026-10-02-r2.jsonl\",\"archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-28\",\"archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:208\",\"docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl#HIL-NFR-28\",\"docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl#REQSRC-LINE-01951\",\"archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json#/HR-FR-HIL-17\",\"archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json#/HAC-HIL-17a/b/c\",\"archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json#/HAT-HIL-17\",\"docs/governance/audits/requirement-registration/hil-fr45-nfr28-candidate-source-lines-2026-10-02-r2.jsonl\",\"docs/governance/audits/requirement-registration/hil-fr45-candidate-coverage-receipt-2026-10-02-r2.json\"],\"correction_reason\":\"Revision 002 follow-up corrects the source distinction without creating a new candidate identity or changing 001/r1 history: preserve NFR-28’s justified service/capability non-applicability as an evidence-bound value in the present field (FR-45 line 135 does not prohibit field-value N/A); retain all 13 semantic fields and typed relations; keep all authority-scoped active requirements in the denominator independent of the two selected source atoms; distinguish field-value non-applicability from FR-45 N/A change operation, which still requires before/after digest, all source atom dispositions, downstream stale/result, and review-authority receipt. L11 now includes normal/negative cases for justified N/A, independent missing/wrong-revision bindings, single active requirement exclusion, and all six operations. Follow-up scope correction: NFR-28 explicitly permits reasoned non-applicability for the service/capability binding only; the two selected sources do not generalize field-value non-applicability to the other twelve fields. Preserve their required meaning/values absent separate field-specific source evidence, and do not waive owner/source/oracle or relation fields. L2/L11, receipt section/full-file pins, and this existing -002 registration are synchronized; -001/r1 remains unchanged.\",\"source_atom_set_digest_rule\":\"Sort by atom_id; concatenate UTF-8 atom_id + SPACE + atom_digest + LF, SHA-256. For the selected old line atom IR153-HIL-FR-45-TYPED-LEDGER-RECEIPT, atom_digest is source_line_sha256 without prefix; for whole IR identity IR153-HIL-NFR-28-ACTIVE-REQUIREMENT-BINDING, atom_digest is identity.statement.semantic_digest without prefix. The NFR-28 corroborating L1 line is not counted.\",\"source_atom_file_sha256\":\"sha256:ae9c6503aa36675d6b4be17b9dff159eb545257b69f2a5eb6ba31387b6f57f4f\",\"source_line_coverage_result\":\"candidate_input_scoped; full NFR-28 identity preserved and target-scope six bindings/active denominator proposed; source owner/adoption/formal successor remain unresolved.\"}",
+        "raw_lf_sha256": "fc1495dbe8041bcb2dd8838f680d7a5818e601a33dc9c0738c8d25996c05059c"
+      },
+      {
+        "line": 687,
+        "literal": "{\"registration_id\":\"MPR-RC-HARNESS-L2-078-003\",\"supersedes_registration_id\":\"MPR-RC-HARNESS-L2-078-002\",\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HARNESS-L2-078\",\"requirement_kind\":\"unit\",\"product_target\":\"HELIX-HARNESS\",\"candidate_source_path\":\"docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-078\",\"candidate_semantic_digest\":\"sha256:986b276e67c1c21ec93c58dbe60c05afbc82393dc3ff0e7f44bb0b1887c54567\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@f38bde044a7dfbf12aec0203b21a9384eef6ad8f sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78 (fixed concept bytes; candidate adoption not inherited)\",\"parent_planning_revision\":\"docs/helix-harness/L1-planning/product-intent.md@f38bde044a7dfbf12aec0203b21a9384eef6ad8f sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f (fixed/adopted HARNESS L1 target; candidate adoption not inherited)\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/hil-fr45-nfr28-candidate-source-lines-2026-10-02-r2.jsonl#IR153-HIL-FR-45-TYPED-LEDGER-RECEIPT+IR153-HIL-NFR-28-ACTIVE-REQUIREMENT-BINDING\",\"source_atom_set_digest\":\"sha256:d1c3d686f58bdd005332c2518169b1dcce397c2f9ef2ca94c10eb88b6fba64aa\",\"source_atom_count\":2,\"source_collection_scope\":\"Two selected source identities: HIL-FR-45 line 135 (one selected old source line atom) and the whole HIL-NFR-28 Requirement IR identity at #/HIL-NFR-28 (one IR atom). NFR-28 old L1 line 208 is corroborating wording, not an additional atom. The selected source atom count (2) is not the target active-requirement denominator: for the explicitly authority-scoped target, enumerate every active requirement revision from its membership source and bind all six NFR-28 conditions per requirement. NFR-28 contributes its scope-bounded active-requirement population, six individual binding conditions, and ambiguity/orphan/stale not-green conditions. No universal all-4,020 or all-mechanism population is added.\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/hil-fr45-candidate-coverage-receipt-2026-10-02-r3.json\",\"coverage_receipt_sha256\":\"sha256:ec2671b30d66751aa37c0a1826ba3cceab32fc5df49730b1dedee2f9409e9508\",\"coverage_result\":\"candidate_input_scoped; NFR-28 justifies service/capability non-applicability only as an evidence-bound value when the field is actually non-applicable; a contradictory false N/A is a failure. Coverage row count, sequential IDs, and document existence do not prove design completeness; all active target-scope requirements and six bindings remain in the denominator. FR-45 operations stay receipt-gated.\",\"carried_atom_refs\":[\"IR153-HIL-FR-45-TYPED-LEDGER-RECEIPT\",\"IR153-HIL-NFR-28-ACTIVE-REQUIREMENT-BINDING\"],\"preserved_pending_registration_refs\":[\"MPR-SH-IR-003#HIL-FR-45 remains live; successor_requirement_ids empty.\",\"MPR-SH-IR-003#HIL-NFR-28 remains live; successor_requirement_ids empty; no adoption/formal source transfer.\"],\"human_decision_disposition_refs\":[\"A/B/C in coverage receipt PO material; A recommended; B leaves NFR-28 clause unresolved; C records explicit meaning-decision option.\"],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex execution lane\",\"registered_at\":\"2026-10-03\",\"evidence_refs\":[\"docs/helix-harness/L2-requirements/product-requirements.md\",\"docs/helix-harness/L11-acceptance/product-acceptance.md\",\"docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl#REQSRC-LINE-01886\",\"archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:135\",\"docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md\",\"docs/governance/decisions/po-decision-2026-09-29-57candidates.md\",\"docs/governance/decisions/po-decision-2026-09-29-11candidates.md\",\"docs/governance/decisions/po-decision-2026-09-30-live26.md\",\"docs/governance/audits/requirements-stage/hil-fr42-fr45-current-contract-composition-audit-2026-10-02.json\",\"docs/governance/audits/requirement-registration/hil-fr45-nfr28-candidate-source-lines-2026-10-02-r2.jsonl\",\"archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-28\",\"archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:208\",\"docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl#HIL-NFR-28\",\"docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl#REQSRC-LINE-01951\",\"archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json#/HR-FR-HIL-17\",\"archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json#/HAC-HIL-17a/b/c\",\"archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json#/HAT-HIL-17\",\"docs/governance/audits/requirement-registration/hil-fr45-nfr28-candidate-source-lines-2026-10-02-r2.jsonl\",\"docs/governance/audits/requirement-registration/hil-fr45-candidate-coverage-receipt-2026-10-02-r2.json\"],\"correction_reason\":\"Independent review of 002/r2 required two source-faithful additions: (1) make HIL-NFR-28 first sentence explicit that coverage row count, ID sequence, and document existence alone do not establish design completeness, with an independent L11 negative; (2) reject a reasoned-looking service/capability N/A when authority/scope evidence shows that field actually applies. Old HST-CASE-029-23 and -18 are retained as individually hashed design-only references, with cases -11..-15/-17/-20 individually mapped to FR-45 operation receipt conditions. They are design-defined/not-implemented and were not executed. This revision adds only the same HARNESS-L2-078 identity, preserves 001/r1 and 002/r2 bytes, and updates the current 003/r3 candidate, receipt, and registration pins; no authority/adoption effect.\",\"source_atom_set_digest_rule\":\"Sort by atom_id; concatenate UTF-8 atom_id + SPACE + atom_digest + LF, SHA-256. For the selected old line atom IR153-HIL-FR-45-TYPED-LEDGER-RECEIPT, atom_digest is source_line_sha256 without prefix; for whole IR identity IR153-HIL-NFR-28-ACTIVE-REQUIREMENT-BINDING, atom_digest is identity.statement.semantic_digest without prefix. The NFR-28 corroborating L1 line is not counted.\",\"source_atom_file_sha256\":\"sha256:ae9c6503aa36675d6b4be17b9dff159eb545257b69f2a5eb6ba31387b6f57f4f\",\"source_line_coverage_result\":\"candidate_input_scoped; full NFR-28 identity preserved and target-scope six bindings/active denominator proposed; source owner/adoption/formal successor remain unresolved.\",\"candidate_pair_section_sha256\":{\"HARNESS-L2-078\":\"sha256:986b276e67c1c21ec93c58dbe60c05afbc82393dc3ff0e7f44bb0b1887c54567\",\"HARNESS-L11-078\":\"sha256:c6a78fc71a47e33c60229001bd0813c426f65513e3942e7cc7fcfe4dd174a2e9\"},\"candidate_pair_full_file_sha256\":{\"docs/helix-harness/L2-requirements/product-requirements.md\":\"sha256:37c15240f05cacceb2702603eb5c6e31fb28d9f6d5c3d000dea5f8e3c760985f\",\"docs/helix-harness/L11-acceptance/product-acceptance.md\":\"sha256:c35f117ac21069ec4c40087dd0151d647d9ed361963e319741a068cf282359c2\"},\"source_atom_set_file_sha256\":\"sha256:ae9c6503aa36675d6b4be17b9dff159eb545257b69f2a5eb6ba31387b6f57f4f\"}",
+        "raw_lf_sha256": "6345226cbdec1f4fdbd6ec0ba9937e7c2ad6cafad91794ce0f80221e1b69af95"
+      },
+      {
+        "line": 1030,
+        "literal": "{\"registration_id\":\"MPR-RC-HELIXINTELLIGENCE-L2-072-006\",\"supersedes_registration_id\":\"MPR-RC-HELIXINTELLIGENCE-L2-072-005\",\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HELIXINTELLIGENCE-L2-072\",\"requirement_kind\":\"unit\",\"product_target\":\"HELIX-INTELLIGENCE\",\"candidate_source_path\":\"docs/helix-intelligence/L2-requirements/intelligence-requirements.md#helixintelligence-l2-072\",\"candidate_semantic_digest\":\"sha256:d8376dc314dc4aebe7b413a40d4855e3147d6e5ec870d9790395825c5f8cc775\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@f6dad2a33e24f000b87d7f09b8d40288257e74cc sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（親候補採択は継承しない）\",\"parent_planning_revision\":\"docs/helix-intelligence/L1-planning/intelligence-intent.md@f6dad2a33e24f000b87d7f09b8d40288257e74cc sha256:8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8（固定L1本文。候補採択は継承しない）\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/hil-nfr34-int072-source-ledger-2026-10-03.jsonl\",\"source_atom_set_digest\":\"sha256:b29e02104b53c9288185f1e433d5c6367f3c1de29e5b12fb96beb4a8508fb5b3\",\"source_atom_count\":4,\"source_collection_scope\":\"004のHIL-BR-29/HIL-FR-57/HIL-FR-58の3 source atomsを保持し、HIL-NFR-34 whole IR identity atomを加える。NFR34は選択source changeによるcandidate/shadow stale facetだけを部分対応し、その他の義務はMPR-SH-IR-004へ保留。L1 line 214はcorroboration、HR/HAC/HATはconsumer contextで追加atomではない。\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/hil-nfr34-int072-candidate-coverage-receipt-2026-10-03-r2.json\",\"coverage_result\":\"no_loss\",\"carried_atom_refs\":[\"IR153-HIL-NFR-34-WHOLE-IDENTITY\",\"JUDGMENT-PACK-infinity-loop-platform-requirements.md-L0081\",\"JUDGMENT-PACK-infinity-loop-platform-requirements.md-L0147\",\"JUDGMENT-PACK-infinity-loop-platform-requirements.md-L0148\"],\"preserved_pending_registration_refs\":[\"MPR-SH-IR-004#HIL-NFR-34\",\"MPR-SH-JUDGMENT-PACK-002\"],\"human_decision_disposition_refs\":[],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex execution lane (L3-D0 current locator correction; authority_effect:none)\",\"registered_at\":\"2026-10-03T00:00:00+09:00\",\"evidence_refs\":[\"docs/helix-intelligence/L2-requirements/intelligence-requirements.md\",\"docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md\",\"docs/governance/audits/requirement-registration/hil-nfr34-int072-source-ledger-2026-10-03.jsonl\",\"docs/governance/audits/requirement-registration/hil-nfr34-int072-candidate-coverage-receipt-2026-10-03-r2.json\",\"docs/governance/audits/requirement-registration/intelligence-judgment-pack-coverage-receipt-2026-09-28-r4.json\",\"docs/governance/decisions/po-decision-2026-09-29-57candidates.md\",\"docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md\",\"docs/helix-intelligence/L1-planning/intelligence-intent.md\",\"docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md\",\"docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl\",\"docs/governance/legacy-migration/ir/legacy-ir-product-unit-decomposition-bootstrap.jsonl\",\"docs/governance/legacy-migration/ir/legacy-ir-target-routing-queue.jsonl\",\"docs/governance/legacy-migration/ir/legacy-ir-document-source-relation.jsonl\",\"docs/governance/legacy-migration/requirement/legacy-requirement-supplementary-source-carry-forward.jsonl\",\"docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md#43\",\"docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl:136\",\"docs/governance/decisions/po-decision-2026-09-29-57candidates.md#85\"],\"correction_reason\":\"既採択004の固定partと意味を維持してNFR34のselected-source stale facetをL2/L11末尾へ限定追補。全catalogの無条件stale化、OS dispatch義務、tool authority、NFR34全条件のclosureを採択済みとしない。r4/旧source atom記録は不変。 未公開005 receipt/L11 fixtureを訂正し、023各分類・選択source種別ごとにidentity、owner、exact revision/digest、契約version range、互換根拠、applicabilityを分離した。Concept/L1 parent commitをdecision固定先f6dad2aへ訂正（従前比較先とblob同値）。採択済み004の4parts、source atom集合、authority、dispatch境界は不変。 Review 5961841161 Minor 1/2/3: PRC-HIL-NFR-34-001の旧OS routing候補と004だけに適用されるrow 85採択を区別し、実行時guardはOS、INT candidate/shadow stale facetのみ005の未採択提案として記録。未採択076のmodel qualification proposalと005の選択model-catalog staleを分離。row 85はevidence_refsに保ちhuman_decision_disposition_refsを空配列へ訂正。; L3-D0 current locator correction: refresh current holding/receipt locators only; candidate meaning, source/candidate digests, counts, state, authority, owner and human-decision status are unchanged.\",\"coverage_receipt_sha256\":\"sha256:6f2637a7835df5058749ffcd7b0108d1f6aa16b831b0698f7521c85e52dcaa99\",\"source_atom_set_file_sha256\":\"sha256:1df49cc4f48505f654565edeec7acbef28b155adc1d149dd7e73f5c7c6840fd9\",\"candidate_pair_parts_ref\":\"docs/governance/audits/requirement-registration/hil-nfr34-int072-candidate-coverage-receipt-2026-10-03-r2.json#/candidate_digest_parts\"}",
+        "raw_lf_sha256": "5faa2106d66ef6fd6eadd8c58e489c80453c92a5dc4920caacfe455308a3325a"
+      }
+    ],
+    "note": "MPR-RC-HARNESS-L2-078-002 is a separate metadata-only HARNESS registration, not a new INT 078 authority; adopted INT registration remains 078-001."
+  },
+  "counts": {
+    "explicit_AC_definitions": 102,
+    "unique_AC_definitions": 102,
+    "duplicate_AC_definitions": 0,
+    "FV_AC_refs": 101,
+    "dangling_FV_AC_refs": 0,
+    "FV_CASE_ids": 640
+  },
+  "static_validation": {
+    "scfctl_validate": "PASS: bindings=147, fail=0",
+    "scfctl_stale": "PASS: stale=0",
+    "scfctl_residuals": "PASS: residuals=0",
+    "govcheck": "PASS: atoms=7622 requirements=57 files=58",
+    "git_diff_check": "PASS",
+    "markdown_table_width": "PASS: no inconsistent column counts in FV tables",
+    "AC_definition_duplicates": "PASS: no duplicate explicit AC definitions",
+    "six_latest_main_prefixes": "PASS: current six canonical blobs all begin with exact full blob bytes from base commit 29e814a92af2aa52afcbcdd60549b32a2448513a",
+    "dangling_FV_AC_references": "PASS: no dangling AC references"
+  },
+  "limitations": [
+    "Formal review finding dispositions were addressed by the creator; this is not independent review and root remains semantic verifier.",
+    "Old-source spans explicitly corrected for AAFD R-06/R-07 and CAC0; other source inventory entries are carried from immutable prior audit and not all independently re-read for this correction.",
+    "Legacy NFR-34 is pinned as whole JSON IR identity, not treated as an executable test or new requirement authority.",
+    "No legacy runtime, old CLI, tests, CI, or Bun executed."
+  ]
+}

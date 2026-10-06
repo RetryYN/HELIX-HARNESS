@@ -120,3 +120,30 @@ NFR候補は計測対象と比較値であり、POごとのparameter gateでは�
 | `CASE-OS-L10-NFR-046-01` | `NFR-OS-L3-046-01` | authority/HEAD/base/scope/contract各一変異と無関係scope対照。 | required binding一致100%、変更後の古い証拠流用0、無関係scopeの誤stale0。 | 適用contractを特定できない遷移は未完として測定外へ理由付き分離。 |
 | `CASE-OS-L10-NFR-048-01` | `NFR-OS-L3-048-01` | existing resolution conditionを満たす完全evidence、各field欠落、stale/wrong scope/prose-only、再発行後同条件LABO評価、closed-ticket追補、window未満/未追跡/打切り観測を比較。 | false resolution=0、original closure上書き=0、censored/untracked observationからのdefect 0誤認=0。 | resolution適格性・evaluation population unknownは成功分母へ混ぜず、unacknowledged/unevaluated/finding disappearance/別scope successを別々に照合する。 |
 | `CASE-OS-L10-NFR-052-01` | `NFR-OS-L3-052-01` | owner/other-use/open-work/remote-authority/実施者の対象・作用・結果の記録経路、content HEAD/base/review pairを一つずつ変異し、cleanupを反復する。trial merge/stale/dependencyの個別unknownとreview bindingのmissingも与える。new HEAD review欠落、blocker残存、merge admission欠落、notification/ACK/merge event/ancestryだけのreceipt誤認も個別fixtureで測る。base変更後にpair一致/stale=0/依存維持する対照は保持可能状態として観測し、reviewed pair一致後の一律returnを要求しない。 | 不適格資源誤削除=0、実不一致後のold-review利用=0、eligible local cleanup再実行で副作用なし。read-afterとcleanup記録の混同0、旧CIによる代替0。 | ownership/未完/authority unknownは削除せず未評価へ。authorityがあっても記録経路欠落なら削除せずcleanup未完理由を該当ownerへ返す。最新base再照合後にreviewed pair一致・stale=0・依存維持の場合は、既存stateを保持可能な状態として報告する。 |
+
+
+## Stage 5 — 4親のNFR測定CASE候補
+
+この追補は既存文書のStage 2b/Stage 2a/Stage 3/Stage 4 scope欄を遡及変更せず、ここに列挙したStage 5対象だけを追加する候補である。先頭のstatusは先行scopeの状態を示す。
+
+| NFR CASE | NFR候補 | 集計対象 functional CASE | 観測と未評価条件 |
+|---|---|---|---|
+| `CASE-OS-L10-NFR-025-01` | `NFR-OS-L3-025-01` | `CASE-OS-L10-025-01`–`32` | service①〜⑦および選択scopeの正常/部分未見とunknown等のfixture内分類・誤結合を計数。全運転KPIではない。|
+| `CASE-OS-L10-NFR-026-01` | `NFR-OS-L3-026-01` | `CASE-OS-L10-026-01`–`55` | source/contract/permission/dependency/recovery/human入力状態、closure、空pack集合の候補除外、代替space、minimum-proof stateを分離。|
+| `CASE-OS-L10-NFR-031-01` | `NFR-OS-L3-031-01` | `CASE-OS-L10-031-01`–`87` (066/068/070/072除外; 031-25 alias) | old 60s/3m comparisonと現在適用budgetを混同しない。各固定L2-031 measurement fieldの有無/stale/scope不一致、AC03単変異、安全性/並列化/回収traceをCASE別集計し、欠落population等のpercentileを未評価とする。|
+| `CASE-OS-L10-NFR-047-01` | `NFR-OS-L3-047-01` | `CASE-OS-L10-047-01`–`38` | reason/evidence/根拠source revisionの独立欠落、Assignment/Attempt/result/authority非継承、unknown軸、双方向参照・owner backflowをCASE別集計する。|
+
+これらはdocumented fixtureの静的集計候補であり、実測やoperational NFR達成を示さない。
+
+### Stage 5 review01補正overlay — 集計対象と重複の扱い
+
+下表はfunctional verificationに定義した個別CASEだけを参照する。既存の範囲表に記した終端IDは補正後の最終IDへ更新し、CASE-031-25（031-06と同一fixture）とCASE-047-20（047-04と同一fixture）はindex aliasのため独立母数にしない。CASE行数は文書化fixtureの数であり、実測母集団・合格率ではない。
+
+| NFR CASE | 親 / NFR / AC | 補正後functional CASE集合 | 観測 |
+|---|---|---|---|
+| `CASE-OS-L10-NFR-025-01` | 025 / NFR-025-01 / AC-025-01〜03 | CASE-025-01〜32、aliasなし | 固定L2入力の個別欠落、unit・connection・composite区分、document/mechanism existenceのみの誤成立。|
+| `CASE-OS-L10-NFR-026-01` | 026 / NFR-026-01 / AC-026-01〜04 | CASE-026-01〜55、全ID個別判定 | 入力単独欠落、依存/安全/比較状態、結果から状態生成、scope・環境・更新/rollback、資源不足の返却。|
+| `CASE-OS-L10-NFR-031-01` | 031 / NFR-031-01 / AC-031-01〜04 | CASE-031-01〜87（066/068/070/072除外）、ただし031-25は031-06のalias | 予算/母集団/改善前後値、ticket/source/base/measurement scope、旧数値/既決工程、正しさ/性能、LABO/authority、非縮退回収を分離。|
+| `CASE-OS-L10-NFR-047-01` | 047 / NFR-047-01 / AC-047-01〜04 | CASE-047-01〜38、ただし047-20は047-04のalias | r1/r2、source scope/revision/issuer/conflict、proposal authority、Ticket→Ticket参照をそれぞれ観測。|
+
+既存CASE-025-17の戻し先、026-25の空pack除外とdependency unknownの区別、031-26〜30のAC-031-03/04 trace、047-11の明示的適格化なしという前提はfunctional overlayに従う。未知の実測値・適用分母は未評価のまま残し、旧followupが述べるcoverageを実測または独立review成立とは解釈しない。
