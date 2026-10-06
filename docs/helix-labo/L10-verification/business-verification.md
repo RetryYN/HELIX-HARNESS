@@ -122,6 +122,16 @@
 
 この業務evidence表は実際のrun、資格、採用判断、承認を表さない。
 
+## Stage 5 — HELIXLABO-L2-067 business verification evidence
+
+独立BV/BCASEは追加しない。business outcome/KPI/ownerは固定L2/L11から導かれない。functional evidenceの業務上の対応として、既存predicate/oracleで識別されたfirst-eligible candidate結果と、同じOS assignment Attempt内に観測できたrepair roundsのみを参照する。資格、採用、task completion、実測効果、Worker割当を生成しない。
+
+| 固定親 | 独立business outcome | 正本AC / CASE index |
+|---|---|---|
+| `HELIXLABO-L2-067` | なし。candidate/Attempt内修復の未実行観測evidenceだけ。 | `LABO-067-AC-01/02/03`; `L10-LABO-067-CASE-01/02/03a–g/04a–b/05–23/24–38` |
+
+これは未実行design参照であり、business completionや実験を表さない。
+
 ### HELIXLABO-L2-066 — 既存比較business outcomeとの対応確認
 
 状態：未承認のL10候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。

@@ -126,6 +126,16 @@
 
 実測値、成功率、利用者acceptance、OS assignment/admissionの状態は本表から生成しない。
 
+## Stage 5 — HELIXLABO-L2-067 business evidence
+
+固定L2/L11から機能要件と独立したbusiness outcome/KPI/ownerは導かれないため、独立BR/AC/BV/BCASEは追加しない。first-eligible candidate結果と同一Attempt内repair eventはLABO-067 functional ACとFV fixtureで照合する業務上の観測証拠に限り、業務完了、候補採用、資格、実験実行、Worker割当やauthorityを表さない。
+
+| 固定親 | 独立業務条件 | 正本AC / 照合先 |
+|---|---|---|
+| `HELIXLABO-L2-067` | 独立outcome/KPIなし。既存predicate/oracleに基づくcandidate結果と同一Attempt内修復の観測証拠だけ。 | `LABO-067-AC-01/02/03`; `L10-LABO-067-CASE-01/02/03a–g/04a–b/05–23/24–38` |
+
+これは未実行design索引であり、実business outcomeを示さない。
+
 ### HELIXLABO-L2-066 — A比較における誤修復・未解消数の明示
 
 状態：未承認のL3候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。
