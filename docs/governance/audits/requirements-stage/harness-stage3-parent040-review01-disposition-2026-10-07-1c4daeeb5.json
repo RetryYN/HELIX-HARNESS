@@ -1,0 +1,544 @@
+{
+  "title": "HARNESS-L2-040 review01 M1修正後・時点処置監査候補",
+  "record_state": "候補のみ。修正本文の独立再レビュー未実施。L3承認、blocker解消、Ready、merge admissionを主張しない。",
+  "created_date": "2026-10-07",
+  "current_body": {
+    "commit": "1c4daeeb5993db08555f357f23d1c7521219a3fe",
+    "parent": "3f8a87f53190f1d36f085dcd7bb61c67159cffd8",
+    "base": "af8d0aac1a20cd3a41ca9df088bc7bf3501847ff",
+    "commit_subject": "docs: guard HARNESS040 against 025 and 026 receipt inference",
+    "changed_paths": [
+      "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "docs/helix-harness/L10-verification/functional-verification.md"
+    ],
+    "change_shape": "AC-03の既存行を1行更新し、L10に6 CASE行を追加。既存63行はraw line完全一致で保持。"
+  },
+  "formal_review01_source": {
+    "comment_id": 6020612181,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2633#issuecomment-6020612181",
+    "body_utf8_bytes": 6788,
+    "body_sha256": "d20774464d220114a57b385ea0066ab025927c84534ff349ef45d91a0deef3d4",
+    "body_exact": "## review01（independent review、PR #2633 親HARNESS-L2-040、HEAD 3f8a87f53190f1d36f085dcd7bb61c67159cffd8、本文 e98c0cd65、base main af8d0aac1）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼comment 6020503007に応える。方法はcomment 6013172073のとおり。\n\n### 照合の方法\n- **固定親**：PO判断記録`po-decision-2026-09-29-57candidates.md`の45行は、`HARNESS-L2-040`／採択／`MPR-RC-HARNESS-L2-040-002`である。照合の起点は、318ec4aのL2-040（946–955）とL11-040（689–697）。\n- **ブラインド照合（Opus）**：固定親、依存先（025/026）、6本文の追補106行（削除0）だけを読んだ。監査、PR comment、旧所見は見ていない。固定文を33群に種類分けし、対応CASE・ACに結び付けた。\n  - CASE定義は63件（AC-01:7、AC-02:19、AC-03:11、AC-04:26）。索引の参照切れは0。\n  - 戻し先：全行が固定L2:954の区分（HARNESS L1/L2契約owner、authority owner）か、L2:953のOS所有区分にある。\n  - L1承認、L2合意、L3承認、OS登録・実行、completionの5種には、生成を拒否するfixtureがある。\n  - Majorを1件見つけた（下のM1）。\n- **継続照合（Opus）**：旧#2602で040に向けた所見（review17〜19）を全件判定した。M8、M9、M16、r17 m4/m5/m6は解消。r19 m6とm8は残余へ移した。M15は一部がMajorとして残る（下のM1と同じ内容を独立に見つけた）。\n  - 監査のpinを再計算し、下のR11の1件を除いて全件一致した。\n  - 監査JSONのSHA `42d6787b…`は一致した。\n- **reviewerの確認**：M1は、追補行で「025」「026」を含む行を洗い出し、原文で確かめた。該当はFRの前文1行だけで、AC・CASEにはない。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - origin/mainとの`merge-tree`は衝突なし\n\n### Major\n**M1（025/026から040の採否・完了を推定すること、025/026の完了を開始前提にすることに、拒否fixtureがない）**\n- **欠陥**：\n  - FRの040節で025/026に触れるのは、前文の「025/026の完了を開始前提にしない」の1文だけである。AC-01〜04のどれも、この境界を受けていない。\n  - 「040の候補採否や実装完了を025/026から推定しない」は、FRにもFVにもない。\n  - FV 040の63行に、025/026のreceiptから040の採否・完了を推定する変異も、025/026の完了を開始条件にする変異もない。r10-completion-inference等が拒否するのは、catalogの存在からの推定だけである。\n  - 作成側の監査は旧M15全体を「Majorにしない残余」と記録している。しかし基準（6013172073）は、生成を拒否するfixtureがないことを残余の例外としてMajorに置いている。\n- **起こりうること**：025/026の完了receiptから040の採否・完了が作られても、L10で引っかからない。\n- **守るべき行**：HARNESS-L2-040「既存候補との境界」（318ec4a product-requirements.md:955「025/026の完了receiptを開始前提としない。040の候補採否や実装完了も025/026から推定しない」）。\n\n### 後で直す残余（承認を止めない）\n- **R1（単独fixtureの不足）**：\n  - L0以外の新layerの追加と、L0企画価値の追加（L2:948）\n  - 旧runtime・旧層番号をauthorityやpairの根拠にすること（L2:952）\n  - OSへのwriter・ticket・authority・完了状態の付与（L2:953）\n  - L0 authorityの解釈変更（L2:950）\n  - 対象L1 revision自体のunknown（L2:952 常時必須）\n  - 6 pairのうち特定の組（r09-001は「1組」とだけ書く）\n  - L0 recordのidentity・対象revision・sourceの各欠落（L2:951）\n  - 「040は設計成果を生成しない」（L2:955前段）\n  - L11:697の未見例の「pair変更」\n- **R2（索引）**：FV:1518の040-02索引に、field-02（AC-02）の参照がない（r19 m6の残り）。\n- **R3（束ね・重複）**：\n  - 040-06と040-07が、hidden revisionに旧coverageを流用する同じ型の変異である（r19 m8の残り）。\n  - root-04-source-missingとfield-03（span欠落）が実質重複している。\n- **R4（戻し先の記載なし）**：040-05、root-04-l0-layer、root-04-l0-pair、root-04-anchor-string（FV:1520、1531–1533）に戻し先が書かれていない。FR AC-03の一般規則で区分は決まる。\n- **R5（AC帰属）**：subject、span、digestの欠落・stale（field-01/03/04、stale-01/04/05）がAC-04に入っている。FR AC-02はこれらをrow fieldとして挙げている。normal-catalogはAC-02/04の内容を含むのにAC-01だけに入っている。\n- **R6（対応の明示）**：\n  - L11:695の「pairの片側edge」に対応すると明示したCASEがない。\n  - r07は「1層」とだけ書き、L11:695のL7欠落と特定していない。\n  - FVの「上下左右edge」は、固定L2:951とAC-02の「上流/下流edge」と合わない。左右edgeの意味が定義されていない。\n- **R7（NFRの根拠）**：nfr-gradeのNFR-C-040-01の「固定根拠」が旧HIL-FR-46を指していて、固定親L2-040を指していない。NV-040-02が計上するstaleが、候補値の欄にない。\n- **R8（監査のfile名）**：md末尾のJSON file名（`harness-stage3-parent040-authoring-audit-candidate-2026-10-07-…json`）が、実在するfile名（`harness-stage3-parent040-authoring-2026-10-07-e98c0cd65-context-398871501.json`）と合わない。\n- **R9（監査のpin）**：JSONの`legacy_lineage.source_full_bytes/sha256`（9471／`ff7116…`）は、archiveの主sourceの値ではなく、r2 receiptの値である。主sourceの実際の値は56091／`db31f4…`で、`legacy_source_pins.primary_source`のほうは正しい。\n- **R10（監査の外部参照）**：mdとJSONが、`/tmp`配下の5種類のpath（`harness-stage3-parent040-authoring-candidate-2026-10-07.json/.md`、`root-harness040-context-prefix-suffix-check.json`、`h3-review19-formal.txt`、`root-harness040-fixed-pin-check.json`、`root-harness040-legacy-selected-pin-check.json`）を参照していて、Git objectではない。\n- **R11（監査の判定）**：監査は旧M15を残余と記録している。上のM1のとおり、基準と合わない。\n\n### 判定\n- blocker 1（M1）。Major 1、残余11、未確認範囲0。\n- 委任承認は成立しない。Readyにはしない。merge admissionは本commentから生成しない。\n- M1を直したHEADでは、reviewerが差分を確かめる。Opusが`no_findings`なら、同じHEADでFableにブラインドで見てもらう。\n"
+  },
+  "fixed_authority_source_pins": {
+    "L2_040": {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "start_line": 946,
+      "end_line": 955,
+      "source_file_bytes": 254934,
+      "source_file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+      "span_bytes": 3316,
+      "span_sha256": "c349606d7798e3f4eb5e6cb31e0618a83dcfa05f9fc888b0ce618f6d160757df"
+    },
+    "L11_040": {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "start_line": 689,
+      "end_line": 697,
+      "source_file_bytes": 172806,
+      "source_file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+      "span_bytes": 2079,
+      "span_sha256": "366518f8e32ac4dda1e5f4ec88ef0cfed6bc363d597955ffffb1a82d706fc212"
+    },
+    "PO_adoption_row_040_002": {
+      "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "start_line": 45,
+      "end_line": 45,
+      "source_file_bytes": 45099,
+      "source_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "span_bytes": 627,
+      "span_sha256": "ede431c727497b64afc71394c06d23b93a6a40e224b87722c65c7ce4d6da06d7"
+    }
+  },
+  "legacy_primary_source_pin": {
+    "kind": "old_primary_source",
+    "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+    "full_bytes": 56091,
+    "full_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+    "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+    "read_scope": "HIL-FR-46/47 selected atoms only; no archive-wide claim."
+  },
+  "legacy_primary_source_actual_git_recheck": {
+    "bytes": 56091,
+    "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+    "matches_record": true
+  },
+  "body_prefix_suffix_pins": [
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "base_bytes": 12664,
+      "base_full_sha256": "60bdc58470c471dccd70c8336a7e3a5b57aa3b5bfbfc1bc82d9c535e92c11949",
+      "prefix_exact": true,
+      "suffix_bytes": 248,
+      "suffix_sha256": "2859eae5d05b0621a932c4f1b15ac8282d9ce5ad0b1c086c3fe1d510727ccefb",
+      "current_bytes": 12912,
+      "current_full_sha256": "87e3533a49f5284aed2535f9216683f9ef013ed7434c9816a73596b81a5e09fb"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "base_bytes": 198335,
+      "base_full_sha256": "00ca917e91abdabdeaba7507afee961613381081aa9017e3e1221f929d21f943",
+      "prefix_exact": true,
+      "suffix_bytes": 2217,
+      "suffix_sha256": "12abbb32912123211e5382fd83b8b3e6daa1e23cfd179d1a1915907c184b4ddf",
+      "current_bytes": 200552,
+      "current_full_sha256": "ddc4288e77effd48553c1cf4ada66e74dffef39c5fc209c1d3038b0bc83a8ad8"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "base_bytes": 41948,
+      "base_full_sha256": "7840fd0b1bb694e0e9513f1e10f61971a629953ef41b3e495ea578cf8296efa2",
+      "prefix_exact": true,
+      "suffix_bytes": 476,
+      "suffix_sha256": "4195634ac2ac502a1b7fddcb015d528ef7178877dc5f32c2e4e30a15a06434e7",
+      "current_bytes": 42424,
+      "current_full_sha256": "75cbdcc058aff99a9efd99b9d3344e6920e864b1bb603a1ac77a0e447f2f60af"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "base_bytes": 8299,
+      "base_full_sha256": "3473e30037f65fdfe827cc48297c3eec9716f409d919d18caceca87e45072ace",
+      "prefix_exact": true,
+      "suffix_bytes": 270,
+      "suffix_sha256": "f90fc555f3f25d30da1f8f5333a68015de6a1311b57bfaee93a2aaaa4f7f6f46",
+      "current_bytes": 8569,
+      "current_full_sha256": "a1ff88366ef98368fa8cbd628f499aa50a73cd05a75d54ff64e353a1626cd67c"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "base_bytes": 584387,
+      "base_full_sha256": "f1f302900e013550fd45bcd4dc15cb9fd48ba5ee48e02d7f479e9227c0dbb238",
+      "prefix_exact": true,
+      "suffix_bytes": 30939,
+      "suffix_sha256": "046a1824078cf6534ce884aec585642d8e6eaa2cd65915dc1a75343a23be1e68",
+      "current_bytes": 615326,
+      "current_full_sha256": "4f87643397e4e1c2a94d07537770510f634c509eaeb1701c3159a0d143d98cc1"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "base_bytes": 35149,
+      "base_full_sha256": "a000794ce06474dacc7c233470f68d59dda2f09365a42285b0718860579c1a76",
+      "prefix_exact": true,
+      "suffix_bytes": 854,
+      "suffix_sha256": "bfc7b7462a1a0ef442a1057aa328ac9970a0cac7fff13734cd27a389cad8a7f2",
+      "current_bytes": 36003,
+      "current_full_sha256": "e5b090ba97c6a5237b47b890d7a86453ed5f602ee09c9e531ab3b55698d13a7a"
+    }
+  ],
+  "M1_disposition": {
+    "original_review_finding": "M1（025/026から040の採否・完了を推定すること、025/026の完了を開始前提にすることに、拒否fixtureがない）",
+    "fixed_l2_line_955_literal": "- **既存候補との境界**：HARNESS-L2-025/026のL3要件から具体設計・pair oracleを作る能力はそのまま維持する。040は設計成果を生成せず、025/026の完了receiptを開始前提としない。040の候補採否や実装完了も025/026から推定しない。",
+    "fr_ac03_current_line": "| `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-03` | 未提示契約やunknownなauthority/scope/互換版を存在済みや対象外にせず未評価で保持する。契約不足はHARNESS L1/L2契約owner、authority不足は該当authority ownerへ返す。authority ownerをL0に限定しない。個別identityが不明でも既知の責務区分を保持する。catalogからL1承認/L2合意/L3承認/OS登録・実行/completionを生成しない。OS receipt不足は既存OS保存・実行ownerへ返し、HARNESS契約oracleを代用しない。HARNESS-L2-025/026の完了receiptは040評価の開始前提ではなく、040の候補採否や実装完了を生成する根拠にもならない。 |",
+    "fr_ac03_sha256": "aeee0bb62439e4a37091b086f58cdada2b50052915663c8fafe37a3a5a98fb2c",
+    "old_CASE_raw_line_count": 63,
+    "old_unique_id_count": 63,
+    "new_CASE_raw_line_count": 69,
+    "new_unique_id_count": 69,
+    "old_ids_all_retained": true,
+    "old_63_raw_lines_unchanged": true,
+    "old_CASE_id_and_line_sha256": [
+      {
+        "id": "CASE-HARNESS-L10-040-01",
+        "raw_line_sha256": "569d5598633a87bef30b7a52b60118a2a3e9dd73b6a4e99cbfb2c9bd6e67248a"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-02",
+        "raw_line_sha256": "7738c28757c07a0b0036cf023f7359d79b9e791d47b17eb7ed27240e3f1c1a5e"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-03",
+        "raw_line_sha256": "69b6a96e12a17592f1543d49a86285d51e50496e52d91803362888b382461b60"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-04",
+        "raw_line_sha256": "f74ed45c43481652cdd4e235ac210ce0d03aaffa7168711e709398db4e052b53"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-05",
+        "raw_line_sha256": "a90dd1a8aa0865601c5de15fefda5bdbc59d7d7eb8683309c0ff3128f3184beb"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-06",
+        "raw_line_sha256": "7567535813e705667782ee7cff844c8ab5421556bd4ac534db3340af3c0ddb69"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-07",
+        "raw_line_sha256": "2d2dd085fa3171907849015cd63df79fb0f22df83993d59a05d36f6883ddbd6d"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-root-04-field-01",
+        "raw_line_sha256": "f15361130713aadbf6e5d021332d93babdc9f9bcc7d4ecf0ce04f44d35816c6b"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-root-04-field-02",
+        "raw_line_sha256": "799d3a799fb90f92acf776808ccf08ebee85b1dd0ec73653df4d57ce4916f9ce"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-root-04-field-03",
+        "raw_line_sha256": "f804b639758bb5b4f36fc28a4f30b860ecb0995dd12859de27bfe3653c02523f"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-root-04-field-04",
+        "raw_line_sha256": "8c48632f760ef90ab4819849dcdb96ba5018ffd1928af6cbba376444d5634bea"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-root-04-field-05",
+        "raw_line_sha256": "19c9ba4661ca917a22983f11a0885329cf705a801d3a968a4fa5d2df3a9f8516"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-root-04-field-06",
+        "raw_line_sha256": "2be3656e9eea9216d2fb0b98edeeeac5f65603db1530060fc5b6e2857d06c47c"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-root-04-field-07",
+        "raw_line_sha256": "4365a606a265653895e5c062c688a765caf8ba4600d93dc1092f2562d1f3e548"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-root-04-field-08",
+        "raw_line_sha256": "a984a72f80b9204b00d5ea5fe8d1af835becab1609d276d078ea0f7da1fcc073"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-root-04-l0-layer",
+        "raw_line_sha256": "b71c790a8438882f43ba863978e59356a55bd99be15cafc1cdb4ce09b1357466"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-root-04-l0-pair",
+        "raw_line_sha256": "50340bdd7bd5b8758325216c2475de32d553c402cb9cf85abad34a6afdbff632"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-root-04-anchor-string",
+        "raw_line_sha256": "fc4fffc1a1112d2217a54b67c99d37cb4125d10d7f6c7e4538d1726b63953f0e"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-root-04-snapshot-stale",
+        "raw_line_sha256": "2f8fc06aeb948ccf6bf644803d7118cdd1c04f90f1b033dd8b6b2bd9576996bc"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-root-04-source-missing",
+        "raw_line_sha256": "8fb843383def528c1870494f681c18897b44f47137668883f2de795c445852ed"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-root-04-up-edge-missing",
+        "raw_line_sha256": "88b298ca151aa9d77ea4b13ce54438118de540dd6f90426a3ccd95dce13e6313"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-root-04-down-edge-missing",
+        "raw_line_sha256": "361e132e9f5d1651d48cb2a6cc4baee308ecdfcdbbb9f342951035ac7d363175"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-root-04-left-edge-missing",
+        "raw_line_sha256": "a060656cd1f8f27f861b481c4179549654c5a4c9aa96e00294ebdd73b8d2a2fc"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-root-04-right-edge-missing",
+        "raw_line_sha256": "52b03c0a89cbd0b363451993d8e3178569930708659bf1dc250f5599f8e367c8"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-root-04-stale-01",
+        "raw_line_sha256": "547f4a0ddbd06f774b5a64b166139499781735c13e884cb7d0db0cd405c71058"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-root-04-stale-02",
+        "raw_line_sha256": "dd9c6985d05ecc0ced9632d1c5a8eddb90fcb98226eed580b039409d0a3cb29d"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-root-04-stale-03",
+        "raw_line_sha256": "8cb67ad06c8d73895121a76b7caa45d0422aba0c230a30fde8d3f4e5757c6dd7"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-root-04-stale-04",
+        "raw_line_sha256": "6e140692bedc5c1149bc11296f0ee86c7d6de3ca331a2de24af8d7ae2c6a5451"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-root-04-stale-05",
+        "raw_line_sha256": "701a0e0831a1b50cce6a5289805869596cf33fe191405d6c7fcc9dc89f32bdf2"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-root-04-stale-06",
+        "raw_line_sha256": "6c0db2b34d741b0b2e526eb6db296bf0c84e4ff57dde761d7d9cdc148607e8dd"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-root-04-stale-07",
+        "raw_line_sha256": "ee995c7e93ec4a95e76e1ef189ef8a22a86880ddfad01c0efd287dab39d3c876"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-root-04-stale-08",
+        "raw_line_sha256": "42f67bb57396c8822cdbe7517bfe911d8907cb9c9da307f03b971b45e0ab42a1"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-root-04-stale-09",
+        "raw_line_sha256": "bd0689bc9d7fd3953610a340217d740064fa10878778444e31fa59120bd0582e"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-root-04-stale-10",
+        "raw_line_sha256": "88594bfd6971419ae08a774fa067b62da321e91e260971439382e7781c644933"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-root-04-stale-11",
+        "raw_line_sha256": "6e63f670bf581d59e50506524d4c0754848e617deb67c9846b55323f62c5b2b0"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-r02-root-authority-unknown",
+        "raw_line_sha256": "b07762052ef0a47ca9375fa7039d2884475b7d566d78fa6b7fc0a75bd43e2fa8"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-r02-scope-unknown",
+        "raw_line_sha256": "0b5035c0af6de0fd9f8508e02b780015caf93ae064a31008f4599c6caed3993f"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-r02-compatibility-unknown",
+        "raw_line_sha256": "52759754d9cf6e28409d964fffde9e3d648fc4de87079b18ad462505fc4c50e7"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-r02-authority-return",
+        "raw_line_sha256": "3df006b9545a1159a099d2d02e30a730346933546adfeebc46ff8279e585009e"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-r07-layer-ledger-missing",
+        "raw_line_sha256": "2e12c3cfb9d09331ced4b4eb87b58c3d0a3b4ed04766c30547be90d68f8aae9c"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-r09-010",
+        "raw_line_sha256": "8d7cdb364e5421076690cb0ae074a5f734bda906ab6edfd4134a7881b55fa616"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-r09-011",
+        "raw_line_sha256": "ae422df3e87f10b907cecde042350fdc8b03c1425c547b352f0602f6bd948a63"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-r09-012",
+        "raw_line_sha256": "e460aabea184b3eabf00aeeba0875c2830e0c79493dd08615a985bc33d1ffd72"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-r09-013",
+        "raw_line_sha256": "589eabb2aff234695a1e4e1487d6256f87fbf03f7c076fa5610435c43c8fd11e"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-r09-014",
+        "raw_line_sha256": "15f11d2a274904c591ee6974825f5b104fea9ff303911de313dbf7c91ff54a09"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-r09-015",
+        "raw_line_sha256": "fb16a5e04046f862fa83ebdcb0c242d826ea15e4bc23765bc54a806a5aec81e5"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-r09-016",
+        "raw_line_sha256": "daf34a3a8dc61e532fc31eb287e9b5b1ac1bebc7b1e5641e67fe7881a6a93eb8"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-r09-001",
+        "raw_line_sha256": "1bbe15276e51087f9fb282d8cc1b69455a456809724f74d555e7e749c175ca69"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-r09-002",
+        "raw_line_sha256": "594d0809ec811f4051d69ad7e529801f0119c1778b2e06e9fd2f91222fb5e15b"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-r09-003",
+        "raw_line_sha256": "18b0a38c6604deaf9db844340bdbfafc3b3f7834aa4e8ed2d8f9da092fc459fd"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-r09-004",
+        "raw_line_sha256": "f3fe82cc895d9fb53cf469785c53e67a396feb32d6968ac8224192b47d88fae5"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-r09-005",
+        "raw_line_sha256": "e4f59ae4373305be02b3fd500b319fb15fb2a98187091eee64165d6762e41774"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-r09-006",
+        "raw_line_sha256": "3b88c69aceb47e6b252bf4247150cd31b49fe37a5768f9baeb3330b5b96c8b77"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-r09-007",
+        "raw_line_sha256": "dd5c1ddb0c6a045c465db5a78fb9c197fa038ed68bbd082944e48477775eabc7"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-r09-008",
+        "raw_line_sha256": "8b29f00ce4ba044704377cc4649ca8ae3c9db99dba97d61aa16ea80ddff9cddb"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-r09-009",
+        "raw_line_sha256": "266a9f3779eeebaf5ae8c5b66715bbf37fe4eea34c383f64b869dbe983705ec7"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-r10-os-registration-inference",
+        "raw_line_sha256": "302db05857e56df6a34ee2c2e866d9a7f13722dbc167f54fa7212649432027fc"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-r10-completion-inference",
+        "raw_line_sha256": "755f8d8335938af47f1feb4a562a3a5924ff3c1156258dc2cc0e1cb8e32bbddd"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-r10-layer-contract-unknown",
+        "raw_line_sha256": "9995ff6be6f70988d9857e6981282715179322aa3789c2cf6ee222f4c4c3169e"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-r10-mixed-revision-coverage",
+        "raw_line_sha256": "18c5c65929ed4634c087836766759453e2b26c8b08229ff69c8b2bed3ed1c3ca"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-r10-l2-agreement-inference",
+        "raw_line_sha256": "f2396cd3e2f9a7b4ec5b0695293a22bcbb247c8cc1a1393b1932a5183679f881"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-r10-l3-approval-inference",
+        "raw_line_sha256": "c99cf91d24cb872b77fc5e6e8f6f18f748d2ce62367b7794a9b78d3ccbbe319c"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-normal-catalog",
+        "raw_line_sha256": "02a672251e2bb6582a43d21987e4c88e0450fddb630d44edd1af4179be4b5408"
+      }
+    ],
+    "new_CASE_rows": [
+      {
+        "id": "CASE-HARNESS-L10-040-r11-025-completion-generates-040-adoption",
+        "raw_line": "| `CASE-HARNESS-L10-040-r11-025-completion-generates-040-adoption` | `FR-HARNESS-L3-040` | `AC-HARNESS-L3-040-03` | 合成対象revision T0の040 catalog入力は有効。040採否は未評価で040自身のauthority receiptは欠落。HARNESS-L2-025完了receipt D025は別scopeに保持するが040の根拠に使わない。固定PO採択040はこのfixtureの対象外で状態を変えない。 | 入力を変えず、D025から合成T0をadopted=trueと出力する。 | 040採択を生成せずunknown/未完を維持する。HARNESS-L2-040が指定するauthority ownerへ戻す。 |",
+        "raw_line_sha256": "2e339e8777138f7023d9e2624335d483c70743a74b12b4dcc9f107c41873ab95"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-r11-025-completion-generates-040-implementation-complete",
+        "raw_line": "| `CASE-HARNESS-L10-040-r11-025-completion-generates-040-implementation-complete` | `FR-HARNESS-L3-040` | `AC-HARNESS-L3-040-03` | 合成対象revision T0の040 catalog入力は有効。040は未実装完了で固有implementation receiptが欠落。HARNESS-L2-025完了receipt D025は別scopeに保持し040のproofへ使わない。固定PO採択040はこのfixtureの対象外で状態を変えない。 | 入力を変えず、D025から合成T0をimplementation_complete=trueと出力する。 | 040実装完了を生成せず未完/unknownを維持する。新たなproof ownerを設けず、固定L2:954の既知責務区分を保ち、個体identity不明はunknownにする。 |",
+        "raw_line_sha256": "dbb24486a7ea0d27d4e97f4337278f6b3b82cd0a4bbd669d907434eea2e09d25"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-r11-025-completion-required-before-040-start",
+        "raw_line": "| `CASE-HARNESS-L10-040-r11-025-completion-required-before-040-start` | `FR-HARNESS-L3-040` | `AC-HARNESS-L3-040-03` | 合成対象revision T0の040 catalog入力は有効。HARNESS-L2-025は未完了、HARNESS-L2-026状態は任意であり040入力へ使わない。 | 入力不変で、HARNESS-L2-025完了receipt欠落のみを040評価の開始前提にする。 | 025/026完了を040の開始条件にせず、040の提示入力範囲を評価する。040の採否・実装完了や下流操作権限は生成しない。 |",
+        "raw_line_sha256": "c2a4f2a0c5f28ea4134efec170c2614d2f38bca8815ed0ed6da995f2959741f4"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-r11-026-completion-generates-040-adoption",
+        "raw_line": "| `CASE-HARNESS-L10-040-r11-026-completion-generates-040-adoption` | `FR-HARNESS-L3-040` | `AC-HARNESS-L3-040-03` | 合成対象revision T0の040 catalog入力は有効。040採否は未評価で040自身のauthority receiptは欠落。HARNESS-L2-026完了receipt D026は別scopeに保持するが040の根拠に使わない。固定PO採択040はこのfixtureの対象外で状態を変えない。 | 入力を変えず、D026から合成T0をadopted=trueと出力する。 | 040採択を生成せずunknown/未完を維持する。HARNESS-L2-040が指定するauthority ownerへ戻す。 |",
+        "raw_line_sha256": "b2ed2a70dc277375eb4b25728d8eb44615d95097b1d8d2501e3b8f61c7378a75"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-r11-026-completion-generates-040-implementation-complete",
+        "raw_line": "| `CASE-HARNESS-L10-040-r11-026-completion-generates-040-implementation-complete` | `FR-HARNESS-L3-040` | `AC-HARNESS-L3-040-03` | 合成対象revision T0の040 catalog入力は有効。040は未実装完了で固有implementation receiptが欠落。HARNESS-L2-026完了receipt D026は別scopeに保持し040のproofへ使わない。固定PO採択040はこのfixtureの対象外で状態を変えない。 | 入力を変えず、D026から合成T0をimplementation_complete=trueと出力する。 | 040実装完了を生成せず未完/unknownを維持する。新たなproof ownerを設けず、固定L2:954の既知責務区分を保ち、個体identity不明はunknownにする。 |",
+        "raw_line_sha256": "9dad25cfc1f76b5c497e6efe6bfebcfa3a5158adc04f054c88733887a067b83f"
+      },
+      {
+        "id": "CASE-HARNESS-L10-040-r11-026-completion-required-before-040-start",
+        "raw_line": "| `CASE-HARNESS-L10-040-r11-026-completion-required-before-040-start` | `FR-HARNESS-L3-040` | `AC-HARNESS-L3-040-03` | 合成対象revision T0の040 catalog入力は有効。HARNESS-L2-026は未完了、HARNESS-L2-025状態は任意であり040入力へ使わない。 | 入力不変で、HARNESS-L2-026完了receipt欠落のみを040評価の開始前提にする。 | 025/026完了を040の開始条件にせず、040の提示入力範囲を評価する。040の採否・実装完了や下流操作権限は生成しない。 |",
+        "raw_line_sha256": "406eee03373177b80c22cca51e9606bed954c3df8531ff6e0f3284ded81e0c32"
+      }
+    ],
+    "new_case_ids": [
+      "CASE-HARNESS-L10-040-r11-025-completion-generates-040-adoption",
+      "CASE-HARNESS-L10-040-r11-025-completion-generates-040-implementation-complete",
+      "CASE-HARNESS-L10-040-r11-025-completion-required-before-040-start",
+      "CASE-HARNESS-L10-040-r11-026-completion-generates-040-adoption",
+      "CASE-HARNESS-L10-040-r11-026-completion-generates-040-implementation-complete",
+      "CASE-HARNESS-L10-040-r11-026-completion-required-before-040-start"
+    ],
+    "meaning_treatment": "各025/026 receiptから040採択・実装完了を生成する反例、および完了を040開始前提にする反例を区別。合成T0、D025/D026のscope分離、固定PO採択状態不変を本文で明示。",
+    "status": "本文にはM1対象の補正がcommit済み。独立再レビュー待ちで、M1が解消したとの判定は保留。"
+  },
+  "review01_original_residual_section_exact": "### 後で直す残余（承認を止めない）\n- **R1（単独fixtureの不足）**：\n  - L0以外の新layerの追加と、L0企画価値の追加（L2:948）\n  - 旧runtime・旧層番号をauthorityやpairの根拠にすること（L2:952）\n  - OSへのwriter・ticket・authority・完了状態の付与（L2:953）\n  - L0 authorityの解釈変更（L2:950）\n  - 対象L1 revision自体のunknown（L2:952 常時必須）\n  - 6 pairのうち特定の組（r09-001は「1組」とだけ書く）\n  - L0 recordのidentity・対象revision・sourceの各欠落（L2:951）\n  - 「040は設計成果を生成しない」（L2:955前段）\n  - L11:697の未見例の「pair変更」\n- **R2（索引）**：FV:1518の040-02索引に、field-02（AC-02）の参照がない（r19 m6の残り）。\n- **R3（束ね・重複）**：\n  - 040-06と040-07が、hidden revisionに旧coverageを流用する同じ型の変異である（r19 m8の残り）。\n  - root-04-source-missingとfield-03（span欠落）が実質重複している。\n- **R4（戻し先の記載なし）**：040-05、root-04-l0-layer、root-04-l0-pair、root-04-anchor-string（FV:1520、1531–1533）に戻し先が書かれていない。FR AC-03の一般規則で区分は決まる。\n- **R5（AC帰属）**：subject、span、digestの欠落・stale（field-01/03/04、stale-01/04/05）がAC-04に入っている。FR AC-02はこれらをrow fieldとして挙げている。normal-catalogはAC-02/04の内容を含むのにAC-01だけに入っている。\n- **R6（対応の明示）**：\n  - L11:695の「pairの片側edge」に対応すると明示したCASEがない。\n  - r07は「1層」とだけ書き、L11:695のL7欠落と特定していない。\n  - FVの「上下左右edge」は、固定L2:951とAC-02の「上流/下流edge」と合わない。左右edgeの意味が定義されていない。\n- **R7（NFRの根拠）**：nfr-gradeのNFR-C-040-01の「固定根拠」が旧HIL-FR-46を指していて、固定親L2-040を指していない。NV-040-02が計上するstaleが、候補値の欄にない。\n- **R8（監査のfile名）**：md末尾のJSON file名（`harness-stage3-parent040-authoring-audit-candidate-2026-10-07-…json`）が、実在するfile名（`harness-stage3-parent040-authoring-2026-10-07-e98c0cd65-context-398871501.json`）と合わない。\n- **R9（監査のpin）**：JSONの`legacy_lineage.source_full_bytes/sha256`（9471／`ff7116…`）は、archiveの主sourceの値ではなく、r2 receiptの値である。主sourceの実際の値は56091／`db31f4…`で、`legacy_source_pins.primary_source`のほうは正しい。\n- **R10（監査の外部参照）**：mdとJSONが、`/tmp`配下の5種類のpath（`harness-stage3-parent040-authoring-candidate-2026-10-07.json/.md`、`root-harness040-context-prefix-suffix-check.json`、`h3-review19-formal.txt`、`root-harness040-fixed-pin-check.json`、`root-harness040-legacy-selected-pin-check.json`）を参照していて、Git objectではない。\n- **R11（監査の判定）**：監査は旧M15を残余と記録している。上のM1のとおり、基準と合わない。\n",
+  "review01_original_residual_ids": [
+    "R1",
+    "R2",
+    "R3",
+    "R4",
+    "R5",
+    "R6",
+    "R7",
+    "R8",
+    "R9",
+    "R10",
+    "R11"
+  ],
+  "residual_disposition_corrections": [
+    {
+      "id": "R1-R7",
+      "status": "正式review01の非blocker residual区分と原文を保持。本文補正、意味完全性の評価、包括的解消は主張しない。"
+    },
+    {
+      "id": "R8",
+      "status": "原文保持。誤った候補名を新処置監査へ再掲せず、実在するcanonical既存監査 pathを参照する。旧MD/JSONは書き換えない。",
+      "canonical_json_path": "docs/governance/audits/requirements-stage/harness-stage3-parent040-authoring-2026-10-07-e98c0cd65-context-398871501.json",
+      "canonical_md_path": "docs/governance/audits/requirements-stage/harness-stage3-parent040-authoring-2026-10-07-e98c0cd65-context-398871501.md",
+      "canonical_json_bytes": 245832,
+      "canonical_json_sha256": "42d6787bee03f80d22c9fca6145fb6a5acd5e3144b3195c60ec6869e57a62ddd",
+      "canonical_md_bytes": 2603,
+      "canonical_md_sha256": "11abc545dfd72f65312c14aae206ddd6365a9e714f8c4266f6c8a8f6717ea8d1"
+    },
+    {
+      "id": "R9",
+      "status": "原文保持。誤ったlegacy_lineage source_full bytes/SHAはprimary archive sourceではなくr2 receiptに由来。primary sourceの実値を新処置記録で採る。旧監査は書換えない。",
+      "incorrect_recorded_values": {
+        "full_bytes": 9471,
+        "full_sha256": "ff711659ac40587f278f98eb434645cc9596ddffa09a0c68ce8a3a4e40894285"
+      },
+      "correct_primary_source": {
+        "kind": "old_primary_source",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "full_bytes": 56091,
+        "full_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "read_scope": "HIL-FR-46/47 selected atoms only; no archive-wide claim."
+      },
+      "note": "同旧監査JSON内legacy_source_pins.primary_sourceには正しいprimary値がすでに存在。"
+    },
+    {
+      "id": "R10",
+      "status": "原文保持。旧auditの/tmp参照に関する所見は非blocker residualとして維持。新監査は既存canonical repository pathとGit pinを中心に記録する。"
+    },
+    {
+      "id": "R11",
+      "status": "原文保持。review01が指摘した旧M15全体を「Majorにしない残余」とした時点判定は誤りとして訂正。固定L2:955の意味について単独拒否fixtureがなかった部分はM1で扱う。その他のfixture粒度不足を一律Majorにしない。旧audit不変。"
+    }
+  ],
+  "M15_time_correction": {
+    "status": "過去の処置判定を本時点記録で訂正",
+    "correction": "旧M15を全体として非Major residualにした判定は正確でなかった。fixed L2:955の025/026開始前提禁止、採否・実装完了非推定に拒否fixtureがない欠陥はreview01 M1 Major。6補正CASEをcommitしたが、独立review前なので解消認定はしない。fixture単独不足の他の範囲はR1等の原文区分を保持。",
+    "old_published_audit_modified": false
+  },
+  "authoring_correction_history": [
+    "初回worker候補の4 adoption/implementationケースbaselineが、025/026 completion receiptを040 authority/implementation evidenceとして利用する記述を含み、変異をbaselineに埋め込んでいたためRootが差戻した。",
+    "再起草では合成target revision T0の040入力を有効に固定し、D025/D026を別scopeで保持して040 evidenceには使わず、固定PO採択040のstateはfixture外として不変とした。",
+    "実装完了の誤出力値を曖昧なimplemented=trueからimplementation_complete=trueへ明示するRoot指摘を反映した。",
+    "RootがAC-03と6 CASEを本文へ反映、旧63行literal完全保持を確認し、gov/diff checkを実施したとの報告を別の作成側検収証拠として記録する。"
+  ],
+  "verification_and_limits": {
+    "worker_checks": {
+      "actual_git_head": "1c4daeeb5993db08555f357f23d1c7521219a3fe",
+      "base_prefix_exact_for_all_six_files": true,
+      "old_case_rows_raw_identical": true,
+      "before_count": 63,
+      "after_count": 69,
+      "unique_after": 69,
+      "six_new_ids_unique": true,
+      "all_new_rows_six_columns": true
+    },
+    "root_reported_checks": {
+      "all_six_candidate_docs_and_AC_mapped": true,
+      "static_govcheck_pass": true,
+      "git_diff_check_pass": true,
+      "basis": "Rootの報告。Worker自身はgovcheckを実行していない。"
+    },
+    "not_done": [
+      "独立再レビュー",
+      "Fableブラインド照合",
+      "PO/委任L3承認",
+      "Ready化",
+      "merge admission",
+      "テスト/runtime/旧CLI/旧hook/旧CI/Bun実行"
+    ],
+    "scope_limits": [
+      "CASE数や分類から意味完全性をclaimしない。",
+      "補正commitからM1解消・承認・実装許可を生成しない。",
+      "formal review01原文の11残余を省略・書換えせず保持する。",
+      "canonical編集、commit、pushをこのWorkerは行っていない。"
+    ]
+  },
+  "context_after_fix": {
+    "commit": "8001e94427070ec0e910239223b8dec3daa5fcd3",
+    "base": "e015c3477e890c7079cd0b51859da1cec8f8fb7a",
+    "six_harness_body_bytes_unchanged": true,
+    "method": "Root actual Git blob comparison of all six files; fixed-body/source snapshot pins remain at their recorded revisions."
+  }
+}
