@@ -1,0 +1,253 @@
+{
+  "schema": "infrastructure-stage5-fable-m16-m17-correction.v1",
+  "worktree": "/home/tenni/.helix-worktrees/l3-infrastructure-stage5-main-publication",
+  "branch": "codex/infrastructure-stage5-main-publication",
+  "body_commit": "5efbd349b56e033ecfbad0828731b18fceebe9e9",
+  "parent_commit": "b6b6b8c7cd34b53905fe3dfa35ce2b56559a7de9",
+  "changes": [
+    {
+      "finding": "Fable m16 / formal comment 6005366115",
+      "disposition": "corrected",
+      "details": "S5-055にwrite_set=emptyを追加。S5-086をwrite_attempt単独変異として追加し、空write-setへの試行拒否・write非実行・前後値不変のoracleを明記。AC-03/04およびStage5 NFR観測へtrace。"
+    },
+    {
+      "finding": "Fable m17 / formal comment 6005366115",
+      "disposition": "corrected",
+      "details": "S5-058正常fixtureの戻し先を正常時なしにFR/FV同期。未特定path source ownerはunknownとして記録するが、正常fixtureから差戻しを生成しない。S5-057の既存一致を保持。"
+    }
+  ],
+  "official_comments": [
+    {
+      "id": 6005366115,
+      "body_sha256": "691ab4c6333ddd274796a29ae288c215a2a717e5fbed039f8793ad5e9c21b74d",
+      "body_bytes": 3354
+    },
+    {
+      "id": 6006259427,
+      "body_sha256": "5155623dc2a4a060feebda6102909077c9c9719eb017f224c5c6a0cd0e92d7fe",
+      "body_bytes": 1228
+    }
+  ],
+  "fixed_sources": [
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "bytes": 60825,
+      "sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "basis_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "relevant_lines": "138–147",
+      "span_sha256": "ddedb41002d72be9322e99d6f82233d231795f3e9cc167d2bc048c2bbe765791",
+      "use": "L2-011 failure-time owner return/composite scope; adjacent L2-010 operation contract governs read-only target/action/scope/empty write-set and prohibited write."
+    },
+    {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "bytes": 40777,
+      "sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "basis_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "relevant_lines": "L2-010: 132–134; L2-011: 140–150",
+      "span_sha256": "3cfce31a6cc2d55ddfa8c5ac819a90c87397ec5d7b4454fbfef85795600419f0",
+      "use": "Read-only fixture defines empty write-set and before/after values; write prohibition and operation-cause no-change; L2-011 operation-specific oracle plus normal-vs-independent recovery scope."
+    }
+  ],
+  "legacy_sources": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "bytes": 13712,
+      "sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+      "relevant_lines": "74–79",
+      "span_sha256": "76d413472fb4c5975fc2b2d5e56d66a7bf1538bf6540e186cc2da865c91cf1aa",
+      "use": "Partial comparison only: Manifest/Plan/Receipt are distinct; receipt binds before/after state; no direct empty-write-set requirement."
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/product-lifecycle-operations-acceptance.md",
+      "bytes": 4865,
+      "sha256": "19c75a442154b4d17e645143f4adaaa23791a1043caa73178e5d75cc468b7d58",
+      "asset_id": "LEGACY-ASSET-F46AB11BD14F2C0469F4",
+      "relevant_lines": "26–29",
+      "span_sha256": "b97936e170c2a450dac6d3c2d618105de2af24cabfaec450818c142f988f4663",
+      "use": "Partial comparison only: separate plan/receipt, target and permission; no direct empty-write-set requirement."
+    }
+  ],
+  "body_files": [
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "bytes": 138164,
+      "sha256": "02cb4f82a021d2c366aa484eda6b3484c43156f58ac5e507578bf7afc9ac0b25"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "bytes": 213464,
+      "sha256": "640a3235cfb2825f0d5c6e0407234ce638cc7565c839a079faa6a43b5aa04c3f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "bytes": 19573,
+      "sha256": "c53c686780e5609fe113be891ea323b25e7f5abd0132bed9c0985b1c38f5d0bf"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "bytes": 17575,
+      "sha256": "a54e516d76a0a4629100999984d61b44970f9deaadae53f5a848a1430438055b"
+    }
+  ],
+  "case_inventory": {
+    "original_case_ids_preserved": "CASE-INFRA-011-S5-001..085",
+    "new_case_id": "CASE-INFRA-011-S5-086",
+    "format_counts": {
+      "unit": 54,
+      "operation": 5,
+      "recovery": 9,
+      "connection_composite": 9,
+      "scope_boundary": 2,
+      "environment_operation_negative": 6,
+      "partial_composite": 1,
+      "total": 86
+    },
+    "new_case_literal_sha256": "a8f914e21dc9ac4fb8ff475dae6d71c32b94cf949f00c0f4e94432751b744fcd",
+    "new_case_literal_bytes": 1178,
+    "fr_rows": [
+      {
+        "literal": "| `CASE-INFRA-011-S5-055` | read-only通常操作正常 | `request={target=api-db-sim-01,action=inspect-sim,revision=infra-runtime-sim@sim-r17,scope=infra-011-stage5-sim,environment=verification-sim,expiry=sim-expiry-01}; security_authority={ref=security-authority-sim-01,source=SECURITY-sim@sim-r3,revision=sim-r3,target=api-db-sim-01,target_revision=infra-runtime-sim@sim-r17,action=inspect-sim,scope=infra-011-stage5-sim,environment=verification-sim,expiry=sim-expiry-01}; worker={contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01,resource=worker-host-sim@sim-r1}; os={ticket=os-work-sim-01,change=os-change-sim-01,revision=os-rev-sim-4,scope=verification-sim,runtime=api-db-sim-01@infra-runtime-sim-r17}; write_scope=declared; write_set=empty; writes=none; before=sim-r1; after=sim-r1`。正常、変異なし。 | L2-010 target/authority/Worker/OS条件とL2-009接続を照合し、空write-set・write禁止・writeなし・operation起因changeなしを記録。 | `INFRA-011-AC-03/04` |",
+        "sha256": "b7d5966e2dc928b5b681087d1cd55f33c83c664e44a117949a8c429243be9d6c"
+      },
+      {
+        "literal": "| `CASE-INFRA-011-S5-056` | 適用recovery duty付きstate change正常 | `request={target=api-db-sim-01,action=replace-sim,revision=sim-r2,scope=infra-011-stage5-sim,environment=verification-sim,expiry=sim-expiry-01}; security_authority={ref=security-authority-sim-01,source=SECURITY-sim@sim-r3,revision=sim-r3,target=api-db-sim-01,target_revision=sim-r2,action=replace-sim,scope=infra-011-stage5-sim,environment=verification-sim,expiry=sim-expiry-01}; update_admission=accepted; worker={contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01,resource=worker-host-sim@sim-r1}; os={ticket=os-work-sim-01,change=os-change-sim-01,revision=os-rev-sim-4,scope=verification-sim,runtime=api-db-sim-01@infra-runtime-sim-r17}; applicable_duty=restore-check-sim; duty_result=sim-verified; before=sim-r1; after=sim-r2`。正常、変異なし。 | L2-010 target/authority/accepted admission/Worker/OS条件とL2-009接続、適用duty/resultを個別照合。 | `INFRA-011-AC-03` |",
+        "sha256": "06a05e3580749ba21f2a6b6137c3fc7cfbb93b4f34b8e025666c6fcbb2eed54f"
+      },
+      {
+        "literal": "| `CASE-INFRA-011-S5-058` | 操作別 OS停止中のindependent recovery | `os_state=down-sim; os_ticket=none; path={id=oob-path-sim-01,depends_on_os=false}; security_authority=security-authority-sim-oob; worker_contract=worker-contract-oob-sim@sim-r3; action=bootstrap-sim; result=sim-verified; after_os_up_sync=sim-recorded`; 操作専用入力だけを適用し、18 unit itemの値をこのCASEで再判定しない。 | 停止OS ticketを要求しない。path/SECURITY authority/Worker契約/実結果を別に確認し、復帰後syncを独立確認する。ticket不要は通常操作の条件を変えない。正常時は戻し先なし。path source owner未特定はunknownとして記録し、正常fixtureから差戻しを生成しない。 | `INFRA-011-AC-04` |",
+        "sha256": "1efe4f3e805c5117d0e8f2127ccf7a1242666fef4f06131ed0ec42198cf603c0"
+      },
+      {
+        "literal": "| `CASE-INFRA-011-S5-059` | 復旧境界 restore結果欠落 | `baseline={scope=infra-011-stage5-sim,environment=verification-sim,source_revision=sim-r1,backup=sim-success,restore.integrity=sim-ok,restore.dependency_reconnect=sim-ok,restore.startup=sim-ok,restore.verification=sim-ok,current_active_revision=sim-r8,eligible_rollback_target=sim-r7,os_operation_request=none}`; restore.resultだけをmissingへ変更。 | backup成功とrestore結果を別判定し、restore成功に昇格しない。recovery design ownerへ戻す。OS work/change ownerはOS操作要求がこのfixtureにないため非適用。 / recovery design owner、具体ownerは固定親で未特定ならunknown | `INFRA-011-AC-03` |",
+        "sha256": "973ddee096895241489be88bddc3e9f4b8664968e389c3238afc70d276a3b0a8"
+      },
+      {
+        "literal": "| `CASE-INFRA-011-S5-060` | 復旧境界 restore integrity失敗 | `baseline={scope=infra-011-stage5-sim,environment=verification-sim,source_revision=sim-r1,backup=sim-success,restore.integrity=sim-ok,restore.dependency_reconnect=sim-ok,restore.startup=sim-ok,restore.verification=sim-ok,current_active_revision=sim-r8,eligible_rollback_target=sim-r7,os_operation_request=none}`; restore.integrityだけをsim-failedへ変更。 | restore失敗を保持し成功/rollback完了にしない。recovery design ownerへ戻す。OS work/change ownerはOS操作要求がこのfixtureにないため非適用。 / recovery design owner、具体ownerは固定親で未特定ならunknown | `INFRA-011-AC-03` |",
+        "sha256": "1aea9da5ca3ea54506f9b71d967b162b27c1ef32db7c010f21f9fb9272efbff5"
+      },
+      {
+        "literal": "| `CASE-INFRA-011-S5-061` | 復旧境界 dependency reconnect未観測 | `baseline={scope=infra-011-stage5-sim,environment=verification-sim,source_revision=sim-r1,backup=sim-success,restore.integrity=sim-ok,restore.dependency_reconnect=sim-ok,restore.startup=sim-ok,restore.verification=sim-ok,current_active_revision=sim-r8,eligible_rollback_target=sim-r7,os_operation_request=none}`; restore.dependency_reconnectだけをunobservedへ変更。 | unobservedを成功へ丸めずrestore/rebuild未完。入力に依存source ownerがなければunknown。OS work/change ownerはOS操作要求がないため非適用。 / dependency source owner=unknown; recovery design owner | `INFRA-011-AC-03` |",
+        "sha256": "28874c38a6950925f3b4b1fefef9e2739daefa8f9823058c89b238d0866d2983"
+      },
+      {
+        "literal": "| `CASE-INFRA-011-S5-063` | 復旧境界 rebuild startup失敗 | `baseline={scope=infra-011-stage5-sim,environment=verification-sim,source_revision=sim-r1,rebuild.inputs=complete-sim,rebuild.dependency_reconnect=sim-ok,rebuild.startup_verification=sim-ok,rebuild.result=sim-verified,current_active_revision=sim-r8,eligible_rollback_target=sim-r7}`; rebuild.startup_verificationだけをsim-failedへ変更。 | rebuildabilityを別判定で失敗とし部分結果・稼働版・適格rollback先を保持する。 / rebuild/recovery owner=unknown（固定親で未特定） | `INFRA-011-AC-03` |",
+        "sha256": "40cb33c69c6ba61dd5acf9873fd58639e912afd664b1994a60d4206ae0f7e1aa"
+      },
+      {
+        "literal": "| `CASE-INFRA-011-S5-064` | 復旧境界 OS停止中ticketなしの正常 | `baseline={scope=infra-011-stage5-sim,environment=verification-sim,source_revision=sim-r1,os_state=down-sim,os_ticket=none,independent_path=sim-available,security_authority=sim-authorized,worker_contract=sim-current,recovery.result=sim-verified,after_os_up_sync=sim-recorded}`; 正常fixture、変異なし。 | 停止OS ticketをrequireしない。独立path/SECURITY authority/Worker契約/resultと復帰後syncを別々に確認する。ticket欠落は許可免除を意味しない。 / 正常時は戻し先なし | `INFRA-011-AC-04` |",
+        "sha256": "f3db64f987d00fa356c067c18dc728ad1d9b58ca082bc3268dcb1a03d12b083e"
+      },
+      {
+        "literal": "| `CASE-INFRA-011-S5-065` | 復旧境界 independent authority欠落 | `baseline={scope=infra-011-stage5-sim,environment=verification-sim,source_revision=sim-r1,os_state=down-sim,os_ticket=none,independent_path=sim-available,security_authority=sim-authorized,worker_contract=sim-current,recovery.result=sim-present}`; security_authorityだけをmissingへ変更。 | 許可済みrecoveryと扱わず停止し、SECURITY authority ownerへ返す。 / SECURITY authority owner | `INFRA-011-AC-04` |",
+        "sha256": "72d8b8c9b14f1a88708eb665b66635e48cffde9795235a63f60412cd7992f733"
+      },
+      {
+        "literal": "| `CASE-INFRA-011-S5-066` | 復旧境界 復旧後operation同期欠落 | `baseline={scope=infra-011-stage5-sim,environment=verification-sim,source_revision=sim-r1,os_state=up-sim,recovery.result=sim-verified,operation_sync=sim-recorded}`; operation_syncだけをmissingへ変更。 | recovery結果自体は保持するが接続compositeは未完。OS work/change ownerへ戻す。 / OS work/change owner。同期source ownerが特定できない場合はunknown | `INFRA-011-AC-04` |",
+        "sha256": "935e835c3af3a995597f530dae2336a66569a4ac526ee659f27845d3f37e77fe"
+      },
+      {
+        "literal": "| `CASE-INFRA-011-S5-067` | 復旧境界 OS-014 stage収載時の正常 | `baseline={scope=infra-011-stage5-sim,environment=verification-sim,source_revision=sim-r1,stage_release_inclusion=true,os_014_stage_ref=os-stage-sim@sim-r4,requested_evidence=none}`; stage収載条件だけを有効にする正常fixture、変異なし。 | OS-014 evidenceは実際のstage収載時だけ別照合する。通常のInfrastructure 1.0受入には要求しない。/ 正常時は戻し先なし | `INFRA-011-AC-04` |",
+        "sha256": "b820aea1d90dd606375d25964f65f575ed6dc908478691db51e9a5cbfbe5198b"
+      },
+      {
+        "literal": "| `CASE-INFRA-011-S5-077` | scope境界 後続版条件の暗黙前提化 | `baseline={scope=infra-011-stage5-sim,version_target=1.0,later_feature=not_requested}`; `later_feature=automated_failover`だけを追加。 | 後続版機能を1.0前提にせず不適合を保持。戻し先なし。 | `INFRA-011-AC-04` |",
+        "sha256": "dd4b7bbc98e07a0c3ed90d0701880487b7465134eea77de59cf8ffaed61bbede"
+      },
+      {
+        "literal": "| `CASE-INFRA-011-S5-078` | scope境界 HELIX-WEB顧客runtime混入 | `baseline={scope=infra-011-stage5-sim,version_target=1.0,HELIX-WEB-customer-runtime=excluded}`; `included_runtime=HELIX-WEB-customer-runtime-sim`だけを追加。 | 顧客runtime混入を不適合とし、本体構成体成立にしない。戻し先なし。 | `INFRA-011-AC-04` |",
+        "sha256": "ead17d89503375cf1ea0e0674d0d1f450a9d5f0ba09d8582f501a273cba77bc6"
+      },
+      {
+        "literal": "| `CASE-INFRA-011-S5-082` | read-onlyが状態を変更 | `baseline=CASE-INFRA-011-S5-055 normal; after=sim-r1`から`after=sim-r2`だけを変更。 | read-only違反として不適合。write禁止とoperation起因changeなしを確認し、source ownerが特定できなければunknown。 | `INFRA-011-AC-03` |",
+        "sha256": "520aa2e485466bed0cccde2f2e2bd619d820e130eeeac779c14a22c95c76260a"
+      },
+      {
+        "literal": "| `CASE-INFRA-011-S5-083` | state changeの適用recovery duty欠落 | `baseline=CASE-INFRA-011-S5-056 normal; applicable_duty=restore-check-sim; duty_result=sim-verified`から`applicable_duty=missing`だけを変更。 | state changeを成功扱いせず未完義務を保持、recovery design ownerへ。OS Work/Change参照はS5-056の正常値を保持する。欠落fieldはrecovery dutyだけであり、OS参照を原因とする戻しは生成しない。 | `INFRA-011-AC-03` |",
+        "sha256": "1cc38f07e612deaff37f5d390cdc47437ac0d1ebdd4ae1ae9d5df91fcc5706d8"
+      },
+      {
+        "literal": "| `CASE-INFRA-011-S5-084` | state changeの適用recovery duty unknown | `baseline=CASE-INFRA-011-S5-056 normal; applicable_duty=restore-check-sim; duty_result=sim-verified`から`applicable_duty=unknown`だけを変更。 | state changeを成功扱いせず未完義務を保持、recovery design ownerへ。OS Work/Change参照はS5-056の正常値を保持する。欠落fieldはrecovery dutyだけであり、OS参照を原因とする戻しは生成しない。 | `INFRA-011-AC-03` |",
+        "sha256": "9438b4ebd3a59471642d45864ed27026babb59b7819e240ff8f4b8d67e581495"
+      },
+      {
+        "literal": "| `CASE-INFRA-011-S5-085` | composite部分結果で稼働版/適格rollback先保持 | `baseline=CASE-INFRA-011-S5-072 normal`から`composite_result=sim-complete`だけを`{state=partial,missing_component={field=connection-result-receipt,source=connection-result-sim@sim-r1},unfinished_duties=[record-connection-result-sim],responsible_owner=unknown}`へ置換。その他fieldはbaselineのまま。 | compositeを不成立に保ち、欠落field/source、未完義務、責務owner=unknown、稼働版`sim-r8`と適格rollback target`sim-r7`を保持する。rollback実行や成功を生成しない。 | `INFRA-011-AC-03` |",
+        "sha256": "f3f608b0ef1de4eaa9bdbaa2ac92e7d1c9b914f45fe08133c6b78e1265c66228"
+      },
+      {
+        "literal": "| `CASE-INFRA-011-S5-086` | read-onlyでwrite試行を拒否 | `baseline=CASE-INFRA-011-S5-055 normal（write_set=empty; writes=none; before=sim-r1; after=sim-r1）`から`write_attempt={target=api-db-sim-01,action=write-sim,scope=infra-011-stage5-sim}`だけを追加する。 | empty write-setへのwrite試行を拒否し、writeを実行しない。拒否後もbefore/afterはsim-r1のまま。read-onlyのwrite禁止を維持し、OS停止中independent recovery例外から通常操作のwrite許可を生成しない。ownerが必要な差戻しは固定親で特定できる契約ownerに限り、特定不能ならunknown。 | `INFRA-011-AC-03/04` |",
+        "sha256": "56336ed313148569610e4db2c737fac5026fa414bdb9d8a58449b3a5b76e45a2"
+      },
+      {
+        "literal": "| `CASE-INFRA-011-S5-072` | composite正常 | `unit_results={CASE-INFRA-011-S5-001=normal@sim-r1,CASE-INFRA-011-S5-004=normal@sim-r1,CASE-INFRA-011-S5-007=normal@sim-r1,CASE-INFRA-011-S5-010=normal@sim-r1,CASE-INFRA-011-S5-013=normal@sim-r1,CASE-INFRA-011-S5-016=normal@sim-r1,CASE-INFRA-011-S5-019=normal@sim-r1,CASE-INFRA-011-S5-022=normal@sim-r1,CASE-INFRA-011-S5-025=normal@sim-r1,CASE-INFRA-011-S5-028=normal@sim-r1,CASE-INFRA-011-S5-031=normal@sim-r1,CASE-INFRA-011-S5-034=normal@sim-r1,CASE-INFRA-011-S5-037=normal@sim-r1,CASE-INFRA-011-S5-040=normal@sim-r1,CASE-INFRA-011-S5-043=normal@sim-r1,CASE-INFRA-011-S5-046=normal@sim-r1,CASE-INFRA-011-S5-049=normal@sim-r1,CASE-INFRA-011-S5-052=normal@sim-r1}; connections={CORE={design=core-infra-sim@sim-r5,target_scope=infra-011-stage5-sim};OS={work=os-work-sim-01,change=os-change-sim-01,revision=os-rev-sim-4,scope=verification-sim,runtime=api-db-sim-01@infra-runtime-sim-r17};SECURITY={authority=security-authority-sim-01@sim-r3,scope=verification-sim};Worker={contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01,resource=worker-host-sim@sim-r1,mapping=worker-sim→worker-host-sim}}; scope=infra-011-stage5-sim; environment=verification-sim; source_revision=sim-r1; current_active_revision=sim-r8; eligible_rollback_target={revision=sim-r7,artifact=artifact-sim-r7,config=cfg-sim-r7,dependency=dep-sim-r7,data_ref=data-sim-r7,procedure=rollback-sim-r7}; composite_result=sim-complete; unfinished_duties=none`。正常、変異なし。 | 18 unit、4 connection、compositeを別記録する。独立business outcome/approval/release/executionは生成しない。正常時は戻し先なし。 | `INFRA-011-AC-03` |",
+        "sha256": "6f5bc86f95145bb8a6b4a0679319d1b28a63298539bc9cee7b602d8727907998"
+      },
+      {
+        "literal": "| `CASE-INFRA-011-S5-074` | composite restore証拠欠落 | `unit_results=CASE-INFRA-011-S5-072.normal.unit_results; backup={artifact=backup-sim-01,source_revision=sim-r7,result=sim-success}; restore={target=api-db-sim-01,revision=sim-r7,integrity=sim-ok,dependency_reconnect=sim-ok,startup=sim-ok,verification=missing}; os_operation_request=none`。restore.verificationだけをmissingへ変更。 | backup/他項目の部分成功を保持しcompositeを保留。recovery design ownerへ。OS operation requestはないためOS戻しは非適用。 | `INFRA-011-AC-03` |",
+        "sha256": "87082e81b6b6ec71fbe1f882d2a43a5f7088843f3ed63492fe30d961c8b0c983"
+      },
+      {
+        "literal": "| `INFRA-011-AC-03` | `CASE-INFRA-011-S5-055`, `CASE-INFRA-011-S5-056`, `CASE-INFRA-011-S5-059`, `CASE-INFRA-011-S5-060`, `CASE-INFRA-011-S5-061`, `CASE-INFRA-011-S5-062`, `CASE-INFRA-011-S5-063`, `CASE-INFRA-011-S5-072`, `CASE-INFRA-011-S5-073`, `CASE-INFRA-011-S5-074`, `CASE-INFRA-011-S5-075`, `CASE-INFRA-011-S5-076`, `CASE-INFRA-011-S5-082`, `CASE-INFRA-011-S5-083`, `CASE-INFRA-011-S5-084`, `CASE-INFRA-011-S5-085`, `CASE-INFRA-011-S5-086` | read-onlyのwrite境界、復旧、部分結果、composite分離。 |",
+        "sha256": "585f9e31ff8bb8d084b1cfa794f4959031f98c73759821b5d22bd9401824b039"
+      },
+      {
+        "literal": "| `INFRA-011-AC-04` | `CASE-INFRA-011-S5-055`, `CASE-INFRA-011-S5-058`, `CASE-INFRA-011-S5-064`, `CASE-INFRA-011-S5-065`, `CASE-INFRA-011-S5-066`, `CASE-INFRA-011-S5-067`, `CASE-INFRA-011-S5-076`, `CASE-INFRA-011-S5-077`, `CASE-INFRA-011-S5-078`, `CASE-INFRA-011-S5-086` | version / OS境界 / independent recovery、通常read-only境界との分離。 |",
+        "sha256": "25a9b682217397f28535d6c15037de11421873121df837f8d7744bf4781f5625"
+      }
+    ]
+  },
+  "old_audits_unchanged": [
+    {
+      "path": "docs/governance/audits/requirements-stage/infrastructure-stage5-root-acceptance-2026-10-06.json",
+      "bytes": 105120,
+      "sha256": "aabec495fd480fcbaa53c6182ce7d8996ffc43e69ea1fbc8536d46aafd8d4043"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/infrastructure-stage5-review01-root-correction-2026-10-06.json",
+      "bytes": 162069,
+      "sha256": "c0ab8f646d6d8fa37f34a6aea09527ec29b4dcd90e22f0d163e0dae967da0da6"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-infrastructure-stage5-011-review01-final-correction-2026-10-06.json",
+      "bytes": 47305,
+      "sha256": "06d4f8faa6a7e7bf6e50eb03ab278500bac461dbc2a38d936c15fd4b9e61ef3e"
+    }
+  ],
+  "static_evidence": [
+    "既存85 CASE IDの集合は本文親commitから全て保持。S5-086だけを追加し、FR索引86件とFV見出し86件を照合。",
+    "FR/FV Stage5より前のprefix bytesは本文親commitと完全一致。",
+    "S5-055 write_set=empty / writes=none / before=afterを確認。S5-086はwrite_attemptのみの追加・拒否・write非実行・前後状態不変を確認。",
+    "AC-03/04索引にS5-086を含み、NFR-011-S5-01/02へ分母86とwrite-denial観測を反映。",
+    "S5-058正常戻し先はFR/FVで一致。",
+    "git diff --check 成功。旧runtime/test/CIは実行していない。"
+  ],
+  "limitations": [
+    "合成fixture設計で未実行。実装成功・L3承認・operation許可を示さない。"
+  ],
+  "fixed_source_spans": [
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "lines": "126–134",
+      "sha256": "c6b93eb12b5bfe8deb36485c688ce02709bfa49da40086b0d4b59cf6cdc45f37",
+      "meaning": "L2-010の通常operation条件。read-only/write禁止のread-only/result境界。"
+    },
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "lines": "138–147",
+      "sha256": "ddedb41002d72be9322e99d6f82233d231795f3e9cc167d2bc048c2bbe765791",
+      "meaning": "L2-011構成体の失敗時戻し先・未完義務。"
+    },
+    {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "lines": "132–134",
+      "sha256": "8c4bcf6b1e890da0ed830f3da34865460cf1f5aefc26b1de97a50cada16c2829",
+      "meaning": "L2-010 read-only inputのempty write-setとwrite禁止・scope内変更なし。"
+    },
+    {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "lines": "144–150",
+      "sha256": "29a47a98a51b5884c8e0676444410619e5a55aedd3b2cfcd74b1a8cdd67b6e56",
+      "meaning": "L2-011 operation-specific oracleと失敗owner return。"
+    }
+  ]
+}

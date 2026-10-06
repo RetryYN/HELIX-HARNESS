@@ -88,3 +88,14 @@ Candidateの受入/採用は一つの通常L3判断へまとめ、数値ごと�
 | INFRA-NFR-025-S4 / 025 | 固定L2/L11の資源/Worker区別、隔離、ticket/要求/責務/未完保持と元資源/移動先状態。Worker応答のみの比較候補1に対し、実stateと作業参照を別に追う比較候補2を候補とする。 | 選択Worker/resource/移動scopeの必要resource属性・隔離条件・lineage参照を事前に分母化し、全件のvalue/unknownとsource/revision追跡を候補とする。unknownを成立へ丸めた件数、未完義務消去、正本移管は0件。自動最適化の性能値は測らない。 |
 
 旧grade→測定→証拠という形式を再導出し、資源identityと実適用の意味根拠は機能本文の旧OPS/WCC/Conceptに限定する。既存NFRの数値をこの2親へ転用しない。候補値の判断は通常のL3承認へまとめ、parameter別PO質問は作らない。要求meaning/scope/owner/versionの変更は該当L2へ戻す。
+
+## Stage 5 追加範囲 — HELIXINFRASTRUCTURE-L2-011
+
+L2-011 1.0に数値SLO、時間/回数threshold、性能保証を追加しない。以下は固定L2/L11へ追跡するfixture設計・静的分類候補であり、未実行である。合成値は測定値ではない。
+
+| 候補 | 分母/層別 | oracleと記録 |
+|---|---|---|
+| `INFRA-NFR-011-S5-01` | functional CASE集合の全86件をunit 54、operation 5、recovery 9、connection/composite 9、scope境界 2、environment/operation negative 6、partial composite 1の7区分とitem/variant別に列挙。unknown/unobserved/stale/mismatch/unauthorizedを分母から除かず、適用外には固定根拠と理由を記録する。 | 可観測な入力/期待/結果の有無とoracle一致を別記する。S5-086では禁止write試行、拒否結果、writes=none、前後状態不変を別々に観測する。L11:146が拒否するunknown/unobserved/stale/mismatch/unauthorizedの誤受入分類の期待件数0は静的候補に限り、実測・runtime保証としない。分母0は率なし、未実行は未測定。|
+| `INFRA-NFR-011-S5-02` | 18最低項目、該当connectionとoperation/recoveryのsource/revision/owner/unfinished-duty参照をCASEごとに追跡する。read-only操作はempty write-set/write禁止の適用根拠と通常操作・独立recovery例外のscope境界も追跡する。 | owner不明はunknown。OS停止中ticket不要と復帰後syncは別CASE。S5-086では拒否結果が操作起因changeなしと一致するか、許可・状態変更へ誤転換されないかを静的に分類する。capacity観測をOS/INTELLIGENCE採否へ換算しない。率・閾値・合格を未実行で報告しない。|
+
+この候補は個別PO質問、追加owner/authority、閾値または実装scopeを作らない。

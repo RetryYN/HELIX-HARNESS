@@ -1,0 +1,10 @@
+{
+  "record_type": "append-only commit binding",
+  "scope": "HELIXINFRASTRUCTURE-L2-011 Stage 5 1.0 L3/L10 candidate",
+  "basis_main": "64086f7f03b283247d0cfd18a5b729420caadf29",
+  "body_commit": "8489de25",
+  "source_audit_commit": "3b0632727",
+  "source_audit_path": "docs/governance/audits/requirements-stage/l3-l10-infrastructure-stage5-011-source-audit-2026-10-06.json",
+  "source_audit_sha256": "7a9c8b41c2e33a401fb8df67d064ad2e3beb8c1535f7a1e5dca4ca5981417d47",
+  "note": "The source audit is immutable; this separate record binds the body and audit commits without modifying that audit. No push was performed."
+}
