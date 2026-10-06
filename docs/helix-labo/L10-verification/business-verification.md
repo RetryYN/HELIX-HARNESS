@@ -67,7 +67,7 @@
 | `HELIXLABO-L2-064` | 選択blind runだけの候補identity隠蔽/復元 | `L10-LABO-064-CASE-01`〜`CASE-36` |
 | `HELIXLABO-L2-065` | selected-scope scorecardと既存qualification decision owner | `L10-LABO-065-CASE-01`〜`CASE-40` |
 | `HELIXLABO-L2-066` | 共通eligible denominatorでの2つの欠陥指標 | `L10-LABO-066-CASE-01`〜`CASE-41` |
-| `HELIXLABO-L2-067` | candidate eligibility/repair event、OS Attempt境界 | `L10-LABO-067-CASE-01`〜`CASE-04b`, `L10-LABO-067-CASE-05`〜`CASE-22` |
+| `HELIXLABO-L2-067` | candidate eligibility/repair event、OS Attempt境界 | `L10-LABO-067-CASE-01`〜`CASE-04b`, `L10-LABO-067-CASE-05`〜`CASE-23` |
 | `HELIXLABO-L2-068` | OS記録に基づくAttempt identity集合 | `L10-LABO-068-CASE-01`〜`CASE-04b`, `L10-LABO-068-CASE-05`〜`CASE-18` |
 | `HELIXLABO-L2-069` | ticket/reissue後の観測評価。ticket ownerはOS | `L10-LABO-069-CASE-01`〜`CASE-30` |
 | `HELIXLABO-L2-070` | selected telemetry fieldとsource owner | `L10-LABO-070-CASE-01`〜`CASE-04b`, `L10-LABO-070-CASE-05`〜`CASE-65` |
