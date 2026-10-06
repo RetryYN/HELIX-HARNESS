@@ -465,7 +465,7 @@ scope: 本追補5親のみ / G0 version_class 1.0
 | `HARNESS-L2-021` | L2 `product-requirements.md:438–446`、L11 `product-acceptance.md:216` | HARNESS構成体の端から端trace、構成体固有の横断NFR・統合版更新/rollback・L12運用検証。個別release unit成功とは別に評価し、LABO/OSが担う評価・提案・実行をHARNESSが代行しない。 | 旧FRS-BR-009とFRS-R-23/24から安全依存closure、Lite/Full単位の統合差分・rollback義務を再導出。旧FRS-AC-025/026とmappingからsource→要件→構成体検証→運用のtrace形を参照する。旧Lite/Full/L12値・旧unit分類を現行release-unit identityへそのまま移さず、旧完了/受入/運用gateを置換する。receiptが直接覆うのはFRS-BR-009の2 atomsのみで、旧全要件被覆を主張しない。 |
 | `HARNESS-L2-025` | L2 `product-requirements.md:544–554`、L11 `product-acceptance.md:342–360` | 026設計unitと常時必須のBRAIN connector契約を束ねる汎用設計構成体。Patternを使う場合だけHELIXBRAIN-L2-030 receiptと選択Pattern条件を加える。CORE/Design Template/connector契約とscopeに従い、独立承認・受入・実装authorityを作らない。 | 旧multimodal-design-harness-authorityは近接するauthority/IR設計の比較例に限る。現行025に直接対応する旧L3要件またはpaired consumerは特定できず、直接再利用とはしない。旧source phrase検索はinventory記載語でarchive範囲を検索し0件だったが、これはarchive全体に意味的対応がない証明ではない。固定025から必要relation・双方向trace・invariant・normal/reject/failure pathを再導出する。 |
 | `HARNESS-L2-033` | L2 `product-requirements.md:667–690`、L11 `product-acceptance.md:432–444,457` | COREのcase/repro/regression trace構成体候補。030/031と必要時032の選択operationに適用。case生成、reproduction、run receipt、修正前fail、選択時の修正後passを別stage/resultとして扱い、OS/利用者CIが実行、022が検証/受入契約を所有する。 | 旧FR-25とAT-FR-25の回帰trace/id対応を比較例として参照するが、incident由来minimized reproの直接系譜とはしない。旧runtime/testの実行や固定workflowは再利用せず、同一oracleの縮小前後failure・修正前fail・選択時の修正後passを固定033から再導出する。archive phrase検索はinventoryと追補readの範囲で直接incident-minimization相当の対応を確認できなかった。 |
-| `HARNESS-L2-035` | L2 `product-requirements.md:719–729, 931–941`、L11 `product-acceptance.md:485,678` | COREの要求候補導出根拠・受入寄与・最小性/代替案/budget照合。操作・記録・ticketは選択時にOS側へ渡し、外部管理/CIをCORE成立の必須条件にしない。未知budgetはunknownのまま。 | 旧HIL-FR-38、HIL-NFR-07/23から上流根拠、受入寄与、代替案、budget根拠、導出循環の検出を再導出する。旧screening/authority gate、旧数値/運用を置換しない。coverage receiptの選択atomsはこれら3件だけであり、旧IR全文を網羅しない。旧HST-HIL-021/HAT-HIL-05は静的な根拠/受入対の形を参照し、旧実行は再利用しない。 |
+| `HARNESS-L2-035` | L2 `product-requirements.md:719–729, 931–941`、L11 `product-acceptance.md:485–492,678–686` | COREの要求候補導出根拠・受入寄与・最小性/代替案/budget照合。操作・記録・ticketは選択時にOS側へ渡し、外部管理/CIをCORE成立の必須条件にしない。未知budgetはunknownのまま。 | 旧HIL-FR-38、HIL-NFR-07/23から上流根拠、受入寄与、代替案、budget根拠、導出循環の検出を再導出する。旧screening/authority gate、旧数値/運用を置換しない。coverage receiptの選択atomsはこれら3件だけであり、旧IR全文を網羅しない。旧HST-HIL-021/HAT-HIL-05は静的な根拠/受入対の形を参照し、旧実行は再利用しない。 |
 | `HARNESS-L2-037` | L2 `product-requirements.md:777–833`、L11 `product-acceptance.md:527–573` | 2026-09-29 PO判断の最新採択行・registration `MPR-RC-HARNESS-L2-037-002`・G0 Stage5 1.0分類を採択状態の根拠とする。L2本文の歴史的「未採択」表現は判断前の候補記述として保持し、その箇所を現在の状態根拠にしない。L2-009が対象/templateに二段適用性を示す場合に限り、Phase 1一般systemからPhase 2 agent固有scopeへ合流するCORE能力。HARNESS自身には適用しない。 | 旧Concept A-74とFR-L1-28、旧L6 design/coverage、screen/acceptance rowsから二段の順序・成果pair・handoff意味を再導出する。旧`drive=agent`、phase YAML固定field、provider/runtime、旧layer番号とgateを移植せず、現行L2-009適用契約と各段L2/L3/L10/L11/L12 identityへ置換する。receiptの15 atomsは選択範囲であり、旧source全集合の被覆完了ではない。 |
 
 旧source検索・inventoryの限界、full file/span pinと意味照合の違いはStage5監査に明記する。旧consumerの例を参照する場合も、旧test/runtime/CIを実行せず現行L2/L11と現行ownerへ置き換える。
@@ -490,6 +490,8 @@ scope: 本追補5親のみ / G0 version_class 1.0
 **出力**：要求→設計要素→oracleの双方向trace、unit/connection/composite relation、横断invariant、正常・拒否・failure pathの対検証設計、conflict/unknown/alternative/差戻し先を含む各条件の状態と既存ownerへの不足返却。025は026を生成せず、014を置換せず、採択・承認・実装・利用者受入を出さない。
 
 **不変条件・戻し先**：BRAIN connector契約と026 unitは常時必須。Patternは明示選択された場合だけ、そのreceiptと全required input/relation/versionが必須であり、未選択Patternは未観測である。意味差はHARNESS-L2-008/上流owner、L3 authority/revision差は該当L3 owner、Pattern/relationの不足・衝突・version差はBRAIN connector/Pattern owner、設計要素/pair/oracleの形成不足はHARNESS-L2-026/022の形成へ返す。CORE connectorの版unknownまたは互換範囲外は不適合として保留し、固定L2にないconnector専用戻し先は作らない。Template適用差も互換範囲外なら保留し、設計/pair形成の不足がある場合のみ026/022形成へ返す。未特定のgeneric permission owner、CORE connector owner、Design Template ownerを新設しない。connector自体が無い場合もPattern利用で代替しない。固定L2に示す承認後編集禁止例では、申請→承認→編集要求→拒否の状態とpermission/data invariantを端から端で確認する。
+
+HARNESS-L2-014が設計一式の整合を提供するscopeでは、そのscopeに対するHARNESS-L2-025の検査を常時必須とする。これは対象scope内の検査条件であり、別の承認・開始gateを追加しない。
 
 - **`AC-HARNESS-L3-025-01` 常時必須契約**：026 unit、L3 revision/scope、CORE/Design Template/BRAIN connector契約と022 oracleを一致させるnormal compositeを確認する。Patternを選ばないfixtureではPattern receiptを要求せず、全Patternの知識を要求しない。
 - **`AC-HARNESS-L3-025-02` 選択Pattern条件**：同じ正常compositeでPatternを一つ選択し、対応するHELIXBRAIN-L2-030 receipt・選択Patternのrequired relation/versionを結ぶ。receipt欠落、unknown、stale、scope mismatchを別CASEで保留し、別Patternへ暗黙fallbackしない。
@@ -534,7 +536,6 @@ scope: 本追補5親のみ / G0 version_class 1.0
 ### Stage 5 Root検収追補 — scope計測の反例対応
 
 AC-035-05はS5-027/028/042および035〜038（旧revision計測、機能数だけの最小性、根拠外閾値の許可と拒否をそれぞれ別CASE）、AC-035-06は029/041/034（複雑さ・運用負債・公開面の各欠測）、AC-035-08は031/032/039/040（CORE単体正常、OS登録非代替、未完候補からの合意生成と実行権限生成の各反例）へ結ぶ。固定035の意味・scope・owner・版は変更しない。
-
 
 ### `FR-HARNESS-L3-037` — 適用可能なW二段設計のtraceと合流
 
