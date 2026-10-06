@@ -729,7 +729,7 @@ AC-035-05はS5-027/028/042および035〜038（旧revision計測、機能数だ�
 
 ### `FR-HARNESS-L3-049` — 与えられたprototypeの表示計測
 
-HARNESSは、利用許可と対象revisionに結ばれたscreen IDを持つrenderable prototype、選択された適用profile、device/view/locale等の選択条件、各検査のoracle・手段版・known fixtureを入力として、選択scopeの実際の表示測定を行い、測定ごとの結果・根拠・未測定/適用外/unknownを区別して返す。機械検査は適用可能な正例/反例fixtureと照合でき、精度評価が成立しない検査をpass根拠として使わない。profileが定める文言役割・目安に基づくfindingは候補として返し、閾値や人の文言判断を作らない。
+HARNESSは、利用許可と対象revisionに結ばれたscreen IDを持つrenderable prototype、選択された適用profile、device/view/locale等の選択条件、各検査のoracle・手段版・known fixtureを入力として、選択scopeの実際の表示測定を行い、測定ごとの結果・根拠・未測定/適用外/unknownを区別して返す。固定L2-049が定める出力として修正候補も返し、その候補は選択されたprofile/oracle、測定結果および根拠と整合させる。機械検査は適用可能な正例/反例fixtureと照合でき、精度評価が成立しない検査をpass根拠として使わない。profileが定める文言役割・目安に基づくfindingは候補として返し、閾値や人の文言判断を作らない。機械測定・候補出力からL3要件freezeまたはL11利用者受入を自己生成しない。
 
 測定対象のscreen IDは既存入力のidentityであり、049はこれを新規発行しない。発行経路の証拠がないだけでは測定条件を欠いたことにしない。screen ID、対象revision、利用許可、scope、適用profile、oracle・手段版、fixtureのいずれか必要な入力値自体がmissing/unknown/staleなら、該当測定だけをunknown/未評価にし、原因ごとの既知責務へ返す。要求意味またはvisual-priorityの入力不足は既存上流要求owner、prototype agreement入力の不足はHARNESS-L2-024境界、選択profile・oracle入力の不足は既存design/oracle責務、精度評価入力の不足はLABO精度評価へ返す。連絡先となる個人のidentityがsourceにない場合も、既知の責務区分は保持し、個人identityだけunknownとする。「既存source owner」のような汎用責務は作らない。入力が正常で049自身の候補出力fieldだけが誤る場合は、入力側ownerへ返さず、そのfieldを049候補出力内で訂正し、誤った結果のclosureを拒否する。
 
@@ -737,9 +737,9 @@ HARNESSは、利用許可と対象revisionに結ばれたscreen IDを持つrende
 
 | AC | 成立条件 | 不成立・unknown時の扱い |
 |---|---|---|
-| `AC-HARNESS-L3-049-01` | screen/revision/profileと選択scopeのdevice/view/locale等を明示し、各適用checkのoracle・手段版・evidenceへ結ぶ。選択oracle/fixture内の未見画面状態・文言役割・表示条件は正常に評価でき、適用外の条件は理由付きで区別する。 | 必要な条件またはevidenceが欠けるときは当該条件をunknown/未評価にする。選択scope外を観測済み・合格へ広げない。未見だけを理由に選択oracleに適合する正常入力を拒否しない。 |
+| `AC-HARNESS-L3-049-01` | screen/revision/profileと選択scopeのdevice/view/locale等を明示し、各適用checkのoracle・手段版・evidenceへ結ぶ。測定結果・文言findingと修正候補は、選択profile/oracleおよび根拠に整合する出力として照合する。選択oracle/fixture内の未見画面状態・文言役割・表示条件は正常に評価でき、適用外の条件は理由付きで区別する。 | 必要な条件またはevidenceが欠けるときは当該条件をunknown/未評価にする。選択scope外を観測済み・合格へ広げない。未見だけを理由に選択oracleに適合する正常入力を拒否しない。修正候補だけが欠落または根拠と不一致なら、当該出力を不適合として保持する。 |
 | `AC-HARNESS-L3-049-02` | 適用checkごとに既知positive/negative fixture、期待分類、観測結果を結び、false positive/missを評価可能にする。分母0、fixture不足、別scope/revision結果の流用は単独で評価する。 | accuracy未評価をpass根拠に使わず、fixture数・候補数・実行回数から精度成立を作らない。選択scopeで必要なLABO評価は既存connectionへ渡す。 |
-| `AC-HARNESS-L3-049-03` | 有効な最小入力が揃えば表示計測を開始できる。prototype生成、Pattern選択、screen ID発行履歴を追加必須入力にせず、画面計測結果を返す。 | これらの工程出力を049から生成しない。machine measurementだけからagreement、L3/L11 acceptance、requirement acceptanceを出力しない。 |
+| `AC-HARNESS-L3-049-03` | 有効な最小入力が揃えば表示計測を開始できる。prototype生成、Pattern選択、screen ID発行履歴を追加必須入力にせず、画面計測結果を返す。 | これらの工程出力を049から生成しない。machine measurementだけからagreement、L3要件freeze、L11利用者受入、requirement acceptanceを出力しない。 |
 | `AC-HARNESS-L3-049-04` | 文言量は選択profileの画面/領域/役割別目安に照らす。screen IDそのものの欠落、target revision不一致、代替ID要求はそれぞれ識別し、findingは根拠付きで返す。 | 根拠のない一律文字数上限やgeneric ownerを設けない。欠落原因に応じ固定L2が特定する既存requirement/visual-priority、L2-024 agreement、design/oracle、LABO責務へ返し、個別identity不明はunknownとする。 |
 | `AC-HARNESS-L3-049-05` | 測定pass/warning/unknown、要求受入、人による文言判断、`implemented`、`ux_verified`を別状態として保つ。 | machine passから人のagreement/acceptanceや状態を生成しない。real-user UX、prototype/implementation drift、analyticsを1.0の049完了条件へ前倒ししない。 |
 
