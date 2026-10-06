@@ -728,10 +728,10 @@ HARNESS-L2-054の型付きhandoff条件を満たし、L2-047のmuster判断をOS
 
 ### 受入条件
 
-- `AC-HARNESS-L3-054-01`：入力sourceと比較条件が十分なとき、HARNESSは `muster_candidate`、`existing_role_sufficient`、`unknown_or_defer` のいずれかを対象task/scope/revisionと理由・比較情報に結ぶ。出力に含む契約参照、digest、生成規則revision、理由、比較対象/evidence、guard結果、既存role参照/比較根拠は、適用する分岐に応じて同scope/revisionの入力source値と一致する。
+- `AC-HARNESS-L3-054-01`：入力sourceと比較条件が十分なとき、HARNESSは `muster_candidate`、`existing_role_sufficient`、`unknown_or_defer` のいずれかを対象task/scope/revisionと理由・比較情報に結ぶ。muster出力の契約参照は複数の場合に全参照集合とその集合digestを含め、参照集合・input/output digest・generation-rule revision・理由・比較対象/evidence・guard結果を同scope/revisionの入力source値と項目ごとに照合する。digest algorithmやwire formatは定義しない。既存role十分分岐のrole参照・比較根拠も同じ入力値と一致する。
 - `AC-HARNESS-L3-054-02`：必須軸、source/revision、適用範囲、oracle、evidence適用性、contract digestまたはOS条件の欠落・stale・conflictを推定補完せず、原因別の既存責務へ戻す。`unknown_or_defer`の不足条件、既知の責務区分、再照合に必要な入力はその原因入力に一致する値で示す。所有者の個体identityが不明なら個体だけunknownを保持する。
-- `AC-HARNESS-L3-054-03`：muster候補の契約参照/digest、generation-rule revision、理由、比較/evidence、guard結果を同一scope/revisionへ結び、OS response/assignmentの対応有無と区別する。正規assignmentはOSだけが発行する。
-- `AC-HARNESS-L3-054-04`：既存role十分時は入力と一致する対象既存role参照および比較根拠を返し、いずれかの出力値の欠落・別値は不成立として当該HARNESS handoff出力を訂正する。追加specialist contract/assignmentを生成しない。通常の既存role assignmentはOS既存契約に従う。handoffから要求採択、L3承認、authority、Worker起動または成果受入を生成しない。
+- `AC-HARNESS-L3-054-03`：muster候補の契約参照（複数なら全参照集合とその集合digest）/input-output digest、generation-rule revision、理由、比較/evidence、guard結果を同一scope/revisionへ結び、対応する入力値と一致するか項目ごとに照合する。OS response/assignmentの対応有無と区別し、正規assignmentはOSだけが発行する。
+- `AC-HARNESS-L3-054-04`：既存role十分時は入力と一致する対象既存role参照および比較根拠を返し、いずれかの出力値の欠落・別値は不成立として当該HARNESS handoff出力を訂正する。追加specialist contract/assignmentを生成しない。通常の既存role assignmentはOS既存契約に従う。handoff、source/coverage receipt、候補本文、fixture、OS記録例の存在から要求採択、L3承認、authority、実行許可、oracle実行・合格、runtime projection、assignment、Worker起動、security許可、成果受入または利用者受入を生成しない。正常入力に対するHARNESS自身の候補出力誤りはHARNESS側で拒否・訂正し、正常入力をowner不足へ転嫁しない。
 
 ### L3境界
 本要件は固定L2-054の候補範囲を詳細化する。要求の意味・範囲・担当・版を変える案、条件付きA配置の変更、配置Bまたは新必須artifactの意味変更はこの候補で確定せず、対象revision付きPO判断へ戻す。未実測の数値基準や期間は追加しない。

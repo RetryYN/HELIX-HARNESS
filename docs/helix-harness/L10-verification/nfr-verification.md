@@ -182,7 +182,7 @@ NFR CASEは測定candidate分類であり、実測・CI success・performance SL
 
 **責務とauthority**：HARNESSはprocess/verificationの意味、muster必要性判断、runtime-neutral contract内容と型付きhandoffを所有する。OSは正規のassignment発行者であり、assignment、profile、budget/deadline、lifecycle、実行と結果を既存契約の範囲で所有する。INTELLIGENCEはplacement proposal、LABOはevidenceの適用可能性、SECURITYはoperation authority・制約・隔離を所有する。HARNESSがOS assignmentを発行したりWorkerを起動したりしない。通常の既存roleへのOS assignmentは許される。`existing_role_sufficient`なら追加specialist contractも追加specialist assignmentも生成しない。
 
-**型付きhandoffの候補条件**：対象task/ticket identity、scope、要求/oracle revision、`layer × drive`、process phase、task-kind、verification pattern、design obligation/oracle、domain/risk、judgment-pack revision、single-worker比較条件、適用可能なLABO evidenceと未評価状態を保持する。必要な場合のみINTELLIGENCE proposal、OS profile/budget/deadline/lifecycle、SECURITY authority/制約への参照を結ぶ。`muster_candidate`は契約参照とそのinput/output digest、generation-rule revision、理由、比較対象/evidence、guard結果を同じscope/revisionに結ぶ。digestの算法、wire format、enum、固定worker数、threshold、TeamDefinition、provider/runtime固有fieldは新設しない。receiptやdigest自体はauthorityではない。
+**型付きhandoffの候補条件**：対象task/ticket identity、scope、要求/oracle revision、`layer × drive`、process phase、task-kind、verification pattern、design obligation/oracle、domain/risk、judgment-pack revision、single-worker比較条件、適用可能なLABO evidenceと未評価状態を保持する。必要な場合のみINTELLIGENCE proposal、OS profile/budget/deadline/lifecycle、SECURITY authority/制約への参照を結ぶ。`muster_candidate`は契約参照（複数の場合はその全体集合）と対応するinput/output digest、複数参照時の集合digest、generation-rule revision、理由、比較対象/evidence、guard結果を同じscope/revisionに結ぶ。digestの算法、wire format、enum、固定worker数、threshold、TeamDefinition、provider/runtime固有fieldは新設しない。receiptやdigest自体はauthorityではない。
 
 `existing_role_sufficient`は入力にある対象既存role参照と比較根拠を値として返し、両値が同一task/scope/revisionに対応する入力値と一致することを照合する。specialist contractを含めず、既存roleへの通常assignmentはOSが発行する。この分岐から追加specialist assignmentや新規Worker起動を生成しない。`unknown_or_defer`は不足・不確実・staleの条件、既知の責務区分、再照合に必要な入力を入力値に対応させて返し、それぞれが同じtask/scope/revisionに一致することを照合する。既知の責務区分へ個体identityの特定有無にかかわらず不足を返し、個別source identityやowner identityが特定できないときはその個体だけunknownのまま別記する。ownerの新設、値の推定、unknown軸の別軸への畳込みをしない。OS応答/assignmentが欠落、対象不一致、revision不一致または条件不明ならhandoffは未完である。
 
@@ -190,8 +190,9 @@ NFR CASEは測定candidate分類であり、実測・CI success・performance SL
 
 | 品質特性 | 静的oracle確認 | 制限 |
 |---|---|---|
-| 追跡可能性 | c03–c07でscope/revision、generation-rule、reason、guard、digest結合を個別に照合 | digest算法やwire formatは未定義 |
-| authority境界 | c09–c12でassignment、Worker起動、要求採択、L3承認の各出力を別々に拒否 | 実行・承認を示さない |
+| 追跡可能性 | c03/c20–c22で複数時の参照全体集合・集合digestを正常照合し、field単独欠落/集合不一致を拒否。c04–c07でscope/revision等を照合 | 集合digestは合成fixture値であり算法/wire formatを定義しない |
+| authority境界 | c09–c12/c23–c28/c32–c33でassignment、Worker起動、authority、実行許可、security許可、採択/承認等を独立fieldで拒否 | 実行・承認・security decisionを示さない |
+| 証拠の非昇格 | c29–c34でsource/coverage receipt・候補・fixture・OS例の存在からoracle実行/合格、runtime projection、assignment、security許可、利用者受入が生成される各fieldを個別拒否 | すべて静的合成fixtureであり、正常入力を既存ownerへ転嫁しない |
 | fail-closedな不確実性 | c08でunknown軸から補完/assignmentを作らない | owner個体が未知ならunknownのまま |
 | 既存role境界 | c01/c02でOS既存roleの普通のassignmentを許し、追加specialistだけを拒否 | 比較条件の新閾値を追加しない |
 
