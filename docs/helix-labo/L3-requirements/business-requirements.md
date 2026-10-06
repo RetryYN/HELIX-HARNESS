@@ -146,8 +146,8 @@
 
 固定親はPO live26の49行が採択した `MPR-RC-HELIXLABO-L2-070-001`。source revision `ea6f756f96a7370de78e412d737c7a7ed472114a` のL2:561–574 SHA `07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533`、L11:297–307 SHA `c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1`をraw-LFで照合した。旧候補が参照した0abb2894の同範囲とbytesは一致し、採択状態はPO記録で確認する。
 
-070が加える業務面の提供は、既存task/scopeに属する補助telemetryを、出典と適用範囲を保つscorecardとして観測可能にすることに限る。既存12指標・L2-059の比較basisやL2-006のquality評価を変更せず、採否・実験・rollback・実行許可を行わない。4種の待ち時間、escaped defect、rollback/Recovery、observer overhead、evidence freshness、067/068値を区別して表示できることを機能要件とL10で確認する。
+070が加える業務面の提供は、既存task/scopeに属する補助telemetryを、出典と適用範囲を保つscorecardとして観測可能にすることに限る。既存12指標・L2-059の比較basisやL2-006のquality評価を変更せず、採否・実験・rollback/Recoveryの操作権限・実行許可を行わない。4種の待ち時間、escaped defect、rollback/Recovery、observer overhead、evidence freshness、067/068値を区別して表示できることを機能要件とL10で確認する。
 
 旧source line 399のselected telemetry/coshow atomsを意味再導出する。旧HIL scorecard全体や旧consumerの業務成果を移管・採択したとは扱わない。
 
-scorecardからsource event、oracle/threshold、計測または実行許可、要求採択、Worker assignment、rollback操作、L3承認、完了を生成しない。これら固定親の境界は、独立した業務成果を追加せずL10の単独出力fixtureで照合する。
+scorecardからsource event、oracle/threshold、計測または実行許可、要求採択、Worker assignment、rollback操作、Recovery操作権限、Recovery実行、L3承認、完了を生成しない。これら固定親の境界は、独立した業務成果を追加せずL10の単独出力fixtureで照合する。

@@ -262,10 +262,10 @@ L10は69個の完全ID定義を保持する。literalから抽出した分類候
 | 項目 | 測定対象 | 根拠・比較 | 限界 |
 |---|---|---|---|
 | duration fidelity | queue wait / active time / review wait / Human waitを個別値として保持。source-defined start/end event, clock, unit, occurred/observed time, scope/windowを追跡。 | 固定L2の4 duration clauses、FV CASE-01、05–09、23–50、52–53、63。 | 重複排他の推定、4値加算、059 wall-clock再定義なし。 |
-| escaped-defect fidelity | 許可済みoracle/revision、受入済対象/scope、受入境界後のverified event relation、適用母数/追跡完全性を保持。 | 固定L2 escaped-defects節、FV CASE-01、03e、10–11、56–58、64。CASE-10は有効oracleのままの出力誤り拒否、CASE-56–58は入力不足時の既存責務区分への返却を個別照合。 | 新oracle/scope/window/severity/threshold/合否なし。 |
-| rollback/Recovery fidelity | source event/result receipt、identity/scope/stateを保持し、059費用・時間とのreceipt参照を一回に保つ。 | 固定L2 rollback clause、FV CASE-03f/g、59–62、70、85、90–91。missing source inputは既存event/assignment責務区分へ返し、CASE-85/90/91は出力権限を個別拒否。 | 観測から操作・trigger permissionを生成しない。 |
+| escaped-defect fidelity | 許可済みoracle/revision、受入済対象/scope、受入境界後のverified event relation、適用母数/追跡完全性を保持。 | 固定L2 escaped-defects節、FV CASE-01、03e、10–11、56–58、64。CASE-10は有効oracleのままの出力誤り拒否、CASE-56–58は入力不足時の既存責務区分への返却を個別照合。 | 新oracle/受入境界/追加の観測window/重大度/合否thresholdなし。 |
+| rollback/Recovery fidelity | source event/result receipt、identity/scope/stateを保持し、059費用・時間とのreceipt参照を一回に保つ。 | 固定L2 rollback clause、FV CASE-03f/g、59–62、70、85、90–91。missing source inputは既存event/assignment責務区分へ返し、CASE-85/90/91はrollback trigger/permission/executionを、CASE-102/103はRecovery操作権限/実行をそれぞれ単独fieldで拒否。 | 観測から操作・trigger permissionを生成しない。 |
 | observer overhead | source定義に従った直接測定資源をtask workから区分。 | 固定L2 overhead clause、FV CASE-03h、12、71。 | unknownを0や推計値にしない。 |
-| evidence freshness | sourceの有効時刻と観測時刻の差だけを値として提示。 | 固定L2 freshness clause、FV CASE-03i、14–15。CASE-15は有効入力からの誤ったauthority出力を拒否し、070出力処理を訂正。 | ageからexpiry/admission/permissionを作らない。 |
+| evidence freshness | sourceの有効時刻と観測時刻の差だけを値として提示。 | 固定L2 freshness clause、FV CASE-03i、14–15。CASE-15は有効入力からの誤ったauthority出力を拒否し、070出力処理を訂正。 | ageからfresh/stale状態・expiry・適格性/admission/permissionを作らない。CASE-104–106は各単独field生成を拒否。 |
 | metric identity | 067/068の定義revision/receiptと070 field identityを保持。 | 固定L2 Attempt co-presentationと既存12 metric境界、FV CASE-16–21、65–73。CASE-19の有効067/068 inputからの換算出力を拒否し、CASE-68はtotal countとresult state双方をunknownにする。 | 065 retry等への換算・合算・代替、旧12指標へのsilent renameなし。 |
 
-authority境界の単独出力field確認はFV CASE-85–93/96–98に対応する。target revision/source revisionの一致確認はFV CASE-99–101に対応する。性能・保持・監視周期を数値化する根拠は固定parentにない。必要な値が生じたら既存source定義と対の測定候補を記録し、閾値を推測で追加しない。
+authority境界の単独出力field確認はFV CASE-85–93/96–98およびCASE-102–109に対応する。target revision/source revisionの一致確認はFV CASE-99–101に対応する。性能・保持・監視周期を数値化する根拠は固定parentにない。必要な値が生じたら既存source定義と対の測定候補を記録し、閾値を推測で追加しない。

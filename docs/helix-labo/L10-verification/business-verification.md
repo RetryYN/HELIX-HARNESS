@@ -153,9 +153,9 @@
 | 観測対象 | business-level oracle | 禁止する読替え |
 |---|---|---|
 | 4種duration | 各値は別のsource event境界・clock/unit・scopeに結ばれる。 | queue/review/Human/activeを推定按分または合算して059 wall-clockとする。 |
-| escaped defect | 既存oracle/revisionと、受入済対象への受入境界後verified eventを追跡する。 | 未確認findingをdefectにする、severity/window/合否を新設する。 |
-| rollback/Recovery | 観測済みevent/result receiptを表示する。 | 観測からtrigger・rollback実行・復旧許可を生成する。 |
+| escaped defect | 既存oracle/revisionと、受入済対象への受入境界後verified eventを追跡する。 | 未確認findingをdefectにする、重大度/追加の観測window/合否thresholdを新設する。 |
+| rollback/Recovery | 観測済みevent/result receiptを表示する。 | 観測からtrigger・rollback/Recovery操作権限・rollback/Recovery実行を生成する。 |
 | overhead/freshness | overhead直接観測値とtask workを分け、freshness ageをsource時刻に束ねる。 | unknown overhead=0、ageからexpiry/admissionを決める。 |
 | 067/068同時表示 | 各fieldが適用可能なら独立定義とreceiptを同時に示す。 | 換算・合算・代替、未採択値の採択推定。 |
 
-CASE-10/15/19は有効入力に対する070自身の出力誤りを拒否し、正常source/oracle/metricへ不足責務を返さない。CASE-85–93/96–98はFV主fixtureを参照し、固定親が禁じる各単独出力fieldの生成拒否と既存状態保持をbusiness viewから照合する。これらは業務成果や新しい採否/permissionを追加しない。CASE-01/99–101ではtarget revisionとsource identity/revisionをreceiptの実値と照合し、target revision出力欠落、target revision混在、入力source_revision欠落を別々に判定する。overhead直接計測receiptの不足は値をunknownにして既存source owner責務区分へ返し、個別identity unknownは分離する。
+CASE-10/15/19は有効入力に対する070自身の出力誤りを拒否し、正常source/oracle/metricへ不足責務を返さない。CASE-85–93/96–98/102–109はFV主fixtureを参照し、固定親が禁じる各単独出力fieldの生成拒否と既存状態保持をbusiness viewから照合する。これらは業務成果や新しい採否/permissionを追加しない。CASE-01/99–101ではtarget revisionとsource identity/revisionをreceiptの実値と照合し、target revision出力欠落、target revision混在、入力source_revision欠落を別々に判定する。overhead直接計測receiptの不足は値をunknownにして既存source owner責務区分へ返し、個別identity unknownは分離する。
