@@ -171,3 +171,12 @@ NFR CASEは測定candidate分類であり、実測・CI success・performance SL
 | CASE ID | NFR候補 | 検証対象 | 観測 | 限界 |
 |---|---|---|---|---|
 | `CASE-HARNESS-L10-NFR-042-01` | 独立NFRなし | 性能refactorを選択した場合のbaseline/budget/workload/profile/statistical condition/regression oracle | HARNESS-L2-016と対L11に固定された入力・oracleが適用可能かを参照する。 | 本候補では数値を設定せず、実測性能受入を再定義しない。 |
+
+
+## Stage 3 親041のNFR測定CASE
+
+測定候補であり実測ではない。populationは指定active template revisionとselection scopeでsource spanから列挙できるobligationに限定する。missing/unknown applicability、unselected template、extractor unavailable、gapを成功やゼロに変換しない。
+
+| L10 case ID | NFR候補 | 入力／母集団 | oracle・限界 |
+|---|---|---|---|
+| `CASE-HARNESS-L10-NFR-041-01` | `NFR-C-HARNESS-041-01` | selected template/scopeのsource obligation ID・span・revisionと、atom/typed gap disposition、provenance mismatch、duplicate、unaccounted findingを別々に記録する。 | 各入力義務がatomまたはgapへtraceされたかを候補計測する。unresolved gapは未解決であり成功ではない。unknown applicabilityは009へ戻し母集団からsuccess扱いで除外しない。率・閾値・性能実測を作らない。 |
