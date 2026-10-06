@@ -2741,7 +2741,7 @@ CASE-01は旧snapshot上の高水準正常説明である。各下記candidate�
 | `L10-LABO-060-CASE-17` | `LABO-060-AC-03` | 単独変異: 選択されたINTELLIGENCE proposal/use evidenceに結ばれるreviewer identityだけがhelper identityと同一。その他の入力は `CASE-01` と同一。 | 比較条件不成立とし、成功比較を出さない。comparison scope/evaluation capabilityの未完は固定L2-060の比較範囲に従いLABOへ返す。 |
 | `L10-LABO-060-CASE-18` | `LABO-060-AC-03` | baseline入力: 固定HARNESS oracleでquality不成立。単独の誤出力変異: 低support costを理由に不成立qualityを成功/比較成功へ変換 | quality不成立・非相殺を維持し、成功比較を出さない。comparison scope/evaluation capabilityの戻し先はLABO。 |
 | `L10-LABO-060-CASE-19` | `LABO-060-AC-03` | baseline: 選択sourceは設計/validator/regressionのみ、相談経路は未選択。その他の比較条件・receipt・oracleは正常。単独の誤出力変異: 未選択相談receiptを必須化する。 | 未選択相談を比較全体の必須依存にしない。選択時だけ必要なreceiptと区別し、比較scopeの誤った必須化はLABOへ戻す。 |
-| `L10-LABO-060-CASE-20` | `LABO-060-AC-03` | 単独変異: 追加支援者費用の除外だけを変更。その他の入力は `CASE-01` と同一。 | 費用内訳不完全を示し、比較費用を確定しない。価格/effort sourceが識別できればLABO-055または該当sourceへ戻し、identity不明はunknown。 |
+| `L10-LABO-060-CASE-20` | `LABO-060-AC-03` | baseline入力: CASE-01と同じ正常な費用evidenceを保持。単独の誤出力変異: 追加支援者費用だけを比較費用から除外する。 | 費用内訳不完全を示し、比較費用を確定しない。入力sourceの欠落と取り違えず、比較集計の誤りは固定L2-060のcomparison scope/evaluation capabilityの責務であるLABOへ戻す。LABO-055へ価格/effort source所有を移さない。 |
 | `L10-LABO-060-CASE-21` | `LABO-060-AC-03` | baseline入力: human-time quantityは既知、換算率/price evidenceはunknown。単独の誤出力変異: 出力貨幣費用を0とする | 既知時間量を保持し、金額だけ未確定とする。0円化と時間量の消去を拒否する。 |
 | `L10-LABO-060-CASE-22` | `LABO-060-AC-03` | 索引（独立fixtureではない）: 選択runのSECURITY data-use/実行許可欠落CASE-34を参照する。 | 主fixture CASE-34を参照し、許可不足を成功扱いしない。 |
 | `L10-LABO-060-CASE-23` | `LABO-060-AC-03` | 索引（独立fixtureではない）: `L10-LABO-060-CASE-15`と同一の単独入力変異。 | 主fixture `L10-LABO-060-CASE-15` のoracleを参照し、同じケースを重複計上しない。 |
