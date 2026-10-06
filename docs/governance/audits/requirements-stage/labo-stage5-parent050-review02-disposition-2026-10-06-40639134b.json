@@ -1,0 +1,1901 @@
+{
+  "schema": "labo-stage5-parent050-review02-correction-audit-draft.v1",
+  "record_status": "作成側補正記録。Rootの本文・監査検収済み、独立再review待ち。",
+  "authority_effect": "none",
+  "independent_review_status": "pending; this record is not an independent review",
+  "target": {
+    "pull_request": 2623,
+    "body_revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+    "base_revision": "55760269a69e6e740e47bb99d550b618af3361ce",
+    "pre_review02_public_revision": "d2e870e6244ad4a0b51f7e0fb20efb30e32417fd",
+    "scope": "HELIXLABO-L2-050の6本文のみ",
+    "push": false,
+    "repository_write": false,
+    "planned_audit_paths": [
+      "docs/governance/audits/requirements-stage/labo-stage5-parent050-review02-disposition-2026-10-06-40639134b.json",
+      "docs/governance/audits/requirements-stage/labo-stage5-parent050-review02-disposition-2026-10-06-40639134b.md"
+    ]
+  },
+  "formal_comment": {
+    "comment_id": 6012636424,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2623#issuecomment-6012636424",
+    "raw_utf8_bytes": 8815,
+    "raw_utf8_sha256": "5eb0a3ed9b3bac91c7f840e458f4d7d724a591774eb6727bbad52acbe58c654a",
+    "raw_comment_text": "## review02（independent review、PR #2623 親HELIXLABO-L2-050、HEAD d2e870e6244ad4a0b51f7e0fb20efb30e32417fd、本文 99b1ff7ba、base main 55760269a）\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。照合は次の3つで行った。\n- **Opus agent 1本**：6本文の追補行の全行、前回差分の全行、監査4ファイルの全体、固定親、旧sourceを照合した。\n- **Fable advisor**：同じ範囲を照合した。\n- **reviewer本人**：静的検査を行い、Major 2件を本文と固定親で確かめた。\n\n所見には修正の文面を書かない。欠陥と、守るべき固定親の行だけを示す。\n\n### 静的検査（exact HEAD）\n- scfctl：validate 147/0、stale 0、residuals 0。govcheck：ok。`git diff --check`：成功。\n- origin/main 55760269aとの`merge-tree`は衝突なし。6本文は、mainの全bytesをprefixとして保持している。\n- 27 source pin（full/span SHA、literal）、36 CASEのliteral、6本文のSHA、13件の所見block、review01本文のSHAを、OpusとFableがそれぞれ再計算した。不一致は0件。\n- CASE定義は36件（独立31、非独立5）で、重複はない。旧30 IDはすべて保持され、削除は0件。\n\n### 固定revision\n新しい監査は、次の役割を分けて記載している。\n- f6dad2a33：承認対象の固定L2/L11（LABO PO判断「確定した対象revision」）\n- 633bf12：PO判断とregisterの照合基準\n- 59336627：G0のStage配属\n\nreview01 m1は解消した。旧authoring監査はappend-onlyの記録なので変わらないが、これは許容する。\n\n### review01所見の処置\n- **解消（9件）**：M1（CASE-24の追加）、M2（03bの入力の明示とLABOへの戻し）、m1、m3、m4、m5（5要素×欠落・不一致の10件を1対1で対応）、m7（UIL-AC-020、HAC-HIL-02b、HAT-HIL-02を記録し、CASE-29へ）、m9、m10。\n- **一部解消（4件）**：m2、m6、m8、m11。残りは下のMinorに含めた。\n\n### 網羅表の照合\n固定L2-050:300/302、L11-050:100、§24 #13〜#15を項目に分解して照合した。binding 10件、禁止、変更後の義務、effectとregressionの単独、段階順序（CASE-29）は、それぞれ単独fixtureで覆われている。Observed/Correlated/Hypothesizedの正常段階は、前回と同じく欠落にはあたらない（固定親に段階固有の反例がない）。漏れは下のM2の1件。\n\n### 所見（Major 2／Minor 8）\n**Major**\n- **M1（CASE-03c/26の戻し先が原因の区分に合わず、03eとも食い違う）**：\n  - 03cはWorker-result側のtarget revisionを旧版にし、26はWorker-result側のtarget revisionだけを欠落させる。どちらも、記録が有効なtarget ownerへ戻している。\n  - 同じWorker-result側の項目を変える03e（target identityの不一致）は、OSへ戻している。\n  - 固定親で、target ownerの役割は「変更・検証」と「target authority」である。Worker結果のbindingは実験段階の依存（L2-022/L2-028の観測）にあたる。\n  - これはreview01 M2（03b）と同じ型にあたる。Opusの確信度は中程度で、Opus側の判断としてMajorにする。\n  - →守るべき行：L2-050「依存」（実験ではL2-022のOS assignment観測とL2-028のWorker結果観測を、同じticket/experimentへ結ぶ）、L2-050「保証」、L2-022「保証」（stale／欠落はOSへ）、L2-028「保証」、L2-050「target authorityはtarget ownerに残す」の範囲。\n- **M2（固定L11 §24 #14の反例「検証のみで完了」に単独fixtureがない）**：\n  - 反例の原文は「変更または検証のみで完了とし、再観測を欠く」（f6dad2a33 L11:124）。\n  - 「変更のみ」の枝はCASE-19で扱われている。「verification receiptはあり、deployment/operation/re-observationはopenで、検証だけを根拠に完了を主張する」単独fixtureはない。\n  - CASE-16は、基準状態がtarget changeの実施前で、CI成功を扱う。CASE-03fは主張ではなく、re-observationの欠落を扱う。どちらも別の条件である。\n  - 新しい監査のcrosswalkは、この枝を16〜19で対応済みとしている。\n  - Fable M1の指摘で、reviewerが本文と固定親で確かめた。\n  - **reviewer側の開示**：review01で私は「5つの単独完了主張がそろっている」と判定した。このとき、§24 #14の「検証のみ」の枝を照合していなかった。\n  - →守るべき行：L11-050 §24 #14「反例・不成立条件」、L2-050:300（変更後の再観測…がない場合は循環未完了として戻す）。\n\n**Minor**\n- **m1（OSへ付けた「観測責務」の修飾語。review01 m6の残り）**：03a/24「ticket/assignment観測の既存OS責務」、03e/27「OSのWorker-result観測責務」。固定親の区分名はOSだけである。Worker結果観測はL2-028（LABO側の接続要求）にあたる。Fableは、L2:302の語に由来するとして許容と読んだ。→守るべき行：L2-050「依存」の区分（OS／target owner／LABO）、L2-028。\n- **m2（FR固定条件表の帰属）**：\n  - 「target authority」行に「OS registration/routingに必要なassignment」とある。assignmentは実験Workerの実行に属する（FR-01本文は正しい）。\n  - 「変更後」行の根拠CASEに、26（実験段階）と29（候補前の順序）が入っている。一方で、03f（re-observationの欠落）は入っていない（Fable m2も同じ指摘）。\n  - →守るべき行：L2-050「依存」の「実験では」の限定、L2-050:300の変更後の義務。\n- **m3（03gの分類が本文の間で食い違う）**：FR/FVは03gを「索引ではない非独立ラベル」としている。BR/BVは「索引CASE-03g/07/08/09/10」としている。監査crosswalkの「Evaluated段階」の行は、参照先を持たない03gを対応CASEに入れている（Fable m3も同じ指摘）。\n- **m4（本文中の、未解決の前方参照と過去revisionの参照）**：\n  - FRの「先行記録の該当blobは次のappend-only監査で固定する」は、同じPRにある処置監査を名指ししていない。経過の記述が正本に残っている。\n  - a4a365dはmainにもbaseにも含まれず、到達できるのは`refs/pull/2620/head`だけである。本文側に、本文のSHA-256がない（AGENTS.md「過去の本文を指すときは対象のcommitと本文のSHA-256」）。\n  - Fable m5も同じ指摘。\n- **m5（EE5DBACCを読まずに除外し、旧sourceの処置記録が漏れている）**：処置監査は「bounded sourceを読んでいない」としてEE5DBACCを不採用にした。しかし、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md`の:156（HR-FR-P4-03）と:237–242（HAC-P4-01a〜03b。HAC-P4-02a「repair成功でclose」）は、改善循環の完了条件に隣接している。050の「再観測と評価がない場合は未完了」と異なるのに、保持・変更の記録がない。→守るべき行：AGENTS.md「再構築の原則」、L2-050:300。\n- **m6（CASE-03aの基準入力で、記録の側が未指定）**：24/25/26は「Worker-result側」と書いている。03aは、どの記録のticketかを指定していない（Fable m1）。→守るべき行：L2-050:302。\n- **m7（oracle欄の文言）**：CASE-12のoracleにある「固定親にないsource-owner identity入力やunknown-owner条件を追加しない」は設計の注記で、期待oracleではない。CASE-29の「段階評価」は固定親の語ではない（Fable m4）。\n- **m8（監査の再現性）**：JSON `verification.root_static_receipt_summary`が参照する`root-labo050-review01-final-static-receipt.json`はrepository外にあり、取得できない（SHAはある）。md「5576 prefix一致」は略記である（Fable m6）。\n\n### Fableの委任見解\nFable advisorは、同じHEADについて「**承認しない**」とした（Major候補1、Minor 7）。Fable M1は上のM2として取り込んだ。Fable m1〜m7は、上のMinorに含めた。\n\nOpus M1（03c/26）は、Fableの所見にない。Fableは戻し先を全体として許容と読んだが、03cと26を個別には判定していない。どちらの見解も「承認してよい」ではないので、見解の分裂にはあたらない。\n\n### 判定\n- blocker 2件（M1、M2）。Major 2件、Minor 8件。\n- 委任承認は成立しない。Readyにはしない。merge admissionは本commentから生成しない。\n- review01から収束に向かっている（Major 2→2、扱う範囲は戻し先1件と単独fixture 1件に絞られた）。\n",
+    "finding_count": 10,
+    "finding_ids": [
+      "M1",
+      "M2",
+      "m1",
+      "m2",
+      "m3",
+      "m4",
+      "m5",
+      "m6",
+      "m7",
+      "m8"
+    ],
+    "formal_blocks": [
+      {
+        "id": "M1",
+        "literal": "- **M1（CASE-03c/26の戻し先が原因の区分に合わず、03eとも食い違う）**：\n  - 03cはWorker-result側のtarget revisionを旧版にし、26はWorker-result側のtarget revisionだけを欠落させる。どちらも、記録が有効なtarget ownerへ戻している。\n  - 同じWorker-result側の項目を変える03e（target identityの不一致）は、OSへ戻している。\n  - 固定親で、target ownerの役割は「変更・検証」と「target authority」である。Worker結果のbindingは実験段階の依存（L2-022/L2-028の観測）にあたる。\n  - これはreview01 M2（03b）と同じ型にあたる。Opusの確信度は中程度で、Opus側の判断としてMajorにする。\n  - →守るべき行：L2-050「依存」（実験ではL2-022のOS assignment観測とL2-028のWorker結果観測を、同じticket/experimentへ結ぶ）、L2-050「保証」、L2-022「保証」（stale／欠落はOSへ）、L2-028「保証」、L2-050「target authorityはtarget ownerに残す」の範囲。\n",
+        "bytes": 1047,
+        "sha256": "67068d1f0e7031e7cba21d22e0462d2384bb60bab2c8095630155afab73ce53b"
+      },
+      {
+        "id": "M2",
+        "literal": "- **M2（固定L11 §24 #14の反例「検証のみで完了」に単独fixtureがない）**：\n  - 反例の原文は「変更または検証のみで完了とし、再観測を欠く」（f6dad2a33 L11:124）。\n  - 「変更のみ」の枝はCASE-19で扱われている。「verification receiptはあり、deployment/operation/re-observationはopenで、検証だけを根拠に完了を主張する」単独fixtureはない。\n  - CASE-16は、基準状態がtarget changeの実施前で、CI成功を扱う。CASE-03fは主張ではなく、re-observationの欠落を扱う。どちらも別の条件である。\n  - 新しい監査のcrosswalkは、この枝を16〜19で対応済みとしている。\n  - Fable M1の指摘で、reviewerが本文と固定親で確かめた。\n  - **reviewer側の開示**：review01で私は「5つの単独完了主張がそろっている」と判定した。このとき、§24 #14の「検証のみ」の枝を照合していなかった。\n  - →守るべき行：L11-050 §24 #14「反例・不成立条件」、L2-050:300（変更後の再観測…がない場合は循環未完了として戻す）。\n",
+        "bytes": 1154,
+        "sha256": "66d19d95463455b4031b63e77d55ce83c67465801486cf9c93fa8144e5a9a122"
+      },
+      {
+        "id": "m1",
+        "literal": "- **m1（OSへ付けた「観測責務」の修飾語。review01 m6の残り）**：03a/24「ticket/assignment観測の既存OS責務」、03e/27「OSのWorker-result観測責務」。固定親の区分名はOSだけである。Worker結果観測はL2-028（LABO側の接続要求）にあたる。Fableは、L2:302の語に由来するとして許容と読んだ。→守るべき行：L2-050「依存」の区分（OS／target owner／LABO）、L2-028。\n",
+        "bytes": 457,
+        "sha256": "d82898430bfa7597ad02d25f8bb3115021bf75699ae6feba179c4b124289be55"
+      },
+      {
+        "id": "m2",
+        "literal": "- **m2（FR固定条件表の帰属）**：\n  - 「target authority」行に「OS registration/routingに必要なassignment」とある。assignmentは実験Workerの実行に属する（FR-01本文は正しい）。\n  - 「変更後」行の根拠CASEに、26（実験段階）と29（候補前の順序）が入っている。一方で、03f（re-observationの欠落）は入っていない（Fable m2も同じ指摘）。\n  - →守るべき行：L2-050「依存」の「実験では」の限定、L2-050:300の変更後の義務。\n",
+        "bytes": 538,
+        "sha256": "3b40fa629449b742cc5afd037b260eb356e0cdd0d09852efc5e61c8e8d29b04f"
+      },
+      {
+        "id": "m3",
+        "literal": "- **m3（03gの分類が本文の間で食い違う）**：FR/FVは03gを「索引ではない非独立ラベル」としている。BR/BVは「索引CASE-03g/07/08/09/10」としている。監査crosswalkの「Evaluated段階」の行は、参照先を持たない03gを対応CASEに入れている（Fable m3も同じ指摘）。\n",
+        "bytes": 333,
+        "sha256": "19b78680f2826e604b41dc90b0990b188515e0f0a7e35c71bcadba6064adc67a"
+      },
+      {
+        "id": "m4",
+        "literal": "- **m4（本文中の、未解決の前方参照と過去revisionの参照）**：\n  - FRの「先行記録の該当blobは次のappend-only監査で固定する」は、同じPRにある処置監査を名指ししていない。経過の記述が正本に残っている。\n  - a4a365dはmainにもbaseにも含まれず、到達できるのは`refs/pull/2620/head`だけである。本文側に、本文のSHA-256がない（AGENTS.md「過去の本文を指すときは対象のcommitと本文のSHA-256」）。\n  - Fable m5も同じ指摘。\n",
+        "bytes": 547,
+        "sha256": "6e6b39cdd8b7b844418722a82956d84776fab22662a5b7acf2dfc3cb0a15b701"
+      },
+      {
+        "id": "m5",
+        "literal": "- **m5（EE5DBACCを読まずに除外し、旧sourceの処置記録が漏れている）**：処置監査は「bounded sourceを読んでいない」としてEE5DBACCを不採用にした。しかし、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md`の:156（HR-FR-P4-03）と:237–242（HAC-P4-01a〜03b。HAC-P4-02a「repair成功でclose」）は、改善循環の完了条件に隣接している。050の「再観測と評価がない場合は未完了」と異なるのに、保持・変更の記録がない。→守るべき行：AGENTS.md「再構築の原則」、L2-050:300。\n",
+        "bytes": 654,
+        "sha256": "d72da1b05db288b3a973e8afc334360ea60601677fafce9ee4afbbb3f8a3d5d5"
+      },
+      {
+        "id": "m6",
+        "literal": "- **m6（CASE-03aの基準入力で、記録の側が未指定）**：24/25/26は「Worker-result側」と書いている。03aは、どの記録のticketかを指定していない（Fable m1）。→守るべき行：L2-050:302。\n",
+        "bytes": 233,
+        "sha256": "4327799ab787e972339ecb63f8010e40c29dea2b3279ecc76748232e45476b94"
+      },
+      {
+        "id": "m7",
+        "literal": "- **m7（oracle欄の文言）**：CASE-12のoracleにある「固定親にないsource-owner identity入力やunknown-owner条件を追加しない」は設計の注記で、期待oracleではない。CASE-29の「段階評価」は固定親の語ではない（Fable m4）。\n",
+        "bytes": 278,
+        "sha256": "eaf2858cea13bfe43c541daacbd85aa5b1d1132fadbca6fc633994924f58377f"
+      },
+      {
+        "id": "m8",
+        "literal": "- **m8（監査の再現性）**：JSON `verification.root_static_receipt_summary`が参照する`root-labo050-review01-final-static-receipt.json`はrepository外にあり、取得できない（SHAはある）。md「5576 prefix一致」は略記である（Fable m6）。\n",
+        "bytes": 274,
+        "sha256": "294387e7e809388ddb5cdaa23b67cd51da7bd5996817b0d31fdd0551fb015ab8"
+      }
+    ]
+  },
+  "fixed_source_pins": [
+    {
+      "pin_id": null,
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "physical_lines": [
+        298,
+        303
+      ],
+      "full_file_bytes": 73845,
+      "full_file_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "raw_lf_span_bytes": 1246,
+      "raw_lf_span_sha256": "cf8c0d89eed3ce45df65af0f5813f94a2e8bfc0508547c5157f11ac117f3f907",
+      "raw_lf_span_literal": "### HELIXLABO-L2-050 — 内部改善循環（1.0）\n\n入力は許可観測・episode・実験と評価済みFeedback候補、出力はOS登録/routing後のtarget変更、target検証、運用結果、LABO再観測を結ぶ追跡可能な循環である。段階はObserved→Correlated→Hypothesized→Experimented→Evaluated→Feedback Candidate→OS registration/target routing→target change process→verification→deployment/operation→LABO re-observation。登録、candidate数、変更、CI成功だけで改善完了としない。採択前は候補のまま保持し、target authorityはtarget ownerに残す。変更後の再観測と効果・退行評価がない場合は循環未完了として戻し、過去記録を上書きしない。\n\n- 親：HELIXLABO-L1-008。依存：L2-001〜010と適用される個別接続（実験ではL2-022のOS assignment観測とL2-028のWorker結果観測を同ticket/experimentへ結ぶ）、OSによるFeedback登録/routing、各target ownerによる変更・検証。保証：循環の未完義務とsource/target revisionを保持し、実験評価はOS割当Workerの実行証拠に結び付く。変更後観測が欠ければLABOの再観測へ戻す。`version_target: 1.0`。\n\n"
+    },
+    {
+      "pin_id": null,
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "physical_lines": [
+        120,
+        126
+      ],
+      "full_file_bytes": 40455,
+      "full_file_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "raw_lf_span_bytes": 1507,
+      "raw_lf_span_sha256": "9cb6f2b92ea221e92a410a39cc4012ac2050337d08a41ac51bac7863a8e8c5bd",
+      "raw_lf_span_literal": "| 10 | System化率最大化を目的にしない。 | HELIXLABO-L2-007 | operation継続候補を含み、再現性・oracle・副作用等の条件と限界を示す。 | system化率を成功指標として最大化する。 |\n| 11 | Operationを正規の保証手段として認める。 | HELIXLABO-L2-007, 008 | 文脈依存・例外等をoperationで保証する候補に残し、未完成扱いしない。 | operationをsystem未完成として一律排除する。 |\n| 12 | SystemからOperationへの降格を認める。 | HELIXLABO-L2-008, 017, 020 | 例外・誤検知・負担・変更費用に応じてoperation復帰候補と未完義務を保持する。 | systemを永続固定する、LABOが運用切替を実行する。 |\n| 13 | LABO評価だけで変更を確定しない。 | HELIXLABO-L2-010, 050 | Feedbackは提案状態であり、登録/routingはOS、変更はtarget ownerに残る。 | LABO評価/Feedbackだけでtarget変更を確定する。 |\n| 14 | 変更後は必ず再観測する。 | HELIXLABO-L2-020, 050 | 復帰・target変更後の実績を新observationとして取り込み、変更前後の版に追跡できる。 | 変更または検証のみで完了とし、再観測を欠く。 |\n| 15 | Feedbackの効果そのものもLABOで評価する。 | HELIXLABO-L2-050 | 変更後の効果と退行を独立に評価し、未完なら循環を開いたままにする。 | Feedback発行・OS登録・target変更・CI成功だけで改善完了とする。 |\n\n"
+    },
+    {
+      "pin_id": null,
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "physical_lines": [
+        207,
+        214
+      ],
+      "full_file_bytes": 73845,
+      "full_file_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "raw_lf_span_bytes": 690,
+      "raw_lf_span_sha256": "93c9ab2cd66fbeb08ba4df1bf6ff6e07e82e79260f75d1fe7814887cc180a01f",
+      "raw_lf_span_literal": "### HELIXLABO-L2-022 — HELIX-OS → Aggregate\n\n- 親：HELIXLABO-L1-001。入力：OSから許可されたticket/運転/証拠観測。出力：source identity/revision付きobservation。依存：OS source contractと個別connector。保証：OS正本を保持し未完/unknownを区別。stale/欠落はOSへ戻す。`version_target: 1.0`。\n\n### HELIXLABO-L2-023 — BRAIN → Aggregate\n\n- 親：HELIXLABO-L1-001。入力：許可された知識利用・適用結果の観測。出力：source版付きobservation。依存：BRAIN source contractと個別connector。保証：BRAIN知識正本を書き換えない。source identity不明はBRAINへ戻す。`version_target: 1.0`。\n\n"
+    },
+    {
+      "pin_id": null,
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "physical_lines": [
+        231,
+        238
+      ],
+      "full_file_bytes": 73845,
+      "full_file_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "raw_lf_span_bytes": 730,
+      "raw_lf_span_sha256": "971ce7f8674681d8b2fe72264c7fa787c6f168b0bf379b799575fc17026d5257",
+      "raw_lf_span_literal": "### HELIXLABO-L2-028 — Worker → Aggregate\n\n- 親：HELIXLABO-L1-001。入力：許可されたWorker作業結果。出力：task class/assignment/source付きobservation。依存：OS assignmentとWorker result contract。保証：Workerをauthority ownerとせず、未評価結果を評価済みにしない。assignment不明はOSへ戻す。`version_target: 1.0`。\n\n### HELIXLABO-L2-029 — CI/test → Aggregate\n\n- 親：HELIXLABO-L1-001。入力：許可されたCI/test結果と対象revision。出力：検査範囲付きobservation。依存：HARNESS verification contractとOS実行証拠。保証：未実行/stale/中断をpassとしない。検査範囲欠落はsource ownerへ戻す。`version_target: 1.0`。\n\n"
+    }
+  ],
+  "legacy_source_pins": {
+    "prior_immutable_audit_source_pins_27": [
+      {
+        "pin_id": "FIX-L2-050",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "physical_lines": [
+          298,
+          302
+        ],
+        "full_file_bytes": 73845,
+        "full_file_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+        "raw_lf_span_bytes": 1245,
+        "raw_lf_span_sha256": "e41ea805b72f36d34e326b11488f07d2f0a3e030b795442f47370e6869aecbce",
+        "raw_lf_span_literal": "### HELIXLABO-L2-050 — 内部改善循環（1.0）\n\n入力は許可観測・episode・実験と評価済みFeedback候補、出力はOS登録/routing後のtarget変更、target検証、運用結果、LABO再観測を結ぶ追跡可能な循環である。段階はObserved→Correlated→Hypothesized→Experimented→Evaluated→Feedback Candidate→OS registration/target routing→target change process→verification→deployment/operation→LABO re-observation。登録、candidate数、変更、CI成功だけで改善完了としない。採択前は候補のまま保持し、target authorityはtarget ownerに残す。変更後の再観測と効果・退行評価がない場合は循環未完了として戻し、過去記録を上書きしない。\n\n- 親：HELIXLABO-L1-008。依存：L2-001〜010と適用される個別接続（実験ではL2-022のOS assignment観測とL2-028のWorker結果観測を同ticket/experimentへ結ぶ）、OSによるFeedback登録/routing、各target ownerによる変更・検証。保証：循環の未完義務とsource/target revisionを保持し、実験評価はOS割当Workerの実行証拠に結び付く。変更後観測が欠ければLABOの再観測へ戻す。`version_target: 1.0`。\n",
+        "meaning_jp": "承認対象L2-050の本文・11段階・依存・保証・version_target。固定本文のauthority。",
+        "use": "basis"
+      },
+      {
+        "pin_id": "FIX-L11-050",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "physical_lines": [
+          100,
+          100
+        ],
+        "full_file_bytes": 40455,
+        "full_file_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+        "raw_lf_span_bytes": 622,
+        "raw_lf_span_sha256": "2b14174aa263cc1febb95bc17131102c75cf4d8d554741a89031a9a7a7ec0148",
+        "raw_lf_span_literal": "| HELIXLABO-L2-050 | ObservedからLABO再観測までidentityと未完義務を追い、実験では同じticket/experiment/対象版にOS assignmentとWorker実行結果が対応することを確認し、target変更後の効果・退行を独立に評価できる。candidate、登録、変更、検証、運用、再観測を別状態で表示する | assignmentのない実行を割当済みとする、別ticket/experiment/対象版の証拠を結合する、Feedback発行、OS登録、target変更、CI成功だけで改善完了とする、採択前candidateを正本扱いする、元記録を書き換える |\n",
+        "meaning_jp": "L11-050の正常/反例/不成立条件。固定本文のauthority。",
+        "use": "basis"
+      },
+      {
+        "pin_id": "FIX-L11-050-24-13",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "physical_lines": [
+          123,
+          123
+        ],
+        "full_file_bytes": 40455,
+        "full_file_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+        "raw_lf_span_bytes": 234,
+        "raw_lf_span_sha256": "c9be54d0a9c067872d7c20af0e8c75d8b7f54897648f620f64912e59c9ef6deb",
+        "raw_lf_span_literal": "| 13 | LABO評価だけで変更を確定しない。 | HELIXLABO-L2-010, 050 | Feedbackは提案状態であり、登録/routingはOS、変更はtarget ownerに残る。 | LABO評価/Feedbackだけでtarget変更を確定する。 |\n",
+        "meaning_jp": "§24 #13: LABO評価だけでは変更を確定しない。",
+        "use": "basis"
+      },
+      {
+        "pin_id": "FIX-L11-050-24-14",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "physical_lines": [
+          124,
+          124
+        ],
+        "full_file_bytes": 40455,
+        "full_file_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+        "raw_lf_span_bytes": 255,
+        "raw_lf_span_sha256": "cd0e11f43c58adf3a61f6388ea63904bcd0d463ca6c33e0f44269ea625482032",
+        "raw_lf_span_literal": "| 14 | 変更後は必ず再観測する。 | HELIXLABO-L2-020, 050 | 復帰・target変更後の実績を新observationとして取り込み、変更前後の版に追跡できる。 | 変更または検証のみで完了とし、再観測を欠く。 |\n",
+        "meaning_jp": "§24 #14: 変更後の再観測。",
+        "use": "basis"
+      },
+      {
+        "pin_id": "FIX-L11-050-24-15",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "physical_lines": [
+          125,
+          125
+        ],
+        "full_file_bytes": 40455,
+        "full_file_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+        "raw_lf_span_bytes": 272,
+        "raw_lf_span_sha256": "8a17d986dd9c6a60de8ba880e94ca3201a112cb808620cb4adef5579700ef663",
+        "raw_lf_span_literal": "| 15 | Feedbackの効果そのものもLABOで評価する。 | HELIXLABO-L2-050 | 変更後の効果と退行を独立に評価し、未完なら循環を開いたままにする。 | Feedback発行・OS登録・target変更・CI成功だけで改善完了とする。 |\n",
+        "meaning_jp": "§24 #15: 効果と退行を独立評価。",
+        "use": "basis"
+      },
+      {
+        "pin_id": "PO-FIXED-TARGET-REVISION",
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+        "physical_lines": [
+          29,
+          40
+        ],
+        "full_file_bytes": 12756,
+        "full_file_sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0",
+        "raw_lf_span_bytes": 1223,
+        "raw_lf_span_sha256": "d39cbca144d2a9b58094639730cde79e516543af075f15d583ef9d4da5a1c471",
+        "raw_lf_span_literal": "## 確定した対象revision\n\nPOは確認packetが固定したL1対象revisionを確定し、提示されたL2と対のL11一式を採用した。対象本文はいずれもcommit `f6dad2a33e24f000b87d7f09b8d40288257e74cc`の固定blobである。\n\n| 対象 | 固定commit | path | SHA-256 |\n|---|---|---|---|\n| 親Concept | `f6dad2a33e24f000b87d7f09b8d40288257e74cc` | `docs/concept/helix-concept.md` | `06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78` |\n| HELIX-LABO L1 | `f6dad2a33e24f000b87d7f09b8d40288257e74cc` | `docs/helix-labo/L1-planning/labo-intent.md` | `78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc` |\n| HELIX-LABO L2 | `f6dad2a33e24f000b87d7f09b8d40288257e74cc` | `docs/helix-labo/L2-requirements/labo-requirements.md` | `f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed` |\n| HELIX-LABO L11 | `f6dad2a33e24f000b87d7f09b8d40288257e74cc` | `docs/helix-labo/L11-acceptance/labo-acceptance.md` | `bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200` |\n\nこれらは確認packetの対象本文固定値である。confirmation PRのmetadata更新後HEAD・本記録追加後HEADと取り違えず、承認対象本文bytesを差し替えない。\n",
+        "meaning_jp": "PO記録が承認対象L2/L11をf6dad2a33の固定blobとして特定する箇所。633 revisionのdecision basisと区別。",
+        "use": "basis"
+      },
+      {
+        "pin_id": "PO-050-DECISION-ROW",
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+        "physical_lines": [
+          92,
+          92
+        ],
+        "full_file_bytes": 12756,
+        "full_file_sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0",
+        "raw_lf_span_bytes": 73,
+        "raw_lf_span_sha256": "13609b22c478a72af2b146245a4ae69607eb603b0128645e63250f50cf3b089d",
+        "raw_lf_span_literal": "| `HELIXLABO-L2-050` | `MPR-RC-HELIXLABO-L2-050-001` | composite / 1.0 |\n",
+        "meaning_jp": "PO decision tableのL2-050/composite/1.0採択行。",
+        "use": "basis"
+      },
+      {
+        "pin_id": "REGISTER-050-ROW",
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "physical_lines": [
+          278,
+          278
+        ],
+        "full_file_bytes": 2108075,
+        "full_file_sha256": "e7dc1180361869379966fb33f4ab263cabdfe1137ceea32dedc2b6edfea388d1",
+        "raw_lf_span_bytes": 2597,
+        "raw_lf_span_sha256": "f77fbb850c6e7ba77b93c5df72bed75d9accdfefe12359efab2179fbc75f0232",
+        "raw_lf_span_literal": "{\"registration_id\":\"MPR-RC-HELIXLABO-L2-050-001\",\"supersedes_registration_id\":null,\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HELIXLABO-L2-050\",\"requirement_kind\":\"composite\",\"product_target\":\"HELIX-LABO\",\"candidate_source_path\":\"docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-050\",\"candidate_semantic_digest\":\"sha256:e41ea805b72f36d34e326b11488f07d2f0a3e030b795442f47370e6869aecbce\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（親候補、承認を推定しない）\",\"parent_planning_revision\":\"docs/helix-labo/L1-planning/labo-intent.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc（draft_candidate、PO対象revision確認待ち）\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json#HELIXLABO-L2-050\",\"source_atom_set_digest\":\"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"source_atom_count\":0,\"source_collection_scope\":\"現行LABO L1/POと既存候補を起点に機能単位へ具体化する未採択候補。旧sourceは意味比較として参照し、この登録で旧atomの移管・採択・retireを行わない。入力旧atom集合は空集合。空集合のno_lossを原文の意味被覆や全旧資産の被覆へ拡張しない。既存候補は保持し、親原文・既存条件の行き先を本文とparent_source_conditionsで示す。\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\",\"coverage_result\":\"no_loss\",\"carried_atom_refs\":[],\"preserved_pending_registration_refs\":[\"MPR-SH-CANDIDATE-003\"],\"human_decision_disposition_refs\":[],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex execution lane\",\"registered_at\":\"2026-09-27T02:36:24+09:00\",\"evidence_refs\":[\"docs/helix-labo/L2-requirements/labo-requirements.md\",\"docs/helix-labo/L1-planning/labo-intent.md\",\"docs/helix-labo/sources/labo-core-engine-po-original-2026-09-26.md\",\"docs/governance/decisions/labo-core-engine-po-decisions-2026-09-26.md\",\"docs/governance/decisions/handoff-integration-po-decisions-2026-09-26.md\",\"docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md\",\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\"]}\n",
+        "meaning_jp": "633 registration row。登録候補・management state・authority_effectをPO decisionと混同しない。",
+        "use": "basis"
+      },
+      {
+        "pin_id": "G0-050-STAGE-ROW",
+        "revision": "59336627f11475456038db80ce6232ee39bbfa8f",
+        "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+        "physical_lines": [
+          290,
+          290
+        ],
+        "full_file_bytes": 183432,
+        "full_file_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+        "raw_lf_span_bytes": 207,
+        "raw_lf_span_sha256": "1e772cc77d3b8899698aef4a881bee56a8b32159113f767bd0fab3e4633b6684",
+        "raw_lf_span_literal": "| `HELIXLABO-L2-050` | `MPR-RC-HELIXLABO-L2-050-001` | `docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L92` | `1.0 target candidate` | `Stage 5` | `original 250 carry-forward` |\n",
+        "meaning_jp": "G0 addendumのStage 5配属行。PO target decisionとは別の工程配属根拠。",
+        "use": "basis"
+      },
+      {
+        "pin_id": "G0-050-JSON-IDENTITY",
+        "revision": "59336627f11475456038db80ce6232ee39bbfa8f",
+        "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
+        "physical_lines": [
+          14310,
+          14310
+        ],
+        "full_file_bytes": 1823772,
+        "full_file_sha256": "ec970df79eaaf693f8825045b235c43ea10aefa7925701b1fff2a974df3e4e0a",
+        "raw_lf_span_bytes": 38,
+        "raw_lf_span_sha256": "8cd6ebc798b9a450a5971a9fd3e6f8132300282b1f58c499c3aef51b36ef0d1a",
+        "raw_lf_span_literal": "      \"identity\": \"HELIXLABO-L2-050\",\n",
+        "meaning_jp": "G0 JSON内の親050 identity行。Stage配属の確認にのみ使う。",
+        "use": "basis"
+      },
+      {
+        "pin_id": "AUTHORING-COVERAGE-HISTORY",
+        "revision": "99b1ff7ba0614d73049aaee2af6a0605b76b033b",
+        "path": "docs/governance/audits/requirements-stage/labo-stage5-parent050-authoring-2026-10-06.json",
+        "physical_lines": [
+          1,
+          2404
+        ],
+        "full_file_bytes": 104426,
+        "full_file_sha256": "cbe0c33fb0559a0a8d19fc6b420d259ceead2c54d3d95dd6e1911b648dea1c1d",
+        "raw_lf_span_bytes": 104426,
+        "raw_lf_span_sha256": "cbe0c33fb0559a0a8d19fc6b420d259ceead2c54d3d95dd6e1911b648dea1c1d",
+        "raw_lf_span_literal_omitted": true,
+        "literal_omission_reason_ja": "全ファイルspanはfull-file SHAで固定し、巨大なraw literalは重複収録しない。Gitの指定revision/pathから再取得できる。",
+        "meaning_jp": "初期crosswalkの条件ID/ラベル追跡用。承認済み条件の根拠は固定L2/L11 pinであり、この過去草稿は権限・条件根拠ではない。",
+        "use": "historical_authoring_context_only"
+      },
+      {
+        "pin_id": "LEG-UIL-REQ-43-76",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+        "physical_lines": [
+          43,
+          76
+        ],
+        "full_file_bytes": 12101,
+        "full_file_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+        "raw_lf_span_bytes": 2720,
+        "raw_lf_span_sha256": "f6637e2a6d7a7d22377ad32f54b642dfb1165e35338e4fb99b36c9b4619d4262",
+        "raw_lf_span_literal": "### UIL-R-01 改善source registry\n\n観測sourceはstable ID、owner、schema version、detector version、input authority、revision、retention、redaction、\nfreshness、failure dispositionを持つversioned registryへ登録する。任意log文字列やAI感想をdetector evidenceとして\n扱わず、unknown source、欠落revision、stale evidenceをfail-closeする。\n\n初期sourceはCI wall-clock／queue／runner-minute／flake／retry、DB projection／replay／checkpoint、Requirement／\nDefinitionのduplicate／overlap／orphan／stale、dependency cycle／fan-out／change amplification、review／rework／\nrollback／incident、provider／toolchain drift、distribution consumer、resource／cost／security findingとする。\n\n### UIL-R-02 観測正規化とbaseline比較\n\nsource eventをstable event ID、baseline revision、observed revision、payload digest、correlation、causation、confidence、\ncounterevidenceへ正規化する。同一event集合とregistry versionから同一normalized exact setとdigestを生成し、\ncurrent baseline、観測値、欠測、予測を別fieldにする。\n\n### UIL-R-15 観測generationとhistorical baseline保全\n\nnormalized observationは`baseline`、`candidate`、`post_main`を別generationとして保持し、同じHEAD、event payload、\nsource IDでもgeneration identityを統合しない。各generationはrepository、source HEAD、base／candidate HEAD、source\nregistryのversion／digest、detectorのID／version／digest、environment／toolchain digest、物理bindingの適用可否、\n観測時刻、親generationへ束縛する。\n\nhistorical baselineは生成時のregistry、detector、environment identityでsealedし、candidate側変更で再解釈または\nin-place rewriteしない。detector semantics、source event class、evidence boundary、environment、physical bindingの\n比較条件が一致しない場合は、`comparison_compatible`、`reobservation_required`、`baseline_incomparable`、\n`detector_transition_required`のtyped dispositionへ送る。比較不能をno-change、改善、悪化なし、greenへ変換しない。\n\n正規lifecycleは`current baseline → candidate observation → comparison／migration decision → canonical merge →\npost-main observation → new baseline promotion`とする。post-main read-afterなしにcandidateを次baselineへ昇格せず、\ncandidate close／abandon時はhistorical baselineを変更しない。source admission failureはfirst cause、rejected source/event、\nnormalizer disposition、downstream skip/deferをlineageとして保持し、genericな`normalized event missing`だけへ崩さない。\n\n## UIL-FR-002 findingの適格化と改善候補\n",
+        "meaning_jp": "旧UIL requirementのsource/normalization/generation範囲。意味比較のみ。",
+        "use": "comparison_only"
+      },
+      {
+        "pin_id": "LEG-UIL-REQ-162-196",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+        "physical_lines": [
+          162,
+          196
+        ],
+        "full_file_bytes": 12101,
+        "full_file_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+        "raw_lf_span_bytes": 1901,
+        "raw_lf_span_sha256": "8ad6227a7fcdb0bdf425c276f160814a233cf9e4a9aacc761d79b530ea9969c4",
+        "raw_lf_span_literal": "## UIL-FR-005 変更検証と効果測定\n\n### UIL-R-09 change検証と効果測定\n\n候補に束縛したverification obligations、before／after、cost、side effect、rollback readiness、観測windowを同一scope、\nrevision、artifact digestで比較する。局所green、件数減少、agent自己評価だけで効果を確定しない。\n\n### UIL-R-10 terminal outcome管理\n\n`adopted`、`rejected`、`superseded`、`no_action`、`escalated`を別々のterminal outcomeとして理由、counterevidence、\nreceipt digest付きで保持する。candidate生成、route決定、change mergeをterminalへ丸めず、rejected／no_actionも同一候補を\n無限再生成しないためのdedupe evidenceにする。\n\n## UIL-FR-006 recipe昇格と再発監視\n\n### UIL-R-11 recipe昇格\n\n改善recipeは複数episode、異なるscope、counterexample、mutation、benchmark、version、applicability、expiry、rollbackが\n揃った場合だけcandidate化する。単一project成功やAI評価をgeneral ruleへ昇格しない。rule promotionは既存System\nSynthesisのhuman review境界に従う。\n\n### UIL-R-12 再発監視\n\nadopted後も同一invariant、finding class、scope、release／operation windowを監視し、再発、効果消失、副作用、environment\ndriftを新しいevidenceとして元episodeへ因果接続する。再発時は過去の成功receiptで相殺せず、新baselineから再評価する。\n\n## UIL-FR-007 決定性、再構築、AI非依存\n\n### UIL-R-13 決定的projectionとreplay\n\n同一repo authority、source registry、event journal、baseline revisionからcandidate、route、verification obligation、terminal\nprojectionの同一exact set／digestを再構築する。DB削除、event順序変更、retry、at-least-once deliveryで意味が変わらず、\n欠落eventとdigest driftを拒否する。\n\n### UIL-R-14 AI非依存control境界\n",
+        "meaning_jp": "旧UIL requirementのeffect/recurrence/replay範囲。意味比較のみ。",
+        "use": "comparison_only"
+      },
+      {
+        "pin_id": "LEG-UIL-ACCEPTANCE-20-42",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-improvement-loop-acceptance.md",
+        "physical_lines": [
+          20,
+          42
+        ],
+        "full_file_bytes": 4977,
+        "full_file_sha256": "f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943",
+        "raw_lf_span_bytes": 3749,
+        "raw_lf_span_sha256": "0153d16f55121852caf7c84d57b92bbc0b584a8e654063bffff4be1ee789c673",
+        "raw_lf_span_literal": "| UIL-AC-001 | UIL-R-01 | source registryがID、owner、schema、detector、authority、freshnessを保持する | unknown source、任意log、AI感想を拒否 |\n| UIL-AC-002 | UIL-R-02 | 同一event集合とregistryから同一normalized exact set／digestを返す | event順序、retryで結果を変えない |\n| UIL-AC-003 | UIL-R-02 | baseline、observed、missing、forecastを別fieldにする | 予測値を観測値へ昇格しない |\n| UIL-AC-004 | UIL-R-03 | invariant／threshold／release boundary／safety-netを別triggerとして記録する | cronだけでauthority変更しない |\n| UIL-AC-005 | UIL-R-03 | 同一原因・scope・baselineの候補をdedupeしexpiryを持つ | rejected候補を無限再生成しない |\n| UIL-AC-006 | UIL-R-04 | candidate必須fieldのexact setを検証する | 必須field欠落、wrong revision、stale evidenceを個別拒否 |\n| UIL-AC-007 | UIL-R-05 | value、behavior、AC、responsibility、ownership、public boundary mutationを意味変更として検出する | 意味変更をREFACTORINGへ送らない |\n| UIL-AC-008 | UIL-R-05 | affected Requirement／Design／Contract／Module／V-pairをstable IDで算出し、`local_issue`／`system_synthesis`／`requirement_portfolio_resynthesis`を別scopeとして導出する | 名称一致、Issue件数、file overlap、単一logだけで上位scopeへ昇格しない |\n| UIL-AC-009 | UIL-R-06 | baseline、予測、反例、副作用、rollbackを比較する | 予測を実測完了証拠にしない |\n| UIL-AC-010 | UIL-R-06 | 局所metric改善と全体metric悪化を同時評価する | test時間短縮だけでadoptedにしない |\n| UIL-AC-011 | UIL-R-07 | change class、capability expansion、routeを別fieldにする | 同一enumへ畳み込まない |\n| UIL-AC-012 | UIL-R-07 | candidate scope、change class、capability expansionから既存routeとverification obligationを決定的に導出する | scope classを新routeにせず、ambiguous findingを推測配車しない |\n| UIL-AC-013 | UIL-R-08 | candidate生成だけではauthorityが変わらない | Requirement、merge、publishを直接実行しない |\n| UIL-AC-014 | UIL-R-08 | route先のPLAN、V-pair、approval、review、CIを再利用する | 独自completion gateを作らない |\n| UIL-AC-015 | UIL-R-09 | 同一scope／revision／artifactでbefore-afterとside effectを測る | 件数減少、局所green、自己評価で効果確定しない |\n| UIL-AC-016 | UIL-R-10 | 5 terminal outcomeを別々に保持する | mergedをadoptedへ丸めない |\n| UIL-AC-017 | UIL-R-11 | 複数episode、counterexample、mutation、version、expiry後だけrecipe候補になる | 単一project成功をgeneral ruleにしない |\n| UIL-AC-018 | UIL-R-12 | recurrence windowで再発と効果消失を因果接続する | 過去greenで再発を相殺しない |\n| UIL-AC-019 | UIL-R-13 | DB削除後もrepo authority＋event journalから同一projectionを再構築する | DB rowを意味正本にしない |\n| UIL-AC-020 | UIL-R-13 | state machine順序、HEAD、baseline、scopeをexact照合する | 段階飛越、別候補証拠混載を拒否 |\n| UIL-AC-021 | UIL-R-14 | AIなしのdetectorだけでcandidate→route→verificationを生成する | AI proposal除去でcontrol loopを壊さない |\n| UIL-AC-022 | UIL-R-14 | AI利用時にruntime／model／session／context／HEAD／scopeをreceiptへ束縛する | AI出力をdetector evidenceとして偽装しない |\n| UIL-AC-023 | UIL-R-15 | 同一payload／HEADでもbaseline、candidate、post-mainを別generation ID／digestへ投影し、各registry／detector／environment identityを保持する | generation kindをidentityから除去して同一eventへ畳み込まない |\n",
+        "meaning_jp": "旧UIL paired acceptanceの正常/反例の比較範囲。実行根拠ではない。",
+        "use": "comparison_only"
+      },
+      {
+        "pin_id": "LEG-UIL-AC-020",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-improvement-loop-acceptance.md",
+        "physical_lines": [
+          39,
+          39
+        ],
+        "full_file_bytes": 4977,
+        "full_file_sha256": "f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943",
+        "raw_lf_span_bytes": 142,
+        "raw_lf_span_sha256": "2057047d67792b67674a840bf81104aa50b995cfac1bbdcaffe716f858e5e99f",
+        "raw_lf_span_literal": "| UIL-AC-020 | UIL-R-13 | state machine順序、HEAD、baseline、scopeをexact照合する | 段階飛越、別候補証拠混載を拒否 |\n",
+        "meaning_jp": "段階飛越・別candidate evidence混載を拒否する旧acceptance atom。固定親順序条件へ再導出。",
+        "use": "comparison_only"
+      },
+      {
+        "pin_id": "LEG-IL-FR-33-83",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+        "physical_lines": [
+          33,
+          83
+        ],
+        "full_file_bytes": 18905,
+        "full_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+        "raw_lf_span_bytes": 16653,
+        "raw_lf_span_sha256": "1d08c991cceede0ae99275a39865df9f71b0049bc6f7efde6a2ac282dcadf788",
+        "raw_lf_span_literal": "| L3 FR | primary L2要求 | system動作 | 事前条件 → 事後条件 | failure / evidence | AC |\n|---|---|---|---|---|---|\n| HR-FR-HIL-01 | HIL-BR-12, HIL-FR-02, HIL-FR-03, HIL-NFR-01, HIL-NFR-05 | user、GitHub、product、source入力をsource/cause/digest/authority付きversioned Issue contractへexactly-once正規化し、外部本文を命令として実行しない | source識別可能・current schemaあり → durable intake、contract revision、routeが一意 | field欠落、同operation異payload、未信頼命令実行 / intake event、contract digest、conflict/trust receipt | HAC-HIL-01a, HAC-HIL-01b, HAC-HIL-01c |\n| HR-FR-HIL-02 | HIL-BR-01, HIL-BR-10, HIL-FR-01, HIL-NFR-04 | admitted contractを定義済み工程順でForwardへ収束させ、全eventを同一causalityへjoinしbudget境界でcheckpointする | admitted contract・budgetあり → valid next stateまたはdurable stop、orphan 0 | illegal transition、causality断絶、budget後継続 / transition、projection、closure、checkpoint receipt | HAC-HIL-02a, HAC-HIL-02b, HAC-HIL-02c |\n| HR-FR-HIL-03 | HIL-BR-02, HIL-BR-17, HIL-FR-09, HIL-FR-30 | 全base/stacked PR deliveryをcurrent head監査jobへ冪等変換し、findingをcurrent contract影響と責務境界で`current_pr_fix`または`successor_issue`へ分類する。前者はwriterへ一括返却し、後者だけをIssue/Reverse/memory/Codex queueへ原子的昇格する | delivery/head/policyあり → job最大1件、typed disposition一件、`current_pr_fix`はpromotion 0、`successor_issue`は全target同一cause commit | stale head、duplicate job、誤分類、current findingのIssue逃がし、successorのPR再流入、finding drop/partial promotion / delivery、job、disposition、writer return、promotion lineage | HAC-HIL-03a, HAC-HIL-03b, HAC-HIL-03c |\n| HR-FR-HIL-04 | HIL-BR-04, HIL-BR-05, HIL-FR-04, HIL-FR-05, HIL-FR-08, HIL-FR-31, HIL-FR-35, HIL-NFR-03, HIL-NFR-20 | 全IssueのR0–R4 substanceを実装前に検査し、設計欠陥を影響layerのRedesignへ送り再freeze後だけForward claimを許す | drive/scope/evidenceあり → substantive Reverse＋正しいre-entry | skip、空洞、誤layer、L0無承認、re-entry bypass / phase、coverage、redesign、stale/re-freeze receipt | HAC-HIL-04a, HAC-HIL-04b, HAC-HIL-04c |\n| HR-FR-HIL-05 | HIL-BR-06, HIL-BR-07, HIL-BR-08, HIL-FR-06, HIL-FR-07, HIL-FR-36, HIL-FR-38, HIL-NFR-06, HIL-NFR-07, HIL-NFR-21, HIL-NFR-23 | directiveを分類前に収載し、全Issue Gateをauthority root、最小性、approval、evidenceで決定論評価する | durable directive・policy・rootあり → 証拠充足時のみ遷移 | AI終端、scope cycle、不要拡張、approval欠落 / custody、gate、authority graph、approval receipt | HAC-HIL-05a, HAC-HIL-05b, HAC-HIL-05c |\n| HR-FR-HIL-06 | HIL-BR-16, HIL-BR-20, HIL-FR-28, HIL-FR-29, HIL-NFR-15, HIL-NFR-16 | prejoin→postjoin→external CIを同一SHA/tree lineageで実行し既知failureだけを限定隔離する | tree/check/quarantine policyあり → 三段greenまたは該当段failure | stage bypass、別SHA、wildcard/期限切れ/new fingerprint隔離 / CI、lineage、quarantine、remediation evidence | HAC-HIL-06a, HAC-HIL-06b, HAC-HIL-06c |\n| HR-FR-HIL-07 | HIL-BR-03, HIL-BR-11, HIL-FR-10, HIL-FR-14, HIL-NFR-02 | verified completionから永続知識だけをmemoryへ昇格し、finding/repairをrecipe→shadow→skill/detector/gateへ独立promoterで段階昇格する | completion/history、worker≠promoter → compact/no-promotionと検証済promotion | raw log/secret混載、self-promotion、fixture/効果/rollback欠落 / compaction、shadow、review、rollback receipt | HAC-HIL-07a, HAC-HIL-07b, HAC-HIL-07c |\n| HR-FR-HIL-08 | HIL-BR-09, HIL-BR-18, HIL-FR-11, HIL-FR-12, HIL-FR-13, HIL-FR-32, HIL-NFR-10, HIL-NFR-18 | HARNESS-owned contractからteamを決定し、lease/run/checkpoint/verify/release/quarantine/retireをfencing付き正本化する | versioned registry、task、eligible roles → 再生成可能projection、単一lease、独立verify | manual drift、worker=verifier、二重lease、旧fence、不正遷移 / contract、muster、lease、lifecycle、verify receipt | HAC-HIL-08a, HAC-HIL-08b, HAC-HIL-08c |\n| HR-FR-HIL-09 | HIL-BR-14, HIL-FR-15, HIL-FR-16, HIL-FR-21, HIL-FR-22, HIL-FR-37, HIL-TR-03, HIL-NFR-08, HIL-NFR-12, HIL-NFR-22 | ZIP、前身repository exact 2件（`unison-ai-product/UT-TDD_AGENT-HARNESS`、`RetryYN/ai-dev-kit-vscode`）のcurrent advertised `heads/tags/pull` authority、現行全treeをsnapshot化しatomic behaviorへ分解して採否→requirement→design→test→gateをjoinする。Git authorityはadvertisement A/B一致、exact OID materialize、object/tree/tag peel検証済みsealed receiptからだけ受理し、ref/content/edge分母をreceiptから導出する | source/ref/entryとextractor version、exact 2 authority receiptあり → atom分母、disposition、trace、pending/orphan 0 | aggregate-only、未分類/重複、remote identity不一致、A/B drift、ref/object欠落、stale、prose-only、Python write / manifest、atom、decision、edge、stale receipt | HAC-HIL-09a, HAC-HIL-09b, HAC-HIL-09c |\n| HR-FR-HIL-10 | HIL-FR-25, HIL-FR-26, HIL-NFR-13 | core engineとdetectorをversioned registryから同一snapshotへ決定論実行しartifactとfindingを別authorityで保存する | registered version/config、fixed snapshot → rerun同一digest/fingerprint | unknown version、nondeterminism、provenance欠落、partial commit / run、artifact、finding、rerun evidence | HAC-HIL-10a, HAC-HIL-10b, HAC-HIL-10c |\n| HR-FR-HIL-11 | HIL-BR-15, HIL-FR-23, HIL-FR-24, HIL-NFR-17 | versioned read connectorでfull/incremental product dataをlineage/freshness/schema/redaction付きprojectionへ変換する | connector policy/auth reference/cursorあり → canonical snapshot/entities/watermark | drift、cursor逆行、stale/tombstone無視、PII/secret、直接write / connector、snapshot、redaction、quarantine receipt | HAC-HIL-11a, HAC-HIL-11b, HAC-HIL-11c |\n| HR-FR-HIL-12 | HIL-FR-27, HIL-TR-02, HIL-TR-07, HIL-TR-08, HIL-TR-09, HIL-TR-10, HIL-NFR-14 | NodeがPython workerをversioned JSON Lines IPCで監督し、検証済みresultだけをNode authorityでtransaction commitする | compatible protocol、deadline/lease、authority map → terminal receipt一件、Node writeのみ | protocol/JSON/size/timeout/crash/backpressure/late/direct write / envelope、process、schema、transaction、projection report | HAC-HIL-12a, HAC-HIL-12b, HAC-HIL-12c |\n| HR-FR-HIL-13 | HIL-BR-19, HIL-FR-33, HIL-TR-01, HIL-TR-11 | active install/build/CLI/hooks/tests/package/distributionをNode.js LTSへ移しBun dependencyを0にする | Bun-less Linux、Node lock、surface inventory → 全surface green、active finding 0 | Bun API/command/lock/CI/distribution残存、部分互換の完了claim / inventory、workflow logs、lock、package smoke | HAC-HIL-13a, HAC-HIL-13b, HAC-HIL-13c |\n| HR-FR-HIL-14 | HIL-FR-34, HIL-TR-04, HIL-TR-05, HIL-TR-06, HIL-NFR-09, HIL-NFR-19 | OS差分をadapterへ隔離しLinux full、macOS portable、Windows compatibilityを同一contractで検証、lock/SBOM/policyを再現する | clean 3 OS、canonical locks/policy → scope別green、domain fork 0、SBOM/policy receipt | adapter leak、process/lock異常、unlock、secret、license / OS matrix、difference、offline digest、SBOM reports | HAC-HIL-14a, HAC-HIL-14b, HAC-HIL-14c |\n| HR-FR-HIL-15 | HIL-BR-13, HIL-FR-17, HIL-FR-18, HIL-FR-19, HIL-FR-20, HIL-NFR-11 | 全PLANをprototype_required/not_applicableへ分類し、前者はprototype→walkthrough→backprop/agreement、後者は構造skipでのみL3 freezeする | scope digest/policyあり → current agreementまたはno-UI receipt | implicit/deferred、static-only、state/walkthrough欠落、stale skip / applicability、artifact、walkthrough、delta、agreement | HAC-HIL-15a, HAC-HIL-15b, HAC-HIL-15c |\n| HR-FR-HIL-16 | HIL-BR-21, HIL-FR-39, HIL-FR-40, HIL-NFR-24, HIL-NFR-25 | DesignRefactor候補をsemantic/consumer/oracle同等性で評価し、behavior保存はRefactor、contract変更はRedesign、state変更はRetrofitへ送る | before graph/oracle/consumer/role catalog → 最小plan、pair/oracle/rollback | lexical-only rename、根拠なし抽象化、誤route、consumer漏れ / signatures、graph、oracle、role/name、route receipt | HAC-HIL-16a, HAC-HIL-16b, HAC-HIL-16c |\n| HR-FR-HIL-17 | HIL-BR-22, HIL-BR-23, HIL-BR-24, HIL-FR-41, HIL-FR-42, HIL-FR-43, HIL-FR-44, HIL-FR-45, HIL-NFR-26, HIL-NFR-27, HIL-NFR-28 | 原文をauthority付きatomic requirementへ翻訳し、design obligationとstable revision/edge/change receiptを正本化、template gapをshadow reviewへ送る | custodied source/authority、versioned template → active atomに全typed edge、未消込/ambiguity 0 | 原文消失、aggregate/TBD/偽N/A、self-promotion、stale伝播欠落 / revision、challenge、template、obligation、gap/review/change receipt | HAC-HIL-17a, HAC-HIL-17b, HAC-HIL-17c |\n| HR-FR-HIL-18 | HIL-BR-25, HIL-FR-46, HIL-FR-47, HIL-FR-48, HIL-FR-49, HIL-FR-50, HIL-NFR-29 | canonical L1–L12 ledgerと層外L0 charter anchorをversion管理しtemplate obligationを抽出、上下隣接edge、正規5 V-pair、L6↔L7 TDD closureを同一revision/snapshot/oracleで閉じ、refactorも全pairを保存する | active registry/template/snapshot/pair map → 全atom disposition、双方向edge、実行oracle | type/抽出/TBD/aggregate、片edge、revision/oracle不一致、pair破壊 / ledger、addition、pair、execution、refactor receipt | HAC-HIL-18a, HAC-HIL-18b, HAC-HIL-18c |\n| HR-FR-HIL-19 | HIL-BR-26, HIL-FR-51, HIL-FR-52, HIL-FR-53, HIL-NFR-30, HIL-NFR-31, HIL-NFR-32 | AI AuthoringをProposalとして許可し、意味差分・authority・pair・impactを検査した変更だけを原子的にCanonical化し、asset identityとrevision履歴を維持する | proposal、base revision、policyあり → 自動Admission又は明示decision、部分current 0 | 過剰確認、無権限変更、partial write、stale base、identity/oracle消失 / admission、transaction、revision、rollback receipt | HAC-HIL-19a, HAC-HIL-19b, HAC-HIL-19c |\n| HR-FR-HIL-20 | HIL-BR-27, HIL-BR-28, HIL-FR-54, HIL-FR-55, HIL-FR-56, HIL-NFR-33 | 要求義務から必要十分な設計契約と見本を導出し、Forward各layerとScrum S0–S4へ同一snapshot・返却edge付きでbindする | requirement/obligation/risk/templateあり → 未被覆・重複0のportfolioとworkflow binding | 固定冊数、positive-only、別正本Scrum、S4前昇格 / portfolio、example、phase、back-propagation receipt | HAC-HIL-20a, HAC-HIL-20b, HAC-HIL-20c |\n| HR-FR-HIL-21 | HIL-BR-29, HIL-BR-30, HIL-FR-57, HIL-FR-58, HIL-FR-59, HIL-FR-60, HIL-NFR-34 | taskの工程/domain/riskから判断packと最小専門agent contractを生成し、shadow reviewとruntime guard後だけmusterする | task/skill/model catalog/allowlistあり → versioned pack、最小team、独立verify | self-promotion、未許可tool、過剰agent、自己検証、stale contract / pack、shadow、generation、muster/lifecycle receipt | HAC-HIL-21a, HAC-HIL-21b, HAC-HIL-21c |\n| HR-FR-HIL-22 | HIL-BR-31, HIL-FR-61, HIL-FR-62, HIL-FR-63, HIL-NFR-35, HIL-NFR-36 | 候補worker/model/effortを再現可能benchと実task scorecardで比較し、品質・安全・retry込みcostから用途別にadmit又はretireする | fixed fixture/rubric/task/riskあり → blind score、実効cost、選択receipt | smoke-only採用、重大failure相殺、単価最適化、根拠なしeffort固定 / bench、scorecard、routing、exception receipt | HAC-HIL-22a, HAC-HIL-22b, HAC-HIL-22c |\n| HR-FR-HIL-23 | HIL-BR-32, HIL-FR-64, HIL-FR-65, HIL-FR-66, HIL-FR-67, HIL-FR-68, HIL-FR-69, HIL-NFR-37, HIL-NFR-38, HIL-NFR-39, HIL-NFR-40 | 第三者worker委譲をsandbox契約、環境浄化、最小払い出し、proposal再検証、audit付きで実行し、安全境界の充足をローカル強制機構だけで判定する | sandbox template・分類ゲート・opt-out receiptあり → 隔離実行、検証済みproposal、完全なaudit chain | allowlist外egress、scope外diff、bypass常態化、機密委譲、vendor設定依拠 / sandbox digest、egress計測、FS diff、audit row | HAC-HIL-23a, HAC-HIL-23b, HAC-HIL-23c |\n| HR-FR-HIL-24 | HIL-BR-33 | 配布パッケージを正本indexと手編集禁止の生成indexで構成し、first/third-party分離と免責を保持する | 正本indexあり → 生成indexは決定論導出のみ、手編集0 | 手編集index、party混在、cutover未承認切替 / index digest、derivation receipt、cutover approval | HAC-HIL-24a, HAC-HIL-24b, HAC-HIL-24c |\n\n## §2 受入条件\n\n| FR | 正常系 | 異常系 | 境界・回復系 |\n|---|---|---|---|\n| HR-FR-HIL-01 | HAC-HIL-01a: 全source入力が同一contract形へ収束 | HAC-HIL-01b: duplicateは副作用0、異payloadはconflict | HAC-HIL-01c: injection本文を隔離しdispatch 0 |\n| HR-FR-HIL-02 | HAC-HIL-02a: 正常loopが順序・causalityを保持 | HAC-HIL-02b: transition/edge欠落を拒否 | HAC-HIL-02c: budget境界で停止し同checkpoint再開 |\n| HR-FR-HIL-03 | HAC-HIL-03a: 全PR lifecycleを各一回監査 | HAC-HIL-03b: stale/duplicateからjob 0 | HAC-HIL-03c: promotionは全commitまたはrollback |\n| HR-FR-HIL-04 | HAC-HIL-04a: R0–R4＋正route後のみclaim | HAC-HIL-04b: hollow/skip/漏れをphase別拒否 | HAC-HIL-04c: L1/L2/L0をstale/re-entry/escalationへ分岐 |\n| HR-FR-HIL-05 | HAC-HIL-05a: 全receipt＋acyclic authorityで遷移 | HAC-HIL-05b: AI終端/cycle/欠落を拒否 | HAC-HIL-05c: high-impactはsnapshot-bound approval待ち |\n| HR-FR-HIL-06 | HAC-HIL-06a: 同一lineage三段green | HAC-HIL-06b: failure/別lineageで後続0 | HAC-HIL-06c: exact既知だけ期限付きquarantine |\n| HR-FR-HIL-07 | HAC-HIL-07a: knowledgeとcontinuationを分離 | HAC-HIL-07b: 禁止内容/self-promotionを拒否 | HAC-HIL-07c: shadow改善だけ昇格、退行rollback |\n| HR-FR-HIL-08 | HAC-HIL-08a: 同入力から同team/lifecycle | HAC-HIL-08b: drift/二重claim/旧fence拒否 | HAC-HIL-08c: checkpoint再開とquarantine/retire維持 |\n| HR-FR-HIL-09 | HAC-HIL-09a: ZIP＋exact 2 sealed Git authorities＋current HEADからreceipt由来のref/content/edge分母とatomic trace生成 | HAC-HIL-09b: parent-only/child欠落/overlap、advertised ref omission/extra、unverified objectでfreeze拒否 | HAC-HIL-09c: remote identity、advertisement A/B、namespace policy、source/extractor変更で旧authority以降をstale |\n| HR-FR-HIL-10 | HAC-HIL-10a: 全engine/detectorが再現可能 | HAC-HIL-10b: unknown/evidence欠落/partial拒否 | HAC-HIL-10c: rerun差異をquarantine |\n| HR-FR-HIL-11 | HAC-HIL-11a: full/incrementalをlineage付きcurrentへ | HAC-HIL-11b: drift/regression/PIIで昇格0 | HAC-HIL-11c: stale/tombstoneを明示し再取得 |\n| HR-FR-HIL-12 | HAC-HIL-12a: 正常resultを一回commit | HAC-HIL-12b: IPC異常をterminal化しpartial 0 | HAC-HIL-12c: cancel/timeout後late/direct write拒否 |\n| HR-FR-HIL-13 | HAC-HIL-13a: Bun-less Linuxでend-to-end green | HAC-HIL-13b: 全active残存形を検出 | HAC-HIL-13c: historical allowlistをactiveと分離 |\n| HR-FR-HIL-14 | HAC-HIL-14a: 3 OSが定義scopeをgreen | HAC-HIL-14b: adapter leak/path/process/lock異常拒否 | HAC-HIL-14c: online/offline同一lock/SBOM/policy |\n| HR-FR-HIL-15 | HAC-HIL-15a: no-UI構造skipでfreeze | HAC-HIL-15b: UIはprototype/walkthrough/agreement前freeze拒否 | HAC-HIL-15c: scope変更でstale化しL2再entry |\n| HR-FR-HIL-16 | HAC-HIL-16a: semantic同等の最小改善だけRefactor | HAC-HIL-16b: lexical-only/汎用化を拒否 | HAC-HIL-16c: internal/public/DBを3 routeへ分岐 |\n| HR-FR-HIL-17 | HAC-HIL-17a: atom/challengeを決定routeし完全revisionだけactive | HAC-HIL-17b: TBD/N/A/orphan/change欠落でfreeze拒否 | HAC-HIL-17c: template gapは独立review前active 0 |\n| HR-FR-HIL-18 | HAC-HIL-18a: canonical L1–L12抽出、層外L0 anchor、全pair current | HAC-HIL-18b: 任一atom/edge/oracle欠落でexit拒否 | HAC-HIL-18c: pair保存だけRefactor、他はRedesign/Retrofit |\n| HR-FR-HIL-19 | HAC-HIL-19a: 可逆変更を人手なしで原子的Canonical化 | HAC-HIL-19b: authority/impact/transaction欠落を拒否 | HAC-HIL-19c: stale/rename/split/mergeでidentityとrollback保持 |\n| HR-FR-HIL-20 | HAC-HIL-20a: 最小portfolioをForward/Scrumへbind | HAC-HIL-20b: 義務・negative・S4 edge欠落を拒否 | HAC-HIL-20c: 発見deltaを要求/templateへ逆伝播 |\n",
+        "meaning_jp": "隣接旧Infinity Loop FRのbounded比較範囲。",
+        "use": "comparison_only"
+      },
+      {
+        "pin_id": "LEG-HAC-HIL-02B",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+        "physical_lines": [
+          65,
+          65
+        ],
+        "full_file_bytes": 18905,
+        "full_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+        "raw_lf_span_bytes": 178,
+        "raw_lf_span_sha256": "afc57635a8b8374524c09b0d6b0b53fbc0a3cbf15e1039f2388edebaf62851b9",
+        "raw_lf_span_literal": "| HR-FR-HIL-02 | HAC-HIL-02a: 正常loopが順序・causalityを保持 | HAC-HIL-02b: transition/edge欠落を拒否 | HAC-HIL-02c: budget境界で停止し同checkpoint再開 |\n",
+        "meaning_jp": "HAC-HIL-02bの実source literal: transition/edge欠落拒否。",
+        "use": "comparison_only"
+      },
+      {
+        "pin_id": "LEG-IL-PAIRED-31-56",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+        "physical_lines": [
+          31,
+          56
+        ],
+        "full_file_bytes": 7819,
+        "full_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+        "raw_lf_span_bytes": 6193,
+        "raw_lf_span_sha256": "ac49626b80b39d8c071d692d3e76e311e6b2408bc22fcd612702bcb4dbe71fd2",
+        "raw_lf_span_literal": "| HAT | L3/AC | supporting HST | 受入scenario | observable / 必須evidence | negative / boundary |\n|---|---|---|---|---|---|\n| HAT-HIL-01 | HR-FR-HIL-01 / HAC-HIL-01a, HAC-HIL-01b, HAC-HIL-01c | HST-HIL-001 | 各source入力をIssue契約へ取り込む | intake/contract revision/idempotency/trust receipt | duplicate、異payload、injection |\n| HAT-HIL-02 | HR-FR-HIL-02 / HAC-HIL-02a, HAC-HIL-02b, HAC-HIL-02c | HST-HIL-001 | state machineをcausality付きで一周する | transition、closure query、checkpoint digest | illegal transition、orphan、budget境界 |\n| HAT-HIL-03 | HR-FR-HIL-03 / HAC-HIL-03a, HAC-HIL-03b, HAC-HIL-03c | HST-HIL-004, HST-HIL-005 | PR監査からtyped disposition、writer返却、successor promotionまで実行 | delivery/head、audit job、`current_pr_fix` writer return、`successor_issue` promotion lineage | duplicate/stale、誤分類、current finding promotion、successorのPR再流入、partial promotion |\n| HAT-HIL-04 | HR-FR-HIL-04 / HAC-HIL-04a, HAC-HIL-04b, HAC-HIL-04c | HST-HIL-002, HST-HIL-018 | ReverseとRedesign re-entryを実行 | R0–R4、coverage、stale/re-freeze | hollow/skip、誤layer、bypass |\n| HAT-HIL-05 | HR-FR-HIL-05 / HAC-HIL-05a, HAC-HIL-05b, HAC-HIL-05c | HST-HIL-019, HST-HIL-021, HST-HIL-023 | directive custody、Scope、Closureを判定 | custody、authority graph、approval/closure receipt | AI終端、cycle、不要拡張、欠落receipt |\n| HAT-HIL-06 | HR-FR-HIL-06 / HAC-HIL-06a, HAC-HIL-06b, HAC-HIL-06c | HST-HIL-003, HST-HIL-022 | 三段CIとquarantineを実行 | SHA/tree lineage、check/log、expiry | stage bypass、別SHA、overbroad quarantine |\n| HAT-HIL-07 | HR-FR-HIL-07 / HAC-HIL-07a, HAC-HIL-07b, HAC-HIL-07c | HST-HIL-015, HST-HIL-016 | memory compactionとlearning promotionを実行 | input/output digest、shadow metric、review/rollback | raw/secret、self-promotion、regression |\n| HAT-HIL-08 | HR-FR-HIL-08 / HAC-HIL-08a, HAC-HIL-08b, HAC-HIL-08c | HST-HIL-006 | registryからteam/lifecycleを完走 | registry/team digest、lease/fence/checkpoint/verify | manual drift、self-verify、late write |\n| HAT-HIL-09 | HR-FR-HIL-09 / HAC-HIL-09a, HAC-HIL-09b, HAC-HIL-09c | HST-HIL-011, HST-HIL-020 | 三sourceをsnapshot/atom/coverageへ処理 | manifests、atom spans、decision/edge/stale receipt | branch/child欠落、aggregate-only、pending |\n| HAT-HIL-10 | HR-FR-HIL-10 / HAC-HIL-10a, HAC-HIL-10b, HAC-HIL-10c | HST-HIL-008, HST-HIL-009 | engine/detectorを同一snapshotへ再実行 | version/config/input/output、artifact/finding、rerun digest | unknown、混同、nondeterminism、partial |\n| HAT-HIL-11 | HR-FR-HIL-11 / HAC-HIL-11a, HAC-HIL-11b, HAC-HIL-11c | HST-HIL-010 | product dataをfull/incremental投影 | connector、lineage、watermark、redaction/query | drift、cursor逆行、PII、stale current |\n| HAT-HIL-12 | HR-FR-HIL-12 / HAC-HIL-12a, HAC-HIL-12b, HAC-HIL-12c | HST-HIL-007 | NodeからPython workerを実行 | protocol/version/sequence/terminal/transaction | invalid/oversize/timeout/crash/late/direct write |\n| HAT-HIL-13 | HR-FR-HIL-13 / HAC-HIL-13a, HAC-HIL-13b, HAC-HIL-13c | HST-HIL-013 | Bun-less Linuxでinstallからdistributionまで完走 | environment、Node lock、CLI/build/test/package、zero finding | Bun API/command/lock/CI残存、部分claim |\n| HAT-HIL-14 | HR-FR-HIL-14 / HAC-HIL-14a, HAC-HIL-14b, HAC-HIL-14c | HST-HIL-014, HST-HIL-017 | 3 OS contractとsupply chainを検証 | OS matrix、offline digest、SBOM/secret/license | adapter leak、process/lock、unlock/policy違反 |\n| HAT-HIL-15 | HR-FR-HIL-15 / HAC-HIL-15a, HAC-HIL-15b, HAC-HIL-15c | HST-HIL-012, HST-HIL-024 | no-UIまたはprototype routeを完了 | applicability、artifact/state、walkthrough/delta/agreement | implicit skip、static-only、stale receipt |\n| HAT-HIL-16 | HR-FR-HIL-16 / HAC-HIL-16a, HAC-HIL-16b, HAC-HIL-16c | HST-HIL-025, HST-HIL-026 | design refactorとdomain namingをrouting | semantic signature、consumer/oracle、role/name、rollback | lexical-only、根拠なし抽象化、誤route |\n| HAT-HIL-17 | HR-FR-HIL-17 / HAC-HIL-17a, HAC-HIL-17b, HAC-HIL-17c | HST-HIL-027, HST-HIL-028, HST-HIL-029 | requirement翻訳、template義務、revisionをactive化 | source/authority/oracle、template/obligation/change/review | aggregate/TBD/N/A、self-promotion、stale |\n| HAT-HIL-18 | HR-FR-HIL-18 / HAC-HIL-18a, HAC-HIL-18b, HAC-HIL-18c | HST-HIL-030, HST-HIL-031, HST-HIL-032, HST-HIL-033 | canonical L1–L12 ledger、層外L0 anchor、上下/左右pairとrefactorを検証 | registry、snapshot、addition/pair/oracle/refactor receipt | 片edge、stale、未実行oracle、pair破壊 |\n| HAT-HIL-19 | HR-FR-HIL-19 / HAC-HIL-19a, HAC-HIL-19b, HAC-HIL-19c | HOT-HIL-48, HOT-HIL-49 | Authoring Admissionと原子的Canonical化を検証 | decision、revision、transaction、rollback、identity receipt | 過剰確認、無権限、partial、stale、oracle消失 |\n| HAT-HIL-20 | HR-FR-HIL-20 / HAC-HIL-20a, HAC-HIL-20b, HAC-HIL-20c | HOT-HIL-50, HOT-HIL-51 | 設計契約portfolioをForward/Scrumへ接続 | coverage、example、phase snapshot、S4/backprop receipt | 固定冊数、negative欠落、別正本、早期昇格 |\n| HAT-HIL-21 | HR-FR-HIL-21 / HAC-HIL-21a, HAC-HIL-21b, HAC-HIL-21c | HOT-HIL-52, HOT-HIL-53 | 判断packと専門agentを生成・muster | pack、shadow、agent contract、guard/lifecycle receipt | self-promotion、過剰agent、未許可、自己検証 |\n| HAT-HIL-22 | HR-FR-HIL-22 / HAC-HIL-22a, HAC-HIL-22b, HAC-HIL-22c | HOT-HIL-54, HOT-HIL-55 | worker bench、実task scorecard、effort routingを検証 | fixture/rubric、blind score、実効cost、route receipt | smoke-only、重大failure相殺、単価/effort固定 |\n| HAT-HIL-23 | HR-FR-HIL-23 / HAC-HIL-23a, HAC-HIL-23b, HAC-HIL-23c | HOT-HIL-56 | 第三者workerの隔離委譲を検証 | sandbox、egress、payload、FS diff、audit receipt | 機密漏洩、allowlist外通信、bypass残置、未検証proposal |\n| HAT-HIL-24 | HR-FR-HIL-24 / HAC-HIL-24a, HAC-HIL-24b, HAC-HIL-24c | HOT-HIL-57 | marketplace型配布indexを検証 | source/generated index digest、party分類、cutover approval | 手編集、party混在、未承認切替 |\n",
+        "meaning_jp": "隣接旧Infinity Loop paired consumerのbounded比較範囲。",
+        "use": "comparison_only"
+      },
+      {
+        "pin_id": "LEG-HAT-HIL-02-CONSUMER",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+        "physical_lines": [
+          34,
+          34
+        ],
+        "full_file_bytes": 7819,
+        "full_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+        "raw_lf_span_bytes": 227,
+        "raw_lf_span_sha256": "f3debf432438d3fc543fb32b208fe6cae8baad7a169cd00248c520c17746b9c6",
+        "raw_lf_span_literal": "| HAT-HIL-02 | HR-FR-HIL-02 / HAC-HIL-02a, HAC-HIL-02b, HAC-HIL-02c | HST-HIL-001 | state machineをcausality付きで一周する | transition、closure query、checkpoint digest | illegal transition、orphan、budget境界 |\n",
+        "meaning_jp": "HAT-HIL-02のpaired consumer literal（HAC-HIL-02a/b/c参照）。",
+        "use": "comparison_only"
+      },
+      {
+        "pin_id": "LEDGER-LEGACY-ASSET-02D897E62EF2FA267267",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "physical_lines": [
+          490,
+          490
+        ],
+        "full_file_bytes": 4857919,
+        "full_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "raw_lf_span_bytes": 1203,
+        "raw_lf_span_sha256": "bd8a5534268e88f1fdd84fe95ab2a920718fb8d4681c2d08e04b391cbe40c7d8",
+        "raw_lf_span_literal": "{\"asset_id\":\"LEGACY-ASSET-02D897E62EF2FA267267\",\"revision\":1,\"source_revision\":\"legacy-generation-2026-09-14\",\"source_path\":\"docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md\",\"source_sha256\":\"01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4\",\"source_surface\":\"docs\",\"source_provenance_ref\":\"archive/legacy-generation-2026-09-14/MANIFEST.sha256\",\"asset_class\":\"Historical\",\"reuse_exclusion_class\":null,\"product_target\":\"unresolved\",\"authority_status\":\"historical\",\"upstream_ids\":[],\"pair_ids\":[],\"disposition\":\"unresolved\",\"implementation_status\":\"unknown\",\"decision_record_ref\":null,\"approval_revision\":null,\"target_path\":null,\"target_sha256\":null,\"meaning_interface_invariance_reason\":null,\"consumer_refs\":[],\"rights_status\":\"unreviewed\",\"executability_status\":\"unreviewed\",\"secret_status\":\"unreviewed\",\"external_effect_status\":\"unreviewed\",\"decided_by\":null,\"decided_at\":null,\"copy_performed_by\":null,\"copy_performed_at\":null,\"read_after_record_ref\":null,\"migration_preconditions\":[\"semantic_atom_inventory\",\"product_owner_decision\",\"parent_requirement_binding\",\"consumer_check\",\"rights_check\",\"executability_check\",\"secret_check\",\"external_effect_check\"]}\n",
+        "meaning_jp": "旧資産identity/pathとasset full SHAの識別行。source meaningの代替根拠ではない。",
+        "use": "identity_only"
+      },
+      {
+        "pin_id": "LEDGER-LEGACY-ASSET-0B5B38F146D9538C9A36",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "physical_lines": [
+          2851,
+          2851
+        ],
+        "full_file_bytes": 4857919,
+        "full_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "raw_lf_span_bytes": 1216,
+        "raw_lf_span_sha256": "e8996a9e739ba18fefa06a44c7c97087b86b10f20de06f3095bebcd8d8b924ac",
+        "raw_lf_span_literal": "{\"asset_id\":\"LEGACY-ASSET-0B5B38F146D9538C9A36\",\"revision\":1,\"source_revision\":\"legacy-generation-2026-09-14\",\"source_path\":\"docs/test-design/helix/universal-improvement-loop-acceptance.md\",\"source_sha256\":\"f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943\",\"source_surface\":\"docs\",\"source_provenance_ref\":\"archive/legacy-generation-2026-09-14/MANIFEST.sha256\",\"asset_class\":\"Historical\",\"reuse_exclusion_class\":\"legacy_test_design_or_oracle\",\"product_target\":\"unresolved\",\"authority_status\":\"historical\",\"upstream_ids\":[],\"pair_ids\":[],\"disposition\":\"unresolved\",\"implementation_status\":\"unknown\",\"decision_record_ref\":null,\"approval_revision\":null,\"target_path\":null,\"target_sha256\":null,\"meaning_interface_invariance_reason\":null,\"consumer_refs\":[],\"rights_status\":\"unreviewed\",\"executability_status\":\"unreviewed\",\"secret_status\":\"unreviewed\",\"external_effect_status\":\"unreviewed\",\"decided_by\":null,\"decided_at\":null,\"copy_performed_by\":null,\"copy_performed_at\":null,\"read_after_record_ref\":null,\"migration_preconditions\":[\"semantic_atom_inventory\",\"product_owner_decision\",\"parent_requirement_binding\",\"consumer_check\",\"rights_check\",\"executability_check\",\"secret_check\",\"external_effect_check\"]}\n",
+        "meaning_jp": "旧資産identity/pathとasset full SHAの識別行。source meaningの代替根拠ではない。",
+        "use": "identity_only"
+      },
+      {
+        "pin_id": "LEDGER-LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "physical_lines": [
+          461,
+          461
+        ],
+        "full_file_bytes": 4857919,
+        "full_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "raw_lf_span_bytes": 1201,
+        "raw_lf_span_sha256": "6314626510e5db37edc83e5bd9fc4c17ebe1f48a6766af9164650069b6ba5451",
+        "raw_lf_span_literal": "{\"asset_id\":\"LEGACY-ASSET-C7F0C3B79CBAA72960BF\",\"revision\":1,\"source_revision\":\"legacy-generation-2026-09-14\",\"source_path\":\"docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md\",\"source_sha256\":\"8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6\",\"source_surface\":\"docs\",\"source_provenance_ref\":\"archive/legacy-generation-2026-09-14/MANIFEST.sha256\",\"asset_class\":\"Historical\",\"reuse_exclusion_class\":null,\"product_target\":\"unresolved\",\"authority_status\":\"historical\",\"upstream_ids\":[],\"pair_ids\":[],\"disposition\":\"unresolved\",\"implementation_status\":\"unknown\",\"decision_record_ref\":null,\"approval_revision\":null,\"target_path\":null,\"target_sha256\":null,\"meaning_interface_invariance_reason\":null,\"consumer_refs\":[],\"rights_status\":\"unreviewed\",\"executability_status\":\"unreviewed\",\"secret_status\":\"unreviewed\",\"external_effect_status\":\"unreviewed\",\"decided_by\":null,\"decided_at\":null,\"copy_performed_by\":null,\"copy_performed_at\":null,\"read_after_record_ref\":null,\"migration_preconditions\":[\"semantic_atom_inventory\",\"product_owner_decision\",\"parent_requirement_binding\",\"consumer_check\",\"rights_check\",\"executability_check\",\"secret_check\",\"external_effect_check\"]}\n",
+        "meaning_jp": "旧資産identity/pathとasset full SHAの識別行。source meaningの代替根拠ではない。",
+        "use": "identity_only"
+      },
+      {
+        "pin_id": "LEDGER-LEGACY-ASSET-FA8C6E69463183D6A19B",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "physical_lines": [
+          2535,
+          2535
+        ],
+        "full_file_bytes": 4857919,
+        "full_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "raw_lf_span_bytes": 1218,
+        "raw_lf_span_sha256": "dcc3a040f92977eca9494f82a3959b668a90cdf564b62226ff27054b0a2e96f0",
+        "raw_lf_span_literal": "{\"asset_id\":\"LEGACY-ASSET-FA8C6E69463183D6A19B\",\"revision\":1,\"source_revision\":\"legacy-generation-2026-09-14\",\"source_path\":\"docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md\",\"source_sha256\":\"a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a\",\"source_surface\":\"docs\",\"source_provenance_ref\":\"archive/legacy-generation-2026-09-14/MANIFEST.sha256\",\"asset_class\":\"Historical\",\"reuse_exclusion_class\":\"legacy_test_design_or_oracle\",\"product_target\":\"unresolved\",\"authority_status\":\"historical\",\"upstream_ids\":[],\"pair_ids\":[],\"disposition\":\"unresolved\",\"implementation_status\":\"unknown\",\"decision_record_ref\":null,\"approval_revision\":null,\"target_path\":null,\"target_sha256\":null,\"meaning_interface_invariance_reason\":null,\"consumer_refs\":[],\"rights_status\":\"unreviewed\",\"executability_status\":\"unreviewed\",\"secret_status\":\"unreviewed\",\"external_effect_status\":\"unreviewed\",\"decided_by\":null,\"decided_at\":null,\"copy_performed_by\":null,\"copy_performed_at\":null,\"read_after_record_ref\":null,\"migration_preconditions\":[\"semantic_atom_inventory\",\"product_owner_decision\",\"parent_requirement_binding\",\"consumer_check\",\"rights_check\",\"executability_check\",\"secret_check\",\"external_effect_check\"]}\n",
+        "meaning_jp": "旧資産identity/pathとasset full SHAの識別行。source meaningの代替根拠ではない。",
+        "use": "identity_only"
+      },
+      {
+        "pin_id": "A4-REVIEW04-HISTORY-MD",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/governance/audits/requirements-stage/labo-stage5-review04-root-correction-2026-10-06.md",
+        "physical_lines": [
+          1,
+          13
+        ],
+        "full_file_bytes": 2569,
+        "full_file_sha256": "23c30525763520ff05c41e5da2997cd2ef3604b5ef738d6559fc3981f5776f91",
+        "raw_lf_span_bytes": 2569,
+        "raw_lf_span_sha256": "23c30525763520ff05c41e5da2997cd2ef3604b5ef738d6559fc3981f5776f91",
+        "raw_lf_span_literal_omitted": true,
+        "literal_omission_reason_ja": "全ファイルspanはfull-file SHAで固定し、巨大なraw literalは重複収録しない。Gitの指定revision/pathから再取得できる。",
+        "meaning_jp": "a4a365 historical source blob。本文CASE数・当時の分類を固定し、現在authorityにはしない。",
+        "use": "historical_origin_only"
+      },
+      {
+        "pin_id": "A4-REVIEW04-HISTORY-JSON",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/governance/audits/requirements-stage/labo-stage5-review04-root-correction-2026-10-06.json",
+        "physical_lines": [
+          1,
+          9997
+        ],
+        "full_file_bytes": 875824,
+        "full_file_sha256": "22108b998a08e9877a12f7920e7c8b67c3d9cff4e76dec697c2477797316690a",
+        "raw_lf_span_bytes": 875824,
+        "raw_lf_span_sha256": "22108b998a08e9877a12f7920e7c8b67c3d9cff4e76dec697c2477797316690a",
+        "raw_lf_span_literal_omitted": true,
+        "literal_omission_reason_ja": "全ファイルspanはfull-file SHAで固定し、巨大なraw literalは重複収録しない。Gitの指定revision/pathから再取得できる。",
+        "meaning_jp": "a4a365 historical source blob。本文CASE数・当時の分類を固定し、現在authorityにはしない。",
+        "use": "historical_origin_only"
+      },
+      {
+        "pin_id": "A4-CASE-03G-HISTORY",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/governance/audits/requirements-stage/labo-stage5-review04-root-correction-2026-10-06.json",
+        "physical_lines": [
+          2967,
+          2967
+        ],
+        "full_file_bytes": 875824,
+        "full_file_sha256": "22108b998a08e9877a12f7920e7c8b67c3d9cff4e76dec697c2477797316690a",
+        "raw_lf_span_bytes": 37,
+        "raw_lf_span_sha256": "62681ff5881a06657d76ea0e16cb26fd323c6029bcd4280191cdf13e9c6b72ef",
+        "raw_lf_span_literal": "      \"id\": \"L10-LABO-050-CASE-03g\",\n",
+        "meaning_jp": "a4 snapshotのCASE-03g当時literal。",
+        "use": "historical_origin_only"
+      },
+      {
+        "pin_id": "A4-CASE-10-HISTORY",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/governance/audits/requirements-stage/labo-stage5-review04-root-correction-2026-10-06.json",
+        "physical_lines": [
+          5287,
+          5287
+        ],
+        "full_file_bytes": 875824,
+        "full_file_sha256": "22108b998a08e9877a12f7920e7c8b67c3d9cff4e76dec697c2477797316690a",
+        "raw_lf_span_bytes": 36,
+        "raw_lf_span_sha256": "5da89f65b17efb98354fc00c07410b0949a35040bb77d92ede4869471990790c",
+        "raw_lf_span_literal": "      \"id\": \"L10-LABO-050-CASE-10\",\n",
+        "meaning_jp": "a4 snapshotのCASE-10当時literal。",
+        "use": "historical_origin_only"
+      }
+    ],
+    "count": 27,
+    "EE5DBACC_asset_and_source_pins": [
+      {
+        "pin_id": null,
+        "revision": "d2e870e6244ad4a0b51f7e0fb20efb30e32417fd",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "physical_lines": [
+          472,
+          472
+        ],
+        "full_file_bytes": 4857919,
+        "full_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "raw_lf_span_bytes": 1194,
+        "raw_lf_span_sha256": "704beffeb29c9f4f4dabcecb7fbf090d4327cb70a47f52151e0207b0896c2635",
+        "raw_lf_span_literal": "{\"asset_id\":\"LEGACY-ASSET-EE5DBACC7F28F7D1F605\",\"revision\":1,\"source_revision\":\"legacy-generation-2026-09-14\",\"source_path\":\"docs/design/helix/L3-requirements/pillar-functional-requirements.md\",\"source_sha256\":\"7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544\",\"source_surface\":\"docs\",\"source_provenance_ref\":\"archive/legacy-generation-2026-09-14/MANIFEST.sha256\",\"asset_class\":\"Historical\",\"reuse_exclusion_class\":null,\"product_target\":\"unresolved\",\"authority_status\":\"historical\",\"upstream_ids\":[],\"pair_ids\":[],\"disposition\":\"unresolved\",\"implementation_status\":\"unknown\",\"decision_record_ref\":null,\"approval_revision\":null,\"target_path\":null,\"target_sha256\":null,\"meaning_interface_invariance_reason\":null,\"consumer_refs\":[],\"rights_status\":\"unreviewed\",\"executability_status\":\"unreviewed\",\"secret_status\":\"unreviewed\",\"external_effect_status\":\"unreviewed\",\"decided_by\":null,\"decided_at\":null,\"copy_performed_by\":null,\"copy_performed_at\":null,\"read_after_record_ref\":null,\"migration_preconditions\":[\"semantic_atom_inventory\",\"product_owner_decision\",\"parent_requirement_binding\",\"consumer_check\",\"rights_check\",\"executability_check\",\"secret_check\",\"external_effect_check\"]}\n"
+      },
+      {
+        "pin_id": null,
+        "revision": "d2e870e6244ad4a0b51f7e0fb20efb30e32417fd",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+        "physical_lines": [
+          154,
+          156
+        ],
+        "full_file_bytes": 65731,
+        "full_file_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+        "raw_lf_span_bytes": 570,
+        "raw_lf_span_sha256": "9d0257f90826b20a3bb20663eacdc70863c7e093b2ea3bb9095cd6c3b1c39b31",
+        "raw_lf_span_literal": "| HR-FR-P4-01 | HBR-P4 | drift/劣化/不整合 detector の event は repair candidate、route、owner、rollback を持つ修復 action へ変換される | HAC-P4-01a / HAC-P4-01b |\n| HR-FR-P4-02 | HBR-P4 | 成功 repair recipe は harness memory に記録され、頻出時は gate/detector/backlog へ promote される | HAC-P4-02a / HAC-P4-02b |\n| HR-FR-P4-03 | HBR-P4 / HBR-P9 | 実装精度、レビュー指摘、再作業、テスト時間、flake、デグレ検出を metric event として収集し、改善候補へ変換する | HAC-P4-03a / HAC-P4-03b |\n"
+      },
+      {
+        "pin_id": null,
+        "revision": "d2e870e6244ad4a0b51f7e0fb20efb30e32417fd",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+        "physical_lines": [
+          237,
+          242
+        ],
+        "full_file_bytes": 65731,
+        "full_file_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+        "raw_lf_span_bytes": 1006,
+        "raw_lf_span_sha256": "bb865149314ed0458f05af62098c4bb93cc37748be3967acd4d03b321778ffad",
+        "raw_lf_span_literal": "| HAC-P4-01a | detector が drift/flake/perf regression を出す | routing を実行 | repair candidate、rollback、owner、risk を持つ action に変換 |\n| HAC-P4-01b | repair risk が destructive / auth / PII 等に触れる | action を評価 | 自動適用せず action-binding approval 待ちにする |\n| HAC-P4-02a | repair が成功し再発防止が明確 | close を実行 | harness memory と improvement backlog に recipe を保存 |\n| HAC-P4-02b | 同種 repair が閾値以上に反復 | doctor を実行 | gate/detector promote candidate を出し、放置を warning 以上にする |\n| HAC-P4-03a | 実装・検証・レビューが完了する | metric collector が走る | test duration、failed/retry、review finding、rework、escaped regression が plan/layer に紐づく |\n| HAC-P4-03b | metric が閾値を超えるか悪化傾向を示す | improvement routing を実行 | 改善候補、owner、対象 layer、期待効果、検証 profile が backlog/memory に残る |\n"
+      }
+    ],
+    "EE5DBACC_reuse_treatment_ja": "意味の再導出。修復単位の成功closure/recipe記録を保持し、固定050の全循環の未完義務と区別する。旧runtime/memory実装は移さない。",
+    "verification": {
+      "fixed27_recomputed": true,
+      "EE_pins_recomputed": true,
+      "reported_root_recomputation": {
+        "fixed_and_EE_source_pins": 7,
+        "checks": 35,
+        "errors": [],
+        "authority_effect": "none"
+      },
+      "prior_27_source_pin_recomputation": {
+        "pins": 27,
+        "checks": 132,
+        "errors": 0,
+        "literal_included_count": 24,
+        "literal_omitted_pins": [
+          "AUTHORING-COVERAGE-HISTORY",
+          "A4-REVIEW04-HISTORY-MD",
+          "A4-REVIEW04-HISTORY-JSON"
+        ],
+        "literal_omitted_reason_ja": "3件の大容量履歴spanはliteralを重複収録せず、full/span bytesとSHAで固定。"
+      },
+      "fixed_and_EE_recomputation": {
+        "pins": 7,
+        "checks": 35,
+        "errors": 0,
+        "authority_effect": "none"
+      }
+    }
+  },
+  "body_pins": [
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "bytes": 260592,
+      "sha256": "8177c5fc3c73a6834020ba82aab299055b8ebf64eda887677ffce442749951ba",
+      "main_prefix_bytes": 251786,
+      "main_prefix_sha256": "b60c459ec97aa71a2a014f9debd733a2d1adb1afadda6b1acc8a030d3490e071",
+      "main_prefix_exact": true
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "bytes": 9189,
+      "sha256": "d28a5edf004fc88636e3e6158b208b25078b88e24b3c583f87cf68c71f252d1c",
+      "main_prefix_bytes": 8587,
+      "main_prefix_sha256": "39fa84086d01f8dc38829c12edc37fef0bd3a9a54f354891938c501fd7f4778a",
+      "main_prefix_exact": true
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "bytes": 58278,
+      "sha256": "bcde7f24ccee2ad044c26788bbeb3348abc30dd8d61e2b82f8badc8d6c6d18f9",
+      "main_prefix_bytes": 56000,
+      "main_prefix_sha256": "9559a4dcff2a55d04458410cc15cdb7ef52525844a5624117d2acb0fcef3174e",
+      "main_prefix_exact": true
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "bytes": 299803,
+      "sha256": "7fe7743dcd1b0aee0aa075b5349b8901baafa60f289d0fcdcb7953b36eb7798c",
+      "main_prefix_bytes": 287563,
+      "main_prefix_sha256": "d9bb07d7e7d0ecbc9947c6b1b9b554fe6d2b950674e2e9dae961594215c8e9d7",
+      "main_prefix_exact": true
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "bytes": 8152,
+      "sha256": "e1e030be388627989248a6776d35c0c392da1f0f55a573faed15df548d3444a2",
+      "main_prefix_bytes": 7644,
+      "main_prefix_sha256": "a7ea1ff62ba6d2e52464ba5057c9e0044e09edc6f861ac3d33275e1114612007",
+      "main_prefix_exact": true
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "bytes": 47436,
+      "sha256": "b565535f3cfa1c796497ee754f6ec721ef5d7fc2071d787096a661d0ef2635be",
+      "main_prefix_bytes": 45678,
+      "main_prefix_sha256": "6064e42c024db902bcbe7136bbd490265d6a3812aac75d431209b1642227a7f3",
+      "main_prefix_exact": true
+    }
+  ],
+  "main_prefix_checks": [
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "base_bytes": 251786,
+      "base_sha256": "b60c459ec97aa71a2a014f9debd733a2d1adb1afadda6b1acc8a030d3490e071",
+      "body_prefix_exact": true
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "base_bytes": 8587,
+      "base_sha256": "39fa84086d01f8dc38829c12edc37fef0bd3a9a54f354891938c501fd7f4778a",
+      "body_prefix_exact": true
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "base_bytes": 56000,
+      "base_sha256": "9559a4dcff2a55d04458410cc15cdb7ef52525844a5624117d2acb0fcef3174e",
+      "body_prefix_exact": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "base_bytes": 287563,
+      "base_sha256": "d9bb07d7e7d0ecbc9947c6b1b9b554fe6d2b950674e2e9dae961594215c8e9d7",
+      "body_prefix_exact": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "base_bytes": 7644,
+      "base_sha256": "a7ea1ff62ba6d2e52464ba5057c9e0044e09edc6f861ac3d33275e1114612007",
+      "body_prefix_exact": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "base_bytes": 45678,
+      "base_sha256": "6064e42c024db902bcbe7136bbd490265d6a3812aac75d431209b1642227a7f3",
+      "body_prefix_exact": true
+    }
+  ],
+  "body_line_pins": [
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "physical_line": 62,
+      "bytes": 338,
+      "raw_lf_sha256": "d41ddeebc231e5a90ecb4adce3280328cdd41868710f9f881ca3653d85307da7",
+      "literal": "|`HELIXLABO-L2-050`|独立KPIなし。LABO evaluation/re-observation、OS registration/routing、target ownerのchange/verification/deployment/operationを別状態に保つ。|`LABO-050-AC-01/02/03`、`L10-LABO-050-CASE-01`〜`CASE-30`。CASE-03gは非独立ラベル、CASE-07/08/09/10は非独立索引でfixture数へ重ねない。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "physical_line": 166,
+      "bytes": 1071,
+      "raw_lf_sha256": "6346f2a3ed98c1eb30a21e4c0b5f014642292ae11b401e68023e63002a065a82",
+      "literal": "- 個別L10範囲（独立fixture定義32件）: `L10-LABO-050-CASE-01`, `L10-LABO-050-CASE-02`, `L10-LABO-050-CASE-03a`, `L10-LABO-050-CASE-03b`, `L10-LABO-050-CASE-03c`, `L10-LABO-050-CASE-03d`, `L10-LABO-050-CASE-03e`, `L10-LABO-050-CASE-03f`, `L10-LABO-050-CASE-04a`, `L10-LABO-050-CASE-04b`, `L10-LABO-050-CASE-05`, `L10-LABO-050-CASE-06`, `L10-LABO-050-CASE-11`, `L10-LABO-050-CASE-12`, `L10-LABO-050-CASE-13`, `L10-LABO-050-CASE-14`, `L10-LABO-050-CASE-15`, `L10-LABO-050-CASE-16`, `L10-LABO-050-CASE-17`, `L10-LABO-050-CASE-18`, `L10-LABO-050-CASE-19`, `L10-LABO-050-CASE-20`, `L10-LABO-050-CASE-21`, `L10-LABO-050-CASE-22`, `L10-LABO-050-CASE-23`, `L10-LABO-050-CASE-24`, `L10-LABO-050-CASE-25`, `L10-LABO-050-CASE-26`, `L10-LABO-050-CASE-27`, `L10-LABO-050-CASE-28`, `L10-LABO-050-CASE-29`, `L10-LABO-050-CASE-30`。非独立ラベル/索引（5件、分母外）: `L10-LABO-050-CASE-03g`, `L10-LABO-050-CASE-07`, `L10-LABO-050-CASE-08`, `L10-LABO-050-CASE-09`, `L10-LABO-050-CASE-10`。NFR対象CASEは未実行設計で、実測成功数とは扱わない。"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2565,
+      "bytes": 685,
+      "raw_lf_sha256": "82a13c063c0bc34147bc0485d9028149f132abf83f80458a81a3e9dd7b8d8b53",
+      "literal": "- `L10-LABO-050-CASE-01`（対応AC: `LABO-050-AC-01`）正常: 許可観測とepisodeから開始し、Observed→Correlated→Hypothesized→Experimented→Evaluated→Feedback Candidate→OS registration/routing→target change→verification→deployment/operation→LABO re-observationをすべて別状態で記録する。同じticket/experiment/target revision、対応するOS assignment/Worker result、source/target revision、各receiptと未完義務を結ぶ。effectとregressionは別判定結果。Oracleは11段階と未完義務を追跡でき、LABO評価、OS登録、target-owner変更/検証/deployment/operation、LABO再観測の責務を混ぜないこと。"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2566,
+      "bytes": 304,
+      "raw_lf_sha256": "53f1e9d28387b439ffa3c44b1b61aa371f4b66d7fe46783f259943f2ad98851e",
+      "literal": "- `L10-LABO-050-CASE-02`（対応AC: `LABO-050-AC-02`）未見正常: CASE-01と同じtarget identity・ticket・episodeを保ち、許可された後続target revisionの遅着re-observationだけを追加する。Oracleは同一episodeへ追記し、過去record/revisionを上書きしないこと。"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2570,
+      "bytes": 251,
+      "raw_lf_sha256": "655abea8c4d48ae6339982e0d5f4d6cfe34553c980e771689b88020ada27ceac",
+      "literal": "|`L10-LABO-050-CASE-03a`|`LABO-050-AC-03`|negative|CASE-01のOS assignment観測record側ticket identityだけを欠落させる。他のidentity/receiptは有効。|ticketを補完せず別recordを結合しない。完了を拒否しOSへ戻す。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2571,
+      "bytes": 298,
+      "raw_lf_sha256": "3bb33a91215a47ad356bc46a28de74ec60168caf4fcee9033114768fdc493e69",
+      "literal": "|`L10-LABO-050-CASE-03b`|`LABO-050-AC-03`|negative|CASE-01のOS assignmentとticketを保ち、Worker-result側experiment identityだけをassignment側と異なる値にする。|結果を当該実験の評価へ結合せずunknown/未完了とし、実験/評価bindingを担うLABOへ戻す。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2572,
+      "bytes": 361,
+      "raw_lf_sha256": "147954508b7bd9bc44678761f775e10bf0aa6f83261ed7a0e46ba36f8f0d13fc",
+      "literal": "|`L10-LABO-050-CASE-03c`|`LABO-050-AC-03`|negative|CASE-01でtarget ownerのcurrent target revision、ticket、experiment、assignmentを保ち、Worker-result側target revisionだけ旧版にする。|旧版resultをcurrent targetへ流用せずstaleとして保持し、実験評価bindingを担うLABOへ戻す。target authorityはtarget ownerに残す。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2573,
+      "bytes": 162,
+      "raw_lf_sha256": "3191cdfaf2d4add0b904831defc61868b3d5b359a9b3fc7c83a909b6311887ed",
+      "literal": "|`L10-LABO-050-CASE-03d`|`LABO-050-AC-03`|negative|CASE-01でOS assignment receiptだけ欠落。|runを割当済みに見せず完了を拒否。OSへ戻す。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2574,
+      "bytes": 258,
+      "raw_lf_sha256": "9d24dbe0d2ea8f16d3e27a8b8cddf99c90ddc2e5fa126ed5ee8c4becc9e178a9",
+      "literal": "|`L10-LABO-050-CASE-03e`|`LABO-050-AC-03`|negative|CASE-01でWorker resultのtarget identityだけ別値。|結果を対象experimentへ束縛せず完了を拒否し、実験評価bindingを担うLABOへ戻す。target authorityはtarget ownerに残す。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2575,
+      "bytes": 192,
+      "raw_lf_sha256": "7dce5247138b0b2ed24b44b6d67bb32f484f74c699f9e5b96797ade9a7fe77c5",
+      "literal": "|`L10-LABO-050-CASE-03f`|`LABO-050-AC-03`|negative|CASE-01で変更後LABO re-observation receiptだけ欠落。|循環をopenのまま保ち、再観測を補完しない。LABOへ戻す。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2576,
+      "bytes": 211,
+      "raw_lf_sha256": "af52a360ad0e1c625819687a46d7a3b67e66448555fe0b979cb9ce4f6e264c95",
+      "literal": "|`L10-LABO-050-CASE-03g`|`LABO-050-AC-03`|非独立ラベル|同時欠落案の識別子を保持する。現行fixtureやoracleを構成しない。|このラベル単独ではnegative分母へ入れない。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2577,
+      "bytes": 207,
+      "raw_lf_sha256": "0a2c49da8c49dd46cded8c81483e7976db41e8a23c574b2e7c52baaca3dfb4ca",
+      "literal": "|`L10-LABO-050-CASE-04a`|`LABO-050-AC-03`|negative|CASE-01の入力状態でregistration/routingの実行者だけをLABOにする。|LABOによるregistrationを拒否する。registration/routingはOS。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2578,
+      "bytes": 211,
+      "raw_lf_sha256": "4bf12c7e2ed8f471099b08080659de4546249b1b372b5011bc0bdd47789d0fa3",
+      "literal": "|`L10-LABO-050-CASE-04b`|`LABO-050-AC-03`|negative|CASE-01の入力状態でtarget changeの実行者だけをLABOにする。|LABOによるtarget直接変更を拒否する。target ownerの権限を保つ。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2579,
+      "bytes": 154,
+      "raw_lf_sha256": "5f1ec4a72bf415846a0e5ba0dee7d4521f84c4c36ce3e9cfdb6684b1fb79a193",
+      "literal": "|`L10-LABO-050-CASE-05`|`LABO-050-AC-03`|negative|CASE-01でOS registration receiptだけ欠落。|登録を推測せず循環未完了。OSへ戻す。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2580,
+      "bytes": 321,
+      "raw_lf_sha256": "92bb63d8b9901329a179f6ab48562931dcca132446e2f5030305ca92dbd7bab4",
+      "literal": "|`L10-LABO-050-CASE-06`|`LABO-050-AC-03`|negative|CASE-01でticket/experiment/assignment/Worker result/target identityをすべてcurrentに保ち、verification receiptのrevisionだけ旧版にする。|旧verification receiptをcurrent target changeへ適用せず未完義務をopenにし、target ownerへ戻す。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2581,
+      "bytes": 270,
+      "raw_lf_sha256": "ff6778fbbdd0c4b364aef5450f90b8f314022fee9d2441c9b043d3088e0c90f8",
+      "literal": "|`L10-LABO-050-CASE-07`|`LABO-050-AC-03`|索引（独立fixtureではない）|既存IDを維持する非独立索引。`CASE-06`のrevision変更による旧verification非適用を参照する。|CASE-06を直接照合し、独立欠落変異として数えない。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2582,
+      "bytes": 295,
+      "raw_lf_sha256": "b6a889a60e2051171269652a004c3c67b18070f8d20934c5473798dc6116c448",
+      "literal": "|`L10-LABO-050-CASE-08`|`LABO-050-AC-03`|索引（独立fixtureではない）|既存IDを維持する非独立索引。deployment欠落の`CASE-13`とoperation欠落の`CASE-14`を個別参照する。|CASE-13とCASE-14の各oracleを個別に確認し、束ねた追加fixtureにしない。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2583,
+      "bytes": 207,
+      "raw_lf_sha256": "2f77ce6f3e63e58ec80e487b0724f1a6a3f8a2f83df9ec24224154f5df2e5ba6",
+      "literal": "|`L10-LABO-050-CASE-09`|`LABO-050-AC-03`|索引（独立fixtureではない）|`CASE-03f`の変更後re-observation欠落を参照する既存索引。|CASE-03fを直接照合し、二重計上しない。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2584,
+      "bytes": 260,
+      "raw_lf_sha256": "937ddc02f2033308ce2a692e8c431fa53aa659a63f53366050422be6a64cd809",
+      "literal": "|`L10-LABO-050-CASE-10`|`LABO-050-AC-03`|索引（独立fixtureではない）|effect-only欠落CASE-22とregression-only欠落CASE-23をそれぞれ直接参照する既存索引。|実fixture CASE-22/23を直接照合し、索引を分母に含めない。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2585,
+      "bytes": 247,
+      "raw_lf_sha256": "6cc7cb60f8c249e54436f77663528a4de708630e9a2b7568b906c46190b63de8",
+      "literal": "|`L10-LABO-050-CASE-11`|`LABO-050-AC-03`|negative|CASE-01の採択前candidateを基準に、candidateをcanonicalへ変える操作だけを変異。|canonical化を拒否しcandidateのまま保持。target authorityはtarget ownerに残す。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2586,
+      "bytes": 382,
+      "raw_lf_sha256": "0988636a37886b506ea4e71a60730285d7eb3dbc1a9920d68250225eebb9ca87",
+      "literal": "|`L10-LABO-050-CASE-12`|`LABO-050-AC-03`|negative|CASE-01の過去source recordとidentity/revisionを保ち、後続観測でそのrecordを上書きする操作だけを変異する。設計注記: 固定親にないsource-owner identity入力やunknown-owner条件はfixtureへ追加しない。|上書きを拒否し、過去recordと後続観測を別状態で保持する。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2587,
+      "bytes": 204,
+      "raw_lf_sha256": "3bf0c473a4433b40309a1ddfe7ff90d92601bb0ed75a29d6935f287ad400f50d",
+      "literal": "|`L10-LABO-050-CASE-13`|`LABO-050-AC-03`|negative|CASE-01でtarget deployment resultだけ欠落。その他のreceiptは有効。|deployment resultを補わず循環未完了。target ownerへ戻す。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2588,
+      "bytes": 202,
+      "raw_lf_sha256": "295dddcbc405ea270f1dddde652eb90105135f151113a215069d288727ed4b31",
+      "literal": "|`L10-LABO-050-CASE-14`|`LABO-050-AC-03`|negative|CASE-01でtarget operation resultだけ欠落。その他のreceiptは有効。|operation resultを補わず循環未完了。target ownerへ戻す。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2589,
+      "bytes": 199,
+      "raw_lf_sha256": "36d93dc873077c762536700d014405a5f3bc390f06d51b3d6dc58d6ab1c4ad62",
+      "literal": "|`L10-LABO-050-CASE-15`|`LABO-050-AC-03`|negative|CASE-01でtarget-change後のverification receiptだけ欠落。deployment/operation receiptは有効。|循環未完了。target ownerへ戻す。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2590,
+      "bytes": 573,
+      "raw_lf_sha256": "21c82b70076aadbbc87757f4afc3ed0feb33b7b22aab38deaa7e03af4ef2e9b9",
+      "literal": "|`L10-LABO-050-CASE-16`|`LABO-050-AC-03`|negative|有効source/ticket/experiment/target revision、OS assignment、評価済みcandidate、OS registration/routing完了を基準にし、target changeは未実施、verification/deployment/operation/re-observation/effect/regressionはopenとしCI成功receiptは既存状態に置く。唯一の変異はこのCI成功だけを根拠に後続義務完了を主張すること。|CI結果をstage receiptの代替にせず全open義務を保持する。登録はOS、target後段はtarget owner、再観測/評価はLABO。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2591,
+      "bytes": 392,
+      "raw_lf_sha256": "63a80812a8ddab9535e577e4a6e1694415f42fa3763eaab9595cd70bf3c9de83",
+      "literal": "|`L10-LABO-050-CASE-17`|`LABO-050-AC-03`|negative|有効source/ticket/experiment/target revisionでFeedback candidateは発行済み、OS registrationとtarget後続義務は未完。唯一の変異はFeedback発行だけで改善完了と主張すること。|candidate状態と未完義務を保つ。登録はOS、change/verification/operationはtarget owner、再観測/評価はLABO。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2592,
+      "bytes": 355,
+      "raw_lf_sha256": "3506d107dff1d5cf4b68c1fab3cb899fb73eddb7e439d02d3bdbc665e02a6594",
+      "literal": "|`L10-LABO-050-CASE-18`|`LABO-050-AC-03`|negative|有効source/ticket/experiment/target revisionでOS registration完了、target change以降は未観測/open。唯一の変異はregistrationだけで完了と主張すること。|後続義務をopenのまま保つ。registrationはOS、変更/検証/運用はtarget owner、再観測/評価はLABO。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2593,
+      "bytes": 345,
+      "raw_lf_sha256": "52ca5dde98271d01e167b5696df3bbb238e57e25a34f736e9766d7dd72468d3c",
+      "literal": "|`L10-LABO-050-CASE-19`|`LABO-050-AC-03`|negative|有効source/ticket/experiment/target revisionでtarget-change結果あり、verification/deployment/operation/re-observation/evaluationは未観測/open。唯一の変異はtarget-changeだけで完了と主張すること。|後続義務をopenのまま保ち、既存owner境界へ戻す。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2594,
+      "bytes": 205,
+      "raw_lf_sha256": "de6ed21e6e324613ee3cc19f7d6048836371a86f82036f5cd71bf223c4bb89ca",
+      "literal": "|`L10-LABO-050-CASE-20`|`LABO-050-AC-03`|negative|CASE-01でtarget-change result receiptだけ欠落し、他のreceiptは有効。|change successを推測せず循環未完了。target ownerへ戻す。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2595,
+      "bytes": 531,
+      "raw_lf_sha256": "7c58ffe6f62d4284e31e12e0c89270ef843aaae6d4459d3c7bc7abce0af8f040",
+      "literal": "|`L10-LABO-050-CASE-21`|`LABO-050-AC-03`|negative|有効なsource/ticket/experiment/target revisionとpositive candidate countを含む部分循環を基準にし、registration/change/verification/operation/re-observation/effect/regressionはopenのままにする。唯一の変異はcandidate countだけで循環完了と主張すること。|candidate countだけでは完了しない。countからcandidate adoption、registration、target change、後続結果を生成せず、各open dutyを既存owner境界に残す。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2596,
+      "bytes": 344,
+      "raw_lf_sha256": "71f5434acc3004346cf0d5d454e0b28df0147d076abd903f06973f0a8b81091c",
+      "literal": "|`L10-LABO-050-CASE-22`|`LABO-050-AC-03`|negative|CASE-01と同じ有効なidentity・stage receipt・target revision・re-observationで、regression evaluationはありeffect evaluationだけ欠落。唯一の欠落はeffect evaluation。|effect未評価として完了を拒否しLABOへ戻す。regressionの有効結果を保持する。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2597,
+      "bytes": 348,
+      "raw_lf_sha256": "14c103c03a69eac1033a52c1362b9fdc659895e3885f25a5c6a1b3b0b032b2f4",
+      "literal": "|`L10-LABO-050-CASE-23`|`LABO-050-AC-03`|negative|CASE-01と同じ有効なidentity・stage receipt・target revision・re-observationで、effect evaluationはありregression evaluationだけ欠落。唯一の欠落はregression evaluation。|regression未評価として完了を拒否しLABOへ戻す。effectの有効結果を保持する。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2598,
+      "bytes": 277,
+      "raw_lf_sha256": "bbfff102a1521e5d94a375fc71a6dd857fe35e32baf4119d7e370fbc7a9f048e",
+      "literal": "|`L10-LABO-050-CASE-24`|`LABO-050-AC-03`|negative|CASE-01と同じassignment/ticket/experiment/target/result条件を保ち、Worker-result側ticket identityだけをassignment側と異なる値にする。|別ticketの証拠を結合せず完了を拒否し、OSへ戻す。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2599,
+      "bytes": 283,
+      "raw_lf_sha256": "9c241e6b76c5ce3f34a237a772d7db17e2614027374e83c1c66d2da4b94a09d4",
+      "literal": "|`L10-LABO-050-CASE-25`|`LABO-050-AC-03`|negative|CASE-01を基準にWorker-result側experiment identityだけ欠落させる。他のidentity/receiptは有効。|experimentを推測・結合せず評価を未完了に保ち、experiment/evaluation bindingを担うLABOへ戻す。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2600,
+      "bytes": 326,
+      "raw_lf_sha256": "6b136e65af0b69287c23e99427ee0bbe22ee16d8dfb23e1bb4c2505701dc318c",
+      "literal": "|`L10-LABO-050-CASE-26`|`LABO-050-AC-03`|negative|CASE-01を基準にWorker-result側target revisionだけ欠落。他のidentity/receiptとcurrent target revisionは有効。|欠落版を補完せずcurrent結果として扱わない。実験評価bindingを担うLABOへ戻し、target authorityはtarget ownerに残す。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2601,
+      "bytes": 239,
+      "raw_lf_sha256": "2d36ddbc30a1ecd7550f0aa2fced2a5a9fb98e90fddc5952c9a4e8746b7227ec",
+      "literal": "|`L10-LABO-050-CASE-27`|`LABO-050-AC-03`|negative|CASE-01を基準にOS assignmentとその他identityを有効に保ち、Worker-result receiptだけ欠落。|Worker実行結果を推測せず評価を未完了に保ち、OSへ戻す。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2602,
+      "bytes": 298,
+      "raw_lf_sha256": "9deb9663402ad57c0a28371cce52abbca43ba460b2cf7b7eb476ac0951a12fff",
+      "literal": "|`L10-LABO-050-CASE-28`|`LABO-050-AC-03`|negative|CASE-01を基準にWorker resultとepisode/experiment/ticketを有効に保ち、OS assignment receiptのtarget identityだけWorker result/current targetと異なる値にする。|assignment/resultを結合せず完了を拒否しOSへ戻す。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2603,
+      "bytes": 355,
+      "raw_lf_sha256": "bf27c2a5a2f2ade955f46689e88d06e1712705b2c2395040c94322c95a720e90",
+      "literal": "|`L10-LABO-050-CASE-29`|`LABO-050-AC-03`|negative|CASE-01の11段階すべてのreceipt・identity・結果を有効に保ち、stage event順序だけを変え、OS registration/routingをFeedback Candidateより先に置く。|固定段階順序との不一致を受け入れず循環を未完了に保つ。LABO評価の責務区分は維持する。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2604,
+      "bytes": 627,
+      "raw_lf_sha256": "c18706f732c3a06bfbcdf81f946262a65b53e65224b3fc78b5099462116b8260",
+      "literal": "|`L10-LABO-050-CASE-30`|`LABO-050-AC-03`|negative|CASE-01からticket/experiment/target identity、OS assignment、Worker result、registration、candidateなど前段receiptを引き継いで有効に保つ。target changeとverification receiptも有効とし、deployment/operation/re-observation/effect/regression receiptだけは未観測/open。唯一の変異はverification receiptだけを根拠に循環完了を出力すること。|verificationだけで完了とせず循環を未完了に保つ。deployment/operationはtarget owner、re-observation/effect/regression evaluationはLABOの既存責務に残す。|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "physical_line": 60,
+      "bytes": 269,
+      "raw_lf_sha256": "d09869a762ab69a40454cc7e894d6fec8b0965e6777e7a85a179033811e641ae",
+      "literal": "|`HELIXLABO-L2-050`|独立KPIなし。LABO評価/再観測、OS registration/routing、target owner change/verification/deployment/operationを分ける。|`L10-LABO-050-CASE-01`〜`CASE-30`（03gは非独立ラベル、07/08/09/10は非独立索引として識別）|"
+    },
+    {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "physical_line": 121,
+      "bytes": 1456,
+      "raw_lf_sha256": "e0b2ab8cc08673b96d4a68403cc4eab56d8f39cf51860f4c704bcd880cabed8f",
+      "literal": "- `CASE-NFR-LABO-050-01`: 未実行設計。選択循環に適用される各段階の状態件数、同一episode/ticket/experiment/target revisionのtrace、OS assignment/Worker result対応、未完義務、re-observation、effect評価、regression評価を別々に再計算する。candidate count/Feedback issue/OS registration/target change/verification/CI success単独で完了とする結果はそれぞれ識別する。個別fixture定義（32件）: `L10-LABO-050-CASE-01`, `L10-LABO-050-CASE-02`, `L10-LABO-050-CASE-03a`, `L10-LABO-050-CASE-03b`, `L10-LABO-050-CASE-03c`, `L10-LABO-050-CASE-03d`, `L10-LABO-050-CASE-03e`, `L10-LABO-050-CASE-03f`, `L10-LABO-050-CASE-04a`, `L10-LABO-050-CASE-04b`, `L10-LABO-050-CASE-05`, `L10-LABO-050-CASE-06`, `L10-LABO-050-CASE-11`, `L10-LABO-050-CASE-12`, `L10-LABO-050-CASE-13`, `L10-LABO-050-CASE-14`, `L10-LABO-050-CASE-15`, `L10-LABO-050-CASE-16`, `L10-LABO-050-CASE-17`, `L10-LABO-050-CASE-18`, `L10-LABO-050-CASE-19`, `L10-LABO-050-CASE-20`, `L10-LABO-050-CASE-21`, `L10-LABO-050-CASE-22`, `L10-LABO-050-CASE-23`, `L10-LABO-050-CASE-24`, `L10-LABO-050-CASE-25`, `L10-LABO-050-CASE-26`, `L10-LABO-050-CASE-27`, `L10-LABO-050-CASE-28`, `L10-LABO-050-CASE-29`, `L10-LABO-050-CASE-30`。非独立ラベル/索引（5件、分母外）: `L10-LABO-050-CASE-03g`, `L10-LABO-050-CASE-07`, `L10-LABO-050-CASE-08`, `L10-LABO-050-CASE-09`, `L10-LABO-050-CASE-10`。後者を実fixture数から除外する。"
+    }
+  ],
+  "case_inventory": {
+    "definition_count": 37,
+    "unique_count": 37,
+    "definitions_by_fv_case_id": {
+      "L10-LABO-050-CASE-01": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2565,
+          "sha256": "82a13c063c0bc34147bc0485d9028149f132abf83f80458a81a3e9dd7b8d8b53",
+          "literal": "- `L10-LABO-050-CASE-01`（対応AC: `LABO-050-AC-01`）正常: 許可観測とepisodeから開始し、Observed→Correlated→Hypothesized→Experimented→Evaluated→Feedback Candidate→OS registration/routing→target change→verification→deployment/operation→LABO re-observationをすべて別状態で記録する。同じticket/experiment/target revision、対応するOS assignment/Worker result、source/target revision、各receiptと未完義務を結ぶ。effectとregressionは別判定結果。Oracleは11段階と未完義務を追跡でき、LABO評価、OS登録、target-owner変更/検証/deployment/operation、LABO再観測の責務を混ぜないこと。"
+        }
+      ],
+      "L10-LABO-050-CASE-02": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2566,
+          "sha256": "53f1e9d28387b439ffa3c44b1b61aa371f4b66d7fe46783f259943f2ad98851e",
+          "literal": "- `L10-LABO-050-CASE-02`（対応AC: `LABO-050-AC-02`）未見正常: CASE-01と同じtarget identity・ticket・episodeを保ち、許可された後続target revisionの遅着re-observationだけを追加する。Oracleは同一episodeへ追記し、過去record/revisionを上書きしないこと。"
+        }
+      ],
+      "L10-LABO-050-CASE-03a": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2570,
+          "sha256": "655abea8c4d48ae6339982e0d5f4d6cfe34553c980e771689b88020ada27ceac",
+          "literal": "|`L10-LABO-050-CASE-03a`|`LABO-050-AC-03`|negative|CASE-01のOS assignment観測record側ticket identityだけを欠落させる。他のidentity/receiptは有効。|ticketを補完せず別recordを結合しない。完了を拒否しOSへ戻す。|"
+        }
+      ],
+      "L10-LABO-050-CASE-03b": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2571,
+          "sha256": "3bb33a91215a47ad356bc46a28de74ec60168caf4fcee9033114768fdc493e69",
+          "literal": "|`L10-LABO-050-CASE-03b`|`LABO-050-AC-03`|negative|CASE-01のOS assignmentとticketを保ち、Worker-result側experiment identityだけをassignment側と異なる値にする。|結果を当該実験の評価へ結合せずunknown/未完了とし、実験/評価bindingを担うLABOへ戻す。|"
+        }
+      ],
+      "L10-LABO-050-CASE-03c": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2572,
+          "sha256": "147954508b7bd9bc44678761f775e10bf0aa6f83261ed7a0e46ba36f8f0d13fc",
+          "literal": "|`L10-LABO-050-CASE-03c`|`LABO-050-AC-03`|negative|CASE-01でtarget ownerのcurrent target revision、ticket、experiment、assignmentを保ち、Worker-result側target revisionだけ旧版にする。|旧版resultをcurrent targetへ流用せずstaleとして保持し、実験評価bindingを担うLABOへ戻す。target authorityはtarget ownerに残す。|"
+        }
+      ],
+      "L10-LABO-050-CASE-03d": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2573,
+          "sha256": "3191cdfaf2d4add0b904831defc61868b3d5b359a9b3fc7c83a909b6311887ed",
+          "literal": "|`L10-LABO-050-CASE-03d`|`LABO-050-AC-03`|negative|CASE-01でOS assignment receiptだけ欠落。|runを割当済みに見せず完了を拒否。OSへ戻す。|"
+        }
+      ],
+      "L10-LABO-050-CASE-03e": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2574,
+          "sha256": "9d24dbe0d2ea8f16d3e27a8b8cddf99c90ddc2e5fa126ed5ee8c4becc9e178a9",
+          "literal": "|`L10-LABO-050-CASE-03e`|`LABO-050-AC-03`|negative|CASE-01でWorker resultのtarget identityだけ別値。|結果を対象experimentへ束縛せず完了を拒否し、実験評価bindingを担うLABOへ戻す。target authorityはtarget ownerに残す。|"
+        }
+      ],
+      "L10-LABO-050-CASE-03f": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2575,
+          "sha256": "7dce5247138b0b2ed24b44b6d67bb32f484f74c699f9e5b96797ade9a7fe77c5",
+          "literal": "|`L10-LABO-050-CASE-03f`|`LABO-050-AC-03`|negative|CASE-01で変更後LABO re-observation receiptだけ欠落。|循環をopenのまま保ち、再観測を補完しない。LABOへ戻す。|"
+        }
+      ],
+      "L10-LABO-050-CASE-03g": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2576,
+          "sha256": "af52a360ad0e1c625819687a46d7a3b67e66448555fe0b979cb9ce4f6e264c95",
+          "literal": "|`L10-LABO-050-CASE-03g`|`LABO-050-AC-03`|非独立ラベル|同時欠落案の識別子を保持する。現行fixtureやoracleを構成しない。|このラベル単独ではnegative分母へ入れない。|"
+        }
+      ],
+      "L10-LABO-050-CASE-04a": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2577,
+          "sha256": "0a2c49da8c49dd46cded8c81483e7976db41e8a23c574b2e7c52baaca3dfb4ca",
+          "literal": "|`L10-LABO-050-CASE-04a`|`LABO-050-AC-03`|negative|CASE-01の入力状態でregistration/routingの実行者だけをLABOにする。|LABOによるregistrationを拒否する。registration/routingはOS。|"
+        }
+      ],
+      "L10-LABO-050-CASE-04b": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2578,
+          "sha256": "4bf12c7e2ed8f471099b08080659de4546249b1b372b5011bc0bdd47789d0fa3",
+          "literal": "|`L10-LABO-050-CASE-04b`|`LABO-050-AC-03`|negative|CASE-01の入力状態でtarget changeの実行者だけをLABOにする。|LABOによるtarget直接変更を拒否する。target ownerの権限を保つ。|"
+        }
+      ],
+      "L10-LABO-050-CASE-05": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2579,
+          "sha256": "5f1ec4a72bf415846a0e5ba0dee7d4521f84c4c36ce3e9cfdb6684b1fb79a193",
+          "literal": "|`L10-LABO-050-CASE-05`|`LABO-050-AC-03`|negative|CASE-01でOS registration receiptだけ欠落。|登録を推測せず循環未完了。OSへ戻す。|"
+        }
+      ],
+      "L10-LABO-050-CASE-06": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2580,
+          "sha256": "92bb63d8b9901329a179f6ab48562931dcca132446e2f5030305ca92dbd7bab4",
+          "literal": "|`L10-LABO-050-CASE-06`|`LABO-050-AC-03`|negative|CASE-01でticket/experiment/assignment/Worker result/target identityをすべてcurrentに保ち、verification receiptのrevisionだけ旧版にする。|旧verification receiptをcurrent target changeへ適用せず未完義務をopenにし、target ownerへ戻す。|"
+        }
+      ],
+      "L10-LABO-050-CASE-07": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2581,
+          "sha256": "ff6778fbbdd0c4b364aef5450f90b8f314022fee9d2441c9b043d3088e0c90f8",
+          "literal": "|`L10-LABO-050-CASE-07`|`LABO-050-AC-03`|索引（独立fixtureではない）|既存IDを維持する非独立索引。`CASE-06`のrevision変更による旧verification非適用を参照する。|CASE-06を直接照合し、独立欠落変異として数えない。|"
+        }
+      ],
+      "L10-LABO-050-CASE-08": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2582,
+          "sha256": "b6a889a60e2051171269652a004c3c67b18070f8d20934c5473798dc6116c448",
+          "literal": "|`L10-LABO-050-CASE-08`|`LABO-050-AC-03`|索引（独立fixtureではない）|既存IDを維持する非独立索引。deployment欠落の`CASE-13`とoperation欠落の`CASE-14`を個別参照する。|CASE-13とCASE-14の各oracleを個別に確認し、束ねた追加fixtureにしない。|"
+        }
+      ],
+      "L10-LABO-050-CASE-09": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2583,
+          "sha256": "2f77ce6f3e63e58ec80e487b0724f1a6a3f8a2f83df9ec24224154f5df2e5ba6",
+          "literal": "|`L10-LABO-050-CASE-09`|`LABO-050-AC-03`|索引（独立fixtureではない）|`CASE-03f`の変更後re-observation欠落を参照する既存索引。|CASE-03fを直接照合し、二重計上しない。|"
+        }
+      ],
+      "L10-LABO-050-CASE-10": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2584,
+          "sha256": "937ddc02f2033308ce2a692e8c431fa53aa659a63f53366050422be6a64cd809",
+          "literal": "|`L10-LABO-050-CASE-10`|`LABO-050-AC-03`|索引（独立fixtureではない）|effect-only欠落CASE-22とregression-only欠落CASE-23をそれぞれ直接参照する既存索引。|実fixture CASE-22/23を直接照合し、索引を分母に含めない。|"
+        }
+      ],
+      "L10-LABO-050-CASE-11": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2585,
+          "sha256": "6cc7cb60f8c249e54436f77663528a4de708630e9a2b7568b906c46190b63de8",
+          "literal": "|`L10-LABO-050-CASE-11`|`LABO-050-AC-03`|negative|CASE-01の採択前candidateを基準に、candidateをcanonicalへ変える操作だけを変異。|canonical化を拒否しcandidateのまま保持。target authorityはtarget ownerに残す。|"
+        }
+      ],
+      "L10-LABO-050-CASE-12": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2586,
+          "sha256": "0988636a37886b506ea4e71a60730285d7eb3dbc1a9920d68250225eebb9ca87",
+          "literal": "|`L10-LABO-050-CASE-12`|`LABO-050-AC-03`|negative|CASE-01の過去source recordとidentity/revisionを保ち、後続観測でそのrecordを上書きする操作だけを変異する。設計注記: 固定親にないsource-owner identity入力やunknown-owner条件はfixtureへ追加しない。|上書きを拒否し、過去recordと後続観測を別状態で保持する。|"
+        }
+      ],
+      "L10-LABO-050-CASE-13": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2587,
+          "sha256": "3bf0c473a4433b40309a1ddfe7ff90d92601bb0ed75a29d6935f287ad400f50d",
+          "literal": "|`L10-LABO-050-CASE-13`|`LABO-050-AC-03`|negative|CASE-01でtarget deployment resultだけ欠落。その他のreceiptは有効。|deployment resultを補わず循環未完了。target ownerへ戻す。|"
+        }
+      ],
+      "L10-LABO-050-CASE-14": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2588,
+          "sha256": "295dddcbc405ea270f1dddde652eb90105135f151113a215069d288727ed4b31",
+          "literal": "|`L10-LABO-050-CASE-14`|`LABO-050-AC-03`|negative|CASE-01でtarget operation resultだけ欠落。その他のreceiptは有効。|operation resultを補わず循環未完了。target ownerへ戻す。|"
+        }
+      ],
+      "L10-LABO-050-CASE-15": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2589,
+          "sha256": "36d93dc873077c762536700d014405a5f3bc390f06d51b3d6dc58d6ab1c4ad62",
+          "literal": "|`L10-LABO-050-CASE-15`|`LABO-050-AC-03`|negative|CASE-01でtarget-change後のverification receiptだけ欠落。deployment/operation receiptは有効。|循環未完了。target ownerへ戻す。|"
+        }
+      ],
+      "L10-LABO-050-CASE-16": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2590,
+          "sha256": "21c82b70076aadbbc87757f4afc3ed0feb33b7b22aab38deaa7e03af4ef2e9b9",
+          "literal": "|`L10-LABO-050-CASE-16`|`LABO-050-AC-03`|negative|有効source/ticket/experiment/target revision、OS assignment、評価済みcandidate、OS registration/routing完了を基準にし、target changeは未実施、verification/deployment/operation/re-observation/effect/regressionはopenとしCI成功receiptは既存状態に置く。唯一の変異はこのCI成功だけを根拠に後続義務完了を主張すること。|CI結果をstage receiptの代替にせず全open義務を保持する。登録はOS、target後段はtarget owner、再観測/評価はLABO。|"
+        }
+      ],
+      "L10-LABO-050-CASE-17": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2591,
+          "sha256": "63a80812a8ddab9535e577e4a6e1694415f42fa3763eaab9595cd70bf3c9de83",
+          "literal": "|`L10-LABO-050-CASE-17`|`LABO-050-AC-03`|negative|有効source/ticket/experiment/target revisionでFeedback candidateは発行済み、OS registrationとtarget後続義務は未完。唯一の変異はFeedback発行だけで改善完了と主張すること。|candidate状態と未完義務を保つ。登録はOS、change/verification/operationはtarget owner、再観測/評価はLABO。|"
+        }
+      ],
+      "L10-LABO-050-CASE-18": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2592,
+          "sha256": "3506d107dff1d5cf4b68c1fab3cb899fb73eddb7e439d02d3bdbc665e02a6594",
+          "literal": "|`L10-LABO-050-CASE-18`|`LABO-050-AC-03`|negative|有効source/ticket/experiment/target revisionでOS registration完了、target change以降は未観測/open。唯一の変異はregistrationだけで完了と主張すること。|後続義務をopenのまま保つ。registrationはOS、変更/検証/運用はtarget owner、再観測/評価はLABO。|"
+        }
+      ],
+      "L10-LABO-050-CASE-19": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2593,
+          "sha256": "52ca5dde98271d01e167b5696df3bbb238e57e25a34f736e9766d7dd72468d3c",
+          "literal": "|`L10-LABO-050-CASE-19`|`LABO-050-AC-03`|negative|有効source/ticket/experiment/target revisionでtarget-change結果あり、verification/deployment/operation/re-observation/evaluationは未観測/open。唯一の変異はtarget-changeだけで完了と主張すること。|後続義務をopenのまま保ち、既存owner境界へ戻す。|"
+        }
+      ],
+      "L10-LABO-050-CASE-20": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2594,
+          "sha256": "de6ed21e6e324613ee3cc19f7d6048836371a86f82036f5cd71bf223c4bb89ca",
+          "literal": "|`L10-LABO-050-CASE-20`|`LABO-050-AC-03`|negative|CASE-01でtarget-change result receiptだけ欠落し、他のreceiptは有効。|change successを推測せず循環未完了。target ownerへ戻す。|"
+        }
+      ],
+      "L10-LABO-050-CASE-21": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2595,
+          "sha256": "7c58ffe6f62d4284e31e12e0c89270ef843aaae6d4459d3c7bc7abce0af8f040",
+          "literal": "|`L10-LABO-050-CASE-21`|`LABO-050-AC-03`|negative|有効なsource/ticket/experiment/target revisionとpositive candidate countを含む部分循環を基準にし、registration/change/verification/operation/re-observation/effect/regressionはopenのままにする。唯一の変異はcandidate countだけで循環完了と主張すること。|candidate countだけでは完了しない。countからcandidate adoption、registration、target change、後続結果を生成せず、各open dutyを既存owner境界に残す。|"
+        }
+      ],
+      "L10-LABO-050-CASE-22": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2596,
+          "sha256": "71f5434acc3004346cf0d5d454e0b28df0147d076abd903f06973f0a8b81091c",
+          "literal": "|`L10-LABO-050-CASE-22`|`LABO-050-AC-03`|negative|CASE-01と同じ有効なidentity・stage receipt・target revision・re-observationで、regression evaluationはありeffect evaluationだけ欠落。唯一の欠落はeffect evaluation。|effect未評価として完了を拒否しLABOへ戻す。regressionの有効結果を保持する。|"
+        }
+      ],
+      "L10-LABO-050-CASE-23": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2597,
+          "sha256": "14c103c03a69eac1033a52c1362b9fdc659895e3885f25a5c6a1b3b0b032b2f4",
+          "literal": "|`L10-LABO-050-CASE-23`|`LABO-050-AC-03`|negative|CASE-01と同じ有効なidentity・stage receipt・target revision・re-observationで、effect evaluationはありregression evaluationだけ欠落。唯一の欠落はregression evaluation。|regression未評価として完了を拒否しLABOへ戻す。effectの有効結果を保持する。|"
+        }
+      ],
+      "L10-LABO-050-CASE-24": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2598,
+          "sha256": "bbfff102a1521e5d94a375fc71a6dd857fe35e32baf4119d7e370fbc7a9f048e",
+          "literal": "|`L10-LABO-050-CASE-24`|`LABO-050-AC-03`|negative|CASE-01と同じassignment/ticket/experiment/target/result条件を保ち、Worker-result側ticket identityだけをassignment側と異なる値にする。|別ticketの証拠を結合せず完了を拒否し、OSへ戻す。|"
+        }
+      ],
+      "L10-LABO-050-CASE-25": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2599,
+          "sha256": "9c241e6b76c5ce3f34a237a772d7db17e2614027374e83c1c66d2da4b94a09d4",
+          "literal": "|`L10-LABO-050-CASE-25`|`LABO-050-AC-03`|negative|CASE-01を基準にWorker-result側experiment identityだけ欠落させる。他のidentity/receiptは有効。|experimentを推測・結合せず評価を未完了に保ち、experiment/evaluation bindingを担うLABOへ戻す。|"
+        }
+      ],
+      "L10-LABO-050-CASE-26": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2600,
+          "sha256": "6b136e65af0b69287c23e99427ee0bbe22ee16d8dfb23e1bb4c2505701dc318c",
+          "literal": "|`L10-LABO-050-CASE-26`|`LABO-050-AC-03`|negative|CASE-01を基準にWorker-result側target revisionだけ欠落。他のidentity/receiptとcurrent target revisionは有効。|欠落版を補完せずcurrent結果として扱わない。実験評価bindingを担うLABOへ戻し、target authorityはtarget ownerに残す。|"
+        }
+      ],
+      "L10-LABO-050-CASE-27": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2601,
+          "sha256": "2d36ddbc30a1ecd7550f0aa2fced2a5a9fb98e90fddc5952c9a4e8746b7227ec",
+          "literal": "|`L10-LABO-050-CASE-27`|`LABO-050-AC-03`|negative|CASE-01を基準にOS assignmentとその他identityを有効に保ち、Worker-result receiptだけ欠落。|Worker実行結果を推測せず評価を未完了に保ち、OSへ戻す。|"
+        }
+      ],
+      "L10-LABO-050-CASE-28": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2602,
+          "sha256": "9deb9663402ad57c0a28371cce52abbca43ba460b2cf7b7eb476ac0951a12fff",
+          "literal": "|`L10-LABO-050-CASE-28`|`LABO-050-AC-03`|negative|CASE-01を基準にWorker resultとepisode/experiment/ticketを有効に保ち、OS assignment receiptのtarget identityだけWorker result/current targetと異なる値にする。|assignment/resultを結合せず完了を拒否しOSへ戻す。|"
+        }
+      ],
+      "L10-LABO-050-CASE-29": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2603,
+          "sha256": "bf27c2a5a2f2ade955f46689e88d06e1712705b2c2395040c94322c95a720e90",
+          "literal": "|`L10-LABO-050-CASE-29`|`LABO-050-AC-03`|negative|CASE-01の11段階すべてのreceipt・identity・結果を有効に保ち、stage event順序だけを変え、OS registration/routingをFeedback Candidateより先に置く。|固定段階順序との不一致を受け入れず循環を未完了に保つ。LABO評価の責務区分は維持する。|"
+        }
+      ],
+      "L10-LABO-050-CASE-30": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2604,
+          "sha256": "c18706f732c3a06bfbcdf81f946262a65b53e65224b3fc78b5099462116b8260",
+          "literal": "|`L10-LABO-050-CASE-30`|`LABO-050-AC-03`|negative|CASE-01からticket/experiment/target identity、OS assignment、Worker result、registration、candidateなど前段receiptを引き継いで有効に保つ。target changeとverification receiptも有効とし、deployment/operation/re-observation/effect/regression receiptだけは未観測/open。唯一の変異はverification receiptだけを根拠に循環完了を出力すること。|verificationだけで完了とせず循環を未完了に保つ。deployment/operationはtarget owner、re-observation/effect/regression evaluationはLABOの既存責務に残す。|"
+        }
+      ]
+    },
+    "dangling_refs": [],
+    "all_case_mentions_count": 37
+  },
+  "count_evolution": {
+    "initial_authoring_snapshot": {
+      "case_definitions": 30,
+      "revision": "as recorded by immutable review01 audit; not equivalent to d2 current body"
+    },
+    "pre_review02_public_body": {
+      "revision": "d2e870e6244ad4a0b51f7e0fb20efb30e32417fd",
+      "case_definitions": 36,
+      "retained_initial_ids": 30,
+      "added_ids": [
+        "L10-LABO-050-CASE-24",
+        "L10-LABO-050-CASE-25",
+        "L10-LABO-050-CASE-26",
+        "L10-LABO-050-CASE-27",
+        "L10-LABO-050-CASE-28",
+        "L10-LABO-050-CASE-29"
+      ]
+    },
+    "review02_body": {
+      "revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+      "case_definitions": 37,
+      "retained_pre_review02_ids": 36,
+      "added_ids": [
+        "L10-LABO-050-CASE-30"
+      ],
+      "deleted_ids": [],
+      "independent_fixtures": 32,
+      "non_independent_labels_or_indexes": 5,
+      "fv_table_rows": 35,
+      "duplicate_definition_ids": 0
+    }
+  },
+  "updated_review_crosswalk": [
+    {
+      "fixed_clause": "L2-050:302; L2-028:233; L2-050:300",
+      "condition": "実験result bindingとtarget authorityを区別",
+      "case_ids": [
+        "L10-LABO-050-CASE-03a",
+        "L10-LABO-050-CASE-03c",
+        "L10-LABO-050-CASE-03d",
+        "L10-LABO-050-CASE-03e",
+        "L10-LABO-050-CASE-24",
+        "L10-LABO-050-CASE-26"
+      ],
+      "classification": "03aはOS assignment観測record側ticket欠落。03c/03e/26はWorker-result binding failureをLABOへ。03dはOS assignment receipt側。24はWorker-result ticket mismatchとして既存戻し先を変更しない。target ownerのtarget authority・変更/検証責務を保持し、後段deployment/operationも固定親の区分どおり。",
+      "evidence_refs": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2570,
+          "sha256": "655abea8c4d48ae6339982e0d5f4d6cfe34553c980e771689b88020ada27ceac",
+          "literal": "|`L10-LABO-050-CASE-03a`|`LABO-050-AC-03`|negative|CASE-01のOS assignment観測record側ticket identityだけを欠落させる。他のidentity/receiptは有効。|ticketを補完せず別recordを結合しない。完了を拒否しOSへ戻す。|"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2572,
+          "sha256": "147954508b7bd9bc44678761f775e10bf0aa6f83261ed7a0e46ba36f8f0d13fc",
+          "literal": "|`L10-LABO-050-CASE-03c`|`LABO-050-AC-03`|negative|CASE-01でtarget ownerのcurrent target revision、ticket、experiment、assignmentを保ち、Worker-result側target revisionだけ旧版にする。|旧版resultをcurrent targetへ流用せずstaleとして保持し、実験評価bindingを担うLABOへ戻す。target authorityはtarget ownerに残す。|"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2573,
+          "sha256": "3191cdfaf2d4add0b904831defc61868b3d5b359a9b3fc7c83a909b6311887ed",
+          "literal": "|`L10-LABO-050-CASE-03d`|`LABO-050-AC-03`|negative|CASE-01でOS assignment receiptだけ欠落。|runを割当済みに見せず完了を拒否。OSへ戻す。|"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2574,
+          "sha256": "9d24dbe0d2ea8f16d3e27a8b8cddf99c90ddc2e5fa126ed5ee8c4becc9e178a9",
+          "literal": "|`L10-LABO-050-CASE-03e`|`LABO-050-AC-03`|negative|CASE-01でWorker resultのtarget identityだけ別値。|結果を対象experimentへ束縛せず完了を拒否し、実験評価bindingを担うLABOへ戻す。target authorityはtarget ownerに残す。|"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2598,
+          "sha256": "bbfff102a1521e5d94a375fc71a6dd857fe35e32baf4119d7e370fbc7a9f048e",
+          "literal": "|`L10-LABO-050-CASE-24`|`LABO-050-AC-03`|negative|CASE-01と同じassignment/ticket/experiment/target/result条件を保ち、Worker-result側ticket identityだけをassignment側と異なる値にする。|別ticketの証拠を結合せず完了を拒否し、OSへ戻す。|"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2600,
+          "sha256": "6b136e65af0b69287c23e99427ee0bbe22ee16d8dfb23e1bb4c2505701dc318c",
+          "literal": "|`L10-LABO-050-CASE-26`|`LABO-050-AC-03`|negative|CASE-01を基準にWorker-result側target revisionだけ欠落。他のidentity/receiptとcurrent target revisionは有効。|欠落版を補完せずcurrent結果として扱わない。実験評価bindingを担うLABOへ戻し、target authorityはtarget ownerに残す。|"
+        }
+      ]
+    },
+    {
+      "fixed_clause": "L11-050:124 (#14); L2-050:300",
+      "condition": "verification-onlyで完了と主張し、後続義務がopen",
+      "case_ids": [
+        "L10-LABO-050-CASE-30"
+      ],
+      "classification": "CASE-30がverification-only completion claimの直接反例。CASE-19はchange-onlyの別枝であり代替しない。",
+      "evidence_refs": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2604,
+          "sha256": "c18706f732c3a06bfbcdf81f946262a65b53e65224b3fc78b5099462116b8260",
+          "literal": "|`L10-LABO-050-CASE-30`|`LABO-050-AC-03`|negative|CASE-01からticket/experiment/target identity、OS assignment、Worker result、registration、candidateなど前段receiptを引き継いで有効に保つ。target changeとverification receiptも有効とし、deployment/operation/re-observation/effect/regression receiptだけは未観測/open。唯一の変異はverification receiptだけを根拠に循環完了を出力すること。|verificationだけで完了とせず循環を未完了に保つ。deployment/operationはtarget owner、re-observation/effect/regression evaluationはLABOの既存責務に残す。|"
+        }
+      ],
+      "related_not_substitute_case_ids": [
+        "L10-LABO-050-CASE-19"
+      ]
+    },
+    {
+      "fixed_clause": "L2-050:300; L11-050:124–125",
+      "condition": "Evaluated段階:効果と退行を別に評価",
+      "case_ids": [
+        "L10-LABO-050-CASE-01",
+        "L10-LABO-050-CASE-22",
+        "L10-LABO-050-CASE-23",
+        "L10-LABO-050-CASE-10"
+      ],
+      "classification": "CASE-01 normal、22 effect-only欠落、23 regression-only欠落、10は22/23を参照する非独立index。03gは非独立labelでありEvaluated crosswalkから除外。",
+      "excluded_nonfixture_ids": [
+        "L10-LABO-050-CASE-03g"
+      ],
+      "evidence_refs": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2565,
+          "sha256": "82a13c063c0bc34147bc0485d9028149f132abf83f80458a81a3e9dd7b8d8b53",
+          "literal": "- `L10-LABO-050-CASE-01`（対応AC: `LABO-050-AC-01`）正常: 許可観測とepisodeから開始し、Observed→Correlated→Hypothesized→Experimented→Evaluated→Feedback Candidate→OS registration/routing→target change→verification→deployment/operation→LABO re-observationをすべて別状態で記録する。同じticket/experiment/target revision、対応するOS assignment/Worker result、source/target revision、各receiptと未完義務を結ぶ。effectとregressionは別判定結果。Oracleは11段階と未完義務を追跡でき、LABO評価、OS登録、target-owner変更/検証/deployment/operation、LABO再観測の責務を混ぜないこと。"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2596,
+          "sha256": "71f5434acc3004346cf0d5d454e0b28df0147d076abd903f06973f0a8b81091c",
+          "literal": "|`L10-LABO-050-CASE-22`|`LABO-050-AC-03`|negative|CASE-01と同じ有効なidentity・stage receipt・target revision・re-observationで、regression evaluationはありeffect evaluationだけ欠落。唯一の欠落はeffect evaluation。|effect未評価として完了を拒否しLABOへ戻す。regressionの有効結果を保持する。|"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2597,
+          "sha256": "14c103c03a69eac1033a52c1362b9fdc659895e3885f25a5c6a1b3b0b032b2f4",
+          "literal": "|`L10-LABO-050-CASE-23`|`LABO-050-AC-03`|negative|CASE-01と同じ有効なidentity・stage receipt・target revision・re-observationで、effect evaluationはありregression evaluationだけ欠落。唯一の欠落はregression evaluation。|regression未評価として完了を拒否しLABOへ戻す。effectの有効結果を保持する。|"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2584,
+          "sha256": "937ddc02f2033308ce2a692e8c431fa53aa659a63f53366050422be6a64cd809",
+          "literal": "|`L10-LABO-050-CASE-10`|`LABO-050-AC-03`|索引（独立fixtureではない）|effect-only欠落CASE-22とregression-only欠落CASE-23をそれぞれ直接参照する既存索引。|実fixture CASE-22/23を直接照合し、索引を分母に含めない。|"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2576,
+          "sha256": "af52a360ad0e1c625819687a46d7a3b67e66448555fe0b979cb9ce4f6e264c95",
+          "literal": "|`L10-LABO-050-CASE-03g`|`LABO-050-AC-03`|非独立ラベル|同時欠落案の識別子を保持する。現行fixtureやoracleを構成しない。|このラベル単独ではnegative分母へ入れない。|"
+        }
+      ]
+    },
+    {
+      "fixed_clause": "L2-050:300–303; L11-050:120–126",
+      "condition": "今回の変更差分に関連する代表的なstage/identity/未完義務例",
+      "case_ids": [
+        "L10-LABO-050-CASE-01",
+        "L10-LABO-050-CASE-03a",
+        "L10-LABO-050-CASE-03f",
+        "L10-LABO-050-CASE-29",
+        "L10-LABO-050-CASE-30"
+      ],
+      "classification": "この差分表は今回の修正に関係する代表参照であり、11段階全体の網羅crosswalkを代替しない。03a=OS assignment観測record側ticket欠落、03f=re-observation欠落、29=順序違反、30=verification-only完了claim。",
+      "evidence_refs": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2565,
+          "sha256": "82a13c063c0bc34147bc0485d9028149f132abf83f80458a81a3e9dd7b8d8b53",
+          "literal": "- `L10-LABO-050-CASE-01`（対応AC: `LABO-050-AC-01`）正常: 許可観測とepisodeから開始し、Observed→Correlated→Hypothesized→Experimented→Evaluated→Feedback Candidate→OS registration/routing→target change→verification→deployment/operation→LABO re-observationをすべて別状態で記録する。同じticket/experiment/target revision、対応するOS assignment/Worker result、source/target revision、各receiptと未完義務を結ぶ。effectとregressionは別判定結果。Oracleは11段階と未完義務を追跡でき、LABO評価、OS登録、target-owner変更/検証/deployment/operation、LABO再観測の責務を混ぜないこと。"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2570,
+          "sha256": "655abea8c4d48ae6339982e0d5f4d6cfe34553c980e771689b88020ada27ceac",
+          "literal": "|`L10-LABO-050-CASE-03a`|`LABO-050-AC-03`|negative|CASE-01のOS assignment観測record側ticket identityだけを欠落させる。他のidentity/receiptは有効。|ticketを補完せず別recordを結合しない。完了を拒否しOSへ戻す。|"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2575,
+          "sha256": "7dce5247138b0b2ed24b44b6d67bb32f484f74c699f9e5b96797ade9a7fe77c5",
+          "literal": "|`L10-LABO-050-CASE-03f`|`LABO-050-AC-03`|negative|CASE-01で変更後LABO re-observation receiptだけ欠落。|循環をopenのまま保ち、再観測を補完しない。LABOへ戻す。|"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2603,
+          "sha256": "bf27c2a5a2f2ade955f46689e88d06e1712705b2c2395040c94322c95a720e90",
+          "literal": "|`L10-LABO-050-CASE-29`|`LABO-050-AC-03`|negative|CASE-01の11段階すべてのreceipt・identity・結果を有効に保ち、stage event順序だけを変え、OS registration/routingをFeedback Candidateより先に置く。|固定段階順序との不一致を受け入れず循環を未完了に保つ。LABO評価の責務区分は維持する。|"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2604,
+          "sha256": "c18706f732c3a06bfbcdf81f946262a65b53e65224b3fc78b5099462116b8260",
+          "literal": "|`L10-LABO-050-CASE-30`|`LABO-050-AC-03`|negative|CASE-01からticket/experiment/target identity、OS assignment、Worker result、registration、candidateなど前段receiptを引き継いで有効に保つ。target changeとverification receiptも有効とし、deployment/operation/re-observation/effect/regression receiptだけは未観測/open。唯一の変異はverification receiptだけを根拠に循環完了を出力すること。|verificationだけで完了とせず循環を未完了に保つ。deployment/operationはtarget owner、re-observation/effect/regression evaluationはLABOの既存責務に残す。|"
+        }
+      ]
+    }
+  ],
+  "finding_dispositions": [
+    {
+      "id": "M1",
+      "severity": "Major",
+      "disposition": {
+        "treatment_ja": "03c/26のWorker-result側target revision stale/missingと03e target identity mismatchは、有効OS assignmentに対してWorker結果を対象experiment/targetへ束縛できない不成立として、review01 M2の03bと同じくLABOの実験評価bindingへ戻す案。OS assignment receipt自体の不備03d等はOSのまま。target ownerのtarget authority・変更/検証責務を保持し、後段のdeployment/operationも固定親にある区分どおりとする。CASE-24はWorker-result ticket mismatchのため現行戻し先を変更せず保留。",
+        "affected_case_ids": [
+          "L10-LABO-050-CASE-03c",
+          "L10-LABO-050-CASE-03e",
+          "L10-LABO-050-CASE-26"
+        ],
+        "not_changed_case_ids": [
+          "L10-LABO-050-CASE-03d",
+          "L10-LABO-050-CASE-24"
+        ],
+        "route_basis": [
+          "HELIXLABO-L2-050:302",
+          "HELIXLABO-L2-028:233",
+          "HELIXLABO-L2-050:300",
+          "review01 M2/03b existing disposition"
+        ],
+        "status": "body_correction_committed_creator_check_independent_review_pending",
+        "uncertainty_ja": "固定句は03c/03e/26を個別に名指ししない。03bと同じWorker結果binding failureとしてLABOへ戻す原因分類案。assignment側のsource不備をLABOに移さず、CASE-24もこの原因へ同一視しない。"
+      },
+      "formal_source_block": {
+        "id": "M1",
+        "bytes": 1047,
+        "sha256": "67068d1f0e7031e7cba21d22e0462d2384bb60bab2c8095630155afab73ce53b",
+        "literal": "- **M1（CASE-03c/26の戻し先が原因の区分に合わず、03eとも食い違う）**：\n  - 03cはWorker-result側のtarget revisionを旧版にし、26はWorker-result側のtarget revisionだけを欠落させる。どちらも、記録が有効なtarget ownerへ戻している。\n  - 同じWorker-result側の項目を変える03e（target identityの不一致）は、OSへ戻している。\n  - 固定親で、target ownerの役割は「変更・検証」と「target authority」である。Worker結果のbindingは実験段階の依存（L2-022/L2-028の観測）にあたる。\n  - これはreview01 M2（03b）と同じ型にあたる。Opusの確信度は中程度で、Opus側の判断としてMajorにする。\n  - →守るべき行：L2-050「依存」（実験ではL2-022のOS assignment観測とL2-028のWorker結果観測を、同じticket/experimentへ結ぶ）、L2-050「保証」、L2-022「保証」（stale／欠落はOSへ）、L2-028「保証」、L2-050「target authorityはtarget ownerに残す」の範囲。\n"
+      },
+      "body_result_status": "本文修正を40639134へ反映。作成側の検収情報であり、独立reviewの解消/承認ではない。"
+    },
+    {
+      "id": "M2",
+      "severity": "Major",
+      "disposition": {
+        "treatment_ja": "CASE-30を1件追加。verification receiptは有効、deployment/operation/re-observation/effect/regressionはopenの正常入力に対し、verificationのみで完了とclaimする出力だけを単独変異にした。循環未完了・未完義務保持を期待し、既存owner境界を維持。CASE-30は現bodyに定義済み。CASE-16/19/03fは別条件として保持。",
+        "affected_case_ids": [
+          "L10-LABO-050-CASE-30",
+          "L10-LABO-050-CASE-16",
+          "L10-LABO-050-CASE-19",
+          "L10-LABO-050-CASE-03f"
+        ],
+        "sync_required": [
+          "FR/AC-03 crosswalk",
+          "FV case table",
+          "BR/BV case index",
+          "NFR-grade population",
+          "NFR-verification population",
+          "review audit crosswalk"
+        ],
+        "status": "body_correction_committed_creator_check_independent_review_pending",
+        "expected_count_delta": "d2公開本文36→現body37（CASE-30のみ追加、削除0）、独立fixture31→32、非独立5維持。",
+        "case30_historical_state_ja": "CASE-30はd2公開本文には存在せず、同時点の追加候補。現body 40639134では定義済み。CASE-16/19/03fは別条件として保持。"
+      },
+      "formal_source_block": {
+        "id": "M2",
+        "bytes": 1154,
+        "sha256": "66d19d95463455b4031b63e77d55ce83c67465801486cf9c93fa8144e5a9a122",
+        "literal": "- **M2（固定L11 §24 #14の反例「検証のみで完了」に単独fixtureがない）**：\n  - 反例の原文は「変更または検証のみで完了とし、再観測を欠く」（f6dad2a33 L11:124）。\n  - 「変更のみ」の枝はCASE-19で扱われている。「verification receiptはあり、deployment/operation/re-observationはopenで、検証だけを根拠に完了を主張する」単独fixtureはない。\n  - CASE-16は、基準状態がtarget changeの実施前で、CI成功を扱う。CASE-03fは主張ではなく、re-observationの欠落を扱う。どちらも別の条件である。\n  - 新しい監査のcrosswalkは、この枝を16〜19で対応済みとしている。\n  - Fable M1の指摘で、reviewerが本文と固定親で確かめた。\n  - **reviewer側の開示**：review01で私は「5つの単独完了主張がそろっている」と判定した。このとき、§24 #14の「検証のみ」の枝を照合していなかった。\n  - →守るべき行：L11-050 §24 #14「反例・不成立条件」、L2-050:300（変更後の再観測…がない場合は循環未完了として戻す）。\n"
+      },
+      "body_result_status": "本文修正を40639134へ反映。作成側の検収情報であり、独立reviewの解消/承認ではない。"
+    },
+    {
+      "id": "m1",
+      "severity": "Minor",
+      "disposition": {
+        "treatment_ja": "責務区分は固定親のOS／target owner／LABOに限り、観測sourceと責務名を分離する。CASE-03aはOS assignment観測record側ticket欠落、CASE-24はWorker-result側ticket mismatch、CASE-03e/27はWorker-result側のidentity/receiptに関する別条件として記す。CASE-24を03aと同一視せず、戻し先も勝手に変更しない。",
+        "affected_case_ids": [
+          "03a",
+          "03e",
+          "24",
+          "27"
+        ],
+        "status": "body_correction_committed_creator_check_independent_review_pending"
+      },
+      "formal_source_block": {
+        "id": "m1",
+        "bytes": 457,
+        "sha256": "d82898430bfa7597ad02d25f8bb3115021bf75699ae6feba179c4b124289be55",
+        "literal": "- **m1（OSへ付けた「観測責務」の修飾語。review01 m6の残り）**：03a/24「ticket/assignment観測の既存OS責務」、03e/27「OSのWorker-result観測責務」。固定親の区分名はOSだけである。Worker結果観測はL2-028（LABO側の接続要求）にあたる。Fableは、L2:302の語に由来するとして許容と読んだ。→守るべき行：L2-050「依存」の区分（OS／target owner／LABO）、L2-028。\n"
+      },
+      "body_result_status": "本文修正を40639134へ反映。作成側の検収情報であり、独立reviewの解消/承認ではない。"
+    },
+    {
+      "id": "m2",
+      "severity": "Minor",
+      "disposition": {
+        "treatment_ja": "FR target-authority行からassignmentを除き、実験/assignment binding行へ配置。target authority行のownerは変更しない。変更後義務のtraceに03fを含め、26/29をその義務の証拠として扱わない。",
+        "affected_rows": [
+          "FR fixed-condition target-authority row",
+          "FR fixed-condition post-change row",
+          "FR CASE/AC trace"
+        ],
+        "affected_case_ids": [
+          "03f",
+          "26",
+          "29"
+        ],
+        "status": "body_correction_committed_creator_check_independent_review_pending"
+      },
+      "formal_source_block": {
+        "id": "m2",
+        "bytes": 538,
+        "sha256": "3b40fa629449b742cc5afd037b260eb356e0cdd0d09852efc5e61c8e8d29b04f",
+        "literal": "- **m2（FR固定条件表の帰属）**：\n  - 「target authority」行に「OS registration/routingに必要なassignment」とある。assignmentは実験Workerの実行に属する（FR-01本文は正しい）。\n  - 「変更後」行の根拠CASEに、26（実験段階）と29（候補前の順序）が入っている。一方で、03f（re-observationの欠落）は入っていない（Fable m2も同じ指摘）。\n  - →守るべき行：L2-050「依存」の「実験では」の限定、L2-050:300の変更後の義務。\n"
+      },
+      "body_result_status": "本文修正を40639134へ反映。作成側の検収情報であり、独立reviewの解消/承認ではない。"
+    },
+    {
+      "id": "m3",
+      "severity": "Minor",
+      "disposition": {
+        "treatment_ja": "03gを全6本文で非独立ラベルに統一し、BR/BVのindex扱いだけを訂正する。旧immutable review01 auditは編集しない。旧監査Evaluated crosswalkにある03g参照の誤りは、新しい時点監査で訂正記録し、本文作成側の分類訂正として明示する。IDは保持しfixture数/negative denominatorへ含めない。",
+        "affected_case_ids": [
+          "03g"
+        ],
+        "status": "body_correction_committed_creator_check_independent_review_pending",
+        "audit_history": "過去auditは不変。新auditへ旧crosswalk claim訂正を追記。"
+      },
+      "formal_source_block": {
+        "id": "m3",
+        "bytes": 333,
+        "sha256": "19b78680f2826e604b41dc90b0990b188515e0f0a7e35c71bcadba6064adc67a",
+        "literal": "- **m3（03gの分類が本文の間で食い違う）**：FR/FVは03gを「索引ではない非独立ラベル」としている。BR/BVは「索引CASE-03g/07/08/09/10」としている。監査crosswalkの「Evaluated段階」の行は、参照先を持たない03gを対応CASEに入れている（Fable m3も同じ指摘）。\n"
+      },
+      "body_result_status": "本文修正を40639134へ反映。作成側の検収情報であり、独立reviewの解消/承認ではない。"
+    },
+    {
+      "id": "m4",
+      "severity": "Minor",
+      "disposition": {
+        "treatment_ja": "FRの未来append-only監査への前方参照/経過説明は正本要件から除く。直前の歴史snapshot参照を残す場合は対象commit/pathに加えて監査本文SHAを併記し、後続a4a365本文を対象d2本文revisionと混同しない。",
+        "affected_rows": [
+          "FR historical-source section final paragraph"
+        ],
+        "status": "body_correction_committed_creator_check_independent_review_pending",
+        "historical_snapshot_pin": {
+          "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+          "path": "docs/governance/audits/requirements-stage/labo-stage5-review04-root-correction-2026-10-06.md",
+          "bytes": 2569,
+          "sha256": "23c30525763520ff05c41e5da2997cd2ef3604b5ef738d6559fc3981f5776f91"
+        }
+      },
+      "formal_source_block": {
+        "id": "m4",
+        "bytes": 547,
+        "sha256": "6e6b39cdd8b7b844418722a82956d84776fab22662a5b7acf2dfc3cb0a15b701",
+        "literal": "- **m4（本文中の、未解決の前方参照と過去revisionの参照）**：\n  - FRの「先行記録の該当blobは次のappend-only監査で固定する」は、同じPRにある処置監査を名指ししていない。経過の記述が正本に残っている。\n  - a4a365dはmainにもbaseにも含まれず、到達できるのは`refs/pull/2620/head`だけである。本文側に、本文のSHA-256がない（AGENTS.md「過去の本文を指すときは対象のcommitと本文のSHA-256」）。\n  - Fable m5も同じ指摘。\n"
+      },
+      "body_result_status": "本文修正を40639134へ反映。作成側の検収情報であり、独立reviewの解消/承認ではない。"
+    },
+    {
+      "id": "m5",
+      "severity": "Minor",
+      "disposition": {
+        "treatment_ja": "EE5DBACCをsource不在扱いせず、HAC-P4-02aの条件「repairが成功し再発防止が明確」なら当該repairをcloseしてrecipeをharness memoryとimprovement backlogへ保存する保持点、反復時のgate/detector/backlog候補化、P4 metrics収集/改善候補化を記録。unit repair closureと固定050全循環完了を区別し、050のpost-change re-observation/effect/regression義務を維持。旧close/memory runtimeは移植しない。",
+        "status": "body_correction_committed_creator_check_independent_review_pending",
+        "reuse_class": "意味の再導出（保持点と置換点を監査へ記録）",
+        "affected_rows": [
+          {
+            "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+            "physical_line": 1587,
+            "bytes": 748,
+            "raw_lf_sha256": "d770b57ce539685c9ed5f40346bc5213be866c4be248d22a2e435be1f5ce05ac",
+            "literal": "|`LEGACY-ASSET-EE5DBACC7F28F7D1F605` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md:154–156,237–242`|HAC-P4-02aの条件「repairが成功し再発防止が明確」なら、その修復単位をcloseしrecipeをharness memoryとimprovement backlogへ保存する。反復時のgate/detector/backlog候補化とP4 metricsの改善候補化も保持点として扱う。|旧unit repairのclose/recipe保存と固定050の全循環完了を分離する。後者はtarget変更後の再観測とeffect/regression評価がないと未完了。旧close・memory runtimeは移植せず、既存のLABO評価、OS登録/routing、target ownerの変更/検証境界へ再導出する。|"
+          }
+        ]
+      },
+      "formal_source_block": {
+        "id": "m5",
+        "bytes": 654,
+        "sha256": "d72da1b05db288b3a973e8afc334360ea60601677fafce9ee4afbbb3f8a3d5d5",
+        "literal": "- **m5（EE5DBACCを読まずに除外し、旧sourceの処置記録が漏れている）**：処置監査は「bounded sourceを読んでいない」としてEE5DBACCを不採用にした。しかし、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md`の:156（HR-FR-P4-03）と:237–242（HAC-P4-01a〜03b。HAC-P4-02a「repair成功でclose」）は、改善循環の完了条件に隣接している。050の「再観測と評価がない場合は未完了」と異なるのに、保持・変更の記録がない。→守るべき行：AGENTS.md「再構築の原則」、L2-050:300。\n"
+      },
+      "body_result_status": "本文修正を40639134へ反映。作成側の検収情報であり、独立reviewの解消/承認ではない。"
+    },
+    {
+      "id": "m6",
+      "severity": "Minor",
+      "disposition": {
+        "treatment_ja": "CASE-03aのmissing ticket identityをOS assignment観測record側に明記。Worker-result側ticketの不一致はCASE-24に分け、それ以外はCASE-01正常状態と同じに保持。",
+        "affected_case_ids": [
+          "03a",
+          "24"
+        ],
+        "status": "body_correction_committed_creator_check_independent_review_pending"
+      },
+      "formal_source_block": {
+        "id": "m6",
+        "bytes": 233,
+        "sha256": "4327799ab787e972339ecb63f8010e40c29dea2b3279ecc76748232e45476b94",
+        "literal": "- **m6（CASE-03aの基準入力で、記録の側が未指定）**：24/25/26は「Worker-result側」と書いている。03aは、どの記録のticketかを指定していない（Fable m1）。→守るべき行：L2-050:302。\n"
+      },
+      "body_result_status": "本文修正を40639134へ反映。作成側の検収情報であり、独立reviewの解消/承認ではない。"
+    },
+    {
+      "id": "m7",
+      "severity": "Minor",
+      "disposition": {
+        "treatment_ja": "CASE-12のowner identity/unknown-ownerを追加しない旨はfixture注記へ移し、期待oracleは上書き拒否と過去/後続観測の分離に限定。CASE-29の「段階評価」は「段階順序」に変え、順序違反拒否と未完義務保持にする。",
+        "affected_case_ids": [
+          "12",
+          "29"
+        ],
+        "status": "body_correction_committed_creator_check_independent_review_pending"
+      },
+      "formal_source_block": {
+        "id": "m7",
+        "bytes": 278,
+        "sha256": "eaf2858cea13bfe43c541daacbd85aa5b1d1132fadbca6fc633994924f58377f",
+        "literal": "- **m7（oracle欄の文言）**：CASE-12のoracleにある「固定親にないsource-owner identity入力やunknown-owner条件を追加しない」は設計の注記で、期待oracleではない。CASE-29の「段階評価」は固定親の語ではない（Fable m4）。\n"
+      },
+      "body_result_status": "本文修正を40639134へ反映。作成側の検収情報であり、独立reviewの解消/承認ではない。"
+    },
+    {
+      "id": "m8",
+      "severity": "Minor",
+      "disposition": {
+        "treatment_ja": "本文変更はない。新監査JSON/MD自身に、Root static結果、6本文SHA/bytes、prefix照合、CASE census、再計算方法を内包し、外部receiptを必須にしない。",
+        "status": "audit_self_contained_recorded_independent_review_pending"
+      },
+      "formal_source_block": {
+        "id": "m8",
+        "bytes": 274,
+        "sha256": "294387e7e809388ddb5cdaa23b67cd51da7bd5996817b0d31fdd0551fb015ab8",
+        "literal": "- **m8（監査の再現性）**：JSON `verification.root_static_receipt_summary`が参照する`root-labo050-review01-final-static-receipt.json`はrepository外にあり、取得できない（SHAはある）。md「5576 prefix一致」は略記である（Fable m6）。\n"
+      },
+      "body_result_status": "監査案へ結果・再計算手順を内包。本文変更対象ではなく、独立review待ち。"
+    }
+  ],
+  "prior_immutable_audit": {
+    "revision": "d2e870e6244ad4a0b51f7e0fb20efb30e32417fd",
+    "path": "docs/governance/audits/requirements-stage/labo-stage5-parent050-review01-disposition-2026-10-06-99b1ff7ba.json",
+    "bytes": 248145,
+    "sha256": "4c4ac726c1d27afe0eca60c3ef6ad2a295cdf8d3c8663b8123da8d8ca3036d6a",
+    "immutable": true,
+    "crosswalk_correction": {
+      "json_pointer": "/fixed_condition_to_current_case_crosswalk/4",
+      "old_compact_sha256_sort_keys_false": "cc9f3fbc73684d6a9a586e456e61cae5c4fea916e8a62253ca77d31fa78835c4",
+      "correction_ja": "旧recordのEvaluated段階にCASE-03gを含めた対応は誤り。新記録ではCASE-03gをfixture/crosswalk対象から除外し、独立CASE-22/23と非独立index CASE-10を区別する。旧audit本文は変更しない。"
+    }
+  },
+  "root_static_results": {
+    "govcheck": {
+      "ok": true,
+      "atoms": 7622,
+      "requirements": 57,
+      "files": 58
+    },
+    "stale": 0,
+    "diff_check": true,
+    "scfctl": {
+      "bindings": 147,
+      "fail": 0,
+      "stale": 0,
+      "residuals": 0,
+      "check_name": "scfctl validate"
+    }
+  },
+  "root_static_result_provenance": {
+    "included_inline": true,
+    "external_receipt_required": false,
+    "checkpoint_sha256": "41eb1115bce2135a6c582dc17a884f266e93d79037064d7558ecff045cd4bf84",
+    "reproduction_method": "git show <body_revision>:<path> で取得した各canonical本文のraw bytesについてbyte数/SHA-256を計算し、git show <base_revision>:<path> の全raw bytesが本文prefixと一致するか比較する。FV本文のL10-LABO-050-CASE-* 定義/参照行を全行走査し、37定義IDの一意性・6本文参照のdangling=0を確認する。govcheck、scfctl validate、stale、diff-checkの静的結果を本JSONに内包。旧runtime/test/CIは起動しない。",
+    "independently_recomputed_here": {
+      "six_body_full_pins": true,
+      "six_base_prefixes": true,
+      "unique_fv_case_ids": true,
+      "all_case_mentions_resolve": true,
+      "source_pin_checks": true
+    }
+  },
+  "limitations_ja": [
+    "静的文書とfixture記述の照合であり、実行時の挙動を確認していない。",
+    "本記録は作成側による補正・証拠の整理であり、独立reviewの判定、要求承認、実装許可を示さない。",
+    "旧archive全体の不存在調査、未列挙範囲の読了は主張しない。"
+  ],
+  "validation_summary": {
+    "body_commit_exact": true,
+    "clean_worktree_at_draft_time": true,
+    "six_body_sha_and_byte_match_checkpoint": true,
+    "prefix_6_of_6": true,
+    "source_pin_recalculation_errors": 0,
+    "old_review01_audit_unchanged": true,
+    "formal_10_blocks_exact": true,
+    "duplicate_case_ids": 0,
+    "dangling_case_refs": 0
+  },
+  "updated_review_crosswalk_scope_ja": "今回M1/M2/m3で実際に変更したCASE/対応だけを示す差分crosswalkで、旧review01の全20行crosswalkの置換や11段階全条件の網羅を主張しない。",
+  "root_acceptance": {
+    "body_revision": "40639134b345c737eee42779327a9c7e7d7cea8e",
+    "reviewed_scope": "6本文差分・最終差分・10所見処置・変更crosswalk4行・旧source処置・監査MD全体",
+    "source_pin_checks": {
+      "prior27": 132,
+      "fixed_and_EE7": 35,
+      "errors": 0
+    },
+    "body_line_checks": {
+      "lines": 41,
+      "checks": 123,
+      "errors": 0
+    },
+    "formal_10_blocks_exact": true,
+    "prior_audit_bytes_and_crosswalk_hash_exact": true,
+    "independent_review_or_approval_effect": "none"
+  }
+}

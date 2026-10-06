@@ -2555,3 +2555,52 @@ input observation identity/source revision；episode candidate identityとrelati
 - 対応AC: `LABO-058-AC-02`。固定親: `HELIXLABO-L2-058`。
 - 入力fixture: L2-001の必須入力・選択source・適用される安全/版条件は満たし、058 supplementは未実行で存在しない正常baselineを固定する。001の実行判定条件だけに「058 supplementが必須」という再帰前提を追加する一変異を与える。
 - 期待oracle: supplementがないことだけで001固有の有効な観測を拒否しない。同時に、058を実行済み、採択済み、または他のsource dependencyを満たしたと扱わない。固定L2-058に戻し先が指定されていないため追加しない。
+
+## Stage 5 — HELIXLABO-L2-050 L10 fixture候補
+
+本節は固定L2-050だけの未実行fixture設計である。各negativeは明記した基準状態から一つの条件だけを変える。ownerは固定L2-050/L11-050にある既存境界のみを用いる。ここに書くfixtureは実行・承認・変更を行わない。
+
+### CASE-LABO-050 — 内部改善循環
+
+- `L10-LABO-050-CASE-01`（対応AC: `LABO-050-AC-01`）正常: 許可観測とepisodeから開始し、Observed→Correlated→Hypothesized→Experimented→Evaluated→Feedback Candidate→OS registration/routing→target change→verification→deployment/operation→LABO re-observationをすべて別状態で記録する。同じticket/experiment/target revision、対応するOS assignment/Worker result、source/target revision、各receiptと未完義務を結ぶ。effectとregressionは別判定結果。Oracleは11段階と未完義務を追跡でき、LABO評価、OS登録、target-owner変更/検証/deployment/operation、LABO再観測の責務を混ぜないこと。
+- `L10-LABO-050-CASE-02`（対応AC: `LABO-050-AC-02`）未見正常: CASE-01と同じtarget identity・ticket・episodeを保ち、許可された後続target revisionの遅着re-observationだけを追加する。Oracleは同一episodeへ追記し、過去record/revisionを上書きしないこと。
+
+| CASE | 対応AC | 種類 | 基準入力 / 単独変異 | 期待oracle / 既存戻し先 |
+|---|---|---|---|---|
+|`L10-LABO-050-CASE-03a`|`LABO-050-AC-03`|negative|CASE-01のOS assignment観測record側ticket identityだけを欠落させる。他のidentity/receiptは有効。|ticketを補完せず別recordを結合しない。完了を拒否しOSへ戻す。|
+|`L10-LABO-050-CASE-03b`|`LABO-050-AC-03`|negative|CASE-01のOS assignmentとticketを保ち、Worker-result側experiment identityだけをassignment側と異なる値にする。|結果を当該実験の評価へ結合せずunknown/未完了とし、実験/評価bindingを担うLABOへ戻す。|
+|`L10-LABO-050-CASE-03c`|`LABO-050-AC-03`|negative|CASE-01でtarget ownerのcurrent target revision、ticket、experiment、assignmentを保ち、Worker-result側target revisionだけ旧版にする。|旧版resultをcurrent targetへ流用せずstaleとして保持し、実験評価bindingを担うLABOへ戻す。target authorityはtarget ownerに残す。|
+|`L10-LABO-050-CASE-03d`|`LABO-050-AC-03`|negative|CASE-01でOS assignment receiptだけ欠落。|runを割当済みに見せず完了を拒否。OSへ戻す。|
+|`L10-LABO-050-CASE-03e`|`LABO-050-AC-03`|negative|CASE-01でWorker resultのtarget identityだけ別値。|結果を対象experimentへ束縛せず完了を拒否し、実験評価bindingを担うLABOへ戻す。target authorityはtarget ownerに残す。|
+|`L10-LABO-050-CASE-03f`|`LABO-050-AC-03`|negative|CASE-01で変更後LABO re-observation receiptだけ欠落。|循環をopenのまま保ち、再観測を補完しない。LABOへ戻す。|
+|`L10-LABO-050-CASE-03g`|`LABO-050-AC-03`|非独立ラベル|同時欠落案の識別子を保持する。現行fixtureやoracleを構成しない。|このラベル単独ではnegative分母へ入れない。|
+|`L10-LABO-050-CASE-04a`|`LABO-050-AC-03`|negative|CASE-01の入力状態でregistration/routingの実行者だけをLABOにする。|LABOによるregistrationを拒否する。registration/routingはOS。|
+|`L10-LABO-050-CASE-04b`|`LABO-050-AC-03`|negative|CASE-01の入力状態でtarget changeの実行者だけをLABOにする。|LABOによるtarget直接変更を拒否する。target ownerの権限を保つ。|
+|`L10-LABO-050-CASE-05`|`LABO-050-AC-03`|negative|CASE-01でOS registration receiptだけ欠落。|登録を推測せず循環未完了。OSへ戻す。|
+|`L10-LABO-050-CASE-06`|`LABO-050-AC-03`|negative|CASE-01でticket/experiment/assignment/Worker result/target identityをすべてcurrentに保ち、verification receiptのrevisionだけ旧版にする。|旧verification receiptをcurrent target changeへ適用せず未完義務をopenにし、target ownerへ戻す。|
+|`L10-LABO-050-CASE-07`|`LABO-050-AC-03`|索引（独立fixtureではない）|既存IDを維持する非独立索引。`CASE-06`のrevision変更による旧verification非適用を参照する。|CASE-06を直接照合し、独立欠落変異として数えない。|
+|`L10-LABO-050-CASE-08`|`LABO-050-AC-03`|索引（独立fixtureではない）|既存IDを維持する非独立索引。deployment欠落の`CASE-13`とoperation欠落の`CASE-14`を個別参照する。|CASE-13とCASE-14の各oracleを個別に確認し、束ねた追加fixtureにしない。|
+|`L10-LABO-050-CASE-09`|`LABO-050-AC-03`|索引（独立fixtureではない）|`CASE-03f`の変更後re-observation欠落を参照する既存索引。|CASE-03fを直接照合し、二重計上しない。|
+|`L10-LABO-050-CASE-10`|`LABO-050-AC-03`|索引（独立fixtureではない）|effect-only欠落CASE-22とregression-only欠落CASE-23をそれぞれ直接参照する既存索引。|実fixture CASE-22/23を直接照合し、索引を分母に含めない。|
+|`L10-LABO-050-CASE-11`|`LABO-050-AC-03`|negative|CASE-01の採択前candidateを基準に、candidateをcanonicalへ変える操作だけを変異。|canonical化を拒否しcandidateのまま保持。target authorityはtarget ownerに残す。|
+|`L10-LABO-050-CASE-12`|`LABO-050-AC-03`|negative|CASE-01の過去source recordとidentity/revisionを保ち、後続観測でそのrecordを上書きする操作だけを変異する。設計注記: 固定親にないsource-owner identity入力やunknown-owner条件はfixtureへ追加しない。|上書きを拒否し、過去recordと後続観測を別状態で保持する。|
+|`L10-LABO-050-CASE-13`|`LABO-050-AC-03`|negative|CASE-01でtarget deployment resultだけ欠落。その他のreceiptは有効。|deployment resultを補わず循環未完了。target ownerへ戻す。|
+|`L10-LABO-050-CASE-14`|`LABO-050-AC-03`|negative|CASE-01でtarget operation resultだけ欠落。その他のreceiptは有効。|operation resultを補わず循環未完了。target ownerへ戻す。|
+|`L10-LABO-050-CASE-15`|`LABO-050-AC-03`|negative|CASE-01でtarget-change後のverification receiptだけ欠落。deployment/operation receiptは有効。|循環未完了。target ownerへ戻す。|
+|`L10-LABO-050-CASE-16`|`LABO-050-AC-03`|negative|有効source/ticket/experiment/target revision、OS assignment、評価済みcandidate、OS registration/routing完了を基準にし、target changeは未実施、verification/deployment/operation/re-observation/effect/regressionはopenとしCI成功receiptは既存状態に置く。唯一の変異はこのCI成功だけを根拠に後続義務完了を主張すること。|CI結果をstage receiptの代替にせず全open義務を保持する。登録はOS、target後段はtarget owner、再観測/評価はLABO。|
+|`L10-LABO-050-CASE-17`|`LABO-050-AC-03`|negative|有効source/ticket/experiment/target revisionでFeedback candidateは発行済み、OS registrationとtarget後続義務は未完。唯一の変異はFeedback発行だけで改善完了と主張すること。|candidate状態と未完義務を保つ。登録はOS、change/verification/operationはtarget owner、再観測/評価はLABO。|
+|`L10-LABO-050-CASE-18`|`LABO-050-AC-03`|negative|有効source/ticket/experiment/target revisionでOS registration完了、target change以降は未観測/open。唯一の変異はregistrationだけで完了と主張すること。|後続義務をopenのまま保つ。registrationはOS、変更/検証/運用はtarget owner、再観測/評価はLABO。|
+|`L10-LABO-050-CASE-19`|`LABO-050-AC-03`|negative|有効source/ticket/experiment/target revisionでtarget-change結果あり、verification/deployment/operation/re-observation/evaluationは未観測/open。唯一の変異はtarget-changeだけで完了と主張すること。|後続義務をopenのまま保ち、既存owner境界へ戻す。|
+|`L10-LABO-050-CASE-20`|`LABO-050-AC-03`|negative|CASE-01でtarget-change result receiptだけ欠落し、他のreceiptは有効。|change successを推測せず循環未完了。target ownerへ戻す。|
+|`L10-LABO-050-CASE-21`|`LABO-050-AC-03`|negative|有効なsource/ticket/experiment/target revisionとpositive candidate countを含む部分循環を基準にし、registration/change/verification/operation/re-observation/effect/regressionはopenのままにする。唯一の変異はcandidate countだけで循環完了と主張すること。|candidate countだけでは完了しない。countからcandidate adoption、registration、target change、後続結果を生成せず、各open dutyを既存owner境界に残す。|
+|`L10-LABO-050-CASE-22`|`LABO-050-AC-03`|negative|CASE-01と同じ有効なidentity・stage receipt・target revision・re-observationで、regression evaluationはありeffect evaluationだけ欠落。唯一の欠落はeffect evaluation。|effect未評価として完了を拒否しLABOへ戻す。regressionの有効結果を保持する。|
+|`L10-LABO-050-CASE-23`|`LABO-050-AC-03`|negative|CASE-01と同じ有効なidentity・stage receipt・target revision・re-observationで、effect evaluationはありregression evaluationだけ欠落。唯一の欠落はregression evaluation。|regression未評価として完了を拒否しLABOへ戻す。effectの有効結果を保持する。|
+|`L10-LABO-050-CASE-24`|`LABO-050-AC-03`|negative|CASE-01と同じassignment/ticket/experiment/target/result条件を保ち、Worker-result側ticket identityだけをassignment側と異なる値にする。|別ticketの証拠を結合せず完了を拒否し、OSへ戻す。|
+|`L10-LABO-050-CASE-25`|`LABO-050-AC-03`|negative|CASE-01を基準にWorker-result側experiment identityだけ欠落させる。他のidentity/receiptは有効。|experimentを推測・結合せず評価を未完了に保ち、experiment/evaluation bindingを担うLABOへ戻す。|
+|`L10-LABO-050-CASE-26`|`LABO-050-AC-03`|negative|CASE-01を基準にWorker-result側target revisionだけ欠落。他のidentity/receiptとcurrent target revisionは有効。|欠落版を補完せずcurrent結果として扱わない。実験評価bindingを担うLABOへ戻し、target authorityはtarget ownerに残す。|
+|`L10-LABO-050-CASE-27`|`LABO-050-AC-03`|negative|CASE-01を基準にOS assignmentとその他identityを有効に保ち、Worker-result receiptだけ欠落。|Worker実行結果を推測せず評価を未完了に保ち、OSへ戻す。|
+|`L10-LABO-050-CASE-28`|`LABO-050-AC-03`|negative|CASE-01を基準にWorker resultとepisode/experiment/ticketを有効に保ち、OS assignment receiptのtarget identityだけWorker result/current targetと異なる値にする。|assignment/resultを結合せず完了を拒否しOSへ戻す。|
+|`L10-LABO-050-CASE-29`|`LABO-050-AC-03`|negative|CASE-01の11段階すべてのreceipt・identity・結果を有効に保ち、stage event順序だけを変え、OS registration/routingをFeedback Candidateより先に置く。|固定段階順序との不一致を受け入れず循環を未完了に保つ。LABO評価の責務区分は維持する。|
+|`L10-LABO-050-CASE-30`|`LABO-050-AC-03`|negative|CASE-01からticket/experiment/target identity、OS assignment、Worker result、registration、candidateなど前段receiptを引き継いで有効に保つ。target changeとverification receiptも有効とし、deployment/operation/re-observation/effect/regression receiptだけは未観測/open。唯一の変異はverification receiptだけを根拠に循環完了を出力すること。|verificationだけで完了とせず循環を未完了に保つ。deployment/operationはtarget owner、re-observation/effect/regression evaluationはLABOの既存責務に残す。|
+
+Stage 5のCASE IDはこの本文で各々の種類・参照先を定義する。CASE-01/02は正常fixture、03gは非独立ラベル、07/08/09/10は非独立索引、CASE-24–30は本追補で追加した単独fixtureである。定義は37件（独立fixture32件、非独立ラベル/索引5件）であり、索引・ラベルをnegative分母へ加えない。
