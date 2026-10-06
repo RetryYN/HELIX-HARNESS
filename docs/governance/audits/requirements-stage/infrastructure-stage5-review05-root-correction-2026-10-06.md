@@ -1,0 +1,9 @@
+# INFRA Stage 5 review05補正検収
+
+本文revision `bf6d73e7c8d0888b2514116be33d8005780b50a9`。正式指摘Major 1・Minor 3とFable情報i4の対応を新時点記録へ固定する。独立再レビューと委任判断は未成立。
+
+062/065の失敗時は部分結果・未完の復旧義務を既存ownerへ引き継ぐ。出力側の義務を入力field不在と混同して弱めた旧Root補正を撤回し、稼働版と適格rollback先は明記した合成baselineの値を保持する。値を推定しない。旧監査は不変。
+
+正常fixtureの同一性注記、FR075の非重複計数、004の記法もそろえた。Root追加検収で基準表item17の漏れを補正し、6本文prefix・86元ID・18正常の四者一致を再計算した。固定3群・旧source2群の全文SHA/span/literalも再計算一致。静的検証はgovcheck成功、validate147/fail0、stale0、residuals0、diff-check成功。
+
+JSON SHA-256: `b1c15f8641e05a3a18cae042a10b699af1a0fad5698fb14310d984ba627c699f`。合成値は実環境revisionや実行証拠ではない。

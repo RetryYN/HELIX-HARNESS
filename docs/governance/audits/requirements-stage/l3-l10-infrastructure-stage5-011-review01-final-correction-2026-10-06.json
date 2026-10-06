@@ -1,0 +1,466 @@
+{
+  "record_type": "immutable_review01_final_root_correction_supplement",
+  "status": "worker_final_correction_body_and_audit_recorded_root_review_pending",
+  "date": "2026-10-06",
+  "worktree": "/home/tenni/.helix-worktrees/l3-infrastructure-stage5-main-publication",
+  "branch": "codex/infrastructure-stage5-main-publication",
+  "target": "HELIXINFRASTRUCTURE-L2-011 / 1.0 / Stage 5",
+  "basis": {
+    "latest_main": "190d23aac79ee24b78e3666aae5506a5d85a45b5",
+    "formal_review_comment_id": 6005327368,
+    "original_review_head": "fd8df806ce9bb6cbed6f2a291365ce8d4d0fd111",
+    "prior_body_head": "b13ea76ab98728f662411789ae413b89af7a6fb0",
+    "prior_worker_audit_commit": "d3ece7ded8a8df45b9dcfbd8e613fbe5ccd1a84a",
+    "prior_immutable_audit_json": "docs/governance/audits/requirements-stage/l3-l10-infrastructure-stage5-011-review01-correction-2026-10-06.json",
+    "prior_immutable_audit_json_sha256": "f2e3dadea0b2626afcceae47a1325c1ed83fd53f3c18bcb04ed1544b4c5d7df3",
+    "prior_immutable_audit_md": "docs/governance/audits/requirements-stage/l3-l10-infrastructure-stage5-011-review01-correction-2026-10-06.md",
+    "prior_immutable_audit_md_sha256": "40e27f00826201c47c7161dda239f9c220fae752ac5293c33cef5e988f30a02a",
+    "body_commit": "131c1c513ef134772c1f57726429d7507e6aa471"
+  },
+  "root_finding_disposition": [
+    {
+      "finding": "L10 CASE count stale at 76",
+      "disposition": "fixed",
+      "detail": "Updated to 85 with explicit fixture-format groups: 54 unit, 4 operation, 9 recovery, 9 connection/composite, 2 scope, 6 environment/operation negative, 1 partial-composite. Count is not semantic coverage or execution proof."
+    },
+    {
+      "finding": "CASE-072 composite normal tuple contains negative unit results and underspecified connections",
+      "disposition": "fixed",
+      "detail": "Listed exact 18 full normal CASE IDs excluding 029 unknown and 047 missing; declared all four CORE/OS/SECURITY/Worker normal tuples. CASE-076 reuses the normal connection tuple set."
+    },
+    {
+      "finding": "CASE-085 partial result lacks missing component/source and unfinished duty",
+      "disposition": "fixed",
+      "detail": "Changed only composite_result to a structured partial value identifying missing connection-result receipt, source revision, unfinished recording duty, and responsible owner unknown; active revision and eligible rollback target remain unchanged."
+    },
+    {
+      "finding": "Operation normal baselines omit fixed operation prerequisites",
+      "disposition": "fixed",
+      "detail": "CASE-055 now carries target/action/revision/scope/expiry, SECURITY authority, Worker contract, OS work/ticket and L2-009 connection, with read-only/no-write/no-state-change. CASE-056 carries accepted update admission and applicable recovery duty/result; 082–084 keep single-field mutations against those baselines."
+    },
+    {
+      "finding": "Storage index selectors/owner language and baselines mismatch",
+      "disposition": "fixed",
+      "detail": "FR rows 016–018 align to one baseline literal, selector uses persistent_storage.recovery, unknown owner remains source/design owner, and prose is Japanese."
+    },
+    {
+      "finding": "FR row 029 has five cells",
+      "disposition": "fixed",
+      "detail": "Separated single-field mutation and pre-mutation baseline into the standard six-column row."
+    },
+    {
+      "finding": "CASE-055 omitted from AC-03 trace",
+      "disposition": "fixed",
+      "detail": "Added CASE-055 to AC-03 trace only; did not create or count a duplicate fixture."
+    }
+  ],
+  "fixed_source_pin": {
+    "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+    "full_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+    "bytes": 60825,
+    "span_lines": "128–132",
+    "span_sha256": "77dcad2f934c9f4e04e27e3ccc22368bd8e397c5a6464827826e34b882387954",
+    "span_bytes": 2411,
+    "literal": "- **親L1**：`HELIXINFRASTRUCTURE-L1-021`、`HELIXINFRASTRUCTURE-L1-028`、`HELIXINFRASTRUCTURE-L1-029`、`HELIXINFRASTRUCTURE-L1-039`。\n- **入力**：INFRASTRUCTUREの限定操作要求（target/project/action/revision/scope/expiry）、SECURITYのauthority/credential/network/isolation/egress条件、通常OS/Worker経路ではOS assignment/ticket、実行後のWorker結果receipt。結果receiptは開始前の入力ではなく後段で受け取る。更新・変更を適用するoperationに限り、該当target/revision/scopeのSECURITY update-admission状態を受ける。独立bootstrap/recovery operationではL2-006のresource/pathと別SECURITY authorityを入力にし、停止中OSのticketを開始条件にしない。\n- **提供**：SECURITYで認可された範囲だけをWorkerが実行し、操作対象、scope、before/after resource state、結果/evidenceへ接続する実操作経路。\n- **保証**：INFRASTRUCTUREがsecurity policyや自身のauthorityを作らず、credential valueをresource normal state、backup、snapshotへ無条件に保存しない。Workerは無制限Shell主体にならない。実操作はOS/SECURITY/Workerの役割を越えずに停止・回収できる。\n- **単独成立の依存・版**：全operationでL2-001の対象resource/actual stateと、対象・action・revision・scope・expiryに適用される有効なSECURITY authorityを照合する。全実操作はSECURITY制約下のWorker実行契約を通す。通常OS/Worker経路ではOS assignment/ticketとL2-009 Work/Change接続を用いる。更新・変更を適用する場合のみ、該当target/revision/scopeのSECURITY update admissionがacceptedであることを追加条件とする。state-changing operationでは、そのactionに適用されるL2-005のbefore/after、backup/restore/rollback/recovery義務を確認し、該当義務が不明または未充足なら変更を保留する。無関係な復旧義務を全操作へ一律要求しない。bootstrap/recovery operationもSECURITY制約下のWorker実行契約を通し、L2-006の独立resource/pathと別SECURITY authorityを開始条件とする。OS/通常Control Plane停止中にそのticketまたは通常L2-009応答を必須にせず、復旧後はoperation/resultをOSへ同期する。この限定は通常operation ticket/authorityの一般免除ではない。`version_target: 1.0`。\n",
+    "lf_only": true
+  },
+  "immutable_prior_audit": {
+    "json_sha256": "f2e3dadea0b2626afcceae47a1325c1ed83fd53f3c18bcb04ed1544b4c5d7df3",
+    "md_sha256": "40e27f00826201c47c7161dda239f9c220fae752ac5293c33cef5e988f30a02a",
+    "modified": false
+  },
+  "six_document_prefix_suffix_pins": [
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "main_prefix_sha256": "1a8fb9915d5da9ad4ec9277ab2b1655b8eae4ed31fffa16fe4c663269345dbc5",
+      "main_prefix_bytes": 67681,
+      "prefix_exact_raw_byte_match": true,
+      "appended_suffix_sha256": "a877be51d4997cf9b64198fd5a125d9610f2563f2377ec01ccab68c727ba792f",
+      "appended_suffix_bytes": 69105,
+      "current_file_sha256": "ce73232b3de400325dd3252a8692f24f6c23e5d4dd079cda467294e8985cea5b",
+      "current_bytes": 136786
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "main_prefix_sha256": "346043f260c3f75cf826ba4a15ee2242b6e48c38be5c040641af5d7586f495c3",
+      "main_prefix_bytes": 5095,
+      "prefix_exact_raw_byte_match": true,
+      "appended_suffix_sha256": "5fa8ad3e027029b74bb40d6717ddc6887b4be308377623e37792ceaf4fc97cfc",
+      "appended_suffix_bytes": 539,
+      "current_file_sha256": "ae52129704c61e225a62fba1e614198ed299c0a06abebb21f67d377150cabf37",
+      "current_bytes": 5634
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "main_prefix_sha256": "48bfcbda956a3808aab109c9b529acc18ba9d541bde992074cca02abbc9c97ba",
+      "main_prefix_bytes": 17841,
+      "prefix_exact_raw_byte_match": true,
+      "appended_suffix_sha256": "f554015f22a4a12d58ec99c0f228d69b93757db0309854054e0d06162e3b1777",
+      "appended_suffix_bytes": 1337,
+      "current_file_sha256": "29dc27a828e8100bffad4f381eb36363270305d79aa1d988636b51250a17f95f",
+      "current_bytes": 19178
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "main_prefix_sha256": "4b17567033e91c39f4f8dae1867ac1ace6438b01584d121b52b4aa9d22019df7",
+      "main_prefix_bytes": 112748,
+      "prefix_exact_raw_byte_match": true,
+      "appended_suffix_sha256": "b9c3ef9d1651417f773e3a4dff9f7157e2e7db0b0385b9a09673ae28178ef0c4",
+      "appended_suffix_bytes": 98887,
+      "current_file_sha256": "231ca68705b4e2d56c4c7f574968e35315cf83a0858a62e99012694626ccbc57",
+      "current_bytes": 211635
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "main_prefix_sha256": "5870331546272a2eaaac93738b66ad3994312e9ce426ebc3fcfc59e10bf2c137",
+      "main_prefix_bytes": 4041,
+      "prefix_exact_raw_byte_match": true,
+      "appended_suffix_sha256": "2a42ae8b356481ff0dc50cfd9142b50e4992fa2577420d99d5dc968c15e152c4",
+      "appended_suffix_bytes": 566,
+      "current_file_sha256": "ca24d0a8e04dd441e6a4046857ebc911b5ced0f17c9a7b5fbd34ba7b92d513a9",
+      "current_bytes": 4607
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "main_prefix_sha256": "f895dbdd8e74ac2d90016b098fd03edd8ae6391df05d4ca69d0902de04b04682",
+      "main_prefix_bytes": 16628,
+      "prefix_exact_raw_byte_match": true,
+      "appended_suffix_sha256": "27782584788a542f7a8e69162fbc02d9083fd651e364a169c01c70e9c94242a4",
+      "appended_suffix_bytes": 660,
+      "current_file_sha256": "a47302b18af569d4422a96fdd657db47f47b06579dc452d5bb7afce74033d6a7",
+      "current_bytes": 17288
+    }
+  ],
+  "case_inventory": {
+    "total": 85,
+    "ids": [
+      "CASE-INFRA-011-S5-001",
+      "CASE-INFRA-011-S5-002",
+      "CASE-INFRA-011-S5-003",
+      "CASE-INFRA-011-S5-004",
+      "CASE-INFRA-011-S5-005",
+      "CASE-INFRA-011-S5-006",
+      "CASE-INFRA-011-S5-007",
+      "CASE-INFRA-011-S5-008",
+      "CASE-INFRA-011-S5-009",
+      "CASE-INFRA-011-S5-010",
+      "CASE-INFRA-011-S5-011",
+      "CASE-INFRA-011-S5-012",
+      "CASE-INFRA-011-S5-013",
+      "CASE-INFRA-011-S5-014",
+      "CASE-INFRA-011-S5-015",
+      "CASE-INFRA-011-S5-016",
+      "CASE-INFRA-011-S5-017",
+      "CASE-INFRA-011-S5-018",
+      "CASE-INFRA-011-S5-019",
+      "CASE-INFRA-011-S5-020",
+      "CASE-INFRA-011-S5-021",
+      "CASE-INFRA-011-S5-022",
+      "CASE-INFRA-011-S5-023",
+      "CASE-INFRA-011-S5-024",
+      "CASE-INFRA-011-S5-025",
+      "CASE-INFRA-011-S5-026",
+      "CASE-INFRA-011-S5-027",
+      "CASE-INFRA-011-S5-028",
+      "CASE-INFRA-011-S5-029",
+      "CASE-INFRA-011-S5-030",
+      "CASE-INFRA-011-S5-031",
+      "CASE-INFRA-011-S5-032",
+      "CASE-INFRA-011-S5-033",
+      "CASE-INFRA-011-S5-034",
+      "CASE-INFRA-011-S5-035",
+      "CASE-INFRA-011-S5-036",
+      "CASE-INFRA-011-S5-037",
+      "CASE-INFRA-011-S5-038",
+      "CASE-INFRA-011-S5-039",
+      "CASE-INFRA-011-S5-040",
+      "CASE-INFRA-011-S5-041",
+      "CASE-INFRA-011-S5-042",
+      "CASE-INFRA-011-S5-043",
+      "CASE-INFRA-011-S5-044",
+      "CASE-INFRA-011-S5-045",
+      "CASE-INFRA-011-S5-046",
+      "CASE-INFRA-011-S5-047",
+      "CASE-INFRA-011-S5-048",
+      "CASE-INFRA-011-S5-049",
+      "CASE-INFRA-011-S5-050",
+      "CASE-INFRA-011-S5-051",
+      "CASE-INFRA-011-S5-052",
+      "CASE-INFRA-011-S5-053",
+      "CASE-INFRA-011-S5-054",
+      "CASE-INFRA-011-S5-055",
+      "CASE-INFRA-011-S5-056",
+      "CASE-INFRA-011-S5-057",
+      "CASE-INFRA-011-S5-058",
+      "CASE-INFRA-011-S5-059",
+      "CASE-INFRA-011-S5-060",
+      "CASE-INFRA-011-S5-061",
+      "CASE-INFRA-011-S5-062",
+      "CASE-INFRA-011-S5-063",
+      "CASE-INFRA-011-S5-064",
+      "CASE-INFRA-011-S5-065",
+      "CASE-INFRA-011-S5-066",
+      "CASE-INFRA-011-S5-067",
+      "CASE-INFRA-011-S5-068",
+      "CASE-INFRA-011-S5-069",
+      "CASE-INFRA-011-S5-070",
+      "CASE-INFRA-011-S5-071",
+      "CASE-INFRA-011-S5-072",
+      "CASE-INFRA-011-S5-073",
+      "CASE-INFRA-011-S5-074",
+      "CASE-INFRA-011-S5-075",
+      "CASE-INFRA-011-S5-076",
+      "CASE-INFRA-011-S5-077",
+      "CASE-INFRA-011-S5-078",
+      "CASE-INFRA-011-S5-079",
+      "CASE-INFRA-011-S5-080",
+      "CASE-INFRA-011-S5-081",
+      "CASE-INFRA-011-S5-082",
+      "CASE-INFRA-011-S5-083",
+      "CASE-INFRA-011-S5-084",
+      "CASE-INFRA-011-S5-085"
+    ],
+    "format_counts": {
+      "unit": 54,
+      "operation": 4,
+      "recovery": 9,
+      "connection_composite": 9,
+      "scope": 2,
+      "environment_operation_negative": 6,
+      "partial_composite": 1
+    },
+    "changed_case_literals": [
+      {
+        "case_id": "CASE-INFRA-011-S5-016",
+        "line_start": 569,
+        "line_end": 577,
+        "byte_start": 133676,
+        "byte_end_exclusive": 135867,
+        "literal_bytes": 2191,
+        "sha256": "d0866f34e371d553bd16af62db5ae29ed2b4deaae39162b83ccedcd80d1c87b7",
+        "literal": "#### CASE-INFRA-011-S5-016 — 項目06 Compute/Network/Storage / 正常\n\n- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `compute={resource=worker-host-sim,cpu=2-vCPU,memory=4-GiB}; network={path=api-to-db-sim,protocol=tcp,direction=outbound,purpose=state-read,boundary=app-to-data}; persistent_storage={id=state-vol-sim,kind=persistent,size=10-GiB,location=zone-sim-a,owner=storage-owner-sim,durability=durable-sim,backup=backup-sim-01,retention=retention-sim,environment=verification-sim,confidentiality=confidential-sim,recovery=recovery-sim-01}; temporary_storage={id=cache-vol-sim,kind=temporary,size=2-GiB,location=zone-sim-a,owner=storage-owner-sim,durability=ephemeral-sim,backup=not-applicable-sim,retention=session-sim,environment=verification-sim,confidentiality=internal-sim,recovery=not-applicable-sim}; source_revision=sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。\n- 変異: 基準入力。記載field/valueをそのまま提示し、他項目・共通scope・source revisionは固定。\n- 入力: compute={resource=worker-host-sim,cpu=2-vCPU,memory=4-GiB}; network={path=api-to-db-sim,protocol=tcp,direction=outbound,purpose=state-read,boundary=app-to-data}; persistent_storage={id=state-vol-sim,kind=persistent,size=10-GiB,location=zone-sim-a,owner=storage-owner-sim,durability=durable-sim,backup=backup-sim-01,retention=retention-sim,environment=verification-sim,confidentiality=confidential-sim,recovery=recovery-sim-01}; temporary_storage={id=cache-vol-sim,kind=temporary,size=2-GiB,location=zone-sim-a,owner=storage-owner-sim,durability=ephemeral-sim,backup=not-applicable-sim,retention=session-sim,environment=verification-sim,confidentiality=internal-sim,recovery=not-applicable-sim}; source_revision=sim-r1\n- oracle: compute/network/永続・一時storageの属性と観測値をsource付きで記録する。recoveryを含む固定7属性を保持する。\n- owner/戻し先: resource/path/storage sourceまたは設計ownerは固定親で未特定=unknown。CONNECTは論理接続とphysical pathの区別に限る。\n- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。\n\n",
+        "lf_only": true
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-017",
+        "line_start": 578,
+        "line_end": 586,
+        "byte_start": 135867,
+        "byte_end_exclusive": 137969,
+        "literal_bytes": 2102,
+        "sha256": "448d4d743f56895ed93fdf241e15ad435ee7412dd2ce449c44a2cacfe65d263b",
+        "literal": "#### CASE-INFRA-011-S5-017 — 項目06 Compute/Network/Storage / missing\n\n- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `compute={resource=worker-host-sim,cpu=2-vCPU,memory=4-GiB}; network={path=api-to-db-sim,protocol=tcp,direction=outbound,purpose=state-read,boundary=app-to-data}; persistent_storage={id=state-vol-sim,kind=persistent,size=10-GiB,location=zone-sim-a,owner=storage-owner-sim,durability=durable-sim,backup=backup-sim-01,retention=retention-sim,environment=verification-sim,confidentiality=confidential-sim,recovery=recovery-sim-01}; temporary_storage={id=cache-vol-sim,kind=temporary,size=2-GiB,location=zone-sim-a,owner=storage-owner-sim,durability=ephemeral-sim,backup=not-applicable-sim,retention=session-sim,environment=verification-sim,confidentiality=internal-sim,recovery=not-applicable-sim}; source_revision=sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。\n- 変異: persistent_storage.recoveryだけを空欄にする\n- 入力: compute={resource=worker-host-sim,cpu=2-vCPU,memory=4-GiB}; network={path=api-to-db-sim,protocol=tcp,direction=outbound,purpose=state-read,boundary=app-to-data}; persistent_storage={id=state-vol-sim,kind=persistent,size=10-GiB,location=zone-sim-a,owner=storage-owner-sim,durability=durable-sim,backup=backup-sim-01,retention=retention-sim,environment=verification-sim,confidentiality=confidential-sim,recovery=}; temporary_storage={id=cache-vol-sim,kind=temporary,size=2-GiB,location=zone-sim-a,owner=storage-owner-sim,durability=ephemeral-sim,backup=not-applicable-sim,retention=session-sim,environment=verification-sim,confidentiality=internal-sim,recovery=not-applicable-sim}; source_revision=sim-r1\n- oracle: 永続storageのrecovery参照を未完としてsource owner=unknownへ返す。その他のfieldはbaselineを保持する。\n- owner/戻し先: resource/path/storage sourceまたは設計ownerは固定親で未特定=unknown。CONNECTは論理接続とphysical pathの区別に限る。\n- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。\n\n",
+        "lf_only": true
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-018",
+        "line_start": 587,
+        "line_end": 595,
+        "byte_start": 137969,
+        "byte_end_exclusive": 140122,
+        "literal_bytes": 2153,
+        "sha256": "584616a995643a05d03f0f13598801c355aa2b4d32f5ceb5fead5c5a86fe0732",
+        "literal": "#### CASE-INFRA-011-S5-018 — 項目06 Compute/Network/Storage / unknown\n\n- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `compute={resource=worker-host-sim,cpu=2-vCPU,memory=4-GiB}; network={path=api-to-db-sim,protocol=tcp,direction=outbound,purpose=state-read,boundary=app-to-data}; persistent_storage={id=state-vol-sim,kind=persistent,size=10-GiB,location=zone-sim-a,owner=storage-owner-sim,durability=durable-sim,backup=backup-sim-01,retention=retention-sim,environment=verification-sim,confidentiality=confidential-sim,recovery=recovery-sim-01}; temporary_storage={id=cache-vol-sim,kind=temporary,size=2-GiB,location=zone-sim-a,owner=storage-owner-sim,durability=ephemeral-sim,backup=not-applicable-sim,retention=session-sim,environment=verification-sim,confidentiality=internal-sim,recovery=not-applicable-sim}; source_revision=sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。\n- 変異: network.boundaryだけをunknownにする\n- 入力: compute={resource=worker-host-sim,cpu=2-vCPU,memory=4-GiB}; network={path=api-to-db-sim,protocol=tcp,direction=outbound,purpose=state-read,boundary=unknown}; persistent_storage={id=state-vol-sim,kind=persistent,size=10-GiB,location=zone-sim-a,owner=storage-owner-sim,durability=durable-sim,backup=backup-sim-01,retention=retention-sim,environment=verification-sim,confidentiality=confidential-sim,recovery=recovery-sim-01}; temporary_storage={id=cache-vol-sim,kind=temporary,size=2-GiB,location=zone-sim-a,owner=storage-owner-sim,durability=ephemeral-sim,backup=not-applicable-sim,retention=session-sim,environment=verification-sim,confidentiality=internal-sim,recovery=not-applicable-sim}; source_revision=sim-r1\n- oracle: network path照合を保留し、resource sourceまたは設計ownerは固定親で特定できなければunknown。CONNECTは論理接続とphysical pathの区別に限る。\n- owner/戻し先: resource/path/storage sourceまたは設計ownerは固定親で未特定=unknown。CONNECTは論理接続とphysical pathの区別に限る。\n- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。\n\n",
+        "lf_only": true
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-029",
+        "line_start": 686,
+        "line_end": 694,
+        "byte_start": 152228,
+        "byte_end_exclusive": 153224,
+        "literal_bytes": 996,
+        "sha256": "3a46df506d36d6deb794d4a74653f1208cd085217cb55d75e3372877ce8dd168",
+        "literal": "#### CASE-INFRA-011-S5-029 — 項目10 Incident state / unknown\n\n- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `runtime_state=degraded-sim; observation={signal=sim-signal-01,state=degraded-sim,source=collector-sim@sim-r1}; incident_classification=not-requested`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。\n- 変異: runtime_stateだけをunknownにする\n- 入力: runtime_state=unknown; observation={signal=sim-signal-01,state=degraded-sim,source=collector-sim@sim-r1}; incident_classification=not-requested\n- oracle: degradedという観測状態をunknownへ丸めず、runtime_state=unknownを保持する。observation source owner=unknownへ戻し、incident classification/severityは生成しない。\n- owner/戻し先: 観測stateの欠落・不一致はobservation source owner=unknownへ戻す。incident meaningはこのfixtureで判定しない。\n- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。\n\n",
+        "lf_only": true
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-055",
+        "line_start": 920,
+        "line_end": 928,
+        "byte_start": 179546,
+        "byte_end_exclusive": 181741,
+        "literal_bytes": 2195,
+        "sha256": "cfe43f43d47723e8c2288ab0470eb76d34ce8d6b02065e7f6dbd353bad7d95b2",
+        "literal": "#### CASE-INFRA-011-S5-055 — 操作別 通常read-only正常\n\n- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `request={target=api-db-sim-01,action=inspect-sim,revision=infra-runtime-sim@sim-r17,scope=infra-011-stage5-sim,environment=verification-sim,expiry=sim-expiry-01}; security_authority={ref=security-authority-sim-01,source=SECURITY-sim@sim-r3,revision=sim-r3,action=inspect-sim,scope=verification-sim,expiry=sim-expiry-01}; worker={contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01,resource=worker-host-sim@sim-r1}; os={ticket=os-work-sim-01,change=os-change-sim-01,revision=os-rev-sim-4,scope=verification-sim,runtime=api-db-sim-01@infra-runtime-sim-r17}; write_scope=declared; writes=none; before=sim-r1; after=sim-r1`。対象scopeは `infra-011-stage5-sim`、環境identityは `verification-sim`、親source revisionは `sim-r1`。\n- 変異: 正常fixture。変異なし。18 unit itemの値は再判定しない。\n- 入力: request={target=api-db-sim-01,action=inspect-sim,revision=infra-runtime-sim@sim-r17,scope=infra-011-stage5-sim,environment=verification-sim,expiry=sim-expiry-01}; security_authority={ref=security-authority-sim-01,source=SECURITY-sim@sim-r3,revision=sim-r3,action=inspect-sim,scope=verification-sim,expiry=sim-expiry-01}; worker={contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01,resource=worker-host-sim@sim-r1}; os={ticket=os-work-sim-01,change=os-change-sim-01,revision=os-rev-sim-4,scope=verification-sim,runtime=api-db-sim-01@infra-runtime-sim-r17}; write_scope=declared; writes=none; before=sim-r1; after=sim-r1\n- oracle: L2-010に従いtarget/action/revision/scope/expiry、SECURITY authority、SECURITY制約下Worker契約、通常OS assignment/ticketとL2-009 Work/Change接続を個別に確認する。read-onlyのwriteなし・operation起因の状態変更なしを照合する。read-onlyへ適用根拠のないrecovery dutyは要求しない。\n- owner/戻し先: 正常時は戻し先なし。各参照の不一致・欠落時だけ既存SECURITY/Worker/OS source ownerへ戻し、owner未特定はunknown。\n- trace: `INFRA-011-AC-03`。合成fixtureの設計候補であり未実行。\n\n",
+        "lf_only": true
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-056",
+        "line_start": 929,
+        "line_end": 937,
+        "byte_start": 181741,
+        "byte_end_exclusive": 184037,
+        "literal_bytes": 2296,
+        "sha256": "4cdaa82db94d2cfdc9defb6568023b7b462e8466038e5605cc3d00bbb731806d",
+        "literal": "#### CASE-INFRA-011-S5-056 — 操作別 適用recovery duty付きstate change正常\n\n- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `request={target=api-db-sim-01,action=replace-sim,revision=sim-r2,scope=infra-011-stage5-sim,environment=verification-sim,expiry=sim-expiry-01}; security_authority={ref=security-authority-sim-01,source=SECURITY-sim@sim-r3,revision=sim-r3,action=replace-sim,scope=verification-sim,expiry=sim-expiry-01}; update_admission=accepted; worker={contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01,resource=worker-host-sim@sim-r1}; os={ticket=os-work-sim-01,change=os-change-sim-01,revision=os-rev-sim-4,scope=verification-sim,runtime=api-db-sim-01@infra-runtime-sim-r17}; applicable_duty=restore-check-sim; duty_result=sim-verified; before=sim-r1; after=sim-r2`。対象scopeは `infra-011-stage5-sim`、環境identityは `verification-sim`、親source revisionは `sim-r1`。\n- 変異: 正常fixture。変異なし。18 unit itemの値は再判定しない。\n- 入力: request={target=api-db-sim-01,action=replace-sim,revision=sim-r2,scope=infra-011-stage5-sim,environment=verification-sim,expiry=sim-expiry-01}; security_authority={ref=security-authority-sim-01,source=SECURITY-sim@sim-r3,revision=sim-r3,action=replace-sim,scope=verification-sim,expiry=sim-expiry-01}; update_admission=accepted; worker={contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01,resource=worker-host-sim@sim-r1}; os={ticket=os-work-sim-01,change=os-change-sim-01,revision=os-rev-sim-4,scope=verification-sim,runtime=api-db-sim-01@infra-runtime-sim-r17}; applicable_duty=restore-check-sim; duty_result=sim-verified; before=sim-r1; after=sim-r2\n- oracle: L2-010に従いtarget/action/revision/scope/expiry、有効なSECURITY authority、accepted update admission、SECURITY制約下Worker契約、通常OS assignment/ticketとL2-009 Work/Change接続、適用recovery dutyを個別に照合する。before/after stateと義務resultを記録し、実operation許可は生成しない。\n- owner/戻し先: 正常時は戻し先なし。欠落・不一致は該当SECURITY/OS/Worker/recovery source ownerへ戻し、固定親で特定されないownerはunknown。\n- trace: `INFRA-011-AC-03`。合成fixtureの設計候補であり未実行。\n\n",
+        "lf_only": true
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-072",
+        "line_start": 1073,
+        "line_end": 1081,
+        "byte_start": 198297,
+        "byte_end_exclusive": 200621,
+        "literal_bytes": 2324,
+        "sha256": "9f2e2d0cff768f0d7648ab3650143226042106130bc0b635389d4642586fdbbf",
+        "literal": "#### CASE-INFRA-011-S5-072 — 接続/合成 composite正常\n\n- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `unit_results={CASE-INFRA-011-S5-001=normal@sim-r1,CASE-INFRA-011-S5-004=normal@sim-r1,CASE-INFRA-011-S5-007=normal@sim-r1,CASE-INFRA-011-S5-010=normal@sim-r1,CASE-INFRA-011-S5-013=normal@sim-r1,CASE-INFRA-011-S5-016=normal@sim-r1,CASE-INFRA-011-S5-019=normal@sim-r1,CASE-INFRA-011-S5-022=normal@sim-r1,CASE-INFRA-011-S5-025=normal@sim-r1,CASE-INFRA-011-S5-028=normal@sim-r1,CASE-INFRA-011-S5-032=normal@sim-r1,CASE-INFRA-011-S5-035=normal@sim-r1,CASE-INFRA-011-S5-038=normal@sim-r1,CASE-INFRA-011-S5-041=normal@sim-r1,CASE-INFRA-011-S5-044=normal@sim-r1,CASE-INFRA-011-S5-046=normal@sim-r1,CASE-INFRA-011-S5-050=normal@sim-r1,CASE-INFRA-011-S5-052=normal@sim-r1}; connections={CORE={design=core-infra-sim@sim-r5,target_scope=infra-011-stage5-sim};OS={work=os-work-sim-01,change=os-change-sim-01,revision=os-rev-sim-4,scope=verification-sim,runtime=api-db-sim-01@infra-runtime-sim-r17};SECURITY={authority=security-authority-sim-01@sim-r3,scope=verification-sim};Worker={contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01,resource=worker-host-sim@sim-r1,mapping=worker-sim→worker-host-sim}}; scope=infra-011-stage5-sim; environment=verification-sim; source_revision=sim-r1; current_active_revision=sim-r8; eligible_rollback_target={revision=sim-r7,artifact=artifact-sim-r7,config=cfg-sim-r7,dependency=dep-sim-r7,data_ref=data-sim-r7,procedure=rollback-sim-r7}; composite_result=sim-complete; unfinished_duties=none`。\n- 変異: 正常fixture。変異なし。列挙した18 normal unit fixtureと4 normal connection tupleを使う。CASE-029 unknownとCASE-047 missingは含めない。\n- 入力: 上記全fieldをそのまま提示する。unit results、4 connection tuple、稼働版、適格rollback先、composite result、未完義務をそれぞれ明示する。\n- oracle: 18 unit、各connection、compositeを別々に記録し、未完義務なしとする。独立business outcome/approval/release/executionは生成しない。\n- owner/戻し先: 正常時は戻し先なし。未完時のみ該当するunit/connection ownerへ戻し、固定親で特定されなければunknown。\n- trace: `INFRA-011-AC-03`。合成fixtureの設計候補であり未実行。\n\n",
+        "lf_only": true
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-076",
+        "line_start": 1109,
+        "line_end": 1117,
+        "byte_start": 203787,
+        "byte_end_exclusive": 204661,
+        "literal_bytes": 874,
+        "sha256": "b2c06790cd3e7cec1c38a538aa4f7ec37617bdd48129c6eef7b02288145c5196",
+        "literal": "#### CASE-INFRA-011-S5-076 — 接続/合成 外部authority非生成\n\n- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `unit_results=CASE-INFRA-011-S5-072.normal.unit_results; connections=CASE-INFRA-011-S5-072.normal.connections; external_approval=none; execution_state=not_requested`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。\n- 変異: 正常fixture。変異なし。\n- 入力: unit_results=CASE-INFRA-011-S5-072.normal.unit_results; connections=CASE-INFRA-011-S5-072.normal.connections; external_approval=none; execution_state=not_requested\n- oracle: L3候補から承認・実装・操作・配布状態を生成しない。\n- owner/戻し先: 戻し先なし。authority/approval/実行stateはこのL3候補から生成しない。\n- trace: `INFRA-011-AC-01..04`。合成fixtureの設計候補であり未実行。\n\n",
+        "lf_only": true
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-085",
+        "line_start": 1190,
+        "line_end": 1197,
+        "byte_start": 210287,
+        "byte_end_exclusive": 211635,
+        "literal_bytes": 1348,
+        "sha256": "68021a2e01a910ba6ad5135b576e65e20fa072f0db369723770f57930b1b121d",
+        "literal": "#### CASE-INFRA-011-S5-085 — composite部分結果と稼働版/適格rollback先保持\n\n- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baselineはCASE-INFRA-011-S5-072 normal fixture。scope/source、18 unit results、4 connection tuple、current_active_revision=sim-r8、eligible_rollback_target=sim-r7とartifact/config/dependency/data/procedureはすべて固定。\n- 変異: `composite_result`だけを`sim-complete`から`{state=partial,missing_component={field=connection-result-receipt,source=connection-result-sim@sim-r1},unfinished_duties=[record-connection-result-sim],responsible_owner=unknown}`へ置換する。他fieldはbaselineのまま。\n- 入力: S5-072の全fieldを保持し、composite_result={state=partial,missing_component={field=connection-result-receipt,source=connection-result-sim@sim-r1},unfinished_duties=[record-connection-result-sim],responsible_owner=unknown}。\n- oracle: 構成体を未成立にし、partial result、欠落field/source、未完義務、責務owner=unknownを保持する。current active revisionと適格rollback targetも保持し、rollback実行や成功を生成しない。\n- owner/戻し先: connection-result責務ownerは固定親で特定されないためunknownを維持する。\n- trace: `INFRA-011-AC-03`。合成fixtureの設計候補であり未実行。\n",
+        "lf_only": true
+      }
+    ],
+    "interpretation_limit": "Authored fixture blocks and static trace references only; no semantic guarantee, dynamic execution, pass, or complete coverage claim."
+  },
+  "functional_requirements_changed_index_trace_literals": [
+    {
+      "selector": "| `INFRA-011-S5-016` |",
+      "line": 462,
+      "byte_start": 92089,
+      "byte_end_exclusive": 93280,
+      "literal_bytes": 1191,
+      "sha256": "2ee24f73845d9f862a401a7b6c071294f4db23a55b0b4661995593e8e8e84bb6",
+      "literal": "| `INFRA-011-S5-016` | `CASE-INFRA-011-S5-016` | 06 | 基準入力。記載field/valueをそのまま提示し、他項目・共通scope・source revisionは固定。 | compute={resource=worker-host-sim,cpu=2-vCPU,memory=4-GiB}; network={path=api-to-db-sim,protocol=tcp,direction=outbound,purpose=state-read,boundary=app-to-data}; persistent_storage={id=state-vol-sim,kind=persistent,size=10-GiB,location=zone-sim-a,owner=storage-owner-sim,durability=durable-sim,backup=backup-sim-01,retention=retention-sim,environment=verification-sim,confidentiality=confidential-sim,recovery=recovery-sim-01}; temporary_storage={id=cache-vol-sim,kind=temporary,size=2-GiB,location=zone-sim-a,owner=storage-owner-sim,durability=ephemeral-sim,backup=not-applicable-sim,retention=session-sim,environment=verification-sim,confidentiality=internal-sim,recovery=not-applicable-sim}; source_revision=sim-r1 | compute/network/永続・一時storageの属性と観測値をsource付きで記録する。recoveryを含む固定7属性を保持し、resource/path/storageのsourceまたは設計ownerは固定親で未特定=unknown。CONNECTは論理接続とphysical pathを区別する文脈だけに用いる |\n",
+      "lf_only": true
+    },
+    {
+      "selector": "| `INFRA-011-S5-017` |",
+      "line": 463,
+      "byte_start": 93280,
+      "byte_end_exclusive": 94228,
+      "literal_bytes": 948,
+      "sha256": "8fcd5addd6f7d75d0daca71fbec4cca594d4645beb427ad323756f759e07bab4",
+      "literal": "| `INFRA-011-S5-017` | `CASE-INFRA-011-S5-017` | 06 | persistent_storage.recoveryだけを空欄にする | compute={resource=worker-host-sim,cpu=2-vCPU,memory=4-GiB}; network={path=api-to-db-sim,protocol=tcp,direction=outbound,purpose=state-read,boundary=app-to-data}; persistent_storage={id=state-vol-sim,kind=persistent,size=10-GiB,location=zone-sim-a,owner=storage-owner-sim,durability=durable-sim,backup=backup-sim-01,retention=retention-sim,environment=verification-sim,confidentiality=confidential-sim,recovery=recovery-sim-01}; temporary_storage={id=cache-vol-sim,kind=temporary,size=2-GiB,location=zone-sim-a,owner=storage-owner-sim,durability=ephemeral-sim,backup=not-applicable-sim,retention=session-sim,environment=verification-sim,confidentiality=internal-sim,recovery=not-applicable-sim}; source_revision=sim-r1 | 永続storageのrecovery参照を未完としてsource owner=unknownへ戻す。その他のfieldはbaselineを保持 |\n",
+      "lf_only": true
+    },
+    {
+      "selector": "| `INFRA-011-S5-018` |",
+      "line": 464,
+      "byte_start": 94228,
+      "byte_end_exclusive": 95222,
+      "literal_bytes": 994,
+      "sha256": "16dfd97d40715edc510b947535a85d1d227e8415b3e4c56fe24fcea6ea6f6bda",
+      "literal": "| `INFRA-011-S5-018` | `CASE-INFRA-011-S5-018` | 06 | network.boundaryだけをunknownにする | compute={resource=worker-host-sim,cpu=2-vCPU,memory=4-GiB}; network={path=api-to-db-sim,protocol=tcp,direction=outbound,purpose=state-read,boundary=app-to-data}; persistent_storage={id=state-vol-sim,kind=persistent,size=10-GiB,location=zone-sim-a,owner=storage-owner-sim,durability=durable-sim,backup=backup-sim-01,retention=retention-sim,environment=verification-sim,confidentiality=confidential-sim,recovery=recovery-sim-01}; temporary_storage={id=cache-vol-sim,kind=temporary,size=2-GiB,location=zone-sim-a,owner=storage-owner-sim,durability=ephemeral-sim,backup=not-applicable-sim,retention=session-sim,environment=verification-sim,confidentiality=internal-sim,recovery=not-applicable-sim}; source_revision=sim-r1 | network path照合を保留し、resource sourceまたは設計ownerは固定親で特定できなければunknown。CONNECTは論理接続とphysical pathの区別に限る |\n",
+      "lf_only": true
+    },
+    {
+      "selector": "| `INFRA-011-S5-029` |",
+      "line": 475,
+      "byte_start": 101518,
+      "byte_end_exclusive": 101924,
+      "literal_bytes": 406,
+      "sha256": "8604877541e35363dbc3f6a65bdcff1d21530fdeca6368708fa5e5ab5755b4c9",
+      "literal": "| `INFRA-011-S5-029` | `CASE-INFRA-011-S5-029` | 10 | runtime_stateだけをunknownにする | runtime_state=degraded-sim; observation={signal=sim-signal-01,state=degraded-sim,source=collector-sim@sim-r1}; incident_classification=not-requested | unknownを他のruntime stateやincident classificationへ丸めず保持し、observation source owner=unknownへ戻す。incident meaningは判定しない |\n",
+      "lf_only": true
+    },
+    {
+      "selector": "| `CASE-INFRA-011-S5-055` |",
+      "line": 505,
+      "byte_start": 116120,
+      "byte_end_exclusive": 116986,
+      "literal_bytes": 866,
+      "sha256": "ccbefafa26ad594fd91f71b648aae89c25d84ebc725ef08b6506855e43a9f868",
+      "literal": "| `CASE-INFRA-011-S5-055` | read-only通常操作正常 | `request={target=api-db-sim-01,action=inspect-sim,revision=infra-runtime-sim@sim-r17,scope=infra-011-stage5-sim,environment=verification-sim,expiry=sim-expiry-01}; security_authority={ref=security-authority-sim-01,source=SECURITY-sim@sim-r3,revision=sim-r3,action=inspect-sim,scope=verification-sim,expiry=sim-expiry-01}; worker={contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01,resource=worker-host-sim@sim-r1}; os={ticket=os-work-sim-01,change=os-change-sim-01,revision=os-rev-sim-4,scope=verification-sim,runtime=api-db-sim-01@infra-runtime-sim-r17}; write_scope=declared; writes=none; before=sim-r1; after=sim-r1`。正常、変異なし。 | L2-010 target/authority/Worker/OS条件とL2-009接続を照合し、writeなし・operation起因changeなしを記録。 | `INFRA-011-AC-03` |\n",
+      "lf_only": true
+    },
+    {
+      "selector": "| `CASE-INFRA-011-S5-056` |",
+      "line": 506,
+      "byte_start": 116986,
+      "byte_end_exclusive": 117891,
+      "literal_bytes": 905,
+      "sha256": "ea5f36df9c1bec032a6e753ee8d5757d0844dd9abf1c72c2f4d540abad0deaea",
+      "literal": "| `CASE-INFRA-011-S5-056` | 適用recovery duty付きstate change正常 | `request={target=api-db-sim-01,action=replace-sim,revision=sim-r2,scope=infra-011-stage5-sim,environment=verification-sim,expiry=sim-expiry-01}; security_authority={ref=security-authority-sim-01,source=SECURITY-sim@sim-r3,revision=sim-r3,action=replace-sim,scope=verification-sim,expiry=sim-expiry-01}; update_admission=accepted; worker={contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01,resource=worker-host-sim@sim-r1}; os={ticket=os-work-sim-01,change=os-change-sim-01,revision=os-rev-sim-4,scope=verification-sim,runtime=api-db-sim-01@infra-runtime-sim-r17}; applicable_duty=restore-check-sim; duty_result=sim-verified; before=sim-r1; after=sim-r2`。正常、変異なし。 | L2-010 target/authority/accepted admission/Worker/OS条件とL2-009接続、適用duty/resultを個別照合。 | `INFRA-011-AC-03` |\n",
+      "lf_only": true
+    },
+    {
+      "selector": "| `CASE-INFRA-011-S5-072` |",
+      "line": 541,
+      "byte_start": 130189,
+      "byte_end_exclusive": 131875,
+      "literal_bytes": 1686,
+      "sha256": "f26244db654b306ef4c7be2ba22fa8adec961267bcace96aa2cf2496d180ee73",
+      "literal": "| `CASE-INFRA-011-S5-072` | composite正常 | `unit_results={CASE-INFRA-011-S5-001=normal@sim-r1,CASE-INFRA-011-S5-004=normal@sim-r1,CASE-INFRA-011-S5-007=normal@sim-r1,CASE-INFRA-011-S5-010=normal@sim-r1,CASE-INFRA-011-S5-013=normal@sim-r1,CASE-INFRA-011-S5-016=normal@sim-r1,CASE-INFRA-011-S5-019=normal@sim-r1,CASE-INFRA-011-S5-022=normal@sim-r1,CASE-INFRA-011-S5-025=normal@sim-r1,CASE-INFRA-011-S5-028=normal@sim-r1,CASE-INFRA-011-S5-032=normal@sim-r1,CASE-INFRA-011-S5-035=normal@sim-r1,CASE-INFRA-011-S5-038=normal@sim-r1,CASE-INFRA-011-S5-041=normal@sim-r1,CASE-INFRA-011-S5-044=normal@sim-r1,CASE-INFRA-011-S5-046=normal@sim-r1,CASE-INFRA-011-S5-050=normal@sim-r1,CASE-INFRA-011-S5-052=normal@sim-r1}; connections={CORE={design=core-infra-sim@sim-r5,target_scope=infra-011-stage5-sim};OS={work=os-work-sim-01,change=os-change-sim-01,revision=os-rev-sim-4,scope=verification-sim,runtime=api-db-sim-01@infra-runtime-sim-r17};SECURITY={authority=security-authority-sim-01@sim-r3,scope=verification-sim};Worker={contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01,resource=worker-host-sim@sim-r1,mapping=worker-sim→worker-host-sim}}; scope=infra-011-stage5-sim; environment=verification-sim; source_revision=sim-r1; current_active_revision=sim-r8; eligible_rollback_target={revision=sim-r7,artifact=artifact-sim-r7,config=cfg-sim-r7,dependency=dep-sim-r7,data_ref=data-sim-r7,procedure=rollback-sim-r7}; composite_result=sim-complete; unfinished_duties=none`。正常、変異なし。 | 18 unit、4 connection、compositeを別記録する。独立business outcome/approval/release/executionは生成しない。正常時は戻し先なし。 | `INFRA-011-AC-03` |\n",
+      "lf_only": true
+    },
+    {
+      "selector": "| `CASE-INFRA-011-S5-076` |",
+      "line": 545,
+      "byte_start": 133243,
+      "byte_end_exclusive": 134211,
+      "literal_bytes": 968,
+      "sha256": "658a86ddddc61da7d86077937e193f4cbdfcdccfd02abc0e9e7d4815238e9a9d",
+      "literal": "| `CASE-INFRA-011-S5-076` | 外部authority非生成 | `unit_results={CASE-INFRA-011-S5-001=normal@sim-r1,CASE-INFRA-011-S5-004=normal@sim-r1,CASE-INFRA-011-S5-007=normal@sim-r1,CASE-INFRA-011-S5-010=normal@sim-r1,CASE-INFRA-011-S5-013=normal@sim-r1,CASE-INFRA-011-S5-016=normal@sim-r1,CASE-INFRA-011-S5-019=normal@sim-r1,CASE-INFRA-011-S5-022=normal@sim-r1,CASE-INFRA-011-S5-025=normal@sim-r1,CASE-INFRA-011-S5-028=normal@sim-r1,CASE-INFRA-011-S5-032=normal@sim-r1,CASE-INFRA-011-S5-035=normal@sim-r1,CASE-INFRA-011-S5-038=normal@sim-r1,CASE-INFRA-011-S5-041=normal@sim-r1,CASE-INFRA-011-S5-044=normal@sim-r1,CASE-INFRA-011-S5-046=normal@sim-r1,CASE-INFRA-011-S5-050=normal@sim-r1,CASE-INFRA-011-S5-052=normal@sim-r1}; connections=CASE-INFRA-011-S5-072.normal.connections; external_approval=none; execution_state=not_requested`。変異なし。 | L3候補から承認・実装・操作・配布状態を生成しない。戻し先なし。 | `INFRA-011-AC-01..04` |\n",
+      "lf_only": true
+    },
+    {
+      "selector": "| `CASE-INFRA-011-S5-085` |",
+      "line": 532,
+      "byte_start": 127967,
+      "byte_end_exclusive": 128597,
+      "literal_bytes": 630,
+      "sha256": "f3f608b0ef1de4eaa9bdbaa2ac92e7d1c9b914f45fe08133c6b78e1265c66228",
+      "literal": "| `CASE-INFRA-011-S5-085` | composite部分結果で稼働版/適格rollback先保持 | `baseline=CASE-INFRA-011-S5-072 normal`から`composite_result=sim-complete`だけを`{state=partial,missing_component={field=connection-result-receipt,source=connection-result-sim@sim-r1},unfinished_duties=[record-connection-result-sim],responsible_owner=unknown}`へ置換。その他fieldはbaselineのまま。 | compositeを不成立に保ち、欠落field/source、未完義務、責務owner=unknown、稼働版`sim-r8`と適格rollback target`sim-r7`を保持する。rollback実行や成功を生成しない。 | `INFRA-011-AC-03` |\n",
+      "lf_only": true
+    },
+    {
+      "selector": "| `INFRA-011-AC-01` |",
+      "line": 549,
+      "byte_start": 134278,
+      "byte_end_exclusive": 135764,
+      "literal_bytes": 1486,
+      "sha256": "0769abe5b44ccb41cb68887584835b3e6e0c2e9758ad6c02b56a5308f950eb69",
+      "literal": "| `INFRA-011-AC-01` | `CASE-INFRA-011-S5-001`, `CASE-INFRA-011-S5-002`, `CASE-INFRA-011-S5-003`, `CASE-INFRA-011-S5-004`, `CASE-INFRA-011-S5-005`, `CASE-INFRA-011-S5-006`, `CASE-INFRA-011-S5-007`, `CASE-INFRA-011-S5-008`, `CASE-INFRA-011-S5-009`, `CASE-INFRA-011-S5-010`, `CASE-INFRA-011-S5-011`, `CASE-INFRA-011-S5-012`, `CASE-INFRA-011-S5-013`, `CASE-INFRA-011-S5-014`, `CASE-INFRA-011-S5-015`, `CASE-INFRA-011-S5-016`, `CASE-INFRA-011-S5-017`, `CASE-INFRA-011-S5-018`, `CASE-INFRA-011-S5-019`, `CASE-INFRA-011-S5-020`, `CASE-INFRA-011-S5-021`, `CASE-INFRA-011-S5-022`, `CASE-INFRA-011-S5-023`, `CASE-INFRA-011-S5-024`, `CASE-INFRA-011-S5-025`, `CASE-INFRA-011-S5-026`, `CASE-INFRA-011-S5-027`, `CASE-INFRA-011-S5-028`, `CASE-INFRA-011-S5-029`, `CASE-INFRA-011-S5-030`, `CASE-INFRA-011-S5-031`, `CASE-INFRA-011-S5-032`, `CASE-INFRA-011-S5-033`, `CASE-INFRA-011-S5-034`, `CASE-INFRA-011-S5-035`, `CASE-INFRA-011-S5-036`, `CASE-INFRA-011-S5-037`, `CASE-INFRA-011-S5-038`, `CASE-INFRA-011-S5-039`, `CASE-INFRA-011-S5-040`, `CASE-INFRA-011-S5-041`, `CASE-INFRA-011-S5-042`, `CASE-INFRA-011-S5-043`, `CASE-INFRA-011-S5-044`, `CASE-INFRA-011-S5-045`, `CASE-INFRA-011-S5-046`, `CASE-INFRA-011-S5-047`, `CASE-INFRA-011-S5-048`, `CASE-INFRA-011-S5-049`, `CASE-INFRA-011-S5-050`, `CASE-INFRA-011-S5-051`, `CASE-INFRA-011-S5-052`, `CASE-INFRA-011-S5-053`, `CASE-INFRA-011-S5-054`, `CASE-INFRA-011-S5-075`, `CASE-INFRA-011-S5-076`, `CASE-INFRA-011-S5-079` | 18 item単独入力とunit結果。 |\n",
+      "lf_only": true
+    },
+    {
+      "selector": "| `INFRA-011-AC-03` |",
+      "line": 551,
+      "byte_start": 136048,
+      "byte_end_exclusive": 136516,
+      "literal_bytes": 468,
+      "sha256": "db3b5b3b23520ab18e385b7711e127158c6a8d4c75608635686f31d4e9690540",
+      "literal": "| `INFRA-011-AC-03` | `CASE-INFRA-011-S5-055`, `CASE-INFRA-011-S5-056`, `CASE-INFRA-011-S5-059`, `CASE-INFRA-011-S5-060`, `CASE-INFRA-011-S5-061`, `CASE-INFRA-011-S5-062`, `CASE-INFRA-011-S5-063`, `CASE-INFRA-011-S5-072`, `CASE-INFRA-011-S5-073`, `CASE-INFRA-011-S5-074`, `CASE-INFRA-011-S5-075`, `CASE-INFRA-011-S5-076`, `CASE-INFRA-011-S5-082`, `CASE-INFRA-011-S5-083`, `CASE-INFRA-011-S5-084`, `CASE-INFRA-011-S5-085` | 復旧、部分結果、composite分離。 |\n",
+      "lf_only": true
+    }
+  ],
+  "static_checks": {
+    "git_diff_check_before_body_commit": "passed",
+    "case_ids_unique_consecutive_001_085": true,
+    "18_normal_unit_ids_exact": true,
+    "029_unknown_and_047_missing_excluded_from_normal_set": true,
+    "four_normal_connections_explicit_in_case_072": true,
+    "case_076_uses_case_072_normal_connections": true,
+    "case_055_only_traced_to_ac03_not_ac01": true,
+    "029_fr_index_six_columns": true,
+    "storage_016_018_baseline_literal_aligned_l3_l10": true,
+    "six_main_prefixes_exact_raw_byte_match": true
+  },
+  "execution_and_limits": {
+    "bun_old_cli_runtime_tests_ci_run": false,
+    "dynamic_behavior_claimed": false,
+    "independent_review_claimed": false,
+    "approval_or_merge_claimed": false,
+    "push_pr_ready_merge": false
+  }
+}
