@@ -2780,7 +2780,7 @@ qualified external receiptを別origin typeで示す。external observationだ�
 | `CASE-INT-071-05h` | 071/AC-INT-071-05 | recovery ruleだけ未定義 | 索引のみ。同じrecovery rule欠落の `CASE-INT-071-04g` を参照し、独立fixture数へ加えない。 |
 | `CASE-INT-071-05i` | 071/AC-INT-071-05 | 033 input receiptだけ欠落 | calculationを開始せずinput stageを未完とする。 |
 | `CASE-INT-071-05j` | 071/AC-INT-071-05 | 033 input receiptだけstale | stale inputをcurrent comparisonへ結ばない。 |
-| `CASE-INT-071-05k` | 071/AC-INT-071-05 | selected connector contractだけ欠落 | connection inputを成立扱いせず、固定L2に戻し先指定がないため戻し先unknownを保持する。CONNECTを新たな返却先にしない。 |
+| `CASE-INT-071-05k` | 071/AC-INT-071-05 | 選択connector contractのsource identityと既存source ownerを正常入力で固定し、そのcontractだけを欠落させる | connection inputを成立扱いせず、固定L2:557の欠落状況として選択contractのsource ownerへ戻す。CONNECTを新たな返却先にしない。 |
 | `CASE-INT-071-05l` | 071/AC-INT-071-05 | same-unit load seriesだけ欠落 | 欠落seriesを補わず該当sourceをunknownとする。 |
 | `CASE-INT-071-05m` | 071/AC-INT-071-05 | stop conditionだけ欠落 | 無制限完了を主張せず停止条件unknownを保持する。 |
 | `CASE-INT-071-05n` | 071/AC-INT-071-05 | known unsupported stateだけsuccessへ置換 | unsupported/unknownをsuccessにしない。 |
