@@ -1594,3 +1594,39 @@ LABOはFeedbackの評価・candidate提示・変更後re-observationを担う。
 #### L10 CASE索引との対応
 
 `CASE-03g` は同時欠落案を示す非独立ラベルとして保持し、現行fixtureや索引先を持たない。`CASE-10` は既存識別子を保ち、effect-only `CASE-22` と regression-only `CASE-23` の両fixtureを直接参照する。`CASE-07/08/09`も対応先を明示した非独立索引として保持し、これらを追加negativeとして数えない。先行snapshotは[a4a365dcdfe824ebb28d040c8bc3bc924556efad](https://github.com/RetryYN/HELIX-HARNESS/blob/a4a365dcdfe824ebb28d040c8bc3bc924556efad/docs/governance/audits/requirements-stage/labo-stage5-review04-root-correction-2026-10-06.md)であり、その本文SHA-256は`23c30525763520ff05c41e5da2997cd2ef3604b5ef738d6559fc3981f5776f91`。これは履歴上の参照であり、現在のfixture分類は本本文の定義に従う。
+
+
+### LABO-059-FR-01 — 効果優先関係付き比較評価
+
+親: HELIXLABO-L2-059、PO/G0対象 MPR-RC-HELIXLABO-L2-059-002、version_target 1.0、unit。以下は未承認のL3候補であり、実験・実装・運用許可や実測結果を生成しない。固定L2 source revision f6dad2a33e24f000b87d7f09b8d40288257e74cc の固定条件を対象とする。L2本文が示すdraft_candidate状態と、PO/G0が同revisionを採択対象として登録した記録を区別する。
+
+同じtask/work scope、要求・受入・quality oracleのidentity/revision、対象期間、実験条件、scorer、run protocol、hardware/toolchain classを選択比較の中で対応づける。baseline/current/candidate/hybridは実験条件の軸、HELIXなし/旧版/新版は支援cohortの軸として分け、比較目的が求める群だけを選ぶ。未選択群を必須にせず、証拠がない主張だけを未測定/比較不能にする。旧版cohortを選択した場合は保存済みの当時receiptを読むだけで、旧runtime等を実行しない。
+
+品質oracleとtask acceptanceを先に個別判定し、適用scope/revisionで有効な既決priority/toleranceを再利用する。毎runの再確認を要求せず、決定が未決・失効または適用境界外の場合に限り既存decision ownerへ返す。品質不成立は価格/速度で相殺しない。費用にはprovider/API/token、Worker/parent effort、retry、CI/rerun、review、救援、integration、rollback/recovery、reworkと人の作業を範囲に従い含める。費目ごとのreceipt、価格source/currency/effective time/classを保つ。人間時間・介入量は貨幣費用と別掲し、未承認換算をしない。開始/終了event、停止/待機規則の異なるdurationを黙って比較しない。
+
+出力は選択cohortごとのquality/acceptance結果、cost内訳、elapsed time、人介入/Worker effort、欠測・未価格化・比較不能、同順位/判定不能/要人判断を分けて示す。万能rankingを作らない。LABOはWorker/effortの選択・assignment、登録/routing、ticket起票、target変更、permission/merge authority変更をしない。
+
+| 固定条件 | L3で保つ意味 | 対AC | 既存/追加L10根拠 |
+|---|---|---|---|
+| L2-059:420、L11:170 | 同一task/work scope、要求/受入/oracle revision、対象期間、scorer/run condition、OS receiptを選択比較に束縛する。 | AC-01/03 | CASE-01/02、03a/b/i、10–14、51、57–62 |
+| L2-059:420/426、L11:170/173–175 | 実験条件とcohortを別軸にし、目的別に二群/三群を選ぶ。未選択群を必須化しない。 | AC-01/02/03 | CASE-01/02、03h/i、15、21、50 |
+| L2-059:420/429、L11:170/173/176 | 現行OS割当とhistorical当時のactor/authority/receiptを保ち、assignmentを後付けしない。 | AC-01/03 | CASE-01、16、51 |
+| L2-059:421–422、L11:170/173–175 | oracle別のquality/acceptance出力、同順位/比較不能、品質先行、適用可能な既決priorityの再利用。 | AC-01/02/03 | CASE-01/02、03b–d、05–08、48–49 |
+| L2-059:423–424、L11:170/173–174 | receipt付き全費目、人時間数量、duration定義、accepted outcome/未完状態を分離する。 | AC-01/03 | CASE-01、03e/f/m/g/j–l、17–20、22–30、37、39–56 |
+| L2-059:425/427 | LABOはeffort/Workerを選ばず、source identity/version/digestと依存契約を保持する。 | AC-01/03 | CASE-01、04a、38、57–62 |
+| L2-059:428–429 | 保証限界と変更禁止を保ち、欠落原因別に既存戻し先を使う。 | AC-03 | CASE-03a–l/m、04a/b、31–32、37、48–70 |
+
+- LABO-059-AC-01 正常: 選択目的に必要な比較群と同一条件、適用可能なquality oracle/既決decision、OS assignment/実験結果receiptを対応づけ、quality、acceptance、cost、time、人介入、effortと比較不能項目を別々に返す。有効decisionは同scope内で再利用する。
+- LABO-059-AC-02 未見正常: 条件が選択scope内で適用可能な未見taskでも、選択した群の証拠を保って比較する。未選択群の欠落で選択済み比較を拒否しない。未見taskへの一般化は主張しない。
+- LABO-059-AC-03 不成立・戻し先: 条件/receipt/identity/revisionの欠落や不一致、品質未達の相殺、cost/time/human quantityの欠落、未完runの成功化、過去結果のcurrent化、scope外claim、LABOによるauthority副作用を独立oracleで拒否する。戻し先はL2-059:429に明記された原因別既存source区分へ限定し、未特定ならunknownを保つ。
+
+#### 旧source起点と対応
+
+| 旧役割 | 旧asset/path・span | 保持/再導出 | 非継承 |
+|---|---|---|---|
+| 直接要件 R-03..08 | LEGACY-ASSET-28FB139B26CD61CC51EE、archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md:76–94,96–119,121–126,128–135,137–141,143–147 | R-03のteam/harness軸分離・provider/model固定加減点禁止、R-04 snapshot、R-05 protocol、R-06 evidence/counterevidence、R-07 cost/capacity/provenance、R-08 integrity/historyを固定L2-059へ再導出。 | 固定順位、scorer weight、旧runtime/CI、admissionを移さない。R-03のlabelと実model identityを混ぜない。 |
+| paired acceptance consumer | LEGACY-ASSET-A952A3A175EB82A4781B、archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md:30–40 | R-03〜08の識別可能な反例/acceptance読み方を対応づける。 | acceptance行を直接要件sourceと取り違えない。 |
+| related requirement | LEGACY-ASSET-50CA1C554747F12266D3、resident-lane-orchestration-requirements.md:663–666 | task-class別effort・未評価表示・scoreから権限を作らない既存意味を関連根拠として使う。 | Bench R-03〜08の本文sourceではない。 |
+| paired acceptance consumer | LEGACY-ASSET-437A6A68F9A9E0AE1B、resident-lane-orchestration-acceptance.md:43 | 上記RLO要件のacceptance consumerとして区別する。 | 059への直接要件sourceではない。 |
+| related worker contract | LEGACY-ASSET-9114D4E463E95B67DD0C、worker-common-contract.md:61–62,130–131 | 共通Worker契約の関係範囲を確認する。 | 固定L2-059の比較意味・ownerを上書きしない。 |
+| separate three-lane scope | LEGACY-ASSET-A6926200F28B26300432、three-lane-cloud-governance-requests.md:67–69; LEGACY-ASSET-A26561A0EF7396D8F017、three-lane-cloud-governance-requirements.md:78–79; LEGACY-ASSET-E9D6CA411D75485A0984、three-lane-cloud-governance-acceptance.md:44–47 | 別L1/qualification candidateとそのcontext/consumerとして区別する。 | 059からadmission・qualification lifecycleを新設/必須化しない。 |

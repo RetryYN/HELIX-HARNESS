@@ -165,3 +165,12 @@
 - `NFR-LABO-050-01` 循環identity/未完義務: 選択循環で適用される11段階それぞれについて状態記録件数、同一ticket/experiment/target revision・assignment/result binding、各段階のmissing/stale/open-dutyを分離して報告する。effect evaluationとregression evaluationは別々の存在・判定状態を記録する。candidate count/Feedback発行/OS registration/target change/verification/CI successのみの完了主張は別の結果区分にする。分母0または不明では率を算出しない。対象は独立fixture 32件（CASE-01/02、03a–f、04a/b、05/06、11–30）とし、CASE-03g（非独立ラベル）およびCASE-07/08/09/10（非独立索引）は分母から除外する。
 - 個別L10範囲（独立fixture定義32件）: `L10-LABO-050-CASE-01`, `L10-LABO-050-CASE-02`, `L10-LABO-050-CASE-03a`, `L10-LABO-050-CASE-03b`, `L10-LABO-050-CASE-03c`, `L10-LABO-050-CASE-03d`, `L10-LABO-050-CASE-03e`, `L10-LABO-050-CASE-03f`, `L10-LABO-050-CASE-04a`, `L10-LABO-050-CASE-04b`, `L10-LABO-050-CASE-05`, `L10-LABO-050-CASE-06`, `L10-LABO-050-CASE-11`, `L10-LABO-050-CASE-12`, `L10-LABO-050-CASE-13`, `L10-LABO-050-CASE-14`, `L10-LABO-050-CASE-15`, `L10-LABO-050-CASE-16`, `L10-LABO-050-CASE-17`, `L10-LABO-050-CASE-18`, `L10-LABO-050-CASE-19`, `L10-LABO-050-CASE-20`, `L10-LABO-050-CASE-21`, `L10-LABO-050-CASE-22`, `L10-LABO-050-CASE-23`, `L10-LABO-050-CASE-24`, `L10-LABO-050-CASE-25`, `L10-LABO-050-CASE-26`, `L10-LABO-050-CASE-27`, `L10-LABO-050-CASE-28`, `L10-LABO-050-CASE-29`, `L10-LABO-050-CASE-30`。非独立ラベル/索引（5件、分母外）: `L10-LABO-050-CASE-03g`, `L10-LABO-050-CASE-07`, `L10-LABO-050-CASE-08`, `L10-LABO-050-CASE-09`, `L10-LABO-050-CASE-10`。NFR対象CASEは未実行設計で、実測成功数とは扱わない。
 - NFR候補を実測する際は、対象循環・適用stage・欠測・failed・stale・censored/openの分子分母を明記する。欠測や分母0を0成功へ変換しない。固定親にないSLA、割合threshold、最低試行数、retention期限を作らない。
+
+
+## Stage 5 — HELIXLABO-L2-059 技術計測候補
+
+未計測設計。固定L2/L11のfieldとoracleだけを使い、最低N、成功率/資格threshold、SLA、freshness期限、PO別parameter approvalを加えない。
+
+- NFR-LABO-059-01 比較可能性・費用/時間内訳: 選択されたscope/cohortごとにtask/snapshot、quality/acceptance oracle、decision scope、protocol/scorer/hardware/toolchain、receipt completeness、費目、human quantity、duration、未選択群/未測定状態を別々に記録する。欠測・unknown・未価格化・未完を成功/0へ変えない。分母0/不明では率を出さない。
+- 対象定義はL10-LABO-059の全定義83件。正常/未見正常とnegative、compound CASE-30、non-independent index CASE-22/33–36を分類別に集計する。独立fixture設計は77件（既存54＋追加23）、compound1件・index5件は分母外。これは設計上の件数で、実測母集団や成功件数ではない。
+- CASE-NFR-LABO-059-01は実行記録ではない。CASE-64ではprovider labelのみの入力差とactual model identityを分離し、score invarianceを別観点として数える。人間調査/検証時間は貨幣費用と別fieldとする。

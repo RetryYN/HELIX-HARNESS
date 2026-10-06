@@ -1,0 +1,182 @@
+{
+  "record_type": "L3/L10作成側review01補正追補",
+  "status": "Root検収済・独立再レビュー待ち。解消・承認は生成しない。",
+  "parent": "HELIXLABO-L2-059",
+  "body_revision": "a70f49bb65d00c036cdc0abfd93840e03d0441a7",
+  "public_before": "898d4bc59804c102a9dd489fb38bcd35b5274047",
+  "prior_body_revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+  "base_revision": "e6b333ac18b47894e2d176bdae9aca804d9d5144",
+  "merge_context_revision": "5ff0d861e7857afddee7291a71912adf2e7d8915",
+  "formal_review": {
+    "comment_id": 6014899052,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2625#issuecomment-6014899052",
+    "literal_utf8": "## review01（independent review、PR #2625 親HELIXLABO-L2-059、HEAD 898d4bc59804c102a9dd489fb38bcd35b5274047、本文 5f5468ba0、base main 17a2f3103）\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。基準は新しい基準（責務を優先し、変更耐性を前提にする）を使った。照合は次の2つに分けた。\n- **Opus・ブラインド照合**：監査・PR comment・旧所見は見せず、固定親と本文だけで照合した。\n  - 固定親：f6dad2a33のL2-059（416–440）、L11:164–176、§24の関係行、依存先L2-055。\n  - 本文：6本文の追補178行。\n  - 固定親を1文ずつ種類分けし、自分で対応表を作った。\n- **Opus・継続照合**：旧#2620で059に向けた所見の判定、追補の全行、監査、source pinの再計算（240 checks）を行った。\n\nFableは、Opusの`no_findings`が出た同じHEADでだけ回す。今回は回していない。\n\n### 静的検査（exact HEAD）\n- scfctl：validate 147/0、stale 0、residuals 0。govcheck：ok。`git diff --check`：成功。\n- origin/main 17a2f3103との`merge-tree`：衝突なし。6本文はmainの全bytesをprefixとして保持し、追補だけである。\n- 監査のpinは240 checksで、不一致は0件。\n- 本文から定義83件を独立に抽出した。内訳は正常3、単独negative 74、compound 1、index 5で、重複は0件。31条件の索引にdanglingはない。\n\n### 旧#2620の059所見\n- **解消**：r02 M1、r03 M1（CASE-30）、r02 m9（CASE-07/08）、r03 m1、r04 m1。\n- **一部解消→残余へ移す**：r02 m7（費用の戻し先）。下のR1とR4に記録した。\n- **対象外**：ほかの親が対象の所見。\n\n### 所見（Major 1）\n- **M1（CASE-05：有効なdecisionを既存decision ownerへ戻している）**：\n  - CASE-05の変異は「有効なscope内のdecisionに、runごとの再確認を要求する」。oracleは「再確認を要求せず再利用する」のに、続けて「戻し先: 既存decision owner」と書いている（FV:2636）。\n  - 固定親は、ownerへ戻すのを「未決・失効・適用境界外」の場合に限り、毎runの確認を新設しないと定めている。この期待結果のまま作ると、有効なdecisionなのにdecision ownerへ連絡が行く。つまり、固定親が禁じたrunごとの確認経路ができてしまう。\n  - L3の`LABO-059-AC-03`や、FR本文の「未決・失効または適用境界外の場合に限り」とも矛盾する。\n  - ブラインド照合はこれを表記の矛盾（残余）と読んだ。継続照合はMajorと判定した。Opus側の最終判断はMajorとする。理由は、責務の境界（ownerへ戻す条件）の誤りにあたるからである。旧#2620のreview02〜05では、この点を指摘していなかった。\n  - →守るべき行：\n    - L2-059:420「scope/revisionが決定の適用境界を越えた変更、決定の失効、または未決の場合にだけ該当owner判断へ戻す」\n    - L2-059:422「適用可能な決定がない…場合に限り該当ownerへ戻す」「毎runの確認を新設しない」\n    - L11:170「適用可能な判断のrunごとの再確認なし」\n\n### 後で直す残余（承認を止めない）\n- **R1（費用系で、sourceが不明なときに戻し先をunknownにしている）**：03e、03f、03j〜03m、17、18、23〜26、39〜47。FR AC-03の「未特定ならunknown」も同じ。L2-059:429に、この分岐の文言はない。\n- **R2（区分名・行参照の不一致）**：\n  - 09〜13、15、19〜21の「戻し先: LABO」は、L2-059:429の区分名にない。中身は「比較不能としてLABOが保持する」の意味である。\n  - FR AC-03の「429の区分へ限定」は、decision owner（L2:420/422）やLABOを使っていることと合わない。\n  - 03b/14は「HARNESS」だけで「要求owner」が落ちている。また、revisionの不一致を「oracle不明」の区分へ当てている。\n  - CASE-14は、requirement revisionとtask revisionを1つにまとめてHARNESSへ戻している。task revisionはOS/観測sourceへ戻すべきものである（L2:429）。\n- **R3（戻し先が書かれていない、または区分を名指ししていない）**：\n  - 03a、03g、03h、03i、27〜29、31、32、37、38には戻し先がない。03hの「比較目的を再確認」は、誰が確認するのかが書かれていない。\n  - 52〜56は「費用source区分」、62は「price/測定source」で、LABO-055を名指ししていない。\n- **R4（単独fixtureの不足）**：\n  - LABOがeffortやWorkerを「選ぶ」こと、LABOが進行に関わること（L2:425）\n  - L11:170の「起動」\n  - INTELLIGENCE-010/011への戻し先（L2:429）\n  - 時間の片側だけの除外（L2:420。費用側には46/47がある）\n  - 対象期間とacceptance revisionの不一致（L2:420）\n  - oracle自体の不明（L2:429）\n  - archive起動禁止を理由にした達成済み扱いと、再実行の偽装（L2:426）\n  - 実験実行許可の生成（L2:418。CASE-69が包含する）\n- **R5（分類）**：\n  - CASE-30は変異が1点なのに「compound」に分類され、L11:170の反例が独立fixtureの分母から外れている。\n  - CASE-64は不変性の検査だが、negativeに数えている。\n- **R6（AC帰属）**：FRの対応表で、L2:428–429の行（AC-03）に、AC-01の正常fixtureであるCASE-48が入っている。\n- **R7（旧sourceの記載）**：\n  - FRの資産ID `LEGACY-ASSET-437A6A68F9A9E0AE1B` は、台帳では `…1B9E`。\n  - Bench acceptanceは、FRでは30–40、固定L2:432では30–41。41行のAC-014の保持・置換の処置が記録されていない。\n  - RLO/WCC/3-laneのpathが省略されている。\n- **R8（監査がrepository外を参照している）**：JSONの`input_record_pins`と`verification.root_legacy_source_pin_rerun.source`に、`/tmp`のpathが3件ある。555件・256件の検算は、repositoryの内容からは再現できない。\n- **R9（表記）**：\n  - CASE-28の「clock identity」は、L2:424にない語。\n  - 「既存a4a365由来CASE60件」は、mainから見ると今回が初出。\n\n### 判定\n- blocker 1件（M1）。Major 1件、残余9件。\n- 委任承認は成立しない。Readyにはしない。merge admissionは本commentから生成しない。\n- M1を直したHEADでOpusが`no_findings`になれば、同じHEADでFableを回す。\n",
+    "utf8_bytes": 6543,
+    "sha256": "b07bc4703b90cfa92ba2bd25a6a041af9d5efcccc0fe06bf1ab3db8544d2d58c",
+    "major_original": "- **M1（CASE-05：有効なdecisionを既存decision ownerへ戻している）**：\n  - CASE-05の変異は「有効なscope内のdecisionに、runごとの再確認を要求する」。oracleは「再確認を要求せず再利用する」のに、続けて「戻し先: 既存decision owner」と書いている（FV:2636）。\n  - 固定親は、ownerへ戻すのを「未決・失効・適用境界外」の場合に限り、毎runの確認を新設しないと定めている。この期待結果のまま作ると、有効なdecisionなのにdecision ownerへ連絡が行く。つまり、固定親が禁じたrunごとの確認経路ができてしまう。\n  - L3の`LABO-059-AC-03`や、FR本文の「未決・失効または適用境界外の場合に限り」とも矛盾する。\n  - ブラインド照合はこれを表記の矛盾（残余）と読んだ。継続照合はMajorと判定した。Opus側の最終判断はMajorとする。理由は、責務の境界（ownerへ戻す条件）の誤りにあたるからである。旧#2620のreview02〜05では、この点を指摘していなかった。\n  - →守るべき行：\n    - L2-059:420「scope/revisionが決定の適用境界を越えた変更、決定の失効、または未決の場合にだけ該当owner判断へ戻す」\n    - L2-059:422「適用可能な決定がない…場合に限り該当ownerへ戻す」「毎runの確認を新設しない」\n    - L11:170「適用可能な判断のrunごとの再確認なし」",
+    "residuals": [
+      {
+        "id": "R1",
+        "formal_original": "- **R1（費用系で、sourceが不明なときに戻し先をunknownにしている）**：03e、03f、03j〜03m、17、18、23〜26、39〜47。FR AC-03の「未特定ならunknown」も同じ。L2-059:429に、この分岐の文言はない。"
+      },
+      {
+        "id": "R2",
+        "formal_original": "- **R2（区分名・行参照の不一致）**：\n  - 09〜13、15、19〜21の「戻し先: LABO」は、L2-059:429の区分名にない。中身は「比較不能としてLABOが保持する」の意味である。\n  - FR AC-03の「429の区分へ限定」は、decision owner（L2:420/422）やLABOを使っていることと合わない。\n  - 03b/14は「HARNESS」だけで「要求owner」が落ちている。また、revisionの不一致を「oracle不明」の区分へ当てている。\n  - CASE-14は、requirement revisionとtask revisionを1つにまとめてHARNESSへ戻している。task revisionはOS/観測sourceへ戻すべきものである（L2:429）。"
+      },
+      {
+        "id": "R3",
+        "formal_original": "- **R3（戻し先が書かれていない、または区分を名指ししていない）**：\n  - 03a、03g、03h、03i、27〜29、31、32、37、38には戻し先がない。03hの「比較目的を再確認」は、誰が確認するのかが書かれていない。\n  - 52〜56は「費用source区分」、62は「price/測定source」で、LABO-055を名指ししていない。"
+      },
+      {
+        "id": "R4",
+        "formal_original": "- **R4（単独fixtureの不足）**：\n  - LABOがeffortやWorkerを「選ぶ」こと、LABOが進行に関わること（L2:425）\n  - L11:170の「起動」\n  - INTELLIGENCE-010/011への戻し先（L2:429）\n  - 時間の片側だけの除外（L2:420。費用側には46/47がある）\n  - 対象期間とacceptance revisionの不一致（L2:420）\n  - oracle自体の不明（L2:429）\n  - archive起動禁止を理由にした達成済み扱いと、再実行の偽装（L2:426）\n  - 実験実行許可の生成（L2:418。CASE-69が包含する）"
+      },
+      {
+        "id": "R5",
+        "formal_original": "- **R5（分類）**：\n  - CASE-30は変異が1点なのに「compound」に分類され、L11:170の反例が独立fixtureの分母から外れている。\n  - CASE-64は不変性の検査だが、negativeに数えている。"
+      },
+      {
+        "id": "R6",
+        "formal_original": "- **R6（AC帰属）**：FRの対応表で、L2:428–429の行（AC-03）に、AC-01の正常fixtureであるCASE-48が入っている。"
+      },
+      {
+        "id": "R7",
+        "formal_original": "- **R7（旧sourceの記載）**：\n  - FRの資産ID `LEGACY-ASSET-437A6A68F9A9E0AE1B` は、台帳では `…1B9E`。\n  - Bench acceptanceは、FRでは30–40、固定L2:432では30–41。41行のAC-014の保持・置換の処置が記録されていない。\n  - RLO/WCC/3-laneのpathが省略されている。"
+      },
+      {
+        "id": "R8",
+        "formal_original": "- **R8（監査がrepository外を参照している）**：JSONの`input_record_pins`と`verification.root_legacy_source_pin_rerun.source`に、`/tmp`のpathが3件ある。555件・256件の検算は、repositoryの内容からは再現できない。"
+      },
+      {
+        "id": "R9",
+        "formal_original": "- **R9（表記）**：\n  - CASE-28の「clock identity」は、L2:424にない語。\n  - 「既存a4a365由来CASE60件」は、mainから見ると今回が初出。"
+      }
+    ]
+  },
+  "changed_row": {
+    "case_id": "L10-LABO-059-CASE-05",
+    "before": {
+      "revision": "898d4bc59804c102a9dd489fb38bcd35b5274047",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2636,
+      "literal_with_lf": "| `L10-LABO-059-CASE-05` | LABO-059-AC-03 | 単独変異: 有効なscope内decisionにrunごとの再確認を要求だけを変更。その他の入力は `CASE-01` と同一。 | 有効なscope内decisionを再確認要求せず再利用する 戻し先: 既存decision owner。 |\n",
+      "raw_lf_bytes": 283,
+      "raw_lf_sha256": "ef5b8b7d2060297b4b47c5d6eb03f08cc86c6b61270b9482baf852179850d9c4"
+    },
+    "after": {
+      "revision": "a70f49bb65d00c036cdc0abfd93840e03d0441a7",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2636,
+      "literal_with_lf": "| `L10-LABO-059-CASE-05` | LABO-059-AC-03 | 単独変異: 有効なscope内decisionにrunごとの再確認を要求だけを変更。その他の入力は `CASE-01` と同一。 | この有効なscope内decisionへのrunごとの再確認要求を拒否し、既決decisionをそのまま再利用する。このケースからdecision ownerへの再確認・戻しを生成しない（固定L2-059:420/422、L11:170）。 |\n",
+      "raw_lf_bytes": 426,
+      "raw_lf_sha256": "26751cb00bb25211d9dbad38dd75bc661868da75d652244f2a30ac5b328eb4cf"
+    },
+    "baseline_and_mutation_unchanged": true,
+    "disposition": "有効なscope内decisionを再利用する場合にownerへの再確認・戻しを生成しない。未決・失効・境界外の別ケースは不変。"
+  },
+  "fixed_source_line_pins": [
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "physical_line": 420,
+      "literal_with_lf": "- **受け取るもの**：同一のtask/work scope、要求・受入・quality oracleとそのrevision、対象期間、実験条件（baseline/current/candidate/hybrid）の各構成と版、task snapshot・scorer・run protocol・hardware/toolchain class、HELIX支援cohort（HELIXなし／historical旧版／新版）と各cohortの機構構成、許可されたOS assignment/実行receipt、Worker/model/effort別のresult、failure・retry・救援・再作業・人修正・review・CI等の実測、価格source/currency/effective time。cohort軸と実験条件軸は別属性として保持し、各cohortで実施した条件の対応を事前に定める。評価運転側のOS assignmentと、比較対象の仕事にHELIX支援があるかを区別する。現行の実験運転は既存LABO-L2-006のOS割当Worker責務に従うが、HELIXなしcohortの対象作業へHELIXの要求形成・計画・実装・review等の支援を混ぜない。共通の評価運転の費用・時間と対象作業の費用・時間を測定scopeに従い区分し、計測都合で片側だけ除外しない。歴史runは当時の実行者・authority・receiptをそのまま保持し、現在OSのassignmentを遡及生成しない。対象scope/revisionに有効な既決の必須品質、総費用・完了時間・人間介入の優先順または部分順、許容する悪化・禁止する劣化、判断者・根拠・適用期間を受け取る。有効な決定をrunごとに再確認させず、同じ適用範囲内で再利用する。scope/revisionが決定の適用境界を越えた変更、決定の失効、または未決の場合にだけ該当owner判断へ戻す。\n",
+      "raw_lf_bytes": 1696,
+      "raw_lf_sha256": "64a8e8c2dfd9b654c6d97995945514f00b5ff7770198bb22a91e8d7336fd58ac"
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "physical_line": 422,
+      "literal_with_lf": "- **比較優先規則**：まず要求/受入oracleで必要品質とhard constraintsを満たすか個別判定し、品質不成立を安さや速度で相殺しない。品質を満たさないrunは「効果達成」の候補ではなく、失敗・trade-offとして報告する。品質を満たした候補間だけで、対象scope/revisionに有効な既決の目的優先関係と許容悪化を適用する。毎runの確認を新設しない。適用可能な決定がない、失効した、またはscope/revision変更がその境界を越えた場合に限り該当ownerへ戻す。priorityとtoleranceが欠ける指標は勝手に0、無制限、または最小化対象と解釈しない。\n",
+      "raw_lf_bytes": 711,
+      "raw_lf_sha256": "a9bc89c21308a4df51e3b9b0abd3807bf1c8e1d222a55c67fe9f9186524e87e6"
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "physical_line": 170,
+      "literal_with_lf": "| `HELIXLABO-L2-059`（単体候補、parent `HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context） | scope/revisionに適用可能なquality oracleと既決priority/tolerance（適用可能な判断のrunごとの再確認なし）、同一task snapshot/scorer/protocol/hardware条件、現行実験のOS割当Worker receipt（歴史runは当時の実行者・authority・receipt）を与える。decisionが未決/失効/適用境界外ならownerへ戻す。実験条件baseline/current/candidate/hybridとHELIXなし/旧版/新版cohortを別軸で記録し、比較目的と群を明示し、導入効果はあり／なし、改訂効果は旧版／新版、三者の関係を主張する場合だけ三者を要求する。未選択群の不足を選択した二者比較の不成立理由にしない。品質gateを先に個別判定し、retry・上位Worker救援・rework・CI・review・人修正込みの費用、所要時間、人介入を分ける。欠測通貨・非貨幣化人時間・比較不能cohortは明示する。 | 劣化品質を価格/速度で相殺／初回candidate単価だけで安価認定／上位救援・人修正・retryを除外／未承認換算率で人時間を0円化／受入成果なしを効率成功扱い／実験条件とcohortを混ぜる／scope・oracle・protocol・hardware・run version違いを混ぜる／歴史結果をcurrent性能へ転用／LABOがWorkerを割当・起動する。 |\n",
+      "raw_lf_bytes": 1451,
+      "raw_lf_sha256": "9e5a9113e596edec50d6a068d769a2d3d3ff9b08938e9dbf6db6cb09e789a433"
+    }
+  ],
+  "legacy_read": {
+    "asset_id": "LEGACY-ASSET-28FB139B26CD61CC51EE",
+    "revision": "a70f49bb65d00c036cdc0abfd93840e03d0441a7",
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+    "inclusive_lines": [
+      76,
+      119
+    ],
+    "full_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+    "raw_lf_span_sha256": "039fb2e69b76f61765fe43652dacec045b471fd4239e584be98a16da74e16a4b",
+    "disposition": "旧Bench比較軸と版付きsnapshotの保持を採択L2へ再導出した起点を再読。owner再確認条件は現採択L2:420/422・L11:170の明文を守る補正で、旧runtime・旧scorer規則を移植しない。"
+  },
+  "body_pins": [
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "bytes": 267432,
+      "sha256": "fef30ffb208e6cc7b33e4b874c3b03f9df0a028906f087522ca32177bfb65319",
+      "main_prefix_bytes": 260592,
+      "main_prefix_sha256": "8177c5fc3c73a6834020ba82aab299055b8ebf64eda887677ffce442749951ba",
+      "main_prefix_exact": true
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "bytes": 10078,
+      "sha256": "e6e092f020f59741574db31b7447549ede19efa6d0dfd311a5c7782df83f361e",
+      "main_prefix_bytes": 9189,
+      "main_prefix_sha256": "d28a5edf004fc88636e3e6158b208b25078b88e24b3c583f87cf68c71f252d1c",
+      "main_prefix_exact": true
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "bytes": 59509,
+      "sha256": "0bc2cf2bec57a4b3424dd0a8840a97278c3b9dcfd137cf79b551321f12eb67dd",
+      "main_prefix_bytes": 58278,
+      "main_prefix_sha256": "bcde7f24ccee2ad044c26788bbeb3348abc30dd8d61e2b82f8badc8d6c6d18f9",
+      "main_prefix_exact": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "bytes": 323392,
+      "sha256": "e65d41a45c9e481221aedecdeaa7b2308a1c34e58bbd86a5a892191b5ebab4a1",
+      "main_prefix_bytes": 299803,
+      "main_prefix_sha256": "7fe7743dcd1b0aee0aa075b5349b8901baafa60f289d0fcdcb7953b36eb7798c",
+      "main_prefix_exact": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "bytes": 8666,
+      "sha256": "451558d4db8ec1d1d194f71346cf854c1625007e8a27d323f8f5cc50d5fe334c",
+      "main_prefix_bytes": 8152,
+      "main_prefix_sha256": "e1e030be388627989248a6776d35c0c392da1f0f55a573faed15df548d3444a2",
+      "main_prefix_exact": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "bytes": 48631,
+      "sha256": "54bce22e5b5605bc5d22991f3436f3ecc356e6136e09b33d04159aa04e9af423",
+      "main_prefix_bytes": 47436,
+      "main_prefix_sha256": "b565535f3cfa1c796497ee754f6ec721ef5d7fc2071d787096a661d0ef2635be",
+      "main_prefix_exact": true
+    }
+  ],
+  "static_verification": {
+    "definitions": 83,
+    "old_public_ids_and_order_preserved": true,
+    "class_counts": {
+      "normal": 3,
+      "single_negative": 74,
+      "compound": 1,
+      "index": 5
+    },
+    "old_classification_residual_R5_preserved": true,
+    "govcheck": "ok atoms=7622 requirements=57 files=58",
+    "stale": 0,
+    "diff_check": "pass",
+    "case05_input_mutation_unchanged": true
+  },
+  "reproduction": "git show <recorded full revision>:<path> をbytesとして読む。inclusive physical lineの原文はsplitlines(keepends=True)で選ぶ。full/file/line SHAはhashlib.sha256。前後FV定義はtableとbulletのCASE識別子を抽出し83uniqueと順序一致を比較。CASE05の先頭3cell（ID/AC/入力・変異）一致を確認。6本文はbase全bytesをprefixとして保持。分類は元起草時点を保持し、R5を残余として解消扱いしない。",
+  "boundary": "旧公開起草監査は5f5468/base17a2時点の不変記録。現在はa70f49/basee6b333。旧監査を書換えず、他親承認・L2意味変更・実行結果・Issue close・下流許可を生成しない。"
+}
