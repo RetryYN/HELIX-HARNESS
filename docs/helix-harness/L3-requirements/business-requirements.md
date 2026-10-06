@@ -108,3 +108,8 @@ HARNESS-L2-034から独立business requirement、事業KPI、ROI閾値または�
 | L2親 | business requirement | 理由 |
 |---|---|---|
 | `HARNESS-L2-038` | 独立したbusiness requirementを導出しない | reverse content closureは選択scopeの意味traceであり、事業判断を新設しない。 |
+
+
+## Stage 3 親039の業務要件
+
+`HARNESS-L2-039`から独立business requirement、business owner、事業価値/KPI閾値は導出しない。Experience graphやUI/Frontend contractは固定L2-039の機能・構成体義務であり、traceの存在、画面数、case数、PoC、prototype agreement、UX計測結果から事業成果・利用者受入・承認を生成しない。旧business-detailの別意味・ownerは本親へ移さない。
