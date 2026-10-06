@@ -1,0 +1,1401 @@
+{
+  "artifact_type": "HARNESS-L2-054 review02 post-body static integration audit",
+  "status": "read_only_static_audit; body commit present; no fixture execution, no independent review, no approval",
+  "audit_created_from": "/tmp/root-harness054-review02-integration-checkpoint.json",
+  "root_checkpoint_sha256": "cfa474c6849abf1c8ba4b61394b13a0ddabd9f4757bd10743e61d372f2a84423",
+  "candidate_v2_path": "/tmp/harness054-review02-major3-exact-candidate-2026-10-07-v2.json",
+  "candidate_v2_sha256": "e166ae20945e24b50a40de2aca60e8c36f466e8bc1d1267b47507b43b639f075",
+  "body_revision": "a66908edc5dac28395b6e86e0244639d93c470b1",
+  "body_parent_revision": "192becd35eccc285cab875f01bfa1641308fe3fe",
+  "base_main_revision": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+  "worktree": "/home/tenni/.helix-worktrees/l3-harness-stage3-parent054",
+  "worktree_head_actual": "a66908edc5dac28395b6e86e0244639d93c470b1",
+  "worktree_clean": true,
+  "candidate_body_exact_no_root_correction": true,
+  "six_actual_body_pins": [
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "base_revision": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+      "base_full_bytes": 13240,
+      "base_full_sha256": "c51f0bc2b98ae5c6a77bfa354050ec70ee87a70641b5f0161b14d5a3afd33e8f",
+      "parent_revision": "192becd35eccc285cab875f01bfa1641308fe3fe",
+      "parent_full_bytes": 18239,
+      "parent_full_sha256": "339d743cf8f03bed7b516fa4c0e78c1142a1e6fdfeb4182b46a6e3c5d1b51d14",
+      "body_revision": "a66908edc5dac28395b6e86e0244639d93c470b1",
+      "body_full_bytes": 18442,
+      "body_full_sha256": "fd8e4b52a87fba823ecffa5a9933e4dea450197caf1c30b542f2b14864175641",
+      "base_prefix_preserved_exact": true,
+      "parent_and_body_prefix_bytes": 13721,
+      "parent_and_body_prefix_sha256": "88ba9696c20439b6630d6630d07689c919c4d40d85e22c45224d5ae89bd5d790",
+      "parent_prefix_extension_after_main_base_bytes": 481,
+      "suffix_marker": "### HARNESS-L3/L10-054",
+      "body_suffix_physical_line_start": 131,
+      "body_suffix_physical_line_end_inclusive": 147,
+      "body_suffix_bytes": 4721,
+      "body_suffix_sha256": "adf33600404727318595783aa7a08281fc77561491cd2c14539ef6c68398c181",
+      "body_suffix_exact_candidate_match": true,
+      "base_and_prefix_terminal_lf": true,
+      "suffix_terminal_lf": true,
+      "suffix_has_no_blank_eof": true,
+      "checkpoint_actual_pin": {
+        "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+        "sha256": "fd8e4b52a87fba823ecffa5a9933e4dea450197caf1c30b542f2b14864175641",
+        "bytes": 18442
+      }
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "base_revision": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+      "base_full_bytes": 204919,
+      "base_full_sha256": "4fce6bb6cd3af5938a11719866050bd729234adbebf70c4210398aa90cad5dff",
+      "parent_revision": "192becd35eccc285cab875f01bfa1641308fe3fe",
+      "parent_full_bytes": 207793,
+      "parent_full_sha256": "0f1a0aa411794e8335eae52229199291a624c72b06f97ecca41a7fd41769f2d6",
+      "body_revision": "a66908edc5dac28395b6e86e0244639d93c470b1",
+      "body_full_bytes": 208435,
+      "body_full_sha256": "53d6bec8c885e585e6679c6d1523a286ade8c1eed34cce097b9dda9d016818aa",
+      "base_prefix_preserved_exact": true,
+      "parent_and_body_prefix_bytes": 205400,
+      "parent_and_body_prefix_sha256": "ad1445c05c2bfc2b73cf4293955e635e4506e785d434c69f4095908b51029e74",
+      "parent_prefix_extension_after_main_base_bytes": 481,
+      "suffix_marker": "## 機能要件 `FR-HARNESS-L3-054`",
+      "body_suffix_physical_line_start": 724,
+      "body_suffix_physical_line_end_inclusive": 737,
+      "body_suffix_bytes": 3035,
+      "body_suffix_sha256": "28cf6af5f4e53282c8673a66e6ca51f94e92af726739b891fbad12b98fdaa475",
+      "body_suffix_exact_candidate_match": true,
+      "base_and_prefix_terminal_lf": true,
+      "suffix_terminal_lf": true,
+      "suffix_has_no_blank_eof": true,
+      "checkpoint_actual_pin": {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "sha256": "53d6bec8c885e585e6679c6d1523a286ade8c1eed34cce097b9dda9d016818aa",
+        "bytes": 208435
+      }
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "base_revision": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+      "base_full_bytes": 42916,
+      "base_full_sha256": "b364e8c6dc92f4548df34638488fefec1533d13941a991de685a74bb64471fc9",
+      "parent_revision": "192becd35eccc285cab875f01bfa1641308fe3fe",
+      "parent_full_bytes": 47986,
+      "parent_full_sha256": "f9b67dc65b56314b981b6736e6399191be43740d7e294145092bfa7de6ea0fe3",
+      "body_revision": "a66908edc5dac28395b6e86e0244639d93c470b1",
+      "body_full_bytes": 48783,
+      "body_full_sha256": "a64a856ee5f5a8d38786d4851d8734995b639dfd7235620ce13ae01177f885d4",
+      "base_prefix_preserved_exact": true,
+      "parent_and_body_prefix_bytes": 43397,
+      "parent_and_body_prefix_sha256": "79634196f23fb536980d940168ded573762312a63de56d8ec3801dad025caeeb",
+      "parent_prefix_extension_after_main_base_bytes": 481,
+      "suffix_marker": "### HARNESS-L3/L10-054",
+      "body_suffix_physical_line_start": 197,
+      "body_suffix_physical_line_end_inclusive": 213,
+      "body_suffix_bytes": 5386,
+      "body_suffix_sha256": "7d9f760461597c9db9611f61e695ef2e5928a0e70c8cb84c87f71862e2f4daf6",
+      "body_suffix_exact_candidate_match": true,
+      "base_and_prefix_terminal_lf": true,
+      "suffix_terminal_lf": true,
+      "suffix_has_no_blank_eof": true,
+      "checkpoint_actual_pin": {
+        "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+        "sha256": "a64a856ee5f5a8d38786d4851d8734995b639dfd7235620ce13ae01177f885d4",
+        "bytes": 48783
+      }
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "base_revision": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+      "base_full_bytes": 8819,
+      "base_full_sha256": "2faacacf78b835b5127e990b805adb97b079439c887a1ef2bd6d69f2478d53c9",
+      "parent_revision": "192becd35eccc285cab875f01bfa1641308fe3fe",
+      "parent_full_bytes": 13937,
+      "parent_full_sha256": "30eba035c785eaf9537461e47877f28ac589b1e2343f5ea77c29f7beb076b31c",
+      "body_revision": "a66908edc5dac28395b6e86e0244639d93c470b1",
+      "body_full_bytes": 14500,
+      "body_full_sha256": "c64358bc6b92a3f7a078ad4ed3b1a6f42f73f4d65abbb15297fac4f7bccf0ddc",
+      "base_prefix_preserved_exact": true,
+      "parent_and_body_prefix_bytes": 9300,
+      "parent_and_body_prefix_sha256": "fc9559671f20eddefce64f43ad6af09f4994cab49841c3873531d0ab01e7ab59",
+      "parent_prefix_extension_after_main_base_bytes": 481,
+      "suffix_marker": "### HARNESS-L3/L10-054",
+      "body_suffix_physical_line_start": 92,
+      "body_suffix_physical_line_end_inclusive": 114,
+      "body_suffix_bytes": 5200,
+      "body_suffix_sha256": "1f47abdd26503047ceb3c6cb3b6d4c13b1694530475ecd5805ba060c8777f669",
+      "body_suffix_exact_candidate_match": true,
+      "base_and_prefix_terminal_lf": true,
+      "suffix_terminal_lf": true,
+      "suffix_has_no_blank_eof": true,
+      "checkpoint_actual_pin": {
+        "path": "docs/helix-harness/L10-verification/business-verification.md",
+        "sha256": "c64358bc6b92a3f7a078ad4ed3b1a6f42f73f4d65abbb15297fac4f7bccf0ddc",
+        "bytes": 14500
+      }
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "base_revision": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+      "base_full_bytes": 636566,
+      "base_full_sha256": "bc63c3abbabd727dbb2cfa37a5c3741985181308ad93378ebf2e5846907770f0",
+      "parent_revision": "192becd35eccc285cab875f01bfa1641308fe3fe",
+      "parent_full_bytes": 714175,
+      "parent_full_sha256": "5121ed5851552d8ecaa1368e362520d9bdf4148070a9eb87b90907094f4885ed",
+      "body_revision": "a66908edc5dac28395b6e86e0244639d93c470b1",
+      "body_full_bytes": 726594,
+      "body_full_sha256": "87a7a20a1ff7f757f9e4c989453f2d8e8fd4584a6682fa98f90cfba54a4c8375",
+      "base_prefix_preserved_exact": true,
+      "parent_and_body_prefix_bytes": 637047,
+      "parent_and_body_prefix_sha256": "7578513d5f08b4c447ada68df7bd4ea08101542f49bfe2d0d315f7478a95601d",
+      "parent_prefix_extension_after_main_base_bytes": 481,
+      "suffix_marker": "### HARNESS-L3/L10-054",
+      "body_suffix_physical_line_start": 1641,
+      "body_suffix_physical_line_end_inclusive": 1811,
+      "body_suffix_bytes": 89547,
+      "body_suffix_sha256": "ee38198b02ef739da809a3c8f9aeccdf044395f1d745d7c2d348f8e3d4195f22",
+      "body_suffix_exact_candidate_match": true,
+      "base_and_prefix_terminal_lf": true,
+      "suffix_terminal_lf": true,
+      "suffix_has_no_blank_eof": true,
+      "checkpoint_actual_pin": {
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "sha256": "87a7a20a1ff7f757f9e4c989453f2d8e8fd4584a6682fa98f90cfba54a4c8375",
+        "bytes": 726594
+      }
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "base_revision": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+      "base_full_bytes": 36464,
+      "base_full_sha256": "bb319529b2c2e2af75067c36bf204d386816fb7e78d48f18043973be6290ccd1",
+      "parent_revision": "192becd35eccc285cab875f01bfa1641308fe3fe",
+      "parent_full_bytes": 41671,
+      "parent_full_sha256": "2612819d3a2e528f0f4ef9d0aae060a68593eaa1006b4b41264b7255e6e6afdf",
+      "body_revision": "a66908edc5dac28395b6e86e0244639d93c470b1",
+      "body_full_bytes": 42250,
+      "body_full_sha256": "8934ed37364f789c2fdddfe2b1d78407b1446a0dd9a34c7783285f5d3142f555",
+      "base_prefix_preserved_exact": true,
+      "parent_and_body_prefix_bytes": 36945,
+      "parent_and_body_prefix_sha256": "d6ebf4509ca7aa5da3a747958ac0455fdd723dfb26c8aee93d465b578e0df303",
+      "parent_prefix_extension_after_main_base_bytes": 481,
+      "suffix_marker": "### HARNESS-L3/L10-054",
+      "body_suffix_physical_line_start": 177,
+      "body_suffix_physical_line_end_inclusive": 199,
+      "body_suffix_bytes": 5305,
+      "body_suffix_sha256": "d3ff9713858b4e6f970a531d4e6131624a39cb39b9bdb1cd9ef6522c70fbf823",
+      "body_suffix_exact_candidate_match": true,
+      "base_and_prefix_terminal_lf": true,
+      "suffix_terminal_lf": true,
+      "suffix_has_no_blank_eof": true,
+      "checkpoint_actual_pin": {
+        "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+        "sha256": "8934ed37364f789c2fdddfe2b1d78407b1446a0dd9a34c7783285f5d3142f555",
+        "bytes": 42250
+      }
+    }
+  ],
+  "fixture_matrix": {
+    "path": "docs/helix-harness/L10-verification/functional-verification.md",
+    "body_revision": "a66908edc5dac28395b6e86e0244639d93c470b1",
+    "case_row_count": 134,
+    "unique_case_id_count": 134,
+    "expected_total": 134,
+    "existing_119_ids_preserved": true,
+    "new_15_ids_preserved": true,
+    "new_rows_c19_through_c34_contiguous": true,
+    "c19_then_c20_adjacent": true,
+    "new_rows_each_six_columns": true,
+    "case_ids_in_physical_order": [
+      "CASE-HARNESS-L10-054-01",
+      "CASE-HARNESS-L10-054-02",
+      "CASE-HARNESS-L10-054-r17-phase-missing",
+      "CASE-HARNESS-L10-054-r17-phase-stale",
+      "CASE-HARNESS-L10-054-r17-phase-conflict",
+      "CASE-HARNESS-L10-054-03",
+      "CASE-HARNESS-L10-054-04",
+      "CASE-HARNESS-L10-054-05",
+      "CASE-HARNESS-L10-054-06",
+      "CASE-HARNESS-L10-054-07",
+      "CASE-HARNESS-L10-054-08",
+      "CASE-HARNESS-L10-054-09",
+      "CASE-HARNESS-L10-054-10",
+      "CASE-HARNESS-L10-054-11",
+      "CASE-HARNESS-L10-054-12",
+      "CASE-HARNESS-L10-054-13",
+      "CASE-HARNESS-L10-054-14",
+      "CASE-HARNESS-L10-054-15",
+      "CASE-HARNESS-L10-054-16",
+      "CASE-HARNESS-L10-054-17",
+      "CASE-HARNESS-L10-054-18",
+      "CASE-HARNESS-L10-054-19",
+      "CASE-HARNESS-L10-054-20",
+      "CASE-HARNESS-L10-054-21",
+      "CASE-HARNESS-L10-054-22",
+      "CASE-HARNESS-L10-054-23",
+      "CASE-HARNESS-L10-054-24",
+      "CASE-HARNESS-L10-054-25",
+      "CASE-HARNESS-L10-054-26",
+      "CASE-HARNESS-L10-054-27",
+      "CASE-HARNESS-L10-054-root-04-field-01",
+      "CASE-HARNESS-L10-054-root-04-field-02",
+      "CASE-HARNESS-L10-054-root-04-field-03",
+      "CASE-HARNESS-L10-054-root-04-field-04",
+      "CASE-HARNESS-L10-054-root-04-field-05",
+      "CASE-HARNESS-L10-054-root-04-scope-mismatch",
+      "CASE-HARNESS-L10-054-root-04-dependent-stale",
+      "CASE-HARNESS-L10-054-r02x-placement-meaning",
+      "CASE-HARNESS-L10-054-r02-unseen-task-kind",
+      "CASE-HARNESS-L10-054-r02-unseen-domain",
+      "CASE-HARNESS-L10-054-r02-unseen-risk",
+      "CASE-HARNESS-L10-054-r02-unseen-layer",
+      "CASE-HARNESS-L10-054-r02-unseen-drive",
+      "CASE-HARNESS-L10-054-r02-unseen-valid",
+      "CASE-HARNESS-L10-054-r02-contract-digest-missing",
+      "CASE-HARNESS-L10-054-r03-source-revision-change",
+      "CASE-HARNESS-L10-054-r03-authority-revision-change",
+      "CASE-HARNESS-L10-054-r03-profile-revision-change",
+      "CASE-HARNESS-L10-054-r03-oracle-revision-change",
+      "CASE-HARNESS-L10-054-r03-unseen-valid",
+      "CASE-HARNESS-L10-054-r03-unselected-profile-unknown",
+      "CASE-HARNESS-L10-054-r03-l2-1156-unrevisioned-po",
+      "CASE-HARNESS-L10-054-r04-task-boundary-unknown",
+      "CASE-HARNESS-L10-054-r04-comparison-target-unknown",
+      "CASE-HARNESS-L10-054-r04-evidence-applicability-unknown",
+      "CASE-HARNESS-L10-054-r04-os-lifecycle-unknown",
+      "CASE-HARNESS-L10-054-r04-contract-digest-missing",
+      "CASE-HARNESS-L10-054-r04-task-boundary-missing",
+      "CASE-HARNESS-L10-054-r04-oracle-missing",
+      "CASE-HARNESS-L10-054-r04-comparison-target-missing",
+      "CASE-HARNESS-L10-054-r04-evidence-applicability-missing",
+      "CASE-HARNESS-L10-054-r04-os-lifecycle-missing",
+      "CASE-HARNESS-L10-054-r04-layer-missing",
+      "CASE-HARNESS-L10-054-r04-drive-missing",
+      "CASE-HARNESS-L10-054-r05-layer-stale",
+      "CASE-HARNESS-L10-054-r05-layer-conflict",
+      "CASE-HARNESS-L10-054-r05-drive-stale",
+      "CASE-HARNESS-L10-054-r05-drive-conflict",
+      "CASE-HARNESS-L10-054-r05-source-revision-stale",
+      "CASE-HARNESS-L10-054-r05-source-revision-conflict",
+      "CASE-HARNESS-L10-054-r05-task-boundary-stale",
+      "CASE-HARNESS-L10-054-r05-task-boundary-conflict",
+      "CASE-HARNESS-L10-054-r05-oracle-stale",
+      "CASE-HARNESS-L10-054-r05-oracle-conflict",
+      "CASE-HARNESS-L10-054-r05-comparison-target-stale",
+      "CASE-HARNESS-L10-054-r05-comparison-target-conflict",
+      "CASE-HARNESS-L10-054-r05-evidence-applicability-stale",
+      "CASE-HARNESS-L10-054-r05-evidence-applicability-conflict",
+      "CASE-HARNESS-L10-054-r05-contract-digest-stale",
+      "CASE-HARNESS-L10-054-r05-contract-digest-conflict",
+      "CASE-HARNESS-L10-054-r05-os-profile-stale",
+      "CASE-HARNESS-L10-054-r05-os-profile-conflict",
+      "CASE-HARNESS-L10-054-r05-os-lifecycle-stale",
+      "CASE-HARNESS-L10-054-r05-os-lifecycle-conflict",
+      "CASE-HARNESS-L10-054-r05-evidence-applicability-missing",
+      "CASE-HARNESS-L10-054-r05-source-revision-missing",
+      "CASE-HARNESS-L10-054-r04-os-profile-missing",
+      "CASE-HARNESS-L10-054-r06-risk-oracle-unknown",
+      "CASE-HARNESS-L10-054-r09-002",
+      "CASE-HARNESS-L10-054-r09-001",
+      "CASE-HARNESS-L10-054-r09-003",
+      "CASE-HARNESS-L10-054-r10-harness-assignment-start",
+      "CASE-HARNESS-L10-054-r11-harness-worker-start",
+      "CASE-HARNESS-L10-054-r18-placement-b-meaning-change",
+      "CASE-HARNESS-L10-054-r18-new-required-artifact",
+      "CASE-HARNESS-L10-054-r18-unselected-profile",
+      "CASE-HARNESS-L10-054-r18-unselected-oracle",
+      "CASE-HARNESS-L10-054-r18-contract-digest-missing",
+      "CASE-HARNESS-L10-054-r18-new-contract-only",
+      "CASE-HARNESS-L10-054-r18-new-assignment-only",
+      "CASE-HARNESS-L10-054-c01-os-existing-role-assignment",
+      "CASE-HARNESS-L10-054-c02-extra-specialist-assignment-refused",
+      "CASE-HARNESS-L10-054-c03-typed-muster-handoff",
+      "CASE-HARNESS-L10-054-c04-generation-rule-revision-missing",
+      "CASE-HARNESS-L10-054-c05-reason-missing",
+      "CASE-HARNESS-L10-054-c06-guard-result-missing",
+      "CASE-HARNESS-L10-054-c07-digest-scope-mismatch",
+      "CASE-HARNESS-L10-054-c08-unknown-axis-no-assignment",
+      "CASE-HARNESS-L10-054-c09-harness-assignment-output-refused",
+      "CASE-HARNESS-L10-054-c10-harness-worker-start-output-refused",
+      "CASE-HARNESS-L10-054-c11-requirement-adoption-output-refused",
+      "CASE-HARNESS-L10-054-c12-l3-approval-output-refused",
+      "CASE-HARNESS-L10-054-c13-existing-role-reference-missing",
+      "CASE-HARNESS-L10-054-c14-existing-role-reference-mismatch",
+      "CASE-HARNESS-L10-054-c15-comparison-basis-missing",
+      "CASE-HARNESS-L10-054-c16-comparison-basis-mismatch",
+      "CASE-HARNESS-L10-054-c17-defer-recheck-inputs-missing",
+      "CASE-HARNESS-L10-054-c18-defer-recheck-inputs-mismatch",
+      "CASE-HARNESS-L10-054-c19-unknown-defer-normal-values",
+      "CASE-HARNESS-L10-054-c20-muster-contract-set-member-missing",
+      "CASE-HARNESS-L10-054-c21-muster-contract-set-digest-missing",
+      "CASE-HARNESS-L10-054-c22-muster-contract-set-mismatch",
+      "CASE-HARNESS-L10-054-c23-authority-state-from-provenance-refused",
+      "CASE-HARNESS-L10-054-c24-execution-permission-from-provenance-refused",
+      "CASE-HARNESS-L10-054-c25-authority-state-from-provenance-refused",
+      "CASE-HARNESS-L10-054-c26-execution-permission-from-provenance-refused",
+      "CASE-HARNESS-L10-054-c27-worker-start-state-from-provenance-refused",
+      "CASE-HARNESS-L10-054-c28-result-acceptance-state-from-provenance-refused",
+      "CASE-HARNESS-L10-054-c29-oracle-execution-state-from-evidence-refused",
+      "CASE-HARNESS-L10-054-c30-oracle-result-state-from-evidence-refused",
+      "CASE-HARNESS-L10-054-c31-runtime-projection-state-from-evidence-refused",
+      "CASE-HARNESS-L10-054-c32-assignment-state-from-evidence-refused",
+      "CASE-HARNESS-L10-054-c33-security-permission-state-from-evidence-refused",
+      "CASE-HARNESS-L10-054-c34-user-acceptance-state-from-evidence-refused"
+    ]
+  },
+  "legacy_preservation": {
+    "old100_raw_case_count": 100,
+    "raw_records_exact_match_root_checkpoint": true,
+    "raw_sha256_all_match": true,
+    "historical_source_pin_count": 25,
+    "all_25_actual_pins_match": true,
+    "raw_case_records": [
+      {
+        "id": "CASE-HARNESS-L10-054-01",
+        "line": 876,
+        "literal": "| `CASE-HARNESS-L10-054-01` | `FR-HARNESS-L3-054` | `AC-HARNESS-L3-054-01` | task/割当対応表の索引。task identity不一致=`CASE-HARNESS-L10-054-r09-003`、assignment revisionのみの不一致=`CASE-HARNESS-L10-054-r09-002`。 | 索引のみ。 各変異は他方を固定する。 | 不一致は個別にunknown/未完とし既存OS assignment契約へ戻す。具体owner identityがsourceにない場合はunknownを保つ。 |\n",
+        "raw_lf_sha256": "d347a4924dc113c4468bffae129bc4440c2dfdbffb0c87ea6174a4ad3804ac72"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-02",
+        "line": 877,
+        "literal": "| `CASE-HARNESS-L10-054-02` | `FR-HARNESS-L3-054` | `AC-HARNESS-L3-054-02` | 同一task/scope/revisionのhandoff入力とOS応答のindex。各missing/stale/conflictの実在ID: `CASE-HARNESS-L10-054-r04-layer-missing`, `CASE-HARNESS-L10-054-r04-drive-missing`, `CASE-HARNESS-L10-054-r04-task-boundary-missing`, `CASE-HARNESS-L10-054-r04-oracle-missing`, `CASE-HARNESS-L10-054-r04-comparison-target-missing`, `CASE-HARNESS-L10-054-r04-evidence-applicability-missing`, `CASE-HARNESS-L10-054-r04-os-profile-missing`, `CASE-HARNESS-L10-054-r04-os-lifecycle-missing`, `CASE-HARNESS-L10-054-r05-source-revision-missing`, `CASE-HARNESS-L10-054-r05-layer-stale`, `CASE-HARNESS-L10-054-r05-layer-conflict`, `CASE-HARNESS-L10-054-r05-drive-stale`, `CASE-HARNESS-L10-054-r05-drive-conflict`, `CASE-HARNESS-L10-054-r05-source-revision-stale`, `CASE-HARNESS-L10-054-r05-source-revision-conflict`, `CASE-HARNESS-L10-054-r05-task-boundary-stale`, `CASE-HARNESS-L10-054-r05-task-boundary-conflict`, `CASE-HARNESS-L10-054-r05-oracle-stale`, `CASE-HARNESS-L10-054-r05-oracle-conflict`, `CASE-HARNESS-L10-054-r05-comparison-target-stale`, `CASE-HARNESS-L10-054-r05-comparison-target-conflict`, `CASE-HARNESS-L10-054-r05-evidence-applicability-stale`, `CASE-HARNESS-L10-054-r05-evidence-applicability-conflict`, `CASE-HARNESS-L10-054-r05-contract-digest-stale`, `CASE-HARNESS-L10-054-r05-contract-digest-conflict`, `CASE-HARNESS-L10-054-r05-os-profile-stale`, `CASE-HARNESS-L10-054-r05-os-profile-conflict`, `CASE-HARNESS-L10-054-r05-os-lifecycle-stale`, `CASE-HARNESS-L10-054-r05-os-lifecycle-conflict`, AC-04:`CASE-HARNESS-L10-054-r02-contract-digest-missing`; AC-02:`CASE-HARNESS-L10-054-r17-phase-missing`, `CASE-HARNESS-L10-054-r17-phase-stale`, `CASE-HARNESS-L10-054-r17-phase-conflict`; AC-02:`CASE-HARNESS-L10-054-r18-contract-digest-missing`。 | 索引のみ。 | 各参照先のunknown/defer/割当禁止oracleを個別適用し、nested indexをnegativeに数えない。 |\n",
+        "raw_lf_sha256": "eb36c70a5ec703d1cc530b7a74454179def0f892aa9c72ce8e95de2c44262f8c"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r17-phase-missing",
+        "line": 878,
+        "literal": "| `CASE-HARNESS-L10-054-r17-phase-missing` | `FR-HARNESS-L3-054` | `AC-HARNESS-L3-054-02` | 同一task/scope/revision、他軸とOS assignment current、選択済process phaseとsource revisionが既知。 | phaseだけをmissingにする。 | handoffをunknown/deferに保ち、phase値/mappingを推測・新設せず、固定L2:1160の工程意味ownerへ戻す。 |\n",
+        "raw_lf_sha256": "d27df10c1883e577d372640e9fc54853b37dea9fde748867261677813ea130b8"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r17-phase-stale",
+        "line": 879,
+        "literal": "| `CASE-HARNESS-L10-054-r17-phase-stale` | `FR-HARNESS-L3-054` | `AC-HARNESS-L3-054-02` | 同一task/scope/revision、他軸とOS assignment current、選択済process phaseとsource revisionが既知。 | phaseだけをstaleにする。 | handoffをunknown/deferに保ち、phase値/mappingを推測・新設せず、固定L2:1160の工程意味ownerへ戻す。 |\n",
+        "raw_lf_sha256": "72b0e2cf8351dcb548497c470cd2300cdd7f96d85ac1e4bf948def76f8012f6c"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r17-phase-conflict",
+        "line": 880,
+        "literal": "| `CASE-HARNESS-L10-054-r17-phase-conflict` | `FR-HARNESS-L3-054` | `AC-HARNESS-L3-054-02` | 同一task/scope/revision、他軸とOS assignment current、選択済process phaseとsource revisionが既知。 | phaseだけをconflictにする。 | handoffをunknown/deferに保ち、phase値/mappingを推測・新設せず、固定L2:1160の工程意味ownerへ戻す。 |\n",
+        "raw_lf_sha256": "0ce40592a669650396c53eebaf0012a0f5a2d37425a8e0df8f81f6b98d3c04a4"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-03",
+        "line": 881,
+        "literal": "| `CASE-HARNESS-L10-054-03` | `FR-HARNESS-L3-054` | `AC-HARNESS-L3-054-03` | 索引のみ。 割当欠落=`CASE-HARNESS-L10-054-root-04-field-02`、OS応答欠落=`CASE-HARNESS-L10-054-root-04-field-03`、receipt欠落=`CASE-HARNESS-L10-054-root-04-field-04`、scope欠落=`CASE-HARNESS-L10-054-root-04-field-05`、scope不一致=`CASE-HARNESS-L10-054-root-04-scope-mismatch`、AC-02の依存情報stale=`CASE-HARNESS-L10-054-root-04-dependent-stale`、HARNESSによるassignment/起動の境界=`CASE-HARNESS-L10-054-r09-001`, `CASE-HARNESS-L10-054-r10-harness-assignment-start`, `CASE-HARNESS-L10-054-r11-harness-worker-start`を個別参照する。 | 索引のみ。 参照先ごとに単独oracleを評価する。 | OS assignment/response/receiptの未完をHARNESS contract receiptで閉じない。 |\n",
+        "raw_lf_sha256": "b05a5f33499a82d98218369c676bb315cfb0b94c5cbc071eef135670e1787bf6"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-04",
+        "line": 912,
+        "literal": "| `CASE-HARNESS-L10-054-04` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | task/task-054-a、scope/stage3、revision/rev-054-a、axis mapping=unknown_or_defer、contract digest/current、assignment record/state=pending-not-issued、OS response/state=deferred、receipt record/current with valid identity/digest/source/scope/revision, completion=not-claimed、target scope/revision一致を正常条件として固定する。 | 索引matrixのみ。単独変異はAC-02:`CASE-HARNESS-L10-054-root-04-field-01`, AC-03:`CASE-HARNESS-L10-054-root-04-field-02`, AC-03:`CASE-HARNESS-L10-054-root-04-field-03`, AC-03:`CASE-HARNESS-L10-054-root-04-field-04`, AC-03:`CASE-HARNESS-L10-054-root-04-field-05`, AC-03:`CASE-HARNESS-L10-054-root-04-scope-mismatch`, AC-02:`CASE-HARNESS-L10-054-root-04-dependent-stale`。 | このmatrixを独立negative coverageへ数えない。各参照CASEの局所未完と既存owner戻しを個別照合する。 |\n",
+        "raw_lf_sha256": "263a1e6d930865bd84159fdb28bb7d5c5ccf798a0649687256517a0b1b08763f"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-05",
+        "line": 973,
+        "literal": "| `CASE-HARNESS-L10-054-05` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | muster候補ありの契約だけを既存OS assignment境界へ渡す。 | muster候補がないのにOSへcontractを渡す。 | handoffを不成立としHARNESS ownerへ。 |\n",
+        "raw_lf_sha256": "cc6da7168bc374e0b42155d5b445df60ec014e9ae31b902932b24197aa8ad3b3"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-06",
+        "line": 974,
+        "literal": "| `CASE-HARNESS-L10-054-06` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | 索引：新contract生成と新assignment生成を別々に照合する。 | 索引のみ。単独CASEは`CASE-HARNESS-L10-054-r18-new-contract-only`と`CASE-HARNESS-L10-054-r18-new-assignment-only`。 | 個別oracleを適用し本行を変異に数えない。 |\n",
+        "raw_lf_sha256": "e58bc2879444139e92a01efb96f35479a6adec62bdab09859e2e265c98d66542"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-07",
+        "line": 975,
+        "literal": "| `CASE-HARNESS-L10-054-07` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | worker/verifierを異なるidentity/context/authorityで記録する正常例。 | identity/context/authority欠落を`CASE-HARNESS-L10-054-19`、`CASE-HARNESS-L10-054-20`、`CASE-HARNESS-L10-054-21`で個別に試す。同provider/modelだけで独立性を否定する反例はCASE-HARNESS-L10-054-08に限る。 | matrix行を個別coverageとして数えず、各欠落は不成立・既存contract ownerへ戻す。 |\n",
+        "raw_lf_sha256": "c0df0470b0dd53517d9883770f62b641e6a16d04ec0c9aa785ad55b288508e8a"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-08",
+        "line": 976,
+        "literal": "| `CASE-HARNESS-L10-054-08` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | provider/modelが一致していても別identity/context/authorityの正常fixture。 | provider/model一致だけで独立性を否定。 | 独立性判定を固定親のidentity/context/authorityに戻す。 |\n",
+        "raw_lf_sha256": "057505869c0e06a6f42853e31d17a761c227a7df29fbfb111fd60e48174aea28"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-09",
+        "line": 1007,
+        "literal": "| `CASE-HARNESS-L10-054-09` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | 新contractと新assignmentを別状態として扱う索引。 | 索引のみ。直接参照は`CASE-HARNESS-L10-054-r18-new-contract-only`と`CASE-HARNESS-L10-054-r18-new-assignment-only`。 | 個別oracleを適用し、本行や054-06を独立変異に数えない。 |\n",
+        "raw_lf_sha256": "bd71651ce21b4afce1c6e26109ae41650c04970b4c010d107f7f961910cac486"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-10",
+        "line": 1008,
+        "literal": "| `CASE-HARNESS-L10-054-10` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | CASE-HARNESS-L10-054-08のindex参照。 | 独立変異として数えない。 | 同一provider/modelだけで非独立とする既存CASE-HARNESS-L10-054-08のoracleだけを適用する。 |\n",
+        "raw_lf_sha256": "5a1c9c206fcee808c551877fa9edee4bbadfc612e7a344007f5b19e9f5a299ae"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-11",
+        "line": 1029,
+        "literal": "| `CASE-HARNESS-L10-054-11` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | tool/path candidateは契約上の候補にとどめ、SECURITY ownerの既存制約を参照。 | tool/path候補をSECURITY許可へ昇格。 | authority生成を拒否、SECURITY ownerへ。 |\n",
+        "raw_lf_sha256": "1867304b207b90160d9f3905ed4bde4c00de5fafdf93fa333581f997d00f5dbd"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-12",
+        "line": 1030,
+        "literal": "| `CASE-HARNESS-L10-054-12` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | worker/verifierのidentity/context/authorityが全て異なる正常例。 | matrixのみ。identity欠落、context欠落、authority欠落は`CASE-HARNESS-L10-054-19`、`CASE-HARNESS-L10-054-20`、`CASE-HARNESS-L10-054-21`で各々独立に変異する。 | 各変異は個別にguard不成立、HARNESS 契約ownerへ戻す。 |\n",
+        "raw_lf_sha256": "dc3131b6675937349ac7f63da9e20118fdcb7c6e47b0c073278d32e4ee24f196"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-13",
+        "line": 1047,
+        "literal": "| `CASE-HARNESS-L10-054-13` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | CASE-HARNESS-L10-054-05のindex参照。 | 独立変異として数えない。 | 候補なしのcontractをOSへ送る既存CASE-HARNESS-L10-054-05のoracleだけを適用する。 |\n",
+        "raw_lf_sha256": "21a77c0becd7127b9757ea579ca9a18a4f4080a393715541804ab42576b81f2d"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-14",
+        "line": 1048,
+        "literal": "| `CASE-HARNESS-L10-054-14` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | CASE-HARNESS-L10-054-11のindex参照。 | 独立変異として数えない。 | tool/pathからSECURITY許可を発行する既存CASE-HARNESS-L10-054-11のoracleだけを適用する。 |\n",
+        "raw_lf_sha256": "b88ac92d13c03edaf2690dde26d01cb0f8a21ef210c148c571304e0b7be4a713"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-15",
+        "line": 1049,
+        "literal": "| `CASE-HARNESS-L10-054-15` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | LABO/INTELLIGENCE資料を比較・placement材料としてscope別に識別する正常例。 | LABO資料のみとINTELLIGENCE資料のみからSECURITY permissionを生成する変異をCASE-HARNESS-L10-054-22、CASE-HARNESS-L10-054-23に分離する。 | authorityを生成せず、各々SECURITY ownerへ戻す。 |\n",
+        "raw_lf_sha256": "35411810e33fc7b98c90b24b546f8d9e12f2826d819a459eb7206d7b35973fd7"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-16",
+        "line": 1068,
+        "literal": "| `CASE-HARNESS-L10-054-16` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | existing role sufficientで新しいcontract/assignmentを作らない正常例。 | 固定Worker countによる受入条件強制だけを扱う。TeamDefinition強制はCASE-HARNESS-L10-054-24、旧projection要求はCASE-HARNESS-L10-054-17を参照する。 | 固定値/schemaを拒否し、matrixで代替coverageを主張しない。 |\n",
+        "raw_lf_sha256": "a6e2c4737033f497db749e28a52c70f2805f22dc2a39d8fa61b325b60eaa0c08"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-17",
+        "line": 1069,
+        "literal": "| `CASE-HARNESS-L10-054-17` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | runtime-neutral contractとOS assignment境界を分ける。 | 旧projectionをacceptance resultとして要求する。 | 不成立。 |\n",
+        "raw_lf_sha256": "56dcaecbb9c72d69a363d0d22863f145f6a3542232f02cbc51d651f5b639c6ad"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-18",
+        "line": 1070,
+        "literal": "| `CASE-HARNESS-L10-054-18` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | authority/assignment/worker lifecycleを各既存owner記録から照合する正常例。 | candidate/handoffからの実行、authority、acceptance生成を`CASE-HARNESS-L10-054-25`、`CASE-HARNESS-L10-054-26`、`CASE-HARNESS-L10-054-27`で個別に試す。 | 各状態生成を拒否し、該当既存ownerへ戻す。 |\n",
+        "raw_lf_sha256": "2acc81eb585149748bdeabd0be95f91bf3b4c3681b0875eb67e64327668ab6c0"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-19",
+        "line": 1110,
+        "literal": "| `CASE-HARNESS-L10-054-19` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | worker/verifierのidentity/context/authorityを独立して記録する。 | worker identityだけを欠落させる。 | independence claim不成立、既存contract ownerへ戻す。 |\n",
+        "raw_lf_sha256": "930d51e6c73dad3821b34703911b9675fe816e181d533ff4bba56e9675c676da"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-20",
+        "line": 1111,
+        "literal": "| `CASE-HARNESS-L10-054-20` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | worker/verifierのidentity/context/authorityを独立して記録する。 | worker/verifier contextだけを欠落させる。 | independence claim不成立、既存contract ownerへ戻す。 |\n",
+        "raw_lf_sha256": "c7e0a4c9969e281aac22e8769dc1f0208aba70b25bc304397e03d3f0c7fc7c3e"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-21",
+        "line": 1112,
+        "literal": "| `CASE-HARNESS-L10-054-21` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | worker/verifierのidentity/context/authorityを独立して記録する。 | authority separationだけを欠落させる。 | independence claim不成立、既存contract ownerへ戻す。 |\n",
+        "raw_lf_sha256": "ed7183284b5f49d9ba8ebac28fce49e7cfc304b74c63270b6ade17ed3b1adaaa"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-22",
+        "line": 1113,
+        "literal": "| `CASE-HARNESS-L10-054-22` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | LABO evidenceを比較材料として保持しSECURITY authorityから分離する。 | LABO材料だけからSECURITY permissionを生成する。 | permission生成を拒否しSECURITY ownerへ戻す。 |\n",
+        "raw_lf_sha256": "4c87f5ba8927842e608d9f8d03c3a5f5340d5d4a67f1bbdef572ee4adbeb402d"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-23",
+        "line": 1114,
+        "literal": "| `CASE-HARNESS-L10-054-23` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | INTELLIGENCE placement proposalをproposalのまま保持する。 | INTELLIGENCE資料だけからSECURITY permissionを生成する。 | permission生成を拒否しSECURITY ownerへ戻す。 |\n",
+        "raw_lf_sha256": "bd2a127bbbde30013b276e9803da7a51f470f4d8940f7437ed5beff75f8fe479"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-24",
+        "line": 1115,
+        "literal": "| `CASE-HARNESS-L10-054-24` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | existing role sufficientを固定Worker countに依存させない。 | TeamDefinitionだけを受入条件へ追加する。 | 追加schema/条件を拒否しHARNESS 契約ownerへ戻す。 |\n",
+        "raw_lf_sha256": "8e7a7edbc020833996d36c7c0320bd8385ea6dc64fc5a071459a2de9544aa479"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-25",
+        "line": 1116,
+        "literal": "| `CASE-HARNESS-L10-054-25` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | candidate/handoffは候補状態のまま保持する。 | candidate/handoffだけから実行状態を生成する。 | 状態生成を拒否し既存OS boundaryへ戻す。 |\n",
+        "raw_lf_sha256": "c8a78de0a2718b2c7cf0f8f2eddd2da7cd8e98075feefd4220ebac60667915d3"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-26",
+        "line": 1117,
+        "literal": "| `CASE-HARNESS-L10-054-26` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | candidate/handoffは既存authority記録と分離する。 | candidate/handoffだけからauthorityを生成する。 | authority生成を拒否しSECURITY ownerへ戻す。 |\n",
+        "raw_lf_sha256": "5af7ee55a7ba28068fe26dc729370f380e2bf743c0916978c0937b21c9bd67d2"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-27",
+        "line": 1118,
+        "literal": "| `CASE-HARNESS-L10-054-27` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | candidate/handoffを既存acceptance oracleと分離する。 | candidate/handoffだけからacceptanceを生成する。 | acceptance生成を拒否し既存acceptance ownerへ戻す。 |\n",
+        "raw_lf_sha256": "682b862b3594f6a7cb7dce1cfae1a5d8d024c8fc029e933923aeed5502896d5e"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-root-04-field-01",
+        "line": 1167,
+        "literal": "| `CASE-HARNESS-L10-054-root-04-field-01` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | task/task-054-a、scope/stage3、revision/rev-054-a、axis mapping=unknown_or_defer、contract digest/current、assignment record/state=pending-not-issued、OS response/state=deferred、receipt record/current with valid identity/digest/source/scope/revision, completion=not-claimed、target scope/revision一致を正常条件として固定する。 | axis mappingだけmissingにする。他条件は保持。 | axis mappingの欠落を独立に検出し該当claimだけ未完/unknownへ戻す。不足axisの既存HARNESS ownerへ戻す（ownerを特定できなければunknownを維持）、他結果で欠落を相殺しない。 |\n",
+        "raw_lf_sha256": "00193b5ca4f00bc54189dcd8724ea7685cfb8cbecb36d8d58e4409b70a1d145b"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-root-04-field-02",
+        "line": 1168,
+        "literal": "| `CASE-HARNESS-L10-054-root-04-field-02` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-03` | task/task-054-a、scope/stage3、revision/rev-054-a、axis mapping=unknown_or_defer、contract digest/current、assignment record/state=pending-not-issued、OS response/state=deferred、receipt record/current with valid identity/digest/source/scope/revision, completion=not-claimed、target scope/revision一致を正常条件として固定する。 | assignmentだけmissingにする。他条件は保持。 | assignmentの欠落を独立に検出し該当claimだけ未完/unknownへ戻す。当該assignment/response/receipt/scopeの既存OS契約ownerへ戻し、他結果で欠落を相殺しない。 |\n",
+        "raw_lf_sha256": "235e338f090f1cc9e566cd39ee5240ec955c3b9eb9b9fd80a32ce787e03950f1"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-root-04-field-03",
+        "line": 1169,
+        "literal": "| `CASE-HARNESS-L10-054-root-04-field-03` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-03` | task/task-054-a、scope/stage3、revision/rev-054-a、axis mapping=unknown_or_defer、contract digest/current、assignment record/state=pending-not-issued、OS response/state=deferred、receipt record/current with valid identity/digest/source/scope/revision, completion=not-claimed、target scope/revision一致を正常条件として固定する。 | responseだけmissingにする。他条件は保持。 | responseの欠落を独立に検出し該当claimだけ未完/unknownへ戻す。当該assignment/response/receipt/scopeの既存OS契約ownerへ戻し、他結果で欠落を相殺しない。 |\n",
+        "raw_lf_sha256": "94548379ba733b6281421730e676d0c6deea880585d72f24f4398bab83b31b86"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-root-04-field-04",
+        "line": 1170,
+        "literal": "| `CASE-HARNESS-L10-054-root-04-field-04` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-03` | task/task-054-a、scope/stage3、revision/rev-054-a、axis mapping=unknown_or_defer、contract digest/current、assignment record/state=pending-not-issued、OS response/state=deferred、receipt record/current with valid identity/digest/source/scope/revision, completion=not-claimed、target scope/revision一致を正常条件として固定する。 | receiptだけmissingにする。他条件は保持。 | receiptの欠落を独立に検出し該当claimだけ未完/unknownへ戻す。当該assignment/response/receipt/scopeの既存OS契約ownerへ戻し、他結果で欠落を相殺しない。 |\n",
+        "raw_lf_sha256": "47efaebc4536d3436994d6db5c4099e8e699a74982b07c25c12c0207b9c30a56"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-root-04-field-05",
+        "line": 1171,
+        "literal": "| `CASE-HARNESS-L10-054-root-04-field-05` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-03` | task/task-054-a、scope/stage3、revision/rev-054-a、axis mapping=unknown_or_defer、contract digest/current、assignment record/state=pending-not-issued、OS response/state=deferred、receipt record/current with valid identity/digest/source/scope/revision, completion=not-claimed、target scope/revision一致を正常条件として固定する。 | scopeだけmissingにする。他条件は保持。 | scopeの欠落を独立に検出し該当claimだけ未完/unknownへ戻す。当該assignment/response/receipt/scopeの既存OS契約ownerへ戻し、他結果で欠落を相殺しない。 |\n",
+        "raw_lf_sha256": "13ed515935772de3091c5bcb2b09df2ea4436bda3d835d6578c5acb17ae64d48"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-root-04-scope-mismatch",
+        "line": 1214,
+        "literal": "| `CASE-HARNESS-L10-054-root-04-scope-mismatch` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-03` | 同task/scope/revisionのassignment-response receiptを保持する。 | response scopeだけ別scopeへ変える。 | handoff未完、既存OS assignment契約へ戻す。具体owner identityがsourceにない場合はunknownを保つ。 |\n",
+        "raw_lf_sha256": "34b9d2ef17cef884eaa30a5b19cfc4ae6bd64e7f0d640169ff62e82260a479ef"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-root-04-dependent-stale",
+        "line": 1215,
+        "literal": "| `CASE-HARNESS-L10-054-root-04-dependent-stale` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | revision依存する適用axisの根拠と依存しない根拠を分ける。 | 変更revisionに依存する適用axisだけstaleとする。 | 影響するaxisだけunknown/未完として固定親が指定する既存ownerへ戻す。新axisを推測しない。 |\n",
+        "raw_lf_sha256": "76e661bd4889da94ec9a1d71b072b0bdf72ea1e5f11959e05f921e96d2656064"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r02x-placement-meaning",
+        "line": 1292,
+        "literal": "| `CASE-HARNESS-L10-054-r02x-placement-meaning` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | 索引：配置変更と新必須artifact追加の影響を別々に照合する。 | 索引のみ。単独CASEは`CASE-HARNESS-L10-054-r18-placement-b-meaning-change`と`CASE-HARNESS-L10-054-r18-new-required-artifact`。 | 個別oracleを適用し本行を変異に数えない。|\n",
+        "raw_lf_sha256": "61456950d458265b32a7e5f1fa06f5f3d7e11ea3c2c203d1f14a048c58505fdf"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r02-unseen-task-kind",
+        "line": 1307,
+        "literal": "| `CASE-HARNESS-L10-054-r02-unseen-task-kind` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-01` | `CASE-HARNESS-L10-054-r02-unseen-valid`の索引参照。 | 独立変異として数えない。同じ未見task-kindを使う正常CASEへ期待結果を集約しない。 | `CASE-HARNESS-L10-054-r02-unseen-valid`の正常oracleを参照し、未見だけを理由に拒否しないことを一度だけcoverageに数える。 |\n",
+        "raw_lf_sha256": "5081aaf4f0e27b095f13bfc39c0e8bace2d47b12596ceb161d5828d9e3159922"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r02-unseen-domain",
+        "line": 1308,
+        "literal": "| `CASE-HARNESS-L10-054-r02-unseen-domain` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | 既存authority/scopeの中の未見domainを記録。 | domain未見を新しい必須enumにする。 | 新enumを作らず、既存authority/scope boundaryと適用oracleで判定する。意味が未定義の範囲だけunknownとして保ち、未見domainのみを理由に拒否しない。 |\n",
+        "raw_lf_sha256": "7a485f9b94107257a378f93272b2a3d299330d96cc42255d7c01fb2bc5e0f3c4"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r02-unseen-risk",
+        "line": 1309,
+        "literal": "| `CASE-HARNESS-L10-054-r02-unseen-risk` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | 選択scope/revisionで意味が定まる既存risk分類とoracleに適合するfixtureを保つ。 | 別scopeの成功結果だけを選択scopeの未見riskへ流用する。他のsource/oracle条件はcurrentのまま。 | 別scope結果の流用を拒否し、選択scopeで再評価するまでunknown/deferとする。task/oracle不足はHARNESSの既存ownerへ、assignment/profile不足はOSの既存ownerへ戻す。 |\n",
+        "raw_lf_sha256": "c8d0744f3226a735b65953d1122a873de6ee70b776c504d0c974c545ea3cfb0a"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r02-unseen-layer",
+        "line": 1310,
+        "literal": "| `CASE-HARNESS-L10-054-r02-unseen-layer` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | 既存layer/drive情報が同scopeでcurrentな未見組合せ。 | 未見組合せを推測して確定。 | 未知を保持しHARNESS契約ownerへ返す。 |\n",
+        "raw_lf_sha256": "6ad75855a415bdb8a1dbfb94dd94e897d761ad8ce87f03a6184fd5b22116f6d8"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r02-unseen-drive",
+        "line": 1311,
+        "literal": "| `CASE-HARNESS-L10-054-r02-unseen-drive` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | 固定親上で意味の定まる未見drive値を保持。 | 値の意味を新規に割り当てる。 | enum/meaningを作らず上流契約へ戻す。 |\n",
+        "raw_lf_sha256": "29fe30f92a59ac4cc1cca425cb002db8636621132a0c84a52bec321c5a9ddb4c"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r02-unseen-valid",
+        "line": 1319,
+        "literal": "| `CASE-HARNESS-L10-054-r02-unseen-valid` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-01` | 未見task-kind/domain/riskまたはlayer/drive組合せでも、固定親内の既存risk分類とoracleで意味が定まり、field、scope/revision、contract digest、既存assignment/profile relationが有効な正常例。 | 該当条件を変えず、未見という理由だけで拒否する。 | 正常なcandidate/handoff mappingを許容し、未定義の意味範囲だけをunknownとして保持する。新enum、割当、起動、実行許可を作らず、LABO evidence適用性はLABO、task/oracleはHARNESS、assignment/profile/lifecycleはOSの既存owner境界に留める。 |\n",
+        "raw_lf_sha256": "27a1119e1f74e64f51c1d7e72b178df561f5b6061530d2a13ca2f3c7537fb0bd"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r02-contract-digest-missing",
+        "line": 1321,
+        "literal": "| `CASE-HARNESS-L10-054-r02-contract-digest-missing` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | handoff contract digestをtask/scope/revision、既存OS assignment/profileと対応させる。 | contract digestだけを欠落させ、その他のbindingはcurrentのまま。 | handoff照合をunknown/未完として保持し、contract情報を補完せずHARNESS 契約ownerとOS assignment/profile ownerへ戻す。 |\n",
+        "raw_lf_sha256": "2cbfaacb89969125cd59add789aa90b8d5518dd23723b36216c94c02f6542eda"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r03-source-revision-change",
+        "line": 1365,
+        "literal": "| `CASE-HARNESS-L10-054-r03-source-revision-change` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | source revisionを含む依存handoffがcurrent。 | source revisionだけを変更する。 | dependent handoffをstaleとして再照合し、source authorityを定める既存ownerへ戻す。 |\n",
+        "raw_lf_sha256": "447b496817db54e479ca8795b78b07ed001d90dcd15a4281b98d34f9c72d32b8"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r03-authority-revision-change",
+        "line": 1366,
+        "literal": "| `CASE-HARNESS-L10-054-r03-authority-revision-change` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | authority revisionとhandoffがcurrent。 | authority revisionだけを変更する。 | dependent handoffをstaleとして再照合し、SECURITY既存authority ownerへ戻す。許可を推定しない。 |\n",
+        "raw_lf_sha256": "ed9bc130199692c6d49f13e90b659b2f0f201e7e8e59f3598d5409820159cd10"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r03-profile-revision-change",
+        "line": 1367,
+        "literal": "| `CASE-HARNESS-L10-054-r03-profile-revision-change` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | profile revisionとhandoffがcurrent。 | profile revisionだけを変更する。 | dependent handoffをstaleとしてOSの既存profile ownerへ返す。 |\n",
+        "raw_lf_sha256": "e2e9dd809709a19f7955b960bda563bc4479d782a7189cb44e2308ea017bf08d"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r03-oracle-revision-change",
+        "line": 1368,
+        "literal": "| `CASE-HARNESS-L10-054-r03-oracle-revision-change` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | verification oracle revisionとhandoffがcurrent。 | oracle revisionだけを変更する。 | dependent handoffをstaleとしてHARNESS task/oracle既存ownerへ戻す。 |\n",
+        "raw_lf_sha256": "34dc17cb1a8330584ceff62cc2872350304021ed4ab464b60aa2216d4ceee4aa"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r03-unseen-valid",
+        "line": 1369,
+        "literal": "| `CASE-HARNESS-L10-054-r03-unseen-valid` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-01` | `CASE-HARNESS-L10-054-r02-unseen-valid`の索引参照。 | 独立変異として数えない。 | 参照先CASEの同じoracleを照合し二重計上しない。 |\n",
+        "raw_lf_sha256": "682f6668a9e5b3450f93a486dccafd6f9b56ed1ea0b1b39aad6565ce65fde589"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r03-unselected-profile-unknown",
+        "line": 1370,
+        "literal": "| `CASE-HARNESS-L10-054-r03-unselected-profile-unknown` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | 索引：未選択profileと未選択oracleを別々に照合する。 | 索引のみ。単独CASEは`CASE-HARNESS-L10-054-r18-unselected-profile`と`CASE-HARNESS-L10-054-r18-unselected-oracle`。 | 個別oracleを適用し本行を変異に数えない。|\n",
+        "raw_lf_sha256": "7e563d148bed208331148388eb68c833ea2fdac306d4313629995f36c3a248ca"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r03-l2-1156-unrevisioned-po",
+        "line": 1371,
+        "literal": "| `CASE-HARNESS-L10-054-r03-l2-1156-unrevisioned-po` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | 配置Bまたは新必須artifactを必要とする場合、対象revision付きPO判断を照合する。 | 判断の対象revisionを欠落させる。 | 意味変更を確定せず、既存PO authorityへ対象revisionを添えて戻す。 |\n",
+        "raw_lf_sha256": "246ed839d3073d47dd5226604b24ed1ac31d2b4ff79c9ee721ff17e363f2a719"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r04-task-boundary-unknown",
+        "line": 1402,
+        "literal": "| `CASE-HARNESS-L10-054-r04-task-boundary-unknown` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | `CASE-HARNESS-L10-054-r05-task-boundary-stale`、`CASE-HARNESS-L10-054-r05-task-boundary-conflict`のindex参照。task-boundaryが適用時に特定される。 | 索引のみ。独立変異として数えない。 | handoffはunknown/deferのまま維持し、参照先のstale/conflict CASEを個別評価する。 |\n",
+        "raw_lf_sha256": "0b00800d43099721f0c6ac08d3537838bc06a7ab0421d64a8650ab44700dc6b5"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r04-comparison-target-unknown",
+        "line": 1403,
+        "literal": "| `CASE-HARNESS-L10-054-r04-comparison-target-unknown` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | `CASE-HARNESS-L10-054-r05-comparison-target-stale`、`CASE-HARNESS-L10-054-r05-comparison-target-conflict`のindex参照。comparison-targetが適用時に特定される。 | 索引のみ。独立変異として数えない。 | handoffはunknown/deferのまま維持し、参照先のstale/conflict CASEを個別評価する。 |\n",
+        "raw_lf_sha256": "bbf332cb159830996577fb1bf2d93bd612d940537390e0f18d0f30b41e7decfa"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r04-evidence-applicability-unknown",
+        "line": 1404,
+        "literal": "| `CASE-HARNESS-L10-054-r04-evidence-applicability-unknown` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | `CASE-HARNESS-L10-054-r05-evidence-applicability-stale`、`CASE-HARNESS-L10-054-r05-evidence-applicability-conflict`のindex参照。evidence-applicabilityが適用時に特定される。 | 索引のみ。独立変異として数えない。 | handoffはunknown/deferのままとし、LABO既存評価責務へ戻す。 |\n",
+        "raw_lf_sha256": "2103f79969795a0bbd24871d59c20f66148c4a78fdc1685687bd14397452217b"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r04-os-lifecycle-unknown",
+        "line": 1405,
+        "literal": "| `CASE-HARNESS-L10-054-r04-os-lifecycle-unknown` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | `CASE-HARNESS-L10-054-r05-os-lifecycle-stale`、`CASE-HARNESS-L10-054-r05-os-lifecycle-conflict`のindex参照。os-lifecycleが適用時に特定される。 | 索引のみ。独立変異として数えない。 | handoffはunknown/deferのまま維持し、参照先のstale/conflict CASEを個別評価する。 |\n",
+        "raw_lf_sha256": "8e4d469885619b22202470926711158cd2b0e6783cf1f062360848da9dac4cfd"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r04-contract-digest-missing",
+        "line": 1444,
+        "literal": "| `CASE-HARNESS-L10-054-r04-contract-digest-missing` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | `CASE-HARNESS-L10-054-r02-contract-digest-missing`の索引参照。 | 独立変異として数えない。 | unknown/未完としてHARNESS contract/OS assignment boundaryへ戻す同一oracleを照合し、二重計上しない。 |\n",
+        "raw_lf_sha256": "02ebaf3e2ac08773c65f5d07d1233f1a5b70c16a169cdcf3402084a18d4bc864"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r04-task-boundary-missing",
+        "line": 1472,
+        "literal": "| `CASE-HARNESS-L10-054-r04-task-boundary-missing` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | task-boundary以外のtask/scope/revision、oracle、比較対象、evidence適用性、OS lifecycleと他軸はcurrent。 | task-boundaryだけを欠落させる。 | unknown/deferを保持し、当該task/process boundaryの既存HARNESS ownerへ戻す。 |\n",
+        "raw_lf_sha256": "885f50493542948d601e41fece3652788ed3c6e707c99ef94ffea97111454d36"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r04-oracle-missing",
+        "line": 1473,
+        "literal": "| `CASE-HARNESS-L10-054-r04-oracle-missing` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | oracle以外のtask/scope/revision、task-boundary、比較対象、evidence適用性、OS lifecycleと他軸はcurrent。 | oracleだけを欠落させる。 | unknown/deferを保持し、HARNESS task/oracle ownerへ戻す。 |\n",
+        "raw_lf_sha256": "56fdf0e7943b6964f4353f80c14866f8d495a2a8998fda0e53288e32f807ce97"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r04-comparison-target-missing",
+        "line": 1474,
+        "literal": "| `CASE-HARNESS-L10-054-r04-comparison-target-missing` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | comparison-target以外のtask/scope/revision、task-boundary、oracle、evidence適用性、OS lifecycleと他軸はcurrent。 | comparison-targetだけを欠落させる。 | unknown/deferを保持し、HARNESS task comparison-target ownerへ戻す。 |\n",
+        "raw_lf_sha256": "ec724902705863c6660db4952e1f65f1135b39ca392dd89ad159a11ca59968b3"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r04-evidence-applicability-missing",
+        "line": 1475,
+        "literal": "| `CASE-HARNESS-L10-054-r04-evidence-applicability-missing` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | evidence applicability以外のtask/scope/revision、task-boundary、oracle、comparison-target、OS lifecycleと他軸はcurrent。 | evidence applicabilityだけを欠落させる。 | unknown/deferを保持し、LABOの既存evidence applicability ownerへ戻す。 |\n",
+        "raw_lf_sha256": "f4f04234ceb24012e1c72ef80cd27337705a41352bd647673c44d68d68ec1432"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r04-os-lifecycle-missing",
+        "line": 1476,
+        "literal": "| `CASE-HARNESS-L10-054-r04-os-lifecycle-missing` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | OS lifecycle evidence以外のtask/scope/revision、task-boundary、oracle、comparison-target、evidence applicabilityと他軸はcurrent。 | OS lifecycle evidenceだけを欠落させる。 | unknown/deferを保持し、OS既存lifecycle ownerへ戻す。 |\n",
+        "raw_lf_sha256": "48f6b41d1f3b70b4022761f0a2a11d21b443a5f05aeb1824d99c50f0dd35ad1f"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r04-layer-missing",
+        "line": 1477,
+        "literal": "| `CASE-HARNESS-L10-054-r04-layer-missing` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | layer以外のtask/scope/revision、drive, phase, task kind, verification pattern, oracle, risk/judgment pack、必要evidenceとOS assignment fieldはcurrent。source identityが特定可能な合成入力を用いる。 | layerだけを欠落させる。 | unknown/deferを保持し、入力でidentityが特定される既存layer contract ownerへ戻す。identity不明ならownerを創作せずunknownを維持する。 |\n",
+        "raw_lf_sha256": "2b7c79084d4863a7c598cc2c9e99131ec6e5723eba880ff3950195f6b2dbc875"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r04-drive-missing",
+        "line": 1478,
+        "literal": "| `CASE-HARNESS-L10-054-r04-drive-missing` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | drive以外のtask/scope/revision、layer, phase, task kind, verification pattern, oracle, risk/judgment pack、必要evidenceとOS assignment fieldはcurrent。source identityが特定可能な合成入力を用いる。 | driveだけを欠落させる。 | unknown/deferを保持し、入力でidentityが特定される既存drive/process ownerへ戻す。identity不明ならownerを創作せずunknownを維持する。 |\n",
+        "raw_lf_sha256": "cc8610fe029eb738e0626c025fcd6e8182a8b8c168eb87ebefdce5b7aa0a308b"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r05-layer-stale",
+        "line": 1528,
+        "literal": "| `CASE-HARNESS-L10-054-r05-layer-stale` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | 同一task/scope/revisionで他の入力軸とOS assignment条件はcurrent。 | layerだけをstale状態へ変異。 | handoffをunknown/deferとして保持し、HARNESSまたは不足軸を所有する既存機構owner（mappingは未決）へ戻す。 |\n",
+        "raw_lf_sha256": "e7ae196acb16178d7e66e390a621a989a551ae225dc0c63b850bfee9363c6e2a"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r05-layer-conflict",
+        "line": 1529,
+        "literal": "| `CASE-HARNESS-L10-054-r05-layer-conflict` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | 同一task/scope/revisionで他の入力軸とOS assignment条件はcurrent。 | layerだけをconflict状態へ変異。 | handoffをunknown/deferとして保持し、HARNESSまたは不足軸を所有する既存機構owner（mappingは未決）へ戻す。 |\n",
+        "raw_lf_sha256": "584f148b3dc6d07974d742e4861d42e0a500feedc14afb554f752da97425100e"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r05-drive-stale",
+        "line": 1530,
+        "literal": "| `CASE-HARNESS-L10-054-r05-drive-stale` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | 同一task/scope/revisionで他の入力軸とOS assignment条件はcurrent。 | driveだけをstale状態へ変異。 | handoffをunknown/deferとして保持し、HARNESSまたは不足を所有する既存機構owner（mapping未決、owner不明ならunknown維持）へ戻す。 |\n",
+        "raw_lf_sha256": "908a10d09cc6301c456b967499b9979c38c0c090b366949ca21fbf445e72a062"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r05-drive-conflict",
+        "line": 1531,
+        "literal": "| `CASE-HARNESS-L10-054-r05-drive-conflict` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | 同一task/scope/revisionで他の入力軸とOS assignment条件はcurrent。 | driveだけをconflict状態へ変異。 | handoffをunknown/deferとして保持し、HARNESSまたは不足を所有する既存機構owner（mapping未決、owner不明ならunknown維持）へ戻す。 |\n",
+        "raw_lf_sha256": "ccc4e83ba546af352d39db6819710ce08961297a2a26661dbd813f3b62434edf"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r05-source-revision-stale",
+        "line": 1532,
+        "literal": "| `CASE-HARNESS-L10-054-r05-source-revision-stale` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | 同一task/scope/revisionで他の入力軸とOS assignment条件はcurrent。 | source-revisionだけをstale状態へ変異。 | handoffをunknown/deferとして保持し、当該source/revisionを所有する既存機構ownerへ戻す。 |\n",
+        "raw_lf_sha256": "17fb99ae1eeaaa0fbe5afe367cfa42f3c560a86895df794c046257c728dc1f6f"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r05-source-revision-conflict",
+        "line": 1533,
+        "literal": "| `CASE-HARNESS-L10-054-r05-source-revision-conflict` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | 同一task/scope/revisionで他の入力軸とOS assignment条件はcurrent。 | source-revisionだけをconflict状態へ変異。 | handoffをunknown/deferとして保持し、当該source/revisionを所有する既存機構ownerへ戻す。 |\n",
+        "raw_lf_sha256": "b0e5f37d6060692da359e677770eb6655def4c24e766ca4345a8804f35df34a9"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r05-task-boundary-stale",
+        "line": 1534,
+        "literal": "| `CASE-HARNESS-L10-054-r05-task-boundary-stale` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | 同一task/scope/revisionで他の入力軸とOS assignment条件はcurrent。 | task-boundaryだけをstale状態へ変異。 | handoffをunknown/deferとして保持し、HARNESS-L2-047のtask boundary ownerへ戻す。 |\n",
+        "raw_lf_sha256": "c89fc7b71ec5b4b72c267b2693040edb4cc4f8ebd3d73902cb7c2cbbbbf29391"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r05-task-boundary-conflict",
+        "line": 1535,
+        "literal": "| `CASE-HARNESS-L10-054-r05-task-boundary-conflict` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | 同一task/scope/revisionで他の入力軸とOS assignment条件はcurrent。 | task-boundaryだけをconflict状態へ変異。 | handoffをunknown/deferとして保持し、HARNESS-L2-047のtask boundary ownerへ戻す。 |\n",
+        "raw_lf_sha256": "c3b405829a9dd4accdb02cea5fe749df4a3931e83d81a65dc6ff73d1ba9ca2ef"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r05-oracle-stale",
+        "line": 1536,
+        "literal": "| `CASE-HARNESS-L10-054-r05-oracle-stale` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | 同一task/scope/revisionで他の入力軸とOS assignment条件はcurrent。 | oracleだけをstale状態へ変異。 | handoffをunknown/deferとして保持し、HARNESS-L2-047のverification oracle ownerへ戻す。 |\n",
+        "raw_lf_sha256": "f7f8330d05e430c00657895a032e08932477a8761b590046b3b7f08507bf1107"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r05-oracle-conflict",
+        "line": 1537,
+        "literal": "| `CASE-HARNESS-L10-054-r05-oracle-conflict` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | 同一task/scope/revisionで他の入力軸とOS assignment条件はcurrent。 | oracleだけをconflict状態へ変異。 | handoffをunknown/deferとして保持し、HARNESS-L2-047のverification oracle ownerへ戻す。 |\n",
+        "raw_lf_sha256": "7cf91cc56176dffd38b9893b1b93dd0eb8eaeaeec0913a2b9b80c0e42b26f796"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r05-comparison-target-stale",
+        "line": 1538,
+        "literal": "| `CASE-HARNESS-L10-054-r05-comparison-target-stale` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | 同一task/scope/revisionで他の入力軸とOS assignment条件はcurrent。 | comparison-targetだけをstale状態へ変異。 | handoffをunknown/deferとして保持し、HARNESS-L2-047のsingle-worker comparison ownerへ戻す。 |\n",
+        "raw_lf_sha256": "a3a087b15e28107b21ae823e618fd38b5cf23c8964c6cadbb8913471ab19e0fb"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r05-comparison-target-conflict",
+        "line": 1539,
+        "literal": "| `CASE-HARNESS-L10-054-r05-comparison-target-conflict` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | 同一task/scope/revisionで他の入力軸とOS assignment条件はcurrent。 | comparison-targetだけをconflict状態へ変異。 | handoffをunknown/deferとして保持し、HARNESS-L2-047のsingle-worker comparison ownerへ戻す。 |\n",
+        "raw_lf_sha256": "172b2eb2b07a497087660d9888d953ffd52366313b9cef4f8172447acf1a4530"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r05-evidence-applicability-stale",
+        "line": 1540,
+        "literal": "| `CASE-HARNESS-L10-054-r05-evidence-applicability-stale` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | 同一task/scope/revisionで他の入力軸とOS assignment条件はcurrent。 | evidence-applicabilityだけをstale状態へ変異。 | handoffをunknown/deferとして保持し、LABOのevidence適用範囲ownerへ戻す。 |\n",
+        "raw_lf_sha256": "92a2936ba6af94f0f45b7dfcf3eb5b082c8a04ff33a6d9f2d84290f321d5be4b"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r05-evidence-applicability-conflict",
+        "line": 1541,
+        "literal": "| `CASE-HARNESS-L10-054-r05-evidence-applicability-conflict` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | 同一task/scope/revisionで他の入力軸とOS assignment条件はcurrent。 | evidence-applicabilityだけをconflict状態へ変異。 | handoffをunknown/deferとして保持し、LABOのevidence適用範囲ownerへ戻す。 |\n",
+        "raw_lf_sha256": "7f758eae075b578890962c362cedbb17daebef3996ee37aabea3f889ff9efcc4"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r05-contract-digest-stale",
+        "line": 1542,
+        "literal": "| `CASE-HARNESS-L10-054-r05-contract-digest-stale` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | 同一task/scope/revisionで他の入力軸とOS assignment条件はcurrent。 | contract-digestだけをstale状態へ変異。 | handoffをunknown/deferとして保持し、HARNESS-L2-047の契約ownerとOS assignment ownerへ戻す。 |\n",
+        "raw_lf_sha256": "56be558065d8e8788336d81ed0f4ef6d5c5ef3bf2a6a9267324d4268b5c79ca8"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r05-contract-digest-conflict",
+        "line": 1543,
+        "literal": "| `CASE-HARNESS-L10-054-r05-contract-digest-conflict` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | 同一task/scope/revisionで他の入力軸とOS assignment条件はcurrent。 | contract-digestだけをconflict状態へ変異。 | handoffをunknown/deferとして保持し、HARNESS-L2-047の契約ownerとOS assignment ownerへ戻す。 |\n",
+        "raw_lf_sha256": "f52a3b32dd40ccc582d44ef2fd9f7a4c3bc8778d69bc0601801da75cadde6064"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r05-os-profile-stale",
+        "line": 1544,
+        "literal": "| `CASE-HARNESS-L10-054-r05-os-profile-stale` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | 同一task/scope/revisionで他の入力軸とOS assignment条件はcurrent。 | os-profileだけをstale状態へ変異。 | handoffをunknown/deferとして保持し、OSのruntime profile ownerへ戻す。 |\n",
+        "raw_lf_sha256": "e636364c9a3117fd50bd3871c2acaf094278d0f3673e26e3014fcf99f1bc5ae4"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r05-os-profile-conflict",
+        "line": 1545,
+        "literal": "| `CASE-HARNESS-L10-054-r05-os-profile-conflict` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | 同一task/scope/revisionで他の入力軸とOS assignment条件はcurrent。 | os-profileだけをconflict状態へ変異。 | handoffをunknown/deferとして保持し、OSのruntime profile ownerへ戻す。 |\n",
+        "raw_lf_sha256": "505d53e5a4644de04c5e0bec60fe33d4130343062918f7a9b3190cdc1d58addf"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r05-os-lifecycle-stale",
+        "line": 1546,
+        "literal": "| `CASE-HARNESS-L10-054-r05-os-lifecycle-stale` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | 同一task/scope/revisionで他の入力軸とOS assignment条件はcurrent。 | os-lifecycleだけをstale状態へ変異。 | handoffをunknown/deferとして保持し、OSのassignment/lifecycle ownerへ戻す。 |\n",
+        "raw_lf_sha256": "fb6711fe6296d3a72975f1dcd3db69c115e8ef0672fdfac1868163a558c898c7"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r05-os-lifecycle-conflict",
+        "line": 1547,
+        "literal": "| `CASE-HARNESS-L10-054-r05-os-lifecycle-conflict` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | 同一task/scope/revisionで他の入力軸とOS assignment条件はcurrent。 | os-lifecycleだけをconflict状態へ変異。 | handoffをunknown/deferとして保持し、OSのassignment/lifecycle ownerへ戻す。 |\n",
+        "raw_lf_sha256": "501e5393469d36a6bb3edabcb5a04cdb8c9a0fe37f562c664f85825300db1b2e"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r05-evidence-applicability-missing",
+        "line": 1553,
+        "literal": "| `CASE-HARNESS-L10-054-r05-evidence-applicability-missing` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | `CASE-HARNESS-L10-054-r04-evidence-applicability-missing`の索引。 | 独立変異として数えない。 | 同参照先のunknown/deferとLABOへの戻しを照合する。 |\n",
+        "raw_lf_sha256": "7556284b9f533ce7b9757a2d5748df973a86735cce1d07b31ee570270c29ca89"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r05-source-revision-missing",
+        "line": 1554,
+        "literal": "| `CASE-HARNESS-L10-054-r05-source-revision-missing` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | 同一task/scopeの他の入力軸とOS assignment条件はcurrent。 | source revisionだけをmissingにする。 | handoffをunknown/deferとして保持し、当該source/revisionを所有する既存機構ownerへ戻す。 |\n",
+        "raw_lf_sha256": "e56ceb389c2570a4337e79cdcbd4e0b21f587ca083482f838b067af4749036b8"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r04-os-profile-missing",
+        "line": 1555,
+        "literal": "| `CASE-HARNESS-L10-054-r04-os-profile-missing` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | 同一task/scope/revisionでassignment lifecycleと他軸はcurrent。 | 適用OS profileだけをmissingにする。 | handoffをunknown/deferとして保持し、OSのruntime profile ownerへ戻す。 |\n",
+        "raw_lf_sha256": "079394eaadf2b642973f596b925a76528fa8b938fac268818bbb30cde7ac736c"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r06-risk-oracle-unknown",
+        "line": 1683,
+        "literal": "| `CASE-HARNESS-L10-054-r06-risk-oracle-unknown` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-01` | task/scope/revisionおよびrisk分類のsourceはcurrent。 | 未見riskの意味を判定するoracleだけunknownにする。 | 当該axisだけunknown/deferにし、全riskを一律unknownにしない。HARNESSまたは不足を所有する既存機構へoracle不足を戻し、ownerを特定できなければunknownを維持して推測しない。 |\n",
+        "raw_lf_sha256": "267cfd4e74a70bdb1b4621a85baaed94ab7bf98b32c612b5479e2869b0e5ece1"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r09-002",
+        "line": 1814,
+        "literal": "| `CASE-HARNESS-L10-054-r09-002` | `FR-HARNESS-L3-054` | `AC-HARNESS-L3-054-01` | task identityを固定し、既存OS assignmentと同じsource/scopeを結ぶ正常fixture。 | assignment revisionだけを異なるrevisionへ変異する。 | revision不一致をunknown/未完に保ち、既存OS assignment契約へ戻す。具体owner identityがsourceにない場合はunknownを保つ。task identity変異とは独立。 |\n",
+        "raw_lf_sha256": "fb8bf9edac074fd7277fcf2bd50f62e35e49f726d0573bf4f4c0242eca2860fc"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r09-001",
+        "line": 1955,
+        "literal": "| `CASE-HARNESS-L10-054-r09-001` | `FR-HARNESS-L3-054`|`AC-HARNESS-L3-054-03`| HARNESS contract generation receiptと既存OS assignmentを別状態で与える。 | contract generation receiptだけをassignment evidenceとして数える。 | assignment成立を推定せずOS handoff未完とする。 戻し先: 既存OS assignment契約（HARNESS-L2-054:1162）。 |\n",
+        "raw_lf_sha256": "51e94d011e5c15fd123b79df861c8e265c564b3436858b30777a0b7971076bb9"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r09-003",
+        "line": 1962,
+        "literal": "| `CASE-HARNESS-L10-054-r09-003` | `FR-HARNESS-L3-054` | `AC-HARNESS-L3-054-01` | assignment revision/source/scopeを固定して既存OS assignmentを与える。 | task identityだけをassignmentと不一致にする。 | task mismatchをunknown/未完として既存OS assignment ownerへ返す。 |\n",
+        "raw_lf_sha256": "3060df3d611748ed7030117b09e656e4e3ab6f0f6648f9278758ac8fc2112096"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r10-harness-assignment-start",
+        "line": 1970,
+        "literal": "| `CASE-HARNESS-L10-054-r10-harness-assignment-start` | `FR-HARNESS-L3-054`|`AC-HARNESS-L3-054-03`| 同一task/scope/revisionのtyped handoffとresponse契約を入力し、OS assignmentは別の既存契約に属する。 | HARNESS自身がOS assignmentを実施する。 | HARNESSによるassignmentを拒否し、既存OS assignment境界へhandoffする（L2-054:1162）。 |\n",
+        "raw_lf_sha256": "9c00b12f0be1609254ea2c3581511d832b319b29afcfdaee3b26f4cc1e78d2e7"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r11-harness-worker-start",
+        "line": 2019,
+        "literal": "| `CASE-HARNESS-L10-054-r11-harness-worker-start` | `FR-HARNESS-L3-054`|`AC-HARNESS-L3-054-03`| 同一task/scope/revisionのtyped handoffとresponse契約を入力し、Worker起動はOS側の既存実行責務に属する。 | HARNESS自身がWorkerを起動する。 | HARNESSによる起動を拒否する。既存OSのassignment/実行境界へhandoffし、OS owner identityが未特定ならunknownを維持する。 |\n",
+        "raw_lf_sha256": "4d210fd7084da7d7b2de16ae2010b51ae02c468e0a0708f5682b9650fec94eea"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r18-placement-b-meaning-change",
+        "line": 2059,
+        "literal": "| `CASE-HARNESS-L10-054-r18-placement-b-meaning-change` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | 配置候補Aと既存OS assignment/profile/lifecycle、task/scope/revisionを固定する。 | 配置だけを候補Bに変え上流意味への影響は未判定とする。 | 意味変更を自動確定せず既存PO authorityへ戻す。 |\n",
+        "raw_lf_sha256": "ff85865f13fc7357b08b2bde4797a4ee4fae702252d87f76ddba63b868b91475"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r18-new-required-artifact",
+        "line": 2060,
+        "literal": "| `CASE-HARNESS-L10-054-r18-new-required-artifact` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | 既存contract/sourceに定義されたartifact setをscope/revisionで記録する。 | 新しい必須artifactを一つだけ追加し、既存required setは保持する。 | 要求義務を新設せず既存PO authorityへ戻す。 |\n",
+        "raw_lf_sha256": "d6f5e8d61fe5c0910e7e2cb0d44c8b36c0813ac8239b451024902dbaea2f2959"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r18-unselected-profile",
+        "line": 2061,
+        "literal": "| `CASE-HARNESS-L10-054-r18-unselected-profile` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | profile選択状態だけを未選択とし、oracleとtask/scope/revisionはcurrentの正常値で保持する。 | 未選択profileを選択済みと推定する。 | unknown/deferを保持しOS profile ownerへ戻す。 |\n",
+        "raw_lf_sha256": "d51e7c2790222fe477f84c30b753131e6e44b1af44da018bda7774fc8f35c80e"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r18-unselected-oracle",
+        "line": 2062,
+        "literal": "| `CASE-HARNESS-L10-054-r18-unselected-oracle` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | profile、oracle、task/scope/revisionは選択済み/currentとして保持する。 | oracle選択だけをunknownにする。 | unknown/deferを保持しHARNESS task/oracle ownerへ戻す。 |\n",
+        "raw_lf_sha256": "cc1b5b8b81153ee470e5b7cac1e4643e32e5826ff4793ca3661302bde8e5f05a"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r18-contract-digest-missing",
+        "line": 2063,
+        "literal": "| `CASE-HARNESS-L10-054-r18-contract-digest-missing` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-02` | 同一task/scope/revisionのpending handoff、assignment未発行、OS応答deferred、receiptはcurrentのまま、参照対象contract digestは正常値を保持する。 | contract digest fieldだけを欠落させる。 | unknown/deferを保持しcontract digestの既存ownerへ戻す。assignment/authorityを生成しない。 |\n",
+        "raw_lf_sha256": "be246fb8a2b714587c5263b2c88835f270beedb33331bf5247f17d06a506cff2"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r18-new-contract-only",
+        "line": 2064,
+        "literal": "| `CASE-HARNESS-L10-054-r18-new-contract-only` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | 既存role sufficient、task/scope/revisionとOS assignment status=currentを記録する。 | 専門contractだけを新規生成する。 | 既存role十分なため新contractを生成せず、既存contract ownerへ戻す。 |\n",
+        "raw_lf_sha256": "e4793b7513cbffe863a51b0582b5b61b066cd6db11ff6e23f67cdb6adbd322a8"
+      },
+      {
+        "id": "CASE-HARNESS-L10-054-r18-new-assignment-only",
+        "line": 2065,
+        "literal": "| `CASE-HARNESS-L10-054-r18-new-assignment-only` | `FR-HARNESS-L3-054` / `AC-HARNESS-L3-054-04` | 既存role sufficientで、HARNESSは候補handoffのみを提示する。同一task/scope/revisionのOS assignmentは未発行であり、他の入力条件はcurrent。 | HARNESSがassignmentを発行済み/成立済みとして記録する。 | HARNESSはassignmentを生成せず、既存OS assignment ownerへ戻す。 |\n",
+        "raw_lf_sha256": "0a52cfca6ef29c7425b31d0aac22fdfecc8a734e1bb020005d5c06a66ab885d0"
+      }
+    ],
+    "source_pins": [
+      {
+        "name": "採択された固定source snapshot:L2-054",
+        "revision": "e94838f513af2aec207ac1de420db62e2ad98b1a",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "line_start": 1154,
+        "line_end": 1163,
+        "expected_full_sha256": "45955ffba1293b603f3c513ec1e9e328dd7bcf24b038463eb20dd480d1dc2108",
+        "actual_full_sha256": "45955ffba1293b603f3c513ec1e9e328dd7bcf24b038463eb20dd480d1dc2108",
+        "expected_span_sha256": "f1bd4d6e8935df2c5416be23ce08883faa2f9671bd3ddd162a745c5db885118d",
+        "actual_span_sha256": "f1bd4d6e8935df2c5416be23ce08883faa2f9671bd3ddd162a745c5db885118d",
+        "physical_final_lf": true,
+        "match": true
+      },
+      {
+        "name": "採択された固定source snapshot:L11-054",
+        "revision": "e94838f513af2aec207ac1de420db62e2ad98b1a",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "line_start": 865,
+        "line_end": 876,
+        "expected_full_sha256": "216a8dccfff723408fd4b54701933a8e257f29e5c775aaef2a4458d1f36d3cc7",
+        "actual_full_sha256": "216a8dccfff723408fd4b54701933a8e257f29e5c775aaef2a4458d1f36d3cc7",
+        "expected_span_sha256": "5dbe464a799a995b2fc7da3c39f334f8cd56994cca5c89a664fc2a42184b9d0f",
+        "actual_span_sha256": "5dbe464a799a995b2fc7da3c39f334f8cd56994cca5c89a664fc2a42184b9d0f",
+        "physical_final_lf": true,
+        "match": true
+      },
+      {
+        "name": "採択された固定source snapshot:L2-047",
+        "revision": "e94838f513af2aec207ac1de420db62e2ad98b1a",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "line_start": 1039,
+        "line_end": 1054,
+        "expected_full_sha256": "45955ffba1293b603f3c513ec1e9e328dd7bcf24b038463eb20dd480d1dc2108",
+        "actual_full_sha256": "45955ffba1293b603f3c513ec1e9e328dd7bcf24b038463eb20dd480d1dc2108",
+        "expected_span_sha256": "341fdf55127727b358cb99da191985c19de7c27543538a93831a357c4bc3388f",
+        "actual_span_sha256": "341fdf55127727b358cb99da191985c19de7c27543538a93831a357c4bc3388f",
+        "physical_final_lf": true,
+        "match": true
+      },
+      {
+        "name": "公開時点snapshot:L2-054",
+        "revision": "7dd2072de74b21ecf5d6c11b39d237e2b335efac",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "line_start": 1154,
+        "line_end": 1163,
+        "expected_full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+        "actual_full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+        "expected_span_sha256": "f1bd4d6e8935df2c5416be23ce08883faa2f9671bd3ddd162a745c5db885118d",
+        "actual_span_sha256": "f1bd4d6e8935df2c5416be23ce08883faa2f9671bd3ddd162a745c5db885118d",
+        "physical_final_lf": true,
+        "match": true
+      },
+      {
+        "name": "公開時点snapshot:L11-054",
+        "revision": "7dd2072de74b21ecf5d6c11b39d237e2b335efac",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "line_start": 866,
+        "line_end": 877,
+        "expected_full_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+        "actual_full_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+        "expected_span_sha256": "5dbe464a799a995b2fc7da3c39f334f8cd56994cca5c89a664fc2a42184b9d0f",
+        "actual_span_sha256": "5dbe464a799a995b2fc7da3c39f334f8cd56994cca5c89a664fc2a42184b9d0f",
+        "physical_final_lf": true,
+        "match": true
+      },
+      {
+        "name": "公開時点snapshot:L2-047",
+        "revision": "7dd2072de74b21ecf5d6c11b39d237e2b335efac",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "line_start": 1039,
+        "line_end": 1054,
+        "expected_full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+        "actual_full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+        "expected_span_sha256": "341fdf55127727b358cb99da191985c19de7c27543538a93831a357c4bc3388f",
+        "actual_span_sha256": "341fdf55127727b358cb99da191985c19de7c27543538a93831a357c4bc3388f",
+        "physical_final_lf": true,
+        "match": true
+      },
+      {
+        "name": "PO-054-row",
+        "revision": "b0b0719dfe786370e9bee48c5d2f753710546b6f",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+        "line_start": 34,
+        "line_end": 34,
+        "expected_full_sha256": "57419892406b5fa0c439d47d5ce6782edaed9585beba8759e2704b9548a54959",
+        "actual_full_sha256": "57419892406b5fa0c439d47d5ce6782edaed9585beba8759e2704b9548a54959",
+        "expected_span_sha256": "5ad1167ad45d7f2befba1423f20dd5ffc0d9e4c2c5846f913b8174f836d17a7d",
+        "actual_span_sha256": "5ad1167ad45d7f2befba1423f20dd5ffc0d9e4c2c5846f913b8174f836d17a7d",
+        "physical_final_lf": true,
+        "match": true
+      },
+      {
+        "name": "PO-047-row",
+        "revision": "17a2f310358ee7fe209b9d37cddf4a927c740248",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "line_start": 52,
+        "line_end": 52,
+        "expected_full_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "actual_full_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "expected_span_sha256": "89a6add22224c89b73c6a5fc54734977e80eddce7a59fd4cad1de2b23c839e37",
+        "actual_span_sha256": "89a6add22224c89b73c6a5fc54734977e80eddce7a59fd4cad1de2b23c839e37",
+        "physical_final_lf": true,
+        "match": true
+      },
+      {
+        "name": "HELIXOS-L2-004-L2-responsibility-row",
+        "revision": "7dd2072de74b21ecf5d6c11b39d237e2b335efac",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "line_start": 57,
+        "line_end": 57,
+        "expected_full_sha256": "97f9158bea0d5c39821bb6538887b909d04687798c8e836d151681ebb06f9bf7",
+        "actual_full_sha256": "97f9158bea0d5c39821bb6538887b909d04687798c8e836d151681ebb06f9bf7",
+        "expected_span_sha256": "79dca676c65cb1313109a3d8c93ff33bf5d8b1bd59b155d7776648aedd2763c2",
+        "actual_span_sha256": "79dca676c65cb1313109a3d8c93ff33bf5d8b1bd59b155d7776648aedd2763c2",
+        "physical_final_lf": true,
+        "match": true
+      },
+      {
+        "name": "HELIXOS-L2-042-L2-section",
+        "revision": "7dd2072de74b21ecf5d6c11b39d237e2b335efac",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "line_start": 1144,
+        "line_end": 1152,
+        "expected_full_sha256": "97f9158bea0d5c39821bb6538887b909d04687798c8e836d151681ebb06f9bf7",
+        "actual_full_sha256": "97f9158bea0d5c39821bb6538887b909d04687798c8e836d151681ebb06f9bf7",
+        "expected_span_sha256": "af2f9f98196667ecd7583349e64a309c7e0a1bff58f4bac065105d9c55c9acfb",
+        "actual_span_sha256": "af2f9f98196667ecd7583349e64a309c7e0a1bff58f4bac065105d9c55c9acfb",
+        "physical_final_lf": true,
+        "match": true
+      },
+      {
+        "name": "HELIXOS-L2-042-L11-section",
+        "revision": "7dd2072de74b21ecf5d6c11b39d237e2b335efac",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "line_start": 756,
+        "line_end": 769,
+        "expected_full_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+        "actual_full_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+        "expected_span_sha256": "1bb759afc770196f8d3ac09bc8c708398293f56a05351a84645d52210f8c591e",
+        "actual_span_sha256": "1bb759afc770196f8d3ac09bc8c708398293f56a05351a84645d52210f8c591e",
+        "physical_final_lf": true,
+        "match": true
+      },
+      {
+        "name": "HELIXOS-L2-043-L2-section",
+        "revision": "7dd2072de74b21ecf5d6c11b39d237e2b335efac",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "line_start": 1153,
+        "line_end": 1161,
+        "expected_full_sha256": "97f9158bea0d5c39821bb6538887b909d04687798c8e836d151681ebb06f9bf7",
+        "actual_full_sha256": "97f9158bea0d5c39821bb6538887b909d04687798c8e836d151681ebb06f9bf7",
+        "expected_span_sha256": "909df8f324b181387bb9a5abf875e8b4cc9d935bd092145b0d088f6db4b8f585",
+        "actual_span_sha256": "909df8f324b181387bb9a5abf875e8b4cc9d935bd092145b0d088f6db4b8f585",
+        "physical_final_lf": true,
+        "match": true
+      },
+      {
+        "name": "HELIXOS-L2-043-L11-section",
+        "revision": "7dd2072de74b21ecf5d6c11b39d237e2b335efac",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "line_start": 770,
+        "line_end": 778,
+        "expected_full_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+        "actual_full_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+        "expected_span_sha256": "9b36703719d1de859d2601cebda576763ba006fadaf2159aaf333b48aa26d6a7",
+        "actual_span_sha256": "9b36703719d1de859d2601cebda576763ba006fadaf2159aaf333b48aa26d6a7",
+        "physical_final_lf": true,
+        "match": true
+      },
+      {
+        "name": "HELIXOS-L2-042-PO-adoption-row",
+        "revision": "7dd2072de74b21ecf5d6c11b39d237e2b335efac",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "line_start": 65,
+        "line_end": 65,
+        "expected_full_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "actual_full_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "expected_span_sha256": "782fdc2c74e3a36d9c109d06e8d229aea8ea3c7dba78e786fc370bd043593152",
+        "actual_span_sha256": "782fdc2c74e3a36d9c109d06e8d229aea8ea3c7dba78e786fc370bd043593152",
+        "physical_final_lf": true,
+        "match": true
+      },
+      {
+        "name": "HELIXOS-L2-043-PO-adoption-row",
+        "revision": "7dd2072de74b21ecf5d6c11b39d237e2b335efac",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "line_start": 66,
+        "line_end": 66,
+        "expected_full_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "actual_full_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "expected_span_sha256": "447242619b0df9a56db3a5e0948c2f8ea8d3ee38466842a4cac59b0b4e9fc2bc",
+        "actual_span_sha256": "447242619b0df9a56db3a5e0948c2f8ea8d3ee38466842a4cac59b0b4e9fc2bc",
+        "physical_final_lf": true,
+        "match": true
+      },
+      {
+        "name": "l1-direct: HIL-BR-09",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "line_start": 61,
+        "line_end": 61,
+        "expected_full_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "actual_full_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "expected_span_sha256": "6630ac1eaf1f037f65098300fef95fbff5ae6eb17c68120b42b207e9d1734906",
+        "actual_span_sha256": "6630ac1eaf1f037f65098300fef95fbff5ae6eb17c68120b42b207e9d1734906",
+        "physical_final_lf": true,
+        "match": true
+      },
+      {
+        "name": "l1-direct: HIL-BR-30",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "line_start": 82,
+        "line_end": 82,
+        "expected_full_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "actual_full_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "expected_span_sha256": "2d60ecedd1241e398d4b8af90a0be3cda76c86663d5088619d6159286778a0fc",
+        "actual_span_sha256": "2d60ecedd1241e398d4b8af90a0be3cda76c86663d5088619d6159286778a0fc",
+        "physical_final_lf": true,
+        "match": true
+      },
+      {
+        "name": "l1-direct: HIL-FR-59/60/61/62/63",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "line_start": 149,
+        "line_end": 153,
+        "expected_full_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "actual_full_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "expected_span_sha256": "162a708c4a5011d3c712b6346df134248f4164afb66bee4442d162932fb1a784",
+        "actual_span_sha256": "162a708c4a5011d3c712b6346df134248f4164afb66bee4442d162932fb1a784",
+        "physical_final_lf": true,
+        "match": true
+      },
+      {
+        "name": "paired-l3-consumer: HR-FR-HIL-21/22",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+        "line_start": 55,
+        "line_end": 56,
+        "expected_full_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+        "actual_full_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+        "expected_span_sha256": "418b8b2fff9ba146379156f5bed4a8388767aa6733ca276c690a850102cb6592",
+        "actual_span_sha256": "418b8b2fff9ba146379156f5bed4a8388767aa6733ca276c690a850102cb6592",
+        "physical_final_lf": true,
+        "match": true
+      },
+      {
+        "name": "paired-l3-consumer: HAC-HIL-21/22",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+        "line_start": 84,
+        "line_end": 85,
+        "expected_full_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+        "actual_full_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+        "expected_span_sha256": "1deaa3c4cd787cb696c019c94f67ecf8db4ad18df188a6b0ee8f2073ece8360b",
+        "actual_span_sha256": "1deaa3c4cd787cb696c019c94f67ecf8db4ad18df188a6b0ee8f2073ece8360b",
+        "physical_final_lf": true,
+        "match": true
+      },
+      {
+        "name": "paired-acceptance-design: HAT-HIL-21/22",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+        "line_start": 53,
+        "line_end": 54,
+        "expected_full_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+        "actual_full_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+        "expected_span_sha256": "f02979521a33ade04cc7ed5929925a295a690a82ee3a54bc6d30d5168f895131",
+        "actual_span_sha256": "f02979521a33ade04cc7ed5929925a295a690a82ee3a54bc6d30d5168f895131",
+        "physical_final_lf": true,
+        "match": true
+      },
+      {
+        "name": "operational-test-design-related: HOT-HIL-53/54/55",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+        "line_start": 80,
+        "line_end": 82,
+        "expected_full_sha256": "4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+        "actual_full_sha256": "4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+        "expected_span_sha256": "c6e014d93c0ac62cbfaf686cd9c4317780d6695edbf728d1c50095569ae1eabb",
+        "actual_span_sha256": "c6e014d93c0ac62cbfaf686cd9c4317780d6695edbf728d1c50095569ae1eabb",
+        "physical_final_lf": true,
+        "match": true
+      },
+      {
+        "name": "RLO-related-boundary: HIL-FR-63 reference",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+        "line_start": 625,
+        "line_end": 625,
+        "expected_full_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+        "actual_full_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+        "expected_span_sha256": "46f5aee734f35da658fe355087fb1a0132a253a2e192ebfe1c3081ad3399c9d7",
+        "actual_span_sha256": "46f5aee734f35da658fe355087fb1a0132a253a2e192ebfe1c3081ad3399c9d7",
+        "physical_final_lf": true,
+        "match": true
+      },
+      {
+        "name": "RLO-related-boundary: HIL-FR-61 reference",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+        "line_start": 688,
+        "line_end": 688,
+        "expected_full_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+        "actual_full_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+        "expected_span_sha256": "60751d114d12eab7b7cb55d935f1b25a81be062cd46658d0da7b22ac64d893b7",
+        "actual_span_sha256": "60751d114d12eab7b7cb55d935f1b25a81be062cd46658d0da7b22ac64d893b7",
+        "physical_final_lf": true,
+        "match": true
+      },
+      {
+        "name": "RLO-related-boundary: HIL-FR-63 reference",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+        "line_start": 1150,
+        "line_end": 1150,
+        "expected_full_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+        "actual_full_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+        "expected_span_sha256": "d6e6303e248f0594f91c2e0229e1be1b8f172a4692540442eb22e2d574185efc",
+        "actual_span_sha256": "d6e6303e248f0594f91c2e0229e1be1b8f172a4692540442eb22e2d574185efc",
+        "physical_final_lf": true,
+        "match": true
+      }
+    ]
+  },
+  "formal_review_history": {
+    "formal_comments": [
+      {
+        "comment_id": 6024290151,
+        "created_at": "2026-10-06T19:54:33Z",
+        "body_utf8_bytes": 469,
+        "body_sha256": "00d0dd33978eff639d620fad04461d6d431dfece8b65cbd6aebd71c2476cd648",
+        "body_verbatim": "初回独立review依頼。base `ceda1c53b53c53fffb8c23f394add1f2b809deb1`、HEAD `b8ba5af24707e5d48eee8b786f9ad87ea4dd4fa3`。採択MPR054001 fixed5aa L21154–1162/L11865–875、旧100raw/現112再導出6列、OS通常assignment/追加specialist拒否、六prefixbyte保持/25pins/raw100物理/六actual、mapping未決保持。gov/diff/public8 PASS。Draft。fixture実行・独立review・承認未。独立照合と同六本文Fable判断をお願いします。\n"
+      },
+      {
+        "comment_id": 6024625350,
+        "created_at": "2026-10-06T20:14:56Z",
+        "body_utf8_bytes": 5273,
+        "body_sha256": "00e7ef622b3158215aec6f410cfc39ef2177127cb973dddfdb7f47ed88551b6a",
+        "body_verbatim": "## review01（independent review、PR #2646 親HARNESS-L2-054、HEAD b8ba5af24707e5d48eee8b786f9ad87ea4dd4fa3、base main ceda1c53b）：Major 2\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2646-HARNESS-STAGE3-PARENT054-01` に応える。\n\n### 本文を評価する前の確認（採択記録・対象版・追補条件）\n- **採択記録**：11候補記録（po-decision-2026-09-29-11candidates.md）の34行が、`MPR-RC-HARNESS-L2-054-001`を採択している。git grepで、後日の別採択がないことを確かめた。\n- **対象版**：固定親は記録用main `5aa100319361b0cc86edd3c51815ec777d55410a`である（L2:1154–1162、L11:865–875）。\n  - **file SHA-256**：L2 `45955ffb…`、L11 `216a8dcc…`。reviewerが計算し、34行と一致した。\n  - **節SHA-256**：L2 `b76b7b1a…`、L11 `5d1ab0ba…`。ブラインドが計算し、34行と一致した。\n- **追補条件**：11候補記録で054が出てくるのは34行だけで、054だけに付いた条件はない。\n  - 表の後ろの注記は、038/053だけに関わるものである。\n  - 依存先の047は、57候補記録52行の条件付きA配置である。本文の「別親・意味不変」と矛盾しない。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - origin/mainとの`merge-tree`は衝突なし\n\n### 照合の経過\n1. **Opusシンプルブラインド**：Major 2。Majorがあったので、Fableへは回していない。\n2. **reviewerの確認**：固定L2:1158「型付きhandoff結果」の全文を読んだ。054節のCASEを「比較根拠」「既存role参照」「再照合に必要」でgrepし、該当するoracleがないことを確かめて、2件ともMajorと確定した。\n\n### Major\n**M1（`existing_role_sufficient`の出力に、対象既存roleと比較根拠があるかを照合していない）**\n- **欠陥**：\n  - 正常のc01（functional-verification.md:1768）の判定は、「OS発行として認識し、追加specialist生成なし」だけである。\n  - `existing_role_sufficient`の出力が持つべき「対象既存role参照」と「比較根拠」の値は、照合していない。\n  - これらを単独で欠落・別値にするCASEもない。r18-new-contract-onlyとr04-comparison-target-missingは、別の要素（新contractの生成と、入力側の比較対象）を扱っている。\n  - そのため、role参照や比較根拠のない`existing_role_sufficient`が合格する（類型4）。\n- **守るべき行**：固定L2-054（5aa10031 product-requirements.md:1158）「`existing_role_sufficient`は対象既存roleと比較根拠を示し」\n\n**M2（`unknown_or_defer`の出力に、再照合に必要な入力があるかを照合していない）**\n- **欠陥**：\n  - unknown/deferを扱うCASE（:1725、:1748、:1775 c08など）の判定は、「unknown/defer保持」と「戻し先owner」だけである。\n  - 出力が持つべき「再照合に必要な入力」は、正常判定でも単独CASEでも照合していない。\n  - B0（:1655）にも、`unknown_or_defer`出力の正常値がない。\n  - そのため、再照合入力を欠いたdeferが合格する（類型4）。\n- **守るべき行**：固定L2-054（product-requirements.md:1158）「`unknown_or_defer`は不足・不確実・stale条件、担当owner、再照合に必要な入力を示し」\n\n### 後で直す残余（承認を止めない）\n- **R1（戻し先の余地）**：r05-source-revision-missing（:1748）は、「無条件で戻す」としながら「機構区分が特定不能なら区分不明」も認めている。戻し先が決まらない余地が残っている。区分不明の場合でも、既知の候補区分へ返す形にすることを勧める。\n- **R2（契約の集合とreference）**：\n  - `muster_candidate`で契約が複数ある場合の「集合とdigest」を確かめる単独CASEがない。\n  - typed contract reference単体の欠落CASEもない。digest欠落のCASEで、間接的に覆われるだけである。\n- **R3（digestの言い換え）**：L3の「input/output digest」は、L2の「入力digest/contract digest」の言い換えとして少し広がっている。意味は変えていない。\n- **R4（muster出力の値）**：c03の正常判定は、muster出力の比較対象とevidenceを値として照合していない。入力側のr04/r05単独CASEで、間接的に覆われる。\n- **R5（前置き節の重複）**：同一の前置き節が、5ファイルに重複している。\n\n### 次の手順\n- **M1**：c01の正常判定に、`existing_role_sufficient`出力の対象既存role参照と比較根拠が入力と一致することの照合を入れる。または、それぞれを単独で欠落・別値にするCASEを置く。\n- **M2**：`unknown_or_defer`の正常値をB0に置き、再照合に必要な入力の照合を判定に入れる。または、それだけを欠落させる単独CASEを置く。\n- 直した後のHEADで、もう一度依頼してほしい。\n"
+      },
+      {
+        "comment_id": 6024842539,
+        "created_at": "2026-10-06T20:28:16Z",
+        "body_utf8_bytes": 480,
+        "body_sha256": "fb4acb560fa613e2571554546d83abc10babd9bd4aaf53eb63ed15218fb14782",
+        "body_verbatim": "review02依頼。base `ceda1c53b53c53fffb8c23f394add1f2b809deb1`、HEAD `192becd35eccc285cab875f01bfa1641308fe3fe`。review01 M1/M2: role参照・比較根拠・defer再照合入力のsource値一致、正常muster全field/正常deferc19と6単独変異、119core旧112ID/旧100raw、fixed5aa/PO34・六SHA・R1–5raw。gov/diff PASS。修正後body独立review・fixture・承認未。固定親・旧source起点で独立照合と同六本文Fable判断をお願いします。\n"
+      },
+      {
+        "comment_id": 6025288166,
+        "created_at": "2026-10-06T20:55:59Z",
+        "body_utf8_bytes": 6210,
+        "body_sha256": "92fda6321c32a0959084954b405a512a4864cf0c736b7ae2f258bbcedb94a394",
+        "body_verbatim": "## review02（independent review、PR #2646 親HARNESS-L2-054、HEAD 192becd35eccc285cab875f01bfa1641308fe3fe、base main ceda1c53b）：Major 3\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2646-HARNESS-STAGE3-PARENT054-02` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：11候補記録34行（`MPR-RC-HARNESS-L2-054-001`）。後日の別revisionの採択はない。\n- **固定親**：記録用main 5aa10031（L2:1154–1162、L11:865–875）。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - origin/mainとの`merge-tree`は衝突なし\n\n### 照合の経過\n1. **review01の解消の確認**（reviewerが差分で確かめた）：M1とM2は解消した。\n   - `existing_role_sufficient`の対象既存role参照と比較根拠を、c01の正常判定で値として照合するようになった。単独CASEとして、c13〜c16（欠落と不一致）が置かれた。\n   - `unknown_or_defer`の再照合に必要な入力を、正常deferのc19で照合するようになった。単独CASEとして、c17/c18が置かれた。\n2. **Opusシンプルブラインド**：Major 3。Majorがあったので、Fableへは回していない。\n3. **reviewerの確認**：固定L2の1158行と1160行、L11の870行と875行の原文を読んだ。054節のCASEを「集合」でgrepし、3件ともMajorと確定した。\n\n**reviewer側の誤り**：M1は、review01で残余R2（「`muster_candidate`で契約が複数ある場合の『集合とdigest』を確かめる単独CASEがない」）としていた点である。固定L2の出力要素なので、review01でMajorとすべきだった。分類を誤ったので、ここで訂正する（#2644 review02と同じ誤りである）。\n\n### Major\n**M1（複数contractの「集合とdigest」が落ちている）**\n- **欠陥**：\n  - L3は、muster出力を「契約参照とそのinput/output digest」の単数形に狭めている。該当箇所は次のとおりである。\n    - business-requirements.md:139\n    - functional-requirements.md:731（AC-01）、733（AC-03）\n    - nfr-grade.md:205\n  - L10のB0とc03は、単一の`contract-ref-054-a`だけを使っている。054節のCASEに、「集合」の語は0件である。\n  - 集合の一部が欠ける、集合digestがない、別の集合になる、のいずれについても、判定する正常fixtureも単独CASEもない。\n  - そのため、複数contractのmusterで集合が不完全な出力でも合格する（類型3・4）。\n- **守るべき行**：固定L2-054（5aa10031 product-requirements.md:1158）「`muster_candidate`は047のruntime-neutral specialist Worker contract参照（複数の場合はその集合とdigest）…を伴う」\n\n**M2（digest・OS受領記録・contract生成receiptからのauthority・実行許可・起動・受入の生成に、単独の拒否CASEがない）**\n- **欠陥**：\n  - **contract digest → authority/実行許可**、**OS受領記録 → authority/実行許可**：c03の正常判定が文中で「receipt/digestから推定しない」と書くだけで、変異CASEがない。\n  - **contract生成receipt → Worker起動**、**contract生成receipt → 成果受入**：単独CASEは、r09-001（assignmentへの誤分類）だけである。CASE-25と27の対象は「candidate/handoff」で、receiptを単独で変異させていない。\n  - 固定親が禁じる生成に、拒否fixtureがない（類型2）。\n- **守るべき行**：\n  - 固定L2-054（product-requirements.md:1160）「HARNESS handoff、tool/path候補、contract digest、OS受領記録は…」authorityや実行許可を発生させない。\n  - L11-054（product-acceptance.md:870）「contract生成receiptをassignment・authority・Worker起動・成果受入として数える…」例は不成立とする。\n\n**M3（L11「受入境界」の禁止に、単独の拒否CASEがない）**\n- **欠陥**：\n  - source/coverage receipt、候補本文、fixture、OS記録例の存在から、次のものを生成する変異のCASEがない。\n    - oracle実行/合格\n    - 実runtime projection\n    - assignment\n    - security許可\n    - 利用者受入\n  - c11とc12が扱うのは、handoff receiptからの要求採択とL3承認だけである。\n  - 固定親が禁じる生成に、拒否fixtureがない（類型2・4）。\n- **守るべき行**：L11-054（product-acceptance.md:875「受入境界」）「source/coverage receipt、候補本文、fixture、OS記録例の存在はoracle実行、実runtime projection、assignment、security許可、利用者受入、要求採択、L3承認を示さない」\n\n### 後で直す残余（承認を止めない）\n- **R1、R3〜R5**：review01から変わらない。\n- **R2**：M1へ繰り上げた。\n- **R6（担当ownerの置き換え）**：L2の「担当owner」を、L3は「既知の責務区分＋個体identity unknown」に置き換えている。c19で区分値を照合している。\n- **R7（適用条件の値）**：「入力digest・適用条件に結ぶ」のうち、「適用条件」がB0の値として固定されていない。c07が、scopeの束縛を代わりに照合している。\n- **R8（範囲・形式の注記）**：次の注記には、単独CASEがない。\n  - 「未知値を別軸へ畳み込まない」（L11:869）\n  - 「assignment/resultの記録はHARNESS contractの意味・oracleを変更しない」（L11:867）\n  - 「047・OS・SECURITYを変更・代替しない」\n\n### 次の手順\n- **M1**：L3のmuster出力に、「複数の場合は契約参照の集合と集合digest」を戻す。複数contractの正常fixtureを置き、集合の一部欠落、集合digestの欠落、別集合への差し替えを、それぞれ単独のCASEとして置く。\n- **M2・M3**：上に挙げた生成のそれぞれについて、その1つだけを変異させて拒否する単独CASEを置く。\n- 直した後のHEADで、もう一度依頼してほしい。\n"
+      }
+    ],
+    "review01_major2_preserved": true,
+    "review01_raw_verbatim": {
+      "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6024625350",
+      "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2646#issuecomment-6024625350",
+      "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2646",
+      "id": 6024625350,
+      "node_id": "IC_kwDOTG8BRc8AAAABZxh8xg",
+      "user": {
+        "login": "RetryYN",
+        "id": 131282486,
+        "node_id": "U_kgDOB9M2Ng",
+        "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/RetryYN",
+        "html_url": "https://github.com/RetryYN",
+        "followers_url": "https://api.github.com/users/RetryYN/followers",
+        "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+        "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+        "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+        "repos_url": "https://api.github.com/users/RetryYN/repos",
+        "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-06T20:14:56Z",
+      "updated_at": "2026-10-06T20:14:56Z",
+      "body": "## review01（independent review、PR #2646 親HARNESS-L2-054、HEAD b8ba5af24707e5d48eee8b786f9ad87ea4dd4fa3、base main ceda1c53b）：Major 2\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2646-HARNESS-STAGE3-PARENT054-01` に応える。\n\n### 本文を評価する前の確認（採択記録・対象版・追補条件）\n- **採択記録**：11候補記録（po-decision-2026-09-29-11candidates.md）の34行が、`MPR-RC-HARNESS-L2-054-001`を採択している。git grepで、後日の別採択がないことを確かめた。\n- **対象版**：固定親は記録用main `5aa100319361b0cc86edd3c51815ec777d55410a`である（L2:1154–1162、L11:865–875）。\n  - **file SHA-256**：L2 `45955ffb…`、L11 `216a8dcc…`。reviewerが計算し、34行と一致した。\n  - **節SHA-256**：L2 `b76b7b1a…`、L11 `5d1ab0ba…`。ブラインドが計算し、34行と一致した。\n- **追補条件**：11候補記録で054が出てくるのは34行だけで、054だけに付いた条件はない。\n  - 表の後ろの注記は、038/053だけに関わるものである。\n  - 依存先の047は、57候補記録52行の条件付きA配置である。本文の「別親・意味不変」と矛盾しない。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - origin/mainとの`merge-tree`は衝突なし\n\n### 照合の経過\n1. **Opusシンプルブラインド**：Major 2。Majorがあったので、Fableへは回していない。\n2. **reviewerの確認**：固定L2:1158「型付きhandoff結果」の全文を読んだ。054節のCASEを「比較根拠」「既存role参照」「再照合に必要」でgrepし、該当するoracleがないことを確かめて、2件ともMajorと確定した。\n\n### Major\n**M1（`existing_role_sufficient`の出力に、対象既存roleと比較根拠があるかを照合していない）**\n- **欠陥**：\n  - 正常のc01（functional-verification.md:1768）の判定は、「OS発行として認識し、追加specialist生成なし」だけである。\n  - `existing_role_sufficient`の出力が持つべき「対象既存role参照」と「比較根拠」の値は、照合していない。\n  - これらを単独で欠落・別値にするCASEもない。r18-new-contract-onlyとr04-comparison-target-missingは、別の要素（新contractの生成と、入力側の比較対象）を扱っている。\n  - そのため、role参照や比較根拠のない`existing_role_sufficient`が合格する（類型4）。\n- **守るべき行**：固定L2-054（5aa10031 product-requirements.md:1158）「`existing_role_sufficient`は対象既存roleと比較根拠を示し」\n\n**M2（`unknown_or_defer`の出力に、再照合に必要な入力があるかを照合していない）**\n- **欠陥**：\n  - unknown/deferを扱うCASE（:1725、:1748、:1775 c08など）の判定は、「unknown/defer保持」と「戻し先owner」だけである。\n  - 出力が持つべき「再照合に必要な入力」は、正常判定でも単独CASEでも照合していない。\n  - B0（:1655）にも、`unknown_or_defer`出力の正常値がない。\n  - そのため、再照合入力を欠いたdeferが合格する（類型4）。\n- **守るべき行**：固定L2-054（product-requirements.md:1158）「`unknown_or_defer`は不足・不確実・stale条件、担当owner、再照合に必要な入力を示し」\n\n### 後で直す残余（承認を止めない）\n- **R1（戻し先の余地）**：r05-source-revision-missing（:1748）は、「無条件で戻す」としながら「機構区分が特定不能なら区分不明」も認めている。戻し先が決まらない余地が残っている。区分不明の場合でも、既知の候補区分へ返す形にすることを勧める。\n- **R2（契約の集合とreference）**：\n  - `muster_candidate`で契約が複数ある場合の「集合とdigest」を確かめる単独CASEがない。\n  - typed contract reference単体の欠落CASEもない。digest欠落のCASEで、間接的に覆われるだけである。\n- **R3（digestの言い換え）**：L3の「input/output digest」は、L2の「入力digest/contract digest」の言い換えとして少し広がっている。意味は変えていない。\n- **R4（muster出力の値）**：c03の正常判定は、muster出力の比較対象とevidenceを値として照合していない。入力側のr04/r05単独CASEで、間接的に覆われる。\n- **R5（前置き節の重複）**：同一の前置き節が、5ファイルに重複している。\n\n### 次の手順\n- **M1**：c01の正常判定に、`existing_role_sufficient`出力の対象既存role参照と比較根拠が入力と一致することの照合を入れる。または、それぞれを単独で欠落・別値にするCASEを置く。\n- **M2**：`unknown_or_defer`の正常値をB0に置き、再照合に必要な入力の照合を判定に入れる。または、それだけを欠落させる単独CASEを置く。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+      "author_association": "OWNER",
+      "reactions": {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6024625350/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": null,
+      "minimized": null
+    },
+    "review02_major3_preserved": true,
+    "review02_M1_M2_M3_R1_R8_verbatim": "### Major\n**M1（複数contractの「集合とdigest」が落ちている）**\n- **欠陥**：\n  - L3は、muster出力を「契約参照とそのinput/output digest」の単数形に狭めている。該当箇所は次のとおりである。\n    - business-requirements.md:139\n    - functional-requirements.md:731（AC-01）、733（AC-03）\n    - nfr-grade.md:205\n  - L10のB0とc03は、単一の`contract-ref-054-a`だけを使っている。054節のCASEに、「集合」の語は0件である。\n  - 集合の一部が欠ける、集合digestがない、別の集合になる、のいずれについても、判定する正常fixtureも単独CASEもない。\n  - そのため、複数contractのmusterで集合が不完全な出力でも合格する（類型3・4）。\n- **守るべき行**：固定L2-054（5aa10031 product-requirements.md:1158）「`muster_candidate`は047のruntime-neutral specialist Worker contract参照（複数の場合はその集合とdigest）…を伴う」\n\n**M2（digest・OS受領記録・contract生成receiptからのauthority・実行許可・起動・受入の生成に、単独の拒否CASEがない）**\n- **欠陥**：\n  - **contract digest → authority/実行許可**、**OS受領記録 → authority/実行許可**：c03の正常判定が文中で「receipt/digestから推定しない」と書くだけで、変異CASEがない。\n  - **contract生成receipt → Worker起動**、**contract生成receipt → 成果受入**：単独CASEは、r09-001（assignmentへの誤分類）だけである。CASE-25と27の対象は「candidate/handoff」で、receiptを単独で変異させていない。\n  - 固定親が禁じる生成に、拒否fixtureがない（類型2）。\n- **守るべき行**：\n  - 固定L2-054（product-requirements.md:1160）「HARNESS handoff、tool/path候補、contract digest、OS受領記録は…」authorityや実行許可を発生させない。\n  - L11-054（product-acceptance.md:870）「contract生成receiptをassignment・authority・Worker起動・成果受入として数える…」例は不成立とする。\n\n**M3（L11「受入境界」の禁止に、単独の拒否CASEがない）**\n- **欠陥**：\n  - source/coverage receipt、候補本文、fixture、OS記録例の存在から、次のものを生成する変異のCASEがない。\n    - oracle実行/合格\n    - 実runtime projection\n    - assignment\n    - security許可\n    - 利用者受入\n  - c11とc12が扱うのは、handoff receiptからの要求採択とL3承認だけである。\n  - 固定親が禁じる生成に、拒否fixtureがない（類型2・4）。\n- **守るべき行**：L11-054（product-acceptance.md:875「受入境界」）「source/coverage receipt、候補本文、fixture、OS記録例の存在はoracle実行、実runtime projection、assignment、security許可、利用者受入、要求採択、L3承認を示さない」\n\n### 後で直す残余（承認を止めない）\n- **R1、R3〜R5**：review01から変わらない。\n- **R2**：M1へ繰り上げた。\n- **R6（担当ownerの置き換え）**：L2の「担当owner」を、L3は「既知の責務区分＋個体identity unknown」に置き換えている。c19で区分値を照合している。\n- **R7（適用条件の値）**：「入力digest・適用条件に結ぶ」のうち、「適用条件」がB0の値として固定されていない。c07が、scopeの束縛を代わりに照合している。\n- **R8（範囲・形式の注記）**：次の注記には、単独CASEがない。\n  - 「未知値を別軸へ畳み込まない」（L11:869）\n  - 「assignment/resultの記録はHARNESS contractの意味・oracleを変更しない」（L11:867）\n  - 「047・OS・SECURITYを変更・代替しない」",
+    "review01_R2_reclassified_to_Major1": true,
+    "R1_and_R3_R8_closure_not_claimed": true
+  },
+  "fixed_parent_pin": [
+    {
+      "revision": "5aa100319361b0cc86edd3c51815ec777d55410a",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "line_start": 1154,
+      "line_end_inclusive": 1162,
+      "full_bytes": 295676,
+      "full_sha256": "45955ffba1293b603f3c513ec1e9e328dd7bcf24b038463eb20dd480d1dc2108",
+      "span_bytes": 4652,
+      "span_sha256": "b76b7b1adec804a25bd9333663aa9b0d074f68518764c2874c994bcdf6ead193",
+      "raw_literal": "### HARNESS-L2-054 専門Worker判定・契約のOS割当handoff候補（接続候補、version_target: 1.0）\n\n- **親・状態**：親は採択済み`HARNESS-L1-001/002/004`。`HARNESS-L2-047`の契約意味・muster判断をOSの既存assignment契約へ渡す不足条件だけを記す未採択候補であり、047の本文・採択条件を変更しない。HARNESS ownerの配置は2026-09-29 PO判断の条件付きA配置に従い、配置Bまたは新たな必須artifactの意味が必要なら対象revision付きPO判断へ戻す。仮登録・候補本文は要求採択、L3承認、assignment・Worker起動を生成しない。\n- **適用入力**：047の対象task/ticket identity、scope、要求・oracle revisionに加え、工程表の`layer × drive`、選択済みprocess phase、task-kind、verification pattern、design obligation/oracle、domain/risk、judgment pack revision、single-worker比較条件、適用scopeを持つLABO evidenceと未評価状態を保持する。必要時のみINTELLIGENCE placement proposal、OSのassignment/runtime profile/budget/期限/lifecycle条件、SECURITY authority/制約への参照を結ぶ。`layer`または`drive`の意味対応、適用範囲、revisionが不明・欠落・conflict・staleなら軸を落としたり別値へ推定変換せず`unknown_or_defer`とする。現行process phase等との具体的mappingは本候補で新設せず未決条件として残す。\n- **型付きhandoff結果**：HARNESSはtask/scope/source revisionと上記入力のdigest・適用条件に結んで、`muster_candidate`、`existing_role_sufficient`、`unknown_or_defer`のいずれかの意味をOSへ渡す。`muster_candidate`は047のruntime-neutral specialist Worker contract参照（複数の場合はその集合とdigest）、生成規則revision、理由、比較対象/evidence、guard結果を伴う。`existing_role_sufficient`は対象既存roleと比較根拠を示し、新規専門contractを含めない。`unknown_or_defer`は不足・不確実・stale条件、担当owner、再照合に必要な入力を示し、assignmentへ進めない。OSは受け取ったhandoffの同じtask/scope/revisionを既存assignmentへ結び、assignment・profile適格性または保留理由を既存のOS state/evidenceで追跡する。OSの応答・assignmentが欠落、対象不一致または適用条件不明ならhandoffを完了扱いしない。\n- **軸と形式の限界**：`layer × drive`と047の関連入力軸を保持する意味条件であり、軸のenum、独自wire format、固定Worker数、TeamDefinition/member schema、provider/runtime固有fieldを定義しない。旧Claude/Codex射影は引き継がない。旧TeamDefinition相当の集約表現・複数contractの構成規則が要求意味として必須か、およびlayer/driveから現行phase等への厳密な対応は未確定であり、必要ならPO/L3設計で判断する。\n- **責務・authority境界**：HARNESSは工程・verification意味、必要性判定、runtime-neutral contractとhandoff内容を所有する。OSは割当、runtime profileへのprojection、budget/期限、lease/fencing/失効/retireと実行・結果の記録を既存要求の範囲で所有する。INTELLIGENCEは配置案、LABOは適用可能な能力evidence、SECURITYはoperation authority・制約と隔離の正本を持つ。HARNESS handoff、tool/path候補、contract digest、OS受領記録はauthorityや実行許可を発生させず、各ownerの正本を置換しない。\n- **旧sourceとの差分と保留**：旧HIL-BR-09/30、HIL-FR-59/60の工程表軸、専門化判断、contract出力、OS実行への受け渡しを現行責務へ分けて意味再導出する。旧runtime-specific projection、W-agent／TeamDefinition具体schema、IR上の補助・非選択条件、残る旧要求atomは引き継がず生存中holdingへ残す。旧出力のどの部分がHARNESSの集約contractを要求し、どの部分がOS assignmentで満たされるかの追加意味変更はこの候補で決めない。\n- **不成立と戻し先**：軸・scope・oracle・contract/evidence revisionの欠落や不一致、OS assignment/profile/lifecycle条件不足は保留し、理由を該当ownerへ戻す。muster根拠なし、single-worker十分性の無視、HARNESSによる割当・起動、提案・証拠からのauthority生成、同一provider/modelだけによる独立性判定、unknown軸の推定補完は不成立とする。候補とL11 oracleは未実行であり、HARNESS-L2-047、OS-L2-004/-042/-043、SECURITYの既存要求を変更・代替しない。\n"
+    },
+    {
+      "revision": "5aa100319361b0cc86edd3c51815ec777d55410a",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "line_start": 865,
+      "line_end_inclusive": 875,
+      "full_bytes": 202050,
+      "full_sha256": "216a8dccfff723408fd4b54701933a8e257f29e5c775aaef2a4458d1f36d3cc7",
+      "span_bytes": 3239,
+      "span_sha256": "5d1ab0bad44ae305053932f0c82bcf472e145046125b638f5facab13eaaa2aa0",
+      "raw_literal": "### HARNESS-L11-054 専門Worker判定・契約のOS割当handoff受入候補（未実行）\n\n**対応要求**：`HARNESS-L2-054`（HELIX-HARNESS connection候補、`version_target: 1.0`、未採択）。既存HARNESS-L2-047の内容oracleとOS-L2-004/-042/-043のassignment・成果・event責務を接続する静的oracle案であり、いずれの要求の採択・実行結果も示さない。\n\n- **muster handoff**：対象task/scope/revision、`layer × drive`、process phase、task-kind、verification pattern/oracle、比較条件、適用LABO evidence状態を入力する。HARNESSの`muster_candidate`とcontract参照・digest・生成規則revision・理由・guard結果が同じ入力revisionへ結ばれ、OSが同じ対象と条件を既存assignmentへ結んだ場合だけhandoff対応を確認する。assignment/resultの記録はHARNESS contractの意味・oracleを変更しない。\n- **既存role十分**：single-worker比較により`existing_role_sufficient`となる入力では既存role参照と比較根拠をhandoffし、追加specialist contractやそれ由来の新規専門assignmentを生成しない。既存の通常assignmentはOS側契約に従う。\n- **unknown/defer**：`layer`、`drive`、軸のsource/revision、task boundary/oracle、比較対象、evidence適用範囲、contract digestまたはOS profile/lifecycle条件を一つずつ欠落・stale・conflictにする。未知値を別軸へ畳み込まず、HARNESSまたは不足を所有する機構へ戻し、該当specialist handoff/assignmentを保留する。layer/driveの現行phase等とのmappingが未定義ならmapping済みとして扱わない。\n- **不成立例**：muster候補がないのにcontractをOSへ渡す、scope/revisionの違うcontractをassignmentへ使う、contract生成receiptをassignment・authority・Worker起動・成果受入として数える、tool/path候補やLABO/INTELLIGENCE材料からSECURITY許可を作る、worker/verifierのidentity・context・authorityの分離を欠く例は不成立とする。provider/modelの一致だけで独立性を否定しない。\n- **未見例と変更**：未見task-kind/domain/riskまたは工程表の別layer/driveを与え、選択入力のrevision、軸、比較範囲、contract outcome、OSへの対応づけと戻し先を再照合する。source/authority/profile/oracleのrevision変更は依存するhandoffをstaleとして再確認する。\n- **型と境界**：旧Claude/Codex専用projection、任意のTeamDefinition/member schema、固定Worker数を受入条件にしない。runtime-neutral contractの意味はHARNESS、assignment/runtime profile/lifecycleはOS、evidence適用性はLABO、placement案はINTELLIGENCE、operation authority/隔離はSECURITYの既存正本へ戻す。具体的なTeamDefinition相当の集約表現またはlayer/driveの厳密mappingが必要という判断は本oracleから生成せず、未決のPO/L3設計項目とする。\n- **受入境界**：source/coverage receipt、候補本文、fixture、OS記録例の存在はoracle実行、実runtime projection、assignment、security許可、利用者受入、要求採択、L3承認を示さない。旧runtime/testを実行しない。\n"
+    }
+  ],
+  "root_check_results": {
+    "134_unique_ids": true,
+    "old119_preserved": true,
+    "old100_raw_preserved": true,
+    "25_source_pins_match": true,
+    "govcheck_or_diffcheck": null,
+    "note": "Root checkpoint supplied the integrated body pins; this worker performed content/hash static read-after only. No external check result claimed."
+  },
+  "limits": [
+    "The body and six documents are static candidate content.",
+    "Candidate metadata, root static integration, and this audit do not establish independent review, execution, Fable agreement, delegated L3 approval, or PO after-confirmation.",
+    "This audit preserves base ceda and the exact body parent 192; it does not update the main base to later 0acbed."
+  ]
+}
