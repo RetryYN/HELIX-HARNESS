@@ -2746,7 +2746,7 @@ qualified external receiptを別origin typeで示す。external observationだ�
 | `CASE-INT-063-05c` | 063/AC-INT-063-05 | HARNESS process contractだけ欠落 | 工程contractを推測せず循環を未完にする。固定L2はHARNESSをcontract ownerとするが戻し先を指定しないため戻し先unknown。 |
 | `CASE-INT-063-05d` | 063/AC-INT-063-05 | HARNESS process contractだけstale | stale contractで循環を成立させない。固定L2はHARNESSをcontract ownerとするが戻し先を指定しないため戻し先unknown。 |
 | `CASE-INT-069-08a` | 069/AC-INT-069-08 | selected model source identityを明示した上でmodel revisionだけstale | 計算をcurrent結果として結ばずProduct Core/HARNESS/SECURITYへ照合する。 |
-| `CASE-INT-069-08b` | 069/AC-INT-069-08 | model schema versionだけ欠落 | schema適用をunknownにする。固定L2-069が指定するmodel ownerへ照合し、具体的owner identityが入力で特定された場合だけそのownerへ返す。 |
+| `CASE-INT-069-08b` | 069/AC-INT-069-08 | model schema versionだけ欠落 | schema適用をunknownに保ち、固定L2-069が指定するmodel ownerへ範囲不足として戻す。 |
 | `CASE-INT-069-08c` | 069/AC-INT-069-08 | finite state setだけ欠落 | stateを補わず未対応/unknownとし、固定L2が指定するmodel ownerへ範囲不足として戻す。 |
 | `CASE-INT-069-08d` | 069/AC-INT-069-08 | initial stateだけ欠落 | 遷移計算を開始せずunknownを保持し、固定L2が指定するmodel ownerへ範囲不足として戻す。 |
 | `CASE-INT-069-08e` | 069/AC-INT-069-08 | baseline条件だけ欠落 | baselineを補完せず計算不能/部分unknownを返す。固定L2が返却ownerを指定しないため戻し先unknown。 |
