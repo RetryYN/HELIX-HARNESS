@@ -2839,7 +2839,7 @@ CASE-01は旧snapshot上の高水準正常説明である。各下記candidate�
 | `L10-LABO-061-CASE-13` | `LABO-061-AC-03` | 単独変異: judge名は異なるがcontext/sessionを共有することだけを変更。その他の入力は `L10-LABO-061-CASE-01` と同一。 | context共有として独立性を成立扱いせず、比較を未評価のまま保つ。 |
 | `L10-LABO-061-CASE-14` | `LABO-061-AC-03` | 単独変異: fixture versionだけ異なる。その他の入力は `L10-LABO-061-CASE-01` と同一。 | cohortを分離して未評価とし、固定L2のtask/oracle ownerへ返す。 |
 | `L10-LABO-061-CASE-15` | `LABO-061-AC-03` | 単独変異: protocol versionだけ異なる。その他の入力は `L10-LABO-061-CASE-01` と同一。 | cohortを分離して未評価とし、固定L2のtask/oracle ownerへ返す。 |
-| `L10-LABO-061-CASE-16` | `LABO-061-AC-03` | 単独変異: scorer version だけ異なる。その他の入力は `L10-LABO-061-CASE-01` と同一。 | cohortを分離 戻し先: LABO。 |
+| `L10-LABO-061-CASE-16` | `LABO-061-AC-03` | 単独変異: scorer version だけ異なる。その他の入力は `L10-LABO-061-CASE-01` と同一。 | cohortを分離して未評価とし、固定L2のtask/oracle ownerへ返す。具体identityが入力から特定できない部分はunknownとして保持する。 |
 | `L10-LABO-061-CASE-17` | `LABO-061-AC-03` | 単独変異: 選択task `L10-LABO-061-CASE-01` の `fixture_digest`だけが固定digestと異なる。残る14条件と他入力は `L10-LABO-061-CASE-01` と同一。 | exact fixture evidenceを結ばず比較不能にし、固定L2のtask/oracle ownerへ返す。 |
 | `L10-LABO-061-CASE-18` | `LABO-061-AC-03` | 単独変異: selected taskのhidden applicabilityだけを根拠なくnot-applicableへ変える。その他はCASE-01と同一。 | N/A化を拒否しunknownを保つ。固定task/oracle ownerへ戻す。入力からHARNESSを識別できる場合だけHARNESSとし、identity不明ならunknown。 |
 | `L10-LABO-061-CASE-19` | `LABO-061-AC-03` | 単独変異: canonical judge oracleをWorker漏洩と誤分類だけを変更。その他の入力は `L10-LABO-061-CASE-01` と同一。 | oracle提示とWorker-visible漏洩を区別し正常比較を保つ 戻し先: LABO。 |
