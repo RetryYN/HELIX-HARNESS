@@ -204,6 +204,6 @@ fixture definition数と実測母集団は異なる。対のL10機能総合検�
 |---|---|---|---|
 | `NFR-C-HARNESS-046-01` | Full V workflow coverage | 選択scopeの12固定条件をすべて適用状態または理由付きunknownとして列挙し、未提示条件をpassにしない。条件数12は固定L2/L11の列挙そのもの。 | 同一workflow revisionで、各12条件のapplicability、対応L1–L5 freeze、V-pair/oracle/evidenceを合成fixtureで照合。 |
 | `NFR-C-HARNESS-046-02` | Full V freeze trace | 適用するL1–L5設計層の段階freezeが同じsystem workflow revisionと結ばれる。新しい時間・割合閾値なし。 | 適用layerごとにidentity/revision/freeze evidenceとV-pair traceを照合。 |
-| `NFR-C-HARNESS-046-03` | Conditional Scrum backfill / SR4 release readiness | Scrum delta/backfillとSR0–SR4 checkpoint receiptの適用は、明示されたProduction Scrum／許可合成scopeおよび既存triggerに従う。Production Scrum scopeのSR4 receipt missing/unknownはtrigger成立有無にかかわらずrelease-ready不可とする。 | style/scope/revision、existing trigger、delta、backfill対象、checkpoint receipt適用条件、SR4 receiptの有無を別々に比較する。Full Vに適用するScrum-only condition数は0。 |
+| `NFR-C-HARNESS-046-03` | Conditional Scrum backfill / SR4 release readiness | Scrum delta/backfillとSR0–SR4 checkpoint receiptの適用は、明示されたProduction Scrum／許可合成scopeおよび既存triggerに従う。Production Scrumが選択・合成適用されるscopeのSR4 receipt missing/unknownはtrigger成立有無にかかわらずrelease-ready不可とする。 | style/scope/revision、existing trigger、delta、backfill対象、checkpoint receipt適用条件、SR4 receiptの有無を別々に比較する。Full Vに適用するScrum-only condition数は0。 |
 
 **限界**：時間、成功率、SLA、release cadence等の技術値は固定sourceにないため作らない。これは候補fixture設計であり測定結果や運転実績ではない。
