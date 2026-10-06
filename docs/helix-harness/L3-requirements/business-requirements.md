@@ -130,3 +130,9 @@ HARNESS-L2-034から独立business requirement、事業KPI、ROI閾値または�
 ## Stage 3 親041の業務要件
 
 HARNESS-L2-041から独立business requirement、business owner、ROI/KPI/商業閾値は導出しない。template atom/gap/candidate rowの存在、coverage、fixture数から事業価値・利用者受入・要求合意・承認を作らない。
+
+## Stage 3 親047の業務要件
+
+| L2親 | business requirement | 理由 |
+|---|---|---|
+| `HARNESS-L2-047` | 独立business requirementを導出しない | specialist必要性の測定とruntime-neutral契約生成は固定要求の機能責務であり、別の業務成果や固定team-sizeを追加しない。 |
