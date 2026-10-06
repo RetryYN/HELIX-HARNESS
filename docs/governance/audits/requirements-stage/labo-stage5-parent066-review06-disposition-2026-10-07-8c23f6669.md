@@ -1,0 +1,7 @@
+# LABO066 review06処置記録
+
+正式6022900353全文は対JSONに保存。名指し3行と費用/protocol/toolchain/environment/cutoff/eligible集合の同型を合わせ13expected列を既知責務区分へ無条件返却に補正し、個体identity unknownを別保持。担当を新設しない。67CASE IDと他5列を保持。
+
+body `8c23f6669dbd325a45cd76a1eb50f0ce944cd023`、contextHEAD `5b6b2f5da67cbdaf451330a47223b6b699356ed6`、base `3c3c512c09320c0494904602b23e544a81206eed`。main042を取り込みbase祖先成立、LABO本文はbodyと不変。六prefix/suffix/full SHAと候補exact一致をRoot再計算。条件付き肯定返却語4種類0件。旧時点監査は不変でhash参照。
+
+Root govcheck/diff PASS。修正後独立review/Fable/承認/fixture実行は未実施。
