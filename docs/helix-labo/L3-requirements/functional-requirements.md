@@ -1710,3 +1710,39 @@ L10の各単独fixtureを用い、値を推測・currentから補完せず、mis
 #### 旧sourceからの再導出
 
 `LEGACY-ASSET-28FB139B26CD61CC51EE` の `helix-bench-evaluation.md` R-04/R-08と `LEGACY-ASSET-A952A3A175EB82A4781B` の対応acceptance AC005/006/012/013を、task snapshot、当時条件、反例・履歴保持の起点として再導出する。旧文字列schema、runtime、test、CI、閉ループ、資格・permission・admissionの仕組みは移さない。旧consumerは対応検証の読み方であり、直接要件sourceとは区別する。旧a4本文で存在した132定義はIDを保持して本L10へ移し、機械的ID保持を独立fixture性・完全性の証明とはしない。
+
+
+## Stage 5 — HELIXLABO-L2-063 修復再発評価と予防候補
+
+状態: `MPR-RC-HELIXLABO-L2-063-001` のPO判断では親063が採択され、対象版は `1.0`。固定L2本文の「未採択候補」という旧記述はそのsource literalとして保持し、この追補から別の承認手続きや実行許可を生成しない。G0 `sequence_stage: Stage 5` は順序metadataである。
+
+LABOは、許可された修復観測と既存の評価記録から、成功修復知識、原因・適用条件・版が一致する再発、予防候補、未完義務を評価して保持する。修復の実行とOS登録/routingはOS、検証契約と実行結果はHARNESS、対象変更の採否・実行・運用後観測は既存の対象ownerに残す。INTELLIGENCEの案、OS assignment/Worker実行、HARNESS verification、LABO effectiveness evaluationを同一状態へ畳まない。候補、OS登録、対象ownerの採用、変更、再検証、運用後の再観測を別々に追跡し、いずれからも完了・authority・実行permissionを生成しない。
+
+| 固定sourceの句 | trace先 | 条件と境界 |
+|---|---|---|
+| L2-063:480–482 成功した修復知識、入力field、source/evidence | `LABO-063-AC-01/03` | 対象/版、原因候補、適用条件、修復手順・結果、検証、反例を元episodeへ結ぶ。案や単独greenで成功としない。 |
+| L2-063:482–484 recipe・適用scope・原証拠・残義務の保持とOS Feedback登録 | `LABO-063-AC-01/03` | 知識評価・保持はLABO、既存Feedbackでの登録/routingはOS。修復作業終了だけでどちらも完了しない。 |
+| L2-063:484–485 同種反復、同一性、閾値/観測範囲 | `LABO-063-AC-01/03` | 問題・手順・適用条件・版・episodeを照合し、再送/重複観測を重ねず、異なる原因/条件を混ぜない。閾値と母集団は入力であり、新数値を定めない。unknownを0としない。 |
+| L2-063:485–487 gate/detector候補と未処理warning | `LABO-063-AC-01/03` | 根拠付き候補とwarningを可視化する。LABOは直接有効化・強制しない。 |
+| L2-063:487–489 既存依存と必要時のOS割当/HARNESS検証 | `LABO-063-AC-01/03` | 過去履歴の評価に新規repairを要求しない。再実験・修正を選んだ場合のみ既存OS assignmentとHARNESS契約を使う。特定知識を無条件にBRAINへ一般化しない。 |
+| L2-063:489–490 原因別戻し先と版変更後の再評価 | `LABO-063-AC-03` | 観測/target版不足は観測提供主体、修復成功/再発防止根拠不足はLABO評価、登録/routing不成立はOS、verification不足はHARNESSへ。source identityが固定sourceから分からない場合はunknownを保つ。 |
+| L11-063:225–226 成功手順、独立検証、候補、根拠、未処理warning | `LABO-063-AC-01/02/03` | 同種性・閾値根拠・母集団・反例を添える。未見eventは別evidenceとして追跡し、条件の異なる群へ一般化しない。 |
+| L11-063:226–228 個別反例 | `LABO-063-AC-03` | 以下L10定義の入力変異とoracleで照合する。CASE数・索引・列挙は意味の完全性を証明しない。 |
+| L11-063:228–230 未見、版変更、未完義務 | `LABO-063-AC-02/03` | cause/applicabilityが違えば同種と断定しない。旧成功を改版後へ流用せず、登録失敗、変更未完、運用後観測欠落を分けて保持する。 |
+| L11-063:230–231 知識・authorityの境界 | `LABO-063-AC-03` | LABO知識評価、OS登録/routing、対象ownerの採否/変更を区別し、memory正本化、未評価BRAIN一般化、頻度由来の権限生成を拒否する。 |
+
+### 旧source起点、保持と差分
+
+| 役割 | 旧asset / path / span | 再利用・再導出 | 置換・非継承 |
+|---|---|---|---|
+| 直接旧要件source `LEGACY-ASSET-EE5DBACC7F28F7D1F605` | baseline `6fabd12512a3659fff4a956692cdd61faeeb16ce:docs/design/helix/L3-requirements/pillar-functional-requirements.md` HR-FR-P4-02:149, HAC-P4-02a/b:230–231; pre-isolation `2d4991042be55268bac30a8bbcdac45b3865030a` 同path:155,239–240; archived snapshot `a4a365dcdfe824ebb28d040c8bc3bc924556efad:archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md`:154–156,237–240. 3 selected atoms byte-identical. | 成功repair recipeと再発防止が明確なrepair単位でrecipeを保持し、improvement backlogへ残す。閾値を満たす同種repairはgate/detector candidateとwarningへつなぐ。 | 旧 `close` は旧repair単位のknowledge/backlog保存であり、現063全循環の効果再評価・登録・target change・verification・post-observation完了を意味しない。旧doctor/memory runtimeは移さない。 |
+| 対応するpaired acceptance consumer `LEGACY-ASSET-44DD86E3DEC09E65EF51` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md:112` HAT-P4-02 | HR-FR-P4-02/HAC-P4-02a/bの対応consumerとして、recipe retentionとbacklog/promotionの検証意図を読む。 | 旧test実行やpassを現行evidenceにしない。 |
+| 関連する別系列UIL requirement `LEGACY-ASSET-02D897E62EF2FA267267` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md:175–181` UIL-R-11、:183–187 UIL-R-12、:210–220 state sequence | 複数episode、scope、counterexample、mutation、version/applicability/expiry/rollbackを含むcandidate境界と、採択後の同一invariant/finding/scope/windowへの再発・効果消失の因果接続を関連sourceとして参照する。 | P4-02の直接要件や同一ownerとして重複計上せず、human review境界、固定閾値、別baseline/state machineを063へ新設しない。 |
+| 関連UIL acceptance consumer `LEGACY-ASSET-0B5B38F146D9538C9A36` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-improvement-loop-acceptance.md:36–37` UIL-AC-017/018 | UIL-R-11/12のconsumer。P4 paired consumerとは別系列の関連検証source。 | 未実行の旧受入設計は新test実行の証拠ではない。 |
+| 知識責務の判断 | `docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md` HMC-BR-003（`a2638477be294880ba33e215778a763caacfa6ee`） | 1.0〜2.xはLABOが評価・保持し、3.0からIntelligenceが改善に使うという区分を保持する。 | 旧Learning/Skill authority、provider標準memoryを復活させない。 |
+
+限定したsource範囲のほか、archive全体の不在・網羅は主張しない。旧runtime/test/CIは参照のみで実行していない。
+
+#### CASE/AC trace索引
+
+L10の69件の定義は既存旧IDの保持と追跡索引である。literal上の分類候補は正常5、negative 53、索引11で、意味的独立性・完全性の認定ではない。索引IDは `L10-LABO-063-CASE-03a`, `L10-LABO-063-CASE-24`, `L10-LABO-063-CASE-25`, `L10-LABO-063-CASE-30`, `L10-LABO-063-CASE-31`, `L10-LABO-063-CASE-32`, `L10-LABO-063-CASE-33`, `L10-LABO-063-CASE-35`, `L10-LABO-063-CASE-36`, `L10-LABO-063-CASE-39`, `L10-LABO-063-CASE-63`。索引は示された主fixtureを参照し、独立fixture/negative分母として重ねない。`L10-LABO-063-CASE-58`は`L10-LABO-063-CASE-13`と同じ運用後観測欠落の旧軸を保持し、今回固定された観測提供主体への返却とidentity unknown保持を明示する。既存IDの保持や本索引だけでCASEの一変異性・完全性を主張しない。

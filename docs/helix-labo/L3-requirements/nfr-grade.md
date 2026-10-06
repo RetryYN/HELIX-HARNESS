@@ -191,3 +191,14 @@
 | `LABO-061-NFR-01` 比較適格性と不成立保持 | 実測母集団は選択・適用されたrunで構成し、valid・failed・invalid・missing・unknown・stale・censoredを全て状態別に保持する。率を示す場合は母集団数/分母を明記し、分母0または不明では率なし。実測がなければ未実測。 | CASEは設計上のfixture定義であり実測母集団ではない。normalも適用runなら実測母集団に含む。索引はfixture定義数へ重複計上せず、具体的traceはNFR検証文書で示す。 |
 | `LABO-061-NFR-02` 履歴・field完全性 | 15 task snapshot fieldとtask/oracle/protocol/scorer identity・version・digestを個別に追跡する。missing、unknown、stale、mismatchは混同しない。 | fieldごとのL10 oracleを照合し、CASE数を測定値や被覆率へ変換しない。 |
 | `LABO-061-NFR-03` 漏洩・role separation・authority境界 | secret等の機微値を合成canaryで扱い、実secret/PIIは用いない。leakage、author/judge混同、receipt由来のauthority誤生成を個別に保持する。 | L10の具体的な単独変異と期待状態。固定閾値・最低N・固定SLAを新設しない。 |
+
+
+## Stage 5 — HELIXLABO-L2-063 技術計測候補
+
+| NFR | 母集団・状態 | 照合対象 |
+|---|---|---|
+| `LABO-063-NFR-01` 修復episodeと再発根拠 | 母集団はこの親の範囲で実際に許可された観測episode。対象版、cause/applicability、修復手順・実行receipt、verification、reoccurrence、counterexample、post-observationを別fieldで結ぶ。missing/failed/unknown/stale/openを保持し、分母不明/0から値を作らない。 | `LABO-063-AC-01/02/03`。L10のCASEは設計fixtureであり、測定run/頻度・閾値を与えない。 |
+| `LABO-063-NFR-02` 状態遷移と戻し先 | warning、candidate、OS registration/routing、owner adoption/change、HARNESS verification、post-operation observation、effect evaluationを区別し、未完stateを成功へ変換しない。 | 個々の欠落/stale oracleはL10の定義と固定L2/L11を参照する。対象owner/observation sourceの個体識別ができない場合はunknownを保持する。 |
+| `LABO-063-NFR-03` authority境界と未完状態 | LABOは知識を評価・保持し、gate強制、canonical write、採否/assignment/permission/authority生成をしない。OS registration、対象owner adoption/change、HARNESS verification、post-operation observation/effect evaluationを別状態に保ち、candidate/receipt/修復成功を完了へ丸めない。 | L3 `LABO-063-AC-03` とL10 `LABO-063-NFR-03` の状態境界を対応させる。固定L2/L11の既存責務区分のみを適用し、generic owner・新threshold・新authorityを追加しない。 |
+
+L10は69個の完全ID定義を保持する。literalから抽出した分類候補は正常5、negative 53、非独立索引11だが、独立性や意味的被覆の検収結果ではない。L10-LABO-063-CASE-58はL10-LABO-063-CASE-13と同じ観測欠落軸を含むため、単独負例の実測分母へ二重計上しない。実測母集団とCASE inventoryを混同しない。固定再発閾値、観測窓、最低試行数、SLA、合格率を新設せず、入力された母集団/閾値が不明ならunknownとする。
