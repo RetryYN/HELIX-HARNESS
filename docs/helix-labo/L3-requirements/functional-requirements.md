@@ -1767,6 +1767,51 @@ L10の69件の定義は既存旧IDの保持と追跡索引である。literal上
 
 **旧資産との対応**：旧HIL-FR-61/62から選択scope内bench分離、8軸、task単位の初回/retry/diff/lint/quality/cost証拠を保持し、固定L2/L11のauthority・scope・owner境界に合わせて意味を再導出する。旧HIL-NFR-35とBench R04/R08のblind/context保護も選択scopeへ再導出する。旧runtime/provider/schema/admission実装、固定sample数・閾値、普遍的性能主張は置換対象外として移さない。旧HIL-BR-31は現固定L2-065の独立business outcomeとして採用せず、採否等の旧business判断を新要件に持ち込まない。
 
+
+
+## Stage 5 — HELIXLABO-L2-064 Worker比較評価の候補名遮蔽と再現条件
+
+状態: `HELIXLABO-L2-064` はPO採択済み、`MPR-RC-HELIXLABO-L2-064-002`、`version_target: 1.0`。固定L2/L11は `0857205ecb7a18db9d8d926142e865776c1bf6e2` のL2:491–501/L11:233–239である。このL3/L10候補は要求採択の再承認、比較実行、Worker/judge割当、qualification、assignment、admission、実運用を許可しない。
+
+対象は選択された比較scopeのrunだけである。通常履歴へblindを一律必須化せず、`HELIXLABO-L2-063`の修復再発/Feedback循環や`HELIXLABO-L2-065`の資格scopeを前提にしない。候補名をjudge可視資料から隠しても、元runtime/model identityと版は記録側で追跡可能に保ち、judgeへ実際に提示した資料・可視範囲とは別に記録する。fixture/rubric/judge version/sample/retryは比較前に固定し、未実行通常履歴へ後付けblind済み印を付けない。
+
+| 固定要件・入力 | AC | 機能条件 / 責務 |
+|---|---|---|
+| 比較対象run、元identity/version、judge提示資料と可視範囲 | `LABO-064-AC-01/02/03` | 記録側のidentity追跡とjudge-visible情報を分ける。元identity追跡不能は観測元へ戻す。可視scopeの判定不能はevaluation ownerへ戻す。 |
+| fixture/rubric/judge version/sample/retry固定と途中変更禁止 | `LABO-064-AC-01/03` | 条件は比較前に入力として固定する。missing、unknown、stale、不一致を他条件の成功で補わず、run/条件を保持する。 |
+| smoke成功のみで完全適格性を主張しない | `LABO-064-AC-03` | full evaluationとsmokeを異なる証拠として扱う。security failure、scope逸脱、検証不能出力を平均点で相殺しない。 |
+| 評価結果は水準・配置案の材料 | `LABO-064-AC-03` | LABO評価からassignment/admissionを生成しない。比較を実施する場合はOS assignmentとSECURITYの許可が必要であり、LABOはそのassignmentや許可を生成しない。 |
+| 不成立・再評価義務 | `LABO-064-AC-03` | 不明・漏洩・不一致は理由付きで比較不能として保持する。固定条件/可視scopeの判定はevaluation ownerへ、再評価義務はtask/evaluation ownerへ戻す。 |
+
+### LABO-064-AC-01 — 選択scopeの正常比較材料
+
+合成fixture `B0`（L10表）を与える。selected scope、run identity、runtime/model identityと版、記録側mapping、judgeに渡す資料・可視範囲、fixture/rubric/judge version/sample/retryを比較前に固定し、候補名をjudge-visible資料へ出さない。fixture revision（Fv0）とruntime revision（V0）は別fieldとして記録する。元identityと版への追跡は記録側に残す。返すのは当該scopeの条件・evidence対応であり、実測・実比較・qualification/assignment/admissionではない。
+
+### LABO-064-AC-02 — 未見正常と差分対照
+
+未見candidate pairまたはruntime版差があっても、同じ選択scopeのjudge-visible資料から候補名が分からず、record-side identity/version mappingと比較条件が有効であれば、差分だけで露出や不成立を推測しない。通常履歴を比較母集団に加えず、結果を別scope/版へ外挿しない。
+
+### LABO-064-AC-03 — 漏洩、条件不成立、証拠相殺と権限境界
+
+実際に比較runを行う場合は、既存OS assignmentと適用されるSECURITY許可を入力条件として用いる。この候補はそれらを生成しない。L10の各直接fixtureは一つの入力field変異、または入力不変で一つの誤出力を検査する。候補名の資料本文/metadata/output metadata露出はそれぞれ区別し、identity mapping欠落/staleとは混同しない。mapping/sourceの追跡不能は観測元、可視scope/固定条件の不明はevaluation ownerへ戻す。再評価義務はtask/evaluation ownerへ返す。smoke-only結果でblind evidenceを代替すること、またはそれだけで完全適格性をclaimすることをfull evaluationと区別する。failureの平均相殺、scope外run混入、検証不能の成功化を拒否する。評価だけでassignment/admissionを生成しない。qualification一般の生成禁止を追加しない。
+
+比較を実施する場合、対象runに必要な既存OS assignmentおよび適用される既存SECURITY許可を入力条件として照合する。LABOは評価・比較結果から比較実施許可、SECURITY許可、Worker起動、OS assignmentまたはadmissionを生成しない。必要なassignmentまたは許可がmissing/unknownなら同条件比較の成立として扱わず、元runと条件を保持し、task/evaluation ownerに再評価義務を残す。
+
+### 旧sourceからの再導出
+
+直接の旧要求source `LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、HIL-NFR-35（旧platform requirements 215行）から、候補名blind化、fixture/rubric/judge version/sample/retryの再現条件、smoke-onlyではfull admission相当の結論を出さないこと、security failure/scope逸脱/検証不能を平均相殺しないことを再導出した。HR-FR-HIL-22（旧functional requirements 56/85行）、HAC-HIL-22a/b/c、HAT-HIL-22、HOT-HIL-54（旧operational test design 81行）は対応consumerとして別役割で参照した。
+
+旧「full admission」は、現行L2の評価結果を水準・配置案の材料とする意味へ限定して再導出し、旧admission engine、routing、実task実行、資格・実装権限は持ち込まない。sample数やretry回数の数値、測定閾値、execution permissionも新設しない。旧test/runtime/CIは実行根拠にしない。
+
+| CASE inventory上の扱い | 内容 |
+|---|---|
+| 旧公開ID保持 | L10に旧42 IDをすべて保持する。CASE-03c/03d/05/13/16/17/21/04aは索引であり、主fixtureの変異を重複計上しない。 |
+| 漏洩とidentity | CASE-03a/12/24/25/33は候補名可視性の異なる出力面、CASE-03b/14/26はmapping/source traceの異なるfield状態として扱う。author/judge作成context独立性を要求に追加しない。 |
+| smokeとfull evaluation | CASE-15はblind evidenceをsmokeで代替する入力変異、CASE-38はsmoke-onlyから完全適格性をclaimする誤出力を別oracleで検査する。意味が同一なら索引化し、二重計上しない。 |
+| authority | CASE-37/39はassignment/admission生成拒否。CASE-38はsmoke-only evidenceの不足のみを扱いqualification一般を禁止しない。CASE-04aは37/38/39を直接指す索引とし、束ねたnegativeにしない。 |
+
+CASE定義数・ID保持だけでfixtureの独立性や意味完全性を認定しない。
+
 ### HELIXLABO-L2-066 — A比較における誤修復・未解消数の明示
 
 状態：未承認のL3候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。

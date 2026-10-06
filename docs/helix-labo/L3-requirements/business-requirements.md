@@ -114,6 +114,18 @@
 
 **旧資産との対応**：旧HIL-BR-31（`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、旧platform requirements:83）は第三者workerの採用等のbusiness decisionまで述べる。しかし固定L2-065は資格とscorecardの証拠条件を補い、decision ownerに判断を残す。したがってHIL-BR-31をこの親の独立business outcomeとして採用せず、そのdecision意味を追加しない。旧HIL-FR-61/62から保持・再導出するのは、品質・安全・費用比較の証拠を既存ownerへ渡す関係だけである。独立outcomeが無いことはL10受入の免除を意味しない。
 
+
+
+## Stage 5 — HELIXLABO-L2-064 業務証拠
+
+`HELIXLABO-L2-064`から独立したbusiness KPI、最低比較数、採択率、費用閾値は追加しない。業務証拠は、選択scopeの元identity/versionへの記録側追跡、judge-visible資料の範囲、固定条件、比較不能時の理由、未完再評価義務が別々に確認できることとする。
+
+| 親 | 独立business outcome | AC・L10 trace |
+|---|---|---|
+| `HELIXLABO-L2-064` | 比較条件と対象scopeに結びついた評価材料を保持し、通常履歴へblindを一律要求しない。評価receiptから実行・採否・assignment/admissionを生成しない。 | `LABO-064-AC-01/02/03`; `functional-verification.md` の064 CASE定義。索引は個別fixtureや独立KPIへ数えない。 |
+
+実測値、成功率、利用者acceptance、OS assignment/admissionの状態は本表から生成しない。
+
 ### HELIXLABO-L2-066 — A比較における誤修復・未解消数の明示
 
 状態：未承認のL3候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。

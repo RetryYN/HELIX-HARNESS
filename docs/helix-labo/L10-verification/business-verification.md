@@ -110,6 +110,18 @@
 
 これは受渡し証拠の整合確認であり、PO承認、資格試験の実行許可、decision完了、個別business benefitの発生を意味しない。旧HIL-BR-31は参考調査したが本親の独立business requirementとしては再利用せず、旧decision authorityを移さない。
 
+
+
+## Stage 5 — HELIXLABO-L2-064 業務証拠
+
+親064に独立業務KPIや固定成功率は追加しない。L10で選択scopeの証拠状態、比較不能理由、評価材料、未完再評価義務を確認し、評価結果からOS authorityや実行済状態を生成しない。
+
+| 固定親 | 業務evidence / 責務境界 | 対応先 |
+|---|---|---|
+| `HELIXLABO-L2-064` | 元identity/versionとjudge-visible情報を分けて記録する。固定条件が不明・staleならevaluation ownerへ、再評価義務はtask/evaluation ownerへ返す。LABOは比較を許可・実行せず、評価材料からassignment/admissionを作らない。 | `LABO-064-AC-01/02/03`; L10 064のCASE定義。索引を実fixtureやKPIとして数えない。 |
+
+この業務evidence表は実際のrun、資格、採用判断、承認を表さない。
+
 ### HELIXLABO-L2-066 — 既存比較business outcomeとの対応確認
 
 状態：未承認のL10候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。

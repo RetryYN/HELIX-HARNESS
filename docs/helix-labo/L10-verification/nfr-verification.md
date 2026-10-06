@@ -164,6 +164,16 @@
 
 **旧sourceとの関係**：旧HIL-FR-61/62、HIL-NFR-35とBench R04/R08が示す再現可能性、同条件評価、blind境界、retry込み実効費用を再導出する。旧固定sample設定や閾値は移さない。通常fixtureとnegativeの関係は固定L2/L11の定義に従い、fixture alias/indexだけを独立fixture数に重ねない。NFR測定候補は独立の合否制度や新しい母集団規則を作らない。
 
+
+
+## Stage 5 — HELIXLABO-L2-064 技術計測設計
+
+- `LABO-064-NFR-01`: 選択scope内のcomparison runを対象とし、条件fieldごとのvalid/missing/unknown/stale/mismatchを分けて保持する。候補名可視性、run identity、record-side mapping、fixture/rubric/judge version/sample/retryの状態を別々に数える。未選択通常履歴は比較母集団へ入れない。
+- `LABO-064-NFR-02`: candidate-name exposure、security failure、scope逸脱、verification不能、smoke-only、full-evaluationを状態別に記録する。failed/missing/unknownをsuccessや0にしない。重大failureを平均点で相殺しない。
+- `LABO-064-NFR-03`: evidence状態、比較不能理由、再評価義務、既存assignment/admissionを区別し、LABO evaluationから権限や実行を生成しない。実測値がない場合は未実測。
+
+NFRの分母は許可された選択scope内のrunであり、CASE定義数ではない。報告する場合は実数、分子/分母、unknown/failed/missingを示し、分母0/不明では率なしとする。固定閾値、最低試行数、採択率、実行permissionは追加しない。
+
 ### HELIXLABO-L2-066 — 同条件比較NFR測定候補
 
 状態：未承認のL10候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。
