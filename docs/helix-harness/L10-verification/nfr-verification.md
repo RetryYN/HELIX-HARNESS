@@ -94,3 +94,33 @@ plannedは総予定試行数。観測可否はvalid（判定できる観測が�
 | `CASE-HARNESS-L10-NFR-024-01` | `NFR-C-HARNESS-024-01` | `CASE-HARNESS-L10-024-R001`〜`CASE-HARNESS-L10-024-R095`の各単独fixture、同じL3 ACとinput revisionを対応づける。 | NFR候補の不適格成立・欠落・誤昇格・不一致件数を対象fixture内で計数する。同じinputを再評価する場合は出力identity/理由/stateの差分を照合する。 | fixture/oracle不足は未評価。分母不明を0とせず、候補値から実測達成・承認・全製品品質を生成しない。 |
 
 018の製品固有値はowner要求の範囲でのみ測定し、quality/SLO/対象環境/RTO/RPO/保持期間/予算を全製品へ共通固定しない。024の質問量・訂正率・必須見逃しは同じ／未見fixtureの別母集団として併記し、未観測を0にしない。PoC Backflowのfailure/timeout状態とowner/re-entry欠落は各一つの独立fixtureとして含める。
+
+## Stage 5 suffix — HARNESS-L2-021/025/033/035/037 NFR測定CASE
+
+候補値は設計のみで未実測。分母・観測状態・意味状態を事前に分類し、数値のないfieldを0や成功へ丸めない。次のCASEはfunctional CASE個別群を索引として参照し、CASE行自体を複数mutationの単独検証と誤認しない。
+
+| L10 case ID | L3候補 | 入力・planned母集団 | oracle / 境界 |
+|---|---|---|---|
+| `CASE-HARNESS-L10-NFR-021-S5-01` | `NFR-C-HARNESS-021-01` | 選択scopeの必須relation tupleを事前登録し、`CASE-HARNESS-L10-021-S5-001`〜`006`および`CASE-HARNESS-L10-021-S5-007`〜`016`の正常・unit-only・trace欠落・版不一致・rollback不一致・運用source状態を個別集計する。 | Nmatched/Nrequired候補を算出し、unit success-only誤claim=0を別計数する。planned denominator 0なら率なし。unit/operation未選択は未観測。 |
+| `CASE-HARNESS-L10-NFR-025-S5-01` | `NFR-C-HARNESS-025-01` | 常時必須connector/unit/oracle tupleと、選択された場合だけPattern tupleを別planned集合にする。参照する`CASE-HARNESS-L10-025-S5-001`〜`006`および`CASE-HARNESS-L10-025-S5-007`〜`033`を別行の観測として数える。 | 常時必須と選択時の保持率を別々に算出する。非選択Patternをmissingへ加算しない。connector欠落/Pattern receipt不一致のfalse compatible countを分離する。 |
+| `CASE-HARNESS-L10-NFR-033-S5-01` | `NFR-C-HARNESS-033-01` | 各選択operationのsource/oracle/reduction/run/result/consumer stepをplanned単位にし、`CASE-HARNESS-L10-033-S5-001`〜`007`および`CASE-HARNESS-L10-033-S5-008`〜`036`を独立観測する。 | 段階別保持率と誤ったregression-claim数を別に計測する。S5-024/025はS5-005/006を指す索引aliasのため分母へ重ねない。post-fix runが選択されない通常caseでは未測定でありfailure扱いしない。 |
+| `CASE-HARNESS-L10-NFR-035-S5-01` | `NFR-C-HARNESS-035-01` | 選択candidateごとにroot source、relation、acceptance contribution、alternative、budget-stateをplanned fieldとして固定し、scope拡張時は複雑さ・外部公開面・運用負債の変更前後測定も各々別fieldとして列挙する。`CASE-HARNESS-L10-035-S5-001`〜`006`および`CASE-HARNESS-L10-035-S5-007`〜`041`を個別集計する。 | root/authority relation保持率とrootless false acceptanceを分ける。budget unknownおよび三観点いずれかの測定欠落はplanned内のunknown/missingとして保持し、0や別観点による相殺へ変換しない。閾値は追加しない。 |
+| `CASE-HARNESS-L10-NFR-037-S5-01` | `NFR-C-HARNESS-037-01` | L2-009が二段適用を示すscopeだけでPhase 1/2のL2/L3/design/L9 tupleをplanned集合にする。`CASE-HARNESS-L10-037-S5-001`〜`007`および`CASE-HARNESS-L10-037-S5-008`〜`057`を個別観測し、適用unknown/自己適用は別に記録する。 | phase別保持率と誤流用合流数を別計測する。S5-023はS5-005を指す索引aliasのため分母へ重ねず、S5-006（receipt対Phase 2設計scope）とS5-027（receipt対merge scope）は別条件として計測する。009 false/unknownのscopeは分母外であり、unknownは非適用へ変換しない。 |
+
+観測状態valid/failed/missing/censoredの件数は排他的に記録し、その合計をplannedへ照合する。意味状態missing/unknown/stale/mismatch/conflict/unselectedは別軸とし、分母から黙って除かない。fixture/source/oracle不足は未評価であり、未実施・未選択は0件の観測または達成ではない。
+
+### Root検収補正 — planned CASE集合の追補
+
+| 親 | 追加CASE集合 | 母集団と状態分類 |
+|---|---|---|
+| `HARNESS-L2-021` | `CASE-HARNESS-L10-021-S5-001–006` + `CASE-HARNESS-L10-021-S5-007–016` | E2E trace、統合update/rollback、L12 observation/return、LABO/OS責務を独立planned obligationにし、source/revision/scopeとrelease/operation stateを分ける。 |
+| `HARNESS-L2-025` | `CASE-HARNESS-L10-025-S5-001–006` + `CASE-HARNESS-L10-025-S5-007–035` | 常時必須tuple、selected Patternのrequired input/relation/version、双方向trace、permission/data/oracle、unit/connection/compositeを別planned obligationにする。nonselected Patternは未観測で分母外。 |
+| `HARNESS-L2-033` | `CASE-HARNESS-L10-033-S5-001–007` + `CASE-HARNESS-L10-033-S5-008–037` | source/unit/oracle/consumer fieldとstage receiptを分ける。repro、regression claim、修正後pass非選択を別状態にする。 |
+| `HARNESS-L2-035` | `CASE-HARNESS-L10-035-S5-001–006` + `CASE-HARNESS-L10-035-S5-007–042` | root source、authority/revision、non-goal/scope、acceptance contribution、necessity/alternative、budgetをfield単独planned化しunknown/stale/mismatchを分母に保持。 |
+| `HARNESS-L2-037` | `CASE-HARNESS-L10-037-S5-001–007` + `CASE-HARNESS-L10-037-S5-008–058` | 009 applicability、各phaseのL2/L3 authority、template、022 oracle/state、L4/L9、handoff、UI選択/非選択を別 obligationにする。nonselected operationは未観測。 |
+
+100% trace coverageと誤ったsuccess/merge/authority 0件は静的分類の技術候補であり、実測ではない。planned denominatorを個別CASE集合で固定する。観測状態valid/failed/missing/censoredと意味状態missing/unknown/stale/mismatch/conflict/unselectedを分離する。分母不明を0へ変換せず、未実行は未測定とする。数値SLO・CI実行・性能測定は作らない。
+
+Stage 5の索引aliasは021-S5-011→004、033-S5-024/025→005/006、037-S5-023→005と037-S5-057→053。これら5索引は個別fixture分母へ重複加算しない。
+
+035-S5-033は撤去した旧変異のID保全用時点注記であり、同一変異aliasではない。個別fixture分母から除外し、運用負債欠測の個別変異は035-S5-041だけで評価する。
