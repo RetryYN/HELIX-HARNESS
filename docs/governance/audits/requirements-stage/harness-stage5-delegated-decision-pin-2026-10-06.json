@@ -1,0 +1,63 @@
+{
+  "authority_effect": "none",
+  "body_revision": "ed1161e03f8ea9209e573f274f37c9b97605087a",
+  "reviewed_head": "ad65e84ce8c291c21e1187da4091dd948fa9f62a",
+  "review_base": "8a763ce4211afa1ef2a7e54c209933a03e029243",
+  "parents": [
+    "HARNESS-L2-021",
+    "HARNESS-L2-025",
+    "HARNESS-L2-033",
+    "HARNESS-L2-035",
+    "HARNESS-L2-037"
+  ],
+  "documents": [
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "sha256": "e8010726994decd34ac4db0c8c0b8b52b6ce8ec1bfbde21bf0b409cc54d208c6",
+      "bytes": 7046
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "sha256": "0412f6aa8777eb6991061ac7a141f8225112d2c9de74c779ce8da812598cf1d9",
+      "bytes": 245476
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "sha256": "298604b33e48ea8a7174dfe54867d9600d6cc1d83f92fac6671dd2a9b5c20438",
+      "bytes": 29724
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "sha256": "527ee5f203af7dd6bcd89878fed9a1a9ee4f9ddaa0f601033a791401b8998c93",
+      "bytes": 11162
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "sha256": "442911e4f2338eada7069d6068fe344d39ffe8e7b0edaabb99970ecef3fe037f",
+      "bytes": 162928
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "sha256": "72658cf1b44d04e46e7eb357fd19a8e01e19e5d6cce404f518fab00a3d474896",
+      "bytes": 38522
+    }
+  ],
+  "formal_comment": {
+    "id": 6006664206,
+    "body": "## review06（independent review、HEAD ad65e84ce8c291c21e1187da4091dd948fa9f62a、body 49097d4fa／統合後 ed1161e03）\n\nreviewer: Claude（lane `review_merge`、Fable 5.1）。補正差分（FV 2行・FR 3箇所・監査2件）はreviewer本人（Opus側）が全行実読。Fable advisorが差分・固定L2:540–556/664–692・固定L11（342–360、430–446、457、483–494、676–690）・FR-025全文・FR-033不変条件・監査JSON（FR/FV SHA再計算、literal pin、review05 comment SHA、188 ID集合）を実読して再見解を返した。branchはmain 8a763ce42をmerge済みで `git merge-tree --write-tree origin/main HEAD` 衝突なし、6本文main prefix一致。\n\n### 静的検査（w2621 = exact HEAD）\n- scfctl validate 147/0、stale 0、residuals 0、govcheck ok、`git diff --check` 成功。\n- Root検収 `harness-stage5-review05-root-acceptance-2026-10-06.json`：6本文SHA一致、source span 45/45一致、CASE inventory 188 literal一致（alias 5／tombstone 1／個別182）、review05 comment 6006176854 SHA一致。Worker記録（span 8、6本文SHA）も一致。\n\n### review05所見の解消（Minor 4）\n- **m1解消**：033-S5-027/028「縮小候補は同一failureを保たないため採用しない」（L11:432「その候補を採らない」、L2:684/688と整合）。「reduction owner」除去。027は「期待結果不足は要求/設計/oracle owner」を維持。Worker記録に「receipt結果差はunit契約差ではないため031へ送らない」理由を記録。\n- **m2解消**：FR-025不変条件直後（FR:494）に「HARNESS-L2-014が設計一式の整合を提供するscopeでは、そのscopeに対するHARNESS-L2-025の検査を常時必須とする。これは対象scope内の検査条件であり、別の承認・開始gateを追加しない。」（L2:548／L11:354の再述、新gateなし。S5-030/034の両面と対応）。\n- **m3解消**：FR空行1行へ。**m4解消**：固定親表035のL11列「485–492,678–686」（監査pinと同範囲、033行と様式統一）。\n\n### Fable見解（advisor、再見解）\n結論行（原文のまま）：「**承認してよい**（HEAD `ad65e84ce8c291c21e1187da4091dd948fa9f62a`、本文 `49097d4fa`／統合後 `ed1161e03` の5親 HARNESS-L2-021/025/033/035/037 のL3要件・L10検証設計。付随Minor 1は記録のみで補正不要）」。付随（記録のみ）：028末文「縮小候補は同一failureを保たないため採用しない」が「修正自体が未完」と「候補が修正対象と別failure」を行内で区別しないが、固定L2は後者の戻し先を定義せず新owner語を足すより現状が安全。\n\n### Opus側判定\n所見なし。未確認範囲なし（review01〜06で固定5親のFR/AC・CASE 188（alias 5／tombstone 1）・BR/BV/NG/NV・監査・固定親節境界・旧source対応を照合。review02 m13のreviewer誤転記は6005786089で撤回・記録済み）。Fable付随のInfoは本laneでも記録のみ（補正不要）。\n\n### 委任承認条件の状態（docs/governance/github-upstream-operating-model.md「L3／L10承認の委任」）\n- 条件1（Opus `no_findings`・未確認範囲0）：本commentで成立（HEAD ad65e84ce、本文49097d4fa／統合後ed1161e03）。\n- 条件2（Fable「承認してよい」）：本commentに原文で記録。\n- 条件3（6本文bytes不変）：作成側が判断記録（`decider_role: PO（委任：Opus・Fable一致）`、対象revision、6本文SHA、本comment ID/SHA、Fable見解の所在）を追加した後、reviewerが6本文SHA・本comment SHA・委任規則SHA・判断記録SHAを照合し、最新mainとの試験merge→作成側Ready化（依頼どおりRoot Ready前にReady/mergeしない）→明示mergeへ進む。POの事後確認一覧（HARNESS×Stage5、5親）に「委任2者が同一model、laneで独立性担保」とreview02 m13のreviewer誤転記の注記を添える。本commentはmerge admissionを生成しない。\n",
+    "bytes": 4019,
+    "sha256": "4b9ff3b61267dee04afaa888a59a138486f51480ed1d6a57e6c0cf30c411f29f"
+  },
+  "source_category_correction": {
+    "id": 6006603373,
+    "body": "## Root監査のsource種別表記の訂正\n\n新Root review05検収MDの「37旧source spans」は「前回の37 source spans」の意味であり、旧HELIX sourceだけ37件という表記は誤りです。JSON `source_pins_reverified` 37件の実内訳は固定現行source13／archive旧source24。今回の `changed_sources_reverified` 8件は固定現行source6／旧source2で、37件と重なるpinを含み、45 unique箇所とは主張しません。各full/span/literal/bounds照合はJSONの個々のpath/revisionに従います。旧時点監査は保持し、このcommentを訂正値とします。本文HEAD ad65e84ceは変更ありません。\n",
+    "sha256": "5042edc5da93480004c19f50e95ae418ee5e96b5b1d04e1cf50b550f88988a24"
+  },
+  "delegation_sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220",
+  "rule_sha256": "eed2b774bb78545ac53c7d55f3ae3ab4e9c4f421b4eaf3ac3bcdbcdd869dd27b",
+  "decision": {
+    "path": "docs/governance/decisions/helix-harness-stage5-l3-l10-po-decision-2026-10-06.md",
+    "sha256": "fe9dbbb17234313b9d318789b8700fa7317fb443ff0749632e5fc91a8439a49b"
+  },
+  "limits": "独立側の判断記録照合とRoot Ready通知後、独立側が明示mergeする。"
+}

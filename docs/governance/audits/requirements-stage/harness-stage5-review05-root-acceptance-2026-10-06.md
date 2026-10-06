@@ -1,0 +1,9 @@
+# HARNESS Stage5 review05 Root検収
+
+正式review05 6006176854のMinor4に対する本文補正49097d4fa1e6d92c0b0906152d77875286885d43を検収した。最新main 8a763ce4211afa1ef2a7e54c209933a03e029243との統合後本文はed1161e03f8ea9209e573f274f37c9b97605087a。authority effectはnone、独立再レビュー待ち。
+
+m1は033-027/028の固定根拠のないreduction/source ownerを除き、必要oracle不足は既存の要求/設計/oracle ownerへ、同一failureを保たない縮小候補は不採用とした。m2は固定L2:548の014設計提供scopeで025検査常時必須をFR不変条件に追補。m3は空行、m4は035 L11 locatorを補正。固定親・担当・版は変更していない。旧FR-25/AT-FR-25は比較資料として読んだ。旧test/runtimeは実行していない。
+
+Rootが37旧source spansと今回の8spansをgit bytesから再計算し、full/span SHAとliteral/boundsの一致を確認した。188 CASE ID集合は変更前後同じで一意。alias5/tombstone1の分類はreview04を保持し、独立fixtureの意味保証とは区別する。6本文は最新main全bytesをprefixとして保持し、Worker本文suffixは同bytes。旧時点記録は変更していない。全CASE行と6本文/prefix/all-bytes suffixをJSONへ固定した。
+
+静的validate147/0、stale0、residuals0、govcheck成功、diff check・trial merge成功。修正後HEADの独立reviewと委任見解を依頼する。承認・Ready・mergeは本検収から生成しない。
