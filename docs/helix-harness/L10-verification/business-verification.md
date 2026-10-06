@@ -55,6 +55,6 @@ execution_status: designed_only_not_executed
 追加functional CASE（各親の既存001–00Nと続番S5行）は固定5親の工程・設計・根拠・適用性oracleを検証する。独立business requirement/KPI/business CASEは0件のままであり、件数や結果から事業価値、release、利用者受入、承認を生成しない。
 
 
-## Stage 3 parent block — HARNESS-L2-034 business verification
+## Stage 3 親034の業務総合検証
 
 独立business criterion/oracle/CASEは追加しない。functional verificationの同一requirement/NFR identityとscopeを参照する。計測結果やCASE数からROI、事業成果、release、利用者Acceptedまたはapprovalを生成しない。
