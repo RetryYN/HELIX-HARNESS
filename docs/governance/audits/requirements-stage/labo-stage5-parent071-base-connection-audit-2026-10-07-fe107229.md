@@ -15,7 +15,7 @@
 指定baseを `git merge --no-ff 03d9cd19dfb92dc7dda74c8cb50f85dc320c873c` で取り込み、Laboの6本文がmerge前後で全byte一致することを確認した。`0acbed` と指定main `03d9` の6本文blobも全て同一であり、各本文の旧suffixはmerge後も同じbytes/SHA-256だった。
 
 | 文書 | path | 実blob SHA-256（merge後） | bytes | suffix SHA-256（0acbed以降） | suffix一致 |
-|---|---|---:|---|---|
+|---|---|---|---:|---|---|
 | L3 business | `docs/helix-labo/L3-requirements/business-requirements.md` | `2dd7a80e980b398edd0c7c9aadfe3f7ddcf940e01d8a98019e2b87b29df0a68d` | 23554 | `f88cbd8bd1e5cf72569f158025c85dcf04d4af6c516d9f4a476fb7050eb22589` | True |
 | L3 functional | `docs/helix-labo/L3-requirements/functional-requirements.md` | `b257cd28667e337282444e9454bed5f77be149ed970521f751b7addcf10b227d` | 322914 | `1c66432bf993e9e80c0ddf74cf109b752fc5c5329bb607bef12eeb03d07903e9` | True |
 | L3 NFR grade | `docs/helix-labo/L3-requirements/nfr-grade.md` | `a74e197f67f7ab76743ee5dbab6495e1d6f871333b7294a33f3ad8103275b578` | 77681 | `fe29e9ae3cb0f070990d2afd2bb66d696cee7b5d0ea80ce289c4fa3075a43a62` | True |
