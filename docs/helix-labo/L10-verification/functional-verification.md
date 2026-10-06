@@ -3295,7 +3295,7 @@ FVの現行baseline/mutation/oracle文は旧公開文書のliteral copyではな
 
 同一source/revision/scopeでの比較条件、resultごとの成立/不成立/未評価、元closureの不変、evidence-backed relationの根拠、route roleとsource個別identityの別々の記録、評価出力によるticket/authority状態変更の有無を観測する。合格・実行結果は未取得である。本表はfixture候補であり、その行数やID保持から完全性・実行合格を推論しない。
 
-### HELIXLABO-L2-066 — 同条件比較のfunctional verification / 67 CASE
+### HELIXLABO-L2-066 — 同条件比較のfunctional verification / 74 CASE
 
 状態：未承認のL10候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。
 
@@ -3303,13 +3303,24 @@ FVの現行baseline/mutation/oracle文は旧公開文書のliteral copyではな
 
 旧CASE-07/22はliteralがindexと明記するため独立fixture数に含めず、参照先CASEのみを数える。review05のm3/m5/m6は過去findingとして保持し、今回の文面を独立review済み・finding解消済みとは扱わない。CASE-29/30はspeed improvementをすでに持つ合成観測receiptをbaselineとして、metric表示だけを除く単独変異に再導出した。実測実績は主張しない。CASE-11はN欠落をbaselineとして、欠落Nで率を出す誤出力だけを検査する。CASE-02は別scopeのN1を閲覧前に固定し、既存B0/Nは変えない。
 
-**共通合成正常入力 B0（CASE-01）**：結果閲覧前にA identity/versionとcandidate repair method identity/version、task/scope/target revision、case identityを重複正規化した同一eligible set N、受入oracle/scorer identity+revision、protocol、toolchain、environment、同一periodまたは終了/cutoffを固定する。A群とcandidate群の各caseにresult・oracle判定receiptがあり、retry/rework/rescueと費用・時間receiptが両群に存在する。費用の意味・集計はL2-059に合わせる。N・oracle・cutoffは結果後に変えない。
+**共通合成正常入力 B0（CASE-01）**：結果閲覧前にA identity/versionとcandidate repair method identity/version、task/scope/target revision、case identityを重複正規化した同一eligible set N=`{Q1,Q2,Q3,Q4}`（N=4）、受入oracle/scorer identity+revision、protocol、toolchain、environment、同一periodまたは終了/cutoffを固定する。以下は各群・各caseの合成result/oracle判定receiptから再構成する値で、実測実績を主張しない。A群はQ1=(misrepair 0, unresolved 0)、Q2=(1,0)、Q3=(0,1)、Q4=(0,0)であり、合計は`misrepair_count/N=1/4`、`unresolved_count/N=1/4`。候補群はQ1=(1,0)、Q2=(0,1)、Q3=(1,1)、Q4=(0,0)であり、合計は`misrepair_count/N=2/4`、`unresolved_count/N=2/4`。Q2(A)とQ1(candidate)では誤修復receipt後、cutoff前に受入可能な修復receiptがあるためmisrepair=1/unresolved=0。Q3(A)とQ2(candidate)は誤修復receiptを持たずcutoff時に解決がなく、Q3(candidate)は誤修復かつ未解消で両指標に数える。Q1(A)とQ4両群は受入可能な修復receiptで両値0。Aと候補の各Q1–Q4にresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがある。費用の意味・集計はL2-059に合わせる。各表示の群帰属・分子・共通分母Nは、当該群4件のreceipt再集計と一致する場合だけ正常とする。N・oracle・cutoffは結果後に変えない。
 
-以下は6列67 CASE（旧47 IDを保持し、生成拒否20 IDを追加。索引2行を除く定義は65行）。列中のowner routeは固定L2/L11が明示する既知責務区分だけを用いる。責務カテゴリが分かっている場合、それを個体identity unknownで消さない。個体owner自体がsourceから特定できない場合は個体unknownも記録する。
+| 群 / 合成case | misrepair receipt | unresolved receipt | result/oracle receiptの合成内容 |
+|---|---:|---:|---|
+| A / Q1 | 0 | 0 | cutoff前に受入可能な修復を確認 |
+| A / Q2 | 1 | 0 | 誤修復を記録後、cutoff前の再作業receiptで受入 |
+| A / Q3 | 0 | 1 | 誤修復判定なし、cutoff時に受入可能な解決なし |
+| A / Q4 | 0 | 0 | cutoff前に受入可能な修復を確認 |
+| candidate / Q1 | 1 | 0 | 誤修復を記録後、cutoff前の再作業receiptで受入 |
+| candidate / Q2 | 0 | 1 | 誤修復判定なし、cutoff時に受入可能な解決なし |
+| candidate / Q3 | 1 | 1 | 誤修復receiptがあり、cutoff時にも受入可能な解決なし |
+| candidate / Q4 | 0 | 0 | cutoff前に受入可能な修復を確認 |
+
+以下は6列74 CASE（現在の72 IDをすべて保持し、新規2 IDを追加。索引2行を除く定義は72行）。列中のowner routeは固定L2/L11が明示する既知責務区分だけを用いる。責務カテゴリが分かっている場合、それを個体identity unknownで消さない。個体owner自体がsourceから特定できない場合は個体unknownも記録する。
 
 | CASE ID | FR ID | AC ID | baseline/input | mutation/index role | expected oracle / return route |
 |---|---|---|---|---|---|
-| `L10-LABO-066-CASE-01` | `LABO-066-FR-01` | `LABO-066-AC-01` | B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。 | 正常対照。入力を変更しない。 | A/候補の各群についてmisrepair_count/Nとunresolved_count/Nを分子・分母・case判定receipt付きで別々に再構成し、2指標の重複を許す。 |
+| `L10-LABO-066-CASE-01` | `LABO-066-FR-01` | `LABO-066-AC-01` | B0: 結果閲覧前に固定した共通eligible set N={Q1,Q2,Q3,Q4}、A/candidate identity/version、task/scope/target revision、oracle/scorer+revision、protocol/toolchain/environment、period/cutoff、各群各caseのresult・oracle判定・retry/rework/rescue・費用・時間receiptを提示する。全値は合成fixture値であり実測ではない。 | 正常対照。入力を変更しない。 | receiptからA群のmisrepair_count/N=1/4、unresolved_count/N=1/4、candidate群のmisrepair_count/N=2/4、unresolved_count/N=2/4を再構成する。出力された4つの分子と共通分母N=4、各値のA/candidate群帰属がreceipt再構成とすべて一致する場合だけ受け入れる。誤修復と未解消の重複を許す。 |
 | `L10-LABO-066-CASE-02` | `LABO-066-FR-02` | `LABO-066-AC-02` | B0とは別の合成比較scopeを用意し、結果閲覧前に未見caseを含むeligible集合N1を固定する。追加caseにも同じpredicate/oracleが適用できる根拠を確認する。既存B0のNは変更しない。 | 別scopeでの未見case追加は独立正常対照の入力。適用不能時はcaseをunknownとして扱う。 | 適用可能ならN1内で同じoracleにより判定し、不能ならunknown/未評価を保持してN1から黙って除かず、oracle適用性不足を既存HARNESSまたは要求ownerへ返す。個体unknownでも同責務区分とLABO評価義務を保持する。旧CASE-02の意味を保ち、B0の母集団を事後変更しない。 |
 | `L10-LABO-066-CASE-03a` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | A identityだけ欠落 | 比較不能とし、A/source identityの不足をその入力を供給する既存sourceの責務区分へ返す。個別source/owner identityが不明な場合はunknownを別に保持し、LABOの評価未完了を維持する。 |
 | `L10-LABO-066-CASE-03b` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | eligible denominatorだけ欠落 | 分率を出さず未評価とし、母集団/denominatorの不足をeligible集合を供給する既存sourceの責務区分へ返す。個別source/owner identityが不明な場合はunknownを別に保持し、LABOの評価未完了を維持する。 |
@@ -3388,3 +3399,5 @@ FVの現行baseline/mutation/oracle文は旧公開文書のliteral copyではな
 | `L10-LABO-066-r08-reason-mismatch` | `LABO-066-FR-02/03` | `LABO-066-AC-03` | Bu: B0と同じ事前固定条件・両群eligible集合Nに合成case Qunknownを含む。Qunknownの既存oracle適用結果receiptは適用不能、その理由は当該sourceが示すscope不一致である。他case/receiptは有効。正常表示は当該理由と影響case Qunknownを示し、Nを保持して比較は未評価・率非出力。 | 出力の理由だけを元receiptと異なる値へ変える。入力・N・他出力は不変。 | 理由表示の誤りを拒否し、当該LABO表示処理の訂正を要する。入力側ownerへ出力訂正責務を移さない。理由がsourceのscope不一致に一致し、影響case identityがQunknownに一致して表示される。QunknownをNから除かず比較を未評価/比較不能・率非出力に保つ。 |
 | `L10-LABO-066-r08-affected-case-missing` | `LABO-066-FR-02/03` | `LABO-066-AC-03` | Bu: B0と同じ事前固定条件・両群eligible集合Nに合成case Qunknownを含む。Qunknownの既存oracle適用結果receiptは適用不能、その理由は当該sourceが示すscope不一致である。他case/receiptは有効。正常表示は当該理由と影響case Qunknownを示し、Nを保持して比較は未評価・率非出力。 | 出力の影響case identityだけを欠落させる。入力・N・他出力は不変。 | 影響case identity表示の誤りを拒否し、当該LABO表示処理の訂正を要する。入力側ownerへ出力訂正責務を移さない。理由がsourceのscope不一致に一致し、影響case identityがQunknownに一致して表示される。QunknownをNから除かず比較を未評価/比較不能・率非出力に保つ。 |
 | `L10-LABO-066-r08-affected-case-mismatch` | `LABO-066-FR-02/03` | `LABO-066-AC-03` | Bu: B0と同じ事前固定条件・両群eligible集合Nに合成case Qunknownを含む。Qunknownの既存oracle適用結果receiptは適用不能、その理由は当該sourceが示すscope不一致である。他case/receiptは有効。正常表示は当該理由と影響case Qunknownを示し、Nを保持して比較は未評価・率非出力。 | 出力の影響case identityだけを元receiptと異なる値へ変える。入力・N・他出力は不変。 | 影響case identity表示の誤りを拒否し、当該LABO表示処理の訂正を要する。入力側ownerへ出力訂正責務を移さない。理由がsourceのscope不一致に一致し、影響case identityがQunknownに一致して表示される。QunknownをNから除かず比較を未評価/比較不能・率非出力に保つ。 |
+| `L10-LABO-066-CASE-64` | `LABO-066-FR-02/03` | `LABO-066-AC-03` | CASE-01と同じ有効B0入力・全case receipt。正しい出力はA=(misrepair 1/4, unresolved 1/4)、candidate=(misrepair 2/4, unresolved 2/4)で、群帰属・分母も正しい。 | 出力の`candidate.misrepair_count`だけ2から1へ変える。ほかの分子・分母・群帰属・全receiptは不変。 | candidate側誤修復数の出力だけがreceipt再構成値と不一致なので拒否し、当該数値を2へLABOの比較出力内で訂正する。入力receipt/ownerへ返さず、費用・oracle・分母・他出力を変更しない。合成fixtureで実測ではない。 |
+| `L10-LABO-066-CASE-65` | `LABO-066-FR-02/03` | `LABO-066-AC-03` | CASE-01と同じ有効B0入力・全case receipt。A bundle=(1/4,1/4)、candidate bundle=(2/4,2/4)という各bundle値、N=4、receiptは正しい。 | 出力の単一`group_result_binding` mapだけでAラベルとcandidateラベルへのbundle帰属を入れ替える。各bundle内の値、N、全入力receiptは不変。 | 各bundleの群帰属がreceipt再構成と不一致なので入替出力を拒否し、正しい群bindingへLABOの比較出力内で訂正する。正常なoracle/input receiptを原因扱いしてHARNESS/要求ownerやOSへ返さない。費用や率の閾値を追加しない。合成fixtureで実測ではない。 |
