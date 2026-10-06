@@ -180,6 +180,6 @@ NFRの分母は許可された選択scope内のrunであり、CASE定義数で�
 
 `LABO-066-NV-01` 測定設計：L3の `LABO-066-NG-01` と同一のB0/N1、scope、revision、oracle/scorer、両群receiptを用い、raw receiptから `misrepair_count/N` と `unresolved_count/N` を別々に再構成できるか記録する。両指標の重なりを維持し、unknown caseがcase ledgerとNの扱いに残り、unknownを0にせず、事後N/oracle/cutoff変更で割合を作らないことを合成単独変異で確認する。
 
-protocol/toolchain/environment/task/scope/target/oracle/cutoffの一要素だけ不一致・stale/missingのfixtureは比較不能/未評価となるかを記録する。戻し先は既存HARNESS/要求owner（contract/oracle）、OS（run receipt）、LABO（比較評価）の既知責務区分に結び、個体identityがunknownでもその区分を保持する。個体ownerがsourceから特定できない場合はunknownを別に記録し、sourceにない担当を作らない。費用/時間/reworkはL2-059と同scopeで確認し、別定義しない。
+protocol/toolchain/environment/task/scope/target/oracle/cutoffの一要素だけ不一致・stale/missingのfixtureは比較不能/未評価となるかを記録する。戻し先は既存HARNESS/要求owner（oracle/acceptance適用性）、OSまたは観測source（task/scope/target revision入力record）、OS（assignment/run receipt）、LABO（comparison scope/比較評価）の既知責務区分に結び、個体identityがunknownでもその区分を保持する。個体ownerがsourceから特定できない場合はunknownを別に記録し、sourceにない担当を作らない。費用/時間/reworkはL2-059と同scopeで確認し、別定義しない。
 
 試行件数、性能値、threshold、許容率、期間値などの数値候補を追加しない。L10実行・oracle適用は未実施である。これは候補測定方法で、実測値や合否判定ではない。

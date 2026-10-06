@@ -1828,12 +1828,12 @@ CASE定義数・ID保持だけでfixtureの独立性や意味完全性を認定�
 
 `LABO-066-FR-02` A群・候補群ごとに、oracleが誤修復と判定した件数 `misrepair_count/N` と、終了/cutoff時に受入oracleを満たす解決のない件数 `unresolved_count/N` を別々に分子・分母・case判定receipt付きで示す。両指標は同じcaseに該当し得る。適用不能・receipt不足のcaseはunknownとして記録し、Nから黙って除外せず、その比較の割合を未評価/比較不能にする。費用・時間・手戻りの意味と集計はL2-059を再利用する。
 
-`LABO-066-FR-03` task/scope/target/oracle/cutoff/eligible setの不一致、stale/missing result receipt、費用の片側欠落、unknown証拠を比較不能/未評価へ分ける。固定L2の既知責務区分を保つ：oracle/acceptance/task-scope contractはHARNESSまたは要求owner、assignment/run receiptはOS、measurement/comparison/evaluationはLABO。ある個体のidentityがunknownでも、LABOの評価義務と既知の責務区分を消さない。個体mappingのunknownは別に残し、sourceにない個別ownerを作らない。評価結果からL2採択、repair permission/action、placement、admission、requirement completionを生成しない。新しい比較runは既存OS assignmentと該当SECURITY許可に従い、LABO自身はWorker/methodを選定・割当・起動・実行しない。
+`LABO-066-FR-03` task/scope/target/oracle/cutoff/eligible setの不一致、stale/missing result receipt、費用の片側欠落、unknown証拠を比較不能/未評価へ分ける。固定L2の既知責務区分を保つ：oracle/acceptance適用性はHARNESSまたは要求owner、task/scope/target revisionの入力recordはOSまたは観測source、assignment/run receiptはOS、comparison scopeとmeasurement/comparison/evaluationはLABO。ある個体のidentityがunknownでも、LABOの評価義務と既知の責務区分を消さない。個体mappingのunknownは別に残し、sourceにない個別ownerを作らない。評価結果からL2採択、効果達成、実験/run許可、repair permission/action、placement、admission、requirement completion、Worker/修復器の選定・割当・起動・実行を生成しない。新しい比較runは既存OS assignmentと該当SECURITY許可に従い、LABO自身はWorker/methodを選定・割当・起動・実行しない。
 
 **Acceptance criteria（定義は本L3 functional suffixのみ）**
 
 `LABO-066-AC-01`（正常・FR-01/02）：B0の入力fieldと両群receiptがそろう合成比較で、各群の2指標を共通Nの分子・分母・oracle receiptから再構成し、互いに独立して提示する。
 
-`LABO-066-AC-02`（未見・FR-01/02/03）：B0とは別の合成比較scopeで、未見caseを含むeligible set N1を結果閲覧前に固定する。同じpredicate/oracleを適用できる根拠があればN1のcaseとして数え、適用不能ならunknown/未評価を保つ。既存B0のNは変更しない。
+`LABO-066-AC-02`（未見・FR-01/02/03）：B0とは別の合成比較scopeで、未見caseを含むeligible set N1を結果閲覧前に固定する。同じpredicate/oracleを適用できる根拠があればN1のcaseとして数え、適用不能ならunknown/未評価を保ち、oracle適用性不足を既存HARNESSまたは要求ownerへ返す。A identity/conditionの不足ならその入力の既存sourceへ戻し、特定個体不明はunknownを保持してLABO評価義務を残す。既存B0のNは変更しない。
 
-`LABO-066-AC-03`（異常・境界・FR-01/02/03）：単独field mutationとして、unknown除外、条件不一致、stale/missing receipt、費用非対称、oracle/N/cutoff事後変更を与え、率を出さず比較不能/未評価へ分ける。既知owner区分を保ち、個体unknownを別に保持する。評価結果から採択・repair permission・placement・admission・requirement_completeを生成しない。
+`LABO-066-AC-03`（異常・境界・FR-01/02/03）：単独field mutationとして、unknown除外、条件不一致、stale/missing receipt、費用非対称、oracle/N/cutoff事後変更を与え、率を出さず比較不能/未評価へ分ける。既知owner区分を保ち、個体unknownを別に保持する。評価結果から採択・効果達成・実験/run許可・repair permission・placement・admission・requirement_complete・Worker/修復器の選定・割当・起動・実行を生成しない。
