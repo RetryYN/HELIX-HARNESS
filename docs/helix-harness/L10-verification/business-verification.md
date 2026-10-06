@@ -63,3 +63,9 @@ execution_status: designed_only_not_executed
 ## Stage 3 親036の業務検証
 
 独立business oracle/CASEは追加しない。`functional-requirements.md`の同じselected scopeとFR/ACを参照し、技術gate結果・90%運用KPI・CASE件数からROI、事業成果、release、利用者受入、承認を生成しない。旧business-detailの指標とownerは移さない。
+
+## Stage 3 親038の業務検証
+
+| L2親 | 独立criterion | 対応関係 |
+|---|---|---|
+| `HARNESS-L2-038` | 独立criterionなし | source closureをfunctional ACで照合し、technical closureを事業成果の代理にしない。 |

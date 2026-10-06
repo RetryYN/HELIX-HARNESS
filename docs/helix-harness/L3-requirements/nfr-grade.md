@@ -168,3 +168,9 @@ fixture definition数と実測母集団は異なる。対のL10機能総合検�
 |---|---|---|
 | `NFR-C-HARNESS-036-01` | selected profile/scope内のW必要観点抜け・level間重複と、4 cross-detection軸の誤ったpassを個別に観測し、該当gateの成立時に各適用条件を0件とする。local/CIのselected gate contract mismatchは同一条件passとして数えない。対象母集団はL2-005で選択された範囲。 | 全ticket・全test段階・全環境の一律実行率を要求しない。unknown/unobservedを0にしない。 |
 | `NFR-C-HARNESS-036-02` | NFR-13の運用KPI D-02 `≥90%`を、eligible gate opportunityの選択windowにおける分子/分母候補として報告する。値・期間・母集団・除外状態を保持し、欠測/failed/censoredを明記して比較する。 | 運用目標であり個別ticketのpass閾値ではない。固定していないwindow長・対象cohort・分母規則を候補から規範化しない。適用母集団・期間・分母はL3で照合し、KPI D-02の要求意味を変更する場合はL2へ戻しPO判断を求める。判断前に新しい意味へ置換しない。分母/windowがunknownなら未評価。 |
+
+## Stage 3 親038の非機能計測候補
+
+| NFR候補 / L2親 | 候補値 | 固定根拠 | 限界 |
+|---|---|---|---|
+| `NFR-C-HARNESS-038-01` / `HARNESS-L2-038` | selected scope内の適用obligationの片方向relation、aggregate-only coverage、未根拠N/A/no-findingは0件を候補oracleとする。 | HIL-FR-22の両方向edgeとHIL-FR-35の段階内容閉包に根拠。後段未作成はunresolved obligationとして数え、失敗扱いと区別する。 | 全旧source走査率や全機構一括closure率にしない。 |
