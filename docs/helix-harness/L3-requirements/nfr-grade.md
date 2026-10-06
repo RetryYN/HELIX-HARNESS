@@ -174,3 +174,9 @@ fixture definition数と実測母集団は異なる。対のL10機能総合検�
 | NFR候補 / L2親 | 候補値 | 固定根拠 | 限界 |
 |---|---|---|---|
 | `NFR-C-HARNESS-038-01` / `HARNESS-L2-038` | selected scope内の適用obligationの片方向relation、aggregate-only coverage、未根拠N/A/no-findingは0件を候補oracleとする。 | HIL-FR-22の両方向edgeとHIL-FR-35の段階内容閉包に根拠。後段未作成はunresolved obligationとして数え、失敗扱いと区別する。 | 全旧source走査率や全機構一括closure率にしない。 |
+
+## Stage 3 親040の非機能計測候補
+
+| NFR候補 / L2親 | 候補値 | 固定根拠 | 限界 |
+|---|---|---|---|
+| `NFR-C-HARNESS-040-01` / `HARNESS-L2-040` | canonical 12 layer、6 pair、独立L0 anchorの必要catalog relation欠落0件。片edgeを双方向成立へ数える件数0。 | HIL-FR-46のledger/pair/anchor契約から直接導出。 | 未作成ledgerはmissing obligationとして記録し、全ledgerの実装率やregistrationを主張しない。 |

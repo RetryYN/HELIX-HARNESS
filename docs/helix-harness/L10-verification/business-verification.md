@@ -69,3 +69,9 @@ execution_status: designed_only_not_executed
 | L2親 | 独立criterion | 対応関係 |
 |---|---|---|
 | `HARNESS-L2-038` | 独立criterionなし | source closureをfunctional ACで照合し、technical closureを事業成果の代理にしない。 |
+
+## Stage 3 親040の業務検証
+
+| L2親 | 独立criterion | 対応関係 |
+|---|---|---|
+| `HARNESS-L2-040` | 独立criterionなし | ledger catalog/template obligationの意味・traceはfunctional ACで照合。登録数や抽出数を価値基準にしない。 |

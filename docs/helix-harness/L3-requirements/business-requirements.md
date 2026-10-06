@@ -108,3 +108,9 @@ HARNESS-L2-034から独立business requirement、事業KPI、ROI閾値または�
 | L2親 | business requirement | 理由 |
 |---|---|---|
 | `HARNESS-L2-038` | 独立したbusiness requirementを導出しない | reverse content closureは選択scopeの意味traceであり、事業判断を新設しない。 |
+
+## Stage 3 親040の業務要件
+
+| L2親 | business requirement | 理由 |
+|---|---|---|
+| `HARNESS-L2-040` | 独立したbusiness requirementを導出しない | ledger catalogは組織の事業分類・投資優先順位を所有しない。 |
