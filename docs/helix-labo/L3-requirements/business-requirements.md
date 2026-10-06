@@ -84,3 +84,9 @@
 | `HELIXLABO-L2-060` | 独立BR/KPIなし。選択した支援有無比較のevidenceだけを返し、INTELLIGENCE proposal/use、OS assignment/receipt、HARNESS oracle、SECURITY許可、LABO評価scopeを混同しない。 | `LABO-060-AC-01/02/03`; `L10-LABO-060-CASE-01/02/03a–e/04a–b/05–46`。現行分類案は正常候補2、negative候補41、非独立索引候補8。単一点性・独立性は独立review未確認で、ID保持や一意性は完全性を証明しない。分類詳細はfunctional verificationを参照。 |
 
 本行は未実行designの業務evidence索引であり、実験、実測結果、承認、採用判断を表さない。
+
+## Stage 5 — HELIXLABO-L2-061 業務境界
+
+| 親 | 独立業務outcome | 正本AC/照合先 |
+|---|---|---|
+| `HELIXLABO-L2-061` | 固定L2/L11から独立したbusiness KPI・ownerは導かれない。task比較の適格/不成立、unknown、既存責務への返却を保持し、比較receiptから判断・permission・assignmentを生成しない。 | `LABO-061-AC-01/02/03` と `L10-LABO-061-CASE-01`〜`CASE-114`。索引行は個別fixtureへ参照し、独立outcomeや二重計数にしない。 |

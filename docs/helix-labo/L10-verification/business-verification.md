@@ -82,3 +82,7 @@
 | `HELIXLABO-L2-060` | なし。独立KPIなし。 | `LABO-060-AC-01/02/03`; `L10-LABO-060-CASE-01/02/03a–e/04a–b/05–46`。現行分類案は正常候補2、negative候補41、非独立索引候補8（CASE-22/23/26/27/29/30/31/32）。単一点性・独立性は独立review未確認で、ID数や一意性は完全性を証明しない。索引候補を個別fixture件数・negative分母へ重ねない。 |
 
 これは未実行design参照であり、実business outcome/承認/実験を表さない。
+
+## Stage 5 — HELIXLABO-L2-061 業務証拠
+
+`HELIXLABO-L2-061`には固定L2/L11上の独立business outcomeを追加しない。業務側の照合は `LABO-061-AC-01/02/03` と `L10-LABO-061-CASE-01`〜`CASE-114`を使う。実験実行・判断・authorityの発生はこの設計から主張しない。個別fixtureと索引の区別はL10本文に従う。

@@ -1,0 +1,170 @@
+{
+  "record_type": "labo061_review01_disposition",
+  "status": "author correction; independent re-review and delegated decision pending",
+  "revisions": {
+    "base": "af93d1f171d994f9fae2e78026b39ac27f896f5c",
+    "prior_review_head": "a5f6c8aac9ed895acdcdb9ab83c9e3e0db3d2494",
+    "corrected_body": "6f6903d3be23a4baf9702a78c401fe2922cfb106"
+  },
+  "publication_target": "docs/governance/audits/requirements-stage/labo-stage5-parent061-review01-disposition-2026-10-06-6f6903d3b.json",
+  "formal_review": {
+    "id": 6017505879,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2629#issuecomment-6017505879",
+    "utf8_bytes": 5847,
+    "utf8_sha256": "d09306dfaf752e1d882664840c9ced1c52b57283de6907d9739c074b7a37c653",
+    "raw_body": "## review01（independent review、PR #2629 親HELIXLABO-L2-061、HEAD a5f6c8aac9ed895acdcdb9ab83c9e3e0db3d2494、本文 fb183fb00、base main af93d1f17）\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。基準は新しい基準（責務優先・変更耐性前提）。\n- **Opus・ブラインド照合**：固定親（0857205ecのL2-061:457–468、L11-061:205–215、§24の関係行、依存先L2/L11-065の境界）と、6本文の追補193行だけを渡した。\n- **Opus・継続照合**：旧#2620の061所見を判定し、追補の全行、監査、pin（280件＋132行）を再計算した。\n\nFableは、Opusが`no_findings`となった同じHEADでだけ回す。今回は回していない。\n\n### 静的検査（exact HEAD）\n- scfctl：validate 147/0、stale 0、residuals 0。govcheck：ok。`git diff --check`：成功。\n- origin/main af93d1f17との`merge-tree`は衝突なし。6本文はmainの全bytesをprefixとして保持している。\n- PO判断 `po-decision-2026-09-29-57candidates.md` 76行のL2/L11 file SHAは、0857205ecの実ファイルと一致した。\n- 監査のpinに不一致は0件。旧a4の061 ID集合と現行132行のID集合は、完全に一致した。\n\n### 旧#2620の061所見\n- **解消**：Major 13件はすべて解消した（r02 M2〜M5、r03 M2〜M5、r04 M1/M3〜M5ほか）。Minorも、多くが解消した。\n- **残余へ移す**：r02 m6、r03 m7（CASE-102の呼び方）、r03 m2（110の欠番）、r04 m6（表記の揺れ）、r05 m8（英文）。\n\n### 所見（Major 1）\n- **M1（CASE-16：scorerの版の不一致を、固定親の区分外のLABOへ戻している）**：\n  - `L10-LABO-061-CASE-16`（scorerのversionだけが異なる）は、戻し先を「LABO」としている。oracleの文も「cohortを分離 戻し先」と崩れている。\n  - 固定L2-061「失敗時」は、task/oracleの不明・不一致をtask/oracle ownerへ戻すと定める。「版と不成立の扱い」とL11-061「正常」（「固定されたoracle/scorer」）は、scorerをtask/fixture/oracle/protocolと同じ版照合の対象にしている。\n  - 同じ型の兄弟行CASE-14（fixture）とCASE-15（protocol）は、task/oracle ownerへ戻している。\n  - 固定親でLABOが持つのは比較不能範囲を保持する責務で、不一致を受け取るownerではない。そのため、scorerの不一致だけが直せるownerへ届かない。\n  - ブラインド照合はMajor、継続照合は残余（R2）と判定した。Opus側の最終判断は、#2623、#2628の先例（原因の区分に合わない戻し先）にそろえてMajorとする。\n  - →守るべき行：L2-061「失敗時」（0857205ec labo-requirements.md:466）、「版と不成立の扱い」（:464）、L11-061「正常」（labo-acceptance.md:209）。\n\n### 後で直す残余（承認を止めない）\n- **R1（欠番・ID表記）**：CASE-110の欠番を本文にも監査にも明記していない。BR/BVの「CASE-01〜CASE-114」は、存在しない03/04/110と、03a–t/04aの扱いを示していない。FVの「表130、normal bullet 2」は、表132行という実態とNVに合っていない。\n- **R2（戻し先の表記）**：「task契約owner」「固定task/oracle owner」「固定L2のtask契約owner」が混在している（区分は範囲内）。CASE-12/13（author/judgeの混同）とCASE-86（version欠落）に戻し先がない。86は82〜85とそろっていない。\n- **R3（normalの数え方）**：L10の見出しは「CASE-01/02がnormal」だが、CASE-24も正常（AC-01）である。CASE-102は「normal baseline」と名乗りながら、AC-03の単独変異になっている。CASE-102のoracleが参照するCASE-75は、055通常履歴の非適用対照で、意味が合わない。\n- **R4（単独fixture・L3文言の不足）**：次の条項に、単独fixtureやL3の文言がない。\n  - 「配送・登録成功を情報隔離の成功へ変換しない」（L2:466/467）\n  - 「未知taskへ既存の安全判定を無条件継承しない」（L11:213/214）\n  - score起点の割当・資格・権限の生成\n  - LABOによるWorkerの起動と候補採択の許可（L2:463、L11:207）\n  - AC-02「適用性未確定→unknown」に「ownerへ戻す」がない（L11:215）\n  - 採択済み059の固定revisionへ遡及しないこと（L2:458）が、L3に明記されていない\n- **R5（行参照・範囲の文言）**：FRの「failed/invalid/historical…」行は、L2-061:467–469を指しているが、該当条項は:465である（469は空行）。L3の対応表1行目は「既存059比較の選択task」だけで、L2:465の「059/060で選んだ範囲」の060が抜けている。\n- **R6（英文・体裁）**：061-114の「invalid state」が英文のまま。CASE-75/76/78は、変異の体裁（「単独変異」、基準の明記）がそろっていない。CASE-03cとCASE-05〜10は、束ねている可能性がある。\n- **R7（監査のrepository外参照）**：監査JSONの4か所で、`/tmp`がpathになっている（履歴補助と表示されている）。\n- **R8（mainにない基準revision）**：監査とFRが旧L10の基準として固定する`a4a365dcd`は、mainの祖先ではない。到達できるのは、未mergeの#2620のbranchだけである。\n- **R9（監査の件数表記）**：監査mdの「313+82+2項目」は、再計算の粒度と違う（内容に矛盾はない）。\n- **R10（並び順）**：061節のCASE表が、番号順になっていない。\n\n### 判定\n- blocker 1（M1）。Major 1、残余10。\n- 委任承認は成立しない。Readyにはしない。merge admissionは本commentから生成しない。\n- M1を直したHEADでOpusが`no_findings`になったら、同じHEADでFableを回す。\n"
+  },
+  "disposition": {
+    "M1": "CASE-16 scorer version mismatch returns to fixed task/oracle owner, preserves unknown specific identity; comparator remains unevaluated. Only one definition line corrected.",
+    "status": "author correction, not reviewer closure"
+  },
+  "changed_case_pins": [
+    {
+      "revision": "a5f6c8aac9ed895acdcdb9ab83c9e3e0db3d2494",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "line": 2842,
+      "literal": "| `L10-LABO-061-CASE-16` | `LABO-061-AC-03` | 単独変異: scorer version だけ異なる。その他の入力は `L10-LABO-061-CASE-01` と同一。 | cohortを分離 戻し先: LABO。 |\n",
+      "raw_lf_sha256": "f8d849355ac77d6cf108df8c57941d114bfe87f3d47122ee5ee1b290e4835f40"
+    },
+    {
+      "revision": "6f6903d3be23a4baf9702a78c401fe2922cfb106",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "line": 2842,
+      "literal": "| `L10-LABO-061-CASE-16` | `LABO-061-AC-03` | 単独変異: scorer version だけ異なる。その他の入力は `L10-LABO-061-CASE-01` と同一。 | cohortを分離して未評価とし、固定L2のtask/oracle ownerへ返す。具体identityが入力から特定できない部分はunknownとして保持する。 |\n",
+      "raw_lf_sha256": "d3bfba2d617b26b4f1eabbcdaaf1f7b913254b4414f6e031a8ee0e0dbe969395"
+    }
+  ],
+  "canonical_files": [
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "revision": "6f6903d3be23a4baf9702a78c401fe2922cfb106",
+      "full_bytes": 285259,
+      "full_sha256": "7f60a7fb1ed45ac9fcd157cb1f0bec6aa82a0eb0207839c5912b478b8a190b55",
+      "prior_revision": "a5f6c8aac9ed895acdcdb9ab83c9e3e0db3d2494",
+      "prior_sha256": "7f60a7fb1ed45ac9fcd157cb1f0bec6aa82a0eb0207839c5912b478b8a190b55",
+      "base_revision": "af93d1f171d994f9fae2e78026b39ac27f896f5c",
+      "base_sha256": "290722ab60a037d8074dd0112ebb94b43fe29fa3997b2b68325e3e61a9f0da33",
+      "exact_base_prefix": true,
+      "suffix_sha256": "f549eefb27ccb76ac25ef4bf85200e127205b4910828920fa0d841b9056b5859"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "revision": "6f6903d3be23a4baf9702a78c401fe2922cfb106",
+      "full_bytes": 11731,
+      "full_sha256": "647f91387dc2cc22c617eb56adede69bdecb3e5057958ee4f424745941300ed8",
+      "prior_revision": "a5f6c8aac9ed895acdcdb9ab83c9e3e0db3d2494",
+      "prior_sha256": "647f91387dc2cc22c617eb56adede69bdecb3e5057958ee4f424745941300ed8",
+      "base_revision": "af93d1f171d994f9fae2e78026b39ac27f896f5c",
+      "base_sha256": "9f1a7cbc1a424aebf4205d78c6bb6e261395dc46d1b419813d6ede1ab344c418",
+      "exact_base_prefix": true,
+      "suffix_sha256": "93893d9195e111bece2afe246ba598fd61f9566ff5fe22291db6747dc19b558c"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "revision": "6f6903d3be23a4baf9702a78c401fe2922cfb106",
+      "full_bytes": 62143,
+      "full_sha256": "d2a46e3f1b558829b203d1173b1dc27b51e9e76ab3c73dc5c1cc6864788e8252",
+      "prior_revision": "a5f6c8aac9ed895acdcdb9ab83c9e3e0db3d2494",
+      "prior_sha256": "d2a46e3f1b558829b203d1173b1dc27b51e9e76ab3c73dc5c1cc6864788e8252",
+      "base_revision": "af93d1f171d994f9fae2e78026b39ac27f896f5c",
+      "base_sha256": "df25b18e78ef0de103aaad65609cf8ee191379a930497153a3a9fa094651c136",
+      "exact_base_prefix": true,
+      "suffix_sha256": "4ffe2b2f6a5fa5547b5d0853cbb34c31f26df354990992a14fc64618746fdac3"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "revision": "6f6903d3be23a4baf9702a78c401fe2922cfb106",
+      "full_bytes": 380682,
+      "full_sha256": "53e772bcf72d184c5b98e7c8084a00b11658a8084148f730c7f7d3dfd7e00794",
+      "prior_revision": "a5f6c8aac9ed895acdcdb9ab83c9e3e0db3d2494",
+      "prior_sha256": "f13f7680e99a1468e8432328498a20db676f08de4a8b35ff6cf1d9281fa7ebcd",
+      "base_revision": "af93d1f171d994f9fae2e78026b39ac27f896f5c",
+      "base_sha256": "57cf65440d8833e4da0db01455ff8066dd87f7278d4641aedc5d2b0d61a6521a",
+      "exact_base_prefix": true,
+      "suffix_sha256": "97ae15617d09c9cdb9e6b4a1097bff09e10a088fe78e5a0979a227dc121f53e1"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "revision": "6f6903d3be23a4baf9702a78c401fe2922cfb106",
+      "full_bytes": 9921,
+      "full_sha256": "ed9a68074043855948356c3f23eaaad62271ee160ed92ace3e97c259ae3d2ac8",
+      "prior_revision": "a5f6c8aac9ed895acdcdb9ab83c9e3e0db3d2494",
+      "prior_sha256": "ed9a68074043855948356c3f23eaaad62271ee160ed92ace3e97c259ae3d2ac8",
+      "base_revision": "af93d1f171d994f9fae2e78026b39ac27f896f5c",
+      "base_sha256": "5fd18f3c031c9bbf7d712a82d51e238cfb666bcd2069d3e4d8878a1caa6dace6",
+      "exact_base_prefix": true,
+      "suffix_sha256": "c869664b7dc8b09d046c239a433d81ccbf7f538c3edcb6c286f93a65ec3fe871"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "revision": "6f6903d3be23a4baf9702a78c401fe2922cfb106",
+      "full_bytes": 51012,
+      "full_sha256": "85bce25679e64ee5c5aa03c96cb1b751488a67bbdc72aee8fa56191bbd8bfe18",
+      "prior_revision": "a5f6c8aac9ed895acdcdb9ab83c9e3e0db3d2494",
+      "prior_sha256": "85bce25679e64ee5c5aa03c96cb1b751488a67bbdc72aee8fa56191bbd8bfe18",
+      "base_revision": "af93d1f171d994f9fae2e78026b39ac27f896f5c",
+      "base_sha256": "e91a7b4a168711b643c8b60b9ee1369520c452b0c0a9cb72461d6ea93643b360",
+      "exact_base_prefix": true,
+      "suffix_sha256": "a168c3d8f6f89c9fa7ffb9ff754f06628e5a407760562c93f1c41748c58be417"
+    }
+  ],
+  "fixed_parent_and_reviewer_revision_pins": [
+    {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "full_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+      "start_line": 457,
+      "end_line": 469,
+      "literal": "### HELIXLABO-L2-061 比較評価のtask・oracle隔離と履歴の完全性（単体追補候補、1.0）\n\n- **親・状態**：HELIXLABO-L1-005 primary／HELIXLABO-L1-011 context。`version_target: 1.0`、未採択の追補候補。既存059の比較評価における入力の完全性を補う。同じ評価エンジンを新設せず、採択済み059の固定revisionへ本追補の採択を遡及しない。\n- **入力**：比較目的と選択群、適用するtask契約、task／fixture／oracle／protocol／scorerのidentity・version・digest、実際にWorkerへ提示したcontextの参照と可視範囲、benchmark authorと評価judgeのidentity・session・context境界、実行者・権限・run receiptを受け取る。secret等の生値を監査記録へ複写しない。hidden oracle利用の有無と根拠はtask契約から読み、不明を「利用なし」にしない。\n- **提供**：比較scope内の各runについてtaskと判定根拠の対応、情報漏洩・版不一致・役割混同の有無、比較に使用可能な範囲と不成立理由を返す。既存059の品質・効果判定へ入力するもので、scoreやreceiptからWorker割当・資格・権限を生成しない。\n- **task snapshot**：旧Bench R04を用いるtask比較の候補では、task ID、task version、fixture digest、requirement IDs、acceptance IDs、base HEAD、allowed paths、forbidden paths、hidden oracle digest、seed、toolchain versions、timeout policy、retry policy、cache policy、hardware classの15条件をそれぞれ識別できるsnapshotへ束縛する。値・対象範囲・版の不明は比較不足として返す。旧schemaの文字列名やruntimeを実装方式として要求せず、条件を失わない対応をL3へ渡す。hidden oracleを用いない別の比較では適用するtask契約と非適用理由を記録し、欠落を非適用へ置き換えない。\n- **情報隔離**：public task／fixtureとhidden oracleを別の可視範囲へ置く。hidden oracleをWorker contextへ渡さず、future answer、secret、PII、private review contextをWorker-visible fixtureへ入れない。hidden値を含む派生説明・添付からの漏洩も同じ境界で扱う。情報分類と取込許可は既存SECURITY契約に従う。実際に渡したcontextを検証できない場合は隔離済みと推定しない。\n- **独立評価**：benchmark authorとblind judgeを分離し、同一作成contextを独立評価と扱わない。identity・session・contextの分離根拠と、judgeに与えたtask・oracleの版を評価receiptへ結ぶ。judgeに判定用oracleを与えることとWorkerへの答え漏洩を区別する。LABOがWorkerを起動・割当したり、入力receiptからjudge任命の権限を作ったりしない。\n- **版と不成立の扱い**：task／fixture／oracle／protocol／scorerのversion・digestを照合し、異なる版を同じ比較へ混ぜない。漏洩、版不一致、author／judge混同のrunは有効な比較・qualification evidenceに用いず、不成立理由と元receiptを保全する。失敗を削除したり、平均点・安さ・速度で相殺したりしない。historical resultは当時のmodel／runtime／version、toolchain、task snapshot、実行者と権限の証拠として保持し、current性能や現行assignmentを遡及生成しない。\n- **依存と適用範囲**：常時必須は対象runのsource・revision・scope・完全性を確かめる証拠と059の比較規則。hidden oracle利用時は当該oracleの隔離とblind評価の証拠を必須にする。使用した観測入力元とその安全条件のみを実行依存とし、未選択taskや旧portfolioは参照のみ。055の通常Worker履歴すべてへhidden task・blind judge・15項目snapshotを一律に課さない。059/060で当該task比較を選んだ範囲に適用する。\n- **失敗時**：task／oracleの不明・不一致はtask／oracle ownerへ、漏洩は入力元とSECURITYへ、実行context・assignment証拠不足は実行主体へ戻す。LABOは比較不能範囲と未完の再評価義務を保持し、配送・登録成功を情報隔離の成功へ変換しない。\n- **旧source**：`LEGACY-ASSET-28FB139B26CD61CC51EE`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md:96-120,143-147`（SHA-256 `a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116`）のR04/R08、`LEGACY-ASSET-A952A3A175EB82A4781B`、`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md:32-33,39-40`（SHA-256 `6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185`）のAC005/006/012/013を意味再導出する。旧文書はdraft候補であり自動採択しない。全旧BenchやREG-06の被覆完了ではなく、この選定条件のみの追補である。\n\n",
+      "raw_lf_sha256": "9f064d206645f1db6ef946a78ddfd2fe6656c003c4af86ed46c54dab2ee4ad3a"
+    },
+    {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "full_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+      "start_line": 205,
+      "end_line": 215,
+      "literal": "### HELIXLABO-L2-061 比較評価のtask・oracle隔離と履歴の完全性の受入候補\n\n未実行の受入候補。既存059の比較目的・選択群と品質条件を維持し、実験起動・候補採択の許可を生成しない。\n\n- **正常**：hidden oracleを用いる比較taskの15条件（task ID/version、fixture digest、requirement/acceptance IDs、base HEAD、allowed/forbidden paths、hidden oracle digest、seed、toolchain、timeout/retry/cache policies、hardware class）が入力snapshotに対応する。Worker-visible taskには答え・secret・PII・private review contextがなく、Workerに渡されたcontextからoracleへ到達できない。authorと別identity/session/contextのjudgeが固定されたoracle/scorerで評価する。task/fixture/oracle/protocol/scorerの版とdigestが一致し、評価receiptがその実context・役割分離を裏付ける場合だけ当該比較へ利用可能と返す。\n- **15項目の欠落・不一致**：各項目を1つずつ欠落または対象不一致にしたfixtureで、該当task比較を成立扱いにしない。別runのsnapshotやfield名の存在だけで埋めない。hidden oracleを使うのに利用なしへ書き換えてdigestを省く例も拒否する。\n- **情報漏洩の反例**：hidden answer、future answer、secret、PII、private review contextをそれぞれWorker-visible fixture/contextへ混入する。該当runを有効比較・資格証拠から外し、理由と元receiptを保持する。機微な内容そのものを監査出力へ複写しない。平均点、低費用、他の成功runで不成立を相殺しない。\n- **役割・版の反例**：authorが作成contextのままjudgeを兼任する、名札のみ変えてcontextを共有する、task snapshotとoracle digestが違う、fixture/protocol/scorerの版が違う例を別々に与える。不成立範囲を返し、judgeにoracleを渡した事実だけをWorkerへの漏洩と誤判定しない。\n- **履歴**：保存済みrunは当時のmodel/runtime/version、toolchain、task snapshot、actor/authorityへ結んで表示する。当時の証拠が足りない場合は不足を表示し、現行assignmentを後付けしたり、旧結果をcurrent性能へ転用したりしない。旧runtimeは起動しない。\n- **未見**：初見の添付・派生説明から答えがWorkerへ漏れる例と、context参照が欠け実際の可視範囲を確認できない例で、前者は漏洩、後者は未確認と返し、いずれも隔離済みへ通さない。未知taskへ既存の安全判定を無条件継承しない。\n- **非適用と接続**：hidden oracleを用いない別契約の比較や055の通常履歴には、その非適用根拠を記録して一律hidden判定を課さない。適用不明はownerへ戻す。完全性を満たすrunも059の品質/比較条件を満たさなければ効果達成ではなく、LABOの返却値から割当・実験許可・admissionを生成しない。\n",
+      "raw_lf_sha256": "d7c170e0b047db4a74ef955f1295a5d8fc893cd0ca84aefc72d96b764ed1bb1b"
+    },
+    {
+      "revision": "0857205ecb7a18db9d8d926142e865776c1bf6e2",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "full_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+      "start_line": 457,
+      "end_line": 469,
+      "literal": "### HELIXLABO-L2-061 比較評価のtask・oracle隔離と履歴の完全性（単体追補候補、1.0）\n\n- **親・状態**：HELIXLABO-L1-005 primary／HELIXLABO-L1-011 context。`version_target: 1.0`、未採択の追補候補。既存059の比較評価における入力の完全性を補う。同じ評価エンジンを新設せず、採択済み059の固定revisionへ本追補の採択を遡及しない。\n- **入力**：比較目的と選択群、適用するtask契約、task／fixture／oracle／protocol／scorerのidentity・version・digest、実際にWorkerへ提示したcontextの参照と可視範囲、benchmark authorと評価judgeのidentity・session・context境界、実行者・権限・run receiptを受け取る。secret等の生値を監査記録へ複写しない。hidden oracle利用の有無と根拠はtask契約から読み、不明を「利用なし」にしない。\n- **提供**：比較scope内の各runについてtaskと判定根拠の対応、情報漏洩・版不一致・役割混同の有無、比較に使用可能な範囲と不成立理由を返す。既存059の品質・効果判定へ入力するもので、scoreやreceiptからWorker割当・資格・権限を生成しない。\n- **task snapshot**：旧Bench R04を用いるtask比較の候補では、task ID、task version、fixture digest、requirement IDs、acceptance IDs、base HEAD、allowed paths、forbidden paths、hidden oracle digest、seed、toolchain versions、timeout policy、retry policy、cache policy、hardware classの15条件をそれぞれ識別できるsnapshotへ束縛する。値・対象範囲・版の不明は比較不足として返す。旧schemaの文字列名やruntimeを実装方式として要求せず、条件を失わない対応をL3へ渡す。hidden oracleを用いない別の比較では適用するtask契約と非適用理由を記録し、欠落を非適用へ置き換えない。\n- **情報隔離**：public task／fixtureとhidden oracleを別の可視範囲へ置く。hidden oracleをWorker contextへ渡さず、future answer、secret、PII、private review contextをWorker-visible fixtureへ入れない。hidden値を含む派生説明・添付からの漏洩も同じ境界で扱う。情報分類と取込許可は既存SECURITY契約に従う。実際に渡したcontextを検証できない場合は隔離済みと推定しない。\n- **独立評価**：benchmark authorとblind judgeを分離し、同一作成contextを独立評価と扱わない。identity・session・contextの分離根拠と、judgeに与えたtask・oracleの版を評価receiptへ結ぶ。judgeに判定用oracleを与えることとWorkerへの答え漏洩を区別する。LABOがWorkerを起動・割当したり、入力receiptからjudge任命の権限を作ったりしない。\n- **版と不成立の扱い**：task／fixture／oracle／protocol／scorerのversion・digestを照合し、異なる版を同じ比較へ混ぜない。漏洩、版不一致、author／judge混同のrunは有効な比較・qualification evidenceに用いず、不成立理由と元receiptを保全する。失敗を削除したり、平均点・安さ・速度で相殺したりしない。historical resultは当時のmodel／runtime／version、toolchain、task snapshot、実行者と権限の証拠として保持し、current性能や現行assignmentを遡及生成しない。\n- **依存と適用範囲**：常時必須は対象runのsource・revision・scope・完全性を確かめる証拠と059の比較規則。hidden oracle利用時は当該oracleの隔離とblind評価の証拠を必須にする。使用した観測入力元とその安全条件のみを実行依存とし、未選択taskや旧portfolioは参照のみ。055の通常Worker履歴すべてへhidden task・blind judge・15項目snapshotを一律に課さない。059/060で当該task比較を選んだ範囲に適用する。\n- **失敗時**：task／oracleの不明・不一致はtask／oracle ownerへ、漏洩は入力元とSECURITYへ、実行context・assignment証拠不足は実行主体へ戻す。LABOは比較不能範囲と未完の再評価義務を保持し、配送・登録成功を情報隔離の成功へ変換しない。\n- **旧source**：`LEGACY-ASSET-28FB139B26CD61CC51EE`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md:96-120,143-147`（SHA-256 `a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116`）のR04/R08、`LEGACY-ASSET-A952A3A175EB82A4781B`、`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md:32-33,39-40`（SHA-256 `6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185`）のAC005/006/012/013を意味再導出する。旧文書はdraft候補であり自動採択しない。全旧BenchやREG-06の被覆完了ではなく、この選定条件のみの追補である。\n\n",
+      "raw_lf_sha256": "9f064d206645f1db6ef946a78ddfd2fe6656c003c4af86ed46c54dab2ee4ad3a"
+    },
+    {
+      "revision": "0857205ecb7a18db9d8d926142e865776c1bf6e2",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "full_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+      "start_line": 205,
+      "end_line": 215,
+      "literal": "### HELIXLABO-L2-061 比較評価のtask・oracle隔離と履歴の完全性の受入候補\n\n未実行の受入候補。既存059の比較目的・選択群と品質条件を維持し、実験起動・候補採択の許可を生成しない。\n\n- **正常**：hidden oracleを用いる比較taskの15条件（task ID/version、fixture digest、requirement/acceptance IDs、base HEAD、allowed/forbidden paths、hidden oracle digest、seed、toolchain、timeout/retry/cache policies、hardware class）が入力snapshotに対応する。Worker-visible taskには答え・secret・PII・private review contextがなく、Workerに渡されたcontextからoracleへ到達できない。authorと別identity/session/contextのjudgeが固定されたoracle/scorerで評価する。task/fixture/oracle/protocol/scorerの版とdigestが一致し、評価receiptがその実context・役割分離を裏付ける場合だけ当該比較へ利用可能と返す。\n- **15項目の欠落・不一致**：各項目を1つずつ欠落または対象不一致にしたfixtureで、該当task比較を成立扱いにしない。別runのsnapshotやfield名の存在だけで埋めない。hidden oracleを使うのに利用なしへ書き換えてdigestを省く例も拒否する。\n- **情報漏洩の反例**：hidden answer、future answer、secret、PII、private review contextをそれぞれWorker-visible fixture/contextへ混入する。該当runを有効比較・資格証拠から外し、理由と元receiptを保持する。機微な内容そのものを監査出力へ複写しない。平均点、低費用、他の成功runで不成立を相殺しない。\n- **役割・版の反例**：authorが作成contextのままjudgeを兼任する、名札のみ変えてcontextを共有する、task snapshotとoracle digestが違う、fixture/protocol/scorerの版が違う例を別々に与える。不成立範囲を返し、judgeにoracleを渡した事実だけをWorkerへの漏洩と誤判定しない。\n- **履歴**：保存済みrunは当時のmodel/runtime/version、toolchain、task snapshot、actor/authorityへ結んで表示する。当時の証拠が足りない場合は不足を表示し、現行assignmentを後付けしたり、旧結果をcurrent性能へ転用したりしない。旧runtimeは起動しない。\n- **未見**：初見の添付・派生説明から答えがWorkerへ漏れる例と、context参照が欠け実際の可視範囲を確認できない例で、前者は漏洩、後者は未確認と返し、いずれも隔離済みへ通さない。未知taskへ既存の安全判定を無条件継承しない。\n- **非適用と接続**：hidden oracleを用いない別契約の比較や055の通常履歴には、その非適用根拠を記録して一律hidden判定を課さない。適用不明はownerへ戻す。完全性を満たすrunも059の品質/比較条件を満たさなければ効果達成ではなく、LABOの返却値から割当・実験許可・admissionを生成しない。\n",
+      "raw_lf_sha256": "d7c170e0b047db4a74ef955f1295a5d8fc893cd0ca84aefc72d96b764ed1bb1b"
+    }
+  ],
+  "source_disposition": "Bench R04/R08 meaning re-derived; selected paired consumers and source pins remain in initial immutable authoring audit; no runtime/schema/test/CI execution",
+  "initial_immutable_audit": {
+    "path": "docs/governance/audits/requirements-stage/labo-stage5-parent061-authoring-audit-2026-10-06-fb183fb00.json",
+    "revision": "a5f6c8aac9ed895acdcdb9ab83c9e3e0db3d2494",
+    "sha256": "d4be18b91040690edcbcedb0070823a4f48f06c249274efe3b92ce39210aef85"
+  },
+  "residuals_R1_to_R10_raw": "- **R1（欠番・ID表記）**：CASE-110の欠番を本文にも監査にも明記していない。BR/BVの「CASE-01〜CASE-114」は、存在しない03/04/110と、03a–t/04aの扱いを示していない。FVの「表130、normal bullet 2」は、表132行という実態とNVに合っていない。\n- **R2（戻し先の表記）**：「task契約owner」「固定task/oracle owner」「固定L2のtask契約owner」が混在している（区分は範囲内）。CASE-12/13（author/judgeの混同）とCASE-86（version欠落）に戻し先がない。86は82〜85とそろっていない。\n- **R3（normalの数え方）**：L10の見出しは「CASE-01/02がnormal」だが、CASE-24も正常（AC-01）である。CASE-102は「normal baseline」と名乗りながら、AC-03の単独変異になっている。CASE-102のoracleが参照するCASE-75は、055通常履歴の非適用対照で、意味が合わない。\n- **R4（単独fixture・L3文言の不足）**：次の条項に、単独fixtureやL3の文言がない。\n  - 「配送・登録成功を情報隔離の成功へ変換しない」（L2:466/467）\n  - 「未知taskへ既存の安全判定を無条件継承しない」（L11:213/214）\n  - score起点の割当・資格・権限の生成\n  - LABOによるWorkerの起動と候補採択の許可（L2:463、L11:207）\n  - AC-02「適用性未確定→unknown」に「ownerへ戻す」がない（L11:215）\n  - 採択済み059の固定revisionへ遡及しないこと（L2:458）が、L3に明記されていない\n- **R5（行参照・範囲の文言）**：FRの「failed/invalid/historical…」行は、L2-061:467–469を指しているが、該当条項は:465である（469は空行）。L3の対応表1行目は「既存059比較の選択task」だけで、L2:465の「059/060で選んだ範囲」の060が抜けている。\n- **R6（英文・体裁）**：061-114の「invalid state」が英文のまま。CASE-75/76/78は、変異の体裁（「単独変異」、基準の明記）がそろっていない。CASE-03cとCASE-05〜10は、束ねている可能性がある。\n- **R7（監査のrepository外参照）**：監査JSONの4か所で、`/tmp`がpathになっている（履歴補助と表示されている）。\n- **R8（mainにない基準revision）**：監査とFRが旧L10の基準として固定する`a4a365dcd`は、mainの祖先ではない。到達できるのは、未mergeの#2620のbranchだけである。\n- **R9（監査の件数表記）**：監査mdの「313+82+2項目」は、再計算の粒度と違う（内容に矛盾はない）。\n- **R10（並び順）**：061節のCASE表が、番号順になっていない。\n",
+  "residuals_sha256": "20b212757cebfae7d92708d90cf8f67235217c604d01fd5e54a9921db6fa9b8d",
+  "static_verification": {
+    "main_prefix": true,
+    "CASE_IDs_old_and_corrected": 132,
+    "changed_definition_rows": 1,
+    "govcheck": "ok atoms=7622 requirements=57 files=58",
+    "diff_check": "pass",
+    "authority": "no new approval/assignment/qualification/admission; review and decision pending"
+  },
+  "limits": [
+    "Inherited residuals remain open; indices and counts do not establish completeness.",
+    "Historical a4 revision is on unmerged PR2620 branch, not main ancestor.",
+    "Initial ledger rows require body revision for reproduction; no rewrite of initial audit."
+  ]
+}

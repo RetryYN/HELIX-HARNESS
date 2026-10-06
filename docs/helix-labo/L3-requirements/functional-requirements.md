@@ -1682,3 +1682,31 @@ L10に置く一項目変異候補を個別に照合し、単一点性は独立re
 | receipt、費用・人時間・unknown、quality非相殺 | L2:446–449/454、L11:181–184 | AC-01/02/03、CASE-01/02/03d/e/12–17/18/20–25/33–45 |
 | 事前HARNESS oracle、OS assignment、原因別owner、scope/権限境界 | L2:449–454、L11:181–185 | AC-01/02/03、CASE-01/02/03c/04a/b/34–38/46 |
 | 評価材料から判断・authorityを生成しない | 固定L2-060「提供するもの」「保証すること」、固定L11-060「結果・責務境界」 | AC-03、CASE-47–52（各誤出力を別fixtureで照合） |
+
+## Stage 5 — HELIXLABO-L2-061 比較task・oracle境界と履歴
+
+状態: `HELIXLABO-L2-061`、PO採択行 `MPR-RC-HELIXLABO-L2-061-001`、`version_target: 1.0` のL3/L10候補。採択根拠はPO決定basisと固定L2/L11をそれぞれ参照し、現行登録metadataだけから要求意味を生成しない。ここでは比較対象の契約、可視範囲、当時の履歴、評価上の不成立を扱う。LABOはtaskを作成・変更せず、Worker/judgeを割当せず、実行・permission・qualification・admission・採用判断を生成しない。
+
+| 固定要件句 | 親source | 機能境界 / trace |
+|---|---|---|
+| 既存059比較の選択taskに、15条件をfieldごとに結び、該当する実context・runを追跡する | L2-061:457–463; L11-061:205–208 | `LABO-061-AC-01`, `LABO-061-AC-03`; 選択taskのtask/fixture/oracle/protocol/scorer identity・version・digest、worker-visible context、author/judge、actor/authority、receiptを分ける。 |
+| secret・future answer・hidden oracle等がWorker-visible contextへ漏れた比較を有効扱いしない | L2-061:461–464; L11-061:208–210 | `LABO-061-AC-03`; 情報漏洩の判定・permissionはSECURITY、識別可能な入力sourceはその既存ownerへ返す。 |
+| author/judgeのidentity・session・context分離と、judgeが使うoracleをWorker漏洩と混同しない | L2-061:462–465; L11-061:209–211 | `LABO-061-AC-01/03`; 役割/可視範囲を区別し、盲検成立・任命をLABOが生成しない。 |
+| selected taskに限ってsnapshot fieldを照合し、055通常履歴や未選択sourceへ一律適用しない | L2-061:465–467; L11-061:211–213 | `LABO-061-AC-02/03`; 適用scopeを選択taskへ束ね、非適用根拠のある通常履歴はfield欠落へ変換しない。 |
+| failed/invalid/historical evidenceを保持し、別run・current値で補わず、score/receiptからauthorityを作らない | L2-061:467–469; L11-061:213–215 | `LABO-061-AC-03`; task/oracle条件はその既存owner、漏洩はSECURITYと識別可能なsource owner、実行context/assignment/receiptは実行主体へ返す。個人・source identity不明はidentity unknownを維持する。 |
+
+### LABO-061-AC-01 — 選択taskの正常比較
+
+合成givenとして、選択task snapshotにtask ID/version、fixture digest、requirement/acceptance IDs、base HEAD、allowed/forbidden paths、hidden-oracle digest（適用時）、seed、toolchain versions、timeout/retry/cache policy、hardware classを個別fieldで結ぶ。task/protocol/scorer/oracleの対象revisionとscope、実際のWorker-visible context参照、benchmark authorと独立judgeのidentity・session・context、judgeへ渡したoracle、run actor/authority/receiptを保持する。全fieldが選択taskへ適用され、証拠が一致する場合だけその比較範囲のtask/evidence対応を返す。judgeがoracleを使うこと自体はWorkerへの漏洩ではない。合成例であり、実測、実験実行、採択・任命の証拠ではない。
+
+### LABO-061-AC-02 — 未見正常と非適用対照
+
+別の未見fixtureでも同じ選択task契約へ結び、適用fieldだけを照合する。055通常履歴のようにtask snapshotが非適用である根拠が入力にある場合は、その非適用理由を保持し、15 field欠落やblind評価失敗として数えない。適用性が未確定ならunknownを返す。未選択task/sourceは参照のみで、実行依存へ昇格しない。
+
+### LABO-061-AC-03 — 不成立、履歴と責務境界
+
+L10の各単独fixtureを用い、値を推測・currentから補完せず、missing field、value unknown、stale、revision mismatch、選択scope違いを区別する。Worker-visible漏洩を含むrunは比較不適格のまま保持しSECURITYへ戻す。historical runの当時model/runtime/toolchain/actor/version/authority evidenceは各々保存し、欠落をcurrent stateで埋めない。failed/invalid runを削除・平均点・低費用・短時間で相殺しない。receipt・score・比較結果からOS assignment、permission、admission、judge任命、qualificationを生成しない。正当な材料・既存状態は保持する。
+
+#### 旧sourceからの再導出
+
+`LEGACY-ASSET-28FB139B26CD61CC51EE` の `helix-bench-evaluation.md` R-04/R-08と `LEGACY-ASSET-A952A3A175EB82A4781B` の対応acceptance AC005/006/012/013を、task snapshot、当時条件、反例・履歴保持の起点として再導出する。旧文字列schema、runtime、test、CI、閉ループ、資格・permission・admissionの仕組みは移さない。旧consumerは対応検証の読み方であり、直接要件sourceとは区別する。旧a4本文で存在した132定義はIDを保持して本L10へ移し、機械的ID保持を独立fixture性・完全性の証明とはしない。
