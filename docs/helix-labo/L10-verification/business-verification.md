@@ -28,16 +28,16 @@
 
 | 固定親 | business evidence / owner境界 | CASE index |
 |---|---|---|
-| `HELIXLABO-L2-050` | LABO評価と再観測、OS registration、target owner変更を別状態に保つ | `L10-LABO-050-CASE-01`〜`CASE-14` |
-| `HELIXLABO-L2-059` | 選択比較のquality/既決priority適用、scope内費用と人介入 | `L10-LABO-059-CASE-01`〜`CASE-29` |
-| `HELIXLABO-L2-060` | 同一条件下の支援比較。run ownerはOS | `L10-LABO-060-CASE-01`〜`CASE-33` |
-| `HELIXLABO-L2-061` | task/oracle/contextの根拠完全性 | `L10-LABO-061-CASE-01`〜`CASE-72` |
-| `HELIXLABO-L2-063` | recurrence evidenceとknowledge owner分離 | `L10-LABO-063-CASE-01`〜`CASE-17` |
-| `HELIXLABO-L2-064` | 選択blind runだけの候補identity隠蔽/復元 | `L10-LABO-064-CASE-01`〜`CASE-16` |
-| `HELIXLABO-L2-065` | selected-scope scorecardと既存qualification decision owner | `L10-LABO-065-CASE-01`〜`CASE-25` |
-| `HELIXLABO-L2-066` | 共通eligible denominatorでの2つの欠陥指標 | `L10-LABO-066-CASE-01`〜`CASE-16` |
-| `HELIXLABO-L2-067` | candidate eligibility/repair event、OS Attempt境界 | `L10-LABO-067-CASE-01`〜`CASE-04b`, `L10-LABO-067-CASE-05`〜`CASE-14` |
-| `HELIXLABO-L2-068` | OS記録に基づくAttempt identity集合 | `L10-LABO-068-CASE-01`〜`CASE-04b`, `L10-LABO-068-CASE-05`〜`CASE-12` |
-| `HELIXLABO-L2-069` | ticket/reissue後の観測評価。ticket ownerはOS | `L10-LABO-069-CASE-01`〜`CASE-19` |
-| `HELIXLABO-L2-070` | selected telemetry fieldとsource owner | `L10-LABO-070-CASE-01`〜`CASE-04b`, `L10-LABO-070-CASE-05`〜`CASE-53` |
-| `HELIXLABO-L2-071` | task-class/model-revision qualificationとSECURITY/OS境界 | `L10-LABO-071-CASE-01`〜`CASE-15` |
+| `HELIXLABO-L2-050` | LABO評価と再観測、OS registration、target owner変更を別状態に保つ | `L10-LABO-050-CASE-01`〜`CASE-17` |
+| `HELIXLABO-L2-059` | 選択比較のquality/既決priority適用、scope内費用と人介入 | `L10-LABO-059-CASE-01`〜`CASE-47` |
+| `HELIXLABO-L2-060` | 同一条件下の支援比較。run ownerはOS | `L10-LABO-060-CASE-01`〜`CASE-45` |
+| `HELIXLABO-L2-061` | task/oracle/contextの根拠完全性 | `L10-LABO-061-CASE-01`〜`CASE-86` |
+| `HELIXLABO-L2-063` | recurrence evidenceとknowledge owner分離 | `L10-LABO-063-CASE-01`〜`CASE-50` |
+| `HELIXLABO-L2-064` | 選択blind runだけの候補identity隠蔽/復元 | `L10-LABO-064-CASE-01`〜`CASE-30` |
+| `HELIXLABO-L2-065` | selected-scope scorecardと既存qualification decision owner | `L10-LABO-065-CASE-01`〜`CASE-39` |
+| `HELIXLABO-L2-066` | 共通eligible denominatorでの2つの欠陥指標 | `L10-LABO-066-CASE-01`〜`CASE-28` |
+| `HELIXLABO-L2-067` | candidate eligibility/repair event、OS Attempt境界 | `L10-LABO-067-CASE-01`〜`CASE-04b`, `L10-LABO-067-CASE-05`〜`CASE-22` |
+| `HELIXLABO-L2-068` | OS記録に基づくAttempt identity集合 | `L10-LABO-068-CASE-01`〜`CASE-04b`, `L10-LABO-068-CASE-05`〜`CASE-17` |
+| `HELIXLABO-L2-069` | ticket/reissue後の観測評価。ticket ownerはOS | `L10-LABO-069-CASE-01`〜`CASE-27` |
+| `HELIXLABO-L2-070` | selected telemetry fieldとsource owner | `L10-LABO-070-CASE-01`〜`CASE-04b`, `L10-LABO-070-CASE-05`〜`CASE-64` |
+| `HELIXLABO-L2-071` | task-class/model-revision qualificationとSECURITY/OS境界 | `L10-LABO-071-CASE-01`〜`CASE-19` |
