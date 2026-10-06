@@ -267,5 +267,6 @@ L10は69個の完全ID定義を保持する。literalから抽出した分類候
 | observer overhead | source定義に従った直接測定資源をtask workから区分。 | 固定L2 overhead clause、FV CASE-03h、12、71。 | unknownを0や推計値にしない。 |
 | evidence freshness | sourceの有効時刻と観測時刻の差だけを値として提示。 | 固定L2 freshness clause、FV CASE-03i、14–15。CASE-15は有効入力からの誤ったauthority出力を拒否し、070出力処理を訂正。 | ageからfresh/stale状態・expiry・適格性/admission/permissionを作らない。CASE-104–106は各単独field生成を拒否。 |
 | metric identity | 067/068の定義revision/receiptと070 field identityを保持。 | 固定L2 Attempt co-presentationと既存12 metric境界、FV CASE-16–21、65–73。CASE-19の有効067/068 inputからの換算出力を拒否し、CASE-68はtotal countとresult state双方をunknownにする。 | 065 retry等への換算・合算・代替、旧12指標へのsilent renameなし。 |
+| provenance fidelity | 各evidenceのsource identity/revision/provenance実値をsource receiptから保ち、正常出力のprovenanceと完全一致させる。 | 固定L2-070 freshnessとL2-001 source preservation、FV CASE-01/125/126。 | provenanceが欠落/不一致のLABO出力は訂正し、正常receipt供給元へ誤りを返さない。新provenance schemaを作らない。 |
 
-authority境界の単独出力field確認はFV CASE-85–93/96–98およびCASE-102–109に対応する。target revision/source revisionの一致確認はFV CASE-99–101に対応する。性能・保持・監視周期を数値化する根拠は固定parentにない。必要な値が生じたら既存source定義と対の測定候補を記録し、閾値を推測で追加しない。
+authority境界の単独出力field確認はFV CASE-85–93/96–98およびCASE-102–109に対応する。target revision/source revisionの一致確認はFV CASE-99–101に対応する。不足・stale・矛盾14セルと時計不正はCASE-110–124、provenance出力の欠落/別値はCASE-125/126に対応する。性能・保持・監視周期を数値化する根拠は固定parentにない。必要な値が生じたら既存source定義と対の測定候補を記録し、閾値を推測で追加しない。

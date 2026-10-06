@@ -1875,11 +1875,17 @@ HELIXLABO-L1-005をprimary、L1-011をcontextとして、旧source line 399か�
 
 ### 受入条件候補
 
-- **LABO-070-AC-01 — 出典付きscorecard**：9 selected atomの適用可能な値を明示scope/revision/window/event-or-result receiptに結ぶ。各fieldの定義・単位・identityを保持し、出力値とsource receiptまたはsource-defined計算値の一致をL10正常fixtureで照合する。対象revisionとsource identity/revisionの一致はCASE-01およびCASE-99–101で確認する。
+- **LABO-070-AC-01 — 出典付きscorecard**：9 selected atomの適用可能な値を明示scope/revision/window/event-or-result receiptに結ぶ。各fieldの定義・単位・identityを保持し、出力値とsource receiptまたはsource-defined計算値の一致をL10正常fixtureで照合する。source identity/revisionに加え、各evidenceのprovenance出力は対応する有効source receiptのprovenance実値と一致させる。対象revisionとsource identity/revisionの一致はCASE-01およびCASE-99–101で確認する。
 - **LABO-070-AC-02 — 正常な異単位field**：source定義に一致する異なるunitのfieldは別fieldのまま表示し、相互換算・合算しない。
 - **LABO-070-AC-03 — 欠落・不一致の隔離**：必要event/clock/unit/time/source/revision/oracle/scope/relation/receiptが欠落・不明・矛盾・staleなら該当fieldだけunknown/invalid/unavailableとし、0・成功・不存在に置き換えない。他の根拠あるfieldは別に保持する。
 - **LABO-070-AC-04 — 固定親の境界保持**：4 durationは独立、escaped defectは既存oracleと受入済対象/受入境界後の検証済みrelationに限定、rollbackは観測だけ、overheadは直接測定だけ、freshnessはage観測だけ。追加の観測window/重大度/合否threshold/expiry/decisionを作らない。Recovery操作権限/実行、age由来fresh/stale/期限/適格性、LABO作成の受入境界/受入済み/escapedの単独field生成拒否はL10 CASE-102–109で確認する。
 - **LABO-070-AC-05 — Attempt co-presentation**：scope適用可能な067/068 fieldを元定義とreceiptどおり独立表示し、不在・不一致のfieldは理由付きunavailable/unknownにする。換算・合算・代替で完全scorecardに見せない。
+
+### 欠落・不一致と出典保持の照合
+
+固定L11-070「欠落・比較不能」が列挙するsource completeness、event identity、definition revision、単位、oracle、scope/window、対象とのrelation、receiptについて、不足/stale/矛盾の状態を既存CASEとCASE-110〜123で、固定L2-070 evidence freshnessの時計不正をCASE-124でCASE-01の正常入力に対する単独変異として照合する。該当する一つのreceipt/fieldだけを変え、他のbaseline値は保持する。欠落・stale・矛盾のfieldは確定値、0、成功へ変換せずunknown/invalid/unavailableとする。source event、scope/window、source completeness、event identity、definition revision、unit、relationまたはreceiptの不足は既存source/event/observation責務区分へ無条件で返す。oracleの不足・stale・矛盾は既存要求/acceptance owner責務区分へ無条件で返す。個別責務主体のidentity unknownは責務区分の返却を消さず別fieldで保持する。
+
+CASE-01の正常oracleは、各evidenceのsource identity/revisionとともに、対応する有効source receiptのprovenance実値との完全一致を照合する。CASE-125/126は入力側receiptが有効なまま、LABO出力provenance fieldだけをそれぞれ欠落・別値にする単独反例であり、当該LABO出力を訂正して正常sourceへ責務を返さない。
 
 ### 旧sourceとの対応・限界
 
