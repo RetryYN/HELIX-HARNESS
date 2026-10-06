@@ -1,0 +1,11 @@
+# HARNESS054 L3/L10起草時点監査
+
+本文revision `f9fc5c98e21f9848f92629a65bb3cef53fe92ef0`、base `ceda1c53b53c53fffb8c23f394add1f2b809deb1`。6文書の最新main prefixをbyte保持し、固定L2/L11と旧sourceを起点にsuffixを追補した。
+
+Rootは六suffix全文、固定親・PO row34と旧source対応を読んだ。候補25 source pinのfull/span SHAを再計算し一致、旧100 raw行を3fd物理行と照合して100/100一致、現行112 unique ID・6列・旧100 ID保持を確認した。旧rawは監査資料であり現行fixtureは再導出である。
+
+POのsource_repository_revisionは5aa10031で、L2 1154–1162/L11 865–875の節digestを固定した。旧調査e948の空行込み1154–1163/865–876は異なる物理span pinとして保存し、本文の意味変更とは扱わない。候補のb0b0719dは判断記録revisionへ表示訂正した。
+
+root04の正常条件は、合成入力に供給したmappingと割当待ち状態を区別する。現行phase等への厳密mappingを新設・採択せず、実際に未定義の入力はunknown/deferを保つ。正常入力からの不正HARNESS assignment/起動等の出力は当該HARNESS処理で拒否・訂正し、OS入力不足へ付替えない。layer/drive不足は既知HARNESS責務へ無条件返却し個体unknownを分離した。
+
+govcheckと新規diffcheckはPASS。6実本文SHA、全before/suffix/after、原候補、旧rawとレビュー由来の残余はJSONへ保存した。fixture実行、runtime/OS assignment、独立review、Fable判断、L3承認は未実施。件数とhash一致から網羅性・完了を生成しない。
