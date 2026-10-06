@@ -1014,7 +1014,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 - 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baselineはCASE-INFRA-011-S5-064 normal fixture。
 - 変異: `security_authority`だけをmissingへ変更。
-- 入力: baseline=CASE-INFRA-011-S5-064.normal; security_authority=missing
+- 入力: baseline=CASE-INFRA-011-S5-064.normal
 - oracle: 許可済みrecoveryと扱わず停止し、未完義務と最終適格revisionを保持する。
 - owner/戻し先: SECURITY authority owner。
 - trace: `INFRA-011-AC-04`。合成fixtureの設計候補であり未実行.
@@ -1023,7 +1023,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 - 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baselineはCASE-INFRA-011-S5-058 normal fixture。
 - 変異: `after_os_up_sync`だけをmissingへ変更。
-- 入力: baseline=CASE-INFRA-011-S5-058.normal; after_os_up_sync=missing
+- 入力: baseline=CASE-INFRA-011-S5-058.normal
 - oracle: recovery resultは保持するがconnection/compositeは未完とし、未完同期を消さない。
 - owner/戻し先: OS work/change owner。同期source ownerが特定できなければunknown。
 - trace: `INFRA-011-AC-04`。合成fixtureの設計候補であり未実行.
