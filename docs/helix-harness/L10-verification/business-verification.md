@@ -87,6 +87,11 @@ execution_status: designed_only_not_executed
 |---|---|---|
 | `HARNESS-L2-042` | 独立criterionなし | 事業成果を独立に主張せず、機能ACと採択済み親要求の意味保持だけを照合する。 |
 
+
+## Stage 3 親041の業務検証
+
+独立business criterion/oracle/CASEは追加しない。`functional-requirements.md`の固定L2-041 scopeとFR/ACを参照し、atom数/gap数/coverage/fixture数からROI、事業成果、利用者受入、要求合意、承認を生成しない。
+
 ## Stage 3 親049の業務検証
 
 | 観点 | 判定 | 禁止する読み替え |

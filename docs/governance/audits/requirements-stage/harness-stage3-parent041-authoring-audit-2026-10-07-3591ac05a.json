@@ -1,0 +1,2276 @@
+{
+  "record_type": "harness041_authoring_time_audit",
+  "language": "ja",
+  "status": "時点監査。source/candidate/bodyの物理pin照合であり、独立review・意味承認・完全性判定ではない。公開・canonical編集なし。",
+  "audit_date": "2026-10-07",
+  "target": {
+    "worktree": "/home/tenni/.helix-worktrees/l3-harness-stage3-parent041",
+    "branch": "l3-harness-stage3-parent041",
+    "body_commit": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+    "base_commit": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+    "worktree_head": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+    "parent_commit": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+    "worktree_status": "## l3-harness-stage3-parent041...origin/l3-harness-stage3-parent041",
+    "canonical_repository_edited": false
+  },
+  "input_files": {
+    "/tmp/root-harness041-six-suffixes-candidate.json": {
+      "bytes": 96420,
+      "sha256": "29955ed37077e881c680c5a3288df1d4f55cb2789bcc9e2dd836f7e6f84f77ef"
+    },
+    "/tmp/root-harness041-body-checkpoint.json": {
+      "bytes": 2280,
+      "sha256": "30acf836dac605e14b2d72d1055de9fdc93a89a5e2b6c37ee9be75e2881baf87"
+    },
+    "/tmp/harness-stage3-parent041-six-suffix-candidate-2026-10-07-e015c347.json": {
+      "bytes": 93994,
+      "sha256": "b11697129409c18178da1e803c3383aaf0f5fbe3b89d4d60a1b3f74170bae300"
+    },
+    "/tmp/root-harness040041-old-case-literal-checkpoint.json": {
+      "bytes": 55502,
+      "sha256": "9543a865a5012d88a418f8ac4c8f5bba8f0cf7da033bce680f99290a75fa2301"
+    }
+  },
+  "source_and_authority_pins": {
+    "po": {
+      "revision_checked": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "physical_line": 46,
+      "candidate_literal_sha256": "718b903d6a70c909768706b722e695d81e8636569e130899696b678bb554af0e",
+      "candidate_raw_lf_sha256": "718b903d6a70c909768706b722e695d81e8636569e130899696b678bb554af0e",
+      "actual_line_sha256": "718b903d6a70c909768706b722e695d81e8636569e130899696b678bb554af0e",
+      "exact_match_at_base_revision": true,
+      "actual_line_bytes": 627,
+      "full_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+    },
+    "fixed_parent": {
+      "L2_041": {
+        "source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "physical_start_line": 957,
+        "physical_end_exclusive": 971,
+        "full_file": {
+          "bytes": 254934,
+          "sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+          "reported_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+          "match": true
+        },
+        "actual_physical_span": {
+          "bytes": 3967,
+          "sha256": "ad8e344c318fd27275be9edf807c534912df52c11b786937fb1e7773b31358ec",
+          "reported_actual_sha256": "ad8e344c318fd27275be9edf807c534912df52c11b786937fb1e7773b31358ec",
+          "match": true
+        },
+        "root_candidate_literal": {
+          "bytes": 3967,
+          "sha256": "ad8e344c318fd27275be9edf807c534912df52c11b786937fb1e7773b31358ec",
+          "byte_equal_actual_slice": true
+        },
+        "prior_inventory_literal": {
+          "bytes": 3968,
+          "sha256": "c5411d1ea27f741017bf5c67b19425f8d5562b7c085f17f948e419a731d924f3",
+          "reported_hash": "c5411d1ea27f741017bf5c67b19425f8d5562b7c085f17f948e419a731d924f3",
+          "extra_trailing_lf_vs_actual": true,
+          "extra_lf_count": 1,
+          "reported_hash_matches_literal": true
+        }
+      },
+      "L11_041": {
+        "source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "physical_start_line": 699,
+        "physical_end_exclusive": 710,
+        "full_file": {
+          "bytes": 172806,
+          "sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+          "reported_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+          "match": true
+        },
+        "actual_physical_span": {
+          "bytes": 2413,
+          "sha256": "259c383203d86b79c159395b64c0d03d88db665486d28f5fc2aea8f7556a73a8",
+          "reported_actual_sha256": "259c383203d86b79c159395b64c0d03d88db665486d28f5fc2aea8f7556a73a8",
+          "match": true
+        },
+        "root_candidate_literal": {
+          "bytes": 2413,
+          "sha256": "259c383203d86b79c159395b64c0d03d88db665486d28f5fc2aea8f7556a73a8",
+          "byte_equal_actual_slice": true
+        },
+        "prior_inventory_literal": {
+          "bytes": 2414,
+          "sha256": "af2b1af9c03d9cb4efbf3b511fd13b81a8a90526657cac071daa049d9d71f4d3",
+          "reported_hash": "af2b1af9c03d9cb4efbf3b511fd13b81a8a90526657cac071daa049d9d71f4d3",
+          "extra_trailing_lf_vs_actual": true,
+          "extra_lf_count": 1,
+          "reported_hash_matches_literal": true
+        }
+      }
+    },
+    "prior_worker_fixed_span_literal": {
+      "L2_041": {
+        "reported_raw_lf_sha256": "c5411d1ea27f741017bf5c67b19425f8d5562b7c085f17f948e419a731d924f3",
+        "candidate_literal_bytes": 3968,
+        "candidate_literal_sha256": "c5411d1ea27f741017bf5c67b19425f8d5562b7c085f17f948e419a731d924f3",
+        "actual_physical_span_sha256": "ad8e344c318fd27275be9edf807c534912df52c11b786937fb1e7773b31358ec",
+        "actual_bytes": 3967,
+        "extra_trailing_lf": true
+      },
+      "L11_041": {
+        "reported_raw_lf_sha256": "af2b1af9c03d9cb4efbf3b511fd13b81a8a90526657cac071daa049d9d71f4d3",
+        "candidate_literal_bytes": 2414,
+        "candidate_literal_sha256": "af2b1af9c03d9cb4efbf3b511fd13b81a8a90526657cac071daa049d9d71f4d3",
+        "actual_physical_span_sha256": "259c383203d86b79c159395b64c0d03d88db665486d28f5fc2aea8f7556a73a8",
+        "actual_bytes": 2413,
+        "extra_trailing_lf": true
+      }
+    },
+    "legacy_primary_source": {
+      "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "bytes": 56091,
+      "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "reported_bytes": 56091,
+      "reported_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "match": true,
+      "selected_lines": [
+        {
+          "line": 136,
+          "literal": "| **HIL-FR-46** | Layer Ledger Registryはcanonical L1–L12ごとにledger type、粒度、必須node/edge、authority、input/output、entry/exit gate、template versionを登録する。L0 charterは層外authority anchorとして別登録する。各layer ledgerのrowはstable subject ID、revision、source span、semantic digest、status、owner、downstream/upstream edgeを持つ。 | layer ledger catalog、row revision、layer snapshot、coverage receipt |",
+          "actual_lf_sha256": "d89058bbeff23558ebe8961a6007be3b37afa1683cf1af807a972d99add74120",
+          "actual_no_lf_sha256": "a62b63ab18b23ac9564d6c7ffca7580ac9471a6d6e7374f8e4a26c93f0441b6c",
+          "reported_raw_lf_sha256": "d89058bbeff23558ebe8961a6007be3b37afa1683cf1af807a972d99add74120",
+          "matches": true
+        },
+        {
+          "line": 137,
+          "literal": "| **HIL-FR-47** | Template Obligation Extractorは各layerのactive templateから章、field、table row、applicability rule、done-when、pair contractを原子的obligationとして機械抽出し、該当ledgerへ候補行を追加する。未対応template要素、空/TBD、抽出不能、同一obligation重複をfinding化し、LLM自由補完で埋めない。 | template atom、ledger proposal、extractor/version digest、gap finding |",
+          "actual_lf_sha256": "dec0e6699e5ec9334bfd1b5f1e7dde004456367c7da2f9c564a7e9d6cc6581ff",
+          "actual_no_lf_sha256": "785f0998ca9fd2192bcddc638d1ef1233551c251e307e631303642abe7713fad",
+          "reported_raw_lf_sha256": "dec0e6699e5ec9334bfd1b5f1e7dde004456367c7da2f9c564a7e9d6cc6581ff",
+          "matches": true
+        }
+      ]
+    },
+    "legacy_source_atom_inventory": {
+      "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+      "path": "docs/governance/audits/requirement-registration/harness-layer-ledger-extraction-source-lines-2026-09-28.jsonl",
+      "bytes": 2676,
+      "sha256": "215e78dd9a7b2f1f3b3eebbaa20db33d8c448735b2c525d13a89c1a512ae89b4",
+      "reported_sha256": "215e78dd9a7b2f1f3b3eebbaa20db33d8c448735b2c525d13a89c1a512ae89b4",
+      "match": true,
+      "selected_rows": [
+        {
+          "physical_line": 1,
+          "atom_id": "LAYER-LEDGER-HIL-FR-46-L0136",
+          "literal_sha256": "5b94ed5aed1e0c2154e195f79c4e268629dbc99a7c361e1546bbf23635a3af46",
+          "reported_raw_lf_sha256": "5b94ed5aed1e0c2154e195f79c4e268629dbc99a7c361e1546bbf23635a3af46",
+          "match": true
+        },
+        {
+          "physical_line": 2,
+          "atom_id": "TEMPLATE-EXTRACT-HIL-FR-47-L0137",
+          "literal_sha256": "9e90db8d886ee81dd3742800e931e1d632d4add85ccf91b20ab48513b2791cbd",
+          "reported_raw_lf_sha256": "9e90db8d886ee81dd3742800e931e1d632d4add85ccf91b20ab48513b2791cbd",
+          "match": true
+        }
+      ]
+    },
+    "legacy_l3_sources": [
+      {
+        "asset_id": "LEGACY-ASSET-9A772391C7FB1298D45F",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md",
+        "bytes": 4297,
+        "sha256": "949b0da00d2a417e1b36d3679b89735de7adadf831f567dbe383dfe6337f19e4",
+        "reported_bytes": 4297,
+        "reported_sha256": "949b0da00d2a417e1b36d3679b89735de7adadf831f567dbe383dfe6337f19e4",
+        "full_match": true,
+        "selected_lines": "16–56",
+        "treatment": "旧L3 FR/AC/L12 pairing and L3 definition read; preserve semantic trace shape, replace old G3/runtime/CLI and old layer/approval system."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+        "bytes": 18905,
+        "sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+        "reported_bytes": 18905,
+        "reported_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+        "full_match": true,
+        "selected_lines": "51–53, 72, 80–82",
+        "treatment": "HIL-FR-18 and acceptance content read as old L3 requirement/test relationship; derive selected extraction and gap contract only."
+      },
+      {
+        "asset_id": null,
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "bytes": 268052,
+        "sha256": "24f1d9f4973166a05218550874f8cda5a4978105f3bf3a6ccfa8c3c94fa18677",
+        "reported_bytes": 268052,
+        "reported_sha256": "24f1d9f4973166a05218550874f8cda5a4978105f3bf3a6ccfa8c3c94fa18677",
+        "full_match": true,
+        "selected_lines": null,
+        "treatment": "previous current L3 draft is a seed only; it references unadopted MPR-003, while PO-adopted -002 is normative. Reuse atom/gap/scope/atomicity, derive current accepted boundaries.",
+        "selected_l3_literal_exact_lines": [
+          {
+            "line": 580,
+            "raw_lf_sha256": "9e64f58d2adba339db528af2de73072e7418549010b07ba7b84a427b2e76d545",
+            "no_lf_sha256": "d5d17a28dd152248dd19b5a6410409b8ab8f1a53a3ca1a16e9866696883f8786"
+          }
+        ]
+      }
+    ],
+    "legacy_asset_ledger_row": {
+      "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "full_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "candidate_literal_present": true,
+      "actual_row_found": true,
+      "actual_row_sha256": "057a8508576084d4fc805a4434a71be99cf391074bc15f866628b237d59c57b1",
+      "candidate_literal_sha256": "057a8508576084d4fc805a4434a71be99cf391074bc15f866628b237d59c57b1",
+      "exact_match": true
+    },
+    "r05_correction": {
+      "id": "CASE-HARNESS-L10-041-r05-root-revision-hidden",
+      "old_source_revision": "3fd20391f842310012d09c33f5383497898b3afe",
+      "old_source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "old_line": 1647,
+      "old_raw_literal_sha256": "8d0095cc0c2878e27591a2fd92263f5b6295cced7c9ad0d1571b98671ad6bc1c",
+      "old_reported_sha256": "8d0095cc0c2878e27591a2fd92263f5b6295cced7c9ad0d1571b98671ad6bc1c",
+      "old_exact_match": true,
+      "new_body_literal_sha256": "3ad8b7e5de564fff0473c39008416a346a1921aee00413279720660eab54a7b3",
+      "reported_new_body_sha256": "3ad8b7e5de564fff0473c39008416a346a1921aee00413279720660eab54a7b3",
+      "new_body_present_once": true,
+      "retained_id": true,
+      "route_changed": "from HARNESS-L2-009 input applicability to HARNESS-L2-041 extraction contract owner; 009 remains destination only for invalid/missing selection or applicability input",
+      "reason": "source mismatch is in the extraction output after valid input selection; do not classify it as template applicability."
+    },
+    "legacy_primary_source_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+    "legacy_primary_source_atom_ids": [
+      "LAYER-LEDGER-HIL-FR-46-L0136",
+      "TEMPLATE-EXTRACT-HIL-FR-47-L0137"
+    ],
+    "old_case_source_inventory": {
+      "source_revision": "3fd20391f842310012d09c33f5383497898b3afe",
+      "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "source_file": {
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "bytes": 767540,
+        "sha256": "94704ba448b00df43651ca1dfa01835472132ce3023d829ea5bb690926fa3f02",
+        "bytes_match": true,
+        "sha256_match": true
+      },
+      "checkpoint_path": "/tmp/root-harness040041-old-case-literal-checkpoint.json",
+      "checkpoint_file": {
+        "bytes": 55502,
+        "sha256": "9543a865a5012d88a418f8ac4c8f5bba8f0cf7da033bce680f99290a75fa2301",
+        "object": {
+          "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+          "path": "docs/helix-harness/L10-verification/functional-verification.md",
+          "file_sha256": "94704ba448b00df43651ca1dfa01835472132ce3023d829ea5bb690926fa3f02",
+          "040": 62,
+          "041": 38,
+          "root_full_literal_read": true,
+          "rows": [
+            {
+              "line": 849,
+              "literal": "| `CASE-HARNESS-L10-040-01` | `FR-HARNESS-L3-040`|`AC-HARNESS-L3-040-01`| 索引のみ。12層・6 canonical pair・独立L0 anchorを識別する。pair欠落=`CASE-HARNESS-L10-040-r09-001`、層ledger欠落=`CASE-HARNESS-L10-040-r07-layer-ledger-missing`、L0 layer=`CASE-HARNESS-L10-040-root-04-l0-layer`、L0 pair=`CASE-HARNESS-L10-040-root-04-l0-pair`、anchor文字列=`CASE-HARNESS-L10-040-root-04-anchor-string`。承認・登録・完了推定の反例はAC-HARNESS-L3-040-03に属し本索引へ混ぜない。 | 索引のみ。 | 各IDを該当ACに従って個別評価し、索引は独立fixture/negativeへ数えない。 |\n",
+              "sha256": "05bf90557db784041423aceeff0e49ebf65927a9a22696964300060133af8caa"
+            },
+            {
+              "line": 850,
+              "literal": "| `CASE-HARNESS-L10-040-02` | `FR-HARNESS-L3-040` | `AC-HARNESS-L3-040-02` | sample rowのsource/revision/status/ownerと上下左右edgeを逆引きする索引。 | 索引のみ。`CASE-HARNESS-L10-040-r10-mixed-revision-coverage`, `CASE-HARNESS-L10-040-root-04-down-edge-missing`, `CASE-HARNESS-L10-040-root-04-field-05`, `CASE-HARNESS-L10-040-root-04-field-06`, `CASE-HARNESS-L10-040-root-04-field-07`, `CASE-HARNESS-L10-040-root-04-left-edge-missing`, `CASE-HARNESS-L10-040-root-04-right-edge-missing`, `CASE-HARNESS-L10-040-root-04-source-missing`, `CASE-HARNESS-L10-040-root-04-stale-02`, `CASE-HARNESS-L10-040-root-04-stale-03`, `CASE-HARNESS-L10-040-root-04-stale-06`, `CASE-HARNESS-L10-040-root-04-stale-07`, `CASE-HARNESS-L10-040-root-04-stale-08`, `CASE-HARNESS-L10-040-root-04-stale-09`, `CASE-HARNESS-L10-040-root-04-stale-10`, `CASE-HARNESS-L10-040-root-04-stale-11`, `CASE-HARNESS-L10-040-root-04-up-edge-missing`を個別参照する。AC-04のfield-set/snapshot条件は040-04索引に分ける。 | 各参照CASEの単独変異を照合し、索引行をnegative件数へ加えない。 |\n",
+              "sha256": "164b0d1b73a4c12a40d9688d7b8e106381634ad725e51e2b3b62bea30c2ce37b"
+            },
+            {
+              "line": 851,
+              "literal": "| `CASE-HARNESS-L10-040-03` | `FR-HARNESS-L3-040`|`AC-HARNESS-L3-040-03`| catalogの存在と対象revisionを固定し、L2合意・L3承認・OS receiptをcurrentに保つ。対象revisionのL1 approval receiptだけを欠落させる。 | catalogの存在だけから対象revisionのL1承認済みと推定する。 | L1承認を生成せず対象revisionのreceipt不足を未完にする。固定L2:954のauthority ownerへ戻す。 |\n",
+              "sha256": "96df30a24a0a75b9a7b2c9b7ecde7af95dd11b82719d41e1e0882403a9d382f0"
+            },
+            {
+              "line": 852,
+              "literal": "| `CASE-HARNESS-L10-041-01` | `FR-HARNESS-L3-041`|`AC-HARNESS-L3-041-01`| 固定L11 revision e94838f513af2aec207ac1de420db62e2ad98b1aの041 atomic obligationを含むactive template/extractor/scope input。active revision identityの単独変異`CASE-HARNESS-L10-041-r05-root-revision-hidden`, `CASE-HARNESS-L10-041-r04-active-version-missing`, `CASE-HARNESS-L10-041-r04-active-version-stale`, `CASE-HARNESS-L10-041-r04-target-scope-missing`, `CASE-HARNESS-L10-041-r04-target-scope-stale`を直接参照する。source span/atom gap（AC-03）は`CASE-HARNESS-L10-041-r04-source-span`, `CASE-HARNESS-L10-041-r04-atom-gap`の単独fixtureで照合する。 | 索引のみ。 | active revision identityとsource spanを別々の単独fixtureで照合し、indexをnegativeに数えない。 |\n",
+              "sha256": "78e057d9dda835de3631bd46f383d9c2ef3b10b6c334a442b03c7aca7aae9a26"
+            },
+            {
+              "line": 853,
+              "literal": "| `CASE-HARNESS-L10-041-02` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-02` | 選択template field、抽出器、branch、atom重複に関するAC-02 CASE索引。 | 索引のみ。`CASE-HARNESS-L10-041-r04-branch-missing`はAC-04の直接fixture `CASE-HARNESS-L10-041-07`への別名索引で、二重計上しない。`CASE-HARNESS-L10-041-r04-duplicate-atom`, `CASE-HARNESS-L10-041-r04-empty-field`, `CASE-HARNESS-L10-041-r04-extractor-unavailable`, `CASE-HARNESS-L10-041-r04-tbd-field`を個別参照する。active revision/scopeのmissing・stale CASEはAC-01の041-01索引で扱う。 | 各参照CASEのoracleを適用し、本行は独立fixtureに数えない。 |\n",
+              "sha256": "caf4b5c4d0fd3cf06453891898ccad361300f3a4b33e8876885c627acd8b61d4"
+            },
+            {
+              "line": 854,
+              "literal": "| `CASE-HARNESS-L10-041-r09-004` | `FR-HARNESS-L3-041`|`AC-HARNESS-L3-041-04`| 同一active template/source revision/scopeを固定し、機械抽出結果を与えない。 | 機械抽出結果がなく、人手要約だけが存在する。 | 完全抽出claimを拒否し、要約をatom/gapの代わりにしない。抽出契約の不足はHARNESS-L2-041の既存契約へ戻し、個別owner identityが不明ならunknownを維持する。 |\n",
+              "sha256": "480af207dd6178e7c1f9d4bfd0c1faa43a9937f3c1a7d5776cd8ba8a81ead917"
+            },
+            {
+              "line": 855,
+              "literal": "| `CASE-HARNESS-L10-041-03` | `FR-HARNESS-L3-041`|`AC-HARNESS-L3-041-03`| 同scopeのdigest/原子対応index。実在fixture: `CASE-HARNESS-L10-041-r04-one-obligation-split`, `CASE-HARNESS-L10-041-r04-two-obligations-merge`, `CASE-HARNESS-L10-041-r04-digest-mismatch`, `CASE-HARNESS-L10-041-r04-digest-atom-gap`, `CASE-HARNESS-L10-041-r08-digest-match-other-scope`, `CASE-HARNESS-L10-041-r09-001`, `CASE-HARNESS-L10-041-r04-source-span`, `CASE-HARNESS-L10-041-r04-atom-gap`。 | 索引のみ。 | 全IDを直下の実在fixtureで照合し、indexを別fixtureに数えない。 |\n",
+              "sha256": "217ea8cd98604675b3bbab09e8505b441dac61e55b6df46db9521487ece4816d"
+            },
+            {
+              "line": 903,
+              "literal": "| `CASE-HARNESS-L10-040-04` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-04` | L2-040列挙fieldから必要ledger契約項目集合を導き、snapshot/coverageを照合する索引。 | 索引のみ。`CASE-HARNESS-L10-040-05`, `CASE-HARNESS-L10-040-06`, `CASE-HARNESS-L10-040-07`, `CASE-HARNESS-L10-040-r09-002`, `CASE-HARNESS-L10-040-r09-003`, `CASE-HARNESS-L10-040-r09-004`, `CASE-HARNESS-L10-040-r09-005`, `CASE-HARNESS-L10-040-r09-006`, `CASE-HARNESS-L10-040-r09-007`, `CASE-HARNESS-L10-040-r09-008`, `CASE-HARNESS-L10-040-r09-010`, `CASE-HARNESS-L10-040-r09-011`, `CASE-HARNESS-L10-040-r09-012`, `CASE-HARNESS-L10-040-r09-013`, `CASE-HARNESS-L10-040-r09-014`, `CASE-HARNESS-L10-040-r09-015`, `CASE-HARNESS-L10-040-r09-016`, `CASE-HARNESS-L10-040-root-04-field-01`, `CASE-HARNESS-L10-040-root-04-field-03`, `CASE-HARNESS-L10-040-root-04-field-04`, `CASE-HARNESS-L10-040-root-04-field-08`, `CASE-HARNESS-L10-040-root-04-snapshot-stale`, `CASE-HARNESS-L10-040-root-04-stale-01`, `CASE-HARNESS-L10-040-root-04-stale-04`, `CASE-HARNESS-L10-040-root-04-stale-05`を個別参照する。L0 anchor・row edgeのAC-01/02 CASEは各自の索引に分ける。 | 各参照CASEのoracleを照合し、索引行を独立negativeへ数えない。 |\n",
+              "sha256": "d9e99c0dd14bb0a153fcbbcba1fdc2e48e5497b42a081ca500b5662d10203a3d"
+            },
+            {
+              "line": 904,
+              "literal": "| `CASE-HARNESS-L10-041-04` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-04`| 機械抽出結果とbranch対応の単独fixture index: `CASE-HARNESS-L10-041-r09-002`（未見正常）、`CASE-HARNESS-L10-041-r09-003`（未対応branch）、`CASE-HARNESS-L10-041-r09-004`（人手要約のみ）を個別に参照する。branch欠落/extractor不能は`CASE-HARNESS-L10-041-07`と`CASE-HARNESS-L10-041-10`を参照する。 | 索引のみ。 | 各参照先を個別照合し、機械抽出なし/summary-onlyは固定HARNESS-L2-041抽出契約、active template applicabilityはHARNESS-L2-009へ戻す。 |\n",
+              "sha256": "9fe83c2a4364c81e4f3049e50f5cf1bad1cf7acb1c6e7c6e5c4572e0cf26a118"
+            },
+            {
+              "line": 951,
+              "literal": "| `CASE-HARNESS-L10-040-05` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-04` | 有効なlayer/template contract revisionから項目集合を抽出。 | 暗黙に固定件数を課す。 | 項目集合はsourceから導出し、固定未根拠countを拒否。 |\n",
+              "sha256": "df44d6e09e8c5e43ddc34cc4e70416669ae6139079f1659963e3be968c5fd665"
+            },
+            {
+              "line": 952,
+              "literal": "| `CASE-HARNESS-L10-040-06` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-04` | 隠れた有効template revisionでcoverageを再照合する。 | 新revisionを伏せたまま旧coverageをcurrentとする。 | stale/uncoveredを示し、固定L2:954のHARNESS L1/L2契約ownerへ戻す。 |\n",
+              "sha256": "f3f473ed4604f0b112fc0cbdaa5d0facad7aeafc2246f50a641b55c35d76dc0e"
+            },
+            {
+              "line": 953,
+              "literal": "| `CASE-HARNESS-L10-041-05` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-04`| 同一active template/source revision/scopeで機械抽出結果とsource spanを入力し、全適用branchのatom/gapを示す。 | 変異なし。branch読み飛ばしも人手summary代用もない。 | 各義務をatomまたはtyped gapへ対応づけた正常例として受け入れる。失敗がない正常例に戻し先を付けない。 |\n",
+              "sha256": "58201d04e65089cce432d6bc503f3e1f3f68226202c29bd61f65995938951ee8"
+            },
+            {
+              "line": 954,
+              "literal": "| `CASE-HARNESS-L10-041-06` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-04`| 選択branch抽出と抽出不能branchの理由付きgap index。実在CASE: `CASE-HARNESS-L10-041-07`, `CASE-HARNESS-L10-041-10`。 | 索引のみ。 | 選択branch欠落/抽出不能を固定HARNESS-L2-041抽出契約で照合し、active template revision/applicability欠落はHARNESS-L2-009の既存template ownerへ区別して戻す。 |\n",
+              "sha256": "33a911a3e9a242289db93deb46aaa355d31ce884bfec394dc5902bd5277efc55"
+            },
+            {
+              "line": 990,
+              "literal": "| `CASE-HARNESS-L10-040-07` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-04` | hidden layer/template revisionの選択範囲を更新してcatalog coverageを判定する。 | old revision coverageを新revisionへ流用。 | stale/uncoveredを表示し、選択template適用性はHARNESS-L2-009へ戻す。layer identityを特定できない場合はunknownを維持する。 |\n",
+              "sha256": "1ccd888843713ea6f3c91577b30849d79589babba67b5f17a7176307e2ddd918"
+            },
+            {
+              "line": 991,
+              "literal": "| `CASE-HARNESS-L10-041-07` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-04` | active-templateの選択revisionにおける他branch/atomと抽出契約を保持する。 | 選択branchを一つだけ抽出結果から欠落させる。 | 読み飛ばしをgap findingとして返し、固定HARNESS-L2-041抽出契約へ戻す。 |\n",
+              "sha256": "84b573059633799738b35eee9c6418f8706215ebd3c5bbfb677bd2b7b500c852"
+            },
+            {
+              "line": 1023,
+              "literal": "| `CASE-HARNESS-L10-041-08` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-04` | 原子的抽出結果と040相当の互換ledger契約版がそろい、OS保存結果は別契約で保持する。 | ledger契約版だけを非互換に変える。 | ledger契約不整合を040相当の契約ownerへ返し、OS保存成功で相殺しない。 |\n",
+              "sha256": "6434fb937f9a0ce6eff02f3bec15b7d8913cb1e8523bc223c409bfd8d3671966"
+            },
+            {
+              "line": 1024,
+              "literal": "| `CASE-HARNESS-L10-041-09` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-04` | 同一active extraction outputとscope/revisionを保ち、OS保存・実行receiptを別stateで扱う。 | OS receiptだけを欠落させる。 | 保存/実行は未確認のまま保持し、HARNESS抽出成功で代替しない。固定親で戻し先identityが特定できない場合はowner unknownを保つ。 |\n",
+              "sha256": "08671fc525ef106538bad4c764a9245cc7e4b245ca32f6957dd664288dc84a78"
+            },
+            {
+              "line": 1025,
+              "literal": "| `CASE-HARNESS-L10-041-10` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-04` | 抽出不能なsource spanを理由付きgapとして保持。 | 抽出不能branchを自由補完する。 | gapを維持し不成立。 |\n",
+              "sha256": "627ed6c92c98cb1432f9d6717d1af579a19095a29b4a9fadb798726385af9bd3"
+            },
+            {
+              "line": 1159,
+              "literal": "| `CASE-HARNESS-L10-040-root-04-field-01` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-04` | task=task-040-a; scope=stage3; revision=rev-040-a; source_span=L2-040:fixed-source-span; digest=sha256:fixture-040-a; status=current; owner=HARNESS-L1/L2-contract-owner; required_edges=required-edge-map-current; snapshot=current-snapshot; subject=layer-claim。 | subjectだけをmissingにする。他の全fieldと正常条件は保持する。 | subject欠落だけを検出し該当claimを未完/unknownへ戻す。戻し先は固定L2:954のHARNESS L1/L2契約owner。 |\n",
+              "sha256": "352597831b29deb6b13bc847d87f4a1789d6baa362d80ac8b4df951095f4681f"
+            },
+            {
+              "line": 1160,
+              "literal": "| `CASE-HARNESS-L10-040-root-04-field-02` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-02` | task=task-040-a; scope=stage3; revision=rev-040-a; source_span=L2-040:fixed-source-span; digest=sha256:fixture-040-a; status=current; owner=HARNESS-L1/L2-contract-owner; required_edges=required-edge-map-current; snapshot=current-snapshot; revision=rev-040-a。 | revisionだけをmissingにする。他の全fieldと正常条件は保持する。 | revision欠落だけを検出し該当claimを未完/unknownへ戻す。戻し先は固定L2:954のHARNESS L1/L2契約owner。 |\n",
+              "sha256": "3352eeb714e0fb7ce6748e624129495f5c18aab4bc06fef71281ef1de33df860"
+            },
+            {
+              "line": 1161,
+              "literal": "| `CASE-HARNESS-L10-040-root-04-field-03` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-04` | task=task-040-a; scope=stage3; revision=rev-040-a; source_span=L2-040:fixed-source-span; digest=sha256:fixture-040-a; status=current; owner=HARNESS-L1/L2-contract-owner; required_edges=required-edge-map-current; snapshot=current-snapshot; span=L2-040:fixed-source-span。 | spanだけをmissingにする。他の全fieldと正常条件は保持する。 | span欠落だけを検出し該当claimを未完/unknownへ戻す。戻し先は固定L2:954のHARNESS L1/L2契約owner。 |\n",
+              "sha256": "4c49b9c395d0e0fd58814d1704b452b878a2a8419cd928cd0e6f2630f5a61b65"
+            },
+            {
+              "line": 1162,
+              "literal": "| `CASE-HARNESS-L10-040-root-04-field-04` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-04` | task=task-040-a; scope=stage3; revision=rev-040-a; source_span=L2-040:fixed-source-span; digest=sha256:fixture-040-a; status=current; owner=HARNESS-L1/L2-contract-owner; required_edges=required-edge-map-current; snapshot=current-snapshot; digest=sha256:fixture-040-a。 | digestだけをmissingにする。他の全fieldと正常条件は保持する。 | digest欠落だけを検出し該当claimを未完/unknownへ戻す。戻し先は固定L2:954のHARNESS L1/L2契約owner。 |\n",
+              "sha256": "635de9416e86803db69743be8dddb02a31a3f9f47559bb006b727f2c145bc021"
+            },
+            {
+              "line": 1163,
+              "literal": "| `CASE-HARNESS-L10-040-root-04-field-05` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-02` | task=task-040-a; scope=stage3; revision=rev-040-a; source_span=L2-040:fixed-source-span; digest=sha256:fixture-040-a; status=current; owner=HARNESS-L1/L2-contract-owner; required_edges=required-edge-map-current; snapshot=current-snapshot; status=current。 | statusだけをmissingにする。他の全fieldと正常条件は保持する。 | status欠落だけを検出し該当claimを未完/unknownへ戻す。戻し先は固定L2:954のHARNESS L1/L2契約owner。 |\n",
+              "sha256": "be3f83d087a1539a4ab1e8efd104fc36d8eaf900585c104f74d80cf0f4e1bac7"
+            },
+            {
+              "line": 1164,
+              "literal": "| `CASE-HARNESS-L10-040-root-04-field-06` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-02` | task=task-040-a; scope=stage3; revision=rev-040-a; source_span=L2-040:fixed-source-span; digest=sha256:fixture-040-a; status=current; owner=HARNESS-L1/L2-contract-owner; required_edges=required-edge-map-current; snapshot=current-snapshot; owner=HARNESS-L1/L2-contract-owner。 | ownerだけをmissingにする。他の全fieldと正常条件は保持する。 | owner欠落だけを検出し該当claimを未完/unknownへ戻す。戻し先は固定L2:954のHARNESS L1/L2契約owner。 |\n",
+              "sha256": "79c4fd7da0f5b57775585ed4ada40208ef36efe3d347680bcd19c80cf19276b2"
+            },
+            {
+              "line": 1165,
+              "literal": "| `CASE-HARNESS-L10-040-root-04-field-07` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-02` | task=task-040-a; scope=stage3; revision=rev-040-a; source_span=L2-040:fixed-source-span; digest=sha256:fixture-040-a; status=current; owner=HARNESS-L1/L2-contract-owner; required_edges=required-edge-map-current; snapshot=current-snapshot; edge=required-edge-map-current。 | edgeだけをmissingにする。他の全fieldと正常条件は保持する。 | edge欠落だけを検出し該当claimを未完/unknownへ戻す。戻し先は固定L2:954のHARNESS L1/L2契約owner。 |\n",
+              "sha256": "0a3aea5486e59dab658f5f2de18fb2b31cd23dbd66e1a1e2a3c5b5a56a0c9fe0"
+            },
+            {
+              "line": 1166,
+              "literal": "| `CASE-HARNESS-L10-040-root-04-field-08` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-04` | task=task-040-a; scope=stage3; revision=rev-040-a; source_span=L2-040:fixed-source-span; digest=sha256:fixture-040-a; status=current; owner=HARNESS-L1/L2-contract-owner; required_edges=required-edge-map-current; snapshot=current-snapshot; snapshot=current-snapshot。 | snapshotだけをmissingにする。他の全fieldと正常条件は保持する。 | snapshot欠落だけを検出し該当claimを未完/unknownへ戻す。戻し先は固定L2:954のHARNESS L1/L2契約owner。 |\n",
+              "sha256": "fe11a9e43946e396aa496bb04977d29cbf436e8b7b5e4e96a894e3c898abebd1"
+            },
+            {
+              "line": 1210,
+              "literal": "| `CASE-HARNESS-L10-040-root-04-l0-layer` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-01` | L0 anchorは独立recordで、12層ledgerと6 canonical pairは完全かつcurrent。 | L0 anchorを13番目のlayerとして分類する。 | L0をlayer countから除き、12層coverageを維持する。誤分類claimは拒否する。 |\n",
+              "sha256": "06a321ccea1e282ebe4970387fb109532e9595d7d711eb4ba6d42a3d8d6ac9d1"
+            },
+            {
+              "line": 1211,
+              "literal": "| `CASE-HARNESS-L10-040-root-04-l0-pair` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-01` | L0 anchorは独立recordで、12層ledgerと6 canonical pairは完全かつcurrent。 | L0 anchorを第7 canonical pairとして分類する。 | L0をpair countから除き、6 canonical pairを維持する。誤分類claimは拒否する。 |\n",
+              "sha256": "49239882b51cae2cbe6819a84410f04266650c3652689dd949a60f276e85722a"
+            },
+            {
+              "line": 1212,
+              "literal": "| `CASE-HARNESS-L10-040-root-04-anchor-string` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-01` | L0 anchor recordのidentityとrevisionは正しく、12層ledger/6 pairもcurrent。 | 実recordを意味のない文字列参照へ置換する。 | anchor存在の証拠として受理せず、L0 anchorの状態を未完にする。 |\n",
+              "sha256": "12ab954216c1a6183c02395f8e9ac5943bfa817e12bb0f7441e8a6a3c3f9e427"
+            },
+            {
+              "line": 1213,
+              "literal": "| `CASE-HARNESS-L10-040-root-04-snapshot-stale` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-04` | L0独立recordと全required ledger field/edge、current snapshotを保持する正常fixture。 | snapshotだけstaleへ変える。 | stale snapshotをcurrent coverageへ使わず、該当layer coverageを未評価にする。戻し先: 固定L2:954のHARNESS L1/L2契約owner。identityを特定できなければunknownを維持する。 |\n",
+              "sha256": "67195eb672f93b70483fa10a6adccd451b757269cc3082dc330f28cf19029b0f"
+            },
+            {
+              "line": 1220,
+              "literal": "| `CASE-HARNESS-L10-040-root-04-source-missing` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-02` | sample rowのsource/revision/owner/statusと上下左右edgeを逆引き可能にする。 | sourceだけmissing、他field/edgeは正常。 | 片edgeまたはsource欠落を未完とし固定L2:954のHARNESS L1/L2契約ownerへ戻す。 |\n",
+              "sha256": "f88cdf323816a6c68dae56647a3b09b5d8d20f76c07e6383a6dd063a0782a753"
+            },
+            {
+              "line": 1221,
+              "literal": "| `CASE-HARNESS-L10-040-root-04-up-edge-missing` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-02` | sample rowのsource/revision/owner/statusと上下左右edgeを逆引き可能にする。 | 上edgeだけmissing、他field/edgeは正常。 | 片edgeまたはsource欠落を未完とし固定L2:954のHARNESS L1/L2契約ownerへ戻す。 |\n",
+              "sha256": "c27e33ba14fe069f6f016a36ecec370825dd366734484a93c14cb29c43879739"
+            },
+            {
+              "line": 1222,
+              "literal": "| `CASE-HARNESS-L10-040-root-04-down-edge-missing` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-02` | sample rowのsource/revision/owner/statusと上下左右edgeを逆引き可能にする。 | 下edgeだけmissing、他field/edgeは正常。 | 片edgeまたはsource欠落を未完とし固定L2:954のHARNESS L1/L2契約ownerへ戻す。 |\n",
+              "sha256": "f5f95abbcbb0c2e6c4cc4b2c757dc3bf6fc758cd9f2f3780f4411e8be36ba4b7"
+            },
+            {
+              "line": 1223,
+              "literal": "| `CASE-HARNESS-L10-040-root-04-left-edge-missing` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-02` | sample rowのsource/revision/owner/statusと上下左右edgeを逆引き可能にする。 | 左edgeだけmissing、他field/edgeは正常。 | 片edgeまたはsource欠落を未完とし固定L2:954のHARNESS L1/L2契約ownerへ戻す。 |\n",
+              "sha256": "2c1d1fbe2b8c4cae79f02f84c675af8507983d1b2033492391e9cc952c332d38"
+            },
+            {
+              "line": 1224,
+              "literal": "| `CASE-HARNESS-L10-040-root-04-right-edge-missing` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-02` | sample rowのsource/revision/owner/statusと上下左右edgeを逆引き可能にする。 | 右edgeだけmissing、他field/edgeは正常。 | 片edgeまたはsource欠落を未完とし固定L2:954のHARNESS L1/L2契約ownerへ戻す。 |\n",
+              "sha256": "024da748b5696ea31c5c1164455170f52ca41fc152ed0253fd3742e6a17372aa"
+            },
+            {
+              "line": 1225,
+              "literal": "| `CASE-HARNESS-L10-040-root-04-stale-01` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-04` | current sample row全field/edgeを同revisionで結ぶ。 | subjectだけstale、他field/edgeはcurrent。 | staleの該当field/edgeのみ未完として固定L2:954のHARNESS L1/L2契約ownerへ戻す。 |\n",
+              "sha256": "4393342163f6e6e6d1e257cef090af7b4ab9e302d7ad5d1ccf18b51722a583b9"
+            },
+            {
+              "line": 1226,
+              "literal": "| `CASE-HARNESS-L10-040-root-04-stale-02` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-02` | current sample row全field/edgeを同revisionで結ぶ。 | sourceだけstale、他field/edgeはcurrent。 | staleの該当field/edgeのみ未完として固定L2:954のHARNESS L1/L2契約ownerへ戻す。 |\n",
+              "sha256": "4a0dcfaf6dbf7a983073402a37c12bc7d25b28a7dd7f19812181c9c7f7d43328"
+            },
+            {
+              "line": 1227,
+              "literal": "| `CASE-HARNESS-L10-040-root-04-stale-03` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-02` | current sample row全field/edgeを同revisionで結ぶ。 | revisionだけstale、他field/edgeはcurrent。 | staleの該当field/edgeのみ未完として固定L2:954のHARNESS L1/L2契約ownerへ戻す。 |\n",
+              "sha256": "e2bd7b8c12ad4983493ca403574b77ad964489029c5c5ac63eeae67831c4a582"
+            },
+            {
+              "line": 1228,
+              "literal": "| `CASE-HARNESS-L10-040-root-04-stale-04` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-04` | current sample row全field/edgeを同revisionで結ぶ。 | spanだけstale、他field/edgeはcurrent。 | staleの該当field/edgeのみ未完として固定L2:954のHARNESS L1/L2契約ownerへ戻す。 |\n",
+              "sha256": "62c56e51b002eb59c0c1c773e13449fa3689dcfbe0e386c655cf49578845da25"
+            },
+            {
+              "line": 1229,
+              "literal": "| `CASE-HARNESS-L10-040-root-04-stale-05` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-04` | current sample row全field/edgeを同revisionで結ぶ。 | digestだけstale、他field/edgeはcurrent。 | staleの該当field/edgeのみ未完として固定L2:954のHARNESS L1/L2契約ownerへ戻す。 |\n",
+              "sha256": "d29c36c8f71e402de51197d4a706a09b9e251c4eabf4da46d59bdb3aac3d8c68"
+            },
+            {
+              "line": 1230,
+              "literal": "| `CASE-HARNESS-L10-040-root-04-stale-06` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-02` | current sample row全field/edgeを同revisionで結ぶ。 | statusだけstale、他field/edgeはcurrent。 | staleの該当field/edgeのみ未完として固定L2:954のHARNESS L1/L2契約ownerへ戻す。 |\n",
+              "sha256": "6815bd309818cc2ce5011d6eceb0f402d1c5216e073efe245c3aae810a78eaa7"
+            },
+            {
+              "line": 1231,
+              "literal": "| `CASE-HARNESS-L10-040-root-04-stale-07` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-02` | current sample row全field/edgeを同revisionで結ぶ。 | ownerだけstale、他field/edgeはcurrent。 | staleの該当field/edgeのみ未完として固定L2:954のHARNESS L1/L2契約ownerへ戻す。 |\n",
+              "sha256": "ac929e9e7a808a58d36fd7893059f5639d1ae2ea630fe16e4dc7f28dae6cf56b"
+            },
+            {
+              "line": 1232,
+              "literal": "| `CASE-HARNESS-L10-040-root-04-stale-08` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-02` | current sample row全field/edgeを同revisionで結ぶ。 | 上edgeだけstale、他field/edgeはcurrent。 | staleの該当field/edgeのみ未完として固定L2:954のHARNESS L1/L2契約ownerへ戻す。 |\n",
+              "sha256": "fcf66aa8b997aff33517d6727fb747d62534cdc9ff5754a77334127adb795ad2"
+            },
+            {
+              "line": 1233,
+              "literal": "| `CASE-HARNESS-L10-040-root-04-stale-09` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-02` | current sample row全field/edgeを同revisionで結ぶ。 | 下edgeだけstale、他field/edgeはcurrent。 | staleの該当field/edgeのみ未完として固定L2:954のHARNESS L1/L2契約ownerへ戻す。 |\n",
+              "sha256": "e713507719b0a9b7eb78f2f0f9bfb07e2bcd572fd8427c05b1eb1de7dd1ac4dd"
+            },
+            {
+              "line": 1234,
+              "literal": "| `CASE-HARNESS-L10-040-root-04-stale-10` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-02` | current sample row全field/edgeを同revisionで結ぶ。 | 左edgeだけstale、他field/edgeはcurrent。 | staleの該当field/edgeのみ未完として固定L2:954のHARNESS L1/L2契約ownerへ戻す。 |\n",
+              "sha256": "905c21c13844c9ff8c7d1ad3e244188a97dcee837400bd0ba8efa86d85de6719"
+            },
+            {
+              "line": 1235,
+              "literal": "| `CASE-HARNESS-L10-040-root-04-stale-11` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-02` | current sample row全field/edgeを同revisionで結ぶ。 | 右edgeだけstale、他field/edgeはcurrent。 | staleの該当field/edgeのみ未完として固定L2:954のHARNESS L1/L2契約ownerへ戻す。 |\n",
+              "sha256": "52aab0773da426d250cd4f28e79472e1f660ebea1e5a039a97247870927f62e8"
+            },
+            {
+              "line": 1272,
+              "literal": "| `CASE-HARNESS-L10-040-r02-root-authority-unknown` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-03` | 同scopeの未見layer/template版のcatalogとrequired node/edgeを照合し、authority/scope/互換版は既知。 | root authorityだけunknownとする。他条件は保持。 | その範囲を対象外として除外せず未評価として保持し、authority ownerへ戻す。OS保存成功で補わない。 |\n",
+              "sha256": "dd0c2105201961b4f2f6463992a7bb27ab481d7d29f07a2651f51fe633af0a1d"
+            },
+            {
+              "line": 1273,
+              "literal": "| `CASE-HARNESS-L10-040-r02-scope-unknown` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-03` | 同scopeの未見layer/template版のcatalogとrequired node/edgeを照合し、authority/scope/互換版は既知。 | 操作scopeだけunknownとする。他条件は保持。 | その範囲を対象外として除外せず未評価として保持し、固定L2:954のHARNESS L1/L2契約ownerへ戻す。OS保存成功で補わない。 |\n",
+              "sha256": "3e4fee16f6c0d432a0853bd1d16b0d98c6ae00d19f5c714f400b5614b36408a5"
+            },
+            {
+              "line": 1274,
+              "literal": "| `CASE-HARNESS-L10-040-r02-compatibility-unknown` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-03` | 同scopeの未見layer/template版のcatalogとrequired node/edgeを照合し、authority/scope/互換版は既知。 | 互換契約版だけunknownとする。他条件は保持。 | その範囲を対象外として除外せず未評価として保持し、固定L2:954のHARNESS L1/L2契約ownerへ戻す。OS保存成功で補わない。 |\n",
+              "sha256": "971ccf7d689534e3e45d55d6a2fe2b477aebffd77a487fa19e8390b23f2ef1fa"
+            },
+            {
+              "line": 1318,
+              "literal": "| `CASE-HARNESS-L10-040-r02-authority-return` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-03` | CASE-HARNESS-L10-040-r02-root-authority-unknownのindex参照。 | 独立変異として数えない。 | root authority unknownの戻し先は同CASEで検査し、catalog範囲を除外しない。 |\n",
+              "sha256": "f5d0cfb7b431032863e8ec897bdc9195ad7e6899861c8b915ae6bb6c7f073f52"
+            },
+            {
+              "line": 1406,
+              "literal": "| `CASE-HARNESS-L10-041-r04-active-version` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-01` | 選択済みactive template版の正常入力matrix。 | 索引のみ。missing/unknown/conflict/staleは`CASE-HARNESS-L10-041-r04-active-version-missing`、`CASE-HARNESS-L10-041-r04-active-version-unknown`、`CASE-HARNESS-L10-041-r04-active-version-conflict`、`CASE-HARNESS-L10-041-r04-active-version-stale`で個別に照合する。 | 状態別oracleは各参照CASEで照合し、indexを独立negativeに数えない。 |\n",
+              "sha256": "fa9b1333127c8e964c409f107362dd4f4340b2a0190815e7526a6d1e6ff5132b"
+            },
+            {
+              "line": 1407,
+              "literal": "| `CASE-HARNESS-L10-041-r04-target-scope` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-01` | 選択済み対象scopeの正常入力matrix。 | 索引のみ。missing/unknown/conflict/staleは`CASE-HARNESS-L10-041-r04-target-scope-missing`、`CASE-HARNESS-L10-041-r04-target-scope-unknown`、`CASE-HARNESS-L10-041-r04-target-scope-conflict`、`CASE-HARNESS-L10-041-r04-target-scope-stale`で個別に照合する。 | 状態別oracleは各参照CASEで照合し、indexを独立negativeに数えない。 |\n",
+              "sha256": "b0c8e1021244f3e2dbe4c8b8e5204649d4698fa4a561fc356c5314032244e94f"
+            },
+            {
+              "line": 1408,
+              "literal": "| `CASE-HARNESS-L10-041-r04-unselected-template-extrapolation` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-01` | 選択templateだけを適用し別templateは未選択と記録する。 | 選択template結果を未選択templateへ外挿。 | 外挿を拒否し未選択templateを未観測にする。 |\n",
+              "sha256": "8d4ae19d4e39088268537abe967e41ab587da2da329026a0e1639524dcd92b22"
+            },
+            {
+              "line": 1445,
+              "literal": "| `CASE-HARNESS-L10-041-r04-source-span` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-03` | 同じactive template revision/scopeとsource obligationを選択する。 | source spanだけを欠落。 | source span欠落をtyped gapにしHARNESS-L2-041抽出契約ownerへ戻す。選択sourceまたはsource span自体が未提示ならHARNESS-L2-009/対象template ownerへ戻す。 |\n",
+              "sha256": "4cba8d586a2ecf9b2089c6163cd0948166ebc793a981bba852826d1c4b6371cd"
+            },
+            {
+              "line": 1446,
+              "literal": "| `CASE-HARNESS-L10-041-r04-atom-gap` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-03` | 同じactive template revision/scopeとsource obligationを選択する。 | 対象obligation一つのatom/gap対応だけ欠落。 | 未対応義務を未完にし、他義務で相殺しない。 |\n",
+              "sha256": "670dedc3fae5f798470571907620c08506220ea2beb56478001d178167800149"
+            },
+            {
+              "line": 1447,
+              "literal": "| `CASE-HARNESS-L10-041-r04-empty-field` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-02` | 同じactive template revision/scopeとsource obligationを選択する。 | active templateの対象fieldだけ空。 | 空を自由補完せずtyped gap。 |\n",
+              "sha256": "e8fb68db80e29a4f173311c26be1adaae9f3e612c7cf0d2243a9030cafb578d5"
+            },
+            {
+              "line": 1448,
+              "literal": "| `CASE-HARNESS-L10-041-r04-tbd-field` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-02` | 同じactive template revision/scopeとsource obligationを選択する。 | 対象fieldだけTBD。 | TBDを確定値へ変換せずtyped gap。 |\n",
+              "sha256": "dcc1cfbb24497e71c99ea381aa6220685818dc047fcb6165b3598bb3bf284cd4"
+            },
+            {
+              "line": 1449,
+              "literal": "| `CASE-HARNESS-L10-041-r04-branch-missing` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-02` | `CASE-HARNESS-L10-041-07`のindex参照。 | 独立変異として数えず、選択済みapplicability branch欠落を参照先で照合する。 | 抽出器の読み飛ばしをgap findingとして返し、HARNESS-L2-041抽出契約へ戻す。 |\n",
+              "sha256": "8337059c391b5940344082c5ac25036ccf175c927d82d02b0f60027de4c52eae"
+            },
+            {
+              "line": 1450,
+              "literal": "| `CASE-HARNESS-L10-041-r04-extractor-unavailable` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-02` | 同じactive template revision/scopeとsource obligationを選択する。 | extractor結果だけ取得不能。 | 抽出成功にせずunknown/gap。 |\n",
+              "sha256": "27ea4c0f5922061d43912c2dd97b62d367c8b50596f42924f0df127748cae25f"
+            },
+            {
+              "line": 1451,
+              "literal": "| `CASE-HARNESS-L10-041-r04-duplicate-atom` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-02` | 同じactive template revision/scopeとsource obligationを選択する。 | 一つのsource obligationへ同一atomを重複割当。 | 重複を検出しatomic mapping未完。 |\n",
+              "sha256": "21084ff98b610a976c85e39be64c26bdcc405e751f91bdde18700d89e855d141"
+            },
+            {
+              "line": 1452,
+              "literal": "| `CASE-HARNESS-L10-041-r04-one-obligation-split` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-03` | 同じactive template revision/scopeとsource obligationを選択する。 | 一つの義務だけを複数atomへ分割。 | 原子性不成立。 |\n",
+              "sha256": "ca1266d4638c50fd16e8eac349c11678366815c35b0c340d648c77c2fc73de4a"
+            },
+            {
+              "line": 1453,
+              "literal": "| `CASE-HARNESS-L10-041-r04-two-obligations-merge` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-03` | 同じactive template revision/scopeとsource obligationを選択する。 | 二つの義務だけを一atomへ束ねる。 | 原子性不成立。 |\n",
+              "sha256": "c0d281ed4145fd2b747b6e79089e94a7cf76d86eff4c29314447ff275e153895"
+            },
+            {
+              "line": 1454,
+              "literal": "| `CASE-HARNESS-L10-041-r04-digest-mismatch` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-03` | 同じactive template revision/scopeとsource obligationを選択する。 | 同一入力・同一extractor revisionのsemantic digestだけ不一致。 | semantic digestの差分をfindingとして返し、当該scopeを未評価に保持する。HARNESS-L2-041抽出契約ownerへ戻す。 |\n",
+              "sha256": "1858f57efdafc2b359c67df0054b997dfe9a875749556703d65b07a959c14f60"
+            },
+            {
+              "line": 1455,
+              "literal": "| `CASE-HARNESS-L10-041-r04-digest-atom-gap` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-03` | 同じactive template revision/scopeとsource obligationを選択する。 | digestは一致するが一つのatom/gap対応だけ欠落。 | digest一致で欠落を相殺せず未完。 |\n",
+              "sha256": "5ebaa690bfa0a8f370713ceb8b1fcbfbfd8a091f3fa462f873e73a046a596a5f"
+            },
+            {
+              "line": 1466,
+              "literal": "| `CASE-HARNESS-L10-041-r04-active-version-missing` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-01` | 選択済みactive template版と抽出入力がcurrent。 | active template版だけをmissing状態にする。 | 当該template選択/必須input/applicabilityまたはtarget scopeをunknown/未評価にし、HARNESS-L2-009/該当対象ownerへ（抽出欠陥の宛先とはしない） |\n",
+              "sha256": "36b518070df40db980b5116c2c7923a2e75dbf4be796f18938a20337889f6e6a"
+            },
+            {
+              "line": 1467,
+              "literal": "| `CASE-HARNESS-L10-041-r04-active-version-unknown` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-01` | 選択済みactive template版と抽出入力がcurrent。 | active template版だけをunknown状態にする。 | 当該template選択/必須input/applicabilityまたはtarget scopeをunknown/未評価にし、HARNESS-L2-009/該当対象ownerへ（抽出欠陥の宛先とはしない） |\n",
+              "sha256": "8d2e8bb93044d096f2ac42458c352849a07a7dc1321466c67a2dc6fa36c6f5c7"
+            },
+            {
+              "line": 1468,
+              "literal": "| `CASE-HARNESS-L10-041-r04-active-version-stale` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-01` | 選択済みactive template版と抽出入力がcurrent。 | active template版だけをstale状態にする。 | 当該template選択/必須input/applicabilityまたはtarget scopeをunknown/未評価にし、HARNESS-L2-009/該当対象ownerへ（抽出欠陥の宛先とはしない） |\n",
+              "sha256": "4e0a7f1bb836dc33df1b586ef852516e5ba93f5f7a50de235724e4ad2b9aa83a"
+            },
+            {
+              "line": 1469,
+              "literal": "| `CASE-HARNESS-L10-041-r04-target-scope-missing` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-01` | 選択済み対象scopeと抽出入力がcurrent。 | 対象scopeだけをmissing状態にする。 | 当該template選択/必須input/applicabilityまたはtarget scopeをunknown/未評価にし、HARNESS-L2-009/該当対象ownerへ（抽出欠陥の宛先とはしない） |\n",
+              "sha256": "ade107d5ffce4fcca3d31284c1515e5f99fd573c4d1145e7e8a044380f8343a7"
+            },
+            {
+              "line": 1470,
+              "literal": "| `CASE-HARNESS-L10-041-r04-target-scope-unknown` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-01` | 選択済み対象scopeと抽出入力がcurrent。 | 対象scopeだけをunknown状態にする。 | 当該template選択/必須input/applicabilityまたはtarget scopeをunknown/未評価にし、HARNESS-L2-009/該当対象ownerへ（抽出欠陥の宛先とはしない） |\n",
+              "sha256": "f5eb709060da5f399bc4f6a193dc8c4dc008705078651189fe635bf48a829741"
+            },
+            {
+              "line": 1471,
+              "literal": "| `CASE-HARNESS-L10-041-r04-target-scope-conflict` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-01` | 選択済み対象scopeと抽出入力がcurrent。 | 対象scopeだけをconflict状態にする。 | 当該template選択/必須input/applicabilityまたはtarget scopeをunknown/未評価にし、HARNESS-L2-009/該当対象ownerへ（抽出欠陥の宛先とはしない） |\n",
+              "sha256": "5035cddf8981ca1627b42d4034d84bc7cf54c8b0bc88a3bb6aba26c6de8d8e6e"
+            },
+            {
+              "line": 1489,
+              "literal": "| `CASE-HARNESS-L10-041-r04-active-version-conflict` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-01` | 選択済みactive template版と抽出入力がcurrent。 | active template版だけをconflict状態にする。 | 当該template選択/必須input/applicabilityまたはtarget scopeをunknown/未評価にし、HARNESS-L2-009/該当対象ownerへ（抽出欠陥の宛先とはしない） |\n",
+              "sha256": "307c5f75158d5a4c8d01d5d3abb150fd32651abd526d0c9ffaaddb52534b1d0f"
+            },
+            {
+              "line": 1490,
+              "literal": "| `CASE-HARNESS-L10-041-r04-target-scope-stale` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-01` | 選択済み対象scopeと抽出入力がcurrent。 | 対象scopeだけをstale状態にする。 | 当該template選択/必須input/applicabilityまたはtarget scopeをunknown/未評価にし、HARNESS-L2-009/該当対象ownerへ（抽出欠陥の宛先とはしない） |\n",
+              "sha256": "f89458f714e652ef8cc188e03fc9dd6e44bcb9b07a46332b4d5ef1af77f3ec7e"
+            },
+            {
+              "line": 1647,
+              "literal": "| `CASE-HARNESS-L10-041-r05-root-revision-hidden` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-01` | 未見の有効active template revisionとbranch/atom対応をsourceへ結び、gapを明記する。 | 抽出結果のsource revisionだけを隠し、他identityとbranch対応は保持する。 | 抽出結果を現行版へ照合できずunknown/gapとして保持し、HARNESS-L2-009 template applicabilityへ戻す。 |\n",
+              "sha256": "8d0095cc0c2878e27591a2fd92263f5b6295cced7c9ad0d1571b98671ad6bc1c"
+            },
+            {
+              "line": 1714,
+              "literal": "| `CASE-HARNESS-L10-040-r07-layer-ledger-missing` | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-01` | 対象L1 revision、canonical 12層、6 pair、独立L0 anchorと、12層すべてのlayer ledger entryを固定する。 | 1層分のledger entryだけを欠落させ、残る11層、pair map、L0 anchorは保持する。 | 12層coverage未完を返し欠落layerを特定する。HARNESS L1/L2契約ownerへ戻し、L0 anchorや隣接layerで欠落を相殺しない。 |\n",
+              "sha256": "334f32cebd7a3c7ec67985d2514baad782b3bde6a46f27ecb09eaec18dd33144"
+            },
+            {
+              "line": 1791,
+              "literal": "| `CASE-HARNESS-L10-041-r08-digest-match-other-scope` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-03` | 同一active template bytes/revision、scope A、applicability、extractor identity/versionで独立再抽出しsemantic digest一致を観測する。別scope Bは未評価である。 | scope Aのdigest一致だけをscope Bの成立根拠へ外挿する。 | 外挿を拒否しscope Bを未評価に保持する。scope A内の一致は保ち、抽出器の一般的決定性や別scope成立を生成しない。HARNESSの抽出契約ownerへ誤った外挿を返す。 |\n",
+              "sha256": "eecb749b55cbf1a6b94575fa545d1917d5a2df0ebd5e92606493ad24e19ff283"
+            },
+            {
+              "line": 1804,
+              "literal": "| `CASE-HARNESS-L10-040-r09-010` | `FR-HARNESS-L3-040`|`AC-HARNESS-L3-040-04`| 固定L2列挙の全ledger contract fieldをcurrent revisionで備える。 | ledger-typeだけを旧revisionにする。 | ledger-type staleをfindingとして示し当該layer contractを未完にする。 戻し先: 固定L2:954のHARNESS L1/L2契約owner。identityが不明ならunknownを維持する。 |\n",
+              "sha256": "b50b0a3d27b9e8d93ad5563fa3db74635183f4d95834d7b48f38e12e1162bd32"
+            },
+            {
+              "line": 1805,
+              "literal": "| `CASE-HARNESS-L10-040-r09-011` | `FR-HARNESS-L3-040`|`AC-HARNESS-L3-040-04`| 固定L2列挙の全ledger contract fieldをcurrent revisionで備える。 | record-granularityだけを旧revisionにする。 | record-granularity staleをfindingとして示し当該layer contractを未完にする。 戻し先: 固定L2:954のHARNESS L1/L2契約owner。identityが不明ならunknownを維持する。 |\n",
+              "sha256": "0549dbde88d9eb1659589d4f080a6d323d79ddea13d8aa6dbf8056b302386253"
+            },
+            {
+              "line": 1806,
+              "literal": "| `CASE-HARNESS-L10-040-r09-012` | `FR-HARNESS-L3-040`|`AC-HARNESS-L3-040-04`| 固定L2列挙の全ledger contract fieldをcurrent revisionで備える。 | required-node-edgeだけを旧revisionにする。 | required-node-edge staleをfindingとして示し当該layer contractを未完にする。 戻し先: 固定L2:954のHARNESS L1/L2契約owner。identityが不明ならunknownを維持する。 |\n",
+              "sha256": "3a4cb0b4efee316f4575f1316871580dcf56721e70df030b1d0c44d9642678d5"
+            },
+            {
+              "line": 1807,
+              "literal": "| `CASE-HARNESS-L10-040-r09-013` | `FR-HARNESS-L3-040`|`AC-HARNESS-L3-040-04`| 固定L2列挙の全ledger contract fieldをcurrent revisionで備える。 | authority-referenceだけを旧revisionにする。 | authority-reference staleをfindingとして示し当該layer contractを未完にする。 戻し先: 固定L2:954のauthority owner。identityが不明ならunknownを維持する。 |\n",
+              "sha256": "0d615cc1e83d54701d2198c0f72f49faa2be879f8509a9520f2aa2d9b5752e2a"
+            },
+            {
+              "line": 1808,
+              "literal": "| `CASE-HARNESS-L10-040-r09-014` | `FR-HARNESS-L3-040`|`AC-HARNESS-L3-040-04`| 固定L2列挙の全ledger contract fieldをcurrent revisionで備える。 | input-outputだけを旧revisionにする。 | input-output staleをfindingとして示し当該layer contractを未完にする。 戻し先: 固定L2:954のHARNESS L1/L2契約owner。identityが不明ならunknownを維持する。 |\n",
+              "sha256": "3b8f10fa081ec9045fa00bbf4fe720ec36fe39d8cc79be66936dfe79fe43259d"
+            },
+            {
+              "line": 1809,
+              "literal": "| `CASE-HARNESS-L10-040-r09-015` | `FR-HARNESS-L3-040`|`AC-HARNESS-L3-040-04`| 固定L2列挙の全ledger contract fieldをcurrent revisionで備える。 | entry-exit-gateだけを旧revisionにする。 | entry-exit-gate staleをfindingとして示し当該layer contractを未完にする。 戻し先: 固定L2:954のHARNESS L1/L2契約owner。identityが不明ならunknownを維持する。 |\n",
+              "sha256": "6c2d21f213960a3b24caadf085360394cebd472ec5310ee812d2507a73354139"
+            },
+            {
+              "line": 1810,
+              "literal": "| `CASE-HARNESS-L10-040-r09-016` | `FR-HARNESS-L3-040`|`AC-HARNESS-L3-040-04`| 固定L2列挙の全ledger contract fieldをcurrent revisionで備える。 | applicable-template-versionだけを旧revisionにする。 | applicable-template-version staleをfindingとして示し当該layer contractを未完にする。 戻し先: 固定L2:954のHARNESS L1/L2契約owner。identityが不明ならunknownを維持する。 |\n",
+              "sha256": "689a0095b53bf955811b28832dd6d03724ae1e6f66c2cb4cb9f8a65ebedf3cba"
+            },
+            {
+              "line": 1866,
+              "literal": "| `CASE-HARNESS-L10-040-r09-001` | `FR-HARNESS-L3-040`|`AC-HARNESS-L3-040-01`| 12層・6 canonical pairとL0 anchorの有効catalogを用意する。 | canonical pairのうち1組だけを欠落させる。 | 当該pair coverageだけを未完とし残pairで相殺しない。戻し先: 固定L2:954のHARNESS L1/L2契約owner。 |\n",
+              "sha256": "7721b2f750d4887c2babc46893d95962dbc598e31c5de83b6ce0d3fc819016c3"
+            },
+            {
+              "line": 1867,
+              "literal": "| `CASE-HARNESS-L10-040-r09-002` | `FR-HARNESS-L3-040`|`AC-HARNESS-L3-040-04`| 固定L2列挙fieldを全て備えたledger contract。 | ledger-typeだけを欠落させる。 | ledger-type不足を個別findingにし当該契約を未完にする。 戻し先: 固定L2:954のHARNESS L1/L2契約owner。identityが不明ならunknownを維持する。 |\n",
+              "sha256": "65d61798eae97fdc8a50075fb20146aa1a20e99bfe709cdd647fdad8e3ccc31c"
+            },
+            {
+              "line": 1868,
+              "literal": "| `CASE-HARNESS-L10-040-r09-003` | `FR-HARNESS-L3-040`|`AC-HARNESS-L3-040-04`| 固定L2列挙fieldを全て備えたledger contract。 | record-granularityだけを欠落させる。 | record-granularity不足を個別findingにし当該契約を未完にする。 戻し先: 固定L2:954のHARNESS L1/L2契約owner。identityが不明ならunknownを維持する。 |\n",
+              "sha256": "9b5c3c28db61237dfb906a02ac75c1c8aa7d7fb7f88f97938c4180a2827edee7"
+            },
+            {
+              "line": 1869,
+              "literal": "| `CASE-HARNESS-L10-040-r09-004` | `FR-HARNESS-L3-040`|`AC-HARNESS-L3-040-04`| 固定L2列挙fieldを全て備えたledger contract。 | required-node-edgeだけを欠落させる。 | required-node-edge不足を個別findingにし当該契約を未完にする。 戻し先: 固定L2:954のHARNESS L1/L2契約owner。identityが不明ならunknownを維持する。 |\n",
+              "sha256": "f45c0c6536185dab0addea767cf1a0f43d4534fcbcc6e8c8c76e4c2e004edc10"
+            },
+            {
+              "line": 1870,
+              "literal": "| `CASE-HARNESS-L10-040-r09-005` | `FR-HARNESS-L3-040`|`AC-HARNESS-L3-040-04`| 固定L2列挙fieldを全て備えたledger contract。 | authority-referenceだけを欠落させる。 | authority-reference不足を個別findingにし当該契約を未完にする。戻し先: 固定L2:954のauthority owner。identityが不明ならunknownを維持する。 |\n",
+              "sha256": "1c4a777e64fdb0bfb6a33ee4f08cf40f903f0bc7f51eddedba968eb21c90278c"
+            },
+            {
+              "line": 1871,
+              "literal": "| `CASE-HARNESS-L10-040-r09-006` | `FR-HARNESS-L3-040`|`AC-HARNESS-L3-040-04`| 固定L2列挙fieldを全て備えたledger contract。 | input-outputだけを欠落させる。 | input-output不足を個別findingにし当該契約を未完にする。 戻し先: 固定L2:954のHARNESS L1/L2契約owner。identityが不明ならunknownを維持する。 |\n",
+              "sha256": "d4a5b64966ab99ae45e0945ed357831c2659d7d84dae23688b9010842fdadaec"
+            },
+            {
+              "line": 1872,
+              "literal": "| `CASE-HARNESS-L10-040-r09-007` | `FR-HARNESS-L3-040`|`AC-HARNESS-L3-040-04`| 固定L2列挙fieldを全て備えたledger contract。 | entry-exit-gateだけを欠落させる。 | entry-exit-gate不足を個別findingにし当該契約を未完にする。 戻し先: 固定L2:954のHARNESS L1/L2契約owner。identityが不明ならunknownを維持する。 |\n",
+              "sha256": "8cfe591f3864d35f6a474126b755e86c659fc889d436ed56e3c03ff5b3bcfcae"
+            },
+            {
+              "line": 1873,
+              "literal": "| `CASE-HARNESS-L10-040-r09-008` | `FR-HARNESS-L3-040`|`AC-HARNESS-L3-040-04`| 固定L2列挙fieldを全て備えたledger contract。 | applicable-template-versionだけを欠落させる。 | applicable-template-version不足を個別findingにし当該契約を未完にする。 戻し先: 固定L2:954のHARNESS L1/L2契約owner。identityが不明ならunknownを維持する。 |\n",
+              "sha256": "8c1ea4ca145b9405ec12c90451c9d0fef967c798012cd1078b97b75494faff70"
+            },
+            {
+              "line": 1874,
+              "literal": "| `CASE-HARNESS-L10-040-r09-009` | `FR-HARNESS-L3-040` | `AC-HARNESS-L3-040-03` | 契約oracleとOS実行を別stateとして記録する。 | OS persisted execution receiptだけを欠落させる。 | OS executionを未確認とし、契約oracleで代替しない。 戻し先: 既存OS保存/実行 owner。 |\n",
+              "sha256": "33ead6b0d0f8e443aaeafa7ed56915b4175aacede351df8a34d7faf806de89df"
+            },
+            {
+              "line": 1875,
+              "literal": "| `CASE-HARNESS-L10-041-r09-001` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-03` | 同一active template/source revision/scopeを固定し、選択branchと他要素を保持する。 | chapter/table atomsを保持し候補ledger rowだけを欠落させる。 | 候補行欠落をfindingとして返す。 戻し先: HARNESS-L2-041抽出契約owner。 |\n",
+              "sha256": "d06ba5713c8720ae049cacdaeaed1eaa3f7febcfeb748b84a2191186ef64c088"
+            },
+            {
+              "line": 1876,
+              "literal": "| `CASE-HARNESS-L10-041-r09-002` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-04` | extractorが読めるが作成側には伏せた新template revisionを与え、固定scope/branchの全適用要素をsource span付きで抽出する。 | 変異なし。新revisionの要素を個別にatomまたはgapへ対応づける。 | 固定契約に適合する未見入力を正常として受け入れ、拒否しない。 |\n",
+              "sha256": "0f97a1c6731669798802db6f078e7d75714f2e935de4b8789ce3e5a76977fee4"
+            },
+            {
+              "line": 1877,
+              "literal": "| `CASE-HARNESS-L10-041-r09-003` | `FR-HARNESS-L3-041`|`AC-HARNESS-L3-041-04`| 新applicability branchとそのtemplate source spanを提示し、他のbranchは保持する。 | 新branchの未対応要素だけを与える。 | 新branchをsource span付きgapとして保持する。抽出契約が不足する場合はHARNESS-L2-041へ戻し、template適用版の不足はHARNESS-L2-009/template ownerへ戻す。 |\n",
+              "sha256": "4164869f4123847ec81f71dbefc18e53f4cf5f152d7c189e686963080767c8e4"
+            },
+            {
+              "line": 1963,
+              "literal": "| `CASE-HARNESS-L10-040-r10-os-registration-inference` | `FR-HARNESS-L3-040`|`AC-HARNESS-L3-040-03`| catalogと対象revision付きauthority record、OS execution receiptはcurrent。OS registration receiptだけを欠く。 | catalogの存在だけからOS登録済みと推定する。 | 登録/実行済みと表示せず、OSのreceipt不足を未確認として保持する。戻し先: OSの既存保存/実行owner。 |\n",
+              "sha256": "c2d05f0a8ceb4b4ab012091291bdc8837c36500583ee83e8fad5f96538ba0753"
+            },
+            {
+              "line": 1964,
+              "literal": "| `CASE-HARNESS-L10-040-r10-completion-inference` | `FR-HARNESS-L3-040`|`AC-HARNESS-L3-040-03`| catalog、authority receipt、OS registration/execution receiptはcurrent。完了証拠だけを欠く。 | catalogの存在だけからcompletionを生成する。 | completionを生成せず未完を保つ。戻し先: 固定L2:954が示すauthority owner。authority identityが特定できなければunknownを維持する。 |\n",
+              "sha256": "cafc8df07832e970b11c4b05a9619c78f307212172e60fd453a290b18fbe2c02"
+            },
+            {
+              "line": 1965,
+              "literal": "| `CASE-HARNESS-L10-040-r10-layer-contract-unknown` | `FR-HARNESS-L3-040`|`AC-HARNESS-L3-040-03`| catalog rowと対象revisionは提示されるが、そのlayer contractだけが未提示。他の提示済みfieldはcurrentである。 | catalog rowの存在だけで未提示layer contractを存在済み・適用済みとしcoverage完了をclaimする。 | 未提示契約を適用済みとせず当該coverageをunknown/未完に保つ。戻し先: 固定L2:954のHARNESS L1/L2契約owner。 |\n",
+              "sha256": "7f317e2d468253fff68cb5d1606b7a0f4dc7bdd984fc559e358ae33e6dc408ee"
+            },
+            {
+              "line": 1998,
+              "literal": "| `CASE-HARNESS-L10-040-r10-mixed-revision-coverage` | `FR-HARNESS-L3-040` | `AC-HARNESS-L3-040-02` | 全rowが同じ対象revision・source populationに属し、fieldとedgeがcurrentである。 | 一つのrowだけ別revisionから同じcoverageへ混入する。 | 混在coverageを拒否し、そのrowを対象revisionへ再照合する。別revisionのrowは同revisionのcoverage完了を補わない。field/ledger contract revisionの混在は固定L2:954のHARNESS L1/L2契約ownerへ戻す。authority identity自体が不足しownerを特定できなければunknownを維持する。 |\n",
+              "sha256": "8c3545b295cbe0681e0733790e3a38237e7bd9b6d0821b2c396adfe5171b1771"
+            },
+            {
+              "line": 2001,
+              "literal": "| `CASE-HARNESS-L10-040-r10-l2-agreement-inference` | `FR-HARNESS-L3-040`|`AC-HARNESS-L3-040-03`| catalogの対象revision/scopeと他のauthority・OS evidenceを固定し、L2合意の対象revision receiptだけを欠く。 | catalogの存在だけからL2合意済みと推定する。 | L2合意を生成せず、該当receiptをunknown/未完で保持する。戻し先: 固定L2:954が示すauthority owner。authority identityが不明ならunknownを維持する。 |\n",
+              "sha256": "4f7402cc8fa33cf772098fc31ab671c76b59e2579ad650aca88115c8c47da31e"
+            },
+            {
+              "line": 2002,
+              "literal": "| `CASE-HARNESS-L10-040-r10-l3-approval-inference` | `FR-HARNESS-L3-040`|`AC-HARNESS-L3-040-03`| catalogの対象revision/scopeと他のauthority・OS evidenceを固定し、L3要件承認の対象revision receiptだけを欠く。 | catalogの存在だけからL3要件承認済みと推定する。 | L3要件承認を生成せず、該当receiptをunknown/未完で保持する。戻し先: 固定L2:954のauthority owner。authority identityが不明ならunknownを維持する。 |\n",
+              "sha256": "1d0ee93a1ecd08405172b351b49dfa0a732e72eb8a7bf7c9cbddee3b86da9c23"
+            }
+          ]
+        }
+      },
+      "literal_count": 38,
+      "unique_ids": 38,
+      "raw_literal_concat": {
+        "bytes": 15042,
+        "sha256": "d61fa62a717162e0e7d4993b3112de11ea09aa71e533e123d597cf63d75d2386",
+        "reported_bytes": 15042,
+        "reported_sha256": "d61fa62a717162e0e7d4993b3112de11ea09aa71e533e123d597cf63d75d2386",
+        "match": true
+      },
+      "rows": [
+        {
+          "id": "CASE-HARNESS-L10-041-01",
+          "physical_line": 852,
+          "literal": "| `CASE-HARNESS-L10-041-01` | `FR-HARNESS-L3-041`|`AC-HARNESS-L3-041-01`| 固定L11 revision e94838f513af2aec207ac1de420db62e2ad98b1aの041 atomic obligationを含むactive template/extractor/scope input。active revision identityの単独変異`CASE-HARNESS-L10-041-r05-root-revision-hidden`, `CASE-HARNESS-L10-041-r04-active-version-missing`, `CASE-HARNESS-L10-041-r04-active-version-stale`, `CASE-HARNESS-L10-041-r04-target-scope-missing`, `CASE-HARNESS-L10-041-r04-target-scope-stale`を直接参照する。source span/atom gap（AC-03）は`CASE-HARNESS-L10-041-r04-source-span`, `CASE-HARNESS-L10-041-r04-atom-gap`の単独fixtureで照合する。 | 索引のみ。 | active revision identityとsource spanを別々の単独fixtureで照合し、indexをnegativeに数えない。 |\n",
+          "literal_sha256": "78e057d9dda835de3631bd46f383d9c2ef3b10b6c334a442b03c7aca7aae9a26",
+          "actual_source_line_lf_sha256": "78e057d9dda835de3631bd46f383d9c2ef3b10b6c334a442b03c7aca7aae9a26",
+          "actual_source_line_no_lf_sha256": "66d0494866e647bd153a347de6af65bb68e266d99a63d5564b7e15a20e2eb4df",
+          "candidate_actual_git_line_sha256": "66d0494866e647bd153a347de6af65bb68e266d99a63d5564b7e15a20e2eb4df",
+          "candidate_checkpoint_literal_sha256": "78e057d9dda835de3631bd46f383d9c2ef3b10b6c334a442b03c7aca7aae9a26",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-02",
+          "physical_line": 853,
+          "literal": "| `CASE-HARNESS-L10-041-02` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-02` | 選択template field、抽出器、branch、atom重複に関するAC-02 CASE索引。 | 索引のみ。`CASE-HARNESS-L10-041-r04-branch-missing`はAC-04の直接fixture `CASE-HARNESS-L10-041-07`への別名索引で、二重計上しない。`CASE-HARNESS-L10-041-r04-duplicate-atom`, `CASE-HARNESS-L10-041-r04-empty-field`, `CASE-HARNESS-L10-041-r04-extractor-unavailable`, `CASE-HARNESS-L10-041-r04-tbd-field`を個別参照する。active revision/scopeのmissing・stale CASEはAC-01の041-01索引で扱う。 | 各参照CASEのoracleを適用し、本行は独立fixtureに数えない。 |\n",
+          "literal_sha256": "caf4b5c4d0fd3cf06453891898ccad361300f3a4b33e8876885c627acd8b61d4",
+          "actual_source_line_lf_sha256": "caf4b5c4d0fd3cf06453891898ccad361300f3a4b33e8876885c627acd8b61d4",
+          "actual_source_line_no_lf_sha256": "b0a978332fec60ad5f60b0d0ac893069aebbf7539e494c95dcd0c32ffcef1a6a",
+          "candidate_actual_git_line_sha256": "b0a978332fec60ad5f60b0d0ac893069aebbf7539e494c95dcd0c32ffcef1a6a",
+          "candidate_checkpoint_literal_sha256": "caf4b5c4d0fd3cf06453891898ccad361300f3a4b33e8876885c627acd8b61d4",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r09-004",
+          "physical_line": 854,
+          "literal": "| `CASE-HARNESS-L10-041-r09-004` | `FR-HARNESS-L3-041`|`AC-HARNESS-L3-041-04`| 同一active template/source revision/scopeを固定し、機械抽出結果を与えない。 | 機械抽出結果がなく、人手要約だけが存在する。 | 完全抽出claimを拒否し、要約をatom/gapの代わりにしない。抽出契約の不足はHARNESS-L2-041の既存契約へ戻し、個別owner identityが不明ならunknownを維持する。 |\n",
+          "literal_sha256": "480af207dd6178e7c1f9d4bfd0c1faa43a9937f3c1a7d5776cd8ba8a81ead917",
+          "actual_source_line_lf_sha256": "480af207dd6178e7c1f9d4bfd0c1faa43a9937f3c1a7d5776cd8ba8a81ead917",
+          "actual_source_line_no_lf_sha256": "b3c553885068a5585c65c7481f337b1c9b64d62c194dfe6c7cd125ec8f21a867",
+          "candidate_actual_git_line_sha256": "b3c553885068a5585c65c7481f337b1c9b64d62c194dfe6c7cd125ec8f21a867",
+          "candidate_checkpoint_literal_sha256": "480af207dd6178e7c1f9d4bfd0c1faa43a9937f3c1a7d5776cd8ba8a81ead917",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-03",
+          "physical_line": 855,
+          "literal": "| `CASE-HARNESS-L10-041-03` | `FR-HARNESS-L3-041`|`AC-HARNESS-L3-041-03`| 同scopeのdigest/原子対応index。実在fixture: `CASE-HARNESS-L10-041-r04-one-obligation-split`, `CASE-HARNESS-L10-041-r04-two-obligations-merge`, `CASE-HARNESS-L10-041-r04-digest-mismatch`, `CASE-HARNESS-L10-041-r04-digest-atom-gap`, `CASE-HARNESS-L10-041-r08-digest-match-other-scope`, `CASE-HARNESS-L10-041-r09-001`, `CASE-HARNESS-L10-041-r04-source-span`, `CASE-HARNESS-L10-041-r04-atom-gap`。 | 索引のみ。 | 全IDを直下の実在fixtureで照合し、indexを別fixtureに数えない。 |\n",
+          "literal_sha256": "217ea8cd98604675b3bbab09e8505b441dac61e55b6df46db9521487ece4816d",
+          "actual_source_line_lf_sha256": "217ea8cd98604675b3bbab09e8505b441dac61e55b6df46db9521487ece4816d",
+          "actual_source_line_no_lf_sha256": "40ea14583362180312baf076d1ec642cba38a9aae1c763fcda144ab061e2de83",
+          "candidate_actual_git_line_sha256": "40ea14583362180312baf076d1ec642cba38a9aae1c763fcda144ab061e2de83",
+          "candidate_checkpoint_literal_sha256": "217ea8cd98604675b3bbab09e8505b441dac61e55b6df46db9521487ece4816d",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-04",
+          "physical_line": 904,
+          "literal": "| `CASE-HARNESS-L10-041-04` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-04`| 機械抽出結果とbranch対応の単独fixture index: `CASE-HARNESS-L10-041-r09-002`（未見正常）、`CASE-HARNESS-L10-041-r09-003`（未対応branch）、`CASE-HARNESS-L10-041-r09-004`（人手要約のみ）を個別に参照する。branch欠落/extractor不能は`CASE-HARNESS-L10-041-07`と`CASE-HARNESS-L10-041-10`を参照する。 | 索引のみ。 | 各参照先を個別照合し、機械抽出なし/summary-onlyは固定HARNESS-L2-041抽出契約、active template applicabilityはHARNESS-L2-009へ戻す。 |\n",
+          "literal_sha256": "9fe83c2a4364c81e4f3049e50f5cf1bad1cf7acb1c6e7c6e5c4572e0cf26a118",
+          "actual_source_line_lf_sha256": "9fe83c2a4364c81e4f3049e50f5cf1bad1cf7acb1c6e7c6e5c4572e0cf26a118",
+          "actual_source_line_no_lf_sha256": "13d3b3de1b1938b012c7d26f792c802bf2d8235e16a0ee16b42fc198b0a6f76e",
+          "candidate_actual_git_line_sha256": "13d3b3de1b1938b012c7d26f792c802bf2d8235e16a0ee16b42fc198b0a6f76e",
+          "candidate_checkpoint_literal_sha256": "9fe83c2a4364c81e4f3049e50f5cf1bad1cf7acb1c6e7c6e5c4572e0cf26a118",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-05",
+          "physical_line": 953,
+          "literal": "| `CASE-HARNESS-L10-041-05` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-04`| 同一active template/source revision/scopeで機械抽出結果とsource spanを入力し、全適用branchのatom/gapを示す。 | 変異なし。branch読み飛ばしも人手summary代用もない。 | 各義務をatomまたはtyped gapへ対応づけた正常例として受け入れる。失敗がない正常例に戻し先を付けない。 |\n",
+          "literal_sha256": "58201d04e65089cce432d6bc503f3e1f3f68226202c29bd61f65995938951ee8",
+          "actual_source_line_lf_sha256": "58201d04e65089cce432d6bc503f3e1f3f68226202c29bd61f65995938951ee8",
+          "actual_source_line_no_lf_sha256": "44b81e00d7b0aa106327473f4535d9acc5441d2672e3bfc820c5d31e580dae12",
+          "candidate_actual_git_line_sha256": "44b81e00d7b0aa106327473f4535d9acc5441d2672e3bfc820c5d31e580dae12",
+          "candidate_checkpoint_literal_sha256": "58201d04e65089cce432d6bc503f3e1f3f68226202c29bd61f65995938951ee8",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-06",
+          "physical_line": 954,
+          "literal": "| `CASE-HARNESS-L10-041-06` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-04`| 選択branch抽出と抽出不能branchの理由付きgap index。実在CASE: `CASE-HARNESS-L10-041-07`, `CASE-HARNESS-L10-041-10`。 | 索引のみ。 | 選択branch欠落/抽出不能を固定HARNESS-L2-041抽出契約で照合し、active template revision/applicability欠落はHARNESS-L2-009の既存template ownerへ区別して戻す。 |\n",
+          "literal_sha256": "33a911a3e9a242289db93deb46aaa355d31ce884bfec394dc5902bd5277efc55",
+          "actual_source_line_lf_sha256": "33a911a3e9a242289db93deb46aaa355d31ce884bfec394dc5902bd5277efc55",
+          "actual_source_line_no_lf_sha256": "49141b8aba83d89413b08a4542b20efa80b7426355795079fcb62dd5f6db2e5c",
+          "candidate_actual_git_line_sha256": "49141b8aba83d89413b08a4542b20efa80b7426355795079fcb62dd5f6db2e5c",
+          "candidate_checkpoint_literal_sha256": "33a911a3e9a242289db93deb46aaa355d31ce884bfec394dc5902bd5277efc55",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-07",
+          "physical_line": 991,
+          "literal": "| `CASE-HARNESS-L10-041-07` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-04` | active-templateの選択revisionにおける他branch/atomと抽出契約を保持する。 | 選択branchを一つだけ抽出結果から欠落させる。 | 読み飛ばしをgap findingとして返し、固定HARNESS-L2-041抽出契約へ戻す。 |\n",
+          "literal_sha256": "84b573059633799738b35eee9c6418f8706215ebd3c5bbfb677bd2b7b500c852",
+          "actual_source_line_lf_sha256": "84b573059633799738b35eee9c6418f8706215ebd3c5bbfb677bd2b7b500c852",
+          "actual_source_line_no_lf_sha256": "6f899f0185f5056f0f9f52782f50d31073d8d1baf1024f6c5c6bf923143946c7",
+          "candidate_actual_git_line_sha256": "6f899f0185f5056f0f9f52782f50d31073d8d1baf1024f6c5c6bf923143946c7",
+          "candidate_checkpoint_literal_sha256": "84b573059633799738b35eee9c6418f8706215ebd3c5bbfb677bd2b7b500c852",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-08",
+          "physical_line": 1023,
+          "literal": "| `CASE-HARNESS-L10-041-08` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-04` | 原子的抽出結果と040相当の互換ledger契約版がそろい、OS保存結果は別契約で保持する。 | ledger契約版だけを非互換に変える。 | ledger契約不整合を040相当の契約ownerへ返し、OS保存成功で相殺しない。 |\n",
+          "literal_sha256": "6434fb937f9a0ce6eff02f3bec15b7d8913cb1e8523bc223c409bfd8d3671966",
+          "actual_source_line_lf_sha256": "6434fb937f9a0ce6eff02f3bec15b7d8913cb1e8523bc223c409bfd8d3671966",
+          "actual_source_line_no_lf_sha256": "62fa0f465c495c8ac8b5eb644eafe6cccc243536ee1db3e0e0162d35d2351fc1",
+          "candidate_actual_git_line_sha256": "62fa0f465c495c8ac8b5eb644eafe6cccc243536ee1db3e0e0162d35d2351fc1",
+          "candidate_checkpoint_literal_sha256": "6434fb937f9a0ce6eff02f3bec15b7d8913cb1e8523bc223c409bfd8d3671966",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-09",
+          "physical_line": 1024,
+          "literal": "| `CASE-HARNESS-L10-041-09` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-04` | 同一active extraction outputとscope/revisionを保ち、OS保存・実行receiptを別stateで扱う。 | OS receiptだけを欠落させる。 | 保存/実行は未確認のまま保持し、HARNESS抽出成功で代替しない。固定親で戻し先identityが特定できない場合はowner unknownを保つ。 |\n",
+          "literal_sha256": "08671fc525ef106538bad4c764a9245cc7e4b245ca32f6957dd664288dc84a78",
+          "actual_source_line_lf_sha256": "08671fc525ef106538bad4c764a9245cc7e4b245ca32f6957dd664288dc84a78",
+          "actual_source_line_no_lf_sha256": "639865a414eaaa9414f66b675f40fdfc2864eb4a09f835f0a60a0309519b1fde",
+          "candidate_actual_git_line_sha256": "639865a414eaaa9414f66b675f40fdfc2864eb4a09f835f0a60a0309519b1fde",
+          "candidate_checkpoint_literal_sha256": "08671fc525ef106538bad4c764a9245cc7e4b245ca32f6957dd664288dc84a78",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-10",
+          "physical_line": 1025,
+          "literal": "| `CASE-HARNESS-L10-041-10` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-04` | 抽出不能なsource spanを理由付きgapとして保持。 | 抽出不能branchを自由補完する。 | gapを維持し不成立。 |\n",
+          "literal_sha256": "627ed6c92c98cb1432f9d6717d1af579a19095a29b4a9fadb798726385af9bd3",
+          "actual_source_line_lf_sha256": "627ed6c92c98cb1432f9d6717d1af579a19095a29b4a9fadb798726385af9bd3",
+          "actual_source_line_no_lf_sha256": "f2005127e8914616d7d6d325b647e6f6c2552c9392bfa40978b581d69aa935d6",
+          "candidate_actual_git_line_sha256": "f2005127e8914616d7d6d325b647e6f6c2552c9392bfa40978b581d69aa935d6",
+          "candidate_checkpoint_literal_sha256": "627ed6c92c98cb1432f9d6717d1af579a19095a29b4a9fadb798726385af9bd3",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-active-version",
+          "physical_line": 1406,
+          "literal": "| `CASE-HARNESS-L10-041-r04-active-version` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-01` | 選択済みactive template版の正常入力matrix。 | 索引のみ。missing/unknown/conflict/staleは`CASE-HARNESS-L10-041-r04-active-version-missing`、`CASE-HARNESS-L10-041-r04-active-version-unknown`、`CASE-HARNESS-L10-041-r04-active-version-conflict`、`CASE-HARNESS-L10-041-r04-active-version-stale`で個別に照合する。 | 状態別oracleは各参照CASEで照合し、indexを独立negativeに数えない。 |\n",
+          "literal_sha256": "fa9b1333127c8e964c409f107362dd4f4340b2a0190815e7526a6d1e6ff5132b",
+          "actual_source_line_lf_sha256": "fa9b1333127c8e964c409f107362dd4f4340b2a0190815e7526a6d1e6ff5132b",
+          "actual_source_line_no_lf_sha256": "3fe9118db6381b7ad39906322ba43dd9efb32679f7cc0413066f3a7861349cc2",
+          "candidate_actual_git_line_sha256": "3fe9118db6381b7ad39906322ba43dd9efb32679f7cc0413066f3a7861349cc2",
+          "candidate_checkpoint_literal_sha256": "fa9b1333127c8e964c409f107362dd4f4340b2a0190815e7526a6d1e6ff5132b",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-target-scope",
+          "physical_line": 1407,
+          "literal": "| `CASE-HARNESS-L10-041-r04-target-scope` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-01` | 選択済み対象scopeの正常入力matrix。 | 索引のみ。missing/unknown/conflict/staleは`CASE-HARNESS-L10-041-r04-target-scope-missing`、`CASE-HARNESS-L10-041-r04-target-scope-unknown`、`CASE-HARNESS-L10-041-r04-target-scope-conflict`、`CASE-HARNESS-L10-041-r04-target-scope-stale`で個別に照合する。 | 状態別oracleは各参照CASEで照合し、indexを独立negativeに数えない。 |\n",
+          "literal_sha256": "b0c8e1021244f3e2dbe4c8b8e5204649d4698fa4a561fc356c5314032244e94f",
+          "actual_source_line_lf_sha256": "b0c8e1021244f3e2dbe4c8b8e5204649d4698fa4a561fc356c5314032244e94f",
+          "actual_source_line_no_lf_sha256": "706fb46c78e4158225cd2276dccc52da294983442a212f3e11a9bd28db025ea9",
+          "candidate_actual_git_line_sha256": "706fb46c78e4158225cd2276dccc52da294983442a212f3e11a9bd28db025ea9",
+          "candidate_checkpoint_literal_sha256": "b0c8e1021244f3e2dbe4c8b8e5204649d4698fa4a561fc356c5314032244e94f",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-unselected-template-extrapolation",
+          "physical_line": 1408,
+          "literal": "| `CASE-HARNESS-L10-041-r04-unselected-template-extrapolation` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-01` | 選択templateだけを適用し別templateは未選択と記録する。 | 選択template結果を未選択templateへ外挿。 | 外挿を拒否し未選択templateを未観測にする。 |\n",
+          "literal_sha256": "8d4ae19d4e39088268537abe967e41ab587da2da329026a0e1639524dcd92b22",
+          "actual_source_line_lf_sha256": "8d4ae19d4e39088268537abe967e41ab587da2da329026a0e1639524dcd92b22",
+          "actual_source_line_no_lf_sha256": "d3d7cc8582c8dd8922186d03a3446f9445b9a11b33da77afea8b7e9f4d0e6a3f",
+          "candidate_actual_git_line_sha256": "d3d7cc8582c8dd8922186d03a3446f9445b9a11b33da77afea8b7e9f4d0e6a3f",
+          "candidate_checkpoint_literal_sha256": "8d4ae19d4e39088268537abe967e41ab587da2da329026a0e1639524dcd92b22",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-source-span",
+          "physical_line": 1445,
+          "literal": "| `CASE-HARNESS-L10-041-r04-source-span` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-03` | 同じactive template revision/scopeとsource obligationを選択する。 | source spanだけを欠落。 | source span欠落をtyped gapにしHARNESS-L2-041抽出契約ownerへ戻す。選択sourceまたはsource span自体が未提示ならHARNESS-L2-009/対象template ownerへ戻す。 |\n",
+          "literal_sha256": "4cba8d586a2ecf9b2089c6163cd0948166ebc793a981bba852826d1c4b6371cd",
+          "actual_source_line_lf_sha256": "4cba8d586a2ecf9b2089c6163cd0948166ebc793a981bba852826d1c4b6371cd",
+          "actual_source_line_no_lf_sha256": "1f9d2413fa444bf3f6396df857e97cae41542dd78b25c163aaf3ef07d8afb508",
+          "candidate_actual_git_line_sha256": "1f9d2413fa444bf3f6396df857e97cae41542dd78b25c163aaf3ef07d8afb508",
+          "candidate_checkpoint_literal_sha256": "4cba8d586a2ecf9b2089c6163cd0948166ebc793a981bba852826d1c4b6371cd",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-atom-gap",
+          "physical_line": 1446,
+          "literal": "| `CASE-HARNESS-L10-041-r04-atom-gap` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-03` | 同じactive template revision/scopeとsource obligationを選択する。 | 対象obligation一つのatom/gap対応だけ欠落。 | 未対応義務を未完にし、他義務で相殺しない。 |\n",
+          "literal_sha256": "670dedc3fae5f798470571907620c08506220ea2beb56478001d178167800149",
+          "actual_source_line_lf_sha256": "670dedc3fae5f798470571907620c08506220ea2beb56478001d178167800149",
+          "actual_source_line_no_lf_sha256": "f79a8227215b453a7bdb22d6fbdde12cab6104d9bc3934ebe03a23c01489aa37",
+          "candidate_actual_git_line_sha256": "f79a8227215b453a7bdb22d6fbdde12cab6104d9bc3934ebe03a23c01489aa37",
+          "candidate_checkpoint_literal_sha256": "670dedc3fae5f798470571907620c08506220ea2beb56478001d178167800149",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-empty-field",
+          "physical_line": 1447,
+          "literal": "| `CASE-HARNESS-L10-041-r04-empty-field` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-02` | 同じactive template revision/scopeとsource obligationを選択する。 | active templateの対象fieldだけ空。 | 空を自由補完せずtyped gap。 |\n",
+          "literal_sha256": "e8fb68db80e29a4f173311c26be1adaae9f3e612c7cf0d2243a9030cafb578d5",
+          "actual_source_line_lf_sha256": "e8fb68db80e29a4f173311c26be1adaae9f3e612c7cf0d2243a9030cafb578d5",
+          "actual_source_line_no_lf_sha256": "81336efa8fe30583ea3db17e8729a4a41aa6a4db33b790ff4b29162fa17bdd2a",
+          "candidate_actual_git_line_sha256": "81336efa8fe30583ea3db17e8729a4a41aa6a4db33b790ff4b29162fa17bdd2a",
+          "candidate_checkpoint_literal_sha256": "e8fb68db80e29a4f173311c26be1adaae9f3e612c7cf0d2243a9030cafb578d5",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-tbd-field",
+          "physical_line": 1448,
+          "literal": "| `CASE-HARNESS-L10-041-r04-tbd-field` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-02` | 同じactive template revision/scopeとsource obligationを選択する。 | 対象fieldだけTBD。 | TBDを確定値へ変換せずtyped gap。 |\n",
+          "literal_sha256": "dcc1cfbb24497e71c99ea381aa6220685818dc047fcb6165b3598bb3bf284cd4",
+          "actual_source_line_lf_sha256": "dcc1cfbb24497e71c99ea381aa6220685818dc047fcb6165b3598bb3bf284cd4",
+          "actual_source_line_no_lf_sha256": "d260697aa90adb76e6b44d169511fea7c9344a5f05b45ae3e13cbb17991f1c39",
+          "candidate_actual_git_line_sha256": "d260697aa90adb76e6b44d169511fea7c9344a5f05b45ae3e13cbb17991f1c39",
+          "candidate_checkpoint_literal_sha256": "dcc1cfbb24497e71c99ea381aa6220685818dc047fcb6165b3598bb3bf284cd4",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-branch-missing",
+          "physical_line": 1449,
+          "literal": "| `CASE-HARNESS-L10-041-r04-branch-missing` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-02` | `CASE-HARNESS-L10-041-07`のindex参照。 | 独立変異として数えず、選択済みapplicability branch欠落を参照先で照合する。 | 抽出器の読み飛ばしをgap findingとして返し、HARNESS-L2-041抽出契約へ戻す。 |\n",
+          "literal_sha256": "8337059c391b5940344082c5ac25036ccf175c927d82d02b0f60027de4c52eae",
+          "actual_source_line_lf_sha256": "8337059c391b5940344082c5ac25036ccf175c927d82d02b0f60027de4c52eae",
+          "actual_source_line_no_lf_sha256": "6af6e73df69f00374636f2aaad0cd86a489ba6d4746bc2f521404d20aafab750",
+          "candidate_actual_git_line_sha256": "6af6e73df69f00374636f2aaad0cd86a489ba6d4746bc2f521404d20aafab750",
+          "candidate_checkpoint_literal_sha256": "8337059c391b5940344082c5ac25036ccf175c927d82d02b0f60027de4c52eae",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-extractor-unavailable",
+          "physical_line": 1450,
+          "literal": "| `CASE-HARNESS-L10-041-r04-extractor-unavailable` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-02` | 同じactive template revision/scopeとsource obligationを選択する。 | extractor結果だけ取得不能。 | 抽出成功にせずunknown/gap。 |\n",
+          "literal_sha256": "27ea4c0f5922061d43912c2dd97b62d367c8b50596f42924f0df127748cae25f",
+          "actual_source_line_lf_sha256": "27ea4c0f5922061d43912c2dd97b62d367c8b50596f42924f0df127748cae25f",
+          "actual_source_line_no_lf_sha256": "c1bc7a7e07ed812589a12fb20ee12926f5a0f2897124fc2c6ac105926da4b604",
+          "candidate_actual_git_line_sha256": "c1bc7a7e07ed812589a12fb20ee12926f5a0f2897124fc2c6ac105926da4b604",
+          "candidate_checkpoint_literal_sha256": "27ea4c0f5922061d43912c2dd97b62d367c8b50596f42924f0df127748cae25f",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-duplicate-atom",
+          "physical_line": 1451,
+          "literal": "| `CASE-HARNESS-L10-041-r04-duplicate-atom` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-02` | 同じactive template revision/scopeとsource obligationを選択する。 | 一つのsource obligationへ同一atomを重複割当。 | 重複を検出しatomic mapping未完。 |\n",
+          "literal_sha256": "21084ff98b610a976c85e39be64c26bdcc405e751f91bdde18700d89e855d141",
+          "actual_source_line_lf_sha256": "21084ff98b610a976c85e39be64c26bdcc405e751f91bdde18700d89e855d141",
+          "actual_source_line_no_lf_sha256": "3154674ebae1cfa263a3d1d7542800a4fa3ef1ecb0fafe49c55efccf49b12a17",
+          "candidate_actual_git_line_sha256": "3154674ebae1cfa263a3d1d7542800a4fa3ef1ecb0fafe49c55efccf49b12a17",
+          "candidate_checkpoint_literal_sha256": "21084ff98b610a976c85e39be64c26bdcc405e751f91bdde18700d89e855d141",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-one-obligation-split",
+          "physical_line": 1452,
+          "literal": "| `CASE-HARNESS-L10-041-r04-one-obligation-split` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-03` | 同じactive template revision/scopeとsource obligationを選択する。 | 一つの義務だけを複数atomへ分割。 | 原子性不成立。 |\n",
+          "literal_sha256": "ca1266d4638c50fd16e8eac349c11678366815c35b0c340d648c77c2fc73de4a",
+          "actual_source_line_lf_sha256": "ca1266d4638c50fd16e8eac349c11678366815c35b0c340d648c77c2fc73de4a",
+          "actual_source_line_no_lf_sha256": "284c8b78d3c6c7f7c8ae6a249c921e7e84cab3a0c4d9b09d83fba050b1ab6595",
+          "candidate_actual_git_line_sha256": "284c8b78d3c6c7f7c8ae6a249c921e7e84cab3a0c4d9b09d83fba050b1ab6595",
+          "candidate_checkpoint_literal_sha256": "ca1266d4638c50fd16e8eac349c11678366815c35b0c340d648c77c2fc73de4a",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-two-obligations-merge",
+          "physical_line": 1453,
+          "literal": "| `CASE-HARNESS-L10-041-r04-two-obligations-merge` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-03` | 同じactive template revision/scopeとsource obligationを選択する。 | 二つの義務だけを一atomへ束ねる。 | 原子性不成立。 |\n",
+          "literal_sha256": "c0d281ed4145fd2b747b6e79089e94a7cf76d86eff4c29314447ff275e153895",
+          "actual_source_line_lf_sha256": "c0d281ed4145fd2b747b6e79089e94a7cf76d86eff4c29314447ff275e153895",
+          "actual_source_line_no_lf_sha256": "8fecc7220995dd3da0d672cba7320e45e971565f0547f2969e93bdf473f8de0c",
+          "candidate_actual_git_line_sha256": "8fecc7220995dd3da0d672cba7320e45e971565f0547f2969e93bdf473f8de0c",
+          "candidate_checkpoint_literal_sha256": "c0d281ed4145fd2b747b6e79089e94a7cf76d86eff4c29314447ff275e153895",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-digest-mismatch",
+          "physical_line": 1454,
+          "literal": "| `CASE-HARNESS-L10-041-r04-digest-mismatch` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-03` | 同じactive template revision/scopeとsource obligationを選択する。 | 同一入力・同一extractor revisionのsemantic digestだけ不一致。 | semantic digestの差分をfindingとして返し、当該scopeを未評価に保持する。HARNESS-L2-041抽出契約ownerへ戻す。 |\n",
+          "literal_sha256": "1858f57efdafc2b359c67df0054b997dfe9a875749556703d65b07a959c14f60",
+          "actual_source_line_lf_sha256": "1858f57efdafc2b359c67df0054b997dfe9a875749556703d65b07a959c14f60",
+          "actual_source_line_no_lf_sha256": "f5f765a69bdbfb092bf892a5136aabc2d65ad0eeb27adde482787b8f8ceff158",
+          "candidate_actual_git_line_sha256": "f5f765a69bdbfb092bf892a5136aabc2d65ad0eeb27adde482787b8f8ceff158",
+          "candidate_checkpoint_literal_sha256": "1858f57efdafc2b359c67df0054b997dfe9a875749556703d65b07a959c14f60",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-digest-atom-gap",
+          "physical_line": 1455,
+          "literal": "| `CASE-HARNESS-L10-041-r04-digest-atom-gap` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-03` | 同じactive template revision/scopeとsource obligationを選択する。 | digestは一致するが一つのatom/gap対応だけ欠落。 | digest一致で欠落を相殺せず未完。 |\n",
+          "literal_sha256": "5ebaa690bfa0a8f370713ceb8b1fcbfbfd8a091f3fa462f873e73a046a596a5f",
+          "actual_source_line_lf_sha256": "5ebaa690bfa0a8f370713ceb8b1fcbfbfd8a091f3fa462f873e73a046a596a5f",
+          "actual_source_line_no_lf_sha256": "e3ba0945c4e63c496fb932944fbef9af1946520c9456aa0d7d341f0dd2beebfc",
+          "candidate_actual_git_line_sha256": "e3ba0945c4e63c496fb932944fbef9af1946520c9456aa0d7d341f0dd2beebfc",
+          "candidate_checkpoint_literal_sha256": "5ebaa690bfa0a8f370713ceb8b1fcbfbfd8a091f3fa462f873e73a046a596a5f",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-active-version-missing",
+          "physical_line": 1466,
+          "literal": "| `CASE-HARNESS-L10-041-r04-active-version-missing` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-01` | 選択済みactive template版と抽出入力がcurrent。 | active template版だけをmissing状態にする。 | 当該template選択/必須input/applicabilityまたはtarget scopeをunknown/未評価にし、HARNESS-L2-009/該当対象ownerへ（抽出欠陥の宛先とはしない） |\n",
+          "literal_sha256": "36b518070df40db980b5116c2c7923a2e75dbf4be796f18938a20337889f6e6a",
+          "actual_source_line_lf_sha256": "36b518070df40db980b5116c2c7923a2e75dbf4be796f18938a20337889f6e6a",
+          "actual_source_line_no_lf_sha256": "3a6e0c40963d5fccd952d252da9a3a2f45d10d0a9f0b68035efc4059f9283dd0",
+          "candidate_actual_git_line_sha256": "3a6e0c40963d5fccd952d252da9a3a2f45d10d0a9f0b68035efc4059f9283dd0",
+          "candidate_checkpoint_literal_sha256": "36b518070df40db980b5116c2c7923a2e75dbf4be796f18938a20337889f6e6a",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-active-version-unknown",
+          "physical_line": 1467,
+          "literal": "| `CASE-HARNESS-L10-041-r04-active-version-unknown` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-01` | 選択済みactive template版と抽出入力がcurrent。 | active template版だけをunknown状態にする。 | 当該template選択/必須input/applicabilityまたはtarget scopeをunknown/未評価にし、HARNESS-L2-009/該当対象ownerへ（抽出欠陥の宛先とはしない） |\n",
+          "literal_sha256": "8d2e8bb93044d096f2ac42458c352849a07a7dc1321466c67a2dc6fa36c6f5c7",
+          "actual_source_line_lf_sha256": "8d2e8bb93044d096f2ac42458c352849a07a7dc1321466c67a2dc6fa36c6f5c7",
+          "actual_source_line_no_lf_sha256": "1f59b78e3c9e19f801f5c58d433ffe5c4e12ff775857f730383c4dc1dc7cd799",
+          "candidate_actual_git_line_sha256": "1f59b78e3c9e19f801f5c58d433ffe5c4e12ff775857f730383c4dc1dc7cd799",
+          "candidate_checkpoint_literal_sha256": "8d2e8bb93044d096f2ac42458c352849a07a7dc1321466c67a2dc6fa36c6f5c7",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-active-version-stale",
+          "physical_line": 1468,
+          "literal": "| `CASE-HARNESS-L10-041-r04-active-version-stale` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-01` | 選択済みactive template版と抽出入力がcurrent。 | active template版だけをstale状態にする。 | 当該template選択/必須input/applicabilityまたはtarget scopeをunknown/未評価にし、HARNESS-L2-009/該当対象ownerへ（抽出欠陥の宛先とはしない） |\n",
+          "literal_sha256": "4e0a7f1bb836dc33df1b586ef852516e5ba93f5f7a50de235724e4ad2b9aa83a",
+          "actual_source_line_lf_sha256": "4e0a7f1bb836dc33df1b586ef852516e5ba93f5f7a50de235724e4ad2b9aa83a",
+          "actual_source_line_no_lf_sha256": "d65f5a37b26c8d4e1900e334580713b50f346b7d73927107412e18b910270094",
+          "candidate_actual_git_line_sha256": "d65f5a37b26c8d4e1900e334580713b50f346b7d73927107412e18b910270094",
+          "candidate_checkpoint_literal_sha256": "4e0a7f1bb836dc33df1b586ef852516e5ba93f5f7a50de235724e4ad2b9aa83a",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-target-scope-missing",
+          "physical_line": 1469,
+          "literal": "| `CASE-HARNESS-L10-041-r04-target-scope-missing` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-01` | 選択済み対象scopeと抽出入力がcurrent。 | 対象scopeだけをmissing状態にする。 | 当該template選択/必須input/applicabilityまたはtarget scopeをunknown/未評価にし、HARNESS-L2-009/該当対象ownerへ（抽出欠陥の宛先とはしない） |\n",
+          "literal_sha256": "ade107d5ffce4fcca3d31284c1515e5f99fd573c4d1145e7e8a044380f8343a7",
+          "actual_source_line_lf_sha256": "ade107d5ffce4fcca3d31284c1515e5f99fd573c4d1145e7e8a044380f8343a7",
+          "actual_source_line_no_lf_sha256": "3b092e5e6ebe8b6aea05fe403a22811fa1a7d5df83a664780a4076f8d983e794",
+          "candidate_actual_git_line_sha256": "3b092e5e6ebe8b6aea05fe403a22811fa1a7d5df83a664780a4076f8d983e794",
+          "candidate_checkpoint_literal_sha256": "ade107d5ffce4fcca3d31284c1515e5f99fd573c4d1145e7e8a044380f8343a7",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-target-scope-unknown",
+          "physical_line": 1470,
+          "literal": "| `CASE-HARNESS-L10-041-r04-target-scope-unknown` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-01` | 選択済み対象scopeと抽出入力がcurrent。 | 対象scopeだけをunknown状態にする。 | 当該template選択/必須input/applicabilityまたはtarget scopeをunknown/未評価にし、HARNESS-L2-009/該当対象ownerへ（抽出欠陥の宛先とはしない） |\n",
+          "literal_sha256": "f5eb709060da5f399bc4f6a193dc8c4dc008705078651189fe635bf48a829741",
+          "actual_source_line_lf_sha256": "f5eb709060da5f399bc4f6a193dc8c4dc008705078651189fe635bf48a829741",
+          "actual_source_line_no_lf_sha256": "bfa1e9d830ed7038c7486c5d5970b76f53a8fb46209da8f1a8b9b45b4b7d9923",
+          "candidate_actual_git_line_sha256": "bfa1e9d830ed7038c7486c5d5970b76f53a8fb46209da8f1a8b9b45b4b7d9923",
+          "candidate_checkpoint_literal_sha256": "f5eb709060da5f399bc4f6a193dc8c4dc008705078651189fe635bf48a829741",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-target-scope-conflict",
+          "physical_line": 1471,
+          "literal": "| `CASE-HARNESS-L10-041-r04-target-scope-conflict` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-01` | 選択済み対象scopeと抽出入力がcurrent。 | 対象scopeだけをconflict状態にする。 | 当該template選択/必須input/applicabilityまたはtarget scopeをunknown/未評価にし、HARNESS-L2-009/該当対象ownerへ（抽出欠陥の宛先とはしない） |\n",
+          "literal_sha256": "5035cddf8981ca1627b42d4034d84bc7cf54c8b0bc88a3bb6aba26c6de8d8e6e",
+          "actual_source_line_lf_sha256": "5035cddf8981ca1627b42d4034d84bc7cf54c8b0bc88a3bb6aba26c6de8d8e6e",
+          "actual_source_line_no_lf_sha256": "6ec0b9721c025e617ca425e61018e939aaaae2cda2a9e9f3e5cd7521e9997fba",
+          "candidate_actual_git_line_sha256": "6ec0b9721c025e617ca425e61018e939aaaae2cda2a9e9f3e5cd7521e9997fba",
+          "candidate_checkpoint_literal_sha256": "5035cddf8981ca1627b42d4034d84bc7cf54c8b0bc88a3bb6aba26c6de8d8e6e",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-active-version-conflict",
+          "physical_line": 1489,
+          "literal": "| `CASE-HARNESS-L10-041-r04-active-version-conflict` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-01` | 選択済みactive template版と抽出入力がcurrent。 | active template版だけをconflict状態にする。 | 当該template選択/必須input/applicabilityまたはtarget scopeをunknown/未評価にし、HARNESS-L2-009/該当対象ownerへ（抽出欠陥の宛先とはしない） |\n",
+          "literal_sha256": "307c5f75158d5a4c8d01d5d3abb150fd32651abd526d0c9ffaaddb52534b1d0f",
+          "actual_source_line_lf_sha256": "307c5f75158d5a4c8d01d5d3abb150fd32651abd526d0c9ffaaddb52534b1d0f",
+          "actual_source_line_no_lf_sha256": "d74a70c1db9871f05df4fa3de64031fd6fe5be88156aa0e2c8c08437e8810bf0",
+          "candidate_actual_git_line_sha256": "d74a70c1db9871f05df4fa3de64031fd6fe5be88156aa0e2c8c08437e8810bf0",
+          "candidate_checkpoint_literal_sha256": "307c5f75158d5a4c8d01d5d3abb150fd32651abd526d0c9ffaaddb52534b1d0f",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-target-scope-stale",
+          "physical_line": 1490,
+          "literal": "| `CASE-HARNESS-L10-041-r04-target-scope-stale` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-01` | 選択済み対象scopeと抽出入力がcurrent。 | 対象scopeだけをstale状態にする。 | 当該template選択/必須input/applicabilityまたはtarget scopeをunknown/未評価にし、HARNESS-L2-009/該当対象ownerへ（抽出欠陥の宛先とはしない） |\n",
+          "literal_sha256": "f89458f714e652ef8cc188e03fc9dd6e44bcb9b07a46332b4d5ef1af77f3ec7e",
+          "actual_source_line_lf_sha256": "f89458f714e652ef8cc188e03fc9dd6e44bcb9b07a46332b4d5ef1af77f3ec7e",
+          "actual_source_line_no_lf_sha256": "421a192c0f2e743d4ccd7013820e60178bf0204ebdd892db67d15ccd98b03428",
+          "candidate_actual_git_line_sha256": "421a192c0f2e743d4ccd7013820e60178bf0204ebdd892db67d15ccd98b03428",
+          "candidate_checkpoint_literal_sha256": "f89458f714e652ef8cc188e03fc9dd6e44bcb9b07a46332b4d5ef1af77f3ec7e",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r05-root-revision-hidden",
+          "physical_line": 1647,
+          "literal": "| `CASE-HARNESS-L10-041-r05-root-revision-hidden` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-01` | 未見の有効active template revisionとbranch/atom対応をsourceへ結び、gapを明記する。 | 抽出結果のsource revisionだけを隠し、他identityとbranch対応は保持する。 | 抽出結果を現行版へ照合できずunknown/gapとして保持し、HARNESS-L2-009 template applicabilityへ戻す。 |\n",
+          "literal_sha256": "8d0095cc0c2878e27591a2fd92263f5b6295cced7c9ad0d1571b98671ad6bc1c",
+          "actual_source_line_lf_sha256": "8d0095cc0c2878e27591a2fd92263f5b6295cced7c9ad0d1571b98671ad6bc1c",
+          "actual_source_line_no_lf_sha256": "70bace427215f6ac3f6b4c7cf82011001527fc25901a80ff92640335a4fa1918",
+          "candidate_actual_git_line_sha256": "70bace427215f6ac3f6b4c7cf82011001527fc25901a80ff92640335a4fa1918",
+          "candidate_checkpoint_literal_sha256": "8d0095cc0c2878e27591a2fd92263f5b6295cced7c9ad0d1571b98671ad6bc1c",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r08-digest-match-other-scope",
+          "physical_line": 1791,
+          "literal": "| `CASE-HARNESS-L10-041-r08-digest-match-other-scope` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-03` | 同一active template bytes/revision、scope A、applicability、extractor identity/versionで独立再抽出しsemantic digest一致を観測する。別scope Bは未評価である。 | scope Aのdigest一致だけをscope Bの成立根拠へ外挿する。 | 外挿を拒否しscope Bを未評価に保持する。scope A内の一致は保ち、抽出器の一般的決定性や別scope成立を生成しない。HARNESSの抽出契約ownerへ誤った外挿を返す。 |\n",
+          "literal_sha256": "eecb749b55cbf1a6b94575fa545d1917d5a2df0ebd5e92606493ad24e19ff283",
+          "actual_source_line_lf_sha256": "eecb749b55cbf1a6b94575fa545d1917d5a2df0ebd5e92606493ad24e19ff283",
+          "actual_source_line_no_lf_sha256": "e7622ce64d7b6c0f7f15bc64c19ff0fe3448a379f7e98c76baebd7983ebb4a99",
+          "candidate_actual_git_line_sha256": "e7622ce64d7b6c0f7f15bc64c19ff0fe3448a379f7e98c76baebd7983ebb4a99",
+          "candidate_checkpoint_literal_sha256": "eecb749b55cbf1a6b94575fa545d1917d5a2df0ebd5e92606493ad24e19ff283",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r09-001",
+          "physical_line": 1875,
+          "literal": "| `CASE-HARNESS-L10-041-r09-001` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-03` | 同一active template/source revision/scopeを固定し、選択branchと他要素を保持する。 | chapter/table atomsを保持し候補ledger rowだけを欠落させる。 | 候補行欠落をfindingとして返す。 戻し先: HARNESS-L2-041抽出契約owner。 |\n",
+          "literal_sha256": "d06ba5713c8720ae049cacdaeaed1eaa3f7febcfeb748b84a2191186ef64c088",
+          "actual_source_line_lf_sha256": "d06ba5713c8720ae049cacdaeaed1eaa3f7febcfeb748b84a2191186ef64c088",
+          "actual_source_line_no_lf_sha256": "248e03226a14caeca462f8c0101edfa4793f760ce8d52215813f6d448cd88363",
+          "candidate_actual_git_line_sha256": "248e03226a14caeca462f8c0101edfa4793f760ce8d52215813f6d448cd88363",
+          "candidate_checkpoint_literal_sha256": "d06ba5713c8720ae049cacdaeaed1eaa3f7febcfeb748b84a2191186ef64c088",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r09-002",
+          "physical_line": 1876,
+          "literal": "| `CASE-HARNESS-L10-041-r09-002` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-04` | extractorが読めるが作成側には伏せた新template revisionを与え、固定scope/branchの全適用要素をsource span付きで抽出する。 | 変異なし。新revisionの要素を個別にatomまたはgapへ対応づける。 | 固定契約に適合する未見入力を正常として受け入れ、拒否しない。 |\n",
+          "literal_sha256": "0f97a1c6731669798802db6f078e7d75714f2e935de4b8789ce3e5a76977fee4",
+          "actual_source_line_lf_sha256": "0f97a1c6731669798802db6f078e7d75714f2e935de4b8789ce3e5a76977fee4",
+          "actual_source_line_no_lf_sha256": "16281377d2be0c23ce20c5b9bd3f497350ad663e4829518f87e85d5d7e928279",
+          "candidate_actual_git_line_sha256": "16281377d2be0c23ce20c5b9bd3f497350ad663e4829518f87e85d5d7e928279",
+          "candidate_checkpoint_literal_sha256": "0f97a1c6731669798802db6f078e7d75714f2e935de4b8789ce3e5a76977fee4",
+          "exact_byte_match": true
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r09-003",
+          "physical_line": 1877,
+          "literal": "| `CASE-HARNESS-L10-041-r09-003` | `FR-HARNESS-L3-041`|`AC-HARNESS-L3-041-04`| 新applicability branchとそのtemplate source spanを提示し、他のbranchは保持する。 | 新branchの未対応要素だけを与える。 | 新branchをsource span付きgapとして保持する。抽出契約が不足する場合はHARNESS-L2-041へ戻し、template適用版の不足はHARNESS-L2-009/template ownerへ戻す。 |\n",
+          "literal_sha256": "4164869f4123847ec81f71dbefc18e53f4cf5f152d7c189e686963080767c8e4",
+          "actual_source_line_lf_sha256": "4164869f4123847ec81f71dbefc18e53f4cf5f152d7c189e686963080767c8e4",
+          "actual_source_line_no_lf_sha256": "a0cf9156bd510f39a2fee89f2c2a46493d550337a2d47029235124217f3cd1bc",
+          "candidate_actual_git_line_sha256": "a0cf9156bd510f39a2fee89f2c2a46493d550337a2d47029235124217f3cd1bc",
+          "candidate_checkpoint_literal_sha256": "4164869f4123847ec81f71dbefc18e53f4cf5f152d7c189e686963080767c8e4",
+          "exact_byte_match": true
+        }
+      ]
+    },
+    "review_correction_r05": {
+      "id": "CASE-HARNESS-L10-041-r05-root-revision-hidden",
+      "old_source_revision": "3fd20391f842310012d09c33f5383497898b3afe",
+      "old_source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "old_line": 1647,
+      "old_raw_literal_sha256": "8d0095cc0c2878e27591a2fd92263f5b6295cced7c9ad0d1571b98671ad6bc1c",
+      "old_reported_sha256": "8d0095cc0c2878e27591a2fd92263f5b6295cced7c9ad0d1571b98671ad6bc1c",
+      "old_exact_match": true,
+      "new_body_literal_sha256": "3ad8b7e5de564fff0473c39008416a346a1921aee00413279720660eab54a7b3",
+      "reported_new_body_sha256": "3ad8b7e5de564fff0473c39008416a346a1921aee00413279720660eab54a7b3",
+      "new_body_present_once": true,
+      "retained_id": true,
+      "route_changed": "from HARNESS-L2-009 input applicability to HARNESS-L2-041 extraction contract owner; 009 remains destination only for invalid/missing selection or applicability input",
+      "reason": "source mismatch is in the extraction output after valid input selection; do not classify it as template applicability."
+    },
+    "input_authoring_inventory_pins": {
+      "pre_root_candidate": {
+        "bytes": 93994,
+        "sha256": "b11697129409c18178da1e803c3383aaf0f5fbe3b89d4d60a1b3f74170bae300"
+      }
+    }
+  },
+  "body_checkpoint": {
+    "path": "/tmp/root-harness041-body-checkpoint.json",
+    "sha256": "30acf836dac605e14b2d72d1055de9fdc93a89a5e2b6c37ee9be75e2881baf87",
+    "base": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+    "files": [
+      {
+        "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+        "base_sha256": "87e3533a49f5284aed2535f9216683f9ef013ed7434c9816a73596b81a5e09fb",
+        "suffix_sha256": "93f07196fc0ebe3a52892813247e28c9ac528d5854b57c5252212e2f5824dfcf",
+        "full_sha256": "3d33e0ce83148d65e7762c5b56da5168356fe6e26a3bfdc3bff10430f70f0036"
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "base_sha256": "ddc4288e77effd48553c1cf4ada66e74dffef39c5fc209c1d3038b0bc83a8ad8",
+        "suffix_sha256": "4174645252ed34adead3ed421160126a9b1e2d28b7e07f62c5cad33ba2bf75e1",
+        "full_sha256": "1214092bf224ceba889ff3d9dd84ee8be0081d4c4eca21dc86e0d641030c3d26"
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+        "base_sha256": "75cbdcc058aff99a9efd99b9d3344e6920e864b1bb603a1ac77a0e447f2f60af",
+        "suffix_sha256": "1005f9081397006f61dc288a02ee13d4e6c74e07bbc6be411b1b5c6768ebb768",
+        "full_sha256": "6a11a61b0b7ef516074dcbb6ed3589abd8b098a38741c75898b4d5a288748700"
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/business-verification.md",
+        "base_sha256": "a1ff88366ef98368fa8cbd628f499aa50a73cd05a75d54ff64e353a1626cd67c",
+        "suffix_sha256": "a973d5d25f261671968a84d0c46fe0ecad3938556a336f97fb24292c704cc355",
+        "full_sha256": "0a761e2889f28b88fe13acc6caca98a1dddcc7e122d2966a473b7716b5d59a83"
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "base_sha256": "4f87643397e4e1c2a94d07537770510f634c509eaeb1701c3159a0d143d98cc1",
+        "suffix_sha256": "7f654a35230008084da230b2683173372801827b9701635ca85bde6b27176260",
+        "full_sha256": "2d21fceeefc0933c4ee6b611cd7fcfb1255e5168984879fda545f2ff5461919f"
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+        "base_sha256": "e5b090ba97c6a5237b47b890d7a86453ed5f602ee09c9e531ab3b55698d13a7a",
+        "suffix_sha256": "7ce5bb4fadcae470b83b86046e92663e18c4148356524aea34714e40655cc99f",
+        "full_sha256": "18b7305354f26d8a6fa8c1e760ca45eeadec805fc6ece496ab0eb3ec687514ad"
+      }
+    ],
+    "all_six_physical_compositions_match": true
+  },
+  "six_prefix_suffix_full_actual_checks": [
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "candidate_declared_base": "e015c3477e890c7079cd0b51859da1cec8f8fb7a",
+      "body_checkpoint_base": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+      "target_body_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+      "candidate_declared_prefix": {
+        "bytes": 12664,
+        "sha256": "60bdc58470c471dccd70c8336a7e3a5b57aa3b5bfbfc1bc82d9c535e92c11949",
+        "actual_bytes": 12664,
+        "actual_sha256": "60bdc58470c471dccd70c8336a7e3a5b57aa3b5bfbfc1bc82d9c535e92c11949",
+        "match": true
+      },
+      "body_base_prefix": {
+        "bytes": 12912,
+        "sha256": "87e3533a49f5284aed2535f9216683f9ef013ed7434c9816a73596b81a5e09fb",
+        "checkpoint_sha256": "87e3533a49f5284aed2535f9216683f9ef013ed7434c9816a73596b81a5e09fb",
+        "match": true
+      },
+      "candidate_suffix": {
+        "bytes": 286,
+        "sha256": "93f07196fc0ebe3a52892813247e28c9ac528d5854b57c5252212e2f5824dfcf",
+        "reported_bytes": 286,
+        "reported_sha256": "93f07196fc0ebe3a52892813247e28c9ac528d5854b57c5252212e2f5824dfcf",
+        "match": true
+      },
+      "body_actual_suffix": {
+        "bytes": 286,
+        "sha256": "93f07196fc0ebe3a52892813247e28c9ac528d5854b57c5252212e2f5824dfcf",
+        "matches_candidate_text": true,
+        "checkpoint_sha256": "93f07196fc0ebe3a52892813247e28c9ac528d5854b57c5252212e2f5824dfcf",
+        "checkpoint_match": true
+      },
+      "body_full": {
+        "bytes": 13198,
+        "sha256": "3d33e0ce83148d65e7762c5b56da5168356fe6e26a3bfdc3bff10430f70f0036",
+        "checkpoint_sha256": "3d33e0ce83148d65e7762c5b56da5168356fe6e26a3bfdc3bff10430f70f0036",
+        "checkpoint_match": true,
+        "is_body_base_plus_suffix": true
+      },
+      "candidate_base_equals_body_base": false
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "candidate_declared_base": "e015c3477e890c7079cd0b51859da1cec8f8fb7a",
+      "body_checkpoint_base": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+      "target_body_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+      "candidate_declared_prefix": {
+        "bytes": 198335,
+        "sha256": "00ca917e91abdabdeaba7507afee961613381081aa9017e3e1221f929d21f943",
+        "actual_bytes": 198335,
+        "actual_sha256": "00ca917e91abdabdeaba7507afee961613381081aa9017e3e1221f929d21f943",
+        "match": true
+      },
+      "body_base_prefix": {
+        "bytes": 200552,
+        "sha256": "ddc4288e77effd48553c1cf4ada66e74dffef39c5fc209c1d3038b0bc83a8ad8",
+        "checkpoint_sha256": "ddc4288e77effd48553c1cf4ada66e74dffef39c5fc209c1d3038b0bc83a8ad8",
+        "match": true
+      },
+      "candidate_suffix": {
+        "bytes": 7893,
+        "sha256": "4174645252ed34adead3ed421160126a9b1e2d28b7e07f62c5cad33ba2bf75e1",
+        "reported_bytes": 7893,
+        "reported_sha256": "4174645252ed34adead3ed421160126a9b1e2d28b7e07f62c5cad33ba2bf75e1",
+        "match": true
+      },
+      "body_actual_suffix": {
+        "bytes": 7893,
+        "sha256": "4174645252ed34adead3ed421160126a9b1e2d28b7e07f62c5cad33ba2bf75e1",
+        "matches_candidate_text": true,
+        "checkpoint_sha256": "4174645252ed34adead3ed421160126a9b1e2d28b7e07f62c5cad33ba2bf75e1",
+        "checkpoint_match": true
+      },
+      "body_full": {
+        "bytes": 208445,
+        "sha256": "1214092bf224ceba889ff3d9dd84ee8be0081d4c4eca21dc86e0d641030c3d26",
+        "checkpoint_sha256": "1214092bf224ceba889ff3d9dd84ee8be0081d4c4eca21dc86e0d641030c3d26",
+        "checkpoint_match": true,
+        "is_body_base_plus_suffix": true
+      },
+      "candidate_base_equals_body_base": false
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "candidate_declared_base": "e015c3477e890c7079cd0b51859da1cec8f8fb7a",
+      "body_checkpoint_base": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+      "target_body_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+      "candidate_declared_prefix": {
+        "bytes": 41948,
+        "sha256": "7840fd0b1bb694e0e9513f1e10f61971a629953ef41b3e495ea578cf8296efa2",
+        "actual_bytes": 41948,
+        "actual_sha256": "7840fd0b1bb694e0e9513f1e10f61971a629953ef41b3e495ea578cf8296efa2",
+        "match": true
+      },
+      "body_base_prefix": {
+        "bytes": 42424,
+        "sha256": "75cbdcc058aff99a9efd99b9d3344e6920e864b1bb603a1ac77a0e447f2f60af",
+        "checkpoint_sha256": "75cbdcc058aff99a9efd99b9d3344e6920e864b1bb603a1ac77a0e447f2f60af",
+        "match": true
+      },
+      "candidate_suffix": {
+        "bytes": 912,
+        "sha256": "1005f9081397006f61dc288a02ee13d4e6c74e07bbc6be411b1b5c6768ebb768",
+        "reported_bytes": 912,
+        "reported_sha256": "1005f9081397006f61dc288a02ee13d4e6c74e07bbc6be411b1b5c6768ebb768",
+        "match": true
+      },
+      "body_actual_suffix": {
+        "bytes": 912,
+        "sha256": "1005f9081397006f61dc288a02ee13d4e6c74e07bbc6be411b1b5c6768ebb768",
+        "matches_candidate_text": true,
+        "checkpoint_sha256": "1005f9081397006f61dc288a02ee13d4e6c74e07bbc6be411b1b5c6768ebb768",
+        "checkpoint_match": true
+      },
+      "body_full": {
+        "bytes": 43336,
+        "sha256": "6a11a61b0b7ef516074dcbb6ed3589abd8b098a38741c75898b4d5a288748700",
+        "checkpoint_sha256": "6a11a61b0b7ef516074dcbb6ed3589abd8b098a38741c75898b4d5a288748700",
+        "checkpoint_match": true,
+        "is_body_base_plus_suffix": true
+      },
+      "candidate_base_equals_body_base": false
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "candidate_declared_base": "e015c3477e890c7079cd0b51859da1cec8f8fb7a",
+      "body_checkpoint_base": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+      "target_body_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+      "candidate_declared_prefix": {
+        "bytes": 8299,
+        "sha256": "3473e30037f65fdfe827cc48297c3eec9716f409d919d18caceca87e45072ace",
+        "actual_bytes": 8299,
+        "actual_sha256": "3473e30037f65fdfe827cc48297c3eec9716f409d919d18caceca87e45072ace",
+        "match": true
+      },
+      "body_base_prefix": {
+        "bytes": 8569,
+        "sha256": "a1ff88366ef98368fa8cbd628f499aa50a73cd05a75d54ff64e353a1626cd67c",
+        "checkpoint_sha256": "a1ff88366ef98368fa8cbd628f499aa50a73cd05a75d54ff64e353a1626cd67c",
+        "match": true
+      },
+      "candidate_suffix": {
+        "bytes": 287,
+        "sha256": "a973d5d25f261671968a84d0c46fe0ecad3938556a336f97fb24292c704cc355",
+        "reported_bytes": 287,
+        "reported_sha256": "a973d5d25f261671968a84d0c46fe0ecad3938556a336f97fb24292c704cc355",
+        "match": true
+      },
+      "body_actual_suffix": {
+        "bytes": 287,
+        "sha256": "a973d5d25f261671968a84d0c46fe0ecad3938556a336f97fb24292c704cc355",
+        "matches_candidate_text": true,
+        "checkpoint_sha256": "a973d5d25f261671968a84d0c46fe0ecad3938556a336f97fb24292c704cc355",
+        "checkpoint_match": true
+      },
+      "body_full": {
+        "bytes": 8856,
+        "sha256": "0a761e2889f28b88fe13acc6caca98a1dddcc7e122d2966a473b7716b5d59a83",
+        "checkpoint_sha256": "0a761e2889f28b88fe13acc6caca98a1dddcc7e122d2966a473b7716b5d59a83",
+        "checkpoint_match": true,
+        "is_body_base_plus_suffix": true
+      },
+      "candidate_base_equals_body_base": false
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "candidate_declared_base": "e015c3477e890c7079cd0b51859da1cec8f8fb7a",
+      "body_checkpoint_base": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+      "target_body_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+      "candidate_declared_prefix": {
+        "bytes": 584387,
+        "sha256": "f1f302900e013550fd45bcd4dc15cb9fd48ba5ee48e02d7f479e9227c0dbb238",
+        "actual_bytes": 584387,
+        "actual_sha256": "f1f302900e013550fd45bcd4dc15cb9fd48ba5ee48e02d7f479e9227c0dbb238",
+        "match": true
+      },
+      "body_base_prefix": {
+        "bytes": 615326,
+        "sha256": "4f87643397e4e1c2a94d07537770510f634c509eaeb1701c3159a0d143d98cc1",
+        "checkpoint_sha256": "4f87643397e4e1c2a94d07537770510f634c509eaeb1701c3159a0d143d98cc1",
+        "match": true
+      },
+      "candidate_suffix": {
+        "bytes": 28611,
+        "sha256": "7f654a35230008084da230b2683173372801827b9701635ca85bde6b27176260",
+        "reported_bytes": 28611,
+        "reported_sha256": "7f654a35230008084da230b2683173372801827b9701635ca85bde6b27176260",
+        "match": true
+      },
+      "body_actual_suffix": {
+        "bytes": 28611,
+        "sha256": "7f654a35230008084da230b2683173372801827b9701635ca85bde6b27176260",
+        "matches_candidate_text": true,
+        "checkpoint_sha256": "7f654a35230008084da230b2683173372801827b9701635ca85bde6b27176260",
+        "checkpoint_match": true
+      },
+      "body_full": {
+        "bytes": 643937,
+        "sha256": "2d21fceeefc0933c4ee6b611cd7fcfb1255e5168984879fda545f2ff5461919f",
+        "checkpoint_sha256": "2d21fceeefc0933c4ee6b611cd7fcfb1255e5168984879fda545f2ff5461919f",
+        "checkpoint_match": true,
+        "is_body_base_plus_suffix": true
+      },
+      "candidate_base_equals_body_base": false
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "candidate_declared_base": "e015c3477e890c7079cd0b51859da1cec8f8fb7a",
+      "body_checkpoint_base": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+      "target_body_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+      "candidate_declared_prefix": {
+        "bytes": 35149,
+        "sha256": "a000794ce06474dacc7c233470f68d59dda2f09365a42285b0718860579c1a76",
+        "actual_bytes": 35149,
+        "actual_sha256": "a000794ce06474dacc7c233470f68d59dda2f09365a42285b0718860579c1a76",
+        "match": true
+      },
+      "body_base_prefix": {
+        "bytes": 36003,
+        "sha256": "e5b090ba97c6a5237b47b890d7a86453ed5f602ee09c9e531ab3b55698d13a7a",
+        "checkpoint_sha256": "e5b090ba97c6a5237b47b890d7a86453ed5f602ee09c9e531ab3b55698d13a7a",
+        "match": true
+      },
+      "candidate_suffix": {
+        "bytes": 918,
+        "sha256": "7ce5bb4fadcae470b83b86046e92663e18c4148356524aea34714e40655cc99f",
+        "reported_bytes": 918,
+        "reported_sha256": "7ce5bb4fadcae470b83b86046e92663e18c4148356524aea34714e40655cc99f",
+        "match": true
+      },
+      "body_actual_suffix": {
+        "bytes": 918,
+        "sha256": "7ce5bb4fadcae470b83b86046e92663e18c4148356524aea34714e40655cc99f",
+        "matches_candidate_text": true,
+        "checkpoint_sha256": "7ce5bb4fadcae470b83b86046e92663e18c4148356524aea34714e40655cc99f",
+        "checkpoint_match": true
+      },
+      "body_full": {
+        "bytes": 36921,
+        "sha256": "18b7305354f26d8a6fa8c1e760ca45eeadec805fc6ece496ab0eb3ec687514ad",
+        "checkpoint_sha256": "18b7305354f26d8a6fa8c1e760ca45eeadec805fc6ece496ab0eb3ec687514ad",
+        "checkpoint_match": true,
+        "is_body_base_plus_suffix": true
+      },
+      "candidate_base_equals_body_base": false
+    }
+  ],
+  "candidate_base_metadata_vs_body_base": {
+    "candidate_main_authoring_base": "e015c3477e890c7079cd0b51859da1cec8f8fb7a",
+    "body_checkpoint_base": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+    "target_body_parent": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+    "bases_equal": false,
+    "finding": "candidate JSON retains earlier e015 base metadata; materialized 3591ac body is exactly a1 base plus candidate suffixes. Candidate suffix text hashes are unchanged and match current body tails."
+  },
+  "root_candidate_metadata": {
+    "root_candidate_path": "/tmp/root-harness041-six-suffixes-candidate.json",
+    "root_candidate_sha256": "29955ed37077e881c680c5a3288df1d4f55cb2789bcc9e2dd836f7e6f84f77ef",
+    "r05_correction": {
+      "id": "CASE-HARNESS-L10-041-r05-root-revision-hidden",
+      "old_raw_literal": "| `CASE-HARNESS-L10-041-r05-root-revision-hidden` | `FR-HARNESS-L3-041` / `AC-HARNESS-L3-041-01` | 未見の有効active template revisionとbranch/atom対応をsourceへ結び、gapを明記する。 | 抽出結果のsource revisionだけを隠し、他identityとbranch対応は保持する。 | 抽出結果を現行版へ照合できずunknown/gapとして保持し、HARNESS-L2-009 template applicabilityへ戻す。 |\n",
+      "old_raw_literal_sha256": "8d0095cc0c2878e27591a2fd92263f5b6295cced7c9ad0d1571b98671ad6bc1c",
+      "new_body_literal": "| `CASE-HARNESS-L10-041-r05-root-revision-hidden` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-03` | HARNESS-L2-009で正しく選択された有効active template revision、入力source revision/scope、branch/atom対応と、出力のsource revision/span/provenanceが一致する。 | 入力を不変に保ち、抽出結果のsource revisionだけを隠す/別値にする。他identityとbranch対応は保持する。 | 出力provenanceを照合できないatomをunknown/typed gapとして保持し、HARNESS-L2-041抽出契約ownerへ戻す。入力templateの選択・適用性が不明な場合のHARNESS-L2-009 routeとは区別する。個別owner IDが不明でも既知の責務区分を残し、unknownで消さない。 |",
+      "new_body_literal_sha256": "3ad8b7e5de564fff0473c39008416a346a1921aee00413279720660eab54a7b3",
+      "retained_id": true,
+      "retain_semantics": "mutation hides/mismatches only the extracted output source revision while selected active template/source/scope remain valid",
+      "changed_route": "from HARNESS-L2-009 input applicability to HARNESS-L2-041 extraction contract owner; 009 remains destination only for invalid/missing selection or applicability input",
+      "reason": "source mismatch is in the extraction output after valid input selection; do not classify it as template applicability."
+    },
+    "root_corrections": [
+      "r10 025/026 literal parentid placeholder resolved separately",
+      "synthetic T0 exact baseline for authority one-output mutation added",
+      "025 design/026 inspection result generation refusal added as separate output fields",
+      "fixed span SHA candidate mismatched actual Git raw-LF; corrected L2 ad8e344c / L11 259c3832 preserving reported values in audit"
+    ],
+    "root_actual_case_count": 61
+  },
+  "historical_old_case_metadata": {
+    "functional_verification_case_inventory": {
+      "old_ids_retained": 38,
+      "legacy_normalized_rows": 38,
+      "new_rows_including_indexes": 21,
+      "new_unique_case_ids": 21,
+      "body_definition_rows": 59,
+      "all_unique": true,
+      "six_column_rows": true,
+      "old_IDs_all_present": true,
+      "all_raw_ids_not_claimed_exhaustive": true,
+      "new_case_ids": [
+        "CASE-HARNESS-L10-041-r10-l2-009-applicability-unknown",
+        "CASE-HARNESS-L10-041-r10-candidate-template-authority",
+        "CASE-HARNESS-L10-041-r10-candidate-ledger-registration",
+        "CASE-HARNESS-L10-041-r10-candidate-adoption",
+        "CASE-HARNESS-L10-041-r10-candidate-requirement-agreement",
+        "CASE-HARNESS-L10-041-r10-candidate-design-success",
+        "CASE-HARNESS-L10-041-r10-candidate-user-acceptance",
+        "CASE-HARNESS-L10-041-r10-candidate-l3-approval",
+        "CASE-HARNESS-L10-041-r10-candidate-implementation-complete",
+        "CASE-HARNESS-L10-041-r10-candidate-os-registration",
+        "CASE-HARNESS-L10-041-r10-candidate-os-save",
+        "CASE-HARNESS-L10-041-r10-candidate-os-projection",
+        "CASE-HARNESS-L10-041-r10-candidate-os-execution",
+        "CASE-HARNESS-L10-041-r10-owner-individual-unknown-class-preserved",
+        "CASE-HARNESS-L10-041-r10-unresolved-obligation-aggregate-covered",
+        "CASE-HARNESS-L10-041-r10-025-completion-required-before-extraction",
+        "CASE-HARNESS-L10-041-r10-025-receipt-substitutes-extraction",
+        "CASE-HARNESS-L10-041-r10-026-completion-required-before-extraction",
+        "CASE-HARNESS-L10-041-r10-026-receipt-substitutes-extraction",
+        "CASE-HARNESS-L10-041-11",
+        "CASE-HARNESS-L10-041-12"
+      ]
+    },
+    "label": "Luna59 initial metadata; historical, not current body count"
+  },
+  "current_body_case_inventory": {
+    "candidate_metadata": {
+      "old_ids_retained": 38,
+      "legacy_normalized_rows": 38,
+      "new_rows_including_indexes": 21,
+      "new_unique_case_ids": 21,
+      "body_definition_rows": 59,
+      "all_unique": true,
+      "six_column_rows": true,
+      "old_IDs_all_present": true,
+      "all_raw_ids_not_claimed_exhaustive": true,
+      "new_case_ids": [
+        "CASE-HARNESS-L10-041-r10-l2-009-applicability-unknown",
+        "CASE-HARNESS-L10-041-r10-candidate-template-authority",
+        "CASE-HARNESS-L10-041-r10-candidate-ledger-registration",
+        "CASE-HARNESS-L10-041-r10-candidate-adoption",
+        "CASE-HARNESS-L10-041-r10-candidate-requirement-agreement",
+        "CASE-HARNESS-L10-041-r10-candidate-design-success",
+        "CASE-HARNESS-L10-041-r10-candidate-user-acceptance",
+        "CASE-HARNESS-L10-041-r10-candidate-l3-approval",
+        "CASE-HARNESS-L10-041-r10-candidate-implementation-complete",
+        "CASE-HARNESS-L10-041-r10-candidate-os-registration",
+        "CASE-HARNESS-L10-041-r10-candidate-os-save",
+        "CASE-HARNESS-L10-041-r10-candidate-os-projection",
+        "CASE-HARNESS-L10-041-r10-candidate-os-execution",
+        "CASE-HARNESS-L10-041-r10-owner-individual-unknown-class-preserved",
+        "CASE-HARNESS-L10-041-r10-unresolved-obligation-aggregate-covered",
+        "CASE-HARNESS-L10-041-r10-025-completion-required-before-extraction",
+        "CASE-HARNESS-L10-041-r10-025-receipt-substitutes-extraction",
+        "CASE-HARNESS-L10-041-r10-026-completion-required-before-extraction",
+        "CASE-HARNESS-L10-041-r10-026-receipt-substitutes-extraction",
+        "CASE-HARNESS-L10-041-11",
+        "CASE-HARNESS-L10-041-12"
+      ]
+    },
+    "root_actual_case_count": 61,
+    "actual_current_body_rows": 61,
+    "actual_current_unique_ids": 61,
+    "actual_old_ids_present": 38,
+    "actual_new_ids": [
+      "CASE-HARNESS-L10-041-11",
+      "CASE-HARNESS-L10-041-12",
+      "CASE-HARNESS-L10-041-r10-025-completion-required-before-extraction",
+      "CASE-HARNESS-L10-041-r10-025-receipt-substitutes-extraction",
+      "CASE-HARNESS-L10-041-r10-025-result-generated-from-extraction",
+      "CASE-HARNESS-L10-041-r10-026-completion-required-before-extraction",
+      "CASE-HARNESS-L10-041-r10-026-receipt-substitutes-extraction",
+      "CASE-HARNESS-L10-041-r10-026-result-generated-from-extraction",
+      "CASE-HARNESS-L10-041-r10-candidate-adoption",
+      "CASE-HARNESS-L10-041-r10-candidate-design-success",
+      "CASE-HARNESS-L10-041-r10-candidate-implementation-complete",
+      "CASE-HARNESS-L10-041-r10-candidate-l3-approval",
+      "CASE-HARNESS-L10-041-r10-candidate-ledger-registration",
+      "CASE-HARNESS-L10-041-r10-candidate-os-execution",
+      "CASE-HARNESS-L10-041-r10-candidate-os-projection",
+      "CASE-HARNESS-L10-041-r10-candidate-os-registration",
+      "CASE-HARNESS-L10-041-r10-candidate-os-save",
+      "CASE-HARNESS-L10-041-r10-candidate-requirement-agreement",
+      "CASE-HARNESS-L10-041-r10-candidate-template-authority",
+      "CASE-HARNESS-L10-041-r10-candidate-user-acceptance",
+      "CASE-HARNESS-L10-041-r10-l2-009-applicability-unknown",
+      "CASE-HARNESS-L10-041-r10-owner-individual-unknown-class-preserved",
+      "CASE-HARNESS-L10-041-r10-unresolved-obligation-aggregate-covered"
+    ],
+    "actual_rows_raw_concat_bytes": 27310,
+    "actual_rows_raw_concat_sha256": "e2079e6a29097dfd95bcb080ea62f6dafe5930d8470a81c9af1889e677b19cfe",
+    "actual_rows": [
+      {
+        "id": "CASE-HARNESS-L10-041-01",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1596,
+        "raw_literal": "| `CASE-HARNESS-L10-041-01` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-01` | 固定PO採択 `MPR-RC-HARNESS-L2-041-002`のL2/L11に対応するactive template/extractor/scope inputの索引。active inputの単独変異は `CASE-HARNESS-L10-041-r04-active-version-missing`、`CASE-HARNESS-L10-041-r04-active-version-unknown`、`CASE-HARNESS-L10-041-r04-active-version-conflict`、`CASE-HARNESS-L10-041-r04-active-version-stale`、およびtarget-scopeのmissing/unknown/conflict/stale各case。抽出結果のsource revision mismatch `CASE-HARNESS-L10-041-r05-root-revision-hidden`はAC-03の出力provenance fixtureとして扱い、本索引から除く。 | 索引のみ。 | active input/applicabilityはHARNESS-L2-009へ、抽出後のprovenance mismatchはHARNESS-L2-041抽出契約ownerへ別々に戻し、indexをnegativeへ数えない。 |\n",
+        "raw_lf_sha256": "84deb6b1efa6be9065620d9d69f22c5366a5ccd8878713dc4e544ecfaf0b6322"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-02",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1597,
+        "raw_literal": "| `CASE-HARNESS-L10-041-02` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-02` | 選択template field、抽出器、branch、atom重複に関するAC-02 CASE索引。 | 索引のみ。`CASE-HARNESS-L10-041-r04-branch-missing`はAC-04の直接fixture `CASE-HARNESS-L10-041-07`への別名索引で、二重計上しない。`CASE-HARNESS-L10-041-r04-duplicate-atom`, `CASE-HARNESS-L10-041-r04-empty-field`, `CASE-HARNESS-L10-041-r04-extractor-unavailable`, `CASE-HARNESS-L10-041-r04-tbd-field`を個別参照する。active revision/scopeのmissing・stale CASEはAC-01の041-01索引で扱う。 | 各参照CASEのoracleを適用し、本行は独立fixtureに数えない。 |\n",
+        "raw_lf_sha256": "caf4b5c4d0fd3cf06453891898ccad361300f3a4b33e8876885c627acd8b61d4"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r09-004",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1598,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r09-004` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-02` | 同一active template/source revision/scopeを固定し、機械抽出結果を与えない。 | 機械抽出結果がなく、人手要約だけが存在する。 | 完全抽出claimを拒否し、要約をatom/gapの代わりにしない。抽出契約の不足はHARNESS-L2-041の既存契約へ戻し、個別owner identityが不明ならunknownを維持する。 |\n",
+        "raw_lf_sha256": "50cb07f14209b6868d0fc3b3be79f38f27d826e0019e1d53d931e5f7e472d6ee"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-03",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1599,
+        "raw_literal": "| `CASE-HARNESS-L10-041-03` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-03` | 同scopeのdigest/原子対応index。実在fixture: `CASE-HARNESS-L10-041-r04-one-obligation-split`, `CASE-HARNESS-L10-041-r04-two-obligations-merge`, `CASE-HARNESS-L10-041-r04-digest-mismatch`, `CASE-HARNESS-L10-041-r04-digest-atom-gap`, `CASE-HARNESS-L10-041-r08-digest-match-other-scope`, `CASE-HARNESS-L10-041-r09-001`, `CASE-HARNESS-L10-041-r04-source-span`, `CASE-HARNESS-L10-041-r04-atom-gap`。 | 索引のみ。 | 全IDを直下の実在fixtureで照合し、indexを別fixtureに数えない。 |\n",
+        "raw_lf_sha256": "eeefeed51631485fee1a40734c587d6d41bcc1d7593167dcf76cb38fe2177910"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-04",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1600,
+        "raw_literal": "| `CASE-HARNESS-L10-041-04` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-02` | 機械抽出結果とbranch対応の単独fixture index: `CASE-HARNESS-L10-041-r09-002`（未見正常）、`CASE-HARNESS-L10-041-r09-003`（未対応branch）、`CASE-HARNESS-L10-041-r09-004`（人手要約のみ）を個別に参照する。branch欠落/extractor不能は`CASE-HARNESS-L10-041-07`と`CASE-HARNESS-L10-041-10`を参照する。 | 索引のみ。 | 各参照先を個別照合し、機械抽出なし/summary-onlyは固定HARNESS-L2-041抽出契約、active template applicabilityはHARNESS-L2-009へ戻す。 |\n",
+        "raw_lf_sha256": "761ebf9dd96f2d0baa4883921dde2059481f5ca74870b52a009428a4e7b510f1"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-05",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1601,
+        "raw_literal": "| `CASE-HARNESS-L10-041-05` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-02` | 同一active template/source revision/scopeで機械抽出結果とsource spanを入力し、全適用branchのatom/gapを示す。 | 変異なし。branch読み飛ばしも人手summary代用もない。 | 各義務をatomまたはtyped gapへ対応づけた正常例として受け入れる。失敗がない正常例に戻し先を付けない。 |\n",
+        "raw_lf_sha256": "9d1a93901714d70f7d881414eaa70889a89249fac378953622e7a8272218774c"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-06",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1602,
+        "raw_literal": "| `CASE-HARNESS-L10-041-06` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-02` | 選択branch抽出と抽出不能branchの理由付きgap index。実在CASE: `CASE-HARNESS-L10-041-07`, `CASE-HARNESS-L10-041-10`。 | 索引のみ。 | 選択branch欠落/抽出不能を固定HARNESS-L2-041抽出契約で照合し、active template revision/applicability欠落はHARNESS-L2-009の既存template ownerへ区別して戻す。 |\n",
+        "raw_lf_sha256": "602a63d45b41fdc2e3603835b9dfe07db5b3b5af15802662be9eaaae2b248029"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-07",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1603,
+        "raw_literal": "| `CASE-HARNESS-L10-041-07` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-02` | active-templateの選択revisionにおける他branch/atomと抽出契約を保持する。 | 選択branchを一つだけ抽出結果から欠落させる。 | 読み飛ばしをgap findingとして返し、固定HARNESS-L2-041抽出契約へ戻す。 |\n",
+        "raw_lf_sha256": "4350b9fa4d8638c381caf91c3608a727c11249b59e05f43589254fb9ef4b474c"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-08",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1604,
+        "raw_literal": "| `CASE-HARNESS-L10-041-08` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-03` | 原子的抽出結果と040相当の互換ledger契約版がそろい、OS保存結果は別契約で保持する。 | ledger契約版だけを非互換に変える。 | ledger契約不整合を040相当の契約ownerへ返し、OS保存成功で相殺しない。 |\n",
+        "raw_lf_sha256": "a38dc5da147db6f62703cec558d8bc6f293db6979b83b9fd54da3fd8b0e48d41"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-09",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1605,
+        "raw_literal": "| `CASE-HARNESS-L10-041-09` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-04` | 同一active extraction outputとscope/revisionを保ち、OS保存・実行receiptを別stateで扱う。 | OS receiptだけを欠落させる。 | 保存/実行は未確認のまま保持し、HARNESS抽出成功で代替しない。固定親で戻し先identityが特定できない場合はowner unknownを保つ。 |\n",
+        "raw_lf_sha256": "8e96efe6cf9124ac2b57fae7301b0f79123e9f3e2eb62d2ea02f747af9de8a38"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-10",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1606,
+        "raw_literal": "| `CASE-HARNESS-L10-041-10` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-02` | 抽出不能なsource spanを理由付きgapとして保持。 | 抽出不能branchを自由補完する。 | gapを維持し不成立。 |\n",
+        "raw_lf_sha256": "376b2a997927aa74d7fea97fd6722ce32d08254bbf3ee62813c43e1b6538de1e"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r04-active-version",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1607,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r04-active-version` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-01` | 選択済みactive template版の正常入力matrix。 | 索引のみ。missing/unknown/conflict/staleは`CASE-HARNESS-L10-041-r04-active-version-missing`、`CASE-HARNESS-L10-041-r04-active-version-unknown`、`CASE-HARNESS-L10-041-r04-active-version-conflict`、`CASE-HARNESS-L10-041-r04-active-version-stale`で個別に照合する。 | 状態別oracleは各参照CASEで照合し、indexを独立negativeに数えない。 |\n",
+        "raw_lf_sha256": "79cf40c49d7ef5bff12caf96c212f0b669a15381d268d8429f8d847bfd268090"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r04-target-scope",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1608,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r04-target-scope` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-01` | 選択済み対象scopeの正常入力matrix。 | 索引のみ。missing/unknown/conflict/staleは`CASE-HARNESS-L10-041-r04-target-scope-missing`、`CASE-HARNESS-L10-041-r04-target-scope-unknown`、`CASE-HARNESS-L10-041-r04-target-scope-conflict`、`CASE-HARNESS-L10-041-r04-target-scope-stale`で個別に照合する。 | 状態別oracleは各参照CASEで照合し、indexを独立negativeに数えない。 |\n",
+        "raw_lf_sha256": "5a72fb500a293961932e0e866a8ce42419b506425b60f0c8eb6316cab8f37e28"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r04-unselected-template-extrapolation",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1609,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r04-unselected-template-extrapolation` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-01` | 選択templateだけを適用し別templateは未選択と記録する。 | 選択template結果を未選択templateへ外挿。 | 外挿を拒否し未選択templateを未観測にする。 |\n",
+        "raw_lf_sha256": "2cd5ee9483f44435e3256ebf12e7d83d1956abce2e143cf1f78edca7b4b0fde2"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r04-source-span",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1610,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r04-source-span` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-03` | 同じactive template revision/scopeとsource obligationについて、入力source spanは存在し、正常出力では出力spanとprovenanceへ対応する。 | 出力にあるsource spanだけを欠落させ、入力source span/selectionは保持する。 | 出力欠落をtyped gapとして示しHARNESS-L2-041抽出契約ownerへ戻す。入力source/source spanそのものが欠落・unknownならHARNESS-L2-009/該当template ownerへ戻す。個体ID不明はunknownのまま責務区分を保持する。 |\n",
+        "raw_lf_sha256": "f51a597fe56d1aa0eb3f7665184a3bbf3ebd3c647a2acd628c189bde6312cf05"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r04-atom-gap",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1611,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r04-atom-gap` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-02` | 同じactive template revision/scopeとsource obligationを選択する。 | 対象obligation一つのatom/gap対応だけ欠落。 | 未対応義務を未完にし、他義務で相殺しない。 |\n",
+        "raw_lf_sha256": "7a815e1a8bddfd5e6c51b33e8a075b49cbf4b4fe79faf9d94669eed44e1bd59c"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r04-empty-field",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1612,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r04-empty-field` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-02` | 同じactive template revision/scopeとsource obligationを選択する。 | active templateの対象fieldだけ空。 | 空を自由補完せずtyped gap。 |\n",
+        "raw_lf_sha256": "5d43b24bf758c07efb817d2ac7d12e83109040c8c8d0ee22a8c97d65a782ae99"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r04-tbd-field",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1613,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r04-tbd-field` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-02` | 同じactive template revision/scopeとsource obligationを選択する。 | 対象fieldだけTBD。 | TBDを確定値へ変換せずtyped gap。 |\n",
+        "raw_lf_sha256": "87a54d2e400ededcf308817a16a4f8d93649e1792b21339244e63c6aad76a98a"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r04-branch-missing",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1614,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r04-branch-missing` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-02` | `CASE-HARNESS-L10-041-07`のindex参照。 | 独立変異として数えず、選択済みapplicability branch欠落を参照先で照合する。 | 抽出器の読み飛ばしをgap findingとして返し、HARNESS-L2-041抽出契約へ戻す。 |\n",
+        "raw_lf_sha256": "a971b7f09ff892fafe29cd9008010fcfbf106ed0d5e1f1b393e8409c7bfad9a4"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r04-extractor-unavailable",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1615,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r04-extractor-unavailable` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-02` | 同じactive template revision/scopeとsource obligationを選択する。 | extractor結果だけ取得不能。 | 抽出成功にせずunknown/gap。 |\n",
+        "raw_lf_sha256": "e06484393e2a10287371168f1c4059b4988ed84ce17a9f9aabfdbebc06aa4729"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r04-duplicate-atom",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1616,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r04-duplicate-atom` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-02` | 同じactive template revision/scopeとsource obligationを選択する。 | 一つのsource obligationへ同一atomを重複割当。 | 重複を検出しatomic mapping未完。 |\n",
+        "raw_lf_sha256": "bf1b510b787c1e0aa5984e5b885e39cb211993ad78c43a0ebeab08d6042800a1"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r04-one-obligation-split",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1617,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r04-one-obligation-split` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-03` | 同じactive template revision/scopeとsource obligationを選択する。 | 一つの義務だけを複数atomへ分割。 | 原子性不成立。 |\n",
+        "raw_lf_sha256": "ff45642e8bd6ff47c982f88fcaf13b101cf3ee1454a39da6e3e4f90fb4da34e4"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r04-two-obligations-merge",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1618,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r04-two-obligations-merge` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-03` | 同じactive template revision/scopeとsource obligationを選択する。 | 二つの義務だけを一atomへ束ねる。 | 原子性不成立。 |\n",
+        "raw_lf_sha256": "9ff5aa55b21beb239e34f3b2f9512d9972d9423638e0dcfbc94660d0af6fdcc3"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r04-digest-mismatch",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1619,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r04-digest-mismatch` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-03` | 同じactive template revision/scopeとsource obligationを選択する。 | 同一入力・同一extractor revisionのsemantic digestだけ不一致。 | semantic digestの差分をfindingとして返し、当該scopeを未評価に保持する。HARNESS-L2-041抽出契約ownerへ戻す。 |\n",
+        "raw_lf_sha256": "d0683ee10b34acfbf96e8893458d4a2bd8a070c46ae65f58aeb75a4333ceab87"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r04-digest-atom-gap",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1620,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r04-digest-atom-gap` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-03` | 同じactive template revision/scopeとsource obligationを選択する。 | digestは一致するが一つのatom/gap対応だけ欠落。 | digest一致で欠落を相殺せず未完。 |\n",
+        "raw_lf_sha256": "a2508db0caea26933a61b21ff677810f1a2ad365c358fd86dc7f6ce4d584493c"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r04-active-version-missing",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1621,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r04-active-version-missing` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-01` | 選択済みactive template版と抽出入力がcurrent。 | active template版だけをmissing状態にする。 | 当該template選択/必須input/applicabilityまたはtarget scopeをunknown/未評価にし、HARNESS-L2-009/該当対象ownerへ（抽出欠陥の宛先とはしない） |\n",
+        "raw_lf_sha256": "5e4916ca86efd3f51e87ecae5b5fca195cc0a83a7298033c660900949673aea3"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r04-active-version-unknown",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1622,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r04-active-version-unknown` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-01` | 選択済みactive template版と抽出入力がcurrent。 | active template版だけをunknown状態にする。 | 当該template選択/必須input/applicabilityまたはtarget scopeをunknown/未評価にし、HARNESS-L2-009/該当対象ownerへ（抽出欠陥の宛先とはしない） |\n",
+        "raw_lf_sha256": "9cb583941e5caa2b8dede47de2caa0fb93925e8d6b96ae4cd782e5820e6ae1af"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r04-active-version-stale",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1623,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r04-active-version-stale` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-01` | 選択済みactive template版と抽出入力がcurrent。 | active template版だけをstale状態にする。 | 当該template選択/必須input/applicabilityまたはtarget scopeをunknown/未評価にし、HARNESS-L2-009/該当対象ownerへ（抽出欠陥の宛先とはしない） |\n",
+        "raw_lf_sha256": "810c2af45f3e3446ebef9c7856639c9698baca6a6270a9395694263a87668555"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r04-target-scope-missing",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1624,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r04-target-scope-missing` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-01` | 選択済み対象scopeと抽出入力がcurrent。 | 対象scopeだけをmissing状態にする。 | 当該template選択/必須input/applicabilityまたはtarget scopeをunknown/未評価にし、HARNESS-L2-009/該当対象ownerへ（抽出欠陥の宛先とはしない） |\n",
+        "raw_lf_sha256": "3fef99aaa434c137bb346196bbe75fb5f9e7156341fc446af4303924d03a6154"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r04-target-scope-unknown",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1625,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r04-target-scope-unknown` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-01` | 選択済み対象scopeと抽出入力がcurrent。 | 対象scopeだけをunknown状態にする。 | 当該template選択/必須input/applicabilityまたはtarget scopeをunknown/未評価にし、HARNESS-L2-009/該当対象ownerへ（抽出欠陥の宛先とはしない） |\n",
+        "raw_lf_sha256": "fd06162ddc4fcdcff16a8d6e51eea397bb2a3ed086273fd8e918efe0ee2f9db0"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r04-target-scope-conflict",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1626,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r04-target-scope-conflict` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-01` | 選択済み対象scopeと抽出入力がcurrent。 | 対象scopeだけをconflict状態にする。 | 当該template選択/必須input/applicabilityまたはtarget scopeをunknown/未評価にし、HARNESS-L2-009/該当対象ownerへ（抽出欠陥の宛先とはしない） |\n",
+        "raw_lf_sha256": "f8c7b99e7d790c49c165eaa66f8e5bd0d0c5807928aa66965a72cb700205444b"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r04-active-version-conflict",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1627,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r04-active-version-conflict` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-01` | 選択済みactive template版と抽出入力がcurrent。 | active template版だけをconflict状態にする。 | 当該template選択/必須input/applicabilityまたはtarget scopeをunknown/未評価にし、HARNESS-L2-009/該当対象ownerへ（抽出欠陥の宛先とはしない） |\n",
+        "raw_lf_sha256": "4273aa9a23038e2d730fcfc57adf4e729902cc4882e3c2889e75aa2356112490"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r04-target-scope-stale",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1628,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r04-target-scope-stale` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-01` | 選択済み対象scopeと抽出入力がcurrent。 | 対象scopeだけをstale状態にする。 | 当該template選択/必須input/applicabilityまたはtarget scopeをunknown/未評価にし、HARNESS-L2-009/該当対象ownerへ（抽出欠陥の宛先とはしない） |\n",
+        "raw_lf_sha256": "1de1c590b6ef10a4aff18ebefa0b681faa4d79a4a6c7e04fb202c91b95982ba2"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r05-root-revision-hidden",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1629,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r05-root-revision-hidden` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-03` | HARNESS-L2-009で正しく選択された有効active template revision、入力source revision/scope、branch/atom対応と、出力のsource revision/span/provenanceが一致する。 | 入力を不変に保ち、抽出結果のsource revisionだけを隠す/別値にする。他identityとbranch対応は保持する。 | 出力provenanceを照合できないatomをunknown/typed gapとして保持し、HARNESS-L2-041抽出契約ownerへ戻す。入力templateの選択・適用性が不明な場合のHARNESS-L2-009 routeとは区別する。個別owner IDが不明でも既知の責務区分を残し、unknownで消さない。 |\n",
+        "raw_lf_sha256": "ea70d375d4b84978ac8d9129377e5cab4524088ce38ebd1398faea272e07114e"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r08-digest-match-other-scope",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1630,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r08-digest-match-other-scope` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-03` | 同一active template bytes/revision、scope A、applicability、extractor identity/versionで独立再抽出しsemantic digest一致を観測する。別scope Bは未評価である。 | scope Aのdigest一致だけをscope Bの成立根拠へ外挿する。 | 外挿を拒否しscope Bを未評価に保持する。scope A内の一致は保ち、抽出器の一般的決定性や別scope成立を生成しない。HARNESSの抽出契約ownerへ誤った外挿を返す。 |\n",
+        "raw_lf_sha256": "f00844987707809e9ef583522e7048e7823fa8848ec4b2178b4fdea658738442"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r09-001",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1631,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r09-001` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-02` | 同一active template/source revision/scopeを固定し、選択branchと他要素を保持する。 | chapter/table atomsを保持し候補ledger rowだけを欠落させる。 | 候補行欠落をfindingとして返す。 戻し先: HARNESS-L2-041抽出契約owner。 |\n",
+        "raw_lf_sha256": "c3f516ec9f0b1adc5704b3998287ba2304364342efe10510938b32c754a843c9"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r09-002",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1632,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r09-002` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-01` | extractorが読めるが作成側には伏せた新template revisionを与え、固定scope/branchの全適用要素をsource span付きで抽出する。 | 変異なし。新revisionの要素を個別にatomまたはgapへ対応づける。 | 固定契約に適合する未見入力を正常として受け入れ、拒否しない。 |\n",
+        "raw_lf_sha256": "20dd41dd85dd74cf969f20e1a201796b04180ecfafc188ac288eadf88ac8d032"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r09-003",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1633,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r09-003` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-02` | 新applicability branchとそのtemplate source spanを提示し、他のbranchは保持する。 | 新branchの未対応要素だけを与える。 | 新branchをsource span付きgapとして保持する。抽出契約が不足する場合はHARNESS-L2-041へ戻し、template適用版の不足はHARNESS-L2-009/template ownerへ戻す。 |\n",
+        "raw_lf_sha256": "42a2bc4589d317331538565746916d078d9cade798da2faad641113c5329ed2a"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r10-l2-009-applicability-unknown",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1634,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r10-l2-009-applicability-unknown` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-01` | 選択template identity/revision、scope/source span、抽出器版は提示済みで、HARNESS-L2-009適用条件はcurrentである。 | 適用条件だけをunknownにする。他inputは固定する。 | 041抽出を成功/typed-gap確定扱いにせず適用範囲を未評価にし、HARNESS-L2-009/該当template ownerへ返す。owner個体ID不明でもtemplate責務区分を保持する。 |\n",
+        "raw_lf_sha256": "e3d68a533d2816370a9545b806c245127947357f25182595f32ac30bcaf70dcb"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r10-candidate-template-authority",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1635,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r10-candidate-template-authority` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-04` | selected template/application input | 041 outputがtemplate authorityを発行済みとする。 | template authority claimを拒否し、元のtemplate authority stateを変更しない。誤出力は041 contract ownerへ戻し、template ownerの個体IDはunknownを保つ。 責務個体が識別できない範囲はunknownを残し、known responsibility classを消さない。 |\n",
+        "raw_lf_sha256": "09415a13ad342c9d5f305c8b50a7c36f6efe485b770b38f74158cede98993b14"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r10-candidate-ledger-registration",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1636,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r10-candidate-ledger-registration` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-04` | valid atom/gap/provenance output | candidate rowだけからcanonical ledger登録済みとする。 | registered stateを生成せずcandidate proposalのまま保つ。誤出力は041 contract ownerへ戻す。 責務個体が識別できない範囲はunknownを残し、known responsibility classを消さない。 |\n",
+        "raw_lf_sha256": "f02a16c4811ba5eaed12ad0c4960ac28aea92868d03014601140a722f6580811"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r10-candidate-adoption",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1637,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r10-candidate-adoption` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-04` | valid atom/gap/provenance output | candidate rowだけからcanonical candidate adoptedとする。 | adopted stateを生成せずcandidateのまま保つ。採択owner identityはunknownならunknownのままにする。 責務個体が識別できない範囲はunknownを残し、known responsibility classを消さない。 |\n",
+        "raw_lf_sha256": "89d318aa68bcb1c1c4dc6806dc88d469fa62b0a8a663afe045b0a825c8ead132"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r10-candidate-requirement-agreement",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1638,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r10-candidate-requirement-agreement` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-04` | valid atom/gap/provenance output | 抽出結果だけからrequirement agreement済みとする。 | agreementを生成しない。既存requirement ownerの状態を変えず、誤出力を041 contract ownerへ戻す。 責務個体が識別できない範囲はunknownを残し、known responsibility classを消さない。 |\n",
+        "raw_lf_sha256": "f2e6deb13480a220817fa8bd66fdbbb6a494a9c3e974ec97aee87c16aea1ce44"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r10-candidate-design-success",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1639,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r10-candidate-design-success` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-04` | valid atom/gap/provenance output | 抽出結果だけからdesign successを出力する。 | design successを生成しない。設計ownerの個体ID不明はunknownのまま、既知責務区分を保つ。 責務個体が識別できない範囲はunknownを残し、known responsibility classを消さない。 |\n",
+        "raw_lf_sha256": "d9c62196622433babf8f6b601ba4237296a6dc53aed5384e3dfd537eabab7add"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r10-candidate-user-acceptance",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1640,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r10-candidate-user-acceptance` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-04` | valid atom/gap/provenance output | 抽出結果だけからuser acceptance済みとする。 | acceptanceを生成しない。対象user/acceptance authority stateを保持し、誤出力を041 contract ownerへ戻す。 責務個体が識別できない範囲はunknownを残し、known responsibility classを消さない。 |\n",
+        "raw_lf_sha256": "a438bc580c3b1f168dddb8a5dfb7f31274b8fad7ca19f71d1c383664abba3721"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r10-candidate-l3-approval",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1641,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r10-candidate-l3-approval` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-04` | valid atom/gap/provenance output | 抽出結果だけからL3 approval済みとする。 | L3 approvalを生成しない。未提示の承認authorityをunknownとして保持し、新しい承認ownerを作らない。 責務個体が識別できない範囲はunknownを残し、known responsibility classを消さない。 |\n",
+        "raw_lf_sha256": "7ec37cd038274b3b8a29c6133119ff59281a3918952f20a08ca98f71fb2b7ffa"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r10-candidate-implementation-complete",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1642,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r10-candidate-implementation-complete` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-04` | valid atom/gap/provenance output | 抽出結果だけからimplementation_complete=trueとする。 | 実装完了を生成しない。実装receiptがなければ未完/unknownのまま、責務区分を保ち個体IDを新設しない。 責務個体が識別できない範囲はunknownを残し、known responsibility classを消さない。 |\n",
+        "raw_lf_sha256": "3f4e1d56482b764d6119b84dd180df49b23240907c52d66c47ec4b8a8da632e6"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r10-candidate-os-registration",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1643,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r10-candidate-os-registration` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-04` | valid atom/gap/provenance output; OS registration receipt absent | 候補出力だけからOS registration済みとする。 | OS登録済みを生成しない。実OS receipt不足は既存OS owner区分へ戻し、041 false outputは041 contract ownerへ戻す。 責務個体が識別できない範囲はunknownを残し、known responsibility classを消さない。 |\n",
+        "raw_lf_sha256": "d05b80288b7b8248101922dc53cec0163a81d10132498ec08921301f93aeb0bb"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r10-candidate-os-save",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1644,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r10-candidate-os-save` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-04` | valid atom/gap/provenance output; OS save receipt absent | 候補出力だけからOS save/persistence済みとする。 | OS保存を主張しない。OS receipt不足は既存OS保存ownerへ、041 false outputは041 contract ownerへ戻す。 責務個体が識別できない範囲はunknownを残し、known responsibility classを消さない。 |\n",
+        "raw_lf_sha256": "d59e4e75211af4e59c3e017fd2d1f6c4f90a08bbf2dffc1b669de8f80815a145"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r10-candidate-os-projection",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1645,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r10-candidate-os-projection` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-04` | valid atom/gap/provenance output; OS projection receipt absent | 候補出力だけからOS snapshot/projection済みとする。 | projectionを主張しない。OS receipt不足は既存OS owner区分へ、041 false outputは041 contract ownerへ戻す。 責務個体が識別できない範囲はunknownを残し、known responsibility classを消さない。 |\n",
+        "raw_lf_sha256": "b4878102f62164bf6f7413ec30e379658e3f3804458ebf689ff03edba8ed8dfa"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r10-candidate-os-execution",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1646,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r10-candidate-os-execution` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-04` | valid atom/gap/provenance output; OS execution receipt absent | 候補出力だけからticket execution済みとする。 | executionを主張しない。OS receipt不足は既存OS execution ownerへ、041 false outputは041 contract ownerへ戻す。 責務個体が識別できない範囲はunknownを残し、known responsibility classを消さない。 |\n",
+        "raw_lf_sha256": "15912f10f07427ac6ada46d07c358d6ebcd54f7189dd361ca1eed8fbc6bcb63a"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r10-owner-individual-unknown-class-preserved",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1647,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r10-owner-individual-unknown-class-preserved` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-04` | 抽出gapの原因はHARNESS-L2-009 input applicability不足と識別済みだが、該当template owner個体IDは提示されずunknownである。 | 個体ID unknownだけを理由に既知のtemplate/applicability責務classを空欄またはgeneric unknownへ置換する。 | 個体owner IDはunknownのままにし、HARNESS-L2-009/template-owner責務classと戻し先を保持する。別の042/OS/041 ownerへ置換しない。 |\n",
+        "raw_lf_sha256": "e3ed23fb81e8d8081b1320c18dbb51740baa718ecf6a26686a6e20fa0aff0c2b"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r10-unresolved-obligation-aggregate-covered",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1648,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r10-unresolved-obligation-aggregate-covered` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-02` | 選択scopeの義務A/B/CのうちA/Bはatomまたは理由付きgapへ対応し、Cはsource span付きで未解決である。 | Cの未解決を残したまま親scope全体をaggregate-covered/completely extractedとclaimする。他のA/Bは不変。 | aggregate covered claimを拒否しCを未完のまま示す。A/Bの結果でCを相殺しない。041抽出契約ownerへ戻す。 |\n",
+        "raw_lf_sha256": "d4f4b0f488a8632c265b51e51dbad8572f4b44384e6de58abb4c293ac2216752"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r10-025-completion-required-before-extraction",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1649,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r10-025-completion-required-before-extraction` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-05` | 有効なactive template選択・scope・source span・ledger契約・extractor inputがそろい、HARNESS-L2-025は未完了である。 | 他のinput不変で、HARNESS-L2-025の完了だけを041抽出の開始条件にする。 | 完了を開始前提にせず041入力範囲を抽出評価する。抽出結果は設計/operationを生成しない。L2-025固有のresult statusは変更しない。 |\n",
+        "raw_lf_sha256": "f6710938471a2a44f33d0fcc2d6377a7bc3f2082814ba90f43a643a1c0f96e13"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r10-025-receipt-substitutes-extraction",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1650,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r10-025-receipt-substitutes-extraction` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-05` | HARNESS-L2-025の完了receiptはcurrentだが、041は選択template sourceの抽出結果を別に必要とする。 | L2-025 completion receiptだけを041のtemplate atom/gap結果の代わりに使う。 | receiptから041 atom/gapを生成しない。source義務をunknown/未抽出として保持し、041の選択input/抽出契約へ戻す。 |\n",
+        "raw_lf_sha256": "555cb3fdf2bcf4f149f4acfface1b088a5d355b55942a01685eaf2edd11b68dd"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r10-026-completion-required-before-extraction",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1651,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r10-026-completion-required-before-extraction` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-05` | 有効なactive template選択・scope・source span・ledger契約・extractor inputがそろい、HARNESS-L2-026は未完了である。 | 他のinput不変で、HARNESS-L2-026の完了だけを041抽出の開始条件にする。 | 完了を開始前提にせず041入力範囲を抽出評価する。抽出結果は設計/operationを生成しない。L2-026固有のresult statusは変更しない。 |\n",
+        "raw_lf_sha256": "9b840453c06a3011fd8255a34535411aa5fe64110cf29e26de89eaa6325f1f0b"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r10-026-receipt-substitutes-extraction",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1652,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r10-026-receipt-substitutes-extraction` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-05` | HARNESS-L2-026の完了receiptはcurrentだが、041は選択template sourceの抽出結果を別に必要とする。 | L2-026 completion receiptだけを041のtemplate atom/gap結果の代わりに使う。 | receiptから041 atom/gapを生成しない。source義務をunknown/未抽出として保持し、041の選択input/抽出契約へ戻す。 |\n",
+        "raw_lf_sha256": "6076cdd3c652b6e56c7c41f933d3eb47f68c03557d0d28ab3ff85ee2b572ecbe"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-11",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1653,
+        "raw_literal": "| `CASE-HARNESS-L10-041-11` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-04` | index only: authority/status-output mutation references ``CASE-HARNESS-L10-041-r10-candidate-template-authority``, ``CASE-HARNESS-L10-041-r10-candidate-ledger-registration``, ``CASE-HARNESS-L10-041-r10-candidate-adoption``, ``CASE-HARNESS-L10-041-r10-candidate-requirement-agreement``, ``CASE-HARNESS-L10-041-r10-candidate-design-success``, ``CASE-HARNESS-L10-041-r10-candidate-user-acceptance``, ``CASE-HARNESS-L10-041-r10-candidate-l3-approval``, ``CASE-HARNESS-L10-041-r10-candidate-implementation-complete``, ``CASE-HARNESS-L10-041-r10-candidate-os-registration``, ``CASE-HARNESS-L10-041-r10-candidate-os-save``, ``CASE-HARNESS-L10-041-r10-candidate-os-projection``, ``CASE-HARNESS-L10-041-r10-candidate-os-execution``, ``CASE-HARNESS-L10-041-r10-owner-individual-unknown-class-preserved``。 | 索引のみ。 | 参照先を個別評価し、個体unknown時も責務区分が維持されることを照合する。indexをnegative件数へ加えない。 |\n",
+        "raw_lf_sha256": "25bff1a2fef8edaac1ad652e8beb931945307a4800920da54356ffb4f546ed5e"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-12",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1654,
+        "raw_literal": "| `CASE-HARNESS-L10-041-12` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-05` | index only: 025/026 boundary tests ``CASE-HARNESS-L10-041-r10-025-completion-required-before-extraction``, ``CASE-HARNESS-L10-041-r10-025-receipt-substitutes-extraction``, ``CASE-HARNESS-L10-041-r10-026-completion-required-before-extraction``, ``CASE-HARNESS-L10-041-r10-026-receipt-substitutes-extraction``。 | 索引のみ。 | 参照先を個別評価し、025/026を開始前提または041出力代替にしない。indexをnegative件数へ加えない。 |\n",
+        "raw_lf_sha256": "d186b6aeab6adf9e3d987caefb66c1da01b36df85294e7b8ea78d3f2f5fecb4e"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r10-025-result-generated-from-extraction",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1655,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r10-025-result-generated-from-extraction` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-05` | 合成T0の041抽出入力・結果は有効。別scope HARNESS-L2-025の結果receiptは未提示で元状態は未評価のまま。 | 入力不変で、041 atom/gap出力から新しいL2-025 `design_result=success` fieldだけを生成する。 | `design_result`を生成せず、041の抽出候補と別scope L2-025の未評価状態を分離する。誤出力を041抽出契約ownerへ返し、025/026責務を置換しない。 |\n",
+        "raw_lf_sha256": "649966db1eb308ab05a7c34334126bcc52ddcc44b1f80d1d379d7d4dd49a7ae3"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r10-026-result-generated-from-extraction",
+        "source_revision": "3591ac05a5ca181bb582c812a4c3236dd7de681c",
+        "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1656,
+        "raw_literal": "| `CASE-HARNESS-L10-041-r10-026-result-generated-from-extraction` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-05` | 合成T0の041抽出入力・結果は有効。別scope HARNESS-L2-026の結果receiptは未提示で元状態は未評価のまま。 | 入力不変で、041 atom/gap出力から新しいL2-026 `inspection_result=success` fieldだけを生成する。 | `inspection_result`を生成せず、041の抽出候補と別scope L2-026の未評価状態を分離する。誤出力を041抽出契約ownerへ返し、025/026責務を置換しない。 |\n",
+        "raw_lf_sha256": "1bb3334cda52f166e761df5021ee78fc21870be8326bafc6b90ead06b1968eb6"
+      }
+    ],
+    "inventory_metadata_match_actual": false,
+    "stale_metadata_fields": {
+      "body_definition_rows": 59,
+      "actual_body_definition_rows": 61,
+      "new_unique_case_ids": 21,
+      "actual_new_unique_ids": 23,
+      "new_rows_including_indexes": 21,
+      "actual_new_ids_count": 23
+    }
+  },
+  "body_corrections": {
+    "correction_record": [
+      "r10 025/026 literal parentid placeholder resolved separately",
+      "synthetic T0 exact baseline for authority one-output mutation added",
+      "025 design/026 inspection result generation refusal added as separate output fields",
+      "fixed span SHA candidate mismatched actual Git raw-LF; corrected L2 ad8e344c / L11 259c3832 preserving reported values in audit"
+    ],
+    "no_parentid_placeholder_in_final_table": true,
+    "t0_baseline_literal": "**合成正常基準 T0（新r10出力拒否CASE共通）**：固定L1 revision、009で選択・適用が有効なtemplate T0/revision V0、scope S0/source span SP0、040互換ledger contract LC0、extractor EX0/version EV0を揃える。抽出入力は有効、obligation A/Bはsource span/digest/extractor version付きatomまたは理由付きgapと候補行へ対応済み。各authority/登録/採択/要求合意/設計成立/利用者受入/L3承認/実装完了を候補出力から生成しておらず、別OS操作receiptは未提示のまま。各行はT0の入力と元状態を保持し、その行に書く出力fieldだけを誤追加する。合成入力は実権限・実承認ではない。\n",
+    "t0_baseline_raw_lf_sha256": "f044b58b613f66422af92abccf668771e3dd38282714c13d3d8bb4f3055ad5c5",
+    "corrected_025_026_rows": [
+      {
+        "id": "CASE-HARNESS-L10-041-r10-025-completion-required-before-extraction",
+        "raw_literal": "| `CASE-HARNESS-L10-041-r10-025-completion-required-before-extraction` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-05` | 有効なactive template選択・scope・source span・ledger契約・extractor inputがそろい、HARNESS-L2-025は未完了である。 | 他のinput不変で、HARNESS-L2-025の完了だけを041抽出の開始条件にする。 | 完了を開始前提にせず041入力範囲を抽出評価する。抽出結果は設計/operationを生成しない。L2-025固有のresult statusは変更しない。 |\n",
+        "raw_lf_sha256": "f6710938471a2a44f33d0fcc2d6377a7bc3f2082814ba90f43a643a1c0f96e13"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r10-025-receipt-substitutes-extraction",
+        "raw_literal": "| `CASE-HARNESS-L10-041-r10-025-receipt-substitutes-extraction` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-05` | HARNESS-L2-025の完了receiptはcurrentだが、041は選択template sourceの抽出結果を別に必要とする。 | L2-025 completion receiptだけを041のtemplate atom/gap結果の代わりに使う。 | receiptから041 atom/gapを生成しない。source義務をunknown/未抽出として保持し、041の選択input/抽出契約へ戻す。 |\n",
+        "raw_lf_sha256": "555cb3fdf2bcf4f149f4acfface1b088a5d355b55942a01685eaf2edd11b68dd"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r10-026-completion-required-before-extraction",
+        "raw_literal": "| `CASE-HARNESS-L10-041-r10-026-completion-required-before-extraction` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-05` | 有効なactive template選択・scope・source span・ledger契約・extractor inputがそろい、HARNESS-L2-026は未完了である。 | 他のinput不変で、HARNESS-L2-026の完了だけを041抽出の開始条件にする。 | 完了を開始前提にせず041入力範囲を抽出評価する。抽出結果は設計/operationを生成しない。L2-026固有のresult statusは変更しない。 |\n",
+        "raw_lf_sha256": "9b840453c06a3011fd8255a34535411aa5fe64110cf29e26de89eaa6325f1f0b"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r10-026-receipt-substitutes-extraction",
+        "raw_literal": "| `CASE-HARNESS-L10-041-r10-026-receipt-substitutes-extraction` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-05` | HARNESS-L2-026の完了receiptはcurrentだが、041は選択template sourceの抽出結果を別に必要とする。 | L2-026 completion receiptだけを041のtemplate atom/gap結果の代わりに使う。 | receiptから041 atom/gapを生成しない。source義務をunknown/未抽出として保持し、041の選択input/抽出契約へ戻す。 |\n",
+        "raw_lf_sha256": "6076cdd3c652b6e56c7c41f933d3eb47f68c03557d0d28ab3ff85ee2b572ecbe"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r10-025-result-generated-from-extraction",
+        "raw_literal": "| `CASE-HARNESS-L10-041-r10-025-result-generated-from-extraction` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-05` | 合成T0の041抽出入力・結果は有効。別scope HARNESS-L2-025の結果receiptは未提示で元状態は未評価のまま。 | 入力不変で、041 atom/gap出力から新しいL2-025 `design_result=success` fieldだけを生成する。 | `design_result`を生成せず、041の抽出候補と別scope L2-025の未評価状態を分離する。誤出力を041抽出契約ownerへ返し、025/026責務を置換しない。 |\n",
+        "raw_lf_sha256": "649966db1eb308ab05a7c34334126bcc52ddcc44b1f80d1d379d7d4dd49a7ae3"
+      },
+      {
+        "id": "CASE-HARNESS-L10-041-r10-026-result-generated-from-extraction",
+        "raw_literal": "| `CASE-HARNESS-L10-041-r10-026-result-generated-from-extraction` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-05` | 合成T0の041抽出入力・結果は有効。別scope HARNESS-L2-026の結果receiptは未提示で元状態は未評価のまま。 | 入力不変で、041 atom/gap出力から新しいL2-026 `inspection_result=success` fieldだけを生成する。 | `inspection_result`を生成せず、041の抽出候補と別scope L2-026の未評価状態を分離する。誤出力を041抽出契約ownerへ返し、025/026責務を置換しない。 |\n",
+        "raw_lf_sha256": "1bb3334cda52f166e761df5021ee78fc21870be8326bafc6b90ead06b1968eb6"
+      }
+    ]
+  },
+  "earlier_source_inventory_comparison": {
+    "path": "/tmp/harness-stage3-parent041-six-suffix-candidate-2026-10-07-e015c347.json",
+    "sha256": "b11697129409c18178da1e803c3383aaf0f5fbe3b89d4d60a1b3f74170bae300",
+    "suffix_comparison": [
+      {
+        "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+        "earlier_inventory_suffix_bytes": 286,
+        "earlier_inventory_suffix_sha256": "93f07196fc0ebe3a52892813247e28c9ac528d5854b57c5252212e2f5824dfcf",
+        "earlier_reported_bytes": 286,
+        "earlier_reported_sha256": "93f07196fc0ebe3a52892813247e28c9ac528d5854b57c5252212e2f5824dfcf",
+        "root_candidate_suffix_bytes": 286,
+        "root_candidate_suffix_sha256": "93f07196fc0ebe3a52892813247e28c9ac528d5854b57c5252212e2f5824dfcf",
+        "same_text": true,
+        "delta_bytes": 0
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "earlier_inventory_suffix_bytes": 7893,
+        "earlier_inventory_suffix_sha256": "4174645252ed34adead3ed421160126a9b1e2d28b7e07f62c5cad33ba2bf75e1",
+        "earlier_reported_bytes": 7893,
+        "earlier_reported_sha256": "4174645252ed34adead3ed421160126a9b1e2d28b7e07f62c5cad33ba2bf75e1",
+        "root_candidate_suffix_bytes": 7893,
+        "root_candidate_suffix_sha256": "4174645252ed34adead3ed421160126a9b1e2d28b7e07f62c5cad33ba2bf75e1",
+        "same_text": true,
+        "delta_bytes": 0
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+        "earlier_inventory_suffix_bytes": 912,
+        "earlier_inventory_suffix_sha256": "1005f9081397006f61dc288a02ee13d4e6c74e07bbc6be411b1b5c6768ebb768",
+        "earlier_reported_bytes": 912,
+        "earlier_reported_sha256": "1005f9081397006f61dc288a02ee13d4e6c74e07bbc6be411b1b5c6768ebb768",
+        "root_candidate_suffix_bytes": 912,
+        "root_candidate_suffix_sha256": "1005f9081397006f61dc288a02ee13d4e6c74e07bbc6be411b1b5c6768ebb768",
+        "same_text": true,
+        "delta_bytes": 0
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/business-verification.md",
+        "earlier_inventory_suffix_bytes": 287,
+        "earlier_inventory_suffix_sha256": "a973d5d25f261671968a84d0c46fe0ecad3938556a336f97fb24292c704cc355",
+        "earlier_reported_bytes": 287,
+        "earlier_reported_sha256": "a973d5d25f261671968a84d0c46fe0ecad3938556a336f97fb24292c704cc355",
+        "root_candidate_suffix_bytes": 287,
+        "root_candidate_suffix_sha256": "a973d5d25f261671968a84d0c46fe0ecad3938556a336f97fb24292c704cc355",
+        "same_text": true,
+        "delta_bytes": 0
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "earlier_inventory_suffix_bytes": 26828,
+        "earlier_inventory_suffix_sha256": "95511368dfb0431d89d56d1a31e29e7561434863250caa225229a2012c15e439",
+        "earlier_reported_bytes": 26828,
+        "earlier_reported_sha256": "95511368dfb0431d89d56d1a31e29e7561434863250caa225229a2012c15e439",
+        "root_candidate_suffix_bytes": 28611,
+        "root_candidate_suffix_sha256": "7f654a35230008084da230b2683173372801827b9701635ca85bde6b27176260",
+        "same_text": false,
+        "delta_bytes": 1783
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+        "earlier_inventory_suffix_bytes": 918,
+        "earlier_inventory_suffix_sha256": "7ce5bb4fadcae470b83b86046e92663e18c4148356524aea34714e40655cc99f",
+        "earlier_reported_bytes": 918,
+        "earlier_reported_sha256": "7ce5bb4fadcae470b83b86046e92663e18c4148356524aea34714e40655cc99f",
+        "root_candidate_suffix_bytes": 918,
+        "root_candidate_suffix_sha256": "7ce5bb4fadcae470b83b86046e92663e18c4148356524aea34714e40655cc99f",
+        "same_text": true,
+        "delta_bytes": 0
+      }
+    ]
+  },
+  "limitations": [
+    "The audit records bytes at the supplied commits and tmp inputs; it does not establish semantic completeness or independent review.",
+    "Six file body hashes are verified against the specified body commit and checkpoint.",
+    "No local repository file was edited by this audit; all outputs are under /tmp."
+  ]
+}

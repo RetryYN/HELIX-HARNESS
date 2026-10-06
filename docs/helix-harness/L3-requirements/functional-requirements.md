@@ -719,6 +719,48 @@ AC-035-05はS5-027/028/042および035〜038（旧revision計測、機能数だ�
 
 **L2-019境界**：019は逆向きに対の設計または契約の不在を明らかにする入口であり、全入力不足や責務不明を無差別に送る汎用戻し先ではない。入力不足はその入力を提供する元ownerへ戻す。019 reverseの結果も本要件のscopeを拡張しない。
 
+
+## Stage 3 親041 — active template obligation extraction候補
+
+### 固定親とlegacy起点
+
+本suffixの現行PO authorityは、`docs/governance/decisions/po-decision-2026-09-29-11candidates.md:27`のHARNESS-L2-041採択 `MPR-RC-HARNESS-L2-041-003`である（判断記録blobを含むcommit `6b5de065c8bdf38b2ccf06d82bf2581824742e67`、decision file SHA-256 `6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5`、line 27 raw SHA-256 `3a8ce36e3ff309ba7a635a5f9b9469fd6cdbfe1da8e26d7a64ca4ab3fcf28a17`)。採択対象の固定内容は記録用main `5aa100319361b0cc86edd3c51815ec777d55410a`（full commit）にあり、L2 file SHA-256 `45955ffba1293b603f3c513ec1e9e328dd7bcf24b038463eb20dd480d1dc2108`、L2節digest `d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260`、L11 file SHA-256 `216a8dccfff723408fd4b54701933a8e257f29e5c775aaef2a4458d1f36d3cc7`、L11節digest `11759276200a6707762e76eeeefd901443e691bd1b0ff51b55cd3b6551fed58b`、coverage receipt r3で固定する。L2節は`product-requirements.md:957–968`、L11節は`product-acceptance.md:699–714`。PO decisionはCORE単体・`version_target: 1.0`・既存scopeを維持し、追加されたL11 oracleを含むexact pairを採択している。
+
+旧HELIX source起点は `LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:136–137`（HIL-FR-46/47、full SHA-256 `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`）。HIL-FR-46のlayer/ledger contract fieldとrow identity/source/digest/owner/edgeは041の抽出入力・候補照合元として意味再導出し、ledger contract ownerを041へ移さない。HIL-FR-47のchapter/field/row/rule/done-when/pair-contract atom、source digest、empty/TBD/unhandled/extractor-failure/duplicate finding、free completion禁止は意味を保持して再導出する。旧registry writeは候補出力へ変更し、実登録・採択・保存・snapshot・ticket executionは現行固定L2/L11のHARNESS/OS境界へ置換する。
+
+旧HELIX L3定義は `LEGACY-ASSET-9A772391C7FB1298D45F` `archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md:16–56`（SHA-256 `949b0da00d2a417e1b36d3679b89735de7adadf831f567dbe383dfe6337f19e4`）および `LEGACY-ASSET-C7F0C3B79CBAA72960BF` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md:51–53,72,80–82`（SHA-256 `8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6`）を読み、L3 functional requirement→AC→対verification traceの形とHIL-FR-18/HAC-HIL-18a/b/cのledger/atom/gap relationだけを再導出する。G3/G12 authority、old runtime/CLI、legacy layer numbering、旧5-pair・transaction/write方式は現行要件へ移さない。
+
+前の現行L3草稿 `3fd20391f842310012d09c33f5383497898b3afe:docs/helix-harness/L3-requirements/functional-requirements.md:580` と旧L10 CASE literal inventory（同revision `functional-verification.md` full SHA-256 `94704ba448b00df43651ca1dfa01835472132ce3023d829ea5bb690926fa3f02`）を起点とする。input selection/scope、obligation atom/gap、digest/atomicityは保持・再導出する。旧38 CASE IDは保持し、MPR-RC-HARNESS-L2-041-002の採択は旧判断履歴として残す。後続decisionの-003は同じL2節digestを持つ一方、L11節に原子的obligation拒否と同一入力・同一extractor/versionの再抽出digest不一致という追加oracleを含む最新採択pairであり、本起草では-003の追加oracleをAC-03と既存の対応CASEへ反映する。これは別scopeの追加やversion_target変更ではない。r05の誤routeだけを現行入力/出力責務に合わせて改訂し、元literal/hashを時点inventoryへ残す。
+
+### `FR-HARNESS-L3-041` — active templateからobligation候補を抽出しgapを示す
+
+FR/ACと対のL10候補CASEは`functional-verification.md`に同じAC IDで置く。旧L3↔L12 pair/freezeは現行L3/L10へ置換し、承認やrelease gateを生成しない。
+
+**入力**：固定HARNESS-L1 revision、HARNESS-L2-009で選択・適用されたtemplate identity/revision/applicability、対象layer/要求kind/scopeとsource span、対応する040相当ledger contract revision、extractor identity/version。これらの責務区分は個別owner identity不明で消さず、ownerが特定できない場合だけindividual identityをunknownとして保持する。
+
+**出力**：各source obligationをsource span、template revision、applicability branch、obligation種別、semantic digest、extractor/version digest付きのatomまたは理由付きtyped gapへ対応付けた候補行とfinding。candidate rowは正本ledgerへの登録・採択を意味しない。
+
+| AC ID | 受入条件 |
+|---|---|
+| `AC-HARNESS-L3-041-01` 入力選択と適用scope | 指定active template identity/revision・applicability・target scope・source inputが確定する範囲で抽出対象を評価する。入力template selection/applicability/scope/sourceがmissing/unknown/conflict/staleなら成功扱いにせず未評価へ保ち、HARNESS-L2-009または該当template ownerへ戻す。個別owner ID不明でも既知のtemplate/input責務をunknownで消さない。未選択templateの内容を選択結果から外挿しない。 |
+| `AC-HARNESS-L3-041-02` obligation dispositionとgap | 各対象source obligationはatomまたは理由付きtyped gapへ個別対応する。empty/TBD等、template sourceの内容・必要inputの意味が不足するgapは値を補完せず、HARNESS-L2-009または対象template ownerへ戻す。template選択・active revision・適用scope/branch・必要要求inputの意味または適用性がmissing/unknown/conflict/staleなら抽出結果を確定せずAC-01の入力側routeに従う。これら入力がHARNESS-L2-009で確定した後に、抽出不能、未対応branch/obligation、source span/provenance欠落、重複、split/merge、自由補完が出力側で生じた場合はHARNESS-L2-041 HARNESS-CORE extraction-contract ownerへ戻し、scope/該当義務を未完に保つ。ledger contract incompatibilityは既存040相当contract ownerへ戻す。戻し先の個体owner identityがunknownでも、ここに示した既知の責務区分をunknownで置換しない。 必須要素の欠落、empty/TBD、ledger contract incompatibilityを含む版不一致、または出力側gap/errorは、原因別の戻し先を保ったままscopeと該当義務を未完に保ち、scope完了claimを拒否する。 LLM自由補完、隠れた欠落、aggregate parentだけのcovered claimを拒否する。 |
+| `AC-HARNESS-L3-041-03` atomicityと出力provenance | obligation split/merge、source span/revision/applicability/digest/extractor versionと実抽出inputの不一致を照合する。異なる二つのobligationは、それぞれのsource spanに対応する個別atomで出力し、一つの複合atomへまとめた結果は原子性不一致として拒否しscopeを未解決に保つ。さらに同一active template bytes/revision、scope、applicability input、extractor identity/versionを固定して独立に再抽出した結果を比較し、semantic digestが異なる場合は非決定的抽出findingとしてscopeを未解決に保つ。同一digestはこの固定input/scopeに限る比較結果であり、他scopeや抽出器一般の決定性へ外挿しない。入力の選択・適用性が有効なまま抽出出力のsource revision/span/provenanceだけが欠ける・違う場合はHARNESS-L2-041抽出契約ownerへ戻す。入力選択/applicability自体がunknownなら009へ、ledger contract incompatibilityなら040相当contract ownerへ戻す。個体owner unknownでもknown responsibility classは維持する。 |
+| `AC-HARNESS-L3-041-04` 非権威性と責務境界 | atom/gap/candidate rowからtemplate authority、canonical ledger registration/adoption、requirement agreement、design success、user acceptance、L3 approval、implementation completionを生成しない。OS registration/save/snapshot-projection/ticket-executionは別OS契約とreceiptに属し、候補出力から発生済みにしない。HARNESSが生成した誤ったauthority/status claimは041抽出契約ownerへ戻し、実OS receiptの不足は既存OS owner区分へ戻す。owner個体identity不明はunknownのまま残し責務区分を捨てない。 |
+| `AC-HARNESS-L3-041-05` 025/026との境界 | L2-025/026の具体設計・pair oracle完了を041抽出の開始前提にしない。025/026 receiptで041抽出結果を代替・生成せず、041の候補出力から025/026設計/inspection結果を生成しない。041のinput contract内で得た結果に限る。 |
+
+### 旧source・責務境界の項目別処置
+
+| 項目 | 旧source / 保持点 | 処置・変更理由 |
+|---|---|---|
+| ledger contractとrow provenance | HIL-FR-46 | ledger type/粒度/node-edge/authority/input-output/gate/template版、row identity/revision/source/digest/status/owner/edgeは照合対象として再導出。041をregistry writerやcatalog authorityにしないのは固定L2-041/040のownership境界。 |
+| template atomic obligations / gap | HIL-FR-47、HIL-FR-18 | atom種類、gap可視化、empty/TBD/failure/duplicate、自由補完禁止を再導出。legacy候補行のdirect ledger append/実行を現行候補＋別OS operationへ置換。 |
+| L3/AC→対verification | legacy L3 README・HR-FR-HIL-18/HAC-HIL-18 | requirement/AC/verification traceを部分再利用。G3 freeze、L12 production acceptance代替、旧CLI/hard gateは移植しない。 |
+| 直前L3草稿とCASE | `3fd20391...` L3 FR-041/L10-041 | input/scope, atom/gap, atomicity/digestを再導出、38旧IDを維持。旧r05の出力source revision mismatch→009誤routeを、入力selectionと041出力provenance mismatchの差に基づき修正。旧raw row/SHAはこの草稿のsource inventoryへ保存。 |
+
+## Stage 3 親041の業務要件
+
+HARNESS-L2-041から独立business requirement、business owner、ROI/KPI/商業閾値は導出しない。template atom/gap/candidate rowの存在、coverage、fixture数から事業価値・利用者受入・要求合意・承認を作らない。技術的な抽出contractとbusiness outcomeを混同しない。
+
 **採択済み固定親**：PO `po-decision-2026-09-30-live26.md:39,72`の登録`MPR-RC-HARNESS-L2-049-003`。source_repository_revision `ea6f756f96a7370de78e412d737c7a7ed472114a`、L2 `product-requirements.md:1070–1092` SHA-256 `a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116`、L11 `product-acceptance.md:802–814` SHA-256 `f3fb47da21371084e9f8c7c7f7ca6dd945c8e98ae7c7b70597c3fc44e4e08ee7`。旧318のL11および登録-002を親にしない。
 
 ## Stage 3 親049の表示計測要件（採択L2-049 / MPR-RC-HARNESS-L2-049-003）
