@@ -3294,3 +3294,68 @@ FVの現行baseline/mutation/oracle文は旧公開文書のliteral copyではな
 ### 観測点・判定限界
 
 同一source/revision/scopeでの比較条件、resultごとの成立/不成立/未評価、元closureの不変、evidence-backed relationの根拠、route roleとsource個別identityの別々の記録、評価出力によるticket/authority状態変更の有無を観測する。合格・実行結果は未取得である。本表はfixture候補であり、その行数やID保持から完全性・実行合格を推論しない。
+
+### HELIXLABO-L2-071 — GitHub監査task class別qualification（Stage 5、version_target: 1.0、起草候補）
+
+**採択済み固定親とPO根拠**：PO判断記録 `3795bf0dcb731231a0b5ca1faa3cb67bdfeda22a` の `docs/governance/decisions/po-decision-2026-09-30-live26.md:50` は `HELIXLABO-L2-071` を通常採択22件に含むものとして承認し、L2節digest `3036e4c300ee6f78e74b819657d456c0bad08b8ccb483882cfc3b59fa5bbbe1f` とL11節digest `029c6bcea5a206a15c8bbe9706ff25917fbf9a6496b3891288fc2660634f7bc0` に固定する。決定の`source_repository_revision`は `ea6f756f96a7370de78e412d737c7a7ed472114a`、`decision_basis_revision`は `81d1f35f9c5793c5312be4ae52526c96b609c254`。この二つを同一revisionと扱わない。
+
+固定L2本文は `ea6f756f96a7370de78e412d737c7a7ed472114a:docs/helix-labo/L2-requirements/labo-requirements.md:576–594`（全体SHA-256 `cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6`、節SHA-256 `3036e4c300ee6f78e74b819657d456c0bad08b8ccb483882cfc3b59fa5bbbe1f`）、固定L11は同revisionの `docs/helix-labo/L11-acceptance/labo-acceptance.md:309–328`（全体SHA-256 `39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a`、節SHA-256 `029c6bcea5a206a15c8bbe9706ff25917fbf9a6496b3891288fc2660634f7bc0`）である。PO行は `MPR-RC-HELIXLABO-L2-071-001` を参照する。候補中の `draft_candidate` は固定本文metadataであり、authority状態をそれ自体から読み替えない。
+
+**旧HELIX sourceと処置**：選択inputは `LEGACY-ASSET-A6926200F28B26300432` の旧L1 `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md:67,69`（revision `3795bf0dcb731231a0b5ca1faa3cb67bdfeda22a`のarchive bytes、file SHA-256 `e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765`、span 67–69 SHA-256 `ab29276edf0e04c4c163ab5d4e3889b0c845fbbd86fc0f7d23f8bd32a7ffdb4e`）である。3L-BR-008から、task class / model revision単位の評価、qualification・表示称号・permission/authority・assignment roleの分離、記録済みmajor missまたはmodel revision更新による資格対象revisionの失効だけを意味再導出する。
+
+旧L3 `LEGACY-ASSET-A26561A0EF7396D8F017`（同archive revisionの `three-lane-cloud-governance-requirements.md:77–79`、file SHA-256 `4b388cda67484f1808b0f4b8834d5d234a47de49f7db6dcb12d92d2dcfbee185`、span SHA-256 `e7c4bec23a84c57b06c826c67ae19d011293a689d1b7463c10ea0d5950a313dd`）と旧acceptance `LEGACY-ASSET-E9D6CA411D75485A0984`（`three-lane-cloud-governance-acceptance.md:44–47`、file SHA-256 `785421188d23f371290ff5bacecba6c5215e7baa66110c461f548cae8f6a2fc7`、span SHA-256 `db3f977c22140f8ef9cb9628fa0341fe261daabaf7240051211df91ce6406993`）は歴史的contextに限る。旧7 class固定一覧、状態遷移列、expiry条件、provider/lane、旧runtime/test behaviorを移さない。未確認のconsumerを読み切ったとは主張しない。
+
+**適用・責務境界**：対象task classは呼出し元が選択したscopeから受け取り、既定集合を作らない。qualification recordはtask class・model revision・evaluation scope・evidenceへ束縛する。表示称号、資格状態、permission/authority、assignment roleは別identity/fieldとして保持し、相互推論しない。LABOはqualification evidenceを記録・返却するだけで、provider/lane/modelの選択、評価実行、permission、assignment、authorityを発行/変更しない。permissionは既存SECURITY責務、assignmentは既存OS責務に残す。資格失効とpermission失効は別状態である。
+
+**unknown・失効条件**：class、revision、scope、evidenceが不足・stale・矛盾するときはqualificationを `unknown`/未評価にする。記録済みmajor missは対象revisionのqualificationを失効させる。model revision更新は旧revisionのqualificationを失効させ、新revisionへ継承しない。major missの分類・rubric、数値threshold、task class既定値、expiry条件、再評価方法/時期を新設しない。不足した評価根拠は、個体source/owner identityを特定できるかにかかわらず、その根拠を供給する既存source owner責務区分へ返す。個体identity unknownは別に保持する。role名やqualification outcomeから未特定ownerを作らない。
+
+**L2-055との関係**：採択済み `HELIXLABO-L2-055` のWorker履歴に基づく作業種別/model class別の水準・根拠・範囲・未評価集計は既存契約として再利用する。071が追補するのはGitHub監査task classとmodel revisionに結ぶqualificationおよび二つの固定失効条件である。055/059の一般評価・比較契約、OS assignment、SECURITY permission/expiry/revocationを複製・変更しない。
+
+## L10照合ケース候補
+
+L3 functional requirementsで定義した `LABO-071-AC-01`（同じ対象の正常）、`LABO-071-AC-02`（未見class/revisionの正常）、`LABO-071-AC-03`（不成立・返却）を適用する。この表はACを再定義せず、旧IDの保持とfixture候補を索引化する。
+
+**共通正常baseline B0（合成）**：selected task class C0、model revision V0、evaluation scope S0、revision/sourceが一致するevidence E0とその識別可能なsource identityを持つ。qualification state Q0、表示title T0、permission P0、assignment role A0は各自別field/identityとして既存記録にある。B0は有効evidenceで失効事象なし。これは合成baselineであり、実資格・実permission・実assignment・実測を表さない。未見CASE02は別class/revision/scopeの固有evidenceを結果閲覧前に固定し、B0を事後変更しない。
+
+**6列・旧24 IDの再導出matrix**
+
+| CASE ID | FR trace | AC | baseline / fixture準備 | 単一の変異 | 期待oracle・返却 |
+|---|---|---|---|---|---|
+| `L10-LABO-071-CASE-01` | `LABO-071-FR-01` | `LABO-071-AC-01` | B0: 選択task class C0、model revision V0、scope S0、revision整合したevidence E0とsource identity、資格対象relationが固定済み。title T0、qualification state Q0、permission P0、assignment role A0は別identity/fieldで記録。 | 変異なし（正常合成fixture）。 | Q0をE0に基づきS0/C0/V0へ記録。T0/P0/A0は不変。合成fixtureであり実評価ではない。 |
+| `L10-LABO-071-CASE-02` | `LABO-071-FR-01/03` | `LABO-071-AC-02` | B1: 結果を見る前に選択された新task class C1×model revision V1×scope S1。固有evidence E1がある。B0とは別の対象。 | 変異なし（未見組合せの正常fixture）。 | C1/V1固有のE1だけでstateを判定。C0/V0やtitleから流用せず既定class集合を補わない。 |
+| `L10-LABO-071-CASE-03a` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | B0のclass/revision/scope/evidenceは一致し、source revisionはcurrent。 | evidence source revisionだけstaleにする。 | qualificationをunknown/未評価にし、他class/revision/scopeやtitleから補わない。不足・不一致の評価根拠を供給する既存source owner責務区分へ返し、個体source/owner identity unknownは別に保持する。 |
+| `L10-LABO-071-CASE-03b` | `LABO-071-FR-01` | `LABO-071-AC-03` | B0のevidenceはC0/V0/S0に一致。 | task class fieldだけをC1へ変える。 | qualificationをunknown/未評価にし、他class/revision/scopeやtitleから補わない。不足・不一致の評価根拠を供給する既存source owner責務区分へ返し、個体source/owner identity unknownは別に保持する。 |
+| `L10-LABO-071-CASE-03c` | `LABO-071-FR-02` | `LABO-071-AC-03` | B0のV0 qualification Q0は有効なevidenceに結び付き、major missなし。 | model revisionだけV0→V1へ更新。 | V0のQ0を失効し、V1へ継承しない。V1固有evidenceがない間は未評価。未定義ownerを作らない。 |
+| `L10-LABO-071-CASE-03d` | `LABO-071-FR-02/03` | `LABO-071-AC-03` | B0対象V0についてmajor miss M0がsource recordに確実に記録済み。 | 出力/summaryだけで記録済みM0を隠す。元source recordは不変。 | 記録済みmajor missに従いV0 qualificationを失効させる。summaryによる隠蔽を拒否し元source recordを保つ。再評価方法・時期・ownerを新設しない。 |
+| `L10-LABO-071-CASE-03e` | `LABO-071-FR-03` | `LABO-071-AC-03` | B0のQ0/P0状態は別々のsource recordにありpermission issueは発生していない。 | qualification Q0だけから新permission P1を出力しようとする。 | P1生成を拒否。既存SECURITY permission stateを変えず、実際のpermission根拠不足があればSECURITY責務へ返す。 |
+| `L10-LABO-071-CASE-03f` | `LABO-071-FR-03` | `LABO-071-AC-03` | B0のQ0/A0は別state。OS assignment sourceは不変。 | qualification Q0だけからassignment role A1を出力する。 | A1生成を拒否。既存OS assignment stateを変えない。 |
+| `L10-LABO-071-CASE-04a` | `LABO-071-FR-02/03` | `LABO-071-AC-03` | B0の入力・stateは固定親に従い、独自thresholdやscheduleは存在しない。 | LABO出力へ根拠のないqualification threshold field一つを追加する。 | 追加ruleを拒否。固定親外の値、期限、ownerを作らない。 |
+| `L10-LABO-071-CASE-05` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | B0からtask class以外の入力、E0、scope、stateは揃う。 | task class fieldだけ欠落。 | qualificationをunknown/未評価にし、他class/revision/scopeやtitleから補わない。不足・不一致の評価根拠を供給する既存source owner責務区分へ返し、個体source/owner identity unknownは別に保持する。 |
+| `L10-LABO-071-CASE-06` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | B0からmodel revision以外の入力とE0は揃う。 | model revisionだけ欠落。 | qualificationをunknown/未評価にし、他class/revision/scopeやtitleから補わない。不足・不一致の評価根拠を供給する既存source owner責務区分へ返し、個体source/owner identity unknownは別に保持する。 |
+| `L10-LABO-071-CASE-07` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | B0のclass/revision/evidenceは有効でevaluation scopeが明示される。 | evaluation scopeだけ欠落。 | qualificationをunknown/未評価にし、他class/revision/scopeやtitleから補わない。不足・不一致の評価根拠を供給する既存source owner責務区分へ返し、個体source/owner identity unknownは別に保持する。 |
+| `L10-LABO-071-CASE-08` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | B0のclass/revision/scopeはある。 | evidence fieldだけ欠落。 | qualificationをunknown/未評価にし、他class/revision/scopeやtitleから補わない。不足・不一致の評価根拠を供給する既存source owner責務区分へ返し、個体source/owner identity unknownは別に保持する。 |
+| `L10-LABO-071-CASE-09` | `LABO-071-FR-02` | `LABO-071-AC-03` | CASE-03dのV0記録済みmajor miss M0。 | 独立変異なし（CASE-03dへの索引）。 | CASE-03dの失効oracleを参照。同じmissを独立fixture/分母に数えない。 |
+| `L10-LABO-071-CASE-10` | `LABO-071-FR-02/03` | `LABO-071-AC-03` | B0からmajor miss statusがknown absence。 | major miss statusだけunknownにする。 | qualificationをunknown/未評価にし、他class/revision/scopeやtitleから補わない。不足・不一致の評価根拠を供給する既存source owner責務区分へ返し、個体source/owner identity unknownは別に保持する。 |
+| `L10-LABO-071-CASE-11` | `LABO-071-FR-02` | `LABO-071-AC-03` | CASE-03cのV0→V1 model update。 | 独立変異なし（CASE-03cへの索引）。 | CASE-03cを直接参照し、revision変更を二重計上しない。 |
+| `L10-LABO-071-CASE-12` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | B0のT0とQ0は同じ対象について別々のfield/sourceを持つ。 | 表示title T0だけをqualification Q0と同一値・同一状態として扱う。 | titleとqualificationを分離。titleだけでは資格を得ず、missing source identityはunknown。 |
+| `L10-LABO-071-CASE-13` | `LABO-071-FR-03` | `LABO-071-AC-03` | CASE-03eのQ0/P0独立field。 | 独立変異なし（CASE-03eへの索引）。 | CASE-03eを参照しpermission生成を二重計上しない。 |
+| `L10-LABO-071-CASE-14` | `LABO-071-FR-03` | `LABO-071-AC-03` | B0でqualificationから独立したauthority stateは既存sourceに保管。 | qualification Q0だけから新authority stateを生成。 | authority生成を拒否し、既存owner stateを維持。qualificationからowner identityを推測せずunknownとする。 |
+| `L10-LABO-071-CASE-15` | `LABO-071-FR-03` | `LABO-071-AC-03` | CASE-03fのQ0/A0独立field。 | 独立変異なし（CASE-03fへの索引）。 | CASE-03fを参照しassignment変更を二重計上しない。 |
+| `L10-LABO-071-CASE-16` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | B0のclass/revision/scope/evidence contentはある。 | evidence source identityだけ欠落。 | qualificationをunknown/未評価にし、他class/revision/scopeやtitleから補わない。不足・不一致の評価根拠を供給する既存source owner責務区分へ返し、個体source/owner identity unknownは別に保持する。 |
+| `L10-LABO-071-CASE-17` | `LABO-071-FR-03` | `LABO-071-AC-03` | evidence defectとsource identityが入力で特定可能。 | 返却先だけをLABO固定に変更し、元source owner参照を無視。 | LABOへの一律返却を拒否し、不足評価根拠を供給する既存source owner責務区分へ返す。個体identity unknownでも責務区分を消さず別記する。 |
+| `L10-LABO-071-CASE-18` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | CASE-16のevidence-source identity欠落。 | 独立変異なし（CASE-16への索引）。 | CASE-16のunknown oracleを直接参照。同一欠落を二重計上しない。 |
+| `L10-LABO-071-CASE-19` | `LABO-071-FR-02/03` | `LABO-071-AC-03` | B0のQ0 evidence有効。recorded major missなし、model revision更新なし。 | 既存の有効evidenceとrevisionを保ち、時刻経過だけを理由にqualification expiredという誤出力field一つを追加する。 | 固定親にないexpiry条件による失効を拒否。根拠あるQ0状態を保持し、他要件がunknownならunknownのまま。新expiry/windowを定義しない。 |
+
+旧a4公開CASE ID保持（24件。旧literal、物理line、raw-LF SHA-256はpreflight JSON `old_071_case_definitions` に保全）:
+
+`L10-LABO-071-CASE-01`, `L10-LABO-071-CASE-02`, `L10-LABO-071-CASE-03a`, `L10-LABO-071-CASE-03b`, `L10-LABO-071-CASE-03c`, `L10-LABO-071-CASE-03d`, `L10-LABO-071-CASE-03e`, `L10-LABO-071-CASE-03f`, `L10-LABO-071-CASE-04a`, `L10-LABO-071-CASE-05`, `L10-LABO-071-CASE-06`, `L10-LABO-071-CASE-07`, `L10-LABO-071-CASE-08`, `L10-LABO-071-CASE-09`, `L10-LABO-071-CASE-10`, `L10-LABO-071-CASE-11`, `L10-LABO-071-CASE-12`, `L10-LABO-071-CASE-13`, `L10-LABO-071-CASE-14`, `L10-LABO-071-CASE-15`, `L10-LABO-071-CASE-16`, `L10-LABO-071-CASE-17`, `L10-LABO-071-CASE-18`, `L10-LABO-071-CASE-19`.
+
+CASE-09/11/13/15/18は旧literal上も索引であり、各主fixtureへ直接参照させ、独立fixture/negative分母へ重複計上しない。旧ID保持、文字列分類、行数は意味完全性や独立性の証明ではない。
+
+**旧対応と限界**：旧3L-BR-008のtask class×model revision評価、state分離、major miss/model update時の資格失効を意味再導出した。旧L3の7固定class、段階的qualification lifecycle、expiry、provider/lane、pass authorityを含めない。review05 comment `6010745544`の正式本文全体から071明示IDが0行だったことはpreflight範囲の検索結果として保持し、review全体の未言及や承認とは主張しない。
+
+**実行状態**：全fixtureは未実行の設計候補。実runtime/test/CI、新しい閾値/分類/期限/再評価scheduleは使わない。独立review、Fable見解、L3委任承認、L10実行/実測、資格付与、permission/assignment変更はこの文書から生成しない。
+| `L10-LABO-071-CASE-20` | `LABO-071-FR-03` | `LABO-071-AC-03` | CASE-01と同じB0。C0/V0/S0/E0/Q0、title T0・permission P0・assignment A0は固定親どおり別field/state。synthetic only。 | Qualification Q0だけを根拠に、別fieldの実行許可を新規生成する出力を一つ追加要求する。ほかの入力・出力は変えない。 | 実行許可の生成を拒否し、既存のpermission/authority stateは変えない。実際のpermission責務は固定親のSECURITY区分のまま。新しい権限field/APIを定義するケースではない。 |
+| `L10-LABO-071-CASE-21` | `LABO-071-FR-03` | `LABO-071-AC-03` | CASE-01と同じB0。C0/V0/S0/E0/Q0、title T0・permission P0・assignment A0は固定親どおり別field/state。synthetic only。 | Qualification Q0だけを根拠に、要件の採否を新規生成する出力を一つ追加要求する。ほかの入力・出力は変えない。 | 採否出力を拒否し、PO decision/adoption stateは変えない。GitHub記録やqualificationからPO判断を生成しない。出力slotはfixture上の観測であり、新schema/APIを作らない。 |
+| `L10-LABO-071-CASE-22` | `LABO-071-FR-03` | `LABO-071-AC-03` | CASE-01と同じB0。C0/V0/S0/E0/Q0、title T0・permission P0・assignment A0は固定親どおり別field/state。synthetic only。 | Qualification Q0だけを根拠に、要件の完了を新規生成する出力を一つ追加要求する。ほかの入力・出力は変えない。 | 完了出力を拒否し、requirement lifecycle stateは変えない。qualificationは実装・実行・完了証跡ではない。出力slotはfixture上の観測であり、新schema/APIを作らない。 |
+| `L10-LABO-071-CASE-23` | `LABO-071-FR-02/03` | `LABO-071-AC-03` | B0の入力・stateは固定親に従い独自scheduleは存在しない。 | LABO出力へ根拠のないrequalification schedule field一つを追加する。 | schedule追加を拒否し、再評価方法・時期・新ownerを定めない。 |

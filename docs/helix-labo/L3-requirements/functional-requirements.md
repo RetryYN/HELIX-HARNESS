@@ -1856,3 +1856,29 @@ L10 CASE IDsは照合用であり、ID数・独立fixture数から完全性を�
 ### 旧sourceとの対応
 
 `LEGACY-ASSET-3A15E5645D2D2A59DFF5` の旧ticket要求は、閉じたticketのclosureを保ち、後日のfinding等をevidence-backed relation付き追補assessmentへ接続し、時間的近接/pathだけで原因ticketを決めず、window未満・未追跡・打切りをzero defectsにしない点を**意味から再導出**する。旧storage/実行方式をbyte再利用しない。`LEGACY-ASSET-F6E9EA3422A0EF1DF090` のfeedback品質proxy拒否文は、件数減少のみで品質を証明しない限定根拠として**意味から再導出**する。reason class・分母・window・評価の候補は固定L2と登録済みO2 source atomに結び直して新たに起こす。旧source全体・consumer全体の移管や因果証明は主張しない。
+
+### HELIXLABO-L2-071 — GitHub監査task class別qualification（Stage 5、version_target: 1.0、起草候補）
+
+**採択済み固定親とPO根拠**：PO判断記録 `3795bf0dcb731231a0b5ca1faa3cb67bdfeda22a` の `docs/governance/decisions/po-decision-2026-09-30-live26.md:50` は `HELIXLABO-L2-071` を通常採択22件に含むものとして承認し、L2節digest `3036e4c300ee6f78e74b819657d456c0bad08b8ccb483882cfc3b59fa5bbbe1f` とL11節digest `029c6bcea5a206a15c8bbe9706ff25917fbf9a6496b3891288fc2660634f7bc0` に固定する。決定の`source_repository_revision`は `ea6f756f96a7370de78e412d737c7a7ed472114a`、`decision_basis_revision`は `81d1f35f9c5793c5312be4ae52526c96b609c254`。この二つを同一revisionと扱わない。
+
+固定L2本文は `ea6f756f96a7370de78e412d737c7a7ed472114a:docs/helix-labo/L2-requirements/labo-requirements.md:576–594`（全体SHA-256 `cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6`、節SHA-256 `3036e4c300ee6f78e74b819657d456c0bad08b8ccb483882cfc3b59fa5bbbe1f`）、固定L11は同revisionの `docs/helix-labo/L11-acceptance/labo-acceptance.md:309–328`（全体SHA-256 `39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a`、節SHA-256 `029c6bcea5a206a15c8bbe9706ff25917fbf9a6496b3891288fc2660634f7bc0`）である。PO行は `MPR-RC-HELIXLABO-L2-071-001` を参照する。候補中の `draft_candidate` は固定本文metadataであり、authority状態をそれ自体から読み替えない。
+
+**旧HELIX sourceと処置**：選択inputは `LEGACY-ASSET-A6926200F28B26300432` の旧L1 `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md:67,69`（revision `3795bf0dcb731231a0b5ca1faa3cb67bdfeda22a`のarchive bytes、file SHA-256 `e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765`、span 67–69 SHA-256 `ab29276edf0e04c4c163ab5d4e3889b0c845fbbd86fc0f7d23f8bd32a7ffdb4e`）である。3L-BR-008から、task class / model revision単位の評価、qualification・表示称号・permission/authority・assignment roleの分離、記録済みmajor missまたはmodel revision更新による資格対象revisionの失効だけを意味再導出する。
+
+旧L3 `LEGACY-ASSET-A26561A0EF7396D8F017`（同archive revisionの `three-lane-cloud-governance-requirements.md:77–79`、file SHA-256 `4b388cda67484f1808b0f4b8834d5d234a47de49f7db6dcb12d92d2dcfbee185`、span SHA-256 `e7c4bec23a84c57b06c826c67ae19d011293a689d1b7463c10ea0d5950a313dd`）と旧acceptance `LEGACY-ASSET-E9D6CA411D75485A0984`（`three-lane-cloud-governance-acceptance.md:44–47`、file SHA-256 `785421188d23f371290ff5bacecba6c5215e7baa66110c461f548cae8f6a2fc7`、span SHA-256 `db3f977c22140f8ef9cb9628fa0341fe261daabaf7240051211df91ce6406993`）は歴史的contextに限る。旧7 class固定一覧、状態遷移列、expiry条件、provider/lane、旧runtime/test behaviorを移さない。未確認のconsumerを読み切ったとは主張しない。
+
+**適用・責務境界**：対象task classは呼出し元が選択したscopeから受け取り、既定集合を作らない。qualification recordはtask class・model revision・evaluation scope・evidenceへ束縛する。表示称号、資格状態、permission/authority、assignment roleは別identity/fieldとして保持し、相互推論しない。LABOはqualification evidenceを記録・返却するだけで、provider/lane/modelの選択、評価実行、permission、assignment、authorityを発行/変更しない。permissionは既存SECURITY責務、assignmentは既存OS責務に残す。資格失効とpermission失効は別状態である。
+
+**unknown・失効条件**：class、revision、scope、evidenceが不足・stale・矛盾するときはqualificationを `unknown`/未評価にする。記録済みmajor missは対象revisionのqualificationを失効させる。model revision更新は旧revisionのqualificationを失効させ、新revisionへ継承しない。major missの分類・rubric、数値threshold、task class既定値、expiry条件、再評価方法/時期を新設しない。不足した評価根拠は、個体source/owner identityを特定できるかにかかわらず、その根拠を供給する既存source owner責務区分へ返す。個体identity unknownは別に保持する。role名やqualification outcomeから未特定ownerを作らない。
+
+**L2-055との関係**：採択済み `HELIXLABO-L2-055` のWorker履歴に基づく作業種別/model class別の水準・根拠・範囲・未評価集計は既存契約として再利用する。071が追補するのはGitHub監査task classとmodel revisionに結ぶqualificationおよび二つの固定失効条件である。055/059の一般評価・比較契約、OS assignment、SECURITY permission/expiry/revocationを複製・変更しない。
+
+- **`LABO-071-FR-01` — task-class/model-revision qualification記録**：選択scopeのtask class、対象model revision、evaluation scope、evidence source/revisionとqualification stateを一つの追跡可能な記録に結ぶ。qualificationを適用するclass×revision×scopeと根拠が一致するときだけその状態を返す。表示称号、qualification、permission/authority、assignment roleのidentity/stateを独立に保ち、他fieldからqualificationを補わない。
+- **`LABO-071-FR-02` — 固定失効事象の適用**：根拠sourceに対象revisionのmajor missが記録されたとき、その資格対象revisionのqualificationを失効させる。model revisionが更新されたとき旧revisionのqualificationを失効し、新revisionへ継承しない。新revisionはそのrevision固有のevidenceが記録されるまで未評価とする。二つの事象以外のexpiry triggerを足さない。
+- **`LABO-071-FR-03` — unknown・返却・非authority**：class/revision/scope/evidenceが欠落、stale、矛盾、またはsource identityを結べない場合はqualificationをunknown/未評価とする。不足evidenceは個体identity特定の有無にかかわらずその既存source責務区分へ返し、個体identity unknownは別に保持する。permissionやauthorityの問題はSECURITY、assignmentの問題はOSの既存責務へ返し、LABOへ一律routeしない。qualificationから称号、permission、authority、assignment、実行許可、採否、完了を生成しない。
+
+**受入条件候補**
+
+- **`LABO-071-AC-01` — 同じ対象の正常**：evaluation evidenceが同一task class/model revisionへ結び付く場合、そのscopeのqualification stateを証拠どおり返す。称号/permission/roleは変えない。
+- **`LABO-071-AC-02` — 未見class/revisionの正常**：新たに選択されたtask class/model revisionの組合せをその固有evidenceで評価し、別class・別revision・称号から未評価を補わない。既定class集合を作らない。
+- **`LABO-071-AC-03` — 不成立・返却**：class/revision/scope/evidence欠落・stale・mismatch、record済みmajor miss見落とし、資格のrevision間継承、qualificationと称号/permission/authority/assignmentの同一視・生成、qualificationからの実行許可・採否・完了の生成を各々拒否する。不足評価根拠は個体identity特定の有無にかかわらず原因となった既存source責務区分へ返す。permissionはSECURITY、assignmentはOSへ返し、個体owner不明はunknownとする。
