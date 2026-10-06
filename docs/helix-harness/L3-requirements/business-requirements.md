@@ -131,6 +131,12 @@ HARNESS-L2-034から独立business requirement、事業KPI、ROI閾値または�
 
 HARNESS-L2-041から独立business requirement、business owner、ROI/KPI/商業閾値は導出しない。template atom/gap/candidate rowの存在、coverage、fixture数から事業価値・利用者受入・要求合意・承認を作らない。
 
+## Stage 3 親047の業務要件
+
+| L2親 | business requirement | 理由 |
+|---|---|---|
+| `HARNESS-L2-047` | 独立business requirementを導出しない | specialist必要性の測定とruntime-neutral契約生成は固定要求の機能責務であり、別の業務成果や固定team-sizeを追加しない。 |
+
 ### HELIX-HARNESS L2-044 — 業務要件（Stage 3、version_target: 1.0、起草候補）
 
 起草候補。Stage 3、`version_target: 1.0`。POがHARNESS-L2-044に条件付き採択したB route / Design Contract Portfolioを対象とする。この候補はL3承認・実装・実行・個別部品配置・設計成立を表さない。

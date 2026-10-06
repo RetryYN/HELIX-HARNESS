@@ -203,6 +203,12 @@ fixture definition数と実測母集団は異なる。対のL10機能総合検�
 
 NFR候補はL10定義の測定母集団の設計にとどまり、抽出器の性能や実行成功を主張しない。
 
+## Stage 3 親047の非機能候補
+
+| NFR候補 / L2親 | 候補値 | 固定根拠 | 限界 |
+|---|---|---|---|
+| `HARNESS-L2-047` | 共通の数値NFR/thresholdなし | 固定L2はtaskに適用される測定可能な利益を要求するが、共通thresholdを追加しない。 | 固定provider/model、価格閾値、Worker人数・team sizeを設けない。budgetの値/実行適用はOS既存契約。 |
+
 ### HELIX-HARNESS L2-044 — NFR候補（Stage 3、version_target: 1.0、起草候補）
 
 起草候補。Stage 3、`version_target: 1.0`。POがHARNESS-L2-044に条件付き採択したB route / Design Contract Portfolioを対象とする。この候補はL3承認・実装・実行・個別部品配置・設計成立を表さない。
