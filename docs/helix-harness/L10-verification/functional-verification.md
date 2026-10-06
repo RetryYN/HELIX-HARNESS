@@ -1639,7 +1639,7 @@ AC-018-01の入力条件はR001〜R034に加えR056/R057で個別欠落、R058�
 
 ## Stage 3 親041の機能総合検証CASE
 
-未実行の候補設計。旧38 CASE IDはすべて維持し、固定PO-adopted -002の意味にAC帰属と戻し先を再導出する。old source raw literal/SHAは添付authoring inventoryに保存する。r05 output provenance mutationはIDを保って修正し、input applicabilityを009へ戻すケースと041 output contract errorを混ぜない。索引は独立fixtureでなく、件数から完全性をclaimしない。
+未実行の候補設計。旧38 CASE IDはすべて維持し、固定PO-adopted -003の意味にAC帰属と戻し先を再導出する。old source raw literal/SHAは添付authoring inventoryに保存する。r05 output provenance mutationはIDを保って修正し、input applicabilityを009へ戻すケースと041 output contract errorを混ぜない。索引は独立fixtureでなく、件数から完全性をclaimしない。
 
 **合成正常基準 T0（新r10出力拒否CASE共通）**：固定L1 revision、009で選択・適用が有効なtemplate T0/revision V0、scope S0/source span SP0、040互換ledger contract LC0、extractor EX0/version EV0を揃える。抽出入力は有効、obligation A/Bはsource span/digest/extractor version付きatomまたは理由付きgapと候補行へ対応済み。各authority/登録/採択/要求合意/設計成立/利用者受入/L3承認/実装完了を候補出力から生成しておらず、別OS操作receiptは未提示のまま。各行はT0の入力と元状態を保持し、その行に書く出力fieldだけを誤追加する。合成入力は実権限・実承認ではない。
 
