@@ -1,0 +1,2204 @@
+{
+  "record_type": "authoring_audit",
+  "date": "2026-10-07",
+  "target": "HELIXLABO-L2-065",
+  "authoring_body": "a1721fe8b2d92d3f37b7c35c0e023d8b6327dd07",
+  "base": "af8d0aac1a20cd3a41ca9df088bc7bf3501847ff",
+  "status": "本文起草後・独立review前の時点記録。承認・実測・実装許可なし。",
+  "read_only_preflight_snapshot": {
+    "record_type": "readonly_parent_authoring_preflight",
+    "created_at": "2026-10-06",
+    "target": "HELIXLABO-L2-065",
+    "status": "資料照合のみ。canonical編集・承認・独立reviewはなし。",
+    "authority_boundary": "PO決定行はこの固定revisionを条件付き採択しD1（最初のAttemptの結果）を固定、067と別指標と明記する。L2のdraft_candidate等status文字列とMPRは固定snapshot/登録metadataでありPO判断を上書きしない。実験・資格試験・Worker割当・admissionを生成しない。",
+    "scope_boundary": "065は選択されたqualification scopeのbench/scorecard条件とtask別first_pass/retry_count等の証拠を扱う。063の修復再発・予防候補・OS feedback/backlog循環を混ぜない。064の候補名blind/reproducibilityは065の必須依存ではない、と065本文に記載されている。055通常履歴を一律full benchにしない。",
+    "fixed_source": {
+      "revision": "0dd946cec1c3fca8e144513b72e2e10d16c7c9c3",
+      "L2": {
+        "revision": "0dd946cec1c3fca8e144513b72e2e10d16c7c9c3",
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "start_line": 503,
+        "end_line": 519,
+        "file_line_count": 559,
+        "full_file_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+        "raw_lf_span_sha256": "a605d5aa342c52beeb783a674f4593af90a62cb4adc519839aa1f733c9c21807",
+        "raw_lf_span_bytes": 8030,
+        "raw_lf_span_text": "### HELIXLABO-L2-065 候補Worker資格とtask別性能証拠（単体候補、1.0）\n\n**kind / parent / status**：unit、`HELIXLABO-L1-005` primary、`HELIXLABO-L1-011` context、`version_target: 1.0`、`draft_candidate`。採択済みの`HELIXLABO-L2-059`を変更せず、候補runtimeのqualificationと実task scorecardの観測条件を補う未採択候補である。親L1の固定revisionは2026-09-28のHELIX-LABO判断記録を参照し、候補追加から採択・実験実行・Worker割当を生成しない。\n\n- **旧sourceと保持範囲**：旧`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:151-152`、file SHA-256 `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`。保持する意味は、選択された候補runtime資格scopeでmachine smokeとblind full benchを分け、8軸を同一fixture・versioned rubricで評価すること、および各HELIX実taskの初回結果、再試行、diff/lint指標、品質judge、再試行を含む実効費用を記録し、その証拠を既存ownerの判断材料へ戻すこと。旧runtime、provider、固定schema、旧admission実装は移植しない。\n- **受け取るもの**：明示的に選択されたcandidate-runtime qualification scope、その対象runtime/model/versionと比較目的、task/scope/revision、許可されたtask/fixture集合・fixture revision、quality/acceptance oracleとrubric revision、評価者の独立性とWorker-visible contextの区分、対応するOS assignment/実行receipt、attemptごとの結果・差分・lint計測証拠、価格source/currency/effective time。qualification scopeが選ばれていない通常Worker作業にはfull benchを要求しない。通常のscorecardではL2-059の入力条件、既決のscopeに有効なquality判断、既存の価格・費用sourceを再利用し、未決条件のみ既存ownerへ返す。\n- **候補runtime資格の出力**：選択scope内でmachine smoke結果とblind full-bench結果を別々に返す。full-benchを成立として返す場合、correctness、mutation kill、instruction/scope following、skill A/B、quality、concision、security、second-diff extensibilityの各軸について、同じ選択fixture集合・版、versioned rubric、oracle/scorerに基づく判定結果を対応づける。評価不能な軸は理由を記録して当該full-benchを未完・未評価とし、資格済みとは表示しない。bench manifestには選択scope、task/fixture集合、oracle、runtime、rubric/scorerと各revisionを記録し、machine scoreとblind-judge scoreを別出力にし、fixture/rubric digestを対応づける。資格のadmission decisionはLABOのscoreとは別に既存の判断ownerのidentity/revision/statusまたは未決を指す。候補名とhidden oracleをWorker/judgeの規定された可視境界に照らし、漏洩・条件版不一致・必要軸未完了を有効な資格証拠にしない。smoke成功はsmoke結果として記録し、blind full-benchの完了や適格性を代替しない。\n- **task scorecardの出力**：HELIX実taskごとに`first_pass`、`retry_count`、`proposal_diff_size`、`lint_violation_count`、quality-judge結果、effective costを、そのtask/scope・attempt/result receiptと結んで記録する。`first_pass`は再試行前の最初のattemptを適用oracleで判定した値、`retry_count`は同一task scopeの初回後の再試行数とする。diff-sizeとlint countを適用するscopeでは、採用した測定定義・単位・tool/profile版・観測receiptを記録する。指標がscopeへ適用されない場合はその理由を明示し、適用されるが未観測・判定不能の場合は`unknown`を保持する。いずれも根拠なく0にしない。quality judgeとeffective costはL2-059の品質gate、救援/rework/CI/review/人修正を含む総費用、価格source・通貨・適用時点の条件を使い、別の費用定義を作らない。scorecardから、同一task class/scope・測定定義・revisionで比較可能な推移と失敗事象をtrend/failure findingとして出し、比較不能な期間・taskを混ぜた傾向は作らない。実効費用の内訳をscorecardとともに渡し、用途別decisionは既存ownerの判断結果または未決参照として区別する。\n- **既存ownerへの受渡し**：scorecardと資格証拠から、対象scope/revision、task・oracle・rubric/fixture version、source/result receipt、適用された既決decision ownerとdecision identity/revision/statusまたは未決状態を追跡できる形で渡す。判断の適用範囲外、未決または失効の場合だけ既存ownerへ戻す。採用・限定・quarantine・retire等の実際の判断は既存のdecision ownerが行う。LABOは割当、実行許可、採否、model/provider選択、authority、quarantine/retire状態を決めず、scoreから自動変更しない。\n- **依存と責務境界**：`HELIXLABO-L2-006`は実験条件とOS割当Workerによる実験実行、`HELIXLABO-L2-055`は通常Worker履歴の水準生成、採択済み`HELIXLABO-L2-059`は品質優先の同条件比較と総費用を所有する。この候補の選択qualification scope自体がtask/fixture/oracle/rubric revision、Worker-visible context、author/judgeの分離条件を入力・照合する。未採択の`HELIXLABO-L2-061`および`HELIXLABO-L2-064`は必須依存にせず、別途採択・選択された場合もその追加scopeだけを照合する。OSはassignment/実行、HARNESS/要求ownerはoracleと受入条件、SECURITYは適用されるデータ/実行権限、LABOは計測・比較・評価証拠を所有する。qualification contractや過去receiptの参照だけではruntime実行を開始しない。\n- **保証と限界**：選択scope内の同一条件・版付き証拠とtask別測定結果を返し、未評価・比較不能・unknownを保持する。すべてのWorker作業にblind full benchを課さず、性能の普遍性、別task/versionへの適格性、最良model/providerの選択、worker配置、実験許可、decision完了を保証しない。数値threshold、固定sample数、runtime/provider名、diff/lintの全製品共通単位は導入しない。\n- **戻し先**：task/attempt/assignment/result receipt不足はOSまたは観測sourceへ、fixture/oracle/rubric/acceptance不足はHARNESSまたは要求ownerへ、blind/context分離不成立は評価scope ownerへ、diff/lint測定定義・品質・費用データの不足はLABO評価契約またはそのsource ownerへ、採否・許容差・判断scopeの未決は当該既存decision ownerへ戻す。未完・unknownを合格・zero・資格済みへ変換しない。\n- **追加の保護条件の出典**：blind/context分離は旧Bench R04/R08（`LEGACY-ASSET-28FB139B26CD61CC51EE`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md:96-120,143-147`、file SHA-256 `a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116`）と旧HIL-NFR-35（`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、同旧L1文書:215）を選択資格scopeへ再導出する。これらはFR61/62の2行被覆receiptのatom数へ加えず、未採択のLABO-061/064本文を既採択・常時依存とは扱わない。\n- **起点**：旧FR61/62の行原文・SHAと今回の対応範囲は`docs/governance/audits/requirement-registration/labo-bench-qualification-scorecard-source-lines-2026-09-28.jsonl`、被覆receiptは`docs/governance/audits/requirement-registration/labo-bench-qualification-scorecard-coverage-receipt-2026-09-28.json`を参照する。2原文行は既存`MPR-SH-IR-003`のHIL-FR-61/62 identityと重複するsource参照であり、独立要求数を増やさない。\n\n### HELIXLABO-L2-066 A比較における誤修復・未解消数の明示（単体追補候補、1.0）\n\n"
+      },
+      "L11": {
+        "revision": "0dd946cec1c3fca8e144513b72e2e10d16c7c9c3",
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "start_line": 240,
+        "end_line": 260,
+        "file_line_count": 295,
+        "full_file_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+        "raw_lf_span_sha256": "820a71b0fbbc742251a81603b0f803207985abe0aec3400a2a1309f4d00b736a",
+        "raw_lf_span_bytes": 8168,
+        "raw_lf_span_text": "\n### HELIXLABO-L2-065 候補Worker資格とtask別性能証拠の受入候補（単体、1.0）\n\n未実行の受入候補。親は`HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context。採択済みHELIXLABO-L2-059とその対L11は変更せず、資格比較とscorecard受渡しの未閉包条件を別candidateへ置く。通常Worker履歴すべてへfull benchを要求しない。候補採択、資格試験の実行、Worker割当、実験許可を生成しない。\n\n| scope | 成立条件 | 反例・失敗条件 |\n|---|---|---|\n| 選択candidate-runtime資格scope | candidate/runtime version、比較目的、task/scope/revision、fixture集合とrevision、quality/acceptance oracle、versioned rubric/scorer、許可されたOS実行receiptがscope内で結ばれる。machine smokeとblind full-benchは別結果として記録する。blind full-benchを成立とする場合、correctness、mutation kill、instruction/scope following、skill A/B、quality、concision、security、second-diff extensibilityの8軸すべてについて同じfixture集合・版とrubric revisionに基づく判定結果がある。評価不能な軸は理由を記録してfull-benchを未完・未評価とし、資格済みとは表示しない。bench manifestにscope/runtime/task/fixture/oracle/rubric/scorerと各版があり、machine scoreとblind-judge scoreが別出力でfixture/rubric digestへ結びつく。この選択scope自身についてcandidate runtime名/hidden oracleの可視境界、author/judge分離、task/oracle/scorer/protocolの版一致を確かめる。未採択のLABO-061/064を前提にせず、本候補単独の入力と証拠で判定する。 | smoke passだけでfull-bench完了を主張する。8軸中どれかの証拠、bench manifest、machine/blind scoreの区別、fixture/rubric digestを欠いたままfull-bench成立とする。fixture集合・revision、rubric/scorer、oracleまたはtask scopeが比較対象間で異なるのに同条件比較として使う。Worker-visible contextへhidden answerを混入する、candidate名をblind judgeへ見せる、authorとjudgeが同じ作成contextを共有する。いずれもそのscopeの資格証拠を未完/不成立とし、平均scoreでsecurity failure・scope逸脱・検証不能を相殺しない。 |\n| 未見資格scope | 初見runtime version、task classまたはrubric/fixture revisionは既存資格結果から自動適格化しない。該当scopeに適用できるoracle/fixture/rubricがないときは未評価または比較不能と返し、既存ownerへ戻す。 | 別runtime versionの資格、過去taskのscore、単独smoke結果から、未見scopeを資格済みと表示する。 |\n| HELIX実task scorecard | task/scopeごとのOS assignmentとattempt/result receiptから、`first_pass`を初回attemptの受入oracle結果として、`retry_count`を初回後の再試行数として区別する。`proposal_diff_size`と`lint_violation_count`をそのtask scopeへ適用する場合、測定定義・単位・tool/profile版・観測receiptを添える。quality-judge結果とeffective costはL2-059既定義の品質gate、retry/救援/rework/CI/review/人修正を含む費用境界、価格source/currency/effective timeを使う。数値・定義・結果は同一task receiptへ紐づき、decision ownerへのhandoffは用途別decision identity/revision/statusまたは未決状態を参照する。実効費用内訳をscorecardへ添え、同一task class/scope・測定定義・revisionで比較できる推移と失敗事象をtrend/failure findingとして出す。 | retry後の成功をfirst pass成功と記録する。retryをcostから落とす。diff/lintを適用するのに測定証拠を欠く、不明を0にする、または対象外根拠を示さずゼロ扱いする。quality未達を低価格/短時間で相殺する。scoreから採用/限定/quarantine/retireを自動決定する。異なるtask classや測定定義を混ぜて作ったtrendも不成立とする。いずれも該当taskを完了scorecardまたは資格成功にしない。 |\n| 適用外・未観測metric | diff-size/lint countが選択scopeに適用されないなら対象外理由を記録する。適用されるが計測できない、定義や版が欠ける、またはreceiptから判定できない場合はunknownのまま残す。既決scope内の品質/優先/tolerance判断は再利用し、適用外・未決・失効時のみ既存ownerへ戻す。 | 未観測値を`0`にする、過去のtool/profile版や異なるtask definitionを無条件転用する、候補のscoreだけで有効な判断を上書きする。unknown/適用外は達成済みのmetricと数えない。 |\n| owner受渡し | scorecardはtask scope/revision、source/assignment/attempt/result receipt、metric definition/tool version、rubric/oracle revision、既決owner判断または未決を辿れる。LABOは結果・比較証拠を出し、実際の採否・配置・権限・quarantine/retireは既存ownerに残す。 | receiptがsourceやdecision scopeに繋がらない、LABOがWorkerを割当/起動する、LABO scoreからauthority・採否を作る。handoff未完はdecision完了へ変換しない。 |\n\n**正常例**：選択された資格scopeで、同じtask/fixture集合・fixture revision・rubric/scorer revisionに対し、machine smokeとblind full-benchの両結果を分けて保存する。8軸ごとの判定が同条件に結び、hidden oracleはWorker-visible contextから到達できず、judgeはauthorとは別identity/contextで評価する。別途task scorecardでは、初回失敗後に2回目で受入になったtaskを`first_pass=false`、`retry_count=1`として保持し、採用したdiff/lint定義と計測値、L2-059の総費用内訳、価格sourceと既存decision ownerへのreceipt linkを同一scopeへ結ぶ。これはこの入力例の記録値であり、普遍的thresholdを作らない。\n\n**個別反例**：①candidate名をjudgeへ露出、②hidden answerをWorker-visible fixtureへ混入、③8軸の一つを欠く、④smoke passのみをfull資格と表示、⑤task間でfixture/rubric revisionが違うのに同条件比較、⑥retry後passをfirst passへ誤記、⑦適用lintを未計測のまま0とする、⑧人修正・上位Worker救援・retry費用を落として安価成功とする、⑨scoreからLABOが採否やassignmentを作る、を一件ずつ与える。該当scope/metricは不成立・未評価またはhandoff未完となり、他軸の成功で相殺されない。\n\n**未見例**：未評価runtime version、新task class、または変更されたfixture/rubricが来た場合、既存資格結果をそのまま転用せず、新scopeの比較条件・適用oracleが不足なら未評価/比較不能を返す。初見taskでdiff/lintの単位や対象profileが未定の場合もunknownを維持し、指標定義ownerへ戻す。未見のために通常Worker履歴へfull benchを強制せず、候補資格scopeの証拠不足だけを未完にする。\n\n**責務・受入限界**：LABO-006はOS割当Workerによる実験run、LABO-055は通常Worker履歴の水準、採択済みLABO-059は品質優先の同条件比較と全費用、LABO-061/064は別の未採択候補であり、本候補の常時依存ではない。HELIXLABO-L2-065自身が、選択資格scopeに必要なtask/oracle/context・candidate名blind条件を所有するが、これらの候補の実行・配置・採否を所有しない。oracle/fixture/acceptanceはHARNESS/要求owner、assignment/実行はOS、許可されたdata/executionはSECURITY、測定・比較receiptはLABOへ戻す。score、未評価、適格性の表示だけから実験許可、Worker assignment、admission、best runtime、未見taskへの一般化を作らない。実効費用内訳と、同条件のtask class/scope/測定定義/revisionに限るtrend/failure findingをscorecardと一緒に出す。用途別decisionおよび資格admission decisionは既存ownerの結果または未決として参照し、LABO自身の判断へ変換しない。\n\n"
+      },
+      "L2_L11_fixed_fullsha_match_PO": true,
+      "remote_main": {
+        "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+        "L2_full_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+        "L11_full_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+        "L2_065_span_same": true,
+        "L11_065_span_same": true,
+        "whole_file_sha_different_after_later_070_append": true
+      }
+    },
+    "po_decision": {
+      "fixed_revision": "0dd946cec1c3fca8e144513b72e2e10d16c7c9c3",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "fixed_line_065": {
+        "revision": "0dd946cec1c3fca8e144513b72e2e10d16c7c9c3",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "start_line": 83,
+        "end_line": 83,
+        "file_line_count": 139,
+        "full_file_sha256": "eec7087b89155bd43761a26d76880dbc8eb8d4ab2693afe53392e7867aa5870d",
+        "raw_lf_span_sha256": "4da9b1a4c726fe61731598a555d52f3e655d0cfa5e1c60eb78d79dbfe618b763",
+        "raw_lf_span_bytes": 681,
+        "raw_lf_span_text": "| `HELIXLABO-L2-065` | 条件付き採択：D1、067とは別指標で「最初のAttemptの結果」。 | `MPR-RC-HELIXLABO-L2-065-001` | `docs/helix-labo/L2-requirements/labo-requirements.md` | `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9` | `sha256:6f50887b94a8d3341c55700393896798cc1273324a868071447bf0e5a95cf019` | `HELIXLABO-L2-065` | `docs/helix-labo/L11-acceptance/labo-acceptance.md` | `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0` | `sha256:c70905fd036f0c6e6bfdce0368e462cd85acd467354bcad599d1112634d9b1b6` | `docs/governance/audits/requirement-registration/labo-bench-qualification-scorecard-coverage-receipt-2026-09-28.json` |\n"
+      },
+      "current_remote_main_line_065": {
+        "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "start_line": 80,
+        "end_line": 80,
+        "file_line_count": 150,
+        "full_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "raw_lf_span_sha256": "4da9b1a4c726fe61731598a555d52f3e655d0cfa5e1c60eb78d79dbfe618b763",
+        "raw_lf_span_bytes": 681,
+        "raw_lf_span_text": "| `HELIXLABO-L2-065` | 条件付き採択：D1、067とは別指標で「最初のAttemptの結果」。 | `MPR-RC-HELIXLABO-L2-065-001` | `docs/helix-labo/L2-requirements/labo-requirements.md` | `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9` | `sha256:6f50887b94a8d3341c55700393896798cc1273324a868071447bf0e5a95cf019` | `HELIXLABO-L2-065` | `docs/helix-labo/L11-acceptance/labo-acceptance.md` | `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0` | `sha256:c70905fd036f0c6e6bfdce0368e462cd85acd467354bcad599d1112634d9b1b6` | `docs/governance/audits/requirement-registration/labo-bench-qualification-scorecard-coverage-receipt-2026-09-28.json` |\n"
+      },
+      "fixed_line_067": {
+        "revision": "0dd946cec1c3fca8e144513b72e2e10d16c7c9c3",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "start_line": 84,
+        "end_line": 84,
+        "file_line_count": 139,
+        "full_file_sha256": "eec7087b89155bd43761a26d76880dbc8eb8d4ab2693afe53392e7867aa5870d",
+        "raw_lf_span_sha256": "41121ae7430cd5890e3aae87edd38e1c3cc37b493cc20e65b6dacb0976d81d4f",
+        "raw_lf_span_bytes": 604,
+        "raw_lf_span_text": "| `HELIXLABO-L2-066` | 採択 | `MPR-RC-HELIXLABO-L2-066-001` | `docs/helix-labo/L2-requirements/labo-requirements.md` | `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9` | `sha256:d65780351792a4587966a7eb45c34359626200af5bdd8eb55e197b0a6f0db184` | `HELIXLABO-L2-066` | `docs/helix-labo/L11-acceptance/labo-acceptance.md` | `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0` | `sha256:0a1d72d7d0fb3b97b14ce6f53738785b76bce642a2f9b7c83c4328a45fc68cce` | `docs/governance/audits/requirement-registration/labo-bugbot-misrepair-comparison-coverage-receipt-2026-09-28.json` |\n"
+      },
+      "meaning": "条件付き採択D1。「最初のAttemptの結果」をfirst_passとして扱い、067とは別指標。PO row records exact L2/L11 semantic digests; the row is not an execution/admission permit."
+    },
+    "authority_text_discrepancy_to_preserve_for_root": {
+      "locator": "fixed L2-065 line 512",
+      "literal_observation": "この本文行は061/064を「未採択」と呼び必須依存にしないと書く。065 PO rowは065を条件付き採択、PO line82/現在83は064を採択と記録する。",
+      "treatment": "ここでは修正も状態推定もしない。optional/non-required dependency wordingと古いstatus adjectiveを区別し、064 statusはPO rowから読む。Rootの意味判断へ返す。"
+    },
+    "registration_context": {
+      "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "line_pin": {
+        "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "start_line": 537,
+        "end_line": 537,
+        "file_line_count": 1077,
+        "full_file_sha256": "d24a982af1c468bb32c9822777a3234d3ce065ff63b89c944b7b04447610c99b",
+        "raw_lf_span_sha256": "4f410042b74e265f6ca25d0f7091aea5409eb3b10096cfba9ad5053beaeda764",
+        "raw_lf_span_bytes": 2605,
+        "raw_lf_span_text": "{\"registration_id\":\"MPR-RC-HELIXLABO-L2-065-001\",\"supersedes_registration_id\":null,\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HELIXLABO-L2-065\",\"requirement_kind\":\"unit\",\"product_target\":\"HELIX-LABO\",\"candidate_source_path\":\"docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-065\",\"candidate_semantic_digest\":\"sha256:6f50887b94a8d3341c55700393896798cc1273324a868071447bf0e5a95cf019\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@5c79869daba9a5c4fe426ddf3ad8e1bc380e64ca sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（固定Concept親bytes。候補採択は継承しない）\",\"parent_planning_revision\":\"docs/helix-labo/L1-planning/labo-intent.md@5c79869daba9a5c4fe426ddf3ad8e1bc380e64ca sha256:78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc（2026-09-28確認済みL1親bytes。新候補の採択は継承しない）\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/labo-bench-qualification-scorecard-source-lines-2026-09-28.jsonl#HIL-FR-61,HIL-FR-62\",\"source_atom_set_digest\":\"sha256:aa4368b78705931ada9594f64010950907b753b3caa969bb5b762aec03fef271\",\"source_atom_count\":2,\"source_collection_scope\":\"旧HIL-FR-61/62の原文2行。各行は既存Requirement IRの同一identityと意味重複し、独立要求数へ加算しない。旧文書全体、全IR、他Bench条件、実装/受入実行のno_lossを主張しない。L1-005/011配下の候補qualificationとtask-scorecard条件だけを本candidateへ保持する。\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/labo-bench-qualification-scorecard-coverage-receipt-2026-09-28.json\",\"coverage_result\":\"no_loss\",\"carried_atom_refs\":[\"LABO-BENCH-HIL-FR-61-L0151\",\"LABO-BENCH-HIL-FR-62-L0152\"],\"preserved_pending_registration_refs\":[],\"human_decision_disposition_refs\":[],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex execution lane\",\"registered_at\":\"2026-09-28T07:45:58+09:00\",\"evidence_refs\":[\"docs/helix-labo/L1-planning/labo-intent.md\",\"docs/helix-labo/L2-requirements/labo-requirements.md\",\"docs/helix-labo/L11-acceptance/labo-acceptance.md\",\"docs/governance/audits/requirement-registration/labo-bench-qualification-scorecard-source-lines-2026-09-28.jsonl\",\"docs/governance/audits/requirement-registration/labo-bench-qualification-scorecard-coverage-receipt-2026-09-28.json\",\"docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md\",\"docs/governance/management-provisional-requirement-registration.md\"]}\n"
+      },
+      "meaning": "MPR registration metadata; authority_effect does not replace PO decision."
+    },
+    "stage_mapping_context": {
+      "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
+      "entry_pin": {
+        "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+        "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
+        "start_line": 15165,
+        "end_line": 15188,
+        "file_line_count": 21954,
+        "full_file_sha256": "ec970df79eaaf693f8825045b235c43ea10aefa7925701b1fff2a974df3e4e0a",
+        "raw_lf_span_sha256": "90ae7ad708278369b622cc3d2f38a514c3c05064cec834c2c913ef79b1b0d04c",
+        "raw_lf_span_bytes": 2118,
+        "raw_lf_span_text": "      }\n    },\n    {\n      \"identity\": \"HELIXLABO-L2-065\",\n      \"registration_id\": \"MPR-RC-HELIXLABO-L2-065-001\",\n      \"disposition\": \"adopted\",\n      \"version_class\": \"1.0\",\n      \"stage_proposal\": \"Stage 5\",\n      \"decision_locator\": \"docs/governance/decisions/po-decision-2026-09-29-57candidates.md#L80\",\n      \"decision_row\": \"| `HELIXLABO-L2-065` | 条件付き採択：D1、067とは別指標で「最初のAttemptの結果」。 | `MPR-RC-HELIXLABO-L2-065-001` | `docs/helix-labo/L2-requirements/labo-requirements.md` | `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9` | `sha256:6f50887b94a8d3341c55700393896798cc1273324a868071447bf0e5a95cf019` | `HELIXLABO-L2-065` | `docs/helix-labo/L11-acceptance/labo-acceptance.md` | `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0` | `sha256:c70905fd036f0c6e6bfdce0368e462cd85acd467354bcad599d1112634d9b1b6` | `docs/governance/audits/requirement-registration/labo-bench-qualification-scorecard-coverage-receipt-2026-09-28.json` |\",\n      \"source_l2_locator\": \"docs/helix-labo/L2-requirements/labo-requirements.md:503-517\",\n      \"candidate_source_path\": \"docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-065\",\n      \"candidate_semantic_digest\": \"sha256:6f50887b94a8d3341c55700393896798cc1273324a868071447bf0e5a95cf019\",\n      \"stage_basis\": \"source-linked dependency / capability role with 9/27 stage model; no additional global completion gate\",\n      \"title_or_section\": \"HELIXLABO-L2-065 候補Worker資格とtask別性能証拠（単体候補、1.0）\",\n      \"product_target\": \"HELIX-LABO\",\n      \"register_row_locator\": \"docs/governance/management-provisional-requirement-register.jsonl#L537\",\n      \"register_row_sha256\": \"21b7829a5fa5239dc84d0685424d9c9f82dde2f2302fe6dbbefe21a27d7f039c\",\n      \"register_identity_confirmed\": true,\n      \"decision_registration_exact_in_decision\": true,\n      \"decision_identity_exact_in_decision\": true,\n      \"source_section_locator\": \"docs/helix-labo/L2-requirements/labo-requirements.md#L503\",\n      \"source_section_line_start\": 503,\n      \"source_section_line_end\": 517,\n"
+      },
+      "meaning": "G0 stage placement/context only; no PO adoption generated."
+    },
+    "legacy_sources_and_consumers": {
+      "source_commit": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+      "asset_rows": {
+        "nfr35": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "bench_r04_r08": "LEGACY-ASSET-28FB139B26CD61CC51EE"
+      },
+      "full_files": {
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md": {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "bytes": 56091,
+          "line_count": 257,
+          "full_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+        },
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md": {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "bytes": 6446,
+          "line_count": 170,
+          "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116"
+        },
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md": {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+          "bytes": 18905,
+          "line_count": 95,
+          "full_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6"
+        },
+        "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md": {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+          "bytes": 7819,
+          "line_count": 63,
+          "full_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a"
+        },
+        "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md": {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+          "bytes": 16537,
+          "line_count": 92,
+          "full_file_sha256": "4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576"
+        },
+        "archive/legacy-generation-2026-09-14/root/docs/generated/requirements/requirement-definition.generated.md": {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/generated/requirements/requirement-definition.generated.md",
+          "bytes": 657702,
+          "line_count": 611,
+          "full_file_sha256": "3603fe35497e12f2d6de59f3710b7dfe590ee14d1c9523ce720757f7490eeb83"
+        },
+        "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-requirement-definition-ledger.md": {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-requirement-definition-ledger.md",
+          "bytes": 54759,
+          "line_count": 221,
+          "full_file_sha256": "ff5313eb0e7d4e8dd22c4227910bd954cec85299e037f629ff3424834e6e1881"
+        },
+        "docs/governance/legacy-asset-disposition.jsonl": {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "bytes": 4857919,
+          "line_count": 4020,
+          "full_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+        }
+      },
+      "bounded_lines": [
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "start_line": 83,
+          "end_line": 83,
+          "file_line_count": 257,
+          "full_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "raw_lf_span_sha256": "9c800fe8f14395e84f941c2e3ad3c75a6a76b5eb1df36248d1953e8dd2f537b8",
+          "raw_lf_span_bytes": 301,
+          "raw_lf_span_text": "| **HIL-BR-31** | 第三者workerを価格や公称性能だけで採用せず、機械判定可能なacceptance bench、blind judgeを含むfull bench、HELIX実task scorecardで品質・安全・実効costを比較し、採用、用途限定、quarantine、retireを証拠付きで決定する。 |\n",
+          "label": "platform_business"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "start_line": 151,
+          "end_line": 151,
+          "file_line_count": 257,
+          "full_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "raw_lf_span_sha256": "dc1b368f1d53bf63c6d3c8d1b07e27f96da1c195ff4518860eece988d706e909",
+          "raw_lf_span_bytes": 429,
+          "raw_lf_span_text": "| **HIL-FR-61** | Worker Acceptance Benchは候補runtimeごとに短い機械判定smokeとblind judgeを含むfull benchを分離実行し、correctness、mutation kill、instruction/scope following、skill A/B、品質、簡潔性、security、第二diffによる拡張性を同一fixtureとversioned rubricで採点する。 | bench manifest、machine score、blind-judge score、fixture/rubric digest、admission decision |\n",
+          "label": "platform_functional_and_nfr"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "start_line": 152,
+          "end_line": 152,
+          "file_line_count": 257,
+          "full_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "raw_lf_span_sha256": "165fb38a830b748ec1ac1df3426af6e08a326af7d7d5380de48be7452a92ea9f",
+          "raw_lf_span_bytes": 406,
+          "raw_lf_span_text": "| **HIL-FR-62** | Task Performance ScorecardはHELIX実taskごとに`first_pass`、`retry_count`、`proposal_diff_size`、`lint_violation_count`、品質judge、実効costを記録する。実効costはAPI相当単価とretryを含め、用途別の採用、限定、quarantine、retire判断へ接続する。 | real-task scorecard、effective-cost breakdown、用途別decision、trend/failure finding |\n",
+          "label": "platform_functional_and_nfr"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "start_line": 215,
+          "end_line": 215,
+          "file_line_count": 257,
+          "full_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "raw_lf_span_sha256": "930a87db86581b1433c4682bb626b9a83100503594f6447e3c2be2fd6860ec59",
+          "raw_lf_span_bytes": 292,
+          "raw_lf_span_text": "| **HIL-NFR-35** | worker評価は候補runtime名をblind化し、fixture、rubric、judge version、sample、再試行を固定して再現可能にする。smoke合格だけでfull admissionせず、security failure、scope逸脱、検証不能な出力を平均点で相殺しない。 |\n",
+          "label": "platform_functional_and_nfr"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "start_line": 96,
+          "end_line": 96,
+          "file_line_count": 170,
+          "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+          "raw_lf_span_sha256": "039cdefe928814019a0a72c5f28c32f7cd189a907e4436e7f4005e816942deb2",
+          "raw_lf_span_bytes": 48,
+          "raw_lf_span_text": "#### HELIX-BENCH-R-04 task snapshotの再現性\n",
+          "label": "bench_r04_r08"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "start_line": 97,
+          "end_line": 97,
+          "file_line_count": 170,
+          "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+          "raw_lf_span_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "raw_lf_span_bytes": 1,
+          "raw_lf_span_text": "\n",
+          "label": "bench_r04_r08"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "start_line": 98,
+          "end_line": 98,
+          "file_line_count": 170,
+          "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+          "raw_lf_span_sha256": "88ef62b112078cddb057ebe266087006087f9e1a630fdbfbf305554b620e462e",
+          "raw_lf_span_bytes": 44,
+          "raw_lf_span_text": "各taskは次のexact field setを持つ。\n",
+          "label": "bench_r04_r08"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "start_line": 99,
+          "end_line": 99,
+          "file_line_count": 170,
+          "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+          "raw_lf_span_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "raw_lf_span_bytes": 1,
+          "raw_lf_span_text": "\n",
+          "label": "bench_r04_r08"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "start_line": 100,
+          "end_line": 100,
+          "file_line_count": 170,
+          "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+          "raw_lf_span_sha256": "f5eca1918a28c163a48907ee72b47cddf4ff96c0daa15a2f1a3132d33d09cce9",
+          "raw_lf_span_bytes": 8,
+          "raw_lf_span_text": "```yaml\n",
+          "label": "bench_r04_r08"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "start_line": 101,
+          "end_line": 101,
+          "file_line_count": 170,
+          "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+          "raw_lf_span_sha256": "06d49767b9194c30407fc08f629df4c1232aa414bdf66eaa80e955f7376e4d7e",
+          "raw_lf_span_bytes": 24,
+          "raw_lf_span_text": "required_task_snapshot:\n",
+          "label": "bench_r04_r08"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "start_line": 102,
+          "end_line": 102,
+          "file_line_count": 170,
+          "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+          "raw_lf_span_sha256": "474cac92e9aa6e1bcd4e331b2cfbd2b298e1da6e0cf59003a432a5ef77abac9b",
+          "raw_lf_span_bytes": 12,
+          "raw_lf_span_text": "  - task_id\n",
+          "label": "bench_r04_r08"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "start_line": 103,
+          "end_line": 103,
+          "file_line_count": 170,
+          "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+          "raw_lf_span_sha256": "159d570b72390ea5200ebad018dae2cdfce6138ba047181ade77d48e4d04f9a3",
+          "raw_lf_span_bytes": 17,
+          "raw_lf_span_text": "  - task_version\n",
+          "label": "bench_r04_r08"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "start_line": 104,
+          "end_line": 104,
+          "file_line_count": 170,
+          "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+          "raw_lf_span_sha256": "bdd42344fb7aeba4db0cc03bf5b3d8f7914fd735961a61c90939964a423e4520",
+          "raw_lf_span_bytes": 19,
+          "raw_lf_span_text": "  - fixture_digest\n",
+          "label": "bench_r04_r08"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "start_line": 105,
+          "end_line": 105,
+          "file_line_count": 170,
+          "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+          "raw_lf_span_sha256": "6385bfa4e839437d6d6e664d08fa33ad8bf35e93ad1c90987843eb47b3c6a50a",
+          "raw_lf_span_bytes": 20,
+          "raw_lf_span_text": "  - requirement_ids\n",
+          "label": "bench_r04_r08"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "start_line": 106,
+          "end_line": 106,
+          "file_line_count": 170,
+          "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+          "raw_lf_span_sha256": "c1921eaf9be46c0badc4b1dbf0a729931d73a51b3d72aaeb8ecbb9979557cf73",
+          "raw_lf_span_bytes": 19,
+          "raw_lf_span_text": "  - acceptance_ids\n",
+          "label": "bench_r04_r08"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "start_line": 107,
+          "end_line": 107,
+          "file_line_count": 170,
+          "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+          "raw_lf_span_sha256": "bc5eee54c2ebbb3d12c7749c81f2c097de56c4a9384136df6d59ca3efdc5030c",
+          "raw_lf_span_bytes": 14,
+          "raw_lf_span_text": "  - base_head\n",
+          "label": "bench_r04_r08"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "start_line": 108,
+          "end_line": 108,
+          "file_line_count": 170,
+          "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+          "raw_lf_span_sha256": "2c0148417308c0185d9ebdaa59e3fdb095ef823fd6f66b04e01ba1c147aac5b2",
+          "raw_lf_span_bytes": 18,
+          "raw_lf_span_text": "  - allowed_paths\n",
+          "label": "bench_r04_r08"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "start_line": 109,
+          "end_line": 109,
+          "file_line_count": 170,
+          "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+          "raw_lf_span_sha256": "2535a5c94358aa9e0a40d661bac5385d4843b968f7d09eeb21a6c03ab748bcbb",
+          "raw_lf_span_bytes": 20,
+          "raw_lf_span_text": "  - forbidden_paths\n",
+          "label": "bench_r04_r08"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "start_line": 110,
+          "end_line": 110,
+          "file_line_count": 170,
+          "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+          "raw_lf_span_sha256": "1b80105b67187980c293944e720ffe6e2f5a79311075178865054dda7b8fa8af",
+          "raw_lf_span_bytes": 25,
+          "raw_lf_span_text": "  - hidden_oracle_digest\n",
+          "label": "bench_r04_r08"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "start_line": 111,
+          "end_line": 111,
+          "file_line_count": 170,
+          "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+          "raw_lf_span_sha256": "d32bd9b429feb109ced6b16912ad9e1f923e45fc286de62fc0e353f0d2c955d7",
+          "raw_lf_span_bytes": 9,
+          "raw_lf_span_text": "  - seed\n",
+          "label": "bench_r04_r08"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "start_line": 112,
+          "end_line": 112,
+          "file_line_count": 170,
+          "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+          "raw_lf_span_sha256": "7f8e437ca0ecdf24c53aa10337de19d8e1724eed65290220b8317303dfba854e",
+          "raw_lf_span_bytes": 23,
+          "raw_lf_span_text": "  - toolchain_versions\n",
+          "label": "bench_r04_r08"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "start_line": 113,
+          "end_line": 113,
+          "file_line_count": 170,
+          "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+          "raw_lf_span_sha256": "b59d488c603ff7f452729cdf78091f2914693b07451391f0ff5e5274c7f77e14",
+          "raw_lf_span_bytes": 19,
+          "raw_lf_span_text": "  - timeout_policy\n",
+          "label": "bench_r04_r08"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "start_line": 114,
+          "end_line": 114,
+          "file_line_count": 170,
+          "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+          "raw_lf_span_sha256": "c0427ff557a038bd1e0d48816df0bcce43cad98da75cdb295d097dc5b3e13f54",
+          "raw_lf_span_bytes": 17,
+          "raw_lf_span_text": "  - retry_policy\n",
+          "label": "bench_r04_r08"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "start_line": 115,
+          "end_line": 115,
+          "file_line_count": 170,
+          "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+          "raw_lf_span_sha256": "3cdd56d488fae252d5ec1afbc8db134b8b845d5a8ab61a4dabc0e6957a4d1ace",
+          "raw_lf_span_bytes": 17,
+          "raw_lf_span_text": "  - cache_policy\n",
+          "label": "bench_r04_r08"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "start_line": 116,
+          "end_line": 116,
+          "file_line_count": 170,
+          "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+          "raw_lf_span_sha256": "1c8d9cfcd89d2c4194f7237f6593243f35a83ab8028cd44f55a0a6c19187b598",
+          "raw_lf_span_bytes": 19,
+          "raw_lf_span_text": "  - hardware_class\n",
+          "label": "bench_r04_r08"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "start_line": 117,
+          "end_line": 117,
+          "file_line_count": 170,
+          "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+          "raw_lf_span_sha256": "47c06c561d5c327343685268a46b3391f3998eee890d2be51f0d21cc4a53ae6d",
+          "raw_lf_span_bytes": 4,
+          "raw_lf_span_text": "```\n",
+          "label": "bench_r04_r08"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "start_line": 118,
+          "end_line": 118,
+          "file_line_count": 170,
+          "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+          "raw_lf_span_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "raw_lf_span_bytes": 1,
+          "raw_lf_span_text": "\n",
+          "label": "bench_r04_r08"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "start_line": 119,
+          "end_line": 119,
+          "file_line_count": 170,
+          "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+          "raw_lf_span_sha256": "44963098381cdaa1aee514e32b2750651bf13206163fdbf2852ed755d5b25983",
+          "raw_lf_span_bytes": 124,
+          "raw_lf_span_text": "public taskとhidden oracleを分離し、future answer、secret、PII、private review contextをfixtureへ含めない。\n",
+          "label": "bench_r04_r08"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "start_line": 120,
+          "end_line": 120,
+          "file_line_count": 170,
+          "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+          "raw_lf_span_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "raw_lf_span_bytes": 1,
+          "raw_lf_span_text": "\n",
+          "label": "bench_r04_r08"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "start_line": 143,
+          "end_line": 143,
+          "file_line_count": 170,
+          "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+          "raw_lf_span_sha256": "a798b0a1f397cd5aa062e9fa5eac7fc210b8abe9e2e72b9fdd23fbc48c4c1a90",
+          "raw_lf_span_bytes": 41,
+          "raw_lf_span_text": "#### HELIX-BENCH-R-08 integrityと履歴\n",
+          "label": "bench_r04_r08"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "start_line": 144,
+          "end_line": 144,
+          "file_line_count": 170,
+          "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+          "raw_lf_span_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "raw_lf_span_bytes": 1,
+          "raw_lf_span_text": "\n",
+          "label": "bench_r04_r08"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "start_line": 145,
+          "end_line": 145,
+          "file_line_count": 170,
+          "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+          "raw_lf_span_sha256": "36eafa79bb1a26f5df733efdc7b299c327aff3dffc3307d532f56eb62b503640",
+          "raw_lf_span_bytes": 114,
+          "raw_lf_span_text": "scorer、task、fixture、oracle、protocolのversionとdigestを保持する。benchmark authorとblind judgeを\n",
+          "label": "bench_r04_r08"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "start_line": 146,
+          "end_line": 146,
+          "file_line_count": 170,
+          "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+          "raw_lf_span_sha256": "4d116cbc5d87bdf7049ca508cfb0743476561990ef622e302e4f4f437fb4b329",
+          "raw_lf_span_bytes": 111,
+          "raw_lf_span_text": "分離し、hidden oracleをworker contextへ渡さない。historical resultはそのmodel/runtime/version、\n",
+          "label": "bench_r04_r08"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "start_line": 147,
+          "end_line": 147,
+          "file_line_count": 170,
+          "full_file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+          "raw_lf_span_sha256": "129b39b33ed4a9d49f68cd4eb5c543b83759d2a44055295c52b7b319eee0c0dd",
+          "raw_lf_span_bytes": 84,
+          "raw_lf_span_text": "toolchain、task snapshotの証拠であり、current性能の代替にしない。\n",
+          "label": "bench_r04_r08"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+          "start_line": 56,
+          "end_line": 56,
+          "file_line_count": 95,
+          "full_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+          "raw_lf_span_sha256": "1abddd94d78e9efb5bb27b1033e3284d7146da660795540a310e33f1287160a2",
+          "raw_lf_span_bytes": 503,
+          "raw_lf_span_text": "| HR-FR-HIL-22 | HIL-BR-31, HIL-FR-61, HIL-FR-62, HIL-FR-63, HIL-NFR-35, HIL-NFR-36 | 候補worker/model/effortを再現可能benchと実task scorecardで比較し、品質・安全・retry込みcostから用途別にadmit又はretireする | fixed fixture/rubric/task/riskあり → blind score、実効cost、選択receipt | smoke-only採用、重大failure相殺、単価最適化、根拠なしeffort固定 / bench、scorecard、routing、exception receipt | HAC-HIL-22a, HAC-HIL-22b, HAC-HIL-22c |\n",
+          "label": "functional_hr_fr_hil_22"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+          "start_line": 85,
+          "end_line": 85,
+          "file_line_count": 95,
+          "full_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+          "raw_lf_span_sha256": "39a1a7c4392215f954494a3d65eaa9af1fa6db6455495f45467a0c6ac595c2ec",
+          "raw_lf_span_bytes": 204,
+          "raw_lf_span_text": "| HR-FR-HIL-22 | HAC-HIL-22a: blind benchと実taskで用途別選択 | HAC-HIL-22b: 重大failure/範囲逸脱を平均で相殺しない | HAC-HIL-22c: 品質悪化時にmodel/effortを比較再route |\n",
+          "label": "functional_hr_fr_hil_22"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+          "start_line": 54,
+          "end_line": 54,
+          "file_line_count": 63,
+          "full_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+          "raw_lf_span_sha256": "6397d2f4f365c8d02765d5cd55917e6badc2e4279c9cf2517e4e925616fdbaf5",
+          "raw_lf_span_bytes": 273,
+          "raw_lf_span_text": "| HAT-HIL-22 | HR-FR-HIL-22 / HAC-HIL-22a, HAC-HIL-22b, HAC-HIL-22c | HOT-HIL-54, HOT-HIL-55 | worker bench、実task scorecard、effort routingを検証 | fixture/rubric、blind score、実効cost、route receipt | smoke-only、重大failure相殺、単価/effort固定 |\n",
+          "label": "paired_harness_acceptance"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+          "start_line": 81,
+          "end_line": 81,
+          "file_line_count": 92,
+          "full_file_sha256": "4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+          "raw_lf_span_sha256": "345fb8f509ac7b83f43b3225b07dea96d6ba1e86e985d32839624c645c88e157",
+          "raw_lf_span_bytes": 344,
+          "raw_lf_span_text": "| **HOT-HIL-54** | HIL-BR-31, HIL-FR-61/62, HIL-NFR-35 | 候補名をblind化した同一fixtureでsmoke/full benchと実taskを走らせ、security failureやscope逸脱を高平均点へ混ぜる | machine dimensions、blind judge、retry込み実効costを再現し、重大failureを平均で相殺せず用途別admissionを決定する |\n",
+          "label": "operational_consumer"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+          "start_line": 82,
+          "end_line": 82,
+          "file_line_count": 92,
+          "full_file_sha256": "4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+          "raw_lf_span_sha256": "a557c092df1c01da7ec9cdb06a870e081437bb849673ba58b39b3f3519d7e923",
+          "raw_lf_span_bytes": 306,
+          "raw_lf_span_text": "| **HOT-HIL-55** | HIL-FR-63, HIL-NFR-36 | upper-tier high固定、lightweight low固定、品質悪化時のeffort増だけを候補にする | upper-tier low/medium、lightweight highを既定とし、品質問題ではmodel/runtime escalationと比較して最小有効構成と例外receiptを残す |\n",
+          "label": "operational_consumer"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/generated/requirements/requirement-definition.generated.md",
+          "start_line": 204,
+          "end_line": 204,
+          "file_line_count": 611,
+          "full_file_sha256": "3603fe35497e12f2d6de59f3710b7dfe590ee14d1c9523ce720757f7490eeb83",
+          "raw_lf_span_sha256": "a481c4a140241cb3065f31036f36578a859339381ec7704b917f4e837bf3d8e7",
+          "raw_lf_span_bytes": 537,
+          "raw_lf_span_text": "| HIL-FR-61 | functional | Worker Acceptance Benchは候補runtimeごとに短い機械判定smokeとblind judgeを含むfull benchを分離実行し、correctness、mutation kill、instruction/scope following、skill A/B、品質、簡潔性、security、第二diffによる拡張性を同一fixtureとversioned rubricで採点する。 \\| bench manifest、machine score、blind-judge score、fixture/rubric digest、admission decision | HR-FR-HIL-22 | frozen | sha256:e9faf8f3c022bf7561b8b171944f7674a5cf59764bee18de99ea6b6ce373c592 |\n",
+          "label": "generated_acceptance_and_lineage"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/generated/requirements/requirement-definition.generated.md",
+          "start_line": 206,
+          "end_line": 206,
+          "file_line_count": 611,
+          "full_file_sha256": "3603fe35497e12f2d6de59f3710b7dfe590ee14d1c9523ce720757f7490eeb83",
+          "raw_lf_span_sha256": "be2d7277d559526c05ee6fb8990fdf68a7928e26bdf737edfd46eaae39ee872e",
+          "raw_lf_span_bytes": 514,
+          "raw_lf_span_text": "| HIL-FR-62 | functional | Task Performance ScorecardはHELIX実taskごとに`first_pass`、`retry_count`、`proposal_diff_size`、`lint_violation_count`、品質judge、実効costを記録する。実効costはAPI相当単価とretryを含め、用途別の採用、限定、quarantine、retire判断へ接続する。 \\| real-task scorecard、effective-cost breakdown、用途別decision、trend/failure finding | HR-FR-HIL-22 | frozen | sha256:596a3e30d3eb77319f181b7d0731e2f615c1547559b2ecf7668bc42aa838cda9 |\n",
+          "label": "generated_acceptance_and_lineage"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/generated/requirements/requirement-definition.generated.md",
+          "start_line": 290,
+          "end_line": 290,
+          "file_line_count": 611,
+          "full_file_sha256": "3603fe35497e12f2d6de59f3710b7dfe590ee14d1c9523ce720757f7490eeb83",
+          "raw_lf_span_sha256": "a2135abc638c89261e4f563e37144ba4b9066eb96b265416e13c928d6f73034d",
+          "raw_lf_span_bytes": 403,
+          "raw_lf_span_text": "| HIL-NFR-35 | non_functional | worker評価は候補runtime名をblind化し、fixture、rubric、judge version、sample、再試行を固定して再現可能にする。smoke合格だけでfull admissionせず、security failure、scope逸脱、検証不能な出力を平均点で相殺しない。 | HR-FR-HIL-22 | frozen | sha256:e07df923a32d5fee681cdfd0a45bf3bee8ffd71cfcfab9859b5c5ebf9c7622cf |\n",
+          "label": "generated_acceptance_and_lineage"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/generated/requirements/requirement-definition.generated.md",
+          "start_line": 508,
+          "end_line": 508,
+          "file_line_count": 611,
+          "full_file_sha256": "3603fe35497e12f2d6de59f3710b7dfe590ee14d1c9523ce720757f7490eeb83",
+          "raw_lf_span_sha256": "0e9fd63f0691f5b2121b131a7f394c68b448123aaebe91b97dbb399650655302",
+          "raw_lf_span_bytes": 129,
+          "raw_lf_span_text": "| HAC-HIL-22a | HR-FR-HIL-22 | positive | HAT-HIL-22 | sha256:26efa95135d70f08721c45268240bda8966702e24efc0295eefed81dd48f6f80 |\n",
+          "label": "generated_acceptance_and_lineage"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/generated/requirements/requirement-definition.generated.md",
+          "start_line": 510,
+          "end_line": 510,
+          "file_line_count": 611,
+          "full_file_sha256": "3603fe35497e12f2d6de59f3710b7dfe590ee14d1c9523ce720757f7490eeb83",
+          "raw_lf_span_sha256": "12a41eb9f4ba342e34ae5970b4a31a9b69df36c9fcfcd6cf71998eaf9d4ebfb0",
+          "raw_lf_span_bytes": 129,
+          "raw_lf_span_text": "| HAC-HIL-22b | HR-FR-HIL-22 | negative | HAT-HIL-22 | sha256:16d062e7832826adccd36ce9416eca68730232dc0cbbd9ccf2ec5a2cc52d2763 |\n",
+          "label": "generated_acceptance_and_lineage"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/generated/requirements/requirement-definition.generated.md",
+          "start_line": 512,
+          "end_line": 512,
+          "file_line_count": 611,
+          "full_file_sha256": "3603fe35497e12f2d6de59f3710b7dfe590ee14d1c9523ce720757f7490eeb83",
+          "raw_lf_span_sha256": "de8413f36fe5f977f6d1985a82d0d498ec122d3659c75c7770993258fd7ebe94",
+          "raw_lf_span_bytes": 129,
+          "raw_lf_span_text": "| HAC-HIL-22c | HR-FR-HIL-22 | boundary | HAT-HIL-22 | sha256:cd59a8b2ac7063fd09eadaf6e6c60cccf5559c80e30cd4a9d0412cce71a354f5 |\n",
+          "label": "generated_acceptance_and_lineage"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/generated/requirements/requirement-definition.generated.md",
+          "start_line": 573,
+          "end_line": 573,
+          "file_line_count": 611,
+          "full_file_sha256": "3603fe35497e12f2d6de59f3710b7dfe590ee14d1c9523ce720757f7490eeb83",
+          "raw_lf_span_sha256": "9c220cd8e87ce0fb1743be63e5300bf3da671875dd49d50fd7b393241444d42b",
+          "raw_lf_span_bytes": 171,
+          "raw_lf_span_text": "| HAT-HIL-22 | HR-FR-HIL-22 | HAC-HIL-22a, HAC-HIL-22b, HAC-HIL-22c | designed_not_implemented | sha256:35ca0ec2e65aee76da3a540729b33b94b44c0d55d850e1da111210fcc51093d8 |\n",
+          "label": "generated_acceptance_and_lineage"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-requirement-definition-ledger.md",
+          "start_line": 171,
+          "end_line": 171,
+          "file_line_count": 221,
+          "full_file_sha256": "ff5313eb0e7d4e8dd22c4227910bd954cec85299e037f629ff3424834e6e1881",
+          "raw_lf_span_sha256": "11956a5dbd49cef38b7beb1d44b7e64dfb5d5280f80f0e5dc0de94bf4cc1db7c",
+          "raw_lf_span_bytes": 317,
+          "raw_lf_span_text": "| HIL-FR-61 | 1 | `docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:151` | `sha256:a1efb53682d608e59e22ad36cb1de6e1b8555afabed752e2648c98a6b82b1f8f` | current:RAS-HIL-22 | HIA-FR-061 | WorkerAcceptanceBench | functional-requirement.v1 | 定義frozen（snapshot-bound freeze receipt済み） |\n",
+          "label": "lineage_ledger"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-requirement-definition-ledger.md",
+          "start_line": 172,
+          "end_line": 172,
+          "file_line_count": 221,
+          "full_file_sha256": "ff5313eb0e7d4e8dd22c4227910bd954cec85299e037f629ff3424834e6e1881",
+          "raw_lf_span_sha256": "522fa98134eab7ae5c20dc7250aae80907671b9027bc6ba8403dc38cbe8d270e",
+          "raw_lf_span_bytes": 320,
+          "raw_lf_span_text": "| HIL-FR-62 | 1 | `docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:152` | `sha256:9d4ccd014d684c5b92b402ce2372f4ff1679be84d48d76b07dccb8fd92e0cb20` | current:RAS-HIL-22 | HIA-FR-062 | TaskPerformanceScorecard | functional-requirement.v1 | 定義frozen（snapshot-bound freeze receipt済み） |\n",
+          "label": "lineage_ledger"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-requirement-definition-ledger.md",
+          "start_line": 177,
+          "end_line": 177,
+          "file_line_count": 221,
+          "full_file_sha256": "ff5313eb0e7d4e8dd22c4227910bd954cec85299e037f629ff3424834e6e1881",
+          "raw_lf_span_sha256": "1e826ff1671df4f88965b25880c1cc145b27d657918ee451c976b8b1908f0e7d",
+          "raw_lf_span_bytes": 322,
+          "raw_lf_span_text": "| HIL-NFR-35 | 1 | `docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:215` | `sha256:75bc063dbce9013c692f5a213d4974fccff2809c64b5f28137f8181723621364` | current:RAS-HIL-22 | HIA-NFR-035 | WorkerAcceptanceBench | nonfunctional-requirement.v1 | 定義frozen（snapshot-bound freeze receipt済み） |\n",
+          "label": "lineage_ledger"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "start_line": 424,
+          "end_line": 424,
+          "file_line_count": 4020,
+          "full_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+          "raw_lf_span_sha256": "057a8508576084d4fc805a4434a71be99cf391074bc15f866628b237d59c57b1",
+          "raw_lf_span_bytes": 2312,
+          "raw_lf_span_text": "{\"asset_id\":\"LEGACY-ASSET-719D5EC9C06FC4AAD0FF\",\"revision\":3,\"source_revision\":\"legacy-generation-2026-09-14\",\"source_path\":\"docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md\",\"source_sha256\":\"db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb\",\"source_surface\":\"docs\",\"source_provenance_ref\":\"archive/legacy-generation-2026-09-14/MANIFEST.sha256\",\"asset_class\":\"RequirementSourceSnapshot\",\"reuse_exclusion_class\":null,\"product_target\":\"unresolved\",\"upstream_ids\":[],\"pair_ids\":[],\"disposition\":\"source_snapshot_preservation\",\"implementation_status\":\"non_executable_read_only_source\",\"decision_record_ref\":\"docs/governance/legacy-asset-decisions.jsonl#REQ-SNAPSHOT-CORRECTION-719D5EC9C06FC4AAD0FF\",\"approval_revision\":null,\"target_path\":\"docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md\",\"target_sha256\":\"db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb\",\"meaning_interface_invariance_reason\":\"要求を削減せず後続atom化するためのread-only同一byte source snapshot。新世代authority・実装・oracleへ自動昇格しない\",\"consumer_refs\":[\"requirement-carry-forward-ledgers\",\"requirement-atomization-review\"],\"rights_status\":\"repository_owned_source_preserved\",\"executability_status\":\"non_executable_or_data_only_not_invoked\",\"secret_status\":\"no_secret_added_by_copy\",\"external_effect_status\":\"read_only_no_external_effect\",\"decided_by\":null,\"decided_at\":null,\"copy_performed_by\":\"Codex repository foundation\",\"copy_performed_at\":\"2026-09-15\",\"read_after_record_ref\":\"docs/governance/legacy-asset-copy-read-after.jsonl#READ-REQ-SNAPSHOT-719D5EC9C06FC4AAD0FF\",\"migration_preconditions\":[\"semantic_atom_inventory\",\"product_owner_decision\",\"parent_requirement_binding\",\"consumer_check\",\"rights_check\",\"executability_check\",\"secret_check\",\"external_effect_check\"],\"source_authority_state\":\"draft\",\"target_authority_state\":\"draft_candidate\",\"carry_forward_state\":\"preserved_pending_rehome\",\"decision_status\":\"pending_human_confirmation\",\"proposal_basis_refs\":[\"0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/concept/product-boundary.md:30\",\"0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/governance/audits/source-rebaseline/concept-v4.1-human-decision-packet.md:32\"]}\n",
+          "label": "asset_nfr35"
+        },
+        {
+          "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "start_line": 458,
+          "end_line": 458,
+          "file_line_count": 4020,
+          "full_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+          "raw_lf_span_sha256": "a3f082dadf49c248cd851d449d30b25229e5f33f1d85dfc461d8e90782e6364e",
+          "raw_lf_span_bytes": 1186,
+          "raw_lf_span_text": "{\"asset_id\":\"LEGACY-ASSET-28FB139B26CD61CC51EE\",\"revision\":1,\"source_revision\":\"legacy-generation-2026-09-14\",\"source_path\":\"docs/design/helix/L3-requirements/helix-bench-evaluation.md\",\"source_sha256\":\"a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116\",\"source_surface\":\"docs\",\"source_provenance_ref\":\"archive/legacy-generation-2026-09-14/MANIFEST.sha256\",\"asset_class\":\"Historical\",\"reuse_exclusion_class\":null,\"product_target\":\"unresolved\",\"authority_status\":\"historical\",\"upstream_ids\":[],\"pair_ids\":[],\"disposition\":\"unresolved\",\"implementation_status\":\"unknown\",\"decision_record_ref\":null,\"approval_revision\":null,\"target_path\":null,\"target_sha256\":null,\"meaning_interface_invariance_reason\":null,\"consumer_refs\":[],\"rights_status\":\"unreviewed\",\"executability_status\":\"unreviewed\",\"secret_status\":\"unreviewed\",\"external_effect_status\":\"unreviewed\",\"decided_by\":null,\"decided_at\":null,\"copy_performed_by\":null,\"copy_performed_at\":null,\"read_after_record_ref\":null,\"migration_preconditions\":[\"semantic_atom_inventory\",\"product_owner_decision\",\"parent_requirement_binding\",\"consumer_check\",\"rights_check\",\"executability_check\",\"secret_check\",\"external_effect_check\"]}\n",
+          "label": "asset_bench_r04_r08"
+        }
+      ],
+      "disposition": "HIL-FR-61/62, HIL-NFR-35, bench R04/R08, HR-FR-HIL-22 and HAT/HAC/HOT consumers are source/paired consumer evidence, not executable instructions. L2-065 retains/re-derives selected-scope measurement and blind/context separation and does not import old runtime, provider, fixed schema, or old admission engine."
+    },
+    "old_published_case_inventory": {
+      "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "full_file_sha256": "7a6c7dc1f88c77bbd628a1320c0393f0ad6c14b76d5a30db0c4cda27d22b9d16",
+      "bytes": 452839,
+      "line_count": 3404,
+      "definition_line_count": 66,
+      "unique_ids": 66,
+      "definitions": [
+        {
+          "id": "L10-LABO-065-CASE-01",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-01"
+          ],
+          "form": "bullet",
+          "literal_role_candidate": "normal_literal",
+          "line": 2804,
+          "raw_lf_line_sha256": "2d71de7676d170162899c379b187b7bb0eeea667063a3e4ddd5787a276edcc39",
+          "raw_lf_line_bytes": 235,
+          "literal": "- `L10-LABO-065-CASE-01`（対応AC: `LABO-065-AC-01`） 正常: 選択資格scopeでsmoke/full-benchを分け、各適用軸をfixture/rubric/oracle receiptへ結び、scorecard fieldの値/unknown/non-applicable理由を分ける。"
+        },
+        {
+          "id": "L10-LABO-065-CASE-02",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-02"
+          ],
+          "form": "bullet",
+          "literal_role_candidate": "normal_literal",
+          "line": 2805,
+          "raw_lf_line_sha256": "066b95b8af689d50998d5498761051518abf04753c8c5b7241ca953217ec387a",
+          "raw_lf_line_bytes": 185,
+          "literal": "- `L10-LABO-065-CASE-02`（対応AC: `LABO-065-AC-02`） 未見正常: 選択scope内の未見taskを証拠のある軸だけで報告し、qualification thresholdを追加しない。"
+        },
+        {
+          "id": "L10-LABO-065-CASE-03a",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-03a"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "index_literal",
+          "line": 2809,
+          "raw_lf_line_sha256": "80cef4dcef48e38afe8edc0603242e581945cbb71a242ebb3cc223c9fd0331cd",
+          "raw_lf_line_bytes": 255,
+          "literal": "| `L10-LABO-065-CASE-03a` | `LABO-065-AC-03` | 索引（独立fixtureではない）: CASE-03f〜03mの各full-bench軸の独立欠落を参照する。 | 各軸の単独fixtureを個別に照合し、軸欠落を一つの変異として数えない。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-03b",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-03b"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 2810,
+          "raw_lf_line_sha256": "3a932eef96ab44fd0f3444e0d77d398a31fcb402e7e8b75bcb9084fc9b57ff12",
+          "raw_lf_line_bytes": 105,
+          "literal": "| `L10-LABO-065-CASE-03b` | `LABO-065-AC-03` | smoke resultだけfull-bench扱い | 昇格を拒否。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-03c",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-03c"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 2811,
+          "raw_lf_line_sha256": "f1d0168ad4abb5e746e10141f8b87c6e67edddf5ce552c627670ba3074dc0c5e",
+          "raw_lf_line_bytes": 160,
+          "literal": "| `L10-LABO-065-CASE-03c` | `LABO-065-AC-03` | task first_pass receiptだけstale | 当該task scorecard field unknownとしOSのrun-record ownerへ戻す。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-03d",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-03d"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 2812,
+          "raw_lf_line_sha256": "a9959f4c3a971697ce5c291e1dbaabc47128f6f92010d08c639584a948dec5f0",
+          "raw_lf_line_bytes": 284,
+          "literal": "| `L10-LABO-065-CASE-03d` | `LABO-065-AC-03` | applicable diff/lint definitionだけ不明。scope適用性・他条件はCASE-01と同一。 | diff/lint countを0で補わずunknownに保ち、比較を未評価とする。戻し先: LABO評価契約またはそのsource owner。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-03e",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-03e"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 2813,
+          "raw_lf_line_sha256": "9209a96e445f627a771b018c9959f9864a67cd44d9c3aa5ebaf47473689bbad4",
+          "raw_lf_line_bytes": 109,
+          "literal": "| `L10-LABO-065-CASE-03e` | `LABO-065-AC-03` | price sourceだけ欠落 | 費用unknown、0としない。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-03f",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-03f"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 2814,
+          "raw_lf_line_sha256": "ff1d0ec7b276060c90a2b683278a4bdc03780c36fcc8bdc5c1715779718fe024",
+          "raw_lf_line_bytes": 116,
+          "literal": "| `L10-LABO-065-CASE-03f` | `LABO-065-AC-03` | correctness軸だけ証拠欠落 | full-benchを未完にする。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-03g",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-03g"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 2815,
+          "raw_lf_line_sha256": "dccd2846f102633946478857fc4a081d3d68802c55bcd9b1b2426d64e5135c4c",
+          "raw_lf_line_bytes": 118,
+          "literal": "| `L10-LABO-065-CASE-03g` | `LABO-065-AC-03` | mutation-kill軸だけ証拠欠落 | full-benchを未完にする。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-03h",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-03h"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 2816,
+          "raw_lf_line_sha256": "fc87a8a9c3b2f61a8e66ec7408b6c14f0842d211f9bc783293258469bed891e8",
+          "raw_lf_line_bytes": 126,
+          "literal": "| `L10-LABO-065-CASE-03h` | `LABO-065-AC-03` | instruction/scope-following軸だけ欠落 | full-benchを未完にする。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-03i",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-03i"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 2817,
+          "raw_lf_line_sha256": "649304952953c6ea6b8962e68d0986377ac12eb6b4803408b8fc0597b87a59b1",
+          "raw_lf_line_bytes": 108,
+          "literal": "| `L10-LABO-065-CASE-03i` | `LABO-065-AC-03` | skill A/B軸だけ欠落 | full-benchを未完にする。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-03j",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-03j"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 2818,
+          "raw_lf_line_sha256": "6fbc966c1b36fb445fcb548ff145f7675b7fa6acb73393e2a01d559363acef76",
+          "raw_lf_line_bytes": 106,
+          "literal": "| `L10-LABO-065-CASE-03j` | `LABO-065-AC-03` | quality軸だけ欠落 | full-benchを未完にする。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-03k",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-03k"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 2819,
+          "raw_lf_line_sha256": "28a4c8946a265505fb9581e596daa45f6e446327574bce00c6ce172ad8c9f793",
+          "raw_lf_line_bytes": 108,
+          "literal": "| `L10-LABO-065-CASE-03k` | `LABO-065-AC-03` | concision軸だけ欠落 | full-benchを未完にする。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-03l",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-03l"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 2820,
+          "raw_lf_line_sha256": "dd30f880e73b404a81d84928fc8af83c7291c0ec947c8b99c9617ddc44a75073",
+          "raw_lf_line_bytes": 107,
+          "literal": "| `L10-LABO-065-CASE-03l` | `LABO-065-AC-03` | security軸だけ欠落 | full-benchを未完にする。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-03m",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-03m"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 2821,
+          "raw_lf_line_sha256": "a373db3bde50f0d6c5990e0e427deb1906c143ee335af1651c19c71bc747098f",
+          "raw_lf_line_bytes": 124,
+          "literal": "| `L10-LABO-065-CASE-03m` | `LABO-065-AC-03` | second-diff extensibility軸だけ欠落 | full-benchを未完にする。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-03n",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-03n"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 2822,
+          "raw_lf_line_sha256": "2795c674356cc2f6fa8d3a7c3e96025f00ed705950fb5d5845b411c4f10ce8c9",
+          "raw_lf_line_bytes": 145,
+          "literal": "| `L10-LABO-065-CASE-03n` | `LABO-065-AC-03` | retry_count receiptだけ欠落 | 値を補わずunknownとしOSのrun-record ownerへ戻す。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-03o",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-03o"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 2823,
+          "raw_lf_line_sha256": "cf79c99183bd42deedb8d288b4832d430f0780c58ea8597c864245957e786773",
+          "raw_lf_line_bytes": 121,
+          "literal": "| `L10-LABO-065-CASE-03o` | `LABO-065-AC-03` | quality-judge resultだけ欠落 | scorecardを完了扱いしない。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-04a",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-04a"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 2824,
+          "raw_lf_line_sha256": "1799f90302c707f3564a32ef1fe8f18b7c85afc899672c3a5183e7170ea03f90",
+          "raw_lf_line_bytes": 147,
+          "literal": "| `L10-LABO-065-CASE-04a` | `LABO-065-AC-03` | LABOがruntime/providerを選ぶ | 拒否し固定L2-065にある既存decision ownerへ返す。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-04b",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-04b"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 2825,
+          "raw_lf_line_sha256": "331c4af1788cf53c94e71d4db6446ad3fd40b0798959d845fb12bac318b3ad33",
+          "raw_lf_line_bytes": 132,
+          "literal": "| `L10-LABO-065-CASE-04b` | `LABO-065-AC-03` | scoreからpermission/assignmentを生成 | 拒否。SECURITY/OS境界を保つ。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-26",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-26"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 2829,
+          "raw_lf_line_sha256": "0538d2b250624a642dc278b3bc1fcaf7c2a4aeb61492172e36abd1c9977e7da8",
+          "raw_lf_line_bytes": 166,
+          "literal": "| `L10-LABO-065-CASE-26` | `LABO-065-AC-03` | hidden answerをWorker-visible fixtureへ含める | 当該軸を無効/不合格とし、他軸で相殺しない。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-27",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-27"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 2830,
+          "raw_lf_line_sha256": "bb69a30bf2da50061308facdf78b80b46bbd3cc4b445f50591ea26d674c3996c",
+          "raw_lf_line_bytes": 128,
+          "literal": "| `L10-LABO-065-CASE-27` | `LABO-065-AC-03` | 適用lintを未計測のまま0とする | 0に置換せずunknownとする。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-28",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-28"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 2831,
+          "raw_lf_line_sha256": "69424f260cb501551e134315c73b44c03c04b9f98b427b7f0341381b5cb95606",
+          "raw_lf_line_bytes": 129,
+          "literal": "| `L10-LABO-065-CASE-28` | `LABO-065-AC-03` | retry costだけ欠落 | 費用を不完全とし資格/比較へ補わない。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-29",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-29"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 2832,
+          "raw_lf_line_sha256": "305395c478a049cc6c8ac1b324bd365fe99f3de3a33348a5f7950c135fde3509",
+          "raw_lf_line_bytes": 227,
+          "literal": "| `L10-LABO-065-CASE-29` | `LABO-065-AC-03` | 単独変異: task間のfixture revisionだけが不一致。rubric revisionは一致する。 | 同条件結果として採用せず、該当task fixtureを未評価に保つ。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-30",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-30"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 2833,
+          "raw_lf_line_sha256": "d5a73ad05f587f05179c0478bc1a07c7ff36c519aaa71f5c0fc4cf41aa34810e",
+          "raw_lf_line_bytes": 226,
+          "literal": "| `L10-LABO-065-CASE-30` | `LABO-065-AC-03` | 単独変異: task間のrubric revisionだけが不一致。fixture revisionは一致する。 | 同条件結果として採用せず、該当task rubricを未評価に保つ。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-31",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-31"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 2834,
+          "raw_lf_line_sha256": "39e09e6c657927f86a4f2144777dd10025bbdf0b65a8ca7a0f214bfbbc2a6ad4",
+          "raw_lf_line_bytes": 310,
+          "literal": "| `L10-LABO-065-CASE-31` | `LABO-065-AC-03` | 単独変異: bench manifestだけ欠落。 | full-benchを未完とし、manifest欠落を保持する。固定L2-065の評価/scorecard契約を担うLABOまたは識別できるmanifest source ownerへ返し、責務identityが分からなければunknown。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-32",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-32"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 2835,
+          "raw_lf_line_sha256": "021943b3c3f56eed196d3aa1273015fbab01302683f8dba5a3b2153a1f5f09ac",
+          "raw_lf_line_bytes": 259,
+          "literal": "| `L10-LABO-065-CASE-32` | `LABO-065-AC-03` | 単独変異: fixture digestだけ欠落。 | fixture同一性を確認できず未評価とし、固定L2-065のHARNESS/要求owner境界へ返し、owner identityが特定できなければunknownを保つ。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-33",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-33"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 2836,
+          "raw_lf_line_sha256": "3f06050eec6f6f11cced7283c1fe7ac60ba2535f22228f535093885b920aeafb",
+          "raw_lf_line_bytes": 349,
+          "literal": "| `L10-LABO-065-CASE-33` | `LABO-065-AC-03` | 準備: CASE-01の選択scopeで当該security failureが1件だけ有効な不成立として記録され、他軸・run receiptは有効な状態を固定する。単独変異: 他軸の平均scoreだけでその不成立を相殺する。 | security不成立を合格へ変換せず保持する。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-34",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-34"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 2837,
+          "raw_lf_line_sha256": "0e961db810e434a6a9f479bf0e15db02411beb4eefec6627125f0ef39e1b1614",
+          "raw_lf_line_bytes": 336,
+          "literal": "| `L10-LABO-065-CASE-34` | `LABO-065-AC-03` | 準備: CASE-01の選択scopeで当該quality failureが1件だけ有効な不成立として記録され、他軸・run receiptは有効な状態を固定する。単独変異: 低価格だけでその不成立を相殺する。 | quality不成立を合格へ変換せず保持する。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-35",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-35"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 2838,
+          "raw_lf_line_sha256": "8becdec1555dd6e1fac83d2db47722b6a04f698f19cd929d59a8146af2a4d463",
+          "raw_lf_line_bytes": 336,
+          "literal": "| `L10-LABO-065-CASE-35` | `LABO-065-AC-03` | 準備: CASE-01の選択scopeで当該quality failureが1件だけ有効な不成立として記録され、他軸・run receiptは有効な状態を固定する。単独変異: 短時間だけでその不成立を相殺する。 | quality不成立を合格へ変換せず保持する。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-36",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-36"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 2839,
+          "raw_lf_line_sha256": "00a5ee153ff475594947ac75d77a6843cdc3f887afb576aa74ecc29d3b551554",
+          "raw_lf_line_bytes": 256,
+          "literal": "| `L10-LABO-065-CASE-36` | `LABO-065-AC-03` | 単独変異: 対象外根拠なしにmetricをゼロとして扱う。 | ゼロを認定せずunknown/未評価を保ち、適用性/metric評価契約を担うLABOまたは識別できるsourceへ返す。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-37",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-37"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 2840,
+          "raw_lf_line_sha256": "4c7b066b1c7c98d67171aaf5f439590d780aa10b374fc8e028fb82d0a272ac19",
+          "raw_lf_line_bytes": 158,
+          "literal": "| `L10-LABO-065-CASE-37` | `LABO-065-AC-03` | 別runtime version/過去scoreだけで未見scopeを資格済みにする | 新scopeは未評価とする。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-38",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-38"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 2841,
+          "raw_lf_line_sha256": "77d29778dd81f225e2be0bebe2b7cb44dd26010d3ff6f30b66d11acf7ba9d817",
+          "raw_lf_line_bytes": 126,
+          "literal": "| `L10-LABO-065-CASE-38` | `LABO-065-AC-03` | assignment receiptだけ欠落 | 選択runを評価不能としOSへ戻す。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-39",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-39"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 2842,
+          "raw_lf_line_sha256": "3cfbbc17bf43f4e4cfb3727728eaab3f317391f080d2ccc9b3c3d0dbc1578eda",
+          "raw_lf_line_bytes": 140,
+          "literal": "| `L10-LABO-065-CASE-39` | `LABO-065-AC-03` | oracleだけ欠落 | 合否を確定せず、固定oracleのHARNESS/要求ownerへ戻す。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-40",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-40"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 2843,
+          "raw_lf_line_sha256": "fc5e70f3934cc6d3056c29ff552ed2486b827fb9f70c82f49683c354caa69aa9",
+          "raw_lf_line_bytes": 363,
+          "literal": "| `L10-LABO-065-CASE-40` | `LABO-065-AC-03` | 単独変異: rubric digestだけ欠落。その他のbench manifest入力はCASE-01と同一。 | rubric/scorer同一性を検証できないためfull-bench/qualificationを未完・未評価とし、固定L2-065のHARNESS/要求owner境界へ返す。owner identityが識別不能ならunknownを維持する。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-05",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-05"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "normal_literal",
+          "line": 3179,
+          "raw_lf_line_sha256": "64e0589bed5e9c16637b2dfbf5ebfd2ed290eed201074228d020e7361d10e403",
+          "raw_lf_line_bytes": 239,
+          "literal": "| `L10-LABO-065-CASE-05` | `LABO-065-AC-01` | 正常入力: scorecardとreceiptが揃った選択資格task（`CASE-01`と同じ正常条件）。 | 選択taskの通常scorecardをfield別に返す。L11固定値は閾値にしない。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-06",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-06"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 3180,
+          "raw_lf_line_sha256": "58a0c26bb7f1f8c2d0967efb4ceb7ebf30caecce528cdb487086d096cc23901f",
+          "raw_lf_line_bytes": 274,
+          "literal": "| `L10-LABO-065-CASE-06` | `LABO-065-AC-03` | 単独変異: blind score/digestをmachine manifestで代替だけを変更。その他の入力はCASE-01と同一。 | 資格証拠とせずblind judge evidenceを要求し、適用scopeの既存evaluation ownerへ戻す。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-07",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-07"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 3181,
+          "raw_lf_line_sha256": "be0164b4e2c70c7e4e5751167882c2014258aebb01833d2658b9842fbf158674",
+          "raw_lf_line_bytes": 411,
+          "literal": "| `L10-LABO-065-CASE-07` | `LABO-065-AC-03` | 単独変異: 選択taskの `task revision` だけが比較対象と異なる。fixture/oracle/rubric/scorer/task scopeと他入力は `CASE-01` と同一。 | 該当runを別条件として分離し、同一task revisionの比較へ混ぜない。task契約を提供する既存HARNESS/要求ownerが識別できればそこへ戻し、特定不能はunknown。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-08",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-08"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 3182,
+          "raw_lf_line_sha256": "b50d9790c6da680fedef5171633d5dcb9cd126d1207cdf333e5039f301b42078",
+          "raw_lf_line_bytes": 230,
+          "literal": "| `L10-LABO-065-CASE-08` | `LABO-065-AC-03` | 単独変異: judge identityだけをWorker/helperと同一にする。その他の入力は `CASE-01` と同一。 | independent judge条件不成立 戻し先: evaluation owner。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-09",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-09"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 3183,
+          "raw_lf_line_sha256": "328fb472ca2c6914699123ab9c6fbdc6177aa9094f8f46cc7edb3088a007d187",
+          "raw_lf_line_bytes": 188,
+          "literal": "| `L10-LABO-065-CASE-09` | `LABO-065-AC-03` | 単独変異: judge context だけ共有。その他の入力は `CASE-01` と同一。 | 独立性不成立 戻し先: evaluation owner。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-10",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-10"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 3184,
+          "raw_lf_line_sha256": "083315f6f6616c1b8e87564e37edc0cc30088bc23ee97f7f3d8bb6bc28bba212",
+          "raw_lf_line_bytes": 250,
+          "literal": "| `L10-LABO-065-CASE-10` | `LABO-065-AC-03` | 単独変異: hidden candidate nameを可視化だけを変更。その他の入力はCASE-01と同一。 | blind証拠不適格として該当runを除外し、既存evaluation scope ownerへ戻す。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-11",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-11"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 3185,
+          "raw_lf_line_sha256": "d04b7666d2b483ab55500b3f9beecfab5b01f61dd910c26c962b3307fa2dec1f",
+          "raw_lf_line_bytes": 279,
+          "literal": "| `L10-LABO-065-CASE-11` | `LABO-065-AC-03` | 単独変異: 初回Attempt失敗・再試行成功なのにfirst_passをtrueと記録だけを変更。その他の入力は `CASE-01` と同一。 | L11 oracle `first_pass=false`, `retry_count=1` を保持する 戻し先: OS。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-12",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-12"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "normal_literal",
+          "line": 3186,
+          "raw_lf_line_sha256": "d123387b2f6a4b18e69d9323319b4fa6cabe2287d591048bd37f6f55e0637189",
+          "raw_lf_line_bytes": 196,
+          "literal": "| `L10-LABO-065-CASE-12` | `LABO-065-AC-01` | 正常入力: receiptのあるapplicable diff/lint countが0（0を実値として扱う）。 | 0を実値として保持しunknownにしない。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-13",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-13",
+            "L10-LABO-065-CASE-24",
+            "L10-LABO-065-CASE-25"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "index_literal",
+          "line": 3187,
+          "raw_lf_line_sha256": "5c5ba5dde876314c7aef5e3d34bb2a854e0237f96c18c5293f25701d713c4339",
+          "raw_lf_line_bytes": 290,
+          "literal": "| `L10-LABO-065-CASE-13` | `LABO-065-AC-03` |索引（独立fixtureではない）: `L10-LABO-065-CASE-24`、`L10-LABO-065-CASE-25`。rescue費用とhuman retry費用の欠落を分けて参照する。|各単独CASEのoracleを個別に確認し、複合変異を独立計上しない。|"
+        },
+        {
+          "id": "L10-LABO-065-CASE-14",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-14"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 3188,
+          "raw_lf_line_sha256": "c6c4182f15f963abaf191126b4d4dd3731024f6ca25b72e05379520fd5e21244",
+          "raw_lf_line_bytes": 210,
+          "literal": "| `L10-LABO-065-CASE-14` | `LABO-065-AC-03` | 単独変異: trend categoryが異なるだけを変更。その他の入力は `CASE-01` と同一。 | 異なる分類/定義を混ぜない 戻し先: LABO。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-15",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-15"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 3189,
+          "raw_lf_line_sha256": "c362e62af0f94608dcc899b06f88e6ee76e4261675ca785c996df7de14d6d7c4",
+          "raw_lf_line_bytes": 215,
+          "literal": "| `L10-LABO-065-CASE-15` | `LABO-065-AC-03` | 単独変異: handoff decision identity だけ欠落。その他の入力は `CASE-01` と同一。 | 判断scope未決として当該既存decision ownerへ返す。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-16",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-16"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 3190,
+          "raw_lf_line_sha256": "4abc24f35f00d277b22619d9590f42f15f1f622c342bc68d09cfc96acae74f7b",
+          "raw_lf_line_bytes": 202,
+          "literal": "| `L10-LABO-065-CASE-16` | `LABO-065-AC-03` | 単独変異: handoff decision revision だけstale。その他の入力は `CASE-01` と同一。 | decision適用を拒否 戻し先: decision owner。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-17",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-17"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 3191,
+          "raw_lf_line_sha256": "0484034d3fbd3f9fcee34f37df02d6f72e9a821d7bdc327ffca748c5a028c956",
+          "raw_lf_line_bytes": 191,
+          "literal": "| `L10-LABO-065-CASE-17` | `LABO-065-AC-03` | 単独変異: handoff status だけunknown。その他の入力は `CASE-01` と同一。 | 資格判断を保留 戻し先: decision owner。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-18",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-18"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 3192,
+          "raw_lf_line_sha256": "9b0c010b648dc81bbd8b9a0b177e9d90d3477fef88b4eb3d58aa1207c7e83f8c",
+          "raw_lf_line_bytes": 216,
+          "literal": "| `L10-LABO-065-CASE-18` | `LABO-065-AC-03` | 単独変異: scope だけが選択scope外。その他の入力は `CASE-01` と同一。 | 適用外を失効/失敗と数えず未評価にする 戻し先: LABO。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-19",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-19"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "index_literal",
+          "line": 3193,
+          "raw_lf_line_sha256": "38d5c628e4587310b6416c076bf07d86ec755e4f543c1a49591c9d869458704f",
+          "raw_lf_line_bytes": 190,
+          "literal": "| `L10-LABO-065-CASE-19` | `LABO-065-AC-03` | 索引（独立fixtureではない）: CASE-03eと同一のprice source欠落。 | 主fixture CASE-03eを参照し、二重計上しない。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-20",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-20"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "index_literal",
+          "line": 3194,
+          "raw_lf_line_sha256": "5d9fc885c1a759f12ce49050cf4d2721cbefb44b75456bbc5982e7e8cdb45475",
+          "raw_lf_line_bytes": 254,
+          "literal": "| `L10-LABO-065-CASE-20` | `LABO-065-AC-03` | 索引（独立fixtureではない）: CASE-03eに含まれる選択費用根拠欠落を直接参照する。 | 主fixtureCASE-03eを使い、index chainを作らず同じ変異を重複計上しない。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-21",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-21"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 3195,
+          "raw_lf_line_sha256": "f3e92e6cece11803897e0c952aeadcb02acfd1f8c0b2af61b60f5ba73e137980",
+          "raw_lf_line_bytes": 240,
+          "literal": "| `L10-LABO-065-CASE-21` | `LABO-065-AC-03` | 単独変異: currency だけ欠落。その他の入力は `CASE-01` と同一。 | 換算せず金額をunknownとし、price source ownerが識別可能ならそのsource ownerへ戻す。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-22",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-22"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 3196,
+          "raw_lf_line_sha256": "09c467337094f3cfbf72b1b5fb8401913d1101ce9a54d32265c8afef2843632d",
+          "raw_lf_line_bytes": 257,
+          "literal": "| `L10-LABO-065-CASE-22` | `LABO-065-AC-03` | 単独変異: effective time だけ欠落。その他の入力は `CASE-01` と同一。 | 適用価格をunknownとし、品質/費用データ不足をLABO評価契約または該当source ownerへ返す。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-23",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-23"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "normal_literal",
+          "line": 3197,
+          "raw_lf_line_sha256": "4ec8912e3a97a50540eaf13c7b44ac39f0bf747faf704191704cf6515889439d",
+          "raw_lf_line_bytes": 242,
+          "literal": "| `L10-LABO-065-CASE-23` | `LABO-065-AC-01` | 固定L11の正常task: 最初のAttemptは失敗し再試行は成功。 | `first_pass=false`、`retry_count=1` を別fieldで保持する。これは観測oracleであり閾値ではない。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-24",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-24"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 3286,
+          "raw_lf_line_sha256": "601855322dd32407a83370b5f75571c800c12c890bdbfe5dc8ec8b73d531382d",
+          "raw_lf_line_bytes": 300,
+          "literal": "| `L10-LABO-065-CASE-24` | `LABO-065-AC-03` | 単独変異: rescue cost receiptだけ欠落。その他の入力は `CASE-01` と同一。 | 費用内訳を不完全としてunknownを保ち、0補完しない。費用source ownerが特定できればそこへ戻し、特定不能ならunknown。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-25",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-25"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 3287,
+          "raw_lf_line_sha256": "137f80cbaa90daf17139040b9136f82ab4ef8b87b922a53aacac0f801f579053",
+          "raw_lf_line_bytes": 305,
+          "literal": "| `L10-LABO-065-CASE-25` | `LABO-065-AC-03` | 単独変異: human retry cost receiptだけ欠落。その他の入力は `CASE-01` と同一。 | 費用内訳を不完全としてunknownを保ち、0補完しない。費用source ownerが特定できればそこへ戻し、特定不能ならunknown。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-41",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-41"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 3382,
+          "raw_lf_line_sha256": "44b0fe8e270aebeb1242b92c20428b561df7aa31378f26680ef01bf2f1d7ac23",
+          "raw_lf_line_bytes": 261,
+          "literal": "| `L10-LABO-065-CASE-41` | `LABO-065-AC-03` | 単独変異: qualification comparisonのoracle identityだけを別値にする。scorer/task scope/fixture setはCASE-01と同一。 | 同条件比較を未評価としoracle identity mismatchを保持する。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-42",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-42"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 3383,
+          "raw_lf_line_sha256": "1672f8f8420426b94861ec647037e896a70a51f2fd645c9646ce067bf365ed9b",
+          "raw_lf_line_bytes": 225,
+          "literal": "| `L10-LABO-065-CASE-42` | `LABO-065-AC-03` | 単独変異: scorer identityだけを別値にする。oracle/task scope/fixture setはCASE-01と同一。 | 同条件比較を未評価としscorer mismatchを保持する。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-43",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-43"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 3384,
+          "raw_lf_line_sha256": "15a034ec374d9f29ddda619aed584ebf269bd98f91d3921e53d1f04aaa3d286e",
+          "raw_lf_line_bytes": 209,
+          "literal": "| `L10-LABO-065-CASE-43` | `LABO-065-AC-03` | 単独変異: task scopeだけを別値にする。oracle/scorer/fixture setはCASE-01と同一。 | 別scopeを同条件比較へ混ぜず未評価とする。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-44",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-44"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 3385,
+          "raw_lf_line_sha256": "abfb5b5265d672fde31a2abc13c0eb94cb1953591cea5620ebc0d60903592116",
+          "raw_lf_line_bytes": 228,
+          "literal": "| `L10-LABO-065-CASE-44` | `LABO-065-AC-03` | 単独変異: fixture集合だけを別集合にする。oracle/scorer/task scopeはCASE-01と同一。 | 異なるfixture集合を同条件比較へ混ぜず未評価とする。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-45",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-45"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 3386,
+          "raw_lf_line_sha256": "44163e9e974a07a46f11e64ff93ca46fd7d9e75d515b2cf71b2ecc1b59004409",
+          "raw_lf_line_bytes": 279,
+          "literal": "| `L10-LABO-065-CASE-45` | `LABO-065-AC-03` | 準備: retry後のpassがありfirst passは不成立の状態を保持する。単独変異: retry passをfirst_passとして報告する。 | first_passとretry結果を分け、後続passで初回失敗を上書きしない。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-46",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-46"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 3387,
+          "raw_lf_line_sha256": "59f1231ca6add5fc36f1c5fa3365e33e380ff65e8426123f0ca2b32fc8071cfc",
+          "raw_lf_line_bytes": 238,
+          "literal": "| `L10-LABO-065-CASE-46` | `LABO-065-AC-03` | 単独変異: 他条件・測定定義が一致する2件のtrendに、task classだけ異なる結果を混ぜる。 | task class別の結果を分離し、同一trendへ合算しない。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-47",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-47"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 3388,
+          "raw_lf_line_sha256": "580601138483605ba9872cc406cc8444531a97e40530519009dd318f85e31c34",
+          "raw_lf_line_bytes": 270,
+          "literal": "| `L10-LABO-065-CASE-47` | `LABO-065-AC-03` | 準備: 選択資格scopeのscorecardは有効で採用状態は未変更。単独変異: scoreだけから採用decisionを生成する。 | 採用decisionを生成せず、既存decision ownerの状態を保持する。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-48",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-48"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 3389,
+          "raw_lf_line_sha256": "84119035f42f5b86bb7f43a6bcd2a84050a8b7e5b9045864efdd11752d1a6fb8",
+          "raw_lf_line_bytes": 250,
+          "literal": "| `L10-LABO-065-CASE-48` | `LABO-065-AC-03` | 単独変異: 他条件・task classが一致する2件のtrendに、measurement definitionだけ異なる結果を混ぜる。 | 測定定義別の結果を分離し、同一trendへ合算しない。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-49",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-49"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 3390,
+          "raw_lf_line_sha256": "460495daa9c9bc6957dc3ee792e8d7bc19978b2e3bedfb8eb964c687a773d999",
+          "raw_lf_line_bytes": 274,
+          "literal": "| `L10-LABO-065-CASE-49` | `LABO-065-AC-03` | 準備: 選択資格scopeのscorecardは有効で限定状態は未変更。単独変異: scoreだけからlimited decisionを生成する。 | limited decisionを生成せず、既存decision ownerの状態を保持する。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-50",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-50"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 3391,
+          "raw_lf_line_sha256": "b87defb01db29db35fd47a2f777de00aadd311f8f689d5899a3f9fb962ef2fcb",
+          "raw_lf_line_bytes": 284,
+          "literal": "| `L10-LABO-065-CASE-50` | `LABO-065-AC-03` | 準備: 選択資格scopeのscorecardは有効でquarantine状態は未変更。単独変異: scoreだけからquarantine decisionを生成する。 | quarantine decisionを生成せず、既存decision ownerの状態を保持する。 |"
+        },
+        {
+          "id": "L10-LABO-065-CASE-51",
+          "mentions_on_line": [
+            "L10-LABO-065-CASE-51"
+          ],
+          "form": "table_first_cell",
+          "literal_role_candidate": "unclassified_by_literal",
+          "line": 3392,
+          "raw_lf_line_sha256": "30992c8dd626a12c951ee22bc1e9a31e48c91e167566b923977bdff373cc14d4",
+          "raw_lf_line_bytes": 272,
+          "literal": "| `L10-LABO-065-CASE-51` | `LABO-065-AC-03` | 準備: 選択資格scopeのscorecardは有効でretire状態は未変更。単独変異: scoreだけからretire decisionを生成する。 | retire decisionを生成せず、既存decision ownerの状態を保持する。 |"
+        }
+      ],
+      "classification_limit": "Classification labels are literal candidates only. They do not prove fixture independence, a single mutation, acceptance, or coverage."
+    },
+    "review05_scope": {
+      "comment_id": 6010745544,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2620#issuecomment-6010745544",
+      "body_utf8_bytes": 8059,
+      "body_sha256_utf8": "761f8eb92265a9b7325daf2340cd96847d5fa11a5ef2d344c1fc455788fe341a",
+      "raw_body_exact": "## review05（範囲を絞ったindependent review、HEAD a4a365dcdfe824ebb28d040c8bc3bc924556efad、本文 476993841、base main 55760269a）\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。\n\n### 範囲（今回は絞った）\n今回照合したのは、次の3つだけである。\n- review04所見49件の解消判定。\n- 前回HEADからの本文差分（676行）の、全変更行の固定親照合。\n- CASE集合の機械比較。\n\n変更のない行の全行照合は行っていない。同じ方式で照合を続けても収束しないことが、#2602 review17〜19でMajor 9→15→24と増え続けたことで確かめられた。そのため、提案comment 6009820928のとおり、親単位PRと網羅表による照合へ回す。Fableの委任見解も今回は求めていない。未確認範囲が残る以上、委任承認は成立しないためである。mailboxは`incomplete`（findingsと未確認範囲あり）で返す。\n\n所見には修正の文面を書かず、欠陥と、守るべき固定親の行だけを示す。\n\n### 静的検査（w2620 = exact HEAD）\n- scfctlはvalidate 147/0、stale 0、residuals 0。govcheckはok。`git diff --check`は成功した。\n- origin/mainとの`merge-tree`は衝突なし。6本文はmainのprefixと一致した。\n- FVのCASE定義は777件で、重複は0件。前回HEADと比べて、追加39件、削除0件。\n  - 新しく索引にしたのは063-63、070-68、070-13の3件。070-13の変異は070-70/71へ分割して移っている。\n  - BV/FR/NV/NGの範囲表記は、各親の最大番号と一致した。\n\n### review04所見の解消状況\n- **Major 22件**：20件が解消した。M7とM8は一部が残った（下のM1とM2）。\n- **Minor 27件**：22件が解消した。m7、m19、m24は一部が残り、m2とm25は未解消（下のMinor）。\n\n### 所見（Major 3／Minor 12）\n**Major**\n- **M1（064：review04 M8の残り）**：064-03bと064-26に「mapping source owner」が残っている。FRと064-14は「観測元」にそろっている。監査M8の処置は「固定親にないrouteを削除」と書いているが、本文と合わない。→守るべき行：L2-064「依存・戻し先」（元identityの追跡不能は観測元）。\n- **M2（064 FR AC-03：固定親が定める戻し先を、LABOの保持に置き換えた）**：FRは「可視scope条件不明はLABOで比較不能として保持し、固定親にない戻し先を追加しない」と書いている。同じ親のFV（064-06、07〜11、15、20、23、27〜32、04a）は「既存evaluation owner」のままで、FRと矛盾する。監査のM8処置も同じ誤りを記録している。→守るべき行：L2-064「依存・戻し先」（judge可視範囲・固定条件の不明は評価ownerへ）、「評価と権限」（再評価義務をtask/evaluation ownerへ）。\n  - 補足：review04 M5で私が「evaluation ownerは064側の用語」と書いたのは、061から外す理由としてだった。064では「既存evaluation owner」が固定親の語である。\n- **M3（066-29/30：準備状態と変異が食い違う。review04 M7の残り）**：準備では「speedを通常値として保持」としているのに、変異は「speed改善だけを報告」になっている。隠すことと、速度の主張を変えることの2点が変異になるのか、baselineが一意に決まらない。066-31/32と書き方がそろっていない。agentの確信度は中程度で、Opus側はbaselineが一意でないためMajorとする。→守るべき行：L2-066「比較条件と失敗」、L11-066の誤り例（成功件数・費用・速度だけで隠す）。\n\n**Minor**\n- **m1（表記の規定外。review04 m2の残り）**：\n  - FV:3023のCASE-102/109に親IDがない。\n  - 060-29「互換別名」、063-25/35「主索引」、064-16「集約索引」「互換index」が残っている。\n  - 監査は「統一した」と記録している。\n- **m2（060 AC-03の戻し先。review04 m7の残り）**：支援proposal/use evidenceの戻し先がINTELLIGENCEだけになっている。→守るべき行：L2-060「失敗時」（INTELLIGENCE/OS）。\n- **m3（固定親の区分名にあたらないowner表記。review04 m19の残りを含む）**：\n  - 060-46「oracle/要求owner」\n  - 065-07「task契約を提供するHARNESS/要求owner」\n  - 067 FRに追加した文の「task/要求owner」\n  - 070-66/73「task/request predicate/oracle owner」\n  - 060-18「比較範囲へ返す」（LABOを名指ししていない）\n  - →守るべき行：L2-060/065/067/070の各「戻し先」「責務と権限」の区分名。\n- **m4（索引の重複。review04 m24・m25の残りと、新しく生じた同じ型）**：同じ主fixtureを2つの索引が指している。\n  - 060-26と060-27\n  - 068-08と068-16\n  - 070-03kと070-13\n  - 065-19と065-20\n- **m5（重複計上）**：新しく追加したCASEの多くが、既存の単独fixtureと同じ変異を持っている。\n  - 063：54≒08、56/57≒49/50、58≒13、59≒12、61≒15、62≒16、64/65≒41/42\n  - 065-45≒065-11\n  - 066-43≒066-09\n  - 064-38/39≒064-04a（04aは2変異の行のまま残っている）\n  - NVとNGは、063の54〜62と64/65を独立したnegativeとして数えている。063-58には、063-13にある「観測提供主体へ返す」がない。\n  - 補足：review04 M11が求めたのは、FRへの禁止句の追補だけだった。対応する既存CASEは、すでにAC-03をtraceしていた。\n- **m6（戻し先の併記漏れ）**：\n  - 065-41〜44、069-31/32、070-63、066-42/43に戻し先がない。\n  - 070-69は、対象fieldも特定していない。\n  - 064-24/33/35/36から、evaluation ownerが削られた。064-33は「再評価義務を返す」を「当該scopeを再評価する」に変えている。\n  - →守るべき行：L2-065/069/066「戻し先」、L11-064の未見例、L11-070の個別反例。\n- **m7（064：固定親にない禁止）**：FR AC-03と064-38が、qualificationの生成を禁じている。→守るべき行：L2-064「評価と権限」（禁じているのはassignmentとadmissionだけ）。\n- **m8（英文の残存・表記の揺れ）**：\n  - 069-29「clause」\n  - 064-38/39「decision boundary」\n  - 061-114「invalid state」\n  - 070-73「co-present complete scorecard」（他の行では「complete co-present scorecard」）\n- **m9（監査と本文の不一致）**：\n  - 監査M8・m2の処置の記述が、本文と合わない（上のM1、m1）。\n  - historical_correctionsのroot_narrative_snapshotが、`/tmp/...json`を証拠のpathにしていて、再現できない。\n- **m10（064-04aが2つの変異を持ったまま）**：064-38/39に分割したのに、元の行が索引になっていない。→守るべき行：L2-064「評価と権限」。\n- **m11（070-69の対象field）**：変異の対象になるfieldが特定されていない。→守るべき行：L11-070の個別反例（結果を見た後にwindowを選ぶ）。\n- **m12（064-33の文言の変化）**：L11-064の未見例「再評価義務を既存evaluation ownerへ返す」が、「当該scopeを再評価する」になった。m6とあわせて直すこと。\n\n### 未確認範囲\n- 変更のない行の全行照合。親単位PRで、網羅表と照合する前提である。\n- 監査JSON（9,997行）の全pinとhashの再計算。今回読んだのは、findingsの処置とhistorical_correctionsの要点だけ。\n- Fableの委任見解。\n\n### 判定\n- blockerは3件（M1〜M3）。Major 3件、Minor 12件。未確認範囲がある。\n- 委任承認は成立しない。Readyにはしない。merge admissionは本commentから生成しない。\n- review04のMajor 22件のうち20件が解消した。補正行についての照合は、収束に向かっている。\n\n親単位PRへの分割と、網羅表を先に作ることを、改めて求める（提案comment 6009820928）。\n",
+      "target_065_findings": [
+        {
+          "label": "m3",
+          "raw_exact_text": "- **m3（固定親の区分名にあたらないowner表記。review04 m19の残りを含む）**：\n  - 060-46「oracle/要求owner」\n  - 065-07「task契約を提供するHARNESS/要求owner」\n  - 067 FRに追加した文の「task/要求owner」\n  - 070-66/73「task/request predicate/oracle owner」\n  - 060-18「比較範囲へ返す」（LABOを名指ししていない）\n  - →守るべき行：L2-060/065/067/070の各「戻し先」「責務と権限」の区分名。",
+          "utf8_sha256": "05868c376d17becb6d3bace5163573330d80326f81ea148a1daf938a1f4ce39e"
+        },
+        {
+          "label": "m4",
+          "raw_exact_text": "- **m4（索引の重複。review04 m24・m25の残りと、新しく生じた同じ型）**：同じ主fixtureを2つの索引が指している。\n  - 060-26と060-27\n  - 068-08と068-16\n  - 070-03kと070-13\n  - 065-19と065-20",
+          "utf8_sha256": "ed62344e89bfc7d39a624b8afb18ea8374d0dfb0194ddfe12f9fc8c726f12c88"
+        },
+        {
+          "label": "m5",
+          "raw_exact_text": "- **m5（重複計上）**：新しく追加したCASEの多くが、既存の単独fixtureと同じ変異を持っている。\n  - 063：54≒08、56/57≒49/50、58≒13、59≒12、61≒15、62≒16、64/65≒41/42\n  - 065-45≒065-11\n  - 066-43≒066-09\n  - 064-38/39≒064-04a（04aは2変異の行のまま残っている）\n  - NVとNGは、063の54〜62と64/65を独立したnegativeとして数えている。063-58には、063-13にある「観測提供主体へ返す」がない。\n  - 補足：review04 M11が求めたのは、FRへの禁止句の追補だけだった。対応する既存CASEは、すでにAC-03をtraceしていた。",
+          "utf8_sha256": "b43f5b4869655b438be6438da1f34b93365beebc87dd5e719b59969494e6c1b4"
+        },
+        {
+          "label": "m6",
+          "raw_exact_text": "- **m6（戻し先の併記漏れ）**：\n  - 065-41〜44、069-31/32、070-63、066-42/43に戻し先がない。\n  - 070-69は、対象fieldも特定していない。\n  - 064-24/33/35/36から、evaluation ownerが削られた。064-33は「再評価義務を返す」を「当該scopeを再評価する」に変えている。\n  - →守るべき行：L2-065/069/066「戻し先」、L11-064の未見例、L11-070の個別反例。",
+          "utf8_sha256": "d87047acf2b91d30e08e98465b564b5adb5d691f959dae2c1b7524ece2ef65a5"
+        }
+      ],
+      "target_065_labels": [
+        "m3",
+        "m4",
+        "m5",
+        "m6"
+      ],
+      "interpretation_limit": "m3/m4/m5/m6 mention 065. They are reviewer claims/scope only; no resolution or authority follows. Comment itself limits review and records unchecked lines/audit/Fable."
+    },
+    "distinctions_to_preserve": [
+      {
+        "source": "PO row 065",
+        "condition": "D1 first Attempt result / first_pass",
+        "separate_from": "067 first-eligible candidate and same-Attempt repair-round metric"
+      },
+      {
+        "source": "L2-065 selection qualification scope",
+        "condition": "bench axes and task scorecard evidence within selected scope",
+        "separate_from": "L2-063 repair recurrence and prevention/backlog loop"
+      },
+      {
+        "source": "L2-064 reference in L2-065",
+        "condition": "not a prerequisite to all L2-065 evaluations",
+        "separate_from": "treating 064's adopted state as unadopted; see discrepancy note"
+      }
+    ],
+    "verification_limits": [
+      "No repository edits were made.",
+      "No old runtime, CLI, hook, test, CI, or adapter was run.",
+      "Review05 scope does not establish independent-case status, issue resolution, or approval.",
+      "Literal CASE categorization is not a semantic completeness review."
+    ]
+  },
+  "preflight_067_po_line_correction": {
+    "record_type": "read_only_preflight_correction_supplement",
+    "target": "HELIXLABO-L2-065",
+    "parent_preflight": "/tmp/labo065-parent-authoring-preflight-worker.json",
+    "parent_preflight_sha256": "b5806b1ec043b24c63b2cb7af5cbe46e3b3eeadd757c94d940ad1a7379270aac",
+    "finding": {
+      "field": "po_decision.fixed_line_067",
+      "classification": "誤ったline assignment。raw text自体は真正なPO rowだが、L2-067採択sourceではなくL2-066 row。",
+      "original_field_excerpt": {
+        "revision": "0dd946cec1c3fca8e144513b72e2e10d16c7c9c3",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "start_line": 84,
+        "end_line": 84,
+        "file_line_count": 139,
+        "full_file_sha256": "eec7087b89155bd43761a26d76880dbc8eb8d4ab2693afe53392e7867aa5870d",
+        "raw_lf_span_sha256": "41121ae7430cd5890e3aae87edd38e1c3cc37b493cc20e65b6dacb0976d81d4f",
+        "raw_lf_span_bytes": 604,
+        "raw_lf_span_text": "| `HELIXLABO-L2-066` | 採択 | `MPR-RC-HELIXLABO-L2-066-001` | `docs/helix-labo/L2-requirements/labo-requirements.md` | `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9` | `sha256:d65780351792a4587966a7eb45c34359626200af5bdd8eb55e197b0a6f0db184` | `HELIXLABO-L2-066` | `docs/helix-labo/L11-acceptance/labo-acceptance.md` | `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0` | `sha256:0a1d72d7d0fb3b97b14ce6f53738785b76bce642a2f9b7c83c4328a45fc68cce` | `docs/governance/audits/requirement-registration/labo-bugbot-misrepair-comparison-coverage-receipt-2026-09-28.json` |\n"
+      },
+      "original_field_sha256": "2f1468a32112c3e29e8d7e84b746a39d5103c6908141414b0b64e0fb4b7d05b4",
+      "corrected_replacement": {
+        "revision": "0dd946cec1c3fca8e144513b72e2e10d16c7c9c3",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "line": 85,
+        "file_bytes": 43867,
+        "file_sha256": "eec7087b89155bd43761a26d76880dbc8eb8d4ab2693afe53392e7867aa5870d",
+        "raw_lf_line_bytes": 727,
+        "raw_lf_line_sha256": "43c0a571d50108e4a7d72790d38c4e91cb4637567f2bd89fa3efb1bdc901b139",
+        "literal": "| `HELIXLABO-L2-067` | 条件付き採択：D1、「最初の適格candidateの結果」と同一Attempt内修正回数。065と換算・統合しない。 | `MPR-RC-HELIXLABO-L2-067-001` | `docs/helix-labo/L2-requirements/labo-requirements.md` | `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9` | `sha256:d39bc9f0a20fb6159bf701cf65d38213935d8d00a9e0189c1b81078bdb8d4784` | `HELIXLABO-L2-067` | `docs/helix-labo/L11-acceptance/labo-acceptance.md` | `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0` | `sha256:7a9adc0a54e009ca370033d5b2a88f8b53bf79a99ff146352169d055ff46d331` | `docs/governance/audits/requirement-registration/labo-firstpass-attempt-repair-coverage-receipt-2026-09-28.json` |"
+      },
+      "current_main_confirmation": {
+        "revision": "286a",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "line": 82,
+        "file_bytes": 45099,
+        "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "raw_lf_line_bytes": 727,
+        "raw_lf_line_sha256": "43c0a571d50108e4a7d72790d38c4e91cb4637567f2bd89fa3efb1bdc901b139",
+        "literal": "| `HELIXLABO-L2-067` | 条件付き採択：D1、「最初の適格candidateの結果」と同一Attempt内修正回数。065と換算・統合しない。 | `MPR-RC-HELIXLABO-L2-067-001` | `docs/helix-labo/L2-requirements/labo-requirements.md` | `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9` | `sha256:d39bc9f0a20fb6159bf701cf65d38213935d8d00a9e0189c1b81078bdb8d4784` | `HELIXLABO-L2-067` | `docs/helix-labo/L11-acceptance/labo-acceptance.md` | `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0` | `sha256:7a9adc0a54e009ca370033d5b2a88f8b53bf79a99ff146352169d055ff46d331` | `docs/governance/audits/requirement-registration/labo-firstpass-attempt-repair-coverage-receipt-2026-09-28.json` |"
+      },
+      "adjacent_control_rows": {
+        "fixed_066": {
+          "revision": "0dd946cec1c3fca8e144513b72e2e10d16c7c9c3",
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "line": 84,
+          "file_bytes": 43867,
+          "file_sha256": "eec7087b89155bd43761a26d76880dbc8eb8d4ab2693afe53392e7867aa5870d",
+          "raw_lf_line_bytes": 604,
+          "raw_lf_line_sha256": "41121ae7430cd5890e3aae87edd38e1c3cc37b493cc20e65b6dacb0976d81d4f",
+          "literal": "| `HELIXLABO-L2-066` | 採択 | `MPR-RC-HELIXLABO-L2-066-001` | `docs/helix-labo/L2-requirements/labo-requirements.md` | `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9` | `sha256:d65780351792a4587966a7eb45c34359626200af5bdd8eb55e197b0a6f0db184` | `HELIXLABO-L2-066` | `docs/helix-labo/L11-acceptance/labo-acceptance.md` | `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0` | `sha256:0a1d72d7d0fb3b97b14ce6f53738785b76bce642a2f9b7c83c4328a45fc68cce` | `docs/governance/audits/requirement-registration/labo-bugbot-misrepair-comparison-coverage-receipt-2026-09-28.json` |"
+        },
+        "fixed_065": {
+          "revision": "0dd946cec1c3fca8e144513b72e2e10d16c7c9c3",
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "line": 83,
+          "file_bytes": 43867,
+          "file_sha256": "eec7087b89155bd43761a26d76880dbc8eb8d4ab2693afe53392e7867aa5870d",
+          "raw_lf_line_bytes": 681,
+          "raw_lf_line_sha256": "4da9b1a4c726fe61731598a555d52f3e655d0cfa5e1c60eb78d79dbfe618b763",
+          "literal": "| `HELIXLABO-L2-065` | 条件付き採択：D1、067とは別指標で「最初のAttemptの結果」。 | `MPR-RC-HELIXLABO-L2-065-001` | `docs/helix-labo/L2-requirements/labo-requirements.md` | `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9` | `sha256:6f50887b94a8d3341c55700393896798cc1273324a868071447bf0e5a95cf019` | `HELIXLABO-L2-065` | `docs/helix-labo/L11-acceptance/labo-acceptance.md` | `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0` | `sha256:c70905fd036f0c6e6bfdce0368e462cd85acd467354bcad599d1112634d9b1b6` | `docs/governance/audits/requirement-registration/labo-bench-qualification-scorecard-coverage-receipt-2026-09-28.json` |"
+        },
+        "current_065": {
+          "revision": "286a",
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "line": 80,
+          "file_bytes": 45099,
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "raw_lf_line_bytes": 681,
+          "raw_lf_line_sha256": "4da9b1a4c726fe61731598a555d52f3e655d0cfa5e1c60eb78d79dbfe618b763",
+          "literal": "| `HELIXLABO-L2-065` | 条件付き採択：D1、067とは別指標で「最初のAttemptの結果」。 | `MPR-RC-HELIXLABO-L2-065-001` | `docs/helix-labo/L2-requirements/labo-requirements.md` | `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9` | `sha256:6f50887b94a8d3341c55700393896798cc1273324a868071447bf0e5a95cf019` | `HELIXLABO-L2-065` | `docs/helix-labo/L11-acceptance/labo-acceptance.md` | `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0` | `sha256:c70905fd036f0c6e6bfdce0368e462cd85acd467354bcad599d1112634d9b1b6` | `docs/governance/audits/requirement-registration/labo-bench-qualification-scorecard-coverage-receipt-2026-09-28.json` |"
+        },
+        "current_066": {
+          "revision": "286a",
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "line": 81,
+          "file_bytes": 45099,
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "raw_lf_line_bytes": 604,
+          "raw_lf_line_sha256": "41121ae7430cd5890e3aae87edd38e1c3cc37b493cc20e65b6dacb0976d81d4f",
+          "literal": "| `HELIXLABO-L2-066` | 採択 | `MPR-RC-HELIXLABO-L2-066-001` | `docs/helix-labo/L2-requirements/labo-requirements.md` | `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9` | `sha256:d65780351792a4587966a7eb45c34359626200af5bdd8eb55e197b0a6f0db184` | `HELIXLABO-L2-066` | `docs/helix-labo/L11-acceptance/labo-acceptance.md` | `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0` | `sha256:0a1d72d7d0fb3b97b14ce6f53738785b76bce642a2f9b7c83c4328a45fc68cce` | `docs/governance/audits/requirement-registration/labo-bugbot-misrepair-comparison-coverage-receipt-2026-09-28.json` |"
+        }
+      }
+    },
+    "fixed_requirement_section_pins": {
+      "L2_65": {
+        "revision": "0dd946cec1c3fca8e144513b72e2e10d16c7c9c3",
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "file_bytes": 113504,
+        "file_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+        "start_line": 503,
+        "end_line": 517,
+        "span_bytes_raw": 7925,
+        "raw_lf_span_sha256": "60692c91117266c2fb4e4a5743bcc81bdc632d4e262e454a914b0d893ff812de",
+        "semantic_digest_rule_sha256_trim_trailing_blank_lines_then_lf": "6f50887b94a8d3341c55700393896798cc1273324a868071447bf0e5a95cf019",
+        "literal": "### HELIXLABO-L2-065 候補Worker資格とtask別性能証拠（単体候補、1.0）  **kind / parent / status**：unit、`HELIXLABO-L1-005` primary、`HELIXLABO-L1-011` context、`version_target: 1.0`、`draft_candidate`。採択済みの`HELIXLABO-L2-059`を変更せず、候補runtimeのqualificationと実task scorecardの観測条件を補う未採択候補である。親L1の固定revisionは2026-09-28のHELIX-LABO判断記録を参照し、候補追加から採択・実験実行・Worker割当を生成しない。  - **旧sourceと保持範囲**：旧`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:151-152`、file SHA-256 `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`。保持する意味は、選択された候補runtime資格scopeでmachine smokeとblind full benchを分け、8軸を同一fixture・versioned rubricで評価すること、および各HELIX実taskの初回結果、再試行、diff/lint指標、品質judge、再試行を含む実効費用を記録し、その証拠を既存ownerの判断材料へ戻すこと。旧runtime、provider、固定schema、旧admission実装は移植しない。 - **受け取るもの**：明示的に選択されたcandidate-runtime qualification scope、その対象runtime/model/versionと比較目的、task/scope/revision、許可されたtask/fixture集合・fixture revision、quality/acceptance oracleとrubric revision、評価者の独立性とWorker-visible contextの区分、対応するOS assignment/実行receipt、attemptごとの結果・差分・lint計測証拠、価格source/currency/effective time。qualification scopeが選ばれていない通常Worker作業にはfull benchを要求しない。通常のscorecardではL2-059の入力条件、既決のscopeに有効なquality判断、既存の価格・費用sourceを再利用し、未決条件のみ既存ownerへ返す。 - **候補runtime資格の出力**：選択scope内でmachine smoke結果とblind full-bench結果を別々に返す。full-benchを成立として返す場合、correctness、mutation kill、instruction/scope following、skill A/B、quality、concision、security、second-diff extensibilityの各軸について、同じ選択fixture集合・版、versioned rubric、oracle/scorerに基づく判定結果を対応づける。評価不能な軸は理由を記録して当該full-benchを未完・未評価とし、資格済みとは表示しない。bench manifestには選択scope、task/fixture集合、oracle、runtime、rubric/scorerと各revisionを記録し、machine scoreとblind-judge scoreを別出力にし、fixture/rubric digestを対応づける。資格のadmission decisionはLABOのscoreとは別に既存の判断ownerのidentity/revision/statusまたは未決を指す。候補名とhidden oracleをWorker/judgeの規定された可視境界に照らし、漏洩・条件版不一致・必要軸未完了を有効な資格証拠にしない。smoke成功はsmoke結果として記録し、blind full-benchの完了や適格性を代替しない。 - **task scorecardの出力**：HELIX実taskごとに`first_pass`、`retry_count`、`proposal_diff_size`、`lint_violation_count`、quality-judge結果、effective costを、そのtask/scope・attempt/result receiptと結んで記録する。`first_pass`は再試行前の最初のattemptを適用oracleで判定した値、`retry_count`は同一task scopeの初回後の再試行数とする。diff-sizeとlint countを適用するscopeでは、採用した測定定義・単位・tool/profile版・観測receiptを記録する。指標がscopeへ適用されない場合はその理由を明示し、適用されるが未観測・判定不能の場合は`unknown`を保持する。いずれも根拠なく0にしない。quality judgeとeffective costはL2-059の品質gate、救援/rework/CI/review/人修正を含む総費用、価格source・通貨・適用時点の条件を使い、別の費用定義を作らない。scorecardから、同一task class/scope・測定定義・revisionで比較可能な推移と失敗事象をtrend/failure findingとして出し、比較不能な期間・taskを混ぜた傾向は作らない。実効費用の内訳をscorecardとともに渡し、用途別decisionは既存ownerの判断結果または未決参照として区別する。 - **既存ownerへの受渡し**：scorecardと資格証拠から、対象scope/revision、task・oracle・rubric/fixture version、source/result receipt、適用された既決decision ownerとdecision identity/revision/statusまたは未決状態を追跡できる形で渡す。判断の適用範囲外、未決または失効の場合だけ既存ownerへ戻す。採用・限定・quarantine・retire等の実際の判断は既存のdecision ownerが行う。LABOは割当、実行許可、採否、model/provider選択、authority、quarantine/retire状態を決めず、scoreから自動変更しない。 - **依存と責務境界**：`HELIXLABO-L2-006`は実験条件とOS割当Workerによる実験実行、`HELIXLABO-L2-055`は通常Worker履歴の水準生成、採択済み`HELIXLABO-L2-059`は品質優先の同条件比較と総費用を所有する。この候補の選択qualification scope自体がtask/fixture/oracle/rubric revision、Worker-visible context、author/judgeの分離条件を入力・照合する。未採択の`HELIXLABO-L2-061`および`HELIXLABO-L2-064`は必須依存にせず、別途採択・選択された場合もその追加scopeだけを照合する。OSはassignment/実行、HARNESS/要求ownerはoracleと受入条件、SECURITYは適用されるデータ/実行権限、LABOは計測・比較・評価証拠を所有する。qualification contractや過去receiptの参照だけではruntime実行を開始しない。 - **保証と限界**：選択scope内の同一条件・版付き証拠とtask別測定結果を返し、未評価・比較不能・unknownを保持する。すべてのWorker作業にblind full benchを課さず、性能の普遍性、別task/versionへの適格性、最良model/providerの選択、worker配置、実験許可、decision完了を保証しない。数値threshold、固定sample数、runtime/provider名、diff/lintの全製品共通単位は導入しない。 - **戻し先**：task/attempt/assignment/result receipt不足はOSまたは観測sourceへ、fixture/oracle/rubric/acceptance不足はHARNESSまたは要求ownerへ、blind/context分離不成立は評価scope ownerへ、diff/lint測定定義・品質・費用データの不足はLABO評価契約またはそのsource ownerへ、採否・許容差・判断scopeの未決は当該既存decision ownerへ戻す。未完・unknownを合格・zero・資格済みへ変換しない。 - **追加の保護条件の出典**：blind/context分離は旧Bench R04/R08（`LEGACY-ASSET-28FB139B26CD61CC51EE`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md:96-120,143-147`、file SHA-256 `a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116`）と旧HIL-NFR-35（`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、同旧L1文書:215）を選択資格scopeへ再導出する。これらはFR61/62の2行被覆receiptのatom数へ加えず、未採択のLABO-061/064本文を既採択・常時依存とは扱わない。 - **起点**：旧FR61/62の行原文・SHAと今回の対応範囲は`docs/governance/audits/requirement-registration/labo-bench-qualification-scorecard-source-lines-2026-09-28.jsonl`、被覆receiptは`docs/governance/audits/requirement-registration/labo-bench-qualification-scorecard-coverage-receipt-2026-09-28.json`を参照する。2原文行は既存`MPR-SH-IR-003`のHIL-FR-61/62 identityと重複するsource参照であり、独立要求数を増やさない。 "
+      },
+      "L11_65": {
+        "revision": "0dd946cec1c3fca8e144513b72e2e10d16c7c9c3",
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "file_bytes": 66593,
+        "file_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+        "start_line": 241,
+        "end_line": 260,
+        "span_bytes_raw": 8167,
+        "raw_lf_span_sha256": "11e08f87148faf9b862d962efeace5371fac4fb74a16917788e317962ede0b1c",
+        "semantic_digest_rule_sha256_trim_trailing_blank_lines_then_lf": "c70905fd036f0c6e6bfdce0368e462cd85acd467354bcad599d1112634d9b1b6",
+        "literal": "### HELIXLABO-L2-065 候補Worker資格とtask別性能証拠の受入候補（単体、1.0）  未実行の受入候補。親は`HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context。採択済みHELIXLABO-L2-059とその対L11は変更せず、資格比較とscorecard受渡しの未閉包条件を別candidateへ置く。通常Worker履歴すべてへfull benchを要求しない。候補採択、資格試験の実行、Worker割当、実験許可を生成しない。  | scope | 成立条件 | 反例・失敗条件 | |---|---|---| | 選択candidate-runtime資格scope | candidate/runtime version、比較目的、task/scope/revision、fixture集合とrevision、quality/acceptance oracle、versioned rubric/scorer、許可されたOS実行receiptがscope内で結ばれる。machine smokeとblind full-benchは別結果として記録する。blind full-benchを成立とする場合、correctness、mutation kill、instruction/scope following、skill A/B、quality、concision、security、second-diff extensibilityの8軸すべてについて同じfixture集合・版とrubric revisionに基づく判定結果がある。評価不能な軸は理由を記録してfull-benchを未完・未評価とし、資格済みとは表示しない。bench manifestにscope/runtime/task/fixture/oracle/rubric/scorerと各版があり、machine scoreとblind-judge scoreが別出力でfixture/rubric digestへ結びつく。この選択scope自身についてcandidate runtime名/hidden oracleの可視境界、author/judge分離、task/oracle/scorer/protocolの版一致を確かめる。未採択のLABO-061/064を前提にせず、本候補単独の入力と証拠で判定する。 | smoke passだけでfull-bench完了を主張する。8軸中どれかの証拠、bench manifest、machine/blind scoreの区別、fixture/rubric digestを欠いたままfull-bench成立とする。fixture集合・revision、rubric/scorer、oracleまたはtask scopeが比較対象間で異なるのに同条件比較として使う。Worker-visible contextへhidden answerを混入する、candidate名をblind judgeへ見せる、authorとjudgeが同じ作成contextを共有する。いずれもそのscopeの資格証拠を未完/不成立とし、平均scoreでsecurity failure・scope逸脱・検証不能を相殺しない。 | | 未見資格scope | 初見runtime version、task classまたはrubric/fixture revisionは既存資格結果から自動適格化しない。該当scopeに適用できるoracle/fixture/rubricがないときは未評価または比較不能と返し、既存ownerへ戻す。 | 別runtime versionの資格、過去taskのscore、単独smoke結果から、未見scopeを資格済みと表示する。 | | HELIX実task scorecard | task/scopeごとのOS assignmentとattempt/result receiptから、`first_pass`を初回attemptの受入oracle結果として、`retry_count`を初回後の再試行数として区別する。`proposal_diff_size`と`lint_violation_count`をそのtask scopeへ適用する場合、測定定義・単位・tool/profile版・観測receiptを添える。quality-judge結果とeffective costはL2-059既定義の品質gate、retry/救援/rework/CI/review/人修正を含む費用境界、価格source/currency/effective timeを使う。数値・定義・結果は同一task receiptへ紐づき、decision ownerへのhandoffは用途別decision identity/revision/statusまたは未決状態を参照する。実効費用内訳をscorecardへ添え、同一task class/scope・測定定義・revisionで比較できる推移と失敗事象をtrend/failure findingとして出す。 | retry後の成功をfirst pass成功と記録する。retryをcostから落とす。diff/lintを適用するのに測定証拠を欠く、不明を0にする、または対象外根拠を示さずゼロ扱いする。quality未達を低価格/短時間で相殺する。scoreから採用/限定/quarantine/retireを自動決定する。異なるtask classや測定定義を混ぜて作ったtrendも不成立とする。いずれも該当taskを完了scorecardまたは資格成功にしない。 | | 適用外・未観測metric | diff-size/lint countが選択scopeに適用されないなら対象外理由を記録する。適用されるが計測できない、定義や版が欠ける、またはreceiptから判定できない場合はunknownのまま残す。既決scope内の品質/優先/tolerance判断は再利用し、適用外・未決・失効時のみ既存ownerへ戻す。 | 未観測値を`0`にする、過去のtool/profile版や異なるtask definitionを無条件転用する、候補のscoreだけで有効な判断を上書きする。unknown/適用外は達成済みのmetricと数えない。 | | owner受渡し | scorecardはtask scope/revision、source/assignment/attempt/result receipt、metric definition/tool version、rubric/oracle revision、既決owner判断または未決を辿れる。LABOは結果・比較証拠を出し、実際の採否・配置・権限・quarantine/retireは既存ownerに残す。 | receiptがsourceやdecision scopeに繋がらない、LABOがWorkerを割当/起動する、LABO scoreからauthority・採否を作る。handoff未完はdecision完了へ変換しない。 |  **正常例**：選択された資格scopeで、同じtask/fixture集合・fixture revision・rubric/scorer revisionに対し、machine smokeとblind full-benchの両結果を分けて保存する。8軸ごとの判定が同条件に結び、hidden oracleはWorker-visible contextから到達できず、judgeはauthorとは別identity/contextで評価する。別途task scorecardでは、初回失敗後に2回目で受入になったtaskを`first_pass=false`、`retry_count=1`として保持し、採用したdiff/lint定義と計測値、L2-059の総費用内訳、価格sourceと既存decision ownerへのreceipt linkを同一scopeへ結ぶ。これはこの入力例の記録値であり、普遍的thresholdを作らない。  **個別反例**：①candidate名をjudgeへ露出、②hidden answerをWorker-visible fixtureへ混入、③8軸の一つを欠く、④smoke passのみをfull資格と表示、⑤task間でfixture/rubric revisionが違うのに同条件比較、⑥retry後passをfirst passへ誤記、⑦適用lintを未計測のまま0とする、⑧人修正・上位Worker救援・retry費用を落として安価成功とする、⑨scoreからLABOが採否やassignmentを作る、を一件ずつ与える。該当scope/metricは不成立・未評価またはhandoff未完となり、他軸の成功で相殺されない。  **未見例**：未評価runtime version、新task class、または変更されたfixture/rubricが来た場合、既存資格結果をそのまま転用せず、新scopeの比較条件・適用oracleが不足なら未評価/比較不能を返す。初見taskでdiff/lintの単位や対象profileが未定の場合もunknownを維持し、指標定義ownerへ戻す。未見のために通常Worker履歴へfull benchを強制せず、候補資格scopeの証拠不足だけを未完にする。  **責務・受入限界**：LABO-006はOS割当Workerによる実験run、LABO-055は通常Worker履歴の水準、採択済みLABO-059は品質優先の同条件比較と全費用、LABO-061/064は別の未採択候補であり、本候補の常時依存ではない。HELIXLABO-L2-065自身が、選択資格scopeに必要なtask/oracle/context・candidate名blind条件を所有するが、これらの候補の実行・配置・採否を所有しない。oracle/fixture/acceptanceはHARNESS/要求owner、assignment/実行はOS、許可されたdata/executionはSECURITY、測定・比較receiptはLABOへ戻す。score、未評価、適格性の表示だけから実験許可、Worker assignment、admission、best runtime、未見taskへの一般化を作らない。実効費用内訳と、同条件のtask class/scope/測定定義/revisionに限るtrend/failure findingをscorecardと一緒に出す。用途別decisionおよび資格admission decisionは既存ownerの結果または未決として参照し、LABO自身の判断へ変換しない。 "
+      },
+      "L2_67": {
+        "revision": "0dd946cec1c3fca8e144513b72e2e10d16c7c9c3",
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "file_bytes": 113504,
+        "file_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+        "start_line": 529,
+        "end_line": 540,
+        "span_bytes_raw": 5373,
+        "raw_lf_span_sha256": "bf545a7b5e4714f442c4f96cec498ac07056f314b13765fc05ad049b69a8c188",
+        "semantic_digest_rule_sha256_trim_trailing_blank_lines_then_lf": "d39bc9f0a20fb6159bf701cf65d38213935d8d00a9e0189c1b81078bdb8d4784",
+        "literal": "### HELIXLABO-L2-067 初回eligible candidateとAttempt内修復の観測（単体追補候補、1.0）  **kind / parent / status**：unit、`HELIXLABO-L1-005` primary、`HELIXLABO-L1-011` context、`version_target: 1.0`、`draft_candidate`。対象は、taskごとのfirst-pass acceptanceを「最初のeligible candidate」に結ぶ境界と、同一OS assignment Attempt内で提出前に行われた修復roundの可視性である。旧source行のうち最初のeligible candidate境界とrepair-round可視性だけを独立候補化する。複数Attemptの総Attempt countは本候補の対象外としてsource holdingに残し、他の補助telemetry、旧candidate全体、旧runtimeも対象にしない。  - **入力と境界**：明示的に選択されたtask/scope/revision、既存のtask contractが定めるeligibility predicateとそのrevision、候補ごとのidentity/digest・生成/変更event・適用oracleとrevision・判定receipt、OS assignment/Attempt identityとresult receiptを受け取る。eligibility predicateやeventの出所がない場合は補わず`unknown`にする。この候補はpredicate、oracle、threshold、候補選択規則を新設しない。 - **候補eventの出力**：結果を見る前にeligibility predicateを適用し、最初にeligibleと判定されたcandidate identity/digest、判定eventとreceipt、および既存oracleによるそのcandidateの判定結果を同じtask/scope/Attemptへ結ぶ。後続candidateの結果で最初のeligible candidateやその判定を上書きしない。predicateの適用順序、対象revisionまたは証拠が不明ならfirst-eligibleの結果を確定せず`unknown`/未評価を返す。 - **同一Attempt内修復の出力**：最初のeligible candidate以降、同一OS assignment Attempt内で最終提出までに発生したcandidate変更・修復eventを順序付きで記録し、観測できたrepair round数と各roundの入力candidate、出力candidate、変更receipt、oracle結果を結ぶ。eventの欠落や重複排除根拠の不足は`unknown`を保ち、0 roundと推定しない。Attemptをまたぐ再試行はAttempt identityで区別し、同一Attemptのrepair roundへ混ぜない。本候補はAttempt identityを集計単位として使うが、複数Attemptの総Attempt countは算出・出力しない。 - **既存candidate・採択条件との境界**：採択済み`HELIXLABO-L2-059`の品質優先、比較条件、費用・時間・手戻り定義を変更しない。未採択`HELIXLABO-L2-065`の`first_pass`（初回Attemptの受入oracle結果）と`retry_count`（初回後の再試行数）も変更しない。本候補のcandidate-level `first_eligible_candidate_result`と`same_attempt_repair_round_count`は別の追加観測として保持し、同じ名称・分母の指標へ統合しない。065の採択を依存条件にせず、065の有無にかかわらず同じ入力証拠から本候補の観測だけを返せる。複数Attemptの総Attempt countは未選択source subatomとして`MPR-SH-CANDIDATE-003`に保全し、本候補から算出しない。両candidateを将来同一scorecardへ載せる場合も、grainと定義の違う値を無条件に一致・代替・合算しない。 - **責務と権限**：OSはassignment/Attempt identityと実行event、task/要求ownerは適用eligibility predicateと受入oracle、LABOは許可されたeventの計測・比較証拠を所有する。既存の許可されたresult receiptの観測に限り、LABOはWorker/候補を選択・割当・起動・修復せず、oracle・threshold・採否・資格・admissionも作らない。比較実行を新規に選ぶ場合は既存OS assignmentと適用されるSECURITY許可を使う。 - **失敗・未見**：predicate/oracle/Attempt/candidate identityまたはevent receiptの欠落・不一致、順序を復元できない変更、別Attempt間の混合があれば対象scorecardを未評価または比較不能とし、責務ownerへ戻す。最終提出だけから最初のeligible candidateや内部round数を遡及推測しない。新しいtask class、predicate revision、oracle revisionは既存scopeから適格化せず、新条件が不明ならunknownを返す。 - **旧sourceと局所scope**：`LEGACY-ASSET-3A15E5645D2D2A59DFF5`、`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md:399`、file SHA-256 `f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b`、line SHA-256 `58be97d309362b845682602ae352b1954ed433fbc4b6552791f89be07d70db4f`を起点とする。行内の「最初のeligible candidate」定義と提出前に隠れ得るrepair-round可視性の2 subatomだけをcandidate-scopedで保持する。総Attempt countは別subatomとして選択せず、`MPR-SH-CANDIDATE-003`に保全する。`no_loss`はこの2 selected subatomのみに限り、別の列挙telemetry、隣接行、当該source line全体の他の条件、旧schema/runtimeの被覆は主張しない。詳細なatom境界とreceiptは[source-lines](../../governance/audits/requirement-registration/labo-firstpass-attempt-repair-source-lines-2026-09-28.jsonl)および[coverage receipt](../../governance/audits/requirement-registration/labo-firstpass-attempt-repair-coverage-receipt-2026-09-28.json)を参照する。 "
+      },
+      "L11_67": {
+        "revision": "0dd946cec1c3fca8e144513b72e2e10d16c7c9c3",
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "file_bytes": 66593,
+        "file_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+        "start_line": 269,
+        "end_line": 277,
+        "span_bytes_raw": 3249,
+        "raw_lf_span_sha256": "7b3e55cbeeb4fb0f2ae322b3ea439b63ea6acfcaabf2753a642aee158f378a16",
+        "semantic_digest_rule_sha256_trim_trailing_blank_lines_then_lf": "7a9adc0a54e009ca370033d5b2a88f8b53bf79a99ff146352169d055ff46d331",
+        "literal": "### HELIXLABO-L2-067 初回eligible candidateとAttempt内修復の受入候補（単体、1.0）  未実行の受入候補。親は`HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context。first-eligible candidateの境界と同一Attempt内repair roundを観測する候補であり、source sentenceのAttempt count clauseは本候補の対象外でsource holdingに残す。採択済みHELIXLABO-L2-059の比較・品質・費用意味および未採択HELIXLABO-L2-065の`first_pass`/`retry_count`定義を変更しない。065の採択、資格試験、実験実行またはWorker割当を前提にしない。  - **正常例**：選択task/scopeの事前指定eligibility predicateとrevision、適用oracle/revision、OS assignment/Attempt identity、候補identity/digestとevent receiptが同じtask receiptへ結ばれている。最初にeligibleと判定されたcandidateをevent順で特定し、そのcandidateのoracle結果を保持する。以後の同一Attempt内のcandidate変更を順に記録し、観測できたrepair round数と各roundの前後digest・result receiptを返す。Attempt identityで別Attemptのretryとroundを区別するが、複数Attemptの総Attempt countは算出・出力しない。result後の変更が最初のcandidateを上書きしない。 - **個別反例**：結果を見た後のeligibility predicate選択、predicate/oracle revisionの欠落、候補digestの欠落、順序不明の修復event、最終提出だけからのfirst-eligible推測、欠落eventを0 roundとする、Attempt境界を越えたround混入、同一候補の再送を修復として重複計上、最初の候補判定を後続passで上書き、総Attempt countを本候補の指標とする、をそれぞれ未評価/unknown/不成立とする。別途、065の`first_pass`を本候補のcandidate-level resultへ置換する、065の`retry_count`へ内部roundを足す、059のcost/quality gateを変える例も不成立とする。 - **未見例**：初見task classまたは新predicate/oracle revisionで既存のeligibility条件が適用できない場合、同じpredicateやthresholdを推測で引き継がずunknown/未評価を返す。event sourceがAttempt内の変更順やcandidate digestを提供しない場合は、修復round数を確定せず観測source ownerへ不足を戻す。Attempt count clauseは本候補に含めず、source holdingへ残す。 - **受入限界と責務境界**：本候補は既存の許可済みresultを観測する。task/要求ownerがeligibility predicateとoracle、OSがassignment/Attempt/event、LABOが集計・比較証拠を持つ。新規実験の選択には既存OS assignmentと適用SECURITY許可が必要であり、LABOはWorker/候補を割当・起動・修復しない。`first_eligible_candidate_result`と`same_attempt_repair_round_count`は候補固有の観測名で、065のtask-level `first_pass`/`retry_count`と自動一致・代替・合算しない。総Attempt countはこの候補では算出しない。source coverageと`no_loss`はsource-lines/receiptに列挙された2 selected subatomだけに限り、Attempt count subatomと旧行全体、候補集合全体、実装・実験・受入完了を主張しない。 "
+      }
+    },
+    "d1_semantics": {
+      "065_PO_row": "| `HELIXLABO-L2-065` | 条件付き採択：D1、067とは別指標で「最初のAttemptの結果」。 | `MPR-RC-HELIXLABO-L2-065-001` | `docs/helix-labo/L2-requirements/labo-requirements.md` | `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9` | `sha256:6f50887b94a8d3341c55700393896798cc1273324a868071447bf0e5a95cf019` | `HELIXLABO-L2-065` | `docs/helix-labo/L11-acceptance/labo-acceptance.md` | `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0` | `sha256:c70905fd036f0c6e6bfdce0368e462cd85acd467354bcad599d1112634d9b1b6` | `docs/governance/audits/requirement-registration/labo-bench-qualification-scorecard-coverage-receipt-2026-09-28.json` |",
+      "067_PO_row": "| `HELIXLABO-L2-067` | 条件付き採択：D1、「最初の適格candidateの結果」と同一Attempt内修正回数。065と換算・統合しない。 | `MPR-RC-HELIXLABO-L2-067-001` | `docs/helix-labo/L2-requirements/labo-requirements.md` | `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9` | `sha256:d39bc9f0a20fb6159bf701cf65d38213935d8d00a9e0189c1b81078bdb8d4784` | `HELIXLABO-L2-067` | `docs/helix-labo/L11-acceptance/labo-acceptance.md` | `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0` | `sha256:7a9adc0a54e009ca370033d5b2a88f8b53bf79a99ff146352169d055ff46d331` | `docs/governance/audits/requirement-registration/labo-firstpass-attempt-repair-coverage-receipt-2026-09-28.json` |",
+      "distinction": "065: D1を最初のAttemptの結果として扱い、067と別指標。067: D1を最初の適格candidateの結果とし、同一Attempt内修正回数も記録し、065と換算・統合しない。",
+      "fixed_L2_065_digest": "6f50887b94a8d3341c55700393896798cc1273324a868071447bf0e5a95cf019",
+      "fixed_L2_067_digest": "d39bc9f0a20fb6159bf701cf65d38213935d8d00a9e0189c1b81078bdb8d4784",
+      "authority_boundary": "L2-066 row is a neighboring independent adopted identity, not an alias for 067; correction is locator-only and does not alter authority or adoption."
+    },
+    "assessment": "The preflight key fixed_line_067 points to line 84, whose literal and digest are for L2-066. Correct fixed L2-067 row is line 85 at fixed revision 0dd and line 82 at current main 286a. Current/fixed exact row SHA should match. The error is both a wrong label/line mapping and a source pin misassignment, not a wrong literal in the PO record.",
+    "limits": [
+      "Read-only confirmation only; no canonical or original preflight file changed.",
+      "No adoption, scope, requirement semantics, or authority was created or changed.",
+      "This supplement does not independently assess the content beyond the 065/067 distinction needed to validate the locator."
+    ]
+  },
+  "root_body_prefix_checkpoint": {
+    "pins": [
+      {
+        "path": "docs/helix-labo/L10-verification/business-verification.md",
+        "prefix_sha256": "aa06437d9a26fc833a2bf15ca5d9f87df427b68fd7886499f1fb6c2f0176cec3",
+        "suffix_sha256": "b906124409ed6e8bccc9d3179acd33582a218442628634828fc74ebd924ce82e"
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "prefix_sha256": "b6aba96d43818dd5a65b74c53700c62a5e4ee7795c2eaa73833f7322630d71f1",
+        "suffix_sha256": "d177828ecbc4890921556d487ea11d2caf27de736db3c48e421cb48cd4fc7cd6"
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+        "prefix_sha256": "b8e6be1963b35ea6d90874f15e41b0b3a3cb7d7070a657be8a2b330a5e3730fb",
+        "suffix_sha256": "cf5e72c7717c517fae962f26690d621afc75fcfc25606284b5fdc00ab85d1300"
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+        "prefix_sha256": "2076362505fffdd21f0bac4d375743c5b2e22fb634999d9b0e42bcc3f8a56208",
+        "suffix_sha256": "898ef09968cb1c2f0110dd0429898ba8aa14b2b2106e10dd570cfe9d734fa255"
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+        "prefix_sha256": "2bef02dabb0f377d3f7cfc82854e7e26f3eee6b3d55f9e82e908c187c1fc93f1",
+        "suffix_sha256": "55ae419788018e7638e632431a51a1ef2b06ed73332359da447fbe1faabd8d8d"
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+        "prefix_sha256": "72b46aae68bed2e5b359955b2f9cd9623d1d0bde69f9b4e42f792ee089ae7d62",
+        "suffix_sha256": "adf41a7142461422ea6cfbcc5be0f9635e5c4dcae1c41d32ea2a84d450495434"
+      }
+    ],
+    "cases": 66,
+    "six_columns": true,
+    "prior_failed_checks": "CASE-first regex did not match L10-prefixed IDs; fixed matcher; no body change"
+  },
+  "current_66_CASE_rows": [
+    {
+      "line": 3032,
+      "literal": "| `L10-LABO-065-CASE-01` | `FR-LABO-065-01`, `FR-LABO-065-02`, `FR-LABO-065-03`, `FR-LABO-065-04`, `FR-LABO-065-05`, `FR-LABO-065-06` | `LABO-065-AC-01` | 選択scope、許可fixture、8軸receiptとtask scorecard receiptが揃う | なし（正常） | smoke/full-benchを別出力。8軸とscorecard fieldを対応付け、適用外理由とunknownを区別する。 |\n",
+      "raw_lf_sha256": "b31c4791da5ae2029bdf251b4a8b7c6c1a0a25dc319c828aa84baed68c707e18"
+    },
+    {
+      "line": 3033,
+      "literal": "| `L10-LABO-065-CASE-02` | `FR-LABO-065-01`, `FR-LABO-065-02` | `LABO-065-AC-02` | 選択scope内の未見task/runtime。旧literalにscope変更なし | なし（未見正常） | receiptのある範囲だけ評価し、既存条件を保つ。thresholdやscope一般化を追加しない。 |\n",
+      "raw_lf_sha256": "cdcbafd7d63db5aaf06289f000925fe31753bfee2b5f9b6b0324510c95b92652"
+    },
+    {
+      "line": 3034,
+      "literal": "| `L10-LABO-065-CASE-03a` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01のfull-benchを参照する索引状態 | CASE-03f–03mの軸別欠落fixtureを参照。独立変異なし | 各軸fixtureを個別に照合する。索引行を独立fixture・独立変異に数えない。 |\n",
+      "raw_lf_sha256": "2eac290155c1c6bae385516d0733aa095a9169f2909cf7f1b39baa8b9e34d000"
+    },
+    {
+      "line": 3035,
+      "literal": "| `L10-LABO-065-CASE-03b` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01のsmoke/full-bench正常状態 | smoke resultだけをfull-bench扱い | full-benchへの昇格を拒否し、smokeとfull結果を分離する。 |\n",
+      "raw_lf_sha256": "a780c58f04e5e9070684e35a763cef8329794e93905d95da677648debf222184"
+    },
+    {
+      "line": 3036,
+      "literal": "| `L10-LABO-065-CASE-03c` | `FR-LABO-065-03` | `LABO-065-AC-03` | CASE-01相当の初回task receipt | first_pass receiptだけstale | first_passを確定せずunknownに保つ。OS/run-record責務へ戻す。 |\n",
+      "raw_lf_sha256": "384000932c188ff1a9b79b9356cd8c6243eb0d73f04e6c7bc26ffe81f97a062e"
+    },
+    {
+      "line": 3037,
+      "literal": "| `L10-LABO-065-CASE-03d` | `FR-LABO-065-04` | `LABO-065-AC-03` | 選択scopeのCASE-01正常状態（旧literalに差分指定なし） | applicable diff/lint definitionだけ不明 | countを0で補わずunknown、比較未評価。LABO評価契約または識別可能なsource ownerへ。 |\n",
+      "raw_lf_sha256": "8a18fc561830b08aa3cc5785985532c2cf8799f2db27a0c07cd86b09f7cd9855"
+    },
+    {
+      "line": 3038,
+      "literal": "| `L10-LABO-065-CASE-03e` | `FR-LABO-065-05` | `LABO-065-AC-03` | CASE-01相当のscorecard/cost receipt | price sourceだけ欠落 | 費用をunknownとして保持し0にしない。 |\n",
+      "raw_lf_sha256": "8280494a42a9e7bc85a720ea330aaa2b08484c796e739ecd86738a1c68139122"
+    },
+    {
+      "line": 3039,
+      "literal": "| `L10-LABO-065-CASE-03f` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01の選択scopeと残り7軸の証拠が有効 | correctness軸の証拠だけ欠落 | correctness軸を未評価とし、8軸full-benchを未完にする。 |\n",
+      "raw_lf_sha256": "7ca6d5dff9b107fab1c25dd898528395331c83828628d82af85d5357c284eebc"
+    },
+    {
+      "line": 3040,
+      "literal": "| `L10-LABO-065-CASE-03g` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01の選択scopeと残り7軸の証拠が有効 | mutation-kill軸の証拠だけ欠落 | mutation-kill軸を未評価とし、8軸full-benchを未完にする。 |\n",
+      "raw_lf_sha256": "b7feec9aedd898a81382619b04030a02fe3aa5342545ff1db7252e792ca341ed"
+    },
+    {
+      "line": 3041,
+      "literal": "| `L10-LABO-065-CASE-03h` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01の選択scopeと残り7軸の証拠が有効 | instruction/scope-following軸の証拠だけ欠落 | instruction/scope-following軸を未評価とし、8軸full-benchを未完にする。 |\n",
+      "raw_lf_sha256": "754d0aedb634586345c925c03d86c244245fcfdfe75e4c4a21f93816ae35ee3b"
+    },
+    {
+      "line": 3042,
+      "literal": "| `L10-LABO-065-CASE-03i` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01の選択scopeと残り7軸の証拠が有効 | skill-A/B軸の証拠だけ欠落 | skill-A/B軸を未評価とし、8軸full-benchを未完にする。 |\n",
+      "raw_lf_sha256": "778fddfbee2b529b1b337342be9af0961d16d9346fe58b5457628ac440194c42"
+    },
+    {
+      "line": 3043,
+      "literal": "| `L10-LABO-065-CASE-03j` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01の選択scopeと残り7軸の証拠が有効 | quality軸の証拠だけ欠落 | quality軸を未評価とし、8軸full-benchを未完にする。 |\n",
+      "raw_lf_sha256": "86a008193df94cfb06c4172de6381db0430a249995c3dbc586ba9b09eddd8d31"
+    },
+    {
+      "line": 3044,
+      "literal": "| `L10-LABO-065-CASE-03k` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01の選択scopeと残り7軸の証拠が有効 | concision軸の証拠だけ欠落 | concision軸を未評価とし、8軸full-benchを未完にする。 |\n",
+      "raw_lf_sha256": "1c5eaaaf1f7f73751278d2ff23635b41324424fe417db050c9f01f5cd88cf73a"
+    },
+    {
+      "line": 3045,
+      "literal": "| `L10-LABO-065-CASE-03l` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01の選択scopeと残り7軸の証拠が有効 | security軸の証拠だけ欠落 | security軸を未評価とし、8軸full-benchを未完にする。 |\n",
+      "raw_lf_sha256": "8f35c63853faebd0acb43a0effaebf6ae8ff4de50255ce6777587bad4b7242a1"
+    },
+    {
+      "line": 3046,
+      "literal": "| `L10-LABO-065-CASE-03m` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01の選択scopeと残り7軸の証拠が有効 | second-diff-extensibility軸の証拠だけ欠落 | second-diff-extensibility軸を未評価とし、8軸full-benchを未完にする。 |\n",
+      "raw_lf_sha256": "c9e5b50aac96eec862e3d05a8842815c3ed261cc3acc5b74da4693e250b38f6b"
+    },
+    {
+      "line": 3047,
+      "literal": "| `L10-LABO-065-CASE-03n` | `FR-LABO-065-03` | `LABO-065-AC-03` | CASE-01相当のtask result receipt | retry_count receiptだけ欠落 | retry_countを補わずunknownに保つ。OS/run-record責務へ。 |\n",
+      "raw_lf_sha256": "7aa7342f4556ff4c19f0a9a2480ff8ba379157a2d9c473f68e93bfdaf4f2b871"
+    },
+    {
+      "line": 3048,
+      "literal": "| `L10-LABO-065-CASE-03o` | `FR-LABO-065-05` | `LABO-065-AC-03` | CASE-01相当のquality/cost receipt | quality-judge resultだけ欠落 | scorecardを完了扱いしない。品質証拠不足を保持する。 |\n",
+      "raw_lf_sha256": "e66054daea83735c3ce46eecdadbcd50ac3ddf59632ce4ea03fffdaf2d58a5ff"
+    },
+    {
+      "line": 3049,
+      "literal": "| `L10-LABO-065-CASE-04a` | `FR-LABO-065-06` | `LABO-065-AC-03` | 既存decision owner/runtime stateに変更なし | LABOがruntime/providerを選ぶ誤出力 | 選択を拒否し既存decision ownerの状態を保持する。 |\n",
+      "raw_lf_sha256": "2f69b76a02130096f74a72d33f024e9829a424a9f375ae8a66e1ce0452e43984"
+    },
+    {
+      "line": 3050,
+      "literal": "| `L10-LABO-065-CASE-04b` | `FR-LABO-065-06` | `LABO-065-AC-03` | OS assignmentとSECURITY permissionは入力状態のまま | scoreからpermission/assignmentを生成する誤出力 | 生成を拒否しOS/SECURITY境界を保つ。 |\n",
+      "raw_lf_sha256": "7aff1ebfe58c2163888ad3215b1cc5d3db54b60804a27552dbc8729d1548d2f9"
+    },
+    {
+      "line": 3051,
+      "literal": "| `L10-LABO-065-CASE-26` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01相当のblind scopeでhidden answerがWorker-visible外にある | hidden answerをWorker-visible fixtureへ混入 | 当該証拠を不適格とし、他軸で相殺しない。 |\n",
+      "raw_lf_sha256": "a6e1fb6bbee15488fe0a81a7d1f2f890da471b49abc76cfb23f6c633a9ce232b"
+    },
+    {
+      "line": 3052,
+      "literal": "| `L10-LABO-065-CASE-27` | `FR-LABO-065-04` | `LABO-065-AC-03` | CASE-01相当のapplicable lint metric | lint未計測を0と報告 | unknownを保持し0に置き換えない。 |\n",
+      "raw_lf_sha256": "57d629b80c6b6545ed6222e832c40191f2f2ba0934b63fb25e4abe9cf697bbb5"
+    },
+    {
+      "line": 3053,
+      "literal": "| `L10-LABO-065-CASE-28` | `FR-LABO-065-05` | `LABO-065-AC-03` | CASE-01相当のeffective-cost breakdown | retry costだけ欠落 | 費用を不完全/unknownとし、資格・比較成功へ補わない。 |\n",
+      "raw_lf_sha256": "09a13c6518c6740948b8d0e241f2a39673069da9cb67952c7604f9333248a008"
+    },
+    {
+      "line": 3054,
+      "literal": "| `L10-LABO-065-CASE-29` | `FR-LABO-065-02` | `LABO-065-AC-03` | task間の他条件とrubric revisionは一致 | fixture revisionだけ不一致 | 異なる条件を同一比較に混ぜず、該当taskを未評価にする。 |\n",
+      "raw_lf_sha256": "108a25c17b0dcc4aaa2fb62b074dd8f29d5d6935efffacacdefbdf5665ebf87e"
+    },
+    {
+      "line": 3055,
+      "literal": "| `L10-LABO-065-CASE-30` | `FR-LABO-065-02` | `LABO-065-AC-03` | task間の他条件とfixture revisionは一致 | rubric revisionだけ不一致 | 異なる条件を同一比較に混ぜず、該当taskを未評価にする。 |\n",
+      "raw_lf_sha256": "d8c3e3fefd3602b24ff945d2aef535372f1ff102180e7dfc15a28bbd6c366195"
+    },
+    {
+      "line": 3056,
+      "literal": "| `L10-LABO-065-CASE-31` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01相当のbench manifest一式 | bench manifestだけ欠落 | full-bench未完。LABO評価契約または識別可能なmanifest sourceへ戻す。 |\n",
+      "raw_lf_sha256": "d228abe65dc150a0a82210398a3fde465bee52d717dbabb90c415a6044c0ad71"
+    },
+    {
+      "line": 3057,
+      "literal": "| `L10-LABO-065-CASE-32` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01相当のfixture set | fixture digestだけ欠落 | 同一性を確認できず未評価。HARNESS/要求owner責務区分へ。個別identity不明はunknown。 |\n",
+      "raw_lf_sha256": "9ef3c15b0941c8cee7b2296b23853d02ee776e6728bfe342e5a39f4d7a23c160"
+    },
+    {
+      "line": 3058,
+      "literal": "| `L10-LABO-065-CASE-33` | `FR-LABO-065-02`, `FR-LABO-065-05` | `LABO-065-AC-03` | security failureが有効な不成立、他receiptは有効 | 他軸の平均scoreだけでsecurity failureを相殺 | 不成立を保持し、合格に変換しない。 |\n",
+      "raw_lf_sha256": "080286cf129b859784e909b04cd31d59ed760a7a0b9abf1f17480e68db8ad450"
+    },
+    {
+      "line": 3059,
+      "literal": "| `L10-LABO-065-CASE-34` | `FR-LABO-065-05` | `LABO-065-AC-03` | quality failureが有効な不成立、他receiptは有効 | 低価格だけでquality failureを相殺 | 不成立を保持し、合格に変換しない。 |\n",
+      "raw_lf_sha256": "59aca2feae7e235d4820282b496dad82fd0400f36b4540d484199b030921dde9"
+    },
+    {
+      "line": 3060,
+      "literal": "| `L10-LABO-065-CASE-35` | `FR-LABO-065-05` | `LABO-065-AC-03` | quality failureが有効な不成立、他receiptは有効 | 短時間だけでquality failureを相殺 | 不成立を保持し、合格に変換しない。 |\n",
+      "raw_lf_sha256": "fc810159a366435fb470479f1d01310a5a74e79677815fa92ea76fdde193d776"
+    },
+    {
+      "line": 3061,
+      "literal": "| `L10-LABO-065-CASE-36` | `FR-LABO-065-04` | `LABO-065-AC-03` | metric applicabilityが未確定/根拠未提示 | 対象外根拠なしにmetricをzero扱い | zeroを認定せずunknown/未評価。CASE-12の実測zeroと区別し、L2:514の適用性・測定責務へ。 |\n",
+      "raw_lf_sha256": "0bf4e3baddff0f8ef21b3ea4a15e4bac1aae11f029aa559f11b7816a607830ec"
+    },
+    {
+      "line": 3062,
+      "literal": "| `L10-LABO-065-CASE-37` | `FR-LABO-065-02` | `LABO-065-AC-03` | 既存qualification結果は別runtime version/scope | 別versionまたは過去scoreだけで未見scopeを資格済みとする | 新scopeを未評価のまま保つ。 |\n",
+      "raw_lf_sha256": "4da08a0752fd55c35cf61346275c9622a0d23de56a552bbf3fa1000e1eb438dc"
+    },
+    {
+      "line": 3063,
+      "literal": "| `L10-LABO-065-CASE-38` | `FR-LABO-065-01` | `LABO-065-AC-03` | 選択runの他receiptは有効 | assignment receiptだけ欠落 | runを評価不能としOSへ戻す。 |\n",
+      "raw_lf_sha256": "34cf286fe1b13ced0d3aecc51ad0dca464926b76a314f1f7dd02b762952edbbf"
+    },
+    {
+      "line": 3064,
+      "literal": "| `L10-LABO-065-CASE-39` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01相当のfixture/score receipt | oracleだけ欠落 | 合否を確定しない。HARNESS/要求owner責務区分へ。 |\n",
+      "raw_lf_sha256": "65c89862053edefb5b6d0e74d879ab4c91700f05fa34eea1837dcd0d60fcec4f"
+    },
+    {
+      "line": 3065,
+      "literal": "| `L10-LABO-065-CASE-40` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01相当のbench manifest inputs | rubric digestだけ欠落 | rubric/scorer identityを確定せずfull-bench未完。HARNESS/要求owner区分へ。具体identity不明はunknown。 |\n",
+      "raw_lf_sha256": "d55e7328449c73d3748cab47397ba1bb9876060b17f63d6d3dde50cba0aa876e"
+    },
+    {
+      "line": 3066,
+      "literal": "| `L10-LABO-065-CASE-05` | `FR-LABO-065-01`, `FR-LABO-065-03` | `LABO-065-AC-01` | 旧literalはCASE-01と同じ正常入力 | なし（正常） | 通常scorecardをfield別に返す。完全性・独立性をID数から推論しない。 |\n",
+      "raw_lf_sha256": "b8e4b2a3fbdfcf1e454d7ff5c29368a66bb80b0ea353d8328ba1d02f41bc8719"
+    },
+    {
+      "line": 3067,
+      "literal": "| `L10-LABO-065-CASE-06` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01相当のblind score/digestとmachine manifest | blind score/digestをmachine manifestで代替 | 資格証拠とせず、blind judge evidenceを要求する。 |\n",
+      "raw_lf_sha256": "b267c216e3b42e206d4d41b2d2f229b62df7b85e6042343b42b2f432ca2aeecd"
+    },
+    {
+      "line": 3068,
+      "literal": "| `L10-LABO-065-CASE-07` | `FR-LABO-065-01`, `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01相当でtask/fixture/oracle/rubric等は一致 | task revisionだけ比較対象と不一致 | task revision不一致のため比較から分離する。task条件/sourceの不足は固定L2:514のHARNESSまたは要求owner責務区分へ戻す。scope/task/assignment/resultの観測receipt自体が不足する場合はOSまたは観測source責務区分へ戻す。入力に個別source identityがない場合はunknownを別に保持し、CASE IDだけからidentityを推測しない。 |\n",
+      "raw_lf_sha256": "c403bbf3d200e05a5e70f72deebb03cfbdd38175ca189c56298061581cbb65fe"
+    },
+    {
+      "line": 3069,
+      "literal": "| `L10-LABO-065-CASE-08` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01相当でjudgeはWorker/helperと独立 | judge identityだけWorker/helperと同一 | independent judge条件不成立。evaluation scope owner責務区分へ。 |\n",
+      "raw_lf_sha256": "9aee7b56b20694bf62890bca999a49e4c7c0629c309cd2569c2ac63602757106"
+    },
+    {
+      "line": 3070,
+      "literal": "| `L10-LABO-065-CASE-09` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01相当でjudge contextは独立 | judge contextだけ共有 | 独立性不成立。evaluation scope owner責務区分へ。 |\n",
+      "raw_lf_sha256": "e56a4fd9c9ca210bdbf7928f97c7a99f44b2b3485e85a1a94e088f828794fed2"
+    },
+    {
+      "line": 3071,
+      "literal": "| `L10-LABO-065-CASE-10` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01相当でcandidate nameはblind | hidden candidate nameだけ可視 | blind証拠不適格。evaluation scope owner責務区分へ。 |\n",
+      "raw_lf_sha256": "911351ec84a2173db8b91675826a6ec26895f6154e001f5f471a211fef7101a2"
+    },
+    {
+      "line": 3072,
+      "literal": "| `L10-LABO-065-CASE-11` | `FR-LABO-065-03` | `LABO-065-AC-03` | 最初のAttempt失敗、retry成功、他receipt有効 | first_passをtrueと誤報 | `first_pass=false`とretry結果を保つ。OS/run-record責務へ。 |\n",
+      "raw_lf_sha256": "f66be602f0493759083abe16b1634aa8ab7972972b73303781f1d314d808f51e"
+    },
+    {
+      "line": 3073,
+      "literal": "| `L10-LABO-065-CASE-12` | `FR-LABO-065-04` | `LABO-065-AC-01` | applicable diff/lint metricと測定receiptがある | なし。実測値0を入力 | 0を実測として保持しunknownにしない。 |\n",
+      "raw_lf_sha256": "6771c8822e2fd31bfcb5eac5e651fbfc3dc957617da3865e7235342fcff91c7d"
+    },
+    {
+      "line": 3074,
+      "literal": "| `L10-LABO-065-CASE-13` | `FR-LABO-065-05` | `LABO-065-AC-03` | CASE-24とCASE-25の個別cost receipt欠落 | 索引としてCASE-24/25を束ねる。独立変異なし | 各主caseを直接参照し、複合・二重計上しない。 |\n",
+      "raw_lf_sha256": "aa3933ffd5c180496c48073ca6ebf8692412562038052263dc20efc20b74e0c0"
+    },
+    {
+      "line": 3075,
+      "literal": "| `L10-LABO-065-CASE-14` | `FR-LABO-065-05` | `LABO-065-AC-03` | trend群の測定条件が一致 | trend categoryだけ異なる | 異なるcategoryを分離し、LABO評価へ。 |\n",
+      "raw_lf_sha256": "14b9912e3d9f3bc86ce0d7e8bc73084b8a14527a71447e257c7187f8701edc63"
+    },
+    {
+      "line": 3076,
+      "literal": "| `L10-LABO-065-CASE-15` | `FR-LABO-065-06` | `LABO-065-AC-03` | scorecard evidence valid、decision ref expected | handoff decision identityだけ欠落 | decision 未決として既存decision owner区分へ戻す。 |\n",
+      "raw_lf_sha256": "045b8a36a7c444998184801fceb8284c3ca8bb1983fde72ba506f1fd53a727a6"
+    },
+    {
+      "line": 3077,
+      "literal": "| `L10-LABO-065-CASE-16` | `FR-LABO-065-06` | `LABO-065-AC-03` | scorecard evidence valid、decision identity有効 | handoff decision revisionだけstale | stale decisionを適用しない。既存decision owner区分へ。 |\n",
+      "raw_lf_sha256": "5f1b2efb114654a9a7a84e97370a6a8b48fb720de015392e20d05c84f97c9ea4"
+    },
+    {
+      "line": 3078,
+      "literal": "| `L10-LABO-065-CASE-17` | `FR-LABO-065-06` | `LABO-065-AC-03` | scorecard evidence valid、decision identity/revision有効 | handoff statusだけunknown | decisionを確定せず保留。既存decision owner区分へ。 |\n",
+      "raw_lf_sha256": "449f9b53269f23e54c288921533e1e27b1a0eba5696ef855657c456845e90b3a"
+    },
+    {
+      "line": 3079,
+      "literal": "| `L10-LABO-065-CASE-18` | `FR-LABO-065-01`, `FR-LABO-065-02` | `LABO-065-AC-03` | 選択qualification scopeを基準とする | scopeだけ選択scope外 | 適用外を失効/失敗として数えず未評価。 |\n",
+      "raw_lf_sha256": "5d46ba099ba592c3598ccf86a2750ffbe6189159ab2273ff123da92ac07d1aee"
+    },
+    {
+      "line": 3080,
+      "literal": "| `L10-LABO-065-CASE-19` | `FR-LABO-065-05` | `LABO-065-AC-03` | CASE-03eのprice source欠落 | 同じprice source欠落を索引参照。独立変異なし | CASE-03eをprimaryとして直接参照。 |\n",
+      "raw_lf_sha256": "d90b6279ea06c33fa3257775ac4930db036c5085b57c440243f30b605e1b6604"
+    },
+    {
+      "line": 3081,
+      "literal": "| `L10-LABO-065-CASE-20` | `FR-LABO-065-05` | `LABO-065-AC-03` |適用可能なcost sourceと他条件は揃い、CASE-03eのprice source欠落とは別の正常状態 |選択費用根拠fieldだけ欠落 |費用evidenceをunknownにする。cost sourceは存在するが選択根拠fieldが欠けた状態。CASE-03eと具体fieldが同一かは未確定のまま保持し、費用の個別source identityが不明ならunknown。 |\n",
+      "raw_lf_sha256": "8363a54eb47fc63f8534b496463a9f4a241ab3da4042e5e5c8e983911db78fd0"
+    },
+    {
+      "line": 3082,
+      "literal": "| `L10-LABO-065-CASE-21` | `FR-LABO-065-05` | `LABO-065-AC-03` | CASE-01相当のprice source/currency/effective time | currencyだけ欠落 | 換算せず金額unknown。具体source identity不明ならunknown。 |\n",
+      "raw_lf_sha256": "228d28a3bf14c4cb2e18459e87a8d8b986768317746262e33f5060a28288c5ed"
+    },
+    {
+      "line": 3083,
+      "literal": "| `L10-LABO-065-CASE-22` | `FR-LABO-065-05` | `LABO-065-AC-03` | CASE-01相当のprice source/currency/effective time | effective timeだけ欠落 | 適用価格unknown。LABO評価契約または識別可能なsource ownerへ。 |\n",
+      "raw_lf_sha256": "1a15bb6778e744662300171eeb0945f7631b89282f685bfc27e4c8a1b3646cad"
+    },
+    {
+      "line": 3084,
+      "literal": "| `L10-LABO-065-CASE-23` | `FR-LABO-065-03` | `LABO-065-AC-01` | 最初のAttempt失敗、次のAttempt成功 | なし（正常なretry sequence） | `first_pass=false`、`retry_count=1`を別fieldで保持。 |\n",
+      "raw_lf_sha256": "7bbab3f5e367dd9c69e7018be24ffbbf30e695a82445f0182a9c02963469ae49"
+    },
+    {
+      "line": 3085,
+      "literal": "| `L10-LABO-065-CASE-24` | `FR-LABO-065-05` | `LABO-065-AC-03` | CASE-01相当のcost breakdown | rescue-cost receiptだけ欠落 | 内訳unknown、0補完しない。source identity不明ならunknown。 |\n",
+      "raw_lf_sha256": "499e29673aec0712acb19e5892b3db93f862cbb60374b9efd19793b2e0b3d9be"
+    },
+    {
+      "line": 3086,
+      "literal": "| `L10-LABO-065-CASE-25` | `FR-LABO-065-05` | `LABO-065-AC-03` | CASE-01相当のcost breakdown | human-retry-cost receiptだけ欠落 | 内訳unknown、CASE-24とfieldを区別。source identity不明ならunknown。 |\n",
+      "raw_lf_sha256": "0f4d1320ec8d01fa13e2c87aff9ee906556867b85dfa54ec2434a7545dc94f8b"
+    },
+    {
+      "line": 3087,
+      "literal": "| `L10-LABO-065-CASE-41` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01相当、scorer/task scope/fixture setは一致 | oracle identityだけ別値 | 同条件比較を未評価。oracle責務区分（HARNESS/要求owner）へ。個別identity不明はunknown。 |\n",
+      "raw_lf_sha256": "116463cae610181b436c018d255ae22905f9333c5ce4d58a9a7192721b519486"
+    },
+    {
+      "line": 3088,
+      "literal": "| `L10-LABO-065-CASE-42` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01相当、oracle/task scope/fixture setは一致 | scorer identityだけ別値 | scorer mismatchで比較未評価。測定/評価契約という既知責務区分へ、具体source identityは推測しない。 |\n",
+      "raw_lf_sha256": "33143ad46928450476f2a724387d29ec73883c560dc46669496a7577273bb16c"
+    },
+    {
+      "line": 3089,
+      "literal": "| `L10-LABO-065-CASE-43` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01相当、oracle/scorer/fixture setは一致 | task scopeだけ別値 |task scope不一致を同条件比較へ混ぜず未評価。scope/task条件の根拠不足は固定L2:514のHARNESSまたは要求owner責務区分へ戻す。scopeを示す観測receiptが欠ける場合はOSまたは観測source責務区分へ戻す。個別source identityはunknownとして別に保持し、原因区分からidentityを推測しない。 |\n",
+      "raw_lf_sha256": "d3ea5790137a02b0863b2fd175795a8ed3538714cd1cf4faa5095fa93a48d7ab"
+    },
+    {
+      "line": 3090,
+      "literal": "| `L10-LABO-065-CASE-44` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01相当、oracle/scorer/task scopeは一致 | fixture setだけ別集合 | 異なるfixture集合を同条件比較に混ぜず未評価。HARNESS/要求owner責務区分へ、個別identity不明はunknown。 |\n",
+      "raw_lf_sha256": "8e5863905474b928c869a97f7398d82e6275d86763d84530260b1ea8a3cdef50"
+    },
+    {
+      "line": 3091,
+      "literal": "| `L10-LABO-065-CASE-45` | `FR-LABO-065-03` | `LABO-065-AC-03` | 初回Attempt失敗、retry後passの状態を準備 | retry passをfirst_passとして報告 | first_passとretry結果を分離し、後続passで初回結果を上書きしない。 |\n",
+      "raw_lf_sha256": "f88e6367fb8df81134a4cb4b262fb345ed16c701cc48d1f9a238f514c4a378cc"
+    },
+    {
+      "line": 3092,
+      "literal": "| `L10-LABO-065-CASE-46` | `FR-LABO-065-05` | `LABO-065-AC-03` | trend内で他条件・測定定義一致 | task classだけ異なる結果を混入 | task class別に分離し同一trendへ合算しない。 |\n",
+      "raw_lf_sha256": "adb32b6b24220fbacb4c1889dcc2c6188de6ac9113095462c5f41070d45fff69"
+    },
+    {
+      "line": 3093,
+      "literal": "| `L10-LABO-065-CASE-47` | `FR-LABO-065-06` | `LABO-065-AC-03` | scorecard有効、採用状態は未変更 | scoreだけからadoption decisionを生成 | decisionを生成せず既存owner stateを保持。 |\n",
+      "raw_lf_sha256": "5a72a8ee09615975a6d1942ab8671b4809c47287c1da3cab48de274ace389369"
+    },
+    {
+      "line": 3094,
+      "literal": "| `L10-LABO-065-CASE-48` | `FR-LABO-065-05` | `LABO-065-AC-03` | trend内で他条件・task class一致 | measurement definitionだけ異なる結果を混入 | 測定定義別に分離し同一trendへ合算しない。 |\n",
+      "raw_lf_sha256": "798292f44d5b6980d11ffc04e966b36a304eb0931f5ffba315ed4a4fe736e7ff"
+    },
+    {
+      "line": 3095,
+      "literal": "| `L10-LABO-065-CASE-49` | `FR-LABO-065-06` | `LABO-065-AC-03` | scorecard有効、limited状態は未変更 | scoreだけからlimited decisionを生成 | decisionを生成せず既存owner stateを保持。 |\n",
+      "raw_lf_sha256": "418d283b62fc5e4635bd942bd9859213d02c109f1e886e885a7be8fdd6cf46f2"
+    },
+    {
+      "line": 3096,
+      "literal": "| `L10-LABO-065-CASE-50` | `FR-LABO-065-06` | `LABO-065-AC-03` | scorecard有効、quarantine状態は未変更 | scoreだけからquarantine decisionを生成 | decisionを生成せず既存owner stateを保持。 |\n",
+      "raw_lf_sha256": "f614062574898dab9dd8fc6b3a9e99ce9ff25ba08b7659f3a9dd8dd997c09e42"
+    },
+    {
+      "line": 3097,
+      "literal": "| `L10-LABO-065-CASE-51` | `FR-LABO-065-06` | `LABO-065-AC-03` | scorecard有効、retire状態は未変更 | scoreだけからretire decisionを生成 | decisionを生成せず既存owner stateを保持。 |\n",
+      "raw_lf_sha256": "af861d99807bb39a3fecf416f02d937aa07b6a84a755bbdc58f79c20cca80ff9"
+    }
+  ],
+  "root_verification": {
+    "fixed_source_pins": 9,
+    "cases": 66,
+    "unique_case_ids": 66,
+    "six_columns": true,
+    "govcheck": "ok atoms=7622 requirements=57 files=58",
+    "diff_check": "pass",
+    "old_66_CASE_raw_pins": "pass",
+    "review05_formal_body_sha": "pass",
+    "corrected_067_PO_pin": "pass"
+  },
+  "limits": [
+    "旧所見の分類とCASE列挙は完全性証明ではない。",
+    "旧preflightの誤った067 PO行は訂正supplementを優先、旧原文を保持。",
+    "他親本文全量再レビュー、実行検証、独立reviewは未実施。",
+    "07/43の原因別責務区分、20と03e/45と11の独立性は候補でありreviewへ渡す。"
+  ]
+}

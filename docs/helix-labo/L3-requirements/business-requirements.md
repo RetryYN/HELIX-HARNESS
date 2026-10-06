@@ -102,6 +102,18 @@
 
 旧P4-02のrepair単位のclose/recipe保存は現063 cycleの全段階完了とは分ける。HMC-BR-003に基づくknowledge responsibilityを保持し、旧memory runtimeや自動採用権限を戻さない。
 
+### HELIXLABO-L2-065 — business outcome境界（候補）
+
+固定L2-065/L11-065から、この親独自の業務状態、採用decision、または別個のbusiness acceptance outcomeは導かれない。業務側が受け取る成果は、選択scopeのqualification evidence、task scorecard、effective-cost breakdown、同条件のtrend/failure finding、および既存decision identity/revision/statusまたは未決への参照である。成果の判定はFR-065と対L10で行い、証拠受渡しを業務完了やdecision成立に読み替えない。
+
+| 対象 | business確認 | 境界 |
+|---|---|---|
+| 選択qualification scope | smoke/full-benchの区別、8軸とscope・fixture/rubric版の追跡、未完・比較不能の明示 | LABOはruntime/provider選択や実行許可を生成しない。scoreやqualification証拠から既存ownerのqualification/admission decisionや権限を生成しない |
+| HELIX実task scorecard | first Attempt、retry、適用metric/unknown、quality、費用内訳を同一task receiptで追跡 | 価格・速度だけを採用根拠にせず、品質等の不成立を相殺しない |
+| decision handoff | 既存ownerと対象revision/status、または未決を識別できる | 採用・限定・quarantine・retire・配置は該当する既存ownerに残る |
+
+**旧資産との対応**：旧HIL-BR-31（`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、旧platform requirements:83）は第三者workerの採用等のbusiness decisionまで述べる。しかし固定L2-065は資格とscorecardの証拠条件を補い、decision ownerに判断を残す。したがってHIL-BR-31をこの親の独立business outcomeとして採用せず、そのdecision意味を追加しない。旧HIL-FR-61/62から保持・再導出するのは、品質・安全・費用比較の証拠を既存ownerへ渡す関係だけである。独立outcomeが無いことはL10受入の免除を意味しない。
+
 
 
 ## Stage 5 — HELIXLABO-L2-064 業務証拠

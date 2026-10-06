@@ -151,6 +151,19 @@
 - CASE inventory: L10の旧公開完全ID 69件を維持する: `L10-LABO-063-CASE-01`, `L10-LABO-063-CASE-02`, `L10-LABO-063-CASE-03a`, `L10-LABO-063-CASE-03b`, `L10-LABO-063-CASE-03c`, `L10-LABO-063-CASE-03d`, `L10-LABO-063-CASE-04a`, `L10-LABO-063-CASE-04b`, `L10-LABO-063-CASE-18`, `L10-LABO-063-CASE-19`, `L10-LABO-063-CASE-20`, `L10-LABO-063-CASE-21`, `L10-LABO-063-CASE-22`, `L10-LABO-063-CASE-23`, `L10-LABO-063-CASE-24`, `L10-LABO-063-CASE-25`, `L10-LABO-063-CASE-26`, `L10-LABO-063-CASE-27`, `L10-LABO-063-CASE-28`, `L10-LABO-063-CASE-29`, `L10-LABO-063-CASE-30`, `L10-LABO-063-CASE-31`, `L10-LABO-063-CASE-32`, `L10-LABO-063-CASE-33`, `L10-LABO-063-CASE-34`, `L10-LABO-063-CASE-35`, `L10-LABO-063-CASE-36`, `L10-LABO-063-CASE-37`, `L10-LABO-063-CASE-38`, `L10-LABO-063-CASE-39`, `L10-LABO-063-CASE-40`, `L10-LABO-063-CASE-41`, `L10-LABO-063-CASE-42`, `L10-LABO-063-CASE-43`, `L10-LABO-063-CASE-44`, `L10-LABO-063-CASE-45`, `L10-LABO-063-CASE-46`, `L10-LABO-063-CASE-47`, `L10-LABO-063-CASE-48`, `L10-LABO-063-CASE-49`, `L10-LABO-063-CASE-50`, `L10-LABO-063-CASE-05`, `L10-LABO-063-CASE-06`, `L10-LABO-063-CASE-07`, `L10-LABO-063-CASE-08`, `L10-LABO-063-CASE-09`, `L10-LABO-063-CASE-10`, `L10-LABO-063-CASE-11`, `L10-LABO-063-CASE-12`, `L10-LABO-063-CASE-13`, `L10-LABO-063-CASE-14`, `L10-LABO-063-CASE-15`, `L10-LABO-063-CASE-16`, `L10-LABO-063-CASE-17`, `L10-LABO-063-CASE-51`, `L10-LABO-063-CASE-52`, `L10-LABO-063-CASE-53`, `L10-LABO-063-CASE-54`, `L10-LABO-063-CASE-55`, `L10-LABO-063-CASE-56`, `L10-LABO-063-CASE-57`, `L10-LABO-063-CASE-58`, `L10-LABO-063-CASE-59`, `L10-LABO-063-CASE-60`, `L10-LABO-063-CASE-61`, `L10-LABO-063-CASE-62`, `L10-LABO-063-CASE-63`, `L10-LABO-063-CASE-64`, `L10-LABO-063-CASE-65`。literal由来分類候補は正常5、negative 53、非独立索引11。非独立索引IDは `L10-LABO-063-CASE-03a`, `L10-LABO-063-CASE-24`, `L10-LABO-063-CASE-25`, `L10-LABO-063-CASE-30`, `L10-LABO-063-CASE-31`, `L10-LABO-063-CASE-32`, `L10-LABO-063-CASE-33`, `L10-LABO-063-CASE-35`, `L10-LABO-063-CASE-36`, `L10-LABO-063-CASE-39`, `L10-LABO-063-CASE-63`。索引をnegative分母へ重複計上しない。L10-LABO-063-CASE-58とL10-LABO-063-CASE-13は同じ観測欠落軸を含み、L10-LABO-063-CASE-58は観測提供主体への返却oracleの補足として保持する。ID数はcase意味の完全性や独立性を証明しない。
 - 実測されたepisodeがない場合は「未実測」とする。過去fixture定義を測定実績・既定threshold・頻度へ読み替えない。
 
+### L10-LABO-065 — NFR測定設計候補
+
+[L3 NFR候補](../L3-requirements/nfr-grade.md)と同じ選択scope・対象revision・receiptを用いる。未実行。各観測は値の出典、測定定義、tool/profile版、task class、scope、fixture/rubric revisionと結ぶ。
+
+| 測定項目 | 入力・比較 | 判定候補 | 適用限界 |
+|---|---|---|---|
+| 8軸qualification | 同一の選択scope・fixture集合/revision・rubric/scorer/oracleの下で8軸を個別に照合し、machine smokeとblind full-benchを別記録 | 軸ごとの証拠と同一性receiptを確認。未観測軸があればfull-benchは未完 | 通常作業や別runtime/taskへ一般化しない。閾値・必要sample数は追加しない |
+| task scorecard | taskごとに最初のAttempt、後続retry、diff/lint定義とreceipt、quality result、price/currency/effective time、費用内訳を照合 | first_passとretry_countを別集計し、unknownを0にせず、quality gate違反をcostで相殺しない | 適用外metricは理由を添える。比較不能なtask class/scope/定義/revisionを混ぜない |
+| cost/trend/failure | L2-059と固定L2-065の既存費用境界内の同条件記録を比較 | 欠けたcost componentはunknown、同条件のtrend/failure findingのみ候補として提示 | 新しい母集団、分母除外規則、SLO、閾値、期限を設けない |
+| owner handoff | scope/revision・source/result receipt・既決owner参照または未決を照合 | 測定とdecision stateを別々に表示し、ownerへ辿れる | NFR測定値・qualification証拠から既存ownerのqualification/admission decision、権限、またはbusiness decisionを生成しない |
+
+**旧sourceとの関係**：旧HIL-FR-61/62、HIL-NFR-35とBench R04/R08が示す再現可能性、同条件評価、blind境界、retry込み実効費用を再導出する。旧固定sample設定や閾値は移さない。通常fixtureとnegativeの関係は固定L2/L11の定義に従い、fixture alias/indexだけを独立fixture数に重ねない。NFR測定候補は独立の合否制度や新しい母集団規則を作らない。
+
 
 
 ## Stage 5 — HELIXLABO-L2-064 技術計測設計
