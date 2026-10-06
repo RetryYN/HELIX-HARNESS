@@ -132,5 +132,5 @@
 ## Stage 5 — HELIXLABO-L2-060 NFR検証設計
 
 - `CASE-NFR-LABO-060-01`: 未実行設計。選択scope内で同一task/scope/oracle・元Worker/model/provider/version/effort条件、選択支援source/use、OS assignment/result receipt、品質判定、全支援追加resource/費用、人作業数量、currency/effective time、failed/unknown/missingを別fieldで追跡する。未選択consult/sourceを必須分母へ加えず、unknown/未完/欠測を成功または0へ変換しない。実測値、固定SLA、最低N、率thresholdは生成しない。
-- L10の現在のCASE定義IDは51件: CASE-01/02、03a–e、04a–b、05–21、22–33、34–45、46。現行分類案は正常候補2、negative候補41、非独立索引候補8（CASE-22/23/26/27/29/30/31/32）。単一点性・独立性は独立review未確認で、ID数や一意性は完全性を証明しない。索引候補はfixture/negative分母へ重ねず、CASE本文とAC traceをL10で照合する。
+- L10の現在のCASE定義IDは57件: CASE-01/02、03a–e、04a–b、05–21、22–33、34–45、46–52。現行分類案は正常候補2、negative候補47、非独立索引候補8（CASE-22/23/26/27/29/30/31/32）。単一点性・独立性は独立review未確認で、ID数や一意性は完全性を証明しない。索引候補はfixture/negative分母へ重ねず、CASE本文とAC traceをL10で照合する。
 - 集計を設計する場合も、対象task/run・適用scope・missing/failed/unknown/censoredの母集団状態を併記し、分母0/不明は率なしとする。LABOは比較材料のみを返し、assignment、採用、permission、merge authorityを出力しない。
