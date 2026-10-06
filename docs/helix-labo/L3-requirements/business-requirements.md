@@ -59,6 +59,6 @@
 
 |固定親|事業outcome / owner|正本evidence|
 |---|---|---|
-|`HELIXLABO-L2-050`|独立KPIなし。LABO evaluation/re-observation、OS registration/routing、target ownerのchange/verification/deployment/operationを別状態に保つ。|`LABO-050-AC-01/02/03`、`L10-LABO-050-CASE-01`〜`CASE-23`。索引CASE-03g/07/08/09/10はfixture数へ重ねない。|
+|`HELIXLABO-L2-050`|独立KPIなし。LABO evaluation/re-observation、OS registration/routing、target ownerのchange/verification/deployment/operationを別状態に保つ。|`LABO-050-AC-01/02/03`、`L10-LABO-050-CASE-01`〜`CASE-29`。索引CASE-03g/07/08/09/10はfixture数へ重ねない。|
 
 本行は固定L2-050の業務上の責務分離を示す。candidate count、CI成功率等の独立業務指標やthresholdを追加しない。

@@ -1560,11 +1560,11 @@ Stage 2b review01の集約CASEは索引としてのみ保持する。個別fixtu
 |固定条件|現行要件で保つ意味|対応FR/AC|L10根拠|
 |---|---|---|---|
 |L2-050:300の11段階|Observed → Correlated → Hypothesized → Experimented → Evaluated → Feedback Candidate → OS registration/target routing → target change process → verification → deployment/operation → LABO re-observationをそれぞれ別状態として追う。|FR-01 / AC-01|CASE-01の一つの正常traceで段階をすべて表示|
-|L2-050:300,302 identity/未完義務|ticket、experiment、target revision、source/target revision、OS assignment、Worker result、未完義務を結ぶ。|FR-01 / AC-01,03|CASE-01正常、CASE-03a–e各binding負例、CASE-16–20部分完了主張|
+|L2-050:300,302 identity/未完義務|ticket、experiment、target revision、source/target revision、OS assignment、Worker result、未完義務を結ぶ。|FR-01 / AC-01,03|CASE-01正常、CASE-03a–e/24–28の各binding負例、CASE-16–19/21の部分完了主張、CASE-20のchange receipt欠落|
 |L2-050:300採択前candidate|採択前はcandidateのまま。candidate数/発行のみでは完了しない。|FR-01 / AC-03|CASE-11,17,21|
-|L2-050:300 target authority|registration/routingはOS、target change/verification/operationはtarget owner、evaluation/re-observationはLABO。|FR-01 / AC-01,03|CASE-04a/b、CASE-16–20|
-|L2-050:300,302変更後|変更後のverification、deployment、operation、re-observation、effectとregression評価を未完義務として別々に保つ。|FR-01 / AC-01,03|CASE-13–16,20,22,23|
-|L2-050:300過去記録|遅着観測は既存episodeへ追加し、元source recordを上書きしない。|FR-01 / AC-02,03|CASE-02,12|
+|L2-050:300,302 target authority|OS registration/routingに必要なassignmentを含め、registration/routingはOS、target change/verification/deployment/operationはtarget owner、evaluation/re-observationはLABO。|FR-01 / AC-01,03|CASE-04a/b、CASE-16–19/21|
+|L2-050:300,302変更後|変更後のverification、deployment、operation、re-observation、effectとregression評価を未完義務として別々に保つ。|FR-01 / AC-01,03|CASE-13–16,20,22,23,26,29|
+|L2-050:300過去記録|同一target identity・ticket・episodeの遅着観測は既存episodeへ追加し、元source recordを上書きしない。|FR-01 / AC-02,03|CASE-02,12|
 
 ### LABO-050-FR-01 — 内部改善循環
 
@@ -1575,8 +1575,8 @@ Stage 2b review01の集約CASEは索引としてのみ保持する。個別fixtu
 LABOはFeedbackの評価・candidate提示・変更後re-observationを担う。Feedbackの登録/routingはOS、target change/verification/deployment/operationはtarget ownerに残る。LABOはOS assignment、registration、target変更を実行せず、候補数・candidate発行・registration・change結果・CI成功だけから循環完了を推定しない。
 
 - `LABO-050-AC-01` 正常: 11段階すべてを独立した状態として表示する。同一ticket/experiment/target revisionのassignmentとWorker result、評価済みFeedback candidate、OS registration/routing、target-owner change/verification/deployment/operation、変更後のLABO re-observationを結び、source/target revisionと未完義務を保持する。effect評価とregression評価を別の判定結果として記録する。CASE-01をこの正常traceに使う。
-- `LABO-050-AC-02` 未見正常: 別の許可target/revisionから遅れて届くre-observationを元episodeへ追加し、既存source recordを上書きせず、過去と現在のrevisionおよび未完義務を区別する。CASE-02を held-out normal に使う。
-- `LABO-050-AC-03` 不成立・責務境界: ticket/experiment/target revision/assignment/Worker resultの各不一致・欠落、registration/target change/verification/deployment/operation/re-observationの各未完、採択前candidateの正本化、過去record上書き、effectだけまたはregressionだけの評価欠落、candidate countだけ・Feedback発行だけ・registrationだけ・target changeだけ・CI成功だけによる完了主張を、それぞれのCASE入力と照合して完了へ補完しない。既存owner境界へ原因別に戻し、固定親にないownerを作らない。
+- `LABO-050-AC-02` 未見正常: 同一target identity・ticket・episodeに属する、許可された後続target revisionの遅着re-observationを追加し、既存source recordを上書きせず、過去と現在のrevisionおよび未完義務を区別する。CASE-02を未見正常例に使う。
+- `LABO-050-AC-03` 不成立・責務境界: ticket/experiment/target revision/OS assignment/Worker resultの各欠落・不一致をCASE-03a–e/24–28の単独入力で照合する。registration/target change/verification/deployment/operation/re-observationの各未完、採択前candidateの正本化、過去record上書き、stage順序違反、effectまたはregression評価の欠落、candidate countだけ・Feedback発行だけ・registrationだけ・target changeだけ・CI成功だけの完了主張も、それぞれの独立CASEで完了に補完しない。OS、target owner、LABOの固定責務区分へ原因別に戻し、新ownerを作らない。
 
 #### 旧source起点と対応
 
@@ -1586,7 +1586,10 @@ LABOはFeedbackの評価・candidate提示・変更後re-observationを担う。
 |`LEGACY-ASSET-0B5B38F146D9538C9A36` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-improvement-loop-acceptance.md:20–42`|source欠落/identity不一致、effectとregressionの別評価、単一greenで採択しないfailure境界を設計材料にする。|旧HAT/HIA実行、命令、runtime、failure codeは移植・実行しない。|
 |`LEGACY-ASSET-C7F0C3B79CBAA72960BF` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md:33–83`|observable FR/ACと責務/失敗条件を対にする構成を再導出。|旧HR/HAC IDや旧system operationを現行ID/ownerとして流用しない。|
 |`LEGACY-ASSET-FA8C6E69463183D6A19B` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md:31–56`|paired scenario / observable / negative を結ぶ読み方だけを再導出。|旧CI実行・旧oracle passを新しい合格根拠にしない。|
+|UIL-AC-020（LEGACY-ASSET-0B5B38F146D9538C9A36:39）|state order/HEAD/baseline/scope照合とstage skip・別candidate証拠混載の拒否を保持し、固定L2-050の順序・同一identityへ再導出する。|旧state machine/runtime/controlや旧stage固有gateは移植しない。|
+|HAC-HIL-02b（LEGACY-ASSET-C7F0C3B79CBAA72960BF:65）|transition/edge欠落の拒否を旧要件側の条件として記録し、固定L2-050の段階順序へ再導出する。|旧runtime/controlは移植しない。|
+|HAT-HIL-02（LEGACY-ASSET-FA8C6E69463183D6A19B:34）|HAC-HIL-02a/b/cを参照するpaired consumerの該当範囲を隣接資料として記録する。|HAC-HIL-02bの要件定義はC7F0 assetの65行を参照し、旧budget/checkpoint/実行oracleは移植しない。|
 
 #### L10 CASE索引との対応
 
-`CASE-03g` は旧来のeffect+regression同時欠落を示した識別子として保持し、独立fixtureではなく、effect-only `CASE-22` と regression-only `CASE-23` の索引にする。`CASE-10` も既存識別子を保ち、同じ二つの実fixtureへの互換索引として残す。二つの索引を追加negativeとして数えない。`CASE-07/08/09`も対応先を明示した非独立索引として保持する。
+`CASE-03g` は同時欠落の非独立ラベルとして保持し、現行fixtureを指す索引にしない。`CASE-10` は既存識別子を保ち、effect-only `CASE-22` と regression-only `CASE-23` の両fixtureを直接参照する。`CASE-07/08/09`も対応先を明示した非独立索引として保持し、これらを追加negativeとして数えない。これらのID分類は現在の定義であり、先行snapshot [a4a365dcdfe824ebb28d040c8bc3bc924556efad](https://github.com/RetryYN/HELIX-HARNESS/blob/a4a365dcdfe824ebb28d040c8bc3bc924556efad/docs/governance/audits/requirements-stage/labo-stage5-review04-root-correction-2026-10-06.md)にある当時の表現とは区別する。先行記録の該当blobは次のappend-only監査で固定する。
