@@ -121,3 +121,13 @@
 | `HELIXLABO-L2-064` | 元identity/versionとjudge-visible情報を分けて記録する。固定条件が不明・staleならevaluation ownerへ、再評価義務はtask/evaluation ownerへ返す。LABOは比較を許可・実行せず、評価材料からassignment/admissionを作らない。 | `LABO-064-AC-01/02/03`; L10 064のCASE定義。索引を実fixtureやKPIとして数えない。 |
 
 この業務evidence表は実際のrun、資格、採用判断、承認を表さない。
+
+## Stage 5 — HELIXLABO-L2-067 business verification evidence
+
+独立BV/BCASEは追加しない。business outcome/KPI/ownerは固定L2/L11から導かれない。functional evidenceの業務上の対応として、既存predicate/oracleで識別されたfirst-eligible candidate結果と、同じOS assignment Attempt内に観測できたrepair roundsのみを参照する。資格、採用、task completion、実測効果、Worker割当を生成しない。
+
+| 固定親 | 独立business outcome | 正本AC / CASE index |
+|---|---|---|
+| `HELIXLABO-L2-067` | なし。candidate/Attempt内修復の未実行観測evidenceだけ。 | `LABO-067-AC-01/02/03`; `L10-LABO-067-CASE-01/02/03a–g/04a–b/05–23/24–38` |
+
+これは未実行design参照であり、business completionや実験を表さない。

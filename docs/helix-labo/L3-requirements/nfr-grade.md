@@ -232,3 +232,10 @@ L10は69個の完全ID定義を保持する。literalから抽出した分類候
 | `LABO-064-NFR-03` 期待状態と権限境界 | comparison evidence、再評価義務、既存assignment/admissionを別stateとして数える。CASE定義は測定runに含めない。 | `LABO-064-AC-03`; 実測母集団、分子、分母、unknown数を併記。固定SLA、最低N、合格率、permissionを加えない。 |
 
 実際の比較runが与えられない場合は「未実測」とする。上記CASEは合成fixtureであり、run数、合格率、採択、実測結果を表さない。
+
+## Stage 5 — HELIXLABO-L2-067 technical observation grade
+
+未計測設計。固定L2/L11にない数値threshold、最低N、成功率、SLA、timeliness/freshness値を追加しない。unknown/missing/重複/順序不明を0または正常値に変えない。
+
+- `NLABO-067-FR-01-01` first-eligible/repair-event evidence completeness: selected task/scope/revisionに対するpredicate/oracle identity+revision、candidate identity/digest、OS assignment/AttemptID、eligibility/repair/result receiptsの観測可能性とunknownをfield別に記録する。roundは同一assignment Attempt内で観測receiptが確定した範囲だけ数え、別Attemptと総Attempt countを混ぜない。source/個体 identityがunknownならrole分類とunknown stateを保持する。これは計測設計で実測ではない。
+- `L10-LABO-067` CASE定義は旧30 literalと本候補追加CASE-24–38を個別IDで索引する。単一点性・独立性は未reviewであり、CASE数は完全性の証明ではない。

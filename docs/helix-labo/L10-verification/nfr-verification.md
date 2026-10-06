@@ -173,3 +173,8 @@
 - `LABO-064-NFR-03`: evidence状態、比較不能理由、再評価義務、既存assignment/admissionを区別し、LABO evaluationから権限や実行を生成しない。実測値がない場合は未実測。
 
 NFRの分母は許可された選択scope内のrunであり、CASE定義数ではない。報告する場合は実数、分子/分母、unknown/failed/missingを示し、分母0/不明では率なしとする。固定閾値、最低試行数、採択率、実行permissionは追加しない。
+
+## Stage 5 — HELIXLABO-L2-067 NFR verification design
+
+- `CASE-NLABO-067-FR-01-01`: selected task/scope/revisionに属するpredicate/oracle revision、candidate digest/event receipt、OS assignment/AttemptID、LABO observation/result receiptのfield completenessを再照合する。ordered repair countはevent receiptとidentityが確定した同一assignment Attempt内だけを再計算し、unknown/missing/duplicate/out-of-order/Attempt-mismatchを区別する。source individual identityがunknownでもtask/要求owner, OS, LABO, SECURITYというknown role classificationを保持する。minimum N、rate threshold、実測値、completion/permissionを出力しない。
+- Functional CASE index: old 30 `L10-LABO-067-CASE-01/02/03a–g/04a–b/05–23` と追加候補 `CASE-24–38` を参照する。index/countは意味完全性、独立性、実行済み結果を証明しない。
