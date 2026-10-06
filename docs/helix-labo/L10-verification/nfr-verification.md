@@ -197,6 +197,6 @@ NFRの分母は許可された選択scope内のrunであり、CASE定義数で�
 |---|---|---|---|
 | `LABO-068-NFR-01` identity母集団 | 既選択のtask/scope/revision/evaluation key、OS assignment、Attempt identity、OS completeness/evidence receipt。 | 完全なdistinct identity集合が証明できたときのみidentity件数を返す。集合完全性unknownはtotal unknown。 | N、割合、成功率、固定期間/thresholdを追加しない。 |
 | `LABO-068-NFR-02` event・訂正一意性 | identityごとのevent/correction lineage、source revision、scope内外、重複配送を照合。 | 同じidentityの再配送/訂正は一度。identity collision、stale、scope不一致、unresolved lineageはtotal unknown/未評価。 | duplicateを都合よく除く/別identityと推定しない。known OS/source dutyを保持し、個体unknownを別記。 |
-| `LABO-068-NFR-03` Attemptと状態・別指標 | identity list、result state/receipt、denial intake、065 retry_count、067 repair-round、CI rerunを別source/fieldで照合。 | identity付きdeniedはcount対象、identityなしpre-execution deniedはintake。result receipt欠落で当該範囲のAttempt記録完全性を確認できない場合は総数unknown/未評価とし、該当stateもunknownとして別fieldで保持する。identity集合receiptだけで代替しない。 | 065/067換算、state合算、結果oracleや新しい権限を定義しない。 |
+| `LABO-068-NFR-03` Attemptと状態・別指標 | identity list、result state/receipt、denial intake、065 retry_count、067 repair-round、CI rerunを別source/fieldで照合。 | identity付きdeniedはcount対象、identityなしpre-execution deniedはintake。result receipt欠落時は当該範囲のAttempt記録完全性receiptの有無にかかわらず総数unknown/未評価とし、該当stateもunknownとして別fieldで保持する。既知の観測sourceまたはOS記録owner区分へ不足を返し、個体identity不明は別にunknownとする。 | 065/067換算、state合算、結果oracleや新しい権限を定義しない。 |
 
 候補の技術的なunknown条件は固定L2/L11に根拠を置く提案で、実測閾値・期間・完全性率は設定しない。選択scopeの外へ一般化せず、過去eventから欠落分を推計しない。実行/測定は未実施。
