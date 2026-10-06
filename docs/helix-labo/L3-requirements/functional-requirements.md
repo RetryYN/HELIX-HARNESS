@@ -1812,6 +1812,30 @@ L10の69件の定義は既存旧IDの保持と追跡索引である。literal上
 
 CASE定義数・ID保持だけでfixtureの独立性や意味完全性を認定しない。
 
+## Stage 5 — HELIXLABO-L2-067 初回eligible candidateと同一Attempt内修復の観測
+
+親: `HELIXLABO-L2-067` / `MPR-RC-HELIXLABO-L2-067-001`。PO判断record revision `048a1770d10f5a1f24f7cf0a95f43dfdc318591d` line 82はD1条件付き採択として「最初の適格candidateの結果」と同一Attempt内修正回数を登録する。固定L2本文の`draft_candidate`状態はその時点の原文として保ち、このL3/L10候補を要件承認、実験/資格/完了、Worker割当、permissionまたは実行許可としない。
+
+固定要件revision `318ec4a04abb3c1cc17111b3d939f913facd5fd3` のL2:529–540（full SHA-256 `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9`、raw-LF span `bf545a7b5e4714f442c4f96cec498ac07056f314b13765fc05ad049b69a8c188`）とL11:269–277（full SHA-256 `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0`、raw-LF span `7b3e55cbeeb4fb0f2ae322b3ea439b63ea6acfcaabf2753a642aee158f378a16`）を対で起点とする。
+
+### LABO-067-FR-01 — 最初の適格candidateと同一Attempt内修復回数
+
+明示的に選択したtask/scope/revisionに適用される既存eligibility predicate/revisionと受入oracle/revisionを候補結果前に参照する。predicate/oracleは固定L2のtask/要求ownerが供給する既存task/requirement contract（または同契約が示す既存source）から受け取り、新規に定義・選択しない。OSの既存assignment identity/AttemptIDと順序付きcandidate identity/digest、生成・eligibility判定・変更/repair・oracle判定event receiptを結び、最初にeligibleと判定されたcandidateの既存oracle結果と、同一assignment Attempt内の提出前repair roundだけを観測する。LABOは観測・比較evidenceを返し、candidateの生成/変更/修復、predicate/oracle、threshold、採否を作らない。
+
+same-attempt修復回数は、最初にeligibleなcandidateから同じOS assignment Attempt内の最終提出までにreceiptで観測できたrepair eventの数とする。eventの順序・identity・重複排除根拠が不明ならunknownとし、0と推定しない。別Attemptを混ぜず、複数Attemptの総Attempt countは算出しない。
+
+065のPO判断「最初のAttemptの結果」とは別grainである。065のfixed本文にあるfirst_pass/post-initial retry_count定義も変更しない。たとえば最初のAttempt内でineligible C0の後にeligible C1があり、その後修復される場合も、067はC1のoracle結果と同じAttemptのrepair roundを観測する。065 first_attempt/first_passやretry_countへ換算・代替・加算しない。065の採択を依存条件にせず、065の有無にかかわらず同じ入力証拠から067の観測だけを返す。059のquality priority、比較条件、費用・時間・手戻り定義も変更しない。
+
+- `LABO-067-AC-01` 正常: 事前に選択されたexisting predicate/oracle revision、OS assignment/AttemptID、候補identity/digestと順序付きreceiptを対応づけ、first-eligible candidateの既存oracle結果と同一Attempt内roundだけを保持する。後続結果でfirst-eligible resultを上書きせず、065と別field/分母にする。
+- `LABO-067-AC-02` 未見正常: 未見task classでも同じ既存predicate/oracleが適用されることをtask/要求owner sourceが示す範囲だけ観測する。適用可否や新revisionを推測しない。
+- `LABO-067-AC-03` 不成立・権限境界: predicate/oracle/revision/candidate/assignment/Attempt/event/receiptの欠落・unknown、不順序、別Attempt混入、重複排除根拠不足または最終提出からの逆算は指標をunknown/未評価にする。責務roleはpredicate/oracle=task/要求owner、assignment/Attempt/event=OS、result observation=LABO、比較実施時の既存permission=SECURITYとして保持し、特定個体identityがunknownでもroleを混同/創作しない。LABOはOS assignment/Attempt、SECURITY permission、採否、Worker起動、qualification/admissionを生成しない。unknownはunknownのまま、原因に対応する既存source/roleへ不足を返す。
+
+#### 旧source起点・保持・再導出・範囲差分
+
+直接source `LEGACY-ASSET-3A15E5645D2D2A59DFF5`、`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md:399`。保持・意味再導出するのはfirst eligible candidate境界と提出前repair-round可視性の2 selected subatomだけ。総Attempt count、queue/active/review/Human wait、escaped defects、rollback/recovery、coverage、observer overhead、freshness等の他telemetryは本候補に入れない。旧first-passをcurrent 065 first_attemptと067 resultで統合せず、旧schema/runtime/thresholdも置換対象外とする。固定L2 literalのsource line hash `58be…db4f`はsource lineのLF除外SHA-256で、実際のline+LF SHA-256は`aa9dacc58969d896bbfbe38ce9c2ed6b55f47476b4cd3a411041d62bebf70468`。`MPR-SH-CANDIDATE-003`は固定L2本文にあるsource-holding locator。現registerの`004`との差はauthority effectなしのmetadata差異として残し、ここで意味を確定しない。
+
+L10 CASE IDsは照合用であり、ID数・独立fixture数から完全性を主張しない。
+
 ### HELIXLABO-L2-068 — Worker Attempt countの観測（Stage 5、version_target: 1.0、起草候補）
 
 **固定親と採択根拠**：PO判断記録 `af93d1f171d994f9fae2e78026b39ac27f896f5c` の `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:83` は `HELIXLABO-L2-068` を採択し、L2/L11の全体SHAと節digestを固定する。採択本文自体は `318ec4a04abb3c1cc17111b3d939f913facd5fd3` のL2 `docs/helix-labo/L2-requirements/labo-requirements.md:541–550`（file SHA-256 `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9`、節SHA-256 `7e3df32b0131722c88ae148c4cbfa9a1be20f81826099c0ceb29a674e07030e2`）とL11 `docs/helix-labo/L11-acceptance/labo-acceptance.md:278–286`（file SHA-256 `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0`、節SHA-256 `3dcf068de1351b2e8c1f2d772ec9273cb7908368a32b389ee40ce51929ad8d94`）である。line 83のhistorical MPR `MPR-RC-HELIXLABO-L2-068-001` はlocator correctionの後継 `...-002` と区別する。採択されたcandidate/digest/atom setは変わらず、receiptはauthorityを生成しない。候補本文内の `draft_candidate` は固定bytesのmetadataであり、PO採択状態は判断記録から読む。
