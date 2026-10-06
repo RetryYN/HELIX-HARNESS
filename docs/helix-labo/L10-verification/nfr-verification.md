@@ -197,7 +197,7 @@ NFRの分母は許可された選択scope内のrunであり、CASE定義数で�
 
 固定親はPO live26の49行が採択した `MPR-RC-HELIXLABO-L2-070-001`。source revision `ea6f756f96a7370de78e412d737c7a7ed472114a` のL2:561–574 SHA `07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533`、L11:297–307 SHA `c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1`をraw-LFで照合した。旧候補が参照した0abb2894の同範囲とbytesは一致し、採択状態はPO記録で確認する。
 
-実行前の測定設計候補。旧84 literalとraw ID/hashはJSON監査側に保持し、現行FVは旧84 IDを6列へ意味再導出し、CASE-85およびCASE-86..98を加えた98行の候補とする。以下は各測定軸に対する観測/判定材料で、実測結果ではない。
+実行前の測定設計候補。旧84 literalとraw ID/hashはJSON監査側に保持し、現行FVは旧84 IDを6列へ意味再導出し、CASE-85およびCASE-86..101を加えた101行の候補とする。以下は各測定軸に対する観測/判定材料で、実測結果ではない。
 
 | 測定軸 | 合成入力・比較 | 判定材料 |
 |---|---|---|
@@ -214,4 +214,5 @@ window/threshold/severity/expiryの数値評価は行わない。固定親にな
 
 | 検証対象 | 合成入力・比較 | 判定材料 |
 |---|---|---|
+| revision consistency | CASE-01の正常値とCASE-99–101を比較し、target revision出力欠落、異なるtarget revisionの同一aggregate混入、入力source_revision欠落を個別に判定する。 | 受理可能なtarget/source revisionはsource receiptと一致し、欠落や混在をunknown/未評価として扱う。 |
 | authority/操作・source生成拒否 | 有効CASE-01 inputへ、CASE-85–93/96–98の各出力fieldを一つずつ単独生成する変異を適用。 | 各禁止fieldの生成を拒否し、他の根拠あるscorecard値および既存owner状態を保つ。CASE-10/15/19は正常入力の誤出力として070出力処理を訂正し、入力側ownerへ責務を移さない。 |
