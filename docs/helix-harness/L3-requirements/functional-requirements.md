@@ -651,3 +651,36 @@ AC-035-05はS5-027/028/042および035〜038（旧revision計測、機能数だ�
 |---|---|---|
 | 038 | `AC-HARNESS-L3-038-04` | capabilityごとに既存義務への採用、強化、再設計候補、根拠とauthority付き却下/対象外、吸収先付き吸収、未決/unknownを区別する。空coverage、本文貼付をtraceとすること、複数能力への根拠ない複製、後段を前段から推定することを別々に拒否する。共有oracleの再利用自体は拒否理由にしない。 |
 | 038 | `AC-HARNESS-L3-038-05` | 固定L11-038:612の5段階（source/scope map、observation contract、as-is design/test、intent/PO状態、gap/owner/routing）を順序とclaim scope付きで照合し、未claim後段は未完義務に保つ。各段階の主張はその段階に必要な内容だけを要求し、後段成果を初期観測/要求形成の前提にしない。 |
+
+
+## Stage 3 親039 — Experience/UI/Frontend契約候補
+
+### 固定対象・登録状態
+
+| 固定L2親 | 登録識別子 | 固定L2/L11 source | 採択状態 |
+|---|---|---|---|
+| `HARNESS-L2-039` | `MPR-RC-HARNESS-L2-039-003` / candidate semantic digest `e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0` | `318ec4a`。L2 `product-requirements.md:891–929`、L11 `product-acceptance.md:638–676`。L11 semantic digest `63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746`。 | PO decision `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:44` はこの003と両固定digestの組を採択している。`version_target: 1.0`は保持する。現register後継004は同一semantic/source atom setのlocator-only更新（`authority_effect: none`）であり、採択状態を取り消さない。本文は採択済みL2/L11の意味を要件化するが、L3本文から実装許可・実行結果・下流完了を生成しない。 |
+
+### 機能要件と受入条件
+
+| FR / AC | 要件と判定条件 |
+|---|---|
+| `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-01` | 同一対象scope/revisionで、要求原子からUser Task、Business Outcome、scenario/context、success result、decision rationaleへの意味関係を保つ。UI/Frontend関係を持たないscopeでもExperience graphは維持し、意味のないfield貼付をrelation成立としない。要求意味が不足する場合はHARNESS-L2-008、質問・screen applicability・prototype agreementはHARNESS-L2-024の既存境界へ返す。 |
+| `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-02` | 画面を持つ選択scopeでは、選択されたscreen/flow/interaction/action/state/component/token/contentとpermission/actor、command/API、data/state owner、不変条件、domain/analytics event、logging/error、設計・検証・受入oracleを同一scope/revisionで意味的に結ぶ。`implemented`は既存V-pairの実装・検証relation、`ux_verified`はその状態を主張するoperationに必要なL10–L12 evidenceとhuman evaluationとして分ける。候補形成・設計開始は未来のUX測定を前提にしない。 |
+| `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-03` | 適用されたsource identity/revision/scope、prototypeと要求、design token/componentと描画実体、interactionとE2E、content/analytics成功条件、accessibility/responsive/motionのdriftを示す。変更影響はAffected/Unaffected/Unknownを分け、UnknownをUnaffectedへ変えない。risk根拠に応じて検証factorを選び、選外理由を残す。全組合せまたは全device機種の実行を一律要求しない。 |
+| `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-04` | Discovery PoC、AI推奨、prototype agreement、未回答、時間経過は仮説・観測・提案として保持し、vision/brand/priority/prototype agreement/L3要求freeze/L11 acceptance/L12改善採否を自己承認しない。candidateの作成・比較は既存008/024の根拠・scope・状態のもとで可能だが、candidateの存在をadoption/authorityへ変換しない。PoCから`implemented`、`ux_verified`、production-readyを推定しない。 |
+| `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-05` | 選択Full V/Scrum UI scopeのprototype agreement、screen ledger/profile、frontend binding、mission/oracle、UX evidence、change delta等は該当時に既存V-pairの層・receipt・owner・戻し先へ結び、未作成後段義務を保持する。後段証拠やreview/release合流は039候補の開始条件ではない。旧S0–S4/SR0–SR4を新工程、freeze、承認gateとして復元しない。 |
+
+### 既存ownerへの原因別返却
+
+要求意味・候補と採否境界はHARNESS-L2-008/024、screen applicability/prototype agreementは024、unit design relationは026、composite relationは025、risk別verification dutyは005、段階oracle/evidenceは022へ戻す。選択sourceの互換性・意味は固定sourceで識別できる選択ownerへ返し、個別identityを特定できないときはそのidentityをunknownのままにする。実行・ticket・結果記録は既存OS/利用者の責務、必要な情報配送はCONNECT、実測後の評価/改善提案はLABOの既存契約に従う。責務区分を新設せず、欠落原因を一つのgeneric ownerへまとめない。
+
+### 旧資産からの再導出と差分
+
+| 項目 | 旧source起点 | 処置 |
+|---|---|---|
+| Experience/UI/Frontend、backfill、PoC境界 | `LEGACY-ASSET-02319C2481B9E01698D5`; `archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md` SHA-256 `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406`; §4.5:265–277 | Experience、UI、Frontendの意味上のrelation、Full V/Scrum適用時のbackfill、PoC/状態差と非自己承認を固定L2/L11の現scopeへ再導出。旧211 inventory、旧ID/field/schema、runtime、旧工程名は移植しない。 |
+| six DHR requirements | 同source §4.9:385–392 (`HR-FR-DHR-001–006`) | identity trace、UI適用性、screen-to-acceptance、risk-based pairwise、drift、Experience親graphを意味再導出する。旧schemaと実装方式は参照専用。 |
+| paired consumers | `L3-infinity-loop-acceptance-test-design.md:41` HAT-HIL-09、および`:47` HAT-HIL-15; `L9-infinity-loop-platform-system-test-design.md:38–39,45,51` HST-HIL-011/012/018/024 | HAT-HIL-15とHST-HIL-012/024のscreen applicability/prototype walkthroughを関連consumerとして読み、旧consumer名・工程・実装結果を現行authorityへ昇格しない。HAT-HIL-09/HST-HIL-011/018のsource/reverse closureは関連資料であり、039のUX意味を単独で証明する直接対応とは扱わない。 |
+
+旧sourceは保持するが、旧screen manifest・runtime/schema・固定工程を再利用しない。固定L2/L11-039の採択はPO decision行44に従い、`version_target: 1.0`を保持する。現L3差分は採択済み意味を変更せず、明示した受入・責務境界へ再導出する。
