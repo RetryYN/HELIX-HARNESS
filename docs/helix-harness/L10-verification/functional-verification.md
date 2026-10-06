@@ -1818,3 +1818,24 @@ AC-018-01の入力条件はR001〜R034に加えR056/R057で個別欠落、R058�
 | `CASE-HARNESS-L10-046-r13-sr1-receipt-missing` | `FR-HARNESS-L3-046-02` / `AC-HARNESS-L3-046-02` | r12正常A。既存trigger成立のScrum scope/revision、SR0〜SR4各段階identity/receipt/source evidence値、backfill、SR4 pair-freezeはcurrent。 | SR1段階のreceipt一つだけを欠落させる。他段階・trigger・scope/revision・backfillは不変。 | SR1receipt不足を検出し当該Scrum scopeを未完/未評価に保つ。SR4や他段階だけの合格で代替しない。不足verification evidenceを004/022の既存責務区分へ返し、個体identity unknownを別記する。 | 既存trigger成立scopeの既存段階確認。新checkpoint/triggerは作らない。 |
 | `CASE-HARNESS-L10-046-r13-sr2-receipt-missing` | `FR-HARNESS-L3-046-02` / `AC-HARNESS-L3-046-02` | r12正常A。既存trigger成立のScrum scope/revision、SR0〜SR4各段階identity/receipt/source evidence値、backfill、SR4 pair-freezeはcurrent。 | SR2段階のreceipt一つだけを欠落させる。他段階・trigger・scope/revision・backfillは不変。 | SR2receipt不足を検出し当該Scrum scopeを未完/未評価に保つ。SR4や他段階だけの合格で代替しない。不足verification evidenceを004/022の既存責務区分へ返し、個体identity unknownを別記する。 | 既存trigger成立scopeの既存段階確認。新checkpoint/triggerは作らない。 |
 | `CASE-HARNESS-L10-046-r13-sr3-receipt-missing` | `FR-HARNESS-L3-046-02` / `AC-HARNESS-L3-046-02` | r12正常A。既存trigger成立のScrum scope/revision、SR0〜SR4各段階identity/receipt/source evidence値、backfill、SR4 pair-freezeはcurrent。 | SR3段階のreceipt一つだけを欠落させる。他段階・trigger・scope/revision・backfillは不変。 | SR3receipt不足を検出し当該Scrum scopeを未完/未評価に保つ。SR4や他段階だけの合格で代替しない。不足verification evidenceを004/022の既存責務区分へ返し、個体identity unknownを別記する。 | 既存trigger成立scopeの既存段階確認。新checkpoint/triggerは作らない。 |
+
+### 固定親の変更禁止項目と単独拒否
+
+固定L2:1032およびL11:765を再導出する。以下の値は合成fixture用の別名で、技術値や追加許可を採択しない。入力sourceは正常な同scope/revisionで固定し、候補の出力誤りは046自身で訂正する。
+
+| 変更禁止項目 | 単独拒否CASE |
+|---|---|
+| 選択style | `CASE-HARNESS-L10-046-r14-refuse-style-rewrite` |
+| 方式定義 | `CASE-HARNESS-L10-046-r14-refuse-method-definition-rewrite` |
+| 合成許可 | `CASE-HARNESS-L10-046-r14-refuse-composition-permission-rewrite` |
+| trigger条件 | `CASE-HARNESS-L10-046-r14-refuse-trigger-condition-rewrite` |
+| L3までの共通工程 | `CASE-HARNESS-L10-046-r14-refuse-common-process-rewrite` |
+
+| CASE ID | FR/AC | 正常baseline | 単独変異 | 期待oracle | 責務境界 |
+|---|---|---|---|---|---|
+| `CASE-HARNESS-L10-046-r14-refuse-style-rewrite` | `FR-HARNESS-L3-046-02` / `AC-HARNESS-L3-046-03` | 対象scope/revisionとsource identity/revisionはcurrent。選択styleのsource値は `Full V`。他の変更禁止4項目、適用性、workflow、V-pair/oracle/evidenceを正常入力として固定。 | 入力を保持し、候補の `選択style` 出力一項目だけを `Production Scrum` にする。 | sourceの `Full V` と出力値を比較し、不一致を拒否して元のsource値を保持する。改変値によるslice先行・義務免除・release-readyを認めない。 | 正常入力なのでsource ownerへ不足を返さず、046自身の出力を訂正する。新しい方式・許可・trigger・工程を作らない。 |
+| `CASE-HARNESS-L10-046-r14-refuse-method-definition-rewrite` | `FR-HARNESS-L3-046-02` / `AC-HARNESS-L3-046-03` | 対象scope/revisionとsource identity/revisionはcurrent。方式定義のsource値は `PO判断の4方式定義D0`。他の変更禁止4項目、適用性、workflow、V-pair/oracle/evidenceを正常入力として固定。 | 入力を保持し、候補の `方式定義` 出力一項目だけを `候補が新しい方式条件D1へ改変` にする。 | sourceの `PO判断の4方式定義D0` と出力値を比較し、不一致を拒否して元のsource値を保持する。改変値によるslice先行・義務免除・release-readyを認めない。 | 正常入力なのでsource ownerへ不足を返さず、046自身の出力を訂正する。新しい方式・許可・trigger・工程を作らない。 |
+| `CASE-HARNESS-L10-046-r14-refuse-composition-permission-rewrite` | `FR-HARNESS-L3-046-02` / `AC-HARNESS-L3-046-03` | 対象scope/revisionとsource identity/revisionはcurrent。合成許可のsource値は `対象scopeの合成を許可しないP0`。他の変更禁止4項目、適用性、workflow、V-pair/oracle/evidenceを正常入力として固定。 | 入力を保持し、候補の `合成許可` 出力一項目だけを `対象scopeのScrum合成を許可するP1` にする。 | sourceの `対象scopeの合成を許可しないP0` と出力値を比較し、不一致を拒否して元のsource値を保持する。改変値によるslice先行・義務免除・release-readyを認めない。 | 正常入力なのでsource ownerへ不足を返さず、046自身の出力を訂正する。新しい方式・許可・trigger・工程を作らない。 |
+| `CASE-HARNESS-L10-046-r14-refuse-trigger-condition-rewrite` | `FR-HARNESS-L3-046-02` / `AC-HARNESS-L3-046-03` | 対象scope/revisionとsource identity/revisionはcurrent。trigger条件のsource値は `既存trigger条件T0`。他の変更禁止4項目、適用性、workflow、V-pair/oracle/evidenceを正常入力として固定。 | 入力を保持し、候補の `trigger条件` 出力一項目だけを `候補がtrigger成立条件T1へ変更` にする。 | sourceの `既存trigger条件T0` と出力値を比較し、不一致を拒否して元のsource値を保持する。改変値によるslice先行・義務免除・release-readyを認めない。 | 正常入力なのでsource ownerへ不足を返さず、046自身の出力を訂正する。新しい方式・許可・trigger・工程を作らない。 |
+| `CASE-HARNESS-L10-046-r14-refuse-common-process-rewrite` | `FR-HARNESS-L3-046-02` / `AC-HARNESS-L3-046-03` | 対象scope/revisionとsource identity/revisionはcurrent。L3までの共通工程のsource値は `既存の共通工程C0`。他の変更禁止4項目、適用性、workflow、V-pair/oracle/evidenceを正常入力として固定。 | 入力を保持し、候補の `L3までの共通工程` 出力一項目だけを `候補が共通工程C1へ省略・変更` にする。 | sourceの `既存の共通工程C0` と出力値を比較し、不一致を拒否して元のsource値を保持する。改変値によるslice先行・義務免除・release-readyを認めない。 | 正常入力なのでsource ownerへ不足を返さず、046自身の出力を訂正する。新しい方式・許可・trigger・工程を作らない。 |
+| `CASE-HARNESS-L10-046-r14-composition-permission-missing` | `FR-HARNESS-L3-046-03` / `AC-HARNESS-L3-046-03` | 合成を適用するscope/revision、方式定義、Scrum適用部分、trigger、workflow、pair/oracle/evidenceはcurrentで正常。このscopeに適用する合成許可Pallowも提示済み。 | 合成許可の入力field一つだけをmissingにする。他の入力は不変。 | 合成許可を推測せずunknown/未完に保ち、このscopeへslice先行やrelease-readyを付与しない。 | HARNESS-L2-002/003の既存workflow/style意味の責務へ不足を返す。個別owner identityがunknownでも責務区分への返却を止めず、そのidentity状態を別記する。 |
