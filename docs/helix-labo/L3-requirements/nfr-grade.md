@@ -239,3 +239,16 @@ L10は69個の完全ID定義を保持する。literalから抽出した分類候
 
 - `NLABO-067-FR-01-01` first-eligible/repair-event evidence completeness: selected task/scope/revisionに対するpredicate/oracle identity+revision、candidate identity/digest、OS assignment/AttemptID、eligibility/repair/result receiptsの観測可能性とunknownをfield別に記録する。roundは同一assignment Attempt内で観測receiptが確定した範囲だけ数え、別Attemptと総Attempt countを混ぜない。source/個体 identityがunknownならrole分類とunknown stateを保持する。これは計測設計で実測ではない。
 - `L10-LABO-067` CASE定義は旧30 literalと本候補追加CASE-24–38を個別IDで索引する。単一点性・独立性は未reviewであり、CASE数は完全性の証明ではない。
+
+## Stage 5 — HELIX-LABO L3 NFR候補 — HELIXLABO-L2-069
+
+数値metricや実測値を確定しない根拠付き技術候補。個別parameterごとのPO承認gateを設けない。
+
+| 性質 | 候補 | 根拠・対の観測 | 限界 |
+|---|---|---|---|
+| 比較の再現性 | resultに使ったticket/assignment, source/revision, scope, classification, denominator, window, completeness, relation/evidenceを追跡可能にする。入力不足時は同じ不足状態をunknown/未評価として保持する。 | 固定L2比較保証とL11比較不能例。FV-069 CASE-01, 05–10, 20–26, 28–32。 | 新しい必須schema field・rate threshold・window長は定義しない。 |
+| 欠測忠実性 | 欠測/unknown/censored/untracked/window未満を0または成功へ変換しない。 | 固定L2/L11明示条件。FV CASE-03b, 07–12, 20–25, 28, 30–32。 | 数値上限・統計方式を追加しない。 |
+| 因果claim境界 | evidence-backed relationの個別記録と、因果効果/発行精度改善の一般化を分ける。時間/pathだけ、単一例だけ、単純前後比較だけで一般化しない。 | 旧source line 319、固定L2比較保証、L11不合格例。FV CASE-03c, 13, 33。 | 因果推論方式/confidence thresholdは要求しない。 |
+| authority isolation | LABO評価の書込み先をcandidateに限り、ticket/priority/assignment/oracle/authorityおよびsource closureを書き換えない。 | 固定L2境界、L11不合格/受入限界。FV CASE-04a, 14–19, 34–43。 | 既存ownerの内部実装やSECURITY分類を再定義しない。 |
+
+旧sourceの数値を引き継がない。技術parameterが必要になった場合は候補値・比較根拠・測定方法を対で記録するが、ここで閾値を新設しない。
