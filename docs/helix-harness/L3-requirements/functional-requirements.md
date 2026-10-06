@@ -718,3 +718,29 @@ AC-035-05はS5-027/028/042および035〜038（旧revision計測、機能数だ�
 **不成立と戻し先**：semantic similarity、consumer、oracle、graphの未確認は未評価に保ち、出典ownerと設計・契約ownerへ不足を戻す。対の設計または契約がない対象はL2-019 reverse入口へ。公開契約/要求/persistent-state意味変更は該当するL2-003/004/016 Backflow。機能追加混載はepisode成立を拒否しfeatureを別episodeへ分離。missing/unknown/stale/conflictは補完せず未評価。文書、CASE、receipt、ticketからauthority、実行、採択、L3承認または受入を生成しない。
 
 **L2-019境界**：019は逆向きに対の設計または契約の不在を明らかにする入口であり、全入力不足や責務不明を無差別に送る汎用戻し先ではない。入力不足はその入力を提供する元ownerへ戻す。019 reverseの結果も本要件のscopeを拡張しない。
+
+### HELIX-HARNESS L2-046 — 機能要件（Stage 3、version_target: 1.0、起草候補）
+
+起草候補。Stage 3、`version_target: 1.0`。対象は採択済みHARNESS-L2-046のFull V workflow条件と、明示的にProduction Scrumが選択・許可されたscopeのScrum slice/backfill条件に限る。候補文書・検証fixtureは採択済みL2/L11本文や運転結果を置換せず、releaseやruntime authorityを付与しない。
+
+**固定親とPO根拠**：親L2は`318ec4a04abb3c1cc17111b3d939f913facd5fd3`の `docs/helix-harness/L2-requirements/product-requirements.md:1025–1035`（全file SHA-256 `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09`、対象span SHA-256 `47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e`）。対L11は同revisionの `docs/helix-harness/L11-acceptance/product-acceptance.md:759–771`（全file SHA-256 `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5`、span SHA-256 `a8e99f7df7166566c04b1113b045851d8417e17e8078c034f8f2a34ebfe4f37f`）。PO判断は `17a2f310358ee7fe209b9d37cddf4a927c740248` の `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:51`、file SHA-256 `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`、row SHA-256 `60fb90a139b313760ad5a259e2362e3c406e071aa1dfba8ed6d21d0cb9fb55a4`。POは`HARNESS-L2-046`を採択し、registrationは`MPR-RC-HARNESS-L2-046-001`。隣接row 52の`HARNESS-L2-047`は046へ混ぜない。
+
+**旧source・保持／変更**：旧起点はv1.3 `LEGACY-ASSET-02319C2481B9E01698D5`。§4.4 L259はFull Vのsystem workflow/L1–L5段階freezeと12 workflow条件の検証（atom S1）およびProduction Scrumのslice delta先行・Scrum Reverse/backfill時点・SR4前release-ready不可（独立atom S2）を別条件として記述する。§10 L647は両者を要約する別atomで、第三の独立条件に数えない。6fabd125 baselineの同文companionも別revisionとして保持する。旧consumerのUWJ-FR-015とL4 boundaryは確認範囲に限定し、consumer全体網羅は主張しない。 L259の2文を各別FRへ再導出し、L647は要約関係だけ記録する。POの4方式定義・合成許可は2026-09-25判断`docs/governance/decisions/po-optimal-draft-po-decisions-2026-09-25.md:51,61`に従う。旧FullVとScrum条件を混ぜない。
+
+**FR-HARNESS-L3-046 — 共通参照group**：CASE表にあるsuffixなしの`FR-HARNESS-L3-046`は、本節の`FR-HARNESS-L3-046-01`〜`-04`をまとめて参照するtraceability groupであり、独立した機能要求・oracle・scopeを追加しない。各CASEの意味と判定には個別のsuffix付きFRおよびACを用いる。
+
+**FR-HARNESS-L3-046-01 — Full V system workflow**：入力でstyle=`Full V`と対象system workflow revisionを明示する。選択scopeで適用されるL1–L5の設計資産を段階的に明確化・freezeし、対応V-pairでsystem全体のtransition、loop、terminal、exception、permission、timeout、notification、audit、data、switching、routing、resource allocationの12条件を検証する。条件または適用する層のapplicability/oracleが未確定ならclosureをunknown/未完とする。Full Vではslice delta、Scrum Reverse、SR0–SR4、SR4 receiptを要求しない。
+
+**FR-HARNESS-L3-046-02 — Production Scrum slice/backfill**：input styleがProduction Scrumであるscope、またはPOが許可した方式合成のうちL2-002/003に従ってScrumを適用するscopeだけを対象とする。slice deltaの先行を許容し、既存triggerに従うsprint review時またはrelease合流前にScrum Reverseでsystem workflowと該当L1–L5設計資産へbackfillする。SR0–SR4 checkpointは既存triggerが要求する場合だけ各receiptを照合し、Scrum scopeはSR4 pair-freezeなしにrelease-ready候補へ進めない。style・合成許可・triggerをこの要件が変更しない。
+
+**FR-HARNESS-L3-046-03 — scope/source状態と返却先**：style selection、scope/revision、system workflow、applicability、oracle、必要なScrum checkpointがmissing/unknown/conflict/staleなら、他scopeや別revisionから補完せずunknown/未完にする。Full Vの義務不足はScrum条件へ置換しない。style/workflow意味または既存triggerの不足はHARNESS-L2-002/003へ、verification obligation/V-pair oracleの不足はHARNESS-L2-004/022へ返す。source identity不明を新設の「選択source owner」へ返さず、原因を固定ownerで同定できない場合はunknownを保つ。
+
+**FR-HARNESS-L3-046-04 — authority非生成**：候補／coverage receiptからL2/L11採択、要求合意、要件承認、OS ticket、実行結果、release許可、利用者受入を生成しない。OSはticket/workflow instance/state/runtimeの運転を所有する。
+
+**AC-HARNESS-L3-046-01 — Full V正常・12条件**：baselineでFull V style、system workflow revision、適用L1–L5層と段階freeze、12条件各々のapplicability・対応V-pair/oracleを固定する。これらが同scope/revisionで確認できる場合に限り対象workflow coverageを閉じる。Scrum delta/reverse/SR0–SR4/SR4はbaselineにも必須条件にも含めない。
+
+**AC-HARNESS-L3-046-02 — Scrum選択scope正常・backfill**：Production Scrumまたは許可合成内のScrum適用scopeを明示し、slice delta、system workflowと該当L1–L5資産へのbackfill、trigger条件、適用されるcheckpoint/SR4 receiptを同じscope/revisionで確認する。checkpointは既存triggerに従う。
+
+**AC-HARNESS-L3-046-03 — 未見／誤scope／owner**：Full Vで一つの条件またはfreezeを欠落させればscope未完、Scrum scopeで一つのbackfill/SR4 fieldを欠落させれば該当scope未完。Full V fixtureにScrum artifactがないだけなら不合格にせずAC-01を評価する。style/workflow不明とpair/oracle不明はそれぞれ既存owner区分へ戻し、unknown sourceを一般化したownerへ送らない。
+
+**AC-HARNESS-L3-046-04 — authority出力の単独拒否**：採択、要求合意、要件承認、OS ticket、実行結果、release許可、利用者受入の各出力を個別fixtureで一つずつ生成させる変異を拒否し、他output fieldは変えない。

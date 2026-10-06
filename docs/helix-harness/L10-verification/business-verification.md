@@ -86,3 +86,19 @@ execution_status: designed_only_not_executed
 | L2親 | 独立criterion | 対応関係 |
 |---|---|---|
 | `HARNESS-L2-042` | 独立criterionなし | 事業成果を独立に主張せず、機能ACと採択済み親要求の意味保持だけを照合する。 |
+
+### HELIX-HARNESS L2-046 — 業務検証（Stage 3、version_target: 1.0、起草候補）
+
+起草候補。Stage 3、`version_target: 1.0`。対象は採択済みHARNESS-L2-046のFull V workflow条件と、明示的にProduction Scrumが選択・許可されたscopeのScrum slice/backfill条件に限る。候補文書・検証fixtureは採択済みL2/L11本文や運転結果を置換せず、releaseやruntime authorityを付与しない。
+
+**固定親とPO根拠**：親L2は`318ec4a04abb3c1cc17111b3d939f913facd5fd3`の `docs/helix-harness/L2-requirements/product-requirements.md:1025–1035`（全file SHA-256 `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09`、対象span SHA-256 `47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e`）。対L11は同revisionの `docs/helix-harness/L11-acceptance/product-acceptance.md:759–771`（全file SHA-256 `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5`、span SHA-256 `a8e99f7df7166566c04b1113b045851d8417e17e8078c034f8f2a34ebfe4f37f`）。PO判断は `17a2f310358ee7fe209b9d37cddf4a927c740248` の `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:51`、file SHA-256 `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`、row SHA-256 `60fb90a139b313760ad5a259e2362e3c406e071aa1dfba8ed6d21d0cb9fb55a4`。POは`HARNESS-L2-046`を採択し、registrationは`MPR-RC-HARNESS-L2-046-001`。隣接row 52の`HARNESS-L2-047`は046へ混ぜない。
+
+**旧source境界**：旧起点はv1.3 `LEGACY-ASSET-02319C2481B9E01698D5`。§4.4 L259はFull Vのsystem workflow/L1–L5段階freezeと12 workflow条件の検証（atom S1）およびProduction Scrumのslice delta先行・Scrum Reverse/backfill時点・SR4前release-ready不可（独立atom S2）を別条件として記述する。§10 L647は両者を要約する別atomで、第三の独立条件に数えない。6fabd125 baselineの同文companionも別revisionとして保持する。旧consumerのUWJ-FR-015とL4 boundaryは確認範囲に限定し、consumer全体網羅は主張しない。 Business outcomeとしてrelease-ready、release decision、market outcomeを検証・宣言しない。
+
+**対象**：`BR-HARNESS-L3-046-01`。選択styleとscopeに対応するworkflow evidence条件が維持されること。
+
+| L10 case ID | L3 AC / BR | 入力・比較 | 観測 | 未評価・不合格 |
+|---|---|---|---|---|
+| `CASE-HARNESS-L10-046-r12-fullv-normal` | `AC-HARNESS-L3-046-01` / `BR-HARNESS-L3-046-01` | style=Full V、対象workflow revision、適用L1–L5段階freeze、12条件とV-pair evidenceを合成入力する。 | Full V scope coverageを再構成し、Scrum delta/backfill/SR4を要求しない。 | 12条件のapplicability/oracle不明ならunknown/未評価。 |
+| `CASE-HARNESS-L10-046-r12-scrum-normal` | `AC-HARNESS-L3-046-02` | 明示Production Scrumまたは許可合成内Scrum scope、slice delta、既存trigger、backfill、triggerが要求するcheckpoint/SR4を固定する。 | backfill対象・時点・revisionを同じscopeへ結び、既存trigger条件に適合する。 | trigger/identity不明なら未評価、別revision receiptなら不合格。 |
+| `CASE-HARNESS-L10-046-r12-fullv-no-scrum` | `AC-HARNESS-L3-046-01` | Full Vの正常baselineからScrum-specific delta/Reverse/SR0–SR4/SR4 receiptの全てを省略する。 | Full Vの段階freezeと12条件がcurrentならFull V ACを評価でき、Scrum artifact欠落だけでは拒否しない。 | 他Full V必須条件欠落は該当scope未完。 |
