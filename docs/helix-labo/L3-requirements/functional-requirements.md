@@ -1848,7 +1848,7 @@ L10 CASE IDsは照合用であり、ID数・独立fixture数から完全性を�
 
 ### 受入条件候補
 
-- **LABO-069-AC-01 — 条件が揃った評価candidate**：同一ticket family/scope/対象revisionとそのrelation/evidence、denominator、reason分類、window、source completeness、再発行後resultを束ね、成立・不成立・未評価を区別する。元closureを保ち、ticketを変更しない。
+- **LABO-069-AC-01 — 条件が揃った評価candidate**：同一ticket family/scope/対象revisionとそのrelation/evidence、denominator、reason分類、window、source completeness、再発行後resultを束ね、成立・不成立・未評価を区別する。評価candidateには固定L2が求める理由別傾向、counterexample、regression risk、revalidation conditionを含め、各項目を当該source/revision/scope/windowと利用可能な根拠に対応づける。元closureを保ちticketを変更しない。ここで固定数値threshold、統計方式、学習方式は追加しない。
 - **LABO-069-AC-02 — 未見reasonの保持**：既存分類にないreasonは分類を新設せずunknown/unclassifiedとして保持し、成立/不成立へ推測変換しない。
 - **LABO-069-AC-03 — 比較不能・欠測の保持**：source、denominator、scope、classification条件、revision、観測時点、evidence、再発行後relation/result等の必要入力が欠ける・stale・不完全ならrate/resultを未評価とし、欠測/window未満/未追跡/打切りを0にしない。戻し先は既存のOSまたは識別可能なsource-owner区分に限定する。役割区分が既知でも個別identityがsourceで特定できなければその値はunknownのままとし、新ownerを作らない。
 - **LABO-069-AC-04 — 既存authorityと責務の保持**：LABOはticket本文、priority、assignment、verification oracle、authorityを変更しない。固定L2/L11が別ownerへ残すticket issue/assignment/authorityと、未評価結果からtarget変更・配置・ticket発行、同評価から採否・改善完了・配置変更を導かない境界を保つ。各出力fieldはFVで別々に変異させる。OSの登録/routing/ticket発行とINTELLIGENCEの配置案、適用中のSECURITY/data-use条件は既存責務のままにする。
