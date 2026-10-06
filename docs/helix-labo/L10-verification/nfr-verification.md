@@ -134,3 +134,10 @@
 - `CASE-NFR-LABO-060-01`: 未実行設計。選択scope内で同一task/scope/oracle・元Worker/model/provider/version/effort条件、選択支援source/use、OS assignment/result receipt、品質判定、全支援追加resource/費用、人作業数量、currency/effective time、failed/unknown/missingを別fieldで追跡する。未選択consult/sourceを必須分母へ加えず、unknown/未完/欠測を成功または0へ変換しない。実測値、固定SLA、最低N、率thresholdは生成しない。
 - L10の現在のCASE定義IDは57件: CASE-01/02、03a–e、04a–b、05–21、22–33、34–45、46–52。現行分類案は正常候補2、negative候補47、非独立索引候補8（CASE-22/23/26/27/29/30/31/32）。単一点性・独立性は独立review未確認で、ID数や一意性は完全性を証明しない。索引候補はfixture/negative分母へ重ねず、CASE本文とAC traceをL10で照合する。
 - 集計を設計する場合も、対象task/run・適用scope・missing/failed/unknown/censoredの母集団状態を併記し、分母0/不明は率なしとする。LABOは比較材料のみを返し、assignment、採用、permission、merge authorityを出力しない。
+
+## Stage 5 — HELIXLABO-L2-061 NFR検証設計
+
+- `LABO-061-NFR-01`: 選択task/runを母集団にし、valid/failed/invalid/missing/unknown/stale/censoredを別区分で保持する。割合は対象数と分母を併記し、分母0または不明なら率なし。実測値なしは未実測とする。
+- `LABO-061-NFR-02`: 選択task snapshotの15 fieldとtask/fixture/oracle/protocol/scorerのidentity・version・digestの状態をfield別に照合する。未選択sourceや055通常履歴を分母へ含めない。
+- `LABO-061-NFR-03`: 漏洩、role separation、歴史補完、receipt由来のauthority誤生成をL10の独立oracleに従って照合する。実secret/PIIをfixtureへ含めず、synthetic canaryのみを使う。
+- 現行L10には旧a4から保持した132 IDが132 table rowとしてある。旧snapshot側の形は130 table rowとnormal bullet 2件だった。CASE定義は測定runそのものではなく、indexは独立fixture数へ重ねない。ID数を網羅性や実行結果へ読み替えない。固定試行数、SLA、性能閾値、合格率は追加しない。

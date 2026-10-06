@@ -183,3 +183,11 @@
 - `NFR-LABO-060-01` 比較条件・quality・費用/人時間trace: 選択scope内のtask/snapshot、同一元Worker設定、支援有無、事前oracle、OS assignment/result receipt、選択support source/use、追加resource、retry/rework/review/CI、人作業数量・実費、price source/currency/effective time、failed/unknown/missingを個別に記録する。human quantityと金額は分離し、unknown/missing/未完をsuccess/0へ変換しない。これは測定設計であって測定値ではない。
 - L10の現在のCASE定義IDは51件（正常候補2、negative候補41、非独立索引候補8）。単一点性・独立性は独立review未確認で、ID数や一意性は完全性を証明しない。CASE-22/23/26/27/29/30/31/32は案上の索引で、個別fixture/negative分母へ重ねない。詳細をL10 functional verificationで照合する。
 - 分母0/不明なら率を算出しない。source/owner不明はunknownのまま保持する。固定親にない数値thresholdや試行条件を新設せず、実行済み結果を主張しない。
+
+## Stage 5 — HELIXLABO-L2-061 技術計測候補
+
+| NFR | 母集団・区分 | CASE/oracle |
+|---|---|---|
+| `LABO-061-NFR-01` 比較適格性と不成立保持 | 実測母集団は選択・適用されたrunで構成し、valid・failed・invalid・missing・unknown・stale・censoredを全て状態別に保持する。率を示す場合は母集団数/分母を明記し、分母0または不明では率なし。実測がなければ未実測。 | CASEは設計上のfixture定義であり実測母集団ではない。normalも適用runなら実測母集団に含む。索引はfixture定義数へ重複計上せず、具体的traceはNFR検証文書で示す。 |
+| `LABO-061-NFR-02` 履歴・field完全性 | 15 task snapshot fieldとtask/oracle/protocol/scorer identity・version・digestを個別に追跡する。missing、unknown、stale、mismatchは混同しない。 | fieldごとのL10 oracleを照合し、CASE数を測定値や被覆率へ変換しない。 |
+| `LABO-061-NFR-03` 漏洩・role separation・authority境界 | secret等の機微値を合成canaryで扱い、実secret/PIIは用いない。leakage、author/judge混同、receipt由来のauthority誤生成を個別に保持する。 | L10の具体的な単独変異と期待状態。固定閾値・最低N・固定SLAを新設しない。 |
