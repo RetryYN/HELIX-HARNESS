@@ -3333,7 +3333,7 @@ input observation identity/source revision；episode candidate identityとrelati
 | `L10-LABO-066-CASE-33` | `LABO-066-AC-03` | A identityだけunknown。その他の比較条件・候補側入力・oracle receiptはCASE-01と同一。 | Aを推測せず比較をunknown/未評価とし率を確定しない。Aの定義/版ownerが特定できれば戻し、できなければowner unknownを保つ。 |
 | `L10-LABO-068-CASE-18` | `LABO-068-AC-03` | 単独変異: 選択scopeのAttempt result receiptだけ欠落。identity集合と他receiptはCASE-01と同一。 | Attempt identityを消さず、状態/結果の不明を保持する。総数・結果確定に使わずOS記録ownerへ戻す。 |
 | `L10-LABO-069-CASE-28` | `LABO-069-AC-03` | 単独変異: 受入findingのoracle不足を示すsource/reasonだけ欠落。その他はCASE-01と同一。 | findingをclosure/成功へ変換せず、reasonをunknown/unclassifiedで保持する。OSまたは該当source ownerが特定できればそこへ返し、特定不能ならowner unknownを保つ。 |
-| `L10-LABO-069-CASE-29` | `LABO-069-AC-02` | 固定L2-069が入力例とする、source identity/revisionが有効な検収oracle不足findingを保つ。finding reasonも存在するが、未見のreason classだけが既存分類に対応しない。source欠落/不一致はない。 | 新しいreason classを作らずunknown/unclassifiedとして保持し、成立/不成立の既知分類へ推測変換せずOSへ返す。 |
+| `L10-LABO-069-CASE-29` | `LABO-069-AC-02` | 固定L11-069:294の未見例にある、source identity/revisionが有効な検収oracle不足findingを保つ。finding reasonも存在するが、未見のreason classだけが既存分類に対応しない。source欠落/不一致はない。 | 新しいreason classを作らずunknown/unclassifiedとして保持し、成立/不成立の既知分類へ推測変換せずOSへ返す。 |
 | `L10-LABO-061-CASE-102` | `LABO-061-AC-03` | 単独変異: 055の通常履歴に対し、根拠なしにtask snapshot 15条件すべてを適用対象と分類する。その他の入力は通常履歴のまま。 | 15条件一式の適用を拒否し、その通常履歴に適用される契約条件だけを照合する。hidden oracle/blind条件は別CASE-75で扱う。 |
 | `L10-LABO-061-CASE-103` | `LABO-061-AC-03` | 単独変異: result receiptだけを根拠にOS assignmentが成立したと主張。その他の入力はCASE-01と同一。 | assignmentを生成せず、既存authority状態を維持する。 |
 | `L10-LABO-061-CASE-104` | `LABO-061-AC-03` | 単独変異: result receiptだけを根拠に実験permissionが成立したと主張。その他の入力はCASE-01と同一。 | permissionを生成せず、既存SECURITY境界を維持する。 |
