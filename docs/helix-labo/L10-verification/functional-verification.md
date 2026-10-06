@@ -3317,7 +3317,7 @@ L3 functional requirementsで定義した `LABO-071-AC-01`（同じ対象の正�
 
 **共通正常baseline B0（合成）**：selected task class C0、model revision V0、evaluation scope S0、revision/sourceが一致するevidence E0とその識別可能なsource identityを持つ。qualification state Q0、表示title T0、permission P0、assignment role A0は各自別field/identityとして既存記録にある。B0は有効evidenceで失効事象なし。これは合成baselineであり、実資格・実permission・実assignment・実測を表さない。未見CASE02は別class/revision/scopeの固有evidenceを結果閲覧前に固定し、B0を事後変更しない。
 
-**6列・旧24 IDの再導出matrix**
+**6列・旧24 IDを保持する31 CASEの再導出matrix**
 
 | CASE ID | FR trace | AC | baseline / fixture準備 | 単一の変異 | 期待oracle・返却 |
 |---|---|---|---|---|---|
@@ -3355,7 +3355,15 @@ CASE-09/11/13/15/18は旧literal上も索引であり、各主fixtureへ直接�
 **旧対応と限界**：旧3L-BR-008のtask class×model revision評価、state分離、major miss/model update時の資格失効を意味再導出した。旧L3の7固定class、段階的qualification lifecycle、expiry、provider/lane、pass authorityを含めない。review05 comment `6010745544`の正式本文全体から071明示IDが0行だったことはpreflight範囲の検索結果として保持し、review全体の未言及や承認とは主張しない。
 
 **実行状態**：全fixtureは未実行の設計候補。実runtime/test/CI、新しい閾値/分類/期限/再評価scheduleは使わない。独立review、Fable見解、L3委任承認、L10実行/実測、資格付与、permission/assignment変更はこの文書から生成しない。
+
+### qualificationからの出力生成拒否
+
+| CASE ID | FR trace | AC | baseline / fixture準備 | 単一の変異 | 期待oracle・返却 |
+|---|---|---|---|---|---|
 | `L10-LABO-071-CASE-20` | `LABO-071-FR-03` | `LABO-071-AC-03` | CASE-01と同じB0。C0/V0/S0/E0/Q0、title T0・permission P0・assignment A0は固定親どおり別field/state。synthetic only。 | Qualification Q0だけを根拠に、別fieldの実行許可を新規生成する出力を一つ追加要求する。ほかの入力・出力は変えない。 | 実行許可の生成を拒否し、既存のpermission/authority stateは変えない。実際のpermission責務は固定親のSECURITY区分のまま。新しい権限field/APIを定義するケースではない。 |
 | `L10-LABO-071-CASE-21` | `LABO-071-FR-03` | `LABO-071-AC-03` | CASE-01と同じB0。C0/V0/S0/E0/Q0、title T0・permission P0・assignment A0は固定親どおり別field/state。synthetic only。 | Qualification Q0だけを根拠に、要件の採否を新規生成する出力を一つ追加要求する。ほかの入力・出力は変えない。 | 採否出力を拒否し、PO decision/adoption stateは変えない。GitHub記録やqualificationからPO判断を生成しない。出力slotはfixture上の観測であり、新schema/APIを作らない。 |
 | `L10-LABO-071-CASE-22` | `LABO-071-FR-03` | `LABO-071-AC-03` | CASE-01と同じB0。C0/V0/S0/E0/Q0、title T0・permission P0・assignment A0は固定親どおり別field/state。synthetic only。 | Qualification Q0だけを根拠に、要件の完了を新規生成する出力を一つ追加要求する。ほかの入力・出力は変えない。 | 完了出力を拒否し、requirement lifecycle stateは変えない。qualificationは実装・実行・完了証跡ではない。出力slotはfixture上の観測であり、新schema/APIを作らない。 |
 | `L10-LABO-071-CASE-23` | `LABO-071-FR-02/03` | `LABO-071-AC-03` | B0の入力・stateは固定親に従い独自scheduleは存在しない。 | LABO出力へ根拠のないrequalification schedule field一つを追加する。 | schedule追加を拒否し、再評価方法・時期・新ownerを定めない。 |
+| `L10-LABO-071-CASE-r01-model-selection` | `LABO-071-FR-03` | `LABO-071-AC-03` | 有効B0。C0/V0/S0/E0/Q0とtitle/permission/assignment/authorityは別fieldのまま有効。qualificationからのmodel/provider/lane選択出力は未生成。 | qualification Q0だけから`selected_model`出力field一つを生成する。他二つの選択field・全入力・資格状態・既存状態は不変。 | 当該model選択の生成を拒否し、資格状態と根拠だけを返す。正常入力へ不足責務を転嫁せず、LABO候補出力処理を訂正する。provider/lane/modelの選択ownerや新選択契約をこのCASEで作らない。 |
+| `L10-LABO-071-CASE-r01-provider-selection` | `LABO-071-FR-03` | `LABO-071-AC-03` | 有効B0。C0/V0/S0/E0/Q0とtitle/permission/assignment/authorityは別fieldのまま有効。qualificationからのmodel/provider/lane選択出力は未生成。 | qualification Q0だけから`selected_provider`出力field一つを生成する。他二つの選択field・全入力・資格状態・既存状態は不変。 | 当該provider選択の生成を拒否し、資格状態と根拠だけを返す。正常入力へ不足責務を転嫁せず、LABO候補出力処理を訂正する。provider/lane/modelの選択ownerや新選択契約をこのCASEで作らない。 |
+| `L10-LABO-071-CASE-r01-lane-selection` | `LABO-071-FR-03` | `LABO-071-AC-03` | 有効B0。C0/V0/S0/E0/Q0とtitle/permission/assignment/authorityは別fieldのまま有効。qualificationからのmodel/provider/lane選択出力は未生成。 | qualification Q0だけから`selected_lane`出力field一つを生成する。他二つの選択field・全入力・資格状態・既存状態は不変。 | 当該lane選択の生成を拒否し、資格状態と根拠だけを返す。正常入力へ不足責務を転嫁せず、LABO候補出力処理を訂正する。provider/lane/modelの選択ownerや新選択契約をこのCASEで作らない。 |

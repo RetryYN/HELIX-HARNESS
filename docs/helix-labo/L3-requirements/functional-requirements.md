@@ -1875,10 +1875,10 @@ L10 CASE IDsは照合用であり、ID数・独立fixture数から完全性を�
 
 - **`LABO-071-FR-01` — task-class/model-revision qualification記録**：選択scopeのtask class、対象model revision、evaluation scope、evidence source/revisionとqualification stateを一つの追跡可能な記録に結ぶ。qualificationを適用するclass×revision×scopeと根拠が一致するときだけその状態を返す。表示称号、qualification、permission/authority、assignment roleのidentity/stateを独立に保ち、他fieldからqualificationを補わない。
 - **`LABO-071-FR-02` — 固定失効事象の適用**：根拠sourceに対象revisionのmajor missが記録されたとき、その資格対象revisionのqualificationを失効させる。model revisionが更新されたとき旧revisionのqualificationを失効し、新revisionへ継承しない。新revisionはそのrevision固有のevidenceが記録されるまで未評価とする。二つの事象以外のexpiry triggerを足さない。
-- **`LABO-071-FR-03` — unknown・返却・非authority**：class/revision/scope/evidenceが欠落、stale、矛盾、またはsource identityを結べない場合はqualificationをunknown/未評価とする。不足evidenceは個体identity特定の有無にかかわらずその既存source責務区分へ返し、個体identity unknownは別に保持する。permissionやauthorityの問題はSECURITY、assignmentの問題はOSの既存責務へ返し、LABOへ一律routeしない。qualificationから称号、permission、authority、assignment、実行許可、採否、完了を生成しない。
+- **`LABO-071-FR-03` — unknown・返却・非authority**：class/revision/scope/evidenceが欠落、stale、矛盾、またはsource identityを結べない場合はqualificationをunknown/未評価とする。不足evidenceは個体identity特定の有無にかかわらずその既存source責務区分へ返し、個体identity unknownは別に保持する。permissionやauthorityの問題はSECURITY、assignmentの問題はOSの既存責務へ返し、LABOへ一律routeしない。qualificationからmodel/provider/laneの選択、称号、permission、authority、assignment、実行許可、採否、完了を生成しない。
 
 **受入条件候補**
 
 - **`LABO-071-AC-01` — 同じ対象の正常**：evaluation evidenceが同一task class/model revisionへ結び付く場合、そのscopeのqualification stateを証拠どおり返す。称号/permission/roleは変えない。
 - **`LABO-071-AC-02` — 未見class/revisionの正常**：新たに選択されたtask class/model revisionの組合せをその固有evidenceで評価し、別class・別revision・称号から未評価を補わない。既定class集合を作らない。
-- **`LABO-071-AC-03` — 不成立・返却**：class/revision/scope/evidence欠落・stale・mismatch、record済みmajor miss見落とし、資格のrevision間継承、qualificationと称号/permission/authority/assignmentの同一視・生成、qualificationからの実行許可・採否・完了の生成を各々拒否する。不足評価根拠は個体identity特定の有無にかかわらず原因となった既存source責務区分へ返す。permissionはSECURITY、assignmentはOSへ返し、個体owner不明はunknownとする。
+- **`LABO-071-AC-03` — 不成立・返却**：class/revision/scope/evidence欠落・stale・mismatch、record済みmajor miss見落とし、資格のrevision間継承、qualificationと称号/permission/authority/assignmentの同一視・生成、qualificationからのmodel/provider/laneの選択、実行許可・採否・完了の生成を各々拒否する。不足評価根拠は個体identity特定の有無にかかわらず原因となった既存source責務区分へ返す。permissionはSECURITY、assignmentはOSへ返し、個体owner不明はunknownとする。
