@@ -100,3 +100,22 @@
 | `CASE-INTELLIGENCE-L10-BIZ-078-01` | `HELIXINTELLIGENCE-L2-078` | `AC-INTELLIGENCE-L3-078-01` | 対象親の機能fixtureと責務境界を照合する。 | 機能判断は対応functional CASEで評価し、業務承認・事業成果は生成しない。 | 機能結果からowner/利用者判断、事業達成または独立business基準を推定したら不合格。 |
 
 review08追補の005/016/067/072各機能fixtureは対応ACへtraceする。独立business基準や業務成果の承認は追加せず、比較成立・候補成立・修復結果照合からownerの業務判断を生成しない。
+## Stage 5 — business evidence範囲（INTELLIGENCE 9親）
+
+固定9親は独立した業務結果やbusiness owner/KPIを要求しない。以下はbusiness CASEではなく、FR/functional CASEを業務責務境界と照合する索引である。業務成果の実測、proposalの採択、L3承認を主張しない。
+
+| 親 | business outcome / owner | evidence source |
+|---|---|---|
+| `HELIXINTELLIGENCE-L2-060` | 独立業務指標なし。OSはticket/進行、INTはcandidate | `FR-INT-060`, `CASE-INT-060-*` |
+| `HELIXINTELLIGENCE-L2-061` | 独立業務指標なし。LABO評価、INT proposal、OS assignment分離 | `FR-INT-061`, `CASE-INT-061-*` |
+| `HELIXINTELLIGENCE-L2-062` | 独立業務指標なし。段階別permission/run/verification/acceptance | `FR-INT-062`, `CASE-INT-062-*` |
+| `HELIXINTELLIGENCE-L2-063` | 独立業務指標なし。LABO effect/BRAIN canonical/OS runの各owner | `FR-INT-063`, `CASE-INT-063-*` |
+| `HELIXINTELLIGENCE-L2-069` | fixed arithmetic oracleは技術検証値で、事業metricではない | `FR-INT-069`, `CASE-INT-069-*` |
+| `HELIXINTELLIGENCE-L2-070` | 独立業務指標なし。stage receiptとconsumer receiptを分離 | `FR-INT-070`, `CASE-INT-070-*` |
+| `HELIXINTELLIGENCE-L2-071` | finite fixture comparisonのみ。operational outcomeではない | `FR-INT-071`, `CASE-INT-071-*` |
+| `HELIXINTELLIGENCE-L2-074` | 独立業務指標なし。LABO feedbackは後続proposal材料 | `FR-INT-074`, `CASE-INT-074-*` |
+| `HELIXINTELLIGENCE-L2-077` | 独立業務指標なし。delta candidateはnon-authoritative | `FR-INT-077`, `CASE-INT-077-*` |
+
+補完CASEは各親のfunctional fixture索引として上表の`CASE-INT-*-*` wildcardに含める。業務結果や別business CASEとは数えない。
+
+新KPI、成功率target、qualification gate、OS/LABO判断の代行は追加しない。
