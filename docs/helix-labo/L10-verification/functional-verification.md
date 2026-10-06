@@ -2581,7 +2581,7 @@ input observation identity/source revision；episode candidate identityとrelati
 |---|---|---|---|
 | `L10-LABO-050-CASE-15` | `LABO-050-AC-03` | target変更後のverification receiptだけ欠落 | deployment/operation receiptがあっても循環未完了。target ownerへ戻す。 |
 | `L10-LABO-050-CASE-16` | `LABO-050-AC-03` | 部分循環fixture: 有効なsource/ticket/experiment/target revisionがあり、変更後target verificationは未完。唯一の変異はCI成功だけでtarget verification・deployment/operation・再観測・効果評価を完了と主張すること。 | CI結果だけでtarget verificationや後続義務を代替せず循環未完を保つ。変更後検証/operationはtarget owner、再観測/評価はLABOの既存境界へ戻す。 |
-| `L10-LABO-050-CASE-17` | `LABO-050-AC-03` | 部分循環fixture: 有効なsource/ticket/experiment/target revisionがあり、OS registration以降の変更後義務は未完。唯一の変異はFeedback発行だけで改善完了を主張すること。 | 完了を拒否し、登録/routingはOS、変更/verification/operationはtarget owner、再観測/評価はLABOへ戻す。 |
+| `L10-LABO-050-CASE-17` | `LABO-050-AC-03` | 部分循環fixture: 有効なsource/ticket/experiment/target revisionがあり、OS registrationは完了済みで、変更後義務は未完。唯一の変異はFeedback発行だけで改善完了を主張すること。 | 完了を拒否し、登録済み状態はOS、変更/verification/operationはtarget owner、再観測/評価はLABOへ戻す。 |
 
 ### CASE-LABO-059 — 比較評価と既決優先関係
 
@@ -2600,15 +2600,15 @@ input observation identity/source revision；episode candidate identityとrelati
 | `L10-LABO-059-CASE-03g` | `LABO-059-AC-03` | accepted outcome数だけ0 | low-cost 成功へ変換しない。 |
 | `L10-LABO-059-CASE-03h` | `LABO-059-AC-03` | HELIX支援cohortと実験conditionだけ混同 | 別軸へ戻し、比較目的を再確認する。 |
 | `L10-LABO-059-CASE-03i` | `LABO-059-AC-03` | 必要な群のreceiptだけ欠落 | その比較だけ未測定/比較不能。 |
-| `L10-LABO-059-CASE-03j` | `LABO-059-AC-03` | 価格sourceだけ欠落 | 金額を0や推定値で補わずunknownにする。price source identityが分かるときはそのsourceへ、特定できないときはunknown。 |
-| `L10-LABO-059-CASE-03k` | `LABO-059-AC-03` | currencyだけ欠落 | 換算せず金額比較を未評価にする。currencyを含むprice evidenceのsourceが識別できればそこへ、identity不明ならunknown。 |
-| `L10-LABO-059-CASE-03l` | `LABO-059-AC-03` | effective timeだけ欠落 | 適用価格を確定せず当該比較を未評価にする。適用価格sourceが識別できればそこへ、identity不明ならunknown。 |
+| `L10-LABO-059-CASE-03j` | `LABO-059-AC-03` | 価格sourceだけ欠落 | 金額を0や推定値で補わずunknownにする。price source identityが分かるときはLABO-055またはそのsourceへ、特定できないときはunknown。 |
+| `L10-LABO-059-CASE-03k` | `LABO-059-AC-03` | currencyだけ欠落 | 換算せず金額比較を未評価にする。currencyを含むprice evidenceのsourceが識別できればLABO-055またはそこへ、identity不明ならunknown。 |
+| `L10-LABO-059-CASE-03l` | `LABO-059-AC-03` | effective timeだけ欠落 | 適用価格を確定せず当該比較を未評価にする。適用価格sourceが識別できればLABO-055またはそこへ、identity不明ならunknown。 |
 | `L10-LABO-059-CASE-04a` | `LABO-059-AC-03` | LABOがWorkerを割当 | 拒否。OS ownerへ戻す。 戻し先: OS。 |
 | `L10-LABO-059-CASE-04b` | `LABO-059-AC-03` | LABOがpriority/toleranceを確定 | 拒否。既存decision ownerに残す。 |
 
 | CASE | 対応AC | 単独変異 | 期待oracle / 戻し先 |
 |---|---|---|---|
-| `L10-LABO-059-CASE-30` | `LABO-059-AC-03` | 初回candidate単価だけを根拠に安価と認定し、retry・救援・rework・人修正を含む総費用を無視する。その他は `CASE-01` と同一。 | 総費用が揃わない限り安価認定を拒否し、価格単独で選択判断を生成しない。欠けたprice/run-cost/human-effort evidenceの提供元が識別できればその既存source ownerへ返し、identity不明のみunknown。 |
+| `L10-LABO-059-CASE-30` | `LABO-059-AC-03` | 初回candidate単価だけを根拠に安価と認定し、retry・救援・rework・人修正を含む総費用を無視する。その他は `CASE-01` と同一。 | 初回candidate価格だけで安価認定せず、CASE-01と同じ適用scopeのretry・救援・rework・人修正込み総費用と既決priorityで判定する。 |
 | `L10-LABO-059-CASE-31` | `LABO-059-AC-03` | 歴史結果だけをcurrent性能へ転用 | current性能の主張を未評価とし、当時のscope/revisionに限定する。 |
 | `L10-LABO-059-CASE-32` | `LABO-059-AC-03` | AI稼働回数を人間介入回数へ算入 | AI runと人間介入を分離し、介入値を再計算する。 |
 | `L10-LABO-059-CASE-33` | `LABO-059-AC-03` | 索引（独立fixtureではない）: CASE-41〜43のprovider/API/token費用除外を分けて参照する。 | 各単独fixtureを参照し、複数費目を一つのfixtureに束ねない。 |
@@ -2620,15 +2620,15 @@ input observation identity/source revision；episode candidate identityとrelati
 | CASE | 対応AC | 単独変異 | 期待oracle / 戻し先 |
 |---|---|---|---|
 | `L10-LABO-059-CASE-38` | `LABO-059-AC-03` | 未評価effortを`provider_default_unbenchmarked`値として確定扱い | 未評価と表示し、確定性能/費用に含めない。 |
-| `L10-LABO-059-CASE-39` | `LABO-059-AC-03` | rollback費用だけを総費用から除外 | 総費用を不完全とし成功比較にしない。rollback費用sourceまたはLABO-055の該当effort sourceが識別できればそこへ、task/run receipt自体の欠落ならOS/観測sourceへ、identity不明ならunknown。 |
-| `L10-LABO-059-CASE-40` | `LABO-059-AC-03` | recovery費用だけを総費用から除外 | 総費用を不完全とし成功比較にしない。recovery費用sourceまたはLABO-055の該当effort sourceが識別できればそこへ、task/run receipt自体の欠落ならOS/観測sourceへ、identity不明ならunknown。 |
-| `L10-LABO-059-CASE-41` | `LABO-059-AC-03` | provider費用だけを総費用から除外 | 総費用を不完全とし成功比較にしない。provider price sourceが識別できればそこへ、identity不明ならunknown。 |
-| `L10-LABO-059-CASE-42` | `LABO-059-AC-03` | API費用だけを総費用から除外 | 総費用を不完全とし成功比較にしない。API price sourceが識別できればそこへ、identity不明ならunknown。 |
-| `L10-LABO-059-CASE-43` | `LABO-059-AC-03` | token費用だけを総費用から除外 | 総費用を不完全とし成功比較にしない。token price sourceが識別できればそこへ、identity不明ならunknown。 |
-| `L10-LABO-059-CASE-44` | `LABO-059-AC-03` | integration費用だけを総費用から除外 | 総費用を不完全とし成功比較にしない。integration費用sourceが識別できればそこへ、task/run receipt自体の欠落ならOS/観測sourceへ、identity不明ならunknown。 |
-| `L10-LABO-059-CASE-45` | `LABO-059-AC-03` | Worker/parent effort費用だけを除外 | 総費用を不完全とし成功比較にしない。Worker/parent effortはLABO-055または識別可能なeffort sourceへ、task/run receipt自体の欠落ならOS/観測sourceへ、identity不明ならunknown。 |
-| `L10-LABO-059-CASE-46` | `LABO-059-AC-03` | 評価運転費用だけを除外 | 対象作業と評価運転の費用範囲を片側だけにせず、比較を不完全にする。評価run receipt欠落はOS/観測sourceへ、費用またはeffort evidence欠落はLABO-055/該当sourceへ返し、identity不明ならunknown。 |
-| `L10-LABO-059-CASE-47` | `LABO-059-AC-03` | 対象作業費用だけを除外 | 対象作業と評価運転の費用範囲を片側だけにせず、比較を不完全にする。対象run receipt欠落はOS/観測sourceへ、費用またはeffort evidence欠落はLABO-055/該当sourceへ返し、identity不明ならunknown。 |
+| `L10-LABO-059-CASE-39` | `LABO-059-AC-03` | rollback費用だけを総費用から除外 | 総費用を不完全とし成功比較にしない。rollback費用sourceまたはLABO-055の該当effort sourceが識別できればそこへ、identity不明ならunknown。 |
+| `L10-LABO-059-CASE-40` | `LABO-059-AC-03` | recovery費用だけを総費用から除外 | 総費用を不完全とし成功比較にしない。recovery費用sourceまたはLABO-055の該当effort sourceが識別できればそこへ、identity不明ならunknown。 |
+| `L10-LABO-059-CASE-41` | `LABO-059-AC-03` | provider費用だけを総費用から除外 | 総費用を不完全とし成功比較にしない。provider price sourceが識別できればLABO-055またはそこへ、identity不明ならunknown。 |
+| `L10-LABO-059-CASE-42` | `LABO-059-AC-03` | API費用だけを総費用から除外 | 総費用を不完全とし成功比較にしない。API price sourceが識別できればLABO-055またはそこへ、identity不明ならunknown。 |
+| `L10-LABO-059-CASE-43` | `LABO-059-AC-03` | token費用だけを総費用から除外 | 総費用を不完全とし成功比較にしない。token price sourceが識別できればLABO-055またはそこへ、identity不明ならunknown。 |
+| `L10-LABO-059-CASE-44` | `LABO-059-AC-03` | integration費用だけを総費用から除外 | 総費用を不完全とし成功比較にしない。integration費用sourceが識別できればそこへ、identity不明ならunknown。 |
+| `L10-LABO-059-CASE-45` | `LABO-059-AC-03` | Worker/parent effort費用だけを除外 | 総費用を不完全とし成功比較にしない。Worker/parent effortはLABO-055または識別可能なeffort sourceへ、identity不明ならunknown。 |
+| `L10-LABO-059-CASE-46` | `LABO-059-AC-03` | 評価運転費用だけを除外 | 対象作業と評価運転の費用範囲を片側だけにせず、比較を不完全にする。費用またはeffort evidence欠落はLABO-055/該当sourceへ返し、identity不明ならunknown。 |
+| `L10-LABO-059-CASE-47` | `LABO-059-AC-03` | 対象作業費用だけを除外 | 対象作業と評価運転の費用範囲を片側だけにせず、比較を不完全にする。費用またはeffort evidence欠落はLABO-055/該当sourceへ返し、identity不明ならunknown。 |
 
 ### CASE-LABO-060 — 支援あり/なし同一設定
 
@@ -2669,7 +2669,7 @@ input observation identity/source revision；episode candidate identityとrelati
 |---|---|---|---|
 | `L10-LABO-061-CASE-03a` | `LABO-061-AC-03` | 索引（独立fixtureではない）: CASE-34の同一変異を参照する。 | 主fixtureを参照し、同じ変異を二重計上しない。 |
 | `L10-LABO-061-CASE-03b` | `LABO-061-AC-03` | oracle revisionだけstale | HARNESSへ戻す。 |
-| `L10-LABO-061-CASE-03c` | `LABO-061-AC-03` | Worker-visible contextだけ漏洩。 | 比較を無効にし、漏洩元を識別できる場合は入力source ownerおよびSECURITYへ戻す。source不明はowner unknown。 |
+| `L10-LABO-061-CASE-03c` | `LABO-061-AC-03` | Worker-visible contextだけ漏洩。 | 比較を無効にし、SECURITYへ常に戻す。漏洩元を識別できる場合は入力source ownerへも戻し、source identity不明時だけsource ownerをunknownとする。 |
 | `L10-LABO-061-CASE-03d` | `LABO-061-AC-03` | judge identity/contextだけ不一致 | blind/役割条件を成立扱いしない。 |
 | `L10-LABO-061-CASE-03e` | `LABO-061-AC-03` | hidden oracle適用性だけunknown | 非適用と推論せずunknown。 |
 | `L10-LABO-061-CASE-03f` | `LABO-061-AC-03` | 索引（独立fixtureではない）: CASE-28の同一変異を参照する。 | 主fixtureを参照し、同じ変異を二重計上しない。 |
@@ -2723,7 +2723,7 @@ input observation identity/source revision；episode candidate identityとrelati
 
 | CASE | 対応AC | 単独変異 | 期待oracle / 戻し先 |
 |---|---|---|---|
-| `L10-LABO-063-CASE-03a` | `LABO-063-AC-03` | 互換別名（独立fixtureではない）: CASE-46のHARNESS verification receipt欠落を直接参照する主fixture別名。 | CASE-46を唯一のfixtureとして扱い、CASE-33との重複を数えない。 |
+| `L10-LABO-063-CASE-03a` | `LABO-063-AC-03` | 索引（独立fixtureではない）: CASE-46のHARNESS verification receipt欠落を直接参照する主fixture別名。 | CASE-46を唯一のfixtureとして扱い、CASE-33との重複を数えない。 |
 | `L10-LABO-063-CASE-03b` | `LABO-063-AC-03` | target revisionだけ別 | evidenceを混ぜずtarget ownerへ。 戻し先: target owner。 |
 | `L10-LABO-063-CASE-03c` | `LABO-063-AC-03` | recurrence relationだけ欠落 | 再発効果の判断を未完としてLABO評価へ戻す。 |
 | `L10-LABO-063-CASE-03d` | `LABO-063-AC-03` | counterexampleだけ除外 | 予防candidate範囲を支持済みとしない。 |
@@ -2735,7 +2735,7 @@ input observation identity/source revision；episode candidate identityとrelati
 | `L10-LABO-063-CASE-18` | `LABO-063-AC-03` | 原因候補だけ欠落 | 予防範囲を確定せず未完にする。欠落した原因候補の既存source ownerが識別できればそこへ返し、識別不能はunknown。 |
 | `L10-LABO-063-CASE-19` | `LABO-063-AC-03` | 適用条件だけ欠落 | 別条件へ一般化せず未完にする。適用条件の既存source ownerが識別できればそこへ返し、識別不能はunknown。 |
 | `L10-LABO-063-CASE-20` | `LABO-063-AC-03` | 修復手順だけ欠落 | 成功手順とせず未完にする。修復手順のcanonical source providerが識別できればそこへ返し、識別不能はunknown。 |
-| `L10-LABO-063-CASE-21` | `LABO-063-AC-03` | 修復結果証拠だけ欠落 | 結果をunknownとし、該当結果source ownerが識別できればそこへ返す。 |
+| `L10-LABO-063-CASE-21` | `LABO-063-AC-03` | 修復結果証拠だけ欠落 | 結果をunknownとし、該当結果source ownerが識別できればそこへ返し、identity不明はunknownとする。 |
 | `L10-LABO-063-CASE-22` | `LABO-063-AC-03` | OS execution receiptだけ欠落 | 実行成立とせずOSへ戻す。 |
 | `L10-LABO-063-CASE-23` | `LABO-063-AC-03` | LABO evaluation receiptだけ欠落 | 効果評価receiptがないためLABO評価を未完としてLABOに留める。 |
 | `L10-LABO-063-CASE-24` | `LABO-063-AC-03` | 索引（独立fixtureではない）: CASE-45のHARNESS verification receipt staleを参照する。 | 主fixtureを使い、同じstale変異を二重計上しない。 |
@@ -2745,19 +2745,19 @@ input observation identity/source revision；episode candidate identityとrelati
 
 | CASE | 対応AC | 単独変異 | 期待oracle / 戻し先 |
 |---|---|---|---|
-| `L10-LABO-063-CASE-28` | `LABO-063-AC-03` | cause candidateだけstale | 再発/予防評価を保留しLABOへ戻す。 |
-| `L10-LABO-063-CASE-29` | `LABO-063-AC-03` | applicability conditionだけstale | 条件一致を推測せずLABOへ戻す。 |
+| `L10-LABO-063-CASE-28` | `LABO-063-AC-03` | cause candidateだけstale | 再発/予防評価を保留し、原因候補source providerが識別できればそこへ返す。LABO効果評価も未完のまま保持し、identity不明はunknownとする。 |
+| `L10-LABO-063-CASE-29` | `LABO-063-AC-03` | applicability conditionだけstale | 条件一致を推測せず、適用条件source providerが識別できればそこへ返す。LABO効果評価も未完のまま保持し、identity不明はunknownとする。 |
 | `L10-LABO-063-CASE-30` | `LABO-063-AC-03` | 索引（独立fixtureではない）: CASE-47（procedure stale）とCASE-48（result evidence stale）。 | 各単独fixtureを参照し、複合変異を独立計上しない。 |
 | `L10-LABO-063-CASE-31` | `LABO-063-AC-03` | 索引（独立fixtureではない）: CASE-22のOS execution receipt欠落を参照する。 | 主fixtureを使いOS execution receipt ownerへ返す。 |
 | `L10-LABO-063-CASE-32` | `LABO-063-AC-03` | 索引（独立fixtureではない）: CASE-23のLABO evaluation receipt欠落を参照する。 | 主fixtureを使いLABO評価を未完として保持する。 |
-| `L10-LABO-063-CASE-33` | `LABO-063-AC-03` | 互換別名（独立fixtureではなく、CASE-03aとCASE-46の同一receipt欠落を指す）。主fixture `L10-LABO-063-CASE-46` を直接参照する。 | CASE-46のoracleを使い、CASE-03aとの重複および独立fixtureとしての二重計上をしない。 |
+| `L10-LABO-063-CASE-33` | `LABO-063-AC-03` | 索引（独立fixtureではなく、CASE-03aとCASE-46の同一receipt欠落を指す）。主fixture `L10-LABO-063-CASE-46` を直接参照する。 | CASE-46のoracleを使い、CASE-03aとの重複および独立fixtureとしての二重計上をしない。 |
 | `L10-LABO-063-CASE-34` | `LABO-063-AC-03` | repair candidateだけで成功手順とする | 成功を拒否し未完義務を保持する。 |
 | `L10-LABO-063-CASE-35` | `LABO-063-AC-03` | 索引（独立fixtureではない）: CASE-41（cause candidateだけ異なる）とCASE-42（applicability conditionだけ異なる）を束ねる主索引。 | 各単独fixtureのoracleを参照し、複合変異を独立計上しない。 |
-| `L10-LABO-063-CASE-36` | `LABO-063-AC-03` | 互換別名（独立fixtureではなく、CASE-25と同じCASE-49/50二fixture索引）。CASE-49とCASE-50を直接参照する。 | CASE-25を主索引とし、同じ二fixture群を再計上しない。 |
+| `L10-LABO-063-CASE-36` | `LABO-063-AC-03` | 索引（独立fixtureではなく、CASE-25と同じCASE-49/50二fixture索引）。CASE-49とCASE-50を直接参照する。 | CASE-25を主索引とし、同じ二fixture群を再計上しない。 |
 | `L10-LABO-063-CASE-37` | `LABO-063-AC-03` | OS登録だけで予防完了とする | 予防効果を未完とする。 |
 | `L10-LABO-063-CASE-38` | `LABO-063-AC-03` | 単独変異: LABOがgateを直接有効化する。 | 作用を拒否し、既存owner境界を保つ。 |
-| `L10-LABO-063-CASE-39` | `LABO-063-AC-03` | 互換別名（独立fixtureではなく、CASE-35と同じCASE-41/42二fixture索引）。CASE-41とCASE-42を直接参照する。 | CASE-35を主索引とし、同じ二fixture群を再計上しない。 |
-| `L10-LABO-063-CASE-40` | `LABO-063-AC-03` | target revisionが変わった後に未再観測 | 旧条件の結果を流用せず未完とする。変更後targetの既存source providerが識別できればそこへ再観測根拠を返す。 |
+| `L10-LABO-063-CASE-39` | `LABO-063-AC-03` | 索引（独立fixtureではなく、CASE-35と同じCASE-41/42二fixture索引）。CASE-41とCASE-42を直接参照する。 | CASE-35を主索引とし、同じ二fixture群を再計上しない。 |
+| `L10-LABO-063-CASE-40` | `LABO-063-AC-03` | target revisionが変わった後に未再観測 | 旧条件の結果を流用せず未完とする。変更後targetの観測providerが識別できればそこへ再観測根拠を返し、LABO効果評価も未完のまま保持する。 |
 | `L10-LABO-063-CASE-41` | `LABO-063-AC-03` | cause candidateだけ異なる候補へ置換 | 既存条件から一般化せず未評価とする。 |
 | `L10-LABO-063-CASE-42` | `LABO-063-AC-03` | applicability conditionだけ異なる候補へ置換 | 条件外へ流用せず未評価とする。 |
 | `L10-LABO-063-CASE-43` | `LABO-063-AC-03` | OS execution receiptだけstale | 実行成立を推測せずOSへ戻す。 |
@@ -2779,7 +2779,7 @@ input observation identity/source revision；episode candidate identityとrelati
 | `L10-LABO-064-CASE-03a` | `LABO-064-AC-03` | judge-visible metadataに候補名だけ露出 | runをblind済みとせず既存evaluation ownerへ戻す。 |
 | `L10-LABO-064-CASE-03b` | `LABO-064-AC-03` | identity mappingだけ欠落 | blind結果を確定せず、mapping source ownerが識別できればそのowner、できなければunknownを保持する。 |
 | `L10-LABO-064-CASE-03c` | `LABO-064-AC-03` | 索引（独立fixtureではない）: CASE-08の同一変異を参照する。 | 主fixtureを参照し、同じ変異を二重計上しない。 |
-| `L10-LABO-064-CASE-03d` | `LABO-064-AC-03` | 互換別名（独立fixtureではない）: CASE-03aと同じjudge-visible metadataの候補名露出を直接参照する。author/judgeの作成context独立性を本親の追加条件として扱わない。 | CASE-03aを唯一のfixtureとして参照し、同じ露出変異を重複計上しない。 |
+| `L10-LABO-064-CASE-03d` | `LABO-064-AC-03` | 索引（独立fixtureではない）: CASE-03aと同じjudge-visible metadataの候補名露出を直接参照する。author/judgeの作成context独立性を本親の追加条件として扱わない。 | CASE-03aを唯一のfixtureとして参照し、同じ露出変異を重複計上しない。 |
 | `L10-LABO-064-CASE-04a` | `LABO-064-AC-03` | LABOが資格/admissionを生成 | 拒否し、既存evaluation ownerへ判断材料を返す。 |
 
 | CASE | 対応AC | 単独変異 | 期待oracle / 戻し先 |
@@ -2791,7 +2791,7 @@ input observation identity/source revision；episode candidate identityとrelati
 | `L10-LABO-064-CASE-21` | `LABO-064-AC-03` | 索引（独立fixtureではない）: CASE-11と同じ選択blind scopeのretry condition mismatchを参照する。 | 主fixtureCASE-11を直接参照し、重複計上しない。 |
 | `L10-LABO-064-CASE-22` | `LABO-064-AC-03` | security failureだけを平均点で相殺 | 当該security failureを不合格として保持する。 |
 | `L10-LABO-064-CASE-23` | `LABO-064-AC-03` | 未実行の通常履歴へ後付けblind済み印を付ける | 拒否し、実行時点の記録を保持する。戻し先: 既存evaluation owner。 |
-| `L10-LABO-064-CASE-24` | `LABO-064-AC-03` | 新runtime revisionで候補名がjudge-visible出力へ露出。露出以外は選択blind scopeのCASE-01と同一。 | 当該blind結果を無効とし、過去blind結果を継承せず、再評価義務を既存evaluation ownerへ返す。露出のないruntime差だけからこの拒否を推定しない。 |
+| `L10-LABO-064-CASE-24` | `LABO-064-AC-03` | 単独変異: CASE-01の比較前提に新runtime revisionと同一出力formatを固定し、唯一の変異は候補名がjudge-visible出力へ露出すること。 | 当該blind結果を無効とし、過去blind結果を継承せず、再評価義務を既存evaluation ownerへ返す。露出のないruntime差だけからこの拒否を推定しない。 |
 | `L10-LABO-064-CASE-25` | `LABO-064-AC-03` | candidate nameをjudge資料へ直接表示 | blind成立を拒否する。 |
 | `L10-LABO-064-CASE-26` | `LABO-064-AC-03` | 同じblind scopeでmapping revisionだけstaleとなり旧対応を再利用 | identity対応をunknownとし、mapping source ownerが特定できればそこへ戻す。 |
 | `L10-LABO-064-CASE-27` | `LABO-064-AC-03` | 選択scopeのfixture revisionだけ欠落 | 同条件比較を未評価とし既存evaluation ownerへ戻す。 |
@@ -2831,8 +2831,8 @@ input observation identity/source revision；episode candidate identityとrelati
 | `L10-LABO-065-CASE-28` | `LABO-065-AC-03` | retry costだけ欠落 | 費用を不完全とし資格/比較へ補わない。 |
 | `L10-LABO-065-CASE-29` | `LABO-065-AC-03` | 単独変異: task間のfixture revisionだけが不一致。rubric revisionは一致する。 | 同条件結果として採用せず、該当task fixtureを未評価に保つ。 |
 | `L10-LABO-065-CASE-30` | `LABO-065-AC-03` | 単独変異: task間のrubric revisionだけが不一致。fixture revisionは一致する。 | 同条件結果として採用せず、該当task rubricを未評価に保つ。 |
-| `L10-LABO-065-CASE-31` | `LABO-065-AC-03` | 単独変異: bench manifestだけ欠落。 | full-benchを未完とし、manifestの適用範囲を既存評価scope ownerへ返す。 |
-| `L10-LABO-065-CASE-32` | `LABO-065-AC-03` | 単独変異: fixture digestだけ欠落。 | fixture同一性を確認できず未評価とし、該当fixture source ownerが特定できればそこへ返す。 |
+| `L10-LABO-065-CASE-31` | `LABO-065-AC-03` | 単独変異: bench manifestだけ欠落。 | full-benchを未完とし、manifest欠落を保持し、固定L2-065のHARNESS/要求owner境界へ返す。責務ownerを特定できない場合はunknown。 |
+| `L10-LABO-065-CASE-32` | `LABO-065-AC-03` | 単独変異: fixture digestだけ欠落。 | fixture同一性を確認できず未評価とし、固定L2-065のHARNESS/要求owner境界へ返し、owner identityが特定できなければunknownを保つ。 |
 | `L10-LABO-065-CASE-33` | `LABO-065-AC-03` | security failureを平均scoreで相殺 | 不合格を保持する。 |
 | `L10-LABO-065-CASE-34` | `LABO-065-AC-03` | 品質未達を低価格だけで相殺 | quality gate不成立を保持する。 |
 | `L10-LABO-065-CASE-35` | `LABO-065-AC-03` | 品質未達を短時間だけで相殺 | quality gate不成立を保持する。 |
@@ -2840,7 +2840,7 @@ input observation identity/source revision；episode candidate identityとrelati
 | `L10-LABO-065-CASE-37` | `LABO-065-AC-03` | 別runtime version/過去scoreだけで未見scopeを資格済みにする | 新scopeは未評価とする。 |
 | `L10-LABO-065-CASE-38` | `LABO-065-AC-03` | assignment receiptだけ欠落 | 選択runを評価不能としOSへ戻す。 |
 | `L10-LABO-065-CASE-39` | `LABO-065-AC-03` | oracleだけ欠落 | 合否を確定せず、固定oracleのHARNESS/要求ownerへ戻す。 |
-| `L10-LABO-065-CASE-40` | `LABO-065-AC-03` | 単独変異: rubric digestだけ欠落。その他のbench manifest入力はCASE-01と同一。 | rubric/scorer同一性を検証できないためfull-bench/qualificationを未完・未評価とし、固定L2-065が示すHARNESSまたは要求ownerへ返す。責務source identityが識別不能ならunknownを維持する。 |
+| `L10-LABO-065-CASE-40` | `LABO-065-AC-03` | 単独変異: rubric digestだけ欠落。その他のbench manifest入力はCASE-01と同一。 | rubric/scorer同一性を検証できないためfull-bench/qualificationを未完・未評価とし、固定L2-065のHARNESS/要求owner境界へ返す。owner identityが識別不能ならunknownを維持する。 |
 
 ### CASE-LABO-066 — A比較の誤修復/未解消
 
@@ -2919,7 +2919,7 @@ input observation identity/source revision；episode candidate identityとrelati
 | CASE | 対応AC | 単独変異 | 期待oracle / 戻し先 |
 |---|---|---|---|
 | `L10-LABO-068-CASE-03a` | `LABO-068-AC-03` | identityだけ欠落 | 総数unknown。OSへ戻す。 |
-| `L10-LABO-068-CASE-03b` | `LABO-068-AC-03` | source completenessだけunknown | 観測数を総数にしない。 |
+| `L10-LABO-068-CASE-03b` | `LABO-068-AC-03` | source completenessだけunknown | Attempt記録の完全性が不明なためdistinct identity総数をunknownとし、観測sourceまたはOS record ownerへ不足を返す。 |
 | `L10-LABO-068-CASE-03c` | `LABO-068-AC-03` | duplicate receiptだけ配送 | 同一identityを重複計上しない。 |
 | `L10-LABO-068-CASE-03d` | `LABO-068-AC-03` | event receiptだけ遅延 | 完全性不明ならunknown。 |
 | `L10-LABO-068-CASE-03e` | `LABO-068-AC-03` | assignment拒否でAttempt identityなし | Attemptに数えない。 |
@@ -2933,7 +2933,7 @@ input observation identity/source revision；episode candidate identityとrelati
 | `L10-LABO-068-CASE-13` | `LABO-068-AC-03` | scope外Attemptだけ混入 | 選択範囲から分離し総数に含めない。 |
 | `L10-LABO-068-CASE-14` | `LABO-068-AC-03` | 担当交代後のAttempt lineageだけ欠落 | 完全性不明として総数unknown。 |
 | `L10-LABO-068-CASE-15` | `LABO-068-AC-03` | 索引（独立fixtureではない）: CASE-03cの同一Attempt identity重複receiptを参照する。 | 主fixture03cを参照し、重複配送をdistinct identityの追加として数えない。 |
-| `L10-LABO-068-CASE-16` | `LABO-068-AC-03` | 索引（独立fixtureではない）: CASE-03bのsource completeness unknownを参照する。 | 主fixture03bを参照し、同じsource completeness欠落を重複計上しない。 |
+| `L10-LABO-068-CASE-16` | `LABO-068-AC-03` | 索引（独立fixtureではない）: CASE-03bのsource completeness unknownを直接参照する。 | CASE-03bのoracleを使い、同じunknown条件を二重計上しない。 |
 
 | CASE | 対応AC | 単独変異 | 期待oracle / 戻し先 |
 |---|---|---|---|
@@ -2975,9 +2975,9 @@ input observation identity/source revision；episode candidate identityとrelati
 | CASE | 対応AC | 単独変異 | 期待oracle / 戻し先 |
 |---|---|---|---|
 | `L10-LABO-070-CASE-03a` | `LABO-070-AC-03` | 索引（独立fixtureではない）: CASE-06の同一変異を参照する。 | 主fixtureを参照し、同じ変異を二重計上しない。 |
-| `L10-LABO-070-CASE-03b` | `LABO-070-AC-03` | active timeのunitだけ異なる。 | 別fieldのまま比較不能とし、換算根拠を追加しない。 |
-| `L10-LABO-070-CASE-03c` | `LABO-070-AC-03` | review waitのunitだけ異なる。 | 別fieldのまま比較不能とし、換算根拠を追加しない。 |
-| `L10-LABO-070-CASE-03d` | `LABO-070-AC-03` | Human waitのunitだけ異なる。 | 別fieldのまま比較不能とし、換算根拠を追加しない。 |
+| `L10-LABO-070-CASE-03b` | `LABO-070-AC-03` | active timeのunitだけ異なる。 | 単位の異なる値は別fieldとして保ち、換算しない。該当event source ownerが識別できれば返し、特定不能はunknown。 |
+| `L10-LABO-070-CASE-03c` | `LABO-070-AC-03` | review waitのunitだけ異なる。 | 単位の異なる値は別fieldとして保ち、換算しない。該当event source ownerが識別できれば返し、特定不能はunknown。 |
+| `L10-LABO-070-CASE-03d` | `LABO-070-AC-03` | Human waitのunitだけ異なる。 | 単位の異なる値は別fieldとして保ち、換算しない。該当event source ownerが識別できれば返し、特定不能はunknown。 |
 | `L10-LABO-070-CASE-03e` | `LABO-070-AC-03` | escaped-defect quality oracleだけ欠落（relationと他入力は保持） | defect countを確定せず、oracle不足は要求ownerへ戻す。 |
 | `L10-LABO-070-CASE-03f` | `LABO-070-AC-03` | rollback result receiptだけ欠落 | event不在とせずunknown。戻し先: 該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |
 | `L10-LABO-070-CASE-03g` | `LABO-070-AC-03` | Recovery result receiptだけ欠落 | event不在とせずunknown。戻し先: 該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |
@@ -2999,7 +2999,7 @@ input observation identity/source revision；episode candidate identityとrelati
 | `L10-LABO-070-CASE-60` | `LABO-070-AC-03` | rollback scopeだけ欠落 | 別scopeを混ぜず未評価とする。 |
 | `L10-LABO-070-CASE-61` | `LABO-070-AC-03` | Recovery event identityだけ欠落 | Recovery結果を確定しない。 |
 | `L10-LABO-070-CASE-62` | `LABO-070-AC-03` | Recovery scopeだけ欠落 | 別scopeを混ぜず未評価とする。 |
-| `L10-LABO-070-CASE-63` | `LABO-070-AC-03` | queue wait unitだけ不一致。 | 換算根拠がなければ比較不能とし、metricをunknown/未評価に保つ。 |
+| `L10-LABO-070-CASE-63` | `LABO-070-AC-03` | queue wait unitだけ不一致。 | 単位の異なる値は別fieldとして保ち、換算しない。metricは定義どおり別表示し、単位対応sourceが識別できれば返し、特定不能はunknown。 |
 | `L10-LABO-070-CASE-64` | `LABO-070-AC-03` | 索引（独立fixtureではない）: CASE-58のescaped-defect oracle revision欠落を参照する。 | 主fixtureCASE-58のoracle欠落oracleを使い、069の受入finding不足をtelemetry条件へ混ぜない。 |
 
 ### CASE-LABO-071 — task-class/model-revision qualification
@@ -3019,7 +3019,7 @@ input observation identity/source revision；episode candidate identityとrelati
 
 ### 追加単独CASE（Stage 5追補）
 
-各CASEは対応親の正常fixture（CASE-01）を基準とし、単独fixtureでは記載した一項目以外を同じ入力に固定する。明示的に「部分循環fixture」と記すCASE-16〜19は、その表記の部分状態を基準にする。索引行は独立fixture数へ含めない。unknown・不成立・owner戻しは成功へ変換しない。
+各CASEは対応親の正常fixture（CASE-01）または明記した部分状態を基準とし、単独fixtureでは記載した一項目以外を同じ入力に固定する。LABO-050のCASE-16〜19は部分循環fixtureであり、その表記の段階状態を基準にする。CASE-102は通常履歴の非適用対照、CASE-109は合成canaryを用いる機微情報保護fixture。「索引（独立fixtureではない）」は既存CASEへの参照であり、独立fixture数へ含めない。unknown・不成立・owner戻しは成功へ変換しない。
 | CASE | 対応AC | 入力fixture | 期待oracle / 戻し先 |
 |---|---|---|---|
 | `L10-LABO-050-CASE-05` | `LABO-050-AC-03` | 単独変異: OS registration receipt 欠落だけを変更。その他の入力は `CASE-01` と同一。 | 循環未完了、登録を推測せずOSへ戻す 戻し先: OS。 |
@@ -3044,16 +3044,16 @@ input observation identity/source revision；episode candidate identityとrelati
 | `L10-LABO-059-CASE-14` | `LABO-059-AC-03` | 単独変異: requirement/task revision だけ異なる。その他の入力は `CASE-01` と同一。 | 異なるrevisionを比較群へ混ぜない 戻し先: HARNESS。 |
 | `L10-LABO-059-CASE-15` | `LABO-059-AC-03` | 単独変異: no-Harness runに他のHELIX支援が残る条件だけを変更。その他の入力は `CASE-01` と同一。 | 当該cohortをHELIXなしと呼ばない 戻し先: LABO。 |
 | `L10-LABO-059-CASE-16` | `LABO-059-AC-03` | 単独変異: historical runへ現行OS assignmentを遡及付与だけを変更。その他の入力は `CASE-01` と同一。 | 当時のauthority/receiptを保持し後付けassignmentを拒否する 戻し先: OS。 |
-| `L10-LABO-059-CASE-17` | `LABO-059-AC-03` | 単独変異: subscription/API-equivalent区分costの欠落だけを変更。その他の入力は `CASE-01` と同一。 | 総費用を完全とせず該当費用欠落を示す。subscription/API-equivalentの価格sourceが識別できればそのsourceへ、identity不明ならunknown。 |
+| `L10-LABO-059-CASE-17` | `LABO-059-AC-03` | 単独変異: subscription/API-equivalent区分costの欠落だけを変更。その他の入力は `CASE-01` と同一。 | 総費用を完全とせず該当費用欠落を示す。subscription/API-equivalentの価格sourceが識別できればLABO-055またはそのsourceへ、identity不明ならunknown。 |
 | `L10-LABO-059-CASE-18` | `LABO-059-AC-03` | 単独変異: CI cost receiptだけ欠落。その他の入力は `CASE-01` と同一。 | 当該fixtureのカテゴリ費用欠落ごとに金額総額を不完全とする。CI実行receipt欠落はOSまたは識別可能な観測receipt sourceへ戻す。 |
 | `L10-LABO-059-CASE-19` | `LABO-059-AC-03` | 単独変異: duration start-event definition だけ異なる。その他の入力は `CASE-01` と同一。 | durationを比較不能とし定義差を保持する 戻し先: LABO。 |
 | `L10-LABO-059-CASE-20` | `LABO-059-AC-03` | 単独変異: 未価格human timeの通貨0変換だけを変更。その他の入力は `CASE-01` と同一。 | human effortを別掲し金額総額不完全とする 戻し先: LABO。 |
 | `L10-LABO-059-CASE-21` | `LABO-059-AC-03` | 単独変異: 二つのselected cohortを三cohortとする主張だけを変更。その他の入力は `CASE-01` と同一。 | 二者結果を三者比較完了へ拡張しない 戻し先: LABO。 |
 | `L10-LABO-059-CASE-22` | `LABO-059-AC-03` | 索引（独立fixtureではない）: `L10-LABO-059-CASE-18`と同一の単独入力変異。 | 主fixture `L10-LABO-059-CASE-18` のoracleを参照し、同じケースを重複計上しない。 |
-| `L10-LABO-059-CASE-23` | `LABO-059-AC-03` | 単独変異: review cost receipt だけ欠落。その他の入力は `CASE-01` と同一。 | 費用内訳を不完全としunknownを保つ。該当review/費用条件の提供sourceが識別できればそこへ戻し、task/run receipt自体の欠落ならOSまたは観測sourceへ、識別できなければunknown。 |
-| `L10-LABO-059-CASE-24` | `LABO-059-AC-03` | 単独変異: retry cost receiptだけ欠落。その他の入力は `CASE-01` と同一。 | 費用内訳を不完全としunknownを保つ。該当retry/費用条件の提供sourceが識別できればそこへ戻し、task/run receipt自体の欠落ならOSまたは観測sourceへ、識別できなければunknown。 |
-| `L10-LABO-059-CASE-25` | `LABO-059-AC-03` | 単独変異: rescue cost receiptだけ欠落。その他の入力は `CASE-01` と同一。 | 費用内訳を不完全としunknownを保つ。該当rescue/費用条件の提供sourceが識別できればそこへ戻し、task/run receipt自体の欠落ならOSまたは観測sourceへ、識別できなければunknown。 |
-| `L10-LABO-059-CASE-26` | `LABO-059-AC-03` | 単独変異: human-fix cost receiptだけ欠落。その他の入力は `CASE-01` と同一。 | 費用内訳を不完全としunknownを保つ。human-fix/effort条件の提供sourceが識別できればそこへ戻し、task/run receipt自体の欠落ならOSまたは観測sourceへ、識別できなければunknown。 |
+| `L10-LABO-059-CASE-23` | `LABO-059-AC-03` | 単独変異: review cost receipt だけ欠落。その他の入力は `CASE-01` と同一。 | 費用内訳を不完全としunknownを保つ。該当review/費用条件の提供sourceが識別できればLABO-055またはそこへ戻し、識別できなければunknown。 |
+| `L10-LABO-059-CASE-24` | `LABO-059-AC-03` | 単独変異: retry cost receiptだけ欠落。その他の入力は `CASE-01` と同一。 | 費用内訳を不完全としunknownを保つ。該当retry/費用条件の提供sourceが識別できればLABO-055またはそこへ戻し、識別できなければunknown。 |
+| `L10-LABO-059-CASE-25` | `LABO-059-AC-03` | 単独変異: rescue cost receiptだけ欠落。その他の入力は `CASE-01` と同一。 | 費用内訳を不完全としunknownを保つ。該当rescue/費用条件の提供sourceが識別できればLABO-055またはそこへ戻し、識別できなければunknown。 |
+| `L10-LABO-059-CASE-26` | `LABO-059-AC-03` | 単独変異: human-fix cost receiptだけ欠落。その他の入力は `CASE-01` と同一。 | 費用内訳を不完全としunknownを保つ。human-fix/effort条件の提供sourceが識別できればそこへ戻し、識別できなければunknown。 |
 | `L10-LABO-059-CASE-27` | `LABO-059-AC-03` | 単独変異: duration end-event definition だけ異なる。その他の入力は `CASE-01` と同一。 | durationを比較不能とし定義差を保持する。 |
 | `L10-LABO-059-CASE-28` | `LABO-059-AC-03` | 単独変異: duration clock identity だけ異なる。その他の入力は `CASE-01` と同一。 | durationを比較不能としclock差を保持する。 |
 | `L10-LABO-059-CASE-29` | `LABO-059-AC-03` | 単独変異: duration stop/wait rule だけ異なる。その他の入力は `CASE-01` と同一。 | durationを比較不能とし定義差を保持する。 |
@@ -3069,7 +3069,7 @@ input observation identity/source revision；episode candidate identityとrelati
 | `L10-LABO-060-CASE-14` | `LABO-060-AC-03` | 単独変異: effective time だけ欠落。その他の入力は `CASE-01` と同一。 | 適用価格unknown。price source ownerが識別できればそこへ戻す。 |
 | `L10-LABO-060-CASE-15` | `LABO-060-AC-03` | 単独変異: helper identity receiptだけ欠落。その他の入力は `CASE-01` と同一。 | 支援者情報欠落fieldをunknownにし支援効果を確定しない 戻し先: OS。 |
 | `L10-LABO-060-CASE-16` | `LABO-060-AC-03` | 単独変異: 選択されたINTELLIGENCE support proposal/use packetのhandoff receiptだけ欠落。その他の入力は `CASE-01` と同一。 | 選択sourceの利用を受領済みにせず、INTELLIGENCEの既存source ownerへ返す。source identity自体が欠落しownerを特定できなければunknownを保つ。 |
-| `L10-LABO-060-CASE-17` | `LABO-060-AC-03` | 単独変異: 選択されたINTELLIGENCE proposal/use evidenceに結ばれるreviewer identityだけがhelper identityと同一。その他の入力は `CASE-01` と同一。 | 独立review成立扱いを拒否し、選択proposal/use evidenceを未確認のまま保持する。INTELLIGENCEの既存proposal/use source ownerへ返す。 |
+| `L10-LABO-060-CASE-17` | `LABO-060-AC-03` | 単独変異: 選択されたINTELLIGENCE proposal/use evidenceに結ばれるreviewer identityだけがhelper identityと同一。その他の入力は `CASE-01` と同一。 | 比較条件不成立とし、成功比較を出さない。comparison scope/evaluation capabilityの未完は固定L2-060:454に従いLABOへ返す。 |
 | `L10-LABO-060-CASE-18` | `LABO-060-AC-03` | 単独変異: quality不成立を低support costで相殺だけを変更。その他の入力は `CASE-01` と同一。 | 品質を費用で相殺しない 戻し先: HARNESS。 |
 | `L10-LABO-060-CASE-19` | `LABO-060-AC-03` | 単独変異: 未選択相談receiptの必須化だけを変更。その他の入力は `CASE-01` と同一。 | 未選択相談を比較全体の必須依存にしない 戻し先: LABO。 |
 | `L10-LABO-060-CASE-20` | `LABO-060-AC-03` | 単独変異: 追加支援者費用の除外だけを変更。その他の入力は `CASE-01` と同一。 | 費用内訳不完全を示す 戻し先: OS。 |
@@ -3079,18 +3079,18 @@ input observation identity/source revision；episode candidate identityとrelati
 | `L10-LABO-060-CASE-24` | `LABO-060-AC-03` | 単独変異: helper version だけ欠落。その他の入力は `CASE-01` と同一。 | 支援比較未完。 戻し先: OS。 |
 | `L10-LABO-060-CASE-25` | `LABO-060-AC-03` | 単独変異: helper effort だけ欠落。その他の入力は `CASE-01` と同一。 | 支援費用/効果未完。 戻し先: OS。 |
 | `L10-LABO-060-CASE-26` | `LABO-060-AC-03` | 索引（独立fixtureではない）: `L10-LABO-060-CASE-16`と同一の単独入力変異。 | 主fixture `L10-LABO-060-CASE-16` のoracleを参照し、同じケースを重複計上しない。 |
-| `L10-LABO-060-CASE-27` | `LABO-060-AC-03` | 単独変異: 選択されたsupport source handoff receiptだけ欠落。その他の入力は `CASE-01` と同一。 | handoff未完。欠落receiptが選択proposal/use evidence sourceの受渡しを示すなら識別できるINTELLIGENCE source ownerへ、OSの登録・use receiptを示すならOSへ戻す。receiptのsource identityが特定できない場合だけunknownを保つ。 |
+| `L10-LABO-060-CASE-27` | `LABO-060-AC-03` | 索引（独立fixtureではない）: 選択source handoff receipt欠落の具体variant `L10-LABO-060-CASE-16`（INTELLIGENCE proposal/use packet）と `L10-LABO-060-CASE-28`（OS registration/use receipt）を直接参照する。 | 各主fixtureのoracleを個別参照し、receipt種別を混ぜず二重計上しない。 |
 | `L10-LABO-060-CASE-28` | `LABO-060-AC-03` | 単独変異: OS handoff receiptだけ欠落。その他の入力は `CASE-01` と同一。 | handoff未完としてOSの登録/振り分け責務へ戻す。 |
 | `L10-LABO-060-CASE-29` | `LABO-060-AC-03` | 互換別名（独立fixtureではない）: CASE-34と同じ選択runのSECURITY data-use/実行許可欠落を直接参照する。 | CASE-34を主fixtureとして直接参照し、CASE-22/29は同一変異の非独立別名として二重計上しない。 |
 | `L10-LABO-060-CASE-30` | `LABO-060-AC-03` | 索引（独立fixtureではない）: OS assignment欠落CASE-36を参照する。 | 主fixture CASE-36を参照し、割当証拠の欠落を成功扱いしない。 |
 | `L10-LABO-060-CASE-31` | `LABO-060-AC-03` | 索引（独立fixtureではない）: HARNESS-L2-022 oracle契約事前固定欠落CASE-37を参照する。 | 主fixture CASE-37を参照し、oracle契約を事前固定しない比較を未評価とする。 |
 | `L10-LABO-060-CASE-32` | `LABO-060-AC-03` | 索引（独立fixtureではない）: 選択INTELLIGENCE proposal/source欠落CASE-43を参照する。 | 主fixture CASE-43を参照し、選択支援sourceの証拠を欠落のまま保持する。 |
 | `L10-LABO-060-CASE-33` | `LABO-060-AC-03` | 単独変異: 選択history主張のhistorical receiptだけ欠落。その他の入力は `CASE-01` と同一。 | history主張の根拠不足のまま未評価とし、historical receiptのsource ownerへ戻す。 |
-| `L10-LABO-061-CASE-05` | `LABO-061-AC-03` | 単独変異: hidden answerを無害な分類labelとして露出だけを変更。その他の入力は `CASE-01` と同一。 | run不適格; 漏洩元を識別できる場合は入力source ownerとSECURITYへ返す。source不明時はowner unknownを保持する。 |
-| `L10-LABO-061-CASE-06` | `LABO-061-AC-03` | 単独変異: 将来の答えの露出だけを変更。その他の入力は `CASE-01` と同一。 | run不適格; 漏洩元を識別できる場合は入力source ownerとSECURITYへ返す。source不明時はowner unknownを保持する。 |
-| `L10-LABO-061-CASE-07` | `LABO-061-AC-03` | 単独変異: secret dataの露出だけを変更。その他の入力は `CASE-01` と同一。 | run不適格; 漏洩元を識別できる場合は入力source ownerとSECURITYへ返す。source不明時はowner unknownを保持する。 |
-| `L10-LABO-061-CASE-08` | `LABO-061-AC-03` | 単独変異: PIIの露出だけを変更。その他の入力は `CASE-01` と同一。 | run不適格; 漏洩元を識別できる場合は入力source ownerとSECURITYへ返す。source不明時はowner unknownを保持する。 |
-| `L10-LABO-061-CASE-09` | `LABO-061-AC-03` | 単独変異: 非公開review内容の露出だけを変更。その他の入力は `CASE-01` と同一。 | run不適格; 漏洩元を識別できる場合は入力source ownerとSECURITYへ返す。source不明時はowner unknownを保持する。 |
+| `L10-LABO-061-CASE-05` | `LABO-061-AC-03` | 単独変異: hidden answerを無害な分類labelとして露出だけを変更。その他の入力は `CASE-01` と同一。 | run不適格; SECURITYへ常に返す。漏洩元を識別できる場合は入力source ownerへも返し、source identity不明時だけsource ownerをunknownとする。 |
+| `L10-LABO-061-CASE-06` | `LABO-061-AC-03` | 単独変異: 将来の答えの露出だけを変更。その他の入力は `CASE-01` と同一。 | run不適格; SECURITYへ常に返す。漏洩元を識別できる場合は入力source ownerへも返し、source identity不明時だけsource ownerをunknownとする。 |
+| `L10-LABO-061-CASE-07` | `LABO-061-AC-03` | 単独変異: secret dataの露出だけを変更。その他の入力は `CASE-01` と同一。 | run不適格; SECURITYへ常に返す。漏洩元を識別できる場合は入力source ownerへも返し、source identity不明時だけsource ownerをunknownとする。 |
+| `L10-LABO-061-CASE-08` | `LABO-061-AC-03` | 単独変異: PIIの露出だけを変更。その他の入力は `CASE-01` と同一。 | run不適格; SECURITYへ常に返す。漏洩元を識別できる場合は入力source ownerへも返し、source identity不明時だけsource ownerをunknownとする。 |
+| `L10-LABO-061-CASE-09` | `LABO-061-AC-03` | 単独変異: 非公開review内容の露出だけを変更。その他の入力は `CASE-01` と同一。 | run不適格; SECURITYへ常に返す。漏洩元を識別できる場合は入力source ownerへも返し、source identity不明時だけsource ownerをunknownとする。 |
 | `L10-LABO-061-CASE-10` | `LABO-061-AC-03` | 単独変異: 派生添付からrestricted contentが漏洩だけを変更。その他の入力は `CASE-01` と同一。 | run不適格。漏洩した添付の入力sourceが識別できればそのownerとSECURITYへ返し、特定不能ならowner unknownを保持する。 |
 | `L10-LABO-061-CASE-11` | `LABO-061-AC-03` | 単独変異: required real-context referenceの欠落だけを変更。その他の入力は `CASE-01` と同一。 | 未確認のまま隔離済みと推定せず、実行context/assignment evidenceは実行主体へ戻す。 |
 | `L10-LABO-061-CASE-12` | `LABO-061-AC-03` | 単独変異: 作成者が同じartifactをjudgeすることだけを変更。その他の入力は `CASE-01` と同一。 | 独立judge条件を成立扱いしない 戻し先: evaluation owner。 |
@@ -3098,7 +3098,7 @@ input observation identity/source revision；episode candidate identityとrelati
 | `L10-LABO-061-CASE-14` | `LABO-061-AC-03` | 単独変異: fixture version だけ異なる。その他の入力は `CASE-01` と同一。 | cohortを分離 戻し先: HARNESS/source owner。 |
 | `L10-LABO-061-CASE-15` | `LABO-061-AC-03` | 単独変異: protocol version だけ異なる。その他の入力は `CASE-01` と同一。 | cohortを分離 戻し先: HARNESS/source owner。 |
 | `L10-LABO-061-CASE-16` | `LABO-061-AC-03` | 単独変異: scorer version だけ異なる。その他の入力は `CASE-01` と同一。 | cohortを分離 戻し先: LABO。 |
-| `L10-LABO-061-CASE-17` | `LABO-061-AC-03` | 単独変異: `fixture_digest`だけが選択taskの固定digestと異なる。その他の入力は `CASE-01` と同一。 | exact fixture evidenceを結ばず比較不能にし、fixture source ownerが識別できればそこへ戻す。特定不能ならunknownを保持する。 |
+| `L10-LABO-061-CASE-17` | `LABO-061-AC-03` | 単独変異: `fixture_digest`だけが選択taskの固定digestと異なる。その他の入力は `CASE-01` と同一。 | exact fixture evidenceを結ばず比較不能にし、task契約ownerが識別できればそこへ戻す。特定不能ならunknownを保持する。 |
 | `L10-LABO-061-CASE-18` | `LABO-061-AC-03` | 単独変異: hidden applicabilityを根拠なくnot-applicableへ変更だけを変更。その他の入力は `CASE-01` と同一。 | 明示根拠なしのN/A化を拒否しunknown保持 戻し先: HARNESS。 |
 | `L10-LABO-061-CASE-19` | `LABO-061-AC-03` | 単独変異: canonical judge oracleをWorker漏洩と誤分類だけを変更。その他の入力は `CASE-01` と同一。 | oracle提示とWorker-visible漏洩を区別し正常比較を保つ 戻し先: LABO。 |
 | `L10-LABO-061-CASE-20` | `LABO-061-AC-03` | 単独変異: historical resultを後からcurrent comparisonへ割当だけを変更。その他の入力は `CASE-01` と同一。 | current cohortへ遡及流用しない 戻し先: OS。 |
@@ -3150,7 +3150,7 @@ input observation identity/source revision；episode candidate identityとrelati
 | `L10-LABO-061-CASE-70` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `hardware_class`だけ欠落。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
 | `L10-LABO-061-CASE-71` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `hardware_class`だけが記録後にstaleとなり現行task契約へ適用できない。残る14条件と他入力は `CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: task契約owner。 |
 | `L10-LABO-061-CASE-72` | `LABO-061-AC-03` | 単独変異: 選択task `CASE-01` の `hardware_class`だけが実runの値と不一致。残る14条件と他入力は `CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: task契約owner。 |
-| `L10-LABO-063-CASE-05` | `LABO-063-AC-01` | 正常: 成功終結後、recipe/知識の記録を元episodeとtarget revisionに結びLABO評価として保持する。 | LABOの評価知識を保持し、backlog未登録は別の未完義務としてOSへ返す。 |
+| `L10-LABO-063-CASE-05` | `LABO-063-AC-01` | 正常: 成功終結後、recipe/知識の記録を元episodeとtarget revisionに結びLABO評価として保持する。 | LABO評価知識を保持する。OS backlog登録状態はこの正常fixtureの合格条件ではなく、別CASEで判定する。 |
 | `L10-LABO-063-CASE-06` | `LABO-063-AC-03` | 単独変異: OS backlog登録失敗だけを変更。その他の入力は `CASE-01` と同一。 | 評価知識を保持しregistration未完をOSへ戻す 戻し先: OS。 |
 | `L10-LABO-063-CASE-07` | `LABO-063-AC-01` | 正常入力: 同一identity/cause/condition/revision/episodeのrepairを反復し、適用する既決thresholdを入力として含む。 | 同一性のある反復だけ集計し、入力されたthresholdに基づく結果を返す。 |
 | `L10-LABO-063-CASE-08` | `LABO-063-AC-03` | 単独変異: 同一observationをduplicate receiptで再送だけを変更。その他の入力は `CASE-01` と同一。 | 重複事例を増やさない 戻し先: LABO。 |
@@ -3158,7 +3158,7 @@ input observation identity/source revision；episode candidate identityとrelati
 | `L10-LABO-063-CASE-10` | `LABO-063-AC-01` | 正常入力: 入力された事前定義thresholdを満たすrecurrence。新しいthresholdは作らない。 | 予防gate/detector candidateと根拠を返し、強制しない。 |
 | `L10-LABO-063-CASE-11` | `LABO-063-AC-03` | 単独変異: 頻出warningが未処理の状態だけを変更。その他の入力は `CASE-01` と同一。 | 未処理warningを可視化し、完了扱いしない。OS registrationが未完ならその義務だけOSへ返し、評価範囲はLABOに保持する。 |
 | `L10-LABO-063-CASE-12` | `LABO-063-AC-03` | 単独変異: 適用recipe versionが変更だけを変更。その他の入力は `CASE-01` と同一。 | 旧頻度/成功の現行適用を再評価し、再発防止の根拠が不足する場合はLABO評価へ戻す。 |
-| `L10-LABO-063-CASE-13` | `LABO-063-AC-03` | 索引（独立fixtureではない）: CASE-27のtarget条件変更後再観測なしとCASE-40のtarget revision変更後再観測なしを参照する。 | 両主fixtureのoracleを別々に使い、条件変更とrevision変更を一つのfixtureとして数えない。 |
+| `L10-LABO-063-CASE-13` | `LABO-063-AC-03` | 単独変異: target変更・operation後の運用後観測だけ欠落。その他の入力はCASE-01と同一。 | 運用後観測がないため循環未完のまま保持し、観測提供主体が識別できればそこへ返し、identity不明はunknownとする。 |
 | `L10-LABO-063-CASE-14` | `LABO-063-AC-03` | 単独変異: current evidenceなしで旧memory/recipeを復元だけを変更。その他の入力は `CASE-01` と同一。 | 現行の有効知識とせずsource ownerへ戻す 戻し先: knowledge owner。 |
 | `L10-LABO-063-CASE-15` | `LABO-063-AC-03` | 単独変異: 個別repairを未評価でBRAINへ一般化だけを変更。その他の入力はCASE-01と同一。 | BRAIN一般化を拒否し、知識保持と適用範囲の評価をLABOで未完として保持する。 |
 | `L10-LABO-063-CASE-16` | `LABO-063-AC-03` | 単独変異: 頻度から新しいpermissionを生成だけを変更。その他の入力は `CASE-01` と同一。 | 権限生成を拒否する。authority ownerはこのfixtureから推定しない。 |
@@ -3216,7 +3216,7 @@ input observation identity/source revision；episode candidate identityとrelati
 | `L10-LABO-068-CASE-05` | `LABO-068-AC-03` | 単独変異: scope だけ欠落。その他の入力は `CASE-01` と同一。 | 全体数をunknown 戻し先: OS。 |
 | `L10-LABO-068-CASE-06` | `LABO-068-AC-03` | 単独変異: source revision だけstale。その他の入力は `CASE-01` と同一。 | current totalに使わない 戻し先: OS。 |
 | `L10-LABO-068-CASE-07` | `LABO-068-AC-03` | 単独変異: correction lineage だけ欠落。その他の入力は `CASE-01` と同一。 | 訂正を同一identityへ結べずtotal unknown 戻し先: OS。 |
-| `L10-LABO-068-CASE-08` | `LABO-068-AC-03` | 索引（独立fixtureではない）: CASE-03bの同一変異を参照する。 | 主fixtureを参照し、同じ変異を二重計上しない。 |
+| `L10-LABO-068-CASE-08` | `LABO-068-AC-03` | 索引（独立fixtureではない）: 主fixture CASE-03bを直接参照する。 | CASE-03bのoracleを使い、同一変異を独立fixtureとして二重計上しない。 |
 | `L10-LABO-068-CASE-09` | `LABO-068-AC-03` | 単独変異: stale event だけ存在。その他の入力は `CASE-01` と同一。 | 確定数としない 戻し先: OS。 |
 | `L10-LABO-068-CASE-10` | `LABO-068-AC-03` | 単独変異: identity recordの衝突だけ存在。その他の入力は `CASE-01` と同一。 | 重複を解けるまでunknown 戻し先: OS。 |
 | `L10-LABO-068-CASE-11` | `LABO-068-AC-03` | 単独変異: 既存AttemptへCI再実行だけ追加。その他の入力は `CASE-01` と同一。 | Attemptを追加計上しない 戻し先: OS。 |
@@ -3231,9 +3231,9 @@ input observation identity/source revision；episode candidate identityとrelati
 | `L10-LABO-069-CASE-12` | `LABO-069-AC-03` | 単独変異: censored observationを失敗 0として表示だけを変更。その他の入力は `CASE-01` と同一。 | zero扱いせず打切り状態を保持する。 |
 | `L10-LABO-069-CASE-13` | `LABO-069-AC-03` | 単独変異: 単一ticketを因果証明として提示だけを変更。その他の入力は `CASE-01` と同一。 | 因果claimを拒否する。 |
 | `L10-LABO-069-CASE-14` | `LABO-069-AC-03` | 単独変異: restricted dataを通常packetへ複写だけを変更。その他の入力は `CASE-01` と同一。 | packetを拒否しSECURITY/data ownerへ戻す 戻し先: SECURITY。 |
-| `L10-LABO-069-CASE-15` | `LABO-069-AC-03` | 索引（独立fixtureではない）: CASE-16 priority、CASE-17 oracle、CASE-18 assignment、CASE-19 ticketの各単独変異を参照する。 | 各主fixtureのoracleを別々に参照し、集約索引を独立fixtureに数えない。 |
-| `L10-LABO-069-CASE-16` | `LABO-069-AC-03` | 単独変異: LABOがpriorityだけ変更。その他はCASE-01と同一。 | 拒否し固定L2-069で示す既存decision ownerへ返す。 |
-| `L10-LABO-069-CASE-17` | `LABO-069-AC-03` | 単独変異: LABOがoracleだけ変更。その他はCASE-01と同一。 | oracle変更を拒否し、当該oracleの既存source providerが識別できればそこへ返す。source/relationの欠落は固定L2-069に従いOSまたは該当source ownerへ返し、identityが特定できない場合はunknown。 |
+| `L10-LABO-069-CASE-15` | `LABO-069-AC-03` | 索引（独立fixtureではない）: CASE-04aのticket変更とCASE-16/17/18の各単独変異をそれぞれ直接参照する。索引連鎖は作らない。 | 各主fixtureのoracleを別々に参照し、集約索引を独立fixtureに数えない。 |
+| `L10-LABO-069-CASE-16` | `LABO-069-AC-03` | 単独変異: LABOがpriorityだけ変更。その他はCASE-01と同一。 | priority変更を拒否する。固定L2-069はpriority判断ownerを特定しないため、新しい戻し先を作らずunknownを保持する。 |
+| `L10-LABO-069-CASE-17` | `LABO-069-AC-03` | 単独変異: LABOがoracleだけ変更。その他はCASE-01と同一。 | oracle変更を拒否する。固定L2-069に従いOSまたは識別できるoracle/source ownerへ返し、特定できなければunknownを保つ。 |
 | `L10-LABO-069-CASE-18` | `LABO-069-AC-03` | 単独変異: LABOがassignmentだけ変更。その他の入力は `CASE-01` と同一。 | 拒否しOSへ戻す。 戻し先: OS。 |
 | `L10-LABO-070-CASE-05` | `LABO-070-AC-03` | queue-wait start eventだけ欠落。 | queue waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |
 | `L10-LABO-070-CASE-06` | `LABO-070-AC-03` | queue-wait end eventだけ欠落。 | queue waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |
@@ -3246,8 +3246,8 @@ input observation identity/source revision；episode candidate identityとrelati
 | `L10-LABO-070-CASE-13` | `LABO-070-AC-03` | 単独変異: 同一costを二重計上だけを変更。その他の入力は `CASE-01` と同一。 | 重複算入を拒否し、該当する費用source ownerが特定できれば返す。特定不能ならunknownを保持する。 |
 | `L10-LABO-070-CASE-14` | `LABO-070-AC-03` | 単独変異: freshness timestampの欠落だけを変更。その他の入力は `CASE-01` と同一。 | age unknown 戻し先: unknown（該当source/authority ownerは固定親から個別特定できない）。 |
 | `L10-LABO-070-CASE-15` | `LABO-070-AC-03` | 単独変異: ageからauthority/permissionを生成だけを変更。その他の入力は `CASE-01` と同一。 | authority生成を拒否 戻し先: unknown（該当source/authority ownerは固定親から個別特定できない）。 |
-| `L10-LABO-070-CASE-16` | `LABO-070-AC-03` | 単独変異: 067 identity/receiptの不在だけを変更。その他の入力はCASE-01と同一。 | 067をunavailableとし068で代替しない。欠けたassignment/Attempt/event identityまたはreceiptはOS、predicate/oracle定義はtask/要求owner、LABO集計値はLABOへ、原因別に既存責務へ戻す。欠落sourceを特定できない場合はunknownを保持する。 |
-| `L10-LABO-070-CASE-17` | `LABO-070-AC-03` | 単独変異: 068 identity/receiptの不在だけを変更。その他の入力は `CASE-01` と同一。 | 068 field unavailable、067へ代替しない 戻し先: OS。 |
+| `L10-LABO-070-CASE-16` | `LABO-070-AC-03` | 単独変異: 067 fieldのOS Attempt identity receiptだけ欠落。predicate/oracle・他fieldはCASE-01と同一。 | 067 fieldをunavailableとし、欠落したAttempt identity receiptはOSへ戻す。他fieldを代替せず、本CASEはidentity receipt欠落だけを扱う。 |
+| `L10-LABO-070-CASE-17` | `LABO-070-AC-03` | 単独変異: 068 fieldのOS result receiptだけ欠落。identity集合・他fieldはCASE-01と同一。 | distinct identity数は保持し、該当result stateだけunknownとする。result receiptはOS記録ownerへ返し、本CASEはresult receipt欠落だけを扱う。 |
 | `L10-LABO-070-CASE-18` | `LABO-070-AC-03` | 単独変異: scope差だけを変更。その他の入力は `CASE-01` と同一。 | 同一scorecard値として混ぜない 戻し先: LABO。 |
 | `L10-LABO-070-CASE-19` | `LABO-070-AC-03` | 単独変異: 067と068の代替/換算だけを変更。その他の入力は `CASE-01` と同一。 | 換算・代替を拒否し、元metricの定義/receipt ownerが特定できれば返す。特定不能ならunknownを保持する。 |
 | `L10-LABO-070-CASE-20` | `LABO-070-AC-03` | 単独変異: unresolved coverageを結果なしに補ってclosureする。その他の入力は `CASE-01` と同一。 | unknown/unresolvedを保ち、closure扱いしない。 |
@@ -3284,7 +3284,7 @@ input observation identity/source revision；episode candidate identityとrelati
 | `L10-LABO-070-CASE-51` | `LABO-070-AC-03` | 単独変異: LABOがrollback permissionを発行。その他の入力は `CASE-01` と同一。 | permission発行を拒否。rollbackの実行ownerをこの候補から推定しない。 |
 | `L10-LABO-065-CASE-24` | `LABO-065-AC-03` | 単独変異: rescue cost receiptだけ欠落。その他の入力は `CASE-01` と同一。 | 費用内訳を不完全としてunknownを保ち、0補完しない。費用source ownerが特定できればそこへ戻し、特定不能ならunknown。 |
 | `L10-LABO-065-CASE-25` | `LABO-065-AC-03` | 単独変異: human retry cost receiptだけ欠落。その他の入力は `CASE-01` と同一。 | 費用内訳を不完全としてunknownを保ち、0補完しない。費用source ownerが特定できればそこへ戻し、特定不能ならunknown。 |
-| `L10-LABO-069-CASE-19` | `LABO-069-AC-03` | 索引（独立fixtureではない）: CASE-04aのticket変更作用をidentity fieldに限定して参照する。 | 固定境界のOS ticket ownerを維持し、ticket変更を拒否する。 |
+| `L10-LABO-069-CASE-19` | `LABO-069-AC-03` | 索引（独立fixtureではない）: CASE-04aのticket変更だけを直接参照する。 | CASE-04aのoracleを使い、OS ticket変更を拒否する。同じ変異を二重計上しない。 |
 | `L10-LABO-070-CASE-52` | `LABO-070-AC-03` | 単独変異: 4種durationを加算。その他の入力は `CASE-01` と同一。 | 各durationを別fieldのまま保持し、059のend-to-end時間へ合算しない。戻し先: LABO。 |
 | `L10-LABO-070-CASE-53` | `LABO-070-AC-03` | 単独変異: 重複する待ち時間を排他的に按分。その他の入力は `CASE-01` と同一。 | 重複時間を推測按分せず各durationを保持する。戻し先: LABO。 |
 | `L10-LABO-071-CASE-05` | `LABO-071-AC-03` | 単独変異: task class だけ欠落。その他の入力は `CASE-01` と同一。 | 資格unknown。根拠source ownerが識別可能ならそのsourceへ戻し、できなければowner unknownを保持する。 |
@@ -3303,14 +3303,14 @@ input observation identity/source revision；episode candidate identityとrelati
 |---|---|---|---|
 | `L10-LABO-071-CASE-16` | `LABO-071-AC-03` | 評価根拠source identityだけ欠落 | qualificationをunknownとし、source ownerが識別できる場合そのsource、できない場合戻し先unknown。 |
 | `L10-LABO-071-CASE-17` | `LABO-071-AC-03` | qualificationをLABOへ一律返却し、根拠source ownerを無視 | 既存source ownerへ返す。owner未特定はunknownのままとする。 |
-| `L10-LABO-071-CASE-18` | `LABO-071-AC-03` | 互換別名（独立fixtureではない）: CASE-03cの同じsource evidence missing/unknown状態を直接参照する。 | CASE-03cを主fixtureとしてqualificationのunknownを保持し、重複計上しない。 |
+| `L10-LABO-071-CASE-18` | `LABO-071-AC-03` | 索引（独立fixtureではない）: CASE-16の評価根拠source identity欠落を直接参照する。 | CASE-16のoracleを使いqualificationをunknownとして保ち、同じsource-identity欠落を二重計上しない。 |
 | `L10-LABO-071-CASE-19` | `LABO-071-AC-03` | 根拠無しにexpiredを失効条件とする | 固定親にない期限条件を適用せずunknownを維持する。 |
-| `L10-LABO-050-CASE-18` | `LABO-050-AC-03` | 部分循環fixture: 有効なsource/ticket/experiment/target revisionでOS登録まで進み、その後のtarget変更・verification・deployment/operation・再観測・効果評価は未観測またはopen。唯一の変異はOS registrationだけで循環を完了と申告すること。 | registrationだけで完了にせず、後続のtarget変更・verification・deployment/operation・再観測・効果評価の未完義務を保持する。OS registrationはOS、変更後義務はtarget owner、再観測/評価はLABOの既存境界へ戻す。 |
+| `L10-LABO-050-CASE-18` | `LABO-050-AC-03` | 部分循環fixture: 有効なsource/ticket/experiment/target revisionでOS registration完了後、その後のtarget変更・verification・deployment/operation・再観測・効果評価は未観測またはopen。唯一の変異はOS registrationだけで循環を完了と申告すること。 | registrationだけで完了にせず、後続のtarget変更・verification・deployment/operation・再観測・効果評価の未完義務を保持する。OS registrationはOS、変更後義務はtarget owner、再観測/評価はLABOの既存境界へ戻す。 |
 | `L10-LABO-050-CASE-19` | `LABO-050-AC-03` | 部分循環fixture: 有効なsource/ticket/experiment/target revisionでtarget-change結果まで存在し、変更後verification・deployment/operation・再観測・効果評価は未観測またはopen。唯一の変異はtarget-change結果だけで循環を完了と申告すること。 | target-changeだけで完了にせず、verification/deployment/operation・再観測・効果評価の未完義務を保持する。変更後verification/operationはtarget owner、再観測/評価はLABOへ戻す。 |
 | `L10-LABO-050-CASE-20` | `LABO-050-AC-03` | 単独変異: target変更の結果receiptだけ欠落。登録・他のreceiptはCASE-01と同一。 | 変更成功を推測せず循環未完了を保つ。target ownerへ戻す。 |
 | `L10-LABO-061-CASE-87` | `LABO-061-AC-03` | 適用task snapshotの `task_id` の値だけunknown（fieldは存在）。残る14条件はCASE-01と同一。 | task identityを補完せず当該runをunknown/比較不能にする。task契約ownerへ戻す。 |
 | `L10-LABO-061-CASE-88` | `LABO-061-AC-03` | `task_version` の値だけunknown。残る14条件はCASE-01と同一。 | revisionを推測せず比較不能。task契約ownerへ戻す。 |
-| `L10-LABO-061-CASE-89` | `LABO-061-AC-03` | `fixture_digest` の値だけunknown。残る14条件はCASE-01と同一。 | fixture identityを補完しない。fixture source ownerが特定できれば返す。 |
+| `L10-LABO-061-CASE-89` | `LABO-061-AC-03` | `fixture_digest` の値だけunknown。残る14条件はCASE-01と同一。 | fixture identityを補完せず、task契約ownerへ返す。 |
 | `L10-LABO-061-CASE-90` | `LABO-061-AC-03` | `requirement_ids` の値だけunknown。残る14条件はCASE-01と同一。 | 要求対応を推測せず要求ownerへ戻す。 |
 | `L10-LABO-061-CASE-91` | `LABO-061-AC-03` | `acceptance_ids` の値だけunknown。残る14条件はCASE-01と同一。 | 受入条件を推測せずHARNESS/要求ownerへ戻す。 |
 | `L10-LABO-061-CASE-92` | `LABO-061-AC-03` | `base_head` の値だけunknown。残る14条件はCASE-01と同一。 | base identityを補完せず比較不能とし、固定L2のtask契約ownerへ返す。 |
@@ -3326,7 +3326,7 @@ input observation identity/source revision；episode candidate identityとrelati
 | `L10-LABO-063-CASE-51` | `LABO-063-AC-03` | 単独変異: target変更後の変更結果receiptだけ欠落し、旧revision結果は残る。 | target-changeを成功扱いせず循環未完了。target ownerへ戻す。 |
 | `L10-LABO-064-CASE-31` | `LABO-064-AC-03` | 単独変異: 対象runが選択evaluation scopeから外れる。その他はCASE-01と同一。 | そのrunを選択blind結果へ混ぜず、scope境界は既存evaluation ownerへ戻す。 |
 | `L10-LABO-064-CASE-32` | `LABO-064-AC-03` | 単独変異: oracle/verificationを選択judgeが確認できない。その他はCASE-01と同一。 | 検証不能を未評価として保持し、平均点で補わない。既存evaluation ownerへ戻す。 |
-| `L10-LABO-064-CASE-33` | `LABO-064-AC-03` | 単独変異: output format変更により候補名metadataだけがjudge-visibleになる。その他はCASE-01と同一。 | blind成立を拒否し、当該scopeで過去blind結果を継承せず再評価義務を保持する。既存evaluation ownerへ戻す。 |
+| `L10-LABO-064-CASE-33` | `LABO-064-AC-03` | 単独変異: CASE-01と同じ新runtime revision・同じoutput formatの比較で、唯一の変異はoutput format経由で候補名metadataがjudge-visibleになること。 | blind成立を拒否し、当該scopeで過去blind結果を継承せず再評価義務を保持する。既存evaluation ownerへ戻す。 |
 | `L10-LABO-066-CASE-29` | `LABO-066-AC-03` | 単独変異: speedだけでmisrepairを隠す。その他はCASE-01と同一。 | misrepair countを独立に保持し、速度で相殺しない。 |
 | `L10-LABO-066-CASE-30` | `LABO-066-AC-03` | 単独変異: speedだけでunresolvedを隠す。その他はCASE-01と同一。 | unresolved countを独立に保持し、速度で相殺しない。 |
 | `L10-LABO-066-CASE-31` | `LABO-066-AC-03` | 有効な比較入力のoracleで誤修復が記録されている状態を保ち、唯一の変異は表示から誤修復を外して費用だけを示すこと。eligible set、oracle、receiptは `CASE-01` と同じ。 | 誤修復分子を費用と別に保持し、oracle結果を相殺しない。 |
@@ -3334,30 +3334,32 @@ input observation identity/source revision；episode candidate identityとrelati
 | `L10-LABO-066-CASE-33` | `LABO-066-AC-03` | A identityだけunknown。その他の比較条件・候補側入力・oracle receiptはCASE-01と同一。 | Aを推測せず比較をunknown/未評価とし率を確定しない。Aの定義/版ownerが特定できれば戻し、できなければowner unknownを保つ。 |
 | `L10-LABO-068-CASE-18` | `LABO-068-AC-03` | 単独変異: 選択scopeのAttempt result receiptだけ欠落。identity集合と他receiptはCASE-01と同一。 | distinct Attempt identity数は保持し、該当Attemptの結果stateだけunknownにする。結果確定に使わず、OS記録ownerへ返す。 |
 | `L10-LABO-069-CASE-28` | `LABO-069-AC-03` | 単独変異: 受入findingのoracle不足を示すsourceだけ欠落。reasonは有効。 | closure/成功へ変換せずsource欠落をunknownとして保持し、既存OS返却境界へ戻す。 |
-| `L10-LABO-069-CASE-29` | `LABO-069-AC-02` | 固定L11-069:294の未見例にある、有効source identity/revision付きoracle不足findingで、reasonだけ既存分類に対応しない。 | 新分類を作らずunknown/unclassifiedを保ち、既知の成立/不成立へ推測変換しない。 |
+| `L10-LABO-069-CASE-29` | `LABO-069-AC-02` | 未見正常: 固定L11-069:294の未見例にある有効source identity/revision付きoracle不足findingで、reasonだけ既存分類に対応しない。 | 新分類を作らずunknown/unclassifiedを保ち、既知の成立/不成立へ推測変換しない。既存OSまたは該当source ownerへ返す。 |
 | `L10-LABO-061-CASE-102` | `LABO-061-AC-03` | normal baseline: 選択taskではない055通常履歴で、task条件の明示的な非適用理由を維持する。単独変異はその履歴へtask snapshot 15条件すべてを適用対象と誤分類すること。 | 非適用条件を15個の欠落/不合格へ変換せず誤分類を拒否する。このfixtureは選択taskのfield-missing分母へ入れず、hidden oracle/blindの選択task反例はCASE-75で別に照合する。 |
 | `L10-LABO-061-CASE-103` | `LABO-061-AC-03` | 単独変異: result receiptだけを根拠にOS assignmentが成立したと主張。その他の入力はCASE-01と同一。 | assignmentを生成せず、既存authority状態を維持する。 |
 | `L10-LABO-061-CASE-104` | `LABO-061-AC-03` | 単独変異: result receiptだけを根拠に実験permissionが成立したと主張。その他の入力はCASE-01と同一。 | permissionを生成せず、既存SECURITY境界を維持する。 |
 | `L10-LABO-061-CASE-105` | `LABO-061-AC-03` | 単独変異: result receiptだけを根拠にadmissionが成立したと主張。その他の入力はCASE-01と同一。 | admissionを生成せず、既存authority状態を維持する。 |
 | `L10-LABO-061-CASE-106` | `LABO-061-AC-03` | 単独変異: result receiptだけを根拠にjudge任命が成立したと主張。その他の入力はCASE-01と同一。 | judge任命を生成せず、既存authority状態を維持する。 |
 | `L10-LABO-070-CASE-65` | `LABO-070-AC-03` | 単独変異: LABO candidateの採択だけを根拠に、別定義の067/068結果も採択済みと主張。その他はCASE-01と同一。 | 067/068の独立定義・receiptを参照し、070候補からその採択を推定しない。 |
-| `L10-LABO-061-CASE-107` | `LABO-061-AC-03` | 単独変異: 取消/失敗runを履歴から削除する。その他の入力はCASE-01と同一。 | 失敗runを削除せず失敗状態を保持し、比較を適格化しない。 |
-| `L10-LABO-061-CASE-108` | `LABO-061-AC-03` | 単独変異: historical runの当時authority/permission証拠だけ欠落。current証拠を使わない他入力はCASE-01と同一。 | 当時の許可状態をcurrentから補完せず、そのrunだけunknown/比較不能にする。 |
-| `L10-LABO-061-CASE-109` | `LABO-061-AC-03` | synthetic fixture: CASE-01の通常入力・適用field・source identity/revision/receiptを保持し、実secret/PII値は含めない。単独変異は機微な生値を監査出力へ複写する要求だけ。 | 複写を拒否し、secret/PIIを監査出力へ残さない。他fieldやfixture値を実データで補わない。 |
-| `L10-LABO-061-CASE-111` | `LABO-061-AC-03` | 単独変異: 取消/失敗runの品質不成立を低費用だけで相殺する。 | 品質不成立を低費用で相殺しない。 |
-| `L10-LABO-061-CASE-112` | `LABO-061-AC-03` | 単独変異: 取消/失敗runの品質不成立を短時間だけで相殺する。 | 品質不成立を短時間で相殺しない。 |
-| `L10-LABO-063-CASE-52` | `LABO-063-AC-03` | 単独変異: 成功終結後のrecipe/知識記録だけ欠落し、他のscope/episode/sourceは正常。 | 成功終結から知識保持を推定せず、知識保持評価を未完のままLABOに留める。 |
-| `L10-LABO-063-CASE-53` | `LABO-063-AC-03` | 単独変異: recipe/evidenceが別episode identityに結び付く。 | episodeを混合せず、当該評価を不成立にする。 |
-| `L10-LABO-064-CASE-34` | `LABO-064-AC-03` | 新runtime revisionだけ異なるが候補名はjudge-visible出力へ露出しない。その他はCASE-01と同一。 | このruntime差だけを理由に過去blind結果を拒否せず、固定親の露出条件を要求する。 |
-| `L10-LABO-064-CASE-35` | `LABO-064-AC-03` | scope外runが高得点であることを利用し、scope内の失敗を平均点で相殺する。scope外以外はCASE-01と同一。 | scope外runを混ぜず、失敗runを相殺しない。 |
-| `L10-LABO-064-CASE-36` | `LABO-064-AC-03` | judgeが検証不能としたrunが高得点であることを利用し、scope内の失敗を平均点で相殺する。検証不能以外はCASE-01と同一。 | 検証不能を平均点で相殺せず未評価に保つ。 |
-| `L10-LABO-066-CASE-34` | `LABO-066-AC-03` | 単独変異: A群と候補群のeligible case集合だけが異なる。その他の比較条件は有効。 | 比較不能として分離し、同一母集団の率を出さない。 |
-| `L10-LABO-069-CASE-30` | `LABO-069-AC-03` | 単独変異: 受入findingのoracle不足reasonだけ欠落。source identity/revisionは有効。 | 成立/不成立の既知分類へ推測せずunknown/unclassifiedを保つ。 |
-| `L10-LABO-066-CASE-35` | `LABO-066-AC-03` | 単独変異: 適用oracleだけ欠落。A/候補両群の他条件はCASE-01と同一。 | 比較をunknown/未評価とし、oracle結果を補わない。 |
-| `L10-LABO-066-CASE-36` | `LABO-066-AC-03` | 単独変異: cutoffだけ欠落。oracleと他条件はCASE-01と同一。 | eligible母集団を確定せず割合を出さない。 |
-| `L10-LABO-066-CASE-37` | `LABO-066-AC-03` | 単独変異: cutoff revisionだけstale。その他はCASE-01と同一。 | stale cutoffで比較せず未評価にする。 |
-| `L10-LABO-066-CASE-38` | `LABO-066-AC-03` | 単独変異: 事前確定eligible集合のrevisionだけstale。A/候補両群は同じ古い集合を参照。 | stale集合から現在の分母を推定せず比較不能にする。 |
-| `L10-LABO-066-CASE-39` | `LABO-066-AC-03` | 単独変異: 観測されたA identityだけが事前固定A identityとmismatch。候補identityと他の比較条件はCASE-01と同一。 | 固定Aを別identityへ置換せず比較をunknown/未評価にする。A identity source ownerが識別できればそこへ、できなければunknownを保つ。 |
-| `L10-LABO-066-CASE-40` | `LABO-066-AC-03` | 単独変異: A identity revisionだけstale。その他の入力はCASE-01と同一。 | stale identityを現在Aとして流用せず比較不能にする。 |
-| `L10-LABO-066-CASE-41` | `LABO-066-AC-03` | 単独変異: rework costだけA側/候補側の片側から除外。その他の条件はCASE-01と同一。 | 片側だけ費用を除外した比較を不成立とし、総費用の対称性を保持する。 |
+| `L10-LABO-070-CASE-66` | `LABO-070-AC-03` | 単独変異: 067 fieldのtask/request predicate-oracle revisionだけ欠落。Attempt identity/eventと他fieldはCASE-01と同一。 | 067 fieldをunknown/unavailableとし、predicate/oracle revisionはtask/request ownerへ戻す。OS identity、LABO計測値で代替しない。 |
+| `L10-LABO-070-CASE-67` | `LABO-070-AC-03` | 単独変異: CASE-01で入力証拠が揃う067/068とは別に、LABO集計fieldだけ未出力。source receiptと他fieldはCASE-01と同一。 | 欠けた集計値だけを未完としてLABOに留め、OS identityやtask/oracle ownerへ責務を移さない。 |
+| `L10-LABO-061-CASE-107` | `LABO-061-AC-03` | 準備: CASE-01と同じ比較入力に、取消runまたは失敗runを1件、identity・失敗状態・不成立理由を正しく保持して加える。単独変異: そのrunだけを履歴から削除する。 | 失敗runを削除せず失敗状態を保持し、比較を適格化しない。 |
+| `L10-LABO-061-CASE-108` | `LABO-061-AC-03` | 単独変異: historical runの当時authority/permission証拠だけ欠落。current証拠を使わない他入力はCASE-01と同一。 | 当時の許可状態をcurrentから補完せず、そのrunだけunknown/比較不能にする。当時のrun/actor/assignment receiptはOS、許可証拠そのものはSECURITYへ返す。 |
+| `L10-LABO-061-CASE-109` | `LABO-061-AC-03` | synthetic canary fixture: CASE-01の通常入力・適用field・source identity/revision/receiptを保持し、実secret/PII値は含めない。単独変異は機微な生値を監査出力へ複写する要求だけ。 | 複写を拒否し、secret/PIIを監査出力へ残さない。他fieldやfixture値を実データで補わない。 |
+| `L10-LABO-061-CASE-111` | `LABO-061-AC-03` | 準備: CASE-01と同じ比較入力に、Worker-visible leakageで無効となったrunを1件、無効状態を正しく保持して加える。単独変異: そのrunの不成立だけを低費用で相殺する。 | 無効/未評価を保持し、低費用で相殺しない。 |
+| `L10-LABO-061-CASE-112` | `LABO-061-AC-03` | 準備: CASE-01と同じ比較入力に、task/oracle版不一致で無効となったrunを1件、無効状態を正しく保持して加える。単独変異: そのrunの不成立だけを短時間で相殺する。 | 無効/未評価を保持し、短時間で相殺しない。 |
 | `L10-LABO-061-CASE-113` | `LABO-061-AC-03` | 単独変異: result receiptだけを根拠にWorker qualificationが成立したと主張。その他の入力はCASE-01と同一。 | qualificationを生成せず、既存資格/authority状態を維持する。 |
+| `L10-LABO-063-CASE-52` | `LABO-063-AC-03` | 単独変異: 成功終結後のrecipe/知識記録だけ欠落し、他のscope/episode/sourceは正常。 | 成功終結から知識保持を推定せず、知識保持評価を未完のままLABOに留める。 |
+| `L10-LABO-063-CASE-53` | `LABO-063-AC-03` | 単独変異: 修復/evidence recordのepisode identityだけが元episodeと異なる。record内容・target revision・他sourceはCASE-01と同一。 | 別episodeのrecordを混ぜず当該評価を不成立にし、識別できるrecord providerへ返す。特定できない場合はunknown。 |
+| `L10-LABO-064-CASE-34` | `LABO-064-AC-01` | 判定を持たない基準入力: 選択blind scopeで候補名の露出はなく、runtime revision差だけを含む。露出由来の過去結果継承可否はこのCASEで判定しない。 | 合否・継承拒否を出さず、runtime差だけを根拠とする露出反例にしない。AC-03のnegative分母へ含めない。 |
+| `L10-LABO-064-CASE-35` | `LABO-064-AC-03` | 単独変異: scope逸脱runそのものの不成立を、他runの高得点平均で相殺する。scope逸脱以外はCASE-01と同一。 | scope逸脱runを選択scopeへ混ぜず、平均で不成立を相殺しない。既存evaluation ownerへ戻す。 |
+| `L10-LABO-064-CASE-36` | `LABO-064-AC-03` | 単独変異: judgeが検証不能としたrunそのものの不成立を、他runの高得点平均で相殺する。検証不能以外はCASE-01と同一。 | 検証不能runを平均で相殺せず未評価に保つ。既存evaluation ownerへ戻す。 |
+| `L10-LABO-066-CASE-34` | `LABO-066-AC-03` | 単独変異: A群と候補群のeligible case集合だけが異なる。その他の比較条件は有効。 | 比較不能として分離し、同一母集団の率を出さない。eligible集合を提供する既存source ownerが識別できればそこへ返し、unknownはunknownのまま。 |
+| `L10-LABO-069-CASE-30` | `LABO-069-AC-03` | 単独変異: 受入findingのoracle不足reasonだけ欠落。source identity/revisionは有効。 | 成立/不成立の既知分類へ推測せずunknown/unclassifiedを保つ。既存OSまたは該当source ownerへ返す。 |
+| `L10-LABO-066-CASE-35` | `LABO-066-AC-03` | 単独変異: 適用oracleだけ欠落。A/候補両群の他条件はCASE-01と同一。 | 比較をunknown/未評価とし、oracle不足をHARNESS/要求ownerへ返す。 |
+| `L10-LABO-066-CASE-36` | `LABO-066-AC-03` | 単独変異: cutoffだけ欠落。oracleと他条件はCASE-01と同一。 | eligible母集団を確定せず割合を出さない。cutoffを持つ既存source ownerが識別できればそこへ返し、特定不能はunknown。 |
+| `L10-LABO-066-CASE-37` | `LABO-066-AC-03` | 単独変異: cutoff revisionだけstale。その他はCASE-01と同一。 | stale cutoffで比較せず未評価にする。cutoff source ownerが識別できればそこへ返し、特定不能はunknown。 |
+| `L10-LABO-066-CASE-38` | `LABO-066-AC-03` | 単独変異: 事前確定eligible集合のrevisionだけstale。A/候補両群は同じ古い集合を参照。 | stale集合から現在の分母を推定せず比較不能にする。eligible-set source ownerが識別できればそこへ返し、特定不能はunknown。 |
+| `L10-LABO-066-CASE-39` | `LABO-066-AC-03` | 単独変異: 観測されたA identityだけが事前固定A identityとmismatch。候補identityと他の比較条件はCASE-01と同一。 | 固定Aを別identityへ置換せず比較をunknown/未評価にする。A identity source ownerが識別できればそこへ、できなければunknownを保つ。 |
+| `L10-LABO-066-CASE-40` | `LABO-066-AC-03` | 単独変異: A identity revisionだけstale。その他の入力はCASE-01と同一。 | stale identityを現在Aとして流用せず比較不能にする。A identity ownerが識別できればそこへ返し、特定不能はunknown。 |
+| `L10-LABO-066-CASE-41` | `LABO-066-AC-03` | 単独変異: rework costだけA側/候補側の片側から除外。その他の条件はCASE-01と同一。 | 片側だけ費用を除外した比較を不成立とし、総費用の対称性を保持する。欠けたeffort/cost sourceが識別できればLABO-055またはそのsourceへ返し、特定不能はunknown。 |
