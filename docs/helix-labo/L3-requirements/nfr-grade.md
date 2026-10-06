@@ -270,7 +270,7 @@ L10は69個の完全ID定義を保持する。literalから抽出した分類候
 | NFR候補 | 観測・候補値 | 照合材料 | 適用限界 |
 |---|---|---|---|
 | `LABO-068-NFR-01` — identity一意性・scope相関 | `attempt_count` は選択scopeのdistinct OS Attempt identity数。各identityは一度だけ。 | assignment、identity、task/scope/revision/evaluation key、event/correction lineage、scope内外の判別をidentityごとに照合する。 | 新しい件数閾値、成功率、最低Nを置かない。重複・scope不整合を補完しない。 |
-| `LABO-068-NFR-02` — 完全性・unknown伝播 | OSが当該選択範囲の捕捉完全性を示せないとき総数は`unknown`。 | completeness claimをsource receipt・revision・correction状態と照合し、assertionだけでなく根拠を要求する。 | 固定遅延時間、SLA、観測window、欠測許容率を新設しない。event遅延・訂正event遅延は総数unknown。遅延eventや別scope履歴から欠落Attemptを推測しない。 |
+| `LABO-068-NFR-02` — 完全性・unknown伝播 | OSが当該選択範囲の捕捉完全性を示せないとき総数は`unknown`。同scopeの観測identity集合と完全性receiptの矛盾、およびreceipt revisionと選択source revisionの不一致もunknownの根拠として保持する。 | completeness claimをsource receipt・revision・correction状態と照合し、assertionだけでなく根拠を要求する。矛盾/stale receipt時も総数unknown/未評価として既知の観測sourceまたはOS記録owner責務区分へ不足を戻し、個体identity unknownは別記する。 | 固定遅延時間、SLA、観測window、欠測許容率を新設しない。event遅延・訂正event遅延は総数unknown。遅延eventや別scope履歴から欠落Attemptを推測しない。 |
 | `LABO-068-NFR-03` — state・訂正の分離 | denied-with-identityはcount、identityなしpre-execution denialはintakeとして別記。result receipt欠落時は当該範囲のAttempt記録完全性receiptの有無にかかわらず総数unknown/未評価、該当stateもunknownとして別fieldで保持し、既知の観測sourceまたはOS記録owner区分へ不足を返す。個体identityが不明ならunknownを別に保持する。 | 個体identityと結果state、duplicate resend/correction, CI rerun, same-Attempt repair roundを別field/source receiptで照合する。 | 状態を合算して品質評価しない。065/067と換算しない。新oracle、分類、権限を定義しない。 |
 
 候補技術値は固定L2/L11の観測単位・unknown動作から導いた提案で、実測根拠や採択済み閾値ではない。対象母集団・期間・cutoffは呼出し側が既に選択したscope/receiptから受け取り、この親で新設しない。実行・performance測定は未実施。
