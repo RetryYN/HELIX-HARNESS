@@ -126,6 +126,11 @@ HARNESS-L2-034から独立business requirement、事業KPI、ROI閾値または�
 |---|---|---|
 | `HARNESS-L2-042` | 独立したbusiness requirementを導出しない | Design Refactor判定とepisode境界は固定された要求・設計・検証契約の保持条件であり、事業成果や価値閾値を新設しない。 |
 
+
+## Stage 3 親041の業務要件
+
+HARNESS-L2-041から独立business requirement、business owner、ROI/KPI/商業閾値は導出しない。template atom/gap/candidate rowの存在、coverage、fixture数から事業価値・利用者受入・要求合意・承認を作らない。
+
 **採択本文の固定**：PO記録のsource_repository_revision `5aa100319361b0cc86edd3c51815ec777d55410a`。L2 `product-requirements.md:1154–1162` SHA-256 `b76b7b1adec804a25bd9333663aa9b0d074f68518764c2874c994bcdf6ead193`、L11 `product-acceptance.md:865–875` SHA-256 `5d1ab0bad44ae305053932f0c82bcf472e145046125b638f5facab13eaaa2aa0`。旧調査snapshot e94838f5の同本文とbyte一致。末尾空行込みの物理span digestは別の監査pinとして区別する。
 
 ### HARNESS-L3/L10-054 専門Worker判定・契約のOS割当handoff（起草候補、version_target: 1.0）
