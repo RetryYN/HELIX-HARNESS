@@ -3172,3 +3172,68 @@ CASE-41–44では原因fieldと既知責務区分を保ち、個別owner identi
 | `L10-LABO-064-CASE-46` | `FR-LABO-064` | `LABO-064-AC-03` | 合成正常基準B0（本行で完結するfixture定義）：scope=S0、run=R0、record-side runtime/model identity=I0、revision=V0、mapping=M0→I0、judge-visible docs=D0、candidate nameはjudge非表示、fixture=F0/revision=Fv0、rubric=R0b、judge=J0、sample=Q0、retry=T0。比較対象run R0/S0に対する既存OS assignment=OS-A0はcurrent/適用scope一致、既存SECURITY permission=SEC-P0もcurrent/適用scope一致。全入力は合成値で、実権限・実行・実際の評価結果ではない。 | SEC-P0 statusだけをunknownにする。OS-A0およびB0の他入力は不変。 | 同条件比較の成立として扱わず、比較未評価のまま元run R0と条件を保持する。task/evaluation ownerに再評価義務を残す。OS/SECURITY入力状態を変更しない。 |
 
 CASE IDは旧公開a4 revisionの42定義IDを保持する。索引は定義行のまま維持するが、独立fixture/negative分母へ重ねない。AC対応は各行に記載し、CASE-04aはCASE-37/38/39の別々のoracleを直接参照する。
+
+### HELIXLABO-L2-068 — Worker Attempt countの観測（Stage 5、version_target: 1.0、起草候補）
+
+**固定親と採択根拠**：PO判断記録 `af93d1f171d994f9fae2e78026b39ac27f896f5c` の `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:83` は `HELIXLABO-L2-068` を採択し、L2/L11の全体SHAと節digestを固定する。採択本文自体は `318ec4a04abb3c1cc17111b3d939f913facd5fd3` のL2 `docs/helix-labo/L2-requirements/labo-requirements.md:541–550`（file SHA-256 `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9`、節SHA-256 `7e3df32b0131722c88ae148c4cbfa9a1be20f81826099c0ceb29a674e07030e2`）とL11 `docs/helix-labo/L11-acceptance/labo-acceptance.md:278–286`（file SHA-256 `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0`、節SHA-256 `3dcf068de1351b2e8c1f2d772ec9273cb7908368a32b389ee40ce51929ad8d94`）である。line 83のhistorical MPR `MPR-RC-HELIXLABO-L2-068-001` はlocator correctionの後継 `...-002` と区別する。採択されたcandidate/digest/atom setは変わらず、receiptはauthorityを生成しない。候補本文内の `draft_candidate` は固定bytesのmetadataであり、PO採択状態は判断記録から読む。
+
+**旧source起点と処置**：`LEGACY-ASSET-3A15E5645D2D2A59DFF5`、`LEGACY-CAND-LINE-001656`、旧 `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md:399`（source revision `318ec4a04abb3c1cc17111b3d939f913facd5fd3`、file SHA-256 `f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b`、raw LF span SHA-256 `aa9dacc58969d896bbfbe38ce9c2ed6b55f47476b4cd3a411041d62bebf70468`)を起点に、S3C「総Attempt count」だけを意味再導出する。S3A/S3B、隣接line、旧candidate全体や全12指標へのcoverage/closureを主張しない。old asset ledgerは `unresolved`、paired consumer未確認であり、限定検索結果はconsumer不存在の証明ではない。
+
+**receiptのpin差**：採択節digestはPO行の`7e3df32b…`／`3dcf068d…`と一致する。coverage receipt r2はL11規則を「見出しからEOF」と記す一方、実際の採択digestはL11の068節span 278–286に一致する。これはreceipt本文の規則記述と実際の採択pinの差として残し、receiptから採択範囲やauthorityを作らない。
+
+**固定意味・境界**：明示選択されたtask/scope/revision/evaluation範囲に属するOS Worker Attempt identityのdistinct総数を数え、完全性が証明できない場合は総数を `unknown` とする。identityを持つdenied Attemptは数え、実行前に拒否されidentityのないintakeは数えない。result stateは別fieldで保持する。固定318の本文には065/067を「未採択」と記すが、現PO判断record `af93d1f171d994f9fae2e78026b39ac27f896f5c` line 80/82は両候補を条件付き採択と記録する。snapshot metadataと現authorityを区別し、どちらの採択状態にも068を依存させない。065 first_pass/retry_count、067 same-Attempt repair round、068 identity countは換算・代替・合算しない。比較時も採択済み `HELIXLABO-L2-059` の品質優先・費用の意味を変更しない。
+
+**責務・返却**：OSは既存assignment、Attempt identity、event/evidence、state/correctionを提供する。LABOは許可済み記録のdistinct countと比較証拠を返す。固定親の生成禁止はidentity/counting policy、task-evaluation oracle、assignment、Worker起動/retry、adoption、qualification、admissionであり、L10で各出力fieldの生成を個別に拒否する。LABOはこれらを生成しない。identity対応・event/correction lineageの欠落、重複衝突、対象recordのstale・scope不一致、捕捉完全性不明は総数をunknown/未評価にする。result receiptだけ欠ける場合はidentity集合の完全性を確認できればcountを維持しresult stateだけunknownにする。event遅延はscope全体のcapture completenessを証明できなくする場合だけunknownにし、完全性receiptが維持される遅延だけではcountを不成立にしない。原因に沿って既知の観測sourceまたはOS record owner区分へ返す。個体source/owner identityが不明ならそのidentity unknownを別に保持し、既知責務区分を消さない。未採番の担当や権限を新設しない。
+
+**版・範囲**：旧a4の25 CASE IDを保持する。旧literalは監査材料に保全し、下の6列表のfixture setup/oracleは固定L2/L11へ意味再導出した候補であり、旧literalのbyteコピーを正本定義とみなさない。固定親は仕様として引用し、これらの候補表は意味完全性・単独変異性の証明ではない。
+
+## 受入条件対応
+
+FR本文で定義した `LABO-068-AC-01`（選択scope正常）、`LABO-068-AC-02`（結果閲覧前に固定した別scope正常）、`LABO-068-AC-03`（否定・未評価）を使う。ここではAC定義を再定義せず、fixture照合matrixと索引境界だけを置く。
+
+**共通fixture B0**：選択task/scope/revision/evaluation範囲S0/R0/E0、OS完全性receipt、A/B/C/D distinct identity、各eventとcorrection lineageを揃える。result stateはsuccess/failure/interrupted/identity付きdeniedを混在させ、identityなし実行前denied intake I0は別fieldに置く。正しいcountは4。B0は合成baselineで、実測実績を主張しない。CASE02は別scope S1の入力全体を結果閲覧前に固定する正常例であり、B0の既存母集団を事後変更しない。
+
+**6列の再導出CASE候補 matrix（旧25 ID保持＋固定親の出力field拒否7件）**
+
+| CASE ID | 要求trace | AC | baseline / fixture準備 | 単一の入力差分 | 期待oracle・返却 |
+|---|---|---|---|---|---|
+| `L10-LABO-068-CASE-01` | `FR-LABO-068-01/02` | `LABO-068-AC-01` | B0: 選択scope S0/rev R0/eval E0。OS完全性receipt有り。identity A/B/C/D各1件、stateはsuccess/failure/interrupted/denied。拒否intake I0はidentityなし。 | 変異なし（正常fixture）。 | A〜Dを各1件で`attempt_count=4`。state別に保持し、I0をcountしない。 |
+| `L10-LABO-068-CASE-02` | `FR-LABO-068-01/02` | `LABO-068-AC-02` | B1: outcome閲覧前に固定した別scope S1/rev R1/eval E1。未見case群の全identity/event receiptとcompleteness evidence有り。 | 変異なし（別scopeの正常fixture）。 | S1内だけを同じ規則で数える。B0の対象集合・receipt・数値を変更しない。 |
+| `L10-LABO-068-CASE-03a` | `FR-LABO-068-01/02` | `LABO-068-AC-03` | B0にidentity A/B/C/Dと完全性receipt。 | Aのidentity linkだけ欠落。 | 対象identityを確定できず総数unknown。既知OS record責務区分へ返し、missing identityの個体owner不明は別unknown。 |
+| `L10-LABO-068-CASE-03b` | `FR-LABO-068-02` | `LABO-068-AC-03` | B0のeventは観測できるが、sourceが全件捕捉を証明するcompleteness receiptはない状態。 | 変異なし（完全性unknown fixture）。 | 総数unknown。観測sourceまたはOS record owner区分へ不足を返す。 |
+| `L10-LABO-068-CASE-03c` | `FR-LABO-068-01/02` | `LABO-068-AC-03` | B0のA/B/C/Dと完全性receipt。 | Aの同一identity・同一receiptを一度だけ再配送。 | distinct identityは4。duplicateを加算しない。 |
+| `L10-LABO-068-CASE-03d` | `FR-LABO-068-02` | `LABO-068-AC-03` | 正常B0: scope S0のidentity/event receiptとscope全体のcapture-completeness receiptが有効。 | Aのevent receipt一件だけ遅延し、それによってscope capture completenessを証明できなくする。他fieldはB0と同一。 | この遅延がscope capture completenessを損なうためtotal unknown。遅延だけで一般化せず、完全性receiptが有効な遅延はcountを維持。 |
+| `L10-LABO-068-CASE-03e` | `FR-LABO-068-01/02` | `LABO-068-AC-03` | B0にA/B/C/Dの完全記録。別に実行前denied intake I0があり、OS Attempt identityは未発行。 | 変異なし（境界fixture）。 | I0をAttempt countに含めず、intake denialとして別記。 |
+| `L10-LABO-068-CASE-03f` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のidentity記録と、別fieldの065 retry_count receipt。 | Attempt identityを追加せず、retry_countから`+1`を計算してcountへ足そうとする。 | 換算を拒否し、B0の068 identity countを維持する。 |
+| `L10-LABO-068-CASE-03g` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のidentity記録と、既存Attempt内の067 repair-round receipt。 | repair roundを新Attemptとして加算しようとする。 | 換算を拒否し、同一Attempt identityのまま保持する。 |
+| `L10-LABO-068-CASE-04a` | `FR-LABO-068-03` | `LABO-068-AC-03` | 入力にはOSが発行したB0 identity/eventだけがある。 | LABO側出力が新しいAttempt identityを生成する。 | 生成を拒否。既存OS/観測source責務区分へ戻し、LABOはcount evidenceだけを返す。 |
+| `L10-LABO-068-CASE-04b` | `FR-LABO-068-03` | `LABO-068-AC-03` | 既存OS identityと固定scopeのみ。 | LABOがcounting policy/identity採番規則を新設する。 | policy生成を拒否。既知OS責務区分を維持し、個別担当identityは推測しない。 |
+| `L10-LABO-068-CASE-13` | `FR-LABO-068-01` | `LABO-068-AC-03` | B0 scope S0のA/B/C/Dと、同一revisionだが別scopeに属すX。 | Xのscope linkだけがS0に誤って混入。 | scope境界を確認できない場合は評価停止/unknown。明確にS0外ならcountから除外しscope外記録を保持。 |
+| `L10-LABO-068-CASE-14` | `FR-LABO-068-02/03` | `LABO-068-AC-03` | handoff後もOSのknown record-owner responsibility区分とA/B/C/Dは保持される。 | 担当交代後のA lineage linkだけ欠落。 | 総数unknown。known OS/observation-source区分は保持し、個体owner identity unknownを別に残す。 |
+| `L10-LABO-068-CASE-15` | `FR-LABO-068-01/02` | `LABO-068-AC-03` | 索引対象はCASE-03cのA duplicate receipt。 | 独立変異なし（CASE-03cへの索引）。 | CASE-03cを直接参照。Aを重ねて数えない。 |
+| `L10-LABO-068-CASE-16` | `FR-LABO-068-02` | `LABO-068-AC-03` | 索引対象はCASE-03bのsource completeness unknown。 | 独立変異なし（CASE-03bへの索引）。 | CASE-03bを直接参照。CASE-08と同じ索引関係も二重計上しない。 |
+| `L10-LABO-068-CASE-17` | `FR-LABO-068-02` | `LABO-068-AC-03` | B0のevent observationはあるが、completeness evidenceは存在しない。 | 入力にcompleteness=trueのassertionだけを追加し、根拠receiptは追加しない。 | assertionだけでは確定せずunknown。根拠不足はknown OS/source responsibilityへ返す。 |
+| `L10-LABO-068-CASE-05` | `FR-LABO-068-01/02` | `LABO-068-AC-03` | B0からscope ID以外のfield、identity、receiptは揃う。 | scope fieldだけ欠落。 | 母集団が確定しないため総数unknown。既知OS record responsibilityへ返す。 |
+| `L10-LABO-068-CASE-06` | `FR-LABO-068-01/02` | `LABO-068-AC-03` | B0のsource revisionは選択revision R0と一致。 | source revisionだけstale。 | stale recordをcurrent totalに含めず、current scope countは未評価/unknown。 |
+| `L10-LABO-068-CASE-07` | `FR-LABO-068-02` | `LABO-068-AC-03` | B0でidentity Aに結び付く訂正eventと元eventがある。 | correction lineage linkだけ欠落。 | 訂正を同一identityへ確実に結べないため総数unknown。OS/source責務区分へ返す。 |
+| `L10-LABO-068-CASE-08` | `FR-LABO-068-02` | `LABO-068-AC-03` | 索引対象はCASE-03bのsource completeness unknown。 | 独立変異なし（CASE-03bへの索引）。 | CASE-03bを直接参照。CASE-16との重複indexで独立fixtureを増やさない。 |
+| `L10-LABO-068-CASE-09` | `FR-LABO-068-02` | `LABO-068-AC-03` | B0のvalid event/completeness receipt。 | stale eventだけが追加/残存し、現在scopeの整合を確認できない。 | 確定数として採用しない。OS/observation-source responsibilityへ返す。 |
+| `L10-LABO-068-CASE-10` | `FR-LABO-068-01/02` | `LABO-068-AC-03` | B0のidentity A/B/C/Dは一意。 | Aに衝突する別identity recordだけ存在。 | 衝突を解消するまでtotal unknown。勝手にdedupeまたは5件扱いしない。 |
+| `L10-LABO-068-CASE-11` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のidentity A/B/C/D。 | 既存Aに同一scope/revisionのCI rerunだけを追加。 | 新identityがないためcountを増やさない。rerun receiptはAへ結び保持。 |
+| `L10-LABO-068-CASE-12` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のidentity A/B/C/D。 | 新identityなしのretry_count fieldだけ増加。 | 068 countを増やさず、065 retry_countは別指標で保持。 |
+| `L10-LABO-068-CASE-18` | `FR-LABO-068-02` | `LABO-068-AC-03` | B0と同じidentity A/B/C/Dおよびidentity集合の完全性receipt。 | Aのresult receiptだけ欠落。 | distinct identity count=4を維持。Aのresult stateだけunknownとし、結果評価に使わずOS記録責務区分へ返す。 |
+| `L10-LABO-068-CASE-19` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0に完全なAttempt identity count inputと既存の評価契約参照。 | LABO output fieldだけでtask_evaluation_oracle=O1を新規生成する。 | oracle field生成を拒否。count結果からtask評価oracleや合格条件を定義しない。 |
+| `L10-LABO-068-CASE-20` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のOS assignment A0は既存stateとして入力される。 | LABO output fieldだけでassignment=A1を新規生成する。 | assignment生成を拒否しOSの既存stateを変更しない。 |
+| `L10-LABO-068-CASE-21` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0にAttempt evidenceはあるが新規Worker start eventはない。 | LABO output fieldだけでworker_started=trueを追加する。 | Worker起動を生成しない。count evidenceから実行を開始しない。 |
+| `L10-LABO-068-CASE-22` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0にAttempt evidenceがあり、retry state/policyは別fieldのまま。 | LABO output fieldだけでretry_requested=trueを追加する。 | retryを要求しない。既存OS retry責務/stateを変更しない。 |
+| `L10-LABO-068-CASE-23` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のcount evidenceと合成scopeのadoption stateは未決のまま（固定PO採択状態は別scopeで変更しない）。 | LABO output fieldだけでadopted=trueを新規生成する。 | 採否を生成せず既存decision stateを変更しない。 |
+| `L10-LABO-068-CASE-24` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のcount evidenceと合成scopeのqualification stateは未決のまま。 | LABO output fieldだけでqualified=trueを新規生成する。 | qualificationを生成せずcountから資格を推論しない。 |
+| `L10-LABO-068-CASE-25` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のcount evidenceと合成scopeのadmission stateは未決のまま。 | LABO output fieldだけでadmitted=trueを新規生成する。 | admissionを生成せず既存authority/decision stateを変更しない。 |
+
+旧a4 CASE ID保持列（全25 ID。以下のmatrixで定義。literal原文・物理行・raw-LF SHAは作成側preflight JSONの `old_a4_parent068_case_census.raw_case_definitions` に保全）:
+
+`L10-LABO-068-CASE-01`, `L10-LABO-068-CASE-02`, `L10-LABO-068-CASE-03a`, `L10-LABO-068-CASE-03b`, `L10-LABO-068-CASE-03c`, `L10-LABO-068-CASE-03d`, `L10-LABO-068-CASE-03e`, `L10-LABO-068-CASE-03f`, `L10-LABO-068-CASE-03g`, `L10-LABO-068-CASE-04a`, `L10-LABO-068-CASE-04b`, `L10-LABO-068-CASE-13`, `L10-LABO-068-CASE-14`, `L10-LABO-068-CASE-15`, `L10-LABO-068-CASE-16`, `L10-LABO-068-CASE-17`, `L10-LABO-068-CASE-05`, `L10-LABO-068-CASE-06`, `L10-LABO-068-CASE-07`, `L10-LABO-068-CASE-08`, `L10-LABO-068-CASE-09`, `L10-LABO-068-CASE-10`, `L10-LABO-068-CASE-11`, `L10-LABO-068-CASE-12`, `L10-LABO-068-CASE-18`.
+
+旧25件に加えCASE-19〜25は固定L2の禁止出力fieldを一件ずつ拒否する候補である。旧ID保持と新7行を合わせたこの32行は変更影響index候補であり、単独fixture性・meaning completeness・実行結果を保証しない。CASE-08/16は同じCASE-03bへの索引、CASE-15は03cへの索引である。Matrix上でも独立変異/分母へ重ねない。known OS/observation-source responsibilityと具体的個体identity unknownは別fieldで保持する。receipt不在だけからsourceや個人ownerを創作しない。
+
+**実行・受入状態**：全fixtureは未実行の設計候補。旧source runtime/test/CIは実行していない。L10実測、oracle実装検証、Fable見解、独立review、L3委任承認、Ready/mergeはこのsuffixから生成しない。
