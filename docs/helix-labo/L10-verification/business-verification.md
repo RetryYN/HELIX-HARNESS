@@ -132,6 +132,18 @@
 
 これは未実行design参照であり、business completionや実験を表さない。
 
+## Stage 5 — HELIX-LABO L10 業務総合検証候補 — HELIXLABO-L2-069
+
+固定L2/L11に独立したbusiness outcomeはないため、BR候補に対応する独立の採否・品質向上判定を設けない。FVの正常/否定ケースを業務境界から照合する。
+
+| 照合対象 | 期待するbusiness-level observation | 禁止する読替え |
+|---|---|---|
+| 有効な再発行後assessment | 対象scope/revisionと比較条件、個別result、元closureを同時に識別できる。 | 個別resultを全体因果効果・品質改善へ一般化する。 |
+| 不完全・未追跡・censored result | 既知のOSまたは識別可能なsource-owner roleへ不足を戻し、source identityが特定できない場合は個別identityをunknownで保つ。 | 欠測/未追跡を0、成功、route個人名へ補完する。 |
+| 評価candidate | 提案として返り、ticket・assignment・permission・採否・execution/completionは元ownerの状態で残る。 | 評価結果を操作許可、要求採択、発行、実行、完了へ変換する。 |
+
+これは業務成果の実測やquality closureの認定ではない。
+
 ### HELIXLABO-L2-068 — Worker Attempt countの観測（Stage 5、version_target: 1.0、起草候補）
 
 **固定親と採択根拠**：PO判断記録 `af93d1f171d994f9fae2e78026b39ac27f896f5c` の `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:83` は `HELIXLABO-L2-068` を採択し、L2/L11の全体SHAと節digestを固定する。採択本文自体は `318ec4a04abb3c1cc17111b3d939f913facd5fd3` のL2 `docs/helix-labo/L2-requirements/labo-requirements.md:541–550`（file SHA-256 `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9`、節SHA-256 `7e3df32b0131722c88ae148c4cbfa9a1be20f81826099c0ceb29a674e07030e2`）とL11 `docs/helix-labo/L11-acceptance/labo-acceptance.md:278–286`（file SHA-256 `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0`、節SHA-256 `3dcf068de1351b2e8c1f2d772ec9273cb7908368a32b389ee40ce51929ad8d94`）である。line 83のhistorical MPR `MPR-RC-HELIXLABO-L2-068-001` はlocator correctionの後継 `...-002` と区別する。採択されたcandidate/digest/atom setは変わらず、receiptはauthorityを生成しない。候補本文内の `draft_candidate` は固定bytesのmetadataであり、PO採択状態は判断記録から読む。

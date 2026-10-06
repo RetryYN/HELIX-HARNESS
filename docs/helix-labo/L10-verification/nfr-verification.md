@@ -179,6 +179,20 @@ NFRの分母は許可された選択scope内のrunであり、CASE定義数で�
 - `CASE-NLABO-067-FR-01-01`: selected task/scope/revisionに属するpredicate/oracle revision、candidate digest/event receipt、OS assignment/AttemptID、LABO observation/result receiptのfield completenessを再照合する。ordered repair countはevent receiptとidentityが確定した同一assignment Attempt内だけを再計算し、unknown/missing/duplicate/out-of-order/Attempt-mismatchを区別する。source individual identityがunknownでもtask/要求owner, OS, LABO, SECURITYというknown role classificationを保持する。minimum N、rate threshold、実測値、completion/permissionを出力しない。
 - Functional CASE index: old 30 `L10-LABO-067-CASE-01/02/03a–g/04a–b/05–23` と追加候補 `CASE-24–38` を参照する。index/countは意味完全性、独立性、実行済み結果を証明しない。
 
+## Stage 5 — HELIX-LABO L10 NFR検証候補 — HELIXLABO-L2-069
+
+[L3 NFR候補](../L3-requirements/nfr-grade.md)に対応する静的・fixture設計案。実行、実測、性能値、独立reviewの結果は含まない。
+
+| 観測項目 | 合成入力・変異 | 判定材料 |
+|---|---|---|
+| 比較入力の追跡 | CASE-01の全要素を与え、CASE-05–10/20–26/28–30でscope, revision, completeness, result, denominator, classification, identity, time, evidence, stateの一項ずつを欠落/変更。 | 要素ごとに不足を特定しrate/resultを未評価にする。未知値を補完しない。 |
+| 観測状態忠実性 | CASE-03b, 07, 11, 12, 31, 32のwindow未満、untracked、未実行、censored、missingを独立入力。 | 未追跡/欠測/未実行を成功やzero defectへ写さない。 |
+| relationと因果境界 | CASE-03cのrelation欠落、CASE-13/33の単一事例、CASE-01の有効relationを比較。 | relation evidenceの欠落は未評価。個別relationを保持しても効果/発行精度を一般化しない。時間/path近接だけで因果を断定しない。 |
+| owner/authority境界 | CASE-04a/14/16–19/34–43のticket・restricted data・priority・oracle・assignment・permission・採否・execution/completion・target/placement mutation。 | 元ticket/closure/source stateを保持し、LABO生成の権限・操作・完了を拒否する。 |
+| unknown routing | CASE-20–25/28–32でroute roleが固定L2にある状態とspecific source/person identityが不明な状態を組合せる。 | 既存OSまたは識別可能なsource-owner roleを保持する。個別identity unknownを既知ownerまたは新ownerで埋めない。 |
+
+固定数値threshold、severity分類、観測期間の値、性能目標は測定案に含めない。測定不能/未観測は失敗0または成功ではなくunknown/未評価のままにする。
+
 ### HELIXLABO-L2-068 — Worker Attempt countの観測（Stage 5、version_target: 1.0、起草候補）
 
 **固定親と採択根拠**：PO判断記録 `af93d1f171d994f9fae2e78026b39ac27f896f5c` の `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:83` は `HELIXLABO-L2-068` を採択し、L2/L11の全体SHAと節digestを固定する。採択本文自体は `318ec4a04abb3c1cc17111b3d939f913facd5fd3` のL2 `docs/helix-labo/L2-requirements/labo-requirements.md:541–550`（file SHA-256 `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9`、節SHA-256 `7e3df32b0131722c88ae148c4cbfa9a1be20f81826099c0ceb29a674e07030e2`）とL11 `docs/helix-labo/L11-acceptance/labo-acceptance.md:278–286`（file SHA-256 `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0`、節SHA-256 `3dcf068de1351b2e8c1f2d772ec9273cb7908368a32b389ee40ce51929ad8d94`）である。line 83のhistorical MPR `MPR-RC-HELIXLABO-L2-068-001` はlocator correctionの後継 `...-002` と区別する。採択されたcandidate/digest/atom setは変わらず、receiptはauthorityを生成しない。候補本文内の `draft_candidate` は固定bytesのmetadataであり、PO採択状態は判断記録から読む。

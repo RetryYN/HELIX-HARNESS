@@ -136,6 +136,12 @@
 
 これは未実行design索引であり、実business outcomeを示さない。
 
+## Stage 5 — HELIX-LABO L3 業務要件候補 — HELIXLABO-L2-069
+
+独立の業務成果や採否判定を追加しない。L2-069が要求するticket返却・再発行後の成立状況を、機能要件FR-01の評価candidateとして観測可能にする。業務レベルで確認するのは、比較条件と未評価状態の識別、元closureの保持、OS等の既存責務境界である。評価結果はticket採択、配置、発行、権限、実行、完了を意味しない。
+
+**旧source対応**：旧ticket sourceのclosure保持・追補assessmentを意味再導出し、旧feedbackの件数低下だけを品質証明にしない境界を保持する。別の業務成果、因果/window/severity閾値は起こさない。
+
 ### HELIXLABO-L2-068 — Worker Attempt countの観測（Stage 5、version_target: 1.0、起草候補）
 
 **固定親と採択根拠**：PO判断記録 `af93d1f171d994f9fae2e78026b39ac27f896f5c` の `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:83` は `HELIXLABO-L2-068` を採択し、L2/L11の全体SHAと節digestを固定する。採択本文自体は `318ec4a04abb3c1cc17111b3d939f913facd5fd3` のL2 `docs/helix-labo/L2-requirements/labo-requirements.md:541–550`（file SHA-256 `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9`、節SHA-256 `7e3df32b0131722c88ae148c4cbfa9a1be20f81826099c0ceb29a674e07030e2`）とL11 `docs/helix-labo/L11-acceptance/labo-acceptance.md:278–286`（file SHA-256 `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0`、節SHA-256 `3dcf068de1351b2e8c1f2d772ec9273cb7908368a32b389ee40ce51929ad8d94`）である。line 83のhistorical MPR `MPR-RC-HELIXLABO-L2-068-001` はlocator correctionの後継 `...-002` と区別する。採択されたcandidate/digest/atom setは変わらず、receiptはauthorityを生成しない。候補本文内の `draft_candidate` は固定bytesのmetadataであり、PO採択状態は判断記録から読む。

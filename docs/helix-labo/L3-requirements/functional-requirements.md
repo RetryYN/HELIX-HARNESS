@@ -1836,6 +1836,27 @@ same-attempt修復回数は、最初にeligibleなcandidateから同じOS assign
 
 L10 CASE IDsは照合用であり、ID数・独立fixture数から完全性を主張しない。
 
+## Stage 5 — HELIX-LABO L3 機能要件候補 — HELIXLABO-L2-069
+
+**固定source／状態候補**：PO採択対象のL2/L11 bytesを入力にした起草案。歴史的な本文内「未採択候補」表記はそのままsource表記として記録し、PO採択状態はdecision row 84から読む。候補本文はL3承認・実装・実行・ticket操作を許可しない。version_targetは親記載どおり`1.0`。
+
+### LABO-069-FR-01 — Ticket返却・再発行後の成立状況評価
+
+既存OSから受け取るticket返却、検証不成立、不足oracle/input、および証拠付きrelationに結ばれた再発行後resultについて、ticket/assignment identity、source・対象revision・scope、観測時点、evidence、評価可能/未評価状態を保つ評価candidateを作る。出力は返却reason class、返却数と適用denominator、理由別傾向、同一scopeでの再発行後成立/不成立/未評価、counterexample、regression risk、revalidation conditionを区別し、根拠となるsource/revision/scope/window/completenessを示す。
+
+評価に必要な比較条件が揃わない場合は比較不能またはunknownを明示し、欠測を0へ補完しない。window未満・未追跡・打切りもdefect 0とせず、件数減少だけをquality closureの証明にしない。個別の再発行後resultは記述できるが、単一事例や単純な前後比較だけから因果効果または発行精度改善を断定しない。固定数値threshold、統計方式、学習方式は追加しない。
+
+### 受入条件候補
+
+- **LABO-069-AC-01 — 条件が揃った評価candidate**：同一ticket family/scope/対象revisionとそのrelation/evidence、denominator、reason分類、window、source completeness、再発行後resultを束ね、成立・不成立・未評価を区別する。評価candidateには固定L2が求める理由別傾向、counterexample、regression risk、revalidation conditionを含め、各項目を当該source/revision/scope/windowと利用可能な根拠に対応づける。元closureを保ちticketを変更しない。ここで固定数値threshold、統計方式、学習方式は追加しない。
+- **LABO-069-AC-02 — 未見reasonの保持**：既存分類にないreasonは分類を新設せずunknown/unclassifiedとして保持し、成立/不成立へ推測変換しない。
+- **LABO-069-AC-03 — 比較不能・欠測の保持**：source、denominator、scope、classification条件、revision、観測時点、evidence、再発行後relation/result等の必要入力が欠ける・stale・不完全ならrate/resultを未評価とし、欠測/window未満/未追跡/打切りを0にしない。戻し先は既存のOSまたは識別可能なsource-owner区分に限定する。役割区分が既知でも個別identityがsourceで特定できなければその値はunknownのままとし、新ownerを作らない。
+- **LABO-069-AC-04 — 既存authorityと責務の保持**：LABOはticket本文、priority、assignment、verification oracle、authorityを変更しない。固定L2/L11が別ownerへ残すticket issue/assignment/authorityと、未評価結果からtarget変更・配置・ticket発行、同評価から採否・改善完了・配置変更を導かない境界を保つ。各出力fieldはFVで別々に変異させる。OSの登録/routing/ticket発行とINTELLIGENCEの配置案、適用中のSECURITY/data-use条件は既存責務のままにする。
+
+### 旧sourceとの対応
+
+`LEGACY-ASSET-3A15E5645D2D2A59DFF5` の旧ticket要求は、閉じたticketのclosureを保ち、後日のfinding等をevidence-backed relation付き追補assessmentへ接続し、時間的近接/pathだけで原因ticketを決めず、window未満・未追跡・打切りをzero defectsにしない点を**意味から再導出**する。旧storage/実行方式をbyte再利用しない。`LEGACY-ASSET-F6E9EA3422A0EF1DF090` のfeedback品質proxy拒否文は、件数減少のみで品質を証明しない限定根拠として**意味から再導出**する。reason class・分母・window・評価の候補は固定L2と登録済みO2 source atomに結び直して新たに起こす。旧source全体・consumer全体の移管や因果証明は主張しない。
+
 ### HELIXLABO-L2-068 — Worker Attempt countの観測（Stage 5、version_target: 1.0、起草候補）
 
 **固定親と採択根拠**：PO判断記録 `af93d1f171d994f9fae2e78026b39ac27f896f5c` の `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:83` は `HELIXLABO-L2-068` を採択し、L2/L11の全体SHAと節digestを固定する。採択本文自体は `318ec4a04abb3c1cc17111b3d939f913facd5fd3` のL2 `docs/helix-labo/L2-requirements/labo-requirements.md:541–550`（file SHA-256 `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9`、節SHA-256 `7e3df32b0131722c88ae148c4cbfa9a1be20f81826099c0ceb29a674e07030e2`）とL11 `docs/helix-labo/L11-acceptance/labo-acceptance.md:278–286`（file SHA-256 `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0`、節SHA-256 `3dcf068de1351b2e8c1f2d772ec9273cb7908368a32b389ee40ce51929ad8d94`）である。line 83のhistorical MPR `MPR-RC-HELIXLABO-L2-068-001` はlocator correctionの後継 `...-002` と区別する。採択されたcandidate/digest/atom setは変わらず、receiptはauthorityを生成しない。候補本文内の `draft_candidate` は固定bytesのmetadataであり、PO採択状態は判断記録から読む。

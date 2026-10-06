@@ -240,6 +240,19 @@ L10は69個の完全ID定義を保持する。literalから抽出した分類候
 - `NLABO-067-FR-01-01` first-eligible/repair-event evidence completeness: selected task/scope/revisionに対するpredicate/oracle identity+revision、candidate identity/digest、OS assignment/AttemptID、eligibility/repair/result receiptsの観測可能性とunknownをfield別に記録する。roundは同一assignment Attempt内で観測receiptが確定した範囲だけ数え、別Attemptと総Attempt countを混ぜない。source/個体 identityがunknownならrole分類とunknown stateを保持する。これは計測設計で実測ではない。
 - `L10-LABO-067` CASE定義は旧30 literalと本候補追加CASE-24–38を個別IDで索引する。単一点性・独立性は未reviewであり、CASE数は完全性の証明ではない。
 
+## Stage 5 — HELIX-LABO L3 NFR候補 — HELIXLABO-L2-069
+
+数値metricや実測値を確定しない根拠付き技術候補。個別parameterごとのPO承認gateを設けない。
+
+| 性質 | 候補 | 根拠・対の観測 | 限界 |
+|---|---|---|---|
+| 比較の再現性 | resultに使ったticket/assignment, source/revision, scope, classification, denominator, window, completeness, relation/evidenceを追跡可能にする。入力不足時は同じ不足状態をunknown/未評価として保持する。 | 固定L2比較保証とL11比較不能例。FV-069 CASE-01, 05–10, 20–26, 28–32。 | 新しい必須schema field・rate threshold・window長は定義しない。 |
+| 欠測忠実性 | 欠測/unknown/censored/untracked/window未満を0または成功へ変換しない。 | 固定L2/L11明示条件。FV CASE-03b, 07–12, 20–25, 28, 30–32。 | 数値上限・統計方式を追加しない。 |
+| 因果claim境界 | evidence-backed relationの個別記録と、因果効果/発行精度改善の一般化を分ける。時間/pathだけ、単一例だけ、単純前後比較だけで一般化しない。 | 旧source line 319、固定L2比較保証、L11不合格例。FV CASE-03c, 13, 33。 | 因果推論方式/confidence thresholdは要求しない。 |
+| authority isolation | LABO評価の書込み先をcandidateに限り、ticket/priority/assignment/oracle/authorityおよびsource closureを書き換えない。 | 固定L2境界、L11不合格/受入限界。FV CASE-04a, 14–19, 34–43。 | 既存ownerの内部実装やSECURITY分類を再定義しない。 |
+
+旧sourceの数値を引き継がない。技術parameterが必要になった場合は候補値・比較根拠・測定方法を対で記録するが、ここで閾値を新設しない。
+
 ### HELIXLABO-L2-068 — Worker Attempt countの観測（Stage 5、version_target: 1.0、起草候補）
 
 **固定親と採択根拠**：PO判断記録 `af93d1f171d994f9fae2e78026b39ac27f896f5c` の `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:83` は `HELIXLABO-L2-068` を採択し、L2/L11の全体SHAと節digestを固定する。採択本文自体は `318ec4a04abb3c1cc17111b3d939f913facd5fd3` のL2 `docs/helix-labo/L2-requirements/labo-requirements.md:541–550`（file SHA-256 `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9`、節SHA-256 `7e3df32b0131722c88ae148c4cbfa9a1be20f81826099c0ceb29a674e07030e2`）とL11 `docs/helix-labo/L11-acceptance/labo-acceptance.md:278–286`（file SHA-256 `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0`、節SHA-256 `3dcf068de1351b2e8c1f2d772ec9273cb7908368a32b389ee40ce51929ad8d94`）である。line 83のhistorical MPR `MPR-RC-HELIXLABO-L2-068-001` はlocator correctionの後継 `...-002` と区別する。採択されたcandidate/digest/atom setは変わらず、receiptはauthorityを生成しない。候補本文内の `draft_candidate` は固定bytesのmetadataであり、PO採択状態は判断記録から読む。
