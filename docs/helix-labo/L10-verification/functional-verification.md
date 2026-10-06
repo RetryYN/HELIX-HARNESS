@@ -3232,7 +3232,7 @@ CASE IDは旧公開a4 revisionの42定義IDを保持する。索引は定義行�
 
 ## Stage 5 — HELIX-LABO L10 機能総合検証候補 — HELIXLABO-L2-069
 
-合成scope S069はこの069節だけのfixture labelで、他親のscope labelとの同一性・参照関係を表さない。現在51 CASE行（旧36 IDと起草追加10 ID、新規修正5 ID。索引を含む）。
+合成scope S069はこの069節だけのfixture labelで、他親のscope labelとの同一性・参照関係を表さない。現在52 CASE行（旧36 IDと起草追加10 ID、新規修正6 ID。索引を含む）。
 
 FVの現行baseline/mutation/oracle文は旧公開文書のliteral copyではなく、固定L2/L11からの再導出候補である。表の1行目は正常baselineを表す。単独変異行は同じ条件から記載の1点だけを変える。索引IDは旧literalを保全する監査対象だが独立fixtureとして実行・計上しない。
 
@@ -3289,6 +3289,7 @@ FVの現行baseline/mutation/oracle文は旧公開文書のliteral copyではな
 | `L10-LABO-069-CASE-45` | `LABO-069-AC-01` | 単独変異（M2・counterexample） | CASE-01と同一の有効条件。評価candidateにはL2-069所定の4項目すべてを含め、counterexampleは固定scope/revisionと根拠sourceに結び付く。 | 出力candidateの`counterexample`項目だけを欠落させ、他の全項目・証拠・適用条件は保持する。 | AC-01の正常candidateとして合格させず、counterexampleの欠落を明示する。新しい反証規則や閾値は追加しない。 出力欠落の修正はLABO評価責務へ戻し、他の入力・出力を変更しない。 |
 | `L10-LABO-069-CASE-46` | `LABO-069-AC-01` | 単独変異（M2・regression risk） | CASE-01と同一の有効条件。評価candidateにはL2-069所定の4項目すべてを含め、regression riskは固定scope/revisionと根拠sourceに結び付く。 | 出力candidateの`regression risk`項目だけを欠落させ、他の全項目・証拠・適用条件は保持する。 | AC-01の正常candidateとして合格させず、regression riskの欠落を明示する。severityやrisk閾値を新設しない。 出力欠落の修正はLABO評価責務へ戻し、他の入力・出力を変更しない。 |
 | `L10-LABO-069-CASE-47` | `LABO-069-AC-01` | 単独変異（M2・revalidation condition） | CASE-01と同一の有効条件。評価candidateにはL2-069所定の4項目すべてを含め、revalidation conditionは固定scope/revisionと根拠sourceに結び付く。 | 出力candidateの`revalidation condition`項目だけを欠落させ、他の全項目・証拠・適用条件は保持する。 | AC-01の正常candidateとして合格させず、revalidation conditionの欠落を明示する。新しい再検証threshold、期限、方式は追加しない。 出力欠落の修正はLABO評価責務へ戻し、他の入力・出力を変更しない。 |
+| `L10-LABO-069-CASE-48` | `LABO-069-AC-04` | 単独変異（未評価ticket発行拒否） | 本069節の合成scope S069。返却/再発行評価inputは必要証拠不足により未評価で、元ticket/closure/assignmentは不変。入力にはOSの既存ticket発行状態を保持し、LABOによる新ticket発行はない。 | 入力不変で、未評価結果だけから`ticket_issue=true`をLABO出力に新規生成する。 | 未評価結果からticket発行を生成せず評価candidateと不足証拠だけを返す。OSの登録/routing/ticket発行責務を保ち、不足証拠は既存OSまたはsource ownerへ返す。誤出力修正はLABO評価責務へ戻し、元ticket/closure/assignmentを変更しない。 |
 
 ### 観測点・判定限界
 
