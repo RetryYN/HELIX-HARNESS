@@ -88,3 +88,30 @@
 | `HELIXOS-L2-046` | 機能要件のみ。 | 既存遷移の証拠照合を観測し、merge rateや新承認の基準を加えない。 |
 | `HELIXOS-L2-048` | 機能要件のみ。 | pending/resolution stateの根拠を照合し、registrationやclosed finding数をKPIにしない。 |
 | `HELIXOS-L2-052` | 機能要件のみ。 | local cleanupと後続PR再照合を分け、Issue/要求完了や生産性を主張しない。 |
+
+
+## Stage 5追補 — HELIXOS-L2-025/026/031/047 のbusiness境界候補
+
+この追補は既存文書のStage 2b/Stage 2a/Stage 3/Stage 4 scope欄を遡及変更せず、ここに列挙したStage 5対象だけを追加する候補である。先頭のstatusは先行scopeの状態を示す。
+
+この追補はHELIX-OSの4親をL3/L10へ対形成する候補であり、独立したbusiness outcome、business owner、KPI、承認者を追加しない。G0のStage 5は実装順序・version intentの記録で、Stage5全親の完了を個別作業や単独成立の前提にしない。対象revision・scope・owner・状態は各機能要件と固定L2/L11を参照する。
+
+| 親 | business扱い | L10で照合する境界 |
+|---|---|---|
+| `HELIXOS-L2-025` | 独立BRなし | service①〜⑦ unit/選択connection/composite正常と部分未見正常を区別し、unknown/stale/未許可/human-wait・後続版・OS製品化・LABO移管境界、未決authorityと後続受入への義務引継ぎを個別CASEで保持する。|
+| `HELIXOS-L2-026` | 独立BRなし | 要求source/contract/compatibility/recovery/permission/owner/human processと各dependency stateを独立CASEで照合し、空集合・安全省略・未決pack・未撤去WT・他stage boot・一層削除minimumと必要な検証を除いた過小構成の誤りを拒否する。|
+| `HELIXOS-L2-031` | 独立BRなし | 測定全field/適用scope、correctnessと性能、4弱化、escaped defect/mutation/flake、warm cache/review HEAD、lease/fence/artifact/fallback/DAG/cancel/exactly-once/causal traceを区別する。|
+| `HELIXOS-L2-047` | 独立BRなし | reason/evidence/根拠source revision、assignment/attempt/result/authority非継承、provider-only変更、参照両方向、旧証拠とnew revision、split/scope/backflow既存owner、検収oracle不足/Worker入力不足の正常返却を独立照合する。|
+
+この表は機能CASEへの参照境界だけを示す。Stage一式の承認待ちを新たなgateとせず、上流意味変更が必要な個別項目だけを既存authorityへ戻す。
+
+### Stage 5 review01補正 — business trace更新
+
+固定L2/L11にこの4親独自のbusiness outcomeはないため、BR/KPI/合否を追加しない。以下はfunctional fixture参照範囲だけを更新し、独立したbusiness判定を作らない。
+
+| 親 | business扱い | 補正後functional CASE範囲 | 境界 |
+|---|---|---|---|
+| 025 | 独立BRなし | CASE-025-01〜32 | target/version/unit状態の欠落、document/mechanismの存在だけによる誤成立を区別し、構成体の未完義務を保持し、HELIX-OSを外販製品と誤分類しない。|
+| 026 | 独立BRなし | CASE-026-01〜55 | 導出結果から採択/実装/受入/tag/外部配布を生成せず、適用scope外の機構完成を追加条件にしない。|
+| 031 | 独立BRなし | CASE-031-01〜87（066/068/070/072除外、031-25は031-06のalias） | old numeric comparison、ticket-driven duty、正しさ/性能、LABO/authority境界を分け、実測SLO/merge基準を作らない。|
+| 047 | 独立BRなし | CASE-047-01〜38、CASE-047-20はCASE-047-04のalias | issuerからの返却・revision lineage・参照境界を保ち、独立のticket効率KPIを作らない。|
