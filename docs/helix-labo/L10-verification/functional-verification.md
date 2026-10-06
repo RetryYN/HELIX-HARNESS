@@ -3226,6 +3226,6 @@ CASE IDは旧公開a4 revisionの42定義IDを保持する。索引は定義行�
 | `L10-LABO-067-CASE-36` | `LABO-067-FR-01` | `LABO-067-AC-03` | B0の観測入力を不変とし、task/要求ownerの既存oracleを入力状態のまま保持する。 | LABO観測出力に新しい`oracle`だけを生成する誤出力を加える。 | `oracle`を生成せず観測材料だけを返し、task/要求ownerの既存oracleを変更しない。個体identityが不明でも固定L2の既知責務区分を保持する。 |
 | `L10-LABO-067-CASE-37` | `LABO-067-FR-01` | `LABO-067-AC-03` | B0の観測入力を不変とし、既存contractのthreshold有無を入力状態のまま保持する。 | LABO観測出力に新しい`threshold`だけを生成する誤出力を加える。 | `threshold`を生成せず観測材料だけを返し、既存contractのthreshold有無を変更しない。個体identityが不明でも固定L2の既知責務区分を保持する。 |
 | `L10-LABO-067-CASE-38` | `LABO-067-FR-01` | `LABO-067-AC-03` | B0の観測入力を不変とし、既存candidate選択状態を入力状態のまま保持する。 | LABO観測出力に新しい`selected_candidate`だけを生成する誤出力を加える。 | `selected_candidate`を生成せず観測材料だけを返し、既存candidate選択状態を変更しない。個体identityが不明でも固定L2の既知責務区分を保持する。 |
+| `L10-LABO-067-CASE-39` | `LABO-067-FR-01` | `LABO-067-AC-03` | B0の観測入力と既存059の費用定義・比較条件を保持する。LABOは既存cost gateを変更していない。 | 入力を変更せず、LABOの観測出力へ既存059のcost gateを変更する値だけを誤追加する。 | cost gateの変更を拒否し、059の費用・比較条件を保持する。067は観測材料だけを返し、誤出力をLABO評価責務へ戻す。 |
 
 新CASE-24–38はCASE-01–23と照合する追加fixture候補であり、欠落個体identityではknown role classを保つ。CASE-29/30/31/32はassignment/SECURITY permission/採否/Worker-start生成という別出力を単独で拒否する。old CASE-04bのWorker assignment拒否もそのまま残し、ID数から意味完全性を主張しない。
-| `L10-LABO-067-CASE-39` | `LABO-067-FR-01` | `LABO-067-AC-03` | B0の観測入力と既存059の費用定義・比較条件を保持する。LABOは既存cost gateを変更していない。 | 入力を変更せず、LABOの観測出力へ既存059のcost gateを変更する値だけを誤追加する。 | cost gateの変更を拒否し、059の費用・比較条件を保持する。067は観測材料だけを返し、誤出力をLABO評価責務へ戻す。 |
