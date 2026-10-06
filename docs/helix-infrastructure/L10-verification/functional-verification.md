@@ -854,7 +854,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 - 変異: worker.contractだけを空欄にする
 - 入力: worker={id=worker-sim,contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01}; resource={id=worker-host-sim,revision=sim-r1}; mapping=worker-sim→worker-host-sim; authority_ref=security-authority-sim-01; work_ref=os-work-sim-01
 - oracle: resourceの正常だけでWorker接続を成立させずWorker契約sourceの責務ownerは固定親で未特定のためunknownとして保留する。
-- owner/戻し先: 固定L2-025:294のresource owner、OS/SECURITY条件はそれぞれの既存owner。Worker契約の責務ownerは固定親で未特定=unknown
+- owner/戻し先: Worker契約の責務ownerは固定親で未特定=unknown。別途resource不足がある場合に限り固定L2-025:294のresource ownerへ戻し、OS/SECURITY条件はそれぞれの既存owner
 - trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
 
 #### CASE-INFRA-011-S5-048 — 項目16 Worker execution / stale
@@ -863,7 +863,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 - 変異: worker.contract.revisionだけをsim-r2へ変更する
 - 入力: worker={id=worker-sim,contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01}; resource={id=worker-host-sim,revision=sim-r1}; mapping=worker-sim→worker-host-sim; authority_ref=security-authority-sim-01; work_ref=os-work-sim-01
 - oracle: stale contractをcurrentとして採用せずWorker契約sourceの責務ownerは固定親で未特定のためunknownとして保留する。
-- owner/戻し先: 固定L2-025:294のresource owner、OS/SECURITY条件はそれぞれの既存owner。Worker契約の責務ownerは固定親で未特定=unknown
+- owner/戻し先: Worker契約の責務ownerは固定親で未特定=unknown。別途resource不足がある場合に限り固定L2-025:294のresource ownerへ戻し、OS/SECURITY条件はそれぞれの既存owner
 - trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
 
 #### CASE-INFRA-011-S5-049 — 項目17 Bootstrap/Out-of-Band Recovery / 正常
