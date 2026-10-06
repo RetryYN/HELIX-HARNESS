@@ -1,0 +1,74 @@
+{
+  "authority_effect": "none",
+  "body_revision": "78095d0df568e528335deeb8737b47671ee8f5d2",
+  "base_revision": "3795bf0dcb731231a0b5ca1faa3cb67bdfeda22a",
+  "prior_content_revision": "88f02eaf1e73aa90a162d7da74f73a489395e290",
+  "formal_review": {
+    "comment": 6018603693,
+    "bytes": 6873,
+    "sha256": "70064f1fe4e0a1f456f11934bf22da3208fa7208570e599d7712ec79ec66a5f1",
+    "raw": "## review01（independent review、PR #2630 親HELIXLABO-L2-063、HEAD 88f02eaf1e73aa90a162d7da74f73a489395e290、本文 3345603de、base main 3795bf0dc）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼comment 6018476265に応える。方法はcomment 6013171449のとおり。\n\n### 照合の方法\n- **固定親**：PO判断記録`po-decision-2026-09-29-57candidates.md`の78行は、`HELIXLABO-L2-063`／採択／`MPR-RC-HELIXLABO-L2-063-001`である。そこに書かれたL2のfull SHA `5d939d81…`とL11のfull SHA `30de41e2…`は、318ec4aの実bytesと一致した（0857205ecとも同じbytes）。照合の起点は、L2-063（480–489）とL11-063（225–231）。\n- **ブラインド照合（Opus）**：固定親とその依存先（L2-010/050、§24）、6本文の追補行だけを読んだ。監査、PR comment、旧所見は見ていない。固定文を13群に種類分けし、対応CASE・ACに結び付けた。\n  - 想定外の受け皿：CASE-02とAC-02で、識別できないものをunknownのまま保持している。\n  - 勝手に作らない：生成を拒否するfixtureがそろっている。\n  - 戻り道：戻し先は、提供主体／LABO評価／OS／050の対象ownerの区分に収まっている。\n  - Majorは0件。\n- **継続照合（Opus）**：旧#2620で063に向けた所見（review02〜05）を全件判定した。Majorとして残るものは0件で、残りは解消・残余・対象外のどれかに分類した。\n  - 監査JSONの233 pinを、gitの各revisionから再計算し、全件一致した。\n  - 監査ファイルのSHAは、依頼commentの値と一致した。\n  - repository外の参照が1件ある（残余R12）。\n  - 新しいMajorとして、下のM1を見つけた。reviewerも原文で確かめた。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - origin/mainとの`merge-tree`は衝突なし\n  - L10の063 CASEは69件定義、重複0\n\n### Major\n**M1（AC-03「段階境界」が、固定L2にない順序を課している）**\n- **場所**：`docs/helix-labo/L10-verification/functional-verification.md:2940`\n- **欠陥**：この行は`warning → candidate → OS registration/routing → …`を順序として並べ、「順序飛越」を拒否するとしている。この読みだと、warningを経ずに出した予防candidateが、順序違反として拒否されうる。\n- **固定親との食い違い**：\n  - 固定L2-063「提供・保証」（L2:486）は、候補と「未処理の頻出問題は少なくとも警告」を並べて返すと定めている。別状態として追うのは、候補発行・backlog登録・採用・対象変更・再検証・運用後再観測である。\n  - 本文のCASE-49/50/56/57も、candidateとwarningを並列の必須出力として扱っている。\n  - 同じPRのFR旧source表は、UILについて「別baseline/state machineを063へ新設しない」と記録しており、それとも食い違う。\n- **区分**：L3/L10がL2の意味（出力どうしの関係）を変えているので、Majorとする。\n- **守るべき行**：L2-063「提供・保証」（318ec4a L2:486）、L11-063「正常」（L11:228）。\n\n### 後で直す残余（承認を止めない）\n- **R1（ACの定義箇所）**：LABO-063-AC-01/02/03の定義見出しが、L10（FV:2928–2936）にしかない。L3 FRには置かれていない（060/061はL3に置いている）。監査の「既存L3 AC-03」という記載も、本文と合わない。\n- **R2（行参照）**：FR対応表の行参照がずれている。戻し先は実際にはL2:488（表は489–490）。入力はL2:483（表は480–482）。L11の個別反例は229、未見は230、記憶は231で、表の範囲とずれている。\n- **R3（二重索引・束ね）**：\n  - 二重索引：03a/33、25/36、35/39\n  - 同じ軸の並存：08/54、09/55、49/56、50/57、12/59、15/61、16/62、04a/17、13/58\n  - 27・40は、13と軸が重なる。\n  - いずれも負例53件の中に独立して数えられている。二重計上しない旨の明記は58だけ。\n- **R4（主索引の表記）**：CASE-25/35に「主索引」の表記が残っている。\n- **R5（件数）**：正常5件のIDが列挙されていない。分類（正常5・負例53・索引11）は、literalから取った候補だと本文自身が断っている。\n- **R6（戻し先の語）**：\n  - CASE-18〜21/27〜29/47/48は「source owner／provider」と書いており、固定親の区分名「提供主体」（L2:488）と語がそろっていない。\n  - CASE-45/46とL3 trace表は、「HARNESSへ」を4つ目の戻し先として並べている。検証の提供主体として区分には収まるが、区分名との対応が書かれていない。\n- **R7（04bの戻し先）**：CASE-04bの「既存knowledge owner」は、固定親の区分名にない語。HMC-BR-003とL11:231によれば、1.0ではLABOに当たる。\n- **R8（16/62の書き方）**：CASE-16は宛先unknown、CASE-62は宛先の記述なしで、同じ軸なのに書き方がそろっていない。拒否のfixtureは、どちらも成立している。\n- **R9（単独fixtureの不足）**：次の点に単独のfixtureがない。\n  - 単一greenを成功手順にすること（L2:483）\n  - backlog連結の正常例（L2:484、L11:228）\n  - 過去評価に新規修復を強制しないこと（L2:487）\n  - 採否・assignmentの生成を拒否すること。ただし、CASE-01のoracleで検出できる。\n- **R10（系譜の正常fixture）**：OS登録→採否→変更→検証→再観測を一続きで示す正常fixtureがない（L11:228）。AC-03と負例26/37/51/58で受けている。\n- **R11（03bの対象）**：CASE-03b「target revisionだけ別」は、どのrecordの版が別なのかが決まらない。\n- **R12（監査のrepository外参照）**：監査JSONの`review_pins.review05_raw_path`が、`/tmp/labo5-review05-formal.txt`を指している。全文は埋め込まれていて、SHAは一致する。\n- **R13（監査の記載）**：\n  - `limitations[3]`の「unpublished」と、`record_state`の「published」が食い違う。\n  - 固定L2の範囲を480–490としているが、PO行のspanは480–489である（差は空行1行）。\n- **R14（英文・表記）**：post-operation observation、duplicate sendなど、英文が混じり表記が揺れている。\n\n### 判定\n- blocker 1（M1）。Major 1、残余14、未確認範囲0。\n- 委任承認は成立しない。Readyにはしない。merge admissionは本commentから生成しない。\n- M1を直したHEADでは、reviewerが差分を確かめる。Opusが`no_findings`なら、同じHEADでFableにブラインドで見てもらう。\n"
+  },
+  "M1_disposition": "warningとcandidateを並列出力として保持。warning先行を必須とする順序と順序飛越拒否を除き、固定親が定めた別状態追跡を保持。独立再レビュー前であり解消判定を生成しない。",
+  "change": {
+    "path": "docs/helix-labo/L10-verification/functional-verification.md",
+    "before": "**段階境界**: warning → candidate → OS registration/routing → target owner adoption → target change → HARNESS verification → post-operation observation/effect evaluation は別状態。順序飛越、別episode/revisionの証拠混載、候補/登録/修復成功のみからの完了主張を拒否する。LABOはknowledgeを評価・保持するが、canonical sourceへ直接writeせず、gateを有効化せず、採否/assignment/permission/authorityを生成しない。変更後条件での観測が無ければ旧成功を現行有効性へ流用しない。",
+    "after": "**段階境界**: 予防candidateと未処理頻出warningは、固定L2の条件に従って並列に返す出力であり、warningの先行をcandidate発行の前提にしない。候補発行、OS registration/routing、target owner adoption、target change、HARNESS verification、post-operation observation/effect evaluationは別状態で追跡する。別episode/revisionの証拠混載、候補/登録/修復成功のみからの完了主張を拒否する。LABOはknowledgeを評価・保持するが、canonical sourceへ直接writeせず、gateを有効化せず、採否/assignment/permission/authorityを生成しない。変更後条件での観測が無ければ旧成功を現行有効性へ流用しない。"
+  },
+  "current_files": [
+    {
+      "revision": "78095d0df568e528335deeb8737b47671ee8f5d2",
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "sha256": "aa06437d9a26fc833a2bf15ca5d9f87df427b68fd7886499f1fb6c2f0176cec3"
+    },
+    {
+      "revision": "78095d0df568e528335deeb8737b47671ee8f5d2",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "sha256": "b6aba96d43818dd5a65b74c53700c62a5e4ee7795c2eaa73833f7322630d71f1"
+    },
+    {
+      "revision": "78095d0df568e528335deeb8737b47671ee8f5d2",
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "sha256": "b8e6be1963b35ea6d90874f15e41b0b3a3cb7d7070a657be8a2b330a5e3730fb"
+    },
+    {
+      "revision": "78095d0df568e528335deeb8737b47671ee8f5d2",
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "sha256": "2076362505fffdd21f0bac4d375743c5b2e22fb634999d9b0e42bcc3f8a56208"
+    },
+    {
+      "revision": "78095d0df568e528335deeb8737b47671ee8f5d2",
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "sha256": "2bef02dabb0f377d3f7cfc82854e7e26f3eee6b3d55f9e82e908c187c1fc93f1"
+    },
+    {
+      "revision": "78095d0df568e528335deeb8737b47671ee8f5d2",
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "sha256": "72b46aae68bed2e5b359955b2f9cd9623d1d0bde69f9b4e42f792ee089ae7d62"
+    }
+  ],
+  "fixed_source_pins": [
+    {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+      "lines": [
+        480,
+        489
+      ],
+      "span_sha256": "274ea8f4562f7677b90f72bdbc8ba474540fdb74e3f6ff9e6632ad1274566c1a"
+    },
+    {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+      "lines": [
+        225,
+        231
+      ],
+      "span_sha256": "5e7c8afa50b3f430b01b641f145abee034e0b4ef87af3a4146c820c9c9aea174"
+    }
+  ],
+  "residual_disposition": "R1–R14は正式review原文のまま未解消として保持。初回監査は書き換えない。",
+  "validation": "Root diff全文Read、既存CASE ID集合不変、1行のみ変更、govcheck/diff check成功。実測・完全性・承認を生成しない。"
+}
