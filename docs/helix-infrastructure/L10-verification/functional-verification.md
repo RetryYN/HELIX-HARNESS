@@ -1093,9 +1093,9 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 #### CASE-INFRA-011-S5-074 — 接続/合成 composite restore証拠欠落
 
-- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `unit_results=CASE-INFRA-011-S5-072.normal.unit_results; backup={artifact=backup-sim-01,source_revision=sim-r7,result=sim-success}; restore={target=api-db-sim-01,revision=sim-r7,integrity=sim-ok,dependency_reconnect=sim-ok,startup=sim-ok,verification=sim-ok}; os_operation_request=none`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `unit_results=CASE-INFRA-011-S5-072.normal.unit_results; backup={artifact=backup-sim-01,source_revision=sim-r7,result=sim-success}; restore={result=sim-verified,target=api-db-sim-01,revision=sim-r7,integrity=sim-ok,dependency_reconnect=sim-ok,startup=sim-ok,verification=sim-ok}; os_operation_request=none`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
 - 変異: restore.verificationだけをmissingへ変更する
-- 入力: unit_results=CASE-INFRA-011-S5-072.normal.unit_results; backup={artifact=backup-sim-01,source_revision=sim-r7,result=sim-success}; restore={target=api-db-sim-01,revision=sim-r7,integrity=sim-ok,dependency_reconnect=sim-ok,startup=sim-ok,verification=sim-ok}; os_operation_request=none
+- 入力: unit_results=CASE-INFRA-011-S5-072.normal.unit_results; backup={artifact=backup-sim-01,source_revision=sim-r7,result=sim-success}; restore={result=sim-verified,target=api-db-sim-01,revision=sim-r7,integrity=sim-ok,dependency_reconnect=sim-ok,startup=sim-ok,verification=sim-ok}; os_operation_request=none
 - oracle: backup/他項目の部分成功は保持しcompositeを保留。recovery design ownerへ戻す。OS work/change ownerはOS操作要求がこのfixtureにないため非適用。
 - owner/戻し先: recovery design owner（具体ownerは固定親で未特定ならunknown）
 - trace: `INFRA-011-AC-03`。合成fixtureの設計候補であり未実行。
