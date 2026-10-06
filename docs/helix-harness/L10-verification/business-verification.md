@@ -81,6 +81,12 @@ execution_status: designed_only_not_executed
 |---|---|---|
 | `HARNESS-L2-040` | 独立criterionなし | ledger catalog/template obligationの意味・traceはfunctional ACで照合。登録数や抽出数を価値基準にしない。 |
 
+## Stage 3 親042の業務検証
+
+| L2親 | 独立criterion | 対応関係 |
+|---|---|---|
+| `HARNESS-L2-042` | 独立criterionなし | 事業成果を独立に主張せず、機能ACと採択済み親要求の意味保持だけを照合する。 |
+
 ### HELIX-HARNESS L2-044 — 業務検証（Stage 3、version_target: 1.0、起草候補）
 
 起草候補。Stage 3、`version_target: 1.0`。POがHARNESS-L2-044に条件付き採択したB route / Design Contract Portfolioを対象とする。この候補はL3承認・実装・実行・個別部品配置・設計成立を表さない。

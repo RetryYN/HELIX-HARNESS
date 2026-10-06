@@ -166,6 +166,12 @@ NFR CASEは測定candidate分類であり、実測・CI success・performance SL
 | `CASE-HARNESS-L10-NFR-040-01` | `NFR-C-HARNESS-040-01` | 12 layer/6 pair/L0 anchorの契約候補と双方向edge fixture。 | layer/pair/anchor relationの欠落と片方向edgeを分けて数える。 | catalog未実装は未完として記録、registration/executionは測定しない。 |
 | `CASE-HARNESS-L10-NFR-040-02` | `NFR-C-HARNESS-040-01` | L2-040で列挙されたledger contract field、6 pair edges、L0独立anchor fieldsとsource snapshot population。 | selected catalog relation欠落・片edge・staleを各別計上。snapshot coverageと未完/stale populationを明示する。 | OS保存が未構築でもHARNESSの意味oracleを代替しない。未提示契約は未完/unknown。 |
 
+## Stage 3 親042の非機能検証
+
+| CASE ID | NFR候補 | 検証対象 | 観測 | 限界 |
+|---|---|---|---|---|
+| `CASE-HARNESS-L10-NFR-042-01` | 独立NFRなし | 性能refactorを選択した場合のbaseline/budget/workload/profile/statistical condition/regression oracle | HARNESS-L2-016と対L11に固定された入力・oracleが適用可能かを参照する。 | 本候補では数値を設定せず、実測性能受入を再定義しない。 |
+
 ### HELIX-HARNESS L2-044 — NFR総合検証（Stage 3、version_target: 1.0、起草候補）
 
 起草候補。Stage 3、`version_target: 1.0`。POがHARNESS-L2-044に条件付き採択したB route / Design Contract Portfolioを対象とする。この候補はL3承認・実装・実行・個別部品配置・設計成立を表さない。
