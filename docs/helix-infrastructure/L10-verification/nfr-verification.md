@@ -82,4 +82,4 @@ L2-009/010用の数値候補は設定しない。対のL10では宣言済みsele
 
 ## Stage 5 追加範囲 — HELIXINFRASTRUCTURE-L2-011
 
-測定対象は `INFRA-NFR-011-S5-01/02` の静的候補であり、実測結果ではない。functional CASE 86件の計画分母を親項目・variant・操作群で分ける。入力可観測性、期待とのoracle一致、未完義務保持を別に記録し、unknown/unobserved/stale/mismatch/unauthorizedを除外しない。S5-086はwrite試行、拒否、write非実行、operation前後状態不変の各観測項目へ含め、拒否がなされず書込みまたは状態変化が生じる誤分類を期待oracleと照合する。独立recovery例外のscopeから通常read-onlyの禁止を外さない。固定L11:146由来のunknown/unobserved/stale/mismatch/unauthorized誤成立0は静的分類oracleの期待に限り、実装保証や実測合格としない。新しい数値SLO、期限、閾値は設けず、分母0は率なし、未実行は未測定とする。
+測定対象は `INFRA-NFR-011-S5-01/02` の静的候補であり、実測結果ではない。functional CASE 86件の計画分母をunit 54、operation 5、recovery 9、connection/composite 9、scope境界 2、environment/operation negative 6、partial composite 1の7形式別区分と親項目・variantで分ける。入力可観測性、期待とのoracle一致、未完義務保持を別に記録し、unknown/unobserved/stale/mismatch/unauthorizedを除外しない。S5-086はwrite試行、拒否、write非実行、operation前後状態不変の各観測項目へ含め、拒否がなされず書込みまたは状態変化が生じる誤分類を期待oracleと照合する。独立recovery例外のscopeから通常read-onlyの禁止を外さない。固定L11:146由来のunknown/unobserved/stale/mismatch/unauthorized誤成立0は静的分類oracleの期待に限り、実装保証や実測合格としない。新しい数値SLO、期限、閾値は設けず、分母0は率なし、未実行は未測定とする。

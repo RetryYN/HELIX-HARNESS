@@ -46,4 +46,4 @@ stage: 1
 
 固定L2-011に独立business outcome/oracleはないため、独立BR、KPI、業務成功CASEを設けない。機能判定は `INFRA-011-FR-01 / AC-01..04` と対のfunctional CASEを参照する。
 
-functional CASE集合は `CASE-INFRA-011-S5-001`–`CASE-INFRA-011-S5-076` (76件)である。技術状態、connection、backup/restore/recovery/rebuildabilityからbusiness success、incident closure、費用/配置採否、OS release収載、実行許可を生成しない。
+functional CASE集合は `CASE-INFRA-011-S5-001`–`CASE-INFRA-011-S5-086` (86件)である。技術状態、connection、backup/restore/recovery/rebuildabilityからbusiness success、incident closure、費用/配置採否、OS release収載、実行許可を生成しない。

@@ -95,7 +95,7 @@ L2-011 1.0に数値SLO、時間/回数threshold、性能保証を追加しない
 
 | 候補 | 分母/層別 | oracleと記録 |
 |---|---|---|
-| `INFRA-NFR-011-S5-01` | functional CASE集合の全86件をunit/operation/recovery/connection-composite別、item/variant別に列挙。unknown/unobserved/stale/mismatch/unauthorizedを分母から除かず、適用外には固定根拠と理由を記録する。 | 可観測な入力/期待/結果の有無とoracle一致を別記する。S5-086では禁止write試行、拒否結果、writes=none、前後状態不変を別々に観測する。L11:146が拒否するunknown/unobserved/stale/mismatch/unauthorizedの誤受入分類の期待件数0は静的候補に限り、実測・runtime保証としない。分母0は率なし、未実行は未測定。|
+| `INFRA-NFR-011-S5-01` | functional CASE集合の全86件をunit 54、operation 5、recovery 9、connection/composite 9、scope境界 2、environment/operation negative 6、partial composite 1の7区分とitem/variant別に列挙。unknown/unobserved/stale/mismatch/unauthorizedを分母から除かず、適用外には固定根拠と理由を記録する。 | 可観測な入力/期待/結果の有無とoracle一致を別記する。S5-086では禁止write試行、拒否結果、writes=none、前後状態不変を別々に観測する。L11:146が拒否するunknown/unobserved/stale/mismatch/unauthorizedの誤受入分類の期待件数0は静的候補に限り、実測・runtime保証としない。分母0は率なし、未実行は未測定。|
 | `INFRA-NFR-011-S5-02` | 18最低項目、該当connectionとoperation/recoveryのsource/revision/owner/unfinished-duty参照をCASEごとに追跡する。read-only操作はempty write-set/write禁止の適用根拠と通常操作・独立recovery例外のscope境界も追跡する。 | owner不明はunknown。OS停止中ticket不要と復帰後syncは別CASE。S5-086では拒否結果が操作起因changeなしと一致するか、許可・状態変更へ誤転換されないかを静的に分類する。capacity観測をOS/INTELLIGENCE採否へ換算しない。率・閾値・合格を未実行で報告しない。|
 
 この候補は個別PO質問、追加owner/authority、閾値または実装scopeを作らない。
