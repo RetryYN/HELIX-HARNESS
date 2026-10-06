@@ -1,0 +1,310 @@
+{
+  "artifact": "parent067 review01 disposition time snapshot",
+  "status": "fixed_candidate_not_independently_reviewed",
+  "authority_effect": "none",
+  "base": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+  "reviewed_head": "8804c8c8c68c0275bf765a454cb88f69ff0288a6",
+  "fixed_body_revision": "660c33e900fb713b45ee7ba870927e2737fd8f63",
+  "formal_review": {
+    "comment_id": 6021737410,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2636#issuecomment-6021737410",
+    "raw_body": "## review01（independent review、PR #2636 親HELIXLABO-L2-067、HEAD 8804c8c8c68c0275bf765a454cb88f69ff0288a6、base main a1bcdba15）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼comment 6021621437に応える。方法はcomment 6013171449のとおり。\n\n### 照合の方法\n- **固定親**：PO判断記録`po-decision-2026-09-29-57candidates.md`の82行は、`HELIXLABO-L2-067`／条件付き採択（D1：「最初の適格candidateの結果」と同一Attempt内修正回数。065と換算・統合しない）である。照合の起点は、318ec4aのL2-067（529–540）とL11-067（269–277）、§24の関係行。依存先はL2-059と065。\n- **ブラインド照合（Opus）**：固定親、依存先、6本文の追補行だけを読んだ。監査、PR comment、旧所見は見ていない。固定文を24群に種類分けし、対応CASE・ACに結び付けた。下のM1を見つけた。\n- **継続照合（Opus）**：旧#2620で067に向けた所見を全件判定した。解消6件、対象外2群で、Majorとして残るものは0件。\n  - 監査のpinを237件再計算し、全件一致した。監査JSONのSHA `2035142a…`はmdの記載と一致した。六文書は69dc236とHEADでbytes同一。\n  - Major候補を2件挙げた（059 cost gateの拒否fixtureの欠落、完了生成の拒否fixtureの欠落）。reviewerが固定親で確かめ、下のR1・R2として残余に置いた。理由はそれぞれの項に書いた。\n- **reviewerの確認**：M1は、CASE-03b/05の原文と固定L2:537–538、L11:275で確かめた。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - origin/mainとの`merge-tree`は衝突なし\n\n### Major\n**M1（candidate identity／digestの欠落で、戻し先が決まらない分岐がある）**\n- **欠陥**：\n  - CASE-03b（candidate digestだけ欠落）のoracleは「unknown/未完としてLABOに保持し、digest提供元が選択入力として識別できる場合はその既存source ownerへ不足を返す」。識別できない分岐では、どこへも返さない。\n  - CASE-05（candidate identityだけ欠落）のoracleは「candidate/result source ownerが識別できる場合そのowner、識別できない場合unknown」。同じく、識別できない分岐に戻し先がない。\n  - 共通fixture B0はcandidate identity／digestの提供元を定めていないので、どちらの分岐を通るかもfixtureから決まらない。\n  - 同じPRのCASE-03c（event順序不明→OS）やCASE-25（個体IDがunknownでもroleは既知）は、区分名で戻し先を決めていて、型が合わない。\n- **起こりうること**：event sourceがcandidate digestやidentityを出さないとき、不足が責務ownerに届かず、LABOの中に残る。\n- **守るべき行**：\n  - L11-067「未見例」（318ec4a labo-acceptance.md:275「event sourceがAttempt内の変更順やcandidate digestを提供しない場合は、修復round数を確定せず観測source ownerへ不足を戻す」）\n  - L2-067「責務と権限」（labo-requirements.md:537、OSは実行eventを所有）、「失敗・未見」（:538、責務ownerへ戻す）\n\n### 後で直す残余（承認を止めない）\n- **R1（059 cost gateの単独fixture）**：固定L11:274は「059のcost/quality gateを変える例も不成立」とする。現CASE-20は「quality不成立を許容するgate変更」だけを扱い、cost gateの変更を拒否するfixtureがない。旧公開a4a365のCASE-20は「059 cost/quality gateだけ変更」だった。本文は旧30定義の意味を保持したと書き、監査は\"20 single output scopes rederived\"と書いていて、記載とも合わない。\n  - Majorにしない理由：旧定義はmainに入っておらず、「既存の境界チェックの削除」には当たらない。gateの変更は承認・authorityの生成ではなく、列挙された反例の単独fixtureの不足にあたる。残余のうち最も優先して直すものとして記録する。\n- **R2（完了の生成）**：BRとBVは業務完了・task completionを生成しないと書くが、LABOの観測からtask completionや受入完了を出力する誤りを拒否するfixtureはない。CASE-31は採否だけに限っている。\n  - Majorにしない理由：固定L2-067:537とL11-067:276が挙げる禁止（選択・割当・起動・修復、oracle・threshold・採否・資格・admission）には、すべて拒否fixture（04a/04b/29–38）がある。完了は固定親067の列挙になく、§24の13〜15行もtarget変更・改善の確定についての行である。\n- **R3（round詳細の照合）**：L2:535とL11:273が求める「各roundの入力・出力candidate、変更receipt、oracle結果」の結び付けが、AC-01とCASE-24のoracleで明示されていない。CASE-01の「round再構成、元digest維持」が部分的に受けている。\n- **R4（単独fixtureの不足）**：\n  - 新しいtask classで既存predicateが適用できない場合のunknown（L11:275–276。CASE-14はrevisionだけ）\n  - candidateへのpredicateの適用順だけが不明な場合の負例（L2:534）\n  - 「065の有無にかかわらず返す」（L2:536。065がない場合のfixtureがない）\n- **R5（065の採択範囲の言い換え）**：FR-01は065のPO採択指標を「最初のAttemptの結果／first_passとpost-initial retry_count」と書く。PO判断記録80行の065欄は「最初のAttemptの結果」だけである。\n- **R6（文言・帰属）**：\n  - CASE-20の変異文は「059品質gateを不変に保ち、…gate変更だけを追加」で、自己矛盾ぎみで読みにくい。\n  - CASE-04aの「既存task/要求ownerのcandidate」は、固定L2:537にない帰属である（task/要求ownerが持つのはpredicateとoracle）。\n  - CASE-09は、predicate選択根拠のdecision receipt DP0を、固定L2:533の入力列挙にない追加入力にしている。\n- **R7（SECURITYの戻し先）**：CASE-28/30はSECURITY許可がunknownの場合に戻し先を書いていない。AC-03でpermission=SECURITYと対応づけているので、宛先は決まる。\n- **R8（表記・ID・並び）**：\n  - 「task/要求 owner」（03a/09/10/14、空白入り）と「OS record owner」（CASE-21）の表記揺れ。\n  - NFRのIDが、NGは`NLABO-067-FR-01-01`、NVは`CASE-NLABO-067-FR-01-01`で、他の親（`LABO-0xx-NFR-nn`）と形式が違う。\n  - CASEの並びが15–23の後に05–14になっている。\n- **R9（監査の値）**：\n  - `candidate_basis.added_direct_fixture_candidates`は9件（24–32）だけで、FR欄は未定義の`FR-LABO-067`のまま。CASE-25は「HARNESS/task-requirement owner」のまま。`responsibility_roles.predicate_and_oracle`も「HARNESS/task/requirement owner」。`overlap_notes`は「plus 9」（本文は15件）。\n  - `scope.main_base`と各suffix_mapの`base_revision`はaf93d1fで、`authoring_base`のa1bcdbaと合わない。insertion_anchorも「After … L2-060」で、実際の挿入位置（064の後）と違う。\n  - いずれも訂正前の値が、訂正前であることの表示なしで残っている。\n  - `selected_source_line.candidate_source_line_sha_matches_no_lf: false`は誤りで、再計算するとLF除外のSHAと一致する（true）。\n  - `review_context.review05.scope_note`は「formal05のM3」と書くが、実際はm3（Minor）である。\n- **R10（監査の外部参照）**：`review_context.review05.path`が`/tmp/labo5-review05-formal.txt`を、`preflight_legacy_inventory.search_matches`の4件がローカル絶対pathを指していて、repository外で再現できない。\n\n### 判定\n- blocker 1（M1）。Major 1、残余10、未確認範囲0。\n- 委任承認は成立しない。Readyにはしない。merge admissionは本commentから生成しない。\n- M1を直したHEADでは、reviewerが差分を確かめる。Opusが`no_findings`なら、同じHEADでFableにブラインドで見てもらう。R1・R2もFableの見解と照合する。\n",
+    "utf8_bytes": 8207,
+    "sha256": "c86310681ece1b70a82aa466b6bf29c3e9bcc63f39e631ca24ae3451a678055e"
+  },
+  "M1_disposition": "B0 observation source SRC0 knownOS event/record responsibility with individualunknown; CASE03b/05 always return missing candidate digest/identity to observation source responsibility, not disappear behind individualunknown",
+  "same_PR_residual_fixes": {
+    "R1": "CASE39 independently refuses059 cost-gate change; CASE20 quality output clarified",
+    "R5": "PO065 wording is only最初のAttemptの結果; fixed065 metric definitions separate",
+    "R6": "candidate ownership not inferred as task/要求owner"
+  },
+  "residual_raw": "### 後で直す残余（承認を止めない）\n- **R1（059 cost gateの単独fixture）**：固定L11:274は「059のcost/quality gateを変える例も不成立」とする。現CASE-20は「quality不成立を許容するgate変更」だけを扱い、cost gateの変更を拒否するfixtureがない。旧公開a4a365のCASE-20は「059 cost/quality gateだけ変更」だった。本文は旧30定義の意味を保持したと書き、監査は\"20 single output scopes rederived\"と書いていて、記載とも合わない。\n  - Majorにしない理由：旧定義はmainに入っておらず、「既存の境界チェックの削除」には当たらない。gateの変更は承認・authorityの生成ではなく、列挙された反例の単独fixtureの不足にあたる。残余のうち最も優先して直すものとして記録する。\n- **R2（完了の生成）**：BRとBVは業務完了・task completionを生成しないと書くが、LABOの観測からtask completionや受入完了を出力する誤りを拒否するfixtureはない。CASE-31は採否だけに限っている。\n  - Majorにしない理由：固定L2-067:537とL11-067:276が挙げる禁止（選択・割当・起動・修復、oracle・threshold・採否・資格・admission）には、すべて拒否fixture（04a/04b/29–38）がある。完了は固定親067の列挙になく、§24の13〜15行もtarget変更・改善の確定についての行である。\n- **R3（round詳細の照合）**：L2:535とL11:273が求める「各roundの入力・出力candidate、変更receipt、oracle結果」の結び付けが、AC-01とCASE-24のoracleで明示されていない。CASE-01の「round再構成、元digest維持」が部分的に受けている。\n- **R4（単独fixtureの不足）**：\n  - 新しいtask classで既存predicateが適用できない場合のunknown（L11:275–276。CASE-14はrevisionだけ）\n  - candidateへのpredicateの適用順だけが不明な場合の負例（L2:534）\n  - 「065の有無にかかわらず返す」（L2:536。065がない場合のfixtureがない）\n- **R5（065の採択範囲の言い換え）**：FR-01は065のPO採択指標を「最初のAttemptの結果／first_passとpost-initial retry_count」と書く。PO判断記録80行の065欄は「最初のAttemptの結果」だけである。\n- **R6（文言・帰属）**：\n  - CASE-20の変異文は「059品質gateを不変に保ち、…gate変更だけを追加」で、自己矛盾ぎみで読みにくい。\n  - CASE-04aの「既存task/要求ownerのcandidate」は、固定L2:537にない帰属である（task/要求ownerが持つのはpredicateとoracle）。\n  - CASE-09は、predicate選択根拠のdecision receipt DP0を、固定L2:533の入力列挙にない追加入力にしている。\n- **R7（SECURITYの戻し先）**：CASE-28/30はSECURITY許可がunknownの場合に戻し先を書いていない。AC-03でpermission=SECURITYと対応づけているので、宛先は決まる。\n- **R8（表記・ID・並び）**：\n  - 「task/要求 owner」（03a/09/10/14、空白入り）と「OS record owner」（CASE-21）の表記揺れ。\n  - NFRのIDが、NGは`NLABO-067-FR-01-01`、NVは`CASE-NLABO-067-FR-01-01`で、他の親（`LABO-0xx-NFR-nn`）と形式が違う。\n  - CASEの並びが15–23の後に05–14になっている。\n- **R9（監査の値）**：\n  - `candidate_basis.added_direct_fixture_candidates`は9件（24–32）だけで、FR欄は未定義の`FR-LABO-067`のまま。CASE-25は「HARNESS/task-requirement owner」のまま。`responsibility_roles.predicate_and_oracle`も「HARNESS/task/requirement owner」。`overlap_notes`は「plus 9」（本文は15件）。\n  - `scope.main_base`と各suffix_mapの`base_revision`はaf93d1fで、`authoring_base`のa1bcdbaと合わない。insertion_anchorも「After … L2-060」で、実際の挿入位置（064の後）と違う。\n  - いずれも訂正前の値が、訂正前であることの表示なしで残っている。\n  - `selected_source_line.candidate_source_line_sha_matches_no_lf: false`は誤りで、再計算するとLF除外のSHAと一致する（true）。\n  - `review_context.review05.scope_note`は「formal05のM3」と書くが、実際はm3（Minor）である。\n- **R10（監査の外部参照）**：`review_context.review05.path`が`/tmp/labo5-review05-formal.txt`を、`preflight_legacy_inventory.search_matches`の4件がローカル絶対pathを指していて、repository外で再現できない。\n\n",
+  "residual_sha256": "f6a800deda88a2ebc0f359fc7008a293647f488c2a33fa28600471562f8a7d79",
+  "R9_snapshot_clarification": {
+    "old_audit_unchanged": true,
+    "candidate_basis_old_metadata": "embedded added_direct_fixture_candidates/responsibility_roles/overlap_notes and base/insertion_anchor were intermediate authoring metadata not authoritative current body; disclosed omission of label in prior snapshot",
+    "current_body": "this manifest/46 physical CASE rows/current task要求owner body overrides intermediate labels",
+    "source_hash_diagnostic": "actual noLF line399 SHA58be97...db4f matches; false flag historical diagnostic incorrect",
+    "review05_label": "067 reference is minor m3, not Major M3; old source note wrong and preserved as historical"
+  },
+  "six_manifest": [
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "full_sha256": "9eec65fc2612c310f161a10ca0a316bb7cd211a1e8413935d36c1fb10de19078",
+      "prefix_sha256": "fa02afbda5c2db97fb7782dcc8eac65bf5ee023c04459018861a2c7fe6db5e1e",
+      "suffix_sha256": "9c98cf02966776c4626dab90732db4c627cace24e2e9ea805acf9bc8a9c9c515"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "full_sha256": "ac9163e5849e73a2d6174bcd2464cc8301e63f4ad065529a1bf75bc0621591a5",
+      "prefix_sha256": "fe6734281d6b130a2d7c00aee7959bb33e4693eb5eb412822b085e2f14d258c6",
+      "suffix_sha256": "ba98d611b3a5a693a6cee4f255d9fe6752cc66d02ba5bcb86b89f70ade9e1a97"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "full_sha256": "a205312c3abb4cc7faafb5eb7c28526b57c5e16d46da4bb2eb72b280f69559f3",
+      "prefix_sha256": "1765a0f8d82820bc74857bebc06badb898da5b7c3e48f43f8bbfe32543239aac",
+      "suffix_sha256": "0182f57f8ad7e30844b7bd985c1b680e80a4c75036f95a086688f74b74d783e5"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "full_sha256": "f8779cb85d839a2c33c191c83a298a789c580c20e8ceee0af55439375a609d3a",
+      "prefix_sha256": "b656030b686b0939f7a2e1f39e463198df30f936a12cdd60567d891579bd7753",
+      "suffix_sha256": "e44d3527e5e8f7645276181db8e5778c2c0e11798f6852d3a433f272f053be88"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "full_sha256": "7c02c71af71089f0019650ef4d677aa15d40c6fd17c93c5135f232d449109905",
+      "prefix_sha256": "7cb7c6a27205165958680182d7f30d6b1f96ca539a328a11fa0060cc48f020e5",
+      "suffix_sha256": "4f598ff3d0810724058bd47f4b4c6191c139680a0894a31c9b720db21cc4cde8"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "full_sha256": "46dfb10ffd242c2fea981686b9107846bef03f2e76606b99d5f59ec737038253",
+      "prefix_sha256": "3c127485a1c112703b1480e5475eadcf4dd7e29198b2e7cb6b3aa01d3e6d2d01",
+      "suffix_sha256": "33b8c9001218cde88c4055d0bb8b4fb993fe473d2d484d7d7e8947b49f1047e8"
+    }
+  ],
+  "current46_raw_rows": [
+    {
+      "line": 3184,
+      "raw_literal": "| `L10-LABO-067-CASE-01` | `LABO-067-FR-01` | `LABO-067-AC-01` | B0（共通fixture定義。未見正常は当該既存predicateの適用範囲内） | 正常fixture（変異なし） | 事前predicate/oracle、Attempt identity、順序付きcandidate digest/eventからfirst eligibleと同一Attempt内roundを再構成し、元digestを維持する。 |\n",
+      "raw_lf_sha256": "e5379d87cf1dea134d3714e1cc997809789f21bd78eb3a5cbc7236f606c04f29"
+    },
+    {
+      "line": 3185,
+      "raw_literal": "| `L10-LABO-067-CASE-02` | `LABO-067-FR-01` | `LABO-067-AC-02` | B0とは別の未見task class T1を選び、既存predicate/oracleの適用範囲内である根拠をtask/要求ownerのsourceから与える。残るreceiptはB0相当。 | 未見正常fixture（変異なし） | 既存predicateの適用可能な未見taskだけ照合し、総Attempt countを出さない。 |\n",
+      "raw_lf_sha256": "88a2bba8732efd5f83b12a6e7192849f7977d3c9e4c1ee28bbafdc35bd0d7d47"
+    },
+    {
+      "line": 3186,
+      "raw_literal": "| `L10-LABO-067-CASE-03a` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | predicate revisionだけ欠落 | first eligibleを決めずtask/要求 ownerへ戻す。 |\n",
+      "raw_lf_sha256": "0bd7004f2d438a0cb342740f6836701450ee605b5ef1f5d678bd817073917460"
+    },
+    {
+      "line": 3187,
+      "raw_literal": "| `L10-LABO-067-CASE-03b` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 単独変異: candidate digestだけ欠落。その他の入力はCASE-01と同一。 | candidate resultをunknown/未評価として保持し、B0で既知のSRC0/OS event観測source責務へdigest不足を返す。個体owner IDはunknownのまま、既知責務区分とLABO観測義務を維持する。 |\n",
+      "raw_lf_sha256": "8193b6f1ed1a69f2faf9cd281e3dddc4b02c346d7d0dcfc65eeed695d87bbf31"
+    },
+    {
+      "line": 3188,
+      "raw_literal": "| `L10-LABO-067-CASE-03c` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 単独変異: repair event orderだけ不明。その他の入力はCASE-01と同一。 | repair countを確定せず、Attempt/event順序を記録するOSへ不足を返す。event identity自体が特定不能ならunknownを保つ。 |\n",
+      "raw_lf_sha256": "c77eab3fc3ddff9a7f048bdf01256b22065830ee234fcf324890f2543002eef7"
+    },
+    {
+      "line": 3189,
+      "raw_literal": "| `L10-LABO-067-CASE-03d` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 単独変異: eventが別Attempt identityに属する。その他の入力はCASE-01と同一。 | 別Attemptのeventを同一repair roundへ混ぜず、Attempt/assignment receiptを記録するOSへ返す。identityが特定不能ならunknownを保つ。 |\n",
+      "raw_lf_sha256": "94e8e7b65fb76ba08175bfdcc2ec4807f2da9024c1e83e78fa465f7833fcbf9d"
+    },
+    {
+      "line": 3190,
+      "raw_literal": "| `L10-LABO-067-CASE-03e` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 単独変異: duplicate deliveryだけ追加。その他の入力はCASE-01と同一。 | duplicate deliveryを追加roundに数えず、既存OS event receiptへ返す。event identityが特定不能ならunknownを保つ。 |\n",
+      "raw_lf_sha256": "d7ccbe668cf24a5f92de46096e8657dc0db14c6b3ade5ff622ad5ef158ac35e5"
+    },
+    {
+      "line": 3191,
+      "raw_literal": "| `L10-LABO-067-CASE-03f` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 最終提出から初回candidateを逆算 | first-eligible identity/resultを推定で補わずunknown/未評価を保持し、候補の順序付きeventを持つ既存OS sourceへ不足を返す。 |\n",
+      "raw_lf_sha256": "9db13280ff86a4cb5e92f590477f559b6681b9383373d3d0bde06898d2055d70"
+    },
+    {
+      "line": 3192,
+      "raw_literal": "| `L10-LABO-067-CASE-03g` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 単独変異: eligible判定eventだけ欠落。predicate・oracle・candidate digest・Attempt入力はCASE-01と同一。 | first eligibleを推測せず未評価とし、欠落eventの記録はOSへ戻す。event identity不明はunknownを保つ。 |\n",
+      "raw_lf_sha256": "815c1593c60680425bd9a35314b70ce547f64968415a99b7b5e960f55049b7ae"
+    },
+    {
+      "line": 3193,
+      "raw_literal": "| `L10-LABO-067-CASE-04a` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | LABOがcandidateを修復 | 修復を拒否し、受領したcandidate/digestと既存OS実行状態を保つ。candidateの所有者をtask/要求ownerと推測しない。 |\n",
+      "raw_lf_sha256": "f99ba7ef47958f5a22b36f682df5636f4a89d873d25f8ccbce708343408b234d"
+    },
+    {
+      "line": 3194,
+      "raw_literal": "| `L10-LABO-067-CASE-04b` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | LABOがWorkerを割当 | 拒否しOSへ。 |\n",
+      "raw_lf_sha256": "47dced7a280e16221de7ee434b8bb12fe06483fa955cac7a73015495765064d6"
+    },
+    {
+      "line": 3195,
+      "raw_literal": "| `L10-LABO-067-CASE-15` | `LABO-067-FR-01` | `LABO-067-AC-03` | 索引参照のみ。独立fixtureではない。 | 索引（独立fixtureではない）: CASE-03aのpredicate revision欠落を参照する。 | 主fixtureのoracleを使い、同じ変異を二重計上しない。 |\n",
+      "raw_lf_sha256": "37de4a73adb33e861f929585c87b1b1d8ba9bcbdc8b5a37facd4abbf9fe33b40"
+    },
+    {
+      "line": 3196,
+      "raw_literal": "| `L10-LABO-067-CASE-16` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 適用oracleだけ欠落 | 結果をunknownとしtask/要求ownerへ戻す。 |\n",
+      "raw_lf_sha256": "75f8255a2707fe4dce3f11948d7a711c97db4275cfc71871e529f2e62b89ef50"
+    },
+    {
+      "line": 3197,
+      "raw_literal": "| `L10-LABO-067-CASE-17` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 総Attempt countを本候補指標とする | 拒否し本候補のscope外としてsource holdingに残す。 |\n",
+      "raw_lf_sha256": "c4a2f230e67214fe2949a856354dd7d65e779b3e1465804eeaf14827e189a1f9"
+    },
+    {
+      "line": 3198,
+      "raw_literal": "| `L10-LABO-067-CASE-18` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 065 first_passをcandidate resultへ置換 | 別指標を保持し置換しない。 |\n",
+      "raw_lf_sha256": "ade571e7a10319d3b606e844518ce176c2ca2b35caad2485bb522d4c921bce86"
+    },
+    {
+      "line": 3199,
+      "raw_literal": "| `L10-LABO-067-CASE-19` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 065 retry_countへ内部repair roundを加算 | 別指標を保持し加算しない。 |\n",
+      "raw_lf_sha256": "51714d0f8776a4a91cf1407a597570dd53f6ffe99a8c1ef61eab465ba5f1a266"
+    },
+    {
+      "line": 3200,
+      "raw_literal": "| `L10-LABO-067-CASE-20` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 入力の059品質条件を変更せず、quality不成立を許容する新しいquality_gate値だけをLABO出力へ誤追加する。 | 拒否し固定親の比較意味を保つ。 |\n",
+      "raw_lf_sha256": "1e3a247c595b5708ac0bfc3b7071d23b83a01e3eae2cfb74e902238d6d58a201"
+    },
+    {
+      "line": 3201,
+      "raw_literal": "| `L10-LABO-067-CASE-21` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | result receiptだけ欠落 | candidate resultをunknownとしOS record ownerへ戻す。 |\n",
+      "raw_lf_sha256": "34c93cf2687ec19968f73bdd91ca754600fe1d670eb1fcebdce702e40924b444"
+    },
+    {
+      "line": 3202,
+      "raw_literal": "| `L10-LABO-067-CASE-22` | `LABO-067-FR-01` | `LABO-067-AC-03` | 索引参照のみ。独立fixtureではない。 | 索引（独立fixtureではない）: `L10-LABO-067-CASE-03d` の別Attempt event混入を参照する。 | 主fixture03dを直接参照し、同じ変異を二重計上しない。 |\n",
+      "raw_lf_sha256": "357b922a63030f95d65f83dee1944d8c207c5be8f20e2549b42263056cbe299f"
+    },
+    {
+      "line": 3203,
+      "raw_literal": "| `L10-LABO-067-CASE-23` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 単独変異: first-eligible candidateに適用するoracle revisionだけ欠落。oracle本体・predicate・candidate/event receiptはCASE-01と同一。 | first-eligible resultを確定せずunknown/未評価とし、task/要求ownerへ戻す。 |\n",
+      "raw_lf_sha256": "a5c66b59f87d4bcf19f5b99186536bade424275b726313fc9e440340953f8585"
+    },
+    {
+      "line": 3204,
+      "raw_literal": "| `L10-LABO-067-CASE-05` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 単独変異: candidate identityだけ欠落。その他の入力は `CASE-01` と同一。 | first eligibleを特定せずunknown/未評価に保ち、B0で既知のSRC0/OS event観測source責務へcandidate identity不足を返す。個体owner IDはunknownのまま、既知責務区分とLABO観測義務を維持する。 |\n",
+      "raw_lf_sha256": "f121fce563378f24b74b41210289b2ff21424250a73433440f222e2252a28d3a"
+    },
+    {
+      "line": 3205,
+      "raw_literal": "| `L10-LABO-067-CASE-06` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 単独変異: assignment identityだけ欠落。その他の入力は `CASE-01` と同一。 | 実行を選択Attemptに結ばない 戻し先: OS。 |\n",
+      "raw_lf_sha256": "3caf830e860638ebbd2448e0ae30d9bc9d9934e5674bdf655eb56ec6caf525d2"
+    },
+    {
+      "line": 3206,
+      "raw_literal": "| `L10-LABO-067-CASE-07` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 単独変異: Attempt identityだけ欠落。その他の入力は `CASE-01` と同一。 | roundを数えない 戻し先: OS。 |\n",
+      "raw_lf_sha256": "23610e55395c4babd47b71b21ecb18fb99664f92fb92a77eaf6abd6bdcf31bc1"
+    },
+    {
+      "line": 3207,
+      "raw_literal": "| `L10-LABO-067-CASE-08` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 単独変異: oracle revisionだけが選択scopeの版と異なる。oracle本体・predicate・candidate/event receiptはCASE-01と同一。 | stale/別revisionのoracle判定をfirst-eligible resultへ流用せずunknown/未評価とし、task/要求ownerへ戻す。 |\n",
+      "raw_lf_sha256": "2db71ac84250a489c7c00ecd1deea910a1efbf03358628cd6d0d4684d7ca1b64"
+    },
+    {
+      "line": 3208,
+      "raw_literal": "| `L10-LABO-067-CASE-09` | `LABO-067-FR-01` | `LABO-067-AC-03` | B0の既存predicate選択根拠decision receipt DP0も追跡可能な準備入力。 | DP0 receiptだけ欠落。 | 適用predicateの判断が追跡不能ならunknownを保持し、task/要求 ownerへ戻す。 |\n",
+      "raw_lf_sha256": "a2ef8c348324d375a7eb00810de4781b9f0b408ce6eea1e58b30d424e28489bb"
+    },
+    {
+      "line": 3209,
+      "raw_literal": "| `L10-LABO-067-CASE-10` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 単独変異: result後にpredicateを選択だけを変更。その他の入力は `CASE-01` と同一。 | result後選択を拒否し、predicateを決めるtask/要求 ownerへ戻す。 |\n",
+      "raw_lf_sha256": "785dd4dff1b4326eda7aff612299355f2a3786310413252785b129728fd7c885"
+    },
+    {
+      "line": 3210,
+      "raw_literal": "| `L10-LABO-067-CASE-11` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 単独変異: 後続passがfirst resultを後続resultへ上書きだけを変更。その他の入力は `CASE-01` と同一。 | first resultを保持し後続resultによる上書きを拒否。戻し先: LABO出力責務。 |\n",
+      "raw_lf_sha256": "7c57d81eada29b6772a6872ab77de8969bee4ecd5a70ae90ccec7f63b5349e5d"
+    },
+    {
+      "line": 3211,
+      "raw_literal": "| `L10-LABO-067-CASE-12` | `LABO-067-FR-01` | `LABO-067-AC-03` | B0のうちrepair event receipt E1だけ欠落した準備入力。他入力は有効。 | 入力不変で、不明なrepair round countを0と出力する。 | round count unknown 戻し先: OS。 |\n",
+      "raw_lf_sha256": "e8d26b5b4c517a12578dc831b4d11541208c20b0b1010e6964478206cea5c006"
+    },
+    {
+      "line": 3212,
+      "raw_literal": "| `L10-LABO-067-CASE-13` | `LABO-067-FR-01` | `LABO-067-AC-03` | 索引参照のみ。独立fixtureではない。 | 索引（独立fixtureではない）: `L10-LABO-067-CASE-05`、`L10-LABO-067-CASE-06`、`L10-LABO-067-CASE-07`。candidate、assignment、Attempt identityの各単独変異を参照する。 | 各単独CASEのoracleを個別に確認し、複合変異を独立計上しない。 |\n",
+      "raw_lf_sha256": "1641f07cdd96445486c6a32ebe7364597876cad38f6390437922642437461341"
+    },
+    {
+      "line": 3213,
+      "raw_literal": "| `L10-LABO-067-CASE-14` | `LABO-067-FR-01` | `LABO-067-AC-03` | 共通正常基準B0（下記合成fixture定義） | 単独変異: new revisionがselected predicate scopeにないだけを変更。その他の入力は `CASE-01` と同一。 | 未見revisionをunknownとし、predicate/oracleはtask/要求 ownerへ戻す。 |\n",
+      "raw_lf_sha256": "6a5653484d900d7a5b0497bc729ad8cabb27fea814b54377d2c0046b5ac3c4bd"
+    },
+    {
+      "line": 3214,
+      "raw_literal": "| `L10-LABO-067-CASE-24` | `LABO-067-FR-01` | `LABO-067-AC-01` | B0（C0→C1 first-eligible fail→同一AT0内E1でC2 final pass） | 変異なし。first Attempt AT0内にineligible C0の後で最初のeligible C1を観測し、C1→C2の修復を1回含む。 | first_eligible_candidate_resultはC1に適用された既存O0のfailを保持し、same_attempt_repair_round_countは観測できた1 roundとする。これは065の最初のAttempt結果/first_passまたはretry_countへ換算・代替・加算しない。総Attempt countを出さない。 |\n",
+      "raw_lf_sha256": "a9d421b52f26434c24b5f09ccb27c8e93aaba0137623d19497d1c96d39a5aabf"
+    },
+    {
+      "line": 3215,
+      "raw_literal": "| `L10-LABO-067-CASE-25` | `LABO-067-FR-01` | `LABO-067-AC-03` | B0（他入力・receiptは有効） | 適用predicate/oracleとreceiptはB0のまま有効。predicate sourceのspecific individual owner IDだけunknownにし、responsibility role=task/要求ownerは既知のまま。 | 既存predicate/oracle receiptからfirst-eligible resultを観測し、owner個体IDだけunknownとして保持する。roleを特定個人へ置換せず、新しいownerを作らない。 |\n",
+      "raw_lf_sha256": "36c75373d85d0cdf1de0702adfa9258f5d88ddc0e3f1e64dc27c8e88065f9fbe"
+    },
+    {
+      "line": 3216,
+      "raw_literal": "| `L10-LABO-067-CASE-26` | `LABO-067-FR-01` | `LABO-067-AC-03` | B0（他入力・receiptは有効） | 既存OS assignment ASG0は有効。OSが持つ個別AttemptIDだけunknownにし、OSという責務roleは既知のまま。 | candidate/repair eventsを特定Attemptに結ばずrepair countを確定しない。AttemptIDを生成・代替せずunknownを保持し、既存OS Attempt sourceへ不足を返す。 |\n",
+      "raw_lf_sha256": "db39be163444a3b0e6da5959203518fc9e92907e2405e2e5d561782d0e17187f"
+    },
+    {
+      "line": 3217,
+      "raw_literal": "| `L10-LABO-067-CASE-27` | `LABO-067-FR-01` | `LABO-067-AC-03` | B0（predicate、assignment、Attemptは有効） | AttemptIDとOS event receipt/payloadはB0のまま有効。記録したLABO observerのspecific individual IDだけunknownにし、LABO observation roleは既知のまま。 | event receiptからfirst-eligible/roundを観測し、observer individual IDだけunknownとして保持する。LABO roleを特定個人へ置換せず、actor identityを創作しない。 |\n",
+      "raw_lf_sha256": "1d614e0ef4d502fe5ba4e344083451c53436cc5d9b156fa2622d2fdb8a828a9d"
+    },
+    {
+      "line": 3218,
+      "raw_literal": "| `L10-LABO-067-CASE-28` | `LABO-067-FR-01` | `LABO-067-AC-03` | B0（OS assignment/Attemptその他は有効） | 比較実施に必要な既存SECURITY許可の適用状態だけunknown。 | 同条件比較の成立として扱わず未評価/比較不能にする。LABOは許可を生成せず、SECURITY permission source/roleを既存入力のまま扱う。個体sourceが不明ならunknownを保持し、新しいpermission ownerを作らない。 |\n",
+      "raw_lf_sha256": "2bd8ab5edf0f78737f54be5d0e6a5c4354c53a89154382bfeabf0f4069a199fc"
+    },
+    {
+      "line": 3219,
+      "raw_literal": "| `L10-LABO-067-CASE-29` | `LABO-067-FR-01` | `LABO-067-AC-03` | B0（existing ASG0/AT0 and SEC0 remain unchanged） | 結果/evaluation materialから新しいOS assignment `ASG1`だけをLABO出力に追加する。 | assignment生成を拒否し、既存OS stateを変更しない。assignment/Attempt identityの責務roleはOSに留める。 |\n",
+      "raw_lf_sha256": "803798ae21e60892918db6076f8599235702d9e60212249cd3c23e4b0de03daa"
+    },
+    {
+      "line": 3220,
+      "raw_literal": "| `L10-LABO-067-CASE-30` | `LABO-067-FR-01` | `LABO-067-AC-03` | B0（existing SEC0 remains unchanged） | score/evaluation materialから新しいSECURITY permission `SEC1`をLABO出力に追加する。 | permission生成を拒否し、SEC0/SECURITY authority stateを変更しない。既存permission sourceの照合に留める。 |\n",
+      "raw_lf_sha256": "212a7b495609c84d27ca8cec68dafad5fc48d9738f721105911ae63c140584da"
+    },
+    {
+      "line": 3221,
+      "raw_literal": "| `L10-LABO-067-CASE-31` | `LABO-067-FR-01` | `LABO-067-AC-03` | B0の観測入力は有効。採否decisionはこのfixtureで未決のまま。 | candidate/oracle/repair evidenceだけからadoption=trueをLABO出力に追加する。 | 採否を生成せず、観測証拠と既存採否状態を分離する。固定L2の採否を作らない境界を保持する。 |\n",
+      "raw_lf_sha256": "0baf74423a5f00e368759a71fcd3aab06011b3ea1c3e0f593b0b54ba6f4e1b12"
+    },
+    {
+      "line": 3222,
+      "raw_literal": "| `L10-LABO-067-CASE-32` | `LABO-067-FR-01` | `LABO-067-AC-03` | B0（Workerは未起動のまま） | LABO evaluation resultから`worker_started=true` eventを出力する。 | Worker起動を生成しない。実行/assignment stateは既存OS責務のまま保持する。 |\n",
+      "raw_lf_sha256": "2de73b6328ed3dcce4baa5f453dcf731da9fd8e3eb2fc89ee70d0b2b44463feb"
+    },
+    {
+      "line": 3223,
+      "raw_literal": "| `L10-LABO-067-CASE-33` | `LABO-067-FR-01` | `LABO-067-AC-03` | B0の観測入力を不変とし、既存資格状態を入力状態のまま保持する。 | LABO観測出力に新しい`qualification`だけを生成する誤出力を加える。 | `qualification`を生成せず観測材料だけを返し、既存資格状態を変更しない。個体identityが不明でも固定L2の既知責務区分を保持する。 |\n",
+      "raw_lf_sha256": "89828f4d1d73e5523b82bd4b3e477f780277d4a14f7a69601c1230eb686ce0c7"
+    },
+    {
+      "line": 3224,
+      "raw_literal": "| `L10-LABO-067-CASE-34` | `LABO-067-FR-01` | `LABO-067-AC-03` | B0の観測入力を不変とし、既存admission状態を入力状態のまま保持する。 | LABO観測出力に新しい`admission`だけを生成する誤出力を加える。 | `admission`を生成せず観測材料だけを返し、既存admission状態を変更しない。個体identityが不明でも固定L2の既知責務区分を保持する。 |\n",
+      "raw_lf_sha256": "66f15636eba7df7296e1e4b1047cc9a1475af0f94db300f8bae002d3acac2911"
+    },
+    {
+      "line": 3225,
+      "raw_literal": "| `L10-LABO-067-CASE-35` | `LABO-067-FR-01` | `LABO-067-AC-03` | B0の観測入力を不変とし、task/要求ownerの既存predicateを入力状態のまま保持する。 | LABO観測出力に新しい`eligibility_predicate`だけを生成する誤出力を加える。 | `eligibility_predicate`を生成せず観測材料だけを返し、task/要求ownerの既存predicateを変更しない。個体identityが不明でも固定L2の既知責務区分を保持する。 |\n",
+      "raw_lf_sha256": "d5dab6f00c5dc0b24b92dbd3029c4378b15a020c6951e486082e7426289e8ef7"
+    },
+    {
+      "line": 3226,
+      "raw_literal": "| `L10-LABO-067-CASE-36` | `LABO-067-FR-01` | `LABO-067-AC-03` | B0の観測入力を不変とし、task/要求ownerの既存oracleを入力状態のまま保持する。 | LABO観測出力に新しい`oracle`だけを生成する誤出力を加える。 | `oracle`を生成せず観測材料だけを返し、task/要求ownerの既存oracleを変更しない。個体identityが不明でも固定L2の既知責務区分を保持する。 |\n",
+      "raw_lf_sha256": "0dc6ed45e71f4df147d467d423b49dd229eaee8b34d4fc51f347c59efdd97978"
+    },
+    {
+      "line": 3227,
+      "raw_literal": "| `L10-LABO-067-CASE-37` | `LABO-067-FR-01` | `LABO-067-AC-03` | B0の観測入力を不変とし、既存contractのthreshold有無を入力状態のまま保持する。 | LABO観測出力に新しい`threshold`だけを生成する誤出力を加える。 | `threshold`を生成せず観測材料だけを返し、既存contractのthreshold有無を変更しない。個体identityが不明でも固定L2の既知責務区分を保持する。 |\n",
+      "raw_lf_sha256": "765b6d403740c78cc80648ede5558edd9a08dcedaa0e6664cd1484ae640124da"
+    },
+    {
+      "line": 3228,
+      "raw_literal": "| `L10-LABO-067-CASE-38` | `LABO-067-FR-01` | `LABO-067-AC-03` | B0の観測入力を不変とし、既存candidate選択状態を入力状態のまま保持する。 | LABO観測出力に新しい`selected_candidate`だけを生成する誤出力を加える。 | `selected_candidate`を生成せず観測材料だけを返し、既存candidate選択状態を変更しない。個体identityが不明でも固定L2の既知責務区分を保持する。 |\n",
+      "raw_lf_sha256": "bba637df416e6de2fd1bef65aa3fbc8ee26d81648f8bfa8d5e4aa6f914f0fd7c"
+    },
+    {
+      "line": 3229,
+      "raw_literal": "| `L10-LABO-067-CASE-39` | `LABO-067-FR-01` | `LABO-067-AC-03` | B0の観測入力と既存059の費用定義・比較条件を保持する。LABOは既存cost gateを変更していない。 | 入力を変更せず、LABOの観測出力へ既存059のcost gateを変更する値だけを誤追加する。 | cost gateの変更を拒否し、059の費用・比較条件を保持する。067は観測材料だけを返し、誤出力をLABO評価責務へ戻す。 |\n",
+      "raw_lf_sha256": "76ff3261c66d052ce98e19e71fade5c93e1c1aa1dad9f3ed7cdd0d9f036a123c"
+    }
+  ],
+  "limits": [
+    "old30raw stored unchanged original audit",
+    "no fixtures executed, no independent review or delegated approval",
+    "counts/indexes not completeness proof"
+  ],
+  "validation": [
+    "46 unique6cols and45previousIDs retained",
+    "six main prefixes preserved",
+    "govcheck/diff check ok"
+  ]
+}
