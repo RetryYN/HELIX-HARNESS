@@ -1,0 +1,333 @@
+{
+  "record_type": "review02_disposition_time_record",
+  "status": "修正後独立review/委任一致未成立",
+  "body_revision": "9a58dda478b7fc9ba6cbc6989a8a1a14fd05a8c1",
+  "base_revision": "f5a974a4059a209982cb1cdec39c0537f52683b8",
+  "formal_review02": {
+    "id": 6022544268,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2639#issuecomment-6022544268",
+    "body": "## review02（independent review、PR #2639 親HELIXLABO-L2-069、HEAD 6e6340ca85b068275021109f0e00fd54d84c9ffc、base main f5a974a40）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2639-LABO-STAGE5-PARENT069-02` に応える。\n\n### 照合の方法と結果\n- **Opusのブラインド照合**：このHEADで取り直し、Major 1件を挙げた。reviewerが固定親の原文と本文で確かめ、下のM1として確定した。\n- **review01の指摘への処置**：\n  - **M1**は解消した。CASE-43は、評価済みで有効なS069のbaselineから`placement_changed`だけを生成する誤りを拒否し、配置案をINTELLIGENCEの責務に残している。\n  - **M2**は解消した。CASE-01のoracleとAC-01に4要素が入り、CASE-44〜47がそれぞれ1要素だけを欠かして確かめている。4要素は、理由別傾向、counterexample、regression risk、revalidation conditionである。新しい閾値や方式は追加していない。\n  - **R4**は解消した。069の節だけで使う`S069`を定義し、064・067のS0とは別だと明記している。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - 差分は追加だけで、削除は0行\n  - origin/mainとの`merge-tree`は衝突なし\n  - `git diff --check`は、review01のX1（起草監査md:52の末尾の空行）の1件だけが失敗する。\n    - 作成側は、この監査ファイルを時点の記録としてbytesを変えない例外として明示している。\n    - 失敗はこの1行だけで、6本文には問題がない。merge条件を止めない例外として記録する。\n- **今後の流れ**：Majorがあるので、Fableの判断は回していない。\n\n### Major\n**M1（未評価の結果からticketを発行する誤りに、専用の拒否fixtureがない）**\n- **欠陥**：\n  - 固定親は、未評価の結果から三つのものを導かないよう名指しで禁じている。target変更、配置、ticket発行である。\n  - 未評価の状態から生成する誤りを拒否するfixtureは、target変更がCASE-41、配置がCASE-42にある。\n  - ticket発行を拒否するのはCASE-35だけで、そのbaselineは「評価candidateのみを返す正常baseline」（評価済み）に固定されている。oracleも、CASE-43のように「評価済みか未評価かにかかわらず」とは書いていない。\n  - L3 `LABO-069-AC-04`は「未評価結果からtarget変更・配置・ticket発行…を導かない」「各出力fieldはFVで別々に変異させる」と定めているが、FVはticket発行の分を満たしていない。\n  - これは、review01 M1と同じ形の欠落で、今回は反対の状態の側が抜けている。review01の時点からあったもので、review01ではreviewerが見落としていた。\n- **守るべき行**：HELIXLABO-L2-069「戻し先」（318ec4a labo-requirements.md:558「未評価結果からtarget変更・配置・ticket発行を導かない」）\n\n### 後で直す残余（承認を止めない）\n- **R1、R2、R3、R5、R6**：review01から変わらない。\n- **R7（中身のずれた変異がない）**：CASE-44〜47は、4要素が欠けている場合だけを変異させている。中身はあるが、別のscope、revision、windowに結び付いた要素を出す変異はない。根拠との結び付きは、CASE-01のoracleの文だけで確かめている。\n- **R8（戻し先の狭まり）**：CASE-05・06の戻し先は「既存OSへ」だけで、固定親の「OSまたはsource owner」（L2:558、L11:293）より狭い。宛先は決まっているので残余とする。\n\n### 次の手順\n- M1を直す。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+    "body_sha256": "e9e9c1784fd629fc5f2e93edea62fc39f1f6840d535d15e88881b3585bfde1ea"
+  },
+  "six_body_manifest": [
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "bytes": 314755,
+      "sha256": "24dff56c5e90120360fe446c38e1e3b4b4b58db569fa8eb40d2be8b338161426",
+      "main_prefix_sha256": "ac9163e5849e73a2d6174bcd2464cc8301e63f4ad065529a1bf75bc0621591a5",
+      "suffix_sha256": "cd44e9af80973cc93aa05673f9831495c30ae4c4bcde2dc4272db4f6273fe3bd"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "bytes": 17356,
+      "sha256": "6eb0e6094202a519d34b84670c7c9fa9143ced0c8e25883bddc22c9a395feae7",
+      "main_prefix_sha256": "9eec65fc2612c310f161a10ca0a316bb7cd211a1e8413935d36c1fb10de19078",
+      "suffix_sha256": "f28a577377c4c3618e068a6752c29367ac1855bd625aa240f3067f3f68738dea"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "bytes": 70949,
+      "sha256": "e39aadaf35521a2c9c49001581c2d6e7770156749a0705666105b579b4387be7",
+      "main_prefix_sha256": "a205312c3abb4cc7faafb5eb7c28526b57c5e16d46da4bb2eb72b280f69559f3",
+      "suffix_sha256": "db016d5361151430936c089d2f45712d817619953c9055df053df4acc1a0b36d"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "bytes": 487997,
+      "sha256": "2d0d893deb6ce95836b5b1b1f3b6a01511db36ce956a881788b5de1c26f5783b",
+      "main_prefix_sha256": "7c02c71af71089f0019650ef4d677aa15d40c6fd17c93c5135f232d449109905",
+      "suffix_sha256": "1a6f22a62c36d6b516ecb14bfb33849998835d5f1efa3fb98c7b36c3d1c25aff"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "bytes": 15331,
+      "sha256": "43115cad1beeeb4aa887c80206936d2ecec6ef507447a559b4544222f8ccb089",
+      "main_prefix_sha256": "f8779cb85d839a2c33c191c83a298a789c580c20e8ceee0af55439375a609d3a",
+      "suffix_sha256": "759e805e542d1449ff5510d88a8e2c6448764bcdce1be645a596fbd76968adb1"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "bytes": 60801,
+      "sha256": "d2c9c508465305c3edf9af1f6d2d247cd19f07617aefeca25f320eeaba56ceca",
+      "main_prefix_sha256": "46dfb10ffd242c2fea981686b9107846bef03f2e76606b99d5f59ec737038253",
+      "suffix_sha256": "215a18ae2c5f35c724d1f9a5fbbefd8406bbab630cf6906588970faf2124273d"
+    }
+  ],
+  "current_52_physical_rows": [
+    {
+      "line": 3241,
+      "literal": "| `L10-LABO-069-CASE-01` | `LABO-069-AC-01` | 正常 | 同一ticket family・scope・revisionのreturn reason、適用母数、window/source completeness、再発行後resultと証拠付きrelationが有効。 | 変異なし | 正常fixtureの評価candidateに、固定L2所定の理由別傾向・counterexample・regression risk・revalidation conditionをすべて含める。oracleは4項目それぞれの出力有無と固定scope/revision/windowに結び付いた根拠を確認し、返却理由・件数・分母・scope/revision/window、再発行後resultの成立/不成立/未評価、元closure/source authorityの保持、ticket不変更と併せて判定する。新しい数値threshold・計算方式は要求しない。 |",
+      "sha256_lf": "be55a0c7bab361022955d7c0906680eb275e52a564865f1e48c7e2a4216d5bf1"
+    },
+    {
+      "line": 3242,
+      "literal": "| `L10-LABO-069-CASE-02` | `LABO-069-AC-02` | 未見正常 | CASE-01と同じ有効条件。reasonのみ既存分類にない。 | 新しいreason classを追加せずunknown/unclassifiedを保持。 | 該当resultを既知の成立/不成立へ推測変換せず、未評価として既存OSまたは識別可能なsource-owner区分へ返す。 |",
+      "sha256_lf": "7a7042e115be2a34ada82c94342aa2a6d4a57928628fd5cd865a2e3bcb5e8793"
+    },
+    {
+      "line": 3243,
+      "literal": "| `L10-LABO-069-CASE-03a` | `LABO-069-AC-03` | 索引・独立fixtureではない | CASE-09のdenominator欠落を参照。 | 独立変異なし。 | CASE-09を参照し二重計上しない。 |",
+      "sha256_lf": "a121eeed8a6e6e63fd88f8bb46cb7103052ca89cbedae090a82836255c57d649"
+    },
+    {
+      "line": 3244,
+      "literal": "| `L10-LABO-069-CASE-03b` | `LABO-069-AC-03` | 単独変異 | CASE-01 valid baseline。 | 観測window内の結果観測だけ未完。 | window未満をdefect 0や成立へ変換せず、未評価として保持する。 |",
+      "sha256_lf": "4f59e3f9f50c3a87cb32e68396610cbfaa2f164e91d827789cff3b21a8b29761"
+    },
+    {
+      "line": 3245,
+      "literal": "| `L10-LABO-069-CASE-03c` | `LABO-069-AC-03` | 単独変異 | CASE-01 valid baseline。 | 再発行結果と元findingを結ぶevidence-backed relationだけ欠落。 | 因果・比較を出さず、relation/evidence不足を固定L2のOSまたは識別可能なsource-owner区分へ返す。 |",
+      "sha256_lf": "c86050a8156477b4438e6bc175addeaacef03fa739ef1bd9d297eaf00f90175d"
+    },
+    {
+      "line": 3246,
+      "literal": "| `L10-LABO-069-CASE-03d` | `LABO-069-AC-03` | 索引・独立fixtureではない | CASE-06のstale revisionを参照。 | 独立変異なし。 | CASE-06を参照し二重計上しない。 |",
+      "sha256_lf": "5ea7f7f01b960679976326c32acc0b489337732c5405f08cb5b9b5a25c5b0355"
+    },
+    {
+      "line": 3247,
+      "literal": "| `L10-LABO-069-CASE-03e` | `LABO-069-AC-03` | 単独変異 | 同じ適用範囲の前回と今回の件数を有効な同一条件として提示。 | 件数が減少したという表示だけをquality closureへ変換。 | 件数減少のみを品質証明とせず、gate/actionable・terminal化根拠等の入力にない結果を作らない。 |",
+      "sha256_lf": "dcee6129abc8ca6a61a4e5a1c7aa85d425641e8f1f3b8cd6a36b2f2d59a0623e"
+    },
+    {
+      "line": 3248,
+      "literal": "| `L10-LABO-069-CASE-04a` | `LABO-069-AC-04` | 単独変異 | CASE-01 valid baseline。OSが保有するticket。 | LABOがticket本文を編集。 | 変更を拒否し元ticketを保持。OSのticket責務を侵さない。 |",
+      "sha256_lf": "5428d44edcf23fe7e6f04673d9d253c18cd253f36bdac83a05f3fc2c0d9bb69e"
+    },
+    {
+      "line": 3249,
+      "literal": "| `L10-LABO-069-CASE-20` | `LABO-069-AC-03` | 単独変異 | 同scope/revisionの適合ticket identity、母数・分類・window・source completeness・resultが有効。 | ticket identityだけ欠落。 | 件数/rate/resultを未評価とし、OSまたは識別可能なsource-owner区分へ返す。identity値を捏造しない。 |",
+      "sha256_lf": "8b11ef5dff85f4c9e6062c9cbb60d93264eb59b5f39974685d524cd8768e13f3"
+    },
+    {
+      "line": 3250,
+      "literal": "| `L10-LABO-069-CASE-21` | `LABO-069-AC-03` | 単独変異 | CASE-01 valid baseline。OS assignmentとticketの束縛が有効。 | assignment identityだけ欠落。 | run/ticket対応を確定せず、既存OS責務へ不足を返す。 |",
+      "sha256_lf": "8f1b7ba5066a4e0cbae79835e9ef9b97cba3fab2fed9ec1ab83317e592ee1d09"
+    },
+    {
+      "line": 3251,
+      "literal": "| `L10-LABO-069-CASE-22` | `LABO-069-AC-03` | 単独変異 | CASE-01 valid baseline。source identity以外は揃う。 | source identityだけ欠落。 | source ownerを推測しない。特定できない個別source identityはunknownのまま、既存OSまたは識別可能なsource-owner区分へ不足を返す。 |",
+      "sha256_lf": "df7ad1845ce5d52288ed0b9adeb50558cb445a30a316a182e65695d2c60767c5"
+    },
+    {
+      "line": 3252,
+      "literal": "| `L10-LABO-069-CASE-23` | `LABO-069-AC-03` | 単独変異 | CASE-01 valid baseline。観測windowの他情報は揃う。 | 観測時点だけ欠落。 | window比較を確定せず、既存OSまたは識別可能な観測source-owner区分へ時点不足を返す。 |",
+      "sha256_lf": "1ce5f1e714fad8fb925897f2ace8ee870e7a91dd048114d0af7418cce83d90d8"
+    },
+    {
+      "line": 3253,
+      "literal": "| `L10-LABO-069-CASE-24` | `LABO-069-AC-03` | 単独変異 | CASE-01 valid baseline。evidence以外は揃う。 | relation/result evidenceだけ欠落。 | 成立/不成立を確定せず不足を返す。時間的近接やpathから因果を補わない。 不足証拠は既存OSまたはsource ownerへ返す。個別identityが不明でも既知責務区分を保つ。 |",
+      "sha256_lf": "c0a7c581f5c173b7a5a9bfd940100300c49d0b29400b5be8f2abf1264a3efefd"
+    },
+    {
+      "line": 3254,
+      "literal": "| `L10-LABO-069-CASE-25` | `LABO-069-AC-03` | 単独変異 | CASE-01 valid baseline。評価可能/未評価状態がsourceにある。 | 評価状態だけ欠落。 | state unknownとしてrate/resultを確定せず、既存OSまたは識別可能な状態source-owner区分へ不足を返す。 |",
+      "sha256_lf": "37525d917000c5ce33beca612a8c9bdadb50cfe1ed3c0a8265628fec7562c6c6"
+    },
+    {
+      "line": 3255,
+      "literal": "| `L10-LABO-069-CASE-26` | `LABO-069-AC-03` | 単独変異 | 同一scope・対象revisionで定義されたcohort。 | 異なるscopeまたはrevisionのrecordだけ混入。 | 異なるcohortに分離し、まとめない。 |",
+      "sha256_lf": "fd45f2432b51da004977d42f9cd79ec527afa5bdb843a833f22b8da44c1e93bb"
+    },
+    {
+      "line": 3256,
+      "literal": "| `L10-LABO-069-CASE-27` | `LABO-069-AC-03` | 索引・独立fixtureではない | CASE-11の未実行ticket成功表示変異を参照。 | 独立変異なし。 | CASE-11 oracleを参照し二重計上しない。 |",
+      "sha256_lf": "680af9bcc4e64a7337db32d702d23dc44670940c4d470b3f99c73f228e1c837b"
+    },
+    {
+      "line": 3257,
+      "literal": "| `L10-LABO-069-CASE-05` | `LABO-069-AC-03` | 単独変異 | CASE-01 valid baseline。 | ticket scopeだけ欠落。 | 比較不能/未評価。既存OSへscope不足を返す。 |",
+      "sha256_lf": "ba6c608122a685bde80d14b026d7e0cdf01f82fb5c1c8fe453d4c6542a4e68cf"
+    },
+    {
+      "line": 3258,
+      "literal": "| `L10-LABO-069-CASE-06` | `LABO-069-AC-03` | 単独変異 | CASE-01 valid baseline。 | 対象revisionだけstale。 | current比較に使わず、元revisionを保持し既存OSへ返す。 |",
+      "sha256_lf": "644ac8de3529eefbd1f8ed872b15f61b2f4e71b1dca159f8da869178db44516f"
+    },
+    {
+      "line": 3259,
+      "literal": "| `L10-LABO-069-CASE-07` | `LABO-069-AC-03` | 単独変異 | CASE-01 valid baseline。 | source completenessだけ不明。 | 母数/rateを確定せずunknownを保持し、既存OSまたは識別可能なsource-owner区分へ返す。 |",
+      "sha256_lf": "5fc931dc58cdf741bd1c369658cb6fb945bb650e1c5a3df571a0637174237b8b"
+    },
+    {
+      "line": 3260,
+      "literal": "| `L10-LABO-069-CASE-08` | `LABO-069-AC-03` | 単独変異 | CASE-01 valid baseline。 | 再発行後resultだけ欠落。 | 成立状況unknown/未評価。結果を補完せず返す。 不足証拠は既存OSまたはsource ownerへ返す。個別identityが不明でも既知責務区分を保つ。 |",
+      "sha256_lf": "234cbda8b2d45cc4da99530b2e25ff8abf26eb64623ef18f64e516bfcceffaa7"
+    },
+    {
+      "line": 3261,
+      "literal": "| `L10-LABO-069-CASE-09` | `LABO-069-AC-03` | 単独変異 | CASE-01 valid baseline。 | 適用denominatorだけ欠落。 | rateを出さず、既存OSまたは識別可能なsource-owner区分へ母数不足を返す。 |",
+      "sha256_lf": "e2f094ed6bdce004a89e234775790eaad3a684ead5e3149941c7e912663631e6"
+    },
+    {
+      "line": 3262,
+      "literal": "| `L10-LABO-069-CASE-10` | `LABO-069-AC-03` | 単独変異 | CASE-01 valid baseline。 | 結果観測後に分類だけ変更。 | 事後分類から成功を作らず、入力分類とsource revisionを保持する。 |",
+      "sha256_lf": "96281943924a89bb88eb88017da80a0ac67817d4af6ba6412303bacc5fb1df98"
+    },
+    {
+      "line": 3263,
+      "literal": "| `L10-LABO-069-CASE-11` | `LABO-069-AC-03` | 単独変異 | ticketに実行結果がない。 | 未実行ticketを成功と表示。 | 成功扱いしない。実行結果のない状態を保つ。 |",
+      "sha256_lf": "1ab30ea32e360dad341be1730ae8693525b022b49143a06b38fa9f9532d8e9da"
+    },
+    {
+      "line": 3264,
+      "literal": "| `L10-LABO-069-CASE-12` | `LABO-069-AC-03` | 単独変異 | CASE-01 valid baseline。 | censored observationをfailure 0として表示。 | 打切り状態を保持しzero扱いしない。 |",
+      "sha256_lf": "0baa9a723940002908f319c345688e617f07c4e3b2dbe0b7afc4c484a3e4c496"
+    },
+    {
+      "line": 3265,
+      "literal": "| `L10-LABO-069-CASE-13` | `LABO-069-AC-03` | 単独変異 | 一件のticketとその個別結果。 | 一件だけから全体の因果効果/改善を主張。 | 全体因果効果や発行精度の改善を出さない。個別assessmentとevidence-backed relationの範囲に限る。 |",
+      "sha256_lf": "1e8af71a8f5d505fd25bffe4241a3e1071e900b63ffd97458a89264670a8fc9a"
+    },
+    {
+      "line": 3266,
+      "literal": "| `L10-LABO-069-CASE-14` | `LABO-069-AC-04` | 単独変異 | 通常packet向けに適用中のdata-use条件を満たす入力。 | restricted dataを通常packetへ複写。 | packet出力を拒否し、適用中のSECURITY/data-use条件を保つ。固定L2以上の新ownerを作らない。 |",
+      "sha256_lf": "08dfd6287a0235d2d8c0a009f001a3b778b856610e2e0bab7911bd2b3f3a295b"
+    },
+    {
+      "line": 3267,
+      "literal": "| `L10-LABO-069-CASE-15` | `LABO-069-AC-04` | 索引・独立fixtureではない | CASE-04aとCASE-16/17/18を直接参照。 | 独立変異なし。 | 各主fixtureを個別参照し索引連鎖・二重計上をしない。 |",
+      "sha256_lf": "ac1c29d357778bacfe1bca87dccb915fb05cfbaa71387b296bbfb56a3e3281db"
+    },
+    {
+      "line": 3268,
+      "literal": "| `L10-LABO-069-CASE-16` | `LABO-069-AC-04` | 単独変異 | CASE-01 valid baseline。 | LABOがpriorityだけを変更。 | 変更を拒否。固定L2が判断ownerを特定しない場合、個別ownerを捏造せずunknownを保持する。 |",
+      "sha256_lf": "797b8a76de44b5d357f177e74ebbf09617112f4ec5dec4e0f78b457b00815068"
+    },
+    {
+      "line": 3269,
+      "literal": "| `L10-LABO-069-CASE-17` | `LABO-069-AC-04` | 単独変異 | CASE-01 valid baseline。 | LABOがverification oracleだけを変更。 | 変更を拒否。識別可能なsource責務がない場合は新routeを作らずunknownを保つ。 |",
+      "sha256_lf": "6b65d6fa65c6fd0a7c3199e81c37b173d3425bc71664335507bc9b2a0940021f"
+    },
+    {
+      "line": 3270,
+      "literal": "| `L10-LABO-069-CASE-18` | `LABO-069-AC-04` | 単独変異 | CASE-01 valid baseline。 | LABOがOS assignmentだけを変更。 | 変更を拒否し、既存OS責務へ戻す。 |",
+      "sha256_lf": "3fdaabb20ffb606ab79191b497b2f565394b3ddeba0f437f863a08131c34c0a2"
+    },
+    {
+      "line": 3271,
+      "literal": "| `L10-LABO-069-CASE-19` | `LABO-069-AC-04` | 索引・独立fixtureではない | CASE-04a ticket変更を直接参照。 | 独立変異なし。 | CASE-04aを参照し二重計上しない。 |",
+      "sha256_lf": "0b0271b4e66995ce40d5f0784e46bc1f1192ee3e5849808139e52d0c17013244"
+    },
+    {
+      "line": 3272,
+      "literal": "| `L10-LABO-069-CASE-28` | `LABO-069-AC-03` | 単独変異 | 受入findingのreason/source identity/revisionは有効。 | oracle不足を示すsourceだけ欠落。 | closure/成功に変換せずsource欠落unknownを保ち、既存OSまたは識別可能なsource-owner区分へ返す。 |",
+      "sha256_lf": "ab991ddd1625e0da1077364712906d4490ac639649eae9a2fbc92fe44b8627fa"
+    },
+    {
+      "line": 3273,
+      "literal": "| `L10-LABO-069-CASE-29` | `LABO-069-AC-02` | 未見正常 | 固定L11「未見例」のscope内。有効source identity/revision付きoracle不足finding。 | reasonだけ既存分類に一致しない。 | 新分類を作らずunknown/unclassifiedを保つ。固定L2の戻し先roleはOSまたは識別可能なsource-owner区分。個別IDが証拠にない場合はunknown。 |",
+      "sha256_lf": "2d51f21a07c1d8539d7ec027f621b603cb8827d617f37930bf129e8ed829c8f0"
+    },
+    {
+      "line": 3274,
+      "literal": "| `L10-LABO-069-CASE-30` | `LABO-069-AC-03` | 単独変異 | 受入findingのsource identity/revisionは有効。 | oracle不足reasonだけ欠落。 | 既知成立/不成立へ推測せずunknown/unclassifiedを保ち、固定L2既存戻し先へ不足を返す。 |",
+      "sha256_lf": "0201a5cd4742edf70578badcb6c3fa598dd640d2053cf13be1c6c3aad7cf3583"
+    },
+    {
+      "line": 3275,
+      "literal": "| `L10-LABO-069-CASE-31` | `LABO-069-AC-03` | 単独変異 | 有効source identity/windowのfindingが返却済み。固定L2の戻し先区分はOSまたは識別可能なsource-owner。 | 返却後追跡が未実施なのにdefect 0と主張。 | 未追跡は未評価として保ち0扱いしない。route roleは既知のOS/source-owner区分に限り、証拠に個人/具体source identityがない場合はそのidentityをunknownのままにする。 |",
+      "sha256_lf": "02cd46db5e8b8b7323b0aeb47e2c265e234c7554d8c40cff15cd3acf2821de23"
+    },
+    {
+      "line": 3276,
+      "literal": "| `L10-LABO-069-CASE-32` | `LABO-069-AC-03` | 単独変異 | CASE-01 valid baseline。 | 欠測値だけを0として集計。 | 欠測を0にせずunknownを保持。欠測原因sourceが識別不能なら新ownerを作らず、固定L2のOS/source-owner区分と個別identity unknownを分ける。 |",
+      "sha256_lf": "7ee18081c9b9eae722b38e66bd28a2fa390d01865826429adf3b794cb421f277"
+    },
+    {
+      "line": 3277,
+      "literal": "| `L10-LABO-069-CASE-33` | `LABO-069-AC-03` | 単独変異・CASE-13と意図的に重複 | CASE-01の有効evidence-backed relationと個別再発行後assessment（既存CASE-13も単一ticketを扱う）。 | 単一caseから`causal_effect_improvement=true`を生成。 | 個別relation/resultは保持できるが、固定L2が禁じる単一事例からの因果効果・発行精度改善は生成しない。CASE-13と重複する境界再照合で、新しい因果方式/閾値は加えない。 |",
+      "sha256_lf": "7eed4208b97f8a5c251bb9885b5aa7130a6f5a78310e7ef183ed1445afaabaa7"
+    },
+    {
+      "line": 3278,
+      "literal": "| `L10-LABO-069-CASE-34` | `LABO-069-AC-04` | 単独変異 | 評価candidateのみを返す正常baseline。OSがassignmentを保持。 | 評価結果から`assignment` fieldを書き換える。 | assignmentを生成/変更せず、OSの既存責務を保つ。 |",
+      "sha256_lf": "b22c9e1f94b31696ae398f50475e5a260b1334b83ea2a9c5da823fd1cfa5d633"
+    },
+    {
+      "line": 3279,
+      "literal": "| `L10-LABO-069-CASE-35` | `LABO-069-AC-04` | 単独変異 | 評価candidateのみを返す正常baseline。OSがticket登録・routing・発行を保持。 | 評価結果から`ticket_issue` fieldを生成する。 | ticket issue/reissueを生成せず、OSの既存責務を保つ。 |",
+      "sha256_lf": "baf66481a06632f7653acf82e679ab4ed39ea54f4c967f70e7c75da391f18c73"
+    },
+    {
+      "line": 3280,
+      "literal": "| `L10-LABO-069-CASE-36` | `LABO-069-AC-04` | 単独変異 | 評価candidateのみを返す正常baseline。適用中のauthority条件を保持。 | 評価結果から`permission` fieldを付与する。 | permissionを生成せず、適用中の既存authority条件を保つ。 |",
+      "sha256_lf": "a51382906dab3c7290fa316aaf535d52b955e5452dc8e12fdb5389b981c1326c"
+    },
+    {
+      "line": 3281,
+      "literal": "| `L10-LABO-069-CASE-37` | `LABO-069-AC-04` | 単独変異 | 評価candidateのみを返す正常baseline。authority fieldは入力値どおり。 | 評価結果から`authority` fieldを拡張/変更する。 | authorityを生成/変更せず、入力の既存authority境界を保つ。 |",
+      "sha256_lf": "41246bc91ea7d1820fe54fdab038d5cfaa90eed1cb1e5ec00a397ed654c96fbb"
+    },
+    {
+      "line": 3282,
+      "literal": "| `L10-LABO-069-CASE-38` | `LABO-069-AC-04` | 単独変異 | 評価candidateのみを返す正常baseline。ticket採否は既存ownerの状態。 | 評価結果から`adoption_decision` fieldを生成する。 | 採否決定を生成しない。評価candidateと既存owner decisionを区別する。 |",
+      "sha256_lf": "f7025cc9ab757e6d85860a23ce18050252c298e5183d15804a72c90f04b0a02a"
+    },
+    {
+      "line": 3283,
+      "literal": "| `L10-LABO-069-CASE-39` | `LABO-069-AC-04` | 単独変異 | 評価candidateのみを返す正常baseline。実行状態は既存owner/sourceの状態。 | 評価結果から`execution_started` fieldを生成する。 | 実行開始を生成せず、評価をproposalとして返す。 |",
+      "sha256_lf": "61bfe8698fbd9703e4ac53f5abe6563a60f65b0620abe76d4e36911ece36a9cf"
+    },
+    {
+      "line": 3284,
+      "literal": "| `L10-LABO-069-CASE-40` | `LABO-069-AC-04` | 単独変異 | 評価candidateのみを返す正常baseline。改善完了状態は既存owner/sourceの状態。 | 評価結果から`improvement_complete` fieldを生成する。 | 改善完了を生成しない。元ticket/source stateを保持する。 |",
+      "sha256_lf": "2b2682b6c3e080059d76186bc575be56cb9bace452ab69866f82fb988372813a"
+    },
+    {
+      "line": 3285,
+      "literal": "| `L10-LABO-069-CASE-41` | `LABO-069-AC-04` | 単独変異 | 本069節内の合成scope S069の返却/再発行評価inputは必要証拠不足により未評価。既存target/placementを入力のまま保持し、元closureは不変。 | 入力不変で、未評価結果だけから`target_changed=true`をLABO出力に新規生成する。 | `target_changed`を生成せず評価candidateと不足証拠を返す。OS/source ownerの入力状態とINTELLIGENCEの配置案責務を保ち、誤出力をLABO評価責務へ戻す。 不足証拠は既存OSまたはsource ownerへ返す。個別identityが不明でも既知責務区分を保つ。 |",
+      "sha256_lf": "6b55796e04f6494cdb72a9109b65227a1a93ed7fc43103de9bf13513f7af110e"
+    },
+    {
+      "line": 3286,
+      "literal": "| `L10-LABO-069-CASE-42` | `LABO-069-AC-04` | 単独変異 | 本069節内の合成scope S069の返却/再発行評価inputは必要証拠不足により未評価。既存target/placementを入力のまま保持し、元closureは不変。 | 入力不変で、未評価結果だけから`placement_changed=true`をLABO出力に新規生成する。 | `placement_changed`を生成せず評価candidateと不足証拠を返す。OS/source ownerの入力状態とINTELLIGENCEの配置案責務を保ち、誤出力をLABO評価責務へ戻す。 不足証拠は既存OSまたはsource ownerへ返す。個別identityが不明でも既知責務区分を保つ。 |",
+      "sha256_lf": "c70a3b852b6dc91dee56700b3b99a3d4b0abd86754442a7e5a62d3a119ca8309"
+    },
+    {
+      "line": 3287,
+      "literal": "| `L10-LABO-069-CASE-43` | `LABO-069-AC-04` | 単独変異（M1） | 本節内だけの固定scope label `S069`を持つ、L2-069の必要条件を満たした評価済みticket-return/reissue candidate。ticket family・scope・対象revision、evidence-backed relation、denominator、reason分類、window、source completeness、再発行後result、元closureは有効で不変。`placement_changed`は正常candidateの出力にない。 | 評価済みresultからLABO出力field `placement_changed=true`だけを新規生成する。 | `placement_changed`を拒否し、入力のtarget/placement・元closureを変えず、配置案を既存INTELLIGENCE責務に残す。評価済みか未評価かにかかわらず、L2配置境界からplacement変更をLABO出力に生成しない。 |",
+      "sha256_lf": "90e77e0a30a956ae3f34fdbad65c245d8bb49a46eb923dfed8bf34d989c97a0d"
+    },
+    {
+      "line": 3288,
+      "literal": "| `L10-LABO-069-CASE-44` | `LABO-069-AC-01` | 単独変異（M2・理由別傾向） | CASE-01と同一の有効なticket family/scope/revision、relation/evidence、denominator、分類、window、source completeness、再発行後resultを用い、評価candidateにはL2-069所定の4項目（理由別傾向・counterexample・regression risk・revalidation condition）を含める。 | 出力candidateの`reason-specific trends`項目だけを欠落させ、他の全項目・証拠・適用条件は保持する。 | AC-01の正常candidateとして合格させず、理由別傾向の欠落を明示する。残る3項目と既存必須出力は保持される。新しい指標、数値threshold、統計方式は追加しない。 出力欠落の修正はLABO評価責務へ戻し、他の入力・出力を変更しない。 |",
+      "sha256_lf": "2ab341fa78ed588258d7b6f5b0869488f14256459b1a7b974a7a1f665f461ff5"
+    },
+    {
+      "line": 3289,
+      "literal": "| `L10-LABO-069-CASE-45` | `LABO-069-AC-01` | 単独変異（M2・counterexample） | CASE-01と同一の有効条件。評価candidateにはL2-069所定の4項目すべてを含め、counterexampleは固定scope/revisionと根拠sourceに結び付く。 | 出力candidateの`counterexample`項目だけを欠落させ、他の全項目・証拠・適用条件は保持する。 | AC-01の正常candidateとして合格させず、counterexampleの欠落を明示する。新しい反証規則や閾値は追加しない。 出力欠落の修正はLABO評価責務へ戻し、他の入力・出力を変更しない。 |",
+      "sha256_lf": "63242259f76b286e39b72986e82ec23712c25b13e95ea3ecd664cf0627f9fcf2"
+    },
+    {
+      "line": 3290,
+      "literal": "| `L10-LABO-069-CASE-46` | `LABO-069-AC-01` | 単独変異（M2・regression risk） | CASE-01と同一の有効条件。評価candidateにはL2-069所定の4項目すべてを含め、regression riskは固定scope/revisionと根拠sourceに結び付く。 | 出力candidateの`regression risk`項目だけを欠落させ、他の全項目・証拠・適用条件は保持する。 | AC-01の正常candidateとして合格させず、regression riskの欠落を明示する。severityやrisk閾値を新設しない。 出力欠落の修正はLABO評価責務へ戻し、他の入力・出力を変更しない。 |",
+      "sha256_lf": "60562d4fc337a48b5c9d2cd4860b595efb2f7c3336eedac6cee125ef99d57c97"
+    },
+    {
+      "line": 3291,
+      "literal": "| `L10-LABO-069-CASE-47` | `LABO-069-AC-01` | 単独変異（M2・revalidation condition） | CASE-01と同一の有効条件。評価candidateにはL2-069所定の4項目すべてを含め、revalidation conditionは固定scope/revisionと根拠sourceに結び付く。 | 出力candidateの`revalidation condition`項目だけを欠落させ、他の全項目・証拠・適用条件は保持する。 | AC-01の正常candidateとして合格させず、revalidation conditionの欠落を明示する。新しい再検証threshold、期限、方式は追加しない。 出力欠落の修正はLABO評価責務へ戻し、他の入力・出力を変更しない。 |",
+      "sha256_lf": "4bc1bc764a1d56ecd49259a66b29d6c8ccb3677f8220525ad3699d45b0309298"
+    },
+    {
+      "line": 3292,
+      "literal": "| `L10-LABO-069-CASE-48` | `LABO-069-AC-04` | 単独変異（未評価ticket発行拒否） | 本069節の合成scope S069。返却/再発行評価inputは必要証拠不足により未評価で、元ticket/closure/assignmentは不変。入力にはOSの既存ticket発行状態を保持し、LABOによる新ticket発行はない。 | 入力不変で、未評価結果だけから`ticket_issue=true`をLABO出力に新規生成する。 | 未評価結果からticket発行を生成せず評価candidateと不足証拠だけを返す。OSの登録/routing/ticket発行責務を保ち、不足証拠は既存OSまたはsource ownerへ返す。誤出力修正はLABO評価責務へ戻し、元ticket/closure/assignmentを変更しない。 |",
+      "sha256_lf": "c996364cd4cc00c6fa9c063ac9ba0e8d4a44ebb79eff0853bd6f499eb8ad19fc"
+    }
+  ],
+  "prior51_ids_retained": true,
+  "treatment": {
+    "M1": "新CASE48未評価inputからticket_issue一fieldのみ生成する誤出力を拒否。入力は欠証拠で未評価のまま、元状態不変。OS/source不足返却とLABO自身誤出力修正を区別。",
+    "review01_M1_M2_R4": "正式review02が解消確認。旧判断を新HEADへ継承せず再reviewを求める。",
+    "R1_R2": "formalreview02は変わらないと記すがRoot先行bodyでCASE08/24/41/42の不足宛先とNG/NV34–43refsを補正済み。原文を保持し現実際の文を前処置監査で照合した。残余分類の全量解消は主張しない。",
+    "R3_R5_R6_R7_R8": "原文保持、R7要素内容の別scope/revision/window変異不足、R8 OS限定宛先を含む残余。",
+    "X1": "正式review02が既存監査52行末尾空行1件だけの差分限定例外をmerge停止条件としないと記録。旧bytes不変。新差分diffcheck成功。"
+  },
+  "validation": {
+    "govcheck": "ok atoms=7622 requirements=57 files=58",
+    "new_diff_check": "success",
+    "base_head_diff_check": "既知X1一件のみ、formal6022544268に処置確定",
+    "52_unique_six_columns": true
+  },
+  "limits": "静的候補で未実行。旧CI/runtime/testは使用しない。新HEAD Fable/Opus判定未了。"
+}
