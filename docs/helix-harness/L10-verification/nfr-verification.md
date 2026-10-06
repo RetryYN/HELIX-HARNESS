@@ -184,6 +184,6 @@ NFR CASEは測定candidate分類であり、実測・CI success・performance SL
 |---|---|---|---|---|
 | `CASE-HARNESS-L10-NFR-046-01` | `NFR-C-HARNESS-046-01` | Full V B0で12条件のapplicability、L1–L5 freeze、対応V-pair evidenceを固定し、各condition別欠落fixtureと比較する。 | 12 condition identitiesの全てをscope/revision内で列挙し、欠落した条件だけを未完/unknownにする。Full V-specific denominatorにScrum-only obligationsは含めない。 | applicability/oracle unknownは未評価。欠落を別style条件や別scopeの証拠で補えば不合格。 |
 | `CASE-HARNESS-L10-NFR-046-02` | `NFR-C-HARNESS-046-02` | Full V selected scopeの適用L1–L5層と段階freeze traceを同revisionで評価。 | 適用層ごとにworkflow revision・freeze evidence・V-pair relationが追跡可能。 | 適用層不明はL2-002/003へ戻しunknown維持。 |
-| `CASE-HARNESS-L10-NFR-046-03` | `NFR-C-HARNESS-046-03` | Production Scrumまたは許可合成Scrum inputと、Full V-only negative controlを並べる。existing trigger成立時/不成立時を別条件にする。 | Scrum-specific delta/backfill/checkpointは選択されたScrum scopeでのみ有効。Full VではScrum condition適用数0。SR4欠落はtriggerが要求するscopeだけを未完とする。 | scope selectionまたはtrigger unknownは未評価。Full VをScrum要求で不合格にすれば不合格。 |
+| `CASE-HARNESS-L10-NFR-046-03` | `NFR-C-HARNESS-046-03` | Production Scrumまたは許可合成Scrum inputとFull V-only negative controlを並べ、Scrum側は既存trigger不成立・SR4 receipt missingを含むscopeを評価する。 | Scrum-specific delta/backfill/checkpoint receiptの適用は既存triggerに従い、Full VではScrum condition適用数0。Production Scrum scopeのSR4 receipt missing/unknownはtrigger成立有無にかかわらずrelease-ready不可。 | scope selectionまたはtrigger適用条件unknownは未評価。Full VをScrum要求で不合格にすれば不合格。 |
 
 **実行限界**：文書上のoracle candidateのみ。runtime、旧test/CI、L3承認、実行・release結果を検証していない。
