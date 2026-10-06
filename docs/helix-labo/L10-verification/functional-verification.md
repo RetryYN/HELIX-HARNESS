@@ -3313,13 +3313,13 @@ FVの現行baseline/mutation/oracle文は旧公開文書のliteral copyではな
 
 FR本文で定義した `LABO-068-AC-01`（選択scope正常）、`LABO-068-AC-02`（結果閲覧前に固定した別scope正常）、`LABO-068-AC-03`（否定・未評価）を使う。ここではAC定義を再定義せず、fixture照合matrixと索引境界だけを置く。
 
-**共通fixture B0**：選択task/scope/revision/evaluation範囲S0/R0/E0、OS完全性receipt、A/B/C/D distinct identity、各eventとcorrection lineageを揃える。result stateはsuccess/failure/interrupted/identity付きdeniedを混在させ、identityなし実行前denied intake I0は別fieldに置く。正しいcountは4。B0は合成baselineで、実測実績を主張しない。CASE02は別scope S1の入力全体を結果閲覧前に固定する正常例であり、B0の既存母集団を事後変更しない。
+**共通fixture B0**：選択task/scope/revision/evaluation範囲S0/R0/E0、OS完全性receipt、A/B/C/D distinct identity、各eventとcorrection lineageを揃える。result stateはsuccess/failure/interrupted/identity付きdeniedを混在させ、identityなし実行前denied intake I0は別fieldに置く。同じ観測入力に、S1/R1/E1へ確定的に属する別Attempt Xを置く。Xのidentity・scope link・event/result receipt・訂正/完全性証拠はS1で整合し、S0のA〜Dの記録は不変。S0の正しいcountは4で、Xを除外する。B0は合成baselineで、実測実績を主張しない。CASE02は別scope S1の入力全体を結果閲覧前に固定する正常例であり、B0の既存母集団を事後変更しない。
 
 **6列の再導出CASE候補 matrix（旧25 ID保持＋固定親の出力field拒否7件）**
 
 | CASE ID | 要求trace | AC | baseline / fixture準備 | 単一の入力差分 | 期待oracle・返却 |
 |---|---|---|---|---|---|
-| `L10-LABO-068-CASE-01` | `FR-LABO-068-01/02` | `LABO-068-AC-01` | B0: 選択scope S0/rev R0/eval E0。OS完全性receipt有り。identity A/B/C/D各1件、stateはsuccess/failure/interrupted/denied。拒否intake I0はidentityなし。別に実行前拒否されていないassignment J0があり、Attempt identityは未発行。I0/J0は別record、A〜Dの完全記録に影響しない。 | 変異なし（正常fixture）。 | A〜Dを各1件で`attempt_count=4`。A=success/B=failure/C=interrupted/D=deniedという各出力stateが元OS記録の同identityの値と一致することを照合する。stateを別値へ変更・補完せず、元state/receipt対応を保持し、I0とJ0をcountしない。 |
+| `L10-LABO-068-CASE-01` | `FR-LABO-068-01/02` | `LABO-068-AC-01` | B0: 選択scope S0/rev R0/eval E0。OS完全性receipt有り。identity A/B/C/D各1件、stateはsuccess/failure/interrupted/denied。拒否intake I0はidentityなし。別に実行前拒否されていないassignment J0があり、Attempt identityは未発行。I0/J0は別record、A〜Dの完全記録に影響しない。同じ入力にS1/R1/E1のAttempt Xを置き、Xのidentity・scope link・event/result receipt・完全性証拠はS1で整合する。 | 変異なし（正常fixture）。 | A〜Dを各1件で`attempt_count=4`。A=success/B=failure/C=interrupted/D=deniedという各出力stateが元OS記録の同identityの値と一致することを照合する。stateを別値へ変更・補完せず、元state/receipt対応を保持し、I0とJ0およびscope外Xをcountしない。 |
 | `L10-LABO-068-CASE-02` | `FR-LABO-068-01/02` | `LABO-068-AC-02` | B1: outcome閲覧前に固定した別scope S1/rev R1/eval E1。未見case群の全identity/event receiptとcompleteness evidence有り。 | 変異なし（別scopeの正常fixture）。 | S1内だけを同じ規則で数える。B0の対象集合・receipt・数値を変更しない。 |
 | `L10-LABO-068-CASE-03a` | `FR-LABO-068-01/02` | `LABO-068-AC-03` | B0にidentity A/B/C/Dと完全性receipt。 | Aのidentity linkだけ欠落。 | 対象identityを確定できず総数unknown。既知OS record責務区分へ返し、missing identityの個体owner不明は別unknown。 |
 | `L10-LABO-068-CASE-03b` | `FR-LABO-068-02` | `LABO-068-AC-03` | B0のeventは観測できるが、sourceが全件捕捉を証明するcompleteness receiptはない状態。 | 変異なし（完全性unknown fixture）。 | 総数unknown。観測sourceまたはOS record owner区分へ不足を返す。 |
@@ -3365,3 +3365,4 @@ FR本文で定義した `LABO-068-AC-01`（選択scope正常）、`LABO-068-AC-0
 旧25件に加えCASE-19〜25は固定L2の禁止出力fieldを一件ずつ拒否する候補であり、CASE-26はOS訂正eventの配送遅延を扱う。旧ID保持25行、新規CASE-19〜25の7行、CASE-26の1行を合わせた計33行にr06の3反例とr07の2出力state反例を加えた計38行は変更影響index候補であり、単独fixture性・meaning completeness・実行結果を保証しない。CASE-08/16は同じCASE-03bへの索引、CASE-15は03cへの索引である。Matrix上でも独立変異/分母へ重ねない。known OS/observation-source responsibilityと具体的個体identity unknownは別fieldで保持する。receipt不在だけからsourceや個人ownerを創作しない。
 
 **実行・受入状態**：全fixtureは未実行の設計候補。旧source runtime/test/CIは実行していない。L10実測、oracle実装検証、Fable見解、独立review、L3委任承認、Ready/mergeはこのsuffixから生成しない。
+| `L10-LABO-068-CASE-r08-outside-scope-counted` | `FR-LABO-068-01` | `LABO-068-AC-03` | 正常B0。S0/R0/E0のA〜Dと、S1/R1/E1へ確定的に属するXを同じ観測入力に置く。全identity・scope link・event/result receipt・訂正/完全性証拠は各scopeで整合し、S0の正常count=4。 | 入力記録・scope link・state・receiptを変えず、S0出力のattempt_countだけをX算入の5へ変える。 | scope外Xを混ぜた誤countを拒否しS0 count=4とX除外を照合する。健康なOS入力は変更せずLABO観測出力の訂正責務を保持する。個体owner identity不明は別unknownとして既知責務区分を消さない。 |
