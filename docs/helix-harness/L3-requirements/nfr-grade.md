@@ -202,3 +202,9 @@ fixture definition数と実測母集団は異なる。対のL10機能総合検�
 | `NFR-C-HARNESS-041-01` | selected template/scope内のsource obligation population、各obligationに結び付くatomまたはtyped gap、provenance mismatch、duplicate/unaccounted findingの数を別状態で記録する。各義務を個別atom/gapへ対応する固定L2-041条件から導く。 | aggregate coverage countだけで全要素をcoveredにしない。unknown/unselected inputは未観測と分離する。未解決gapを成功扱いしない。性能値・全template全域率・threshold・実測結果は作らない。 |
 
 NFR候補はL10定義の測定母集団の設計にとどまり、抽出器の性能や実行成功を主張しない。
+
+## Stage 3 親047の非機能候補
+
+| NFR候補 / L2親 | 候補値 | 固定根拠 | 限界 |
+|---|---|---|---|
+| `HARNESS-L2-047` | 共通の数値NFR/thresholdなし | 固定L2はtaskに適用される測定可能な利益を要求するが、共通thresholdを追加しない。 | 固定provider/model、価格閾値、Worker人数・team sizeを設けない。budgetの値/実行適用はOS既存契約。 |
