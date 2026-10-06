@@ -1,0 +1,4218 @@
+{
+  "record_type": "HELIXLABO-L2-059 作成前append-only監査候補",
+  "language": "ja",
+  "record_status": "作成側Root検収済。本文5f5468固定・独立reviewと対象revision承認は未成立。",
+  "authority_effect": "none",
+  "approval_effect": "none",
+  "execution_effect": "none",
+  "scope": {
+    "parent": "HELIXLABO-L2-059 only",
+    "stage": "Stage 5",
+    "current_main_base": "17a2f310358ee7fe209b9d37cddf4a927c740248",
+    "authoring_worktree_branch": "l3-labo-stage5-parent059",
+    "authoring_status": "本文commit 5f5468。独立review/PO確認/実験は未成立。Draft PR #2625作成済み、独立review依頼前。",
+    "authoring_body_revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676"
+  },
+  "authority_and_revision_basis": {
+    "adopted_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "adopted_source_note": "L2/L11の固定意味sourceはf6dad2。本文内draft_candidate metadataはPO決定を覆さず、MPR登録だけで採択やauthorityを生成しない。",
+    "fixed_l2_l11_source_pins": [
+      {
+        "pin_id": "labo-requirements.md",
+        "source_role": "fixed adopted source revision",
+        "pin": {
+          "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+          "physical_lines_inclusive": [
+            416,
+            439
+          ],
+          "full_bytes": 73845,
+          "full_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+          "span_bytes": 12103,
+          "raw_lf_span_sha256": "10edd365a96da6d00927fe40ce16f250978f99c3d248c3ad2f7ff5364e59856c",
+          "span_hash_unit": "git blob inclusive physical lines, line-ending LF included"
+        }
+      },
+      {
+        "pin_id": "main-recheck-labo-requirements.md",
+        "source_role": "historical main comparison only (55760269); adopted authority remains f6dad2 and this is not the current-main recheck",
+        "pin": {
+          "revision": "55760269a69e6e740e47bb99d550b618af3361ce",
+          "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+          "physical_lines_inclusive": [
+            416,
+            439
+          ],
+          "full_bytes": 123228,
+          "full_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+          "raw_lf_span_sha256": "10edd365a96da6d00927fe40ce16f250978f99c3d248c3ad2f7ff5364e59856c",
+          "span_bytes": 12103,
+          "matches_adopted_span": true
+        },
+        "historical_comparison_only": true
+      },
+      {
+        "pin_id": "labo-acceptance.md",
+        "source_role": "fixed adopted source revision",
+        "pin": {
+          "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "physical_lines_inclusive": [
+            164,
+            176
+          ],
+          "full_bytes": 40455,
+          "full_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+          "span_bytes": 4437,
+          "raw_lf_span_sha256": "fd4c82e44537af100c0578c69264c179ea88beb68756a74766c79e40f0722a43",
+          "span_hash_unit": "git blob inclusive physical lines, line-ending LF included"
+        }
+      },
+      {
+        "pin_id": "main-recheck-labo-acceptance.md",
+        "source_role": "historical main comparison only (55760269); adopted authority remains f6dad2 and this is not the current-main recheck",
+        "pin": {
+          "revision": "55760269a69e6e740e47bb99d550b618af3361ce",
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "physical_lines_inclusive": [
+            164,
+            176
+          ],
+          "full_bytes": 73036,
+          "full_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+          "raw_lf_span_sha256": "fd4c82e44537af100c0578c69264c179ea88beb68756a74766c79e40f0722a43",
+          "span_bytes": 4437,
+          "matches_adopted_span": true
+        },
+        "historical_comparison_only": true
+      },
+      {
+        "pin_id": "current-main-17a2-labo-requirements.md",
+        "source_role": "current-main 17a2 comparison only; adopted authority remains fixed f6dad2",
+        "pin": {
+          "revision": "17a2f310358ee7fe209b9d37cddf4a927c740248",
+          "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+          "physical_lines_inclusive": [
+            416,
+            439
+          ],
+          "full_bytes": 123228,
+          "full_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+          "span_bytes": 12103,
+          "raw_lf_span_sha256": "10edd365a96da6d00927fe40ce16f250978f99c3d248c3ad2f7ff5364e59856c",
+          "span_hash_unit": "Git blobのinclusive物理行。LFを含む",
+          "matches_adopted_span": true
+        }
+      },
+      {
+        "pin_id": "current-main-17a2-labo-acceptance.md",
+        "source_role": "current-main 17a2 comparison only; adopted authority remains fixed f6dad2",
+        "pin": {
+          "revision": "17a2f310358ee7fe209b9d37cddf4a927c740248",
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "physical_lines_inclusive": [
+            164,
+            176
+          ],
+          "full_bytes": 73036,
+          "full_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+          "span_bytes": 4437,
+          "raw_lf_span_sha256": "fd4c82e44537af100c0578c69264c179ea88beb68756a74766c79e40f0722a43",
+          "span_hash_unit": "Git blobのinclusive物理行。LFを含む",
+          "matches_adopted_span": true
+        }
+      }
+    ],
+    "po_decision_pin": {
+      "revision": "17a2f310358ee7fe209b9d37cddf4a927c740248",
+      "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      "full_bytes": 12756,
+      "full_sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0",
+      "record_line": 99,
+      "record_literal": "| `HELIXLABO-L2-059` | `MPR-RC-HELIXLABO-L2-059-002` | unit / 1.0 |",
+      "record_raw_lf_sha256": "c6c3522b1bd6b4c1e39396ee9b2831223017d73cb544b3decafda2e7d455b509",
+      "adoption_list_line": 102,
+      "adoption_list_literal": "件数照合は53件。全件の同full identityがL11にも存在する。採用集合一覧:",
+      "adoption_list_raw_lf_sha256": "85326f26db27d0e55e3955033de6a8a93c4c587e4c9f74c9fbf9aed63357ac8c",
+      "effect_note": "PO判断記録の採用集合に059を含める。これは本文のdraft_candidate metadataやMPR登録だけから導かない。",
+      "adoption_membership_line": 115,
+      "adoption_membership_literal": "`HELIXLABO-L2-056`, `HELIXLABO-L2-057`, `HELIXLABO-L2-058`, `HELIXLABO-L2-059`",
+      "adoption_membership_raw_lf_sha256": "41a8c731c418e742f31e2c41bf3b5ae4d1c7ad7bb6be786ae034fcbc1d996866",
+      "adoption_list_line_role": "102行は採用集合の見出し、115行が059を含む実際の集合要素"
+    },
+    "register_candidate_pin": {
+      "revision": "17a2f310358ee7fe209b9d37cddf4a927c740248",
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "full_bytes": 3370048,
+      "full_sha256": "d24a982af1c468bb32c9822777a3234d3ce065ff63b89c944b7b04447610c99b",
+      "physical_line": 408,
+      "raw_lf_line_sha256": "20a9b399a2ac9de88154ad5bd016ee3b32c556c5f2e8b326023e6066705af25d",
+      "registration_id": "MPR-RC-HELIXLABO-L2-059-002",
+      "supersedes_registration_id": "MPR-RC-HELIXLABO-L2-059-001",
+      "candidate_semantic_digest": "sha256:10edd365a96da6d00927fe40ce16f250978f99c3d248c3ad2f7ff5364e59856c",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "effect_note": "登録記録であり独立した採択/実装/実験authorityではない。PO決定と混同しない。"
+    },
+    "g0_note": "この作成前監査候補はG0配属・実施許可を新規に生成しない。G0の固有状態は本資料で未照合として残す。"
+  },
+  "source_role_corrected_legacy_reuse": {
+    "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+    "mapping_count": 13,
+    "corrected_source_span_count": 19,
+    "role_classification_rule": "sourceがrequirementかacceptanceかの文書種別と、L2-059に対するdirect/related/paired/contextの役割を分ける。関連する他要求の本文を059のdirect requirement sourceと呼ばない。",
+    "corrected_role_changes": [
+      {
+        "mapping_id": "RELATED-RLO-FR-040",
+        "from": "direct_requirement_source",
+        "to": "related_requirement_source"
+      },
+      {
+        "mapping_id": "RELATED-RLO-AC-030",
+        "from": "direct_requirement_source",
+        "to": "paired_acceptance_source"
+      },
+      {
+        "mapping_id": "RELATED-WCC-FR-07/08",
+        "from": "direct_requirement_source",
+        "to": "related_requirement_source"
+      },
+      {
+        "mapping_id": "RELATED-WCC-AC-04/05",
+        "from": "direct_requirement_source",
+        "to": "paired_acceptance_source"
+      }
+    ],
+    "role_mappings": [
+      {
+        "mapping_id": "BENCH-R-03",
+        "legacy_atom": "HELIX-BENCH-R-03",
+        "relationship_to_L2_059": "direct_requirement_source",
+        "role_reason_ja": "旧Bench R-03本文直接要求；paired acceptanceはAC-003/004 consumer",
+        "fixed_scope_mapping": "比較対象のteam compositionとharness profileを直交軸にし、provider/model名の固定加点・減点を禁止する旧規則。現在はL2 420/426とL11 170/173/175のcohort/condition分離として再導出。旧class一覧・旧採点制約を丸ごと現行059へ持ち込まない。",
+        "source_pin_ids": [
+          "LEGACY-059-SOURCE-01",
+          "LEGACY-059-SOURCE-02"
+        ]
+      },
+      {
+        "mapping_id": "BENCH-R-04",
+        "legacy_atom": "HELIX-BENCH-R-04",
+        "relationship_to_L2_059": "direct_requirement_source",
+        "role_reason_ja": "旧Bench R-04本文直接要求；paired acceptanceはAC-005/006 consumer",
+        "fixed_scope_mapping": "15 fieldの厳密snapshotとpublic/hidden oracle分離。固定L2 420/427はtask/oracle identity・revisionを要求するが、旧15 field一覧・hidden-answer運用全体を固定059の必須仕様とはしない。",
+        "source_pin_ids": [
+          "LEGACY-059-SOURCE-03",
+          "LEGACY-059-SOURCE-04"
+        ]
+      },
+      {
+        "mapping_id": "BENCH-R-05",
+        "legacy_atom": "HELIX-BENCH-R-05",
+        "relationship_to_L2_059": "direct_requirement_source",
+        "role_reason_ja": "旧Bench R-05本文直接要求；paired acceptanceはAC-007 consumer",
+        "fixed_scope_mapping": "同一snapshot/scorer/protocol/hardware classの比較可能性と差異のcohort分離。現L2 420/426とL11 170/175へ比較同一性を再導出し、旧warmup/repeat/cache/parallelism定数は採用しない。",
+        "source_pin_ids": [
+          "LEGACY-059-SOURCE-05",
+          "LEGACY-059-SOURCE-06"
+        ]
+      },
+      {
+        "mapping_id": "BENCH-R-06",
+        "legacy_atom": "HELIX-BENCH-R-06",
+        "relationship_to_L2_059": "direct_requirement_source",
+        "role_reason_ja": "旧Bench R-06本文直接要求；paired acceptanceはAC-008/009 consumer",
+        "fixed_scope_mapping": "receiptからの成功算出、分母・欠落・失敗扱い、重大失敗を平均相殺しない原則。固定L2 421/422/428とL11 170/173/174で品質先行・結果区分を再導出。旧scorer schemaをコピーしない。",
+        "source_pin_ids": [
+          "LEGACY-059-SOURCE-07",
+          "LEGACY-059-SOURCE-08"
+        ]
+      },
+      {
+        "mapping_id": "BENCH-R-07",
+        "legacy_atom": "HELIX-BENCH-R-07",
+        "relationship_to_L2_059": "direct_requirement_source",
+        "role_reason_ja": "旧Bench R-07本文直接要求；paired acceptanceはAC-010/011 consumer",
+        "fixed_scope_mapping": "time/token/CI/retry/review/provider/hardware費とaccepted change basis、価格source/currency/time、欠測費用を0にしない。固定L2 423/424等でcost completenessへ再導出し、旧metric denominatorは採用しない。",
+        "source_pin_ids": [
+          "LEGACY-059-SOURCE-09",
+          "LEGACY-059-SOURCE-10"
+        ]
+      },
+      {
+        "mapping_id": "BENCH-R-08",
+        "legacy_atom": "HELIX-BENCH-R-08",
+        "relationship_to_L2_059": "direct_requirement_source",
+        "role_reason_ja": "旧Bench R-08本文直接要求；paired acceptanceはAC-012/013/014 consumer",
+        "fixed_scope_mapping": "version/digestと履歴の保持、blind author/judge分離、historicalをcurrent性能へ流用しない。固定L2 426/427とL11 170/173/175へ一部再導出。blind protocolは固定059の一律要件としては扱わない。",
+        "source_pin_ids": [
+          "LEGACY-059-SOURCE-11",
+          "LEGACY-059-SOURCE-12"
+        ]
+      },
+      {
+        "mapping_id": "RELATED-RLO-FR-040",
+        "legacy_atom": "RLO-FR-040",
+        "relationship_to_L2_059": "related_requirement_source",
+        "role_reason_ja": "RLO-FR-040はBench/059 direct sourceではなく関連するeffort/authority境界source。paired acceptanceは隣接するRLO-AC-030で別記。",
+        "fixed_scope_mapping": "effort evidence、未評価表示、scoreからauthorityを変えない境界。現L2 425/428、FR1593–1595、CASE38/04a/04bと照合。Bench R03–08とは別要件。",
+        "source_pin_ids": [
+          "LEGACY-059-SOURCE-13"
+        ]
+      },
+      {
+        "mapping_id": "RELATED-RLO-AC-030",
+        "legacy_atom": "RLO-AC-030",
+        "relationship_to_L2_059": "paired_acceptance_source",
+        "role_reason_ja": "RLO-AC-030はRLO-FR-040のpaired acceptance consumer。Bench acceptanceでも059の直接要件sourceでもない。",
+        "fixed_scope_mapping": "RLO-FR-040のacceptance consumer。authority非変更と未benchmarked表示を確認。Bench acceptanceとは別。",
+        "source_pin_ids": [
+          "LEGACY-059-SOURCE-14"
+        ]
+      },
+      {
+        "mapping_id": "RELATED-3L-BR-008",
+        "legacy_atom": "3L-BR-008",
+        "relationship_to_L2_059": "upstream_requirement_boundary_source",
+        "role_reason_ja": "3L-BR-008はmodel revision qualificationの上流要求で、登録上059ではなくLABO-071 candidateへ向く。059 directではない。",
+        "fixed_scope_mapping": "model revision別qualification・称号/資格/権限/assignment分離という上流要求。現登録は059ではなくLABO-071 candidateへ向く。059へ資格lifecycleを移植しない。",
+        "source_pin_ids": [
+          "LEGACY-059-SOURCE-15"
+        ]
+      },
+      {
+        "mapping_id": "RELATED-3L-R-19/20",
+        "legacy_atom": "3L-R-19/20",
+        "relationship_to_L2_059": "downstream_design_context_source",
+        "role_reason_ja": "3L-R-19/20は別要求系列の下流設計context。059 direct sourceではない。",
+        "fixed_scope_mapping": "qualification lifecycleとidentity separationの旧下流設計。059の固定scope外であることを確認するためのcontext。",
+        "source_pin_ids": [
+          "LEGACY-059-SOURCE-16"
+        ]
+      },
+      {
+        "mapping_id": "RELATED-3L-AC-019..022",
+        "legacy_atom": "3L-AC-019..022",
+        "relationship_to_L2_059": "paired_acceptance_context_source",
+        "role_reason_ja": "3L-AC-019..022は3L-R-18/19/20のpaired acceptance context。059のACではない。",
+        "fixed_scope_mapping": "qualification lifecycle、称号/資格/権限分離、model revision時の再bench受入。059へadmission lifecycleとして追加しない。",
+        "source_pin_ids": [
+          "LEGACY-059-SOURCE-17"
+        ]
+      },
+      {
+        "mapping_id": "RELATED-WCC-FR-07/08",
+        "legacy_atom": "WCC-FR-07/08",
+        "relationship_to_L2_059": "related_contract_source",
+        "role_reason_ja": "WCC-FR-07/08はWorker共通contractの関連source。059のsystem/team benchmarkへ重複適用しない。",
+        "fixed_scope_mapping": "worker候補blind benchmarkと重大failure扱いを定める共通contract。059のsystem/team benchmarkへ重複実装しない。",
+        "source_pin_ids": [
+          "LEGACY-059-SOURCE-18"
+        ]
+      },
+      {
+        "mapping_id": "RELATED-WCC-AC-04/05",
+        "legacy_atom": "WCC-AC-04/05",
+        "relationship_to_L2_059": "paired_acceptance_context_source",
+        "role_reason_ja": "WCC-AC-04/05はWCC-FR側のacceptance consumer。Worker admission/effort authorityを059へ移さない。",
+        "fixed_scope_mapping": "WCC-FR-07/08 acceptance rows。worker admission/effortの独立authorityを059へ持ち込まない。",
+        "source_pin_ids": [
+          "LEGACY-059-SOURCE-19"
+        ]
+      }
+    ],
+    "source_span_pins": [
+      {
+        "pin_id": "LEGACY-059-SOURCE-01",
+        "mapping_id": "BENCH-R-03",
+        "legacy_atom": "HELIX-BENCH-R-03",
+        "relationship_to_L2_059": "direct_requirement_source",
+        "source_role": "direct_requirement_source",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+        "physical_lines_inclusive": [
+          76,
+          94
+        ],
+        "full_bytes": 6446,
+        "full_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+        "span_bytes": 538,
+        "raw_lf_span_sha256": "78e36e944f81b3d86848540620e4836a1f7ce35e58f290fdb84f7d0a640480e4",
+        "literal_included": false
+      },
+      {
+        "pin_id": "LEGACY-059-SOURCE-02",
+        "mapping_id": "BENCH-R-03",
+        "legacy_atom": "HELIX-BENCH-R-03",
+        "relationship_to_L2_059": "direct_requirement_source",
+        "source_role": "paired_acceptance_source",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+        "physical_lines_inclusive": [
+          30,
+          31
+        ],
+        "full_bytes": 3701,
+        "full_sha256": "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185",
+        "span_bytes": 387,
+        "raw_lf_span_sha256": "8df7c1167255ececa66bab0ae25d904ec6d03b656eeb75ad59fb6581ff2e31ef",
+        "literal_included": false
+      },
+      {
+        "pin_id": "LEGACY-059-SOURCE-03",
+        "mapping_id": "BENCH-R-04",
+        "legacy_atom": "HELIX-BENCH-R-04",
+        "relationship_to_L2_059": "direct_requirement_source",
+        "source_role": "direct_requirement_source",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+        "physical_lines_inclusive": [
+          96,
+          119
+        ],
+        "full_bytes": 6446,
+        "full_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+        "span_bytes": 523,
+        "raw_lf_span_sha256": "86264bef85d2dcfebeb0d5cf84224d02e6812e5edef81ffdc9581049abd85c06",
+        "literal_included": false
+      },
+      {
+        "pin_id": "LEGACY-059-SOURCE-04",
+        "mapping_id": "BENCH-R-04",
+        "legacy_atom": "HELIX-BENCH-R-04",
+        "relationship_to_L2_059": "direct_requirement_source",
+        "source_role": "paired_acceptance_source",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+        "physical_lines_inclusive": [
+          32,
+          33
+        ],
+        "full_bytes": 3701,
+        "full_sha256": "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185",
+        "span_bytes": 346,
+        "raw_lf_span_sha256": "3cdb4d91077389acb1aefe0363808c0b342071281813c137076bab1bc73a2873",
+        "literal_included": false
+      },
+      {
+        "pin_id": "LEGACY-059-SOURCE-05",
+        "mapping_id": "BENCH-R-05",
+        "legacy_atom": "HELIX-BENCH-R-05",
+        "relationship_to_L2_059": "direct_requirement_source",
+        "source_role": "direct_requirement_source",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+        "physical_lines_inclusive": [
+          121,
+          126
+        ],
+        "full_bytes": 6446,
+        "full_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+        "span_bytes": 465,
+        "raw_lf_span_sha256": "cbcd28439c7a062299167fdd2778e85665423b11ef0bd5192ad58ba653a88d65",
+        "literal_included": false
+      },
+      {
+        "pin_id": "LEGACY-059-SOURCE-06",
+        "mapping_id": "BENCH-R-05",
+        "legacy_atom": "HELIX-BENCH-R-05",
+        "relationship_to_L2_059": "direct_requirement_source",
+        "source_role": "paired_acceptance_source",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+        "physical_lines_inclusive": [
+          34,
+          34
+        ],
+        "full_bytes": 3701,
+        "full_sha256": "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185",
+        "span_bytes": 205,
+        "raw_lf_span_sha256": "212c1056ff2561804fdabad16123c822c8bee9ce51b07cd77ffabfeb4fa09ace",
+        "literal_included": false
+      },
+      {
+        "pin_id": "LEGACY-059-SOURCE-07",
+        "mapping_id": "BENCH-R-06",
+        "legacy_atom": "HELIX-BENCH-R-06",
+        "relationship_to_L2_059": "direct_requirement_source",
+        "source_role": "direct_requirement_source",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+        "physical_lines_inclusive": [
+          128,
+          135
+        ],
+        "full_bytes": 6446,
+        "full_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+        "span_bytes": 575,
+        "raw_lf_span_sha256": "3cf9d4bd176527672e39e2756ed52ad8177c57301695647f62ff50945f05d5d2",
+        "literal_included": false
+      },
+      {
+        "pin_id": "LEGACY-059-SOURCE-08",
+        "mapping_id": "BENCH-R-06",
+        "legacy_atom": "HELIX-BENCH-R-06",
+        "relationship_to_L2_059": "direct_requirement_source",
+        "source_role": "paired_acceptance_source",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+        "physical_lines_inclusive": [
+          35,
+          36
+        ],
+        "full_bytes": 3701,
+        "full_sha256": "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185",
+        "span_bytes": 368,
+        "raw_lf_span_sha256": "e4d3969a89cc15692266199372aa87a29bfa0ebe9438a8fc1694ea0595871363",
+        "literal_included": false
+      },
+      {
+        "pin_id": "LEGACY-059-SOURCE-09",
+        "mapping_id": "BENCH-R-07",
+        "legacy_atom": "HELIX-BENCH-R-07",
+        "relationship_to_L2_059": "direct_requirement_source",
+        "source_role": "direct_requirement_source",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+        "physical_lines_inclusive": [
+          137,
+          141
+        ],
+        "full_bytes": 6446,
+        "full_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+        "span_bytes": 349,
+        "raw_lf_span_sha256": "203e0e932a83e2aa64d80a1da93fa46e500ea018d6a66813dd47c08de87fb565",
+        "literal_included": false
+      },
+      {
+        "pin_id": "LEGACY-059-SOURCE-10",
+        "mapping_id": "BENCH-R-07",
+        "legacy_atom": "HELIX-BENCH-R-07",
+        "relationship_to_L2_059": "direct_requirement_source",
+        "source_role": "paired_acceptance_source",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+        "physical_lines_inclusive": [
+          37,
+          38
+        ],
+        "full_bytes": 3701,
+        "full_sha256": "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185",
+        "span_bytes": 341,
+        "raw_lf_span_sha256": "a8aeff8ffc75aae82454994928d347210d7190d935b4d79ec3378fc76e8fc512",
+        "literal_included": false
+      },
+      {
+        "pin_id": "LEGACY-059-SOURCE-11",
+        "mapping_id": "BENCH-R-08",
+        "legacy_atom": "HELIX-BENCH-R-08",
+        "relationship_to_L2_059": "direct_requirement_source",
+        "source_role": "direct_requirement_source",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+        "physical_lines_inclusive": [
+          143,
+          147
+        ],
+        "full_bytes": 6446,
+        "full_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+        "span_bytes": 351,
+        "raw_lf_span_sha256": "1528cbcdf178907860401f6155b405693cce7e21540e05bc5cc013ad39963c9f",
+        "literal_included": false
+      },
+      {
+        "pin_id": "LEGACY-059-SOURCE-12",
+        "mapping_id": "BENCH-R-08",
+        "legacy_atom": "HELIX-BENCH-R-08",
+        "relationship_to_L2_059": "direct_requirement_source",
+        "source_role": "paired_acceptance_source",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+        "physical_lines_inclusive": [
+          39,
+          40
+        ],
+        "full_bytes": 3701,
+        "full_sha256": "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185",
+        "span_bytes": 367,
+        "raw_lf_span_sha256": "c45e013b69458a51a0526292f616881e3fccfc0daa39bed27f5b5526be216e55",
+        "literal_included": false
+      },
+      {
+        "pin_id": "LEGACY-059-SOURCE-13",
+        "mapping_id": "RELATED-RLO-FR-040",
+        "legacy_atom": "RLO-FR-040",
+        "relationship_to_L2_059": "related_requirement_source",
+        "source_role": "related_requirement_source",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+        "physical_lines_inclusive": [
+          663,
+          666
+        ],
+        "full_bytes": 42556,
+        "full_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+        "span_bytes": 276,
+        "raw_lf_span_sha256": "e5491837b6d6df74cc5fbc66e93706c298df1d7520b660f8eb3f128db39a5769",
+        "literal_included": false
+      },
+      {
+        "pin_id": "LEGACY-059-SOURCE-14",
+        "mapping_id": "RELATED-RLO-AC-030",
+        "legacy_atom": "RLO-AC-030",
+        "relationship_to_L2_059": "paired_acceptance_source",
+        "source_role": "paired_acceptance_source",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+        "physical_lines_inclusive": [
+          43,
+          43
+        ],
+        "full_bytes": 4078,
+        "full_sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+        "span_bytes": 282,
+        "raw_lf_span_sha256": "bb2ffab864ed73e12178b85b2245118672d59fce09ab411abce3adf53107ff00",
+        "literal_included": false
+      },
+      {
+        "pin_id": "LEGACY-059-SOURCE-15",
+        "mapping_id": "RELATED-3L-BR-008",
+        "legacy_atom": "3L-BR-008",
+        "relationship_to_L2_059": "upstream_requirement_boundary_source",
+        "source_role": "upstream_requirement_boundary_source",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+        "physical_lines_inclusive": [
+          67,
+          69
+        ],
+        "full_bytes": 4629,
+        "full_sha256": "e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765",
+        "span_bytes": 258,
+        "raw_lf_span_sha256": "ab29276edf0e04c4c163ab5d4e3889b0c845fbbd86fc0f7d23f8bd32a7ffdb4e",
+        "literal_included": false
+      },
+      {
+        "pin_id": "LEGACY-059-SOURCE-16",
+        "mapping_id": "RELATED-3L-R-19/20",
+        "legacy_atom": "3L-R-19/20",
+        "relationship_to_L2_059": "downstream_design_context_source",
+        "source_role": "downstream_design_context_source",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/three-lane-cloud-governance-requirements.md",
+        "physical_lines_inclusive": [
+          78,
+          79
+        ],
+        "full_bytes": 8903,
+        "full_sha256": "4b388cda67484f1808b0f4b8834d5d234a47de49f7db6dcb12d92d2dcfbee185",
+        "span_bytes": 396,
+        "raw_lf_span_sha256": "72ac0c19b782799b7895670aa63d9abe4a1c3b8a73d45e82d4838867a3aab067",
+        "literal_included": false
+      },
+      {
+        "pin_id": "LEGACY-059-SOURCE-17",
+        "mapping_id": "RELATED-3L-AC-019..022",
+        "legacy_atom": "3L-AC-019..022",
+        "relationship_to_L2_059": "paired_acceptance_context_source",
+        "source_role": "paired_acceptance_context_source",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/three-lane-cloud-governance-acceptance.md",
+        "physical_lines_inclusive": [
+          44,
+          47
+        ],
+        "full_bytes": 4889,
+        "full_sha256": "785421188d23f371290ff5bacecba6c5215e7baa66110c461f548cae8f6a2fc7",
+        "span_bytes": 440,
+        "raw_lf_span_sha256": "db3f977c22140f8ef9cb9628fa0341fe261daabaf7240051211df91ce6406993",
+        "literal_included": false
+      },
+      {
+        "pin_id": "LEGACY-059-SOURCE-18",
+        "mapping_id": "RELATED-WCC-FR-07/08",
+        "legacy_atom": "WCC-FR-07/08",
+        "relationship_to_L2_059": "related_contract_source",
+        "source_role": "related_contract_source",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+        "physical_lines_inclusive": [
+          61,
+          62
+        ],
+        "full_bytes": 14499,
+        "full_sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+        "span_bytes": 783,
+        "raw_lf_span_sha256": "e068a29d86eaff9d8833e31f9ffe2146f624ac9e2b9ed66dbc159b9ae0ba9441",
+        "literal_included": false
+      },
+      {
+        "pin_id": "LEGACY-059-SOURCE-19",
+        "mapping_id": "RELATED-WCC-AC-04/05",
+        "legacy_atom": "WCC-AC-04/05",
+        "relationship_to_L2_059": "paired_acceptance_context_source",
+        "source_role": "paired_acceptance_context_source",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+        "physical_lines_inclusive": [
+          130,
+          131
+        ],
+        "full_bytes": 14499,
+        "full_sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+        "span_bytes": 510,
+        "raw_lf_span_sha256": "73738be0ac441e33e4a430e77c294224b6256f0d88a1a965d7a3cb2c0f8823fe",
+        "literal_included": false
+      }
+    ],
+    "disposition_note": "旧sourceを直接要件、関連要件/contract、paired acceptance consumer/context、上流境界、下流設計contextに分ける。RLO/WCC/3-laneをL2-059の直接要件へ再分類しない。各旧sourceの意味を現L2/L11へ再導出し、旧schema/runtimeを移さない。"
+  },
+  "fixed_31_condition_change_impact_index": {
+    "purpose": "31固定条件と既存CASE/AC・候補設計を辿る変更影響index。完全性・要件充足・独立fixture被覆の証明ではない。coverage_statusの部分/不足はそのまま保持。",
+    "rows": [
+      {
+        "condition_id": "C01",
+        "fixed_condition": "要求・受入条件・品質oracleのidentity/revision、同一task/work scope、対象期間",
+        "fixed_L2_lines": [
+          420
+        ],
+        "fixed_L11_refs": "L2-059 input scope; L11 170",
+        "existing_CASE_ids": [
+          "L10-LABO-059-CASE-01",
+          "L10-LABO-059-CASE-02",
+          "L10-LABO-059-CASE-03a",
+          "L10-LABO-059-CASE-03b",
+          "L10-LABO-059-CASE-09",
+          "L10-LABO-059-CASE-14"
+        ],
+        "existing_AC_ids": [
+          "LABO-059-AC-01",
+          "LABO-059-AC-02",
+          "LABO-059-AC-03"
+        ],
+        "coverage_status": "一部明示",
+        "existing_semantic_read": "CASE01/02は正常系の概要。CASE03aはtask scope mismatch、CASE09はselected-comparison-scope mismatch、CASE03bはoracle/task revision差の反例。03aと09はfieldの重なりが未確定なので両IDを維持し、独立性は主張しない。",
+        "existing_trace_paths": [
+          "BR:65",
+          "FR:1591-1598",
+          "NFR:166",
+          "BV:63",
+          "FV:2588-2631",
+          "NV:124"
+        ],
+        "existing_negative_or_compound_CASE_ids": [
+          "L10-LABO-059-CASE-03a",
+          "L10-LABO-059-CASE-03b",
+          "L10-LABO-059-CASE-09",
+          "L10-LABO-059-CASE-14"
+        ],
+        "existing_nonindependent_indexes": [],
+        "field_annotation_proposal": "CASE01の正常baselineに、既存task/work scope・requirement/acceptance/quality oracleのidentityとrevision・対象期間を、実source参照のまま対応づける。値の新設はしない。CASE03a/03bは変異欄をそれぞれscope/oracle revisionに限定し、戻し先を現CASEどおり示す。",
+        "candidate_refs": [],
+        "current_body_candidate_CASE_ids": [],
+        "index_limit_note": "変更影響の参照索引。独立fixture数、要件充足、採択の証明ではない。"
+      },
+      {
+        "condition_id": "C02",
+        "fixed_condition": "実験条件baseline/current/candidate/hybridの各構成と版を記録",
+        "fixed_L2_lines": [
+          420,
+          426
+        ],
+        "fixed_L11_refs": "L2-059 input and cohort axes; L11 170,173",
+        "existing_CASE_ids": [
+          "L10-LABO-059-CASE-01",
+          "L10-LABO-059-CASE-03h"
+        ],
+        "existing_AC_ids": [
+          "LABO-059-AC-01",
+          "LABO-059-AC-03"
+        ],
+        "coverage_status": "一部明示",
+        "existing_semantic_read": "CASE01は各実験条件の正常値をまとめるが、具体値は示さない。CASE03hはcohortと条件の混同だけを変えた反例。",
+        "existing_trace_paths": [
+          "BR:65",
+          "FR:1591-1598",
+          "NFR:166",
+          "BV:63",
+          "FV:2588-2631",
+          "NV:124"
+        ],
+        "existing_negative_or_compound_CASE_ids": [
+          "L10-LABO-059-CASE-03h"
+        ],
+        "existing_nonindependent_indexes": [],
+        "field_annotation_proposal": "CASE01のbaseline/current/candidate/hybrid各conditionを、実fixtureにすでにある構成・版の欄へ対応づける。未記入値を補わない。CASE03hはcohortとconditionの対応 fieldだけを変えたことを説明する。",
+        "candidate_refs": [],
+        "current_body_candidate_CASE_ids": [],
+        "index_limit_note": "変更影響の参照索引。独立fixture数、要件充足、採択の証明ではない。"
+      },
+      {
+        "condition_id": "C03",
+        "fixed_condition": "task snapshot/scorer/run protocol/hardware/toolchain classを比較前に固定",
+        "fixed_L2_lines": [
+          420,
+          426
+        ],
+        "fixed_L11_refs": "L11 170,175",
+        "existing_CASE_ids": [
+          "L10-LABO-059-CASE-01",
+          "L10-LABO-059-CASE-03b",
+          "L10-LABO-059-CASE-10",
+          "L10-LABO-059-CASE-11",
+          "L10-LABO-059-CASE-12",
+          "L10-LABO-059-CASE-13",
+          "L10-LABO-059-CASE-14"
+        ],
+        "existing_AC_ids": [
+          "LABO-059-AC-01",
+          "LABO-059-AC-03"
+        ],
+        "coverage_status": "反例は単独で列挙、正常例は概要のみ",
+        "existing_semantic_read": "scorer、protocol、hardware、toolchain、task revisionの差をそれぞれ分けた反例がある。CASE01の正常条件は値を具体化せず、一致していることだけを示す。",
+        "existing_trace_paths": [
+          "BR:65",
+          "FR:1591-1598",
+          "NFR:166",
+          "BV:63",
+          "FV:2588-2631",
+          "NV:124"
+        ],
+        "existing_negative_or_compound_CASE_ids": [
+          "L10-LABO-059-CASE-03b",
+          "L10-LABO-059-CASE-10",
+          "L10-LABO-059-CASE-11",
+          "L10-LABO-059-CASE-12",
+          "L10-LABO-059-CASE-13",
+          "L10-LABO-059-CASE-14"
+        ],
+        "existing_nonindependent_indexes": [],
+        "field_annotation_proposal": "CASE01にtask snapshot, scorer, protocol, hardware class, toolchain class各既存source identityの参照位置を示す。CASE10–14は各1 fieldのrevision差と比較不能/既存ownerへの戻し先を個別に明記する。",
+        "candidate_refs": [],
+        "current_body_candidate_CASE_ids": [],
+        "index_limit_note": "変更影響の参照索引。独立fixture数、要件充足、採択の証明ではない。"
+      },
+      {
+        "condition_id": "C04",
+        "fixed_condition": "HELIX支援なし・旧版・新版のcohortと構成を分けて記録",
+        "fixed_L2_lines": [
+          420,
+          426
+        ],
+        "fixed_L11_refs": "L11 170,173,175",
+        "existing_CASE_ids": [
+          "L10-LABO-059-CASE-01",
+          "L10-LABO-059-CASE-02",
+          "L10-LABO-059-CASE-03h",
+          "L10-LABO-059-CASE-03i",
+          "L10-LABO-059-CASE-15",
+          "L10-LABO-059-CASE-21"
+        ],
+        "existing_AC_ids": [
+          "LABO-059-AC-01",
+          "LABO-059-AC-02",
+          "LABO-059-AC-03"
+        ],
+        "coverage_status": "比較目的ごとに条件付き",
+        "existing_semantic_read": "比較目的に応じた条件付き対応確認。CASE15は他のHELIX支援が残る対象を「HELIXなし」と誤分類する。CASE21は二者比較から三者関係を主張する。",
+        "existing_trace_paths": [
+          "BR:65",
+          "FR:1591-1598",
+          "NFR:166",
+          "BV:63",
+          "FV:2588-2631",
+          "NV:124"
+        ],
+        "existing_negative_or_compound_CASE_ids": [
+          "L10-LABO-059-CASE-03h",
+          "L10-LABO-059-CASE-03i",
+          "L10-LABO-059-CASE-15",
+          "L10-LABO-059-CASE-21"
+        ],
+        "existing_nonindependent_indexes": [],
+        "field_annotation_proposal": "CASE01/02で比較目的、選択済みcohort ID、HELIX支援構成（なし/旧版/新版）と実験conditionを別欄で示す。未選択群は未測定/対象外のままとする。CASE15/21は現在の誤分類/過大主張の変異を維持。",
+        "candidate_refs": [],
+        "current_body_candidate_CASE_ids": [],
+        "index_limit_note": "変更影響の参照索引。独立fixture数、要件充足、採択の証明ではない。"
+      },
+      {
+        "condition_id": "C05",
+        "fixed_condition": "cohort軸と実験条件軸を分け、対応を事前に固定",
+        "fixed_L2_lines": [
+          420,
+          426
+        ],
+        "fixed_L11_refs": "L11 170,173",
+        "existing_CASE_ids": [
+          "L10-LABO-059-CASE-01",
+          "L10-LABO-059-CASE-03h"
+        ],
+        "existing_AC_ids": [
+          "LABO-059-AC-01",
+          "LABO-059-AC-03"
+        ],
+        "coverage_status": "一部明示",
+        "existing_semantic_read": "CASE03hは軸の混同を示す反例。CASE01とL11の例173はcohortと条件を分ける意味を示すが、fixtureのfield値は列挙しない。",
+        "existing_trace_paths": [
+          "BR:65",
+          "FR:1591-1598",
+          "NFR:166",
+          "BV:63",
+          "FV:2588-2631",
+          "NV:124"
+        ],
+        "existing_negative_or_compound_CASE_ids": [
+          "L10-LABO-059-CASE-03h"
+        ],
+        "existing_nonindependent_indexes": [],
+        "field_annotation_proposal": "CASE01/02の同じ既存runをcohort軸とcondition軸に別々に位置づけ、対応付けのsource箇所を示す。CASE03hの変異は軸対応の取り違えだけと明記する。",
+        "candidate_refs": [],
+        "current_body_candidate_CASE_ids": [],
+        "index_limit_note": "変更影響の参照索引。独立fixture数、要件充足、採択の証明ではない。"
+      },
+      {
+        "condition_id": "C06",
+        "fixed_condition": "比較目的ごとに群を選ぶ。導入比較はあり/なし、改訂比較は旧/新、三者関係を主張する場合のみ三群",
+        "fixed_L2_lines": [
+          426
+        ],
+        "fixed_L11_refs": "L11 170,173,175",
+        "existing_CASE_ids": [
+          "L10-LABO-059-CASE-01",
+          "L10-LABO-059-CASE-02",
+          "L10-LABO-059-CASE-03i",
+          "L10-LABO-059-CASE-21"
+        ],
+        "existing_AC_ids": [
+          "LABO-059-AC-01",
+          "LABO-059-AC-02",
+          "LABO-059-AC-03"
+        ],
+        "coverage_status": "一部明示",
+        "existing_semantic_read": "二群と三群の正常比較例がある。選択群の具体値はCASE01/02のliteralでは固定されていない。",
+        "existing_trace_paths": [
+          "BR:65",
+          "FR:1591-1598",
+          "NFR:166",
+          "BV:63",
+          "FV:2588-2631",
+          "NV:124"
+        ],
+        "existing_negative_or_compound_CASE_ids": [
+          "L10-LABO-059-CASE-03i",
+          "L10-LABO-059-CASE-21"
+        ],
+        "existing_nonindependent_indexes": [],
+        "field_annotation_proposal": "CASE01/02に比較目的、選択二群または三群、未選択群の状態、claim範囲を実sourceに沿って記載する。三群を既定にしない。CASE21は二群結果の三群化という既存oracleを維持。",
+        "candidate_refs": [],
+        "current_body_candidate_CASE_ids": [],
+        "index_limit_note": "変更影響の参照索引。独立fixture数、要件充足、採択の証明ではない。"
+      },
+      {
+        "condition_id": "C07",
+        "fixed_condition": "未選択groupが欠けても、選択済み二者比較を不成立にしない",
+        "fixed_L2_lines": [
+          426
+        ],
+        "fixed_L11_refs": "L11 170,173,175",
+        "existing_CASE_ids": [
+          "L10-LABO-059-CASE-02",
+          "L10-LABO-059-CASE-03i",
+          "L10-LABO-059-CASE-21"
+        ],
+        "existing_AC_ids": [
+          "LABO-059-AC-02",
+          "LABO-059-AC-03"
+        ],
+        "coverage_status": "条件付きの正常例と反例",
+        "existing_semantic_read": "CASE02は未選択群の不足を維持する未見正常。CASE21は二者結果から三者関係を主張する反例。",
+        "existing_trace_paths": [
+          "BR:65",
+          "FR:1591-1598",
+          "NFR:166",
+          "BV:63",
+          "FV:2588-2631",
+          "NV:124"
+        ],
+        "existing_negative_or_compound_CASE_ids": [
+          "L10-LABO-059-CASE-03i",
+          "L10-LABO-059-CASE-21"
+        ],
+        "existing_nonindependent_indexes": [],
+        "field_annotation_proposal": "CASE02の未選択cohortを、field値欠落ではなく選択対象外/未測定として明示する。CASE03iの必要receipt欠落とCASE21の三群claimを異なる変異として残す。",
+        "candidate_refs": [],
+        "current_body_candidate_CASE_ids": [],
+        "index_limit_note": "変更影響の参照索引。独立fixture数、要件充足、採択の証明ではない。"
+      },
+      {
+        "condition_id": "C08",
+        "fixed_condition": "評価runのOS assignmentと対象作業のHELIX支援有無を区別し、HELIX支援なしの作業へ支援を混ぜない",
+        "fixed_L2_lines": [
+          420,
+          426
+        ],
+        "fixed_L11_refs": "L11 170,173",
+        "existing_CASE_ids": [
+          "L10-LABO-059-CASE-01",
+          "L10-LABO-059-CASE-04a",
+          "L10-LABO-059-CASE-15"
+        ],
+        "existing_AC_ids": [
+          "LABO-059-AC-01",
+          "LABO-059-AC-03"
+        ],
+        "coverage_status": "反例あり",
+        "existing_semantic_read": "CASE04aはLABOのWorker割当、CASE15はcohort誤分類を扱う。HELIX支援なしの対象作業へ支援を混ぜる反例は明示されていない。",
+        "existing_trace_paths": [
+          "BR:65",
+          "FR:1591-1598",
+          "NFR:166",
+          "BV:63",
+          "FV:2588-2631",
+          "NV:124"
+        ],
+        "existing_negative_or_compound_CASE_ids": [
+          "L10-LABO-059-CASE-04a",
+          "L10-LABO-059-CASE-15"
+        ],
+        "existing_nonindependent_indexes": [],
+        "field_annotation_proposal": "CASE01のOS評価assignmentと対象作業のHELIX支援構成を別fieldとして可視化し、no-HELIXの主張が実sourceから裏付く場合だけ使う。CASE15は「no-Harnessだが他支援あり」の誤ラベルを継続し、支援混入そのものと同一変異にしない。",
+        "candidate_refs": [
+          "C08-candidate-01"
+        ],
+        "current_body_candidate_CASE_ids": [
+          "L10-LABO-059-CASE-50"
+        ],
+        "index_limit_note": "変更影響の参照索引。独立fixture数、要件充足、採択の証明ではない。"
+      },
+      {
+        "condition_id": "C09",
+        "fixed_condition": "現行実験は既存L2-006のOS-assigned Worker/receiptに従う",
+        "fixed_L2_lines": [
+          420
+        ],
+        "fixed_L11_refs": "L11 170",
+        "existing_CASE_ids": [
+          "L10-LABO-059-CASE-01",
+          "L10-LABO-059-CASE-04a"
+        ],
+        "existing_AC_ids": [
+          "LABO-059-AC-01",
+          "LABO-059-AC-03"
+        ],
+        "coverage_status": "一部対応確認",
+        "existing_semantic_read": "assignment authorityをLABOが変更する反例はある。現行OS assignment receiptそのものが欠ける独立反例は059のCASE行で確認できない。",
+        "existing_trace_paths": [
+          "BR:65",
+          "FR:1591-1598",
+          "NFR:166",
+          "BV:63",
+          "FV:2588-2631",
+          "NV:124"
+        ],
+        "existing_negative_or_compound_CASE_ids": [
+          "L10-LABO-059-CASE-04a"
+        ],
+        "existing_nonindependent_indexes": [],
+        "field_annotation_proposal": "CASE01で許可済みOS assignmentとreceiptの実在source/identityを指す。CASE04aはLABOによる割当権限の越境を維持し、receipt欠落とは分ける。",
+        "candidate_refs": [
+          "C09-candidate-01"
+        ],
+        "current_body_candidate_CASE_ids": [
+          "L10-LABO-059-CASE-51"
+        ],
+        "index_limit_note": "変更影響の参照索引。独立fixture数、要件充足、採択の証明ではない。"
+      },
+      {
+        "condition_id": "C10",
+        "fixed_condition": "historical run当時のactor/authority/receiptを保ち、現在のassignmentを遡及生成しない",
+        "fixed_L2_lines": [
+          420,
+          426
+        ],
+        "fixed_L11_refs": "L11 170,175",
+        "existing_CASE_ids": [
+          "L10-LABO-059-CASE-02",
+          "L10-LABO-059-CASE-16",
+          "L10-LABO-059-CASE-31"
+        ],
+        "existing_AC_ids": [
+          "LABO-059-AC-02",
+          "LABO-059-AC-03"
+        ],
+        "coverage_status": "反例あり",
+        "existing_semantic_read": "CASE16は過去のassignmentを遡及生成する反例、CASE31は過去結果を現行性能へ移す反例。過去の比較では保存済みreceiptだけを読む。",
+        "existing_trace_paths": [
+          "BR:65",
+          "FR:1591-1598",
+          "NFR:166",
+          "BV:63",
+          "FV:2588-2631",
+          "NV:124"
+        ],
+        "existing_negative_or_compound_CASE_ids": [
+          "L10-LABO-059-CASE-16",
+          "L10-LABO-059-CASE-31"
+        ],
+        "existing_nonindependent_indexes": [],
+        "field_annotation_proposal": "CASE02のhistorical runについて当時のactor/authority/receiptとそのrevisionを既存保存物へ対応づける。CASE16の単独変異は現行assignmentの遡及付与、CASE31は過去結果の現行性能転用として区別する。",
+        "candidate_refs": [],
+        "current_body_candidate_CASE_ids": [],
+        "index_limit_note": "変更影響の参照索引。独立fixture数、要件充足、採択の証明ではない。"
+      },
+      {
+        "condition_id": "C11",
+        "fixed_condition": "scope内で既決のquality/priority/toleranceとdecision provenance/applicabilityを受け取る",
+        "fixed_L2_lines": [
+          420,
+          422,
+          439
+        ],
+        "fixed_L11_refs": "L11 170,173",
+        "existing_CASE_ids": [
+          "L10-LABO-059-CASE-01",
+          "L10-LABO-059-CASE-03c",
+          "L10-LABO-059-CASE-03d",
+          "L10-LABO-059-CASE-04b",
+          "L10-LABO-059-CASE-06"
+        ],
+        "existing_AC_ids": [
+          "LABO-059-AC-01",
+          "LABO-059-AC-03"
+        ],
+        "coverage_status": "一部対応確認",
+        "existing_semantic_read": "有効decisionの正常適用はCASE01の概要にある。適用範囲外・未決・失効とLABOによる優先値の決定を拒否する反例が個別にある。",
+        "existing_trace_paths": [
+          "BR:65",
+          "FR:1591-1598",
+          "NFR:166",
+          "BV:63",
+          "FV:2588-2631",
+          "NV:124"
+        ],
+        "existing_negative_or_compound_CASE_ids": [
+          "L10-LABO-059-CASE-03c",
+          "L10-LABO-059-CASE-03d",
+          "L10-LABO-059-CASE-04b",
+          "L10-LABO-059-CASE-06"
+        ],
+        "existing_nonindependent_indexes": [],
+        "field_annotation_proposal": "CASE01に既存decisionのscope/revision、決定者、根拠、適用期間、priority/quality/toleranceを実decision参照のまま示す。CASE03c/03d/04b/06は境界外・未決・権限越境・失効を相互に混ぜない。",
+        "candidate_refs": [],
+        "current_body_candidate_CASE_ids": [],
+        "index_limit_note": "変更影響の参照索引。独立fixture数、要件充足、採択の証明ではない。"
+      },
+      {
+        "condition_id": "C12",
+        "fixed_condition": "同じ適用範囲では有効decisionを再利用し、毎runで再確認を要求しない",
+        "fixed_L2_lines": [
+          420,
+          422,
+          437,
+          439
+        ],
+        "fixed_L11_refs": "L11 170,173",
+        "existing_CASE_ids": [
+          "L10-LABO-059-CASE-01",
+          "L10-LABO-059-CASE-05",
+          "L10-LABO-059-CASE-06"
+        ],
+        "existing_AC_ids": [
+          "LABO-059-AC-01",
+          "LABO-059-AC-03"
+        ],
+        "coverage_status": "反例と正常例の概要",
+        "existing_semantic_read": "CASE05は毎回の再確認を要求する反例。CASE01は同じ適用範囲の有効decisionを再確認せず使う正常例の概要。",
+        "existing_trace_paths": [
+          "BR:65",
+          "FR:1591-1598",
+          "NFR:166",
+          "BV:63",
+          "FV:2588-2631",
+          "NV:124"
+        ],
+        "existing_negative_or_compound_CASE_ids": [
+          "L10-LABO-059-CASE-05",
+          "L10-LABO-059-CASE-06"
+        ],
+        "existing_nonindependent_indexes": [],
+        "field_annotation_proposal": "CASE01は有効decisionを再利用するsource identityを示す。CASE05は「runごとに再確認要求」だけを変更した反例として示し、CASE06の失効とは分離する。",
+        "candidate_refs": [],
+        "current_body_candidate_CASE_ids": [],
+        "index_limit_note": "変更影響の参照索引。独立fixture数、要件充足、採択の証明ではない。"
+      },
+      {
+        "condition_id": "C13",
+        "fixed_condition": "scope/revision境界外・失効・未決の場合に限り、既存decision ownerへ戻す",
+        "fixed_L2_lines": [
+          420,
+          422,
+          429,
+          439
+        ],
+        "fixed_L11_refs": "L11 170,173",
+        "existing_CASE_ids": [
+          "L10-LABO-059-CASE-03c",
+          "L10-LABO-059-CASE-03d",
+          "L10-LABO-059-CASE-06"
+        ],
+        "existing_AC_ids": [
+          "LABO-059-AC-03"
+        ],
+        "coverage_status": "反例あり",
+        "existing_semantic_read": "CASE03cは適用範囲外、03dは未決、06は失効を区別する。戻し先は既存ownerの特定結果に従い、新しい共通ownerは作らない。",
+        "existing_trace_paths": [
+          "BR:65",
+          "FR:1591-1598",
+          "NFR:166",
+          "BV:63",
+          "FV:2588-2631",
+          "NV:124"
+        ],
+        "existing_negative_or_compound_CASE_ids": [
+          "L10-LABO-059-CASE-03c",
+          "L10-LABO-059-CASE-03d",
+          "L10-LABO-059-CASE-06"
+        ],
+        "existing_nonindependent_indexes": [],
+        "field_annotation_proposal": "CASE03c、03d、06を各々適用範囲外、未決、失効として明記し、各戻し先を既存decision ownerから特定できる場合のみ記す。CASEの条件を新しい期限/承認へ拡張しない。",
+        "candidate_refs": [],
+        "current_body_candidate_CASE_ids": [],
+        "index_limit_note": "変更影響の参照索引。独立fixture数、要件充足、採択の証明ではない。"
+      },
+      {
+        "condition_id": "C14",
+        "fixed_condition": "quality判定とtask acceptance/oracle結果を条件別に返す",
+        "fixed_L2_lines": [
+          421,
+          422
+        ],
+        "fixed_L11_refs": "L11 170,173,174",
+        "existing_CASE_ids": [
+          "L10-LABO-059-CASE-01",
+          "L10-LABO-059-CASE-02",
+          "L10-LABO-059-CASE-03g",
+          "L10-LABO-059-CASE-07",
+          "L10-LABO-059-CASE-08"
+        ],
+        "existing_AC_ids": [
+          "LABO-059-AC-01",
+          "LABO-059-AC-02",
+          "LABO-059-AC-03"
+        ],
+        "coverage_status": "反例と正常概要",
+        "existing_semantic_read": "CASE07/08は費用や時間で品質未達を相殺する反例。CASE03gは受入済み変更数が0の結果を扱う。",
+        "existing_trace_paths": [
+          "BR:65",
+          "FR:1591-1598",
+          "NFR:166",
+          "BV:63",
+          "FV:2588-2631",
+          "NV:124"
+        ],
+        "existing_negative_or_compound_CASE_ids": [
+          "L10-LABO-059-CASE-03g",
+          "L10-LABO-059-CASE-07",
+          "L10-LABO-059-CASE-08"
+        ],
+        "existing_nonindependent_indexes": [],
+        "field_annotation_proposal": "CASE01/02にquality判定、task acceptance oracle result、欠測/比較不能の出力欄の実sourceを示す。CASE07/08のquality failureを費用/時間で相殺しないoracleとCASE03gのaccepted outcome=0を分ける。",
+        "candidate_refs": [],
+        "current_body_candidate_CASE_ids": [],
+        "index_limit_note": "変更影響の参照索引。独立fixture数、要件充足、採択の証明ではない。"
+      },
+      {
+        "condition_id": "C15",
+        "fixed_condition": "入力された選好で順位が決まらない場合は同順位/判定不能/要判断とし、万能rankingを作らない",
+        "fixed_L2_lines": [
+          421,
+          428
+        ],
+        "fixed_L11_refs": "L11 170,173,175",
+        "existing_CASE_ids": [
+          "L10-LABO-059-CASE-03d"
+        ],
+        "existing_AC_ids": [
+          "LABO-059-AC-03"
+        ],
+        "coverage_status": "一部対応確認・専用oracleなし",
+        "existing_semantic_read": "未決の優先値を創作しない反例はCASE03dにある。有効な全入力で同順位または比較不能となったとき、万能順位を拒否する専用CASEは確認できない。",
+        "existing_trace_paths": [
+          "BR:65",
+          "FR:1591-1598",
+          "NFR:166",
+          "BV:63",
+          "FV:2588-2631",
+          "NV:124"
+        ],
+        "existing_negative_or_compound_CASE_ids": [
+          "L10-LABO-059-CASE-03d"
+        ],
+        "existing_nonindependent_indexes": [],
+        "field_annotation_proposal": "CASE01の有効なpartial-order decisionと全測定のsource参照をbaselineとして示し、CASE03dのpriority未決とは異なる「入力decisionは有効だが候補間に順位を導けない」状態を区別する。未定義の数値・優先値は追加しない。",
+        "candidate_refs": [
+          "C15-candidate-01",
+          "C15-candidate-02"
+        ],
+        "current_body_candidate_CASE_ids": [
+          "L10-LABO-059-CASE-48",
+          "L10-LABO-059-CASE-49"
+        ],
+        "index_limit_note": "変更影響の参照索引。独立fixture数、要件充足、採択の証明ではない。"
+      },
+      {
+        "condition_id": "C16",
+        "fixed_condition": "quality gateを先に適用し、必要品質未達を安さや速度で相殺しない",
+        "fixed_L2_lines": [
+          422
+        ],
+        "fixed_L11_refs": "L11 170,173,174",
+        "existing_CASE_ids": [
+          "L10-LABO-059-CASE-01",
+          "L10-LABO-059-CASE-07",
+          "L10-LABO-059-CASE-08",
+          "L10-LABO-059-CASE-30"
+        ],
+        "existing_AC_ids": [
+          "LABO-059-AC-01",
+          "LABO-059-AC-03"
+        ],
+        "coverage_status": "反例あり",
+        "existing_semantic_read": "CASE07は費用、CASE08は所要時間による品質未達の相殺をそれぞれ単独で拒否する。CASE30は複数費目を同時に除外するため、単独変異の根拠として数えない。",
+        "existing_trace_paths": [
+          "BR:65",
+          "FR:1591-1598",
+          "NFR:166",
+          "BV:63",
+          "FV:2588-2631",
+          "NV:124"
+        ],
+        "existing_negative_or_compound_CASE_ids": [
+          "L10-LABO-059-CASE-07",
+          "L10-LABO-059-CASE-08",
+          "L10-LABO-059-CASE-30"
+        ],
+        "existing_nonindependent_indexes": [],
+        "field_annotation_proposal": "CASE01でquality gate判定と費用/時間比較を別fieldとして示し、CASE07と08はそれぞれ費用・時間を使った相殺という一変異を保つ。CASE30は複合反例のまま分母へ単独軸として数えない。",
+        "candidate_refs": [],
+        "current_body_candidate_CASE_ids": [],
+        "index_limit_note": "変更影響の参照索引。独立fixture数、要件充足、採択の証明ではない。"
+      },
+      {
+        "condition_id": "C17",
+        "fixed_condition": "有効decisionを適用できる候補の間だけで既決優先順/許容悪化を適用",
+        "fixed_L2_lines": [
+          422
+        ],
+        "fixed_L11_refs": "L11 170,173",
+        "existing_CASE_ids": [
+          "L10-LABO-059-CASE-01",
+          "L10-LABO-059-CASE-03c",
+          "L10-LABO-059-CASE-03d",
+          "L10-LABO-059-CASE-06"
+        ],
+        "existing_AC_ids": [
+          "LABO-059-AC-01",
+          "LABO-059-AC-03"
+        ],
+        "coverage_status": "部分",
+        "existing_semantic_read": "CASE03c/03d/06はdecisionの適用可能性または有効性を変える。候補間比較の正常条件はCASE01の概要にある。",
+        "existing_trace_paths": [
+          "BR:65",
+          "FR:1591-1598",
+          "NFR:166",
+          "BV:63",
+          "FV:2588-2631",
+          "NV:124"
+        ],
+        "existing_negative_or_compound_CASE_ids": [
+          "L10-LABO-059-CASE-03c",
+          "L10-LABO-059-CASE-03d",
+          "L10-LABO-059-CASE-06"
+        ],
+        "existing_nonindependent_indexes": [],
+        "field_annotation_proposal": "CASE01の有効decisionと対象候補scopeを対応づける。CASE03c/03d/06は適用可能性またはavailabilityの各状態だけを変えることを示す。",
+        "candidate_refs": [],
+        "current_body_candidate_CASE_ids": [],
+        "index_limit_note": "変更影響の参照索引。独立fixture数、要件充足、採択の証明ではない。"
+      },
+      {
+        "condition_id": "C18",
+        "fixed_condition": "未指定priority/toleranceを0・無制限・最小化対象と解釈しない",
+        "fixed_L2_lines": [
+          422,
+          437,
+          439
+        ],
+        "fixed_L11_refs": "L11 170,173",
+        "existing_CASE_ids": [
+          "L10-LABO-059-CASE-03d",
+          "L10-LABO-059-CASE-04b"
+        ],
+        "existing_AC_ids": [
+          "LABO-059-AC-03"
+        ],
+        "coverage_status": "negativeあり",
+        "existing_semantic_read": "未決の優先値や許容幅を創作して自動決定する反例がある。",
+        "existing_trace_paths": [
+          "BR:65",
+          "FR:1591-1598",
+          "NFR:166",
+          "BV:63",
+          "FV:2588-2631",
+          "NV:124"
+        ],
+        "existing_negative_or_compound_CASE_ids": [
+          "L10-LABO-059-CASE-03d",
+          "L10-LABO-059-CASE-04b"
+        ],
+        "existing_nonindependent_indexes": [],
+        "field_annotation_proposal": "CASE01は実際に入力されたpriority/toleranceへの参照を示す。CASE03d/04bは未決値の創作とLABOによる確定を別々に保つ。",
+        "candidate_refs": [],
+        "current_body_candidate_CASE_ids": [],
+        "index_limit_note": "変更影響の参照索引。独立fixture数、要件充足、採択の証明ではない。"
+      },
+      {
+        "condition_id": "C19",
+        "fixed_condition": "provider/API/token、worker/parent、retry、CI/rerun、review、rescue、integration、rollback/recovery、rework、人の作業にかかる総費用",
+        "fixed_L2_lines": [
+          423
+        ],
+        "fixed_L11_refs": "L11 170,173,174",
+        "existing_CASE_ids": [
+          "L10-LABO-059-CASE-03f",
+          "L10-LABO-059-CASE-03m",
+          "L10-LABO-059-CASE-18",
+          "L10-LABO-059-CASE-22",
+          "L10-LABO-059-CASE-23",
+          "L10-LABO-059-CASE-24",
+          "L10-LABO-059-CASE-25",
+          "L10-LABO-059-CASE-26",
+          "L10-LABO-059-CASE-30",
+          "L10-LABO-059-CASE-33",
+          "L10-LABO-059-CASE-34",
+          "L10-LABO-059-CASE-35",
+          "L10-LABO-059-CASE-36",
+          "L10-LABO-059-CASE-39",
+          "L10-LABO-059-CASE-40",
+          "L10-LABO-059-CASE-41",
+          "L10-LABO-059-CASE-42",
+          "L10-LABO-059-CASE-43",
+          "L10-LABO-059-CASE-44",
+          "L10-LABO-059-CASE-45",
+          "L10-LABO-059-CASE-46",
+          "L10-LABO-059-CASE-47"
+        ],
+        "existing_AC_ids": [
+          "LABO-059-AC-03"
+        ],
+        "coverage_status": "広範囲に一部対応確認",
+        "existing_semantic_read": "receipt欠落と、既知費用を比較から除外することは別の変異。CASE22はCASE18と同一変異の非独立indexであり、CASE33–36も各主fixtureへのindex。CASE30は複数費目の複合反例。既知CI/rerun/reviewや人の調査・検証費用を片側だけ除外する単独反例は確認できない。",
+        "existing_trace_paths": [
+          "BR:65",
+          "FR:1591-1598",
+          "NFR:166",
+          "BV:63",
+          "FV:2588-2631",
+          "NV:124"
+        ],
+        "existing_negative_or_compound_CASE_ids": [
+          "L10-LABO-059-CASE-03f",
+          "L10-LABO-059-CASE-03m",
+          "L10-LABO-059-CASE-18",
+          "L10-LABO-059-CASE-23",
+          "L10-LABO-059-CASE-24",
+          "L10-LABO-059-CASE-25",
+          "L10-LABO-059-CASE-26",
+          "L10-LABO-059-CASE-30",
+          "L10-LABO-059-CASE-39",
+          "L10-LABO-059-CASE-40",
+          "L10-LABO-059-CASE-41",
+          "L10-LABO-059-CASE-42",
+          "L10-LABO-059-CASE-43",
+          "L10-LABO-059-CASE-44",
+          "L10-LABO-059-CASE-45",
+          "L10-LABO-059-CASE-46",
+          "L10-LABO-059-CASE-47"
+        ],
+        "existing_nonindependent_indexes": [
+          "L10-LABO-059-CASE-22",
+          "L10-LABO-059-CASE-33",
+          "L10-LABO-059-CASE-34",
+          "L10-LABO-059-CASE-35",
+          "L10-LABO-059-CASE-36"
+        ],
+        "field_annotation_proposal": "CASE01の費用内訳を費目ごとにsource receiptへ対応づける。既存CASE18/23/24のreceipt欠落、CASE41–47の既知費目/範囲除外、CASE30の複合除外は相互に代用しない。各費目の正常値を作らず既存証拠参照を示す。",
+        "candidate_refs": [
+          "C19-candidate-01",
+          "C19-candidate-02",
+          "C19-candidate-03",
+          "C19-candidate-04",
+          "C19-candidate-05"
+        ],
+        "current_body_candidate_CASE_ids": [
+          "L10-LABO-059-CASE-52",
+          "L10-LABO-059-CASE-53",
+          "L10-LABO-059-CASE-54",
+          "L10-LABO-059-CASE-55",
+          "L10-LABO-059-CASE-56"
+        ],
+        "index_limit_note": "変更影響の参照索引。独立fixture数、要件充足、採択の証明ではない。"
+      },
+      {
+        "condition_id": "C20",
+        "fixed_condition": "cost receiptとprice unitのsource、currency、effective timestamp、subscription/API-equivalent class",
+        "fixed_L2_lines": [
+          420,
+          423
+        ],
+        "fixed_L11_refs": "L11 170,173",
+        "existing_CASE_ids": [
+          "L10-LABO-059-CASE-01",
+          "L10-LABO-059-CASE-03j",
+          "L10-LABO-059-CASE-03k",
+          "L10-LABO-059-CASE-03l",
+          "L10-LABO-059-CASE-17",
+          "L10-LABO-059-CASE-41",
+          "L10-LABO-059-CASE-42",
+          "L10-LABO-059-CASE-43"
+        ],
+        "existing_AC_ids": [
+          "LABO-059-AC-01",
+          "LABO-059-AC-03"
+        ],
+        "coverage_status": "metadata欠落の反例",
+        "existing_semantic_read": "価格source、通貨、適用時刻の欠落をそれぞれ分けた反例がある。CASE17は費目カテゴリ欠落、CASE41–43は既知のprovider/API/token費用を除外する。存在するが古い価格revisionを使う独立反例は確認できない。",
+        "existing_trace_paths": [
+          "BR:65",
+          "FR:1591-1598",
+          "NFR:166",
+          "BV:63",
+          "FV:2588-2631",
+          "NV:124"
+        ],
+        "existing_negative_or_compound_CASE_ids": [
+          "L10-LABO-059-CASE-03j",
+          "L10-LABO-059-CASE-03k",
+          "L10-LABO-059-CASE-03l",
+          "L10-LABO-059-CASE-17",
+          "L10-LABO-059-CASE-41",
+          "L10-LABO-059-CASE-42",
+          "L10-LABO-059-CASE-43"
+        ],
+        "existing_nonindependent_indexes": [],
+        "field_annotation_proposal": "CASE01のprice evidenceへsource identity、currency、effective timestamp、subscription/API-equivalent classを別field参照として示す。CASE03j/k/lは各欠落単独、CASE17はclass欠落に限定する。",
+        "candidate_refs": [],
+        "current_body_candidate_CASE_ids": [],
+        "index_limit_note": "変更影響の参照索引。独立fixture数、要件充足、採択の証明ではない。"
+      },
+      {
+        "condition_id": "C21",
+        "fixed_condition": "人の作業時間は通貨と別の数量として記録し、承認済み換算がなければ0円化せず総費用を未完とする",
+        "fixed_L2_lines": [
+          423,
+          438
+        ],
+        "fixed_L11_refs": "L11 170,173,174",
+        "existing_CASE_ids": [
+          "L10-LABO-059-CASE-01",
+          "L10-LABO-059-CASE-03e",
+          "L10-LABO-059-CASE-20",
+          "L10-LABO-059-CASE-26",
+          "L10-LABO-059-CASE-30"
+        ],
+        "existing_AC_ids": [
+          "LABO-059-AC-01",
+          "LABO-059-AC-03"
+        ],
+        "coverage_status": "反例あり",
+        "existing_semantic_read": "CASE20は金額換算なしに人時間をゼロ扱いする単独変異。CASE03eは人の介入時間のreceipt欠落、CASE26は人による修正費用のreceipt欠落、CASE30は複数費目の複合反例。調査・検証の人時間と修正費用を分けた反例はない。",
+        "existing_trace_paths": [
+          "BR:65",
+          "FR:1591-1598",
+          "NFR:166",
+          "BV:63",
+          "FV:2588-2631",
+          "NV:124"
+        ],
+        "existing_negative_or_compound_CASE_ids": [
+          "L10-LABO-059-CASE-03e",
+          "L10-LABO-059-CASE-20",
+          "L10-LABO-059-CASE-26",
+          "L10-LABO-059-CASE-30"
+        ],
+        "existing_nonindependent_indexes": [],
+        "field_annotation_proposal": "CASE01では人時間を貨幣値と別の既存measurementとして参照する。CASE20の無承認換算、CASE03eの時間receipt欠落、CASE26の人修正cost receipt欠落を分け、調査/修正/検証の意味を混同しない。",
+        "candidate_refs": [],
+        "current_body_candidate_CASE_ids": [],
+        "index_limit_note": "変更影響の参照索引。独立fixture数、要件充足、採択の証明ではない。"
+      },
+      {
+        "condition_id": "C22",
+        "fixed_condition": "accepted change=0、未完了run、cost欠落を低費用の成功として扱わない",
+        "fixed_L2_lines": [
+          423
+        ],
+        "fixed_L11_refs": "L11 170,174",
+        "existing_CASE_ids": [
+          "L10-LABO-059-CASE-03g",
+          "L10-LABO-059-CASE-18",
+          "L10-LABO-059-CASE-30",
+          "L10-LABO-059-CASE-37"
+        ],
+        "existing_AC_ids": [
+          "LABO-059-AC-03"
+        ],
+        "coverage_status": "反例あり",
+        "existing_semantic_read": "CASE03gは受入変更数0、CASE37はrun未完了で、別の反例。CASE18は費用receiptがないケースであり、CI実行がなかったことを示すものではない。",
+        "existing_trace_paths": [
+          "BR:65",
+          "FR:1591-1598",
+          "NFR:166",
+          "BV:63",
+          "FV:2588-2631",
+          "NV:124"
+        ],
+        "existing_negative_or_compound_CASE_ids": [
+          "L10-LABO-059-CASE-03g",
+          "L10-LABO-059-CASE-18",
+          "L10-LABO-059-CASE-30",
+          "L10-LABO-059-CASE-37"
+        ],
+        "existing_nonindependent_indexes": [],
+        "field_annotation_proposal": "CASE01にaccepted change count/run completion/cost completenessの各既存結果を示す。CASE03gのaccepted count=0、CASE37の未完run、CASE18のreceipt欠落は別状態として維持。",
+        "candidate_refs": [],
+        "current_body_candidate_CASE_ids": [],
+        "index_limit_note": "変更影響の参照索引。独立fixture数、要件充足、採択の証明ではない。"
+      },
+      {
+        "condition_id": "C23",
+        "fixed_condition": "受入可能な結果までのwall-clockを開始/終了event、停止・待機規則とともに測定",
+        "fixed_L2_lines": [
+          424
+        ],
+        "fixed_L11_refs": "L11 170,173",
+        "existing_CASE_ids": [
+          "L10-LABO-059-CASE-01",
+          "L10-LABO-059-CASE-19",
+          "L10-LABO-059-CASE-27",
+          "L10-LABO-059-CASE-28",
+          "L10-LABO-059-CASE-29"
+        ],
+        "existing_AC_ids": [
+          "LABO-059-AC-01",
+          "LABO-059-AC-03"
+        ],
+        "coverage_status": "単独反例あり、正常例は概要",
+        "existing_semantic_read": "開始時刻、終了時刻、時計、停止・待機規則に別々の反例がある。CASE01は正常例の概要で、event値は具体化されない。",
+        "existing_trace_paths": [
+          "BR:65",
+          "FR:1591-1598",
+          "NFR:166",
+          "BV:63",
+          "FV:2588-2631",
+          "NV:124"
+        ],
+        "existing_negative_or_compound_CASE_ids": [
+          "L10-LABO-059-CASE-19",
+          "L10-LABO-059-CASE-27",
+          "L10-LABO-059-CASE-28",
+          "L10-LABO-059-CASE-29"
+        ],
+        "existing_nonindependent_indexes": [],
+        "field_annotation_proposal": "CASE01のstart/end event、clock identity、stop/wait ruleを実source参照へ対応づける。CASE19/27/28/29はそれぞれ定義の単独差を維持。",
+        "candidate_refs": [],
+        "current_body_candidate_CASE_ids": [],
+        "index_limit_note": "変更影響の参照索引。独立fixture数、要件充足、採択の証明ではない。"
+      },
+      {
+        "condition_id": "C24",
+        "fixed_condition": "人の介入量/件数/種類とworker/rescue effortを分け、AI runを人の介入に数えない",
+        "fixed_L2_lines": [
+          424,
+          421
+        ],
+        "fixed_L11_refs": "L11 170,173,174",
+        "existing_CASE_ids": [
+          "L10-LABO-059-CASE-01",
+          "L10-LABO-059-CASE-03e",
+          "L10-LABO-059-CASE-03f",
+          "L10-LABO-059-CASE-25",
+          "L10-LABO-059-CASE-26",
+          "L10-LABO-059-CASE-32"
+        ],
+        "existing_AC_ids": [
+          "LABO-059-AC-01",
+          "LABO-059-AC-03"
+        ],
+        "coverage_status": "一部明示",
+        "existing_semantic_read": "CASE32はAI実行数を人の作業数に置き換える反例。CASE03eは人時間欠落、CASE25は救援作業receipt欠落、CASE26は人による修正費用receipt欠落を扱う。人作業の件数・種類の変更だけを分けた反例は見当たらない。",
+        "existing_trace_paths": [
+          "BR:65",
+          "FR:1591-1598",
+          "NFR:166",
+          "BV:63",
+          "FV:2588-2631",
+          "NV:124"
+        ],
+        "existing_negative_or_compound_CASE_ids": [
+          "L10-LABO-059-CASE-03e",
+          "L10-LABO-059-CASE-03f",
+          "L10-LABO-059-CASE-25",
+          "L10-LABO-059-CASE-26",
+          "L10-LABO-059-CASE-32"
+        ],
+        "existing_nonindependent_indexes": [],
+        "field_annotation_proposal": "CASE01で人間の介入時間/件数/種類、worker effort、rescue effortの既存source欄を分けて指す。CASE32/03e/03f/25/26の変異を互いに流用しない。",
+        "candidate_refs": [],
+        "current_body_candidate_CASE_ids": [],
+        "index_limit_note": "変更影響の参照索引。独立fixture数、要件充足、採択の証明ではない。"
+      },
+      {
+        "condition_id": "C25",
+        "fixed_condition": "同一task class/snapshot/scope/oracle/protocolでeffortを比較し、LABOはeffort/Workerを選ばずunknownを維持",
+        "fixed_L2_lines": [
+          425
+        ],
+        "fixed_L11_refs": "L11 170,176",
+        "existing_CASE_ids": [
+          "L10-LABO-059-CASE-01",
+          "L10-LABO-059-CASE-03d",
+          "L10-LABO-059-CASE-38",
+          "L10-LABO-059-CASE-04a"
+        ],
+        "existing_AC_ids": [
+          "LABO-059-AC-01",
+          "LABO-059-AC-03"
+        ],
+        "coverage_status": "部分",
+        "existing_semantic_read": "CASE38は未評価をprovider defaultへ置き換える反例、CASE04aは割当責務を扱う。CASE01に正常なeffort値は具体的に列挙されない。",
+        "existing_trace_paths": [
+          "BR:65",
+          "FR:1591-1598",
+          "NFR:166",
+          "BV:63",
+          "FV:2588-2631",
+          "NV:124"
+        ],
+        "existing_negative_or_compound_CASE_ids": [
+          "L10-LABO-059-CASE-03d",
+          "L10-LABO-059-CASE-38",
+          "L10-LABO-059-CASE-04a"
+        ],
+        "existing_nonindependent_indexes": [],
+        "field_annotation_proposal": "CASE01にtask class/snapshot/scope/oracle/protocolとeffort measurementのsourceを示す。CASE38は未評価effortを確定値化する誤り、CASE04aはassignment authorityを扱うと区別。",
+        "candidate_refs": [],
+        "current_body_candidate_CASE_ids": [],
+        "index_limit_note": "変更影響の参照索引。独立fixture数、要件充足、採択の証明ではない。"
+      },
+      {
+        "condition_id": "C26",
+        "fixed_condition": "比較目的に応じた有効二群比較を認め、未選択の第三群を要求しない。過去の選択群はread-only証拠だけを使う",
+        "fixed_L2_lines": [
+          426
+        ],
+        "fixed_L11_refs": "L11 170,173,175",
+        "existing_CASE_ids": [
+          "L10-LABO-059-CASE-01",
+          "L10-LABO-059-CASE-02",
+          "L10-LABO-059-CASE-03i",
+          "L10-LABO-059-CASE-15",
+          "L10-LABO-059-CASE-21",
+          "L10-LABO-059-CASE-31"
+        ],
+        "existing_AC_ids": [
+          "LABO-059-AC-01",
+          "LABO-059-AC-02",
+          "LABO-059-AC-03"
+        ],
+        "coverage_status": "意味説明あり・反例あり",
+        "existing_semantic_read": "L11の例173/175は二群と三群の意味を示す。CASE02/21は有効な二群比較と、根拠のない三群主張を区別する。CASE31は過去結果を現行へ移すことを拒否する。",
+        "existing_trace_paths": [
+          "BR:65",
+          "FR:1591-1598",
+          "NFR:166",
+          "BV:63",
+          "FV:2588-2631",
+          "NV:124"
+        ],
+        "existing_negative_or_compound_CASE_ids": [
+          "L10-LABO-059-CASE-03i",
+          "L10-LABO-059-CASE-15",
+          "L10-LABO-059-CASE-21",
+          "L10-LABO-059-CASE-31"
+        ],
+        "existing_nonindependent_indexes": [],
+        "field_annotation_proposal": "CASE01/02に比較目的、選択二群/三群、未選択群、歴史runの読み取りsourceを示す。CASE21の三群化とCASE31の歴史結果の現行転用は個別oracleを維持する。",
+        "candidate_refs": [],
+        "current_body_candidate_CASE_ids": [],
+        "index_limit_note": "変更影響の参照索引。独立fixture数、要件充足、採択の証明ではない。"
+      },
+      {
+        "condition_id": "C27",
+        "fixed_condition": "task、source、requirement、acceptance、artifact、worker/model/effort、protocol、scorer、oracle、price sourceのversion/digest identity",
+        "fixed_L2_lines": [
+          427
+        ],
+        "fixed_L11_refs": "L11 170,175",
+        "existing_CASE_ids": [
+          "L10-LABO-059-CASE-01",
+          "L10-LABO-059-CASE-03b",
+          "L10-LABO-059-CASE-10",
+          "L10-LABO-059-CASE-11",
+          "L10-LABO-059-CASE-13",
+          "L10-LABO-059-CASE-14",
+          "L10-LABO-059-CASE-31"
+        ],
+        "existing_AC_ids": [
+          "LABO-059-AC-01",
+          "LABO-059-AC-03"
+        ],
+        "coverage_status": "一部対応確認",
+        "existing_semantic_read": "scope、scorer、protocol、hardware、toolchain、task、oracleのrevision違いを扱う反例はあるが、列挙されたartifact/source/worker/model/effort/priceのdigest mismatchをすべて独立に検査するCASEは確認できない。",
+        "existing_trace_paths": [
+          "BR:65",
+          "FR:1591-1598",
+          "NFR:166",
+          "BV:63",
+          "FV:2588-2631",
+          "NV:124"
+        ],
+        "existing_negative_or_compound_CASE_ids": [
+          "L10-LABO-059-CASE-03b",
+          "L10-LABO-059-CASE-10",
+          "L10-LABO-059-CASE-11",
+          "L10-LABO-059-CASE-13",
+          "L10-LABO-059-CASE-14",
+          "L10-LABO-059-CASE-31"
+        ],
+        "existing_nonindependent_indexes": [],
+        "field_annotation_proposal": "CASE01の実source identity参照を各列（task/source/requirement/acceptance/artifact/worker/model/effort/protocol/scorer/oracle/price source）に対応づける。CASE03b/10–14のoracle/task/scorer/protocol/hardware/toolchain差を、未検査identityの代用にしない。",
+        "candidate_refs": [
+          "C27-candidate-01",
+          "C27-candidate-02",
+          "C27-candidate-03",
+          "C27-candidate-04",
+          "C27-candidate-05",
+          "C27-candidate-06"
+        ],
+        "current_body_candidate_CASE_ids": [
+          "L10-LABO-059-CASE-57",
+          "L10-LABO-059-CASE-58",
+          "L10-LABO-059-CASE-59",
+          "L10-LABO-059-CASE-60",
+          "L10-LABO-059-CASE-61",
+          "L10-LABO-059-CASE-62"
+        ],
+        "index_limit_note": "変更影響の参照索引。独立fixture数、要件充足、採択の証明ではない。"
+      },
+      {
+        "condition_id": "C28",
+        "fixed_condition": "依存先（L2-006/028/055、HARNESS-010/011/022、INTELLIGENCE-010/011）の要件を重複実装せず、owner境界を保つ",
+        "fixed_L2_lines": [
+          427,
+          429
+        ],
+        "fixed_L11_refs": "L11 170,176",
+        "existing_CASE_ids": [
+          "L10-LABO-059-CASE-01",
+          "L10-LABO-059-CASE-04a",
+          "L10-LABO-059-CASE-04b",
+          "L10-LABO-059-CASE-03b",
+          "L10-LABO-059-CASE-03j",
+          "L10-LABO-059-CASE-03k",
+          "L10-LABO-059-CASE-03l"
+        ],
+        "existing_AC_ids": [
+          "LABO-059-AC-01",
+          "LABO-059-AC-03"
+        ],
+        "coverage_status": "一部対応確認",
+        "existing_semantic_read": "OS assignment、quality oracle、source/price/priorityの境界を扱うCASEがある。依存先interfaceごとの独立CASEやticket起票禁止の専用CASEは確認できない。",
+        "existing_trace_paths": [
+          "BR:65",
+          "FR:1591-1598",
+          "NFR:166",
+          "BV:63",
+          "FV:2588-2631",
+          "NV:124"
+        ],
+        "existing_negative_or_compound_CASE_ids": [
+          "L10-LABO-059-CASE-04a",
+          "L10-LABO-059-CASE-04b",
+          "L10-LABO-059-CASE-03b",
+          "L10-LABO-059-CASE-03j",
+          "L10-LABO-059-CASE-03k",
+          "L10-LABO-059-CASE-03l"
+        ],
+        "existing_nonindependent_indexes": [],
+        "field_annotation_proposal": "CASE01に依存先receipt/contract identityの参照欄だけを対応づける。L2-006/028/055、HARNESS-010/011/022、INTELLIGENCE-010/011の能力を059で再定義せず、具体戻し先はL2:429に既存名がある場合のみ示す。",
+        "candidate_refs": [],
+        "current_body_candidate_CASE_ids": [],
+        "index_limit_note": "変更影響の参照索引。独立fixture数、要件充足、採択の証明ではない。"
+      },
+      {
+        "condition_id": "C29",
+        "fixed_condition": "証拠が支えるscope内の比較に限り、固定provider優位/一般化/完全な総費用、routing/assignment/ticket/authority変更を保証しない",
+        "fixed_L2_lines": [
+          428
+        ],
+        "fixed_L11_refs": "L11 170,173,176",
+        "existing_CASE_ids": [
+          "L10-LABO-059-CASE-01",
+          "L10-LABO-059-CASE-15",
+          "L10-LABO-059-CASE-21",
+          "L10-LABO-059-CASE-31",
+          "L10-LABO-059-CASE-04a",
+          "L10-LABO-059-CASE-04b"
+        ],
+        "existing_AC_ids": [
+          "LABO-059-AC-01",
+          "LABO-059-AC-03"
+        ],
+        "coverage_status": "一部対応確認・独立CASE不在候補",
+        "existing_semantic_read": "過去結果の転用、cohort誤分類、assignment・priorityのowner境界を扱うCASEがある。provider名の固定採点やticket/routing/admission生成に対応する独立059 CASEは確認できない。indexだけを根拠に対応確認済みとはしない。",
+        "existing_trace_paths": [
+          "BR:65",
+          "FR:1591-1598",
+          "NFR:166",
+          "BV:63",
+          "FV:2588-2631",
+          "NV:124"
+        ],
+        "existing_negative_or_compound_CASE_ids": [
+          "L10-LABO-059-CASE-15",
+          "L10-LABO-059-CASE-21",
+          "L10-LABO-059-CASE-31",
+          "L10-LABO-059-CASE-04a",
+          "L10-LABO-059-CASE-04b"
+        ],
+        "existing_nonindependent_indexes": [],
+        "field_annotation_proposal": "CASE01の出力claimを、実際に比較したscope/cohort/conditionと結びつける。CASE15/21/31/04a/04bの現oracleは保持し、固定L2:428の「保証しない」項目と「LABOが変更しない」項目を別欄として説明する。旧R-03のprovider/model固定加点禁止は別根拠と表示する。",
+        "candidate_refs": [
+          "C29-candidate-01",
+          "C29-candidate-02",
+          "C29-candidate-03",
+          "C29-candidate-04",
+          "C29-candidate-05",
+          "C29-candidate-06",
+          "C29-candidate-07",
+          "C29-candidate-08"
+        ],
+        "current_body_candidate_CASE_ids": [
+          "L10-LABO-059-CASE-63",
+          "L10-LABO-059-CASE-64",
+          "L10-LABO-059-CASE-65",
+          "L10-LABO-059-CASE-66",
+          "L10-LABO-059-CASE-67",
+          "L10-LABO-059-CASE-68",
+          "L10-LABO-059-CASE-69",
+          "L10-LABO-059-CASE-70"
+        ],
+        "index_limit_note": "変更影響の参照索引。独立fixture数、要件充足、採択の証明ではない。"
+      },
+      {
+        "condition_id": "C30",
+        "fixed_condition": "戻し先: OS/source、LABO-055または測定source、INTELLIGENCE-010/011、HARNESS/要求owner、既存decision owner",
+        "fixed_L2_lines": [
+          429
+        ],
+        "fixed_L11_refs": "L11 170,173,176",
+        "existing_CASE_ids": [
+          "L10-LABO-059-CASE-03b",
+          "L10-LABO-059-CASE-03c",
+          "L10-LABO-059-CASE-03e",
+          "L10-LABO-059-CASE-03f",
+          "L10-LABO-059-CASE-03j",
+          "L10-LABO-059-CASE-03k",
+          "L10-LABO-059-CASE-03l",
+          "L10-LABO-059-CASE-04a",
+          "L10-LABO-059-CASE-04b",
+          "L10-LABO-059-CASE-14",
+          "L10-LABO-059-CASE-16",
+          "L10-LABO-059-CASE-23",
+          "L10-LABO-059-CASE-24",
+          "L10-LABO-059-CASE-25",
+          "L10-LABO-059-CASE-26",
+          "L10-LABO-059-CASE-39",
+          "L10-LABO-059-CASE-40",
+          "L10-LABO-059-CASE-41",
+          "L10-LABO-059-CASE-42",
+          "L10-LABO-059-CASE-43",
+          "L10-LABO-059-CASE-44",
+          "L10-LABO-059-CASE-45",
+          "L10-LABO-059-CASE-46",
+          "L10-LABO-059-CASE-47"
+        ],
+        "existing_AC_ids": [
+          "LABO-059-AC-03"
+        ],
+        "coverage_status": "一部対応確認",
+        "existing_semantic_read": "sourceごとの戻し先を明示するCASEが複数ある。L2 429に列挙されたすべての戻し先、とくにINTELLIGENCE-010/011へのproposal戻しを個別に扱う059 CASEは確認できない。source identity不明は一部CASEでunknownのまま。",
+        "existing_trace_paths": [
+          "BR:65",
+          "FR:1591-1598",
+          "NFR:166",
+          "BV:63",
+          "FV:2588-2631",
+          "NV:124"
+        ],
+        "existing_negative_or_compound_CASE_ids": [
+          "L10-LABO-059-CASE-03b",
+          "L10-LABO-059-CASE-03c",
+          "L10-LABO-059-CASE-03e",
+          "L10-LABO-059-CASE-03f",
+          "L10-LABO-059-CASE-03j",
+          "L10-LABO-059-CASE-03k",
+          "L10-LABO-059-CASE-03l",
+          "L10-LABO-059-CASE-04a",
+          "L10-LABO-059-CASE-04b",
+          "L10-LABO-059-CASE-14",
+          "L10-LABO-059-CASE-16",
+          "L10-LABO-059-CASE-23",
+          "L10-LABO-059-CASE-24",
+          "L10-LABO-059-CASE-25",
+          "L10-LABO-059-CASE-26",
+          "L10-LABO-059-CASE-39",
+          "L10-LABO-059-CASE-40",
+          "L10-LABO-059-CASE-41",
+          "L10-LABO-059-CASE-42",
+          "L10-LABO-059-CASE-43",
+          "L10-LABO-059-CASE-44",
+          "L10-LABO-059-CASE-45",
+          "L10-LABO-059-CASE-46",
+          "L10-LABO-059-CASE-47"
+        ],
+        "existing_nonindependent_indexes": [],
+        "field_annotation_proposal": "CASE03*・04*・14・16・23–26・39–47の各戻し先を、L2:429に列挙された既存source/ownerへ個別に対応づける。identity不明の戻し先はunknownを維持し、新ownerを作らない。",
+        "candidate_refs": [],
+        "current_body_candidate_CASE_ids": [],
+        "index_limit_note": "変更影響の参照索引。独立fixture数、要件充足、採択の証明ではない。"
+      },
+      {
+        "condition_id": "C31",
+        "fixed_condition": "優先値・許容幅・人時間の換算が未決なら既存判断ownerへ返し、比較候補を閉じない",
+        "fixed_L2_lines": [
+          429,
+          437,
+          438,
+          439
+        ],
+        "fixed_L11_refs": "L11 170,173",
+        "existing_CASE_ids": [
+          "L10-LABO-059-CASE-03c",
+          "L10-LABO-059-CASE-03d",
+          "L10-LABO-059-CASE-06",
+          "L10-LABO-059-CASE-20",
+          "L10-LABO-059-CASE-04b"
+        ],
+        "existing_AC_ids": [
+          "LABO-059-AC-03"
+        ],
+        "coverage_status": "反例あり",
+        "existing_semantic_read": "decisionのscope、失効、未決、無権限変換を扱う反例がある。runごとの新たな人間承認gateは追加しない。",
+        "existing_trace_paths": [
+          "BR:65",
+          "FR:1591-1598",
+          "NFR:166",
+          "BV:63",
+          "FV:2588-2631",
+          "NV:124"
+        ],
+        "existing_negative_or_compound_CASE_ids": [
+          "L10-LABO-059-CASE-03c",
+          "L10-LABO-059-CASE-03d",
+          "L10-LABO-059-CASE-06",
+          "L10-LABO-059-CASE-20",
+          "L10-LABO-059-CASE-04b"
+        ],
+        "existing_nonindependent_indexes": [],
+        "field_annotation_proposal": "CASE01に有効decisionのpriority/tolerance/human-time conversion参照を示す。CASE03c/03d/06/20/04bの適用境界、未決、失効、換算/確定を混同せず、候補を閉じないoracleを保持。",
+        "candidate_refs": [],
+        "current_body_candidate_CASE_ids": [],
+        "index_limit_note": "変更影響の参照索引。独立fixture数、要件充足、採択の証明ではない。"
+      }
+    ]
+  },
+  "existing_CASE_snapshot": {
+    "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+    "path": "docs/helix-labo/L10-verification/functional-verification.md",
+    "full_bytes": 452839,
+    "full_sha256": "7a6c7dc1f88c77bbd628a1320c0393f0ad6c14b76d5a30db0c4cda27d22b9d16",
+    "case_definition_count": 60,
+    "unique_case_id_count": 60,
+    "case_pins": [
+      {
+        "case_id": "L10-LABO-059-CASE-01",
+        "AC_id": "LABO-059-AC-01",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2588,
+        "raw_lf_line_bytes": 293,
+        "raw_lf_line_sha256": "29e926aa6d2f511fff0c229812b144b627c41eac83f2af3956fe01857b04a99d",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-02",
+        "AC_id": "LABO-059-AC-02",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2589,
+        "raw_lf_line_bytes": 332,
+        "raw_lf_line_sha256": "2ea0207a825f3058c3a077ef23b031a49865d61904a456331939c72b694bfd80",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-03a",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2593,
+        "raw_lf_line_bytes": 117,
+        "raw_lf_line_sha256": "86e7ce980a73c457c70b1ad4bb2d706f8d8297acbf3a5728fe628fdedc1d05f1",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-03b",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2594,
+        "raw_lf_line_bytes": 125,
+        "raw_lf_line_sha256": "0d2f79a9372c862747320e037266701e3a1490d8265a0cd42dc51e9e27fce23c",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-03c",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2595,
+        "raw_lf_line_bytes": 163,
+        "raw_lf_line_sha256": "777e3b0ecd2d3d971e7f2c82750712edfb170d8017cac67e7a54f26f73a87f00",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-03d",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2596,
+        "raw_lf_line_bytes": 125,
+        "raw_lf_line_sha256": "dc0a3587bdc1fa657c212820c3962227ac7e521114549c4105734aff22980b1e",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-03e",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2597,
+        "raw_lf_line_bytes": 277,
+        "raw_lf_line_sha256": "0f3dd655428c996403175b45d2cd37911341db1fd269c514a613d72f8c55af8a",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-03f",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2598,
+        "raw_lf_line_bytes": 252,
+        "raw_lf_line_sha256": "5a86ded8d1a8c7668b6dfbf824ce93bcb0f5a46d7270d7f01aa70c715f1e71f9",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-03m",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2599,
+        "raw_lf_line_bytes": 252,
+        "raw_lf_line_sha256": "e0d586d2e2856e85c4b25208706904a9df156d04c66892b3b64395f64e6565ae",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-03g",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2600,
+        "raw_lf_line_bytes": 115,
+        "raw_lf_line_sha256": "e5b6002124e64697f3117fcf2b5a8587c89f912189e9e20b78a304a1eb1c76bc",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-03h",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2601,
+        "raw_lf_line_bytes": 151,
+        "raw_lf_line_sha256": "0a924bf12bc0ae80afc23910f5bae26796e2b2a4654be41adc842aaff2af710d",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-03i",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2602,
+        "raw_lf_line_bytes": 130,
+        "raw_lf_line_sha256": "238bd6912696dc9fadbd570bfd6743e71cd70dd92192e054cc31c4c4ae049adf",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-03j",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2603,
+        "raw_lf_line_bytes": 244,
+        "raw_lf_line_sha256": "62f3ddec5bd3feb2ad0a651480df0c8c97c7f998f8ecd89eb9742a96d9af2961",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-03k",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2604,
+        "raw_lf_line_bytes": 241,
+        "raw_lf_line_sha256": "0712ea5256a882bcd455ac09adced7b817d155c6a150df6429a38f2ad44d44d8",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-03l",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2605,
+        "raw_lf_line_bytes": 240,
+        "raw_lf_line_sha256": "a9867e1c2b0b64902b7aa399376b1930d162708e1e61eec79796887278d46efe",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-04a",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2606,
+        "raw_lf_line_bytes": 121,
+        "raw_lf_line_sha256": "1385bb8ede16a11da8322cc288db58d670252b344e9509241c9ee123c5b5aa20",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-04b",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2607,
+        "raw_lf_line_bytes": 128,
+        "raw_lf_line_sha256": "b3acf8a96b475eb70e57eaf9f76702606fdd15ee1cf793d1cc4a9af32e58a9a1",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-30",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2611,
+        "raw_lf_line_bytes": 384,
+        "raw_lf_line_sha256": "e01f438c12927ce31b3f57c635fd254640c2ee5eca2597f0de19fd3a8bf86ba3",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-31",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2612,
+        "raw_lf_line_bytes": 179,
+        "raw_lf_line_sha256": "28f04dafc7c5b03de251c7a0d6d9ee4531cd861e6bf3fc73b34968bab8d5fb32",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-32",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2613,
+        "raw_lf_line_bytes": 162,
+        "raw_lf_line_sha256": "5458be9e941b754194d8329f4c0c209622ea7b7dc267cda5c8cd624bc38514be",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-33",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2614,
+        "raw_lf_line_bytes": 243,
+        "raw_lf_line_sha256": "245867384ee9d0afee09c0c3e5884aae420523689a8665afd6a90764f1673437",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-34",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2615,
+        "raw_lf_line_bytes": 208,
+        "raw_lf_line_sha256": "a0c5d062d80774e1f3e186ab44952182899d62e6cc470c6b7b3a9b5f069d0bd0",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-35",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2616,
+        "raw_lf_line_bytes": 255,
+        "raw_lf_line_sha256": "8bde321e9a06bcb5df7204d4cfacce01dd9918aae3c4752742179383a5b76e37",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-36",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2617,
+        "raw_lf_line_bytes": 252,
+        "raw_lf_line_sha256": "8b18e6c27d805f3eccfc2a88f5347404d0ff0c9b110ab5ca1bc6e553eaa406a5",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-37",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2618,
+        "raw_lf_line_bytes": 169,
+        "raw_lf_line_sha256": "4bc074e0bf688fd8c03c05e1cbe36186d13332a225dee20fbbeaafc7e36eb305",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-38",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2622,
+        "raw_lf_line_bytes": 187,
+        "raw_lf_line_sha256": "f2138cd196458f30e3ad1ce1d7e90b535f106b2714130ac63a420f57cb25474a",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-39",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2623,
+        "raw_lf_line_bytes": 272,
+        "raw_lf_line_sha256": "ff9f853a2430be0674d489ebcf5f73af6c881f38c239bb061b3fc8d327ebc834",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-40",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2624,
+        "raw_lf_line_bytes": 272,
+        "raw_lf_line_sha256": "ac1fe8fdafd834ae8498c03ecffc8955cf161ca7e0c90a2efa1720f0b7e3ea6a",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-41",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2625,
+        "raw_lf_line_bytes": 251,
+        "raw_lf_line_sha256": "a4fed7ca5229cf168b459968759baa55e0515677362bf2394eedcae7755e5b9c",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-42",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2626,
+        "raw_lf_line_bytes": 241,
+        "raw_lf_line_sha256": "79405fc757b8d18a85a9b2935bfeb0bf2a792206850669ab3e92ea89496fd87c",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-43",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2627,
+        "raw_lf_line_bytes": 245,
+        "raw_lf_line_sha256": "43ae5bf6be707156d069b2876297795d0910b4c399fbf28b0a8f175d72b6d06d",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-44",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2628,
+        "raw_lf_line_bytes": 314,
+        "raw_lf_line_sha256": "3b018ecb2a2ce925d30ca68cc3be165356eec1a081d8d361c343c269815d6d2c",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-45",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2629,
+        "raw_lf_line_bytes": 251,
+        "raw_lf_line_sha256": "784e083699b5f09349649b80b992b28d93dbb53b7cb4c81ee3f2886a50aa0cde",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-46",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2630,
+        "raw_lf_line_bytes": 286,
+        "raw_lf_line_sha256": "81c26645348114e7ba955e61b4569cfa43a9f2150dc04a0f20f51fd882d3591f",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-47",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 2631,
+        "raw_lf_line_bytes": 286,
+        "raw_lf_line_sha256": "260abaa964801cf8daf4159b973a49c8ef0a4f28c4dabaccc63df97dfa39a30d",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-05",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 3036,
+        "raw_lf_line_bytes": 285,
+        "raw_lf_line_sha256": "81b1f186d781347b4e9504e326d6c7bfd309679484a81f8b17e0bea212d5c23c",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-06",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 3037,
+        "raw_lf_line_bytes": 245,
+        "raw_lf_line_sha256": "bca46c48df73d4291727bf8534464d11abb8e396feaece2e109fc7e9df4c420a",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-07",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 3038,
+        "raw_lf_line_bytes": 227,
+        "raw_lf_line_sha256": "8db939fcc794f047caead75c31d6ecc637185392e46d69f1fea42acef9703bed",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-08",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 3039,
+        "raw_lf_line_bytes": 232,
+        "raw_lf_line_sha256": "a61e138f987a2344321b7f5d4e9ce73f9690e3b6f6303dc315ee64003c034005",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-09",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 3040,
+        "raw_lf_line_bytes": 221,
+        "raw_lf_line_sha256": "b680028a66fbd9eba9b7ee01e972473a6fb62b75ada16bbca190a1f059e5a09c",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-10",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 3041,
+        "raw_lf_line_bytes": 205,
+        "raw_lf_line_sha256": "33fca675351180b7396755992af3873e9e5557e9e3c6343f914db0457f534f3d",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-11",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 3042,
+        "raw_lf_line_bytes": 204,
+        "raw_lf_line_sha256": "d46e8ac590b68671112e94c085c0d7e2a88197dd05df74a5e5319198e0368a97",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-12",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 3043,
+        "raw_lf_line_bytes": 212,
+        "raw_lf_line_sha256": "cc046cc744eed84783c914fee8011d22b4382fce1239ff1c2d8ed131028157f0",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-13",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 3044,
+        "raw_lf_line_bytes": 217,
+        "raw_lf_line_sha256": "070143fd859d8e22a0283e19352d1b26bfd27c65ab37bdbf94c8ab377cb75c45",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-14",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 3045,
+        "raw_lf_line_bytes": 220,
+        "raw_lf_line_sha256": "570d02bdb8ee8eeff30ff2b71f43e22c088f9ed51eb275c02c92f4a2d2453a55",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-15",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 3046,
+        "raw_lf_line_bytes": 237,
+        "raw_lf_line_sha256": "4b147949b0780376ad6ee00df6383cf879e49cf7640f1bbb61968730f5429de2",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-16",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 3047,
+        "raw_lf_line_bytes": 268,
+        "raw_lf_line_sha256": "954e7f2545184620577b63b690d1ab7f97cc2f2ec2f95c3ce58996fb3607dbe0",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-17",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 3048,
+        "raw_lf_line_bytes": 359,
+        "raw_lf_line_sha256": "9a6998ea693e93888a7b7348f8bb344bbf2ccda6ea60b382c2111c43d9fef136",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-18",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 3049,
+        "raw_lf_line_bytes": 371,
+        "raw_lf_line_sha256": "3c5e7635942fc699e23c793b144fb40cefd8ba64cb9be523357536515726ac9e",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-19",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 3050,
+        "raw_lf_line_bytes": 232,
+        "raw_lf_line_sha256": "fc7c967bfc29238c9b17f58f66695bdfa108cf25004ae7c3ddcf23736d5a96bb",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-20",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 3051,
+        "raw_lf_line_bytes": 236,
+        "raw_lf_line_sha256": "ca946f313e145cf26b624f3df82ca65f996ab02966a1b6d56c1b1af7c506d1b0",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-21",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 3052,
+        "raw_lf_line_bytes": 249,
+        "raw_lf_line_sha256": "d1292b8b2776e4cee72229b6680481d078832b104bb26a754e8d7d8f8a58d8f6",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-22",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 3053,
+        "raw_lf_line_bytes": 246,
+        "raw_lf_line_sha256": "4a90e390346ce348c08c7449fbbfc113fde3c2a2d4cbe346bd02d2e76daf9f68",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-23",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 3054,
+        "raw_lf_line_bytes": 324,
+        "raw_lf_line_sha256": "4fdf163cc6c45e45e9e237a167cee8d8f8289056ffdf170b56cf636a85ef8540",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-24",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 3055,
+        "raw_lf_line_bytes": 321,
+        "raw_lf_line_sha256": "53935ba37c84f9ac1de516f172e40f7eda6facc49b06dd615d9cdb1796590016",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-25",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 3056,
+        "raw_lf_line_bytes": 323,
+        "raw_lf_line_sha256": "b15196bec8bf102dd49b517e2b9b26bb53cf3c216e2bed077e239f4a602ec670",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-26",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 3057,
+        "raw_lf_line_bytes": 329,
+        "raw_lf_line_sha256": "f0d04e389f6c0ddd20c47f466060642c1bd76a9c608e599bbabc0942a6555168",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-27",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 3058,
+        "raw_lf_line_bytes": 214,
+        "raw_lf_line_sha256": "851a8c2c158e95951b83c84798b500f5078bc539bffe4eb57109a0cfe1f134c8",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-28",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 3059,
+        "raw_lf_line_bytes": 207,
+        "raw_lf_line_sha256": "249f905f547ef60091bc17e5c3a0fab523be29cf6e39bf4fcd3fc2150b4c4ea6",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      },
+      {
+        "case_id": "L10-LABO-059-CASE-29",
+        "AC_id": "LABO-059-AC-03",
+        "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "physical_line": 3060,
+        "raw_lf_line_bytes": 208,
+        "raw_lf_line_sha256": "5b30628b29606ce73153b4b2e77ad73d0327048ef7e4fd2b7729353550d84578",
+        "source_class": "公開済みa4 L3/L10本文の定義行。main 5576へのmerge済みを意味しない。"
+      }
+    ],
+    "current_main_check": {
+      "revision": "17a2f310358ee7fe209b9d37cddf4a927c740248",
+      "same_path_CASE_ID_occurrence_count": 0,
+      "interpretation": "a4 snapshotの旧60定義は現body commitに保持されている。current main 17a2自体には当該059 CASE IDsは未統合。作成枝のbody pinsは以下に別固定し、main統合済みとはしない。"
+    },
+    "literal_storage": "各既存CASEのliteralを重複せず、ID・AC・physical line・raw LF line SHA-256で参照する。"
+  },
+  "candidate_23_authoring_design": {
+    "status": "作成前の候補fixture設計。採択・実測・実operation・実authorityではない。",
+    "candidate_count": 23,
+    "normal_candidate_count": 1,
+    "negative_candidate_count": 22,
+    "input_field_mutation_candidates": 9,
+    "fixed_input_output_only_candidates": 13,
+    "candidate_rows": [
+      {
+        "candidate_ref": "C08-candidate-01",
+        "condition_id": "C08",
+        "proposed_case_id": "L10-LABO-059-CASE-50",
+        "candidate_kind": "negative fixture候補",
+        "field": "no-HELIX対象作業に混入したHELIX支援構成の有無",
+        "mode": "入力field変異",
+        "single_mutation": "no-HELIXと主張するcohortの対象作業へHELIX支援componentが一つ存在するfield状態。",
+        "baseline_and_mutation_review": [
+          "固定scopeでno-HELIX対象workのsupport composition field一つに混入状態を設定。OS運転assignment fieldは保持し、HELIXなしcohort主張を比較不能/範囲限定にする。",
+          "CASE01は高水準正常概要。baseline field completenessは未検証なので、candidateはfixed-source semanticsに基づく合成入力と明記し、CASE01実値の存在を主張しない。"
+        ],
+        "proposed_oracle": "HELIXなしclaimを拒否し、評価運転OS assignmentと混同しない。",
+        "candidate_decision_description": "対象work cohortのHELIX支援構成fieldのみを「HELIX componentあり」へ変える。no-HELIX claimと評価運転OS assignmentは固定。",
+        "nonoverlap": "CASE15はno-Harnessだが他支援ありという誤分類で、実支援混入の評価とは異なる。CASE04aは割当authority越境。"
+      },
+      {
+        "candidate_ref": "C09-candidate-01",
+        "condition_id": "C09",
+        "proposed_case_id": "L10-LABO-059-CASE-51",
+        "candidate_kind": "negative fixture候補",
+        "field": "現行OS assignment receiptの存在",
+        "mode": "入力field変異",
+        "single_mutation": "合成CASEのassignment receipt fieldだけをmissing/unknownにする。assignment operation自体が不存在とはしない。",
+        "baseline_and_mutation_review": [
+          "“missing/unknown”のうちどちらの状態をこの候補で変えるか未固定。片方だけを選ぶ。assignment operationの不存在とは混同しない。",
+          "CASE01は高水準正常概要。baseline field completenessは未検証なので、candidateはfixed-source semanticsに基づく合成入力と明記し、CASE01実値の存在を主張しない。"
+        ],
+        "proposed_oracle": "Receiptに存在するこの費目だけを総費用から除外した出力を拒否し、総費用を不完全として扱う。金額/実行値は創作しない。",
+        "candidate_decision_description": "",
+        "nonoverlap": "CASE04aはLABOがassignmentするauthority違反で、receipt fieldの欠落とは別。"
+      },
+      {
+        "candidate_ref": "C15-candidate-01",
+        "condition_id": "C15",
+        "proposed_case_id": "L10-LABO-059-CASE-48",
+        "candidate_kind": "正常fixture候補",
+        "field": "有効decision下の同順位/比較不能候補入力",
+        "mode": "正常候補（入力変異なし）",
+        "single_mutation": "なし。入力CASE自体は正常candidate。実測候補関係が有効decisionから優劣を導けない場合を表す。",
+        "baseline_and_mutation_review": [
+          "CASE01/02は概要であり、具体的正常field値の物理literalを証明しない。合成正常候補はL2:421の判定不能関係を一状態だけ表し、実decisionや実測としない。"
+        ],
+        "proposed_oracle": "L2-059:421どおり同順位/判定不能/要人判断、万能順位なし。",
+        "candidate_decision_description": "同じ有効decisionに対し同順位/比較不能の入力を表す。値・実測は創作しない。",
+        "nonoverlap": "CASE03dはpriority/tolerance未決という入力不備。こちらはdecisionが有効で必要入力が揃った正常状態。CASE01自体の既存normalを残し、別の合成正常candidateとして区別。"
+      },
+      {
+        "candidate_ref": "C15-candidate-02",
+        "condition_id": "C15",
+        "proposed_case_id": "L10-LABO-059-CASE-49",
+        "candidate_kind": "negative fixture候補",
+        "field": "有効decision下での同順位/比較不能結果を万能rankingへ変換する出力",
+        "mode": "入力固定で出力側を一項目変える反例",
+        "single_mutation": "直前の正常candidateの入力を一切変えず、出力relationだけを万能rankingに変える。",
+        "baseline_and_mutation_review": [
+          "入力正常候補をそのまま保持し、出力relationだけを万能rankingへ変える出力反例。tie/undeterminedの正常候補は許されたrelationのうち一つの表現を固定する。"
+        ],
+        "proposed_oracle": "出力変異を拒否。同じ入力を正常fixtureとして別に保持する。",
+        "candidate_decision_description": "CASE48の入力そのものを保ち、出力relationだけを万能rankingへ変える。",
+        "nonoverlap": "CASE03dはdecision未決の入力変異で、ここではnormal valid inputを固定し出力だけを変える。"
+      },
+      {
+        "candidate_ref": "C19-candidate-01",
+        "condition_id": "C19",
+        "proposed_case_id": "L10-LABO-059-CASE-52",
+        "candidate_kind": "negative fixture候補",
+        "field": "既知CI費用の総費用集計への含有",
+        "mode": "入力固定で出力側を一項目変える反例",
+        "single_mutation": "合成receipt fieldはpresentかつ費用knownを示すが、総費用出力からCI費用fieldだけを除外。具体金額/source値を創作しない。",
+        "baseline_and_mutation_review": [
+          "known/presentのreceipt inputを保持し、合計出力の当該費用だけを一つ除外する。期待は総費用不完全。",
+          "CASE01は高水準正常概要。baseline field completenessは未検証なので、candidateはfixed-source semanticsに基づく合成入力と明記し、CASE01実値の存在を主張しない。"
+        ],
+        "proposed_oracle": "Receiptに存在するこの費目だけを総費用から除外した出力を拒否し、総費用を不完全として扱う。金額/実行値は創作しない。",
+        "candidate_decision_description": "",
+        "nonoverlap": "CASE18はreceipt missing、ここはreceipt presentだが集計除外。CASE30は複合除外。"
+      },
+      {
+        "candidate_ref": "C19-candidate-02",
+        "condition_id": "C19",
+        "proposed_case_id": "L10-LABO-059-CASE-53",
+        "candidate_kind": "negative fixture候補",
+        "field": "既知rerun費用の総費用集計への含有",
+        "mode": "入力固定で出力側を一項目変える反例",
+        "single_mutation": "合成費用receiptはknown/presentとし、rerun費用fieldだけを出力から除外。",
+        "baseline_and_mutation_review": [
+          "known/presentのreceipt inputを保持し、合計出力の当該費用だけを一つ除外する。期待は総費用不完全。",
+          "CASE01は高水準正常概要。baseline field completenessは未検証なので、candidateはfixed-source semanticsに基づく合成入力と明記し、CASE01実値の存在を主張しない。"
+        ],
+        "proposed_oracle": "receiptに存在するこの既知費用項目だけを総費用から除外した出力を拒否し、総費用を不完全として扱う。金額/実行値は創作しない。",
+        "candidate_decision_description": "",
+        "nonoverlap": "CASE24はretry receipt欠落。CASE30は複合除外。"
+      },
+      {
+        "candidate_ref": "C19-candidate-03",
+        "condition_id": "C19",
+        "proposed_case_id": "L10-LABO-059-CASE-54",
+        "candidate_kind": "negative fixture候補",
+        "field": "既知review費用の総費用集計への含有",
+        "mode": "入力固定で出力側を一項目変える反例",
+        "single_mutation": "合成review fee receiptはknown/presentとし、その費用fieldだけを総費用から除外。",
+        "baseline_and_mutation_review": [
+          "known/presentのreceipt inputを保持し、合計出力の当該費用だけを一つ除外する。期待は総費用不完全。",
+          "CASE01は高水準正常概要。baseline field completenessは未検証なので、candidateはfixed-source semanticsに基づく合成入力と明記し、CASE01実値の存在を主張しない。"
+        ],
+        "proposed_oracle": "receiptに存在するこの既知費用項目だけを総費用から除外した出力を拒否し、総費用を不完全として扱う。金額/実行値は創作しない。",
+        "candidate_decision_description": "",
+        "nonoverlap": "CASE23はreview receipt欠落。CASE30は複合除外。"
+      },
+      {
+        "candidate_ref": "C19-candidate-04",
+        "condition_id": "C19",
+        "proposed_case_id": "L10-LABO-059-CASE-55",
+        "candidate_kind": "negative fixture候補",
+        "field": "既知人間調査費用の総費用集計への含有",
+        "mode": "入力固定で出力側を一項目変える反例",
+        "single_mutation": "合成human effort receiptはknown/presentとし、調査時間/量fieldだけを費用表示または人時間表示から除外。",
+        "baseline_and_mutation_review": [
+          "known/presentのreceipt inputを保持し、合計出力の当該費用だけを一つ除外する。期待は総費用不完全。",
+          "CASE01は高水準正常概要。baseline field completenessは未検証なので、candidateはfixed-source semanticsに基づく合成入力と明記し、CASE01実値の存在を主張しない。"
+        ],
+        "proposed_oracle": "入力の既知数量を保持し、出力field欠落と比較不完全を示す。貨幣費用と別掲し、換算や0円化をしない。",
+        "candidate_decision_description": "人間調査数量receiptがknownである入力を保ち、出力数量fieldだけを省略する。",
+        "nonoverlap": "CASE03eは介入時間receipt欠落、CASE26は人修正費receipt欠落。"
+      },
+      {
+        "candidate_ref": "C19-candidate-05",
+        "condition_id": "C19",
+        "proposed_case_id": "L10-LABO-059-CASE-56",
+        "candidate_kind": "negative fixture候補",
+        "field": "既知人間検証費用/時間の総費用集計への含有",
+        "mode": "入力固定で出力側を一項目変える反例",
+        "single_mutation": "合成verification receiptはknown/presentとし、検証費用/時間fieldだけを除外。",
+        "baseline_and_mutation_review": [
+          "known/presentのreceipt inputを保持し、合計出力の当該費用だけを一つ除外する。期待は総費用不完全。",
+          "CASE01は高水準正常概要。baseline field completenessは未検証なので、candidateはfixed-source semanticsに基づく合成入力と明記し、CASE01実値の存在を主張しない。"
+        ],
+        "proposed_oracle": "入力の既知数量を保持し、出力field欠落と比較不完全を示す。貨幣費用と別掲し、換算や0円化をしない。",
+        "candidate_decision_description": "人間検証数量receiptがknownである入力を保ち、出力数量fieldだけを省略する。",
+        "nonoverlap": "CASE26は人修正費receipt欠落で、verification量の除外とは異なる。CASE30は複合。"
+      },
+      {
+        "candidate_ref": "C27-candidate-01",
+        "condition_id": "C27",
+        "proposed_case_id": "L10-LABO-059-CASE-57",
+        "candidate_kind": "negative fixture候補",
+        "field": "artifact identity/digest",
+        "mode": "入力field変異",
+        "single_mutation": "artifact identityまたはdigest field一つだけを別のsymbolic fixture tokenに置き換える。実digest値を創作しない。",
+        "baseline_and_mutation_review": [
+          "identity/revisionまたはidentity/digest等の表記はfield選択が曖昧。1候補で変更する具体fieldを一つに限定し、他identity/revisionはbaseline値を保持する。",
+          "CASE01は高水準正常概要。baseline field completenessは未検証なので、candidateはfixed-source semanticsに基づく合成入力と明記し、CASE01実値の存在を主張しない。"
+        ],
+        "proposed_oracle": "異なる証拠を同一比較に混ぜず、artifact sourceが特定できる場合は対応sourceへ、特定できない場合は戻し先unknown。L2-059:427/429。",
+        "candidate_decision_description": "artifact digestだけを変え、artifact identityは固定。",
+        "nonoverlap": "CASE10–14はscorer/protocol/hardware/toolchain等の条件差でありartifact identity差ではない。"
+      },
+      {
+        "candidate_ref": "C27-candidate-02",
+        "condition_id": "C27",
+        "proposed_case_id": "L10-LABO-059-CASE-58",
+        "candidate_kind": "negative fixture候補",
+        "field": "source identity/revision",
+        "mode": "入力field変異",
+        "single_mutation": "source identityまたはrevision field一つだけを別のsymbolic fixture tokenに置き換える。",
+        "baseline_and_mutation_review": [
+          "identity/revisionまたはidentity/digest等の表記はfield選択が曖昧。1候補で変更する具体fieldを一つに限定し、他identity/revisionはbaseline値を保持する。",
+          "CASE01は高水準正常概要。baseline field completenessは未検証なので、candidateはfixed-source semanticsに基づく合成入力と明記し、CASE01実値の存在を主張しない。"
+        ],
+        "proposed_oracle": "異なる証拠を同一比較に混ぜず、OSまたは観測sourceへ。L2-059:427/429。",
+        "candidate_decision_description": "source revisionだけを変え、source identityは固定。",
+        "nonoverlap": "CASE03b/10–14のoracle/task等revision差と区別する。"
+      },
+      {
+        "candidate_ref": "C27-candidate-03",
+        "condition_id": "C27",
+        "proposed_case_id": "L10-LABO-059-CASE-59",
+        "candidate_kind": "negative fixture候補",
+        "field": "worker identity/revision",
+        "mode": "入力field変異",
+        "single_mutation": "worker identityまたはrevision field一つだけを別のsymbolic fixture tokenに置き換える。",
+        "baseline_and_mutation_review": [
+          "identity/revisionまたはidentity/digest等の表記はfield選択が曖昧。1候補で変更する具体fieldを一つに限定し、他identity/revisionはbaseline値を保持する。",
+          "CASE01は高水準正常概要。baseline field completenessは未検証なので、candidateはfixed-source semanticsに基づく合成入力と明記し、CASE01実値の存在を主張しない。"
+        ],
+        "proposed_oracle": "異なる証拠を同一比較に混ぜず、OSまたは観測sourceへ（assignment/receipt側）。L2-059:427/429。",
+        "candidate_decision_description": "Worker identityだけを変え、Worker revisionは固定。",
+        "nonoverlap": "CASE04aはLABOのassignment authority越境でありworker identity差ではない。"
+      },
+      {
+        "candidate_ref": "C27-candidate-04",
+        "condition_id": "C27",
+        "proposed_case_id": "L10-LABO-059-CASE-60",
+        "candidate_kind": "negative fixture候補",
+        "field": "model identity/revision",
+        "mode": "入力field変異",
+        "single_mutation": "model identityまたはrevision field一つだけを別のsymbolic fixture tokenに置き換える。",
+        "baseline_and_mutation_review": [
+          "identity/revisionまたはidentity/digest等の表記はfield選択が曖昧。1候補で変更する具体fieldを一つに限定し、他identity/revisionはbaseline値を保持する。",
+          "CASE01は高水準正常概要。baseline field completenessは未検証なので、candidateはfixed-source semanticsに基づく合成入力と明記し、CASE01実値の存在を主張しない。"
+        ],
+        "proposed_oracle": "異なる証拠を同一比較に混ぜず、LABO-055または該当sourceへ。L2-059:427/429。",
+        "candidate_decision_description": "model versionだけを変え、model identityは固定。",
+        "nonoverlap": "CASE14はrequirement/task revision差でありmodel identity差ではない。"
+      },
+      {
+        "candidate_ref": "C27-candidate-05",
+        "condition_id": "C27",
+        "proposed_case_id": "L10-LABO-059-CASE-61",
+        "candidate_kind": "negative fixture候補",
+        "field": "effort evidence identity/revision",
+        "mode": "入力field変異",
+        "single_mutation": "effort evidence identityまたはrevision field一つだけを別のsymbolic fixture tokenに置き換える。",
+        "baseline_and_mutation_review": [
+          "identity/revisionまたはidentity/digest等の表記はfield選択が曖昧。1候補で変更する具体fieldを一つに限定し、他identity/revisionはbaseline値を保持する。",
+          "CASE01は高水準正常概要。baseline field completenessは未検証なので、candidateはfixed-source semanticsに基づく合成入力と明記し、CASE01実値の存在を主張しない。"
+        ],
+        "proposed_oracle": "異なる証拠を同一比較に混ぜず、LABO-055または該当sourceへ。L2-059:427/429。",
+        "candidate_decision_description": "effort evidence identityだけを変え、effort evidence class/valueは固定。",
+        "nonoverlap": "CASE38はunbenchmarked値の確定扱いで、effort source revision差ではない。"
+      },
+      {
+        "candidate_ref": "C27-candidate-06",
+        "condition_id": "C27",
+        "proposed_case_id": "L10-LABO-059-CASE-62",
+        "candidate_kind": "negative fixture候補",
+        "field": "price source identity/revision",
+        "mode": "入力field変異",
+        "single_mutation": "price source identityまたはrevision field一つだけを別のsymbolic fixture tokenに置き換える。",
+        "baseline_and_mutation_review": [
+          "identity/revisionまたはidentity/digest等の表記はfield選択が曖昧。1候補で変更する具体fieldを一つに限定し、他identity/revisionはbaseline値を保持する。",
+          "CASE01は高水準正常概要。baseline field completenessは未検証なので、candidateはfixed-source semanticsに基づく合成入力と明記し、CASE01実値の存在を主張しない。"
+        ],
+        "proposed_oracle": "異なる証拠を同一比較に混ぜず、price/測定sourceへ。L2-059:427/429。",
+        "candidate_decision_description": "price source versionだけを変え、price source identity/currency/effective time/classは固定。",
+        "nonoverlap": "CASE03j/k/l/17はprice field/class欠落でありsource revision mismatchとは別。"
+      },
+      {
+        "candidate_ref": "C29-candidate-01",
+        "condition_id": "C29",
+        "proposed_case_id": "L10-LABO-059-CASE-63",
+        "candidate_kind": "negative fixture候補",
+        "field": "未測定scopeへの性能claim",
+        "mode": "入力固定で出力側を一項目変える反例",
+        "single_mutation": "合成出力のclaim scopeだけを実測cohort/task/conditionの外へ広げる。",
+        "baseline_and_mutation_review": [
+          "比較入力を固定し、保証外のclaim/authority output一項目だけを生成する反例。実際のrouting/ticket/permission/merge operationを起動しない。",
+          "CASE01は高水準正常概要。baseline field completenessは未検証なので、candidateはfixed-source semanticsに基づく合成入力と明記し、CASE01実値の存在を主張しない。"
+        ],
+        "proposed_oracle": "実測cohort/task/condition外への性能claimをscope内に限定 固定親に明示された戻し先のない場合は新設せず、変更を拒否/unknown保持。",
+        "candidate_decision_description": "",
+        "nonoverlap": "CASE31はhistorical resultをcurrent性能へ転用する。こちらは現行claim scopeだけを変える。"
+      },
+      {
+        "candidate_ref": "C29-candidate-02",
+        "condition_id": "C29",
+        "proposed_case_id": "L10-LABO-059-CASE-64",
+        "candidate_kind": "negative fixture候補",
+        "field": "provider/model名の固定加減点（旧Bench R-03由来）",
+        "mode": "provider/model label一項目の入力変異→score output invariant check",
+        "single_mutation": "同じ合成測定入力でprovider/model labelだけを変え、score fieldのみ変化させる。",
+        "baseline_and_mutation_review": [
+          "provider/modelのslashを一つ選択したlabel fieldに限定する。もう一方のlabel、version/digest binding、run identity、全測定値、scope、scorerは固定する。両labelを同時に変えると二つの入力変異。",
+          "scoreは入力ではなくoracleが観測する出力。labelだけの変更ではscoreは同じ比較結果であることを期待し、違うscoreを返すのはoutput failure。数値scoreを新設しない。",
+          "L2:427のprovider/model/version identity保持との整合に注意。実model/runtime identityを不正に書き換えるfixtureにせず、同じ測定結果に対するlabel由来固定加減点だけを検査する。既存fieldでlabelとidentityを分離できない場合はその限界をRootへ戻す。",
+          "CASE01は高水準正常概要。baseline field completenessは未検証なので、candidateはfixed-source semanticsに基づく合成入力と明記し、CASE01実値の存在を主張しない。"
+        ],
+        "proposed_oracle": "provider labelに固定加減点を付けずscore不変。実model identity/versionはCASE60で別に検査する。",
+        "candidate_decision_description": "provider表示labelだけを入力で変更し、actual provider identity/versionとmodel identity/versionは固定する。",
+        "nonoverlap": "CASE10–14はrevision/実行条件差で、label-only score mutationではない。"
+      },
+      {
+        "candidate_ref": "C29-candidate-03",
+        "condition_id": "C29",
+        "proposed_case_id": "L10-LABO-059-CASE-65",
+        "candidate_kind": "negative fixture候補",
+        "field": "target変更",
+        "mode": "入力固定で出力側を一項目変える反例",
+        "single_mutation": "合成出力のtarget fieldだけを変更する。",
+        "baseline_and_mutation_review": [
+          "比較入力を固定し、保証外のclaim/authority output一項目だけを生成する反例。実際のrouting/ticket/permission/merge operationを起動しない。",
+          "CASE01は高水準正常概要。baseline field completenessは未検証なので、candidateはfixed-source semanticsに基づく合成入力と明記し、CASE01実値の存在を主張しない。"
+        ],
+        "proposed_oracle": "target変更を生成せず、LABO提案/evidenceの範囲を保つ 固定親に明示された戻し先のない場合は新設せず、変更を拒否/unknown保持。",
+        "candidate_decision_description": "",
+        "nonoverlap": "CASE04a assignment、04b priorityとは異なるtarget field。"
+      },
+      {
+        "candidate_ref": "C29-candidate-04",
+        "condition_id": "C29",
+        "proposed_case_id": "L10-LABO-059-CASE-66",
+        "candidate_kind": "negative fixture候補",
+        "field": "registration変更",
+        "mode": "入力固定で出力側を一項目変える反例",
+        "single_mutation": "合成出力のregistration fieldだけを変更する。",
+        "baseline_and_mutation_review": [
+          "比較入力を固定し、保証外のclaim/authority output一項目だけを生成する反例。実際のrouting/ticket/permission/merge operationを起動しない。",
+          "CASE01は高水準正常概要。baseline field completenessは未検証なので、candidateはfixed-source semanticsに基づく合成入力と明記し、CASE01実値の存在を主張しない。"
+        ],
+        "proposed_oracle": "registrationを生成しない 固定親に明示された戻し先のない場合は新設せず、変更を拒否/unknown保持。",
+        "candidate_decision_description": "",
+        "nonoverlap": "target/routing/ticket/authorityの変異を混ぜない。"
+      },
+      {
+        "candidate_ref": "C29-candidate-05",
+        "condition_id": "C29",
+        "proposed_case_id": "L10-LABO-059-CASE-67",
+        "candidate_kind": "negative fixture候補",
+        "field": "routing変更",
+        "mode": "入力固定で出力側を一項目変える反例",
+        "single_mutation": "合成出力のrouting fieldだけを変更する。",
+        "baseline_and_mutation_review": [
+          "比較入力を固定し、保証外のclaim/authority output一項目だけを生成する反例。実際のrouting/ticket/permission/merge operationを起動しない。",
+          "CASE01は高水準正常概要。baseline field completenessは未検証なので、candidateはfixed-source semanticsに基づく合成入力と明記し、CASE01実値の存在を主張しない。"
+        ],
+        "proposed_oracle": "routingを生成しない 固定親に明示された戻し先のない場合は新設せず、変更を拒否/unknown保持。",
+        "candidate_decision_description": "",
+        "nonoverlap": "registration/target/ticket/authorityの変異を混ぜない。"
+      },
+      {
+        "candidate_ref": "C29-candidate-06",
+        "condition_id": "C29",
+        "proposed_case_id": "L10-LABO-059-CASE-68",
+        "candidate_kind": "negative fixture候補",
+        "field": "ticket起票",
+        "mode": "入力固定で出力側を一項目変える反例",
+        "single_mutation": "合成出力のticket creation fieldだけを変化させる。",
+        "baseline_and_mutation_review": [
+          "比較入力を固定し、保証外のclaim/authority output一項目だけを生成する反例。実際のrouting/ticket/permission/merge operationを起動しない。",
+          "CASE01は高水準正常概要。baseline field completenessは未検証なので、candidateはfixed-source semanticsに基づく合成入力と明記し、CASE01実値の存在を主張しない。"
+        ],
+        "proposed_oracle": "ticketを起票しない 固定親に明示された戻し先のない場合は新設せず、変更を拒否/unknown保持。",
+        "candidate_decision_description": "",
+        "nonoverlap": "target/registration/routing/permission/merge authorityとは別field。"
+      },
+      {
+        "candidate_ref": "C29-candidate-07",
+        "condition_id": "C29",
+        "proposed_case_id": "L10-LABO-059-CASE-69",
+        "candidate_kind": "negative fixture候補",
+        "field": "permission変更",
+        "mode": "入力固定で出力側を一項目変える反例",
+        "single_mutation": "合成出力のpermission fieldだけを変更する。",
+        "baseline_and_mutation_review": [
+          "比較入力を固定し、保証外のclaim/authority output一項目だけを生成する反例。実際のrouting/ticket/permission/merge operationを起動しない。",
+          "CASE01は高水準正常概要。baseline field completenessは未検証なので、candidateはfixed-source semanticsに基づく合成入力と明記し、CASE01実値の存在を主張しない。"
+        ],
+        "proposed_oracle": "permissionを変更しない 固定親に明示された戻し先のない場合は新設せず、変更を拒否/unknown保持。",
+        "candidate_decision_description": "",
+        "nonoverlap": "merge authority/assignment/priority/targetとは別field。"
+      },
+      {
+        "candidate_ref": "C29-candidate-08",
+        "condition_id": "C29",
+        "proposed_case_id": "L10-LABO-059-CASE-70",
+        "candidate_kind": "negative fixture候補",
+        "field": "merge authority変更",
+        "mode": "入力固定で出力側を一項目変える反例",
+        "single_mutation": "合成出力のmerge authority fieldだけを変更する。",
+        "baseline_and_mutation_review": [
+          "比較入力を固定し、保証外のclaim/authority output一項目だけを生成する反例。実際のrouting/ticket/permission/merge operationを起動しない。",
+          "CASE01は高水準正常概要。baseline field completenessは未検証なので、candidateはfixed-source semanticsに基づく合成入力と明記し、CASE01実値の存在を主張しない。"
+        ],
+        "proposed_oracle": "merge authorityを変更しない 固定親に明示された戻し先のない場合は新設せず、変更を拒否/unknown保持。",
+        "candidate_decision_description": "",
+        "nonoverlap": "permission/assignment/priority/targetとは別field。"
+      }
+    ],
+    "candidate_to_existing_condition_index": "candidate_refのCxxはfixed_31_condition_change_impact_index.rows[].condition_idと結合する。CASE ID literalはこの候補表の一箇所のみ。",
+    "body_pin_boundary": "CASE48–70は候補設計から現body commitで確認した定義へ移った。candidate_refsは履歴上の設計識別子としてcurrent CASE literalへ結合する。前案のcandidate wordingは現行本文literalの代替ではなく、採択・実測・operation・authorityを示さない。",
+    "current_body_case_mapping": [
+      {
+        "candidate_ref": "C08-candidate-01",
+        "current_case_id": "L10-LABO-059-CASE-50"
+      },
+      {
+        "candidate_ref": "C09-candidate-01",
+        "current_case_id": "L10-LABO-059-CASE-51"
+      },
+      {
+        "candidate_ref": "C15-candidate-01",
+        "current_case_id": "L10-LABO-059-CASE-48"
+      },
+      {
+        "candidate_ref": "C15-candidate-02",
+        "current_case_id": "L10-LABO-059-CASE-49"
+      },
+      {
+        "candidate_ref": "C19-candidate-01",
+        "current_case_id": "L10-LABO-059-CASE-52"
+      },
+      {
+        "candidate_ref": "C19-candidate-02",
+        "current_case_id": "L10-LABO-059-CASE-53"
+      },
+      {
+        "candidate_ref": "C19-candidate-03",
+        "current_case_id": "L10-LABO-059-CASE-54"
+      },
+      {
+        "candidate_ref": "C19-candidate-04",
+        "current_case_id": "L10-LABO-059-CASE-55"
+      },
+      {
+        "candidate_ref": "C19-candidate-05",
+        "current_case_id": "L10-LABO-059-CASE-56"
+      },
+      {
+        "candidate_ref": "C27-candidate-01",
+        "current_case_id": "L10-LABO-059-CASE-57"
+      },
+      {
+        "candidate_ref": "C27-candidate-02",
+        "current_case_id": "L10-LABO-059-CASE-58"
+      },
+      {
+        "candidate_ref": "C27-candidate-03",
+        "current_case_id": "L10-LABO-059-CASE-59"
+      },
+      {
+        "candidate_ref": "C27-candidate-04",
+        "current_case_id": "L10-LABO-059-CASE-60"
+      },
+      {
+        "candidate_ref": "C27-candidate-05",
+        "current_case_id": "L10-LABO-059-CASE-61"
+      },
+      {
+        "candidate_ref": "C27-candidate-06",
+        "current_case_id": "L10-LABO-059-CASE-62"
+      },
+      {
+        "candidate_ref": "C29-candidate-01",
+        "current_case_id": "L10-LABO-059-CASE-63"
+      },
+      {
+        "candidate_ref": "C29-candidate-02",
+        "current_case_id": "L10-LABO-059-CASE-64"
+      },
+      {
+        "candidate_ref": "C29-candidate-03",
+        "current_case_id": "L10-LABO-059-CASE-65"
+      },
+      {
+        "candidate_ref": "C29-candidate-04",
+        "current_case_id": "L10-LABO-059-CASE-66"
+      },
+      {
+        "candidate_ref": "C29-candidate-05",
+        "current_case_id": "L10-LABO-059-CASE-67"
+      },
+      {
+        "candidate_ref": "C29-candidate-06",
+        "current_case_id": "L10-LABO-059-CASE-68"
+      },
+      {
+        "candidate_ref": "C29-candidate-07",
+        "current_case_id": "L10-LABO-059-CASE-69"
+      },
+      {
+        "candidate_ref": "C29-candidate-08",
+        "current_case_id": "L10-LABO-059-CASE-70"
+      }
+    ]
+  },
+  "body_state_and_limits": {
+    "fixed_body_revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+    "fixed_body_sha256s": [
+      {
+        "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+        "bytes": 267432,
+        "sha256": "fef30ffb208e6cc7b33e4b874c3b03f9df0a028906f087522ca32177bfb65319",
+        "base_prefix_bytes": 260592,
+        "base_prefix_sha256": "8177c5fc3c73a6834020ba82aab299055b8ebf64eda887677ffce442749951ba",
+        "base_prefix_exact": true
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+        "bytes": 10078,
+        "sha256": "e6e092f020f59741574db31b7447549ede19efa6d0dfd311a5c7782df83f361e",
+        "base_prefix_bytes": 9189,
+        "base_prefix_sha256": "d28a5edf004fc88636e3e6158b208b25078b88e24b3c583f87cf68c71f252d1c",
+        "base_prefix_exact": true
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+        "bytes": 59509,
+        "sha256": "0bc2cf2bec57a4b3424dd0a8840a97278c3b9dcfd137cf79b551321f12eb67dd",
+        "base_prefix_bytes": 58278,
+        "base_prefix_sha256": "bcde7f24ccee2ad044c26788bbeb3348abc30dd8d61e2b82f8badc8d6c6d18f9",
+        "base_prefix_exact": true
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "bytes": 323249,
+        "sha256": "7df67c7e8f1c3e9a867ac67ff47ad45248581ed210a00513b985780aaf10c235",
+        "base_prefix_bytes": 299803,
+        "base_prefix_sha256": "7fe7743dcd1b0aee0aa075b5349b8901baafa60f289d0fcdcb7953b36eb7798c",
+        "base_prefix_exact": true
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/business-verification.md",
+        "bytes": 8666,
+        "sha256": "451558d4db8ec1d1d194f71346cf854c1625007e8a27d323f8f5cc50d5fe334c",
+        "base_prefix_bytes": 8152,
+        "base_prefix_sha256": "e1e030be388627989248a6776d35c0c392da1f0f55a573faed15df548d3444a2",
+        "base_prefix_exact": true
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+        "bytes": 48631,
+        "sha256": "54bce22e5b5605bc5d22991f3436f3ecc356e6136e09b33d04159aa04e9af423",
+        "base_prefix_bytes": 47436,
+        "base_prefix_sha256": "b565535f3cfa1c796497ee754f6ec721ef5d7fc2071d787096a661d0ef2635be",
+        "base_prefix_exact": true
+      }
+    ],
+    "body_case83_pins": {
+      "count": 83,
+      "definitions": [
+        {
+          "case_id": "L10-LABO-059-CASE-01",
+          "AC_id": "LABO-059-AC-01",
+          "classification": "normal",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2613,
+          "literal_with_lf": "- `L10-LABO-059-CASE-01`（対応AC: `LABO-059-AC-01`） 正常: 選択目的に必要な同条件run、同一quality oracle、OS receipts、価格source・通貨・適用時点、適用scope内の既決priorityを与え、quality gateの後に費用・時間・人介入を別表示する。\n",
+          "raw_lf_bytes": 293,
+          "raw_lf_sha256": "29e926aa6d2f511fff0c229812b144b627c41eac83f2af3956fe01857b04a99d"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-02",
+          "AC_id": "LABO-059-AC-02",
+          "classification": "normal",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2615,
+          "literal_with_lf": "- `L10-LABO-059-CASE-02`（対応AC: `LABO-059-AC-02`） 未見正常: 未見taskの条件が選択比較scopeで適用可能な場合、選択二者群だけを比較し未選択群の不足は未測定として残す。旧版群を選択する場合は保存済みの歴史receiptだけを読み、旧runtimeを実行しない。\n",
+          "raw_lf_bytes": 332,
+          "raw_lf_sha256": "2ea0207a825f3058c3a077ef23b031a49865d61904a456331939c72b694bfd80"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-03a",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2621,
+          "literal_with_lf": "| `L10-LABO-059-CASE-03a` | LABO-059-AC-03 | task scopeだけ異なる | 同条件比較を不成立にする。 |\n",
+          "raw_lf_bytes": 115,
+          "raw_lf_sha256": "3ec4967cf7ccb339d6f09f9a9f8a8cb19c79a742cd24010d88512bf72eab118e"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-03b",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2622,
+          "literal_with_lf": "| `L10-LABO-059-CASE-03b` | LABO-059-AC-03 | quality oracle revisionだけ異なる | 比較不能。HARNESSへ戻す。 |\n",
+          "raw_lf_bytes": 123,
+          "raw_lf_sha256": "527654cc9e5b8698ac354003a3e624b8e404979846e760380f45bc4d0eebfaa5"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-03c",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2623,
+          "literal_with_lf": "| `L10-LABO-059-CASE-03c` | LABO-059-AC-03 | decision scopeだけ適用境界外 | decisionを流用せず、POが選択した既存decision ownerへ戻す。 |\n",
+          "raw_lf_bytes": 161,
+          "raw_lf_sha256": "4cc7866fb2598ea2e17bcc14bed049feb5498f07b05ed78ccf30a240604205df"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-03d",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2624,
+          "literal_with_lf": "| `L10-LABO-059-CASE-03d` | LABO-059-AC-03 | priority/toleranceだけ未決 | 値を創作せず判断待ちとする。 |\n",
+          "raw_lf_bytes": 123,
+          "raw_lf_sha256": "73cbf76ed0dbd37eb60231ae0cba3dc4d30ec8e0f3996681766ce9769e8219c0"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-03e",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2625,
+          "literal_with_lf": "| `L10-LABO-059-CASE-03e` | LABO-059-AC-03 | human intervention timeだけ欠落 | amount unknown、総金額不完全を表示する。時間/effortの提供元を識別できればLABO-055または該当sourceへ戻し、source identityが不明なら戻し先unknown。 |\n",
+          "raw_lf_bytes": 275,
+          "raw_lf_sha256": "8ace80c2334654935ea50cfb2baec02bb6f38a03f24c5307de0e1d48423ac0a9"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-03f",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2626,
+          "literal_with_lf": "| `L10-LABO-059-CASE-03f` | LABO-059-AC-03 | rescue costだけ除外 | 総費用の成功比較にしない。欠落した救援費用・effortの提供元が識別できれば該当sourceまたはLABO-055へ戻し、identity不明ならunknown。 |\n",
+          "raw_lf_bytes": 250,
+          "raw_lf_sha256": "93644d14282feae55b572b38e477c9a6d65d0f8126b89f29f9ecd67ec22834f3"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-03g",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2627,
+          "literal_with_lf": "| `L10-LABO-059-CASE-03g` | LABO-059-AC-03 | accepted outcome数だけ0 | low-cost 成功へ変換しない。 |\n",
+          "raw_lf_bytes": 113,
+          "raw_lf_sha256": "ef701e91cb1cba28ca26c3714fa164fac219f0508c108f974f411e523df75ae9"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-03h",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2628,
+          "literal_with_lf": "| `L10-LABO-059-CASE-03h` | LABO-059-AC-03 | HELIX支援cohortと実験conditionだけ混同 | 別軸へ戻し、比較目的を再確認する。 |\n",
+          "raw_lf_bytes": 149,
+          "raw_lf_sha256": "4729f93e84928adbd0cf7d5512e5bd4290ba0f92079ead9c78639a43f42d80d5"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-03i",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2629,
+          "literal_with_lf": "| `L10-LABO-059-CASE-03i` | LABO-059-AC-03 | 必要な群のreceiptだけ欠落 | その比較だけ未測定/比較不能。 |\n",
+          "raw_lf_bytes": 128,
+          "raw_lf_sha256": "899a93f8714b5a64f68114bc6576d4e23a5a72b1db3feb29611b0be85a80b557"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-03j",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2630,
+          "literal_with_lf": "| `L10-LABO-059-CASE-03j` | LABO-059-AC-03 | 価格sourceだけ欠落 | 金額を0や推定値で補わずunknownにする。price source identityが分かるときはLABO-055またはそのsourceへ、特定できないときはunknown。 |\n",
+          "raw_lf_bytes": 242,
+          "raw_lf_sha256": "b4a996856c2f1bfc0176a696165c989befc0cf47061b3537936ac25044c1313a"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-03k",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2631,
+          "literal_with_lf": "| `L10-LABO-059-CASE-03k` | LABO-059-AC-03 | currencyだけ欠落 | 換算せず金額比較を未評価にする。currencyを含むprice evidenceのsourceが識別できればLABO-055またはそこへ、identity不明ならunknown。 |\n",
+          "raw_lf_bytes": 239,
+          "raw_lf_sha256": "1f5a789280bfefcab32176916cd3843058ad549d7aa38a246d8c52f9a8a9ad55"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-03l",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2632,
+          "literal_with_lf": "| `L10-LABO-059-CASE-03l` | LABO-059-AC-03 | effective timeだけ欠落 | 適用価格を確定せず当該比較を未評価にする。適用価格sourceが識別できればLABO-055またはそこへ、identity不明ならunknown。 |\n",
+          "raw_lf_bytes": 238,
+          "raw_lf_sha256": "a3a6d72748122d76d2ea66d4d21fee4bcc83a30948bbec4ff3d9d7478654e166"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-03m",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2633,
+          "literal_with_lf": "| `L10-LABO-059-CASE-03m` | LABO-059-AC-03 | rework costだけ除外 | 総費用の成功比較にしない。欠落したrework費用・effortの提供元が識別できれば該当sourceまたはLABO-055へ戻し、identity不明ならunknown。 |\n",
+          "raw_lf_bytes": 250,
+          "raw_lf_sha256": "15843bbdb4cf46c583788f5e057b2422935a11875e7c3ff5dc7cbbd6bd218b73"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-04a",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2634,
+          "literal_with_lf": "| `L10-LABO-059-CASE-04a` | LABO-059-AC-03 | LABOがWorkerを割当 | 拒否。OS ownerへ戻す。 戻し先: OS。 |\n",
+          "raw_lf_bytes": 119,
+          "raw_lf_sha256": "6c34f8a1774656cb21d9656aad24f2299a5841d834fc02ee089338c2d2a1ba8e"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-04b",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2635,
+          "literal_with_lf": "| `L10-LABO-059-CASE-04b` | LABO-059-AC-03 | LABOがpriority/toleranceを確定 | 拒否。既存decision ownerに残す。 |\n",
+          "raw_lf_bytes": 126,
+          "raw_lf_sha256": "9fb4ec2ac34191f72e08af1c441eccbd99e6058ee23866e3623f62a14a47fe00"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-05",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2636,
+          "literal_with_lf": "| `L10-LABO-059-CASE-05` | LABO-059-AC-03 | 単独変異: 有効なscope内decisionにrunごとの再確認を要求だけを変更。その他の入力は `CASE-01` と同一。 | 有効なscope内decisionを再確認要求せず再利用する 戻し先: 既存decision owner。 |\n",
+          "raw_lf_bytes": 283,
+          "raw_lf_sha256": "ef5b8b7d2060297b4b47c5d6eb03f08cc86c6b61270b9482baf852179850d9c4"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-06",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2637,
+          "literal_with_lf": "| `L10-LABO-059-CASE-06` | LABO-059-AC-03 | 単独変異: decisionの有効期限切れだけを変更。その他の入力は `CASE-01` と同一。 | 優先値を適用せず既存decision ownerへ返す 戻し先: 既存decision owner。 |\n",
+          "raw_lf_bytes": 243,
+          "raw_lf_sha256": "bb81e2ad0eab42bef8bbc48351d70bf25348ba15be7f0ee626be781fa23461c5"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-07",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2638,
+          "literal_with_lf": "| `L10-LABO-059-CASE-07` | LABO-059-AC-03 | 基準入力ではquality oracleが不成立、他receipt/price/適用可能decisionは有効。入力を固定し、出力だけを低価格で品質不成立を成功化する。 | 誤った成功出力を拒否し、品質不成立/比較不成立を保つ。quality oracleを変更せず、oracle自体の不明時だけHARNESS/要求ownerへ返す。 |\n",
+          "raw_lf_bytes": 402,
+          "raw_lf_sha256": "da648b2b2e8e1a73c1ff873252399e310f8ca745817dfb65bcec98fdceac8509"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-08",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2639,
+          "literal_with_lf": "| `L10-LABO-059-CASE-08` | LABO-059-AC-03 | 基準入力ではquality oracleが不成立、他receipt/duration/適用可能decisionは有効。入力を固定し、出力だけを短いdurationで品質不成立を成功化する。 | 誤った成功出力を拒否し、品質不成立/比較不成立を保つ。quality oracleを変更せず、oracle自体の不明時だけHARNESS/要求ownerへ返す。 |\n",
+          "raw_lf_bytes": 410,
+          "raw_lf_sha256": "4d9a1fe3818d1296e98ae61cefdf82f044bc5160729e246dfae064740304705e"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-09",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2640,
+          "literal_with_lf": "| `L10-LABO-059-CASE-09` | LABO-059-AC-03 | 単独変異: selected comparison scope だけ異なる。その他の入力は `CASE-01` と同一。 | 同条件比較を分離し比較不能にする 戻し先: LABO。 |\n",
+          "raw_lf_bytes": 219,
+          "raw_lf_sha256": "cdbc2d97b1e67829fd5d64799f6679dddb039f21c781d72b26e72e9b34a99139"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-10",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2641,
+          "literal_with_lf": "| `L10-LABO-059-CASE-10` | LABO-059-AC-03 | 単独変異: scorer revision だけ異なる。その他の入力は `CASE-01` と同一。 | 異なるscorerを比較群へ混ぜない 戻し先: LABO。 |\n",
+          "raw_lf_bytes": 203,
+          "raw_lf_sha256": "9fc4c4494d553c63a2521347baaa52415f7f5185987cb480df69d34ec9a43d8e"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-11",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2642,
+          "literal_with_lf": "| `L10-LABO-059-CASE-11` | LABO-059-AC-03 | 単独変異: run protocol だけ異なる。その他の入力は `CASE-01` と同一。 | 異なるprotocolを比較群へ混ぜない 戻し先: LABO。 |\n",
+          "raw_lf_bytes": 202,
+          "raw_lf_sha256": "3021026d582447f1a19f6e2c8efd5c3d81f50dc5bec9f43bc60ba7a7cf57d698"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-12",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2643,
+          "literal_with_lf": "| `L10-LABO-059-CASE-12` | LABO-059-AC-03 | 単独変異: hardware class だけ異なる。その他の入力は `CASE-01` と同一。 | 異なるhardware条件を比較群へ混ぜない 戻し先: LABO。 |\n",
+          "raw_lf_bytes": 210,
+          "raw_lf_sha256": "4fa5a1c9c288792d92d645d11aeb14b16b9e69af2a0cd6ac9cd236081703f819"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-13",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2644,
+          "literal_with_lf": "| `L10-LABO-059-CASE-13` | LABO-059-AC-03 | 単独変異: toolchain revision だけ異なる。その他の入力は `CASE-01` と同一。 | 異なるtoolchain条件を比較群へ混ぜない 戻し先: LABO。 |\n",
+          "raw_lf_bytes": 215,
+          "raw_lf_sha256": "3fc48df9b3f25d5f315faf0e1e3f8c1455051c37c63527495cf0e01f7c001fe4"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-14",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2645,
+          "literal_with_lf": "| `L10-LABO-059-CASE-14` | LABO-059-AC-03 | 単独変異: requirement/task revision だけ異なる。その他の入力は `CASE-01` と同一。 | 異なるrevisionを比較群へ混ぜない 戻し先: HARNESS。 |\n",
+          "raw_lf_bytes": 218,
+          "raw_lf_sha256": "f25a1e818b46d3e1df8657f4159a94aa5c7dbc4ce4ebc18437308acd5271b6b5"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-15",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2646,
+          "literal_with_lf": "| `L10-LABO-059-CASE-15` | LABO-059-AC-03 | 単独変異: no-Harness runに他のHELIX支援が残る条件だけを変更。その他の入力は `CASE-01` と同一。 | 当該cohortをHELIXなしと呼ばない 戻し先: LABO。 |\n",
+          "raw_lf_bytes": 235,
+          "raw_lf_sha256": "b53ec327c1d017b4c19e9821d0bc501d5bfc6115466d34a0ae308f759b4b7809"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-16",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2647,
+          "literal_with_lf": "| `L10-LABO-059-CASE-16` | LABO-059-AC-03 | 単独変異: historical runへ現行OS assignmentを遡及付与だけを変更。その他の入力は `CASE-01` と同一。 | 当時のauthority/receiptを保持し後付けassignmentを拒否する 戻し先: OS。 |\n",
+          "raw_lf_bytes": 266,
+          "raw_lf_sha256": "acda1bb8473d513ca332ee525009c81bb3f9a4d279dd3162774003b7e2374af0"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-17",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2648,
+          "literal_with_lf": "| `L10-LABO-059-CASE-17` | LABO-059-AC-03 | 単独変異: subscription/API-equivalent区分costの欠落だけを変更。その他の入力は `CASE-01` と同一。 | 総費用を完全とせず該当費用欠落を示す。subscription/API-equivalentの価格sourceが識別できればLABO-055またはそのsourceへ、identity不明ならunknown。 |\n",
+          "raw_lf_bytes": 357,
+          "raw_lf_sha256": "711f6580d9b8032d0eccc7fabb80878261487c795f6e185bca518ef915701fc9"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-18",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2649,
+          "literal_with_lf": "| `L10-LABO-059-CASE-18` | LABO-059-AC-03 | 単独変異: CI cost receiptだけ欠落。その他の入力は `CASE-01` と同一。 | CI費用はunknownのまま金額総額を不完全とする。cost receipt欠落だけから実行不在を推測せず、価格/計上sourceが識別できればLABO-055または該当sourceへ返し、identity不明はunknown。 |\n",
+          "raw_lf_bytes": 369,
+          "raw_lf_sha256": "faac51ceceb3a3640bbf73a2f41f3bd50714f36be81bd3e06adfb4ef3961ca1f"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-19",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2650,
+          "literal_with_lf": "| `L10-LABO-059-CASE-19` | LABO-059-AC-03 | 単独変異: duration start-event definition だけ異なる。その他の入力は `CASE-01` と同一。 | durationを比較不能とし定義差を保持する 戻し先: LABO。 |\n",
+          "raw_lf_bytes": 230,
+          "raw_lf_sha256": "66d08bd40e9a4e571e6cf1e35c6371bb8478d2cebbadff3796e3478fa35ee353"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-20",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2651,
+          "literal_with_lf": "| `L10-LABO-059-CASE-20` | LABO-059-AC-03 | 単独変異: 未価格human timeの通貨0変換だけを変更。その他の入力は `CASE-01` と同一。 | human effortを別掲し金額総額不完全とする 戻し先: LABO。 |\n",
+          "raw_lf_bytes": 234,
+          "raw_lf_sha256": "8be23482de0471a63fb5cb970aa2c1cb71ffce0039a96543c1e332754f22dd8c"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-21",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2652,
+          "literal_with_lf": "| `L10-LABO-059-CASE-21` | LABO-059-AC-03 | 単独変異: 二つのselected cohortを三cohortとする主張だけを変更。その他の入力は `CASE-01` と同一。 | 二者結果を三者比較完了へ拡張しない 戻し先: LABO。 |\n",
+          "raw_lf_bytes": 247,
+          "raw_lf_sha256": "33a018e3695f1e2ebde9d8dc1e4ffca1f168ab7cd1cdf98d7c352ab2ee9414fd"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-22",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "index",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2653,
+          "literal_with_lf": "| `L10-LABO-059-CASE-22` | LABO-059-AC-03 | 索引（独立fixtureではない）: `L10-LABO-059-CASE-18`と同一の単独入力変異。 | 主fixture `L10-LABO-059-CASE-18` のoracleを参照し、同じケースを重複計上しない。 |\n",
+          "raw_lf_bytes": 244,
+          "raw_lf_sha256": "c5de15959ad3e848587c4cf73dd4d6b0c2478ee6ead1f72a3c1b6e90e7f50432"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-23",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2654,
+          "literal_with_lf": "| `L10-LABO-059-CASE-23` | LABO-059-AC-03 | 単独変異: review cost receipt だけ欠落。その他の入力は `CASE-01` と同一。 | 費用内訳を不完全としunknownを保つ。該当review/費用条件の提供sourceが識別できればLABO-055またはそこへ戻し、識別できなければunknown。 |\n",
+          "raw_lf_bytes": 322,
+          "raw_lf_sha256": "4d83ea5a76c306f93b57bc870af7854784aadb6f89cef25de58866f8754cc550"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-24",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2655,
+          "literal_with_lf": "| `L10-LABO-059-CASE-24` | LABO-059-AC-03 | 単独変異: retry cost receiptだけ欠落。その他の入力は `CASE-01` と同一。 | 費用内訳を不完全としunknownを保つ。該当retry/費用条件の提供sourceが識別できればLABO-055またはそこへ戻し、識別できなければunknown。 |\n",
+          "raw_lf_bytes": 319,
+          "raw_lf_sha256": "4baf2da49361faeba2220159647e9ff39113afe379a761af123441167f01c673"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-25",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2656,
+          "literal_with_lf": "| `L10-LABO-059-CASE-25` | LABO-059-AC-03 | 単独変異: rescue cost receiptだけ欠落。その他の入力は `CASE-01` と同一。 | 費用内訳を不完全としunknownを保つ。該当rescue/費用条件の提供sourceが識別できればLABO-055またはそこへ戻し、識別できなければunknown。 |\n",
+          "raw_lf_bytes": 321,
+          "raw_lf_sha256": "3b02b63fea6dd49d088a5595f47667a7b5e911f37fc2d8425ecf529ef99ec75e"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-26",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2657,
+          "literal_with_lf": "| `L10-LABO-059-CASE-26` | LABO-059-AC-03 | 単独変異: human-fix cost receiptだけ欠落。その他の入力は `CASE-01` と同一。 | 費用内訳を不完全としunknownを保つ。human-fix/effort条件の提供sourceが識別できればLABO-055または該当sourceへ戻し、識別できなければunknown。 |\n",
+          "raw_lf_bytes": 327,
+          "raw_lf_sha256": "970c928cef68bbe5cb5dfbbb01512ab2887fe954570fa3a7e538e194f2c52fbf"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-27",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2658,
+          "literal_with_lf": "| `L10-LABO-059-CASE-27` | LABO-059-AC-03 | 単独変異: duration end-event definition だけ異なる。その他の入力は `CASE-01` と同一。 | durationを比較不能とし定義差を保持する。 |\n",
+          "raw_lf_bytes": 212,
+          "raw_lf_sha256": "a4ed242fd9553915aee654c33afd5d9ef579f05c01b5c4b87a7e17c5e9d093c7"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-28",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2659,
+          "literal_with_lf": "| `L10-LABO-059-CASE-28` | LABO-059-AC-03 | 単独変異: duration clock identity だけ異なる。その他の入力は `CASE-01` と同一。 | durationを比較不能としclock差を保持する。 |\n",
+          "raw_lf_bytes": 205,
+          "raw_lf_sha256": "2e6cc8eebfe7dcd9cb6e61ac02d1a76eb586ccde46a393292e8a3539f68401cc"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-29",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2660,
+          "literal_with_lf": "| `L10-LABO-059-CASE-29` | LABO-059-AC-03 | 単独変異: duration stop/wait rule だけ異なる。その他の入力は `CASE-01` と同一。 | durationを比較不能とし定義差を保持する。 |\n",
+          "raw_lf_bytes": 206,
+          "raw_lf_sha256": "3a041505198b8b142ada1820d5d9eadd73f3729408d25b254a2ba8a5194873f0"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-30",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "compound",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2661,
+          "literal_with_lf": "| `L10-LABO-059-CASE-30` | LABO-059-AC-03 | 初回candidate単価だけを根拠に安価と認定し、retry・救援・rework・人修正を含む総費用を無視する。その他は `CASE-01` と同一。 | 初回candidate価格だけで安価認定せず、CASE-01と同じ適用scopeのretry・救援・rework・人修正込み総費用と既決priorityで判定する。 |\n",
+          "raw_lf_bytes": 382,
+          "raw_lf_sha256": "5781a5478db8693835d967c28a01229bca0a50405a96dc5d75cf7e558a278476"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-31",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2662,
+          "literal_with_lf": "| `L10-LABO-059-CASE-31` | LABO-059-AC-03 | 歴史結果だけをcurrent性能へ転用 | current性能の主張を未評価とし、当時のscope/revisionに限定する。 |\n",
+          "raw_lf_bytes": 177,
+          "raw_lf_sha256": "0ff92b340b2b55ce8198f8db299e22b1ea0193453f1780e7f546ef7153dac586"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-32",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2663,
+          "literal_with_lf": "| `L10-LABO-059-CASE-32` | LABO-059-AC-03 | AI稼働回数を人間介入回数へ算入 | AI runと人間介入を分離し、介入値を再計算する。 |\n",
+          "raw_lf_bytes": 160,
+          "raw_lf_sha256": "4654843b29da6be50c9b600cb35ff36aeecfacceebcf6367a3eff04e4def3a92"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-33",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "index",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2664,
+          "literal_with_lf": "| `L10-LABO-059-CASE-33` | LABO-059-AC-03 | 索引（独立fixtureではない）: CASE-41〜43のprovider/API/token費用除外を分けて参照する。 | 各単独fixtureを参照し、複数費目を一つのfixtureに束ねない。 |\n",
+          "raw_lf_bytes": 241,
+          "raw_lf_sha256": "35a2b07cf043b10760fc7fd92df55e61bfd5ab00309490d3510020a3b87cec7c"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-34",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "index",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2665,
+          "literal_with_lf": "| `L10-LABO-059-CASE-34` | LABO-059-AC-03 | 索引（独立fixtureではない）: CASE-45のWorker/parent effort費用除外を参照する。 | 主fixture CASE-45を参照し、重複計上しない。 |\n",
+          "raw_lf_bytes": 206,
+          "raw_lf_sha256": "56e9ccaeda230f17f844e602eefcf6c54a421b557f6b3271d45b6bf5d07c5a31"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-35",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "index",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2666,
+          "literal_with_lf": "| `L10-LABO-059-CASE-35` | LABO-059-AC-03 | 索引（独立fixtureではない）: CASE-39/40/44のrollback/recovery/integration費用除外を分けて参照する。 | 各単独fixtureを参照し、複数費目を一つのfixtureに束ねない。 |\n",
+          "raw_lf_bytes": 253,
+          "raw_lf_sha256": "c4754adc0c174266a9d7c1e6ac9a6233510707f6f0aaf496b47d3a836c3d8ad8"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-36",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "index",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2667,
+          "literal_with_lf": "| `L10-LABO-059-CASE-36` | LABO-059-AC-03 | 索引（独立fixtureではない）: CASE-46/47の評価運転費用または対象作業費用の除外を分けて参照する。 | 各単独fixtureを参照し、両方向を別々に検証する。 |\n",
+          "raw_lf_bytes": 250,
+          "raw_lf_sha256": "179bfd721a2f03d5ba5c87686c82c11250f8ea0c34d0215f2f3ce93b5ee2e054"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-37",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2668,
+          "literal_with_lf": "| `L10-LABO-059-CASE-37` | LABO-059-AC-03 | 未完runを低費用成功へ変換 | 未完/unknownを保ち、accepted outcomeなしの低費用成功としない。 |\n",
+          "raw_lf_bytes": 167,
+          "raw_lf_sha256": "2b3ad4bc63006715b34519dac6d2ff147b86d95c8f29914f58e9eeefbb99782d"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-38",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2669,
+          "literal_with_lf": "| `L10-LABO-059-CASE-38` | LABO-059-AC-03 | 未評価effortを`provider_default_unbenchmarked`値として確定扱い | 未評価と表示し、確定性能/費用に含めない。 |\n",
+          "raw_lf_bytes": 185,
+          "raw_lf_sha256": "0ad686b0c817e53e0bf7b05101ce3c920197c8b3b2051aba4601e019da59169f"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-39",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2670,
+          "literal_with_lf": "| `L10-LABO-059-CASE-39` | LABO-059-AC-03 | rollback費用だけを総費用から除外 | 総費用を不完全とし成功比較にしない。rollback費用sourceまたはLABO-055の該当effort sourceが識別できればそこへ、identity不明ならunknown。 |\n",
+          "raw_lf_bytes": 270,
+          "raw_lf_sha256": "7aa59106e47db105ad12989f03dc3957ad22380dd965576fc2f2f4c1fafb090b"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-40",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2671,
+          "literal_with_lf": "| `L10-LABO-059-CASE-40` | LABO-059-AC-03 | recovery費用だけを総費用から除外 | 総費用を不完全とし成功比較にしない。recovery費用sourceまたはLABO-055の該当effort sourceが識別できればそこへ、identity不明ならunknown。 |\n",
+          "raw_lf_bytes": 270,
+          "raw_lf_sha256": "a715bcca3bda9c89aecb305a06739866ad3e87d6be9df0632db3e758389ceecf"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-41",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2672,
+          "literal_with_lf": "| `L10-LABO-059-CASE-41` | LABO-059-AC-03 | provider費用だけを総費用から除外 | 総費用を不完全とし成功比較にしない。provider price sourceが識別できればLABO-055またはそこへ、identity不明ならunknown。 |\n",
+          "raw_lf_bytes": 249,
+          "raw_lf_sha256": "c29e855c7552af6379f583c5e8ba3831a634687bf87a8b5aac945f6a8ed41034"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-42",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2673,
+          "literal_with_lf": "| `L10-LABO-059-CASE-42` | LABO-059-AC-03 | API費用だけを総費用から除外 | 総費用を不完全とし成功比較にしない。API price sourceが識別できればLABO-055またはそこへ、identity不明ならunknown。 |\n",
+          "raw_lf_bytes": 239,
+          "raw_lf_sha256": "89d0640f07b05b068b5887769e8d47253b2ae1ecf728c2b2c41b971c76ee7457"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-43",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2674,
+          "literal_with_lf": "| `L10-LABO-059-CASE-43` | LABO-059-AC-03 | token費用だけを総費用から除外 | 総費用を不完全とし成功比較にしない。token price sourceが識別できればLABO-055またはそこへ、identity不明ならunknown。 |\n",
+          "raw_lf_bytes": 243,
+          "raw_lf_sha256": "5e8e33b6697536cee2c35f58e6d2a08041f2b0c5d1f0f5d95a1d1076cccfdc50"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-44",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2675,
+          "literal_with_lf": "| `L10-LABO-059-CASE-44` | LABO-059-AC-03 | 単独変異: integration費用だけを総費用から除外。その他は `CASE-01` と同一。 | 総費用を不完全とし成功比較にしない。integration費用sourceが識別できればLABO-055または該当sourceへ、identity不明ならunknown。 |\n",
+          "raw_lf_bytes": 312,
+          "raw_lf_sha256": "29d6f301e31b77c5e282066857e5036ec2d0da04df335354db0cefa78d75cc6a"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-45",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2676,
+          "literal_with_lf": "| `L10-LABO-059-CASE-45` | LABO-059-AC-03 | Worker/parent effort費用だけを除外 | 総費用を不完全とし成功比較にしない。Worker/parent effortはLABO-055または識別可能なeffort sourceへ、identity不明ならunknown。 |\n",
+          "raw_lf_bytes": 249,
+          "raw_lf_sha256": "878e046ab20f63c48de3368f620141fd1fe62d91db03a79bc60cddfb6802add0"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-46",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2677,
+          "literal_with_lf": "| `L10-LABO-059-CASE-46` | LABO-059-AC-03 | 評価運転費用だけを除外 | 対象作業と評価運転の費用範囲を片側だけにせず、比較を不完全にする。費用またはeffort evidence欠落はLABO-055/該当sourceへ返し、identity不明ならunknown。 |\n",
+          "raw_lf_bytes": 284,
+          "raw_lf_sha256": "9946d4f06be9f1e959f54244a55f5cb8a8522ce550aa70a8486d352da4489b27"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-47",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2678,
+          "literal_with_lf": "| `L10-LABO-059-CASE-47` | LABO-059-AC-03 | 対象作業費用だけを除外 | 対象作業と評価運転の費用範囲を片側だけにせず、比較を不完全にする。費用またはeffort evidence欠落はLABO-055/該当sourceへ返し、identity不明ならunknown。 |\n",
+          "raw_lf_bytes": 284,
+          "raw_lf_sha256": "f13032279c94850b1f80173cd886f1b57a38f7b61f3c4fe40b0a24d1ceec1098"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-48",
+          "AC_id": "LABO-059-AC-01",
+          "classification": "normal",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2680,
+          "literal_with_lf": "- `L10-LABO-059-CASE-48`（対応AC: LABO-059-AC-01）正常: 固定decisionが適用可能で、比較目的と選択scope内のquality pass候補が複数あるが、decisionの入力から候補間の優劣を導けない状態を与える。実測値やpriority/toleranceは作らない。期待oracleは同順位/判定不能/要人判断であり、万能rankingを出さない。\n",
+          "raw_lf_bytes": 387,
+          "raw_lf_sha256": "af55ccafcd74bfacc2b3c18344cc4c9c4f599291d9085847d08c20584fac2e37"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-49",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2684,
+          "literal_with_lf": "| `L10-LABO-059-CASE-49` | LABO-059-AC-03 | CASE-48の入力fieldをすべて固定し、出力relationだけを同順位/比較不能から全候補の万能順位へ変える。 | 出力変異を拒否し、L2-059:421どおり同順位/判定不能/要人判断を保つ。入力側の有効decisionやpriority/toleranceを変更しない。 |\n",
+          "raw_lf_bytes": 346,
+          "raw_lf_sha256": "c4266d27210bd99b6cc446d099566db04caadef5a9d367d7b3f3a7268dc397cd"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-50",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2685,
+          "literal_with_lf": "| `L10-LABO-059-CASE-50` | LABO-059-AC-03 | 基準では対象work cohortの支援構成fieldは「HELIXなし」。この支援構成fieldだけを「HELIX componentあり」へ変える。no-HELIX claimと評価運転側OS assignmentは入力として固定する。 | 入力cohortの支援構成を読み、HELIXなしというclaimを拒否する。評価運転側OS assignmentと混ぜない。L2-059:420/426。 |\n",
+          "raw_lf_bytes": 419,
+          "raw_lf_sha256": "59acd89e5ca779f8be484a88c2a4e0bb2347b7c339a852665b5fdd590eab818b"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-51",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2686,
+          "literal_with_lf": "| `L10-LABO-059-CASE-51` | LABO-059-AC-03 | 現行実験のOS assignment receipt fieldだけをmissingにする。実験条件・結果等は基準のまま。receipt欠落を実assignment operation不存在へ読み替えない。 | assignmentを推定せず、当該run/resultをunknownまたは比較不能とし、L2-059:429のOS/観測source区分へ返す。 |\n",
+          "raw_lf_bytes": 367,
+          "raw_lf_sha256": "bec21736dd89ceabc575bf3cf3f821318421a08eb20d1f07ca8e8f5d011c6904"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-52",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2687,
+          "literal_with_lf": "| `L10-LABO-059-CASE-52` | LABO-059-AC-03 | 他のfieldは基準のまま、receiptにある既知CI費用だけを総費用出力から除く。 | 総費用を不完全として成功費用比較を拒否する。金額や実CI実行値は作らない。L2-059:423/429の費用source区分。 |\n",
+          "raw_lf_bytes": 296,
+          "raw_lf_sha256": "b811bf28ee2a2224f6ceda2336cbd8bf4b30b4474e09133fad32e85d1ef00f0b"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-53",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2688,
+          "literal_with_lf": "| `L10-LABO-059-CASE-53` | LABO-059-AC-03 | 他のfieldは基準のまま、receiptにある既知rerun費用だけを総費用出力から除く。 | 総費用を不完全として成功費用比較を拒否する。金額や実rerun値は作らない。L2-059:423/429の費用source区分。 |\n",
+          "raw_lf_bytes": 296,
+          "raw_lf_sha256": "d1e6a6d1c2893a3a0d89c8f77625ca60b2c550aeb53ac68388b840407ab85e40"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-54",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2689,
+          "literal_with_lf": "| `L10-LABO-059-CASE-54` | LABO-059-AC-03 | 他のfieldは基準のまま、receiptにある既知review費用だけを総費用出力から除く。 | 総費用を不完全として成功費用比較を拒否する。金額や実review値は作らない。L2-059:423/429の費用source区分。 |\n",
+          "raw_lf_bytes": 298,
+          "raw_lf_sha256": "b4b4b670069ad03e8fa14989e15c7e4e61e7d5d9f27e0251f655b55c04a6306b"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-55",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2690,
+          "literal_with_lf": "| `L10-LABO-059-CASE-55` | LABO-059-AC-03 | 基準入力では人間調査の数量receiptをknownとして保つ。出力数量fieldだけを省く。費用receipt、入力数量、他のfieldは固定する。 | 入力の既知数量を保持したまま出力欠落を拒否し、比較を不完全と示す。貨幣費用とは別掲し、換算や0円化をしない。L2-059:423–424。 |\n",
+          "raw_lf_bytes": 396,
+          "raw_lf_sha256": "f4f901ef22a3e843fb7474cf3d24eb3ba6069eacb3129152f70f7681bf6f7533"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-56",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2691,
+          "literal_with_lf": "| `L10-LABO-059-CASE-56` | LABO-059-AC-03 | 基準入力では人間検証の数量receiptをknownとして保つ。出力数量fieldだけを省く。費用receipt、入力数量、他のfieldは固定する。 | 入力の既知数量を保持したまま出力欠落を拒否し、比較を不完全と示す。貨幣費用とは別掲し、換算や0円化をしない。L2-059:423–424。 |\n",
+          "raw_lf_bytes": 396,
+          "raw_lf_sha256": "eb0a9530e8a1a00b9cae970980939ca8532758ac7ac6dbb38cbaa4fdfe1e00de"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-57",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2692,
+          "literal_with_lf": "| `L10-LABO-059-CASE-57` | LABO-059-AC-03 | 他のfieldとartifact identityは合成baselineのまま、artifact digestだけを別値へ変える。 | digest不一致のartifactを同一比較へ混ぜず、artifact sourceが特定できる場合は対応sourceへ、特定できない場合は戻し先unknown。L2-059:427/429。 |\n",
+          "raw_lf_bytes": 334,
+          "raw_lf_sha256": "d4ee927ba94ff8d4f6a585d3061043ebcb8a3f9b53a336289d7e08f4ef713258"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-58",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2693,
+          "literal_with_lf": "| `L10-LABO-059-CASE-58` | LABO-059-AC-03 | 他のfieldとsource identityは合成baselineのまま、source revisionだけを変える。 | revision不一致のsource resultを混ぜず、OSまたは観測sourceへ。L2-059:427/429。 |\n",
+          "raw_lf_bytes": 238,
+          "raw_lf_sha256": "6181733ac027611244f7eb524ab6c745ed612abe25846e8b552e9d4bae3a434c"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-59",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2694,
+          "literal_with_lf": "| `L10-LABO-059-CASE-59` | LABO-059-AC-03 | 他のfieldとWorker revisionは合成baselineのまま、Worker identityだけを別identityへ変える。 | assignment/result identityを混ぜず、assignment/receipt側の原因はOSまたは観測sourceへ返す。L2-059:427/429。 |\n",
+          "raw_lf_bytes": 284,
+          "raw_lf_sha256": "f45a6f5e5e7a146f02c40dabcd745d805e5057edc499f4c64057ad5d5b52e2b7"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-60",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2695,
+          "literal_with_lf": "| `L10-LABO-059-CASE-60` | LABO-059-AC-03 | 他のfieldとmodel identityは合成baselineのまま、model versionだけを別値へ変える。 | 異なるmodel versionの結果を同一比較に混ぜず、LABO-055または該当sourceへ。provider labelとは別field。L2-059:427/429。 |\n",
+          "raw_lf_bytes": 294,
+          "raw_lf_sha256": "462222895670271012e48101e9f0b725636bb489f3ebf4f80f909ff6fd617224"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-61",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2696,
+          "literal_with_lf": "| `L10-LABO-059-CASE-61` | LABO-059-AC-03 | 他のfieldとeffort evidence class/valueは合成baselineのまま、そのeffort evidence identityだけを別identityへ変える。 | 異なるeffort evidenceを同一比較に混ぜず、LABO-055または該当sourceへ。L2-059:427/429。 |\n",
+          "raw_lf_bytes": 291,
+          "raw_lf_sha256": "38da823da0754428db5a34dc9d9bafc9cdf4e72863c355b400d22ea17ce85d22"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-62",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2697,
+          "literal_with_lf": "| `L10-LABO-059-CASE-62` | LABO-059-AC-03 | 他のfieldとprice source identityは合成baselineのまま、price source versionだけを変える。currency/effective time/classは固定する。 | 異なるprice source versionを混ぜず、price/測定sourceへ。L2-059:427/429。 |\n",
+          "raw_lf_bytes": 287,
+          "raw_lf_sha256": "0dff39e72ab630bf567bee93da5fb26144ad59b3c780ce1be7338ee4c832b899"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-63",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2698,
+          "literal_with_lf": "| `L10-LABO-059-CASE-63` | LABO-059-AC-03 | 入力と測定は固定し、出力claim scopeだけを実際に測定したcohort/task/conditionの外へ広げる。 | claimを証拠が支える範囲へ限定し、未見一般化を保証しない。L2-059:428。 |\n",
+          "raw_lf_bytes": 265,
+          "raw_lf_sha256": "8d29044080f18f6972d9730d0db98e44615dc2a6c990b75677936a2625c61efc"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-64",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2699,
+          "literal_with_lf": "| `L10-LABO-059-CASE-64` | LABO-059-AC-03 | provider表示labelだけを入力で変更する。actual provider identity/versionとmodel identity/version、effort、task、測定、oracle、scopeは固定する。 | provider labelによる固定加点/減点を拒否しscoreを変えない。実model identityはCASE-60のfieldで区別する。L2-059:428および旧R-03再導出。 |\n",
+          "raw_lf_bytes": 387,
+          "raw_lf_sha256": "5f4359b10c8b8d0b12fc046d2a76605209cd1ec97187df4472dc23a828065baa"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-65",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2700,
+          "literal_with_lf": "| `L10-LABO-059-CASE-65` | LABO-059-AC-03 | 入力と他の出力は固定し、LABOの出力field target changeだけに新しい作用/値を生成する。 | LABO evidenceからtarget changeを生成せず、変更権限は既存境界に残す。 固定親に指定のない戻し先・owner・権限を新設しない。L2-059:428。 |\n",
+          "raw_lf_bytes": 341,
+          "raw_lf_sha256": "263224269c091021cf91bc88e4167be6882ca9831fe618b87e24c08acb497cd5"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-66",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2701,
+          "literal_with_lf": "| `L10-LABO-059-CASE-66` | LABO-059-AC-03 | 入力と他の出力は固定し、LABOの出力field registrationだけに新しい作用/値を生成する。 | registrationを生成しない。 固定親に指定のない戻し先・owner・権限を新設しない。L2-059:428。 |\n",
+          "raw_lf_bytes": 284,
+          "raw_lf_sha256": "da0fd6d7e286efa15746ded73705a414c4b95653c759b3b88409995ec8508e97"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-67",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2702,
+          "literal_with_lf": "| `L10-LABO-059-CASE-67` | LABO-059-AC-03 | 入力と他の出力は固定し、LABOの出力field routingだけに新しい作用/値を生成する。 | routingを生成しない。 固定親に指定のない戻し先・owner・権限を新設しない。L2-059:428。 |\n",
+          "raw_lf_bytes": 274,
+          "raw_lf_sha256": "2ce5f3638bb8d1c6a1f17832e1701cf24683693c6fb2708aedcf6eaf5e161cf4"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-68",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2703,
+          "literal_with_lf": "| `L10-LABO-059-CASE-68` | LABO-059-AC-03 | 入力と他の出力は固定し、LABOの出力field ticket issuanceだけに新しい作用/値を生成する。 | ticketを起票しない。 固定親に指定のない戻し先・owner・権限を新設しない。L2-059:428。 |\n",
+          "raw_lf_bytes": 281,
+          "raw_lf_sha256": "7d85c35aa38ff9bb54c9a424032ba41998645a8a832cbf17c091d44cff4ff5ad"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-69",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2704,
+          "literal_with_lf": "| `L10-LABO-059-CASE-69` | LABO-059-AC-03 | 入力と他の出力は固定し、LABOの出力field permissionだけに新しい作用/値を生成する。 | permissionを変更しない。 固定親に指定のない戻し先・owner・権限を新設しない。L2-059:428。 |\n",
+          "raw_lf_bytes": 280,
+          "raw_lf_sha256": "74f480f3965ef4e3b9eb22ab69e465fe1c82fb8586cbfcd7676c67157c4902e8"
+        },
+        {
+          "case_id": "L10-LABO-059-CASE-70",
+          "AC_id": "LABO-059-AC-03",
+          "classification": "single_negative",
+          "revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "physical_line": 2705,
+          "literal_with_lf": "| `L10-LABO-059-CASE-70` | LABO-059-AC-03 | 入力と他の出力は固定し、LABOの出力field merge authorityだけに新しい作用/値を生成する。 | merge authorityを変更しない。 固定親に指定のない戻し先・owner・権限を新設しない。L2-059:428。 |\n",
+          "raw_lf_bytes": 290,
+          "raw_lf_sha256": "0c3a164e8c5a3fdb205e1b5f1660906f5498b2804cc57d3b852a57f67b541b31"
+        }
+      ],
+      "counts": {
+        "normal": 3,
+        "single_negative": 74,
+        "index": 5,
+        "compound": 1
+      },
+      "old_a4_60_retained_in_body": true,
+      "new_CASE48_to_70_ids": [
+        "L10-LABO-059-CASE-48",
+        "L10-LABO-059-CASE-49",
+        "L10-LABO-059-CASE-50",
+        "L10-LABO-059-CASE-51",
+        "L10-LABO-059-CASE-52",
+        "L10-LABO-059-CASE-53",
+        "L10-LABO-059-CASE-54",
+        "L10-LABO-059-CASE-55",
+        "L10-LABO-059-CASE-56",
+        "L10-LABO-059-CASE-57",
+        "L10-LABO-059-CASE-58",
+        "L10-LABO-059-CASE-59",
+        "L10-LABO-059-CASE-60",
+        "L10-LABO-059-CASE-61",
+        "L10-LABO-059-CASE-62",
+        "L10-LABO-059-CASE-63",
+        "L10-LABO-059-CASE-64",
+        "L10-LABO-059-CASE-65",
+        "L10-LABO-059-CASE-66",
+        "L10-LABO-059-CASE-67",
+        "L10-LABO-059-CASE-68",
+        "L10-LABO-059-CASE-69",
+        "L10-LABO-059-CASE-70"
+      ],
+      "method": "body revisionのGit blobを取得し、親059のL10 CASE定義行（表の先頭セルまたは通常箇条書き）をphysical line単位で抽出。LFを含む行bytesのSHA-256を記録。Root checkpoint 83件をgit showで再照合。",
+      "index_counting": "index分類5件はnegative分母へ算入しない。normal/unseen-normalは合計3 normalにまとめ、元のclassificationは個別定義に維持。"
+    },
+    "reason": "本文commit 5f5468の6正本と83定義をGit bytesから固定。base 17a2の6本文prefixも別々に固定した。",
+    "nonclaims": [
+      "fixture countは被覆・採択を証明しない。",
+      "候補23件は要件採択・実験許可・実測結果を生成しない。",
+      "旧CASE60のa4 snapshotをcurrent mainへmerge済みとしない。",
+      "source-role訂正19spanは旧source分類の根拠pinであり現行L2/L11 authorityを生成しない。",
+      "作成側監査からReady・merge・実行・要求意味変更を生成しない。Workerのtmp起草でcanonical/commit/push操作はしていない。"
+    ],
+    "verification_limits": [
+      "31行impact indexは変更影響を辿る補助で、完全性・十分性・fixture coverageの証明ではない。",
+      "G0固有の登録/実施状態は未照合。",
+      "PO事後確認、独立review、要件承認、実験実行は成立していない。",
+      "current main 17a2への統合は成立していない。Draft PR #2625が作成されたが、独立review依頼前。"
+    ]
+  },
+  "input_record_pins": [
+    {
+      "path": "/tmp/labo059-parent-authoring-preflight-worker.json",
+      "bytes": 456366,
+      "sha256": "ce448ef7c96928343396c4e51dd4bc448544d766b09ff49ab2d001ca1ae799c0",
+      "use": "31条件影響index、fixed/legacy pins、旧60 CASE row pins、source-role corrected19 span."
+    },
+    {
+      "path": "/tmp/labo059-existing60-candidate23-decision-worker.json",
+      "bytes": 15213,
+      "sha256": "b1bb1130bec5e53fa7fe8d2b7a63840db5d1c5fcf753da0b5bf910c72df11033",
+      "use": "既存60 ID保全案とcandidate23の作成前選択。"
+    }
+  ],
+  "verification": {
+    "fixed_l2_l11_full_and_span_checks": 4,
+    "legacy_source_span_checks": 19,
+    "all_19_legacy_spans_match_git": true,
+    "existing_a4_case_pins": 60,
+    "all_existing_case_line_pins_match_git": true,
+    "current_main_existing_059_case_id_occurrences": 0,
+    "fixed_condition_index_rows": 31,
+    "candidate_rows": 23,
+    "candidate_refs_unique": true,
+    "canonical_edits": false,
+    "commit_or_push": false,
+    "legacy_code_or_test_execution": false,
+    "body_revision_fixed": "5f5468ba08a7bf938c3eac774e2d435e103c3676",
+    "body_case_definitions_git_recomputed_by_worker": 83,
+    "body_case_id_unique": true,
+    "body_case_class_counts": {
+      "normal": 3,
+      "single_negative": 74,
+      "index": 5,
+      "compound": 1
+    },
+    "six_document_full_and_prefix_checks": 6,
+    "six_document_pins_match_root_static_checkpoint": true,
+    "six_document_prefix_exact": true,
+    "root_legacy_source_pin_rerun": {
+      "checks": 256,
+      "errors": 0,
+      "source": "/tmp/root-labo059-candidate-audit-pin-recalculation.json"
+    },
+    "root_static_checkpoint": {
+      "definitions": 83,
+      "old60_retained": true,
+      "new23": 23,
+      "duplicates": 0,
+      "dangling": 0
+    },
+    "decision_membership_explicit_line_pinned": 115,
+    "worker_actions_note": "canonical_edits/commit_or_pushは監査Workerの行為。Rootは6本文をcommit/pushしてDraft PR2625を作成済み。",
+    "root_current_audit_pin_recalculation": {
+      "checks": 555,
+      "errors": [],
+      "old_source_checks": 256,
+      "body_revision": "5f5468ba08a7bf938c3eac774e2d435e103c3676"
+    },
+    "root_static_validation": {
+      "govcheck": "ok atoms=7622 requirements=57 files=58",
+      "stale": 0,
+      "diff_check": "pass",
+      "remote_body6_exact": true,
+      "independent_review": false
+    }
+  },
+  "repository_audit_paths": {
+    "json": "docs/governance/audits/requirements-stage/labo-stage5-parent059-authoring-audit-2026-10-06-5f5468ba.json",
+    "markdown": "docs/governance/audits/requirements-stage/labo-stage5-parent059-authoring-audit-2026-10-06-5f5468ba.md"
+  }
+}
