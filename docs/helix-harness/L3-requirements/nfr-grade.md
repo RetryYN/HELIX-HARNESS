@@ -203,9 +203,9 @@ fixture definition数と実測母集団は異なる。対のL10機能総合検�
 
 NFR候補はL10定義の測定母集団の設計にとどまり、抽出器の性能や実行成功を主張しない。
 
-**採択本文の固定**：PO記録のsource_repository_revision `5aa100319361b0cc86edd3c51815ec777d55410a`。L2 `product-requirements.md:1154–1162` SHA-256 `b76b7b1adec804a25bd9333663aa9b0d074f68518764c2874c994bcdf6ead193`、L11 `product-acceptance.md:865–875` SHA-256 `5d1ab0bad44ae305053932f0c82bcf472e145046125b638f5facab13eaaa2aa0`。旧調査snapshot e94838f5の同本文とbyte一致。末尾空行込みの物理span digestは別の監査pinとして区別する。
+## Stage 3 親054の非機能要件：専門Worker判定・契約のOS割当handoff（起草候補、version_target: 1.0）
 
-### HARNESS-L3/L10-054 専門Worker判定・契約のOS割当handoff（起草候補、version_target: 1.0）
+**採択本文の固定**：PO記録のsource_repository_revision `5aa100319361b0cc86edd3c51815ec777d55410a`。L2 `product-requirements.md:1154–1162` SHA-256 `b76b7b1adec804a25bd9333663aa9b0d074f68518764c2874c994bcdf6ead193`、L11 `product-acceptance.md:865–875` SHA-256 `5d1ab0bad44ae305053932f0c82bcf472e145046125b638f5facab13eaaa2aa0`。旧調査snapshot e94838f5の同本文とbyte一致。末尾空行込みの物理span digestは別の監査pinとして区別する。
 
 **状態と根拠**：本節はHARNESS-L2-054／L11-054の意味をL3要件とL10 oracleへ再導出する起草候補である。POの決定記録 `MPR-RC-HARNESS-L2-054-001` は採択（判断記録revision `b0b0719dfe786370e9bee48c5d2f753710546b6f`、PO row 34）。固定L2/L11本文に残る「未採択候補」は当時の本文メタデータであり、この後のPO決定を覆さない。L2-047は別親で、その既存のmuster判断を受け渡すだけで意味を変更しない。PO-047条件判断や別親の採択を本候補から生成しない。
 
@@ -217,8 +217,8 @@ NFR候補はL10定義の測定母集団の設計にとどまり、抽出器の�
 
 `existing_role_sufficient`は入力にある対象既存role参照と比較根拠を値として返し、両値が同一task/scope/revisionに対応する入力値と一致することを照合する。specialist contractを含めず、既存roleへの通常assignmentはOSが発行する。この分岐から追加specialist assignmentや新規Worker起動を生成しない。`unknown_or_defer`は不足・不確実・staleの条件、既知の責務区分、再照合に必要な入力を入力値に対応させて返し、それぞれが同じtask/scope/revisionに一致することを照合する。既知の責務区分へ個体identityの特定有無にかかわらず不足を返し、個別source identityやowner identityが特定できないときはその個体だけunknownのまま別記する。ownerの新設、値の推定、unknown軸の別軸への畳込みをしない。OS応答/assignmentが欠落、対象不一致、revision不一致または条件不明ならhandoffは未完である。
 
-## 品質要件 `NFR-HARNESS-L3-054`
+### 品質要件 `NFR-HARNESS-L3-054`
 
 候補handoffの追跡可能性は、対象task/scope/revision、typed contract reference集合（複数時）と集合digest、input-output digest、generation-rule revision、理由、比較/evidence、guard結果の結合と、別ownerであるOS assignmentの個別照合によって確認する。複数contractの正常集合・集合digestを入力期待値と出力で照合し、集合の一部欠落・集合digest欠落・別集合を各単独変異で拒否する。集合digestは合成fixture内の期待値であり、algorithmやwire formatを定義しない。未知・stale・conflictを隠さずunknown/deferとして保持し、cause-specific既存責務へ返す。digest算法、数値threshold、固定時間、性能値、再試行回数、追加ownerは本候補で定義しない。
 
-HARNESS出力がdigestまたはOS receiptからauthority/実行許可を、contract generation receiptからWorker起動/成果受入を生成しないことを各field別oracleで検査する。source/coverage receipt、候補本文、fixture、OS記録例の存在からoracle実行・合格、runtime projection、assignment、security許可、利用者受入を作る出力も個別に拒否する。正常入力を既存ownerへ返して隠さず、HARNESS候補出力自体を訂正する。existing-role-sufficient時にspecialistを追加しないことも別oracleで検査する。これは静的oracle候補であって実行結果ではない。
+HARNESS出力がdigestまたはOS receiptからauthority/実行許可を、contract generation receiptからauthority/Worker起動/成果受入を生成しないことを各field別oracleで検査する。source/coverage receipt、候補本文、fixture、OS記録例の存在から要求採択またはL3承認を作る出力、仮登録または候補本文からWorker起動を作る出力を各々独立fieldとして拒否する。これらの証拠からoracle実行・合格、runtime projection、assignment、security許可、利用者受入を作る出力も個別に拒否する。正常入力を既存ownerへ返して隠さず、HARNESS候補出力自体を訂正する。existing-role-sufficient時にspecialistを追加しないことも別oracleで検査する。これは静的oracle候補であって実行結果ではない。

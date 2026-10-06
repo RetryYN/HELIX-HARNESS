@@ -761,19 +761,21 @@ FR/ACと対のL10候補CASEは`functional-verification.md`に同じAC IDで置�
 
 HARNESS-L2-041から独立business requirement、business owner、ROI/KPI/商業閾値は導出しない。template atom/gap/candidate rowの存在、coverage、fixture数から事業価値・利用者受入・要求合意・承認を作らない。技術的な抽出contractとbusiness outcomeを混同しない。
 
+## Stage 3 親054の機能要件：専門Worker判定・契約のOS割当handoff（起草候補、version_target: 1.0）
+
 **採択本文の固定**：PO記録のsource_repository_revision `5aa100319361b0cc86edd3c51815ec777d55410a`。L2 `product-requirements.md:1154–1162` SHA-256 `b76b7b1adec804a25bd9333663aa9b0d074f68518764c2874c994bcdf6ead193`、L11 `product-acceptance.md:865–875` SHA-256 `5d1ab0bad44ae305053932f0c82bcf472e145046125b638f5facab13eaaa2aa0`。旧調査snapshot e94838f5の同本文とbyte一致。末尾空行込みの物理span digestは別の監査pinとして区別する。
 
-## 機能要件 `FR-HARNESS-L3-054`
+### 機能要件 `FR-HARNESS-L3-054`
 
-### 目的と範囲
+#### 目的と範囲
 HARNESS-L2-054の型付きhandoff条件を満たし、L2-047のmuster判断をOSの既存assignment責務へ接続する。047の本文・採択条件、OS/SECURITY/INTELLIGENCE/LABOの責務を変更しない。候補登録、digest、receipt、handoffは要求採択、L3承認、assignment、Worker起動、authority、成果受入を発生させない。
 
-### 受入条件
+#### 受入条件
 
 - `AC-HARNESS-L3-054-01`：入力sourceと比較条件が十分なとき、HARNESSは `muster_candidate`、`existing_role_sufficient`、`unknown_or_defer` のいずれかを対象task/scope/revisionと理由・比較情報に結ぶ。muster出力の契約参照は複数の場合に全参照集合とその集合digestを含め、参照集合・input/output digest・generation-rule revision・理由・比較対象/evidence・guard結果を同scope/revisionの入力source値と項目ごとに照合する。digest algorithmやwire formatは定義しない。既存role十分分岐のrole参照・比較根拠も同じ入力値と一致する。
-- `AC-HARNESS-L3-054-02`：必須軸、source/revision、適用範囲、oracle、evidence適用性、contract digestまたはOS条件の欠落・stale・conflictを推定補完せず、原因別の既存責務へ戻す。`unknown_or_defer`の不足条件、既知の責務区分、再照合に必要な入力はその原因入力に一致する値で示す。所有者の個体identityが不明なら個体だけunknownを保持する。
+- `AC-HARNESS-L3-054-02`：必須軸、source/revision、適用範囲、oracle、evidence適用性、contract digestまたはOS条件の欠落・stale・conflictを推定補完せず、原因別の既存責務へ戻す。`unknown_or_defer`の不足条件、既知の責務区分、再照合に必要な入力は原因入力に対応する既存機構区分へ無条件で示す。個体source/owner identityが不明でも、既知区分への返却を停止せず、個体identityだけunknownとして別fieldに保持する。機構区分やownerを推測して新設しない。
 - `AC-HARNESS-L3-054-03`：muster候補の契約参照（複数なら全参照集合とその集合digest）/input-output digest、generation-rule revision、理由、比較/evidence、guard結果を同一scope/revisionへ結び、対応する入力値と一致するか項目ごとに照合する。OS response/assignmentの対応有無と区別し、正規assignmentはOSだけが発行する。
 - `AC-HARNESS-L3-054-04`：既存role十分時は入力と一致する対象既存role参照および比較根拠を返し、いずれかの出力値の欠落・別値は不成立として当該HARNESS handoff出力を訂正する。追加specialist contract/assignmentを生成しない。通常の既存role assignmentはOS既存契約に従う。handoff、source/coverage receipt、候補本文、fixture、OS記録例の存在から要求採択、L3承認、authority、実行許可、oracle実行・合格、runtime projection、assignment、Worker起動、security許可、成果受入または利用者受入を生成しない。正常入力に対するHARNESS自身の候補出力誤りはHARNESS側で拒否・訂正し、正常入力をowner不足へ転嫁しない。
 
-### L3境界
+#### L3境界
 本要件は固定L2-054の候補範囲を詳細化する。要求の意味・範囲・担当・版を変える案、条件付きA配置の変更、配置Bまたは新必須artifactの意味変更はこの候補で確定せず、対象revision付きPO判断へ戻す。未実測の数値基準や期間は追加しない。

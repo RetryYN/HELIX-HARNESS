@@ -181,9 +181,9 @@ NFR CASEは測定candidate分類であり、実測・CI success・performance SL
 |---|---|---|---|
 | `CASE-HARNESS-L10-NFR-041-01` | `NFR-C-HARNESS-041-01` | selected template/scopeのsource obligation ID・span・revisionと、atom/typed gap disposition、provenance mismatch、duplicate、unaccounted findingを別々に記録する。 | 各入力義務がatomまたはgapへtraceされたかを候補計測する。unresolved gapは未解決であり成功ではない。unknown applicabilityは009へ戻し母集団からsuccess扱いで除外しない。率・閾値・性能実測を作らない。 |
 
-**採択本文の固定**：PO記録のsource_repository_revision `5aa100319361b0cc86edd3c51815ec777d55410a`。L2 `product-requirements.md:1154–1162` SHA-256 `b76b7b1adec804a25bd9333663aa9b0d074f68518764c2874c994bcdf6ead193`、L11 `product-acceptance.md:865–875` SHA-256 `5d1ab0bad44ae305053932f0c82bcf472e145046125b638f5facab13eaaa2aa0`。旧調査snapshot e94838f5の同本文とbyte一致。末尾空行込みの物理span digestは別の監査pinとして区別する。
+## Stage 3 親054の非機能検証：専門Worker判定・契約のOS割当handoff（起草候補、version_target: 1.0）
 
-### HARNESS-L3/L10-054 専門Worker判定・契約のOS割当handoff（起草候補、version_target: 1.0）
+**採択本文の固定**：PO記録のsource_repository_revision `5aa100319361b0cc86edd3c51815ec777d55410a`。L2 `product-requirements.md:1154–1162` SHA-256 `b76b7b1adec804a25bd9333663aa9b0d074f68518764c2874c994bcdf6ead193`、L11 `product-acceptance.md:865–875` SHA-256 `5d1ab0bad44ae305053932f0c82bcf472e145046125b638f5facab13eaaa2aa0`。旧調査snapshot e94838f5の同本文とbyte一致。末尾空行込みの物理span digestは別の監査pinとして区別する。
 
 **状態と根拠**：本節はHARNESS-L2-054／L11-054の意味をL3要件とL10 oracleへ再導出する起草候補である。POの決定記録 `MPR-RC-HARNESS-L2-054-001` は採択（判断記録revision `b0b0719dfe786370e9bee48c5d2f753710546b6f`、PO row 34）。固定L2/L11本文に残る「未採択候補」は当時の本文メタデータであり、この後のPO決定を覆さない。L2-047は別親で、その既存のmuster判断を受け渡すだけで意味を変更しない。PO-047条件判断や別親の採択を本候補から生成しない。
 
@@ -195,14 +195,14 @@ NFR CASEは測定candidate分類であり、実測・CI success・performance SL
 
 `existing_role_sufficient`は入力にある対象既存role参照と比較根拠を値として返し、両値が同一task/scope/revisionに対応する入力値と一致することを照合する。specialist contractを含めず、既存roleへの通常assignmentはOSが発行する。この分岐から追加specialist assignmentや新規Worker起動を生成しない。`unknown_or_defer`は不足・不確実・staleの条件、既知の責務区分、再照合に必要な入力を入力値に対応させて返し、それぞれが同じtask/scope/revisionに一致することを照合する。既知の責務区分へ個体identityの特定有無にかかわらず不足を返し、個別source identityやowner identityが特定できないときはその個体だけunknownのまま別記する。ownerの新設、値の推定、unknown軸の別軸への畳込みをしない。OS応答/assignmentが欠落、対象不一致、revision不一致または条件不明ならhandoffは未完である。
 
-## 品質検証 `NV-HARNESS-L10-054`
+### 品質検証 `NV-HARNESS-L10-054`
 
 | 品質特性 | 静的oracle確認 | 制限 |
 |---|---|---|
 | 追跡可能性 | c03/c20–c22で複数時の参照全体集合・集合digestを正常照合し、field単独欠落/集合不一致を拒否。c04–c07でscope/revision等を照合 | 集合digestは合成fixture値であり算法/wire formatを定義しない |
-| authority境界 | c09–c12/c23–c28/c32–c33でassignment、Worker起動、authority、実行許可、security許可、採択/承認等を独立fieldで拒否 | 実行・承認・security decisionを示さない |
-| 証拠の非昇格 | c29–c34でsource/coverage receipt・候補・fixture・OS例の存在からoracle実行/合格、runtime projection、assignment、security許可、利用者受入が生成される各fieldを個別拒否 | すべて静的合成fixtureであり、正常入力を既存ownerへ転嫁しない |
-| fail-closedな不確実性 | c08でunknown軸から補完/assignmentを作らない | owner個体が未知ならunknownのまま |
+| authority境界 | c09–c12/c23–c28/c32–c35/c38–c50でassignment、Worker起動、authority、実行許可、security許可、要求採択、L3承認、provider/model差からの独立性推定を独立fieldで拒否 | 実行・承認・security decisionを示さない |
+| 証拠の非昇格 | c29–c34/c38–c47でsource/coverage receipt・候補・fixture・OS例から要求採択/L3承認、仮登録・候補本文からWorker起動、証拠存在からoracle実行/合格、runtime projection、assignment、security許可、利用者受入が生成される各fieldを個別拒否 | すべて静的合成fixtureであり、正常入力を既存ownerへ転嫁しない |
+| fail-closedな不確実性 | c08/c36/c37で既知axis fieldの欠落とunknown axisの別軸への畳込みを別々に拒否 | owner個体が未知ならunknownのまま |
 | 既存role境界 | c01/c02でOS既存roleの普通のassignmentを許し、追加specialistだけを拒否 | 比較条件の新閾値を追加しない |
 
 **測定方法**：本candidateでは構造化された合成fixture fieldの静的照合のみを提案する。実測値、性能閾値、環境、toolchain、runtime projection、実行済み結果は定義・主張しない。
