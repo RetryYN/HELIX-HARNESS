@@ -1015,7 +1015,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 - 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baselineはCASE-INFRA-011-S5-064 normal fixture。
 - 変異: `authority.ref`だけをmissingへ変更。
 - 入力: baseline=CASE-INFRA-011-S5-064.normal
-- oracle: 許可済みrecoveryと扱わず停止し、未完義務と最終適格revisionを保持する。
+- oracle: authority.ref欠落のため許可済みrecoveryと扱わず停止する。OS停止state、独立path、authority.source/revision、Worker contract、recovery.result、post_recovery_syncの未変異fieldは保持し、未完義務や最終適格revisionなどbaselineにないfieldを生成しない。
 - owner/戻し先: SECURITY authority owner。
 - trace: `INFRA-011-AC-04`。合成fixtureの設計候補であり未実行.
 
@@ -1102,11 +1102,11 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 #### CASE-INFRA-011-S5-075 — 接続/合成 capacity採否の独立decision_refなし
 
-- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `capacity_observation={resource=worker-host-sim,cpu_used=1-vCPU,cpu_capacity=2-vCPU,memory_used=2-GiB,memory_capacity=4-GiB,utilization=sim-observation-50pct,queue_depth=3-sim-observation,concurrency=1-sim-observation,saturation=sim-observation-low,rejection=sim-observation-none,backpressure=sim-observation-active,source=capacity-sim@sim-r1}; decision_ref=none`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture（項目08/CASE-INFRA-011-S5-022と同じ正常literal） `capacity_observation={resource=worker-host-sim,cpu_used=1-vCPU,cpu_capacity=2-vCPU,memory_used=2-GiB,memory_capacity=4-GiB,utilization=sim-observation-50pct,queue_depth=3-sim-observation,concurrency=1-sim-observation,saturation=sim-observation-low,rejection=sim-observation-none,backpressure=sim-observation-active,source=capacity-sim@sim-r1}; decision_ref=none`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
 - 変異: 正常fixture。変異なし。
 - 入力: capacity_observation={resource=worker-host-sim,cpu_used=1-vCPU,cpu_capacity=2-vCPU,memory_used=2-GiB,memory_capacity=4-GiB,utilization=sim-observation-50pct,queue_depth=3-sim-observation,concurrency=1-sim-observation,saturation=sim-observation-low,rejection=sim-observation-none,backpressure=sim-observation-active,source=capacity-sim@sim-r1}; decision_ref=none
-- oracle: infra観測の記録は可能。OS/INTELLIGENCE採否を要求/代行せず、compositeから採否を生成しない。
-- owner/戻し先: 戻し先なし。capacity採否はOSまたはINTELLIGENCE decision ownerの既存所管で、本fixtureは判断を要求しない。
+- oracle: infra観測の記録は可能。OS/INTELLIGENCE採否を要求/代行せず、compositeから採否を生成しない。起動要求を含まない本fixtureでは差戻しなし。起動要求が存在する場合に限り、固定L2-003:59に従って未完状態とresource snapshotを保持しOS/INTELLIGENCEへ戻す。
+- owner/戻し先: 正常時は戻し先なし。capacity measurement source owner=unknown。起動要求が別途存在する場合に限り、固定L2-003:59に従いOS/INTELLIGENCEへ未完状態とresource snapshotを保持して戻す。
 - trace: `INFRA-011-AC-01/03`。合成fixtureの設計候補であり未実行。
 
 #### CASE-INFRA-011-S5-076 — 接続/合成 外部authority非生成
@@ -1120,18 +1120,18 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 #### CASE-INFRA-011-S5-077 — scope境界 後続版条件の暗黙前提化
 
-- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `scope=infra-011-stage5-sim; version_target=1.0; later_feature=not_requested`。
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `baseline={scope=infra-011-stage5-sim,version_target=1.0,later_feature=not_requested}`。
 - 変異: `later_feature`だけを`automated_failover`へ変更。
-- 入力: scope=infra-011-stage5-sim; version_target=1.0; later_feature=not_requested
+- 入力: baseline={scope=infra-011-stage5-sim,version_target=1.0,later_feature=not_requested}
 - oracle: 後続版条件を1.0構成の前提へ暗黙に加えず不適合とする。owner/承認を新設しない。
 - owner/戻し先: 戻し先なし。対象外条件として保持する。
 - trace: `INFRA-011-AC-04`。合成fixtureの設計候補であり未実行。
 
 #### CASE-INFRA-011-S5-078 — scope境界 HELIX-WEB顧客runtime混入
 
-- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `scope=infra-011-stage5-sim; version_target=1.0; HELIX-WEB-customer-runtime=excluded; included_runtime=none`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `baseline={scope=infra-011-stage5-sim,version_target=1.0,HELIX-WEB-customer-runtime=excluded,included_runtime=none}`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
 - 変異: `included_runtime`だけを`HELIX-WEB-customer-runtime-sim`へ変更。
-- 入力: scope=infra-011-stage5-sim; version_target=1.0; HELIX-WEB-customer-runtime=excluded; included_runtime=none
+- 入力: baseline={scope=infra-011-stage5-sim,version_target=1.0,HELIX-WEB-customer-runtime=excluded,included_runtime=none}
 - oracle: HELIX-WEB顧客runtimeを本体構成体へ混ぜたため不適合とし、1.0成立にしない。
 - owner/戻し先: 戻し先なし。L2-011 scope外として保持する。
 - trace: `INFRA-011-AC-04`。合成fixtureの設計候補であり未実行。

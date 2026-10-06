@@ -508,7 +508,7 @@ Worker identity、Worker実行契約、OS ticket・要求・作業責務の参�
 | `CASE-INFRA-011-S5-058` | 操作別 OS停止中のindependent recovery | `CASE-INFRA-011-S5-049.normal`; 操作専用入力だけを適用し、18 unit itemの値をこのCASEで再判定しない。 | 停止OS ticketを要求しない。path/SECURITY authority/Worker契約/実結果を別に確認し、復帰後syncを独立確認する。ticket不要は通常操作の条件を変えない。正常時は戻し先なし。resource source owner未特定はunknownとして記録し、正常fixtureから差戻しを生成しない。 | `INFRA-011-AC-04` |
 
 ### 復旧・scope境界 fixture
-CASE-059〜067は、各CASEの「変異前baseline」literalを入力とし、明示した一field以外は保持する。064はOS停止中でもticket不要で成立する独立recovery正常fixture、067はOS-014 stage integration evidenceを別照合する正常fixtureであり、いずれも変異なし。
+CASE-059〜067は、各CASEの「変異前baseline」literalまたは実在するnormal CASE参照を入力とし、明示した一field以外は保持する。064はOS停止中でもticket不要で成立する独立recovery正常fixture、067はOS-014 stage integration evidenceを別照合する正常fixtureであり、いずれも変異なし。
 | L10 CASE | 対象 | 単独入力/変異 | oracle / owner戻し先 | AC |
 |---|---|---|---|---|
 | `CASE-INFRA-011-S5-059` | 復旧境界 restore結果欠落 | `baseline=CASE-INFRA-011-S5-031.normal; current_active_revision=sim-r8; eligible_rollback_target=sim-r7; os_operation_request=none`; restore.resultだけをmissingへ変更。 | backupとrestoreを別判定しrestore成功へ昇格しない。current active revisionとeligible rollback targetを保持する。recovery design ownerへ戻す。OS work/change ownerは操作要求を含まないこのfixtureには適用しない。 | `INFRA-011-AC-03` |
