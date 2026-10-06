@@ -120,3 +120,10 @@
 
 - `CASE-NFR-LABO-050-01`: 未実行設計。選択循環に適用される各段階の状態件数、同一episode/ticket/experiment/target revisionのtrace、OS assignment/Worker result対応、未完義務、re-observation、effect評価、regression評価を別々に再計算する。candidate count/Feedback issue/OS registration/target change/verification/CI success単独で完了とする結果はそれぞれ識別する。個別fixture定義（32件）: `L10-LABO-050-CASE-01`, `L10-LABO-050-CASE-02`, `L10-LABO-050-CASE-03a`, `L10-LABO-050-CASE-03b`, `L10-LABO-050-CASE-03c`, `L10-LABO-050-CASE-03d`, `L10-LABO-050-CASE-03e`, `L10-LABO-050-CASE-03f`, `L10-LABO-050-CASE-04a`, `L10-LABO-050-CASE-04b`, `L10-LABO-050-CASE-05`, `L10-LABO-050-CASE-06`, `L10-LABO-050-CASE-11`, `L10-LABO-050-CASE-12`, `L10-LABO-050-CASE-13`, `L10-LABO-050-CASE-14`, `L10-LABO-050-CASE-15`, `L10-LABO-050-CASE-16`, `L10-LABO-050-CASE-17`, `L10-LABO-050-CASE-18`, `L10-LABO-050-CASE-19`, `L10-LABO-050-CASE-20`, `L10-LABO-050-CASE-21`, `L10-LABO-050-CASE-22`, `L10-LABO-050-CASE-23`, `L10-LABO-050-CASE-24`, `L10-LABO-050-CASE-25`, `L10-LABO-050-CASE-26`, `L10-LABO-050-CASE-27`, `L10-LABO-050-CASE-28`, `L10-LABO-050-CASE-29`, `L10-LABO-050-CASE-30`。非独立ラベル/索引（5件、分母外）: `L10-LABO-050-CASE-03g`, `L10-LABO-050-CASE-07`, `L10-LABO-050-CASE-08`, `L10-LABO-050-CASE-09`, `L10-LABO-050-CASE-10`。後者を実fixture数から除外する。
 - 対象母集団、適用stage、missing/failed/stale/open状態を保持し、分母0/欠落時は率を出さない。固定親にない最低N、閾値、合格率、SLAを追加しない。実行済み測定値は本設計から生成しない。
+
+
+## Stage 5 — HELIXLABO-L2-059 NFR検証設計
+
+- CASE-NFR-LABO-059-01: 選択群に適用する同条件、quality/acceptance result、既決decisionのscope/effectivity、OS assignment/result receipt、各費目・price source、human intervention quantity、duration definition、未選択群/unknownを個別に再計算する。実行済み値を生成せず、missing/unknown/未価格化/未完をsuccessまたは0へ変換しない。率を示す場合は分子/分母と適用scopeを出し、分母0/不明は率なし。固定閾値なし。
+- Functional CASE定義の参照対象はCASE-01/02、03a–m、04a/b、05–21、22–29、30–47、48–70。非独立index CASE-22/33–36、複合CASE-30は個別独立negativeの分母から除く。設計分類では定義83件、独立fixture 77件、compound1件、index5件。CASE-48は正常、CASE-49–70はnegative。数値はCASE定義数であり実測ではない。
+- Provider label変更とactual model identity/revision mismatchを異なるfield/CASEとして扱う。CASE64は入力labelだけの違いに対してscoreが不変かを見る。human investigation/verification quantityは通貨換算と分離する。

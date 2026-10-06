@@ -60,3 +60,14 @@
 |`HELIXLABO-L2-050`|独立KPIなし。LABO評価/再観測、OS registration/routing、target owner change/verification/deployment/operationを分ける。|`L10-LABO-050-CASE-01`〜`CASE-30`（03gは非独立ラベル、07/08/09/10は非独立索引として識別）|
 
 この表は未実行designの参照であり、実business outcome、承認、changeの実行を示さない。
+
+
+## Stage 5 — HELIXLABO-L2-059 業務検証証拠
+
+独立BV/BCASEは追加しない。機能証拠の業務上の対応のみを示す。
+
+| 固定親 | business evidence / owner boundary | CASE index |
+|---|---|---|
+| HELIXLABO-L2-059 | 独立KPIなし。選択比較、既決priority、費用・時間・人介入を別状態で照合する。 | LABO-059-AC-01/02/03、L10-LABO-059-CASE-*（分類はFV本文参照） |
+
+未実行designの参照であり、実business outcome/承認/実験を表さない。
