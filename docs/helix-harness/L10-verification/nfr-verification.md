@@ -154,6 +154,11 @@ NFR CASEは測定candidate分類であり、実測・CI success・performance SL
 | `CASE-HARNESS-L10-NFR-038-03` | `NFR-C-HARNESS-038-01` | capability処置の根拠/authority、吸収先、採択状態、共有oracleを別fieldとして与える。根拠なし却下=`CASE-HARNESS-L10-038-r11-reject-without-basis`、authority欠落却下=`CASE-HARNESS-L10-038-r17-reject-without-authority`、吸収先なし=`CASE-HARNESS-L10-038-r11-absorb-without-target`、unknown採択=`CASE-HARNESS-L10-038-r11-unknown-as-adopted`、candidate承認化=`CASE-HARNESS-L10-038-r11-redesign-as-approved`、共有oracle正常=`CASE-HARNESS-L10-038-r11-shared-oracle-normal`。 | 根拠だけの欠落（`CASE-HARNESS-L10-038-r11-reject-without-basis`）とauthorityだけの欠落（`CASE-HARNESS-L10-038-r17-reject-without-authority`）、吸収先なし、unknownの採択、candidateの承認化を各々測り、共有oracle正常利用も測る。 | authorityまたはsource未提示はunknownとして残す。 |
 | `CASE-HARNESS-L10-NFR-038-02` | `NFR-C-HARNESS-038-01` | 全selected capability identity/count manifest、source atom relation、endpoint/obligation per-stage set。 | set equality、unique IDs、forward/reverse edge、per-stage outstanding obligationsを個別に測る。初期要求形成成立と後続完了claimを別stateに記録する。 | unsupported/unknownとbudget/checkpoint残義務は未完で分母から除外しない。未選択は未観測として別記。 |
 
+
+## Stage 3 親039のNFR検証
+
+独立NFR measurement CASEは追加しない。UXの7軸current evidenceとhuman evaluationは`functional-verification.md`のAC-02で状態ごとに検証する。実測母集団・閾値・率は固定L2にないため作らず、未知・未観測・missing・staleを成功や0件として扱わない。NFR分類と機能fixtureの定義数を実測結果として報告しない。
+
 ## Stage 3 親040の非機能検証
 
 | L10 case ID | NFR候補 | 入力／母集団 | 計測候補 | oracle・限界 |

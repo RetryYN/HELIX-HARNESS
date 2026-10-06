@@ -1,0 +1,1377 @@
+{
+  "title": "HARNESS Stage 3 親039 review01所見処置・根拠pin候補",
+  "record_state": "作成側の時点処置監査候補。本文revisionを固定し、M1/M2対応を記録する。補正後本文の独立再review、委任承認、所見closure、Ready、merge admissionは未成立。",
+  "candidate_repository_path": "docs/governance/audits/requirements-stage/harness-stage3-parent039-review01-disposition-2026-10-07-851900866.json",
+  "current_date": "2026-10-07",
+  "scope": "PR #2631 HARNESS-L2-039 only; six L3/L10 documents; no other parent changed.",
+  "revision_context": {
+    "repository": "RetryYN/HELIX-HARNESS",
+    "pr": 2631,
+    "body_revision": "85190086644879d49be5186487fca0d68034df17",
+    "previous_body_revision": "5f656d34659913103e317598bc48508db836b800",
+    "review_base": "286a938442f7ff9a05004478d7a25d0feedc34d8",
+    "body_commit_parent": "67ac78f49ac82fe961b10b542330b478a1b3f63b",
+    "current_worktree_HEAD": "85190086644879d49be5186487fca0d68034df17",
+    "distinction": "Review HEAD/body revision, review base, and authoring parent are recorded separately.",
+    "authoring_base": "3795bf0dcb731231a0b5ca1faa3cb67bdfeda22a"
+  },
+  "formal_review01": {
+    "comment_id": 6019574253,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2631#issuecomment-6019574253",
+    "bytes": 7552,
+    "sha256": "0a0b4f213ee301857a4a0fe5a8484ce3ac3f85eef7c805f8f9f2793858910c30",
+    "raw_body": "## review01（independent review、PR #2631 親HARNESS-L2-039、HEAD 67ac78f49ac82fe961b10b542330b478a1b3f63b、本文 5f656d346、base main 286a93844）：Major 2\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼comment 6019422563に応える。方法はcomment 6013172073のとおり。\n\n### 照合の方法\n- **固定親**：PO判断記録`po-decision-2026-09-29-57candidates.md`の44行は、`HARNESS-L2-039`／採択／`MPR-RC-HARNESS-L2-039-003`である。そこに書かれたL2のfull SHA `111cc028…8d09`は、318ec4aの実bytesと一致した。照合の起点は、L2-039（891–929）とL11-039（638–676）。\n- **ブラインド照合（Opus）**：固定親とその依存先（024/026/025/022/036、003/004/005/008）、6本文の追補206行だけを読んだ。監査、PR comment、旧所見は見ていない。固定文を約45群に種類分けし、対応CASE・ACに結び付けた。\n  - CASE定義は134件、すべて一意で、参照切れは0。\n  - 戻し先：全行が固定親の区分内にある。\n  - unknownの保持：保たれている。\n  - L2の意味・版：変えていない。\n  - Majorを2件見つけた（下のM1・M2）。\n- **継続照合（Opus）**：旧#2602で039に向けた所見（review17〜19）を全件判定した。Majorとして残るものは0件で、残りは解消・残余・対象外のどれかに分類した。\n  - 監査のpinを334件再計算し、全件一致した。\n  - 監査JSONのSHAは、依頼commentの値と一致した。\n  - repository外のローカルpathは0件。\n  - 新しいMajorとして、下のM2と同じ内容を独立に見つけた。\n- **reviewerの確認**：M1・M2とも、原文とdiffで確かめた。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - origin/mainとの`merge-tree`は衝突なし\n\n### Major\n**M1（非UI scopeでUX完了を生成しないことを、受けていない）**\n- **欠陥**：\n  - L3のAC-HARNESS-L3-039-02は、`ux_verified`を「その状態を主張するoperationに必要なL10–L12 evidenceとhuman evaluation」とだけ定めている。非UI scopeを除外していない。\n  - L10の`r10-axis-na`は、軸のN/Aを拒否する対象を「UI適用scope」に限っている。\n  - 非UI scopeで`ux_verified`を拒否するfixtureがない。本文で非UIが出てくるのは、CASE-04（Experience graph）、CASE-16（screen ledger）、M5節だけ。M5節が非UI N/A例として挙げる`root-05-ui-na`は、selected UI scopeのfixtureである。\n- **起こりうること**：非UI scopeでは、軸が根拠付きN/Aになる。そのとき必要なevidenceが空集合とみなされ、UX完了が通りうる。完了の生成にあたり、それを拒否するfixtureがない。\n- **守るべき行**：HARNESS-L2-039「UX完了主張時の証拠」の最終文（318ec4a L2:929「非UI scopeでは既存の根拠付きN/A境界を維持し、UX完了状態を生成しない」）、L11:674の最終文。\n\n**M2（自己承認・権限生成の一部に、拒否fixtureがない）**\n- **欠陥**：FV 039の定義134行に、次の生成を拒否するCASEが1件もない。\n  - L11利用者acceptanceの自己承認\n  - L12改善採否の自己承認\n  - 候補の生成・比較・検査から、操作権限・実行許可を生成すること\n- AC-04（FR）自身は、L11 acceptanceとL12改善採否を自己承認禁止の対象として列挙している。拒否fixtureがあるのは、vision/brand/priority/要求採択/prototype agreement/implemented/ux_verified/production-readyだけである。\n- **守るべき行**：\n  - HARNESS-L2-039「Discovery PoCとauthority」（L2:916）\n  - 同「保証・authority境界」（L2:919「候補の生成/比較/検査から採択・操作権限・実行許可を生成しない」）\n  - L11:640（実装許可・L11利用者受入を生成しない）\n\n### 後で直す残余（承認を止めない）\n- **R1（AC帰属）**：次の行がAC-04に計上されている。FRではdrift・影響・riskはAC-03が持つ。L2の意味は変わっていない。\n  - drift・変更影響・factorの行（CASE-06/10/12/13/14、r02-l11-648-*、r02-l11-652、r03のdrift/factor行。FV:1355、1359、1363–1365、1374–1376、1402–1417、1432–1434）\n  - r09-007（risk根拠欠落）はAC-01、CASE-08はAC-04\n  - CASE-04（AC-01）が、未見例の索引を抱えている\n- **R2（束ね）**：\n  - CASE-05は、UX完了の正常例、開始可能性の別正常例、AC-02の全集合索引を1行にまとめている。\n  - FV:1471は、requirement adoptionとL3 freezeを1つの変異にまとめている。\n- **R3（単独fixtureの不足）**：\n  - 未選択sourceの推定禁止（L2:903）\n  - 036採択の非推定（L2:905）\n  - 親が不要・適用不能なときの理由記録（L2:911）\n  - 適用外identity型の機械生成禁止（L2:912）\n  - N/Aに理由と再評価条件を持たせる正常例（L2:897）\n  - 選択・非選択の理由を返す独立正常例（L11:650。索引のみ）\n  - 採択された仮説をV-pairへ結ぶ正常例（L11:658）\n- **R4（7軸の分離）**：7軸ごとのevidence scope/revision mismatchと、applicability unknownが完全には分離されていない（旧r19 M5。本文M5節が自己申告している）。誤った完了は通らない。\n- **R5（戻し先の分岐・併記・ID）**：\n  - 戻し先の分岐が入力で決まらない、または併記されている行：FV:1403（008、または026/025）、FV:1353/1418（008/024。L11:644の宛先は008）、FV:1364/1365（008/026。L11:650の宛先は005）、FV:1440/1441\n  - FV:1456は「現行V-pairの実装・検証relationに戻す」で、ownerのIDがない（兄弟行は005/022）。\n- **R6（文言）**：\n  - 「適用style分岐」（CASE-01、FV:1449）、「Experience evidence」（FV:1450）は、固定親にない語。\n  - nfr-gradeとnfr-verificationの「7軸current evidenceとhuman evaluation」は、人間評価を7軸の外に置くように読める。固定親では、人間評価は7軸の1つ。\n  - CASE-12〜14は、L11:652の「riskがあるのに選外」を「UI契約の条件欠落」と言い換えている。\n  - CASE-08は、固定親039にない049を変異の題材にしている（戻し先は区分内）。\n- **R7（索引ラベル）**：FV:1353（CASE-04）は「AC所属を明記」と書くが、参照ごとのACラベルがない。\n- **R8（英文）**：英語の語が残っている。\n- **R9（監査の記載）**：\n  - finding_dispositionsはm1を「本文補正済み」としているが、R5のFV:1456が残っている。\n  - review19の039所見のうち、m4/m20/m26の処置がない。\n  - mdの「Rootの4行補正」とAC_assignment_changes（空）の経緯の表記。\n- **R10（監査の外部参照）**：基準変更commentは、#2623の6013171449をpinしている（#2602の6013172073とbytesが同じ）。4行補正の前のworker snapshotはGit objectではない。JSONで「not available」と明示していて、根拠には使っていない。\n\n### 判定\n- blocker 2（M1、M2）。Major 2、残余10、未確認範囲0。\n- 委任承認は成立しない。Readyにはしない。merge admissionは本commentから生成しない。\n- M1・M2を直したHEADでは、reviewerが差分を確かめる。Opusが`no_findings`なら、同じHEADでFableにブラインドで見てもらう。\n",
+    "scope": "レビュー01の原文全体を保持。R1–R10の原文ブロックは別fieldにも同一literalで保持。",
+    "residual_R1_R10_raw": "### 後で直す残余（承認を止めない）\n- **R1（AC帰属）**：次の行がAC-04に計上されている。FRではdrift・影響・riskはAC-03が持つ。L2の意味は変わっていない。\n  - drift・変更影響・factorの行（CASE-06/10/12/13/14、r02-l11-648-*、r02-l11-652、r03のdrift/factor行。FV:1355、1359、1363–1365、1374–1376、1402–1417、1432–1434）\n  - r09-007（risk根拠欠落）はAC-01、CASE-08はAC-04\n  - CASE-04（AC-01）が、未見例の索引を抱えている\n- **R2（束ね）**：\n  - CASE-05は、UX完了の正常例、開始可能性の別正常例、AC-02の全集合索引を1行にまとめている。\n  - FV:1471は、requirement adoptionとL3 freezeを1つの変異にまとめている。\n- **R3（単独fixtureの不足）**：\n  - 未選択sourceの推定禁止（L2:903）\n  - 036採択の非推定（L2:905）\n  - 親が不要・適用不能なときの理由記録（L2:911）\n  - 適用外identity型の機械生成禁止（L2:912）\n  - N/Aに理由と再評価条件を持たせる正常例（L2:897）\n  - 選択・非選択の理由を返す独立正常例（L11:650。索引のみ）\n  - 採択された仮説をV-pairへ結ぶ正常例（L11:658）\n- **R4（7軸の分離）**：7軸ごとのevidence scope/revision mismatchと、applicability unknownが完全には分離されていない（旧r19 M5。本文M5節が自己申告している）。誤った完了は通らない。\n- **R5（戻し先の分岐・併記・ID）**：\n  - 戻し先の分岐が入力で決まらない、または併記されている行：FV:1403（008、または026/025）、FV:1353/1418（008/024。L11:644の宛先は008）、FV:1364/1365（008/026。L11:650の宛先は005）、FV:1440/1441\n  - FV:1456は「現行V-pairの実装・検証relationに戻す」で、ownerのIDがない（兄弟行は005/022）。\n- **R6（文言）**：\n  - 「適用style分岐」（CASE-01、FV:1449）、「Experience evidence」（FV:1450）は、固定親にない語。\n  - nfr-gradeとnfr-verificationの「7軸current evidenceとhuman evaluation」は、人間評価を7軸の外に置くように読める。固定親では、人間評価は7軸の1つ。\n  - CASE-12〜14は、L11:652の「riskがあるのに選外」を「UI契約の条件欠落」と言い換えている。\n  - CASE-08は、固定親039にない049を変異の題材にしている（戻し先は区分内）。\n- **R7（索引ラベル）**：FV:1353（CASE-04）は「AC所属を明記」と書くが、参照ごとのACラベルがない。\n- **R8（英文）**：英語の語が残っている。\n- **R9（監査の記載）**：\n  - finding_dispositionsはm1を「本文補正済み」としているが、R5のFV:1456が残っている。\n  - review19の039所見のうち、m4/m20/m26の処置がない。\n  - mdの「Rootの4行補正」とAC_assignment_changes（空）の経緯の表記。\n- **R10（監査の外部参照）**：基準変更commentは、#2623の6013171449をpinしている（#2602の6013172073とbytesが同じ）。4行補正の前のworker snapshotはGit objectではない。JSONで「not available」と明示していて、根拠には使っていない。\n\n"
+  },
+  "review_methodology_change": {
+    "comment_id": 6013171449,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2623#issuecomment-6013171449",
+    "bytes": 2797,
+    "sha256": "0b006af0afa42c32b0ae36f105d8f909d237fea019e087a6cb6a2b373fbcf730",
+    "raw_body": "## review基準の見直し：責務を優先し、変更耐性を前提にする（review_merge lane）\n\nこのcommentは、review結果ではない。承認、Ready、merge admissionは生成しない。人（ユーザー）と相談して決めた、review側の基準の変更を伝える。直前のcomment「網羅表を1文単位にすること」のうち、完全性を求める部分は、この内容で置き換える。\n\n### 根拠\n`docs/governance/github-upstream-operating-model.md`「人に承認を求める回数を減らす」は、次のように定めている。\n- 承認済みの文書は、やってみて分かったことで直してよい（変更耐性）。\n- 承認済みのL3／L10は、親L2の意味・範囲・担当・版が変わらない限り、新しいrevisionで見解の一致をやり直すだけで直せる。\n\nこれまでのreview側は、「固定L2/L11の列挙項目ごとに単独fixtureがなければMajor」という基準で完全性を求めていた。この基準は運用モデルより厳しく、照合が収束しない主な原因だった。これはreview側の判断の誤りである。\n\n### 新しい扱い\n**Major（承認を止める）**：責務と境界の誤りに限る。\n- 戻し先が固定親の区分にない、または宛先が決まらない。\n- 承認・合意・完了・authorityを生成する。または、生成を拒否するfixtureがない。\n- L3がL2の意味・範囲・担当・版を変える。\n- oracleが弱く、誤った完了が通る。\n- 既存の境界チェックを消している。\n\n**残余（承認を止めない）**：次のものは記録し、後の変更で直す。\n- 例示・列挙の項目ごとに単独fixtureが足りないこと。ただし、上のMajorに当たる禁止は除く。\n- 束ね。\n- 索引・別名・件数・行参照・文言・英文の不一致。\n\n**残余の扱い**：\n- 運用モデルでは、Minorを返すかどうかはOpusが決める。残余は返却findingにせず、PR commentと判断記録に「後続で直す残余」として残す。\n- 返却findingが0件で、未確認範囲が0件なら、Opusは`no_findings`とする。\n- 作成側は、残余を同じPRで直してもよい。次の機会に回してもよい。\n\n**網羅表**：完全性の証明には使わない。変更のときに影響範囲をたどる索引として残す。表に行のない固定文があっても、それ自体は残余として扱う。\n\n### すでに出したreviewの扱い\n- 未解消のreview所見は、次のreviewのとき、この基準で読み直す。上のMajorに当たらないものは、残余へ移す。\n- 移した結果は、次のreview commentに一覧で記録する。\n- 過去のcommentは書き換えない。\n",
+    "application": "責務戻し先不定、authority/完了生成、親意味境界変更、誤完了を通す弱oracle、既存境界check削除はMajorに残る。例示の列挙完全性、束ね、索引・alias・件数・行参照・表記不一致はそれ自体では残余扱い。網羅表は影響追跡索引であり完全性証明でない。このcommentはレビュー基準変更で、review結果/承認/Ready/merge admissionではない。"
+  },
+  "body_pins": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "base": {
+        "revision": "286a938442f7ff9a05004478d7a25d0feedc34d8",
+        "bytes": 192140,
+        "sha256": "1c98e9a404814d92e45e4ef5a0c2c072279cdd84ec549c0db6796460b60d62eb",
+        "identical_to_authoring_base": true
+      },
+      "body_revision": {
+        "revision": "85190086644879d49be5186487fca0d68034df17",
+        "bytes": 198335,
+        "sha256": "00ca917e91abdabdeaba7507afee961613381081aa9017e3e1221f929d21f943",
+        "suffix_bytes": 6195,
+        "suffix_sha256": "61ad8d177110d15d1d48d49630986d71389bd04b86fa3291ed49a244ca37d7f2"
+      },
+      "prefix_check": {
+        "body_starts_with_base_bytes": true,
+        "reviewbase_equals_authoring_base": true
+      }
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "base": {
+        "revision": "286a938442f7ff9a05004478d7a25d0feedc34d8",
+        "bytes": 12211,
+        "sha256": "441ac72d8cfeb31140cc5def235506c126c905c362a088b6cf22b04356ea7b46",
+        "identical_to_authoring_base": true
+      },
+      "body_revision": {
+        "revision": "85190086644879d49be5186487fca0d68034df17",
+        "bytes": 12664,
+        "sha256": "60bdc58470c471dccd70c8336a7e3a5b57aa3b5bfbfc1bc82d9c535e92c11949",
+        "suffix_bytes": 453,
+        "suffix_sha256": "2bb1c82fcd3fed1d70af8b928eb8002524be38c37b84a045a855b820239024b0"
+      },
+      "prefix_check": {
+        "body_starts_with_base_bytes": true,
+        "reviewbase_equals_authoring_base": true
+      }
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "base": {
+        "revision": "286a938442f7ff9a05004478d7a25d0feedc34d8",
+        "bytes": 41391,
+        "sha256": "1200f38ebf67857c8886ca0fdf0c9d00855142b662b6bb789336cf0f87cf77fd",
+        "identical_to_authoring_base": true
+      },
+      "body_revision": {
+        "revision": "85190086644879d49be5186487fca0d68034df17",
+        "bytes": 41948,
+        "sha256": "7840fd0b1bb694e0e9513f1e10f61971a629953ef41b3e495ea578cf8296efa2",
+        "suffix_bytes": 557,
+        "suffix_sha256": "fa74a040419de275c554acffb64e967f7d9923f7ad5523ff3863ad2277684bb7"
+      },
+      "prefix_check": {
+        "body_starts_with_base_bytes": true,
+        "reviewbase_equals_authoring_base": true
+      }
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "base": {
+        "revision": "286a938442f7ff9a05004478d7a25d0feedc34d8",
+        "bytes": 511260,
+        "sha256": "8fbd2ba308ced39a78a28844daf6b2e094d71d58d6e87ca8470a282a24660992",
+        "identical_to_authoring_base": true
+      },
+      "body_revision": {
+        "revision": "85190086644879d49be5186487fca0d68034df17",
+        "bytes": 584387,
+        "sha256": "f1f302900e013550fd45bcd4dc15cb9fd48ba5ee48e02d7f479e9227c0dbb238",
+        "suffix_bytes": 73127,
+        "suffix_sha256": "3974f9523f58e3ea7609dcdd50e99e1d61e10eae55091b65478996ec99a1c72a"
+      },
+      "prefix_check": {
+        "body_starts_with_base_bytes": true,
+        "reviewbase_equals_authoring_base": true
+      }
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "base": {
+        "revision": "286a938442f7ff9a05004478d7a25d0feedc34d8",
+        "bytes": 7920,
+        "sha256": "2973a00bfcb83ac1cc0d46dc53a2de4556a6d89fae2c7835ec1e36085c346565",
+        "identical_to_authoring_base": true
+      },
+      "body_revision": {
+        "revision": "85190086644879d49be5186487fca0d68034df17",
+        "bytes": 8299,
+        "sha256": "3473e30037f65fdfe827cc48297c3eec9716f409d919d18caceca87e45072ace",
+        "suffix_bytes": 379,
+        "suffix_sha256": "157efa7b7a0d10242d3dc0f0be14ae23d4abb529e40276acc9d6a03aa70ac9f4"
+      },
+      "prefix_check": {
+        "body_starts_with_base_bytes": true,
+        "reviewbase_equals_authoring_base": true
+      }
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "base": {
+        "revision": "286a938442f7ff9a05004478d7a25d0feedc34d8",
+        "bytes": 34729,
+        "sha256": "620094997cbd66e07ac32f94c16c8632f323569ff752d99774575b354bf72385",
+        "identical_to_authoring_base": true
+      },
+      "body_revision": {
+        "revision": "85190086644879d49be5186487fca0d68034df17",
+        "bytes": 35149,
+        "sha256": "a000794ce06474dacc7c233470f68d59dda2f09365a42285b0718860579c1a76",
+        "suffix_bytes": 420,
+        "suffix_sha256": "d80751f09c8f0db16a560fe4b586f75492225317580950f2efd40d9ed316b931"
+      },
+      "prefix_check": {
+        "body_starts_with_base_bytes": true,
+        "reviewbase_equals_authoring_base": true
+      }
+    }
+  ],
+  "fixed_parent_and_PO_pins": [
+    {
+      "label": "採択対象固定L2-039親節",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "physical_lines": {
+        "start": 891,
+        "end": 929,
+        "count": 39
+      },
+      "source_file_bytes": 254934,
+      "source_file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+      "span_bytes": 12464,
+      "raw_lf_sha256": "e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0",
+      "literal": "### HARNESS-L2-039 体験・UI・Frontend契約を同一scopeへ結ぶ（HARNESS-CORE composite候補、version_target: 1.0）\n\n**状態**：新規の未採択候補。2026-09-28に合意した250候補には含まれず、この候補・記載内容をPO採択済みと扱わない。既採択のHARNESS-L2-024/025/026を変更・置換せず、それらの要求形成、設計単体、設計構成体の間で、体験成果とUI/Frontendの契約が同じ対象scope・revisionを指すための構成体条件を追加する。\n\n**親L1**：主親はHARNESS-L1-001（上流意図から運用評価までのV-pair）、HARNESS-L1-003（要求変更の影響を設計・実装・検証へ伝える）、HARNESS-L1-004（対象revision/riskに合う検証義務・oracle・証拠）、HARNESS-L1-006（要求形成、prototype/非UI適用性、合意・freeze・差戻し）、HARNESS-L1-008（指示と根拠から要求を形成し、欠落・矛盾・過剰解釈を確認）とする。HARNESS-L1-009は設計義務・不足入力を戻す関連親。HARNESS-L1-005/007は外部提供時の適用条件とVersion 1成果範囲の文脈で、内部OSを利用者依存に変えたり新しい完成条件を追加したりしない。これらの現行L1本文の意味内であり、Experience/UI/Frontendの新しい企画価値をL1へ追加しない。\n\n**所属・scope**：HELIX-HARNESS-COREのcomposite候補。要求・設計・受入の責務を同一scope・対象revisionで結ぶ契約を定義する。UIの有無を問わず、各要求まとまりの業務目的を親へ辿れることを扱う。画面を持つscopeではExperience、UI、Frontendの適用条件を照合し、画面を持たないscopeではUI項目を根拠付きN/A・再評価条件として残す。UIの存在や契約適用性がunknownならN/Aへ変換しない。全screen/製品に特定技術・field名・固定schemaを強制しない。\n\n**単独で成り立つための依存**（常時必須）：対象Concept/L1および要求・対象のscope/revision/authority状態、HARNESS-L2-008の要求意味・候補と人間合意境界、HARNESS-L2-003/004の段階状態・変更影響とrelation、HARNESS-L2-022の段階別oracle・result・evidence状態を照合する。必要な入力、authority、oracleが欠けるときは不足/未評価を返し、上位の意味や合意を補完しない。HARNESS-COREが契約と設計上のrelation/oracleを所有し、OSのticket発行・割当・CI運転・実行状態記録、利用者環境の実行、L11の利用者受入判断を所有しない。\n\n**特定操作時のみ必須**：UI/UXを含む要求・設計scopeを形成または変更するときは、HARNESS-L2-024の該当するprototype/非UI適用性・screen scope・agreement状態、HARNESS-L2-026の該当unit設計と対の検証設計、およびHARNESS-L2-025の構成体oracle/端から端の整合を照合する。検証義務を決める操作ではHARNESS-L2-005のticket/risk別選択を使う。L2-022に属する段階stateを主張するときはそのoracle/evidence条件を適用する。これら既存要求の完了receiptを039の開始前提にはせず、各操作が必要とする入力だけを要求する。\n\n**選択した入力元に応じて必須**：対象が明示選択するprototype、screen/flow/interaction資料、design token/component実体、content/analytics event定義、frontend data/state owner、permission/logging/error仕様、device・locale・network等の環境条件、および選択Pattern/design systemを使う場合の各source identity・revision・scope・authority状態を束縛する。選択されていないsourceを存在/不存在/適格/成功と推定しない。BRAIN由来Patternを選択した場合は現行の026/025とconnector契約を適用し、039独自の知識正本を持たない。\n\n**参照資料のみ**：旧sourceのfield名・旧registry/schema/runtime、例示に過ぎない画面manifest形式は参照資料とする。039はFE検証の実行結果を自己生成しない。036のFE 5軸を選択scopeの検証に使う場合に限りその契約・版・結果を後段で照合し、036候補の採択は推定しない。旧工程名・旧layer番号を現行の新工程へ作り替えない。\n\n**受け取るもの**：対象L1/L2/L11と適用されるL3要件の対象revision・authority状態、要求原子とそのscope/非目標、該当UI/非UI適用判定、上記で選択された各source、変更影響・risk、既存のV-pair/verification/acceptance oracleと未完義務。\n\n**提供するもの**：同じ対象scope/revisionに結ばれた次のrelationと差分候補を、根拠・authority状態・適用性とともに返す。\n\n- **Experience/要求の親graph**：要求原子または要求まとまりから、適用可能なUser Task、Business Outcome、scenario/context、success result、decision rationaleへ意味上の親を辿る。親が不要または適用不能な要素は理由を記録する。要求を小さく分割しても親成果・成功条件・決定理由の対応を失わせない。単に親fieldを埋めたことを意味成立としない。\n- **UI/Frontendの端から端trace**：画面を持つscopeで、適用するscreen/flow/region/slot/interaction/action/state/component/token/content等の要素を、permission/actor、command/API、data/state owner、不変条件、domain event/analytics event、logging/errorと、対応する設計・検証・受入oracleまで結ぶ。適用外のidentity型を機械的に生成しない。上記はsemantic relationとして扱い、旧identity名や特定のデータ構造を要求しない。\n- **drift/変更影響**：prototypeと要求、component/DOMと設計、design tokenと描画実体、interactionとE2E、content/analyticsとその要求・oracle、accessibility/responsive/motionに関する適用条件の差をscope単位で示す。変更されたrelationから影響を導き、Affected/Unaffected/Unknownを区別する。UnknownをUnaffectedへ変えず、未評価の実装をpassにしない。意味・要求変更はHARNESS-L2-008および既存Backflowへ、設計・oracle不足はHARNESS-L2-026/025/022へ戻す。\n- **riskに応じたUI検証設計**：選択されたUI scopeのriskに基づき、適用するdevice/input/role/locale/data volume/network/concurrent update/destructive/undo要因を選び、risk-based pairwise組合せを設計する。適用外・選外は根拠を残す。全組合せ実行や固定factor一式を強制せず、risk/適用性unknownを合格にしない。検証実行はHARNESS-L2-005に従う。\n- **状態と証拠の区別**：設計成果、実装状態、実測UX評価を一つの完成状態にまとめない。`implemented`を主張する場合は現行V-pairで定める実装/検証関係へ結び、`ux_verified`を主張するoperationに限って対象scopeに適用されるL10–L12 real-data evidenceとhuman evaluationを別状態として要求する。これらの未来の実行結果を要求形成・設計契約の作成開始条件にはしない。screen数、route数、placeholder、generic table、screenshot単体で完成を主張しない。\n- **Discovery PoCとauthority**：Discovery PoCはprototype/vision仮説の調査・比較を行えるが、対象ownerの既存判断前に`implemented`、`ux_verified`、production-readyまたは採択済みと主張しない。採択された仮説は既存の正規V-pairへ接続する。PoCの固定S0–S4工程や別authority machineを追加しない。HARNESS/AIはproduct vision、brand、体験優先順位、prototype agreement、L3要求freeze、L11利用者acceptance、L12改善採否を自己承認しない。\n- **既存stageへのbackfill**：Full V/Scrum等の選択された工程で、該当するprototype agreement、screen ledger/profile、frontend binding、mission/oracle、UX evidence、change deltaの未完義務を現行V-pairの対応する層・受入・戻し先へ結ぶ。適用しないartifactは理由を記録する。UI sliceが既存SR4/review/release合流を求める時点では、適用されるbackfill義務とpair receiptを照合し、未完義務を完了扱いにしない。旧S0–S4やSR4等を別の現行工程、追加freeze、独立承認として新設しない。既存のstage receipt/evidenceの条件を置き換えない。\n\n**保証・authority境界**：本候補は要求意味、prototype agreement、L3 freeze、L11 acceptance、L12改善採否を承認しない。出力は対象ownerが照合できる設計契約・差分・不足・検証義務候補であり、候補の生成/比較/検査から採択・操作権限・実行許可を生成しない。HARNESSは要求/設計/verification契約を所有し、OSは既決authorityに従う進行・実行・証拠記録を所有し、CONNECTは必要な情報配送を所有し、LABOは実測後の評価/改善候補を所有する。この候補はそれらの責務を移さない。\n\n**失敗・戻し先**：親scope/成功条件/authorityがunknownなら要求形成へ戻し、画面適用性やprototype合意が該当して未決ならHARNESS-L2-024へ戻す。trace/設計不整合は026/025、test oracle/段階証拠不足は005/022へ戻し、実行・ticket・記録不足はOSの既存責務へ渡す。source版/互換不明は選択source ownerへ戻す。人が持つ上流の意味に変更が必要な場合だけ、既存判断境界へ選択肢・影響を示す。新たな承認者や承認gateを作らない。\n\n**旧sourceと差分**：asset `LEGACY-ASSET-02319C2481B9E01698D5`。`archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md` SHA-256 `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406`。§4.5:265–277のうち269/271/273/275行のExperience/UI/Frontend三契約、Full V/Scrum backfill、PoC/implemented/ux_verifiedの状態差と非自己承認を意味再導出する。§4.9の385–390行（HR-FR-DHR-001–006）と392行（実装・UX証拠が揃うまで完成状態を主張しない条件）からidentity trace、UI applicability、screen-to-acceptance関係、risk-based pairwise、drift、Experience親graphを再導出する。旧ID/field/schema、runtime、固定旧phaseは現行要求へ移さず、個別の適用範囲・現行layer・根拠付きoracleへ再構成する。\n\n**固定照合基準**：現行L1/L2/L11はcommit `d0900f30b92720114c6e0b5f436813d48172a020`。旧sourceの実装方式・211件のinventory（267/277行）や別entity機械の詳細（394行以降）は本候補の一括被覆対象にせず、元のsource保持を継続する。\n\n**UI prototype証拠の受渡し**：UI適用scopeのprototype合意/closureを主張する段階では、操作可能なprototype相当と、同じscope/revisionを実際にwalkthroughした結果・未決事項・訂正を、既存008/024の合意根拠へ結ぶ。静止画や一覧だけを操作可能性・walkthrough実施の証拠へ変換しない。旧manifest schemaは固定せず、未実施なら当該義務を未完として保持する。039の契約候補形成の開始に、未来のprototype完成やwalkthrough完了は要求しない。非UIなら既存の根拠付き非適用判定と再評価条件を保持する。\n\n**UX完了主張時の証拠**：UI/UXが適用されるscopeで`ux_verified`（UX完了）を主張するoperationは、同じ対象scope/revisionに対してL10–L12で評価したreal-data、responsive、motion、accessibility、performance、continuity、人間評価の全軸のcurrent evidenceを必要とする。いずれかの軸の証拠がmissingまたはstale、または適用性がunknownならUX完了を拒否する。UI/UX適用scopeで個別軸をN/Aとして省略しない。`implemented`は既存V-pair上の実装・検証関係で別に判定し、両状態を相互に推定しない。この証拠はUX完了主張の条件であり、候補形成、要求・設計・prototype検討の開始条件ではない。非UI scopeでは既存の根拠付きN/A境界を維持し、UX完了状態を生成しない。旧根拠：`archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md:650`、`docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt:631`。\n"
+    },
+    {
+      "label": "採択対象固定L11-039親節",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "physical_lines": {
+        "start": 638,
+        "end": 676,
+        "count": 39
+      },
+      "source_file_bytes": 172806,
+      "source_file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+      "span_bytes": 10637,
+      "raw_lf_sha256": "63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746",
+      "literal": "### HARNESS-L2-039 体験・UI・Frontend契約を同一scopeへ結ぶ composite の受入候補\n\n**対応要求・authority**：HARNESS-L2-039（CORE composite候補、`version_target: 1.0`、未採択）。主親はHARNESS-L1-001/003/004/006/008、関連親はL1-009、外部提供時等の文脈はL1-005/007。既採択のHARNESS-L2-024/025/026、HARNESS-L2-003/004/005/008/022の条件をそのまま入力契約として使い、再定義しない。039候補のL11例は未実行fixtureであり、候補採択、要求/設計合意、L3承認、実装許可、L11利用者受入を生成しない。\n\n**正常例：UIを持たない要求のExperience親**：UIなしのworkflowを入力し、要求候補の各意味単位からUser Task、Business Outcome、scenario/context、success result、decision rationaleまで実際の意味関係を追う。適用しないUI契約は、対象・scope・判断根拠と再評価条件を伴うN/Aとして示す。小さな要求原子へ分割した後も業務成果・成功条件を辿れれば成立する。画面を持たないことを理由にExperience親graphまで省略しない。\n\n**誤り例：見かけの親graph**：複数の小さな要求へ「Business Outcome」欄を同じ曖昧な語句で貼ったが、どの要求がどのtask/scenario/success resultを支えるか説明できないfixtureを与える。relation fieldが存在しても意味上の親・成果へ辿れない、成功結果が要求されている動作と無関係、または細分化で親成果が失われている場合は成立させず、要求形成の不足としてHARNESS-L2-008へ返す。意味に親がないときはLLMが補完して合格にしない。\n\n**正常例：UI/Frontend設計・trace・drift**：同一対象revisionの要求、合意済screen scope、prototype/design資料、設計候補とそのoracleを与える。選択scopeで適用する画面/flow/interaction/action/state、permission/actor、command/API、data/state ownerと不変条件、domain/analytics event、content、design token/component、accessibility/responsive/motion、logging/error、および対応する検証・受入条件の間を意味的に双方向追跡する。適用sourceごとにrevision・scope・authorityを示し、条件の適用性がない要素は根拠と再評価条件を持つN/Aにする。差分があれば影響する対象/関係と戻し先を示す。\n\n**誤り例：切れた契約・drift**：①画面では拒否するがAPIが同操作を許す、②interactionからacceptance/E2E oracleへ関係がない、③event/data ownerが設計外、④CSS/componentがtoken/design contractと食い違う、⑤contentまたはanalyticsが要求する成功条件と不一致、⑥screen scopeや要求revisionがstale、⑦影響がunknownなのにUnaffectedとして使い回す、の各fixtureを与える。いずれもfieldやscreenshotの存在だけでは合格しない。要求意味差は008、設計trace/unitは026、構成体整合は025、検証義務/oracleは005/022へ戻す。L11は設計そのものの承認や実行を代行しない。\n\n**正常例：riskに応じた検証factor**：該当するUI scopeとrisk根拠を与え、device、input、role、locale、data volume、network、concurrent update、destructive/undoから適用要因とrisk-based pairwise組合せを選び、各選択・非選択の理由を返す。riskに無関係なfactorを根拠付きで外し、必要なfactorは代表組合せで覆える。全組合せ実行は成立条件にしない。選択した義務はHARNESS-L2-005のticket/risk別検証条件へ渡す。\n\n**誤り例：factorの誤った省略・過剰**：削除/undoで不可逆な結果があるのにdestructive/undoを選外、複数roleでpermissionが異なるのにrole差を無視、localeで内容長・入力が変わるのにlocaleを無根拠で除外する例は不合格。逆に選択scopeに無関係なfactorの全直積や、device全機種の総当たりを一律要求する例も不合格。risk根拠がないfactorはpassにせず選択未確定として残す。\n\n**正常例：状態・UX evidence**：design/prototypeだけを持つscopeでは設計候補として扱い、実測UX evidenceがまだないことだけで候補形成・設計義務の受入を拒否しない。`implemented`と`ux_verified`を別々に主張するfixtureでは、implementedは対象V-pair上の実装・検証relationへ、ux_verifiedはその主張を行う操作に限ってscopeに適用されるL10–L12 real-data evidenceとhuman evaluationへ結ぶ。real-data/human evaluationが未実施ならux_verifiedは未確認/保留であり、implementedやdesign済みから推定しない。\n\n**誤り例：完成状態の混同**：screenshot、route/screen数、placeholder、generic table、prototype合意だけからimplementedまたはux_verifiedを主張する。あるいは全screenの設計候補生成開始に未来のreal-data/human evaluation完了を要求する。前者は不合格、後者も不合格。観測・評価未了はその状態の未確認として保持し、設計要求作成の開始を止めない。\n\n**正常/誤り例：Discovery PoCと人の判断**：未確定のvision仮説をprototypeで比較しているPoCは、既存S4相当の人判断が未了なら仮説・未決状態のまま返せる。採択hypothesisだけを対象ownerの決定記録と同じscope/revisionで既存正規V-pairへ結び、implemented/ux_verified/production-readyは各々の適用証拠がある場合だけ主張する。PoC成果、AI推奨、prototype agreement、未回答や時間経過からproduct vision/brand/優先順位/要求採択を生成したfixtureは不合格。旧S0–S4自体を現行の必須工程として再導入しない。\n\n**正常例：Full V/Scrum backfill**：選択されたFull V UI workflowまたはScrum UI sliceにprototype agreement、screen ledger/profile、frontend binding、mission/oracle、UX evidence、change deltaの一部が適用される場合、各義務を既存の対象V-pairのlayer・receipt・owner・戻し先へ結ぶ。作業初期で未作成の後段evidenceは未完義務と後段scopeとして記録でき、設計/要求の起点operationを拒まない。非適用は理由付きで示す。\n\n**誤り例：段階・適用範囲の混同**：全UI scopeに旧artifact一式・旧S0–S4を新しい工程として必須化する、非UI scopeへscreen ledgerを要求する、または未作成UX evidenceを実施済みとしてSR4/Full Vのclosureへ流用する例は不合格。後段evidenceが未完なら、その段階の完了を主張するoperationのみ保留する。新しいfreeze、承認authority、旧layer番号を作らない。\n\n**誤り例：review/release合流時のbackfill漏れ**：選択されたUI sliceがreview/release合流へ進む際、適用されるscreen/profile/binding/mission-oracle/UX-evidence/change-deltaの未完義務または既存pair receiptの欠落を隠してclosureを主張する例は不合格。既存SR4/review/release条件を使い、039独自の合流stageやfreezeを作らない。\n\n**未見例：別UI/別製品scope**：既知fixtureと異なるframework、screen構造、content source、analytics event、device構成を用いる。対象契約revision・source authority・scopeが分かれば同じsemantic relationとrisk根拠で判定し、未見という理由だけでは拒否しない。必須関係や適用性を決める情報/oracleがunknownなら、当該主張を未評価/保留として不足と戻し先を示す。未知を自動補完して合格にせず、既知の無関係条件まで一律failにしない。\n\n**依存と判定境界**：正常判定では親L1/要求revision、authority、scopeが一致する。UI操作では既存024/026/025の該当条件を操作別に、pattern等の入力sourceを選択に応じて照合する。実行・CI・ticket・証拠の保管を039単体に求めず、実行/状態記録はOSまたは外部利用者CI、通信はCONNECT、実測後の効果評価はLABOの既存契約に従う。HARNESS-L2-036のFE 5軸を選択scopeで使う場合だけ契約と後段の結果を照合し、039から036の採択を生成しない。\n\n**旧source照合**：`archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md` SHA-256 `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406`。§4.5:269–275（Experience/UI/Frontend、Full V/Scrum backfill、PoC状態・evidence・authority境界）と§4.9:385–392（HR-FR-DHR-001–006）を、現行L1/L2/L11の対象scope・V-pair・authority境界へ意味再導出した fixture である。旧schema名・旧runtime・実測済みとの主張は導入しない。\n\n**prototype/walkthroughの反例**：UI scopeに静止画とscreen一覧・trace・agreement表示だけを与え、操作可能なprototype相当やwalkthroughの実施結果がないのに、prototype確認済みとしてclosureする例を拒否する。正常例では同一scope/revisionの操作可能性とwalkthrough結果・未決事項・訂正を既存008/024の合意根拠へ渡す。開始時に未実施なら未完義務として候補を返せるが、実施済みへ補完しない。旧manifest形式を別の固定schemaとして要求しない。\n\n**正常例：UX完了に必要なcurrent evidence**：UI/UX適用scopeの同一対象scope/revisionについて、L10–L12で評価したreal-data、responsive、motion、accessibility、performance、continuity、人間評価の全7軸のcurrent evidenceがそろい、既存V-pair上の実装・検証関係も別途示されるfixtureを与える。実装状態と`ux_verified`は別に判定し、7軸の全てを確認できた場合だけUX完了主張を成立させる。個別軸をN/Aとして省略しない。非UI scopeは既存の根拠付きN/A境界を維持し、UX完了を主張しない。\n\n**誤り例：UX evidenceの欠落・stale・適用性不明**：7軸のうちいずれか1軸について、証拠が欠ける、対象revision/scopeが異なる、またはcurrentでないfixtureは、その軸以外の証拠がそろっていてもUX完了を拒否する。7軸のいずれかの適用性がunknownであるfixtureもUX完了を拒否し、N/Aへ変換しない。こうした欠落は`implemented`や候補形成・要求/設計作業の開始を取り消さず、保留するのはUX完了主張だけとする。新しいauthority、承認者、実装状態は追加しない。\n"
+    },
+    {
+      "label": "PO57のHARNESS-L2-039採択行",
+      "revision": "286a938442f7ff9a05004478d7a25d0feedc34d8",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "physical_lines": {
+        "start": 44,
+        "end": 44,
+        "count": 1
+      },
+      "source_file_bytes": 45099,
+      "source_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "span_bytes": 621,
+      "raw_lf_sha256": "048d22bc06df04095a7ca95c8f1ae0119a20ac57cdca197fa62143e0dc529c9d",
+      "literal": "| `HARNESS-L2-039` | 採択 | `MPR-RC-HARNESS-L2-039-003` | `docs/helix-harness/L2-requirements/product-requirements.md` | `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09` | `sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0` | `HARNESS-L2-039` | `docs/helix-harness/L11-acceptance/product-acceptance.md` | `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5` | sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746 | `docs/governance/audits/requirement-registration/harness-experience-contract-coverage-receipt-2026-09-28-r3.json#HARNESS-L2-039` |\n"
+    }
+  ],
+  "review01_dispositions": [
+    {
+      "finding": "M1",
+      "status": "本文補正済み・補正後revisionの独立review待ち",
+      "source_boundary": "固定L2:929 / L11:674。非UI scopeは根拠付きN/Aと再評価条件を保持し、必要証拠の空集合からux_verifiedを生成しない。既存の人間評価・L10–L12 evidence境界を維持。",
+      "body_evidence": {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "line": 669,
+        "literal": "| `FR-HARNESS-L3-039` / `AC-HARNESS-L3-039-02` | 画面を持つ選択scopeでは、選択されたscreen/flow/interaction/action/state/component/token/contentとpermission/actor、command/API、data/state owner、不変条件、domain/analytics event、logging/error、設計・検証・受入oracleを同一scope/revisionで意味的に結ぶ。`implemented`は既存V-pairの実装・検証relation、`ux_verified`はその状態を主張するoperationに必要なL10–L12 evidenceとhuman evaluationとして分ける。非UI scopeは既存の根拠付きN/Aと再評価条件を保持し、必要証拠が空集合でも`ux_verified`を生成しない。候補形成・設計開始は未来のUX測定を前提にしない。 |",
+        "raw_lf_sha256": "7907635efb6d1c8a97a468ad736aa7a80fa8d4cbe540c478e8764d6db9ae8ece",
+        "new_fixture_rows": [
+          {
+            "id": "CASE-HARNESS-L10-039-r01-non-ui-ux-completion",
+            "line": 1501,
+            "ac_id": "AC-HARNESS-L3-039-02",
+            "literal": "| `CASE-HARNESS-L10-039-r01-non-ui-ux-completion` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 非UIの同一scope/revision、根拠付きN/Aと再評価条件、Experience graph、既存V-pairによる実装状態を保持する。UX完了は非適用。 | 入力不変。N/Aによる証拠の空集合を根拠にux_verifiedだけを生成した誤出力。 | UX完了生成を拒否し根拠付きN/Aを保持する。implementedと候補形成は取り消さず、screen適用性は既存HARNESS-L2-024、段階状態oracleは022へ不足を返す。 |",
+            "raw_lf_sha256": "2b53c1ec1c008e09387fe3bfa92ae9a33deb36b4b082493357473d4e63ec6ac9"
+          }
+        ],
+        "new_fixture_count": 1
+      },
+      "reviewer_finding": "formal review01は旧M5節が非UI例として指したroot-05-ui-naを選択UI scopeのfixtureと識別し、非UI N/A空集合経路を拒否するfixtureがないとした。",
+      "closure": "M1を本文上補正した作成側記録。独立review未完のためclosureを主張しない。"
+    },
+    {
+      "finding": "M2",
+      "status": "本文補正済み・補正後revisionの独立review待ち",
+      "source_boundary": "固定L2:916/919 / L11:640。L11利用者受入とL12改善採否の自己承認、candidate generation/comparison/inspectionから操作権限・実行許可を生成する経路を拒否。既存owner判断とOS実行責務は保持。",
+      "body_evidence": {
+        "new_fixture_count": 8,
+        "new_fixture_rows": [
+          {
+            "id": "CASE-HARNESS-L10-039-r01-self-approves-user-acceptance",
+            "line": 1502,
+            "ac_id": "AC-HARNESS-L3-039-04",
+            "literal": "| `CASE-HARNESS-L10-039-r01-self-approves-user-acceptance` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 対象scope/revisionの候補・評価材料と、L11利用者acceptanceの既存owner判断を別fieldで記録する。owner判断は未決。 | 入力不変。HARNESS/AIがL11利用者acceptanceの承認済stateだけを自己生成する。 | 自己承認を拒否し既存owner判断を未決に保つ。HARNESS-L2-022の該当段階oracleと既存authority境界へ返し、候補を人の判断の代替にしない。 |",
+            "raw_lf_sha256": "f675017901a879dbf017cf1af5776c9237662ba22879d8ea7cf0f84379cef622"
+          },
+          {
+            "id": "CASE-HARNESS-L10-039-r01-self-approves-improvement-adoption",
+            "line": 1503,
+            "ac_id": "AC-HARNESS-L3-039-04",
+            "literal": "| `CASE-HARNESS-L10-039-r01-self-approves-improvement-adoption` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 対象scope/revisionの候補・評価材料と、L12改善採否の既存owner判断を別fieldで記録する。owner判断は未決。 | 入力不変。HARNESS/AIがL12改善採否の承認済stateだけを自己生成する。 | 自己承認を拒否し既存owner判断を未決に保つ。HARNESS-L2-022の該当段階oracleと既存authority境界へ返し、候補を人の判断の代替にしない。 |",
+            "raw_lf_sha256": "21f6da2db1b973254998cf72b7e3a9222189d42e03327c6da6c00b9d357eed82"
+          },
+          {
+            "id": "CASE-HARNESS-L10-039-r01-generation-generates-operation-permission",
+            "line": 1504,
+            "ac_id": "AC-HARNESS-L3-039-04",
+            "literal": "| `CASE-HARNESS-L10-039-r01-generation-generates-operation-permission` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 同一scope/revisionで、sourceに根拠あるcandidateのgeneration結果と既存authority/permissionを別fieldに保持する。新しい操作権限は発行されていない。 | 入力不変。candidateのgeneration結果だけから操作権限fieldを許可済へ変える。 | 権限/許可生成を拒否し既存authorityを保持する。candidate結果は比較材料のまま、HARNESS-L2-008/024の既存合意境界と022の段階authority条件へ返す。OSの既決authorityに従う実行責務を移さない。 |",
+            "raw_lf_sha256": "71e98049c09959661f60700c01fa8026456b4df5cb3307ce9642924d79c652d1"
+          },
+          {
+            "id": "CASE-HARNESS-L10-039-r01-generation-generates-execution-permission",
+            "line": 1505,
+            "ac_id": "AC-HARNESS-L3-039-04",
+            "literal": "| `CASE-HARNESS-L10-039-r01-generation-generates-execution-permission` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 同一scope/revisionで、sourceに根拠あるcandidateのgeneration結果と既存authority/permissionを別fieldに保持する。新しい実行許可は発行されていない。 | 入力不変。candidateのgeneration結果だけから実行許可fieldを許可済へ変える。 | 権限/許可生成を拒否し既存authorityを保持する。candidate結果は比較材料のまま、HARNESS-L2-008/024の既存合意境界と022の段階authority条件へ返す。OSの既決authorityに従う実行責務を移さない。 |",
+            "raw_lf_sha256": "b509d3bc8693f2de251ff38b7511c781ba9ee9e6e8c3374cf384b940f77d82da"
+          },
+          {
+            "id": "CASE-HARNESS-L10-039-r01-comparison-generates-operation-permission",
+            "line": 1506,
+            "ac_id": "AC-HARNESS-L3-039-04",
+            "literal": "| `CASE-HARNESS-L10-039-r01-comparison-generates-operation-permission` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 同一scope/revisionで、sourceに根拠あるcandidateのcomparison結果と既存authority/permissionを別fieldに保持する。新しい操作権限は発行されていない。 | 入力不変。candidateのcomparison結果だけから操作権限fieldを許可済へ変える。 | 権限/許可生成を拒否し既存authorityを保持する。candidate結果は比較材料のまま、HARNESS-L2-008/024の既存合意境界と022の段階authority条件へ返す。OSの既決authorityに従う実行責務を移さない。 |",
+            "raw_lf_sha256": "d34ccd073a413acc5369ccac87d570f93fdf3a93fcb8bafbdd825a26c2b34eeb"
+          },
+          {
+            "id": "CASE-HARNESS-L10-039-r01-comparison-generates-execution-permission",
+            "line": 1507,
+            "ac_id": "AC-HARNESS-L3-039-04",
+            "literal": "| `CASE-HARNESS-L10-039-r01-comparison-generates-execution-permission` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 同一scope/revisionで、sourceに根拠あるcandidateのcomparison結果と既存authority/permissionを別fieldに保持する。新しい実行許可は発行されていない。 | 入力不変。candidateのcomparison結果だけから実行許可fieldを許可済へ変える。 | 権限/許可生成を拒否し既存authorityを保持する。candidate結果は比較材料のまま、HARNESS-L2-008/024の既存合意境界と022の段階authority条件へ返す。OSの既決authorityに従う実行責務を移さない。 |",
+            "raw_lf_sha256": "9bc571a530a4402a2261379ffb6e9e6eae22e7d7ef3764fced379d77496bcda5"
+          },
+          {
+            "id": "CASE-HARNESS-L10-039-r01-inspection-generates-operation-permission",
+            "line": 1508,
+            "ac_id": "AC-HARNESS-L3-039-04",
+            "literal": "| `CASE-HARNESS-L10-039-r01-inspection-generates-operation-permission` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 同一scope/revisionで、sourceに根拠あるcandidateのinspection結果と既存authority/permissionを別fieldに保持する。新しい操作権限は発行されていない。 | 入力不変。candidateのinspection結果だけから操作権限fieldを許可済へ変える。 | 権限/許可生成を拒否し既存authorityを保持する。candidate結果は比較材料のまま、HARNESS-L2-008/024の既存合意境界と022の段階authority条件へ返す。OSの既決authorityに従う実行責務を移さない。 |",
+            "raw_lf_sha256": "1d5f8a0c17bc4e415585c7ee8517f67a19a1b106f5bd9686ca4ed635265451b2"
+          },
+          {
+            "id": "CASE-HARNESS-L10-039-r01-inspection-generates-execution-permission",
+            "line": 1509,
+            "ac_id": "AC-HARNESS-L3-039-04",
+            "literal": "| `CASE-HARNESS-L10-039-r01-inspection-generates-execution-permission` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 同一scope/revisionで、sourceに根拠あるcandidateのinspection結果と既存authority/permissionを別fieldに保持する。新しい実行許可は発行されていない。 | 入力不変。candidateのinspection結果だけから実行許可fieldを許可済へ変える。 | 権限/許可生成を拒否し既存authorityを保持する。candidate結果は比較材料のまま、HARNESS-L2-008/024の既存合意境界と022の段階authority条件へ返す。OSの既決authorityに従う実行責務を移さない。 |",
+            "raw_lf_sha256": "25845538c33772ca7909c621b4c31cefb5a4610d5fe07178adce331f2ed04099"
+          }
+        ],
+        "coverage": "L11 acceptance self-approval (1), L12 improvement adoption self-approval (1), and generation/comparison/inspection × operation/execution permission (6). All reference AC-04."
+      },
+      "reviewer_finding": "formal review01はAC-04 proseに列挙されたL11/L12状態のうち自己承認fixture欠如と、candidate処理からのoperation/execution permission生成拒否fixture欠如を指摘。"
+    },
+    {
+      "correction": "M5の非UI例の誤記",
+      "status": "本文補正済み・補正後revisionの独立review待ち",
+      "body_evidence": {
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 1488,
+        "literal": "固定L2:913はAffected/Unaffected/Unknownを分け、L11:676はUX完了時のunknown applicability、証拠scope/revision違い、stale/missingを拒否しつつ候補形成を止めない。継承したfixtureには各UX軸のevidence missing/stale/unknown、walkthrough scope/revisionとUI軸のN/A拒否例があるが、各軸のapplicability unknownとUX evidence scope mismatchを全て独立入力としては区別しない。確認した行に当該区別を通してUX完了へ誤昇格するoracleはない。この意味上の残余は記録し、fixture列挙だけを理由に新CASEを必須化しない。",
+        "raw_lf_sha256": "5fee1dae2d60ea72ba12e197ad832d6755f6272c7c0c37ecc43ab77963a97bc7"
+      },
+      "treatment": "例を非UI N/Aと誤って説明していた文言を、選択UI scopeの軸N/A拒否例として正した。"
+    }
+  ],
+  "case_inventory": {
+    "old_case_source_revision": "3fd20391f842310012d09c33f5383497898b3afe",
+    "old_case_count": 134,
+    "old_case_ids_missing_from_new_body": [],
+    "old_case_literal_changes": [],
+    "new_case_count": 143,
+    "added_case_ids": [
+      "CASE-HARNESS-L10-039-r01-non-ui-ux-completion",
+      "CASE-HARNESS-L10-039-r01-self-approves-user-acceptance",
+      "CASE-HARNESS-L10-039-r01-self-approves-improvement-adoption",
+      "CASE-HARNESS-L10-039-r01-generation-generates-operation-permission",
+      "CASE-HARNESS-L10-039-r01-generation-generates-execution-permission",
+      "CASE-HARNESS-L10-039-r01-comparison-generates-operation-permission",
+      "CASE-HARNESS-L10-039-r01-comparison-generates-execution-permission",
+      "CASE-HARNESS-L10-039-r01-inspection-generates-operation-permission",
+      "CASE-HARNESS-L10-039-r01-inspection-generates-execution-permission"
+    ],
+    "all_current_case_rows_raw": [
+      {
+        "id": "CASE-HARNESS-L10-039-01",
+        "line": 1350,
+        "ac_id": "AC-HARNESS-L3-039-01",
+        "literal": "| `CASE-HARNESS-L10-039-01` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-01` | 索引のみ。Experience関係欠落=`CASE-HARNESS-L10-039-r09-001`、対象revision不一致=`CASE-HARNESS-L10-039-r09-002`、適用style分岐unknown=`CASE-HARNESS-L10-039-r09-003`、risk根拠欠落=`CASE-HARNESS-L10-039-r09-007`。 | 索引のみ。個別CASEは列挙した一変異を持つ。 | 索引を計数せず各実在IDの単独oracleを評価する。 |",
+        "raw_lf_sha256": "d1f72a3ab9b8c1b25047bb8bb1a9ee4d513483705b37df275254450f22a6682f"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-02",
+        "line": 1351,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-02` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | AC-02の正常・単独変異を参照する索引。単独CASEの実在IDはCASE-HARNESS-L10-039-05と同じAC-02集合（同行参照）であり、ID/ACは当該fixture行に直接記録する。 | 索引のみ。正常例・個別negativeを混ぜて分類せず、参照CASEを分母へ二重計上しない。 | 索引を計数せず各実在IDの単独oracleを評価する。r09-006はux_verified未確認/保留として、選択済みHARNESS-L2-005のverification dutyまたはHARNESS-L2-022の既存pair oracleへ戻す。 |",
+        "raw_lf_sha256": "46c22f74fd5e47c5193600c74f2e2231e58b6c2fbc5374231873947b98f8d2ae"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-03",
+        "line": 1352,
+        "ac_id": "AC-HARNESS-L3-039-03",
+        "literal": "| `CASE-HARNESS-L10-039-03` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-03` | 未見正常index。実在CASE: `CASE-HARNESS-L10-039-r06-unseen-framework`, `CASE-HARNESS-L10-039-r06-unseen-screen-structure`, `CASE-HARNESS-L10-039-r06-unseen-content-source`, `CASE-HARNESS-L10-039-r06-unseen-analytics`, `CASE-HARNESS-L10-039-r06-unseen-device`。 | 索引のみ。 | 固定契約に適合する未見入力を正常として扱い、索引をnegativeに数えない。 |",
+        "raw_lf_sha256": "bed50da264d7afd1124857aa9357bda1b22f95973aca0b59d122d406e8eb2762"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-04",
+        "line": 1353,
+        "ac_id": "AC-HARNESS-L3-039-01",
+        "literal": "| `CASE-HARNESS-L10-039-04` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-01` | Experience parent graph（UserTask/BusinessOutcome/scenario/success/rationale）と各選択UI relationを同一scope/revisionで与える。AC-03の7参照はAC所属を明記して別AC traceとして扱う。非UI正常例にもExperience graphを含める。 | 索引のみ。graph relation欠落は`CASE-HARNESS-L10-039-r06-graph-user-task-missing`、`CASE-HARNESS-L10-039-r06-graph-business-outcome-missing`、`CASE-HARNESS-L10-039-r06-graph-scenario-context-missing`、`CASE-HARNESS-L10-039-r06-graph-success-result-missing`、`CASE-HARNESS-L10-039-r06-graph-decision-rationale-missing`、見かけの意味graphは`CASE-HARNESS-L10-039-r03-apparent-parent-graph`で照合する。未見framework/screen構造/content source/analytics/deviceは`CASE-HARNESS-L10-039-r06-unseen-framework`、`CASE-HARNESS-L10-039-r06-unseen-screen-structure`、`CASE-HARNESS-L10-039-r06-unseen-content-source`、`CASE-HARNESS-L10-039-r06-unseen-analytics`、`CASE-HARNESS-L10-039-r06-unseen-device`を参照。情報/oracle unknownは`CASE-HARNESS-L10-039-r06-input-unknown`、`CASE-HARNESS-L10-039-r06-oracle-unknown`を参照。 | 非UIでもExperience graph必須。欠落したrelationだけを未完とし、要求意味/graphはHARNESS-L2-008/024へ、screen適用性はHARNESS-L2-024へ、設計traceはHARNESS-L2-026/025へ、verification/oracleはHARNESS-L2-005/022へ、source互換性は選択source ownerへ戻す。 |",
+        "raw_lf_sha256": "179e36fc2234e080943268d768ec727ac8ff9ece6c5af49cec4cc0d219602028"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-05",
+        "line": 1354,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-05` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同一scope/revisionの操作可能prototype/walkthroughと、適用されるreal-data/responsive/motion/accessibility/performance/continuity/human-current evidenceがcurrentなUX完了正常例。将来測定前にcandidateを開始できる別正常例を含む。AC-02の単独定義IDは全て次を含む: `CASE-HARNESS-L10-039-05`, `CASE-HARNESS-L10-039-root-05-axis-1-missing`, `CASE-HARNESS-L10-039-root-05-axis-1-stale`, `CASE-HARNESS-L10-039-root-05-axis-1-unknown`, `CASE-HARNESS-L10-039-root-05-axis-2-missing`, `CASE-HARNESS-L10-039-root-05-axis-2-stale`, `CASE-HARNESS-L10-039-root-05-axis-2-unknown`, `CASE-HARNESS-L10-039-root-05-axis-3-missing`, `CASE-HARNESS-L10-039-root-05-axis-3-stale`, `CASE-HARNESS-L10-039-root-05-axis-3-unknown`, `CASE-HARNESS-L10-039-root-05-axis-4-missing`, `CASE-HARNESS-L10-039-root-05-axis-4-stale`, `CASE-HARNESS-L10-039-root-05-axis-4-unknown`, `CASE-HARNESS-L10-039-root-05-axis-5-missing`, `CASE-HARNESS-L10-039-root-05-axis-5-stale`, `CASE-HARNESS-L10-039-root-05-axis-5-unknown`, `CASE-HARNESS-L10-039-root-05-axis-6-missing`, `CASE-HARNESS-L10-039-root-05-axis-6-stale`, `CASE-HARNESS-L10-039-root-05-axis-6-unknown`, `CASE-HARNESS-L10-039-root-05-axis-7-missing`, `CASE-HARNESS-L10-039-root-05-axis-7-stale`, `CASE-HARNESS-L10-039-root-05-axis-7-unknown`, `CASE-HARNESS-L10-039-root-05-ui-na`, `CASE-HARNESS-L10-039-root-05-prototype`, `CASE-HARNESS-L10-039-root-05-walkthrough-scope`, `CASE-HARNESS-L10-039-root-05-walkthrough-revision`, `CASE-HARNESS-L10-039-r03-screenshot-placeholder-completion`, `CASE-HARNESS-L10-039-r17-only-screenshot-implemented`, `CASE-HARNESS-L10-039-r17-only-screenshot-ux-verified`, `CASE-HARNESS-L10-039-r17-only-route-count-implemented`, `CASE-HARNESS-L10-039-r17-only-route-count-ux-verified`, `CASE-HARNESS-L10-039-r17-only-placeholder-implemented`, `CASE-HARNESS-L10-039-r17-only-placeholder-ux-verified`, `CASE-HARNESS-L10-039-r17-only-generic-table-implemented`, `CASE-HARNESS-L10-039-r17-only-generic-table-ux-verified`, `CASE-HARNESS-L10-039-r17-only-prototype-agreement-implemented`, `CASE-HARNESS-L10-039-r17-only-prototype-agreement-ux-verified`, `CASE-HARNESS-L10-039-r09-004`, `CASE-HARNESS-L10-039-r09-005`, `CASE-HARNESS-L10-039-r09-006`, `CASE-HARNESS-L10-039-r10-axis-na`, `CASE-HARNESS-L10-039-r10-screenshot-not-walkthrough`, `CASE-HARNESS-L10-039-r18-screen-count-only-implemented`, `CASE-HARNESS-L10-039-r18-screen-count-only-ux_verified`, `CASE-HARNESS-L10-039-r18-screen-list-not-walkthrough`. | 個別変異は各参照CASEで独立に照合する。unknown applicabilityとUX evidence/scope/revision不一致の区別が既存例で直接分離されない範囲は残余として明記し、ID列挙だけで意味被覆を主張しない。 | このmatrixを独立negative coverageへ数えない。各参照CASEの局所未完と既存owner戻しを個別照合する。 |",
+        "raw_lf_sha256": "d672f6ec458082960fc61636f6488e5d804998ba1252e54174eb2cfc71659da5"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-06",
+        "line": 1355,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-06` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | UX evidenceとdrift/change impactを分け、後者のaffected/unaffected/unknownを同scope/revisionで記録する。 | 集約matrixのみ。affected、unaffected、unknownの各値の欠落を`CASE-HARNESS-L10-039-30`、`CASE-HARNESS-L10-039-31`、`CASE-HARNESS-L10-039-32`で個別に変異する。 | 各状態欠落でdrift評価未完、design driftはHARNESS-L2-026/025へ、要求意味impactはHARNESS-L2-008/024へ個別に戻す。 |",
+        "raw_lf_sha256": "fb4f9450f7629bc0ffe04c7620879f4308c50a3f29359097695210217fc925fd"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-07",
+        "line": 1356,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-07` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 旧20組合せを完全IDで索引する: `CASE-HARNESS-L10-039-26`, `CASE-HARNESS-L10-039-r18-poc-generates-brand`, `CASE-HARNESS-L10-039-r18-poc-generates-priority`, `CASE-HARNESS-L10-039-r18-poc-generates-requirement-adoption`, `CASE-HARNESS-L10-039-27`, `CASE-HARNESS-L10-039-r18-ai-recommendation-generates-vision`, `CASE-HARNESS-L10-039-r18-ai-recommendation-generates-priority`, `CASE-HARNESS-L10-039-r18-ai-recommendation-generates-requirement-adoption`, `CASE-HARNESS-L10-039-28`, `CASE-HARNESS-L10-039-r18-prototype-agreement-generates-vision`, `CASE-HARNESS-L10-039-r18-prototype-agreement-generates-brand`, `CASE-HARNESS-L10-039-r18-prototype-agreement-generates-requirement-adoption`, `CASE-HARNESS-L10-039-r18-unanswered-generates-vision`, `CASE-HARNESS-L10-039-r18-unanswered-generates-brand`, `CASE-HARNESS-L10-039-r18-unanswered-generates-priority`, `CASE-HARNESS-L10-039-r18-unanswered-generates-adoption`, `CASE-HARNESS-L10-039-r18-elapsed-time-generates-vision`, `CASE-HARNESS-L10-039-r18-elapsed-time-generates-brand`, `CASE-HARNESS-L10-039-r18-elapsed-time-generates-priority`, `CASE-HARNESS-L10-039-29`。別軸のcandidate内容生成反例`CASE-HARNESS-L10-039-r18-unanswered-generates-requirement`も参照する。candidate生成とadoptionは別stateとして扱う。 | 索引のみ。20参照先とcandidate内容生成反例の各変異を元定義で個別照合し、本行をfixture分母に加えない。 | 索引のみ。採択/authorityは既存PO/L2境界に従い、candidate生成を採択へまとめない。 |",
+        "raw_lf_sha256": "578592b7f61845417a14f943c8b501c49aa74327cbacb26b240818c494b21336"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-08",
+        "line": 1357,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-08` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | UI scopeで選択された実測条件を既存036へ参照。 | 049を新しい実測戻し先として用いる。 | 049 routeを拒否。実測は既存OS/利用者/LABOへ。 |",
+        "raw_lf_sha256": "c7751a9e3ca76e3a7368203158e5fbd18b56d91590647254a19de96f0913defb"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-09",
+        "line": 1358,
+        "ac_id": "AC-HARNESS-L3-039-05",
+        "literal": "| `CASE-HARNESS-L10-039-09` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-05` | UX結果がまだない段階でも候補起草を続け、結果義務を保持する。 | 将来UX evidenceの未作成だけで起草開始を停止。 | 新しい起草gateを拒否し、候補起草は継続、将来UX義務は保持する。起草開始条件は追加せず、要求意味/合意変更が要る場合だけHARNESS-L2-008/024へ戻す。後段verification義務はHARNESS-L2-005/022へ保持する。 |",
+        "raw_lf_sha256": "499225543c3a0312cc7cf71608f36aa5d552ff087cac655d78f1bcbd06c753b4"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-10",
+        "line": 1359,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-10` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | matrix参照。個別fixtureは`CASE-HARNESS-L10-039-r02-l11-648-api-permission`、`CASE-HARNESS-L10-039-r02-l11-648-interaction-e2e`、`CASE-HARNESS-L10-039-r02-l11-648-event-owner`、`CASE-HARNESS-L10-039-r02-l11-648-token`、`CASE-HARNESS-L10-039-r02-l11-648-content-analytics`、`CASE-HARNESS-L10-039-r02-l11-648-unknown-reuse`、`CASE-HARNESS-L10-039-r03-content-success-mismatch`、`CASE-HARNESS-L10-039-r03-analytics-success-mismatch`、`CASE-HARNESS-L10-039-r03-screen-scope-stale`、`CASE-HARNESS-L10-039-r03-requirement-revision-stale`、`CASE-HARNESS-L10-039-r03-factor-cartesian`、`CASE-HARNESS-L10-039-r03-all-devices`へ結ぶ。省略側は`CASE-HARNESS-L10-039-12`、`CASE-HARNESS-L10-039-13`、`CASE-HARNESS-L10-039-14`へ結ぶ。 | 索引のみ。列挙した各CASEで独立変異を照合する。 | 索引のみ。各参照CASEの単独oracleに戻し、matrixを独立negativeに数えない。 |",
+        "raw_lf_sha256": "a3284706669b3b7b9b88afaf24bfa417f7942a487a76bbdaa24f2d3a00f04555"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-11",
+        "line": 1360,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-11` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 索引：`CASE-HARNESS-L10-039-r17-observation-generates-meaning`と`CASE-HARNESS-L10-039-r17-observation-generates-approval`を個別参照する。 | 索引のみ。個別CASEを実行する。 | 列挙した各CASEの単独oracleを適用し、索引を別変異に数えない。 |",
+        "raw_lf_sha256": "038fbafc58c39e00328d01dd5d6723d11169698a592ae0298e568b5ba0a068c4"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r17-observation-generates-meaning",
+        "line": 1361,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r17-observation-generates-meaning` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | human-current UX observationとvision/brand/priorityの既存意味判断を別状態で記録する。 | UX observationだけから意味判断を生成する。 | 意味判断を生成せず、meaning/adoptionはHARNESS-L2-008/024の既存ownerへ戻す。 |",
+        "raw_lf_sha256": "92314db599134cbe7952a2632a5df7dc72e92a5126e9c13556bd4f37c87eda74"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r17-observation-generates-approval",
+        "line": 1362,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r17-observation-generates-approval` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | human-current UX observationと既存prototype agreement/approval recordを別状態で記録する。 | UX observationだけから承認を生成する。 | 承認を生成せず、HARNESS-L2-024の既存approval ownerへ戻す。 |",
+        "raw_lf_sha256": "7222ae4dcb23453b69dc9ad8ac85083fda9c3caa8aeae5d81e7854903ff01d7b"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-12",
+        "line": 1363,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-12` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | UI契約のdestructive/undo条件を選択scopeへ結ぶ。 | destructive/undo条件だけ欠落。 | 影響範囲をunknownにしHARNESS-L2-026/025の設計境界へ戻す。 |",
+        "raw_lf_sha256": "a8bd42b85cf92e8b0cf280149488b1bbf5bfbdc48a119efa22ee70541a5cc6d3"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-13",
+        "line": 1364,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-13` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | UI契約のrole conditionを選択scopeへ結ぶ。 | role conditionだけ欠落。 | role conditionの欠落をunknownにし対象scopeを未完にする。HARNESS-L2-008/026の既存ownerへ戻す。 |",
+        "raw_lf_sha256": "6fd776093208729b541cd32baf7182f662cc17662e31608ea1ce3850b644d953"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-14",
+        "line": 1365,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-14` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | locale conditionを適用時だけ対象へ結ぶ。 | locale conditionだけ欠落。 | locale conditionの欠落をunknownにしaffected/unaffectedを推測しない。HARNESS-L2-008/026の既存ownerへ戻す。 |",
+        "raw_lf_sha256": "e12ac96c8ea9e316422419f5fe8c0b1ce8fb101f7ee1aff0682fda0d915203c5"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-15",
+        "line": 1366,
+        "ac_id": "AC-HARNESS-L3-039-05",
+        "literal": "| `CASE-HARNESS-L10-039-15` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-05` | 選択UI scopeで旧artifact条件を現行契約に適用。 | 全UI scopeへ旧artifact一式/S0-S4を必須化する。 | 全scopeへの過剰強化を拒否し、選択UI scopeの設計はHARNESS-L2-026/025、prototype agreement不足は024へ戻す。 |",
+        "raw_lf_sha256": "060d3b3b2a90bbd89416b3cac03051629d64f7ee89a6c06b7395c8af8091d590"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-16",
+        "line": 1367,
+        "ac_id": "AC-HARNESS-L3-039-05",
+        "literal": "| `CASE-HARNESS-L10-039-16` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-05` | 非UI scopeにscreen artifact義務を導入しない。 | 非UIへscreen ledgerを要求する。 | 非UIへのscope外適用を拒否し、HARNESS-L2-024の既存applicability ownerへ戻す。 |",
+        "raw_lf_sha256": "c7c097ea1f8f02deb6734e58909d102439e1ef8b1e6c860fd3f5653342f9c4a5"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-17",
+        "line": 1368,
+        "ac_id": "AC-HARNESS-L3-039-05",
+        "literal": "| `CASE-HARNESS-L10-039-17` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-05` | Full V/Scrum選択scopeの既存pair oracleを適用。 | 未作成UX evidenceからSR4/Full V closureを生成する。 | closureを生成せず、該当stageを未完にする。backfill意味はHARNESS-L2-024、verification義務はHARNESS-L2-005/022へ戻す。 |",
+        "raw_lf_sha256": "d89db7c58b845c5ee1da60f1729940780067d0f1aad7e729f18fc518c7608f5d"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-18",
+        "line": 1369,
+        "ac_id": "AC-HARNESS-L3-039-05",
+        "literal": "| `CASE-HARNESS-L10-039-18` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-05` | backfill変更を既存scope/revisionで追跡。 | backfill relation欠落を隠す。 | 未完/unknownとして、対象scopeの現行V-pairで対応するlayerの条件とその受入へ返す。screen/prototype合意はHARNESS-L2-024、設計traceは026/025、検証oracle・段階証拠は005/022の該当受入条件を用いる。実行・記録だけの不足は既存OS責務へ渡す。 |",
+        "raw_lf_sha256": "a8580862d43656e2f9a7936c53c8fbbc028db610cf660fab0c5cd5ac3343f117"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-26",
+        "line": 1370,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-26` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | PoCをPoC候補のまま保持。 | PoCだけからvisionを作る。 | visionを生成せずHARNESS-L2-008/024へ戻す。 |",
+        "raw_lf_sha256": "7d902e8ed8285a02104f3d929df644fe4ab66977228304f1b9762b5ef4aa6030"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-27",
+        "line": 1371,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-27` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | AI recommendationを提案資料に限る。 | recommendationだけからbrandを作る。 | brandを生成せずHARNESS-L2-008/024へ戻す。 |",
+        "raw_lf_sha256": "13bff7c93391cd25c3b52a8292e70a46a674445d3e4c17bc2219e9ee943f3280"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-28",
+        "line": 1372,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-28` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 人の既存prototype agreement/currentと対象要求source、scope/revision、既存priority記録を有効な別fieldとして固定する。 | agreementだけからpriorityを生成する。 | priorityを生成せず、意味/採否はHARNESS-L2-008/024の既存境界へ戻す。 |",
+        "raw_lf_sha256": "7cf9004f76a67dcff16d7bbd92bb9225b88667b2a7052ef1a339e172f28229ec"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-29",
+        "line": 1373,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-29` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | elapsed time、対象要求source、既存要求採択のauthority記録を有効な同一scope/revisionで分けて記録する。 | 時間経過だけから要求採択状態を生成する。 | 要求採択を生成せず、意味/採否はHARNESS-L2-008/024の既存境界へ戻す。 |",
+        "raw_lf_sha256": "b67f886f8ff21c3499b61ce09bfdfc3300d01169291b32504f623b0f54885867"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-30",
+        "line": 1374,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-30` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 選択scopeのUX evidenceとdrift/change impactを分離し、affected/unaffected/unknownを記録する。 | affected状態だけを記録から落とす。 | 状態を推測せずdrift評価を未完にし、設計impactはHARNESS-L2-026/025、要求意味impactはHARNESS-L2-008/024へ戻す。 |",
+        "raw_lf_sha256": "1ff6b57ee3a9408f8da13a504f2c28d53a66b5b5027dcac0ade7e5865ccf4daf"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-31",
+        "line": 1375,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-31` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 選択scopeのUX evidenceとdrift/change impactを分離し、affected/unaffected/unknownを記録する。 | unaffected状態だけを記録から落とす。 | 状態を推測せずdrift評価を未完にし、設計impactはHARNESS-L2-026/025、要求意味impactはHARNESS-L2-008/024へ戻す。 |",
+        "raw_lf_sha256": "e0332c8a736c2dcb823266250b4555699f2495adbdf2c9dd628366132182e2fa"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-32",
+        "line": 1376,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-32` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 選択scopeのUX evidenceとdrift/change impactを分離し、affected/unaffected/unknownを記録する。 | unknown状態だけを記録から落とす。 | 状態を推測せずdrift評価を未完にし、設計impactはHARNESS-L2-026/025、要求意味impactはHARNESS-L2-008/024へ戻す。 |",
+        "raw_lf_sha256": "8a3c33e1d4dbcd133bfbb692c4ddec1c62ee34ca052df08497e02e8e9af016b1"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-root-05-axis-1-missing",
+        "line": 1377,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-root-05-axis-1-missing` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同scope/revisionの操作可能prototypeと7軸current evidenceを揃える。real-data以外の6軸も正常。 | real-data evidenceだけmissingにする。 | UX完了claimだけ未成立にしHARNESS-L2-005の選択済みverification dutyまたはHARNESS-L2-022の既存pair oracleへ戻す。candidate開始は妨げず他軸successで相殺しない。 |",
+        "raw_lf_sha256": "c3dfd56797d928c5cfeb3d661d5ff81aa68bb78b00246bacb73ea0ee30717c78"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-root-05-axis-1-stale",
+        "line": 1378,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-root-05-axis-1-stale` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同scope/revisionの操作可能prototypeと7軸current evidenceを揃える。real-data以外の6軸も正常。 | real-data evidenceだけstaleにする。 | UX完了claimだけ未成立にしHARNESS-L2-005の選択済みverification dutyまたはHARNESS-L2-022の既存pair oracleへ戻す。candidate開始は妨げず他軸successで相殺しない。 |",
+        "raw_lf_sha256": "4f350fc29af1fcdfd38231847213189bcc3a6b2abe9e3c54ab104e15c81a2f1c"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-root-05-axis-1-unknown",
+        "line": 1379,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-root-05-axis-1-unknown` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同scope/revisionの操作可能prototypeと7軸current evidenceを揃える。real-data以外の6軸も正常。 | real-data evidenceだけunknownにする。 | UX完了claimだけ未成立にしHARNESS-L2-005の選択済みverification dutyまたはHARNESS-L2-022の既存pair oracleへ戻す。candidate開始は妨げず他軸successで相殺しない。 |",
+        "raw_lf_sha256": "d64f40c37e64fe03f05f74785059da3f3fdcf41e4df0f3e014455ec184c43bd0"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-root-05-axis-2-missing",
+        "line": 1380,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-root-05-axis-2-missing` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同scope/revisionの操作可能prototypeと7軸current evidenceを揃える。responsive以外の6軸も正常。 | responsive evidenceだけmissingにする。 | UX完了claimだけ未成立にしHARNESS-L2-005の選択済みverification dutyまたはHARNESS-L2-022の既存pair oracleへ戻す。candidate開始は妨げず他軸successで相殺しない。 |",
+        "raw_lf_sha256": "5e881693c8c1518eed7d7123b050eab8116e9cfb766d57d11b444b9285caa0f1"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-root-05-axis-2-stale",
+        "line": 1381,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-root-05-axis-2-stale` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同scope/revisionの操作可能prototypeと7軸current evidenceを揃える。responsive以外の6軸も正常。 | responsive evidenceだけstaleにする。 | UX完了claimだけ未成立にしHARNESS-L2-005の選択済みverification dutyまたはHARNESS-L2-022の既存pair oracleへ戻す。candidate開始は妨げず他軸successで相殺しない。 |",
+        "raw_lf_sha256": "26c122ac427aec0f2123f65fff32aa32d813ec1525530678963c6638f6416b0a"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-root-05-axis-2-unknown",
+        "line": 1382,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-root-05-axis-2-unknown` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同scope/revisionの操作可能prototypeと7軸current evidenceを揃える。responsive以外の6軸も正常。 | responsive evidenceだけunknownにする。 | UX完了claimだけ未成立にしHARNESS-L2-005の選択済みverification dutyまたはHARNESS-L2-022の既存pair oracleへ戻す。candidate開始は妨げず他軸successで相殺しない。 |",
+        "raw_lf_sha256": "437146cd413ff9938a3b3109702c7b6a11112a897d4409c8967d5279e5fc4f34"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-root-05-axis-3-missing",
+        "line": 1383,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-root-05-axis-3-missing` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同scope/revisionの操作可能prototypeと7軸current evidenceを揃える。motion以外の6軸も正常。 | motion evidenceだけmissingにする。 | UX完了claimだけ未成立にしHARNESS-L2-005の選択済みverification dutyまたはHARNESS-L2-022の既存pair oracleへ戻す。candidate開始は妨げず他軸successで相殺しない。 |",
+        "raw_lf_sha256": "f6ea3f7a43b4076e513cb249009c589ea3f1fd57020f0cae10ba7cc1f52d94d6"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-root-05-axis-3-stale",
+        "line": 1384,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-root-05-axis-3-stale` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同scope/revisionの操作可能prototypeと7軸current evidenceを揃える。motion以外の6軸も正常。 | motion evidenceだけstaleにする。 | UX完了claimだけ未成立にしHARNESS-L2-005の選択済みverification dutyまたはHARNESS-L2-022の既存pair oracleへ戻す。candidate開始は妨げず他軸successで相殺しない。 |",
+        "raw_lf_sha256": "c27b06c2be47a58b082c1799e13673f9055fd96789324d18c926a4f972cad081"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-root-05-axis-3-unknown",
+        "line": 1385,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-root-05-axis-3-unknown` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同scope/revisionの操作可能prototypeと7軸current evidenceを揃える。motion以外の6軸も正常。 | motion evidenceだけunknownにする。 | UX完了claimだけ未成立にしHARNESS-L2-005の選択済みverification dutyまたはHARNESS-L2-022の既存pair oracleへ戻す。candidate開始は妨げず他軸successで相殺しない。 |",
+        "raw_lf_sha256": "df2e66347fe247f20ad2d1fdfafb4cfb1bd97c1c18e09ff9f72b2f48f81de605"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-root-05-axis-4-missing",
+        "line": 1386,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-root-05-axis-4-missing` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同scope/revisionの操作可能prototypeと7軸current evidenceを揃える。accessibility以外の6軸も正常。 | accessibility evidenceだけmissingにする。 | UX完了claimだけ未成立にしHARNESS-L2-005の選択済みverification dutyまたはHARNESS-L2-022の既存pair oracleへ戻す。candidate開始は妨げず他軸successで相殺しない。 |",
+        "raw_lf_sha256": "222a0025d362de3fad4676962568814dbc41d1e1b74ed114db299b4ec2ee8678"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-root-05-axis-4-stale",
+        "line": 1387,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-root-05-axis-4-stale` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同scope/revisionの操作可能prototypeと7軸current evidenceを揃える。accessibility以外の6軸も正常。 | accessibility evidenceだけstaleにする。 | UX完了claimだけ未成立にしHARNESS-L2-005の選択済みverification dutyまたはHARNESS-L2-022の既存pair oracleへ戻す。candidate開始は妨げず他軸successで相殺しない。 |",
+        "raw_lf_sha256": "5d23dd381eaa224453d9104fb7f4e41fc3d4e0b5bc98065252dd5241b2690ad6"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-root-05-axis-4-unknown",
+        "line": 1388,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-root-05-axis-4-unknown` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同scope/revisionの操作可能prototypeと7軸current evidenceを揃える。accessibility以外の6軸も正常。 | accessibility evidenceだけunknownにする。 | UX完了claimだけ未成立にしHARNESS-L2-005の選択済みverification dutyまたはHARNESS-L2-022の既存pair oracleへ戻す。candidate開始は妨げず他軸successで相殺しない。 |",
+        "raw_lf_sha256": "0f0914a9fa70cac3baea5b4b0d62cc4fff301473bf97d1bdbb89f361c493876f"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-root-05-axis-5-missing",
+        "line": 1389,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-root-05-axis-5-missing` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同scope/revisionの操作可能prototypeと7軸current evidenceを揃える。performance以外の6軸も正常。 | performance evidenceだけmissingにする。 | UX完了claimだけ未成立にしHARNESS-L2-005の選択済みverification dutyまたはHARNESS-L2-022の既存pair oracleへ戻す。candidate開始は妨げず他軸successで相殺しない。 |",
+        "raw_lf_sha256": "2a11a266ef2480a1f97b980928058b7162c0824ebae1eba8c4820014158fbaf5"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-root-05-axis-5-stale",
+        "line": 1390,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-root-05-axis-5-stale` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同scope/revisionの操作可能prototypeと7軸current evidenceを揃える。performance以外の6軸も正常。 | performance evidenceだけstaleにする。 | UX完了claimだけ未成立にしHARNESS-L2-005の選択済みverification dutyまたはHARNESS-L2-022の既存pair oracleへ戻す。candidate開始は妨げず他軸successで相殺しない。 |",
+        "raw_lf_sha256": "fcf278ad9584c165fa87f8ede8bb77e982a44cf630b1ab29662411a201f5d037"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-root-05-axis-5-unknown",
+        "line": 1391,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-root-05-axis-5-unknown` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同scope/revisionの操作可能prototypeと7軸current evidenceを揃える。performance以外の6軸も正常。 | performance evidenceだけunknownにする。 | UX完了claimだけ未成立にしHARNESS-L2-005の選択済みverification dutyまたはHARNESS-L2-022の既存pair oracleへ戻す。candidate開始は妨げず他軸successで相殺しない。 |",
+        "raw_lf_sha256": "c5b58b79f91875a921d6f9630ca9ae61a3c3eefc92b829e03717a0dcc7390020"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-root-05-axis-6-missing",
+        "line": 1392,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-root-05-axis-6-missing` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同scope/revisionの操作可能prototypeと7軸current evidenceを揃える。continuity以外の6軸も正常。 | continuity evidenceだけmissingにする。 | UX完了claimだけ未成立にしHARNESS-L2-005の選択済みverification dutyまたはHARNESS-L2-022の既存pair oracleへ戻す。candidate開始は妨げず他軸successで相殺しない。 |",
+        "raw_lf_sha256": "bf58e048fca3854c8cba01ccbfce9e8c0fbf61d8336d83e28c2c932133d7ccaf"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-root-05-axis-6-stale",
+        "line": 1393,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-root-05-axis-6-stale` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同scope/revisionの操作可能prototypeと7軸current evidenceを揃える。continuity以外の6軸も正常。 | continuity evidenceだけstaleにする。 | UX完了claimだけ未成立にしHARNESS-L2-005の選択済みverification dutyまたはHARNESS-L2-022の既存pair oracleへ戻す。candidate開始は妨げず他軸successで相殺しない。 |",
+        "raw_lf_sha256": "aef3aa31b521752a4179bfe085e7f056588aaabf4824e3fbf9ce1d48355649f1"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-root-05-axis-6-unknown",
+        "line": 1394,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-root-05-axis-6-unknown` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同scope/revisionの操作可能prototypeと7軸current evidenceを揃える。continuity以外の6軸も正常。 | continuity evidenceだけunknownにする。 | UX完了claimだけ未成立にしHARNESS-L2-005の選択済みverification dutyまたはHARNESS-L2-022の既存pair oracleへ戻す。candidate開始は妨げず他軸successで相殺しない。 |",
+        "raw_lf_sha256": "c87257debbb4a31ca4d6803e9d4162c68573ba23a9e7cef3cc4ae153c8324e47"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-root-05-axis-7-missing",
+        "line": 1395,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-root-05-axis-7-missing` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同scope/revisionの操作可能prototypeと7軸current evidenceを揃える。human-current以外の6軸も正常。 | human-current evidenceだけmissingにする。 | UX完了claimだけ未成立にしHARNESS-L2-005の選択済みverification dutyまたはHARNESS-L2-022の既存pair oracleへ戻す。candidate開始は妨げず他軸successで相殺しない。 |",
+        "raw_lf_sha256": "d099f75d8a443c78aa42361f2a793d3584a2ab4fd3bca39ebd24abd47f671cce"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-root-05-axis-7-stale",
+        "line": 1396,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-root-05-axis-7-stale` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同scope/revisionの操作可能prototypeと7軸current evidenceを揃える。human-current以外の6軸も正常。 | human-current evidenceだけstaleにする。 | UX完了claimだけ未成立にしHARNESS-L2-005の選択済みverification dutyまたはHARNESS-L2-022の既存pair oracleへ戻す。candidate開始は妨げず他軸successで相殺しない。 |",
+        "raw_lf_sha256": "84bfa93b733bda82802073fad441b83af4664a8464967f33eb616f35eb431e43"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-root-05-axis-7-unknown",
+        "line": 1397,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-root-05-axis-7-unknown` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同scope/revisionの操作可能prototypeと7軸current evidenceを揃える。human-current以外の6軸も正常。 | human-current evidenceだけunknownにする。 | UX完了claimだけ未成立にしHARNESS-L2-005の選択済みverification dutyまたはHARNESS-L2-022の既存pair oracleへ戻す。candidate開始は妨げず他軸successで相殺しない。 |",
+        "raw_lf_sha256": "7a1e2e08aeb93f6e1f307d134de07cb7211ee9d05733a2d87d35b69a926c0646"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-root-05-ui-na",
+        "line": 1398,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-root-05-ui-na` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | selected UI scope/revision、prototype、他6軸のcurrent evidenceと適用oracleを固定する。 | human-current軸だけを理由なくN/Aへ変える。 | UI対象の必須UX evidenceをN/Aで完了扱いせず、UX完了claimを拒否する。HARNESS-L2-005の選択済みverification dutyまたはHARNESS-L2-022の既存pair oracleへ返し、他結果とcandidate開始可能性は保持する。 |",
+        "raw_lf_sha256": "3eae1ff8256d6324d0dee714315a0ee9040133bcfee3f8ed94d51ad1935c91d1"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-root-05-prototype",
+        "line": 1399,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-root-05-prototype` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同scope/revisionの操作可能prototypeと7軸current evidenceを揃える。 | prototypeだけ操作不能にする。 | prototype/walkthroughのscope・revision・agreement不一致はHARNESS-L2-024の既存合意routeへ戻す。検証義務・pair oracle自体の不足が別に見つかった場合だけHARNESS-L2-005/022の各既存ownerへ戻す。UX完了claimを拒否する。他結果と開始可能性は保持。 |",
+        "raw_lf_sha256": "9a2982df430558f005329e777a59b2f11e925c1a4083bab21019d5a2f3ff181a"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-root-05-walkthrough-scope",
+        "line": 1400,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-root-05-walkthrough-scope` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同scope/revisionの操作可能prototypeと7軸current evidenceを揃える。 | walkthroughのscopeだけ別scopeへ変える。 | prototype/walkthroughのscope・revision・agreement不一致はHARNESS-L2-024の既存合意routeへ戻す。検証義務・pair oracle自体の不足が別に見つかった場合だけHARNESS-L2-005/022の各既存ownerへ戻す。UX完了claimを拒否する。他結果と開始可能性は保持。 |",
+        "raw_lf_sha256": "127c9c522b7c42b68698acf8b609b87010b8ead8eb14474960d8f98dbc921263"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-root-05-walkthrough-revision",
+        "line": 1401,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-root-05-walkthrough-revision` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同scope/revisionの操作可能prototypeと7軸current evidenceを揃える。 | walkthroughのrevisionだけ別revisionへ変える。 | prototype/walkthroughのscope・revision・agreement不一致はHARNESS-L2-024の既存合意routeへ戻す。検証義務・pair oracle自体の不足が別に見つかった場合だけHARNESS-L2-005/022の各既存ownerへ戻す。UX完了claimを拒否する。他結果と開始可能性は保持。 |",
+        "raw_lf_sha256": "c20f44a4f297a0267d677e5651c041dbf71e735706363ec0478c3f4a01670a1c"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r02x-l11-648-stale",
+        "line": 1402,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r02x-l11-648-stale` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | screen scopeまたは要求revision staleのindex参照。 | 独立fixtureとして数えない。 | `CASE-HARNESS-L10-039-r03-screen-scope-stale` / `CASE-HARNESS-L10-039-r03-requirement-revision-stale`に従いunknownを保つ。 |",
+        "raw_lf_sha256": "76c1117c474d68e2102c994d168fe3f00d232c59349eef2b7fd4fbbe819bd2f5"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r02-l11-648-api-permission",
+        "line": 1403,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r02-l11-648-api-permission` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 画面/APIで許可差がある同scope契約。 | API許可だけを変更し画面許可をcurrentのまま保持。 | 要求意味差ならHARNESS-L2-008、design trace/compositionなら026/025へ返す。 |",
+        "raw_lf_sha256": "8e92243967239f76348f37d399df81995740c2c73b573b473180761864ce677a"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r02-l11-648-interaction-e2e",
+        "line": 1404,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r02-l11-648-interaction-e2e` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | interaction定義とE2E対応が同revisionで一致。 | E2E対応だけを欠落。 | interactionは保持しE2E relationだけを未完にしてHARNESS-L2-005/022の既存検証責務へ返す。 |",
+        "raw_lf_sha256": "2ea6ad6686bef32693e9c0d8b9b36b10f8fd919021739ef9b972e509a76dfe5c"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r02-l11-648-event-owner",
+        "line": 1405,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r02-l11-648-event-owner` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | eventとdata ownerが各一つ同scopeで識別される。 | data ownerだけを不明化。 | owner unknownを保持し影響なしへ分類せず、HARNESS-L2-026の既存data-owner/design責務へ返す。 |",
+        "raw_lf_sha256": "a4484a500128c9639ff042a384e94a29071dbafbdfdc993a80e6062924003d8d"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r02-l11-648-token",
+        "line": 1406,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r02-l11-648-token` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 選択screen token source/revisionがcurrent。 | CSS/component側だけをtoken/design contractと不一致にする。 | 影響をunknownにし026/025へ戻す。 |",
+        "raw_lf_sha256": "2fb3a3df93e3af129e0a79f6a4efe6b5afbfeb2a2bc455601bcf8404b7aa97a0"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r02-l11-648-content-analytics",
+        "line": 1407,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r02-l11-648-content-analytics` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | analytics relationと成功条件の関係がcurrent。 | analytics relationだけを切断する。 | 該当relationだけ未完として008/026/025の既存境界へ戻す。 |",
+        "raw_lf_sha256": "6d673fdae823ead355012ab60c036874ebce506008bb8c1463aeaaa66353d619"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r02-l11-648-unknown-reuse",
+        "line": 1408,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r02-l11-648-unknown-reuse` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 同scopeの変更impactをaffected/unaffected/unknownで分類する正常例。 | unknownをunaffectedとして再利用する。 | 誤分類を拒否しHARNESS-L2-026/025/022の該当既存責務へ返す。 |",
+        "raw_lf_sha256": "1622d45bd1d41b2bfcde4a7910a2891d677ff81d60516aae02f4a08bf67c8dbd"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r02-l11-652-risk-pairwise",
+        "line": 1409,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r02-l11-652-risk-pairwise` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | risk根拠に基づく選択factorのpairwise coverageを示すmatrix参照。 | 全factor直積と全device総当たりは独立`CASE-HARNESS-L10-039-r03-factor-cartesian` / `CASE-HARNESS-L10-039-r03-all-devices`で試す。 | matrixをnegative coverageへ数えず、個々の過剰要求だけを拒否する。 |",
+        "raw_lf_sha256": "3db78453bbcc5aa197710deb73ba12dff1b8b73b90b5f8530cf0c3e7d449de7b"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r03-api-permission-mismatch",
+        "line": 1410,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r03-api-permission-mismatch` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | `CASE-HARNESS-L10-039-r02-l11-648-api-permission`の索引参照。 | 独立変異として数えない。 | 参照先CASEの同じoracleを照合し二重計上しない。 |",
+        "raw_lf_sha256": "7d9e2f433d2dcaf61570de8540e748bd984644bedc29b87ddc4e9945dd1872f4"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r03-css-token-mismatch",
+        "line": 1411,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r03-css-token-mismatch` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | `CASE-HARNESS-L10-039-r02-l11-648-token`の索引参照。 | 独立変異として数えない。 | 参照先CASEの同じoracleを照合し二重計上しない。 |",
+        "raw_lf_sha256": "6a953e507a4a71b17333ffbac6f2de9af4ff819f7cf4300b5fee9fdf90bebb1e"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r03-content-success-mismatch",
+        "line": 1412,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r03-content-success-mismatch` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | contentと要求された成功条件が同じscope/revisionで一致する。 | contentだけを成功条件と不一致にする。 | 内容差を成功扱いせず、意味差は008、設計関係は026/025へ返す。 |",
+        "raw_lf_sha256": "eb457e373bc4e1d837330b9927625fc2c7febbea3dd22244d2dc227ebe1109a9"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r03-analytics-success-mismatch",
+        "line": 1413,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r03-analytics-success-mismatch` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | analytics eventと成功条件のrelationがcurrent。 | event/relationだけを成功条件と不一致にする。 | relationをunknownにし008/026/025の既存境界へ返す。 |",
+        "raw_lf_sha256": "d10e712ac4017cc58a805cfba045a4e9b17e0477041a930b8d8a43c6dabe2da6"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r03-screen-scope-stale",
+        "line": 1414,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r03-screen-scope-stale` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | selected screen scopeのidentity/revisionがcurrent。 | screen scopeだけをstaleにする。 | non-applicableへ落とさず024へ戻し、影響はunknownにする。 |",
+        "raw_lf_sha256": "5251253b7f01ff3512c823a3c5c44a8d16254f83bfaf902928af7101c89a92f0"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r03-requirement-revision-stale",
+        "line": 1415,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r03-requirement-revision-stale` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | screen relationが対象要求revisionに結ばれる。 | 要求revisionだけを古い値にする。 | stale relationを成功にせず008へ戻す。 |",
+        "raw_lf_sha256": "764642376cb9373ba4042fb2a0e48f81da889ebfc09f9625b1623c8ff286f3e1"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r03-factor-cartesian",
+        "line": 1416,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r03-factor-cartesian` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | risk根拠に応じて選択factor間のpairwise coverageを示す。 | 根拠なしに全factor直積を要求する。 | 過剰要求を拒否し005の選択済み検証義務へ戻す。 |",
+        "raw_lf_sha256": "130944dbbfdd46e935b470561a50757407ec412f34ff852b1236099c59a908df"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r03-all-devices",
+        "line": 1417,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r03-all-devices` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | risk根拠に応じ選択device条件の代表pairwiseを示し、選択scope/revisionと対象sourceを保持する。 | 全device機種の総当たりを一律要求する。 | 一律の全device要求を拒否する。選択factor/riskとticket別検証義務はHARNESS-L2-005へ戻す。実行・結果記録が欠ける場合のみ既存OS/利用者責務へ返し、個別source identityが特定できない部分はunknownのままにする。 |",
+        "raw_lf_sha256": "53b7015d765ec458530e5a8f54c24b6047fcaeeccbb8527350b9060216948442"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r03-apparent-parent-graph",
+        "line": 1418,
+        "ac_id": "AC-HARNESS-L3-039-01",
+        "literal": "| `CASE-HARNESS-L10-039-r03-apparent-parent-graph` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-01` | requirement atomとUser Task/Business Outcome/scenario/success/rationaleの意味関係を辿れる。 | 同じ曖昧なparent語句を貼るだけで関係が辿れない。 | graph不成立としてHARNESS-L2-008/024へ戻し、parent語句だけで意味関係を補わない。 |",
+        "raw_lf_sha256": "c12040c71cbff98638eb8bc440f70033498485914a8022b074fcb4ea252cf06b"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r03-screenshot-placeholder-completion",
+        "line": 1419,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-r03-screenshot-placeholder-completion` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 索引：代用物×主張stateの単独CASEを直接参照する：`CASE-HARNESS-L10-039-r17-only-screenshot-implemented`, `CASE-HARNESS-L10-039-r17-only-screenshot-ux-verified`, `CASE-HARNESS-L10-039-r17-only-route-count-implemented`, `CASE-HARNESS-L10-039-r17-only-route-count-ux-verified`, `CASE-HARNESS-L10-039-r17-only-placeholder-implemented`, `CASE-HARNESS-L10-039-r17-only-placeholder-ux-verified`, `CASE-HARNESS-L10-039-r17-only-generic-table-implemented`, `CASE-HARNESS-L10-039-r17-only-generic-table-ux-verified`, `CASE-HARNESS-L10-039-r17-only-prototype-agreement-implemented`, `CASE-HARNESS-L10-039-r17-only-prototype-agreement-ux-verified`, `CASE-HARNESS-L10-039-r18-screen-count-only-implemented`, `CASE-HARNESS-L10-039-r18-screen-count-only-ux_verified`。 | 参照先は代用物ごと・stateごとに独立判定する。 | 索引は実行せず、列挙した各単独CASEでstate昇格を判定する。 |",
+        "raw_lf_sha256": "76b5787b886e9670080a941636bd6e60d50733422f3235bd4269b4042befe7ae"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r17-only-screenshot-implemented",
+        "line": 1420,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-r17-only-screenshot-implemented` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同一UI対象scope/revisionで、現行V-pairの実装/検証関係が対象scope/revisionで成立し、implementedの根拠がcurrentである。 screenshotも観測記録の一つとして保持する。 | screenshotだけを実装証拠として残し、V-pairの実装/検証関係を置換する。 | 代用物だけで状態を昇格させず、implementedは現行V-pair、ux_verifiedは適用scopeのL10–L12 real-data evidenceとhuman evaluationを別々に照合する。不足・不一致はHARNESS-L2-005/022の既存oracle境界へ戻す。 |",
+        "raw_lf_sha256": "7ee668674516368d52202a8b4877062dc97cde9c37946c25302ba370c5e2c215"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r17-only-screenshot-ux-verified",
+        "line": 1421,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-r17-only-screenshot-ux-verified` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同一UI対象scope/revisionで、L10–L12の適用可能なreal-data evidenceとhuman evaluationが揃い、ux_verified根拠がcurrentである。screenshotも観測記録の一つとして保持する。 | screenshotだけをux_verified証拠として残し、real-data evidenceとhuman evaluationを置換する。 | 代用物だけで状態を昇格させず、implementedは現行V-pair、ux_verifiedは適用scopeのL10–L12 real-data evidenceとhuman evaluationを別々に照合する。不足・不一致はHARNESS-L2-005/022の既存oracle境界へ戻す。 |",
+        "raw_lf_sha256": "52c191bf4375369fd03e9d94b056984b1d91730979c165a311bae23244a4e6d7"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r17-only-route-count-implemented",
+        "line": 1422,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-r17-only-route-count-implemented` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同一UI対象scope/revisionで、現行V-pairの実装/検証関係が対象scope/revisionで成立し、implementedの根拠がcurrentである。 route countも観測記録の一つとして保持する。 | route countだけを実装証拠として残し、V-pairの実装/検証関係を置換する。 | 代用物だけで状態を昇格させず、implementedは現行V-pair、ux_verifiedは適用scopeのL10–L12 real-data evidenceとhuman evaluationを別々に照合する。不足・不一致はHARNESS-L2-005/022の既存oracle境界へ戻す。 |",
+        "raw_lf_sha256": "fd0a75d49beac09af7ec971e6b30669554ea22566dcb3ba229765ded6ce5368e"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r17-only-route-count-ux-verified",
+        "line": 1423,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-r17-only-route-count-ux-verified` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同一UI対象scope/revisionで、L10–L12の適用可能なreal-data evidenceとhuman evaluationが揃い、ux_verified根拠がcurrentである。route countも観測記録の一つとして保持する。 | route countだけをux_verified証拠として残し、real-data evidenceとhuman evaluationを置換する。 | 代用物だけで状態を昇格させず、implementedは現行V-pair、ux_verifiedは適用scopeのL10–L12 real-data evidenceとhuman evaluationを別々に照合する。不足・不一致はHARNESS-L2-005/022の既存oracle境界へ戻す。 |",
+        "raw_lf_sha256": "fb3e3841ab8e6a388fcf1158c78e18126054d5312683a6fef5d857cdf233ed06"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r17-only-placeholder-implemented",
+        "line": 1424,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-r17-only-placeholder-implemented` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同一UI対象scope/revisionで、現行V-pairの実装/検証関係が対象scope/revisionで成立し、implementedの根拠がcurrentである。 placeholderも観測記録の一つとして保持する。 | placeholderだけを実装証拠として残し、V-pairの実装/検証関係を置換する。 | 代用物だけで状態を昇格させず、implementedは現行V-pair、ux_verifiedは適用scopeのL10–L12 real-data evidenceとhuman evaluationを別々に照合する。不足・不一致はHARNESS-L2-005/022の既存oracle境界へ戻す。 |",
+        "raw_lf_sha256": "9551ea6ad304eb50e5bc7dc588e4263e55e799238337829aaf6f3de4ad2b025f"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r17-only-placeholder-ux-verified",
+        "line": 1425,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-r17-only-placeholder-ux-verified` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同一UI対象scope/revisionで、L10–L12の適用可能なreal-data evidenceとhuman evaluationが揃い、ux_verified根拠がcurrentである。placeholderも観測記録の一つとして保持する。 | placeholderだけをux_verified証拠として残し、real-data evidenceとhuman evaluationを置換する。 | 代用物だけで状態を昇格させず、implementedは現行V-pair、ux_verifiedは適用scopeのL10–L12 real-data evidenceとhuman evaluationを別々に照合する。不足・不一致はHARNESS-L2-005/022の既存oracle境界へ戻す。 |",
+        "raw_lf_sha256": "3d58e7939a4c6227f8d758065f637ad71f2d01b340b6500975b285b252ef5446"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r17-only-generic-table-implemented",
+        "line": 1426,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-r17-only-generic-table-implemented` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同一UI対象scope/revisionで、現行V-pairの実装/検証関係が対象scope/revisionで成立し、implementedの根拠がcurrentである。 generic tableも観測記録の一つとして保持する。 | generic tableだけを実装証拠として残し、V-pairの実装/検証関係を置換する。 | 代用物だけで状態を昇格させず、implementedは現行V-pair、ux_verifiedは適用scopeのL10–L12 real-data evidenceとhuman evaluationを別々に照合する。不足・不一致はHARNESS-L2-005/022の既存oracle境界へ戻す。 |",
+        "raw_lf_sha256": "346ff9b9f3d8a56a980e432d2eafc9dac2ca1e6029697bcd273f85c673b17a97"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r17-only-generic-table-ux-verified",
+        "line": 1427,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-r17-only-generic-table-ux-verified` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同一UI対象scope/revisionで、L10–L12の適用可能なreal-data evidenceとhuman evaluationが揃い、ux_verified根拠がcurrentである。generic tableも観測記録の一つとして保持する。 | generic tableだけをux_verified証拠として残し、real-data evidenceとhuman evaluationを置換する。 | 代用物だけで状態を昇格させず、implementedは現行V-pair、ux_verifiedは適用scopeのL10–L12 real-data evidenceとhuman evaluationを別々に照合する。不足・不一致はHARNESS-L2-005/022の既存oracle境界へ戻す。 |",
+        "raw_lf_sha256": "9c9bd969956f73fc919b796cad635b553d4b0d107a257e969b290d73570c7e64"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r17-only-prototype-agreement-implemented",
+        "line": 1428,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-r17-only-prototype-agreement-implemented` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同一UI対象scope/revisionで、現行V-pairの実装/検証関係が対象scope/revisionで成立し、implementedの根拠がcurrentである。 prototype agreementも観測記録の一つとして保持する。 | prototype agreementだけを実装証拠として残し、V-pairの実装/検証関係を置換する。 | 代用物だけで状態を昇格させず、implementedは現行V-pair、ux_verifiedは適用scopeのL10–L12 real-data evidenceとhuman evaluationを別々に照合する。不足・不一致はHARNESS-L2-005/022の既存oracle境界へ戻す。 |",
+        "raw_lf_sha256": "761df49df5ef949e27d997c046b5ab228f6a10d88e7d57f66e84e58e4a65c8bb"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r17-only-prototype-agreement-ux-verified",
+        "line": 1429,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-r17-only-prototype-agreement-ux-verified` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同一UI対象scope/revisionで、L10–L12の適用可能なreal-data evidenceとhuman evaluationが揃い、ux_verified根拠がcurrentである。prototype agreementも観測記録の一つとして保持する。 | prototype agreementだけをux_verified証拠として残し、real-data evidenceとhuman evaluationを置換する。 | 代用物だけで状態を昇格させず、implementedは現行V-pair、ux_verifiedは適用scopeのL10–L12 real-data evidenceとhuman evaluationを別々に照合する。不足・不一致はHARNESS-L2-005/022の既存oracle境界へ戻す。 |",
+        "raw_lf_sha256": "fa8a67be1653705f185d58f46da95e9e37361a0316091bf6c6625c1a4b936371"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r17-unrelated-success-result",
+        "line": 1430,
+        "ac_id": "AC-HARNESS-L3-039-01",
+        "literal": "| `CASE-HARNESS-L10-039-r17-unrelated-success-result` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-01` | 要求原子から親成果/成功条件/理由への関係はcurrentで、成功結果は要求された動作に束縛されている。 | 成功結果だけを要求動作と無関係な別結果へ差し替える。 | 親graphを不成立としてHARNESS-L2-008へ戻し、無関係な成功で補わない。 |",
+        "raw_lf_sha256": "856ac0304ce43322c1615b0318ff51bf29b67a1006ea7b97db90f989d6796979"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r17-parent-outcome-lost-on-split",
+        "line": 1431,
+        "ac_id": "AC-HARNESS-L3-039-01",
+        "literal": "| `CASE-HARNESS-L10-039-r17-parent-outcome-lost-on-split` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-01` | 分割前の親成果/成功条件/理由と各子要求のrelationがcurrent。 | 子要求へ分割した後、親成果へのrelationだけを一つ欠落させる。 | 欠落を不成立としてHARNESS-L2-008へ戻し、他の子relationで相殺しない。 |",
+        "raw_lf_sha256": "ea81dbdf72bcc9da5c03822a73d825419865318e54ea0a03eb443f5e5f6b5eb4"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r04-interaction-e2e-return",
+        "line": 1432,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r04-interaction-e2e-return` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | `CASE-HARNESS-L10-039-r02-l11-648-interaction-e2e`の索引参照。 | 独立変異として数えない。 | 参照先の単独oracleと既存owner戻しを照合し、二重計上しない。 |",
+        "raw_lf_sha256": "318128cbd81baada41682f49776c858b3a8b128d4efe486adf88d745c98b6217"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r04-event-owner-return",
+        "line": 1433,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r04-event-owner-return` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | `CASE-HARNESS-L10-039-r02-l11-648-event-owner`の索引参照。 | 独立変異として数えない。 | 参照先の単独oracleと既存owner戻しを照合し、二重計上しない。 |",
+        "raw_lf_sha256": "f39b4c320c865c41fc345ff9ea447c2fbce06a3aaeb9106d67ccf7a329318132"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r04-unknown-impact-return",
+        "line": 1434,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r04-unknown-impact-return` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | `CASE-HARNESS-L10-039-r02-l11-648-unknown-reuse`の索引参照。 | 独立変異として数えない。 | 参照先の単独oracleと既存owner戻しを照合し、二重計上しない。 |",
+        "raw_lf_sha256": "de96570a9198ff87eb9b28e55fce41acde8619248296cf074f71343d8fc163a4"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r06-unseen-framework",
+        "line": 1435,
+        "ac_id": "AC-HARNESS-L3-039-03",
+        "literal": "| `CASE-HARNESS-L10-039-r06-unseen-framework` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-03` | 選択UIの同scope/revisionで既存契約とoracle、screen acceptance relationがcurrent。 | frameworkだけfixture未見の適合値へ置き換える。 | 固定契約/oracleに適合する未見frameworkを受け入れ、未見だけで拒否しない。 |",
+        "raw_lf_sha256": "22835c34113e4dd881ee18426d51ac3a4c30a887bcaed0f5edb4c1657931ea57"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r06-unseen-screen-structure",
+        "line": 1436,
+        "ac_id": "AC-HARNESS-L3-039-03",
+        "literal": "| `CASE-HARNESS-L10-039-r06-unseen-screen-structure` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-03` | 選択UIの同scope/revisionで既存契約とoracle、screen acceptance relationがcurrent。 | screen-structureだけfixture未見の適合値へ置き換える。 | 固定契約/oracleに適合する未見screen-structureを受け入れ、未見だけで拒否しない。 |",
+        "raw_lf_sha256": "b182a61553f7f8c267c56abcf0c58dcc267f62582ccccfa324040175ab0884ab"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r06-unseen-content-source",
+        "line": 1437,
+        "ac_id": "AC-HARNESS-L3-039-03",
+        "literal": "| `CASE-HARNESS-L10-039-r06-unseen-content-source` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-03` | 選択UIの同scope/revisionで既存契約とoracle、screen acceptance relationがcurrent。 | content-sourceだけfixture未見の適合値へ置き換える。 | 固定契約/oracleに適合する未見content-sourceを受け入れ、未見だけで拒否しない。 |",
+        "raw_lf_sha256": "08cc82adad22d49cb36622a3f2e060feaac503c6c14e0faadfbe6f11767676f1"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r06-unseen-analytics",
+        "line": 1438,
+        "ac_id": "AC-HARNESS-L3-039-03",
+        "literal": "| `CASE-HARNESS-L10-039-r06-unseen-analytics` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-03` | 選択UIの同scope/revisionで既存契約とoracle、screen acceptance relationがcurrent。 | analyticsだけfixture未見の適合値へ置き換える。 | 固定契約/oracleに適合する未見analyticsを受け入れ、未見だけで拒否しない。 |",
+        "raw_lf_sha256": "a02ce905a40fce2ec2918ce3238e9d9db9bb2b5d0097e6449164c1200c577c8c"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r06-unseen-device",
+        "line": 1439,
+        "ac_id": "AC-HARNESS-L3-039-03",
+        "literal": "| `CASE-HARNESS-L10-039-r06-unseen-device` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-03` | 選択UIの同scope/revisionで既存契約とoracle、screen acceptance relationがcurrent。 | deviceだけfixture未見の適合値へ置き換える。 | 固定契約/oracleに適合する未見deviceを受け入れ、未見だけで拒否しない。 |",
+        "raw_lf_sha256": "4fbf809a5e5b78272c2dc58947a8bfef671667164ab36cbb93983743284eb007"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r06-oracle-unknown",
+        "line": 1440,
+        "ac_id": "AC-HARNESS-L3-039-03",
+        "literal": "| `CASE-HARNESS-L10-039-r06-oracle-unknown` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-03` | screen/source情報と既存scope/revisionはcurrentである。 | screen relationの意味を判定するoracleだけをunknownにする。 | 不足原因を保持し成功/N/Aへ推測しない。screen applicability/prototype scopeはHARNESS-L2-024、要求意味は008、design relationは026/025、verification duty/oracleは005/022へ各々返す。選択sourceの互換性/意味は固定sourceで特定できる選択source ownerへ返し、個別identityが特定不能ならunknown。実行/ticket/result receipt欠落だけは既存OS/利用者責務へ返す。 |",
+        "raw_lf_sha256": "53f0be78402a49707f281b68d0fbadf34b1e6ca6add2be0c2250afbe75c2bff8"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r06-input-unknown",
+        "line": 1441,
+        "ac_id": "AC-HARNESS-L3-039-03",
+        "literal": "| `CASE-HARNESS-L10-039-r06-input-unknown` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-03` | screen契約oracleと他情報はcurrentである。 | screen構造情報だけをunknownにする。 | 不足原因を保持し成功/N/Aへ推測しない。screen applicability/prototype scopeはHARNESS-L2-024、要求意味は008、design relationは026/025、verification duty/oracleは005/022へ各々返す。選択sourceの互換性/意味は固定sourceで特定できる選択source ownerへ返し、個別identityが特定不能ならunknown。実行/ticket/result receipt欠落だけは既存OS/利用者責務へ返す。 |",
+        "raw_lf_sha256": "1364043442002f1444b34e91752a4f2df773ce65dca1c86187a5850fff02374b"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r06-graph-user-task-missing",
+        "line": 1442,
+        "ac_id": "AC-HARNESS-L3-039-01",
+        "literal": "| `CASE-HARNESS-L10-039-r06-graph-user-task-missing` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-01` | UI有無に関わらず要求意味単位からUser Task/Business Outcome/scenario-context/success-result/decision-rationaleまでの意味関係を同scope/revisionで辿れる。他4関係は保持する。 | user-taskへの意味関係だけを欠落させる。 | Experience graph relationを未完とし、要求形成の不足としてHARNESS-L2-008の要求意味形成境界へ返す。意味を補完して合格にしない。 |",
+        "raw_lf_sha256": "4364bce3ad37eeae9390d5d66572d15c253b685ca053c5bac8c546e08609405f"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r06-graph-business-outcome-missing",
+        "line": 1443,
+        "ac_id": "AC-HARNESS-L3-039-01",
+        "literal": "| `CASE-HARNESS-L10-039-r06-graph-business-outcome-missing` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-01` | UI有無に関わらず要求意味単位からUser Task/Business Outcome/scenario-context/success-result/decision-rationaleまでの意味関係を同scope/revisionで辿れる。他4関係は保持する。 | business-outcomeへの意味関係だけを欠落させる。 | Experience graph relationを未完とし、要求形成の不足としてHARNESS-L2-008の要求意味形成境界へ返す。意味を補完して合格にしない。 |",
+        "raw_lf_sha256": "62bc920b1d0af8f15191a53ec44c1258e490971b0827ae408a2105f0b21f08f6"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r06-graph-scenario-context-missing",
+        "line": 1444,
+        "ac_id": "AC-HARNESS-L3-039-01",
+        "literal": "| `CASE-HARNESS-L10-039-r06-graph-scenario-context-missing` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-01` | UI有無に関わらず要求意味単位からUser Task/Business Outcome/scenario-context/success-result/decision-rationaleまでの意味関係を同scope/revisionで辿れる。他4関係は保持する。 | scenario-contextへの意味関係だけを欠落させる。 | Experience graph relationを未完とし、要求形成の不足としてHARNESS-L2-008の要求意味形成境界へ返す。意味を補完して合格にしない。 |",
+        "raw_lf_sha256": "ffffbe90b3d22abe594c830276275014c1d85aa4b2be1a7df53e1289316411b5"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r06-graph-success-result-missing",
+        "line": 1445,
+        "ac_id": "AC-HARNESS-L3-039-01",
+        "literal": "| `CASE-HARNESS-L10-039-r06-graph-success-result-missing` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-01` | UI有無に関わらず要求意味単位からUser Task/Business Outcome/scenario-context/success-result/decision-rationaleまでの意味関係を同scope/revisionで辿れる。他4関係は保持する。 | success-resultへの意味関係だけを欠落させる。 | Experience graph relationを未完とし、要求形成の不足としてHARNESS-L2-008の要求意味形成境界へ返す。意味を補完して合格にしない。 |",
+        "raw_lf_sha256": "a510d141988622ca7e3a8147bda8a9f1e2e6962c5055c0edd9e1b6058c7dcb73"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r06-graph-decision-rationale-missing",
+        "line": 1446,
+        "ac_id": "AC-HARNESS-L3-039-01",
+        "literal": "| `CASE-HARNESS-L10-039-r06-graph-decision-rationale-missing` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-01` | UI有無に関わらず要求意味単位からUser Task/Business Outcome/scenario-context/success-result/decision-rationaleまでの意味関係を同scope/revisionで辿れる。他4関係は保持する。 | decision-rationaleへの意味関係だけを欠落させる。 | Experience graph relationを未完とし、要求形成の不足としてHARNESS-L2-008の要求意味形成境界へ返す。意味を補完して合格にしない。 |",
+        "raw_lf_sha256": "3726dcbff162cd70e09c18cb95eb64962f962c953fca0d01c96392cc42bdd06b"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r09-001",
+        "line": 1447,
+        "ac_id": "AC-HARNESS-L3-039-01",
+        "literal": "| `CASE-HARNESS-L10-039-r09-001` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-01` | 同一Experience/UI/Frontend contract、scope/revisionと他relationを固定する。 | Experience relationだけを欠落させる。 | relation不足をunknownとして返す。 戻し先: HARNESS-L2-008の既存要求owner。 |",
+        "raw_lf_sha256": "8d8fdab840f8034a6346c5f119352117888bd08f7e9616af4af4abdd428127ef"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r09-002",
+        "line": 1448,
+        "ac_id": "AC-HARNESS-L3-039-01",
+        "literal": "| `CASE-HARNESS-L10-039-r09-002` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-01` | 同一Experience/UI/Frontend contract、scope/revisionと他relationを固定する。 | 対象revisionだけを不一致にする。 | stale relationを検出する。 戻し先: HARNESS-L2-003/008既存owner。 |",
+        "raw_lf_sha256": "25824ae164f95df564f070a387a3443a7e5dd73dca41b5fb72e8305d6187e897"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r09-003",
+        "line": 1449,
+        "ac_id": "AC-HARNESS-L3-039-01",
+        "literal": "| `CASE-HARNESS-L10-039-r09-003` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-01` | 同一Experience/UI/Frontend contract、scope/revisionと他relationを固定する。 | style branchだけをunknownにする。 | 適用branchを推測せず未評価にする。 戻し先: HARNESS-L2-008既存owner。 |",
+        "raw_lf_sha256": "1dd68fcf20a008cc0f34ca91a85931bd5d9d06177f6ef2a7589a0cdebd20f769"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r09-004",
+        "line": 1450,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-r09-004` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同一Experience/UI/Frontend contract、scope/revisionと他relationを固定する。 | Experience evidenceだけを欠落させ、PoC evidenceと他状態証拠は保持する。 | 欠落を個別に未完とする。 戻し先: HARNESS-L2-008既存owner。 |",
+        "raw_lf_sha256": "07c5f57ce45a709871e7d31fc2cfef638f6237b27c5a44c06f9ec4b6751d7197"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r09-005",
+        "line": 1451,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-r09-005` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同じ対象scope/revisionのimplemented状態と、他の状態証拠を保持する。 | implementedの現行V-pair実装・検証証拠だけを欠落させる。 | implemented状態を生成せず、該当義務を未完とする。戻し先: HARNESS-L2-005の選択済みverification duty / HARNESS-L2-022の既存pair oracle。 |",
+        "raw_lf_sha256": "33e101d929c3245b0aa0cfb14e0a112445c7757ba3c371baf7a9445376496493"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r09-006",
+        "line": 1452,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-r09-006` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同scope/revisionでimplementedがcurrentである対象V-pair証拠と、7 UX軸すべてのcurrent real-data/human evaluation evidenceを入力する。 | real-data評価evidenceだけをmissingにする。他state/axisは維持する。axis-1-missingは7軸coverageからreal-data軸を除いた欠落、r09-006はimplementedと残る6 UX軸を保ったままUX状態昇格を拒む点を照合し、観点を分ける。 | `implemented`および残る6 UX軸だけから`ux_verified`を推定せず、`implemented`はcurrentのまま取り消さない。`ux_verified`は未確認/保留とし、選択済みHARNESS-L2-005のverification dutyまたはHARNESS-L2-022の既存pair oracleへ戻す。 |",
+        "raw_lf_sha256": "dac9339a45abb82b05823562701fa799f887b8143f8abb09faa30406aeb98cbd"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r09-007",
+        "line": 1453,
+        "ac_id": "AC-HARNESS-L3-039-01",
+        "literal": "| `CASE-HARNESS-L10-039-r09-007` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-01` | 同一Experience/UI/Frontend contract、scope/revisionと他relationを固定する。 | risk factorの根拠だけを欠落させる。 | passとせず選択未確定として005のrisk選択へ戻す。 戻し先: HARNESS-L2-005の選択risk条件。 |",
+        "raw_lf_sha256": "fea5c3af689e73878694b0a2dda2a83ba913d4efc7f4c9b3fcd7984b628083cc"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r10-axis-na",
+        "line": 1454,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-r10-axis-na` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | UI適用scope/revisionと7軸の証拠を固定し、各軸の適用性を提示する。 | 7軸のうち一軸だけをN/Aとして除外する。 | UI適用scopeでは理由の有無によらず軸のN/A除外を拒否し、UX completionを未完にする（L2-039:929）。対象検証義務はHARNESS-L2-005/022の既存条件へ戻す。 |",
+        "raw_lf_sha256": "fbf0efd3d48760d4dc011e726c18e7b029622813d309d0a2a5f3c335d268ad1c"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r10-screenshot-not-walkthrough",
+        "line": 1455,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-r10-screenshot-not-walkthrough` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同scope/revisionの静止画とprototype agreement/操作可能性/walkthrough条件を別々に記録する。 | 静止画だけを、操作可能prototypeの確認・walkthrough実施・prototype agreementの証拠として使う。 | prototype agreement/closure claimを拒否しwalkthrough義務を未完で保持する。戻し先: HARNESS-L2-024。 |",
+        "raw_lf_sha256": "b728a5582eb34f7a511864d77c40974700abd90f280f80d6dd9328d0d54f242d"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r18-screen-count-only-implemented",
+        "line": 1456,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-r18-screen-count-only-implemented` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同一画面scope/revisionで現行V-pairとimplementedの根拠がcurrent、画面数は観測記録として記録する。 | 画面数だけをimplementedの証拠にし、現行V-pairを置換する。 | 画面数だけでimplementedへ昇格させず、現行V-pairの実装・検証relationに戻す。実行状態・receiptが欠ける場合は既存OS/利用者の記録責務へ返す。将来UX測定の未完を候補形成/設計開始条件にしない。 |",
+        "raw_lf_sha256": "0fcb2a33dfe0212d8ba9bd6f0f1a22a71f97c26e148b6a245574327d727fbf90"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r18-screen-count-only-ux_verified",
+        "line": 1457,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-r18-screen-count-only-ux_verified` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 同一画面scope/revisionでux_verifiedに必要なUX軸とhuman evaluationの根拠がcurrent。画面数は別の観測記録として記録する。 | currentのUX軸・human evaluation evidenceだけを画面数の記録へ置換し、ux_verifiedを主張する。他の状態・scope・revisionは保持する。 | 画面数だけでux_verifiedへ昇格させず、当該主張operationに必要なL10–L12 evidence/human evaluationをHARNESS-L2-005/022の選択済みverification duty/oracleへ返す。missing/stale/unknownはUX完了のみ保留し、implementedと候補形成を巻き戻さない。 |",
+        "raw_lf_sha256": "cc9cb932019ee582b96ca502737545b4afb1594e3bd0fc0e3f43ff0fb6a4e54a"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r18-unanswered-generates-requirement",
+        "line": 1458,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r18-unanswered-generates-requirement` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 有効な質問が未回答で、根拠となる要求source/contentは提示されていない。scope/revisionはcurrent、既存authority状態は未決。 | 未回答状態だけを根拠に新しい要求内容を作成する。 | 要求意味を生成せず、質問とsource不足を未完に保つ。根拠あるcandidateはHARNESS-L2-008/024の通常経路で作成可能だが、未回答だけからadoption/authorityは生成しない。質問・screen applicabilityは024、要求意味は008へ戻す。 |",
+        "raw_lf_sha256": "ba126d7c6d8fa038049f7d7a04e9daebed420e679bfd1d61cfda4fc3ff38f59d"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r18-unanswered-generates-adoption",
+        "line": 1459,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r18-unanswered-generates-adoption` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | source-backed requirement candidateは存在するが未採択。同一scope/revisionで質問は未回答、既存authority decisionはない。 | candidate内容/source/質問状態を保持したまま、出力のrequirement adoption/authority stateだけを採択済みに変える。 | candidateを未採択のまま保持し、adoptionを生成しない。意味・採否はHARNESS-L2-008/024の既存境界へ返す。 |",
+        "raw_lf_sha256": "f0107b07c57740b1e5693d59c80ab1388df99c4ade7fa9a22ffc0ce19d144201"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r18-poc-claims-implemented",
+        "line": 1460,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r18-poc-claims-implemented` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | Discovery PoC状態、要求source、既存authority、実装/UX証拠を別々に記録した正常baseline。 | Discovery PoCだけからimplementedを主張する。 | implementedを生成せずPoC状態を保持する。意味/採否はHARNESS-L2-008/024、実装/UX根拠は適用時の既存005/022 oracleへ戻す。 |",
+        "raw_lf_sha256": "df5d062c6f049036dae41b6139625b590ca64dd1b22a5642c49031c68020c2dc"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r18-poc-claims-ux_verified",
+        "line": 1461,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r18-poc-claims-ux_verified` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | Discovery PoC状態、要求source、既存authority、実装/UX証拠を別々に記録した正常baseline。 | Discovery PoCだけからux_verifiedを主張する。 | ux_verifiedを生成せずPoC状態を保持する。意味/採否はHARNESS-L2-008/024、実装/UX根拠は適用時の既存005/022 oracleへ戻す。 |",
+        "raw_lf_sha256": "342bd42e424d257d42c4b445e0059422050bd1e5fcda275ac2b4834c301954cb"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r18-poc-claims-production-ready",
+        "line": 1462,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r18-poc-claims-production-ready` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | Discovery PoC状態、要求source、既存authority、実装/UX証拠を別々に記録した正常baseline。 | Discovery PoCだけからproduction-readyを主張する。 | production-readyを生成せずPoC状態を保持する。意味/採否はHARNESS-L2-008/024、実装/UX根拠は適用時の既存005/022 oracleへ戻す。 |",
+        "raw_lf_sha256": "3558d9a657b1bec2e597bc0f937558ad80765f6f5afe7ea322e5060d1c637efb"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r18-poc-claims-adopted",
+        "line": 1463,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r18-poc-claims-adopted` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | Discovery PoC、requirement source、scope/revision、既存owner decisionの有無、implementation/UX evidenceを別fieldで記録し、vision/prototype hypothesisは未採択。 | PoC出力だけからvision/prototype hypothesisのadopted stateを生成する。requirement adoption、要求freeze、実装/UX状態は変更しない。 | 仮説の採択を生成せず既存owner decision待ちを保つ。PoCから要求freeze・実装/UX状態を推定しない。意味・採否はHARNESS-L2-008/024、実装/UX根拠は適用時の005/022へ戻す。 |",
+        "raw_lf_sha256": "0b1bc28334202e4c6c2e76074035e77aaf4653c770f48f1133032942df64a360"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r18-screen-list-not-walkthrough",
+        "line": 1464,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-r18-screen-list-not-walkthrough` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 選択screen scope/revisionの実対話walkthroughと対象者/結果を記録し、画面一覧は識別用に保持する。 | screen一覧だけをwalkthrough実施証拠にする。 | walkthrough成立を拒否し未観測を保持する。意味・合意はHARNESS-L2-024、検証oracleは005/022へ戻す。 |",
+        "raw_lf_sha256": "9592c03bfa4dba92ec12daa379f5ed9ff0ee3c6430648f0a51d7698f5a791607"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r18-prototype-requirement-drift",
+        "line": 1465,
+        "ac_id": "AC-HARNESS-L3-039-03",
+        "literal": "| `CASE-HARNESS-L10-039-r18-prototype-requirement-drift` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-03` | 同一scope/revisionのprototype、採択済み要求、差分判定と既存authorityを記録する。 | prototypeの挙動だけを要求と不一致にし、他の一致条件は保持する。 | 要求とのdriftを未完として示し、要求意味はHARNESS-L2-008/024、設計は026/025へ戻す。 |",
+        "raw_lf_sha256": "014996bebd8e1fdb6b4a7abcbbd631aaabbcf6384ba75c10ccf2d8dee93131f4"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r18-accessibility-applicability-drift",
+        "line": 1466,
+        "ac_id": "AC-HARNESS-L3-039-03",
+        "literal": "| `CASE-HARNESS-L10-039-r18-accessibility-applicability-drift` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-03` | 選択UI scope/revisionに対するaccessibilityの既存適用条件とprototype/要求対応がcurrentで一致する。 | accessibilityの適用条件だけをprototype/要求間で不一致にし、UX証拠7軸の状態は変更しない。 | driftを記録し、影響を受けるscreen/scopeが確定できなければaffected range=unknownとして残す。UX完了を保留する。意味/要求はHARNESS-L2-008、設計は026/025へ戻す。 |",
+        "raw_lf_sha256": "b0e8d27f15ec0360b9dca3285666d5bdb06d67de42855d8570f0f376781fabf4"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r18-responsive-applicability-drift",
+        "line": 1467,
+        "ac_id": "AC-HARNESS-L3-039-03",
+        "literal": "| `CASE-HARNESS-L10-039-r18-responsive-applicability-drift` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-03` | 選択UI scope/revisionに対するresponsiveの既存適用条件とprototype/要求対応がcurrentで一致する。 | responsiveの適用条件だけをprototype/要求間で不一致にし、UX証拠7軸の状態は変更しない。 | driftを記録し、影響を受けるscreen/scopeが確定できなければaffected range=unknownとして残す。UX完了を保留する。意味/要求はHARNESS-L2-008、設計は026/025へ戻す。 |",
+        "raw_lf_sha256": "9702b12c20b5f64d2ff88fd36542ada685c7ac74313802e91d2f22c6ce67d6bc"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r18-motion-applicability-drift",
+        "line": 1468,
+        "ac_id": "AC-HARNESS-L3-039-03",
+        "literal": "| `CASE-HARNESS-L10-039-r18-motion-applicability-drift` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-03` | 選択UI scope/revisionに対するmotionの既存適用条件とprototype/要求対応がcurrentで一致する。 | motionの適用条件だけをprototype/要求間で不一致にし、UX証拠7軸の状態は変更しない。 | driftを記録し、影響を受けるscreen/scopeが確定できなければaffected range=unknownとして残す。UX完了を保留する。意味/要求はHARNESS-L2-008、設計は026/025へ戻す。 |",
+        "raw_lf_sha256": "5ecc0cf03daf55c9c2ef372b83abf74a49052da3fbf2a1769b6b995b34192a4e"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r18-poc-generates-brand",
+        "line": 1469,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r18-poc-generates-brand` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | Discovery PoCの入力状態、対象要求source、scope/revisionと既存authority状態を別fieldで固定する。 | Discovery PoCだけからbrandを生成する。 | brandを生成せず既存authority/source状態を保持する。意味・採否はHARNESS-L2-008/024へ戻す。 |",
+        "raw_lf_sha256": "48bea5cf68af4a7bb35171658b1b1750ae78836630681dcf4943ad84d6bcba35"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r18-poc-generates-priority",
+        "line": 1470,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r18-poc-generates-priority` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | Discovery PoCの入力状態、対象要求source、scope/revisionと既存authority状態を別fieldで固定する。 | Discovery PoCだけからpriorityを生成する。 | priorityを生成せず既存authority/source状態を保持する。意味・採否はHARNESS-L2-008/024へ戻す。 |",
+        "raw_lf_sha256": "efdd5bc120accbd53a26accf3fed32e9c5758e73f79a8eb8ecbb621b315e5e52"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r18-poc-generates-requirement-adoption",
+        "line": 1471,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r18-poc-generates-requirement-adoption` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | Discovery PoCとsource-backed unadopted requirement candidateを別々に記録し、同一scope/revisionで既存owner decisionはない。 | PoC出力だけからrequirement adoption/L3 freeze stateを生成する。仮説adoption、candidate内容、source、scope/revision等の他fieldは保持する。 | requirement adoptionを生成せずcandidate/PoCを未採択のまま保持する。意味・採否はHARNESS-L2-008/024の既存authority境界へ返す。 |",
+        "raw_lf_sha256": "fd856cb8ad17ffbf69c9e2112bfdc924d3e2f09153a0081015d0bcd197ff9922"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r18-ai-recommendation-generates-vision",
+        "line": 1472,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r18-ai-recommendation-generates-vision` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | AI推奨の入力状態、対象要求source、scope/revisionと既存authority状態を別fieldで固定する。 | AI推奨だけからvisionを生成する。 | visionを生成せず既存authority/source状態を保持する。意味・採否はHARNESS-L2-008/024へ戻す。 |",
+        "raw_lf_sha256": "8fd623f475a8b5a6d0e9158ec3cfd1078c98f126e3bc0329122bee8663e407c2"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r18-ai-recommendation-generates-priority",
+        "line": 1473,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r18-ai-recommendation-generates-priority` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | AI推奨の入力状態、対象要求source、scope/revisionと既存authority状態を別fieldで固定する。 | AI推奨だけからpriorityを生成する。 | priorityを生成せず既存authority/source状態を保持する。意味・採否はHARNESS-L2-008/024へ戻す。 |",
+        "raw_lf_sha256": "4e020f9cc0e1589231afbae7042760e648b03263cd72e8eba29976336b069a8f"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r18-ai-recommendation-generates-requirement-adoption",
+        "line": 1474,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r18-ai-recommendation-generates-requirement-adoption` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | AI推奨の入力状態、対象要求source、scope/revisionと既存authority状態を別fieldで固定する。 | AI推奨だけから要求採択状態を生成する。 | 要求採択状態を生成せず既存authority/source状態を保持する。意味・採否はHARNESS-L2-008/024へ戻す。 |",
+        "raw_lf_sha256": "d01bb8f7c673b95242b49445cd6e702c9740f7eb1a5af2abed0b1555de7b5097"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r18-prototype-agreement-generates-vision",
+        "line": 1475,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r18-prototype-agreement-generates-vision` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | prototype agreementの入力状態、対象要求source、scope/revisionと既存authority状態を別fieldで固定する。 | prototype agreementだけからvisionを生成する。 | visionを生成せず既存authority/source状態を保持する。意味・採否はHARNESS-L2-008/024へ戻す。 |",
+        "raw_lf_sha256": "c387a6d575cf4e455767a072b791576ecf5c888a073c9fdc7f8127a8bf828f92"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r18-prototype-agreement-generates-brand",
+        "line": 1476,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r18-prototype-agreement-generates-brand` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | prototype agreementの入力状態、対象要求source、scope/revisionと既存authority状態を別fieldで固定する。 | prototype agreementだけからbrandを生成する。 | brandを生成せず既存authority/source状態を保持する。意味・採否はHARNESS-L2-008/024へ戻す。 |",
+        "raw_lf_sha256": "d957f1667c9dea9ac87d2f933bfb1309159b9e340e85a9fdc62ab9d4eb517fd6"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r18-prototype-agreement-generates-requirement-adoption",
+        "line": 1477,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r18-prototype-agreement-generates-requirement-adoption` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | prototype agreementの入力状態、対象要求source、scope/revisionと既存authority状態を別fieldで固定する。 | prototype agreementだけから要求採択状態を生成する。 | 要求採択状態を生成せず既存authority/source状態を保持する。意味・採否はHARNESS-L2-008/024へ戻す。 |",
+        "raw_lf_sha256": "ae70abda07e573e5712c30a957b18460cbfe74ef5567fd6d476190f425b52859"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r18-unanswered-generates-vision",
+        "line": 1478,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r18-unanswered-generates-vision` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 未回答の入力状態、対象要求source、scope/revisionと既存authority状態を別fieldで固定する。 | 未回答だけからvisionを生成する。 | visionを生成せず既存authority/source状態を保持する。意味・採否はHARNESS-L2-008/024へ戻す。 |",
+        "raw_lf_sha256": "197d85a141f48fe5a15881922d89f598edeca0028771857347b3936380ffe769"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r18-unanswered-generates-brand",
+        "line": 1479,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r18-unanswered-generates-brand` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 未回答の入力状態、対象要求source、scope/revisionと既存authority状態を別fieldで固定する。 | 未回答だけからbrandを生成する。 | brandを生成せず既存authority/source状態を保持する。意味・採否はHARNESS-L2-008/024へ戻す。 |",
+        "raw_lf_sha256": "47ea48ea7089ff28de7f79d8e8b95e2b80f7f5dc41c18b0a8225f4fa49d40af0"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r18-unanswered-generates-priority",
+        "line": 1480,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r18-unanswered-generates-priority` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 未回答の入力状態、対象要求source、scope/revisionと既存authority状態を別fieldで固定する。 | 未回答だけからpriorityを生成する。 | priorityを生成せず既存authority/source状態を保持する。意味・採否はHARNESS-L2-008/024へ戻す。 |",
+        "raw_lf_sha256": "8b6b6007bf235de43d375c9b590fc2082a3d1b69604d65111dba9202e6a4215f"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r18-elapsed-time-generates-vision",
+        "line": 1481,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r18-elapsed-time-generates-vision` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 時間経過の入力状態、対象要求source、scope/revisionと既存authority状態を別fieldで固定する。 | 時間経過だけからvisionを生成する。 | visionを生成せず既存authority/source状態を保持する。意味・採否はHARNESS-L2-008/024へ戻す。 |",
+        "raw_lf_sha256": "dcf0d6e546ead110b95373f140d6ee9a6fb014e745e2233984d2c1ef66b7da83"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r18-elapsed-time-generates-brand",
+        "line": 1482,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r18-elapsed-time-generates-brand` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 時間経過の入力状態、対象要求source、scope/revisionと既存authority状態を別fieldで固定する。 | 時間経過だけからbrandを生成する。 | brandを生成せず既存authority/source状態を保持する。意味・採否はHARNESS-L2-008/024へ戻す。 |",
+        "raw_lf_sha256": "8446c4b6d5d920291600ca6229bb1d69fa3594d0cdece061669104262e548e3b"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r18-elapsed-time-generates-priority",
+        "line": 1483,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r18-elapsed-time-generates-priority` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | elapsed time、対象要求source、既存priority記録とauthority状態を有効な同一scope/revisionで分けて記録する。 | 時間経過だけからpriorityを生成する。 | priorityを生成せず、意味/採否はHARNESS-L2-008/024の既存境界へ戻す。 |",
+        "raw_lf_sha256": "690fca2e17508808e795af4fb57d13fb8c9715793ff34685c9b5dc5387948c2d"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r01-non-ui-ux-completion",
+        "line": 1501,
+        "ac_id": "AC-HARNESS-L3-039-02",
+        "literal": "| `CASE-HARNESS-L10-039-r01-non-ui-ux-completion` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 非UIの同一scope/revision、根拠付きN/Aと再評価条件、Experience graph、既存V-pairによる実装状態を保持する。UX完了は非適用。 | 入力不変。N/Aによる証拠の空集合を根拠にux_verifiedだけを生成した誤出力。 | UX完了生成を拒否し根拠付きN/Aを保持する。implementedと候補形成は取り消さず、screen適用性は既存HARNESS-L2-024、段階状態oracleは022へ不足を返す。 |",
+        "raw_lf_sha256": "2b53c1ec1c008e09387fe3bfa92ae9a33deb36b4b082493357473d4e63ec6ac9"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r01-self-approves-user-acceptance",
+        "line": 1502,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r01-self-approves-user-acceptance` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 対象scope/revisionの候補・評価材料と、L11利用者acceptanceの既存owner判断を別fieldで記録する。owner判断は未決。 | 入力不変。HARNESS/AIがL11利用者acceptanceの承認済stateだけを自己生成する。 | 自己承認を拒否し既存owner判断を未決に保つ。HARNESS-L2-022の該当段階oracleと既存authority境界へ返し、候補を人の判断の代替にしない。 |",
+        "raw_lf_sha256": "f675017901a879dbf017cf1af5776c9237662ba22879d8ea7cf0f84379cef622"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r01-self-approves-improvement-adoption",
+        "line": 1503,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r01-self-approves-improvement-adoption` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 対象scope/revisionの候補・評価材料と、L12改善採否の既存owner判断を別fieldで記録する。owner判断は未決。 | 入力不変。HARNESS/AIがL12改善採否の承認済stateだけを自己生成する。 | 自己承認を拒否し既存owner判断を未決に保つ。HARNESS-L2-022の該当段階oracleと既存authority境界へ返し、候補を人の判断の代替にしない。 |",
+        "raw_lf_sha256": "21f6da2db1b973254998cf72b7e3a9222189d42e03327c6da6c00b9d357eed82"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r01-generation-generates-operation-permission",
+        "line": 1504,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r01-generation-generates-operation-permission` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 同一scope/revisionで、sourceに根拠あるcandidateのgeneration結果と既存authority/permissionを別fieldに保持する。新しい操作権限は発行されていない。 | 入力不変。candidateのgeneration結果だけから操作権限fieldを許可済へ変える。 | 権限/許可生成を拒否し既存authorityを保持する。candidate結果は比較材料のまま、HARNESS-L2-008/024の既存合意境界と022の段階authority条件へ返す。OSの既決authorityに従う実行責務を移さない。 |",
+        "raw_lf_sha256": "71e98049c09959661f60700c01fa8026456b4df5cb3307ce9642924d79c652d1"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r01-generation-generates-execution-permission",
+        "line": 1505,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r01-generation-generates-execution-permission` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 同一scope/revisionで、sourceに根拠あるcandidateのgeneration結果と既存authority/permissionを別fieldに保持する。新しい実行許可は発行されていない。 | 入力不変。candidateのgeneration結果だけから実行許可fieldを許可済へ変える。 | 権限/許可生成を拒否し既存authorityを保持する。candidate結果は比較材料のまま、HARNESS-L2-008/024の既存合意境界と022の段階authority条件へ返す。OSの既決authorityに従う実行責務を移さない。 |",
+        "raw_lf_sha256": "b509d3bc8693f2de251ff38b7511c781ba9ee9e6e8c3374cf384b940f77d82da"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r01-comparison-generates-operation-permission",
+        "line": 1506,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r01-comparison-generates-operation-permission` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 同一scope/revisionで、sourceに根拠あるcandidateのcomparison結果と既存authority/permissionを別fieldに保持する。新しい操作権限は発行されていない。 | 入力不変。candidateのcomparison結果だけから操作権限fieldを許可済へ変える。 | 権限/許可生成を拒否し既存authorityを保持する。candidate結果は比較材料のまま、HARNESS-L2-008/024の既存合意境界と022の段階authority条件へ返す。OSの既決authorityに従う実行責務を移さない。 |",
+        "raw_lf_sha256": "d34ccd073a413acc5369ccac87d570f93fdf3a93fcb8bafbdd825a26c2b34eeb"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r01-comparison-generates-execution-permission",
+        "line": 1507,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r01-comparison-generates-execution-permission` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 同一scope/revisionで、sourceに根拠あるcandidateのcomparison結果と既存authority/permissionを別fieldに保持する。新しい実行許可は発行されていない。 | 入力不変。candidateのcomparison結果だけから実行許可fieldを許可済へ変える。 | 権限/許可生成を拒否し既存authorityを保持する。candidate結果は比較材料のまま、HARNESS-L2-008/024の既存合意境界と022の段階authority条件へ返す。OSの既決authorityに従う実行責務を移さない。 |",
+        "raw_lf_sha256": "9bc571a530a4402a2261379ffb6e9e6eae22e7d7ef3764fced379d77496bcda5"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r01-inspection-generates-operation-permission",
+        "line": 1508,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r01-inspection-generates-operation-permission` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 同一scope/revisionで、sourceに根拠あるcandidateのinspection結果と既存authority/permissionを別fieldに保持する。新しい操作権限は発行されていない。 | 入力不変。candidateのinspection結果だけから操作権限fieldを許可済へ変える。 | 権限/許可生成を拒否し既存authorityを保持する。candidate結果は比較材料のまま、HARNESS-L2-008/024の既存合意境界と022の段階authority条件へ返す。OSの既決authorityに従う実行責務を移さない。 |",
+        "raw_lf_sha256": "1d5f8a0c17bc4e415585c7ee8517f67a19a1b106f5bd9686ca4ed635265451b2"
+      },
+      {
+        "id": "CASE-HARNESS-L10-039-r01-inspection-generates-execution-permission",
+        "line": 1509,
+        "ac_id": "AC-HARNESS-L3-039-04",
+        "literal": "| `CASE-HARNESS-L10-039-r01-inspection-generates-execution-permission` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 同一scope/revisionで、sourceに根拠あるcandidateのinspection結果と既存authority/permissionを別fieldに保持する。新しい実行許可は発行されていない。 | 入力不変。candidateのinspection結果だけから実行許可fieldを許可済へ変える。 | 権限/許可生成を拒否し既存authorityを保持する。candidate結果は比較材料のまま、HARNESS-L2-008/024の既存合意境界と022の段階authority条件へ返す。OSの既決authorityに従う実行責務を移さない。 |",
+        "raw_lf_sha256": "25845538c33772ca7909c621b4c31cefb5a4610d5fe07178adce331f2ed04099"
+      }
+    ],
+    "raw_literal_hash_algorithm": "各FV物理行literalにLFを1つ加えたUTF-8 bytesのSHA-256。旧134 literalは初回authoring audit JSON SHAに固定した全行とIDごと比較し差分0。"
+  },
+  "initial_authoring_audit_immutability": {
+    "json_path": "docs/governance/audits/requirements-stage/harness-stage3-parent039-authoring-2026-10-07-5f656d346.json",
+    "json_bytes": 325218,
+    "json_sha256": "e5440af9ab5b3d72ddfd5d1a0c14e8ecf48e9593459489e39525220eb6e44816",
+    "md_path": "docs/governance/audits/requirements-stage/harness-stage3-parent039-authoring-2026-10-07-5f656d346.md",
+    "md_bytes": 4369,
+    "md_sha256": "8e86cf80bca0d2517fd36aed01ff7cb3a623bee4652e16d5a1b9d0daa1d92791",
+    "interpretation": "review01処置記録は初回作成側auditへ追記せず、新しい時点記録として分ける。初回auditのsource本文とhashは不変。"
+  },
+  "root_reported_static_checks": {
+    "old_ids_retained": 134,
+    "current_case_rows": 143,
+    "six_columns_direct_AC_references": true,
+    "unique_ids": true,
+    "govcheck": "Root reported pass; worker did not rerun.",
+    "git_diff_check": "Root reported pass; worker did not rerun.",
+    "review01_fix_checkpoint": "/tmp/root-harness039-review01-fix-checkpoint.json",
+    "interpretation": "Rootの静的検収報告をWorker独立再実行の結果として扱わない。"
+  },
+  "worker_pin_checks": {
+    "formal_raw_bytes_and_sha256": true,
+    "all_six_body_and_base_git_bytes_recomputed": true,
+    "all_143_case_literals_and_hashes_recomputed": true,
+    "old_134_case_literals_equal_initial_audit": true,
+    "fixed_L2_L11_PO_source_span_bytes_and_hashes_recomputed": true,
+    "initial_authoring_audit_sha_unchanged": true
+  },
+  "limits": [
+    "M1/M2の要件意味上の受け入れは独立reviewを待つ。",
+    "CASE数・ID保持・literal hashは意味完全性や動作検証を証明しない。",
+    "archive全体の網羅は主張せず、legacy sourceは旧authoring auditの指定span pinに限る。",
+    "旧runtime/CLI/hook/test/CI/Bunは実行せず、fixtureは未実測。",
+    "作成側処置記録であり、approval/closure/Ready/merge admissionではない。"
+  ],
+  "root_publication_verification": {
+    "corrected_candidate_metadata": [
+      "M1 source L11:674",
+      "M1 one non-UI fixture / M2 eight AC04 fixtures",
+      "body direct parent distinct from authoring base"
+    ],
+    "full_span_formal_pins_checked": 19,
+    "current_case_raw_lines_checked": 143,
+    "residual_raw_exact": true,
+    "govcheck": "ok atoms=7622 requirements=57 files=58",
+    "diff_check": "pass",
+    "authority_effect": "none; independent review pending"
+  }
+}

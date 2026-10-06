@@ -175,6 +175,11 @@ fixture definition数と実測母集団は異なる。対のL10機能総合検�
 |---|---|---|---|
 | `NFR-C-HARNESS-038-01` / `HARNESS-L2-038` | selected scope内の適用obligationの片方向relation、aggregate-only coverage、未根拠N/A/no-findingは0件を候補oracleとする。 | HIL-FR-22の両方向edgeとHIL-FR-35の段階内容閉包に根拠。後段未作成はunresolved obligationとして数え、失敗扱いと区別する。 | 全旧source走査率や全機構一括closure率にしない。 |
 
+
+## Stage 3 親039のNFR候補
+
+固定L2-039はUX完了を主張するoperationに同一scope/revisionの7軸current evidenceとhuman evaluationを要求するが、数値SLO、共通閾値、率、対象cohort、測定期間は定めない。この条件は機能AC-HARNESS-L3-039-02のstate/evidence境界として扱い、独立NFR値や測定pass rateを新設しない。実測値・未測定・stale・unknownは対象scope/revisionごとに保持し、欠測を0、N/A、成功へ変換しない。旧IPA/旧CI/runtimeの値は再利用しない。
+
 ## Stage 3 親040の非機能計測候補
 
 | NFR候補 / L2親 | 候補値 | 固定根拠 | 限界 |
