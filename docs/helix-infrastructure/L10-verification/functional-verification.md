@@ -997,7 +997,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 - 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baselineはCASE-INFRA-011-S5-052 normal fixture。current_active_revision=sim-r8、eligible_rollback_target=sim-r7は固定する。
 - 変異: `rebuild.startup_verification`だけをsim-failedへ変更。
-- 入力: `baseline=CASE-INFRA-011-S5-052.normal; current_active_revision=sim-r8; eligible_rollback_target=sim-r7`
+- 入力: baseline=CASE-INFRA-011-S5-052.normal; current_active_revision=sim-r8; eligible_rollback_target=sim-r7
 - oracle: rebuildabilityを別判定で失敗として部分結果、current active revision、eligible rollback target、未完義務を保持する。
 - owner/戻し先: rebuild/recovery owner=unknown（固定親で未特定）。
 - trace: `INFRA-011-AC-03`。合成fixtureの設計候補であり未実行。
@@ -1007,6 +1007,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 - 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `CASE-INFRA-011-S5-049.normal`。
 - 変異: 正常fixture。変異なし。
 - 入力: CASE-INFRA-011-S5-049.normal
+- fixture関係: CASE049.normalと同じ正常fixtureの参照であり、独立fixtureとして重複計数しない。
 - oracle: OS ticket欠落を独立recovery拒否理由にしない。独立path/authority/Worker/resultと復帰後同期を別々に確認し、current_active_revisionとeligible_rollback_targetをfixture値として記録する。ticket不要を通常操作へ一般化しない。
 - owner/戻し先: 正常時は戻し先なし。
 - trace: `INFRA-011-AC-04`。合成fixtureの設計候補であり未実行。
@@ -1017,7 +1018,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 - 変異: `authority.ref`だけをmissingへ変更。
 - 入力: baseline=CASE-INFRA-011-S5-064.normal
 - fixture関係: CASE051と同じbaseline/単独変異を、ここではAC-04の復旧境界に関する期待結果で評価する。
-- oracle: authority.ref欠落を許可済みrecoveryと扱わず停止し、部分結果・未完のauthority義務を既存SECURITY authority ownerへ返す。OS停止state、独立path、authority.source/revision、Worker contract、recovery.result、post_recovery_sync、current_active_revision=sim-r8、eligible_rollback_target（sim-r7のartifact/config/dependency/data_ref/procedureを含む）はbaseline値のまま保持する。
+- oracle: authority.ref欠落を許可済みrecoveryと扱わず停止する。部分結果、停止したrecovery操作、未完のauthority義務を保持して既存SECURITY authority ownerへ返す。OS停止state、独立path、authority source/revision、Worker contract、recovery result、post_recovery_sync、current_active_revision=sim-r8、eligible_rollback_target（sim-r7のartifact/config/dependency/data_ref/procedureを含む）はbaseline値のまま保持する。
 - owner/戻し先: 既存SECURITY authority owner。
 - trace: `INFRA-011-AC-04`。合成fixtureの設計候補であり未実行。
 
@@ -1196,7 +1197,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 - 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baselineはCASE-INFRA-011-S5-072 normal fixture。scope/source、18 unit results、4 connection tuple、current_active_revision=sim-r8、eligible_rollback_target=sim-r7とartifact/config/dependency/data/procedureはすべて固定。
 - 変異: `composite_result`だけを`{state=sim-complete,unfinished_duties=[]}`から`{state=partial,missing_component={field=connection-result-receipt,source=connection-result-sim@sim-r1},unfinished_duties=[record-connection-result-sim],responsible_owner=unknown}`へ置換する。他fieldはbaselineのまま。
-- 入力: `unit_results={CASE-INFRA-011-S5-001=normal@sim-r1,CASE-INFRA-011-S5-004=normal@sim-r1,CASE-INFRA-011-S5-007=normal@sim-r1,CASE-INFRA-011-S5-010=normal@sim-r1,CASE-INFRA-011-S5-013=normal@sim-r1,CASE-INFRA-011-S5-016=normal@sim-r1,CASE-INFRA-011-S5-019=normal@sim-r1,CASE-INFRA-011-S5-022=normal@sim-r1,CASE-INFRA-011-S5-025=normal@sim-r1,CASE-INFRA-011-S5-028=normal@sim-r1,CASE-INFRA-011-S5-031=normal@sim-r1,CASE-INFRA-011-S5-034=normal@sim-r1,CASE-INFRA-011-S5-037=normal@sim-r1,CASE-INFRA-011-S5-040=normal@sim-r1,CASE-INFRA-011-S5-043=normal@sim-r1,CASE-INFRA-011-S5-046=normal@sim-r1,CASE-INFRA-011-S5-049=normal@sim-r1,CASE-INFRA-011-S5-052=normal@sim-r1}; connections={CORE={design=core-infra-sim@sim-r5,target_scope=infra-011-stage5-sim};OS={work=os-work-sim-01,change=os-change-sim-01,revision=os-rev-sim-4,scope=infra-011-stage5-sim,environment=verification-sim,runtime={id=api-db-sim-01,revision=infra-runtime-sim@sim-r17}};SECURITY={authority=security-authority-sim-01@sim-r3,scope=infra-011-stage5-sim,environment=verification-sim};Worker={contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01,resource=worker-host-sim@sim-r1,mapping=worker-sim→worker-host-sim}}; scope=infra-011-stage5-sim; environment=verification-sim; source_revision=sim-r1; current_active_revision=sim-r8; eligible_rollback_target={revision=sim-r7,artifact=artifact-sim-r7,config=cfg-sim-r7,dependency=dep-sim-r7,data_ref=data-sim-r7,procedure=rollback-sim-r7}; composite_result={state=sim-complete,unfinished_duties=[]}`。
+- 入力: unit_results={CASE-INFRA-011-S5-001=normal@sim-r1,CASE-INFRA-011-S5-004=normal@sim-r1,CASE-INFRA-011-S5-007=normal@sim-r1,CASE-INFRA-011-S5-010=normal@sim-r1,CASE-INFRA-011-S5-013=normal@sim-r1,CASE-INFRA-011-S5-016=normal@sim-r1,CASE-INFRA-011-S5-019=normal@sim-r1,CASE-INFRA-011-S5-022=normal@sim-r1,CASE-INFRA-011-S5-025=normal@sim-r1,CASE-INFRA-011-S5-028=normal@sim-r1,CASE-INFRA-011-S5-031=normal@sim-r1,CASE-INFRA-011-S5-034=normal@sim-r1,CASE-INFRA-011-S5-037=normal@sim-r1,CASE-INFRA-011-S5-040=normal@sim-r1,CASE-INFRA-011-S5-043=normal@sim-r1,CASE-INFRA-011-S5-046=normal@sim-r1,CASE-INFRA-011-S5-049=normal@sim-r1,CASE-INFRA-011-S5-052=normal@sim-r1}; connections={CORE={design=core-infra-sim@sim-r5,target_scope=infra-011-stage5-sim};OS={work=os-work-sim-01,change=os-change-sim-01,revision=os-rev-sim-4,scope=infra-011-stage5-sim,environment=verification-sim,runtime={id=api-db-sim-01,revision=infra-runtime-sim@sim-r17}};SECURITY={authority=security-authority-sim-01@sim-r3,scope=infra-011-stage5-sim,environment=verification-sim};Worker={contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01,resource=worker-host-sim@sim-r1,mapping=worker-sim→worker-host-sim}}; scope=infra-011-stage5-sim; environment=verification-sim; source_revision=sim-r1; current_active_revision=sim-r8; eligible_rollback_target={revision=sim-r7,artifact=artifact-sim-r7,config=cfg-sim-r7,dependency=dep-sim-r7,data_ref=data-sim-r7,procedure=rollback-sim-r7}; composite_result={state=sim-complete,unfinished_duties=[]}。
 - oracle: 構成体を未成立にし、partial result、欠落field/source、未完義務、責務owner=unknownを保持する。current active revisionと適格rollback targetも保持し、rollback実行や成功を生成しない。
 - owner/戻し先: connection-result責務ownerは固定親で特定されないためunknownを維持する。
 - trace: `INFRA-011-AC-03`。合成fixtureの設計候補であり未実行。
