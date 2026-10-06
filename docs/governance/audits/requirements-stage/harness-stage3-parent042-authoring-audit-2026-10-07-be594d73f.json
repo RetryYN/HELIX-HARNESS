@@ -1,0 +1,2068 @@
+{
+  "record_type": "harness042_prebody_authoring_audit_material",
+  "status": "Read-only audit material includes Root-fixed body revision physical inventory; candidate and verification only, not independent review/approval.",
+  "candidate_inputs": {
+    "root_candidate_path": "/tmp/root-harness042-six-suffixes-candidate.json",
+    "root_candidate_file_sha256": "76393293f7f74710bbbd59f46862dce637618037ddf52625149f780f3e74bbec",
+    "original_candidate_path": "/tmp/harness-stage3-parent042-six-suffix-candidate-2026-10-07-a1bcdba1.json",
+    "original_candidate_file_sha256": "09c46d30e0dff9acd09d769e468bb460c363b5d2add659d82e0214551c3f4ba2",
+    "authoring_base": {
+      "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+      "latest_main_commit": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+      "worktree_or_canonical_edited": false,
+      "commit_push_pr": false
+    }
+  },
+  "verified_pins": [
+    {
+      "name": "fixed_1",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "bytes": 254934,
+      "physical_lines": 1092,
+      "physical_final_lf": true,
+      "actual_full_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+      "expected_full_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+      "full_match": true,
+      "line_start": 972,
+      "line_end": 1000,
+      "span_bytes": 9091,
+      "actual_span_sha256": "323c25a94d55314871769f782f6e2b2d9fa0609240b1f11b22ec914e62de2804",
+      "expected_span_sha256": "323c25a94d55314871769f782f6e2b2d9fa0609240b1f11b22ec914e62de2804",
+      "span_match": true
+    },
+    {
+      "name": "fixed_2",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "bytes": 172806,
+      "physical_lines": 808,
+      "physical_final_lf": true,
+      "actual_full_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+      "expected_full_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+      "full_match": true,
+      "line_start": 711,
+      "line_end": 733,
+      "span_bytes": 5709,
+      "actual_span_sha256": "9446bffeeeae51d37ab4a3b6255931c0b55cc3660dd2747c24cb929bb38e3da4",
+      "expected_span_sha256": "9446bffeeeae51d37ab4a3b6255931c0b55cc3660dd2747c24cb929bb38e3da4",
+      "span_match": true
+    },
+    {
+      "name": "fixed_3",
+      "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "bytes": 64313,
+      "physical_lines": 664,
+      "physical_final_lf": true,
+      "actual_full_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "expected_full_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "full_match": true,
+      "line_start": 119,
+      "line_end": 119,
+      "span_bytes": 361,
+      "actual_span_sha256": "47e51a6d8f7ec3c8175b7c3f5b0581c4ca2d6535159e4a9badc74bd069637b86",
+      "expected_span_sha256": "47e51a6d8f7ec3c8175b7c3f5b0581c4ca2d6535159e4a9badc74bd069637b86",
+      "span_match": true
+    },
+    {
+      "name": "fixed_4",
+      "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+      "path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+      "bytes": 62494,
+      "physical_lines": 645,
+      "physical_final_lf": true,
+      "actual_full_sha256": "1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+      "expected_full_sha256": "1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+      "full_match": true,
+      "line_start": 104,
+      "line_end": 104,
+      "span_bytes": 361,
+      "actual_span_sha256": "47e51a6d8f7ec3c8175b7c3f5b0581c4ca2d6535159e4a9badc74bd069637b86",
+      "expected_span_sha256": "47e51a6d8f7ec3c8175b7c3f5b0581c4ca2d6535159e4a9badc74bd069637b86",
+      "span_match": true
+    },
+    {
+      "name": "fixed_5",
+      "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "bytes": 56091,
+      "physical_lines": 257,
+      "physical_final_lf": true,
+      "actual_full_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "expected_full_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "full_match": true,
+      "line_start": 145,
+      "line_end": 145,
+      "span_bytes": 492,
+      "actual_span_sha256": "191b3b22d5985f085548d44a736590502d5f424511d71262d1b0fe07871663c2",
+      "expected_span_sha256": "191b3b22d5985f085548d44a736590502d5f424511d71262d1b0fe07871663c2",
+      "span_match": true
+    },
+    {
+      "name": "old_six_1",
+      "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "bytes": 268052,
+      "physical_lines": 713,
+      "physical_final_lf": true,
+      "actual_full_sha256": "24f1d9f4973166a05218550874f8cda5a4978105f3bf3a6ccfa8c3c94fa18677",
+      "expected_full_sha256": "24f1d9f4973166a05218550874f8cda5a4978105f3bf3a6ccfa8c3c94fa18677",
+      "full_match": true,
+      "expected_bytes": 268052,
+      "byte_count_match": true,
+      "expected_physical_lines": 713,
+      "line_count_match": true
+    },
+    {
+      "name": "old_six_2",
+      "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "bytes": 13722,
+      "physical_lines": 114,
+      "physical_final_lf": true,
+      "actual_full_sha256": "6aa26ed4ec7257db515f56a02dce5a42378b284105e93b177cf865550dc8bbcc",
+      "expected_full_sha256": "6aa26ed4ec7257db515f56a02dce5a42378b284105e93b177cf865550dc8bbcc",
+      "full_match": true,
+      "expected_bytes": 13722,
+      "byte_count_match": true,
+      "expected_physical_lines": 114,
+      "line_count_match": true
+    },
+    {
+      "name": "old_six_3",
+      "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "bytes": 46517,
+      "physical_lines": 177,
+      "physical_final_lf": true,
+      "actual_full_sha256": "54c420e4f958b09524f96bd7ce8ef0c89d8a3dbbf519e3393b83688f10d7fbee",
+      "expected_full_sha256": "54c420e4f958b09524f96bd7ce8ef0c89d8a3dbbf519e3393b83688f10d7fbee",
+      "full_match": true,
+      "expected_bytes": 46517,
+      "byte_count_match": true,
+      "expected_physical_lines": 177,
+      "line_count_match": true
+    },
+    {
+      "name": "old_six_4",
+      "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "bytes": 767540,
+      "physical_lines": 2085,
+      "physical_final_lf": true,
+      "actual_full_sha256": "94704ba448b00df43651ca1dfa01835472132ce3023d829ea5bb690926fa3f02",
+      "expected_full_sha256": "94704ba448b00df43651ca1dfa01835472132ce3023d829ea5bb690926fa3f02",
+      "full_match": true,
+      "expected_bytes": 767540,
+      "byte_count_match": true,
+      "expected_physical_lines": 2085,
+      "line_count_match": true
+    },
+    {
+      "name": "old_six_5",
+      "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "bytes": 8800,
+      "physical_lines": 69,
+      "physical_final_lf": true,
+      "actual_full_sha256": "758b2e9bf32a12cf2945a9ded075978d6f265e2883fc4e23e173190681583426",
+      "expected_full_sha256": "758b2e9bf32a12cf2945a9ded075978d6f265e2883fc4e23e173190681583426",
+      "full_match": true,
+      "expected_bytes": 8800,
+      "byte_count_match": true,
+      "expected_physical_lines": 69,
+      "line_count_match": true
+    },
+    {
+      "name": "old_six_6",
+      "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "bytes": 47589,
+      "physical_lines": 177,
+      "physical_final_lf": true,
+      "actual_full_sha256": "5d53ffaf9d1ef89ace77f760c92972a439b87e52335deb916eca3683b38f85cc",
+      "expected_full_sha256": "5d53ffaf9d1ef89ace77f760c92972a439b87e52335deb916eca3683b38f85cc",
+      "full_match": true,
+      "expected_bytes": 47589,
+      "byte_count_match": true,
+      "expected_physical_lines": 177,
+      "line_count_match": true
+    },
+    {
+      "name": "main_six_base_1",
+      "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "bytes": 200552,
+      "physical_lines": 697,
+      "physical_final_lf": true,
+      "actual_full_sha256": "ddc4288e77effd48553c1cf4ada66e74dffef39c5fc209c1d3038b0bc83a8ad8",
+      "expected_full_sha256": "ddc4288e77effd48553c1cf4ada66e74dffef39c5fc209c1d3038b0bc83a8ad8",
+      "full_match": true,
+      "expected_bytes": 200552,
+      "byte_count_match": true,
+      "expected_physical_lines": 697,
+      "line_count_match": true
+    },
+    {
+      "name": "main_six_base_2",
+      "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "bytes": 12912,
+      "physical_lines": 121,
+      "physical_final_lf": true,
+      "actual_full_sha256": "87e3533a49f5284aed2535f9216683f9ef013ed7434c9816a73596b81a5e09fb",
+      "expected_full_sha256": "87e3533a49f5284aed2535f9216683f9ef013ed7434c9816a73596b81a5e09fb",
+      "full_match": true,
+      "expected_bytes": 12912,
+      "byte_count_match": true,
+      "expected_physical_lines": 121,
+      "line_count_match": true
+    },
+    {
+      "name": "main_six_base_3",
+      "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "bytes": 42424,
+      "physical_lines": 187,
+      "physical_final_lf": true,
+      "actual_full_sha256": "75cbdcc058aff99a9efd99b9d3344e6920e864b1bb603a1ac77a0e447f2f60af",
+      "expected_full_sha256": "75cbdcc058aff99a9efd99b9d3344e6920e864b1bb603a1ac77a0e447f2f60af",
+      "full_match": true,
+      "expected_bytes": 42424,
+      "byte_count_match": true,
+      "expected_physical_lines": 187,
+      "line_count_match": true
+    },
+    {
+      "name": "main_six_base_4",
+      "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "bytes": 615326,
+      "physical_lines": 1585,
+      "physical_final_lf": true,
+      "actual_full_sha256": "4f87643397e4e1c2a94d07537770510f634c509eaeb1701c3159a0d143d98cc1",
+      "expected_full_sha256": "4f87643397e4e1c2a94d07537770510f634c509eaeb1701c3159a0d143d98cc1",
+      "full_match": true,
+      "expected_bytes": 615326,
+      "byte_count_match": true,
+      "expected_physical_lines": 1585,
+      "line_count_match": true
+    },
+    {
+      "name": "main_six_base_5",
+      "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "bytes": 8569,
+      "physical_lines": 82,
+      "physical_final_lf": true,
+      "actual_full_sha256": "a1ff88366ef98368fa8cbd628f499aa50a73cd05a75d54ff64e353a1626cd67c",
+      "expected_full_sha256": "a1ff88366ef98368fa8cbd628f499aa50a73cd05a75d54ff64e353a1626cd67c",
+      "full_match": true,
+      "expected_bytes": 8569,
+      "byte_count_match": true,
+      "expected_physical_lines": 82,
+      "line_count_match": true
+    },
+    {
+      "name": "main_six_base_6",
+      "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "bytes": 36003,
+      "physical_lines": 167,
+      "physical_final_lf": true,
+      "actual_full_sha256": "e5b090ba97c6a5237b47b890d7a86453ed5f602ee09c9e531ab3b55698d13a7a",
+      "expected_full_sha256": "e5b090ba97c6a5237b47b890d7a86453ed5f602ee09c9e531ab3b55698d13a7a",
+      "full_match": true,
+      "expected_bytes": 36003,
+      "byte_count_match": true,
+      "expected_physical_lines": 167,
+      "line_count_match": true
+    },
+    {
+      "name": "PO adoption row",
+      "revision": "3795bf0dcb731231a0b5ca1faa3cb67bdfeda22a",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "line": 47,
+      "full_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "expected_full_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "full_match": true,
+      "row_literal": "| `HARNESS-L2-042` | 採択 | `MPR-RC-HARNESS-L2-042-001` | `docs/helix-harness/L2-requirements/product-requirements.md` | `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09` | `sha256:7da6b3394cbc96bdf028a4738000554e1cf7a946595c4abf43504b24968f34eb` | `HARNESS-L2-042` | `docs/helix-harness/L11-acceptance/product-acceptance.md` | `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5` | `sha256:3ba00726800c61f1de165e48e6f62ea4359a368a50a9e9cd1517deb09df395f9` | `docs/governance/audits/requirement-registration/harness-refactor-episode-coverage-receipt-2026-09-28.json#HARNESS-L2-042` |\n",
+      "row_sha256": "c4d46e15d46fc66b3a76f5d91b1994fbb0de69cdc9c2e6912acb1a6fd722b2d9",
+      "expected_row_sha256": "c4d46e15d46fc66b3a76f5d91b1994fbb0de69cdc9c2e6912acb1a6fd722b2d9",
+      "row_match": true,
+      "physical_final_lf": true
+    },
+    {
+      "name": "HIL-BR-21 business meaning",
+      "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/generated/requirements/requirement-definition.generated.md",
+      "line_start": 58,
+      "line_end": 58,
+      "actual_full_sha256": "3603fe35497e12f2d6de59f3710b7dfe590ee14d1c9523ce720757f7490eeb83",
+      "expected_full_sha256": "3603fe35497e12f2d6de59f3710b7dfe590ee14d1c9523ce720757f7490eeb83",
+      "full_match": true,
+      "actual_span_sha256": "8b5ec65e830aa7c1454cd09fde405568b173b0310fd2873b7752d0467352d764",
+      "expected_span_sha256": "8b5ec65e830aa7c1454cd09fde405568b173b0310fd2873b7752d0467352d764",
+      "span_match": true,
+      "physical_final_lf": true,
+      "literal": "| HIL-BR-21 | business | 設計上の重複、責務混在、変更波及、埋込みpolicyを、外部仕様と受入挙動を維持したまま外部化・共通化・オブジェクト化する第一級`DesignRefactor`駆動モデルを持つ。要求・公開contract・永続state semanticsを変える場合は`Redesign`または`Retrofit`へrerouteする。 | HR-FR-HIL-16 | frozen | sha256:5fcd00c039e0236951525a5b3ceb4e4ea06235702f481f9e979ae81264d29bab |\n"
+    },
+    {
+      "name": "HIL-FR-39 functional meaning",
+      "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/generated/requirements/requirement-definition.generated.md",
+      "line_start": 160,
+      "line_end": 160,
+      "actual_full_sha256": "3603fe35497e12f2d6de59f3710b7dfe590ee14d1c9523ce720757f7490eeb83",
+      "expected_full_sha256": "3603fe35497e12f2d6de59f3710b7dfe590ee14d1c9523ce720757f7490eeb83",
+      "full_match": true,
+      "actual_span_sha256": "a8d7926dffed3c4380b3e8d596d3464f24ae3db47550ee4ca8a72d2750739c18",
+      "expected_span_sha256": "a8d7926dffed3c4380b3e8d596d3464f24ae3db47550ee4ca8a72d2750739c18",
+      "span_match": true,
+      "physical_final_lf": true,
+      "literal": "| HIL-FR-39 | functional | Design Refactor Gateはdesign graph、重複contract/policy/schema、責務とstate invariant、consumer集合、before/after oracleを比較し、`externalize/commonize/objectize/semantic-rename`を独立変換として計画する。renameは名称の文字列類似だけで決めず、入出力、副作用、failure、state transition、call graph、consumer contractを含むsemantic signatureで、同義名の統一または同名異義の分離を判定する。behavior preservation、全consumer compatibility、Scope Authority、設計pair更新、rollbackが揃う場合だけ既存`Refactor`実装へ接続し、observable behavior、public surface、DB semantics、要求の差分を検出した場合は`Redesign/Retrofit`へrerouteする。 \\| design-refactor PLAN、変換種別、before/after graph digest、semantic/name collision evidence、behavior-preservation receipt、reroute receipt | HR-FR-HIL-16 | frozen | sha256:d7334990a0450d40ed74b0dcbb16e7d57ad50a81faae98816135d548c5c7e409 |\n"
+    },
+    {
+      "name": "HIL-NFR-24 rejection of speculative/name-only abstraction",
+      "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/generated/requirements/requirement-definition.generated.md",
+      "line_start": 268,
+      "line_end": 268,
+      "actual_full_sha256": "3603fe35497e12f2d6de59f3710b7dfe590ee14d1c9523ce720757f7490eeb83",
+      "expected_full_sha256": "3603fe35497e12f2d6de59f3710b7dfe590ee14d1c9523ce720757f7490eeb83",
+      "full_match": true,
+      "actual_span_sha256": "20243f7c63efc66f37097a89f06ab88a904d21e0053a8ea461daaa10224f528e",
+      "expected_span_sha256": "20243f7c63efc66f37097a89f06ab88a904d21e0053a8ea461daaa10224f528e",
+      "span_match": true,
+      "physical_final_lf": true,
+      "literal": "| HIL-NFR-24 | non_functional | Design Refactorは「将来使えそう」「綺麗になる」という推測や名称の文字列類似だけでrename、共通層、base class、汎用object、設定surfaceを増やさない。実在するsemantic similarity/name collision、重複・変更波及・責務混在の証拠、全consumer、最小変換、behavior invariant、退行時rollbackを要求し、誤った名称統一、抽象化、scope creepを拒否する。 | HR-FR-HIL-16 | frozen | sha256:6dda4aec0dd8832c332f65e0983ad66ac2a52139faaba1298a76d2f0236df620 |\n"
+    },
+    {
+      "name": "HR-FR-HIL-16 relation to HAT/HST consumers",
+      "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/generated/requirements/requirement-definition.generated.md",
+      "line_start": 359,
+      "line_end": 359,
+      "actual_full_sha256": "3603fe35497e12f2d6de59f3710b7dfe590ee14d1c9523ce720757f7490eeb83",
+      "expected_full_sha256": "3603fe35497e12f2d6de59f3710b7dfe590ee14d1c9523ce720757f7490eeb83",
+      "full_match": true,
+      "actual_span_sha256": "2490048bbd150d9d772b0e96fc9d8b918764b7f30f18d049bf14ff79f1fd7f83",
+      "expected_span_sha256": "2490048bbd150d9d772b0e96fc9d8b918764b7f30f18d049bf14ff79f1fd7f83",
+      "span_match": true,
+      "physical_final_lf": true,
+      "literal": "| HR-FR-HIL-16 | HIL-BR-21, HIL-FR-39, HIL-FR-40, HIL-NFR-24, HIL-NFR-25 | HAT-HIL-16 | specified | sha256:5eed525bf1051d7751d3472211985cd68589aeeaeb80a95b99604b513c489bae |\n"
+    },
+    {
+      "name": "HAT-HIL-16 acceptance consumer",
+      "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "line_start": 48,
+      "line_end": 48,
+      "actual_full_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "expected_full_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "full_match": true,
+      "actual_span_sha256": "4bc22a27b12b1c807fc14ea945a0e69599eca8f938f469e7fae30f0e7f641b93",
+      "expected_span_sha256": "4bc22a27b12b1c807fc14ea945a0e69599eca8f938f469e7fae30f0e7f641b93",
+      "span_match": true,
+      "physical_final_lf": true,
+      "literal": "| HAT-HIL-16 | HR-FR-HIL-16 / HAC-HIL-16a, HAC-HIL-16b, HAC-HIL-16c | HST-HIL-025, HST-HIL-026 | design refactorとdomain namingをrouting | semantic signature、consumer/oracle、role/name、rollback | lexical-only、根拠なし抽象化、誤route |\n"
+    },
+    {
+      "name": "HST-HIL-025 system consumer",
+      "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L9-infinity-loop-platform-system-test-design.md",
+      "line_start": 52,
+      "line_end": 52,
+      "actual_full_sha256": "e518b0cfe15ca4b999bd85120b8d74941a18ab0939ff6cda3dc20a8b7611b705",
+      "expected_full_sha256": "e518b0cfe15ca4b999bd85120b8d74941a18ab0939ff6cda3dc20a8b7611b705",
+      "full_match": true,
+      "actual_span_sha256": "66ebef312f59a9f39d5d16afe3bea8654f136ac6432554528187246adc64d6f7",
+      "expected_span_sha256": "66ebef312f59a9f39d5d16afe3bea8654f136ac6432554528187246adc64d6f7",
+      "span_match": true,
+      "physical_final_lf": true,
+      "literal": "| HST-HIL-025 | HIL-BR-21, HIL-FR-39, HIL-NFR-24 | HST-A-025 | Design Refactor→既存Refactor/Redesign/Retrofit | policy外部化、contract共通化、責務/stateオブジェクト化、behavior変更、根拠なし汎用化を個別投入する | 構造証拠と全consumer invariantがある最小変換だけを既存Refactorへ接続し、behavior/contract変更はRedesign、state/runtime/schema移行はRetrofit、推測抽象化はScope拒否 | `HIL_DESIGN_REFACTOR_INVARIANT_BROKEN` | 設計済み | 未実装 |\n"
+    },
+    {
+      "name": "HOT-HIL-39 operational consumer",
+      "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+      "line_start": 66,
+      "line_end": 66,
+      "actual_full_sha256": "4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+      "expected_full_sha256": "4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+      "full_match": true,
+      "actual_span_sha256": "8796cedd329810b245b0f9bc98c71654880696564bd90a6a43ccf9365df52f3a",
+      "expected_span_sha256": "8796cedd329810b245b0f9bc98c71654880696564bd90a6a43ccf9365df52f3a",
+      "span_match": true,
+      "physical_final_lf": true,
+      "literal": "| **HOT-HIL-39** | HIL-BR-21, HIL-FR-39, HIL-NFR-24 | 設計上のpolicy外部化、重複contract共通化、責務/stateのオブジェクト化、semantic renameを起票する。semantic同等で名称不統一、名称近似でsemantic相違、文字列類似だけ、public identifier rename、observable behavior変更、根拠なし汎用化を個別投入する | I/O、副作用、failure、state、call graph、全consumer、before/after oracle、behavior invariant、設計pair、rollbackがある最小変換だけを既存Refactorへ接続する。同義名はcanonical化し、同名異義は分離し、文字列類似だけは拒否する。public contract/DB semantics/要求差分はRedesignまたはRetrofitへrerouteし、推測抽象化はScope Gateで拒否する |\n"
+    }
+  ],
+  "fixed_parent_and_PO": {
+    "fixed_parent_pins": [
+      {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "start": 972,
+        "end": 1000,
+        "full_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "span_sha256": "323c25a94d55314871769f782f6e2b2d9fa0609240b1f11b22ec914e62de2804"
+      },
+      {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "start": 711,
+        "end": 733,
+        "full_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "span_sha256": "9446bffeeeae51d37ab4a3b6255931c0b55cc3660dd2747c24cb929bb38e3da4"
+      },
+      {
+        "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "start": 119,
+        "end": 119,
+        "full_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "span_sha256": "47e51a6d8f7ec3c8175b7c3f5b0581c4ca2d6535159e4a9badc74bd069637b86"
+      },
+      {
+        "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+        "path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+        "start": 104,
+        "end": 104,
+        "full_sha256": "1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+        "span_sha256": "47e51a6d8f7ec3c8175b7c3f5b0581c4ca2d6535159e4a9badc74bd069637b86"
+      },
+      {
+        "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "start": 145,
+        "end": 145,
+        "full_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "span_sha256": "191b3b22d5985f085548d44a736590502d5f424511d71262d1b0fe07871663c2"
+      }
+    ],
+    "PO_decision": {
+      "revision": "3795bf0dcb731231a0b5ca1faa3cb67bdfeda22a",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "full_bytes": 45099,
+      "full_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "line": 47,
+      "line_bytes": 617,
+      "line_sha256": "c4d46e15d46fc66b3a76f5d91b1994fbb0de69cdc9c2e6912acb1a6fd722b2d9",
+      "literal": "| `HARNESS-L2-042` | 採択 | `MPR-RC-HARNESS-L2-042-001` | `docs/helix-harness/L2-requirements/product-requirements.md` | `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09` | `sha256:7da6b3394cbc96bdf028a4738000554e1cf7a946595c4abf43504b24968f34eb` | `HARNESS-L2-042` | `docs/helix-harness/L11-acceptance/product-acceptance.md` | `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5` | `sha256:3ba00726800c61f1de165e48e6f62ea4359a368a50a9e9cd1517deb09df395f9` | `docs/governance/audits/requirement-registration/harness-refactor-episode-coverage-receipt-2026-09-28.json#HARNESS-L2-042` |",
+      "same_line_at_authoring_base": true
+    },
+    "PO_047_dependency_literal": "not used as a 042 adoption source; 042 PO row directly pins MPR-RC-HARNESS-L2-042-001"
+  },
+  "old_L3_definition_and_related_source_pins": [
+    {
+      "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "start": 119,
+      "end": 119,
+      "full_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "span_sha256": "47e51a6d8f7ec3c8175b7c3f5b0581c4ca2d6535159e4a9badc74bd069637b86"
+    },
+    {
+      "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+      "path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+      "start": 104,
+      "end": 104,
+      "full_sha256": "1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+      "span_sha256": "47e51a6d8f7ec3c8175b7c3f5b0581c4ca2d6535159e4a9badc74bd069637b86"
+    },
+    {
+      "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "start": 145,
+      "end": 145,
+      "full_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "span_sha256": "191b3b22d5985f085548d44a736590502d5f424511d71262d1b0fe07871663c2"
+    },
+    {
+      "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/generated/requirements/requirement-definition.generated.md",
+      "physical_start": 58,
+      "physical_end_inclusive": 58,
+      "full_bytes": 657702,
+      "full_sha256": "3603fe35497e12f2d6de59f3710b7dfe590ee14d1c9523ce720757f7490eeb83",
+      "span_bytes": 465,
+      "span_sha256": "8b5ec65e830aa7c1454cd09fde405568b173b0310fd2873b7752d0467352d764",
+      "literal": "| HIL-BR-21 | business | 設計上の重複、責務混在、変更波及、埋込みpolicyを、外部仕様と受入挙動を維持したまま外部化・共通化・オブジェクト化する第一級`DesignRefactor`駆動モデルを持つ。要求・公開contract・永続state semanticsを変える場合は`Redesign`または`Retrofit`へrerouteする。 | HR-FR-HIL-16 | frozen | sha256:5fcd00c039e0236951525a5b3ceb4e4ea06235702f481f9e979ae81264d29bab |\n",
+      "role": "HIL-BR-21 business meaning"
+    },
+    {
+      "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/generated/requirements/requirement-definition.generated.md",
+      "physical_start": 160,
+      "physical_end_inclusive": 160,
+      "full_bytes": 657702,
+      "full_sha256": "3603fe35497e12f2d6de59f3710b7dfe590ee14d1c9523ce720757f7490eeb83",
+      "span_bytes": 1037,
+      "span_sha256": "a8d7926dffed3c4380b3e8d596d3464f24ae3db47550ee4ca8a72d2750739c18",
+      "literal": "| HIL-FR-39 | functional | Design Refactor Gateはdesign graph、重複contract/policy/schema、責務とstate invariant、consumer集合、before/after oracleを比較し、`externalize/commonize/objectize/semantic-rename`を独立変換として計画する。renameは名称の文字列類似だけで決めず、入出力、副作用、failure、state transition、call graph、consumer contractを含むsemantic signatureで、同義名の統一または同名異義の分離を判定する。behavior preservation、全consumer compatibility、Scope Authority、設計pair更新、rollbackが揃う場合だけ既存`Refactor`実装へ接続し、observable behavior、public surface、DB semantics、要求の差分を検出した場合は`Redesign/Retrofit`へrerouteする。 \\| design-refactor PLAN、変換種別、before/after graph digest、semantic/name collision evidence、behavior-preservation receipt、reroute receipt | HR-FR-HIL-16 | frozen | sha256:d7334990a0450d40ed74b0dcbb16e7d57ad50a81faae98816135d548c5c7e409 |\n",
+      "role": "HIL-FR-39 functional meaning"
+    },
+    {
+      "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/generated/requirements/requirement-definition.generated.md",
+      "physical_start": 268,
+      "physical_end_inclusive": 268,
+      "full_bytes": 657702,
+      "full_sha256": "3603fe35497e12f2d6de59f3710b7dfe590ee14d1c9523ce720757f7490eeb83",
+      "span_bytes": 574,
+      "span_sha256": "20243f7c63efc66f37097a89f06ab88a904d21e0053a8ea461daaa10224f528e",
+      "literal": "| HIL-NFR-24 | non_functional | Design Refactorは「将来使えそう」「綺麗になる」という推測や名称の文字列類似だけでrename、共通層、base class、汎用object、設定surfaceを増やさない。実在するsemantic similarity/name collision、重複・変更波及・責務混在の証拠、全consumer、最小変換、behavior invariant、退行時rollbackを要求し、誤った名称統一、抽象化、scope creepを拒否する。 | HR-FR-HIL-16 | frozen | sha256:6dda4aec0dd8832c332f65e0983ad66ac2a52139faaba1298a76d2f0236df620 |\n",
+      "role": "HIL-NFR-24 rejection of speculative/name-only abstraction"
+    },
+    {
+      "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/generated/requirements/requirement-definition.generated.md",
+      "physical_start": 359,
+      "physical_end_inclusive": 359,
+      "full_bytes": 657702,
+      "full_sha256": "3603fe35497e12f2d6de59f3710b7dfe590ee14d1c9523ce720757f7490eeb83",
+      "span_bytes": 174,
+      "span_sha256": "2490048bbd150d9d772b0e96fc9d8b918764b7f30f18d049bf14ff79f1fd7f83",
+      "literal": "| HR-FR-HIL-16 | HIL-BR-21, HIL-FR-39, HIL-FR-40, HIL-NFR-24, HIL-NFR-25 | HAT-HIL-16 | specified | sha256:5eed525bf1051d7751d3472211985cd68589aeeaeb80a95b99604b513c489bae |\n",
+      "role": "HR-FR-HIL-16 relation to HAT/HST consumers"
+    },
+    {
+      "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "physical_start": 48,
+      "physical_end_inclusive": 48,
+      "full_bytes": 7819,
+      "full_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_bytes": 253,
+      "span_sha256": "4bc22a27b12b1c807fc14ea945a0e69599eca8f938f469e7fae30f0e7f641b93",
+      "literal": "| HAT-HIL-16 | HR-FR-HIL-16 / HAC-HIL-16a, HAC-HIL-16b, HAC-HIL-16c | HST-HIL-025, HST-HIL-026 | design refactorとdomain namingをrouting | semantic signature、consumer/oracle、role/name、rollback | lexical-only、根拠なし抽象化、誤route |\n",
+      "role": "HAT-HIL-16 acceptance consumer"
+    },
+    {
+      "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L9-infinity-loop-platform-system-test-design.md",
+      "physical_start": 52,
+      "physical_end_inclusive": 52,
+      "full_bytes": 12926,
+      "full_sha256": "e518b0cfe15ca4b999bd85120b8d74941a18ab0939ff6cda3dc20a8b7611b705",
+      "span_bytes": 524,
+      "span_sha256": "66ebef312f59a9f39d5d16afe3bea8654f136ac6432554528187246adc64d6f7",
+      "literal": "| HST-HIL-025 | HIL-BR-21, HIL-FR-39, HIL-NFR-24 | HST-A-025 | Design Refactor→既存Refactor/Redesign/Retrofit | policy外部化、contract共通化、責務/stateオブジェクト化、behavior変更、根拠なし汎用化を個別投入する | 構造証拠と全consumer invariantがある最小変換だけを既存Refactorへ接続し、behavior/contract変更はRedesign、state/runtime/schema移行はRetrofit、推測抽象化はScope拒否 | `HIL_DESIGN_REFACTOR_INVARIANT_BROKEN` | 設計済み | 未実装 |\n",
+      "role": "HST-HIL-025 system consumer"
+    },
+    {
+      "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+      "physical_start": 66,
+      "physical_end_inclusive": 66,
+      "full_bytes": 16537,
+      "full_sha256": "4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+      "span_bytes": 789,
+      "span_sha256": "8796cedd329810b245b0f9bc98c71654880696564bd90a6a43ccf9365df52f3a",
+      "literal": "| **HOT-HIL-39** | HIL-BR-21, HIL-FR-39, HIL-NFR-24 | 設計上のpolicy外部化、重複contract共通化、責務/stateのオブジェクト化、semantic renameを起票する。semantic同等で名称不統一、名称近似でsemantic相違、文字列類似だけ、public identifier rename、observable behavior変更、根拠なし汎用化を個別投入する | I/O、副作用、failure、state、call graph、全consumer、before/after oracle、behavior invariant、設計pair、rollbackがある最小変換だけを既存Refactorへ接続する。同義名はcanonical化し、同名異義は分離し、文字列類似だけは拒否する。public contract/DB semantics/要求差分はRedesignまたはRetrofitへrerouteし、推測抽象化はScope Gateで拒否する |\n",
+      "role": "HOT-HIL-39 operational consumer"
+    }
+  ],
+  "old_six_document_pins": [
+    {
+      "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "bytes": 268052,
+      "physical_lines": 713,
+      "sha256": "24f1d9f4973166a05218550874f8cda5a4978105f3bf3a6ccfa8c3c94fa18677"
+    },
+    {
+      "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "bytes": 13722,
+      "physical_lines": 114,
+      "sha256": "6aa26ed4ec7257db515f56a02dce5a42378b284105e93b177cf865550dc8bbcc"
+    },
+    {
+      "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "bytes": 46517,
+      "physical_lines": 177,
+      "sha256": "54c420e4f958b09524f96bd7ce8ef0c89d8a3dbbf519e3393b83688f10d7fbee"
+    },
+    {
+      "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "bytes": 767540,
+      "physical_lines": 2085,
+      "sha256": "94704ba448b00df43651ca1dfa01835472132ce3023d829ea5bb690926fa3f02"
+    },
+    {
+      "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "bytes": 8800,
+      "physical_lines": 69,
+      "sha256": "758b2e9bf32a12cf2945a9ded075978d6f265e2883fc4e23e173190681583426"
+    },
+    {
+      "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "bytes": 47589,
+      "physical_lines": 177,
+      "sha256": "5d53ffaf9d1ef89ace77f760c92972a439b87e52335deb916eca3683b38f85cc"
+    }
+  ],
+  "current_main_six_target_base_pins": [
+    {
+      "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "bytes": 200552,
+      "physical_lines": 697,
+      "sha256": "ddc4288e77effd48553c1cf4ada66e74dffef39c5fc209c1d3038b0bc83a8ad8",
+      "git_blob": "ac4f42f9889691c7ced5d4200e2ac77e2b1cb46c"
+    },
+    {
+      "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "bytes": 12912,
+      "physical_lines": 121,
+      "sha256": "87e3533a49f5284aed2535f9216683f9ef013ed7434c9816a73596b81a5e09fb",
+      "git_blob": "0a5d4263f569660178533ab94fc0b7d33adf9373"
+    },
+    {
+      "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "bytes": 42424,
+      "physical_lines": 187,
+      "sha256": "75cbdcc058aff99a9efd99b9d3344e6920e864b1bb603a1ac77a0e447f2f60af",
+      "git_blob": "42d302cfd1561fadc7ab58ce942b1ec4f07d5e2b"
+    },
+    {
+      "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "bytes": 615326,
+      "physical_lines": 1585,
+      "sha256": "4f87643397e4e1c2a94d07537770510f634c509eaeb1701c3159a0d143d98cc1",
+      "git_blob": "efed13cb9018c5511ef18a8bf83ff072d8258877"
+    },
+    {
+      "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "bytes": 8569,
+      "physical_lines": 82,
+      "sha256": "a1ff88366ef98368fa8cbd628f499aa50a73cd05a75d54ff64e353a1626cd67c",
+      "git_blob": "880e01743367578f2920891a5a0297c48bf64e73"
+    },
+    {
+      "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "bytes": 36003,
+      "physical_lines": 167,
+      "sha256": "e5b090ba97c6a5237b47b890d7a86453ed5f602ee09c9e531ab3b55698d13a7a",
+      "git_blob": "7da14c18e3e4dfbbaff90d0546ad4b001ce3888e"
+    }
+  ],
+  "legacy_CASE_inventory": [
+    {
+      "id": "CASE-HARNESS-L10-042-01",
+      "line": 856,
+      "literal": "| `CASE-HARNESS-L10-042-01` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-01` | 同じbehavior/contractを保つ構造整理candidateと完全なconsumer/oracle evidence。 | 索引のみ。公開contract、要求、persistent state意味変更は`CASE-HARNESS-L10-042-r05-public-contract-change`、`CASE-HARNESS-L10-042-r05-requirement-meaning-change`、`CASE-HARNESS-L10-042-r05-persistent-state-change`で各一つずつ試す。 | positiveだけrefactor candidate。各意味変更は既存Backflow先へ返し、このindexを独立negativeに数えない。 |\n",
+      "expected_raw_lf_sha256": "ba4617d9d29a4b35f798117b1fa5e1fde4f3fbf59828045e67d0ece672d564a7",
+      "actual_raw_lf_sha256": "ba4617d9d29a4b35f798117b1fa5e1fde4f3fbf59828045e67d0ece672d564a7",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-02",
+      "line": 857,
+      "literal": "| `CASE-HARNESS-L10-042-02` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-02` | scope内semantic signature、全consumer、dependency/oracle snapshotを与えるmatrix参照。 | 索引のみ。`CASE-HARNESS-L10-042-r03-name-only-similarity`、`CASE-HARNESS-L10-042-r02-semantic-similarity-missing`、`CASE-HARNESS-L10-042-r02-consumer-missing`、`CASE-HARNESS-L10-042-r02-oracle-missing`、`CASE-HARNESS-L10-042-r02-dependency-graph-missing`を参照する。 | 各不足の単独CASEでunknown/未評価にし、indexを独立negativeに数えない。 |\n",
+      "expected_raw_lf_sha256": "6df8b69e710ec1a556cda348eb3cc88df67531ff634e224c5498d210704cb5b3",
+      "actual_raw_lf_sha256": "6df8b69e710ec1a556cda348eb3cc88df67531ff634e224c5498d210704cb5b3",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-03",
+      "line": 858,
+      "literal": "| `CASE-HARNESS-L10-042-03` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-03` | episode境界のindex。Design Refactor混載=`CASE-HARNESS-L10-042-r09-001`、Performance Refactor混載=`CASE-HARNESS-L10-042-r09-002`。 | 索引のみ。 2件を一つの変異へまとめない。 | 各単独CASEのみを評価しindexを数えない。 |\n",
+      "expected_raw_lf_sha256": "4cedc57ba4d76723b2ee26f8728fdd8122d09caaaaa2e17f471087e604cc13bc",
+      "actual_raw_lf_sha256": "4cedc57ba4d76723b2ee26f8728fdd8122d09caaaaa2e17f471087e604cc13bc",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-04",
+      "line": 905,
+      "literal": "| `CASE-HARNESS-L10-042-04` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-04`| 同一scopeのconsumer/oracle/dependency索引。未見適合正常=`CASE-HARNESS-L10-042-r06-unseen-consumer-valid`、unknown=`CASE-HARNESS-L10-042-r06-consumer-unknown`、未見dependency適合=`CASE-HARNESS-L10-042-r09-003`、semantic similarity stale=`CASE-HARNESS-L10-042-r02-semantic-similarity-stale`、consumer stale=`CASE-HARNESS-L10-042-r02-consumer-stale`、oracle stale=`CASE-HARNESS-L10-042-r02-oracle-stale`、dependency graph stale=`CASE-HARNESS-L10-042-r02-dependency-graph-stale`、revision unknown=`CASE-HARNESS-L10-042-r03-revision-unknown`。 | 索引のみ。 | 参照先を個別照合し、nested indexをnegativeに数えない。 |\n",
+      "expected_raw_lf_sha256": "84bf07624e1f59333a30fccf3af1e6b6f097659b8c451ca22cced828509fbdc0",
+      "actual_raw_lf_sha256": "84bf07624e1f59333a30fccf3af1e6b6f097659b8c451ca22cced828509fbdc0",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-05",
+      "line": 955,
+      "literal": "| `CASE-HARNESS-L10-042-05` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-04` | L2が指定しないrollback前提を入力せず、既存変更意味でrefactor候補を照合する。 | rollback入力欠落だけで候補を拒否する。 | 固定親にない条件として不合格。 |\n",
+      "expected_raw_lf_sha256": "f05c50992ed5462516c0d7fc57de47f5d16ea8a641d4deb5521cdc9b62bcb1d6",
+      "actual_raw_lf_sha256": "f05c50992ed5462516c0d7fc57de47f5d16ea8a641d4deb5521cdc9b62bcb1d6",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-06",
+      "line": 992,
+      "literal": "| `CASE-HARNESS-L10-042-06` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-02` | 未見same-scope consumerとdependencyを変更前後に列挙し、既存oracleへ対応させる。 | consumer隠蔽とdependency隠蔽をCASE-HARNESS-L10-042-08、CASE-HARNESS-L10-042-09へ分離し、この行はmatrix参照とする。 | 各単独CASEで意味保存unknownを示し、既存design/契約ownerへ戻す。 |\n",
+      "expected_raw_lf_sha256": "4e7c6f60fb810fc3f88f517316017b5ce7cb400c6ca4463b76c8a132a1cd1a2d",
+      "actual_raw_lf_sha256": "4e7c6f60fb810fc3f88f517316017b5ce7cb400c6ca4463b76c8a132a1cd1a2d",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-07",
+      "line": 993,
+      "literal": "| `CASE-HARNESS-L10-042-07` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-03` | 性能変更選択時はL2-016 baseline/workload/oracleを用いる。 | 性能regressionと測定不能をCASE-HARNESS-L10-042-10、CASE-HARNESS-L10-042-11で別々に与える。 | 各単独CASEでrefactor成功扱いを拒否し、016既存契約へ戻す。 |\n",
+      "expected_raw_lf_sha256": "148269d6602eefecb5de114acc2db8fb0fbe2ef60c8cf4659ab9cd1c1fd64528",
+      "actual_raw_lf_sha256": "148269d6602eefecb5de114acc2db8fb0fbe2ef60c8cf4659ab9cd1c1fd64528",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-08",
+      "line": 1086,
+      "literal": "| `CASE-HARNESS-L10-042-08` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-02` | 変更前後のconsumer一覧を同scope/revisionで列挙する。 | consumer一件だけを隠す。 | 意味保存unknown、既存design/契約ownerへ戻す。 |\n",
+      "expected_raw_lf_sha256": "94b3111a61ec625c60df64ffab758ca040b3b42196b6480caf0b4be7812787db",
+      "actual_raw_lf_sha256": "94b3111a61ec625c60df64ffab758ca040b3b42196b6480caf0b4be7812787db",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-09",
+      "line": 1087,
+      "literal": "| `CASE-HARNESS-L10-042-09` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-02` | 変更前後のdependency一覧を同scope/revisionで列挙する。 | dependency一件だけを隠す。 | 意味保存unknown、既存design/契約ownerへ戻す。 |\n",
+      "expected_raw_lf_sha256": "a4f3534ab4add10d8b223ef649a858670e733bff060134c18948be1e8420193a",
+      "actual_raw_lf_sha256": "a4f3534ab4add10d8b223ef649a858670e733bff060134c18948be1e8420193a",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-10",
+      "line": 1088,
+      "literal": "| `CASE-HARNESS-L10-042-10` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-03` | L2-016 baseline/workload/oracleで性能を比較する。 | 性能regressionだけを投入しrefactor成功扱いする。 | 成功を拒否し016既存契約へ戻す。 |\n",
+      "expected_raw_lf_sha256": "a6233cd5094e763941cb8784bf694405b0fcac4f9eebb7344e23b7f70065189a",
+      "actual_raw_lf_sha256": "a6233cd5094e763941cb8784bf694405b0fcac4f9eebb7344e23b7f70065189a",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-11",
+      "line": 1089,
+      "literal": "| `CASE-HARNESS-L10-042-11` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-03` | L2-016に沿った計測可能なbaseline/workload/oracleを用いる。 | 測定不能だけを投入しrefactor成功扱いする。 | 成功を拒否し016既存契約へ戻す。 |\n",
+      "expected_raw_lf_sha256": "b30009d04abf7232140f5accb48587e876d9de1bbc105dd68f6eb25a224ff505",
+      "actual_raw_lf_sha256": "b30009d04abf7232140f5accb48587e876d9de1bbc105dd68f6eb25a224ff505",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-r02-semantic-similarity-missing",
+      "line": 1254,
+      "literal": "| `CASE-HARNESS-L10-042-r02-semantic-similarity-missing` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-02` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | semantic similarity根拠だけをmissingにする。他の3根拠とrevision/scopeは正常。 | 当該根拠不足だけを未評価としてsource/設計/契約ownerへ戻し、他根拠で相殺しない。 |\n",
+      "expected_raw_lf_sha256": "87fc21ad5e53e0f9c76ca7cd8d38e1a06c15c6b793fc1ffa4c17edcfe931e6b1",
+      "actual_raw_lf_sha256": "87fc21ad5e53e0f9c76ca7cd8d38e1a06c15c6b793fc1ffa4c17edcfe931e6b1",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-r02-semantic-similarity-stale",
+      "line": 1255,
+      "literal": "| `CASE-HARNESS-L10-042-r02-semantic-similarity-stale` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-04` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | semantic similarity根拠だけをstaleにする。他の3根拠とrevision/scopeは正常。 | 当該根拠不足だけを未評価としてsource/設計/契約ownerへ戻し、他根拠で相殺しない。 |\n",
+      "expected_raw_lf_sha256": "6c3176971102f06849b5cae96a7d2750a40c624a041287d10dc026eac7005053",
+      "actual_raw_lf_sha256": "6c3176971102f06849b5cae96a7d2750a40c624a041287d10dc026eac7005053",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-r02-consumer-missing",
+      "line": 1256,
+      "literal": "| `CASE-HARNESS-L10-042-r02-consumer-missing` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-02` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | consumer根拠だけをmissingにする。他の3根拠とrevision/scopeは正常。 | 当該根拠不足だけを未評価としてsource/設計/契約ownerへ戻し、他根拠で相殺しない。 |\n",
+      "expected_raw_lf_sha256": "071f3d85caa48949fde44ad75bbf7030ca3c29cdefc5345f3ad075a26af5fd52",
+      "actual_raw_lf_sha256": "071f3d85caa48949fde44ad75bbf7030ca3c29cdefc5345f3ad075a26af5fd52",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-r02-consumer-stale",
+      "line": 1257,
+      "literal": "| `CASE-HARNESS-L10-042-r02-consumer-stale` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-04` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | consumer根拠だけをstaleにする。他の3根拠とrevision/scopeは正常。 | 当該根拠不足だけを未評価としてsource/設計/契約ownerへ戻し、他根拠で相殺しない。 |\n",
+      "expected_raw_lf_sha256": "874542e933e86cbeea1763fcfa8e03641f511674921a691ec157c04052fded6f",
+      "actual_raw_lf_sha256": "874542e933e86cbeea1763fcfa8e03641f511674921a691ec157c04052fded6f",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-r02-oracle-missing",
+      "line": 1258,
+      "literal": "| `CASE-HARNESS-L10-042-r02-oracle-missing` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-02` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | oracle根拠だけをmissingにする。他の3根拠とrevision/scopeは正常。 | 当該根拠不足だけを未評価としてsource/設計/契約ownerへ戻し、他根拠で相殺しない。 |\n",
+      "expected_raw_lf_sha256": "79d3e39e01ab06276771398857215e5527119dbea852421a54078164d65db08c",
+      "actual_raw_lf_sha256": "79d3e39e01ab06276771398857215e5527119dbea852421a54078164d65db08c",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-r02-oracle-stale",
+      "line": 1259,
+      "literal": "| `CASE-HARNESS-L10-042-r02-oracle-stale` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-04` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | oracle根拠だけをstaleにする。他の3根拠とrevision/scopeは正常。 | 当該根拠不足だけを未評価としてsource/設計/契約ownerへ戻し、他根拠で相殺しない。 |\n",
+      "expected_raw_lf_sha256": "358282370b2c31043a02de228224cca20e5f46f54b4db4eecc079b1503c6f1cd",
+      "actual_raw_lf_sha256": "358282370b2c31043a02de228224cca20e5f46f54b4db4eecc079b1503c6f1cd",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-r02-dependency-graph-missing",
+      "line": 1260,
+      "literal": "| `CASE-HARNESS-L10-042-r02-dependency-graph-missing` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-02` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | dependency graph根拠だけをmissingにする。他の3根拠とrevision/scopeは正常。 | 当該根拠不足だけを未評価としてsource/設計/契約ownerへ戻し、他根拠で相殺しない。 |\n",
+      "expected_raw_lf_sha256": "4f371580911abebc22760fda0343edafde17993c590d95f49eb47fda31eb8243",
+      "actual_raw_lf_sha256": "4f371580911abebc22760fda0343edafde17993c590d95f49eb47fda31eb8243",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-r02-dependency-graph-stale",
+      "line": 1261,
+      "literal": "| `CASE-HARNESS-L10-042-r02-dependency-graph-stale` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-04` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | dependency graph根拠だけをstaleにする。他の3根拠とrevision/scopeは正常。 | 当該根拠不足だけを未評価としてsource/設計/契約ownerへ戻し、他根拠で相殺しない。 |\n",
+      "expected_raw_lf_sha256": "acb6c3b1cbe7dd1ead3d4cffb6eb34faaf3f18d76b2a3fe5d63ebd8cf13ddd38",
+      "actual_raw_lf_sha256": "acb6c3b1cbe7dd1ead3d4cffb6eb34faaf3f18d76b2a3fe5d63ebd8cf13ddd38",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-r02-other-scope",
+      "line": 1262,
+      "literal": "| `CASE-HARNESS-L10-042-r02-other-scope` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-03` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | 判定成功だけを別scopeへ外挿する。 | 外挿を拒否し、判定成立を元scope/revisionだけに限定する。 |\n",
+      "expected_raw_lf_sha256": "22b497d02e1709b4b5fcdcf39a3e5a8e94d7e363f17a24050ce712d0f09bf554",
+      "actual_raw_lf_sha256": "22b497d02e1709b4b5fcdcf39a3e5a8e94d7e363f17a24050ce712d0f09bf554",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-r02-other-revision",
+      "line": 1263,
+      "literal": "| `CASE-HARNESS-L10-042-r02-other-revision` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-03` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | 判定成功だけを別revisionへ外挿する。 | 外挿を拒否し、判定成立を元scope/revisionだけに限定する。 |\n",
+      "expected_raw_lf_sha256": "610ee0a696148ee8da106f87a384eff0b0277a5058a462111d312c137988c013",
+      "actual_raw_lf_sha256": "610ee0a696148ee8da106f87a384eff0b0277a5058a462111d312c137988c013",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-r02-feature",
+      "line": 1264,
+      "literal": "| `CASE-HARNESS-L10-042-r02-feature` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-03` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | 判定成功を機能追加の成立へ外挿する。 | 外挿を拒否し、判定成立を元scope/revisionだけに限定する。 |\n",
+      "expected_raw_lf_sha256": "4e5214eb2787eb03a061d981b8a244bb5aa9a85136980e03e790c4c749e79c72",
+      "actual_raw_lf_sha256": "4e5214eb2787eb03a061d981b8a244bb5aa9a85136980e03e790c4c749e79c72",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-r02-downstream-execution",
+      "line": 1265,
+      "literal": "| `CASE-HARNESS-L10-042-r02-downstream-execution` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-03` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | 判定成功を下流実行結果の成功へ外挿する。 | 外挿を拒否し、判定成立を元scope/revisionだけに限定する。 |\n",
+      "expected_raw_lf_sha256": "1f6b5cc59ca9f3c8be2ea92061b1bc728902770ca3652a20faadf74728b1d30b",
+      "actual_raw_lf_sha256": "1f6b5cc59ca9f3c8be2ea92061b1bc728902770ca3652a20faadf74728b1d30b",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-r02-normal-similarity",
+      "line": 1317,
+      "literal": "| `CASE-HARNESS-L10-042-r02-normal-similarity` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-01` | source/design/consumer/oracle/dependencyとsemantic similarityが一致し、016保存oracleで契約・要求・振舞いが保たれる。 | 該当条件を変えない。 | scope/revision内のstructure-only候補としてだけ分類し、下流成功を推定しない。 |\n",
+      "expected_raw_lf_sha256": "1cffceda685f5e3d9685825a9f0a4d02bfd870d887b3797bd0cf24f03aee616d",
+      "actual_raw_lf_sha256": "1cffceda685f5e3d9685825a9f0a4d02bfd870d887b3797bd0cf24f03aee616d",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-r03-name-only-similarity",
+      "line": 1362,
+      "literal": "| `CASE-HARNESS-L10-042-r03-name-only-similarity` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-02` | semanticsを照合できる同scope/revisionのrefactor候補を与える。 | 名前だけを似せsemantic similarity根拠を欠落させる。 | 成功候補を返さずunknownとしてdesign/契約ownerへ戻す。 |\n",
+      "expected_raw_lf_sha256": "efb38e07469c2825f702b4f1d95c0de9c66f2b06f174ed15654aaccdada72f14",
+      "actual_raw_lf_sha256": "efb38e07469c2825f702b4f1d95c0de9c66f2b06f174ed15654aaccdada72f14",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-r03-revision-unknown",
+      "line": 1363,
+      "literal": "| `CASE-HARNESS-L10-042-r03-revision-unknown` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-04` | 選択scopeとsource revisionを特定できる。 | 対象revisionだけを特定不能にする。 | 結果をunknown/未評価とし成功を外挿しない。 |\n",
+      "expected_raw_lf_sha256": "2f1b14f5caca6fbc9784cfed7bdf47628d5968a88a79b8640c27f4e94a2421ad",
+      "actual_raw_lf_sha256": "2f1b14f5caca6fbc9784cfed7bdf47628d5968a88a79b8640c27f4e94a2421ad",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-r04-042-revision-unidentified",
+      "line": 1436,
+      "literal": "| `CASE-HARNESS-L10-042-r04-042-revision-unidentified` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-04` | `CASE-HARNESS-L10-042-r03-revision-unknown`のindex参照。 | 独立変異として数えず、対象revision不明の結果を参照する。 | unknown/未評価を維持し成功を外挿しない。L2-019へ戻すのは対設計欠落CASEに限る。 |\n",
+      "expected_raw_lf_sha256": "c429279d34eb4c948d18b0001616b8b7d1c4b0807fe38c78445c36c55afa5231",
+      "actual_raw_lf_sha256": "c429279d34eb4c948d18b0001616b8b7d1c4b0807fe38c78445c36c55afa5231",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-r04-042-l2-019-return",
+      "line": 1437,
+      "literal": "| `CASE-HARNESS-L10-042-r04-042-l2-019-return` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-01` | 固定親に適合する正常条件、scope/revision、必要oracleが揃う。 | 対応するdesignの有無だけを変異させる。 | 対応するdesignがないことを検出し、L2-019へ戻す。 |\n",
+      "expected_raw_lf_sha256": "e1b9ad6412d598710bbaf92f493ecc92d2d5a9d4db916e8a154ce84ae997e985",
+      "actual_raw_lf_sha256": "e1b9ad6412d598710bbaf92f493ecc92d2d5a9d4db916e8a154ce84ae997e985",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-r05-public-contract-change",
+      "line": 1510,
+      "literal": "| `CASE-HARNESS-L10-042-r05-public-contract-change` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-01` | 同scope/revisionでpublic contractが保持され、他の意味条件もcurrent。 | public contract意味だけを変更する。 | refactor成功を拒否し、HARNESS-L2-003/004/016の該当Backflow先へ戻す。 |\n",
+      "expected_raw_lf_sha256": "ae80c3ea53e4d97b67576efaafb7a9943a66bc6ffc7ba9a45124a9eb41a31ebc",
+      "actual_raw_lf_sha256": "ae80c3ea53e4d97b67576efaafb7a9943a66bc6ffc7ba9a45124a9eb41a31ebc",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-r05-requirement-meaning-change",
+      "line": 1511,
+      "literal": "| `CASE-HARNESS-L10-042-r05-requirement-meaning-change` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-01` | 同scope/revisionでrequirement meaningが保持され、他の意味条件もcurrent。 | requirement meaningだけを変更する。 | refactor成功を拒否し、HARNESS-L2-003/004/016の該当Backflow先へ戻す。 |\n",
+      "expected_raw_lf_sha256": "86be0f1fddfe4964a3f017a05be9af9166d4094f610be8980c8e5f92b8a5a1a7",
+      "actual_raw_lf_sha256": "86be0f1fddfe4964a3f017a05be9af9166d4094f610be8980c8e5f92b8a5a1a7",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-r05-persistent-state-change",
+      "line": 1512,
+      "literal": "| `CASE-HARNESS-L10-042-r05-persistent-state-change` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-01` | 同scope/revisionでpersistent state meaningが保持され、他の意味条件もcurrent。 | persistent state meaningだけを変更する。 | refactor成功を拒否し、HARNESS-L2-003/004/016の該当Backflow先へ戻す。 |\n",
+      "expected_raw_lf_sha256": "88d36b8601a1e8f3fa62a4c822a0cb17db2b6590e73f8ccd94f84079df56b1ed",
+      "actual_raw_lf_sha256": "88d36b8601a1e8f3fa62a4c822a0cb17db2b6590e73f8ccd94f84079df56b1ed",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-r06-unseen-consumer-valid",
+      "line": 1677,
+      "literal": "| `CASE-HARNESS-L10-042-r06-unseen-consumer-valid` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-04` | 選択scope/revision内の既知consumerとdependencyが固定契約・oracleに適合する。 | 同scopeの未公開consumerを一つ追加し、固定契約/oracleへの適合根拠を与える。 | 適合候補を受け入れ、未見だけで拒否しない。 |\n",
+      "expected_raw_lf_sha256": "2007104832845006e62b6267884b4f3683eb9197599fb3b2a287b1a559e48a66",
+      "actual_raw_lf_sha256": "2007104832845006e62b6267884b4f3683eb9197599fb3b2a287b1a559e48a66",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-r06-consumer-unknown",
+      "line": 1678,
+      "literal": "| `CASE-HARNESS-L10-042-r06-consumer-unknown` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-04` | consumer identity以外の根拠（依存関係を含む）はcurrent。 | consumer identityだけをunknownにする。 | refactor成功候補を返さず未評価/保留にする。 |\n",
+      "expected_raw_lf_sha256": "63b94a250972278b64a28a3f7dddcb87e59bb0c43fd317e457d93c65962161ca",
+      "actual_raw_lf_sha256": "63b94a250972278b64a28a3f7dddcb87e59bb0c43fd317e457d93c65962161ca",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-r09-001",
+      "line": 1878,
+      "literal": "| `CASE-HARNESS-L10-042-r09-001` | `FR-HARNESS-L3-042`|`AC-HARNESS-L3-042-03`| Design Refactor candidateと機能追加episodeを固定する。 | Design Refactorだけを機能追加と同一episodeへ混載する。 | 混載を拒否して別episodeとして保持する（HARNESS-L2-042の固定分離条件）。実際に意味変更が判明した場合だけHARNESS-L2-003/004/016の該当既存Backflow先へ戻す。 |\n",
+      "expected_raw_lf_sha256": "abd16aa1cf8468eb1a81cb68baf4495073a0dcaae33c5772feef6b72eb49c137",
+      "actual_raw_lf_sha256": "abd16aa1cf8468eb1a81cb68baf4495073a0dcaae33c5772feef6b72eb49c137",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-r09-002",
+      "line": 1879,
+      "literal": "| `CASE-HARNESS-L10-042-r09-002` | `FR-HARNESS-L3-042`|`AC-HARNESS-L3-042-03`| Performance Refactor candidateと機能追加episodeを固定する。 | Performance Refactorだけを機能追加と同一episodeへ混載する。 | 混載を拒否して別episodeとして保持する（HARNESS-L2-042の固定分離条件）。実際に意味変更が判明した場合だけHARNESS-L2-003/004/016の該当既存Backflow先へ戻す。 |\n",
+      "expected_raw_lf_sha256": "cd2ecd9d0f34fee42eb510090b7774ee6e3061a3a6c3f1f258d6ecc6eca4576b",
+      "actual_raw_lf_sha256": "cd2ecd9d0f34fee42eb510090b7774ee6e3061a3a6c3f1f258d6ecc6eca4576b",
+      "exact_match": true
+    },
+    {
+      "id": "CASE-HARNESS-L10-042-r09-003",
+      "line": 1880,
+      "literal": "| `CASE-HARNESS-L10-042-r09-003` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 同scopeの未公開dependencyを追加し、固定semantic/oracleと他依存が適用可能。 | 既存consumer正常例だけでは照合できない未見dependencyを与える。 | 既存契約/oracleに適合するdependencyを正常として受理し、意味は固定する。正常入力に戻し先を割り当てない。 |\n",
+      "expected_raw_lf_sha256": "a716771c91f65c4f0efd4f0ae65d3d4a0c231b6a3c737e481465e2dd155de97d",
+      "actual_raw_lf_sha256": "a716771c91f65c4f0efd4f0ae65d3d4a0c231b6a3c737e481465e2dd155de97d",
+      "exact_match": true
+    }
+  ],
+  "root_candidate_suffix_inventory": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "candidate_bytes": 4297,
+      "declared_sha256": "e1da437e3879b0e9292bd7e49b846216ef4d6cbfc33e2cdb9a6e78f0cdc54c0e",
+      "actual_sha256": "e1da437e3879b0e9292bd7e49b846216ef4d6cbfc33e2cdb9a6e78f0cdc54c0e",
+      "sha_match": true,
+      "final_lf": true,
+      "case_row_count": 0,
+      "unique_case_id_count": 0,
+      "case_ids": []
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "candidate_bytes": 327,
+      "declared_sha256": "9220f3eeb4bc9a854e9fca9790955d98d6ebcfc85404383c9853f7a3866ce7af",
+      "actual_sha256": "9220f3eeb4bc9a854e9fca9790955d98d6ebcfc85404383c9853f7a3866ce7af",
+      "sha_match": true,
+      "final_lf": true,
+      "case_row_count": 0,
+      "unique_case_id_count": 0,
+      "case_ids": []
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "candidate_bytes": 491,
+      "declared_sha256": "bfcf5827bf31ecb9151bd9a7c274010efa6d460594ac578c876bdd5c28212ac4",
+      "actual_sha256": "bfcf5827bf31ecb9151bd9a7c274010efa6d460594ac578c876bdd5c28212ac4",
+      "sha_match": true,
+      "final_lf": true,
+      "case_row_count": 0,
+      "unique_case_id_count": 0,
+      "case_ids": []
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "candidate_bytes": 20626,
+      "declared_sha256": "f5195cbf1576995ed8dc63643c8e1b31ed6b0f4d62880cfdb62617846cfef517",
+      "actual_sha256": "f5195cbf1576995ed8dc63643c8e1b31ed6b0f4d62880cfdb62617846cfef517",
+      "sha_match": true,
+      "final_lf": true,
+      "case_row_count": 44,
+      "unique_case_id_count": 44,
+      "case_ids": [
+        "CASE-HARNESS-L10-042-01",
+        "CASE-HARNESS-L10-042-02",
+        "CASE-HARNESS-L10-042-03",
+        "CASE-HARNESS-L10-042-04",
+        "CASE-HARNESS-L10-042-05",
+        "CASE-HARNESS-L10-042-06",
+        "CASE-HARNESS-L10-042-07",
+        "CASE-HARNESS-L10-042-08",
+        "CASE-HARNESS-L10-042-09",
+        "CASE-HARNESS-L10-042-10",
+        "CASE-HARNESS-L10-042-11",
+        "CASE-HARNESS-L10-042-r02-semantic-similarity-missing",
+        "CASE-HARNESS-L10-042-r02-semantic-similarity-stale",
+        "CASE-HARNESS-L10-042-r02-consumer-missing",
+        "CASE-HARNESS-L10-042-r02-consumer-stale",
+        "CASE-HARNESS-L10-042-r02-oracle-missing",
+        "CASE-HARNESS-L10-042-r02-oracle-stale",
+        "CASE-HARNESS-L10-042-r02-dependency-graph-missing",
+        "CASE-HARNESS-L10-042-r02-dependency-graph-stale",
+        "CASE-HARNESS-L10-042-r02-other-scope",
+        "CASE-HARNESS-L10-042-r02-other-revision",
+        "CASE-HARNESS-L10-042-r02-feature",
+        "CASE-HARNESS-L10-042-r02-downstream-execution",
+        "CASE-HARNESS-L10-042-r02-normal-similarity",
+        "CASE-HARNESS-L10-042-r03-name-only-similarity",
+        "CASE-HARNESS-L10-042-r03-revision-unknown",
+        "CASE-HARNESS-L10-042-r04-042-revision-unidentified",
+        "CASE-HARNESS-L10-042-r04-042-l2-019-return",
+        "CASE-HARNESS-L10-042-r05-public-contract-change",
+        "CASE-HARNESS-L10-042-r05-requirement-meaning-change",
+        "CASE-HARNESS-L10-042-r05-persistent-state-change",
+        "CASE-HARNESS-L10-042-r06-unseen-consumer-valid",
+        "CASE-HARNESS-L10-042-r06-consumer-unknown",
+        "CASE-HARNESS-L10-042-r09-001",
+        "CASE-HARNESS-L10-042-r09-002",
+        "CASE-HARNESS-L10-042-r09-003",
+        "CASE-HARNESS-L10-042-r10-authority-generation-denied",
+        "CASE-HARNESS-L10-042-r10-requirement-adopted-denied",
+        "CASE-HARNESS-L10-042-r10-l3-approved-denied",
+        "CASE-HARNESS-L10-042-r10-implementation-complete-denied",
+        "CASE-HARNESS-L10-042-r10-execution-complete-denied",
+        "CASE-HARNESS-L10-042-r10-acceptance-complete-denied",
+        "CASE-HARNESS-L10-042-r10-name-or-ticket-only-denied",
+        "CASE-HARNESS-L10-042-r10-performance-threshold-generation-denied"
+      ]
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "candidate_bytes": 249,
+      "declared_sha256": "9ba85b540153f83d2d8cbf0c2734443372e1c357584eaf99b3861a55b6f0e50a",
+      "actual_sha256": "9ba85b540153f83d2d8cbf0c2734443372e1c357584eaf99b3861a55b6f0e50a",
+      "sha_match": true,
+      "final_lf": true,
+      "case_row_count": 0,
+      "unique_case_id_count": 0,
+      "case_ids": []
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "candidate_bytes": 460,
+      "declared_sha256": "95001b6589a47830959f0032632eb389ecaf2e992520297bbb00005e17679fb0",
+      "actual_sha256": "95001b6589a47830959f0032632eb389ecaf2e992520297bbb00005e17679fb0",
+      "sha_match": true,
+      "final_lf": true,
+      "case_row_count": 1,
+      "unique_case_id_count": 1,
+      "case_ids": [
+        "CASE-HARNESS-L10-NFR-042-01"
+      ]
+    }
+  ],
+  "intermediate_count_reconciliation": {
+    "old_case_literal_inventory": 36,
+    "root_candidate_functional_verification_suffix_rows": 44,
+    "root_candidate_functional_verification_unique_ids": 44,
+    "root_suffix_new_candidate_ids": [
+      "CASE-HARNESS-L10-042-r10-acceptance-complete-denied",
+      "CASE-HARNESS-L10-042-r10-authority-generation-denied",
+      "CASE-HARNESS-L10-042-r10-execution-complete-denied",
+      "CASE-HARNESS-L10-042-r10-implementation-complete-denied",
+      "CASE-HARNESS-L10-042-r10-l3-approved-denied",
+      "CASE-HARNESS-L10-042-r10-name-or-ticket-only-denied",
+      "CASE-HARNESS-L10-042-r10-performance-threshold-generation-denied",
+      "CASE-HARNESS-L10-042-r10-requirement-adopted-denied"
+    ],
+    "root_candidate_functional_cases_metadata_rows": 38,
+    "root_candidate_functional_cases_current_row_count": 38,
+    "root_candidate_functional_cases_unique_id_count": 38,
+    "root_candidate_functional_cases_new_candidate_ids": [
+      "CASE-HARNESS-L10-042-r10-authority-generation-denied",
+      "CASE-HARNESS-L10-042-r10-name-or-ticket-only-denied"
+    ],
+    "initial_candidate_suffix_rows": 38,
+    "initial_candidate_suffix_unique_ids": 38,
+    "interpretation": "Root suffix text currently contains 44 unique rows (36 old IDs + 8 new IDs); functional_cases metadata remains 38 (36+2), explicitly marked by root_corrections as intermediate. Candidate-only count; canonical appended body has not been designated/fixed, so this is not the final physical inventory."
+  },
+  "root_corrections": [
+    "M11 bundled r10を索引化し5単独outputfixture追加",
+    "M12新性能閾値生成拒否を追加。旧ID/raw不変、現44行。",
+    "初版functional_cases38は中間metadata、現44を実物理監査で別固定する。"
+  ],
+  "formal_review19_042_original_blocks": [
+    {
+      "finding_heading": "- **M11（042：生成禁止に単独fixtureがない。差分外）**：要求採択・L3要件承認・実装・受入の生成を拒否するCASEが0件。→守るべき行：L2「HARNESS-L2-042 不成立と戻し先」末文、L11 042「対応要求」。",
+      "line_start": 57,
+      "line_end": 57,
+      "raw_lf_sha256": "51602444c4ed17abe2e9fbb8018936540dfecf82fded459db7bb9a95639239dd",
+      "literal": "- **M11（042：生成禁止に単独fixtureがない。差分外）**：要求採択・L3要件承認・実装・受入の生成を拒否するCASEが0件。→守るべき行：L2「HARNESS-L2-042 不成立と戻し先」末文、L11 042「対応要求」。\n",
+      "treatment": "原文保持。M11は042-r10-authority-generation-denied、M12は042-r10-name-or-ticket-only-deniedで候補反映。m18は旧AC indexとの参照網羅性を保持し、意味完全性や独立fixture完全性の認定には使わない。"
+    },
+    {
+      "finding_heading": "- **M12（042：閾値新設禁止とticket名だけの判定に単独fixtureがない。差分外）**：→守るべき行：L2「HARNESS-L2-042 保証すること／提供するもの」。",
+      "line_start": 58,
+      "line_end": 58,
+      "raw_lf_sha256": "08c240a6d5dfc0a6884ee4f10a0fb93ebdad63629bf3a5c6be1b27b84535e49c",
+      "literal": "- **M12（042：閾値新設禁止とticket名だけの判定に単独fixtureがない。差分外）**：→守るべき行：L2「HARNESS-L2-042 保証すること／提供するもの」。\n",
+      "treatment": "原文保持。M11は042-r10-authority-generation-denied、M12は042-r10-name-or-ticket-only-deniedで候補反映。m18は旧AC indexとの参照網羅性を保持し、意味完全性や独立fixture完全性の認定には使わない。"
+    },
+    {
+      "finding_heading": "- **m18（索引がACの定義行を網羅していない）**：041-01（FV:852）、041-04（FV:904）、042-01〜04（FV:856〜858、905）。",
+      "line_start": 101,
+      "line_end": 101,
+      "raw_lf_sha256": "18c255796b537fe138df8768b9c08541c1d0fb8f43895518c162e148d05ba0e8",
+      "literal": "- **m18（索引がACの定義行を網羅していない）**：041-01（FV:852）、041-04（FV:904）、042-01〜04（FV:856〜858、905）。\n",
+      "treatment": "原文保持。M11は042-r10-authority-generation-denied、M12は042-r10-name-or-ticket-only-deniedで候補反映。m18は旧AC indexとの参照網羅性を保持し、意味完全性や独立fixture完全性の認定には使わない。"
+    }
+  ],
+  "reuse_derive_replace": [
+    {
+      "old_item": "old §4.2 L119: semantic similarity, consumer, oracle, dependency graph; name-only reject",
+      "treatment": "meaning re-derive",
+      "preserved": "同scope/revisionで意味根拠を使い、名称のみで統合しない",
+      "changed": "旧表現/旧workflowは移植せず、個別ACとtyped missing/stale routeへ分けた",
+      "reason": "固定PO採択L2-042が指定する入出力、責務、scopeに整合させる"
+    },
+    {
+      "old_item": "old §4.2 L119: Performance Refactor baseline/budget/workload/profile/statistical conditions/regression oracle",
+      "treatment": "reuse by reference / duplicate authority replaced",
+      "preserved": "性能refactorの比較と測定不能拒否",
+      "changed": "L2-016/paired L11へ委譲し本要求に数値値を置かない",
+      "reason": "固定L2-042は新閾値・二重性能authorityを許可しない"
+    },
+    {
+      "old_item": "old §4.2 L119: feature-addition episode separation",
+      "treatment": "meaning re-derive",
+      "preserved": "Design/Performance refactorとfeature-addを同一episodeへ混載しない",
+      "changed": "意味変更時のみ既存Backflowへ戻し、featureは別episodeと明示",
+      "reason": "固定L2-042 scopeを保持し戻し先を過剰一般化しない"
+    },
+    {
+      "old_item": "old 36 CASE rows including index rows",
+      "treatment": "raw full literal preserved; current meaning re-derived row-by-row",
+      "preserved": "36 unique historical IDs, literal, raw LF SHA-256 and original file source pins",
+      "changed": "current FV rows normalized to six columns; index aliases expressly non-independent; two missing negative fixtures added",
+      "reason": "historical schema inconsistency and review19 gaps without claiming full semantic coverage"
+    },
+    {
+      "old_item": "old runtime/schema/workflow, name similarity alone, numeric performance thresholds",
+      "treatment": "replace / exclude from current contract",
+      "preserved": "only source meaning relevant to adopted L2-042",
+      "changed": "no old implementation or authority is carried forward",
+      "reason": "old runtime is read-only reference and L2 scope prohibits new criteria"
+    },
+    {
+      "old_item": "HIL-BR-21/HIL-FR-39/HIL-NFR-24 and HR-FR-HIL-16 paired with HAT-HIL-16, HST-HIL-025, HOT-HIL-39",
+      "treatment": "meaning re-derive with paired-consumer crosswalk",
+      "preserved": "design refactor inputs include graph/meaning, consumer, before-after oracle and invariants; name-only or speculative abstraction is rejected; observable/public/DB/requirement meaning changes are routed away",
+      "changed": "legacy Refactor/Redesign/Retrofit implementation names, rollback acceptance gate and unadopted schema/runtime details are not copied as new current authority",
+      "reason": "fixed PO-adopted L2-042 defines current scope; mapped old consumer/oracle evidence is retained without elevating old implementation path"
+    }
+  ],
+  "root_candidate_full_suffixes": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "append_to_existing_file": true,
+      "text": "## Stage 3 親042の機能要件候補\n\n### FR-HARNESS-L3-042 — Design Refactor判定とepisode分離\n\n**対象とauthority**：HARNESS-L2-042はPO採択済み（`MPR-RC-HARNESS-L2-042-001`）。本L3本文はその採択scopeを要件へ具体化する候補で、L3承認前である。親L1はHARNESS-L1-003/004/005/007、version_targetは親に固定された1.0を継承する。要求意味、scope、担当、版を変更しない。\n\n**由来と処置**：旧requirements v1.3 §4.2 L119（`REQSRC-SUP-00089`）、同内容のbaseline `V13-BASE-6FAB-L0104`、旧L3 042/AC表とそのpaired consumerを起点にする。保持するのはDesign Refactorで意味・consumer・oracle・dependency graphを比較すること、名称だけで統合しないこと、変更前後の要求/契約/振舞いを保持すること、機能追加episodeの分離、対象scope/revisionの限定。Performance Refactorのbaseline/budget/workload/profile/statistical condition/regression oracleは採択済みHARNESS-L2-016に委譲し、この要件に複製しない。旧runtime/schema/workflowや数値閾値は移植しない。旧36 CASEの各literalとraw digestはこの候補監査source inventoryへ保持し、本文では意味を再導出する。名前一致だけの完全再利用とは扱わない。\n\n**入力・出力**：対象artifact/revision/scope、対応設計・契約・要求、変更前後のsemantic relation、影響consumerと依存graph、既存oracle、機能追加有無を受け取る。入力元の版・適用範囲も固定する。scope/revision単位で、比較根拠、維持する契約、Design Refactorの可否と理由、拒否/Backflow、別episode化すべきfeature changeを出力する。\n\n**受入基準**：\n\n- **AC-HARNESS-L3-042-01**：同じscope/revisionに限り、既存の振舞い・公開契約・要求・persistent state意味をHARNESS-L2-016の保存oracleで照合し、対設計がない場合はHARNESS-L2-019 reverse入口へ返す。\n- **AC-HARNESS-L3-042-02**：Design Refactorの統合判断にはsemantic similarity、関連consumer、oracle、dependency graphを用い、名称/ticketの一致だけで判定しない。各根拠のmissing/stale/unknownは個別にunknown/未評価とし、他根拠で相殺しない。\n- **AC-HARNESS-L3-042-03**：Design Refactor/Performance Refactorと機能追加を同一episodeに混載しない。feature changeは別episodeに分離し、意味変更が判明した場合のみ既存のHARNESS-L2-003/004/016 Backflowへ返す。性能条件・測定不能・regressionはHARNESS-L2-016と対L11のoracleを使い、新しい数値閾値を設けない。\n- **AC-HARNESS-L3-042-04**：結果を対象scope/revisionに限定し、別scope/revision、実行結果、要求採択、L3承認、実装、受入へ外挿しない。入力不足はその入力元ownerへ返す。L2-019は対設計欠落時のreverse入口に限定する。\n\n**依存境界**：常時必要＝対象revision/scope、対の設計/契約/要求、既存oracle、HARNESS-L2-016の保存/Backflow契約。Design Refactor候補で選択したconsumer/graph sourceだけ版・scopeに応じ必要。Performance Refactorを実際に選ぶ場合のみ016の測定入力と対L11を使う。SR3 finding処理時のみL2-002/003 routeを使う。旧workflow/runtime、類似名称だけの候補、未選択改善案は参照資料に限る。\n\n**不成立と戻し先**：semantic similarity、consumer、oracle、graphの不足は当該不足の元source/consumer/design/contract ownerへ。対設計が存在しない場合だけL2-019 reverse入口へ。公開契約/要求/persistent-state意味変更は該当するL2-003/004/016 Backflow。機能追加混載はepisode成立を拒否しfeatureを別episodeへ分離。missing/unknown/stale/conflictは補完せず未評価。文書、CASE、receipt、ticketからauthority、実行、採択、L3承認または受入を生成しない。\n\n**L2-019境界**：019は逆向きに対設計と要求/契約の不在を明らかにする入口であり、全入力不足や責務不明を無差別に送る汎用戻し先ではない。入力不足はその入力を提供する元ownerへ戻す。019 reverseの結果も本要件のscopeを拡張しない。\n",
+      "bytes": 4297,
+      "sha256": "e1da437e3879b0e9292bd7e49b846216ef4d6cbfc33e2cdb9a6e78f0cdc54c0e"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "append_to_existing_file": true,
+      "text": "## Stage 3 親042の業務要件\n\n| L2親 | business requirement | 理由 |\n|---|---|---|\n| `HARNESS-L2-042` | 独立したbusiness requirementを導出しない | Design Refactor判定とepisode境界は固定された要求・設計・検証契約の保持条件であり、事業成果や価値閾値を新設しない。 |\n",
+      "bytes": 327,
+      "sha256": "9220f3eeb4bc9a854e9fca9790955d98d6ebcfc85404383c9853f7a3866ce7af"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "append_to_existing_file": true,
+      "text": "## Stage 3 親042の非機能候補\n\n| NFR候補 / L2親 | 候補値 | 固定根拠 | 限界 |\n|---|---|---|---|\n| `HARNESS-L2-042` | 独立した数値NFRを導出しない | 旧requirements v1.3 §4.2 L119の性能Refactor条件は、PO採択済みHARNESS-L2-016と対L11がbaseline、budget、workload、profile、統計条件、regression oracleを持つ。 | 新しい数値閾値、性能権限、時間/件数SLOを作らない。性能判定を行う場合は016へ委譲する。 |\n",
+      "bytes": 491,
+      "sha256": "bfcf5827bf31ecb9151bd9a7c274010efa6d460594ac578c876bdd5c28212ac4"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "append_to_existing_file": true,
+      "text": "## Stage 3 親042の機能検証候補\n\n**契約**：以下は静的な内容oracle候補で未実行。各行は6列。旧定義36 IDはsource literal/raw SHAを監査inventoryへ完全保持し、IDと意図を再導出した。Index行は子CASEへの参照であり独立fixtureではない。旧row shapeが一定でなかったため六列へ正規化した。各missing/staleは1原因単位、根拠不足の戻し先はその根拠の元owner。対設計欠落だけがL2-019 reverse入口に戻る。\n\n| CASE ID | FR ID | AC ID | baseline | mutation | oracle / route |\n|---|---|---|---|---|---|\n| `CASE-HARNESS-L10-042-01` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-01` | 索引行。対象scope/revision、変更前後のsemantic similarity・consumer・既存oracle・dependency graphを個別に照合する。 | 独立変異なし。列挙した子CASEをそれぞれ単独実施し、この行をfixtureとして数えない。 | 子CASEへ参照を解決し各結果を個別評価する。indexのみから適合/不適合を生成しない。 |\n| `CASE-HARNESS-L10-042-02` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-02` | 索引行。対象scope/revision、変更前後のsemantic similarity・consumer・既存oracle・dependency graphを個別に照合する。 | 独立変異なし。列挙した子CASEをそれぞれ単独実施し、この行をfixtureとして数えない。 | 子CASEへ参照を解決し各結果を個別評価する。indexのみから適合/不適合を生成しない。 |\n| `CASE-HARNESS-L10-042-03` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-03` | 索引行。対象scope/revision、変更前後のsemantic similarity・consumer・既存oracle・dependency graphを個別に照合する。 | 独立変異なし。列挙した子CASEをそれぞれ単独実施し、この行をfixtureとして数えない。 | 子CASEへ参照を解決し各結果を個別評価する。indexのみから適合/不適合を生成しない。 |\n| `CASE-HARNESS-L10-042-04` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 索引行。対象scope/revision、変更前後のsemantic similarity・consumer・既存oracle・dependency graphを個別に照合する。 | 独立変異なし。列挙した子CASEをそれぞれ単独実施し、この行をfixtureとして数えない。 | 子CASEへ参照を解決し各結果を個別評価する。indexのみから適合/不適合を生成しない。 |\n| `CASE-HARNESS-L10-042-05` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 索引行。対象scope/revisionの該当固定親入力と意味を保つ。 | 独立変異なし。列挙または対応する独立CASEのみ実施する。 | 子CASEの結果だけを評価し、indexを独立fixtureや閾値に数えない。 |\n| `CASE-HARNESS-L10-042-06` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-02` | 索引行。対象scope/revisionの該当固定親入力と意味を保つ。 | 独立変異なし。列挙または対応する独立CASEのみ実施する。 | 子CASEの結果だけを評価し、indexを独立fixtureや閾値に数えない。 |\n| `CASE-HARNESS-L10-042-07` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-03` | 索引行。対象scope/revisionの該当固定親入力と意味を保つ。 | 独立変異なし。列挙または対応する独立CASEのみ実施する。 | 子CASEの結果だけを評価し、indexを独立fixtureや閾値に数えない。 |\n| `CASE-HARNESS-L10-042-08` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-02` | 変更前後のconsumer一覧を同scope/revisionで列挙する。 | consumer一件だけを隠す。 | 意味保存unknown、対応するdesign/contract ownerへ戻す。 |\n| `CASE-HARNESS-L10-042-09` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-02` | 変更前後のdependency一覧を同scope/revisionで列挙する。 | dependency一件だけを隠す。 | 意味保存unknown、対応するdesign/contract ownerへ戻す。 |\n| `CASE-HARNESS-L10-042-10` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-03` | L2-016 baseline/workload/oracleで性能を比較する。 | 性能regressionだけを投入しrefactor成功扱いする。 | 成功を拒否し016既存契約へ戻す。 |\n| `CASE-HARNESS-L10-042-11` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-03` | L2-016に沿った計測可能なbaseline/workload/oracleを用いる。 | 測定不能だけを投入しrefactor成功扱いする。 | 成功を拒否し016既存契約へ戻す。 |\n| `CASE-HARNESS-L10-042-r02-semantic-similarity-missing` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-02` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | semantic similarity根拠だけをmissingにする。他の3根拠とrevision/scopeは正常。 | 当該根拠不足/staleだけをunknown・未評価にし、他の根拠で相殺しない。不足した根拠の元source/consumer/design/contract ownerへ戻す。 |\n| `CASE-HARNESS-L10-042-r02-semantic-similarity-stale` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | semantic similarity根拠だけをstaleにする。他の3根拠とrevision/scopeは正常。 | 当該根拠不足/staleだけをunknown・未評価にし、他の根拠で相殺しない。不足した根拠の元source/consumer/design/contract ownerへ戻す。 |\n| `CASE-HARNESS-L10-042-r02-consumer-missing` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-02` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | consumer根拠だけをmissingにする。他の3根拠とrevision/scopeは正常。 | 当該根拠不足/staleだけをunknown・未評価にし、他の根拠で相殺しない。不足した根拠の元source/consumer/design/contract ownerへ戻す。 |\n| `CASE-HARNESS-L10-042-r02-consumer-stale` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | consumer根拠だけをstaleにする。他の3根拠とrevision/scopeは正常。 | 当該根拠不足/staleだけをunknown・未評価にし、他の根拠で相殺しない。不足した根拠の元source/consumer/design/contract ownerへ戻す。 |\n| `CASE-HARNESS-L10-042-r02-oracle-missing` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-02` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | oracle根拠だけをmissingにする。他の3根拠とrevision/scopeは正常。 | 当該根拠不足/staleだけをunknown・未評価にし、他の根拠で相殺しない。不足した根拠の元source/consumer/design/contract ownerへ戻す。 |\n| `CASE-HARNESS-L10-042-r02-oracle-stale` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | oracle根拠だけをstaleにする。他の3根拠とrevision/scopeは正常。 | 当該根拠不足/staleだけをunknown・未評価にし、他の根拠で相殺しない。不足した根拠の元source/consumer/design/contract ownerへ戻す。 |\n| `CASE-HARNESS-L10-042-r02-dependency-graph-missing` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-02` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | dependency graph根拠だけをmissingにする。他の3根拠とrevision/scopeは正常。 | 当該根拠不足/staleだけをunknown・未評価にし、他の根拠で相殺しない。不足した根拠の元source/consumer/design/contract ownerへ戻す。 |\n| `CASE-HARNESS-L10-042-r02-dependency-graph-stale` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | dependency graph根拠だけをstaleにする。他の3根拠とrevision/scopeは正常。 | 当該根拠不足/staleだけをunknown・未評価にし、他の根拠で相殺しない。不足した根拠の元source/consumer/design/contract ownerへ戻す。 |\n| `CASE-HARNESS-L10-042-r02-other-scope` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-03` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | 判定成功だけを別scopeへ外挿する。 | 外挿を拒否し、成立範囲を元scope/revisionに限定する。機能追加は別episodeへ分け、下流実行は別契約で扱う。 |\n| `CASE-HARNESS-L10-042-r02-other-revision` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-03` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | 判定成功だけを別revisionへ外挿する。 | 外挿を拒否し、成立範囲を元scope/revisionに限定する。機能追加は別episodeへ分け、下流実行は別契約で扱う。 |\n| `CASE-HARNESS-L10-042-r02-feature` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-03` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | 判定成功を機能追加の成立へ外挿する。 | 外挿を拒否し、成立範囲を元scope/revisionに限定する。機能追加は別episodeへ分け、下流実行は別契約で扱う。 |\n| `CASE-HARNESS-L10-042-r02-downstream-execution` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-03` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | 判定成功を下流実行結果の成功へ外挿する。 | 外挿を拒否し、成立範囲を元scope/revisionに限定する。機能追加は別episodeへ分け、下流実行は別契約で扱う。 |\n| `CASE-HARNESS-L10-042-r02-normal-similarity` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-01` | source/design/consumer/oracle/dependencyとsemantic similarityが一致し、016保存oracleで契約・要求・振舞いが保たれる。 | 該当条件を変えない。 | 同scope/revisionのstructure-only候補として受理可能とし、機能追加、採択、実装、下流成功は生成しない。 |\n| `CASE-HARNESS-L10-042-r03-name-only-similarity` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-02` | semanticsを照合できる同scope/revisionのrefactor候補を与える。 | 名前だけを似せsemantic similarity根拠を欠落させる。 | name-onlyでは統合を承認せずunknown/未評価にする。semantic evidence元のownerへ返す。 |\n| `CASE-HARNESS-L10-042-r03-revision-unknown` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 選択scopeとsource revisionを特定できる。 | 対象revisionだけを特定不能にする。 | unknown/未評価を維持し、成立を外挿しない。revision/sourceの元ownerへ返す。 |\n| `CASE-HARNESS-L10-042-r04-042-revision-unidentified` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 索引行。対象revisionが不明な既存ケースを参照する。 | 独立変異なし。revision unknownの子CASEへ参照を解決する。 | unknownを維持し、意味のある不足は元source/design/contract ownerへ戻す。対設計不存在のみL2-019 reverse入口。 |\n| `CASE-HARNESS-L10-042-r04-042-l2-019-return` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-01` | 同scope/revisionの要求・契約とoracleはcurrentで、対設計だけを確認できる。 | 対設計の有無だけを「なし」にする。 | 設計不存在を検出しHARNESS-L2-019 reverse入口へ返す。別の入力欠落はその元ownerへ返し、019を万能routeにしない。 |\n| `CASE-HARNESS-L10-042-r05-public-contract-change` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-01` | 同scope/revisionでpublic contractが保持され、他の意味条件もcurrent。 | public contract意味だけを変更する。 | refactor成功を拒否し、該当するHARNESS-L2-003/004/016の既存Backflow先へ返す。 |\n| `CASE-HARNESS-L10-042-r05-requirement-meaning-change` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-01` | 同scope/revisionでrequirement meaningが保持され、他の意味条件もcurrent。 | requirement meaningだけを変更する。 | refactor成功を拒否し、該当するHARNESS-L2-003/004/016の既存Backflow先へ返す。 |\n| `CASE-HARNESS-L10-042-r05-persistent-state-change` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-01` | 同scope/revisionでpersistent state meaningが保持され、他の意味条件もcurrent。 | persistent state meaningだけを変更する。 | refactor成功を拒否し、該当するHARNESS-L2-003/004/016の既存Backflow先へ返す。 |\n| `CASE-HARNESS-L10-042-r06-unseen-consumer-valid` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 選択scope/revision内の既知consumerとdependencyが固定契約・oracleに適合する。 | 同scopeの未公開consumerを一つ追加し、固定契約/oracleへの適合根拠を与える。 | 固定契約/oracleに適合する同scope/revisionの未見consumer/dependencyを正常に扱い、未見だけで拒否しない。 |\n| `CASE-HARNESS-L10-042-r06-consumer-unknown` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | consumer identity以外の根拠（依存関係を含む）はcurrent。 | consumer identityだけをunknownにする。 | 成功候補を返さずunknown/未評価に保つ。不足identityの元consumer/source ownerへ返す。 |\n| `CASE-HARNESS-L10-042-r09-001` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-03` | Design Refactor candidateと機能追加episodeを固定する。 | Design Refactorだけを機能追加と同一episodeへ混載する。 | 混載を拒否して別episodeとして保持する（HARNESS-L2-042の固定分離条件）。実際に意味変更が判明した場合だけHARNESS-L2-003/004/016の該当既存Backflow先へ戻す。 |\n| `CASE-HARNESS-L10-042-r09-002` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-03` | Performance Refactor candidateと機能追加episodeを固定する。 | Performance Refactorだけを機能追加と同一episodeへ混載する。 | 混載を拒否して別episodeとして保持する（HARNESS-L2-042の固定分離条件）。実際に意味変更が判明した場合だけHARNESS-L2-003/004/016の該当既存Backflow先へ戻す。 |\n| `CASE-HARNESS-L10-042-r09-003` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 同scopeの未公開dependencyを追加し、固定semantic/oracleと他依存が適用可能。 | 既存consumer正常例だけでは照合できない未見dependencyを与える。 | 固定契約/oracleに適合する同scope/revisionの未見consumer/dependencyを正常に扱い、未見だけで拒否しない。 |\n| `CASE-HARNESS-L10-042-r10-authority-generation-denied` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 索引。下記要求採択・L3承認・実装・実行・受入の各単独誤出力fixtureを参照する。 | 独立変異なし。この行を独立fixtureへ数えない。 | 各fieldを別々に照合し、束ねたauthority判定で単独拒否を代用しない。 |\n| `CASE-HARNESS-L10-042-r10-requirement-adopted-denied` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 合成scope S0のDesign Refactor判定入力・比較根拠が既知で整合する。当該S0の`requirement_adopted`は未生成で、既存authority・実行・受入状態を不変に保つ。採択済み親042そのものはfixtureの外にあり変更しない。 | 入力不変で、判定文書/receiptだけから`requirement_adopted=true`を新規出力する誤field一つを追加する。 | `requirement_adopted`を生成せずDesign Refactor判定材料だけを返す。既存要求採択の責務区分を保持し、具体的個体が不明でも区分を消さずidentity unknownを別記する。 |\n| `CASE-HARNESS-L10-042-r10-l3-approved-denied` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 合成scope S0のDesign Refactor判定入力・比較根拠が既知で整合する。当該S0の`l3_approved`は未生成で、既存authority・実行・受入状態を不変に保つ。採択済み親042そのものはfixtureの外にあり変更しない。 | 入力不変で、判定文書/receiptだけから`l3_approved=true`を新規出力する誤field一つを追加する。 | `l3_approved`を生成せずDesign Refactor判定材料だけを返す。既存L3要件承認の責務区分を保持し、具体的個体が不明でも区分を消さずidentity unknownを別記する。 |\n| `CASE-HARNESS-L10-042-r10-implementation-complete-denied` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 合成scope S0のDesign Refactor判定入力・比較根拠が既知で整合する。当該S0の`implementation_complete`は未生成で、既存authority・実行・受入状態を不変に保つ。採択済み親042そのものはfixtureの外にあり変更しない。 | 入力不変で、判定文書/receiptだけから`implementation_complete=true`を新規出力する誤field一つを追加する。 | `implementation_complete`を生成せずDesign Refactor判定材料だけを返す。既存実装成立の責務区分を保持し、具体的個体が不明でも区分を消さずidentity unknownを別記する。 |\n| `CASE-HARNESS-L10-042-r10-execution-complete-denied` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 合成scope S0のDesign Refactor判定入力・比較根拠が既知で整合する。当該S0の`execution_complete`は未生成で、既存authority・実行・受入状態を不変に保つ。採択済み親042そのものはfixtureの外にあり変更しない。 | 入力不変で、判定文書/receiptだけから`execution_complete=true`を新規出力する誤field一つを追加する。 | `execution_complete`を生成せずDesign Refactor判定材料だけを返す。既存実行成立の責務区分を保持し、具体的個体が不明でも区分を消さずidentity unknownを別記する。 |\n| `CASE-HARNESS-L10-042-r10-acceptance-complete-denied` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 合成scope S0のDesign Refactor判定入力・比較根拠が既知で整合する。当該S0の`acceptance_complete`は未生成で、既存authority・実行・受入状態を不変に保つ。採択済み親042そのものはfixtureの外にあり変更しない。 | 入力不変で、判定文書/receiptだけから`acceptance_complete=true`を新規出力する誤field一つを追加する。 | `acceptance_complete`を生成せずDesign Refactor判定材料だけを返す。既存受入成立の責務区分を保持し、具体的個体が不明でも区分を消さずidentity unknownを別記する。 |\n| `CASE-HARNESS-L10-042-r10-name-or-ticket-only-denied` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-02` | 同scope/revisionの候補と意味、consumer、既存oracle、依存graphの比較根拠をそろえる。 | 意味比較の根拠を除き、名称またはticket文字列だけを一致させる。 | 統合/refactor成功を出さずunknown/未評価にし、欠けた意味根拠の元ownerへ返す。固定親にない類似度閾値は追加しない。 |\n| `CASE-HARNESS-L10-042-r10-performance-threshold-generation-denied` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-03` | 合成scope S0でPerformance Refactorを選択し、採択済み016のbaseline/budget/workload/profile/統計条件/回帰oracleが既知で適用可能。016の数値条件を不変に保持する。 | 042の判定文書だけから新しいperformance thresholdを生成する誤出力field一つを追加する。 | 新thresholdを生成せず016と対L11の既存契約へ返す。042に第二の性能authorityや固定値を作らない。 |\n",
+      "bytes": 20626,
+      "sha256": "f5195cbf1576995ed8dc63643c8e1b31ed6b0f4d62880cfdb62617846cfef517"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "append_to_existing_file": true,
+      "text": "## Stage 3 親042の業務検証\n\n| L2親 | 独立criterion | 対応関係 |\n|---|---|---|\n| `HARNESS-L2-042` | 独立criterionなし | 事業成果を独立に主張せず、機能ACと採択済み親要求の意味保持だけを照合する。 |\n",
+      "bytes": 249,
+      "sha256": "9ba85b540153f83d2d8cbf0c2734443372e1c357584eaf99b3861a55b6f0e50a"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "append_to_existing_file": true,
+      "text": "## Stage 3 親042の非機能検証\n\n| CASE ID | NFR候補 | 検証対象 | 観測 | 限界 |\n|---|---|---|---|---|\n| `CASE-HARNESS-L10-NFR-042-01` | 独立NFRなし | 性能refactorを選択した場合のbaseline/budget/workload/profile/statistical condition/regression oracle | HARNESS-L2-016と対L11に固定された入力・oracleが適用可能かを参照する。 | 本候補では数値を設定せず、実測性能受入を再定義しない。 |\n",
+      "bytes": 460,
+      "sha256": "95001b6589a47830959f0032632eb389ecaf2e992520297bbb00005e17679fb0"
+    }
+  ],
+  "source_candidate_limitations": [
+    "Not a semantic completeness certification; only 36 published CASE definitions in the pinned old six docs were inventoried, and other old consumer/oracle sources remain outside this candidate.",
+    "No test, old CLI, old hook, old runtime, old CI, performance run, or implementation executed.",
+    "No L3/L10 approval, requirement admission, implementation, execution, or acceptance is generated.",
+    "Root review and independent Opus/Fable review have not occurred."
+  ],
+  "checks": {
+    "all_actual_source_pins_match": true,
+    "legacy_36_literal_and_rawLF_match": true,
+    "all_root_candidate_suffix_hashes_and_finalLF_match": true,
+    "body_revision_fixed": true,
+    "current44_physical_inventory_finalized": true,
+    "canonical_edited": false,
+    "independent_review": false,
+    "approval": false,
+    "runtime_or_test_executed": false,
+    "body_revision": "be594d73f9ed9bc441363111820b87b690da9b8b",
+    "current_physical_case_count": 44,
+    "current_physical_unique_case_count": 44,
+    "current_rows_six_columns": true,
+    "current_old_ids_preserved": 36,
+    "current_new_case_ids": [
+      "CASE-HARNESS-L10-042-r10-acceptance-complete-denied",
+      "CASE-HARNESS-L10-042-r10-authority-generation-denied",
+      "CASE-HARNESS-L10-042-r10-execution-complete-denied",
+      "CASE-HARNESS-L10-042-r10-implementation-complete-denied",
+      "CASE-HARNESS-L10-042-r10-l3-approved-denied",
+      "CASE-HARNESS-L10-042-r10-name-or-ticket-only-denied",
+      "CASE-HARNESS-L10-042-r10-performance-threshold-generation-denied",
+      "CASE-HARNESS-L10-042-r10-requirement-adopted-denied"
+    ],
+    "worktree_canonical_paths_edited_by_worker": false,
+    "body_review_by_worker_independent": false
+  },
+  "body_fixed_current_revision": {
+    "revision": "be594d73f9ed9bc441363111820b87b690da9b8b",
+    "base_revision": "f5a974a4059a209982cb1cdec39c0537f52683b8",
+    "worktree": "/home/tenni/.helix-worktrees/l3-harness-stage3-parent042",
+    "worktree_status_short": "",
+    "checkpoint_path": "/tmp/root-harness042-body-checkpoint.json",
+    "checkpoint_current_case_count": 44,
+    "checkpoint_old_case_count": 36,
+    "manifest": [
+      {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "base_revision": "f5a974a4059a209982cb1cdec39c0537f52683b8",
+        "base_sha256_actual": "ddc4288e77effd48553c1cf4ada66e74dffef39c5fc209c1d3038b0bc83a8ad8",
+        "base_sha256_expected": "ddc4288e77effd48553c1cf4ada66e74dffef39c5fc209c1d3038b0bc83a8ad8",
+        "base_match": true,
+        "current_full_sha256_actual": "8e4a9a3347f764836eb7b0d86eeeb346548355ad9295ffed269ed55ba341c203",
+        "current_full_sha256_expected": "8e4a9a3347f764836eb7b0d86eeeb346548355ad9295ffed269ed55ba341c203",
+        "current_full_match": true,
+        "suffix_bytes_actual": 4298,
+        "suffix_bytes_expected": 4298,
+        "suffix_sha256_actual": "1a75394ee9199bf75cf695f66a3a5794f2bf570718ac8ef9634e40618f0e0955",
+        "suffix_sha256_expected": "1a75394ee9199bf75cf695f66a3a5794f2bf570718ac8ef9634e40618f0e0955",
+        "suffix_match": true,
+        "appended_prefix_exact": true,
+        "physical_final_lf": true,
+        "candidate_suffix_text_equal_after_one_leading_lf": true
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+        "base_revision": "f5a974a4059a209982cb1cdec39c0537f52683b8",
+        "base_sha256_actual": "87e3533a49f5284aed2535f9216683f9ef013ed7434c9816a73596b81a5e09fb",
+        "base_sha256_expected": "87e3533a49f5284aed2535f9216683f9ef013ed7434c9816a73596b81a5e09fb",
+        "base_match": true,
+        "current_full_sha256_actual": "c51f0bc2b98ae5c6a77bfa354050ec70ee87a70641b5f0161b14d5a3afd33e8f",
+        "current_full_sha256_expected": "c51f0bc2b98ae5c6a77bfa354050ec70ee87a70641b5f0161b14d5a3afd33e8f",
+        "current_full_match": true,
+        "suffix_bytes_actual": 328,
+        "suffix_bytes_expected": 328,
+        "suffix_sha256_actual": "07285eedfdee679461ba6d792ce8f3b7ba8e7ea705339474dbe09013799fe4dc",
+        "suffix_sha256_expected": "07285eedfdee679461ba6d792ce8f3b7ba8e7ea705339474dbe09013799fe4dc",
+        "suffix_match": true,
+        "appended_prefix_exact": true,
+        "physical_final_lf": true,
+        "candidate_suffix_text_equal_after_one_leading_lf": true
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+        "base_revision": "f5a974a4059a209982cb1cdec39c0537f52683b8",
+        "base_sha256_actual": "75cbdcc058aff99a9efd99b9d3344e6920e864b1bb603a1ac77a0e447f2f60af",
+        "base_sha256_expected": "75cbdcc058aff99a9efd99b9d3344e6920e864b1bb603a1ac77a0e447f2f60af",
+        "base_match": true,
+        "current_full_sha256_actual": "b364e8c6dc92f4548df34638488fefec1533d13941a991de685a74bb64471fc9",
+        "current_full_sha256_expected": "b364e8c6dc92f4548df34638488fefec1533d13941a991de685a74bb64471fc9",
+        "current_full_match": true,
+        "suffix_bytes_actual": 492,
+        "suffix_bytes_expected": 492,
+        "suffix_sha256_actual": "4a927cb069761be1503d58d936bba41087d56427fca9611048a33ea61b7a3745",
+        "suffix_sha256_expected": "4a927cb069761be1503d58d936bba41087d56427fca9611048a33ea61b7a3745",
+        "suffix_match": true,
+        "appended_prefix_exact": true,
+        "physical_final_lf": true,
+        "candidate_suffix_text_equal_after_one_leading_lf": true
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "base_revision": "f5a974a4059a209982cb1cdec39c0537f52683b8",
+        "base_sha256_actual": "4f87643397e4e1c2a94d07537770510f634c509eaeb1701c3159a0d143d98cc1",
+        "base_sha256_expected": "4f87643397e4e1c2a94d07537770510f634c509eaeb1701c3159a0d143d98cc1",
+        "base_match": true,
+        "current_full_sha256_actual": "1d98a2fdddd718546976f97eb7db77db538021d1ad6fb7b1e404f3785c770e90",
+        "current_full_sha256_expected": "1d98a2fdddd718546976f97eb7db77db538021d1ad6fb7b1e404f3785c770e90",
+        "current_full_match": true,
+        "suffix_bytes_actual": 20627,
+        "suffix_bytes_expected": 20627,
+        "suffix_sha256_actual": "564880392bd22174a0a7620c87037e80301bb92e01a2955bb658f231f55e7d88",
+        "suffix_sha256_expected": "564880392bd22174a0a7620c87037e80301bb92e01a2955bb658f231f55e7d88",
+        "suffix_match": true,
+        "appended_prefix_exact": true,
+        "physical_final_lf": true,
+        "candidate_suffix_text_equal_after_one_leading_lf": true
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/business-verification.md",
+        "base_revision": "f5a974a4059a209982cb1cdec39c0537f52683b8",
+        "base_sha256_actual": "a1ff88366ef98368fa8cbd628f499aa50a73cd05a75d54ff64e353a1626cd67c",
+        "base_sha256_expected": "a1ff88366ef98368fa8cbd628f499aa50a73cd05a75d54ff64e353a1626cd67c",
+        "base_match": true,
+        "current_full_sha256_actual": "2faacacf78b835b5127e990b805adb97b079439c887a1ef2bd6d69f2478d53c9",
+        "current_full_sha256_expected": "2faacacf78b835b5127e990b805adb97b079439c887a1ef2bd6d69f2478d53c9",
+        "current_full_match": true,
+        "suffix_bytes_actual": 250,
+        "suffix_bytes_expected": 250,
+        "suffix_sha256_actual": "689b9fdd6bf289f59a093be2852e4f2be3d2a6bc8134c8772157ee2b08301292",
+        "suffix_sha256_expected": "689b9fdd6bf289f59a093be2852e4f2be3d2a6bc8134c8772157ee2b08301292",
+        "suffix_match": true,
+        "appended_prefix_exact": true,
+        "physical_final_lf": true,
+        "candidate_suffix_text_equal_after_one_leading_lf": true
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+        "base_revision": "f5a974a4059a209982cb1cdec39c0537f52683b8",
+        "base_sha256_actual": "e5b090ba97c6a5237b47b890d7a86453ed5f602ee09c9e531ab3b55698d13a7a",
+        "base_sha256_expected": "e5b090ba97c6a5237b47b890d7a86453ed5f602ee09c9e531ab3b55698d13a7a",
+        "base_match": true,
+        "current_full_sha256_actual": "bb319529b2c2e2af75067c36bf204d386816fb7e78d48f18043973be6290ccd1",
+        "current_full_sha256_expected": "bb319529b2c2e2af75067c36bf204d386816fb7e78d48f18043973be6290ccd1",
+        "current_full_match": true,
+        "suffix_bytes_actual": 461,
+        "suffix_bytes_expected": 461,
+        "suffix_sha256_actual": "fc7663b117d4c423889a97fa991641238b2a0c1f8ca6f24ff7db3b4dba1dce32",
+        "suffix_sha256_expected": "fc7663b117d4c423889a97fa991641238b2a0c1f8ca6f24ff7db3b4dba1dce32",
+        "suffix_match": true,
+        "appended_prefix_exact": true,
+        "physical_final_lf": true,
+        "candidate_suffix_text_equal_after_one_leading_lf": true
+      }
+    ],
+    "physical_functional_case_rows": [
+      {
+        "id": "CASE-HARNESS-L10-042-01",
+        "line": 1593,
+        "literal": "| `CASE-HARNESS-L10-042-01` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-01` | 索引行。対象scope/revision、変更前後のsemantic similarity・consumer・既存oracle・dependency graphを個別に照合する。 | 独立変異なし。列挙した子CASEをそれぞれ単独実施し、この行をfixtureとして数えない。 | 子CASEへ参照を解決し各結果を個別評価する。indexのみから適合/不適合を生成しない。 |\n",
+        "raw_lf_sha256": "42338c4b3eb8e9424112ab8a55a4995156cc64a98736d3ebf9041e1eee1ba4f2",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-02",
+        "line": 1594,
+        "literal": "| `CASE-HARNESS-L10-042-02` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-02` | 索引行。対象scope/revision、変更前後のsemantic similarity・consumer・既存oracle・dependency graphを個別に照合する。 | 独立変異なし。列挙した子CASEをそれぞれ単独実施し、この行をfixtureとして数えない。 | 子CASEへ参照を解決し各結果を個別評価する。indexのみから適合/不適合を生成しない。 |\n",
+        "raw_lf_sha256": "2a389cc9828854141dbd82b0536007f9c5a8fe47b0e46babfe19a66ce9849b3c",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-03",
+        "line": 1595,
+        "literal": "| `CASE-HARNESS-L10-042-03` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-03` | 索引行。対象scope/revision、変更前後のsemantic similarity・consumer・既存oracle・dependency graphを個別に照合する。 | 独立変異なし。列挙した子CASEをそれぞれ単独実施し、この行をfixtureとして数えない。 | 子CASEへ参照を解決し各結果を個別評価する。indexのみから適合/不適合を生成しない。 |\n",
+        "raw_lf_sha256": "4e4d35d84af19f42fcaf44be9171acad78ba1e2939f2f24397be5cf0d9e6e96d",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-04",
+        "line": 1596,
+        "literal": "| `CASE-HARNESS-L10-042-04` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 索引行。対象scope/revision、変更前後のsemantic similarity・consumer・既存oracle・dependency graphを個別に照合する。 | 独立変異なし。列挙した子CASEをそれぞれ単独実施し、この行をfixtureとして数えない。 | 子CASEへ参照を解決し各結果を個別評価する。indexのみから適合/不適合を生成しない。 |\n",
+        "raw_lf_sha256": "8cfde59a0e5300cf967d0a1c40bbcfc96f90db7fc8ab0d890e605677d331a387",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-05",
+        "line": 1597,
+        "literal": "| `CASE-HARNESS-L10-042-05` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 索引行。対象scope/revisionの該当固定親入力と意味を保つ。 | 独立変異なし。列挙または対応する独立CASEのみ実施する。 | 子CASEの結果だけを評価し、indexを独立fixtureや閾値に数えない。 |\n",
+        "raw_lf_sha256": "44b6fe99c3164a455ba61018b42615bb16f007fb22a69cf986e3981a41fab4e5",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-06",
+        "line": 1598,
+        "literal": "| `CASE-HARNESS-L10-042-06` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-02` | 索引行。対象scope/revisionの該当固定親入力と意味を保つ。 | 独立変異なし。列挙または対応する独立CASEのみ実施する。 | 子CASEの結果だけを評価し、indexを独立fixtureや閾値に数えない。 |\n",
+        "raw_lf_sha256": "0b52a8ed88ad0a60728f008c98d4118d9c96d5b15fda97ec6d871d4acd5fd83a",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-07",
+        "line": 1599,
+        "literal": "| `CASE-HARNESS-L10-042-07` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-03` | 索引行。対象scope/revisionの該当固定親入力と意味を保つ。 | 独立変異なし。列挙または対応する独立CASEのみ実施する。 | 子CASEの結果だけを評価し、indexを独立fixtureや閾値に数えない。 |\n",
+        "raw_lf_sha256": "cf179975647d8c4924df6bcb272aa95a43f30a39e3c001898a18f9f6b649bee1",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-08",
+        "line": 1600,
+        "literal": "| `CASE-HARNESS-L10-042-08` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-02` | 変更前後のconsumer一覧を同scope/revisionで列挙する。 | consumer一件だけを隠す。 | 意味保存unknown、対応するdesign/contract ownerへ戻す。 |\n",
+        "raw_lf_sha256": "0f2828cf1b526d2fbb0281a96bb5de081ace433b564eb1e59760d7be8b324f47",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-09",
+        "line": 1601,
+        "literal": "| `CASE-HARNESS-L10-042-09` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-02` | 変更前後のdependency一覧を同scope/revisionで列挙する。 | dependency一件だけを隠す。 | 意味保存unknown、対応するdesign/contract ownerへ戻す。 |\n",
+        "raw_lf_sha256": "93b686669d30597ff8c5b3863e3f5795ae808bdd9e924617af2c511bc2802c97",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-10",
+        "line": 1602,
+        "literal": "| `CASE-HARNESS-L10-042-10` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-03` | L2-016 baseline/workload/oracleで性能を比較する。 | 性能regressionだけを投入しrefactor成功扱いする。 | 成功を拒否し016既存契約へ戻す。 |\n",
+        "raw_lf_sha256": "e914dd6a63dc0b921d5cf99447761fa3b74a5ee91bd6a4a6bb7a3d5c9af5a28c",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-11",
+        "line": 1603,
+        "literal": "| `CASE-HARNESS-L10-042-11` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-03` | L2-016に沿った計測可能なbaseline/workload/oracleを用いる。 | 測定不能だけを投入しrefactor成功扱いする。 | 成功を拒否し016既存契約へ戻す。 |\n",
+        "raw_lf_sha256": "41da4964f337d557623877bea361246f76cf283ff6804dd7484d96af0601c98a",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r02-semantic-similarity-missing",
+        "line": 1604,
+        "literal": "| `CASE-HARNESS-L10-042-r02-semantic-similarity-missing` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-02` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | semantic similarity根拠だけをmissingにする。他の3根拠とrevision/scopeは正常。 | 当該根拠不足/staleだけをunknown・未評価にし、他の根拠で相殺しない。不足した根拠の元source/consumer/design/contract ownerへ戻す。 |\n",
+        "raw_lf_sha256": "23e2fe97453a412d91ed1e2922ec856be932f4480a5a806d0d7c39f50d2d32e1",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r02-semantic-similarity-stale",
+        "line": 1605,
+        "literal": "| `CASE-HARNESS-L10-042-r02-semantic-similarity-stale` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | semantic similarity根拠だけをstaleにする。他の3根拠とrevision/scopeは正常。 | 当該根拠不足/staleだけをunknown・未評価にし、他の根拠で相殺しない。不足した根拠の元source/consumer/design/contract ownerへ戻す。 |\n",
+        "raw_lf_sha256": "7234785b22b31e84a81e01a8a88fba7acd1e7b3c833c184502277a5c83129f84",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r02-consumer-missing",
+        "line": 1606,
+        "literal": "| `CASE-HARNESS-L10-042-r02-consumer-missing` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-02` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | consumer根拠だけをmissingにする。他の3根拠とrevision/scopeは正常。 | 当該根拠不足/staleだけをunknown・未評価にし、他の根拠で相殺しない。不足した根拠の元source/consumer/design/contract ownerへ戻す。 |\n",
+        "raw_lf_sha256": "01ea3bf2098a5acc80a4d5622a750d514479f3f453dd6e901a6844c4b6c40b19",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r02-consumer-stale",
+        "line": 1607,
+        "literal": "| `CASE-HARNESS-L10-042-r02-consumer-stale` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | consumer根拠だけをstaleにする。他の3根拠とrevision/scopeは正常。 | 当該根拠不足/staleだけをunknown・未評価にし、他の根拠で相殺しない。不足した根拠の元source/consumer/design/contract ownerへ戻す。 |\n",
+        "raw_lf_sha256": "e80f287be0e0f4ff1e91b10c39bfc059d6650931ab27beea9ddeeb402964d17e",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r02-oracle-missing",
+        "line": 1608,
+        "literal": "| `CASE-HARNESS-L10-042-r02-oracle-missing` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-02` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | oracle根拠だけをmissingにする。他の3根拠とrevision/scopeは正常。 | 当該根拠不足/staleだけをunknown・未評価にし、他の根拠で相殺しない。不足した根拠の元source/consumer/design/contract ownerへ戻す。 |\n",
+        "raw_lf_sha256": "1fe3b4987bbdf58313bd68bf76e04ec55a160acc9dbdec14c0ef47e0fcedb9ee",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r02-oracle-stale",
+        "line": 1609,
+        "literal": "| `CASE-HARNESS-L10-042-r02-oracle-stale` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | oracle根拠だけをstaleにする。他の3根拠とrevision/scopeは正常。 | 当該根拠不足/staleだけをunknown・未評価にし、他の根拠で相殺しない。不足した根拠の元source/consumer/design/contract ownerへ戻す。 |\n",
+        "raw_lf_sha256": "8d248c1709fea97b565205e69f6e2b20500ba7775b990f0a826d5e4897dcfb01",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r02-dependency-graph-missing",
+        "line": 1610,
+        "literal": "| `CASE-HARNESS-L10-042-r02-dependency-graph-missing` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-02` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | dependency graph根拠だけをmissingにする。他の3根拠とrevision/scopeは正常。 | 当該根拠不足/staleだけをunknown・未評価にし、他の根拠で相殺しない。不足した根拠の元source/consumer/design/contract ownerへ戻す。 |\n",
+        "raw_lf_sha256": "05560d8e141043f1f2a8a59de8a4abd79c95690ea9563df19706dd9cdf16fe34",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r02-dependency-graph-stale",
+        "line": 1611,
+        "literal": "| `CASE-HARNESS-L10-042-r02-dependency-graph-stale` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | dependency graph根拠だけをstaleにする。他の3根拠とrevision/scopeは正常。 | 当該根拠不足/staleだけをunknown・未評価にし、他の根拠で相殺しない。不足した根拠の元source/consumer/design/contract ownerへ戻す。 |\n",
+        "raw_lf_sha256": "559f6c089e125c6c6efd2164d9a6797b6be5ac5c948dbc46ccd5255dfa75b6aa",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r02-other-scope",
+        "line": 1612,
+        "literal": "| `CASE-HARNESS-L10-042-r02-other-scope` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-03` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | 判定成功だけを別scopeへ外挿する。 | 外挿を拒否し、成立範囲を元scope/revisionに限定する。機能追加は別episodeへ分け、下流実行は別契約で扱う。 |\n",
+        "raw_lf_sha256": "38ccf93c59afceac6a6fb98d36c23556f71afc029946fd0a133fa026404472f9",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r02-other-revision",
+        "line": 1613,
+        "literal": "| `CASE-HARNESS-L10-042-r02-other-revision` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-03` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | 判定成功だけを別revisionへ外挿する。 | 外挿を拒否し、成立範囲を元scope/revisionに限定する。機能追加は別episodeへ分け、下流実行は別契約で扱う。 |\n",
+        "raw_lf_sha256": "512102570e667f7db9f36898c6bf61331f410168048c0eb2298f5d5888d1beeb",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r02-feature",
+        "line": 1614,
+        "literal": "| `CASE-HARNESS-L10-042-r02-feature` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-03` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | 判定成功を機能追加の成立へ外挿する。 | 外挿を拒否し、成立範囲を元scope/revisionに限定する。機能追加は別episodeへ分け、下流実行は別契約で扱う。 |\n",
+        "raw_lf_sha256": "3b7443ef2a81597a75b3c195c523de36b18a5d8b387d767f0c477d678c806ce0",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r02-downstream-execution",
+        "line": 1615,
+        "literal": "| `CASE-HARNESS-L10-042-r02-downstream-execution` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-03` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | 判定成功を下流実行結果の成功へ外挿する。 | 外挿を拒否し、成立範囲を元scope/revisionに限定する。機能追加は別episodeへ分け、下流実行は別契約で扱う。 |\n",
+        "raw_lf_sha256": "9309e18e7127f5ed10e2d721ccd3f5ca91cf56127fe16954e229d057d850c642",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r02-normal-similarity",
+        "line": 1616,
+        "literal": "| `CASE-HARNESS-L10-042-r02-normal-similarity` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-01` | source/design/consumer/oracle/dependencyとsemantic similarityが一致し、016保存oracleで契約・要求・振舞いが保たれる。 | 該当条件を変えない。 | 同scope/revisionのstructure-only候補として受理可能とし、機能追加、採択、実装、下流成功は生成しない。 |\n",
+        "raw_lf_sha256": "49a0b2d71cbe21d50b8299fe31917af20bdd1196e589dc7238c492a648882878",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r03-name-only-similarity",
+        "line": 1617,
+        "literal": "| `CASE-HARNESS-L10-042-r03-name-only-similarity` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-02` | semanticsを照合できる同scope/revisionのrefactor候補を与える。 | 名前だけを似せsemantic similarity根拠を欠落させる。 | name-onlyでは統合を承認せずunknown/未評価にする。semantic evidence元のownerへ返す。 |\n",
+        "raw_lf_sha256": "8f85c350692f67fb1a7b846ddf91869443ecbcb15ff6e32924be04748f1f4621",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r03-revision-unknown",
+        "line": 1618,
+        "literal": "| `CASE-HARNESS-L10-042-r03-revision-unknown` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 選択scopeとsource revisionを特定できる。 | 対象revisionだけを特定不能にする。 | unknown/未評価を維持し、成立を外挿しない。revision/sourceの元ownerへ返す。 |\n",
+        "raw_lf_sha256": "6a27b93b3d77bd51e2bc75c513fbe60a93be76b612ce2ada7ae9cc1b7340a7da",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r04-042-revision-unidentified",
+        "line": 1619,
+        "literal": "| `CASE-HARNESS-L10-042-r04-042-revision-unidentified` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 索引行。対象revisionが不明な既存ケースを参照する。 | 独立変異なし。revision unknownの子CASEへ参照を解決する。 | unknownを維持し、意味のある不足は元source/design/contract ownerへ戻す。対設計不存在のみL2-019 reverse入口。 |\n",
+        "raw_lf_sha256": "30a6ce86dba60638aaacbde2ddf6e6ca0f2a190b602d26e228dd4c677bcfb781",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r04-042-l2-019-return",
+        "line": 1620,
+        "literal": "| `CASE-HARNESS-L10-042-r04-042-l2-019-return` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-01` | 同scope/revisionの要求・契約とoracleはcurrentで、対設計だけを確認できる。 | 対設計の有無だけを「なし」にする。 | 設計不存在を検出しHARNESS-L2-019 reverse入口へ返す。別の入力欠落はその元ownerへ返し、019を万能routeにしない。 |\n",
+        "raw_lf_sha256": "c36b2dcfe2afd72549900a19a6541a13a9ac526352ce622b7fefc5d20d8cfb61",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r05-public-contract-change",
+        "line": 1621,
+        "literal": "| `CASE-HARNESS-L10-042-r05-public-contract-change` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-01` | 同scope/revisionでpublic contractが保持され、他の意味条件もcurrent。 | public contract意味だけを変更する。 | refactor成功を拒否し、該当するHARNESS-L2-003/004/016の既存Backflow先へ返す。 |\n",
+        "raw_lf_sha256": "4200909567fb3ed1ac9f64f6ea0e03e9a18b0aacc17385e442d7b699c33f2ee6",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r05-requirement-meaning-change",
+        "line": 1622,
+        "literal": "| `CASE-HARNESS-L10-042-r05-requirement-meaning-change` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-01` | 同scope/revisionでrequirement meaningが保持され、他の意味条件もcurrent。 | requirement meaningだけを変更する。 | refactor成功を拒否し、該当するHARNESS-L2-003/004/016の既存Backflow先へ返す。 |\n",
+        "raw_lf_sha256": "0d7af20bddd9794cec43ed027ab580b1f51d8c037172235e0647fc2081818402",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r05-persistent-state-change",
+        "line": 1623,
+        "literal": "| `CASE-HARNESS-L10-042-r05-persistent-state-change` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-01` | 同scope/revisionでpersistent state meaningが保持され、他の意味条件もcurrent。 | persistent state meaningだけを変更する。 | refactor成功を拒否し、該当するHARNESS-L2-003/004/016の既存Backflow先へ返す。 |\n",
+        "raw_lf_sha256": "a7cc36ae85cae4b4f5f46a4334ee6ae6f62df239c7e7c38554b213906b0ac9c5",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r06-unseen-consumer-valid",
+        "line": 1624,
+        "literal": "| `CASE-HARNESS-L10-042-r06-unseen-consumer-valid` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 選択scope/revision内の既知consumerとdependencyが固定契約・oracleに適合する。 | 同scopeの未公開consumerを一つ追加し、固定契約/oracleへの適合根拠を与える。 | 固定契約/oracleに適合する同scope/revisionの未見consumer/dependencyを正常に扱い、未見だけで拒否しない。 |\n",
+        "raw_lf_sha256": "0691e59c83f0e97c2a3b94ac2896c357be8165631775b5b4ddc920da535722b6",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r06-consumer-unknown",
+        "line": 1625,
+        "literal": "| `CASE-HARNESS-L10-042-r06-consumer-unknown` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | consumer identity以外の根拠（依存関係を含む）はcurrent。 | consumer identityだけをunknownにする。 | 成功候補を返さずunknown/未評価に保つ。不足identityの元consumer/source ownerへ返す。 |\n",
+        "raw_lf_sha256": "d0bc974860339fb5d860888c536400768f57701be3beda179bc6fdc6386d1250",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r09-001",
+        "line": 1626,
+        "literal": "| `CASE-HARNESS-L10-042-r09-001` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-03` | Design Refactor candidateと機能追加episodeを固定する。 | Design Refactorだけを機能追加と同一episodeへ混載する。 | 混載を拒否して別episodeとして保持する（HARNESS-L2-042の固定分離条件）。実際に意味変更が判明した場合だけHARNESS-L2-003/004/016の該当既存Backflow先へ戻す。 |\n",
+        "raw_lf_sha256": "f084923a7ac7951ad491dfee64bd0e71d9b3037156eb83b12f8c63a1d3e3af09",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r09-002",
+        "line": 1627,
+        "literal": "| `CASE-HARNESS-L10-042-r09-002` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-03` | Performance Refactor candidateと機能追加episodeを固定する。 | Performance Refactorだけを機能追加と同一episodeへ混載する。 | 混載を拒否して別episodeとして保持する（HARNESS-L2-042の固定分離条件）。実際に意味変更が判明した場合だけHARNESS-L2-003/004/016の該当既存Backflow先へ戻す。 |\n",
+        "raw_lf_sha256": "182674abf80e7f92dcf8ce4ebcec97f5ea6af630728ae538230a5cf36a8b0642",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r09-003",
+        "line": 1628,
+        "literal": "| `CASE-HARNESS-L10-042-r09-003` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 同scopeの未公開dependencyを追加し、固定semantic/oracleと他依存が適用可能。 | 既存consumer正常例だけでは照合できない未見dependencyを与える。 | 固定契約/oracleに適合する同scope/revisionの未見consumer/dependencyを正常に扱い、未見だけで拒否しない。 |\n",
+        "raw_lf_sha256": "c699bfb70bc795fb8f4b0f528e9614a51bb8cdd8f4aa25265af71e2bd2bcaba6",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r10-authority-generation-denied",
+        "line": 1629,
+        "literal": "| `CASE-HARNESS-L10-042-r10-authority-generation-denied` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 索引。下記要求採択・L3承認・実装・実行・受入の各単独誤出力fixtureを参照する。 | 独立変異なし。この行を独立fixtureへ数えない。 | 各fieldを別々に照合し、束ねたauthority判定で単独拒否を代用しない。 |\n",
+        "raw_lf_sha256": "07ae1cfaf23e8d423b12a27b29d38092c80c296a962462709d66eb33947b16d5",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": false
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r10-requirement-adopted-denied",
+        "line": 1630,
+        "literal": "| `CASE-HARNESS-L10-042-r10-requirement-adopted-denied` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 合成scope S0のDesign Refactor判定入力・比較根拠が既知で整合する。当該S0の`requirement_adopted`は未生成で、既存authority・実行・受入状態を不変に保つ。採択済み親042そのものはfixtureの外にあり変更しない。 | 入力不変で、判定文書/receiptだけから`requirement_adopted=true`を新規出力する誤field一つを追加する。 | `requirement_adopted`を生成せずDesign Refactor判定材料だけを返す。既存要求採択の責務区分を保持し、具体的個体が不明でも区分を消さずidentity unknownを別記する。 |\n",
+        "raw_lf_sha256": "550c191d196bf1711d7bb7db0db72bc67e77644d6cbbef5226ff72b77e23dd6e",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": false
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r10-l3-approved-denied",
+        "line": 1631,
+        "literal": "| `CASE-HARNESS-L10-042-r10-l3-approved-denied` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 合成scope S0のDesign Refactor判定入力・比較根拠が既知で整合する。当該S0の`l3_approved`は未生成で、既存authority・実行・受入状態を不変に保つ。採択済み親042そのものはfixtureの外にあり変更しない。 | 入力不変で、判定文書/receiptだけから`l3_approved=true`を新規出力する誤field一つを追加する。 | `l3_approved`を生成せずDesign Refactor判定材料だけを返す。既存L3要件承認の責務区分を保持し、具体的個体が不明でも区分を消さずidentity unknownを別記する。 |\n",
+        "raw_lf_sha256": "142766b75bf37e410817da8377bc10ea0cedde5fb0c76e9736d74a697d6d531c",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": false
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r10-implementation-complete-denied",
+        "line": 1632,
+        "literal": "| `CASE-HARNESS-L10-042-r10-implementation-complete-denied` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 合成scope S0のDesign Refactor判定入力・比較根拠が既知で整合する。当該S0の`implementation_complete`は未生成で、既存authority・実行・受入状態を不変に保つ。採択済み親042そのものはfixtureの外にあり変更しない。 | 入力不変で、判定文書/receiptだけから`implementation_complete=true`を新規出力する誤field一つを追加する。 | `implementation_complete`を生成せずDesign Refactor判定材料だけを返す。既存実装成立の責務区分を保持し、具体的個体が不明でも区分を消さずidentity unknownを別記する。 |\n",
+        "raw_lf_sha256": "b948719df144ef648caf5c2a9b4f9b2c1fb224a071da3b211d0df2ca07eaae48",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": false
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r10-execution-complete-denied",
+        "line": 1633,
+        "literal": "| `CASE-HARNESS-L10-042-r10-execution-complete-denied` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 合成scope S0のDesign Refactor判定入力・比較根拠が既知で整合する。当該S0の`execution_complete`は未生成で、既存authority・実行・受入状態を不変に保つ。採択済み親042そのものはfixtureの外にあり変更しない。 | 入力不変で、判定文書/receiptだけから`execution_complete=true`を新規出力する誤field一つを追加する。 | `execution_complete`を生成せずDesign Refactor判定材料だけを返す。既存実行成立の責務区分を保持し、具体的個体が不明でも区分を消さずidentity unknownを別記する。 |\n",
+        "raw_lf_sha256": "b2c048f9f79b829a5ad0288715eccfb3faa5011eeeab83af117d2e3298e67808",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": false
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r10-acceptance-complete-denied",
+        "line": 1634,
+        "literal": "| `CASE-HARNESS-L10-042-r10-acceptance-complete-denied` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 合成scope S0のDesign Refactor判定入力・比較根拠が既知で整合する。当該S0の`acceptance_complete`は未生成で、既存authority・実行・受入状態を不変に保つ。採択済み親042そのものはfixtureの外にあり変更しない。 | 入力不変で、判定文書/receiptだけから`acceptance_complete=true`を新規出力する誤field一つを追加する。 | `acceptance_complete`を生成せずDesign Refactor判定材料だけを返す。既存受入成立の責務区分を保持し、具体的個体が不明でも区分を消さずidentity unknownを別記する。 |\n",
+        "raw_lf_sha256": "2d459d5bf98b6082b4bc391312522cf5205491b85c3a11a5db168695369a79b7",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": false
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r10-name-or-ticket-only-denied",
+        "line": 1635,
+        "literal": "| `CASE-HARNESS-L10-042-r10-name-or-ticket-only-denied` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-02` | 同scope/revisionの候補と意味、consumer、既存oracle、依存graphの比較根拠をそろえる。 | 意味比較の根拠を除き、名称またはticket文字列だけを一致させる。 | 統合/refactor成功を出さずunknown/未評価にし、欠けた意味根拠の元ownerへ返す。固定親にない類似度閾値は追加しない。 |\n",
+        "raw_lf_sha256": "1dc37395805d0e4bb9c68b3916672210ca9d61b277190fa4d49aa2cd8da98b0d",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": false
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r10-performance-threshold-generation-denied",
+        "line": 1636,
+        "literal": "| `CASE-HARNESS-L10-042-r10-performance-threshold-generation-denied` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-03` | 合成scope S0でPerformance Refactorを選択し、採択済み016のbaseline/budget/workload/profile/統計条件/回帰oracleが既知で適用可能。016の数値条件を不変に保持する。 | 042の判定文書だけから新しいperformance thresholdを生成する誤出力field一つを追加する。 | 新thresholdを生成せず016と対L11の既存契約へ返す。042に第二の性能authorityや固定値を作らない。 |\n",
+        "raw_lf_sha256": "c96398474700904b94cc736562a42d02adbfd57bf20b9ddf9d318e3db1943bd2",
+        "column_count": 6,
+        "exactly_six_columns": true,
+        "is_old_id": false
+      }
+    ],
+    "physical_case_count": 44,
+    "unique_case_count": 44,
+    "old_case_count_retained": 36,
+    "new_case_ids": [
+      "CASE-HARNESS-L10-042-r10-acceptance-complete-denied",
+      "CASE-HARNESS-L10-042-r10-authority-generation-denied",
+      "CASE-HARNESS-L10-042-r10-execution-complete-denied",
+      "CASE-HARNESS-L10-042-r10-implementation-complete-denied",
+      "CASE-HARNESS-L10-042-r10-l3-approved-denied",
+      "CASE-HARNESS-L10-042-r10-name-or-ticket-only-denied",
+      "CASE-HARNESS-L10-042-r10-performance-threshold-generation-denied",
+      "CASE-HARNESS-L10-042-r10-requirement-adopted-denied"
+    ],
+    "new_case_count": 8,
+    "all_rows_six_columns": true,
+    "old36_id_literal_inventory_from_legacy": [
+      {
+        "id": "CASE-HARNESS-L10-042-01",
+        "line": 856,
+        "literal": "| `CASE-HARNESS-L10-042-01` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-01` | 同じbehavior/contractを保つ構造整理candidateと完全なconsumer/oracle evidence。 | 索引のみ。公開contract、要求、persistent state意味変更は`CASE-HARNESS-L10-042-r05-public-contract-change`、`CASE-HARNESS-L10-042-r05-requirement-meaning-change`、`CASE-HARNESS-L10-042-r05-persistent-state-change`で各一つずつ試す。 | positiveだけrefactor candidate。各意味変更は既存Backflow先へ返し、このindexを独立negativeに数えない。 |\n",
+        "expected_raw_lf_sha256": "ba4617d9d29a4b35f798117b1fa5e1fde4f3fbf59828045e67d0ece672d564a7",
+        "actual_raw_lf_sha256": "ba4617d9d29a4b35f798117b1fa5e1fde4f3fbf59828045e67d0ece672d564a7",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-02",
+        "line": 857,
+        "literal": "| `CASE-HARNESS-L10-042-02` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-02` | scope内semantic signature、全consumer、dependency/oracle snapshotを与えるmatrix参照。 | 索引のみ。`CASE-HARNESS-L10-042-r03-name-only-similarity`、`CASE-HARNESS-L10-042-r02-semantic-similarity-missing`、`CASE-HARNESS-L10-042-r02-consumer-missing`、`CASE-HARNESS-L10-042-r02-oracle-missing`、`CASE-HARNESS-L10-042-r02-dependency-graph-missing`を参照する。 | 各不足の単独CASEでunknown/未評価にし、indexを独立negativeに数えない。 |\n",
+        "expected_raw_lf_sha256": "6df8b69e710ec1a556cda348eb3cc88df67531ff634e224c5498d210704cb5b3",
+        "actual_raw_lf_sha256": "6df8b69e710ec1a556cda348eb3cc88df67531ff634e224c5498d210704cb5b3",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-03",
+        "line": 858,
+        "literal": "| `CASE-HARNESS-L10-042-03` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-03` | episode境界のindex。Design Refactor混載=`CASE-HARNESS-L10-042-r09-001`、Performance Refactor混載=`CASE-HARNESS-L10-042-r09-002`。 | 索引のみ。 2件を一つの変異へまとめない。 | 各単独CASEのみを評価しindexを数えない。 |\n",
+        "expected_raw_lf_sha256": "4cedc57ba4d76723b2ee26f8728fdd8122d09caaaaa2e17f471087e604cc13bc",
+        "actual_raw_lf_sha256": "4cedc57ba4d76723b2ee26f8728fdd8122d09caaaaa2e17f471087e604cc13bc",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-04",
+        "line": 905,
+        "literal": "| `CASE-HARNESS-L10-042-04` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-04`| 同一scopeのconsumer/oracle/dependency索引。未見適合正常=`CASE-HARNESS-L10-042-r06-unseen-consumer-valid`、unknown=`CASE-HARNESS-L10-042-r06-consumer-unknown`、未見dependency適合=`CASE-HARNESS-L10-042-r09-003`、semantic similarity stale=`CASE-HARNESS-L10-042-r02-semantic-similarity-stale`、consumer stale=`CASE-HARNESS-L10-042-r02-consumer-stale`、oracle stale=`CASE-HARNESS-L10-042-r02-oracle-stale`、dependency graph stale=`CASE-HARNESS-L10-042-r02-dependency-graph-stale`、revision unknown=`CASE-HARNESS-L10-042-r03-revision-unknown`。 | 索引のみ。 | 参照先を個別照合し、nested indexをnegativeに数えない。 |\n",
+        "expected_raw_lf_sha256": "84bf07624e1f59333a30fccf3af1e6b6f097659b8c451ca22cced828509fbdc0",
+        "actual_raw_lf_sha256": "84bf07624e1f59333a30fccf3af1e6b6f097659b8c451ca22cced828509fbdc0",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-05",
+        "line": 955,
+        "literal": "| `CASE-HARNESS-L10-042-05` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-04` | L2が指定しないrollback前提を入力せず、既存変更意味でrefactor候補を照合する。 | rollback入力欠落だけで候補を拒否する。 | 固定親にない条件として不合格。 |\n",
+        "expected_raw_lf_sha256": "f05c50992ed5462516c0d7fc57de47f5d16ea8a641d4deb5521cdc9b62bcb1d6",
+        "actual_raw_lf_sha256": "f05c50992ed5462516c0d7fc57de47f5d16ea8a641d4deb5521cdc9b62bcb1d6",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-06",
+        "line": 992,
+        "literal": "| `CASE-HARNESS-L10-042-06` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-02` | 未見same-scope consumerとdependencyを変更前後に列挙し、既存oracleへ対応させる。 | consumer隠蔽とdependency隠蔽をCASE-HARNESS-L10-042-08、CASE-HARNESS-L10-042-09へ分離し、この行はmatrix参照とする。 | 各単独CASEで意味保存unknownを示し、既存design/契約ownerへ戻す。 |\n",
+        "expected_raw_lf_sha256": "4e7c6f60fb810fc3f88f517316017b5ce7cb400c6ca4463b76c8a132a1cd1a2d",
+        "actual_raw_lf_sha256": "4e7c6f60fb810fc3f88f517316017b5ce7cb400c6ca4463b76c8a132a1cd1a2d",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-07",
+        "line": 993,
+        "literal": "| `CASE-HARNESS-L10-042-07` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-03` | 性能変更選択時はL2-016 baseline/workload/oracleを用いる。 | 性能regressionと測定不能をCASE-HARNESS-L10-042-10、CASE-HARNESS-L10-042-11で別々に与える。 | 各単独CASEでrefactor成功扱いを拒否し、016既存契約へ戻す。 |\n",
+        "expected_raw_lf_sha256": "148269d6602eefecb5de114acc2db8fb0fbe2ef60c8cf4659ab9cd1c1fd64528",
+        "actual_raw_lf_sha256": "148269d6602eefecb5de114acc2db8fb0fbe2ef60c8cf4659ab9cd1c1fd64528",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-08",
+        "line": 1086,
+        "literal": "| `CASE-HARNESS-L10-042-08` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-02` | 変更前後のconsumer一覧を同scope/revisionで列挙する。 | consumer一件だけを隠す。 | 意味保存unknown、既存design/契約ownerへ戻す。 |\n",
+        "expected_raw_lf_sha256": "94b3111a61ec625c60df64ffab758ca040b3b42196b6480caf0b4be7812787db",
+        "actual_raw_lf_sha256": "94b3111a61ec625c60df64ffab758ca040b3b42196b6480caf0b4be7812787db",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-09",
+        "line": 1087,
+        "literal": "| `CASE-HARNESS-L10-042-09` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-02` | 変更前後のdependency一覧を同scope/revisionで列挙する。 | dependency一件だけを隠す。 | 意味保存unknown、既存design/契約ownerへ戻す。 |\n",
+        "expected_raw_lf_sha256": "a4f3534ab4add10d8b223ef649a858670e733bff060134c18948be1e8420193a",
+        "actual_raw_lf_sha256": "a4f3534ab4add10d8b223ef649a858670e733bff060134c18948be1e8420193a",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-10",
+        "line": 1088,
+        "literal": "| `CASE-HARNESS-L10-042-10` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-03` | L2-016 baseline/workload/oracleで性能を比較する。 | 性能regressionだけを投入しrefactor成功扱いする。 | 成功を拒否し016既存契約へ戻す。 |\n",
+        "expected_raw_lf_sha256": "a6233cd5094e763941cb8784bf694405b0fcac4f9eebb7344e23b7f70065189a",
+        "actual_raw_lf_sha256": "a6233cd5094e763941cb8784bf694405b0fcac4f9eebb7344e23b7f70065189a",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-11",
+        "line": 1089,
+        "literal": "| `CASE-HARNESS-L10-042-11` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-03` | L2-016に沿った計測可能なbaseline/workload/oracleを用いる。 | 測定不能だけを投入しrefactor成功扱いする。 | 成功を拒否し016既存契約へ戻す。 |\n",
+        "expected_raw_lf_sha256": "b30009d04abf7232140f5accb48587e876d9de1bbc105dd68f6eb25a224ff505",
+        "actual_raw_lf_sha256": "b30009d04abf7232140f5accb48587e876d9de1bbc105dd68f6eb25a224ff505",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r02-semantic-similarity-missing",
+        "line": 1254,
+        "literal": "| `CASE-HARNESS-L10-042-r02-semantic-similarity-missing` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-02` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | semantic similarity根拠だけをmissingにする。他の3根拠とrevision/scopeは正常。 | 当該根拠不足だけを未評価としてsource/設計/契約ownerへ戻し、他根拠で相殺しない。 |\n",
+        "expected_raw_lf_sha256": "87fc21ad5e53e0f9c76ca7cd8d38e1a06c15c6b793fc1ffa4c17edcfe931e6b1",
+        "actual_raw_lf_sha256": "87fc21ad5e53e0f9c76ca7cd8d38e1a06c15c6b793fc1ffa4c17edcfe931e6b1",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r02-semantic-similarity-stale",
+        "line": 1255,
+        "literal": "| `CASE-HARNESS-L10-042-r02-semantic-similarity-stale` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-04` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | semantic similarity根拠だけをstaleにする。他の3根拠とrevision/scopeは正常。 | 当該根拠不足だけを未評価としてsource/設計/契約ownerへ戻し、他根拠で相殺しない。 |\n",
+        "expected_raw_lf_sha256": "6c3176971102f06849b5cae96a7d2750a40c624a041287d10dc026eac7005053",
+        "actual_raw_lf_sha256": "6c3176971102f06849b5cae96a7d2750a40c624a041287d10dc026eac7005053",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r02-consumer-missing",
+        "line": 1256,
+        "literal": "| `CASE-HARNESS-L10-042-r02-consumer-missing` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-02` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | consumer根拠だけをmissingにする。他の3根拠とrevision/scopeは正常。 | 当該根拠不足だけを未評価としてsource/設計/契約ownerへ戻し、他根拠で相殺しない。 |\n",
+        "expected_raw_lf_sha256": "071f3d85caa48949fde44ad75bbf7030ca3c29cdefc5345f3ad075a26af5fd52",
+        "actual_raw_lf_sha256": "071f3d85caa48949fde44ad75bbf7030ca3c29cdefc5345f3ad075a26af5fd52",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r02-consumer-stale",
+        "line": 1257,
+        "literal": "| `CASE-HARNESS-L10-042-r02-consumer-stale` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-04` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | consumer根拠だけをstaleにする。他の3根拠とrevision/scopeは正常。 | 当該根拠不足だけを未評価としてsource/設計/契約ownerへ戻し、他根拠で相殺しない。 |\n",
+        "expected_raw_lf_sha256": "874542e933e86cbeea1763fcfa8e03641f511674921a691ec157c04052fded6f",
+        "actual_raw_lf_sha256": "874542e933e86cbeea1763fcfa8e03641f511674921a691ec157c04052fded6f",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r02-oracle-missing",
+        "line": 1258,
+        "literal": "| `CASE-HARNESS-L10-042-r02-oracle-missing` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-02` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | oracle根拠だけをmissingにする。他の3根拠とrevision/scopeは正常。 | 当該根拠不足だけを未評価としてsource/設計/契約ownerへ戻し、他根拠で相殺しない。 |\n",
+        "expected_raw_lf_sha256": "79d3e39e01ab06276771398857215e5527119dbea852421a54078164d65db08c",
+        "actual_raw_lf_sha256": "79d3e39e01ab06276771398857215e5527119dbea852421a54078164d65db08c",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r02-oracle-stale",
+        "line": 1259,
+        "literal": "| `CASE-HARNESS-L10-042-r02-oracle-stale` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-04` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | oracle根拠だけをstaleにする。他の3根拠とrevision/scopeは正常。 | 当該根拠不足だけを未評価としてsource/設計/契約ownerへ戻し、他根拠で相殺しない。 |\n",
+        "expected_raw_lf_sha256": "358282370b2c31043a02de228224cca20e5f46f54b4db4eecc079b1503c6f1cd",
+        "actual_raw_lf_sha256": "358282370b2c31043a02de228224cca20e5f46f54b4db4eecc079b1503c6f1cd",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r02-dependency-graph-missing",
+        "line": 1260,
+        "literal": "| `CASE-HARNESS-L10-042-r02-dependency-graph-missing` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-02` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | dependency graph根拠だけをmissingにする。他の3根拠とrevision/scopeは正常。 | 当該根拠不足だけを未評価としてsource/設計/契約ownerへ戻し、他根拠で相殺しない。 |\n",
+        "expected_raw_lf_sha256": "4f371580911abebc22760fda0343edafde17993c590d95f49eb47fda31eb8243",
+        "actual_raw_lf_sha256": "4f371580911abebc22760fda0343edafde17993c590d95f49eb47fda31eb8243",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r02-dependency-graph-stale",
+        "line": 1261,
+        "literal": "| `CASE-HARNESS-L10-042-r02-dependency-graph-stale` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-04` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | dependency graph根拠だけをstaleにする。他の3根拠とrevision/scopeは正常。 | 当該根拠不足だけを未評価としてsource/設計/契約ownerへ戻し、他根拠で相殺しない。 |\n",
+        "expected_raw_lf_sha256": "acb6c3b1cbe7dd1ead3d4cffb6eb34faaf3f18d76b2a3fe5d63ebd8cf13ddd38",
+        "actual_raw_lf_sha256": "acb6c3b1cbe7dd1ead3d4cffb6eb34faaf3f18d76b2a3fe5d63ebd8cf13ddd38",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r02-other-scope",
+        "line": 1262,
+        "literal": "| `CASE-HARNESS-L10-042-r02-other-scope` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-03` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | 判定成功だけを別scopeへ外挿する。 | 外挿を拒否し、判定成立を元scope/revisionだけに限定する。 |\n",
+        "expected_raw_lf_sha256": "22b497d02e1709b4b5fcdcf39a3e5a8e94d7e363f17a24050ce712d0f09bf554",
+        "actual_raw_lf_sha256": "22b497d02e1709b4b5fcdcf39a3e5a8e94d7e363f17a24050ce712d0f09bf554",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r02-other-revision",
+        "line": 1263,
+        "literal": "| `CASE-HARNESS-L10-042-r02-other-revision` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-03` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | 判定成功だけを別revisionへ外挿する。 | 外挿を拒否し、判定成立を元scope/revisionだけに限定する。 |\n",
+        "expected_raw_lf_sha256": "610ee0a696148ee8da106f87a384eff0b0277a5058a462111d312c137988c013",
+        "actual_raw_lf_sha256": "610ee0a696148ee8da106f87a384eff0b0277a5058a462111d312c137988c013",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r02-feature",
+        "line": 1264,
+        "literal": "| `CASE-HARNESS-L10-042-r02-feature` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-03` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | 判定成功を機能追加の成立へ外挿する。 | 外挿を拒否し、判定成立を元scope/revisionだけに限定する。 |\n",
+        "expected_raw_lf_sha256": "4e5214eb2787eb03a061d981b8a244bb5aa9a85136980e03e790c4c749e79c72",
+        "actual_raw_lf_sha256": "4e5214eb2787eb03a061d981b8a244bb5aa9a85136980e03e790c4c749e79c72",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r02-downstream-execution",
+        "line": 1265,
+        "literal": "| `CASE-HARNESS-L10-042-r02-downstream-execution` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-03` | 対象revision/scope、semantic similarity、consumer、oracle、dependency graphの4根拠を揃え、016の保存oracleで振る舞い・契約・要求の保持を確認する。 | 判定成功を下流実行結果の成功へ外挿する。 | 外挿を拒否し、判定成立を元scope/revisionだけに限定する。 |\n",
+        "expected_raw_lf_sha256": "1f6b5cc59ca9f3c8be2ea92061b1bc728902770ca3652a20faadf74728b1d30b",
+        "actual_raw_lf_sha256": "1f6b5cc59ca9f3c8be2ea92061b1bc728902770ca3652a20faadf74728b1d30b",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r02-normal-similarity",
+        "line": 1317,
+        "literal": "| `CASE-HARNESS-L10-042-r02-normal-similarity` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-01` | source/design/consumer/oracle/dependencyとsemantic similarityが一致し、016保存oracleで契約・要求・振舞いが保たれる。 | 該当条件を変えない。 | scope/revision内のstructure-only候補としてだけ分類し、下流成功を推定しない。 |\n",
+        "expected_raw_lf_sha256": "1cffceda685f5e3d9685825a9f0a4d02bfd870d887b3797bd0cf24f03aee616d",
+        "actual_raw_lf_sha256": "1cffceda685f5e3d9685825a9f0a4d02bfd870d887b3797bd0cf24f03aee616d",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r03-name-only-similarity",
+        "line": 1362,
+        "literal": "| `CASE-HARNESS-L10-042-r03-name-only-similarity` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-02` | semanticsを照合できる同scope/revisionのrefactor候補を与える。 | 名前だけを似せsemantic similarity根拠を欠落させる。 | 成功候補を返さずunknownとしてdesign/契約ownerへ戻す。 |\n",
+        "expected_raw_lf_sha256": "efb38e07469c2825f702b4f1d95c0de9c66f2b06f174ed15654aaccdada72f14",
+        "actual_raw_lf_sha256": "efb38e07469c2825f702b4f1d95c0de9c66f2b06f174ed15654aaccdada72f14",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r03-revision-unknown",
+        "line": 1363,
+        "literal": "| `CASE-HARNESS-L10-042-r03-revision-unknown` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-04` | 選択scopeとsource revisionを特定できる。 | 対象revisionだけを特定不能にする。 | 結果をunknown/未評価とし成功を外挿しない。 |\n",
+        "expected_raw_lf_sha256": "2f1b14f5caca6fbc9784cfed7bdf47628d5968a88a79b8640c27f4e94a2421ad",
+        "actual_raw_lf_sha256": "2f1b14f5caca6fbc9784cfed7bdf47628d5968a88a79b8640c27f4e94a2421ad",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r04-042-revision-unidentified",
+        "line": 1436,
+        "literal": "| `CASE-HARNESS-L10-042-r04-042-revision-unidentified` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-04` | `CASE-HARNESS-L10-042-r03-revision-unknown`のindex参照。 | 独立変異として数えず、対象revision不明の結果を参照する。 | unknown/未評価を維持し成功を外挿しない。L2-019へ戻すのは対設計欠落CASEに限る。 |\n",
+        "expected_raw_lf_sha256": "c429279d34eb4c948d18b0001616b8b7d1c4b0807fe38c78445c36c55afa5231",
+        "actual_raw_lf_sha256": "c429279d34eb4c948d18b0001616b8b7d1c4b0807fe38c78445c36c55afa5231",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r04-042-l2-019-return",
+        "line": 1437,
+        "literal": "| `CASE-HARNESS-L10-042-r04-042-l2-019-return` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-01` | 固定親に適合する正常条件、scope/revision、必要oracleが揃う。 | 対応するdesignの有無だけを変異させる。 | 対応するdesignがないことを検出し、L2-019へ戻す。 |\n",
+        "expected_raw_lf_sha256": "e1b9ad6412d598710bbaf92f493ecc92d2d5a9d4db916e8a154ce84ae997e985",
+        "actual_raw_lf_sha256": "e1b9ad6412d598710bbaf92f493ecc92d2d5a9d4db916e8a154ce84ae997e985",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r05-public-contract-change",
+        "line": 1510,
+        "literal": "| `CASE-HARNESS-L10-042-r05-public-contract-change` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-01` | 同scope/revisionでpublic contractが保持され、他の意味条件もcurrent。 | public contract意味だけを変更する。 | refactor成功を拒否し、HARNESS-L2-003/004/016の該当Backflow先へ戻す。 |\n",
+        "expected_raw_lf_sha256": "ae80c3ea53e4d97b67576efaafb7a9943a66bc6ffc7ba9a45124a9eb41a31ebc",
+        "actual_raw_lf_sha256": "ae80c3ea53e4d97b67576efaafb7a9943a66bc6ffc7ba9a45124a9eb41a31ebc",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r05-requirement-meaning-change",
+        "line": 1511,
+        "literal": "| `CASE-HARNESS-L10-042-r05-requirement-meaning-change` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-01` | 同scope/revisionでrequirement meaningが保持され、他の意味条件もcurrent。 | requirement meaningだけを変更する。 | refactor成功を拒否し、HARNESS-L2-003/004/016の該当Backflow先へ戻す。 |\n",
+        "expected_raw_lf_sha256": "86be0f1fddfe4964a3f017a05be9af9166d4094f610be8980c8e5f92b8a5a1a7",
+        "actual_raw_lf_sha256": "86be0f1fddfe4964a3f017a05be9af9166d4094f610be8980c8e5f92b8a5a1a7",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r05-persistent-state-change",
+        "line": 1512,
+        "literal": "| `CASE-HARNESS-L10-042-r05-persistent-state-change` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-01` | 同scope/revisionでpersistent state meaningが保持され、他の意味条件もcurrent。 | persistent state meaningだけを変更する。 | refactor成功を拒否し、HARNESS-L2-003/004/016の該当Backflow先へ戻す。 |\n",
+        "expected_raw_lf_sha256": "88d36b8601a1e8f3fa62a4c822a0cb17db2b6590e73f8ccd94f84079df56b1ed",
+        "actual_raw_lf_sha256": "88d36b8601a1e8f3fa62a4c822a0cb17db2b6590e73f8ccd94f84079df56b1ed",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r06-unseen-consumer-valid",
+        "line": 1677,
+        "literal": "| `CASE-HARNESS-L10-042-r06-unseen-consumer-valid` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-04` | 選択scope/revision内の既知consumerとdependencyが固定契約・oracleに適合する。 | 同scopeの未公開consumerを一つ追加し、固定契約/oracleへの適合根拠を与える。 | 適合候補を受け入れ、未見だけで拒否しない。 |\n",
+        "expected_raw_lf_sha256": "2007104832845006e62b6267884b4f3683eb9197599fb3b2a287b1a559e48a66",
+        "actual_raw_lf_sha256": "2007104832845006e62b6267884b4f3683eb9197599fb3b2a287b1a559e48a66",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r06-consumer-unknown",
+        "line": 1678,
+        "literal": "| `CASE-HARNESS-L10-042-r06-consumer-unknown` | `FR-HARNESS-L3-042` / `AC-HARNESS-L3-042-04` | consumer identity以外の根拠（依存関係を含む）はcurrent。 | consumer identityだけをunknownにする。 | refactor成功候補を返さず未評価/保留にする。 |\n",
+        "expected_raw_lf_sha256": "63b94a250972278b64a28a3f7dddcb87e59bb0c43fd317e457d93c65962161ca",
+        "actual_raw_lf_sha256": "63b94a250972278b64a28a3f7dddcb87e59bb0c43fd317e457d93c65962161ca",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r09-001",
+        "line": 1878,
+        "literal": "| `CASE-HARNESS-L10-042-r09-001` | `FR-HARNESS-L3-042`|`AC-HARNESS-L3-042-03`| Design Refactor candidateと機能追加episodeを固定する。 | Design Refactorだけを機能追加と同一episodeへ混載する。 | 混載を拒否して別episodeとして保持する（HARNESS-L2-042の固定分離条件）。実際に意味変更が判明した場合だけHARNESS-L2-003/004/016の該当既存Backflow先へ戻す。 |\n",
+        "expected_raw_lf_sha256": "abd16aa1cf8468eb1a81cb68baf4495073a0dcaae33c5772feef6b72eb49c137",
+        "actual_raw_lf_sha256": "abd16aa1cf8468eb1a81cb68baf4495073a0dcaae33c5772feef6b72eb49c137",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r09-002",
+        "line": 1879,
+        "literal": "| `CASE-HARNESS-L10-042-r09-002` | `FR-HARNESS-L3-042`|`AC-HARNESS-L3-042-03`| Performance Refactor candidateと機能追加episodeを固定する。 | Performance Refactorだけを機能追加と同一episodeへ混載する。 | 混載を拒否して別episodeとして保持する（HARNESS-L2-042の固定分離条件）。実際に意味変更が判明した場合だけHARNESS-L2-003/004/016の該当既存Backflow先へ戻す。 |\n",
+        "expected_raw_lf_sha256": "cd2ecd9d0f34fee42eb510090b7774ee6e3061a3a6c3f1f258d6ecc6eca4576b",
+        "actual_raw_lf_sha256": "cd2ecd9d0f34fee42eb510090b7774ee6e3061a3a6c3f1f258d6ecc6eca4576b",
+        "exact_match": true
+      },
+      {
+        "id": "CASE-HARNESS-L10-042-r09-003",
+        "line": 1880,
+        "literal": "| `CASE-HARNESS-L10-042-r09-003` | `FR-HARNESS-L3-042` | `AC-HARNESS-L3-042-04` | 同scopeの未公開dependencyを追加し、固定semantic/oracleと他依存が適用可能。 | 既存consumer正常例だけでは照合できない未見dependencyを与える。 | 既存契約/oracleに適合するdependencyを正常として受理し、意味は固定する。正常入力に戻し先を割り当てない。 |\n",
+        "expected_raw_lf_sha256": "a716771c91f65c4f0efd4f0ae65d3d4a0c231b6a3c737e481465e2dd155de97d",
+        "actual_raw_lf_sha256": "a716771c91f65c4f0efd4f0ae65d3d4a0c231b6a3c737e481465e2dd155de97d",
+        "exact_match": true
+      }
+    ],
+    "status": "Root-fixed body read from the assigned worktree at exact HEAD; actual 44-row inventory finalized for this revision only."
+  }
+}
