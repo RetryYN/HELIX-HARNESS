@@ -737,7 +737,7 @@ AC-035-05はS5-027/028/042および035〜038（旧revision計測、機能数だ�
 
 **AC-HARNESS-L3-044-01 — 正常なclass coverageと契約処置**：同じscope/revision内の固定された適用class・oracle・契約・根拠から、再利用／delta／新規／根拠付きN/Aを区別したcoverageを再構成でき、未被覆0・意味重複0である。合成正常fixtureは選択された9 contract classを既存inputとして与える。9件はfixtureの母集団であり、新classや新しい一般的閾値を作らない。出力のreuse/delta/new/根拠付きN/A区分が各classの義務意味・oracle・適用根拠に対応すること、対象revision/scopeとfinding根拠が出力に保たれることを確かめる。
 
-**AC-HARNESS-L3-044-02 — 単一欠落・誤対応**：source atom、active template、applicability、oracle、contract version、class identityまたはrelationを一度に一つ欠落／矛盾／staleにしたとき、未完・未被覆・unknownを維持し、適用範囲からclassを落とさない。根拠のないN/A、意味重複、旧denominator receipt再利用、025/043による代替、意味対応oracleの欠落を拒否する。入力が正常でも、出力処置区分の誤り、出力対象revision/scopeの欠落・不一致、出力finding根拠の欠落をそれぞれ拒否しportfolioを未完に保ちclosureを主張しない。
+**AC-HARNESS-L3-044-02 — 単一欠落・誤対応**：source atom、active template、applicability、oracle、contract version、class identityまたはrelationを一度に一つ欠落／矛盾／staleにしたとき、未完・未被覆・unknownを維持し、適用範囲からclassを落とさない。根拠のないN/A、意味重複、旧denominator receipt再利用、025/043による代替、意味対応oracleの欠落を拒否する。入力が正常でも、出力処置区分の誤り、出力対象revision/scopeの欠落・不一致、出力finding根拠の欠落をそれぞれ拒否しportfolioを未完に保ちclosureを主張しない。これらは入力不足への固定親返却区分に該当しない044自身の候補出力誤りであり、当該出力処理の訂正を要する。入力側009/026等へ返却責務を追加しない。
 
 **AC-HARNESS-L3-044-03 — portfolio閉包と候補状態**：義務最小化を理由に独立classを落とさず、複数contractの必要な境界と理由を示す。既知の境界・理由欠落、無説明の重複割当、根拠なしN/A、規範contractの孤立は不合格とし、portfolioを未完に保つ。初見でsource・適用性・oracleが不明な場合のunknown/未評価とは区別する。候補は候補のままとし、portfolio出力だけで承認・採択を生成しない。
 
