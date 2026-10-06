@@ -1,0 +1,9 @@
+# HARNESS Stage3 review16補正検収
+
+本文revision `7302b2c53104ab06848629515d751f5963328a86`。Minor7件を補正しRootが差分・固定source・対応集合を照合した。独立再レビューと委任承認は未成立。
+
+039のimplementedと残る6 UX軸を保持し、ux_verifiedを生成せず選択済み検証義務または対oracleへ戻す。044のACをまたぐ参照、034のAC境界、040のstale戻し先、054のACラベル、047の複数AC対応を補正。旧監査は不変。
+
+旧1037定義一致検査では全AC所属を検査していなかった。本記録では1039組を照合し不一致0。索引125件で索引間参照・循環・参照切れ0。指定sourceのfull/span SHAを再計算し、戻し先locator649→648を訂正した。
+
+JSON SHA-256: `adeadefb263f6d2f692e400a7fb91e1e4942bb1e6e9f90038acc999019b8ff50`。
