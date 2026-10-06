@@ -124,3 +124,14 @@ plannedは総予定試行数。観測可否はvalid（判定できる観測が�
 Stage 5の索引aliasは021-S5-011→004、033-S5-024/025→005/006、037-S5-023→005と037-S5-057→053。これら5索引は個別fixture分母へ重複加算しない。
 
 035-S5-033は撤去した旧変異のID保全用時点注記であり、同一変異aliasではない。個別fixture分母から除外し、運用負債欠測の個別変異は035-S5-041だけで評価する。
+
+
+## Stage 3 親034の非機能総合検証候補
+
+| CASE / NFR | 母集団条件 | 検証境界 |
+|---|---|---|
+| `CASE-HARNESS-L10-NFR-034-01` / `NFR-C-HARNESS-034-01` | 適用scopeに選択されたmetricごとのL2-034 14項目とtarget requirement/NFR identity。 | field存在だけでなくsource/revision/scope/oracle tupleを対応させる。分母unknownは0にせず未評価。 |
+| `CASE-HARNESS-L10-NFR-034-02` / `NFR-C-HARNESS-034-01` | 同一対象metricのunmeasured/stale/nonrepresentative/unmet状態を個別に保持する。別環境/別revisionの有効結果も元のscope/revisionでは保持する（機能fixture `CASE-HARNESS-L10-034-r21-other-environment-result-does-not-offset` / `CASE-HARNESS-L10-034-r21-other-revision-result-does-not-offset` を参照。これはNV内の独立定義数には加えない）。 | 他metricや別scope/revisionのsuccessで対象metricの未測定を相殺せず、実測のない率や実行結果を生成しない。 |
+| `CASE-HARNESS-L10-NFR-034-03` / `NFR-C-HARNESS-034-01` | 条件付き品質領域、AI7および6risk techniqueの選択/理由付き非適用。 | Applicability unknownは未評価。N/Aには選択profile上の根拠を要求し、新しい閾値・method obligationを作らない。 |
+
+NFR CASEは測定candidate分類であり、実測・CI success・performance SLOではない。

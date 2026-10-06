@@ -1,0 +1,242 @@
+{
+  "record_type": "作成側レビュー追補監査（小規模・レビュー02の2行修正差分）",
+  "status": "作成側Root検収済・独立再レビュー待ち。解消・承認を生成しない。",
+  "body_revision": "0460c9b354b1dd0845fb27b083348cea2e7b0c11",
+  "base_revision": "17a2f310358ee7fe209b9d37cddf4a927c740248",
+  "prior_body_revision": "4199f46b44304cbfb7646b1feb2e3294b6ef2d65",
+  "public_pre_review_revision": "a440bbb71e714eba1fdc75b8601a4f1a6b988188",
+  "formal_review_comment": {
+    "comment_id": 6014340781,
+    "raw_utf8_bytes": 6585,
+    "raw_utf8_sha256": "437ea08a92e15e49895970a5207c37ffae812ef9c038e6cb73d1f567ec635890",
+    "literal_utf8": "## review02（independent review、PR #2624 親HARNESS-L2-034、HEAD a440bbb71e714eba1fdc75b8601a4f1a6b988188、本文 4199f46b4、base main 17a2f3103）\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。基準は新しい基準（comment 6013171742）を使った。責務を優先し、変更耐性を前提にする。最初に見るのは次の3点。\n- 想定外の受け皿\n- 勝手に作らない\n- 戻り道\n\n照合は次の2つに分けた。Fableは、Opusが`no_findings`になった同じHEADでだけ回すため、今回は回していない。\n- **Opus・ブラインド照合**：監査、PR comment、前回の所見は見せず、固定親（@318ec4aのL2-034:693–717、L11-034:465–483、依存先の節）と、6本文の追補（+375行）だけを渡した。固定親を1文ずつ種類分けし、自分で対応表を作る。CASE 315行のうち、固有の行は全文読んだ。定型の行群は、代表行を全文読んだうえで、可変語の置換が一致することを機械で照合した。\n- **Opus・継続照合**：review01の18件の判定、差分の全行、新しい監査、pinの再計算を行った。\n\n### 静的検査（exact HEAD）\n- scfctl：validate 147/0、stale 0、residuals 0。govcheck：ok。`git diff --check`：成功。\n- origin/main 17a2f3103との`merge-tree`：衝突なし。6本文は、最新mainの全bytesをprefixとして保持している。\n- pinを再計算した結果、すべて一致した。対象は次のとおり。\n  - 固定元（L2/L11の全体と034節、旧source、PO行）\n  - 監査MD/JSON\n  - 埋め込まれたcomment原文（review01の11,188 bytesと18所見block）\n  - 6本文\n  - case_definitions 315件（行、literal、AC、SHA）\n  - subatom 240件\n- FRのAC表とFVのAC帰属は、双方向に一致した。\n\n### review01（18件）の判定\n- **解消（17件）**：M1〜M10、m1〜m7。\n  - r19の戻し先区分、r05の4状態のcompletion拒否と再測定義務、034-36、r20（INFRA/LABOの3主張×2、因果3件、一律target/environment、停止理由、draft/createの非阻害、他system義務、SECURITY/data-use）について、固定親の各行に対応する単独fixtureと戻し区分を確認した。\n- **m8**：本文は解消した。旧監査の英文は、変更しない記録として残余R9へ移した。\n\n### 所見（Major 1）\n- **M1（CORE traceの欠落で、戻し先の区分が決まらない）**：\n  - `CASE-HARNESS-L10-034-r19-core-trace-missing` のoracleは「責務ownerはunknownのまま保持し、新しいownerを作らない」とだけ書いている。FR-034の「戻し先」段落も「CORE trace不足のownerも固定L2-034で特定されないためunknown」と書いている。どちらも、区分名も固定親名（CORE）も示していない。\n  - review01 M1で直したのと同じ型の欠陥である。「担当identityが不明であること」と「戻す区分が決まらないこと」を混同している。同じPRのr19の他の行は、この2つを区別して書いている。\n  - 差分外の既存行で、review01では拾えていなかった。ブラインド照合と継続照合が、別々に同じ箇所を挙げた。\n  - 未完の保持はできているので、誤った完了は通らない。それでも「宛先が決まらない」にあたるため、Majorとした。\n  - →守るべき行：固定L2-034「失敗と引継ぎ」（:703。契約・設計・環境・測定・要求の該当owner）、「常時必須の依存」（:704。COREのtrace）。\n\n### 後で直す残余（承認を止めない）\n- **R1（戻し先の表記が区分名と合っていない）**：\n  - r05-root-metricの4件：「要求NFR owner／既存OSまたは利用者のowner」\n  - r20-causal-os-evidenceとstop-reason：「measurement/evidence記録区分」\n  - 034-15/29/30/32/33/34/35/39：「metric owner／NFR owner／OS/利用者」\n  - r05-root-field群のoracleは「要求/NFR契約／実行・測定field」の二分だけで、どのfieldがどちらに当たるかが分からない。\n  - FRの「戻し先」段落には、設計区分がない。\n  - r19-selected-connect-contract-missingは、区分を書いていない。宛先はCONNECT契約で決まる。\n- **R2（行参照のずれ）**：r21の2行は、契約区分の根拠に「L2:702」を挙げている。5区分はL2:703、相殺の禁止はL2:700にある。\n- **R3（ACの束ね）**：AC-01の受入条件は、そこに入れたr20のCASEを追跡していない。AC-03（工程）に、INFRA/LABOのauthority claimが入っている。AC-04表の「境界」列の末尾に、他AC参照（r19-measurement-method-design-normal）がある。\n- **R4（影響索引の戻し区分の行が、本文と合っていない）**：環境区分の行は034-36を挙げていない。測定区分の行に挙げたr05の4件には、区分名がない。\n- **R5（監査JSONの古い値）**：`basis_and_boundary`の`canonical_document_pins`と`definition_census`（313件）が、7962a34f4の時点の値のままである。正しい値は`current_body_checkpoint`（315件）にある。\n- **R6（repository外の参照）**：監査JSONに、`/home/tenni/.helix-worktrees/...`、`/tmp/root-pr2624-review01-formal.txt`、`/tmp/root-pr2624-review01-finding-registry.json`がある。中身はJSONに埋め込まれている。\n- **R7（手順commentのpin先）**：監査は、PR #2623のcomment（6013115399／6013171449）をpinしている。PR #2624のcomment（6013115725／6013171742）ではない。本文はbytes単位で同一である。\n- **R8（索引の重複と表記）**：034-16と034-23は、同じ037/038を指す。索引034-04は、r05-root-field-01〜13の全体を「stable NFR identity欠落」と表記している。14項目のうち「対象requirement/NFR」は29で受けていて、r05の番号と1対1で対応しない。functional-verificationの見出しは「後続r19行」とだけ書いていて、r20/r21を含めていない。\n- **R9（旧監査の英文）**：52dde932の監査のMD 111–118行と、JSONの`specific_semantic_corrections[].decision`に英文がある。\n\n### 判定\n- blockerは1件（M1）で、Major 1、残余9。\n- 委任承認は成立しない。Readyにはしない。merge admissionは本commentから生成しない。\n- review01の時点ではMajorが10件あったが、今回は1件まで減った。M1を直した次のHEADで、Opusの`no_findings`を確認できれば、同じHEADでFableを回す。\n",
+    "major_1_original": "- **M1（CORE traceの欠落で、戻し先の区分が決まらない）**：\n  - `CASE-HARNESS-L10-034-r19-core-trace-missing` のoracleは「責務ownerはunknownのまま保持し、新しいownerを作らない」とだけ書いている。FR-034の「戻し先」段落も「CORE trace不足のownerも固定L2-034で特定されないためunknown」と書いている。どちらも、区分名も固定親名（CORE）も示していない。\n  - review01 M1で直したのと同じ型の欠陥である。「担当identityが不明であること」と「戻す区分が決まらないこと」を混同している。同じPRのr19の他の行は、この2つを区別して書いている。\n  - 差分外の既存行で、review01では拾えていなかった。ブラインド照合と継続照合が、別々に同じ箇所を挙げた。\n  - 未完の保持はできているので、誤った完了は通らない。それでも「宛先が決まらない」にあたるため、Majorとした。\n  - →守るべき行：固定L2-034「失敗と引継ぎ」（:703。契約・設計・環境・測定・要求の該当owner）、「常時必須の依存」（:704。COREのtrace）。",
+    "residual_9_original": [
+      {
+        "id": "R1",
+        "formal_original": "- **R1（戻し先の表記が区分名と合っていない）**：\n  - r05-root-metricの4件：「要求NFR owner／既存OSまたは利用者のowner」\n  - r20-causal-os-evidenceとstop-reason：「measurement/evidence記録区分」\n  - 034-15/29/30/32/33/34/35/39：「metric owner／NFR owner／OS/利用者」\n  - r05-root-field群のoracleは「要求/NFR契約／実行・測定field」の二分だけで、どのfieldがどちらに当たるかが分からない。\n  - FRの「戻し先」段落には、設計区分がない。\n  - r19-selected-connect-contract-missingは、区分を書いていない。宛先はCONNECT契約で決まる。"
+      },
+      {
+        "id": "R2",
+        "formal_original": "- **R2（行参照のずれ）**：r21の2行は、契約区分の根拠に「L2:702」を挙げている。5区分はL2:703、相殺の禁止はL2:700にある。"
+      },
+      {
+        "id": "R3",
+        "formal_original": "- **R3（ACの束ね）**：AC-01の受入条件は、そこに入れたr20のCASEを追跡していない。AC-03（工程）に、INFRA/LABOのauthority claimが入っている。AC-04表の「境界」列の末尾に、他AC参照（r19-measurement-method-design-normal）がある。"
+      },
+      {
+        "id": "R4",
+        "formal_original": "- **R4（影響索引の戻し区分の行が、本文と合っていない）**：環境区分の行は034-36を挙げていない。測定区分の行に挙げたr05の4件には、区分名がない。"
+      },
+      {
+        "id": "R5",
+        "formal_original": "- **R5（監査JSONの古い値）**：`basis_and_boundary`の`canonical_document_pins`と`definition_census`（313件）が、7962a34f4の時点の値のままである。正しい値は`current_body_checkpoint`（315件）にある。"
+      },
+      {
+        "id": "R6",
+        "formal_original": "- **R6（repository外の参照）**：監査JSONに、`/home/tenni/.helix-worktrees/...`、`/tmp/root-pr2624-review01-formal.txt`、`/tmp/root-pr2624-review01-finding-registry.json`がある。中身はJSONに埋め込まれている。"
+      },
+      {
+        "id": "R7",
+        "formal_original": "- **R7（手順commentのpin先）**：監査は、PR #2623のcomment（6013115399／6013171449）をpinしている。PR #2624のcomment（6013115725／6013171742）ではない。本文はbytes単位で同一である。"
+      },
+      {
+        "id": "R8",
+        "formal_original": "- **R8（索引の重複と表記）**：034-16と034-23は、同じ037/038を指す。索引034-04は、r05-root-field-01〜13の全体を「stable NFR identity欠落」と表記している。14項目のうち「対象requirement/NFR」は29で受けていて、r05の番号と1対1で対応しない。functional-verificationの見出しは「後続r19行」とだけ書いていて、r20/r21を含めていない。"
+      },
+      {
+        "id": "R9",
+        "formal_original": "- **R9（旧監査の英文）**：52dde932の監査のMD 111–118行と、JSONの`specific_semantic_corrections[].decision`に英文がある。"
+      }
+    ],
+    "whole_body_includes_all_finding_text": true,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2624#issuecomment-6014340781"
+  },
+  "scope_note": "この追補は、review02のM1に対してbody 4199→0460で変わった2本文行だけを記録する。R1–R9はcomment原文として保持するが、この追補で対応・解消したとは主張しない。以前の影響索引は4199時点の履歴値であり、ここでは現行索引全体を再評価していない。 旧review01監査のbasis_and_boundaryは7962時点、current_body_checkpoint/影響索引は4199時点の履歴である。本追補のcurrentは0460で、歴史値を書き換えない。",
+  "body_pins": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "bytes": 172453,
+      "sha256": "0e644f012c3d6f1105adb65fbb73b3a7e9ffdc2c75ef42a978b0a2f08d59cb4e",
+      "main_prefix_bytes": 162928,
+      "main_prefix_sha256": "442911e4f2338eada7069d6068fe344d39ffe8e7b0edaabb99970ecef3fe037f",
+      "main_prefix_exact": true
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "bytes": 11547,
+      "sha256": "5bba92338ca9abb6a9778b3c17d84c9b85c3f38abc3cebbf5cdc18d63b57ce69",
+      "main_prefix_bytes": 11162,
+      "main_prefix_sha256": "527ee5f203af7dd6bcd89878fed9a1a9ee4f9ddaa0f601033a791401b8998c93",
+      "main_prefix_exact": true
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "bytes": 39627,
+      "sha256": "feffc393796a35c1823b10ba655f05357dd0babaa9611e7719368bcf4ad8864d",
+      "main_prefix_bytes": 38522,
+      "main_prefix_sha256": "72658cf1b44d04e46e7eb357fd19a8e01e19e5d6cce404f518fab00a3d474896",
+      "main_prefix_exact": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "bytes": 435363,
+      "sha256": "c77613da5c062c466bdbf5cfc092de20285dcafcbf45cd6c51bd95cc462fe594",
+      "main_prefix_bytes": 245476,
+      "main_prefix_sha256": "0412f6aa8777eb6991061ac7a141f8225112d2c9de74c779ce8da812598cf1d9",
+      "main_prefix_exact": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "bytes": 7342,
+      "sha256": "d6fe8f3c64f82d924b0df664d9f708917b2db9b9f5f0fb63a49ecfb37234397c",
+      "main_prefix_bytes": 7046,
+      "main_prefix_sha256": "e8010726994decd34ac4db0c8c0b8b52b6ce8ec1bfbde21bf0b409cc54d208c6",
+      "main_prefix_exact": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "bytes": 31100,
+      "sha256": "319be75889ed450fb1b266900846e4c90df11ce12efc2c66cefef68458204c49",
+      "main_prefix_bytes": 29724,
+      "main_prefix_sha256": "298604b33e48ea8a7174dfe54867d9600d6cc1d83f92fac6671dd2a9b5c20438",
+      "main_prefix_exact": true
+    }
+  ],
+  "review02_static_recalculation": {
+    "definitions": 315,
+    "old_ids_preserved": true,
+    "core_case_input_and_single_mutation_unchanged": true,
+    "basis": "Rootがgit showでa440公開本文と0460修正本文を読み、FV定義IDの順序と315uniqueを比較。CORE行のID/FR/AC/入力/変異の5列を比較し一致。6本文はbase17a2の全bytesをprefixとして保持。",
+    "root_checkpoint": {
+      "base": "17a2f310358ee7fe209b9d37cddf4a927c740248",
+      "before": "a440bbb71e714eba1fdc75b8601a4f1a6b988188",
+      "body_revision": "0460c9b354b1dd0845fb27b083348cea2e7b0c11",
+      "body_pins": [
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+          "bytes": 172453,
+          "sha256": "0e644f012c3d6f1105adb65fbb73b3a7e9ffdc2c75ef42a978b0a2f08d59cb4e",
+          "main_prefix_exact": true
+        },
+        {
+          "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+          "bytes": 11547,
+          "sha256": "5bba92338ca9abb6a9778b3c17d84c9b85c3f38abc3cebbf5cdc18d63b57ce69",
+          "main_prefix_exact": true
+        },
+        {
+          "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+          "bytes": 39627,
+          "sha256": "feffc393796a35c1823b10ba655f05357dd0babaa9611e7719368bcf4ad8864d",
+          "main_prefix_exact": true
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/functional-verification.md",
+          "bytes": 435363,
+          "sha256": "c77613da5c062c466bdbf5cfc092de20285dcafcbf45cd6c51bd95cc462fe594",
+          "main_prefix_exact": true
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/business-verification.md",
+          "bytes": 7342,
+          "sha256": "d6fe8f3c64f82d924b0df664d9f708917b2db9b9f5f0fb63a49ecfb37234397c",
+          "main_prefix_exact": true
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+          "bytes": 31100,
+          "sha256": "319be75889ed450fb1b266900846e4c90df11ce12efc2c66cefef68458204c49",
+          "main_prefix_exact": true
+        }
+      ],
+      "definitions": 315,
+      "old_ids_preserved": true,
+      "core_case_input_mutation_unchanged": true
+    }
+  },
+  "changed_rows": [
+    {
+      "finding": "M1",
+      "document_role": "FRの戻し先説明",
+      "before": {
+        "revision": "4199f46b44304cbfb7646b1feb2e3294b6ef2d65",
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "line": 566,
+        "literal_with_lf": "**戻し先**：field/contractの意味不足はHARNESS-L2-034の該当requirement/NFR owner、意味変更だけはL2-003/004へ戻す。execution/environment/result-source不足は選択された既存OS/利用者/LABO/INFRASTRUCTURE source ownerへ戻し、固定sourceで識別できなければunknown。CORE trace不足のownerも固定L2-034で特定されないためunknown。通信選択時だけCONNECT contractを照合し、非選択時のCONNECTを必須化しない。\n",
+        "raw_lf_sha256": "b2623c6d86caeb022a49f629acbff2780af34602aab89534cfac844989e03eb1"
+      },
+      "after": {
+        "revision": "0460c9b354b1dd0845fb27b083348cea2e7b0c11",
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "line": 566,
+        "literal_with_lf": "**戻し先**：field/contractの意味不足はHARNESS-L2-034の該当requirement/NFR owner、意味変更だけはL2-003/004へ戻す。execution/environment/result-source不足は選択された既存OS/利用者/LABO/INFRASTRUCTURE source ownerへ戻し、固定sourceで識別できなければunknown。CORE trace参照の欠落は、固定L2-034:695/703/704に基づきCOREの検証契約・traceに関する契約区分へ戻す。具体的なowner identityは固定sourceで識別できない場合にunknownとして保持し、戻し区分やCOREという依存先までunknownにしない。通信選択時だけCONNECT contractを照合し、非選択時のCONNECTを必須化しない。\n",
+        "raw_lf_sha256": "db864290518826c9960d1c45ea43416b02a5de685cdb5d045592e99d09e63aeb"
+      },
+      "interpretation": "CORE trace欠落をunknownという担当者identityだけに還元していた記述から、固定L2-034のCORE検証契約・traceに関する契約区分を戻し先として明示し、個人/具体owner identityのunknownとは分離した。"
+    },
+    {
+      "finding": "M1",
+      "document_role": "FV CASE oracle",
+      "case_id": "CASE-HARNESS-L10-034-r19-core-trace-missing",
+      "before": {
+        "revision": "4199f46b44304cbfb7646b1feb2e3294b6ef2d65",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 1099,
+        "literal_with_lf": "| `CASE-HARNESS-L10-034-r19-core-trace-missing` | `FR-HARNESS-L3-034` | `AC-HARNESS-L3-034-01` | 要求identity/revision、14項目、L2-022段階/oracle、適用condition・判断出所がcurrentで、CORE traceも要求identity/revision/scopeへ対応して存在する正常candidate。CORE trace責務ownerは固定sourceに明示されないためunknown。 | CORE traceだけを欠落させる。 | 完成扱いにせずtrace欠落を示す。責務ownerはunknownのまま保持し、新しいownerを作らない。 |\n",
+        "raw_lf_sha256": "d08997b3a1c6580f2e1ce7ca24b9e649a3f06ba354f4b2fa3d164ed9d519cb8b"
+      },
+      "after": {
+        "revision": "0460c9b354b1dd0845fb27b083348cea2e7b0c11",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 1099,
+        "literal_with_lf": "| `CASE-HARNESS-L10-034-r19-core-trace-missing` | `FR-HARNESS-L3-034` | `AC-HARNESS-L3-034-01` | 要求identity/revision、14項目、L2-022段階/oracle、適用condition・判断出所がcurrentで、CORE traceも要求identity/revision/scopeへ対応して存在する正常candidate。CORE trace責務ownerは固定sourceに明示されないためunknown。 | CORE traceだけを欠落させる。 | 完成扱いにせずtrace欠落を示し、COREの検証契約・traceに関する契約区分へ戻す（固定L2-034:695/703/704）。具体的なowner identityはunknownのまま保持するが、契約区分と依存先COREを未決にせず、新しいowner・要求・authorityを作らない。 |\n",
+        "raw_lf_sha256": "9ac75f9b0adec010f60a659e93f60b168836c4abe35741dd34d290ffdcb56c3d"
+      },
+      "interpretation": "正常baselineとCORE traceだけを欠落させる単一変異は同一。oracleだけを、CORE契約・trace区分へ戻すこと、owner identityをunknownのままにすること、依存先COREや区分をunknownにしないことへ明確化した。"
+    }
+  ],
+  "fixed_source_pins": {
+    "source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+    "full_file": {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "bytes": 254934,
+      "sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09"
+    },
+    "literal_lines": [
+      {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "line": 695,
+        "literal_with_lf": "- **親**：HARNESS-L1-001／004／005、Conceptの1.0土台「計測」とCOREの検証契約。HARNESS-L2-022の段階判定へ計測義務を渡す能力であり、022の判定やOSの実行を別実装しない。\n",
+        "raw_lf_sha256": "d9a36a9fe6436f87f259049496ce45f527bec146b73a71fb6c072b4c27fe4a48"
+      },
+      {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "line": 703,
+        "literal_with_lf": "- **失敗と引継ぎ**：不足field、unknownの目標、古い結果、代表性不明、未達を個別に示し、契約・設計・環境・測定・要求の該当ownerへ返す。再測定trigger、停止理由、未完のmetricを保持する。意味を保った技術具体化はL3へ進め、要求意味を変える必要があるものだけをHARNESS-L2-003／004のBackflowへ戻す。\n",
+        "raw_lf_sha256": "1ae1d7b4da87c66336abeb1ae2baec030577ea78d37bec78bef618eaa0e36d3e"
+      },
+      {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "line": 704,
+        "literal_with_lf": "- **常時必須の依存**：対象要求とrevision、HARNESS-L2-022の段階・oracle契約、COREのtrace、適用条件と判断出所。\n",
+        "raw_lf_sha256": "f57921adb40e8912bcd555f3589af2b8fb1e3f06563eb60d5227a780e0ff63ee"
+      }
+    ],
+    "semantic_basis": "L2:695はCORE検証契約との接続、L2:703は契約・設計・環境・測定・要求の区分別戻し、L2:704はCORE traceの常時必須依存を明示する。引用は固定原文の行literalとLF込みhash。"
+  },
+  "legacy_and_old_audit_boundary": "旧公開監査および旧sourceは変更していない。この小追補は旧監査を置換せず、履歴の書換えもしない。",
+  "approval_boundary": "作成側の修正記録であり、独立review結果・L3承認・Ready・merge admissionを生成しない。",
+  "root_verification": {
+    "formal_full_and_finding_literal_match": true,
+    "changed_and_fixed_raw_lines_match_git": true,
+    "six_body_and_prefix_pins_match_git": true,
+    "govcheck": "ok atoms=7622 requirements=57 files=58",
+    "stale": 0,
+    "diff_check": "pass",
+    "independent_review": false
+  }
+}
