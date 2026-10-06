@@ -121,3 +121,15 @@
 | `HELIXLABO-L2-064` | 元identity/versionとjudge-visible情報を分けて記録する。固定条件が不明・staleならevaluation ownerへ、再評価義務はtask/evaluation ownerへ返す。LABOは比較を許可・実行せず、評価材料からassignment/admissionを作らない。 | `LABO-064-AC-01/02/03`; L10 064のCASE定義。索引を実fixtureやKPIとして数えない。 |
 
 この業務evidence表は実際のrun、資格、採用判断、承認を表さない。
+
+## Stage 5 — HELIX-LABO L10 業務総合検証候補 — HELIXLABO-L2-069
+
+固定L2/L11に独立したbusiness outcomeはないため、BR候補に対応する独立の採否・品質向上判定を設けない。FVの正常/否定ケースを業務境界から照合する。
+
+| 照合対象 | 期待するbusiness-level observation | 禁止する読替え |
+|---|---|---|
+| 有効な再発行後assessment | 対象scope/revisionと比較条件、個別result、元closureを同時に識別できる。 | 個別resultを全体因果効果・品質改善へ一般化する。 |
+| 不完全・未追跡・censored result | 既知のOSまたは識別可能なsource-owner roleへ不足を戻し、source identityが特定できない場合は個別identityをunknownで保つ。 | 欠測/未追跡を0、成功、route個人名へ補完する。 |
+| 評価candidate | 提案として返り、ticket・assignment・permission・採否・execution/completionは元ownerの状態で残る。 | 評価結果を操作許可、要求採択、発行、実行、完了へ変換する。 |
+
+これは業務成果の実測やquality closureの認定ではない。

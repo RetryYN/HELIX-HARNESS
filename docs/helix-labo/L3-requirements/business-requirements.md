@@ -125,3 +125,9 @@
 | `HELIXLABO-L2-064` | 比較条件と対象scopeに結びついた評価材料を保持し、通常履歴へblindを一律要求しない。評価receiptから実行・採否・assignment/admissionを生成しない。 | `LABO-064-AC-01/02/03`; `functional-verification.md` の064 CASE定義。索引は個別fixtureや独立KPIへ数えない。 |
 
 実測値、成功率、利用者acceptance、OS assignment/admissionの状態は本表から生成しない。
+
+## Stage 5 — HELIX-LABO L3 業務要件候補 — HELIXLABO-L2-069
+
+独立の業務成果や採否判定を追加しない。L2-069が要求するticket返却・再発行後の成立状況を、機能要件FR-01の評価candidateとして観測可能にする。業務レベルで確認するのは、比較条件と未評価状態の識別、元closureの保持、OS等の既存責務境界である。評価結果はticket採択、配置、発行、権限、実行、完了を意味しない。
+
+**旧source対応**：旧ticket sourceのclosure保持・追補assessmentを意味再導出し、旧feedbackの件数低下だけを品質証明にしない境界を保持する。別の業務成果、因果/window/severity閾値は起こさない。

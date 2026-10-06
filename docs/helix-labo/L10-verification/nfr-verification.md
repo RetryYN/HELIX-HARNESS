@@ -173,3 +173,17 @@
 - `LABO-064-NFR-03`: evidence状態、比較不能理由、再評価義務、既存assignment/admissionを区別し、LABO evaluationから権限や実行を生成しない。実測値がない場合は未実測。
 
 NFRの分母は許可された選択scope内のrunであり、CASE定義数ではない。報告する場合は実数、分子/分母、unknown/failed/missingを示し、分母0/不明では率なしとする。固定閾値、最低試行数、採択率、実行permissionは追加しない。
+
+## Stage 5 — HELIX-LABO L10 NFR検証候補 — HELIXLABO-L2-069
+
+[L3 NFR候補](../L3-requirements/nfr-grade.md)に対応する静的・fixture設計案。実行、実測、性能値、独立reviewの結果は含まない。
+
+| 観測項目 | 合成入力・変異 | 判定材料 |
+|---|---|---|
+| 比較入力の追跡 | CASE-01の全要素を与え、CASE-05–10/20–26/28–30でscope, revision, completeness, result, denominator, classification, identity, time, evidence, stateの一項ずつを欠落/変更。 | 要素ごとに不足を特定しrate/resultを未評価にする。未知値を補完しない。 |
+| 観測状態忠実性 | CASE-03b, 07, 11, 12, 31, 32のwindow未満、untracked、未実行、censored、missingを独立入力。 | 未追跡/欠測/未実行を成功やzero defectへ写さない。 |
+| relationと因果境界 | CASE-03cのrelation欠落、CASE-13/33の単一事例、CASE-01の有効relationを比較。 | relation evidenceの欠落は未評価。個別relationを保持しても効果/発行精度を一般化しない。時間/path近接だけで因果を断定しない。 |
+| owner/authority境界 | CASE-04a/14/16–19/34–40のticket・restricted data・priority・oracle・assignment・permission・採否・execution/completion mutation。 | 元ticket/closure/source stateを保持し、LABO生成の権限・操作・完了を拒否する。 |
+| unknown routing | CASE-20–25/28–32でroute roleが固定L2にある状態とspecific source/person identityが不明な状態を組合せる。 | 既存OSまたは識別可能なsource-owner roleを保持する。個別identity unknownを既知ownerまたは新ownerで埋めない。 |
+
+固定数値threshold、severity分類、観測期間の値、性能目標は測定案に含めない。測定不能/未観測は失敗0または成功ではなくunknown/未評価のままにする。
