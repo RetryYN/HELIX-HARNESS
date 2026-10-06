@@ -101,3 +101,15 @@
 | `HELIXLABO-L2-063` | LABOは再発・適用範囲・根拠・未完義務を評価知識として保持する。OSは既存Feedback登録/routingを扱う。対象ownerが採否と変更を持ち、HARNESSは選択された変更の検証を担う。source identityが分からない場合はunknownを保持し、generic ownerを追加しない。 | `LABO-063-AC-01/02/03`; fixture・索引・分類候補はL10 `functional-verification.md` の063 sectionに記録する。 |
 
 旧P4-02のrepair単位のclose/recipe保存は現063 cycleの全段階完了とは分ける。HMC-BR-003に基づくknowledge responsibilityを保持し、旧memory runtimeや自動採用権限を戻さない。
+
+
+
+## Stage 5 — HELIXLABO-L2-064 業務証拠
+
+`HELIXLABO-L2-064`から独立したbusiness KPI、最低比較数、採択率、費用閾値は追加しない。業務証拠は、選択scopeの元identity/versionへの記録側追跡、judge-visible資料の範囲、固定条件、比較不能時の理由、未完再評価義務が別々に確認できることとする。
+
+| 親 | 独立business outcome | AC・L10 trace |
+|---|---|---|
+| `HELIXLABO-L2-064` | 比較条件と対象scopeに結びついた評価材料を保持し、通常履歴へblindを一律要求しない。評価receiptから実行・採否・assignment/admissionを生成しない。 | `LABO-064-AC-01/02/03`; `functional-verification.md` の064 CASE定義。索引は個別fixtureや独立KPIへ数えない。 |
+
+実測値、成功率、利用者acceptance、OS assignment/admissionの状態は本表から生成しない。

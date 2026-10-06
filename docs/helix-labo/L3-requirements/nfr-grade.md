@@ -202,3 +202,17 @@
 | `LABO-063-NFR-03` authority境界と未完状態 | LABOは知識を評価・保持し、gate強制、canonical write、採否/assignment/permission/authority生成をしない。OS registration、対象owner adoption/change、HARNESS verification、post-operation observation/effect evaluationを別状態に保ち、candidate/receipt/修復成功を完了へ丸めない。 | L3 `LABO-063-AC-03` とL10 `LABO-063-NFR-03` の状態境界を対応させる。固定L2/L11の既存責務区分のみを適用し、generic owner・新threshold・新authorityを追加しない。 |
 
 L10は69個の完全ID定義を保持する。literalから抽出した分類候補は正常5、negative 53、非独立索引11だが、独立性や意味的被覆の検収結果ではない。L10-LABO-063-CASE-58はL10-LABO-063-CASE-13と同じ観測欠落軸を含むため、単独負例の実測分母へ二重計上しない。実測母集団とCASE inventoryを混同しない。固定再発閾値、観測窓、最低試行数、SLA、合格率を新設せず、入力された母集団/閾値が不明ならunknownとする。
+
+
+
+## Stage 5 — HELIXLABO-L2-064 技術計測候補
+
+064の技術計測は、実行許可ではなく、後に許可された比較runが存在する場合の状態の数え分けを設計する。値・最低sample/retry回数・固定閾値は追加しない。
+
+| 計測項目 | 母集団・状態 | 照合先 |
+|---|---|---|
+| `LABO-064-NFR-01` 条件とtraceの完全性 | 選択された比較scope内のrunだけを対象とし、run identity、runtime/model identity/version、記録側mapping、judge-visible scope、fixture/rubric/judge version/sample/retryの各fieldをvalid/missing/unknown/stale/mismatchで分ける。未選択通常履歴は母集団にしない。 | `LABO-064-AC-01/02/03`。条件全体の分母と各field状態を示し、分母不明または0では率を出さない。 |
+| `LABO-064-NFR-02` 漏洩・重大failure・相殺状態 | candidate-name exposure、security failure、scope逸脱、検証不能、smoke-only、full-evaluation evidenceを別状態で記録する。failed/missing/unknownをsuccessや0へ変換しない。 | L10単独oracle。重大failureを高平均点で相殺した結果をpassへ変換しない。 |
+| `LABO-064-NFR-03` 期待状態と権限境界 | comparison evidence、再評価義務、既存assignment/admissionを別stateとして数える。CASE定義は測定runに含めない。 | `LABO-064-AC-03`; 実測母集団、分子、分母、unknown数を併記。固定SLA、最低N、合格率、permissionを加えない。 |
+
+実際の比較runが与えられない場合は「未実測」とする。上記CASEは合成fixtureであり、run数、合格率、採択、実測結果を表さない。

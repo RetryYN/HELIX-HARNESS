@@ -97,3 +97,15 @@
 | `HELIXLABO-L2-063` | LABOは許可された修復観測とepisode知識の範囲評価/保持、OSは既存Feedbackのregistration/routing、対象ownerはadoption/change、HARNESSは選択された変更のverificationを担う。post-operation observation/effect evaluationは後続状態として残す。 | `LABO-063-AC-01/02/03`。L10には旧ID保持、単独候補と非独立索引候補を区別して記録する。 |
 
 個体source/owner identityが固定sourceから決まらない場合はunknownのままにする。G0順序metadata、CASE数、candidate、OS receiptから承認・実行許可・完了を生成しない。
+
+
+
+## Stage 5 — HELIXLABO-L2-064 業務証拠
+
+親064に独立業務KPIや固定成功率は追加しない。L10で選択scopeの証拠状態、比較不能理由、評価材料、未完再評価義務を確認し、評価結果からOS authorityや実行済状態を生成しない。
+
+| 固定親 | 業務evidence / 責務境界 | 対応先 |
+|---|---|---|
+| `HELIXLABO-L2-064` | 元identity/versionとjudge-visible情報を分けて記録する。固定条件が不明・staleならevaluation ownerへ、再評価義務はtask/evaluation ownerへ返す。LABOは比較を許可・実行せず、評価材料からassignment/admissionを作らない。 | `LABO-064-AC-01/02/03`; L10 064のCASE定義。索引を実fixtureやKPIとして数えない。 |
+
+この業務evidence表は実際のrun、資格、採用判断、承認を表さない。
