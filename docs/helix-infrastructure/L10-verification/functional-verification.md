@@ -423,6 +423,9 @@ L2-005は採択済み依存入力であり、L3/L10対象ではない。005の�
 全CASEでinput/output identity、source/revision/scope、適用条件、対象owner、target確定/比較/接続の各状態、保持した未完義務を記録する。025移動は元資源と移動先を別に観測する。必要観測missingは設計上の期待拒否と、後続検証そのものの未実行を分ける。
 
 ## Stage 5 追加範囲 — HELIXINFRASTRUCTURE-L2-011
+
+### Stage 5 CASEの入力と単独変異
+negative CASEの「対象/版」と「入力」は変異前の正常baseline literalを示し、「変異」に記した一つのfieldだけをそのbaselineへ適用してoracleを評価する。入力欄に変異後の値を重ねて書かない。baselineを既存normal CASEから参照する場合は、そのCASEの正常fixture literalを指す。正常CASEは変異なしで、入力と対象fixtureをそのまま照合する。複合CASEでもunit/connection/compositeの正常baselineを固定し、列挙した一つの変異だけを評価する。`mapping={environment=…,resource=…}`はこの合成fixtureの値記法に限り、規範schemaを定義しない。
 各CASEの共通Stage scope identityは `infra-011-stage5-sim`、環境identityは `verification-sim`。両者を別fieldとして保持する。
 
 対象は `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5。以下は実装・実行・配布を許可しない合成fixture設計候補であり、旧runtime/test/CIは起動しない。各CASEは基準scope `infra-011-stage5-sim`、親source revision `sim-r1` に束縛し、同一CASE内では明示した単独変異だけを適用する。ownerが固定親で特定されない場合はunknown。
@@ -487,27 +490,27 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 #### CASE-INFRA-011-S5-007 — 項目03 Environment / 正常
 
-- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `environment_id=verification-sim; resource_id=api-db-sim-01; mapping=verification-sim/api-db-sim-01; environment_refs={verification=verification-sim,production=production-sim}; config_refs={verification=cfg-ver-sim,production=cfg-prod-sim}; network_refs={verification=net-ver-sim,production=net-prod-sim}; credential_scope_refs={verification=cred-scope-ver-sim,production=cred-scope-prod-sim}; data_refs={verification=data-ver-sim,production=data-prod-sim}; version_refs={verification=sim-r17,production=sim-r16}; authority_refs={verification=auth-ver-sim,production=auth-prod-sim}; production_evidence_source=production-sim; production_evidence_result=sim-success; source_revision=sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `environment_id=verification-sim; resource_id=api-db-sim-01; mapping={environment=verification-sim,resource=api-db-sim-01}; environment_refs={verification=verification-sim,production=production-sim}; config_refs={verification=cfg-ver-sim,production=cfg-prod-sim}; network_refs={verification=net-ver-sim,production=net-prod-sim}; credential_scope_refs={verification=cred-scope-ver-sim,production=cred-scope-prod-sim}; data_refs={verification=data-ver-sim,production=data-prod-sim}; version_refs={verification=sim-r17,production=sim-r16}; authority_refs={verification=auth-ver-sim,production=auth-prod-sim}; production_evidence_source=production-sim; production_evidence_result=sim-success; source_revision=sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
 - 変異: 基準入力。記載field/valueをそのまま提示し、他項目・共通scope・source revisionは固定。
-- 入力: environment_id=verification-sim; resource_id=api-db-sim-01; mapping=verification-sim/api-db-sim-01; environment_refs={verification=verification-sim,production=production-sim}; config_refs={verification=cfg-ver-sim,production=cfg-prod-sim}; network_refs={verification=net-ver-sim,production=net-prod-sim}; credential_scope_refs={verification=cred-scope-ver-sim,production=cred-scope-prod-sim}; data_refs={verification=data-ver-sim,production=data-prod-sim}; version_refs={verification=sim-r17,production=sim-r16}; authority_refs={verification=auth-ver-sim,production=auth-prod-sim}; production_evidence_source=production-sim; production_evidence_result=sim-success; source_revision=sim-r1
+- 入力: environment_id=verification-sim; resource_id=api-db-sim-01; mapping={environment=verification-sim,resource=api-db-sim-01}; environment_refs={verification=verification-sim,production=production-sim}; config_refs={verification=cfg-ver-sim,production=cfg-prod-sim}; network_refs={verification=net-ver-sim,production=net-prod-sim}; credential_scope_refs={verification=cred-scope-ver-sim,production=cred-scope-prod-sim}; data_refs={verification=data-ver-sim,production=data-prod-sim}; version_refs={verification=sim-r17,production=sim-r16}; authority_refs={verification=auth-ver-sim,production=auth-prod-sim}; production_evidence_source=production-sim; production_evidence_result=sim-success; source_revision=sim-r1
 - oracle: このfixtureに明示したverification/productionのenvironment identityとconfig/network/credential-scope/data/version/authority参照を分離して記録する。ここにないenvironmentへの被覆は主張しない。verificationの成功をproduction成立の証拠にせず、credential値は含めない。
 - owner/戻し先: environment/resource mapping source owner=unknown
 - trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
 
 #### CASE-INFRA-011-S5-008 — 項目03 Environment / missing
 
-- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `environment_id=verification-sim; resource_id=api-db-sim-01; mapping=verification-sim/api-db-sim-01; environment_refs={verification=verification-sim,production=production-sim}; config_refs={verification=cfg-ver-sim,production=cfg-prod-sim}; network_refs={verification=net-ver-sim,production=net-prod-sim}; credential_scope_refs={verification=cred-scope-ver-sim,production=cred-scope-prod-sim}; data_refs={verification=data-ver-sim,production=data-prod-sim}; version_refs={verification=sim-r17,production=sim-r16}; authority_refs={verification=auth-ver-sim,production=auth-prod-sim}; production_evidence_source=production-sim; production_evidence_result=sim-success; source_revision=sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `environment_id=verification-sim; resource_id=api-db-sim-01; mapping={environment=verification-sim,resource=api-db-sim-01}; environment_refs={verification=verification-sim,production=production-sim}; config_refs={verification=cfg-ver-sim,production=cfg-prod-sim}; network_refs={verification=net-ver-sim,production=net-prod-sim}; credential_scope_refs={verification=cred-scope-ver-sim,production=cred-scope-prod-sim}; data_refs={verification=data-ver-sim,production=data-prod-sim}; version_refs={verification=sim-r17,production=sim-r16}; authority_refs={verification=auth-ver-sim,production=auth-prod-sim}; production_evidence_source=production-sim; production_evidence_result=sim-success; source_revision=sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
 - 変異: mappingだけを空欄にする
-- 入力: environment_id=verification-sim; resource_id=api-db-sim-01; mapping=verification-sim/api-db-sim-01; environment_refs={verification=verification-sim,production=production-sim}; config_refs={verification=cfg-ver-sim,production=cfg-prod-sim}; network_refs={verification=net-ver-sim,production=net-prod-sim}; credential_scope_refs={verification=cred-scope-ver-sim,production=cred-scope-prod-sim}; data_refs={verification=data-ver-sim,production=data-prod-sim}; version_refs={verification=sim-r17,production=sim-r16}; authority_refs={verification=auth-ver-sim,production=auth-prod-sim}; production_evidence_source=production-sim; production_evidence_result=sim-success; source_revision=sim-r1
+- 入力: environment_id=verification-sim; resource_id=api-db-sim-01; mapping={environment=verification-sim,resource=api-db-sim-01}; environment_refs={verification=verification-sim,production=production-sim}; config_refs={verification=cfg-ver-sim,production=cfg-prod-sim}; network_refs={verification=net-ver-sim,production=net-prod-sim}; credential_scope_refs={verification=cred-scope-ver-sim,production=cred-scope-prod-sim}; data_refs={verification=data-ver-sim,production=data-prod-sim}; version_refs={verification=sim-r17,production=sim-r16}; authority_refs={verification=auth-ver-sim,production=auth-prod-sim}; production_evidence_source=production-sim; production_evidence_result=sim-success; source_revision=sim-r1
 - oracle: 所属を推定せずenvironment mappingを未完としてsource owner=unknownへ返す。
 - owner/戻し先: environment/resource mapping source owner=unknown
 - trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
 
 #### CASE-INFRA-011-S5-009 — 項目03 Environment / mismatch
 
-- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `environment_id=verification-sim; resource_id=api-db-sim-01; mapping=verification-sim/api-db-sim-01; environment_refs={verification=verification-sim,production=production-sim}; config_refs={verification=cfg-ver-sim,production=cfg-prod-sim}; network_refs={verification=net-ver-sim,production=net-prod-sim}; credential_scope_refs={verification=cred-scope-ver-sim,production=cred-scope-prod-sim}; data_refs={verification=data-ver-sim,production=data-prod-sim}; version_refs={verification=sim-r17,production=sim-r16}; authority_refs={verification=auth-ver-sim,production=auth-prod-sim}; production_evidence_source=production-sim; production_evidence_result=sim-success; source_revision=sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `environment_id=verification-sim; resource_id=api-db-sim-01; mapping={environment=verification-sim,resource=api-db-sim-01}; environment_refs={verification=verification-sim,production=production-sim}; config_refs={verification=cfg-ver-sim,production=cfg-prod-sim}; network_refs={verification=net-ver-sim,production=net-prod-sim}; credential_scope_refs={verification=cred-scope-ver-sim,production=cred-scope-prod-sim}; data_refs={verification=data-ver-sim,production=data-prod-sim}; version_refs={verification=sim-r17,production=sim-r16}; authority_refs={verification=auth-ver-sim,production=auth-prod-sim}; production_evidence_source=production-sim; production_evidence_result=sim-success; source_revision=sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
 - 変異: mapping.environmentだけをproduction-simへ変更する
-- 入力: environment_id=verification-sim; resource_id=api-db-sim-01; mapping=verification-sim/api-db-sim-01; environment_refs={verification=verification-sim,production=production-sim}; config_refs={verification=cfg-ver-sim,production=cfg-prod-sim}; network_refs={verification=net-ver-sim,production=net-prod-sim}; credential_scope_refs={verification=cred-scope-ver-sim,production=cred-scope-prod-sim}; data_refs={verification=data-ver-sim,production=data-prod-sim}; version_refs={verification=sim-r17,production=sim-r16}; authority_refs={verification=auth-ver-sim,production=auth-prod-sim}; production_evidence_source=production-sim; production_evidence_result=sim-success; source_revision=sim-r1
+- 入力: environment_id=verification-sim; resource_id=api-db-sim-01; mapping={environment=verification-sim,resource=api-db-sim-01}; environment_refs={verification=verification-sim,production=production-sim}; config_refs={verification=cfg-ver-sim,production=cfg-prod-sim}; network_refs={verification=net-ver-sim,production=net-prod-sim}; credential_scope_refs={verification=cred-scope-ver-sim,production=cred-scope-prod-sim}; data_refs={verification=data-ver-sim,production=data-prod-sim}; version_refs={verification=sim-r17,production=sim-r16}; authority_refs={verification=auth-ver-sim,production=auth-prod-sim}; production_evidence_source=production-sim; production_evidence_result=sim-success; source_revision=sim-r1
 - oracle: verification対象とproduction mappingを混同せず不一致として保留する。
 - owner/戻し先: environment/resource mapping source owner=unknown
 - trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
@@ -588,7 +591,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 - 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `compute={resource=worker-host-sim,cpu=2-vCPU,memory=4-GiB}; network={path=path-sim-01,protocol=tcp,direction=outbound,purpose=state-read,boundary=app-to-data}; persistent_storage={id=state-vol-sim,kind=persistent,owner=storage-owner-sim,durability=sim-durable,backup=backup-sim-01,retention=retention-sim-01,environment=verification-sim,confidentiality=confidential-sim,recovery=recovery-sim-01}; temporary_storage={id=cache-vol-sim,kind=temporary,owner=storage-owner-sim,durability=sim-ephemeral,backup=not-applicable-sim,retention=retention-sim-02,environment=verification-sim,confidentiality=internal-sim,recovery=not-applicable-sim}; source_revision=sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
 - 変異: network.boundaryだけをunknownにする
-- 入力: compute={resource=worker-host-sim,cpu=2-vCPU,memory=4-GiB}; network={path=path-sim-01,protocol=tcp,direction=outbound,purpose=state-read,boundary=unknown}; persistent_storage={id=state-vol-sim,kind=persistent,owner=storage-owner-sim,durability=sim-durable,backup=backup-sim-01,retention=retention-sim-01,environment=verification-sim,confidentiality=confidential-sim,recovery=recovery-sim-01}; temporary_storage={id=cache-vol-sim,kind=temporary,owner=storage-owner-sim,durability=sim-ephemeral,backup=not-applicable-sim,retention=retention-sim-02,environment=verification-sim,confidentiality=internal-sim,recovery=not-applicable-sim}; source_revision=sim-r1
+- 入力: compute={resource=worker-host-sim,cpu=2-vCPU,memory=4-GiB}; network={path=path-sim-01,protocol=tcp,direction=outbound,purpose=state-read,boundary=app-to-data}; persistent_storage={id=state-vol-sim,kind=persistent,owner=storage-owner-sim,durability=sim-durable,backup=backup-sim-01,retention=retention-sim-01,environment=verification-sim,confidentiality=confidential-sim,recovery=recovery-sim-01}; temporary_storage={id=cache-vol-sim,kind=temporary,owner=storage-owner-sim,durability=sim-ephemeral,backup=not-applicable-sim,retention=retention-sim-02,environment=verification-sim,confidentiality=internal-sim,recovery=not-applicable-sim}; source_revision=sim-r1
 - oracle: network path照合を保留し、resource sourceまたは設計ownerは固定親で特定できなければunknown。CONNECTは論理接続とphysical pathの区別に限る。
 - owner/戻し先: resource source ownerは固定親で未特定=unknown。宣言設計との不一致はCORE design owner。CONNECTは論理接続とphysical pathの区別に限る。
 - trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
@@ -687,7 +690,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 - 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `runtime_state=degraded-sim; observation={signal=sim-signal-01,state=degraded-sim,source=collector-sim@sim-r1}; incident_classification={value=sim-approved-classification,source=approved-policy-sim@sim-r2,revision=sim-r2}`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
 - 変異: runtime_stateだけをunknownにする
-- 入力: runtime_state=unknown; observation={signal=sim-signal-01,state=degraded-sim,source=collector-sim@sim-r1}; incident_classification={value=sim-approved-classification,source=approved-policy-sim@sim-r2,revision=sim-r2}
+- 入力: runtime_state=degraded-sim; observation={signal=sim-signal-01,state=degraded-sim,source=collector-sim@sim-r1}; incident_classification={value=sim-approved-classification,source=approved-policy-sim@sim-r2,revision=sim-r2}
 - oracle: 観測済みdegraded stateをunknownへ丸めず、unknownのruntime_stateはunknownのまま保持する。observation source owner=unknownへ戻し、incident classification/severityは生成しない。
 - owner/戻し先: 観測stateの欠落・不一致はobservation source owner=unknownへ戻す。incident meaningはこのfixtureで判定しない。
 - trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
@@ -696,7 +699,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 - 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `runtime_state=degraded-sim; observation={signal=sim-signal-01,state=degraded-sim,source=collector-sim@sim-r1}; incident_classification={value=sim-approved-classification,source=approved-policy-sim@sim-r2,revision=sim-r2}`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
 - 変異: incident_classification.sourceだけをunapproved-source-sim@sim-r1へ変更する
-- 入力: runtime_state=degraded-sim; observation={signal=sim-signal-01,state=degraded-sim,source=collector-sim@sim-r1}; incident_classification={value=sim-approved-classification,source=unapproved-source-sim@sim-r1,revision=sim-r2}
+- 入力: runtime_state=degraded-sim; observation={signal=sim-signal-01,state=degraded-sim,source=collector-sim@sim-r1}; incident_classification={value=sim-approved-classification,source=approved-policy-sim@sim-r2,revision=sim-r2}
 - oracle: 未承認分類からincident meaning/severityを生成しない。runtime_state=degraded-simとobservation.state=degraded-simは分類参照の不適合と別に保持する。meaning ownerが入力で特定されなければunknown。
 - owner/戻し先: 未承認sourceはmeaning ownerを示さないためunknown。observation source owner=unknown
 - trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
@@ -957,7 +960,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 - 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `scope=infra-011-stage5-sim; environment=verification-sim; source_revision=sim-r1; backup={job=sim-success,artifact=backup-sim-01,source_revision=sim-r7}; restore={result=sim-verified,integrity=sim-ok,dependency_reconnect=sim-ok,startup=sim-ok,verification=sim-ok}; current_active_revision=sim-r8; eligible_rollback_target=sim-r7; os_operation_request=none`。
 - 変異: `restore.result`だけをmissingへ変更。
-- 入力: baselineを保持しrestore.result=missing。その他の列挙fieldは上記baselineのまま。
+- 入力: baseline={`scope=infra-011-stage5-sim; environment=verification-sim; source_revision=sim-r1; backup={job=sim-success,artifact=backup-sim-01,source_revision=sim-r7}; restore={result=sim-verified,integrity=sim-ok,dependency_reconnect=sim-ok,startup=sim-ok,verification=sim-ok}; current_active_revision=sim-r8; eligible_rollback_target=sim-r7; os_operation_request=none`}
 - oracle: backupとrestoreを別判定しrestore成功へ昇格しない。current active revisionとeligible rollback targetを保持する。recovery design ownerへ戻す。OS work/change ownerはOS操作要求が本fixtureにないため非適用。
 - owner/戻し先: recovery design owner。具体owner/source ownerは固定親で未特定ならunknown。
 - trace: `INFRA-011-AC-03`。合成fixtureの設計候補であり未実行.
@@ -966,7 +969,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 - 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `scope=infra-011-stage5-sim; environment=verification-sim; source_revision=sim-r1; backup={job=sim-success,artifact=backup-sim-01,source_revision=sim-r7}; restore={result=sim-verified,integrity=sim-ok,dependency_reconnect=sim-ok,startup=sim-ok,verification=sim-ok}; current_active_revision=sim-r8; eligible_rollback_target=sim-r7; os_operation_request=none`。
 - 変異: `restore.integrity`だけをsim-failedへ変更。
-- 入力: baselineを保持しrestore.integrity=sim-failed。その他の列挙fieldは上記baselineのまま。
+- 入力: baseline={`scope=infra-011-stage5-sim; environment=verification-sim; source_revision=sim-r1; backup={job=sim-success,artifact=backup-sim-01,source_revision=sim-r7}; restore={result=sim-verified,integrity=sim-ok,dependency_reconnect=sim-ok,startup=sim-ok,verification=sim-ok}; current_active_revision=sim-r8; eligible_rollback_target=sim-r7; os_operation_request=none`}
 - oracle: restore失敗を保持し成功/rollback完了にしない。current active revisionとeligible rollback targetを保持する。recovery design ownerへ戻す。OS work/change ownerはOS操作要求がないため非適用。
 - owner/戻し先: recovery design owner。具体owner/source ownerは固定親で未特定ならunknown。
 - trace: `INFRA-011-AC-03`。合成fixtureの設計候補であり未実行.
@@ -975,7 +978,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 - 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `scope=infra-011-stage5-sim; environment=verification-sim; source_revision=sim-r1; backup={job=sim-success,artifact=backup-sim-01,source_revision=sim-r7}; restore={result=sim-verified,integrity=sim-ok,dependency_reconnect=sim-ok,startup=sim-ok,verification=sim-ok}; current_active_revision=sim-r8; eligible_rollback_target=sim-r7; os_operation_request=none`。
 - 変異: `restore.dependency_reconnect`だけをunobservedへ変更。
-- 入力: baselineを保持しrestore.dependency_reconnect=unobserved。その他の列挙fieldは上記baselineのまま。
+- 入力: baseline={`scope=infra-011-stage5-sim; environment=verification-sim; source_revision=sim-r1; backup={job=sim-success,artifact=backup-sim-01,source_revision=sim-r7}; restore={result=sim-verified,integrity=sim-ok,dependency_reconnect=sim-ok,startup=sim-ok,verification=sim-ok}; current_active_revision=sim-r8; eligible_rollback_target=sim-r7; os_operation_request=none`}
 - oracle: unobservedを成功へ丸めずrestore/rebuild未完とし、current active revisionとeligible rollback targetを保持する。OS work/change ownerはOS操作要求がないため非適用。
 - owner/戻し先: dependency source owner=unknown、recovery design owner。
 - trace: `INFRA-011-AC-03`。合成fixtureの設計候補であり未実行.
@@ -984,7 +987,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 - 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `scope=infra-011-stage5-sim; environment=verification-sim; source_revision=sim-r1; backup=sim-success; restore=sim-verified; independent_path=sim-available; security_authority=sim-authorized; worker_contract=sim-current; os_state=down-sim; os_ticket=none`。
 - 変異: `independent_path`だけをmissingへ変更。
-- 入力: baselineを保持しindependent_path=missing。その他の列挙fieldは上記baselineのまま。
+- 入力: baseline={`scope=infra-011-stage5-sim; environment=verification-sim; source_revision=sim-r1; backup=sim-success; restore=sim-verified; independent_path=sim-available; security_authority=sim-authorized; worker_contract=sim-current; os_state=down-sim; os_ticket=none`}
 - oracle: restoreからbootstrap/recoveryを推定しない。稼働版と未完義務を保持しrecoveryを保留する。
 - owner/戻し先: independent resource source owner=unknown。
 - trace: `INFRA-011-AC-03/04`。合成fixtureの設計候補であり未実行.
@@ -993,7 +996,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 - 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `scope=infra-011-stage5-sim; environment=verification-sim; source_revision=sim-r1; rebuild={inputs=complete-sim,dependency_reconnect=sim-ok,startup_verification=sim-ok,result=sim-verified}; current_active_revision=sim-r8; eligible_rollback_target=sim-r7`。
 - 変異: `rebuild.startup_verification`だけをsim-failedへ変更。
-- 入力: baselineを保持しrebuild.startup_verification=sim-failed。その他の列挙fieldは上記baselineのまま。
+- 入力: baseline={`scope=infra-011-stage5-sim; environment=verification-sim; source_revision=sim-r1; rebuild={inputs=complete-sim,dependency_reconnect=sim-ok,startup_verification=sim-ok,result=sim-verified}; current_active_revision=sim-r8; eligible_rollback_target=sim-r7`}
 - oracle: rebuildabilityを別判定で失敗として部分結果、current active revision、eligible rollback target、未完義務を保持する。
 - owner/戻し先: rebuild/recovery owner=unknown（固定親で未特定）。
 - trace: `INFRA-011-AC-03`。合成fixtureの設計候補であり未実行.
@@ -1011,7 +1014,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 - 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `scope=infra-011-stage5-sim; environment=verification-sim; source_revision=sim-r1; os_state=down-sim; os_ticket=none; independent_path=sim-available; security_authority=sim-authorized; worker_contract=sim-current; recovery.result=sim-present`。
 - 変異: `security_authority`だけをmissingへ変更。
-- 入力: baselineを保持しsecurity_authority=missing。その他の列挙fieldは上記baselineのまま。
+- 入力: baseline={`scope=infra-011-stage5-sim; environment=verification-sim; source_revision=sim-r1; os_state=down-sim; os_ticket=none; independent_path=sim-available; security_authority=sim-authorized; worker_contract=sim-current; recovery.result=sim-present`}
 - oracle: 許可済みrecoveryと扱わず停止し、未完義務と最終適格revisionを保持する。
 - owner/戻し先: SECURITY authority owner。
 - trace: `INFRA-011-AC-04`。合成fixtureの設計候補であり未実行.
@@ -1020,7 +1023,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 - 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `scope=infra-011-stage5-sim; environment=verification-sim; source_revision=sim-r1; os_state=up-sim; recovery.result=sim-verified; operation_sync=sim-recorded`。
 - 変異: `operation_sync`だけをmissingへ変更。
-- 入力: baselineを保持しoperation_sync=missing。その他の列挙fieldは上記baselineのまま。
+- 入力: baseline={`scope=infra-011-stage5-sim; environment=verification-sim; source_revision=sim-r1; os_state=up-sim; recovery.result=sim-verified; operation_sync=sim-recorded`}
 - oracle: recovery resultは保持するがconnection/compositeは未完とし、未完同期を消さない。
 - owner/戻し先: OS work/change owner。同期source ownerが特定できなければunknown。
 - trace: `INFRA-011-AC-04`。合成fixtureの設計候補であり未実行.
@@ -1036,36 +1039,36 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 #### CASE-INFRA-011-S5-068 — 接続/合成 CORE design参照欠落
 
-- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `unit_results=CASE-INFRA-011-S5-072.normal.unit_results; core_design={id=core-infra-sim,revision=missing}; target_scope=infra-011-stage5-sim`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
-- 変異: 表示した一つのconnection/composite fieldだけを変える。
-- 入力: unit_results=CASE-INFRA-011-S5-072.normal.unit_results; core_design={id=core-infra-sim,revision=missing}; target_scope=infra-011-stage5-sim
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `unit_results=CASE-INFRA-011-S5-072.normal.unit_results; core_design={id=core-infra-sim,revision=sim-r5}; target_scope=infra-011-stage5-sim`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: core_design.revisionだけをmissingにする
+- 入力: unit_results=CASE-INFRA-011-S5-072.normal.unit_results; core_design={id=core-infra-sim,revision=sim-r5}; target_scope=infra-011-stage5-sim
 - oracle: CORE接続だけ保留しCORE design ownerへ戻す。
 - owner/戻し先: CORE design owner
 - trace: `INFRA-011-AC-02`。合成fixtureの設計候補であり未実行。
 
 #### CASE-INFRA-011-S5-069 — 接続/合成 OS work/change参照欠落
 
-- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `runtime={id=api-db-sim-01,revision=infra-runtime-sim@sim-r17}; os_work={ticket=missing,change=os-change-sim-01,revision=os-rev-sim-4,scope=infra-011-stage5-sim,environment=verification-sim}; action=deploy-sim`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
-- 変異: 表示した一つのconnection/composite fieldだけを変える。
-- 入力: runtime={id=api-db-sim-01,revision=infra-runtime-sim@sim-r17}; os_work={ticket=missing,change=os-change-sim-01,revision=os-rev-sim-4,scope=infra-011-stage5-sim,environment=verification-sim}; action=deploy-sim
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `runtime={id=api-db-sim-01,revision=infra-runtime-sim@sim-r17}; os_work={ticket=os-work-sim-01,change=os-change-sim-01,revision=os-rev-sim-4,scope=infra-011-stage5-sim,environment=verification-sim}; action=deploy-sim`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: os_work.ticketだけをmissingにする
+- 入力: runtime={id=api-db-sim-01,revision=infra-runtime-sim@sim-r17}; os_work={ticket=os-work-sim-01,change=os-change-sim-01,revision=os-rev-sim-4,scope=infra-011-stage5-sim,environment=verification-sim}; action=deploy-sim
 - oracle: OS connectionを保留しOS work/change ownerへ戻す。CASE-INFRA-011-S5-058のOS停止中独立recoveryへticket要件を足さない。
 - owner/戻し先: OS work/change owner
 - trace: `INFRA-011-AC-02`。合成fixtureの設計候補であり未実行。
 
 #### CASE-INFRA-011-S5-070 — 接続/合成 SECURITY authority欠落
 
-- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `resource=api-db-sim-01; action=inspect-sim; security_authority={ref=missing,source=SECURITY-sim@sim-r3,revision=sim-r3,scope=infra-011-stage5-sim,environment=verification-sim}`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
-- 変異: 表示した一つのconnection/composite fieldだけを変える。
-- 入力: resource=api-db-sim-01; action=inspect-sim; security_authority={ref=missing,source=SECURITY-sim@sim-r3,revision=sim-r3,scope=infra-011-stage5-sim,environment=verification-sim}
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `resource=api-db-sim-01; action=inspect-sim; security_authority={ref=security-authority-sim-01,source=SECURITY-sim@sim-r3,revision=sim-r3,scope=infra-011-stage5-sim,environment=verification-sim}`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: security_authority.refだけをmissingにする
+- 入力: resource=api-db-sim-01; action=inspect-sim; security_authority={ref=security-authority-sim-01,source=SECURITY-sim@sim-r3,revision=sim-r3,scope=infra-011-stage5-sim,environment=verification-sim}
 - oracle: 許可済みconnection/operationとせずSECURITY authority ownerへ戻す。
 - owner/戻し先: SECURITY authority owner
 - trace: `INFRA-011-AC-02`。合成fixtureの設計候補であり未実行。
 
 #### CASE-INFRA-011-S5-071 — 接続/合成 Worker contract欠落
 
-- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `worker={id=worker-sim,contract=missing,assignment=assignment-sim-01}; resource={id=worker-host-sim,revision=sim-r1}; mapping=worker-sim→worker-host-sim`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
-- 変異: 表示した一つのconnection/composite fieldだけを変える。
-- 入力: worker={id=worker-sim,contract=missing,assignment=assignment-sim-01}; resource={id=worker-host-sim,revision=sim-r1}; mapping=worker-sim→worker-host-sim
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `worker={id=worker-sim,contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01}; resource={id=worker-host-sim,revision=sim-r1}; mapping=worker-sim→worker-host-sim`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: worker.contractだけをmissingにする
+- 入力: worker={id=worker-sim,contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01}; resource={id=worker-host-sim,revision=sim-r1}; mapping=worker-sim→worker-host-sim
 - oracle: 資源対応の成功でWorker connectionを成立させずWorker契約の責務ownerは固定親で未特定=unknownとして保留する。
 - owner/戻し先: 欠けたunit/connection ownerは固定親で未特定=unknown
 - trace: `INFRA-011-AC-02`。合成fixtureの設計候補であり未実行。
@@ -1081,18 +1084,18 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 #### CASE-INFRA-011-S5-073 — 接続/合成 composite CORE revision不一致
 
-- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `unit_results=CASE-INFRA-011-S5-072.normal.unit_results; core_design={id=core-infra-sim,revision=sim-r6}; expected_core_revision=sim-r5; other_connections=normal`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
-- 変異: 表示した一つのconnection/composite fieldだけを変える。
-- 入力: unit_results=CASE-INFRA-011-S5-072.normal.unit_results; core_design={id=core-infra-sim,revision=sim-r6}; expected_core_revision=sim-r5; other_connections=normal
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `unit_results=CASE-INFRA-011-S5-072.normal.unit_results; core_design={id=core-infra-sim,revision=sim-r5}; expected_core_revision=sim-r5; other_connections=normal`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: core_design.revisionだけをsim-r6へ変更する
+- 入力: unit_results=CASE-INFRA-011-S5-072.normal.unit_results; core_design={id=core-infra-sim,revision=sim-r5}; expected_core_revision=sim-r5; other_connections=normal
 - oracle: unit resultは保持しCORE connection/compositeを保留。CORE design ownerへ戻す。
 - owner/戻し先: CORE design owner
 - trace: `INFRA-011-AC-02/03`。合成fixtureの設計候補であり未実行。
 
 #### CASE-INFRA-011-S5-074 — 接続/合成 composite restore証拠欠落
 
-- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `unit_results=CASE-INFRA-011-S5-072.normal.unit_results; backup={artifact=backup-sim-01,source_revision=sim-r7,result=sim-success}; restore={target=api-db-sim-01,revision=sim-r7,integrity=sim-ok,dependency_reconnect=sim-ok,startup=sim-ok,verification=missing}; os_operation_request=none`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
-- 変異: restore.verificationだけをmissingへ変更する。
-- 入力: unit_results=CASE-INFRA-011-S5-072.normal.unit_results; backup={artifact=backup-sim-01,source_revision=sim-r7,result=sim-success}; restore={target=api-db-sim-01,revision=sim-r7,integrity=sim-ok,dependency_reconnect=sim-ok,startup=sim-ok,verification=missing}; os_operation_request=none
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `unit_results=CASE-INFRA-011-S5-072.normal.unit_results; backup={artifact=backup-sim-01,source_revision=sim-r7,result=sim-success}; restore={target=api-db-sim-01,revision=sim-r7,integrity=sim-ok,dependency_reconnect=sim-ok,startup=sim-ok,verification=sim-ok}; os_operation_request=none`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: restore.verificationだけをmissingへ変更する
+- 入力: unit_results=CASE-INFRA-011-S5-072.normal.unit_results; backup={artifact=backup-sim-01,source_revision=sim-r7,result=sim-success}; restore={target=api-db-sim-01,revision=sim-r7,integrity=sim-ok,dependency_reconnect=sim-ok,startup=sim-ok,verification=sim-ok}; os_operation_request=none
 - oracle: backup/他項目の部分成功は保持しcompositeを保留。recovery design ownerへ戻す。OS work/change ownerはOS操作要求がこのfixtureにないため非適用。
 - owner/戻し先: recovery design owner（具体ownerは固定親で未特定ならunknown）
 - trace: `INFRA-011-AC-03`。合成fixtureの設計候補であり未実行。
@@ -1119,16 +1122,16 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 - 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `scope=infra-011-stage5-sim; version_target=1.0; later_feature=not_requested`。
 - 変異: `later_feature`だけを`automated_failover`へ変更。
-- 入力: baselineを保持しlater_feature=automated_failover。他のfieldは固定。
+- 入力: scope=infra-011-stage5-sim; version_target=1.0; later_feature=not_requested
 - oracle: 後続版条件を1.0構成の前提へ暗黙に加えず不適合とする。owner/承認を新設しない。
 - owner/戻し先: 戻し先なし。対象外条件として保持する。
 - trace: `INFRA-011-AC-04`。合成fixtureの設計候補であり未実行。
 
 #### CASE-INFRA-011-S5-078 — scope境界 HELIX-WEB顧客runtime混入
 
-- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `scope=infra-011-stage5-sim; version_target=1.0; included_runtime=none; HELIX-WEB-customer-runtime=excluded; included_runtime=none`。
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `scope=infra-011-stage5-sim; version_target=1.0; HELIX-WEB-customer-runtime=excluded; included_runtime=none`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
 - 変異: `included_runtime`だけを`HELIX-WEB-customer-runtime-sim`へ変更。
-- 入力: baselineを保持しincluded_runtime=HELIX-WEB-customer-runtime-sim。他のfieldは固定。
+- 入力: scope=infra-011-stage5-sim; version_target=1.0; HELIX-WEB-customer-runtime=excluded; included_runtime=none
 - oracle: HELIX-WEB顧客runtimeを本体構成体へ混ぜたため不適合とし、1.0成立にしない。
 - owner/戻し先: 戻し先なし。L2-011 scope外として保持する。
 - trace: `INFRA-011-AC-04`。合成fixtureの設計候補であり未実行。
@@ -1137,7 +1140,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 - 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baselineはCASE-INFRA-011-S5-007正常入力で、production_evidence_source=production-sim、production_evidence_result=sim-success。
 - 変異: `production_evidence_source`だけをverification-simへ変更。
-- 入力: CASE-INFRA-011-S5-007の全fieldを保持し、production_evidence_sourceだけをverification-simへ変更する。
+- 入力: environment_id=verification-sim; resource_id=api-db-sim-01; mapping={environment=verification-sim,resource=api-db-sim-01}; environment_refs={verification=verification-sim,production=production-sim}; config_refs={verification=cfg-ver-sim,production=cfg-prod-sim}; network_refs={verification=net-ver-sim,production=net-prod-sim}; credential_scope_refs={verification=cred-scope-ver-sim,production=cred-scope-prod-sim}; data_refs={verification=data-ver-sim,production=data-prod-sim}; version_refs={verification=sim-r17,production=sim-r16}; authority_refs={verification=auth-ver-sim,production=auth-prod-sim}; production_evidence_source=production-sim; production_evidence_result=sim-success; source_revision=sim-r1
 - oracle: verification環境の成功をproduction成立の証拠にせず、環境混同を保留する。
 - owner/戻し先: environment/resource source owner=unknown。
 - trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
@@ -1146,7 +1149,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 - 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baselineはCASE-INFRA-011-S5-057のaccepted normal fixture。
 - 変異: `update_admission`だけをmissingへ変更。
-- 入力: S5-057と同じtarget/action/revision/scope、SECURITY authority、Worker契約、OS work、before/after/resultを保持し、update_admission=missing。
+- 入力: request={target=api-db-sim-01,action=update-sim,revision=sim-r2,scope=infra-011-stage5-sim,environment=verification-sim}; security_authority=security-authority-sim-01; update_admission=accepted; worker_contract=worker-contract-sim@sim-r3; os_work=os-work-sim-01; before=sim-r1; after=sim-r2; result=sim-applied
 - oracle: L2-010 update admission条件を満たさないため変更を開始しない。既存参照条件とoperation結果を混同しない。
 - owner/戻し先: 該当SECURITY update-admission source owner。個別ownerが特定できない場合はunknown。
 - trace: `INFRA-011-AC-02/03`。合成fixtureの設計候補であり未実行。
@@ -1155,7 +1158,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 - 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baselineはCASE-INFRA-011-S5-057のaccepted normal fixture。
 - 変異: `update_admission`だけをdeniedへ変更。
-- 入力: S5-057と同じtarget/action/revision/scope、SECURITY authority、Worker契約、OS work、before/after/resultを保持し、update_admission=denied。
+- 入力: request={target=api-db-sim-01,action=update-sim,revision=sim-r2,scope=infra-011-stage5-sim,environment=verification-sim}; security_authority=security-authority-sim-01; update_admission=accepted; worker_contract=worker-contract-sim@sim-r3; os_work=os-work-sim-01; before=sim-r1; after=sim-r2; result=sim-applied
 - oracle: accepted以外は更新開始条件を満たさず変更を保留する。
 - owner/戻し先: 該当SECURITY update-admission source owner。個別ownerが特定できない場合はunknown。
 - trace: `INFRA-011-AC-02/03`。合成fixtureの設計候補であり未実行。
@@ -1164,7 +1167,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 - 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baselineはCASE-INFRA-011-S5-055正常fixture（writes=none; before=sim-r1; after=sim-r1）。
 - 変異: `after`だけをsim-r2へ変更。
-- 入力: S5-055の全fieldを保持しafter=sim-r2。
+- 入力: request={target=api-db-sim-01,action=inspect-sim,revision=infra-runtime-sim@sim-r17,scope=infra-011-stage5-sim,environment=verification-sim,expiry=sim-expiry-01}; security_authority={ref=security-authority-sim-01,source=SECURITY-sim@sim-r3,revision=sim-r3,target=api-db-sim-01,target_revision=infra-runtime-sim@sim-r17,action=inspect-sim,scope=infra-011-stage5-sim,environment=verification-sim,expiry=sim-expiry-01}; worker={contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01,resource=worker-host-sim@sim-r1}; os={ticket=os-work-sim-01,change=os-change-sim-01,revision=os-rev-sim-4,scope=infra-011-stage5-sim,environment=verification-sim,runtime=api-db-sim-01@infra-runtime-sim-r17}; write_scope=declared; write_set=empty; writes=none; before=sim-r1; after=sim-r1
 - oracle: read-onlyのwrite禁止およびoperation起因の変更なしに反するため不適合とする。
 - owner/戻し先: source ownerが特定されない場合はunknown。
 - trace: `INFRA-011-AC-03`。合成fixtureの設計候補であり未実行。
@@ -1173,7 +1176,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 - 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baselineはCASE-INFRA-011-S5-056 normal fixture（applicable_duty=restore-check-sim; duty_result=sim-verified）。
 - 変異: `applicable_duty`だけをmissingへ変更。
-- 入力: S5-056の全fieldを保持しapplicable_duty=missing。
+- 入力: request={target=api-db-sim-01,action=replace-sim,revision=sim-r2,scope=infra-011-stage5-sim,environment=verification-sim,expiry=sim-expiry-01}; security_authority={ref=security-authority-sim-01,source=SECURITY-sim@sim-r3,revision=sim-r3,target=api-db-sim-01,target_revision=sim-r2,action=replace-sim,scope=infra-011-stage5-sim,environment=verification-sim,expiry=sim-expiry-01}; update_admission=accepted; worker={contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01,resource=worker-host-sim@sim-r1}; os={ticket=os-work-sim-01,change=os-change-sim-01,revision=os-rev-sim-4,scope=infra-011-stage5-sim,environment=verification-sim,runtime=api-db-sim-01@infra-runtime-sim-r17}; applicable_duty=restore-check-sim; duty_result=sim-verified; before=sim-r1; after=sim-r2
 - oracle: 適用recovery義務をunknown/未充足として変更を成功扱いせず、未完義務を残す。OS Work/Change参照はS5-056の正常値を保持し、そのoperationに含まれるOS work/change ownerの照合責務も維持する。欠落fieldはrecovery dutyだけである。recovery design ownerとOS work/change ownerへ戻す。基準fixtureのOS work/change正常参照を保持する。
 - owner/戻し先: recovery design ownerとOS work/change owner。具体ownerが固定親で未特定ならunknown。
 - trace: `INFRA-011-AC-03`。合成fixtureの設計候補であり未実行。
@@ -1182,7 +1185,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 - 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baselineはCASE-INFRA-011-S5-056 normal fixture（applicable_duty=restore-check-sim; duty_result=sim-verified）。
 - 変異: `applicable_duty`だけをunknownへ変更。
-- 入力: S5-056の全fieldを保持しapplicable_duty=unknown。
+- 入力: request={target=api-db-sim-01,action=replace-sim,revision=sim-r2,scope=infra-011-stage5-sim,environment=verification-sim,expiry=sim-expiry-01}; security_authority={ref=security-authority-sim-01,source=SECURITY-sim@sim-r3,revision=sim-r3,target=api-db-sim-01,target_revision=sim-r2,action=replace-sim,scope=infra-011-stage5-sim,environment=verification-sim,expiry=sim-expiry-01}; update_admission=accepted; worker={contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01,resource=worker-host-sim@sim-r1}; os={ticket=os-work-sim-01,change=os-change-sim-01,revision=os-rev-sim-4,scope=infra-011-stage5-sim,environment=verification-sim,runtime=api-db-sim-01@infra-runtime-sim-r17}; applicable_duty=restore-check-sim; duty_result=sim-verified; before=sim-r1; after=sim-r2
 - oracle: 適用recovery義務unknownのstate changeを成功扱いせず、未完義務を残す。OS Work/Change参照はS5-056の正常値を保持し、そのoperationに含まれるOS work/change ownerの照合責務も維持する。欠落fieldはrecovery dutyだけである。recovery design ownerとOS work/change ownerへ戻す。基準fixtureのOS work/change正常参照を保持する。
 - owner/戻し先: recovery design ownerとOS work/change owner。具体ownerが固定親で未特定ならunknown。
 - trace: `INFRA-011-AC-03`。合成fixtureの設計候補であり未実行。
@@ -1191,7 +1194,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 - 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baselineはCASE-INFRA-011-S5-072 normal fixture。scope/source、18 unit results、4 connection tuple、current_active_revision=sim-r8、eligible_rollback_target=sim-r7とartifact/config/dependency/data/procedureはすべて固定。
 - 変異: `composite_result`だけを`sim-complete`から`{state=partial,missing_component={field=connection-result-receipt,source=connection-result-sim@sim-r1},unfinished_duties=[record-connection-result-sim],responsible_owner=unknown}`へ置換する。他fieldはbaselineのまま。
-- 入力: S5-072の全fieldを保持し、composite_result={state=partial,missing_component={field=connection-result-receipt,source=connection-result-sim@sim-r1},unfinished_duties=[record-connection-result-sim],responsible_owner=unknown}。
+- 入力: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `unit_results={CASE-INFRA-011-S5-001=normal@sim-r1,CASE-INFRA-011-S5-004=normal@sim-r1,CASE-INFRA-011-S5-007=normal@sim-r1,CASE-INFRA-011-S5-010=normal@sim-r1,CASE-INFRA-011-S5-013=normal@sim-r1,CASE-INFRA-011-S5-016=normal@sim-r1,CASE-INFRA-011-S5-019=normal@sim-r1,CASE-INFRA-011-S5-022=normal@sim-r1,CASE-INFRA-011-S5-025=normal@sim-r1,CASE-INFRA-011-S5-028=normal@sim-r1,CASE-INFRA-011-S5-031=normal@sim-r1,CASE-INFRA-011-S5-034=normal@sim-r1,CASE-INFRA-011-S5-037=normal@sim-r1,CASE-INFRA-011-S5-040=normal@sim-r1,CASE-INFRA-011-S5-043=normal@sim-r1,CASE-INFRA-011-S5-046=normal@sim-r1,CASE-INFRA-011-S5-049=normal@sim-r1,CASE-INFRA-011-S5-052=normal@sim-r1}; connections={CORE={design=core-infra-sim@sim-r5,target_scope=infra-011-stage5-sim};OS={work=os-work-sim-01,change=os-change-sim-01,revision=os-rev-sim-4,scope=infra-011-stage5-sim,environment=verification-sim,runtime=api-db-sim-01@infra-runtime-sim-r17};SECURITY={authority=security-authority-sim-01@sim-r3,scope=infra-011-stage5-sim,environment=verification-sim};Worker={contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01,resource=worker-host-sim@sim-r1,mapping=worker-sim→worker-host-sim}}; scope=infra-011-stage5-sim; environment=verification-sim; source_revision=sim-r1; current_active_revision=sim-r8; eligible_rollback_target={revision=sim-r7,artifact=artifact-sim-r7,config=cfg-sim-r7,dependency=dep-sim-r7,data_ref=data-sim-r7,procedure=rollback-sim-r7}; composite_result=sim-complete; unfinished_duties=none`。
 - oracle: 構成体を未成立にし、partial result、欠落field/source、未完義務、責務owner=unknownを保持する。current active revisionと適格rollback targetも保持し、rollback実行や成功を生成しない。
 - owner/戻し先: connection-result責務ownerは固定親で特定されないためunknownを維持する。
 - trace: `INFRA-011-AC-03`。合成fixtureの設計候補であり未実行。
@@ -1200,7 +1203,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 - 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baselineはCASE-INFRA-011-S5-055正常fixture（write_set=empty; writes=none; before=sim-r1; after=sim-r1）。対象scopeは `infra-011-stage5-sim`、環境identityは `verification-sim`、親source revisionは `sim-r1`。
 - 変異: `write_attempt`だけを`{target=api-db-sim-01,action=write-sim,scope=infra-011-stage5-sim}`へ変更し、他fieldはbaselineのまま。
-- 入力: S5-055の全fieldを保持し、write_attempt={target=api-db-sim-01,action=write-sim,scope=infra-011-stage5-sim}。write_set=empty、writes=none、before=sim-r1、after=sim-r1。
+- 入力: request={target=api-db-sim-01,action=inspect-sim,revision=infra-runtime-sim@sim-r17,scope=infra-011-stage5-sim,environment=verification-sim,expiry=sim-expiry-01}; security_authority={ref=security-authority-sim-01,source=SECURITY-sim@sim-r3,revision=sim-r3,target=api-db-sim-01,target_revision=infra-runtime-sim@sim-r17,action=inspect-sim,scope=infra-011-stage5-sim,environment=verification-sim,expiry=sim-expiry-01}; worker={contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01,resource=worker-host-sim@sim-r1}; os={ticket=os-work-sim-01,change=os-change-sim-01,revision=os-rev-sim-4,scope=infra-011-stage5-sim,environment=verification-sim,runtime=api-db-sim-01@infra-runtime-sim-r17}; write_scope=declared; write_set=empty; writes=none; before=sim-r1; after=sim-r1
 - oracle: empty write-setへの試行を拒否し、writeを実行しない。前後状態が同一でも拒否を省略しない。通常read-onlyのwrite禁止はOS停止中independent recovery例外によって緩和しない。
 - owner/戻し先: 正常baselineへの戻し先なし。試行が拒否されず変更された場合、該当operation source ownerが特定できなければunknown。
 - trace: `INFRA-011-AC-03/04`。合成fixtureの設計候補であり未実行。
