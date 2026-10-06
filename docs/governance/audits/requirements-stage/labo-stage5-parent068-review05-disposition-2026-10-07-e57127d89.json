@@ -1,0 +1,481 @@
+{
+  "artifact_type": "timepoint-review-disposition-audit-candidate",
+  "status": "worker /tmp candidate; not canonical; awaiting Root inspection",
+  "created_at_local_date": "2026-10-07",
+  "target_pr": 2638,
+  "worktree": "/home/tenni/.helix-worktrees/l3-labo-stage5-parent068",
+  "base_revision": "3c3c512c09320c0494904602b23e544a81206eed",
+  "reviewed_before_revision": "1675c53e66ead91d9cb83a2162200b48b570510c",
+  "postbody_revision": "e57127d89548b1e46d5b78cf22169f4de6f0aadd",
+  "postbody_parent_revision": "1675c53e66ead91d9cb83a2162200b48b570510c",
+  "formal_review05": {
+    "source_path": "/tmp/root-pr2638-comments-review05.json",
+    "comment_id": 6023047755,
+    "file_bytes": 44365,
+    "file_sha256": "b6453abd3b1d3190124f8217fc4874092aa8952f7e6cfe6d9be233d2ec376837",
+    "body_bytes": 4394,
+    "body_sha256": "48023c0f4cb09c49727562f88115fe6830c563c4ca9917126cc424f595eba7a0",
+    "raw_body": "## review05（independent review、PR #2638 親HELIXLABO-L2-068、HEAD 1675c53e66ead91d9cb83a2162200b48b570510c、base main 3c3c512c0）：Major 1（review03 M1の一部が未解消）\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼comment 6022997978（`RH-PR2638-LABO-STAGE5-PARENT068-05`）に応える。\n\n### 事前確認と静的検査\n- **採択記録**：HELIXLABO-L2-068の採択記録は、mainでは57候補の83行だけである。本文の参照とも一致している。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。review04の前提は解消した。\n- **条件付きの戻し先**：0件だった。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - origin/mainとの`merge-tree`は衝突なし\n\n### 照合の結果\n- **Opusのブラインド照合**：Majorの候補は1件だった。reviewerが本文で確かめ、下のM1とした。\n- **前回までの指摘の処置**：\n  - **review01 M1**（event遅延でunknownにする条件を狭めた件）：解消のまま。\n  - **review02 M1**（CASE-13）：解消のまま。\n- **review03 M1**（result receiptの例外）：一部が解消した。\n  - 次の箇所は、無条件で総数unknownにして返すように直っている。\n    - 5ファイル共通の「責務・返却」\n    - L3 AC-03\n    - L10 CASE-18\n  - 下の3本文には、条件付きの文言が残っている。\n- **今後の流れ**：Majorがあるので、Fableの判断は回していない。\n\n### Major\n**M1（result receiptが欠けたときにunknownとする規則に、3本文で条件が残っている）**\n- **欠陥**：次の3本文が、「result receipt欠落時は…**当該範囲のAttempt記録完全性を確認できない場合は**総数をunknown/未評価」と書いている。\n  - L3 functional-requirementsの`FR-LABO-068-02`\n  - L3 nfr-gradeの`LABO-068-NFR-03`\n  - L10 nfr-verificationの`LABO-068-NFR-03`\n- **何が残っているか**：\n  - この書き方では、identity集合の完全性receipt以外の根拠で、完全性を「確認できた」とする余地が残る。そうすると、result receiptが欠けたままでも総数を確定できる。\n  - CASE-18は、identity集合の完全性receiptだけを置いたfixtureである。scope全体の捕捉完全性receiptがある状態でresult receiptだけが欠ける場合は、どのCASEにもない。そのため、この経路はoracleでも検出されない。\n  - 「責務・返却」、AC-03、CASE-18は無条件でunknownにしているので、6本文の書き方もそろっていない。\n  - FR-02には、この場合の戻し先がない。\n- **守るべき行**：\n  - HELIXLABO-L2-068「失敗・未見」（318ec4a labo-requirements.md:549「Attempt記録の欠落…があれば総数を`unknown`/未評価とし、観測sourceまたはOS記録ownerへ不足を戻す」）\n  - L11-068「個別反例」（labo-acceptance.md:283「記録欠落…を0または確定総数に変換する」を不成立とする）\n\n### 後で直す残余（承認を止めない）\n- **R1〜R8**：review03から変わらない。ただしR6はM1へ格上げした。\n- **R9（戻し先の欠落）**：CASE-05、06、10、11、12、17には、戻し先が書かれていない。\n- **R10（解消する者）**：CASE-10の「衝突を解消するまでtotal unknown」は、誰が解消するのかを書いていない。LABOが解消しないことを、CASE-13と同じように書くのが望ましい。\n- **R11（FR IDの書式）**：FR IDの書式が、067の`LABO-067-FR-01`に対し、068は`FR-LABO-068-01`で、そろっていない。\n- **R12（business側の対応）**：L10 business-verificationの表は、AC-03の中のresult receiptの欠落とevent遅延を、確認項目として持っていない。\n\n### 次の手順\n- 3本文の「当該範囲のAttempt記録完全性を確認できない場合は」という条件を外し、ほかの箇所と同じく、無条件で総数unknownとして観測sourceまたはOS記録ownerへ返す形にする。\n- scope全体の捕捉完全性receiptがあってresult receiptだけが欠ける場合も、CASE-18に含めるか、別のCASEで確かめるようにする。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+    "residual_r1_to_r12_raw": "### 後で直す残余（承認を止めない）\n- **R1〜R8**：review03から変わらない。ただしR6はM1へ格上げした。\n- **R9（戻し先の欠落）**：CASE-05、06、10、11、12、17には、戻し先が書かれていない。\n- **R10（解消する者）**：CASE-10の「衝突を解消するまでtotal unknown」は、誰が解消するのかを書いていない。LABOが解消しないことを、CASE-13と同じように書くのが望ましい。\n- **R11（FR IDの書式）**：FR IDの書式が、067の`LABO-067-FR-01`に対し、068は`FR-LABO-068-01`で、そろっていない。\n- **R12（business側の対応）**：L10 business-verificationの表は、AC-03の中のresult receiptの欠落とevent遅延を、確認項目として持っていない。\n\n",
+    "lineage_comments_raw": [
+      {
+        "comment_id": 6021955421,
+        "body_bytes": 6826,
+        "body_sha256": "e35161d6ccb1a1c40a8fb5ad756752636dd28e228f6be63f6fa15a8019905728",
+        "raw_body": "## review01（independent review、PR #2638 親HELIXLABO-L2-068、HEAD deddd579b07868b9bf1de569d56f711b5c912108、本文 1f1e40c14、base main a1bcdba15）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼comment 6021855858に応える。方法はcomment 6013171449のとおり。\n\n### 照合の方法\n- **固定親**：PO判断記録`po-decision-2026-09-29-57candidates.md`の83行は、`HELIXLABO-L2-068`／採択／`MPR-RC-HELIXLABO-L2-068-001`である。照合の起点は、318ec4aのL2-068（541–550）とL11-068（278–286）、§24の関係行（#2、#3、#13）。依存先はL2-059、065、067。\n- **ブラインド照合（Opus）**：固定親、依存先、6本文の追補だけを読んだ。監査、PR comment、旧所見は見ていない。固定文を20群に種類分けし、対応CASE・ACに結び付けた。下のM1を見つけた。\n- **継続照合（Opus）**：旧#2620で068に向けた所見7件を全件判定した。解消4件、一部解消・残余へ移すもの1件（review04 m18）、残余へ移すもの2件（review04 m25、review05 m4）。070側の所見は対象外。Majorとして残るものは0件。\n  - 監査のpinを再計算し、source_pins 35件、6本文のbase/full/prefix/suffix、旧25行・現32行のliteralがすべて一致した。\n  - 新しいMajorとして、下のM1と同じ内容を独立に見つけた。\n- **reviewerの確認**：M1は、固定L2:549、L11:283–284の原文と、6本文の「責務・返却」、CASE-03d、NFR-02で確かめた。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功（baseからは追加だけ）\n  - origin/mainとの`merge-tree`は衝突なし\n\n### Major\n**M1（event遅延でunknownにする条件を、L3/L10が固定親より狭めている）**\n- **欠陥**：\n  - 6本文すべての「責務・返却」が「event遅延はscope全体のcapture completenessを証明できなくする場合だけunknownにし、完全性receiptが維持される遅延だけではcountを不成立にしない」と書いている。\n  - CASE-03dのoracleも「完全性receiptが有効な遅延はcountを維持」とし、NFR-02の適用限界も「完全性receiptが有効な遅延のみでunknownにしない」としている。\n  - この例外は訂正eventの遅延にも限っていない。訂正eventの遅延そのものをunknownとして返すfixtureもない。AC-03の否定列挙にも「遅延」がない。\n  - 固定親は、event遅延を「source completeness不明」とは別のunknown条件として並べている。\n- **起こりうること**：遅れて届く訂正eventがAttempt identityの統合・分割を含む場合、誤った総数が確定countとして通る。\n- **守るべき行**：\n  - HELIXLABO-L2-068「失敗・未見」（318ec4a labo-requirements.md:549「Attempt記録の欠落・重複・event遅延…があれば総数をunknown/未評価とし、観測sourceまたはOS記録ownerへ不足を戻す」）\n  - L11-068「個別反例」（labo-acceptance.md:283「記録欠落・遅延・stale・矛盾を0または確定総数に変換する」を不成立とする）\n  - L11-068「未見例」（:284「OSの訂正eventが遅延している…場合は総数をunknownとし、記録source ownerへ返す」）\n\n### 後で直す残余（承認を止めない）\n- **R1（戻し先の書き漏れ）**：CASE-03d、06、10、13、03f、03g、19〜25の期待oracleに戻し先がない。共通の「責務・返却」で宛先は決まる（review04 m18の残り）。\n- **R2（二重索引・束ね）**：CASE-08とCASE-16がどちらも03bを指している（review04 m25、review05 m4）。CASE-15は03cへの索引。\n- **R3（oracleの分岐）**：CASE-13のoracleが「確認できない→unknown／明確にS0外→除外」に分かれていて、baselineが一意に決まらない（L2:545、L11:283）。\n- **R4（SECURITY許可）**：L2:548「新規実験には既存OS assignmentと適用されるSECURITY許可を要する」のうち、SECURITY許可が6本文に出てこない。fixtureもない。LABOによる起動と割当はCASE-20・21で拒否されている。\n- **R5（単独fixtureの不足）**：\n  - 059の意味を変えないこと（L2:543。境界の文だけ）\n  - identityを持たないassignmentを数えないこと（L2:545。CASE-03eはintakeだけ）\n  - 欠落eventを0とすることの拒否（L2:549、L11:283。AC-03の文言では覆っている）\n  - 別scopeの履歴から欠落Attemptを推測しないこと（L11:284）、再構築できないこと（L2:549）\n- **R6（result receiptだけの欠落）**：CASE-18とNFR-03は、result receiptだけが欠けてidentity集合が完全ならcountを保つ。L2:549の「Attempt記録の欠落」にresult receiptが含まれるかは、固定親の文では決まっていない。固定L11:282の正常例はstateと元receiptを別に辿る構成なので、許される再導出とみなした。M1を直すときに併せて確認することを勧める。\n- **R7（固定親にない条件）**：AC-02、CASE-02、BRの「結果閲覧前に固定」「結果を見てからの母集団変更をしない」は、固定L2/L11-068にない条件である。\n- **R8（依存IDと文言）**：\n  - 依存IDの引用が抜けている（L1-005、L1-011、HELIXOS-L2-004/007/009/018/019/023）。\n  - 「6列表」はbusinessとNFRの表に当たらない（3列と4列）。「旧a4の25 CASE ID」を受けるのはfunctionalだけ。6ファイルが同じ前置きを重ねている。\n  - 「known OS/observation-source responsibility」などの英文と、日英の混在が残っている。\n- **R9（監査の処置記録）**：監査が068関連として処置を記録した旧所見はreview05 m4だけで、review02〜04の068所見6件の処置がない。\n- **R10（監査の外部参照）**：監査JSONの`worker_drafting_candidate_snapshot.artifact.target_worktree`（ローカルの絶対path）と`old_review05_snapshot.file`（`/tmp/labo5-review05-formal.txt`）は、repository外で再現できない。どちらも内容のSHAは記録されていて、review05のcomment SHAは本体と一致した。\n- **R11（監査の記録と基準）**：監査の`root_corrections[1]`は、M1の例外を意図的な補正として記録している。上のM1のとおり、固定親と合わない。\n\n### 判定\n- blocker 1（M1）。Major 1、残余11、未確認範囲0。\n- 委任承認は成立しない。Readyにはしない。merge admissionは本commentから生成しない。\n- M1を直したHEADでは、reviewerが差分を確かめる。Opusが`no_findings`なら、同じHEADでFableにブラインドで見てもらう。\n"
+      },
+      {
+        "comment_id": 6022249562,
+        "body_bytes": 5351,
+        "body_sha256": "af5169f1aa81934ca56993848fa03378c05d48ee6646759a530134de2219d257",
+        "raw_body": "## review02（independent review、PR #2638 親HELIXLABO-L2-068、HEAD 394790474d31932fd98b5eb5290f686816a6179f、本文 7cd99f0b9、base main a1bcdba15）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼comment 6022064716に応える。今回から照合の順は、Fableの判断、Opusによるその判断への敵対照合、reviewerの確認とする。\n\n### 照合の方法と結果\n- **Fableの判断**：固定親（318ec4a L2:541–550、L11:278–286、判断記録:83）と6本文の追補184行を、Fable自身が読んだ。結論は「承認してよい」、Majorは0件。\n- **Opusによる敵対照合**：Fableの結論を崩す目的で、固定親の禁止、戻し先、unknown条件を1文ずつ照合した。結論は「Fableの判断を支持しない」。崩せたとする点は2件。(a) CASE-13の条件付き除外。(b) AC-03、CASE-06、10、13のoracleに戻し先がない。\n- **reviewerの確認**：(a)と(b)をHEADの本文と固定親の原文で確かめた。(a)は下のM1とする。これはreview01の残余R3からの格上げで、理由をM1に書く。(b)はreview01のR1と同じ内容である。共通の「責務・返却」が宛先を決めているので、残余R1のままとする。\n- **前回M1（event遅延でunknownにする条件を狭めた件）**：解消を確認した。6本文の「責務・返却」とNFR-02から例外が消えている。CASE-03dとCASE-26のoracleは、総数をunknownとし、既知の記録sourceまたはOS記録ownerへ不足を返す。AC-03には「event遅延/訂正event遅延」が入った。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功（追加だけ、削除0）\n- **mainとの衝突**：現在のorigin/main f5a974a40（#2636 親067 merge後）との`git merge-tree`はrc=1。LABOの6本文すべてで衝突する。\n\n### Major\n**M1（scopeの矛盾をLABOの判断で解消して総数を確定させ、固定親のunknown条件を狭めている）**\n- **欠陥**：\n  - L10 functionalの`L10-LABO-068-CASE-13`は、fixtureが「別scopeに属すXの、scope linkだけがS0に誤って混入」した状態である。\n  - そのoracleは「scope境界を確認できない場合は評価停止/unknown。明確にS0外ならcountから除外しscope外記録を保持」と二つに分かれている。\n  - OSのscope linkがS0を指しているのに「明確にS0外」と決めるのは、OS記録どうしの矛盾をLABOが解消していることになる。この分岐では総数4が確定値として返る。\n  - L3 `FR-LABO-068-01`の「scope外identityは除外する」も、この分岐を支えている。\n  - どちらの分岐にも戻し先がない。\n- **review01からの格上げ理由**：review01のR3では、baselineが一意に決まらない書き方の問題として扱った。今回の敵対照合で、除外する分岐が固定親の「矛盾なら補わずunknown」に例外を足していることが分かった。これはL3がL2の条件を狭める類型にあたる。review01で見落としていた。\n- **守るべき行**：\n  - HELIXLABO-L2-068「入力と範囲」（318ec4a labo-requirements.md:545「範囲やAttempt identity、記録の完全性が不明・矛盾・staleなら補わず`unknown`にする」）\n  - 同「失敗・未見」（:549「scope相関の不一致…があれば総数をunknown/未評価とし、観測sourceまたはOS記録ownerへ不足を戻す」）\n  - L11-068「個別反例」（labo-acceptance.md:283「scope外のAttemptを混ぜる…を該当範囲の未評価/unknownまたは不成立とする」）\n\n### 後で直す残余（承認を止めない）\n- **R1（戻し先の書き漏れ、review01から継続）**：CASE-06、10、03f、03g、19〜25の期待oracleと、AC-03の文面に戻し先がない。宛先は共通の「責務・返却」で決まる。ただしCASE-10は、L11:284の未見例「同じidentityの重複と別Attemptを判別できない…記録source ownerへ返す」を受ける行である。oracleで返却まで確かめる方が望ましい。\n- **R2（二重索引・束ね）**：review01から変わらない。\n- **R3**：M1へ格上げした。\n- **R4（SECURITY許可）**：review01から変わらない。L2:548のSECURITY許可が6本文に出てこない。Fableも同じ点を残余に挙げている。\n- **R5（単独fixtureの不足）**：review01から変わらない。Fableは、task success rate、Attempt success rate、retry上限を定義しないこと（L2:546）と、065／067の採択に依存させないこと（:547）も単独fixtureがないと挙げている。\n- **R6（解釈の追加）**：CASE-18は、result receiptだけが欠けたとき、identity集合の完全性receiptがあればcountを維持する。L2「出力」の「結果stateを元記録どおり保持」と整合し、戻し先もある。記録だけにとどめる。\n- **R7（件数の文言）**：matrix見出しの直後の本文は32行と書いているが、表はCASE-26を含めて33行ある。\n\n### 次の手順\n- M1を直す。\n- mainのf5a974a40を取り込む。067の6本文prefixは、main側のbytesのまま保つ。\n- 直した後のHEADで、もう一度依頼してほしい。\n"
+      },
+      {
+        "comment_id": 6022709824,
+        "body_bytes": 4908,
+        "body_sha256": "2036581880ebe26588ac67a3abab35a83062c8f5668f6aa8db46eea602f1f6a3",
+        "raw_body": "## review03（independent review、PR #2638 親HELIXLABO-L2-068、HEAD 5bb4fa138e5987e198469ae88624e1a4b9c71c69、base main f5a974a40）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2638-LABO-STAGE5-PARENT068-03` に応える。\n\n### 照合の方法と結果\n- **Opusのブラインド照合**：このHEADで取り直した。Majorの候補として2件を挙げた。reviewerが固定親の原文と本文で確かめ、1件を下のM1として確定した。もう1件は残余R4のままとする。理由は残余の欄に書く。\n- **前回までの指摘の処置**：\n  - **review01 M1（event遅延でunknownにする条件を狭めた件）**：解消のまま。CASE-03d、CASE-26、「責務・返却」は、完全性receiptがあっても、event遅延と訂正event遅延をunknownにしている。\n  - **review02 M1（CASE-13）**：解消した。scope linkの矛盾をLABOが解消せず、総数をunknownにして戻している。FR-01の除外も、scopeが一意に確認できる場合に限っている。\n- **mainとの関係**：067の採択済み追補への影響はない。docs/helix-labo配下の削除行は0で、ID接頭辞も分かれている。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - origin/main f5a974a40との`merge-tree`は衝突なし\n- **今後の流れ**：Majorがあるので、Fableの判断は回していない。\n\n### Major\n**M1（result receiptが欠けても総数を確定する例外を足し、固定親のunknown条件を狭めている）**\n- **欠陥**：\n  - L3とL10は、次の規則を置いている。Aのresult receiptだけが欠けていても、identity集合の完全性receiptがあれば、`attempt_count=4`を確定し、Aのstateだけをunknownにする。\n  - この規則は、次の箇所にある。\n    - L3 functional-requirementsの「責務・返却」とAC-03\n    - L3 nfr-gradeのNFR-03\n    - L10 nfr-verification\n    - L10 functional-verificationの`L10-LABO-068-CASE-18`（「distinct identity count=4を維持」）\n  - 固定親が総数を確定するのは、OS receiptが当該範囲の記録完全性を確認できる場合である。Attempt記録が欠けていれば、総数はunknownである。L3が書く「identity集合の完全性」は、固定親の「当該範囲の記録完全性」より狭い。\n- **review01・02からの格上げ理由**：\n  - review01とreview02では、この規則をCASE-18の解釈の追加（残余R6）として扱った。Fableの見解と、Opusによる敵対照合も同じ扱いだった。\n  - しかしこの規則は、「完全性receiptがあれば欠落があっても確定する」という形の例外である。review01 M1では、「完全性receiptが保たれた遅延だけではcountを不成立にしない」という同じ形の例外をMajorとした。\n  - 判定をそろえるため、ここでMajorへ格上げする。review01とreview02でこの例外を見落とした誤りは、reviewerのものである。\n- **守るべき行**：\n  - HELIXLABO-L2-068「kind / parent / status」（318ec4a labo-requirements.md:543。全体を表すOS記録が完全だと確かめられなければunknown）\n  - 同「失敗・未見」（:549「Attempt記録の欠落…があれば総数を`unknown`/未評価とし、観測sourceまたはOS記録ownerへ不足を戻す」）\n  - L11-068「正常例」（labo-acceptance.md:282「OS receiptが当該範囲の記録完全性と訂正状態を確認できる」）\n  - L11-068「個別反例」（:283「記録欠落…を0または確定総数に変換する」は不成立）\n\n### 後で直す残余（承認を止めない）\n- **R1、R2、R5、R7**：review02から変わらない。\n- **R3**：解消した（review02でM1へ格上げした件）。\n- **R4（SECURITY許可）**：\n  - 今回のブラインドはMajorの候補に挙げたが、残余のままとする。\n  - L2:548「新規実験には既存OS assignmentと適用されるSECURITY許可を要する」は、新しい実験を始めるときの前提である。生成を禁じる列挙（Workerの起動、retry、identityやpolicyの生成、oracle、割当、採否、qualification/admission）には入っていない。068は既存の記録を数えるだけで、Workerの起動はCASE-21が拒否している。\n  - L11:286「静的記述は…実験許可…を示さない」の実験許可について、生成を拒否する単独のfixtureがない点は、残余として記録する。\n- **R6**：上のM1へ格上げした。\n- **R8（oracleの書き方）**：CASE-09のoracleは「確定数として採用しない」とだけ書いている。unknownや未評価を明示していない。\n\n### 次の手順\n- M1を直す。\n- 直した後のHEADで、もう一度依頼してほしい。\n"
+      },
+      {
+        "comment_id": 6023047755,
+        "body_bytes": 4394,
+        "body_sha256": "48023c0f4cb09c49727562f88115fe6830c563c4ca9917126cc424f595eba7a0",
+        "raw_body": "## review05（independent review、PR #2638 親HELIXLABO-L2-068、HEAD 1675c53e66ead91d9cb83a2162200b48b570510c、base main 3c3c512c0）：Major 1（review03 M1の一部が未解消）\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼comment 6022997978（`RH-PR2638-LABO-STAGE5-PARENT068-05`）に応える。\n\n### 事前確認と静的検査\n- **採択記録**：HELIXLABO-L2-068の採択記録は、mainでは57候補の83行だけである。本文の参照とも一致している。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。review04の前提は解消した。\n- **条件付きの戻し先**：0件だった。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - origin/mainとの`merge-tree`は衝突なし\n\n### 照合の結果\n- **Opusのブラインド照合**：Majorの候補は1件だった。reviewerが本文で確かめ、下のM1とした。\n- **前回までの指摘の処置**：\n  - **review01 M1**（event遅延でunknownにする条件を狭めた件）：解消のまま。\n  - **review02 M1**（CASE-13）：解消のまま。\n- **review03 M1**（result receiptの例外）：一部が解消した。\n  - 次の箇所は、無条件で総数unknownにして返すように直っている。\n    - 5ファイル共通の「責務・返却」\n    - L3 AC-03\n    - L10 CASE-18\n  - 下の3本文には、条件付きの文言が残っている。\n- **今後の流れ**：Majorがあるので、Fableの判断は回していない。\n\n### Major\n**M1（result receiptが欠けたときにunknownとする規則に、3本文で条件が残っている）**\n- **欠陥**：次の3本文が、「result receipt欠落時は…**当該範囲のAttempt記録完全性を確認できない場合は**総数をunknown/未評価」と書いている。\n  - L3 functional-requirementsの`FR-LABO-068-02`\n  - L3 nfr-gradeの`LABO-068-NFR-03`\n  - L10 nfr-verificationの`LABO-068-NFR-03`\n- **何が残っているか**：\n  - この書き方では、identity集合の完全性receipt以外の根拠で、完全性を「確認できた」とする余地が残る。そうすると、result receiptが欠けたままでも総数を確定できる。\n  - CASE-18は、identity集合の完全性receiptだけを置いたfixtureである。scope全体の捕捉完全性receiptがある状態でresult receiptだけが欠ける場合は、どのCASEにもない。そのため、この経路はoracleでも検出されない。\n  - 「責務・返却」、AC-03、CASE-18は無条件でunknownにしているので、6本文の書き方もそろっていない。\n  - FR-02には、この場合の戻し先がない。\n- **守るべき行**：\n  - HELIXLABO-L2-068「失敗・未見」（318ec4a labo-requirements.md:549「Attempt記録の欠落…があれば総数を`unknown`/未評価とし、観測sourceまたはOS記録ownerへ不足を戻す」）\n  - L11-068「個別反例」（labo-acceptance.md:283「記録欠落…を0または確定総数に変換する」を不成立とする）\n\n### 後で直す残余（承認を止めない）\n- **R1〜R8**：review03から変わらない。ただしR6はM1へ格上げした。\n- **R9（戻し先の欠落）**：CASE-05、06、10、11、12、17には、戻し先が書かれていない。\n- **R10（解消する者）**：CASE-10の「衝突を解消するまでtotal unknown」は、誰が解消するのかを書いていない。LABOが解消しないことを、CASE-13と同じように書くのが望ましい。\n- **R11（FR IDの書式）**：FR IDの書式が、067の`LABO-067-FR-01`に対し、068は`FR-LABO-068-01`で、そろっていない。\n- **R12（business側の対応）**：L10 business-verificationの表は、AC-03の中のresult receiptの欠落とevent遅延を、確認項目として持っていない。\n\n### 次の手順\n- 3本文の「当該範囲のAttempt記録完全性を確認できない場合は」という条件を外し、ほかの箇所と同じく、無条件で総数unknownとして観測sourceまたはOS記録ownerへ返す形にする。\n- scope全体の捕捉完全性receiptがあってresult receiptだけが欠ける場合も、CASE-18に含めるか、別のCASEで確かめるようにする。\n- 直した後のHEADで、もう一度依頼してほしい。\n"
+      }
+    ]
+  },
+  "finding_disposition": {
+    "review05_m1": "Postbody change addresses the three conditional result-receipt clauses and CASE-18 using unconditional total unknown/unassessed, separate result-state unknown, and known observation-source/OS-record-owner responsibility category while retaining individual identity unknown separately. This records content alignment only; it is not an independent review or acceptance.",
+    "review05_r1_to_r12": "Raw wording retained above; no independent disposition/closure assigned by this worker. Review05 itself records R1-R8 carryover with R6 elevated to M1, plus R9-R12."
+  },
+  "current_four_document_changes": [
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "review_line": 1854,
+      "reason_from_candidate": "Remove Attempt completeness condition; make missing result receipt unconditionally total unknown, preserve result state separately, and return to existing known source/OS responsibility category.",
+      "before_literal": "- **`FR-LABO-068-02` — 完全性・state・訂正**：OS event/evidence/result/correction receiptをidentityへ結び、重複配送・訂正eventを同一identityへ統合する。記録集合の完全性を確認できない場合は `attempt_count=unknown` とする。identityが確認できるAttemptのsuccess/failure/interrupted/denied等のstateはcountと別fieldで保持する。result receipt欠落時はidentity集合の完全性receiptだけで総数を確定せず、当該範囲のAttempt記録完全性を確認できない場合は総数をunknown/未評価、該当stateもunknownとする。identity付きdeniedは一件、identityのない実行前拒否intakeは0件として別記する。",
+      "after_literal": "- **`FR-LABO-068-02` — 完全性・state・訂正**：OS event/evidence/result/correction receiptをidentityへ結び、重複配送・訂正eventを同一identityへ統合する。記録集合の完全性を確認できない場合は `attempt_count=unknown` とする。identityが確認できるAttemptのsuccess/failure/interrupted/denied等のstateはcountと別fieldで保持する。result receipt欠落時は、当該範囲のAttempt記録完全性receiptの有無にかかわらず総数をunknown/未評価、該当result stateもunknownとして別fieldで保持する。既知の観測sourceまたはOS記録owner区分へ不足を返し、個体source/owner identityが不明ならそのidentity unknownを別に保持する。identity付きdeniedは一件、identityのない実行前拒否intakeは0件として別記する。",
+      "before_literal_found_once": true,
+      "after_literal_found_once": true,
+      "old_literal_absent_after": true,
+      "new_literal_absent_before": true
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "review_line": 261,
+      "reason_from_candidate": "Same unconditional unknown and existing responsibility return in L3 NFR; individual identity may remain unknown separately.",
+      "before_literal": "| `LABO-068-NFR-03` — state・訂正の分離 | denied-with-identityはcount、identityなしpre-execution denialはintakeとして別記。result receipt欠落で当該範囲のAttempt記録完全性を確認できない場合は総数unknown/未評価、該当stateもunknownとして別fieldで保持する。identity集合receiptだけで記録完全性を代替しない。 | 個体identityと結果state、duplicate resend/correction, CI rerun, same-Attempt repair roundを別field/source receiptで照合する。 | 状態を合算して品質評価しない。065/067と換算しない。新oracle、分類、権限を定義しない。 |",
+      "after_literal": "| `LABO-068-NFR-03` — state・訂正の分離 | denied-with-identityはcount、identityなしpre-execution denialはintakeとして別記。result receipt欠落時は当該範囲のAttempt記録完全性receiptの有無にかかわらず総数unknown/未評価、該当stateもunknownとして別fieldで保持し、既知の観測sourceまたはOS記録owner区分へ不足を返す。個体identityが不明ならunknownを別に保持する。 | 個体identityと結果state、duplicate resend/correction, CI rerun, same-Attempt repair roundを別field/source receiptで照合する。 | 状態を合算して品質評価しない。065/067と換算しない。新oracle、分類、権限を定義しない。 |",
+      "before_literal_found_once": true,
+      "after_literal_found_once": true,
+      "old_literal_absent_after": true,
+      "new_literal_absent_before": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "review_line": 200,
+      "reason_from_candidate": "Same unconditional unknown and existing responsibility return in L10 NFR.",
+      "before_literal": "| `LABO-068-NFR-03` Attemptと状態・別指標 | identity list、result state/receipt、denial intake、065 retry_count、067 repair-round、CI rerunを別source/fieldで照合。 | identity付きdeniedはcount対象、identityなしpre-execution deniedはintake。result receipt欠落で当該範囲のAttempt記録完全性を確認できない場合は総数unknown/未評価とし、該当stateもunknownとして別fieldで保持する。identity集合receiptだけで代替しない。 | 065/067換算、state合算、結果oracleや新しい権限を定義しない。 |",
+      "after_literal": "| `LABO-068-NFR-03` Attemptと状態・別指標 | identity list、result state/receipt、denial intake、065 retry_count、067 repair-round、CI rerunを別source/fieldで照合。 | identity付きdeniedはcount対象、identityなしpre-execution deniedはintake。result receipt欠落時は当該範囲のAttempt記録完全性receiptの有無にかかわらず総数unknown/未評価とし、該当stateもunknownとして別fieldで保持する。既知の観測sourceまたはOS記録owner区分へ不足を返し、個体identity不明は別にunknownとする。 | 065/067換算、state合算、結果oracleや新しい権限を定義しない。 |",
+      "before_literal_found_once": true,
+      "after_literal_found_once": true,
+      "old_literal_absent_after": true,
+      "new_literal_absent_before": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "review_line": 3281,
+      "reason_from_candidate": "Keep CASE-18 ID; its normal baseline explicitly has scope-wide capture-completeness and identity-set completeness receipts before the sole mutation removes A result receipt.",
+      "before_literal": "| `L10-LABO-068-CASE-18` | `FR-LABO-068-02` | `LABO-068-AC-03` | B0と同じidentity A/B/C/Dおよびidentity集合の完全性receipt。 | Aのresult receiptだけ欠落。 | 総数をunknown/未評価とし、Aのresult stateもunknownとして別fieldに保持する。identity集合の完全性receiptだけで当該範囲のAttempt記録完全性を代替せず、既知の観測sourceまたはOS記録ownerへ不足を返す。4件確定やstateだけunknownにする判定はしない。 |",
+      "after_literal": "| `L10-LABO-068-CASE-18` | `FR-LABO-068-02` | `LABO-068-AC-03` | B0と同じscope S0のAttempt identity A/B/C/D、scope全体のcapture-completeness receipt、identity集合の完全性receipt、event/correction lineageと全result receiptが揃い、すべて有効。 | Aのresult receiptだけ欠落。他のreceipt、identity、scope、event、state、完全性証拠は変えない。 | result receipt欠落だけで総数をunknown/未評価とし、Aのresult stateも別fieldでunknownにする。scope全体とidentity集合の完全性receiptがあっても総数4を確定せず、既知の観測sourceまたはOS記録owner区分へ不足を返す。個体identityが不明ならidentity unknownを別に保持し、責務区分は消さない。 |",
+      "before_literal_found_once": true,
+      "after_literal_found_once": true,
+      "old_literal_absent_after": true,
+      "new_literal_absent_before": true
+    }
+  ],
+  "six_document_actual_pins": [
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "suffix_start_line": 139,
+      "before": {
+        "revision": "1675c53e66ead91d9cb83a2162200b48b570510c",
+        "bytes": 22930,
+        "sha256": "dfb797e06fe301caa79f3d8f2a476d4c033523e473c0612d9fac6669e63de78c",
+        "prefix_bytes": 16605,
+        "prefix_sha256": "f0b59e938f15849c7cda6e3e7661d61781dfa1a7ca7fc5b8a55f2ccd93e3da8c",
+        "suffix_bytes": 6325,
+        "suffix_sha256": "f769cc4d05e06992fe79dd2405004a9a881ee43eef5947104949745e7f62ea45",
+        "terminal_lf": true
+      },
+      "after": {
+        "revision": "e57127d89548b1e46d5b78cf22169f4de6f0aadd",
+        "bytes": 22930,
+        "sha256": "dfb797e06fe301caa79f3d8f2a476d4c033523e473c0612d9fac6669e63de78c",
+        "prefix_bytes": 16605,
+        "prefix_sha256": "f0b59e938f15849c7cda6e3e7661d61781dfa1a7ca7fc5b8a55f2ccd93e3da8c",
+        "suffix_bytes": 6325,
+        "suffix_sha256": "f769cc4d05e06992fe79dd2405004a9a881ee43eef5947104949745e7f62ea45",
+        "terminal_lf": true
+      },
+      "prefix_byte_identical": true,
+      "suffix_changed": false
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "suffix_start_line": 1839,
+      "before": {
+        "revision": "1675c53e66ead91d9cb83a2162200b48b570510c",
+        "bytes": 319452,
+        "sha256": "1622a7e25110f818f2022296c8e8978964e33148c304c65fb1c2bd5e20a991b3",
+        "prefix_bytes": 310461,
+        "prefix_sha256": "c36e074b74fe12c8c8e6ddf5e2474390931470064772c33fb97c436778c4fe3f",
+        "suffix_bytes": 8991,
+        "suffix_sha256": "91c1c3bb46bdfc9e1985cbc8421e0bff13b0489b7197a662ae142a307bc6ee2e",
+        "terminal_lf": true
+      },
+      "after": {
+        "revision": "e57127d89548b1e46d5b78cf22169f4de6f0aadd",
+        "bytes": 319581,
+        "sha256": "f4f4d470a85319c466eefcced4f4dbcbc0569e0fb5b285024f4930ae3bf58b45",
+        "prefix_bytes": 310461,
+        "prefix_sha256": "c36e074b74fe12c8c8e6ddf5e2474390931470064772c33fb97c436778c4fe3f",
+        "suffix_bytes": 9120,
+        "suffix_sha256": "ccd0f0170b911a1e4320a39f782ab09f1b2084f2976f3654e52c9dc704f10d69",
+        "terminal_lf": true
+      },
+      "prefix_byte_identical": true,
+      "suffix_changed": true
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "suffix_start_line": 243,
+      "before": {
+        "revision": "1675c53e66ead91d9cb83a2162200b48b570510c",
+        "bytes": 76096,
+        "sha256": "b43201849dcf23c3455c3bb2681014ea7ef4b3e49e979488e9258bbc15c5c48c",
+        "prefix_bytes": 69153,
+        "prefix_sha256": "601421d1043de934de83f04d2db5f94ebffa911f0e6c623a22e4cb49b53283ae",
+        "suffix_bytes": 6943,
+        "suffix_sha256": "ee2adb8f13214d2f6526d6ff687857542b6f1427162c6838b0ba03e2f41e9bc8",
+        "terminal_lf": true
+      },
+      "after": {
+        "revision": "e57127d89548b1e46d5b78cf22169f4de6f0aadd",
+        "bytes": 76164,
+        "sha256": "5da17478b48342dc3b347c0b4d05a21a52c47e6110717d7f33e94784b97abe7c",
+        "prefix_bytes": 69153,
+        "prefix_sha256": "601421d1043de934de83f04d2db5f94ebffa911f0e6c623a22e4cb49b53283ae",
+        "suffix_bytes": 7011,
+        "suffix_sha256": "18588c07059071d9317a80fc60089159ec1006e034a14debf55c93774d29c7ce",
+        "terminal_lf": true
+      },
+      "prefix_byte_identical": true,
+      "suffix_changed": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "suffix_start_line": 135,
+      "before": {
+        "revision": "1675c53e66ead91d9cb83a2162200b48b570510c",
+        "bytes": 20314,
+        "sha256": "48d2df954ed93253e68b82a4d2eb9f4c69e9e51621bd63e385d8b677fa370861",
+        "prefix_bytes": 14176,
+        "prefix_sha256": "835eb81a91694327ce39451b021aab5f198c19b9810b51d3268e7286b911abc3",
+        "suffix_bytes": 6138,
+        "suffix_sha256": "eef866709b35d3644aed558ce386a5f2cdcb6a09ed2a76bfed08f331f72bd779",
+        "terminal_lf": true
+      },
+      "after": {
+        "revision": "e57127d89548b1e46d5b78cf22169f4de6f0aadd",
+        "bytes": 20314,
+        "sha256": "48d2df954ed93253e68b82a4d2eb9f4c69e9e51621bd63e385d8b677fa370861",
+        "prefix_bytes": 14176,
+        "prefix_sha256": "835eb81a91694327ce39451b021aab5f198c19b9810b51d3268e7286b911abc3",
+        "suffix_bytes": 6138,
+        "suffix_sha256": "eef866709b35d3644aed558ce386a5f2cdcb6a09ed2a76bfed08f331f72bd779",
+        "terminal_lf": true
+      },
+      "prefix_byte_identical": true,
+      "suffix_changed": false
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "suffix_start_line": 3233,
+      "before": {
+        "revision": "1675c53e66ead91d9cb83a2162200b48b570510c",
+        "bytes": 487001,
+        "sha256": "7dd0e7f9baa9cc7d54266a4ecf216f33b283f8188e7f877ddf642344a045bde4",
+        "prefix_bytes": 468641,
+        "prefix_sha256": "8b00c58b9232d569241999197837dfbda11987926c037c02404642ee79a2b807",
+        "suffix_bytes": 18360,
+        "suffix_sha256": "25782be104edf257c86f8bd171c30adc2ef0ea8af335c12c6033109e21618e30",
+        "terminal_lf": true
+      },
+      "after": {
+        "revision": "e57127d89548b1e46d5b78cf22169f4de6f0aadd",
+        "bytes": 487265,
+        "sha256": "6f41cc0b99a6f791c94879f52515962a8cab5c005a429d607da4793474aaaff3",
+        "prefix_bytes": 468641,
+        "prefix_sha256": "8b00c58b9232d569241999197837dfbda11987926c037c02404642ee79a2b807",
+        "suffix_bytes": 18624,
+        "suffix_sha256": "5f938404de74b2c700f69ac5b68bb253d9dbc50c7bf8c490b0c7407585bc7aa9",
+        "terminal_lf": true
+      },
+      "prefix_byte_identical": true,
+      "suffix_changed": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "suffix_start_line": 182,
+      "before": {
+        "revision": "1675c53e66ead91d9cb83a2162200b48b570510c",
+        "bytes": 65605,
+        "sha256": "260351e5cc1d0e6ca38fad06726d562754d8ddeb65fa47d3095b85892d554341",
+        "prefix_bytes": 58886,
+        "prefix_sha256": "23ae348508cdb254b500808e706b3cbb3fcc4f62c2d0a4c2f24973f177090370",
+        "suffix_bytes": 6719,
+        "suffix_sha256": "cb68c79836471172714521711d546c68a601ca57bd4cbf1c5d1358f5f70f846a",
+        "terminal_lf": true
+      },
+      "after": {
+        "revision": "e57127d89548b1e46d5b78cf22169f4de6f0aadd",
+        "bytes": 65682,
+        "sha256": "d8e71d5438d87b0cb9d9b8878e1eb083612b38f4e1e1c5ea44a6d37e36212532",
+        "prefix_bytes": 58886,
+        "prefix_sha256": "23ae348508cdb254b500808e706b3cbb3fcc4f62c2d0a4c2f24973f177090370",
+        "suffix_bytes": 6796,
+        "suffix_sha256": "31da2f4d621d43bffa991bb6aa5eec1e7e347170cedf79b3d339bc218d58f51f",
+        "terminal_lf": true
+      },
+      "prefix_byte_identical": true,
+      "suffix_changed": true
+    }
+  ],
+  "preservation": {
+    "case_ids_before": [
+      "L10-LABO-068-CASE-01",
+      "L10-LABO-068-CASE-02",
+      "L10-LABO-068-CASE-03a",
+      "L10-LABO-068-CASE-03b",
+      "L10-LABO-068-CASE-03c",
+      "L10-LABO-068-CASE-03d",
+      "L10-LABO-068-CASE-03e",
+      "L10-LABO-068-CASE-03f",
+      "L10-LABO-068-CASE-03g",
+      "L10-LABO-068-CASE-04a",
+      "L10-LABO-068-CASE-04b",
+      "L10-LABO-068-CASE-13",
+      "L10-LABO-068-CASE-14",
+      "L10-LABO-068-CASE-15",
+      "L10-LABO-068-CASE-16",
+      "L10-LABO-068-CASE-17",
+      "L10-LABO-068-CASE-05",
+      "L10-LABO-068-CASE-06",
+      "L10-LABO-068-CASE-07",
+      "L10-LABO-068-CASE-08",
+      "L10-LABO-068-CASE-09",
+      "L10-LABO-068-CASE-10",
+      "L10-LABO-068-CASE-11",
+      "L10-LABO-068-CASE-12",
+      "L10-LABO-068-CASE-18",
+      "L10-LABO-068-CASE-19",
+      "L10-LABO-068-CASE-20",
+      "L10-LABO-068-CASE-21",
+      "L10-LABO-068-CASE-22",
+      "L10-LABO-068-CASE-23",
+      "L10-LABO-068-CASE-24",
+      "L10-LABO-068-CASE-25",
+      "L10-LABO-068-CASE-26"
+    ],
+    "case_ids_after": [
+      "L10-LABO-068-CASE-01",
+      "L10-LABO-068-CASE-02",
+      "L10-LABO-068-CASE-03a",
+      "L10-LABO-068-CASE-03b",
+      "L10-LABO-068-CASE-03c",
+      "L10-LABO-068-CASE-03d",
+      "L10-LABO-068-CASE-03e",
+      "L10-LABO-068-CASE-03f",
+      "L10-LABO-068-CASE-03g",
+      "L10-LABO-068-CASE-04a",
+      "L10-LABO-068-CASE-04b",
+      "L10-LABO-068-CASE-13",
+      "L10-LABO-068-CASE-14",
+      "L10-LABO-068-CASE-15",
+      "L10-LABO-068-CASE-16",
+      "L10-LABO-068-CASE-17",
+      "L10-LABO-068-CASE-05",
+      "L10-LABO-068-CASE-06",
+      "L10-LABO-068-CASE-07",
+      "L10-LABO-068-CASE-08",
+      "L10-LABO-068-CASE-09",
+      "L10-LABO-068-CASE-10",
+      "L10-LABO-068-CASE-11",
+      "L10-LABO-068-CASE-12",
+      "L10-LABO-068-CASE-18",
+      "L10-LABO-068-CASE-19",
+      "L10-LABO-068-CASE-20",
+      "L10-LABO-068-CASE-21",
+      "L10-LABO-068-CASE-22",
+      "L10-LABO-068-CASE-23",
+      "L10-LABO-068-CASE-24",
+      "L10-LABO-068-CASE-25",
+      "L10-LABO-068-CASE-26"
+    ],
+    "case_count_before": 33,
+    "case_count_after": 33,
+    "unique_count_before": 33,
+    "unique_count_after": 33,
+    "ordered_id_set_unchanged": true,
+    "required_old25_and_new8_counts_as_recorded_by_candidate": {
+      "existing_case_id": "L10-LABO-068-CASE-18",
+      "current_case_count": 33,
+      "old_case_ids": 25,
+      "new_case_ids": 8,
+      "change": "Edit only existing CASE-18 row; do not add or renumber IDs. Keep the 6-column schema.",
+      "case_semantics": [
+        "B0 is normal and synthetic, complete receipts across S0 before mutation.",
+        "Only mutation: A result receipt missing.",
+        "Oracle: total unknown/unassessed and A result state separately unknown, known observation-source/OS owner responsibility category receives missing evidence; individual identity unknown remains separate.",
+        "No count of 4, no use of completeness receipts to override missing result receipt."
+      ]
+    },
+    "all_six_terminal_lf": true,
+    "all_six_prefix_bytes_unchanged_since_review_head": true
+  },
+  "fixed_source_actual_pins": [
+    {
+      "key": "L2",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "lines": "541-550",
+      "full_bytes": 113504,
+      "full_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+      "span_bytes": 4106,
+      "span_raw_lf_sha256": "7e3df32b0131722c88ae148c4cbfa9a1be20f81826099c0ceb29a674e07030e2",
+      "matches_candidate_pin": true
+    },
+    {
+      "key": "L11",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "lines": "278-286",
+      "full_bytes": 66593,
+      "full_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+      "span_bytes": 3129,
+      "span_raw_lf_sha256": "3dcf068de1351b2e8c1f2d772ec9273cb7908368a32b389ee40ce51929ad8d94",
+      "matches_candidate_pin": true
+    }
+  ],
+  "older_audit_preservation_evidence": {
+    "body_commit_changed_paths": [
+      "M\tdocs/helix-labo/L10-verification/functional-verification.md",
+      "M\tdocs/helix-labo/L10-verification/nfr-verification.md",
+      "M\tdocs/helix-labo/L3-requirements/functional-requirements.md",
+      "M\tdocs/helix-labo/L3-requirements/nfr-grade.md"
+    ],
+    "governance_audit_paths_touched_by_this_body_commit": [],
+    "tracked_068_audits_at_postbody_head": [
+      {
+        "path": "docs/governance/audits/requirements-stage/l3-intelligence-stage2c-068-cutout-audit-2026-10-05.json",
+        "bytes": 57506,
+        "sha256": "70a16c2f814eb3de836e908eca3f917b374cc29c32fb593d4a7f3655205f027d"
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/l3-intelligence-stage2c-068-cutout-audit-repair01-2026-10-05.json",
+        "bytes": 60311,
+        "sha256": "1cd947ec56caeff57d62a5dbd546538981169fd9f21af7fcd9c1b16fc84c80c8"
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/l3-intelligence-stage2c-068-po-summary-2026-10-05.md",
+        "bytes": 3534,
+        "sha256": "aefa130b5191256a2911a457e9f2bb1e2c333e1ec06756a04c92b0d823b840c6"
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/l3-intelligence-stage2c-068-po-summary-repair01-2026-10-05.md",
+        "bytes": 2393,
+        "sha256": "f968c90e81fed457bdeca874d4edaf7eede4535101b9c65b8cd83c1c074bd4ba"
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/labo-stage5-parent068-authoring-audit-2026-10-07-1f1e40c14.json",
+        "bytes": 262993,
+        "sha256": "1f856b0f7f7dbece4f6a9c5a915a9e694f6f18262f3a08790ce6813fe257da81"
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/labo-stage5-parent068-authoring-audit-2026-10-07-1f1e40c14.md",
+        "bytes": 1661,
+        "sha256": "fab79ef79df53722a1f4e53692c3f99b887af0a49774ee4e1b7fa47bd872096d"
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/labo-stage5-parent068-review01-disposition-2026-10-07-7cd99f0b9.json",
+        "bytes": 25444,
+        "sha256": "e070ddb81bc9393f28377bb3e401b924c2831c4c931403bca5e9db934e84b85f"
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/labo-stage5-parent068-review01-disposition-2026-10-07-7cd99f0b9.md",
+        "bytes": 902,
+        "sha256": "32fb078c97dcc2e9683ac465f113f011211f049b05afb2df83f626e907379169"
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/labo-stage5-parent068-review02-disposition-2026-10-07-2a8ab67ec.json",
+        "bytes": 54747,
+        "sha256": "bafac533211f65098cc41713e554ff8300090e68c64565f12dde7deff2a37d06"
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/labo-stage5-parent068-review02-disposition-2026-10-07-2a8ab67ec.md",
+        "bytes": 4114,
+        "sha256": "c44264b95ce3c6ab9b5926e5eb47122b85e1cbd79d9a56dec8fe880a4c3900b5"
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/labo-stage5-parent068-review03-disposition-2026-10-07-171cfd446.json",
+        "bytes": 53458,
+        "sha256": "4f85d58abc8a43afdfc0026d17bb4490b73c397994f42f62cb75206211179afa"
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/labo-stage5-parent068-review03-disposition-2026-10-07-171cfd446.md",
+        "bytes": 4027,
+        "sha256": "100accffa86220a4da4652bc55c4ea40ee347048a090983321c5c78948e96875"
+      }
+    ],
+    "prior_tmp_audit_files_current_sha256": [
+      {
+        "path": "/tmp/labo068-review03-postbody-disposition-worker.json",
+        "bytes": 53458,
+        "sha256": "4f85d58abc8a43afdfc0026d17bb4490b73c397994f42f62cb75206211179afa"
+      },
+      {
+        "path": "/tmp/labo068-review03-postbody-disposition-worker.md",
+        "bytes": 4027,
+        "sha256": "100accffa86220a4da4652bc55c4ea40ee347048a090983321c5c78948e96875"
+      },
+      {
+        "path": "/tmp/labo068-pr2638-review02-disposition-worker.json",
+        "bytes": 54747,
+        "sha256": "bafac533211f65098cc41713e554ff8300090e68c64565f12dde7deff2a37d06"
+      },
+      {
+        "path": "/tmp/labo068-pr2638-review02-disposition-worker.md",
+        "bytes": 4079,
+        "sha256": "71e0a7c36804896e4eb654157c63c5df461b0815b6e642042842b0b6863f01d4"
+      }
+    ]
+  },
+  "root_reported_checks_not_rerun": {
+    "govcheck": "Root reported PASS; worker did not rerun.",
+    "diffcheck": "Root reported PASS; worker did not rerun."
+  },
+  "not_claimed": [
+    "independent review",
+    "PO or Fable approval",
+    "semantic completeness beyond recording the four applied substitutions",
+    "fixture execution or measured result",
+    "merge readiness/admission"
+  ],
+  "patch_four_rows": "diff --git a/docs/helix-labo/L10-verification/functional-verification.md b/docs/helix-labo/L10-verification/functional-verification.md\nindex e735ff3cc..75a853a1a 100644\n--- a/docs/helix-labo/L10-verification/functional-verification.md\n+++ b/docs/helix-labo/L10-verification/functional-verification.md\n@@ -3278,7 +3278,7 @@ FR本文で定義した `LABO-068-AC-01`（選択scope正常）、`LABO-068-AC-0\n | `L10-LABO-068-CASE-10` | `FR-LABO-068-01/02` | `LABO-068-AC-03` | B0のidentity A/B/C/Dは一意。 | Aに衝突する別identity recordだけ存在。 | 衝突を解消するまでtotal unknown。勝手にdedupeまたは5件扱いしない。 |\n | `L10-LABO-068-CASE-11` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のidentity A/B/C/D。 | 既存Aに同一scope/revisionのCI rerunだけを追加。 | 新identityがないためcountを増やさない。rerun receiptはAへ結び保持。 |\n | `L10-LABO-068-CASE-12` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のidentity A/B/C/D。 | 新identityなしのretry_count fieldだけ増加。 | 068 countを増やさず、065 retry_countは別指標で保持。 |\n-| `L10-LABO-068-CASE-18` | `FR-LABO-068-02` | `LABO-068-AC-03` | B0と同じidentity A/B/C/Dおよびidentity集合の完全性receipt。 | Aのresult receiptだけ欠落。 | 総数をunknown/未評価とし、Aのresult stateもunknownとして別fieldに保持する。identity集合の完全性receiptだけで当該範囲のAttempt記録完全性を代替せず、既知の観測sourceまたはOS記録ownerへ不足を返す。4件確定やstateだけunknownにする判定はしない。 |\n+| `L10-LABO-068-CASE-18` | `FR-LABO-068-02` | `LABO-068-AC-03` | B0と同じscope S0のAttempt identity A/B/C/D、scope全体のcapture-completeness receipt、identity集合の完全性receipt、event/correction lineageと全result receiptが揃い、すべて有効。 | Aのresult receiptだけ欠落。他のreceipt、identity、scope、event、state、完全性証拠は変えない。 | result receipt欠落だけで総数をunknown/未評価とし、Aのresult stateも別fieldでunknownにする。scope全体とidentity集合の完全性receiptがあっても総数4を確定せず、既知の観測sourceまたはOS記録owner区分へ不足を返す。個体identityが不明ならidentity unknownを別に保持し、責務区分は消さない。 |\n | `L10-LABO-068-CASE-19` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0に完全なAttempt identity count inputと既存の評価契約参照。 | LABO output fieldだけでtask_evaluation_oracle=O1を新規生成する。 | oracle field生成を拒否。count結果からtask評価oracleや合格条件を定義しない。 |\n | `L10-LABO-068-CASE-20` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のOS assignment A0は既存stateとして入力される。 | LABO output fieldだけでassignment=A1を新規生成する。 | assignment生成を拒否しOSの既存stateを変更しない。 |\n | `L10-LABO-068-CASE-21` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0にAttempt evidenceはあるが新規Worker start eventはない。 | LABO output fieldだけでworker_started=trueを追加する。 | Worker起動を生成しない。count evidenceから実行を開始しない。 |\ndiff --git a/docs/helix-labo/L10-verification/nfr-verification.md b/docs/helix-labo/L10-verification/nfr-verification.md\nindex 29551be38..b8c0a1676 100644\n--- a/docs/helix-labo/L10-verification/nfr-verification.md\n+++ b/docs/helix-labo/L10-verification/nfr-verification.md\n@@ -197,6 +197,6 @@ NFRの分母は許可された選択scope内のrunであり、CASE定義数で\n |---|---|---|---|\n | `LABO-068-NFR-01` identity母集団 | 既選択のtask/scope/revision/evaluation key、OS assignment、Attempt identity、OS completeness/evidence receipt。 | 完全なdistinct identity集合が証明できたときのみidentity件数を返す。集合完全性unknownはtotal unknown。 | N、割合、成功率、固定期間/thresholdを追加しない。 |\n | `LABO-068-NFR-02` event・訂正一意性 | identityごとのevent/correction lineage、source revision、scope内外、重複配送を照合。 | 同じidentityの再配送/訂正は一度。identity collision、stale、scope不一致、unresolved lineageはtotal unknown/未評価。 | duplicateを都合よく除く/別identityと推定しない。known OS/source dutyを保持し、個体unknownを別記。 |\n-| `LABO-068-NFR-03` Attemptと状態・別指標 | identity list、result state/receipt、denial intake、065 retry_count、067 repair-round、CI rerunを別source/fieldで照合。 | identity付きdeniedはcount対象、identityなしpre-execution deniedはintake。result receipt欠落で当該範囲のAttempt記録完全性を確認できない場合は総数unknown/未評価とし、該当stateもunknownとして別fieldで保持する。identity集合receiptだけで代替しない。 | 065/067換算、state合算、結果oracleや新しい権限を定義しない。 |\n+| `LABO-068-NFR-03` Attemptと状態・別指標 | identity list、result state/receipt、denial intake、065 retry_count、067 repair-round、CI rerunを別source/fieldで照合。 | identity付きdeniedはcount対象、identityなしpre-execution deniedはintake。result receipt欠落時は当該範囲のAttempt記録完全性receiptの有無にかかわらず総数unknown/未評価とし、該当stateもunknownとして別fieldで保持する。既知の観測sourceまたはOS記録owner区分へ不足を返し、個体identity不明は別にunknownとする。 | 065/067換算、state合算、結果oracleや新しい権限を定義しない。 |\n \n 候補の技術的なunknown条件は固定L2/L11に根拠を置く提案で、実測閾値・期間・完全性率は設定しない。選択scopeの外へ一般化せず、過去eventから欠落分を推計しない。実行/測定は未実施。\ndiff --git a/docs/helix-labo/L3-requirements/functional-requirements.md b/docs/helix-labo/L3-requirements/functional-requirements.md\nindex 56a97c7ef..e048cb71e 100644\n--- a/docs/helix-labo/L3-requirements/functional-requirements.md\n+++ b/docs/helix-labo/L3-requirements/functional-requirements.md\n@@ -1851,7 +1851,7 @@ L10 CASE IDsは照合用であり、ID数・独立fixture数から完全性を\n **版・範囲**：旧a4の25 CASE IDを保持する。旧literalは監査材料に保全し、下の6列表のfixture setup/oracleは固定L2/L11へ意味再導出した候補であり、旧literalのbyteコピーを正本定義とみなさない。固定親は仕様として引用し、これらの候補表は意味完全性・単独変異性の証明ではない。\n \n - **`FR-LABO-068-01` — 選択scopeとdistinct identity count**：既存OS assignmentから明示されたtask/scope/revision/evaluation範囲を受け、範囲に結び付いた各Attempt identityを一度だけ数え、総数を `attempt_count` として返す。scope外identityは、OS記録とsource/identity linkが矛盾せず、所属scopeが一意に確認できる場合に限り選択範囲から除外し、元記録をscope外として保持する。scope linkとsourceまたは他の権威ある記録が矛盾する場合は、どちらかを選んで範囲を確定したりlinkを修復したりせず、記録を保持したまま総数を `unknown`/未評価として既知の観測sourceまたはOS記録ownerへ不足を返す。具体的な個体identityが不明ならunknownを別に保持し、既知の責務区分は維持する。\n-- **`FR-LABO-068-02` — 完全性・state・訂正**：OS event/evidence/result/correction receiptをidentityへ結び、重複配送・訂正eventを同一identityへ統合する。記録集合の完全性を確認できない場合は `attempt_count=unknown` とする。identityが確認できるAttemptのsuccess/failure/interrupted/denied等のstateはcountと別fieldで保持する。result receipt欠落時はidentity集合の完全性receiptだけで総数を確定せず、当該範囲のAttempt記録完全性を確認できない場合は総数をunknown/未評価、該当stateもunknownとする。identity付きdeniedは一件、identityのない実行前拒否intakeは0件として別記する。\n+- **`FR-LABO-068-02` — 完全性・state・訂正**：OS event/evidence/result/correction receiptをidentityへ結び、重複配送・訂正eventを同一identityへ統合する。記録集合の完全性を確認できない場合は `attempt_count=unknown` とする。identityが確認できるAttemptのsuccess/failure/interrupted/denied等のstateはcountと別fieldで保持する。result receipt欠落時は、当該範囲のAttempt記録完全性receiptの有無にかかわらず総数をunknown/未評価、該当result stateもunknownとして別fieldで保持する。既知の観測sourceまたはOS記録owner区分へ不足を返し、個体source/owner identityが不明ならそのidentity unknownを別に保持する。identity付きdeniedは一件、identityのない実行前拒否intakeは0件として別記する。\n - **`FR-LABO-068-03` — 指標・authority・責務分離**：065 first_pass/retry_countと067 same-Attempt repair roundを独立指標として保持し、換算・合算・代替しない。CI rerunやrepair event、duplicate deliveryを新Attemptにしない。LABOは観測と証拠受渡しのみを行い、OS identityやpolicy/oracleを生成せず、task-evaluation oracle、assignment、Worker起動/retry、採否、qualification、admissionの出力fieldを生成しない。原因に沿う既知責務区分を保ち、具体的個体identityが不明ならunknownを併記する。\n \n **受入条件候補**\ndiff --git a/docs/helix-labo/L3-requirements/nfr-grade.md b/docs/helix-labo/L3-requirements/nfr-grade.md\nindex fe93bb129..3b1b17515 100644\n--- a/docs/helix-labo/L3-requirements/nfr-grade.md\n+++ b/docs/helix-labo/L3-requirements/nfr-grade.md\n@@ -258,6 +258,6 @@ L10は69個の完全ID定義を保持する。literalから抽出した分類候\n |---|---|---|---|\n | `LABO-068-NFR-01` — identity一意性・scope相関 | `attempt_count` は選択scopeのdistinct OS Attempt identity数。各identityは一度だけ。 | assignment、identity、task/scope/revision/evaluation key、event/correction lineage、scope内外の判別をidentityごとに照合する。 | 新しい件数閾値、成功率、最低Nを置かない。重複・scope不整合を補完しない。 |\n | `LABO-068-NFR-02` — 完全性・unknown伝播 | OSが当該選択範囲の捕捉完全性を示せないとき総数は`unknown`。 | completeness claimをsource receipt・revision・correction状態と照合し、assertionだけでなく根拠を要求する。 | 固定遅延時間、SLA、観測window、欠測許容率を新設しない。event遅延・訂正event遅延は総数unknown。遅延eventや別scope履歴から欠落Attemptを推測しない。 |\n-| `LABO-068-NFR-03` — state・訂正の分離 | denied-with-identityはcount、identityなしpre-execution denialはintakeとして別記。result receipt欠落で当該範囲のAttempt記録完全性を確認できない場合は総数unknown/未評価、該当stateもunknownとして別fieldで保持する。identity集合receiptだけで記録完全性を代替しない。 | 個体identityと結果state、duplicate resend/correction, CI rerun, same-Attempt repair roundを別field/source receiptで照合する。 | 状態を合算して品質評価しない。065/067と換算しない。新oracle、分類、権限を定義しない。 |\n+| `LABO-068-NFR-03` — state・訂正の分離 | denied-with-identityはcount、identityなしpre-execution denialはintakeとして別記。result receipt欠落時は当該範囲のAttempt記録完全性receiptの有無にかかわらず総数unknown/未評価、該当stateもunknownとして別fieldで保持し、既知の観測sourceまたはOS記録owner区分へ不足を返す。個体identityが不明ならunknownを別に保持する。 | 個体identityと結果state、duplicate resend/correction, CI rerun, same-Attempt repair roundを別field/source receiptで照合する。 | 状態を合算して品質評価しない。065/067と換算しない。新oracle、分類、権限を定義しない。 |\n \n 候補技術値は固定L2/L11の観測単位・unknown動作から導いた提案で、実測根拠や採択済み閾値ではない。対象母集団・期間・cutoffは呼出し側が既に選択したscope/receiptから受け取り、この親で新設しない。実行・performance測定は未実施。\n",
+  "limitations": [
+    "The record is a /tmp timepoint candidate and not a canonical audit.",
+    "Only the 4 changed requirement documents were modified in the body commit; two other suffixes remain byte-identical.",
+    "The prior review findings R1-R12 are preserved as raw review text, not independently adjudicated."
+  ]
+}
