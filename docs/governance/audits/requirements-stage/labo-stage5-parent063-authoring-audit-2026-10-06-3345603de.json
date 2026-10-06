@@ -1,0 +1,1716 @@
+{
+  "title": "LABO Stage 5 parent 063 authoring audit candidate",
+  "record_state": "published authoring audit, not approval; fixed body and source pins",
+  "authoring_scope": "Only the six L3/L10 canonical documents, parent HELIXLABO-L2-063. Worker made no commit/push/PR/merge; Root committed body 3345603de and context merge 088249a. No runtime/test/CI execution.",
+  "source_basis_revision": "048a1770d10f5a1f24f7cf0a95f43dfdc318591d",
+  "review_base": "3795bf0dcb731231a0b5ca1faa3cb67bdfeda22a",
+  "current_worktree_head": "088249a12826af8a04ba49e216b94f3b6e30aeba",
+  "body_revision": "3345603ded62ab190f2f745ecd19ac28318fca39",
+  "body_revision_short": "3345603de",
+  "body_revision_state": "committed; audit record remains candidate",
+  "body_files": {
+    "functional_requirements": {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "base_revision": "048a1770d10f5a1f24f7cf0a95f43dfdc318591d",
+      "base_full_bytes": 285259,
+      "base_full_sha256": "7f60a7fb1ed45ac9fcd157cb1f0bec6aa82a0eb0207839c5912b478b8a190b55",
+      "current_bytes": 292873,
+      "current_full_sha256": "2bef02dabb0f377d3f7cfc82854e7e26f3eee6b3d55f9e82e908c187c1fc93f1",
+      "suffix_offset_bytes": 285259,
+      "suffix_bytes": 7614,
+      "suffix_raw_lf_sha256": "92cc1a3a816081ecdab67fd797202a932e5762b6d686c4fa2bf273d5440c0c56",
+      "prefix_byte_equal": true
+    },
+    "business_requirements": {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "base_revision": "048a1770d10f5a1f24f7cf0a95f43dfdc318591d",
+      "base_full_bytes": 11731,
+      "base_full_sha256": "647f91387dc2cc22c617eb56adede69bdecb3e5057958ee4f424745941300ed8",
+      "current_bytes": 12926,
+      "current_full_sha256": "2076362505fffdd21f0bac4d375743c5b2e22fb634999d9b0e42bcc3f8a56208",
+      "suffix_offset_bytes": 11731,
+      "suffix_bytes": 1195,
+      "suffix_raw_lf_sha256": "b2281e3b77e1322cd8d10d23322ef8b8f08c20c12789e9af99db0a015aae2894",
+      "prefix_byte_equal": true
+    },
+    "nfr_grade": {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "base_revision": "048a1770d10f5a1f24f7cf0a95f43dfdc318591d",
+      "base_full_bytes": 62143,
+      "base_full_sha256": "d2a46e3f1b558829b203d1173b1dc27b51e9e76ab3c73dc5c1cc6864788e8252",
+      "current_bytes": 64268,
+      "current_full_sha256": "72b46aae68bed2e5b359955b2f9cd9623d1d0bde69f9b4e42f792ee089ae7d62",
+      "suffix_offset_bytes": 62143,
+      "suffix_bytes": 2125,
+      "suffix_raw_lf_sha256": "ae2f1991b9eda7f8d6a6cfa60714dcc94062c5c9280950aa9fb61b001bc38417",
+      "prefix_byte_equal": true
+    },
+    "functional_verification": {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "base_revision": "048a1770d10f5a1f24f7cf0a95f43dfdc318591d",
+      "base_full_bytes": 380682,
+      "base_full_sha256": "53e772bcf72d184c5b98e7c8084a00b11658a8084148f730c7f7d3dfd7e00794",
+      "current_bytes": 402074,
+      "current_full_sha256": "77b396ffbfb64765155774c410829d2ef6b2c9a854b463c38a6d9b2d666c4195",
+      "suffix_offset_bytes": 380682,
+      "suffix_bytes": 21392,
+      "suffix_raw_lf_sha256": "58ccc56e9afc1f02e3a87f15a1cac1087ee1091e175fada0e3bfefef6a124703",
+      "prefix_byte_equal": true
+    },
+    "business_verification": {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "base_revision": "048a1770d10f5a1f24f7cf0a95f43dfdc318591d",
+      "base_full_bytes": 9921,
+      "base_full_sha256": "ed9a68074043855948356c3f23eaaad62271ee160ed92ace3e97c259ae3d2ac8",
+      "current_bytes": 10925,
+      "current_full_sha256": "aa06437d9a26fc833a2bf15ca5d9f87df427b68fd7886499f1fb6c2f0176cec3",
+      "suffix_offset_bytes": 9921,
+      "suffix_bytes": 1004,
+      "suffix_raw_lf_sha256": "4d800563f12f2fbc9775be7e26a3f45b4a75cc815f663b1497f23f2360337009",
+      "prefix_byte_equal": true
+    },
+    "nfr_verification": {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "base_revision": "048a1770d10f5a1f24f7cf0a95f43dfdc318591d",
+      "base_full_bytes": 51012,
+      "base_full_sha256": "85bce25679e64ee5c5aa03c96cb1b751488a67bbdc72aee8fa56191bbd8bfe18",
+      "current_bytes": 54669,
+      "current_full_sha256": "b8e6be1963b35ea6d90874f15e41b0b3a3cb7d7070a657be8a2b330a5e3730fb",
+      "suffix_offset_bytes": 51012,
+      "suffix_bytes": 3657,
+      "suffix_raw_lf_sha256": "89eca3bb4b52c7bc239782844791eaf04b2ceefd83f188de2863c09d82f32545",
+      "prefix_byte_equal": true
+    }
+  },
+  "fixed_parent_and_decision_pins": {
+    "fixed_l2": {
+      "label": "fixed L2-063",
+      "revision": "0dd946cec1c3fca8e144513b72e2e10d16c7c9c3",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "full_bytes": 113504,
+      "full_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+      "start_line": 480,
+      "end_line": 490,
+      "span_bytes": 4298,
+      "span_raw_lf_sha256": "bb239f6a98b11cba1bc8bb3a8f0f42563f377594e8018c644808a8b5d0bf3416",
+      "literal_with_line_terminators": "### HELIXLABO-L2-063 修復手順の再発評価と予防候補への還流（構成体追補候補、1.0）\n\n- **親・状態**：HELIXLABO-L1-007／008。`version_target: 1.0`、未採択の追補候補。050の内部改善循環のうち、成功した修復の知見を保持し、同種の再発から予防候補へ返す条件を具体化する。既存の要求採用、修復の実行許可、個々の改善採否は継承しない。\n- **入力**：修復対象と版、問題・原因候補・適用条件、実際の修復手順と結果証拠、検証結果、再発防止として確認できた範囲、失敗・反例を受け取る。INTELLIGENCEのrepair案、OS割当Workerの実行、HARNESSの検証、LABOの効果評価を区別し、案や単一のgreenだけを成功手順にしない。\n- **記録の引継ぎ**：修復の成功と再発防止の根拠が明確になった時点で、その手順（recipe）・適用範囲・対象版・原証拠・残る義務をLABOの評価対象知識として保持し、OSの既存Feedback登録/振り分けを通じてimprovement backlogへ対応を残す。修復作業の終結だけで知見の保存や改善側への引継ぎが済んだことにしない。移管不能・登録失敗は未完義務として保持する。\n- **反復の評価**：同種修復の反復を、問題・手順・適用条件・版・episodeの同一性を確認して集計する。再送・重複観測を別の成功事例へ水増しせず、異なる原因や適用条件を同じ手順の実績へ無条件に混ぜない。適用する反復閾値・観測範囲とその根拠を入力として保持し、数値をこの候補で新設しない。母集団や閾値が不明なら不明を表示し、頻出または頻出していないと断定しない。\n- **提供・保証**：閾値以上の同種反復を確認した場合、gate／detectorへ予防条件を組み込む候補と、元手順・反復根拠・適用範囲・反例・検証義務を返す。未処理の頻出問題は少なくとも警告として可視化し、成功修復数だけを見せて放置を隠さない。LABO-010のFeedback契約でOSへ渡し、OSが該当HARNESS工程契約等のownerへ登録・振り分ける。候補発行・backlog登録・採用・対象変更・再検証・運用後再観測は別状態で追い、LABOがgateを直接強制しない。\n- **責務・依存**：常時必要なのは許可された修復観測、LABO-009/010/050の範囲評価・Feedback・循環追跡、OSの登録/振り分け。再実験・修正を選ぶ場合だけ該当OS割当Workerと対象HARNESS検証契約を使う。過去結果を評価するだけの操作に新規修復実行を強制しない。汎用構造として評価できた場合のBRAIN向け候補と、特定問題の修復知見を区別し、後者を無条件にBRAINへ一般化しない。\n- **失敗時の戻し先**：観測・対象版の欠落は提供主体へ、修復成功/再発防止の根拠不足はLABO評価へ、登録・振り分け不成立はOSへ返す。ownerによる変更や運用後観測が欠けた予防候補は循環未完のまま保持する。手順や対象契約の改版で適用条件が変わった場合は旧頻度・成功結果の適用を再評価し、古い結果から現行の有効性を生成しない。\n- **旧sourceと既決の意味変更**：旧Pillar HR-FR-P4-02/HAC-P4-02a/b（`LEGACY-ASSET-EE5DBACC7F28F7D1F605`）を起点にする。`PREISO-REV-000013`のbaseline `6fabd12512a3659fff4a956692cdd61faeeb16ce`（149/230/231行）とpre-isolation `2d4991042be55268bac30a8bbcdac45b3865030a`（155/239/240行）の原文を別入力として保存し、成功手順・backlog・反復・予防候補・放置への警告を保持する。旧harness memoryへの知識保存は、[2026-09-24 PO判断](../../governance/decisions/concept-requirement-po-decisions-2026-09-24.md)「HMC-BR-003」の、知識を1.0〜2.xではLABOが評価して保持する責務へ再導出する。harness memoryを連携通知へ限定する判断を変更せず、旧Learning／Skill authorityやprovider標準memoryを復活させない。旧doctorというCLIは使わず、LABO評価とOS運転へ責務を分ける。\n\n"
+    },
+    "fixed_l11": {
+      "label": "fixed L11-063",
+      "revision": "0dd946cec1c3fca8e144513b72e2e10d16c7c9c3",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "full_bytes": 66593,
+      "full_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+      "start_line": 225,
+      "end_line": 231,
+      "span_bytes": 1928,
+      "span_raw_lf_sha256": "5e7c8afa50b3f430b01b641f145abee034e0b4ef87af3a4146c820c9c9aea174",
+      "literal_with_line_terminators": "### HELIXLABO-L2-063 修復手順の再発評価と予防候補への還流\n\n- **対応・境界**：L2-063と同じ未採択候補、`version_target: 1.0`。旧doctor・memory runtimeは起動せず、要求と受入の対として照合する。\n- **正常**：対象版・適用条件・修復結果・独立した検証根拠を持つ成功手順をLABOの知識記録とOSの改善backlogへ結び、同種修復の閾値以上の反復からgate/detector候補を出せる。反復数・母集団・閾値の根拠と反例を添え、未処理は少なくとも警告として見える。OS登録、target ownerの採否、変更・検証・運用後再観測が同じ手順/候補の系譜で区別される。\n- **個別反例**：repair案だけで成功手順とする、成功終結後に手順/改善backlog対応が残らない、再送を反復へ加算する、異なる原因/適用条件を混ぜる、閾値や母集団不明を0で補う、頻出を検出しても候補も警告も出さない、候補や登録だけで予防完了とする、LABOがgateを直接有効化する例をそれぞれ不成立とする。\n- **未見・再評価**：似た症状でも原因・適用条件が異なる場合は同種と断定せず不明を保持し、評価へ戻す。手順/契約の改版では旧成功と現在の有効性を分け、適用範囲の再評価と未完義務を引き継ぐ。登録失敗、target変更未完、運用後観測欠落をそれぞれ成功へ丸めず責務先へ返す。\n- **記憶とauthorityの境界**：評価対象知識はLABO、改善の登録・振り分けはOS、変更の採否と実施は対象ownerに残る。harness memoryやprovider標準memoryを修復知識の正本へ戻した場合、特定問題の知見を未評価でBRAINの汎用構造にした場合、新たな実行権限を頻度や成功結果から生成した場合は不合格とする。\n"
+    },
+    "po_adoption_row": {
+      "label": "PO adoption row MPR-RC-HELIXLABO-L2-063-001",
+      "revision": "7581e0fc5f2a790eb5bf6f163e70d4b900ff4a45",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "full_bytes": 45099,
+      "full_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "start_line": 78,
+      "end_line": 78,
+      "span_bytes": 594,
+      "span_raw_lf_sha256": "20f5aacad8c2b6244c85afd9c28f28cc6597278a1c57fbd0705c3f4b2f59c489",
+      "literal_with_line_terminators": "| `HELIXLABO-L2-063` | 採択 | `MPR-RC-HELIXLABO-L2-063-001` | `docs/helix-labo/L2-requirements/labo-requirements.md` | `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9` | `sha256:274ea8f4562f7677b90f72bdbc8ba474540fdb74e3f6ff9e6632ad1274566c1a` | `HELIXLABO-L2-063` | `docs/helix-labo/L11-acceptance/labo-acceptance.md` | `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0` | `sha256:5e7c8afa50b3f430b01b641f145abee034e0b4ef87af3a4146c820c9c9aea174` | `docs/governance/audits/requirement-registration/labo-repair-recurrence-coverage-receipt-2026-09-28.json` |\n"
+    },
+    "g0_sequence_metadata": {
+      "label": "G0 Stage 5 sequence metadata for parent 063",
+      "revision": "048a1770d10f5a1f24f7cf0a95f43dfdc318591d",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "full_bytes": 183432,
+      "full_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "start_line": 303,
+      "end_line": 303,
+      "span_bytes": 185,
+      "span_raw_lf_sha256": "d0e023f285671dd09889b1c36e6bf10b8c89d3324b1c8ef6858f0d2f3b4339ba",
+      "literal_with_line_terminators": "| `HELIXLABO-L2-063` | `MPR-RC-HELIXLABO-L2-063-001` | `docs/governance/decisions/po-decision-2026-09-29-57candidates.md#L78` | `1.0 target candidate` | `Stage 5` | `new124 addition` |\n"
+    },
+    "provisional_register_metadata": {
+      "label": "current provisional register metadata for MPR-RC-HELIXLABO-L2-063-001",
+      "revision": "048a1770d10f5a1f24f7cf0a95f43dfdc318591d",
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "full_bytes": 3370048,
+      "full_sha256": "d24a982af1c468bb32c9822777a3234d3ce065ff63b89c944b7b04447610c99b",
+      "start_line": 486,
+      "end_line": 486,
+      "span_bytes": 2772,
+      "span_raw_lf_sha256": "ae7a22f3a4fcfa9b916cf5ce57209a4800cc334a5a37dce98d0119eb0f51d991",
+      "literal_with_line_terminators": "{\"registration_id\":\"MPR-RC-HELIXLABO-L2-063-001\",\"supersedes_registration_id\":null,\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HELIXLABO-L2-063\",\"requirement_kind\":\"composite\",\"product_target\":\"HELIX-LABO\",\"candidate_source_path\":\"docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-063\",\"candidate_semantic_digest\":\"sha256:274ea8f4562f7677b90f72bdbc8ba474540fdb74e3f6ff9e6632ad1274566c1a\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@a5b8e8f3b3487f8ab3ff5b79bec923336ad89546 sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78\",\"parent_planning_revision\":\"docs/helix-labo/L1-planning/labo-intent.md@a5b8e8f3b3487f8ab3ff5b79bec923336ad89546 sha256:78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc（確認済み親bytes。新候補の採用は継承しない）\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/labo-repair-recurrence-coverage-receipt-2026-09-28.json#HELIXLABO-L2-063\",\"source_atom_set_digest\":\"sha256:f425e39573294f16652aa45bf67acecea206f7a31e49627409927583e3afffd9\",\"source_atom_count\":6,\"source_collection_scope\":\"PREISO-REV-000013のbaseline/pre-isolation両revisionのHR-FR-P4-02/HAC-P4-02a/b計6行。選定3条件のbytes一致を確認するが全file同等性/全旧Pillar被覆を主張せず、他holdingや175identityへ独立要求数として加算しない。\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/labo-repair-recurrence-coverage-receipt-2026-09-28.json\",\"coverage_result\":\"no_loss\",\"carried_atom_refs\":[\"PILLAR-RECIPE-BASELINE-L0149\",\"PILLAR-RECIPE-BASELINE-L0230\",\"PILLAR-RECIPE-BASELINE-L0231\",\"PILLAR-RECIPE-PRE_ISOLATION-L0155\",\"PILLAR-RECIPE-PRE_ISOLATION-L0239\",\"PILLAR-RECIPE-PRE_ISOLATION-L0240\"],\"preserved_pending_registration_refs\":[],\"human_decision_disposition_refs\":[\"docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md@a5b8e8f3b3487f8ab3ff5b79bec923336ad89546 sha256:a60e2c9c5b9d0828acdf4348e5cabbf7f3c032ec5d33b628f3d9e2bf305176de lines 67-69 (HMC-BR-003)\"],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex execution lane\",\"registered_at\":\"2026-09-28T03:39:45+09:00\",\"evidence_refs\":[\"docs/helix-labo/L1-planning/labo-intent.md\",\"docs/helix-labo/L2-requirements/labo-requirements.md\",\"docs/helix-labo/L11-acceptance/labo-acceptance.md\",\"docs/governance/audits/requirement-registration/pillar-recipe-source-lines-2026-09-28.jsonl\",\"docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md\",\"docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md\",\"docs/governance/audits/requirement-registration/labo-repair-recurrence-coverage-receipt-2026-09-28.json\"]}\n"
+    },
+    "hmc_br_003": {
+      "label": "HMC-BR-003 knowledge responsibility",
+      "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+      "path": "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md",
+      "full_bytes": 14170,
+      "full_sha256": "a60e2c9c5b9d0828acdf4348e5cabbf7f3c032ec5d33b628f3d9e2bf305176de",
+      "start_line": 68,
+      "end_line": 68,
+      "span_bytes": 218,
+      "span_raw_lf_sha256": "9c4a1901a3ba454fd610d5b4c7993a0b228202d8d0bb7673f891c44ead98ae1e",
+      "literal_with_line_terminators": "- **HMC-BR-003**：規則は仕組みで吸収する。知識は、1.0〜2.xではLABOが評価して保持し、3.0からはIntelligenceが改善に使う。Learning／Skill authorityという旧名は使わない。\n"
+    }
+  },
+  "old_source_and_consumer_pins": [
+    {
+      "label": "baseline HR-FR-P4-02",
+      "revision": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "full_bytes": 63642,
+      "full_sha256": "665dbbfc09ac27369c102ad1963f03cab16e44bb57cd80e0efe1e89dc6325393",
+      "start_line": 149,
+      "end_line": 149,
+      "span_bytes": 168,
+      "span_raw_lf_sha256": "bacb965380167dbc0492aad52ed470f67181d3b3569c2a39282b2184546acb25",
+      "literal_with_line_terminators": "| HR-FR-P4-02 | HBR-P4 | 成功 repair recipe は harness memory に記録され、頻出時は gate/detector/backlog へ promote される | HAC-P4-02a / HAC-P4-02b |\n"
+    },
+    {
+      "label": "baseline HAC-P4-02a/b",
+      "revision": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "full_bytes": 63642,
+      "full_sha256": "665dbbfc09ac27369c102ad1963f03cab16e44bb57cd80e0efe1e89dc6325393",
+      "start_line": 230,
+      "end_line": 231,
+      "span_bytes": 293,
+      "span_raw_lf_sha256": "c201bfb26cdc61558e750f60fae2107d84f290d23479ea53fdce11a41e761883",
+      "literal_with_line_terminators": "| HAC-P4-02a | repair が成功し再発防止が明確 | close を実行 | harness memory と improvement backlog に recipe を保存 |\n| HAC-P4-02b | 同種 repair が閾値以上に反復 | doctor を実行 | gate/detector promote candidate を出し、放置を warning 以上にする |\n"
+    },
+    {
+      "label": "pre-isolation HR-FR-P4-02",
+      "revision": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "full_bytes": 65731,
+      "full_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "start_line": 155,
+      "end_line": 155,
+      "span_bytes": 168,
+      "span_raw_lf_sha256": "bacb965380167dbc0492aad52ed470f67181d3b3569c2a39282b2184546acb25",
+      "literal_with_line_terminators": "| HR-FR-P4-02 | HBR-P4 | 成功 repair recipe は harness memory に記録され、頻出時は gate/detector/backlog へ promote される | HAC-P4-02a / HAC-P4-02b |\n"
+    },
+    {
+      "label": "pre-isolation HAC-P4-02a/b",
+      "revision": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "full_bytes": 65731,
+      "full_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "start_line": 239,
+      "end_line": 240,
+      "span_bytes": 293,
+      "span_raw_lf_sha256": "c201bfb26cdc61558e750f60fae2107d84f290d23479ea53fdce11a41e761883",
+      "literal_with_line_terminators": "| HAC-P4-02a | repair が成功し再発防止が明確 | close を実行 | harness memory と improvement backlog に recipe を保存 |\n| HAC-P4-02b | 同種 repair が閾値以上に反復 | doctor を実行 | gate/detector promote candidate を出し、放置を warning 以上にする |\n"
+    },
+    {
+      "label": "archived P4 requirements surrounding HR-FR-P4-02",
+      "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "full_bytes": 65731,
+      "full_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "start_line": 154,
+      "end_line": 156,
+      "span_bytes": 570,
+      "span_raw_lf_sha256": "9d0257f90826b20a3bb20663eacdc70863c7e093b2ea3bb9095cd6c3b1c39b31",
+      "literal_with_line_terminators": "| HR-FR-P4-01 | HBR-P4 | drift/劣化/不整合 detector の event は repair candidate、route、owner、rollback を持つ修復 action へ変換される | HAC-P4-01a / HAC-P4-01b |\n| HR-FR-P4-02 | HBR-P4 | 成功 repair recipe は harness memory に記録され、頻出時は gate/detector/backlog へ promote される | HAC-P4-02a / HAC-P4-02b |\n| HR-FR-P4-03 | HBR-P4 / HBR-P9 | 実装精度、レビュー指摘、再作業、テスト時間、flake、デグレ検出を metric event として収集し、改善候補へ変換する | HAC-P4-03a / HAC-P4-03b |\n"
+    },
+    {
+      "label": "archived P4 acceptance atoms including HAC-P4-02a/b",
+      "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "full_bytes": 65731,
+      "full_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "start_line": 237,
+      "end_line": 240,
+      "span_bytes": 607,
+      "span_raw_lf_sha256": "af33ea6ccd353dc1b7698f7f9aabeca5daaa466de1ea72e196d785f80bc6b7ad",
+      "literal_with_line_terminators": "| HAC-P4-01a | detector が drift/flake/perf regression を出す | routing を実行 | repair candidate、rollback、owner、risk を持つ action に変換 |\n| HAC-P4-01b | repair risk が destructive / auth / PII 等に触れる | action を評価 | 自動適用せず action-binding approval 待ちにする |\n| HAC-P4-02a | repair が成功し再発防止が明確 | close を実行 | harness memory と improvement backlog に recipe を保存 |\n| HAC-P4-02b | 同種 repair が閾値以上に反復 | doctor を実行 | gate/detector promote candidate を出し、放置を warning 以上にする |\n"
+    },
+    {
+      "label": "paired P4 acceptance consumer HAT-P4-02",
+      "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "full_bytes": 30874,
+      "full_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+      "start_line": 112,
+      "end_line": 112,
+      "span_bytes": 164,
+      "span_raw_lf_sha256": "7e567d6913cb01071968d1f08e6f8e48883e57f2174af8c043408734e5e0ac9e",
+      "literal_with_line_terminators": "| HAT-P4-02 | HR-FR-P4-02 | HAC-P4-02a/b | repair recipe が memory/backlog へ残り、頻出時に promote 候補になる | memory + improvement-backlog tests |\n"
+    },
+    {
+      "label": "related UIL-R-11 source",
+      "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "full_bytes": 12101,
+      "full_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "start_line": 175,
+      "end_line": 181,
+      "span_bytes": 386,
+      "span_raw_lf_sha256": "2ef53711cb152ee724357329c090efa164190c69caf411bd7922d021a7839bbb",
+      "literal_with_line_terminators": "## UIL-FR-006 recipe昇格と再発監視\n\n### UIL-R-11 recipe昇格\n\n改善recipeは複数episode、異なるscope、counterexample、mutation、benchmark、version、applicability、expiry、rollbackが\n揃った場合だけcandidate化する。単一project成功やAI評価をgeneral ruleへ昇格しない。rule promotionは既存System\nSynthesisのhuman review境界に従う。\n"
+    },
+    {
+      "label": "related UIL-R-12 source; root supplied supplement",
+      "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "full_bytes": 12101,
+      "full_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "start_line": 183,
+      "end_line": 187,
+      "span_bytes": 328,
+      "span_raw_lf_sha256": "f1dda3414bc91227deff6b838d8f36b6028e52a2b5c1c6e4c607d0d1a9af9e6e",
+      "literal_with_line_terminators": "### UIL-R-12 再発監視\n\nadopted後も同一invariant、finding class、scope、release／operation windowを監視し、再発、効果消失、副作用、environment\ndriftを新しいevidenceとして元episodeへ因果接続する。再発時は過去の成功receiptで相殺せず、新baselineから再評価する。\n\n"
+    },
+    {
+      "label": "related UIL recurrence state sequence",
+      "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "full_bytes": 12101,
+      "full_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "start_line": 210,
+      "end_line": 220,
+      "span_bytes": 313,
+      "span_raw_lf_sha256": "0993323c98cb022e42bec06ed94653d5bd707ab1b555cea30d3b6d6d42ca8b1c",
+      "literal_with_line_terminators": "→ IMPROVEMENT_CANDIDATE_PROPOSED\n→ COUNTERFACTUAL_EVALUATED\n→ ROUTED\n→ CHANGE_VERIFIED\n→ OUTCOME_MEASURED\n→ RECIPE_CANDIDATE\n→ RECURRENCE_MONITORED\n→ TERMINAL\n```\n\n順序飛越、別baseline／HEAD／scopeの証拠混載、予測から効果確定、terminal outcomeの上書きを拒否する。\n"
+    },
+    {
+      "label": "related UIL paired consumer AC-017/018",
+      "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-improvement-loop-acceptance.md",
+      "full_bytes": 4977,
+      "full_sha256": "f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943",
+      "start_line": 36,
+      "end_line": 37,
+      "span_bytes": 300,
+      "span_raw_lf_sha256": "0f47af7ba6f0c426ec31a4dcedcdf33447a5b2112f437e1698ef7c26e4066ff2",
+      "literal_with_line_terminators": "| UIL-AC-017 | UIL-R-11 | 複数episode、counterexample、mutation、version、expiry後だけrecipe候補になる | 単一project成功をgeneral ruleにしない |\n| UIL-AC-018 | UIL-R-12 | recurrence windowで再発と効果消失を因果接続する | 過去greenで再発を相殺しない |\n"
+    }
+  ],
+  "root_uil_r12_supplement": {
+    "status": "readonly related source supplement, not parent063 approval",
+    "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+    "start_line": 183,
+    "end_line": 187,
+    "full_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+    "raw_lf_sha256": "f1dda3414bc91227deff6b838d8f36b6028e52a2b5c1c6e4c607d0d1a9af9e6e",
+    "literal_with_lf": "### UIL-R-12 再発監視\n\nadopted後も同一invariant、finding class、scope、release／operation windowを監視し、再発、効果消失、副作用、environment\ndriftを新しいevidenceとして元episodeへ因果接続する。再発時は過去の成功receiptで相殺せず、新baselineから再評価する。\n\n"
+  },
+  "case_inventory": {
+    "old_snapshot_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+    "old_full_body_bytes": 452839,
+    "old_full_body_sha256": "7a6c7dc1f88c77bbd628a1320c0393f0ad6c14b76d5a30db0c4cda27d22b9d16",
+    "old_functional_requirements_span": {
+      "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "full_bytes": 292007,
+      "full_sha256": "4c4094c2be5d55614ab4ad85175bc7a28da209524ddb5013532420187e4997ef",
+      "start_line": 1622,
+      "end_line": 1632,
+      "span_bytes": 3380,
+      "span_raw_lf_sha256": "c6a362e5beaeea44dbc7ffb1959775745f2c72997333a03b632c707e37affee4",
+      "literal": "### LABO-063-FR-01 — 修復再発評価から予防candidateへの還流\n\n親: `HELIXLABO-L2-063`（`MPR-RC-HELIXLABO-L2-063-001`、1.0 composite）。対象版、原因候補、条件、修復手順、実行・検証結果、再発/反例を元sourceへ結び、再発評価と予防candidateをLABO記録として保持する。INTELLIGENCEのrepair案、OS割当Workerの実行、HARNESS検証、LABO効果評価を別状態にし、成功一件やgreenだけで再発防止を確定しない。Recipe/sourceのcanonical ownershipは既存ownerに残す。LABO自身はgateを直接有効化・強制しない。\n\n- `LABO-063-AC-01` 正常: 修復・検証後の対象同一scopeで観測された再発と反例を、元episode/対象revisionとともに評価し、支持範囲だけを予防candidateへ返す。\n- `LABO-063-AC-02` 未見正常: 同条件の未見再発eventもsource/evidenceと条件が追跡できる範囲で候補へ記録し、別scopeへの一般化をしない。\n- `LABO-063-AC-03` 不成立・戻し先: 原因候補/適用条件、修復手順/結果証拠、OS execution、LABO evaluation、HARNESS verificationの各欠落/stale、別target/episode混合、知識保持欠落、backlog登録不成立、canonical sourceへの直接write/promote、およびLABOがgateを直接有効化・強制することを個別に不成立とする。修復候補だけ、登録だけ、頻出検出だけで成功/予防完了としない。再発relationだけ欠落ならL2-063に従いLABO評価を未完としてLABOへ戻す。source欠落は該当source ownerへ、OS executionはOS、HARNESS verificationはHARNESS、登録/routingはOS、canonical source変更は元ownerが担う。重複送信・重複観測で件数を水増しせず、閾値/母集団不明を0で補わず、頻出未解消をcandidate/warningなしに閉じず、target変更後の未完や運用後観測欠落を成功へ丸めず、改版時には旧頻度/成功を再評価し、未再評価結果をcurrentへ流用せず、memoryを正本化せず、BRAINへ無条件一般化せず、頻度から実行権限を生成せず、異なる原因/適用条件を混ぜない。原因だけが異なる場合と適用条件だけが異なる場合を別々に不成立とし、各event群を分離する。\n- 旧source: `LEGACY-ASSET-EE5DBACC7F28F7D1F605` (`pillar-functional-requirements.md:154–156,237–242`) とpaired P4 `LEGACY-ASSET-44DD86E3DEC09E65EF51`、UIL L3/L10 `LEGACY-ASSET-02D897E62EF2FA267267` / `LEGACY-ASSET-0B5B38F146D9538C9A36`。再発/effect/recipe候補の評価意味だけ再導出する。旧P4 HR-FR-P4-02/HAC-P4-02a,bの成功recipe保持、backlog連携、反復閾値、gate/detector candidate、未処理warningを保持点として読む。2026-09-24 PO判断に従い、評価対象知識の保持はLABO、既存backlog登録/routingはOS、canonical sourceの変更は既存ownerへ意味を再導出する。旧harness memory authority、自治的doctor/runtime、旧owner配置は置換し、LABOの評価知識保持まで禁止しない。\n\n- 追補CASE trace: `L10-LABO-063-CASE-06`〜`CASE-65`は `LABO-063-AC-03` のCASE索引であり（独立fixture行とalias/index行を区別し）、正常CASE-05/07/10（AC-01）は不成立条件ではなく、各入力変異と期待oracleは対のStage 5 L10表に記録する。\n\n"
+    },
+    "definition_count": 69,
+    "old_definitions": [
+      {
+        "id": "L10-LABO-063-CASE-01",
+        "ac": "LABO-063-AC-01",
+        "old_kind_from_literal": "normal_or_unseen_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2721,
+        "old_raw_lf_bytes": 209,
+        "old_raw_lf_sha256": "04ec8980b2c83abec891cc78852558af0395fbdf5972ac8893352b2ce6a48b36",
+        "old_literal_with_lf": "- `L10-LABO-063-CASE-01`（対応AC: `LABO-063-AC-01`） 正常: repair result、HARNESS verification、対象revision、後続再発eventを元episodeに束ね、根拠のある予防candidateだけ返す。\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-02",
+        "ac": "LABO-063-AC-02",
+        "old_kind_from_literal": "normal_or_unseen_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2722,
+        "old_raw_lf_bytes": 167,
+        "old_raw_lf_sha256": "8e6b9bc4656bf1ccc063cdbeb25bfc6b2644ef1454f6cfd23911b17c67218766",
+        "old_literal_with_lf": "- `L10-LABO-063-CASE-02`（対応AC: `LABO-063-AC-02`） 未見正常: 条件一致の未見再発eventを新たなevidenceとして保持し、generalizeしない。\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-03a",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "index_or_alias",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2726,
+        "old_raw_lf_bytes": 244,
+        "old_raw_lf_sha256": "9fe677df2f0287c62d4eebc8f63fb7cc2d4a8ebe9392a1e287bb70b55670eb22",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-03a` | `LABO-063-AC-03` | 索引（独立fixtureではない）: CASE-46のHARNESS verification receipt欠落を直接参照する。 | CASE-46を唯一のfixtureとして参照し、CASE-33との重複を数えない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-03b",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2727,
+        "old_raw_lf_bytes": 142,
+        "old_raw_lf_sha256": "5d09813ea1e6efd3dfa63e8273f6b4728d73cbc9349afe415d45ec1799a67832",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-03b` | `LABO-063-AC-03` | target revisionだけ別 | evidenceを混ぜずtarget ownerへ。 戻し先: target owner。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-03c",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2728,
+        "old_raw_lf_bytes": 145,
+        "old_raw_lf_sha256": "f14d6ed43c1f898cc94daa02d3597bc5ece6854b83e5f50137fd6bc2afb4d473",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-03c` | `LABO-063-AC-03` | recurrence relationだけ欠落 | 再発効果の判断を未完としてLABO評価へ戻す。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-03d",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2729,
+        "old_raw_lf_bytes": 130,
+        "old_raw_lf_sha256": "2aa9d0dd24352ac79333aaa553240957d1930ec71d609a0b4b949fe3b3784a53",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-03d` | `LABO-063-AC-03` | counterexampleだけ除外 | 予防candidate範囲を支持済みとしない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-04a",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2730,
+        "old_raw_lf_bytes": 161,
+        "old_raw_lf_sha256": "824ab409a3681077dd00939777209a7cab9866a2c24c51e000c2e2cd08f5115f",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-04a` | `LABO-063-AC-03` | LABOがcanonical recipeへwrite | 拒否し既存ownerを保つ。 戻し先: canonical recipeの既存owner。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-04b",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2731,
+        "old_raw_lf_bytes": 134,
+        "old_raw_lf_sha256": "2e12e4d2dabf6897f8993caf7e2ec801306b2cd93806a12da1a918c9cb55f41d",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-04b` | `LABO-063-AC-03` | 一件から汎用knowledgeへpromotion | 拒否。既存knowledge ownerへ戻す。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-18",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2735,
+        "old_raw_lf_bytes": 230,
+        "old_raw_lf_sha256": "33943de7d2e8ff0502638e85daee276d6c8ecdcfd66920234a428399fb7f3fc7",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-18` | `LABO-063-AC-03` | 原因候補だけ欠落 | 予防範囲を確定せず未完にする。欠落した原因候補の既存source ownerが識別できればそこへ返し、識別不能はunknown。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-19",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2736,
+        "old_raw_lf_bytes": 218,
+        "old_raw_lf_sha256": "7e2184d2e02d47bdf9502c8288edc0223eb4e0f8c0467b66a24b2bc9281f3fbf",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-19` | `LABO-063-AC-03` | 適用条件だけ欠落 | 別条件へ一般化せず未完にする。適用条件の既存source ownerが識別できればそこへ返し、識別不能はunknown。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-20",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2737,
+        "old_raw_lf_bytes": 219,
+        "old_raw_lf_sha256": "d013fb5ed35b2af7566cd27ed14023cf3cc178620b776fe86a4a674d1f54c8e9",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-20` | `LABO-063-AC-03` | 修復手順だけ欠落 | 成功手順とせず未完にする。修復手順のcanonical source providerが識別できればそこへ返し、識別不能はunknown。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-21",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2738,
+        "old_raw_lf_bytes": 206,
+        "old_raw_lf_sha256": "afbb7bd9920d4e64c1869284ecc865cabec0b29db10ab5d913b7a9e2b37bdbd7",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-21` | `LABO-063-AC-03` | 修復結果証拠だけ欠落 | 結果をunknownとし、該当結果source ownerが識別できればそこへ返し、identity不明はunknownとする。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-22",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2739,
+        "old_raw_lf_bytes": 119,
+        "old_raw_lf_sha256": "6b1d1b8113badd113dca7f5eacc4446c08d89ed4bb96661533f131f5b49ea0e0",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-22` | `LABO-063-AC-03` | OS execution receiptだけ欠落 | 実行成立とせずOSへ戻す。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-23",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2740,
+        "old_raw_lf_bytes": 168,
+        "old_raw_lf_sha256": "abf741ed5de362c6b70218006acee412b52aaa140b892a9770b74d1bcbd74953",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-23` | `LABO-063-AC-03` | LABO evaluation receiptだけ欠落 | 効果評価receiptがないためLABO評価を未完としてLABOに留める。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-24",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "index_or_alias",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2741,
+        "old_raw_lf_bytes": 219,
+        "old_raw_lf_sha256": "4b0d837fb98f29090ae87260e1f5807f8328e6c14194fcc2a240f4c5fdf80ccd",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-24` | `LABO-063-AC-03` | 索引（独立fixtureではない）: CASE-45のHARNESS verification receipt staleを参照する。 | 主fixtureを使い、同じstale変異を二重計上しない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-25",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "index_or_alias",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2742,
+        "old_raw_lf_bytes": 242,
+        "old_raw_lf_sha256": "c0356462b924e40fe274b38b46cd4e56d34420559ca3128dbc5bc665e7e7091a",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-25` | `LABO-063-AC-03` | 索引（独立fixtureではない）: CASE-49（candidate欠落）とCASE-50（warning欠落）を束ねる主索引。 | 各単独fixtureを参照し、複合変異を独立計上しない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-26",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2743,
+        "old_raw_lf_bytes": 236,
+        "old_raw_lf_sha256": "9a34e595205e91aefa4b19b06271aaa3a2f3181e030a5080a36a39e5e53756a5",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-26` | `LABO-063-AC-03` | 単独変異: 未登録の予防candidateを発行しただけで予防完了とする。 | 登録/実施/再観測の完了を推定せず、予防効果を未完のまま保持する。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-27",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2744,
+        "old_raw_lf_bytes": 258,
+        "old_raw_lf_sha256": "7a35adb2dcfc1d707df71d2341f0f715466d59bea04e81ad47bcd2b9bd6b7824",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-27` | `LABO-063-AC-03` | target変更後の条件だけ変更し再観測なし | 未見条件として前結果を流用せず、変更後target/条件の観測source ownerが識別できればそこへ返す。未識別はunknown。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-28",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2748,
+        "old_raw_lf_bytes": 260,
+        "old_raw_lf_sha256": "cd4d43ef2d7b50c2421e8863a09855145c5c843517af688a82c52d3a69a422f6",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-28` | `LABO-063-AC-03` | cause candidateだけstale | 再発/予防評価を保留し、原因候補source providerが識別できればそこへ返す。LABO効果評価も未完のまま保持し、identity不明はunknownとする。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-29",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2749,
+        "old_raw_lf_bytes": 264,
+        "old_raw_lf_sha256": "bae3fa038d36283ecf9193d47a6e967fb030bc5bb4d0ea630b0ec6bb94a826d4",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-29` | `LABO-063-AC-03` | applicability conditionだけstale | 条件一致を推測せず、適用条件source providerが識別できればそこへ返す。LABO効果評価も未完のまま保持し、identity不明はunknownとする。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-30",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "index_or_alias",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2750,
+        "old_raw_lf_bytes": 229,
+        "old_raw_lf_sha256": "9cddeab9f810fa21a7a7806bb9dc2eac0449e8ee72db6c455f9ec29de74947a8",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-30` | `LABO-063-AC-03` | 索引（独立fixtureではない）: CASE-47（procedure stale）とCASE-48（result evidence stale）。 | 各単独fixtureを参照し、複合変異を独立計上しない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-31",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "index_or_alias",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2751,
+        "old_raw_lf_bytes": 202,
+        "old_raw_lf_sha256": "e4af88ed7599a28b14294eada6332bcf672087f4edb0d620af3c8d756a979439",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-31` | `LABO-063-AC-03` | 索引（独立fixtureではない）: CASE-22のOS execution receipt欠落を参照する。 | 主fixtureを使いOS execution receipt ownerへ返す。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-32",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "index_or_alias",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2752,
+        "old_raw_lf_bytes": 210,
+        "old_raw_lf_sha256": "987f7772352dd74094c04cc7ffed126022cf5557d61aeec165ac1c8dde6d5890",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-32` | `LABO-063-AC-03` | 索引（独立fixtureではない）: CASE-23のLABO evaluation receipt欠落を参照する。 | 主fixtureを使いLABO評価を未完として保持する。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-33",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "index_or_alias",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2753,
+        "old_raw_lf_bytes": 286,
+        "old_raw_lf_sha256": "0f21219786a0ad26c13cb85ea9850ab3be9228bf0963854b63ab746a574b22ad",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-33` | `LABO-063-AC-03` | 索引（独立fixtureではない）: CASE-03aとCASE-46の同一receipt欠落を指し、CASE-46を直接参照する。 | CASE-46のoracleを参照し、CASE-03aとの重複および独立fixtureとしての二重計上をしない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-34",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2754,
+        "old_raw_lf_bytes": 146,
+        "old_raw_lf_sha256": "c96f9794983ef79e009ab97d300cc53416280b3674fddcd007083dde6beea456",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-34` | `LABO-063-AC-03` | repair candidateだけで成功手順とする | 成功を拒否し未完義務を保持する。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-35",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "index_or_alias",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2755,
+        "old_raw_lf_bytes": 291,
+        "old_raw_lf_sha256": "a33321ca019fdcb3b2d1f80b2e334015b631bd4e46dfdd4a335b34d07cf9fa2f",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-35` | `LABO-063-AC-03` | 索引（独立fixtureではない）: CASE-41（cause candidateだけ異なる）とCASE-42（applicability conditionだけ異なる）を束ねる主索引。 | 各単独fixtureのoracleを参照し、複合変異を独立計上しない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-36",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "index_or_alias",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2756,
+        "old_raw_lf_bytes": 245,
+        "old_raw_lf_sha256": "4db5c2a2a680bc1620d3e6b726c9f637fc7aa7f6ee0d4b3bbea05e87f8c33ae8",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-36` | `LABO-063-AC-03` | 索引（独立fixtureではない）: CASE-25と同じCASE-49/50二fixtureを指し、CASE-49とCASE-50を直接参照する。 | CASE-49/50を参照し、CASE-25との重複計上をしない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-37",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2757,
+        "old_raw_lf_bytes": 123,
+        "old_raw_lf_sha256": "42c6c866742b701c0ace0b667062a7d7af858220de6a52f8226d1aed630b7db8",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-37` | `LABO-063-AC-03` | OS登録だけで予防完了とする | 予防効果を未完とする。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-38",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2758,
+        "old_raw_lf_bytes": 154,
+        "old_raw_lf_sha256": "bfd051a845f4ca68c29fbdf3c863b535164a7c255c1a155d1e449eb0dafb26a9",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-38` | `LABO-063-AC-03` | 単独変異: LABOがgateを直接有効化する。 | 作用を拒否し、既存owner境界を保つ。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-39",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "index_or_alias",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2759,
+        "old_raw_lf_bytes": 245,
+        "old_raw_lf_sha256": "d54cc4e2d75389e999cbb14316380a165afa39817aa95e86a17445aea2733a93",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-39` | `LABO-063-AC-03` | 索引（独立fixtureではない）: CASE-35と同じCASE-41/42二fixtureを指し、CASE-41とCASE-42を直接参照する。 | CASE-41/42を参照し、CASE-35との重複計上をしない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-40",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2760,
+        "old_raw_lf_bytes": 356,
+        "old_raw_lf_sha256": "81881b4289a02c7f35f55f97114ace8510f404a130cd2084991ca9340f64870b",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-40` | `LABO-063-AC-03` | target revisionが変わった後に未再観測 | 旧条件の結果を流用せず未完とする。変更後targetの観測providerが識別できればそこへ再観測根拠を返し、LABO効果評価も未完のまま保持する。source identityが特定できなければunknownを保持する。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-41",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2761,
+        "old_raw_lf_bytes": 151,
+        "old_raw_lf_sha256": "ad89de71bd062f61235d16cb73a7aa89be82f3ace428a18a594b1ab5c43a5862",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-41` | `LABO-063-AC-03` | cause candidateだけ異なる候補へ置換 | 既存条件から一般化せず未評価とする。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-42",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2762,
+        "old_raw_lf_bytes": 150,
+        "old_raw_lf_sha256": "7039cda6aa10ab4e9a0283d6171eb50fea199b4d3fc7fd48cf43c65d56b311f8",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-42` | `LABO-063-AC-03` | applicability conditionだけ異なる候補へ置換 | 条件外へ流用せず未評価とする。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-43",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2763,
+        "old_raw_lf_bytes": 124,
+        "old_raw_lf_sha256": "f4813cb7b03560bfc3c526e38816fd67690c99644b3df66a4510a9ff91b87099",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-43` | `LABO-063-AC-03` | OS execution receiptだけstale | 実行成立を推測せずOSへ戻す。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-44",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2764,
+        "old_raw_lf_bytes": 138,
+        "old_raw_lf_sha256": "fa45bf7fff28ab00dd3864c996ae4cfd1416ecd3f1a554c38260e80f58b7ad66",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-44` | `LABO-063-AC-03` | LABO evaluation receiptだけstale | 効果評価を未完としLABOで再評価する。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-45",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2765,
+        "old_raw_lf_bytes": 131,
+        "old_raw_lf_sha256": "2912cf84bafdea54678e9bbf6d381539fb62c6df6a4ee4e6f3865ea3a9d23350",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-45` | `LABO-063-AC-03` | HARNESS verification receiptだけstale | 検証成立とせずHARNESSへ戻す。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-46",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2766,
+        "old_raw_lf_bytes": 132,
+        "old_raw_lf_sha256": "b91131032bb9c0e524af6ae78caf5b857eece0839f47f3cebdc2c04e03892727",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-46` | `LABO-063-AC-03` | HARNESS verification receiptだけ欠落 | 検証成立とせずHARNESSへ戻す。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-47",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2767,
+        "old_raw_lf_bytes": 182,
+        "old_raw_lf_sha256": "690c185fe4d4012ae1ea9d0d1aeb6d4b00aa15d5da76641b53dbbf1a63b2a033",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-47` | `LABO-063-AC-03` | repair procedureだけstale | 成功手順とせず、修復手順のcanonical source providerが識別できればそこへ返す。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-48",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2768,
+        "old_raw_lf_bytes": 310,
+        "old_raw_lf_sha256": "f4c3cc473f6c27d95d37943f455015b4b9096d0dc72215d4b52112ee2e49217f",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-48` | `LABO-063-AC-03` | repair result evidenceだけstale | 結果をunknownとし、識別できる結果evidence提供元へstale evidenceを返す。LABOはその結果の効果評価を未完として保持する。提供元identityを特定できない場合は戻し先unknown。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-49",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2769,
+        "old_raw_lf_bytes": 173,
+        "old_raw_lf_sha256": "dc2cbb7236fa2ad5e7bb50801a4754a60264d400f712cf1f5c98dbbc7c080267",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-49` | `LABO-063-AC-03` | 頻出検出後の予防candidateだけ欠落 | warningを予防candidateの代替とせず、予防完了を保留する。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-50",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 2770,
+        "old_raw_lf_bytes": 171,
+        "old_raw_lf_sha256": "ac0d6aed3f899fadc18b515efd7831d55eeb5f68f9279ca3b5c2f90062ece43a",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-50` | `LABO-063-AC-03` | 頻出検出後のwarningだけ欠落 | candidateの存在だけで未処理warningを隠さず、完了を保留する。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-05",
+        "ac": "LABO-063-AC-01",
+        "old_kind_from_literal": "normal_or_unseen_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 3154,
+        "old_raw_lf_bytes": 307,
+        "old_raw_lf_sha256": "0b9639d26e68bb2b6d55ab41f583b86a10ec85aea0f941d711ff317a1abb3e2b",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-05` | `LABO-063-AC-01` | 正常: 成功終結後、recipe/知識の記録を元episodeとtarget revisionに結びLABO評価として保持する。 | LABO評価知識を保持する。OS backlog登録状態はこの正常fixtureの合格条件ではなく、別CASEで判定する。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-06",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 3155,
+        "old_raw_lf_bytes": 223,
+        "old_raw_lf_sha256": "93d748d0cdc520f3669346032211d71f997a1572ffe8be63f61746785d98edf4",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-06` | `LABO-063-AC-03` | 単独変異: OS backlog登録失敗だけを変更。その他の入力は `CASE-01` と同一。 | 評価知識を保持しregistration未完をOSへ戻す 戻し先: OS。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-07",
+        "ac": "LABO-063-AC-01",
+        "old_kind_from_literal": "normal_or_unseen_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 3156,
+        "old_raw_lf_bytes": 287,
+        "old_raw_lf_sha256": "ac196c6a99431a1e9cc63a75a8282771f35de03d03b9e2bea5776e8c2c45bdc8",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-07` | `LABO-063-AC-01` | 正常入力: 同一identity/cause/condition/revision/episodeのrepairを反復し、適用する既決thresholdを入力として含む。 | 同一性のある反復だけ集計し、入力されたthresholdに基づく結果を返す。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-08",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 3157,
+        "old_raw_lf_bytes": 223,
+        "old_raw_lf_sha256": "0d2dfe9ad1f345d1be72bc6f97a21962929b833e913c5647ef4444004d195668",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-08` | `LABO-063-AC-03` | 単独変異: 同一observationをduplicate receiptで再送だけを変更。その他の入力は `CASE-01` と同一。 | 重複事例を増やさない 戻し先: LABO。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-09",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 3158,
+        "old_raw_lf_bytes": 228,
+        "old_raw_lf_sha256": "01cd5419db3659522ccad303f0c4ba218cfe1cc1d48e5e97f38fd405fcfbf9b9",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-09` | `LABO-063-AC-03` | 単独変異: predeclared threshold/denominator 欠落だけを変更。その他の入力は `CASE-01` と同一。 | 頻出を断定せず母数/閾値unknown 戻し先: LABO。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-10",
+        "ac": "LABO-063-AC-01",
+        "old_kind_from_literal": "normal_or_unseen_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 3159,
+        "old_raw_lf_bytes": 231,
+        "old_raw_lf_sha256": "13271ff36a2005bbfc086ccd89b8bfe042e4be560456194f8fe7758d9bdf27dc",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-10` | `LABO-063-AC-01` | 正常入力: 入力された事前定義thresholdを満たすrecurrence。新しいthresholdは作らない。 | 予防gate/detector candidateと根拠を返し、強制しない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-11",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 3160,
+        "old_raw_lf_bytes": 319,
+        "old_raw_lf_sha256": "b00a8e68db896f14ec9d9542e922afd794423d73e7de5628b0859ca5e91d5593",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-11` | `LABO-063-AC-03` | 単独変異: 頻出warningが未処理の状態だけを変更。その他の入力は `CASE-01` と同一。 | 未処理warningを可視化し、完了扱いしない。OS registrationが未完ならその義務だけOSへ返し、評価範囲はLABOに保持する。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-12",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 3161,
+        "old_raw_lf_bytes": 273,
+        "old_raw_lf_sha256": "32bab3892481304e849b23f8940ce14af85dafc2fad09004e7951c6d167800ea",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-12` | `LABO-063-AC-03` | 単独変異: 適用recipe versionが変更だけを変更。その他の入力は `CASE-01` と同一。 | 旧頻度/成功の現行適用を再評価し、再発防止の根拠が不足する場合はLABO評価へ戻す。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-13",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 3162,
+        "old_raw_lf_bytes": 322,
+        "old_raw_lf_sha256": "37772afaa7d36aae1206efebb8edb1a71913445d367c56314623d78988555399",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-13` | `LABO-063-AC-03` | 単独変異: target変更・operation後の運用後観測だけ欠落。その他の入力はCASE-01と同一。 | 運用後観測がないため循環未完のまま保持し、観測提供主体が識別できればそこへ返し、identity不明はunknownとする。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-14",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 3163,
+        "old_raw_lf_bytes": 259,
+        "old_raw_lf_sha256": "a02e2e5afdb430417013ac8dde23f040a876b28ad6f20a6060af9031f131af05",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-14` | `LABO-063-AC-03` | 単独変異: current evidenceなしで旧memory/recipeを復元だけを変更。その他の入力は `CASE-01` と同一。 | 現行の有効知識とせずsource ownerへ戻す 戻し先: knowledge owner。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-15",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 3164,
+        "old_raw_lf_bytes": 273,
+        "old_raw_lf_sha256": "732547c2209084d8be00bf510f9f0e1791695a3a58adfeecff84f1cf9f519538",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-15` | `LABO-063-AC-03` | 単独変異: 個別repairを未評価でBRAINへ一般化だけを変更。その他の入力はCASE-01と同一。 | BRAIN一般化を拒否し、知識保持と適用範囲の評価をLABOで未完として保持する。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-16",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 3165,
+        "old_raw_lf_bytes": 253,
+        "old_raw_lf_sha256": "1a6dc2268b1fa7b96abe555eb9e914b653eb00ad17fd4de85ffc34a395d49314",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-16` | `LABO-063-AC-03` | 単独変異: 頻度から新しいpermissionを生成だけを変更。その他の入力は `CASE-01` と同一。 | 権限生成を拒否する。authority ownerはこのfixtureから推定しない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-17",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 3166,
+        "old_raw_lf_bytes": 292,
+        "old_raw_lf_sha256": "6d0b831d0ee26936917a3a6b4d8903e9adf1af456d626063f53832c60297311f",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-17` | `LABO-063-AC-03` | 単独変異: LABOがtarget ownerのcanonical recipeを書込むだけを変更。その他の入力は `CASE-01` と同一。 | LABO評価知識保持とcanonical正本writeを分け、writeを拒否する 戻し先: canonical source owner。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-51",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 3327,
+        "old_raw_lf_bytes": 226,
+        "old_raw_lf_sha256": "23bf837b635b5f0c4221f4a8217e9a61cd46b2ea53ded1b185cd4aade28d34a9",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-51` | `LABO-063-AC-03` | 単独変異: target変更後の変更結果receiptだけ欠落し、旧revision結果は残る。 | target-changeを成功扱いせず循環未完了。target ownerへ戻す。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-52",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 3353,
+        "old_raw_lf_bytes": 262,
+        "old_raw_lf_sha256": "91f1bf92ccb3dd1ec6a71557d7f2cf7d8036562dfd5b79ba778581c7261ac968",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-52` | `LABO-063-AC-03` | 単独変異: 成功終結後のrecipe/知識記録だけ欠落し、他のscope/episode/sourceは正常。 | 成功終結から知識保持を推定せず、知識保持評価を未完のままLABOに留める。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-53",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 3354,
+        "old_raw_lf_bytes": 353,
+        "old_raw_lf_sha256": "dedc926d0b91e9d8a006d8d1366367eeaac2b5212c4683c68a49b592499e9f34",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-53` | `LABO-063-AC-03` | 単独変異: 修復結果evidence recordのepisode identityだけが元episodeと異なる。record内容・target revision・他sourceはCASE-01と同一。 | 別episodeのrecordを混ぜず当該評価を不成立にし、識別できるrecord providerへ返す。特定できない場合はunknown。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-54",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 3369,
+        "old_raw_lf_bytes": 252,
+        "old_raw_lf_sha256": "b22797843874e043f22cd7f8dc853ffd27f1ea40ebf99621c31e7f9015e6a82e",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-54` | `LABO-063-AC-03` | 単独変異: 同じ修復eventの重複送信/観測だけを別件として数える。その他の原因・scopeはCASE-01と同一。 | 重複を件数へ加えず再発頻度を水増ししない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-55",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 3370,
+        "old_raw_lf_bytes": 235,
+        "old_raw_lf_sha256": "d066cbf2e208bc8ed1d7a2ebafcf7a50f57981ec14c34d6343e6a5ef4c4de339",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-55` | `LABO-063-AC-03` | 準備: 対象event群の母集団がunknownである状態を保持する。単独変異: denominatorだけを0で補う。 | unknownを0へ変換せず母集団不明を保持する。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-56",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 3371,
+        "old_raw_lf_bytes": 236,
+        "old_raw_lf_sha256": "09faf38c23759c1eb97849cfdb57335938838dd96d3e523f5245fa4dff3802b6",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-56` | `LABO-063-AC-03` | 準備: 同条件の未解消再発が頻出し、他の条件は有効。単独変異: 予防candidateだけを欠落させる。 | candidate欠落を保持し予防完了としない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-57",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 3372,
+        "old_raw_lf_bytes": 220,
+        "old_raw_lf_sha256": "a653135959cc3ea857f67f6ab299ed0d815abfc3ed5b917692d52d15fe23a372",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-57` | `LABO-063-AC-03` | 準備: 同条件の未解消再発が頻出し、他の条件は有効。単独変異: warningだけを欠落させる。 | warning欠落を保持し完了としない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-58",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 3373,
+        "old_raw_lf_bytes": 243,
+        "old_raw_lf_sha256": "e85c740a0e74b936cafca9baff9c2d144f2a8fe10e1f2052c03dce073666f693",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-58` | `LABO-063-AC-03` | 準備: target変更後の未完義務と運用後の観測窓が存在する。単独変異: 運用後観測だけ欠落。 | 変更後評価を成功へ丸めずLABO評価を未完にする。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-59",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 3374,
+        "old_raw_lf_bytes": 266,
+        "old_raw_lf_sha256": "c5f35c1496d6d955597c309373f43dc7ae3f2d1f42f403abdbb31eacfa41def2",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-59` | `LABO-063-AC-03` | 準備: 対象revision変更後の再評価が未完である。単独変異: 旧revisionの頻度/成功結果だけを新revisionへ適用する。 | 旧結果を新revisionへ流用せず再評価未完とする。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-60",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 3375,
+        "old_raw_lf_bytes": 237,
+        "old_raw_lf_sha256": "647899856f2d6e7f9d3e557d9ed98bfe4eb300b558535aa5a1f3d12a5063e295",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-60` | `LABO-063-AC-03` | 単独変異: 評価knowledgeをLABO記録でなくcanonical memoryへ直接書く。その他の入力はCASE-01と同一。 | 正本化を拒否し既存canonical owner境界を保つ。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-61",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 3376,
+        "old_raw_lf_bytes": 255,
+        "old_raw_lf_sha256": "7b6a565a143a2ec5846e7172470a89c35c7adc557d6ee9f1dac32056c2353f9f",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-61` | `LABO-063-AC-03` | 単独変異: LABOの再発評価を適用条件なしにBRAIN一般へ適用する。その他の入力はCASE-01と同一。 | scope外一般化を拒否し予防candidateの適用範囲を限定する。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-62",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 3377,
+        "old_raw_lf_bytes": 230,
+        "old_raw_lf_sha256": "076b6d1217f60a310d02b8c50e5c2aeee85a9b21b6d9bf2de8419167512dc84d",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-62` | `LABO-063-AC-03` | 単独変異: 頻度だけを根拠に実行権限/許可を生成する。その他の入力はCASE-01と同一。 | authority生成を拒否し既存許可境界を維持する。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-63",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "index_or_alias",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 3378,
+        "old_raw_lf_bytes": 408,
+        "old_raw_lf_sha256": "d282248cc8e87f0cc7f4de1cae8dc8588ac7bc7e311b26b7e82732021325feed",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-63` | `LABO-063-AC-03` | 索引（独立fixtureではない）: `L10-LABO-063-CASE-64`（原因だけ異なるeventを同一群へ混入）と`L10-LABO-063-CASE-65`（適用条件だけ異なるeventを同一群へ混入）を直接参照する。 | 各主fixtureのoracleを個別に確認し、二条件を一つの変異へ束ねず、独立fixtureとして二重計上しない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-64",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 3393,
+        "old_raw_lf_bytes": 272,
+        "old_raw_lf_sha256": "d862b29ef1b1f96a5513e3086ae2e6f9e98e433e12e74d467af00ea523adcdd3",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-64` | `LABO-063-AC-03` | 準備: 対象source/revision/適用条件が同一の再発eventを保持する。単独変異: cause identityだけが異なるeventを同一再発群へ加える。 | 原因別にgroupを分け、頻度を混ぜない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-65",
+        "ac": "LABO-063-AC-03",
+        "old_kind_from_literal": "negative_candidate",
+        "old_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "old_line": 3394,
+        "old_raw_lf_bytes": 280,
+        "old_raw_lf_sha256": "f85ac885be5a11a3a496456465f92d870021ee7f6e535eee5d2c729879463eff",
+        "old_literal_with_lf": "| `L10-LABO-063-CASE-65` | `LABO-063-AC-03` | 準備: 対象source/revision/causeが同一の再発eventを保持する。単独変異: applicability conditionだけが異なるeventを同一再発群へ加える。 | 適用条件別にgroupを分け、頻度を混ぜない。 |\n"
+      }
+    ],
+    "current_definitions": [
+      {
+        "id": "L10-LABO-063-CASE-01",
+        "ac": "LABO-063-AC-01",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2954,
+        "current_raw_lf_bytes": 385,
+        "current_raw_lf_sha256": "abf737254edfe973ce69e191ce40d062dc1b0e1034b49c414f359765e26d0d94",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-01` | `LABO-063-AC-01` | 準備: repair result、HARNESS verification、target revision、同一episodeに結ばれた後続再発eventと反例があり、適用条件/入力閾値は根拠付きで与えられる。 | 同一条件で支持された予防candidateと根拠だけを返す。adoption、target変更、権限、gate有効化を生成しない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-02",
+        "ac": "LABO-063-AC-02",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2955,
+        "current_raw_lf_bytes": 263,
+        "current_raw_lf_sha256": "ddce0cdde51fc536ed1057fdc987712948892c7eb0b4ad50522dc70d8749c6cb",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-02` | `LABO-063-AC-02` | 未見正常: 条件一致する未見再発eventと、そのsource/revision/cause/applicability/episode relationが追跡できる。 | 新しいevidenceとして保持し、別scope/causeへgeneralizeしない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-03a",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2956,
+        "current_raw_lf_bytes": 283,
+        "current_raw_lf_sha256": "ba26d1e1fb040b0c9a4202b9e992f5c5eef3857497df86c3fcb81d52b097401a",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-03a` | `LABO-063-AC-03` | 索引（独立fixtureではない）: L10-LABO-063-CASE-46のHARNESS verification receipt欠落を直接参照する。 | L10-LABO-063-CASE-46を唯一のfixtureとして参照し、L10-LABO-063-CASE-33との重複を数えない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-03b",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2957,
+        "current_raw_lf_bytes": 142,
+        "current_raw_lf_sha256": "5d09813ea1e6efd3dfa63e8273f6b4728d73cbc9349afe415d45ec1799a67832",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-03b` | `LABO-063-AC-03` | target revisionだけ別 | evidenceを混ぜずtarget ownerへ。 戻し先: target owner。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-03c",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2958,
+        "current_raw_lf_bytes": 145,
+        "current_raw_lf_sha256": "f14d6ed43c1f898cc94daa02d3597bc5ece6854b83e5f50137fd6bc2afb4d473",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-03c` | `LABO-063-AC-03` | recurrence relationだけ欠落 | 再発効果の判断を未完としてLABO評価へ戻す。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-03d",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2959,
+        "current_raw_lf_bytes": 130,
+        "current_raw_lf_sha256": "2aa9d0dd24352ac79333aaa553240957d1930ec71d609a0b4b949fe3b3784a53",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-03d` | `LABO-063-AC-03` | counterexampleだけ除外 | 予防candidate範囲を支持済みとしない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-04a",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2960,
+        "current_raw_lf_bytes": 161,
+        "current_raw_lf_sha256": "824ab409a3681077dd00939777209a7cab9866a2c24c51e000c2e2cd08f5115f",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-04a` | `LABO-063-AC-03` | LABOがcanonical recipeへwrite | 拒否し既存ownerを保つ。 戻し先: canonical recipeの既存owner。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-04b",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2961,
+        "current_raw_lf_bytes": 134,
+        "current_raw_lf_sha256": "2e12e4d2dabf6897f8993caf7e2ec801306b2cd93806a12da1a918c9cb55f41d",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-04b` | `LABO-063-AC-03` | 一件から汎用knowledgeへpromotion | 拒否。既存knowledge ownerへ戻す。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-18",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2962,
+        "current_raw_lf_bytes": 230,
+        "current_raw_lf_sha256": "33943de7d2e8ff0502638e85daee276d6c8ecdcfd66920234a428399fb7f3fc7",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-18` | `LABO-063-AC-03` | 原因候補だけ欠落 | 予防範囲を確定せず未完にする。欠落した原因候補の既存source ownerが識別できればそこへ返し、識別不能はunknown。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-19",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2963,
+        "current_raw_lf_bytes": 218,
+        "current_raw_lf_sha256": "7e2184d2e02d47bdf9502c8288edc0223eb4e0f8c0467b66a24b2bc9281f3fbf",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-19` | `LABO-063-AC-03` | 適用条件だけ欠落 | 別条件へ一般化せず未完にする。適用条件の既存source ownerが識別できればそこへ返し、識別不能はunknown。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-20",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2964,
+        "current_raw_lf_bytes": 219,
+        "current_raw_lf_sha256": "d013fb5ed35b2af7566cd27ed14023cf3cc178620b776fe86a4a674d1f54c8e9",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-20` | `LABO-063-AC-03` | 修復手順だけ欠落 | 成功手順とせず未完にする。修復手順のcanonical source providerが識別できればそこへ返し、識別不能はunknown。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-21",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2965,
+        "current_raw_lf_bytes": 206,
+        "current_raw_lf_sha256": "afbb7bd9920d4e64c1869284ecc865cabec0b29db10ab5d913b7a9e2b37bdbd7",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-21` | `LABO-063-AC-03` | 修復結果証拠だけ欠落 | 結果をunknownとし、該当結果source ownerが識別できればそこへ返し、identity不明はunknownとする。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-22",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2966,
+        "current_raw_lf_bytes": 119,
+        "current_raw_lf_sha256": "6b1d1b8113badd113dca7f5eacc4446c08d89ed4bb96661533f131f5b49ea0e0",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-22` | `LABO-063-AC-03` | OS execution receiptだけ欠落 | 実行成立とせずOSへ戻す。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-23",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2967,
+        "current_raw_lf_bytes": 168,
+        "current_raw_lf_sha256": "abf741ed5de362c6b70218006acee412b52aaa140b892a9770b74d1bcbd74953",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-23` | `LABO-063-AC-03` | LABO evaluation receiptだけ欠落 | 効果評価receiptがないためLABO評価を未完としてLABOに留める。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-24",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2968,
+        "current_raw_lf_bytes": 232,
+        "current_raw_lf_sha256": "0b4a9995b794f9d48e5b9d373195edc8f6f0a7e1cb4d1062a4a67c6b780df894",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-24` | `LABO-063-AC-03` | 索引（独立fixtureではない）: L10-LABO-063-CASE-45のHARNESS verification receipt staleを参照する。 | 主fixtureを使い、同じstale変異を二重計上しない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-25",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2969,
+        "current_raw_lf_bytes": 268,
+        "current_raw_lf_sha256": "ebf1bd2722d0b9710d3ee4faeb0139358eadeffe890fd28110aa8d11fe6c93ff",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-25` | `LABO-063-AC-03` | 索引（独立fixtureではない）: L10-LABO-063-CASE-49（candidate欠落）とL10-LABO-063-CASE-50（warning欠落）を束ねる主索引。 | 各単独fixtureを参照し、複合変異を独立計上しない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-26",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2970,
+        "current_raw_lf_bytes": 236,
+        "current_raw_lf_sha256": "9a34e595205e91aefa4b19b06271aaa3a2f3181e030a5080a36a39e5e53756a5",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-26` | `LABO-063-AC-03` | 単独変異: 未登録の予防candidateを発行しただけで予防完了とする。 | 登録/実施/再観測の完了を推定せず、予防効果を未完のまま保持する。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-27",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2971,
+        "current_raw_lf_bytes": 258,
+        "current_raw_lf_sha256": "7a35adb2dcfc1d707df71d2341f0f715466d59bea04e81ad47bcd2b9bd6b7824",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-27` | `LABO-063-AC-03` | target変更後の条件だけ変更し再観測なし | 未見条件として前結果を流用せず、変更後target/条件の観測source ownerが識別できればそこへ返す。未識別はunknown。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-28",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2972,
+        "current_raw_lf_bytes": 260,
+        "current_raw_lf_sha256": "cd4d43ef2d7b50c2421e8863a09855145c5c843517af688a82c52d3a69a422f6",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-28` | `LABO-063-AC-03` | cause candidateだけstale | 再発/予防評価を保留し、原因候補source providerが識別できればそこへ返す。LABO効果評価も未完のまま保持し、identity不明はunknownとする。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-29",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2973,
+        "current_raw_lf_bytes": 264,
+        "current_raw_lf_sha256": "bae3fa038d36283ecf9193d47a6e967fb030bc5bb4d0ea630b0ec6bb94a826d4",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-29` | `LABO-063-AC-03` | applicability conditionだけstale | 条件一致を推測せず、適用条件source providerが識別できればそこへ返す。LABO効果評価も未完のまま保持し、identity不明はunknownとする。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-30",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2974,
+        "current_raw_lf_bytes": 255,
+        "current_raw_lf_sha256": "d67f351f4a226f63f8378c17de480b7116bbd42afbea0bb29e6e0f59a03e473f",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-30` | `LABO-063-AC-03` | 索引（独立fixtureではない）: L10-LABO-063-CASE-47（procedure stale）とL10-LABO-063-CASE-48（result evidence stale）。 | 各単独fixtureを参照し、複合変異を独立計上しない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-31",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2975,
+        "current_raw_lf_bytes": 215,
+        "current_raw_lf_sha256": "8bf145be983b7774cc6f34aa9d72554341698fc18d645b00e78814139f715bbc",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-31` | `LABO-063-AC-03` | 索引（独立fixtureではない）: L10-LABO-063-CASE-22のOS execution receipt欠落を参照する。 | 主fixtureを使いOS execution receipt ownerへ返す。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-32",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2976,
+        "current_raw_lf_bytes": 223,
+        "current_raw_lf_sha256": "1ad18b55cb27d380ec20ca3a644e9e63237484a124ee07214c6ee3412a6f226b",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-32` | `LABO-063-AC-03` | 索引（独立fixtureではない）: L10-LABO-063-CASE-23のLABO evaluation receipt欠落を参照する。 | 主fixtureを使いLABO評価を未完として保持する。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-33",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2977,
+        "current_raw_lf_bytes": 351,
+        "current_raw_lf_sha256": "a42a84bec96b61234fdfb6f11614bfc01c3e25d5af148502e2af1494874533f6",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-33` | `LABO-063-AC-03` | 索引（独立fixtureではない）: L10-LABO-063-CASE-03aとL10-LABO-063-CASE-46の同一receipt欠落を指し、L10-LABO-063-CASE-46を直接参照する。 | L10-LABO-063-CASE-46のoracleを参照し、L10-LABO-063-CASE-03aとの重複および独立fixtureとしての二重計上をしない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-34",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2978,
+        "current_raw_lf_bytes": 146,
+        "current_raw_lf_sha256": "c96f9794983ef79e009ab97d300cc53416280b3674fddcd007083dde6beea456",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-34` | `LABO-063-AC-03` | repair candidateだけで成功手順とする | 成功を拒否し未完義務を保持する。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-35",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2979,
+        "current_raw_lf_bytes": 317,
+        "current_raw_lf_sha256": "9d53c236dae90ce30747b635cd45566c9d87e6835ceb2bec63a3e146db15f194",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-35` | `LABO-063-AC-03` | 索引（独立fixtureではない）: L10-LABO-063-CASE-41（cause candidateだけ異なる）とL10-LABO-063-CASE-42（applicability conditionだけ異なる）を束ねる主索引。 | 各単独fixtureのoracleを参照し、複合変異を独立計上しない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-36",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2980,
+        "current_raw_lf_bytes": 323,
+        "current_raw_lf_sha256": "6302043e341a37bd7bc7ddd84bba65ed857dd2c239e003837a0359aa390b2e19",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-36` | `LABO-063-AC-03` | 索引（独立fixtureではない）: L10-LABO-063-CASE-25と同じL10-LABO-063-CASE-49/50二fixtureを指し、L10-LABO-063-CASE-49とL10-LABO-063-CASE-50を直接参照する。 | L10-LABO-063-CASE-49/50を参照し、L10-LABO-063-CASE-25との重複計上をしない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-37",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2981,
+        "current_raw_lf_bytes": 123,
+        "current_raw_lf_sha256": "42c6c866742b701c0ace0b667062a7d7af858220de6a52f8226d1aed630b7db8",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-37` | `LABO-063-AC-03` | OS登録だけで予防完了とする | 予防効果を未完とする。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-38",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2982,
+        "current_raw_lf_bytes": 154,
+        "current_raw_lf_sha256": "bfd051a845f4ca68c29fbdf3c863b535164a7c255c1a155d1e449eb0dafb26a9",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-38` | `LABO-063-AC-03` | 単独変異: LABOがgateを直接有効化する。 | 作用を拒否し、既存owner境界を保つ。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-39",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2983,
+        "current_raw_lf_bytes": 323,
+        "current_raw_lf_sha256": "2611c8974cc0617b8208aa33930e574ced6d8059974094d163527bf61a7c53d3",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-39` | `LABO-063-AC-03` | 索引（独立fixtureではない）: L10-LABO-063-CASE-35と同じL10-LABO-063-CASE-41/42二fixtureを指し、L10-LABO-063-CASE-41とL10-LABO-063-CASE-42を直接参照する。 | L10-LABO-063-CASE-41/42を参照し、L10-LABO-063-CASE-35との重複計上をしない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-40",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2984,
+        "current_raw_lf_bytes": 356,
+        "current_raw_lf_sha256": "81881b4289a02c7f35f55f97114ace8510f404a130cd2084991ca9340f64870b",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-40` | `LABO-063-AC-03` | target revisionが変わった後に未再観測 | 旧条件の結果を流用せず未完とする。変更後targetの観測providerが識別できればそこへ再観測根拠を返し、LABO効果評価も未完のまま保持する。source identityが特定できなければunknownを保持する。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-41",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2985,
+        "current_raw_lf_bytes": 151,
+        "current_raw_lf_sha256": "ad89de71bd062f61235d16cb73a7aa89be82f3ace428a18a594b1ab5c43a5862",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-41` | `LABO-063-AC-03` | cause candidateだけ異なる候補へ置換 | 既存条件から一般化せず未評価とする。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-42",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2986,
+        "current_raw_lf_bytes": 150,
+        "current_raw_lf_sha256": "7039cda6aa10ab4e9a0283d6171eb50fea199b4d3fc7fd48cf43c65d56b311f8",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-42` | `LABO-063-AC-03` | applicability conditionだけ異なる候補へ置換 | 条件外へ流用せず未評価とする。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-43",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2987,
+        "current_raw_lf_bytes": 124,
+        "current_raw_lf_sha256": "f4813cb7b03560bfc3c526e38816fd67690c99644b3df66a4510a9ff91b87099",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-43` | `LABO-063-AC-03` | OS execution receiptだけstale | 実行成立を推測せずOSへ戻す。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-44",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2988,
+        "current_raw_lf_bytes": 138,
+        "current_raw_lf_sha256": "fa45bf7fff28ab00dd3864c996ae4cfd1416ecd3f1a554c38260e80f58b7ad66",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-44` | `LABO-063-AC-03` | LABO evaluation receiptだけstale | 効果評価を未完としLABOで再評価する。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-45",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2989,
+        "current_raw_lf_bytes": 131,
+        "current_raw_lf_sha256": "2912cf84bafdea54678e9bbf6d381539fb62c6df6a4ee4e6f3865ea3a9d23350",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-45` | `LABO-063-AC-03` | HARNESS verification receiptだけstale | 検証成立とせずHARNESSへ戻す。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-46",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2990,
+        "current_raw_lf_bytes": 132,
+        "current_raw_lf_sha256": "b91131032bb9c0e524af6ae78caf5b857eece0839f47f3cebdc2c04e03892727",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-46` | `LABO-063-AC-03` | HARNESS verification receiptだけ欠落 | 検証成立とせずHARNESSへ戻す。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-47",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2991,
+        "current_raw_lf_bytes": 182,
+        "current_raw_lf_sha256": "690c185fe4d4012ae1ea9d0d1aeb6d4b00aa15d5da76641b53dbbf1a63b2a033",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-47` | `LABO-063-AC-03` | repair procedureだけstale | 成功手順とせず、修復手順のcanonical source providerが識別できればそこへ返す。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-48",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2992,
+        "current_raw_lf_bytes": 310,
+        "current_raw_lf_sha256": "f4c3cc473f6c27d95d37943f455015b4b9096d0dc72215d4b52112ee2e49217f",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-48` | `LABO-063-AC-03` | repair result evidenceだけstale | 結果をunknownとし、識別できる結果evidence提供元へstale evidenceを返す。LABOはその結果の効果評価を未完として保持する。提供元identityを特定できない場合は戻し先unknown。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-49",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2993,
+        "current_raw_lf_bytes": 173,
+        "current_raw_lf_sha256": "dc2cbb7236fa2ad5e7bb50801a4754a60264d400f712cf1f5c98dbbc7c080267",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-49` | `LABO-063-AC-03` | 頻出検出後の予防candidateだけ欠落 | warningを予防candidateの代替とせず、予防完了を保留する。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-50",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2994,
+        "current_raw_lf_bytes": 171,
+        "current_raw_lf_sha256": "ac0d6aed3f899fadc18b515efd7831d55eeb5f68f9279ca3b5c2f90062ece43a",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-50` | `LABO-063-AC-03` | 頻出検出後のwarningだけ欠落 | candidateの存在だけで未処理warningを隠さず、完了を保留する。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-05",
+        "ac": "LABO-063-AC-01",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2995,
+        "current_raw_lf_bytes": 305,
+        "current_raw_lf_sha256": "9ad901c712734bda0b997dc96f93f2727bf664402e9b48b003ae4784a61b83eb",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-05` | `LABO-063-AC-01` | 準備: 成功終結した修復とrecipe/知識recordが元episode・target revisionへ結ばれている。OS backlog登録状態は別field。 | LABO評価知識を保持する。OS backlog登録までこの正常fixtureの合格条件に含めない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-06",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2996,
+        "current_raw_lf_bytes": 214,
+        "current_raw_lf_sha256": "59ffcae57bf88f453220166d40ab90b17dfe6909b70303b62568d226d3dc8fd9",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-06` | `LABO-063-AC-03` | 準備: L10-LABO-063-CASE-01と同一入力。単独変異: OS backlog登録だけが失敗。 | 評価知識は保持し、登録未完義務だけをOSへ返す。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-07",
+        "ac": "LABO-063-AC-01",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2997,
+        "current_raw_lf_bytes": 305,
+        "current_raw_lf_sha256": "a40634b16c6a49c90decb27b927dc711934b77572da62f8197000be098df9a67",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-07` | `LABO-063-AC-01` | 正常候補: 同一identity/cause/applicability/revision/episodeのrepair反復と、適用する既決thresholdが入力されている。 | 同一性のあるeventだけ集計し、与えられたthresholdを評価する。新thresholdを作らない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-08",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2998,
+        "current_raw_lf_bytes": 224,
+        "current_raw_lf_sha256": "0d5dac8dfe5df1db4cd18863887da73259a0d263d29dc2c1b7feb6d17bfa921d",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-08` | `LABO-063-AC-03` | 準備: L10-LABO-063-CASE-01と同一入力。単独変異: 同一observationのduplicate receiptだけを追加。 | 重複を別事例にせず、頻度を増やさない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-09",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 2999,
+        "current_raw_lf_bytes": 229,
+        "current_raw_lf_sha256": "52e9cb30f18786096b5f96b1eaaad515acaddff127aaa0e0647550978674b934",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-09` | `LABO-063-AC-03` | 準備: 母集団または事前定義thresholdがunknown。単独変異: denominator/thresholdを0と扱う。 | unknownを0に変換せず、頻出/非頻出を断定しない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-10",
+        "ac": "LABO-063-AC-01",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 3000,
+        "current_raw_lf_bytes": 251,
+        "current_raw_lf_sha256": "a46b097100a9297a1231295c443b2ff728594e8d4ea8e12a82879ae50b423ffe",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-10` | `LABO-063-AC-01` | 正常候補: 同一条件の再発と既に定められた適用thresholdを満たす根拠が入力される。 | 根拠付きgate/detector candidateを返すが、直接有効化・強制しない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-11",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 3001,
+        "current_raw_lf_bytes": 286,
+        "current_raw_lf_sha256": "9204ec5ee33e2b25be7fa23200362b627bd8fa64f66a91c7e048dfcf5aa2c213",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-11` | `LABO-063-AC-03` | 準備: 頻出条件を満たした未処理warningがある。単独変異: warningだけを非表示にする。 | 未処理warningを可視のまま保持し完了扱いしない。registration未完はその義務だけOSへ返す。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-12",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 3002,
+        "current_raw_lf_bytes": 280,
+        "current_raw_lf_sha256": "5559c56fa3322ca2a0463158e5468838bd3dfe90d58d6e515d0c2074368660bd",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-12` | `LABO-063-AC-03` | 準備: recipe/sourceの適用版が変更され、再評価未完。単独変異: 旧revisionの頻度/成功をcurrentへ流用する。 | 旧結果を新revisionへ流用せず、適用範囲のLABO再評価を未完とする。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-13",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 3003,
+        "current_raw_lf_bytes": 303,
+        "current_raw_lf_sha256": "e4b35bcecbe2f8de04cef780a9d01d2dd7bda9156cfdbf5681b36b93519516f4",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-13` | `LABO-063-AC-03` | 準備: target change後の運用後観測windowがある。単独変異: その観測だけを欠落させる。 | 循環未完を保持し、観測提供主体が分かればそこへ返す。個体identityがsourceで特定できなければunknown。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-14",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 3004,
+        "current_raw_lf_bytes": 290,
+        "current_raw_lf_sha256": "fbb916ecbd14f9ef478f9c40c8c53886bba847c7baf5ae71c76d05aabc97af64",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-14` | `LABO-063-AC-03` | 準備: 現行source/revision evidenceはない。単独変異: 旧memory/recipeの復元だけをcurrent knowledgeとして扱う。 | 現行有効性を生成せず、識別可能な既存source ownerへ戻す。identity不明はunknown。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-15",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 3005,
+        "current_raw_lf_bytes": 271,
+        "current_raw_lf_sha256": "8232d7fc6b0f0c4ab3c1e07a49e90c82eefedc4a4a0932b5fe13890dd3e3721b",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-15` | `LABO-063-AC-03` | 準備: 特定repairのscope/cause evidenceがある。単独変異: 個別知識を評価なしにBRAIN一般知識へ適用する。 | 無条件の一般化を拒否し、LABOの適用範囲評価を未完保持する。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-16",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 3006,
+        "current_raw_lf_bytes": 306,
+        "current_raw_lf_sha256": "1862aeee62e7f0acdc621e75ea2758313f50a284ea2d0b3a17e9b7109c25f161",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-16` | `LABO-063-AC-03` | 準備: L10-LABO-063-CASE-01と同一入力。単独変異: recurrence frequencyだけからpermission/authorityを生成する。 | permission/authorityを生成しない。fixed sourceがdestinationを特定しないため宛先ownerはunknownのまま。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-17",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 3007,
+        "current_raw_lf_bytes": 241,
+        "current_raw_lf_sha256": "c346c98b076918546e81f12e9fa825b963d9901faaa90ad6b842164aaaf57a95",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-17` | `LABO-063-AC-03` | 準備: L10-LABO-063-CASE-01と同一入力。単独変異: LABOがtarget ownerのcanonical recipeへ直接writeする。 | writeを拒否し、canonical sourceの既存owner境界を保つ。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-51",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 3008,
+        "current_raw_lf_bytes": 275,
+        "current_raw_lf_sha256": "936ebb53a8fd7871412525ec26d0d93498d71ed5317f3747d38e1f394ded42f2",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-51` | `LABO-063-AC-03` | 準備: target change後の検証/観測義務と旧revision evidenceがある。単独変異: 変更結果receiptだけを欠落させる。 | target change成功とせず循環を未完にし、既存target ownerへ返す。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-52",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 3009,
+        "current_raw_lf_bytes": 259,
+        "current_raw_lf_sha256": "ad31b1b0ff6635256ca3df5238b6d8ad23bc18d77221e6dd876e81270bc44400",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-52` | `LABO-063-AC-03` | 準備: 成功repairのepisode/scope/sourceは正常。単独変異: recipe/知識recordだけを欠落させる。 | 成功終結からknowledge retentionを推定せず、LABO保持評価を未完にする。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-53",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 3010,
+        "current_raw_lf_bytes": 317,
+        "current_raw_lf_sha256": "923b6bb81c85e412bfcbfa4788fed4884c53ff4159de1c13e14bf35125ce244e",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-53` | `LABO-063-AC-03` | 準備: L10-LABO-063-CASE-01のsource/revision/cause/episode evidenceを保持。単独変異: 修復結果recordのepisode identityだけが異なる。 | 別episodeのrecordを混ぜず不成立。識別可能なrecord providerへ返し、identity不明はunknown。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-54",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 3011,
+        "current_raw_lf_bytes": 248,
+        "current_raw_lf_sha256": "35f0946a122055eb623d62bf47707d61bc682b2d947659df963ce00bd9a30bd3",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-54` | `LABO-063-AC-03` | 準備: 同一repair eventの正規receiptがある。単独変異: duplicate send/observationだけを別件として数える。 | 重複を再発件数へ加算せず頻度を水増ししない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-55",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 3012,
+        "current_raw_lf_bytes": 222,
+        "current_raw_lf_sha256": "096ec145a15a5067d99bfeb5d56e911009033690a7c0597373265a5672facc1c",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-55` | `LABO-063-AC-03` | 準備: 対象event群の母集団がunknown。単独変異: denominatorを0へ置き換える。 | unknownを0にせず、母集団/頻度をunknownとして保持する。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-56",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 3013,
+        "current_raw_lf_bytes": 273,
+        "current_raw_lf_sha256": "4e038c9085b168b2efe2443d53298b3640c0aa96d053f3403d05045170defb93",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-56` | `LABO-063-AC-03` | 準備: 同条件の未解消再発が入力された既決thresholdを満たし、他fieldは有効。単独変異: prevention candidateだけを欠落させる。 | candidate欠落を記録し、予防完了にしない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-57",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 3014,
+        "current_raw_lf_bytes": 250,
+        "current_raw_lf_sha256": "7f520bc2faff71948315949de6449100f990f6161a9b1d0034d1ea727079372d",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-57` | `LABO-063-AC-03` | 準備: 同条件の未解消再発が入力thresholdを満たす。単独変異: warningだけを欠落させる。 | warning欠落を記録し、candidateの有無で未処理状態を隠さない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-58",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 3015,
+        "current_raw_lf_bytes": 384,
+        "current_raw_lf_sha256": "27e19587a4dc8d799f0aae4954d16726187a365f8024551e80aa87cd955785c2",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-58` | `LABO-063-AC-03` | 準備: target変更後の未完義務とpost-operation observation windowが存在する。単独変異: post-operation observationだけを欠落。 | 循環を未完としてLABO evaluationへ保持し、欠けた観測/対象版は観測提供主体へ返す。source identityが固定根拠から決まらない場合はunknown。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-59",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 3016,
+        "current_raw_lf_bytes": 282,
+        "current_raw_lf_sha256": "06d3e92b8e5fde67876ca604497e9e0918b9b025218d81e72a69cc7b3a6c15c0",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-59` | `LABO-063-AC-03` | 準備: target revisionが変更され、再評価未完。単独変異: 旧revisionのfrequency/successだけを新revisionへ適用する。 | 旧結果を流用せず、current revisionでの評価を未完のまま保持する。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-60",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 3017,
+        "current_raw_lf_bytes": 261,
+        "current_raw_lf_sha256": "f5ed3b64f6f8f60abdea0c4291b89d85d88c21265575429722ec47b7265a811e",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-60` | `LABO-063-AC-03` | 準備: L10-LABO-063-CASE-01と同一入力。単独変異: LABO evaluation knowledgeをcanonical memoryへ直接writeする。 | 正本化を拒否し、LABOの評価保持と既存canonical ownerを分ける。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-61",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 3018,
+        "current_raw_lf_bytes": 265,
+        "current_raw_lf_sha256": "0558c970d38a02676f9b0b88ab8132c5521774a6111194c36fef454ebd8dec68",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-61` | `LABO-063-AC-03` | 準備: cause/applicability scopeが特定repairに限定される。単独変異: 評価なしでBRAIN一般へ適用する。 | scope外の一般化を拒否し、支持された適用範囲のみを保持する。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-62",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 3019,
+        "current_raw_lf_bytes": 263,
+        "current_raw_lf_sha256": "0313c8159f484e3b881f4272f9338769ea3a6a61ffce1e339837054bfb1534b3",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-62` | `LABO-063-AC-03` | 準備: L10-LABO-063-CASE-01と同一入力。単独変異: recurrence frequencyだけでexecution authority/permissionを生成する。 | authority/permissionを生成せず、既存権限境界を保持する。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-63",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 3020,
+        "current_raw_lf_bytes": 408,
+        "current_raw_lf_sha256": "d282248cc8e87f0cc7f4de1cae8dc8588ac7bc7e311b26b7e82732021325feed",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-63` | `LABO-063-AC-03` | 索引（独立fixtureではない）: `L10-LABO-063-CASE-64`（原因だけ異なるeventを同一群へ混入）と`L10-LABO-063-CASE-65`（適用条件だけ異なるeventを同一群へ混入）を直接参照する。 | 各主fixtureのoracleを個別に確認し、二条件を一つの変異へ束ねず、独立fixtureとして二重計上しない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-64",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 3021,
+        "current_raw_lf_bytes": 272,
+        "current_raw_lf_sha256": "d862b29ef1b1f96a5513e3086ae2e6f9e98e433e12e74d467af00ea523adcdd3",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-64` | `LABO-063-AC-03` | 準備: 対象source/revision/適用条件が同一の再発eventを保持する。単独変異: cause identityだけが異なるeventを同一再発群へ加える。 | 原因別にgroupを分け、頻度を混ぜない。 |\n"
+      },
+      {
+        "id": "L10-LABO-063-CASE-65",
+        "ac": "LABO-063-AC-03",
+        "current_path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_line": 3022,
+        "current_raw_lf_bytes": 280,
+        "current_raw_lf_sha256": "f85ac885be5a11a3a496456465f92d870021ee7f6e535eee5d2c729879463eff",
+        "current_literal_with_lf": "| `L10-LABO-063-CASE-65` | `LABO-063-AC-03` | 準備: 対象source/revision/causeが同一の再発eventを保持する。単独変異: applicability conditionだけが異なるeventを同一再発群へ加える。 | 適用条件別にgroupを分け、頻度を混ぜない。 |\n"
+      }
+    ],
+    "literal_classification_candidates": {
+      "normal_or_unseen_candidate": 5,
+      "index_or_alias": 11,
+      "negative_candidate": 53
+    },
+    "index_ids": [
+      "L10-LABO-063-CASE-03a",
+      "L10-LABO-063-CASE-24",
+      "L10-LABO-063-CASE-25",
+      "L10-LABO-063-CASE-30",
+      "L10-LABO-063-CASE-31",
+      "L10-LABO-063-CASE-32",
+      "L10-LABO-063-CASE-33",
+      "L10-LABO-063-CASE-35",
+      "L10-LABO-063-CASE-36",
+      "L10-LABO-063-CASE-39",
+      "L10-LABO-063-CASE-63"
+    ],
+    "id_and_ac_allocation_preserved": true,
+    "semantic_independence_or_completeness_claim": false,
+    "measurement_claim": false,
+    "case58_note": "CASE-58 overlaps the post-operation observation omission dimension of CASE-13; the current oracle adds fixed responsibility-category return to the observation provider and preserves unknown identity if not identifiable. NFR excludes double counting this overlap as a measured independent negative."
+  },
+  "review_pins": {
+    "review05_relevant_063_findings": [
+      "m1:旧監査の索引表記統一claimとCASE-25/35の実記述",
+      "m5:CASE重複軸、NG/NV分母、CASE-58の観測提供主体戻し欠落。旧所見の意味を全69定義の意味独立性認定へ拡張しない"
+    ],
+    "review05_comment_id": 6010745544,
+    "review05_raw_path": "/tmp/labo5-review05-formal.txt",
+    "review05_raw_bytes": 8059,
+    "review05_raw_sha256": "761f8eb92265a9b7325daf2340cd96847d5fa11a5ef2d344c1fc455788fe341a",
+    "review05_exact_raw_text": "## review05（範囲を絞ったindependent review、HEAD a4a365dcdfe824ebb28d040c8bc3bc924556efad、本文 476993841、base main 55760269a）\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。\n\n### 範囲（今回は絞った）\n今回照合したのは、次の3つだけである。\n- review04所見49件の解消判定。\n- 前回HEADからの本文差分（676行）の、全変更行の固定親照合。\n- CASE集合の機械比較。\n\n変更のない行の全行照合は行っていない。同じ方式で照合を続けても収束しないことが、#2602 review17〜19でMajor 9→15→24と増え続けたことで確かめられた。そのため、提案comment 6009820928のとおり、親単位PRと網羅表による照合へ回す。Fableの委任見解も今回は求めていない。未確認範囲が残る以上、委任承認は成立しないためである。mailboxは`incomplete`（findingsと未確認範囲あり）で返す。\n\n所見には修正の文面を書かず、欠陥と、守るべき固定親の行だけを示す。\n\n### 静的検査（w2620 = exact HEAD）\n- scfctlはvalidate 147/0、stale 0、residuals 0。govcheckはok。`git diff --check`は成功した。\n- origin/mainとの`merge-tree`は衝突なし。6本文はmainのprefixと一致した。\n- FVのCASE定義は777件で、重複は0件。前回HEADと比べて、追加39件、削除0件。\n  - 新しく索引にしたのは063-63、070-68、070-13の3件。070-13の変異は070-70/71へ分割して移っている。\n  - BV/FR/NV/NGの範囲表記は、各親の最大番号と一致した。\n\n### review04所見の解消状況\n- **Major 22件**：20件が解消した。M7とM8は一部が残った（下のM1とM2）。\n- **Minor 27件**：22件が解消した。m7、m19、m24は一部が残り、m2とm25は未解消（下のMinor）。\n\n### 所見（Major 3／Minor 12）\n**Major**\n- **M1（064：review04 M8の残り）**：064-03bと064-26に「mapping source owner」が残っている。FRと064-14は「観測元」にそろっている。監査M8の処置は「固定親にないrouteを削除」と書いているが、本文と合わない。→守るべき行：L2-064「依存・戻し先」（元identityの追跡不能は観測元）。\n- **M2（064 FR AC-03：固定親が定める戻し先を、LABOの保持に置き換えた）**：FRは「可視scope条件不明はLABOで比較不能として保持し、固定親にない戻し先を追加しない」と書いている。同じ親のFV（064-06、07〜11、15、20、23、27〜32、04a）は「既存evaluation owner」のままで、FRと矛盾する。監査のM8処置も同じ誤りを記録している。→守るべき行：L2-064「依存・戻し先」（judge可視範囲・固定条件の不明は評価ownerへ）、「評価と権限」（再評価義務をtask/evaluation ownerへ）。\n  - 補足：review04 M5で私が「evaluation ownerは064側の用語」と書いたのは、061から外す理由としてだった。064では「既存evaluation owner」が固定親の語である。\n- **M3（066-29/30：準備状態と変異が食い違う。review04 M7の残り）**：準備では「speedを通常値として保持」としているのに、変異は「speed改善だけを報告」になっている。隠すことと、速度の主張を変えることの2点が変異になるのか、baselineが一意に決まらない。066-31/32と書き方がそろっていない。agentの確信度は中程度で、Opus側はbaselineが一意でないためMajorとする。→守るべき行：L2-066「比較条件と失敗」、L11-066の誤り例（成功件数・費用・速度だけで隠す）。\n\n**Minor**\n- **m1（表記の規定外。review04 m2の残り）**：\n  - FV:3023のCASE-102/109に親IDがない。\n  - 060-29「互換別名」、063-25/35「主索引」、064-16「集約索引」「互換index」が残っている。\n  - 監査は「統一した」と記録している。\n- **m2（060 AC-03の戻し先。review04 m7の残り）**：支援proposal/use evidenceの戻し先がINTELLIGENCEだけになっている。→守るべき行：L2-060「失敗時」（INTELLIGENCE/OS）。\n- **m3（固定親の区分名にあたらないowner表記。review04 m19の残りを含む）**：\n  - 060-46「oracle/要求owner」\n  - 065-07「task契約を提供するHARNESS/要求owner」\n  - 067 FRに追加した文の「task/要求owner」\n  - 070-66/73「task/request predicate/oracle owner」\n  - 060-18「比較範囲へ返す」（LABOを名指ししていない）\n  - →守るべき行：L2-060/065/067/070の各「戻し先」「責務と権限」の区分名。\n- **m4（索引の重複。review04 m24・m25の残りと、新しく生じた同じ型）**：同じ主fixtureを2つの索引が指している。\n  - 060-26と060-27\n  - 068-08と068-16\n  - 070-03kと070-13\n  - 065-19と065-20\n- **m5（重複計上）**：新しく追加したCASEの多くが、既存の単独fixtureと同じ変異を持っている。\n  - 063：54≒08、56/57≒49/50、58≒13、59≒12、61≒15、62≒16、64/65≒41/42\n  - 065-45≒065-11\n  - 066-43≒066-09\n  - 064-38/39≒064-04a（04aは2変異の行のまま残っている）\n  - NVとNGは、063の54〜62と64/65を独立したnegativeとして数えている。063-58には、063-13にある「観測提供主体へ返す」がない。\n  - 補足：review04 M11が求めたのは、FRへの禁止句の追補だけだった。対応する既存CASEは、すでにAC-03をtraceしていた。\n- **m6（戻し先の併記漏れ）**：\n  - 065-41〜44、069-31/32、070-63、066-42/43に戻し先がない。\n  - 070-69は、対象fieldも特定していない。\n  - 064-24/33/35/36から、evaluation ownerが削られた。064-33は「再評価義務を返す」を「当該scopeを再評価する」に変えている。\n  - →守るべき行：L2-065/069/066「戻し先」、L11-064の未見例、L11-070の個別反例。\n- **m7（064：固定親にない禁止）**：FR AC-03と064-38が、qualificationの生成を禁じている。→守るべき行：L2-064「評価と権限」（禁じているのはassignmentとadmissionだけ）。\n- **m8（英文の残存・表記の揺れ）**：\n  - 069-29「clause」\n  - 064-38/39「decision boundary」\n  - 061-114「invalid state」\n  - 070-73「co-present complete scorecard」（他の行では「complete co-present scorecard」）\n- **m9（監査と本文の不一致）**：\n  - 監査M8・m2の処置の記述が、本文と合わない（上のM1、m1）。\n  - historical_correctionsのroot_narrative_snapshotが、`/tmp/...json`を証拠のpathにしていて、再現できない。\n- **m10（064-04aが2つの変異を持ったまま）**：064-38/39に分割したのに、元の行が索引になっていない。→守るべき行：L2-064「評価と権限」。\n- **m11（070-69の対象field）**：変異の対象になるfieldが特定されていない。→守るべき行：L11-070の個別反例（結果を見た後にwindowを選ぶ）。\n- **m12（064-33の文言の変化）**：L11-064の未見例「再評価義務を既存evaluation ownerへ返す」が、「当該scopeを再評価する」になった。m6とあわせて直すこと。\n\n### 未確認範囲\n- 変更のない行の全行照合。親単位PRで、網羅表と照合する前提である。\n- 監査JSON（9,997行）の全pinとhashの再計算。今回読んだのは、findingsの処置とhistorical_correctionsの要点だけ。\n- Fableの委任見解。\n\n### 判定\n- blockerは3件（M1〜M3）。Major 3件、Minor 12件。未確認範囲がある。\n- 委任承認は成立しない。Readyにはしない。merge admissionは本commentから生成しない。\n- review04のMajor 22件のうち20件が解消した。補正行についての照合は、収束に向かっている。\n\n親単位PRへの分割と、網羅表を先に作ることを、改めて求める（提案comment 6009820928）。\n",
+    "review_method_comment_id": 6013171449,
+    "review_method_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2623#issuecomment-6013171449",
+    "review_method_bytes": 2797,
+    "review_method_sha256": "0b006af0afa42c32b0ae36f105d8f909d237fea019e087a6cb6a2b373fbcf730",
+    "review_method_exact_raw_text": "## review基準の見直し：責務を優先し、変更耐性を前提にする（review_merge lane）\n\nこのcommentは、review結果ではない。承認、Ready、merge admissionは生成しない。人（ユーザー）と相談して決めた、review側の基準の変更を伝える。直前のcomment「網羅表を1文単位にすること」のうち、完全性を求める部分は、この内容で置き換える。\n\n### 根拠\n`docs/governance/github-upstream-operating-model.md`「人に承認を求める回数を減らす」は、次のように定めている。\n- 承認済みの文書は、やってみて分かったことで直してよい（変更耐性）。\n- 承認済みのL3／L10は、親L2の意味・範囲・担当・版が変わらない限り、新しいrevisionで見解の一致をやり直すだけで直せる。\n\nこれまでのreview側は、「固定L2/L11の列挙項目ごとに単独fixtureがなければMajor」という基準で完全性を求めていた。この基準は運用モデルより厳しく、照合が収束しない主な原因だった。これはreview側の判断の誤りである。\n\n### 新しい扱い\n**Major（承認を止める）**：責務と境界の誤りに限る。\n- 戻し先が固定親の区分にない、または宛先が決まらない。\n- 承認・合意・完了・authorityを生成する。または、生成を拒否するfixtureがない。\n- L3がL2の意味・範囲・担当・版を変える。\n- oracleが弱く、誤った完了が通る。\n- 既存の境界チェックを消している。\n\n**残余（承認を止めない）**：次のものは記録し、後の変更で直す。\n- 例示・列挙の項目ごとに単独fixtureが足りないこと。ただし、上のMajorに当たる禁止は除く。\n- 束ね。\n- 索引・別名・件数・行参照・文言・英文の不一致。\n\n**残余の扱い**：\n- 運用モデルでは、Minorを返すかどうかはOpusが決める。残余は返却findingにせず、PR commentと判断記録に「後続で直す残余」として残す。\n- 返却findingが0件で、未確認範囲が0件なら、Opusは`no_findings`とする。\n- 作成側は、残余を同じPRで直してもよい。次の機会に回してもよい。\n\n**網羅表**：完全性の証明には使わない。変更のときに影響範囲をたどる索引として残す。表に行のない固定文があっても、それ自体は残余として扱う。\n\n### すでに出したreviewの扱い\n- 未解消のreview所見は、次のreviewのとき、この基準で読み直す。上のMajorに当たらないものは、残余へ移す。\n- 移した結果は、次のreview commentに一覧で記録する。\n- 過去のcommentは書き換えない。\n",
+    "review_method_application": "責務境界・戻し先・誤完了oracleを主に照合し、列挙完全性だけから単独fixture追加を必須化しない。網羅表や索引は影響範囲追跡であり完全性証明ではない。"
+  },
+  "synchronization_notes": [
+    "FRで範囲/戻し先/knowledge authorityをACへ対応",
+    "FVで旧69 ID/ACを保持しCASE-58 observation-provider returnを補足",
+    "L3 NFR-03は既存L3 AC-03とL10 NV-03の状態/authority境界を同期",
+    "NG/NVは実測母集団とfixture inventoryを分け、索引とCASE-58 overlapを二重計上しない"
+  ],
+  "static_checks": {
+    "all_six_main_prefixes_byte_identical": true,
+    "69_old_complete_ids_preserved": true,
+    "id_ac_allocations_unchanged": true,
+    "current_case_rows_unique": true,
+    "all_local_case_refs_resolve": true,
+    "git_diff_check": "pass",
+    "changed_paths": [
+      "docs/helix-labo/L10-verification/business-verification.md",
+      "docs/helix-labo/L10-verification/functional-verification.md",
+      "docs/helix-labo/L10-verification/nfr-verification.md",
+      "docs/helix-labo/L3-requirements/business-requirements.md",
+      "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "docs/helix-labo/L3-requirements/nfr-grade.md"
+    ],
+    "tests_run": false,
+    "runtime_or_ci_run": false
+  },
+  "limitations": [
+    "全旧archiveを網羅したとは主張しない。",
+    "CASE literal分類は候補であり、意味的単一点性・独立性・完全性は未認定。",
+    "実測run、修復、採用、実運用、完了は主張しない。",
+    "audit record itself remains unpublished; body pins are fixed to commit 3345603de, while latest context main is 3795bf0d. Recompute if body bytes change."
+  ],
+  "publication_record": {
+    "json_path": "docs/governance/audits/requirements-stage/labo-stage5-parent063-authoring-audit-2026-10-06-3345603de.json",
+    "md_path": "docs/governance/audits/requirements-stage/labo-stage5-parent063-authoring-audit-2026-10-06-3345603de.md",
+    "worker_candidate_sha256": "d75e7604ce93f8c614e1679026ab9fd80e0db19212720eea75610b32ce99fd6f",
+    "root_checks": [
+      "six body full/suffix/prefix + current69 and fixed/source full/span 109 checks",
+      "old69 raw and formal2 exact",
+      "UIL R12 supplement full/span exact",
+      "Root six suffix全文Read/govcheck/diffcheck"
+    ],
+    "authority_effect": "none"
+  }
+}
