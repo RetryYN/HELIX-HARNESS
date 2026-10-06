@@ -1,0 +1,215 @@
+{
+  "record_type": "HARNESS036 review01 author-side disposition",
+  "status": "Root static verification; independent review/closure/approval pending",
+  "scope_parent": "HARNESS-L2-036",
+  "reviewed_head": "af9ba9e409cc207ee9c05a22b58e3bef62fe875b",
+  "current_body": "b45734eebb6ac9a51a3159563b18263c64acae8d",
+  "latest_main_base": "a2638477be294880ba33e215778a763caacfa6ee",
+  "formal_review": {
+    "comment_id": 6015836469,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2626#issuecomment-6015836469",
+    "raw_utf8_bytes": 6832,
+    "sha256": "466d723fceecb58a7fb9cb6c7410cdae1c502d7434eb6414a4e06422d5da2542",
+    "body_raw": "## review01（independent review、PR #2626 親HARNESS-L2-036、HEAD af9ba9e409cc207ee9c05a22b58e3bef62fe875b、本文 c768454f1、base main a2638477b）\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。基準は「責務を優先し、変更耐性を前提にする」で、最初に次の3点を見る。\n- 想定外の受け皿\n- 勝手に作らない\n- 戻り道\n\n照合は2つに分けた。\n- **Opus・ブラインド照合**：作成側の監査、PR comment、旧所見は見せない。渡したのは固定親（@318ec4a のL2-036:730–776、L11-036:493–525、依存先）と、6本文の追補だけ。固定親を1文ずつ種類分けし、自分で対応表を作らせた。\n- **Opus・継続照合**：旧#2602で036に向けた所見の判定、追補の全行、監査、pinの再計算。\n\nFableは、Opusが`no_findings`を出した同じHEADでだけ回す。今回は回していない。\n\n### 静的検査（exact HEAD）\n- scfctl：validate 147/0、stale 0、residuals 0\n- govcheck：ok\n- `git diff --check`：成功\n- origin/main a2638477bとの`merge-tree`：衝突なし。6本文は、mainの全bytesをprefixとして保持している。\n- PO判断 `po-decision-2026-09-29-57candidates.md` の41行に、HARNESS-L2-036の採択行がある。固定L2の本文にある「未採択」という記述は、採択より前の時点の文面である。\n- FVの95定義は一意。FRのAC表とFVのAC帰属は、95/95で一致した。参照切れは0件。\n- 監査のpinを継続照合で再計算した。固定span、6正本、旧source、ledger、FV 95行、review19の原文は、すべて一致した。\n\n### 旧#2602で036に向けた所見\n- **解消（15件）**：review17のM4（a〜c）、m2、m18。review18のM1、M3、M8、M9、m18、m19。review19のM1、M2、m1、m2。\n- **残余へ移す（1件）**：review18 m21（英文）。\n- **対象外（1件）**：review18 m22（旧監査）。\n\n### 所見（Major 1）\n- **M1（KPI D-02の意味を変えるとき、PO判断へ戻す経路が本文にない）**：\n  - 固定L2-036「保証すること」は、「適用母集団・期間・分母はL3で照合し、意味を変更する場合はPO判断へ戻す」と定めている（L2@318ec4a:750）。L11:514も同じ文である。\n  - FR-HARNESS-L3-036「保証と原因別戻し先」の戻し先は、003/008、005、008、008/022、OSだけである。追補の中に「PO判断」へ戻す行は1件もない（reviewerがdiffで確認）。\n  - NFR-C-HARNESS-036-02とCASE-HARNESS-L10-NFR-036-02は、「規範化しない」「新しいPO parameter gateを作らない」と書くだけで、意味を変える場合の宛先を書いていない。KPIの反例であるr09-012は、ticket閾値化をHARNESS-L2-005へ返すだけである。\n  - 人が持つ上流への戻り道なので、「宛先が決まらない」にあたる。ブラインド照合が見つけ、reviewerが本文で確かめた。継続照合は、同じ箇所の文言のずれだけを残余R9として挙げていた。Opus側の最終判断として、これをMajorとする。\n  - →守るべき行：固定L2-036「保証すること」（L2@318ec4a:750）、L11@318ec4a:514。\n\n### 後で直す残余（承認を止めない）\n- **R1（036-23の正常列の出所）**：「固定L2-005/選択profile」と書いている。固定L2:766では、出所はHARNESS-L2-001/003のScreen Applicability記録である。戻し先003/008は正しい。\n- **R2（r04-all-environments-overreachの宛先）**：「selected scopeに戻す」だけで、IDがない。兄弟行は005を挙げている。\n- **R3（原因別の分岐が入力で決まらない）**：r06の5軸unobserved（3つの宛先を挙げる）、r02-fe-oracle-unknown、r18 input/schemaは、別の原因の宛先を併記している。\n- **R4（宛先の併記）**：root-05系とr05-rootの「005/022」、r05の「008/022」、r09-009の「005/008」、r09-011の「005/022」。r09-009は、L11:504の「対象revisionとticketの運転はOSの該当境界へ」に触れていない。r09-001〜005（各軸のfail）は003/008へ返しているが、実際の欠陥は修正Forwardへ返すのが妥当な可能性がある。\n- **R5（AC帰属のずれ）**：次の行は、内容と帰属ACが合っていない。\n  - r02-fe-oracle-unknownとr09-013はAC-04に属するが、内容は画面5軸＝AC-03。\n  - root-r02-unseen-parity/unobservedはAC-04に属するが、内容はparity＝AC-02。\n  - r09-012はAC-04に属するが、内容はKPI＝AC-01。\n  - r09-011はAC-03に属するが、内容はW＝AC-01。\n- **R6（索引の参照漏れ）**：036-03/07が、r09-010、r18 input/schema、r02-fe-oracle-unknownを挙げていない。\n- **R7（L11:516の単独fixture）**：「gate pass→L10 Verified/L11 Accepted」を拒否する、036固有の単独fixtureがない。生成拒否の類型は036-13〜16が受けている。\n- **R8（未見の正常例）**：次の2つに専用の未見正常例がなく、汎用のr02-unseen-normalだけになっている。\n  - L11:506/507の未見W scopeの拡張\n  - FEの既知scopeの有効入力を拒否しないこと（L2:756の「根拠のない観点→不足」を含む）\n- **R9（KPI windowの文言）**：nfr-verificationは「L3に明示したeligible window」と書く。nfr-gradeは「固定していないwindow長…規範化しない」と書く。L2:750「L3で照合」との対応が、文言でずれている。\n- **R10（分類の記載が本文と監査で合わない）**：FV冒頭の「旧90件は索引20/negative 66/normal 4のまま」と、監査mdの「08とr02-unseen系に疑義」が合わない。監査JSONの索引は12件、FRの索引列は20件。\n- **R11（旧sourceの未読とした記述と、実際の引用が合わない）**：監査は、9A77/B5B5/A6E2/DB66を「本文未読・意味根拠に用いない」とする。一方でFR/BRはそれらを引いており、bounded spanにDB66の本文がある。\n- **R12（repository外の参照）**：監査JSONの`repositories.worktree`が`/home/tenni/.helix-worktrees/...`になっている。\n- **R13（監査の処置記録の範囲）**：監査はreview19の所見しか扱っておらず、review17/18の036所見の処置を記録していない。\n- **R14（旧source pathの省略）**：FRの旧source pathに、archive配下の完全なpathがない。\n- **R15（英文の残存）**：selected scope、design item、non-applicability、dependency leak、old NFRなど。\n\n### 判定\n- blocker 1（M1）。Major 1、残余15。\n- 委任承認は成立しない。Readyにはしない。merge admissionは本commentから生成しない。\n- M1を直したHEADでOpusが`no_findings`になったら、同じHEADでFableを回す。\n"
+  },
+  "M1_proposed_disposition": "固定L2:750/L11:514に従いKPI D-02の要求意味変更はL2へ戻しPO判断へ接続する。技術候補の比較と区別し判断前の意味置換を拒否。3既存行のみ、technical parameterごとの新gateは作らない。解消判定は独立reviewへ委ねる。",
+  "residual_raw_blocks": [
+    "- **R1（036-23の正常列の出所）**：「固定L2-005/選択profile」と書いている。固定L2:766では、出所はHARNESS-L2-001/003のScreen Applicability記録である。戻し先003/008は正しい。\n",
+    "- **R2（r04-all-environments-overreachの宛先）**：「selected scopeに戻す」だけで、IDがない。兄弟行は005を挙げている。\n",
+    "- **R3（原因別の分岐が入力で決まらない）**：r06の5軸unobserved（3つの宛先を挙げる）、r02-fe-oracle-unknown、r18 input/schemaは、別の原因の宛先を併記している。\n",
+    "- **R4（宛先の併記）**：root-05系とr05-rootの「005/022」、r05の「008/022」、r09-009の「005/008」、r09-011の「005/022」。r09-009は、L11:504の「対象revisionとticketの運転はOSの該当境界へ」に触れていない。r09-001〜005（各軸のfail）は003/008へ返しているが、実際の欠陥は修正Forwardへ返すのが妥当な可能性がある。\n",
+    "- **R5（AC帰属のずれ）**：次の行は、内容と帰属ACが合っていない。\n  - r02-fe-oracle-unknownとr09-013はAC-04に属するが、内容は画面5軸＝AC-03。\n  - root-r02-unseen-parity/unobservedはAC-04に属するが、内容はparity＝AC-02。\n  - r09-012はAC-04に属するが、内容はKPI＝AC-01。\n  - r09-011はAC-03に属するが、内容はW＝AC-01。\n",
+    "- **R6（索引の参照漏れ）**：036-03/07が、r09-010、r18 input/schema、r02-fe-oracle-unknownを挙げていない。\n",
+    "- **R7（L11:516の単独fixture）**：「gate pass→L10 Verified/L11 Accepted」を拒否する、036固有の単独fixtureがない。生成拒否の類型は036-13〜16が受けている。\n",
+    "- **R8（未見の正常例）**：次の2つに専用の未見正常例がなく、汎用のr02-unseen-normalだけになっている。\n  - L11:506/507の未見W scopeの拡張\n  - FEの既知scopeの有効入力を拒否しないこと（L2:756の「根拠のない観点→不足」を含む）\n",
+    "- **R9（KPI windowの文言）**：nfr-verificationは「L3に明示したeligible window」と書く。nfr-gradeは「固定していないwindow長…規範化しない」と書く。L2:750「L3で照合」との対応が、文言でずれている。\n",
+    "- **R10（分類の記載が本文と監査で合わない）**：FV冒頭の「旧90件は索引20/negative 66/normal 4のまま」と、監査mdの「08とr02-unseen系に疑義」が合わない。監査JSONの索引は12件、FRの索引列は20件。\n",
+    "- **R11（旧sourceの未読とした記述と、実際の引用が合わない）**：監査は、9A77/B5B5/A6E2/DB66を「本文未読・意味根拠に用いない」とする。一方でFR/BRはそれらを引いており、bounded spanにDB66の本文がある。\n",
+    "- **R12（repository外の参照）**：監査JSONの`repositories.worktree`が`/home/tenni/.helix-worktrees/...`になっている。\n",
+    "- **R13（監査の処置記録の範囲）**：監査はreview19の所見しか扱っておらず、review17/18の036所見の処置を記録していない。\n",
+    "- **R14（旧source pathの省略）**：FRの旧source pathに、archive配下の完全なpathがない。\n",
+    "- **R15（英文の残存）**：selected scope、design item、non-applicability、dependency leak、old NFRなど。\n"
+  ],
+  "residual_state": "R1–R15未解消として原文保持。特にR11の旧監査記述と引用の不一致もこの記録ではcloseしない。旧監査はその時点の記録として不変。",
+  "changed_lines": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "physical_line": 592,
+      "before_revision": "af9ba9e409cc207ee9c05a22b58e3bef62fe875b",
+      "after_revision": "b45734eebb6ac9a51a3159563b18263c64acae8d",
+      "before_raw_lf_literal": "選択済み上位testを省略する場合はHARNESS-L2-005に従って理由と回収先ticketを保ち、未回収を完了と扱わない。gate pass、CI green、artifact存在、他scopeのresultからsystem completion、L10 Verified、L11 Accepted、利用者受入を生成しない。90%は運用KPIでありticket合否ではない。\n",
+      "before_sha256": "4455fc2957274613aa40b3bc2df9da0400259c23213dd83a4a407f3a1dbcedea",
+      "after_raw_lf_literal": "選択済み上位testを省略する場合はHARNESS-L2-005に従って理由と回収先ticketを保ち、未回収を完了と扱わない。gate pass、CI green、artifact存在、他scopeのresultからsystem completion、L10 Verified、L11 Accepted、利用者受入を生成しない。90%は運用KPIでありticket合否ではない。KPI D-02の適用母集団・期間・分母はL3で照合し、その要求意味を変更する場合はL2へ戻しPO判断を求める。判断前に新しい意味へ置換しない。\n",
+      "after_sha256": "d43a9e29037d61a71b8699010e5d4e2f6cf6da5de0477e56f6098e71e53fc8d4"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "physical_line": 170,
+      "before_revision": "af9ba9e409cc207ee9c05a22b58e3bef62fe875b",
+      "after_revision": "b45734eebb6ac9a51a3159563b18263c64acae8d",
+      "before_raw_lf_literal": "| `NFR-C-HARNESS-036-02` | NFR-13の運用KPI D-02 `≥90%`を、eligible gate opportunityの選択windowにおける分子/分母候補として報告する。値・期間・母集団・除外状態を保持し、欠測/failed/censoredを明記して比較する。 | 運用目標であり個別ticketのpass閾値ではない。固定していないwindow長・対象cohort・分母規則を候補から規範化しない。分母/windowがunknownなら未評価。 |\n",
+      "before_sha256": "2001a675499a8b0bd61c59fa57117edb5a8c52d447938cf535cc7ca72deefe48",
+      "after_raw_lf_literal": "| `NFR-C-HARNESS-036-02` | NFR-13の運用KPI D-02 `≥90%`を、eligible gate opportunityの選択windowにおける分子/分母候補として報告する。値・期間・母集団・除外状態を保持し、欠測/failed/censoredを明記して比較する。 | 運用目標であり個別ticketのpass閾値ではない。固定していないwindow長・対象cohort・分母規則を候補から規範化しない。適用母集団・期間・分母はL3で照合し、KPI D-02の要求意味を変更する場合はL2へ戻しPO判断を求める。判断前に新しい意味へ置換しない。分母/windowがunknownなら未評価。 |\n",
+      "after_sha256": "96e15973cd04406695d3c7b87654f0b7e0baaaad95491396a2e4e7f1829e7d3b"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "physical_line": 147,
+      "before_revision": "af9ba9e409cc207ee9c05a22b58e3bef62fe875b",
+      "after_revision": "b45734eebb6ac9a51a3159563b18263c64acae8d",
+      "before_raw_lf_literal": "| `CASE-HARNESS-L10-NFR-036-02` | `NFR-C-HARNESS-036-02` | NFR-13のKPI D-02について、eligible gate opportunity population、測定window、分子/分母、excluded/missing/failed/censored状態を示す。functional normal fixture `CASE-HARNESS-L10-036-r11-operational-kpi-window-population-normal`は合成9/10例であり固定分母・window長ではない。 | 固定`≥90%`運用目標との比較だけを報告する。ticket-level pass/failへ転用せず、母集団/windowがunknownなら未評価とする。候補windowやcohort比較は技術案であり新しいPO parameter gateを作らない。 |\n",
+      "before_sha256": "f5172b369fdf23c5e28bd6309b5e9cc174e5f17407251b035aba06f84dc5df88",
+      "after_raw_lf_literal": "| `CASE-HARNESS-L10-NFR-036-02` | `NFR-C-HARNESS-036-02` | NFR-13のKPI D-02について、eligible gate opportunity population、測定window、分子/分母、excluded/missing/failed/censored状態を示す。functional normal fixture `CASE-HARNESS-L10-036-r11-operational-kpi-window-population-normal`は合成9/10例であり固定分母・window長ではない。 | 固定`≥90%`運用目標との比較だけを報告する。ticket-level pass/failへ転用せず、母集団/windowがunknownなら未評価とする。候補windowやcohort比較は技術案であり新しいPO parameter gateを作らない。適用母集団・期間・分母はL3で照合し、KPI D-02の要求意味を変更する場合はL2へ戻しPO判断を求める。その判断前に新しい意味で成立扱いせず、要求意味の変更と技術候補の比較を区別する。 |\n",
+      "after_sha256": "dd33e168424770b3c98cbc46b9d26e23d8500e50c6e83cfe9ffde2765dbd229c"
+    }
+  ],
+  "fixed_basis": [
+    {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "full_bytes": 254934,
+      "full_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+      "start_line": 750,
+      "end_line": 750,
+      "span_bytes": 246,
+      "raw_lf_literal": "- NFR-13のgate通過率「≥90% (KPI D-02、B5=b)」を運用目標として保持する。適用母集団・期間・分母はL3で照合し、意味を変更する場合はPO判断へ戻す。これはticketごとのpass閾値ではない。\n",
+      "span_sha256": "d92418d882dffa60aaf3ba7e0fa418588b92154058849b0613d08b264c8bee4f"
+    },
+    {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "full_bytes": 172806,
+      "full_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+      "start_line": 514,
+      "end_line": 514,
+      "span_bytes": 420,
+      "raw_lf_literal": "- NFR-13の同一lint/gateのdev-local + CI双方での実行、editor fail後commit前の局所修正loop、cross-detection四軸とWの0件条件は上表の受入に対応する。NFR-13の「gate通過率≥90% (KPI D-02、B5=b)」は運用目標として保持する。適用母集団・期間・分母はL3で照合し、意味を変更する場合はPO判断へ戻す。個別ticketの合否と混同しない。\n",
+      "span_sha256": "0985cd57a8dd207b1660d6b60d63ca15c149cd7de556a0c1915e912423dca459"
+    }
+  ],
+  "legacy_basis": {
+    "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+    "full_bytes": 17431,
+    "full_sha256": "2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d",
+    "start_line": 89,
+    "end_line": 107,
+    "span_bytes": 1845,
+    "raw_lf_literal": "| **NFR-13** | gate 通過率 / dev-local+CI 整合 | Lv3 | KPI D-02 ≥ 90% (A-43 ledger 整合) | `.helix/gate_runs/` 集計 | sprint 末 D-02 ≥ 90% |\n| **NFR-14** | human-as-residue (gate fail-close 例外権) | Lv3 | KPI D-06 (bypass 件数) ≤ 2 件/sprint (努力目標 = 0、A-43 ledger 整合) | `.helix/audit/agent-guard-bypass/` | bypass 全件 audit 記録 / D-06 ≤ 2 |\n| **NFR-D01** | KPI D-01 (PLAN 起票数) 機械計測化 (A-47 補完) | Lv3 | ≥ 1 件/sprint | `.helix/plan_registry/` 集計 / `helix plan list --since sprint-start` | sprint 末 PLAN 件数 ≥ 1 / KPI 集計に integrated |\n| **NFR-D04** | KPI D-04 (回帰検出率) 機械計測化 (A-47 補完) | Lv3 | ≥ 80% (検出件数 / 発生総件数) | CI gate + `helix trace check --regression` | sprint 末 D-04 ≥ 80% / 検出漏れ audit 記録 |\n\n#### AC-NFR-07 (正常系: 5 成功条件総合、A-54 audit C-04 補完)\n- **前提**: ① L0-L14 通し実行 / ② 複数人 team gate 回転 / ③ AI 委譲で回帰なし / ④ ダッシュボード進捗可視 / ⑤ PoC 契約化合流 の 5 条件\n- **操作**: OT-01〜05 (L14 operational-test-design.md) + 関連 AT を実行\n- **期待結果**: 5 条件すべて OT/AT pass / 1 条件でも fail なら NFR-07 未達 (部分 MVP は価値なしと判定)\n\n#### AC-NFR-08-01 (正常系)\n- **前提**: 全 PLAN で generates / pair_artifact 整備済、trace check\n- **操作**: sprint 末 D-05 集計\n- **期待結果**: D-05 = (trace 整合 PLAN) / (全 PLAN) × 100 ≥ 95%\n\n#### AC-NFR-13-01 (異常系)\n- **前提**: sprint 内で gate 10 回実行、fail 3 回 (D-02 = 70%)\n- **操作**: sprint 末 D-02 集計\n- **期待結果**: warn `Warning: D-02 70% (閾値 90% 未達)` / next_action `gate fail 原因の audit 調査 + 修正 PLAN 起票` / Phase A は warn のみ (block しない)\n",
+    "span_sha256": "f9140e28059d95416f74825ef0913514d99ffb5859f5cd0973f0c9cfe6f3edec"
+  },
+  "legacy_disposition": "旧NFR13 ≥90%運用目標を保持。旧CLI/runtime/gate_runs/PhaseA運転は移植・実行せず。POへの意味変更戻しは採択固定親と現authority境界を保持。",
+  "six_current_documents": [
+    {
+      "revision": "b45734eebb6ac9a51a3159563b18263c64acae8d",
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "full_bytes": 183844,
+      "full_sha256": "52c4508e1132d968164817ba149b86a065774f734923179315b5139472cc6e71",
+      "base_pin": {
+        "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "full_bytes": 172453,
+        "full_sha256": "0e644f012c3d6f1105adb65fbb73b3a7e9ffdc2c75ef42a978b0a2f08d59cb4e"
+      },
+      "base_prefix_matches": true,
+      "changed": true
+    },
+    {
+      "revision": "b45734eebb6ac9a51a3159563b18263c64acae8d",
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "full_bytes": 11947,
+      "full_sha256": "8d9ff117985de5c3565ebb6923e334cbcffff8c01583d64fc007450feb5a24f3",
+      "base_pin": {
+        "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+        "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+        "full_bytes": 11547,
+        "full_sha256": "5bba92338ca9abb6a9778b3c17d84c9b85c3f38abc3cebbf5cdc18d63b57ce69"
+      },
+      "base_prefix_matches": true,
+      "changed": false
+    },
+    {
+      "revision": "b45734eebb6ac9a51a3159563b18263c64acae8d",
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "full_bytes": 40853,
+      "full_sha256": "880d3bd3d41ab93a1c9ffd1fdf16916903dbff37707d19b569e7d378338e6c21",
+      "base_pin": {
+        "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+        "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+        "full_bytes": 39627,
+        "full_sha256": "feffc393796a35c1823b10ba655f05357dd0babaa9611e7719368bcf4ad8864d"
+      },
+      "base_prefix_matches": true,
+      "changed": true
+    },
+    {
+      "revision": "b45734eebb6ac9a51a3159563b18263c64acae8d",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "full_bytes": 479788,
+      "full_sha256": "cc318cd891f6a61682a9c593d65ba9da5173fdffd32b9150e752cfaea38dbbfd",
+      "base_pin": {
+        "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "full_bytes": 435363,
+        "full_sha256": "c77613da5c062c466bdbf5cfc092de20285dcafcbf45cd6c51bd95cc462fe594"
+      },
+      "base_prefix_matches": true,
+      "changed": false
+    },
+    {
+      "revision": "b45734eebb6ac9a51a3159563b18263c64acae8d",
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "full_bytes": 7679,
+      "full_sha256": "fe7eea1c182863b0f523dd32fbb3a14a13e4ef72fad57796452dc2e2a6e29ddd",
+      "base_pin": {
+        "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+        "path": "docs/helix-harness/L10-verification/business-verification.md",
+        "full_bytes": 7342,
+        "full_sha256": "d6fe8f3c64f82d924b0df664d9f708917b2db9b9f5f0fb63a49ecfb37234397c"
+      },
+      "base_prefix_matches": true,
+      "changed": false
+    },
+    {
+      "revision": "b45734eebb6ac9a51a3159563b18263c64acae8d",
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "full_bytes": 32824,
+      "full_sha256": "c93b4d45340f3a219e074af9d031999de7883c955ebb97ab1a7856412e32bc7f",
+      "base_pin": {
+        "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+        "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+        "full_bytes": 31100,
+        "full_sha256": "319be75889ed450fb1b266900846e4c90df11ce12efc2c66cefef68458204c49"
+      },
+      "base_prefix_matches": true,
+      "changed": true
+    }
+  ],
+  "previous_audits_unchanged": [
+    {
+      "revision": "b45734eebb6ac9a51a3159563b18263c64acae8d",
+      "path": "docs/governance/audits/requirements-stage/harness-stage3-parent036-authoring-audit-2026-10-06-c768454f1.json",
+      "full_bytes": 380884,
+      "full_sha256": "70da5cbb9b86f71e9cf00e0c6f11397efa8bd2d19586d91f8b168d7fee9172c0"
+    },
+    {
+      "revision": "b45734eebb6ac9a51a3159563b18263c64acae8d",
+      "path": "docs/governance/audits/requirements-stage/harness-stage3-parent036-authoring-audit-2026-10-06-c768454f1.md",
+      "full_bytes": 3197,
+      "full_sha256": "7a50a2740ebcdaa761c7b703e89a45f4e67ae7be2b432efd890fa95d2a3489cb"
+    }
+  ],
+  "functional_verification_unchanged": true,
+  "case_census": "95 existing FV definitions and all their bytes unchanged; no completeness/independence proof",
+  "reproduction": [
+    "git show <revision>:<path> のUTF8 blob bytesからfull/span/rawLF SHA-256を計算",
+    "記録したbefore/after行、固定親2行、旧source spanを物理行で再取得",
+    "固定main blob全体がcurrent各6本文のprefixか照合",
+    "正式commentbody UTF8 bytesを本文SHAと照合。old audit2件をgit bytes比較"
+  ],
+  "verification": {
+    "govcheck": "ok atoms=7622 requirements=57 files=58",
+    "diff_check": "pass",
+    "runtime_test_CI": "not run"
+  }
+}
