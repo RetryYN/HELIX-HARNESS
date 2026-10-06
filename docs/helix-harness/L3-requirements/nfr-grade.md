@@ -151,3 +151,12 @@ plannedは総予定試行数。観測可否はvalid（判定できる観測が�
 Stage 5の索引aliasは021-S5-011→004、033-S5-024/025→005/006、037-S5-023→005と037-S5-057→053。これら5索引は個別fixture分母へ重複加算しない。
 
 035-S5-033は撤去した旧変異のID保全用時点注記であり、同一変異aliasではない。個別fixture分母から除外し、運用負債欠測の個別変異は035-S5-041だけで評価する。
+
+
+## Stage 3 親034の非機能要件候補
+
+| NFR candidate | 根拠と計測境界 |
+|---|---|
+| `NFR-C-HARNESS-034-01` | 固定L2-034の14項目と対象requirement/NFR stable identityがscope/revisionを通じて対応することを候補指標とする。適用scope内の候補metricだけを母集団とし、unknown applicabilityをN/Aや0へ変換しない。実測の成功率/閾値を作らず、missing/stale/nonrepresentative/unmeasured/unmetを区別する。別環境/別revisionの結果は元のscope/revisionで有効に保持し、現在対象metricの未測定を相殺しない。 |
+
+fixture definition数と実測母集団は異なる。対のL10機能総合検証にあるr19/r20/r21の定義は正常・反例の候補であり実測ではない。r21は別環境/別revisionの有効結果で未測定対象を相殺する誤completion出力を個別に扱う。既存CASE索引はunique measurement fixture数へ加算しない。NFR-034-01の候補はL2:698–701、711およびL11:465–483へ再導出し、旧NFR rate/KPI、旧CLI/CIまたはthresholdを流用しない。

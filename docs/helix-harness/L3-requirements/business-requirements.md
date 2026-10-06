@@ -92,3 +92,8 @@ paired_l10: ../L10-verification/business-verification.md
 ### Root検収補正 — Stage5 CASE境界
 
 追加functional CASE（各親の既存001–00Nと続番S5行）は固定5親の工程・設計・根拠・適用性oracleを検証する。独立business requirement/KPI/business CASEは0件のままであり、件数や結果から事業価値、release、利用者受入、承認を生成しない。
+
+
+## Stage 3 親034の業務要件
+
+HARNESS-L2-034から独立business requirement、事業KPI、ROI閾値または事業ownerを作らない。対象別metric contractと完成判定はfunctional FR/ACで扱う。計測結果、coverage、case数、CI結果を事業価値、利用者受入、承認へ読み替えない。旧business-detailにある別の意味は移植しない。
