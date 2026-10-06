@@ -179,3 +179,9 @@ fixture definition数と実測母集団は異なる。対のL10機能総合検�
 ## Stage 3 親039のNFR候補
 
 固定L2-039はUX完了を主張するoperationに同一scope/revisionの7軸current evidenceとhuman evaluationを要求するが、数値SLO、共通閾値、率、対象cohort、測定期間は定めない。この条件は機能AC-HARNESS-L3-039-02のstate/evidence境界として扱い、独立NFR値や測定pass rateを新設しない。実測値・未測定・stale・unknownは対象scope/revisionごとに保持し、欠測を0、N/A、成功へ変換しない。旧IPA/旧CI/runtimeの値は再利用しない。
+
+## Stage 3 親040の非機能計測候補
+
+| NFR候補 / L2親 | 候補値 | 固定根拠 | 限界 |
+|---|---|---|---|
+| `NFR-C-HARNESS-040-01` / `HARNESS-L2-040` | canonical 12 layer、6 pair、独立L0 anchorの必要catalog relation欠落0件。片edgeを双方向成立へ数える件数0。 | HIL-FR-46のledger/pair/anchor契約から直接導出。 | 未作成ledgerはmissing obligationとして記録し、全ledgerの実装率やregistrationを主張しない。 |

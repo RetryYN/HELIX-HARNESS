@@ -158,3 +158,10 @@ NFR CASEは測定candidate分類であり、実測・CI success・performance SL
 ## Stage 3 親039のNFR検証
 
 独立NFR measurement CASEは追加しない。UXの7軸current evidenceとhuman evaluationは`functional-verification.md`のAC-02で状態ごとに検証する。実測母集団・閾値・率は固定L2にないため作らず、未知・未観測・missing・staleを成功や0件として扱わない。NFR分類と機能fixtureの定義数を実測結果として報告しない。
+
+## Stage 3 親040の非機能検証
+
+| L10 case ID | NFR候補 | 入力／母集団 | 計測候補 | oracle・限界 |
+|---|---|---|---|---|
+| `CASE-HARNESS-L10-NFR-040-01` | `NFR-C-HARNESS-040-01` | 12 layer/6 pair/L0 anchorの契約候補と双方向edge fixture。 | layer/pair/anchor relationの欠落と片方向edgeを分けて数える。 | catalog未実装は未完として記録、registration/executionは測定しない。 |
+| `CASE-HARNESS-L10-NFR-040-02` | `NFR-C-HARNESS-040-01` | L2-040で列挙されたledger contract field、6 pair edges、L0独立anchor fieldsとsource snapshot population。 | selected catalog relation欠落・片edge・staleを各別計上。snapshot coverageと未完/stale populationを明示する。 | OS保存が未構築でもHARNESSの意味oracleを代替しない。未提示契約は未完/unknown。 |
