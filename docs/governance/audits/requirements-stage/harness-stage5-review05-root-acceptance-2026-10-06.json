@@ -1,0 +1,1905 @@
+{
+  "record_type": "root_review05_acceptance",
+  "authority_effect": "none",
+  "status": "independent_review_pending",
+  "body_revision": "ed1161e03f8ea9209e573f274f37c9b97605087a",
+  "worker_body_revision": "49097d4fa1e6d92c0b0906152d77875286885d43",
+  "main_revision": "8a763ce4211afa1ef2a7e54c209933a03e029243",
+  "formal_review": {
+    "comment_id": 6006176854,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2621#issuecomment-6006176854",
+    "raw_utf8_sha256": "61fd508bb31a0716565241dddd13909d88ee22b167d3fc2876b67a55f69c2ee6",
+    "raw_utf8_bytes": 4524
+  },
+  "dispositions": [
+    {
+      "id": "m1",
+      "finding": "033 S5-027/028に固定親の根拠がないreduction/source owner戻し先が残る",
+      "disposition": "修正。期待結果不足は要求/設計/oracle ownerへ維持し、結果が同一failureを保たない縮小候補は採用しない。unit契約差とは異なるため031 ownerへの新しい戻しは作らない。",
+      "files": [
+        "docs/helix-harness/L10-verification/functional-verification.md"
+      ],
+      "rows": [
+        "CASE-HARNESS-L10-033-S5-027",
+        "CASE-HARNESS-L10-033-S5-028"
+      ]
+    },
+    {
+      "id": "m2",
+      "finding": "L2:548の014設計scopeで025検査が常時必須の不変条件がFR本文に欠落",
+      "disposition": "FR-025不変条件へ対象scopeの常時検査を明記。新しい承認・開始gateは追加しない。",
+      "files": [
+        "docs/helix-harness/L3-requirements/functional-requirements.md"
+      ],
+      "locator": "FR-HARNESS-L3-025 不変条件直後"
+    },
+    {
+      "id": "m3",
+      "finding": "FR-035追補とFR-037見出しの間に余分な空行",
+      "disposition": "重複空行を1行へ整理。",
+      "files": [
+        "docs/helix-harness/L3-requirements/functional-requirements.md"
+      ]
+    },
+    {
+      "id": "m4",
+      "finding": "FR親表の035 L11 locatorが開始行のみ",
+      "disposition": "L11範囲を485–492,678–686へ修正。",
+      "files": [
+        "docs/helix-harness/L3-requirements/functional-requirements.md"
+      ]
+    }
+  ],
+  "documents": [
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "full_sha256": "e8010726994decd34ac4db0c8c0b8b52b6ce8ec1bfbde21bf0b409cc54d208c6",
+      "main_prefix_bytes": 5187,
+      "main_prefix_sha256": "788c690368c3be1721410f65d5970dad1731b8e79a0a5b7b80c26e3475698309",
+      "all_bytes_suffix_sha256": "b39303e2ca8cce722f506145c4aba8a0cfa941aea78bed88ffe38faa55466ddb"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "full_sha256": "0412f6aa8777eb6991061ac7a141f8225112d2c9de74c779ce8da812598cf1d9",
+      "main_prefix_bytes": 196595,
+      "main_prefix_sha256": "0a7fb5d4cc88d6fec1576260d5b3bd2adf71d0ed6939b1168cf4ee621dd538dc",
+      "all_bytes_suffix_sha256": "ee4819e141825247544ebeeed115b31ecfac2d3d86a1bbb839200a3d587a8ec6"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "full_sha256": "298604b33e48ea8a7174dfe54867d9600d6cc1d83f92fac6671dd2a9b5c20438",
+      "main_prefix_bytes": 23748,
+      "main_prefix_sha256": "245f1c655276338ac163ba35ded36e8453769197638412a305a2b0aec658fd82",
+      "all_bytes_suffix_sha256": "c91c62ddb92527b0a10e7bcf8e7b93cafbf8e9b1b40096d5ea91b85e391e20ca"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "full_sha256": "527ee5f203af7dd6bcd89878fed9a1a9ee4f9ddaa0f601033a791401b8998c93",
+      "main_prefix_bytes": 8938,
+      "main_prefix_sha256": "a1c0ed86d63a523ebad07105ceb6dbbca602bb1bd3c6a76af5c8a9e10fbab4b2",
+      "all_bytes_suffix_sha256": "896a4de2193c9a0ba424b13768e8c3b6009bcfe368472a03a80d79875145b273"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "full_sha256": "442911e4f2338eada7069d6068fe344d39ffe8e7b0edaabb99970ecef3fe037f",
+      "main_prefix_bytes": 138543,
+      "main_prefix_sha256": "9734e536774f62ba6d53a8804ca16649e00dda307ae60114431f61ad21daa3b4",
+      "all_bytes_suffix_sha256": "f2538eea7779282dea90689343ac27b1df838bdbc0c98add06ae81c6d595b7fa"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "full_sha256": "72658cf1b44d04e46e7eb357fd19a8e01e19e5d6cce404f518fab00a3d474896",
+      "main_prefix_bytes": 31233,
+      "main_prefix_sha256": "ab37418cb9d3004d6ba0467b4c82bfe4d75f90eb8f4c136902f691e8e3c876b6",
+      "all_bytes_suffix_sha256": "35a125e22faff79d9cc27e4a2ab73e5dbb724a1026965214e7c19e50b8e1a0e7"
+    }
+  ],
+  "source_pins_reverified": [
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 438,
+      "end": 446,
+      "file_lines": 1544,
+      "full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+      "span_sha256": "7ead08a9421e7b433ad54465ce880c5c31f79a180fac46a6032f7318748f0c31",
+      "literal": "### HARNESS-L2-021 統合したHELIX-HARNESS（構成体）\n\n利用者は、サービス①〜⑦と入口・部品・コアをつないだHELIX-HARNESSを、開発全体に使える一つの構成体として確かめられる。\n\n- **端から端まで**：要求の形成から設計・実装・検証と受入（HARNESS-L2-022）・リリース・運用保守まで一つの対象で通し、L12の観測や実績の評価から要求へ戻す経路まで辿れる。\n- **構成体に固有の義務**：端から端のtrace、横断する非機能、統合した版の更新・rollback、L12の運用検証を、個別のリリース単位の成功とは別に確かめる。下の成立の証拠がそろい、構成体に固有の義務を満たしたことを確かめてから成立とする。\n- **HELIXの改善への還流**：実績の評価と改善の提案はHELIX-LABOとHELIX-OSが担う。HARNESSは、観測と評価の結果を要求へ戻す受け口を持ち、改善を自分で実行しない。\n- 束ねる既存の条件：HARNESS-L2-007（Version 1の完成）、HARNESS-L2-005（構成的保証と差分証明）、HARNESS-L2-008（構成体固有の目的・failure・受入を失わない）、FRS-BR-009。\n\n"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 544,
+      "end": 554,
+      "file_lines": 1544,
+      "full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+      "span_sha256": "452339e55022f3b8a15c509eb6f05a36c2c01fc10bcac616a1c757b4187df979",
+      "literal": "### HARNESS-L2-025 要求から整合した設計・対oracleを閉じる（composite candidate）\n\n- **親L1**：`HARNESS-L1-001`, `HARNESS-L1-004`, `HARNESS-L1-005`, `HARNESS-L1-007`, `HARNESS-L1-009`。対象はHARNESS-L2-026 unitの設計と、必要な場合のHELIXBRAIN-L2-030接続を束ねた設計構成体である。\n- **対象・kind・版・scope**：設計出力と対の検証設計の相互整合を確かめるcomposite candidate、`version_target: 1.0`。一つの対象revision/要求scopeの端から端設計を扱う。\n- **014/026との分担**：014が提供する設計成果について、026は設計要素を構成し、025は要素をつないだ端から端の固有義務を検査する。025は014を代替する製品でも026を重複生成するunitでもない。014が相互参照する設計一式の整合を提供する際は025の対象scopeの検査が常時必須となる。025は026の成果を受け取るが、026の生成は025完了に依存しない。014→026・025、025→026の向きで閉じ、014完了への自己依存を作らない。\n- **入力**：HARNESS-L2-026の設計unit出力、常時必須のHELIXBRAIN connector契約状態、選択したPatternがあればHELIXBRAIN-L2-030 receipt、要求/L3 revision、画面/API/DB/permission/state/oracle scope。\n- **出力**：端から端の双方向trace、要素間relation、構成体固有の横断invariant・failure path、対の検証設計、conflict/unknown/alternative/差戻し先。\n- **保証すること**：unitやconnectionの成功だけで構成体を成立扱いせず、要求→設計要素→oracleの端から端trace、画面/API/DB/permission/stateの整合、正常/拒否/failure pathを別途確認する。BRAIN connector契約は常時必須。BRAIN知識を使う場合はHELIXBRAIN-L2-030 receiptと使用Patternの全条件を必須とする。knowledge selection自体は対象scopeで必要とされた場合だけで、利用可能な全BRAIN知識を要求しない。採択、承認、実装・利用者受入状態は作らない。\n- **依存区分**：**常時必須**＝HARNESS-L2-026設計unit契約とreceipt、対象L3 authority/revision、CORE/Design Template/BRAIN connectorの版・互換、構成体scopeとHARNESS-L2-022 oracle契約。**特定操作時のみ**＝UI要素を含むscopeのprototype/screen contract、各設計対象に適用される個別oracle（構成体の対検証設計自体は常時必須）。**選択した入力元に応じて必須**＝Pattern利用時はHELIXBRAIN-L2-030 receiptと選択Patternの全required input/relation/version。Pattern非利用は非適用根拠を付け未観測とする。**参照資料のみ**＝背景・旧例。構成体invariantの根拠を代替しない。\n- **正常・境界例**：承認後編集禁止の要件について申請作成→承認→編集要求→拒否まで、画面/API/permission/state/data invariantと各oracleを一つのtraceで辿り、実装経路が違っても同じ意味を保つ設計を確認する。\n- **失敗・戻し先**：下位要素の成功を集めただけ、片方向trace、競合するstate/permission、見落としたPattern衝突、未定oracle、承認後も更新可能な経路があれば不合格。意味差はHARNESS-L2-008、L3差はL3 owner、汎用Pattern/relation差はBRAIN、設計/pair不備はHARNESS-L2-026/022の形成へ戻す。\n"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 667,
+      "end": 690,
+      "file_lines": 1544,
+      "full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+      "span_sha256": "a4aeabfe2297cfd7c833dd206236607478b34c985f3493b0baef6db9ad6cb6c3",
+      "literal": "### HARNESS-L2-033 failure-to-regression trace構成体（構成体候補、version_target 1.0）\n\n- **所属候補（未採択）**：HELIX-HARNESS-CORE。利用先：case生成・再現・回帰を選択する各サービス。複数packを跨ぐtest/CIのtrace構成体を所有する。unit/接続成立と回帰成立を分け、014/022の意味authority、OS/利用者CIの実行を引き取らない。 HARNESS-L2-010に従い主owner候補は一つとする。記載は所属採択・v0.1収載・実装許可を生成しない。\n\n**親L1**：`HARNESS-L1-001`, `HARNESS-L1-004`, `HARNESS-L1-005`, `HARNESS-L1-007`。対象は`HARNESS-L2-030`または`HARNESS-L2-031`の生成能力と、必要に応じ`HARNESS-L2-032`のconsumer接続を含む端から端の作成/受渡しtrace。HARNESS-L2-022の検証・受入契約は構成体の規範入力であり置換しない。\n\n**種類と境界**：構成体候補。通常contract-derived caseとincident-derived minimized reproを、同一のartifact/execution/trace境界で結ぶ。failure inputがない通常case生成にincident reproductionを要求せず、選択した操作のみに条件付き依存を適用する。構成体自身が生成するcaseの受入receiptまたはOS run resultを、構成体を生成/開始する前提にしない。\n\n**受け取るもの**：開始時の対象revision/scope、HARNESS-L2-022適用oracle、対の設計または許可されたincident source、必要なunit pack identity/schema/version、選択consumerを使う場合のHARNESS-L2-032 compatibility。初期入力に将来の生成receipt、run結果、修正後passを要求しない。run receiptは先行段階の後で返る結果を次段階が受ける。各sourceの許可と適用範囲を保持する。\n\n**提供するもの**：source→failure/original input→reduction candidate→032隔離run request→後続resultで同一failure確認→regression candidate→修正前revisionでのfail→修正後revisionでのpass（修正runを選択した場合）→consumer packet/result receiptを段階順につなぐtrace、対象revision/version、failure/reproduction status、生成物ごとのscopeと不足事項。033が回帰成立を主張する時は独立oracle上で縮小前後の同一failure、修正前fail、修正後passの全条件を要し、trace/候補生成だけを成功にしない。修正後passやconsumer resultは作成開始前の入力でなく後段結果である。単体結果・接続結果を同じ成功状態へ潰さない。\n\n**依存区分**：\n- **常時必須**：対象revision/scope、HARNESS-L2-022のoracle/義務契約、少なくとも一つの選択unit能力（030または031）のidentity/version/適用範囲、artifact trace schema、安全な入力処理。\n- **特定操作時のみ**：incident縮小・同一failure確認を選ぶ場合は031のsanitized incident input、必要に応じHARNESS-L2-014の対象pair/design、032 run-request connection、選択executor（OS-020または利用者CI）の各段階isolated result receiptを要求し、各result後に次のreduction candidateを生成する。回帰candidateを作るだけなら修正後run resultは要求しない。033が「回帰成立」と判定する操作では、縮小前後を同一oracleで確認し、修正前revisionのfailと修正後revisionのpassの各run receiptが後段結果として必要。case/recipe packetをrunnerへ送る場合は032 contractとconsumerを選択する。未選択operationは未実施として明示する。\n- **選択した入力元に応じて必須**：選択された設計/spec/oracle/log/input/consumer contract各identity、version、compatibility、権限。未選択の設計sourceやconsumerを暗黙に補完しない。\n- **参照資料のみ**：今回のsource/oracle/permissionを規定しない過去例・背景。構成体の必須traceやsecurity契約は参照に落とさない。\n\n**保証すること**：各構成要素と適用条件の関係を追跡でき、未完/未再現/未接続/未実行の差を明示する。033の回帰成立oracleは、縮小前後の同一failure、修正前revisionでのfail、修正後revisionでのpassを独立receiptで確かめる。修正前後のrun結果は作成開始前入力ではなく段階後の証拠である。case生成・repro成立・CI pass・HARNESS-L2-022のstage受入を同一判定にしない。上流の期待結果が不足すれば要求/設計/oracle ownerへ、source permissionが不足すればsecurity/data ownerへ、consumer契約が不整合ならconsumer ownerへ戻す。\n\n### 候補関係と1.0境界\n\n`HARNESS-L2-014`は対の設計、`HARNESS-L2-022`はoracle/義務/stage受入契約を所有し、`HARNESS-L2-030`/`031`はそれらを入力にする独立versioned capability pack/unit、`HARNESS-L2-032`は選択executorへの接続、`HARNESS-L2-033`は全段階を追う構成体を所有する。HARNESS-L2-010は各pack identity/version/依存境界、HARNESS-L2-011はcall/input/scope/compatibility/receiptを所有する。既存014/022の置換・意味変更ではない。PO第4項が求めるtest/data/double/repro/regression能力を含む一方、v0.1収載、必要case数、coverage率、mutation閾値、reduction上限、全欠陥不存在の保証は未採択。実行は選択したOS-020または利用者CI、oracle authorityはHARNESS-L2-022/上流requirementに残す。030/031/032のpackまたは依存契約を交換・更新した場合、HARNESS-L2-010/011のversion/compatibility照合後、影響を受ける未実行candidate・artifact・consumer packetを新revisionへ結び直し、選択したoperationのcase/oracle/reduction・consumer適合性を再検証する。HARNESS-L2-014の対設計またはHARNESS-L2-022のoracle/義務契約が更新された場合も、それに依存するcase/repro/regression candidateのtrace・期待値・適用scopeを新契約へ再照合し、不一致はstaleとして該当operationを再生成/再検証する。旧pack/result receiptを新版の合格へ流用しない。\n\n"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 719,
+      "end": 729,
+      "file_lines": 1544,
+      "full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+      "span_sha256": "1ceb111c98b785009febbade687cfdde04acbb354a2484e86b931405b0b0ec1e",
+      "literal": "### HARNESS-L2-035 要求候補の導出根拠と受入への寄与の照合（CORE単体追補候補、1.0）\n\n- **親・状態**：HARNESS-L1-008。`version_target: 1.0`、未採択の追補候補。既存008/024の要求形成に、scopeの根拠を後付けの候補だけで循環させない照合を具体化する。人の指示を受けて候補を起こすことと、その候補を採用済みにすることを分ける。\n- **入力**：対象機能・要求候補、目的・scope/non-goal、原指示とその出所、対象Concept/L1/既存要求のrevisionとauthority状態、候補までの導出関係、寄与する受入条件、必要性・代替案・適用予算の根拠を受け取る。原指示は指示として保持し、記録されたことだけで対象revisionの合意へ変換しない。\n- **提供・保証**：各候補について、原指示または該当する上流revisionまでの導出経路、受入への寄与、不要なscope拡張の有無、代替案との違い、予算消費の根拠、不足・矛盾を返す。根拠のある上流から候補へ至る関係と、その関係のauthority状態を辿れることを要する。候補自身、同時に作った要求ID同士、AIの提案だけを互いの唯一の根拠にして正当化しない。要求番号があることや台帳登録があることを根拠充足としない。\n- **循環と未完の区別**：根拠の導出関係が循環する、上流が存在しない、対象revisionが異なる、出所の状態が不明な場合、根拠充足を主張せず不足として要求形成へ戻す。正常なFeedback循環、sourceからの訂正履歴、実行の反復をこの導出関係と混同して一律に拒否しない。単にgraph形が非循環でも、上流の意味に含まれない能力ならscope逸脱として返す。\n- **必要性の照合**：最小性は、選択scopeの受入・安全・依存条件へ必要な寄与を持つか、不要な拡張や代替可能性を説明できるかを検査する意味とする。全体最適の数値や唯一の実装方式をここで推定しない。後続版・先行投資として根拠のある候補を、初版の最小構成に入らない理由だけで削除しない。budgetの値が不明なら不明として区別し、0と見なしたり新しい人間承認手続きを加えたりしない。\n- **依存・責務**：常時必要なのは008/024の対象sourceと上流意味・候補・受入条件。OSを使う構成ではOSのauthority/記録・ticket登録へ結果を渡すが、COREの意味照合をOSへ移さず、OSの実行権限をCOREが決めない。外部の管理機構やCIをCORE単体の成立に必須化しない。実装・実行は別操作であり、本照合の結果から許可しない。\n- **失敗時**：原文・上流revision不足はsource ownerへ、意味衝突・根拠循環・不要拡張は要求形成の訂正へ戻し、該当候補と不足根拠を保持する。人が決める要求意味の差がある場合だけ、原文・選択肢・推奨・影響先を付けて既存の人間判断へ返す。\n- **旧source**：旧`infinity-loop-platform-requirements.md`（`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`）のHIL-FR-38（128行）とHIL-NFR-23（203行）、およびRequirement IRの同identityを起点に、scope根拠・受入寄与・最小性・代替案・budget根拠・循環拒否を保持する。旧L0表記は現行Concept/L1等の上流へ対応させ、旧Scope Authority Gateというruntimeや毎操作のgateを新設しない。sourceの正確なpath・行・SHAとIR対応は被覆receiptに保存する。\n\n"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 777,
+      "end": 833,
+      "file_lines": 1544,
+      "full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+      "span_sha256": "100f1f50b8e6ed72adf89cc2130110aa0f3b5463975f9074452464d31c260270",
+      "literal": "### HARNESS-L2-037 HELIX W二段設計を合流する（composite candidate）\n\n**状態**：新規L2候補。現行の明示採択集合に含まれず、未採択。`version_target: 1.0`候補。独立した要求identityであり、実装許可、設計承認、要件承認、利用者受入を生成しない。\n\n**親L1**：`HARNESS-L1-001`, `HARNESS-L1-004`, `HARNESS-L1-009`。L1-001は上流意図から運用評価までを正規V-pairで構成する根拠、L1-004は検証義務・反例・証拠・差戻し条件、L1-009は要求の種類・構成に合うtemplateから設計義務を導く根拠である。複数Phaseの出力をつなぐ専門workflowを、対象・構成に応じて適用するcomposite能力として具体化する。L1は上流価値を付け足さず、既存L1の意味を変更しない。現行L1-001/009の正規pair・要求構成に応じた設計義務という射程から専門workflowの候補を具体化でき、L1の意味差分は不要である。L1-004はその設計に対するverification pairとevidenceの根拠となる。\n\n**kind・scope・所属**：HARNESS-COREに属する新規composite候補であり、新しいサービスではない。現行`HARNESS-L2-009`が要求kind・target・構成・risk・domainから適用可能なDesign Templateと設計義務を導出し、その版付き適用契約が一般system設計（Phase 1）に続くagent固有設計（Phase 2）を示すscopeに限って適用する。旧`drive=agent`という値だけでは起動しない。2026-09-24のPO判断（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md:75-78）で旧駆動モデルはticket種別へ置き換えられ、Scrum等の開発styleとは別軸とされたため、旧値は現行入力schemaに持ち込まず、009の現行要求分類とtemplate適用判断へ意味を移す。Wを通常の開発style、V-pairそのもの、またはcase-driven modelと同一視しない。旧A-74に従いHARNESS自身の開発には適用せず、外部の対象agent systemへ提供する能力とする。\n\n**既存責務との境界**：\n\n- `HARNESS-L2-009`は対象・要求kind・構成・risk・domainに適したDesign Templateと設計義務、および不足inputのBackflowを所有する。037はPhase間のtrace、二段成果物のscope分離、合流条件を所有し、templateの意味や要求を独自に作らない。\n- `HARNESS-L2-026`は個々の要求から相互参照する設計unitと対の検証設計を構成する。`HARNESS-L2-025`はunitを束ねた汎用composite設計の整合を確認する。037はこれらを二段の対象scopeで利用し、単体設計の重複生成も汎用composite義務の置換もしない。候補が適用中なら、それぞれの契約版・receipt・scopeを照合する。\n- `HARNESS-L2-022`は各段階のoracle・証拠・状態契約を所有する。037の統合設計成果だけからL3/L10 Verified、L2/L11 Accepted、L1/L12 Observedを生成しない。両Phaseの合意済みL2要求・承認済みL3要件とsystem固有義務の検証は現行L3↔L10 pairで022に渡し、L2↔L11受入、L1↔L12運用評価には別々の条件とtraceを渡す。\n- Phase間の設計合流規則は037、CI/Workerの実行・state保存・工程運転はHELIX-OS。HARNESSは「何を満たすか」と差戻し条件を定め、OSは選択された運転契約を適用する。\n\n**開始時入力**：対象product/systemとrevision、要求kind・target・構成・risk・domain、HARNESS-L2-009による適用template/義務/契約版の導出結果、対象scopeを覆うPhase 1の合意済みL2要求・承認済みL3要件とauthority/revision、Phase 1で用いる一般system設計入力とそのtemplate契約。これらで二段scopeが確定した後にPhase 1設計を開始する。開始時にPhase 1/2の設計成果やL9実行結果を要求しない。\n\n**後段入力・受渡し**：Phase 1のL4設計成果ができた後、その成果に対する現行L9対検証receiptを取得し、Phase 2固有の要求形成へ渡す。Phase 2のL4設計成果ができた後にそのL9対検証receiptを取得する。両段階のrevision付き成果・receipt・traceがそろってから合流処理へ進む。旧drive名、`phase.yaml`、旧関数/API名を入力schemaとして固定しない。\n\n**出力**：段階ごとに、対象・revision・scopeを分けたPhase 1 L4設計成果、Phase 1のL9対検証receipt、Phase 2 L4設計成果、Phase 2のL9対検証receiptを記録する。合流出力は両段階のreceiptを入力として、一般system制約からagent固有設計への引継ぎtrace、未解消gap/不整合一覧、L3要件とL10 system oracleで照合可能な統合設計成果または未合流状態を返す。さらにL2/L11 acceptanceおよびL1/L12 observationへの接続traceを持つ。L10判定結果自体はHARNESS-L2-022が所有する。出力には対象revision、参照した契約版、根拠、適用限界、差戻し先を結ぶ。\n\n**保証すること**：\n\n- 適用scopeではPhase 1（一般system）とPhase 2（agent昇華）を別個の設計成果として追跡し、双方のL4設計成果とL9対検証成果、およびPhase間の整合を失わない。Phase 2はPhase 1の承認済みsystem contract/invariantを満たすか、そこから変える必要のある意味差を明示する。\n- 統合設計成果を現行のL3要件とL10 system oracleへ渡し、Phase 1の一般system条件、Phase 2のagent固有条件、および両者の差分を同じ対象revisionで照合できる。片方を省略して他方をmergedと呼ばず、下位成果の列挙だけで構成体を合格にしない。L10の合否はHARNESS-L2-022に従う。\n- 旧FR-L1-28がいうL11〜L12統合flowは、現行のL2要求↔L11利用者受入とL1意図↔L12運用評価のtraceに対応させる。両pairの固有契約は別々に満たし、統合設計やL10検証から受入・観測結果を推定しない。\n- 旧sourceが示すPhase 1（一般system）からPhase 2（agent昇華）への依存順、各Phaseの対付き設計成果、合流後のsystem検証、および受入・運用評価へのtraceを保つ。この二つの意味段階と順序は037の適用scopeでは必須である。追加の全対象固定workflowや一律の運用substepを新設するものではない。旧sourceにあるL9/L10/L11-L12は旧時代の層番号として記録し、現行HARNESS-L2-001のpair（L4↔L9、L3↔L10、L2↔L11、L1↔L12）に意味対応させる。旧artifact名、固定phase field、旧tool/runtime、実装順の細部を現行契約へ移さず、L2-001/022の段階・pair定義を上書きしない。画面上の特定trace表示は全scopeへ一律必須化しない。ただし選択scopeにtrace UIが含まれる場合は、画面上でPhase 1/2の状態、対象revision、合流状態と未解消gapを追跡できることを受入条件とする。UIを含まないscopeでは、同じ情報を該当する設計・検証artifactで追跡できることを求める。\n\n**依存区分**：\n\n- **常時必須**：対象revision/scope、各Phaseの適用段階で必要なL2合意・L3承認のauthority、HARNESS-L2-009の適用template/義務/契約版、Phase間handoff契約、HARNESS-L2-022の現行pair/state/oracle契約。これは開始前に必要な契約であり、後段で生成されるPhase成果や実行receiptを開始前提にはしない。authority、適用契約または必須oracleがunknown/stale/missingなら、その範囲の設計開始または合流を保留する。\n- **特定操作時のみ**：009で二段scopeと判定された設計操作に限り、Phase 1のL2合意/L3承認→Phase 1設計・実装/対検証→Phase 2のL2形成/合意・L3要件/承認→Phase 2設計・実装/対検証→両receiptを用いた合流の順で処理する。各L9 receiptは対応する設計成果の生成後に取得し、次段または合流の入力とする。一般system設計だけを行う操作では037を起動しない。統合後にL3↔L10検証、L2↔L11受入、L1↔L12運用評価へ進む場合はそれぞれの段階契約に従うが、037がそれらの結果を前提・代行しない。trace UIを含む選択scopeでは表示上の状態traceも検証し、非UI scopeではartifact traceを検証する。\n- **選択した入力元・適用scopeに応じて必須**：Phase 2が参照する個別Design Template、pattern、agent/platform/tool contractは、対象scopeで選択されたものについてidentity/version/applicability/required input/authorityを照合する。選択されていない知識やplatformを暗黙に必須化しない。L2-025/026候補を当該scopeの設計構成に使う場合は、各候補の契約・receipt・互換性を確認する。\n- **参照資料のみ**：旧`drive=agent`、`phase.yaml`の`phase_merge` field、`mergeTwoStageAgentDesign`、旧Traceビュー、開発styleの旧名、旧schema/runtimeの例は根拠・履歴として読むだけで、現行実装依存や固定schemaではない。\n\n**正常・誤り・未見**：\n\n- 正常：HARNESS-L2-009が現行要求のkind/target/configuration/risk/domainと適用template版を照合し、二段scopeを導出する。開始時にはPhase 1の合意済みL2要求・承認済みL3要件とPhase 1の設計入力だけがあり、まずPhase 1 L4成果を生成する。Phase 1のL9対検証後、そのrevision付き成果・receiptからPhase 2固有のL2要求とL3要件を形成し、L2合意・L3承認を確認してからagent固有L4成果を生成し、続いてPhase 2のL9対検証を行う。両receiptとtraceが揃い、Phase 2がPhase 1のcontractを保つか明示差分を解消した後、統合設計成果をL3↔L10 system oracleへ渡す。L10結果は022が判定する。L2↔L11 acceptanceとL1↔L12 observationの結果は別stateとして後続へつなぎ、まだ実施していなければ未実施とする。\n- 誤り：Phase 2がPhase 1のsystem invariantを破る、required input/phase receiptが欠ける、phase間traceが別revisionを指す、または一方の現行L4設計/L9対検証成果だけをmergedとする場合、037は統合成果を出さず具体的gapと戻し先を返す。設計input欠落はHARNESS-L2-009/形成へ、要求意味変更はHARNESS-L2-008/上流へ、oracle不足はHARNESS-L2-022へ戻す。対象revision・運転記録はOS境界へ返す。\n- 未見：未公開のagent構成でも applicabilityが既知の適用契約範囲内なら、同じphase境界・要求oracle・trace条件を適用して内容を照合する。fixtureがないだけでは一律拒否せず、既知条件下の対応は受け入れる。適用範囲外・未定義のauthority/oracle/contractは該当箇所をunknownとして保留し、合流済み・受入済みへ昇格しない。\n\n**旧source・保持/変更**：\n\n- `LEGACY-ASSET-6B6C5CB0E481BE01088B`：`docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md:59`（FR-L1-28、file SHA-256 `a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008`、line SHA-256 `a7b461949218e37e67110567ee4aad528901e8a2536341fc6d23a5cb35590106`）。保持：Phase 1一般system＋Phase 2 agent昇華、各L9成果、L10合流済み成果、L11〜L12統合flow、development style/case-driven modelとの区別。変更：旧固有実装名・手順ではなく、revision/scope/契約版付きの合流契約に再導出する。\n- `LEGACY-ASSET-3B905BB196962E2BE624`：`docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/screen-requirements.md:464`（旧画面受入source、file SHA-256 `e5b6964567242a2440ded28ed99c1783f37a9326624c02283c7a975c3020063b`、line SHA-256 `096ba44a8a6a5c8ea7538755f94af4155201ddae5ead9d726611e4712f4d972f`）。旧TraceビューでW二段状態を可視化する記述は、phase state/traceが追える要求へ意味を再導出する。特定画面や表示方式は固定しない。\n- `LEGACY-ASSET-96CCD05C4CCA06F50D3D`：`docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/technical-requirements.md:169`（I-4、file SHA-256 `3e105358418cb54af0bc2e414d0b06171715ab2a26ea3b44dd16f932bcbfef88`、line SHA-256 `cc12f3fae870d6917c65a8c671f7de283c931f31788c61502561c894c6c52a5b`）。`drive=agent`確定時Phase 1/2→L10合流stateを持つ意味を保持するが、`phase.yaml`/`phase_merge` fieldは旧方式として移植しない。\n- `LEGACY-ASSET-809D616D0D7D844F5720`：`archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/function-spec.md:250`（旧詳細候補、file SHA-256 `f80b69a4d153d7775ecd789aa9e261c140baf2a443ac53a851de710cfce02b14`、line SHA-256 `da0f68bfde9fb763e7936678b9393b42c7b924630bdf1b07f2d53baf09a30785`）。Phase 1/2 design artifactとhandoff evidenceを入力に、merged stateまたはexplicit gapを返し、layer boundaryを保持する条件を参照する。固有function/API名やprovider transcript処理は本候補の規範実装へ固定しない。\n- `LEGACY-ASSET-978C267AADC50615A1E2`：`archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/fr-unit-coverage.md:64`（旧coverage対応、file SHA-256 `477c95b229b4ddffd4c2ed76fdfb99d8f3a4e8241b21ae7e883ffa2607d39dbf`、line SHA-256 `b5ff66c0f85a00aa4aa13700b2970733155b99bed54340f5fc8997803168e137`）。`U-FR-L1-28`がPhase1/2 merge stateとagent handoffを対象としていたことを受入の根拠に使う。旧test/runtimeの実行合格は現行受入証拠にしない。\n\n**現行根拠と比較**：`docs/helix-harness/L1-planning/product-intent.md:31,39`（L1-001/004/009、SHA-256 `238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f`）。現行L2 `docs/helix-harness/L2-requirements/product-requirements.md`（HEAD `2beddd2b9e295f46bd6086de5f14148421144513`、SHA-256 `07fe4e2e7a8205d37571fc745f1154022559cf6489022ec6711f3efad3940bcf`）：009 `:60,116`はtemplate選択とunit/connection/composite義務、022 `:447-461`はstage/oracle/acceptance、026 `:530-540`はdesign unit、025 `:544-554`はgeneric composite整合。現行L11 `docs/helix-harness/L11-acceptance/product-acceptance.md`（同HEAD、SHA-256 `006c929d9c00d349b263bcbaa371e7d1638176966511420075cc85a45b9b8321`）：009の受入` :29,69,129-130`、022のstage oracle `:298-304`、025/026のpair acceptance `:332-360`。これらには一般design-template選定、generic composite、一連のstage判定はあるが、対象がagent-systemの場合に限るPhase 1/Phase 2双方のL9成果とL10合流・L11/L12 handoffの一体的な契約はない。037はこの差分だけを補う。\n\n**実物の検証との境界**：各PhaseのL4設計成果の存在・静的整合だけからL9実行receiptを作らない。HARNESS-L2-022に従い、当該scopeのL5以下の設計・実装・必要検証を通った実物について、選択したOSまたは利用者の実行手段が返すL9結果を後段入力として受け取る。037は結果を作らず、契約版・対象revision・oracle・実行状態を照合する。実装や実行がまだ無い段階では設計案と未完義務を保持し、Phase合流済みにはしない。\n\n**Phaseごとの上流と人の判断**：旧Conceptの二回のVを保持する。Phase 1は全体企画を親に一般systemのL2要求合意・L3要件承認を経て設計/実装/対検証へ進む。Phase 1の確定仕様と実物の検証結果をPhase 2への入力とし、agent固有の目的、利用者結果、制約、permission、失敗時の戻し、受入をHARNESS008/024でL2へ形成する。そのL2合意と、そこから導くPhase 2固有のL3要件承認を既存authority手順で得るまでは、Phase 2のL4以下へ進まない。Phase 1の合意・承認をPhase 2へコピーしない。二つのL2/L3 identity・revision・判断記録と合流scopeを別々に保持し、同じcommitやIDを強制しない。Phase 2で外殻の意味を変える必要が出れば該当するPhase 1上流へBackflowし、影響したpairをstaleにして再照合する。技術上の差分だけと推測して上流判断を省略しない。Phase 2が未承認でも要求候補と未完義務の記録は進められるが、設計/実装/合流を済ませたとは扱わない。\n\n旧Concept根拠：`LEGACY-ASSET-75776FE016E550F5355F`、`archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md:343–361`、SHA-256 `b6cecb7bec29d85b36e299f8a594821c1d778328506fe2c056ca330ef76d968c`。一般系とagent系で各々要求/要件からVを通る意味とA-74の自身適用除外を保持する。旧L0-L14は現行ConceptとL1-L12の正規pairへ再導出し、旧provider環境を実装前提にしない。単一L3への畳み込みは本候補では採らない。\n\n"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 931,
+      "end": 941,
+      "file_lines": 1544,
+      "full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+      "span_sha256": "d0dbe8212ac1aeeaf227043a316f277e6997938b1c07c2acbb4a02ad5a79e6f5",
+      "literal": "## HARNESS-L2-035 scope拡張の計測条件（追補）\n\n既存035と一体の未採択候補。親HARNESS-L1-008、version_target: 1.0を保持する。\n\nscope拡張候補の受入寄与・最小性を照合するとき、追加機能数だけでなく、複雑さ（complexity）、外部へ公開する面（public surface）、運用上の負債について、変更前後の測定対象・方法・条件・結果を識別できるようにする。候補の形だけを数えて、API/CLI/schema/設定/依存や運用義務の増加を隠さない。HARNESS-L2-034の計測契約を使う場合はその対象・版・適用条件へ結び、測定前の値や適用予算が不明ならunknownとして残す。特定の数式、全製品共通の閾値、唯一の実装方式は原文にないため追加しない。\n\n候補の起草開始には測定完了を要求しない。scope拡張の必要性を満たしたと主張する段階では、上の三観点とauthoritative oracleへの寄与・代替案・minimum-necessary proofを一緒に示す。測定欠落は該当するscope判定を未完にし、低い追加機能数や別観点の好成績で相殺しない。不要な拡張は既存035へ戻し、新たに必要と判明した変更は既存Backflow/ticket境界へ戻す。実行authority、全作業の同期gate、通常作業の毎回の人確認は追加しない。\n\n旧根拠：HIL-NFR-07。原文と所在は[scope計測の原文照合](../../governance/audits/requirements-stage/scope-measures-legacy-differences-2026-09-28.md)。既存035の導出連鎖・循環拒否を置換しない。\n\n\n"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 216,
+      "end": 216,
+      "file_lines": 1340,
+      "full_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+      "span_sha256": "e4047883fe6bbda845bada035ec57d9a6b5b70b6d1cb370084209f17cc1a9d01",
+      "literal": "| HARNESS-L2-021 | 一つの対象で要求から検証と受入（HARNESS-L2-022）を経て運用保守まで通し、L12の観測と実績の評価から要求へ戻る経路まで辿れる。端から端のtrace、横断する非機能、統合した版の更新・rollback、L12の運用検証が、個別の単位の成功とは別に確かめられる | 単位ごとの合格を集めただけで構成体の合格とする／構成体に固有の義務を確かめない／HARNESSが改善を自分で実行する、または評価の結果を要求へ戻す受け口がない |\n"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 342,
+      "end": 360,
+      "file_lines": 1340,
+      "full_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+      "span_sha256": "49386ce1cc397fb8a83191e9520160fdf9c3be86ca356b2cf99dad8acd45a0bd",
+      "literal": "### HARNESS-L2-025 composite（`HARNESS-L1-001`, `HARNESS-L1-004`, `HARNESS-L1-005`, `HARNESS-L1-007`, `HARNESS-L1-009`）\n\n**正常例**：同じ要求/L3 revisionで、申請作成→承認→承認後編集要求→拒否を画面・API/command・permission・state/data invariant・verification oracleまで辿る。構成体固有のoracleにより、各要素が同じ承認後不変条件を共有し、要求から全設計要素、対の検証設計まで双方向traceが閉じることを確認する。HARNESS-L2-026 unitのreceiptとBRAIN connector契約の照合が常時必須。選択Patternを利用する場合はHELIXBRAIN-L2-030 connection receiptも必須とし、構成体がその選択された知識条件を検証する。connector自体や受渡し契約を任意扱いにしない一方で、選択されていない全知識の完成は要求しない。\n\n**誤りを含む例**：各画面/API/DB単体のfieldが埋まっていても権限・stateの前提が食い違う、traceが片方向、Pattern conflictを見落とす、構成体oracleがないのにunit合格を積み上げて成立扱い、または承認後更新経路を一つ残す。いずれも不合格。複数Patternが衝突する場合は、要求意味を保つ代替を比較可能な候補として示す。意味を変える代案の採用は提案せずL2-008へ戻す。\n\n**未見例**：伏せた追加actor/state transitionを加え、端から端の許可/拒否条件・state/data invariant・影響traceのoracle結果を確認する。未評価のdomainや未提示oracle、L3承認・contract版の欠落は未評価/保留を維持する。composite合格は当該revisionと範囲の設計整合だけであり、実装成立、全プロダクトへの万能性、HARNESS全体の受入を意味しない。\n\n### 014・026・025の境界と交換の受入\n\n**正常**：利用者が014（③設計サービス）を選んだ構成で、026を設計構成の常時必須パック、025を提供する設計一式の横断整合検査として依存閉包へ含める。014が入力受付・差戻し・成果提供、026が具体設計と対の検証設計の生成、025が端から端の固有義務の検査を担当することを入出力で確かめる。014の完了receiptなしで026の生成から025の検査まで進み、他の①②④〜⑦サービスを導入せず014の出力契約を満たす。026を互換な別revisionへ交換した例で、契約版・scopeと同じ固定oracleの再検証結果を014へ結ぶ。\n\n**誤り**：026を第二の③製品として任意選択にする、026欠落で014の具体設計生成を成立扱いする、025未実施で設計一式の横断整合を保証する、026の開始に014または025の完了を要求する、交換後も旧receiptを再利用する例は不合格。非互換・staleなら014の提供を保留し、契約ownerへ戻す。\n\n**未見**：伏せた026の互換契約変更または出力scope変更を与え、014側の影響scopeと025の横断oracleを再評価する。互換な変更は再検証で成立し、未対応・非互換な変更は保留されることを確かめる。検査は対象revisionの候補であり、候補採択を意味しない。\n\n### 依存区分と受入停止\n\n各受入ではHARNESS-L2-026のDesign Template/CORE/BRAIN connector契約とL3 authority、HARNESS-L2-025の構成体scope/oracleを常時照合する。対の検証設計は常時出力必須とし、UI設計など対象別の専用契約と個別oracleは該当scopeで追加する。選んだPatternのidentity/version/compatibility/required inputは選択時に必須。背景資料は参照のみとする。未承認・missing・unknown・conflict・staleの必須入力がある操作は保留し、Pattern未選択は未観測とする。\n"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 432,
+      "end": 444,
+      "file_lines": 1340,
+      "full_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+      "span_sha256": "adfc790851784306d09b2a15a8c8862f34a3388ac27381000679892ec07a8ef5",
+      "literal": "### HARNESS-L2-033 failure-to-regression trace構成体（構成体候補）\n\n**正常例（回帰成立の構成体oracle）**：構成開始時の入力は許可済みsanitized original incident、target revision、独立022 oracle、必要な031/032 pack contractだけで、将来の生成receipt・実行結果・修正後passは要求しない。031が縮小candidateを作り、032が各候補を選択executorへ隔離requestし、後続receiptを受けてから次候補を縮小する。上記PATCH例では元inputと`{\"note\":\"corrected\"}`が未修正版でともに200＋永続note変更となり、独立oracle「approvedなら409＋不変」に対する同一failureであることを確かめる。より小さい空bodyが同じfailureでなければその候補を採らない。そこでcandidate regression caseを固定し、修正前revisionで同じoracle違反（fail）、修正後revisionで409かつ永続note不変（pass）となる隔離run receiptを後段で結ぶ。case/repro candidateの生成だけでは「回帰成立」とせず、回帰成立operationで必要なすべての後続receiptが揃ったときだけ033は成立とできる。contract-derived routeだけを選択した場合はincident/reduction段階を未適用、failure routeを選択しない限り同じfailure証明を要求しない。\n\n**誤りを含む例**：縮小前後のobservable failureが異なる、隔離run receiptなしに同一failureを断定、修正前runがfailしない、修正後runがpassしないのに回帰成立とする、別revisionの結果を混ぜる、未選択consumerを実行済みとする、将来receiptがないため初回case/repro candidateを開始不能にする、case/traceだけで022のProvisional/Integrated/Verified/Acceptedを進める。trace不整合/誤った期待値は不合格、未解決permission/oracle/consumer条件は保留とする。\n\n**未見例**：fixture作成者が隠した同scope failureで、縮小candidateごとの032 request→executor result→次の縮小の順序が守られ、失敗症状が同一oracleに残るか確認する。回帰成立を選んだ場合は修正前fail/修正後pass receiptも後段で結ぶ。oracleなし・source未許可・互換consumer未宣言なら該当段階は未評価/未接続。unit candidateの受入合格は回帰成立や修正済みを意味せず、完全coverage/全欠陥不存在を主張しない。\n\n### 共通の責務・結果限界\n\nHARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle・受入の意味を保持し、HARNESS-L2-010/011が各versioned pack/call境界を保持する。030/031 candidateは独立した生成能力pack、032は選択したexecutorへの接続、033はcandidate生成から後続resultまで段階を結ぶ構成体である。`HELIXOS-L2-020`または利用者CIはrun構成・隔離実行・結果回収を行い、run resultはHARNESS-L2-022 oracleに対する後続証拠としてstage別に扱う。030/031/032 packまたは依存契約を交換した場合は010/011のversion/compatibilityを照合し、影響するcase/oracle/repro/consumer packetを新revisionへ結び直して該当operationを再検証する。014の対設計または022のoracle/義務契約が変わったfixtureでは、既存candidateのtraceと期待値を新契約へ照合し、staleなcase/reproは再生成する。縮小実行を選択した場合は選択executorのisolated run receiptを新しいpack/source revisionに対して再取得する。旧receiptや旧artifactの合格を新版へ流用しない。テストの生成・受渡しだけではtest pass、ProvisionalからIntegratedへの進行、Verified、Accepted、要求承認、releaseを生成しない。上流意味不足はHARNESS-L2-003/004に基づく該当ownerへ、権限/data-use不足はsecurity/data ownerへ戻す。\n\n\n"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 485,
+      "end": 492,
+      "file_lines": 1340,
+      "full_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+      "span_sha256": "e7e38bc2f5d22b27e973892d969d462efd82139ca9fa7e71f204f89f0fda2265",
+      "literal": "### HARNESS-L2-035 要求候補の導出根拠と受入への寄与の照合\n\n- **対応・境界**：L2-035と同じ未採択候補、1.0。原指示・上流revisionから要求候補への意味照合であり、工程反復やFeedback循環を禁止する検査ではない。\n- **正常**：異なる原指示の表現から、同じscopeの候補を導き、上流revisionとauthority状態、受入への寄与、必要性、代替案、budgetの根拠を追跡できる。後続版の候補はその版と根拠を保持し、初版から除外しても削除されない。\n- **個別反例**：候補Aだけを根拠にAを正当化、同時追加A/Bで互いを唯一の根拠にする、ID登録だけを上流根拠にする、存在しない上流、別revision、出所不明、非循環でも上流にない能力、受入寄与のないscope拡張、budget不明を0として扱う例を個別に投入し、根拠充足を主張せず不足/訂正へ戻ることを確認する。\n- **未見・変化**：別branchから同じ上流へ導く候補でも、意味・revision・適用条件を再照合する。上流訂正後は以前の導出結果を流用しない。正当なFeedback循環や修復反復を、根拠循環という理由だけで不合格にしない。\n- **責務**：CORE単体で結果を出せ、OS利用時も登録・実行許可と意味照合が別状態になる。未完候補から人の合意や実行権限を生成した場合は不合格とする。\n\n"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 527,
+      "end": 573,
+      "file_lines": 1340,
+      "full_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+      "span_sha256": "c7b24b6526978f062f322a447b35adaf5c9b195d771761b234b2a55a34322d38",
+      "literal": "### HARNESS-L2-037 対L11受入追補候補\n\n**対応要求**：`HARNESS-L2-037`（HARNESS-CORE所属のcomposite候補、`version_target: 1.0`、未採択。新サービスではない）。親L1は`HARNESS-L1-001`, `HARNESS-L1-004`, `HARNESS-L1-009`。HARNESSは二段設計・照合条件と受入へ渡すtraceを定義し、HELIX-OSは選択された工程・実行・state記録を運転する。適用scopeは現行`HARNESS-L2-009`が要求kind・target・構成・risk・domainと版付きDesign Templateから導出する。旧`drive=agent`は2026-09-24 PO判断で廃止されたdrive分類の意味としてのみ参照する。\n\n**現行pairへの意味対応**\n\n旧FR-L1-28の出力欄はPhaseごとの「L9成果物」、合流「L10」、後続「L11〜L12統合flow」と書く。旧screen requirementはW二段状態をTrace viewに表示するscopeも示しているため、trace UIを含む選択scopeでは表示上のphase/合流状態を受け入れ、UIを含まないscopeでは対応artifactのtraceで同じ意味を確認する。これは旧層番号として保持し、現行layerへ直写ししない。各Phaseは要求・要件を含むVであり、L4/L9だけへ縮めない。`HARNESS-L2-001`の現行pairに照らし、Phaseごとの設計成果をL4、各対検証をL9、両Phaseの合意済みL2要求・承認済みL3要件と統合system検証をL3↔L10、利用者受入をL2↔L11、運用評価をL1↔L12へ対応させる。037はpairやstateを新設・上書きせず、`HARNESS-L2-022`が定める各段階のoracle・証拠・state契約へ渡す。\n\n**受入例**\n\n| 種別 | 入力と期待結果 | 不合格または保留となる反例 |\n|---|---|---|\n| 正常：適用判定と二段実行 | 現行HARNESS-L2-009が要求kind・target・構成・risk・domainおよび版付きDesign Templateから二段scopeを導出する。開始入力にはPhase 1の合意済みL2要求・承認済みL3要件とPhase 1設計入力を与え、まだ生成されていないL4/L9成果は要求しない。Phase 1 L4生成後に対応L9 receiptを得て、その結果をPhase 2固有のL2形成へ渡す。Phase 2のL2合意・L3承認を確認してからL4を生成し、その後に対応L9 receiptを得てから合流する。両Phaseの異なる要求/要件revisionと合流対象revisionのrelationが対応し、Phase 2がPhase 1 contractを維持するか差分を解消していれば統合設計成果をL3↔L10 oracleへ渡す。 | 037の開始時に両PhaseのL9実行receiptを要求する、Phase 2をPhase 1より先に開始する、revision違いの結果を結ぶ、またはPhase 2がPhase 1 invariantを黙って変更したのに合流済みにする。 |\n| 正常：後続pair | 統合設計とL3↔L10 resultを対象revision付きでL2↔L11 acceptance条件へつなぎ、利用者受入のoracle/result/recordを別途確認する。さらにL1↔L12 observationへ運用scope・結果のtraceを渡す。L10 passだけではL11 AcceptedにもL12 Observedにもならない。 | phase mergeのreceipt、設計文書、L10 passのいずれかだけからL11 acceptanceやL12運用評価の成功状態を作る。 |\n| 誤り：意味・境界の不一致 | Phase 2のagent固有設計が一般systemのapproved contract、permission/invariant、error boundaryまたは対応oracleと矛盾する例を与える。037は差分と影響scopeを明示し、未解消なら統合設計を返さない。意味変更はHARNESS-L2-008/該当上流へ、設計template/required input不足はHARNESS-L2-009へ、oracle不足はHARNESS-L2-022へ戻す。 | Phase 2を理由にPhase 1の一般system意味を上書きする、HARNESSが上流authorityを書き換える、またはOSの実行結果で設計意味差を閉じる。 |\n| 誤り：欠損・stale | Phase receipt/handoffがmissing、contract versionが互換範囲外、traceの対象revisionがstale、またはどちらかのPhaseのL9対検証証拠が欠ける例を与える。037はgap/差戻し先を返し、unknownをmerged/passとして扱わない。 | 文書・phase fieldの存在だけを合流証拠とする、古いPhase結果を現対象revisionに流用する、gap一覧なしに成功を返す。 |\n| 未見：既知範囲内 | fixtureにない新しいagent構成でも、037の明示された適用契約範囲内であり、一般system制約、Phase 2設計、current L4/L9 pair oracleが特定できるなら、同じ内容oracleでtraceと差分を判定する。既知条件内の適合結果をfixture未収載だけで拒否しない。 | fixture未収載だけを理由に適用scope内の有効な設計を一律拒否する、または旧実装と同じ構造でないことだけで失敗にする。 |\n| 正常：選択scopeのtrace表示 | 旧screen requirement由来のtrace UIを含む選択scopeでは、UIがPhase 1/2の状態、対象revision、合流状態、未解消gapを追える。UIを含まないscopeでは設計/検証artifactの同じtraceを確認する。いずれも専用の旧Trace画面実装を要求しない。 | UI scopeが選択されているのに片方のphase状態やgapが画面で追えない。または非UI scopeに専用画面を追加しなければ合格しないと扱う。 |\n| 未見：適用・oracle不明 | 対象がagent-system scopeに該当するか不明、または一般system contract、Phase 2の適用template、L3 authority、必要oracleが不明の入力を与える。該当部分をunknown/未評価として示し、統合済み・Verified・Acceptedへ昇格しない。 | 未知の適用性を037の適用済みへ補完する、authority/oracleを自動生成する、または対象が不明というだけで固定の新しい人承認手続きを要求する。 |\n\n**既存受入との対応と責務**\n\n- 現行`HARNESS-L2-009`の対L11 `docs/helix-harness/L11-acceptance/product-acceptance.md:29,69,129-130`は、unit/connection/composite template、required input不足のBackflow、誤ったtemplate適用を確認する。037はこれを二つのphase scopeに適用するが、template内容を複製しない。\n- 現行`HARNESS-L2-022`の対L11 `docs/helix-harness/L11-acceptance/product-acceptance.md:298-304`は、L8/L9 Integrated、L10 Verified、L11 Acceptedを別stateとし、oracle/result/evidence/revisionを確認する。037はその検証責務を置換せず、段階出力を用意する。\n- 現行`HARNESS-L2-025/026`の対L11 `docs/helix-harness/L11-acceptance/product-acceptance.md:332-360`はunit設計と汎用composite整合を受け入れる。037はそのphase固有scopeをつなぐworkflowを受け入れ、既存のdesign unit/composite oracleを再実装しない。\n- 適用scope内の二段階とPhase 1→Phase 2の依存順は旧FR-L1-28の意味なので受入で保持する。新たな全対象共通workflow、追加phase、固定運用substepは作らない。旧screen requirementの表示意味はtrace UIを選んだscopeに限って受け入れ、UIを含まないscopeではartifact traceを受け入れる。旧API/field/runtime実行や全外部agent/platformの一律依存は追加しない。L11 acceptance結果は利用者受入の条件・記録とともに別途確定する。\n\n**原文参照と旧条件の保持**\n\n- `LEGACY-ASSET-6B6C5CB0E481BE01088B`：`docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md:59`（FR-L1-28、file SHA-256 `a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008`、line SHA-256 `a7b461949218e37e67110567ee4aad528901e8a2536341fc6d23a5cb35590106`）。保持する原条件は一般systemをPhase 1、agent昇華をPhase 2とするscope、Phase別成果、合流成果、後続acceptance/operationへのtrace、development style/case-driven modelとの分離。旧層番号は前節の通り現行pairへ意味対応する。\n- `LEGACY-ASSET-3B905BB196962E2BE624`：`docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/screen-requirements.md:464`（file SHA-256 `e5b6964567242a2440ded28ed99c1783f37a9326624c02283c7a975c3020063b`、line SHA-256 `096ba44a8a6a5c8ea7538755f94af4155201ddae5ead9d726611e4712f4d972f`）。旧Traceビューは旧screen requirementが対象とするUI scopeで二段状態を画面追跡する条件として保持する。UI scopeが選択されればphase state・revision・合流/gapを表示し、非UI scopeでは同じ情報をartifact traceで確認する。旧画面の固有実装や画面を全scopeへ強制することはしない。\n- `LEGACY-ASSET-96CCD05C4CCA06F50D3D`：`docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/technical-requirements.md:169`（I-4、file SHA-256 `3e105358418cb54af0bc2e414d0b06171715ab2a26ea3b44dd16f932bcbfef88`、line SHA-256 `cc12f3fae870d6917c65a8c671f7de283c931f31788c61502561c894c6c52a5b`）。適用が確定したW scopeにPhase 1/2から統合状態がある意味は保持し、旧`phase.yaml`/`phase_merge`は固定しない。\n- `LEGACY-ASSET-809D616D0D7D844F5720`：`archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/function-spec.md:250`（file SHA-256 `f80b69a4d153d7775ecd789aa9e261c140baf2a443ac53a851de710cfce02b14`、line SHA-256 `da0f68bfde9fb763e7936678b9393b42c7b924630bdf1b07f2d53baf09a30785`）。旧候補の正常出力（merged stateまたはgap）とlayer boundary保持を参照し、関数名・実装I/Oを規範化しない。\n- `LEGACY-ASSET-978C267AADC50615A1E2`：`archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/fr-unit-coverage.md:64`（file SHA-256 `477c95b229b4ddffd4c2ed76fdfb99d8f3a4e8241b21ae7e883ffa2607d39dbf`、line SHA-256 `b5ff66c0f85a00aa4aa13700b2970733155b99bed54340f5fc8997803168e137`）。旧coverage対応がPhase merge state/handoffを成功・不成功で確認する方向を持った事実を保持する。旧test/runtime実行やそのgreenは現行受入証拠としない。\n\n**現行適用判断の根拠**：2026-09-24のPO判断 `docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md:75-83` は旧driveをticket種別へ置換し、開発styleと分ける。よって旧`drive=agent`は適用判定値ではなく、現行`HARNESS-L2-009`の要求kind/target/configuration/risk/domainと版付きtemplate適用に基づいて二段scopeを受け入れる。\n\n**照合固定点**：現行`docs/helix-harness/L1-planning/product-intent.md`（HEAD `2beddd2b9e295f46bd6086de5f14148421144513`、SHA-256 `238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f`）の`:31,34,39`（L1-001/004/009）。現行L2同HEAD・SHA-256 `07fe4e2e7a8205d37571fc745f1154022559cf6489022ec6711f3efad3940bcf`の`:60,116`（L2-009）、`:447-461`（L2-022）、`:530-540`（L2-026）、`:544-554`（L2-025）。現行L11同HEAD・SHA-256 `006c929d9c00d349b263bcbaa371e7d1638176966511420075cc85a45b9b8321`の`:29,69,129-130`, `:298-304`, `:332-360`。現行L2-001は標準V-pairを既に所有し、L2-022がstage transitionを所有するため037はそれらの定義を追加・変更しない。\n\n- **実物がない反例**：PhaseのL4設計文書と静的整合結果だけがあり、必要な実装・L9実行証拠がない入力では、設計案を保持するが合流済みにしない。037がL9 receiptを自己生成する、利用者の実行手段を使うscopeに内部OS一式を必須とする場合は不合格。選択executorが後段で返したcurrentな結果だけを022の契約に照らして受理する。\n\n- **各Vの上流判断の正常・反例**：Phase 1の確定仕様/検証結果を入力にPhase 2のL2候補を形成し、人のL2合意、その要求から導出したL3要件への承認がそれぞれPhase 2 identity/revisionへ結び付いて初めてPhase 2設計へ進む。Phase 1の承認だけでPhase 2を開始、単一L3へ黙って併合、Phase 2のL2/L3を飛ばす、別Phaseの判断を流用する例は不合格。未合意中は要求候補/未完を保持する。\n- **上流変更の未見例**：未fixtureのagent目的が外殻の制約を変更するとき、Phase 1の該当上流へBackflowして影響pairをstaleにし、Phaseごとの再判断/revision対応を確認する。未知の要求を一般systemの承認から推定しない。\n- **A-74の適用外**：HARNESS自身を対象に二回のVを強制する入力を拒否する。本候補は対象repositoryのagent systemへ提供する能力であり、自身の工程をWへ変更しない。\n\n旧Concept根拠：`LEGACY-ASSET-75776FE016E550F5355F`、`archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md:343–361`、SHA-256 `b6cecb7bec29d85b36e299f8a594821c1d778328506fe2c056ca330ef76d968c`。一般系とagent系で各々要求/要件からVを通る意味とA-74の自身適用除外を保持する。旧L0-L14は現行ConceptとL1-L12の正規pairへ再導出し、旧provider環境を実装前提にしない。単一L3への畳み込みは本候補では採らない。\n\n"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 678,
+      "end": 686,
+      "file_lines": 1340,
+      "full_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+      "span_sha256": "6bdb18bf9cb0099608dfe29878764a00b8935e9ddd0867b8ade64bc9c010d440",
+      "literal": "## HARNESS-L2-035 scope計測追補の受入\n\n既存L11-035と併せる未実行・未採択候補。\n\n- **正常**：scope拡張候補に、複雑さ、公開面、運用負債の変更前後の対象・方法・条件・結果と、受入oracleへの寄与、代替案、最小必要性の根拠を与える。同じscope/revisionで照合でき、三観点のどの義務が増減したかを示す。測定の実行手段や数式が違っても、宣言した条件と証拠へ辿る。\n- **誤り**：追加機能数は少ないが公開API/設定面と保守義務を増やした候補に対して、追加数のみで最小必要とする。運用負債または複雑さの結果が欠けた例、旧revisionの計測を流用する例、別観点の好成績で欠測を相殺する例も、scope判定の根拠充足としない。原文にない共通閾値をAIが補って拒否・許可する例も不成立。\n- **未見・開始境界**：新しい変更種別で測定値がまだない入力でも、候補形成と不足項目の提示は行える。測定方法・条件が未定なら該当ownerへ返し、結果や必要性成立を捏造しない。後段の計測完了を起草開始の前提にせず、未完のscope判定から実行権限を生成しない。\n\n\n"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 148,
+      "end": 168,
+      "file_lines": 284,
+      "full_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "span_sha256": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9",
+      "literal": "### L3 要件定義\n\n| 項目 | 内容 |\n|------|------|\n| 名称 | 要件定義 (System Requirements) |\n| 目的 | システム機能要件 (FR-*) + 受入条件 (AC-*) を確定し、設計への入力とする |\n| 主要成果物 ① | 3 sub-doc: functional-requirement / business-requirement / nfr-grade |\n| ③ テスト設計ペア | UX受入テスト設計（L10で実施） |\n| V-pair (右腕) | **L10** UX受入検証 |\n| 主要ゲート | **G3** 機能要件凍結 (FR+AC ⇔ L10 UX受入テスト設計 pair freeze) |\n| 入口 | G1/G2 exit 後 (L1 業務要求 BR-* が入力) |\n| 出口 | G3 通過 (FR+AC 全件確定 + 受入テスト設計 pair 揃い) |\n| 主要 role | `tl` 必須 (FR+AC 仕様化)、`po` 必須 (受入条件確認) |\n\n注: FR-* は L1 BR-* から双方向 trace する。AC 不在での G3 通過は fail (AP-4)。\nG3では`engineering_discipline_required: true`のPLAN契約により、no-code-first判断、責務owner、\n許容complexity、L10で観測する振る舞いをfreezeする。ここでobject modelを一律採用せず、\n`none` / `pure_function`を含む最小のmodeling判断を許可する。\n出典: concept v3.1 §3.1.2 / requirements v1.3.12 §2.2 G3\n\n---\n"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 64,
+      "end": 73,
+      "file_lines": 82,
+      "full_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20",
+      "span_sha256": "e3803ec18fef18ed382c36debab26fd2a7f658c30f4d440142913c61c19c4679",
+      "literal": "### FRS-BR-009 安全閉包と組合せの検収\n\n利用者は各Sliceに必要な安全依存閉包を確認し、無関係な基盤完成を待たず、必要な安全条件が欠ける場合は投入を止められなければならない。\nLite／Fullは検収済みSliceの組合せとし、その統合・更新・rollback・L12運用検証を個別Sliceの成功とは別に確認する。\n\n## 軸の分離\n\n`Functional Release Slice`はcapability family、workflow model、route、drive、execution mode、provider lane、\nrepository境界の別名ではない。SliceはModuleへ所有され、Bundleへ選択的に収載されるrelease promotion unitである。\n\n"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 209,
+      "end": 221,
+      "file_lines": 224,
+      "full_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+      "span_sha256": "381b27d05f0cf4facc87580aff67a5ca275663c5af48194bb189dd23a8fa812d",
+      "literal": "### FRS-R-23 Sliceごとの安全依存閉包\n\n各Sliceの操作・対象・影響から必要な認可、隔離、排他、証跡、復旧条件を閉包として明示する。共通基盤全体の完成を一律条件に\nしない一方、必要条件の欠落・不明・期限切れはfail-closeする。依存をoptionalへ書き換えて安全義務を消してはならない。\n\n### FRS-R-24 Lite／Fullの組合せ検収\n\nLite／Fullはqualified Sliceのexact allowlistから生成するBundleとし、別機能・別builderを作らない。個別Sliceのgreenに加え、\nBundle固有の統合、consumer導入、更新、rollback、L12運用検証と改善還流を要求する。未検収Slice混入や組合せ証拠欠落を拒否する。\n\n## §2 非対象\n\n- 既存RLS正本の無承認変更。旧Module／Bundle個数の固定維持は要求しない。\n"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 58,
+      "end": 59,
+      "file_lines": 83,
+      "full_sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+      "span_sha256": "3d69f4bf769176744c408d80d3ed677c31c92bca26869f273a5309d306eb489a",
+      "literal": "| `FRS-AC-025` | FRS-R-23 | 操作・対象・影響に必要な安全依存だけを閉包化し、全て有効な場合のみ投入可能とする | 必須安全条件をoptionalへ変更、欠落や不明をgreenにするmutationを拒否 |\n| `FRS-AC-026` | FRS-R-24 | Lite／Fullのexact Slice構成にBundle固有の統合・更新・rollback・L12検証がある | 単体greenで組合せ検収を代用、未qualified Slice混入を拒否 |\n"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 81,
+      "end": 81,
+      "file_lines": 83,
+      "full_sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+      "span_sha256": "f408962b9a84cb0a1430c15bc89e642ad843a267aa9f95e4458ede4a5367d56b",
+      "literal": "| FRS-BR-009 | FRS-R-23、24 | FRS-AC-025、026 |\n"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 574,
+      "end": 610,
+      "file_lines": 974,
+      "full_sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a",
+      "span_sha256": "2b4311388ea93d3ed51ff58b28ce901c331b71b697d92022f537d91540e42654",
+      "literal": "### FR-25: Refactor ワークフロー (workflow core、A-50、振る舞い不変ガード)\n\n- **L1 上流**: FR-L1-25\n- **入力**: 対象コード、既存テスト (保護網)\n- **出力**: refactor PLAN、module、テスト緑確認結果 (axis-11 regression 機械検証)\n- **振る舞い**: kind=refactor、振る舞い不変を axis-11 regression で機械検証、G7 通過後 Forward 復帰\n\n#### AC-FR-25-01 (正常系)\n- **前提**: 既存 src/X.ts (test 保護網あり) を refactor、kind=refactor PLAN 起票\n- **操作**: `helix sprint check --regression-only`\n- **期待結果**: 既存 test 全件 green 維持確認 / axis-11 regression pass / 振る舞い不変 audit 記録\n\n#### AC-FR-25-02 (異常系: 既存テスト fail)\n- **前提**: refactor 後に既存 test 1 件 fail\n- **操作**: sprint check\n- **期待結果**: fail-close `Error: refactor で既存 test 破壊 (振る舞い不変違反、FR-25)` / 終了コード 1\n\n#### AC-FR-25-03 (境界系: test 保護網が薄い)\n- **前提**: refactor 対象 module の test coverage < 60%\n- **操作**: refactor PLAN 起票\n- **期待結果**: warn `Warning: test 保護網が薄い (coverage 60% 未満、refactor リスク高)` / 起票続行可 / next_action `先に test 補強 PLAN 起票推奨`\n\n#### AC-FR-25-04 (正常系: TDD brush-up green requires test IDs)\n- **前提**: kind=refactor PLAN が既存振る舞いを変えずに構造変更を完了した\n- **操作**: `assertRefactorInvariant` を評価する\n- **期待結果**: before/after behavior が一致し、regression exit_code=0 で、少なくとも 1 件の regression `test_id` が紐づく場合のみ Green とする\n\n#### AC-FR-25-05 (DB trigger: relation graph / feedback 起点)\n- **前提**: `harness.db` の `findings` / `quality_signals` / `feedback_events` / `impact_results` / `artifact_progress` に structural debt、missing dependency check、missing linked test ID のいずれかが記録されている\n- **操作**: Refactor 候補を抽出する\n- **期待結果**: `debt_degradation` / `code_smell` / `structural` signal として kind=refactor PLAN 入力を生成でき、source docs は直接書き換えない\n\n#### AC-FR-25-06 (異常系: dependency impact 未解消)\n- **前提**: refactor 対象ファイルに relation-graph の open action が残っている\n- **操作**: PLAN を Green / completed 扱いにしようとする\n- **期待結果**: Red のまま維持し、required action (sibling test / L6 contract review / paired design update / DB rebuild check) を evidence として返す\n\n"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L3-acceptance-test-design.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 121,
+      "end": 126,
+      "file_lines": 247,
+      "full_sha256": "27a92c3be07aa06b9e8a598b7b2b7bcc357ccb6afa876e27e45cd85e7f3d00c1",
+      "span_sha256": "5f1c6b0ed41a9621c381579ac141d5b5752ad7d4c8c39e59b40d4c3d1f9d1e76",
+      "literal": "| **AT-FR-25-01** | (A-50 workflow core) AC-FR-25-01 (Refactor 振る舞い不変正常) | 既存 test 緑維持 + axis-11 regression pass | vitest sprint + regression test |\n| **AT-FR-25-02** | AC-FR-25-02 (既存 test 破壊) | refactor 後 test fail → fail-close error | vitest sprint test |\n| **AT-FR-25-03** | AC-FR-25-03 (test 保護網薄い) | coverage < 60% → warn / 続行可 | vitest sprint test |\n| **AT-FR-25-04** | AC-FR-25-04 (refactor green requires test IDs) | `assertRefactorInvariant` が before/after 一致、regression exit_code=0、linked regression test_id ありの場合だけ Green とする | vitest refactor invariant test |\n| **AT-FR-25-05** | AC-FR-25-05 (DB trigger: relation graph / feedback 起点) | harness.db findings / quality_signals / feedback_events / impact_results / artifact_progress から refactor PLAN 入力を生成でき、source docs を直接書き換えない | vitest workflow signal test |\n| **AT-FR-25-06** | AC-FR-25-06 (dependency impact 未解消) | relation-graph open action が残る refactor PLAN は Green/completed にせず、required action を evidence として返す | vitest relation graph readiness test |\n"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L3-acceptance-test-design.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 140,
+      "end": 140,
+      "file_lines": 247,
+      "full_sha256": "27a92c3be07aa06b9e8a598b7b2b7bcc357ccb6afa876e27e45cd85e7f3d00c1",
+      "span_sha256": "34209408ffd589b359218df42e113025b8fc6d86e795c858d6e95586281001dd",
+      "literal": "> **AT-FR 合計 = 85 件** (base 79 件 + back-fill 追加 AC 6 件: AC-FR-03-04 / AC-FR-07-04/05 / AC-FR-25-04/05/06)。一部 (AC-FR-10-03 UI / AC-FR-17-* GHA workflow / AC-FR-29-03 back-propagation) は L4 carry 想定 (L4 で実装後に L12 AT として lift)。\n"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 39,
+      "end": 39,
+      "file_lines": 95,
+      "full_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_sha256": "937b2eacf7bcbd43aee17f301204050acbbfbd56768d8b8c8bd83a273722da64",
+      "literal": "| HR-FR-HIL-05 | HIL-BR-06, HIL-BR-07, HIL-BR-08, HIL-FR-06, HIL-FR-07, HIL-FR-36, HIL-FR-38, HIL-NFR-06, HIL-NFR-07, HIL-NFR-21, HIL-NFR-23 | directiveを分類前に収載し、全Issue Gateをauthority root、最小性、approval、evidenceで決定論評価する | durable directive・policy・rootあり → 証拠充足時のみ遷移 | AI終端、scope cycle、不要拡張、approval欠落 / custody、gate、authority graph、approval receipt | HAC-HIL-05a, HAC-HIL-05b, HAC-HIL-05c |\n"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 44,
+      "end": 44,
+      "file_lines": 95,
+      "full_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_sha256": "3f64c76317cdf3ab41aa23650c0464af0fe1699a104dd376aba7b9ac9fb078f4",
+      "literal": "| HR-FR-HIL-10 | HIL-FR-25, HIL-FR-26, HIL-NFR-13 | core engineとdetectorをversioned registryから同一snapshotへ決定論実行しartifactとfindingを別authorityで保存する | registered version/config、fixed snapshot → rerun同一digest/fingerprint | unknown version、nondeterminism、provenance欠落、partial commit / run、artifact、finding、rerun evidence | HAC-HIL-10a, HAC-HIL-10b, HAC-HIL-10c |\n"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 50,
+      "end": 50,
+      "file_lines": 95,
+      "full_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_sha256": "636bf050b8a9523e41735710af74de1a1b0711936385a0a16d6b8b501b4a66e0",
+      "literal": "| HR-FR-HIL-16 | HIL-BR-21, HIL-FR-39, HIL-FR-40, HIL-NFR-24, HIL-NFR-25 | DesignRefactor候補をsemantic/consumer/oracle同等性で評価し、behavior保存はRefactor、contract変更はRedesign、state変更はRetrofitへ送る | before graph/oracle/consumer/role catalog → 最小plan、pair/oracle/rollback | lexical-only rename、根拠なし抽象化、誤route、consumer漏れ / signatures、graph、oracle、role/name、route receipt | HAC-HIL-16a, HAC-HIL-16b, HAC-HIL-16c |\n"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 128,
+      "end": 130,
+      "file_lines": 257,
+      "full_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "span_sha256": "9e4c85a7ae15753d7ba5cd3d36b01d66c0e4ca315b5433983e7f36c9ebf34ada",
+      "literal": "| **HIL-FR-38** | Scope Authority Gateは各capabilityの根拠をchat directive、L0、PO-approved scopeまたはそのderivation chainへ結び、acceptance寄与、最小性、代替案、budget消費を検査する。後付け要件だけの循環根拠を拒否する。 | authority edge、necessity proof、budget receipt |\n| **HIL-FR-39** | Design Refactor Gateはdesign graph、重複contract/policy/schema、責務とstate invariant、consumer集合、before/after oracleを比較し、`externalize/commonize/objectize/semantic-rename`を独立変換として計画する。renameは名称の文字列類似だけで決めず、入出力、副作用、failure、state transition、call graph、consumer contractを含むsemantic signatureで、同義名の統一または同名異義の分離を判定する。behavior preservation、全consumer compatibility、Scope Authority、設計pair更新、rollbackが揃う場合だけ既存`Refactor`実装へ接続し、observable behavior、public surface、DB semantics、要求の差分を検出した場合は`Redesign/Retrofit`へrerouteする。 | design-refactor PLAN、変換種別、before/after graph digest、semantic/name collision evidence、behavior-preservation receipt、reroute receipt |\n| **HIL-FR-40** | Domain Object/Naming Catalogは設計objectを`Entity/ValueObject/Aggregate/DomainService/Policy/Specification/Command/Query/DomainEvent/Receipt/Port/Adapter/Repository`へ分類し、identity、immutability、aggregate boundary、invariant、authority、lifecycle、consumer、canonical termを保持する。各objectとimplementation symbol、test oracle IDを別edgeで決定論的に結び、内部rename後もoracle identityを維持する。 | domain object catalog、naming decision、symbol edge、oracle edge、boundary/invariant finding |\n"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 187,
+      "end": 188,
+      "file_lines": 257,
+      "full_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "span_sha256": "ffaffe024cc55befcc10c92f4a44e1d0d4820c4c2c49ee76ec54d127f432b93d",
+      "literal": "| **HIL-NFR-07** | Scope Gateは機能追加数だけでなくcomplexity、public surface、運用負債を測り、authoritative oracleへの寄与とminimum-necessary proofがない拡張を拒否する。 |\n| **HIL-NFR-08** | PR監査、Issue Gate、agent registry、memory compaction、ZIP detectorはfailure codeとprovenanceを持ち、proseだけの合格を禁止する。 |\n"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 203,
+      "end": 205,
+      "file_lines": 257,
+      "full_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "span_sha256": "6f47ccb88bec60bb6a60a0ac09c4b6c3213f7e810adb127f63ef8d49f7ebe7a5",
+      "literal": "| **HIL-NFR-23** | scope derivation graphはacyclicでauthoritative rootへ到達し、capability自身または同時追加HILだけを根拠にするcycleを拒否する。 |\n| **HIL-NFR-24** | Design Refactorは「将来使えそう」「綺麗になる」という推測や名称の文字列類似だけでrename、共通層、base class、汎用object、設定surfaceを増やさない。実在するsemantic similarity/name collision、重複・変更波及・責務混在の証拠、全consumer、最小変換、behavior invariant、退行時rollbackを要求し、誤った名称統一、抽象化、scope creepを拒否する。 |\n| **HIL-NFR-25** | Domain Objectはclass化自体を目的にせず、identity/invariant/lifecycle/authorityがないpayloadをEntity/Aggregateへ昇格しない。Value Objectはimmutable、Aggregate更新はroot境界内transaction、Queryはside-effectなし、Domain Eventは完了事実の過去形、domainはPortを介してAdapterへ依存する。`Manager/Helper/Util/Data`等の責務不明名を根拠なしで許さず、testはprivate実装名でなくdomain object＋operation＋oracle IDへbindする。 |\n"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L9-infinity-loop-platform-system-test-design.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 48,
+      "end": 48,
+      "file_lines": 67,
+      "full_sha256": "e518b0cfe15ca4b999bd85120b8d74941a18ab0939ff6cda3dc20a8b7611b705",
+      "span_sha256": "b40434529b50478c487fb56188086a535fe73b3ac2bd0549f2fb8593d6aeace8",
+      "literal": "| HST-HIL-021 | HIL-BR-08, HIL-FR-06, HIL-FR-38, HIL-NFR-07, HIL-NFR-23 | HST-A-021 | Scope Authority Gate | 同時追加HILだけを根拠に新CLIとdependencyを追加する | authoritative root未到達cycleと最小性欠落を拒否 | `HIL_SCOPE_AUTHORITY_CYCLE` | 設計済み | 未実装 |\n"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 65,
+      "end": 65,
+      "file_lines": 92,
+      "full_sha256": "4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+      "span_sha256": "d4f5bd90ff2e5f733af9a2e860a82b0c5021ef36abd84706bddda4f2ddddf84d",
+      "literal": "| **HOT-HIL-38** | HIL-BR-08, HIL-FR-06/38, HIL-NFR-07/23 | 同じ変更でHIL要件を後付けし、そのHILだけを根拠に新CLI/dependencyを正当化する | authoritative rootへ到達しないcycleを拒否し、minimum-necessary/代替/budget証拠が無ければScope Gate fail |\n"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 59,
+      "end": 59,
+      "file_lines": 319,
+      "full_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "span_sha256": "8186024e25dbf09ba7b7288b8df88a69ffaa4a960a4bd15e059f44fe170879db",
+      "literal": "| **FR-L1-28** | HELIX W 2段設計（Phase 1一般system＋Phase 2 agent昇華をL10で合流するspecialist workflow） | two-stage-agent-design | Phase 1/2各L9成果物 | L10合流済み成果物、L11〜L12統合flow。development styleやcase-driven modelへ混ぜない | P1 | (L10 carry、画面紐付け薄い) |\n"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/function-spec.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 250,
+      "end": 250,
+      "file_lines": 1098,
+      "full_sha256": "f80b69a4d153d7775ecd789aa9e261c140baf2a443ac53a851de710cfce02b14",
+      "span_sha256": "234b96ee8aa737a0b8d79f56087ea8f928eeb574a96bef340a740dc3569986d4",
+      "literal": "| FR-L1-28 | `mergeTwoStageAgentDesign` | mergeTwoStageAgentDesign(input: MergeTwoStageAgentDesignInput, deps: MergeTwoStageAgentDesignDeps) => MergeTwoStageAgentDesignResult | Phase 1/2 design artifact と drive=agent handoff evidence が存在する。 | merged design state または explicit gap list を返す。 | merged output は layer boundary を保持し、provider transcript を copy できない。 | U-FR-L1-28 |\n"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/fr-unit-coverage.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 64,
+      "end": 64,
+      "file_lines": 87,
+      "full_sha256": "477c95b229b4ddffd4c2ed76fdfb99d8f3a4e8241b21ae7e883ffa2607d39dbf",
+      "span_sha256": "54d0eb07cd769ca336cd8f332fcd5b04cb57901e50e443adcf82ee7d14e68588",
+      "literal": "| FR-L1-28 | docs/design/harness/L6-function-design/function-spec.md | `mergeTwoStageAgentDesign` は Phase 1/Phase 2 merge state と drive=agent handoff を検証する。 | U-FR-L1-28 |\n"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/generated/requirements/requirement-definition.generated.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 132,
+      "end": 132,
+      "file_lines": 611,
+      "full_sha256": "3603fe35497e12f2d6de59f3710b7dfe590ee14d1c9523ce720757f7490eeb83",
+      "span_sha256": "859cdcda41711728f3b1bc52e3eac95c142856db5b9b429a92fc76184439170d",
+      "literal": "| HIL-FR-25 | functional | Hybrid Document Core Engine RegistryはZIP由来のbuild、agent metadata、assignment、schedule、trace、impact等をversioned capabilityとして分離登録し、入力snapshotごとのrun/artifact/digest/exit statusを記録する。 \\| engine run、artifact manifest、version、input/output digest | HR-FR-HIL-10 | frozen | sha256:8fb7a5e9383bca45038258881ac49ad0b2e37a35068493bbd06ac6ecbdf96ae0 |\n"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/generated/requirements/requirement-definition.generated.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 158,
+      "end": 158,
+      "file_lines": 611,
+      "full_sha256": "3603fe35497e12f2d6de59f3710b7dfe590ee14d1c9523ce720757f7490eeb83",
+      "span_sha256": "7cb52b07cc9ac329dfaa8b013dcf8a7a17841df9bfb99cc5b83571dcb1651592",
+      "literal": "| HIL-FR-38 | functional | Scope Authority Gateは各capabilityの根拠をchat directive、L0、PO-approved scopeまたはそのderivation chainへ結び、acceptance寄与、最小性、代替案、budget消費を検査する。後付け要件だけの循環根拠を拒否する。 \\| authority edge、necessity proof、budget receipt | HR-FR-HIL-05 | frozen | sha256:e53592e9f662eca67ed89e38011462d8698a4d208e308d9e586853d3798ec686 |\n"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/generated/requirements/requirement-definition.generated.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 234,
+      "end": 234,
+      "file_lines": 611,
+      "full_sha256": "3603fe35497e12f2d6de59f3710b7dfe590ee14d1c9523ce720757f7490eeb83",
+      "span_sha256": "5ea6399861f2bce9f7bf85de29aa94b116b0ffea0bfab675854d55d586881f17",
+      "literal": "| HIL-NFR-07 | non_functional | Scope Gateは機能追加数だけでなくcomplexity、public surface、運用負債を測り、authoritative oracleへの寄与とminimum-necessary proofがない拡張を拒否する。 | HR-FR-HIL-05 | frozen | sha256:4b11c5f8c85597e51373236dc05ec9063d60b768d85bdeef0253f092b7995dc9 |\n"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/generated/requirements/requirement-definition.generated.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 266,
+      "end": 266,
+      "file_lines": 611,
+      "full_sha256": "3603fe35497e12f2d6de59f3710b7dfe590ee14d1c9523ce720757f7490eeb83",
+      "span_sha256": "8c5ae8cd07e6589170fc7295651a99690671a2fcf9a840698224e906b8fe430e",
+      "literal": "| HIL-NFR-23 | non_functional | scope derivation graphはacyclicでauthoritative rootへ到達し、capability自身または同時追加HILだけを根拠にするcycleを拒否する。 | HR-FR-HIL-05 | frozen | sha256:c0c469c8dff0ac5972aab0f63ef2dac75133063a4eeef408d0438c6bb4e53b54 |\n"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/generated/requirements/requirement-definition.generated.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 337,
+      "end": 337,
+      "file_lines": 611,
+      "full_sha256": "3603fe35497e12f2d6de59f3710b7dfe590ee14d1c9523ce720757f7490eeb83",
+      "span_sha256": "b5812e036a4ff9ff2129cdc84c43095c31257a4dda6c2ff274f815b2e48e0178",
+      "literal": "| HR-FR-HIL-05 | HIL-BR-06, HIL-BR-07, HIL-BR-08, HIL-FR-06, HIL-FR-07, HIL-FR-36, HIL-FR-38, HIL-NFR-06, HIL-NFR-07, HIL-NFR-21, HIL-NFR-23 | HAT-HIL-05 | specified | sha256:88549026f2f7da7c6daf76994f2ac7ddb6e40e42e652f2a85835cb1dc2a3cf4c |\n"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "start": 457,
+      "end": 457,
+      "file_lines": 1340,
+      "full_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+      "span_sha256": "52e33a02451ba1617815ef0493525cb45b3ce749b0a842406285290e9c2bea9b",
+      "literal": "| HARNESS-L2-033 | HELIX-HARNESS-CORE | case生成・再現・回帰を選択する各サービス。複数packを跨ぐtest/CIのtrace構成体を所有する。unit/接続成立と回帰成立を分け、014/022の意味authority、OS/利用者CIの実行を引き取らない。 |\n"
+    }
+  ],
+  "changed_sources_reverified": [
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "start": 544,
+      "end": 554,
+      "file_lines": 1544,
+      "full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+      "raw_lf_sha256": "452339e55022f3b8a15c509eb6f05a36c2c01fc10bcac616a1c757b4187df979",
+      "literal": "### HARNESS-L2-025 要求から整合した設計・対oracleを閉じる（composite candidate）\n\n- **親L1**：`HARNESS-L1-001`, `HARNESS-L1-004`, `HARNESS-L1-005`, `HARNESS-L1-007`, `HARNESS-L1-009`。対象はHARNESS-L2-026 unitの設計と、必要な場合のHELIXBRAIN-L2-030接続を束ねた設計構成体である。\n- **対象・kind・版・scope**：設計出力と対の検証設計の相互整合を確かめるcomposite candidate、`version_target: 1.0`。一つの対象revision/要求scopeの端から端設計を扱う。\n- **014/026との分担**：014が提供する設計成果について、026は設計要素を構成し、025は要素をつないだ端から端の固有義務を検査する。025は014を代替する製品でも026を重複生成するunitでもない。014が相互参照する設計一式の整合を提供する際は025の対象scopeの検査が常時必須となる。025は026の成果を受け取るが、026の生成は025完了に依存しない。014→026・025、025→026の向きで閉じ、014完了への自己依存を作らない。\n- **入力**：HARNESS-L2-026の設計unit出力、常時必須のHELIXBRAIN connector契約状態、選択したPatternがあればHELIXBRAIN-L2-030 receipt、要求/L3 revision、画面/API/DB/permission/state/oracle scope。\n- **出力**：端から端の双方向trace、要素間relation、構成体固有の横断invariant・failure path、対の検証設計、conflict/unknown/alternative/差戻し先。\n- **保証すること**：unitやconnectionの成功だけで構成体を成立扱いせず、要求→設計要素→oracleの端から端trace、画面/API/DB/permission/stateの整合、正常/拒否/failure pathを別途確認する。BRAIN connector契約は常時必須。BRAIN知識を使う場合はHELIXBRAIN-L2-030 receiptと使用Patternの全条件を必須とする。knowledge selection自体は対象scopeで必要とされた場合だけで、利用可能な全BRAIN知識を要求しない。採択、承認、実装・利用者受入状態は作らない。\n- **依存区分**：**常時必須**＝HARNESS-L2-026設計unit契約とreceipt、対象L3 authority/revision、CORE/Design Template/BRAIN connectorの版・互換、構成体scopeとHARNESS-L2-022 oracle契約。**特定操作時のみ**＝UI要素を含むscopeのprototype/screen contract、各設計対象に適用される個別oracle（構成体の対検証設計自体は常時必須）。**選択した入力元に応じて必須**＝Pattern利用時はHELIXBRAIN-L2-030 receiptと選択Patternの全required input/relation/version。Pattern非利用は非適用根拠を付け未観測とする。**参照資料のみ**＝背景・旧例。構成体invariantの根拠を代替しない。\n- **正常・境界例**：承認後編集禁止の要件について申請作成→承認→編集要求→拒否まで、画面/API/permission/state/data invariantと各oracleを一つのtraceで辿り、実装経路が違っても同じ意味を保つ設計を確認する。\n- **失敗・戻し先**：下位要素の成功を集めただけ、片方向trace、競合するstate/permission、見落としたPattern衝突、未定oracle、承認後も更新可能な経路があれば不合格。意味差はHARNESS-L2-008、L3差はL3 owner、汎用Pattern/relation差はBRAIN、設計/pair不備はHARNESS-L2-026/022の形成へ戻す。\n"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "start": 342,
+      "end": 360,
+      "file_lines": 1340,
+      "full_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+      "raw_lf_sha256": "49386ce1cc397fb8a83191e9520160fdf9c3be86ca356b2cf99dad8acd45a0bd",
+      "literal": "### HARNESS-L2-025 composite（`HARNESS-L1-001`, `HARNESS-L1-004`, `HARNESS-L1-005`, `HARNESS-L1-007`, `HARNESS-L1-009`）\n\n**正常例**：同じ要求/L3 revisionで、申請作成→承認→承認後編集要求→拒否を画面・API/command・permission・state/data invariant・verification oracleまで辿る。構成体固有のoracleにより、各要素が同じ承認後不変条件を共有し、要求から全設計要素、対の検証設計まで双方向traceが閉じることを確認する。HARNESS-L2-026 unitのreceiptとBRAIN connector契約の照合が常時必須。選択Patternを利用する場合はHELIXBRAIN-L2-030 connection receiptも必須とし、構成体がその選択された知識条件を検証する。connector自体や受渡し契約を任意扱いにしない一方で、選択されていない全知識の完成は要求しない。\n\n**誤りを含む例**：各画面/API/DB単体のfieldが埋まっていても権限・stateの前提が食い違う、traceが片方向、Pattern conflictを見落とす、構成体oracleがないのにunit合格を積み上げて成立扱い、または承認後更新経路を一つ残す。いずれも不合格。複数Patternが衝突する場合は、要求意味を保つ代替を比較可能な候補として示す。意味を変える代案の採用は提案せずL2-008へ戻す。\n\n**未見例**：伏せた追加actor/state transitionを加え、端から端の許可/拒否条件・state/data invariant・影響traceのoracle結果を確認する。未評価のdomainや未提示oracle、L3承認・contract版の欠落は未評価/保留を維持する。composite合格は当該revisionと範囲の設計整合だけであり、実装成立、全プロダクトへの万能性、HARNESS全体の受入を意味しない。\n\n### 014・026・025の境界と交換の受入\n\n**正常**：利用者が014（③設計サービス）を選んだ構成で、026を設計構成の常時必須パック、025を提供する設計一式の横断整合検査として依存閉包へ含める。014が入力受付・差戻し・成果提供、026が具体設計と対の検証設計の生成、025が端から端の固有義務の検査を担当することを入出力で確かめる。014の完了receiptなしで026の生成から025の検査まで進み、他の①②④〜⑦サービスを導入せず014の出力契約を満たす。026を互換な別revisionへ交換した例で、契約版・scopeと同じ固定oracleの再検証結果を014へ結ぶ。\n\n**誤り**：026を第二の③製品として任意選択にする、026欠落で014の具体設計生成を成立扱いする、025未実施で設計一式の横断整合を保証する、026の開始に014または025の完了を要求する、交換後も旧receiptを再利用する例は不合格。非互換・staleなら014の提供を保留し、契約ownerへ戻す。\n\n**未見**：伏せた026の互換契約変更または出力scope変更を与え、014側の影響scopeと025の横断oracleを再評価する。互換な変更は再検証で成立し、未対応・非互換な変更は保留されることを確かめる。検査は対象revisionの候補であり、候補採択を意味しない。\n\n### 依存区分と受入停止\n\n各受入ではHARNESS-L2-026のDesign Template/CORE/BRAIN connector契約とL3 authority、HARNESS-L2-025の構成体scope/oracleを常時照合する。対の検証設計は常時出力必須とし、UI設計など対象別の専用契約と個別oracleは該当scopeで追加する。選んだPatternのidentity/version/compatibility/required inputは選択時に必須。背景資料は参照のみとする。未承認・missing・unknown・conflict・staleの必須入力がある操作は保留し、Pattern未選択は未観測とする。\n"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "start": 432,
+      "end": 444,
+      "file_lines": 1340,
+      "full_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+      "raw_lf_sha256": "adfc790851784306d09b2a15a8c8862f34a3388ac27381000679892ec07a8ef5",
+      "literal": "### HARNESS-L2-033 failure-to-regression trace構成体（構成体候補）\n\n**正常例（回帰成立の構成体oracle）**：構成開始時の入力は許可済みsanitized original incident、target revision、独立022 oracle、必要な031/032 pack contractだけで、将来の生成receipt・実行結果・修正後passは要求しない。031が縮小candidateを作り、032が各候補を選択executorへ隔離requestし、後続receiptを受けてから次候補を縮小する。上記PATCH例では元inputと`{\"note\":\"corrected\"}`が未修正版でともに200＋永続note変更となり、独立oracle「approvedなら409＋不変」に対する同一failureであることを確かめる。より小さい空bodyが同じfailureでなければその候補を採らない。そこでcandidate regression caseを固定し、修正前revisionで同じoracle違反（fail）、修正後revisionで409かつ永続note不変（pass）となる隔離run receiptを後段で結ぶ。case/repro candidateの生成だけでは「回帰成立」とせず、回帰成立operationで必要なすべての後続receiptが揃ったときだけ033は成立とできる。contract-derived routeだけを選択した場合はincident/reduction段階を未適用、failure routeを選択しない限り同じfailure証明を要求しない。\n\n**誤りを含む例**：縮小前後のobservable failureが異なる、隔離run receiptなしに同一failureを断定、修正前runがfailしない、修正後runがpassしないのに回帰成立とする、別revisionの結果を混ぜる、未選択consumerを実行済みとする、将来receiptがないため初回case/repro candidateを開始不能にする、case/traceだけで022のProvisional/Integrated/Verified/Acceptedを進める。trace不整合/誤った期待値は不合格、未解決permission/oracle/consumer条件は保留とする。\n\n**未見例**：fixture作成者が隠した同scope failureで、縮小candidateごとの032 request→executor result→次の縮小の順序が守られ、失敗症状が同一oracleに残るか確認する。回帰成立を選んだ場合は修正前fail/修正後pass receiptも後段で結ぶ。oracleなし・source未許可・互換consumer未宣言なら該当段階は未評価/未接続。unit candidateの受入合格は回帰成立や修正済みを意味せず、完全coverage/全欠陥不存在を主張しない。\n\n### 共通の責務・結果限界\n\nHARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle・受入の意味を保持し、HARNESS-L2-010/011が各versioned pack/call境界を保持する。030/031 candidateは独立した生成能力pack、032は選択したexecutorへの接続、033はcandidate生成から後続resultまで段階を結ぶ構成体である。`HELIXOS-L2-020`または利用者CIはrun構成・隔離実行・結果回収を行い、run resultはHARNESS-L2-022 oracleに対する後続証拠としてstage別に扱う。030/031/032 packまたは依存契約を交換した場合は010/011のversion/compatibilityを照合し、影響するcase/oracle/repro/consumer packetを新revisionへ結び直して該当operationを再検証する。014の対設計または022のoracle/義務契約が変わったfixtureでは、既存candidateのtraceと期待値を新契約へ照合し、staleなcase/reproは再生成する。縮小実行を選択した場合は選択executorのisolated run receiptを新しいpack/source revisionに対して再取得する。旧receiptや旧artifactの合格を新版へ流用しない。テストの生成・受渡しだけではtest pass、ProvisionalからIntegratedへの進行、Verified、Accepted、要求承認、releaseを生成しない。上流意味不足はHARNESS-L2-003/004に基づく該当ownerへ、権限/data-use不足はsecurity/data ownerへ戻す。\n\n\n"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "start": 457,
+      "end": 457,
+      "file_lines": 1340,
+      "full_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+      "raw_lf_sha256": "52e33a02451ba1617815ef0493525cb45b3ce749b0a842406285290e9c2bea9b",
+      "literal": "| HARNESS-L2-033 | HELIX-HARNESS-CORE | case生成・再現・回帰を選択する各サービス。複数packを跨ぐtest/CIのtrace構成体を所有する。unit/接続成立と回帰成立を分け、014/022の意味authority、OS/利用者CIの実行を引き取らない。 |\n"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "start": 485,
+      "end": 492,
+      "file_lines": 1340,
+      "full_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+      "raw_lf_sha256": "e7e38bc2f5d22b27e973892d969d462efd82139ca9fa7e71f204f89f0fda2265",
+      "literal": "### HARNESS-L2-035 要求候補の導出根拠と受入への寄与の照合\n\n- **対応・境界**：L2-035と同じ未採択候補、1.0。原指示・上流revisionから要求候補への意味照合であり、工程反復やFeedback循環を禁止する検査ではない。\n- **正常**：異なる原指示の表現から、同じscopeの候補を導き、上流revisionとauthority状態、受入への寄与、必要性、代替案、budgetの根拠を追跡できる。後続版の候補はその版と根拠を保持し、初版から除外しても削除されない。\n- **個別反例**：候補Aだけを根拠にAを正当化、同時追加A/Bで互いを唯一の根拠にする、ID登録だけを上流根拠にする、存在しない上流、別revision、出所不明、非循環でも上流にない能力、受入寄与のないscope拡張、budget不明を0として扱う例を個別に投入し、根拠充足を主張せず不足/訂正へ戻ることを確認する。\n- **未見・変化**：別branchから同じ上流へ導く候補でも、意味・revision・適用条件を再照合する。上流訂正後は以前の導出結果を流用しない。正当なFeedback循環や修復反復を、根拠循環という理由だけで不合格にしない。\n- **責務**：CORE単体で結果を出せ、OS利用時も登録・実行許可と意味照合が別状態になる。未完候補から人の合意や実行権限を生成した場合は不合格とする。\n\n"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "start": 678,
+      "end": 686,
+      "file_lines": 1340,
+      "full_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+      "raw_lf_sha256": "6bdb18bf9cb0099608dfe29878764a00b8935e9ddd0867b8ade64bc9c010d440",
+      "literal": "## HARNESS-L2-035 scope計測追補の受入\n\n既存L11-035と併せる未実行・未採択候補。\n\n- **正常**：scope拡張候補に、複雑さ、公開面、運用負債の変更前後の対象・方法・条件・結果と、受入oracleへの寄与、代替案、最小必要性の根拠を与える。同じscope/revisionで照合でき、三観点のどの義務が増減したかを示す。測定の実行手段や数式が違っても、宣言した条件と証拠へ辿る。\n- **誤り**：追加機能数は少ないが公開API/設定面と保守義務を増やした候補に対して、追加数のみで最小必要とする。運用負債または複雑さの結果が欠けた例、旧revisionの計測を流用する例、別観点の好成績で欠測を相殺する例も、scope判定の根拠充足としない。原文にない共通閾値をAIが補って拒否・許可する例も不成立。\n- **未見・開始境界**：新しい変更種別で測定値がまだない入力でも、候補形成と不足項目の提示は行える。測定方法・条件が未定なら該当ownerへ返し、結果や必要性成立を捏造しない。後段の計測完了を起草開始の前提にせず、未完のscope判定から実行権限を生成しない。\n\n\n"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+      "start": 574,
+      "end": 611,
+      "file_lines": 974,
+      "full_sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a",
+      "raw_lf_sha256": "33c58d942ac168436dddfaf2ee97f0e762e44d0e55afb6137b80b9f539dbe416",
+      "literal": "### FR-25: Refactor ワークフロー (workflow core、A-50、振る舞い不変ガード)\n\n- **L1 上流**: FR-L1-25\n- **入力**: 対象コード、既存テスト (保護網)\n- **出力**: refactor PLAN、module、テスト緑確認結果 (axis-11 regression 機械検証)\n- **振る舞い**: kind=refactor、振る舞い不変を axis-11 regression で機械検証、G7 通過後 Forward 復帰\n\n#### AC-FR-25-01 (正常系)\n- **前提**: 既存 src/X.ts (test 保護網あり) を refactor、kind=refactor PLAN 起票\n- **操作**: `helix sprint check --regression-only`\n- **期待結果**: 既存 test 全件 green 維持確認 / axis-11 regression pass / 振る舞い不変 audit 記録\n\n#### AC-FR-25-02 (異常系: 既存テスト fail)\n- **前提**: refactor 後に既存 test 1 件 fail\n- **操作**: sprint check\n- **期待結果**: fail-close `Error: refactor で既存 test 破壊 (振る舞い不変違反、FR-25)` / 終了コード 1\n\n#### AC-FR-25-03 (境界系: test 保護網が薄い)\n- **前提**: refactor 対象 module の test coverage < 60%\n- **操作**: refactor PLAN 起票\n- **期待結果**: warn `Warning: test 保護網が薄い (coverage 60% 未満、refactor リスク高)` / 起票続行可 / next_action `先に test 補強 PLAN 起票推奨`\n\n#### AC-FR-25-04 (正常系: TDD brush-up green requires test IDs)\n- **前提**: kind=refactor PLAN が既存振る舞いを変えずに構造変更を完了した\n- **操作**: `assertRefactorInvariant` を評価する\n- **期待結果**: before/after behavior が一致し、regression exit_code=0 で、少なくとも 1 件の regression `test_id` が紐づく場合のみ Green とする\n\n#### AC-FR-25-05 (DB trigger: relation graph / feedback 起点)\n- **前提**: `harness.db` の `findings` / `quality_signals` / `feedback_events` / `impact_results` / `artifact_progress` に structural debt、missing dependency check、missing linked test ID のいずれかが記録されている\n- **操作**: Refactor 候補を抽出する\n- **期待結果**: `debt_degradation` / `code_smell` / `structural` signal として kind=refactor PLAN 入力を生成でき、source docs は直接書き換えない\n\n#### AC-FR-25-06 (異常系: dependency impact 未解消)\n- **前提**: refactor 対象ファイルに relation-graph の open action が残っている\n- **操作**: PLAN を Green / completed 扱いにしようとする\n- **期待結果**: Red のまま維持し、required action (sibling test / L6 contract review / paired design update / DB rebuild check) を evidence として返す\n\n---\n"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L3-acceptance-test-design.md",
+      "start": 121,
+      "end": 126,
+      "file_lines": 247,
+      "full_sha256": "27a92c3be07aa06b9e8a598b7b2b7bcc357ccb6afa876e27e45cd85e7f3d00c1",
+      "raw_lf_sha256": "5f1c6b0ed41a9621c381579ac141d5b5752ad7d4c8c39e59b40d4c3d1f9d1e76",
+      "literal": "| **AT-FR-25-01** | (A-50 workflow core) AC-FR-25-01 (Refactor 振る舞い不変正常) | 既存 test 緑維持 + axis-11 regression pass | vitest sprint + regression test |\n| **AT-FR-25-02** | AC-FR-25-02 (既存 test 破壊) | refactor 後 test fail → fail-close error | vitest sprint test |\n| **AT-FR-25-03** | AC-FR-25-03 (test 保護網薄い) | coverage < 60% → warn / 続行可 | vitest sprint test |\n| **AT-FR-25-04** | AC-FR-25-04 (refactor green requires test IDs) | `assertRefactorInvariant` が before/after 一致、regression exit_code=0、linked regression test_id ありの場合だけ Green とする | vitest refactor invariant test |\n| **AT-FR-25-05** | AC-FR-25-05 (DB trigger: relation graph / feedback 起点) | harness.db findings / quality_signals / feedback_events / impact_results / artifact_progress から refactor PLAN 入力を生成でき、source docs を直接書き換えない | vitest workflow signal test |\n| **AT-FR-25-06** | AC-FR-25-06 (dependency impact 未解消) | relation-graph open action が残る refactor PLAN は Green/completed にせず、required action を evidence として返す | vitest relation graph readiness test |\n"
+    }
+  ],
+  "case_inventory": [
+    {
+      "case_id": "CASE-HARNESS-L10-021-S5-001",
+      "line": 621,
+      "raw_lf_sha256": "88d53afb5d91334e19a2bd4138d749da465884a4fa16e2347db33d4041f15e90",
+      "literal": "| `CASE-HARNESS-L10-021-S5-001` | `FR-HARNESS-L3-021` / `AC-HARNESS-L3-021-01` | 正常未見の構成体scopeで、同一revisionの要求・設計・実装・022証拠・統合版・L12観測・要求戻しsourceを与える。 | relationごとのsource/revision/scopeがつながり、構成体固有traceを示す。L12結果は観測入力のまま保持し、改善実行・承認を生成しない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-021-S5-002",
+      "line": 622,
+      "raw_lf_sha256": "46d16b8d0b2def3c57bdc4aaef5fdbabf7bf153f290e79ef310a0393aa957c46",
+      "literal": "| `CASE-HARNESS-L10-021-S5-002` | `FR-HARNESS-L3-021` / `AC-HARNESS-L3-021-02` | `S5-001`から構成体固有の横断NFR traceだけを除き、全個別unit successを保つ。 | 構成体成立を保留し、不足relationを要求/設計ownerへ戻す。unit成功で補完しない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-021-S5-003",
+      "line": 623,
+      "raw_lf_sha256": "e70268416599aae28caafc0100727941a3fc4be542fc41a9b96fb8bbd1528791",
+      "literal": "| `CASE-HARNESS-L10-021-S5-003` | `FR-HARNESS-L3-021` / `AC-HARNESS-L3-021-01` | `S5-001`の要求revisionだけをtrace先と異なる値にする。 | stale/mismatchとして当該relationを保留し、source側または要求ownerへ返す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-021-S5-004",
+      "line": 624,
+      "raw_lf_sha256": "f7aeb12951ef6f4787f09e9f49d0ec9cc1573f6c6def16cbbe198fe011dac078",
+      "literal": "| `CASE-HARNESS-L10-021-S5-004` | `FR-HARNESS-L3-021` / `AC-HARNESS-L3-021-03` | rollback証拠の対象統合revisionだけを更新前の適格版と不一致にする。 | 復元成功をclaimせず、統合変更のsource ownerへ不一致を示す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-021-S5-005",
+      "line": 625,
+      "raw_lf_sha256": "47b4db81b1eec2630bdc4bae975b6874265ae344735e9f136d480418655c5ee3",
+      "literal": "| `CASE-HARNESS-L10-021-S5-005` | `FR-HARNESS-L3-021` / `AC-HARNESS-L3-021-04` | 観測・評価・改善提案を保持したまま、OSの実行receiptだけを未選択にする。 | 実行・完了・要求承認を出さない。未選択の実行は未観測として残し、HARNESSに実行責務を移さない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-021-S5-006",
+      "line": 626,
+      "raw_lf_sha256": "21b027c6ab20858d02d0cf7167e18f12e4318edd5993003355f4448dd6ce3218",
+      "literal": "| `CASE-HARNESS-L10-021-S5-006` | `FR-HARNESS-L3-021` / `AC-HARNESS-L3-021-01` | L12運用観測のscopeだけを欠落させる。 | 運用検証を完了扱いせず、当該観測source ownerへscope不足を返す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-001",
+      "line": 627,
+      "raw_lf_sha256": "716b8e65369aa090e8e44cbb3621d4b77cfbd50613d930d87c8709c3ff9b7d20",
+      "literal": "| `CASE-HARNESS-L10-025-S5-001` | `FR-HARNESS-L3-025` / `AC-HARNESS-L3-025-01` | 正常未見のcompositeで026 unit、L3 revision、CORE/Template/BRAIN connector、022 oracleを与え、Patternは非選択とする。 | 常時必須のtupleと双方向traceを確認し、Pattern receiptを要求しない。未選択Patternは未観測のまま。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-002",
+      "line": 628,
+      "raw_lf_sha256": "fc97fd7766120b16120830def1c7cf223361dbf7316e86c5654d055e5f46b8a5",
+      "literal": "| `CASE-HARNESS-L10-025-S5-002` | `FR-HARNESS-L3-025` / `AC-HARNESS-L3-025-01` | `S5-001`からBRAIN connector契約identityだけを欠落させる。 | Pattern非選択でも必須connector欠落として保留し、BRAINへ戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-003",
+      "line": 629,
+      "raw_lf_sha256": "29f0b47a6dc11fb24c59f687c728a0d3919b3692d1e99fba54414b2162d127fe",
+      "literal": "| `CASE-HARNESS-L10-025-S5-003` | `FR-HARNESS-L3-025` / `AC-HARNESS-L3-025-02` | Patternを選択したままHELIXBRAIN-L2-030 receiptだけを欠落させる。 | 選択Pattern利用を保留し、BRAINへ返す。常時connectorを代替にしない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-004",
+      "line": 630,
+      "raw_lf_sha256": "46341b70c56ef58e9c04e023d069663f10e70f0e66e65ddad4a6f1f5150780fc",
+      "literal": "| `CASE-HARNESS-L10-025-S5-004` | `FR-HARNESS-L3-025` / `AC-HARNESS-L3-025-02` | 選択Pattern receiptのrevisionだけを現在のPattern revisionよりstaleにする。 | 古いreceiptを適用せずstaleとしてBRAINへ戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-005",
+      "line": 631,
+      "raw_lf_sha256": "a395fb4e28e60347c7eb5a50f19740d8169d3dab7c3e31aa2119ff65d21eca83",
+      "literal": "| `CASE-HARNESS-L10-025-S5-005` | `FR-HARNESS-L3-025` / `AC-HARNESS-L3-025-03` | 承認後編集拒否traceでpermission stateだけを許可へ変える。 | 誤った許可経路とcompositeを不合格にし、固定L2にある戻し先へ限定し、設計/pair形成不足なら026/022形成、意味差なら008/上流へ返す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-006",
+      "line": 632,
+      "raw_lf_sha256": "f8a725a2209ddd6b3cde32918b438e637adf1e5b79dc06fad5add65e9bc98e9a",
+      "literal": "| `CASE-HARNESS-L10-025-S5-006` | `FR-HARNESS-L3-025` / `AC-HARNESS-L3-025-04` | 完全な設計traceの出力stateだけを「L3承認済み」とする。 | authority昇格を拒否し、設計結果を未承認のまま保つ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-001",
+      "line": 633,
+      "raw_lf_sha256": "5291a0758b0fea1ae87fcdcab451d640e639b5ee77bf55ce4678b96077b9b058",
+      "literal": "| `CASE-HARNESS-L10-033-S5-001` | `FR-HARNESS-L3-033` / `AC-HARNESS-L3-033-01` | incident sourceを選択しないnormal contract-derived case inputを与える。 | case candidateをsource/revision/oracle/scopeと共に返し、repro/run/passを未実施として保持する。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-002",
+      "line": 634,
+      "raw_lf_sha256": "9dc57f3dd28c603e69e738ae12122c1c43a68095aff3ad815fa002d8b599e620",
+      "literal": "| `CASE-HARNESS-L10-033-S5-002` | `FR-HARNESS-L3-033` / `AC-HARNESS-L3-033-02` | incident reductionを選択し、sanitized source permissionだけをmissingにする。 | reductionを開始せずsecurity/data ownerへpermission不足を返す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-003",
+      "line": 635,
+      "raw_lf_sha256": "d31138afc26fbd65a5ebab607092baf2958590a865055b6616bd0ea7e8917be1",
+      "literal": "| `CASE-HARNESS-L10-033-S5-003` | `FR-HARNESS-L3-033` / `AC-HARNESS-L3-033-02` | reduction inputのfailure oracleだけをunknownにする。 | 同一failureを判定できないため成立claimを保留し、要求/設計oracle ownerへ戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-004",
+      "line": 636,
+      "raw_lf_sha256": "16ad438a464ef266f50b9404946d0227dbd01daf165f75414c9cc737b2468951",
+      "literal": "| `CASE-HARNESS-L10-033-S5-004` | `FR-HARNESS-L3-033` / `AC-HARNESS-L3-033-03` | 縮小後receiptのfailure identityだけを縮小前と異ならせる。 | 同一failureと認めず、reduction/incident source ownerへ不一致を返す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-005",
+      "line": 637,
+      "raw_lf_sha256": "db628676a113ca83be9e9db55140abace8738be0bfcd335819f2565bbd909088",
+      "literal": "| `CASE-HARNESS-L10-033-S5-005` | `FR-HARNESS-L3-033` / `AC-HARNESS-L3-033-03` | 回帰成立claimの三結果のうち修正前revisionのfail receiptだけを欠落させる。 | 回帰成立claimを拒否し、missing後段証拠を示してOS/選択済みexecutorのresult source ownerへ戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-006",
+      "line": 638,
+      "raw_lf_sha256": "4099c51c94783f6aefeaafd57245895991b630889c4fa858a70277224ba147ea",
+      "literal": "| `CASE-HARNESS-L10-033-S5-006` | `FR-HARNESS-L3-033` / `AC-HARNESS-L3-033-03` | 回帰成立claimの修正後revision pass receiptだけを欠落させる。 | 回帰成立claimを拒否する。単なるcandidate生成は保持し、後段runの実行を担うOS/選択済みexecutorのsource ownerへ不足を返す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-007",
+      "line": 639,
+      "raw_lf_sha256": "22ec940e228737e9e3f081e35f01e8e7ea5d6b77c3ff39bae6a3468a6e889d5a",
+      "literal": "| `CASE-HARNESS-L10-033-S5-007` | `FR-HARNESS-L3-033` / `AC-HARNESS-L3-033-04` | 将来の修正後pass receiptだけを開始時入力へ移す。 | 未来結果を初期sourceに使う依存を拒否し、段階順序を維持する。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-001",
+      "line": 640,
+      "raw_lf_sha256": "cb2ab86efe98b3f2e790dfc087ee7f824d0e7f8eac6f1f319cd7370e2ae16ef1",
+      "literal": "| `CASE-HARNESS-L10-035-S5-001` | `FR-HARNESS-L3-035` / `AC-HARNESS-L3-035-01` | 正常未見の要求候補に、原指示・上流revision・候補path・受入寄与・代替案を与え、feedback履歴も別に添える。 | 上流からの導出pathを示し、feedback履歴を許容しながらcandidate自体を唯一の根拠にしない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-002",
+      "line": 641,
+      "raw_lf_sha256": "bb11711cf1e8a4db03472acad1ba76fd818982b8c0c9311c24d4a94371fd4ab4",
+      "literal": "| `CASE-HARNESS-L10-035-S5-002` | `FR-HARNESS-L3-035` / `AC-HARNESS-L3-035-01` | 原指示source identityだけを欠落させる。 | 根拠をunknown/不足として保ちsource ownerへ戻す。候補IDを根拠として補完しない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-003",
+      "line": 642,
+      "raw_lf_sha256": "0403d0fec998e930d3581d22db8b78ce9b838c08d6fbd7e9a0dbc9fc0adbb6f6",
+      "literal": "| `CASE-HARNESS-L10-035-S5-003` | `FR-HARNESS-L3-035` / `AC-HARNESS-L3-035-01` | 受入寄与relationの対象revisionだけを現在の要求scopeとmismatchにする。 | 寄与を認めず該当要求/受入ownerへrevision差を返す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-004",
+      "line": 643,
+      "raw_lf_sha256": "67fe8dd484fd87091f63a605763cd4bac4a85db1193d7d358973799c9299aac8",
+      "literal": "| `CASE-HARNESS-L10-035-S5-004` | `FR-HARNESS-L3-035` / `AC-HARNESS-L3-035-02` | 候補の唯一の根拠edgeを候補自身に戻す自己循環へ変更する。 | 根拠充足を拒否し要求形成ownerへ戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-005",
+      "line": 644,
+      "raw_lf_sha256": "7c7aaf8dee08beb96ab31e320cbddf664f7877f8da4d3147604814e4b6edca87",
+      "literal": "| `CASE-HARNESS-L10-035-S5-005` | `FR-HARNESS-L3-035` / `AC-HARNESS-L3-035-02` | 導出edgeを非循環に保ち、別fieldのfeedback履歴だけを循環させる。 | 正常な訂正/feedback履歴を一律拒否せず、導出rootと履歴を分離する。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-006",
+      "line": 645,
+      "raw_lf_sha256": "65ef4f940e623873849e28c0f018cd3b7ca6ea288dcd29d801d4194fac9032df",
+      "literal": "| `CASE-HARNESS-L10-035-S5-006` | `FR-HARNESS-L3-035` / `AC-HARNESS-L3-035-03` | budget状態unknownのほかは同じ入力で、出力だけをbudget=0とする。 | 0への読み替えを拒否しunknownを保持する。新承認・運用gateを作らない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-001",
+      "line": 646,
+      "raw_lf_sha256": "0a16cbe9de6a1a6f533805b71ce30b5f17a965ef1aaee69610c9bc431db11f9c",
+      "literal": "| `CASE-HARNESS-L10-037-S5-001` | `FR-HARNESS-L3-037` / `AC-HARNESS-L3-037-01` | L2-009適用結果が二段templateを示す未見対象でPhase 1の合意L2/承認L3/templateだけを与える。 | Phase 1設計を開始候補にでき、将来の設計/L9 receiptを前倒しで要求しない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-002",
+      "line": 647,
+      "raw_lf_sha256": "3a6a8343f784155bd281521a29e4c1414e813c2545f3fdfded991fb9be427206",
+      "literal": "| `CASE-HARNESS-L10-037-S5-002` | `FR-HARNESS-L3-037` / `AC-HARNESS-L3-037-01` | L2-009の適用状態だけをunknownにする。 | 二段適用を推定せずPhase 2開始を保留し009 ownerへ戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-003",
+      "line": 648,
+      "raw_lf_sha256": "87f12024023a7063a2154c822bd561239c4fb97d65c9c0054368fe8e9054ab7a",
+      "literal": "| `CASE-HARNESS-L10-037-S5-003` | `FR-HARNESS-L3-037` / `AC-HARNESS-L3-037-01` | 対象productだけをHARNESS自身にする。 | A-74に対応する自己適用除外を保ち、対象外として戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-004",
+      "line": 649,
+      "raw_lf_sha256": "3133b1adb8f183b418346d80ce61cfeece032cd47e1dffeed8d2e4f6e9d2b3e0",
+      "literal": "| `CASE-HARNESS-L10-037-S5-004` | `FR-HARNESS-L3-037` / `AC-HARNESS-L3-037-02` | Phase 1 L9 receiptだけを欠落させPhase 2開始を要求する。 | Phase 2開始を保留し、OSまたは選択済みexecutorの当該Phase 1 result source ownerへ不足を返す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-005",
+      "line": 650,
+      "raw_lf_sha256": "4f51b325e59c1ed3182345fa782ccf58555ac5b092da3aac27b264e9b76524c8",
+      "literal": "| `CASE-HARNESS-L10-037-S5-005` | `FR-HARNESS-L3-037` / `AC-HARNESS-L3-037-03` | Phase2固有の対象scope/revisionに対応するdecision evidenceがないまま、Phase1のL2 applicability/authority judgementだけをPhase2へ流用する。同じL2 identityの出現自体は変異条件にしない。 | Phase2適用authorityを未確認として合流を保留し、Phase2 requirement formation ownerへ戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-006",
+      "line": 651,
+      "raw_lf_sha256": "6b9f3106e75a7a69e9e48f8e0700b72689dd241580bfe35fe4eb9f09500ec57e",
+      "literal": "| `CASE-HARNESS-L10-037-S5-006` | `FR-HARNESS-L3-037` / `AC-HARNESS-L3-037-03` | Phase 2固有L9 receiptのscopeだけを合流scopeと異ならせる。 | 合流を保留しPhase 2検証ownerへscope不一致を返す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-007",
+      "line": 652,
+      "raw_lf_sha256": "519f0544618ea06bfdf6cba1b69200f14a839fb8e7bbafe6a18f1114fab6ae99",
+      "literal": "| `CASE-HARNESS-L10-037-S5-007` | `FR-HARNESS-L3-037` / `AC-HARNESS-L3-037-04` | L2-009適用情報を欠いたまま旧`drive=agent`値だけを追加する。 | 二段適用を開始せず、旧値を現行適用契約へ読み替えない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-021-S5-007",
+      "line": 660,
+      "raw_lf_sha256": "b80ebf881f7aecd10d281f0af78ec0b47375a5df691a2a3824ec26da8cce26a1",
+      "literal": "| `CASE-HARNESS-L10-021-S5-007` | `FR-HARNESS-L3-021 / AC-HARNESS-L3-021-01` | 同一revision/scopeの要求source→設計/build→022 evidence→release/operation→L12 observation→LABO evaluation→要求source returnを全て結ぶ未見normal構成体。 | 全relationをtraceし、evaluation/提案/実行は各sourceの別stateに保つ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-021-S5-008",
+      "line": 661,
+      "raw_lf_sha256": "549084c55d35d3513017eff3df925510cd1ffac4916af620afe8c8359b323d62",
+      "literal": "| `CASE-HARNESS-L10-021-S5-008` | `FR-HARNESS-L3-021 / AC-HARNESS-L3-021-01` | 要求→design relationだけを除き他unit receiptsは正常に保つ。 | 構成体を保留しrelation提供ownerへ戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-021-S5-009",
+      "line": 662,
+      "raw_lf_sha256": "c563603014d76feec92218def5a8670a1d7128e7c6768f2e5671bd6c498faacb",
+      "literal": "| `CASE-HARNESS-L10-021-S5-009` | `FR-HARNESS-L3-021 / AC-HARNESS-L3-021-03` | 適格な前revisionと更新後revision、scope、変更差分、影響unitと統合resultを与えるnormal update。 | 更新差分を対象scopeへ結びrelease/operation stateは別記する。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-021-S5-010",
+      "line": 663,
+      "raw_lf_sha256": "7adce597118304971c5959ac506c1afc157f96e137f2d6c1597714fd15f70eb9",
+      "literal": "| `CASE-HARNESS-L10-021-S5-010` | `FR-HARNESS-L3-021 / AC-HARNESS-L3-021-03` | 直前適格版・rollback scope・実際の復元receiptが一致するnormal rollback。 | rollback候補を正常照合しunit/composite合格と別stateに保つ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-021-S5-011",
+      "line": 664,
+      "raw_lf_sha256": "be7c5af55c0f86a276843d95201732002040faa6b37b8506c682ac189b7774f5",
+      "literal": "| `CASE-HARNESS-L10-021-S5-011` | `FR-HARNESS-L3-021 / AC-HARNESS-L3-021-03` | 索引alias。rollback対象revision不一致は`CASE-HARNESS-L10-021-S5-004`。独立変異なし。 | 参照先のoracleで一度だけ評価し、分母へ重複加算しない。 |\n",
+      "classification": "explicit index"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-021-S5-012",
+      "line": 665,
+      "raw_lf_sha256": "5aab7994b81c21b3b05c1a321471fcbeb1552be25ab61935e40f74785c34fd4c",
+      "literal": "| `CASE-HARNESS-L10-021-S5-012` | `FR-HARNESS-L3-021 / AC-HARNESS-L3-021-01` | L12 observationにsource/revision/scope/result、LABO評価、要求sourceへの戻しreceiptを与える。 | 観測→評価→要求還流をnormal traceとして保持する。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-021-S5-013",
+      "line": 666,
+      "raw_lf_sha256": "6f3fa1a4664ef6a3d87c0c6ea1818154d8e91bcc5ca125458c13b6eb290f59d7",
+      "literal": "| `CASE-HARNESS-L10-021-S5-013` | `FR-HARNESS-L3-021 / AC-HARNESS-L3-021-01` | 還流source relationだけを欠落し観測/評価/提案は保持。 | 要求還流を未完にし要求source ownerへ戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-021-S5-014",
+      "line": 667,
+      "raw_lf_sha256": "b99f1b08f40bf45c140d817c2d146755db51f71cfc42d1e6c262feb0dfa7bea9",
+      "literal": "| `CASE-HARNESS-L10-021-S5-014` | `FR-HARNESS-L3-021 / AC-HARNESS-L3-021-04` | LABO evaluationとOS proposalを別入力で与え、OS execution receiptは未選択。 | 評価/提案/実行を分離し実行未選択は未観測。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-021-S5-015",
+      "line": 668,
+      "raw_lf_sha256": "b88d1f8fb17caaab1dc90a1ca0ff884a3a6de709bf76cc178476ed92d7a6be83",
+      "literal": "| `CASE-HARNESS-L10-021-S5-015` | `FR-HARNESS-L3-021 / AC-HARNESS-L3-021-04` | OS実行receiptなしでHARNESS outputだけを実行済みに変更。 | 実行claimを拒否しOS未実行を保持。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-021-S5-016",
+      "line": 669,
+      "raw_lf_sha256": "01d70be566c5bf14f4f6837edf8541d54c5ade4fa09ee2006b854cf125d746b2",
+      "literal": "| `CASE-HARNESS-L10-021-S5-016` | `FR-HARNESS-L3-021 / AC-HARNESS-L3-021-02` | unit receiptsは正常だがrelease/operational lifecycle resultだけを未観測にする。 | unit successから運用検証を推定せずcomposite未完を保持。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-007",
+      "line": 670,
+      "raw_lf_sha256": "8b437b36594536e4d5269811264910fac06bb26bd8f9d602181b57948baeccd4",
+      "literal": "| `CASE-HARNESS-L10-025-S5-007` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-01` | 未見scopeのnormal composite。026 receipt、L3 authority/revision、CORE/Template/BRAIN connector tuple、scope、022 oracleは一致。Pattern非選択。 | 既知scope内normalとして受け入れ、Pattern非選択は未観測。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-008",
+      "line": 671,
+      "raw_lf_sha256": "bd04428d868e2ce59b5fe9c1397a5c9fc25efce00c474ca36dd3b84d2a69cb4c",
+      "literal": "| `CASE-HARNESS-L10-025-S5-008` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-01` | 026 receiptだけを欠落。 | 保留しHARNESS-L2-026形成へ戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-009",
+      "line": 672,
+      "raw_lf_sha256": "ef913d12502a9b7fbcf88e0b25b8cfdb976d0cd91eef3b8e7ded33a7b617cc1e",
+      "literal": "| `CASE-HARNESS-L10-025-S5-009` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-01` | 026 output contract/scopeを新revisionへ交換した直後のcompositeで、026 receiptだけ旧contract revisionに残す。 | old receiptをstaleとして保留し、設計/pair形成不足なら026/022形成へ戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-010",
+      "line": 673,
+      "raw_lf_sha256": "68568603ac7c09bd1a78a1bb9792ae401c70ceb5844c8fb30fa6321eb685829f",
+      "literal": "| `CASE-HARNESS-L10-025-S5-010` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-01` | L3 authority stateだけをunknownにする。 | 保留し該当L3 ownerへ戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-011",
+      "line": 674,
+      "raw_lf_sha256": "f4911f70479fec1dab6a62ccf82b8a4de70fce12cd4eef1f3b65fa10c7226253",
+      "literal": "| `CASE-HARNESS-L10-025-S5-011` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-01` | L3対象revisionだけをcomposite scopeとmismatchにする。 | 保留し該当L3 ownerへ戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-012",
+      "line": 675,
+      "raw_lf_sha256": "b763837a3af517b9a3a45f4e4fc5eaf6268923381ba29c17c24a4b19d5b044dc",
+      "literal": "| `CASE-HARNESS-L10-025-S5-012` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-01` | CORE connector contract versionだけをunknownにする。 | connection/compositeを不適合として保留し、固定親にない戻し先は新設しない。設計/pair形成不足が確認できる場合だけ026/022形成へ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-013",
+      "line": 676,
+      "raw_lf_sha256": "0a2791032f8233e53c2a785ae175be7b853b8b58bd6b5a28bfc0aa5a406f7f0c",
+      "literal": "| `CASE-HARNESS-L10-025-S5-013` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-01` | 選択Template compatibility versionだけを固定適用range外にする。 | 互換範囲外として保留し、固定親にない戻し先は新設しない。設計/pair形成不足が確認できる場合だけ026/022形成へ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-014",
+      "line": 677,
+      "raw_lf_sha256": "234e5f4afeb17a8b439fa67303fbb6eeda4ef5043ae5d745131c01e0d86fe5c6",
+      "literal": "| `CASE-HARNESS-L10-025-S5-014` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-01` | BRAIN connector identityだけを欠落。Pattern非選択。 | 常時接続を保留しBRAIN connector contract ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-015",
+      "line": 678,
+      "raw_lf_sha256": "c9348cac8362827394e764fb333c7683e91153d2aaa171f8bec171e664315e9c",
+      "literal": "| `CASE-HARNESS-L10-025-S5-015` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-01` | 022 oracle identityだけを欠落。 | oracleを推定せずL2-022 oracle formationへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-016",
+      "line": 679,
+      "raw_lf_sha256": "76080a05f4ee7646a6a07b833e819b51bfdd5ec4a77c90045c901ca53f6c9ead",
+      "literal": "| `CASE-HARNESS-L10-025-S5-016` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-01` | 026 unit scopeだけをcomposite scopeとmismatchにする。 | 保留し026/022 formationへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-017",
+      "line": 680,
+      "raw_lf_sha256": "b4992f88bc928bb1f6d6956cb5555d99a93b699b5e9b9784ae757c001e2de995",
+      "literal": "| `CASE-HARNESS-L10-025-S5-017` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-02` | selected Pattern normal。HELIXBRAIN-L2-030 receiptと全required input/relation/version/source revisionが一致。 | 選択条件のみ照合し未選択知識を必須化しない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-018",
+      "line": 681,
+      "raw_lf_sha256": "ed9a3c92727f116f7321d7119b7b6d120778577ad4e644379f6df1830ffa31b3",
+      "literal": "| `CASE-HARNESS-L10-025-S5-018` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-02` | selected Patternのrequired relation一つだけmissing。 | BRAIN Pattern/relation ownerへ戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-019",
+      "line": 682,
+      "raw_lf_sha256": "b73119c69cbe04a5980b453c4ed59b2d0aa707812537cb863fc806fb1f7ce23c",
+      "literal": "| `CASE-HARNESS-L10-025-S5-019` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-02` | required version一つだけcompatible range外。 | 暗黙fallbackをせずBRAIN Pattern/relation ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-020",
+      "line": 683,
+      "raw_lf_sha256": "07360e7f37c9f551b570023754cadd319d55e5a51c49b3499b39ce40ddd87119",
+      "literal": "| `CASE-HARNESS-L10-025-S5-020` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-02` | required input一つだけunknown。 | complete扱いせずBRAIN Pattern ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-021",
+      "line": 684,
+      "raw_lf_sha256": "9a679a630a012451590c837e0f3f95db94e0b052178706569c2fd99be8c7bd86",
+      "literal": "| `CASE-HARNESS-L10-025-S5-021` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-02` | Pattern relationが同じinvariantで競合。 | conflictを保持してBRAIN Pattern/relation ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-022",
+      "line": 685,
+      "raw_lf_sha256": "b6c34de76d71fdec05da1eb2627eec9ecb017116caeef2d122e4117e3970f48c",
+      "literal": "| `CASE-HARNESS-L10-025-S5-022` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-03` | 要求→設計traceはあるがreverse relationだけ欠落。 | 双方向trace不足としてHARNESS-L2-026/022形成へ戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-023",
+      "line": 686,
+      "raw_lf_sha256": "d39c590192b3d851e5d45208278f76757400ec44166667f3b852a2dee3e6c134",
+      "literal": "| `CASE-HARNESS-L10-025-S5-023` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-03` | 申請→承認→編集要求→拒否のscreen/API/DB/permission/state/data oracleが一致するnormal flow。 | 拒否とdata不変条件を全経路で確認。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-024",
+      "line": 687,
+      "raw_lf_sha256": "1fdbb589833212625709d7e9de5869e916fc8da735a8d4eca5f6e88e51dd3976",
+      "literal": "| `CASE-HARNESS-L10-025-S5-024` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-03` | normal edit-reject flowでAPI actor permissionだけを許可へ変更。 | 誤ったpermission pathを拒否。意味差はL2-008/upstream、設計/pair差は026/022 formationへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-025",
+      "line": 688,
+      "raw_lf_sha256": "4c711241d829b9bc397472620ba47b7c28e89974488866557abb20889b5f10d6",
+      "literal": "| `CASE-HARNESS-L10-025-S5-025` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-03` | permissionは拒否、DB mutation oracleだけ成功へ変更。 | 競合を保留し026/022 formationへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-026",
+      "line": 689,
+      "raw_lf_sha256": "0131528a100944a9e6b3b4a8d46b02ca8e0ab420df5b59ada1a46c875f8b3188",
+      "literal": "| `CASE-HARNESS-L10-025-S5-026` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-03` | oracle identityだけ未定義。 | 未評価を保持し022 oracle formationへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-027",
+      "line": 690,
+      "raw_lf_sha256": "27dcb13d6b8c6c242dde89e2676f36eb800b8a4476b1124cb317da5730eaf29f",
+      "literal": "| `CASE-HARNESS-L10-025-S5-027` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-03` | 全unit successのままconnection resultだけを欠落。 | connection-only/unit-onlyからcomposite successを作らない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-028",
+      "line": 691,
+      "raw_lf_sha256": "167e405268c06a07f777ce324014d1a8a16a1c073b502c43944f01c31b361b8c",
+      "literal": "| `CASE-HARNESS-L10-025-S5-028` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-01` | scopeにUIを含まないnormal設計でrequired contractとartifact oracleを与える。 | normal、prototypeを要求しない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-029",
+      "line": 692,
+      "raw_lf_sha256": "f97cba5e803476143577343cc529e313d1183473e05519d9f4e1b7abbc794ca7",
+      "literal": "| `CASE-HARNESS-L10-025-S5-029` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-01` | UI scopeを選択しその対象screen/prototype contractも提供。 | 選択scopeに限るUI contractを照合。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-030",
+      "line": 693,
+      "raw_lf_sha256": "b14e674cef494d96ec28129d559772aabe7577d3c8afb8cbb9ad49f6afdb43b2",
+      "literal": "| `CASE-HARNESS-L10-025-S5-030` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-01` | 026 unit generationを要求するが025/014 completionは未実施。 | 026 generationを025/014完了gateにせず、compositeだけを未完保持。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-008",
+      "line": 694,
+      "raw_lf_sha256": "0cf8738d7bc4efc2a055f9e8dbbc0669aa12d37fd52473fbabe9ec33d75f4916",
+      "literal": "| `CASE-HARNESS-L10-033-S5-008` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-01` | 同一scope/oracleのoriginal→candidate→isolated request→result receipt→next candidateをこの順で与えるselected reduction normal。 | 段階別receiptと同一oracle/failure traceを照合。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-009",
+      "line": 695,
+      "raw_lf_sha256": "1eb775b8137c34ea6ac13a429d2f04dd36205271cc84654d986cdf327cb73d7a",
+      "literal": "| `CASE-HARNESS-L10-033-S5-009` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-02` | original failure artifactだけ欠落。 | same-failure claimを保留しsource/input ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-010",
+      "line": 696,
+      "raw_lf_sha256": "7b90bbb3021a6043a4e657c9df71cd579d35e4a571684edb583e15798ec7aa0e",
+      "literal": "| `CASE-HARNESS-L10-033-S5-010` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-02` | reduction後のoracle identityだけをoriginalと変更。 | same-failure claimを拒否しoracle ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-011",
+      "line": 697,
+      "raw_lf_sha256": "258c9608603e685f582a32138a1e6a836bab86e7bbd9246263ea5e69df8f8780",
+      "literal": "| `CASE-HARNESS-L10-033-S5-011` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-02` | source revisionだけをtarget revisionとmismatch。 | reductionを保留しsource ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-012",
+      "line": 698,
+      "raw_lf_sha256": "7d44ffc4501b77e88e3703dfa58ebf4622d8ba22b241e50a7ce22f4be6ce48a5",
+      "literal": "| `CASE-HARNESS-L10-033-S5-012` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-02` | source scopeだけを選択scope外にする。 | 操作を保留しsource/security-data ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-013",
+      "line": 699,
+      "raw_lf_sha256": "0c63eb6b49b6a6929acdf91530b0af140c76311f1d876fdc4ccfe8dfd9628d45",
+      "literal": "| `CASE-HARNESS-L10-033-S5-013` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-01` | 選択030 identity/schema/version tupleが適用range内の未見normal版。 | 同じ契約の未見版として受け入れる。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-014",
+      "line": 700,
+      "raw_lf_sha256": "c6291a08df16578bcbd6719e26b30402d4df022b1f5d2c671b3bc3da850d51c5",
+      "literal": "| `CASE-HARNESS-L10-033-S5-014` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-01` | 030 schema versionだけrange外。 | 保留し030 unit contract ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-015",
+      "line": 701,
+      "raw_lf_sha256": "01c43310f88bb5d1556ae6769b832f8d21f6b6d00f7bb1a6ec2b523bc38c1fbf",
+      "literal": "| `CASE-HARNESS-L10-033-S5-015` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-02` | 031 source permissionだけunknown。 | reductionを開始せずsource/security-data ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-016",
+      "line": 702,
+      "raw_lf_sha256": "1bfb83a045e00ce6b89a8eb07e8d032f2678c56fe410be61fa5e47ccc369f4db",
+      "literal": "| `CASE-HARNESS-L10-033-S5-016` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-01` | 022 oracle referenceだけ欠落。 | oracleを推測せず022 ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-017",
+      "line": 703,
+      "raw_lf_sha256": "3f98874a98d6ee1e700844e4a8f81bdeb93ca5f635736de2830b0180974d32a3",
+      "literal": "| `CASE-HARNESS-L10-033-S5-017` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-04` | selected 032 consumer identity/schema/version/scope/permissionが互換のnormal handoff。 | packet handoffを確認、run/passは別state。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-018",
+      "line": 704,
+      "raw_lf_sha256": "e049a24e695cdb9b575ab616110da15403352a9ad72207d65095d5f2127c92a9",
+      "literal": "| `CASE-HARNESS-L10-033-S5-018` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-04` | selected 032 compatibility versionだけmismatch。 | 保留し032 consumer contract ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-019",
+      "line": 705,
+      "raw_lf_sha256": "b2d3f0c26305856c3e1716ad94037106151c29d4940ed29e70a2b19556554b64",
+      "literal": "| `CASE-HARNESS-L10-033-S5-019` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-04` | selected consumer permissionだけmissing。 | handoff開始せずconsumer/source permission ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-020",
+      "line": 706,
+      "raw_lf_sha256": "548429b1b3026dfc4ed080a8d18ea45a59640b708fa1bdfabf1dd7a0905b7266",
+      "literal": "| `CASE-HARNESS-L10-033-S5-020` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-02` | 先行isolated resultを得る前に次candidateを生成。 | 次段を止め同じoracle/source ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-021",
+      "line": 707,
+      "raw_lf_sha256": "def208d95e6b5019c28a2737c2e9e21071ee59338f1aa122fb6b0ac620ad0266",
+      "literal": "| `CASE-HARNESS-L10-033-S5-021` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-01` | incident非選択の通常contract-derived caseでcandidate/source/revision/oracle/scopeを提示。repro/run/pass/consumer非選択。 | candidate生成を正常とし非選択operationは未実施。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-022",
+      "line": 708,
+      "raw_lf_sha256": "e1b6ee3038fd3f4c337e0d22f75fe6e976a695f47b8a4ecc3828d031db76b9cd",
+      "literal": "| `CASE-HARNESS-L10-033-S5-022` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-03` | 回帰claim正常：縮小前後same-oracle receipt、修正前fail、選択済み修正後passを独立receiptで提示。 | 3種の後段証拠が揃うときだけclaimを照合。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-023",
+      "line": 709,
+      "raw_lf_sha256": "6df9a72fa435ec82e06c1525f3244f68dee43c8bd5ca89133d533f2f5aeab3f9",
+      "literal": "| `CASE-HARNESS-L10-033-S5-023` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-03` | 回帰claimから縮小後same-failure receiptだけmissing。 | claim拒否、reduction evidence ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-024",
+      "line": 710,
+      "raw_lf_sha256": "dc32e5470b7514a596b90d1a7072a456b4e5988a1669f748b30dc8ff52feda90",
+      "literal": "| `CASE-HARNESS-L10-033-S5-024` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-03` | 回帰claimから修正前fail receiptだけmissing。S5-005と同じ単独条件を指す索引行。 | claim拒否し、S5-005と同じOS/選択済みexecutorのresult source ownerへ戻す。独立実行母集団に重複加算しない。 |\n",
+      "classification": "explicit index"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-025",
+      "line": 711,
+      "raw_lf_sha256": "5719afbd83a893cddb6c236fa9a034ef6791a4caf66970c84d7da3f4d9375e64",
+      "literal": "| `CASE-HARNESS-L10-033-S5-025` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-03` | 回帰claimから修正後passだけmissing。candidateは存在し修正runを選択している。S5-006と同じ単独条件を指す索引行。 | claim拒否し後段run未完を保持してS5-006と同じOS/選択済みexecutorのresult source ownerへ戻す。独立実行母集団に重複加算しない。 |\n",
+      "classification": "explicit index"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-007",
+      "line": 712,
+      "raw_lf_sha256": "e9916d567dc5b504c752a05d1c5d763bae133ff6ceac27ea1059ffe157234089",
+      "literal": "| `CASE-HARNESS-L10-035-S5-007` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-01` | normal candidate: 原指示source/authority/revision、Concept/L1/requirement revision、non-goal/scope、受入寄与、必要性/代替、budget stateを別fieldで提示。 | root path/寄与を照合しfeedback historyは別field。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-008",
+      "line": 713,
+      "raw_lf_sha256": "3cb6673bb4b2d068806950cb3cb5ffb6babb165a565baca02b93089f21070242",
+      "literal": "| `CASE-HARNESS-L10-035-S5-008` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-01` | original directive sourceだけmissing。 | unknown保持し原source ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-009",
+      "line": 714,
+      "raw_lf_sha256": "d7bd06645aa201faca57127e03efc4ee92342d83d151dbd5b40a46c9dc16ec55",
+      "literal": "| `CASE-HARNESS-L10-035-S5-009` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-01` | Concept/L1/requirement target revisionだけmismatch。 | 根拠を保留し当該upstream ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-010",
+      "line": 715,
+      "raw_lf_sha256": "9f090c5da5e4097b70535023b6b48a8d870865d29f32c5c35e750963865f36fb",
+      "literal": "| `CASE-HARNESS-L10-035-S5-010` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-01` | source authorityだけunknown。 | 充足とせずsource/authority ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-011",
+      "line": 716,
+      "raw_lf_sha256": "2372aa34e6f877a518c72e2fb35b19fe30760e613fb225acc8220bbb1de928bf",
+      "literal": "| `CASE-HARNESS-L10-035-S5-011` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-01` | non-goalだけ欠落。 | scope最小性を確定せず要求形成ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-012",
+      "line": 717,
+      "raw_lf_sha256": "f024a5b14594b67070e05c566bc5e58afb532935d75c6d5d4cb8e7f115473d4c",
+      "literal": "| `CASE-HARNESS-L10-035-S5-012` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-01` | candidate scopeだけ欠落。 | scope unknownのまま要求形成ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-013",
+      "line": 718,
+      "raw_lf_sha256": "b0a08ba619ae34f0d6355db7795339aa9335f95dfc06c52da1fcb0a8325998b7",
+      "literal": "| `CASE-HARNESS-L10-035-S5-013` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-01` | acceptance contribution relationだけ欠落。 | 寄与未確認として要求/受入 ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-014",
+      "line": 719,
+      "raw_lf_sha256": "f02125a2ea646cc9ab8838a2b2629fabf3e20ddd7193988f7c68f2a7a02c9cc9",
+      "literal": "| `CASE-HARNESS-L10-035-S5-014` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-04` | necessity relationだけ欠落。 | 必要性未完として要求形成ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-015",
+      "line": 720,
+      "raw_lf_sha256": "836d76b669622b142272f0df1b2c57b037d34484cc3e173db1254002fc24b94c",
+      "literal": "| `CASE-HARNESS-L10-035-S5-015` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-04` | alternative relationだけ欠落。 | 比較未完として要求形成ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-016",
+      "line": 721,
+      "raw_lf_sha256": "737dc9f819ed97ce20aea41a11739c4bc2802a41ec7223ff9119b47c40664545",
+      "literal": "| `CASE-HARNESS-L10-035-S5-016` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-03` | budget source/evidenceだけunknown。 | unknown保持し0/unlimitedへ変換しない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-017",
+      "line": 722,
+      "raw_lf_sha256": "506eb977dcc6e6d5b01800a950a46e543912a0153935303e00509b2c552d6afd",
+      "literal": "| `CASE-HARNESS-L10-035-S5-017` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-03` | budget unknownの出力だけunlimitedに変える。 | 変換拒否し要求形成ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-018",
+      "line": 723,
+      "raw_lf_sha256": "983475aec0c1092ab7b0bd6916c30f43eff08e5f19c677bef64207487deae8ad",
+      "literal": "| `CASE-HARNESS-L10-035-S5-018` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-02` | 候補A/Bのどちらにも独立authoritative rootがなく、A→BとB→Aの相互edgeだけが唯一の根拠。 | 相互根拠を拒否し要求形成ownerへ戻す。自己循環S5-004と区別する。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-019",
+      "line": 724,
+      "raw_lf_sha256": "aee961982004b68e969952c32c3570912bab5d7a439cbb98d6fc89937cafc1ba",
+      "literal": "| `CASE-HARNESS-L10-035-S5-019` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-02` | 唯一root edgeをAI suggestionへ置換。 | AI suggestionをauthority rootにしない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-020",
+      "line": 725,
+      "raw_lf_sha256": "d4eac79fb79e21f4e4d54c43108cf036c5431a38fd5789b2a5865ab82df9a503",
+      "literal": "| `CASE-HARNESS-L10-035-S5-020` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-02` | ledger registration IDだけ提示しsource content/relationを欠落。 | ID存在だけで根拠成立にしない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-021",
+      "line": 726,
+      "raw_lf_sha256": "594e0db38540cfbe027b24dfaadc15303db494bb3e81e49e2f3c44cf91947007",
+      "literal": "| `CASE-HARNESS-L10-035-S5-021` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-02` | graphはacyclicだがrootの意味がcandidate scopeを含まない。 | scope逸脱を上流ownerへ返す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-022",
+      "line": 727,
+      "raw_lf_sha256": "0c0ff69d0d26dc8c3791798376b3585b3d03b342bc6bc09adc0de136919a07d4",
+      "literal": "| `CASE-HARNESS-L10-035-S5-022` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-02` | derivation acyclic、Feedback/correction historyのみcycleを持つnormal case。 | valid historyを根拠cycleと誤分類しない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-023",
+      "line": 728,
+      "raw_lf_sha256": "3c0a0fff533307fd7f071dd2dc6e492014c66cd6ef561e9c28f03dd8756f4d28",
+      "literal": "| `CASE-HARNESS-L10-035-S5-023` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-02` | execution iterationだけ反復、root derivation unchanged normal case。 | iterationをderivation cycleにしない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-024",
+      "line": 729,
+      "raw_lf_sha256": "6aaf56e8625c79ef0cfda566131508a6c376ba252abc1b447581bd829c81119e",
+      "literal": "| `CASE-HARNESS-L10-035-S5-024` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-04` | 後続版/先行投資candidateに上流根拠がありinitial-minimal scope外。 | 初版に不要だけの理由で根拠付きcandidateを削除しない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-025",
+      "line": 730,
+      "raw_lf_sha256": "275cfedf528941d62ec9d952e754db56d1a11409700a334b740935cbe9654f09",
+      "literal": "| `CASE-HARNESS-L10-035-S5-025` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-04` | 上流意味/scope不変でimplementation approachだけ変更。 | technical-only deltaから新approvalを作らない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-026",
+      "line": 731,
+      "raw_lf_sha256": "2d4226e2cb422fabd42d5fcbf4c664e328b65641032172cb183d64ee252961d5",
+      "literal": "| `CASE-HARNESS-L10-035-S5-026` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-04` | candidate scope/authority meaning change required。 | 該当upstream requirement ownerへ戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-008",
+      "line": 732,
+      "raw_lf_sha256": "0bac7609674e7055218bbddfeec194f8a4a84fc41daa0295a34dcd9c1f8e87c2",
+      "literal": "| `CASE-HARNESS-L10-037-S5-008` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-01` | 009が二段scopeを示すnormal全経路: Phase1 L2/L3→L4→後段L9、Phase2固有L2/L3→L4→後段L9、handoff→merge。 | 順序/receipt/revisionを照合。L10は022、L11/L12未実施は別state。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-009",
+      "line": 733,
+      "raw_lf_sha256": "6f276b80072cf18c6feea17492b86ac970c1faa989d166877f69cff9515c90f9",
+      "literal": "| `CASE-HARNESS-L10-037-S5-009` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-01` | 009が一般systemのみを適用するnormal design。 | 037を起動条件にしない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-010",
+      "line": 734,
+      "raw_lf_sha256": "00ba16ced4f2926eb9ba81380431be61b96e2db32c8b88ec6d33ef0481de8acf",
+      "literal": "| `CASE-HARNESS-L10-037-S5-010` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-01` | 未見agent configurationだが009適用scope内でauthority/oracle/contract成立。 | 名称未見だけで拒否しない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-011",
+      "line": 735,
+      "raw_lf_sha256": "98b92c340620e9be487057810f5912d30827870b035ad8b4171cf4558baf100f",
+      "literal": "| `CASE-HARNESS-L10-037-S5-011` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-01` | scopeが宣言適用範囲外と判明。 | 二段scopeへ広げず対象外。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-012",
+      "line": 736,
+      "raw_lf_sha256": "eed4651f9d41c883542a5ee23732fd8b17379e0f90579726cdbfbb62c5409ef5",
+      "literal": "| `CASE-HARNESS-L10-037-S5-012` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-01` | 009 applicabilityだけunknown。 | Phase2開始を保留し009/形成ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-013",
+      "line": 737,
+      "raw_lf_sha256": "83e6e1a96445238cf4fd248504984cb5608eece844b6d5a12643e15ba4dc2db5",
+      "literal": "| `CASE-HARNESS-L10-037-S5-013` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-01` | Phase1 applicable L2 agreementだけmissing。 | Phase1開始保留し該当Phase1 L2-008/上流ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-014",
+      "line": 738,
+      "raw_lf_sha256": "fd524590af6ca1cf5dcf28b4078e16bdb2022f4eb4d906eadcb70fcbbd641e34",
+      "literal": "| `CASE-HARNESS-L10-037-S5-014` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-01` | Phase1 L3 approval authorityだけunknown。 | Phase1 L4を保留しL3 authority ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-015",
+      "line": 739,
+      "raw_lf_sha256": "3eb93bbfd3cb4e9ce571ae75644a5ea9ec759c2c69ab0e4c9d4b9387a175ed41",
+      "literal": "| `CASE-HARNESS-L10-037-S5-015` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-01` | Phase1 approval evidence revisionだけstale。 | source/requirement ownerへ戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-016",
+      "line": 740,
+      "raw_lf_sha256": "6ee153d821a579a16a19cfc3ad03957a9a19511b347ff8fad1a1ae05026668aa",
+      "literal": "| `CASE-HARNESS-L10-037-S5-016` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-01` | 009 template applicability/obligation versionだけmissing。 | 009 template/obligation formationへ戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-017",
+      "line": 741,
+      "raw_lf_sha256": "a854c27859d8c1aee196b9fecef361703f9aa10e7362a35b69f5b59660bad643",
+      "literal": "| `CASE-HARNESS-L10-037-S5-017` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-01` | 022 applicable oracle/state contractだけmissing。 | 022 formationへ戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-018",
+      "line": 742,
+      "raw_lf_sha256": "c78d46c622b4e974791214325cfaed49b394daa5d1c7f62d52d5a608a82d83dd",
+      "literal": "| `CASE-HARNESS-L10-037-S5-018` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-02` | Phase1 L4 exists, but its current L9 receipt is not yet produced; Phase2 handoff requested. | Phase2を始めず、L9実行未実施と保留を別記。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-019",
+      "line": 743,
+      "raw_lf_sha256": "e0d1ad0f0431b5fb8eb4c8f02cf7cf092ffa99d7b8621d7961c3d8c53652e51e",
+      "literal": "| `CASE-HARNESS-L10-037-S5-019` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-02` | Phase1 L9 receipt target revision only mismatches Phase1 L4. | handoff保留しOS/選択済みexecutorのphase result source ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-020",
+      "line": 744,
+      "raw_lf_sha256": "537211de93d8ebbf8242fcec0f96ca91476c8a06628cf0875469d276bc94c329",
+      "literal": "| `CASE-HARNESS-L10-037-S5-020` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-03` | Phase2 target scopeへのL2 agreement/decision evidenceだけmissing。 | Phase1 judgmentで補わずPhase2 requirement formationへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-021",
+      "line": 745,
+      "raw_lf_sha256": "a43d11ea9bf07e36af712cf8e382f76446d011d01cfde9c0f7368f66d16b5964",
+      "literal": "| `CASE-HARNESS-L10-037-S5-021` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-03` | Phase2 L3 approval authorityだけunknown。 | Phase2 L4を保留し該当authority ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-022",
+      "line": 746,
+      "raw_lf_sha256": "f90791895b27aebef29c8bd08175b998baabd97d05a20f774c0201731def4f26",
+      "literal": "| `CASE-HARNESS-L10-037-S5-022` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-03` | 同じL2 identity文字列を両phaseに含むが、Phase2 decision evidenceはPhase2 scope/revisionに明示適用され各phase L3/L4/L9も別に追えるnormal。 | identity一致だけで失敗にしない。authority/scope/revision evidenceで判定。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-023",
+      "line": 747,
+      "raw_lf_sha256": "45e2f343d30510131a10c7b19855433812dc929ffeb7b82d352cfed5bfc0ff76",
+      "literal": "| `CASE-HARNESS-L10-037-S5-023` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-03` | Phase2に適用されるdecision evidenceなしにPhase1 applicability/authority judgmentを別Phase2 scopeへ流用。S5-005と同じ単独条件を指す索引行。 | merge保留しS5-005と同じPhase2 requirement formation ownerへ。same identity自体は変異条件でなく、独立実行母集団へ重複加算しない。 |\n",
+      "classification": "explicit index"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-024",
+      "line": 748,
+      "raw_lf_sha256": "8ac59a1f15557b54d38927c09a8755b14d88365c3632eae1557a5c94448abe4a",
+      "literal": "| `CASE-HARNESS-L10-037-S5-024` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-03` | Phase2対象scopeをagent-scope@r1に保持し、Phase2 decision evidenceの適用scopeだけを別のagent-scope@r2へ変更。他のauthority/revision/receiptは正常。 | 対象scopeに適用できないdecisionを流用せず合流を保留し、Phase2 requirement ownerへ戻す。Phase1とPhase2のscope差自体は失敗条件にしない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-025",
+      "line": 749,
+      "raw_lf_sha256": "3b29f096fcdcc38effed83c69e7ff5bfef4c34b052972a3b1b843532d0fdc4d2",
+      "literal": "| `CASE-HARNESS-L10-037-S5-025` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-03` | Phase2 L3 authority revisionだけstale。 | Phase2 L4/merge保留しL3 authority ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-026",
+      "line": 750,
+      "raw_lf_sha256": "c8f4638f7e2427aac2f6cdb4c5e7e25fd942a019d10677811cd7d970e75ce240",
+      "literal": "| `CASE-HARNESS-L10-037-S5-026` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-03` | Phase2 L4 exists but its own applicable L9 receipt is not yet produced. | L4を保持、mergeは保留しOS/選択済みexecutorが出す後段receiptを待つ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-027",
+      "line": 751,
+      "raw_lf_sha256": "5036b2a0449206c9b5d4e6e345b97d641866889d1d654fdc94bf91df509d2321",
+      "literal": "| `CASE-HARNESS-L10-037-S5-027` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-03` | Phase2 L9 receiptはPhase2 L4 scopeに一致するが、merge scopeだけが異なる。 | merge保留しOS/選択済みexecutorのPhase 2 result source ownerへscope不一致を返す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-028",
+      "line": 752,
+      "raw_lf_sha256": "0758f7445b992658f834d275df752b30c51bccc8cc03fae13e96ef4197aa5e39",
+      "literal": "| `CASE-HARNESS-L10-037-S5-028` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-03` | Phase2 L4がPhase1 approved invariantを一つ破る。 | mergeしない。meaning gap→008/upstream、template obligation gap→009 formation。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-029",
+      "line": 753,
+      "raw_lf_sha256": "0cde44f9cddcc80e75728c2d48043a320e7f6a7f707758818e969fae7a73fc1a",
+      "literal": "| `CASE-HARNESS-L10-037-S5-029` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-03` | Phase1/2 meaning difference remains unresolved。 | gapを維持しmeaning changeは008/upstream requirement ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-030",
+      "line": 754,
+      "raw_lf_sha256": "14e3e6de5655d684c5aff7599c086e77a0016544a0e76ee04419bf8ad2cab9ae",
+      "literal": "| `CASE-HARNESS-L10-037-S5-030` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-04` | 022 L10 passはあるがL11 acceptance/result/record未実施。 | Acceptedを推定しない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-031",
+      "line": 755,
+      "raw_lf_sha256": "dc3079c8e7babeba27670bbd4f18c5489915f20b6bff0a510ad69570a35fc792",
+      "literal": "| `CASE-HARNESS-L10-037-S5-031` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-04` | 022 L10 passはあるがL12 observation未実施。 | Observedを推定しない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-032",
+      "line": 756,
+      "raw_lf_sha256": "69e73038303e3ce4263fd79d25393ec6d6fc1145292fc86aae2ffe9787bca83f",
+      "literal": "| `CASE-HARNESS-L10-037-S5-032` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-02` | L4 artifact presenceだけでL9 run receiptを作ろうとする。 | 結果を生成せずOS/selected executorの実行待ち。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-033",
+      "line": 757,
+      "raw_lf_sha256": "b9aa26a099d23c9c77bbcb11944e022eb210113f9a408ded4ec5cb8048a37e0e",
+      "literal": "| `CASE-HARNESS-L10-037-S5-033` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-02` | Phase2 handoffをPhase1 L9 receiptより前に置く。 | 段階順序を保ちPhase2未開始。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-034",
+      "line": 758,
+      "raw_lf_sha256": "62212fff9d0e4fb5fb513636c7febcc04556990b815713602dcea9b686db71f2",
+      "literal": "| `CASE-HARNESS-L10-037-S5-034` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-04` | trace UI selected; Phase1/2 state、target revision、merge state、gap全て表示。 | selected UI scopeに限り4項目を照合。旧view実装名を要求しない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-035",
+      "line": 759,
+      "raw_lf_sha256": "912c3fc994e00b2fa0dfd84db66aef0b86a8f2469b6abc7b211b4cdcaad8c95d",
+      "literal": "| `CASE-HARNESS-L10-037-S5-035` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-04` | UI非選択scopeで4項目をdesign/verification artifactに記録するnormal。 | artifact trace正常、UIは要求しない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-036",
+      "line": 760,
+      "raw_lf_sha256": "857e0a86e8d01589e98cfc02349a26017a8678e33bb6f311e58e4bd0b8b87108",
+      "literal": "| `CASE-HARNESS-L10-037-S5-036` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-04` | UI selected scopeでgap fieldだけ表示欠落。 | trace保留し該当HARNESS UI/design source ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-037",
+      "line": 761,
+      "raw_lf_sha256": "a45931dadb1dfd82ced02285a7b34f690f55d2275c8cbfc41c69cac0f71dff27",
+      "literal": "| `CASE-HARNESS-L10-037-S5-037` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-04` | UI非選択scopeにprototype requirementだけ追加。 | screen条件を全scopeへ拡張しない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-038",
+      "line": 762,
+      "raw_lf_sha256": "51b700eed65baeb2fc3cd80770e5c7f0b0a68b7462bb6e20702eaa04a59a88e7",
+      "literal": "| `CASE-HARNESS-L10-037-S5-038` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-01` | 選択Pattern/tool/platform契約のidentity/version/applicability/required input/authority一致。 | selected contractのみ判定。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-039",
+      "line": 763,
+      "raw_lf_sha256": "017749f5fd9e695ceb9175f07e41ba08d34d8031490e25172ca4e233672a6cba",
+      "literal": "| `CASE-HARNESS-L10-037-S5-039` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-01` | 非選択Pattern/tool/platformを開始前提として追加。 | nonselected dependencyを要求しない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-040",
+      "line": 764,
+      "raw_lf_sha256": "c16061b5d19b59f47dff011cbe16bb22435e3ef66cb3831743372e16d2c3aaca",
+      "literal": "| `CASE-HARNESS-L10-037-S5-040` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-01` | 025/026がscopeでselectedなのに選択receiptだけmissing。 | 該当contract ownerへ返す。非選択時は必須化しない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-041",
+      "line": 765,
+      "raw_lf_sha256": "5d6ea8aff8922b2ea1763bb883af678d43e37078afb678695ba673af9f17b576",
+      "literal": "| `CASE-HARNESS-L10-037-S5-041` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-01` | 009 evidence absent; legacy drive value/phase.yamlだけpresent。 | 現行applicabilityに読み替えず009 ownerへ。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-042",
+      "line": 766,
+      "raw_lf_sha256": "baa5ab1cd244f3f63b4bfb1928c9dea7d1b3756588346f5bccdfd966a612fa54",
+      "literal": "| `CASE-HARNESS-L10-037-S5-042` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-02` | design merge doneと主張するがOS operation record/selected handoff receipt未同期。 | design stateとOS operation recordを分け、record gapをOSへ戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-031",
+      "line": 767,
+      "raw_lf_sha256": "ee02432bb96e203fdecd507f2ca3caf5f24ada136c704556636443a6a101bf86",
+      "literal": "| `CASE-HARNESS-L10-025-S5-031` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-05` | 複数Patternが衝突し、意味保持案と意味変更案を比較候補として与える。他の入力・oracleは正常。 | 意味保持案を比較可能に示し、意味変更案を採用せずconflict/alternativeを返す。意味変更が必要な案だけL2-008/上流へ戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-032",
+      "line": 768,
+      "raw_lf_sha256": "07c0efbc3209d7fcd3bf0b97b0c11104ce648ea7197565ae167e196064ea7c9b",
+      "literal": "| `CASE-HARNESS-L10-025-S5-032` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-06` | 固定scopeに未見のactorを1名だけ加え、authority・permission・state oracleを明示した正常fixture。 | 同じ契約で正常照合し、名称未見だけでは拒否しない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-033",
+      "line": 769,
+      "raw_lf_sha256": "6d3aadb03dd1ae85e7e3dd140e86866c1c8a0d8f29815f367c7d60a1ef0d53d8",
+      "literal": "| `CASE-HARNESS-L10-025-S5-033` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-06` | 上記正常fixtureのstate transitionを1本だけ未定義のtransitionへ変更。 | transition oracle不足をunknownとして保留しL2-022形成へ返す。意味差を確認した場合だけL2-008/上流へ戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-026",
+      "line": 770,
+      "raw_lf_sha256": "d2046c862f3e017f369fd8044868ac9e18e1d3b7ce571a68d02ce94f4e992b51",
+      "literal": "| `CASE-HARNESS-L10-033-S5-026` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-05` | 修正前fail receiptは対象revision以外すべて一致し、target revisionだけ一つ新しい別revisionを指す。 | 回帰成立を保留しOS/選択executorのresult source ownerへ返す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-027",
+      "line": 771,
+      "raw_lf_sha256": "06023adcb07f5f06e32e26908b224fbd6df146a7f0f09b3e2ca428ff472e7d5a",
+      "literal": "| `CASE-HARNESS-L10-033-S5-027` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-05` | 修正前receiptは存在するが結果だけpass、他receiptとoracleは正常。 | 必要なfail oracleを満たさず回帰成立を拒否し、縮小前後の同一failure比較と期待fail条件を再照合する。期待結果不足は要求/設計/oracle ownerへ返し、縮小候補は同一failureを保たないため採用しない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-028",
+      "line": 772,
+      "raw_lf_sha256": "d11ad1fd5abf865eec3795de41e331b752ccb349a4e9add72843374f89437f11",
+      "literal": "| `CASE-HARNESS-L10-033-S5-028` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-05` | 修正後receiptは存在するが結果だけfail、他receiptとoracleは正常。 | 必要なpass oracleを満たさず回帰成立を拒否し、期待pass条件と修正対象の同一failure対応を再照合する。縮小候補は同一failureを保たないため採用しない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-029",
+      "line": 773,
+      "raw_lf_sha256": "ec2e456a5ec3552cd72047da9794f2ce8522d7921e040e55ac144003a68d14bc",
+      "literal": "| `CASE-HARNESS-L10-033-S5-029` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-04` | selected consumerは一つだけあり、別の未選択consumer receiptをexecutedとして添える。 | 未選択consumerの実行claimを拒否し、選択済み段階状態だけ保持し、選択consumer契約ownerへ返す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-030",
+      "line": 774,
+      "raw_lf_sha256": "198089513969261729709062e21e38b7074f11457e243d14e770aa07894cc3b9",
+      "literal": "| `CASE-HARNESS-L10-033-S5-030` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-04` | case/traceとrun receiptのみで022 stateをAcceptedへ進めようとする。 | 022のProvisional/Integrated/Verified/Acceptedをcase/traceから進めず、HARNESS-L2-022契約ownerへ返す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-031",
+      "line": 775,
+      "raw_lf_sha256": "4d986c3166577ae363c1a3a334a5ec6ebecba2e4423a8f8abc5e26eb698a1d50",
+      "literal": "| `CASE-HARNESS-L10-033-S5-031` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-06` | 030 packを新versionへ交換し、010/011照合と影響caseの再結付けをすべて行った正常例。 | 新revisionのcaseを照合し、旧receiptは参照しない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-032",
+      "line": 776,
+      "raw_lf_sha256": "3c307612a8701baf36ac1c3f5e2bc58260f7634573613b1e7a2cea9aca705ad2",
+      "literal": "| `CASE-HARNESS-L10-033-S5-032` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-06` | 022契約を新revisionへ更新した後、影響candidateだけ旧contract receiptを残す。 | candidateをstaleとして保留し再生成する。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-033",
+      "line": 777,
+      "raw_lf_sha256": "4a9c2d22a830429e1d32dfbb32dcca50be372803d7e2c5b6da7cb8d8bf565e1c",
+      "literal": "| `CASE-HARNESS-L10-033-S5-033` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-06` | pack revisionだけを更新し、旧receiptを新revisionの結果として再利用する。 | 旧receipt流用を拒否し010/011照合へ戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-034",
+      "line": 778,
+      "raw_lf_sha256": "22304f61c8a6ea4404b6020c2f6346d72c8e74bfc70ef1a88b5e5d05ff7ec956",
+      "literal": "| `CASE-HARNESS-L10-033-S5-034` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-03` | regression candidateを作るだけの選択操作で、修正後run receiptは未生成。 | candidate生成を許し、後続pass未観測を失敗扱いしない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-035",
+      "line": 779,
+      "raw_lf_sha256": "49e0b175e3b3ef22be551f4206ec9b75823b682763cf137823053d4192cc74e5",
+      "literal": "| `CASE-HARNESS-L10-033-S5-035` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-03` | candidate生成時に修正後receiptが未生成という一点だけを理由に開始を拒否する。 | 初回candidateを開始可能とし、将来receipt要求を拒否する。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-036",
+      "line": 780,
+      "raw_lf_sha256": "12e3ddbb882bcfc2bd8c941635b3ded935478154530a8f932cf66582fcc4f0d3",
+      "literal": "| `CASE-HARNESS-L10-033-S5-036` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-07` | incident reductionを選択した入力でsanitizationだけ未実施。他のsource permission/oracleは正常。 | 操作を保留しsecurity/data ownerへ戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-027",
+      "line": 781,
+      "raw_lf_sha256": "e971cf0157625b503fa12438c35b95fd29402460c46716d24f56bfd44ec5b62d",
+      "literal": "| `CASE-HARNESS-L10-035-S5-027` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-05` | 候補起草段階で測定前後値は未取得だが、三観点の対象・方法・scopeを列挙。 | 候補起草を開始可能とし、測定完了を開始条件にしない。必要性成立は主張せず、scope判定は未完に保持する。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-028",
+      "line": 782,
+      "raw_lf_sha256": "136d337c36b7dfd80172b0dfcbf2ec93f17a25536fa13171067923fc854aba68",
+      "literal": "| `CASE-HARNESS-L10-035-S5-028` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-05` | scope拡張前後の複雑さ、公開面、運用負債を各々同じ対象・方法・条件で提示。 | 三観点を追加機能数と別に照合し、数式/閾値は作らない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-029",
+      "line": 783,
+      "raw_lf_sha256": "b39f9be6f5884963e689b159b512b7614e9499dc85e306030dcb599d649b2f15",
+      "literal": "| `CASE-HARNESS-L10-035-S5-029` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-06` | 三観点中、複雑さ測定だけ欠落し、残る二つと追加機能数は有利な結果。 | 欠測を相殺せずscope判定を未完にし要求形成ownerへ戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-030",
+      "line": 784,
+      "raw_lf_sha256": "26ad28b34224dc30d3dd3a2631cd92bd2b270983b172cfd0a0a363a3fe1fcc9b",
+      "literal": "| `CASE-HARNESS-L10-035-S5-030` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-07` | 上流source revision訂正後に旧revisionの導出receiptだけを候補へ結ぶ。 | 旧導出をstaleとして採用せずsource/要求形成ownerへ戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-031",
+      "line": 785,
+      "raw_lf_sha256": "16d30d4af36c5dbd6c9bebf163b6743561a4423d79d46c9980f800db93e6e9e2",
+      "literal": "| `CASE-HARNESS-L10-035-S5-031` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-08` | COREが固定source/authority/revision/scope/oracleを照合し、OS registration/ticket/run未選択。 | COREの意味照合を正常に出し、OS操作を成立条件にしない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-032",
+      "line": 786,
+      "raw_lf_sha256": "56d175bbc958e3e3ccbee95529faacd1a8a90ca1f089f72a25719a9f16836d1e",
+      "literal": "| `CASE-HARNESS-L10-035-S5-032` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-08` | 正常candidateから受入寄与relationだけを欠落させ、OS registration/ticket receiptは存在。 | 寄与照合を未完のまま保ち、OS登録から意味照合・人の合意・実行権限を作らない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-043",
+      "line": 787,
+      "raw_lf_sha256": "bed946120a77a5eef5339805179abedc3f6ce9ead442410c55cc733b627308bf",
+      "literal": "| `CASE-HARNESS-L10-037-S5-043` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-03` | Phase2 L9 receiptは存在するが対象revisionだけを合流対象より古くする。 | 合流を保留し当該OS/選択executorのresult source ownerへ戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-044",
+      "line": 788,
+      "raw_lf_sha256": "f7cd93c7709104d9ec76c1d241876a34bcc321ad9979299bce5665e84125cfd2",
+      "literal": "| `CASE-HARNESS-L10-037-S5-044` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-04` | 合流receiptだけを入力し、設計・対検証artifactは与えない。 | 合流receiptだけからL10 Verified・L11 Accepted・L12 Observedを生成しない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-045",
+      "line": 789,
+      "raw_lf_sha256": "ff62b078c11f8892c8f8e122ee1ef72a6f3da696db682fea86526304517c528b",
+      "literal": "| `CASE-HARNESS-L10-037-S5-045` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-04` | 設計文書だけを入力し、合流receipt/L10 resultは与えない。 | 設計文書だけから合流結果・L10 Verified・L11 Accepted・L12 Observedを生成しない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-046",
+      "line": 790,
+      "raw_lf_sha256": "2322e503c6685b7a1f5bbedf61d2e23ee2587a8f5dd0013a06202ffc25c8395b",
+      "literal": "| `CASE-HARNESS-L10-037-S5-046` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-03` | HARNESSがPhase2判断に合わせPhase1 upstream authority recordを書き換えようとする。 | authority書換えを拒否し該当上流ownerへ戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-047",
+      "line": 791,
+      "raw_lf_sha256": "86a5415756c580b960c85921283825bb4041d980cf45e78a15d51e675e077f28",
+      "literal": "| `CASE-HARNESS-L10-037-S5-047` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-03` | OS L9 run resultはpassだがPhase1/2 design invariantの意味gapは未解決。 | execution passで設計意味gapを閉じず、008/上流へ戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-048",
+      "line": 792,
+      "raw_lf_sha256": "99198c8fc7faa506148904e4d06a835c93d03fa51a1995285e1f2ae9f7de1b31",
+      "literal": "| `CASE-HARNESS-L10-037-S5-048` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-03` | Phase2 designだけがPhase1の一般system invariantを上書きする。 | Phase1意味を維持し、必要な意味変更は008/上流へ戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-049",
+      "line": 793,
+      "raw_lf_sha256": "ee03837782abbf7ddb140cfc46510e3e310eb94c01e7af7d7d262d4359556dcd",
+      "literal": "| `CASE-HARNESS-L10-037-S5-049` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-03` | Phase2で上流意味変更があり影響pairをstaleにするが、旧receiptをcurrentとして入力。 | affected pairをstaleとして再照合し、旧receiptを合流に使わない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-050",
+      "line": 794,
+      "raw_lf_sha256": "dc3a4d61d915f4d65c2bb4bb621acb451b400c1a318019f397ae206262daa804",
+      "literal": "| `CASE-HARNESS-L10-037-S5-050` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-02 / AC-HARNESS-L3-037-03` | 未fixtureのagent目的が外殻の制約を変更する。旧Phase別decision/source/receiptのrevisionを識別する。 | Phase 1の該当上流へBackflowし、影響pairをstaleにして、Phaseごとの再判断/revision対応を確認する。一般system承認から未知の要求を推定しない（固定L11:569）。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-051",
+      "line": 795,
+      "raw_lf_sha256": "bf74bbe1bb020d1368a13bd9bd467c87be7386cc54e06a4fa7b9eb83c8626be4",
+      "literal": "| `CASE-HARNESS-L10-037-S5-051` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-03` | Phase1/2の別L3 identity・各tuple正常なのに、表示簡略化だけで一つのL3 identityへ合併。 | identityを別々に保ち合併を拒否する。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-052",
+      "line": 796,
+      "raw_lf_sha256": "f750e46513664536a2c8f87dddccb4c78bd37c6bf749ecc9e827efdf3ac825e0",
+      "literal": "| `CASE-HARNESS-L10-037-S5-052` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-03` | 適用range外のcontract versionを一つ与える。他のtupleは正常で、compatibility mismatchをgapとして記録する。 | 合流successを拒否し、version mismatchをgapとして保持し、HARNESS-L2-009の義務形成へ戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-053",
+      "line": 797,
+      "raw_lf_sha256": "18387d17bcf5af057f4f6e9d45da3b9e7ce8e0c7e00548da1da043036e7a494b",
+      "literal": "| `CASE-HARNESS-L10-037-S5-053` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-03` | unresolved invariant gapが一つあるのにgap listだけを空にして合流successとする。 | gapを保持しsuccessを拒否する。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-054",
+      "line": 798,
+      "raw_lf_sha256": "94e32cd2dab0fe560b9ebe19e96553f2efc1b32f15e6060cbd78d3c7dbb14bd7",
+      "literal": "| `CASE-HARNESS-L10-037-S5-054` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-04` | 選択scopeの実行手段は外部利用者側で宣言済みで、内部OS suiteだけが未選択。他のdesign/trace inputは適用contractどおり。 | 内部suiteを追加の必須条件にしない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-055",
+      "line": 799,
+      "raw_lf_sha256": "e45c07b9c6ab5cf24f8a8b5748c383f62366e2540e7e555926d2a3c5a5151de1",
+      "literal": "| `CASE-HARNESS-L10-037-S5-055` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-04` | 現行phase artifactが旧実装と異なる構造だが、L2 oracle・trace・receiptは一致する。 | 旧構造との相違だけで拒否しない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-056",
+      "line": 800,
+      "raw_lf_sha256": "accbddb10ef34916d8c23da700130b2042028da247736a70c1a775973b886874",
+      "literal": "| `CASE-HARNESS-L10-037-S5-056` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-04` | 全適用L2/L3/phase/oracle evidenceは正常だが、固定されていない追加人承認だけ未取得。 | 新しい人承認を要求せず、既存authority条件だけを評価する。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-057",
+      "line": 801,
+      "raw_lf_sha256": "f1a73d70eb5efd955a6608fe3c464244fd0cba22f45801def1850a5cab8ca144",
+      "literal": "| `CASE-HARNESS-L10-037-S5-057` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-03` | 索引alias。未解消gapを空一覧として合流成功にする反例は`CASE-HARNESS-L10-037-S5-053`。独立変異なし。 | 参照先でgap保持とsuccess拒否を一度だけ評価し、分母へ重複加算しない。 |\n",
+      "classification": "explicit index"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-033",
+      "line": 809,
+      "raw_lf_sha256": "0de9af45427e1e1dc5f865340271fc78fcc71975fa738e3e8764e6661dedebf5",
+      "literal": "| `CASE-HARNESS-L10-035-S5-033` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-06` | 旧ID保全の時点注記（tombstone）。Worker時点の相互循環行は撤去済みで、本IDを運用負債欠測の個別変異へ再利用しない。運用負債欠測は`CASE-HARNESS-L10-035-S5-041`。 | 原監査の時点記録を保ち、本時点注記を独立fixtureにも同一変異aliasにも数えない。 |\n",
+      "classification": "tombstone"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-034",
+      "line": 810,
+      "raw_lf_sha256": "20af8a26cecd907cebeb99f0560be06b395ed760ddc709b356f9a26f1cc54e3a",
+      "literal": "| `CASE-HARNESS-L10-035-S5-034` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-06` | 同じ正常測定入力から公開面の結果だけを欠落させる。複雑さ・運用負債は測定済み。 | 三観点のうち公開面の不足を保持しscope判定を未完にし、要求形成ownerへ返す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-035",
+      "line": 811,
+      "raw_lf_sha256": "461baaadc881eb3938f35cbfea7b949dfbab9bf65a5417fcddfce0d27521ab5b",
+      "literal": "| `CASE-HARNESS-L10-035-S5-035` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-05` | 現在のcandidate revisionに対し、複雑さの測定結果の対象revisionだけを旧revisionにする。他の条件は一致。 | 旧計測を現在のscope判定へ流用せず該当結果をstaleとして保持し、source/要求形成ownerへ返す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-036",
+      "line": 812,
+      "raw_lf_sha256": "a9749c0f505fecbb4b7749b460923dbe53226f650da262ae29a03b438510c945",
+      "literal": "| `CASE-HARNESS-L10-035-S5-036` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-05` | 測定・公開面増加・運用義務増加の証拠を保持し、少ない追加機能数だけを理由に最小必要性が成立したと主張する。 | 追加数だけの最小必要性claimを拒否し、三観点・受入寄与・代替案・minimum-necessary proofへ戻す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-037",
+      "line": 813,
+      "raw_lf_sha256": "d300ed158f95b69a56441457d14711aa387d739f3d7900911939f71b6c7ad797",
+      "literal": "| `CASE-HARNESS-L10-035-S5-037` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-05` | 三観点の対象・方法・条件・結果は揃うが、上流にない共通閾値だけを追加し許可を生成する。 | 閾値による許可を生成せず、根拠のあるscope判定と別の実行authorityを保持する。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-038",
+      "line": 814,
+      "raw_lf_sha256": "99b412d8a3cc5c3143a132f2ac90925aca66492f73d284d8290390c7291aad16",
+      "literal": "| `CASE-HARNESS-L10-035-S5-038` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-05` | 同じ正常測定入力へ上流にない共通閾値だけを追加し候補を拒否する。 | 閾値による拒否を成立させず、固定035の必要性・寄与・代替案の照合を保持する。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-039",
+      "line": 815,
+      "raw_lf_sha256": "f033f7224be5a5b14d8c93ffa26ecb374c68e23a56546e0431f061ec8312e66c",
+      "literal": "| `CASE-HARNESS-L10-035-S5-039` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-08` | 受入寄与が未完の候補を保持し、出力の人間合意状態だけを合意済みへ変える。 | 未完候補から人の合意を生成せず、該当候補の未完根拠と既存判断を分ける。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-040",
+      "line": 816,
+      "raw_lf_sha256": "c61c5ad7e3c44df0f4d43d553f00dfa2a716118ec6049ad87268265811c90a32",
+      "literal": "| `CASE-HARNESS-L10-035-S5-040` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-08` | 受入寄与が未完の候補を保持し、出力の実行authorityだけを許可済みへ変える。 | 未完候補から実行権限を生成せず、COREの意味照合とOSの登録・実行許可を分ける。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-041",
+      "line": 817,
+      "raw_lf_sha256": "ce5696bc072067b3ef94a31dec360334936c8903466b0460f0b8fa55cda6b009",
+      "literal": "| `CASE-HARNESS-L10-035-S5-041` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-06` | scope拡張の同一対象・revision・方法・条件を保持し、運用負債の結果だけを欠落させる。複雑さ・公開面の結果は有利。 | 欠測を他観点で相殺せずscope判定を未完にし、要求形成ownerへ返す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-034",
+      "line": 825,
+      "raw_lf_sha256": "e35a933ceb533e7f220449c27929cf98d1042d3d1ac6382a886124379841d322",
+      "literal": "| `CASE-HARNESS-L10-025-S5-034` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-03` | 014が相互参照する設計一式の整合を提供するscopeで、025対象scope検査だけを未実施にし横断整合を保証すると主張する。他の設計unit・契約・receiptは正常。 | 横断整合claimを拒否し、025検査の未評価・構成体未完を保持する。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-025-S5-035",
+      "line": 826,
+      "raw_lf_sha256": "ba3bbe7d940a16ddc582127c1a454e3ec42eeb5568e989ad46a1aba1e15d36ee",
+      "literal": "| `CASE-HARNESS-L10-025-S5-035` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-05` | 選択Pattern衝突の比較候補はすべて要求意味変更を必要とし、意味保持案だけが存在しない。他のscope・authority・oracleは正常。 | 意味変更案を採用せずconflictとalternative不足を保持し、HARNESS-L2-008/上流ownerへ返す。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-033-S5-037",
+      "line": 827,
+      "raw_lf_sha256": "0f607b9c17e89812aaa11e63b05901631a54be0860d6ef6f110408fbed7ee256",
+      "literal": "| `CASE-HARNESS-L10-033-S5-037` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-06` | 014対設計を新revisionへ更新した後、影響candidateのtrace・期待値・適用scopeだけを旧契約に保持する。packと022契約は同じ正常revision。 | 影響candidateをstaleとして新014契約へ再照合し、該当operationを再生成/再検証する。旧receiptを新版合格へ流用しない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-035-S5-042",
+      "line": 828,
+      "raw_lf_sha256": "6fb5d4ceda77d9c3bb2afa2f92edef340e43003c5595f208c2d71318120fbe5d",
+      "literal": "| `CASE-HARNESS-L10-035-S5-042` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-05` | 三観点のうち複雑さの測定方法だけ未定。他の対象・条件・revision・結果と上流根拠は保持する。 | 方法unknownを保持し該当計測契約または要求形成ownerへ不足を返す。scope判定と必要性成立を未完とし、候補起草は継続できる。結果・閾値を補わない。 |\n",
+      "classification": "individual or unmarked"
+    },
+    {
+      "case_id": "CASE-HARNESS-L10-037-S5-058",
+      "line": 829,
+      "raw_lf_sha256": "1b31ac005d79e19ef15c7eb636b0bfa8f7795cb3c36426c664aae070d461d87a",
+      "literal": "| `CASE-HARNESS-L10-037-S5-058` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-01` | Phase 1の合意L2・承認L3・templateと開始入力が正常な開始時に、両Phaseの将来L9実行receiptが未生成という一点だけを理由に開始を拒否する。 | 将来receiptを開始条件にしない。Phase 1設計の開始候補を保持し、L9とPhase 2 handoffは各後段条件で別判定する。 |\n",
+      "classification": "individual or unmarked"
+    }
+  ],
+  "classification_counts": {
+    "tombstone": 1,
+    "explicit index": 5,
+    "individual or unmarked": 182
+  },
+  "immutable_records": [
+    {
+      "path": "docs/governance/audits/requirements-stage/harness-stage5-review04-root-correction-2026-10-06.json",
+      "sha256": "9e70b4d55d15f813edf0640ad782ee24fb048c48f130f5a76854406552aa4fda"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/harness-stage5-review04-root-correction-2026-10-06.md",
+      "sha256": "d7007e16efe4f4e091d08af9fbaa90a3a0079038cd601eea4e721c0aaa06cb4e"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/harness-stage5-review05-worker-correction-2026-10-06.json",
+      "sha256": "5323df9146751a2ce7cd5e742ae64dc5b2a891faf7598366fe2c45ed5336c2fb"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/harness-stage5-review05-worker-correction-2026-10-06.md",
+      "sha256": "3d40cbbb3e9a340050132fc405f011bdc0174400cfbd6fdc9f7394928563f0ea"
+    }
+  ],
+  "checks": {
+    "validate": "147/0",
+    "stale": 0,
+    "residuals": 0,
+    "govcheck": "ok atoms7622 requirements57 files58",
+    "diff_check": 0,
+    "trial_merge": 0
+  },
+  "limitations": [
+    "SHA一致は意味的closureを保証しない。",
+    "独立review・Opus/Fable委任判断・Ready・mergeは未成立。",
+    "旧runtime/CI/test/Bunは不使用。"
+  ]
+}
