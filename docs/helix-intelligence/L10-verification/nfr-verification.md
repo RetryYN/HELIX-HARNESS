@@ -118,8 +118,6 @@ NFRを独立に導出しない親はfunctional ACだけで評価する。候補�
 review06の母集団追補：018の自己採択単独とLABO評価単独を別CASEとして数える。078では代行主張による4 field省略、read/qualification失敗からの別source切替2件、読取不能receiptの3代用を各別CASEとして既存078 familyのplanned fixture母集団へ加え、索引や併発caseと重複計上しない。source-bound oracleと戻し先を個別照合し、未実測を0へ変えない。
 
 review08の機能測定追補：005未充足prerequisite1、016同scope未見結果正常1、067評価packetのscope/revision欠落2、072比較正常/閾値創作/case追加3、2.0外部知識必須化1、未見適用外工程/failure mode2、authority/risk/failure mode不一致3を各個別fixtureとして記録する。計13件は既存familyへ追加するplanned機能観測で、性能閾値・数値budget・authorityを追加しない。
-
-
 ## Stage 5 — NFR候補の測定oracle
 
 状態: 各CASEは未実行の静的測定設計であり、実測・閾値達成・L3承認を示さない。分母とunknown/missing/staleは別記し、固定fixture数以外のminimum N、SLA、pass値を置かない。
@@ -180,15 +178,15 @@ selected internal/external sourceを別populationで集計し、CASE-INT-077-03a
 
 | NFR CASE | functional fixture母集団 | 観測項目 |
 |---|---|---|
-| `CASE-NFR-INT-060-02` | `CASE-INT-060-05e`–`CASE-INT-060-05i` | 四sourceとstop/fallback/dependencyの各単独変異、影響node、既存owner返却。 |
+| `CASE-NFR-INT-060-02` | `CASE-INT-060-05e`–`CASE-INT-060-05i` | 05e–hの独立negativeと05i正常fallbackを区別し、source-bound returnを記録。 |
 | `CASE-NFR-INT-061-02` | `CASE-INT-061-05a`–`CASE-INT-061-05f` | compatibility/task scope/OS割当/identity/revisionの別facet。 |
-| `CASE-NFR-INT-062-02` | `CASE-INT-062-04a`–`CASE-INT-062-04i` | isolation/candidate/target/scope/revision/owner/order/result別のstage状態。 |
-| `CASE-NFR-INT-063-02` | `CASE-INT-063-04a`–`CASE-INT-063-04h` | LABO/BRAIN/OSの固定返却先、episode・時点を計上する。工程contract ownerが特定されても戻し先はunknown。 |
+| `CASE-NFR-INT-062-02` | `CASE-INT-062-04a`, `CASE-INT-062-04d`, `CASE-INT-062-04e`, `CASE-INT-062-04f`, `CASE-INT-062-04h`, `CASE-INT-062-04i` | 6独立stage fixture。04b/04c/04gは05a/02d/02gへの索引。 |
+| `CASE-NFR-INT-063-02` | `CASE-INT-063-04a`–`CASE-INT-063-04h` | LABO/BRAIN/OSの固定返却先、episode・時点を計上する。このfixture群にないHARNESS process contract returnを追加しない。 |
 | `CASE-NFR-INT-069-02` | `CASE-INT-069-06a`–`CASE-INT-069-06u`, `CASE-INT-069-07a`–`CASE-INT-069-07f` | L2-010/011採択pack contractは常時照合し、011 call固有inputのみ利用operation別に数え、通常oracle/後段receiptなしの正常を保持。 |
-| `CASE-NFR-INT-070-02` | `CASE-INT-070-07a`–`CASE-INT-070-07l`, `CASE-INT-070-08b`–`CASE-INT-070-08e` | 16 unique fixtureでstage contract、consumer、data-use、prediction/actual比較を別集計する。08aは05cのindexとして重複計上しない。 |
-| `CASE-NFR-INT-071-02` | `CASE-INT-071-04a`–`CASE-INT-071-04j` | 3固定正常scenario、7独立negative（04d–04j）、および02h scope mismatchを分けた状態/比較件数。 |
-| `CASE-NFR-INT-074-02` | `CASE-INT-074-04a`–`CASE-INT-074-04c`; `CASE-INT-074-05a`–`CASE-INT-074-05aa` | 独立unknown facet 3件と26 unique 05-series fixturesを別母集団で数える。05yは05j index、05w/xは正常例としてnegative分母外。 |
-| `CASE-NFR-INT-077-02` | `CASE-INT-077-05a`–`CASE-INT-077-05z` | unknown補完4、write5、receipt binding12、source fallback/origin5の区分。CASE-077-03群は05群の索引/aggregateとして重複計上しない。 |
+| `CASE-NFR-INT-070-02` | `CASE-INT-070-07a`–`CASE-INT-070-07l`, `CASE-INT-070-08b`–`CASE-INT-070-08e`, `CASE-INT-070-10a`–`CASE-INT-070-10c` | 16 unique 07/08 fixtureに09a–09gと06a–06iの別stage記録を加え、10a–10cは順序違反/stale send/stale consumer receiptの各単独変異として計上する。08aは05c index。 |
+| `CASE-NFR-INT-071-02` | `CASE-INT-071-04a`–`CASE-INT-071-04j`, `CASE-INT-071-02h` | 3固定正常scenario、7独立negative（04d–04j）、および02h scope mismatchをこの測定だけで別集計する。 |
+| `CASE-NFR-INT-074-02` | `CASE-INT-074-04a`–`CASE-INT-074-04c`; `CASE-INT-074-05a`–`CASE-INT-074-05aa` | 独立unknown facet 3件と25 unique 05-series fixturesを別母集団で数える。05yは05j index、05w/xは正常例としてnegative分母外。 |
+| `CASE-NFR-INT-077-02` | `CASE-INT-077-05a`–`CASE-INT-077-05z`, `CASE-INT-077-03g` | 05a–zの各区分と03g unknown consumer/routeを別に報告し、03f/03k–mの索引は重複計上しない。 |
 
 全行は測定設計であり、測定結果・合格率・最低fixture数を生成しない。未実施fixtureは成功件数に含めない。
 
@@ -197,14 +195,14 @@ selected internal/external sourceを別populationで集計し、CASE-INT-077-03a
 
 | NFR trace | FV fixture population | 測定単位・区別 |
 |---|---|---|
-| `CASE-NFR-INT-060-03` | `CASE-INT-060-06a`–`CASE-INT-060-06l` | 4 source×missing/unknown/staleの12別run。影響nodeとsource returnを集計する。 |
+| `CASE-NFR-INT-060-03` | `CASE-INT-060-06a`, `CASE-INT-060-06b`, `CASE-INT-060-06c`, `CASE-INT-060-06d`, `CASE-INT-060-06f`, `CASE-INT-060-06g`, `CASE-INT-060-06i`, `CASE-INT-060-06j`, `CASE-INT-060-06l` | 明示9独立runと影響node/owner returnを集計。06e/06h/06kは索引のみ。 |
 | `CASE-NFR-INT-061-03` | `CASE-INT-061-06a`–`CASE-INT-061-06c` | task identity、実績source、実績revisionを各1変異で計上する。 |
 | `CASE-NFR-INT-062-03` | `CASE-INT-062-05a`–`CASE-INT-062-05e` | candidate欠落、regression、write-set、obligation変更、obligation staleを分離する。 |
 | `CASE-NFR-INT-063-03` | `CASE-INT-063-05a`–`CASE-INT-063-05d` | current judgment/contractのmissing/staleを別fixtureで計上する。除外CASE-063-02dは分母に入れない。 |
 | `CASE-NFR-INT-069-03` | `CASE-INT-069-08a`–`CASE-INT-069-08o`, `CASE-INT-069-04h`–`CASE-INT-069-04i` | model入力15fieldとexplanation/ceiling 2条件を別populationで数え、通常scenarioの不足値は計算不能/部分unknownに保つ。 |
-| `CASE-NFR-INT-070-03` | `CASE-INT-070-09a`–`CASE-INT-070-09g`, `CASE-INT-070-06a`–`CASE-INT-070-06i` | stage receipt、scenario/product identity、誤予測を別に計上する。段階順は033→069→040→LABO-024。 |
-| `CASE-NFR-INT-071-03` | `CASE-INT-071-05a`–`CASE-INT-071-05e`, `CASE-INT-071-05g`, `CASE-INT-071-05i`–`CASE-INT-071-05r`, `CASE-INT-071-02h` | 05f/05hは04f/04gへの完全ID indexで独立分母外。oracle適用条件、未決threshold、後段順序、rollback/recovery、比例仮定、HARNESS-L2-010/011常時pack contractと適用時023 classを別に評価する。 |
+| `CASE-NFR-INT-070-03` | `CASE-INT-070-09a`–`CASE-INT-070-09g`, `CASE-INT-070-06a`–`CASE-INT-070-06i`, `CASE-INT-070-10a`–`CASE-INT-070-10c` | stage receipt、scenario/product identity、誤予測、out-of-order/stale receiptを別に計上する。段階順は033→069→040→LABO-024。 |
+| `CASE-NFR-INT-071-03` | `CASE-INT-071-05a`–`CASE-INT-071-05e`, `CASE-INT-071-05g`, `CASE-INT-071-05i`–`CASE-INT-071-05r` | 05f/05hは04f/04gへの完全ID indexで独立分母外。oracle適用条件、未決threshold、後段順序、比例仮定、HARNESS-L2-010/011常時pack contractと適用時023 classを別に評価する。rollback/retry/recoveryはAC-071-04の04f/04gおよび05eで数え、この母集団へ重ねない。 |
 | `CASE-NFR-INT-074-03` | `CASE-INT-074-06a`–`CASE-INT-074-06h` | feedback入力fieldの欠落/stale/unknown状態を別々に記録し、LABO評価状態を未評価のまま保ち、未定義のapplicability ownerを作らない。 |
 | `CASE-NFR-INT-077-03` | `CASE-INT-077-06a`–`CASE-INT-077-06g` | 06a–d/06gの5独立facetを計上する。索引06e/fは05w/vのunique数へ重ねない。 |
 
-上記はCASE-to-NFR参照集合であり、既存群と重なるIDは一度だけ計上する。review01当時の記録は独立補正表78行と既存表への追記20行を数えた値で、unique CASE ID純増は97件だった。Root最終検収の139は補完fixture censusであり、全CASE定義数でも同範囲の差分件数でもない。索引・CASE参照出現数やNFR行数をfixture数に含めない。母集団の適用可否、個別fixture、unique CASE IDは別々に照合する。分母0は算出値なしとし、missing/unknown/staleを成功または未観測へ混ぜない。実行・実測・L3承認は未成立である。
+上記はCASE-to-NFR参照集合であり、既存群と重なるIDは一度だけ計上する。review01当時の記録は独立補正表78行と既存表への追記20行の合計は98行である。旧audit記載の97は算術誤記で、unique CASE ID純増とは別の形式件数である。Root最終検収の139は補完fixture censusであり、全CASE定義数でも同範囲の差分件数でもない。索引・CASE参照出現数やNFR行数をfixture数に含めない。母集団の適用可否、個別fixture、unique CASE IDは別々に照合する。分母0は算出値なしとし、missing/unknown/staleを成功または未観測へ混ぜない。実行・実測・L3承認は未成立である。
