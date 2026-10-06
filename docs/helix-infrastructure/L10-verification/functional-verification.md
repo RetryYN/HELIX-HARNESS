@@ -996,7 +996,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 - 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baselineはCASE-INFRA-011-S5-052 normal fixture。current_active_revision=sim-r8、eligible_rollback_target=sim-r7は固定する。
 - 変異: `rebuild.startup_verification`だけをsim-failedへ変更。
-- 入力: baseline=CASE-INFRA-011-S5-052.normal; current_active_revision=sim-r8; eligible_rollback_target=sim-r7
+- 入力: `baseline=CASE-INFRA-011-S5-052.normal; current_active_revision=sim-r8; eligible_rollback_target=sim-r7`
 - oracle: rebuildabilityを別判定で失敗として部分結果、current active revision、eligible rollback target、未完義務を保持する。
 - owner/戻し先: rebuild/recovery owner=unknown（固定親で未特定）。
 - trace: `INFRA-011-AC-03`。合成fixtureの設計候補であり未実行.
@@ -1005,7 +1005,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 - 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `scope=infra-011-stage5-sim; environment=verification-sim; source_revision=sim-r1; os_state=down-sim; os_ticket=none; independent_path=sim-available; security_authority=sim-authorized; worker_contract=sim-current; recovery.result=sim-verified; after_os_up_sync=sim-recorded`。
 - 変異: 正常fixture。変異なし。
-- 入力: 上記の全fieldをそのまま提示する。
+- 入力: `baseline={scope=infra-011-stage5-sim,environment=verification-sim,source_revision=sim-r1,os_state=down-sim,os_ticket=none,independent_path=sim-available,security_authority=sim-authorized,worker_contract=sim-current,recovery.result=sim-verified,after_os_up_sync=sim-recorded}`
 - oracle: OS ticket欠落を独立recovery拒否理由にしない。独立path/authority/Worker/resultと復帰後同期を別々に確認する。ticket不要を通常操作へ一般化しない。
 - owner/戻し先: 正常時は戻し先なし。
 - trace: `INFRA-011-AC-04`。合成fixtureの設計候補であり未実行.
