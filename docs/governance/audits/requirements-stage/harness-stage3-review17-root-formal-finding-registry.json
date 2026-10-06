@@ -1,0 +1,174 @@
+{
+  "formal_comment": {
+    "comment_id": 6009043315,
+    "raw_body_utf8": "## review17（independent review、HEAD 605fa8208710ce74904a4905d83e85162d1c636d、本文 7302b2c53）\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。今回は、委任条件1（Opus `no_findings`、未確認範囲0）を判定するreviewにあたる。そのため差分だけでなく、13親のFR・FV・NVの**全行**を固定親と照合した。分担は次のとおり。\n- **Opus agent 3本**：13親を次の3組に分け、各組の全行を読んだ。未確認範囲は3本とも0。\n  - A：034/036/038/039（FV 496行）\n  - B：040〜044（FV 203行）\n  - C：046/047/049/054（FV 338行）\n- **Fable advisor**：同じHEADについて、委任見解を出した。\n- **reviewer本人**：静的検査を行い、Majorはすべて本文と固定親で確かめた。\n\n### 静的検査（w2602 = exact HEAD）\n- scfctl：validate 147/0、stale 0、residuals 0。govcheck：ok。`git diff --check`：成功。\n- `merge-tree`：衝突なし。6本文はmain 6008fb947のprefixと一致した。\n- 13親の機械照合：定義1037件、CASE-AC組1039件で、FRとFVは双方向に一致した。重複、未定義、参照切れはいずれも0件。2つのACに属するのは047-14/15だけ。\n- 監査：stage3_rows 1037行、固定source span 19件、6本文のSHAを再計算し、すべて一致した。旧監査は変わっていない。\n\n### review16所見の解消状況\n**7件すべて解消した。**\n- m1、m2：039 r09-006のoracleと戻し先が直った。固定L11 318ec4a:648/654/676、L2:915/921と一致する。\n- m3：044-02のACまたぎ参照に、ラベルが付いた。\n- m4：034-28から、AC-04の列挙が外れた。外した15件は、FV:975に残っている。\n- m5：040のstale行の宛先が、1つになった。\n- m6：054-03にラベルが付いた。\n- m7：047-14/15が、FRのAC-04行に入った。\n\n補正した行が新しい問題を生んでいないことも、固定親と照合して確かめた。\n\n### 全行照合で見つかった所見（Major 9／Minor 18）\n以下はすべて、review16の差分の**外**にあり、補正の前から残っていた。本PRのreview13〜16は差分を中心に照合していたので、拾えていなかった（reviewer側の開示）。\n\n**Major**\n- **M1（039：固定L11:656の反例を1 CASEに束ねている。単独fixtureも欠けている）**：FV:1339 `039-r03-screenshot-placeholder-completion` の変異は「screenshot/route/placeholderだけでimplementedまたはux_verifiedを主張する」である。3つの代用物と2つの状態を1 CASEに束ねている。固定L11 318ec4a:656とL2:915は、screenshot、route/screen数、placeholder、generic table、prototype合意のそれぞれについて、それだけからの主張を不合格とする。generic tableとprototype合意の単独fixtureはない。→代用物と状態の組ごとに単独CASEへ分け、FV:1339は索引にする。\n- **M2（039：固定L11:644の反例2件に単独fixtureがない）**：固定L11 318ec4a:644は、「成功結果が要求されている動作と無関係」と「細分化で親成果が失われている」を、それぞれ不成立とする。L2:911も「分割しても親成果を失わせない」と定める。FVにあるのは、見かけの親graph（FV:1338）と5つの関係の欠落（FV:1673–1677）だけで、この2条件のCASEはない。→単独CASEを2件追加する。戻し先はHARNESS-L2-008（L11:644）。\n- **M3（038/039：「または」で変異を束ねている）**：次の3行が、1 CASEに2つの変異を持つ。\n  - FV:932（038-06）「採用を強化または却下と誤表示」\n  - FV:935（038-09）「根拠またはauthorityなしの却下」\n  - FV:980（039-11）「意味判断または承認を生成」\n\n  →変異ごとに分けるか、索引にする。038-09は、下のm7（重複）とあわせて整理する。\n- **M4（036/038/039/034：固定親にない戻し先、または固定親IDを持たないowner名）**：\n  - **036**\n    - FV:1041/1043/1044/1045（036-17/19/20/21）は「screen applicabilityの既存owner」などと書く。兄弟行のFV:1042と、固定L2:766、L11:504/524は、003/008を指定している。\n    - FV:1175、1208–1211、1321/1322、1609–1611、FR:617は「design/test(/profile) owner」と書く。この語は、固定L2/L11-036にない。固定親が指定する戻し先は、005、008/022、003/008、OS。editor failureは、L2:747の局所修正にあたる。\n    - FV:1146–1150とFV:1176の「元CASEの既存owner」「該当owner」は、参照先の索引もownerを名指ししていないので、宛先が決まらない。\n  - **038**：FV:932/933/935/936/1048は「既存source/requirement owner」「要求owner」「責務owner」と書く。固定L2:862/873では、意味・採否は008/024、trace/impactは003/004である。\n  - **039**：FV:898/940/1022/1025/1074–1076とFR:619は「該当要求/Experience owner」「既存design(/requirement) owner」と書く。固定L11:644/648とL2:913/921では、008、026/025、005/022である。\n  - **034**\n    - FV:1165–1174は「process/measurement owner」「metric/process owner」と書く。このうち「process」は、固定L2:703の区分（契約・設計・環境・測定・要求）にない。\n    - FV:1133–1145の「元CASEの既存owner」は、索引FV:891を経由していて、宛先が決まらない。\n  - →それぞれ、固定親が指定するIDまたは区分名へ直す。\n  - **判定基準の開示**：034の「要求/NFR owner」「metric owner」は、固定L2:703とL11:480が挙げる区分（測定・要求）の語にあたる。そこで、固定親の範囲内とした。review10 M9では、034-r09の「metric/NFR owner」をMajorとした（review11で解消扱い）。今回はこれと基準がずれる。本laneでは、今後「固定親本文の区分名にあたる語は範囲内、区分にない語・宛先が決まらない語はMajor」で統一する。\n- **M5（043：固定親にない戻し先 rule owner）**：FV:1391（r04-rule-branch-conflict）は「既存template/rule owner」と書く。固定L2:995とL11 318ec4a:733の戻し先は、009/対象template owner、041相当、004の3つだけである。過去のM3（review11）と同じ型。→「HARNESS-L2-009/対象template ownerへ戻す」にする。\n- **M6（041：固定親にない戻し先 extractor owner）**：FV:1425（r04-source-span）は「HARNESS template/extractor既存owner」と書く。固定L2:964/965とL11 e94838f:709に、extractor ownerはない。兄弟行のFV:1434は「HARNESS-L2-041抽出契約owner」と書く。→同じ表記にそろえる。入力のsource spanが不明な場合だけ、009/対象ownerとする。\n- **M7（042：固定親にない戻し先 requirement owner）**：FV:1491（r05-requirement-meaning-change）は「既存requirement owner/Backflow先」と書く。固定L2:980は、要求の意味変更を「HARNESS-L2-003/004/016の該当Backflow先へ戻す」と定める。兄弟行のFV:1490/1492もそう書いている。→そろえる。\n- **M8（054：AC-02が挙げるphase軸に単独fixtureがない）**：固定L2:1157は「選択済みprocess phase」を適用入力とし、L2:1162は「軸…の欠落や不一致は保留」とする。FR:587のAC-054-02も、phaseのmissing/conflict/staleを挙げる。しかし、054のFV 90行にphaseを扱う行は1件もない。→AC-054-02に、phaseのmissing/stale/conflictの単独fixtureを1件ずつ足す。他の軸とOS assignmentはcurrentに保つ。oracleは「unknown/deferに保ち、phase値やmappingを推定・新設しない」。戻し先はL2:1160の工程意味owner。索引、FR:689、監査も更新する。\n- **M9（049：「理由付き適用外」に単独fixtureがない）**：固定L2:1078は、出力に「適用外・未測定・unknown」を含める。L11 f659c18:808は「適用外または未測定は理由付きで識別し、他項目の結果で埋めない」とする。FR:707のAC-049-04も「理由付き適用外」を挙げる。しかし、049のFV 71行に適用外を扱う行はない。→AC-049-04に単独fixtureを1件足す。1つのcheckを適用外にし、変異は理由だけの欠落とする。oracleは「unknown/未完」。戻し先はL2:1090の既存design owner。\n\n**Minor**\n- **m1（034/039：索引が別ACのfixtureをラベルなしで参照している）**：\n  - FV:890（AC-04）がAC-02の52件を参照している。\n  - FV:976（AC-04）がAC-01の034-29〜34を参照している。\n  - FV:898（AC-01）がAC-03の7件を参照している。\n  - FV:889は、AC-04の`root-06-field-02`をラベルなしでfield-08の欄に置いている。ここにはAC-01のr09-013（FV:1811）があるべき。\n  - →それぞれにACラベルを付け、FV:889の参照先を直す。\n- **m2（036/039：兄弟行にある戻し先が書かれていない）**：FV:1010/1011（036-15/16）とFV:1027（039-17）。→兄弟行と同じ宛先を書き足す。\n- **m3（英文の残存）**：\n  - FV:899「same-scope/revision interactive prototype walkthrough」など\n  - FV:921/922「provider degradation condition」「memory contamination tolerance」。固定L2の語は「provider縮退」「memory汚染耐性」。\n  - FV:977、892、896、842、893\n  - FV:860「applicability unknown=」など\n  - FV:862、902、981、982、1417、1854、1855、1867\n  - NV:160、NV:162\n  - →日本語にする。\n- **m4（040：AC帰属が割れている）**：FV:1152（root-04-field-02、revision欠落）はAC-04にある。一方、同じrevisionのstaleを扱うFV:1219はAC-02にある。FR:579のAC-040-02は、sample rowのrevisionを明示している。→field-02をAC-02へ移し、FV:850とFR:656/658も合わせる。\n- **m5（040：field-01〜08の前提と戻し先が索引を指している）**：FV:1151–1158は「元CASE-HARNESS-L10-040-04の他条件」「元CASEの既存owner」と書く。040-04（FV:900）は、ownerを持たない索引である。→条件は行内に直接書き、戻し先はL2:954のHARNESS L1/L2契約ownerにする。\n- **m6（040：原因が1つの行に、宛先を2つ併記している）**：FV:1264とFV:1266が「L1/L2契約ownerまたはauthority owner」と併記している。→1264はauthority owner、1266はL1/L2契約ownerにする。\n- **m7（038：重複計上）**：次の4組は同じ変異で、両方ともFR AC-038-04（FR:648）に計上されている。\n  - 038-08とr11-redesign-as-approved\n  - 038-09とr11-reject-without-basis\n  - 038-10とr11-absorb-without-target\n  - 038-11とr11-unknown-as-adopted\n\n  →一方を別名索引にする。\n- **m8（043/041：索引の表記と参照先が合わない）**：\n  - FV:859の「branch denominatorの索引」に対応するfixture（r09-003）は、AC-02にある。またFV:859は、AC-01のoracle-unboundとcount-onlyを挙げていない。\n  - FV:852は「source span/atom gapはAC-041-03の索引で照合」と書くが、FV:855はr04-source-spanとr04-atom-gapを挙げていない。\n  - →表記か参照先を直す。\n- **m9（行参照のずれ）**：\n  - FV:1861/1862の「固定L11:738」は、e94838fでの番号。宣言pinの318ec4aでは733。\n  - 監査json findings[2]の「L11-044:744-746」も同じずれで、318ec4aでは739–741。\n  - 監査の「固定L2-041原子性」はL2:961を指しているが、原子性を述べる行は960/962。\n  - NV:161の「L11:-003」は、locatorとして成り立たない（e94838f:713）。\n  - FV:1419の「L11:772/774/776」は、pin 5b8f4a7では767/769/771。\n  - 監査json findings[1]の「L11-039:649」は、同じ監査が648へ訂正している（Fable n1）。\n- **m10（044/043：宛先の表記と、書き漏れ）**：\n  - FV:1393の「既存contract owner」：L2:1010では009/対象template owner。\n  - FV:1442の「template owner」：009が書かれていない。\n  - FV:1441/1443/1445（conflict）：戻し先がない。\n  - FV:1418の別名：参照先の条件付き宛先を、009だけに狭めている。\n  - FV:1496：IDのない3者を併記している。\n  - FV:949：「template/004 owner」と、原因を分けずに併記している。\n- **m11（054：索引のAC帰属ラベルが漏れている）**：\n  - FV:908（054-04、AC-02）は、AC-03のroot-04-field-02〜05とscope-mismatchを、ラベルなしで挙げている。\n  - FV:877（054-02）には、AC-04のcontract digest欠落（FV:1313）がない。\n  - →ラベルを付け、参照を加える。\n- **m12（047：索引が別ACのfixtureをラベルなしで参照している）**：\n  - FV:871（047-02、AC-02）は、AC-04のr09-023〜035を「interruption/budget/deadline」として挙げている。r09-035は、認証状態の継承である。\n  - FV:906（047-04）は、AC-02/03の行をラベルなしで参照している。\n  - →分けて明記する。\n- **m13（047：matrix行から索引への二段参照）**：\n  - FV:1033（047-17）は、索引047-38を経由している。直接参照すべき先は047-29。\n  - FV:1036（047-20）と047-44は、参照が重なっている。\n  - →直接参照に直す。047-44の参照先はr09-025だけにする。\n- **m14（049：matrix行から索引への二段参照）**：FV:960（049-05）は、索引049-19を経由している。→049-15を直接参照する。\n- **m15（046：索引のAC帰属ラベル漏れと、参照先のscopeのずれ）**：\n  - FV:867（046-03）は、AC-04の未見正常をラベルなしで挙げている。\n  - FV:986（046-07、Scrum scope）は、AC-01のFull V条件欠落を単独negativeとして挙げている。\n  - →ラベルを付ける。046-07には、AC-04の未見fixtureを加える。\n- **m16（監査：findings[1]の行参照）**：m9の最後の項目を参照。Fable n1も同じ指摘。\n- **m17（044：N/A fixtureの帰属。Fable n2）**：AC-044-02は「根拠なしN/A」を自分の変異に挙げている。しかし実際のfixtureはAC-01で定義されており、AC-02側にあるのは別名行だけ。FR:633では複数のACへの帰属が許されたので、047-14/15と同じ形で書くのが自然。→定義行を「AC-01 / AC-02」とし、別名行の要否を見直す。\n- **m18（036/034：索引経由の「元CASE」の前提）**：FV:1133–1145/1146–1150の前提も、索引の040-04（m5）と同じ型で、索引の条件を参照している。→戻し先を直すとき（M4）に、前提も行内に直接書く。\n\nreviewer側でも、各修正案が上に挙げた固定L2/L11の行と矛盾しないことを確かめた。M6の入力側の分岐と、m10のFV:1393の宛先は、作成側が文言を決めた後、もう一度固定親と照合する。\n\n### Fableの委任見解\nFable advisorは、同じHEADについて「**承認してよい**」とした。Major 0、Minor 0で、任意の改善候補が2件ある（n1はm16、n2はm17として取り込んだ）。\n\nFableは、review16の補正行とその参照先を照合した。13親全体の行は通読していない。上のM1〜M9は、いずれもFableの照合範囲の外にあった。\n\n### 委任条件の状態\n- 条件2（Fable「承認してよい」）は、本HEADで成立した。\n- 条件1（Opus `no_findings`）は、Major 9件があるため成立しない。\n- 結論として、本HEADでは委任承認は成立しない。\n\nMajorを作成側へ返す。修正後のHEADでは、Opusが全行を、Fableも13親全体の全行を照合して、見解をもう一度出す。そこでも見解が割れたまま解消しなければ、両方の見解を添えてPOへ上げる。\n\n### 判定\nblocker 9（M1〜M9）、Major 9、Minor 18。Readyは不可。merge admissionは本commentから生成しない。\n",
+    "raw_body_sha256": "55d389180039304e2683586a3b4ce09494629299280f0347a4ac6673d00d3889"
+  },
+  "findings": [
+    {
+      "id": "M1",
+      "comment_id": 6009043315,
+      "literal": "- **M1（039：固定L11:656の反例を1 CASEに束ねている。単独fixtureも欠けている）**：FV:1339 `039-r03-screenshot-placeholder-completion` の変異は「screenshot/route/placeholderだけでimplementedまたはux_verifiedを主張する」である。3つの代用物と2つの状態を1 CASEに束ねている。固定L11 318ec4a:656とL2:915は、screenshot、route/screen数、placeholder、generic table、prototype合意のそれぞれについて、それだけからの主張を不合格とする。generic tableとprototype合意の単独fixtureはない。→代用物と状態の組ごとに単独CASEへ分け、FV:1339は索引にする。",
+      "raw_utf8_sha256": "e83d4c12c8a4b67ce4092f67d48f0bdf0cda76c134408f8b8eab98652b4f0004"
+    },
+    {
+      "id": "M2",
+      "comment_id": 6009043315,
+      "literal": "- **M2（039：固定L11:644の反例2件に単独fixtureがない）**：固定L11 318ec4a:644は、「成功結果が要求されている動作と無関係」と「細分化で親成果が失われている」を、それぞれ不成立とする。L2:911も「分割しても親成果を失わせない」と定める。FVにあるのは、見かけの親graph（FV:1338）と5つの関係の欠落（FV:1673–1677）だけで、この2条件のCASEはない。→単独CASEを2件追加する。戻し先はHARNESS-L2-008（L11:644）。",
+      "raw_utf8_sha256": "2a611ae4720810c7b562e1427ed65e16e37595b9f7280d7e04a106049cb76ee0"
+    },
+    {
+      "id": "M3",
+      "comment_id": 6009043315,
+      "literal": "- **M3（038/039：「または」で変異を束ねている）**：次の3行が、1 CASEに2つの変異を持つ。\n  - FV:932（038-06）「採用を強化または却下と誤表示」\n  - FV:935（038-09）「根拠またはauthorityなしの却下」\n  - FV:980（039-11）「意味判断または承認を生成」\n\n  →変異ごとに分けるか、索引にする。038-09は、下のm7（重複）とあわせて整理する。",
+      "raw_utf8_sha256": "e82af2f979c8d3b26bcf0a0e7bb1bd5c9201ebcdb7d7cccf76af6eb274dc7ff0"
+    },
+    {
+      "id": "M4",
+      "comment_id": 6009043315,
+      "literal": "- **M4（036/038/039/034：固定親にない戻し先、または固定親IDを持たないowner名）**：\n  - **036**\n    - FV:1041/1043/1044/1045（036-17/19/20/21）は「screen applicabilityの既存owner」などと書く。兄弟行のFV:1042と、固定L2:766、L11:504/524は、003/008を指定している。\n    - FV:1175、1208–1211、1321/1322、1609–1611、FR:617は「design/test(/profile) owner」と書く。この語は、固定L2/L11-036にない。固定親が指定する戻し先は、005、008/022、003/008、OS。editor failureは、L2:747の局所修正にあたる。\n    - FV:1146–1150とFV:1176の「元CASEの既存owner」「該当owner」は、参照先の索引もownerを名指ししていないので、宛先が決まらない。\n  - **038**：FV:932/933/935/936/1048は「既存source/requirement owner」「要求owner」「責務owner」と書く。固定L2:862/873では、意味・採否は008/024、trace/impactは003/004である。\n  - **039**：FV:898/940/1022/1025/1074–1076とFR:619は「該当要求/Experience owner」「既存design(/requirement) owner」と書く。固定L11:644/648とL2:913/921では、008、026/025、005/022である。\n  - **034**\n    - FV:1165–1174は「process/measurement owner」「metric/process owner」と書く。このうち「process」は、固定L2:703の区分（契約・設計・環境・測定・要求）にない。\n    - FV:1133–1145の「元CASEの既存owner」は、索引FV:891を経由していて、宛先が決まらない。\n  - →それぞれ、固定親が指定するIDまたは区分名へ直す。\n  - **判定基準の開示**：034の「要求/NFR owner」「metric owner」は、固定L2:703とL11:480が挙げる区分（測定・要求）の語にあたる。そこで、固定親の範囲内とした。review10 M9では、034-r09の「metric/NFR owner」をMajorとした（review11で解消扱い）。今回はこれと基準がずれる。本laneでは、今後「固定親本文の区分名にあたる語は範囲内、区分にない語・宛先が決まらない語はMajor」で統一する。",
+      "raw_utf8_sha256": "78af920e37f149689f3a538dbd608b6dbe9e6e1f0b2d4c11a987c3d80cd91989"
+    },
+    {
+      "id": "M5",
+      "comment_id": 6009043315,
+      "literal": "- **M5（043：固定親にない戻し先 rule owner）**：FV:1391（r04-rule-branch-conflict）は「既存template/rule owner」と書く。固定L2:995とL11 318ec4a:733の戻し先は、009/対象template owner、041相当、004の3つだけである。過去のM3（review11）と同じ型。→「HARNESS-L2-009/対象template ownerへ戻す」にする。",
+      "raw_utf8_sha256": "b4a2aebcd3835e5a896a349f95554b4d0dbd59a0fec4cf38ad093c9c850ad723"
+    },
+    {
+      "id": "M6",
+      "comment_id": 6009043315,
+      "literal": "- **M6（041：固定親にない戻し先 extractor owner）**：FV:1425（r04-source-span）は「HARNESS template/extractor既存owner」と書く。固定L2:964/965とL11 e94838f:709に、extractor ownerはない。兄弟行のFV:1434は「HARNESS-L2-041抽出契約owner」と書く。→同じ表記にそろえる。入力のsource spanが不明な場合だけ、009/対象ownerとする。",
+      "raw_utf8_sha256": "59bc3eb209bbac64acb187c30177a2c5883902fd2195b67ee51099c22afa4906"
+    },
+    {
+      "id": "M7",
+      "comment_id": 6009043315,
+      "literal": "- **M7（042：固定親にない戻し先 requirement owner）**：FV:1491（r05-requirement-meaning-change）は「既存requirement owner/Backflow先」と書く。固定L2:980は、要求の意味変更を「HARNESS-L2-003/004/016の該当Backflow先へ戻す」と定める。兄弟行のFV:1490/1492もそう書いている。→そろえる。",
+      "raw_utf8_sha256": "3c666623650226af52a1eef7cb28b73ae4a9e266b5886eb795101fcb2b239c6f"
+    },
+    {
+      "id": "M8",
+      "comment_id": 6009043315,
+      "literal": "- **M8（054：AC-02が挙げるphase軸に単独fixtureがない）**：固定L2:1157は「選択済みprocess phase」を適用入力とし、L2:1162は「軸…の欠落や不一致は保留」とする。FR:587のAC-054-02も、phaseのmissing/conflict/staleを挙げる。しかし、054のFV 90行にphaseを扱う行は1件もない。→AC-054-02に、phaseのmissing/stale/conflictの単独fixtureを1件ずつ足す。他の軸とOS assignmentはcurrentに保つ。oracleは「unknown/deferに保ち、phase値やmappingを推定・新設しない」。戻し先はL2:1160の工程意味owner。索引、FR:689、監査も更新する。",
+      "raw_utf8_sha256": "4bf0815861d7ce028bec3ae48e12e5ac99ffb5a5bfd3398a4483dcad68223114"
+    },
+    {
+      "id": "M9",
+      "comment_id": 6009043315,
+      "literal": "- **M9（049：「理由付き適用外」に単独fixtureがない）**：固定L2:1078は、出力に「適用外・未測定・unknown」を含める。L11 f659c18:808は「適用外または未測定は理由付きで識別し、他項目の結果で埋めない」とする。FR:707のAC-049-04も「理由付き適用外」を挙げる。しかし、049のFV 71行に適用外を扱う行はない。→AC-049-04に単独fixtureを1件足す。1つのcheckを適用外にし、変異は理由だけの欠落とする。oracleは「unknown/未完」。戻し先はL2:1090の既存design owner。\n\n**Minor**",
+      "raw_utf8_sha256": "b8f7dc2b58440525e1394753d3ebbe21eba95c57d893e4403879b2f215867835"
+    },
+    {
+      "id": "m1",
+      "comment_id": 6009043315,
+      "literal": "- **m1（034/039：索引が別ACのfixtureをラベルなしで参照している）**：\n  - FV:890（AC-04）がAC-02の52件を参照している。\n  - FV:976（AC-04）がAC-01の034-29〜34を参照している。\n  - FV:898（AC-01）がAC-03の7件を参照している。\n  - FV:889は、AC-04の`root-06-field-02`をラベルなしでfield-08の欄に置いている。ここにはAC-01のr09-013（FV:1811）があるべき。\n  - →それぞれにACラベルを付け、FV:889の参照先を直す。",
+      "raw_utf8_sha256": "d916fb96519deee395a32ae3e151c761fa5a97847b51f3347425436c90540df8"
+    },
+    {
+      "id": "m2",
+      "comment_id": 6009043315,
+      "literal": "- **m2（036/039：兄弟行にある戻し先が書かれていない）**：FV:1010/1011（036-15/16）とFV:1027（039-17）。→兄弟行と同じ宛先を書き足す。",
+      "raw_utf8_sha256": "e87e672d1b7163f18d2c89bbf17b2509373ae00cdfd77b08ad5c136694bcdea8"
+    },
+    {
+      "id": "m3",
+      "comment_id": 6009043315,
+      "literal": "- **m3（英文の残存）**：\n  - FV:899「same-scope/revision interactive prototype walkthrough」など\n  - FV:921/922「provider degradation condition」「memory contamination tolerance」。固定L2の語は「provider縮退」「memory汚染耐性」。\n  - FV:977、892、896、842、893\n  - FV:860「applicability unknown=」など\n  - FV:862、902、981、982、1417、1854、1855、1867\n  - NV:160、NV:162\n  - →日本語にする。",
+      "raw_utf8_sha256": "7b00934c8e583f91baacb706cd0e02aa5230bce264dd05f2dd32c8f728caff57"
+    },
+    {
+      "id": "m4",
+      "comment_id": 6009043315,
+      "literal": "- **m4（040：AC帰属が割れている）**：FV:1152（root-04-field-02、revision欠落）はAC-04にある。一方、同じrevisionのstaleを扱うFV:1219はAC-02にある。FR:579のAC-040-02は、sample rowのrevisionを明示している。→field-02をAC-02へ移し、FV:850とFR:656/658も合わせる。",
+      "raw_utf8_sha256": "ff8778e5f72f08c3ad37cea1cace5a6970380756be5476a2da5f47584fe1b754"
+    },
+    {
+      "id": "m5",
+      "comment_id": 6009043315,
+      "literal": "- **m5（040：field-01〜08の前提と戻し先が索引を指している）**：FV:1151–1158は「元CASE-HARNESS-L10-040-04の他条件」「元CASEの既存owner」と書く。040-04（FV:900）は、ownerを持たない索引である。→条件は行内に直接書き、戻し先はL2:954のHARNESS L1/L2契約ownerにする。",
+      "raw_utf8_sha256": "d9c4365a8ff166f2c6660b847b17d4aec6977287f606df9a6ee402f15997a21a"
+    },
+    {
+      "id": "m6",
+      "comment_id": 6009043315,
+      "literal": "- **m6（040：原因が1つの行に、宛先を2つ併記している）**：FV:1264とFV:1266が「L1/L2契約ownerまたはauthority owner」と併記している。→1264はauthority owner、1266はL1/L2契約ownerにする。",
+      "raw_utf8_sha256": "9c2122c988a73888eb4fb1ea03e4801a4bdd4d6931c9700b20831a499072c0e7"
+    },
+    {
+      "id": "m7",
+      "comment_id": 6009043315,
+      "literal": "- **m7（038：重複計上）**：次の4組は同じ変異で、両方ともFR AC-038-04（FR:648）に計上されている。\n  - 038-08とr11-redesign-as-approved\n  - 038-09とr11-reject-without-basis\n  - 038-10とr11-absorb-without-target\n  - 038-11とr11-unknown-as-adopted\n\n  →一方を別名索引にする。",
+      "raw_utf8_sha256": "67b8508bfc6cb56207827e8175167836e8707ce16169938132c672e19bdca22a"
+    },
+    {
+      "id": "m8",
+      "comment_id": 6009043315,
+      "literal": "- **m8（043/041：索引の表記と参照先が合わない）**：\n  - FV:859の「branch denominatorの索引」に対応するfixture（r09-003）は、AC-02にある。またFV:859は、AC-01のoracle-unboundとcount-onlyを挙げていない。\n  - FV:852は「source span/atom gapはAC-041-03の索引で照合」と書くが、FV:855はr04-source-spanとr04-atom-gapを挙げていない。\n  - →表記か参照先を直す。",
+      "raw_utf8_sha256": "5d70fe9282bd02ed27f815d030fcf8379dc25068227d8adeb0f1047ebb00b36f"
+    },
+    {
+      "id": "m9",
+      "comment_id": 6009043315,
+      "literal": "- **m9（行参照のずれ）**：\n  - FV:1861/1862の「固定L11:738」は、e94838fでの番号。宣言pinの318ec4aでは733。\n  - 監査json findings[2]の「L11-044:744-746」も同じずれで、318ec4aでは739–741。\n  - 監査の「固定L2-041原子性」はL2:961を指しているが、原子性を述べる行は960/962。\n  - NV:161の「L11:-003」は、locatorとして成り立たない（e94838f:713）。\n  - FV:1419の「L11:772/774/776」は、pin 5b8f4a7では767/769/771。\n  - 監査json findings[1]の「L11-039:649」は、同じ監査が648へ訂正している（Fable n1）。",
+      "raw_utf8_sha256": "74c47177ca3281476f15d942c6ce94ef97f5de8657e05370f22a5d6d84aa6f82"
+    },
+    {
+      "id": "m10",
+      "comment_id": 6009043315,
+      "literal": "- **m10（044/043：宛先の表記と、書き漏れ）**：\n  - FV:1393の「既存contract owner」：L2:1010では009/対象template owner。\n  - FV:1442の「template owner」：009が書かれていない。\n  - FV:1441/1443/1445（conflict）：戻し先がない。\n  - FV:1418の別名：参照先の条件付き宛先を、009だけに狭めている。\n  - FV:1496：IDのない3者を併記している。\n  - FV:949：「template/004 owner」と、原因を分けずに併記している。",
+      "raw_utf8_sha256": "cbbd4795629b60380773e395de1592a23415fc601754103f68aee7df4fbe4849"
+    },
+    {
+      "id": "m11",
+      "comment_id": 6009043315,
+      "literal": "- **m11（054：索引のAC帰属ラベルが漏れている）**：\n  - FV:908（054-04、AC-02）は、AC-03のroot-04-field-02〜05とscope-mismatchを、ラベルなしで挙げている。\n  - FV:877（054-02）には、AC-04のcontract digest欠落（FV:1313）がない。\n  - →ラベルを付け、参照を加える。",
+      "raw_utf8_sha256": "8ed17f86a9b23c3fb0b04cd022fe4b8e380be8829b7e1e5ab23d0259e2963bf6"
+    },
+    {
+      "id": "m12",
+      "comment_id": 6009043315,
+      "literal": "- **m12（047：索引が別ACのfixtureをラベルなしで参照している）**：\n  - FV:871（047-02、AC-02）は、AC-04のr09-023〜035を「interruption/budget/deadline」として挙げている。r09-035は、認証状態の継承である。\n  - FV:906（047-04）は、AC-02/03の行をラベルなしで参照している。\n  - →分けて明記する。",
+      "raw_utf8_sha256": "82898694882609f85b7126f32eae2560c541be39f8ea3954a80ac739a158684c"
+    },
+    {
+      "id": "m13",
+      "comment_id": 6009043315,
+      "literal": "- **m13（047：matrix行から索引への二段参照）**：\n  - FV:1033（047-17）は、索引047-38を経由している。直接参照すべき先は047-29。\n  - FV:1036（047-20）と047-44は、参照が重なっている。\n  - →直接参照に直す。047-44の参照先はr09-025だけにする。",
+      "raw_utf8_sha256": "4fcc2a54eb6a67d1451836b914378bb18dbfcbec08c1618ce9fc3b42378368ef"
+    },
+    {
+      "id": "m14",
+      "comment_id": 6009043315,
+      "literal": "- **m14（049：matrix行から索引への二段参照）**：FV:960（049-05）は、索引049-19を経由している。→049-15を直接参照する。",
+      "raw_utf8_sha256": "4f7f57be9c0afe102cb9655caa63a0246e27b281074c2494d6ed87759048b0c8"
+    },
+    {
+      "id": "m15",
+      "comment_id": 6009043315,
+      "literal": "- **m15（046：索引のAC帰属ラベル漏れと、参照先のscopeのずれ）**：\n  - FV:867（046-03）は、AC-04の未見正常をラベルなしで挙げている。\n  - FV:986（046-07、Scrum scope）は、AC-01のFull V条件欠落を単独negativeとして挙げている。\n  - →ラベルを付ける。046-07には、AC-04の未見fixtureを加える。",
+      "raw_utf8_sha256": "e25250def65b1a0b7bdc3022e57b90be2908ac6f2f43308882a4c4e6fb4dee2a"
+    },
+    {
+      "id": "m16",
+      "comment_id": 6009043315,
+      "literal": "- **m16（監査：findings[1]の行参照）**：m9の最後の項目を参照。Fable n1も同じ指摘。",
+      "raw_utf8_sha256": "75d969fe0fb00f0eb4310a66467bfc68dd4761cbd54b0b3d0bf7e14eb889a667"
+    },
+    {
+      "id": "m17",
+      "comment_id": 6009043315,
+      "literal": "- **m17（044：N/A fixtureの帰属。Fable n2）**：AC-044-02は「根拠なしN/A」を自分の変異に挙げている。しかし実際のfixtureはAC-01で定義されており、AC-02側にあるのは別名行だけ。FR:633では複数のACへの帰属が許されたので、047-14/15と同じ形で書くのが自然。→定義行を「AC-01 / AC-02」とし、別名行の要否を見直す。",
+      "raw_utf8_sha256": "3fc3ab7fe23f296a7df42344ef2936154f252f1dc843822302c3277fb0be0be7"
+    },
+    {
+      "id": "m18",
+      "comment_id": 6009043315,
+      "literal": "- **m18（036/034：索引経由の「元CASE」の前提）**：FV:1133–1145/1146–1150の前提も、索引の040-04（m5）と同じ型で、索引の条件を参照している。→戻し先を直すとき（M4）に、前提も行内に直接書く。",
+      "raw_utf8_sha256": "e227dc0b740fed0a25c1d937c9b310cf8d3faf7f506dfcf7b1608dda88b7aaa5"
+    }
+  ],
+  "major_count": 9,
+  "minor_count": 18,
+  "scope": "正式comment各所見全文のliteralとSHA。処置・解消・承認ではない。"
+}
