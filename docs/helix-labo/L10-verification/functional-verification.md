@@ -3183,7 +3183,7 @@ CASE IDは旧公開a4 revisionの42定義IDを保持する。索引は定義行�
 
 **固定意味・境界**：明示選択されたtask/scope/revision/evaluation範囲に属するOS Worker Attempt identityのdistinct総数を数え、完全性が証明できない場合は総数を `unknown` とする。identityを持つdenied Attemptは数え、実行前に拒否されidentityのないintakeは数えない。result stateは別fieldで保持する。固定318の本文には065/067を「未採択」と記すが、現PO判断record `af93d1f171d994f9fae2e78026b39ac27f896f5c` line 80/82は両候補を条件付き採択と記録する。snapshot metadataと現authorityを区別し、どちらの採択状態にも068を依存させない。065 first_pass/retry_count、067 same-Attempt repair round、068 identity countは換算・代替・合算しない。比較時も採択済み `HELIXLABO-L2-059` の品質優先・費用の意味を変更しない。
 
-**責務・返却**：OSは既存assignment、Attempt identity、event/evidence、state/correctionを提供する。LABOは許可済み記録のdistinct countと比較証拠を返す。固定親の生成禁止はidentity/counting policy、task-evaluation oracle、assignment、Worker起動/retry、adoption、qualification、admissionであり、L10で各出力fieldの生成を個別に拒否する。LABOはこれらを生成しない。identity対応・event/correction lineageの欠落、重複衝突、対象recordのstale・scope不一致、捕捉完全性不明は総数をunknown/未評価にする。result receiptだけ欠ける場合はidentity集合の完全性を確認できればcountを維持しresult stateだけunknownにする。event遅延はscope全体のcapture completenessを証明できなくする場合だけunknownにし、完全性receiptが維持される遅延だけではcountを不成立にしない。原因に沿って既知の観測sourceまたはOS record owner区分へ返す。個体source/owner identityが不明ならそのidentity unknownを別に保持し、既知責務区分を消さない。未採番の担当や権限を新設しない。
+**責務・返却**：OSは既存assignment、Attempt identity、event/evidence、state/correctionを提供する。LABOは許可済み記録のdistinct countと比較証拠を返す。固定親の生成禁止はidentity/counting policy、task-evaluation oracle、assignment、Worker起動/retry、adoption、qualification、admissionであり、L10で各出力fieldの生成を個別に拒否する。LABOはこれらを生成しない。identity対応・event/correction lineageの欠落、重複衝突、対象recordのstale・scope不一致、捕捉完全性不明は総数をunknown/未評価にする。result receiptだけ欠ける場合はidentity集合の完全性を確認できればcountを維持しresult stateだけunknownにする。event遅延（OSの訂正event遅延を含む）は総数をunknown/未評価にし、観測sourceまたはOS記録ownerへ不足を返す。完全性receiptが存在していても、遅延eventから総数を推測・確定しない。原因に沿って既知の観測sourceまたはOS record owner区分へ返す。個体source/owner identityが不明ならそのidentity unknownを別に保持し、既知責務区分を消さない。未採番の担当や権限を新設しない。
 
 **版・範囲**：旧a4の25 CASE IDを保持する。旧literalは監査材料に保全し、下の6列表のfixture setup/oracleは固定L2/L11へ意味再導出した候補であり、旧literalのbyteコピーを正本定義とみなさない。固定親は仕様として引用し、これらの候補表は意味完全性・単独変異性の証明ではない。
 
@@ -3202,7 +3202,7 @@ FR本文で定義した `LABO-068-AC-01`（選択scope正常）、`LABO-068-AC-0
 | `L10-LABO-068-CASE-03a` | `FR-LABO-068-01/02` | `LABO-068-AC-03` | B0にidentity A/B/C/Dと完全性receipt。 | Aのidentity linkだけ欠落。 | 対象identityを確定できず総数unknown。既知OS record責務区分へ返し、missing identityの個体owner不明は別unknown。 |
 | `L10-LABO-068-CASE-03b` | `FR-LABO-068-02` | `LABO-068-AC-03` | B0のeventは観測できるが、sourceが全件捕捉を証明するcompleteness receiptはない状態。 | 変異なし（完全性unknown fixture）。 | 総数unknown。観測sourceまたはOS record owner区分へ不足を返す。 |
 | `L10-LABO-068-CASE-03c` | `FR-LABO-068-01/02` | `LABO-068-AC-03` | B0のA/B/C/Dと完全性receipt。 | Aの同一identity・同一receiptを一度だけ再配送。 | distinct identityは4。duplicateを加算しない。 |
-| `L10-LABO-068-CASE-03d` | `FR-LABO-068-02` | `LABO-068-AC-03` | 正常B0: scope S0のidentity/event receiptとscope全体のcapture-completeness receiptが有効。 | Aのevent receipt一件だけ遅延し、それによってscope capture completenessを証明できなくする。他fieldはB0と同一。 | この遅延がscope capture completenessを損なうためtotal unknown。遅延だけで一般化せず、完全性receiptが有効な遅延はcountを維持。 |
+| `L10-LABO-068-CASE-03d` | `FR-LABO-068-02` | `LABO-068-AC-03` | 正常B0: scope S0のidentity/event receiptとscope全体のcapture-completeness receiptが有効。 | Aのevent receipt一件だけを遅延状態にする。他fieldはB0と同一。 | 総数をunknown/未評価にし、既知の観測sourceまたはOS記録ownerへ不足を返す。既存完全性receiptから遅延eventの内容を推測せず、個体unknownでも責務区分を保持する。 |
 | `L10-LABO-068-CASE-03e` | `FR-LABO-068-01/02` | `LABO-068-AC-03` | B0にA/B/C/Dの完全記録。別に実行前denied intake I0があり、OS Attempt identityは未発行。 | 変異なし（境界fixture）。 | I0をAttempt countに含めず、intake denialとして別記。 |
 | `L10-LABO-068-CASE-03f` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のidentity記録と、別fieldの065 retry_count receipt。 | Attempt identityを追加せず、retry_countから`+1`を計算してcountへ足そうとする。 | 換算を拒否し、B0の068 identity countを維持する。 |
 | `L10-LABO-068-CASE-03g` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のidentity記録と、既存Attempt内の067 repair-round receipt。 | repair roundを新Attemptとして加算しようとする。 | 換算を拒否し、同一Attempt identityのまま保持する。 |
@@ -3229,6 +3229,7 @@ FR本文で定義した `LABO-068-AC-01`（選択scope正常）、`LABO-068-AC-0
 | `L10-LABO-068-CASE-23` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のcount evidenceと合成scopeのadoption stateは未決のまま（固定PO採択状態は別scopeで変更しない）。 | LABO output fieldだけでadopted=trueを新規生成する。 | 採否を生成せず既存decision stateを変更しない。 |
 | `L10-LABO-068-CASE-24` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のcount evidenceと合成scopeのqualification stateは未決のまま。 | LABO output fieldだけでqualified=trueを新規生成する。 | qualificationを生成せずcountから資格を推論しない。 |
 | `L10-LABO-068-CASE-25` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のcount evidenceと合成scopeのadmission stateは未決のまま。 | LABO output fieldだけでadmitted=trueを新規生成する。 | admissionを生成せず既存authority/decision stateを変更しない。 |
+| `L10-LABO-068-CASE-26` | `FR-LABO-068-02` | `LABO-068-AC-03` | 正常B0: scope S0のidentity・lineage・完全性receiptとOS訂正event C0が既知で整合する。 | OS訂正event C0の配送状態だけを遅延にする。他fieldはB0と同一。 | 総数をunknown/未評価にし、既知の記録sourceまたはOS記録ownerへ不足を返す。identity統合・分割や欠落Attemptを遅延eventから推測せず、個体unknownでも責務区分を保持する。 |
 
 旧a4 CASE ID保持列（全25 ID。以下のmatrixで定義。literal原文・物理行・raw-LF SHAは作成側preflight JSONの `old_a4_parent068_case_census.raw_case_definitions` に保全）:
 
