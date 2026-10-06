@@ -695,3 +695,29 @@ AC-035-05はS5-027/028/042および035〜038（旧revision計測、機能数だ�
 | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-02` | 各rowのstable subject ID、row revision、source span、semantic digest、status、owner、上流/下流edgeを同revisionで逆引きする。片方向edge、別revisionの混在、field不足やstaleを該当範囲の未完として示す。 |
 | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-03` | 未提示契約やunknownなauthority/scope/互換版を存在済みや対象外にせず未評価で保持する。契約不足はHARNESS L1/L2契約owner、authority不足は該当authority ownerへ返す。authority ownerをL0に限定しない。個別identityが不明でも既知の責務区分を保持する。catalogからL1承認/L2合意/L3承認/OS登録・実行/completionを生成しない。OS receipt不足は既存OS保存・実行ownerへ返し、HARNESS契約oracleを代用しない。HARNESS-L2-025/026の完了receiptは040評価の開始前提ではなく、040の候補採否や実装完了を生成する根拠にもならない。 |
 | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-04` | 対象revisionの有効契約からledger type・粒度・必須node/edge・authority参照・input/output・entry/exit gate・適用template版の項目集合を導き、layer snapshotとcoverageの全件・未完・staleを区別する。根拠のない固定件数を課さない。未見layer/template revisionの変更がcatalog/coverageに現れない範囲はstale/uncoveredとしてHARNESS L1/L2契約ownerへ返す。 |
+
+### HELIX-HARNESS L2-044 — 機能要件（Stage 3、version_target: 1.0、起草候補）
+
+起草候補。Stage 3、`version_target: 1.0`。POがHARNESS-L2-044に条件付き採択したB route / Design Contract Portfolioを対象とする。この候補はL3承認・実装・実行・個別部品配置・設計成立を表さない。
+
+**固定親・判断根拠**：L2親は`318ec4a04abb3c1cc17111b3d939f913facd5fd3`の `docs/helix-harness/L2-requirements/product-requirements.md:1002–1014`、全file SHA-256 `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09`、span SHA-256 `b005641da8a8dffac0bbddd33b5ef71762f7a9c221fa31b23cb1bb2111e1a26d`。 L11対は同revisionの `docs/helix-harness/L11-acceptance/product-acceptance.md:735–745`、全file SHA-256 `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5`、span SHA-256 `9c79b73100f4afa63abba7f79d47b8931a1c29983ac08a3e4ded95e56107bfc8`。 PO判断は `17a2f310358ee7fe209b9d37cddf4a927c740248` の `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:49`、SHA-256 `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`、line SHA-256 `212948ea669ed647a3a3b188b0efb39a9e2d2fdf020e7be5cd8f088fac79807b`、registration `MPR-RC-HARNESS-L2-044-002`。POはB route / Design Contract Portfolioを条件付き採択し、採択済み025/026へ無断追記しない。
+
+**旧sourceと処置**：旧起点はHIL-FR-54、`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:144`、file SHA-256 `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`、line/span SHA-256 `b8c3eb6a8d4e25985f97f95281851e79a0cf6bf6576d3d6a074abdb1df97b070`。旧HIL-FR-55は別要求として043に残り、044へ移さない。 HR-FR-HIL-20/HAT-HIL-20/HOT-HIL-50等のpaired consumerは広い複合要求なので、044へ全量移管したとは扱わない。 旧資産の一部機能意味を再導出し、旧schema/tool/runtime/Plannerや旧L3/L10の番号体系は置換する。旧CASE 39件のIDとraw literalは監査artifactにそのまま保持し、現行fixture意味はこの文書とfunctional verificationで再導出する。
+
+**FR-HARNESS-L3-044-01 — scope-bound obligation-to-contract coverage**：選択された対象L1／要求／design scopeとrevision、および選択入力に含むsource identity/revisionから適用義務classを固定し、各classをnormative contract・契約版・対oracle・適用根拠へ対応付ける。各classについて再利用、delta追加、新規契約、根拠付き非適用を区別し、未被覆class、意味重複、複数contract分割の境界と根拠を出す。portfolio候補は未被覆class 0・意味重複0を満たす場合に限って閉包候補として提示する。これらの0は固定L2/L11の範囲であり新閾値ではない。
+
+**FR-HARNESS-L3-044-02 — 未確定と隣接scopeの保持**：必須identity、scope/revision、applicability、contract revision、oracle、class-to-contract relationの欠落・unknown・conflict・stale、または意味対応をoracleで評価できない場合、portfolioを未完／未評価として保持する。025のcomposite整合、043のexample coverage、契約数の少なさ、portfolio fieldの存在だけで代替・合格扱いしない。N/Aはsource atomと適用根拠を伴う場合だけclassごとに記録する。
+
+**FR-HARNESS-L3-044-03 — 既存能力の非変更**：HARNESS-L2-025/026の既存scopeと契約を無断で拡張しない。選択された025/026出力は、対象scope・revision・契約版を結び付けて参照し、入力として不足なら原因を該当ownerへ返す。候補結果から固定要求や隣接候補を編集しない。
+
+**FR-HARNESS-L3-044-04 — authority非生成**：portfolio候補または受入結果から、要求合意、L3承認、設計承認、要求／候補採択、実装成立、OS実行、利用者受入を生成しない。PO採択範囲は対象revisionの判断記録から読む。本文内のdraft/candidate metadata、matrix、CI相当の結果はauthorityでない。
+
+**AC-HARNESS-L3-044-01 — 正常なclass coverageと契約処置**：同じscope/revision内の固定された適用class・oracle・契約・根拠から、再利用／delta／新規／根拠付きN/Aを区別したcoverageを再構成でき、未被覆0・意味重複0である。合成正常fixtureは選択された9 contract classを既存inputとして与える。9件はfixtureの母集団であり、新classや新しい一般的閾値を作らない。reuse/delta/newの扱いが各classの義務意味・oracleに対応することを確かめる。
+
+**AC-HARNESS-L3-044-02 — 単一欠落・誤対応**：source atom、active template、applicability、oracle、contract version、class identityまたはrelationを一度に一つ欠落／矛盾／staleにしたとき、未完・未被覆・unknownを維持し、適用範囲からclassを落とさない。根拠のないN/A、意味重複、旧denominator receipt再利用、025/043による代替、意味対応oracleの欠落を拒否する。
+
+**AC-HARNESS-L3-044-03 — portfolio閉包と候補状態**：義務最小化を理由に独立classを落とさず、複数contractの必要な境界を示す。候補は候補のままとし、portfolio出力だけで承認・採択を生成しない。
+
+**AC-HARNESS-L3-044-04 — authority出力を個別に拒否**：合成入力中の他fieldを固定し、要求合意、L3承認、設計承認、採択、実装成立、OS実行、利用者受入の各outputを一つずつ独立に生成させる変異を拒否する。各拒否fixtureは対象output field一つだけを変える。
+
+**owner・差戻し**：意味／authority不足は固定要求ownerへ。template選択・適用／義務導出不足はHARNESS-L2-009／対象template ownerへ。atom抽出不足はHARNESS-L2-041の既存ownerへ。具体設計・契約版・boundary不足はHARNESS-L2-026、対oracle不足はHARNESS-L2-022等の既存ownerへ。sourceまたは原因が個別identityを特定しない場合はそのidentityをunknownに保ち、既知の責務区分は維持する。新ownerを作らない。HARNESS-L2-043はHIL-FR-55側であり044 ownerではない。

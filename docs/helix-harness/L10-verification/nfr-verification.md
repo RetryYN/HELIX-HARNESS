@@ -165,3 +165,19 @@ NFR CASEは測定candidate分類であり、実測・CI success・performance SL
 |---|---|---|---|---|
 | `CASE-HARNESS-L10-NFR-040-01` | `NFR-C-HARNESS-040-01` | 12 layer/6 pair/L0 anchorの契約候補と双方向edge fixture。 | layer/pair/anchor relationの欠落と片方向edgeを分けて数える。 | catalog未実装は未完として記録、registration/executionは測定しない。 |
 | `CASE-HARNESS-L10-NFR-040-02` | `NFR-C-HARNESS-040-01` | L2-040で列挙されたledger contract field、6 pair edges、L0独立anchor fieldsとsource snapshot population。 | selected catalog relation欠落・片edge・staleを各別計上。snapshot coverageと未完/stale populationを明示する。 | OS保存が未構築でもHARNESSの意味oracleを代替しない。未提示契約は未完/unknown。 |
+
+### HELIX-HARNESS L2-044 — NFR総合検証（Stage 3、version_target: 1.0、起草候補）
+
+起草候補。Stage 3、`version_target: 1.0`。POがHARNESS-L2-044に条件付き採択したB route / Design Contract Portfolioを対象とする。この候補はL3承認・実装・実行・個別部品配置・設計成立を表さない。
+
+**固定親・判断根拠**：L2親は`318ec4a04abb3c1cc17111b3d939f913facd5fd3`の `docs/helix-harness/L2-requirements/product-requirements.md:1002–1014`、全file SHA-256 `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09`、span SHA-256 `b005641da8a8dffac0bbddd33b5ef71762f7a9c221fa31b23cb1bb2111e1a26d`。 L11対は同revisionの `docs/helix-harness/L11-acceptance/product-acceptance.md:735–745`、全file SHA-256 `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5`、span SHA-256 `9c79b73100f4afa63abba7f79d47b8931a1c29983ac08a3e4ded95e56107bfc8`。 PO判断は `17a2f310358ee7fe209b9d37cddf4a927c740248` の `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:49`、SHA-256 `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`、line SHA-256 `212948ea669ed647a3a3b188b0efb39a9e2d2fdf020e7be5cd8f088fac79807b`、registration `MPR-RC-HARNESS-L2-044-002`。POはB route / Design Contract Portfolioを条件付き採択し、採択済み025/026へ無断追記しない。
+
+**source・測定境界**：旧起点はHIL-FR-54、`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:144`、file SHA-256 `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`、line/span SHA-256 `b8c3eb6a8d4e25985f97f95281851e79a0cf6bf6576d3d6a074abdb1df97b070`。旧HIL-FR-55は別要求として043に残り、044へ移さない。 HR-FR-HIL-20/HAT-HIL-20/HOT-HIL-50等のpaired consumerは広い複合要求なので、044へ全量移管したとは扱わない。 この設計は候補NFRをL3のFR/ACと合成fixtureで測る。NFRを重ねて新しい要件にせず、性能・費用・時間・成功率・契約数の閾値を作らない。9-classはfixture母集団の入力条件であってgeneralized thresholdではない。
+
+| 検証ID | NFR候補 | 合成fixture / 比較 | oracle | 未評価・不合格 |
+|---|---|---|---|---|
+| `CASE-HARNESS-L10-NFR-044-01` | `NFR-C-HARNESS-044-01` | 9-classのB0で、各適用classのsource/scope/revision、contract/version、oracle/relationが揃うnormal portfolioと、既存直接fixtureの一つずつのsource/contract/oracle/relation欠落を比較する。全入力は合成である。 | class集合とcoverage outputを集合比較し、uncovered=0が固定された正常条件で成立し、欠落時は該当classを未被覆またはunknownのまま保持するか確認。 | class母集団、scope、source identityまたはoracle不明なら未評価。欠落をclass除外で隠せば不合格。 |
+| `CASE-HARNESS-L10-NFR-044-02` | `NFR-C-HARNESS-044-02` | 同一義務classへ一つのnormative contractを割り当てるbaselineと、意味重複契約だけを一件追加する旧直接fixtureを比較する。 | duplicate findingと対象class/contractを列挙し、独立義務を落とさず未説明duplicate=0条件を照合。 | duplicate意味oracleが固定できなければ未評価。重複を契約削除で隠せば不合格。 |
+| `CASE-HARNESS-L10-NFR-044-03` | `NFR-C-HARNESS-044-03` | candidate stateのB0とauthority output単一変異fixture7件、missing/unknown/stale/conflictの既存fixtureを比較。 | candidateやunknownが承認・採択・実装・実行・利用者受入へ変換されず、unknownを合格にしない。 | authority baselineが未確定なら未評価。既存authorityを推測して生成すれば不合格。 |
+
+**実行限界**：fixtureは設計候補で未実行。full integration、性能、release、L3承認、受入実施を示さない。source pinがcurrent branchで不一致の場合、固定対象revisionとの差として記録し、latest baseの本文をこの測定結果へ混ぜない。

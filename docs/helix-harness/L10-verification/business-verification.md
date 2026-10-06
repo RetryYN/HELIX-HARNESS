@@ -80,3 +80,19 @@ execution_status: designed_only_not_executed
 | L2親 | 独立criterion | 対応関係 |
 |---|---|---|
 | `HARNESS-L2-040` | 独立criterionなし | ledger catalog/template obligationの意味・traceはfunctional ACで照合。登録数や抽出数を価値基準にしない。 |
+
+### HELIX-HARNESS L2-044 — 業務検証（Stage 3、version_target: 1.0、起草候補）
+
+起草候補。Stage 3、`version_target: 1.0`。POがHARNESS-L2-044に条件付き採択したB route / Design Contract Portfolioを対象とする。この候補はL3承認・実装・実行・個別部品配置・設計成立を表さない。
+
+**固定親・判断根拠**：L2親は`318ec4a04abb3c1cc17111b3d939f913facd5fd3`の `docs/helix-harness/L2-requirements/product-requirements.md:1002–1014`、全file SHA-256 `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09`、span SHA-256 `b005641da8a8dffac0bbddd33b5ef71762f7a9c221fa31b23cb1bb2111e1a26d`。 L11対は同revisionの `docs/helix-harness/L11-acceptance/product-acceptance.md:735–745`、全file SHA-256 `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5`、span SHA-256 `9c79b73100f4afa63abba7f79d47b8931a1c29983ac08a3e4ded95e56107bfc8`。 PO判断は `17a2f310358ee7fe209b9d37cddf4a927c740248` の `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:49`、SHA-256 `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`、line SHA-256 `212948ea669ed647a3a3b188b0efb39a9e2d2fdf020e7be5cd8f088fac79807b`、registration `MPR-RC-HARNESS-L2-044-002`。POはB route / Design Contract Portfolioを条件付き採択し、採択済み025/026へ無断追記しない。
+
+**旧source・責務境界**：旧起点はHIL-FR-54、`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:144`、file SHA-256 `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`、line/span SHA-256 `b8c3eb6a8d4e25985f97f95281851e79a0cf6bf6576d3d6a074abdb1df97b070`。旧HIL-FR-55は別要求として043に残り、044へ移さない。 HR-FR-HIL-20/HAT-HIL-20/HOT-HIL-50等のpaired consumerは広い複合要求なので、044へ全量移管したとは扱わない。 旧HR-FR-HIL-20/HAT-HIL-20/HOT-HIL-50は複数要求を束ねるconsumerであり、044の独立business outcomeや受入実行記録として扱わない。HARNESS-L2-044はscope付きportfolio coverage候補を作成する。PO採択、設計決定、release outcomeはこの検証対象でない。
+
+**対象business requirement**：`BR-HARNESS-L3-044-01`。同一要求revision/scopeの義務class、contract、reuse/delta/new/reasoned-N/A、uncovered/duplicate根拠を説明できること。新しい収益・優先順位・導入価値条件は設けない。
+
+| L10 case ID | L3 AC / BR | 入力と比較 | 観測・判定 | 失敗・未評価 |
+|---|---|---|---|---|
+| `CASE-HARNESS-L10-044-r16-normal-nine-class` | `AC-HARNESS-L3-044-01` / `BR-HARNESS-L3-044-01` | 合成入力で選択scopeに既存の9 contract class、その各source identity/revision、applicability、normative contract/version、対oracleを与える。reuse/delta/new/reasoned-N/Aはclassの固定根拠に沿って入力し、fixture側でclassを増減しない。 | 同一scope/revision内のclass-to-contract対応を再構成し、uncovered=0、duplicate=0を照合。これは固定parent基準の合成観測で、実績ではない。 | 必須source・契約・oracleの固定範囲が不足なら未評価。新しいclass一覧やbusiness thresholdを生成しない。 |
+| `CASE-HARNESS-L10-044-r16-normal-delta` | `AC-HARNESS-L3-044-01` | 一つの既存classに、義務意味とoracleを保存する十分なdelta contractと理由を持つ合成baseline。 | deltaがそのclassの義務・oracleを満たし、他classを変えず、portfolioのclosureを保つ場合に限りcoverageへ反映する。 | 意味対応oracleが不足なら未評価／未完。 |
+| `CASE-HARNESS-L10-044-r16-delta-insufficient` | `AC-HARNESS-L3-044-02` | 十分なdeltaを持つ正常baselineから、対象deltaの義務意味対応relationだけを欠落させる。 | 当該classをuncovered/未完として返し、coverage=0やportfolio closureへ変換しない。 | classまたはoracle自体のidentityが未確定ならunknownとして未評価。 |
