@@ -2699,7 +2699,7 @@ input observation identity/source revision；episode candidate identityとrelati
 | CASE | 対応AC | 単独変異 | 期待oracle / 戻し先 |
 |---|---|---|---|
 | `L10-LABO-061-CASE-73` | `LABO-061-AC-03` | 選択runが取消/失敗なのに他run成功で平均相殺 | 各run状態を保持し、成功へ読み替えない。 |
-| `L10-LABO-061-CASE-74` | `LABO-061-AC-03` | 索引（独立fixtureではない）: CASE-82〜86のmodel/runtime/toolchain/actor/version個別欠落を参照する。 | 各単独CASEのoracleを使い、4条件を一変異へ束ねない。 |
+| `L10-LABO-061-CASE-74` | `LABO-061-AC-03` | 索引（独立fixtureではない）: `L10-LABO-061-CASE-82`〜`L10-LABO-061-CASE-86`のmodel/runtime/toolchain/actor/version個別欠落を参照する。 | 各単独CASEのoracleを使い、5条件を一変異へ束ねない。 |
 | `L10-LABO-061-CASE-75` | `LABO-061-AC-03` | 055通常履歴へhidden判定条件を強制 | 非選択の通常履歴にblind条件を要求しない。 |
 | `L10-LABO-061-CASE-76` | `LABO-061-AC-03` | snapshot完全だが059 quality oracle不合格 | 完全性と品質を別判定し、品質不成立を保持する。 |
 | `L10-LABO-061-CASE-77` | `LABO-061-AC-03` | 索引（独立fixtureではない）: CASE-103〜106のassignment、実験許可、admission、judge任命の個別生成主張を参照する。 | 各単独CASEのoracleを使い、権限生成をまとめて一変異とは数えない。 |
@@ -3172,7 +3172,7 @@ input observation identity/source revision；episode candidate identityとrelati
 | `L10-LABO-064-CASE-13` | `LABO-064-AC-03` | 索引（独立fixtureではない）: CASE-03aの同一変異を参照する。 | 主fixtureを参照し、同じ変異を二重計上しない。 |
 | `L10-LABO-064-CASE-14` | `LABO-064-AC-03` | 単独変異: 新形式/版のblind mapping欠落だけを変更。その他の入力は `CASE-01` と同一。 | 新条件をunknownに保ちsource/evaluation ownerへ戻す 戻し先: evaluation owner。 |
 | `L10-LABO-064-CASE-15` | `LABO-064-AC-03` | 単独変異: smoke resultでblind evidenceを代替だけを変更。その他の入力は `CASE-01` と同一。 | 代替を拒否し選択scope evidenceを未完とし、既存evaluation ownerへ戻す。 |
-| `L10-LABO-064-CASE-16` | `LABO-064-AC-03` | 索引（独立fixtureではない）: CASE-12（添付本文候補名）、CASE-13（metadata候補名）、CASE-14（新形式mapping欠落）。 | 各単独CASEのoracleを参照し、複合変異を独立計上しない。 |
+| `L10-LABO-064-CASE-16` | `LABO-064-AC-03` | 集約索引（独立fixtureではなく、同一fixtureのaliasでもない）: `L10-LABO-064-CASE-12`（添付本文で候補名を露出）、`L10-LABO-064-CASE-13`（metadata候補名露出の互換index。主fixtureは`L10-LABO-064-CASE-03a`）、`L10-LABO-064-CASE-14`（新形式/版のblind mapping欠落）。 | 添付本文露出・metadata露出・mapping欠落それぞれの個別行のoracleを参照し、3種類の変異をこの索引の単独fixtureとして数えない。 |
 | `L10-LABO-065-CASE-05` | `LABO-065-AC-01` | 単独変異: scorecardとreceiptが揃った選択資格taskの正常入力。その他の入力は `CASE-01` と同一。 | 選択taskの通常scorecardをfield別に返す。L11固定値は閾値にしない 戻し先: LABO。 |
 | `L10-LABO-065-CASE-06` | `LABO-065-AC-03` | 単独変異: blind score/digestをmachine manifestで代替だけを変更。その他の入力は `CASE-01` と同一。 | 資格証拠とせずblind judge evidenceを要求する 戻し先: HARNESS/LABO。 |
 | `L10-LABO-065-CASE-07` | `LABO-065-AC-03` | 単独変異: input revision だけ異なる。その他の入力は `CASE-01` と同一。 | 該当runを別条件として分離する 戻し先: source owner。 |
