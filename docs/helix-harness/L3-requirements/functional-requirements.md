@@ -718,3 +718,31 @@ AC-035-05はS5-027/028/042および035〜038（旧revision計測、機能数だ�
 **不成立と戻し先**：semantic similarity、consumer、oracle、graphの未確認は未評価に保ち、出典ownerと設計・契約ownerへ不足を戻す。対の設計または契約がない対象はL2-019 reverse入口へ。公開契約/要求/persistent-state意味変更は該当するL2-003/004/016 Backflow。機能追加混載はepisode成立を拒否しfeatureを別episodeへ分離。missing/unknown/stale/conflictは補完せず未評価。文書、CASE、receipt、ticketからauthority、実行、採択、L3承認または受入を生成しない。
 
 **L2-019境界**：019は逆向きに対の設計または契約の不在を明らかにする入口であり、全入力不足や責務不明を無差別に送る汎用戻し先ではない。入力不足はその入力を提供する元ownerへ戻す。019 reverseの結果も本要件のscopeを拡張しない。
+
+## Stage 3 親047の機能要件候補
+
+### FR-HARNESS-L3-047 — 専門Workerの必要性判断とruntime-neutral契約生成
+
+**Authority・版**：HARNESS-L2-047はPO決定 `MPR-RC-HARNESS-L2-047-001` により条件付き採択、HARNESSが契約生成規範を所有するA配置である。L2/L11本文内の旧candidate metadata「PO未決／未採択」と配置Bの比較案は時点記録として残すが、現行状態はPO row 52を読む。親L1はHARNESS-L1-001/002/004、version_targetは固定親の1.0を継承する。本L3本文は候補であり、L3承認は生成しない。
+
+**旧根拠と再導出**：旧HIL-BR-09/30、HIL-FR-59/60（`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`のsource line 61/82/149/150）とHR-FR-HIL-21、HAT-HIL-21、HOT-HIL-52/53を起点とする。保持する意味はtask/process/verificationに結んだ契約生成、専門化の測定可能なtask benefit、既存role十分性の比較、worker/verifierと権限分離、最小context、生成guard、停止/中断の追跡である。旧runtime固有schemaやprovider定義、旧W-agent team数は移植しない。担当境界は現行L2-047に沿ってHARNESS/OS/SECURITY/INTELLIGENCE/LABOへ分ける。
+
+**必要性判断**：対象task/ticket identity・scope・revision、適用HARNESS process/task-kind/verification contractとoracle、対象domain/risk、版付きjudgment pack、既存single-worker roleとの比較、該当task classで適用可能なLABO evidence、必要時のINTELLIGENCE proposal、OS assignment/budget/deadline/stop、SECURITY authority/isolation制約を入力する。専門知識・独立context・並列性・blind verificationのうち当該taskに関係する比較可能な利益が示されるときだけ`muster`候補を返す。既存roleが十分なら`existing_role_sufficient`、比較材料や適用範囲が欠けるなら`unknown_or_defer`とする。共通数値thresholdも固定Worker数も新設しない。provider/model名、価格、Bench値単独はmuster理由にしない。
+
+**runtime-neutral契約生成**：必要性判断がmuster候補の場合のみ、適用process phase/task-kind/design obligation/domain/risk/judgment pack/承認済み要求・verification oracleのrevisionへtraceできる候補契約を生成する。objective、成果物schema、tool guidance、task boundary、context selector、allowed/denied tool/path候補、model/effort class、budget、checkpoint、escalation、verification contractとinput/output digest、generation rationale、guard validation resultを含める。同一正規化入力とgenerator revisionでは意味内容/digestが再現可能である。provider/runtime固有設定や固定provider/model/team sizeを要求しない。
+
+**独立性と担当境界**：worker/verifierのidentity、context、authorityは別々の軸で分離し、それぞれ独立に確認する。provider/modelは属性として記録し、同じprovider/modelだけでは独立性を否定しない。HARNESSは契約意味・必要性判断・生成検証条件を所有する。INTELLIGENCE placement proposalとLABO水準/evidenceは選択入力で、割当を決めない。OSはruntime profile適格性、assignment、実行state、budget/deadline、projection、lease/fencing/revocation/retireとlifecycle evidenceを所有する。SECURITYはoperation authorityとisolationを所有する。tool/path候補、contract、digest、guard receiptからOS assignment・起動・SECURITY許可を生成しない。
+
+**入力不足の戻し先**：task/process/oracle不足はHARNESSまたは要求source owner、task aptitude proposal不足はINTELLIGENCE、LABO適用scope/evidence不足はLABO、runtime profile/assignment/budget/deadline/lease/fencing/lifecycle不足はOS、operation authority/isolation不足はSECURITYへ戻す。各不足は原因別に単独表示し、他ownerの入力で補完しない。個体owner identityの特定有無にかかわらず既知の責務区分へ返し、個体ownerが不明ならunknownとして別に記録する。
+
+**不成立と停止**：根拠なしmuster、existing-role-sufficientの無視、同一identity/context/authorityでの自己検証、適格runtime/lifecycle不明下での起動候補、cross-assignment credential/state leakage、SECURITY権限のHARNESS生成を拒否する。中断/予算上限/期限到達ではpartial contract、未完義務、判断根拠、再開条件を保持しsuccessにしない。contract generation aloneからverification result、independent-review result、adoption、completionを個別に生成しない。これらの拒否は固定L2-047のscopeに限り、別のapproval制度を追加しない。
+
+### 受入基準候補
+
+**AC-HARNESS-L3-047-01 — taskに適用する必要性判断**：対象task/scope/revisionに適用可能なHARNESS process・task-kind・verification oracle、既存single-worker roleとの比較、選択したLABO evidenceの適用scopeを同じ判断へ結ぶ。taskに関係する比較可能な利益が示された場合だけ`muster`候補とし、既存roleで十分なら`existing_role_sufficient`とする。比較対象・利益・evidence・適用範囲が不明なら`unknown_or_defer`とし、推測でmusterへ進めない。共通数値threshold、固定Worker数、価格/provider/model/Bench単独の根拠は追加しない。判断候補はOS assignment、Worker起動、SECURITY許可を生成しない。またcontract/digest/guardの存在だけからverification executionまたはindependent-review結果を生成しない。
+
+**AC-HARNESS-L3-047-02 — runtime-neutral contractとtrace**：必要性判断が`muster`候補の場合だけ契約候補を生成する。固定L2-047が列挙するcontract field、対象source identity/revision/scope、input/output digest、generation rationale、guard validation結果を相互に追跡可能にする。同一正規化inputと生成規則revisionから同じ意味内容/digestを再現する。field/source/traceが不足または不整合なら候補を未完/unknownに保ち、欠落を推測補完しない。
+
+**AC-HARNESS-L3-047-03 — worker/verifier分離と機構間境界**：workerとverifierのidentity、context、authorityをそれぞれ独立に照合する。同一provider/modelだけでは独立性不成立と判定しない。runtime profile、assignment、実行/lifecycle状態はOS、operation authorityとisolationはSECURITYの既存責務へ保ち、HARNESS候補contractやproposal/evidenceからこれらを生成・代替しない。
+
+**AC-HARNESS-L3-047-04 — 不足・中断の保持と状態非生成**：選択入力のmissing/unknown/conflict/stale、比較材料や適用範囲の不明、profile/lifecycle/authority不足は原因別に`unknown_or_defer`/未完を保持し、固定L2-047の既存ownerへ返す。中断・budget上限・期限到達時は判断根拠、partial contract、未完義務、再開条件を保持しsuccessにしない。contract生成だけからassignment、permission、Worker起動、adoption、completionを生成しない。新しい承認手続き・数値閾値・ownerは設けない。

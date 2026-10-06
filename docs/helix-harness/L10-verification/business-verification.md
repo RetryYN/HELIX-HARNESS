@@ -86,3 +86,9 @@ execution_status: designed_only_not_executed
 | L2親 | 独立criterion | 対応関係 |
 |---|---|---|
 | `HARNESS-L2-042` | 独立criterionなし | 事業成果を独立に主張せず、機能ACと採択済み親要求の意味保持だけを照合する。 |
+
+## Stage 3 親047の業務検証
+
+| L2親 | 独立criterion | 対応関係 |
+|---|---|---|
+| `HARNESS-L2-047` | 独立criterionなし | 事業成果を作らず、必要性判断/契約の機能ACと既存owner境界を照合する。 |
