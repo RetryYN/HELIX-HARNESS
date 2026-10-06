@@ -780,10 +780,10 @@ HARNESSは、利用許可と対象revisionに結ばれたscreen IDを持つrende
 | AC | 成立条件 | 不成立・unknown時の扱い |
 |---|---|---|
 | `AC-HARNESS-L3-049-01` | screen/revision/profileと選択scopeのdevice/view/locale等を明示し、各適用checkのoracle・手段版・evidenceへ結ぶ。測定結果・文言findingと修正候補は、選択profile/oracleおよび根拠に整合する出力として照合する。選択oracle/fixture内の未見画面状態・文言役割・表示条件は正常に評価でき、適用外の条件は理由付きで区別する。 | 必要な条件またはevidenceが欠けるときは当該条件をunknown/未評価にする。選択scope外を観測済み・合格へ広げない。未見だけを理由に選択oracleに適合する正常入力を拒否しない。修正候補だけが欠落または根拠と不一致なら、当該出力を不適合として保持する。 |
-| `AC-HARNESS-L3-049-02` | 適用checkごとに既知positive/negative fixture、期待分類、観測結果を結び、false positive/missを評価可能にする。分母0、fixture不足、別scope/revision結果の流用は単独で評価する。 | accuracy未評価をpass根拠に使わず、fixture数・候補数・実行回数から精度成立を作らない。選択scopeで必要なLABO評価は既存connectionへ渡す。 |
+| `AC-HARNESS-L3-049-02` | 適用checkごとに既知positive/negative fixture、期待分類、観測結果を結び、false positive/missを評価可能にする。分母0、fixture不足、別scope/revision結果の流用は単独で評価する。 | accuracy未評価をpass根拠に使わず、fixture数・候補数・実行回数だけから精度または品質の成立を作らない。選択scopeで必要なLABO評価は既存connectionへ渡す。 |
 | `AC-HARNESS-L3-049-03` | 有効な最小入力が揃えば表示計測を開始できる。prototype生成、Pattern選択、screen ID発行履歴を追加必須入力にせず、画面計測結果を返す。 | これらの工程出力を049から生成しない。machine measurementだけからagreement、L3要件freeze、L11利用者受入、requirement acceptanceを出力しない。 |
 | `AC-HARNESS-L3-049-04` | 文言量は選択profileの画面/領域/役割別目安に照らす。screen IDそのものの欠落、target revision不一致、代替ID要求はそれぞれ識別し、findingは根拠付きで返す。 | 根拠のない一律文字数上限やgeneric ownerを設けない。欠落原因に応じ固定L2が特定する既存requirement/visual-priority、L2-024 agreement、design/oracle、LABO責務へ返し、個別identity不明はunknownとする。 |
-| `AC-HARNESS-L3-049-05` | 測定pass/warning/unknown、要求受入、人による文言判断、`implemented`、`ux_verified`を別状態として保つ。 | machine passから人のagreement/acceptanceや状態を生成しない。real-user UX、prototype/implementation drift、analyticsを1.0の049完了条件へ前倒ししない。 |
+| `AC-HARNESS-L3-049-05` | 測定pass/warning/unknown、要求受入、人による文言判断、`implemented`、`ux_verified`を別状態として保つ。 | machine passから人のagreement/acceptanceや状態を生成しない。vision、brand、見た目の好みを自己承認せず、文書上の対応関係またはcandidate登録だけからL11列挙の成果を成立させない。real-user UX、prototype/implementation drift、analyticsを1.0の049完了条件へ前倒ししない。 |
 
 #### 旧Stage3 CASEと現行ACのcrosswalk
 
