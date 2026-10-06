@@ -171,3 +171,9 @@ NFR CASEは測定candidate分類であり、実測・CI success・performance SL
 | CASE ID | NFR候補 | 検証対象 | 観測 | 限界 |
 |---|---|---|---|---|
 | `CASE-HARNESS-L10-NFR-042-01` | 独立NFRなし | 性能refactorを選択した場合のbaseline/budget/workload/profile/statistical condition/regression oracle | HARNESS-L2-016と対L11に固定された入力・oracleが適用可能かを参照する。 | 本候補では数値を設定せず、実測性能受入を再定義しない。 |
+
+## Stage 3 親043の非機能検証
+
+| CASE ID | NFR候補 | 検証対象 | 観測 | 限界 |
+|---|---|---|---|---|
+| `CASE-HARNESS-L10-NFR-043-01` | 独立NFRなし | fixed L2-043の選択scope内adequacy matrix | 数値性能・coverage率ではなく、適用rule/branchとoracle/risk根拠のtraceを機能ACで確認する。 | 新規閾値やall-combinations実行を設けない。 |

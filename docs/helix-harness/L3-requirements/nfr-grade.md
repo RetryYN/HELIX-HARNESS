@@ -191,3 +191,9 @@ fixture definition数と実測母集団は異なる。対のL10機能総合検�
 | NFR候補 / L2親 | 候補値 | 固定根拠 | 限界 |
 |---|---|---|---|
 | `HARNESS-L2-042` | 独立した数値NFRを導出しない | 旧requirements v1.3 §4.2 L119の性能Refactor条件は、PO採択済みHARNESS-L2-016と対L11がbaseline、budget、workload、profile、統計条件、regression oracleを持つ。 | 新しい数値閾値、性能権限、時間/件数SLOを作らない。性能判定を行う場合は016へ委譲する。 |
+
+## Stage 3 親043の非機能候補
+
+| NFR候補 / L2親 | 候補値 | 固定根拠 | 限界 |
+|---|---|---|---|
+| `HARNESS-L2-043` | 独立した数値NFRを導出しない | 固定L2-043はrule/branch/risk coverageを意味で判定し、正例・境界負例を各適用rule/branchに対応させる。 | case数の総量、coverage率の新閾値、全組合せ数を追加しない。未選択scopeを分母に加えない。 |

@@ -718,3 +718,26 @@ AC-035-05はS5-027/028/042および035〜038（旧revision計測、機能数だ�
 **不成立と戻し先**：semantic similarity、consumer、oracle、graphの未確認は未評価に保ち、出典ownerと設計・契約ownerへ不足を戻す。対の設計または契約がない対象はL2-019 reverse入口へ。公開契約/要求/persistent-state意味変更は該当するL2-003/004/016 Backflow。機能追加混載はepisode成立を拒否しfeatureを別episodeへ分離。missing/unknown/stale/conflictは補完せず未評価。文書、CASE、receipt、ticketからauthority、実行、採択、L3承認または受入を生成しない。
 
 **L2-019境界**：019は逆向きに対の設計または契約の不在を明らかにする入口であり、全入力不足や責務不明を無差別に送る汎用戻し先ではない。入力不足はその入力を提供する元ownerへ戻す。019 reverseの結果も本要件のscopeを拡張しない。
+
+## Stage 3 親043の機能要件候補
+
+### FR-HARNESS-L3-043 — active templateのrule／branch別例coverage
+
+**authorityと範囲**：HARNESS-L2-043はPO decision `MPR-RC-HARNESS-L2-043-002`で条件付き採択されたBルート、所属HARNESS-COREである。L2本文と旧source checkpointに残る「配置はPO未決」の記述は当時のcandidate metadataとして保持し、現在のauthorityはPO decision行から読む。親L1はHARNESS-L1-001/004/009、version_targetはL2-043の1.0を保持する。本L3本文はその固定scopeを具体化する候補で、L3承認前である。POの採択を再生成・拡張しない。
+
+**由来と処置**：旧HIL-FR-55（Template Example Calibrator）、旧L3 HR-FR-HIL-20/HAC-HIL-20a/b/c、およびHAT-HIL-20/HOT-HIL-50を起点とする。保持する意味は選択されたactive templateに適用される各validation rule/applicability branchへcanonical positiveとboundary negativeを結び、L2-005で選択されたticket/riskの未被覆領域だけ追加し、件数のみで十分性を判定しないこと。名前や旧IDが同じだけでは同じ意味とせず、旧28 CASEの原文/raw digestを監査source inventoryへ残し、内容oracleを固定親の意味へ再導出する。旧schema/runtime/workflow/実装経路は移植しない。
+
+**責務境界**：HARNESS-L2-005がticketとriskから検証義務/profileを選択する。043は選択済みscope/profileを受け、全組合せの作成や検証の実行をしない。HARNESS-L2-009がactive template選択と適用条件を所有し、HARNESS-L2-041がそのtemplate要素の抽出・source span・gapを所有する。HARNESS-L2-004が要求・設計・検証のtrace、risk/oracle条件を所有する。HARNESS-L2-026は要求からunitの具体設計と対のverification designを、HARNESS-L2-025はcomposite design/oracleを構成・検査する。043はそれらの代替にならず、025/026のcompletion receiptを一律に開始前提としても要求しない。OSが検証を実行・保存する。
+
+**入力と出力**：ticket/riskからL2-005で選択されたverification obligations/profile、対象revision/scope、L2-009で選択されたactive template identity/revision/applicability、L2-041の適用rule/branch atomとsource span、該当scopeのrisk basis、L2-004でtraceされる検証oracleを対応付ける。出力は同じscope/revision限定のadequacy matrixで、分母は選択scopeに適用されるrule/branch。各rule/branchにcanonical positiveとboundary negativeを最低一例ずつ対応させる。追加risk例はL2-005で選択されL2-004根拠で未被覆と示されたriskに限る。rule×branch×riskや他の全factorのCartesian productを要求しない。未選択template、未選択scope、未選択riskは未観測のままとする。
+
+**受入基準**：
+
+- **AC-HARNESS-L3-043-01**：選択scope内の各適用rule/branchにpositiveとboundary-negativeを結び、例の条件・期待結果・既存oracle・source provenanceを追跡する。例数だけで十分性を主張しない。
+- **AC-HARNESS-L3-043-02**：applicability/denominator、抽出atom、risk basis、oracleを別根拠として照合する。unknown/conflict/stale/TBD/根拠なしN/Aは推測で埋めず未評価として、L2-009（選択/適用）、041（抽出済みrule gap）、004（要求/risk/oracle）の原因別ownerへ返す。
+- **AC-HARNESS-L3-043-03**：coverage結果は選択されたtemplate/revision/scopeに限る。未選択template/scope/revisionへ外挿せず、固定oracleに適合する未見例は未見だけを理由に拒否しない。
+- **AC-HARNESS-L3-043-04**：risk追加例はL2-005で選択されたriskとL2-004の根拠で未被覆とされたものに限定し、欠落入力を補完せず元ownerへ返す。043のmatrixは要求合意、L2採択、L3承認、設計成立、実装、OS実行、利用者受入を生成せず、L2-025/026の成果も代替しない。
+
+**原因別戻し先**：ticket/risk profileが未選択なら005 owner。template identity、active revision、適用条件が不足なら009/対象template owner。選択templateに存在するrule/branchの抽出atom/source spanが欠けるなら041抽出契約owner。requirement relation、risk rationale、expected result/oracle bindingが欠けるなら004/そのsource owner。025のcomposite design/oracleまたは026のunit design/paired verification designそのものが求められて未作成なら該当する025/026 ownerへ返すが、これらを043評価の一般開始条件や代替outputにはしない。責務不明はunknownを保持し新ownerを推測しない。
+
+**authority出力境界**：実際のB-route/CORE PO採択はdecision rowで既に固定される。043 candidateやmatrixからその採択を作り直さない。また要求合意、L3承認、設計成立、実装完了、OS実行完了、利用者受入成功を個別に生成しない。matrixは内容上のcoverage候補だけを示す。

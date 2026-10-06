@@ -125,3 +125,9 @@ HARNESS-L2-034から独立business requirement、事業KPI、ROI閾値または�
 | L2親 | business requirement | 理由 |
 |---|---|---|
 | `HARNESS-L2-042` | 独立したbusiness requirementを導出しない | Design Refactor判定とepisode境界は固定された要求・設計・検証契約の保持条件であり、事業成果や価値閾値を新設しない。 |
+
+## Stage 3 親043の業務要件
+
+| L2親 | business requirement | 理由 |
+|---|---|---|
+| `HARNESS-L2-043` | 独立したbusiness requirementを導出しない | 例coverageは選択scopeのverification adequacyであり、別の事業成果や価値閾値を追加しない。 |
