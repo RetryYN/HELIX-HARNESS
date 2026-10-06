@@ -729,14 +729,14 @@ AC-035-05はS5-027/028/042および035〜038（旧revision計測、機能数だ�
 
 **責務境界**：043は選択されたtemplate/scope/revisionに適用されるrule/branchの例coverageを評価し、全組合せの作成や検証の実行をしない。HARNESS-L2-009がactive template選択と適用条件を所有し、HARNESS-L2-041がそのtemplate要素の抽出・source span・gapを所有する。HARNESS-L2-004が要求・設計・検証のtrace、risk/oracle条件を所有する。HARNESS-L2-026は要求からunitの具体設計と対のverification designを、HARNESS-L2-025はcomposite design/oracleを構成・検査する。043はそれらの代替にならず、025/026のcompletion receiptを一律に開始前提としても要求しない。OSが検証を実行・保存する。
 
-**入力と出力**：対象revision/scope、L2-009で選択されたactive template identity/revision/applicability、L2-041が抽出した適用rule/branch atomとsource span、適用oracleをL2-004の検証義務へ結ぶ。追加risk例を評価する操作では、その対象scopeのrisk根拠と未被覆領域も入力する。出力は同じscope/revision限定のadequacy matrixで、分母は選択scopeに適用されるrule/branch。各rule/branchにcanonical positiveとboundary negativeを最低一例ずつ対応させる。追加risk例は対象scopeのrisk分析で未被覆と根拠付きで示された領域（状態遷移、failure、security、migration、multi-runtime差異等）に限る。rule×branch×riskや他の全factorのCartesian productを要求しない。未選択template、未選択scope、未選択riskは未観測のままとする。
+**入力と出力**：対象revision/scope、L2-009で選択されたactive template identity/revision/applicability、L2-041が抽出した適用rule/branch atomとsource span、適用oracleをL2-004の検証義務へ結ぶ。追加risk例を評価する操作では、その対象scopeのrisk根拠と未被覆領域も入力する。出力は同じscope/revision限定のadequacy matrixで、分母は選択scopeに適用されるrule/branch。各rule/branchにcanonical positiveとboundary negativeを最低一例ずつ対応させ、同じscope/revisionの重複・冗長性findingをmatrixへ結ぶ。追加risk例は対象scopeのrisk分析で未被覆と根拠付きで示された領域（状態遷移、failure、security、migration、multi-runtime差異等）に限る。rule×branch×riskや他の全factorのCartesian productを要求しない。未選択template、未選択scope、未選択riskは未観測のままとする。
 
 **受入基準**：
 
-- **AC-HARNESS-L3-043-01**：選択scope内の各適用rule/branchにpositiveとboundary-negativeを結び、例の条件・期待結果・既存oracle・source provenanceを追跡する。例数だけで十分性を主張しない。
+- **AC-HARNESS-L3-043-01**：選択scope内の各適用rule/branchにpositiveとboundary-negativeを結び、例の条件・期待結果・既存oracle・source provenanceを追跡する。例数だけで十分性を主張しない。重複・冗長性findingを出力し、所見が欠ければcoverage所見は未完とする。
 - **AC-HARNESS-L3-043-02**：applicability/denominator、抽出atom、risk basis、oracleを別根拠として照合する。unknown/conflict/stale/TBD/根拠なしN/Aは推測で埋めず未評価として、L2-009（選択/適用）、041（抽出済みrule gap）、004（要求/risk/oracle）の原因別ownerへ返す。
 - **AC-HARNESS-L3-043-03**：coverage結果は選択されたtemplate/revision/scopeに限る。未選択template/scope/revisionへ外挿せず、固定oracleに適合する未見例は未見だけを理由に拒否しない。
-- **AC-HARNESS-L3-043-04**：追加risk例は対象scopeのrisk分析で未被覆と根拠付きで示された領域（状態遷移、failure、security、migration、multi-runtime差異等）に限定する。その例を評価する操作でrisk根拠または未被覆領域が欠ける場合は補完せずHARNESS-L2-004と根拠sourceが示す該当ownerへ返す。043のmatrixは要求合意、L2採択、L3承認、設計成立、実装、OS実行、利用者受入を生成せず、L2-025/026の成果も代替しない。
+- **AC-HARNESS-L3-043-04**：追加risk例は対象scopeのrisk分析で未被覆と根拠付きで示された領域（状態遷移、failure、security、migration、multi-runtime差異等）に限定する。risk分析で未被覆とされた領域に追加例がない場合はcoverage未完とする。その例を評価する操作でrisk根拠または未被覆領域が欠ける場合は補完せずHARNESS-L2-004と根拠sourceが示す該当ownerへ返す。043のmatrixは要求合意、L2採択、L3承認、設計成立、実装、OS実行、利用者受入を生成せず、L2-025/026の成果も代替しない。
 
 **原因別戻し先**：template sourceの選択、active revision、適用条件が不足ならHARNESS-L2-009/対象template owner。抽出済みrule/branchのatom/source spanが欠けるならHARNESS-L2-041抽出契約owner。requirement relation、risk根拠、expected result/oracle bindingまたは検証義務が不足ならHARNESS-L2-004と固定sourceが示す該当ownerへ返す。これらを一つのprofile前提やgeneric ownerへ束ねず、025/026を043評価の一般開始条件や代替outputにしない。
 
