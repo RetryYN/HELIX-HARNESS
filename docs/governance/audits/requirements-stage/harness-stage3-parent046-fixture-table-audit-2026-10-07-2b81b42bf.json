@@ -1,0 +1,37 @@
+{
+  "body_revision": "2b81b42bf8c998798e94a172fbf128d91a17e23e",
+  "six_actual_pins": [
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "bytes": 16698,
+      "sha256": "993030d003b39ab90d751cbd2f8db6833eeb1eb229e243bfb987a19a1119ee2c"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "bytes": 212000,
+      "sha256": "1fb0a7257d6e0828d10f9838ce446645c220a7f963a5ca2f7afbbf9c8ae135d5"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "bytes": 46644,
+      "sha256": "d2ed3c4e09ea53bf1c247aa0eea07059e6b8b1aebe5c69709dd028787bcd439f"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "bytes": 12826,
+      "sha256": "f414b8cf754100f05cf9a62b60dfab4c572e83fd0aae0d6a1b4e593c53acbe61"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "bytes": 676513,
+      "sha256": "c5ae6ff01525077b2f2bedafca8bdbebf01c2f7b6b2c2f9eb4564ec2bbf4f062"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "bytes": 40426,
+      "sha256": "528c7160334ac89aa25639b738dd826623a2b7e50c36cc2b55615d34ed47c341"
+    }
+  ],
+  "change": "追加CASE内容不変、表見出しとseparatorを補ってMarkdown表として表示。旧時点監査不変。",
+  "limits": "独立review/承認/fixture実行未確認"
+}
