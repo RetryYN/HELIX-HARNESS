@@ -52,3 +52,11 @@
 | `HELIXLABO-L2-034` | 独立BVなし | `LABO-034-AC-01`, `LABO-034-AC-02` | `L10-LABO-034-C01` と各単独negative/held-out normal case。追加CASE: `L10-LABO-034-C11`, `L10-LABO-034-C12` |
 | `HELIXLABO-L2-035` | 独立BVなし | `LABO-035-AC-01`, `LABO-035-AC-02` | `L10-LABO-035-C01` と各単独negative/held-out normal case。追加CASE: `L10-LABO-035-C18`, `L10-LABO-035-C19` |
 | `HELIXLABO-L2-058` | 独立BVなし | `LABO-058-AC-01`, `LABO-058-AC-02` | `L10-LABO-058-C01` と各単独negative/held-out normal case。追加CASE: `L10-LABO-058-C40`, `L10-LABO-058-C41` |
+
+## Stage 5 — HELIXLABO-L2-050 業務検証の証拠
+
+|固定親|business evidence / owner境界|CASE索引|
+|---|---|---|
+|`HELIXLABO-L2-050`|独立KPIなし。LABO評価/再観測、OS registration/routing、target owner change/verification/deployment/operationを分ける。|`L10-LABO-050-CASE-01`〜`CASE-30`（03gは非独立ラベル、07/08/09/10は非独立索引として識別）|
+
+この表は未実行designの参照であり、実business outcome、承認、changeの実行を示さない。
