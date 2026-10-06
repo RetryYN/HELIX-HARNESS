@@ -1867,7 +1867,7 @@ HELIXLABO-L1-005をprimary、L1-011をcontextとして、旧source line 399か�
 
 1. **4種のduration**：queue wait、active time、review wait、Human waitを別々のfieldで提示する。各durationは適用sourceの開始・終了event、clock source、unit、occurred_at/observed_at、windowを保持する。境界が不明・無効ならunknown/invalidとする。重なる待ち時間を排他的と推定して按分せず、4値の合計でL2-059のend-to-end wall-clockを再定義しない。
 2. **escaped defects**：既存の要求/受入ownerが適用するquality oracleとrevisionを用い、そのscopeで受入済みの対象へ関係付けられた受入境界後の検証済みdefect eventだけを観測値として示す。oracle、受入境界、追加の観測window、重大度または合否thresholdを新設しない。oracle/event/relation/母数/追跡完全性が確かめられない場合は確定count/rateを出さずunknown/未評価とする。L2-006のquality結果と同一視しない。
-3. **rollback/Recovery**：許可済みsourceのevent identity、scope、発生/結果state、receiptのみを観測する。費用・時間はL2-059の同一event/receipt参照に従い二重算入しない。欠落は「発生なし」でなくunknown。観測結果からLABOがrollbackを開始/決定したり、実行・復旧操作権限・Recovery実行を作ったりしない。
+3. **rollback/Recovery**：許可済みsourceのevent identity、scope、発生/結果state、receiptのみを観測する。費用・時間はL2-059の同一event/receipt参照に従い二重算入しない。欠落は「発生なし」でなくunknown。観測結果からLABOがrollback triggerを生成したり、rollbackを開始/決定したり、実行・復旧操作権限・Recovery実行を作ったりしない。
 4. **observer overhead**：計測・観測に直接帰属する実測資源とsource receiptをtask workから分けて示し、sourceの定義・単位を保つ。根拠のない推計や換算、未観測値の0扱いをしない。L2-059費用への算入は同じreceipt参照で一度だけとする。
 5. **evidence freshness**：L2-001の既存source identity/revision/provenanceを保ち、sourceが持つeffective/occurred時刻とobserved時刻との差を観測値として示す。時刻欠落/不整合はage unknown/invalid。ageからfresh/stale状態、期限、適格性、採否、実験許可を作らない。
 6. **Attempt系との併記**：scopeに適用可能なら、L2-067のfirst-eligible resultと同一Attempt内repair rounds、L2-068のdistinct total Attempt countを同じscorecardに別fieldとして置く。各定義revision/grain/identity/scope/receiptを保ち、換算・合算・代替しない。対象候補またはreceipt不在・不採択・scope不一致なら理由付きunavailable/unknownとし、併記完了を主張しない。070から067/068の採択を生成しない。
