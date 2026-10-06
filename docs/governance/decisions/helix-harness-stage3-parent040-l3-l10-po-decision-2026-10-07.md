@@ -30,7 +30,7 @@ authority_effect: effective_when_this_record_is_admitted_to_main
 | `docs/helix-harness/L2-requirements/product-requirements.md` | 946–955 | `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09` | `c349606d7798e3f4eb5e6cb31e0618a83dcfa05f9fc888b0ce618f6d160757df` |
 | `docs/helix-harness/L11-acceptance/product-acceptance.md` | 689–697 | `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5` | `366518f8e32ac4dda1e5f4ec88ef0cfed6bc363d597955ffffb1a82d706fc212` |
 
-要求意味・範囲・担当・版は変えない。対象revision/scopeのL0〜L14と正規V-pairの構造、入力・出力・責務・検証とsourceをcatalog契約として再導出する。catalogをOS保存・実行やauthorityに変えない。025/026の完了receiptを040評価の開始前提にも、040採否・実装完了の根拠にもしない。旧sourceとconsumerの処置およびreview01 M1補正は作成・時点処置監査に固定し、公開監査は書き換えない。
+要求意味・範囲・担当・版は変えない。対象revision/scopeのcanonical L1〜L12と正規6組のV-pair（L1↔L12、L2↔L11、L3↔L10、L4↔L9、L5↔L8、L6↔L7）の構造、入力・出力・責務・検証とsourceをcatalog契約として再導出する。L0 charterは層外authority anchorとして別参照し、layer ledgerや7組目のpairへ変換しない。新しいlayer、pair、L0企画価値は追加しない。catalogをOS保存・実行やauthorityに変えない。025/026の完了receiptを040評価の開始前提にも、040採否・実装完了の根拠にもしない。旧sourceとconsumerの処置およびreview01 M1補正は作成・時点処置監査に固定し、公開監査は書き換えない。
 
 ## 承認対象の6本文
 
