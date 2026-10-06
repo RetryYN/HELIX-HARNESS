@@ -218,3 +218,17 @@ L10は69個の完全ID定義を保持する。literalから抽出した分類候
 対象scopeが未選択の通常Worker作業にfull-benchを課さず、別runtime・task・versionへの適格性も推論しない。L2-059等の既決条件外で比較条件や許容差が未決なら値を発明せず、固定L2-065:514に従い該当ownerへ返す。
 
 **旧資産との対応**：形式・測定候補の起点は旧HIL-FR-61/62、HIL-NFR-35、Bench R04/R08である。blind judgeと8軸の同条件評価、taskごとのfirst/retry/費用記録は保持・再導出する。旧sample設定、旧runtime値、旧閾値、旧admission条件は移さない。
+
+
+
+## Stage 5 — HELIXLABO-L2-064 技術計測候補
+
+064の技術計測は、実行許可ではなく、後に許可された比較runが存在する場合の状態の数え分けを設計する。値・最低sample/retry回数・固定閾値は追加しない。
+
+| 計測項目 | 母集団・状態 | 照合先 |
+|---|---|---|
+| `LABO-064-NFR-01` 条件とtraceの完全性 | 選択された比較scope内のrunだけを対象とし、run identity、runtime/model identity/version、記録側mapping、judge-visible scope、fixture/rubric/judge version/sample/retryの各fieldをvalid/missing/unknown/stale/mismatchで分ける。未選択通常履歴は母集団にしない。 | `LABO-064-AC-01/02/03`。条件全体の分母と各field状態を示し、分母不明または0では率を出さない。 |
+| `LABO-064-NFR-02` 漏洩・重大failure・相殺状態 | candidate-name exposure、security failure、scope逸脱、検証不能、smoke-only、full-evaluation evidenceを別状態で記録する。failed/missing/unknownをsuccessや0へ変換しない。 | L10単独oracle。重大failureを高平均点で相殺した結果をpassへ変換しない。 |
+| `LABO-064-NFR-03` 期待状態と権限境界 | comparison evidence、再評価義務、既存assignment/admissionを別stateとして数える。CASE定義は測定runに含めない。 | `LABO-064-AC-03`; 実測母集団、分子、分母、unknown数を併記。固定SLA、最低N、合格率、permissionを加えない。 |
+
+実際の比較runが与えられない場合は「未実測」とする。上記CASEは合成fixtureであり、run数、合格率、採択、実測結果を表さない。
