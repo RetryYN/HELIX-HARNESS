@@ -87,6 +87,11 @@ execution_status: designed_only_not_executed
 |---|---|---|
 | `HARNESS-L2-042` | 独立criterionなし | 事業成果を独立に主張せず、機能ACと採択済み親要求の意味保持だけを照合する。 |
 
+
+## Stage 3 親041の業務検証
+
+独立business criterion/oracle/CASEは追加しない。`functional-requirements.md`の固定L2-041 scopeとFR/ACを参照し、atom数/gap数/coverage/fixture数からROI、事業成果、利用者受入、要求合意、承認を生成しない。
+
 ### HELIX-HARNESS L2-046 — 業務検証（Stage 3、version_target: 1.0、起草候補）
 
 起草候補。Stage 3、`version_target: 1.0`。対象は採択済みHARNESS-L2-046のFull V workflow条件と、明示的にProduction Scrumが選択・許可されたscopeのScrum slice/backfill条件に限る。候補文書・検証fixtureは採択済みL2/L11本文や運転結果を置換せず、releaseやruntime authorityを付与しない。

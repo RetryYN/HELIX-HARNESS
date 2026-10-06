@@ -1,0 +1,5 @@
+# HARNESS-041 review06修正本文の時点監査
+
+本文revision `40d32829bea578c60a9f3681c4052619a8b9c356`、base `ceda1c53b53c53fffb8c23f394add1f2b809deb1`。正式6023650937 M1を採択003の固定5aa10031 L2:961/963、L11:703へ戻して再導出した。入力extractor identity/versionとその他provenanceが有効なbaselineから、出力抽出器/version digestだけを欠落/別値にする2反例を別々に追加。041抽出契約ownerへ返しscope・該当義務未完とscope完了claim拒否を期待する。既存62ID保持、64 unique CASE、別NFRは変更しない。
+
+R28推奨の既存6反例にもscope未完/完了claim拒否を追補。R1–28の旧rawは正式・過去comment全文としてJSONへ保全し、解消を推定しない。六actualSHA・exact変更を記録、旧時点監査を変更していない。govcheck/newdiffPASS。独立再review・Fable一致・承認・fixture実行は未確認。

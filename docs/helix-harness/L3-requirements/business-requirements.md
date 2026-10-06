@@ -126,6 +126,11 @@ HARNESS-L2-034から独立business requirement、事業KPI、ROI閾値または�
 |---|---|---|
 | `HARNESS-L2-042` | 独立したbusiness requirementを導出しない | Design Refactor判定とepisode境界は固定された要求・設計・検証契約の保持条件であり、事業成果や価値閾値を新設しない。 |
 
+
+## Stage 3 親041の業務要件
+
+HARNESS-L2-041から独立business requirement、business owner、ROI/KPI/商業閾値は導出しない。template atom/gap/candidate rowの存在、coverage、fixture数から事業価値・利用者受入・要求合意・承認を作らない。
+
 ### HELIX-HARNESS L2-046 — 業務要件（Stage 3、version_target: 1.0、起草候補）
 
 起草候補。Stage 3、`version_target: 1.0`。対象は採択済みHARNESS-L2-046のFull V workflow条件と、明示的にProduction Scrumが選択・許可されたscopeのScrum slice/backfill条件に限る。候補文書・検証fixtureは採択済みL2/L11本文や運転結果を置換せず、releaseやruntime authorityを付与しない。
