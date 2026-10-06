@@ -1,0 +1,82 @@
+{
+  "record_kind": "review05 Fable追記のRoot処置と旧監査訂正",
+  "body_revision": "49f528d4ae6f64de077936a5f4c742e344a50164",
+  "superseded_review_head": "b9d2f0baf29ad044148ad0d3a9000313a074e4ac",
+  "authority_effect": "none",
+  "fable_comment": {
+    "id": 6007282406,
+    "raw_body": "## review05 追記：Fable見解（HEAD b24095214）\n\nFable advisorの見解（補正差分333行全hunk、6本文Stage5 suffix全文、固定L2/L11の指定行を直接確認、監査4件（6本文SHA一致、固定source 19 spanを633bf12から再計算、review04 comment SHA一致）、FV定義306一意・索引連鎖なし・NFR母集団件数の機械照合）。結論行（原文のまま）：「**承認してよい**」。review04のOpus側Major 6件と前回Fable Minor 8件の解消、L11未見列・L2失敗句の戻し先がFR/FVから落ちていないこと（回帰なし）を確認。\n\n### 見解の相違（記録）\n- 本体**M1**（FR:750 AC-INT-060-05表の残余条項と05eの併記漏れ）：Fableはm1「固定親にない条項だがどのfixtureにも対応しない死文。FR:661・FV側が明示的なので意味衝突ではない」とMinor評価。本laneでは、固定L2:358にない条項がL3本文（受入条件表）に残ることを「L3本文が固定L2の意味を変える」に当たるとしてMajorを維持する。\n- 本体**M2**（071-02aの条件付きunknown、固定L2:557）・**M3**（069-04a/08h/08i/08k・071-02cで、戻し先を持たない不足に条件付きsource owner返却を追加、FR:776と不一致）：Fableは挙げていない。Fable m4は071-05k（connector contract欠落→unknown）について「L2-071:560の『stale/欠落状況はsource ownerへ』を当てる読みも可能」と低確度で指摘しており、本体M2/M3と同じ固定L2:557の句をめぐる論点である。本体の根拠はFV:2496/2431/2755/2756/2758/2498の「特定できる場合だけ照合」の文言と、L2:526/557の失敗句（条件・規則不足とunsupported edgeはunknown/blockedで返す、stale/欠落はsource ownerへ）。作成側は本文に照らして処置または反証を記録する。071-05kもあわせて同じ句で再照合する。\n- **m7（監査：root-acceptance JSONのFR:739 literalがpinしたbody revisionと不一致。Fable m2）**：JSONは`body_revision: 264b4e47a`だが、`findings_crosswalk`のFR:739 literalはRoot訂正前（ca153ee49）の「一変数ずつ拒否する」文言のまま。`root_full_diff_read`も`e00628a7f→ca153ee49`で264b4e47a分を含まない。6本文full SHAはHEADと一致しており本文の問題ではない。次の追補で訂正後literalを記録する。\n- Fable m3（L2-077 locator：638／639／641のずれ）＝本体m4と同内容。\n\n### 次手順\n委任条件2（Fable「承認してよい」）は本HEADで成立したが、条件1（Opus `no_findings`）は成立しない。次revisionでOpus側がM1〜M3を固定親に照らして再照合し`no_findings`（未確認範囲0）を確認したうえで、Fableの再見解を取り、一致した時点で委任承認条件1・2を成立させる。mailbox responseは本体commentで送信済み（findings 9）。merge admissionは本commentから生成しない。",
+    "sha256": "f43f2ced4bacb7f629f96cf97845e7808484ed64d152cd3a4efc2bc7eefe6978"
+  },
+  "m7_correction": {
+    "prior_audit_path": "docs/governance/audits/requirements-stage/intelligence-stage5-review04-root-acceptance-2026-10-06.json",
+    "prior_audit_sha256": "8176d2b9e22c0e8d904c584df099b9a36ca2e973c4b1d039233cfd30963e59d5",
+    "prior_audit_body_revision": "264b4e47a77648bfe18676de697e7fca23aad8fb",
+    "prior_root_diff_range": {
+      "from": "e00628a7f8959b5dbcf743c9d8e7709d8002d3f0",
+      "to": "ca153ee49f2e9bfc759729dd024f6362a176c294",
+      "lines": 332,
+      "all_read": true
+    },
+    "correction": "旧findings_crosswalk FR739 literalはca153ee49時点を転記し、pinした264b4e47aの本文と不一致だった。旧root_full_diff_readもca153ee49までの局所差分だけで、264b4e47a全変更の証拠ではない。旧監査不変。新記録で現行FR739 raw literalを固定し、review05本文136行+Root08b・05k追加修正を全読した範囲を明示。"
+  },
+  "connector_05k_disposition": {
+    "basis_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "basis": "L2:549 適用connector contract入力、L2:556 source contract依存、L2:557 stale/欠落状況はsource ownerへ",
+    "change": "source identity/owner正常入力を固定し、connector contractのみ欠落する単独fixtureへ。欠落した選択contractのsource ownerへ戻す。CONNECT新ownerを作らない。",
+    "fable_locator_correction": "追記のL2:560は引用句の所在ではなく旧source照合行。失敗句は557。"
+  },
+  "current_literal_pins": [
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 739,
+      "literal_with_lf": "- AC-INT-077-03 反例: CASE-INT-077-03a〜03mは単独反例・索引を区別して照合する。単独変異の判定は各索引の参照先と独立CASE-INT-077-03gで行う。03gはunknown consumer/routeをunknownのまま保持して上流scope照合へ戻す独立CASEとして母集団へ含める。正常なsource/qualificationに返却を追加しない。同固定L11:361に従い、source identity/qualificationの不明は該当source owner、INTELLIGENCEのfinding/delta candidate根拠はINTELLIGENCE owner、AssignmentはOS owner、評価はLABO ownerへ返し、consumer不明はunknownのまま上流scope照合へ戻す。unknownを0/neutral/unchanged/observedに補完、internal/external origin swap、未qualified/stale receipt受入、Requirement/Design/Release/Assignment/merge authorityへの直接変更、未特定consumer/routeの新設を許可しない。03a/b/c/d/e/h/i/j/k/l/mはそれぞれCASE-INT-077-05a/05o/05r/05e/05f/05g/05h/05i/05b/05c/05dへの完全ID索引、03fは旧複合集約索引であり、全12行を独立negative件数へ重ねない。03gだけを03群の独立fixtureとする。Release/Assignment/merge変更は05g/05h/05iで別々に照合する。selected receiptのqualification不足は選択source ownerへ照合し、Requirement/Design/Release/mergeの直接変更は拒否し返却ownerを推測しない。unknown consumerは上流scope照合へ戻す。\n",
+      "raw_lf_sha256": "cd615b173f256a38c64dafbcedb9749a592b534270b7b41128f132df0e2a0aae"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 2783,
+      "literal_with_lf": "| `CASE-INT-071-05k` | 071/AC-INT-071-05 | 選択connector contractのsource identityと既存source ownerを正常入力で固定し、そのcontractだけを欠落させる | connection inputを成立扱いせず、固定L2:557の欠落状況として選択contractのsource ownerへ戻す。CONNECTを新たな返却先にしない。 |\n",
+      "raw_lf_sha256": "c51deb361741257cb42779c89c7373eeab046af6a89cb9c8df0d2748fa892bc6"
+    }
+  ],
+  "body_files": [
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "sha256": "989dce01d43479c2dfba31f673c1045f9c039f5ad7cffdfd8652b4008a0581f5",
+      "byte_length": 25857,
+      "main_prefix_exact": true
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "sha256": "86a3f1e08d0345686755356426f86a866cbd9018824f13cc593b339b9f415321",
+      "byte_length": 209143,
+      "main_prefix_exact": true
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "sha256": "31d9c9d3ce0bc82a6c0ed33758dc43c01a9f56d08abd3e4e7368ce7d9cf5f9bc",
+      "byte_length": 58697,
+      "main_prefix_exact": true
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "sha256": "218537c593876ef23f98ba8d729005e299dbc31894e42e87ea05ef2daf8bb100",
+      "byte_length": 29558,
+      "main_prefix_exact": true
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "sha256": "baecb44fd82be4814cd4c2d77ad94e911a2b5b240c961dc4a0de0c1cc7dc1c92",
+      "byte_length": 704556,
+      "main_prefix_exact": true
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "sha256": "c4fa2eb132472bc3968c0a28c1db0a034332131c40a7c1b24c95c77ea9f97006",
+      "byte_length": 53737,
+      "main_prefix_exact": true
+    }
+  ],
+  "status": "作成側補正記録。独立再レビューとOpus/Fable一致未成立、Ready/merge不可。"
+}

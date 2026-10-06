@@ -1,0 +1,14 @@
+# INTELLIGENCE Stage5 review03 Root検収
+
+正式6006134850のMajor7/Minor23に対するWorker補正83099ea5608355ccc8cd600d5cfa37336d29e7b0を全6本文差分で検収し、固定L2/L11を再読した。Root補正354405fc4と最新main 8a763ce4211afa1ef2a7e54c209933a03e029243履歴統合後本文はf9430a649221d717d0b7fa84168d7edfe67257b8。独立再レビュー待ち、authority effectはnone。
+
+- 06005hを元のdependency identity unknownへ戻し既知HARNESS source/ownerをbaselineに保持。
+- 07010a-cを定義済みAC07006へ結び、未定義AC07010と圧縮ID06/10を撤去。
+- 07405aaを元のcapability条件無視へ保持。正常task/evidenceからevidence scope mismatchへ置換せず、根拠L2010:104/L2074:612からproposal未確定をoracleとし戻し先を追加しない。
+- 077AC03へL11:361 Assignment→OS/evaluation→LABO/consumerunknown→上流scopeを明記。
+- NFR06002と03・07002と03の母集団重複を分離し、071rollback05eは03へ保持、07405群の索引2件と別群06eを区別。
+- AC07102の係数不一致は04d、retry/recoveryは04f/g、rollback生成は05eへtrace。
+
+固定親sourceは633bf12とmainの全bytes一致を確認し633bf12へ明示pinした。固定/旧sourceの48 bounded spansについてbounds・full/span SHA・literalをRootで再計算した。元303 IDsを保持し新3件で306一意、索引25・根拠外旧06302d除外1・個別または未分類280を区別する。6本文full/prefix/all-LF suffix、306定義行をJSONに固定した。旧時点監査とWorker監査は不変、解消記載の残差は新記録の具体訂正で扱う。
+
+静的validate147/0、stale0、residuals0、govcheck成功、diff check/trial merge成功。独立review・Opus/Fable見解一致・判断記録照合・Ready・mergeは未成立。下流実装/L10実行許可を生成しない。

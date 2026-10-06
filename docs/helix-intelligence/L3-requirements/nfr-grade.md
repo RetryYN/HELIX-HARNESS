@@ -206,3 +206,76 @@ review06追補の個別変異はCASE-INT-017-02o（revoked）とCASE-INT-034-02l
 review06の母集団追補：018の自己採択単独とLABO評価単独を別CASEとして数える。078では代行主張による4 field省略、read/qualification失敗からの別source切替2件、読取不能receiptの3代用を各別CASEとして既存078 familyのplanned fixture母集団へ加え、索引や併発caseと重複計上しない。source-bound oracleと戻し先を個別照合し、未実測を0へ変えない。
 
 review08の機能測定追補：005未充足prerequisite1、016同scope未見結果正常1、067評価packetのscope/revision欠落2、072比較正常/閾値創作/case追加3、2.0外部知識必須化1、未見適用外工程/failure mode2、authority/risk/failure mode不一致3を各個別fixtureとして記録する。計13件は既存familyへ追加するplanned機能観測で、性能閾値・数値budget・authorityを追加しない。
+## Stage 5 — 採択済み9親の技術測定候補
+
+状態: いずれも未計測の技術候補であり、L2/L11にないSLA・最低N・合否閾値・PO個別parameter承認を追加しない。固定L2/L11の明示値はCASE用oracleとして使用し、製品性能値へ一般化しない。旧NFR→measurement traceの形を再導出し、旧grade/threshold/runtimeを再利用しない。
+
+### NFR-INT-060-01 — plan source/edge traceの観測候補
+
+- 親 `HELIXINTELLIGENCE-L2-060`。適格inputのsource/revision/scope数、plan nodeとその根拠/依存edgeへ追跡できる件数、unknown/stale/未承認件数を別々に観測する候補。分母は実際に選択された適格source/edgeで、欠落を除外せずunknownとして数える。依存成立、ticket発行や計画品質の閾値は作らない。
+- 対応 `CASE-NFR-INT-060-01` は同一fixtureからsource/edge populationと追跡結果を独立に数え直す。
+
+### NFR-INT-061-01 — 配置根拠の適用範囲候補
+
+- 親 `HELIXINTELLIGENCE-L2-061`。選択task class/scope内のLABO evidence数、未評価/stale/out-of-scope数、proposal根拠へ実際に結ばれた数を別層で報告する。全task classのcoverageや最低標本数を発明せず、異なるsource/revisionを混ぜない。
+- 対応 `CASE-NFR-INT-061-01` は同一evidence集合から層別件数を再計算し、未評価をqualified扱いしない。
+
+### NFR-INT-062-01 — 修復段階evidence完全性候補
+
+- 親 `HELIXINTELLIGENCE-L2-062`。SECURITY permission, Worker execution, HARNESS verification, OS acceptanceを各段階・scope別に観測し、available/missing/unknown/stale/owner-returnを混ぜず記録する。修復完了率や許容失敗率を作らず、一段のsuccessで次段を相殺しない。
+- 対応 `CASE-NFR-INT-062-01` は段階別分母と不成立原因/ownerを独立算出する。
+
+### NFR-INT-063-01 — episode/effect時点分離候補
+
+- 親 `HELIXINTELLIGENCE-L2-063`。historical LABO evaluation、BRAIN knowledge revision、current INT judgment、OS run/HARNESS evidenceのepisode/time/source trace率を別軸で示し、prediction/actual/unknown件数を分離する。効果のscore/thresholdや改善認定は置かない。
+- 対応 `CASE-NFR-INT-063-01` は遅着結果を過去episodeへ割当て、currentを改変しない件数を照合する。
+
+### NFR-INT-069-01 — 明示model再現性とunit整合結果候補
+
+- 親 `HELIXINTELLIGENCE-L2-069`。同じmodel/schema/rule/source revisionと同じ入力でのtrace/result一致を候補軸にし、model外状態、unknown、unsupported、打切り、使用unitと係数を数える。L2のqueue/DB/worker fixtureは数値oracleのみであり、実機精度/性能閾値ではない。実測時間のtargetを追加しない。
+- 対応 `CASE-NFR-INT-069-01` は固定queue・worker算術結果と式を再計算し、missing/unknownが0へ変換されないことを確認する。
+
+### NFR-INT-070-01 — 段階別source/consumer receipt結合候補
+
+- 親 `HELIXINTELLIGENCE-L2-070`。033 input, 069 result, 040 send, LABO-024 receiveの各stageでsource/target/revision/correlation match, missing, duplicate, staleを別々に数える。送信と受領を同じ成功指標へ畳まない。latency cutoff/SLAは置かない。
+- 対応 `CASE-NFR-INT-070-01` は各stage ledgerを独立集計する。
+
+### NFR-INT-071-01 — scenario間比較可能性候補
+
+- 親 `HELIXINTELLIGENCE-L2-071`。比較対象のmodel revision, unit, rule, baseline/scenario/window一致数、差分を数値化できるfield数、unknown/unsupportedと後続receipt状態を分けて示す。L11の固定fixture 3 scenarioをfixture分母とし、母集団/運用率へ拡張しない。精度閾値は有効な既存scope decisionがある場合だけ参照する。
+- 対応 `CASE-NFR-INT-071-01` は同じ入力からscenario count/一致状態と固定算術oracleを独立に再計算する。
+
+### NFR-INT-074-01 — feedback適用可能性候補
+
+- 親 `HELIXINTELLIGENCE-L2-074`。供給feedbackを評価状態/task-class/revision/scope/window/source completenessで層別し、eligible/unknown/excluded件数を報告する。標本不足や比較不能を0/適合へ変えず、単一feedbackから恒久資格を作らない。
+- 対応 `CASE-NFR-INT-074-01` は同じfeedback集合から適用範囲別の件数を再計算する。
+
+### NFR-INT-077-01 — 選択source identityと非write観測候補
+
+- 親 `HELIXINTELLIGENCE-L2-077`。選択sourceごとにidentity/revision/owner/origin/qualification bindingとunknown reasonを観測し、internal/externalを別集計する。直接authority writeを候補が行わないことをCASEで照合するが、runtime rejection rateや一律pass百分率を設定しない。consumer/owner未確定populationを埋めない。
+- 対応 `CASE-NFR-INT-077-01` はnormal CASE-INT-077-01/02からselected internal/external source populationを分けて集計する。CASE-INT-077-03a–03mのうち03a/b/c/d/e/f/h/i/j/k/l/mは索引、03gは独立unknown consumer/route fixtureとして扱う。negative件数はCASE-NFR-INT-077-02で05a–05zとは別に03gを報告する。
+
+旧sourceは旧「characteristic→measure→acceptance」の構造のみ再導出する。技術candidateの計測軸はL2/L11から直接導き、値ごとのPO確認や新しい段階gateへしない。
+
+
+
+### NFR-INT-060/061/062/063/069/070/071/074/077-02 — 補完fixtureの母集団とtrace候補
+
+各CASE-NFRは対応する補完fixture全体をfixture母集団として、定義済み独立case数、結果別件数、owner return/unknown件数を数える。case行の存在だけを成立件数に数えず、実測性能や最低合格率は定めない。rateを算出する場合は実際のfixture件数を分母として示し、0件・欠測は算出値なしとする。
+
+- `NFR-INT-060-02`：CASE-INT-060-05e–05iの5定義行中、05iは指定fallback正常例。05a–05dは06群の完全ID索引。この母集団は05e/05f/05g/05hの4独立negativeと05i正常fallbackであり、05e/05g/05hのHARNESS process contract source/ownerをfixtureで固定する。06群の9独立runはCASE-NFR-INT-060-03で別集計する。
+- `NFR-INT-061-02`：CASE-INT-061-05a–05fの6 fixtureについて、互換評価、task scope、OS割当可否、receipt identity/revisionを別facetで数える。
+- `NFR-INT-062-02`：CASE-INT-062-04a–04iの9定義行中、04b/04c/04gは05a/02d/02gへの完全ID索引。04a/04d/04e/04f/04h/04iの6独立stage fixtureだけをこの母集団で数える。05a–05eはCASE-NFR-INT-062-03で別集計し、permission scope/revisionと各stageのownerを区別する。
+- `NFR-INT-063-02`：CASE-INT-063-04a–04hの8 fixtureについて、LABO/BRAIN/OSの固定戻し先、時点、episodeを独立集計する。このfixture群にないHARNESS process contract returnを追加しない。
+- `NFR-INT-069-02`：CASE-INT-069-06a–06uの21 pack/source field fixtureと07a–07fの6 operation fixtureを別母集団として報告する。HARNESS-L2-010/011のadopted pack contractを常時照合し、011 call固有inputだけをcall利用operationで測る。通常計算のoracleなし/後段receiptなしを正常母集団に含め、指定verificationのoracle欠落をnegativeへ含める。
+- `NFR-INT-070-02`：CASE-INT-070-07a–07lと08b–08eの16 unique fixture（08aは05cへのindex）をこの母集団で数える。09a–09g、06a–06i、10a–10cはCASE-NFR-INT-070-03で別stage別に数え、この母集団へ重ねない。送信と受領を一つの率に統合しない。
+- `NFR-INT-071-02`：CASE-INT-071-04a–04cの固定正常scenarioと04d–04jの7独立negativeに加え、CASE-INT-071-02hのscope mismatchをこのNFR-071-02だけで別分母として報告する。
+- `NFR-INT-074-02`：CASE-INT-074-04a–04cの3独立unknown facetと05a–05aaの27定義行中、05f/05l/05yはCASE-INT-074-02a/02b/05jへの索引（06eも02bへの別群索引）、05w/xは正常。05-seriesの独立fixtureは24件であり、05aaは評価receiptだけで明示capability条件不一致を無視するproposal確定claimとして計上する。
+- `NFR-INT-077-02`：CASE-INT-077-05a–05zの26定義行を従来区分で集計し、CASE-INT-077-03gのunknown consumer/routeを独立facetとして追加観測する。L11:361に従い、source identity/qualificationは選択source owner、finding/delta candidate根拠はINTELLIGENCE owner、AssignmentはOS owner、評価はLABO ownerへ返す。consumer未特定はunknownのまま上流scope照合へ戻す。
+
+
+### Stage 5 review01補正fixtureの母集団（追補）
+
+本追補は既存9親の確認対象を、FV中の単独fixture行として追跡する測定候補である。fixture定義数とunique CASE ID数を分け、AC/NFR索引・旧複合例・別条件からの単なる参照は独立fixture分母へ加えない。review01時点の独立補正表78行と既存表への追記行20件は合計98行である（旧review01 correctionの97は当時のunique ID実測差789→886の純増であり、別時点・別尺度）。unique CASE IDの増加とは別の形式件数である。Root最終検収の139は補完fixture censusであり、全CASE定義数でも同じ範囲の差分件数でもない。既存表への追加は061-05f (1)、069-04h–04i (2)、069-06r–06u (4)、070-06a–06i (9)、071-02h (1)、077-03k–03m (3)。NFR参照集合に同じIDが現れても重複計上しない。
+
+測定はparentごとに宣言された入力field/runを母集団とし、missing、unknown、stale、mismatch、正常を別状態で数える。分母は当該operationで適用条件が成立し測定可能なrunだけとし、0件なら割合なし。未選択sourceは未観測であり成功・失敗へ推定配分しない。固定L11の069算術fixtureは値を再計算するoracleで、製品性能閾値ではない。HARNESS-L2-010/011契約照合は069の通常計算にも常時適用し、011 call固有inputのみ適用操作で評価する。いずれも実測・SLA・L3承認を意味しない。

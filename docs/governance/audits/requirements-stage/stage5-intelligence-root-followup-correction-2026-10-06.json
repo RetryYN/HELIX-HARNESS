@@ -1,0 +1,766 @@
+{
+  "title": "INTELLIGENCE Stage 5 追補oracle・件数訂正（2026-10-06）",
+  "audit_kind": "append_only_root_draft_correction_source_and_static_record",
+  "source_repository_revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+  "body_commit": "e50d452190ecf9aab320f721f7b519a22945f892",
+  "prior_stage5_body_commit": "d5df7123d8000edb1a5faafd0921e522d8e0f4da",
+  "scope": {
+    "parents": [
+      "HELIXINTELLIGENCE-L2-062",
+      "HELIXINTELLIGENCE-L2-069",
+      "HELIXINTELLIGENCE-L2-070",
+      "HELIXINTELLIGENCE-L2-071",
+      "HELIXINTELLIGENCE-L2-074",
+      "HELIXINTELLIGENCE-L2-077"
+    ],
+    "all_stage5_parent_set": "060/061/062/063/069/070/071/074/077",
+    "stage5_fixture_count": 139,
+    "counts_by_parent": {
+      "060": 9,
+      "061": 5,
+      "062": 9,
+      "063": 8,
+      "069": 23,
+      "070": 17,
+      "071": 10,
+      "074": 29,
+      "077": 29
+    }
+  },
+  "immutable_predecessors": [
+    {
+      "path": "docs/governance/audits/requirements-stage/stage5-intelligence-060-077-correction-audit-2026-10-06.json",
+      "full_sha256": "15db962513f9d720a567be8f8542d745fd72a4aaeceb592b64877d5d47a4a708",
+      "revision": "d5df7123d8000edb1a5faafd0921e522d8e0f4da",
+      "immutable": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/stage5-intelligence-060-077-source-body-audit-2026-10-06.json",
+      "full_sha256": "3859b14a8c04a2f72268086c7b7edfa39f7160166c18e4f330fc68f7d61628f9",
+      "revision": "5acae384305b01d10e88eeb2e6406f847baf66df",
+      "immutable": true
+    }
+  ],
+  "fixed_source_pins_inherited_and_recomputed": [
+    {
+      "identity": "HELIXINTELLIGENCE-L2-062",
+      "kind": "fixed_l2",
+      "pin": {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "source_commit": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "full_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+        "line_start": 366,
+        "line_end": 371,
+        "raw_lf_sha256": "41c7894dc8e464612b3bce0431bfcb5a338fea6909cff4684f748581b11fab61",
+        "literal": "### HELIXINTELLIGENCE-L2-062 — 限定自動修復\n\nINTELLIGENCEの検出・診断・repair candidate、SECURITYの許可/隔離、Workerの限定実行、HARNESSの検証義務、OSの検収を同一target revision・scopeへ接続する。どの主体の成立も他の成立を代替しない。1.0。\n\n- 親：HELIXINTELLIGENCE-L1-016, HELIXINTELLIGENCE-L1-017。入力：限定repair candidate、SECURITY permission/isolation、Worker実行結果、HARNESS検証義務。出力：scope・evidence・検証結果付きOS acceptance入力。依存：SECURITY、Worker、HARNESS、OS各ownerの個別成立。保証：各段階の成立は他段階を代替しない。失敗時戻し先：permissionはSECURITY、実行はWorker、検証はHARNESS、検収はOS。未完義務：途中失敗をrepair完了としない。`version_target: 1.0`。\n\n"
+      }
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-062",
+      "kind": "fixed_l11",
+      "pin": {
+        "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "source_commit": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+        "line_start": 283,
+        "line_end": 283,
+        "raw_lf_sha256": "47f48bfa892b386840ae0d2516a97f9acaeeb8abf43d677256b6a0f167235cea",
+        "literal": "| `HELIXINTELLIGENCE-L2-062` | 同一修復revision/scopeでSECURITY permission、Worker execution result、HARNESS verification、OS acceptanceを段階別証拠として照合する。 | permission欠落、途中結果欠落、順序違いのrepair successで後段を完了扱いしない。 | 未見のpermission/verification receipt版では既存契約の互換性を照合し、unknownなら該当stageを保留する。必要receiptの重複は一段階の完了を二重にしない。 |\n"
+      }
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-062",
+      "kind": "po_decision",
+      "pin": {
+        "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+        "source_commit": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "full_sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+        "line_start": 92,
+        "line_end": 92,
+        "raw_lf_sha256": "3c509402befbe1d5f802f02015097fdf5abbe7bcd4ca0dc8c191dcb38185d8c1",
+        "literal": "| `HELIXINTELLIGENCE-L2-062` | `MPR-RC-HELIXINTELLIGENCE-L2-062-002` | composite / 1.0 |\n"
+      }
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-069",
+      "kind": "fixed_l2",
+      "pin": {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "source_commit": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "full_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+        "line_start": 513,
+        "line_end": 527,
+        "raw_lf_sha256": "430855f5510abac7d4ea7b79e8b79d2779ebab7c9c7267a1678c04d7d4e9751f",
+        "literal": "### HELIXINTELLIGENCE-L2-069 有限設計モデルの条件付き計算（unit candidate）\n\n- **親L1候補（既存意味の具体化）**：primary `HELIXINTELLIGENCE-L1-006`（現在状態と変更候補から影響・性能・費用・時間等を予測し、前提・証拠・不確実性・反証を持たせる）。context `HELIXINTELLIGENCE-L1-003`（各機構sourceに従属する現在状況model）、`HELIXINTELLIGENCE-L1-004`（fact / interpretation / hypothesis / unknownを分離）、`HELIXINTELLIGENCE-L1-013`（入力revision・規則・観測・仮定・model/version・代替へのtrace）。これらの親revisionはcandidateであり未承認。新しいL1要求を前提にしない。\n- **隣接identityと責務**：`HELIXINTELLIGENCE-L2-006`はcurrent state/change candidateからの予測を出す既存要求。本候補は、既存のHELIXINTELLIGENCE-L2-006が所有する予測目的を、HARNESS Product Coreから受けた有限・version-boundな設計modelに条件を与え、その明示規則を反復可能に計算する能力pack/unitとして具体化する。独立した第二の予測製品、別の予測authority、またはHELIXINTELLIGENCE-L2-006の置換ではない。HELIXINTELLIGENCE-L2-006は既存の予測能力と出力責務を保ち、必要な場合に本計算resultを入力材料として使う。自由文の見通し、未接続の推論、物理環境の高精細再現をモデル計算証拠として扱わない。\n- **種別・版・範囲**：unit、`version_target: 1.0` candidate。単一product/project・model revision・initial state・scenario・負荷window・単位系の組を対象とし、そのモデルが表現する有限状態、dependency、process、loadだけを評価する。\n- **受け取るもの**：許可されたProduct Core設計modelのidentity/revision/digest（HELIXINTELLIGENCE-L2-033のsource別receiptを保持）、model schema・状態集合・遷移/依存/工程/負荷規則、initial state、選択したbaselineとscenario条件、入力event/load series、容量・service rate・時間・価格・通貨・有効時点、単位、仮定・不確実性・打切り条件、対象scope/operation、source ownerとdata-use/access境界。必要な値がsourceで定まらない場合は、勝手な係数や線形則を補わず計算不能/部分unknownを返す。\n- **提供するもの**：条件・不変条件付きscenario result。input/outputには、model/source revisionとscenario identity、使ったrule/係数/単位、順序付きstate transition / dependency propagation trace、到達state・queue/load・詰まり/失敗箇所、有限モデル上の所要時間・費用とbaseline差、適用した仮定、不確実性、unknown/unsupported、計算打切り、反証可能な期待結果、後続の実測との対応先を含める。結果は仮想計算であり実測結果・設計変更・実環境状態ではない。\n- **保証すること**：同一revision・入力・規則から同じ計算を再現できる範囲を固定し、状態・edge・行動を入力model外から生成しない。計算可能なfieldとunknownを分け、未対応領域へ外挿しない。説明予測とモデル計算結果、仮想条件と実資源状態を区別する。重要結果の根拠をHELIXINTELLIGENCE-L1-013 traceへ結ぶ。\n- **常時必須**：source-bound model revision/owner/許可scope、モデル表現とschema版、対象initial state、明示遷移・依存/負荷規則、scenario identity、計算に使う単位・係数・境界、入力revision、適用するdata-use/authority制約、推論・unknownの区別、停止条件。HELIXINTELLIGENCE-L2-003／HELIXINTELLIGENCE-L2-004／HELIXINTELLIGENCE-L2-012／HELIXINTELLIGENCE-L2-013とHARNESS-L2-010/011、および適用operationを宣言したHARNESS-L2-023の既存依存契約に従う。\n- **特定操作時のみ必須**：所要時間を数値計算する場合はmodelに明示された工程/service rate・並列度・遅延単位。費用を数値計算する場合は単価、通貨、計上単位、価格source revision/effective timestamp。failure propagationは明示failure edgeと状態遷移・retry/recovery rule。仮想Worker比較はmodel内worker capacity・共有資源上限・スケジューリング規則。利用者が期待結果を指定して検証を求めるoperationでは、その期待結果と独立oracleも必要。通常のscenario計算は期待結果oracleを前提にせず、明示model/ruleから算出したtrace・値・unknownを返す。未指定の指標は数値を作らずunknown。\n- **選択した入力元に応じて必須**：利用者が選択したProduct Core/HARNESS model、baseline revision、scenario/load/profile、price/capacity sourceごとの許可済みidentity、版・scope・provenance・receipt。未選択のsourceは未観測であり、別revisionや別製品のmodelへsilent fallbackしない。\n- **参照資料のみ**：背景説明や一般例。要求/設計正本、model revision、係数・単位・遷移規則、security/data-use条件は依存閉包から外さない。独立oracleはL11受入fixtureまたは利用者が期待結果を指定した検証operationでのみ、そのoperationの照合条件となり、通常scenario計算の入力依存にはしない。\n- **単独成立依存**：有効な入力model・scenario receipt、HELIXINTELLIGENCE-L2-003／HELIXINTELLIGENCE-L2-004／HELIXINTELLIGENCE-L2-012／HELIXINTELLIGENCE-L2-013、HARNESS-L2-010/011/023の適用契約。単体計算の入力依存は既存HELIXINTELLIGENCE-L2-033のCORE/HARNESS入力receiptだけであり、connection candidate HELIXINTELLIGENCE-L2-070の完了receiptやHELIXINTELLIGENCE-L2-040／HELIXLABO-L2-024送達receiptを前提にしない。HELIXINTELLIGENCE-L2-033はsource input受領、HELIXINTELLIGENCE-L2-069はその入力に対する計算、HELIXINTELLIGENCE-L2-040は計算後result送達、HELIXLABO-L2-024はconsumer側受領の別段階を所有する。HARNESSが計算実行主体になることを要求しない。\n- **失敗・戻し先**：source revision・owner・permissionはProduct Core/HARNESS/SECURITYへ照合。schema・遷移・domain未対応はmodel ownerへ範囲不足として戻す。観測/推論の混同はsource ownerへ戻す。通常scenario計算に必要な係数・規則が不足する場合は計算不能/部分unknownとし、選択された検証operationの期待結果oracleが不足する場合はscenario author/該当source ownerへ戻してその検証を保留する。期限/計算resource不足・停止条件到達は途中結果と打切り位置を残し、OS運転成功や実Worker配置へ変換しない。\n\n"
+      }
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-069",
+      "kind": "fixed_l11",
+      "pin": {
+        "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "source_commit": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+        "line_start": 215,
+        "line_end": 228,
+        "raw_lf_sha256": "deff3b787f64863c6beed6171ebd05951095e8827c34ba950a3d3b39d74f3c18",
+        "literal": "### HELIXINTELLIGENCE-L2-069 unit — 有限modelの条件付き計算\n\n**親L1候補**：`HELIXINTELLIGENCE-L1-003`, `HELIXINTELLIGENCE-L1-004`, `HELIXINTELLIGENCE-L1-006`, `HELIXINTELLIGENCE-L1-013`。**scope**：一つのsource-bound model revision、単位付き条件、有限状態/edge/工程/負荷window。\n\n**正常例（利用量増加と数値oracle）**：小さなqueue modelを与える。状態`q`は各step開始時のqueue件数、各stepのservice上限は8件、処理数を`served=min(q+arrival,8)`、終了queueを`q_next=q+arrival-served`とする。初期`q=0`。baselineは到着5件/5件、scenarioは5件/10件で、同じservice rule・scope・windowを使う。独立算術oracleはbaselineの処理数5/5・終端`q=0/0`、scenarioの処理数5/8・終端`q=0/2`である。INTELLIGENCEの遷移trace・処理数・最終queueが同じmodel/rule版から一致し、「詰まり」は2step目以降のqueue増として示す。queue初期値・処理能力・1step時間が与えられていなければ時間や費用を数値化せずunknownとする。\n\n**正常例（DB断伝播）**：modelには`DB=available`からevent`database_disconnected`で`DB=unavailable`へ移る規則、`order_processor requires DB.available`のedge、`order_processor→order_tx=waiting_for_db`のfailure遷移、`retry_queue`への未完数移送規則を明記する。独立graph-walk oracleは、イベントを受けたorder処理だけが`waiting_for_db`になり規則どおりretry queueへ移ること、DB依存edgeのない`reporting` branchのstateは変化しないことを期待値とする。recovery ruleがなければDB復旧・retry成功を生成せずblockedで終える。\n\n**正常例（仮想Worker 2→4・bottleneck/時間/費用oracle）**：同一load 18 jobs、1仮想Worker service rate 3 jobs/min、shared DB ceiling 8 jobs/min、throughput=`min(worker_count×3,8)`、worker rate 0.20 credit/(worker·min)、DB rate 0.10 credit/min、線形同時処理・稼働時間は全work完了まで、queue/overheadなしと全入力されたscenarioを使う。独立計算は2-worker時 throughput 6 jobs/min、elapsed 3 min、cost `(2×0.20+0.10)×3=1.50 credits`、4-worker時 throughputはDB bottleneckの8 jobs/min、elapsed 2.25 min、cost `(4×0.20+0.10)×2.25=2.025 credits`。時間差 -0.75 min、費用差 +0.525 creditsとなる。4-workerで2倍速とせず、shared DB上限が律速であり費用は増えるとtraceと比較結果に示す。これら数値はfixtureの単位・係数から出た算術であり、製品閾値・実環境性能・価格主張ではない。worker countはsimulation inputだけでOS assignmentや実worker数は変わらない。\n\n**誤りを含む例**：別revisionのservice capacityとcost rateを混ぜる、unit変換なしに秒/分や通貨を比較する、shared DB ceilingを落としてworker追加を2倍速とする、DB failure edgeのないreporting branchまで失敗にする、未定義recoveryを自動補完する、AI explanationをtransition evidenceとして出す、予測を実測と表示する場合は不合格。根拠不足箇所はunknown/unsupported/blockedを保つ。\n\n**未見例**：作成側に伏せた別queue modelまたは未見の状態名・dependency field・failure edge順序を与え、独立した小規模interpreter/graph-walk oracleで結果を照合する。schema/ruleの適用範囲内ならstate mapping、計算値、影響先がoracleと一致し、未対応要素は局所unknownで残る。未知domain/edgeに対する説明の説得力やconfidenceだけで評価成功・一般適用をclaimしたら不合格。\n\n"
+      }
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-069",
+      "kind": "fixed_l11",
+      "pin": {
+        "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "source_commit": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+        "line_start": 251,
+        "line_end": 256,
+        "raw_lf_sha256": "3f611906dfcbf874001532794f412d426c2712189f032ef4c7056da44fb29294",
+        "literal": "- **常時必須**：適用するHARNESS-L2-010/011 pack identity・契約revision・scope・provenance、対象Product Core/model source identityとrevision、HELIXINTELLIGENCE-L2-003／HELIXINTELLIGENCE-L2-004／HELIXINTELLIGENCE-L2-012／HELIXINTELLIGENCE-L2-013のfact/推論/unknown/trace条件、シミュレーション結果を実測にしない区分と停止条件。connection operationにはHELIXINTELLIGENCE-L2-033 input、HELIXINTELLIGENCE-L2-040 result handoff、HELIXLABO-L2-024 consumer contract/receiptを段階ごとに含む。\n- **特定操作時のみ必須**：数値時間/費用は単位付きrate/price/effective time、DB断はfailure/propagation/recovery rule、Worker scenarioは仮想capacity/shared-resource ceiling/schedulerを要する。L11受入fixtureと利用者が期待結果を指定した検証operationでは独立oracleを照合条件に含める。通常scenario計算には期待値oracleを要求せず、明示model/ruleから算出した結果・trace・unknownを評価する。後続actual comparisonはsource receiptと既存HELIXINTELLIGENCE-L2-006 L11比較oracleが操作条件として必要。HELIXLABO-L2-024は受領evidence、HELIXLABO-L2-006は実験/実測と評価のownerを保つ。条件のない利用には数値計算やactual comparisonを必須化しない。\n- **選択した入力元に応じて必須**：選択model, baseline, load, price/capacity, failure event, later observationのidentity/version/scope/provenance/access契約。未選択sourceは未観測。別製品、branch、環境、Worker telemetryへ黙ってfallbackしない。\n- **参照資料のみ**：背景説明・例題・未選択pattern。source/design authority、model/rule revision、unit/price/source、data-use/security条件を参照資料扱いに落とさない。独立期待値oracleはL11受入fixtureまたは期待結果付き検証operationでその照合条件となり、通常scenario計算には必須にしない。\n\n**受入範囲外／未解決**：高精細な物理simulation、未入力の条件を推定補完する万能model、HARNESS-COREから独立した汎用model正本、OSの実worker配賦/起動や実環境/resource configuration変更、モデルが存在しないdomainへの外挿はこのcandidateに含めない。後続実測比較は既存HELIXINTELLIGENCE-L2-006 L11 oracleを使い、HELIXLABO-L2-024が受領evidence、HELIXLABO-L2-006が実験/実測の独立評価を所有する。数値精度閾値に有効なscope decisionがない場合は測定値を記録し、pass/適格化を判定しない。新能力や一律のPO問合せを要求しない。\n"
+      }
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-069",
+      "kind": "po_decision",
+      "pin": {
+        "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+        "source_commit": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "full_sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+        "line_start": 99,
+        "line_end": 99,
+        "raw_lf_sha256": "9a4ba877cd82170cd255042eb5b39e3e3007d66c83edbada14b18c2efc9c1f18",
+        "literal": "| `HELIXINTELLIGENCE-L2-069` | `MPR-RC-HELIXINTELLIGENCE-L2-069-002` | unit / 1.0 |\n"
+      }
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-070",
+      "kind": "fixed_l2",
+      "pin": {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "source_commit": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "full_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+        "line_start": 528,
+        "line_end": 543,
+        "raw_lf_sha256": "c4f9d367ea51f3eb09b6338fd2d83b4bf133f536c513fc622d3f29e8b0dfe50a",
+        "literal": "### HELIXINTELLIGENCE-L2-070 CORE model input / LABO result handoff（connection candidate）\n\n- **親L1候補**：`HELIXINTELLIGENCE-L1-003`, `HELIXINTELLIGENCE-L1-004`, `HELIXINTELLIGENCE-L1-006`, `HELIXINTELLIGENCE-L1-013`。L1-003のsource-owned situation model、L1-004のfact/interpretation分離、L1-006の予測と後の実測比較、HELIXINTELLIGENCE-L1-013の根拠traceを、既存CORE→INTELLIGENCEおよびINTELLIGENCE→LABOのconnection境界へ結ぶ案。L1意味の追加や承認済みrelationではない。\n- **既存connectionとの関係**：入力側は既存`HELIXINTELLIGENCE-L2-033`（Product Core/HARNESSのrequirement/design/meaningとHARNESS工程contract/verification obligationをsource別revision付きでINTELLIGENCEへ渡す）を通し、専用CONNECT connector・source owner・contractを維持する。HELIXINTELLIGENCE-L2-070はHELIXINTELLIGENCE-L2-033のpayload/schemaや設計正本を重複定義しない。HELIXINTELLIGENCE-L2-033 input stage receiptは計算前に独立して記録し、HELIXINTELLIGENCE-L2-069 calculation result後にHELIXINTELLIGENCE-L2-040 output handoff、HELIXLABO-L2-024 consumer receiptを別々のstage receiptとして追う。connection全体の完了は最終受領後に限る。simulationに必要なmodel element/typed relationが現契約payloadの範囲に含まれないなら、このcandidateで黙って新fieldを必須化せず、欠落/unknownとして記録し、採択前にsource/contract ownerへ戻す。出力側は既存`HELIXINTELLIGENCE-L2-040`（predictionとsource revisionを含む結果をLABO過去評価材料へ渡す）およびLABOの`HELIXLABO-L2-024`（INTELLIGENCE判断/予測結果のAggregate取込）を使う。receipt/fieldを重複実装しない。\n- **LABO実照合と境界**：LABO `HELIXLABO-L2-006`は同条件baseline/candidate/hybridの実験をOS割当Workerが実行し、OS ticket/assignmentとWorker結果を同一experiment・対象版へ結んで評価する。したがってHELIXINTELLIGENCE-L2-070は仮想simulationを実験実行・実測へ偽装しない。HELIXINTELLIGENCE-L2-040／HELIXLABO-L2-024で、prediction結果と後のsource-bound observationを別々に渡す。後続実測とのprediction comparisonは既存HELIXINTELLIGENCE-L2-006 L11 oracleを再利用する。同じtarget revision/scope/windowを固定し、予測した方向/範囲と実測の一致差を記録し、既知regressionを誤予測した結果を成功扱いしない。数値精度閾値に有効なscope decisionがなければ測定値だけを記録し、pass/適格化を判定しない。HELIXLABO-L2-024は受領evidence、HELIXLABO-L2-006は実験/実測と独立評価のownerを保つ。新能力や一律のPO問合せは追加しない。\n- **種別・版・範囲**：connection、`version_target: 1.0` candidate。source Product Core/HARNESS model revisionからscenario/result receiptを経てLABO受領revisionまで、個別product・target revision・scenario/windowの範囲で結ぶ。worker/実環境のruntime telemetryは別source connectionとする。\n- **受け取るもの**：入力stageでは既存HELIXINTELLIGENCE-L2-033の許可済みsource receipt（design/model/requirement/contractのownerとrevisionを分離）。計算後の送達stageではHELIXINTELLIGENCE-L2-069 scenario/result receiptとHELIXINTELLIGENCE-L2-040 contract。consumer受領stageではHELIXLABO-L2-024 permitted-input contractとLABO consumer receipt。各段階に対象product/scenario/observation identity、data-use分類、仮想結果と実測を分ける状態fieldを保持する。\n- **提供するもの**：CORE/HARNESS model sourceからINTELLIGENCE scenario result、さらにLABO受領までの相関ID・source/consumer contract版・対象/条件/scope・仮想/実測区分・未知・受領状態を保持するconnection receipt。LABO評価結果はLABO ownerに残す。INTELLIGENCEは結果の独立評価を自己承認しない。\n- **保証すること**：source authorityを移さず、設計model revisionとderived scenario、仮想結果と後続実測、predictionとLABO evaluationを別statusに保つ。scope/版/compatibility不一致や未受領は接続未完とし、結果利用の成功にしない。CORE inputの成立とLABO output receiptは個別に確認する。\n- **常時必須**：入力stageのHARNESS/CORE→INTELLIGENCE既存HELIXINTELLIGENCE-L2-033 admitted source contractとsource receipt、送達stageのHELIXINTELLIGENCE-L2-040 contract/result receipt、consumer受領stageのHELIXLABO-L2-024 contract/receiptをstageごとに保持し、該当段階に達するまで後段receiptを要求しない。HARNESS-L2-010/011および適用時023の接続scope/版/provenance/data-use/権限・相関ID。\n- **特定操作時のみ必須**：後続実測と予測を比較する利用では、実測側source contract/revision、同じtarget/model/scenario identity・scope/windowへの照合規則、HELIXINTELLIGENCE-L2-006 L11 oracleを使う。数値精度閾値は有効なscope decisionがある場合のみ判定条件にし、なければ測定値として記録する。実測を取り込まない仮想scenario result handoffに実測接続を要求しない。\n- **選択した入力元に応じて必須**：選択したProduct Core/HARNESS model source、baseline/scenario、後続実測/actual workload sourceについて個別connector・revision・scope。未選択の機構/環境sourceは未観測とする。\n- **参照資料のみ**：一般説明や対応外モデル例。source owner、connector receipt、prediction/actual distinction、data-use condition、受領状態は参照資料扱いにしない。\n- **単独成立依存**：既存HELIXINTELLIGENCE-L2-033／HELIXINTELLIGENCE-L2-040、HELIXLABO-L2-024、HARNESS-L2-010/011/023のconnection contractと対象source/consumer専用connector。HELIXLABO-L2-006のWorker実験は後のactual comparisonを行う場合の別operation依存であり、simulation resultを渡すconnection自体のruntime dependencyではない。HELIXLABO-L2-052の評価材料循環は有効な1.0 material loopを使う場合に接続文脈として扱うが、INTELLIGENCEからLABOへのHELIXINTELLIGENCE-L2-040／HELIXLABO-L2-024送達を代替しない。\n- **失敗・戻し先**：source/model revision不明はProduct Core/HARNESSへ、connector/schema/compatibility不一致はCONNECT・source/consumer ownerへ、data-use制約はSECURITYへ、LABO受領/評価oracle不明はLABOへ戻す。predictionと実測が別identity/時点なら比較を保留し、未受領/unknownのまま保持する。後続実測との比較は既存HELIXINTELLIGENCE-L2-006のL11 oracleに従い、受領evidenceはHELIXLABO-L2-024、実験/実測の評価ownerはHELIXLABO-L2-006に残す。\n\n"
+      }
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-070",
+      "kind": "fixed_l11",
+      "pin": {
+        "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "source_commit": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+        "line_start": 229,
+        "line_end": 238,
+        "raw_lf_sha256": "97d4ba81eeb1496f2a32beab2b364ae5499d71d5ede90b25aa12ed1995ed6235",
+        "literal": "### HELIXINTELLIGENCE-L2-070 connection — CORE inputとLABOへの結果hand-off\n\n**正常例**：Product Core/HARNESSからのmodel・requirement/design・工程contract/verification obligation receiptについて、HELIXINTELLIGENCE-L2-033のsource identity、owner、model/design revision、connector contract版、scopeが一致するinputを受ける。receiptは入力・計算・送達・受領の段階ごとに分ける。HELIXINTELLIGENCE-L2-033 input receiptを先に記録し、HELIXINTELLIGENCE-L2-069 resultを同一source revision/scenario identityに束ねた後でのみ、HELIXINTELLIGENCE-L2-040 contractを通してLABOへ送る。HELIXLABO-L2-024 consumer receiptは送達後の独立段階で受ける。HELIXLABO-L2-024に届くreceiptには仮想calculationのsource revision、scenario・model rule版、対象scope/window、prediction/simulated status、assumptions・unknownが残り、LABO側の受領identity・版と往復照合できる。後の実測は別source revision/observationとして同じscenario keyへの関連を示し、当初のsimulation resultを書き換えない。独立期待値はsource/consumer fixture receipt ledgerとの照合であり、単なるfield存在ではない。\n\n**誤りを含む例**：別product/model revisionのCORE inputを結ぶ、HELIXINTELLIGENCE-L2-033の許可scope/connectorを飛ばす、source design authorityをINTELLIGENCEに移す、HELIXINTELLIGENCE-L2-040／HELIXLABO-L2-024 receiptの版/相関ID/対象scopeを混ぜる、仮想結果をWorker実測として送る、LABO受領がないのにhand-off済みとするなら不合格。現行HELIXINTELLIGENCE-L2-033 payloadが要るtyped model relationを提供しない部分は不足としてsource/contract ownerへ戻し、candidateのみで新fieldを既成契約に追加しない。\n\n**LABO側の境界例**：HELIXLABO-L2-006はOS assignmentに従うWorkerの実験実行と、同一experiment/target versionの結果比較を扱う。simulation receiptだけを渡したcaseでは、実Worker runが存在しないため「実験実行済み」「実測比較済み」としない。predictionと後日実測の比較には既存HELIXINTELLIGENCE-L2-006 L11 oracleを再利用する。同じtarget revision/scope/windowで予測方向/範囲と実測の一致差を記録し、既知regressionの誤予測を成功扱いしない。数値精度閾値に有効なscope decisionがなければ測定値だけを記録してpass/適格化を判定しない。HELIXLABO-L2-024は受領evidence、HELIXLABO-L2-006は実験/実測と独立評価のownerを保ち、INTELLIGENCEは自己採点しない。\n\n**未見例**：未公開schema版や遅延/重複/out-of-order LABO receiptを与える。version/compatibility/scopeが一致するreceiptだけを受領に紐づけ、重複を重複eventとして識別し、欠落・stale・未対応consumer fieldはnot_received/unknownとして残す。共通schemaの一例から他source/製品へのcompatibilityを外挿しない。\n\n"
+      }
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-070",
+      "kind": "fixed_l11",
+      "pin": {
+        "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "source_commit": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+        "line_start": 251,
+        "line_end": 256,
+        "raw_lf_sha256": "3f611906dfcbf874001532794f412d426c2712189f032ef4c7056da44fb29294",
+        "literal": "- **常時必須**：適用するHARNESS-L2-010/011 pack identity・契約revision・scope・provenance、対象Product Core/model source identityとrevision、HELIXINTELLIGENCE-L2-003／HELIXINTELLIGENCE-L2-004／HELIXINTELLIGENCE-L2-012／HELIXINTELLIGENCE-L2-013のfact/推論/unknown/trace条件、シミュレーション結果を実測にしない区分と停止条件。connection operationにはHELIXINTELLIGENCE-L2-033 input、HELIXINTELLIGENCE-L2-040 result handoff、HELIXLABO-L2-024 consumer contract/receiptを段階ごとに含む。\n- **特定操作時のみ必須**：数値時間/費用は単位付きrate/price/effective time、DB断はfailure/propagation/recovery rule、Worker scenarioは仮想capacity/shared-resource ceiling/schedulerを要する。L11受入fixtureと利用者が期待結果を指定した検証operationでは独立oracleを照合条件に含める。通常scenario計算には期待値oracleを要求せず、明示model/ruleから算出した結果・trace・unknownを評価する。後続actual comparisonはsource receiptと既存HELIXINTELLIGENCE-L2-006 L11比較oracleが操作条件として必要。HELIXLABO-L2-024は受領evidence、HELIXLABO-L2-006は実験/実測と評価のownerを保つ。条件のない利用には数値計算やactual comparisonを必須化しない。\n- **選択した入力元に応じて必須**：選択model, baseline, load, price/capacity, failure event, later observationのidentity/version/scope/provenance/access契約。未選択sourceは未観測。別製品、branch、環境、Worker telemetryへ黙ってfallbackしない。\n- **参照資料のみ**：背景説明・例題・未選択pattern。source/design authority、model/rule revision、unit/price/source、data-use/security条件を参照資料扱いに落とさない。独立期待値oracleはL11受入fixtureまたは期待結果付き検証operationでその照合条件となり、通常scenario計算には必須にしない。\n\n**受入範囲外／未解決**：高精細な物理simulation、未入力の条件を推定補完する万能model、HARNESS-COREから独立した汎用model正本、OSの実worker配賦/起動や実環境/resource configuration変更、モデルが存在しないdomainへの外挿はこのcandidateに含めない。後続実測比較は既存HELIXINTELLIGENCE-L2-006 L11 oracleを使い、HELIXLABO-L2-024が受領evidence、HELIXLABO-L2-006が実験/実測の独立評価を所有する。数値精度閾値に有効なscope decisionがない場合は測定値を記録し、pass/適格化を判定しない。新能力や一律のPO問合せを要求しない。\n"
+      }
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-070",
+      "kind": "po_decision",
+      "pin": {
+        "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+        "source_commit": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "full_sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+        "line_start": 100,
+        "line_end": 100,
+        "raw_lf_sha256": "af588892e35cf2cc02af9c4ce8132aaee25b379c3a665058e62167cfb3611bd0",
+        "literal": "| `HELIXINTELLIGENCE-L2-070` | `MPR-RC-HELIXINTELLIGENCE-L2-070-002` | connection / 1.0 |\n"
+      }
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-071",
+      "kind": "fixed_l2",
+      "pin": {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "source_commit": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "full_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+        "line_start": 544,
+        "line_end": 560,
+        "raw_lf_sha256": "bcbf5160b8d535bdf4fad0ff5d7a3dbaea6ff83e6729ef593ed90f40e9099446",
+        "literal": "### HELIXINTELLIGENCE-L2-071 条件変更・モデル計算・結果比較（composite candidate）\n\n- **親L1候補**：`HELIXINTELLIGENCE-L1-003`, `HELIXINTELLIGENCE-L1-004`, `HELIXINTELLIGENCE-L1-006`, `HELIXINTELLIGENCE-L1-013`。現在状況と出典・不確実性を保ち、変更候補から予測を返す既存親意味を、有限モデルへ条件を与えた比較の一周にまとめる案。L1-006と既存HELIXINTELLIGENCE-L2-006を置換しない。\n- **構成関係**：HELIXINTELLIGENCE-L2-069 unit calculationとHELIXINTELLIGENCE-L2-070 connection receiptを組み合わせ、CORE/HARNESSの同一model revision上でbaselineとscenarioを計算・比較し、結果をLABOへsource-boundで渡す。単体計算成功だけでcomparison/connection/composite成立としない。処理順はHELIXINTELLIGENCE-L2-033の入力receipt確認→HELIXINTELLIGENCE-L2-069の計算→HELIXINTELLIGENCE-L2-040のresult送達→HELIXLABO-L2-024のconsumer受領であり、入力時に後段のreceiptを要求しない。\n- **種別・版・範囲**：composite、`version_target: 1.0` candidate。明示したmodel revision・product・finite state/edge範囲・初期状態・負荷window・scenario条件のみ。異なるmodel version/productをまたぐ比較はそれぞれの条件が閉じない限り行わない。\n- **受け取るもの**：HELIXINTELLIGENCE-L2-033のvalid CORE model input receiptと適用connector contract、HELIXINTELLIGENCE-L2-069で計算可能なschema/rule/coefficients、baseline condition、明示したsingle-or-multi condition changes、同一単位/価格期間のload series、停止条件、既知unknown/unsupported範囲。利用者が期待結果を指定して検証を求めるoperationに限り、その期待結果と独立oracleも受け取る。通常scenario計算に期待結果oracleは要しない。計算後にHELIXINTELLIGENCE-L2-040送達、HELIXLABO-L2-024受領を順に行い、HELIXINTELLIGENCE-L2-070の全体receiptを入力前提にしない。\n- **提供するもの**：baseline/scenarioごとの条件差分・不変条件、対照可能な状態transition/propagation trace、queue/stall/failure arrival point、数値計算可能な所要時間/費用とdelta、非影響branch、unsupported/unknown/assumption/打切り、LABO handoff/receipt。利用量増加、DB断、仮想Worker 2→4は個別scenarioとして計算し、Worker数はmodel変数としてのみ扱う。\n- **保証すること**：通常scenarioでは同じ入力に対する計算trace・結果を返し、明示された因果edge以外の影響を追加しない。利用者が期待結果を指定した検証operationではその期待値を独立oracleへ照合する。共有bottleneck/直列工程/retry制約を含むmodelは計算へ適用し、worker増加から速度比例や費用改善を仮定しない。費用・時間係数のない比較は数値化しない。unsupported domainへ精度・一般性を外挿しない。\n- **常時必須**：HELIXINTELLIGENCE-L2-033の入力receipt、計算後に取得するHELIXINTELLIGENCE-L2-069計算receipt（開始前には要求しない）、同一model/source revision・baseline/scenario/scope identity、明示規則・入力/単位・trace、仮想結果と実測の分離、HARNESS-L2-010/011/023適用契約、HELIXINTELLIGENCE-L1-013へ辿るprovenance。結果送達を行う段階でHELIXINTELLIGENCE-L2-040／HELIXLABO-L2-024の各receiptを後続条件として記録する。\n- **特定操作時のみ必須**：load増加比較はarrival seriesとservice/queue rule、DB断はfailure transition/propagation/recovery rule（recovery未定義なら停止/blocked）、Worker数変更は仮想worker service rate・shared DB ceiling・scheduler・価格と稼働単位。利用者が期待結果を指定して検証を求めるoperationでは、その期待結果と独立oracleを照合条件とする。結果の後続実測比較はHELIXINTELLIGENCE-L2-006 L11 oracle、HELIXLABO-L2-024の受領evidence、HELIXLABO-L2-006の実験/実測評価ownerへ接続する。数値精度閾値のscope decisionがない場合は測定値を記録して合否を付けない。\n- **選択した入力元に応じて必須**：比較に選ばれたCORE model、capacity/cost/input series、failure event、実測sourceごとのversion/scope/receipt。未選択sourceから数字や遷移を補わない。\n- **参照資料のみ**：提示例や一般性能指標。L11受入fixture、または期待結果を指定した検証operationではfixture/operationの入力値・規則・expected output・独立oracleをその照合条件として必須にする。通常scenario計算には期待値oracleを求めない。\n- **単独成立依存**：HELIXINTELLIGENCE-L2-069、HELIXINTELLIGENCE-L2-070、source contract、同じrevisionのscenario inputs。独立oracleはL11受入fixtureまたは期待結果付き検証operationを選んだ場合のみ依存する。LABO比較自体はLABO ownerの既存評価契約と有効なactual sourceがある場合に依存し、intelligence candidateから評価を自己認定しない。\n- **失敗・戻し先**：CORE model authority/schemaはProduct Core/HARNESSへ、stale/欠落状況はsource ownerへ、operation/data-use許可はSECURITY/ownerへ、入力実資源割当はOSへ、後の独立比較oracleはLABOへ戻す。条件・規則不足、unsupported state/edge、外部のsource conflictはunknown/unmodeled/blockedで返し、自由推定で埋めない。\n\n**旧source照合（保持・変更）**：G17旧source検索結果は[判断記録](../../governance/decisions/design-model-calculation-derivation-2026-09-27.md)の旧source照合を再利用する。検索対象は`archive/legacy-generation-2026-09-14/`配下の旧source、特に`root/docs/design/helix/`、`root/docs/governance/candidates/`、旧`root/CLAUDE.md`、検索語`simulation|simulate|シミュレーション|what-if|条件.*動か|負荷.*試算`。設計modelの有限状態・dependency・process/load規則へ条件を与えて仮想計算し、伝播・時間・費用を比較する旧requirement/candidateは見つからず、旧runtime/testは実行していない。唯一の該当語`pre-merge simulation`は`LEGACY-ASSET-50CA1C554747F12266D3`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md:1114–1124`、SHA-256 `17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd`で、PR差分のgovernance projectionを仮適用しmerge後違反を調べる意味。**保持**：変更前の影響を前提・証拠・反証とともに予測し、実績で比較するConcept/L1の意味。**変更/再導出**：旧projection実装、旧CLIやapprovalを移さず、PO第3項を根拠に有限設計modelを条件付きに評価する新candidateを作る。Conceptや旧不在を新runtime/実環境制御の根拠にしない。\n\n"
+      }
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-071",
+      "kind": "fixed_l11",
+      "pin": {
+        "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "source_commit": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+        "line_start": 239,
+        "line_end": 250,
+        "raw_lf_sha256": "08ae8bbbc9f5e9a341c0fd847c60ab2734924a5ee7570ee8a1a9e85d34dbb0ca",
+        "literal": "### HELIXINTELLIGENCE-L2-071 composite — 条件変更→計算→比較\n\n**正常例（受入fixture）**：最初にHELIXINTELLIGENCE-L2-033の入力receiptで同一model revisionとscenario条件を固定する。baselineは2stepの到着5/5、負荷増scenarioは5/10、各stepのservice上限は8とし、HELIXINTELLIGENCE-L2-069のqueue oracleを適用する。その後に利用load増、DB断、仮想Worker 2→4を別々のscenario runとして計算し、計算結果ができてからHELIXINTELLIGENCE-L2-070を使いHELIXINTELLIGENCE-L2-040送達、HELIXLABO-L2-024受領へ進める。HELIXINTELLIGENCE-L2-069のqueue/graph/numeric oracleに各runを照合し、HELIXINTELLIGENCE-L2-071 bundleでは①変更した条件と不変条件、②順序付きstate/impact propagation、③各scenarioのqueue/bottleneck/blocking state、④数値化できる時間と費用・baseline差、⑤未解決のsource/coefficients/edge、⑥LABO向けsource-bound結果receiptを一つのscope付き比較表で追える。上記worker fixtureなら2→4の見かけの容量増よりDB ceilingが支配し、completionは3 minから2.25 min、費用は1.50から2.025 creditsへ変化するという独立算術oracleに一致する。DB断例では明示edge上のorder processのみblockedとなり、recovery未定義を維持する。単体calculationとconnectionが通ってもcompositeのscope/比較/receiptが不一致なら不合格。この受入oracleはfixtureの期待値であり、通常scenarioに期待値がない場合も計算結果・trace・unknownを返せる。\n\n**誤りを含む例**：baselineとscenarioで異なるmodel/revisionを使う、複数scenario間で共通の単位/係数/時間windowを確認しない、Worker数を実資源設定と見なす、DB failureからモデルにないrollback/retry/recoveryを作る、影響edge外へfailureを伝播する、未定義のcostを0とする、単体結果を実測/LABO評価済みとする場合は不合格。該当scenarioだけをholdし、他の有効scenarioも依存関係を保って報告する。\n\n**未見例**：held-outの有限modelで、既知構造と新しいdependency/failure edgeが混在するfixtureを与える。明示ruleの範囲内のfixture scenario結果は独立oracleに照合し、未見edge/domainはunknown/unsupported、後の実測receiptなしは未比較とする。通常scenarioで期待結果が指定されていない場合、独立oracleなしでも適用可能な明示ruleから計算し、unsupported箇所をunknownとして返す。実測比較にはHELIXINTELLIGENCE-L2-006 L11 oracleを使い、数値閾値のscope decisionがなければ測定値のみを記録して合否を付けない。良好な小規模fixtureだけで精密・汎用simulation適格を宣言しない。\n\n### 共通依存区分・scope\n\nHELIXINTELLIGENCE-L2-069／HELIXINTELLIGENCE-L2-070／HELIXINTELLIGENCE-L2-071ごとにHARNESS-L2-023の4区分を利用条件・operation単位で閉じる。HELIXINTELLIGENCE-L2-069はHELIXINTELLIGENCE-L2-033 input receiptのみを計算入力に要し、HELIXINTELLIGENCE-L2-070全体の送達完了を前提にしない。HELIXINTELLIGENCE-L2-070はHELIXINTELLIGENCE-L2-033 input→HELIXINTELLIGENCE-L2-069 result→HELIXINTELLIGENCE-L2-040 send→HELIXLABO-L2-024 consumer receiptの独立段階、HELIXINTELLIGENCE-L2-071はHELIXINTELLIGENCE-L2-033入力→計算→result送達→consumer受領の順で成立を判定する。\n\n"
+      }
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-071",
+      "kind": "fixed_l11",
+      "pin": {
+        "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "source_commit": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+        "line_start": 251,
+        "line_end": 256,
+        "raw_lf_sha256": "3f611906dfcbf874001532794f412d426c2712189f032ef4c7056da44fb29294",
+        "literal": "- **常時必須**：適用するHARNESS-L2-010/011 pack identity・契約revision・scope・provenance、対象Product Core/model source identityとrevision、HELIXINTELLIGENCE-L2-003／HELIXINTELLIGENCE-L2-004／HELIXINTELLIGENCE-L2-012／HELIXINTELLIGENCE-L2-013のfact/推論/unknown/trace条件、シミュレーション結果を実測にしない区分と停止条件。connection operationにはHELIXINTELLIGENCE-L2-033 input、HELIXINTELLIGENCE-L2-040 result handoff、HELIXLABO-L2-024 consumer contract/receiptを段階ごとに含む。\n- **特定操作時のみ必須**：数値時間/費用は単位付きrate/price/effective time、DB断はfailure/propagation/recovery rule、Worker scenarioは仮想capacity/shared-resource ceiling/schedulerを要する。L11受入fixtureと利用者が期待結果を指定した検証operationでは独立oracleを照合条件に含める。通常scenario計算には期待値oracleを要求せず、明示model/ruleから算出した結果・trace・unknownを評価する。後続actual comparisonはsource receiptと既存HELIXINTELLIGENCE-L2-006 L11比較oracleが操作条件として必要。HELIXLABO-L2-024は受領evidence、HELIXLABO-L2-006は実験/実測と評価のownerを保つ。条件のない利用には数値計算やactual comparisonを必須化しない。\n- **選択した入力元に応じて必須**：選択model, baseline, load, price/capacity, failure event, later observationのidentity/version/scope/provenance/access契約。未選択sourceは未観測。別製品、branch、環境、Worker telemetryへ黙ってfallbackしない。\n- **参照資料のみ**：背景説明・例題・未選択pattern。source/design authority、model/rule revision、unit/price/source、data-use/security条件を参照資料扱いに落とさない。独立期待値oracleはL11受入fixtureまたは期待結果付き検証operationでその照合条件となり、通常scenario計算には必須にしない。\n\n**受入範囲外／未解決**：高精細な物理simulation、未入力の条件を推定補完する万能model、HARNESS-COREから独立した汎用model正本、OSの実worker配賦/起動や実環境/resource configuration変更、モデルが存在しないdomainへの外挿はこのcandidateに含めない。後続実測比較は既存HELIXINTELLIGENCE-L2-006 L11 oracleを使い、HELIXLABO-L2-024が受領evidence、HELIXLABO-L2-006が実験/実測の独立評価を所有する。数値精度閾値に有効なscope decisionがない場合は測定値を記録し、pass/適格化を判定しない。新能力や一律のPO問合せを要求しない。\n"
+      }
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-071",
+      "kind": "po_decision",
+      "pin": {
+        "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+        "source_commit": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "full_sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+        "line_start": 101,
+        "line_end": 101,
+        "raw_lf_sha256": "28f4f1266d2812dc3c8e274a7f1ccae93d4f3b5052f4112612f14e5ac6bc9d57",
+        "literal": "| `HELIXINTELLIGENCE-L2-071` | `MPR-RC-HELIXINTELLIGENCE-L2-071-002` | composite / 1.0 |\n"
+      }
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-074",
+      "kind": "fixed_l2",
+      "pin": {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "source_commit": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "full_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+        "line_start": 609,
+        "line_end": 617,
+        "raw_lf_sha256": "d7a6e7f91e32e0cf1c0f8b59872d11ecfbef65e9d1dcf1c8bd7ae9c86a5cddad",
+        "literal": "### HELIXINTELLIGENCE-L2-074 評価済み返却feedbackの配置proposal入力（単体候補、version_target: 1.0）\n\n- **親と状態**：`HELIXINTELLIGENCE-L1-010`に接続する未採択候補。採択済みL2-010 Worker配置候補と既存候補L2-067の入力条件を補う限定candidateであり、それらの意味を暗黙変更しない。\n- **入力と提供**：LABOから、返却reason class、欠けた入力/oracle、再発行後の検証成立状況を含む評価済みevidenceを受け取る。evidenceはtask class/domain、対象revision、scope、観測母数・window、source completeness、LABO評価状態を伴う。INTELLIGENCEは同scopeのWorker実績へ適用可能な場合に限り、次回のticket別placement proposalの根拠として引用し、提案・根拠・適用範囲・未評価/不確実性・再評価条件を示す。\n- **適用保証**：未評価、比較不能、stale、別task class/scope/revisionのfeedbackは適合実績として扱わず、placement入力から除外するか未評価として示す。少数/単一feedbackから恒久的なWorker資格・順位、因果的な能力差、model更新を決めない。既存L2-010のsuccess/failure/rework/latency/cost/reliability evidenceを利用し、LABOの評価だけでproposalを正しいと保証しない。\n- **境界**：INTELLIGENCEは配置proposalを出す。指定、ticket発行/再発行、assignment、dispatch、Worker/modelの自動昇格/除外はOS/既存ownerに残し、候補evidenceから要求意味・authority・ticketを生成しない。新しい承認経路は設けない。\n- **戻し先**：task属性不足はOSへ、Bench/evidence/scope/revisionまたはLABO評価不足はLABOへ返し、該当proposalを未評価/未確定とする。\n- **旧sourceとの対応と限界**：旧ticket/feedback sourceの成功・失敗・reworkと再発行後評価を次回配置判断に使うというO2の入力要望を、既存L2-010の配置案責務へ限定接続する新規案。旧sourceは配置案への自動学習やworker資格の恒久更新を根拠づけないため追加しない。候補は実際の配置変更や改善効果を主張しない。\n\n"
+      }
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-074",
+      "kind": "fixed_l11",
+      "pin": {
+        "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "source_commit": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+        "line_start": 328,
+        "line_end": 335,
+        "raw_lf_sha256": "e93d48de9b361115b419d209647d814076713143b5bd5651c0154a1a670ab1fa",
+        "literal": "### HELIXINTELLIGENCE-L2-074 評価済み返却feedbackの配置proposal入力の受入候補\n\n- **状態**：L2-074と対になる未採択・未実行候補。L2-010のproposal boundaryを維持する入力caseであり、model/runtime動作を主張しない。\n- **正常例**：LABO評価済みのticket返却reason、同scopeの再発行後検証結果、task class/domain、source/revision、観測母数/windowを与える。INTELLIGENCEが同scopeのWorker実績として根拠を引用した配置proposalを出し、未評価範囲と再評価条件を明示する。OSはproposalを参考情報として受け、発行・指定・割当の既存判断を別に行う。\n- **拒否例**：LABO未評価、比較不能、欠測、stale、異なるscope/revisionまたはtask classの結果を評価済み根拠へ昇格した場合は不合格。単一feedbackからWorkerを恒久除外/昇格、modelを自動更新、ticketを直接発行、assignment/dispatchを実行する場合も不合格。\n- **不足例**：task属性不足ならOSへ、LABO評価/evidence/scope不足ならLABOへ返し、proposalを未確定とする。未評価を既定Workerや「成功」と補完しない。\n- **未見例**：同じ理由classでも対象scopeの異なるfeedbackを与え、適用できないevidenceがproposalへ混ざらず、適用可能範囲とunknownが区別されることを確認する。\n- **受入限界**：配置精度の因果改善、固定threshold、資格の恒久化、model更新・自動学習、実dispatchは検査・要求対象外。proposal受入からOSのticket/assignment決定を生成しない。\n"
+      }
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-074",
+      "kind": "po_decision",
+      "pin": {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "source_commit": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "full_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "line_start": 87,
+        "line_end": 87,
+        "raw_lf_sha256": "d05c4087dd4c2e47c8743d972eba99c060958f02e12384cb821369c733295a94",
+        "literal": "| `HELIXINTELLIGENCE-L2-074` | 採択 | `MPR-RC-HELIXINTELLIGENCE-L2-074-002` | `docs/helix-intelligence/L2-requirements/intelligence-requirements.md` | `14c6947262f7e7cc92e7200cafd301ebd49c4146c97f665f0548c6b2b2e9e16d` | `sha256:5605649ccd2e582bc795b6937792c4957230bf0045031fa58cf9ffa21871719c` | `HELIXINTELLIGENCE-L2-074` | `docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md` | `7467fad5256db9af823e7be860e21e52df58efb43ad4855c7127c2053106214d` | `sha256:e93d48de9b361115b419d209647d814076713143b5bd5651c0154a1a670ab1fa` | `docs/governance/audits/requirement-registration/ops-o1-o2-intelligence-074-empty-coverage-receipt-2026-09-29-r2.json` |\n"
+      }
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-077",
+      "kind": "fixed_l2",
+      "pin": {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "source_commit": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "full_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+        "line_start": 635,
+        "line_end": 645,
+        "raw_lf_sha256": "80250f22590510dab5a2cb84e43edc184f6c82cebdb6f8ea3d3bc435e0162d38",
+        "literal": "### HELIXINTELLIGENCE-L2-077 AAFD qualified delta source and non-write boundary（unit candidate、version_target: 1.0）\n\n- **状態と親**：未採択候補。親は固定済みHELIX-INTELLIGENCE L1-009（version_target: 1.0）。この候補の`version_target: 1.0`は旧AAFD本文から推定せず、現行親L1-009の版指定を引き継ぐ。採択済みL2/L11-009の監査finding traceと自由文からauthorityを生成しない境界を使う。L2/L11-073のAAFD-R-04検出器優先/direct projection、075のR-01〜03 proposal identity/qualification、076のR-13〜14 model comparisonを置換・再採択しない。\n- **sourceからdelta候補への限定条件**：delta候補は既存source ownerがqualifiedと示すinternal/UILまたはexternal/TER source receiptに結び付く場合だけ作れる。source identity/revisionとowner、origin typeを別々に保ち、internalとexternalを同じenum identityへ潰さない。source qualification、UIL/TERのobservationやqualification、Future Synthesis intake/invalidation、route/owner assignment自体は本候補で再実装しない。選択receiptが読めない、revision/qualification照合に失敗する、またはそのownerを確認できない場合はunknown/incompleteのまま選択source ownerへ戻し、別receipt・未選択source・reference-only資料へ暗黙fallbackしない。外部releaseの観測だけからHELIX defectを確定しない。internal driftをexternal/TERへ、external driftをinternal/UILだけへ付け替えない。\n- **unknownとauthority境界**：delta候補のunknownを`0`、`neutral`、`unchanged`、`observed`へ補完しない。deltaまたはその候補はRequirement、Design、Release、Assignment、merge authority/stateを直接変更しない。候補・evidenceを既存ownerへ提示することはできるが、別途定められた適格source、既存authority、owner判断を代替しない。\n- **責務・未確定点**：source ownerはsource receiptのqualificationとidentityを持つ。INTELLIGENCEはL1-009の監査提案範囲でdelta candidateの意味・根拠・unknownを保持する。OSは既存のticket/state/assignment運転を、LABOは既存の評価を、INTELLIGENCEは既存の分析を担う範囲でのみ対応する。将来delta consumer、正式なowner/route、UIL/TERという旧名の現行実体はこの候補から新設・推定しない。対応source ownerまたはconsumerが特定できない入力はunknown/incompleteとして保持し、該当する既存要求ownerへ照合する。\n- **依存区分**：対応するHARNESS-L2/L11-023で採択済みの4区分（常時必須、特定操作時のみ必須、選択した入力元に応じて必須、参照資料のみ）を候補の適用条件にも分けて示す。source/authorityの適用契約と対象revisionは評価の常時必須、delta候補を作る操作に限ってqualified source receiptが必要、internal/UILかexternal/TERかは選択されたreceiptに応じて結び、歴史source/candidateは参照資料として扱う。区分を混ぜた常時必須化、未選択sourceの成功・不在推定、unknown条件の参照扱いはしない。HARNESS-L2/L11-023は依存分類規則であり、本候補のAAFD source ownerやdelta consumerを決めない。\n- **旧sourceとの対応と意味境界**：`LEGACY-ASSET-EB3700B0088F311C2295`の旧AAFD-R-05（旧要求:52-53）およびR-08（旧要求:71）、別asset `LEGACY-ASSET-CAC0C64EB7540180B1FE`のAC-005（旧受入:19）、AC-008（旧受入:22）と否定oracle（旧受入:39-40,42,44）を起点に意味を再導出した。旧本文はUIL/TER/Future Synthesisを特定owner・adapterとして規定するが、現行L1-009はその移管先やdelta compilerを確定していない。保持するのはsource起点・origin/ownerの区別、unknownの列挙補完拒否、直接変更拒否とそれらの反例だけであり、旧route/API/schema/runtimeは現行へ移さない。\n- **人の意味判断材料**：選択肢A（推奨）：L1-009の現scope内で監査candidateと境界を保ち、formal delta consumer/ownerの対応はunknownのまま既存L1/L2 ownerの根拠照合を待つ。選択肢B：INTELLIGENCEにdelta consumer/projectionを持たせるなら、L1-009の責務・出力意味を明示変更してから対応するL2/L11を再検討する。選択肢C：別機構がconsumerなら、その既存L1・採択済みL2/L11とsource owner接続を特定してから配置する。推奨Aは旧UIL/TERを新設せず上流意味を推測しないためである。影響対象はHELIXINTELLIGENCE-L1/L2/L11-009、HELIXOS-L2/L11のticket/assignment境界、HELIXLABO-L2/L11の評価境界、および選択肢により特定されるsource/consumer要求。候補本文はPO判断を待たず比較材料を提示するもので、意味選択を採択扱いしない。\n- **範囲外**：AAFD-R-06/07/09〜12のdelta schema、determinism/dedupe、snapshot join、bounded invalidation、stale execution、replay、AAFD-R-13〜15のmodel evaluation/promotion、将来差分全体のowner移管やruntime実装は本candidateで保持・閉鎖を主張しない。\n\n"
+      }
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-077",
+      "kind": "fixed_l11",
+      "pin": {
+        "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "source_commit": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+        "line_start": 352,
+        "line_end": 361,
+        "raw_lf_sha256": "6cebdcbe581a34c3e9f7ef934c19c78fdbb0e9cf81174340221bf2d579c38711",
+        "literal": "### HELIXINTELLIGENCE-L2-077 AAFD qualified delta source and non-write boundary — 受入候補\n\n- **状態・対象**：未採択candidate。AAFD-R-05/R-08とAC-005/008および指定された否定oracleだけの意味oracle案。既存AAFD-BR-02/03、L2/L11-073/075/076、HARNESS-L2/L11-023を置換しない。\n- **依存区分**：HARNESS-L2/L11-023で採択済みの①常時必須、②特定操作時のみ必須、③選択した入力元に応じて必須、④参照資料のみを区別する。①対象authority/revisionとsource/consumer適用契約を照合する。②delta candidate生成を選んだ操作時だけqualified receiptの条件を照合する。③選択されたinternal/UILまたはexternal/TER receiptとそのowner/source revisionを結ぶ。④archive sourceと旧候補は意味照合の参照に限る。未選択sourceは未観測で、成功・不在・qualificationを推測しない。HARNESS-023の採択は分類規則を支えるだけであり、AAFD candidateや将来delta ownerの採択を意味しない。\n- **正常例**：別々のfixtureで、既存source ownerがqualifiedと示したinternal receiptとexternal receiptを評価する。例示tupleは、internal側がreceipt identity `r-int-7`、receipt revision `rev-3`、origin type `internal`、fixtureに与えた既存source owner identity `owner-int-existing`、external側がreceipt identity `r-ext-4`、receipt revision `rev-2`、origin type `external`、fixtureに与えた既存source owner identity `owner-ext-existing`であり、identity・revision・origin type・ownerを別々に突合する。これらの値はowner/schema/APIを定義せず、fixture入力に明示したownerと選択receiptの対応を確認するだけである。external例にはprovider release observationを結び、internal HELIX artifact/findingが与えられていない限りHELIX defectとはしない。いずれの例も未観測のdelta dimensionはunknownのまま保ち、Requirement/Design/Release/Assignment/mergeへの直接変更数は0とする。fixtureで既存ownerが明示されていることはsource qualificationを実施・実証したことを意味しない。\n- **source境界の反例**：external releaseの観測だけをHELIX defect確定として扱う入力を拒否し、finding/candidateを未確定のまま保持する。internal sourceをexternal/TERへ割当てるmutationと、external sourceをinternal/UILだけへ割当てるmutationをそれぞれ拒否する。必要なowner/source relationが不明ならunknown/incompleteとする。正しいownerへの付替えを新routeの生成や資格判定とみなさない。\n- **unknownの反例**：同一delta candidateについてunknown値を`0`、`neutral`、`unchanged`、`observed`へ個別に変異させた4例をすべて拒否し、元のunknownを保つ。4結果を単一の「default」反例に集約しない。\n- **直接変更の反例**：delta candidateからRequirement、Design、Release、Assignment、mergeの各対象を直接変更する5例を個別に拒否する。候補提示は許すが、既存source qualificationやowner判断を経た別経路の有効性はこのoracleで判定しない。\n- **未見例**：選択source receiptのowner、origin type、revisionまたはqualification evidenceが欠ける/不一致のheld-out例を与え、delta candidateを確定せずunknown/incompleteへ戻して選択receiptのsource ownerへ照合する。選択receiptが読めない、revision/qualification照合に失敗する、またはowner identityを確認できない例では、別のavailable receipt・未選択source・reference-only資料へ暗黙fallbackせず、選択sourceの失敗とunknown/incompleteを保つ。fixtureに明示された既存owner identityとの照合成功例と、owner identityが欠落/矛盾するこの反例を区別する。未選択sourceやreference-only資料をqualified sourceへ昇格しない。実runtimeや旧UIL/TERは実行しない。\n- **失敗時の戻し先と限界**：source identity/qualificationの不明は該当する既存source ownerへ、INTELLIGENCEのfinding/delta candidate根拠はINTELLIGENCE ownerへ、OS ticket/assignmentはOS ownerへ、評価はLABO ownerへ返す。正式なFuture Synthesis consumer/ownerが不明な場合はunknownのまま上流scope照合へ戻す。旧R-06/07/09〜12、R-13〜15の処理、実行・適格化・正式後継の受入は含めない。\n"
+      }
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-077",
+      "kind": "po_decision",
+      "pin": {
+        "path": "docs/governance/decisions/po-decision-2026-10-03-later35.md",
+        "source_commit": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "full_sha256": "e3ea2cc8d79c2568985bc086fbc4d08d25e162fcc546858d6db47bba768ac3d3",
+        "line_start": 53,
+        "line_end": 53,
+        "raw_lf_sha256": "6e19738ff3adf6e45c17f6a088fd4a5dbf61d56f516c6213cb39ea9be08b1c1a",
+        "literal": "| `HELIXINTELLIGENCE-L2-077` | 承認（選択・適用範囲付き） | `MPR-RC-HELIXINTELLIGENCE-L2-077-001` | `sha256:885656dd2bce4e4846623517c64f001797c82907dd7cd239572d2db6117d344e` | `sha256:6cebdcbe581a34c3e9f7ef934c19c78fdbb0e9cf81174340221bf2d579c38711` |\n"
+      }
+    },
+    {
+      "identity": "Stage 5 G0 mapping",
+      "kind": "implementation_order",
+      "pin": {
+        "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+        "source_commit": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "full_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+        "line_start": 472,
+        "line_end": 472,
+        "raw_lf_sha256": "0ce5c00f159a28b1c4c645d6ded77f1021bea8503f1c28d9383cea03b00f7ebf",
+        "literal": "| `HELIXINTELLIGENCE-L2-074` | L2項目「HELIXINTELLIGENCE-L2-074 評価済み返却feedbackの配置proposal入力（単体候補、version_target: 1.0）」の役割に照らし、複合体、統合・評価・閉ループの証拠を結ぶ。L2節の直接依存/適用条件は L2節に明示された採択済みL2 prerequisite IDなし。producer/consumerまたは個別operation契約が不明ならその選択scopeだけを保留し、他候補の全体gateにしない。 / **前提ID:** 明示L2 prerequisiteなし / 当該L2節に抽出対象となる明示dependency行なし。配属は節の項目名・記述する能力役割と9/27のStage定義に基づく。新しい必須前提は追加しない。 | `docs/helix-intelligence/L2-requirements/intelligence-requirements.md#L609` / raw `sha256:d7a6e7f91e32e0cf1c0f8b59872d11ecfbef65e9d1dcf1c8bd7ae9c86a5cddad` |\n"
+      }
+    },
+    {
+      "identity": "Stage 5 G0 mapping",
+      "kind": "implementation_order",
+      "pin": {
+        "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+        "source_commit": "5acae384305b01d10e88eeb2e6406f847baf66df",
+        "full_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+        "line_start": 474,
+        "line_end": 474,
+        "raw_lf_sha256": "f5545e9c98af45ea3475d5a506a3f379f48bd0e4492f19af9f7e0d19bae9111e",
+        "literal": "| `HELIXINTELLIGENCE-L2-077` | L2項目「HELIXINTELLIGENCE-L2-077 AAFD qualified delta source and non-write boundary（unit candidate、version_target: 1.0）」の役割に照らし、複合体、統合・評価・閉ループの証拠を結ぶ。L2節の直接依存/適用条件は L2節に明示された採択済みL2 prerequisite IDなし。producer/consumerまたは個別operation契約が不明ならその選択scopeだけを保留し、他候補の全体gateにしない。 / **前提ID:** 明示L2 prerequisiteなし / 明示dependency行あり。採択374内のIDは stage_prerequisite_ids、分母外の参照は stage_dependency_ids_not_adopted に記録。 | `docs/helix-intelligence/L2-requirements/intelligence-requirements.md#L635` / raw `sha256:80250f22590510dab5a2cb84e43edc184f6c82cebdb6f8ea3d3bc435e0162d38` |\n"
+      }
+    }
+  ],
+  "fixed_source_pin_verification": {
+    "checked_total_from_previous_register": 41,
+    "full_sha_and_raw_lf_sha_match": true,
+    "relevant_parent_pins_included": 23,
+    "source_basis": "previous immutable source/body audit pin register; fixed revision 5acae384; no legacy runtime/test/CI executed"
+  },
+  "canonical_body_files": {
+    "docs/helix-intelligence/L3-requirements/functional-requirements.md": {
+      "main_prefix_commit": "5acae384305b01d10e88eeb2e6406f847baf66df",
+      "main_prefix_sha256": "cb9cc91c9f2646e2272fd18c6fd2b176285ba3b0f36409805e5a2879adad6017",
+      "main_prefix_bytes": 33090,
+      "current_full_sha256": "d0345ee7679175a6a23f103a9be2f4361189cf025d91c23f11d3e0d5cef10c81",
+      "current_bytes": 62466,
+      "prefix_exact": true
+    },
+    "docs/helix-intelligence/L3-requirements/nfr-grade.md": {
+      "main_prefix_commit": "5acae384305b01d10e88eeb2e6406f847baf66df",
+      "main_prefix_sha256": "046a3b23b5070e339e579da2428d7773cb91da2b9ebad520971be3803e2e1a80",
+      "main_prefix_bytes": 14314,
+      "current_full_sha256": "1e40f5163eb1314d66f9938382b4a92bc648d5b41e6eea17ff81945c5f9c57fd",
+      "current_bytes": 21991,
+      "prefix_exact": true
+    },
+    "docs/helix-intelligence/L3-requirements/business-requirements.md": {
+      "main_prefix_commit": "5acae384305b01d10e88eeb2e6406f847baf66df",
+      "main_prefix_sha256": "5839b4cd42af9d57b0e01e8da6014838097671738297e2a343bcc4739d67809d",
+      "main_prefix_bytes": 5552,
+      "current_full_sha256": "947ea7640bb7ee73a72eada8d749728e321b560351bd96d0e24339eedcd6bee6",
+      "current_bytes": 7830,
+      "prefix_exact": true
+    },
+    "docs/helix-intelligence/L10-verification/functional-verification.md": {
+      "main_prefix_commit": "5acae384305b01d10e88eeb2e6406f847baf66df",
+      "main_prefix_sha256": "192e980c2b4c6c7a78d2651ae30e23c5072ee1ff4ae7366bd01be155bf88aac6",
+      "main_prefix_bytes": 31138,
+      "current_full_sha256": "1d564aaa36960bd78a62b1aabfa33ea4350c736ac84df471c652abf86d1a86bd",
+      "current_bytes": 67183,
+      "prefix_exact": true
+    },
+    "docs/helix-intelligence/L10-verification/nfr-verification.md": {
+      "main_prefix_commit": "5acae384305b01d10e88eeb2e6406f847baf66df",
+      "main_prefix_sha256": "a8f2e0c4bc1d482d6cfd68cd5f9638fcf8575104aafc7bdcb5214b162190f876",
+      "main_prefix_bytes": 12464,
+      "current_full_sha256": "e1886da26a989de835f9175880bada8a5c0738c52dbde01e0f85dd719bc5eaeb",
+      "current_bytes": 17570,
+      "prefix_exact": true
+    },
+    "docs/helix-intelligence/L10-verification/business-verification.md": {
+      "main_prefix_commit": "5acae384305b01d10e88eeb2e6406f847baf66df",
+      "main_prefix_sha256": "9f8049fd3e7bdfe6550f5de9a444d1f44449c1b61769bf79e85b47c2c5906e81",
+      "main_prefix_bytes": 5680,
+      "current_full_sha256": "bd9d08ff866f1fe88f5095009536b309d48a639033471b4635dd664a28d6fd05",
+      "current_bytes": 7539,
+      "prefix_exact": true
+    }
+  },
+  "current_changed_line_pins": [
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 293,
+      "raw_lf_sha256": "0b7b59b066f8b276e8b5a3da5aa6a2a6c5c7549dfa08b480dd176a5ee6feb05a",
+      "literal": "| `CASE-INT-062-02g` | 全receiptを保ったまま順序だけ逆転 | 欠落stageがあるとは報告せず、順序不成立として該当段階の既存ownerへ戻す。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 418,
+      "raw_lf_sha256": "b124bce6256604d7a8cb7bbd647673e3744786bd6fed67ed5a5a845fe176af5b",
+      "literal": "### CASE-INT-074-04 — feedback field別unknownの索引 (AC-INT-074-04)"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 420,
+      "raw_lf_sha256": "ee38f1a038891533eae8fe26cf69f2a3628d81f398ca582f52c57197422dac3d",
+      "literal": "旧fixtureのsource completeness/window/applicability owner複合例は索引としてのみ保持する。独立fixtureは04a–04cに分け、他fieldを有効に固定する。"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 421,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 422,
+      "raw_lf_sha256": "0f4d9df0fc922bb1dd372357a3ce1c7ffe90bdae702ca775d7a6170161e0fe18",
+      "literal": "| CASE | 単独変異 | 期待oracle・戻し先 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 423,
+      "raw_lf_sha256": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea",
+      "literal": "|---|---|---|"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 424,
+      "raw_lf_sha256": "e02a4c515e61420f721f114b3e633a15f6b894cfa2840cd3d93858c2f3fc63f7",
+      "literal": "| `CASE-INT-074-04a` | source completenessだけunknown | completenessだけunknownのままにし、評価適用を成立させずLABOへ戻す。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 425,
+      "raw_lf_sha256": "280be6d14d43a57960e60faf8bdc78e27b47f5ec1a361495b72c2a603407f6c3",
+      "literal": "| `CASE-INT-074-04b` | observation windowだけunknown | windowだけunknownのままにし、範囲を推測せずLABOへ戻す。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 426,
+      "raw_lf_sha256": "35e3214bb0e40238d2e1577a14cb37e2c1e79b732796c90a0d08aed339f8daeb",
+      "literal": "| `CASE-INT-074-04c` | applicability ownerだけunknown | ownerだけunknownのままにし、ownerを推測せず既存L1/L2 ownerへ照合する。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 445,
+      "raw_lf_sha256": "a353e57f67bcb1900cd350d677d9803c7247575b69b9f741fc441f60fdf12773",
+      "literal": "| `CASE-INT-077-03f` | 複数の直接変更を束ねた旧fixture | 個別negative件数には算入せず、03h–03jの索引として扱う。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 447,
+      "raw_lf_sha256": "d250b0737ac8b9d72c319956034eda18fe48fdf07dedc0b0ffd3fb9c5c68be2a",
+      "literal": "| `CASE-INT-077-03h` | Releaseだけ直接変更 | writeを拒否し、既存release authority/stateを不変にする。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 448,
+      "raw_lf_sha256": "4d30b910af0e522ecb289862df6e865bcd0601210f09994f44e55ef0dcb815f9",
+      "literal": "| `CASE-INT-077-03i` | Assignmentだけ直接変更 | writeを拒否し、OSのassignment authority/stateを不変にする。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 449,
+      "raw_lf_sha256": "2470974b4932abcad0a972f44a5c5a464485bbbeb2e53f6b43190a7efdc4fdac",
+      "literal": "| `CASE-INT-077-03j` | merge authority/stateだけ直接変更 | writeを拒否し、merge authority/stateを不変にする。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 498,
+      "raw_lf_sha256": "ce1455e567e6c56f652a08c3d0f291bae789916c6c593533546b51af83427211",
+      "literal": "| `CASE-INT-069-06e` | 069/AC-INT-069-06 | HARNESS-L2-011 callを選択したoperationでcall identityだけ欠落 | callを成立扱いせず、call入力を選択した呼出しownerへ戻す。HARNESSが計算実行主体になるとは扱わない。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 499,
+      "raw_lf_sha256": "709ab76eaf3f7e64d952cd9c80b40238ccd280a4bf3e6ee2c0d5f2a23bdc7d5b",
+      "literal": "| `CASE-INT-069-06f` | 069/AC-INT-069-06 | HARNESS-L2-011 callを選択したoperationでcall contract revisionだけstale | 該当callを保留し、呼出しownerへ戻す。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 500,
+      "raw_lf_sha256": "d5eb3a895d2a18131b96229b806029a42ac8791facf86e4a2bc5bf42b3017af7",
+      "literal": "| `CASE-INT-069-06g` | 069/AC-INT-069-06 | HARNESS-L2-011 callを選択したoperationでcall scopeだけ不一致 | 別scope callを混ぜず、呼出しownerへ戻す。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 501,
+      "raw_lf_sha256": "c5b4c09d7ada046e452548f171dc2e58d9f7d5655728c086381752bea59b6f18",
+      "literal": "| `CASE-INT-069-06h` | 069/AC-INT-069-06 | HARNESS-L2-011 callを選択したoperationでcall provenanceだけ欠落 | 出所を推測せず、呼出しownerへ戻す。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 511,
+      "raw_lf_sha256": "589dd7873b28557d691127206b0fe9b3dde7f6ff7c6c2332908c600134ec1cbc",
+      "literal": "| `CASE-INT-069-07a` | 069/AC-INT-069-07 | 通常計算で期待値oracleもHARNESS-L2-011 callも選択されない（正常） | HARNESS-L2-010と入力source/ruleを照合し、明示model/ruleから結果・trace・unknownを算出する。oracleや未選択callなしを理由に保留しない。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 517,
+      "raw_lf_sha256": "45c99aad8203f297bd75e2f0d8bb832a1116dabc77b1cb0ea59d15e7c39d6358",
+      "literal": "| `CASE-INT-070-07a` | 070/AC-INT-070-07 | HELIXINTELLIGENCE-L2-040送達契約だけ欠落 | send未成立を保持し、既存L2-040の責務ownerへ戻す。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 518,
+      "raw_lf_sha256": "564362958d08374501b1edbfefbbba0008e7b74e5c9b050d1ae0702f3af29513",
+      "literal": "| `CASE-INT-070-07b` | 070/AC-INT-070-07 | HELIXINTELLIGENCE-L2-040送達契約revisionだけ不一致 | send receiptを結ばず、既存L2-040の責務ownerへ戻す。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 526,
+      "raw_lf_sha256": "55fd9bf3e3af1240143948c40e19ee4ffa586be9df666b759c561a5f286aeca4",
+      "literal": "| `CASE-INT-070-07j` | 070/AC-INT-070-07 | 選択connector登録だけ欠落 | 通信段階を未完に保ちCONNECTへ戻す。source identity不一致は07g/07hで照合する。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 527,
+      "raw_lf_sha256": "6ba60419076fa7c37339bf67e802926825767f8f04fadabda8c21efe574deb0f",
+      "literal": "| `CASE-INT-070-07k` | 070/AC-INT-070-07 | 選択connector互換判定だけstale | 通信段階を未完に保ちCONNECTへ戻す。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 528,
+      "raw_lf_sha256": "b6fd491165c20bd6ebda6d1cb6bc09699a237f19ee7e9ac695a59599509639ee",
+      "literal": "| `CASE-INT-070-07l` | 070/AC-INT-070-07 | 選択connector transport receiptだけ欠落 | 送達未成立を保持しCONNECTへ戻す。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 548,
+      "raw_lf_sha256": "47c52e08b2b811cb207b8b48e816ab003a2f965ad84c54ec0a2e48990a06028e",
+      "literal": "| `CASE-INT-074-05e` | 074/AC-INT-074-05 | scopeだけ不足 | 適用scopeをunknownに保ち、LABOへ戻す。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 569,
+      "raw_lf_sha256": "d37d209e01813a1e7f433afdcca730f122167bfa905e8d4df95ebb79dfd65349",
+      "literal": "| `CASE-INT-074-05z` | 074/AC-INT-074-05 | evidenceだけ不足（scopeは一致） | scope一致を保ちつつevidence不足だけで評価適用を成立させず、LABOへ戻す。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 582,
+      "raw_lf_sha256": "a6cb8676e59953b012f3e7fcb1ccd70847671d8ad2b9b63c0845ccf17dd7f847",
+      "literal": "| `CASE-INT-077-05m` | 077/AC-INT-077-05 | 選択receiptのrevisionが要求対象revisionと不一致、他bindingは一致 | receiptをcurrent candidateへ流用せずstale/unknownにし、選択source ownerへ戻す。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 98,
+      "raw_lf_sha256": "e96a2fd03d89356630b5155193094ceb88927924ed5c66807b1c22e7c53aa122",
+      "literal": "selected internal/external sourceを別populationで集計し、CASE-INT-077-03a–03jの各unknown/non-write/owner returnとqualified binding/unknown fieldを報告する。03fは旧複合索引であり独立fixture件数へ含めない。unknown consumer/owner populationを補完しない。"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 124,
+      "raw_lf_sha256": "9b2d2de792ac67a7272d391aad5c4f04ebda88d3766b43d2ad59e4b57874cfeb",
+      "literal": "| `CASE-NFR-INT-069-02` | `CASE-INT-069-06a`–`CASE-INT-069-06q`, `CASE-INT-069-07a`–`CASE-INT-069-07f` | L2-010 packは常時、L2-011 call fieldはcall選択時のみ必要としてoperation条件と別母集団で数え、通常oracle/後段receiptなしの正常を保持。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 125,
+      "raw_lf_sha256": "747fecd5a7d84b1bf76a6aee03b3b37d5455e10e2d6f4efafae90d40c13b9d01",
+      "literal": "| `CASE-NFR-INT-070-02` | `CASE-INT-070-07a`–`CASE-INT-070-07l`, `CASE-INT-070-08a`–`CASE-INT-070-08e` | 17 fixtureでstage contract、consumer、data-use、prediction/actual比較を別集計。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 126,
+      "raw_lf_sha256": "b13526c5c79f62968766dfa2ef6c94d065a1d924feb8a69077d4e1909820aa7d",
+      "literal": "| `CASE-NFR-INT-071-02` | `CASE-INT-071-04a`–`CASE-INT-071-04j` | 3固定正常scenarioと7独立negativeを分けた状態/比較件数。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 127,
+      "raw_lf_sha256": "f8061b57e9d4af79a30cfb496a26d78d4741e304e2063ae8641196e232668e81",
+      "literal": "| `CASE-NFR-INT-074-02` | `CASE-INT-074-04a`–`CASE-INT-074-04c`; `CASE-INT-074-05a`–`CASE-INT-074-05z` | 独立unknown facet 3件と別fixture 26件を別母集団で数える。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "line": 128,
+      "raw_lf_sha256": "4021fa1fcec881f2f7d317afe59b2d562253c3454057ea5ee0bbd237fe1a5c08",
+      "literal": "| `CASE-NFR-INT-077-02` | `CASE-INT-077-05a`–`CASE-INT-077-05z` | unknown補完4、write5、receipt binding12、source fallback/origin5の区分。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 150,
+      "raw_lf_sha256": "64d187cb6b07c4b27e2a449315c5ee7b705d1b53a5a487988ecc62d67db82bdc",
+      "literal": "- AC-INT-062-02 反例: CASE-INT-062-02a〜02hを一項目ずつ変える。permission欠落およびpermission actor/scope不一致はSECURITY、Worker result欠落/別targetはWorker execution owner、HARNESS verification欠落はHARNESS owner、OS acceptance欠落はOS ownerへ戻す。receipt順序逆転は全receiptが存在する場合も順序不成立として検出した該当段階の既存ownerへ返し、実際にreceiptが欠ける場合だけ欠落したstage ownerへ戻す。途中段階だけで修復完了をclaimしても後段成立を生成しない。正常な別stage evidenceは保持する。"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 166,
+      "raw_lf_sha256": "c9aa52a6d72dc834bdb7467ab729680f3a23500afd7138d059c82d4cefa97aa4",
+      "literal": "- 常時入力: 許可model identity/revision/digest/owner/scope、schema/rule版、initial state、finite state/edge/process/load rule、scenario identity、単位・境界・data-use条件、停止条件。HARNESS-L2-010のpack契約は常時照合し、HARNESS-L2-011のcall契約は当該callを選択したoperationで照合する。どちらも既存の入力・受渡し契約として扱い、計算実行主体や結果ownerをHARNESSへ移さない。時間・費用・failure/worker計算の特定operationに限り明示率/単価/通貨/effective time/edge/recovery/schedulerを要求し、不足した数値を作らない。出力はsource/rule-bound trace、計算可能値、assumption・unknown・unsupported・打切りを含むvirtual resultであり実測/設計変更/実resource stateではない。"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 182,
+      "raw_lf_sha256": "0a78f1a53961a609f0e2388cf802ee396d31118fc71e318c979579480b25848b",
+      "literal": "- AC-INT-070-05 反例: CASE-INT-070-05a〜05fを個別評価する。別model/revision/scopeを結ぶ、033 connector/authorityを飛ばす、virtualを実測とする、send receiptだけでLABO受領済みにする、correlation ID違いを同一視、対象source contractがpayloadを運べないために新fieldを黙って追加する各変異を拒否する。source identity/revision/scopeの不備はProduct Core/HARNESSの該当source ownerへ、connector登録/互換/transport failureはCONNECTへ、consumer receipt/契約不一致はLABOへ戻し、source failureをCONNECTへ一律転送しない。"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 201,
+      "raw_lf_sha256": "d37dd9b3ff3d727e76a355085c4b0681c464602166918a69d62573e3f598fc25",
+      "literal": "- AC-INT-074-04 unknown: CASE-INT-074-04a〜04c。source completeness、observation window、applicability ownerをそれぞれ単独にunknownとし、該当fieldだけunknownのままLABOまたは既存L1/L2 ownerへ返す。複合fixtureは独立negative件数へ含めない。返却reason、missing input/oracle、再発行後verification state、母集団/windowと再評価条件をtraceへ保持する。新しいconsumer/ownerは設けない。"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 210,
+      "raw_lf_sha256": "928708b4768bb125f98dc2e1ddae43def21a2694f7e630eb7f66763514fd1d6c",
+      "literal": "- AC-INT-077-03 反例: CASE-INT-077-03a〜03jを一変数ずつ拒否する。unknownを0/neutral/unchanged/observedに補完、internal/external origin swap、未qualified/stale receipt受入、Requirement/Design/Release/Assignment/merge authorityへの直接変更、未特定consumer/routeの新設を許可しない。03fは旧複合fixtureを示す索引であり独立negative件数に含めず、Release/Assignment/merge変更は03h–03jで別々に照合する。原因をselected source ownerまたは該当existing L1/L2 ownerへ返す。"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 225,
+      "raw_lf_sha256": "d9ebe6bf9e5fed0dea6310464c2eb090d0d99aebf85c077ed75eebae4426a66e",
+      "literal": "| `AC-INT-069-06` | `CASE-INT-069-06a`–`CASE-INT-069-06q` | 常時必須のHARNESS-L2-010 pack contractと他の必須source fieldを各独立fixtureで欠落/不一致にする。HARNESS-L2-011 callは当該operationがcallを選択したfixtureでのみidentity/revision/scope/provenanceを照合する。呼出し固有不足は呼出しowner、pack契約不足はHARNESS契約ownerへ返す。未選択sourceは未観測のままにしfallbackしない。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 227,
+      "raw_lf_sha256": "c58e101fdf5f582b675d0c577519edf09aac77aa738b424b540bc874420de871",
+      "literal": "| `AC-INT-070-07` | `CASE-INT-070-07a`–`CASE-INT-070-07l` | 040 send contract、contract revision、correlation、scope、LABO-024 consumer contract/版、source/model identity、data-use binding、選択connectorの登録・互換・transport receiptを各単独fixtureで照合する。source identity不備はProduct Core/HARNESSのsource owner、CONNECT技術failureはCONNECT、consumer receipt/contractはLABOへ戻し、send receiptをconsumer receiptへ昇格しない。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 230,
+      "raw_lf_sha256": "058bf8f5487b4927e5409e411d1eac19c44e2f1edaedb1d1a317b5b2980c8ccc",
+      "literal": "| `AC-INT-074-05` | `CASE-INT-074-05a`–`CASE-INT-074-05z` | source completeness、window、applicability owner、task属性、scope/evidence/evaluation state、比較可能性、revision、task class、恒久除外、昇格、因果能力差、順位、model更新、要求write、ticket/reissue/assignment/dispatchをそれぞれ単独に変異する。scope/evidence不足は別CASE。task/ticketはOS、評価/evidence/scopeはLABOへ戻す。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 231,
+      "raw_lf_sha256": "956c1230722cb28485244c7f2867c9b8fefa551b1ffc166a0e88e4c9a6916d85",
+      "literal": "| `AC-INT-077-05` | `CASE-INT-077-05a`–`CASE-INT-077-05z` | unknown補完4、Requirement/Design/Release/Assignment/mergeへの直接変更5、selected receipt binding欠落/不一致・stale/read failure 12、fallback/reference/origin境界5を個別に判定する。四依存区分を維持し、source qualificationを再実装せず、未特定owner/routeは推測しない。 |"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 109,
+      "raw_lf_sha256": "dc39b4ebc4a89262b8cff3defa00f0638d4b3605ac04cb430736ef83f36e9190",
+      "literal": "- 対応 `CASE-NFR-INT-077-01` はCASE-INT-077-03a–03jのnon-write/unknown/source returnとselected source / unknown / rejected write attemptの件数を個別報告し、旧03f複合索引は独立fixture数へ含めない。"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 123,
+      "raw_lf_sha256": "0b31d3e41411d3c4f48e38f49cdaf31eee2a6a1711c3a374cf21837405bf8806",
+      "literal": "- `NFR-INT-069-02`：CASE-INT-069-06a–06qの17 field fixtureと07a–07fの6 operation fixtureを別母集団として報告する。HARNESS-L2-010は常時契約、HARNESS-L2-011はcallを選択したoperationだけでfield欠落を数える。通常計算のoracleなし/後段receiptなしを正常母集団に含め、指定verificationのoracle欠落をnegativeへ含める。"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 124,
+      "raw_lf_sha256": "ce7516c1ede9dadd2ba3976502d32cb46e08b10f69dd8178e59e8956e33cdad2",
+      "literal": "- `NFR-INT-070-02`：CASE-INT-070-07a–07lと08a–08eの17 fixtureをcontract/consumer/data-use/measurement境界別に数え、送信と受領を一つの率に統合しない。"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 126,
+      "raw_lf_sha256": "f128d7ce4a6b19b00140488198b1eb3647ea153bbfd3cf4e05556100e66a81f8",
+      "literal": "- `NFR-INT-074-02`：CASE-INT-074-04a–04cの3独立unknown facetとCASE-INT-074-05a–05zの26 fixtureを別母集団として数える。scope/evidence欠落を単一fixtureへ束ねず、proposalの正当性やWorker成功率は測定しない。"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 127,
+      "raw_lf_sha256": "a3594ea35a51d434d3a16f155ebd9269903722896f31c5887dbe6be4c13e9eaa",
+      "literal": "- `NFR-INT-077-02`：CASE-INT-077-05a–05zの26 fixtureをunknown補完4、直接変更5、receipt binding 12、source fallback/origin境界5の区分で集計し、consumer/owner未確定populationを埋めない。"
+    }
+  ],
+  "case_identity_verification": {
+    "functional_verification_definition_rows": 261,
+    "unique_definition_rows": 261,
+    "duplicate_ids": [],
+    "new_case_ids": [
+      "CASE-INT-074-04a",
+      "CASE-INT-074-04b",
+      "CASE-INT-074-04c",
+      "CASE-INT-074-05z",
+      "CASE-INT-070-07j",
+      "CASE-INT-070-07k",
+      "CASE-INT-070-07l",
+      "CASE-INT-077-03h",
+      "CASE-INT-077-03i",
+      "CASE-INT-077-03j"
+    ],
+    "new_case_count": 10,
+    "new_ids_present_once": true
+  },
+  "corrections": [
+    {
+      "id": "C01",
+      "subject": "062 receipt order",
+      "change": "CASE-INT-062-02g now changes only order while all receipts exist; the oracle reports order failure and returns to the affected existing stage owner, not a nonexistent first missing stage. Real missing-receipt fixtures remain separate."
+    },
+    {
+      "id": "C02",
+      "subject": "062 permission/isolation return owner",
+      "change": "The permission-missing/actor-scope-invalid cases remain SECURITY-owned; the separate isolation-evidence-missing fixture 062-04a also returns to SECURITY. Worker execution, HARNESS verification and OS acceptance failures retain their own existing stage owners."
+    },
+    {
+      "id": "C03",
+      "subject": "074 unknown facets",
+      "change": "Former CASE-INT-074-04 is explicitly an index; independent source-completeness, observation-window, and applicability-owner unknowns are CASE-INT-074-04a/b/c. CASE-INT-074-05e now varies scope only; new 05z varies evidence only with scope held valid."
+    },
+    {
+      "id": "C04",
+      "subject": "077 direct-write mutations",
+      "change": "Former CASE-INT-077-03f remains a composite index only. Release, Assignment, and merge authority/state are separate CASE-INT-077-03h/i/j; NFR-077-01 excludes 03f from independent-fixture counts."
+    },
+    {
+      "id": "C05",
+      "subject": "069 HARNESS dependency conditionality",
+      "change": "HARNESS-L2-010 pack contract is the always-required contract; HARNESS-L2-011 call fields are checked only when that operation selects the call. A no-call/no-oracle normal fixture is explicit; missing selected-call data returns to the caller, not to HARNESS execution ownership."
+    },
+    {
+      "id": "C06",
+      "subject": "070 source vs CONNECT return",
+      "change": "Source identity/model defects return to the Product Core/HARNESS source owner; connector registration, compatibility, and transport receipt defects are three independent CONNECT cases; consumer contract/receipt remains LABO-owned. L2-040 sender-contract deficiencies return to its existing owner."
+    },
+    {
+      "id": "C07",
+      "subject": "NFR/NV census",
+      "change": "071 NV now reports 7 independent negatives; 074 counts 3 unknown facets and 26 other fixtures as separate populations; 077-05 sum is 4+5+12+5=26; 070 has 17 Stage 5 supplementary fixtures."
+    }
+  ],
+  "case_population_counts": {
+    "previous_recorded_supplement_count": 129,
+    "current_supplement_count": 139,
+    "counts_by_parent": {
+      "060": 9,
+      "061": 5,
+      "062": 9,
+      "063": 8,
+      "069": 23,
+      "070": 17,
+      "071": 10,
+      "074": 29,
+      "077": 29
+    },
+    "scope_note": "The previous correction record counted 129 supplementary IDs. This follow-up adds 10 IDs: 070 +3, 074 +4 (04a–c and 05z), 077 +3. Existing 062-02g and 074-04/077-03f index IDs are retained and are not counted as new independent cases."
+  },
+  "static_verification": {
+    "git_diff_check": "PASS",
+    "six_main_prefix_byte_exact": "PASS",
+    "current_line_pins_count": 46,
+    "fixed_source_pins_recomputed": 41,
+    "functional_table_definition_ids_unique": "PASS",
+    "new_ids_each_defined_once": "PASS",
+    "NFR_case_ranges_synchronized": "PASS by direct range/ID check",
+    "tests_or_runtime": "not run; documentation-only change; old runtime/CI/Bun prohibited"
+  },
+  "limits": [
+    "This is a creator-side correction record, not independent review, PO delegated approval, PO follow-up acceptance, implementation or execution evidence.",
+    "The inherited old-source inventory/pins are referenced through the immutable prior audit; no claim is made that every legacy source was reread for this supplemental correction.",
+    "The inherited prior audit markdown has literal unresolved template tokens; this new record uses exact revisions, hashes and changed-line pins instead and does not rewrite the prior immutable file."
+  ]
+}

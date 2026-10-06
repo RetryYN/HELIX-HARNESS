@@ -1,0 +1,77 @@
+{
+  "body_revision": "49f528d4ae6f64de077936a5f4c742e344a50164",
+  "reviewed_head": "23e597c51f88e6de72e71d36ed27519f19c244a4",
+  "review_base": "5404d0649762edec0475fc7e836a0b988a4f6631",
+  "parents": [
+    "HELIXINTELLIGENCE-L2-060",
+    "HELIXINTELLIGENCE-L2-061",
+    "HELIXINTELLIGENCE-L2-062",
+    "HELIXINTELLIGENCE-L2-063",
+    "HELIXINTELLIGENCE-L2-069",
+    "HELIXINTELLIGENCE-L2-070",
+    "HELIXINTELLIGENCE-L2-071",
+    "HELIXINTELLIGENCE-L2-074",
+    "HELIXINTELLIGENCE-L2-077"
+  ],
+  "documents": [
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "sha256": "989dce01d43479c2dfba31f673c1045f9c039f5ad7cffdfd8652b4008a0581f5",
+      "bytes": 25857
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "sha256": "86a3f1e08d0345686755356426f86a866cbd9018824f13cc593b339b9f415321",
+      "bytes": 209143
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "sha256": "31d9c9d3ce0bc82a6c0ed33758dc43c01a9f56d08abd3e4e7368ce7d9cf5f9bc",
+      "bytes": 58697
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "sha256": "218537c593876ef23f98ba8d729005e299dbc31894e42e87ea05ef2daf8bb100",
+      "bytes": 29558
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "sha256": "baecb44fd82be4814cd4c2d77ad94e911a2b5b240c961dc4a0de0c1cc7dc1c92",
+      "bytes": 704556
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "sha256": "c4fa2eb132472bc3968c0a28c1db0a034332131c40a7c1b24c95c77ea9f97006",
+      "bytes": 53737
+    }
+  ],
+  "opus_comment": {
+    "id": 6007592034,
+    "body": "## review06B（independent review、HEAD 23e597c51f88e6de72e71d36ed27519f19c244a4、body 49f528d4a）\n\nreviewer: Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2619-INTELLIGENCE-STAGE5-06B`。review06（6007572235、HEAD b9d2f0baf）の後に、FV 1行（071-05k）と監査追補 `intelligence-stage5-review05-fable-root-supplement-2026-10-06.{md,json}` が加わった。旧HEADの判定は引き継がず、本HEADで照合した。差分はreviewer本人が全行を読み、固定L2:549–557・L11:239–257と照合した。Fable advisorの委任見解は本HEADに対して取り直しており、到着後に追記commentで記録する（旧HEAD b9d2f0baf向けのFable呼出は本文変更のため中止した）。\n\n### 静的検査（w2619 = exact HEAD）\n- scfctl validate 147/0、stale 0、residuals 0、govcheck ok、`git diff --check` 成功。main 5404d0649をmerge済みで `merge-tree` 衝突なし、6本文main prefix一致。CASE定義306。\n- 監査追補：6本文full SHAが本文revision 49f528d4a（＝HEADの6本文）と6/6一致、`/tmp`参照なし。現行のFR:739とFV:2783の行literalを行SHAでpinし、いずれも現物と一致。\n\n### 差分の照合\n- **071-05k**：選択connector contractのsource identityと既存source ownerを正常入力で固定し、そのcontractだけを欠落させる単独変異。期待は「connection inputを成立扱いせず、固定L2:557の欠落状況として選択contractのsource ownerへ戻す。CONNECTを新たな返却先にしない」。固定L2:557「stale/欠落状況はsource ownerへ」と一致し、固定親にないownerを足していない。review05追記で挙げた（Fable m4）同じ句の論点もこれで閉じる。\n- **review06 m1（review04 Root記録のFR:739 literal）**：監査追補が、旧Root記録のFR:739 literalがpinした264b4e47aと一致しないこと、旧局所差分範囲がca153ee49までだったことを記録し、現行FR:739 literalを固定した。旧監査は書き換えていない。解消。\n- 追補はFable追記の失敗句locator「560」を「557」へ訂正している（固定L2-071の失敗・戻し先句はL557）。\n\n### Opus側判定\n所見なし。未確認範囲なし（review01〜06Bで固定9親のFR/AC・CASE 306・BR/BV/NG/NV・監査・固定親節境界・旧source対応を照合。review03 M1の修正提案の誤り、review04の「L2:639」誤記、review01〜04で見落とした071-02a・069/071の条件付き返却は各commentで開示・解消済み）。\n\n### 委任承認条件の状態（docs/governance/github-upstream-operating-model.md「L3／L10承認の委任」）\n- 条件1（Opus `no_findings`・未確認範囲0）：本commentで成立（HEAD 23e597c51、本文49f528d4a）。\n- 条件2（Fable「承認してよい」）：本HEADに対するFable見解を取得中。到着後に追記commentで原文を記録し、「承認してよい」の場合に成立する。\n- 条件3（6本文bytes不変）：条件2の成立後、作成側が判断記録（`decider_role: PO（委任：Opus・Fable一致）`、対象revision、6本文SHA、本comment ID/SHA、Fable見解の所在）を加え、reviewerが照合→試験merge→作成側Ready化→明示mergeへ進む。本commentはmerge admissionを生成しない。\n",
+    "sha256": "67f6b6b61cbca6b2251aa4763a7b60d354556a74a0fba4521b421e771a211937",
+    "bytes": 3331
+  },
+  "delegation_sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220",
+  "rule_sha256": "eed2b774bb78545ac53c7d55f3ae3ab4e9c4f421b4eaf3ac3bcdbcdd869dd27b",
+  "fable_comment": {
+    "id": 6007655267,
+    "body": "## review06B 追記：Fable見解と委任承認条件の成立（HEAD 23e597c51、本文49f528d4a）\n\nreviewer: Claude（lane `review_merge`、Opus 5.5）。Fable advisorが本HEADに対して見解を返した（前回見解b24095214以降の補正差分全hunk、固定L2:358・L520–530・L544–560・L542・L635–650、固定L11:158・213・239–257・281、該当FV/FR行、監査4件、review05 comment・Fable追記・review04 JSONのSHAを再計算）。\n\n### Fable見解\n結論行（原文のまま）：「**承認してよい**」。「前回見解（b24095214）以降の補正差分は固定L2:358/526/557・L11:158/281/239–257の句に1行ずつ合い、回帰はなく、各CASEは1変異のまま、監査追補は前回m2（review04 Root記録のFR:739 literal不一致）を訂正している」。付随のMinor 2件は「承認を妨げない。記録のみ、修正必須ではない」：\n- m1（069-08d：initial state欠落→model owner）：L2:526の常時必須では「対象initial state」が「モデル表現とschema版」と別項目で、失敗句の「schema・遷移・domain未対応」に直接は含まれない。model内stateの未定義＝model範囲不足と読むのは妥当で、固定L2のowner群内に収まる。\n- m2（069-06o：data-use/authority欠落→SECURITYのみ）：L2:526の該当句はpermission→「Product Core/HARNESS/SECURITY」の3者。SECURITYへの絞り込みはL2-071:557「operation/data-use許可はSECURITY/owner」と同型で合理的。\n\n### Opus側の判断（Fable Minorの扱い）\n委任規則に従い、Fableが挙げたMinorを固定親に照らして確かめた。m1・m2とも固定L2:526のowner群の中での読みで、固定親にないownerを足しておらず、要求の意味も変えない。作成側へは返さず、本commentに解釈として記録する（判断記録にも同じ扱いで記載してよい）。\n\n### 委任承認条件の状態（docs/governance/github-upstream-operating-model.md「L3／L10承認の委任」）\n- 条件1（Opus `no_findings`・未確認範囲0）：review06B（6007592034）で成立（HEAD 23e597c51、本文49f528d4a）。\n- 条件2（Fable「承認してよい」）：本commentに原文で記録し、成立。\n- 条件3（6本文bytes不変）：作成側が判断記録（`decider_role: PO（委任：Opus・Fable一致）`、対象revision 49f528d4a、6本文SHA、review06B comment 6007592034と本comment のID/SHA、Fable見解の所在、上記Minor 2件の解釈記録）を追加した後、reviewerが6本文SHA・comment SHA・委任規則SHA・判断記録SHAを照合し、最新mainとの試験merge→作成側Ready化（依頼どおりRoot Ready前にReady/mergeしない）→明示mergeへ進む。POの事後確認一覧（INTELLIGENCE×Stage5、9親）には、委任2者が同一review lane（Opus 5.5）とadvisor（Fable）であること、review03 M1の修正提案の誤り・review04の「L2:639」誤記・review01〜04で見落とした071-02aと069/071の条件付き返却（いずれもreviewer側、各commentで開示・解消済み）、review04〜05でOpus側とFableの見解が割れた経過を注記する。本commentはmerge admissionを生成しない。",
+    "sha256": "387cc7d84afa16cde39b08370f310e87e9b857303262199f12b2694e4a4ac326",
+    "bytes": 3255
+  },
+  "postcheck_notes": [
+    "review03 M1修正提案誤り・review04 L2locator639→638・review01–04差分外条件付き返却見落としを正式commentで開示、解消。",
+    "review04 Root監査FR739 literalと局所差分範囲の不整合をimmutable新追補で訂正。",
+    "077は選択scope限定の後続PO採択を保持し、fixed snapshot未採択文から意味を拡張しない。",
+    "承認対象は9親Stage5 L3/L10設計のみ。実装・L10実行・release/tag/Issuecloseを含まない。",
+    "Fable付随m1: initial state不足をmodel範囲不足としてmodel ownerへ戻す解釈。固定L2:526のowner群内であり新ownerを追加しない。",
+    "Fable付随m2: data-use/authority不足をSECURITYへ照合する解釈。固定L2:526およびL2:557のowner群内。両者は記録のみ・補正不要と判断。",
+    "review04〜05でOpus側とFableの見解が割れた経過をPO事後確認へ保持。actual modelは正式記録でOpus 5.5、Fable advisorのactual modelは本commentに明記なし。"
+  ],
+  "authority_effect": "none",
+  "decision": {
+    "path": "docs/governance/decisions/helix-intelligence-stage5-l3-l10-po-decision-2026-10-06.md",
+    "sha256": "37dc69d2e60711d05f3a76c6b4fbf403eaef4a86185347d238e0819600b3314a"
+  },
+  "limits": "独立側の判断記録照合とRoot Ready通知後、独立側が明示mergeする。"
+}
