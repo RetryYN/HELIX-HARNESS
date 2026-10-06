@@ -1,0 +1,1103 @@
+{
+  "record_type": "requirements-stage-review-correction",
+  "status": "worker-correction; root inspection pending",
+  "date": "2026-10-06",
+  "worktree": "/home/tenni/.helix-worktrees/l3-infrastructure-stage5-main-publication",
+  "branch": "codex/infrastructure-stage5-main-publication",
+  "target": "PR #2622 / HELIX-INFRASTRUCTURE Stage 5 / HELIXINFRASTRUCTURE-L2-011",
+  "review_comment_id": 6006546472,
+  "review_comment_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2622#issuecomment-6006546472",
+  "review_body_sha256": "841a68a1300bdc57bac0c41063c29aad4e09b261d670cf663ac747c4c8a2ca91",
+  "review_body_bytes": 9867,
+  "base_commit": "8b03606ca7612cc7f721e8bb6f48ef45f38d9103",
+  "body_commit": "94ca245e0360ddb17fe7cbe594e554dd577dbbac",
+  "body_commit_parent": "8b03606ca7612cc7f721e8bb6f48ef45f38d9103",
+  "fixed_source_pins": [
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "full_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "spans": [
+        {
+          "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+          "start_line": 36,
+          "end_line": 39,
+          "sha256": "516d5a3c0b3a90d306fecde07d2a6e082d3e2f8cbc2418eef6b6b4cb8d55abcd",
+          "bytes": 1510
+        },
+        {
+          "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+          "start_line": 55,
+          "end_line": 59,
+          "sha256": "fb34f95e0834de2cedc82bb527e7148fe327b74fe1f144dd6dad4c966e7e30fa",
+          "bytes": 1881
+        },
+        {
+          "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+          "start_line": 65,
+          "end_line": 68,
+          "sha256": "fb038f4ecccccc2b1c6b7783399aef1fedc91de4be7372f55c23532cae55ae28",
+          "bytes": 899
+        },
+        {
+          "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+          "start_line": 76,
+          "end_line": 80,
+          "sha256": "8b8a12f23dc2dc79f71ab3b7742600a2bfbbac856c8c5a64c6f1f9ab547371a6",
+          "bytes": 1024
+        },
+        {
+          "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+          "start_line": 126,
+          "end_line": 134,
+          "sha256": "c6b93eb12b5bfe8deb36485c688ce02709bfa49da40086b0d4b59cf6cdc45f37",
+          "bytes": 2867
+        },
+        {
+          "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+          "start_line": 138,
+          "end_line": 147,
+          "sha256": "ddedb41002d72be9322e99d6f82233d231795f3e9cc167d2bc048c2bbe765791",
+          "bytes": 2565
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "full_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "spans": [
+        {
+          "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+          "start_line": 132,
+          "end_line": 134,
+          "sha256": "8c4bcf6b1e890da0ed830f3da34865460cf1f5aefc26b1de97a50cada16c2829",
+          "bytes": 2378
+        },
+        {
+          "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+          "start_line": 144,
+          "end_line": 152,
+          "sha256": "0ba6651c45516e0140c3c88a8e42ae1775f40c7a9f178a5694b37624517ac995",
+          "bytes": 2914
+        }
+      ]
+    }
+  ],
+  "legacy_source_pins": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+      "full_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "span": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+        "start_line": 74,
+        "end_line": 79,
+        "sha256": "76d413472fb4c5975fc2b2d5e56d66a7bf1538bf6540e186cc2da865c91cf1aa",
+        "bytes": 591
+      },
+      "use": "OPS-R-02 Plan/Receipt distinction; no direct read-only empty-write-set contract or conditional OS non-applicability."
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/product-lifecycle-operations-acceptance.md",
+      "asset_id": "LEGACY-ASSET-F46AB11BD14F2C0469F4",
+      "full_sha256": "19c75a442154b4d17e645143f4adaaa23791a1043caa73178e5d75cc468b7d58",
+      "span": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/product-lifecycle-operations-acceptance.md",
+        "start_line": 26,
+        "end_line": 29,
+        "sha256": "b97936e170c2a450dac6d3c2d618105de2af24cabfaec450818c142f988f4663",
+        "bytes": 692
+      },
+      "use": "OPS-AC-002 separates manifest/plan/receipt and binds before/after result; no direct empty-write-set or L2-005 OS-owner applicability rule."
+    }
+  ],
+  "finding_dispositions": [
+    {
+      "id": "m1",
+      "finding": "BR range/census stale at 76",
+      "disposition": "BR/BV/FV/NG/NV now name 001–086 and seven format bins.",
+      "status": "addressed"
+    },
+    {
+      "id": "m2",
+      "finding": "item 06 owner cell English",
+      "disposition": "Japanese owner boundary distinguishes unknown resource source from CORE design mismatch.",
+      "status": "addressed"
+    },
+    {
+      "id": "m3",
+      "finding": "item 06 table/index/FV inconsistency",
+      "disposition": "016–018 share one pre-mutation storage baseline; unparented size/location removed; network path points to item 02 path-sim-01.",
+      "status": "addressed"
+    },
+    {
+      "id": "m4",
+      "finding": "item 03 fields and 079 placement",
+      "disposition": "Table/unit/079 use production_evidence fields; 079 has an environment-boundary table.",
+      "status": "addressed"
+    },
+    {
+      "id": "m5",
+      "finding": "item 02 owner-term drift",
+      "disposition": "Normalized to resource source owner unknown; only declared design mismatch returns CORE.",
+      "status": "addressed"
+    },
+    {
+      "id": "m6",
+      "finding": "item 06 owner distinction",
+      "disposition": "Unknown resource source owner and CORE design mismatch are separate.",
+      "status": "addressed"
+    },
+    {
+      "id": "m7",
+      "finding": "prior audit m3/m5/m6 overclaimed fixed",
+      "disposition": "Prior audit immutable; current correction and historical overstatement are recorded here.",
+      "status": "addressed"
+    },
+    {
+      "id": "m8",
+      "finding": "item 02 selectors/shape incomplete",
+      "disposition": "FR/FV 004–006 use nested path fields and aligned selectors/returns.",
+      "status": "addressed"
+    },
+    {
+      "id": "m9",
+      "finding": "item 09 recovery state missing",
+      "disposition": "Added recovery_state to normal baseline and preserved it in related variants.",
+      "status": "addressed"
+    },
+    {
+      "id": "m10",
+      "finding": "item 08 startup-request return omitted",
+      "disposition": "Added fixed L2-003:59 conditional OS/INTELLIGENCE return; no request added to fixture.",
+      "status": "addressed"
+    },
+    {
+      "id": "m11",
+      "finding": "OS owner applicability derivation absent",
+      "disposition": "FR item 11 records unit fixture scope as a derivation, not L2-005:79 text; audit compares L2/L11 and OPS legacy sources.",
+      "status": "addressed"
+    },
+    {
+      "id": "m12",
+      "finding": "invented Worker contract owner",
+      "disposition": "Worker contract owner is unknown when fixed parent does not name it; other named owner returns retained.",
+      "status": "addressed"
+    },
+    {
+      "id": "m13",
+      "finding": "scope/environment conflated",
+      "disposition": "Separated infra stage scope and verification environment across connection/operation fixtures.",
+      "status": "addressed"
+    },
+    {
+      "id": "m14",
+      "finding": "059 restore result and 075 normal fixture",
+      "disposition": "Added restore.result; 075 explicitly normal/no mutation.",
+      "status": "addressed"
+    },
+    {
+      "id": "m15",
+      "finding": "read-only write-set/action incomplete",
+      "disposition": "Existing S5-055/086 correction retained and AC/NFR state empty write-set, write denial, and read-only boundary.",
+      "status": "addressed"
+    },
+    {
+      "id": "m16",
+      "finding": "S5-058 normal return",
+      "disposition": "Prior normal-no-return correction retained; unknown source owner is informational in normal fixture.",
+      "status": "addressed"
+    },
+    {
+      "id": "m17",
+      "finding": "old L11 crosswalk mapping wrong",
+      "disposition": "Old audit immutable; this audit remaps 067 to actual-stage inclusion and 077–086 to actual exclusions/environment/operation clauses.",
+      "status": "addressed"
+    },
+    {
+      "id": "m18",
+      "finding": "Worker owner mismatch item16/connectors",
+      "disposition": "Same correction as m12; unknown for unnamed Worker contract owner.",
+      "status": "addressed"
+    },
+    {
+      "id": "m19",
+      "finding": "item10 input/oracle direction and state distinction",
+      "disposition": "029 has explicit baseline/mutation; 030 mutates only classification source while retaining runtime state.",
+      "status": "addressed"
+    },
+    {
+      "id": "m20",
+      "finding": "item10 baseline split",
+      "disposition": "FR item10 and CASE 028–030 share one literal.",
+      "status": "addressed"
+    },
+    {
+      "id": "m21",
+      "finding": "083/084 OS return omitted",
+      "disposition": "Retain single duty mutation; return to recovery design and OS work/change owners from S5-056 operation baseline.",
+      "status": "addressed"
+    },
+    {
+      "id": "m22",
+      "finding": "081 pending unsupported",
+      "disposition": "Use fixed-parent denied state.",
+      "status": "addressed"
+    },
+    {
+      "id": "m23",
+      "finding": "FR/FV restore/067/078 baseline mismatch",
+      "disposition": "Aligned restore, requested_evidence, and excluded WEB runtime baseline.",
+      "status": "addressed"
+    },
+    {
+      "id": "m24",
+      "finding": "FR 077–085 detached rows",
+      "disposition": "Separated 077/078, 079, and 080–086 with explicit headers.",
+      "status": "addressed"
+    },
+    {
+      "id": "m25",
+      "finding": "connection selectors/identity mismatch",
+      "disposition": "042 mutates condition; 043–045 have nested link identity and 045 mutates runtime revision only.",
+      "status": "addressed"
+    },
+    {
+      "id": "m26",
+      "finding": "NG/NV denominator bins mismatch",
+      "disposition": "NFR docs use FV’s same seven format categories and total 86.",
+      "status": "addressed"
+    },
+    {
+      "id": "m27",
+      "finding": "review01/Fable additional finding audit absent",
+      "disposition": "Prior m16/m17 and Fable M1 disposition added here, old audits untouched.",
+      "status": "addressed"
+    },
+    {
+      "id": "m28",
+      "finding": "item 06 network path ref absent",
+      "disposition": "Item06/016–018 reference item02 path-sim-01; topology axes remain item02.",
+      "status": "addressed"
+    }
+  ],
+  "case_id_inventory": {
+    "original_ids_preserved": "CASE-INFRA-011-S5-001..085",
+    "new_id_retained": "CASE-INFRA-011-S5-086",
+    "format_counts": {
+      "unit": 54,
+      "operation": 5,
+      "recovery": 9,
+      "connection_composite": 9,
+      "scope_boundary": 2,
+      "environment_operation_negative": 6,
+      "partial_composite": 1,
+      "total": 86
+    },
+    "fv_blocks_and_fr_rows": [
+      {
+        "case_id": "CASE-INFRA-011-S5-001",
+        "fv_block_sha256": "f92d347c3b3072dc119595fbf26e0c11c9babf3295818273b4bf6766b454ef9e",
+        "fv_block_bytes": 1301,
+        "fr_row_sha256": "545b12577652de2caa982ae210cc834b543b26cc6bd1da65081be4a117de3bf0",
+        "fr_row_bytes": 758
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-002",
+        "fv_block_sha256": "405982b1730bc4028722d40572acce1868ef08855e91141ea8b66a5630a5d5a7",
+        "fv_block_bytes": 1109,
+        "fr_row_sha256": "4f2f0d1f846fde44c0117d2e1aefeb281c34682733ef48fa54dc4c0647d51df2",
+        "fr_row_bytes": 565
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-003",
+        "fv_block_sha256": "738b95792dd48ac11d133560cce0bc5299262ad0fc36634322d4249f6fd1504a",
+        "fv_block_bytes": 1093,
+        "fr_row_sha256": "a8bc293e36644029dd6abfdb17a2b472e7596e6886dd54fb3f637dde527b8983",
+        "fr_row_bytes": 548
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-004",
+        "fv_block_sha256": "d6271127d782c3dc8495291a9b63817032862dea03e7f6a852aae44a2fb90528",
+        "fv_block_bytes": 945,
+        "fr_row_sha256": "71daf99543be63d4fa02d6bb50e7165caa329c8966b094997dc3c6a9c4e946be",
+        "fr_row_bytes": 624
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-005",
+        "fv_block_sha256": "c0d2598d8ede0b8e8ed352262a084418216a3ffecad39f41026324e8f106c84b",
+        "fv_block_bytes": 1035,
+        "fr_row_sha256": "c534e915d5695151f282694e3759a0de2da0a7e06b1980ef1737d79e634d75ef",
+        "fr_row_bytes": 646
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-006",
+        "fv_block_sha256": "affa98aaa0ed64242862d9fb6bc3335c3721e4cc648028d491ea17da11366986",
+        "fv_block_bytes": 951,
+        "fr_row_sha256": "9b06d20e2663cd7223bad7ce9623bd59ce0e857b627adbe0531a68dac56c8050",
+        "fr_row_bytes": 558
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-007",
+        "fv_block_sha256": "4f6a2cd313793d080a86c17cd11322f917cedea56ff89ff7b7f1b2f501c6fbc1",
+        "fv_block_bytes": 2194,
+        "fr_row_sha256": "eeda5f0972279e6c6c63050935fd8f55f2c00b6e1a631df4e5f42c4f502d5ae1",
+        "fr_row_bytes": 1170
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-008",
+        "fv_block_sha256": "810830b0c1dbaf4aa98c2f10b701bc9ec0ae78abedc6b72af36aa42922153c4d",
+        "fv_block_bytes": 1886,
+        "fr_row_sha256": "d8cec97b95beac2cc437cb88c2959cf61c2bb027ad537dd690168664d8758cc7",
+        "fr_row_bytes": 922
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-009",
+        "fv_block_sha256": "c5c3c9de67373f8d37d743fb0c9562a21415e72c9ffc9f1d652d482f9ea620b7",
+        "fv_block_bytes": 1910,
+        "fr_row_sha256": "6776af338e609ae18fce5a0c2eec01de1adf674727153c34d6aeea072efd3bbd",
+        "fr_row_bytes": 945
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-010",
+        "fv_block_sha256": "4ffc0614f6f3368e8946dfae6248b6b5642cab7a770233e5357ce55949fa4a5d",
+        "fv_block_bytes": 1280,
+        "fr_row_sha256": "79afb6dd5504b8681f9548cbf96c523bbaf474b816400cb19519e691be0ca76d",
+        "fr_row_bytes": 705
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-011",
+        "fv_block_sha256": "b94cba43705a785e9f846c54444398bb8a13b10352db1b71b756ca15880b3145",
+        "fv_block_bytes": 1186,
+        "fr_row_sha256": "fe15a7392f40f27bc246ce5f8ad17e373108bc8b4063e617b5b27e75d0fb3e30",
+        "fr_row_bytes": 609
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-012",
+        "fv_block_sha256": "c3a0af5662cd5dc5519491b60610227b7b6e6898979c191091cb22cb34622190",
+        "fv_block_bytes": 1133,
+        "fr_row_sha256": "d31dbf7f0fbf79b5f7218e5d752fda3a000d81cf00998c7daf232a7f39daef74",
+        "fr_row_bytes": 557
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-013",
+        "fv_block_sha256": "21e6212a161dc903b26a38da03d0bfd4b5583f9066b5af5bc2536f64dcab6d74",
+        "fv_block_bytes": 1358,
+        "fr_row_sha256": "a2fc422d5414db3ca7a3f454aa01073f56a8312a836aeba181e622b9b201667c",
+        "fr_row_bytes": 740
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-014",
+        "fv_block_sha256": "43e3ade4b9ccd18fe82a1d84629c25de283a021b2f1d3471ea5efe4e78945ad0",
+        "fv_block_bytes": 1216,
+        "fr_row_sha256": "1a73460835d2e57e48964504972cbb197f56f7988cc66f81d128536ea2c3f329",
+        "fr_row_bytes": 597
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-015",
+        "fv_block_sha256": "d6045eb93d5db2232e206faf59efcce976ca0dd3378afeec4c765acaeec6e0b1",
+        "fv_block_bytes": 1211,
+        "fr_row_sha256": "236f676fe1b888c14c5ac9ab28fecad823d75279fa1a42fdc910d286f6d5a48d",
+        "fr_row_bytes": 594
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-016",
+        "fv_block_sha256": "a5c544db51446cdfbbac3d32cfbd5529f877328a8339c677f83cf0beef60fc87",
+        "fv_block_bytes": 2195,
+        "fr_row_sha256": "dbb5091daab798e6934f278d191229fd42d42c67938d912b4e8e447544d197d4",
+        "fr_row_bytes": 1252
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-017",
+        "fv_block_sha256": "339eda0886fac4a83bac51b558f074e47b145360c23cf9161d85b0d7f57bfda1",
+        "fv_block_bytes": 2011,
+        "fr_row_sha256": "a1c40bf511a399e4488ff549237e62345e51fbc2d8d261e74869e8c7c7127330",
+        "fr_row_bytes": 890
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-018",
+        "fv_block_sha256": "b5af19d0810ec18c5faf74ad1e57eef4c2a25b5e21cbcd2d4b477a89b0f07773",
+        "fv_block_bytes": 2062,
+        "fr_row_sha256": "e1d3a2f1a2c69d64915709454fb58bce48d6546eb3cb9500e3054b02f49c02a8",
+        "fr_row_bytes": 936
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-019",
+        "fv_block_sha256": "d977e86e1e90ff24cc1718a08a2e12284977abfb406ac3d50250db4b6c0d5002",
+        "fv_block_bytes": 1056,
+        "fr_row_sha256": "4480be128ca3d1a0a9aa4e2c0d7dd63a262c377fc18b1ca1a79eafa5751ba778",
+        "fr_row_bytes": 638
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-020",
+        "fv_block_sha256": "6b4332be7165716d2f7e09fc6ad77d3b006b36f7ef0a1d740c3bc5c15652e9e8",
+        "fv_block_bytes": 1020,
+        "fr_row_sha256": "3df23d0c49561af4822314d7fe223460bbba2f5afc57460d7c2ed348fe4b4b74",
+        "fr_row_bytes": 458
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-021",
+        "fv_block_sha256": "9b1d7940f55f7e3d552e70c5350e14ee97574e09c5efa6584c5fe0df6121933f",
+        "fv_block_bytes": 997,
+        "fr_row_sha256": "2a7df32eb54eb4ec4def4d8a6430257cc0de186e2664ccc133f120c9fbed5db2",
+        "fr_row_bytes": 478
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-022",
+        "fv_block_sha256": "3702233073cca5421856223842ca1b446d7d8ae1941b1f38034379f4081a93ae",
+        "fv_block_bytes": 1675,
+        "fr_row_sha256": "7fc45b56bf84bdb053e7d1ff48fa32f19f49301462ffd175bb62fcb549206c8b",
+        "fr_row_bytes": 1052
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-023",
+        "fv_block_sha256": "e03a4d6625c063494ab2e1268103fb9b786d5f4f44a34122c091331646c12ded",
+        "fv_block_bytes": 1573,
+        "fr_row_sha256": "6a6889780416f0799a6851a94727e5442d1adaec8f1d8898078278768dfb06b6",
+        "fr_row_bytes": 742
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-024",
+        "fv_block_sha256": "8188fa5661502605546f423412907442d62afa7be56e9c14d3913ccc5284c875",
+        "fv_block_bytes": 1531,
+        "fr_row_sha256": "755d66522963ef65a781ae28e7b41625f0bb173d9f1850b7f6f08e7799afd876",
+        "fr_row_bytes": 697
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-025",
+        "fv_block_sha256": "1b63d8e14a6967433fb926db1ab58e16b78f359287a9f7f8c57c6474bf8d0773",
+        "fv_block_bytes": 1252,
+        "fr_row_sha256": "e70e152dab968eae6e615cab6ed1decaa9052efbfede2418741a3daf3e72b6ca",
+        "fr_row_bytes": 678
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-026",
+        "fv_block_sha256": "73265ed3ea5258cd5d1094563e6672a879c1c0f52889350d154b581ca8ba48a7",
+        "fv_block_bytes": 1151,
+        "fr_row_sha256": "d3fb9fd8b0b2840ba84492d1d5dd4909ecc3a38943e2040bcb7d98963b0f6735",
+        "fr_row_bytes": 573
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-027",
+        "fv_block_sha256": "a567f263724709f8092835c83dc571038d9b8b81a795b877ca8ede12e4d52e3d",
+        "fv_block_bytes": 1072,
+        "fr_row_sha256": "74a92041ef2740dd0d9d674a92c252e8aeff86c70d8b8527eebbdec38d185b89",
+        "fr_row_bytes": 497
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-028",
+        "fv_block_sha256": "c499e4cdeb8b83be6f29c7dc47b3253030ba13a3ac1c7ded3bec090ae5b00f88",
+        "fv_block_bytes": 1174,
+        "fr_row_sha256": "896ccdaf9c17ba79732464dc8e592871fd1dc304cfedb4df04392654d98e5d7c",
+        "fr_row_bytes": 675
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-029",
+        "fv_block_sha256": "ecb8000fe6fbd230bfeb9a3b5826ee2696e46de25ea65457bd70a800c47c9fd7",
+        "fv_block_bytes": 1165,
+        "fr_row_sha256": "673f053ceaac879b92ff79dbddf6d3a9bbad987878ed17f5d0cf7d33b5dde9e5",
+        "fr_row_bytes": 477
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-030",
+        "fv_block_sha256": "f3688eea3f19aaa7f34efbefca7c50447c623bfc4d0dfef3bd6e081db34cc1b7",
+        "fv_block_bytes": 1204,
+        "fr_row_sha256": "7ba1591ab037324a5f59597745cbb1487c67e12f8cf9fa2d330c523ef4be8e1b",
+        "fr_row_bytes": 693
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-031",
+        "fv_block_sha256": "7a8163da8d044ee6d990d46e5518f07d163f6362f8ede75940fff7743f8e9c0a",
+        "fv_block_bytes": 1379,
+        "fr_row_sha256": "f3bf41a16211be9c20d325043e07910527678a12c3720645ec9ef52ff77f52a2",
+        "fr_row_bytes": 923
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-032",
+        "fv_block_sha256": "98f23b177765d359512dd953e56d917e3874156bbb0c1a1811e669ce59939fe2",
+        "fv_block_bytes": 1234,
+        "fr_row_sha256": "a81ca908fd39a2ce0c5f0ea79df0333b51e1d47c63635f3abff935de5cb29d98",
+        "fr_row_bytes": 777
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-033",
+        "fv_block_sha256": "921d211ca0a26cc1ebd63bf134d2a58a60fd376ccd641b2474a57883fb4ac276",
+        "fv_block_bytes": 1221,
+        "fr_row_sha256": "85eed5e53b7aea14e43857b50df3403dcab6e73911df79facfdf37832a9c14a7",
+        "fr_row_bytes": 763
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-034",
+        "fv_block_sha256": "0d6c23e6012344d6c7e3d753e460b2cb0a0364e7bbdf79d1dfd3cc8dbd58bc41",
+        "fv_block_bytes": 1137,
+        "fr_row_sha256": "fb2854eaef662838543dc51da9b892212c13ff34af94462c63e9d957502053bb",
+        "fr_row_bytes": 652
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-035",
+        "fv_block_sha256": "c329fb3afac4b65958b08931cced652997303d0ca3574c9b575432162f2a4313",
+        "fv_block_bytes": 1023,
+        "fr_row_sha256": "95be5694163976d85197a62145689ab14fd3e7fb8819c3c0bdbf0ecf600f7f27",
+        "fr_row_bytes": 536
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-036",
+        "fv_block_sha256": "03d3d01c2614bb351dbca8ac56f89353908cf6d5e55fe0c1ce0f145855ddd972",
+        "fv_block_bytes": 971,
+        "fr_row_sha256": "8354177b731163c5e6fd148f2cfa6ef80cab2a5a5e0d07aec94b604542f8c4a0",
+        "fr_row_bytes": 485
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-037",
+        "fv_block_sha256": "6408e5dd83dec36684a883e1470206b44df512776ba717848be69deced5be32d",
+        "fv_block_bytes": 1008,
+        "fr_row_sha256": "94c3d58c643c4ace090c51be80f2fbcd649cbd61957e958f64e9067e0ea1f6ec",
+        "fr_row_bytes": 555
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-038",
+        "fv_block_sha256": "708c169e634258bd8c2a72254570b26c74a9d826ec0c03bbd107f9166905f012",
+        "fv_block_bytes": 912,
+        "fr_row_sha256": "3bb2f0671b6ff155f640e069487b2c905649433087e682b5eb56b5265a42d6b7",
+        "fr_row_bytes": 457
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-039",
+        "fv_block_sha256": "cdf6b4c927392c9142c8eada38f5e1854cac7132f60469b74789cda4155cc3c9",
+        "fv_block_bytes": 887,
+        "fr_row_sha256": "d96f72324d94c8d3f206490a936a96874b1d22a831ea210c31ae4144fd8327ec",
+        "fr_row_bytes": 433
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-040",
+        "fv_block_sha256": "f316d307d665834b44e9b3efb5158b85e06fd36e306d849bf7e0f12c0687bd2c",
+        "fv_block_bytes": 1070,
+        "fr_row_sha256": "f8c6e52bee5c2e690611e436e1c2e6ada5c71f692d9ea2ed061b589a99565b6f",
+        "fr_row_bytes": 643
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-041",
+        "fv_block_sha256": "18e4a6ae2333d610db572629fb62289142cd96c5b714d5902286e7de3ce6cda6",
+        "fv_block_bytes": 849,
+        "fr_row_sha256": "e532a6967e2724565599c8706a57ee4d779ed74c04df6f5f9eb923707e306c0a",
+        "fr_row_bytes": 399
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-042",
+        "fv_block_sha256": "675c816d6bdd80f7e6ad7a463c16a0aec712482383b54da52c59d4c573c55da4",
+        "fv_block_bytes": 877,
+        "fr_row_sha256": "ebaa8d5557ae5b5b321778bbedaf0527829106b246bfdbde0016fdfe08743467",
+        "fr_row_bytes": 428
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-043",
+        "fv_block_sha256": "5bacec8abedadf1a77c7773da5f712a9a9cd98f2f4e75023cf26526144c1f81e",
+        "fv_block_bytes": 1175,
+        "fr_row_sha256": "a12769f8ce650bbba8f8c51196ee6fb466feeedca62fb11e17c84c7bfbff0597",
+        "fr_row_bytes": 634
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-044",
+        "fv_block_sha256": "bb38db651728cdb361443a8927f50933e153283e3a8d25f8a195b686122bc4cd",
+        "fv_block_bytes": 1028,
+        "fr_row_sha256": "74ed33f6cd0c05a67bdc46e6e4be5cb970ae66c16a296e0b4a3bfa738184ef63",
+        "fr_row_bytes": 486
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-045",
+        "fv_block_sha256": "3f9f663c5c2f8c2dc520d41fd65ac7b86d997de74a822a013db45ebea5f2f2bc",
+        "fv_block_bytes": 1053,
+        "fr_row_sha256": "029b621af026033f1a7ecd6214fe513c030e95cedb4218ab535c42bf25675954",
+        "fr_row_bytes": 510
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-046",
+        "fv_block_sha256": "65258340c63c87fcf4db183e11d17a73c0ca1cca2883d77171f5bd4843c9d662",
+        "fv_block_bytes": 1284,
+        "fr_row_sha256": "82057ba993ab93d530298ca3a1941a470e33668037d35a2104f48dd7f39fff8a",
+        "fr_row_bytes": 780
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-047",
+        "fv_block_sha256": "ec83ca4d88173cd2af3dfec7ed79d96b6c13d9ba621fbca881d8c0830ca354f7",
+        "fv_block_bytes": 1195,
+        "fr_row_sha256": "57c474b43c60220ae3356979d811acfe872323c2f8f7d3ddd681aa64860c380d",
+        "fr_row_bytes": 508
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-048",
+        "fv_block_sha256": "8dfcd5577833bb3569012b0501ba7fba5339fbd76b88d0e26023e0ba64a69e78",
+        "fv_block_bytes": 1197,
+        "fr_row_sha256": "4329bb8f26e74448add1da762b12e809b2777a7c7e628e1d499162ad0e7545ba",
+        "fr_row_bytes": 536
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-049",
+        "fv_block_sha256": "dc89bee1b517e8d80f4322aedd78d779e7f0e5156fdb3c9b97221ed21e8dead1",
+        "fv_block_bytes": 1335,
+        "fr_row_sha256": "e5073f1b3e37149c893f285b736988bf30d9455c43910b64894857b245bd5b32",
+        "fr_row_bytes": 744
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-050",
+        "fv_block_sha256": "f401d6f06e43ffa6f20f905ea5965dee64b7cd35b110ca9372a9455ed8dd4400",
+        "fv_block_bytes": 1200,
+        "fr_row_sha256": "4a1c4262d9c23995f06963bfa16d54420663725e741a9698cc0156d03828640a",
+        "fr_row_bytes": 607
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-051",
+        "fv_block_sha256": "d108cd5a54c42833d394fcf7f3efe75456203a777aa4ac2f4f7050c13423ce72",
+        "fv_block_bytes": 1201,
+        "fr_row_sha256": "054885e370200b047002e747beceac66c4ab2e2ce26878f05d336534835efb14",
+        "fr_row_bytes": 609
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-052",
+        "fv_block_sha256": "c474c6a03190db121e33992dd9e35a91e8ed9e195888187e42005cb185006105",
+        "fv_block_bytes": 1125,
+        "fr_row_sha256": "c1d1c19fb9e496fe9fe54e68e275c4952887cc15cf267baf15f7b83007b3aecd",
+        "fr_row_bytes": 662
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-053",
+        "fv_block_sha256": "0cfab86e78336858824c5b7f7debdfd05ad658e88bf23e083d565a902c0392c3",
+        "fv_block_bytes": 999,
+        "fr_row_sha256": "45dc1b6a1e2dea76fcc3a98cb4cf2658b6fa982ae5c35af4891ef583e3b69e10",
+        "fr_row_bytes": 535
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-054",
+        "fv_block_sha256": "19ae8e17608925ec2b0c94df25b520d095958cfce8953686e650014c2f50d9aa",
+        "fv_block_bytes": 962,
+        "fr_row_sha256": "c5289da6d2915fbb85ba5eda28b48dc3968944a61c4f906e06e5882dca5c61a8",
+        "fr_row_bytes": 497
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-055",
+        "fv_block_sha256": "b2a63d50c822451902f86e9ec3a903097d88250481f61ffcbb7836467103f6f0",
+        "fv_block_bytes": 2536,
+        "fr_row_sha256": "fd5978061922d7eb7b30dd346e5145047c44675895a4d3fc71a12d11dcaaa1fa",
+        "fr_row_bytes": 1043
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-056",
+        "fv_block_sha256": "e05b4b06b4aa9a81bede474c5cb5433e891041e255fb8e74a25dbb3d7a006386",
+        "fv_block_bytes": 2516,
+        "fr_row_sha256": "f26bc93742ea82003d76350701ddf00688d65a41f94938d2ef89bc854a33087c",
+        "fr_row_bytes": 1014
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-057",
+        "fv_block_sha256": "129c14e2d6627adaf83ba1adb47c02b880358bc589cd239d5c997cb3589048c7",
+        "fv_block_bytes": 1417,
+        "fr_row_sha256": "c8de71c61fae3031bfef8c0d1517db732637a6e0c4bafc85d107a6a2f8997bc4",
+        "fr_row_bytes": 681
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-058",
+        "fv_block_sha256": "a77ababaec89da2d0a56c44862fc33d0355368b4dc5a3cd8466bb2510a1e966a",
+        "fv_block_bytes": 1323,
+        "fr_row_sha256": "eb818ed2d72be8302a3c6ae99b5a15dd77d6a7f3997359d4184551f644fe3d5c",
+        "fr_row_bytes": 781
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-059",
+        "fv_block_sha256": "90677383ce2f8e3446b71376843d8c33d139965e007586b79f74ab96e4e97140",
+        "fv_block_bytes": 1106,
+        "fr_row_sha256": "d008370661d6f918a16a0c7d905bbc063e6c1e6531baa6369aeca714da533f3c",
+        "fr_row_bytes": 746
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-060",
+        "fv_block_sha256": "5d33ff074ee8f6514be25bf65031999fdd5fceacee2c0b935bfc49d5b7b9ba68",
+        "fv_block_bytes": 1105,
+        "fr_row_sha256": "6ffc4c69b4dbf8e8d0bbf84a3c36e404718d7af166013a40a3b39b1e37d5f6bc",
+        "fr_row_bytes": 752
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-061",
+        "fv_block_sha256": "ea026ae4023ca40ee31411237889925f6d94a3c0065c18d9a5977037e1692621",
+        "fv_block_bytes": 1070,
+        "fr_row_sha256": "ddea97cdf256632d32c0afd6856b91d3417aee41d34ff6d9900b7cde487caa44",
+        "fr_row_bytes": 803
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-062",
+        "fv_block_sha256": "1ab52fae77ff67a73a9ab2bbb63a6ec2296648a7da6bd32bc197872e6d3f4d34",
+        "fv_block_bytes": 841,
+        "fr_row_sha256": "d4567d46941f403e0a91c2553e662ae87b2e05dd8ad362e5a04a5ec6d2b54050",
+        "fr_row_bytes": 545
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-063",
+        "fv_block_sha256": "35dbeb585973473fb82b2b0cf49ef97e350ddf38280d6755dbf7e697502fb7e9",
+        "fv_block_bytes": 910,
+        "fr_row_sha256": "8178bd9cdbf252e114fa65ab4c4aaea7d2dc0b640973a0769fb90517dcca8fb1",
+        "fr_row_bytes": 596
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-064",
+        "fv_block_sha256": "1f04843e7a455336deb84f599cc7519816cd61f1e70b3818d116150c15d04659",
+        "fv_block_bytes": 851,
+        "fr_row_sha256": "e38b972df54c038b07fb9b7374e21bb2bfe2e6161ef476f3cedf900e30b11cec",
+        "fr_row_bytes": 617
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-065",
+        "fv_block_sha256": "5199491127d2ca7c091a08e0742252fbf7fa68ca764e81df9de529323ffdfb84",
+        "fv_block_bytes": 800,
+        "fr_row_sha256": "dcbda09a339278c56da91771e3cac0dd7624453efc24b4362c0f2bac60e102c4",
+        "fr_row_bytes": 496
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-066",
+        "fv_block_sha256": "384643c9ce9095bbf204558425f8f2871df658ac334653934d5524d0a277ecfd",
+        "fv_block_bytes": 766,
+        "fr_row_sha256": "c81a7082363fd38d5ff689d1fad5bcf9c32a02132ebce0336d6a69c1ba604703",
+        "fr_row_bytes": 485
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-067",
+        "fv_block_sha256": "5c7c988493db69bf50f58aa3f593de58b497fa5beec645f39f543fe3485feb72",
+        "fv_block_bytes": 792,
+        "fr_row_sha256": "c1644133351668a69cdc2c71b407bede84c68e63c5ae884ec2db5e60edcdd7e7",
+        "fr_row_bytes": 464
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-068",
+        "fv_block_sha256": "e606e0e85adf4206c5a4a44918e4c5d2befdcd6c9efd5e6e8f2d6b31f9bc2ef2",
+        "fv_block_bytes": 766,
+        "fr_row_sha256": "75dc16af8020d0075d7abc8c28793410cdd24f45f4b9fe47fd5f5be78b19291d",
+        "fr_row_bytes": 326
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-069",
+        "fv_block_sha256": "7b8779df03d66f54096e423cc0708c0dfdc8830960c3a27df3c53fd29b51b6ba",
+        "fv_block_bytes": 995,
+        "fr_row_sha256": "f093bf682612f77036c6896bd6dbeb5471c061503276379cb3509f90b2c71a8c",
+        "fr_row_bytes": 437
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-070",
+        "fv_block_sha256": "92dd8ed125a2366cf39dbe3a9ae7927735024d5cefe4965b823a9926c0edd799",
+        "fv_block_bytes": 869,
+        "fr_row_sha256": "6b42328c4a7853ece8dea574ecf8449bd199e95a386eff8d1bb1fbb690ef3289",
+        "fr_row_bytes": 366
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-071",
+        "fv_block_sha256": "e3a60934a0a20006a7d98b480ea865faf24499ca47189379d382d3ea27b27e39",
+        "fv_block_bytes": 924,
+        "fr_row_sha256": "daf14bbcefcbf63cad4ca520845495265e40e1714ed19bef1eff63a929433794",
+        "fr_row_bytes": 392
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-072",
+        "fv_block_sha256": "5f9c819b88e65c44914d9dc57806760c769d236d761886f02822633c8f5d4df2",
+        "fv_block_bytes": 2390,
+        "fr_row_sha256": "75dc16af8020d0075d7abc8c28793410cdd24f45f4b9fe47fd5f5be78b19291d",
+        "fr_row_bytes": 326
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-073",
+        "fv_block_sha256": "84024a7b81aa139236813f3a1b87c3e0677811440a9e01f181b26d79e7086175",
+        "fv_block_bytes": 855,
+        "fr_row_sha256": "dfe8c47fb3e68beec11af9403a59f5f533f09c1f92cc0ed99151fe003df205ce",
+        "fr_row_bytes": 385
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-074",
+        "fv_block_sha256": "27cef7c1e429296cc20a8c9386517960a9433cd9ca76eac3cbcb8f7c9e991d9c",
+        "fv_block_bytes": 1231,
+        "fr_row_sha256": "d1b83222e9fdb924df954aefbb62d7d2648bd468516cacf80cf8056d0fd4771e",
+        "fr_row_bytes": 572
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-075",
+        "fv_block_sha256": "ce59f0666b8da4af760090b9db441cc06bbc366ce53b0e6e6934e5cf1cf24afc",
+        "fv_block_bytes": 1053,
+        "fr_row_sha256": "5822fb843efc1010595974a1bfbd245e59d3fba6609e4268e6e4f3f6790989b4",
+        "fr_row_bytes": 408
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-076",
+        "fv_block_sha256": "b2c06790cd3e7cec1c38a538aa4f7ec37617bdd48129c6eef7b02288145c5196",
+        "fv_block_bytes": 874,
+        "fr_row_sha256": "08b206e0751e5f8501ad3f5d8c51cfd484e1fa19c060bfd6a50bcdcbbc9902c1",
+        "fr_row_bytes": 967
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-077",
+        "fv_block_sha256": "d7b4bdce31ce9dfbc5c128fb58b34afce9e664b1579e53bfbd3c0353f29ae1d0",
+        "fv_block_bytes": 671,
+        "fr_row_sha256": "de02342c2a3ed42d5cc8ff27431aaf96670bb903f89f6e2cf5caa0da70acb8fa",
+        "fr_row_bytes": 316
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-078",
+        "fv_block_sha256": "8f04582b10ba383e6b5e8d3e7bd3d231df3a8e9e7b13be84ebcf4dc5952c31b1",
+        "fv_block_bytes": 739,
+        "fr_row_sha256": "5ba312a1803e0a431dff5f0f773e95dc74e093ed869a318569a10c57a40250bd",
+        "fr_row_bytes": 377
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-079",
+        "fv_block_sha256": "ae5995179309f98baa0d9339ad4d4771953b4aed7c8cb39f39d07993be662901",
+        "fv_block_bytes": 721,
+        "fr_row_sha256": "5fd7d472d52978b303c59293e7be7c3952b9561bd86f9ece6c41a8c929987258",
+        "fr_row_bytes": 384
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-080",
+        "fv_block_sha256": "fab7ae3bef842cee90b207f445480b9cfcb7130ec936de1d159862e6547c742a",
+        "fv_block_bytes": 755,
+        "fr_row_sha256": "3b8c848081d723e881b2190bedb6761b9dad2955bc2bba4292ef51ebae661dca",
+        "fr_row_bytes": 280
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-081",
+        "fv_block_sha256": "630f1d41df3d363e2f27d992a8a679e7a249b6700c5f9ad4b4b313c82307a2ff",
+        "fv_block_bytes": 691,
+        "fr_row_sha256": "ddd3b808a608e0431948a9faeee52eeaf6e1adf6d7c7dcc8f77b8cb89fa97c74",
+        "fr_row_bytes": 311
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-082",
+        "fv_block_sha256": "37b9e134d7345322e26d7bc5aa5ef179da8ce3de33e575c83eb422407eb9b283",
+        "fv_block_bytes": 587,
+        "fr_row_sha256": "47ee4b756bf7bddf617912981a17ea096641bb327c5f07ab3fe11242d45b9460",
+        "fr_row_bytes": 315
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-083",
+        "fv_block_sha256": "d2a40ea20294afa1bb11cd81e246daea92fd8c02557680cf9745904ffc028f51",
+        "fv_block_bytes": 991,
+        "fr_row_sha256": "b5eff8a37ea8b77b7c274249c2ba36ec2b0c4542ef5dfdb21b47369d95d98d3e",
+        "fr_row_bytes": 469
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-084",
+        "fv_block_sha256": "e68b102fe6e7f4fa3fad27f2981405ea699b7fec6e3ce3f75485ef46979c333f",
+        "fv_block_bytes": 980,
+        "fr_row_sha256": "4d986366893e5623f8db8151a84969d4081a2b554f23771f97fde15f893d6484",
+        "fr_row_bytes": 471
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-085",
+        "fv_block_sha256": "0a1b13b6008a91369548e51356303bee49df8d9de51a1d6e4aa5f3de1291806a",
+        "fv_block_bytes": 1349,
+        "fr_row_sha256": "bb63974105e5907324b33390eb70a4b0e8781921126351381bc2c43155b8c86f",
+        "fr_row_bytes": 629
+      },
+      {
+        "case_id": "CASE-INFRA-011-S5-086",
+        "fv_block_sha256": "a8f914e21dc9ac4fb8ff475dae6d71c32b94cf949f00c0f4e94432751b744fcd",
+        "fv_block_bytes": 1178,
+        "fr_row_sha256": "b144f501ae73a760c9a48e326f76f25023dfca5c1b0e0617bb66c69dd36c2c8a",
+        "fr_row_bytes": 658
+      }
+    ]
+  },
+  "six_documents": [
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "full_sha256": "0b97b2407b57aeae6edd54108b913249e195d142c57fc2d626c09a995c435621",
+      "bytes": 140478,
+      "stage5_prefix_sha256": "10ee3b56ce4c133b9e1cf671be92ce420ab687095db5a5cad6b9e1a81363c7db",
+      "prefix_equals_pre_body_commit": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "full_sha256": "4abc22f0a7f5f4b6b16c7307de1bb5c78c2ce18b115fa12d6be01724ad53b767",
+      "bytes": 215840,
+      "stage5_prefix_sha256": "c39d213a288c9f445a59733167292eeacbdc86e9d932ea553d8e70ae3068f26d",
+      "prefix_equals_pre_body_commit": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "full_sha256": "429291b0cec7dcf63271b4aef419120476e70bff9054002aeb872e888c8eb328",
+      "bytes": 5634,
+      "stage5_prefix_sha256": "98d0b120fb8901ba94f682b4a294c26d119f9381d65b5c05ab93f2e21a3f23e6",
+      "prefix_equals_pre_body_commit": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "full_sha256": "c0c583732c75ba2545e0c3229f98ea4d280c82dfedc449a9ee6be0fb77f0a79f",
+      "bytes": 4607,
+      "stage5_prefix_sha256": "603eaa73371530bdcb2dcde43617cc3346400e6e58126f55692c44c3a7523709",
+      "prefix_equals_pre_body_commit": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "full_sha256": "7a6e9bd1d2125805791756c031a1a9228e7e3467c10b35bb473245338284ad75",
+      "bytes": 19668,
+      "stage5_prefix_sha256": "fbcf1201a6890cc2a8a58ac6c096e598e4deea4286ba4cfb2592572f51078be8",
+      "prefix_equals_pre_body_commit": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "full_sha256": "4e8d94b7515e87da8c809b26d190e1e08e7d21060f1c6fdefbfc9d75ca65145b",
+      "bytes": 17717,
+      "stage5_prefix_sha256": "1c57b6768c2dfc947c59e5261885d54da40cfb7fe271a4f686b9f755dfecf189",
+      "prefix_equals_pre_body_commit": true
+    }
+  ],
+  "historical_audit_corrections": {
+    "old_audits_unchanged": [
+      {
+        "path": "docs/governance/audits/requirements-stage/l3-l10-infrastructure-stage5-011-root-correction-2026-10-06.json",
+        "sha256": "34de4d3741b57306a65c78cc54f865663f32f28acac0fc8242f9c5a5e54348d1"
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/infrastructure-stage5-review01-root-correction-2026-10-06.json",
+        "sha256": "c0ab8f646d6d8fa37f34a6aea09527ec29b4dcd90e22f0d163e0dae967da0da6"
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/infrastructure-stage5-fable-m16-m17-correction-2026-10-06.json",
+        "sha256": "cfeb4043a904bd3f0676ddfed019562e93f30ad704f6f6a50192e41a7c140d92"
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/infrastructure-stage5-review01-root-correction-2026-10-06.md",
+        "sha256": "ad3e13e847abcb8d4d9f6456abc59908dbbde18fcee2f0b2027b601ae8dd2af6"
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/infrastructure-stage5-fable-m16-m17-correction-2026-10-06.md",
+        "sha256": "046a8333a0f2389a4b83c3c914ec0e253fe5575cc016fd26e13a2bd8a1ffa46c"
+      }
+    ],
+    "review01_m3_m5_m6_claim": "Prior root/review01 audit dispositions are historical; this record corrects their prior fixed claim against current body evidence without rewriting those records.",
+    "crosswalk_source_path": "docs/governance/audits/requirements-stage/l3-l10-infrastructure-stage5-011-root-correction-2026-10-06.json",
+    "crosswalk_source_sha256": "34de4d3741b57306a65c78cc54f865663f32f28acac0fc8242f9c5a5e54348d1",
+    "prior_crosswalk_clause_3": {
+      "obligation": "L11:146 missing/unobserved/unknown/stale/mismatch/unauthorized never passes; backup alone is not restore; partial connection not composite; later version/WEB scope excluded",
+      "cases": [
+        "CASE-INFRA-011-S5-001",
+        "CASE-INFRA-011-S5-002",
+        "CASE-INFRA-011-S5-003",
+        "CASE-INFRA-011-S5-004",
+        "CASE-INFRA-011-S5-005",
+        "CASE-INFRA-011-S5-006",
+        "CASE-INFRA-011-S5-007",
+        "CASE-INFRA-011-S5-008",
+        "CASE-INFRA-011-S5-009",
+        "CASE-INFRA-011-S5-010",
+        "CASE-INFRA-011-S5-011",
+        "CASE-INFRA-011-S5-012",
+        "CASE-INFRA-011-S5-013",
+        "CASE-INFRA-011-S5-014",
+        "CASE-INFRA-011-S5-015",
+        "CASE-INFRA-011-S5-016",
+        "CASE-INFRA-011-S5-017",
+        "CASE-INFRA-011-S5-018",
+        "CASE-INFRA-011-S5-019",
+        "CASE-INFRA-011-S5-020",
+        "CASE-INFRA-011-S5-021",
+        "CASE-INFRA-011-S5-022",
+        "CASE-INFRA-011-S5-023",
+        "CASE-INFRA-011-S5-024",
+        "CASE-INFRA-011-S5-025",
+        "CASE-INFRA-011-S5-026",
+        "CASE-INFRA-011-S5-027",
+        "CASE-INFRA-011-S5-028",
+        "CASE-INFRA-011-S5-029",
+        "CASE-INFRA-011-S5-030",
+        "CASE-INFRA-011-S5-031",
+        "CASE-INFRA-011-S5-032",
+        "CASE-INFRA-011-S5-033",
+        "CASE-INFRA-011-S5-034",
+        "CASE-INFRA-011-S5-035",
+        "CASE-INFRA-011-S5-036",
+        "CASE-INFRA-011-S5-037",
+        "CASE-INFRA-011-S5-038",
+        "CASE-INFRA-011-S5-039",
+        "CASE-INFRA-011-S5-040",
+        "CASE-INFRA-011-S5-041",
+        "CASE-INFRA-011-S5-042",
+        "CASE-INFRA-011-S5-043",
+        "CASE-INFRA-011-S5-044",
+        "CASE-INFRA-011-S5-045",
+        "CASE-INFRA-011-S5-046",
+        "CASE-INFRA-011-S5-047",
+        "CASE-INFRA-011-S5-048",
+        "CASE-INFRA-011-S5-049",
+        "CASE-INFRA-011-S5-050",
+        "CASE-INFRA-011-S5-051",
+        "CASE-INFRA-011-S5-052",
+        "CASE-INFRA-011-S5-053",
+        "CASE-INFRA-011-S5-054",
+        "CASE-INFRA-011-S5-059",
+        "CASE-INFRA-011-S5-060",
+        "CASE-INFRA-011-S5-061",
+        "CASE-INFRA-011-S5-062",
+        "CASE-INFRA-011-S5-063",
+        "CASE-INFRA-011-S5-064",
+        "CASE-INFRA-011-S5-065",
+        "CASE-INFRA-011-S5-066",
+        "CASE-INFRA-011-S5-067",
+        "CASE-INFRA-011-S5-068",
+        "CASE-INFRA-011-S5-069",
+        "CASE-INFRA-011-S5-070",
+        "CASE-INFRA-011-S5-071",
+        "CASE-INFRA-011-S5-072",
+        "CASE-INFRA-011-S5-073",
+        "CASE-INFRA-011-S5-074",
+        "CASE-INFRA-011-S5-075",
+        "CASE-INFRA-011-S5-076"
+      ],
+      "status": "only explicit variants/boundaries are represented; unrepresented item-state combinations are not claimed tested"
+    },
+    "prior_crosswalk_clause_7": {
+      "obligation": "L11:145 unit/CORE/OS/SECURITY/Worker/composite distinct; OS-014 only on actual stage inclusion; no WEB/later-version creep",
+      "cases": [
+        "CASE-INFRA-011-S5-068",
+        "CASE-INFRA-011-S5-069",
+        "CASE-INFRA-011-S5-070",
+        "CASE-INFRA-011-S5-071",
+        "CASE-INFRA-011-S5-072",
+        "CASE-INFRA-011-S5-073",
+        "CASE-INFRA-011-S5-074",
+        "CASE-INFRA-011-S5-075",
+        "CASE-INFRA-011-S5-076",
+        "CASE-INFRA-011-S5-067"
+      ],
+      "status": "connection/composite input/oracle design only; owner absent from fixed parent remains unknown"
+    },
+    "corrected_mapping": {
+      "L11:144": [
+        "S5-067 only when actual OS Stage inclusion occurs"
+      ],
+      "L11:145-146": [
+        "S5-077 later version; S5-078 WEB customer runtime exclusion; S5-079 environment mismatch; S5-059..066 recovery distinctions; S5-068..076 connection/composite/no authority"
+      ],
+      "L11:147": [
+        "S5-055 read-only normal; S5-056 state-changing with applicable duty; S5-057 accepted update; S5-080/081 admission negatives; S5-082/086 read-only no-change/write denial; S5-083/084 duty missing/unknown; S5-085 partial composite retaining active/eligible rollback state"
+      ]
+    },
+    "review01_fable_comment_6005366115": {
+      "body_sha256": "691ab4c6333ddd274796a29ae288c215a2a717e5fbed039f8793ad5e9c21b74d",
+      "disposition": "Prior m16 read-only empty write-set/S5-086 and m17 normal S5-058 fixes retained; Fable M1 crosswalk correction recorded above."
+    }
+  },
+  "owner_applicability_derivation": {
+    "fixed_parent_basis": "L2-005 76–80 says failed/incomplete backup/restore/compatibility/rollback returns to recovery design owner/OS; L11-011 144–152 separates minimum-item proof, actual stage inclusion, operation-specific read-only/state-change/recovery oracles and owner return. L2-010 129–134/L11-010 132–134 distinguishes normal OS ticket/WorkChange from independent recovery.",
+    "local_fixture_derivation": "Backup/restore evidence unit fixtures 032/033 and restore/recovery evidence 059–061 omit an OS operation request and OS Work/Change identity. No specific OS work/change owner can be identified from those unit fixtures; this local fixture-scope interpretation is not quoted from L2-005:79 and is not an operation exemption. S5-056 state-changing operation includes OS work/change; S5-083/084 therefore retains both recovery design and OS work/change owner return.",
+    "legacy_comparison": "OPS-R-02 74–79 and OPS-AC-002 26–29 separate plan/receipt and before/after evidence, but do not state empty write-set or conditional OS owner applicability; compare-only, no direct authority."
+  },
+  "static_checks": {
+    "git_diff_check": "passed before body commit",
+    "stage5_prefix_bytes": "all six prefixes match pre-body-commit bytes",
+    "fv_case_headings": 86,
+    "fv_case_set": "001..086 unique; original 001..085 retained",
+    "BR_BV_NG_NV_census": "86 total, same seven categories as FV",
+    "FR_FV_refs": "reviewed selectors, literals, AC, scope, and NFR census synchronized",
+    "old_cli_runtime_tests_ci": "not invoked",
+    "runtime_oracle_execution": "not performed; fixture design remains static"
+  },
+  "limits": [
+    "Fable advisor view for comment 6006546472 was unavailable per formal review comment; this Worker correction is not an independent review.",
+    "Static document validation does not establish runtime behavior, L3 approval, implementation, execution, release, or merge admission."
+  ],
+  "push_pr_ready_merge": "not performed"
+}
