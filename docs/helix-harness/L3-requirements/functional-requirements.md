@@ -684,3 +684,14 @@ AC-035-05はS5-027/028/042および035〜038（旧revision計測、機能数だ�
 | paired consumers | `L3-infinity-loop-acceptance-test-design.md:41` HAT-HIL-09、および`:47` HAT-HIL-15; `L9-infinity-loop-platform-system-test-design.md:38–39,45,51` HST-HIL-011/012/018/024 | HAT-HIL-15とHST-HIL-012/024のscreen applicability/prototype walkthroughを関連consumerとして読み、旧consumer名・工程・実装結果を現行authorityへ昇格しない。HAT-HIL-09/HST-HIL-011/018のsource/reverse closureは関連資料であり、039のUX意味を単独で証明する直接対応とは扱わない。 |
 
 旧sourceは保持するが、旧screen manifest・runtime/schema・固定工程を再利用しない。固定L2/L11-039の採択はPO decision行44に従い、`version_target: 1.0`を保持する。現L3差分は採択済み意味を変更せず、明示した受入・責務境界へ再導出する。
+
+## Stage 3 親040の機能要件
+
+固定親は318ec4aのL2:946–955/L11:689–697、PO57の45行MPR040002採択。旧HIL-FR-46/47と旧L3 FR040を起点に意味を再導出する。catalog契約はHARNESS、保存・snapshot/projection・ticket運転は既存OS契約に属する。025/026の完了を開始前提にしない。
+
+| FR / AC | 要件と判定条件 |
+|---|---|
+| `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-01` | 同じ対象revisionでcanonical L1–L12のledger契約と6 canonical pairを列挙する。L0 charterはidentity・対象revision・sourceを持つ独立した層外authority anchor recordとし、layerや7番目pairにしない。一層・一組の欠落を残る層/pair/anchorで相殺しない。 |
+| `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-02` | 各rowのstable subject ID、row revision、source span、semantic digest、status、owner、上流/下流edgeを同revisionで逆引きする。片方向edge、別revisionの混在、field不足やstaleを該当範囲の未完として示す。 |
+| `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-03` | 未提示契約やunknownなauthority/scope/互換版を存在済みや対象外にせず未評価で保持する。契約不足はHARNESS L1/L2契約owner、authority不足は該当authority ownerへ返す。authority ownerをL0に限定しない。個別identityが不明でも既知の責務区分を保持する。catalogからL1承認/L2合意/L3承認/OS登録・実行/completionを生成しない。OS receipt不足は既存OS保存・実行ownerへ返し、HARNESS契約oracleを代用しない。HARNESS-L2-025/026の完了receiptは040評価の開始前提ではなく、040の候補採否や実装完了を生成する根拠にもならない。 |
+| `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-04` | 対象revisionの有効契約からledger type・粒度・必須node/edge・authority参照・input/output・entry/exit gate・適用template版の項目集合を導き、layer snapshotとcoverageの全件・未完・staleを区別する。根拠のない固定件数を課さない。未見layer/template revisionの変更がcatalog/coverageに現れない範囲はstale/uncoveredとしてHARNESS L1/L2契約ownerへ返す。 |
