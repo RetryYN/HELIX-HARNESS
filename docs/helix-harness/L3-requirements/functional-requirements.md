@@ -563,7 +563,7 @@ AC-035-05はS5-027/028/042および035〜038（旧revision計測、機能数だ�
 
 **不変条件**：同revisionかつ同scopeの必須metricがunmeasured、stale、nonrepresentative、unmetなら対象system completionを成立させない。code/doc/test/CI successや別metricの好成績で相殺しない。実測結果から要求合意、利用者Accepted、実行permissionを生成しない。OSまたは利用者の選択実行手段が証拠を返す。LABO/INFRASTRUCTUREは選択された比較評価/HELIX本体資源観測に限る。
 
-**戻し先**：field/contractの意味不足はHARNESS-L2-034の該当requirement/NFR owner、意味変更だけはL2-003/004へ戻す。execution/environment/result-source不足は選択された既存OS/利用者/LABO/INFRASTRUCTURE source ownerへ戻し、固定sourceで識別できなければunknown。CORE trace不足のownerも固定L2-034で特定されないためunknown。通信選択時だけCONNECT contractを照合し、非選択時のCONNECTを必須化しない。
+**戻し先**：field/contractの意味不足はHARNESS-L2-034の該当requirement/NFR owner、意味変更だけはL2-003/004へ戻す。execution/environment/result-source不足は選択された既存OS/利用者/LABO/INFRASTRUCTURE source ownerへ戻し、固定sourceで識別できなければunknown。CORE trace参照の欠落は、固定L2-034:695/703/704に基づきCOREの検証契約・traceに関する契約区分へ戻す。具体的なowner identityは固定sourceで識別できない場合にunknownとして保持し、戻し区分やCOREという依存先までunknownにしない。通信選択時だけCONNECT contractを照合し、非選択時のCONNECTを必須化しない。
 
 | AC | 受入条件 | 主な単独CASE | 境界 |
 |---|---|---|---|
