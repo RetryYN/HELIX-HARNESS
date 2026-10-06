@@ -1871,7 +1871,7 @@ L10 CASE IDsは照合用であり、ID数・独立fixture数から完全性を�
 
 `LABO-066-FR-01` 比較前にA identity/version、候補repair method identity/version、task/scope/target revision、共通eligible case集合とそのrevision、受入/quality oracle・scorer identity/revision、protocol、toolchain、environment、期間または同一終了/cutoffを受け取る。case identity重複は一件に正規化する。結果閲覧前にeligible集合、N、oracle、cutoffを固定し、結果後に変更しない。
 
-`LABO-066-FR-02` A群・候補群ごとに、oracleが誤修復と判定した件数 `misrepair_count/N` と、終了/cutoff時に受入oracleを満たす解決のない件数 `unresolved_count/N` を別々に分子・分母・case判定receipt付きで示す。両指標は同じcaseに該当し得る。適用不能・receipt不足のcaseはunknownとして記録し、Nから黙って除外せず、その比較の割合を未評価/比較不能にする。費用・時間・手戻りの意味と集計はL2-059を再利用する。
+`LABO-066-FR-02` A群・候補群ごとに、oracleが誤修復と判定した件数 `misrepair_count/N` と、終了/cutoff時に受入oracleを満たす解決のない件数 `unresolved_count/N` を別々に分子・分母・case判定receipt付きで示す。両指標は同じcaseに該当し得る。適用不能・receipt不足のcaseはunknownとして記録し、Nから黙って除外せず、unknownの理由と影響するcase identityを元oracle適用結果/receiptに対応して表示し、その比較の割合を未評価/比較不能にする。費用・時間・手戻りの意味と集計はL2-059を再利用する。
 
 `LABO-066-FR-03` task/scope/target/oracle/cutoff/eligible setの不一致、stale/missing result receipt、費用の片側欠落、unknown証拠を比較不能/未評価へ分ける。固定L2-066:527が列挙する不足・不一致は、個別source/owner identityを特定できるかにかかわらず、原因となった対象の既存責務ownerへ返す。oracle/acceptance/scorer適用性およびoracle/判定receiptはHARNESSまたは要求owner、task/scope/target revision・A identity・eligible-set等の入力recordはその入力を供給する既存sourceの責務、assignment/run receiptはOS、result/cost/time receiptは各receiptの既存供給元、comparison scope/measurement/comparison/evaluationはLABOの責務区分へ返す。個別identity unknownはunknownとして別に保持し、LABOの評価義務を維持する。digestを独立した既存ownerや新しいfieldとして作らず、contract側かinput/source側かを固定意味で判別する。評価結果からL2採択、効果達成、実験/run許可、repair permission/action、placement、admission、requirement completion、Worker/修復器の選定・割当・起動・実行を生成しない。旧Bugbot候補の採択、Bugbot/修復器の実装要求・実装開始・実装自体を生成しない。新しい比較runは既存OS assignmentと該当SECURITY許可に従い、LABO自身はWorker/methodを選定・割当・起動・実行しない。
 
@@ -1879,6 +1879,6 @@ L10 CASE IDsは照合用であり、ID数・独立fixture数から完全性を�
 
 `LABO-066-AC-01`（正常・FR-01/02）：B0の入力fieldと両群receiptがそろう合成比較で、各群の2指標を共通Nの分子・分母・oracle receiptから再構成し、互いに独立して提示する。
 
-`LABO-066-AC-02`（未見・FR-01/02/03）：B0とは別の合成比較scopeで、未見caseを含むeligible set N1を結果閲覧前に固定する。同じpredicate/oracleを適用できる根拠があればN1のcaseとして数え、適用不能ならunknown/未評価を保ち、oracle適用性不足を既存HARNESSまたは要求ownerへ返す。A identity/conditionの不足ならその入力の既存sourceへ戻し、特定個体不明はunknownを保持してLABO評価義務を残す。既存B0のNは変更しない。
+`LABO-066-AC-02`（未見・FR-01/02/03）：B0とは別の合成比較scopeで、未見caseを含むeligible set N1を結果閲覧前に固定する。同じpredicate/oracleを適用できる根拠があればN1のcaseとして数え、適用不能ならunknown/未評価を保ち、oracle適用性不足を既存HARNESSまたは要求ownerへ返す。A identity/conditionの不足ならその入力の既存sourceへ戻し、特定個体不明はunknownを保持してLABO評価義務を残す。既存B0のNは変更しない。unknownを含む合成正常対照では、理由と影響するcase identityが該当入力のoracle適用結果/receiptと一致して表示され、Nに当該caseを保持し、その比較が未評価/比較不能で率非出力となることを照合する。
 
 `LABO-066-AC-03`（異常・境界・FR-01/02/03）：単独field mutationとして、unknown除外、条件不一致、stale/missing receipt、費用非対称、oracle/N/cutoff事後変更を与え、各当該比較の率を出さず比較不能/未評価へ分ける。固定L2-066:527の不足・不一致は原因ごとの既存責務ownerへ返す。oracle/acceptance/scorer適用性およびoracle/判定receiptはHARNESSまたは要求owner、task/scope/target revision・A identity・eligible-set等の入力recordはその入力を供給する既存sourceの責務、assignment/run receiptはOS、result/cost/time receiptは各receiptの既存供給元、comparison scope/measurement/comparison/evaluationはLABOへ返し、個別source/owner identity unknownは別に保持する。LABOの評価義務は返却先個体の特定有無で消えない。新しいownerや分類を作らない。評価結果から採択・効果達成・実験/run許可・repair permission・placement・admission・requirement_complete・Worker/修復器の選定・割当・起動・実行を生成しない。旧Bugbot候補の採択、Bugbot/修復器の実装要求・実装開始・実装自体を生成しない。
