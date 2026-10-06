@@ -97,3 +97,15 @@
 | `HELIXLABO-L2-063` | LABOは許可された修復観測とepisode知識の範囲評価/保持、OSは既存Feedbackのregistration/routing、対象ownerはadoption/change、HARNESSは選択された変更のverificationを担う。post-operation observation/effect evaluationは後続状態として残す。 | `LABO-063-AC-01/02/03`。L10には旧ID保持、単独候補と非独立索引候補を区別して記録する。 |
 
 個体source/owner identityが固定sourceから決まらない場合はunknownのままにする。G0順序metadata、CASE数、candidate、OS receiptから承認・実行許可・完了を生成しない。
+
+### L10-LABO-065 — business verification候補
+
+この親から独立business acceptance outcomeは導かれない。したがってL10では、business decisionそのものを試験せず、FR-065の証拠が既存ownerの判断材料として追跡でき、受渡しから業務状態を捏造しないことを確認する。
+
+| 確認ID | 入力・照合 | 期待結果 |
+|---|---|---|
+| `L10-LABO-065-BV-01` | 選択scopeのtask/fixture/oracle/rubric revision、machine smoke、blind score、scorecard、費用内訳、source/result receiptを渡す | 対象scopeの証拠を分けて追跡できる。smoke結果をfull-bench evidenceと混同せず、証拠から既存ownerのadmission decisionやbusiness completionを生成しない |
+| `L10-LABO-065-BV-02` | scorecardに既存decision identity/revision/statusがある場合と、decisionが未決・stale・unknownの場合を分ける | 有効な既決decisionは参照し、未決等はそのまま表示する。LABO結果から採用等を生成しない |
+| `L10-LABO-065-BV-03` | score、安価さ、速さ、または単独quality指標から採用・限定・quarantine・retire・配置・実験許可を要求する | 要求された状態変更を拒否し、既存decision/OS/SECURITY境界を保持する |
+
+これは受渡し証拠の整合確認であり、PO承認、資格試験の実行許可、decision完了、個別business benefitの発生を意味しない。旧HIL-BR-31は参考調査したが本親の独立business requirementとしては再利用せず、旧decision authorityを移さない。

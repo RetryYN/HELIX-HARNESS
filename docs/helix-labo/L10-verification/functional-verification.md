@@ -3020,3 +3020,93 @@ L10定義の単独変異候補を固定sourceへ照合する。cause/applicabili
 | `L10-LABO-063-CASE-63` | `LABO-063-AC-03` | 索引（独立fixtureではない）: `L10-LABO-063-CASE-64`（原因だけ異なるeventを同一群へ混入）と`L10-LABO-063-CASE-65`（適用条件だけ異なるeventを同一群へ混入）を直接参照する。 | 各主fixtureのoracleを個別に確認し、二条件を一つの変異へ束ねず、独立fixtureとして二重計上しない。 |
 | `L10-LABO-063-CASE-64` | `LABO-063-AC-03` | 準備: 対象source/revision/適用条件が同一の再発eventを保持する。単独変異: cause identityだけが異なるeventを同一再発群へ加える。 | 原因別にgroupを分け、頻度を混ぜない。 |
 | `L10-LABO-063-CASE-65` | `LABO-063-AC-03` | 準備: 対象source/revision/causeが同一の再発eventを保持する。単独変異: applicability conditionだけが異なるeventを同一再発群へ加える。 | 適用条件別にgroupを分け、頻度を混ぜない。 |
+
+### L10-LABO-065 — functional verification候補
+
+この設計は固定L2/L11の同じ対象revisionに対する未実行fixture候補である。CASE表は旧functional-verification本文の全定義を一度ずつ保持し、各行はCASE ID、対応FR、AC、baseline、単独変異または索引動作、期待oracle/戻し先の6列で表す。旧literal自体にbaseline等が書かれていない場合は、その不足を隠して埋めず「旧literalに差分指定なし」と記す。準備条件を明記したcaseはその条件をbaselineに保つ。
+
+#### 66 CASE定義
+
+| CASE ID | FR | AC | baseline | 単独変異・索引動作 | 期待oracle・戻し先 |
+|---|---|---|---|---|---|
+| `L10-LABO-065-CASE-01` | `FR-LABO-065-01`, `FR-LABO-065-02`, `FR-LABO-065-03`, `FR-LABO-065-04`, `FR-LABO-065-05`, `FR-LABO-065-06` | `LABO-065-AC-01` | 選択scope、許可fixture、8軸receiptとtask scorecard receiptが揃う | なし（正常） | smoke/full-benchを別出力。8軸とscorecard fieldを対応付け、適用外理由とunknownを区別する。 |
+| `L10-LABO-065-CASE-02` | `FR-LABO-065-01`, `FR-LABO-065-02` | `LABO-065-AC-02` | 選択scope内の未見task/runtime。旧literalにscope変更なし | なし（未見正常） | receiptのある範囲だけ評価し、既存条件を保つ。thresholdやscope一般化を追加しない。 |
+| `L10-LABO-065-CASE-03a` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01のfull-benchを参照する索引状態 | CASE-03f–03mの軸別欠落fixtureを参照。独立変異なし | 各軸fixtureを個別に照合する。索引行を独立fixture・独立変異に数えない。 |
+| `L10-LABO-065-CASE-03b` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01のsmoke/full-bench正常状態 | smoke resultだけをfull-bench扱い | full-benchへの昇格を拒否し、smokeとfull結果を分離する。 |
+| `L10-LABO-065-CASE-03c` | `FR-LABO-065-03` | `LABO-065-AC-03` | CASE-01相当の初回task receipt | first_pass receiptだけstale | first_passを確定せずunknownに保つ。OS/run-record責務へ戻す。 |
+| `L10-LABO-065-CASE-03d` | `FR-LABO-065-04` | `LABO-065-AC-03` | 選択scopeのCASE-01正常状態（旧literalに差分指定なし） | applicable diff/lint definitionだけ不明 | countを0で補わずunknown、比較未評価。LABO評価契約または識別可能なsource ownerへ。 |
+| `L10-LABO-065-CASE-03e` | `FR-LABO-065-05` | `LABO-065-AC-03` | CASE-01相当のscorecard/cost receipt | price sourceだけ欠落 | 費用をunknownとして保持し0にしない。 |
+| `L10-LABO-065-CASE-03f` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01の選択scopeと残り7軸の証拠が有効 | correctness軸の証拠だけ欠落 | correctness軸を未評価とし、8軸full-benchを未完にする。 |
+| `L10-LABO-065-CASE-03g` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01の選択scopeと残り7軸の証拠が有効 | mutation-kill軸の証拠だけ欠落 | mutation-kill軸を未評価とし、8軸full-benchを未完にする。 |
+| `L10-LABO-065-CASE-03h` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01の選択scopeと残り7軸の証拠が有効 | instruction/scope-following軸の証拠だけ欠落 | instruction/scope-following軸を未評価とし、8軸full-benchを未完にする。 |
+| `L10-LABO-065-CASE-03i` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01の選択scopeと残り7軸の証拠が有効 | skill-A/B軸の証拠だけ欠落 | skill-A/B軸を未評価とし、8軸full-benchを未完にする。 |
+| `L10-LABO-065-CASE-03j` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01の選択scopeと残り7軸の証拠が有効 | quality軸の証拠だけ欠落 | quality軸を未評価とし、8軸full-benchを未完にする。 |
+| `L10-LABO-065-CASE-03k` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01の選択scopeと残り7軸の証拠が有効 | concision軸の証拠だけ欠落 | concision軸を未評価とし、8軸full-benchを未完にする。 |
+| `L10-LABO-065-CASE-03l` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01の選択scopeと残り7軸の証拠が有効 | security軸の証拠だけ欠落 | security軸を未評価とし、8軸full-benchを未完にする。 |
+| `L10-LABO-065-CASE-03m` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01の選択scopeと残り7軸の証拠が有効 | second-diff-extensibility軸の証拠だけ欠落 | second-diff-extensibility軸を未評価とし、8軸full-benchを未完にする。 |
+| `L10-LABO-065-CASE-03n` | `FR-LABO-065-03` | `LABO-065-AC-03` | CASE-01相当のtask result receipt | retry_count receiptだけ欠落 | retry_countを補わずunknownに保つ。OS/run-record責務へ。 |
+| `L10-LABO-065-CASE-03o` | `FR-LABO-065-05` | `LABO-065-AC-03` | CASE-01相当のquality/cost receipt | quality-judge resultだけ欠落 | scorecardを完了扱いしない。品質証拠不足を保持する。 |
+| `L10-LABO-065-CASE-04a` | `FR-LABO-065-06` | `LABO-065-AC-03` | 既存decision owner/runtime stateに変更なし | LABOがruntime/providerを選ぶ誤出力 | 選択を拒否し既存decision ownerの状態を保持する。 |
+| `L10-LABO-065-CASE-04b` | `FR-LABO-065-06` | `LABO-065-AC-03` | OS assignmentとSECURITY permissionは入力状態のまま | scoreからpermission/assignmentを生成する誤出力 | 生成を拒否しOS/SECURITY境界を保つ。 |
+| `L10-LABO-065-CASE-26` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01相当のblind scopeでhidden answerがWorker-visible外にある | hidden answerをWorker-visible fixtureへ混入 | 当該証拠を不適格とし、他軸で相殺しない。 |
+| `L10-LABO-065-CASE-27` | `FR-LABO-065-04` | `LABO-065-AC-03` | CASE-01相当のapplicable lint metric | lint未計測を0と報告 | unknownを保持し0に置き換えない。 |
+| `L10-LABO-065-CASE-28` | `FR-LABO-065-05` | `LABO-065-AC-03` | CASE-01相当のeffective-cost breakdown | retry costだけ欠落 | 費用を不完全/unknownとし、資格・比較成功へ補わない。 |
+| `L10-LABO-065-CASE-29` | `FR-LABO-065-02` | `LABO-065-AC-03` | task間の他条件とrubric revisionは一致 | fixture revisionだけ不一致 | 異なる条件を同一比較に混ぜず、該当taskを未評価にする。 |
+| `L10-LABO-065-CASE-30` | `FR-LABO-065-02` | `LABO-065-AC-03` | task間の他条件とfixture revisionは一致 | rubric revisionだけ不一致 | 異なる条件を同一比較に混ぜず、該当taskを未評価にする。 |
+| `L10-LABO-065-CASE-31` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01相当のbench manifest一式 | bench manifestだけ欠落 | full-bench未完。LABO評価契約または識別可能なmanifest sourceへ戻す。 |
+| `L10-LABO-065-CASE-32` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01相当のfixture set | fixture digestだけ欠落 | 同一性を確認できず未評価。HARNESS/要求owner責務区分へ。個別identity不明はunknown。 |
+| `L10-LABO-065-CASE-33` | `FR-LABO-065-02`, `FR-LABO-065-05` | `LABO-065-AC-03` | security failureが有効な不成立、他receiptは有効 | 他軸の平均scoreだけでsecurity failureを相殺 | 不成立を保持し、合格に変換しない。 |
+| `L10-LABO-065-CASE-34` | `FR-LABO-065-05` | `LABO-065-AC-03` | quality failureが有効な不成立、他receiptは有効 | 低価格だけでquality failureを相殺 | 不成立を保持し、合格に変換しない。 |
+| `L10-LABO-065-CASE-35` | `FR-LABO-065-05` | `LABO-065-AC-03` | quality failureが有効な不成立、他receiptは有効 | 短時間だけでquality failureを相殺 | 不成立を保持し、合格に変換しない。 |
+| `L10-LABO-065-CASE-36` | `FR-LABO-065-04` | `LABO-065-AC-03` | metric applicabilityが未確定/根拠未提示 | 対象外根拠なしにmetricをzero扱い | zeroを認定せずunknown/未評価。CASE-12の実測zeroと区別し、L2:514の適用性・測定責務へ。 |
+| `L10-LABO-065-CASE-37` | `FR-LABO-065-02` | `LABO-065-AC-03` | 既存qualification結果は別runtime version/scope | 別versionまたは過去scoreだけで未見scopeを資格済みとする | 新scopeを未評価のまま保つ。 |
+| `L10-LABO-065-CASE-38` | `FR-LABO-065-01` | `LABO-065-AC-03` | 選択runの他receiptは有効 | assignment receiptだけ欠落 | runを評価不能としOSへ戻す。 |
+| `L10-LABO-065-CASE-39` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01相当のfixture/score receipt | oracleだけ欠落 | 合否を確定しない。HARNESS/要求owner責務区分へ。 |
+| `L10-LABO-065-CASE-40` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01相当のbench manifest inputs | rubric digestだけ欠落 | rubric/scorer identityを確定せずfull-bench未完。HARNESS/要求owner区分へ。具体identity不明はunknown。 |
+| `L10-LABO-065-CASE-05` | `FR-LABO-065-01`, `FR-LABO-065-03` | `LABO-065-AC-01` | 旧literalはCASE-01と同じ正常入力 | なし（正常） | 通常scorecardをfield別に返す。完全性・独立性をID数から推論しない。 |
+| `L10-LABO-065-CASE-06` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01相当のblind score/digestとmachine manifest | blind score/digestをmachine manifestで代替 | 資格証拠とせず、blind judge evidenceを要求する。 |
+| `L10-LABO-065-CASE-07` | `FR-LABO-065-01`, `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01相当でtask/fixture/oracle/rubric等は一致 | task revisionだけ比較対象と不一致 | task revision不一致のため比較から分離する。task条件/sourceの不足は固定L2:514のHARNESSまたは要求owner責務区分へ戻す。scope/task/assignment/resultの観測receipt自体が不足する場合はOSまたは観測source責務区分へ戻す。入力に個別source identityがない場合はunknownを別に保持し、CASE IDだけからidentityを推測しない。 |
+| `L10-LABO-065-CASE-08` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01相当でjudgeはWorker/helperと独立 | judge identityだけWorker/helperと同一 | independent judge条件不成立。evaluation scope owner責務区分へ。 |
+| `L10-LABO-065-CASE-09` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01相当でjudge contextは独立 | judge contextだけ共有 | 独立性不成立。evaluation scope owner責務区分へ。 |
+| `L10-LABO-065-CASE-10` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01相当でcandidate nameはblind | hidden candidate nameだけ可視 | blind証拠不適格。evaluation scope owner責務区分へ。 |
+| `L10-LABO-065-CASE-11` | `FR-LABO-065-03` | `LABO-065-AC-03` | 最初のAttempt失敗、retry成功、他receipt有効 | first_passをtrueと誤報 | `first_pass=false`とretry結果を保つ。OS/run-record責務へ。 |
+| `L10-LABO-065-CASE-12` | `FR-LABO-065-04` | `LABO-065-AC-01` | applicable diff/lint metricと測定receiptがある | なし。実測値0を入力 | 0を実測として保持しunknownにしない。 |
+| `L10-LABO-065-CASE-13` | `FR-LABO-065-05` | `LABO-065-AC-03` | CASE-24とCASE-25の個別cost receipt欠落 | 索引としてCASE-24/25を束ねる。独立変異なし | 各主caseを直接参照し、複合・二重計上しない。 |
+| `L10-LABO-065-CASE-14` | `FR-LABO-065-05` | `LABO-065-AC-03` | trend群の測定条件が一致 | trend categoryだけ異なる | 異なるcategoryを分離し、LABO評価へ。 |
+| `L10-LABO-065-CASE-15` | `FR-LABO-065-06` | `LABO-065-AC-03` | scorecard evidence valid、decision ref expected | handoff decision identityだけ欠落 | decision 未決として既存decision owner区分へ戻す。 |
+| `L10-LABO-065-CASE-16` | `FR-LABO-065-06` | `LABO-065-AC-03` | scorecard evidence valid、decision identity有効 | handoff decision revisionだけstale | stale decisionを適用しない。既存decision owner区分へ。 |
+| `L10-LABO-065-CASE-17` | `FR-LABO-065-06` | `LABO-065-AC-03` | scorecard evidence valid、decision identity/revision有効 | handoff statusだけunknown | decisionを確定せず保留。既存decision owner区分へ。 |
+| `L10-LABO-065-CASE-18` | `FR-LABO-065-01`, `FR-LABO-065-02` | `LABO-065-AC-03` | 選択qualification scopeを基準とする | scopeだけ選択scope外 | 適用外を失効/失敗として数えず未評価。 |
+| `L10-LABO-065-CASE-19` | `FR-LABO-065-05` | `LABO-065-AC-03` | CASE-03eのprice source欠落 | 同じprice source欠落を索引参照。独立変異なし | CASE-03eをprimaryとして直接参照。 |
+| `L10-LABO-065-CASE-20` | `FR-LABO-065-05` | `LABO-065-AC-03` |適用可能なcost sourceと他条件は揃い、CASE-03eのprice source欠落とは別の正常状態 |選択費用根拠fieldだけ欠落 |費用evidenceをunknownにする。cost sourceは存在するが選択根拠fieldが欠けた状態。CASE-03eと具体fieldが同一かは未確定のまま保持し、費用の個別source identityが不明ならunknown。 |
+| `L10-LABO-065-CASE-21` | `FR-LABO-065-05` | `LABO-065-AC-03` | CASE-01相当のprice source/currency/effective time | currencyだけ欠落 | 換算せず金額unknown。具体source identity不明ならunknown。 |
+| `L10-LABO-065-CASE-22` | `FR-LABO-065-05` | `LABO-065-AC-03` | CASE-01相当のprice source/currency/effective time | effective timeだけ欠落 | 適用価格unknown。LABO評価契約または識別可能なsource ownerへ。 |
+| `L10-LABO-065-CASE-23` | `FR-LABO-065-03` | `LABO-065-AC-01` | 最初のAttempt失敗、次のAttempt成功 | なし（正常なretry sequence） | `first_pass=false`、`retry_count=1`を別fieldで保持。 |
+| `L10-LABO-065-CASE-24` | `FR-LABO-065-05` | `LABO-065-AC-03` | CASE-01相当のcost breakdown | rescue-cost receiptだけ欠落 | 内訳unknown、0補完しない。source identity不明ならunknown。 |
+| `L10-LABO-065-CASE-25` | `FR-LABO-065-05` | `LABO-065-AC-03` | CASE-01相当のcost breakdown | human-retry-cost receiptだけ欠落 | 内訳unknown、CASE-24とfieldを区別。source identity不明ならunknown。 |
+| `L10-LABO-065-CASE-41` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01相当、scorer/task scope/fixture setは一致 | oracle identityだけ別値 | 同条件比較を未評価。oracle責務区分（HARNESS/要求owner）へ。個別identity不明はunknown。 |
+| `L10-LABO-065-CASE-42` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01相当、oracle/task scope/fixture setは一致 | scorer identityだけ別値 | scorer mismatchで比較未評価。測定/評価契約という既知責務区分へ、具体source identityは推測しない。 |
+| `L10-LABO-065-CASE-43` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01相当、oracle/scorer/fixture setは一致 | task scopeだけ別値 |task scope不一致を同条件比較へ混ぜず未評価。scope/task条件の根拠不足は固定L2:514のHARNESSまたは要求owner責務区分へ戻す。scopeを示す観測receiptが欠ける場合はOSまたは観測source責務区分へ戻す。個別source identityはunknownとして別に保持し、原因区分からidentityを推測しない。 |
+| `L10-LABO-065-CASE-44` | `FR-LABO-065-02` | `LABO-065-AC-03` | CASE-01相当、oracle/scorer/task scopeは一致 | fixture setだけ別集合 | 異なるfixture集合を同条件比較に混ぜず未評価。HARNESS/要求owner責務区分へ、個別identity不明はunknown。 |
+| `L10-LABO-065-CASE-45` | `FR-LABO-065-03` | `LABO-065-AC-03` | 初回Attempt失敗、retry後passの状態を準備 | retry passをfirst_passとして報告 | first_passとretry結果を分離し、後続passで初回結果を上書きしない。 |
+| `L10-LABO-065-CASE-46` | `FR-LABO-065-05` | `LABO-065-AC-03` | trend内で他条件・測定定義一致 | task classだけ異なる結果を混入 | task class別に分離し同一trendへ合算しない。 |
+| `L10-LABO-065-CASE-47` | `FR-LABO-065-06` | `LABO-065-AC-03` | scorecard有効、採用状態は未変更 | scoreだけからadoption decisionを生成 | decisionを生成せず既存owner stateを保持。 |
+| `L10-LABO-065-CASE-48` | `FR-LABO-065-05` | `LABO-065-AC-03` | trend内で他条件・task class一致 | measurement definitionだけ異なる結果を混入 | 測定定義別に分離し同一trendへ合算しない。 |
+| `L10-LABO-065-CASE-49` | `FR-LABO-065-06` | `LABO-065-AC-03` | scorecard有効、limited状態は未変更 | scoreだけからlimited decisionを生成 | decisionを生成せず既存owner stateを保持。 |
+| `L10-LABO-065-CASE-50` | `FR-LABO-065-06` | `LABO-065-AC-03` | scorecard有効、quarantine状態は未変更 | scoreだけからquarantine decisionを生成 | decisionを生成せず既存owner stateを保持。 |
+| `L10-LABO-065-CASE-51` | `FR-LABO-065-06` | `LABO-065-AC-03` | scorecard有効、retire状態は未変更 | scoreだけからretire decisionを生成 | decisionを生成せず既存owner stateを保持。 |
+
+#### fixture分類・比較記録（CASE定義表とは別の分類候補）
+
+旧literal上の正常ラベル候補はCASE-01、02、05、12、23（5件）、索引ラベル候補は03a、13、19、20（4件）、その他57件である。この文字列分類は入力fixtureの独立性・single-mutation性・coverageを証明しない。
+
+- CASE-05は旧literalがCASE-01と同じ正常入力と明記する。IDを保持した直接参照候補とし独立fixture分母へ重ねない。
+- CASE-19はCASE-03eと同じprice-source欠落を明記するためCASE-03eへの直接参照候補。CASE-20は「選択費用根拠」欠落と記すが、CASE-03eのprice sourceと同じfieldかはliteralだけで確定できない。CASE-20はIDを保ち独立fixtureには数えず、同一field確認後に限ってCASE-03eへ直接参照する。索引chainは作らない。
+- CASE-11とCASE-45はともに初回Attempt失敗・retry成功後の値を`first_pass=true`と誤報し、正しいoracleは初回/retryの分離である。45はその状態を準備条件として明記するが、実Attempt receiptがないため同じ入力と断定せず、直接非独立参照候補として保持する。CASE-23は同じattempt sequenceを正しく記録する正常oracleであり、negativeと混ぜない。
+- CASE-03a、13は参照先を各主caseへ直接つなぐ索引候補。03aは03f–03mの軸別caseへ、13は24/25へ参照する。索引自体を変異やcoverageに数えない。
+
+#### 固定の責務区分と限界
+
+CASE-41–44では原因fieldと既知責務区分を保ち、個別owner identity不明を別のunknownとして残す。oracle/fixture/rubric/acceptanceはHARNESSまたは要求owner、scorer/quality/cost/measurementは固定L2-065:514の評価契約または該当source責務、task/attempt/assignment/resultはOS/観測source、blind/context分離はevaluation scope ownerへ戻す。親が定めない個別identityは推測しない。全normal/negative/unknown observationは固定L2/L11の母集団定義に従い、normalを分母から外す新ルールを作らない。
+
+各CASEは未実行・未承認。ID数、文字列ラベル、行数は意味完全性やcoverage証明ではない。旧source full file、全66 literal/raw-LF SHA-256、review05 rawとfinding処置は別添JSONに保持する。
