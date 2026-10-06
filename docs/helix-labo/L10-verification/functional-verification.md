@@ -3208,7 +3208,7 @@ FR本文で定義した `LABO-068-AC-01`（選択scope正常）、`LABO-068-AC-0
 | `L10-LABO-068-CASE-03g` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のidentity記録と、既存Attempt内の067 repair-round receipt。 | repair roundを新Attemptとして加算しようとする。 | 換算を拒否し、同一Attempt identityのまま保持する。 |
 | `L10-LABO-068-CASE-04a` | `FR-LABO-068-03` | `LABO-068-AC-03` | 入力にはOSが発行したB0 identity/eventだけがある。 | LABO側出力が新しいAttempt identityを生成する。 | 生成を拒否。既存OS/観測source責務区分へ戻し、LABOはcount evidenceだけを返す。 |
 | `L10-LABO-068-CASE-04b` | `FR-LABO-068-03` | `LABO-068-AC-03` | 既存OS identityと固定scopeのみ。 | LABOがcounting policy/identity採番規則を新設する。 | policy生成を拒否。既知OS責務区分を維持し、個別担当identityは推測しない。 |
-| `L10-LABO-068-CASE-13` | `FR-LABO-068-01` | `LABO-068-AC-03` | B0 scope S0のA/B/C/Dと、同一revisionだが別scopeに属すX。 | Xのscope linkだけがS0に誤って混入。 | scope境界を確認できない場合は評価停止/unknown。明確にS0外ならcountから除外しscope外記録を保持。 |
+| `L10-LABO-068-CASE-13` | `FR-LABO-068-01` | `LABO-068-AC-03` | B0のscope S0はidentity A/B/C/Dと完全性receiptが整合する正常状態。別scope S1のXもAttempt identity・source scope・OS scope link・関連receiptがS1で一致し、記録は完全。 | XのOS scope link一箇所だけをS1からS0へ変える。他のsource identity、scope evidence、receipt、B0記録は不変。 | S0/S1間のlink矛盾をLABOが解消せず、Xを含め対象境界の比較総数を `unknown`/未評価にする。4件確定、X除外、いずれかのlink上書き/修復をしない。矛盾した全記録を保持し、既知の観測sourceまたはOS記録ownerへ不足を返す。個体owner identity unknownは別記し、既知責務区分を維持する。 |
 | `L10-LABO-068-CASE-14` | `FR-LABO-068-02/03` | `LABO-068-AC-03` | handoff後もOSのknown record-owner responsibility区分とA/B/C/Dは保持される。 | 担当交代後のA lineage linkだけ欠落。 | 総数unknown。known OS/observation-source区分は保持し、個体owner identity unknownを別に残す。 |
 | `L10-LABO-068-CASE-15` | `FR-LABO-068-01/02` | `LABO-068-AC-03` | 索引対象はCASE-03cのA duplicate receipt。 | 独立変異なし（CASE-03cへの索引）。 | CASE-03cを直接参照。Aを重ねて数えない。 |
 | `L10-LABO-068-CASE-16` | `FR-LABO-068-02` | `LABO-068-AC-03` | 索引対象はCASE-03bのsource completeness unknown。 | 独立変異なし（CASE-03bへの索引）。 | CASE-03bを直接参照。CASE-08と同じ索引関係も二重計上しない。 |
@@ -3235,6 +3235,6 @@ FR本文で定義した `LABO-068-AC-01`（選択scope正常）、`LABO-068-AC-0
 
 `L10-LABO-068-CASE-01`, `L10-LABO-068-CASE-02`, `L10-LABO-068-CASE-03a`, `L10-LABO-068-CASE-03b`, `L10-LABO-068-CASE-03c`, `L10-LABO-068-CASE-03d`, `L10-LABO-068-CASE-03e`, `L10-LABO-068-CASE-03f`, `L10-LABO-068-CASE-03g`, `L10-LABO-068-CASE-04a`, `L10-LABO-068-CASE-04b`, `L10-LABO-068-CASE-13`, `L10-LABO-068-CASE-14`, `L10-LABO-068-CASE-15`, `L10-LABO-068-CASE-16`, `L10-LABO-068-CASE-17`, `L10-LABO-068-CASE-05`, `L10-LABO-068-CASE-06`, `L10-LABO-068-CASE-07`, `L10-LABO-068-CASE-08`, `L10-LABO-068-CASE-09`, `L10-LABO-068-CASE-10`, `L10-LABO-068-CASE-11`, `L10-LABO-068-CASE-12`, `L10-LABO-068-CASE-18`.
 
-旧25件に加えCASE-19〜25は固定L2の禁止出力fieldを一件ずつ拒否する候補である。旧ID保持と新7行を合わせたこの32行は変更影響index候補であり、単独fixture性・meaning completeness・実行結果を保証しない。CASE-08/16は同じCASE-03bへの索引、CASE-15は03cへの索引である。Matrix上でも独立変異/分母へ重ねない。known OS/observation-source responsibilityと具体的個体identity unknownは別fieldで保持する。receipt不在だけからsourceや個人ownerを創作しない。
+旧25件に加えCASE-19〜25は固定L2の禁止出力fieldを一件ずつ拒否する候補であり、CASE-26はOS訂正eventの配送遅延を扱う。旧ID保持25行、新規CASE-19〜25の7行、CASE-26の1行を合わせた計33行は変更影響index候補であり、単独fixture性・meaning completeness・実行結果を保証しない。CASE-08/16は同じCASE-03bへの索引、CASE-15は03cへの索引である。Matrix上でも独立変異/分母へ重ねない。known OS/observation-source responsibilityと具体的個体identity unknownは別fieldで保持する。receipt不在だけからsourceや個人ownerを創作しない。
 
 **実行・受入状態**：全fixtureは未実行の設計候補。旧source runtime/test/CIは実行していない。L10実測、oracle実装検証、Fable見解、独立review、L3委任承認、Ready/mergeはこのsuffixから生成しない。

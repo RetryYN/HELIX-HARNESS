@@ -1826,7 +1826,7 @@ CASE定義数・ID保持だけでfixtureの独立性や意味完全性を認定�
 
 **版・範囲**：旧a4の25 CASE IDを保持する。旧literalは監査材料に保全し、下の6列表のfixture setup/oracleは固定L2/L11へ意味再導出した候補であり、旧literalのbyteコピーを正本定義とみなさない。固定親は仕様として引用し、これらの候補表は意味完全性・単独変異性の証明ではない。
 
-- **`FR-LABO-068-01` — 選択scopeとdistinct identity count**：既存OS assignmentから明示されたtask/scope/revision/evaluation範囲を受け、範囲に結び付いた各Attempt identityを一度だけ数え、総数を `attempt_count` として返す。scope外identityは除外する。範囲またはidentity対応が確定しないときは数を確定しない。
+- **`FR-LABO-068-01` — 選択scopeとdistinct identity count**：既存OS assignmentから明示されたtask/scope/revision/evaluation範囲を受け、範囲に結び付いた各Attempt identityを一度だけ数え、総数を `attempt_count` として返す。scope外identityは、OS記録とsource/identity linkが矛盾せず、所属scopeが一意に確認できる場合に限り選択範囲から除外し、元記録をscope外として保持する。scope linkとsourceまたは他の権威ある記録が矛盾する場合は、どちらかを選んで範囲を確定したりlinkを修復したりせず、記録を保持したまま総数を `unknown`/未評価として既知の観測sourceまたはOS記録ownerへ不足を返す。具体的な個体identityが不明ならunknownを別に保持し、既知の責務区分は維持する。
 - **`FR-LABO-068-02` — 完全性・state・訂正**：OS event/evidence/result/correction receiptをidentityへ結び、重複配送・訂正eventを同一identityへ統合する。記録集合の完全性を確認できない場合は `attempt_count=unknown` とする。identityが確認できるAttemptのsuccess/failure/interrupted/denied等のstateをcountから独立に保持し、結果receipt欠落はidentity countそのものの欠落へ読み替えない。identity付きdeniedは一件、identityのない実行前拒否intakeは0件として別記する。
 - **`FR-LABO-068-03` — 指標・authority・責務分離**：065 first_pass/retry_countと067 same-Attempt repair roundを独立指標として保持し、換算・合算・代替しない。CI rerunやrepair event、duplicate deliveryを新Attemptにしない。LABOは観測と証拠受渡しのみを行い、OS identityやpolicy/oracleを生成せず、task-evaluation oracle、assignment、Worker起動/retry、採否、qualification、admissionの出力fieldを生成しない。原因に沿う既知責務区分を保ち、具体的個体identityが不明ならunknownを併記する。
 
