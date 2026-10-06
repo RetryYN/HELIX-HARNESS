@@ -203,6 +203,12 @@ fixture definition数と実測母集団は異なる。対のL10機能総合検�
 
 NFR候補はL10定義の測定母集団の設計にとどまり、抽出器の性能や実行成功を主張しない。
 
+## Stage 3 親047の非機能候補
+
+| NFR候補 / L2親 | 候補値 | 固定根拠 | 限界 |
+|---|---|---|---|
+| `HARNESS-L2-047` | 共通の数値NFR/thresholdなし | 固定L2はtaskに適用される測定可能な利益を要求するが、共通thresholdを追加しない。 | 固定provider/model、価格閾値、Worker人数・team sizeを設けない。budgetの値/実行適用はOS既存契約。 |
+
 ## Stage 3 親054の非機能要件：専門Worker判定・契約のOS割当handoff（起草候補、version_target: 1.0）
 
 **採択本文の固定**：PO記録のsource_repository_revision `5aa100319361b0cc86edd3c51815ec777d55410a`。L2 `product-requirements.md:1154–1162` SHA-256 `b76b7b1adec804a25bd9333663aa9b0d074f68518764c2874c994bcdf6ead193`、L11 `product-acceptance.md:865–875` SHA-256 `5d1ab0bad44ae305053932f0c82bcf472e145046125b638f5facab13eaaa2aa0`。旧調査snapshot e94838f5の同本文とbyte一致。末尾空行込みの物理span digestは別の監査pinとして区別する。
