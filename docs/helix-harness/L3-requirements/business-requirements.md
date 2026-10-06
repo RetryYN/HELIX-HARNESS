@@ -119,3 +119,8 @@ HARNESS-L2-034から独立business requirement、事業KPI、ROI閾値または�
 | L2親 | business requirement | 理由 |
 |---|---|---|
 | `HARNESS-L2-040` | 独立したbusiness requirementを導出しない | ledger catalogは組織の事業分類・投資優先順位を所有しない。 |
+
+
+## Stage 3 親041の業務要件
+
+HARNESS-L2-041から独立business requirement、business owner、ROI/KPI/商業閾値は導出しない。template atom/gap/candidate rowの存在、coverage、fixture数から事業価値・利用者受入・要求合意・承認を作らない。

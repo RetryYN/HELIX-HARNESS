@@ -165,3 +165,12 @@ NFR CASEは測定candidate分類であり、実測・CI success・performance SL
 |---|---|---|---|---|
 | `CASE-HARNESS-L10-NFR-040-01` | `NFR-C-HARNESS-040-01` | 12 layer/6 pair/L0 anchorの契約候補と双方向edge fixture。 | layer/pair/anchor relationの欠落と片方向edgeを分けて数える。 | catalog未実装は未完として記録、registration/executionは測定しない。 |
 | `CASE-HARNESS-L10-NFR-040-02` | `NFR-C-HARNESS-040-01` | L2-040で列挙されたledger contract field、6 pair edges、L0独立anchor fieldsとsource snapshot population。 | selected catalog relation欠落・片edge・staleを各別計上。snapshot coverageと未完/stale populationを明示する。 | OS保存が未構築でもHARNESSの意味oracleを代替しない。未提示契約は未完/unknown。 |
+
+
+## Stage 3 親041のNFR測定CASE
+
+測定候補であり実測ではない。populationは指定active template revisionとselection scopeでsource spanから列挙できるobligationに限定する。missing/unknown applicability、unselected template、extractor unavailable、gapを成功やゼロに変換しない。
+
+| L10 case ID | NFR候補 | 入力／母集団 | oracle・限界 |
+|---|---|---|---|
+| `CASE-HARNESS-L10-NFR-041-01` | `NFR-C-HARNESS-041-01` | selected template/scopeのsource obligation ID・span・revisionと、atom/typed gap disposition、provenance mismatch、duplicate、unaccounted findingを別々に記録する。 | 各入力義務がatomまたはgapへtraceされたかを候補計測する。unresolved gapは未解決であり成功ではない。unknown applicabilityは009へ戻し母集団からsuccess扱いで除外しない。率・閾値・性能実測を作らない。 |

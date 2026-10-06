@@ -185,3 +185,14 @@ fixture definition数と実測母集団は異なる。対のL10機能総合検�
 | NFR候補 / L2親 | 候補値 | 固定根拠 | 限界 |
 |---|---|---|---|
 | `NFR-C-HARNESS-040-01` / `HARNESS-L2-040` | canonical 12 layer、6 pair、独立L0 anchorの必要catalog relation欠落0件。片edgeを双方向成立へ数える件数0。 | HIL-FR-46のledger/pair/anchor契約から直接導出。 | 未作成ledgerはmissing obligationとして記録し、全ledgerの実装率やregistrationを主張しない。 |
+
+
+## Stage 3 親041の非機能計測候補
+
+独立した性能・成功率・コストの閾値を追加しない。固定L2-041が規定する範囲の観測候補は次に限る。
+
+| NFR候補 | 観測候補・根拠 | 限界 |
+|---|---|---|
+| `NFR-C-HARNESS-041-01` | selected template/scope内のsource obligation population、各obligationに結び付くatomまたはtyped gap、provenance mismatch、duplicate/unaccounted findingの数を別状態で記録する。各義務を個別atom/gapへ対応する固定L2-041条件から導く。 | aggregate coverage countだけで全要素をcoveredにしない。unknown/unselected inputは未観測と分離する。未解決gapを成功扱いしない。性能値・全template全域率・threshold・実測結果は作らない。 |
+
+NFR候補はL10定義の測定母集団の設計にとどまり、抽出器の性能や実行成功を主張しない。
