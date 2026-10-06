@@ -1,0 +1,5 @@
+# INTELLIGENCE Stage3 review02 root補正
+
+本文revision `cdb1e168764b1962b7b5fe50be222b3f23df8583`、base `1a7933157fef8327a0e2747348cbe57e596019aa`。旧時点記録は不変保持する。本記録は作成側の補正証拠であり、独立reviewの所見解消・L3承認を生成しない。
+
+Worker差分751行と正式review02全文を読み、例外適用の逆転、manifest戻し先、Worker結果責務、006送達判定、review対象集合、複数変異CASE、旧UIL記述を訂正した。source21件をfull/raw/literal/非空で再照合し、全6本文のmain prefixと全suffix行を固定した。CASE 881件はID重複0。validate147/fail0、stale0、residuals0、govcheckとdiff-checkに合格。旧source意味の残範囲・構造化pin・全CASEのAC対応は独立再reviewへ明示して渡す。

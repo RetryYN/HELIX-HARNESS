@@ -1,0 +1,234 @@
+{
+  "record_type": "creator_correction_evidence",
+  "review_scope": {
+    "pull_request": 2607,
+    "formal_comment_id": "5995930243",
+    "local_full_text_evidence": "/tmp/pr2607-review03-full.md",
+    "sha256": "0bf60d975734818a203412e46057bc3714d1bc01a240ffa2c289ce8f144e316b",
+    "bytes": 19173
+  },
+  "base_commit": "1a7933157fef8327a0e2747348cbe57e596019aa",
+  "reviewed_content_head": "8c0f2c87d0803d429e5d0c55959d5382a9ac7817",
+  "parent_target": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+  "parent_fixings_preserved": true,
+  "body_files": {
+    "functional_requirements": {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "sha256": "470dd7fe1199ccff0dfd4f59029d2459d31939d22be36e736001adfbfe25d42c"
+    },
+    "functional_verification": {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "sha256": "21a3351e0db64c14eb39e7a94aeb4c744acec80c8e5341ae63df1d6919cf3576"
+    },
+    "nfr_grade": {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "sha256": "d63ab49a4c3d9f8373e97b62cc163d0d24205f7293f72eca16204262fafb379f"
+    },
+    "nfr_verification": {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "sha256": "3a5a0313d2545205333e77132a6bd5f126df707b558792f26c78bb993885ee0f"
+    }
+  },
+  "finding_dispositions": [
+    {
+      "id": "M1",
+      "finding": "共通pack contractの対象、適用文言、当該親の未完状態、各field反例",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "M2",
+      "finding": "003別ticket dependencyの独立negative oracle",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "M3",
+      "finding": "014 manifestからauthorityを追加する独立negative oracle",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "M4",
+      "finding": "016未信頼入力条件、AC trace、source/SECURITY/OS戻し先",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "M5",
+      "finding": "067 proposalからengine/assignment/worker/model切替を生成する反例",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "M6",
+      "finding": "067人時間の未換算unknownと介入除外総費用の分離",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "M7",
+      "finding": "072同一版再評価normalとsource更新後の新revision評価の分離",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "M8",
+      "finding": "073宛先別negative oracleとowner境界",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "M9",
+      "finding": "078 stale projection再利用拒否のAC trace",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "M10",
+      "finding": "011 G12価格根拠差・必要scope限定の独立CASE",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "m1",
+      "finding": "003重複source-conflict CASEを整理し別ticketを別反例化",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "m2",
+      "finding": "005 BRAIN/risk traceを対応ACへ",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "m3",
+      "finding": "001/003/005の期待、source field、owner、held-out riskを修正",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "m4",
+      "finding": "001/002 L11 R2187-01共通判定のscope表記",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "m5",
+      "finding": "BEAB/F1F7旧source span境界",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "m6",
+      "finding": "旧review02-correctionの誤った本文説明を不継承",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "m7",
+      "finding": "007/012のsource固有戻し先",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "m8",
+      "finding": "FV-798相当の入力とnegative oracleを一致",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "m9",
+      "finding": "重複negativeとmiss/FPのtrace先",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "m10",
+      "finding": "011 NFRにNG-011/AC-011-04を対応",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "m11",
+      "finding": "009 owner route oracle",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "m12",
+      "finding": "旧correction監査の誤説明を新記録で訂正",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "m13",
+      "finding": "019 exception成立CASEのAC trace",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "m14",
+      "finding": "018 current conflict/historical evidenceのowner分離",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "m15",
+      "finding": "014–020 CASE戻し先のsource/OS/LABO境界",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "m16",
+      "finding": "014–020 negative oracleの入力変異と禁止結果",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "m17",
+      "finding": "016 Worker resultと元oracleを使うnormal CASE",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "m18",
+      "finding": "pack以外の補正CASEと共通pack見出しの区分",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "m19",
+      "finding": "014/016旧sourceの使用範囲と再導出の明記",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "m20",
+      "finding": "067 condition別traceとLABO052正常CASE",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "m21",
+      "finding": "072参照CASE、AC、NFR、owner routeの対応",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "m22",
+      "finding": "073/078重複とAC traceの整理",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "m23",
+      "finding": "072旧provider/model family規則の保持点・変更点",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    },
+    {
+      "id": "m24",
+      "finding": "過去監査のpin/count/locator過大記述を継承しない",
+      "creator_response": "body correction present; independent semantic re-review remains pending"
+    }
+  ],
+  "authority_scope": "PO採択済みStage 3 / version_target 1.0の22親（001–009, 011–016, 018–020, 067, 072, 073, 078）。parent identity/scope/owner/versionとPO judgmentは変更しない。",
+  "source_basis": {
+    "fixed_l2_l11": "commit 633bf12ea8f948db8ba3d6600179c4a9507377a7のHELIX-INTELLIGENCE L2/L11本文を使用。072 six-part splitとdigestはPO decision 2026-09-28/10-03 source mapへ照合。",
+    "po_adoption": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md registration rows for all target parents",
+    "legacy_inventory": "docs/governance/legacy-asset-disposition.jsonl でasset IDとsource SHAをlocator照合。旧source抜粋は参照のみ。",
+    "reference_differences": "014はlegacy WCC-FR-06/HAT-WCC-07のprovider/model-family independenceをhistoricalとして保持し、現行identity/context/authority/routeへ再導出。016はBBR限定repair/write-set境界を再利用し、untrusted candidate/actual result・privileged execution境界をfixed L2/L11から再導出。",
+    "review02_pin_corrections": "AAFD-R-06 physical lines 55–63; AAFD-R-07 lines 64–67; do not inherit prior R-07 73–92 pin. Current L2-078 body span 646–658 excludes adjacent L2-079 lines 659–668; L2-072 selected new part is 673–687. UIL asset ID is LEGACY-ASSET-02D897E62EF2FA267267. The full historical pin set was not recomputed."
+  },
+  "unconfirmed_groups": [
+    "078-01の109 CASEおよび078-08 closure-field CASE全件を一件単位では再照合していない。",
+    "02D8の179–181外、17C4/F46A/E78B/AD74/879Dの指定範囲外を含む旧source全行を通読していない。",
+    "BBD6、6FFD、901C、658Fの全行を通読していない。",
+    "5EE0とE78B/AD74を001/002/004へ「再利用」と呼べるかは判断未了。"
+  ],
+  "static_validation": {
+    "functional_case_rows": 879,
+    "unique_case_ids": 879,
+    "duplicate_case_ids": 0,
+    "fr_ac_identity_count": 101,
+    "fv_referenced_ac_identity_count": 100,
+    "dangling_fv_ac_refs": 0,
+    "case_table_width_errors": 0,
+    "git_diff_check": "clean",
+    "executed_tests_ci_or_legacy_runtime": false
+  },
+  "limitations": [
+    "この記録は作成側証拠で、独立reviewではない。",
+    "未確認4群は未確認のままであり、finding解消やL3承認を意味しない。",
+    "旧CLI/hook/runtime/CI、Bun、test、CIは起動していない。"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "authority_effect": "none",
+  "body_revision": "bda60fea98ef19ef27b26e16c874569f4c9f78c0",
+  "reviewed_head": "3edfe6e9d56b1e4787e3458c11b7105aa18132ce",
+  "review_base": "190d23aac79ee24b78e3666aae5506a5d85a45b5",
+  "latest_base_checked": "190d23aac79ee24b78e3666aae5506a5d85a45b5",
+  "documents": [
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "sha256": "9ef7e051b76fd0d8946e8d558c780f2187c4073f619fca5925411bc72bb4f611",
+      "bytes": 16782
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "sha256": "99ad5da40b4ed0cc7d16ad3502562bf966eac359e7a67add264ec0a41f935e17",
+      "bytes": 224788
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "sha256": "d91713160799560ef31c78db18aa911ea17718aef63b8d350829d9ed5952a8c4",
+      "bytes": 28527
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "sha256": "37389095fa0bdf9b0af10dacd5bdde1a40b8c41dba2daeedb33f1ff56bce3be0",
+      "bytes": 19175
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "sha256": "2217ec016879cd2ed97822eed0a1b7e0fe8060b9292e24704ccd05285d401697",
+      "bytes": 195871
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "sha256": "60a1020d1f77a130a000bb3f8ce596fccad0066bb05eef3889ed38ed03e35fb2",
+      "bytes": 31684
+    }
+  ],
+  "formal_comment": {
+    "id": 6005798978,
+    "body": "## review06（independent review、HEAD 3edfe6e9d56b1e4787e3458c11b7105aa18132ce、body bda60fea98ef19ef27b26e16c874569f4c9f78c0）\n\nreviewer: Claude（lane `review_merge`、Fable 5.1）。差分（FV pin注記2行：031-079に`L11-031:508`追加、031-084を`L2-031:907`のみ）はreviewer本人（Opus側）が実読。Fable advisorが差分・固定L2:907/908/910・L11:508・監査JSON・6本文prefix・全文/span SHAを実読・実算して再見解を返した。branchはmain 190d23aacをmerge済みで `git merge-tree --write-tree origin/main HEAD` 衝突なし、OS 6本文main prefix一致。\n\n### 静的検査（w2616 = exact HEAD）\n- scfctl validate 147/0、stale 0、residuals 0、govcheck ok、`git diff --check` 0。\n- 補正記録 `helix-os-stage5-review05-locator-correction-2026-10-06.json`：6本文full/prefix/suffix SHA一致、prior record（review04 root-correction）SHA一致、review05 comment 6005572037 API body SHA一致、固定source pin 29/29（5acae3843 span・full）一致。CASE定義208・alias 2不変。\n\n### review05所見の解消\n- **m1解消**：079のpinに`L11-031:508`（「必要な意味判断とL3計測具体化を分けて戻す」）を追加し分割兄弟085/086と揃えた。084は`L2-031:907`のみ（L2:910は検証契約側087の根拠）。刺激・期待・ID・AC対応・分母に変更なし。\n\n### Fable見解（advisor、再見解）\n結論行（原文のまま）：「**承認してよい**（HEAD `3edfe6e9d56b1e4787e3458c11b7105aa18132ce`／本文 `bda60fea98ef19ef27b26e16c874569f4c9f78c0`）」。Major 0／Minor 0。Info（記録のみ、再revision不要）：079のpin区切り「、」と085/086の「；」の表記差。\n\n### Opus側判定\n所見なし。未確認範囲なし（review01〜06で固定4親（025/026/031/047）のFR/AC・CASE 208（alias 2）・BR/BV/NG/NV・監査・固定親節境界・旧source対応を照合。review01 M5/M6のreviewer誤引用はreview03で撤回・記録済み）。\n\n### 委任承認条件の状態（docs/governance/github-upstream-operating-model.md「L3／L10承認の委任」）\n- 条件1（Opus `no_findings`・未確認範囲0）：本commentで成立（HEAD 3edfe6e9d、本文bda60fea9）。\n- 条件2（Fable「承認してよい」）：本commentに原文で記録。\n- 条件3（6本文bytes不変）：作成側が判断記録（`decider_role: PO（委任：Opus・Fable一致）`、対象revision bda60fea9、6本文SHA、本comment ID/SHA、Fable見解の所在）を追加した後、reviewerが6本文SHA・本comment SHA・委任規則SHA・判断記録SHAを照合し、最新mainとの試験merge→作成側Ready化（依頼どおりRoot Ready前にReady/mergeしない）→明示mergeへ進む。POの事後確認一覧（OS×Stage5、4親）に「委任2者が同一model、laneで独立性担保」とreview01 M5/M6のreviewer誤引用の注記を添える。本commentはmerge admissionを生成しない。\n",
+    "sha256": "abca988f91e1f75d2536cc334785a532a88aedea42c532b8283ad9c6e89aca77"
+  },
+  "delegation_sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220",
+  "rule_sha256": "eed2b774bb78545ac53c7d55f3ae3ab4e9c4f421b4eaf3ac3bcdbcdd869dd27b",
+  "decision": {
+    "path": "docs/governance/decisions/helix-os-stage5-l3-l10-po-decision-2026-10-06.md",
+    "sha256": "76d953b35060a27c3c0cd0c5624e9fbcd7fa87fe54f48dc321782a6fba951d79"
+  },
+  "limits": "修正側のbytes/出典照合。独立側の判断記録照合とRoot Ready通知を経てmergeする。"
+}

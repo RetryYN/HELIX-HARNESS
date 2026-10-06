@@ -77,3 +77,32 @@ fixtureと実観測を分けて記録し、各親についてtrace正確性、un
 | `HELIXOS-L2-052` / PO採択 `MPR-RC-HELIXOS-L2-052-001`、現行metadata successor `MPR-RC-HELIXOS-L2-052-002`（semantic digest `sha256:d9e839c319c54f826bb065ce065ca5a8af126a11abd8f15c9f3183964a4e5345`同一） | 独立BRなし | `FR-OS-L3-052`; `AC-OS-L3-052-01`〜`AC-OS-L3-052-03`; `CASE-OS-L10-052-*` | local cleanupと後続PR再照合をissue/要求完了・remote削除・生産性へ拡張しない。 |
 
 合否はこの文書で別途生成しない。上表は業務failureをtransport/handoff stateで置換せず、機能CASEの同じ入力・scope・ownerを保つためのtraceである。
+
+
+## Stage 5 — 機能CASEと対になるbusiness境界確認（独立BRなし）
+
+この追補は既存文書のStage 2b/Stage 2a/Stage 3/Stage 4 scope欄を遡及変更せず、ここに列挙したStage 5対象だけを追加する候補である。先頭のstatusは先行scopeの状態を示す。
+
+この4親は、固定L2/L11に独立business outcome/KPIがないため、新BRやbusiness KPIを作らない。functional owner/state/CASEを同じscopeで照合する。
+
+| business CASE | 親・参照機能CASE | 照合 | 対象外 |
+|---|---|---|---|
+| `CASE-OS-L10-BIZ-025-01` | 025 / `CASE-OS-L10-025-01..32` | 各サービスunit/connection/compositeと正常・unknown等のstateを個別に保ち、固定L2外の製品化やstage条件を生成しない。| 全製品稼働率、新規owner/KPI。|
+| `CASE-OS-L10-BIZ-026-01` | 026 / `CASE-OS-L10-026-01..55` | 個別入力・各dependency state、復旧/permission/owner/human工程のmissingとclosure/minimum/実構成受入を混同しない。| 最小pack数・段階数目標。|
+| `CASE-OS-L10-BIZ-031-01` | 031 / `CASE-OS-L10-031-01..87 (066/068/070/072 excluded; 031-25 aliases 031-06)` | 全測定fieldとscope、correctness/performance/recovery、安全性・最適化の独立状態を保ち旧比較値を普遍SLOにしない。| 現行SLO、速度KPI、merge admission。|
+| `CASE-OS-L10-BIZ-047-01` | 047 / `CASE-OS-L10-047-01..38` | 返却根拠、全非継承軸、provider-only identity、双方向参照、revision証拠、split/scope/backflow境界を保ちIssue/PR完了を要求完了としない。| ticket処理時間・再発行率。|
+
+上表は機能CASEへの静的参照であり、独自のbusiness acceptanceやstage完了条件ではない。
+
+### Stage 5 review01補正overlay — 参照範囲
+
+この補正はfunctional L10 fixtureの参照先だけを同期し、business acceptanceや実績を生成しない。
+
+| business CASE | 親 / 参照functional CASE | 照合境界 |
+|---|---|---|
+| `CASE-OS-L10-BIZ-025-01` | 025 / CASE-025-01〜32 | 個別入力束縛・単位境界のみ。fixture行数を製品完成率へ換算しない。|
+| `CASE-OS-L10-BIZ-026-01` | 026 / CASE-026-01〜55 | 導出状態と採択・実装・受入・配布を分離し、business成功を主張しない。|
+| `CASE-OS-L10-BIZ-031-01` | 031 / CASE-031-01〜87（066/068/070/072除外、031-25は031-06のalias） | 改善条件の記述上の照合のみ。実測、SLO、速度KPI、merge admissionを生成しない。|
+| `CASE-OS-L10-BIZ-047-01` | 047 / CASE-047-01〜38（047-20は047-04のalias） | ticket返却とrevision境界のtraceのみ。ticket効率や処理成功率を追加しない。|
+
+NFR/functional overlayと矛盾するときは独立fixture・aliasの区別を優先する。既存business CASEを追加分母としてfunctional CASEと二重計上しない。

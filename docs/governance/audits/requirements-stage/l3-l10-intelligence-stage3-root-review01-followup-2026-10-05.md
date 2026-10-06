@@ -1,0 +1,9 @@
+# INTELLIGENCE Stage3 review01 root検収追補
+
+本文 `ad94d24762c7b888f45d82b78ad4b1e223271051` の作成側検収記録。独立再review・L3承認・Ready・merge・実行を表さない。旧監査は不変である。
+
+Worker補正を全文差分で検収し、複合CASE残留と後付けfixture重複を整理した。固定L11の句に戻し、model authority・Derived Interpretationの事実化・predictionの実測化・無関係検査・誤ownerの反例、014のmanifest戻し先と反復task、072のdomain/capability及び選択実験のLABO条件、073の4宛先既存経路、各親の選択操作で消費するpack版/互換条件を独立CASEに結んだ。機械的ID一意性だけでは解消を認定しない。
+
+旧補正監査25pinのうち7件は、f6本文の行数を超えた後発親範囲を指し、0bytesのSHAを固定していた。f6にはL2が559行、L11が287行しかない。後発072/073/078/NFR34の根拠は633の実在する非空spanへ再照合し、新JSONへfullSHA・rawSHA・原文を固定した。空SHA一致を根拠の検証成功とした旧記録の誤りをここで訂正する。既存記録は書き換えない。
+
+6main全bytesのprefix一致、FV845unique CASE、未解決AC0を確認した。validate147/失敗0、stale0、residuals0、govcheck7622 atoms/57 requirements/58 files、diff-checkが合格。全suffix原文とSHAを保存する。旧source全件の全面再監査は主張せず、独立再reviewとFable確認が残る。
