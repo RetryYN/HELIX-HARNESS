@@ -92,6 +92,12 @@ execution_status: designed_only_not_executed
 
 独立business criterion/oracle/CASEは追加しない。`functional-requirements.md`の固定L2-041 scopeとFR/ACを参照し、atom数/gap数/coverage/fixture数からROI、事業成果、利用者受入、要求合意、承認を生成しない。
 
+## Stage 3 親047の業務検証
+
+| L2親 | 独立criterion | 対応関係 |
+|---|---|---|
+| `HARNESS-L2-047` | 独立criterionなし | 事業成果を作らず、必要性判断/契約の機能ACと既存owner境界を照合する。 |
+
 ## Stage 3 親049の業務検証
 
 **採択済み固定親**：PO `po-decision-2026-09-30-live26.md:39,72`の登録`MPR-RC-HARNESS-L2-049-003`。source_repository_revision `ea6f756f96a7370de78e412d737c7a7ed472114a`、L2 `product-requirements.md:1070–1092` SHA-256 `a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116`、L11 `product-acceptance.md:802–814` SHA-256 `f3fb47da21371084e9f8c7c7f7ca6dd945c8e98ae7c7b70597c3fc44e4e08ee7`。旧318のL11および登録-002を親にしない。

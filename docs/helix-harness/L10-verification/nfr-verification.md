@@ -181,6 +181,12 @@ NFR CASEは測定candidate分類であり、実測・CI success・performance SL
 |---|---|---|---|
 | `CASE-HARNESS-L10-NFR-041-01` | `NFR-C-HARNESS-041-01` | selected template/scopeのsource obligation ID・span・revisionと、atom/typed gap disposition、provenance mismatch、duplicate、unaccounted findingを別々に記録する。 | 各入力義務がatomまたはgapへtraceされたかを候補計測する。unresolved gapは未解決であり成功ではない。unknown applicabilityは009へ戻し母集団からsuccess扱いで除外しない。率・閾値・性能実測を作らない。 |
 
+## Stage 3 親047の非機能検証
+
+| CASE ID | NFR候補 | 検証対象 | 観測 | 限界 |
+|---|---|---|---|---|
+| `CASE-HARNESS-L10-NFR-047-01` | 共通thresholdなし | task適用の利益・既存role比較 | task/scope/revisionと比較evidenceに結ばれた定性的・測定可能な根拠をACで確認する。 | 一律数値、固定team-size、provider/model単独の判定を加えない。OS budget適用とruntime performanceはHARNESS NFRへ移管しない。 |
+
 ## Stage 3 親049のNFR測定候補
 
 **採択済み固定親**：PO `po-decision-2026-09-30-live26.md:39,72`の登録`MPR-RC-HARNESS-L2-049-003`。source_repository_revision `ea6f756f96a7370de78e412d737c7a7ed472114a`、L2 `product-requirements.md:1070–1092` SHA-256 `a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116`、L11 `product-acceptance.md:802–814` SHA-256 `f3fb47da21371084e9f8c7c7f7ca6dd945c8e98ae7c7b70597c3fc44e4e08ee7`。旧318のL11および登録-002を親にしない。
