@@ -132,6 +132,18 @@
 
 これは未実行design参照であり、business completionや実験を表さない。
 
+## Stage 5 — HELIX-LABO L10 業務総合検証候補 — HELIXLABO-L2-069
+
+固定L2/L11に独立したbusiness outcomeはないため、BR候補に対応する独立の採否・品質向上判定を設けない。FVの正常/否定ケースを業務境界から照合する。
+
+| 照合対象 | 期待するbusiness-level observation | 禁止する読替え |
+|---|---|---|
+| 有効な再発行後assessment | 対象scope/revisionと比較条件、個別result、元closureを同時に識別できる。 | 個別resultを全体因果効果・品質改善へ一般化する。 |
+| 不完全・未追跡・censored result | 既知のOSまたは識別可能なsource-owner roleへ不足を戻し、source identityが特定できない場合は個別identityをunknownで保つ。 | 欠測/未追跡を0、成功、route個人名へ補完する。 |
+| 評価candidate | 提案として返り、ticket・assignment・permission・採否・execution/completionは元ownerの状態で残る。 | 評価結果を操作許可、要求採択、発行、実行、完了へ変換する。 |
+
+これは業務成果の実測やquality closureの認定ではない。
+
 ### HELIXLABO-L2-066 — 既存比較business outcomeとの対応確認
 
 状態：未承認のL10候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。

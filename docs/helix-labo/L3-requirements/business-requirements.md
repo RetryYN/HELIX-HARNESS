@@ -136,6 +136,12 @@
 
 これは未実行design索引であり、実business outcomeを示さない。
 
+## Stage 5 — HELIX-LABO L3 業務要件候補 — HELIXLABO-L2-069
+
+独立の業務成果や採否判定を追加しない。L2-069が要求するticket返却・再発行後の成立状況を、機能要件FR-01の評価candidateとして観測可能にする。業務レベルで確認するのは、比較条件と未評価状態の識別、元closureの保持、OS等の既存責務境界である。評価結果はticket採択、配置、発行、権限、実行、完了を意味しない。
+
+**旧source対応**：旧ticket sourceのclosure保持・追補assessmentを意味再導出し、旧feedbackの件数低下だけを品質証明にしない境界を保持する。別の業務成果、因果/window/severity閾値は起こさない。
+
 ### HELIXLABO-L2-066 — A比較における誤修復・未解消数の明示
 
 状態：未承認のL3候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。
