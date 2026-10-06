@@ -186,6 +186,12 @@ fixture definition数と実測母集団は異なる。対のL10機能総合検�
 |---|---|---|---|
 | `NFR-C-HARNESS-040-01` / `HARNESS-L2-040` | canonical 12 layer、6 pair、独立L0 anchorの必要catalog relation欠落0件。片edgeを双方向成立へ数える件数0。 | HIL-FR-46のledger/pair/anchor契約から直接導出。 | 未作成ledgerはmissing obligationとして記録し、全ledgerの実装率やregistrationを主張しない。 |
 
+## Stage 3 親042の非機能候補
+
+| NFR候補 / L2親 | 候補値 | 固定根拠 | 限界 |
+|---|---|---|---|
+| `HARNESS-L2-042` | 独立した数値NFRを導出しない | 旧requirements v1.3 §4.2 L119の性能Refactor条件は、PO採択済みHARNESS-L2-016と対L11がbaseline、budget、workload、profile、統計条件、regression oracleを持つ。 | 新しい数値閾値、性能権限、時間/件数SLOを作らない。性能判定を行う場合は016へ委譲する。 |
+
 
 ## Stage 3 親041の非機能計測候補
 
