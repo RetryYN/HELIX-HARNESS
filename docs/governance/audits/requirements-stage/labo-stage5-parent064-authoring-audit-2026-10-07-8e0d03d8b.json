@@ -1,0 +1,1352 @@
+{
+  "record_kind": "authoring_audit_candidate",
+  "record_date": "2026-10-07",
+  "state": "uncommitted_tmp_candidate_not_canonical",
+  "body_commit": "8e0d03d8b61ad4b34f7a2d76486a8dc65ad68573",
+  "base_revision": "286a938442f7ff9a05004478d7a25d0feedc34d8",
+  "pull_request": {
+    "number": 2632,
+    "state": "draft",
+    "review_requested": false,
+    "body_head": "8e0d03d8b61ad4b34f7a2d76486a8dc65ad68573",
+    "purpose": "保存用L3/L10 draft。作成監査候補を準備中。review依頼は未実施。"
+  },
+  "po_decision": {
+    "source_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+    "line": 79,
+    "source_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+    "source_line_sha256": "21e65876f5d6e336541578f29a1450435782bf248b060a4a8e4d3cc1cd65255d",
+    "decision_identity": "HELIXLABO-L2-064 adopted, MPR-RC-HELIXLABO-L2-064-002",
+    "limitation": "L2 adoption is not L3 approval, comparison authorization, or execution permission."
+  },
+  "fixed_l2_l11_sources": [
+    {
+      "revision": "0857205ecb7a18db9d8d926142e865776c1bf6e2",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "lines": [
+        491,
+        501
+      ],
+      "file_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+      "span_sha256": "e28da5b2f47c3d1327cc091003d14a7ab572a3282040b2ed7ec6614dae7079b8"
+    },
+    {
+      "revision": "0857205ecb7a18db9d8d926142e865776c1bf6e2",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "lines": [
+        233,
+        239
+      ],
+      "file_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+      "span_sha256": "4f51be505b3c169f08aa61c2dd192b21b1b185db0f5243f556853bcb3e1a1fe3"
+    }
+  ],
+  "related_l2_contracts_read": {
+    "source_revision": "8e0d03d8b61ad4b34f7a2d76486a8dc65ad68573",
+    "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+    "file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+    "selected_parent_spans": {
+      "55": {
+        "lines": [
+          150,
+          162
+        ],
+        "span_sha256": "da6ae3b8c5aed5364b80f4a3d9aeadf48542bda0661fc77e0575bcdfd7f2c929"
+      },
+      "59": {
+        "lines": [
+          416,
+          440
+        ],
+        "span_sha256": "5ead2e790e1d138c633770851687b0e5f91e9dc15d0c4c525c322ba81fd30e08"
+      },
+      "60": {
+        "lines": [
+          441,
+          456
+        ],
+        "span_sha256": "a047f7e535616eb29f5221d81f89a8b319c02910d5cbfde874b0520b0a7c01c5"
+      },
+      "61": {
+        "lines": [
+          457,
+          469
+        ],
+        "span_sha256": "9f064d206645f1db6ef946a78ddfd2fe6656c003c4af86ed46c54dab2ee4ad3a"
+      },
+      "63": {
+        "lines": [
+          480,
+          490
+        ],
+        "span_sha256": "bb239f6a98b11cba1bc8bb3a8f0f42563f377594e8018c644808a8b5d0bf3416"
+      },
+      "64": {
+        "lines": [
+          491,
+          502
+        ],
+        "span_sha256": "0c391b9afc6be1919e99ffd98bcf09beec0998e19c5b7316eb5c623c677b2969"
+      }
+    },
+    "scope": [
+      "055: selected history/model-class level evidence and non-assignment boundary",
+      "059: same-condition quality-first comparison, costs, existing decision boundary",
+      "060: controlled support/no-support comparisons and run-specific OS/SECURITY inputs",
+      "061: selected task/oracle scope and non-dependency boundary",
+      "063: repair recurrence/feedback and role separation",
+      "064: blind/reproducibility, failure routes, no LABO assignment/admission"
+    ]
+  },
+  "legacy_sources": {
+    "read_only": true,
+    "files": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "bytes": 56091,
+        "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+        "bytes": 18905,
+        "sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+        "bytes": 6446,
+        "sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+        "bytes": 16537,
+        "sha256": "4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576"
+      }
+    ],
+    "inspected_spans": {
+      "infinity-loop-platform-requirements.md": [
+        "215 (HIL-NFR-35)"
+      ],
+      "infinity-loop-functional-requirements.md": [
+        "56 (HR-FR-HIL-22)",
+        "85 (HAC-HIL-22a/b/c)"
+      ],
+      "helix-bench-evaluation.md": [
+        "96-120 (R-04)",
+        "143-147 (R-08)"
+      ],
+      "L1-infinity-loop-operational-test-design.md": [
+        "81 (HOT-HIL-54)"
+      ]
+    },
+    "reuse_derivation_disposition": "Re-derive blind name masking, version-pinned conditions, smoke/full distinction and no averaging of security/scope/unverifiable failure. Replace legacy admission/routing/execution authority; old test/runtime/CI are read-only and were not run."
+  },
+  "review05_source": {
+    "pull_request": 2620,
+    "comment_id": 6010745544,
+    "reviewed_head": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+    "reviewed_base": "55760269a",
+    "reviewer_lane": "Claude review_merge / Opus 5.5",
+    "local_formal_copy_path": "/tmp/labo5-review05-formal.txt",
+    "local_formal_copy_sha256": "761f8eb92265a9b7325daf2340cd96847d5fa11a5ef2d344c1fc455788fe341a",
+    "claim_limit": "Pinned formal copy only; this audit candidate is not an independent review of current body."
+  },
+  "review_findings": {
+    "M1": {
+      "original_text_verbatim": "- **M1（064：review04 M8の残り）**：064-03bと064-26に「mapping source owner」が残っている。FRと064-14は「観測元」にそろっている。監査M8の処置は「固定親にないrouteを削除」と書いているが、本文と合わない。→守るべき行：L2-064「依存・戻し先」（元identityの追跡不能は観測元）。",
+      "classification": "本文上の処置候補",
+      "treatment": "CASE-03b/26はmapping/sourceの未追跡を観測元へ返し、source ownerを新設しない。固定L2の「元identity追跡不能→観測元」と一致。原文の「mapping source owner」は否定文脈でのみ残る。",
+      "current_lines": [
+        3037,
+        3050
+      ]
+    },
+    "M2": {
+      "original_text_verbatim": "- **M2（064 FR AC-03：固定親が定める戻し先を、LABOの保持に置き換えた）**：FRは「可視scope条件不明はLABOで比較不能として保持し、固定親にない戻し先を追加しない」と書いている。同じ親のFV（064-06、07〜11、15、20、23、27〜32、04a）は「既存evaluation owner」のままで、FRと矛盾する。監査のM8処置も同じ誤りを記録している。→守るべき行：L2-064「依存・戻し先」（judge可視範囲・固定条件の不明は評価ownerへ）、「評価と権限」（再評価義務をtask/evaluation ownerへ）。\n  - 補足：review04 M5で私が「evaluation ownerは064側の用語」と書いたのは、061から外す理由としてだった。064では「既存evaluation owner」が固定親の語である。",
+      "classification": "本文上の処置候補",
+      "treatment": "FR AC-03は可視scope/固定条件不明を既存evaluation ownerへ、再評価義務をtask/evaluation ownerへ分ける。FV所定fixtureもevaluation ownerを示し、固定L2/L11の区分に沿う。原監査の誤記録を遡及上書きせず別時点で保持。",
+      "current_lines": [
+        1764,
+        1776
+      ]
+    },
+    "m1": {
+      "original_text_verbatim": "- **m1（表記の規定外。review04 m2の残り）**：\n  - FV:3023のCASE-102/109に親IDがない。\n  - 060-29「互換別名」、063-25/35「主索引」、064-16「集約索引」「互換index」が残っている。\n  - 監査は「統一した」と記録している。",
+      "classification": "本文上の処置候補",
+      "treatment": "064 CASE-16は「索引（fixtureなし）」として記載され、review05が挙げた「集約索引」「互換index」の語は064 suffixに見当たらない。064範囲だけの照合。",
+      "current_lines": [
+        3066
+      ]
+    },
+    "m5": {
+      "original_text_verbatim": "- **m5（重複計上）**：新しく追加したCASEの多くが、既存の単独fixtureと同じ変異を持っている。\n  - 063：54≒08、56/57≒49/50、58≒13、59≒12、61≒15、62≒16、64/65≒41/42\n  - 065-45≒065-11\n  - 066-43≒066-09\n  - 064-38/39≒064-04a（04aは2変異の行のまま残っている）\n  - NVとNGは、063の54〜62と64/65を独立したnegativeとして数えている。063-58には、063-13にある「観測提供主体へ返す」がない。\n  - 補足：review04 M11が求めたのは、FRへの禁止句の追補だけだった。対応する既存CASEは、すでにAC-03をtraceしていた。",
+      "classification": "本文上の処置候補",
+      "treatment": "CASE-04aはfixtureなし索引へ変更され、CASE-37/38/39の各異なるoracleを直接参照する。04a自身をnegativeとして数えず、旧IDを保持する。",
+      "current_lines": [
+        3040,
+        3073,
+        3074,
+        3075,
+        3077
+      ]
+    },
+    "m6": {
+      "original_text_verbatim": "- **m6（戻し先の併記漏れ）**：\n  - 065-41〜44、069-31/32、070-63、066-42/43に戻し先がない。\n  - 070-69は、対象fieldも特定していない。\n  - 064-24/33/35/36から、evaluation ownerが削られた。064-33は「再評価義務を返す」を「当該scopeを再評価する」に変えている。\n  - →守るべき行：L2-065/069/066「戻し先」、L11-064の未見例、L11-070の個別反例。",
+      "classification": "原文と現本文の差を独立reviewへ引継ぐ",
+      "treatment": "原文が求めたevaluation owner routeと、現行CASE-24/33/35/36のtask/evaluation owner再評価義務・原因別routeを併記する。固定L2/L11の条件不明・再評価の責務区分と見比べる。字句差だけで欠陥・解消を断定せず、独立reviewへ再分類を渡す。",
+      "current_lines": [
+        3048,
+        3069,
+        3071,
+        3072
+      ]
+    },
+    "m7": {
+      "original_text_verbatim": "- **m7（064：固定親にない禁止）**：FR AC-03と064-38が、qualificationの生成を禁じている。→守るべき行：L2-064「評価と権限」（禁じているのはassignmentとadmissionだけ）。",
+      "classification": "本文上の処置候補",
+      "treatment": "FR AC-03でqualification一般の生成禁止を追加しないと明記し、CASE-38はsmoke-onlyから完全適格性をclaimする誤出力だけを検査する。",
+      "current_lines": [
+        1776,
+        3074
+      ]
+    },
+    "m8": {
+      "original_text_verbatim": "- **m8（英文の残存・表記の揺れ）**：\n  - 069-29「clause」\n  - 064-38/39「decision boundary」\n  - 061-114「invalid state」\n  - 070-73「co-present complete scorecard」（他の行では「complete co-present scorecard」）",
+      "classification": "本文上の処置候補",
+      "treatment": "064 CASE-39は「既存境界」とし、review05が引用した英語句 decision boundary は064 suffixに残らない。m8の他親ID/英語残余は今回対象外。",
+      "current_lines": [
+        3075
+      ]
+    },
+    "m10": {
+      "original_text_verbatim": "- **m10（064-04aが2つの変異を持ったまま）**：064-38/39に分割したのに、元の行が索引になっていない。→守るべき行：L2-064「評価と権限」。",
+      "classification": "本文上の処置候補",
+      "treatment": "CASE-04aは索引となり、CASE-37/38/39を個別oracleとして列挙。多変異negative扱いをやめた。",
+      "current_lines": [
+        3040,
+        3077
+      ]
+    },
+    "m12": {
+      "original_text_verbatim": "- **m12（064-33の文言の変化）**：L11-064の未見例「再評価義務を既存evaluation ownerへ返す」が、「当該scopeを再評価する」になった。m6とあわせて直すこと。",
+      "classification": "原文と現本文の差を独立reviewへ引継ぐ",
+      "treatment": "現行固定064は再評価義務をtask/evaluation ownerへ引継ぐ。CASE-33もこの責務区分を記す。一方review05 rawは既存evaluation ownerと表現する。原文・現行literal・固定親を並べ、owner語句差だけで欠陥/解消を断定せず独立reviewへ渡す。",
+      "current_lines": [
+        3069,
+        1764
+      ]
+    }
+  },
+  "historical_case_id_integrity": {
+    "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+    "source_path": "docs/helix-labo/L10-verification/functional-verification.md",
+    "source_file_sha256": "7a6c7dc1f88c77bbd628a1320c0393f0ad6c14b76d5a30db0c4cda27d22b9d16",
+    "current_revision": "8e0d03d8b61ad4b34f7a2d76486a8dc65ad68573",
+    "current_source_file_sha256": "35449d134850cd4fa76873619a54a520422d721aa2575158be284a435859222c",
+    "historical_definition_count": 42,
+    "current_definition_count": 42,
+    "id_sets_equal": true,
+    "definition_line_hashes": {
+      "L10-LABO-064-CASE-01": {
+        "historical": {
+          "line": 2774,
+          "literal_sha256": "79badd864e3b10f16f4e9af505f5f2bb77b68f4520f7677e7226ecfc01be56f9",
+          "raw_lf_sha256": "009ff312a28e36886b42127edb3ebafc718f8faed6753aae287545d287c65218",
+          "bytes_including_lf": 187
+        },
+        "current": {
+          "line": 3034,
+          "literal_sha256": "6247937d161e2b33e59867ec6ef886e7902e6afcfc3b4ccf208db466a4aab188",
+          "raw_lf_sha256": "ca0629b93708fc4178d8fd266c1a79e7df502620f3d2dd5c90c318a2c38f4dde",
+          "bytes_including_lf": 705
+        }
+      },
+      "L10-LABO-064-CASE-02": {
+        "historical": {
+          "line": 2775,
+          "literal_sha256": "98c7eb3af5d49a58a16230de84830fb543dd5dd26a710608f2daab11bb627a2b",
+          "raw_lf_sha256": "8b87cfb7f5fc6f40aedd222a6eda2cb8e59624bfc68fb45fbb4e0e5423997831",
+          "bytes_including_lf": 167
+        },
+        "current": {
+          "line": 3035,
+          "literal_sha256": "7fc32f5441374b424f6af2a9440f995c4f3f48cfa4183dd949ffd041a51fabf7",
+          "raw_lf_sha256": "ed6dfc15364fd931f8a68963d0263ba391298bd716db508f0c7bc7b5ae22bd45",
+          "bytes_including_lf": 531
+        }
+      },
+      "L10-LABO-064-CASE-03a": {
+        "historical": {
+          "line": 2779,
+          "literal_sha256": "0945d3e81beba4daeb55feed846747a7fcfe57be760d75ce89bc74541fdc868e",
+          "raw_lf_sha256": "f04c3ad804393d4c90f7042225b2d0ab4726047da0fba84de387ad4a16a0d366",
+          "bytes_including_lf": 159
+        },
+        "current": {
+          "line": 3036,
+          "literal_sha256": "ee1a30d9a6ad35ea54e63a61bcbc1ced0d4528420e18e5c2847579275172580f",
+          "raw_lf_sha256": "a53394f88245cb24887909de154da6eb33f4663abad7f0c9c421122465bb4427",
+          "bytes_including_lf": 267
+        }
+      },
+      "L10-LABO-064-CASE-03b": {
+        "historical": {
+          "line": 2780,
+          "literal_sha256": "99e6689fb2a7b02ac850b44ff7ec06296f44595e66074c4cc88e35f0e5366161",
+          "raw_lf_sha256": "cfc84cee696fe70afd6088a9b7e0fe139ef1b17320a9b238b7d6be6f630ff2cc",
+          "bytes_including_lf": 208
+        },
+        "current": {
+          "line": 3037,
+          "literal_sha256": "160adaef71ec5ce20ceb040443446285562d16975b42cc40d4df630536a4d9bc",
+          "raw_lf_sha256": "3c59bb12bd6236a58f3ade3555b688074aaa25e0d1bdba1ca3b90eddfca6a16a",
+          "bytes_including_lf": 278
+        }
+      },
+      "L10-LABO-064-CASE-03c": {
+        "historical": {
+          "line": 2781,
+          "literal_sha256": "9e8fa5fff5a8a28eb36321277014fa977b35d11bd1de2669627207ee75727fbd",
+          "raw_lf_sha256": "fcc56d84d0b7b1a3f05d0e5fd857a6a47461a4eba0dd45c4a257ce4c680013ca",
+          "bytes_including_lf": 196
+        },
+        "current": {
+          "line": 3038,
+          "literal_sha256": "f7cf334b0d2971cd79c72b2b2e3a6c8e2fc835e7bbd7e1af9fcfe3807f604b21",
+          "raw_lf_sha256": "01791711ade2b8722b79829f6bdb61704795597f4a05c243fc0768a897fa098a",
+          "bytes_including_lf": 217
+        }
+      },
+      "L10-LABO-064-CASE-03d": {
+        "historical": {
+          "line": 2782,
+          "literal_sha256": "de397d93295b7003fff3e49f9bf3ea2495ee9afe769c8a042cd156abf54b9dab",
+          "raw_lf_sha256": "59a8db863149d17aa39d34a793babbd79108f617440fa00cfa201d87c98857d4",
+          "bytes_including_lf": 345
+        },
+        "current": {
+          "line": 3039,
+          "literal_sha256": "5e71929da3a5bb1bd365dcf1a23fee35fc501d7d7cbc7d61d186058f07371924",
+          "raw_lf_sha256": "fedf196c864fbbb75ab9535bd51f2e8230343fa656e06484a2a6f5c4910eb5dd",
+          "bytes_including_lf": 305
+        }
+      },
+      "L10-LABO-064-CASE-04a": {
+        "historical": {
+          "line": 2783,
+          "literal_sha256": "94bebde960a62485d722cfe8e6a28d2db807b793262eb3b3057b8f23baf6dde7",
+          "raw_lf_sha256": "d46ccd17cd4c2dc6c425602229bdb16c5a23cd794b1447afe23ae42f6abc8cd5",
+          "bytes_including_lf": 146
+        },
+        "current": {
+          "line": 3040,
+          "literal_sha256": "d357178d4254394da1d7f957ddfc3459ad6ee9dc45a1e0b9738e09230f35ba2e",
+          "raw_lf_sha256": "ad851b1bb300bccaac6f603affa0011a880bfb787547586ec82807be22208835",
+          "bytes_including_lf": 343
+        }
+      },
+      "L10-LABO-064-CASE-05": {
+        "historical": {
+          "line": 3167,
+          "literal_sha256": "67e345f965382a3d2eea3b510437e05d4e20060b96d48535c72e36f61a563b0d",
+          "raw_lf_sha256": "1ab6f5e93c4bed476977030aebb77382bf261a6170312bccec31a934be2953f9",
+          "bytes_including_lf": 248
+        },
+        "current": {
+          "line": 3055,
+          "literal_sha256": "a2834c68a20b69a18d5b601ee5ccc990bdc1beeb655e190c59b28bc3bed5ad8f",
+          "raw_lf_sha256": "3514b33b7bcbd32efcbc88bcc6ba877175cd1386be9d9ded982f19d89bca905a",
+          "bytes_including_lf": 203
+        }
+      },
+      "L10-LABO-064-CASE-06": {
+        "historical": {
+          "line": 3168,
+          "literal_sha256": "127479b8593e32efb012c672c2cae254da58314b022647b75b8cfc717ba35029",
+          "raw_lf_sha256": "7ea249742577bee9524bd01ac3c9c7124421c0fc0d8cf412f5fbc50ecf9f2582",
+          "bytes_including_lf": 239
+        },
+        "current": {
+          "line": 3056,
+          "literal_sha256": "8966517cacd073042eed03a850e0b6b5d11eaaa297fd30749e4cf6814f62804a",
+          "raw_lf_sha256": "a73727d92193cf4d250604c3916ac875a23ea2c6f9ec2dde02d71dea872d40a4",
+          "bytes_including_lf": 631
+        }
+      },
+      "L10-LABO-064-CASE-07": {
+        "historical": {
+          "line": 3169,
+          "literal_sha256": "7606249ffc89c1be1f09b7094f278613b3d6c8298574e92c10c77af5609737ce",
+          "raw_lf_sha256": "37a1fbef5ae026befdec2dd529a4caa5371054075d52e207537cca46a1171b1a",
+          "bytes_including_lf": 206
+        },
+        "current": {
+          "line": 3057,
+          "literal_sha256": "805744f8a3f14dca49bae66622a162d4b344c4f8e639fee7f2541cee616275e1",
+          "raw_lf_sha256": "f7491f9b2c748f1c13c634021f6c50eb156dd5026508cba029b47e619851e228",
+          "bytes_including_lf": 722
+        }
+      },
+      "L10-LABO-064-CASE-08": {
+        "historical": {
+          "line": 3170,
+          "literal_sha256": "4d52d384b1a7976f709b27af445795a0940165be91796a539228adc9297b438b",
+          "raw_lf_sha256": "2fce3ae6e28276ee64d50ee9c7ac22c564eb7568729f82c4689d177044004852",
+          "bytes_including_lf": 205
+        },
+        "current": {
+          "line": 3058,
+          "literal_sha256": "ee5a6ac5d23a0c33a0ce7e8d991f29ec68d6580e42a01eb6ef56b21483aaf392",
+          "raw_lf_sha256": "bbf6d48e7febe76fa8f654911e536d68ac43b2d04e842c906865f0752aff0c35",
+          "bytes_including_lf": 651
+        }
+      },
+      "L10-LABO-064-CASE-09": {
+        "historical": {
+          "line": 3171,
+          "literal_sha256": "2168f180b0fce14910a4dcb1da940916237ab0d04f69300c8ac073ae9aa28992",
+          "raw_lf_sha256": "67d520071c7f884edf409bffcdcaab8cab4896637f544d45ed31d3860df01279",
+          "bytes_including_lf": 197
+        },
+        "current": {
+          "line": 3059,
+          "literal_sha256": "8d26b11a0be796ca9d18246161704c9062050971f0fa5cfde63aa81e1750b84c",
+          "raw_lf_sha256": "e401740e767ddd406a37a675b33b2ec8339088c0ccb8cf3e1bee9a0bacd120c7",
+          "bytes_including_lf": 638
+        }
+      },
+      "L10-LABO-064-CASE-10": {
+        "historical": {
+          "line": 3172,
+          "literal_sha256": "eed5d6382229e15a543cd9199bd0ab7347bbf04f264211fd64037ff54bcf4941",
+          "raw_lf_sha256": "22da61fb5823eadfe4aa97a2fa11450b7fcee2be3ba59c90ba57e27a11b01d4c",
+          "bytes_including_lf": 205
+        },
+        "current": {
+          "line": 3060,
+          "literal_sha256": "5c6e4a8f42ff97ae77fb733be3443eb20d780d778d1e6d1d2380649c14a47db1",
+          "raw_lf_sha256": "059ca5bcb64d40b2fb35d832945d28d378ada6ddce798efa32dc95f850ba3a74",
+          "bytes_including_lf": 629
+        }
+      },
+      "L10-LABO-064-CASE-11": {
+        "historical": {
+          "line": 3173,
+          "literal_sha256": "14079c547999e51a4fcc58e3705f6a196ff447f3492071faae744cf0b377392d",
+          "raw_lf_sha256": "4414bd96950bcad5537836f1b6eaa82e058b3c81d28bce0ba269c645b21b936c",
+          "bytes_including_lf": 205
+        },
+        "current": {
+          "line": 3061,
+          "literal_sha256": "a6064934f9e0a5be9245de640f35daab9185535521ae4773ec3ae0a11b2f932e",
+          "raw_lf_sha256": "04355942ee2ccdfb82be3a438a3a387637a45f0bd821dfc092a899cdaa8f57ad",
+          "bytes_including_lf": 631
+        }
+      },
+      "L10-LABO-064-CASE-12": {
+        "historical": {
+          "line": 3174,
+          "literal_sha256": "af218ef2a5c46e12f6d6bce0f3291eb6367f0fdf03419e7cb3f0c10a5b3e281e",
+          "raw_lf_sha256": "f97f76cf9413c26257feeb3ffa864aebc0896bc6916a55cb9d9a2a03b9555b97",
+          "bytes_including_lf": 270
+        },
+        "current": {
+          "line": 3062,
+          "literal_sha256": "0ff4456b6aaf607cd9709333a4ad3a26acb556c64a1d97005ffde34c57dba547",
+          "raw_lf_sha256": "888cb061858d15b2cc1d0c196599761cd909c4c108284927599f2ae8f54964bb",
+          "bytes_including_lf": 658
+        }
+      },
+      "L10-LABO-064-CASE-13": {
+        "historical": {
+          "line": 3175,
+          "literal_sha256": "ea8f07990eccfda712fcbd09d2463ed427b676c34c487512c2699b46ced60a39",
+          "raw_lf_sha256": "3eeddb254e496d3073e26a34ae234d2050cd534782eadfb88f72d5b0b9c3f848",
+          "bytes_including_lf": 196
+        },
+        "current": {
+          "line": 3063,
+          "literal_sha256": "8cde52f23e326edc07af042df0965c192ce7a07e0054eb2dac719cb6670f2bc1",
+          "raw_lf_sha256": "403299728c29b5cbff7a09e5c84a4c838b9c053bf67793ee5180550dac945709",
+          "bytes_including_lf": 226
+        }
+      },
+      "L10-LABO-064-CASE-14": {
+        "historical": {
+          "line": 3176,
+          "literal_sha256": "f21ed4cbded8638f50097b979ec318f894f739a010507faa4bae8677f4a99f80",
+          "raw_lf_sha256": "1eae47dfa1cbfb5166d794628039639c190d3b41b9e20706998f4916607fcd35",
+          "bytes_including_lf": 323
+        },
+        "current": {
+          "line": 3064,
+          "literal_sha256": "5c969f6407c0e0b9df4fba65e781c360c4079e0e4338a182889f047bd7c3b2fb",
+          "raw_lf_sha256": "af96ab7ab6de2de6b404f5d953352743c6fe0dd7280fa1a66f20311a113a5ee4",
+          "bytes_including_lf": 730
+        }
+      },
+      "L10-LABO-064-CASE-15": {
+        "historical": {
+          "line": 3177,
+          "literal_sha256": "53ff785fc91e80a61ee464eb1a50cc6d449e92fd5d1e7364e13b730774dd890a",
+          "raw_lf_sha256": "a53b8e1f5144da0312efd578d103791ddf998c32c7cacd9fc8ef7c0d42abc54e",
+          "bytes_including_lf": 256
+        },
+        "current": {
+          "line": 3065,
+          "literal_sha256": "15f38f0a96103091af599ce8fa7d9eae03750a40ba0859f13e0f407bd9d4c97d",
+          "raw_lf_sha256": "0d0ce935307ef700ecda3052a1470fe949543983a4eb9aabdebea7a7f18a1a91",
+          "bytes_including_lf": 731
+        }
+      },
+      "L10-LABO-064-CASE-16": {
+        "historical": {
+          "line": 3178,
+          "literal_sha256": "98e1180b0668008cadac008fda14d6d15860ba2818ea8730fbc4ecf9cc57e98e",
+          "raw_lf_sha256": "15d5238130f136a2bd3adb8a4a96449f3bdb9aab24391ed067cd7c4953e07a3a",
+          "bytes_including_lf": 624
+        },
+        "current": {
+          "line": 3066,
+          "literal_sha256": "8ead3c75d379ee70d13e5095ae5745950cb6918cab7b7ba823cd53de9b2c9fee",
+          "raw_lf_sha256": "e79880547218cc0fe9a12c10f2fb6bb65bbce6a43198c1a78c88f726c9c3bb86",
+          "bytes_including_lf": 303
+        }
+      },
+      "L10-LABO-064-CASE-17": {
+        "historical": {
+          "line": 2787,
+          "literal_sha256": "f54f0bf62e2557a0da0c2f04be9c0525fb68e4a9e92b9ba6d6b849f7972370b7",
+          "raw_lf_sha256": "13b4921e28a2db844b3ae380c29809db5423ab2e4e5ce86706a61da5ad6b40f7",
+          "bytes_including_lf": 279
+        },
+        "current": {
+          "line": 3041,
+          "literal_sha256": "8f24b2ae26ee8f27926d0f375a251fff725ce1f7b47a15d1dc49452425680ad3",
+          "raw_lf_sha256": "5c153f2b4a39cda3c824e791f92298ceadb1db91c2c362bfcaaad276845c94f3",
+          "bytes_including_lf": 217
+        }
+      },
+      "L10-LABO-064-CASE-18": {
+        "historical": {
+          "line": 2788,
+          "literal_sha256": "7fc2934d898c25441a97086a95f5e8b56a5b64bee6c01f9b875326b4b109d6c5",
+          "raw_lf_sha256": "b5fba5dbc6ea8077027f3e47f69d84e5980ce680966e6f44d4582d6b58c52dff",
+          "bytes_including_lf": 128
+        },
+        "current": {
+          "line": 3042,
+          "literal_sha256": "edad904ab74669b0c16898acda3456c47056b42833b9c4f9011c701c830b3b59",
+          "raw_lf_sha256": "eadb969309559e088186bd888e06e2976aa7320a200154b2412c92ba0a2dbab0",
+          "bytes_including_lf": 648
+        }
+      },
+      "L10-LABO-064-CASE-19": {
+        "historical": {
+          "line": 2789,
+          "literal_sha256": "f2732deddf06e5d4de7876c90b85a97c53b635966203947994042faa6eb90be5",
+          "raw_lf_sha256": "3199e1d444a8f46a947ad4eb2824eac5c7485a8bd4f7890930b329f7e15763ec",
+          "bytes_including_lf": 114
+        },
+        "current": {
+          "line": 3043,
+          "literal_sha256": "35bc0bf96d04e249ef8ed95fac496d7141a1e3fb6ab379660c8c5fc43aa10c01",
+          "raw_lf_sha256": "c3143f8227210ff0bf6799690a1a1dc7a3cee6f42412621a404763eeb55ee2e4",
+          "bytes_including_lf": 649
+        }
+      },
+      "L10-LABO-064-CASE-20": {
+        "historical": {
+          "line": 2790,
+          "literal_sha256": "9fe60ca5d5faf685291c204902dc57e11e9f976554a058ea9ef566dde0d936e7",
+          "raw_lf_sha256": "b526330aab6079c743eebf71efa3c9a76fd48bf73edc949c65ba40e9141d1fc7",
+          "bytes_including_lf": 146
+        },
+        "current": {
+          "line": 3044,
+          "literal_sha256": "2a2e37ace1c49b6e7d57c700c67706bf65813c82d3efd0b4c4cd21a3aaabf93f",
+          "raw_lf_sha256": "3c2db7ae351c6d9905da540a85cb845192af909b9134e406d92bd2ca7943be0f",
+          "bytes_including_lf": 639
+        }
+      },
+      "L10-LABO-064-CASE-21": {
+        "historical": {
+          "line": 2791,
+          "literal_sha256": "4b7b06e25cebe381ad1aaf1aa92081efdcf676a38a7a85ca86e0bbac5164e5a1",
+          "raw_lf_sha256": "e9c523c58356c90979493de940667229964b80e79f71a57def167fdc5e1be9ab",
+          "bytes_including_lf": 231
+        },
+        "current": {
+          "line": 3045,
+          "literal_sha256": "cfc19f154cd18ec52f84d46141c507a7fda1cbd73cd6e091591eef193d42c1cb",
+          "raw_lf_sha256": "d5cc70d626438679d36f51d3cd8fde0b31244d93d8676b9c0795452198d88238",
+          "bytes_including_lf": 224
+        }
+      },
+      "L10-LABO-064-CASE-22": {
+        "historical": {
+          "line": 2792,
+          "literal_sha256": "d7c7d22e7e6dc6d27bf1f65ab9911fa15617d138c36579f5dc6dd394b683950f",
+          "raw_lf_sha256": "ba1b4504564ae0e85ec7139735082efada381a04d2594af1c8ba2cd61059782c",
+          "bytes_including_lf": 308
+        },
+        "current": {
+          "line": 3046,
+          "literal_sha256": "b39c9b2a3458c66c9516eb476ad829beedd1188acd6abe993c4da10582960f8e",
+          "raw_lf_sha256": "3e43a720fadc47caed875f78eeb1cc12a40158dfa4d2fba7129360d1262fc913",
+          "bytes_including_lf": 350
+        }
+      },
+      "L10-LABO-064-CASE-23": {
+        "historical": {
+          "line": 2793,
+          "literal_sha256": "807a6072345e3b2129a2ac9f95c62e0fca4bee69b9eacc71a378359d327c45a0",
+          "raw_lf_sha256": "6f2c45f42395e34f66eb0f9665572c63f00f9887edd6dfcb65c104a192dc24f9",
+          "bytes_including_lf": 201
+        },
+        "current": {
+          "line": 3047,
+          "literal_sha256": "89d5089a836a9210446e254c605dca4ee7a53301bc6997c36514852662438e80",
+          "raw_lf_sha256": "6ef3912a7b8a962ce3532122c214fff886b1cb356a15ed7135c44a9937519bc1",
+          "bytes_including_lf": 301
+        }
+      },
+      "L10-LABO-064-CASE-24": {
+        "historical": {
+          "line": 2794,
+          "literal_sha256": "e16c4c5e1a6d7993d572d777e11d6162349441be125f71fe1a93d31cdf898811",
+          "raw_lf_sha256": "2178eb5439c5c526bafa8471282dbe5232b70c96b05cdccf3aa16bb30be0a0d0",
+          "bytes_including_lf": 343
+        },
+        "current": {
+          "line": 3048,
+          "literal_sha256": "9ecdab3c66fa79f2fbc09c5fd96c4b7c9d3d10bde3233c7616c3f7943bc81296",
+          "raw_lf_sha256": "c098fc48b3ee94cb7f92b760d0cc07a6a0b396c4400a261863e05017c93a2bbb",
+          "bytes_including_lf": 762
+        }
+      },
+      "L10-LABO-064-CASE-25": {
+        "historical": {
+          "line": 2795,
+          "literal_sha256": "8660e041dab83842bee4d64c7b06c1ab1d22c264611a4c4ac1286068b899a3aa",
+          "raw_lf_sha256": "1f587169885f7b4e8702b1710f4b4ebaa976c522db5d3cd7a060855ee31909f1",
+          "bytes_including_lf": 124
+        },
+        "current": {
+          "line": 3049,
+          "literal_sha256": "25b55ddd06f7e93edcb7f6ef76926bbb242f839a45c7267d179ebe35e83a6f75",
+          "raw_lf_sha256": "16c6877a601357d065fcfb8c251350b21fedc01f7bc15f413e3cf66fbb412d43",
+          "bytes_including_lf": 688
+        }
+      },
+      "L10-LABO-064-CASE-26": {
+        "historical": {
+          "line": 2796,
+          "literal_sha256": "c27644fde8bfdeca9239d924ff4e44802f644a775276228b3a0a1358adbb2bbe",
+          "raw_lf_sha256": "328b39297c5cdc8e2f4200471b59a5af548131ae76252fbc51adb6890c6482ab",
+          "bytes_including_lf": 221
+        },
+        "current": {
+          "line": 3050,
+          "literal_sha256": "020e4cc591559c64b5768079a0fc3d9c2f0b15d97b68a92efe37f70af3cc8375",
+          "raw_lf_sha256": "dbf708d9616eefb10b0ba4c7977e1999d9d593e0b01c0370fd900f7d82a91fa1",
+          "bytes_including_lf": 684
+        }
+      },
+      "L10-LABO-064-CASE-27": {
+        "historical": {
+          "line": 2797,
+          "literal_sha256": "278149669105626497091afe7313ecc9b593b91a790d115d2d4f7fde69675854",
+          "raw_lf_sha256": "5b33f83294fa74f851071617ecbaeef5a686b39d775c22345506b7fbd7862226",
+          "bytes_including_lf": 161
+        },
+        "current": {
+          "line": 3051,
+          "literal_sha256": "0465a6b879430828ab7caeb96873d1cff34873308303f7d229a0b64858e3085f",
+          "raw_lf_sha256": "c94c400f042153306859565ea959225aa2d0517e68d1937c9898a1115bbf65cd",
+          "bytes_including_lf": 619
+        }
+      },
+      "L10-LABO-064-CASE-28": {
+        "historical": {
+          "line": 2798,
+          "literal_sha256": "8645c4073e06454593e065ec3b75d1c430cf909325397ec82baefda49becff90",
+          "raw_lf_sha256": "d24fc09af770cd5d13a61ec7cb1be5609d7fef3615b10ecd7a2013ffab401e6e",
+          "bytes_including_lf": 137
+        },
+        "current": {
+          "line": 3052,
+          "literal_sha256": "a4948b00aae813632ebe171c42f65aef5d98e080a3178af92334436130ab3bd5",
+          "raw_lf_sha256": "ec80613f31d65676e6993c30e59c3b571f3af160534470cc0446cd4bfb0fbec2",
+          "bytes_including_lf": 641
+        }
+      },
+      "L10-LABO-064-CASE-29": {
+        "historical": {
+          "line": 2799,
+          "literal_sha256": "6ba6e7f6ca16663e595f719cf967aa76e8090dcb15f57d47021b311193f310a5",
+          "raw_lf_sha256": "ce09ef2e09d694f20bc64521c40eea40a57ecbbaa960ad75ba1f4a8ee63deb70",
+          "bytes_including_lf": 146
+        },
+        "current": {
+          "line": 3053,
+          "literal_sha256": "04b8a3137f020e281176877796034bdb406a2f264334accd6078bdc3df23a57e",
+          "raw_lf_sha256": "5490613d236991b53411450eeaeddc87fb7aea9cba894c690518b3ff078b23f5",
+          "bytes_including_lf": 618
+        }
+      },
+      "L10-LABO-064-CASE-30": {
+        "historical": {
+          "line": 2800,
+          "literal_sha256": "2d8b102047f6a56e4338ef69ffecd431e224e6c92522b61fc84aa2e720a4bab4",
+          "raw_lf_sha256": "86090fcce9bb6307cd972c5f2e1d486ffce7793fc8fdd1b9d44b95f391cbbd5e",
+          "bytes_including_lf": 149
+        },
+        "current": {
+          "line": 3054,
+          "literal_sha256": "994f9e4ecc4d33756b9109fb354496377fbf59b02427d9f399bcd6290c98863c",
+          "raw_lf_sha256": "85f53d65b29257871e816223da86ebf5b8b9c6384c6394ae33267b930dd29d33",
+          "bytes_including_lf": 920
+        }
+      },
+      "L10-LABO-064-CASE-31": {
+        "historical": {
+          "line": 3328,
+          "literal_sha256": "b66f740b13e04900c127ae909a959576ee9101f6918ae2c6aa02979800479433",
+          "raw_lf_sha256": "7820d22cac13ff5eed7e8831feefd3ff9919d501e69c98dd025b52d0a03bb5b8",
+          "bytes_including_lf": 241
+        },
+        "current": {
+          "line": 3067,
+          "literal_sha256": "d0e43667d54fa6a8de4510344f1d8090030c11b5c629e0fe299ba4a598f91abb",
+          "raw_lf_sha256": "dfd3bec855ac07d83a5a0c5039de195f998052bcb1d93f231933c2e78ced59d8",
+          "bytes_including_lf": 654
+        }
+      },
+      "L10-LABO-064-CASE-32": {
+        "historical": {
+          "line": 3329,
+          "literal_sha256": "03cbacf80742add37a67a9648dfdaf2a00b44c5c7b90e4e453eec2bd3aff5952",
+          "raw_lf_sha256": "d6e0c3c3f346c622bf87657bf2c2bbcfe13d11917876fb60cca25f88f3e5c9d4",
+          "bytes_including_lf": 260
+        },
+        "current": {
+          "line": 3068,
+          "literal_sha256": "94ebada3bf765554d6a51860e4e08ffd50e6f0d3752f79eb91a23cde19d3c9e0",
+          "raw_lf_sha256": "f07ad76523bd24240db2895a0e86ecf2bda2db294d8469f699ba0d956d1d9d24",
+          "bytes_including_lf": 696
+        }
+      },
+      "L10-LABO-064-CASE-33": {
+        "historical": {
+          "line": 3330,
+          "literal_sha256": "2d6984837295a3b7517ad23afec24ed9825fb17428e52c9107c723e9f7b5824e",
+          "raw_lf_sha256": "ef905849a0c039ad274d9daa2b74959d2920af9b0723d8506e7ff218062a821a",
+          "bytes_including_lf": 390
+        },
+        "current": {
+          "line": 3069,
+          "literal_sha256": "aefd666ebcbca9b6842db636c215df1a2f7db85e1c9e2f9b47bd6b3cf3271bf6",
+          "raw_lf_sha256": "d08a90b51d3e24cc1644b5173f0e2bb75f21b224c0a6c9f5d4d3dfe7d0e1b65f",
+          "bytes_including_lf": 336
+        }
+      },
+      "L10-LABO-064-CASE-34": {
+        "historical": {
+          "line": 3355,
+          "literal_sha256": "60b09451aa054852d5a9f7d2ecbc6497652d651df937b1ef38ae2da73ea83673",
+          "raw_lf_sha256": "d209a0b55f0ecbf8e166a4f046683c3f5d874d79e404f9bcd86db8d4e4136f23",
+          "bytes_including_lf": 384
+        },
+        "current": {
+          "line": 3070,
+          "literal_sha256": "bcac9b2924613845ac342dda00f7a77c4ef4f06cfc043a43fd44ac9f68defd3f",
+          "raw_lf_sha256": "dec817c74ec789d8a6fc292dc9ae234762dee123fcfe5fe9927c94ee601abb39",
+          "bytes_including_lf": 414
+        }
+      },
+      "L10-LABO-064-CASE-35": {
+        "historical": {
+          "line": 3356,
+          "literal_sha256": "c8f2f2513f404522128bd9bad713d6596490377130754615cd978c021f3353dd",
+          "raw_lf_sha256": "3345ff9f11ee708831b2dc8069c178620a82b98dfb6a26f0070a6241e2c3952a",
+          "bytes_including_lf": 315
+        },
+        "current": {
+          "line": 3071,
+          "literal_sha256": "91994655f933202402d06d96b5d60bbaaaa590892683fbb4dc91ec412b88df5d",
+          "raw_lf_sha256": "f479a219fdc7e199c139ffded7e36fd3128ddd2cbae4916d2f87a9e737e210f8",
+          "bytes_including_lf": 338
+        }
+      },
+      "L10-LABO-064-CASE-36": {
+        "historical": {
+          "line": 3357,
+          "literal_sha256": "c39f2fe3357b1a139619e78aa6456ee49d4bde6006c6c074577e3d7e735f859c",
+          "raw_lf_sha256": "4e3342a3e56f9db78c97d0b48431af21447b2e2b4155d9ae13d465159b605490",
+          "bytes_including_lf": 299
+        },
+        "current": {
+          "line": 3072,
+          "literal_sha256": "a47fc0c6fb59550d096ce3d92f06309d2f5291956024e03ca3c92859ff7296cd",
+          "raw_lf_sha256": "33629df9ecacab81c8e507b0271c2ddf5efdba5cb594355b617d320254e3210a",
+          "bytes_including_lf": 363
+        }
+      },
+      "L10-LABO-064-CASE-37": {
+        "historical": {
+          "line": 3379,
+          "literal_sha256": "314752a09a668a3a2e875c50242a6c4c69fbb94bd3ec669f94b6149ecc978269",
+          "raw_lf_sha256": "dc5b5527b6dee58b73e749164d677396bea5ea9abc4a0023a979455f7096576e",
+          "bytes_including_lf": 294
+        },
+        "current": {
+          "line": 3073,
+          "literal_sha256": "d3550ff7c12abe04af4d3b52b6e03be692dbc5b91b893255651a8d9ec71e2cb7",
+          "raw_lf_sha256": "171a3518bd1ee0e2d5e4b9836d500d126d291a572dbdc11c613506b66b6de2b7",
+          "bytes_including_lf": 375
+        }
+      },
+      "L10-LABO-064-CASE-38": {
+        "historical": {
+          "line": 3380,
+          "literal_sha256": "aca28d11a37def6c88cb9207ba3d313964ef08f45a4d93fe813ff51f590e5a12",
+          "raw_lf_sha256": "b23e0cad251d21cf918d5a20ec52f0d8de99be4088875a9c0851b85868c27247",
+          "bytes_including_lf": 296
+        },
+        "current": {
+          "line": 3074,
+          "literal_sha256": "6b3d6f8ede7f49c2d33c4ecf6f20c9d2529744aa99d90175cd899e722c5eea94",
+          "raw_lf_sha256": "b2b62ed87b7a03d02aa8ef0bd023e598b22aa3c938073d938ceb4741b51551ea",
+          "bytes_including_lf": 516
+        }
+      },
+      "L10-LABO-064-CASE-39": {
+        "historical": {
+          "line": 3381,
+          "literal_sha256": "ab1d113ae9007166249a7fc669e299d3ae8d586935ebb5d219748a04bd6843cd",
+          "raw_lf_sha256": "cf2aed9780e446d0253a295daaf43d145e64024f82bcfca1ed6a310d8d436af5",
+          "bytes_including_lf": 284
+        },
+        "current": {
+          "line": 3075,
+          "literal_sha256": "52211de5ae59028a91bd7135955c3b776df803e8b587a58e9b12a66cd52e8ba6",
+          "raw_lf_sha256": "fbef8665bec5bcac04cc4751cdfa213885b6504c69fa040b116399e91acd1e9f",
+          "bytes_including_lf": 362
+        }
+      }
+    }
+  },
+  "body_file_pins": [
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "bytes": 13832,
+      "sha256": "d87a7d8cd69f857311a08dd2c9f4cccfc9324b616fa21f330969affc97c243a4",
+      "trailing_lf": true,
+      "base_sha256": "2076362505fffdd21f0bac4d375743c5b2e22fb634999d9b0e42bcc3f8a56208",
+      "prefix_unchanged": true
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "bytes": 299179,
+      "sha256": "8e4a09bf4112e7d62afdff5f9330e02ede29e509ac8cf9760d35d37f55de047d",
+      "trailing_lf": true,
+      "base_sha256": "2bef02dabb0f377d3f7cfc82854e7e26f3eee6b3d55f9e82e908c187c1fc93f1",
+      "prefix_unchanged": true
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "bytes": 65946,
+      "sha256": "43a4000e5ec13d84166bd13f01ed4a0c4305b398e472b16971e96fe27f19ef24",
+      "trailing_lf": true,
+      "base_sha256": "72b46aae68bed2e5b359955b2f9cd9623d1d0bde69f9b4e42f792ee089ae7d62",
+      "prefix_unchanged": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "bytes": 11775,
+      "sha256": "a00c65684e376e067b99a961db51b16da147c7c1c51e47915ca472dc728fafb9",
+      "trailing_lf": true,
+      "base_sha256": "aa06437d9a26fc833a2bf15ca5d9f87df427b68fd7886499f1fb6c2f0176cec3",
+      "prefix_unchanged": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "bytes": 425204,
+      "sha256": "35449d134850cd4fa76873619a54a520422d721aa2575158be284a435859222c",
+      "trailing_lf": true,
+      "base_sha256": "b6aba96d43818dd5a65b74c53700c62a5e4ee7795c2eaa73833f7322630d71f1",
+      "prefix_unchanged": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "bytes": 55834,
+      "sha256": "c44fca2716690432ea53a719de2a587776493bb6399e75af97127af01992dcc0",
+      "trailing_lf": true,
+      "base_sha256": "b8e6be1963b35ea6d90874f15e41b0b3a3cb7d7070a657be8a2b330a5e3730fb",
+      "prefix_unchanged": true
+    }
+  ],
+  "current_literal_evidence": {
+    "FR064": [
+      {
+        "line": 1752,
+        "literal": "## Stage 5 — HELIXLABO-L2-064 Worker比較評価の候補名遮蔽と再現条件"
+      },
+      {
+        "line": 1768,
+        "literal": "合成fixture `B0`（L10表）を与える。selected scope、run identity、runtime/model identityと版、記録側mapping、judgeに渡す資料・可視範囲、fixture/rubric/judge version/sample/retryを比較前に固定し、候補名をjudge-visible資料へ出さない。fixture revision（Fv0）とruntime revision（V0）は別fieldとして記録する。元identityと版への追跡は記録側に残す。返すのは当該scopeの条件・evidence対応であり、実測・実比較・qualification/assignment/admissionではない。"
+      },
+      {
+        "line": 1776,
+        "literal": "実際に比較runを行う場合は、既存OS assignmentと適用されるSECURITY許可を入力条件として用いる。この候補はそれらを生成しない。L10の各直接fixtureは一つの入力field変異、または入力不変で一つの誤出力を検査する。候補名の資料本文/metadata/output metadata露出はそれぞれ区別し、identity mapping欠落/staleとは混同しない。mapping/sourceの追跡不能は観測元、可視scope/固定条件の不明はevaluation ownerへ戻す。再評価義務はtask/evaluation ownerへ返す。smoke-only結果でblind evidenceを代替すること、またはそれだけで完全適格性をclaimすることをfull evaluationと区別する。failureの平均相殺、scope外run混入、検証不能の成功化を拒否する。評価だけでassignment/admissionを生成しない。qualification一般の生成禁止を追加しない。"
+      },
+      {
+        "line": 1789,
+        "literal": "| authority | CASE-37/39はassignment/admission生成拒否。CASE-38はsmoke-only evidenceの不足のみを扱いqualification一般を禁止しない。CASE-04aは37/38/39を直接指す索引とし、束ねたnegativeにしない。 |"
+      }
+    ],
+    "FV064": [
+      {
+        "line": 104,
+        "literal": "- **L10-LABO-002-CASE-16 normal unknown observed value** (`LABO-002-AC-01`) — source identity/revision/scopeと全20 schema列が揃い、観測済みitemの `cost` または `result` 値がsource上でunknownの正常fixtureを与える。期待：値unknownをunknownのまま保持し、ゼロ・success・欠落へ変換しない。"
+      },
+      {
+        "line": 160,
+        "literal": "| 002 episode chain/field/source | `LABO-002-AC-01` | `L10-LABO-002-CASE-01, L10-LABO-002-CASE-02, L10-LABO-002-CASE-07, L10-LABO-002-CASE-08, L10-LABO-002-CASE-10, L10-LABO-002-CASE-12, L10-LABO-002-CASE-13, L10-LABO-002-CASE-15, L10-LABO-002-CASE-16, L10-LABO-002-CASE-17` |"
+      },
+      {
+        "line": 201,
+        "literal": "- **L10-LABO-006-CASE-16 normal output retention** (`LABO-006-AC-01`, `LABO-006-AC-03`) — 比較出力にfailure、counterexample、applicability scope、cost、limitsをそれぞれ別fieldで含む入力を与える。期待：5項目すべてをsource/revision付きで保持し、反例を評価可能にし、costやlimitを省略しない。"
+      },
+      {
+        "line": 225,
+        "literal": "- **L10-LABO-007-CASE-16 negative individual operation-exclusion criteria** (`LABO-007-AC-02`) — 共通normal baselineから、文脈依存、意味判断、例外多数、不完全oracle、高い誤検知、過剰拘束の各条件を一つずつ独立変異として与える。各fixtureでoperation continuationをsystemization-onlyから除く要求を加える。期待：各変異でoperation候補を保持し、該当限界を記録する。他条件は固定する。"
+      },
+      {
+        "line": 253,
+        "literal": "- **L10-LABO-008-CASE-16 negative L2-007 dependency identity/revision/scope** (`LABO-008-AC-03`) — 他入力を固定し、選択したL2-007 candidate identity、revision、scopeをそれぞれ独立fixtureで欠落・stale・不一致にする。期待：依存candidateを成立済み扱いせずunknown/unresolvedとして保持し、元identity/revisionと理由を付けて現行責務のownerへ戻す。"
+      },
+      {
+        "line": 278,
+        "literal": "- **L10-LABO-009-CASE-16 negative stale experiment evidence** (`LABO-009-AC-03`) — CASE-02のevidence identityを保ちrevisionだけをstaleにする。期待：現行evidenceとみなさずscopeをunknown/unassessedとし、元experiment/evidence ownerへ理由付きで戻す。"
+      },
+      {
+        "line": 300,
+        "literal": "- **L10-LABO-010-CASE-16 negative regression_risk**（`LABO-010-AC-01`）— `regression_risk`だけ欠落。期待：リスクなしへ変換しない。"
+      },
+      {
+        "line": 309,
+        "literal": "- **L10-LABO-010-CASE-24 normal same experiment multi-target** (`LABO-010-AC-01`, `LABO-010-AC-03`) — 同一experiment/evidenceから複数targetに関係する通常入力を与える。期待：experiment identityを各proposalに保持し、target別proposal行へ分離する。targetごとの16 field/evidence/responsibilityを混ぜない。"
+      },
+      {
+        "line": 311,
+        "literal": "- **L10-LABO-010-CASE-26 negative registration creation** (`LABO-010-AC-03`) — 完備proposalにOS registration生成を要求する変異だけを加える。期待：registrationを生成しない。"
+      },
+      {
+        "line": 322,
+        "literal": "| baseline/current・candidate・hybridと14比較軸、および必要品質の速度相殺禁止 (`LABO-006-AC-01`) | `L10-LABO-006-CASE-01`, `L10-LABO-006-CASE-02`, `L10-LABO-006-CASE-03`, `L10-LABO-006-CASE-04`, `L10-LABO-006-CASE-05`, `L10-LABO-006-CASE-14`, `L10-LABO-006-CASE-15`, `L10-LABO-006-CASE-16` |"
+      },
+      {
+        "line": 324,
+        "literal": "| 比較不能・失敗・反例・欠測・中断 (`LABO-006-AC-03`) | `L10-LABO-006-CASE-03`, `L10-LABO-006-CASE-04`, `L10-LABO-006-CASE-05`, `L10-LABO-006-CASE-06`, `L10-LABO-006-CASE-07`, `L10-LABO-006-CASE-10`, `L10-LABO-006-CASE-11`, `L10-LABO-006-CASE-12`, `L10-LABO-006-CASE-15`, `L10-LABO-006-CASE-16` |"
+      },
+      {
+        "line": 326,
+        "literal": "| systemization/operation continuationの両候補と限界 (`LABO-007-AC-02`) | `L10-LABO-007-CASE-01`, `L10-LABO-007-CASE-02`, `L10-LABO-007-CASE-09`, `L10-LABO-007-CASE-11`, `L10-LABO-007-CASE-13`, `L10-LABO-007-CASE-14`, `L10-LABO-007-CASE-16`, `L10-LABO-007-CASE-17`, `L10-LABO-007-CASE-18`, `L10-LABO-007-CASE-19` |"
+      },
+      {
+        "line": 330,
+        "literal": "| LABOはswitchせず不明ownerを推測しない (`LABO-008-AC-03`) | `L10-LABO-008-CASE-03`, `L10-LABO-008-CASE-04`, `L10-LABO-008-CASE-05`, `L10-LABO-008-CASE-06`, `L10-LABO-008-CASE-07`, `L10-LABO-008-CASE-08`, `L10-LABO-008-CASE-09`, `L10-LABO-008-CASE-10`, `L10-LABO-008-CASE-11`, `L10-LABO-008-CASE-12`, `L10-LABO-008-CASE-13`, `L10-LABO-008-CASE-16`, `L10-LABO-008-CASE-17` |"
+      },
+      {
+        "line": 333,
+        "literal": "| missing/unknown/incomparableを未確定に保つ (`LABO-009-AC-03`) | `L10-LABO-009-CASE-06`, `L10-LABO-009-CASE-07`, `L10-LABO-009-CASE-08`, `L10-LABO-009-CASE-09`, `L10-LABO-009-CASE-10`, `L10-LABO-009-CASE-13`, `L10-LABO-009-CASE-16` |"
+      },
+      {
+        "line": 334,
+        "literal": "| 全16 mandatory fields (`LABO-010-AC-01`) | `L10-LABO-010-CASE-01`, `L10-LABO-010-CASE-02`, `L10-LABO-010-CASE-03`, `L10-LABO-010-CASE-04`, `L10-LABO-010-CASE-05`, `L10-LABO-010-CASE-06`, `L10-LABO-010-CASE-07`, `L10-LABO-010-CASE-08`, `L10-LABO-010-CASE-09`, `L10-LABO-010-CASE-10`, `L10-LABO-010-CASE-11`, `L10-LABO-010-CASE-12`, `L10-LABO-010-CASE-13`, `L10-LABO-010-CASE-14`, `L10-LABO-010-CASE-15`, `L10-LABO-010-CASE-16`, `L10-LABO-010-CASE-17`, `L10-LABO-010-CASE-18`, `L10-LABO-010-CASE-24` |"
+      },
+      {
+        "line": 336,
+        "literal": "| target-specific proposal/OS・target authority境界 (`LABO-010-AC-03`) | `L10-LABO-010-CASE-01`, `L10-LABO-010-CASE-02`, `L10-LABO-010-CASE-05`, `L10-LABO-010-CASE-06`, `L10-LABO-010-CASE-13`, `L10-LABO-010-CASE-14`, `L10-LABO-010-CASE-20`, `L10-LABO-010-CASE-21`, `L10-LABO-010-CASE-22`, `L10-LABO-010-CASE-23`, `L10-LABO-010-CASE-24`, `L10-LABO-010-CASE-25`, `L10-LABO-010-CASE-26`, `L10-LABO-010-CASE-27`, `L10-LABO-010-CASE-28` |"
+      },
+      {
+        "line": 380,
+        "literal": "- **L10-LABO-056-CASE-16 negative receipt/run mismatch** — receiptの実run照合結果だけを不一致にし、元receiptと実績は別々に保持する。期待：receipt値で実績を上書きせず、対応水準の根拠へ混ぜない。確認 LABO-056-AC-05。"
+      },
+      {
+        "line": 389,
+        "literal": "- **L10-LABO-056-CASE-24 unseen applicability unknown** — 新provider/model versionと異なるtoolchain/source revisionを持つresultを与えるが、既存評価条件との互換性だけをunknownにする。期待：resultを観測として保持し、同条件成功・class水準へ推定せず未評価を維持し、再評価条件を元source/oracle ownerへ返す。確認 LABO-056-AC-03, LABO-056-AC-05。"
+      },
+      {
+        "line": 410,
+        "literal": "- **L10-LABO-057-CASE-16 negative delivery-success promotion** — receipt到達は成功だが、評価oracle適用/結果判定だけ未完了。期待：履歴化先は記録してもassessedへ昇格しない。確認 LABO-057-AC-04。"
+      },
+      {
+        "line": 418,
+        "literal": "- **L10-LABO-057-CASE-24 normal receipt return/history destination** — CONNECT契約とhuman receiptを別々の正常fixtureで成立させる。期待：LABO受領receiptを返し、後続の履歴化先を各方式で示して追跡できる。評価済みへの昇格やassignmentはしない。確認 LABO-057-AC-04。"
+      },
+      {
+        "line": 431,
+        "literal": "| 056実績receiptとrunの同一性・実行契約/要求revision・scope・result/verification/human receipt/data-useの照合（固定L11:141–144,198–203） | LABO-056-FR-01; LABO-056-AC-01, LABO-056-AC-03, LABO-056-AC-04, LABO-056-AC-05 | L10-LABO-056-CASE-16, L10-LABO-056-CASE-17, L10-LABO-056-CASE-18, L10-LABO-056-CASE-19, L10-LABO-056-CASE-20a, L10-LABO-056-CASE-20b, L10-LABO-056-CASE-21, L10-LABO-056-CASE-22, L10-LABO-056-CASE-23, L10-LABO-056-CASE-24 |"
+      },
+      {
+        "line": 436,
+        "literal": "| 057 receipt返却/履歴化先、delivery成功から評価済み・assignmentを生成しない | LABO-057-FR-01; LABO-057-AC-04 | L10-LABO-057-CASE-16, L10-LABO-057-CASE-17, L10-LABO-057-CASE-24 |"
+      },
+      {
+        "line": 531,
+        "literal": "| `L10-LABO-054-CASE-16` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 個別negative：評価scope欠落。055 outputのwork-kind/model-class/evidence/stateは保ち評価scopeだけを欠落させる。 | unknownを保持して水準生成側へ再評価を戻し、範囲外成功を保証しない。 | 誤判定：scope不明を有効tupleとし、未知scopeへ水準を適用する。 |"
+      },
+      {
+        "line": 548,
+        "literal": "| `L10-LABO-052-CASE-16` | `HELIXLABO-L2-052` / `LABO-052-AC-02` | 単独negative：LABOがINTELLIGENCEの現在判断を生成・所有する。 | 判断をLABO成果として確定せずINTELLIGENCEへ残す。 | 誤判定：現在判断をLABO所有の結果として受理する。 |"
+      },
+      {
+        "line": 2571,
+        "literal": "|`L10-LABO-050-CASE-03b`|`LABO-050-AC-03`|negative|CASE-01のOS assignmentとticketを保ち、Worker-result側experiment identityだけをassignment側と異なる値にする。|結果を当該実験の評価へ結合せずunknown/未完了とし、実験/評価bindingを担うLABOへ戻す。|"
+      },
+      {
+        "line": 2577,
+        "literal": "|`L10-LABO-050-CASE-04a`|`LABO-050-AC-03`|negative|CASE-01の入力状態でregistration/routingの実行者だけをLABOにする。|LABOによるregistrationを拒否する。registration/routingはOS。|"
+      },
+      {
+        "line": 2590,
+        "literal": "|`L10-LABO-050-CASE-16`|`LABO-050-AC-03`|negative|有効source/ticket/experiment/target revision、OS assignment、評価済みcandidate、OS registration/routing完了を基準にし、target changeは未実施、verification/deployment/operation/re-observation/effect/regressionはopenとしCI成功receiptは既存状態に置く。唯一の変異はこのCI成功だけを根拠に後続義務完了を主張すること。|CI結果をstage receiptの代替にせず全open義務を保持する。登録はOS、target後段はtarget owner、再観測/評価はLABO。|"
+      },
+      {
+        "line": 2598,
+        "literal": "|`L10-LABO-050-CASE-24`|`LABO-050-AC-03`|negative|CASE-01と同じassignment/ticket/experiment/target/result条件を保ち、Worker-result側ticket identityだけをassignment側と異なる値にする。|別ticketの証拠を結合せず完了を拒否し、OSへ戻す。|"
+      },
+      {
+        "line": 2600,
+        "literal": "|`L10-LABO-050-CASE-26`|`LABO-050-AC-03`|negative|CASE-01を基準にWorker-result側target revisionだけ欠落。他のidentity/receiptとcurrent target revisionは有効。|欠落版を補完せずcurrent結果として扱わない。実験評価bindingを担うLABOへ戻し、target authorityはtarget ownerに残す。|"
+      },
+      {
+        "line": 2604,
+        "literal": "|`L10-LABO-050-CASE-30`|`LABO-050-AC-03`|negative|CASE-01からticket/experiment/target identity、OS assignment、Worker result、registration、candidateなど前段receiptを引き継いで有効に保つ。target changeとverification receiptも有効とし、deployment/operation/re-observation/effect/regression receiptだけは未観測/open。唯一の変異はverification receiptだけを根拠に循環完了を出力すること。|verificationだけで完了とせず循環を未完了に保つ。deployment/operationはtarget owner、re-observation/effect/regression evaluationはLABOの既存責務に残す。|"
+      },
+      {
+        "line": 2606,
+        "literal": "Stage 5のCASE IDはこの本文で各々の種類・参照先を定義する。CASE-01/02は正常fixture、03gは非独立ラベル、07/08/09/10は非独立索引、CASE-24–30は本追補で追加した単独fixtureである。定義は37件（独立fixture32件、非独立ラベル/索引5件）であり、索引・ラベルをnegative分母へ加えない。"
+      },
+      {
+        "line": 2622,
+        "literal": "| `L10-LABO-059-CASE-03b` | LABO-059-AC-03 | quality oracle revisionだけ異なる | 比較不能。HARNESSへ戻す。 |"
+      },
+      {
+        "line": 2634,
+        "literal": "| `L10-LABO-059-CASE-04a` | LABO-059-AC-03 | LABOがWorkerを割当 | 拒否。OS ownerへ戻す。 戻し先: OS。 |"
+      },
+      {
+        "line": 2647,
+        "literal": "| `L10-LABO-059-CASE-16` | LABO-059-AC-03 | 単独変異: historical runへ現行OS assignmentを遡及付与だけを変更。その他の入力は `CASE-01` と同一。 | 当時のauthority/receiptを保持し後付けassignmentを拒否する 戻し先: OS。 |"
+      },
+      {
+        "line": 2655,
+        "literal": "| `L10-LABO-059-CASE-24` | LABO-059-AC-03 | 単独変異: retry cost receiptだけ欠落。その他の入力は `CASE-01` と同一。 | 費用内訳を不完全としunknownを保つ。該当retry/費用条件の提供sourceが識別できればLABO-055またはそこへ戻し、識別できなければunknown。 |"
+      },
+      {
+        "line": 2657,
+        "literal": "| `L10-LABO-059-CASE-26` | LABO-059-AC-03 | 単独変異: human-fix cost receiptだけ欠落。その他の入力は `CASE-01` と同一。 | 費用内訳を不完全としunknownを保つ。human-fix/effort条件の提供sourceが識別できればLABO-055または該当sourceへ戻し、識別できなければunknown。 |"
+      },
+      {
+        "line": 2661,
+        "literal": "| `L10-LABO-059-CASE-30` | LABO-059-AC-03 | 初回candidate単価だけを根拠に安価と認定し、retry・救援・rework・人修正を含む総費用を無視する。その他は `CASE-01` と同一。 | 初回candidate価格だけで安価認定せず、CASE-01と同じ適用scopeのretry・救援・rework・人修正込み総費用と既決priorityで判定する。 |"
+      },
+      {
+        "line": 2664,
+        "literal": "| `L10-LABO-059-CASE-33` | LABO-059-AC-03 | 索引（独立fixtureではない）: CASE-41〜43のprovider/API/token費用除外を分けて参照する。 | 各単独fixtureを参照し、複数費目を一つのfixtureに束ねない。 |"
+      },
+      {
+        "line": 2666,
+        "literal": "| `L10-LABO-059-CASE-35` | LABO-059-AC-03 | 索引（独立fixtureではない）: CASE-39/40/44のrollback/recovery/integration費用除外を分けて参照する。 | 各単独fixtureを参照し、複数費目を一つのfixtureに束ねない。 |"
+      },
+      {
+        "line": 2667,
+        "literal": "| `L10-LABO-059-CASE-36` | LABO-059-AC-03 | 索引（独立fixtureではない）: CASE-46/47の評価運転費用または対象作業費用の除外を分けて参照する。 | 各単独fixtureを参照し、両方向を別々に検証する。 |"
+      },
+      {
+        "line": 2668,
+        "literal": "| `L10-LABO-059-CASE-37` | LABO-059-AC-03 | 未完runを低費用成功へ変換 | 未完/unknownを保ち、accepted outcomeなしの低費用成功としない。 |"
+      },
+      {
+        "line": 2669,
+        "literal": "| `L10-LABO-059-CASE-38` | LABO-059-AC-03 | 未評価effortを`provider_default_unbenchmarked`値として確定扱い | 未評価と表示し、確定性能/費用に含めない。 |"
+      },
+      {
+        "line": 2670,
+        "literal": "| `L10-LABO-059-CASE-39` | LABO-059-AC-03 | rollback費用だけを総費用から除外 | 総費用を不完全とし成功比較にしない。rollback費用sourceまたはLABO-055の該当effort sourceが識別できればそこへ、identity不明ならunknown。 |"
+      },
+      {
+        "line": 2710,
+        "literal": "既存a4a365由来CASE60件はすべて保持する。CASE-30は複数費目を含む既存compound、CASE-22/33/34/35/36は非独立indexであり、独立negativeへ再分類しない。CASE-01/02を正常fixtureとし、既存の独立negative52件を保つ。追加はCASE-48正常1件、CASE-49–70 negative22件である。追加negativeは単独変異（入力field 9件、固定入力からの出力変異13件）として定義し、CASE-64だけはprovider label入力を変えscore不変を期待する。独立fixtureの設計数は既存54＋追加23＝77、別に既存compound1・index5を定義として保持する。実行・合格・実測数ではない。"
+      },
+      {
+        "line": 2723,
+        "literal": "| `L10-LABO-060-CASE-03b` | `LABO-060-AC-03` | 対照runに助言contextだけが漏れる | 対照runを支援なし群と認定せず、支援有無比較を未評価に保ち成功比較を出さない。 |"
+      },
+      {
+        "line": 2727,
+        "literal": "| `L10-LABO-060-CASE-04a` | `LABO-060-AC-03` | LABOがrun/相談を開始 | 拒否。OS/既存相談ownerへ。 戻し先: OS。 |"
+      },
+      {
+        "line": 2740,
+        "literal": "| `L10-LABO-060-CASE-16` | `LABO-060-AC-03` | 選択INTELLIGENCE proposal/use packetに結ぶhandoff receiptだけ欠落 | 利用済みと扱わない。欠けた証拠がINTELLIGENCE proposal/use sourceならINTELLIGENCEへ、OS handoff receiptならOSへ返し、ownerを特定できない欠落はunknownに保つ。 |"
+      },
+      {
+        "line": 2748,
+        "literal": "| `L10-LABO-060-CASE-24` | `LABO-060-AC-03` | 単独変異: helper version だけ欠落。その他の入力は `CASE-01` と同一。 | 支援比較未完。 戻し先: OS。 |"
+      },
+      {
+        "line": 2750,
+        "literal": "| `L10-LABO-060-CASE-26` | `LABO-060-AC-03` | 索引（独立fixtureではない）: `L10-LABO-060-CASE-16` のINTELLIGENCE proposal/use packet receipt欠落だけを参照する | 主fixture CASE-16のoracleへ到達する。同じ変異を独立negativeに重複計上しない。 |"
+      },
+      {
+        "line": 2754,
+        "literal": "| `L10-LABO-060-CASE-30` | `LABO-060-AC-03` | 索引（独立fixtureではない）: OS assignment欠落CASE-36を参照する。 | 主fixture CASE-36を参照し、割当証拠の欠落を成功扱いしない。 |"
+      },
+      {
+        "line": 2755,
+        "literal": "| `L10-LABO-060-CASE-31` | `LABO-060-AC-03` | 索引（独立fixtureではない）: HARNESS-L2-022 oracle契約事前固定欠落CASE-37を参照する。 | 主fixture CASE-37を参照し、oracle契約を事前固定しない比較を未評価とする。 |"
+      },
+      {
+        "line": 2757,
+        "literal": "| `L10-LABO-060-CASE-33` | `LABO-060-AC-03` | 単独変異: 選択history主張のhistorical receiptだけ欠落。その他の入力は `CASE-01` と同一。 | history主張の根拠不足のまま未評価とし、historical receiptのsource ownerへ戻す。 |"
+      },
+      {
+        "line": 2759,
+        "literal": "| `L10-LABO-060-CASE-35` | `LABO-060-AC-03` | 選択runのevidence revisionだけstale | そのrunを比較不能にし、該当source ownerへ戻す。 |"
+      },
+      {
+        "line": 2760,
+        "literal": "| `L10-LABO-060-CASE-36` | `LABO-060-AC-03` | OS assignmentだけ欠落 | 実行結果を比較証拠とせずOSへ戻す。 |"
+      },
+      {
+        "line": 2761,
+        "literal": "| `L10-LABO-060-CASE-37` | `LABO-060-AC-03` | HARNESS-L2-022 oracle契約の事前固定だけ欠落 | oracle比較を未評価にしHARNESS/要求ownerへ戻す。 |"
+      },
+      {
+        "line": 2762,
+        "literal": "| `L10-LABO-060-CASE-38` | `LABO-060-AC-03` | 選択比較母集団中のrunを一件だけ黙って除外 | 母集団不完全として比較を未評価にする。 |"
+      },
+      {
+        "line": 2763,
+        "literal": "| `L10-LABO-060-CASE-39` | `LABO-060-AC-03` | retry費用/時間だけ欠落 | 該当内訳をunknownとし、総費用/効果比較を確定しない。 |"
+      },
+      {
+        "line": 2793,
+        "literal": "| `L10-LABO-061-CASE-03b` | `LABO-061-AC-03` | baselineはCASE-01と同じ選択task契約。単独変異: oracle revisionだけが適用契約とstale。 | 当該task比較を成立扱いせず、固定task/oracle ownerへ戻す。入力から具体owner identityを識別できる場合だけ示し、識別できなければowner identity unknownを保つ。 |"
+      },
+      {
+        "line": 2799,
+        "literal": "| `L10-LABO-061-CASE-03g` | `LABO-061-AC-03` | 索引（独立fixtureではない）: L10-LABO-061-CASE-35の同一変異を参照する。 | 主fixtureを参照し、同じ変異を二重計上しない。 |"
+      },
+      {
+        "line": 2800,
+        "literal": "| `L10-LABO-061-CASE-03h` | `LABO-061-AC-03` | 索引（独立fixtureではない）: L10-LABO-061-CASE-39の同一変異を参照する。 | 主fixtureを参照し、同じ変異を二重計上しない。 |"
+      },
+      {
+        "line": 2812,
+        "literal": "| `L10-LABO-061-CASE-04a` | `LABO-061-AC-03` | 単独の誤出力: LABOが固定task/oracle契約を自ら変更した、または変更権限があると主張する。入力契約・source identityはCASE-01と同じ。 | 変更を拒否し、task/oracle条件不明・不一致は既存task/oracle ownerへ返す。新しい変更権限を生成しない。 |"
+      },
+      {
+        "line": 2813,
+        "literal": "| `L10-LABO-061-CASE-24` | `LABO-061-AC-01` | 正常: canonical judge oracleは秘匿されたままjudgeが検証に使い、Workerへ答えを見せない。 | canonical judge oracleの使用をWorker leakageと誤分類せず、他の条件が揃う比較を有効に保つ。 |"
+      },
+      {
+        "line": 2815,
+        "literal": "| `L10-LABO-061-CASE-26` | `LABO-061-AC-03` | 索引（独立fixtureではない）: `L10-LABO-061-CASE-22`と同一の単独入力変異。 | 主fixture `L10-LABO-061-CASE-22` のoracleを参照し、同じケースを重複計上しない。 |"
+      },
+      {
+        "line": 2842,
+        "literal": "| `L10-LABO-061-CASE-16` | `LABO-061-AC-03` | 単独変異: scorer version だけ異なる。その他の入力は `L10-LABO-061-CASE-01` と同一。 | cohortを分離して未評価とし、固定L2のtask/oracle ownerへ返す。具体identityが入力から特定できない部分はunknownとして保持する。 |"
+      },
+      {
+        "line": 2852,
+        "literal": "| `L10-LABO-061-CASE-30` | `LABO-061-AC-03` | 単独変異: 選択task `L10-LABO-061-CASE-01` の `task_id`だけが実runの値と不一致。残る14条件と他入力は `L10-LABO-061-CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: task契約owner。 |"
+      },
+      {
+        "line": 2855,
+        "literal": "| `L10-LABO-061-CASE-33` | `LABO-061-AC-03` | 単独変異: 選択task `L10-LABO-061-CASE-01` の `task_version`だけが実runの値と不一致。残る14条件と他入力は `L10-LABO-061-CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: task契約owner。 |"
+      },
+      {
+        "line": 2857,
+        "literal": "| `L10-LABO-061-CASE-35` | `LABO-061-AC-03` | 単独変異: 選択task `L10-LABO-061-CASE-01` の `fixture_digest`だけが記録後staleとなり現行task契約へ適用できない。残る14条件と他入力は `L10-LABO-061-CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: 固定L2のtask/oracle owner。 |"
+      },
+      {
+        "line": 2858,
+        "literal": "| `L10-LABO-061-CASE-36` | `LABO-061-AC-03` | 索引（独立fixtureではない）: L10-LABO-061-CASE-17と同じ選択task `fixture_digest`不一致を参照する。 | L10-LABO-061-CASE-17を主fixtureとして直接参照し、同じfield変異を二重計上しない。 |"
+      },
+      {
+        "line": 2859,
+        "literal": "| `L10-LABO-061-CASE-37` | `LABO-061-AC-03` | 単独変異: 選択task `L10-LABO-061-CASE-01` の `requirement_ids`だけ欠落。残る14条件と他入力は `L10-LABO-061-CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: 固定task/oracle owner。 |"
+      },
+      {
+        "line": 2860,
+        "literal": "| `L10-LABO-061-CASE-38` | `LABO-061-AC-03` | 単独変異: 選択task `L10-LABO-061-CASE-01` の `requirement_ids`だけが記録後にstaleとなり現行task契約へ適用できない。残る14条件と他入力は `L10-LABO-061-CASE-01` と同一。 | 条件値を補完せず当該runを比較不能・unknownにする。戻し先: 固定task/oracle owner。 |"
+      },
+      {
+        "line": 2861,
+        "literal": "| `L10-LABO-061-CASE-39` | `LABO-061-AC-03` | 単独変異: 選択task `L10-LABO-061-CASE-01` の `requirement_ids`だけが実runの値と不一致。残る14条件と他入力は `L10-LABO-061-CASE-01` と同一。 | 比較群を分離し、同一snapshotとして受理しない。戻し先: 固定task/oracle owner。 |"
+      },
+      {
+        "line": 2956,
+        "literal": "| `L10-LABO-063-CASE-03a` | `LABO-063-AC-03` | 索引（独立fixtureではない）: L10-LABO-063-CASE-46のHARNESS verification receipt欠落を直接参照する。 | L10-LABO-063-CASE-46を唯一のfixtureとして参照し、L10-LABO-063-CASE-33との重複を数えない。 |"
+      },
+      {
+        "line": 2957,
+        "literal": "| `L10-LABO-063-CASE-03b` | `LABO-063-AC-03` | target revisionだけ別 | evidenceを混ぜずtarget ownerへ。 戻し先: target owner。 |"
+      },
+      {
+        "line": 2960,
+        "literal": "| `L10-LABO-063-CASE-04a` | `LABO-063-AC-03` | LABOがcanonical recipeへwrite | 拒否し既存ownerを保つ。 戻し先: canonical recipeの既存owner。 |"
+      },
+      {
+        "line": 2968,
+        "literal": "| `L10-LABO-063-CASE-24` | `LABO-063-AC-03` | 索引（独立fixtureではない）: L10-LABO-063-CASE-45のHARNESS verification receipt staleを参照する。 | 主fixtureを使い、同じstale変異を二重計上しない。 |"
+      },
+      {
+        "line": 2970,
+        "literal": "| `L10-LABO-063-CASE-26` | `LABO-063-AC-03` | 単独変異: 未登録の予防candidateを発行しただけで予防完了とする。 | 登録/実施/再観測の完了を推定せず、予防効果を未完のまま保持する。 |"
+      },
+      {
+        "line": 2974,
+        "literal": "| `L10-LABO-063-CASE-30` | `LABO-063-AC-03` | 索引（独立fixtureではない）: L10-LABO-063-CASE-47（procedure stale）とL10-LABO-063-CASE-48（result evidence stale）。 | 各単独fixtureを参照し、複合変異を独立計上しない。 |"
+      },
+      {
+        "line": 2977,
+        "literal": "| `L10-LABO-063-CASE-33` | `LABO-063-AC-03` | 索引（独立fixtureではない）: L10-LABO-063-CASE-03aとL10-LABO-063-CASE-46の同一receipt欠落を指し、L10-LABO-063-CASE-46を直接参照する。 | L10-LABO-063-CASE-46のoracleを参照し、L10-LABO-063-CASE-03aとの重複および独立fixtureとしての二重計上をしない。 |"
+      },
+      {
+        "line": 2979,
+        "literal": "| `L10-LABO-063-CASE-35` | `LABO-063-AC-03` | 索引（独立fixtureではない）: L10-LABO-063-CASE-41（cause candidateだけ異なる）とL10-LABO-063-CASE-42（applicability conditionだけ異なる）を束ねる主索引。 | 各単独fixtureのoracleを参照し、複合変異を独立計上しない。 |"
+      },
+      {
+        "line": 2980,
+        "literal": "| `L10-LABO-063-CASE-36` | `LABO-063-AC-03` | 索引（独立fixtureではない）: L10-LABO-063-CASE-25と同じL10-LABO-063-CASE-49/50二fixtureを指し、L10-LABO-063-CASE-49とL10-LABO-063-CASE-50を直接参照する。 | L10-LABO-063-CASE-49/50を参照し、L10-LABO-063-CASE-25との重複計上をしない。 |"
+      },
+      {
+        "line": 2981,
+        "literal": "| `L10-LABO-063-CASE-37` | `LABO-063-AC-03` | OS登録だけで予防完了とする | 予防効果を未完とする。 |"
+      },
+      {
+        "line": 2982,
+        "literal": "| `L10-LABO-063-CASE-38` | `LABO-063-AC-03` | 単独変異: LABOがgateを直接有効化する。 | 作用を拒否し、既存owner境界を保つ。 |"
+      },
+      {
+        "line": 2983,
+        "literal": "| `L10-LABO-063-CASE-39` | `LABO-063-AC-03` | 索引（独立fixtureではない）: L10-LABO-063-CASE-35と同じL10-LABO-063-CASE-41/42二fixtureを指し、L10-LABO-063-CASE-41とL10-LABO-063-CASE-42を直接参照する。 | L10-LABO-063-CASE-41/42を参照し、L10-LABO-063-CASE-35との重複計上をしない。 |"
+      },
+      {
+        "line": 3006,
+        "literal": "| `L10-LABO-063-CASE-16` | `LABO-063-AC-03` | 準備: L10-LABO-063-CASE-01と同一入力。単独変異: recurrence frequencyだけからpermission/authorityを生成する。 | permission/authorityを生成しない。fixed sourceがdestinationを特定しないため宛先ownerはunknownのまま。 |"
+      },
+      {
+        "line": 3026,
+        "literal": "## Stage 5 — HELIXLABO-L2-064 Worker比較評価の候補名遮蔽と再現条件"
+      },
+      {
+        "line": 3030,
+        "literal": "**共通正常基準 B0**: selected scope `S0`、run `R0`、記録側runtime/model identity `I0` と版 `V0`、有効なmapping `M0→I0`、judge-visible資料 `D0` と可視scope（candidate nameなし）、fixture `F0`/revision `Fv0`、rubric `R0b`、judge `J0`、sample identity `Q0`、retry condition `T0` を比較前に固定する。元identityは記録側に保持し、judgeへの提示資料と分ける。記号は合成fixture値で、sample/retry数や閾値を定めない。各negative行はこの基準からmutation欄の一fieldだけを変える。入力不変の行はoracle欄の誤出力だけを評価する。索引行はfixture入力を持たない。"
+      },
+      {
+        "line": 3037,
+        "literal": "| `L10-LABO-064-CASE-03b` | `FR-LABO-064` | `LABO-064-AC-03` | B0 | identity mapping fieldだけ欠落。元identity自体と他条件はB0のまま。 | identity対応をunknownにし、元identityの追跡不能を観測元へ返す。mapping source ownerを作らない。 |"
+      },
+      {
+        "line": 3040,
+        "literal": "| `L10-LABO-064-CASE-04a` | `FR-LABO-064` | `LABO-064-AC-03` | 索引（fixtureなし） | CASE-37 assignment-output、CASE-38 smoke-only qualification-claim、CASE-39 admission-outputの各fixtureを直接列挙する。 | 各oracleは個別に判定。04a自体をnegativeとして数えず、異なる誤出力を一つに束ねない。 |"
+      },
+      {
+        "line": 3048,
+        "literal": "| `L10-LABO-064-CASE-24` | `FR-LABO-064` | `LABO-064-AC-03` | 共通正常基準B0：合成入力。selected comparison scope=S0、run=R0、record-side runtime/model identity=I0/revision=V0、追跡可能なmapping=M0→I0、judge-visible資料D0と可視scopeは候補名なし、fixture=F0/revision=Fv0、rubric=R0b、judge=J0、sample identity=Q0、retry condition=T0を比較前に固定。元identityは記録側に残し、judge提示資料とは分離する。数値・実測・実行済を示さない。 | candidate-name metadataのjudge-visibleだけfalse→true。runtime revision、他資料、mappingは不変。 | 当該blind結果を無効として保持し、過去結果を継承しない。再評価義務をtask/evaluation ownerへ返す。 |"
+      },
+      {
+        "line": 3050,
+        "literal": "| `L10-LABO-064-CASE-26` | `FR-LABO-064` | `LABO-064-AC-03` | 共通正常基準B0：合成入力。selected comparison scope=S0、run=R0、record-side runtime/model identity=I0/revision=V0、追跡可能なmapping=M0→I0、judge-visible資料D0と可視scopeは候補名なし、fixture=F0/revision=Fv0、rubric=R0b、judge=J0、sample identity=Q0、retry condition=T0を比較前に固定。元identityは記録側に残し、judge提示資料とは分離する。数値・実測・実行済を示さない。 | identity mapping revisionだけcurrentからstaleへ。 | 古いmappingを再利用せずidentityをunknownにする。元identity追跡不能は観測元へ返す。 |"
+      },
+      {
+        "line": 3054,
+        "literal": "| `L10-LABO-064-CASE-30` | `FR-LABO-064` | `LABO-064-AC-03` | 共通正常基準B0：合成入力。selected comparison scope=S0、run=R0、record-side runtime/model identity=I0/revision=V0、追跡可能なmapping=M0→I0、judge-visible資料D0と可視scopeは候補名なし、fixture=F0/revision=Fv0、rubric=R0b、judge=J0、sample identity=Q0、retry condition=T0を比較前に固定。元identityは記録側に残し、judge提示資料とは分離する。数値・実測・実行済を示さない。 | selected comparison run identityだけ欠落。 | runを特定せず比較結果を確定しない。入力source/run recordから元identityを追跡できない場合は観測元へ返し、比較scope・固定条件自体が不明ならevaluation ownerへ戻す。再評価義務はtask/evaluation ownerへ引き継ぎ、個別owner identityがsourceで特定できない場合はunknownを保つ。 |"
+      },
+      {
+        "line": 3055,
+        "literal": "| `L10-LABO-064-CASE-05` | `FR-LABO-064` | `LABO-064-AC-03` | 索引（fixtureなし） | CASE-03b identity mapping欠落fixtureを直接参照。 | CASE-03b oracleを参照し重複計上しない。 |"
+      },
+      {
+        "line": 3057,
+        "literal": "| `L10-LABO-064-CASE-07` | `FR-LABO-064` | `LABO-064-AC-03` | 共通正常基準B0：合成入力。selected comparison scope=S0、run=R0、record-side runtime/model identity=I0/revision=V0、追跡可能なmapping=M0→I0、judge-visible資料D0と可視scopeは候補名なし、fixture=F0/revision=Fv0、rubric=R0b、judge=J0、sample identity=Q0、retry condition=T0を比較前に固定。元identityは記録側に残し、judge提示資料とは分離する。数値・実測・実行済を示さない。 | fixture revision fieldだけFv0→Fv1。他のfield、特にruntime revision=V0は不変。 | fixture版の異なるrunを同条件比較へ混ぜず、比較不能を保持しevaluation ownerへ戻す。 |"
+      },
+      {
+        "line": 3066,
+        "literal": "| `L10-LABO-064-CASE-16` | `FR-LABO-064` | `LABO-064-AC-03` | 索引（fixtureなし） | CASE-12 添付本文露出、CASE-03a metadata露出、CASE-14 new-format mapping欠落の3主fixtureをそれぞれ直接参照。 | 個別oracleを参照。索引連鎖や独立fixtureとして数えない。 |"
+      },
+      {
+        "line": 3069,
+        "literal": "| `L10-LABO-064-CASE-33` | `FR-LABO-064` | `LABO-064-AC-03` | new output format、runtime revision=V0、mapping=M0は有効、metadata候補名はjudge-visible=false。 | candidate-name metadata visibilityだけfalse→true。 | blind成立を拒否し旧結果を継承しない。再評価義務をtask/evaluation ownerへ返す。 |"
+      },
+      {
+        "line": 3071,
+        "literal": "| `L10-LABO-064-CASE-35` | `FR-LABO-064` | `LABO-064-AC-03` | 選択scopeの有効run群にscope逸脱run X1が記録済み。 | 入力不変。出力だけでX1の不成立を他runの高score平均で相殺。 | X1をscope外として保持し平均相殺しない。比較範囲と再評価義務をtask/evaluation ownerへ返す。 |"
+      },
+      {
+        "line": 3072,
+        "literal": "| `L10-LABO-064-CASE-36` | `FR-LABO-064` | `LABO-064-AC-03` | 選択scopeのrun群に検証不能run X2が記録済み。 | 入力不変。出力だけでX2の不成立を他runの高score平均で相殺。 | X2をunknown/未評価として保持し平均相殺しない。検証不能の根拠を解消する再評価義務をtask/evaluation ownerへ返す。 |"
+      },
+      {
+        "line": 3073,
+        "literal": "| `L10-LABO-064-CASE-37` | `FR-LABO-064` | `LABO-064-AC-03` | 共通正常基準N0：B0の比較条件と証拠は有効。評価結果は比較範囲の材料だけで、assignment/admission状態は既存値のまま。 | 入力不変。比較結果だけからOS assignmentを新規生成した出力。 | assignment生成を拒否し既存OS stateを変更しない。 |"
+      },
+      {
+        "line": 3074,
+        "literal": "| `L10-LABO-064-CASE-38` | `FR-LABO-064` | `LABO-064-AC-03` | 選択scopeと比較条件は明示され、観測結果はsmoke passのみ。full-evaluation evidenceは無い。 | 入力不変。smoke passだけで完全適格性が確定したとclaimする。 | 完全適格性のclaimを不成立/未評価とする。一般のqualification生成を禁止せず、full-evaluation evidenceの不足とtask/evaluation ownerへの再評価義務を示す。CASE-15のblind evidence代替oracleと混同しない。 |"
+      },
+      {
+        "line": 3075,
+        "literal": "| `L10-LABO-064-CASE-39` | `FR-LABO-064` | `LABO-064-AC-03` | 共通正常基準N0：B0の比較条件と証拠は有効。評価結果は比較範囲の材料だけで、assignment/admission状態は既存値のまま。 | 入力不変。比較結果だけからOS admissionを新規生成した出力。 | admission生成を拒否し既存境界を保つ。 |"
+      },
+      {
+        "line": 3077,
+        "literal": "CASE IDは旧公開a4 revisionの42定義IDを保持する。索引は定義行のまま維持するが、独立fixture/negative分母へ重ねない。AC対応は各行に記載し、CASE-04aはCASE-37/38/39の別々のoracleを直接参照する。"
+      }
+    ]
+  },
+  "authoring_history_and_read_limits": {
+    "history_note": "Prior work began appending the six 064 suffixes before the authoring worker had completed a full read of the 3,022-line existing functional-verification file. This is retained as history; it is not retroactively declared compliant.",
+    "scope_adjustment": "The root lane later narrowed fresh checks to 064-related fixed sources, directly relevant 055/059/060/061/063 contracts and 063 boundary, six target suffixes, and exact six-file base prefixes. The adjustment avoids rereading unrelated parent content; it does not certify unread text.",
+    "limits": [
+      "This worker inspected relevant 064 body and cited source/consumer spans, and verified six unchanged prefixes as exact bytes.",
+      "Other parent suffixes were not reread in full; no claim is made that all prior 3,022 lines, all other parents, or the full archive were reviewed.",
+      "No semantic completeness, fixture independence, runtime behavior, actual comparison measurement, CI outcome, or execution permission is claimed.",
+      "Review05 targeted its recorded older HEAD; findings are disposition candidates for current later body and do not transfer approval."
+    ]
+  },
+  "static_checks": {
+    "body_commit_exact": true,
+    "working_tree_clean": true,
+    "six_body_files_match_commit": true,
+    "six_prefixes_match_base": true,
+    "historical_and_current_case_definitions_42": true,
+    "historical_current_id_sets_equal": true,
+    "all_six_trailing_lf": true
+  },
+  "authority_status": {
+    "current_l3_independent_review": "not yet requested/completed",
+    "opus_fable_concurrence": "not established",
+    "po_l3_confirmation": "not implied",
+    "comparison_or_execution_permission": "not granted",
+    "implementation_permission": "not granted",
+    "ready_or_merge_admission": "not established"
+  },
+  "root_publication_verification": {
+    "source_candidate_sha256": "628b74795e249a8dc1dff92c53795fb31cfb3612ebabc781090e46a6dd9d9e33",
+    "root_md_full_read": true,
+    "pin_and_formal_excerpt_checks": 125,
+    "errors": 0,
+    "old_42_case_ids_retained": true,
+    "govcheck": "ok atoms=7622 requirements=57 files=58",
+    "diff_check": "PASS",
+    "meaning_completeness_or_independent_review": false
+  }
+}
