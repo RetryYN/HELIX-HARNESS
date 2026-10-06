@@ -77,6 +77,22 @@ paired_l10: ../L10-verification/business-verification.md
 | `HARNESS-L2-020` | 独立したbusiness requirementを導出しない | 隣接リリース単位handoffの互換性確認から新しい価値基準や優先順位を作らない。 |
 | `HARNESS-L2-024` | 独立したbusiness requirementを導出しない | 質問優先と形成資料の十分性は工程契約であり、事業価値・優先順位・人間の合意を推定しない。 |
 
+## Stage 5 suffix — HARNESS-L2-021/025/033/035/037
+
+この5親から独立したbusiness requirement、business owner、事業価値/KPI閾値を導出しない。021の端から端利用価値も、固定L2/L11の構成体固有functional obligationとして対の[functional-requirements.md](functional-requirements.md)に置く。025設計整合、033 case/repro trace、035根拠照合、037適用時の二段設計は機能・authority境界であり、業務上の成果値ではない。旧business-detailの別業務意味・owner・KPIは再利用しない。これはHARNESS全体にbusiness要件がないことを意味しない。
+
+| 親L2 | business要件への扱い | 境界 |
+|---|---|---|
+| `HARNESS-L2-021` | 独立business requirementなし。端から端traceと構成体固有義務をfunctional FR/ACで確認する。 | 個別unit成功、L12観測、LABO提案を事業成果・製品価値・利用者受入に読み替えない。 |
+| `HARNESS-L2-025` | 独立business requirementなし。設計compositeのrelation/invariantをfunctional FR/ACで確認する。 | 設計の存在・Pattern選択を事業判断、承認、受入と扱わない。 |
+| `HARNESS-L2-033` | 独立business requirementなし。selected case/repro/regression traceをfunctional FR/ACで確認する。 | case数、run、passをKPI、事業効果、利用者受入としない。 |
+| `HARNESS-L2-035` | 独立business requirementなし。上流根拠、受入寄与、代替、budget状態の照合をfunctional FR/ACで確認する。 | budget unknownを0/無制限とせず、候補根拠から事業優先度や承認を作らない。 |
+| `HARNESS-L2-037` | 独立business requirementなし。適用時の二段scope/pair/合流をfunctional FR/ACで確認する。 | 二段工程を商業価値・全agent対象の必須条件・利用者受入としない。 |
+
+### Root検収補正 — Stage5 CASE境界
+
+追加functional CASE（各親の既存001–00Nと続番S5行）は固定5親の工程・設計・根拠・適用性oracleを検証する。独立business requirement/KPI/business CASEは0件のままであり、件数や結果から事業価値、release、利用者受入、承認を生成しない。
+
 ## Stage 3 business範囲
 
 この1.0 sliceの13固定親から独立したbusiness requirement/oracleは導出しない。各親の業務意味を否定せず、売上・ROI・市場価値・事業優先順位・利用者受入を機能/NFR測定から作らない。各親の機能条件は対のfunctional verificationにある同一ACで照合する。

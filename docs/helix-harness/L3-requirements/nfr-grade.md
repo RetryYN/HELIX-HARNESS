@@ -122,6 +122,36 @@ plannedは総予定試行数。観測可否はvalid（判定できる観測が�
 | `NFR-C-HARNESS-020-01` / `HARNESS-L2-020` | handoff対象の全必須fieldと契約版の対応欠落 **0件**、不整合入力の暗黙受理 **0件**、handoffによるupstream state変更 **0件**。 | 固定親のproducer/consumer契約一致と状態非書換えを直接観測する。汎用warningだけ返す案は個別不整合を隠すため不採用。 | 関係のない隣接stageへの一律依存や、handoff成功率を新しい業務目標にしない。 |
 | `NFR-C-HARNESS-024-01` / `HARNESS-L2-024` | 同一engine/pack/target revision・scope・既回答から、質問順・理由・状態の差分 **0件**。score・fixture score・質問回数・訂正率・iteration数・無変更iteration・timeoutの各単独根拠による必須不足の見逃し・人間合意への昇格 **0件**。PoC Backflowのidentity・failure/timeout・trace・owner/re-entry欠落を成功/解決扱いする候補件数 **0件**。対象製品への他製品pack field混入の受理 **0件**、当該pack欠落/版不一致の暗黙補完 **0件**。 | 固定親が同じ入力から同じ質問順序・理由・状態を要求し、score・質問数・iteration数だけで収束しないことを観測する。固定質問数や数値weightを足す案は不採用。 | 意味評価を単一accuracy閾値へ還元しない。履歴の最低件数や質問件数SLOを設けない。適用Prototype／非UIの合意状態は別々に検査する。 |
 
+## Stage 5 suffix — HARNESS-L2-021/025/033/035/037 技術計測候補
+
+次の値は固定親に明記された完全性・状態分離を観測する候補であり、実測結果、性能SLO、承認、release eligibilityではない。planned母集団は選択scope内で事前列挙された必須relation/operationに限る。valid/failed/missing/censoredの観測状態とvalid/missing/unknown/stale/mismatch/conflict/unselectedの意味状態を別々に集計する。未選択は未観測、分母0は割合なし、oracle不足は未評価とする。
+
+| NFR候補ID / 親 | 候補値 | 根拠・比較案 | 測定方法と限界 |
+|---|---|---|---|
+| `NFR-C-HARNESS-021-01` / `HARNESS-L2-021` | 選択scopeの必須端から端relation/構成体固有obligationに対する正確なsource/revision/scope/evidence保持率候補 **100%**、unit成功のみから構成体成立を誤claimする件数 **0**。 | L2-021とL11:216は構成体固有trace・横断NFR・統合更新/rollback・L12運用をunit成功と分ける。単なるartifact presence案Aと、relation tuple・oracle・統合版・運用証拠まで照合する案Bを比較し、Bを候補とする。旧Lite/Full件数や旧coverage閾値は根拠にしない。 | Nrequiredは選択構成体scopeで事前に列挙した必須relation。missing/unknown/stale/mismatchを分母に残す。Nrequired=0なら率なし。構成体外、未選択unit、実サービス品質のSLOは測らない。 |
+| `NFR-C-HARNESS-025-01` / `HARNESS-L2-025` | 常時必須tuple・必要relation・invariantのtrace保持率候補 **100%**、必須connector欠落を有効compositeにする件数 **0**。 | 固定L2-025/L11が026 unit、常時BRAIN connector、要求→設計→oracle trace、正常/拒否/failure pathを要求する。Pattern全知識を要求する案Aと、selected Patternのみreceipt/conditionを加える案Bを比較し、Bを採る。 | 常時必須と選択時のみのplanned obligationを別分母にする。非選択Patternは未観測で除外。適用oracleのない設計relationは未評価。性能/Pattern網羅率を要求しない。 |
+| `NFR-C-HARNESS-033-01` / `HARNESS-L2-033` | 選択operationの段階別source/revision/scope/oracle/receipt保持率候補 **100%**、将来result欠落・不一致で回帰成立を誤claimする件数 **0**。 | 固定L2-033はcase生成、incident reduction、isolated run、同一failure、修正前fail、選択時修正後passを別stageにする。単一success flag案Aと、各段階result tupleを分ける案Bを比較し、Bを候補とする。 | denominatorは選択されたoperationの事前planned stepsだけ。修正後run未選択は未観測であり欠落失敗に含めない。incidentを使わない通常caseへrepro義務を加えない。run性能・縮小率を固定しない。 |
+| `NFR-C-HARNESS-035-01` / `HARNESS-L2-035` | 選択候補の根拠/受入寄与/代替/budget-state trace保持率候補 **100%**、rootless candidateを根拠充足と扱う件数 **0**。 | 固定L2-035/L11:485,678およびL2:931–941の根拠経路・scope境界を測る。候補のID/存在のみを見る案Aと、上流revision・relation・authority状態・scope拡張時の複雑さ/公開面/運用負債の変更前後を追う案Bを比較し、Bを候補とする。三観点それぞれの対象/方法/条件が未測定ならunknownを残す。 | planned denominatorは選択候補の必須field/edge。unknown budgetはunknownのまま分母に残し、数値予算/複雑度閾値を作らない。通常Feedback履歴は導出循環のfailure countにしない。 |
+| `NFR-C-HARNESS-037-01` / `HARNESS-L2-037` | 適用条件がtrueのscopeにおけるphase別authority/design/L9 receipt relation保持率候補 **100%**、phase間の承認/receipt流用による誤合流 **0**。 | L2-037とL11:527–573は二段適用、phase別上流とpair、合流を扱う。phase成果物の存在だけを見る案Aと、phase identity/revision/scope/oracle/receipt tupleを個別照合する案Bを比較し、Bを候補とする。 | 009適用性trueのplanned scopeだけを分母にする。false/unknown/未選択対象は適用分母外で未観測として記録する。phase適用率、工程期間、全agent coverageを固定しない。 |
+
+候補の100%は定義済みplanned必須relationのtrace完全性だけを表し、要求品質やL11受入のthresholdではない。candidate値・計測結果から承認、実行許可、受入、releaseを生成しない。旧NFRの固定件数・CI/runtime値は再利用せず、固定親が与えない性能目標を設定しない。
+
+### Root検収補正 — planned CASE集合の追補
+
+| 親 | 追加CASE集合 | 母集団と状態分類 |
+|---|---|---|
+| `HARNESS-L2-021` | `CASE-HARNESS-L10-021-S5-001–006` + `CASE-HARNESS-L10-021-S5-007–016` | E2E trace、統合update/rollback、L12 observation/return、LABO/OS責務を独立planned obligationにし、source/revision/scopeとrelease/operation stateを分ける。 |
+| `HARNESS-L2-025` | `CASE-HARNESS-L10-025-S5-001–006` + `CASE-HARNESS-L10-025-S5-007–035` | 常時必須tuple、selected Patternのrequired input/relation/version、双方向trace、permission/data/oracle、unit/connection/compositeを別planned obligationにする。nonselected Patternは未観測で分母外。 |
+| `HARNESS-L2-033` | `CASE-HARNESS-L10-033-S5-001–007` + `CASE-HARNESS-L10-033-S5-008–037` | source/unit/oracle/consumer fieldとstage receiptを分ける。S5-024/025はS5-005/006の索引aliasとして独立fixture母集団へ重複加算せず、repro、regression claim、修正後pass非選択を別状態にする。 |
+| `HARNESS-L2-035` | `CASE-HARNESS-L10-035-S5-001–006` + `CASE-HARNESS-L10-035-S5-007–042` | root source、authority/revision、non-goal/scope、acceptance contribution、necessity/alternative、budgetをfield単独planned化しunknown/stale/mismatchを分母に保持。 |
+| `HARNESS-L2-037` | `CASE-HARNESS-L10-037-S5-001–007` + `CASE-HARNESS-L10-037-S5-008–058` | 009 applicability、各phaseのL2/L3 authority、template、022 oracle/state、L4/L9、handoff、UI選択/非選択を別 obligationにする。S5-023はS5-005の索引aliasとして独立fixture母集団へ重複加算せず、S5-006（receipt対Phase 2設計scope）とS5-027（receipt対merge scope）は異なる比較条件として保持し、nonselected operationは未観測。 |
+
+100% trace coverageと誤ったsuccess/merge/authority 0件は静的分類の技術候補であり、実測ではない。planned denominatorを個別CASE集合で固定する。観測状態valid/failed/missing/censoredと意味状態missing/unknown/stale/mismatch/conflict/unselectedを分離する。分母不明を0へ変換せず、未実行は未測定とする。数値SLO・CI実行・性能測定は作らない。
+
+Stage 5の索引aliasは021-S5-011→004、033-S5-024/025→005/006、037-S5-023→005と037-S5-057→053。これら5索引は個別fixture分母へ重複加算しない。
+
+035-S5-033は撤去した旧変異のID保全用時点注記であり、同一変異aliasではない。個別fixture分母から除外し、運用負債欠測の個別変異は035-S5-041だけで評価する。
+
 ## Stage 3 技術候補（HARNESS-L2-034/036/038/039/040/041/042/043/044/046/047/049/054）
 
 以下は固定親から導出した測定可能性候補であり、実測結果・固定SLO・個別PO parameter gateではない。候補値が要求意味/範囲/owner/versionを変える場合のみL2へ戻す。
