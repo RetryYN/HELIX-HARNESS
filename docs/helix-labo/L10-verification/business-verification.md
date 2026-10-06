@@ -109,3 +109,11 @@
 | `L10-LABO-065-BV-03` | score、安価さ、速さ、または単独quality指標から採用・限定・quarantine・retire・配置・実験許可を要求する | 要求された状態変更を拒否し、既存decision/OS/SECURITY境界を保持する |
 
 これは受渡し証拠の整合確認であり、PO承認、資格試験の実行許可、decision完了、個別business benefitの発生を意味しない。旧HIL-BR-31は参考調査したが本親の独立business requirementとしては再利用せず、旧decision authorityを移さない。
+
+### HELIXLABO-L2-066 — 既存比較business outcomeとの対応確認
+
+状態：未承認のL10候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。
+
+固定L2/L11から独立のbusiness outcome/ownerは導かれないため、独立BV/AC/BCASEを追加しない。L2-066が定める同条件比較の成果を、L3 functional requirementの `LABO-066-AC-01`〜`LABO-066-AC-03` に従って [L10 functional verification](functional-verification.md) で照合する。
+
+`LABO-066-BV-01` は独立成果判定ではなく、同じ比較材料（misrepair_count/N、unresolved_count/N、L2-059由来の費用・時間・手戻り）が固定scopeとsource receiptに追跡可能なことを記録する参照項目である。計測結果から効果達成、採択、実装、run許可、業務完了を生成しない。L10検証は未実行。

@@ -1766,3 +1766,29 @@ L10の69件の定義は既存旧IDの保持と追跡索引である。literal上
 - **LABO-065-AC-03 — 否定・保留**：smokeだけの資格表示、必要軸/receipt欠落、hidden answer漏えい、blind/author分離不成立、版・scope不一致、初回失敗の上書き、unknownのzero化、retry/救援費用の欠落、品質不成立の相殺、LABOによる権限/decision生成を拒否する。固定L2-065:514の原因別戻し先だけを使う。具体的なsource identityが入力から分からない場合はunknownを保ち、IDだけからowner identityを推測しない。
 
 **旧資産との対応**：旧HIL-FR-61/62から選択scope内bench分離、8軸、task単位の初回/retry/diff/lint/quality/cost証拠を保持し、固定L2/L11のauthority・scope・owner境界に合わせて意味を再導出する。旧HIL-NFR-35とBench R04/R08のblind/context保護も選択scopeへ再導出する。旧runtime/provider/schema/admission実装、固定sample数・閾値、普遍的性能主張は置換対象外として移さない。旧HIL-BR-31は現固定L2-065の独立business outcomeとして採用せず、採否等の旧business判断を新要件に持ち込まない。
+
+### HELIXLABO-L2-066 — A比較における誤修復・未解消数の明示
+
+状態：未承認のL3候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。
+
+**固定sourceとPO状態**：固定revision `0dd946cec1c3fca8e144513b72e2e10d16c7c9c3` のL2 `docs/helix-labo/L2-requirements/labo-requirements.md:518-528`（file SHA-256 `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9`、span SHA-256 `5a67776a3f4567fa662c86898caf275fddbe8dc806fd3a19622cae9f733cdb69`）およびL11 `docs/helix-labo/L11-acceptance/labo-acceptance.md:261-268`（file SHA-256 `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0`、span SHA-256 `dd302f23a38d74475e707be64d9ee69a0bfda35b98902c62173c45d8c369a556`）を対で起点にする。PO記録 `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:81` は、候補base `af8d0aac1a20cd3a41ca9df088bc7bf3501847ff` 上の当該行をactualReadして確認した。行SHA-256 `41121ae7430cd5890e3aae87edd38e1c3cc37b493cc20e65b6dacb0976d81d4f`。同行はHELIXLABO-L2-066を採択し、`MPR-RC-HELIXLABO-L2-066-001` と固定本文digestを指す。登録証拠 `MPR-RCPT-LABO-BUGBOT-MISREPAIR-COMPARISON-2026-09-28`（SHA-256 `b678eee15274606442d9b4f6ac99767e8f6c50939d36793550913fa89a443d56`）は旧source atomと候補対応を記録する。L2本文の事前metadata `draft_candidate` はそのまま保持し、PO採択状態と混同しない。
+
+**旧HELIX起点と処置**：旧source `LEGACY-ASSET-D881AF6AFD277B1DE934` の `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md:75`（file SHA-256 `81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb`、line SHA-256 `9facff56cbc42f9f7157dd85f1078605951af16a52fef5ec698bb62fd46681bc`）は「成功件数だけで評価せず、Aと同条件の費用・時間・手戻り・誤修復・未解消数を測定する。」の単独atomである。保持する意図はAとの同条件比較で誤修復・未解消数を隠さないこと。成功数以外の費用・時間・手戻り、品質優先、比較条件は採択済みL2-059から再利用する。旧sourceの残る意味を、共通eligible case分母Nと事前固定oracleに結んだ2指標として再導出する。隣接73/74/76行、旧Bugbot全要求、runtime/test/実装はこの親へ移さず、旧実行・write・assignment/admission authorityは現行L2-066の責務境界に置換する。
+
+旧paired consumer `LEGACY-ASSET-901CD182B52024593E41`（`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-acceptance.md`、file SHA-256 `cd2fdd3dcfaa98935db0fef6b876d6cdb7133b11b8c8877363c3d0138c4b8cbc`）はdraft候補で、別紙02/03/05が未提供であり、旧18シナリオ全件対応を主張しない。旧consumer全体を現行の許可や実行条件として再利用しない。
+
+**要求本文**
+
+`LABO-066-FR-01` 比較前にA identity/version、候補repair method identity/version、task/scope/target revision、共通eligible case集合とそのrevision、受入/quality oracle・scorer identity/revision、protocol、toolchain、environment、期間または同一終了/cutoffを受け取る。case identity重複は一件に正規化する。比較開始後にeligible集合、N、oracle、cutoffを変更しない。
+
+`LABO-066-FR-02` A群・候補群ごとに、oracleが誤修復と判定した件数 `misrepair_count/N` と、終了/cutoff時に受入oracleを満たす解決のない件数 `unresolved_count/N` を別々に分子・分母・case判定receipt付きで示す。両指標は同じcaseに該当し得る。適用不能・receipt不足のcaseはunknownとして記録し、Nから黙って除外せず、その比較の割合を未評価/比較不能にする。費用・時間・手戻りの意味と集計はL2-059を再利用する。
+
+`LABO-066-FR-03` task/scope/target/oracle/cutoff/eligible setの不一致、stale/missing result receipt、費用の片側欠落、unknown証拠を比較不能/未評価へ分ける。固定L2の既知責務区分を保つ：oracle/acceptance/task-scope contractはHARNESSまたは要求owner、assignment/run receiptはOS、measurement/comparison/evaluationはLABO。ある個体のidentityがunknownでも、LABOの評価義務と既知の責務区分を消さない。個体mappingのunknownは別に残し、sourceにない個別ownerを作らない。評価結果からL2採択、repair permission/action、placement、admission、requirement completionを生成しない。新しい比較runは既存OS assignmentと該当SECURITY許可に従い、LABO自身はWorker/methodを選定・割当・起動・実行しない。
+
+**Acceptance criteria（定義は本L3 functional suffixのみ）**
+
+`LABO-066-AC-01`（正常・FR-01/02）：B0の入力fieldと両群receiptがそろう合成比較で、各群の2指標を共通Nの分子・分母・oracle receiptから再構成し、互いに独立して提示する。
+
+`LABO-066-AC-02`（未見・FR-01/02/03）：B0とは別の合成比較scopeで、未見caseを含むeligible set N1を結果閲覧前に固定する。同じpredicate/oracleを適用できる根拠があればN1のcaseとして数え、適用不能ならunknown/未評価を保つ。既存B0のNは変更しない。
+
+`LABO-066-AC-03`（異常・境界・FR-01/02/03）：単独field mutationとして、unknown除外、条件不一致、stale/missing receipt、費用非対称、oracle/N/cutoff事後変更を与え、率を出さず比較不能/未評価へ分ける。既知owner区分を保ち、個体unknownを別に保持する。評価結果から採択・repair permission・placement・admission・requirement_completeを生成しない。

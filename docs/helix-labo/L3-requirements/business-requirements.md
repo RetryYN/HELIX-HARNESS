@@ -113,3 +113,9 @@
 | decision handoff | 既存ownerと対象revision/status、または未決を識別できる | 採用・限定・quarantine・retire・配置は該当する既存ownerに残る |
 
 **旧資産との対応**：旧HIL-BR-31（`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、旧platform requirements:83）は第三者workerの採用等のbusiness decisionまで述べる。しかし固定L2-065は資格とscorecardの証拠条件を補い、decision ownerに判断を残す。したがってHIL-BR-31をこの親の独立business outcomeとして採用せず、そのdecision意味を追加しない。旧HIL-FR-61/62から保持・再導出するのは、品質・安全・費用比較の証拠を既存ownerへ渡す関係だけである。独立outcomeが無いことはL10受入の免除を意味しない。
+
+### HELIXLABO-L2-066 — A比較における誤修復・未解消数の明示
+
+状態：未承認のL3候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。
+
+固定L2-066は同条件比較で誤修復数・未解消数を測る機能結果を定める。これと独立したbusiness outcome/ownerは固定L2/L11から導かれないため、BR・独立AC・業務成果を追加しない。既存の比較結果はL2-066および採択済みL2-059の範囲に留め、別の採択、効果達成、事業判断を生成しない。成果と失敗はfunctional requirementの `LABO-066-AC-01`〜`LABO-066-AC-03` をL10 functional verificationで照合する。

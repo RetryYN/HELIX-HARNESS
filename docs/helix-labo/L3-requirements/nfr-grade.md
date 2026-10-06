@@ -218,3 +218,13 @@ L10は69個の完全ID定義を保持する。literalから抽出した分類候
 対象scopeが未選択の通常Worker作業にfull-benchを課さず、別runtime・task・versionへの適格性も推論しない。L2-059等の既決条件外で比較条件や許容差が未決なら値を発明せず、固定L2-065:514に従い該当ownerへ返す。
 
 **旧資産との対応**：形式・測定候補の起点は旧HIL-FR-61/62、HIL-NFR-35、Bench R04/R08である。blind judgeと8軸の同条件評価、taskごとのfirst/retry/費用記録は保持・再導出する。旧sample設定、旧runtime値、旧閾値、旧admission条件は移さない。
+
+### HELIXLABO-L2-066 — A比較における誤修復・未解消数の測定可能性
+
+状態：未承認のL3候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。
+
+`LABO-066-NG-01` 候補：比較結果はA/candidate identityとversion、eligible set identity/revision、task/scope/target revision、oracle/scorer revision、protocol/toolchain/environment/cutoff、両群のresultとoracle receipt、unknown理由、2指標の分子/分母を追跡可能にする。
+
+**候補値と根拠**：固定L2-066のcase分母N・oracleとの結合、L11-066の正常/誤り/unknown境界から必要なtrace fieldsを導く。測定値は合成B0入力・合成receipt上で分子/分母とsource revisionを再構成できるかで確認する。misrepair/unresolvedの間に排他条件を置かない。費用/時間/reworkのfield意味はL2-059の同じscope比較に合わせる。
+
+許容率、速度値、性能threshold、sample count、運用期間、合否閾値は提案しない。計測できない場合はunknown/未評価を記録し、0や合格へ置換しない。これは根拠付き測定設計候補であり、実測結果・承認値ではない。

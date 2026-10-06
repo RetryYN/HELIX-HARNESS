@@ -163,3 +163,13 @@
 | owner handoff | scope/revision・source/result receipt・既決owner参照または未決を照合 | 測定とdecision stateを別々に表示し、ownerへ辿れる | NFR測定値・qualification証拠から既存ownerのqualification/admission decision、権限、またはbusiness decisionを生成しない |
 
 **旧sourceとの関係**：旧HIL-FR-61/62、HIL-NFR-35とBench R04/R08が示す再現可能性、同条件評価、blind境界、retry込み実効費用を再導出する。旧固定sample設定や閾値は移さない。通常fixtureとnegativeの関係は固定L2/L11の定義に従い、fixture alias/indexだけを独立fixture数に重ねない。NFR測定候補は独立の合否制度や新しい母集団規則を作らない。
+
+### HELIXLABO-L2-066 — 同条件比較NFR測定候補
+
+状態：未承認のL10候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。
+
+`LABO-066-NV-01` 測定設計：L3の `LABO-066-NG-01` と同一のB0/N1、scope、revision、oracle/scorer、両群receiptを用い、raw receiptから `misrepair_count/N` と `unresolved_count/N` を別々に再構成できるか記録する。両指標の重なりを維持し、unknown caseがcase ledgerとNの扱いに残り、unknownを0にせず、事後N/oracle/cutoff変更で割合を作らないことを合成単独変異で確認する。
+
+protocol/toolchain/environment/task/scope/target/oracle/cutoffの一要素だけ不一致・stale/missingのfixtureは比較不能/未評価となるかを記録する。戻し先は既存HARNESS/要求owner（contract/oracle）、OS（run receipt）、LABO（比較評価）の既知責務区分に結び、個体identityがunknownでもその区分を保持する。個体ownerがsourceから特定できない場合はunknownを別に記録し、sourceにない担当を作らない。費用/時間/reworkはL2-059と同scopeで確認し、別定義しない。
+
+試行件数、性能値、threshold、許容率、期間値などの数値候補を追加しない。L10実行・oracle適用は未実施である。これは候補測定方法で、実測値や合否判定ではない。
