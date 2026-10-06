@@ -203,7 +203,7 @@ fixture definition数と実測母集団は異なる。対のL10機能総合検�
 | 候補ID | 測る性質 | 根拠付き判定値・候補 | 測定単位・条件 |
 |---|---|---|---|
 | `NFR-C-HARNESS-044-01` | 適用義務class closure | 選択scope内で未被覆class `0`。固定L2-044出力・L11正常例に明記された候補判定値。 | 適用class identity集合と各classのcontractまたは根拠付きN/Aの対応を、同じsource/scope/revision/contract/oracle snapshotで照合する。 |
-| `NFR-C-HARNESS-044-02` | 意味重複 | 選択scope内で未説明の意味重複 `0`。固定L2-044出力・L11正常例に明記された候補判定値。 | classの義務意味、contract、対oracleと、複数割当の境界理由を合成fixtureで比較する。 |
+| `NFR-C-HARNESS-044-02` | 意味重複 | 選択scope内で意味重複 `0`。固定L2-044出力・L11正常例に明記された候補判定値。 | classの義務意味、contract、対oracleと、複数割当の境界理由を合成fixtureで比較する。 |
 | `NFR-C-HARNESS-044-03` | 未確定入力の保持 | missing/unknown/conflict/staleが合格へ変換されないこと。新しい数値閾値なし。 | 各fieldを一つずつ変異し、portfolio状態・返却理由・既存owner区分を観測する。 |
 
 **制約**：候補はscope限定のcoverage oracleであり、実装性能、費用、時間、成功率、最小契約数、全HARNESS全体の完成を数値化しない。9-class fixtureを上限・一般閾値・class定義としない。旧sourceにないSLAや閾値を新設しない。実測値は未取得である。

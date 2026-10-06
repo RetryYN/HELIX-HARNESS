@@ -183,7 +183,7 @@ NFR CASEは測定candidate分類であり、実測・CI success・performance SL
 | 検証ID | NFR候補 | 合成fixture / 比較 | oracle | 未評価・不合格 |
 |---|---|---|---|---|
 | `CASE-HARNESS-L10-NFR-044-01` | `NFR-C-HARNESS-044-01` | 9-classのB0で、各適用classのsource/scope/revision、contract/version、oracle/relationが揃うnormal portfolioと、既存直接fixtureの一つずつのsource/contract/oracle/relation欠落を比較する。全入力は合成である。 | class集合とcoverage outputを集合比較し、uncovered=0が固定された正常条件で成立し、欠落時は該当classを未被覆またはunknownのまま保持するか確認。 | class母集団、scope、source identityまたはoracle不明なら未評価。欠落をclass除外で隠せば不合格。 |
-| `CASE-HARNESS-L10-NFR-044-02` | `NFR-C-HARNESS-044-02` | 同一義務classへ一つのnormative contractを割り当てるbaselineと、意味重複契約だけを一件追加する旧直接fixtureを比較する。 | duplicate findingと対象class/contractを列挙し、独立義務を落とさず未説明duplicate=0条件を照合。 | duplicate意味oracleが固定できなければ未評価。重複を契約削除で隠せば不合格。 |
+| `CASE-HARNESS-L10-NFR-044-02` | `NFR-C-HARNESS-044-02` | 同一義務classへ一つのnormative contractを割り当てるbaselineと、意味重複契約だけを一件追加する旧直接fixtureを比較する。 | duplicate findingと対象class/contractを列挙し、独立義務を落とさず意味重複0条件を照合。 | duplicate意味oracleが固定できなければ未評価。重複を契約削除で隠せば不合格。 |
 | `CASE-HARNESS-L10-NFR-044-03` | `NFR-C-HARNESS-044-03` | candidate stateのB0とauthority output単一変異fixture7件、missing/unknown/stale/conflictの既存fixtureを比較。 | candidateやunknownが承認・採択・実装・実行・利用者受入へ変換されず、unknownを合格にしない。 | authority baselineが未確定なら未評価。既存authorityを推測して生成すれば不合格。 |
 
 **実行限界**：fixtureは設計候補で未実行。full integration、性能、release、L3承認、受入実施を示さない。source pinがcurrent branchで不一致の場合、固定対象revisionとの差として記録し、latest baseの本文をこの測定結果へ混ぜない。
