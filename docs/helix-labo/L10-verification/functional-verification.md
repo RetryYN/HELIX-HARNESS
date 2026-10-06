@@ -2708,3 +2708,74 @@ CASE-01は旧snapshot上の高水準正常説明である。各下記candidate�
 #### CASE索引と分類
 
 既存a4a365由来CASE60件はすべて保持する。CASE-30は複数費目を含む既存compound、CASE-22/33/34/35/36は非独立indexであり、独立negativeへ再分類しない。CASE-01/02を正常fixtureとし、既存の独立negative52件を保つ。追加はCASE-48正常1件、CASE-49–70 negative22件である。追加negativeは単独変異（入力field 9件、固定入力からの出力変異13件）として定義し、CASE-64だけはprovider label入力を変えscore不変を期待する。独立fixtureの設計数は既存54＋追加23＝77、別に既存compound1・index5を定義として保持する。実行・合格・実測数ではない。
+
+
+### CASE-LABO-060 — 支援有無の同一設定比較
+
+以下は固定f6dad2aのL2/L11から設計した未実行fixture候補であり、合成givenを実測・実権限・実運用と扱わない。現行分類案は正常候補2、negative候補47、非独立索引候補8。単一点性・独立性は独立review未確認であり、57個のID保持や一意性はfixture集合の完全性を証明しない。索引候補は独立fixture・negative分母へ重ねない。既存a4a365の51 IDを保持し、責務境界の誤出力を照合するCASE-47–52を追加する。
+
+- `L10-LABO-060-CASE-01`（対応AC: `LABO-060-AC-01`） 正常候補（合成fixture）: 同一task snapshot・要求/設計revision/scope・環境・toolchain/run protocol・元Worker/model identityとmodel/provider/version/effort設定、開始前固定のHARNESS-L2-022 oracle、対応するOS assignment/result receiptを与え、新規比較runでは適用されるSECURITY許可も保持する。固定L11:181の例に沿い、両runで`PATCH /applications/{id}`のdraft編集は受理し、approved編集は拒否して保存値を変えない。支援側のみINTELLIGENCEがstate/API設計、validator code、過去regression exampleを選び、approved境界で詰まった元Workerへ限定相談と修正指示を渡す。元Workerが修正し、元Worker・INTELLIGENCE支援者のいずれともidentity/context/authorityを区別したindependent reviewerが確認した後、HELIXOS-L2-020が事前oracleを再実行してpassする。支援側の追加model/provider、相談、再実行、review、人作業時間・実費を保持し、対照runへの助言漏れがない。これは実測済みrunの主張ではない。
+- `L10-LABO-060-CASE-02`（対応AC: `LABO-060-AC-02`） 未見正常候補（合成fixture）: 未見task T*内で支援あり/なしのmatched pairを与える。両runのtask snapshot・scope・対象revision・environment/protocol・元Worker/model/provider/version/effort・当該taskの固定oracle・OS assignment/結果receiptをそろえ、新規比較runでは適用されるSECURITY許可も保持し、対象支援経路の利用有無だけを比較する。実際に選択したsupport sourceと相談のみを記録し、未選択経路を実行依存にしない。両runは当該taskのoracleと矛盾しない結果を返すが、一taskの結果を一般有効性へ拡張しない。実測済みrunの主張ではない。
+
+| CASE ID | 対応AC | 単一の入力変異または索引先 | 期待oracle / 既存戻し先 |
+|---|---|---|---|
+| `L10-LABO-060-CASE-03a` | `LABO-060-AC-03` | 群間の元Worker model identityだけが異なる（選択された追加support modelは別fieldとして固定し、その追加費用/evidenceは入力に保持） | 同一設定比較を拒否する。支援側で追加選択されたmodel自体を一律禁止しない。 |
+| `L10-LABO-060-CASE-03b` | `LABO-060-AC-03` | 対照runに助言contextだけが漏れる | 対照runを支援なし群と認定せず、支援有無比較を未評価に保ち成功比較を出さない。 |
+| `L10-LABO-060-CASE-03c` | `LABO-060-AC-03` | oracle revisionだけ異なる | 比較を未評価にしHARNESSへ戻す。 |
+| `L10-LABO-060-CASE-03d` | `LABO-060-AC-03` | 支援者時間だけ欠落 | 効果/総費用を確定しない。 |
+| `L10-LABO-060-CASE-03e` | `LABO-060-AC-03` | 片方のOS result receiptだけ欠落 | 比較不能としてOSへ戻す。 |
+| `L10-LABO-060-CASE-04a` | `LABO-060-AC-03` | LABOがrun/相談を開始 | 拒否。OS/既存相談ownerへ。 戻し先: OS。 |
+| `L10-LABO-060-CASE-04b` | `LABO-060-AC-03` | LABOが支援結果からassignmentを作成 | 拒否。OS assignmentを不変にする。 |
+| `L10-LABO-060-CASE-05` | `LABO-060-AC-03` | 群間の元Worker provider設定だけが異なる（support側の追加provider/model利用は選択source・費用evidenceとして入力に保持） | 同一設定比較を不成立にする。追加support providerの使用は一律禁止しない。 |
+| `L10-LABO-060-CASE-06` | `LABO-060-AC-03` | 群間の元Worker model version設定だけが異なる（追加support model/versionは別の選択入力として固定） | 同一設定比較を不成立にする。追加support resourceを一律禁止しない。 |
+| `L10-LABO-060-CASE-07` | `LABO-060-AC-03` | 群間の元Worker effort設定だけが異なる（支援が追加するeffortと人作業時間は入力・費用として保持） | 同一設定比較を不成立にする。支援に伴う追加effort自体は測定対象に残す。 |
+| `L10-LABO-060-CASE-08` | `LABO-060-AC-03` | 単独変異: task identity だけ異なる。その他の入力は `CASE-01` と同一。 | 同一設定比較を未評価にしOSのtask/run receipt ownerへ戻す。 |
+| `L10-LABO-060-CASE-09` | `LABO-060-AC-03` | 単独変異: scope だけ異なる。その他の入力は `CASE-01` と同一。 | 同一設定比較不成立 戻し先: LABO。 |
+| `L10-LABO-060-CASE-10` | `LABO-060-AC-03` | 単独変異: toolchain だけ異なる。その他の入力は `CASE-01` と同一。 | 比較不能にし、toolchain receiptのsource ownerが特定できればそのowner、特定不能ならunknown。 |
+| `L10-LABO-060-CASE-11` | `LABO-060-AC-03` | 単独変異: protocol だけ異なる。その他の入力は `CASE-01` と同一。 | 比較不能にし、task/run protocol receiptはOS、比較scopeはLABOへ戻す。 |
+| `L10-LABO-060-CASE-12` | `LABO-060-AC-03` | 単独変異: price source だけ欠落。その他の入力は `CASE-01` と同一。 | 費用unknown、0補完なし。price source ownerが識別できればそこへ戻す。 |
+| `L10-LABO-060-CASE-13` | `LABO-060-AC-03` | 単独変異: currency だけ欠落。その他の入力は `CASE-01` と同一。 | 換算せず金額比較unknown。currency source ownerが識別できればそこへ戻す。 |
+| `L10-LABO-060-CASE-14` | `LABO-060-AC-03` | 単独変異: effective time だけ欠落。その他の入力は `CASE-01` と同一。 | 適用価格unknown。price source ownerが識別できればそこへ戻す。 |
+| `L10-LABO-060-CASE-15` | `LABO-060-AC-03` | 単独変異: helper identity receiptだけ欠落。その他の入力は `CASE-01` と同一。 | 支援者情報欠落fieldをunknownにし支援効果を確定しない 戻し先: OS。 |
+| `L10-LABO-060-CASE-16` | `LABO-060-AC-03` | 選択INTELLIGENCE proposal/use packetに結ぶhandoff receiptだけ欠落 | 利用済みと扱わない。欠けた証拠がINTELLIGENCE proposal/use sourceならINTELLIGENCEへ、OS handoff receiptならOSへ返し、ownerを特定できない欠落はunknownに保つ。 |
+| `L10-LABO-060-CASE-17` | `LABO-060-AC-03` | 単独変異: 選択されたINTELLIGENCE proposal/use evidenceに結ばれるreviewer identityだけがhelper identityと同一。その他の入力は `CASE-01` と同一。 | 比較条件不成立とし、成功比較を出さない。comparison scope/evaluation capabilityの未完は固定L2-060の比較範囲に従いLABOへ返す。 |
+| `L10-LABO-060-CASE-18` | `LABO-060-AC-03` | baseline入力: 固定HARNESS oracleでquality不成立。単独の誤出力変異: 低support costを理由に不成立qualityを成功/比較成功へ変換 | quality不成立・非相殺を維持し、成功比較を出さない。comparison scope/evaluation capabilityの戻し先はLABO。 |
+| `L10-LABO-060-CASE-19` | `LABO-060-AC-03` | baseline: 選択sourceは設計/validator/regressionのみ、相談経路は未選択。その他の比較条件・receipt・oracleは正常。単独の誤出力変異: 未選択相談receiptを必須化する。 | 未選択相談を比較全体の必須依存にしない。選択時だけ必要なreceiptと区別し、比較scopeの誤った必須化はLABOへ戻す。 |
+| `L10-LABO-060-CASE-20` | `LABO-060-AC-03` | baseline入力: CASE-01と同じ正常な費用evidenceを保持。単独の誤出力変異: 追加支援者費用だけを比較費用から除外する。 | 費用内訳不完全を示し、比較費用を確定しない。入力sourceの欠落と取り違えず、比較集計の誤りは固定L2-060のcomparison scope/evaluation capabilityの責務であるLABOへ戻す。LABO-055へ価格/effort source所有を移さない。 |
+| `L10-LABO-060-CASE-21` | `LABO-060-AC-03` | baseline入力: human-time quantityは既知、換算率/price evidenceはunknown。単独の誤出力変異: 出力貨幣費用を0とする | 既知時間量を保持し、金額だけ未確定とする。0円化と時間量の消去を拒否する。 |
+| `L10-LABO-060-CASE-22` | `LABO-060-AC-03` | 索引（独立fixtureではない）: 選択runのSECURITY data-use/実行許可欠落CASE-34を参照する。 | 主fixture CASE-34を参照し、許可不足を成功扱いしない。 |
+| `L10-LABO-060-CASE-23` | `LABO-060-AC-03` | 索引（独立fixtureではない）: `L10-LABO-060-CASE-15`と同一の単独入力変異。 | 主fixture `L10-LABO-060-CASE-15` のoracleを参照し、同じケースを重複計上しない。 |
+| `L10-LABO-060-CASE-24` | `LABO-060-AC-03` | 単独変異: helper version だけ欠落。その他の入力は `CASE-01` と同一。 | 支援比較未完。 戻し先: OS。 |
+| `L10-LABO-060-CASE-25` | `LABO-060-AC-03` | 単独変異: helper effort だけ欠落。その他の入力は `CASE-01` と同一。 | 支援費用/効果未完。 戻し先: OS。 |
+| `L10-LABO-060-CASE-26` | `LABO-060-AC-03` | 索引（独立fixtureではない）: `L10-LABO-060-CASE-16` のINTELLIGENCE proposal/use packet receipt欠落だけを参照する | 主fixture CASE-16のoracleへ到達する。同じ変異を独立negativeに重複計上しない。 |
+| `L10-LABO-060-CASE-27` | `LABO-060-AC-03` | 索引（独立fixtureではない）: `L10-LABO-060-CASE-28` のOS handoff receipt欠落だけを参照する | 主fixture CASE-28のoracleへ到達する。同じ変異を独立negativeに重複計上しない。 |
+| `L10-LABO-060-CASE-28` | `LABO-060-AC-03` | 単独変異: 選択sourceに対するOS handoff receiptだけ欠落。その他の入力は `CASE-01` と同一。 | 選択source利用の受領を確定せず、OS handoff/register責務に不足を返す。 |
+| `L10-LABO-060-CASE-29` | `LABO-060-AC-03` | 索引（独立fixtureではない）: `L10-LABO-060-CASE-34` の選択run SECURITY data-use/実行許可欠落を参照する | CASE-34のpermission oracleへ到達する。CASE-22/29を独立fixtureに数えない。 |
+| `L10-LABO-060-CASE-30` | `LABO-060-AC-03` | 索引（独立fixtureではない）: OS assignment欠落CASE-36を参照する。 | 主fixture CASE-36を参照し、割当証拠の欠落を成功扱いしない。 |
+| `L10-LABO-060-CASE-31` | `LABO-060-AC-03` | 索引（独立fixtureではない）: HARNESS-L2-022 oracle契約事前固定欠落CASE-37を参照する。 | 主fixture CASE-37を参照し、oracle契約を事前固定しない比較を未評価とする。 |
+| `L10-LABO-060-CASE-32` | `LABO-060-AC-03` | 索引（独立fixtureではない）: 選択INTELLIGENCE proposal/source欠落CASE-43を参照する。 | 主fixture CASE-43を参照し、選択支援sourceの証拠を欠落のまま保持する。 |
+| `L10-LABO-060-CASE-33` | `LABO-060-AC-03` | 単独変異: 選択history主張のhistorical receiptだけ欠落。その他の入力は `CASE-01` と同一。 | history主張の根拠不足のまま未評価とし、historical receiptのsource ownerへ戻す。 |
+| `L10-LABO-060-CASE-34` | `LABO-060-AC-03` | 選択runのSECURITY data-use/実行許可だけ欠落 | 該当runを許可済み扱いせず、SECURITYへ戻す。 |
+| `L10-LABO-060-CASE-35` | `LABO-060-AC-03` | 選択runのevidence revisionだけstale | そのrunを比較不能にし、該当source ownerへ戻す。 |
+| `L10-LABO-060-CASE-36` | `LABO-060-AC-03` | OS assignmentだけ欠落 | 実行結果を比較証拠とせずOSへ戻す。 |
+| `L10-LABO-060-CASE-37` | `LABO-060-AC-03` | HARNESS-L2-022 oracle契約の事前固定だけ欠落 | oracle比較を未評価にしHARNESS/要求ownerへ戻す。 |
+| `L10-LABO-060-CASE-38` | `LABO-060-AC-03` | 選択比較母集団中のrunを一件だけ黙って除外 | 母集団不完全として比較を未評価にする。 |
+| `L10-LABO-060-CASE-39` | `LABO-060-AC-03` | retry費用/時間だけ欠落 | 該当内訳をunknownとし、総費用/効果比較を確定しない。 |
+| `L10-LABO-060-CASE-40` | `LABO-060-AC-03` | rework費用/時間だけ欠落 | 該当内訳をunknownとし、総費用/効果比較を確定しない。 |
+| `L10-LABO-060-CASE-41` | `LABO-060-AC-03` | review費用/時間だけ欠落 | 該当内訳をunknownとし、総費用/効果比較を確定しない。 |
+| `L10-LABO-060-CASE-42` | `LABO-060-AC-03` | CI費用/時間だけ欠落 | 該当内訳をunknownとし、総費用/効果比較を確定しない。 |
+| `L10-LABO-060-CASE-43` | `LABO-060-AC-03` | 選択support proposal/use evidenceの欠落だけ（欠けたevidence fieldは入力上特定可能） | 利用済みと扱わない。proposal/use source欠落はINTELLIGENCEへ、OS handoff/assignment receipt欠落はOSへ原因別に返す。field/ownerを特定できなければunknownを保持する。 |
+| `L10-LABO-060-CASE-44` | `LABO-060-AC-03` | 選択母集団に含まれるfailed runだけを除外 | failed stateを保持し、比較母集団を不完全とする。該当run receiptはOSへ戻す。 |
+| `L10-LABO-060-CASE-45` | `LABO-060-AC-03` | 選択母集団に含まれるunknown runだけを除外 | unknownを成功/失敗へ変換せず、比較母集団を不完全とする。該当run receiptはOSへ戻す。 |
+| `L10-LABO-060-CASE-46` | `LABO-060-AC-03` | 未見類似taskでHARNESS oracleの適用性だけunknown。片群receipt、支援者時間、比較scopeはCASE-01と同一 | 非適用と推測せず未評価/比較不能を保つ。oracle適用性の既存戻し先はHARNESS/requirement owner。 |
+
+追加CASE-47–52の正常入力と比較出力はCASE-01と同じ。比較可能性・quality・効果evidenceを返す正当な出力、既存INTELLIGENCE proposal参照、OS assignment/result receipt、入力authority evidenceを固定する。各fixtureではLABO出力の次の一判断だけを追加し、その他の入力・比較結果・source状態は変更しない。合成の誤出力であり、実際のproposal発行・採用・配置・承認・mergeは行わない。
+
+| CASE ID | 対応AC | 固定入力からの単独誤出力変異 | 期待oracle / 既存責務境界 |
+|---|---|---|---|
+| `L10-LABO-060-CASE-47` | `LABO-060-AC-03` | INTELLIGENCEの支援proposalをLABO自身の決定として出力する。 | 当該誤出力を拒否し、proposalを決めずINTELLIGENCEの既存proposal責務を保持する。比較可能性・quality・効果evidenceは保持し、正当な材料返却を誤拒否しない。比較出力の越権はLABO評価へ戻し、具体的なauthority ownerは入力の既存identityで追跡し不明ならunknownを保持する。 |
+| `L10-LABO-060-CASE-48` | `LABO-060-AC-03` | INTELLIGENCEのWorker推奨をLABO自身の決定として出力する。 | 当該誤出力を拒否し、推奨を決めずINTELLIGENCEへ評価材料のみ返す。比較可能性・quality・効果evidenceは保持し、正当な材料返却を誤拒否しない。比較出力の越権はLABO評価へ戻し、具体的なauthority ownerは入力の既存identityで追跡し不明ならunknownを保持する。 |
+| `L10-LABO-060-CASE-49` | `LABO-060-AC-03` | 比較結果から対象支援経路の採用をLABOが確定する。 | 当該誤出力を拒否し、採用判断を生成せず、入力の既存採否authorityを変更しない。比較可能性・quality・効果evidenceは保持し、正当な材料返却を誤拒否しない。比較出力の越権はLABO評価へ戻し、具体的なauthority ownerは入力の既存identityで追跡し不明ならunknownを保持する。 |
+| `L10-LABO-060-CASE-50` | `LABO-060-AC-03` | 比較結果からWorker配置水準をLABOが確定する。 | 当該誤出力を拒否し、配置水準を生成せず、INTELLIGENCE/OSへの評価材料に留める。比較可能性・quality・効果evidenceは保持し、正当な材料返却を誤拒否しない。比較出力の越権はLABO評価へ戻し、具体的なauthority ownerは入力の既存identityで追跡し不明ならunknownを保持する。 |
+| `L10-LABO-060-CASE-51` | `LABO-060-AC-03` | 比較結果から対象revisionの受入authorityをLABOが生成する。 | 当該誤出力を拒否し、受入authorityを生成せず、既存対象revisionのauthorityを保持する。比較可能性・quality・効果evidenceは保持し、正当な材料返却を誤拒否しない。比較出力の越権はLABO評価へ戻し、具体的なauthority ownerは入力の既存identityで追跡し不明ならunknownを保持する。 |
+| `L10-LABO-060-CASE-52` | `LABO-060-AC-03` | 比較結果から対象HEADのmerge authorityをLABOが生成する。 | 当該誤出力を拒否し、merge authorityを生成せず、既存対象HEADのauthorityを保持する。比較可能性・quality・効果evidenceは保持し、正当な材料返却を誤拒否しない。比較出力の越権はLABO評価へ戻し、具体的なauthority ownerは入力の既存identityで追跡し不明ならunknownを保持する。 |

@@ -71,3 +71,14 @@
 | HELIXLABO-L2-059 | 独立KPIなし。選択比較、既決priority、費用・時間・人介入を別状態で照合する。 | LABO-059-AC-01/02/03、L10-LABO-059-CASE-*（分類はFV本文参照） |
 
 未実行designの参照であり、実business outcome/承認/実験を表さない。
+
+
+## Stage 5 — HELIXLABO-L2-060 業務検証証拠
+
+独立BV/BCASEは追加しない。機能evidenceの業務上の対応として、選択範囲内の比較可能性・quality・費用/人介入の分離表示を参照する。business完了、承認、採用、実験実行を生成しない。
+
+| 固定親 | 独立business outcome | 正本AC / CASE索引 |
+|---|---|---|
+| `HELIXLABO-L2-060` | なし。独立KPIなし。 | `LABO-060-AC-01/02/03`; `L10-LABO-060-CASE-01/02/03a–e/04a–b/05–46`。現行分類案は正常候補2、negative候補41、非独立索引候補8（CASE-22/23/26/27/29/30/31/32）。単一点性・独立性は独立review未確認で、ID数や一意性は完全性を証明しない。索引候補を個別fixture件数・negative分母へ重ねない。 |
+
+これは未実行design参照であり、実business outcome/承認/実験を表さない。

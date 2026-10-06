@@ -1,0 +1,755 @@
+{
+  "status": "作成側の処置記録、独立解消・承認・実行合格ではない",
+  "scope": {
+    "parent": "HELIXLABO-L2-060",
+    "pr": 2627,
+    "body_revision": "14e56b4afcdc8158307af155623bfec95bdda318",
+    "content_revision_before_this_audit": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+    "latest_base": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+    "fixed_parent": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+  },
+  "formal_review01": {
+    "comment_id": 6016361136,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2627#issuecomment-6016361136",
+    "bytes": 6483,
+    "sha256": "2b5562806295803e0b5c724fefa6ea0c4a6326a386fe626d5a35c45c2aed06ac",
+    "raw_body": "## review01（independent review、PR #2627 親HELIXLABO-L2-060、HEAD bc12c1abf0e50a4b881347e3fa2917b225555808、本文 62ef04429、base main a2638477b）\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。新しい基準（責務優先・変更耐性前提）で照合した。照合は次の2つに分けた。\n- **Opus・ブラインド照合**：渡したのは、固定親（f6dad2a33のL2-060:441–455、L11-060:178–185、§24の関係行、依存先L2-059）と、6本文の追補149行だけ。固定親を1文ずつ種類分けし、自分で対応表を作らせた。\n- **Opus・継続照合**：旧#2620で060に向けた所見の判定、追補の全行、旧a4a365dとの比較、監査とpinの再計算。\n\nFableは、Opusが`no_findings`を出したのと同じHEADでだけ回す。今回は回していない。\n\n### 静的検査（exact HEAD）\n- scfctl：validate 147/0、stale 0、residuals 0。govcheck：ok。`git diff --check`：成功。\n- origin/main a2638477bとの`merge-tree`：衝突なし。6本文はmainの全bytesをprefixとして保持し、追補だけである。\n- 本PRの作成後、mainはbbe558c4fへ進んだ（#2626、HARNESSのみ）。LABOの6本文には影響せず、衝突もない。merge時にもう一度照合する。\n- 監査pinの再計算：full 34件、span 36件、物理行102件、G0 2件、6本文、a4の全文、台帳。不一致は0件。\n- 定義は51件（正常2、negative 41、索引8）。旧a4a365dと比べて、IDの削除は0件、新規も0件。\n\n### 旧#2620で060に向けた所見\n- **解消**：review02 m7、review03 M7、review04 M1（060分）、M2、m7、m8、m24、review05 m1〜m4。\n- **残余へ移す**：review02 m3の残り（22/29の二重索引）、review03 M6の残り（CASE-16/43の分岐）、review04 m27の残り（行番号参照）。それぞれ下のR1〜R3。\n- 旧所見のうち、Majorとして残るものはない。\n\n### 所見（Major 1）\n- **M1（LABOが判断・authorityを生成することを拒否するfixtureが足りない）**：\n  - 次の変異を拒否するnegative fixtureがない。LABOが比較結果から、INTELLIGENCEのproposal・推奨、採用・Worker配置水準、受入/merge authorityを出力すること。\n  - 拒否fixtureがあるのは、CASE-04a（run・相談の開始）とCASE-04b（assignmentの作成）だけ。FR LABO-060-AC-03の禁止も「run/assignment生成」に限られている。\n  - NFR verificationとBR/BVにある「出力しない」は宣言文で、oracleで確かめられるfixtureではない。\n  - この欠落はa4a365dのときからある。新しい基準の「authorityを生成する。または、生成を拒否するfixtureがない」に当たる。ブラインド照合と継続照合が、それぞれ別に同じ箇所を挙げた。\n  - →守るべき行：\n    - `HELIXLABO-L2-060`「提供するもの」（labo-requirements.md:447「採用・割当・配置水準は決めない」）\n    - 同「保証すること」（:448「評価結果はINTELLIGENCE/OSへの材料に限り」）\n    - L11-060「結果・責務境界」（labo-acceptance.md:185「INTELLIGENCEのproposal、OSのassignment、受入/merge authorityを決めない」）\n    - §24 #9/#13（:119、:123）\n\n### 後で直す残余（承認を止めない）\n- **R1（二重索引）**：CASE-22と29が、同じCASE-34を索引している。CASE-23はCASE-15と同じ変異を指すだけの冗長なIDである。\n- **R2（receiptの分岐）**：CASE-16の変異は、INTELLIGENCE側かOS側かを1つに決めていない。そのためCASE-28/43/26/32と重なる。CASE-43は、欠落の範囲が単一の点からevidence全般に広がった。分岐先はどちらも固定L2:454の区分内なので、誤った完了は通らない。\n- **R3（本文の行番号参照）**：AC-01、CASE-01の「固定L11:181」と、FRの対応表やinventoryの「L2:445–449」など。\n- **R4（戻し先の書き漏れ・揃っていない箇所）**：CASE-03a/03b/03d/05/06/07/21/38–42には、期待oracleに戻し先がない。CASE-05/06/07は、scope差のCASE-09（LABO）と揃っていない。CASE-03cは「HARNESS」だけで「requirement owner」がない。CASE-46の「既存戻し先は…」は、戻す動作として書かれていない。\n- **R5（単独fixtureの不足）**：次の反例に、単独のnegative fixtureがない。\n  - 品質を速度で相殺する（L2:448）\n  - task/scope/outcomeに結びつかない費用を、総費用として確定する（L11:184）\n  - LABOが修正を始める（L2:450）\n  - OS-029を、選択したときだけ依存させる（L2:453）\n  - 再実行をゼロcostとして扱う（L11:182）\n  - 単一の成功runから一般的な有効性を主張する（L11:183/185、§24#5）\n- **R6（代行と追加支援の区別）**：「支援modelが元Workerを代行する」場合と「正当な追加支援model」を区別するfixtureがない。今は入力fieldのラベルだけで区別している（L11:182）。\n- **R7（CASE-01の期待出力）**：記述が薄く、比較が成り立ったときの出力（比較可能性・quality・効果evidenceだけを出す）を十分に言い切っていない。\n- **R8（対応表の食い違い）**：FR対応表の1行目のfixture列と、inventoryの範囲が合っていない。CASE-08（task identity差→OS）がどこに属するかがずれている。範囲表記には索引のCASE-22/23も入っている。\n- **R9（監査の記載）**：\n  - mdの「状態: `/tmp` の未承認監査候補」と「canonical本文・監査は編集していません」が、commitした今の状態と合っていない。\n  - JSONの`planned_repository_audit_paths`は`requirements-stage/`を指しているが、実際の置き場所は`source-rebaseline/`である。\n  - 「index/alias」という語が残っている。\n  - `relation_to_059`欄がある。\n  - `worker_support_derivation_record`のspanの`end_line: 45`は、44行のファイルを指している。\n- **R10（本文中の外部参照）**：FV本文の「既存a4a365の51 ID」は、本PRの外にある版を指している。\n\n### 判定\n- blocker 1（M1）。Major 1件、残余10件。\n- 委任承認は成立しない。Readyにはしない。merge admissionは本commentから生成しない。\n- M1を直したHEADで、Opusが`no_findings`なら、同じHEADでFableを回す。\n"
+  },
+  "major_disposition": {
+    "M1": "AC-03のrun/assignment限定だった禁止範囲へ固定L2提供/保証・L11結果責務の判断境界を明記。CASE47–52は正常入力と比較材料を固定し、proposal/推奨/採用/配置/受入authority/merge authorityの誤出力を一つずつ拒否。正当な評価材料と既存source参照を保持。独立解消は再reviewへ。"
+  },
+  "residual_R1_R10_raw": "### 後で直す残余（承認を止めない）\n- **R1（二重索引）**：CASE-22と29が、同じCASE-34を索引している。CASE-23はCASE-15と同じ変異を指すだけの冗長なIDである。\n- **R2（receiptの分岐）**：CASE-16の変異は、INTELLIGENCE側かOS側かを1つに決めていない。そのためCASE-28/43/26/32と重なる。CASE-43は、欠落の範囲が単一の点からevidence全般に広がった。分岐先はどちらも固定L2:454の区分内なので、誤った完了は通らない。\n- **R3（本文の行番号参照）**：AC-01、CASE-01の「固定L11:181」と、FRの対応表やinventoryの「L2:445–449」など。\n- **R4（戻し先の書き漏れ・揃っていない箇所）**：CASE-03a/03b/03d/05/06/07/21/38–42には、期待oracleに戻し先がない。CASE-05/06/07は、scope差のCASE-09（LABO）と揃っていない。CASE-03cは「HARNESS」だけで「requirement owner」がない。CASE-46の「既存戻し先は…」は、戻す動作として書かれていない。\n- **R5（単独fixtureの不足）**：次の反例に、単独のnegative fixtureがない。\n  - 品質を速度で相殺する（L2:448）\n  - task/scope/outcomeに結びつかない費用を、総費用として確定する（L11:184）\n  - LABOが修正を始める（L2:450）\n  - OS-029を、選択したときだけ依存させる（L2:453）\n  - 再実行をゼロcostとして扱う（L11:182）\n  - 単一の成功runから一般的な有効性を主張する（L11:183/185、§24#5）\n- **R6（代行と追加支援の区別）**：「支援modelが元Workerを代行する」場合と「正当な追加支援model」を区別するfixtureがない。今は入力fieldのラベルだけで区別している（L11:182）。\n- **R7（CASE-01の期待出力）**：記述が薄く、比較が成り立ったときの出力（比較可能性・quality・効果evidenceだけを出す）を十分に言い切っていない。\n- **R8（対応表の食い違い）**：FR対応表の1行目のfixture列と、inventoryの範囲が合っていない。CASE-08（task identity差→OS）がどこに属するかがずれている。範囲表記には索引のCASE-22/23も入っている。\n- **R9（監査の記載）**：\n  - mdの「状態: `/tmp` の未承認監査候補」と「canonical本文・監査は編集していません」が、commitした今の状態と合っていない。\n  - JSONの`planned_repository_audit_paths`は`requirements-stage/`を指しているが、実際の置き場所は`source-rebaseline/`である。\n  - 「index/alias」という語が残っている。\n  - `relation_to_059`欄がある。\n  - `worker_support_derivation_record`のspanの`end_line: 45`は、44行のファイルを指している。\n- **R10（本文中の外部参照）**：FV本文の「既存a4a365の51 ID」は、本PRの外にある版を指している。\n\n",
+  "fixed_source_pins": [
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "start_line": 441,
+      "end_line": 455,
+      "bytes": 5536,
+      "raw_lf_sha256": "470bc2c564e2ea6121a7f24645bdb5e9c81f0954d650c1e3e665760ff9c9aca5",
+      "literal_with_lf": "### HELIXLABO-L2-060 Worker支援有無の同一設定比較（単体候補、1.0）\n\n- **PO起点**：[補強原文](../../helix-harness/sources/capability-reinforcement-po-original-2026-09-27.md)第5項、[判断記録](../../governance/decisions/worker-support-derivation-2026-09-27.md)。\n- **親L1**：HELIXLABO-L1-005 primary、HELIXLABO-L1-011 context。比較評価とWorker水準の境界に接続する。\n- **関係**：同じ軽量Worker/model/provider/version/effort設定、同じtask/scope/oracleの下で、作業中支援の有無だけを変えた結果を比較する単体能力。支援がどれほど有用だったかの評価であり、支援経路を実行・割当する能力ではない。G13のHELIXLABO-L2-059が定めるtask/effect comparisonと全費用、人介入の比較原則を使い、評価内容を重複所有しない。\n- **受け取るもの**：同一のtask snapshot・要求/設計revision/scope・HARNESS quality oracle revision・環境/toolchain/run protocol、同一のWorker/model identityとmodel/provider/version/effort設定、支援有無の対応runとOS assignment/result receipt、使われた設計/code/failure/knowledge source・INTELLIGENCE proposalとOS handoff、全runの成功/失敗/unknown、retry/rework/review/CI、上位Worker・相談者・人の介入時間と実費、価格source/currency/effective time、比較不能/欠測情報。\n- **提供するもの**：品質gate結果、同一設定に対する支援有無別のaccepted outcome、再作業・失敗・所要時間・費用、上位Worker/model救援・追加実行・人の相談/調査/修正/確認を含むeffortとcost、欠測・比較可能範囲・unknownを示すtask class/scope限定の評価材料。採用・割当・配置水準は決めない。\n- **保証すること**：両群で変える要因は対象支援経路の利用有無のみ。元Worker/model/provider/version/effort、task scope、oracle、実験条件、toolchainと結果の計測規則が異なる場合は同条件と主張しない。必要qualityを費用/速度で相殺しない。支援側に上位Worker、別model/provider利用、相談、再試行、CI/review、人手修正があれば、対応する時間・費用と人介入をscope内に含める。価格換算が不明な人時間は量を報告し、0円としない。評価結果はINTELLIGENCE/OSへの材料に限り、LABOはWorkerを割当/実行しない。\n- **常時必須**：task/scope/対象revision、同一のmodel/provider/version/effort設定、開始前に固定したHARNESS-L2-022 quality/acceptance oracle契約、OS assignment、比較条件・支援有無のsource/evidence、計測した費用/人介入・欠測範囲。assignmentとoracle契約は入力、OS result receiptsとoracle実行結果は各run後の比較観測である。片方の結果receiptや適用可能なoracle契約がない場合は比較成立を主張しない。\n- **操作時必須**：新しい比較runを行う場合は支援あり/なし双方の対応可能runについてOS assignmentと必要なSECURITY許可があり、HARNESS oracleと計測条件を先に固定する。既存historyを使う場合は当時のsource/authority/model/provider/version/scope/receiptを保持する。測定の実行、修正、相談をLABOが開始しない。\n- **選択入力時必須**：支援側で実際に選択・使用したpacket/source/相談/分解/修正指示と支援者のidentity/version/effortを、そのrunへ記録する。なし群へ支援用contextや専門家助言が漏れた場合はなし群としない。未選択の支援経路は当該比較の実行依存ではない。\n- **参照のみ**：今回比較しない支援候補、未選択source、一般的な効果説明は背景参照に限る。比較対象に選択したsource、品質条件、救援・人作業・費用の実績は参照のみへ落とさない。\n- **版・単独成立の依存**：`version_target: 1.0`（候補能力の版印）。v0.1等の段階収載有無は別判断で、本候補は決めない。HELIXLABO-L2-001／HELIXLABO-L2-006／HELIXLABO-L2-028／HELIXLABO-L2-055、既存HELIXLABO-L2-059の比較原則、HELIXOS-L2-018／HELIXOS-L2-019／HELIXOS-L2-023 assignment/result, HARNESS-L2-022 oracle、HELIXINTELLIGENCE-L2-068の支援sourceと利用証拠、SECURITY data-use/実行許可を使う。HELIXOS-L2-028の相談receiptは実相談を選択したrunだけに必要で、事前test/指示だけの支援比較には要求しない。HELIXOS-L2-029は支援往復まで成立したcompositeの結果を評価対象に選ぶ場合のsourceであり、評価単体の常時依存ではない。\n- **失敗時の戻し先／未完義務**：task/run receiptはOS、支援proposal/利用証拠はINTELLIGENCE/OS、oracleはHARNESS/requirement owner、data-useはSECURITY、comparison scope/evaluation capabilityはLABOへ戻す。片群欠落、異なるmodel/provider/version/effort、scope/oracle差、救援/人的費用欠落、stale evidenceは未評価/比較不能に保ち、未完理由を記録する。固定試行数や性能閾値は設けない。\n- **束ねる既存条件**：HELIXLABO-L2-001／HELIXLABO-L2-006／HELIXLABO-L2-028／HELIXLABO-L2-055／HELIXLABO-L2-059およびHELIXINTELLIGENCE-L1-018／HELIXINTELLIGENCE-L1-010、HELIXOS-L2-018/HELIXOS-L2-019/HELIXOS-L2-023、HARNESS-L2-022。G13の総費用とquality-firstの比較意味を保持し、支援有無だけを比較因子に追加する。\n"
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "start_line": 178,
+      "end_line": 185,
+      "bytes": 3023,
+      "raw_lf_sha256": "50a4e4a914eee9f1f1049b854493e1884c52f77bd7d1394deccf7d7c08116011",
+      "literal_with_lf": "### HELIXLABO-L2-060 Worker支援有無の同一設定比較の受入（単体候補、1.0）\n\n- **入力・版**：同一task snapshot/scope/requirement/oracle、同一元Worker/model/provider/version/effort設定、対応する支援あり/なしのOS result receipt、支援利用記録、review/test結果、作業者と補助者の費用/時間。`version_target: 1.0`はcapability targetであり、v0.1等の段階収載決定は含まない。\n- **正常例とoracle**：同じWorker/model/provider/version/effort、task/scope、environment、`PATCH /applications/{id}`用oracleを固定する。両runで`draft`への有効編集は受理、`approved`への編集は拒否しpersisted valueを変えないことが事前oracle。支援ありrunのみINTELLIGENCEがstate/API設計、validator code、過去regression exampleを選択し、approved boundaryで詰まった元Workerに限定相談・修正指示を渡す。元Workerが修正し、独立reviewer（元WorkerとINT支援者のいずれとも異なるidentity/context/authority）が確認、HELIXOS-L2-020が事前oracleを再実行してpassする。対照runは支援を使わず同じ元Worker設定で完了し、同じoracleでpass/fail結果を返す。受入oracleは両群の設定とtask/oracleが等しく、相違が支援経路に限られること、支援に要した上位Worker/相談/再実行/reviewと人の調査・修正・確認時間/費用が支援側costへ算入されること、支援有無の結果を同じquality gateで比較できること。\n- **誤りを含む例**：支援ありrunだけ強い別model/providerに変える、対照runにも相談助言を漏らす、支援者を独立reviewerにする、助言/人の修正/再実行をゼロcost扱い、劣化品質を低費用で相殺する。比較条件不成立または品質gate未達として拒否し、成功比較を出さない。\n- **未見例**：同一設定の類似API taskで元Workerのtest失敗はあるが、片群のreceipt、oracle適用性、または支援者の時間/費用が不明。未知domainへの改善を一般化せず、欠落項目を列挙して未評価/比較不能を返す。数値閾値・試行件数は作らない。\n- **費用/範囲oracle**：同一の元Worker設定を固定しつつ、支援によって追加されたmodel/provider利用、上位Worker、相談者、CI/review/retry/rework、person timeをすべて報告する。human timeの換算率がない場合は時間量を記録して金銭額は未確定とし0円にしない。task/scope/outcome・価格source/currency/effective timeに結ばない費用は支援効果の総費用に確定しない。\n- **結果・責務境界**：LABOは比較可能性・quality・効果evidenceのみ出力し、INTELLIGENCEのproposal、OSのassignment、受入/merge authorityを決めない。単一の成功runのみでは未見taskの一般的有効性を主張しない。比較に必要な両runがそろわなければ未評価を維持する。\n"
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "start_line": 119,
+      "end_line": 119,
+      "bytes": 449,
+      "raw_lf_sha256": "94972fb097c78b02ccfe735bb8917b8f1e7eff3b8841f38ab71559ddcc2f2214",
+      "literal_with_lf": "| 9 | Intelligenceには判断・監査・bot・モデル改善に使える評価材料を返す。 | HELIXLABO-L2-035, 052, 054, 055 | 判断等の評価材料は035/052、Bench水準は055/054の別契約で根拠・scope・revision・未評価状態を保ってINTELLIGENCEへ渡る。 | LABOが現行判断/配置/botを実行する、Bench水準を別定義したり未評価を評価済みにする、材料転送を学習許可にする。 |\n"
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "start_line": 123,
+      "end_line": 123,
+      "bytes": 234,
+      "raw_lf_sha256": "c9be54d0a9c067872d7c20af0e8c75d8b7f54897648f620f64912e59c9ef6deb",
+      "literal_with_lf": "| 13 | LABO評価だけで変更を確定しない。 | HELIXLABO-L2-010, 050 | Feedbackは提案状態であり、登録/routingはOS、変更はtarget ownerに残る。 | LABO評価/Feedbackだけでtarget変更を確定する。 |\n"
+    }
+  ],
+  "related_legacy_boundary_source": {
+    "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+    "start_line": 659,
+    "end_line": 666,
+    "bytes": 557,
+    "raw_lf_sha256": "fbb667b3e0d21ceb628c489a728940bab177b1a1da42c40edf2057333b66fb20",
+    "literal_with_lf": "\nCursor Cloud workerはrequested/effective modelを分離し、初期policyとして標準Grok、上位Kimi、下位Composerを扱う。\nmodel availability、provider response、candidate HEAD、usage、charged costをread-afterできないrunを成功にしてはならない。\n\n#### RLO-FR-040 HELIX-Bench由来のeffort policy\n\nreasoning effortはHELIX-Benchのtask class別evidenceから導出する。未評価時は\n`provider_default_unbenchmarked`として明示し、score単独でscope、branch、assignment、merge authorityを変更しない。\n"
+  },
+  "canonical_pins": [
+    {
+      "current": {
+        "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+        "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+        "bytes": 11218,
+        "sha256": "9f1a7cbc1a424aebf4205d78c6bb6e261395dc46d1b419813d6ede1ab344c418"
+      },
+      "base": {
+        "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+        "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+        "bytes": 10078,
+        "sha256": "e6e092f020f59741574db31b7447549ede19efa6d0dfd311a5c7782df83f361e"
+      },
+      "base_prefix_exact": true
+    },
+    {
+      "current": {
+        "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+        "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+        "bytes": 280376,
+        "sha256": "290722ab60a037d8074dd0112ebb94b43fe29fa3997b2b68325e3e61a9f0da33"
+      },
+      "base": {
+        "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+        "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+        "bytes": 267432,
+        "sha256": "fef30ffb208e6cc7b33e4b874c3b03f9df0a028906f087522ca32177bfb65319"
+      },
+      "base_prefix_exact": true
+    },
+    {
+      "current": {
+        "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+        "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+        "bytes": 60817,
+        "sha256": "df25b18e78ef0de103aaad65609cf8ee191379a930497153a3a9fa094651c136"
+      },
+      "base": {
+        "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+        "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+        "bytes": 59509,
+        "sha256": "0bc2cf2bec57a4b3424dd0a8840a97278c3b9dcfd137cf79b551321f12eb67dd"
+      },
+      "base_prefix_exact": true
+    },
+    {
+      "current": {
+        "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+        "path": "docs/helix-labo/L10-verification/business-verification.md",
+        "bytes": 9556,
+        "sha256": "5fd18f3c031c9bbf7d712a82d51e238cfb666bcd2069d3e4d8878a1caa6dace6"
+      },
+      "base": {
+        "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+        "path": "docs/helix-labo/L10-verification/business-verification.md",
+        "bytes": 8666,
+        "sha256": "451558d4db8ec1d1d194f71346cf854c1625007e8a27d323f8f5cc50d5fe334c"
+      },
+      "base_prefix_exact": true
+    },
+    {
+      "current": {
+        "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "bytes": 340946,
+        "sha256": "57cf65440d8833e4da0db01455ff8066dd87f7278d4641aedc5d2b0d61a6521a"
+      },
+      "base": {
+        "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "bytes": 323392,
+        "sha256": "e65d41a45c9e481221aedecdeaa7b2308a1c34e58bbd86a5a892191b5ebab4a1"
+      },
+      "base_prefix_exact": true
+    },
+    {
+      "current": {
+        "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+        "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+        "bytes": 49901,
+        "sha256": "e91a7b4a168711b643c8b60b9ee1369520c452b0c0a9cb72461d6ea93643b360"
+      },
+      "base": {
+        "revision": "bbe558c4f62056ca134b0d8ad8965c928d3d3532",
+        "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+        "bytes": 48631,
+        "sha256": "54bce22e5b5605bc5d22991f3436f3ecc356e6136e09b33d04159aa04e9af423"
+      },
+      "base_prefix_exact": true
+    }
+  ],
+  "changed_files": [
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "old": {
+        "revision": "bc12c1abf0e50a4b881347e3fa2917b225555808",
+        "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+        "bytes": 279654,
+        "sha256": "e07975c757eb31630db3798d0684aaed61fb5ae0d90f46d133e2b29723a2444c"
+      },
+      "new": {
+        "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+        "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+        "bytes": 280376,
+        "sha256": "290722ab60a037d8074dd0112ebb94b43fe29fa3997b2b68325e3e61a9f0da33"
+      },
+      "diff": "--- bc12c1abf0e50a4b881347e3fa2917b225555808:docs/helix-labo/L3-requirements/functional-requirements.md\n+++ 143b78b075522d7558dc83af4a91d9ae0b3455b8:docs/helix-labo/L3-requirements/functional-requirements.md\n@@ -1655,7 +1655,7 @@\n \n ### LABO-060-AC-03 — 不成立・既存責務への返却\n \n-L10に置く一項目変異候補を個別に照合し、単一点性は独立reviewで確認する。群間で元Worker設定が異なる比較、対照側への助言漏れ、oracle/task/scope/protocol不一致、選択証拠・assignment・receipt・費用の欠落、failed/unknown runの除外、未価格人時間の0円化、品質不成立の費用相殺、LABOによるrun/assignment生成は成功比較にしない。選択支援proposal/use sourceの欠落はINTELLIGENCE、OS handoff/assignment/result receiptの欠落はOS、oracleの適用・契約不足はHARNESS/requirement owner、必要なdata-use/実行permissionはSECURITY、比較scope/evaluation capabilityはLABOへ原因別に返す。固定sourceでownerを識別できないfieldはunknownを保持し、ownerを創作しない。非独立indexは指定した完全IDの主fixtureを指し、独立fixture・negative分母へ重ねない。\n+L10に置く一項目変異候補を個別に照合し、単一点性は独立reviewで確認する。群間で元Worker設定が異なる比較、対照側への助言漏れ、oracle/task/scope/protocol不一致、選択証拠・assignment・receipt・費用の欠落、failed/unknown runの除外、未価格人時間の0円化、品質不成立の費用相殺、LABOによるrun/assignment生成は成功比較にしない。比較出力は比較可能性・quality・効果evidenceに限り、比較結果からINTELLIGENCEのproposal・推奨、採用判断、Worker配置水準、受入authority、merge authorityをLABOが決める誤出力を拒否する。評価材料と既存proposal/assignment/authority参照は保持し、正当な材料返却を拒否しない。選択支援proposal/use sourceの欠落はINTELLIGENCE、OS handoff/assignment/result receiptの欠落はOS、oracleの適用・契約不足はHARNESS/requirement owner、必要なdata-use/実行permissionはSECURITY、比較scope/evaluation capabilityはLABOへ原因別に返す。固定sourceでownerを識別できないfieldはunknownを保持し、ownerを創作しない。非独立indexは指定した完全IDの主fixtureを指し、独立fixture・negative分母へ重ねない。\n \n #### 旧source起点と差分\n \n@@ -1673,7 +1673,7 @@\n \n #### CASE inventoryと固定source trace\n \n-現在のCASE定義IDは51件（正常候補2、negative候補41、非独立索引候補8）。単一点性・独立性は独立review未確認であり、ID数や一意性は完全性の証明ではない。L10行はoracleの固定source意味を代替しない。全定義: `L10-LABO-060-CASE-01`, `L10-LABO-060-CASE-02`, `L10-LABO-060-CASE-03a`, `L10-LABO-060-CASE-03b`, `L10-LABO-060-CASE-03c`, `L10-LABO-060-CASE-03d`, `L10-LABO-060-CASE-03e`, `L10-LABO-060-CASE-04a`, `L10-LABO-060-CASE-04b`, `L10-LABO-060-CASE-05`, `L10-LABO-060-CASE-06`, `L10-LABO-060-CASE-07`, `L10-LABO-060-CASE-08`, `L10-LABO-060-CASE-09`, `L10-LABO-060-CASE-10`, `L10-LABO-060-CASE-11`, `L10-LABO-060-CASE-12`, `L10-LABO-060-CASE-13`, `L10-LABO-060-CASE-14`, `L10-LABO-060-CASE-15`, `L10-LABO-060-CASE-16`, `L10-LABO-060-CASE-17`, `L10-LABO-060-CASE-18`, `L10-LABO-060-CASE-19`, `L10-LABO-060-CASE-20`, `L10-LABO-060-CASE-21`, `L10-LABO-060-CASE-22`, `L10-LABO-060-CASE-23`, `L10-LABO-060-CASE-24`, `L10-LABO-060-CASE-25`, `L10-LABO-060-CASE-26`, `L10-LABO-060-CASE-27`, `L10-LABO-060-CASE-28`, `L10-LABO-060-CASE-29`, `L10-LABO-060-CASE-30`, `L10-LABO-060-CASE-31`, `L10-LABO-060-CASE-32`, `L10-LABO-060-CASE-33`, `L10-LABO-060-CASE-34`, `L10-LABO-060-CASE-35`, `L10-LABO-060-CASE-36`, `L10-LABO-060-CASE-37`, `L10-LABO-060-CASE-38`, `L10-LABO-060-CASE-39`, `L10-LABO-060-CASE-40`, `L10-LABO-060-CASE-41`, `L10-LABO-060-CASE-42`, `L10-LABO-060-CASE-43`, `L10-LABO-060-CASE-44`, `L10-LABO-060-CASE-45`, `L10-LABO-060-CASE-46`.\n+現在のCASE定義IDは57件（正常候補2、negative候補47、非独立索引候補8）。単一点性・独立性は独立review未確認であり、ID数や一意性は完全性の証明ではない。L10行はoracleの固定source意味を代替しない。全定義: `L10-LABO-060-CASE-01`, `L10-LABO-060-CASE-02`, `L10-LABO-060-CASE-03a`, `L10-LABO-060-CASE-03b`, `L10-LABO-060-CASE-03c`, `L10-LABO-060-CASE-03d`, `L10-LABO-060-CASE-03e`, `L10-LABO-060-CASE-04a`, `L10-LABO-060-CASE-04b`, `L10-LABO-060-CASE-05`, `L10-LABO-060-CASE-06`, `L10-LABO-060-CASE-07`, `L10-LABO-060-CASE-08`, `L10-LABO-060-CASE-09`, `L10-LABO-060-CASE-10`, `L10-LABO-060-CASE-11`, `L10-LABO-060-CASE-12`, `L10-LABO-060-CASE-13`, `L10-LABO-060-CASE-14`, `L10-LABO-060-CASE-15`, `L10-LABO-060-CASE-16`, `L10-LABO-060-CASE-17`, `L10-LABO-060-CASE-18`, `L10-LABO-060-CASE-19`, `L10-LABO-060-CASE-20`, `L10-LABO-060-CASE-21`, `L10-LABO-060-CASE-22`, `L10-LABO-060-CASE-23`, `L10-LABO-060-CASE-24`, `L10-LABO-060-CASE-25`, `L10-LABO-060-CASE-26`, `L10-LABO-060-CASE-27`, `L10-LABO-060-CASE-28`, `L10-LABO-060-CASE-29`, `L10-LABO-060-CASE-30`, `L10-LABO-060-CASE-31`, `L10-LABO-060-CASE-32`, `L10-LABO-060-CASE-33`, `L10-LABO-060-CASE-34`, `L10-LABO-060-CASE-35`, `L10-LABO-060-CASE-36`, `L10-LABO-060-CASE-37`, `L10-LABO-060-CASE-38`, `L10-LABO-060-CASE-39`, `L10-LABO-060-CASE-40`, `L10-LABO-060-CASE-41`, `L10-LABO-060-CASE-42`, `L10-LABO-060-CASE-43`, `L10-LABO-060-CASE-44`, `L10-LABO-060-CASE-45`, `L10-LABO-060-CASE-46`, `L10-LABO-060-CASE-47`, `L10-LABO-060-CASE-48`, `L10-LABO-060-CASE-49`, `L10-LABO-060-CASE-50`, `L10-LABO-060-CASE-51`, `L10-LABO-060-CASE-52`.\n \n | L10対応条件 | 固定根拠 | fixture |\n |---|---|---|\n@@ -1681,3 +1681,4 @@\n | 選択した支援経路、control leakage、consult/composite選択依存 | L2:448/451/453、L11:181/183 | AC-01/02/03、CASE-01/02/03b/19/26–28/43 |\n | receipt、費用・人時間・unknown、quality非相殺 | L2:446–449/454、L11:181–184 | AC-01/02/03、CASE-01/02/03d/e/12–17/18/20–25/33–45 |\n | 事前HARNESS oracle、OS assignment、原因別owner、scope/権限境界 | L2:449–454、L11:181–185 | AC-01/02/03、CASE-01/02/03c/04a/b/34–38/46 |\n+| 評価材料から判断・authorityを生成しない | 固定L2-060「提供するもの」「保証すること」、固定L11-060「結果・責務境界」 | AC-03、CASE-47–52（各誤出力を別fixtureで照合） |\n"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "old": {
+        "revision": "bc12c1abf0e50a4b881347e3fa2917b225555808",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "bytes": 337396,
+        "sha256": "6486d1935bedb90337d5d6d6649dbd07097f8697734a102547e1f14c4cc47ffb"
+      },
+      "new": {
+        "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "bytes": 340946,
+        "sha256": "57cf65440d8833e4da0db01455ff8066dd87f7278d4641aedc5d2b0d61a6521a"
+      },
+      "diff": "--- bc12c1abf0e50a4b881347e3fa2917b225555808:docs/helix-labo/L10-verification/functional-verification.md\n+++ 143b78b075522d7558dc83af4a91d9ae0b3455b8:docs/helix-labo/L10-verification/functional-verification.md\n@@ -2712,7 +2712,7 @@\n \n ### CASE-LABO-060 — 支援有無の同一設定比較\n \n-以下は固定f6dad2aのL2/L11から設計した未実行fixture候補であり、合成givenを実測・実権限・実運用と扱わない。現行分類案は正常候補2、negative候補41、非独立索引候補8。単一点性・独立性は独立review未確認であり、51個のID保持や一意性はfixture集合の完全性を証明しない。索引候補は独立fixture・negative分母へ重ねない。既存a4a365の51 IDを保持する。\n+以下は固定f6dad2aのL2/L11から設計した未実行fixture候補であり、合成givenを実測・実権限・実運用と扱わない。現行分類案は正常候補2、negative候補47、非独立索引候補8。単一点性・独立性は独立review未確認であり、57個のID保持や一意性はfixture集合の完全性を証明しない。索引候補は独立fixture・negative分母へ重ねない。既存a4a365の51 IDを保持し、責務境界の誤出力を照合するCASE-47–52を追加する。\n \n - `L10-LABO-060-CASE-01`（対応AC: `LABO-060-AC-01`） 正常候補（合成fixture）: 同一task snapshot・要求/設計revision/scope・環境・toolchain/run protocol・元Worker/model identityとmodel/provider/version/effort設定、開始前固定のHARNESS-L2-022 oracle、対応するOS assignment/result receiptを与え、新規比較runでは適用されるSECURITY許可も保持する。固定L11:181の例に沿い、両runで`PATCH /applications/{id}`のdraft編集は受理し、approved編集は拒否して保存値を変えない。支援側のみINTELLIGENCEがstate/API設計、validator code、過去regression exampleを選び、approved境界で詰まった元Workerへ限定相談と修正指示を渡す。元Workerが修正し、元Worker・INTELLIGENCE支援者のいずれともidentity/context/authorityを区別したindependent reviewerが確認した後、HELIXOS-L2-020が事前oracleを再実行してpassする。支援側の追加model/provider、相談、再実行、review、人作業時間・実費を保持し、対照runへの助言漏れがない。これは実測済みrunの主張ではない。\n - `L10-LABO-060-CASE-02`（対応AC: `LABO-060-AC-02`） 未見正常候補（合成fixture）: 未見task T*内で支援あり/なしのmatched pairを与える。両runのtask snapshot・scope・対象revision・environment/protocol・元Worker/model/provider/version/effort・当該taskの固定oracle・OS assignment/結果receiptをそろえ、新規比較runでは適用されるSECURITY許可も保持し、対象支援経路の利用有無だけを比較する。実際に選択したsupport sourceと相談のみを記録し、未選択経路を実行依存にしない。両runは当該taskのoracleと矛盾しない結果を返すが、一taskの結果を一般有効性へ拡張しない。実測済みrunの主張ではない。\n@@ -2768,3 +2768,14 @@\n | `L10-LABO-060-CASE-44` | `LABO-060-AC-03` | 選択母集団に含まれるfailed runだけを除外 | failed stateを保持し、比較母集団を不完全とする。該当run receiptはOSへ戻す。 |\n | `L10-LABO-060-CASE-45` | `LABO-060-AC-03` | 選択母集団に含まれるunknown runだけを除外 | unknownを成功/失敗へ変換せず、比較母集団を不完全とする。該当run receiptはOSへ戻す。 |\n | `L10-LABO-060-CASE-46` | `LABO-060-AC-03` | 未見類似taskでHARNESS oracleの適用性だけunknown。片群receipt、支援者時間、比較scopeはCASE-01と同一 | 非適用と推測せず未評価/比較不能を保つ。oracle適用性の既存戻し先はHARNESS/requirement owner。 |\n+\n+追加CASE-47–52の正常入力と比較出力はCASE-01と同じ。比較可能性・quality・効果evidenceを返す正当な出力、既存INTELLIGENCE proposal参照、OS assignment/result receipt、入力authority evidenceを固定する。各fixtureではLABO出力の次の一判断だけを追加し、その他の入力・比較結果・source状態は変更しない。合成の誤出力であり、実際のproposal発行・採用・配置・承認・mergeは行わない。\n+\n+| CASE ID | 対応AC | 固定入力からの単独誤出力変異 | 期待oracle / 既存責務境界 |\n+|---|---|---|---|\n+| `L10-LABO-060-CASE-47` | `LABO-060-AC-03` | INTELLIGENCEの支援proposalをLABO自身の決定として出力する。 | 当該誤出力を拒否し、proposalを決めずINTELLIGENCEの既存proposal責務を保持する。比較可能性・quality・効果evidenceは保持し、正当な材料返却を誤拒否しない。比較出力の越権はLABO評価へ戻し、具体的なauthority ownerは入力の既存identityで追跡し不明ならunknownを保持する。 |\n+| `L10-LABO-060-CASE-48` | `LABO-060-AC-03` | INTELLIGENCEのWorker推奨をLABO自身の決定として出力する。 | 当該誤出力を拒否し、推奨を決めずINTELLIGENCEへ評価材料のみ返す。比較可能性・quality・効果evidenceは保持し、正当な材料返却を誤拒否しない。比較出力の越権はLABO評価へ戻し、具体的なauthority ownerは入力の既存identityで追跡し不明ならunknownを保持する。 |\n+| `L10-LABO-060-CASE-49` | `LABO-060-AC-03` | 比較結果から対象支援経路の採用をLABOが確定する。 | 当該誤出力を拒否し、採用判断を生成せず、入力の既存採否authorityを変更しない。比較可能性・quality・効果evidenceは保持し、正当な材料返却を誤拒否しない。比較出力の越権はLABO評価へ戻し、具体的なauthority ownerは入力の既存identityで追跡し不明ならunknownを保持する。 |\n+| `L10-LABO-060-CASE-50` | `LABO-060-AC-03` | 比較結果からWorker配置水準をLABOが確定する。 | 当該誤出力を拒否し、配置水準を生成せず、INTELLIGENCE/OSへの評価材料に留める。比較可能性・quality・効果evidenceは保持し、正当な材料返却を誤拒否しない。比較出力の越権はLABO評価へ戻し、具体的なauthority ownerは入力の既存identityで追跡し不明ならunknownを保持する。 |\n+| `L10-LABO-060-CASE-51` | `LABO-060-AC-03` | 比較結果から対象revisionの受入authorityをLABOが生成する。 | 当該誤出力を拒否し、受入authorityを生成せず、既存対象revisionのauthorityを保持する。比較可能性・quality・効果evidenceは保持し、正当な材料返却を誤拒否しない。比較出力の越権はLABO評価へ戻し、具体的なauthority ownerは入力の既存identityで追跡し不明ならunknownを保持する。 |\n+| `L10-LABO-060-CASE-52` | `LABO-060-AC-03` | 比較結果から対象HEADのmerge authorityをLABOが生成する。 | 当該誤出力を拒否し、merge authorityを生成せず、既存対象HEADのauthorityを保持する。比較可能性・quality・効果evidenceは保持し、正当な材料返却を誤拒否しない。比較出力の越権はLABO評価へ戻し、具体的なauthority ownerは入力の既存identityで追跡し不明ならunknownを保持する。 |\n"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "old": {
+        "revision": "bc12c1abf0e50a4b881347e3fa2917b225555808",
+        "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+        "bytes": 49896,
+        "sha256": "732f3aecd7e4854ca2d8c44ab25cb39f7df909fdc28aaebb20e429c3d95a3835"
+      },
+      "new": {
+        "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+        "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+        "bytes": 49901,
+        "sha256": "e91a7b4a168711b643c8b60b9ee1369520c452b0c0a9cb72461d6ea93643b360"
+      },
+      "diff": "--- bc12c1abf0e50a4b881347e3fa2917b225555808:docs/helix-labo/L10-verification/nfr-verification.md\n+++ 143b78b075522d7558dc83af4a91d9ae0b3455b8:docs/helix-labo/L10-verification/nfr-verification.md\n@@ -132,5 +132,5 @@\n ## Stage 5 — HELIXLABO-L2-060 NFR検証設計\n \n - `CASE-NFR-LABO-060-01`: 未実行設計。選択scope内で同一task/scope/oracle・元Worker/model/provider/version/effort条件、選択支援source/use、OS assignment/result receipt、品質判定、全支援追加resource/費用、人作業数量、currency/effective time、failed/unknown/missingを別fieldで追跡する。未選択consult/sourceを必須分母へ加えず、unknown/未完/欠測を成功または0へ変換しない。実測値、固定SLA、最低N、率thresholdは生成しない。\n-- L10の現在のCASE定義IDは51件: CASE-01/02、03a–e、04a–b、05–21、22–33、34–45、46。現行分類案は正常候補2、negative候補41、非独立索引候補8（CASE-22/23/26/27/29/30/31/32）。単一点性・独立性は独立review未確認で、ID数や一意性は完全性を証明しない。索引候補はfixture/negative分母へ重ねず、CASE本文とAC traceをL10で照合する。\n+- L10の現在のCASE定義IDは57件: CASE-01/02、03a–e、04a–b、05–21、22–33、34–45、46–52。現行分類案は正常候補2、negative候補47、非独立索引候補8（CASE-22/23/26/27/29/30/31/32）。単一点性・独立性は独立review未確認で、ID数や一意性は完全性を証明しない。索引候補はfixture/negative分母へ重ねず、CASE本文とAC traceをL10で照合する。\n - 集計を設計する場合も、対象task/run・適用scope・missing/failed/unknown/censoredの母集団状態を併記し、分母0/不明は率なしとする。LABOは比較材料のみを返し、assignment、採用、permission、merge authorityを出力しない。\n"
+    }
+  ],
+  "case_definitions": [
+    {
+      "case_id": "L10-LABO-060-CASE-01",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2717,
+      "bytes": 1144,
+      "raw_lf_sha256": "a5fbca4bceafe765a5bf7c3c53cfd8ebab25d70860c91346e7c8b11f28b76b06",
+      "literal_with_lf": "- `L10-LABO-060-CASE-01`（対応AC: `LABO-060-AC-01`） 正常候補（合成fixture）: 同一task snapshot・要求/設計revision/scope・環境・toolchain/run protocol・元Worker/model identityとmodel/provider/version/effort設定、開始前固定のHARNESS-L2-022 oracle、対応するOS assignment/result receiptを与え、新規比較runでは適用されるSECURITY許可も保持する。固定L11:181の例に沿い、両runで`PATCH /applications/{id}`のdraft編集は受理し、approved編集は拒否して保存値を変えない。支援側のみINTELLIGENCEがstate/API設計、validator code、過去regression exampleを選び、approved境界で詰まった元Workerへ限定相談と修正指示を渡す。元Workerが修正し、元Worker・INTELLIGENCE支援者のいずれともidentity/context/authorityを区別したindependent reviewerが確認した後、HELIXOS-L2-020が事前oracleを再実行してpassする。支援側の追加model/provider、相談、再実行、review、人作業時間・実費を保持し、対照runへの助言漏れがない。これは実測済みrunの主張ではない。\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-02",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2718,
+      "bytes": 743,
+      "raw_lf_sha256": "0d685b38967adf6924984d34b4baab0bd658f567c0d3e070e121aca2cd46550c",
+      "literal_with_lf": "- `L10-LABO-060-CASE-02`（対応AC: `LABO-060-AC-02`） 未見正常候補（合成fixture）: 未見task T*内で支援あり/なしのmatched pairを与える。両runのtask snapshot・scope・対象revision・environment/protocol・元Worker/model/provider/version/effort・当該taskの固定oracle・OS assignment/結果receiptをそろえ、新規比較runでは適用されるSECURITY許可も保持し、対象支援経路の利用有無だけを比較する。実際に選択したsupport sourceと相談のみを記録し、未選択経路を実行依存にしない。両runは当該taskのoracleと矛盾しない結果を返すが、一taskの結果を一般有効性へ拡張しない。実測済みrunの主張ではない。\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-03a",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2722,
+      "bytes": 328,
+      "raw_lf_sha256": "b40566eb7bc1e29a931f45a9c515dbb592b768f19f8fee484d969ba00e2a3d32",
+      "literal_with_lf": "| `L10-LABO-060-CASE-03a` | `LABO-060-AC-03` | 群間の元Worker model identityだけが異なる（選択された追加support modelは別fieldとして固定し、その追加費用/evidenceは入力に保持） | 同一設定比較を拒否する。支援側で追加選択されたmodel自体を一律禁止しない。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-03b",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2723,
+      "bytes": 210,
+      "raw_lf_sha256": "788b3947073b313169f84653f4227b24d57be73ef49cdea3a0a302899562e9cd",
+      "literal_with_lf": "| `L10-LABO-060-CASE-03b` | `LABO-060-AC-03` | 対照runに助言contextだけが漏れる | 対照runを支援なし群と認定せず、支援有無比較を未評価に保ち成功比較を出さない。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-03c",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2724,
+      "bytes": 126,
+      "raw_lf_sha256": "6cbe14bc390f73d3efe392cf983b500754a0c56db64adf42f3f9da16e6738d60",
+      "literal_with_lf": "| `L10-LABO-060-CASE-03c` | `LABO-060-AC-03` | oracle revisionだけ異なる | 比較を未評価にしHARNESSへ戻す。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-03d",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2725,
+      "bytes": 117,
+      "raw_lf_sha256": "d35afc7a09fa7f384477d854771ad7bf98f93a76f6514b2441e485df9c800686",
+      "literal_with_lf": "| `L10-LABO-060-CASE-03d` | `LABO-060-AC-03` | 支援者時間だけ欠落 | 効果/総費用を確定しない。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-03e",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2726,
+      "bytes": 126,
+      "raw_lf_sha256": "8fa520b40d4bd1973b9fcea95115629004cf251509d903b0b0d1bc0c091e9cff",
+      "literal_with_lf": "| `L10-LABO-060-CASE-03e` | `LABO-060-AC-03` | 片方のOS result receiptだけ欠落 | 比較不能としてOSへ戻す。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-04a",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2727,
+      "bytes": 131,
+      "raw_lf_sha256": "1b1244c50ac6fcae68d57f36a0c62e0f69ecacd2e881c4072ca619cba79a8d0b",
+      "literal_with_lf": "| `L10-LABO-060-CASE-04a` | `LABO-060-AC-03` | LABOがrun/相談を開始 | 拒否。OS/既存相談ownerへ。 戻し先: OS。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-04b",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2728,
+      "bytes": 140,
+      "raw_lf_sha256": "9ce6d0503c5b1e7dce5137a77a0d9d1f6bc20ea75a3a27647ce5d58a50c8aa1e",
+      "literal_with_lf": "| `L10-LABO-060-CASE-04b` | `LABO-060-AC-03` | LABOが支援結果からassignmentを作成 | 拒否。OS assignmentを不変にする。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-05",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2729,
+      "bytes": 304,
+      "raw_lf_sha256": "a178a72b0a5f056b989e526d0f28452dbf28b5ebcea43d0617b0bf5ac05e29d8",
+      "literal_with_lf": "| `L10-LABO-060-CASE-05` | `LABO-060-AC-03` | 群間の元Worker provider設定だけが異なる（support側の追加provider/model利用は選択source・費用evidenceとして入力に保持） | 同一設定比較を不成立にする。追加support providerの使用は一律禁止しない。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-06",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2730,
+      "bytes": 268,
+      "raw_lf_sha256": "0c9525f9eb2197c985eff290351f88bfeee6fd0c2c1540fd5ca0538fbc9657d9",
+      "literal_with_lf": "| `L10-LABO-060-CASE-06` | `LABO-060-AC-03` | 群間の元Worker model version設定だけが異なる（追加support model/versionは別の選択入力として固定） | 同一設定比較を不成立にする。追加support resourceを一律禁止しない。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-07",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2731,
+      "bytes": 287,
+      "raw_lf_sha256": "bff1f0fc83ee595c9f80437f8b55dc8a3d112c19836a9ceb777ad06a1a66e093",
+      "literal_with_lf": "| `L10-LABO-060-CASE-07` | `LABO-060-AC-03` | 群間の元Worker effort設定だけが異なる（支援が追加するeffortと人作業時間は入力・費用として保持） | 同一設定比較を不成立にする。支援に伴う追加effort自体は測定対象に残す。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-08",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2732,
+      "bytes": 217,
+      "raw_lf_sha256": "9798c911bef2596ca229ab21ef5a62ec8b0ad4528cac3038b7f9fca44174d03d",
+      "literal_with_lf": "| `L10-LABO-060-CASE-08` | `LABO-060-AC-03` | 単独変異: task identity だけ異なる。その他の入力は `CASE-01` と同一。 | 同一設定比較を未評価にしOSのtask/run receipt ownerへ戻す。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-09",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2733,
+      "bytes": 180,
+      "raw_lf_sha256": "d50ce50fde6a87184bbca9bd04798e3a19616bdec81d9a3a501f9ffb60db91c0",
+      "literal_with_lf": "| `L10-LABO-060-CASE-09` | `LABO-060-AC-03` | 単独変異: scope だけ異なる。その他の入力は `CASE-01` と同一。 | 同一設定比較不成立 戻し先: LABO。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-10",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2734,
+      "bytes": 254,
+      "raw_lf_sha256": "b67f9aa1bb0d53b6e1de491b9d59083f2c6a64b60ab99e726fa632d9c545d93f",
+      "literal_with_lf": "| `L10-LABO-060-CASE-10` | `LABO-060-AC-03` | 単独変異: toolchain だけ異なる。その他の入力は `CASE-01` と同一。 | 比較不能にし、toolchain receiptのsource ownerが特定できればそのowner、特定不能ならunknown。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-11",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2735,
+      "bytes": 221,
+      "raw_lf_sha256": "8e03772155aa027fc8fb6e26620fb9af22f17f2c7e65b5625d4170d0bcf9d605",
+      "literal_with_lf": "| `L10-LABO-060-CASE-11` | `LABO-060-AC-03` | 単独変異: protocol だけ異なる。その他の入力は `CASE-01` と同一。 | 比較不能にし、task/run protocol receiptはOS、比較scopeはLABOへ戻す。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-12",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2736,
+      "bytes": 227,
+      "raw_lf_sha256": "ee1396f5fa8b03e1f831d2ddd119879c33ab97a1b051ecfa8147441f2efdf1a1",
+      "literal_with_lf": "| `L10-LABO-060-CASE-12` | `LABO-060-AC-03` | 単独変異: price source だけ欠落。その他の入力は `CASE-01` と同一。 | 費用unknown、0補完なし。price source ownerが識別できればそこへ戻す。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-13",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2737,
+      "bytes": 228,
+      "raw_lf_sha256": "dcf7512e0ae61dcc7cdc3134c1bd64435d9f7748199aa02ca41c771552844180",
+      "literal_with_lf": "| `L10-LABO-060-CASE-13` | `LABO-060-AC-03` | 単独変異: currency だけ欠落。その他の入力は `CASE-01` と同一。 | 換算せず金額比較unknown。currency source ownerが識別できればそこへ戻す。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-14",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2738,
+      "bytes": 219,
+      "raw_lf_sha256": "39819d393c71d55c6e49959978088b1c14ab0e6128b4d57d8aecab3bc7857ef4",
+      "literal_with_lf": "| `L10-LABO-060-CASE-14` | `LABO-060-AC-03` | 単独変異: effective time だけ欠落。その他の入力は `CASE-01` と同一。 | 適用価格unknown。price source ownerが識別できればそこへ戻す。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-15",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2739,
+      "bytes": 237,
+      "raw_lf_sha256": "1e883e7c3a9630792c113446bbea27709eae4e7c574a372fa569c84d584f196d",
+      "literal_with_lf": "| `L10-LABO-060-CASE-15` | `LABO-060-AC-03` | 単独変異: helper identity receiptだけ欠落。その他の入力は `CASE-01` と同一。 | 支援者情報欠落fieldをunknownにし支援効果を確定しない 戻し先: OS。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-16",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2740,
+      "bytes": 322,
+      "raw_lf_sha256": "2dc634f8d324f615e87fb05007ec500e1407ce338edfe7bbad951a87f6079e64",
+      "literal_with_lf": "| `L10-LABO-060-CASE-16` | `LABO-060-AC-03` | 選択INTELLIGENCE proposal/use packetに結ぶhandoff receiptだけ欠落 | 利用済みと扱わない。欠けた証拠がINTELLIGENCE proposal/use sourceならINTELLIGENCEへ、OS handoff receiptならOSへ返し、ownerを特定できない欠落はunknownに保つ。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-17",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2741,
+      "bytes": 389,
+      "raw_lf_sha256": "cfdbcc356fc934238b2fbdac3e7ec2cf9b6ac0b8cb66957c495a80d3b249b23b",
+      "literal_with_lf": "| `L10-LABO-060-CASE-17` | `LABO-060-AC-03` | 単独変異: 選択されたINTELLIGENCE proposal/use evidenceに結ばれるreviewer identityだけがhelper identityと同一。その他の入力は `CASE-01` と同一。 | 比較条件不成立とし、成功比較を出さない。comparison scope/evaluation capabilityの未完は固定L2-060の比較範囲に従いLABOへ返す。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-18",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2742,
+      "bytes": 343,
+      "raw_lf_sha256": "1e43bec9fe988c3877c80693222882f3f9d797f48b52b793a392c0b18cd8240c",
+      "literal_with_lf": "| `L10-LABO-060-CASE-18` | `LABO-060-AC-03` | baseline入力: 固定HARNESS oracleでquality不成立。単独の誤出力変異: 低support costを理由に不成立qualityを成功/比較成功へ変換 | quality不成立・非相殺を維持し、成功比較を出さない。comparison scope/evaluation capabilityの戻し先はLABO。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-19",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2743,
+      "bytes": 421,
+      "raw_lf_sha256": "34369928be44f0b372846690a476f42e9fee7e30677ce4eba64470843631ab5a",
+      "literal_with_lf": "| `L10-LABO-060-CASE-19` | `LABO-060-AC-03` | baseline: 選択sourceは設計/validator/regressionのみ、相談経路は未選択。その他の比較条件・receipt・oracleは正常。単独の誤出力変異: 未選択相談receiptを必須化する。 | 未選択相談を比較全体の必須依存にしない。選択時だけ必要なreceiptと区別し、比較scopeの誤った必須化はLABOへ戻す。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-20",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2744,
+      "bytes": 482,
+      "raw_lf_sha256": "9a26604226e077d34f50320798781088ba690644b871c54be9efe98b7ec3fe04",
+      "literal_with_lf": "| `L10-LABO-060-CASE-20` | `LABO-060-AC-03` | baseline入力: CASE-01と同じ正常な費用evidenceを保持。単独の誤出力変異: 追加支援者費用だけを比較費用から除外する。 | 費用内訳不完全を示し、比較費用を確定しない。入力sourceの欠落と取り違えず、比較集計の誤りは固定L2-060のcomparison scope/evaluation capabilityの責務であるLABOへ戻す。LABO-055へ価格/effort source所有を移さない。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-21",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2745,
+      "bytes": 302,
+      "raw_lf_sha256": "eb2478f17a290a8685e5fe5bd7765fa41bab8aee0c94e3d1f8e579d63aef3125",
+      "literal_with_lf": "| `L10-LABO-060-CASE-21` | `LABO-060-AC-03` | baseline入力: human-time quantityは既知、換算率/price evidenceはunknown。単独の誤出力変異: 出力貨幣費用を0とする | 既知時間量を保持し、金額だけ未確定とする。0円化と時間量の消去を拒否する。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-22",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2746,
+      "bytes": 236,
+      "raw_lf_sha256": "a840c073dede00b9c9a8af27c64346647f3abdb97ad3c63425b8286efdf8f700",
+      "literal_with_lf": "| `L10-LABO-060-CASE-22` | `LABO-060-AC-03` | 索引（独立fixtureではない）: 選択runのSECURITY data-use/実行許可欠落CASE-34を参照する。 | 主fixture CASE-34を参照し、許可不足を成功扱いしない。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-23",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2747,
+      "bytes": 246,
+      "raw_lf_sha256": "7a5b4b6dee096c696ac9bf311979ce705e84653c79ec4341dc0b1a0a944ca536",
+      "literal_with_lf": "| `L10-LABO-060-CASE-23` | `LABO-060-AC-03` | 索引（独立fixtureではない）: `L10-LABO-060-CASE-15`と同一の単独入力変異。 | 主fixture `L10-LABO-060-CASE-15` のoracleを参照し、同じケースを重複計上しない。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-24",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2748,
+      "bytes": 178,
+      "raw_lf_sha256": "5c47e3086cac363f462e7cd7c2319b642e912e24e31c47a17c71fa43652eac57",
+      "literal_with_lf": "| `L10-LABO-060-CASE-24` | `LABO-060-AC-03` | 単独変異: helper version だけ欠落。その他の入力は `CASE-01` と同一。 | 支援比較未完。 戻し先: OS。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-25",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2749,
+      "bytes": 184,
+      "raw_lf_sha256": "b630ef6a15ded9552869a65284efdf4418e80c3e57cdcc19ee999c6fcf28a521",
+      "literal_with_lf": "| `L10-LABO-060-CASE-25` | `LABO-060-AC-03` | 単独変異: helper effort だけ欠落。その他の入力は `CASE-01` と同一。 | 支援費用/効果未完。 戻し先: OS。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-26",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2750,
+      "bytes": 285,
+      "raw_lf_sha256": "1d55f6ab6ec0bf0fe08ce372f39b519784b1eebdf55980ba61e26ec548648cae",
+      "literal_with_lf": "| `L10-LABO-060-CASE-26` | `LABO-060-AC-03` | 索引（独立fixtureではない）: `L10-LABO-060-CASE-16` のINTELLIGENCE proposal/use packet receipt欠落だけを参照する | 主fixture CASE-16のoracleへ到達する。同じ変異を独立negativeに重複計上しない。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-27",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2751,
+      "bytes": 263,
+      "raw_lf_sha256": "1e25256a8a27403983f08e0d4db3f518eccc0387a8747810bd510bc013ae8f33",
+      "literal_with_lf": "| `L10-LABO-060-CASE-27` | `LABO-060-AC-03` | 索引（独立fixtureではない）: `L10-LABO-060-CASE-28` のOS handoff receipt欠落だけを参照する | 主fixture CASE-28のoracleへ到達する。同じ変異を独立negativeに重複計上しない。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-28",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2752,
+      "bytes": 258,
+      "raw_lf_sha256": "c9b116f698a682a71999b80aa3f36bca559576795bf96e961dc24c45fa6bd277",
+      "literal_with_lf": "| `L10-LABO-060-CASE-28` | `LABO-060-AC-03` | 単独変異: 選択sourceに対するOS handoff receiptだけ欠落。その他の入力は `CASE-01` と同一。 | 選択source利用の受領を確定せず、OS handoff/register責務に不足を返す。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-29",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2753,
+      "bytes": 267,
+      "raw_lf_sha256": "03c45f3376b19dcc64f8bf43a111d58b8923750866ec8ab4700beade971e3767",
+      "literal_with_lf": "| `L10-LABO-060-CASE-29` | `LABO-060-AC-03` | 索引（独立fixtureではない）: `L10-LABO-060-CASE-34` の選択run SECURITY data-use/実行許可欠落を参照する | CASE-34のpermission oracleへ到達する。CASE-22/29を独立fixtureに数えない。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-30",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2754,
+      "bytes": 216,
+      "raw_lf_sha256": "dab4aa3f5bc65fe2e869366c98f6d311036845caf4b2fce3300be4f634931ece",
+      "literal_with_lf": "| `L10-LABO-060-CASE-30` | `LABO-060-AC-03` | 索引（独立fixtureではない）: OS assignment欠落CASE-36を参照する。 | 主fixture CASE-36を参照し、割当証拠の欠落を成功扱いしない。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-31",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2755,
+      "bytes": 260,
+      "raw_lf_sha256": "dd8ecfa2513930b72ba40624c0f43029ca786c96f8227ef1bb6ff9352daa37d1",
+      "literal_with_lf": "| `L10-LABO-060-CASE-31` | `LABO-060-AC-03` | 索引（独立fixtureではない）: HARNESS-L2-022 oracle契約事前固定欠落CASE-37を参照する。 | 主fixture CASE-37を参照し、oracle契約を事前固定しない比較を未評価とする。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-32",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2756,
+      "bytes": 249,
+      "raw_lf_sha256": "d5c836d4d6cd8490777a420c966cdec8ab64f0bbe3899d57f207f0128fef486c",
+      "literal_with_lf": "| `L10-LABO-060-CASE-32` | `LABO-060-AC-03` | 索引（独立fixtureではない）: 選択INTELLIGENCE proposal/source欠落CASE-43を参照する。 | 主fixture CASE-43を参照し、選択支援sourceの証拠を欠落のまま保持する。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-33",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2757,
+      "bytes": 265,
+      "raw_lf_sha256": "e4ffd40ea09764a7e20ac4251ebd32c51114f47238e0c10e865d68762b732bde",
+      "literal_with_lf": "| `L10-LABO-060-CASE-33` | `LABO-060-AC-03` | 単独変異: 選択history主張のhistorical receiptだけ欠落。その他の入力は `CASE-01` と同一。 | history主張の根拠不足のまま未評価とし、historical receiptのsource ownerへ戻す。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-34",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2758,
+      "bytes": 165,
+      "raw_lf_sha256": "37271fe55f2d0cb4ded60e621f4e8c8281d938aee9f5f0dedf2fcabe63e0fde6",
+      "literal_with_lf": "| `L10-LABO-060-CASE-34` | `LABO-060-AC-03` | 選択runのSECURITY data-use/実行許可だけ欠落 | 該当runを許可済み扱いせず、SECURITYへ戻す。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-35",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2759,
+      "bytes": 155,
+      "raw_lf_sha256": "efd71b92e1b0878d848ec79dbe8fb97a02d22d42513636ba3261cb3a1c6ccbf3",
+      "literal_with_lf": "| `L10-LABO-060-CASE-35` | `LABO-060-AC-03` | 選択runのevidence revisionだけstale | そのrunを比較不能にし、該当source ownerへ戻す。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-36",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2760,
+      "bytes": 127,
+      "raw_lf_sha256": "660e84a19b56f8f1f6f414a15d523cb90acbda2c946258eadfdb9a814dd09d8f",
+      "literal_with_lf": "| `L10-LABO-060-CASE-36` | `LABO-060-AC-03` | OS assignmentだけ欠落 | 実行結果を比較証拠とせずOSへ戻す。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-37",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2761,
+      "bytes": 167,
+      "raw_lf_sha256": "01f1ccf10ac05f60b5adb6c40d24c38d84b2b5e7e14dd09b044bc131ecb9c03e",
+      "literal_with_lf": "| `L10-LABO-060-CASE-37` | `LABO-060-AC-03` | HARNESS-L2-022 oracle契約の事前固定だけ欠落 | oracle比較を未評価にしHARNESS/要求ownerへ戻す。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-38",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2762,
+      "bytes": 169,
+      "raw_lf_sha256": "05ca817201ed9d83ca284da6dff6b18bacc008a4f96851de1edd43ff2a23d081",
+      "literal_with_lf": "| `L10-LABO-060-CASE-38` | `LABO-060-AC-03` | 選択比較母集団中のrunを一件だけ黙って除外 | 母集団不完全として比較を未評価にする。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-39",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2763,
+      "bytes": 156,
+      "raw_lf_sha256": "b6e18baed543234f18ec8193691f9acb5cce4618547b0807d7531a0c7eab6b03",
+      "literal_with_lf": "| `L10-LABO-060-CASE-39` | `LABO-060-AC-03` | retry費用/時間だけ欠落 | 該当内訳をunknownとし、総費用/効果比較を確定しない。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-40",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2764,
+      "bytes": 157,
+      "raw_lf_sha256": "2563da538e338c213b082c04bd8dc253e3efc3e9fdb293b6d44c6d3ca51817d7",
+      "literal_with_lf": "| `L10-LABO-060-CASE-40` | `LABO-060-AC-03` | rework費用/時間だけ欠落 | 該当内訳をunknownとし、総費用/効果比較を確定しない。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-41",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2765,
+      "bytes": 157,
+      "raw_lf_sha256": "2e0ad467292ea8849f09294025416101e6e55cbc095e600a9c23303a3c6f0579",
+      "literal_with_lf": "| `L10-LABO-060-CASE-41` | `LABO-060-AC-03` | review費用/時間だけ欠落 | 該当内訳をunknownとし、総費用/効果比較を確定しない。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-42",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2766,
+      "bytes": 153,
+      "raw_lf_sha256": "0875cee76401791081fa9d2ec619034d437cdf3cefa12659efaee9ff1361d51f",
+      "literal_with_lf": "| `L10-LABO-060-CASE-42` | `LABO-060-AC-03` | CI費用/時間だけ欠落 | 該当内訳をunknownとし、総費用/効果比較を確定しない。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-43",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2767,
+      "bytes": 358,
+      "raw_lf_sha256": "b8b8daff5a1e42a45b3d394973c80387eba0f515313a878b50bd2059b4a0d911",
+      "literal_with_lf": "| `L10-LABO-060-CASE-43` | `LABO-060-AC-03` | 選択support proposal/use evidenceの欠落だけ（欠けたevidence fieldは入力上特定可能） | 利用済みと扱わない。proposal/use source欠落はINTELLIGENCEへ、OS handoff/assignment receipt欠落はOSへ原因別に返す。field/ownerを特定できなければunknownを保持する。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-44",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2768,
+      "bytes": 207,
+      "raw_lf_sha256": "afb8802f890ce71b6e8ee59b9912f91a973633cbf362e805596e7c6e55db6feb",
+      "literal_with_lf": "| `L10-LABO-060-CASE-44` | `LABO-060-AC-03` | 選択母集団に含まれるfailed runだけを除外 | failed stateを保持し、比較母集団を不完全とする。該当run receiptはOSへ戻す。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-45",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2769,
+      "bytes": 222,
+      "raw_lf_sha256": "b28d8c47cf68231a73bdf98a79bc3497c776976c3fb92b5dcaab191e361ee7f2",
+      "literal_with_lf": "| `L10-LABO-060-CASE-45` | `LABO-060-AC-03` | 選択母集団に含まれるunknown runだけを除外 | unknownを成功/失敗へ変換せず、比較母集団を不完全とする。該当run receiptはOSへ戻す。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-46",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2770,
+      "bytes": 299,
+      "raw_lf_sha256": "4a9a4895c916b876f5a6f62d7ebf092830339089ca3c45f99bfb62b57fdbf4e1",
+      "literal_with_lf": "| `L10-LABO-060-CASE-46` | `LABO-060-AC-03` | 未見類似taskでHARNESS oracleの適用性だけunknown。片群receipt、支援者時間、比較scopeはCASE-01と同一 | 非適用と推測せず未評価/比較不能を保つ。oracle適用性の既存戻し先はHARNESS/requirement owner。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-47",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2776,
+      "bytes": 480,
+      "raw_lf_sha256": "180172d3c168118139e799ac26d5ca4c80c7256c8f7bda0d9f6aa1832adc2d49",
+      "literal_with_lf": "| `L10-LABO-060-CASE-47` | `LABO-060-AC-03` | INTELLIGENCEの支援proposalをLABO自身の決定として出力する。 | 当該誤出力を拒否し、proposalを決めずINTELLIGENCEの既存proposal責務を保持する。比較可能性・quality・効果evidenceは保持し、正当な材料返却を誤拒否しない。比較出力の越権はLABO評価へ戻し、具体的なauthority ownerは入力の既存identityで追跡し不明ならunknownを保持する。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-48",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2777,
+      "bytes": 465,
+      "raw_lf_sha256": "8cd57ef8592ea43c904404b7f95eec646d8b2d06234bdedf82733fcf0b020842",
+      "literal_with_lf": "| `L10-LABO-060-CASE-48` | `LABO-060-AC-03` | INTELLIGENCEのWorker推奨をLABO自身の決定として出力する。 | 当該誤出力を拒否し、推奨を決めずINTELLIGENCEへ評価材料のみ返す。比較可能性・quality・効果evidenceは保持し、正当な材料返却を誤拒否しない。比較出力の越権はLABO評価へ戻し、具体的なauthority ownerは入力の既存identityで追跡し不明ならunknownを保持する。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-49",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2778,
+      "bytes": 483,
+      "raw_lf_sha256": "afa1b5b92a656c25cd642af6834880a3a685d76e6bd8bd503680381c77ef3b62",
+      "literal_with_lf": "| `L10-LABO-060-CASE-49` | `LABO-060-AC-03` | 比較結果から対象支援経路の採用をLABOが確定する。 | 当該誤出力を拒否し、採用判断を生成せず、入力の既存採否authorityを変更しない。比較可能性・quality・効果evidenceは保持し、正当な材料返却を誤拒否しない。比較出力の越権はLABO評価へ戻し、具体的なauthority ownerは入力の既存identityで追跡し不明ならunknownを保持する。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-50",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2779,
+      "bytes": 471,
+      "raw_lf_sha256": "0630a4e0cf4357a50847de642891ac5b848d1220258093d74ae546b356e740ee",
+      "literal_with_lf": "| `L10-LABO-060-CASE-50` | `LABO-060-AC-03` | 比較結果からWorker配置水準をLABOが確定する。 | 当該誤出力を拒否し、配置水準を生成せず、INTELLIGENCE/OSへの評価材料に留める。比較可能性・quality・効果evidenceは保持し、正当な材料返却を誤拒否しない。比較出力の越権はLABO評価へ戻し、具体的なauthority ownerは入力の既存identityで追跡し不明ならunknownを保持する。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-51",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2780,
+      "bytes": 490,
+      "raw_lf_sha256": "5aaff4d523d4932e7c7ba9cce3b4ca13d57a5b4d13d2dea377a19fc7160b3f1d",
+      "literal_with_lf": "| `L10-LABO-060-CASE-51` | `LABO-060-AC-03` | 比較結果から対象revisionの受入authorityをLABOが生成する。 | 当該誤出力を拒否し、受入authorityを生成せず、既存対象revisionのauthorityを保持する。比較可能性・quality・効果evidenceは保持し、正当な材料返却を誤拒否しない。比較出力の越権はLABO評価へ戻し、具体的なauthority ownerは入力の既存identityで追跡し不明ならunknownを保持する。 |\n"
+    },
+    {
+      "case_id": "L10-LABO-060-CASE-52",
+      "revision": "143b78b075522d7558dc83af4a91d9ae0b3455b8",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "physical_line": 2781,
+      "bytes": 482,
+      "raw_lf_sha256": "4448b01e2be1551648d2f006806fa0e248020ed6e6bf7cde9bab2413b0145eae",
+      "literal_with_lf": "| `L10-LABO-060-CASE-52` | `LABO-060-AC-03` | 比較結果から対象HEADのmerge authorityをLABOが生成する。 | 当該誤出力を拒否し、merge authorityを生成せず、既存対象HEADのauthorityを保持する。比較可能性・quality・効果evidenceは保持し、正当な材料返却を誤拒否しない。比較出力の越権はLABO評価へ戻し、具体的なauthority ownerは入力の既存identityで追跡し不明ならunknownを保持する。 |\n"
+    }
+  ],
+  "case_count": {
+    "current": 57,
+    "old_retained": 51,
+    "new": 6,
+    "normal_candidate": 2,
+    "negative_candidate": 47,
+    "nonindependent_index_candidate": 8,
+    "meaning_completeness_or_execution": false
+  },
+  "old_audit_pins_unchanged": [
+    {
+      "revision": "bc12c1abf0e50a4b881347e3fa2917b225555808",
+      "path": "docs/governance/audits/source-rebaseline/labo-stage5-parent060-authoring-audit-2026-10-06-62ef04429.json",
+      "bytes": 318231,
+      "sha256": "92e79a2d18aba3f8588825d52d8822e28fde83670ce3877ceeb35f5916a8984f"
+    },
+    {
+      "revision": "bc12c1abf0e50a4b881347e3fa2917b225555808",
+      "path": "docs/governance/audits/source-rebaseline/labo-stage5-parent060-authoring-audit-2026-10-06-62ef04429.md",
+      "bytes": 3512,
+      "sha256": "2abace29e4f594c4232722ac794aa15cf461db8592fad1c7db51e1ca49f9a2fb"
+    }
+  ],
+  "limits": [
+    "R1–R10未解消として原文保持。旧公開監査は候補作成時点のbytesを保全し、R9の時点/予定path/範囲終端の問題を新記録で識別する。",
+    "新監査はsource-rebaselineへ保存、requirements-stage予定pathを採用しない。旧span終端45は44行のblobを切り出した過去記録で、旧SHAを変更しない。",
+    "同一LABO6本文のまま最新main HARNESS036をcontext mergeした。authority ownerは既存入力identityに限り、unknownを推定補完しない。",
+    "Bun/旧runtime/testCIは実行しない。新閾値・手続き・L2意味変更なし。"
+  ]
+}

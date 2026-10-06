@@ -127,3 +127,10 @@
 - CASE-NFR-LABO-059-01: 選択群に適用する同条件、quality/acceptance result、既決decisionのscope/effectivity、OS assignment/result receipt、各費目・price source、human intervention quantity、duration definition、未選択群/unknownを個別に再計算する。実行済み値を生成せず、missing/unknown/未価格化/未完をsuccessまたは0へ変換しない。率を示す場合は分子/分母と適用scopeを出し、分母0/不明は率なし。固定閾値なし。
 - Functional CASE定義の参照対象はCASE-01/02、03a–m、04a/b、05–21、22–29、30–47、48–70。非独立index CASE-22/33–36、複合CASE-30は個別独立negativeの分母から除く。設計分類では定義83件、独立fixture 77件、compound1件、index5件。CASE-48は正常、CASE-49–70はnegative。数値はCASE定義数であり実測ではない。
 - Provider label変更とactual model identity/revision mismatchを異なるfield/CASEとして扱う。CASE64は入力labelだけの違いに対してscoreが不変かを見る。human investigation/verification quantityは通貨換算と分離する。
+
+
+## Stage 5 — HELIXLABO-L2-060 NFR検証設計
+
+- `CASE-NFR-LABO-060-01`: 未実行設計。選択scope内で同一task/scope/oracle・元Worker/model/provider/version/effort条件、選択支援source/use、OS assignment/result receipt、品質判定、全支援追加resource/費用、人作業数量、currency/effective time、failed/unknown/missingを別fieldで追跡する。未選択consult/sourceを必須分母へ加えず、unknown/未完/欠測を成功または0へ変換しない。実測値、固定SLA、最低N、率thresholdは生成しない。
+- L10の現在のCASE定義IDは57件: CASE-01/02、03a–e、04a–b、05–21、22–33、34–45、46–52。現行分類案は正常候補2、negative候補47、非独立索引候補8（CASE-22/23/26/27/29/30/31/32）。単一点性・独立性は独立review未確認で、ID数や一意性は完全性を証明しない。索引候補はfixture/negative分母へ重ねず、CASE本文とAC traceをL10で照合する。
+- 集計を設計する場合も、対象task/run・適用scope・missing/failed/unknown/censoredの母集団状態を併記し、分母0/不明は率なしとする。LABOは比較材料のみを返し、assignment、採用、permission、merge authorityを出力しない。

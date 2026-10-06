@@ -73,3 +73,14 @@
 | HELIXLABO-L2-059 | 独立KPIなし。LABOは選択比較と既決decision適用のevidenceを返す。OS assignment、source measurement、既存decision、HARNESS/要求oracleの区分を保持する。 | LABO-059-AC-01/02/03 と L10-LABO-059-CASE-*。各CASEの正常/negative/index/compound分類はL10 functional verificationを参照し、範囲表示だけでfixtureを数えない。 |
 
 本行は機能evidenceの業務索引であり、比較の実行やbusiness outcomeを示さない。
+
+
+## Stage 5 — HELIXLABO-L2-060 業務証拠
+
+固定L2/L11に独立KPIやfunctional outcomeから独立したbusiness ownerは定義されていない。BR/AC/BCASEを重複追加しない。業務証拠はLABO-060-AC-01/02/03と対応するL10 fixtureの比較可能性・品質・費用/時間・未評価状態の記録であり、採用・配置・assignment・実業務成果を示さない。
+
+| 固定親 | 独立業務条件 | 正本AC / 照合先 |
+|---|---|---|
+| `HELIXLABO-L2-060` | 独立BR/KPIなし。選択した支援有無比較のevidenceだけを返し、INTELLIGENCE proposal/use、OS assignment/receipt、HARNESS oracle、SECURITY許可、LABO評価scopeを混同しない。 | `LABO-060-AC-01/02/03`; `L10-LABO-060-CASE-01/02/03a–e/04a–b/05–46`。現行分類案は正常候補2、negative候補41、非独立索引候補8。単一点性・独立性は独立review未確認で、ID保持や一意性は完全性を証明しない。分類詳細はfunctional verificationを参照。 |
+
+本行は未実行designの業務evidence索引であり、実験、実測結果、承認、採用判断を表さない。
