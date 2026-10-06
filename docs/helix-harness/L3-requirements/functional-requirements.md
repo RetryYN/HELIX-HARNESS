@@ -718,3 +718,39 @@ AC-035-05はS5-027/028/042および035〜038（旧revision計測、機能数だ�
 **不成立と戻し先**：semantic similarity、consumer、oracle、graphの未確認は未評価に保ち、出典ownerと設計・契約ownerへ不足を戻す。対の設計または契約がない対象はL2-019 reverse入口へ。公開契約/要求/persistent-state意味変更は該当するL2-003/004/016 Backflow。機能追加混載はepisode成立を拒否しfeatureを別episodeへ分離。missing/unknown/stale/conflictは補完せず未評価。文書、CASE、receipt、ticketからauthority、実行、採択、L3承認または受入を生成しない。
 
 **L2-019境界**：019は逆向きに対の設計または契約の不在を明らかにする入口であり、全入力不足や責務不明を無差別に送る汎用戻し先ではない。入力不足はその入力を提供する元ownerへ戻す。019 reverseの結果も本要件のscopeを拡張しない。
+
+**採択済み固定親**：PO `po-decision-2026-09-30-live26.md:39,72`の登録`MPR-RC-HARNESS-L2-049-003`。source_repository_revision `ea6f756f96a7370de78e412d737c7a7ed472114a`、L2 `product-requirements.md:1070–1092` SHA-256 `a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116`、L11 `product-acceptance.md:802–814` SHA-256 `f3fb47da21371084e9f8c7c7f7ca6dd945c8e98ae7c7b70597c3fc44e4e08ee7`。旧318のL11および登録-002を親にしない。
+
+## Stage 3 親049の表示計測要件（採択L2-049 / MPR-RC-HARNESS-L2-049-003）
+
+### 固定親・採択境界
+
+固定L2 `HARNESS-L2-049` の意味は、既に与えられたrenderable prototypeを入力として画面表示を測定し、機械検査の精度材料とprofile根拠の文言findingを返す範囲に限る。固定L11は入力に必要なscreen ID・対象revision・利用許可・適用profile・測定条件があれば計測を開始でき、prototype生成、Pattern選択、screen ID発行工程の証拠を要求しない。screen IDそのものが欠けることと、既存screen IDの発行履歴が入力にないことを区別する。PO採択は登録`MPR-RC-HARNESS-L2-049-003`のpair digestに対するもので、先行`-002`の未採択・旧L11意味を継承しない。
+
+### `FR-HARNESS-L3-049` — 与えられたprototypeの表示計測
+
+HARNESSは、利用許可と対象revisionに結ばれたscreen IDを持つrenderable prototype、選択された適用profile、device/view/locale等の選択条件、各検査のoracle・手段版・known fixtureを入力として、選択scopeの実際の表示測定を行い、測定ごとの結果・根拠・未測定/適用外/unknownを区別して返す。機械検査は適用可能な正例/反例fixtureと照合でき、精度評価が成立しない検査をpass根拠として使わない。profileが定める文言役割・目安に基づくfindingは候補として返し、閾値や人の文言判断を作らない。
+
+測定対象のscreen IDは既存入力のidentityであり、049はこれを新規発行しない。発行経路の証拠がないだけでは測定条件を欠いたことにしない。screen ID、対象revision、利用許可、scope、適用profile、oracle・手段版、fixtureのいずれか必要な入力値自体がmissing/unknown/staleなら、該当測定だけをunknown/未評価にし、原因ごとの既知責務へ返す。要求意味またはvisual-priorityの入力不足は既存上流要求owner、prototype agreement入力の不足はHARNESS-L2-024境界、選択profile・oracle入力の不足は既存design/oracle責務、精度評価入力の不足はLABO精度評価へ返す。連絡先となる個人のidentityがsourceにない場合も、既知の責務区分は保持し、個人identityだけunknownとする。「既存source owner」のような汎用責務は作らない。入力が正常で049自身の候補出力fieldだけが誤る場合は、入力側ownerへ返さず、そのfieldを049候補出力内で訂正し、誤った結果のclosureを拒否する。
+
+### 受入条件（AC）
+
+| AC | 成立条件 | 不成立・unknown時の扱い |
+|---|---|---|
+| `AC-HARNESS-L3-049-01` | screen/revision/profileと選択scopeのdevice/view/locale等を明示し、各適用checkのoracle・手段版・evidenceへ結ぶ。選択oracle/fixture内の未見画面状態・文言役割・表示条件は正常に評価でき、適用外の条件は理由付きで区別する。 | 必要な条件またはevidenceが欠けるときは当該条件をunknown/未評価にする。選択scope外を観測済み・合格へ広げない。未見だけを理由に選択oracleに適合する正常入力を拒否しない。 |
+| `AC-HARNESS-L3-049-02` | 適用checkごとに既知positive/negative fixture、期待分類、観測結果を結び、false positive/missを評価可能にする。分母0、fixture不足、別scope/revision結果の流用は単独で評価する。 | accuracy未評価をpass根拠に使わず、fixture数・候補数・実行回数から精度成立を作らない。選択scopeで必要なLABO評価は既存connectionへ渡す。 |
+| `AC-HARNESS-L3-049-03` | 有効な最小入力が揃えば表示計測を開始できる。prototype生成、Pattern選択、screen ID発行履歴を追加必須入力にせず、画面計測結果を返す。 | これらの工程出力を049から生成しない。machine measurementだけからagreement、L3/L11 acceptance、requirement acceptanceを出力しない。 |
+| `AC-HARNESS-L3-049-04` | 文言量は選択profileの画面/領域/役割別目安に照らす。screen IDそのものの欠落、target revision不一致、代替ID要求はそれぞれ識別し、findingは根拠付きで返す。 | 根拠のない一律文字数上限やgeneric ownerを設けない。欠落原因に応じ固定L2が特定する既存requirement/visual-priority、L2-024 agreement、design/oracle、LABO責務へ返し、個別identity不明はunknownとする。 |
+| `AC-HARNESS-L3-049-05` | 測定pass/warning/unknown、要求受入、人による文言判断、`implemented`、`ux_verified`を別状態として保つ。 | machine passから人のagreement/acceptanceや状態を生成しない。real-user UX、prototype/implementation drift、analyticsを1.0の049完了条件へ前倒ししない。 |
+
+#### 旧Stage3 CASEと現行ACのcrosswalk
+
+旧82 CASEのsource literal、raw行、旧AC値は監査JSONのlegacy inventoryだけに保全する。現行FVの旧82 IDを含む全CASE行は、採択L2-049-003・固定L11・現行FR/ACから再導出した。旧crosswalkの記述は時点の対応記録であり、現行FVのACセルを決めない。formal review19 m13で指摘されたdevice/view/localeの観測・合格主張に対する七つの現行CASE（索引CASE-HARNESS-L10-049-18と6個のr18単独CASE）は、現行FVの各ACセルをAC-HARNESS-L3-049-01として再導出する。旧literalに記録されたAC-049-02は監査JSON内の歴史的値として保持し、現行AC値としては扱わない。
+
+既存r17/r18関連条項も範囲を明示し、r18のunadopted Pattern/CORE、static image、artifact-onlyはmeasurement/oracle条件のAC-049-02、accuracy/de-nominator/fixture不足はAC-049-02、generation/Pattern/ID issuanceの非必須性はAC-049-03、文字量とscreen identityの条件はAC-049-04、machine-pass/state/acceptance分離はAC-049-05へ置く。既存82 CASE literalのID/raw hashはJSON内で照合可能であり、このcrosswalkがfixture集合の意味完全性を証明するものではない。
+
+### 旧資産からの項目別再利用・再導出・置換
+
+- **意味を再利用**：`LEGACY-ASSET-335176749F6322C3CD8D` の旧 `ai-vision-design-harness-engine.md` `VDH-FR-011`（行49）の「主要stateとdevice/view条件」spanを選択根拠にする。描画された主要stateと条件別evidenceを測定対象に保つ。旧 `LEGACY-ASSET-4E880D2FCD37879BA300` assessment auditは文書管理実装と未実装screen/prototype能力の区別だけを背景として再利用し、現行実装証拠にしない。
+- **現行意味から再導出**：採択L2-049-003と訂正L11に合わせ、scope/revisionごとのrender measurement、精度fixture、profile根拠の文言finding、unknown条件をL3/AC/L10へ割り当てる。screen IDの入力identityと発行履歴を区別する。device/view/localeの観測・合格は単一output単位で扱い、requirement acceptanceの責務は既存上流authorityへ残す。
+- **置換/不移植**：旧G3/L12の実行構成、旧211-file intake、sub-check、DB/runtime、hook/CLI、旧採番を移植しない。`VDH-FR-005`のPattern Contract span（source holding `MPR-SH-VDH-O10-001`）は049の入力scopeへ昇格しない。prototype生成、Pattern選択、screen ID発行、requirement acceptanceを049から生成する旧テスト期待は個別出力拒否へ再導出し、各項目を一行の複合mutationへ束ねない。

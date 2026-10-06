@@ -171,3 +171,12 @@ NFR CASEは測定candidate分類であり、実測・CI success・performance SL
 | CASE ID | NFR候補 | 検証対象 | 観測 | 限界 |
 |---|---|---|---|---|
 | `CASE-HARNESS-L10-NFR-042-01` | 独立NFRなし | 性能refactorを選択した場合のbaseline/budget/workload/profile/statistical condition/regression oracle | HARNESS-L2-016と対L11に固定された入力・oracleが適用可能かを参照する。 | 本候補では数値を設定せず、実測性能受入を再定義しない。 |
+
+## Stage 3 親049のNFR測定候補
+
+| NFR候補 | 入力・母集団 | oracle・限界 |
+|---|---|---|
+| `NFR-C-HARNESS-049-01` | 選択scope/revision内のmeasurement rowごとに、screen ID、device/view/locale、profile、oracle/手段版、fixture、結果・evidenceを結ぶ。 | source側に数値性能値がないためthresholdを設けない。missing/unknown/unselectedを成功、0、coverageへ変換しない。 |
+| `NFR-C-HARNESS-049-02` | 検査精度はscope適用可能な既知fixtureと期待分類・観測結果の対応を母集団として扱う。 | fixture/candidate/run件数単独でaccuracy成立を作らず、unknown/missing fixture revisionは未評価とする。 |
+
+本表は測定候補であり、実測、performance SLO、検査精度、要求受入を成立させない。

@@ -191,3 +191,7 @@ fixture definition数と実測母集団は異なる。対のL10機能総合検�
 | NFR候補 / L2親 | 候補値 | 固定根拠 | 限界 |
 |---|---|---|---|
 | `HARNESS-L2-042` | 独立した数値NFRを導出しない | 旧requirements v1.3 §4.2 L119の性能Refactor条件は、PO採択済みHARNESS-L2-016と対L11がbaseline、budget、workload、profile、統計条件、regression oracleを持つ。 | 新しい数値閾値、性能権限、時間/件数SLOを作らない。性能判定を行う場合は016へ委譲する。 |
+
+## Stage 3 親049の非機能候補（表示計測のevidence integrity）
+
+独立のperformance/latency/accuracy閾値、可用性目標、追加測定窓は固定L2-049から導出しない。選択scopeごとに対象revision、device/view/locale条件、profile、oracle/手段版、fixture、結果、evidenceの対応関係を追跡できることを定性的なevidence-integrity候補として記録する。欠落・不明はunknown/未評価として残し、未観測を0件・成功・合格へ丸めない。精度成立は候補数・fixture数・実行回数のみで推定しない。実測値と閾値は根拠sourceがないため本候補では設定しない。

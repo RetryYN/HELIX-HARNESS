@@ -86,3 +86,11 @@ execution_status: designed_only_not_executed
 | L2親 | 独立criterion | 対応関係 |
 |---|---|---|
 | `HARNESS-L2-042` | 独立criterionなし | 事業成果を独立に主張せず、機能ACと採択済み親要求の意味保持だけを照合する。 |
+
+## Stage 3 親049の業務検証
+
+| 観点 | 判定 | 禁止する読み替え |
+|---|---|---|
+| 049の事業価値 | 独立business requirement/KPI/ROIは設定しない。 | render pass、CASE数、精度fixtureを事業成果・release判断にしない。 |
+| 要求受入 | 既存authorityに属する人の要求受入decisionを測定結果から生成しない。 | machine pass、LABO評価、POのL2採択からL3要件承認や利用者acceptanceを推定しない。 |
+| locale/device/view | 選択scope単位の機械観測状態を記録する。 | 特定locale/device/viewの観測を、未選択条件または要求受入の証明にしない。 |
