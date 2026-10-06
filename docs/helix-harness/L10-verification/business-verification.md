@@ -91,3 +91,9 @@ execution_status: designed_only_not_executed
 ## Stage 3 親041の業務検証
 
 独立business criterion/oracle/CASEは追加しない。`functional-requirements.md`の固定L2-041 scopeとFR/ACを参照し、atom数/gap数/coverage/fixture数からROI、事業成果、利用者受入、要求合意、承認を生成しない。
+
+## Stage 3 親047の業務検証
+
+| L2親 | 独立criterion | 対応関係 |
+|---|---|---|
+| `HARNESS-L2-047` | 独立criterionなし | 事業成果を作らず、必要性判断/契約の機能ACと既存owner境界を照合する。 |
