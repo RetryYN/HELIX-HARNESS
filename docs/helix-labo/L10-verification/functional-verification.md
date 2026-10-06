@@ -3173,7 +3173,7 @@ CASE-41–44では原因fieldと既知責務区分を保ち、個別owner identi
 
 CASE IDは旧公開a4 revisionの42定義IDを保持する。索引は定義行のまま維持するが、独立fixture/negative分母へ重ねない。AC対応は各行に記載し、CASE-04aはCASE-37/38/39の別々のoracleを直接参照する。
 
-### HELIXLABO-L2-066 — 同条件比較のfunctional verification / 52 CASE
+### HELIXLABO-L2-066 — 同条件比較のfunctional verification / 60 CASE
 
 状態：未承認のL10候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。
 
@@ -3183,7 +3183,7 @@ CASE IDは旧公開a4 revisionの42定義IDを保持する。索引は定義行�
 
 **共通合成正常入力 B0（CASE-01）**：結果閲覧前にA identity/versionとcandidate repair method identity/version、task/scope/target revision、case identityを重複正規化した同一eligible set N、受入oracle/scorer identity+revision、protocol、toolchain、environment、同一periodまたは終了/cutoffを固定する。A群とcandidate群の各caseにresult・oracle判定receiptがあり、retry/rework/rescueと費用・時間receiptが両群に存在する。費用の意味・集計はL2-059に合わせる。N・oracle・cutoffは結果後に変えない。
 
-以下は6列52 CASE。列中のowner routeは固定L2/L11が明示する既知責務区分だけを用いる。責務カテゴリが分かっている場合、それを個体identity unknownで消さない。個体owner自体がsourceから特定できない場合は個体unknownも記録する。
+以下は6列60 CASE（旧47 IDを保持し、生成拒否13 IDを追加。索引2行を除く定義は58行）。列中のowner routeは固定L2/L11が明示する既知責務区分だけを用いる。責務カテゴリが分かっている場合、それを個体identity unknownで消さない。個体owner自体がsourceから特定できない場合は個体unknownも記録する。
 
 | CASE ID | FR ID | AC ID | baseline/input | mutation/index role | expected oracle / return route |
 |---|---|---|---|---|---|
@@ -3239,8 +3239,6 @@ CASE IDは旧公開a4 revisionの42定義IDを保持する。索引は定義行�
 | `L10-LABO-066-CASE-46` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: CASE-01の有効比較入力と両群の評価receiptだけ。 | 誤出力: placement fieldだけを生成する。 | placementを生成せず比較材料を返す。Worker/修復器の割当生成拒否は別CASEで照合し、既存OS assignment状態を保持する。 |
 | `L10-LABO-066-CASE-47` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: CASE-01の有効比較入力と両群の評価receiptだけ。 | 誤出力: admission decision fieldだけを生成する。 | admission decisionを生成せず比較材料を返す。資格評価一般の禁止は追加しない。 |
 | `L10-LABO-066-CASE-48` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: CASE-01の有効比較入力と両群の評価receiptだけ。 | 誤出力: requirement_complete fieldだけを生成する。 | requirement_completeを生成せず比較材料を返す。効果達成の生成拒否は別CASEで照合し、要求完了と効果達成を別fieldのまま保つ。 |
-
-この表は候補fixture設計である。実行、実測、合法control、oracle適用、independent reviewは未実施であり、合格・完全性を主張しない。CASE-44..48はこの候補内の安定IDで、canonical採番の確定ではない。
 | `L10-LABO-066-CASE-49` | `LABO-066-FR-03` | `LABO-066-AC-03` | 合成B0の比較入力と両群receiptを不変に保持。対象は合成scope S0の評価材料だけで、当該`effect_achieved`は新規生成されておらず、既存OS assignment/SECURITY許可・元状態を変更しない。固定PO採択066は本fixtureの外にあり変更しない。 | 入力不変で、評価材料だけから`effect_achieved`を新規生成する誤出力field一つを追加する。 | `effect_achieved`を生成せず計測・比較材料だけを返す。固定L2/L11のWorker/修復器運転・実験許可・効果達成の境界を保持し、誤出力をLABO評価責務へ返す。既存OS/SECURITY状態を変更せず、個体identity unknownを別記する。 |
 | `L10-LABO-066-CASE-50` | `LABO-066-FR-03` | `LABO-066-AC-03` | 合成B0の比較入力と両群receiptを不変に保持。対象は合成scope S0の評価材料だけで、当該`experiment_run_permission`は新規生成されておらず、既存OS assignment/SECURITY許可・元状態を変更しない。固定PO採択066は本fixtureの外にあり変更しない。 | 入力不変で、評価材料だけから`experiment_run_permission`を新規生成する誤出力field一つを追加する。 | `experiment_run_permission`を生成せず計測・比較材料だけを返す。固定L2/L11のWorker/修復器運転・実験許可・効果達成の境界を保持し、誤出力をLABO評価責務へ返す。既存OS/SECURITY状態を変更せず、個体identity unknownを別記する。 |
 | `L10-LABO-066-CASE-51` | `LABO-066-FR-03` | `LABO-066-AC-03` | 合成B0の比較入力と両群receiptを不変に保持。対象は合成scope S0の評価材料だけで、当該`selected_worker`は新規生成されておらず、既存OS assignment/SECURITY許可・元状態を変更しない。固定PO採択066は本fixtureの外にあり変更しない。 | 入力不変で、評価材料だけから`selected_worker`を新規生成する誤出力field一つを追加する。 | `selected_worker`を生成せず計測・比較材料だけを返す。固定L2/L11のWorker/修復器運転・実験許可・効果達成の境界を保持し、誤出力をLABO評価責務へ返す。既存OS/SECURITY状態を変更せず、個体identity unknownを別記する。 |
@@ -3249,3 +3247,5 @@ CASE IDは旧公開a4 revisionの42定義IDを保持する。索引は定義行�
 | `L10-LABO-066-CASE-54` | `LABO-066-FR-03` | `LABO-066-AC-03` | 合成B0の比較入力と両群receiptを不変に保持。対象は合成scope S0の評価材料だけで、当該`repair_method_assignment`は新規生成されておらず、既存OS assignment/SECURITY許可・元状態を変更しない。固定PO採択066は本fixtureの外にあり変更しない。 | 入力不変で、評価材料だけから`repair_method_assignment`を新規生成する誤出力field一つを追加する。 | `repair_method_assignment`を生成せず計測・比較材料だけを返す。固定L2/L11のWorker/修復器運転・実験許可・効果達成の境界を保持し、誤出力をLABO評価責務へ返す。既存OS/SECURITY状態を変更せず、個体identity unknownを別記する。 |
 | `L10-LABO-066-CASE-55` | `LABO-066-FR-03` | `LABO-066-AC-03` | 合成B0の比較入力と両群receiptを不変に保持。対象は合成scope S0の評価材料だけで、当該`worker_started`は新規生成されておらず、既存OS assignment/SECURITY許可・元状態を変更しない。固定PO採択066は本fixtureの外にあり変更しない。 | 入力不変で、評価材料だけから`worker_started`を新規生成する誤出力field一つを追加する。 | `worker_started`を生成せず計測・比較材料だけを返す。固定L2/L11のWorker/修復器運転・実験許可・効果達成の境界を保持し、誤出力をLABO評価責務へ返す。既存OS/SECURITY状態を変更せず、個体identity unknownを別記する。 |
 | `L10-LABO-066-CASE-56` | `LABO-066-FR-03` | `LABO-066-AC-03` | 合成B0の比較入力と両群receiptを不変に保持。対象は合成scope S0の評価材料だけで、当該`repair_method_execution`は新規生成されておらず、既存OS assignment/SECURITY許可・元状態を変更しない。固定PO採択066は本fixtureの外にあり変更しない。 | 入力不変で、評価材料だけから`repair_method_execution`を新規生成する誤出力field一つを追加する。 | `repair_method_execution`を生成せず計測・比較材料だけを返す。固定L2/L11のWorker/修復器運転・実験許可・効果達成の境界を保持し、誤出力をLABO評価責務へ返す。既存OS/SECURITY状態を変更せず、個体identity unknownを別記する。 |
+
+この表は候補fixture設計である。実行、実測、合法control、oracle適用、independent reviewは未実施であり、合格・完全性を主張しない。CASE-44..56はこの候補内の安定IDで、canonical採番の確定ではない。

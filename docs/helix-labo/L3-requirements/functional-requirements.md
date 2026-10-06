@@ -1824,7 +1824,7 @@ CASE定義数・ID保持だけでfixtureの独立性や意味完全性を認定�
 
 **要求本文**
 
-`LABO-066-FR-01` 比較前にA identity/version、候補repair method identity/version、task/scope/target revision、共通eligible case集合とそのrevision、受入/quality oracle・scorer identity/revision、protocol、toolchain、environment、期間または同一終了/cutoffを受け取る。case identity重複は一件に正規化する。比較開始後にeligible集合、N、oracle、cutoffを変更しない。
+`LABO-066-FR-01` 比較前にA identity/version、候補repair method identity/version、task/scope/target revision、共通eligible case集合とそのrevision、受入/quality oracle・scorer identity/revision、protocol、toolchain、environment、期間または同一終了/cutoffを受け取る。case identity重複は一件に正規化する。結果閲覧前にeligible集合、N、oracle、cutoffを固定し、結果後に変更しない。
 
 `LABO-066-FR-02` A群・候補群ごとに、oracleが誤修復と判定した件数 `misrepair_count/N` と、終了/cutoff時に受入oracleを満たす解決のない件数 `unresolved_count/N` を別々に分子・分母・case判定receipt付きで示す。両指標は同じcaseに該当し得る。適用不能・receipt不足のcaseはunknownとして記録し、Nから黙って除外せず、その比較の割合を未評価/比較不能にする。費用・時間・手戻りの意味と集計はL2-059を再利用する。
 
