@@ -716,7 +716,7 @@ AC-035-05はS5-027/028/042および035〜038（旧revision計測、機能数だ�
 
 **AC-HARNESS-L3-044-02 — 単一欠落・誤対応**：source atom、active template、applicability、oracle、contract version、class identityまたはrelationを一度に一つ欠落／矛盾／staleにしたとき、未完・未被覆・unknownを維持し、適用範囲からclassを落とさない。根拠のないN/A、意味重複、旧denominator receipt再利用、025/043による代替、意味対応oracleの欠落を拒否する。
 
-**AC-HARNESS-L3-044-03 — portfolio閉包と候補状態**：義務最小化を理由に独立classを落とさず、複数contractの必要な境界を示す。候補は候補のままとし、portfolio出力だけで承認・採択を生成しない。
+**AC-HARNESS-L3-044-03 — portfolio閉包と候補状態**：義務最小化を理由に独立classを落とさず、複数contractの必要な境界と理由を示す。既知の境界・理由欠落、無説明の重複割当、根拠なしN/A、規範contractの孤立は不合格とし、portfolioを未完に保つ。初見でsource・適用性・oracleが不明な場合のunknown/未評価とは区別する。候補は候補のままとし、portfolio出力だけで承認・採択を生成しない。
 
 **AC-HARNESS-L3-044-04 — authority出力を個別に拒否**：合成入力中の他fieldを固定し、要求合意、L3承認、設計承認、採択、実装成立、OS実行、利用者受入の各outputを一つずつ独立に生成させる変異を拒否する。各拒否fixtureは対象output field一つだけを変える。
 
