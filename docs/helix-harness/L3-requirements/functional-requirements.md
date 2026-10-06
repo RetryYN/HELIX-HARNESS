@@ -727,7 +727,7 @@ AC-035-05はS5-027/028/042および035〜038（旧revision計測、機能数だ�
 
 **旧sourceと処置**：旧起点はHIL-FR-54、`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:144`、file SHA-256 `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`、line/span SHA-256 `b8c3eb6a8d4e25985f97f95281851e79a0cf6bf6576d3d6a074abdb1df97b070`。旧HIL-FR-55は別要求として043に残り、044へ移さない。 HR-FR-HIL-20/HAT-HIL-20/HOT-HIL-50等のpaired consumerは広い複合要求なので、044へ全量移管したとは扱わない。 旧資産の一部機能意味を再導出し、旧schema/tool/runtime/Plannerや旧L3/L10の番号体系は置換する。旧CASE 39件のIDとraw literalは監査artifactにそのまま保持し、現行fixture意味はこの文書とfunctional verificationで再導出する。
 
-**FR-HARNESS-L3-044-01 — scope-bound obligation-to-contract coverage**：選択された対象L1／要求／design scopeとrevision、および選択入力に含むsource identity/revisionから適用義務classを固定し、各classをnormative contract・契約版・対oracle・適用根拠へ対応付ける。各classについて再利用、delta追加、新規契約、根拠付き非適用を区別し、未被覆class、意味重複、複数contract分割の境界と根拠を出す。portfolio候補は未被覆class 0・意味重複0を満たす場合に限って閉包候補として提示する。これらの0は固定L2/L11の範囲であり新閾値ではない。
+**FR-HARNESS-L3-044-01 — scope-bound obligation-to-contract coverage**：選択された対象L1／要求／design scopeとrevision、および選択入力に含むsource identity/revisionから適用義務classを固定し、各classをnormative contract・契約版・対oracle・適用根拠へ対応付ける。各classについて再利用、delta追加、新規契約、根拠付き非適用を区別し、対象revision・scopeを出力portfolioへ明示し、重複割当、未被覆class、意味重複、複数contract分割の境界と各finding根拠を出す。portfolio候補は未被覆class 0・意味重複0を満たす場合に限って閉包候補として提示する。これらの0は固定L2/L11の範囲であり新閾値ではない。
 
 **FR-HARNESS-L3-044-02 — 未確定と隣接scopeの保持**：必須identity、scope/revision、applicability、contract revision、oracle、class-to-contract relationの欠落・unknown・conflict・stale、または意味対応をoracleで評価できない場合、portfolioを未完／未評価として保持する。025のcomposite整合、043のexample coverage、契約数の少なさ、portfolio fieldの存在だけで代替・合格扱いしない。N/Aはsource atomと適用根拠を伴う場合だけclassごとに記録する。
 
@@ -735,9 +735,9 @@ AC-035-05はS5-027/028/042および035〜038（旧revision計測、機能数だ�
 
 **FR-HARNESS-L3-044-04 — authority非生成**：portfolio候補または受入結果から、要求合意、L3承認、設計承認、要求／候補採択、実装成立、OS実行、利用者受入を生成しない。PO採択範囲は対象revisionの判断記録から読む。本文内のdraft/candidate metadata、matrix、CI相当の結果はauthorityでない。
 
-**AC-HARNESS-L3-044-01 — 正常なclass coverageと契約処置**：同じscope/revision内の固定された適用class・oracle・契約・根拠から、再利用／delta／新規／根拠付きN/Aを区別したcoverageを再構成でき、未被覆0・意味重複0である。合成正常fixtureは選択された9 contract classを既存inputとして与える。9件はfixtureの母集団であり、新classや新しい一般的閾値を作らない。reuse/delta/newの扱いが各classの義務意味・oracleに対応することを確かめる。
+**AC-HARNESS-L3-044-01 — 正常なclass coverageと契約処置**：同じscope/revision内の固定された適用class・oracle・契約・根拠から、再利用／delta／新規／根拠付きN/Aを区別したcoverageを再構成でき、未被覆0・意味重複0である。合成正常fixtureは選択された9 contract classを既存inputとして与える。9件はfixtureの母集団であり、新classや新しい一般的閾値を作らない。出力のreuse/delta/new/根拠付きN/A区分が各classの義務意味・oracle・適用根拠に対応すること、対象revision/scopeとfinding根拠が出力に保たれることを確かめる。
 
-**AC-HARNESS-L3-044-02 — 単一欠落・誤対応**：source atom、active template、applicability、oracle、contract version、class identityまたはrelationを一度に一つ欠落／矛盾／staleにしたとき、未完・未被覆・unknownを維持し、適用範囲からclassを落とさない。根拠のないN/A、意味重複、旧denominator receipt再利用、025/043による代替、意味対応oracleの欠落を拒否する。
+**AC-HARNESS-L3-044-02 — 単一欠落・誤対応**：source atom、active template、applicability、oracle、contract version、class identityまたはrelationを一度に一つ欠落／矛盾／staleにしたとき、未完・未被覆・unknownを維持し、適用範囲からclassを落とさない。根拠のないN/A、意味重複、旧denominator receipt再利用、025/043による代替、意味対応oracleの欠落を拒否する。入力が正常でも、出力処置区分の誤り、出力対象revision/scopeの欠落・不一致、出力finding根拠の欠落をそれぞれ拒否しportfolioを未完に保ちclosureを主張しない。
 
 **AC-HARNESS-L3-044-03 — portfolio閉包と候補状態**：義務最小化を理由に独立classを落とさず、複数contractの必要な境界と理由を示す。既知の境界・理由欠落、無説明の重複割当、根拠なしN/A、規範contractの孤立は不合格とし、portfolioを未完に保つ。初見でsource・適用性・oracleが不明な場合のunknown/未評価とは区別する。候補は候補のままとし、portfolio出力だけで承認・採択を生成しない。
 
