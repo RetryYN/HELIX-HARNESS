@@ -738,7 +738,7 @@ FR/ACと対のL10候補CASEは`functional-verification.md`に同じAC IDで置�
 
 **入力**：固定HARNESS-L1 revision、HARNESS-L2-009で選択・適用されたtemplate identity/revision/applicability、対象layer/要求kind/scopeとsource span、対応する040相当ledger contract revision、extractor identity/version。これらの責務区分は個別owner identity不明で消さず、ownerが特定できない場合だけindividual identityをunknownとして保持する。
 
-**出力**：各source obligationをsource span、template revision、applicability branch、semantic digest、extractor/version digest付きのatomまたは理由付きtyped gapへ対応付けた候補行とfinding。candidate rowは正本ledgerへの登録・採択を意味しない。
+**出力**：各source obligationをsource span、template revision、applicability branch、obligation種別、semantic digest、extractor/version digest付きのatomまたは理由付きtyped gapへ対応付けた候補行とfinding。candidate rowは正本ledgerへの登録・採択を意味しない。
 
 | AC ID | 受入条件 |
 |---|---|
