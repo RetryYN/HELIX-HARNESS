@@ -1647,7 +1647,7 @@ LABOはFeedbackの評価・candidate提示・変更後re-observationを担う。
 
 ### LABO-060-AC-01 — 正常候補
 
-合成givenとして、固定L11:181の `PATCH /applications/{id}` oracleを使う。対応する二runは同じtask snapshot、scope、対象revision、environment/toolchain/protocol、元Worker/model identityとmodel/provider/version/effort、開始前に固定したHARNESS-L2-022 oracleを持つ。両runで `draft` 編集は受理し、`approved` 編集は拒否され保存値を変えない。対応OS assignment/result receiptsと、選択した支援source/useの記録を与える。新しいrunのfixtureなら該当OS assignmentとSECURITY許可もgivenに置く。支援側のみINTELLIGENCEの設計/validator/regression sourceと相談・修正指示を選び、元Workerが作業する。支援者、元Worker、independent reviewerは別identityである。必要なconsultation receiptはconsultを選んだ当該runだけに付す。支援に伴う追加model/provider、上位Worker、retry/review、相談、人の調査・修正・確認時間と実費は省略しない。両runの結果receiptを同じoracleで照合する。この合成fixtureは実測済みrunの主張ではない。
+合成givenとして、固定L11:181の `PATCH /applications/{id}` oracleを使う。対応する二runは同じtask snapshot、scope、対象revision、environment/toolchain/protocol、元Worker/model identityとmodel/provider/version/effort、開始前に固定したHARNESS-L2-022 oracleを持つ。両runで `draft` 編集は受理し、`approved` 編集は拒否され保存値を変えない。対応OS assignment/result receiptsと、選択した支援source/useの記録を与える。新しいrunのfixtureなら該当OS assignmentとSECURITY許可もgivenに置く。支援側のみINTELLIGENCEの設計/validator/regression sourceと相談・修正指示を選び、元Workerが作業する。独立reviewerは元WorkerとINTELLIGENCE支援者のいずれともidentity/context/authorityを区別する。必要なconsultation receiptはconsultを選んだ当該runだけに付す。支援に伴う追加model/provider、上位Worker、retry/review、相談、人の調査・修正・確認時間と実費は省略しない。両runの結果receiptを同じoracleで照合する。この合成fixtureは実測済みrunの主張ではない。
 
 ### LABO-060-AC-02 — 未見正常候補
 
