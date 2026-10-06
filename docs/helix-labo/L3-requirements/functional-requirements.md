@@ -1621,7 +1621,7 @@ Stage 2b review01の集約CASEは索引としてのみ保持する。個別fixtu
 
 ### LABO-063-FR-01 — 修復再発評価から予防candidateへの還流
 
-親: `HELIXLABO-L2-063`（`MPR-RC-HELIXLABO-L2-063-001`、1.0 composite）。対象版、原因候補、条件、修復手順、実行・検証結果、再発/反例を元sourceへ結び、再発評価と予防candidateをLABO記録として保持する。INTELLIGENCEのrepair案、OS割当Workerの実行、HARNESS検証、LABO効果評価を別状態にし、成功一件やgreenだけで再発防止を確定しない。Recipe/sourceのcanonical ownershipは既存ownerに残す。
+親: `HELIXLABO-L2-063`（`MPR-RC-HELIXLABO-L2-063-001`、1.0 composite）。対象版、原因候補、条件、修復手順、実行・検証結果、再発/反例を元sourceへ結び、再発評価と予防candidateをLABO記録として保持する。INTELLIGENCEのrepair案、OS割当Workerの実行、HARNESS検証、LABO効果評価を別状態にし、成功一件やgreenだけで再発防止を確定しない。Recipe/sourceのcanonical ownershipは既存ownerに残す。LABO自身はgateを直接有効化・強制しない。
 
 - `LABO-063-AC-01` 正常: 修復・検証後の対象同一scopeで観測された再発と反例を、元episode/対象revisionとともに評価し、支持範囲だけを予防candidateへ返す。
 - `LABO-063-AC-02` 未見正常: 同条件の未見再発eventもsource/evidenceと条件が追跡できる範囲で候補へ記録し、別scopeへの一般化をしない。
