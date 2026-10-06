@@ -263,14 +263,14 @@ review08の機能測定追補：005未充足prerequisite1、016同scope未見結
 
 各CASE-NFRは対応する補完fixture全体をfixture母集団として、定義済み独立case数、結果別件数、owner return/unknown件数を数える。case行の存在だけを成立件数に数えず、実測性能や最低合格率は定めない。rateを算出する場合は実際のfixture件数を分母として示し、0件・欠測は算出値なしとする。
 
-- `NFR-INT-060-02`：CASE-INT-060-05e–05iの5定義行中、05iは指定fallback正常例。05a–05dは06群の完全ID索引。06a,06b,06c,06d,06f,06g,06i,06j,06lの9独立runを測り、05g/05hはHARNESS source identityをfixtureで固定する。
+- `NFR-INT-060-02`：CASE-INT-060-05e–05iの5定義行中、05iは指定fallback正常例。05a–05dは06群の完全ID索引。この母集団は05e/05f/05g/05hの4独立negativeと05i正常fallbackであり、05g/05hのHARNESS source/ownerを固定する。06群の9独立runはNFR-INT-060-03で別集計する。
 - `NFR-INT-061-02`：CASE-INT-061-05a–05fの6 fixtureについて、互換評価、task scope、OS割当可否、receipt identity/revisionを別facetで数える。
 - `NFR-INT-062-02`：CASE-INT-062-04a–04iの9定義行中、04b/04c/04gは05a/02d/02gへの完全ID索引。04a/04d/04e/04f/04h/04iの6独立fixtureに05a–05eを加え、permission actor/scope/revision/ownerを分離する。
 - `NFR-INT-063-02`：CASE-INT-063-04a–04hの8 fixtureについて、LABO/BRAIN/OSの固定戻し先、時点、episodeを独立集計する。このfixture群にないHARNESS process contract returnを追加しない。
 - `NFR-INT-069-02`：CASE-INT-069-06a–06uの21 pack/source field fixtureと07a–07fの6 operation fixtureを別母集団として報告する。HARNESS-L2-010/011のadopted pack contractを常時照合し、011 call固有inputだけをcall利用operationで測る。通常計算のoracleなし/後段receiptなしを正常母集団に含め、指定verificationのoracle欠落をnegativeへ含める。
-- `NFR-INT-070-02`：CASE-INT-070-07a–07lと08b–08eの16 unique fixture（08aは05cへのindex）、および09a–09gと06a–06iを別stage別に数える。さらに10a–10cの順序違反・stale send receipt・stale consumer receiptを一変異ずつ計上する。送信と受領を一つの率に統合しない。
+- `NFR-INT-070-02`：CASE-INT-070-07a–07lと08b–08eの16 unique fixture（08aは05cへのindex）をこの母集団で数える。09a–09g、06a–06i、10a–10cはNFR-INT-070-03で別stage別に数え、この母集団へ重ねない。送信と受領を一つの率に統合しない。
 - `NFR-INT-071-02`：CASE-INT-071-04a–04cの固定正常scenarioと04d–04jの7独立negativeに加え、CASE-INT-071-02hのscope mismatchをこのNFR-071-02だけで別分母として報告する。
-- `NFR-INT-074-02`：CASE-INT-074-04a–04cの3独立unknown facetと05a–05aaの27定義行中、05y/05l/06eは索引、05w/xは正常。05-seriesの独立fixtureは25件であり、05aaはLABO evidence scope mismatchとして計上する。
+- `NFR-INT-074-02`：CASE-INT-074-04a–04cの3独立unknown facetと05a–05aaの27定義行中、05y/05lは索引（06eも02bへの別群索引）、05w/xは正常。05-seriesの独立fixtureは25件であり、05aaは評価receiptだけで明示capability条件不一致を無視するproposal確定claimとして計上する。
 - `NFR-INT-077-02`：CASE-INT-077-05a–05zの26定義行を従来区分で集計し、CASE-INT-077-03gのunknown consumer/routeを独立facetとして追加観測する。L11:361に沿いsource/qualification ownerのみ既存sourceから返し、未特定consumer/ownerはunknownのまま保持する。
 
 

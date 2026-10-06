@@ -2580,7 +2580,7 @@ qualified external receiptを別origin typeで示す。external observationだ�
 | `CASE-INT-060-05e` | 060/AC-INT-060-05 | stop conditionだけ欠落 | stop条件を推測せずaffected planを未完にする。固定L2が個別ownerを指定しないため戻し先unknown。 |
 | `CASE-INT-060-05f` | 060/AC-INT-060-05 | 宣言済みstop時のfallbackだけ欠落 | fallbackを補完せず影響nodeとstop理由を保持してsource ownerへ戻す。 |
 | `CASE-INT-060-05g` | 060/AC-INT-060-05 | HARNESS process contract source identityが明示された上でdependency cycleだけ存在 | 解決済み順序を出さずplanを未完にし、明記されたHARNESS source/contract ownerへ戻す。 |
-| `CASE-INT-060-05h` | 060/AC-INT-060-05 | HARNESS process contract source identityだけunknown | dependencyを解決済みにせずunknownを保持し、入力に含むHARNESS source/contract ownerへ戻す。 |
+| `CASE-INT-060-05h` | 060/AC-INT-060-05 | HARNESS process contract source identity/ownerを固定した上でdependency identityだけ未知 | dependencyを解決済みにせずunknownを保持し、入力に含むHARNESS source/contract ownerへ戻す。 |
 | `CASE-INT-060-05i` | 060/AC-INT-060-05 | declared stop後の指定fallback（正常） | 指定fallbackだけを同じsource/scopeで適用し、ticket発行はOSに残す。 |
 | `CASE-INT-061-05a` | 061/AC-INT-061-05 | compatibility evidenceだけ未見 | 評価互換性をunknownに保ちLABOへ戻す。 |
 | `CASE-INT-061-05b` | 061/AC-INT-061-05 | task scopeだけunknown | 適用範囲を確定せずINTELLIGENCEへ戻す。 |
@@ -2685,7 +2685,7 @@ qualified external receiptを別origin typeで示す。external observationだ�
 | `CASE-INT-074-05x` | 074/AC-INT-074-05 | 同じ理由class・宣言済み同scopeの未見正常例 | 根拠の引用と再評価条件を保ち、成功や適格性は自動生成しない。 |
 | `CASE-INT-074-05y` | 074/AC-INT-074-05 | 索引のみ。同じcomparison scope mismatchの `CASE-INT-074-05j` を参照。 | 05jだけを独立fixtureに計上し、この行を別negative数へ加えない。 |
 | `CASE-INT-074-05z` | 074/AC-INT-074-05 | evidenceだけ不足（scopeは一致） | scope一致を保ちつつevidence不足だけで評価適用を成立させず、LABOへ戻す。 |
-| `CASE-INT-074-05aa` | 074/AC-INT-074-05 | task class/domain入力は存在するが、LABO evaluation evidenceのtask class/domainだけ不一致。評価receiptだけでproposal適格性を確定 | L2-074:612とL2-010:104の根拠を照合し、evidence scope不一致としてLABOへ戻す。proposalは未確定のまま保つ。 |
+| `CASE-INT-074-05aa` | 074/AC-INT-074-05 | task class/domainとLABO評価receiptは正常のまま、固定L2-010の明示capability条件不一致だけを無視し評価receiptのみでproposal適格性を確定 | L2-074:612とL2-010:104の根拠を照合し、評価receiptのみではproposal適格性を確定せずproposalを未確定に保つ。戻し先を追加しない。 |
 | `CASE-INT-077-05a` | 077/AC-INT-077-05 | unknownを0へ変異 | unknownを保持する。 |
 | `CASE-INT-077-05b` | 077/AC-INT-077-05 | unknownをneutralへ変異 | unknownを保持する。 |
 | `CASE-INT-077-05c` | 077/AC-INT-077-05 | unknownをunchangedへ変異 | unknownを保持する。 |
@@ -2767,9 +2767,9 @@ qualified external receiptを別origin typeで示す。external observationだ�
 | `CASE-INT-070-09e` | 070/AC-INT-070-09 | product identityだけ不一致 | 別product receiptを混ぜずsource ownerへ戻す。 |
 | `CASE-INT-070-09f` | 070/AC-INT-070-09 | known regressionの誤予測だけ成功扱い | comparisonを不合格とし後の実測/evaluationをLABO ownerへ残す。 |
 | `CASE-INT-070-09g` | 070/AC-INT-070-09 | source design authorityだけをINTELLIGENCEへ移す | authorityを移さず既存design source ownerを保持する。 |
-| `CASE-INT-070-10a` | 070/AC-INT-070-10 | 有効な033 inputと069 resultを保持し、040送達前にLABO-024 receiptだけ先着 | 順序不成立として当該receiptを現行consumer受領に結ばず、LABO-024 consumer receipt未成立を保持しLABO ownerへ戻す。 |
-| `CASE-INT-070-10b` | 070/AC-INT-070-10 | 他receiptを保持し、040 send receipt revisionだけstale | 040送達を現行段階で未成立に保ち、CONNECT・当該source/consumer契約ownerへ照合する。 |
-| `CASE-INT-070-10c` | 070/AC-INT-070-10 | 有効な040 sendを保持し、LABO-024 consumer receipt revisionだけstale | send成立は保持し、現行consumer receipt未成立としてLABO ownerへ戻す。 |
+| `CASE-INT-070-10a` | 070/AC-INT-070-06 | 有効な033 inputと069 resultを保持し、040送達前にLABO-024 receiptだけ先着 | 順序不成立として当該receiptを現行consumer受領に結ばず、LABO-024 consumer receipt未成立を保持しLABO ownerへ戻す。 |
+| `CASE-INT-070-10b` | 070/AC-INT-070-06 | 他receiptを保持し、040 send receipt revisionだけstale | 040送達を現行段階で未成立に保ち、CONNECT・当該source/consumer契約ownerへ照合する。 |
+| `CASE-INT-070-10c` | 070/AC-INT-070-06 | 有効な040 sendを保持し、LABO-024 consumer receipt revisionだけstale | send成立は保持し、現行consumer receipt未成立としてLABO ownerへ戻す。 |
 | `CASE-INT-071-05a` | 071/AC-INT-071-05 | expected-result verification operationだけoracle欠落 | そのverificationだけ保留。通常scenario計算は引き続き明示ruleから結果/trace/unknownを返す。 |
 | `CASE-INT-071-05b` | 071/AC-INT-071-05 | 通常scenarioにoracleがないことだけを失敗扱い | 固定L2/L11に反してoracle必須化しない。明示rule計算を受け入れる。 |
 | `CASE-INT-071-05c` | 071/AC-INT-071-05 | 数値threshold decisionだけ未決 | 実測/計算値のみ記録し合否/適格化を付けない。 |
