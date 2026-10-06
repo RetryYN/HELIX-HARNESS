@@ -1746,3 +1746,23 @@ LABOは、許可された修復観測と既存の評価記録から、成功修�
 #### CASE/AC trace索引
 
 L10の69件の定義は既存旧IDの保持と追跡索引である。literal上の分類候補は正常5、negative 53、索引11で、意味的独立性・完全性の認定ではない。索引IDは `L10-LABO-063-CASE-03a`, `L10-LABO-063-CASE-24`, `L10-LABO-063-CASE-25`, `L10-LABO-063-CASE-30`, `L10-LABO-063-CASE-31`, `L10-LABO-063-CASE-32`, `L10-LABO-063-CASE-33`, `L10-LABO-063-CASE-35`, `L10-LABO-063-CASE-36`, `L10-LABO-063-CASE-39`, `L10-LABO-063-CASE-63`。索引は示された主fixtureを参照し、独立fixture/negative分母として重ねない。`L10-LABO-063-CASE-58`は`L10-LABO-063-CASE-13`と同じ運用後観測欠落の旧軸を保持し、今回固定された観測提供主体への返却とidentity unknown保持を明示する。既存IDの保持や本索引だけでCASEの一変異性・完全性を主張しない。
+
+### HELIXLABO-L2-065 — 選択qualification scopeとtask scorecard（1.0候補）
+
+**根拠と起点**：固定L2-065（0dd946cec1c3fca8e144513b72e2e10d16c7c9c3、L2:503–516、span SHA-256 `6f50887b94a8d3341c55700393896798cc1273324a868071447bf0e5a95cf019`）と固定L11-065（同revision、L11:241–259、span SHA-256 `c70905fd036f0c6e6bfdce0368e462cd85acd467354bcad599d1112634d9b1b6`）を具体化する。旧HIL-FR-61/62とHIL-NFR-35の保持・再導出・置換は末尾の対応記録に示す。
+
+- **FR-LABO-065-01 — 選択資格scope**：明示的に選ばれたcandidate-runtime資格scopeについて、比較目的、runtime/model/version、task・scope・revision、許可されたfixture集合とrevision、oracle・rubric/scorerのidentityと版、評価者の独立性・可視context、対応するOS assignment/run receiptを一つのscopeへ結び付ける。資格scopeが選ばれていない通常Worker作業にはfull benchを課さない。
+- **FR-LABO-065-02 — smokeとfull-bench**：machine smokeとblind full-benchを別結果として記録する。full-benchとして報告する場合、correctness、mutation kill、instruction/scope following、skill A/B、quality、concision、security、second-diff extensibilityの8軸を、同一scope内のfixture集合・revision、rubric/scorer revision、oracleと判定結果へ個別に結ぶ。必要軸または同一性証拠が欠ける場合は未完・未評価とし、資格済みにしない。hidden answerをWorker-visible contextへ含めず、candidate名のblind条件とauthor/judge分離をそのscopeで確認する。
+- **FR-LABO-065-03 — task scorecard**：HELIX実taskごとに、task/scope/revision、assignment・attempt・result receiptとともに`first_pass`、`retry_count`、`proposal_diff_size`、`lint_violation_count`、quality-judge結果、effective costを記録する。`first_pass`はPO固定行83が定める「最初のAttempt」の適用oracle結果、`retry_count`はそのAttempt後の同一task scope内の再試行数とする。retry後の成功で初回結果を上書きしない。
+- **FR-LABO-065-04 — 適用外と未観測**：diff/lint指標を選択scopeへ適用しない場合は根拠を残す。適用対象だが値・定義・版・receiptが得られない場合は`unknown`を保持する。実測値0は根拠付き0として保持する。unknown、適用外、未観測を0へ置き換えない。
+- **FR-LABO-065-05 — 品質・費用・比較**：qualityは採択済みL2-059の品質gate、effective costは同候補が定めるretry・救援・rework・CI・review・人修正を含む費用境界と既存の価格source/currency/effective timeに従う。品質・security・scope逸脱・検証不能を価格、所要時間または平均scoreで相殺しない。trend/failure findingは同じtask class、scope、測定定義、revisionで比較可能な記録に限る。
+- **FR-LABO-065-06 — owner受渡しと権限境界**：qualification証拠とscorecardから、適用scope/revision、source・result receipt、oracle/rubric/fixture版、既決decision ownerのidentity/revision/statusまたは未決を辿れる形で渡す。LABOは計測・比較・証拠を出し、runtime/providerを選択せず、Workerを割り当て・実行せず、実験許可を生成せず、qualification証拠から既存ownerのqualification/admission decision、権限、採否・限定・quarantine・retireを生成しない。
+- **FR-LABO-065-07 — 065/067指標分離**：065の`first_pass`は最初のAttemptの結果である。067の「最初の適格candidate」と同じAttempt内の修正回数とは異なる。相互換算・統合をしない。
+
+**受入条件候補**
+
+- **LABO-065-AC-01 — 選択scope内の正常**：選択scopeでは8軸の証拠と同一性receipt、machine smokeとblind full-benchの別結果、task scorecardの各fieldを返す。測定対象外には理由を、未観測にはunknownを添える。初回失敗後のretry成功は`first_pass=false`として区別する。
+- **LABO-065-AC-02 — 選択scope内の未見正常**：同じ選択scope・適用条件の未見task/runtimeを、存在するreceiptと適用oracleで評価する。証拠がある軸・metricだけを報告し、scope外への一般化や通常作業へのfull-bench要求を作らない。
+- **LABO-065-AC-03 — 否定・保留**：smokeだけの資格表示、必要軸/receipt欠落、hidden answer漏えい、blind/author分離不成立、版・scope不一致、初回失敗の上書き、unknownのzero化、retry/救援費用の欠落、品質不成立の相殺、LABOによる権限/decision生成を拒否する。固定L2-065:514の原因別戻し先だけを使う。具体的なsource identityが入力から分からない場合はunknownを保ち、IDだけからowner identityを推測しない。
+
+**旧資産との対応**：旧HIL-FR-61/62から選択scope内bench分離、8軸、task単位の初回/retry/diff/lint/quality/cost証拠を保持し、固定L2/L11のauthority・scope・owner境界に合わせて意味を再導出する。旧HIL-NFR-35とBench R04/R08のblind/context保護も選択scopeへ再導出する。旧runtime/provider/schema/admission実装、固定sample数・閾値、普遍的性能主張は置換対象外として移さない。旧HIL-BR-31は現固定L2-065の独立business outcomeとして採用せず、採否等の旧business判断を新要件に持ち込まない。
