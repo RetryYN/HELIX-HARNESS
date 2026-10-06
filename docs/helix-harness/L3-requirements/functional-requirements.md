@@ -695,3 +695,26 @@ AC-035-05はS5-027/028/042および035〜038（旧revision計測、機能数だ�
 | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-02` | 各rowのstable subject ID、row revision、source span、semantic digest、status、owner、上流/下流edgeを同revisionで逆引きする。片方向edge、別revisionの混在、field不足やstaleを該当範囲の未完として示す。 |
 | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-03` | 未提示契約やunknownなauthority/scope/互換版を存在済みや対象外にせず未評価で保持する。契約不足はHARNESS L1/L2契約owner、authority不足は該当authority ownerへ返す。authority ownerをL0に限定しない。個別identityが不明でも既知の責務区分を保持する。catalogからL1承認/L2合意/L3承認/OS登録・実行/completionを生成しない。OS receipt不足は既存OS保存・実行ownerへ返し、HARNESS契約oracleを代用しない。HARNESS-L2-025/026の完了receiptは040評価の開始前提ではなく、040の候補採否や実装完了を生成する根拠にもならない。 |
 | `FR-HARNESS-L3-040` / `AC-HARNESS-L3-040-04` | 対象revisionの有効契約からledger type・粒度・必須node/edge・authority参照・input/output・entry/exit gate・適用template版の項目集合を導き、layer snapshotとcoverageの全件・未完・staleを区別する。根拠のない固定件数を課さない。未見layer/template revisionの変更がcatalog/coverageに現れない範囲はstale/uncoveredとしてHARNESS L1/L2契約ownerへ返す。 |
+
+## Stage 3 親042の機能要件候補
+
+### FR-HARNESS-L3-042 — Design Refactor判定とepisode分離
+
+**対象とauthority**：HARNESS-L2-042はPO採択済み（`MPR-RC-HARNESS-L2-042-001`）。本L3本文はその採択scopeを要件へ具体化する候補で、L3承認前である。親L1はHARNESS-L1-003/004/005/007、version_targetは親に固定された1.0を継承する。要求意味、scope、担当、版を変更しない。
+
+**由来と処置**：旧requirements v1.3 §4.2 L119（`REQSRC-SUP-00089`）、同内容のbaseline `V13-BASE-6FAB-L0104`、旧L3 042/AC表とそのpaired consumerを起点にする。保持するのはDesign Refactorで意味・consumer・oracle・dependency graphを比較すること、名称だけで統合しないこと、変更前後の要求/契約/振舞いを保持すること、機能追加episodeの分離、対象scope/revisionの限定。Performance Refactorのbaseline/budget/workload/profile/statistical condition/regression oracleは採択済みHARNESS-L2-016に委譲し、この要件に複製しない。旧runtime/schema/workflowや数値閾値は移植しない。旧36 CASEの各literalとraw digestはこの候補監査source inventoryへ保持し、本文では意味を再導出する。名前一致だけの完全再利用とは扱わない。
+
+**入力・出力**：対象artifact/revision/scope、対応設計・契約・要求、変更前後のsemantic relation、影響consumerと依存graph、既存oracle、機能追加有無を受け取る。入力元の版・適用範囲も固定する。scope/revision単位で、比較根拠、維持する契約、Design Refactorの可否と理由、拒否/Backflow、別episode化すべきfeature changeを出力する。
+
+**受入基準**：
+
+- **AC-HARNESS-L3-042-01**：同じscope/revisionに限り、既存の振舞い・公開契約・要求・persistent state意味をHARNESS-L2-016の保存oracleで照合し、対の設計または契約がない対象はHARNESS-L2-019 reverse入口へ返す。
+- **AC-HARNESS-L3-042-02**：Design Refactorの統合判断にはsemantic similarity、関連consumer、oracle、dependency graphを用い、名称/ticketの一致だけで判定しない。各根拠のmissing/stale/unknownは個別にunknown/未評価とし、他根拠で相殺しない。
+- **AC-HARNESS-L3-042-03**：Design Refactor/Performance Refactorと機能追加を同一episodeに混載しない。feature changeは別episodeに分離し、意味変更が判明した場合のみ既存のHARNESS-L2-003/004/016 Backflowへ返す。性能条件・測定不能・regressionはHARNESS-L2-016と対L11のoracleを使い、新しい数値閾値を設けない。
+- **AC-HARNESS-L3-042-04**：結果を対象scope/revisionに限定し、別scope/revision、実行結果、要求採択、L3承認、実装、受入へ外挿しない。入力不足はその入力元ownerへ返す。L2-019は対の設計または契約がない対象のreverse入口とする。
+
+**依存境界**：常時必要＝対象revision/scope、対の設計/契約/要求、既存oracle、HARNESS-L2-016の保存/Backflow契約。Design Refactor候補で選択した設計/consumer/graph sourceだけ版・scopeに応じ必要。Performance Refactorを実際に選ぶ場合のみ016の測定入力と対L11を使う。SR3 finding処理時のみL2-002/003 routeを使う。旧workflow/runtime、類似名称だけの候補、未選択改善案は参照資料に限る。
+
+**不成立と戻し先**：semantic similarity、consumer、oracle、graphの未確認は未評価に保ち、出典ownerと設計・契約ownerへ不足を戻す。対の設計または契約がない対象はL2-019 reverse入口へ。公開契約/要求/persistent-state意味変更は該当するL2-003/004/016 Backflow。機能追加混載はepisode成立を拒否しfeatureを別episodeへ分離。missing/unknown/stale/conflictは補完せず未評価。文書、CASE、receipt、ticketからauthority、実行、採択、L3承認または受入を生成しない。
+
+**L2-019境界**：019は逆向きに対の設計または契約の不在を明らかにする入口であり、全入力不足や責務不明を無差別に送る汎用戻し先ではない。入力不足はその入力を提供する元ownerへ戻す。019 reverseの結果も本要件のscopeを拡張しない。
