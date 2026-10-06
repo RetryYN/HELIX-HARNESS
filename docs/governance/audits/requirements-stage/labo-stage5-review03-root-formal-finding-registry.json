@@ -1,0 +1,258 @@
+{
+  "comment_id": 6009106466,
+  "formal_body": "## review03（independent review、HEAD 829478c8da32d00056b0ee09008be3dea5c4f441、本文 74ed99683）\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。照合の体制は次のとおり。\n- **Opus agent 3本**：差分の全730行と、担当親のFR・FV・BV・NG・NVの各節を読んだ。担当は次のとおり。\n  - A：050/059/060/061\n  - B：063〜066\n  - C：067〜071\n- **固定親**：各agentが、PO判断L76–84のpin（f6dad2a33／0857205ec／c18969c7／main 6008fb947）で読んだ。\n- **Fable advisor**：同じHEADで、委任見解を出した。\n- **reviewer本人**：静的検査をした。主なMajorは、本文と固定親で確かめた。\n\n### 静的検査（w2620 = exact HEAD）\n- scfctlはvalidate 147/0、stale 0、residuals 0。govcheckはok（atoms=7622）。`git diff --check` は成功した。\n- `merge-tree` に衝突はない。6本文はmain 6008fb947のprefixと一致した。\n- Stage5の定義は、605件から626件になった。削除0、追加21、重複定義0。\n- 固定L2/L11の13節は、pin revisionとbytesが一致した。\n\n### review02所見（48件）の解消状況\n- **解消**：M3、M4、M6、M7、M8、M9、M11、M12、M13、M14、M15、M19。\n  - m1〜m3、m5、m6、m8、m9、m11〜m15、m17〜m22、m25〜m28（069分を除く）、m29（068分）。\n- **部分または未解消**：M1、M2、M5、M10、M16、M17、M18、m4、m7、m10、m16、m21、m23、m24、m28（069分）、m29（069分）。\n  - 残っている部分は、下の所見に移した。\n\n### 所見（Major 15／Minor 26）\n\n**reviewer側の開示**：下のM4、M7、M15は、review02で私が示した修正案から生じた。\n- review02 M5の案「CASE-05〜10と同じく『識別可能な入力source ownerとSECURITY』」は、SECURITYへの戻しに条件が付くと読める文だった。\n- review02 m7は、060の戻し先をINTELLIGENCE/OSへ寄せる案だった。\n- review02 m2は、050 AC-03からCIを外す案だった。このとき、固定L2:300の禁止句「CI成功だけで改善完了としない」を残すよう、修正案の中で分けて書かなかった。\n\n**Major**\n- **M1（059：CASE-30のoracleが、基準fixtureで発火しない。review02 M1の残り）**\n  - 根拠：FV:2611の変異は「初回単価だけで安価と認定し、総費用を無視」。CASE-01では総費用がそろっている。それなのにoracleは「総費用が揃わない限り安価認定を拒否」となっていて、基準fixtureでは拒否が発火しない。後半の「欠けたevidenceの提供元へ返す」も、この変異には当てはまらない。固定L2:422–423、L11:170。\n  - →oracleを「retry・救援・rework・人修正を含む総費用で判定し、初回単価だけによる安価認定を拒否する」にする。欠落時の戻し先の文は削る。\n- **M2（061：CASE-111/112が059の条件の複製になり、061の反例を覆っていない。review02 M2の残り）**\n  - 根拠：変異「取消/失敗runの品質不成立を低費用/短時間で相殺」は、059 CASE-07/08と同じ条件である。固定L2:465とL11:211が禁じるのは、漏洩・版不一致・author/judge混同で不成立になったrunを、平均点・低費用・速度で相殺すること。\n  - →変異を「漏洩（または版不一致）で無効化したrunの不成立を、低費用/短時間で相殺」にする。oracleは「無効/未評価のまま保持し、相殺しない」にする。\n- **M3（061：CASE-107/111/112で、正常baselineが一意でない）**\n  - 根拠：CASE-01（FV:2665）には、取消/失敗runが含まれていない。そのため変異が「失敗runを足す」と「削除・相殺する」の2点になる。Fable M18の残り。\n  - →「CASE-01に、状態を正しく保持した取消/失敗run 1件を加えた正常baseline」を明記し、変異を1点に絞る。\n- **M4（061：漏洩時のSECURITY戻しに条件が付き、固定L2:467より弱い。review02 M5の残り）**\n  - 根拠：CASE-03c（FV:2672）とCASE-05〜10（FV:3089–3094）は、「漏洩元を識別できる場合は入力source ownerおよびSECURITYへ。source不明はowner unknown」としている。固定L2:467は「漏洩は入力元とSECURITYへ」で、SECURITYへの戻しに条件を付けていない。\n  - →7行を、「SECURITYへは常に戻す。入力source ownerは識別できれば併せて戻し、できなければsource ownerだけunknown」にそろえる。\n- **M5（061：CASE-36を索引にした結果、戻し先が固定親にない「fixture source owner」になった）**\n  - 根拠：索引先のCASE-17（FV:3101）とCASE-89（FV:3313）が「fixture source owner」へ戻している。固定L2:467では、task/oracleの不明・不一致はtask/oracle ownerへ戻す。兄弟行CASE-34/35は「task契約owner」。\n  - →CASE-17とCASE-89の戻し先を「task契約owner」にする。\n- **M6（060：CASE-27がreceiptを2通りに分岐させていて、変異が一意でない）**\n  - 根拠：FV:3082のoracleは、欠けたreceiptが「proposal/use evidence側ならINTELLIGENCE、OSのreceiptならOS」と分岐している。そのためCASE-16（FV:3071）、CASE-28（FV:3083）と重なる。\n  - →CASE-27をCASE-16/28の索引にするか、receiptを1種類に固定する。\n- **M7（060：CASE-17の戻し先が、原因区分の範囲外になっている）**\n  - 根拠：固定L11:182では、支援者を独立reviewerにすると比較条件不成立になり、oracleは成功比較を出さないこと。FV:3072はこれをINTELLIGENCEへ戻している。しかしL2:454がINTELLIGENCEへ戻すのは、支援proposal・利用証拠が不足した場合である。oracleに「成功比較を出さない」もない。\n  - →oracleを「比較条件不成立とし成功比較を出さない」にする。戻し先は付けないか、L2:454の「comparison scope→LABO」にする。\n- **M8（064：CASE-35/36の相殺の向きが固定親と逆で、変異が2点ある。review02 M10の残り）**\n  - 根拠：固定L2:497とL11:238が禁じるのは、scope逸脱run・検証不能出力そのものを平均点で相殺すること。FV:3352/3353は逆に、scope外・検証不能runの高得点を使ってscope内の失敗を相殺していて、変異も2点ある。FR:1639の向きは正しい。\n  - →CASE-22と同じ形にする。「scope逸脱runを他runの高得点平均で相殺」と「検証不能runを他runの平均で相殺」をそれぞれ単独にする。戻し先は既存evaluation owner（L2:500）。\n- **M9（064：CASE-34が固定親にない判定を加えていて、AC帰属もずれている）**\n  - 根拠：FV:3351は、露出のないruntime差について「過去blind結果を拒否せず」とし、AC-03（不成立条件）へ帰属させている。固定L2-064とL11:239は、露出がある場合の非継承だけを定めている。review02 M8の方針（露出なしのruntime差には判定を付けない）にも反する。Fable m7も同じ指摘。\n  - →CASE-34を削除する。残す場合は、判定を持たない基準入力とし、oracleを「露出由来の非継承をruntime差だけから推定しない。継承の可否は本fixtureで判定しない」に限る。\n- **M10（063：CASE-13を索引にした結果、「運用後観測欠落」の単独fixtureが消えた。Fable M1）**\n  - 根拠：旧CASE-13（539c7476f FV:3160）は「target変更後の運用観測欠落だけ」の単独fixtureだった。いまのFV:3161は、CASE-27（条件変更後の再観測なし）とCASE-40（revision変更後の未再観測）の索引になっている。CASE-51は変更結果receiptの欠落である。固定L2:488は「運用後観測が欠けた予防候補は循環未完のまま保持」とし、L11:230は「登録失敗、target変更未完、運用後観測欠落をそれぞれ成功へ丸めず」と3つを分けて挙げている。\n  - 担当Bのagentは「観点はCASE-40/51に残る」と判定したが、Opus側の最終判断として、固定親の文言どおり単独fixtureを求める。\n  - →CASE-13を単独fixtureに戻す。「target変更・運用後の観測だけ欠落。その他はCASE-01と同一→循環未完のまま保持し、運用後観測の提供主体へ返す」とする。\n- **M11（070：AC-03がまだ固定L2-070より弱い。Fable M17の残り）**\n  - 根拠：FR:1705のAC-03とFR:1701の本文に、次の固定条項がない。\n    - 4値を合算して059 wall-clockを再定義せず、重複する待ちを按分しないこと（L2:566、L11:302）。\n    - rollback/Recoveryの結果記録が欠けたときに、発生なしとしないこと（L2:568。旧AC-03の「rollback receipt欠落」）。\n    - LABOがthreshold・rollback許可・ageからauthorityを作らないこと（L2:570/573、L11:306）。\n  - 対応するCASE（52/53/09、03f/03g、04a/15/51）は、すでにAC-03をtraceしている。\n  - →これらの句をAC-03へ追補する。\n- **M12（069：CASE-16が固定親にない戻し先を引用している）**\n  - 根拠：FV:3235は「固定L2-069で示す既存decision ownerへ返す」としている。しかし固定L2:552–559とL11:288–295に、decision ownerの記述はない。FR:1694の「固定親にない評価owner routeは追加しない」とも矛盾する。Fable m1も同じ指摘。\n  - →拒否だけにし、戻し先は「unknown（固定親はpriority判断ownerを特定しない）」に戻す。\n- **M13（070：CASE-16/17が1 CASEで複数の変異を束ねていて、戻し先も3通りに分岐している）**\n  - 根拠：FV:3249の変異「067 identity/receipt不在」は2つの要素を持つ。oracleは、OS・task/要求owner・LABOの3原因で分岐している。CASE-17（FV:3250、068）も同じ形。\n  - →欠落要素を1つに固定する（例：「067のAttempt identity receiptだけ不在→OS」）。predicate/oracle定義の欠落とLABO集計値の欠落は、別の単独CASEか索引にする。\n- **M14（068：索引化による過剰削除で、固定L11:284のoracleが弱くなった）**\n  - 根拠：旧CASE-16「記録sourceの捕捉完全性だけ不明→総数unknown、OS record ownerへ」は、L11:284とL2:549の単独fixtureだった。いまのFV:2936は03bの索引になっている。しかし03bのoracle（FV:2922）は「観測数を総数にしない」だけで、unknownにすることも戻し先もない。CASE-08（FV:3219）も03bの索引で、二重の索引になっている。\n  - →03bのoracleを「総数unknown、観測source/OS記録ownerへ戻す」に強める。または、旧CASE-16を主fixtureに戻す。\n- **M15（050：AC-03の補正で、固定L2:300の禁止句が消えた。Fable M2）**\n  - 根拠：FR-050節（FR:1578–1588）とBV/NG/NVの050行に、「CI」が1件もない。固定L2:300は「登録、candidate数、変更、CI成功だけで改善完了としない」、L11:100は反例「…CI成功だけで改善完了とする」を定めている。FV:2583のCASE-16は「CI成功だけで完了と主張」を検証し、AC-03をtraceしているが、AC-03に対応する句がない。\n  - →AC-03へ「CI成功だけで改善完了としない（CIは固定L2の段階列に含めず、独立の必須段階にしない）」を追補する。\n\n**Minor**\n- **m1（059：費用欠落の戻し先）**\n  - 03j/03k/03l/17/41〜43は、L2:429の「LABO-055」を落としている。\n  - 23〜26/39/40/44〜47は、費用だけの変異に「task/run receipt自体の欠落ならOS」という、起きない分岐を書いている。\n  - →L2:429の語にそろえ、起きない分岐を削る。\n- **m2（061：索引範囲の欠番）**：CASE-110は、どのcommitにも存在しない。それでもFR:1620、BV:65、NV:126、NG:168は「〜CASE-113」と書き、監査にも記録がない。→欠番を明記する。\n- **m3（FV:3022の基準規則）**\n  - 「部分循環fixture CASE-16〜19」に親IDがない。\n  - CASE-102とCASE-109の例外が書かれていない。\n  - 「互換別名」の語が定義されていない（Fable m6も同じ指摘）。\n  - →規則を補う。\n- **m4（061：CASE-108/109の戻し先と文言）**\n  - CASE-108に戻し先がない。L2:467では実行主体、FR:1617では許可そのものはSECURITY。\n  - CASE-109は、合成canaryが入力にあることを書いていない。\n  - →書き足す。\n- **m5（監査と本文の不一致・A担当分）**\n  - review02-m6の「CASE-102＝資格条件の負例」は、本文と合わない。\n  - m4の処置の参照にCASE-17/36がない。\n  - M5の訂正「SECURITYへ統一」は、本文では条件付き（M4）。\n- **m6（050：CASE-17の基準があいまい）**：「OS registration以降の変更後義務は未完」では、登録が済んでいるかを読み取れない。CASE-18との区別もあいまい。→登録済みかどうかを明記する。\n- **m7（061：表記と配置）**：CASE-102を、負例と呼ぶ箇所と、非適用fixtureと呼ぶ箇所がある。107〜113が、063〜070の行の間に散らばっている。→呼び方をそろえ、まとめて並べる。\n- **m8（063：観測入力の戻し先。review02 m10の残り）**\n  - CASE-28/29（FV:2748/2749）は「LABOへ戻す」のまま。同じ項目の欠落を扱うCASE-18/19は、source ownerへ戻している。L2:488は、観測の欠落を提供主体へ返すと定める。\n  - CASE-21/40には「識別不能はunknown」がない。\n  - →そろえる。\n- **m9（065：CASE-31/32/40の戻し先。review02 m16の残り）**\n  - CASE-31（manifest欠落）は、評価scope ownerへ戻している。L2:514で評価scope ownerへ戻すのは、blind/context分離の不成立だけである。\n  - CASE-32（fixture digest）の「fixture source owner」と、CASE-40（rubric digest）のHARNESS/要求ownerがそろっていない。L2:514とL11:259では、どちらもHARNESS/要求owner（Fable m8も同じ指摘）。\n  - →L2:514の区分にそろえる。\n- **m10（監査と本文の不一致・B担当分）**\n  - M11処置のrefsがCASE-40を指しているが、実際はCASE-34（Fable m5も同じ指摘）。\n  - M10処置が、新しく追加したCASE-35/36を指していない。\n  - M8処置のrefsに、CASE-34がない。\n  - M6処置の「AC-01として保持」は、実際にはAC-03からAC-01への変更。\n  - `root_final_additional_corrections` の「L2:484」は、正しくはL2:486（review02 M7の行番号も同じ誤り）。\n- **m11（NVとNGの索引の不一致）**：NV:127の063行だけが「既存negative」を落としている。→ほかの行と同じ形にする。\n- **m12（063：CASE-05の正常baselineが一意でない）**：AC-01の正常行のoracleに「backlog未登録は…OSへ返す」が入っている。これはCASE-06の変異と重なる。→backlogの句を外す。\n- **m13（065：AC-03の文言）**：FR:1650は「out-of-scope根拠欠落」のまま。→L11:249に合わせ、「対象外根拠を示さずゼロ扱い」にする。\n- **m14（補正・追加CASEに戻し先が書かれていない）**：063 CASE-53、065 CASE-36、066 CASE-34〜38/40/41に戻し先がない。とくに066 CASE-35（oracle欠落）は、HARNESS/要求ownerが抜けている。063 CASE-53の「recipe/evidence」は、1項目なのか2項目なのか読み分けられない。→戻し先を書き足し、063 CASE-53の項目数を明確にする。\n- **m15（064：CASE-24/33の基準文が自己矛盾している）**：「露出以外はCASE-01と同一」としながら、runtime revisionや出力形式も変わっている。→変更済みの前提を明記し、変異は露出の1点だけにする。\n- **m16（表記）**：063 03a/33/36/39と064 03dの「互換別名」「主索引」が、FV:3022の規定表記「索引（独立fixtureではない）」とそろっていない。→規定表記にそろえる。\n- **m17（070：単位差の戻し先と換算。review02 m23の残り）**：03b〜03dとCASE-63には戻し先がない。また、03b〜03dは「換算根拠を追加しない」、63は「換算根拠がなければ比較不能」で、方針が食い違う。固定L2:565は、単位の違う値を別fieldとするだけ。→05〜50と同じ文言にそろえる。\n- **m18（071：CASE-18の別名の説明が主fixtureと合わない。review02 m24の残り）**：CASE-18は03cを「source evidence missing/unknown状態」と説明している。しかし03cは「model revisionだけ更新→失効」である（Fable m2も同じ指摘）。→CASE-16の索引に変え、表記を規定どおりにする。\n- **m19（069：CASE-17の文言）**：「当該oracleの既存source provider」は固定L2-069にない語。後半には、この変異とは関係のない戻し先が書かれている。→「OSまたは識別できるsource owner、特定できなければunknown」にし、後半を削る。\n- **m20（068：CASE-18のAC帰属）**：「identity数は保持し結果stateだけunknown」が、FR:1679の本文にはあるが、AC-03（FR:1683）にない。→AC-03へ追補する。\n- **m21（069：CASE-29/30の戻し先）**：CASE-30に戻し先がない。CASE-29からは旧「OSへ返す」が消え、FR:1690と食い違っている。→L2:558に合わせ、「OSまたは該当source ownerへ」を書く。\n- **m22（069：索引の不整合。review02 m21の残り）**：CASE-19は「04aをidentity fieldに限定して参照」としているが、04aはidentityに限っていない。CASE-15は、すでに索引になった19の「各単独変異」を参照している。→19は単に04aの索引にし、15は04aを直接指す。\n- **m23（NGの索引範囲）**：NG:173の067行が「CASE-05〜CASE-22」のまま（Fable m3も同じ指摘）。→CASE-23にする。\n- **m24（069 traceの空白。review02 m29の残り）**：FR:1697「記録する。 未見」の余分な空白が残っている（Fable m4も同じ指摘）。\n- **m25（監査と本文の不一致・C担当分）**：`worker_dispositions` のm29、m23、m21、m24、m28の処置の記述が、本文と合わない。review02-M17の訂正記録も、「rollback receipt欠落」が戻っていないことに触れていない。→本文の補正後に、新しい時点の記録として追補する。\n- **m26（監査JSONにローカルの絶対path）**：`worker_dispositions.worktree` に `/home/tenni/.helix-worktrees/...` が入っている。secretではない。→外す。\n\nreviewer側でも、各修正案が上に挙げた固定L2/L11の行と矛盾しないことを照合した。M7は解釈に幅があるので、作成側が文言を決めた後に、もう一度固定親と照合する。\n\n### Fableの委任見解\nFable advisorは、同じHEADについて「**承認しない**」とした（Major 2、Minor 8）。\n- Fable M1とM2は、上のM10とM15として取り込んだ。\n- Fableの指摘のうち、M1・M2以外の8件は、Opus側の所見と重なる。\n- Fableは、review02のMajorの多くが処置済みであることを確かめた。「LABO gate authority invariant」の追記（FR:1624/1628）は固定L2:486とL11:230に根拠があり、新しい条項ではない、と確認している。\n\n### 判定\n- blockerは15件（M1〜M15）。Major 15、Minor 26。\n- Opus・Fableのどちらも承認していないので、委任承認は成立しない。\n- Readyは不可。merge admissionは本commentから生成しない。\n",
+  "formal_body_bytes": 19810,
+  "formal_body_sha256": "3801e6a735548125d2ac4c6ff847789cd2045824039d2e64b32d259436d8c93c",
+  "findings": [
+    {
+      "id": "M1",
+      "severity": "Major",
+      "formal_finding_raw": "- **M1（059：CASE-30のoracleが、基準fixtureで発火しない。review02 M1の残り）**\n  - 根拠：FV:2611の変異は「初回単価だけで安価と認定し、総費用を無視」。CASE-01では総費用がそろっている。それなのにoracleは「総費用が揃わない限り安価認定を拒否」となっていて、基準fixtureでは拒否が発火しない。後半の「欠けたevidenceの提供元へ返す」も、この変異には当てはまらない。固定L2:422–423、L11:170。\n  - →oracleを「retry・救援・rework・人修正を含む総費用で判定し、初回単価だけによる安価認定を拒否する」にする。欠落時の戻し先の文は削る。",
+      "formal_finding_raw_sha256": "14f3cfce2a374209c013c01ad4abc1e752dcf2a00d6f317ab049b48f431c93fe"
+    },
+    {
+      "id": "M2",
+      "severity": "Major",
+      "formal_finding_raw": "- **M2（061：CASE-111/112が059の条件の複製になり、061の反例を覆っていない。review02 M2の残り）**\n  - 根拠：変異「取消/失敗runの品質不成立を低費用/短時間で相殺」は、059 CASE-07/08と同じ条件である。固定L2:465とL11:211が禁じるのは、漏洩・版不一致・author/judge混同で不成立になったrunを、平均点・低費用・速度で相殺すること。\n  - →変異を「漏洩（または版不一致）で無効化したrunの不成立を、低費用/短時間で相殺」にする。oracleは「無効/未評価のまま保持し、相殺しない」にする。",
+      "formal_finding_raw_sha256": "86e4e244057f170a04cc3b3439902a5ff222616ded0c7666c955f08b974f214a"
+    },
+    {
+      "id": "M3",
+      "severity": "Major",
+      "formal_finding_raw": "- **M3（061：CASE-107/111/112で、正常baselineが一意でない）**\n  - 根拠：CASE-01（FV:2665）には、取消/失敗runが含まれていない。そのため変異が「失敗runを足す」と「削除・相殺する」の2点になる。Fable M18の残り。\n  - →「CASE-01に、状態を正しく保持した取消/失敗run 1件を加えた正常baseline」を明記し、変異を1点に絞る。",
+      "formal_finding_raw_sha256": "c6642d0ada2a6cf7748e49fd86ee7f50380f50b442d2d0c21d4d1cf14093eed7"
+    },
+    {
+      "id": "M4",
+      "severity": "Major",
+      "formal_finding_raw": "- **M4（061：漏洩時のSECURITY戻しに条件が付き、固定L2:467より弱い。review02 M5の残り）**\n  - 根拠：CASE-03c（FV:2672）とCASE-05〜10（FV:3089–3094）は、「漏洩元を識別できる場合は入力source ownerおよびSECURITYへ。source不明はowner unknown」としている。固定L2:467は「漏洩は入力元とSECURITYへ」で、SECURITYへの戻しに条件を付けていない。\n  - →7行を、「SECURITYへは常に戻す。入力source ownerは識別できれば併せて戻し、できなければsource ownerだけunknown」にそろえる。",
+      "formal_finding_raw_sha256": "e3e39b07c10f56fea406822665f98753386cfcdeb46aad432b0448f04217c677"
+    },
+    {
+      "id": "M5",
+      "severity": "Major",
+      "formal_finding_raw": "- **M5（061：CASE-36を索引にした結果、戻し先が固定親にない「fixture source owner」になった）**\n  - 根拠：索引先のCASE-17（FV:3101）とCASE-89（FV:3313）が「fixture source owner」へ戻している。固定L2:467では、task/oracleの不明・不一致はtask/oracle ownerへ戻す。兄弟行CASE-34/35は「task契約owner」。\n  - →CASE-17とCASE-89の戻し先を「task契約owner」にする。",
+      "formal_finding_raw_sha256": "695529bd75cd5f30f231174aa22ae543e440b4e5213d70f519c79fcd89490fbb"
+    },
+    {
+      "id": "M6",
+      "severity": "Major",
+      "formal_finding_raw": "- **M6（060：CASE-27がreceiptを2通りに分岐させていて、変異が一意でない）**\n  - 根拠：FV:3082のoracleは、欠けたreceiptが「proposal/use evidence側ならINTELLIGENCE、OSのreceiptならOS」と分岐している。そのためCASE-16（FV:3071）、CASE-28（FV:3083）と重なる。\n  - →CASE-27をCASE-16/28の索引にするか、receiptを1種類に固定する。",
+      "formal_finding_raw_sha256": "9506b336be22ceb32ec54a2fc5a899f7e1c9eb5757a63213eb87ae11d5600621"
+    },
+    {
+      "id": "M7",
+      "severity": "Major",
+      "formal_finding_raw": "- **M7（060：CASE-17の戻し先が、原因区分の範囲外になっている）**\n  - 根拠：固定L11:182では、支援者を独立reviewerにすると比較条件不成立になり、oracleは成功比較を出さないこと。FV:3072はこれをINTELLIGENCEへ戻している。しかしL2:454がINTELLIGENCEへ戻すのは、支援proposal・利用証拠が不足した場合である。oracleに「成功比較を出さない」もない。\n  - →oracleを「比較条件不成立とし成功比較を出さない」にする。戻し先は付けないか、L2:454の「comparison scope→LABO」にする。",
+      "formal_finding_raw_sha256": "bb661c4863210a011ff564b432051f36d6ce87c82bfa58c7e52cfdf01834072d"
+    },
+    {
+      "id": "M8",
+      "severity": "Major",
+      "formal_finding_raw": "- **M8（064：CASE-35/36の相殺の向きが固定親と逆で、変異が2点ある。review02 M10の残り）**\n  - 根拠：固定L2:497とL11:238が禁じるのは、scope逸脱run・検証不能出力そのものを平均点で相殺すること。FV:3352/3353は逆に、scope外・検証不能runの高得点を使ってscope内の失敗を相殺していて、変異も2点ある。FR:1639の向きは正しい。\n  - →CASE-22と同じ形にする。「scope逸脱runを他runの高得点平均で相殺」と「検証不能runを他runの平均で相殺」をそれぞれ単独にする。戻し先は既存evaluation owner（L2:500）。",
+      "formal_finding_raw_sha256": "759f9bb5c6ddf6fe08905a9b857204d28e80b5626f3f2dd6433a2aaa9fb9cd88"
+    },
+    {
+      "id": "M9",
+      "severity": "Major",
+      "formal_finding_raw": "- **M9（064：CASE-34が固定親にない判定を加えていて、AC帰属もずれている）**\n  - 根拠：FV:3351は、露出のないruntime差について「過去blind結果を拒否せず」とし、AC-03（不成立条件）へ帰属させている。固定L2-064とL11:239は、露出がある場合の非継承だけを定めている。review02 M8の方針（露出なしのruntime差には判定を付けない）にも反する。Fable m7も同じ指摘。\n  - →CASE-34を削除する。残す場合は、判定を持たない基準入力とし、oracleを「露出由来の非継承をruntime差だけから推定しない。継承の可否は本fixtureで判定しない」に限る。",
+      "formal_finding_raw_sha256": "4b60ddb19da31f9a17210cfef200ca26763c48b0000d2964398a4457e6647dd2"
+    },
+    {
+      "id": "M10",
+      "severity": "Major",
+      "formal_finding_raw": "- **M10（063：CASE-13を索引にした結果、「運用後観測欠落」の単独fixtureが消えた。Fable M1）**\n  - 根拠：旧CASE-13（539c7476f FV:3160）は「target変更後の運用観測欠落だけ」の単独fixtureだった。いまのFV:3161は、CASE-27（条件変更後の再観測なし）とCASE-40（revision変更後の未再観測）の索引になっている。CASE-51は変更結果receiptの欠落である。固定L2:488は「運用後観測が欠けた予防候補は循環未完のまま保持」とし、L11:230は「登録失敗、target変更未完、運用後観測欠落をそれぞれ成功へ丸めず」と3つを分けて挙げている。\n  - 担当Bのagentは「観点はCASE-40/51に残る」と判定したが、Opus側の最終判断として、固定親の文言どおり単独fixtureを求める。\n  - →CASE-13を単独fixtureに戻す。「target変更・運用後の観測だけ欠落。その他はCASE-01と同一→循環未完のまま保持し、運用後観測の提供主体へ返す」とする。",
+      "formal_finding_raw_sha256": "c4fadc958bdbce64b453ea6299eab9e103d3cce47c0dd4f9cb1203e0af37f3e0"
+    },
+    {
+      "id": "M11",
+      "severity": "Major",
+      "formal_finding_raw": "- **M11（070：AC-03がまだ固定L2-070より弱い。Fable M17の残り）**\n  - 根拠：FR:1705のAC-03とFR:1701の本文に、次の固定条項がない。\n    - 4値を合算して059 wall-clockを再定義せず、重複する待ちを按分しないこと（L2:566、L11:302）。\n    - rollback/Recoveryの結果記録が欠けたときに、発生なしとしないこと（L2:568。旧AC-03の「rollback receipt欠落」）。\n    - LABOがthreshold・rollback許可・ageからauthorityを作らないこと（L2:570/573、L11:306）。\n  - 対応するCASE（52/53/09、03f/03g、04a/15/51）は、すでにAC-03をtraceしている。\n  - →これらの句をAC-03へ追補する。",
+      "formal_finding_raw_sha256": "30f5e197908e9c8e4876075971afcdc32bbf7243472a09fc6be0466be94a34e1"
+    },
+    {
+      "id": "M12",
+      "severity": "Major",
+      "formal_finding_raw": "- **M12（069：CASE-16が固定親にない戻し先を引用している）**\n  - 根拠：FV:3235は「固定L2-069で示す既存decision ownerへ返す」としている。しかし固定L2:552–559とL11:288–295に、decision ownerの記述はない。FR:1694の「固定親にない評価owner routeは追加しない」とも矛盾する。Fable m1も同じ指摘。\n  - →拒否だけにし、戻し先は「unknown（固定親はpriority判断ownerを特定しない）」に戻す。",
+      "formal_finding_raw_sha256": "f0f4fd487e826d55adb2e0816eff977c19205933cec039f4f57834c228a90fce"
+    },
+    {
+      "id": "M13",
+      "severity": "Major",
+      "formal_finding_raw": "- **M13（070：CASE-16/17が1 CASEで複数の変異を束ねていて、戻し先も3通りに分岐している）**\n  - 根拠：FV:3249の変異「067 identity/receipt不在」は2つの要素を持つ。oracleは、OS・task/要求owner・LABOの3原因で分岐している。CASE-17（FV:3250、068）も同じ形。\n  - →欠落要素を1つに固定する（例：「067のAttempt identity receiptだけ不在→OS」）。predicate/oracle定義の欠落とLABO集計値の欠落は、別の単独CASEか索引にする。",
+      "formal_finding_raw_sha256": "5f4fa4d387889c886329618fc60c9e7d716059ccb8006ae692e8528eab4d647d"
+    },
+    {
+      "id": "M14",
+      "severity": "Major",
+      "formal_finding_raw": "- **M14（068：索引化による過剰削除で、固定L11:284のoracleが弱くなった）**\n  - 根拠：旧CASE-16「記録sourceの捕捉完全性だけ不明→総数unknown、OS record ownerへ」は、L11:284とL2:549の単独fixtureだった。いまのFV:2936は03bの索引になっている。しかし03bのoracle（FV:2922）は「観測数を総数にしない」だけで、unknownにすることも戻し先もない。CASE-08（FV:3219）も03bの索引で、二重の索引になっている。\n  - →03bのoracleを「総数unknown、観測source/OS記録ownerへ戻す」に強める。または、旧CASE-16を主fixtureに戻す。",
+      "formal_finding_raw_sha256": "3a511787d319b00dd4836ab382ebdbdc3a86116e14d3310dbee6d906e3d119eb"
+    },
+    {
+      "id": "M15",
+      "severity": "Major",
+      "formal_finding_raw": "- **M15（050：AC-03の補正で、固定L2:300の禁止句が消えた。Fable M2）**\n  - 根拠：FR-050節（FR:1578–1588）とBV/NG/NVの050行に、「CI」が1件もない。固定L2:300は「登録、candidate数、変更、CI成功だけで改善完了としない」、L11:100は反例「…CI成功だけで改善完了とする」を定めている。FV:2583のCASE-16は「CI成功だけで完了と主張」を検証し、AC-03をtraceしているが、AC-03に対応する句がない。\n  - →AC-03へ「CI成功だけで改善完了としない（CIは固定L2の段階列に含めず、独立の必須段階にしない）」を追補する。",
+      "formal_finding_raw_sha256": "cf1b441cad607c293c6b2076d559f56335332446f3422a84c7990fc84cfbf249"
+    },
+    {
+      "id": "m1",
+      "severity": "Minor",
+      "formal_finding_raw": "- **m1（059：費用欠落の戻し先）**\n  - 03j/03k/03l/17/41〜43は、L2:429の「LABO-055」を落としている。\n  - 23〜26/39/40/44〜47は、費用だけの変異に「task/run receipt自体の欠落ならOS」という、起きない分岐を書いている。\n  - →L2:429の語にそろえ、起きない分岐を削る。",
+      "formal_finding_raw_sha256": "1d8742ea3fa029c4f933f2f4df8949ea8fc2399bbd1b376448d8805a8ce6f576"
+    },
+    {
+      "id": "m2",
+      "severity": "Minor",
+      "formal_finding_raw": "- **m2（061：索引範囲の欠番）**：CASE-110は、どのcommitにも存在しない。それでもFR:1620、BV:65、NV:126、NG:168は「〜CASE-113」と書き、監査にも記録がない。→欠番を明記する。",
+      "formal_finding_raw_sha256": "5a6363f11f4f131997901ebebeae0a3e7119cc336cabd37de693badf448da814"
+    },
+    {
+      "id": "m3",
+      "severity": "Minor",
+      "formal_finding_raw": "- **m3（FV:3022の基準規則）**\n  - 「部分循環fixture CASE-16〜19」に親IDがない。\n  - CASE-102とCASE-109の例外が書かれていない。\n  - 「互換別名」の語が定義されていない（Fable m6も同じ指摘）。\n  - →規則を補う。",
+      "formal_finding_raw_sha256": "8c6bf53e04a65bda8f0c3d944e757170a80687df10198cf7ead9c678d80aac28"
+    },
+    {
+      "id": "m4",
+      "severity": "Minor",
+      "formal_finding_raw": "- **m4（061：CASE-108/109の戻し先と文言）**\n  - CASE-108に戻し先がない。L2:467では実行主体、FR:1617では許可そのものはSECURITY。\n  - CASE-109は、合成canaryが入力にあることを書いていない。\n  - →書き足す。",
+      "formal_finding_raw_sha256": "4d83d8e36dbb68cc222e3f9b49620212d25240a2d28271daad350448f07b0b9e"
+    },
+    {
+      "id": "m5",
+      "severity": "Minor",
+      "formal_finding_raw": "- **m5（監査と本文の不一致・A担当分）**\n  - review02-m6の「CASE-102＝資格条件の負例」は、本文と合わない。\n  - m4の処置の参照にCASE-17/36がない。\n  - M5の訂正「SECURITYへ統一」は、本文では条件付き（M4）。",
+      "formal_finding_raw_sha256": "07da594045023b3961871806fc49f544fe5dea05d4cf04f4d6c8319fc6ef96a8"
+    },
+    {
+      "id": "m6",
+      "severity": "Minor",
+      "formal_finding_raw": "- **m6（050：CASE-17の基準があいまい）**：「OS registration以降の変更後義務は未完」では、登録が済んでいるかを読み取れない。CASE-18との区別もあいまい。→登録済みかどうかを明記する。",
+      "formal_finding_raw_sha256": "fd2893ac30e0e793c32adac840c4c3e4ca9452fbaf7f98be6b0c683deff8ad51"
+    },
+    {
+      "id": "m7",
+      "severity": "Minor",
+      "formal_finding_raw": "- **m7（061：表記と配置）**：CASE-102を、負例と呼ぶ箇所と、非適用fixtureと呼ぶ箇所がある。107〜113が、063〜070の行の間に散らばっている。→呼び方をそろえ、まとめて並べる。",
+      "formal_finding_raw_sha256": "5a7b7231e92fa3ba96a595c93d53c009725907d6b1eefb42b8f5828b99c1d3b7"
+    },
+    {
+      "id": "m8",
+      "severity": "Minor",
+      "formal_finding_raw": "- **m8（063：観測入力の戻し先。review02 m10の残り）**\n  - CASE-28/29（FV:2748/2749）は「LABOへ戻す」のまま。同じ項目の欠落を扱うCASE-18/19は、source ownerへ戻している。L2:488は、観測の欠落を提供主体へ返すと定める。\n  - CASE-21/40には「識別不能はunknown」がない。\n  - →そろえる。",
+      "formal_finding_raw_sha256": "a498ff450ba5884dd3966d1be60cd9960021625f6083aa66be4301feb8e79146"
+    },
+    {
+      "id": "m9",
+      "severity": "Minor",
+      "formal_finding_raw": "- **m9（065：CASE-31/32/40の戻し先。review02 m16の残り）**\n  - CASE-31（manifest欠落）は、評価scope ownerへ戻している。L2:514で評価scope ownerへ戻すのは、blind/context分離の不成立だけである。\n  - CASE-32（fixture digest）の「fixture source owner」と、CASE-40（rubric digest）のHARNESS/要求ownerがそろっていない。L2:514とL11:259では、どちらもHARNESS/要求owner（Fable m8も同じ指摘）。\n  - →L2:514の区分にそろえる。",
+      "formal_finding_raw_sha256": "c7bf5ed03bc154e299c9ebd99cb6162dc7327275ed039fdb2824adbddb738daa"
+    },
+    {
+      "id": "m10",
+      "severity": "Minor",
+      "formal_finding_raw": "- **m10（監査と本文の不一致・B担当分）**\n  - M11処置のrefsがCASE-40を指しているが、実際はCASE-34（Fable m5も同じ指摘）。\n  - M10処置が、新しく追加したCASE-35/36を指していない。\n  - M8処置のrefsに、CASE-34がない。\n  - M6処置の「AC-01として保持」は、実際にはAC-03からAC-01への変更。\n  - `root_final_additional_corrections` の「L2:484」は、正しくはL2:486（review02 M7の行番号も同じ誤り）。",
+      "formal_finding_raw_sha256": "36e07cd0fafec7e80f93f3690f5acfa422c1f41da561870fa4f6afe82d07580f"
+    },
+    {
+      "id": "m11",
+      "severity": "Minor",
+      "formal_finding_raw": "- **m11（NVとNGの索引の不一致）**：NV:127の063行だけが「既存negative」を落としている。→ほかの行と同じ形にする。",
+      "formal_finding_raw_sha256": "73acff436cbc8a18587448f4eba1b814581a2b9d4238365b618676d0543eb786"
+    },
+    {
+      "id": "m12",
+      "severity": "Minor",
+      "formal_finding_raw": "- **m12（063：CASE-05の正常baselineが一意でない）**：AC-01の正常行のoracleに「backlog未登録は…OSへ返す」が入っている。これはCASE-06の変異と重なる。→backlogの句を外す。",
+      "formal_finding_raw_sha256": "8c2ee3c28f8c441327190a44aefeebdad38a0712407497136856c818f72e9603"
+    },
+    {
+      "id": "m13",
+      "severity": "Minor",
+      "formal_finding_raw": "- **m13（065：AC-03の文言）**：FR:1650は「out-of-scope根拠欠落」のまま。→L11:249に合わせ、「対象外根拠を示さずゼロ扱い」にする。",
+      "formal_finding_raw_sha256": "a14ea3acda2e3ab9fc9cf01b854cfca7b0a642b112b51bf0a4ec2ba4a62614ba"
+    },
+    {
+      "id": "m14",
+      "severity": "Minor",
+      "formal_finding_raw": "- **m14（補正・追加CASEに戻し先が書かれていない）**：063 CASE-53、065 CASE-36、066 CASE-34〜38/40/41に戻し先がない。とくに066 CASE-35（oracle欠落）は、HARNESS/要求ownerが抜けている。063 CASE-53の「recipe/evidence」は、1項目なのか2項目なのか読み分けられない。→戻し先を書き足し、063 CASE-53の項目数を明確にする。",
+      "formal_finding_raw_sha256": "66fe71b58528740f61943636bd7216c863351e8205e3bd7bc1defef89e5529e2"
+    },
+    {
+      "id": "m15",
+      "severity": "Minor",
+      "formal_finding_raw": "- **m15（064：CASE-24/33の基準文が自己矛盾している）**：「露出以外はCASE-01と同一」としながら、runtime revisionや出力形式も変わっている。→変更済みの前提を明記し、変異は露出の1点だけにする。",
+      "formal_finding_raw_sha256": "0e001a61f6a1c1345a43f478c8a2308ab6262db853e8fb245fa16850e3ff7ad5"
+    },
+    {
+      "id": "m16",
+      "severity": "Minor",
+      "formal_finding_raw": "- **m16（表記）**：063 03a/33/36/39と064 03dの「互換別名」「主索引」が、FV:3022の規定表記「索引（独立fixtureではない）」とそろっていない。→規定表記にそろえる。",
+      "formal_finding_raw_sha256": "5a48cb344a30cbad1fbb692e9504114c030c21560cc93784e6d2dde7c0585d59"
+    },
+    {
+      "id": "m17",
+      "severity": "Minor",
+      "formal_finding_raw": "- **m17（070：単位差の戻し先と換算。review02 m23の残り）**：03b〜03dとCASE-63には戻し先がない。また、03b〜03dは「換算根拠を追加しない」、63は「換算根拠がなければ比較不能」で、方針が食い違う。固定L2:565は、単位の違う値を別fieldとするだけ。→05〜50と同じ文言にそろえる。",
+      "formal_finding_raw_sha256": "9dd6ae75d805b9fdd25e79300235d6041d2c69041b91e195759d000396b27b05"
+    },
+    {
+      "id": "m18",
+      "severity": "Minor",
+      "formal_finding_raw": "- **m18（071：CASE-18の別名の説明が主fixtureと合わない。review02 m24の残り）**：CASE-18は03cを「source evidence missing/unknown状態」と説明している。しかし03cは「model revisionだけ更新→失効」である（Fable m2も同じ指摘）。→CASE-16の索引に変え、表記を規定どおりにする。",
+      "formal_finding_raw_sha256": "fd4c4f775b6093b38faac72c9e23a9f5a4cd87886220ff2d8126299d64021863"
+    },
+    {
+      "id": "m19",
+      "severity": "Minor",
+      "formal_finding_raw": "- **m19（069：CASE-17の文言）**：「当該oracleの既存source provider」は固定L2-069にない語。後半には、この変異とは関係のない戻し先が書かれている。→「OSまたは識別できるsource owner、特定できなければunknown」にし、後半を削る。",
+      "formal_finding_raw_sha256": "43104e4f954a8be638fb6fa2efd1d9519fea8a5618c88f6c639bc3686fe0ee11"
+    },
+    {
+      "id": "m20",
+      "severity": "Minor",
+      "formal_finding_raw": "- **m20（068：CASE-18のAC帰属）**：「identity数は保持し結果stateだけunknown」が、FR:1679の本文にはあるが、AC-03（FR:1683）にない。→AC-03へ追補する。",
+      "formal_finding_raw_sha256": "e9d93909bd6e7b950e290b95d99d7046e0fc58f40de9935116ad25f256933b67"
+    },
+    {
+      "id": "m21",
+      "severity": "Minor",
+      "formal_finding_raw": "- **m21（069：CASE-29/30の戻し先）**：CASE-30に戻し先がない。CASE-29からは旧「OSへ返す」が消え、FR:1690と食い違っている。→L2:558に合わせ、「OSまたは該当source ownerへ」を書く。",
+      "formal_finding_raw_sha256": "04019a94d74c087d4e7983b6eb879c8d143fd14669e9132cd14c56d12dd47ff5"
+    },
+    {
+      "id": "m22",
+      "severity": "Minor",
+      "formal_finding_raw": "- **m22（069：索引の不整合。review02 m21の残り）**：CASE-19は「04aをidentity fieldに限定して参照」としているが、04aはidentityに限っていない。CASE-15は、すでに索引になった19の「各単独変異」を参照している。→19は単に04aの索引にし、15は04aを直接指す。",
+      "formal_finding_raw_sha256": "66c67da14225c835e8cec09595477c0a34db9172eafdce1d182d7a539f6b8fa2"
+    },
+    {
+      "id": "m23",
+      "severity": "Minor",
+      "formal_finding_raw": "- **m23（NGの索引範囲）**：NG:173の067行が「CASE-05〜CASE-22」のまま（Fable m3も同じ指摘）。→CASE-23にする。",
+      "formal_finding_raw_sha256": "925d64763d1a8711fb5bbd2adf00a2118e2496dc6667e3c514fa0518883ccc6e"
+    },
+    {
+      "id": "m24",
+      "severity": "Minor",
+      "formal_finding_raw": "- **m24（069 traceの空白。review02 m29の残り）**：FR:1697「記録する。 未見」の余分な空白が残っている（Fable m4も同じ指摘）。",
+      "formal_finding_raw_sha256": "d986bec2d8258ee816b9eff518ee936714f661267acdaab67d4319ccfe24cf8a"
+    },
+    {
+      "id": "m25",
+      "severity": "Minor",
+      "formal_finding_raw": "- **m25（監査と本文の不一致・C担当分）**：`worker_dispositions` のm29、m23、m21、m24、m28の処置の記述が、本文と合わない。review02-M17の訂正記録も、「rollback receipt欠落」が戻っていないことに触れていない。→本文の補正後に、新しい時点の記録として追補する。",
+      "formal_finding_raw_sha256": "2fb8b61c3010575aa0849dec414964fe47c05cc540060692f0e45caed594c921"
+    },
+    {
+      "id": "m26",
+      "severity": "Minor",
+      "formal_finding_raw": "- **m26（監査JSONにローカルの絶対path）**：`worker_dispositions.worktree` に `/home/tenni/.helix-worktrees/...` が入っている。secretではない。→外す。",
+      "formal_finding_raw_sha256": "1d1d40e614cae1e068e61d6adf314dfb0ee671f9a87cfb9e8c7fb30409b4c869"
+    }
+  ],
+  "counts": {
+    "Major": 15,
+    "Minor": 26
+  }
+}
