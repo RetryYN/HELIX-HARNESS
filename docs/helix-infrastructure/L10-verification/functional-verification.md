@@ -958,7 +958,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 #### CASE-INFRA-011-S5-059 — 復旧境界 restore結果欠落
 
-- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `scope=infra-011-stage5-sim; environment=verification-sim; source_revision=sim-r1; backup={job=sim-success,artifact=backup-sim-01,source_revision=sim-r7}; restore={result=sim-verified,integrity=sim-ok,dependency_reconnect=sim-ok,startup=sim-ok,verification=sim-ok}; current_active_revision=sim-r8; eligible_rollback_target=sim-r7; os_operation_request=none`。
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baselineはCASE-INFRA-011-S5-031 normal fixture。current_active_revision=sim-r8、eligible_rollback_target=sim-r7、os_operation_request=noneは固定する。
 - 変異: `restore.result`だけをmissingへ変更。
 - 入力: baseline=CASE-INFRA-011-S5-031.normal; current_active_revision=sim-r8; eligible_rollback_target=sim-r7; os_operation_request=none
 - oracle: backupとrestoreを別判定しrestore成功へ昇格しない。current active revisionとeligible rollback targetを保持する。recovery design ownerへ戻す。OS work/change ownerはOS操作要求が本fixtureにないため非適用。
@@ -967,7 +967,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 #### CASE-INFRA-011-S5-060 — 復旧境界 restore integrity失敗
 
-- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `scope=infra-011-stage5-sim; environment=verification-sim; source_revision=sim-r1; backup={job=sim-success,artifact=backup-sim-01,source_revision=sim-r7}; restore={result=sim-verified,integrity=sim-ok,dependency_reconnect=sim-ok,startup=sim-ok,verification=sim-ok}; current_active_revision=sim-r8; eligible_rollback_target=sim-r7; os_operation_request=none`。
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baselineはCASE-INFRA-011-S5-031 normal fixture。current_active_revision=sim-r8、eligible_rollback_target=sim-r7、os_operation_request=noneは固定する。
 - 変異: `restore.integrity`だけをsim-failedへ変更。
 - 入力: baseline=CASE-INFRA-011-S5-031.normal; current_active_revision=sim-r8; eligible_rollback_target=sim-r7; os_operation_request=none
 - oracle: restore失敗を保持し成功/rollback完了にしない。current active revisionとeligible rollback targetを保持する。recovery design ownerへ戻す。OS work/change ownerはOS操作要求がないため非適用。
@@ -976,7 +976,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 #### CASE-INFRA-011-S5-061 — 復旧境界 dependency reconnect未観測
 
-- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `scope=infra-011-stage5-sim; environment=verification-sim; source_revision=sim-r1; backup={job=sim-success,artifact=backup-sim-01,source_revision=sim-r7}; restore={result=sim-verified,integrity=sim-ok,dependency_reconnect=sim-ok,startup=sim-ok,verification=sim-ok}; current_active_revision=sim-r8; eligible_rollback_target=sim-r7; os_operation_request=none`。
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baselineはCASE-INFRA-011-S5-031 normal fixture。current_active_revision=sim-r8、eligible_rollback_target=sim-r7、os_operation_request=noneは固定する。
 - 変異: `restore.dependency_reconnect`だけをunobservedへ変更。
 - 入力: baseline=CASE-INFRA-011-S5-031.normal; current_active_revision=sim-r8; eligible_rollback_target=sim-r7; os_operation_request=none
 - oracle: unobservedを成功へ丸めずrestore/rebuild未完とし、current active revisionとeligible rollback targetを保持する。OS work/change ownerはOS操作要求がないため非適用。
@@ -985,7 +985,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 #### CASE-INFRA-011-S5-062 — 復旧境界 independent path欠落
 
-- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `scope=infra-011-stage5-sim; environment=verification-sim; source_revision=sim-r1; backup=sim-success; restore=sim-verified; independent_path=sim-available; security_authority=sim-authorized; worker_contract=sim-current; os_state=down-sim; os_ticket=none`。
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baselineはCASE-INFRA-011-S5-064 normal fixture。
 - 変異: `independent_path`だけをmissingへ変更。
 - 入力: baseline=CASE-INFRA-011-S5-064.normal
 - oracle: restoreからbootstrap/recoveryを推定しない。稼働版と未完義務を保持しrecoveryを保留する。
@@ -994,7 +994,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 #### CASE-INFRA-011-S5-063 — 復旧境界 rebuild startup失敗
 
-- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `scope=infra-011-stage5-sim; environment=verification-sim; source_revision=sim-r1; rebuild={inputs=complete-sim,dependency_reconnect=sim-ok,startup_verification=sim-ok,result=sim-verified}; current_active_revision=sim-r8; eligible_rollback_target=sim-r7`。
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baselineはCASE-INFRA-011-S5-052 normal fixture。current_active_revision=sim-r8、eligible_rollback_target=sim-r7は固定する。
 - 変異: `rebuild.startup_verification`だけをsim-failedへ変更。
 - 入力: baseline=CASE-INFRA-011-S5-052.normal; current_active_revision=sim-r8; eligible_rollback_target=sim-r7
 - oracle: rebuildabilityを別判定で失敗として部分結果、current active revision、eligible rollback target、未完義務を保持する。
@@ -1021,7 +1021,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 
 #### CASE-INFRA-011-S5-066 — 復旧境界 復旧後operation同期欠落
 
-- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `scope=infra-011-stage5-sim; environment=verification-sim; source_revision=sim-r1; os_state=up-sim; recovery.result=sim-verified; operation_sync=sim-recorded`。
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baselineはCASE-INFRA-011-S5-058 normal fixture。
 - 変異: `after_os_up_sync`だけをmissingへ変更。
 - 入力: baseline=CASE-INFRA-011-S5-058.normal; after_os_up_sync=missing
 - oracle: recovery resultは保持するがconnection/compositeは未完とし、未完同期を消さない。
