@@ -135,3 +135,9 @@
 | `HELIXLABO-L2-067` | 独立outcome/KPIなし。既存predicate/oracleに基づくcandidate結果と同一Attempt内修復の観測証拠だけ。 | `LABO-067-AC-01/02/03`; `L10-LABO-067-CASE-01/02/03a–g/04a–b/05–23/24–38` |
 
 これは未実行design索引であり、実business outcomeを示さない。
+
+## Stage 5 — HELIX-LABO L3 業務要件候補 — HELIXLABO-L2-069
+
+独立の業務成果や採否判定を追加しない。L2-069が要求するticket返却・再発行後の成立状況を、機能要件FR-01の評価candidateとして観測可能にする。業務レベルで確認するのは、比較条件と未評価状態の識別、元closureの保持、OS等の既存責務境界である。評価結果はticket採択、配置、発行、権限、実行、完了を意味しない。
+
+**旧source対応**：旧ticket sourceのclosure保持・追補assessmentを意味再導出し、旧feedbackの件数低下だけを品質証明にしない境界を保持する。別の業務成果、因果/window/severity閾値は起こさない。
