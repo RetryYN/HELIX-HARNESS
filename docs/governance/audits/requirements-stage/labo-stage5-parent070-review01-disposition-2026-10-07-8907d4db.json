@@ -1,0 +1,1642 @@
+{
+  "record_type": "LABO-070 review01 post-body immutable audit",
+  "status": "postbody-static-verification-only",
+  "scope": {
+    "worktree": "/home/tenni/.helix-worktrees/l3-labo-stage5-parent070",
+    "branch": "l3-labo-stage5-parent070",
+    "base": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+    "body_commit": "8907d4dbb87f0335cd06afd106a37d85575ca0df",
+    "canonical_audit_edit": false
+  },
+  "integration_checkpoint": {
+    "path": "/tmp/root-labo070-review01-integration-checkpoint.json",
+    "candidate_path": "/tmp/labo070-review01-m1m2-fix-candidate-worker-v2.json",
+    "candidate_json_sha256_actual": "e503b21717dd366d5f3ed75e1b25a134a22f74319c48a47d0955e430e541ea19",
+    "candidate_sha256_recorded": "e503b21717dd366d5f3ed75e1b25a134a22f74319c48a47d0955e430e541ea19",
+    "root_extra": "CASE99重複返却文のみ削除",
+    "actual_full_document_pins": [
+      {
+        "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+        "sha256": "8afba7c65ea17a99577e0f2aecffcf28ba6f83f841d5e0f7de89a012b2af733c",
+        "bytes": 322100
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+        "sha256": "c889da99e33be3bdd8f17cbdfdca27be3a6cc093fe685dbf5ddc3e22ea0f7362",
+        "bytes": 18847
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+        "sha256": "f00cf1a5b36c64586ff68d3d0cfdcf5fd9d274d8e2cba9fda13126c730d8257f",
+        "bytes": 74166
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "sha256": "a69bf5b85474cf872c83381db0c7602dbc38b4cccdd5d5809b85585fb93f503d",
+        "bytes": 544485
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/business-verification.md",
+        "sha256": "33459eb91b4c057bcb4ed31a5b333409076aef368d880ac36422fdff283f52f8",
+        "bytes": 17673
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+        "sha256": "2bb2875de91fd6a0000fce0a36f541bb1b72fa15cd4266e7c67f2029b3899999",
+        "bytes": 64953
+      }
+    ]
+  },
+  "six_document_pins_actual": [
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "full_document": {
+        "revision": "8907d4dbb87f0335cd06afd106a37d85575ca0df",
+        "sha256": "8afba7c65ea17a99577e0f2aecffcf28ba6f83f841d5e0f7de89a012b2af733c",
+        "utf8_bytes": 322100,
+        "lf_count": 1892,
+        "cr_count": 0,
+        "ends_with_lf": true
+      },
+      "base_prefix": {
+        "revision": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+        "base_full_sha256": "24dff56c5e90120360fe446c38e1e3b4b4b58db569fa8eb40d2be8b338161426",
+        "base_full_utf8_bytes": 314755,
+        "base_lf_count": 1858,
+        "base_cr_count": 0,
+        "actual_prefix_sha256": "bc98d31fe6930feab7cf495910ddad472d0d36ba72d684f2225423f4d938babd",
+        "actual_prefix_utf8_bytes": 314756,
+        "actual_prefix_lf_count": 1859,
+        "actual_prefix_matches_base_plus_one_separator_lf": true
+      },
+      "stage5_suffix": {
+        "sha256": "036c4e5af615ac70be145a30b460b4e89916629118f7eb9362ce7b2834a5a202",
+        "utf8_bytes": 7344,
+        "lf_count": 33,
+        "cr_count": 0,
+        "ends_with_lf": true,
+        "text": "## Stage 5 — HELIXLABO-L2-070 補助運用telemetryとAttempt scorecard併記\n\n固定親はPO live26の49行が採択した `MPR-RC-HELIXLABO-L2-070-001`。source revision `ea6f756f96a7370de78e412d737c7a7ed472114a` のL2:561–574 SHA `07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533`、L11:297–307 SHA `c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1`をraw-LFで照合した。旧候補が参照した0abb2894の同範囲とbytesは一致し、採択状態はPO記録で確認する。\n\n### LABO-070-FR-01 — 補助運用telemetryとAttempt scorecard併記\n\nHELIXLABO-L1-005をprimary、L1-011をcontextとして、旧source line 399から固定親が選択した9 atomに限るscope付きscorecardを候補として提示する。既存のL2-059比較basis、L2-006品質評価、L2-001 provenanceを置換しない。対象task/scope、対象revision、window、source identity/revision、eventまたはresult receiptを各値に結び、条件が揃わない値はunknown/未評価/unavailableとする。異なるscope/revisionを混ぜず、欠落を0や成功へ変換しない。\n\n1. **4種のduration**：queue wait、active time、review wait、Human waitを別々のfieldで提示する。各durationは適用sourceの開始・終了event、clock source、unit、occurred_at/observed_at、windowを保持する。境界が不明・無効ならunknown/invalidとする。重なる待ち時間を排他的と推定して按分せず、4値の合計でL2-059のend-to-end wall-clockを再定義しない。\n2. **escaped defects**：既存の要求/受入ownerが適用するquality oracleとrevisionを用い、そのscopeで受入済みの対象へ関係付けられた受入境界後の検証済みdefect eventだけを観測値として示す。oracle、対象scope、受入境界、window、threshold、severity、合否を新設しない。oracle/event/relation/母数/追跡完全性が確かめられない場合は確定count/rateを出さずunknown/未評価とする。L2-006のquality結果と同一視しない。\n3. **rollback/Recovery**：許可済みsourceのevent identity、scope、発生/結果state、receiptのみを観測する。費用・時間はL2-059の同一event/receipt参照に従い二重算入しない。欠落は「発生なし」でなくunknown。観測結果からLABOがrollbackを開始/決定したり、実行・復旧権限を作ったりしない。\n4. **observer overhead**：計測・観測に直接帰属する実測資源とsource receiptをtask workから分けて示し、sourceの定義・単位を保つ。根拠のない推計や換算、未観測値の0扱いをしない。L2-059費用への算入は同じreceipt参照で一度だけとする。\n5. **evidence freshness**：L2-001の既存source identity/revision/provenanceを保ち、sourceが持つeffective/occurred時刻とobserved時刻との差を観測値として示す。時刻欠落/不整合はage unknown/invalid。ageからfresh/staleの閾値、期限、適格性、採否、実験許可を作らない。\n6. **Attempt系との併記**：scopeに適用可能なら、L2-067のfirst-eligible resultと同一Attempt内repair rounds、L2-068のdistinct total Attempt countを同じscorecardに別fieldとして置く。各定義revision/grain/identity/scope/receiptを保ち、換算・合算・代替しない。対象候補またはreceipt不在・不採択・scope不一致なら理由付きunavailable/unknownとし、併記完了を主張しない。070から067/068の採択を生成しない。\n7. **既存指標境界**：telemetryを旧12指標へsilent renameせずidentity/version対応を割り当てない。coverage atomのtarget/denominator/oracle等、固定親が未解決としたatomはsource holdingに残す。\n\n### 受入条件候補\n\n- **LABO-070-AC-01 — 出典付きscorecard**：9 selected atomの適用可能な値を明示scope/revision/window/event-or-result receiptに結ぶ。各fieldの定義・単位・identityを保持し、出力値とsource receiptまたはsource-defined計算値の一致をL10正常fixtureで照合する。対象revisionとsource identity/revisionの一致はCASE-01およびCASE-99–101で確認する。\n- **LABO-070-AC-02 — 正常な異単位field**：source定義に一致する異なるunitのfieldは別fieldのまま表示し、相互換算・合算しない。\n- **LABO-070-AC-03 — 欠落・不一致の隔離**：必要event/clock/unit/time/source/revision/oracle/scope/relation/receiptが欠落・不明・矛盾・staleなら該当fieldだけunknown/invalid/unavailableとし、0・成功・不存在に置き換えない。他の根拠あるfieldは別に保持する。\n- **LABO-070-AC-04 — 固定親の境界保持**：4 durationは独立、escaped defectは既存oracleと受入済対象/受入境界後の検証済みrelationに限定、rollbackは観測だけ、overheadは直接測定だけ、freshnessはage観測だけ。新window/threshold/severity/expiry/decisionを作らない。 出力生成境界はL10 CASE-85–93およびCASE-96–98で出力fieldごとに単独確認する。\n- **LABO-070-AC-05 — Attempt co-presentation**：scope適用可能な067/068 fieldを元定義とreceiptどおり独立表示し、不在・不一致のfieldは理由付きunavailable/unknownにする。換算・合算・代替で完全scorecardに見せない。\n\n### 旧sourceとの対応・限界\n\n旧`LEGACY-ASSET-3A15E5645D2D2A59DFF5` の `execution-ticket-requirements.md:399`を意味再導出の起点とし、固定親が選んだ9 atomだけを保持する。旧runtime/storage/testをbyte再利用しない。sourceの別receiptにある067/068関連3 atom、source holdingの2 unresolved atom、行399の他3 atom・列挙外tail・隣接行・旧candidate全体のsuccessor/closureを主張しない。旧12指標、旧scorecard、旧severity/thresholdを現行へ移さない。\n\n### 責務区分と出力境界\n\n許可済みsource event/assignmentは既存source owner（OS等）の責務区分、quality/acceptance oracleは既存要求owner、data/execution permissionは適用されるSECURITY境界に従う。固定親が定める責務区分を保ち、individual source/owner identityが不明な場合はそのidentityだけをunknownとして別に保持する。observer overheadの直接計測資源またはreceiptが不足する場合、値はunknownとして、その資源・receiptを提供する既存source owner責務区分へ無条件で返す。個別source/owner identityが不明なら、そのidentityだけをunknownとして別に保持し、責務区分を消さず、新ownerも作らない。CASE-10/15/19のように入力が有効で070自身の出力が誤る場合、入力側sourceへ返却せず当該出力処理を訂正する。\n\nCASE-85–93およびCASE-96–98は、source event・oracle・threshold・計測許可・要求採択・実験/run許可・Worker assignment・rollback permission/execution・L3承認・requirement completionの出力生成を一つずつ拒否し、他の根拠あるscorecard fieldと既存状態を保つ。これらのCASEは固定親が禁じる生成の確認であり、権限/decisionを新設しない。revision照合のCASE-99–101はAC-01のscorecard一致確認であり、権限生成fixtureではない。\n"
+      },
+      "checkpoint_match": true
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "full_document": {
+        "revision": "8907d4dbb87f0335cd06afd106a37d85575ca0df",
+        "sha256": "c889da99e33be3bdd8f17cbdfdca27be3a6cc093fe685dbf5ddc3e22ea0f7362",
+        "utf8_bytes": 18847,
+        "lf_count": 153,
+        "cr_count": 0,
+        "ends_with_lf": true
+      },
+      "base_prefix": {
+        "revision": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+        "base_full_sha256": "6eb0e6094202a519d34b84670c7c9fa9143ced0c8e25883bddc22c9a395feae7",
+        "base_full_utf8_bytes": 17356,
+        "base_lf_count": 143,
+        "base_cr_count": 0,
+        "actual_prefix_sha256": "b43af039eb0a27cb08bddbbd6e7b8789d477bdc3b15465425704013ab735de64",
+        "actual_prefix_utf8_bytes": 17357,
+        "actual_prefix_lf_count": 144,
+        "actual_prefix_matches_base_plus_one_separator_lf": true
+      },
+      "stage5_suffix": {
+        "sha256": "c665f7e9296aed2dd50944ed75ae51734d0837ca759f3b4955f5f6284fa4d967",
+        "utf8_bytes": 1490,
+        "lf_count": 9,
+        "cr_count": 0,
+        "ends_with_lf": true,
+        "text": "## Stage 5 — HELIXLABO-L2-070 補助運用telemetryとAttempt scorecard併記\n\n固定親はPO live26の49行が採択した `MPR-RC-HELIXLABO-L2-070-001`。source revision `ea6f756f96a7370de78e412d737c7a7ed472114a` のL2:561–574 SHA `07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533`、L11:297–307 SHA `c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1`をraw-LFで照合した。旧候補が参照した0abb2894の同範囲とbytesは一致し、採択状態はPO記録で確認する。\n\n070が加える業務面の提供は、既存task/scopeに属する補助telemetryを、出典と適用範囲を保つscorecardとして観測可能にすることに限る。既存12指標・L2-059の比較basisやL2-006のquality評価を変更せず、採否・実験・rollback・実行許可を行わない。4種の待ち時間、escaped defect、rollback/Recovery、observer overhead、evidence freshness、067/068値を区別して表示できることを機能要件とL10で確認する。\n\n旧source line 399のselected telemetry/coshow atomsを意味再導出する。旧HIL scorecard全体や旧consumerの業務成果を移管・採択したとは扱わない。\n\nscorecardからsource event、oracle/threshold、計測または実行許可、要求採択、Worker assignment、rollback操作、L3承認、完了を生成しない。これら固定親の境界は、独立した業務成果を追加せずL10の単独出力fixtureで照合する。\n"
+      },
+      "checkpoint_match": true
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "full_document": {
+        "revision": "8907d4dbb87f0335cd06afd106a37d85575ca0df",
+        "sha256": "f00cf1a5b36c64586ff68d3d0cfdcf5fd9d274d8e2cba9fda13126c730d8257f",
+        "utf8_bytes": 74166,
+        "lf_count": 271,
+        "cr_count": 0,
+        "ends_with_lf": true
+      },
+      "base_prefix": {
+        "revision": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+        "base_full_sha256": "e39aadaf35521a2c9c49001581c2d6e7770156749a0705666105b579b4387be7",
+        "base_full_utf8_bytes": 70949,
+        "base_lf_count": 254,
+        "base_cr_count": 0,
+        "actual_prefix_sha256": "566456959d5cd9a993c9caf5ea0c1231f7ec332406ba853ba11933abca8a7743",
+        "actual_prefix_utf8_bytes": 70950,
+        "actual_prefix_lf_count": 255,
+        "actual_prefix_matches_base_plus_one_separator_lf": true
+      },
+      "stage5_suffix": {
+        "sha256": "645295d1e8bc7b226f8d07df38592a3d911df7764a44b06da790c2bebaf9ffac",
+        "utf8_bytes": 3216,
+        "lf_count": 16,
+        "cr_count": 0,
+        "ends_with_lf": true,
+        "text": "## Stage 5 — HELIXLABO-L2-070 補助運用telemetryとAttempt scorecard併記\n\n固定親はPO live26の49行が採択した `MPR-RC-HELIXLABO-L2-070-001`。source revision `ea6f756f96a7370de78e412d737c7a7ed472114a` のL2:561–574 SHA `07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533`、L11:297–307 SHA `c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1`をraw-LFで照合した。旧候補が参照した0abb2894の同範囲とbytesは一致し、採択状態はPO記録で確認する。\n\n根拠付きの測定設計候補。数値、期間、severityの新閾値、性能SLOは設定しない。parameterごとのPO承認を求めない。\n\n| 項目 | 測定対象 | 根拠・比較 | 限界 |\n|---|---|---|---|\n| duration fidelity | queue wait / active time / review wait / Human waitを個別値として保持。source-defined start/end event, clock, unit, occurred/observed time, scope/windowを追跡。 | 固定L2の4 duration clauses、FV CASE-01、05–09、23–50、52–53、63。 | 重複排他の推定、4値加算、059 wall-clock再定義なし。 |\n| escaped-defect fidelity | 許可済みoracle/revision、受入済対象/scope、受入境界後のverified event relation、適用母数/追跡完全性を保持。 | 固定L2 escaped-defects節、FV CASE-01、03e、10–11、56–58、64。CASE-10は有効oracleのままの出力誤り拒否、CASE-56–58は入力不足時の既存責務区分への返却を個別照合。 | 新oracle/scope/window/severity/threshold/合否なし。 |\n| rollback/Recovery fidelity | source event/result receipt、identity/scope/stateを保持し、059費用・時間とのreceipt参照を一回に保つ。 | 固定L2 rollback clause、FV CASE-03f/g、59–62、70、85、90–91。missing source inputは既存event/assignment責務区分へ返し、CASE-85/90/91は出力権限を個別拒否。 | 観測から操作・trigger permissionを生成しない。 |\n| observer overhead | source定義に従った直接測定資源をtask workから区分。 | 固定L2 overhead clause、FV CASE-03h、12、71。 | unknownを0や推計値にしない。 |\n| evidence freshness | sourceの有効時刻と観測時刻の差だけを値として提示。 | 固定L2 freshness clause、FV CASE-03i、14–15。CASE-15は有効入力からの誤ったauthority出力を拒否し、070出力処理を訂正。 | ageからexpiry/admission/permissionを作らない。 |\n| metric identity | 067/068の定義revision/receiptと070 field identityを保持。 | 固定L2 Attempt co-presentationと既存12 metric境界、FV CASE-16–21、65–73。CASE-19の有効067/068 inputからの換算出力を拒否し、CASE-68はtotal countとresult state双方をunknownにする。 | 065 retry等への換算・合算・代替、旧12指標へのsilent renameなし。 |\n\nauthority境界の単独出力field確認はFV CASE-85–93/96–98に対応する。target revision/source revisionの一致確認はFV CASE-99–101に対応する。性能・保持・監視周期を数値化する根拠は固定parentにない。必要な値が生じたら既存source定義と対の測定候補を記録し、閾値を推測で追加しない。\n"
+      },
+      "checkpoint_match": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "full_document": {
+        "revision": "8907d4dbb87f0335cd06afd106a37d85575ca0df",
+        "sha256": "a69bf5b85474cf872c83381db0c7602dbc38b4cccdd5d5809b85585fb93f503d",
+        "utf8_bytes": 544485,
+        "lf_count": 3407,
+        "cr_count": 0,
+        "ends_with_lf": false
+      },
+      "base_prefix": {
+        "revision": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+        "base_full_sha256": "2d0d893deb6ce95836b5b1b1f3b6a01511db36ce956a881788b5de1c26f5783b",
+        "base_full_utf8_bytes": 487997,
+        "base_lf_count": 3296,
+        "base_cr_count": 0,
+        "actual_prefix_sha256": "7d0567cf852a3b5b6218e808b89f74cebe5e8eaea61bf42a8fba8de3dde78b6c",
+        "actual_prefix_utf8_bytes": 487998,
+        "actual_prefix_lf_count": 3297,
+        "actual_prefix_matches_base_plus_one_separator_lf": true
+      },
+      "stage5_suffix": {
+        "sha256": "4f954af6f7c681d52f16fa804d09511f4a3b593e3ff4a7fabfa60066390c771a",
+        "utf8_bytes": 56487,
+        "lf_count": 110,
+        "cr_count": 0,
+        "ends_with_lf": false,
+        "text": "## Stage 5 — HELIXLABO-L2-070 補助運用telemetryとAttempt scorecard併記\n\n固定親はPO live26の49行が採択した `MPR-RC-HELIXLABO-L2-070-001`。source revision `ea6f756f96a7370de78e412d737c7a7ed472114a` のL2:561–574 SHA `07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533`、L11:297–307 SHA `c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1`をraw-LFで照合した。旧候補が参照した0abb2894の同範囲とbytesは一致し、採択状態はPO記録で確認する。\n\n対象は固定L2/L11が選択した9 atomに限る。旧FVの84 literalと各raw hashは添付JSONの `old_84_case_literal_audit` に保全し、本文の現行normative定義は旧84 IDを意味再導出した84行、CASE-85、およびCASE-86..101の16行からなる101行の6列表とする。raw literalは現行oracle、実行結果、現行完全性の証拠として扱わない。Index/alias行は独立変異として二重計上しない。行数・ID保持は意味完全性、独立性、実行合格または承認を示さない。\n\n| CASE ID | AC ID | baseline | single mutation / normal setup | expected oracle / responsibility return | 範囲・制限 |\n|---|---|---|---|---|---|\n| `L10-LABO-070-CASE-01` | `LABO-070-AC-01` | 正常scorecard入力B0。全行の対象revisionは選択値T0で一致し、各source identity/revisionは有効receiptの実値である。9 selected atomの適用可能fieldへsource receiptと定義revisionを与え、各時刻・unit・identity・scope/window・event/result値を固定する。067/068値は独立元receiptに束縛する。異unitは各source定義と一致する別field。適用不可fieldは別正常profileで原因を一つずつ固定する。 | なし（正常/未見正常の入力） | 各出力値をsource receiptの値と照合する。各行の対象revisionは入力T0と完全一致し、各source identity/revisionも対応するreceiptの実値と完全一致する。revisionを省略・混在・別値へ置換しない。4 durationはsource-defined同clockの開始/終了時刻差を各unitのまま計算した期待値と一致し、event identity/clock/unit/occurred_at/observed_at/scope/windowも元sourceと一致する。escaped-defect観測は既存oracle/revisionで検証済みの受入境界後event集合とrelationに一致し、適用母数/追跡完全性の範囲だけを数える。rollback/Recoveryのidentity/scope/発生・結果stateは元event receiptと一致する。overheadは直接計測資源/receiptの値・定義・単位をそのまま保持し、ageはsource時刻とobserved時刻の差に一致する。適用可能な067 first-eligible/repair-round値と068 count/stateは元定義revision/identity/grain/scope/receiptの値にそれぞれ一致する。067/068不在の別正常profileでは各理由が入力の不採択/不在/scope不一致条件に対応することを照合し、そのfieldのみunavailable/unknownにする。059費用/時間の同一receiptは一度だけ算入し、換算・合算・代替をしない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-02` | `LABO-070-AC-02` | CASE-01同様の正常scorecard入力。新source eventのうち契約/単位/時刻が適用できるatomだけ計測し、残りはunknown/unavailableとする。 | なし（正常/未見正常の入力） | 適用可能なfieldは定義元・scope/window・unit・receiptへ結び、適用できないfieldはunknown/unavailableとする。換算・合算しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-03a` | `LABO-070-AC-03` | 参照先主fixtureの入力をそのまま使用。 | なし（索引/alias。新たな変異を加えない） | CASE-06の主fixtureを参照する索引であり、独立変異を追加しない。主fixtureのoracleを確認し、本行を二重計上しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-03b` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | active timeの実測unitだけが固定sourceのunitと不一致 | 換算せず当該fieldをunknown/invalidとし不足理由を示す。source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-03c` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | review waitの実測unitだけが固定sourceのunitと不一致 | 換算せず当該fieldをunknown/invalidとし不足理由を示す。source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-03d` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | Human waitの実測unitだけが固定sourceのunitと不一致 | 換算せず当該fieldをunknown/invalidとし不足理由を示す。source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-03e` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | escaped-defect quality oracleだけ欠落（relationと他入力は保持） | defect countを確定せず、oracle不足は既存の要求owner責務区分へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-03f` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | rollback result receiptだけ欠落 | event不在とせずunknown。戻し先: source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-03g` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | Recovery result receiptだけ欠落 | event不在とせずunknown。戻し先: source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-03h` | `LABO-070-AC-03` | CASE-01と同じ有効scorecard入力。observer overheadの対象資源・source責務区分は既知で、個別source/owner identityも確認できる。 | 単独変異: overheadの直接計測資源receiptだけを欠落させる。他fieldと責務区分は保持する。 | overhead値をunknown/未評価とし、直接計測資源またはreceiptを提供する既存source owner責務区分へ無条件で返す。個別identityが別途不明ならidentityだけunknownとし、責務区分を消さない。新ownerを作らない。 | 固定L2/L11の該当atomに限定。unknown値を0や推計へ変換しない。 |\n| `L10-LABO-070-CASE-03i` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | evidence timestampだけ不正 | freshness ageをinvalid/unknownとし、既知のsource timestamp/evidence責務区分へ無条件で返す。個別source/owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-03j` | `LABO-070-AC-03` | 参照先主fixtureの入力をそのまま使用。 | なし（索引/alias。新たな変異を加えない） | CASE-19の主fixtureを参照する索引であり、独立変異を追加しない。主fixtureのoracleを確認し、本行を二重計上しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-03k` | `LABO-070-AC-03` | 参照先主fixtureの入力をそのまま使用。 | なし（索引/alias。新たな変異を加えない） | CASE-70（rollback/Recovery費用の二重算入）とCASE-71（observer overheadの二重算入）を別々に参照する索引であり、新規変異を束ねず各主fixtureを重複計上しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-04a` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | LABOがtelemetry thresholdを作成 | 拒否し、固定親が個別特定しない判断ownerはunknownとして保持する。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-04b` | `LABO-070-AC-03` | 参照先主fixtureの入力をそのまま使用。 | なし（索引/alias。新たな変異を加えない） | CASE-51のrollback permission発行拒否を参照する索引であり、同じ変異を二重計上しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-54` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象durationのsource-defined definition revisionは既知でcurrent。 | 単独変異: 対象durationのdefinition revisionだけを欠落させる。 | duration値を定義不明としてunknownにし、定義とeventを提供する既存source責務区分へ無条件で返す。個別source/owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-55` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象durationのsource-defined definition revisionは既知でcurrent。 | 単独変異: 対象durationのdefinition revisionだけをstaleにする。 | stale定義をcurrentへ自動流用せず対象durationをunknown/未評価にし、定義/eventの既存source責務区分へ無条件で返す。個別source/owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-56` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、既存quality oracle/revision、受入済対象/scope、受入境界後のverified eventとそのrelationが揃う。 | 単独変異: verified defect eventと受入済対象を結ぶrelationだけを欠落させる。 | escaped-defectと断定せず該当fieldをunknown/未評価とし、relation/受入判断の既存要求・受入責務区分へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-57` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、既存quality oracle/revision、対象relation、適用母数と追跡完全性receiptが有効。 | 単独変異: escaped-defect母数または追跡完全性receiptだけを欠落させる。 | count/rateを確定せずunknown/未評価にし、quality/acceptanceの母数・追跡責務を持つ既存要求/受入責務区分へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-58` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、既存要求ownerのquality oracleとそのrevisionがcurrent。 | 単独変異: escaped-defect quality oracle revisionだけを欠落させる。 | 合否/countを確定せず、quality oracleを提供する既存要求owner責務区分へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-59` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、許可済みsourceのrollback event identity、scope、result state、receiptが有効。 | 単独変異: rollback event identityだけを欠落させる。 | rollback計数/resultをunknownとし、source event/assignmentの既存責務区分へ無条件で返す。個別source/owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-60` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、許可済みsourceのrollback event scopeと他receiptが有効。 | 単独変異: rollback event scopeだけを欠落させる。 | 別scopeを混ぜず該当fieldをunknown/未評価にし、source event/assignmentのscope責務区分へ無条件で返す。個別source/owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-61` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、許可済みsourceのRecovery event identity、scope、result state、receiptが有効。 | 単独変異: Recovery event identityだけを欠落させる。 | Recovery結果を確定せずunknown/未評価とし、source event/assignmentの既存責務区分へ無条件で返す。個別source/owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-62` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、許可済みsourceのRecovery event scopeと他receiptが有効。 | 単独変異: Recovery event scopeだけを欠落させる。 | 別scopeを混ぜず該当fieldをunknown/未評価にし、source event/assignmentのscope責務区分へ無条件で返す。個別source/owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-63` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、queue waitの開始/終了event、clock、unit、scope/window、receiptとsource宣言unitが有効。 | 単独変異: queue waitのunitだけを固定sourceの宣言unitと矛盾させる。その他の入力はCASE-01と同一。 | 換算せずqueue wait fieldをunknown/invalidとし、unitを定義するsource event/assignmentの既存責務区分へ無条件で返す。個別source/owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-64` | `LABO-070-AC-03` | 参照先主fixtureの入力をそのまま使用。 | なし（索引/alias。新たな変異を加えない） | CASE-58のescaped-defect oracle revision欠落を参照する索引であり、主fixtureのoracleを使い新たな変異を追加しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-05` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | queue-wait start eventだけ欠落 | queue waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-06` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | queue-wait end eventだけ欠落 | queue waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-07` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | queue-wait clock identityだけ欠落 | queue waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-08` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | queue-wait occurred_atだけ欠落 | queue waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-09` | `LABO-070-AC-03` | 参照先主fixtureの入力をそのまま使用。 | なし（索引/alias。新たな変異を加えない） | CASE-52（4種duration加算）とCASE-53（重複時間按分）を別々に参照する索引であり、複合変異を作らず各主fixtureを二重計上しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-10` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、既存要求ownerのquality oracle/revision、受入済対象/scope、受入境界後event receiptとfinding relationが有効。対象findingはsourceにより未確認である。 | 単独変異: 070の出力fieldだけを、未確認findingから escaped_defect=true へ昇格する。oracle・source・relation・他のscorecard入力と出力は不変。 | escaped-defectへの誤昇格を拒否し、有効な既存oracle/revisionと未確認stateを保つ。これは入力oracle不足ではなく070自身の候補出力誤りであり、当該出力処理を訂正する。要求ownerへ返却責務を追加しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-11` | `LABO-070-AC-03` | CASE-01と同じ有効入力。適用oracle/revisionとsource evidenceは有効で、入力側の不足はない。 | 単独変異: 070出力fieldだけでoutcome後に選んだoracleを採用する。oracle・source・他fieldは不変。 | 結果後のoracle選択を拒否し、既存oracle/revisionと元の入力を保持する。入力不足ではなく070自身の誤出力として当該出力処理を訂正し、正常な要求ownerへ不足責務を返さない。 | 固定L2/L11の該当atomに限定。新oracle・決定権を生成しない。 |\n| `L10-LABO-070-CASE-12` | `LABO-070-AC-03` | CASE-01と同じ有効入力。overheadの直接計測資源receipt、定義、unit、source identity/revisionは揃い有効である。 | 単独変異: 070出力fieldだけでreceipt値の代わりにoverhead推計値を出す。他inputとreceiptは不変。 | 推計出力を拒否し、有効receiptの実測値・定義・unitを保持する。入力は正常でsource返却は行わず、070自身の出力処理を訂正する。新ownerを作らない。 | 固定L2/L11の該当atomに限定。実測値を推計・0扱いへ置換しない。 |\n| `L10-LABO-070-CASE-13` | `LABO-070-AC-03` | 参照先主fixtureの入力をそのまま使用。 | なし（索引/alias。新たな変異を加えない） | CASE-70（rollback/Recovery費用）とCASE-71（observer overhead）の二重算入を別々に参照する索引であり、各主fixtureを二重計上しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-14` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | freshness timestampの欠落だけを変更。その他の入力は `CASE-01` と同一 | ageをunknownとし、既知のsource timestamp/evidence責務区分へ無条件で返す。個別identity不明は別fieldでunknownとする。ageからexpiry/authority/permissionを生成しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-15` | `LABO-070-AC-03` | CASE-01と同じ有効入力。evidence freshness age、既存source identity/revision/provenance、authority stateはすべて有効で、許可・権限出力は未生成。 | 単独変異: ageからauthority/permissionを生成する出力fieldだけを追加する。age・source・既存authority stateは不変。 | authority/permission生成を拒否し、ageと既存authority stateを保持する。入力は有効なのでsource不足への返却は行わず、070自身の誤出力として当該出力処理を訂正する。新owner/permissionを作らない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-16` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | 067 fieldのOS Attempt identity receiptだけ欠落。predicate/oracle・他fieldはCASE-01と同一 | 067 fieldを理由付きunavailableとし、complete co-present scorecardとしない。欠落したAttempt identity receiptはOSへ戻す。他fieldで代替しない。067 Attempt identity/evidenceの既存OS責務区分へ無条件で返し、個別identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-17` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | 068 fieldのOS Attempt identity receiptだけ欠落。predicate/oracleと他fieldはCASE-01と同一 | 068 fieldを理由付きunavailableとし、067/065で代替せずcomplete co-present scorecardとしない。欠落したAttempt identity receiptは既存OS責務区分へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-18` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | scope差だけを変更。その他の入力は `CASE-01` と同一 | 同一scorecard値として混ぜない 戻し先: LABO。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-19` | `LABO-070-AC-03` | CASE-01と同じ有効入力。適用可能な067 first-eligible/same-Attempt repair値と068 distinct Attempt値の定義revision、identity/grain、scope、receiptはそれぞれ有効で独立する。 | 単独変異: 070出力fieldだけで067と068の値を換算または代替する。両元metricの定義・receipt・他fieldは不変。 | 換算・代替出力を拒否し両元metricを別fieldのまま保持する。入力sourceは正常なのでmetric sourceへ返却せず、070自身の誤出力として当該出力処理を訂正する。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-20` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | unresolved coverageを結果なしに補ってclosureする。その他の入力は `CASE-01` と同一 | unknown/unresolvedを保ち、closure扱いしない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-21` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | 070の9 atomを既存12 metricへ混同だけを変更。その他の入力は `CASE-01` と同一 | metric identityを分ける 戻し先: LABO。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-22` | `LABO-070-AC-03` | 参照先主fixtureの入力をそのまま使用。 | なし（索引/alias。新たな変異を加えない） | CASE-04a（threshold生成拒否）とCASE-51（rollback permission生成拒否）を別々に参照する索引であり、複合変異を作らず各主fixtureを二重計上しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-23` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | queue waitのobserved_atだけ欠落 | queue waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-24` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | queue waitのmeasurement windowだけ欠落 | queue waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-25` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | queue waitのsource identityだけ欠落 | queue waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-26` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | queue waitのreceiptだけ欠落 | queue waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-27` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | active timeのstart eventだけ欠落 | active timeをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-28` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | active timeのend eventだけ欠落 | active timeをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-29` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | active timeのclock identityだけ欠落 | active timeをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-30` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | active timeのoccurred_atだけ欠落 | active timeをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-31` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | active timeのobserved_atだけ欠落 | active timeをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-32` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | active timeのmeasurement windowだけ欠落 | active timeをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-33` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | active timeのsource identityだけ欠落 | active timeをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-34` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | active timeのreceiptだけ欠落 | active timeをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-35` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | review waitのstart eventだけ欠落 | review waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-36` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | review waitのend eventだけ欠落 | review waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-37` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | review waitのclock identityだけ欠落 | review waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-38` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | review waitのoccurred_atだけ欠落 | review waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-39` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | review waitのobserved_atだけ欠落 | review waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-40` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | review waitのmeasurement windowだけ欠落 | review waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-41` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | review waitのsource identityだけ欠落 | review waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-42` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | review waitのreceiptだけ欠落 | review waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-43` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | human waitのstart eventだけ欠落 | human waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-44` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | human waitのend eventだけ欠落 | human waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-45` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | human waitのclock identityだけ欠落 | human waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-46` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | human waitのoccurred_atだけ欠落 | human waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-47` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | human waitのobserved_atだけ欠落 | human waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-48` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | human waitのmeasurement windowだけ欠落 | human waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-49` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | human waitのsource identityだけ欠落 | human waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-50` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | human waitのreceiptだけ欠落 | human waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-51` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | LABOがrollback permissionを発行。その他の入力は `CASE-01` と同一 | permission発行を拒否。rollbackの実行ownerをこの候補から推定しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-52` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | 4種durationを加算。その他の入力は `CASE-01` と同一 | 各durationを別fieldのまま保持し、059のend-to-end時間へ合算しない。戻し先: LABO。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-53` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | 重複する待ち時間を排他的に按分。その他の入力は `CASE-01` と同一 | 重複時間を推測按分せず各durationを保持する。戻し先: LABO。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-65` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | LABO candidateの採択だけを根拠に、別定義の067/068結果も採択済みと主張。その他はCASE-01と同一 | 067/068の独立定義・receiptを参照し、070候補からその採択を推定しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-66` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | 067 fieldのpredicate revisionだけ欠落。OS Attempt identity・oracle・他fieldはCASE-01と同一 | 067 fieldを理由付きunavailableとし、固定親のtask/要求owner責務区分へ無条件で返す。個別owner identity不明は別fieldでunknownとする。complete co-present scorecardとしない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-67` | `LABO-070-AC-03` | OS Attempt identity receiptと他の全fieldは有効で、LABOが068集計を行う | LABO出力から068 distinct Attempt identity fieldだけ欠落 | 068 fieldを理由付きunavailableとし、OS receiptの不足と混同せずLABO集計を未完に保つ。complete co-present scorecardとしない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-68` | `LABO-070-AC-03` | B0と同じscope S0のAttempt identity A/B/C/D、scope全体のcapture-completeness receipt、identity集合の完全性receipt、event/correction lineage、全result receiptが揃い有効。 | 単独変異: Aのresult receiptだけを欠落させる。他のreceipt、identity、scope、event、state、完全性証拠は変えない。 | result receipt欠落だけでscope内total Attempt countをunknown/未評価とし、Aのresult stateも別fieldでunknownにする。完全性receiptがあっても総数4を確定しない。既知の観測source/OS記録責務区分へ無条件で返し、個体identity不明は別fieldでunknownとする。065/067で代替しない。根拠: 固定L2-068のAttempt記録完全性条件と、`MPR-RCPT-LABO-ATTEMPT-COUNT-2026-09-28` coverage receipt（S3C）。未mergeの068本文CASEには依存しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-69` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | outcomeを確認した後にobservation windowだけを選択する | 結果後に選んだwindowで判定せず未評価にする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-70` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | rollback/recovery費用を059の対象費用へ二重算入する。その他はCASE-01と同一 | 059費用への重複算入を拒否し、rollback/recovery費用を該当別fieldに保つ。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-71` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | measurement overheadを対象作業費用へ二重算入する。その他はCASE-01と同一 | overheadと対象作業費用を分離し二重計上を拒否する。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-72` | `LABO-070-AC-03` | 有効な068 distinct Attempt identity数と065 retry_countを別々に保持する | 068 identity数を065 retry_count+1で置き換える | 068の元identity数を保持し、retry_countから換算した値で置き換えない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-73` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | 067 fieldのoracle revisionだけ欠落。predicate/Attempt identity/他fieldはCASE-01と同一 | 067 fieldを理由付きunavailableとし、固定親のtask/要求owner責務区分へ無条件で返す。個別owner identity不明は別fieldでunknownとする。co-present complete scorecardとしない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-85` | `LABO-070-AC-04` | 許可済みsourceからrollback event identity・scope・result state・receiptを観測し、scorecardへ記録。LABOは操作しない。 | 観測eventから単一の`rollback_trigger_requested=true` output fieldを生成する。 | field生成を拒否。観測結果は保持するが、rollbackを開始/決定せずtrigger/permissionを作らない。固定L2のrollback/Recovery責務境界だけを判定する。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-86` | `LABO-070-AC-04` | CASE-01と同じ有効scorecard入力。requirement_adoption出力は未生成。 | 単独変異: `requirement_adopted=true` fieldだけを生成する。 | 要求採択を生成せず、他のscorecard fieldを保持する。PO decision/採択状態を変えない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-87` | `LABO-070-AC-04` | CASE-01と同じ有効scorecard入力。measurement_permission出力は未生成。 | 単独変異: `measurement_permission=true` fieldだけを生成する。 | 計測許可を生成せず、既存SECURITY等のauthority境界を保持する。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-88` | `LABO-070-AC-04` | CASE-01と同じ有効scorecard入力。experiment_run_permission出力は未生成。 | 単独変異: `experiment_run_permission=true` fieldだけを生成する。 | 実験/run許可を生成しない。許可判断は既存SECURITY境界に従い、対象fixtureから推定しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-89` | `LABO-070-AC-04` | CASE-01と同じ有効scorecard入力。worker_assignment出力は未生成。 | 単独変異: `worker_assignment` fieldだけを生成する。 | Worker assignmentを生成しない。既存OS assignment状態を変更しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-90` | `LABO-070-AC-04` | CASE-01と同じ有効scorecard入力。rollback_permission出力は未生成。 | 単独変異: `rollback_permission=true` fieldだけを生成する。 | rollback permissionを生成せず、観測eventを操作authorityへ変換しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-91` | `LABO-070-AC-04` | CASE-01と同じ有効scorecard入力。rollback_execution出力は未生成。 | 単独変異: `rollback_execution=true` fieldだけを生成する。 | rollbackを実行せず、観測結果だけを保持する。既存操作責務をこの候補から決めない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-92` | `LABO-070-AC-04` | CASE-01と同じ有効scorecard入力。L3 requirement approval出力は未生成。 | 単独変異: `l3_requirement_approved=true` fieldだけを生成する。 | L3承認を生成しない。既存委任authorityを変更しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-93` | `LABO-070-AC-04` | CASE-01と同じ有効scorecard入力。requirement completion出力は未生成。 | 単独変異: `requirement_complete=true` fieldだけを生成する。 | requirement completionを生成せず、測定receipt/scorecardを完了判断に変換しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-94` | `LABO-070-AC-03` | 有効な時間event receiptを持ち、既存source event/assignment責務区分とtest-only individual owner identityが既知。source category、event、clock、unit、scope/window、他receiptは有効。 | 単独変異: individual owner identityだけを欠落させる。source category、event、clock、unit、scope/window、全receiptは保持する。 | 個別owner identityのみunknownとして保持する。測定fieldは有効receiptに基づく値を保持しunknown/未完へ変えない。既知source event/assignment責務区分を維持し、個体identity unknownを測定根拠欠落と混同しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-95` | `LABO-070-AC-03` | active-time start/end eventが同じsource-defined clock identityで有効。source event/assignment責務区分、other scorecard fieldとreceiptもCASE-01相当で有効。 | 単独変異: end eventのclock identityだけをstart eventと異なる値にする。 | 異なるclock間の差を計算/換算せずactive-time fieldをunknown/invalidとし、既知source event/assignment責務区分へ無条件で返す。個別source/owner identity不明は別fieldでunknownとし、他fieldは保持する。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-96` | `LABO-070-AC-04` | CASE-01と同じ有効入力。許可済みsource event/receiptだけが存在し、LABO生成eventはない。 | 単独変異: `source_event_created=true` output fieldだけを生成する。 | source eventを生成せず、許可済みsource observationだけを保持する。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-97` | `LABO-070-AC-04` | CASE-01と同じ有効入力。適用oracleは既存要求ownerが供給し、LABO生成oracleはない。 | 単独変異: `acceptance_oracle_created=true` output fieldだけを生成する。 | oracleを生成/差し替えず、既存要求ownerのoracle・revisionに留める。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-98` | `LABO-070-AC-04` | CASE-01と同じ有効入力。候補が追加するthresholdは存在しない。 | 単独変異: `telemetry_threshold` output fieldだけを生成する。 | thresholdを生成せず、固定親が定めない値をunknown/未設定のままにする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |\n| `L10-LABO-070-CASE-99` | `LABO-070-AC-01` | CASE-01と同じ有効入力。全source identity/revisionと他の対象revisionは有効。 | 単独変異: 一つのscorecard行のtarget revision出力fieldだけを欠落させる。source receipt、他行、他fieldは不変。 | target revision出力fieldの欠落を合格させず、対象revisionをunknown/未評価とする。入力は正常なので070自身の出力誤りとして当該出力処理を訂正し、source責務区分へ不足を返さず、他の根拠あるfieldは保持する。 | 固定L2の対象revision・同一scope条件に限定。T0/T1を混ぜて集計しない。 |\n| `L10-LABO-070-CASE-100` | `LABO-070-AC-01` | CASE-01と同様に各fieldが実source receiptと一致する有効入力。別aggregateのT0行とT1行はそれぞれ有効で、別集計に保たれている。 | 単独変異: T0とT1の二行を同一scorecard aggregateへ混在させる出力fieldだけを生成する。他の入力・fieldは不変。 | 異なる対象revisionを含むaggregateを合格させず、T0/T1を別集計のまま保持する。正常入力に対する070自身の混在出力誤りとして当該出力処理を訂正し、sourceへ不足を返さない。 | 固定L2の異なるscope/revisionを同一集計に混ぜない境界に限定。新window/閾値を作らない。 |\n| `L10-LABO-070-CASE-101` | `LABO-070-AC-01` | CASE-01と同じ有効入力。各sourceのtarget revision、identity、source_revision値、他receiptは有効。 | 単独変異: 一つの正常source入力receiptのsource_revision値だけを欠落させる。LABOの出力field欠落ではなく、他のreceipt/inputは不変。 | 当該fieldをunknown/未評価として合格させず、当該source identity/revision/provenanceを提供する既存source owner責務区分へ無条件で返す。個別identity unknownは別fieldとし、他の有効fieldは保持する。 | 固定L2のsource identity/revision保持に限定。欠落revisionを推測・補完しない。 |\n\n**index/aliasの扱い**：旧index/alias IDは意味再導出した索引行として保持し、独立変異として数えない。raw旧84 literalは添付JSON監査に保全する。"
+      },
+      "checkpoint_match": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "full_document": {
+        "revision": "8907d4dbb87f0335cd06afd106a37d85575ca0df",
+        "sha256": "33459eb91b4c057bcb4ed31a5b333409076aef368d880ac36422fdff283f52f8",
+        "utf8_bytes": 17673,
+        "lf_count": 161,
+        "cr_count": 0,
+        "ends_with_lf": true
+      },
+      "base_prefix": {
+        "revision": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+        "base_full_sha256": "43115cad1beeeb4aa887c80206936d2ecec6ef507447a559b4544222f8ccb089",
+        "base_full_utf8_bytes": 15331,
+        "base_lf_count": 145,
+        "base_cr_count": 0,
+        "actual_prefix_sha256": "d1d5748c4e38bf53b6da97d49009caa12f2b508bc6690e097cca412737e8a4d7",
+        "actual_prefix_utf8_bytes": 15332,
+        "actual_prefix_lf_count": 146,
+        "actual_prefix_matches_base_plus_one_separator_lf": true
+      },
+      "stage5_suffix": {
+        "sha256": "d4eb73db5b72e80e4ad82f8d32da690f9cc5d21f1b13a1d66d75a05cb701334f",
+        "utf8_bytes": 2341,
+        "lf_count": 15,
+        "cr_count": 0,
+        "ends_with_lf": true,
+        "text": "## Stage 5 — HELIXLABO-L2-070 補助運用telemetryとAttempt scorecard併記\n\n固定親はPO live26の49行が採択した `MPR-RC-HELIXLABO-L2-070-001`。source revision `ea6f756f96a7370de78e412d737c7a7ed472114a` のL2:561–574 SHA `07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533`、L11:297–307 SHA `c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1`をraw-LFで照合した。旧候補が参照した0abb2894の同範囲とbytesは一致し、採択状態はPO記録で確認する。\n\n独立した業務成果・採否・運用完了の判定は追加せず、FR-01の観測scorecard境界をbusiness viewから照合する。\n\n| 観測対象 | business-level oracle | 禁止する読替え |\n|---|---|---|\n| 4種duration | 各値は別のsource event境界・clock/unit・scopeに結ばれる。 | queue/review/Human/activeを推定按分または合算して059 wall-clockとする。 |\n| escaped defect | 既存oracle/revisionと、受入済対象への受入境界後verified eventを追跡する。 | 未確認findingをdefectにする、severity/window/合否を新設する。 |\n| rollback/Recovery | 観測済みevent/result receiptを表示する。 | 観測からtrigger・rollback実行・復旧許可を生成する。 |\n| overhead/freshness | overhead直接観測値とtask workを分け、freshness ageをsource時刻に束ねる。 | unknown overhead=0、ageからexpiry/admissionを決める。 |\n| 067/068同時表示 | 各fieldが適用可能なら独立定義とreceiptを同時に示す。 | 換算・合算・代替、未採択値の採択推定。 |\n\nCASE-10/15/19は有効入力に対する070自身の出力誤りを拒否し、正常source/oracle/metricへ不足責務を返さない。CASE-85–93/96–98はFV主fixtureを参照し、固定親が禁じる各単独出力fieldの生成拒否と既存状態保持をbusiness viewから照合する。これらは業務成果や新しい採否/permissionを追加しない。CASE-01/99–101ではtarget revisionとsource identity/revisionをreceiptの実値と照合し、target revision出力欠落、target revision混在、入力source_revision欠落を別々に判定する。overhead直接計測receiptの不足は値をunknownにして既存source owner責務区分へ返し、個別identity unknownは分離する。\n"
+      },
+      "checkpoint_match": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "full_document": {
+        "revision": "8907d4dbb87f0335cd06afd106a37d85575ca0df",
+        "sha256": "2bb2875de91fd6a0000fce0a36f541bb1b72fa15cd4266e7c67f2029b3899999",
+        "utf8_bytes": 64953,
+        "lf_count": 218,
+        "cr_count": 0,
+        "ends_with_lf": true
+      },
+      "base_prefix": {
+        "revision": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+        "base_full_sha256": "d2c9c508465305c3edf9af1f6d2d247cd19f07617aefeca25f320eeaba56ceca",
+        "base_full_utf8_bytes": 60801,
+        "base_lf_count": 194,
+        "base_cr_count": 0,
+        "actual_prefix_sha256": "e89cedb7d9697c211d2366b2de30838ae0d9e4cc27e3aedaa0c19a28b1d7c946",
+        "actual_prefix_utf8_bytes": 60802,
+        "actual_prefix_lf_count": 195,
+        "actual_prefix_matches_base_plus_one_separator_lf": true
+      },
+      "stage5_suffix": {
+        "sha256": "5348617f96b528d5be60acef655c8f44ce94252ce23d2a1316d425bcf72f48d0",
+        "utf8_bytes": 4151,
+        "lf_count": 23,
+        "cr_count": 0,
+        "ends_with_lf": true,
+        "text": "## Stage 5 — HELIXLABO-L2-070 補助運用telemetryとAttempt scorecard併記\n\n固定親はPO live26の49行が採択した `MPR-RC-HELIXLABO-L2-070-001`。source revision `ea6f756f96a7370de78e412d737c7a7ed472114a` のL2:561–574 SHA `07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533`、L11:297–307 SHA `c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1`をraw-LFで照合した。旧候補が参照した0abb2894の同範囲とbytesは一致し、採択状態はPO記録で確認する。\n\n実行前の測定設計候補。旧84 literalとraw ID/hashはJSON監査側に保持し、現行FVは旧84 IDを6列へ意味再導出し、CASE-85およびCASE-86..101を加えた101行の候補とする。以下は各測定軸に対する観測/判定材料で、実測結果ではない。\n\n| 測定軸 | 合成入力・比較 | 判定材料 |\n|---|---|---|\n| duration | 4個別fieldのsource-defined start/end, clock, unit, occurred/observed time, scope/windowを与え、既存CASEの単独欠落/unit mismatch/overlap変異を適用。 | 各field独立。欠落/invalidはunknown。重複を排他按分せず、059 wall-clockへ再定義しない。 |\n| escaped defect | 既存oracle/revision、受入済対象・scope・acceptance boundary後のverified event relationを与え、CASE-03e/10/11/56–58/64の各条件を別々に欠落。 | 対象/oracle/event relationが検証できた範囲だけ提示。CASE-10は入力oracleが有効なままescaped-defect誤出力を拒否し070出力処理を訂正する。母数・完全性不明はunknownでcount/rateなし。severity/window/thresholdを足さない。 |\n| rollback/Recovery | source event・result receiptを正常観測し、CASE-03f/g/59–62/70とCASE-85の単一field変異を適用。 | missing receiptはunknown。059と同一receiptを一回参照。観測値をrollback action/permissionへ変換しない。CASE-85/90/91はtrigger/permission/execution出力を各単独で拒否する。 |\n| overhead | direct measured observer-resource receiptを与え、CASE-03h/12/71でreceiptだけ欠落・対象workへの二重算入を変異。 | source定義単位の直接計測だけ保持。unknownはunknown、0や根拠なき推計値にしない。 |\n| freshness | source effective/occurred timeとobserved timeを正常に与え、CASE-03i/14/15でtimestamp不正/欠落とage起点の権限生成を個別に変異。 | age観測値またはunknown/invalidのみ。CASE-15の入力は有効であり、ageからのauthority/permission誤出力を拒否して070出力処理を訂正する。expiry/適格性/採否/許可を生成しない。 |\n| co-present metrics | 適用可能な067 first-eligible/same-Attempt repair fieldsと068 total Attempt fieldを各元receipt・revisionで示し、CASE-16–21/65–73を照合。 | identity/grain/revision/scope/receiptを分離し換算・合算・代替しない。CASE-19は正常な067/068入力の換算誤出力を拒否して070出力処理を訂正し、CASE-68はtotal Attempt countとresult stateの双方をunknownとする。欠落は原因別の既存責務区分へ返し、個別identity unknownを分ける。 |\n\nwindow/threshold/severity/expiryの数値評価は行わない。固定親にない性能値や集計閾値を合否oracleへ足さない。\n\n### 固定親の出力境界\n\n| 検証対象 | 合成入力・比較 | 判定材料 |\n|---|---|---|\n| revision consistency | CASE-01の正常値とCASE-99–101を比較し、target revision出力欠落、異なるtarget revisionの同一aggregate混入、入力source_revision欠落を個別に判定する。 | 受理可能なtarget/source revisionはsource receiptと一致し、欠落や混在をunknown/未評価として扱う。 |\n| authority/操作・source生成拒否 | 有効CASE-01 inputへ、CASE-85–93/96–98の各出力fieldを一つずつ単独生成する変異を適用。 | 各禁止fieldの生成を拒否し、他の根拠あるscorecard値および既存owner状態を保つ。CASE-10/15/19は正常入力の誤出力として070出力処理を訂正し、入力側ownerへ責務を移さない。 |\n"
+      },
+      "checkpoint_match": true
+    }
+  ],
+  "root_exact_correction": {
+    "scope": "one CASE99 row only",
+    "candidate_before": "| `L10-LABO-070-CASE-99` | `LABO-070-AC-01` | CASE-01と同じ有効入力。全source identity/revisionと他の対象revisionは有効。 | 単独変異: 一つのscorecard行のtarget revision出力fieldだけを欠落させる。source receipt、他行、他fieldは不変。 | target revision出力fieldの欠落を合格させず、対象revisionをunknown/未評価とする。入力は正常なので070自身の出力誤りとして当該出力処理を訂正し、source責務区分へ不足を返さない。source責務区分へ不足を返さず、他の根拠あるfieldは保持する。 | 固定L2の対象revision・同一scope条件に限定。T0/T1を混ぜて集計しない。 |",
+    "actual_after": "| `L10-LABO-070-CASE-99` | `LABO-070-AC-01` | CASE-01と同じ有効入力。全source identity/revisionと他の対象revisionは有効。 | 単独変異: 一つのscorecard行のtarget revision出力fieldだけを欠落させる。source receipt、他行、他fieldは不変。 | target revision出力fieldの欠落を合格させず、対象revisionをunknown/未評価とする。入力は正常なので070自身の出力誤りとして当該出力処理を訂正し、source責務区分へ不足を返さず、他の根拠あるfieldは保持する。 | 固定L2の対象revision・同一scope条件に限定。T0/T1を混ぜて集計しない。 |",
+    "description": "重複していた同じsource責務区分への返却文を1回だけ削除。CASE99の意味・変異・scopeは変更なし。",
+    "candidate_to_actual_row_sha256_before": "4b421c0ad04d44b93a5e235ec38f4f41b358e1ad5621ddebd94d25f5a13d3af4",
+    "candidate_to_actual_row_sha256_after": "efcfbf139647a57a6169e0dac7b3423bca6efbb83cc9626dd93f82beaaf83ad5"
+  },
+  "fixed_parent_and_po": {
+    "fixed_revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+    "fixed_parent_pins": {
+      "L2-070": {
+        "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "lines": [
+          561,
+          574
+        ],
+        "sha256": "07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533",
+        "text": "### HELIXLABO-L2-070 補助運用telemetryとAttempt scorecard併記（構成体候補、1.0）\n\n**親・状態・範囲**：`HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context、`version_target: 1.0`、`draft_candidate`。旧candidate行399のうち、queue/active/review/Human待ち時間、escaped defects、rollback/Recovery、observer overhead、evidence freshness、およびfirst-eligible結果とAttempt/repair回数の併記に関する9 atomだけを扱う。候補は補助計測を一つのscope付きscorecardで提示する契約であり、採択済み`HELIXLABO-L2-059`の比較basis、`HELIXLABO-L2-006`の品質評価、`HELIXLABO-L2-001`のprovenanceを置換しない。`HELIXLABO-L2-067`のfirst-eligible/repair-round、`HELIXLABO-L2-068`の総Attempt countは各候補自身の定義・receiptで参照し、ここから採択やauthorityを生成しない。\n\n- **scorecard共通範囲**：各計測行は同一の明示task/scope、対象revision、評価window、source identity/revision、観測eventまたは結果receiptへ結ぶ。異なるscope/revisionを同一集計に混ぜず、定義・単位・source receiptが異なる値は別fieldとして示す。必要なevent、母数、source completenessまたはscope joinを証明できない値は`unknown`/未評価とし、欠落を0や成功へ変換しない。\n- **4種の時間**：queue wait、active time、review wait、Human waitを別々のfieldとして出す。各durationは適用sourceが定めた開始・終了event、単位、時計source、`occurred_at`/`observed_at`、対象windowを保持する。開始・終了eventやclockの妥当性を確認できなければ`unknown`/invalidとする。重複する待ち時間を推測で排他的に按分せず、4値を合算して059のend-to-end wall-clockを再定義しない。\n- **escaped defects**：既存の要求/受入ownerが適用するquality oracleと、そのrevision・対象scopeで受入済みの対象に結びついた、受入境界後の検証済みdefect eventだけをescaped-defect観測として提示する。候補はoracle、受入境界、追加の観測window、重大度または合否thresholdを新設しない。検出event、対象とのrelation、適用oracle、母数または追跡完全性を確かめられない場合は、確定count/rateを出さずunknown/未評価とする。LABO-006のquality評価結果を同一視しない。\n- **rollback/Recovery**：許可済みsourceが記録したrollback/Recovery event identity、対象scope、発生・結果state、event receiptを保持する。費用・時間は既存059の同一event/receipt参照に従い、二重算入しない。event/結果の記録が欠ける場合は発生なしとせずunknownにする。LABOはrollbackを起動・決定せず、復旧操作の権限を作らない。\n- **observer overhead**：計測・観測そのものに直接帰属できる実測資源とreceiptを、対象taskのwork実績から区分して提示する。sourceが記録する時間・計算資源・課金値の定義と単位を保持し、裏付けのない推計や換算、未観測値の0扱いをしない。059の総費用への算入は同じreceipt参照で一度だけ扱う。\n- **evidence freshness**：各evidenceの既存source identity/revision/provenance（L2-001）を保持し、sourceが持つ適用可能なeffective/occurred時刻と観測時刻の差を観測値として示す。時刻がない・不整合・時計不正ならageをunknown/invalidにする。fresh/staleの閾値、期限、適格性はこの候補で新設せず、ageから採否・実験許可を導かない。\n- **Attempt系との同一提示**：対象scopeに適用できる場合、同じscorecardに`HELIXLABO-L2-067`が定義するfirst-eligible結果と同一Attempt内repair rounds、および`HELIXLABO-L2-068`が定義する総Attempt countを並べる。各metricはidentity、grain、定義revision、scope、source receiptを別々に保持し、換算・合算・代替しない。067/068のexact candidateまたは必要receiptが未採択・不在・scope不一致の場合は、そのfieldを`unavailable`/unknownとして理由とともに示し、完全な併記済みscorecardと主張しない。この候補は067/068の採否を前提にも発生にもさせない。\n- **既存指標・意味境界**：この候補内のtelemetryを既存12指標の名前変更または同一指標と宣言せず、旧9.1指標とのidentity/version対応も割り当てない。追加telemetryのfield identityを旧12指標へどう接続するか、および旧sourceの`coverage`の対象・分母・oracleは未確定のままsource holdingに残る。本候補はそれら2 atom、行399の他の3 atom、列挙外の「など」、隣接行、旧candidate全文のsuccessor/closureを主張しない。\n- **責務と権限**：LABOは、各source ownerが提供する許可済みevent/result/evidenceから、scope付きの観測値と比較証拠を提示する。時間eventとassignmentはOS等の既存source owner、acceptance/quality oracleは要求owner、data/execution許可は適用されるSECURITY境界に従う。LABOはsource event、oracle、threshold、計測許可、割当・実験・rollback、要求採否を作らず、候補の存在やscorecardからauthorityを生成しない。\n- **旧sourceと局所partition**：`LEGACY-ASSET-3A15E5645D2D2A59DFF5`、`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md:399`、file SHA-256 `f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b`、line SHA-256 `58be97d309362b845682602ae352b1954ed433fbc4b6552791f89be07d70db4f`を起点とする。selected inputは9 atomに限定する。別receiptに記録済みのS3A/S3B（067）とS3C（068）は再入力しない。`coverage`/旧12指標relationの2 unresolved atomは`MPR-SH-CANDIDATE-003`に残す。receiptは候補に選んだ9 atomだけの`no_loss`を示し、source line全体、列挙外tail、隣接行、旧candidate全体、正式successor、PO採択、実装・実験・受入完了を主張しない。原文と9 atomの境界は[source-lines](../../governance/audits/requirement-registration/labo-supplemental-telemetry-source-lines-2026-09-29.jsonl)および[coverage receipt](../../governance/audits/requirement-registration/labo-supplemental-telemetry-coverage-receipt-2026-09-29.json)に束縛する。\n"
+      },
+      "L11-070": {
+        "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "lines": [
+          297,
+          307
+        ],
+        "sha256": "c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1",
+        "text": "### HELIXLABO-L2-070 補助運用telemetryとAttempt scorecard併記の受入候補（構成体、1.0）\n\n未実行の受入候補。親は`HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context。合格は、この候補の9 selected atomに限る測定出力・receipt契約の充足を意味し、source line全体のclosure、L2採択、実験許可、実装または受入実行を示さない。\n\n- **正常例**：明示scope/revision/windowに属する観測receiptを受け取り、queue wait、active time、review wait、Human waitを異なるfieldとして出す。各durationに定義元、開始/終了event identity、clock/unit、`occurred_at`/`observed_at`が結び、別scopeのeventが混ざらない。同じscopeでowner指定oracleとrevisionが確認できる受入済み対象のescaped-defect event、rollback/Recovery eventとresult state、observer overheadの直接計測値、evidence freshness ageを、それぞれ元receiptへ辿れるfieldとして出す。既存059の費用/時間は同じevent receiptへの参照を保持し一度だけ算入する。必要な067/068 candidate revisionとreceiptがこのscopeで有効な場合は、first-eligible result、same-Attempt repair-round count、distinct Attempt countを同一scorecardで併記する。metric identity、grain、定義revision、receiptは各々別fieldのままであり、値の換算・合算・代替を行わない。\n- **個別反例**：4種のdurationを一つの時間へ合算する、event境界のない待ちを推定する、overlapping waitを排他的と仮定して按分する、欠測durationを0にする、結果後にoracle/windowを選びescaped-defectを数える、未確認findingをescaped defectと断定する、rollback費用を059へ重複算入する、計測負荷を対象作業の費用として重複算入する、observer overheadを根拠なく推計する、source timestampがないのにfreshness ageを確定する、age thresholdから採否/許可を作る、067 repair roundをAttempt countへ加える、または068 countを067/065から換算する。それぞれ該当fieldを不成立/unknownとし、他の値で埋めない。\n- **欠落・比較不能**：scope/window、source completeness、event identity、definition revision、単位、oracle、対象とのrelationまたはreceiptのいずれかが不足・stale・矛盾する場合は、該当fieldをunknown/invalid/unavailableとして不足を明記する。分子・分母の適用可能性が証明できない場合はrateを出さない。scope不一致の値を同一scorecardへ結合せず、unknownを0、対象外または成功へ読み替えない。\n- **Attempt共提示の欠落**：067/068のexact candidateが採択されていない、receiptがない、またはscope/revisionが揃わない場合は当該fieldの理由付きunavailable/unknownを表示し、complete co-present scorecardとしない。070の候補採択が067/068を採択したことにしない。逆に、067/068の採否は070の要求意味を変更しない。\n- **未解決atom・既存指標境界**：旧source `coverage`の対象/分母/oracleと、追加telemetryと旧12指標とのidentity/version relationはこの受入候補の判定対象外であり、未解決・source-heldのままにする。これらをDesign Trace Completeness等へ同一視する、旧指標の名前・定義・receiptを新fieldへ割り当てる、またはsilent rename可否を判定するoracleをこの候補内で作る場合は不合格。067のS3A/S3B、068のS3Cは各既存receiptで管理し、このreceiptの分母やcarried atomへ重複計上しない。\n- **責務・authority境界**：source event/assignmentは既存source owner、quality/acceptance oracleは要求owner、data/execution許可は適用SECURITY契約に従う。LABOは観測・提示だけを行う。scorecard、receipt、unknown/unavailable状態から採択、実験許可、Worker assignment、rollback実施、L3要件承認または完了を作らない。固定数値threshold、age期限、統計推論または自動決定を追加しない。\n- **旧sourceと局所scope**：source line 399の9 selected atomに限定する。2 unresolved atom、既存候補へ別receiptで対応する3 atom、列挙外tail、隣接行、旧candidate全文の後継/完了を主張しない。source atomと判定scopeは[source-lines](../../governance/audits/requirement-registration/labo-supplemental-telemetry-source-lines-2026-09-29.jsonl)と[coverage receipt](../../governance/audits/requirement-registration/labo-supplemental-telemetry-coverage-receipt-2026-09-29.json)で確認する。\n"
+      },
+      "L2-068": {
+        "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "lines": [
+          541,
+          550
+        ],
+        "sha256": "7e3df32b0131722c88ae148c4cbfa9a1be20f81826099c0ceb29a674e07030e2",
+        "text": "### HELIXLABO-L2-068 Worker Attempt countの観測（単体追補候補、1.0）\n\n**kind / parent / status**：unit、`HELIXLABO-L1-005` primary、`HELIXLABO-L1-011` context、`version_target: 1.0`、`draft_candidate`。対象は、選択されたtask/scope/evaluation範囲のOS Worker記録に存在するAttempt identityの総数である。各Attempt identityを一度だけ数え、その全体を表すOS記録が完全だと確かめられない場合は`unknown`とする。未採択の`HELIXLABO-L2-065`の`retry_count`や`HELIXLABO-L2-067`のrepair-round観測から総数を計算しない。採択済み`HELIXLABO-L2-059`の比較・品質・費用意味を変えない。\n\n- **入力と範囲**：明示選択されたtask/scope/revisionとevaluation範囲、および同じ範囲へ結ばれたOS assignment/Attempt identity・実行状態・結果receipt・記録の完全性と訂正履歴を受け取る。実行前に拒否されたintakeやAttempt identityを持たないassignmentはAttemptとして数えず、intake状態を分けて残す。範囲やAttempt identity、記録の完全性が不明・矛盾・staleなら補わず`unknown`にする。\n- **出力**：OSが当該範囲のAttemptとして識別したdistinct Attempt identityの数を`attempt_count`として出す。同じidentityの再配送・訂正eventを重複加算せず、結果state（success/failure/denied/interrupted/unknown等）は元のOS記録どおり保持する。候補はAttempt identityを数えるだけで、task success rate、Attempt success rate、`retry_count`、repair round、retry上限を定義しない。完全なAttempt記録集合が確認できない場合、観測できた数を総数や0へ昇格させない。\n- **065／067との境界**：`HELIXLABO-L2-065`の`first_pass`と`retry_count`、本候補のOS Attempt identity数、`HELIXLABO-L2-067`の同一Attempt内repair roundは別々の指標である。`attempt_count = retry_count + 1`等の換算、repair roundやCI rerunのAttemptへの算入、065または067の採択を本候補の依存とする扱いをしない。将来同じscorecardに表示する場合も、それぞれの定義・scope・receiptを別に保つ。\n- **責務と権限**：OSが既存のticket/scopeに対するassignment/Attempt identity、durable event/evidence、結果状態と訂正を提供する（HELIXOS-L2-004/007/009、および2026-09-28のOS判断が採用したHELIXOS-L2-018/019/023の範囲）。LABOは許可済み記録から数と比較証拠を返す。Workerの起動・retry、Attempt identityやpolicyの生成、task評価のoracle、割当、採否、qualification/admissionを行わない。新規実験には既存OS assignmentと適用されるSECURITY許可を要する。\n- **失敗・未見**：Attempt記録の欠落・重複・event遅延、scope相関不一致、再構築不能、またはsource completeness不明があれば総数を`unknown`/未評価とし、観測sourceまたはOS記録ownerへ不足を戻す。assignment拒否を実行済みAttemptにする、欠落eventを0とする、retry回数・repair回数からAttempt数を推定する例を拒否する。\n- **旧sourceと局所scope**：`LEGACY-CAND-LINE-001656`、旧`LEGACY-ASSET-3A15E5645D2D2A59DFF5`、`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md:399`、file SHA-256 `f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b`、line SHA-256 `58be97d309362b845682602ae352b1954ed433fbc4b6552791f89be07d70db4f`の「Attempt count」subatomを起点とする。第3文の総Attempt count S3Cだけを本候補のsource inputにする。行内の他telemetry、既存12指標との差、repair-round subatom、隣接行、旧candidate全体のcoverage／closureは主張しない。atom境界と限定receiptは[source-lines](../../governance/audits/requirement-registration/labo-attempt-count-source-lines-2026-09-28.jsonl)および[coverage receipt](../../governance/audits/requirement-registration/labo-attempt-count-coverage-receipt-2026-09-28.json)を参照する。\n"
+      },
+      "L11-068": {
+        "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "lines": [
+          278,
+          286
+        ],
+        "sha256": "3dcf068de1351b2e8c1f2d772ec9273cb7908368a32b389ee40ce51929ad8d94",
+        "text": "### HELIXLABO-L2-068 Worker Attempt countの受入候補（単体、1.0）\n\n未実行の受入候補。親は`HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context。明示選択されたtask/scope/evaluation範囲でOSが記録したdistinct Attempt identityの数を観測する。Attempt記録が完全か確認できない場合は`unknown`とし、未採択065の`retry_count`や067のrepair roundから総数を推定しない。採択済み059、未採択065/067の本文・authorityを変更せず、それらの採択を前提にしない。\n\n- **正常例**：同一の選択task/scope/revision/evaluation範囲に、OSのAttempt identity A、B、C、Dがそれぞれ一つずつあり、OS receiptが当該範囲の記録完全性と訂正状態を確認できる。状態がsuccess、failure、interrupted、またはOSがAttempt identityを割り当てたdeniedであっても、4つのidentityを各一回数え`attempt_count=4`とする。実行前に拒否されたintakeでOSがAttempt identityを発行していないものは数えない。同一Attempt identityの重複配送や同一Attempt内repair eventは追加Attemptとして数えず、状態と元receiptは別途辿れる。\n- **個別反例**：065の`retry_count`へ1を足して算出する、067のrepair roundをAttemptとして数える、CI rerunや同一identityの再配送を重複計上する、Attempt identityを持たないassignment/実行前拒否を実行Attemptに含める、scope外のAttemptを混ぜる、記録欠落・遅延・stale・矛盾を0または確定総数に変換する、各々を該当範囲の未評価/unknownまたは不成立とする。\n- **未見例**：OSの訂正eventが遅延している、担当交代後のAttempt lineageを同じtask/scopeへ結べない、同じidentityの重複と別Attemptを判別できない、sourceが全Attemptの捕捉を保証しない場合は総数をunknownとし、記録source ownerへ返す。遅延eventや別scopeの履歴から欠落Attemptを推測しない。\n- **065／067との受入境界**：065が適用されるscopeでは`first_pass`とpost-initial `retry_count`をその定義のまま受入れ、068のAttempt identity countと別々に報告する。067が適用されるscopeでは`same_attempt_repair_round_count`を同一Attempt内の修復として保持し、068のAttempt数へ加算しない。3つを同じscorecardへ併記しても、明示された定義・scope・receiptを維持し、換算・代替・合算をしない。065/067の候補有無にかかわらず、068単独のOS Attempt記録だけから本指標を返す。\n- **責務・受入限界**：OSの既存assignment/Attempt identity、event/evidence、結果・訂正receiptを入力に使い、LABOは数と比較証拠だけを返す。LABOはWorkerを起動・再試行・割当せず、Attempt/Retry policyや成功oracleを定めない。既存OS recordがAttempt境界または記録完全性を明示しない場合は定義を推測せず未評価にする。候補の静的記述は実装、実験許可、Worker割当、実測結果、採択を示さない。\n"
+      }
+    },
+    "po_record": {
+      "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+      "line_number": 49,
+      "line_text": "| `HELIXLABO-L2-070` | 承認（通常採択22件に含む） | `MPR-RC-HELIXLABO-L2-070-001` | `sha256:07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533` | `sha256:c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1` |",
+      "line_sha256": "0cc2b7ac34f2a9dec7a072910ba43c90547a7cd8cdee9e337a8701412b8ca052",
+      "source_revision": "8907d4dbb87f0335cd06afd106a37d85575ca0df",
+      "full_file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+      "full_file_utf8_bytes": 16056
+    }
+  },
+  "legacy_sources": {
+    "legacy_source_consumer_pins_actual": [
+      {
+        "label": "legacy source line 399",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+        "start_line": 399,
+        "end_line_exclusive": 400,
+        "span_bytes": 445,
+        "span_sha256": "aa9dacc58969d896bbfbe38ce9c2ed6b55f47476b4cd3a411041d62bebf70468",
+        "full_file_bytes": 46889,
+        "full_file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "matches_pin": true
+      },
+      {
+        "label": "paired HXB acceptance consumer span",
+        "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+        "start_line": 84,
+        "end_line_exclusive": 105,
+        "span_bytes": 2741,
+        "span_sha256": "e980b331af4d92c1122803c876c7c6f4b4cd36cd4a613788a39fc2ab402ac98c",
+        "full_file_bytes": 13648,
+        "full_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+        "matches_pin": true
+      }
+    ],
+    "old_84_case_literal_audit": {
+      "checkpoint_path": "/tmp/root-labo070-old-case-literal-checkpoint.json",
+      "checkpoint": {
+        "status": "literal_read_and_raw_pin_check_only",
+        "count": 84,
+        "errors": 0
+      },
+      "old_definition_count": 84,
+      "unique_old_id_count": 84,
+      "definitions": [
+        {
+          "id": "L10-LABO-070-CASE-01",
+          "line": 2973,
+          "literal": "- `L10-LABO-070-CASE-01`（対応AC: `LABO-070-AC-01`） 正常: 9 selected atomを個別fieldとして、定義元・scope/window・unit・source receiptへ結ぶ。067/068値は元定義と参照先のまま別表示する。各fieldで定義元と一致する異なるunitは別fieldとして別表示し、換算・合算しない。この正常な異単位fieldは宣言unitとの不一致を扱うCASE-63と区別する。\n",
+          "raw_lf_sha256": "a658f6f8420ad337d8013aa6e7b1a5f136adc49bb36b0efba02bef4e473b9483",
+          "kind": "bullet definition"
+        },
+        {
+          "id": "L10-LABO-070-CASE-02",
+          "line": 2974,
+          "literal": "- `L10-LABO-070-CASE-02`（対応AC: `LABO-070-AC-02`） 未見正常: 新source eventのうち契約/単位/時刻が適用できるatomだけ計測し、残りはunknown/unavailableとする。\n",
+          "raw_lf_sha256": "b77f88c632a9cac40976c17e5aa8807ba84cbffb77365e64685e58a57a11e102",
+          "kind": "bullet definition"
+        },
+        {
+          "id": "L10-LABO-070-CASE-03a",
+          "line": 2978,
+          "literal": "| `L10-LABO-070-CASE-03a` | `LABO-070-AC-03` | 索引（独立fixtureではない）: CASE-06の同一変異を参照する。 | 主fixtureを参照し、同じ変異を二重計上しない。 |\n",
+          "raw_lf_sha256": "579a08f2c81100490fa4a7a2a69447f6a1b30d578f46afced8f43c88e021d02f",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-03b",
+          "line": 2979,
+          "literal": "| `L10-LABO-070-CASE-03b` | `LABO-070-AC-03` | 単独変異: active timeの実測unitだけが固定sourceのunitと不一致。 | 換算せず当該fieldをunknown/invalidとし不足理由を示す。unitを提供するsourceが識別できれば返し、特定不能はunknown。 |\n",
+          "raw_lf_sha256": "8888e9e6905e5b99a612df759b60000524f0b6a2c511824b47702cc7f9977d36",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-03c",
+          "line": 2980,
+          "literal": "| `L10-LABO-070-CASE-03c` | `LABO-070-AC-03` | 単独変異: review waitの実測unitだけが固定sourceのunitと不一致。 | 換算せず当該fieldをunknown/invalidとし不足理由を示す。unitを提供するsourceが識別できれば返し、特定不能はunknown。 |\n",
+          "raw_lf_sha256": "51866c1066e067dcc29447d4deb1851425dc3c5ed768f42d47b502aea97c677a",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-03d",
+          "line": 2981,
+          "literal": "| `L10-LABO-070-CASE-03d` | `LABO-070-AC-03` | 単独変異: Human waitの実測unitだけが固定sourceのunitと不一致。 | 換算せず当該fieldをunknown/invalidとし不足理由を示す。unitを提供するsourceが識別できれば返し、特定不能はunknown。 |\n",
+          "raw_lf_sha256": "62719e48f5dbb0d205de21c99e7b025f80544a0a8d695f9de3e6989aff6cc36c",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-03e",
+          "line": 2982,
+          "literal": "| `L10-LABO-070-CASE-03e` | `LABO-070-AC-03` | escaped-defect quality oracleだけ欠落（relationと他入力は保持） | defect countを確定せず、oracle不足は要求ownerへ戻す。 |\n",
+          "raw_lf_sha256": "bdd209b99dbbc675adc2166e98f1e3e130bcf0f5891f67e5c74adbdd804554ab",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-03f",
+          "line": 2983,
+          "literal": "| `L10-LABO-070-CASE-03f` | `LABO-070-AC-03` | rollback result receiptだけ欠落 | event不在とせずunknown。戻し先: 該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "c7e419721c06059bcc8033ab0fe4335ba695c229f23b60cfd29b1a9752e798b1",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-03g",
+          "line": 2984,
+          "literal": "| `L10-LABO-070-CASE-03g` | `LABO-070-AC-03` | Recovery result receiptだけ欠落 | event不在とせずunknown。戻し先: 該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "3a5075e54de488db0cacc63c3d59d61e1c1f873e6090517fe7caa66fc965159a",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-03h",
+          "line": 2985,
+          "literal": "| `L10-LABO-070-CASE-03h` | `LABO-070-AC-03` | observer overhead sourceだけなし | 推計0を使わずunknown。戻し先: unknown（固定親は当該sourceまたは判断ownerを個別特定しない）。 |\n",
+          "raw_lf_sha256": "c6d5e511bb77dbc2524177fe163cf2d87d0d7f7af7f8c10ed20152dbaf70ed67",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-03i",
+          "line": 2986,
+          "literal": "| `L10-LABO-070-CASE-03i` | `LABO-070-AC-03` | evidence timestampだけ不正 | freshness age invalid/unknown。戻し先: unknown（固定親は当該sourceまたは判断ownerを個別特定しない）。 |\n",
+          "raw_lf_sha256": "e338b6e918556102dc89b6e3d7d7dd993956c199f52bd9f991ceb19ea93b4c5c",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-03j",
+          "line": 2987,
+          "literal": "| `L10-LABO-070-CASE-03j` | `LABO-070-AC-03` | 索引（独立fixtureではない）: CASE-19の同一変異を参照する。 | 主fixtureを参照し、同じ変異を二重計上しない。 |\n",
+          "raw_lf_sha256": "a41c0a605dfb4fa139f1457da1cf7b69fbe622d66e1b26636d5be1897e093710",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-03k",
+          "line": 2988,
+          "literal": "| `L10-LABO-070-CASE-03k` | `LABO-070-AC-03` | 索引（独立fixtureではない）: `L10-LABO-070-CASE-70`（rollback/recovery費用の二重算入）と`L10-LABO-070-CASE-71`（measurement overheadの二重算入）の2観点を個別に直接参照する。 | 各主fixtureを個別に参照し、2観点を単独変異として再計上しない。 |\n",
+          "raw_lf_sha256": "ee6f89977664ad579fa91e0dc4685b98da1e00537d02d5eac19287018d286c25",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-04a",
+          "line": 2989,
+          "literal": "| `L10-LABO-070-CASE-04a` | `LABO-070-AC-03` | LABOがtelemetry thresholdを作成 | 拒否し、固定親が個別特定しない判断ownerはunknownとして保持する。 |\n",
+          "raw_lf_sha256": "43d85f84f78d05fe52dc63aba8b09788771a8a650f0b0a78c75970dff930990d",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-04b",
+          "line": 2990,
+          "literal": "| `L10-LABO-070-CASE-04b` | `LABO-070-AC-03` | 索引（独立fixtureではない）: `L10-LABO-070-CASE-51`と同じrollback permission発行の試みを参照する。 | CASE-51のoracleを使い同一変異を二重計上しない。 |\n",
+          "raw_lf_sha256": "2835f3743444c65a9d2d90fff0ea416e6048ccdedba424adb6b7a378a7ec7a6c",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-54",
+          "line": 2994,
+          "literal": "| `L10-LABO-070-CASE-54` | `LABO-070-AC-03` | definition revisionだけ欠落 | duration値を定義不明としてunknownにする。 |\n",
+          "raw_lf_sha256": "f1ebc46c8b15b813c371bf21240fd4f579370844d1d5d1908f016b74f781def6",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-55",
+          "line": 2995,
+          "literal": "| `L10-LABO-070-CASE-55` | `LABO-070-AC-03` | definition revisionだけstale | 現行定義へ自動流用しない。 |\n",
+          "raw_lf_sha256": "dec84e53051059d62f784032fe0ed3636ce09b53488f23d4c261fd86ffe133a7",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-56",
+          "line": 2996,
+          "literal": "| `L10-LABO-070-CASE-56` | `LABO-070-AC-03` | escaped-defect relationだけ欠落 | defectと断定しない。 |\n",
+          "raw_lf_sha256": "d593846cbebf2af0762a2abc62b73224b7bd3a7873b67786efe77ee381a7372c",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-57",
+          "line": 2997,
+          "literal": "| `L10-LABO-070-CASE-57` | `LABO-070-AC-03` | escaped-defect母数/追跡完全性だけ欠落 | 欠測を0や欠陥なしにしない。 |\n",
+          "raw_lf_sha256": "f5d97783727f55fa71f862d37fcd1ddad68e849bcb0b5e442918c29c29aee8e0",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-58",
+          "line": 2998,
+          "literal": "| `L10-LABO-070-CASE-58` | `LABO-070-AC-03` | escaped-defect oracle revisionだけ欠落 | 合否を確定しない。 |\n",
+          "raw_lf_sha256": "38b43f86f5edd38bd136623a2ec18daad385917bf79e2fa96bf7557e7bd832b7",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-59",
+          "line": 2999,
+          "literal": "| `L10-LABO-070-CASE-59` | `LABO-070-AC-03` | rollback event identityだけ欠落 | rollback計数をunknownとする。 |\n",
+          "raw_lf_sha256": "364082fa35f8a1fb641fe0b566418827c18fb67fd45a83e8ed3e74299c8b45f1",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-60",
+          "line": 3000,
+          "literal": "| `L10-LABO-070-CASE-60` | `LABO-070-AC-03` | rollback scopeだけ欠落 | 別scopeを混ぜず未評価とする。 |\n",
+          "raw_lf_sha256": "66290a7e6d20c38caa2f0be633d100400cc4f635c11125895adccbb03557eb6b",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-61",
+          "line": 3001,
+          "literal": "| `L10-LABO-070-CASE-61` | `LABO-070-AC-03` | Recovery event identityだけ欠落 | Recovery結果を確定しない。 |\n",
+          "raw_lf_sha256": "147ea8bd3cd8a2d1554dcf474fa5bb5e068e531bcf0b0481c54c57f517e89010",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-62",
+          "line": 3002,
+          "literal": "| `L10-LABO-070-CASE-62` | `LABO-070-AC-03` | Recovery scopeだけ欠落 | 別scopeを混ぜず未評価とする。 |\n",
+          "raw_lf_sha256": "92403da7062526b571fb276fdf63fa1deaaa830297ca0d5959b649796a88cf42",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-63",
+          "line": 3003,
+          "literal": "| `L10-LABO-070-CASE-63` | `LABO-070-AC-03` | 単独変異: queue waitのunitだけが固定sourceの宣言unitと矛盾する。その他の入力はCASE-01と同一。 | 換算せず当該fieldをunknown/invalidとし、単位不一致の理由を示す。 |\n",
+          "raw_lf_sha256": "0c7e1298eb4c49c72a0b3da93895672285da8e22a5b6be7ba4dd87c9e02ae82a",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-64",
+          "line": 3004,
+          "literal": "| `L10-LABO-070-CASE-64` | `LABO-070-AC-03` | 索引（独立fixtureではない）: CASE-58のescaped-defect oracle revision欠落を直接参照する。 | CASE-58の期待判定を使い、069の受入finding不足を混ぜない。 |\n",
+          "raw_lf_sha256": "d1af82b036a0ba4318667d6f6f33731d9ac46bedc5d1cca66692d1a98a75e998",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-05",
+          "line": 3239,
+          "literal": "| `L10-LABO-070-CASE-05` | `LABO-070-AC-03` | queue-wait start eventだけ欠落。 | queue waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "c6ff200941862c1a31de9c13d491b1d5f08bdb04f14267f04b9e19a0a9317a10",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-06",
+          "line": 3240,
+          "literal": "| `L10-LABO-070-CASE-06` | `LABO-070-AC-03` | queue-wait end eventだけ欠落。 | queue waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "91dfe7d3de2ac6092312beabcc66291277694b1d22084548e0fd35ee2852f891",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-07",
+          "line": 3241,
+          "literal": "| `L10-LABO-070-CASE-07` | `LABO-070-AC-03` | queue-wait clock identityだけ欠落。 | queue waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "effa2f91c279f7e7162fc6d0e19a8ba1106268eec4f26eeac4d0f60734777851",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-08",
+          "line": 3242,
+          "literal": "| `L10-LABO-070-CASE-08` | `LABO-070-AC-03` | queue-wait occurred_atだけ欠落。 | queue waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "c79274707bea5cfdc23f95bb1d7e2aa7bd2ee965d0fda1eb590d6acfa591a6a6",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-09",
+          "line": 3243,
+          "literal": "| `L10-LABO-070-CASE-09` | `LABO-070-AC-03` |索引（独立fixtureではない）: `L10-LABO-070-CASE-52`、`L10-LABO-070-CASE-53`。4種durationの合算と重複時間の二重配賦を分けて参照する。|各単独CASEのoracleを個別に確認し、複合変異を独立計上しない。|\n",
+          "raw_lf_sha256": "18585bcda3b73dae6f0ddf07a71d7de2d79db934fce5f7d98b28a15002155229",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-10",
+          "line": 3244,
+          "literal": "| `L10-LABO-070-CASE-10` | `LABO-070-AC-03` | 単独変異: 未確認findingをescaped defectへ昇格だけを変更。その他の入力は `CASE-01` と同一。 | oracle確認前はescaped-defectと断定せず、ownerはunknownを保つ。 |\n",
+          "raw_lf_sha256": "781de7abc8ebc4067dded1359032fd0a5707c7df788d4514a16fc62f0d7b3bce",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-11",
+          "line": 3245,
+          "literal": "| `L10-LABO-070-CASE-11` | `LABO-070-AC-03` | 単独変異: outcome後にoracleを選択だけを変更。その他の入力は `CASE-01` と同一。 | 結果後oracleを拒否し、oracle不足は要求ownerへ戻す。 |\n",
+          "raw_lf_sha256": "6af04f4f04ed17a2ca23123aafae2d01b5cab5be1f92faa5eadba48bb5490de8",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-12",
+          "line": 3246,
+          "literal": "| `L10-LABO-070-CASE-12` | `LABO-070-AC-03` | 単独変異: 直接evidenceなしでoverheadを推定だけを変更。その他の入力は `CASE-01` と同一。 | overhead unknown 戻し先: LABO。 |\n",
+          "raw_lf_sha256": "e18e851a048f0069ff1908195c3ba858f72c0dd02b68b51698829d82824e9718",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-13",
+          "line": 3247,
+          "literal": "| `L10-LABO-070-CASE-13` | `LABO-070-AC-03` | 索引（独立fixtureではない）: `L10-LABO-070-CASE-70`（rollback/recovery費用の二重算入）と`L10-LABO-070-CASE-71`（measurement overheadの二重算入）を直接参照する。 | 各主fixtureのoracleを個別に確認し、異なる二重計上入力を同一変異へ束ねず、独立fixtureとして重複計上しない。 |\n",
+          "raw_lf_sha256": "52a0c9d86c6e0ba250c39a5492d31dd5782ecb01fb02be883aed5c712d8cb78a",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-14",
+          "line": 3248,
+          "literal": "| `L10-LABO-070-CASE-14` | `LABO-070-AC-03` | 単独変異: freshness timestampの欠落だけを変更。その他の入力は `CASE-01` と同一。 | age unknown 戻し先: unknown（該当source/authority ownerは固定親から個別特定できない）。 |\n",
+          "raw_lf_sha256": "79cf713bdd8bf450b5e6a44389c2c882ade59751f694f0077d238666fec86ba2",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-15",
+          "line": 3249,
+          "literal": "| `L10-LABO-070-CASE-15` | `LABO-070-AC-03` | 単独変異: ageからauthority/permissionを生成だけを変更。その他の入力は `CASE-01` と同一。 | authority生成を拒否 戻し先: unknown（該当source/authority ownerは固定親から個別特定できない）。 |\n",
+          "raw_lf_sha256": "2bbfa761bb2abe1d5dc001a5b0fcb7c846a200b9c67df74e0f136a50330bfd92",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-16",
+          "line": 3250,
+          "literal": "| `L10-LABO-070-CASE-16` | `LABO-070-AC-03` | 単独変異: 067 fieldのOS Attempt identity receiptだけ欠落。predicate/oracle・他fieldはCASE-01と同一。 | 067 fieldを理由付きunavailableとし、complete co-present scorecardとしない。欠落したAttempt identity receiptはOSへ戻す。他fieldで代替しない。 |\n",
+          "raw_lf_sha256": "653bca975129a2781fffcf2b9c9c9f5061345960b459c2d8867037811a9c0ff5",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-17",
+          "line": 3251,
+          "literal": "| `L10-LABO-070-CASE-17` | `LABO-070-AC-03` | 単独変異: 068 fieldのOS Attempt identity receiptだけ欠落。predicate/oracleと他fieldはCASE-01と同一。 | 068 fieldを理由付きunavailableとし、067/065で代替せずcomplete co-present scorecardとしない。欠落したAttempt identity receiptはOSへ返す。 |\n",
+          "raw_lf_sha256": "6be72ad31df30f3b396bcdab579f2fad11be0f080619cd2f1b13643f6c22d02e",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-18",
+          "line": 3252,
+          "literal": "| `L10-LABO-070-CASE-18` | `LABO-070-AC-03` | 単独変異: scope差だけを変更。その他の入力は `CASE-01` と同一。 | 同一scorecard値として混ぜない 戻し先: LABO。 |\n",
+          "raw_lf_sha256": "4eb451668c2e67dc0305d81f7207afd378a2827fa1714ed82ecf432afe1c1ece",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-19",
+          "line": 3253,
+          "literal": "| `L10-LABO-070-CASE-19` | `LABO-070-AC-03` | 単独変異: 067と068の代替/換算だけを変更。その他の入力は `CASE-01` と同一。 | 換算・代替を拒否し、元metricの定義/receipt ownerが特定できれば返す。特定不能ならunknownを保持する。 |\n",
+          "raw_lf_sha256": "2ebf6314f2c689d46b74c26e4310c22f019db3ad6f470f5c15ab4909d9eb9b42",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-20",
+          "line": 3254,
+          "literal": "| `L10-LABO-070-CASE-20` | `LABO-070-AC-03` | 単独変異: unresolved coverageを結果なしに補ってclosureする。その他の入力は `CASE-01` と同一。 | unknown/unresolvedを保ち、closure扱いしない。 |\n",
+          "raw_lf_sha256": "272414dc5aac5534c2489937e60b252b8318f982b02bdc89d8144be18e5db4b7",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-21",
+          "line": 3255,
+          "literal": "| `L10-LABO-070-CASE-21` | `LABO-070-AC-03` | 単独変異: 070の9 atomを既存12 metricへ混同だけを変更。その他の入力は `CASE-01` と同一。 | metric identityを分ける 戻し先: LABO。 |\n",
+          "raw_lf_sha256": "a3d2d23eab8087253651122b75259d09232ebe9af70fd7423387643e878e04f9",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-22",
+          "line": 3256,
+          "literal": "| `L10-LABO-070-CASE-22` | `LABO-070-AC-03` |索引（独立fixtureではない）: `L10-LABO-070-CASE-04a` threshold拒否と`CASE-51` rollback permission発行拒否を直接参照する。|各主fixtureのoracleを個別に確認し、複合変異やCASE-04b索引を独立計上しない。|\n",
+          "raw_lf_sha256": "546ab80f613b92159fbaf5987c22a46a48fb65d4495215a9c5a220d8f42e5ed0",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-23",
+          "line": 3257,
+          "literal": "| `L10-LABO-070-CASE-23` | `LABO-070-AC-03` | queue waitのobserved_atだけ欠落。 | queue waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "e0600cfb2c51d23c55badb5d187046a952236055cdb01ad20599868507e2d4c2",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-24",
+          "line": 3258,
+          "literal": "| `L10-LABO-070-CASE-24` | `LABO-070-AC-03` | queue waitのmeasurement windowだけ欠落。 | queue waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "03481f183eb595ec85ed9a143f5a90b009c7315196dbeac13f692665946b8397",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-25",
+          "line": 3259,
+          "literal": "| `L10-LABO-070-CASE-25` | `LABO-070-AC-03` | queue waitのsource identityだけ欠落。 | queue waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "0449d09034cfe113bbd1b71599d1ddec0aa6f2c5ef1301589b3c2a101dca2b33",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-26",
+          "line": 3260,
+          "literal": "| `L10-LABO-070-CASE-26` | `LABO-070-AC-03` | queue waitのreceiptだけ欠落。 | queue waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "3a285080ddf2fa8fbac6f27fcba63de7ec19c31d4cb1cf7221c4a4d0a7d2c581",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-27",
+          "line": 3261,
+          "literal": "| `L10-LABO-070-CASE-27` | `LABO-070-AC-03` | active timeのstart eventだけ欠落。 | active timeをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "fb71bdfb0308379e53b7e22a88deb3dbea96881e55a33a6e466ef31488fa12f9",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-28",
+          "line": 3262,
+          "literal": "| `L10-LABO-070-CASE-28` | `LABO-070-AC-03` | active timeのend eventだけ欠落。 | active timeをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "896dd151af43602826f1164a123d413760b2b9947ac9858a65c3d8c112846fe3",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-29",
+          "line": 3263,
+          "literal": "| `L10-LABO-070-CASE-29` | `LABO-070-AC-03` | active timeのclock identityだけ欠落。 | active timeをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "a3d2dc1c13390c9c5b07a7af78b7ee11626731cbbfc0b32e985a6b6913be0276",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-30",
+          "line": 3264,
+          "literal": "| `L10-LABO-070-CASE-30` | `LABO-070-AC-03` | active timeのoccurred_atだけ欠落。 | active timeをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "1e166e86eef369a168f632225d3d61e19962e89e41dee3f5c3129fa2b43b5381",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-31",
+          "line": 3265,
+          "literal": "| `L10-LABO-070-CASE-31` | `LABO-070-AC-03` | active timeのobserved_atだけ欠落。 | active timeをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "57a07c47a4a97ea83a651541bba99b33e6f55488e55336cc4a3e23df667e2410",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-32",
+          "line": 3266,
+          "literal": "| `L10-LABO-070-CASE-32` | `LABO-070-AC-03` | active timeのmeasurement windowだけ欠落。 | active timeをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "f8d9d93260db69b6d3043dc45d14977cca30baf9ef194895581f920fc3067a5c",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-33",
+          "line": 3267,
+          "literal": "| `L10-LABO-070-CASE-33` | `LABO-070-AC-03` | active timeのsource identityだけ欠落。 | active timeをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "dfc07dbe1fa35e0989391f47b85f9a3307dbd0d1a2129ba23d85b5504cab0a14",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-34",
+          "line": 3268,
+          "literal": "| `L10-LABO-070-CASE-34` | `LABO-070-AC-03` | active timeのreceiptだけ欠落。 | active timeをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "35fe1326c4b3f31d00d7179af42a90d5a81cf886c50dd0c44656f5975ab82d80",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-35",
+          "line": 3269,
+          "literal": "| `L10-LABO-070-CASE-35` | `LABO-070-AC-03` | review waitのstart eventだけ欠落。 | review waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "2951186319e2e7dff90074e272397214d837ec215526cc0f32d05ffa99ea22b4",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-36",
+          "line": 3270,
+          "literal": "| `L10-LABO-070-CASE-36` | `LABO-070-AC-03` | review waitのend eventだけ欠落。 | review waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "0a58bcc2b6f7761a5ac11b7bf99e1d0a2ab8febcae7a368b08c453de069f9a5a",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-37",
+          "line": 3271,
+          "literal": "| `L10-LABO-070-CASE-37` | `LABO-070-AC-03` | review waitのclock identityだけ欠落。 | review waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "70cc69fc8f85476543ee371cf9aa7a07079da4d1ae458530a17c89d98ac8b639",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-38",
+          "line": 3272,
+          "literal": "| `L10-LABO-070-CASE-38` | `LABO-070-AC-03` | review waitのoccurred_atだけ欠落。 | review waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "aa84a697bcfe08d94c42a5bfd6bade417b7b2e8a4ab262a7302bbe427bddf459",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-39",
+          "line": 3273,
+          "literal": "| `L10-LABO-070-CASE-39` | `LABO-070-AC-03` | review waitのobserved_atだけ欠落。 | review waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "6b0c8ecced5ad149e772ca04e1e14f214763cbf6b2b2d45d21a98fe96fed0137",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-40",
+          "line": 3274,
+          "literal": "| `L10-LABO-070-CASE-40` | `LABO-070-AC-03` | review waitのmeasurement windowだけ欠落。 | review waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "259c50762d8d8b2faa73462448c27bb42ac055831f5f9e605f1eaba7fbb2c6e0",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-41",
+          "line": 3275,
+          "literal": "| `L10-LABO-070-CASE-41` | `LABO-070-AC-03` | review waitのsource identityだけ欠落。 | review waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "ca449c2304fa070b6562adbc3a56196dcc3d9adaca7f5a21b0588fb08e0743ef",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-42",
+          "line": 3276,
+          "literal": "| `L10-LABO-070-CASE-42` | `LABO-070-AC-03` | review waitのreceiptだけ欠落。 | review waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "3682e2881a3143ad3268984cda2a2f868cd5db8502e40bae9b39709a94303f0a",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-43",
+          "line": 3277,
+          "literal": "| `L10-LABO-070-CASE-43` | `LABO-070-AC-03` | human waitのstart eventだけ欠落。 | human waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "2033765aae365f4365631fa1b7151cae3e8eb2552a95e562485eb33dbc7ccc0b",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-44",
+          "line": 3278,
+          "literal": "| `L10-LABO-070-CASE-44` | `LABO-070-AC-03` | human waitのend eventだけ欠落。 | human waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "a75ce3212a20f56be6ab64bb54870824214b6a414fc373a8db5321d862ebfb2f",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-45",
+          "line": 3279,
+          "literal": "| `L10-LABO-070-CASE-45` | `LABO-070-AC-03` | human waitのclock identityだけ欠落。 | human waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "13d670d9cfb0d05095839c3859b4030f3c84c3fb04d35561e23fd0ca6b327733",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-46",
+          "line": 3280,
+          "literal": "| `L10-LABO-070-CASE-46` | `LABO-070-AC-03` | human waitのoccurred_atだけ欠落。 | human waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "e33084ff363c31d236dcbfdbcec49ad131d32caa9330c4b7bf8d198b382f80ec",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-47",
+          "line": 3281,
+          "literal": "| `L10-LABO-070-CASE-47` | `LABO-070-AC-03` | human waitのobserved_atだけ欠落。 | human waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "5cb96eb5148b144221d5efc45e7c82c22a4cd625efb2581e4fff6eb0a48eb0c5",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-48",
+          "line": 3282,
+          "literal": "| `L10-LABO-070-CASE-48` | `LABO-070-AC-03` | human waitのmeasurement windowだけ欠落。 | human waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "11c0511ca8652df39cedeecfcfd3e19d93da6d542021a6022219d99b100725e5",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-49",
+          "line": 3283,
+          "literal": "| `L10-LABO-070-CASE-49` | `LABO-070-AC-03` | human waitのsource identityだけ欠落。 | human waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "a55e4e337db36d72ff1145851238f2fb0d12717c92b7b99b267a0435821b3717",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-50",
+          "line": 3284,
+          "literal": "| `L10-LABO-070-CASE-50` | `LABO-070-AC-03` | human waitのreceiptだけ欠落。 | human waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "0e4136e14d9ef156e9dcbc734e1ec5cd6b747018a6e1f89f7971c4d833978641",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-51",
+          "line": 3285,
+          "literal": "| `L10-LABO-070-CASE-51` | `LABO-070-AC-03` | 単独変異: LABOがrollback permissionを発行。その他の入力は `CASE-01` と同一。 | permission発行を拒否。rollbackの実行ownerをこの候補から推定しない。 |\n",
+          "raw_lf_sha256": "d9875cdc6422bf7106c0ab68b1922528864d51df152f60fcbe5546f3ab879aad",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-52",
+          "line": 3289,
+          "literal": "| `L10-LABO-070-CASE-52` | `LABO-070-AC-03` | 単独変異: 4種durationを加算。その他の入力は `CASE-01` と同一。 | 各durationを別fieldのまま保持し、059のend-to-end時間へ合算しない。戻し先: LABO。 |\n",
+          "raw_lf_sha256": "f32597f6937689f590fddffb2e707a14bee8517baaa4521d35e7f3a5e58ac5ff",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-53",
+          "line": 3290,
+          "literal": "| `L10-LABO-070-CASE-53` | `LABO-070-AC-03` | 単独変異: 重複する待ち時間を排他的に按分。その他の入力は `CASE-01` と同一。 | 重複時間を推測按分せず各durationを保持する。戻し先: LABO。 |\n",
+          "raw_lf_sha256": "4cd9f50ca82c8690f4825129dbba2c19d1c7fcf72a19782c4586ab7c247ce93d",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-65",
+          "line": 3344,
+          "literal": "| `L10-LABO-070-CASE-65` | `LABO-070-AC-03` | 単独変異: LABO candidateの採択だけを根拠に、別定義の067/068結果も採択済みと主張。その他はCASE-01と同一。 | 067/068の独立定義・receiptを参照し、070候補からその採択を推定しない。 |\n",
+          "raw_lf_sha256": "8ce7c80c87a025b9e4e3d054e2db0d96e24212b52eb4435c3351c4835cf90f39",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-66",
+          "line": 3345,
+          "literal": "| `L10-LABO-070-CASE-66` | `LABO-070-AC-03` | 単独変異: 067 fieldのpredicate revisionだけ欠落。OS Attempt identity・oracle・他fieldはCASE-01と同一。 | 067 fieldを理由付きunavailableとし、task/request predicate ownerが識別できる場合そこへ返す。complete co-present scorecardとしない。 |\n",
+          "raw_lf_sha256": "5cc0f31ac81936cec1ada9b6dea32bb5a2443c7c298a75ec8f9a77279e5309dc",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-67",
+          "line": 3346,
+          "literal": "| `L10-LABO-070-CASE-67` | `LABO-070-AC-03` | 準備: OS Attempt identity receiptと他の全fieldは有効で、LABOが068集計を行う。単独変異: LABO出力から068 distinct Attempt identity fieldだけ欠落。 | 068 fieldを理由付きunavailableとし、OS receiptの不足と混同せずLABO集計を未完に保つ。complete co-present scorecardとしない。 |\n",
+          "raw_lf_sha256": "b8f4635f00e317aee55f44dd6bcff1b57487e10a65171d583cbcbff4fb527a3c",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-68",
+          "line": 3399,
+          "literal": "| `L10-LABO-070-CASE-68` | `LABO-070-AC-03` | 索引（独立fixtureではない）: 068 result receipt欠落をHELIXLABO-068 CASE-18で直接照合する。 | 068 CASE-18を主fixtureとして参照し、結果stateだけunknownにする。 |\n",
+          "raw_lf_sha256": "cbe52146f8264436ce7176749038a0def02a0e6993131d482544a3124b578211",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-69",
+          "line": 3400,
+          "literal": "| `L10-LABO-070-CASE-69` | `LABO-070-AC-03` | 単独変異: outcomeを確認した後にobservation windowだけを選択する。 | 結果後に選んだwindowで判定せず未評価にする。 |\n",
+          "raw_lf_sha256": "11f3823cd21fb7ad9704a60a9d458fe3a9a2789d41f925c024c2c22ef05ff91f",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-70",
+          "line": 3401,
+          "literal": "| `L10-LABO-070-CASE-70` | `LABO-070-AC-03` | 単独変異: rollback/recovery費用を059の対象費用へ二重算入する。その他はCASE-01と同一。 | 059費用への重複算入を拒否し、rollback/recovery費用を該当別fieldに保つ。 |\n",
+          "raw_lf_sha256": "a02b39006b68a78d433b32e05116fc3e2568df2aaccc09800bf68159c50bd9d7",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-71",
+          "line": 3402,
+          "literal": "| `L10-LABO-070-CASE-71` | `LABO-070-AC-03` | 単独変異: measurement overheadを対象作業費用へ二重算入する。その他はCASE-01と同一。 | overheadと対象作業費用を分離し二重計上を拒否する。 |\n",
+          "raw_lf_sha256": "c66b8e844b6edba318336d3d7100386a7a6a9d398d6ff1434272b9f1c2bd875c",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-72",
+          "line": 3403,
+          "literal": "| `L10-LABO-070-CASE-72` | `LABO-070-AC-03` | 準備: 有効な068 distinct Attempt identity数と065 retry_countを別々に保持する。単独変異: 068 identity数を065 retry_count+1で置き換える。 | 068の元identity数を保持し、retry_countから換算した値で置き換えない。 |\n",
+          "raw_lf_sha256": "77b46dd9237e8ecac26ddb09cef50ccfb070d097c6f4130c6304cf7c78f83d31",
+          "kind": "table definition; index/alias status retained from literal"
+        },
+        {
+          "id": "L10-LABO-070-CASE-73",
+          "line": 3404,
+          "literal": "| `L10-LABO-070-CASE-73` | `LABO-070-AC-03` | 単独変異: 067 fieldのoracle revisionだけ欠落。predicate/Attempt identity/他fieldはCASE-01と同一。 | 067 fieldを理由付きunavailableとし、task/request oracle ownerが識別できる場合そこへ戻す。co-present complete scorecardとしない。 |\n",
+          "raw_lf_sha256": "3bea5ea3c2b12afe8f5fa5f6d4498ee6b254f4332eaac93e0165fd87434ec6c2",
+          "kind": "table definition; index/alias status retained from literal"
+        }
+      ],
+      "all_literals_verbatim_from_preflight": true,
+      "old_document_mention_rows": [
+        {
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+          "line": 1699,
+          "literal": "### LABO-070-FR-01 — 9項目の補助telemetry scorecard\n",
+          "raw_lf_sha256": "361057f914f14fb122b085e4187d5c2741064e765f81296be9bc36cb7e701ac4"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+          "line": 1703,
+          "literal": "- `LABO-070-AC-01` 正常: 選択scope・event境界・oracle・unitを確認できる各selected atomを個別に表示し、同一receiptを費用/時間で二重算入しない。067/068はそれぞれの独立定義で適用可能な値のみ別fieldに出す。\n",
+          "raw_lf_sha256": "7bdbb527310f7046bf2c5b0459cff10505f72db258a1ec51e930bf4aea96ca9a"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+          "line": 1704,
+          "literal": "- `LABO-070-AC-02` 未見正常: 未見event/sourceでも定義元・時刻・identity・scopeを確認できるfieldだけ観測し、他はunknown/unavailableのままにする。\n",
+          "raw_lf_sha256": "7fbf0b7a250f44686eca87f2b345efa0327f072136f5dfc40cc39e76efdfaf0e"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+          "line": 1705,
+          "literal": "- `LABO-070-AC-03` 不成立・戻し先: duration定義revision、escaped-defect relation/母数追跡完全性/oracle revision、rollback/Recovery event identity/scope、queue-wait unitに加え、start/end eventとclockの妥当性、裏付けのない推計・換算の禁止、freshness timestamp、067/068の換算・合算禁止、旧12指標との同一視禁止を個別に照合する。欠落/stale/単位不一致をunknownにしsuccess扱いしない。source event/assignmentは特定できる既存source ownerへ戻し、owner不明はunknownのままにする。escaped-defect oracle不足は要求ownerへ、data/execution permission不足は適用中のSECURITY境界へ戻す。これらをすべてHARNESSやOSへ一律にrouteしない。070候補の採択から、別定義・別receiptである067/068候補の採択を推定しない。4値を合算して059のend-to-end wall-clockを再定義せず、重複する待ちを按分しない。rollback/Recovery result記録の欠落を発生なしとしない。LABOはthreshold・rollback許可・ageからauthorityを作らない。source `coverage`の2未解決atom・旧12指標とのidentity relationはsource-heldのままにする。\n",
+          "raw_lf_sha256": "a551d275e39c6606174cb8d63420b459d769b730beb1ff415a39d46da800f160"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+          "line": 1708,
+          "literal": "- 追補CASE trace: `L10-LABO-070-CASE-04a/04b`と `L10-LABO-070-CASE-05`〜`CASE-73`は `LABO-070-AC-03` のCASE索引であり（独立fixture行とalias/index行を区別し）、各入力変異と期待oracleは対のStage 5 L10表に記録する。\n",
+          "raw_lf_sha256": "a30a823e2126c146c739a2e74bea96dd8298fd271869aa721091fc218ff767a2"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+          "line": 75,
+          "literal": "| `HELIXLABO-L2-070` | 9 atom telemetryの補助観測。SLA/thresholdなし | `LABO-070-AC-*` / `L10-LABO-070-CASE-*` |\n",
+          "raw_lf_sha256": "e1382b7ae5a11c0a67f89b42acbf88073778af3a6fdb9add3b62196940d0ded7"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+          "line": 176,
+          "literal": "- `NFR-LABO-070-01` 補助telemetryの完全性: 9 selected atomsごとにsource/unit/window/receipt availabilityとunknownを分ける。067/068の値や059の費用を重複計上しない。 Functional CASE index (alias/index行を含む。独立fixture数とは別): `L10-LABO-070-CASE-01/02`,既存negative,追補`CASE-05`〜`CASE-73`。`CASE-13`は`CASE-70/71`への非独立index、`CASE-68`はHELIXLABO-068 CASE-18への非独立indexであり、両方とも独立fixture数・negative分母へ加えない。`CASE-70/71`は各々独立negative fixture、`CASE-17`はAttempt identity receipt欠落、`CASE-68`経由のCASE-18はresult receipt欠落として区別する。閾値は追加しない。\n",
+          "raw_lf_sha256": "13019a2efe137c2a794b2248560b2ddb336e879f8a9af609b683c0f04feaf249"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2971,
+          "literal": "### CASE-LABO-070 — 補助telemetry scorecard\n",
+          "raw_lf_sha256": "f2aff8a28f20e3d7905433f05a0ee0e8524da843cae80098d33ffa90e8f15687"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2973,
+          "literal": "- `L10-LABO-070-CASE-01`（対応AC: `LABO-070-AC-01`） 正常: 9 selected atomを個別fieldとして、定義元・scope/window・unit・source receiptへ結ぶ。067/068値は元定義と参照先のまま別表示する。各fieldで定義元と一致する異なるunitは別fieldとして別表示し、換算・合算しない。この正常な異単位fieldは宣言unitとの不一致を扱うCASE-63と区別する。\n",
+          "raw_lf_sha256": "a658f6f8420ad337d8013aa6e7b1a5f136adc49bb36b0efba02bef4e473b9483"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2974,
+          "literal": "- `L10-LABO-070-CASE-02`（対応AC: `LABO-070-AC-02`） 未見正常: 新source eventのうち契約/単位/時刻が適用できるatomだけ計測し、残りはunknown/unavailableとする。\n",
+          "raw_lf_sha256": "b77f88c632a9cac40976c17e5aa8807ba84cbffb77365e64685e58a57a11e102"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2978,
+          "literal": "| `L10-LABO-070-CASE-03a` | `LABO-070-AC-03` | 索引（独立fixtureではない）: CASE-06の同一変異を参照する。 | 主fixtureを参照し、同じ変異を二重計上しない。 |\n",
+          "raw_lf_sha256": "579a08f2c81100490fa4a7a2a69447f6a1b30d578f46afced8f43c88e021d02f"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2979,
+          "literal": "| `L10-LABO-070-CASE-03b` | `LABO-070-AC-03` | 単独変異: active timeの実測unitだけが固定sourceのunitと不一致。 | 換算せず当該fieldをunknown/invalidとし不足理由を示す。unitを提供するsourceが識別できれば返し、特定不能はunknown。 |\n",
+          "raw_lf_sha256": "8888e9e6905e5b99a612df759b60000524f0b6a2c511824b47702cc7f9977d36"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2980,
+          "literal": "| `L10-LABO-070-CASE-03c` | `LABO-070-AC-03` | 単独変異: review waitの実測unitだけが固定sourceのunitと不一致。 | 換算せず当該fieldをunknown/invalidとし不足理由を示す。unitを提供するsourceが識別できれば返し、特定不能はunknown。 |\n",
+          "raw_lf_sha256": "51866c1066e067dcc29447d4deb1851425dc3c5ed768f42d47b502aea97c677a"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2981,
+          "literal": "| `L10-LABO-070-CASE-03d` | `LABO-070-AC-03` | 単独変異: Human waitの実測unitだけが固定sourceのunitと不一致。 | 換算せず当該fieldをunknown/invalidとし不足理由を示す。unitを提供するsourceが識別できれば返し、特定不能はunknown。 |\n",
+          "raw_lf_sha256": "62719e48f5dbb0d205de21c99e7b025f80544a0a8d695f9de3e6989aff6cc36c"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2982,
+          "literal": "| `L10-LABO-070-CASE-03e` | `LABO-070-AC-03` | escaped-defect quality oracleだけ欠落（relationと他入力は保持） | defect countを確定せず、oracle不足は要求ownerへ戻す。 |\n",
+          "raw_lf_sha256": "bdd209b99dbbc675adc2166e98f1e3e130bcf0f5891f67e5c74adbdd804554ab"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2983,
+          "literal": "| `L10-LABO-070-CASE-03f` | `LABO-070-AC-03` | rollback result receiptだけ欠落 | event不在とせずunknown。戻し先: 該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "c7e419721c06059bcc8033ab0fe4335ba695c229f23b60cfd29b1a9752e798b1"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2984,
+          "literal": "| `L10-LABO-070-CASE-03g` | `LABO-070-AC-03` | Recovery result receiptだけ欠落 | event不在とせずunknown。戻し先: 該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "3a5075e54de488db0cacc63c3d59d61e1c1f873e6090517fe7caa66fc965159a"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2985,
+          "literal": "| `L10-LABO-070-CASE-03h` | `LABO-070-AC-03` | observer overhead sourceだけなし | 推計0を使わずunknown。戻し先: unknown（固定親は当該sourceまたは判断ownerを個別特定しない）。 |\n",
+          "raw_lf_sha256": "c6d5e511bb77dbc2524177fe163cf2d87d0d7f7af7f8c10ed20152dbaf70ed67"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2986,
+          "literal": "| `L10-LABO-070-CASE-03i` | `LABO-070-AC-03` | evidence timestampだけ不正 | freshness age invalid/unknown。戻し先: unknown（固定親は当該sourceまたは判断ownerを個別特定しない）。 |\n",
+          "raw_lf_sha256": "e338b6e918556102dc89b6e3d7d7dd993956c199f52bd9f991ceb19ea93b4c5c"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2987,
+          "literal": "| `L10-LABO-070-CASE-03j` | `LABO-070-AC-03` | 索引（独立fixtureではない）: CASE-19の同一変異を参照する。 | 主fixtureを参照し、同じ変異を二重計上しない。 |\n",
+          "raw_lf_sha256": "a41c0a605dfb4fa139f1457da1cf7b69fbe622d66e1b26636d5be1897e093710"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2988,
+          "literal": "| `L10-LABO-070-CASE-03k` | `LABO-070-AC-03` | 索引（独立fixtureではない）: `L10-LABO-070-CASE-70`（rollback/recovery費用の二重算入）と`L10-LABO-070-CASE-71`（measurement overheadの二重算入）の2観点を個別に直接参照する。 | 各主fixtureを個別に参照し、2観点を単独変異として再計上しない。 |\n",
+          "raw_lf_sha256": "ee6f89977664ad579fa91e0dc4685b98da1e00537d02d5eac19287018d286c25"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2989,
+          "literal": "| `L10-LABO-070-CASE-04a` | `LABO-070-AC-03` | LABOがtelemetry thresholdを作成 | 拒否し、固定親が個別特定しない判断ownerはunknownとして保持する。 |\n",
+          "raw_lf_sha256": "43d85f84f78d05fe52dc63aba8b09788771a8a650f0b0a78c75970dff930990d"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2990,
+          "literal": "| `L10-LABO-070-CASE-04b` | `LABO-070-AC-03` | 索引（独立fixtureではない）: `L10-LABO-070-CASE-51`と同じrollback permission発行の試みを参照する。 | CASE-51のoracleを使い同一変異を二重計上しない。 |\n",
+          "raw_lf_sha256": "2835f3743444c65a9d2d90fff0ea416e6048ccdedba424adb6b7a378a7ec7a6c"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2994,
+          "literal": "| `L10-LABO-070-CASE-54` | `LABO-070-AC-03` | definition revisionだけ欠落 | duration値を定義不明としてunknownにする。 |\n",
+          "raw_lf_sha256": "f1ebc46c8b15b813c371bf21240fd4f579370844d1d5d1908f016b74f781def6"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2995,
+          "literal": "| `L10-LABO-070-CASE-55` | `LABO-070-AC-03` | definition revisionだけstale | 現行定義へ自動流用しない。 |\n",
+          "raw_lf_sha256": "dec84e53051059d62f784032fe0ed3636ce09b53488f23d4c261fd86ffe133a7"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2996,
+          "literal": "| `L10-LABO-070-CASE-56` | `LABO-070-AC-03` | escaped-defect relationだけ欠落 | defectと断定しない。 |\n",
+          "raw_lf_sha256": "d593846cbebf2af0762a2abc62b73224b7bd3a7873b67786efe77ee381a7372c"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2997,
+          "literal": "| `L10-LABO-070-CASE-57` | `LABO-070-AC-03` | escaped-defect母数/追跡完全性だけ欠落 | 欠測を0や欠陥なしにしない。 |\n",
+          "raw_lf_sha256": "f5d97783727f55fa71f862d37fcd1ddad68e849bcb0b5e442918c29c29aee8e0"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2998,
+          "literal": "| `L10-LABO-070-CASE-58` | `LABO-070-AC-03` | escaped-defect oracle revisionだけ欠落 | 合否を確定しない。 |\n",
+          "raw_lf_sha256": "38b43f86f5edd38bd136623a2ec18daad385917bf79e2fa96bf7557e7bd832b7"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 2999,
+          "literal": "| `L10-LABO-070-CASE-59` | `LABO-070-AC-03` | rollback event identityだけ欠落 | rollback計数をunknownとする。 |\n",
+          "raw_lf_sha256": "364082fa35f8a1fb641fe0b566418827c18fb67fd45a83e8ed3e74299c8b45f1"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3000,
+          "literal": "| `L10-LABO-070-CASE-60` | `LABO-070-AC-03` | rollback scopeだけ欠落 | 別scopeを混ぜず未評価とする。 |\n",
+          "raw_lf_sha256": "66290a7e6d20c38caa2f0be633d100400cc4f635c11125895adccbb03557eb6b"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3001,
+          "literal": "| `L10-LABO-070-CASE-61` | `LABO-070-AC-03` | Recovery event identityだけ欠落 | Recovery結果を確定しない。 |\n",
+          "raw_lf_sha256": "147ea8bd3cd8a2d1554dcf474fa5bb5e068e531bcf0b0481c54c57f517e89010"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3002,
+          "literal": "| `L10-LABO-070-CASE-62` | `LABO-070-AC-03` | Recovery scopeだけ欠落 | 別scopeを混ぜず未評価とする。 |\n",
+          "raw_lf_sha256": "92403da7062526b571fb276fdf63fa1deaaa830297ca0d5959b649796a88cf42"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3003,
+          "literal": "| `L10-LABO-070-CASE-63` | `LABO-070-AC-03` | 単独変異: queue waitのunitだけが固定sourceの宣言unitと矛盾する。その他の入力はCASE-01と同一。 | 換算せず当該fieldをunknown/invalidとし、単位不一致の理由を示す。 |\n",
+          "raw_lf_sha256": "0c7e1298eb4c49c72a0b3da93895672285da8e22a5b6be7ba4dd87c9e02ae82a"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3004,
+          "literal": "| `L10-LABO-070-CASE-64` | `LABO-070-AC-03` | 索引（独立fixtureではない）: CASE-58のescaped-defect oracle revision欠落を直接参照する。 | CASE-58の期待判定を使い、069の受入finding不足を混ぜない。 |\n",
+          "raw_lf_sha256": "d1af82b036a0ba4318667d6f6f33731d9ac46bedc5d1cca66692d1a98a75e998"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3239,
+          "literal": "| `L10-LABO-070-CASE-05` | `LABO-070-AC-03` | queue-wait start eventだけ欠落。 | queue waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "c6ff200941862c1a31de9c13d491b1d5f08bdb04f14267f04b9e19a0a9317a10"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3240,
+          "literal": "| `L10-LABO-070-CASE-06` | `LABO-070-AC-03` | queue-wait end eventだけ欠落。 | queue waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "91dfe7d3de2ac6092312beabcc66291277694b1d22084548e0fd35ee2852f891"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3241,
+          "literal": "| `L10-LABO-070-CASE-07` | `LABO-070-AC-03` | queue-wait clock identityだけ欠落。 | queue waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "effa2f91c279f7e7162fc6d0e19a8ba1106268eec4f26eeac4d0f60734777851"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3242,
+          "literal": "| `L10-LABO-070-CASE-08` | `LABO-070-AC-03` | queue-wait occurred_atだけ欠落。 | queue waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "c79274707bea5cfdc23f95bb1d7e2aa7bd2ee965d0fda1eb590d6acfa591a6a6"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3243,
+          "literal": "| `L10-LABO-070-CASE-09` | `LABO-070-AC-03` |索引（独立fixtureではない）: `L10-LABO-070-CASE-52`、`L10-LABO-070-CASE-53`。4種durationの合算と重複時間の二重配賦を分けて参照する。|各単独CASEのoracleを個別に確認し、複合変異を独立計上しない。|\n",
+          "raw_lf_sha256": "18585bcda3b73dae6f0ddf07a71d7de2d79db934fce5f7d98b28a15002155229"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3244,
+          "literal": "| `L10-LABO-070-CASE-10` | `LABO-070-AC-03` | 単独変異: 未確認findingをescaped defectへ昇格だけを変更。その他の入力は `CASE-01` と同一。 | oracle確認前はescaped-defectと断定せず、ownerはunknownを保つ。 |\n",
+          "raw_lf_sha256": "781de7abc8ebc4067dded1359032fd0a5707c7df788d4514a16fc62f0d7b3bce"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3245,
+          "literal": "| `L10-LABO-070-CASE-11` | `LABO-070-AC-03` | 単独変異: outcome後にoracleを選択だけを変更。その他の入力は `CASE-01` と同一。 | 結果後oracleを拒否し、oracle不足は要求ownerへ戻す。 |\n",
+          "raw_lf_sha256": "6af04f4f04ed17a2ca23123aafae2d01b5cab5be1f92faa5eadba48bb5490de8"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3246,
+          "literal": "| `L10-LABO-070-CASE-12` | `LABO-070-AC-03` | 単独変異: 直接evidenceなしでoverheadを推定だけを変更。その他の入力は `CASE-01` と同一。 | overhead unknown 戻し先: LABO。 |\n",
+          "raw_lf_sha256": "e18e851a048f0069ff1908195c3ba858f72c0dd02b68b51698829d82824e9718"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3247,
+          "literal": "| `L10-LABO-070-CASE-13` | `LABO-070-AC-03` | 索引（独立fixtureではない）: `L10-LABO-070-CASE-70`（rollback/recovery費用の二重算入）と`L10-LABO-070-CASE-71`（measurement overheadの二重算入）を直接参照する。 | 各主fixtureのoracleを個別に確認し、異なる二重計上入力を同一変異へ束ねず、独立fixtureとして重複計上しない。 |\n",
+          "raw_lf_sha256": "52a0c9d86c6e0ba250c39a5492d31dd5782ecb01fb02be883aed5c712d8cb78a"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3248,
+          "literal": "| `L10-LABO-070-CASE-14` | `LABO-070-AC-03` | 単独変異: freshness timestampの欠落だけを変更。その他の入力は `CASE-01` と同一。 | age unknown 戻し先: unknown（該当source/authority ownerは固定親から個別特定できない）。 |\n",
+          "raw_lf_sha256": "79cf713bdd8bf450b5e6a44389c2c882ade59751f694f0077d238666fec86ba2"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3249,
+          "literal": "| `L10-LABO-070-CASE-15` | `LABO-070-AC-03` | 単独変異: ageからauthority/permissionを生成だけを変更。その他の入力は `CASE-01` と同一。 | authority生成を拒否 戻し先: unknown（該当source/authority ownerは固定親から個別特定できない）。 |\n",
+          "raw_lf_sha256": "2bbfa761bb2abe1d5dc001a5b0fcb7c846a200b9c67df74e0f136a50330bfd92"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3250,
+          "literal": "| `L10-LABO-070-CASE-16` | `LABO-070-AC-03` | 単独変異: 067 fieldのOS Attempt identity receiptだけ欠落。predicate/oracle・他fieldはCASE-01と同一。 | 067 fieldを理由付きunavailableとし、complete co-present scorecardとしない。欠落したAttempt identity receiptはOSへ戻す。他fieldで代替しない。 |\n",
+          "raw_lf_sha256": "653bca975129a2781fffcf2b9c9c9f5061345960b459c2d8867037811a9c0ff5"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3251,
+          "literal": "| `L10-LABO-070-CASE-17` | `LABO-070-AC-03` | 単独変異: 068 fieldのOS Attempt identity receiptだけ欠落。predicate/oracleと他fieldはCASE-01と同一。 | 068 fieldを理由付きunavailableとし、067/065で代替せずcomplete co-present scorecardとしない。欠落したAttempt identity receiptはOSへ返す。 |\n",
+          "raw_lf_sha256": "6be72ad31df30f3b396bcdab579f2fad11be0f080619cd2f1b13643f6c22d02e"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3252,
+          "literal": "| `L10-LABO-070-CASE-18` | `LABO-070-AC-03` | 単独変異: scope差だけを変更。その他の入力は `CASE-01` と同一。 | 同一scorecard値として混ぜない 戻し先: LABO。 |\n",
+          "raw_lf_sha256": "4eb451668c2e67dc0305d81f7207afd378a2827fa1714ed82ecf432afe1c1ece"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3253,
+          "literal": "| `L10-LABO-070-CASE-19` | `LABO-070-AC-03` | 単独変異: 067と068の代替/換算だけを変更。その他の入力は `CASE-01` と同一。 | 換算・代替を拒否し、元metricの定義/receipt ownerが特定できれば返す。特定不能ならunknownを保持する。 |\n",
+          "raw_lf_sha256": "2ebf6314f2c689d46b74c26e4310c22f019db3ad6f470f5c15ab4909d9eb9b42"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3254,
+          "literal": "| `L10-LABO-070-CASE-20` | `LABO-070-AC-03` | 単独変異: unresolved coverageを結果なしに補ってclosureする。その他の入力は `CASE-01` と同一。 | unknown/unresolvedを保ち、closure扱いしない。 |\n",
+          "raw_lf_sha256": "272414dc5aac5534c2489937e60b252b8318f982b02bdc89d8144be18e5db4b7"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3255,
+          "literal": "| `L10-LABO-070-CASE-21` | `LABO-070-AC-03` | 単独変異: 070の9 atomを既存12 metricへ混同だけを変更。その他の入力は `CASE-01` と同一。 | metric identityを分ける 戻し先: LABO。 |\n",
+          "raw_lf_sha256": "a3d2d23eab8087253651122b75259d09232ebe9af70fd7423387643e878e04f9"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3256,
+          "literal": "| `L10-LABO-070-CASE-22` | `LABO-070-AC-03` |索引（独立fixtureではない）: `L10-LABO-070-CASE-04a` threshold拒否と`CASE-51` rollback permission発行拒否を直接参照する。|各主fixtureのoracleを個別に確認し、複合変異やCASE-04b索引を独立計上しない。|\n",
+          "raw_lf_sha256": "546ab80f613b92159fbaf5987c22a46a48fb65d4495215a9c5a220d8f42e5ed0"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3257,
+          "literal": "| `L10-LABO-070-CASE-23` | `LABO-070-AC-03` | queue waitのobserved_atだけ欠落。 | queue waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "e0600cfb2c51d23c55badb5d187046a952236055cdb01ad20599868507e2d4c2"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3258,
+          "literal": "| `L10-LABO-070-CASE-24` | `LABO-070-AC-03` | queue waitのmeasurement windowだけ欠落。 | queue waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "03481f183eb595ec85ed9a143f5a90b009c7315196dbeac13f692665946b8397"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3259,
+          "literal": "| `L10-LABO-070-CASE-25` | `LABO-070-AC-03` | queue waitのsource identityだけ欠落。 | queue waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "0449d09034cfe113bbd1b71599d1ddec0aa6f2c5ef1301589b3c2a101dca2b33"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3260,
+          "literal": "| `L10-LABO-070-CASE-26` | `LABO-070-AC-03` | queue waitのreceiptだけ欠落。 | queue waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "3a285080ddf2fa8fbac6f27fcba63de7ec19c31d4cb1cf7221c4a4d0a7d2c581"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3261,
+          "literal": "| `L10-LABO-070-CASE-27` | `LABO-070-AC-03` | active timeのstart eventだけ欠落。 | active timeをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "fb71bdfb0308379e53b7e22a88deb3dbea96881e55a33a6e466ef31488fa12f9"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3262,
+          "literal": "| `L10-LABO-070-CASE-28` | `LABO-070-AC-03` | active timeのend eventだけ欠落。 | active timeをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "896dd151af43602826f1164a123d413760b2b9947ac9858a65c3d8c112846fe3"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3263,
+          "literal": "| `L10-LABO-070-CASE-29` | `LABO-070-AC-03` | active timeのclock identityだけ欠落。 | active timeをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "a3d2dc1c13390c9c5b07a7af78b7ee11626731cbbfc0b32e985a6b6913be0276"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3264,
+          "literal": "| `L10-LABO-070-CASE-30` | `LABO-070-AC-03` | active timeのoccurred_atだけ欠落。 | active timeをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "1e166e86eef369a168f632225d3d61e19962e89e41dee3f5c3129fa2b43b5381"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3265,
+          "literal": "| `L10-LABO-070-CASE-31` | `LABO-070-AC-03` | active timeのobserved_atだけ欠落。 | active timeをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "57a07c47a4a97ea83a651541bba99b33e6f55488e55336cc4a3e23df667e2410"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3266,
+          "literal": "| `L10-LABO-070-CASE-32` | `LABO-070-AC-03` | active timeのmeasurement windowだけ欠落。 | active timeをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "f8d9d93260db69b6d3043dc45d14977cca30baf9ef194895581f920fc3067a5c"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3267,
+          "literal": "| `L10-LABO-070-CASE-33` | `LABO-070-AC-03` | active timeのsource identityだけ欠落。 | active timeをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "dfc07dbe1fa35e0989391f47b85f9a3307dbd0d1a2129ba23d85b5504cab0a14"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3268,
+          "literal": "| `L10-LABO-070-CASE-34` | `LABO-070-AC-03` | active timeのreceiptだけ欠落。 | active timeをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "35fe1326c4b3f31d00d7179af42a90d5a81cf886c50dd0c44656f5975ab82d80"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3269,
+          "literal": "| `L10-LABO-070-CASE-35` | `LABO-070-AC-03` | review waitのstart eventだけ欠落。 | review waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "2951186319e2e7dff90074e272397214d837ec215526cc0f32d05ffa99ea22b4"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3270,
+          "literal": "| `L10-LABO-070-CASE-36` | `LABO-070-AC-03` | review waitのend eventだけ欠落。 | review waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "0a58bcc2b6f7761a5ac11b7bf99e1d0a2ab8febcae7a368b08c453de069f9a5a"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3271,
+          "literal": "| `L10-LABO-070-CASE-37` | `LABO-070-AC-03` | review waitのclock identityだけ欠落。 | review waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "70cc69fc8f85476543ee371cf9aa7a07079da4d1ae458530a17c89d98ac8b639"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3272,
+          "literal": "| `L10-LABO-070-CASE-38` | `LABO-070-AC-03` | review waitのoccurred_atだけ欠落。 | review waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "aa84a697bcfe08d94c42a5bfd6bade417b7b2e8a4ab262a7302bbe427bddf459"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3273,
+          "literal": "| `L10-LABO-070-CASE-39` | `LABO-070-AC-03` | review waitのobserved_atだけ欠落。 | review waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "6b0c8ecced5ad149e772ca04e1e14f214763cbf6b2b2d45d21a98fe96fed0137"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3274,
+          "literal": "| `L10-LABO-070-CASE-40` | `LABO-070-AC-03` | review waitのmeasurement windowだけ欠落。 | review waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "259c50762d8d8b2faa73462448c27bb42ac055831f5f9e605f1eaba7fbb2c6e0"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3275,
+          "literal": "| `L10-LABO-070-CASE-41` | `LABO-070-AC-03` | review waitのsource identityだけ欠落。 | review waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "ca449c2304fa070b6562adbc3a56196dcc3d9adaca7f5a21b0588fb08e0743ef"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3276,
+          "literal": "| `L10-LABO-070-CASE-42` | `LABO-070-AC-03` | review waitのreceiptだけ欠落。 | review waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "3682e2881a3143ad3268984cda2a2f868cd5db8502e40bae9b39709a94303f0a"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3277,
+          "literal": "| `L10-LABO-070-CASE-43` | `LABO-070-AC-03` | human waitのstart eventだけ欠落。 | human waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "2033765aae365f4365631fa1b7151cae3e8eb2552a95e562485eb33dbc7ccc0b"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3278,
+          "literal": "| `L10-LABO-070-CASE-44` | `LABO-070-AC-03` | human waitのend eventだけ欠落。 | human waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "a75ce3212a20f56be6ab64bb54870824214b6a414fc373a8db5321d862ebfb2f"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3279,
+          "literal": "| `L10-LABO-070-CASE-45` | `LABO-070-AC-03` | human waitのclock identityだけ欠落。 | human waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "13d670d9cfb0d05095839c3859b4030f3c84c3fb04d35561e23fd0ca6b327733"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3280,
+          "literal": "| `L10-LABO-070-CASE-46` | `LABO-070-AC-03` | human waitのoccurred_atだけ欠落。 | human waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "e33084ff363c31d236dcbfdbcec49ad131d32caa9330c4b7bf8d198b382f80ec"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3281,
+          "literal": "| `L10-LABO-070-CASE-47` | `LABO-070-AC-03` | human waitのobserved_atだけ欠落。 | human waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "5cb96eb5148b144221d5efc45e7c82c22a4cd625efb2581e4fff6eb0a48eb0c5"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3282,
+          "literal": "| `L10-LABO-070-CASE-48` | `LABO-070-AC-03` | human waitのmeasurement windowだけ欠落。 | human waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "11c0511ca8652df39cedeecfcfd3e19d93da6d542021a6022219d99b100725e5"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3283,
+          "literal": "| `L10-LABO-070-CASE-49` | `LABO-070-AC-03` | human waitのsource identityだけ欠落。 | human waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "a55e4e337db36d72ff1145851238f2fb0d12717c92b7b99b267a0435821b3717"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3284,
+          "literal": "| `L10-LABO-070-CASE-50` | `LABO-070-AC-03` | human waitのreceiptだけ欠落。 | human waitをunknownとし、該当event source ownerが識別できる場合そのowner、特定できない場合unknown。 |\n",
+          "raw_lf_sha256": "0e4136e14d9ef156e9dcbc734e1ec5cd6b747018a6e1f89f7971c4d833978641"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3285,
+          "literal": "| `L10-LABO-070-CASE-51` | `LABO-070-AC-03` | 単独変異: LABOがrollback permissionを発行。その他の入力は `CASE-01` と同一。 | permission発行を拒否。rollbackの実行ownerをこの候補から推定しない。 |\n",
+          "raw_lf_sha256": "d9875cdc6422bf7106c0ab68b1922528864d51df152f60fcbe5546f3ab879aad"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3289,
+          "literal": "| `L10-LABO-070-CASE-52` | `LABO-070-AC-03` | 単独変異: 4種durationを加算。その他の入力は `CASE-01` と同一。 | 各durationを別fieldのまま保持し、059のend-to-end時間へ合算しない。戻し先: LABO。 |\n",
+          "raw_lf_sha256": "f32597f6937689f590fddffb2e707a14bee8517baaa4521d35e7f3a5e58ac5ff"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3290,
+          "literal": "| `L10-LABO-070-CASE-53` | `LABO-070-AC-03` | 単独変異: 重複する待ち時間を排他的に按分。その他の入力は `CASE-01` と同一。 | 重複時間を推測按分せず各durationを保持する。戻し先: LABO。 |\n",
+          "raw_lf_sha256": "4cd9f50ca82c8690f4825129dbba2c19d1c7fcf72a19782c4586ab7c247ce93d"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3344,
+          "literal": "| `L10-LABO-070-CASE-65` | `LABO-070-AC-03` | 単独変異: LABO candidateの採択だけを根拠に、別定義の067/068結果も採択済みと主張。その他はCASE-01と同一。 | 067/068の独立定義・receiptを参照し、070候補からその採択を推定しない。 |\n",
+          "raw_lf_sha256": "8ce7c80c87a025b9e4e3d054e2db0d96e24212b52eb4435c3351c4835cf90f39"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3345,
+          "literal": "| `L10-LABO-070-CASE-66` | `LABO-070-AC-03` | 単独変異: 067 fieldのpredicate revisionだけ欠落。OS Attempt identity・oracle・他fieldはCASE-01と同一。 | 067 fieldを理由付きunavailableとし、task/request predicate ownerが識別できる場合そこへ返す。complete co-present scorecardとしない。 |\n",
+          "raw_lf_sha256": "5cc0f31ac81936cec1ada9b6dea32bb5a2443c7c298a75ec8f9a77279e5309dc"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3346,
+          "literal": "| `L10-LABO-070-CASE-67` | `LABO-070-AC-03` | 準備: OS Attempt identity receiptと他の全fieldは有効で、LABOが068集計を行う。単独変異: LABO出力から068 distinct Attempt identity fieldだけ欠落。 | 068 fieldを理由付きunavailableとし、OS receiptの不足と混同せずLABO集計を未完に保つ。complete co-present scorecardとしない。 |\n",
+          "raw_lf_sha256": "b8f4635f00e317aee55f44dd6bcff1b57487e10a65171d583cbcbff4fb527a3c"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3399,
+          "literal": "| `L10-LABO-070-CASE-68` | `LABO-070-AC-03` | 索引（独立fixtureではない）: 068 result receipt欠落をHELIXLABO-068 CASE-18で直接照合する。 | 068 CASE-18を主fixtureとして参照し、結果stateだけunknownにする。 |\n",
+          "raw_lf_sha256": "cbe52146f8264436ce7176749038a0def02a0e6993131d482544a3124b578211"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3400,
+          "literal": "| `L10-LABO-070-CASE-69` | `LABO-070-AC-03` | 単独変異: outcomeを確認した後にobservation windowだけを選択する。 | 結果後に選んだwindowで判定せず未評価にする。 |\n",
+          "raw_lf_sha256": "11f3823cd21fb7ad9704a60a9d458fe3a9a2789d41f925c024c2c22ef05ff91f"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3401,
+          "literal": "| `L10-LABO-070-CASE-70` | `LABO-070-AC-03` | 単独変異: rollback/recovery費用を059の対象費用へ二重算入する。その他はCASE-01と同一。 | 059費用への重複算入を拒否し、rollback/recovery費用を該当別fieldに保つ。 |\n",
+          "raw_lf_sha256": "a02b39006b68a78d433b32e05116fc3e2568df2aaccc09800bf68159c50bd9d7"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3402,
+          "literal": "| `L10-LABO-070-CASE-71` | `LABO-070-AC-03` | 単独変異: measurement overheadを対象作業費用へ二重算入する。その他はCASE-01と同一。 | overheadと対象作業費用を分離し二重計上を拒否する。 |\n",
+          "raw_lf_sha256": "c66b8e844b6edba318336d3d7100386a7a6a9d398d6ff1434272b9f1c2bd875c"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3403,
+          "literal": "| `L10-LABO-070-CASE-72` | `LABO-070-AC-03` | 準備: 有効な068 distinct Attempt identity数と065 retry_countを別々に保持する。単独変異: 068 identity数を065 retry_count+1で置き換える。 | 068の元identity数を保持し、retry_countから換算した値で置き換えない。 |\n",
+          "raw_lf_sha256": "77b46dd9237e8ecac26ddb09cef50ccfb070d097c6f4130c6304cf7c78f83d31"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line": 3404,
+          "literal": "| `L10-LABO-070-CASE-73` | `LABO-070-AC-03` | 単独変異: 067 fieldのoracle revisionだけ欠落。predicate/Attempt identity/他fieldはCASE-01と同一。 | 067 fieldを理由付きunavailableとし、task/request oracle ownerが識別できる場合そこへ戻す。co-present complete scorecardとしない。 |\n",
+          "raw_lf_sha256": "3bea5ea3c2b12afe8f5fa5f6d4498ee6b254f4332eaac93e0165fd87434ec6c2"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/business-verification.md",
+          "line": 73,
+          "literal": "| `HELIXLABO-L2-070` | selected telemetry fieldとsource owner | `L10-LABO-070-CASE-01`〜`CASE-04b`, `L10-LABO-070-CASE-05`〜`CASE-73` |\n",
+          "raw_lf_sha256": "1b6023bc293967736cc1530c48a5a6517feb7a3810190d474c350cceaf116503"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+          "line": 134,
+          "literal": "- `CASE-NFR-LABO-070-01`: 9 selected atomそれぞれのunit/window/source receipt/unknownを個別集計し、067/068/059との二重計上を検出する。 Functional CASE index (alias/index行を含む。独立fixture数とは別): `L10-LABO-070-CASE-01/02`,既存negative,追補`CASE-05`〜`CASE-73`。`CASE-13`は`CASE-70/71`への非独立index、`CASE-68`はHELIXLABO-068 CASE-18への非独立indexであり、両方とも独立fixture数・negative分母へ加えない。`CASE-70/71`は各々独立negative fixture、`CASE-17`はAttempt identity receipt欠落、`CASE-68`経由のCASE-18はresult receipt欠落として区別する。\n",
+          "raw_lf_sha256": "e9c527a1d0ea602b159f252745a513dc5eae517c57a21baccd4521347995d005"
+        }
+      ],
+      "mention_row_count": 94
+    },
+    "old_84_ids_retained_in_current_table": true
+  },
+  "formal_review_raw": [
+    {
+      "comment_id": 6024684858,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2648#issuecomment-6024684858",
+      "body_sha256": "e348db6023985b3c2b6983f205d66c8a04be5ce07e4de94723bd1546e9b3aa6b",
+      "body_utf8_bytes": 588,
+      "body": "初回独立review依頼。base `ceda1c53b53c53fffb8c23f394add1f2b809deb1`、HEAD `ba19aa634afdc752b53a5443243edffc26cd73c7`。PO live26:49/ea6f採択親と旧0abb span同bytes、selected9atomのみ、旧84raw/現98core6列、正常9field値source-oracle照合、個体unknown分離/入力不足原因別返却、正常入力出力誤りLABO内訂正、操作権限非生成各単独。六prefix/actualSHA/旧sourceconsumer/raw84物理照合監査。gov/diff/public8 PASS。Draft。fixture実行・独立review・承認未。独立照合と同六本文Fable判断をお願いします。\n"
+    },
+    {
+      "comment_id": 6025034326,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2648#issuecomment-6025034326",
+      "body_sha256": "5f61752861be3bcdcc022d5a87fcea5de36eca081d05eeaf08bd215c56f60750",
+      "body_utf8_bytes": 6892,
+      "body": "## review01（independent review、PR #2648 親HELIXLABO-L2-070、HEAD ba19aa634afdc752b53a5443243edffc26cd73c7、base main ceda1c53b）：Major 2\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2648-LABO-STAGE5-PARENT070-01` に応える。\n\n### 本文を評価する前の確認（採択記録・対象版・追補条件）\n- **採択記録**：live26記録（po-decision-2026-09-30-live26.md）の49行が、`MPR-RC-HELIXLABO-L2-070-001`を採択している（通常採択）。git grepで、ほかの採択がないことを確かめた。\n- **対象版**：固定親は`ea6f756f96a7370de78e412d737c7a7ed472114a`（live26記録23行の最新main）である。\n  - **L2**：labo-requirements.md:561–574の節SHA-256は`07d9114f…`。\n  - **L11**：labo-acceptance.md:297–307の節SHA-256は`c6268c5f…`。\n  - reviewerが`git show`から計算し、49行の記録値と一致することを確かめた。\n- **追補条件**：live26記録で070に触れているのは49行だけで、070だけに付いた条件はない。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - origin/mainとの`merge-tree`は衝突なし\n\n### 照合の経過\n1. **Opusシンプルブラインド**：Major 3。Majorがあったので、Fableへは回していない。\n2. **reviewerの確認**：固定L2の561〜574行を読んだ。とくに「scorecard共通範囲」「evidence freshness」「責務と権限」の行を読んだ。\n   - CASE-01、03h、12、68の全文を読み、070の全CASEで「対象revision」「source revision」をgrepした。\n   - 1件目と3件目は、M1・M2としてMajorと確定した。\n   - 2件目は、下のR1とした。\n\n### Major\n**M1（observer overheadの不足を、どこへも返していない）**\n- **欠陥**：\n  - CASE-03h（overhead sourceの欠落）とCASE-12（直接evidenceなしの推計）は、「固定親はobserver-overheadの個別source/owner責務区分を特定しない」として、戻し先を定めていない。\n  - FR「責務区分と出力境界」の「observer overheadについて…新ownerを置かずunknownを保持」も同じである。\n  - しかし、固定親は区分を持っている。「LABOは各source ownerが提供する許可済みevent/result/evidenceから」提示し、「時間eventとassignmentはOS等の既存source owner」とする区分である。\n  - overheadの直接計測資源/receiptを提供する既存source ownerという区分で、宛先は決まる。\n  - 「新ownerを作らない」と「既存の区分へ返す」は両立する。それなのに、返却そのものを止めている（類型1）。\n  - CASE-12の推計は、LABO自身の出力の誤りである。こちらは、LABO出力の訂正として扱う必要もある。\n- **守るべき行**：固定L2-070（ea6f756 labo-requirements.md 070節「責務と権限」）「LABOは各source ownerが提供する許可済みevent/result/evidenceから、scope付きの観測値と比較証拠を提示する。時間eventとassignmentはOS等の既存source owner…」\n\n**M2（出力要素「対象revision」と「source revision」を照合していない）**\n- **欠陥**：\n  - CASE-01の正常判定は、event identity/clock/unit/occurred_at/observed_at/scope/windowの一致は確かめている。しかし、対象revisionとsource revisionの一致は確かめていない。\n  - 070の全CASEで、「対象revision」「source revision」の語は0件である。\n  - revision系の単独CASEは、定義revision（54/55）、oracle revision（58）、067 revision（66/73）だけである。対象revisionの不一致・混在と、source revisionの欠落を、単独で扱うCASEはない。\n  - そのため、異なるrevisionを混ぜた集計や、source revisionを持たないevidenceが合格する（類型4）。\n- **守るべき行**：\n  - 固定L2-070「scorecard共通範囲」（labo-requirements.md:565）「各計測行は…対象revision、評価window、source identity/revision…へ結ぶ。異なるscope/revisionを同一集計に混ぜず」\n  - 同「evidence freshness」「各evidenceの既存source identity/revision/provenance（L2-001）を保持し」\n\n### 後で直す残余（承認を止めない）\n- **R1（CASE-68と068の関係）**：ブラインドは「068の意味を変えている」としてMajorにしたが、reviewerは残余とした。\n  - CASE-68は、result receiptが欠けただけで、total Attempt countをunknownとする。完全性receiptがあっても、総数を確定しない。\n  - これは、reviewerが#2638（068）で、固定L2-068「完全なAttempt記録集合が確認できない場合」の読みとして求めた扱いと同じである。068の意味を変えてはいない。\n  - ただし、根拠に挙げる「現行068 CASE-18」は、まだmainにない（#2638は未merge）。070が068の未承認本文へ依存する形になっている。「068の定義・receiptで参照する」（固定L2-070「Attempt系との同一提示」）とし、068のmerge後に参照を固定するのがよい。\n- **R2（CASE-11の扱い）**：CASE-11（結果を見た後でLABOがoracleを選ぶ）は、戻し先を要求ownerにしている。CASE-10/15/19の「070の出力処理を訂正する」と、扱いがそろっていない。\n- **R3（判断ownerと重複）**：CASE-04aは、threshold生成拒否の判断ownerをunknownのままにしている。CASE-98とも重複している。\n- **R4（重複計上）**：CASE-51は、CASE-90と同じ変異を重複して数えている。\n- **R5（戻し先の記載のばらつき）**：「戻し先」の記載が、CASEごとにまちまちである。\n- **R6（L11の文に対応するCASEがない）**：次のL11の文には、単独CASEがない。\n  - 「067 repair roundをAttempt countへ加える」（加算そのもの）\n  - 「silent rename可否を判定するoracleを作る」\n  - 「S3A/S3B/S3Cを分母へ重複計上しない」\n  - 「統計推論または自動決定を追加しない」\n\n### 次の手順\n- **M1**：CASE-03hと12の戻し先を、overheadの直接計測資源/receiptを提供する既存source ownerにする。個体identityが不明なら、別fieldでunknownとする。CASE-12は、LABO出力の訂正として推計を拒否する。FRの該当文も、同じように直す。\n- **M2**：CASE-01の正常判定に、対象revisionとsource revisionの一致の照合を入れる。または、対象revisionの不一致・混在と、source revisionの欠落を、それぞれ単独で扱うCASEを置く。\n- 直した後のHEADで、もう一度依頼してほしい。\n"
+    }
+  ],
+  "normative_fv_static_check": {
+    "six_column_rows": 101,
+    "unique_ids": 101,
+    "current_ids": [
+      "L10-LABO-070-CASE-01",
+      "L10-LABO-070-CASE-02",
+      "L10-LABO-070-CASE-03a",
+      "L10-LABO-070-CASE-03b",
+      "L10-LABO-070-CASE-03c",
+      "L10-LABO-070-CASE-03d",
+      "L10-LABO-070-CASE-03e",
+      "L10-LABO-070-CASE-03f",
+      "L10-LABO-070-CASE-03g",
+      "L10-LABO-070-CASE-03h",
+      "L10-LABO-070-CASE-03i",
+      "L10-LABO-070-CASE-03j",
+      "L10-LABO-070-CASE-03k",
+      "L10-LABO-070-CASE-04a",
+      "L10-LABO-070-CASE-04b",
+      "L10-LABO-070-CASE-54",
+      "L10-LABO-070-CASE-55",
+      "L10-LABO-070-CASE-56",
+      "L10-LABO-070-CASE-57",
+      "L10-LABO-070-CASE-58",
+      "L10-LABO-070-CASE-59",
+      "L10-LABO-070-CASE-60",
+      "L10-LABO-070-CASE-61",
+      "L10-LABO-070-CASE-62",
+      "L10-LABO-070-CASE-63",
+      "L10-LABO-070-CASE-64",
+      "L10-LABO-070-CASE-05",
+      "L10-LABO-070-CASE-06",
+      "L10-LABO-070-CASE-07",
+      "L10-LABO-070-CASE-08",
+      "L10-LABO-070-CASE-09",
+      "L10-LABO-070-CASE-10",
+      "L10-LABO-070-CASE-11",
+      "L10-LABO-070-CASE-12",
+      "L10-LABO-070-CASE-13",
+      "L10-LABO-070-CASE-14",
+      "L10-LABO-070-CASE-15",
+      "L10-LABO-070-CASE-16",
+      "L10-LABO-070-CASE-17",
+      "L10-LABO-070-CASE-18",
+      "L10-LABO-070-CASE-19",
+      "L10-LABO-070-CASE-20",
+      "L10-LABO-070-CASE-21",
+      "L10-LABO-070-CASE-22",
+      "L10-LABO-070-CASE-23",
+      "L10-LABO-070-CASE-24",
+      "L10-LABO-070-CASE-25",
+      "L10-LABO-070-CASE-26",
+      "L10-LABO-070-CASE-27",
+      "L10-LABO-070-CASE-28",
+      "L10-LABO-070-CASE-29",
+      "L10-LABO-070-CASE-30",
+      "L10-LABO-070-CASE-31",
+      "L10-LABO-070-CASE-32",
+      "L10-LABO-070-CASE-33",
+      "L10-LABO-070-CASE-34",
+      "L10-LABO-070-CASE-35",
+      "L10-LABO-070-CASE-36",
+      "L10-LABO-070-CASE-37",
+      "L10-LABO-070-CASE-38",
+      "L10-LABO-070-CASE-39",
+      "L10-LABO-070-CASE-40",
+      "L10-LABO-070-CASE-41",
+      "L10-LABO-070-CASE-42",
+      "L10-LABO-070-CASE-43",
+      "L10-LABO-070-CASE-44",
+      "L10-LABO-070-CASE-45",
+      "L10-LABO-070-CASE-46",
+      "L10-LABO-070-CASE-47",
+      "L10-LABO-070-CASE-48",
+      "L10-LABO-070-CASE-49",
+      "L10-LABO-070-CASE-50",
+      "L10-LABO-070-CASE-51",
+      "L10-LABO-070-CASE-52",
+      "L10-LABO-070-CASE-53",
+      "L10-LABO-070-CASE-65",
+      "L10-LABO-070-CASE-66",
+      "L10-LABO-070-CASE-67",
+      "L10-LABO-070-CASE-68",
+      "L10-LABO-070-CASE-69",
+      "L10-LABO-070-CASE-70",
+      "L10-LABO-070-CASE-71",
+      "L10-LABO-070-CASE-72",
+      "L10-LABO-070-CASE-73",
+      "L10-LABO-070-CASE-85",
+      "L10-LABO-070-CASE-86",
+      "L10-LABO-070-CASE-87",
+      "L10-LABO-070-CASE-88",
+      "L10-LABO-070-CASE-89",
+      "L10-LABO-070-CASE-90",
+      "L10-LABO-070-CASE-91",
+      "L10-LABO-070-CASE-92",
+      "L10-LABO-070-CASE-93",
+      "L10-LABO-070-CASE-94",
+      "L10-LABO-070-CASE-95",
+      "L10-LABO-070-CASE-96",
+      "L10-LABO-070-CASE-97",
+      "L10-LABO-070-CASE-98",
+      "L10-LABO-070-CASE-99",
+      "L10-LABO-070-CASE-100",
+      "L10-LABO-070-CASE-101"
+    ],
+    "old_84_ids_retained": 84,
+    "all_old_literal_lf_sha256_valid": true,
+    "case98_line_index_zero_based": 105,
+    "case99_line_index_zero_based": 106,
+    "case98_case99_contiguous": true,
+    "case99_101_inside_same_markdown_table": true,
+    "further_normative_completeness_not_claimed": true
+  },
+  "verification_status": {
+    "root_checkpoint_actual_full_pins_match": true,
+    "candidate_v2_suffixes_match_committed_actual_except_documented_case99_one_phrase_removal": true,
+    "govcheck": "Root reports PASS",
+    "diffcheck": "Root reports PASS",
+    "fixture_execution": false,
+    "independent_review": false,
+    "approval": false,
+    "canonical_edit_by_worker": false
+  },
+  "limits": [
+    "This is a static post-body audit, not fixture execution or independent review.",
+    "R1–R6 source bodies are retained verbatim in formal_review_raw; only R1/R2 are addressed by the body, R3–R6 remain residual.",
+    "101 rows and ID retention do not prove semantic completeness."
+  ]
+}
