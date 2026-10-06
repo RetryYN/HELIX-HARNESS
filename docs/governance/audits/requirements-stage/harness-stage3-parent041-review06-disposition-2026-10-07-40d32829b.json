@@ -1,0 +1,245 @@
+{
+  "body_revision": "40d32829bea578c60a9f3681c4052619a8b9c356",
+  "parent": "a716bec20538cb5d0b9d93be0a69c42a5ae1bf3b",
+  "base": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+  "formal_review06": {
+    "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6023650937",
+    "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2637#issuecomment-6023650937",
+    "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2637",
+    "id": 6023650937,
+    "node_id": "IC_kwDOTG8BRc8AAAABZwmeeQ",
+    "user": {
+      "login": "RetryYN",
+      "id": 131282486,
+      "node_id": "U_kgDOB9M2Ng",
+      "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/RetryYN",
+      "html_url": "https://github.com/RetryYN",
+      "followers_url": "https://api.github.com/users/RetryYN/followers",
+      "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+      "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+      "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+      "repos_url": "https://api.github.com/users/RetryYN/repos",
+      "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "created_at": "2026-10-06T19:14:57Z",
+    "updated_at": "2026-10-06T19:14:57Z",
+    "body": "## review06（independent review、PR #2637 親HARNESS-L2-041（採択 -003）、HEAD a716bec20538cb5d0b9d93be0a69c42a5ae1bf3b、base main ceda1c53b）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2637-HARNESS-STAGE3-PARENT041-06` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：-003（11候補記録27行）。57候補記録46行の-002は旧判断履歴である。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：1件。「ownerが特定できない場合だけindividual identityをunknownとして」で、責務区分は保っている許容形である。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - origin/mainとの`merge-tree`は衝突なし\n\n### 照合の経過\n1. **差分の確認**：b21fb7665からの本文差分は、AC-02末尾への完了claim拒否文の追加と、CASE r04-empty-field、r04-tbd-field、041-08のoracle修正だけである。reviewerが確かめた。review05 M1が求めた範囲は直っている。\n2. **Opusシンプルブラインド**：Major 0。\n3. **Fableの判断**：「承認してよい」。\n4. **Opusによる敵対照合**：「Fableの判断を支持しない」。2件を挙げた。\n5. **reviewerの確認**：固定L2の961〜963行、L11の703行、L3 AC-02とAC-03の全文、041節の全CASEの変異列を読んだ。その結果、敵対照合の2件目をM1としてMajorと確定し、1件目は下のR28とした。\n\n### Major\n**M1（出力のextractor/version digestについて、欠落も不一致も拒否するfixtureがない）**\n- **欠陥**：\n  - `AC-HARNESS-L3-041-03`は「source span/revision/applicability/digest/extractor versionと実抽出inputの不一致を照合する」と書いている。\n  - しかしL10の041節には、出力のextractor/version digestだけを欠落させるCASEも、別の値にするCASEもない。変異列を全件確かめた。\n  - 出力provenanceの単独変異として置かれているのは、次の2件だけである。\n    - r05-root-revision-hidden（source revision）\n    - r04-source-span（span）\n  - r04-digest-mismatchとr04-extractor-unavailableは、どちらもextractor/versionを固定したまま別の欠陥を注入している。出力側のextractor/version digestは照合していない。\n  - そのため、extractor/version digestを出力しない実装でも、別の値を出力する実装でも、041の全CASEに合格する（類型4）。\n- **守るべき行**：\n  - 固定L2-041（記録用main 5aa10031 product-requirements.md:961）「抽出器/version digestを出力し」\n  - 同963「版不一致を解消せず完了扱いにしない」\n  - L11-041正常例（product-acceptance.md:703）「各atom/proposalに…抽出器/version digestがあり」\n\n### 後で直す残余（承認を止めない）\n- **R1〜R27**：review05から変わらない。\n- **R28（完了claim拒否のoracle文言）**：次のCASEのoracleは、gapまたはfindingと戻し先だけを書き、「scopeと該当義務を未完に保ち、scope完了claimを拒否する」を書いていない。\n  - 041-07、041-10、r04-source-span、r05-root-revision-hidden、r09-001、r09-003\n  - 敵対照合はこれをMajorとした。reviewerは次の2点を確かめたうえで、残余とした。\n    1. AC-02（functional-requirements.md:746）は、今回の追加文で「必須要素の欠落、empty/TBD、ledger contract incompatibilityを含む版不一致、または出力側gap/errorは、…scopeと該当義務を未完に保ち、scope完了claimを拒否する」を、全類に対して実際に書いている。\n    2. 固定L2 963行の各類（必須要素の欠落、空/TBD、抽出不能、重複、版不一致）には、それぞれ完了claimを拒否するfixtureが少なくとも1件ある。r04-atom-gap、r04-empty-field/tbd-field、r04-extractor-unavailable、r04-duplicate-atom、041-08である。\n  - ただし、r05-root-revision-hiddenはブラインドでも残余として挙がった。M1を直すときに、同じ文言を上の6件にも入れることを勧める。\n\n### 次の手順\n- M1を直す。出力のextractor/version digestだけを欠落させるCASEと、別の値にするCASEを置く。oracleは、provenance不一致として、HARNESS-L2-041抽出契約ownerへ戻し、scopeと該当義務を未完に保ち、scope完了claimを拒否するものにする。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+    "author_association": "OWNER",
+    "reactions": {
+      "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6023650937/reactions",
+      "total_count": 0,
+      "+1": 0,
+      "-1": 0,
+      "laugh": 0,
+      "hooray": 0,
+      "confused": 0,
+      "heart": 0,
+      "rocket": 0,
+      "eyes": 0
+    },
+    "performed_via_github_app": null,
+    "minimized": null
+  },
+  "historical_comment_bodies_raw": [
+    {
+      "id": 6022054934,
+      "body": "親041独立review01依頼。base a1bcdba15b4c10271d80291dc6062cf31250cf3e、HEAD c44be24bc40ccf5e9c4edde65fb4b89a3a6c6e47、本文3591ac05a5ca181bb582c812a4c3236dd7de681c。\n\n固定318 L2:957–968/L11:699–709とPO46 MPR041002を起点に六本文を追補。旧38ID/raw保全、現61unique6列。009 input applicabilityと041出力provenanceを分け、authority fieldと025design/026inspection結果を各単独誤出力で拒否。T0は未実行合成値。\n\n起草監査 requirements-stage/harness-stage3-parent041-authoring-audit-2026-10-07-3591ac05a.json SHA986a00225b11fe160833b14c78bc34e770b32fa8ae715ca743c9812643a137d7。Luna初版59/新21のembedded metadataを履歴値とし、現61/新23物理rawを別構造で固定。fixed source初版+LF差とe015 candidate/a1 body base差も記録。公表8/Git exact、gov/diff成功。\n\n独立に本文・固定親・旧source/consumerを読み、所見と未確認を正式commentへ記録ください。Opus NF/未確認0後に同HEAD Fable blind判断を照合。Draft、Ready/merge依頼ではありません。\n"
+    },
+    {
+      "id": 6022157049,
+      "body": "## review01（independent review、PR #2637 親HARNESS-L2-041、HEAD c44be24bc40ccf5e9c4edde65fb4b89a3a6c6e47、本文 3591ac05a、base main a1bcdba15）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼comment 6022054934に応える。方法はcomment 6013172073のとおり。\n\n### 照合の方法\n- **固定親**：PO判断記録`po-decision-2026-09-29-57candidates.md`の46行は、`HARNESS-L2-041`／採択／`MPR-RC-HARNESS-L2-041-002`である。照合の起点は、318ec4aのL2-041（957–968、span `d68926cf…`）とL11-041（699–709、span `259c3832…`）。どちらもPO行のpinと一致した。依存先はL2-040、025、026、009。\n- **ブラインド照合（Opus）**：固定親、依存先、6本文の追補143行（削除0）だけを読んだ。監査、PR comment、旧所見は見ていない。固定文を28群に種類分けし、対応CASE・ACに結び付けた。CASE定義61件、ID重複0、参照切れ0。下のM1を見つけた。\n- **継続照合（Opus）**：旧#2602で041に向けた所見を全件判定した。review17 M6、review19 M10、review17 m8、review18 m4、review19 m10は解消。review19 m18と英文の所見は残余へ移した。Majorとして残るものは0件。新しいMajorも挙げていない。\n  - 監査のpinを再計算し、6本文のbase/suffix/full、固定親、legacy 3件、旧38行・現61行の連結SHAがすべて一致した。旧38 IDはすべて残っている。下のR9（L2 pinの範囲）を除いて一致した。\n- **判定が分かれた点**：継続照合は、AC-02系のgap CASEに戻し先がない点を「AC-04の文で宛先が決まる」として残余に置いた。reviewerがAC-01〜05の本文を確かめたところ、AC-04が宛先を決めるのは「HARNESSが生成した誤ったauthority/status claim」と「実OS receiptの不足」だけで、AC-01はinput選択・適用性、AC-03は出力provenanceに限る。AC-02のgap（empty/TBD/抽出不能/重複/未対応）の宛先を決める規定はどこにもない。このため下のM1をMajorとした。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功（baseからは追加だけ）\n  - base a1bcdba15との`merge-tree`は衝突なし\n\n### Major\n**M1（AC-02とその配下のgap CASEで、戻し先が決まらない）**\n- **欠陥**：\n  - `AC-HARNESS-L3-041-02`（obligation dispositionとgap）は、empty/TBD/unhandled branch/extractor unavailable/duplicateをtyped gapとして示し未完に保つと定めるが、戻し先の規定がない。\n  - 配下のCASEも宛先を書いていない：`r04-empty-field`（「空を自由補完せずtyped gap」）、`r04-tbd-field`（「TBDを確定値へ変換せずtyped gap」）、`r04-extractor-unavailable`（「抽出成功にせずunknown/gap」）、`r04-duplicate-atom`、`r04-atom-gap`、`041-10`（「gapを維持し不成立」）。AC-03側の`r04-one-obligation-split`と`r04-two-obligations-merge`も、AC-03の経路規定の外にあり、宛先がない。\n  - 同じPRのCASE-041-04/06は、抽出契約の不足を「固定HARNESS-L2-041抽出契約」、template revision/applicabilityの欠落を「HARNESS-L2-009の既存template owner」へ分けて戻していて、型が合わない。\n- **起こりうること**：状態はgap/未完で保持されるので誤った完了は通らないが、欠陥の戻り道が決まらない。とくにactive templateの空field/TBD（template側の意味の欠落）を、009/対象template ownerへ返すのか、041の抽出契約へ返すのかを区別できない。\n- **守るべき行**：\n  - HARNESS-L2-041「所有境界」（318ec4a product-requirements.md:964、HARNESS-COREが抽出契約、候補行、gapの意味と戻し先を所有する）\n  - 同「保証と戻し先」（:966、templateの意味・適用性が不明ならHARNESS-L2-009/対象ownerへ）\n  - L11-041「戻し先と境界」（product-acceptance.md:709）\n\n### 後で直す残余（承認を止めない）\n- **R1（出力の列挙と単独fixture）**：FR-041の「出力」とAC-02/03の列挙に、obligation種別がない。出力からextractor/version digest、template revision、applicability branchが欠けた場合の単独fixtureがない。field、done-when、pair contractの要素別の抽出、旧L0–L14配列・追加pairを作らないこと、「L3要件内容の生成」の拒否にも単独fixtureがない（L2:960、962、964）。\n- **R2（理由付き非適用）**：理由付き非適用をtyped gapと一括にしていて、非適用の理由だけが欠けた場合の単独fixtureがない（L11:703）。\n- **R3（索引）**：041-02/04/06がAC-02の単独行（r04-atom-gap、r09-001、r10-unresolved-obligation-aggregate-covered）を挙げていない。041-01はAC-01のr04-unselected-template-extrapolation、r09-002、r10-l2-009-applicability-unknownを挙げていない。041-03はAC-02のr04-atom-gapをラベルなしで含める。041-04（AC-02）がAC-01のr09-002を参照している。041-11/12でIDが二重backtickで囲まれている（review19 m18の残り）。\n- **R4（兄弟行の戻し先の書き漏れ）**：r10-candidate-adoption、design-success、l3-approval、implementation-complete、candidate-template-authorityの各行に、041抽出契約ownerへの戻しが書かれていないか、書き方がそろっていない。AC-04の一般規定が覆っている（L2:964/965）。\n- **R5（宛先の併記・条件分岐）**：r10-025/026-receipt-substitutesの「041の選択input/抽出契約へ」は、009（選択input）と041（抽出契約）を原因で分けていない。r09-003は、2宛先のどちらになるかが入力で固定されていない（L2:964、965）。\n- **R6（英文の残存）**：「index only: …」「valid atom/gap/provenance output」「selected template/application input」「known responsibility class」など。AC-05末文の「041のinput contract内で得た結果に限る」は意味が取りにくい（旧英文所見の残り）。\n- **R7（重複節）**：functional-requirements.mdにも「Stage 3 親041の業務要件」節があり、business-requirements.mdと文言が少し違う重複になっている。\n- **R8（改訂範囲の記載）**：FR、FV見出し、監査mdは旧行の改訂をr05だけとしているが、r04-source-spanの3列も意味を改訂しており（入力span保持、出力span欠落へ）、旧行15件のAC帰属も付け替えている（例：r09-001はAC-03→AC-02、r09-002はAC-04→AC-01）。旧literalは監査JSONに残っているが、改訂として記録されていない。\n- **R9（監査のL2 pinの範囲）**：監査のfixed_parent L2_041は957–970（3967 bytes、`ad8e344c…`）を「実physical slice」とし、空行969と次の節の見出し（970行）を含む。FRの宣言とPO行46のpin（957–968、`d68926cf…`）と範囲が違い、監査はd68926cfを照合していない。L11の`259c3832…`はPO pinと一致する。\n- **R10（PO行のrevision）**：FRはPO行のrevisionをa2638477とし、監査はa1bcdbaで照合している。行のbytesは同じ。\n- **R11（監査の外部参照）**：監査mdとJSONが、`/tmp`配下の4ファイルと、worktree `/home/tenni/.helix-worktrees/l3-harness-stage3-parent041`を参照していて、repositoryからは再現できない（4ファイルは現時点で手元に実在し、SHAは記録と一致した）。JSON limitations[2]の「all outputs are under /tmp」は、repository内に置かれた現状と合わない。\n- **R12（件数metadata）**：埋め込みinventory（59行、新規21件）は古い。監査はこれをhistorical metadataとし、現在値61行・新規23件を別に記録していて、食い違いは開示済み。\n- **R13（採択状態の表記）**：固定L11 @318ec4a:701は「未採択」と書くが、PO判断記録46行は「採択」である。採択前の文面で、L3はPO判断記録に従っている。\n\n### 判定\n- blocker 1（M1）。Major 1、残余13、未確認範囲0。\n- 委任承認は成立しない。Readyにはしない。merge admissionは本commentから生成しない。\n- M1を直したHEADでは、reviewerが差分を確かめる。Opusが`no_findings`なら、同じHEADでFableにブラインドで見てもらう。\n- mainは#2636のmergeでf5a974a40へ進んでいる。HARNESSの本文は衝突しないが、取り込む場合はreviewer側が041の追補のbytesを照合する。\n"
+    },
+    {
+      "id": 6022428032,
+      "body": "親041 review02依頼。base f5a974a4059a209982cb1cdec39c0537f52683b8、HEAD288844f5e4dee7190dded4542f64a9533f82dd55、M1 bodyfef29ac6f438e57705cc5c1649cf4db08ffc033c。正式6022157049全文Read、AC02と12 CASE行で原因別の戻し先を明示。既知責務区分を保ち、入力template意味/適用不明は009、正常入力後の抽出欠陥は041、ledger互換不足は040へ。empty/TBDとtemplate意味不明のbaselineは正常から一field変異、split/mergeは抽出正常から一変異、自由補完は既存gapから一誤出力のみ。現62 unique六列、旧61ID保持、六main067 prefix bytes保持、gov/diff/public10 exact。処置監査にPO exact957–968 sha d68926cf、formalR1–13原文、旧AC付替えformal15vsactual12差を固定。旧時点監査不変。修正後独立reviewと同HEAD Fable判断を正式commentへお願いします。Draft、承認/Readyなし。\n"
+    },
+    {
+      "id": 6022571073,
+      "body": "## review02（independent review、PR #2637 親HARNESS-L2-041、HEAD 288844f5e4dee7190dded4542f64a9533f82dd55、base main f5a974a40）：Major 0\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼comment 6022428032（`RH-PR2637-HARNESS-STAGE3-PARENT041-02`）に応える。\n\n### 照合の方法と結果\n運用モデル「L3／L10承認の委任」の条件1と条件2を、このexact HEADで確かめた。\n\n1. **Opusのシンプルなブラインド照合（条件1）**\n   - 読んだもの：固定親（318ec4a product-requirements.md:957–968、product-acceptance.md:699–709）、判断記録46行、6本文の追補（+144行、削除0）。\n   - 見たもの：Major 5類型だけ。\n   - 結果：Major 0、未確認範囲0。旧草稿の041 CASE 38件はすべて残っており、新しく加わった24件にもIDの重複はない。\n2. **Fableの判断（条件2）**\n   - 自分で読んだもの：固定親、判断記録46行（L2・L11の全文SHAがpinと一致する）、6本文の追補。\n   - Opusの結果は参考として渡した。\n   - 結論：「承認してよい」。止める問題はなく、Opusの結果に同意しない点もない。\n3. **Opusによる敵対照合（条件1の補強）**\n   - Fableの結論を崩す目的で、固定親の禁止、戻し先、unknown条件を1文ずつ取り出し、AC-01〜05とL10の62行に当てた。\n   - 結論：「Fableの判断を支持する」。崩せたMajorはない。\n4. **review01の指摘への処置**\n   - review01のM1は解消した。AC-02とgapのCASEに、原因ごとの宛先が付いた。\n     - empty／TBDの場合は、HARNESS-L2-009と対象のtemplate ownerへ戻す。\n     - 有効なinputを受けた後に、抽出できない、未対応のbranch、重複、split/merge、自由補完が起きた場合は、041のHARNESS-CORE extraction-contract ownerへ戻す。\n     - ledgerの不整合は、040相当のownerへ戻す。\n   - r04-empty-field、tbd-field、extractor-unavailable、duplicate-atomにも同じ宛先がある。どの宛先も固定親の区分の内側である（L2「所有境界」、L11「戻し先と境界」）。\n5. **静的検査**\n   - scfctl validate 147/0、stale 0、residuals 0\n   - govcheck ok\n   - `git diff --check`成功\n   - 差分は追加だけで、削除は0行\n   - origin/mainとの`merge-tree`は衝突なし\n\n### 6本文のSHA-256（このHEAD）\n- L3-requirements/business-requirements.md `3d33e0ce83148d65e7762c5b56da5168356fe6e26a3bfdc3bff10430f70f0036`\n- L3-requirements/functional-requirements.md `6b4d268aa878d12c58bbe182e98c3af6849f9dccfe392165a9fe640a739ddd8b`\n- L3-requirements/nfr-grade.md `6a11a61b0b7ef516074dcbb6ed3589abd8b098a38741c75898b4d5a288748700`\n- L10-verification/business-verification.md `0a761e2889f28b88fe13acc6caca98a1dddcc7e122d2966a473b7716b5d59a83`\n- L10-verification/functional-verification.md `a258f15c1a3553a25633a3f90f6941379d95731b2a039812f1b351712a69f425`\n- L10-verification/nfr-verification.md `18b7305354f26d8a6fa8c1e760ca45eeadec805fc6ece496ab0eb3ec687514ad`\n\n### 後で直す残余（承認を止めない）\n- **R1〜R13**：review01（comment 6022157049）の本文から変わらない。判断記録には、review01の文言を原文のまま転記する。\n- **R14（oracleの戻し先）**：r10-candidate-adoption、design-success、l3-approval、implementation-completeのoracleに、「誤出力は041 contract ownerへ戻す」がない。AC-04の本文で宛先は一意に決まる。\n- **R15（oracleの戻し先）**：r04-digest-atom-gapとr04-unselected-template-extrapolationのoracleに、戻し先がない。所属するAC-03とAC-01の本文で、宛先は一意に決まる。\n- **R16（二通りに読める宛先）**：r10-025／026-receipt-substitutes-extractionの宛先「041の選択input/抽出契約へ」は、二通りに読める。baselineではinputが有効なので、041 contractに絞るほうがよい。\n- **R17（未見の負例）**：L11「未見例」の「新しいapplicability分岐」と「未対応ならsource span付きgap」に当たる負例がない。r09-002は未見の正常例で、r09-003は既知のbranchの欠落である。\n- **R18（atom種別の列挙）**：L2が挙げるatomの種別（chapter／field／row／rule／done-when／pair contract）が、FRとACに列挙されていない。done-whenとpair contractには個別のfixtureもない。\n- **R19（場所の特定）**：L10の冒頭にある「添付authoring inventory」と、L3の「時点inventory」は、本文の中で場所が特定されていない。\n- **R20（input時点の欠落）**：L2「依存区分」は、対象のHARNESS-L1 revisionを常に必須とし、入力に抽出器とversion identityを挙げている。しかし、AC-01のmissing／unknown／conflict／staleの列挙はtemplate／applicability／scope／sourceまでである。L1 revisionと、input時点の抽出器identityが欠けた場合に対応するfixtureがない。固定親はこの2つに宛先もunknownの規則も定めていないので、網羅の不足とする。\n\n### 次の手順\n- 条件1と条件2は、このHEADで成立した。\n- 作成側は、委任承認の判断記録を起こしてからReady化してほしい。\n  - 判断記録には、6本文の上のSHA、固定親のpin、この review comment、残余R1〜R20を原文のまま記録する。\n  - 判断記録のcommitで6本文を変えない。\n- reviewerは、判断記録だけの差分、6本文のSHAの一致、残余の転記を照合してからmergeする。\n"
+    },
+    {
+      "id": 6022788739,
+      "body": "## review02の訂正（PR #2637 親HARNESS-L2-041、HEAD 288844f5e4dee7190dded4542f64a9533f82dd55）：Major 1、review02のno_findingsを取り消す\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。review02（comment 6022571073）は編集せず、この訂正で置き換える。**review02で成立したとした条件1と条件2は、このHEADでは成立していない。** 判断記録とReady化へは進まないでほしい。\n\n### 訂正の理由\n- review02では、固定親の採択記録として`po-decision-2026-09-29-57candidates.md`の46行だけを照合した。そこには`MPR-RC-HARNESS-L2-041-002`の採択がある。\n- しかしmainには、その後の`po-decision-2026-09-29-11candidates.md`がある。その27行は、HARNESS-L2-041について、生存MPR登録`MPR-RC-HARNESS-L2-041-003`を採択している。\n  - 採択の範囲は次のとおりである。\n    - L2 file SHA-256 `45955ffb…`（記録用main 5aa10031）\n    - L11 file SHA-256 `216a8dcc…`、L11節digest `sha256:11759276…`\n    - coverage receipt r3\n  - 同じ記録の38行と40行は、HELIXOS-L2-038 `-002`の採択条件を「HARNESS-L2-041 `-003`を個別に採択する」と定めている。\n- reviewer（Claude）は11候補の判断記録を照合しておらず、Opus・Fable・敵対照合に渡した入力も、57候補の46行だけだった。この見落としはreviewerの手順の誤りである。外部監査の指摘で判明した。\n\n### Major\n**M1（採択済みの`-003`を未採択として除外し、別revisionの`-002`を正本にしている）**\n- **欠陥**：\n  - L3 functional-requirementsとL10の起点の記述は、次のように書いている。「PO-adopted -002を正本とし、旧L3ドラフトにある未採択 `MPR-RC-HARNESS-L2-041-003`やL11追加oracleをauthorityとして取り込まない」「MPR-003由来の追加境界は正本にせず」。\n  - 固定親も、318ec4aのL2:957–968とL11:699–709だけに固定している。\n  - その結果、`-003`で採択されたL11の追加oracleが、L3/L10に入っていない。追加oracleは次の2つである（記録用main 5aa10031のproduct-acceptance.md「追加oracle候補（登録revision `MPR-RC-HARNESS-L2-041-003`…）」）。\n    - 原子的obligationの拒否例：異なる二つの義務を一つの複合atomへまとめた抽出結果を合格にしない。\n    - 同一入力・同一extractor/versionの再抽出不一致例：semantic digestが異なれば、非決定的抽出として、そのscopeを未解決に保つ。\n- **類型**：L3がどの採択済み要求を実現するかを取り違えている。L2の意味を変える類型（類型3）にあたる。\n  - 依存するHELIXOS-L2-038 `-002`の採択条件にも関わる。\n- **守るべき行**：\n  - `docs/governance/decisions/po-decision-2026-09-29-11candidates.md:27`（HARNESS-L2-041／採択／`MPR-RC-HARNESS-L2-041-003`）と、:38・:40（HELIXOS-L2-038 `-002`の条件）\n  - 記録用main 5aa10031のL2 HARNESS-L2-041節と、L11 HARNESS-L2-041節の追加oracle\n\n### 次の手順\n- 固定親を`-003`の採択revision（11候補の判断記録27行のL2/L11のSHAと節digest）へつなぎ直す。\n- 追加oracle 2件を、L3/L10に保つ。\n- 57候補の46行（`-002`）との関係を記録する。`-003`は`-002`を置き換えるのか、それとも`-002`に追加するのか。\n- 直した後のHEADで、もう一度依頼してほしい。\n- reviewerは、ほかの親でも同じ見落としがないかを確かめるため、照合の手順に「同じIDが後の判断記録で採択されていないか」の確認を加える。\n"
+    },
+    {
+      "id": 6022836599,
+      "body": "041 review03依頼。base3c3c512c09320c0494904602b23e544a81206eed、HEAD0ecf302b7e84f4c1f3395a13e512332f738ea681。正式6022571073のreview02一致を全文Readしたうえで、042merge後のmain六本文全体をprefixとし041 suffixをraw byte不変で保持して6競合を解消しました。62unique CASE/旧ID保持、govcheck/diff/public10一致。旧NFを新HEADに継承せず、条件1/2の独立再照合と同HEAD Fable判断をお願いします。判断記録はまだ追加せずDraftを保持。R1–20を旧時点原文のまま保持します。\n"
+    },
+    {
+      "id": 6022859696,
+      "body": "## review03（independent review、PR #2637 親HARNESS-L2-041、HEAD 0ecf302b7e84f4c1f3395a13e512332f738ea681、base main 3c3c512c0）：Major 1（review02訂正のM1が未解消）\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼comment 6022836599（`RH-PR2637-HARNESS-STAGE3-PARENT041-03`）に応える。\n\n### 照合の結果\n- **mainの取り込み**：\n  - main 3c3c512c0（#2640 親042 merge後）の6本文は、このHEADでbytesのまま先頭に残っている。6本文とも、mainのbytesとprefixが一致した。\n  - 041の追補は、その後ろに加えられている。差分は追加だけで、削除は0行。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - origin/mainとの`merge-tree`は衝突なし\n- **review02の訂正（comment 6022788739）のM1**：未解消である。このHEADの追補も、「PO-adopted -002を正本とし、旧L3ドラフトにある未採択 `MPR-RC-HARNESS-L2-041-003`やL11追加oracleをauthorityとして取り込まない」と書いたままである。一方、`po-decision-2026-09-29-11candidates.md:27`は`-003`を採択している。\n- **今後の流れ**：M1が残っているので、ブラインド照合とFableの判断は回していない。依頼の範囲が「main042を取り込んだ後のHEAD」だったので、この依頼は訂正comment 6022788739より前に作られたものと理解している。\n\n### Major\n- **M1**：review02の訂正（comment 6022788739）のとおりである。\n\n### 次の手順\n- 訂正commentの「次の手順」のとおり、次の3つを直す。\n  - 固定親を`-003`の採択revisionへつなぎ直す。\n  - 追加oracle 2件を、L3/L10に保つ。\n  - `-002`との関係を記録する。\n- 直した後のHEADで、もう一度依頼してほしい。\n"
+    },
+    {
+      "id": 6022997665,
+      "body": "041 review04依頼。base3c3c512c09320c0494904602b23e544a81206eed、HEAD776189054d85307086cf576651ca55b78c9b33ca、body0fa9042ab39f4488032ee5b7b117728802cbdd05。正式訂正6022788739/review036022859696を全文Readし旧NF撤回を保持。Root起点誤りを訂正し11候補PO27採択003へ5aa100319361b0cc86edd3c51815ec777d55410a exact L2:957–968/L11:699–714接続。002は過去採択、L2digest同じ/L11追加2oracleを最新pairとしてAC03と既存merge/digest CASEへ反映、62ID保持。複合atom拒否とsameinput/extractor/version再抽出digest不一致は独立baseline・単一変異で未解決。main042prefix保持/旧監査不変/後続採択検索、gov/diff/public12PASS。修正後HEAD独立reviewとFable判断をお願いします。Draft。\n"
+    },
+    {
+      "id": 6023038403,
+      "body": "## review04（independent review、PR #2637 親HARNESS-L2-041（採択 -003）、HEAD 776189054d85307086cf576651ca55b78c9b33ca、base main 3c3c512c0）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼comment 6022997665（`RH-PR2637-HARNESS-STAGE3-PARENT041-04`）に応える。\n\n### 事前確認（本文を評価する前）\n- **採択記録**：mainの判断記録には、HARNESS-L2-041の採択が2つある。\n  - `po-decision-2026-09-29-11candidates.md:27`（`-003`、後の判断）\n  - `po-decision-2026-09-29-57candidates.md:46`（`-002`）\n  - 固定親は`-003`である。記録用main 5aa10031のL2:957–971（file SHA `45955ffb…`）とL11:699–715（`216a8dcc…`）で、両fileのSHAが一致することを確かめた。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：0件だった。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - origin/mainとの`merge-tree`は衝突なし\n\n### 照合の結果\n- **Opusのブラインド照合**：固定親を`-003`として行った。Majorの候補は1件だった。reviewerが本文で確かめ、下のM1とした。\n- **review02の訂正のM1**：本体は解消した。\n  - L3は`-003`を固定親としている。\n  - `-003`の追加oracle 2件を、r04-two-obligations-mergeとr04-digest-mismatchが、固定入力・単独変異・scope未解決・外挿禁止の形で保っている。r08も外挿禁止を保っている。\n  - HELIXOS-L2-038 `-002`の採択条件（異常の意味判定はHARNESS、保存可否と隔離はOS）は崩れていない。\n- **今後の流れ**：M1があるので、Fableの判断は回していない。\n\n### Major\n**M1（L10の041節の根拠宣言が、まだ`-002`を固定親としている）**\n- **欠陥**：L10 functional-verificationの「Stage 3 親041の機能総合検証CASE」節の冒頭（1640行付近）が、「旧38 CASE IDはすべて維持し、**固定PO-adopted -002の意味に**AC帰属と戻し先を再導出する」と書いている。\n- **食い違い**：同じ追補の中で、L3（「固定親とlegacy起点」）と`CASE-HARNESS-L10-041-01`は、`-003`を固定親としている。対になるL3とL10で、採択revisionの宣言が一致しない。\n- **扱い**：CASEの中身には`-003`のoracleが入っている。しかしL10節の根拠宣言は、どの採択済み要求を検証するかを示す行である。今回のM1と同じ型の取り違えなので、Majorとする。\n- **守るべき行**：\n  - `po-decision-2026-09-29-11candidates.md:27`（`-003`の採択）\n  - 記録用main 5aa10031のL11:714–715（`-003`の追加oracle）\n\n### 後で直す残余（承認を止めない）\n- **R1〜R20**：review02（comment 6022571073）の残余は、時点の記録として判断記録へ転記する対象から外さない。ただし、`-002`を前提にした記述は、`-003`を固定親として読み替える。\n- **R21（重複節）**：functional-requirements.mdの末尾（760行付近）に、「## Stage 3 親041の業務要件」節が重複して置かれている。business-requirements.md:130と同じ見出しで、文面が少し違う。\n- **R22（索引の帰属）**：CASE-HARNESS-L10-041-03はAC-03の索引なのに、AC-02に属するr09-001を「実在fixture」に含めている。\n- **R23（戻し先の不揃い）**：r10-candidate-adoptionだけ、誤出力を041 contract ownerへ戻すという記述がない。同じ系列のほかのCASEとそろっていない。\n- **R24（不一致の拒否）**：r05-root-revision-hiddenは、既知のprovenanceの不一致を「unknown/typed gap」として保持していて、不一致として拒否するとは明示していない。\n- **R25（入力側のfixture）**：ledger契約版とextractor identityがmissing/unknownになる場合の、入力側の単独fixtureがない。\n\n### 次の手順\n- M1を直す。L10節の冒頭を、`-003`を固定親とする宣言にそろえる。\n- 直した後のHEADで、もう一度依頼してほしい。\n- 直すのがこの宣言の1行だけなら、reviewerは差分を確かめたうえで、ブラインド照合から順に進める。\n"
+    },
+    {
+      "id": 6023217537,
+      "body": "041 review05依頼。base3c3c512c09320c0494904602b23e544a81206eed、HEADb21fb7665539b13748dfc1e82bada0bc3fc8b15e、body4a8e14aac1d51f439543dcc3038167e77df650b1。正式6023038403のM1をL10冒頭宣言1行002→003だけで訂正。62ID/CASE本文不変。時点auditに正式raw review01〜04/撤回訂正/R1–25、六SHA/固定003/既存audit不変を保存。Rootactual六SHA再照合、gov/currentdiff/public14PASS。修正後HEAD独立review/Fableをお願いします。Draft、mailbox RH-PR2637-HARNESS-STAGE3-PARENT041-05配送済み。\n"
+    },
+    {
+      "id": 6023290224,
+      "body": "## review05（independent review、PR #2637 親HARNESS-L2-041（採択 -003）、HEAD b21fb7665539b13748dfc1e82bada0bc3fc8b15e、base main 3c3c512c0）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼comment 6023217537（`RH-PR2637-HARNESS-STAGE3-PARENT041-05`）に応える。\n\n### 事前確認と静的検査\n- **採択記録**：-003（11候補記録27行）。57候補記録46行の-002は旧判断履歴である。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：1件あった。「ownerが特定できない場合だけindividual identityをunknownとして」で、責務区分は保っている許容形である。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - origin/mainとの`merge-tree`は衝突なし\n\n### 照合の経過\n1. **差分の確認**：776189054からの差分は、L10の041節冒頭の1語（-002→-003）と、監査記録の追加だけである。reviewerが確かめた。review04 M1は解消した。\n2. **Fableの判断**：「承認してよい」。\n   - Fableは、固定親-003（記録用main 5aa10031）のL2・L11と6本文を、自分で読んで照合した。\n   - -003の追加oracle 2件と、HELIXOS-L2-038 `-002`の条件が保たれていることも確かめた。\n3. **Opusによる敵対照合**：「Fableの判断を支持しない」。崩したのは下のM1である。\n4. **reviewerの確認**：固定L2の原文、L3 AC-02の全文、該当する3件のCASEを読み、M1をMajorと確定した。\n\n### Major\n**M1（空/TBDとledger契約の版不一致について、「完了扱いにしない」がACにもCASEにもない）**\n- **欠陥**：\n  - `AC-HARNESS-L3-041-02`は、「scope/該当義務を未完に保つ」を、出力側の欠陥（009で入力が確定した後の抽出不能、未対応、provenance欠落、重複、split/merge、自由補完）の一文にだけ付けている。\n  - 同じACでも、空/TBD（「値を補完せずHARNESS-L2-009または対象template ownerへ戻す」）と、ledger contractの非互換（「既存040相当contract ownerへ戻す」）には、戻し先だけがあって、完了扱いの禁止がない。\n  - 対になるCASEも同じで、次の3件のoracleには「未完」も「完了扱いにしない」もない。\n    - `CASE-HARNESS-L10-041-r04-empty-field`、`r04-tbd-field`：「個別typed gapとして保持し…009または対象template ownerへ戻す」\n    - `CASE-HARNESS-L10-041-08`：「040相当の契約ownerへ返し、OS保存成功で相殺しない」\n  - そのため、typed gapを出しながらscopeを完了と主張する実装でも、この3件は合格する（類型4）。\n  - `r10-unresolved-obligation-aggregate-covered`が拒否するのは、親集約のcovered claimだけである。個別scopeの完了claimは拒否しない。\n- **守るべき行**：\n  - HARNESS-L2-041「保証と戻し先」（記録用main 5aa10031 product-requirements.md、041節「必須要素の欠落、空/TBD、抽出不能、重複、版不一致を解消せず完了扱いにしない」）\n  - L11-041「誤りを含む例」（product-acceptance.md:707付近）\n\n### 後で直す残余（承認を止めない）\n- **R1〜R25**：review04から変わらない。\n- **R26（戻し先の欠落）**：AC-05と、r10-025/026-completion-requiredの各CASEに、戻し先がない。固定L11は「025/026と責務を混同しない」と書くだけである。\n- **R27（基準入力のspan）**：two-obligations-mergeの基準入力では、二つの義務が単一のSP0に置かれている。L11は「二つのsource span」と書いている。oracle自体は複合atomを拒否しているので、弱めてはいない。\n\n### 次の手順\n- M1を直す。AC-02で、空/TBD、版不一致（ledger contractの非互換を含む）、必須要素の欠落も「未完に保ち、完了扱いにしない」とし、上の3件のCASEのoracleにも同じ判定を入れる。\n- 直した後のHEADで、もう一度依頼してほしい。\n"
+    },
+    {
+      "id": 6023520818,
+      "body": "041 review06依頼。base ceda1c53、HEAD a716bec20538cb5d0b9d93be0a69c42a5ae1bf3b。正式6023290224 M1をAC02・empty/TBD・ledger契約非互換の4行へ反映し、不足scopeの未完と完了claim拒否を明示。62ID順序不変、採択003 L11 exact699–714とM1支持subspanを分離記録、旧audit8件不変、R1–27raw保存。六actualSHA照合、gov/newdiff/public16PASS。main069 contextはHARNESS六本文不変。Draft、mail06配送済み。独立再review/Fableをお願いします。\n"
+    },
+    {
+      "id": 6023650937,
+      "body": "## review06（independent review、PR #2637 親HARNESS-L2-041（採択 -003）、HEAD a716bec20538cb5d0b9d93be0a69c42a5ae1bf3b、base main ceda1c53b）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2637-HARNESS-STAGE3-PARENT041-06` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：-003（11候補記録27行）。57候補記録46行の-002は旧判断履歴である。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：1件。「ownerが特定できない場合だけindividual identityをunknownとして」で、責務区分は保っている許容形である。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - origin/mainとの`merge-tree`は衝突なし\n\n### 照合の経過\n1. **差分の確認**：b21fb7665からの本文差分は、AC-02末尾への完了claim拒否文の追加と、CASE r04-empty-field、r04-tbd-field、041-08のoracle修正だけである。reviewerが確かめた。review05 M1が求めた範囲は直っている。\n2. **Opusシンプルブラインド**：Major 0。\n3. **Fableの判断**：「承認してよい」。\n4. **Opusによる敵対照合**：「Fableの判断を支持しない」。2件を挙げた。\n5. **reviewerの確認**：固定L2の961〜963行、L11の703行、L3 AC-02とAC-03の全文、041節の全CASEの変異列を読んだ。その結果、敵対照合の2件目をM1としてMajorと確定し、1件目は下のR28とした。\n\n### Major\n**M1（出力のextractor/version digestについて、欠落も不一致も拒否するfixtureがない）**\n- **欠陥**：\n  - `AC-HARNESS-L3-041-03`は「source span/revision/applicability/digest/extractor versionと実抽出inputの不一致を照合する」と書いている。\n  - しかしL10の041節には、出力のextractor/version digestだけを欠落させるCASEも、別の値にするCASEもない。変異列を全件確かめた。\n  - 出力provenanceの単独変異として置かれているのは、次の2件だけである。\n    - r05-root-revision-hidden（source revision）\n    - r04-source-span（span）\n  - r04-digest-mismatchとr04-extractor-unavailableは、どちらもextractor/versionを固定したまま別の欠陥を注入している。出力側のextractor/version digestは照合していない。\n  - そのため、extractor/version digestを出力しない実装でも、別の値を出力する実装でも、041の全CASEに合格する（類型4）。\n- **守るべき行**：\n  - 固定L2-041（記録用main 5aa10031 product-requirements.md:961）「抽出器/version digestを出力し」\n  - 同963「版不一致を解消せず完了扱いにしない」\n  - L11-041正常例（product-acceptance.md:703）「各atom/proposalに…抽出器/version digestがあり」\n\n### 後で直す残余（承認を止めない）\n- **R1〜R27**：review05から変わらない。\n- **R28（完了claim拒否のoracle文言）**：次のCASEのoracleは、gapまたはfindingと戻し先だけを書き、「scopeと該当義務を未完に保ち、scope完了claimを拒否する」を書いていない。\n  - 041-07、041-10、r04-source-span、r05-root-revision-hidden、r09-001、r09-003\n  - 敵対照合はこれをMajorとした。reviewerは次の2点を確かめたうえで、残余とした。\n    1. AC-02（functional-requirements.md:746）は、今回の追加文で「必須要素の欠落、empty/TBD、ledger contract incompatibilityを含む版不一致、または出力側gap/errorは、…scopeと該当義務を未完に保ち、scope完了claimを拒否する」を、全類に対して実際に書いている。\n    2. 固定L2 963行の各類（必須要素の欠落、空/TBD、抽出不能、重複、版不一致）には、それぞれ完了claimを拒否するfixtureが少なくとも1件ある。r04-atom-gap、r04-empty-field/tbd-field、r04-extractor-unavailable、r04-duplicate-atom、041-08である。\n  - ただし、r05-root-revision-hiddenはブラインドでも残余として挙がった。M1を直すときに、同じ文言を上の6件にも入れることを勧める。\n\n### 次の手順\n- M1を直す。出力のextractor/version digestだけを欠落させるCASEと、別の値にするCASEを置く。oracleは、provenance不一致として、HARNESS-L2-041抽出契約ownerへ戻し、scopeと該当義務を未完に保ち、scope完了claimを拒否するものにする。\n- 直した後のHEADで、もう一度依頼してほしい。\n"
+    }
+  ],
+  "six_actual_pins": [
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "bytes": 13526,
+      "sha256": "bd781ad052b14fdeadff8c4e3294ef6cf50ff921b7c202a148ed9c0780af1a24"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "bytes": 215338,
+      "sha256": "672921d27b1253c719e0787390bb1f343fa01d2c8df42d6e74834e407a273b0f"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "bytes": 43828,
+      "sha256": "4066acf1940761ef57fd781b878d933324f5d248465c44bb44f3e8abda235f7e"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "bytes": 9106,
+      "sha256": "b756326334c652eec048e3ca34abc6a2a4df4638fa8eaa384c07a11801cfaa3e"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "bytes": 673545,
+      "sha256": "83ef71e8d178b3a65dbcd76130b7afd9e9f34d5306233352ca2a2e4fd8d2e996"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "bytes": 37382,
+      "sha256": "89d26dcd990b8bd6b8305a2a8c8a8017df1f8179c95edf0c838ab2d27a98c4d3"
+    }
+  ],
+  "exact_changes": [
+    {
+      "before": "| `CASE-HARNESS-L10-041-07` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-02` | 固定L1 revision。HARNESS-L2-009でactive template T0/revision V0、対象scope S0、branch B0の選択・適用性・意味が確認済み。source span SP0に対象obligation O0と040互換ledger contract LC0を固定し、extractor identity/version EX0/EV0を入力済み。正常出力では各O0がsource span・revision・branch・semantic digest付きatom、または根拠に沿うtyped gapへ一対一対応し、候補rowに登録/採択claimはない。 | 009で適用確定済みのbranch B0に属するO0だけを抽出outputから欠落させる。 | 未対応branch/obligationをtyped gapとして示し、HARNESS-L2-041 HARNESS-CORE extraction-contract ownerへ戻す。branch applicability自体が未確定なら別のAC-01入力fixtureとしてHARNESS-L2-009/template ownerへ戻す。 |",
+      "after": "| `CASE-HARNESS-L10-041-07` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-02` | 固定L1 revision。HARNESS-L2-009でactive template T0/revision V0、対象scope S0、branch B0の選択・適用性・意味が確認済み。source span SP0に対象obligation O0と040互換ledger contract LC0を固定し、extractor identity/version EX0/EV0を入力済み。正常出力では各O0がsource span・revision・branch・semantic digest付きatom、または根拠に沿うtyped gapへ一対一対応し、候補rowに登録/採択claimはない。 | 009で適用確定済みのbranch B0に属するO0だけを抽出outputから欠落させる。 | 未対応branch/obligationをtyped gapとして示し、HARNESS-L2-041 HARNESS-CORE extraction-contract ownerへ戻す。branch applicability自体が未確定なら別のAC-01入力fixtureとしてHARNESS-L2-009/template ownerへ戻す。 scopeと該当義務を未完に保ち、scope完了claimを拒否する。 |"
+    },
+    {
+      "before": "| `CASE-HARNESS-L10-041-10` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-02` | 合成T0/V0/S0/B0: 009で選択・意味・適用性が有効な入力とLC0/EX0/EV0を固定。O0の抽出結果だけは既に利用不能でtyped gapが記録され、他obligation出力は正常。gap以外の原因を混ぜない。 | この既存gapだけを、根拠のない自由補完値付き成功atomへ置換する誤出力を注入する。 | 補完を拒否し抽出不能gapのまま示す。入力selection/applicabilityは有効なのでHARNESS-L2-041 HARNESS-CORE extraction-contract ownerへ戻す。 |",
+      "after": "| `CASE-HARNESS-L10-041-10` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-02` | 合成T0/V0/S0/B0: 009で選択・意味・適用性が有効な入力とLC0/EX0/EV0を固定。O0の抽出結果だけは既に利用不能でtyped gapが記録され、他obligation出力は正常。gap以外の原因を混ぜない。 | この既存gapだけを、根拠のない自由補完値付き成功atomへ置換する誤出力を注入する。 | 補完を拒否し抽出不能gapのまま示す。入力selection/applicabilityは有効なのでHARNESS-L2-041 HARNESS-CORE extraction-contract ownerへ戻す。 scopeと該当義務を未完に保ち、scope完了claimを拒否する。 |"
+    },
+    {
+      "before": "| `CASE-HARNESS-L10-041-r04-source-span` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-03` | 同じactive template revision/scopeとsource obligationについて、入力source spanは存在し、正常出力では出力spanとprovenanceへ対応する。 | 出力にあるsource spanだけを欠落させ、入力source span/selectionは保持する。 | 出力欠落をtyped gapとして示しHARNESS-L2-041抽出契約ownerへ戻す。入力source/source spanそのものが欠落・unknownならHARNESS-L2-009/該当template ownerへ戻す。個体ID不明はunknownのまま責務区分を保持する。 |",
+      "after": "| `CASE-HARNESS-L10-041-r04-source-span` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-03` | 同じactive template revision/scopeとsource obligationについて、入力source spanは存在し、正常出力では出力spanとprovenanceへ対応する。 | 出力にあるsource spanだけを欠落させ、入力source span/selectionは保持する。 | 出力欠落をtyped gapとして示しHARNESS-L2-041抽出契約ownerへ戻す。入力source/source spanそのものが欠落・unknownならHARNESS-L2-009/該当template ownerへ戻す。個体ID不明はunknownのまま責務区分を保持する。 scopeと該当義務を未完に保ち、scope完了claimを拒否する。 |"
+    },
+    {
+      "before": "| `CASE-HARNESS-L10-041-r05-root-revision-hidden` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-03` | HARNESS-L2-009で正しく選択された有効active template revision、入力source revision/scope、branch/atom対応と、出力のsource revision/span/provenanceが一致する。 | 入力を不変に保ち、抽出結果のsource revisionだけを隠す/別値にする。他identityとbranch対応は保持する。 | 出力provenanceを照合できないatomをunknown/typed gapとして保持し、HARNESS-L2-041抽出契約ownerへ戻す。入力templateの選択・適用性が不明な場合のHARNESS-L2-009 routeとは区別する。個別owner IDが不明でも既知の責務区分を残し、unknownで消さない。 |",
+      "after": "| `CASE-HARNESS-L10-041-r05-root-revision-hidden` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-03` | HARNESS-L2-009で正しく選択された有効active template revision、入力source revision/scope、branch/atom対応と、出力のsource revision/span/provenanceが一致する。 | 入力を不変に保ち、抽出結果のsource revisionだけを隠す/別値にする。他identityとbranch対応は保持する。 | 出力provenanceを照合できないatomをunknown/typed gapとして保持し、HARNESS-L2-041抽出契約ownerへ戻す。入力templateの選択・適用性が不明な場合のHARNESS-L2-009 routeとは区別する。個別owner IDが不明でも既知の責務区分を残し、unknownで消さない。 scopeと該当義務を未完に保ち、scope完了claimを拒否する。 |"
+    },
+    {
+      "before": "| `CASE-HARNESS-L10-041-r09-001` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-02` | 同一active template/source revision/scopeを固定し、選択branchと他要素を保持する。 | chapter/table atomsを保持し候補ledger rowだけを欠落させる。 | 候補行欠落をfindingとして返す。 戻し先: HARNESS-L2-041抽出契約owner。 |",
+      "after": "| `CASE-HARNESS-L10-041-r09-001` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-02` | 同一active template/source revision/scopeを固定し、選択branchと他要素を保持する。 | chapter/table atomsを保持し候補ledger rowだけを欠落させる。 | 候補行欠落をfindingとして返す。 戻し先: HARNESS-L2-041抽出契約owner。 scopeと該当義務を未完に保ち、scope完了claimを拒否する。 |"
+    },
+    {
+      "before": "| `CASE-HARNESS-L10-041-r09-003` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-02` | 固定L1 revision。HARNESS-L2-009でactive template T0/revision V0、対象scope S0、branch B0の選択・適用性・意味が確認済み。source span SP0に対象obligation O0と040互換ledger contract LC0を固定し、extractor identity/version EX0/EV0を入力済み。正常出力では各O0がsource span・revision・branch・semantic digest付きatom、または根拠に沿うtyped gapへ一対一対応し、候補rowに登録/採択claimはない。 B1はB0とは別の適用確認済みbranchでO1が正常に個別atomへ対応する。 | branch B1のO1 dispositionだけをoutputから欠落させる。他branch/入力は不変。 | 未対応要素をgapとして示し041 contract ownerへ戻す。branch applicability/意味が確認できない場合のrouteは009であり、このfixtureのmutation原因とは分離する。 |",
+      "after": "| `CASE-HARNESS-L10-041-r09-003` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-02` | 固定L1 revision。HARNESS-L2-009でactive template T0/revision V0、対象scope S0、branch B0の選択・適用性・意味が確認済み。source span SP0に対象obligation O0と040互換ledger contract LC0を固定し、extractor identity/version EX0/EV0を入力済み。正常出力では各O0がsource span・revision・branch・semantic digest付きatom、または根拠に沿うtyped gapへ一対一対応し、候補rowに登録/採択claimはない。 B1はB0とは別の適用確認済みbranchでO1が正常に個別atomへ対応する。 | branch B1のO1 dispositionだけをoutputから欠落させる。他branch/入力は不変。 | 未対応要素をgapとして示し041 contract ownerへ戻す。branch applicability/意味が確認できない場合のrouteは009であり、このfixtureのmutation原因とは分離する。 scopeと該当義務を未完に保ち、scope完了claimを拒否する。 |"
+    },
+    {
+      "before": null,
+      "after": "| `CASE-HARNESS-L10-041-r06-output-extractor-digest-missing` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-03` | 合成T0/V0/S0/B0/LC0、009選択・意味・適用性、source span SP0、入力extractor identity/version EX0/EV0は既知で不変。正常atom/proposal出力の抽出器/version digest D0は実際のEX0/EV0に一致し、他provenanceとgapは正常。 | 出力の抽出器/version digest fieldだけを欠落させる。入力EX0/EV0と他出力は不変。 | 出力provenance不一致をtyped gapとしてHARNESS-L2-041抽出契約ownerへ返す。scopeと該当義務を未完に保ちscope完了claimを拒否する。個体owner identity unknownは別記し既知責務区分へ返す。 |"
+    },
+    {
+      "before": null,
+      "after": "| `CASE-HARNESS-L10-041-r06-output-extractor-digest-mismatch` | `FR-HARNESS-L3-041` | `AC-HARNESS-L3-041-03` | 合成T0/V0/S0/B0/LC0、009選択・意味・適用性、source span SP0、入力extractor identity/version EX0/EV0は既知で不変。正常atom/proposal出力の抽出器/version digest D0は実際のEX0/EV0に一致し、他provenanceとgapは正常。 | 出力の抽出器/version digest fieldだけを実際のEX0/EV0に対応しない別値D1へ変える。入力と他出力は不変。 | 出力provenance不一致をtyped gapとしてHARNESS-L2-041抽出契約ownerへ返す。scopeと該当義務を未完に保ちscope完了claimを拒否する。個体owner identity unknownは別記し既知責務区分へ返す。 |"
+    }
+  ],
+  "case_ids": [
+    "`CASE-HARNESS-L10-041-01`",
+    "`CASE-HARNESS-L10-041-02`",
+    "`CASE-HARNESS-L10-041-r09-004`",
+    "`CASE-HARNESS-L10-041-03`",
+    "`CASE-HARNESS-L10-041-04`",
+    "`CASE-HARNESS-L10-041-05`",
+    "`CASE-HARNESS-L10-041-06`",
+    "`CASE-HARNESS-L10-041-07`",
+    "`CASE-HARNESS-L10-041-08`",
+    "`CASE-HARNESS-L10-041-09`",
+    "`CASE-HARNESS-L10-041-10`",
+    "`CASE-HARNESS-L10-041-r04-active-version`",
+    "`CASE-HARNESS-L10-041-r04-target-scope`",
+    "`CASE-HARNESS-L10-041-r04-unselected-template-extrapolation`",
+    "`CASE-HARNESS-L10-041-r04-source-span`",
+    "`CASE-HARNESS-L10-041-r04-atom-gap`",
+    "`CASE-HARNESS-L10-041-r04-empty-field`",
+    "`CASE-HARNESS-L10-041-r04-tbd-field`",
+    "`CASE-HARNESS-L10-041-r04-branch-missing`",
+    "`CASE-HARNESS-L10-041-r04-extractor-unavailable`",
+    "`CASE-HARNESS-L10-041-r04-duplicate-atom`",
+    "`CASE-HARNESS-L10-041-r04-one-obligation-split`",
+    "`CASE-HARNESS-L10-041-r04-two-obligations-merge`",
+    "`CASE-HARNESS-L10-041-r04-digest-mismatch`",
+    "`CASE-HARNESS-L10-041-r04-digest-atom-gap`",
+    "`CASE-HARNESS-L10-041-r04-active-version-missing`",
+    "`CASE-HARNESS-L10-041-r04-active-version-unknown`",
+    "`CASE-HARNESS-L10-041-r04-active-version-stale`",
+    "`CASE-HARNESS-L10-041-r04-target-scope-missing`",
+    "`CASE-HARNESS-L10-041-r04-target-scope-unknown`",
+    "`CASE-HARNESS-L10-041-r04-target-scope-conflict`",
+    "`CASE-HARNESS-L10-041-r04-active-version-conflict`",
+    "`CASE-HARNESS-L10-041-r04-target-scope-stale`",
+    "`CASE-HARNESS-L10-041-r05-root-revision-hidden`",
+    "`CASE-HARNESS-L10-041-r08-digest-match-other-scope`",
+    "`CASE-HARNESS-L10-041-r09-001`",
+    "`CASE-HARNESS-L10-041-r09-002`",
+    "`CASE-HARNESS-L10-041-r09-003`",
+    "`CASE-HARNESS-L10-041-r10-l2-009-applicability-unknown`",
+    "`CASE-HARNESS-L10-041-r10-candidate-template-authority`",
+    "`CASE-HARNESS-L10-041-r10-candidate-ledger-registration`",
+    "`CASE-HARNESS-L10-041-r10-candidate-adoption`",
+    "`CASE-HARNESS-L10-041-r10-candidate-requirement-agreement`",
+    "`CASE-HARNESS-L10-041-r10-candidate-design-success`",
+    "`CASE-HARNESS-L10-041-r10-candidate-user-acceptance`",
+    "`CASE-HARNESS-L10-041-r10-candidate-l3-approval`",
+    "`CASE-HARNESS-L10-041-r10-candidate-implementation-complete`",
+    "`CASE-HARNESS-L10-041-r10-candidate-os-registration`",
+    "`CASE-HARNESS-L10-041-r10-candidate-os-save`",
+    "`CASE-HARNESS-L10-041-r10-candidate-os-projection`",
+    "`CASE-HARNESS-L10-041-r10-candidate-os-execution`",
+    "`CASE-HARNESS-L10-041-r10-owner-individual-unknown-class-preserved`",
+    "`CASE-HARNESS-L10-041-r10-unresolved-obligation-aggregate-covered`",
+    "`CASE-HARNESS-L10-041-r10-025-completion-required-before-extraction`",
+    "`CASE-HARNESS-L10-041-r10-025-receipt-substitutes-extraction`",
+    "`CASE-HARNESS-L10-041-r10-026-completion-required-before-extraction`",
+    "`CASE-HARNESS-L10-041-r10-026-receipt-substitutes-extraction`",
+    "`CASE-HARNESS-L10-041-11`",
+    "`CASE-HARNESS-L10-041-12`",
+    "`CASE-HARNESS-L10-041-r10-025-result-generated-from-extraction`",
+    "`CASE-HARNESS-L10-041-r10-026-result-generated-from-extraction`",
+    "`CASE-HARNESS-L10-041-r11-template-meaning-unknown`",
+    "`CASE-HARNESS-L10-041-r06-output-extractor-digest-missing`",
+    "`CASE-HARNESS-L10-041-r06-output-extractor-digest-mismatch`"
+  ],
+  "fixed_parent": {
+    "revision": "5aa100319361b0cc86edd3c51815ec777d55410a",
+    "l2_lines": "957–968",
+    "l2_span_sha256": "d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260",
+    "l11_lines": "699–714",
+    "l11_span_sha256": "11759276200a6707762e76eeeefd901443e691bd1b0ff51b55cd3b6551fed58b"
+  },
+  "limits": "旧時点監査不変、独立closure/Fable一致/承認/fixture実行は未確認"
+}
