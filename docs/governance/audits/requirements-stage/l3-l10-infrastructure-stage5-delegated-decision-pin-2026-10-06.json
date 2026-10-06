@@ -1,0 +1,116 @@
+{
+  "record_kind": "delegated_l3_l10_decision_pin",
+  "review_base": "6008fb947c73466c11084474b0e938d76e912fb7",
+  "review_content_head": "36c6d9e415af1f35bace62a9fdda92cc86a87fc6",
+  "body_revision": "eaa0e15c1c375501be969c11849467b1b6ebbb9e",
+  "delegation": {
+    "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+    "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220"
+  },
+  "formal_comments": [
+    {
+      "id": 6009087163,
+      "bytes": 4875,
+      "sha256": "9f2e8bfd44d9f7150f0fadc59de175e1e32e43bb33206a20bccd9f83c4dc462c",
+      "raw_body": "## review08（independent review、HEAD 36c6d9e415af1f35bace62a9fdda92cc86a87fc6、本文 eaa0e15c1）：Opus no_findings／Fable「承認してよい」\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。本reviewは、`docs/governance/github-upstream-operating-model.md`「L3／L10承認の委任」の条件1と条件2を判定した。照合は次の3者で行った。\n- **Opus agent 1本**：6本文のStage5 suffixを全行、目で読んだ（FR L400–566、FV L424–1213、BR L45–49、NG L92–101、BV L41–43、NV L83–85）。固定L2（001/002/003/006/011/025、18項目表）と固定L11 L128–151、新監査の全keyとも照合した。\n- **Fable advisor**：同じ6本文のsuffixを全文読み、固定L2/L11と新監査を照合した。\n- **reviewer本人**：静的検査と、条件3用のSHAを記録した。\n\n### 静的検査（w2622 = exact HEAD）\n- scfctl：validate 147/0、stale 0、residuals 0。govcheck：ok（atoms=7622）。`git diff --check`：成功。\n- `merge-tree origin/main`：衝突なし。6本文はmain 6008fb947のprefixとbyte一致した。\n- unit 54件の正常literalは、4か所でbyte一致した。CASEは001–086の86件で、追加・削除はない。\n- 合成CASEのbaselineは、すべて実在する正常CASEを指す。変異はどのCASEも1 field。\n- FRとFVで、traceと変異・oracle・戻し先が整合した。BR/NG/BV/NVの86件・7区分も本文と合う。\n- 新監査のpinを再計算し、すべて一致した（6本文、case block 86/86、FR行54/54、4か所18/18、固定pin、旧record、formal/fable raw body）。旧監査は変わっていない。\n\n### review07所見の解消\n- **m1（085の末尾）：解消**。FV:1201の入力は、FV:1083（072）とbyte一致した。\n- **m2（075の注記）：解消**。FV:1111に「fixture関係」の行が入った。\n- **m3（FR 065の051関係）：解消**。FR:520の変異セルが修正案どおりになった。oracleのセルは、FV:1021と完全に一致したまま。\n\n### 条件1：Opus判定\n**no_findings（未確認範囲0）**。未解消は0件、新規はMajor 0件、Minor 0件。\n\n固定L2/L11の各条項と反例、追加oracleには、すべて単独fixtureがある。次の問題はいずれもなかった。\n- 固定親にない戻し先・owner・条項\n- oracleの強弱\n- 複数変異の束ね\n- 過剰削除\n- 英文の残存\n- 固定L2-011の意味変更\n\n返却しない情報が2件ある。\n- FV:574の正常CASEのラベルが「変異前baseline」になっている。他の正常CASEのラベルと語が混在する。記法の規則違反ではない。\n- FR:497とFR:520の言い回しが非対称。どちらも正確。\n\n### 条件2：Fable見解\nFable advisor（Fable 5.1）の判定は、原文で「**承認してよい**」。Major 0、Minor 0。情報扱いが3件ある。\n- FR:520とFV:1020の助詞の差。\n- operation 5（055–058と086）について、区分への帰属が本文に明示されていない。\n- FR:403のregistration `-003` の引用。PO判断記録と実装順序追補がどちらも`-003`を引いているので、整合している。\n\nいずれも返却不要と判断した。Opus側もこの3件を返却しない。人の判断は不要。固定L2/L11の意味変更はない。\n\n### 条件3：6本文のbytes（本HEAD）\n| path | SHA-256 |\n|---|---|\n| docs/helix-infrastructure/L3-requirements/business-requirements.md | `429291b0cec7dcf63271b4aef419120476e70bff9054002aeb872e888c8eb328` |\n| docs/helix-infrastructure/L3-requirements/functional-requirements.md | `075ba025fa2fbf2c7dde9a0e5e216e0a9ab2d1b5089c05c545145746e6b8c575` |\n| docs/helix-infrastructure/L3-requirements/nfr-grade.md | `7a6e9bd1d2125805791756c031a1a9228e7e3467c10b35bb473245338284ad75` |\n| docs/helix-infrastructure/L10-verification/business-verification.md | `c0c583732c75ba2545e0c3229f98ea4d280c82dfedc449a9ee6be0fb77f0a79f` |\n| docs/helix-infrastructure/L10-verification/functional-verification.md | `fc68285e5ec963f11d0bc4365f407f1aabfd6e256b0b9ce6ba52fe0d317f7045` |\n| docs/helix-infrastructure/L10-verification/nfr-verification.md | `4e8d94b7515e87da8c809b26d190e1e08e7d21060f1c6fdefbfc9d75ca65145b` |\n\n判断記録を追加した後のHEADでも、6本文がこのbytesのままであることを確かめる。\n\n### 判定\n- 本HEAD（本文eaa0e15c1）で、委任条件1（Opus `no_findings`、未確認範囲0）と条件2（Fable「承認してよい」）がそろった。\n- 作成側は、判断記録を追加してよい。判断記録には、本comment、6本文のSHA、Opus・Fableの見解の所在を固定する。\n- reviewer側は、追加後のHEADで条件3と判断記録のpinを照合する。\n- Ready化とmergeは、その照合と作成側のRoot Ready通知の後に行う。merge admissionは本commentから生成しない。\n"
+    }
+  ],
+  "approved_parents": [
+    "HELIXINFRASTRUCTURE-L2-011"
+  ],
+  "registration_reference": "MPR-RC-HELIXINFRASTRUCTURE-L2-011-003",
+  "fixed_parent_pins": [
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "start_line": 138,
+      "end_line": 146,
+      "full_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "span_raw_lf_sha256": "6bebc7a8fecafca8fa776e06bf718c0774ef7ae9c96de4bce50155b203a54351",
+      "literal_with_lf": "### HELIXINFRASTRUCTURE-L2-011 HELIX自身のInfrastructure 1.0構成体\n\n- **親L1**：`HELIXINFRASTRUCTURE-L1-001`、`HELIXINFRASTRUCTURE-L1-002`、`HELIXINFRASTRUCTURE-L1-003`、`HELIXINFRASTRUCTURE-L1-004`、`HELIXINFRASTRUCTURE-L1-005`、`HELIXINFRASTRUCTURE-L1-006`、`HELIXINFRASTRUCTURE-L1-007`、`HELIXINFRASTRUCTURE-L1-009`、`HELIXINFRASTRUCTURE-L1-010`、`HELIXINFRASTRUCTURE-L1-011`、`HELIXINFRASTRUCTURE-L1-014`、`HELIXINFRASTRUCTURE-L1-016`、`HELIXINFRASTRUCTURE-L1-017`、`HELIXINFRASTRUCTURE-L1-018`、`HELIXINFRASTRUCTURE-L1-019`、`HELIXINFRASTRUCTURE-L1-020`、`HELIXINFRASTRUCTURE-L1-021`、`HELIXINFRASTRUCTURE-L1-022`、`HELIXINFRASTRUCTURE-L1-028`、`HELIXINFRASTRUCTURE-L1-029`、`HELIXINFRASTRUCTURE-L1-038`、`HELIXINFRASTRUCTURE-L1-039`。\n- **入力**：L2-001〜010および025の必要なversioned identities/evidence、HELIX-HARNESS-COREの設計、OS/SECURITY/Worker接続、対象runtime・recovery environment。\n- **提供**：HELIX自身の構成に対する1.0 Infrastructure実行環境、状態、観測、操作、backup/restore/rollback、独立recoveryとrebuildabilityのend-to-end結果。\n- **保証**：POが列挙した18最低項目すべてを一つずつ検証範囲に含む。resource/topology/environment/design-target-vs-actual/drift/compute-network-storage/model-worker/capacity/observability/incident/backup-restore/rollback/deployment-version/SECURITY/OS/Worker/bootstrap-recovery/rebuildabilityを個別に確認した後、機構接続と構成体受入を別に行う。HELIX-WEB-OSの顧客runtimeを含めず、後続版の機能を1.0構成の前提にしない。\n- **単独成立の依存・版**：L2-001〜010および025の必要な採択済み要求/verification、必要なCORE/OS/SECURITY/Worker契約と実資源。`version_target: 1.0`。この要求は設計/実装/運用許可ではない。\n- **失敗時の戻し先・未完義務**：個別unit/connection/最低項目が一つでも欠ける、unknown/stale/未認可が残る、独立recovery/rebuildabilityが不成立なら構成体を未成立に保ち、欠けたunit/connectionのownerへ戻す。部分成功・未完義務・既存稼働版/適格rollback先を引き継ぐ。\n- **束ねる条件**：18最低項目と、L1の単体/接続/構成体表のうち1.0対象。HELIXOS-L2-014は本構成をHELIX自身の段階releaseへ収載するときだけstage contractとして参照し、独立したInfrastructure 1.0受入の依存にはしない。OSがInfrastructure stateを所有することも意味しない。\n"
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "start_line": 140,
+      "end_line": 150,
+      "full_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "span_raw_lf_sha256": "08f92ca108c502d3e63f530e3e4c05078e1e6b293619fcfe24ae8519b53e9581",
+      "literal_with_lf": "### HELIXINFRASTRUCTURE-L2-011 HELIX自身のInfrastructure 1.0構成体\n\n- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-001`、`HELIXINFRASTRUCTURE-L1-002`、`HELIXINFRASTRUCTURE-L1-003`、`HELIXINFRASTRUCTURE-L1-004`、`HELIXINFRASTRUCTURE-L1-005`、`HELIXINFRASTRUCTURE-L1-006`、`HELIXINFRASTRUCTURE-L1-007`、`HELIXINFRASTRUCTURE-L1-009`、`HELIXINFRASTRUCTURE-L1-010`、`HELIXINFRASTRUCTURE-L1-011`、`HELIXINFRASTRUCTURE-L1-014`、`HELIXINFRASTRUCTURE-L1-016`、`HELIXINFRASTRUCTURE-L1-017`、`HELIXINFRASTRUCTURE-L1-018`、`HELIXINFRASTRUCTURE-L1-019`、`HELIXINFRASTRUCTURE-L1-020`、`HELIXINFRASTRUCTURE-L1-021`、`HELIXINFRASTRUCTURE-L1-022`、`HELIXINFRASTRUCTURE-L1-028`、`HELIXINFRASTRUCTURE-L1-029`、`HELIXINFRASTRUCTURE-L1-038`、`HELIXINFRASTRUCTURE-L1-039`。\n\n- **受入手順**：対象範囲と除外範囲を固定し、L2-001〜010および025の採択済み要求と必要契約を同一構成manifestへpinする。最低18項目それぞれにtest input、expected outcome、observed evidence、結果を記録し、正常構成と失敗/rollback構成を端から端まで評価する。通常のInfrastructure構成体受入と、HELIXOS-L2-014のstageへ収載する場合のstage integration evidenceを区別する。\n- **成功条件**：1〜18の各minimum itemに対応する証拠があり、単体機能、CORE/OS/SECURITY/Worker接続、構成体の成立が別に判定される。Backup/Restore/Rollbackと独立Bootstrap/Recovery、Rebuildabilityの復旧端まで確認される。未完義務は次のowner/ticket/recovery pathに残り、稼働中構成と適格rollback先が特定できる。stageへ収載する場合は、そのstage identityとの対応も確認するが、HELIXOS-L2-014自体を通常のInfrastructure構成体受入の前提にはしない。\n- **反例・失敗条件**：18項目のいずれかが欠落、unobserved/unknown/stale/mismatch/unauthorizedがpass扱い、backupだけでrestore合格、部分接続の成功だけで構成体pass、又は後続版条件を暗黙に必須化する場合は不合格。HELIX-WEB顧客runtimeを本体Infrastructure構成体へ混ぜても不合格。\n- **操作別の追加oracle**：最低18項目の構成体全体ではBackup/Restore/Rollback・独立Bootstrap/Recovery・Rebuildabilityをすべて確認する。個々の操作では、許可済み更新、read-only/no-change、適用復旧義務付きstate change、OS停止中の独立recoveryを別fixtureにする。更新はL2-010のupdate admission、read-onlyは適用scope内のwrite禁止と操作起因の変更なし、変更操作はそのactionに適用される復旧義務を照合する。無関係なread-only操作までbackup全件を必須にはしないが、構成体の最低18項目から復旧能力を除外しない。\n- **独立復旧の追加oracle**：停止中OSのticket/assignmentまたは通常L2-009応答なしでも、独立path/resourceと別SECURITY authority、SECURITY制約下のWorker実行契約により限定recoveryを開始し、復旧後にoperation/resultをOSへ同期する。許可欠落、適用復旧義務unknownの変更、通常操作へのticket免除、または同期欠落は構成体成功にしない。\n- **失敗戻し先**：失敗したunit/connectionのownerへ戻し、構成体は未成立のままにする。部分成功と未完義務は各ownerへ引継ぎ、rollbackまたは現行stage維持の判断材料を残す。\n- **最低範囲対応**：1–18すべて。L2の「1.0最低18項目と要求IDの対応」表を証拠indexとして使うが、表自体は原要求や個別試験の代用ではない。\n"
+    }
+  ],
+  "documents": [
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "revision": "36c6d9e415af1f35bace62a9fdda92cc86a87fc6",
+      "full_sha256": "c0c583732c75ba2545e0c3229f98ea4d280c82dfedc449a9ee6be0fb77f0a79f",
+      "bytes": 4607,
+      "prefix_revision": "6008fb947c73466c11084474b0e938d76e912fb7",
+      "prefix_bytes": 4041,
+      "prefix_sha256": "5870331546272a2eaaac93738b66ad3994312e9ce426ebc3fcfc59e10bf2c137",
+      "prefix_equal": true,
+      "suffix_sha256": "8db81012e0905bc928ffc42cfdab80044e2e8db8251b76998496463cc28ec43f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "revision": "36c6d9e415af1f35bace62a9fdda92cc86a87fc6",
+      "full_sha256": "fc68285e5ec963f11d0bc4365f407f1aabfd6e256b0b9ce6ba52fe0d317f7045",
+      "bytes": 226676,
+      "prefix_revision": "6008fb947c73466c11084474b0e938d76e912fb7",
+      "prefix_bytes": 112748,
+      "prefix_sha256": "4b17567033e91c39f4f8dae1867ac1ace6438b01584d121b52b4aa9d22019df7",
+      "prefix_equal": true,
+      "suffix_sha256": "ef302f7d4deb16539bf2c5c96ddeb7cd66efecc043240918a43926ddd244b735"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "revision": "36c6d9e415af1f35bace62a9fdda92cc86a87fc6",
+      "full_sha256": "4e8d94b7515e87da8c809b26d190e1e08e7d21060f1c6fdefbfc9d75ca65145b",
+      "bytes": 17717,
+      "prefix_revision": "6008fb947c73466c11084474b0e938d76e912fb7",
+      "prefix_bytes": 16628,
+      "prefix_sha256": "f895dbdd8e74ac2d90016b098fd03edd8ae6391df05d4ca69d0902de04b04682",
+      "prefix_equal": true,
+      "suffix_sha256": "f6d40834391d0971f625539d1203095ecd8ab990385d0a91389b301883a8e94b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "revision": "36c6d9e415af1f35bace62a9fdda92cc86a87fc6",
+      "full_sha256": "429291b0cec7dcf63271b4aef419120476e70bff9054002aeb872e888c8eb328",
+      "bytes": 5634,
+      "prefix_revision": "6008fb947c73466c11084474b0e938d76e912fb7",
+      "prefix_bytes": 5095,
+      "prefix_sha256": "346043f260c3f75cf826ba4a15ee2242b6e48c38be5c040641af5d7586f495c3",
+      "prefix_equal": true,
+      "suffix_sha256": "098293b3dab7625b08a006ef0c09d59de02d2574445b94a71b4955edf2f7466a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "revision": "36c6d9e415af1f35bace62a9fdda92cc86a87fc6",
+      "full_sha256": "075ba025fa2fbf2c7dde9a0e5e216e0a9ab2d1b5089c05c545145746e6b8c575",
+      "bytes": 142675,
+      "prefix_revision": "6008fb947c73466c11084474b0e938d76e912fb7",
+      "prefix_bytes": 67681,
+      "prefix_sha256": "1a8fb9915d5da9ad4ec9277ab2b1655b8eae4ed31fffa16fe4c663269345dbc5",
+      "prefix_equal": true,
+      "suffix_sha256": "271baab01f6d4fd9b27fad4b3aeef0888ed5072b9f9948f3b4c904ed6c3dbac1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "revision": "36c6d9e415af1f35bace62a9fdda92cc86a87fc6",
+      "full_sha256": "7a6e9bd1d2125805791756c031a1a9228e7e3467c10b35bb473245338284ad75",
+      "bytes": 19668,
+      "prefix_revision": "6008fb947c73466c11084474b0e938d76e912fb7",
+      "prefix_bytes": 17841,
+      "prefix_sha256": "48bfcbda956a3808aab109c9b529acc18ba9d541bde992074cca02abbc9c97ba",
+      "prefix_equal": true,
+      "suffix_sha256": "d00660886aac6d7023a53ac08e031ff10351ba95ec292320628ddbe90dc17849"
+    }
+  ],
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-infrastructure-stage5-l3-l10-po-decision-2026-10-06.md",
+    "sha256": "d5ea6b07816aa01c565c1386909ac899159dc9708d34d55b8dbf504bebaa093f"
+  },
+  "authority_effect": "effective_when_decision_record_admitted_to_main",
+  "boundary": "設計承認のみ。Ready/merge admissionは独立照合後。"
+}
