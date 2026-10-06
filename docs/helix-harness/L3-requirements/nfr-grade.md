@@ -192,6 +192,17 @@ fixture definition数と実測母集団は異なる。対のL10機能総合検�
 |---|---|---|---|
 | `HARNESS-L2-042` | 独立した数値NFRを導出しない | 旧requirements v1.3 §4.2 L119の性能Refactor条件は、PO採択済みHARNESS-L2-016と対L11がbaseline、budget、workload、profile、統計条件、regression oracleを持つ。 | 新しい数値閾値、性能権限、時間/件数SLOを作らない。性能判定を行う場合は016へ委譲する。 |
 
+
+## Stage 3 親041の非機能計測候補
+
+独立した性能・成功率・コストの閾値を追加しない。固定L2-041が規定する範囲の観測候補は次に限る。
+
+| NFR候補 | 観測候補・根拠 | 限界 |
+|---|---|---|
+| `NFR-C-HARNESS-041-01` | selected template/scope内のsource obligation population、各obligationに結び付くatomまたはtyped gap、provenance mismatch、duplicate/unaccounted findingの数を別状態で記録する。各義務を個別atom/gapへ対応する固定L2-041条件から導く。 | aggregate coverage countだけで全要素をcoveredにしない。unknown/unselected inputは未観測と分離する。未解決gapを成功扱いしない。性能値・全template全域率・threshold・実測結果は作らない。 |
+
+NFR候補はL10定義の測定母集団の設計にとどまり、抽出器の性能や実行成功を主張しない。
+
 ### HELIX-HARNESS L2-044 — NFR候補（Stage 3、version_target: 1.0、起草候補）
 
 起草候補。Stage 3、`version_target: 1.0`。POがHARNESS-L2-044に条件付き採択したB route / Design Contract Portfolioを対象とする。この候補はL3承認・実装・実行・個別部品配置・設計成立を表さない。
