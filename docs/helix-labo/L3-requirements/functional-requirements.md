@@ -1775,6 +1775,8 @@ L10の69件の定義は既存旧IDの保持と追跡索引である。literal上
 
 実際に比較runを行う場合は、既存OS assignmentと適用されるSECURITY許可を入力条件として用いる。この候補はそれらを生成しない。L10の各直接fixtureは一つの入力field変異、または入力不変で一つの誤出力を検査する。候補名の資料本文/metadata/output metadata露出はそれぞれ区別し、identity mapping欠落/staleとは混同しない。mapping/sourceの追跡不能は観測元、可視scope/固定条件の不明はevaluation ownerへ戻す。再評価義務はtask/evaluation ownerへ返す。smoke-only結果でblind evidenceを代替すること、またはそれだけで完全適格性をclaimすることをfull evaluationと区別する。failureの平均相殺、scope外run混入、検証不能の成功化を拒否する。評価だけでassignment/admissionを生成しない。qualification一般の生成禁止を追加しない。
 
+比較を実施する場合、対象runに必要な既存OS assignmentおよび適用される既存SECURITY許可を入力条件として照合する。LABOは評価・比較結果から比較実施許可、SECURITY許可、Worker起動、OS assignmentまたはadmissionを生成しない。必要なassignmentまたは許可がmissing/unknownなら同条件比較の成立として扱わず、元runと条件を保持し、task/evaluation ownerに再評価義務を残す。
+
 ### 旧sourceからの再導出
 
 直接の旧要求source `LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、HIL-NFR-35（旧platform requirements 215行）から、候補名blind化、fixture/rubric/judge version/sample/retryの再現条件、smoke-onlyではfull admission相当の結論を出さないこと、security failure/scope逸脱/検証不能を平均相殺しないことを再導出した。HR-FR-HIL-22（旧functional requirements 56/85行）、HAC-HIL-22a/b/c、HAT-HIL-22、HOT-HIL-54（旧operational test design 81行）は対応consumerとして別役割で参照した。
