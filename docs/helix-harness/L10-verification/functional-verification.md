@@ -1721,4 +1721,9 @@ AC-018-01の入力条件はR001〜R034に加えR056/R057で個別欠落、R058�
 **owner戻し先**：workflow/style semanticsまたはL2-002/003 existing trigger適用条件の不足は、source/revisionや具体owner identityの特定有無にかかわらずHARNESS-L2-002/003の既存責務区分へ返す。verification obligationまたはV-pair/oracle不足は、個別source identityの特定有無にかかわらずHARNESS-L2-004/022の既存責務区分へ返す。不足対象の種類で既存責務区分を選び、個別source/owner identity unknownは別に保持する。identityの不明を返却停止条件にしない。generic selected-source ownerや新しい分類は作らない。OS ticket/workflow instance/resultの保存・実行はOS側であり、HARNESS coverage receiptに含めない。
 
 **旧case重複扱い**：旧ID/raw definitionsはbyte-pinned historyとして監査に完全保持する。索引行は独立fixture件数に数えず、参照先を個別評価する。`CASE-HARNESS-L10-046-r05-nonscrum-scrum-obligations`の旧literalは履歴rawであり、現行行はFull V no-Scrum scopeの三つの単一output拒否CASEとFull V/Scrumの具体CASEへの非独立indexである。
+
+### 出力要素の単独照合
+
+| CASE ID | FR/AC | 正常baseline | 単独変異 | 期待oracle | 限界 |
+|---|---|---|---|---|---|
 | `CASE-HARNESS-L10-046-r12-composed-scrum-sr4-missing` | `FR-HARNESS-L3-046-02` / `AC-HARNESS-L3-046-03` | 合成scope Scompでは既存002/003 sourceが方式合成を許可しScrum適用を明示。target revision、slice delta、source定義backfill、SR4 pair-freeze receiptはcurrent。既存triggerは不成立、他条件は正常B profileと同じ。 | SR4 receipt status field一つだけをmissingにする。合成許可・Scrum適用・trigger・backfillは不変。 | 合成内Scrum scopeもrelease-readyにせず未完に保つ。 | 不足SR4 verification evidenceを004/022の既存責務区分へ返し、個体identity unknownを別記する。合成許可やtriggerを変更しない。 |
