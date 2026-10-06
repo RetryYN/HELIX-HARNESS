@@ -1,0 +1,521 @@
+{
+  "record_kind": "Rootによるreview05補正検収の時点記録",
+  "recorded_at": "2026-10-06",
+  "body_revision": "f5dcf5f672b232383bfe8627b2dfce94c7109c22",
+  "worker_body_revision": "6e664afaaef9b87b9db5061ed401aec30a363ba9",
+  "reviewed_base": "b24095214f7cbbe46f3ca1c804257a1e447d5ed4",
+  "latest_main": "5404d0649762edec0475fc7e836a0b988a4f6631",
+  "authority_effect": "none",
+  "review_comment": {
+    "id": 6007247887,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2619#issuecomment-6007247887",
+    "raw_body_sha256_utf8": "9c84ed9326af137d791cd9691594d20759979f204647c4079045d87adf01c58a",
+    "raw_body_bytes": 6780,
+    "raw_body": "## review05（independent review、HEAD b24095214f7cbbe46f3ca1c804257a1e447d5ed4）\n\nreviewer: Claude（lane `review_merge`、Opus 5.5）。補正差分（FR 32行・FV 54行・NV 8行・NG 14行）が小さいため、Opus agent 1本で9親全体のreview04 32所見とFable追記を照合した。固定L2/L11（633bf12とHEADで同一bytes）の失敗句・未見列と変更行を1行ずつ突き合わせた。reviewer本人も静的検査を行った。Fable advisorの委任見解は到着後に追記commentで記録する。\n\n### 静的検査（w2619 = exact HEAD）\n- scfctl validate 147/0、stale 0、residuals 0、govcheck ok、`git diff --check` 成功。main 5404d0649をmerge済みで `merge-tree` 衝突なし、6本文main prefix一致。CASE定義306（Stage5 suffix全体の定義341行でID重複0）。\n- 監査 `intelligence-stage5-review04-{correction,root-acceptance}-2026-10-06.json`：Root記録の6本文SHA 8/8一致、source span 19/19一致。前回指摘のSHA付き `/tmp` pinはなくなり、`/tmp` はreview04原文の引用中にだけ現れる（review04 m23解消）。\n\n### review04所見の解消（32件：解消30／部分2）\n- **解消（Major）**：M1（060-02dはcandidateを確定せず、source/HARNESSへの返却を追加しない。FR:661の列挙からも除外。L11:158/281と整合）、M3（077 03iを05hの索引にしてOS ownerへ。FR:739末尾をRequirement/Design/Release/mergeに限定）、M4（077-05n/05p/CASE-077-04/FR:740を無条件の「選択receiptのsource ownerへ照合」へ）、M5（077-03aを05aの索引にして戻し先削除）、M6（074-05fを02aの索引にしてLABOへ、05i/05kもLABOへ）。\n- **部分（Major）**：M2（060-05eはFV:2580とFR:661で解消。FR:750 AC-INT-060-05表に「ownerが示されない別unknownはunknownを保持する」が残り、HARNESSへ返す対象も05g/05hだけで05eがない。NG:266も05eを併記しない→M1）。\n- **解消（Minor）**：m1〜m23、m25、m26（m2とm16、m6とm26は同根で一括）。\n- **部分（Minor）**：m24（FR:717 locatorとFR:719の02gは解消。監査の「073/074 locator」見出しの訂正記録がなく、worker dispositionの記載と実体が一致しない→m6）。\n\n### 所見（Major 3／Minor 6）\n- **M1（060：AC-INT-060-05表の条件付きunknown残存。review04 M2残）**：FR:750「ownerが示されない別unknownはunknownを保持する」は固定L2:358の無条件の「入力不足・staleは該当source」にない残余条項。HARNESSへ返す対象が05g/05hだけで05eがなく、NG:266も同様。→ 残余条項を削除し、05eを05g/05hと並べて記載する。\n- **M2（071-02a：固定L2:557より弱い条件付きunknown。review01〜04の見落としとして開示）**：FV:2496「選択sourceが特定できる場合だけそのsource ownerへ照合し、戻し先を特定できない場合はunknown」。固定L2:557は無条件で「CORE model authority/schemaはProduct Core/HARNESSへ、stale/欠落状況はsource ownerへ」。同種の069-04b（FV:2432）はreview03 M3で無条件の照合へ直してあり、review04 M2/M4と同じ型の残存。→ 02aのfixtureで選択model sourceを固定し、L2:557の句どおり無条件でProduct Core/HARNESS（staleはsource owner）へ照合する。必要ならFR:719にも併記。\n- **M3（069／071：固定親が戻し先を持たない不足に、条件付きのsource owner返却を追加。差分外の既存行）**：FV:2431（069-04a service rule欠落）、FV:2755（08h load欠落）、FV:2756（08i capacity欠落）、FV:2758（08k currency欠落）が「source ownerが明示／識別できる場合だけ照合」。固定L2:526は「係数・規則不足は計算不能/部分unknown」で戻し先を持たない。FV:2498（071-02c DB failure edge欠落）も同様で、固定L2:557は「unsupported state/edgeはunknown/unmodeled/blockedで返し」のみ。FR:776（AC-069-08）は「戻し先を推測しない」としておりL3とL10が食い違う。→ 5行から条件付きの照合句を削り、「計算不能/部分unknown（またはunknown/blocked）を保ち、戻し先を追加しない」に揃える。\n- **m1（069：その他の条件付き戻し先句。M3と同根の再照合対象）**：FV:2433（04c）、2435（04e）、2619（06l）、2620（06m）、2622（06o）、2623（06p）、2750（08c）、2751（08d）。固定L2:526の句に照らし、06l（観測/推論→source owner）・06o（permission→SECURITY）は無条件の戻し先、08c/08dは「schema・遷移・domain未対応はmodel owner」、それ以外は戻し先なし、の3類型で書き分ける。\n- **m2（060-02d：変異記述の二義性。Fable m7の残り）**：FV:2334の変異欄「HARNESS process contract source identityが明示された状態でA→B依存だけ逆転」は入力宣言の逆転とも読める。oracleは出力順の誤りとして直したので、変異欄を「入力のA→B宣言は正常のまま、candidateでBをAより前に置く」とし、不要なsource identityの前提を削る。\n- **m3（077-03f：索引が索引を指す）**：FV:2555「03d/e/h/i/jのaggregate index」。03d/e/h/i/jは今回05e–05iの索引になった。→ 参照先を05e/05f/05g/05h/05iへ。\n- **m4（監査locator：「L2-077:639」は誤りで正しくはL2:638。review04 M4のreviewer誤記に起因、開示）**：「ownerを確認できない場合はunknown/incompleteのまま選択source ownerへ戻し」はL2:638。review04 M4と依頼文の「L2:639」はreviewer側の誤り。root-acceptance md:10の「固定L2-077:639/L11-077:360」はこの誤記を引き継いでいる。→ 次の監査で訂正を記録する（旧記録は書き換えない）。\n- **m5（NG:266：05eの併記漏れ）**：M1と同根の記録（NG側の同期）。\n- **m6（監査：「073/074 locator」見出しの訂正記録なし。review04 m24残）**：worker dispositionは「旧見出しの誤った親番号も訂正記録に含む」とするが、correction jsonの`historical_corrections`（5件）にもroot側にも該当entryがない。\n\n### 判定\nblocker 0、Major 3、Minor 6。Readyは未可（依頼どおりRoot Ready前にReady/mergeしない）。review04の32件は30件解消・2件部分で、今回の補正差分による回帰はない（L11:281/284/237/361/360の未見列とL2:358/370/526/542/615/638の失敗句が変更行から落ちていないことを確認）。M2/M3は差分外の既存行で、review01〜04の見落としとして開示する。次revisionでOpus `no_findings`（未確認範囲0）とFable見解の一致を再成立させる。merge admissionは本commentから生成しない。\n"
+  },
+  "findings": [
+    {
+      "id": "M1",
+      "severity": "Major",
+      "scope": [
+        "AC-INT-060-05",
+        "CASE-INT-060-05e",
+        "CASE-INT-060-05g",
+        "CASE-INT-060-05h",
+        "NFR-INT-060-02"
+      ],
+      "disposition": "補正",
+      "change": "FR AC-INT-060-05のsummaryから「owner不明別unknownを保持」の残余句を除去し、05e/05g/05hを固定HARNESS process contract source/owner不足の戻し先として明示。FV 05eは単独stop-condition欠落、05g cycle、05h dependency identity不明。NG 060-02へ05eを同期。",
+      "basis": [
+        "L2-060:358 input不足/staleは該当sourceへ戻す",
+        "FV CASE-INT-060-05e/05g/05hがHARNESS source/contract ownerをfixtureに固定"
+      ],
+      "finding_text_raw": "- **M1（060：AC-INT-060-05表の条件付きunknown残存。review04 M2残）**：FR:750「ownerが示されない別unknownはunknownを保持する」は固定L2:358の無条件の「入力不足・staleは該当source」にない残余条項。HARNESSへ返す対象が05g/05hだけで05eがなく、NG:266も同様。→ 残余条項を削除し、05eを05g/05hと並べて記載する。",
+      "status": "作成側補正とRoot検収を記録。独立再レビュー未成立。"
+    },
+    {
+      "id": "M2",
+      "severity": "Major",
+      "scope": [
+        "CASE-INT-071-02a",
+        "AC-INT-071-02"
+      ],
+      "disposition": "補正",
+      "change": "FV 02aに合成正常baseline `{identity=core-model-sim, revision=sim-r7, owner=Product Core/HARNESS}` とscenario model source/revisionを明記。唯一の変異は選択source revision sim-r7→sim-r6。staleを無条件に選択source ownerへ照合する。",
+      "basis": [
+        "L2-071:557 CORE model authority/schemaはProduct Core/HARNESS、stale/欠落はsource owner",
+        "L11-071:239-257 正常同一revisionと異常mixed revisionを比較"
+      ],
+      "finding_text_raw": "- **M2（071-02a：固定L2:557より弱い条件付きunknown。review01〜04の見落としとして開示）**：FV:2496「選択sourceが特定できる場合だけそのsource ownerへ照合し、戻し先を特定できない場合はunknown」。固定L2:557は無条件で「CORE model authority/schemaはProduct Core/HARNESSへ、stale/欠落状況はsource ownerへ」。同種の069-04b（FV:2432）はreview03 M3で無条件の照合へ直してあり、review04 M2/M4と同じ型の残存。→ 02aのfixtureで選択model sourceを固定し、L2:557の句どおり無条件でProduct Core/HARNESS（staleはsource owner）へ照合する。必要ならFR:719にも併記。",
+      "status": "作成側補正とRoot検収を記録。独立再レビュー未成立。"
+    },
+    {
+      "id": "M3",
+      "severity": "Major",
+      "scope": [
+        "CASE-INT-069-04a",
+        "CASE-INT-069-08h",
+        "CASE-INT-069-08i",
+        "CASE-INT-069-08k",
+        "CASE-INT-071-02c",
+        "AC-INT-069-08"
+      ],
+      "disposition": "補正",
+      "change": "欠落係数/service rule/load/capacity/currencyは計算不能/部分unknownとし戻し先を追加しない。unsupported DB edgeはunknown/blockedとしownerを追加しない。FR AC-INT-069-08をFVと同期。",
+      "basis": [
+        "L2-069:526 係数/規則不足は計算不能/部分unknown",
+        "L2-071:557 unsupported state/edgeはunknown/unmodeled/blocked"
+      ],
+      "finding_text_raw": "- **M3（069／071：固定親が戻し先を持たない不足に、条件付きのsource owner返却を追加。差分外の既存行）**：FV:2431（069-04a service rule欠落）、FV:2755（08h load欠落）、FV:2756（08i capacity欠落）、FV:2758（08k currency欠落）が「source ownerが明示／識別できる場合だけ照合」。固定L2:526は「係数・規則不足は計算不能/部分unknown」で戻し先を持たない。FV:2498（071-02c DB failure edge欠落）も同様で、固定L2:557は「unsupported state/edgeはunknown/unmodeled/blockedで返し」のみ。FR:776（AC-069-08）は「戻し先を推測しない」としておりL3とL10が食い違う。→ 5行から条件付きの照合句を削り、「計算不能/部分unknown（またはunknown/blocked）を保ち、戻し先を追加しない」に揃える。",
+      "status": "作成側補正とRoot検収を記録。独立再レビュー未成立。"
+    },
+    {
+      "id": "m1",
+      "severity": "Minor",
+      "scope": [
+        "CASE-INT-069-04c",
+        "CASE-INT-069-04e",
+        "CASE-INT-069-06l",
+        "CASE-INT-069-06m",
+        "CASE-INT-069-06o",
+        "CASE-INT-069-06p",
+        "CASE-INT-069-08c",
+        "CASE-INT-069-08d",
+        "AC-INT-069-06",
+        "AC-INT-069-08"
+      ],
+      "disposition": "補正",
+      "change": "unit mismatch/undeclared edge/unknown attribution/stop欠落へownerを加えず、fact-inference混同を選択source ownerへ、permission/data-useをSECURITYへ、unsupported schema/state/domainを固定L2のmodel ownerへ無条件に戻す。FR AC taxonomyを同期。",
+      "basis": [
+        "L2-069:526 の3種別（source owner/model owner/no return）を区別"
+      ],
+      "finding_text_raw": "- **m1（069：その他の条件付き戻し先句。M3と同根の再照合対象）**：FV:2433（04c）、2435（04e）、2619（06l）、2620（06m）、2622（06o）、2623（06p）、2750（08c）、2751（08d）。固定L2:526の句に照らし、06l（観測/推論→source owner）・06o（permission→SECURITY）は無条件の戻し先、08c/08dは「schema・遷移・domain未対応はmodel owner」、それ以外は戻し先なし、の3類型で書き分ける。",
+      "status": "作成側補正とRoot検収を記録。独立再レビュー未成立。"
+    },
+    {
+      "id": "m2",
+      "severity": "Minor",
+      "scope": [
+        "CASE-INT-060-02d"
+      ],
+      "disposition": "補正",
+      "change": "入力A→B依存宣言を正常のまま保ち、candidateだけBをAより前に置く単独変異としてFVを明確化。返却ownerを追加しない。",
+      "basis": [
+        "L11-060:281 A→B順序oracle、return owner未指定"
+      ],
+      "finding_text_raw": "- **m2（060-02d：変異記述の二義性。Fable m7の残り）**：FV:2334の変異欄「HARNESS process contract source identityが明示された状態でA→B依存だけ逆転」は入力宣言の逆転とも読める。oracleは出力順の誤りとして直したので、変異欄を「入力のA→B宣言は正常のまま、candidateでBをAより前に置く」とし、不要なsource identityの前提を削る。",
+      "status": "作成側補正とRoot検収を記録。独立再レビュー未成立。"
+    },
+    {
+      "id": "m3",
+      "severity": "Minor",
+      "scope": [
+        "CASE-INT-077-03f",
+        "CASE-INT-077-05e",
+        "CASE-INT-077-05f",
+        "CASE-INT-077-05g",
+        "CASE-INT-077-05h",
+        "CASE-INT-077-05i"
+      ],
+      "disposition": "補正",
+      "change": "03fを索引のみとし、05e/05f/05g/05h/05iをそれぞれ明示参照。独立negative数へ03fを重複計上しない。",
+      "basis": [
+        "Stage5 body内の対象5独立fixture。旧composite実行fixtureを残さない"
+      ],
+      "finding_text_raw": "- **m3（077-03f：索引が索引を指す）**：FV:2555「03d/e/h/i/jのaggregate index」。03d/e/h/i/jは今回05e–05iの索引になった。→ 参照先を05e/05f/05g/05h/05iへ。",
+      "status": "作成側補正とRoot検収を記録。独立再レビュー未成立。"
+    },
+    {
+      "id": "m4",
+      "severity": "Minor",
+      "scope": [
+        "L2-077 source locator in previous review04 audit"
+      ],
+      "disposition": "監査下書きへ訂正を記録",
+      "change": "review04 comment/root-acceptanceのL2-077:639は誤記。固定sourceの該当句はL2:638。旧記録は不変のまま新追補にcorrect locatorを記録する。",
+      "basis": [
+        "L2-077:638 raw source span。639は次行"
+      ],
+      "finding_text_raw": "- **m4（監査locator：「L2-077:639」は誤りで正しくはL2:638。review04 M4のreviewer誤記に起因、開示）**：「ownerを確認できない場合はunknown/incompleteのまま選択source ownerへ戻し」はL2:638。review04 M4と依頼文の「L2:639」はreviewer側の誤り。root-acceptance md:10の「固定L2-077:639/L11-077:360」はこの誤記を引き継いでいる。→ 次の監査で訂正を記録する（旧記録は書き換えない）。",
+      "status": "作成側補正とRoot検収を記録。独立再レビュー未成立。"
+    },
+    {
+      "id": "m5",
+      "severity": "Minor",
+      "scope": [
+        "NFR-INT-060-02",
+        "CASE-INT-060-05e"
+      ],
+      "disposition": "補正（M1と同期）",
+      "change": "NFR gradeでHARNESS source/owner固定対象へ05eを追加。",
+      "basis": [
+        "CASE-INT-060-05e normal fixtureとmutationの定義"
+      ],
+      "finding_text_raw": "- **m5（NG:266：05eの併記漏れ）**：M1と同根の記録（NG側の同期）。",
+      "status": "作成側補正とRoot検収を記録。独立再レビュー未成立。"
+    },
+    {
+      "id": "m6",
+      "severity": "Minor",
+      "scope": [
+        "review04 historical correction record"
+      ],
+      "disposition": "監査下書きへ訂正を記録",
+      "change": "旧worker dispositionは「073/074 locator訂正を記録」と主張したが、review04 correction JSONのhistorical_corrections 5件に該当entryなし。実際の誤記はL2-077 locator 639→638。以前の監査記載の実体不一致をこの新記録に明示する。旧記録は不変。",
+      "basis": [
+        "formal review05 m6/previous review04 JSON。新記録で訂正"
+      ],
+      "finding_text_raw": "- **m6（監査：「073/074 locator」見出しの訂正記録なし。review04 m24残）**：worker dispositionは「旧見出しの誤った親番号も訂正記録に含む」とするが、correction jsonの`historical_corrections`（5件）にもroot側にも該当entryがない。",
+      "status": "作成側補正とRoot検収を記録。独立再レビュー未成立。"
+    }
+  ],
+  "root_additional_correction": {
+    "case": "CASE-INT-069-08b",
+    "basis": "固定L2:526 schema未対応はmodel ownerへ範囲不足として戻す",
+    "change": "具体ownerが入力で特定された場合だけという条件を削除。model schema欠落時の固定返却を保持。",
+    "worker_draft_asset_id_correction": "LEGACY-ASSET-266D3は短縮誤記。台帳477行の完全ID LEGACY-ASSET-50CA1C554747F12266D3へ訂正。旧時点記録は不変。"
+  },
+  "fixed_source_pins": [
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "sha256_full_raw_lf": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "spans": [
+        {
+          "lines": "358-358",
+          "sha256_raw_lf": "0480492604bb1bea2ef6801dadb764399eb002ee504b83400bfb69b2ddcf273a",
+          "literal": "- 親：HELIXINTELLIGENCE-L1-005。入力：承認済み要求、HARNESS工程contract、現状、BRAIN知識。出力：根拠・依存・停止条件付きplan candidateをOSへ渡す。依存：BRAIN、HARNESS-CORE、INTELLIGENCEの該当入力とOS ticket受領。保証：ticket発行・推進はOSに残り、動的workflow 4.0を要求しない。失敗時戻し先：入力不足・staleは該当source、ticket化不能はOS。未完義務：OSの進行と各sourceの正本更新を完了扱いしない。`version_target: 1.0`。"
+        },
+        {
+          "lines": "526-526",
+          "sha256_raw_lf": "037d314b14efbfd7f5632ebbb5cad1269cdb28d1ff009cca86c452e3dec9ea1c",
+          "literal": "- **失敗・戻し先**：source revision・owner・permissionはProduct Core/HARNESS/SECURITYへ照合。schema・遷移・domain未対応はmodel ownerへ範囲不足として戻す。観測/推論の混同はsource ownerへ戻す。通常scenario計算に必要な係数・規則が不足する場合は計算不能/部分unknownとし、選択された検証operationの期待結果oracleが不足する場合はscenario author/該当source ownerへ戻してその検証を保留する。期限/計算resource不足・停止条件到達は途中結果と打切り位置を残し、OS運転成功や実Worker配置へ変換しない。"
+        },
+        {
+          "lines": "557-557",
+          "sha256_raw_lf": "afaa34d7fe4748bf967e023980a643fbe1fc5241c201c40bcc2c4594ea72419d",
+          "literal": "- **失敗・戻し先**：CORE model authority/schemaはProduct Core/HARNESSへ、stale/欠落状況はsource ownerへ、operation/data-use許可はSECURITY/ownerへ、入力実資源割当はOSへ、後の独立比較oracleはLABOへ戻す。条件・規則不足、unsupported state/edge、外部のsource conflictはunknown/unmodeled/blockedで返し、自由推定で埋めない。"
+        },
+        {
+          "lines": "638-638",
+          "sha256_raw_lf": "76b0de48f9c61e584f96f9a30c258a61f29f09d597ac9c4751149730bcce2aa2",
+          "literal": "- **sourceからdelta候補への限定条件**：delta候補は既存source ownerがqualifiedと示すinternal/UILまたはexternal/TER source receiptに結び付く場合だけ作れる。source identity/revisionとowner、origin typeを別々に保ち、internalとexternalを同じenum identityへ潰さない。source qualification、UIL/TERのobservationやqualification、Future Synthesis intake/invalidation、route/owner assignment自体は本候補で再実装しない。選択receiptが読めない、revision/qualification照合に失敗する、またはそのownerを確認できない場合はunknown/incompleteのまま選択source ownerへ戻し、別receipt・未選択source・reference-only資料へ暗黙fallbackしない。外部releaseの観測だけからHELIX defectを確定しない。internal driftをexternal/TERへ、external driftをinternal/UILだけへ付け替えない。"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "sha256_full_raw_lf": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "spans": [
+        {
+          "lines": "281-281",
+          "sha256_raw_lf": "3029e03d7ab89a406922133fe447509a9da4e342627b830c0bb823a769b49fe4",
+          "literal": "| `HELIXINTELLIGENCE-L2-060` | approved requirement、HARNESS process contract、current OS state、適用可能なBRAIN knowledgeから依存順付きplan candidateを作る。ticket発行はOSへ渡す。 | 未承認requirementやstale stateで実行可能planとした場合、または4.0 workflowを1.0の必須前提にした場合は不合格。 | 未見task graphで明示依存A→Bと独立Cがあれば順序を保ち、循環/未知依存は解消済みとして並べず該当ownerへ返す。 |"
+        },
+        {
+          "lines": "239-257",
+          "sha256_raw_lf": "1de0fca03a4623afe6477549a9ca4cbf8b15989d2a98de7848e357c5588e6916",
+          "literal": "### HELIXINTELLIGENCE-L2-071 composite — 条件変更→計算→比較\n\n**正常例（受入fixture）**：最初にHELIXINTELLIGENCE-L2-033の入力receiptで同一model revisionとscenario条件を固定する。baselineは2stepの到着5/5、負荷増scenarioは5/10、各stepのservice上限は8とし、HELIXINTELLIGENCE-L2-069のqueue oracleを適用する。その後に利用load増、DB断、仮想Worker 2→4を別々のscenario runとして計算し、計算結果ができてからHELIXINTELLIGENCE-L2-070を使いHELIXINTELLIGENCE-L2-040送達、HELIXLABO-L2-024受領へ進める。HELIXINTELLIGENCE-L2-069のqueue/graph/numeric oracleに各runを照合し、HELIXINTELLIGENCE-L2-071 bundleでは①変更した条件と不変条件、②順序付きstate/impact propagation、③各scenarioのqueue/bottleneck/blocking state、④数値化できる時間と費用・baseline差、⑤未解決のsource/coefficients/edge、⑥LABO向けsource-bound結果receiptを一つのscope付き比較表で追える。上記worker fixtureなら2→4の見かけの容量増よりDB ceilingが支配し、completionは3 minから2.25 min、費用は1.50から2.025 creditsへ変化するという独立算術oracleに一致する。DB断例では明示edge上のorder processのみblockedとなり、recovery未定義を維持する。単体calculationとconnectionが通ってもcompositeのscope/比較/receiptが不一致なら不合格。この受入oracleはfixtureの期待値であり、通常scenarioに期待値がない場合も計算結果・trace・unknownを返せる。\n\n**誤りを含む例**：baselineとscenarioで異なるmodel/revisionを使う、複数scenario間で共通の単位/係数/時間windowを確認しない、Worker数を実資源設定と見なす、DB failureからモデルにないrollback/retry/recoveryを作る、影響edge外へfailureを伝播する、未定義のcostを0とする、単体結果を実測/LABO評価済みとする場合は不合格。該当scenarioだけをholdし、他の有効scenarioも依存関係を保って報告する。\n\n**未見例**：held-outの有限modelで、既知構造と新しいdependency/failure edgeが混在するfixtureを与える。明示ruleの範囲内のfixture scenario結果は独立oracleに照合し、未見edge/domainはunknown/unsupported、後の実測receiptなしは未比較とする。通常scenarioで期待結果が指定されていない場合、独立oracleなしでも適用可能な明示ruleから計算し、unsupported箇所をunknownとして返す。実測比較にはHELIXINTELLIGENCE-L2-006 L11 oracleを使い、数値閾値のscope decisionがなければ測定値のみを記録して合否を付けない。良好な小規模fixtureだけで精密・汎用simulation適格を宣言しない。\n\n### 共通依存区分・scope\n\nHELIXINTELLIGENCE-L2-069／HELIXINTELLIGENCE-L2-070／HELIXINTELLIGENCE-L2-071ごとにHARNESS-L2-023の4区分を利用条件・operation単位で閉じる。HELIXINTELLIGENCE-L2-069はHELIXINTELLIGENCE-L2-033 input receiptのみを計算入力に要し、HELIXINTELLIGENCE-L2-070全体の送達完了を前提にしない。HELIXINTELLIGENCE-L2-070はHELIXINTELLIGENCE-L2-033 input→HELIXINTELLIGENCE-L2-069 result→HELIXINTELLIGENCE-L2-040 send→HELIXLABO-L2-024 consumer receiptの独立段階、HELIXINTELLIGENCE-L2-071はHELIXINTELLIGENCE-L2-033入力→計算→result送達→consumer受領の順で成立を判定する。\n\n- **常時必須**：適用するHARNESS-L2-010/011 pack identity・契約revision・scope・provenance、対象Product Core/model source identityとrevision、HELIXINTELLIGENCE-L2-003／HELIXINTELLIGENCE-L2-004／HELIXINTELLIGENCE-L2-012／HELIXINTELLIGENCE-L2-013のfact/推論/unknown/trace条件、シミュレーション結果を実測にしない区分と停止条件。connection operationにはHELIXINTELLIGENCE-L2-033 input、HELIXINTELLIGENCE-L2-040 result handoff、HELIXLABO-L2-024 consumer contract/receiptを段階ごとに含む。\n- **特定操作時のみ必須**：数値時間/費用は単位付きrate/price/effective time、DB断はfailure/propagation/recovery rule、Worker scenarioは仮想capacity/shared-resource ceiling/schedulerを要する。L11受入fixtureと利用者が期待結果を指定した検証operationでは独立oracleを照合条件に含める。通常scenario計算には期待値oracleを要求せず、明示model/ruleから算出した結果・trace・unknownを評価する。後続actual comparisonはsource receiptと既存HELIXINTELLIGENCE-L2-006 L11比較oracleが操作条件として必要。HELIXLABO-L2-024は受領evidence、HELIXLABO-L2-006は実験/実測と評価のownerを保つ。条件のない利用には数値計算やactual comparisonを必須化しない。\n- **選択した入力元に応じて必須**：選択model, baseline, load, price/capacity, failure event, later observationのidentity/version/scope/provenance/access契約。未選択sourceは未観測。別製品、branch、環境、Worker telemetryへ黙ってfallbackしない。\n- **参照資料のみ**：背景説明・例題・未選択pattern。source/design authority、model/rule revision、unit/price/source、data-use/security条件を参照資料扱いに落とさない。独立期待値oracleはL11受入fixtureまたは期待結果付き検証operationでその照合条件となり、通常scenario計算には必須にしない。\n\n**受入範囲外／未解決**：高精細な物理simulation、未入力の条件を推定補完する万能model、HARNESS-COREから独立した汎用model正本、OSの実worker配賦/起動や実環境/resource configuration変更、モデルが存在しないdomainへの外挿はこのcandidateに含めない。後続実測比較は既存HELIXINTELLIGENCE-L2-006 L11 oracleを使い、HELIXLABO-L2-024が受領evidence、HELIXLABO-L2-006が実験/実測の独立評価を所有する。数値精度閾値に有効なscope decisionがない場合は測定値を記録し、pass/適格化を判定しない。新能力や一律のPO問合せを要求しない。"
+        },
+        {
+          "lines": "360-361",
+          "sha256_raw_lf": "352ac4c7303d1b2897fa3caf301f48c84579ed82db89441b57c2d2cd81d31083",
+          "literal": "- **未見例**：選択source receiptのowner、origin type、revisionまたはqualification evidenceが欠ける/不一致のheld-out例を与え、delta candidateを確定せずunknown/incompleteへ戻して選択receiptのsource ownerへ照合する。選択receiptが読めない、revision/qualification照合に失敗する、またはowner identityを確認できない例では、別のavailable receipt・未選択source・reference-only資料へ暗黙fallbackせず、選択sourceの失敗とunknown/incompleteを保つ。fixtureに明示された既存owner identityとの照合成功例と、owner identityが欠落/矛盾するこの反例を区別する。未選択sourceやreference-only資料をqualified sourceへ昇格しない。実runtimeや旧UIL/TERは実行しない。\n- **失敗時の戻し先と限界**：source identity/qualificationの不明は該当する既存source ownerへ、INTELLIGENCEのfinding/delta candidate根拠はINTELLIGENCE ownerへ、OS ticket/assignmentはOS ownerへ、評価はLABO ownerへ返す。正式なFuture Synthesis consumer/ownerが不明な場合はunknownのまま上流scope照合へ戻す。旧R-06/07/09〜12、R-13〜15の処理、実行・適格化・正式後継の受入は含めない。"
+        }
+      ]
+    }
+  ],
+  "legacy_source_pins": [
+    {
+      "asset_id": "LEGACY-ASSET-F542125805B777D8A56A",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "sha256_full_raw_lf": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "bytes": 15617,
+      "use": "意味対応の起点として読取。旧runtime/test/CIは不実行。shared FR/ACとpaired acceptanceのtrace形式は再導出、INT worker source責務境界は意味を比較、RLO simulationは設計計算へ移植せず置換。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "sha256_full_raw_lf": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "bytes": 65731,
+      "use": "意味対応の起点として読取。旧runtime/test/CIは不実行。shared FR/ACとpaired acceptanceのtrace形式は再導出、INT worker source責務境界は意味を比較、RLO simulationは設計計算へ移植せず置換。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-44DD86E3DEC09E65EF51",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "sha256_full_raw_lf": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+      "bytes": 30874,
+      "use": "意味対応の起点として読取。旧runtime/test/CIは不実行。shared FR/ACとpaired acceptanceのtrace形式は再導出、INT worker source責務境界は意味を比較、RLO simulationは設計計算へ移植せず置換。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-9114D4E463E95B67DD0C",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+      "sha256_full_raw_lf": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+      "bytes": 14499,
+      "use": "意味対応の起点として読取。旧runtime/test/CIは不実行。shared FR/ACとpaired acceptanceのtrace形式は再導出、INT worker source責務境界は意味を比較、RLO simulationは設計計算へ移植せず置換。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-C6ADB99F1353965C5449",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/worker-common-contract-acceptance.md",
+      "sha256_full_raw_lf": "c8dff734891a6a7350feb9b698c40e1616946cdd424433d662f1da49d8ac800d",
+      "bytes": 7122,
+      "use": "意味対応の起点として読取。旧runtime/test/CIは不実行。shared FR/ACとpaired acceptanceのtrace形式は再導出、INT worker source責務境界は意味を比較、RLO simulationは設計計算へ移植せず置換。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "sha256_full_raw_lf": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "bytes": 42556,
+      "use": "意味対応の起点として読取。旧runtime/test/CIは不実行。shared FR/ACとpaired acceptanceのtrace形式は再導出、INT worker source責務境界は意味を比較、RLO simulationは設計計算へ移植せず置換。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-437A6A68F9A9E0AE1B9E",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+      "sha256_full_raw_lf": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+      "bytes": 4078,
+      "use": "意味対応の起点として読取。旧runtime/test/CIは不実行。shared FR/ACとpaired acceptanceのtrace形式は再導出、INT worker source責務境界は意味を比較、RLO simulationは設計計算へ移植せず置換。"
+    }
+  ],
+  "body_files": [
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "body_revision": "f5dcf5f672b232383bfe8627b2dfce94c7109c22",
+      "full_sha256": "989dce01d43479c2dfba31f673c1045f9c039f5ad7cffdfd8652b4008a0581f5",
+      "byte_length": 25857,
+      "main_revision": "5404d0649762edec0475fc7e836a0b988a4f6631",
+      "main_prefix_sha256": "58432c78c93035c69cdb08ffe775d04c6339ef8ae26348f04024413279bab720",
+      "main_prefix_byte_length": 23581,
+      "main_prefix_exact": true,
+      "suffix_sha256": "17c015812699802111b1482f45938916eb156e122cb967abc52c41600f82616e"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "body_revision": "f5dcf5f672b232383bfe8627b2dfce94c7109c22",
+      "full_sha256": "86a3f1e08d0345686755356426f86a866cbd9018824f13cc593b339b9f415321",
+      "byte_length": 209143,
+      "main_revision": "5404d0649762edec0475fc7e836a0b988a4f6631",
+      "main_prefix_sha256": "24f00c4e7c4e3415aac73116851c1d5d953688a741bf6d3bd400171c7177670f",
+      "main_prefix_byte_length": 170428,
+      "main_prefix_exact": true,
+      "suffix_sha256": "d1f192426ebaa957d1ff0221abcc9b34edb1aac2b98c403531231ca1f8a85556"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "body_revision": "f5dcf5f672b232383bfe8627b2dfce94c7109c22",
+      "full_sha256": "31d9c9d3ce0bc82a6c0ed33758dc43c01a9f56d08abd3e4e7368ce7d9cf5f9bc",
+      "byte_length": 58697,
+      "main_revision": "5404d0649762edec0475fc7e836a0b988a4f6631",
+      "main_prefix_sha256": "f5da5d569f483d36aed039b80e0aadeadf48715a4dd854e6f20a5949310ea0e6",
+      "main_prefix_byte_length": 48516,
+      "main_prefix_exact": true,
+      "suffix_sha256": "51f58ed2c762c6fb96853c759debe1bf60071bcb8a6d6de66cba39c858d55989"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "body_revision": "f5dcf5f672b232383bfe8627b2dfce94c7109c22",
+      "full_sha256": "218537c593876ef23f98ba8d729005e299dbc31894e42e87ea05ef2daf8bb100",
+      "byte_length": 29558,
+      "main_revision": "5404d0649762edec0475fc7e836a0b988a4f6631",
+      "main_prefix_sha256": "3bae5af7db872ec2eca907f7a51d48b22c6c2637aaef8b7a54e5c6f9555fc59f",
+      "main_prefix_byte_length": 27701,
+      "main_prefix_exact": true,
+      "suffix_sha256": "e31686a2bdd3ce8925341a13b54e83a45d8b29154482e9ab9414694ee21ed61a"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "body_revision": "f5dcf5f672b232383bfe8627b2dfce94c7109c22",
+      "full_sha256": "1988fdbf7015a32fa29ea720806def67e48f12929b8975a6dae5e8782224321b",
+      "byte_length": 704462,
+      "main_revision": "5404d0649762edec0475fc7e836a0b988a4f6631",
+      "main_prefix_sha256": "0ddcfb85e1fdafbb2aab6aed1bc16dfb49fd2554dedea4112f6aeef1283e78bd",
+      "main_prefix_byte_length": 642259,
+      "main_prefix_exact": true,
+      "suffix_sha256": "a5560d660ae9de231351c299d6fb161964aeb4e31358390bdefb7649838369a1"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "body_revision": "f5dcf5f672b232383bfe8627b2dfce94c7109c22",
+      "full_sha256": "c4fa2eb132472bc3968c0a28c1db0a034332131c40a7c1b24c95c77ea9f97006",
+      "byte_length": 53737,
+      "main_revision": "5404d0649762edec0475fc7e836a0b988a4f6631",
+      "main_prefix_sha256": "2b6cbaad0292ba16df5ba65458779d2c9abc8c1f36298141d736df945e8d7029",
+      "main_prefix_byte_length": 44908,
+      "main_prefix_exact": true,
+      "suffix_sha256": "dda63fb83426707c3cb3e0b219ee8c72ff8e8bdbea6272e5d68a85a6bce59cf4"
+    }
+  ],
+  "changed_line_pins": [
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 719,
+      "literal_with_lf": "- AC-INT-071-02 反例: CASE-INT-071-02a〜02hを各一変異で拒否する。baseline/scenario model revision不一致、scope mismatch、同じ比較でunit混在、edge外failure propagation、virtual worker changeでOS assignment更新、LABO receipt不在の完了claim、069単体結果だけでcomposite完了claim、unsupported/未定義costを0化する変異はそのscenarioだけを不成立にし、他の独立正常scenarioを止めない。02aは選択したCORE/Product Core model sourceをfixtureで固定し、stale revisionをそのsource ownerへ照合する。02cの未定義failure edgeはunknown/blockedを保持し、戻し先を追加しない。係数不一致は04d、retry/recoveryは04f/04g、rollback生成は05eで別々に照合し、02群へ束ねない。通常scenario計算に期待値oracleは要求しない。\n",
+      "raw_lf_sha256": "5402ed1e77edd7f94d0fe057d49f11839b92df1db1f6c14375c09ff72269f851"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 750,
+      "literal_with_lf": "| `AC-INT-060-05` | `CASE-INT-060-05a`–`CASE-INT-060-05i` | 05a–05dは独立negativeの06a/06f/06i/06lへの完全ID索引。独立fixtureはstop欠落、fallback欠落、dependency cycle/identity、fallback正常例を各行で判定する。05e/05g/05hはHARNESS process contract source identity/ownerと該当stop条件・依存をfixtureで固定し、入力不足は該当HARNESS source/contract ownerへ戻す。ticket受領・進行不能はOSへ戻す。 |\n",
+      "raw_lf_sha256": "2f569ab2950b9c7c861b05e6d3eebeaee3799089cb89443a10854936edbd079c"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 755,
+      "literal_with_lf": "| `AC-INT-069-06` | `CASE-INT-069-06a`–`CASE-INT-069-06u` | HARNESS-L2-010/011の採択済みpack contractを常時照合し、各required source fieldを独立に欠落/不一致にする。011のcall固有inputだけはcall利用operationで照合する。pack contract不足はHARNESS契約owner、L2-069が指定するsource revision/owner/permission不足はProduct Core/HARNESS/SECURITY、fact/inference混同は選択source owner、data-use/authority不足はSECURITYへ戻す。それ以外で固定L2が戻し先を定めない入力不足はunknownのまま保持し、ownerを追加しない。未選択sourceは未観測のままとしfallbackしない。 |\n",
+      "raw_lf_sha256": "e2ba954033024554c478928069483c38432432cf7a580eed958a4a1bc864078d"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "line": 776,
+      "literal_with_lf": "| AC-INT-069-08 | CASE-INT-069-08a–08o | L2-069列挙入力を項目ごとに欠落・unknown・stale・不一致にする。source revision/owner/permissionは固定L2の該当記述どおりProduct Core/HARNESS/SECURITYへ、schema・遷移・domain未対応はmodel ownerへ、観測/推論混同は選択source ownerへ戻す。data-use/authority条件欠落はSECURITYへ戻す。その他の係数・規則・load/capacity/currency・baseline/scenario入力不足や未対応failure edgeは計算不能/部分unknownまたはunknown/blockedを保ち、固定L2にない戻し先を追加しない。選択した検証operationの期待結果oracle不足だけはscenario author/該当source ownerへ戻す。HARNESS-L2-010/011は常時適用契約として照合し、011をcall選択時だけの依存にしない。 |\n",
+      "raw_lf_sha256": "1e2fb9f65300a6d0519e48f851756addc38a5a2ddb7391fccba2991d972f1f3d"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "line": 266,
+      "literal_with_lf": "- `NFR-INT-060-02`：CASE-INT-060-05e–05iの5定義行中、05iは指定fallback正常例。05a–05dは06群の完全ID索引。この母集団は05e/05f/05g/05hの4独立negativeと05i正常fallbackであり、05e/05g/05hのHARNESS process contract source/ownerをfixtureで固定する。06群の9独立runはCASE-NFR-INT-060-03で別集計する。\n",
+      "raw_lf_sha256": "c3d9f99bb7ec218b9b65c54fb4a9e0ab81f1baa9e3b4938bc4b32424a3409b12"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 2334,
+      "literal_with_lf": "| `CASE-INT-060-02d` | 入力のA→B依存宣言は正常のまま、candidateでBをAより前に置く | 不合格。BをAより前へ置かずcandidateを確定しない。固定L11の依存順序oracleは返却ownerを指定しないため、source/HARNESSへの返却を追加しない。 |\n",
+      "raw_lf_sha256": "ea272a44b16b55a9293a638c3b69ea482c971422f8bc187c93b6b2bfd0241f2e"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 2431,
+      "literal_with_lf": "| `CASE-INT-069-04a` | service ruleだけ欠落 | throughput/timeを創作せず計算不能/部分unknownを返す。固定L2はこの不足に戻し先を指定しないため、source ownerへの返却を追加しない。 |\n",
+      "raw_lf_sha256": "5e07994cdbbdf31559c07d3efdcab886ddefcc273eddf1c217dbc8d98d97244a"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 2433,
+      "literal_with_lf": "| `CASE-INT-069-04c` | unit labelだけ不一致 | 照合不能をunknownとし暗黙換算しない。固定L2はunit不一致に戻し先を指定しないため、ownerを追加しない。 |\n",
+      "raw_lf_sha256": "cb5eb5596fda13f2b9ec30c373e43dcdbab2cdb02a6254db36a426d58fa65744"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 2435,
+      "literal_with_lf": "| `CASE-INT-069-04e` | reporting branchに宣言されていないDB dependency edgeを追加する | edgeを追加せずreporting stateを不変にする。固定L2はこの未宣言edgeに戻し先を指定しないため、ownerを追加しない。 |\n",
+      "raw_lf_sha256": "70054f40dc8836db021fbee6b27e016b8cf4f59cf6dba3ce066df9cd9c71865e"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 2496,
+      "literal_with_lf": "| `CASE-INT-071-02a` | 正常入力は選択source `{identity=core-model-sim, revision=sim-r7, owner=Product Core/HARNESS}`、scenario `{model_source=core-model-sim, model_revision=sim-r7}`。scenario側は不変で、選択sourceのrevisionだけ`sim-r6`へ変異する | 比較不成立、mixed-revisionを拒否する。固定した選択source identityのstale revisionとして、そのsource owner（Product Core/HARNESS）へ照合する。 |\n",
+      "raw_lf_sha256": "c2d42f51933933db1ae424ab504246213a1afc13b07c75e2a46ac395f740ca6f"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 2498,
+      "literal_with_lf": "| `CASE-INT-071-02c` | DB failure edgeだけ欠落 | edge外伝播/復旧を生成せず、該当scenarioをunknown/blockedにする。固定L2はこのunsupported edgeに戻し先を指定しないため、ownerを追加しない。 |\n",
+      "raw_lf_sha256": "7aca755af0233296bcfe6532199d012034eaf8bac81846fcec01e2f04d45a503"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 2555,
+      "literal_with_lf": "| `CASE-INT-077-03f` | 索引のみ。独立fixture `CASE-INT-077-05e`、`CASE-INT-077-05f`、`CASE-INT-077-05g`、`CASE-INT-077-05h`、`CASE-INT-077-05i` を参照する | 05e、05f、05g、05h、05iそれぞれを独立fixtureとして計上する。旧複合変異を実行fixtureとして残さず、この行を別negative数へ加えない。 |\n",
+      "raw_lf_sha256": "43c919bbdebb9a91d22943a476b1735b8abda3cdaac5a6bdefb9b2535b3b16bf"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 2619,
+      "literal_with_lf": "| `CASE-INT-069-06l` | 069/AC-INT-069-06 | L2-004 fact/inference区分だけ欠落 | 区分不明を保持し、混同を生じた選択source ownerへ照合する。unknown区分は値で補完しない。 |\n",
+      "raw_lf_sha256": "3a774af48848c61ce822b08f1c11d575dd04385e032044992648155eeca59af7"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 2620,
+      "literal_with_lf": "| `CASE-INT-069-06m` | 069/AC-INT-069-06 | L2-012 unknown/source attributionだけ欠落 | 不確実性を確定値にせずunknownに保つ。固定L2はこの欠落に追加の戻し先を指定しないため、unknownのまま保持する。 |\n",
+      "raw_lf_sha256": "1790c90a5a5a2e5a85e8538a77114b921b77e52b3d997d64859b8434c366e1fb"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 2622,
+      "literal_with_lf": "| `CASE-INT-069-06o` | 069/AC-INT-069-06 | 適用data-use/authority条件だけ欠落 | 利用可能と推測せず、既存SECURITY ownerへ戻す。 |\n",
+      "raw_lf_sha256": "74dbe167645e2a78115048bad9c5e5dd2247beceabe27ec18ad59087b216fe53"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 2623,
+      "literal_with_lf": "| `CASE-INT-069-06p` | 069/AC-INT-069-06 | stop conditionだけ欠落 | 完了位置を捏造せず未確定結果を保持する。固定L2はこの欠落に戻し先を指定しないため、ownerを追加しない。 |\n",
+      "raw_lf_sha256": "802e2b7057a93bdaa8a55cbbb61dca3fa87468de095520f2d9326400e5770da3"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 2749,
+      "literal_with_lf": "| `CASE-INT-069-08b` | 069/AC-INT-069-08 | model schema versionだけ欠落 | schema適用をunknownに保ち、固定L2-069が指定するmodel ownerへ範囲不足として戻す。 |\n",
+      "raw_lf_sha256": "465cd52f33c55ee0cbbc85b5eb63c65d7f44c73554dedbc4dc8a0c8298c535ef"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 2750,
+      "literal_with_lf": "| `CASE-INT-069-08c` | 069/AC-INT-069-08 | finite state setだけ欠落 | stateを補わず未対応/unknownとし、固定L2が指定するmodel ownerへ範囲不足として戻す。 |\n",
+      "raw_lf_sha256": "eb7e6620469e8cdc349410ad5b5ddaa2dfbf9371783f80829d994607e13257de"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 2751,
+      "literal_with_lf": "| `CASE-INT-069-08d` | 069/AC-INT-069-08 | initial stateだけ欠落 | 遷移計算を開始せずunknownを保持し、固定L2が指定するmodel ownerへ範囲不足として戻す。 |\n",
+      "raw_lf_sha256": "dfca8fced57c4f32f34583ef0113390e154e88927cb9bf80dd6ef35e5b5aa0b4"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 2755,
+      "literal_with_lf": "| `CASE-INT-069-08h` | 069/AC-INT-069-08 | load seriesだけ欠落 | 負荷結果を計算不能/部分unknownとする。固定L2はload欠落に戻し先を指定しないため、ownerを追加しない。 |\n",
+      "raw_lf_sha256": "cdc7b6c343ceea8e98a743aca04beb194b98bf937f009a7cbf669ef2ec55cd44"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 2756,
+      "literal_with_lf": "| `CASE-INT-069-08i` | 069/AC-INT-069-08 | capacityだけ欠落 | throughput/timeを計算不能/部分unknownとする。固定L2はcapacity欠落に戻し先を指定しないため、ownerを追加しない。 |\n",
+      "raw_lf_sha256": "85e4d1daa825002808a84ec28a17708f711cc0362dc45edd8c075a2ff67f7a73"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "line": 2758,
+      "literal_with_lf": "| `CASE-INT-069-08k` | 069/AC-INT-069-08 | currencyだけ欠落 | costを比較せずunknownを保つ。固定L2はcurrency欠落に戻し先を指定しないため、ownerを追加しない。 |\n",
+      "raw_lf_sha256": "d7ad9706ebd3180152c4fe9621afc6bcd26a9c86d686020246e50d6b1ae99524"
+    }
+  ],
+  "old_immutable_audits": [
+    {
+      "path": "docs/governance/audits/requirements-stage/intelligence-stage5-review04-correction-2026-10-06.json",
+      "sha256_raw_lf": "ae227b98e08175fe5d966f4f656002a05904fddbea0848083ec57bb8d1d09119",
+      "bytes": 276398,
+      "status": "immutable; unchanged"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/intelligence-stage5-review04-root-acceptance-2026-10-06.json",
+      "sha256_raw_lf": "8176d2b9e22c0e8d904c584df099b9a36ca2e973c4b1d039233cfd30963e59d5",
+      "bytes": 390041,
+      "status": "immutable; unchanged"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/intelligence-stage5-review04-root-acceptance-2026-10-06.md",
+      "sha256_raw_lf": "af43468431aab4b755b09c071a7fd4f2e5bebbd46137e2c3b4c59580f6944707",
+      "bytes": 1938,
+      "status": "immutable; unchanged"
+    }
+  ],
+  "verification": {
+    "root_read": "本文差分136行を12chunkで全読、追加08b原文と固定L2:520–528読解",
+    "source_pin": "Git rawから固定7span/full2と旧full7を独立再計算。一致。",
+    "scope": "既存306定義のID追加・削除なし。未実行。",
+    "limitations": "no_findings/Fable一致・L3承認・Ready・merge admissionは未成立。静的検証結果は実行成功ではない。",
+    "all_fv_table_definitions": {
+      "prior": 892,
+      "current": 892,
+      "id_additions": 0,
+      "id_deletions": 0
+    },
+    "static_results": {
+      "govcheck": "ok atoms=7622 requirements=57 files=58",
+      "scfctl_validate": "147/0",
+      "stale": 0,
+      "residuals": 0,
+      "git_diff_check": "pass"
+    }
+  }
+}

@@ -1,0 +1,3053 @@
+{
+  "authority_effect": "none",
+  "body_revision": "280f6f02a6da8e944eb620e2ce3aa4bc1ff4a672",
+  "latest_main": "c3790fdf7c80c9c9385c99bd828b7f30cc026549",
+  "worker_body": "7b18d316c21f40dd47c23e34333da497e757f299",
+  "worker_audit": {
+    "path": "docs/governance/audits/requirements-stage/intelligence-stage5-review01-correction-2026-10-06.json",
+    "sha256": "ba725f61a1a98772b485c5d0dece837262a67fbaff008eb8346fe02249b2bb15",
+    "immutable": true
+  },
+  "formal_review": {
+    "id": 6004286992,
+    "raw_body_sha256": "a297b0d340129bc54adca497df08d1fc2357e49ee3515d37c5bd6ab65c41b392",
+    "raw_body_bytes": 13677
+  },
+  "root_read_scope": [
+    "Worker4本文diff全追加/変更内容（FRのclipped出力箇所は別chunkで再読）",
+    "固定L2-060..063354–377全文",
+    "前Stage3 approved本文はmain統合時bytes照合。再起草/新規全文実読はしない。"
+  ],
+  "root_corrections": [
+    "六prefixを承認済みStage3込みmainへ更新しStage5suffix保持。",
+    "062返却削除の包括文をrepaircandidate不足限定に訂正、既存4owner維持。",
+    "補正表のAC-xxxをAC-INT-xxxへ正常化。",
+    "07006h send/consumer遅着を06h/06iへ分割。",
+    "NFR混在計数を78追加表+20既存表=98新規IDへ訂正。"
+  ],
+  "canonical_documents": [
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "bytes": 25859,
+      "sha256": "e4e152a7e6ed6346379adb6904d53e5daf627f39d17ffe193120e31786392ce6",
+      "main_prefix_identical": true,
+      "main_prefix_bytes": 23581,
+      "main_prefix_sha256": "58432c78c93035c69cdb08ffe775d04c6339ef8ae26348f04024413279bab720"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "bytes": 204570,
+      "sha256": "216011a3ed1748d6944252f4e57ce32c2e139b2d358f453c1f0267d22210d3bf",
+      "main_prefix_identical": true,
+      "main_prefix_bytes": 170428,
+      "main_prefix_sha256": "24f00c4e7c4e3415aac73116851c1d5d953688a741bf6d3bd400171c7177670f"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "bytes": 57699,
+      "sha256": "8054e651c169ec53e1203b39efb37583d095e0a8201f0179916da1fc29071999",
+      "main_prefix_identical": true,
+      "main_prefix_bytes": 48516,
+      "main_prefix_sha256": "f5da5d569f483d36aed039b80e0aadeadf48715a4dd854e6f20a5949310ea0e6"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "bytes": 29560,
+      "sha256": "a91b52219d7453fde6277b1fb07994e96d9b31657e7af060b2006745f7d7f285",
+      "main_prefix_identical": true,
+      "main_prefix_bytes": 27701,
+      "main_prefix_sha256": "3bae5af7db872ec2eca907f7a51d48b22c6c2637aaef8b7a54e5c6f9555fc59f"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "bytes": 697815,
+      "sha256": "8892dc9849fb15d5b677d3117de79ca3f2fc468ddbc41965794819967f94936a",
+      "main_prefix_identical": true,
+      "main_prefix_bytes": 642259,
+      "main_prefix_sha256": "0ddcfb85e1fdafbb2aab6aed1bc16dfb49fd2554dedea4112f6aeef1283e78bd"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "bytes": 52919,
+      "sha256": "7e30c74ec80969445ed6e812dafa6af6ba3e89ebb4673a350ec3ca7f9e8465e9",
+      "main_prefix_identical": true,
+      "main_prefix_bytes": 44908,
+      "main_prefix_sha256": "2b6cbaad0292ba16df5ba65458779d2c9abc8c1f36298141d736df945e8d7029"
+    }
+  ],
+  "source_spans_recomputed": [
+    {
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "source_revision": "59336627f11475456038db80ce6232ee39bbfa8f",
+      "physical_lines": [
+        230,
+        230
+      ],
+      "full_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "span_sha256": "9ec621be227c3320f4264a3cd78f7ce3bc0f5f5e6afaf264b3d342eb345b95c1"
+    },
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        354,
+        359
+      ],
+      "full_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "span_sha256": "616f688fcd389e14d4c9574f173aee76103a93ae300c99dbf2b19bc44ded8ce1"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        114,
+        114
+      ],
+      "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "span_sha256": "4377bad7f7af3225c62057768392d331e3904253ee21776cf995e06850429053"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        158,
+        158
+      ],
+      "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "span_sha256": "b04b1e88bf518f4aebeb242c2fc911a3cabbc5f8b9e72eee58325267d5baf8a2"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        281,
+        281
+      ],
+      "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "span_sha256": "3029e03d7ab89a406922133fe447509a9da4e342627b830c0bb823a769b49fe4"
+    },
+    {
+      "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        90,
+        90
+      ],
+      "full_sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+      "span_sha256": "bfd7f1dac8a59844ca5a1ed985145a4b4b358e808cc90b8619a9a2f9ee34f1a4"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "source_revision": "59336627f11475456038db80ce6232ee39bbfa8f",
+      "physical_lines": [
+        231,
+        231
+      ],
+      "full_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "span_sha256": "7575694e6e27c375100ba7ffff0d4917c61b3821b30497f875c390eca58f25a5"
+    },
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        360,
+        365
+      ],
+      "full_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "span_sha256": "861843e4eef3fa6be5f1220bded6a1e7df995d28e9d8e3577802f0657465bc95"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        115,
+        115
+      ],
+      "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "span_sha256": "74a9c747c8373032002c0382319aabbbec5d708a5906386e93b37b97177e35ca"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        163,
+        163
+      ],
+      "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "span_sha256": "a27a934f442d8ae650deca348885f0d9eee5158e2bc17c550c731df8de0b98c2"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        282,
+        282
+      ],
+      "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "span_sha256": "5a8306f8f14bb3322fd5497fc502b29daf0e8c89b090b5365d0eb2d2ef04413b"
+    },
+    {
+      "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        91,
+        91
+      ],
+      "full_sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+      "span_sha256": "6ab8f7c1b8dd6c4cf55ca73678dc9c1e24e9d19319dd9315fb00c51956e4b2e8"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "source_revision": "59336627f11475456038db80ce6232ee39bbfa8f",
+      "physical_lines": [
+        232,
+        232
+      ],
+      "full_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "span_sha256": "c8894ffb60e30e7acc8fb453fe52e4d651406358c53b403605e23f8c4cb98459"
+    },
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        366,
+        371
+      ],
+      "full_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "span_sha256": "41c7894dc8e464612b3bce0431bfcb5a338fea6909cff4684f748581b11fab61"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        116,
+        116
+      ],
+      "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "span_sha256": "63560dd278d51636275c3aa14f5812d321aa8c173d897ee659673e42c608b45f"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        169,
+        169
+      ],
+      "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "span_sha256": "e5ccebf7814b123914190359759e8e9e968e045036597fc202bf95e07fd8da20"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        283,
+        283
+      ],
+      "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "span_sha256": "47f48bfa892b386840ae0d2516a97f9acaeeb8abf43d677256b6a0f167235cea"
+    },
+    {
+      "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        92,
+        92
+      ],
+      "full_sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+      "span_sha256": "3c509402befbe1d5f802f02015097fdf5abbe7bcd4ca0dc8c191dcb38185d8c1"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "source_revision": "59336627f11475456038db80ce6232ee39bbfa8f",
+      "physical_lines": [
+        233,
+        233
+      ],
+      "full_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "span_sha256": "997fe959551d132a5b97476892d027de16bb495bdbd38a234326b84877b37ef2"
+    },
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        372,
+        377
+      ],
+      "full_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "span_sha256": "3f5f9ff269ce97c43d41b9ce735972da511b93e3dd30b1e9f5e422e49796a01e"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        117,
+        117
+      ],
+      "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "span_sha256": "ea91bdc4c858c3085267a103d33eca7219fb19ba41a548ce967be332411e4346"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        170,
+        171
+      ],
+      "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "span_sha256": "59a224e6d43dc9b1bc08f7661afbfdbce23f070268a7561145b1ff6417c1cc9b"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        284,
+        284
+      ],
+      "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "span_sha256": "54c6aaaf0a40ad4b959171d9ec30f08e84534d50297eb350370b4c4be4d8e1f7"
+    },
+    {
+      "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        93,
+        93
+      ],
+      "full_sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+      "span_sha256": "5c9e2c8ee936c03ca07da95429c51d1dc0b3797d0bd63c0178d723eca35819e2"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "source_revision": "59336627f11475456038db80ce6232ee39bbfa8f",
+      "physical_lines": [
+        239,
+        239
+      ],
+      "full_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "span_sha256": "73e26dd9c1a22a84ccff541a4a7c3fca8638e139c6a687e1301fa8b35d25027d"
+    },
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        513,
+        527
+      ],
+      "full_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "span_sha256": "430855f5510abac7d4ea7b79e8b79d2779ebab7c9c7267a1678c04d7d4e9751f"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        213,
+        213
+      ],
+      "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "span_sha256": "a80d514f95d5e12fc05abd35c4d184ee83bf0edb37482f61aca7793224725ba9"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        215,
+        228
+      ],
+      "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "span_sha256": "deff3b787f64863c6beed6171ebd05951095e8827c34ba950a3d3b39d74f3c18"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        251,
+        256
+      ],
+      "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "span_sha256": "3f611906dfcbf874001532794f412d426c2712189f032ef4c7056da44fb29294"
+    },
+    {
+      "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        99,
+        99
+      ],
+      "full_sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+      "span_sha256": "9a4ba877cd82170cd255042eb5b39e3e3007d66c83edbada14b18c2efc9c1f18"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "source_revision": "59336627f11475456038db80ce6232ee39bbfa8f",
+      "physical_lines": [
+        240,
+        240
+      ],
+      "full_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "span_sha256": "c73f97c26f433e479317a718cf7072949371a2097099ae394d397a32d916c260"
+    },
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        528,
+        543
+      ],
+      "full_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "span_sha256": "c4f9d367ea51f3eb09b6338fd2d83b4bf133f536c513fc622d3f29e8b0dfe50a"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        213,
+        213
+      ],
+      "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "span_sha256": "a80d514f95d5e12fc05abd35c4d184ee83bf0edb37482f61aca7793224725ba9"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        229,
+        238
+      ],
+      "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "span_sha256": "97d4ba81eeb1496f2a32beab2b364ae5499d71d5ede90b25aa12ed1995ed6235"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        251,
+        256
+      ],
+      "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "span_sha256": "3f611906dfcbf874001532794f412d426c2712189f032ef4c7056da44fb29294"
+    },
+    {
+      "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        100,
+        100
+      ],
+      "full_sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+      "span_sha256": "af588892e35cf2cc02af9c4ce8132aaee25b379c3a665058e62167cfb3611bd0"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "source_revision": "59336627f11475456038db80ce6232ee39bbfa8f",
+      "physical_lines": [
+        241,
+        241
+      ],
+      "full_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "span_sha256": "3d6622691687087189aca7ec91157e5da50b9f38fa45c94ec45621484880e296"
+    },
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        544,
+        560
+      ],
+      "full_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "span_sha256": "bcbf5160b8d535bdf4fad0ff5d7a3dbaea6ff83e6729ef593ed90f40e9099446"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        213,
+        213
+      ],
+      "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "span_sha256": "a80d514f95d5e12fc05abd35c4d184ee83bf0edb37482f61aca7793224725ba9"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        239,
+        252
+      ],
+      "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "span_sha256": "3f1b59862b6637b4755537e674863a3094d5fb65de9b82b6fed070bb17037885"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        251,
+        256
+      ],
+      "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "span_sha256": "3f611906dfcbf874001532794f412d426c2712189f032ef4c7056da44fb29294"
+    },
+    {
+      "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        101,
+        101
+      ],
+      "full_sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+      "span_sha256": "28f4f1266d2812dc3c8e274a7f1ccae93d4f3b5052f4112612f14e5ac6bc9d57"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "source_revision": "59336627f11475456038db80ce6232ee39bbfa8f",
+      "physical_lines": [
+        244,
+        244
+      ],
+      "full_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "span_sha256": "f02a35feb90d08f249dd3a8c38fb897a026fb2763b22cbf7aa5c83585e5ffe97"
+    },
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        609,
+        617
+      ],
+      "full_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "span_sha256": "d7a6e7f91e32e0cf1c0f8b59872d11ecfbef65e9d1dcf1c8bd7ae9c86a5cddad"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        328,
+        334
+      ],
+      "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "span_sha256": "ea929b47a7a1368f71205d06758df058028fced6750042ae8d993b9c8905e213"
+    },
+    {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        87,
+        87
+      ],
+      "full_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "span_sha256": "d05c4087dd4c2e47c8743d972eba99c060958f02e12384cb821369c733295a94"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "source_revision": "59336627f11475456038db80ce6232ee39bbfa8f",
+      "physical_lines": [
+        246,
+        246
+      ],
+      "full_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "span_sha256": "e650454917ed8d9c177aba4052e47d0a69ba7c480e0611262a821380bbcb5424"
+    },
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        635,
+        645
+      ],
+      "full_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "span_sha256": "80250f22590510dab5a2cb84e43edc184f6c82cebdb6f8ea3d3bc435e0162d38"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        352,
+        362
+      ],
+      "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "span_sha256": "94899f619ee0cfb5d3bd5e9138972db321bafe8f47c6ba49823c1f7281c4a95e"
+    },
+    {
+      "path": "docs/governance/decisions/po-decision-2026-10-03-later35.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        53,
+        53
+      ],
+      "full_sha256": "e3ea2cc8d79c2568985bc086fbc4d08d25e162fcc546858d6db47bba768ac3d3",
+      "span_sha256": "6e19738ff3adf6e45c17f6a088fd4a5dbf61d56f516c6213cb39ea9be08b1c1a"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        43,
+        59
+      ],
+      "full_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "span_sha256": "b1039540a403885e72145bd3731b5c4e6e5de6ddcb1ba2ab80ce22bef182a9f3"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        59,
+        76
+      ],
+      "full_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "span_sha256": "71aa97aae4093dff796f45a78ac2e03ed48b35237ca1affc6808789aedcf5637"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        84,
+        120
+      ],
+      "full_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "span_sha256": "d94bb08aeddbe65d47c1e4d8edee46bdecd8ee428a2763706e9772440b92e6c0"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        125,
+        160
+      ],
+      "full_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "span_sha256": "76b9374d5ecad4f64647b1bb4101f71d15958e197c2971fb954ccb78595aea91"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        162,
+        196
+      ],
+      "full_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "span_sha256": "8ad6227a7fcdb0bdf425c276f160814a233cf9e4a9aacc761d79b530ea9969c4"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-improvement-loop-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        1,
+        46
+      ],
+      "full_sha256": "f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943",
+      "span_sha256": "f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-improvement-loop-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        17,
+        38
+      ],
+      "full_sha256": "f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943",
+      "span_sha256": "3fcc79d30a94751983d4d61cae762628c51cbac2a9ad550e34624e9a5646f447"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        25,
+        60
+      ],
+      "full_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_sha256": "e75409c2d98f28698601b5ed09703bba3a0a618e849cf4196dbdc08f88bd5e96"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        31,
+        60
+      ],
+      "full_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_sha256": "8435b3333c89a33ef9f161a9664370841d44514091c008d5144828dadf34db46"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        1,
+        63
+      ],
+      "full_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        17,
+        40
+      ],
+      "full_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_sha256": "1fd93b78f388db662a274cb79402f72fc7c87b8d17f97822c7ec05241ae60723"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        31,
+        52
+      ],
+      "full_sha256": "e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b",
+      "span_sha256": "a4e7b9f9708262995683d788639f2bf7b88bcf821671556b598bc1297925401e"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        113,
+        145
+      ],
+      "full_sha256": "e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b",
+      "span_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-workflow-ai-judgment-engine-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        17,
+        34
+      ],
+      "full_sha256": "1c4e07263eba5254cfe66b920c4baf46227e0e07cb47ff60ac2e854740645db3",
+      "span_sha256": "da0efe387c8f8c1b6710ea2ed1d0bfe02682d3b822b57347221a92126c21ebbc"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        47,
+        64
+      ],
+      "full_sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+      "span_sha256": "50e699ca98ad0abee1b680cb996a66e9c3b446fa5e2894b9c9311bd563214459"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/worker-common-contract-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        18,
+        64
+      ],
+      "full_sha256": "c8dff734891a6a7350feb9b698c40e1616946cdd424433d662f1da49d8ac800d",
+      "span_sha256": "a784efa162392e9186a54ada6b91e7b5377c64e3cb3ed61c0f78237cda1042d1"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        30,
+        82
+      ],
+      "full_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+      "span_sha256": "507ef78ae240103d4168e96b6c8a46a6578bbd88e9036276980ab719171085b2"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        30,
+        41
+      ],
+      "full_sha256": "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185",
+      "span_sha256": "5d58b45aedb4b44b6984a1e5bc2fc9c204fd39fec240d75ca7fac423c2c634ba"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        105,
+        154
+      ],
+      "full_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "span_sha256": "b9627734913c09cdfb2304f3d9520f1b286db505949a664106f73234f8a1842d"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/product-lifecycle-operations-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        17,
+        46
+      ],
+      "full_sha256": "19c75a442154b4d17e645143f4adaaa23791a1043caa73178e5d75cc468b7d58",
+      "span_sha256": "fa43152f2ccfacc451d545150162001dfc0c4965da8c3f66e568bc4c0c8b9bda"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        154,
+        156
+      ],
+      "full_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "span_sha256": "9d0257f90826b20a3bb20663eacdc70863c7e093b2ea3bb9095cd6c3b1c39b31"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        237,
+        242
+      ],
+      "full_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "span_sha256": "bb865149314ed0458f05af62098c4bb93cc37748be3967acd4d03b321778ffad"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        32,
+        90
+      ],
+      "full_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+      "span_sha256": "0b6f167d1e4002f0f92a80294992ee3b785f676685402c1945b15d5f38ee0228"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        91,
+        216
+      ],
+      "full_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+      "span_sha256": "066ad9e1de61935f6a5c5a939a5e78a4348f29431a9737f187edb991b71d82e4"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        1114,
+        1124
+      ],
+      "full_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "span_sha256": "b3b3027794cbefeb0ea4e3cc1f87f6a82039a1a39c17f2cd6a23daebe5ddd14b"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        399,
+        399
+      ],
+      "full_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "span_sha256": "aa9dacc58969d896bbfbe38ce9c2ed6b55f47476b4cd3a411041d62bebf70468"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        52,
+        53
+      ],
+      "full_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "span_sha256": "0273b7e45b876e25831841aa7aea6f6e54ee2bc706a8e993952880d07b3aad5d"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        71,
+        71
+      ],
+      "full_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "span_sha256": "5d127e016c16fc956cc260d97017596a71aec9d58b1e6b052e7407a6cd266833"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        19,
+        22
+      ],
+      "full_sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+      "span_sha256": "c2dc76e0c62d61fc9e607a30fe697b7bb11749cbb20aa5cf526bde94b97dbdd6"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "physical_lines": [
+        39,
+        44
+      ],
+      "full_sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+      "span_sha256": "565b56468aeb4205f396bd656219541b2b5719b13b60cf146cf0dfdaf17c6fed"
+    }
+  ],
+  "prefix_integration": {
+    "old_main": "1d7f57491b1e8b4337f1933aec2c1649df5f2ea2",
+    "latest_main": "c3790fdf7c80c9c9385c99bd828b7f30cc026549",
+    "pins": [
+      {
+        "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+        "old_prefix_sha256": "a7f96a9feb279af62d746ee8f9ef372f557256d8f7126df017c4d429ce844795",
+        "latest_prefix_sha256": "3bae5af7db872ec2eca907f7a51d48b22c6c2637aaef8b7a54e5c6f9555fc59f",
+        "suffix_sha256": "cf4e7e9ad71277ee779b906515c5c59a17de06231ae44d9c71ceb15edfc94071",
+        "suffix_preserved": true
+      },
+      {
+        "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+        "old_prefix_sha256": "28b7feee18ec722a6f48b205ca5986fd5f79c9b5af7554481d7add54c4e25d23",
+        "latest_prefix_sha256": "0ddcfb85e1fdafbb2aab6aed1bc16dfb49fd2554dedea4112f6aeef1283e78bd",
+        "suffix_sha256": "8a9f86f77cfa2f7617dd9363e284fc446069b3bad4a2a5df76e4eead16f5fd4d",
+        "suffix_preserved": true
+      },
+      {
+        "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+        "old_prefix_sha256": "17a453efcc7f5a85fa67051c8f3bed2b22496b78916d21a89cf07977d5d2b3d4",
+        "latest_prefix_sha256": "2b6cbaad0292ba16df5ba65458779d2c9abc8c1f36298141d736df945e8d7029",
+        "suffix_sha256": "4e98968126c4c5204972bf4275abe6f7336570f8103b42debba71ec056fc2c08",
+        "suffix_preserved": true
+      },
+      {
+        "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+        "old_prefix_sha256": "f8c5ef63ec7af57303e5ddac90f9042d28a0fbec21b963e6424c58d9f61df6b5",
+        "latest_prefix_sha256": "58432c78c93035c69cdb08ffe775d04c6339ef8ae26348f04024413279bab720",
+        "suffix_sha256": "5fb0c328790cbd97e0a70b54cd419821ed0f68fdaa64abb574417570257247db",
+        "suffix_preserved": true
+      },
+      {
+        "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+        "old_prefix_sha256": "1fb1b928e91c060a4f45061d743f32cb9a528f726bb12555d0489376cc0c647e",
+        "latest_prefix_sha256": "24f00c4e7c4e3415aac73116851c1d5d953688a741bf6d3bd400171c7177670f",
+        "suffix_sha256": "9911db9a7a80766f050fd4a2684dc0e34d0cfbc1df69c9aedfe4f613a21fca1c",
+        "suffix_preserved": true
+      },
+      {
+        "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+        "old_prefix_sha256": "d17dcaf9e5b69121200874e6183ed2e3e1d54467d01954fb948cf9ec811123bb",
+        "latest_prefix_sha256": "f5da5d569f483d36aed039b80e0aadeadf48715a4dd854e6f20a5949310ea0e6",
+        "suffix_sha256": "3f65238a98bcbe87720114b6c493af4a24835f739ca32c11a5dbe083ca1003cd",
+        "suffix_preserved": true
+      }
+    ]
+  },
+  "stage5_case_table": {
+    "definitions": 301,
+    "unique": 301,
+    "added": 98,
+    "removed": 0,
+    "indices": 7,
+    "excluded": 1,
+    "individual_or_unmarked": 293,
+    "rows": [
+      {
+        "case_id": "CASE-INT-060-02a",
+        "physical_line": 2333,
+        "literal": "| `CASE-INT-060-02a` | 未承認requirement stateだけを実行可能とする | planを実行可能にせず該当requirement ownerへ戻す。 |",
+        "sha256": "fae78879b0749db9a940e87ada2d3447cb07296f98aec5e543d6a09a1de57e86",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-060-02b",
+        "physical_line": 2334,
+        "literal": "| `CASE-INT-060-02b` | HARNESS contract revisionだけstale | affected nodeだけ保留しHARNESS ownerへ戻す。 |",
+        "sha256": "4405b5f6ced3e9c01e29cf51d93a43c90f4f89fc4880c0340056fe783d633f6c",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-060-02c",
+        "physical_line": 2335,
+        "literal": "| `CASE-INT-060-02c` | OS current stateだけstale | affected planning inputを保留しOS state ownerへ戻す。 |",
+        "sha256": "6a826da8f854409012f157fb238112a615d7d0a933df684528eace217ce2a205",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-060-02d",
+        "physical_line": 2336,
+        "literal": "| `CASE-INT-060-02d` | A→B依存だけ逆転 | 不合格。BをAより前へ置かない。dependency ownerを特定できる入力ならそのsourceへ戻し、特定できない場合はowner unknownを保持する。 |",
+        "sha256": "8c9f0ed576be751975f3ed90ccd50da41e72e3877c85c2c277ceb44302078c9e",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-060-02e",
+        "physical_line": 2337,
+        "literal": "| `CASE-INT-060-02e` | 4.0 workflowだけを1.0必要条件へ追加する | 不合格。4.0を要求せず、固定L2-060のscope内のcandidateを保持する。 |",
+        "sha256": "b8bab682583be1ce43cb28761966c693272327151b99747c946aa9b8ef559ea6",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-060-02f",
+        "physical_line": 2338,
+        "literal": "| `CASE-INT-060-02f` | INTELLIGENCEがOS ticketを発行する | 発行を拒否しticket/推進authorityをOSへ保持する。 |",
+        "sha256": "38e1ff625bd472308d8ef88d4d1e29af7b02429d80adc0ca7af626b64f60d68c",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-060-04a",
+        "physical_line": 2348,
+        "literal": "| `CASE-INT-060-04a` | selected BRAIN knowledge applicabilityだけunknown | source fieldをunknownに保ちBRAIN ownerへ返す。 |",
+        "sha256": "a9fbfef3446e9262fa1f6cf5ddfb3687d63af2d89e4b3075d4bedd8c8f2553a1",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-060-04b",
+        "physical_line": 2349,
+        "literal": "| `CASE-INT-060-04b` | graphの一dependency identityだけ未宣言 | dependencyを解消済みに扱わず該当source/contract ownerへ返し、独立branchは保持する。 |",
+        "sha256": "783d8d543d794ce6919384df39b4aad77992efc75861d8941d959c8b8de44bc5",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-061-02a",
+        "physical_line": 2359,
+        "literal": "| `CASE-INT-061-02a` | priceだけで順位を確定 | 不合格。根拠不足を明示しINT proposalを確定せず返す。 |",
+        "sha256": "11f725106ef8328916621f2679c2164b29acd9529d93ab4610d5655ab7cd13ad",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-061-02b",
+        "physical_line": 2360,
+        "literal": "| `CASE-INT-061-02b` | model nameだけで順位を確定 | 不合格。nameを単独適格根拠にしない。 |",
+        "sha256": "e43c3e377cb157f130c85ffafbfd387e7361b86cac1b223da40e823d9939833a",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-061-02c",
+        "physical_line": 2361,
+        "literal": "| `CASE-INT-061-02c` | benchmark scalarだけで順位を確定 | 不合格。LABO evidence scope/条件と併用せず順位を決めない。 |",
+        "sha256": "8d85514d635bb07f46f9166ad9d562cf8dbfa0ef89f4d199c7ae3fb81064a988",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-061-02d",
+        "physical_line": 2362,
+        "literal": "| `CASE-INT-061-02d` | evidence task scopeだけ別task | 適合実績へ流用せずLABOへ戻す。 |",
+        "sha256": "8ba3bdd28c4fd1a504611a841195bdcc0eec4927e4c2a394c1fbde2a836566cd",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-061-02e",
+        "physical_line": 2363,
+        "literal": "| `CASE-INT-061-02e` | LABO stateだけ未評価なのにqualifiedとする | 不合格。未評価を保ちLABOへ戻す。 |",
+        "sha256": "93e98ebbd208e4ebe5c610e2745cc5713b7ec36fe27ce7af7207aedb127f1200",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-061-02f",
+        "physical_line": 2364,
+        "literal": "| `CASE-INT-061-02f` | LABOがOS assignmentを実行 | assignmentを成立させずOS ownerに残す。 |",
+        "sha256": "ddac966ccdeac679903b3d2990d17f2c6a16e93c9029de90d107344e4fb16d92",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-061-02g",
+        "physical_line": 2365,
+        "literal": "| `CASE-INT-061-02g` | INTELLIGENCE proposalをassignment済み扱いする | assignmentを生成せずOSへhandoffする。 |",
+        "sha256": "097575ce94411bc8a8e3e441e4ad61e38695b1b878e6e7d0dbc7c75d15e2f51e",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-061-02h",
+        "physical_line": 2366,
+        "literal": "| `CASE-INT-061-02h` | selected evidence revisionだけstale | stale evidenceをcurrent評価へ使わずLABOへ戻す。 |",
+        "sha256": "ce2bda443c06ebd2042061addc5e6362fdfef4202e1ed1de237cd008c3bf9a57",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-062-02a",
+        "physical_line": 2384,
+        "literal": "| `CASE-INT-062-02a` | SECURITY permission receiptだけ欠落 | 該当stage未成立、SECURITY ownerへ戻す。 |",
+        "sha256": "52a03e44f5c4650d95a67526e50d7247eefef6963fa2e87f63ef16d76b9bad83",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-062-02b",
+        "physical_line": 2385,
+        "literal": "| `CASE-INT-062-02b` | permission actor/scopeだけ別対象 | operation未許可のままSECURITY ownerへ戻す。 |",
+        "sha256": "63af0b0038f084488eca229ba30b05e5c5449fd763ce07407345b1899dfbd5af",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-062-02c",
+        "physical_line": 2386,
+        "literal": "| `CASE-INT-062-02c` | Worker execution resultだけ欠落 | Worker stage未成立、Worker execution/result ownerへ戻す。 |",
+        "sha256": "7e04b2bd8d3fa75652ceee1e087d7a2556f585e0b1f50f345a280b214509aff3",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-062-02d",
+        "physical_line": 2387,
+        "literal": "| `CASE-INT-062-02d` | Worker result target revisionだけ別 | resultをrepair scopeへ結ばずWorker ownerへ戻す。 |",
+        "sha256": "67bca8fb7688700f80572c775a847865c4491d26b36293ff803ae4143a67a9cd",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-062-02e",
+        "physical_line": 2388,
+        "literal": "| `CASE-INT-062-02e` | HARNESS verificationだけ欠落 | verification未成立、HARNESS verification ownerへ戻す。 |",
+        "sha256": "a111e3eaadab955117501829d4674df25ca92d17c8f91091d64365308cce31fb",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-062-02f",
+        "physical_line": 2389,
+        "literal": "| `CASE-INT-062-02f` | OS acceptance receiptだけ欠落 | acceptance未成立、OS ownerへ戻す。 |",
+        "sha256": "3e464650e09595daaab13b852b53737a9671d220cafad26410ac4eb7eb7fadd0",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-062-02g",
+        "physical_line": 2390,
+        "literal": "| `CASE-INT-062-02g` | 全receiptを保ったまま順序だけ逆転 | 欠落stageがあるとは報告せず、順序不成立として該当段階の既存ownerへ戻す。 |",
+        "sha256": "b8601457f9a06d421d3078d0813b3af5ee034ce46b51c72c5228c9fe715d7dbb",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-062-02h",
+        "physical_line": 2391,
+        "literal": "| `CASE-INT-062-02h` | intermediate successだけでrepair完了claim | 不合格。先行段階成功は後段を代替しない。 |",
+        "sha256": "656531f4d3209ac88476770cef4840ab0fc333c19c62a60d60ab5c70893848ee",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-063-02a",
+        "physical_line": 2405,
+        "literal": "| `CASE-INT-063-02a` | INT self-evaluationだけでlong-term effectを確定 | 効果を確定せずLABO ownerへ返す。 |",
+        "sha256": "8fbe5beff3c945221b999556cc609fb9ad54955caf39ababb95d28af1cc90301",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-063-02b",
+        "physical_line": 2406,
+        "literal": "| `CASE-INT-063-02b` | INTがBRAIN canonicalへ直接write | 書込み拒否、BRAIN正本不変、BRAIN ownerへ返す。 |",
+        "sha256": "90572ab3970463a949f861a5612c36f5c57df41018fca4284dd40e6dc878b699",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-063-02c",
+        "physical_line": 2407,
+        "literal": "| `CASE-INT-063-02c` | LABO evaluation revisionだけstale | current効果へ使わずLABOへ返す。 |",
+        "sha256": "4af861950c310924198b89167395a1467764d4738df96c076e2b19bd2ee8531e",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-063-02d",
+        "physical_line": 2408,
+        "literal": "| `CASE-INT-063-02d` | prediction statusだけactualに置換 | 固定L2-063/L11-117/284に該当条件がない旧fixture。Stage5要件/NFR分母に含めない。 |",
+        "sha256": "da3210ad974437302881e949e9fc25595f1e4c2fae912f76c3af0da49a8b6fbf",
+        "classification": "excluded"
+      },
+      {
+        "case_id": "CASE-INT-063-02e",
+        "physical_line": 2409,
+        "literal": "| `CASE-INT-063-02e` | OS runだけ未完了でloop完了claim | loop completionを保留しOS ownerへ戻す。 |",
+        "sha256": "eabda6bbf73e4ac3a1f3bd6e5a2c4c2d1b5ec958236ebee6398d22d0feeef5ca",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-063-02f",
+        "physical_line": 2410,
+        "literal": "| `CASE-INT-063-02f` | BRAIN applicabilityだけ未承認/unknown | BRAIN candidateをgeneric knowledgeにしない。 |",
+        "sha256": "306866d0dc03aca5603a89950cc0d9cfb75c253ad1c5a02d3dfbd8ae8f1fe580",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-063-02g",
+        "physical_line": 2411,
+        "literal": "| `CASE-INT-063-02g` | duplicate/out-of-order resultだけ別episodeへbinding | 複合旧index。out-of-orderはCASE-INT-063-04g、duplicateは04hで個別判定する。 |",
+        "sha256": "fa009b4bee56764475bfe922bec62b62f4efbcb1d26be723a891ee4451b82b65",
+        "classification": "index"
+      },
+      {
+        "case_id": "CASE-INT-069-04a",
+        "physical_line": 2433,
+        "literal": "| `CASE-INT-069-04a` | service ruleだけ欠落 | throughput/timeを創作せずunknownを保持する。source ownerが明示されている場合だけそこへ照合し、特定できなければ戻し先unknown。 |",
+        "sha256": "98b6307c7aa646633d1a862baa545d13bc66546ad7fdac7fed3177ff2f3f5150",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-04b",
+        "physical_line": 2434,
+        "literal": "| `CASE-INT-069-04b` | selected cost rateだけ別revision | mixed-revision costを拒否しsource ownerへ戻す。 |",
+        "sha256": "39c44fc6fe2bbe2f1a3fd40de7bd105d2059f90331c697993a3699d1f1c88af7",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-04c",
+        "physical_line": 2435,
+        "literal": "| `CASE-INT-069-04c` | unit labelだけ不一致 | 照合不能をunknownとし暗黙換算しない。source/modelが特定できる場合だけ既存source ownerへ戻す。 |",
+        "sha256": "fd2a969563db4c09403a06d517447db41daf395a4553e5914f68d2aa5fdc1162",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-04d",
+        "physical_line": 2436,
+        "literal": "| `CASE-INT-069-04d` | priceだけ欠落 | cost unknownのまま。0 costにしない。 |",
+        "sha256": "7ce6c3ef05b2a3f1e31541a57d38d9b4aa2569f9ed53c34058bb6c02ce1a868b",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-04e",
+        "physical_line": 2437,
+        "literal": "| `CASE-INT-069-04e` | reportingにDB dependency edgeを追加せずDB failureを伝播 | edge外stateを不変にしunsupported/blockedを保持する。戻し先ownerを推測しない。 |",
+        "sha256": "8b55b5bd2c2418e6bd684695c39ff83d617c715413f9571b4544590c15f299f8",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-04f",
+        "physical_line": 2438,
+        "literal": "| `CASE-INT-069-04f` | recovery ruleだけ不在 | recovery/retry成功を補完せずunknown/blockedを保持し、固定L2が指定するownerを特定できない場合は戻し先unknown。 |",
+        "sha256": "12288914d56af862f5adc56565e95bf0b1b4c27ad318284dc2e2084da33fa8de",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-04g",
+        "physical_line": 2439,
+        "literal": "| `CASE-INT-069-04g` | virtual resultを実環境結果と表示 | virtual/actualを区別し不合格、actual観測は未成立のままにする。実測sourceを入力が特定しない場合は戻し先unknown。 |",
+        "sha256": "bd42fb3eeea271699d4806b1fc85ef9c8b89569a36ece1dfc741783278d54ac1",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-04h",
+        "physical_line": 2440,
+        "literal": "| `CASE-INT-069-04h` | AI explanationだけをtransition evidenceとして提示 | explanationをstate transition根拠とせず、source/model rule traceを照合する。 |",
+        "sha256": "691c8897faba8d78930a4fff3bfe90649fb1e9852eb163be0eed549ad6419bd7",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-04i",
+        "physical_line": 2441,
+        "literal": "| `CASE-INT-069-04i` | shared DB ceilingだけを削除 | worker追加の速度比例を算出せず、明示されたceilingを維持する。 |",
+        "sha256": "1fe8c37cc459213612d180ccf148faf5a05838b96f9753733b27d46cfdc09734",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-05a",
+        "physical_line": 2467,
+        "literal": "| `CASE-INT-070-05a` | model revisionだけ別 | receiptを結ばずProduct Core/HARNESSへ戻す。 |",
+        "sha256": "effd277ac719f0ecf091a9b62c801a6f5561f406cd19a588c4a588d9a19daac8",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-05b",
+        "physical_line": 2468,
+        "literal": "| `CASE-INT-070-05b` | 033 admitted connector contractだけ欠落 | input stage未成立、CONNECT/source ownerへ戻す。 |",
+        "sha256": "e0dc77ecd88236249bd6ceb33e0a069741b7970b6aa7b0dcdbdfea38d6da1d3a",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-05c",
+        "physical_line": 2469,
+        "literal": "| `CASE-INT-070-05c` | simulated result statusだけactualへ変更 | 仮想結果を実測にせず不合格。result source/measurementを特定できない場合は戻し先unknown。 |",
+        "sha256": "f9d51d75523f2dbfd6002f97dee5c92028691326d74a40b72cfcf719b7eaf14b",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-05d",
+        "physical_line": 2470,
+        "literal": "| `CASE-INT-070-05d` | consumer receiptだけ欠落 | send済みは保持するがconsumer受領/connection完了は成立しない。 |",
+        "sha256": "57003ae4d1a6a750b019bc69425425a4a77cb61d1badaf9007fa65bb999161ee",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-05e",
+        "physical_line": 2471,
+        "literal": "| `CASE-INT-070-05e` | correlation IDだけ異なる | receiptを同一scenarioに混ぜずconnection未成立とする。既存source/connector責務を特定できない場合は戻し先unknown。 |",
+        "sha256": "23c419d7aa692eaaead28f405fe8f08442e1d6e5e062d0959c9d627ecea8d82e",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-05f",
+        "physical_line": 2472,
+        "literal": "| `CASE-INT-070-05f` | payload missing relationを新必須fieldへ黙って変換 | candidate独自schema追加を拒否し不成立を保持する。固定L2にowner指定がないため戻し先unknown。 |",
+        "sha256": "83327310d150be02aca0a39085e78de52b4c576663435b4a6f4ee1de1b2571cf",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-06a",
+        "physical_line": 2480,
+        "literal": "| `CASE-INT-070-06a` | 未見互換receipt版（正常） | 固定contractとの互換を確認し、source/consumer段階を別々に記録する。 |",
+        "sha256": "ad9211736296b467bea0092684f0a31356aa0607a5354d9cb71d9dc75d096311",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-06b",
+        "physical_line": 2481,
+        "literal": "| `CASE-INT-070-06b` | 033 inputの重複receiptだけ追加 | 同一入力を一度だけ保持し、重複を新しいresult/sendへ昇格しない。 |",
+        "sha256": "2ba24563cb1e404f2952c6fbafc9f6b8ba595ed428792632eb4fefce75eea010",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-06c",
+        "physical_line": 2482,
+        "literal": "| `CASE-INT-070-06c` | 069 resultの重複receiptだけ追加 | result重複を一度だけ保持し、別scenario/送達へ流用しない。 |",
+        "sha256": "88123c873fde73f68b834cb3eb1e1fee60adc62b2440f2c6005de62a672c3489",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-06d",
+        "physical_line": 2483,
+        "literal": "| `CASE-INT-070-06d` | 040 send receiptの重複だけ追加 | send重複を一度だけ保持し、consumer receiptを生成しない。 |",
+        "sha256": "199ec4e8b8d83ce6dcba9aaf4a9905b71450410926b6eca52b4820bfa4d60c75",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-06e",
+        "physical_line": 2484,
+        "literal": "| `CASE-INT-070-06e` | LABO-024 receiptの重複だけ追加 | consumer重複を一度だけ保持し、evaluation authorityをLABOに残す。 |",
+        "sha256": "63be16c9f4a743e69e380de8b825cc03a2f561331578b8eb4df3b2e10dd30ecb",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-06f",
+        "physical_line": 2485,
+        "literal": "| `CASE-INT-070-06f` | 033 inputだけ遅着 | 元source/time/correlationを保持し、後段receiptを先行成立させない。 |",
+        "sha256": "e71bf18b0372de8f0a6b9a73aec8665cdd6d92f264c1faed61629566d9ba6a12",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-06g",
+        "physical_line": 2486,
+        "literal": "| `CASE-INT-070-06g` | 069 resultだけ遅着 | 元scenario/timeへ結び、後続段階を遡及成立させない。 |",
+        "sha256": "dfdc73c3d87c7961a0180abfcf0801f86b15921c7e024b58dc452a00b1279d25",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-06h",
+        "physical_line": 2487,
+        "literal": "| `CASE-INT-070-06h` | 040 send receiptだけ遅着 | 元scenario/time/correlationへ結び、sendだけを記録しconsumer receiptを生成しない。送達責務は既存040 ownerに保持する。 |",
+        "sha256": "bbf792cf5e65a6e30ca980ef8ac4489e1b1698e7ca229f49110aaf64f4068308",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-06i",
+        "physical_line": 2488,
+        "literal": "| `CASE-INT-070-06i` | LABO-024 consumer receiptだけ遅着 | 元scenario/time/correlationへ結び、consumer受領だけを記録しLABO評価成立を生成しない。consumer receipt不足はLABOに保持する。 |",
+        "sha256": "4f692ec5da9a964fba938ecba065f5f78ebb99ca5663d70ba1cd373e9bce9038",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-02a",
+        "physical_line": 2498,
+        "literal": "| `CASE-INT-071-02a` | baseline model revisionだけscenarioと異なる | 比較不成立、mixed-revisionを拒否する。選択sourceが特定できる場合だけそのsource ownerへ照合し、戻し先を特定できない場合はunknown。 |",
+        "sha256": "14c699eca9d5862ad27af556d6f80911040f350366733442454e4582c3e41190",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-02b",
+        "physical_line": 2499,
+        "literal": "| `CASE-INT-071-02b` | one scenario unitだけ不一致 | 異単位差分を比較せずunknown/未比較にする。 |",
+        "sha256": "de6a640a4832537e7214f7cc0a4453362f29688a1df817d90d3e0d821d3939fb",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-02c",
+        "physical_line": 2500,
+        "literal": "| `CASE-INT-071-02c` | DB failure edgeだけ欠落 | edge外伝播/復旧を生成せず、該当scenarioをunknown/blockedにする。明示source/規則のownerを特定できる場合だけそこへ照合し、特定できなければ戻し先unknown。 |",
+        "sha256": "60bf0324f428477bd172be19f961e79e58cf517a2e0394a12fa3ca1561e18e4e",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-02d",
+        "physical_line": 2501,
+        "literal": "| `CASE-INT-071-02d` | virtual worker count変更をOS worker assignmentへ反映 | 変更を拒否しOS assignmentを不変にする。 |",
+        "sha256": "a55822735f8ea38411b36052e6e39e5cf24082053113a95215a735519441aaf4",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-02e",
+        "physical_line": 2502,
+        "literal": "| `CASE-INT-071-02e` | LABO receiptだけ欠落 | calculation/send evidenceは保持しconsumer受領/composite handoff未完了とする。 |",
+        "sha256": "dee392701ca7871ad9d03dbc2be5966f72086957b8c5273939c0652b8c7c99f5",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-02f",
+        "physical_line": 2503,
+        "literal": "| `CASE-INT-071-02f` | unsupported cost fieldだけ0へ補完 | 不合格。cost unknownを保持する。 |",
+        "sha256": "6a9c06103cec88999f8ad0f3d3004cb3a24e0b813d6f9480da70cc2a96a02b06",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-02g",
+        "physical_line": 2504,
+        "literal": "| `CASE-INT-071-02g` | 069単体結果だけcomposite完了と表示 | 不合格。071比較/後続receiptを成立扱いしない。 |",
+        "sha256": "28fcaf182179c4102a641638a63c05b67d8f08c5119b5f706eb690fd1ece8d41",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-02h",
+        "physical_line": 2505,
+        "literal": "| `CASE-INT-071-02h` | target scopeだけbaseline/scenario間で不一致 | 該当scenarioを比較不成立/unknownとし、scopeを推測せず他scenarioを保持する。 |",
+        "sha256": "988625c40d005e2d04d180cab400b124488c0a5bd433ee2eebc668e08dee1329",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-02a",
+        "physical_line": 2519,
+        "literal": "| `CASE-INT-074-02a` | LABO evaluation stateだけ未評価 | 実績適合にせずLABOへ戻す。 |",
+        "sha256": "53d5d828c57a37cead6a063f2882f3689cccf5d745280bb0936ab1d1a33d1463",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-02b",
+        "physical_line": 2520,
+        "literal": "| `CASE-INT-074-02b` | task classだけ別task | feedbackを流用せずLABOへ戻す。 |",
+        "sha256": "3d789578e187b48830ecc4fdee53cb02b48a042bf97c7a9f6c286c0318664f11",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-02c",
+        "physical_line": 2521,
+        "literal": "| `CASE-INT-074-02c` | target revisionだけstale | current proposal根拠にせずLABOへ戻す。 |",
+        "sha256": "223c50c3d49f825fd83392ccc8023d753bb1792fd5dce953e2fb13316e3b8d7e",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-02d",
+        "physical_line": 2522,
+        "literal": "| `CASE-INT-074-02d` | single feedbackをpermanent worker rankにする | 恒久順位/資格化を拒否する。 |",
+        "sha256": "99977695745e404eb9b1f331826294ec975b4c72ed85cc899390229b81acafe2",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-02e",
+        "physical_line": 2523,
+        "literal": "| `CASE-INT-074-02e` | feedbackからmodel/requirementを更新する | CASE-INT-074-05q/05rへの旧複合index。直接writeを拒否し独立fixture数へ重ねない。 |",
+        "sha256": "ffd7704fc3b8c70fd186cf937800ab1665bc1f9172c06eb75458eeaf17d84e69",
+        "classification": "index"
+      },
+      {
+        "case_id": "CASE-INT-074-02f",
+        "physical_line": 2524,
+        "literal": "| `CASE-INT-074-02f` | INTELLIGENCEからOS ticket/assignmentを発行 | CASE-INT-074-05s/05uへの旧複合index。発行・変更を拒否し独立fixture数へ重ねない。 |",
+        "sha256": "df1fcc26a917437fc9153fc0c652379937e052f19f4757f0430c2410c62899bb",
+        "classification": "index"
+      },
+      {
+        "case_id": "CASE-INT-074-04a",
+        "physical_line": 2536,
+        "literal": "| `CASE-INT-074-04a` | source completenessだけunknown | completenessだけunknownのままにし、評価適用を成立させずLABOへ戻す。 |",
+        "sha256": "7dbda4178ce6df6c4fd5127e46d92ce16962694073d83d6222aa325258fd810f",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-04b",
+        "physical_line": 2537,
+        "literal": "| `CASE-INT-074-04b` | observation windowだけunknown | windowだけunknownのままにし、範囲を推測せずLABOへ戻す。 |",
+        "sha256": "0bfedaae9e0b3e07509fc18f49a54be7cab6f8d086279a2d07ec934d2e0b69f1",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-04c",
+        "physical_line": 2538,
+        "literal": "| `CASE-INT-074-04c` | applicability statusだけunknown | statusだけunknownのままにし、owner/戻し先を推測せずunknownを保つ。 |",
+        "sha256": "c49a5cab68fa716e9396da87f68bbd230c079822cee0217f22bde0f36f239689",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-03a",
+        "physical_line": 2552,
+        "literal": "| `CASE-INT-077-03a` | unknown deltaだけ0へ補完 | unknownを維持しselected source ownerへ戻す。 |",
+        "sha256": "68f05003acdc45659ac647e4b436e7eb9fbf95540e33f6bc28c42f8896741a6f",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-03b",
+        "physical_line": 2553,
+        "literal": "| `CASE-INT-077-03b` | origin typeだけinternal/external swap | identity不一致を拒否し元source ownerへ戻す。 |",
+        "sha256": "b400bf96cef09ae3781d9113d33c20f5785900bb318de2aee6254fe7d168fc79",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-03c",
+        "physical_line": 2554,
+        "literal": "| `CASE-INT-077-03c` | selected receipt qualificationだけ欠落 | candidateをqualified sourceに結ばず、選択source ownerへ照合する。 |",
+        "sha256": "ecba120edb7263cde6b81818054974c684631236a84a78fd22fa6992bf1ffb32",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-03d",
+        "physical_line": 2555,
+        "literal": "| `CASE-INT-077-03d` | Requirementだけ直接write | writeを拒否しauthorityを不変にする。戻し先は推測しない。 |",
+        "sha256": "a8b7b508478be9c26939a67857fa036f1cf4ad7d09c096d419ec69a65f29e812",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-03e",
+        "physical_line": 2556,
+        "literal": "| `CASE-INT-077-03e` | Designだけ直接write | writeを拒否しauthorityを不変にする。戻し先は推測しない。 |",
+        "sha256": "2c13f6f5c6ee6ef044b870e47954dcb0178a4619124bb6eac74fc95c436110cb",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-03f",
+        "physical_line": 2557,
+        "literal": "| `CASE-INT-077-03f` | Requirement/Design/Release/Assignment/mergeの複数直接変更を束ねた旧fixture | 03d/e/h/i/jのaggregate index。単独negative件数には算入しない。 |",
+        "sha256": "b4b8c10df6c1a05b9770b933d8699fff50195375e5a399523610a91ebd132f1f",
+        "classification": "index"
+      },
+      {
+        "case_id": "CASE-INT-077-03g",
+        "physical_line": 2558,
+        "literal": "| `CASE-INT-077-03g` | unknown consumerから新route/ownerを推測 | route/ownerを作らずunknown/incompleteを保持する。戻し先も推測しない。 |",
+        "sha256": "6e332b9bcab2b81cb7bb441efbece40bf143be6180b0f252584af26c0c3c110d",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-03h",
+        "physical_line": 2559,
+        "literal": "| `CASE-INT-077-03h` | Releaseだけ直接変更 | writeを拒否し、既存release authority/stateを不変にする。戻し先は推測しない。 |",
+        "sha256": "24227e168e136c5d579a247035f89b66f3bc288f01c252d3d139f3e94c4b7d79",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-03i",
+        "physical_line": 2560,
+        "literal": "| `CASE-INT-077-03i` | Assignmentだけ直接変更 | writeを拒否し、OSのassignment authority/stateを不変にする。 |",
+        "sha256": "f7cd790edab3b81ee58c5e45945ed4edfe3aa49781b4a8ffb4ebd30045d106d2",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-03j",
+        "physical_line": 2561,
+        "literal": "| `CASE-INT-077-03j` | merge authority/stateだけ直接変更 | writeを拒否し、merge authority/stateを不変にする。戻し先は推測しない。 |",
+        "sha256": "2bffab26118dbd0fd55723e11d8773f9085200708436cf33f9c81ec3e319c00c",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-03k",
+        "physical_line": 2562,
+        "literal": "| `CASE-INT-077-03k` | unknown deltaだけneutralへ補完 | unknownを維持し、neutral値へ置換しない。選択source ownerへ照合する。 |",
+        "sha256": "ab4ef13ae03c98f4753885ef84f4d4aedbe5a493178ad40bbe5cd53bf80c89d5",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-03l",
+        "physical_line": 2563,
+        "literal": "| `CASE-INT-077-03l` | unknown deltaだけunchangedへ補完 | unknownを維持し、unchangedと判定しない。選択source ownerへ照合する。 |",
+        "sha256": "66f5012435d1da31a0e44319a5ffb9bc038fc6b49d88f47657b6a19c15ec88de",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-03m",
+        "physical_line": 2564,
+        "literal": "| `CASE-INT-077-03m` | unknown deltaだけobservedへ補完 | unknownを維持し、観測済みと判定しない。選択source ownerへ照合する。 |",
+        "sha256": "dbae6a52fa425598620c518f41f9f05af78db93f0032a8957afa404be662e7a2",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-060-05a",
+        "physical_line": 2578,
+        "literal": "| `CASE-INT-060-05a` | 060/AC-INT-060-05 | approved requirementだけ欠落 | planを実行可能にせず、該当requirement ownerへ戻す。 |",
+        "sha256": "0aa01effa21d17924f7799975d502b3b3ef04adfaf4535cd5334f400d205cfd9",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-060-05b",
+        "physical_line": 2579,
+        "literal": "| `CASE-INT-060-05b` | 060/AC-INT-060-05 | HARNESS process contractだけ欠落 | 影響nodeを未完にしHARNESSへ戻す。 |",
+        "sha256": "12e411354c7e6716dc187bd5304438c8c9c4c2932c6bc5194e0210b5b23ba775",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-060-05c",
+        "physical_line": 2580,
+        "literal": "| `CASE-INT-060-05c` | 060/AC-INT-060-05 | current OS stateだけ欠落 | state依存nodeを未確定にしOSへ戻す。 |",
+        "sha256": "0ddc9b4f46ce762ea88b0bb3368ea82a7a0e327f3ceed17871b938f7049d8c77",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-060-05d",
+        "physical_line": 2581,
+        "literal": "| `CASE-INT-060-05d` | 060/AC-INT-060-05 | 選択BRAIN knowledgeだけ欠落 | knowledge依存をunknownとしてBRAINへ戻す。 |",
+        "sha256": "693f4172c40e7469760f3dd17756a0247bdc23f1cefa98f1d57d3a0dd988ed09",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-060-05e",
+        "physical_line": 2582,
+        "literal": "| `CASE-INT-060-05e` | 060/AC-INT-060-05 | stop conditionだけ欠落 | stop条件を推測せずaffected planを未完にする。固定L2が個別ownerを指定しないため戻し先unknown。 |",
+        "sha256": "bc394c01ce0e5f0116ebb1bf2404391df205d2509d2a6671820db119c0a78116",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-060-05f",
+        "physical_line": 2583,
+        "literal": "| `CASE-INT-060-05f` | 060/AC-INT-060-05 | 宣言済みstop時のfallbackだけ欠落 | fallbackを補完せず影響nodeとstop理由を保持してsource ownerへ戻す。 |",
+        "sha256": "0ed9a12fcfa2a0041acd8236e4fc935896fef9d9374fa5ab5c4b38c3b9ebb5f8",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-060-05g",
+        "physical_line": 2584,
+        "literal": "| `CASE-INT-060-05g` | 060/AC-INT-060-05 | dependency cycleだけ存在 | 解決済み順序を出さずplanを未完にする。dependency ownerがsourceから特定できる場合だけ戻す。 |",
+        "sha256": "2b2bf3b208caa19f18bd5cf2756663842e7a8505fbc77de17fdaeb6520f732f9",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-060-05h",
+        "physical_line": 2585,
+        "literal": "| `CASE-INT-060-05h` | 060/AC-INT-060-05 | dependency identityだけ未知 | unknown dependencyを保持する。ownerを特定できない場合は戻し先unknown。 |",
+        "sha256": "aa569023168edadf7cd087819e51dc64bd7a1c97b0541c808cf761616ecb8070",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-060-05i",
+        "physical_line": 2586,
+        "literal": "| `CASE-INT-060-05i` | 060/AC-INT-060-05 | declared stop後の指定fallback（正常） | 指定fallbackだけを同じsource/scopeで適用し、ticket発行はOSに残す。 |",
+        "sha256": "19c68280d16286f3fe14992907d0172cb13b6e031b9d8a2a801495f27f4306ab",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-061-05a",
+        "physical_line": 2587,
+        "literal": "| `CASE-INT-061-05a` | 061/AC-INT-061-05 | compatibility evidenceだけ未見 | 評価互換性をunknownに保ちLABOへ戻す。 |",
+        "sha256": "b284d5854d07a50ecd0dfe52fb6f239087647a6ae25ab013d444b3e9713f73ee",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-061-05b",
+        "physical_line": 2588,
+        "literal": "| `CASE-INT-061-05b` | 061/AC-INT-061-05 | task scopeだけunknown | 適用範囲を確定せずINTELLIGENCEへ戻す。 |",
+        "sha256": "a98ed5cf4130e385eb1c59f4193750360e06ad4e3606bdd97f73e1ce32c2b9b6",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-061-05c",
+        "physical_line": 2589,
+        "literal": "| `CASE-INT-061-05c` | 061/AC-INT-061-05 | assignment可否だけunknown | proposalをassignmentにせずOSへ戻す。 |",
+        "sha256": "eea07bbd2b455b9f3b5d3e40167f1c2cd57e94bbca97272cc5ecf9bf5cf00b98",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-061-05d",
+        "physical_line": 2590,
+        "literal": "| `CASE-INT-061-05d` | 061/AC-INT-061-05 | task identityだけ別段階receiptから流用 | identity不一致を検出しproposalを未確定にする。task identity ownerを新設せず戻し先unknown。 |",
+        "sha256": "de683384df53fe5ccd3c6b3abde9f1e1b17c2d4ed4a3f4b7927c45fc1f79ee65",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-061-05e",
+        "physical_line": 2591,
+        "literal": "| `CASE-INT-061-05e` | 061/AC-INT-061-05 | revisionだけ異なる段階receiptから流用 | stale/別revisionを混ぜず、source/evaluationならLABO、assignmentならOSの既存責務に従う。 |",
+        "sha256": "b61a8ec08362c5de51106949be98c4d4e32b695cf58db62fceb3ae08ffde63a4",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-061-05f",
+        "physical_line": 2592,
+        "literal": "| `CASE-INT-061-05f` | 061/AC-INT-061-05 | 評価理由だけ欠落 | proposalを未確定のままLABO評価へ戻し、他のscope/evidenceは保持する。 |",
+        "sha256": "cc64ad28fefc7d36405b1e3064fefbf039783ff8d3363670d8283dcba60ab75c",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-062-04a",
+        "physical_line": 2593,
+        "literal": "| `CASE-INT-062-04a` | 062/AC-INT-062-04 | isolation evidenceだけ欠落 | 実行成立にせずSECURITYへ戻す。 |",
+        "sha256": "b13b0e4ffe132eef437ab540f9e808b644fd58ad7cbdb052c3689fb66b87874e",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-062-04b",
+        "physical_line": 2594,
+        "literal": "| `CASE-INT-062-04b` | 062/AC-INT-062-04 | repair candidateだけ欠落 | repair目的を推測せず未完を保つ。固定L2に戻し先指定がないためowner unknown。 |",
+        "sha256": "cbc09e56ed7a4c2161ee8b3985b838c1f4ae11d85d0fe494b7f73f391cb3a2e4",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-062-04c",
+        "physical_line": 2595,
+        "literal": "| `CASE-INT-062-04c` | 062/AC-INT-062-04 | targetだけ別revision | CASE-INT-062-02dと同じtarget revision変異の索引。独立fixture数へ重ねない。 |",
+        "sha256": "eba2bb354c95fa0d90503b15c7830e27eee89ceaab421b5d6300d6d588afdb75",
+        "classification": "index"
+      },
+      {
+        "case_id": "CASE-INT-062-04d",
+        "physical_line": 2596,
+        "literal": "| `CASE-INT-062-04d` | 062/AC-INT-062-04 | scopeだけ別 | 他scopeの成功を流用せず不成立にする。固定L2に個別owner指定がないため戻し先unknown。 |",
+        "sha256": "f30845bb0cfd16ff66d2d15fd132470350a0ab3f2fda18cbfe9635d8f16badc9",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-062-04e",
+        "physical_line": 2597,
+        "literal": "| `CASE-INT-062-04e` | 062/AC-INT-062-04 | revisionだけstale | stale evidenceを拒否する。stage/source ownerを特定できる場合だけそこへ戻し、特定不能はunknown。 |",
+        "sha256": "2c1d1319d0d3724297ea8972ad93ca655f31563252511b1b55a10ff0638ff39a",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-062-04f",
+        "physical_line": 2598,
+        "literal": "| `CASE-INT-062-04f` | 062/AC-INT-062-04 | owner identityだけ別 | owner不一致を保留し、実際の固定ownerをsourceで特定できない限り戻し先unknown。 |",
+        "sha256": "9df579da168a32823cd73df633ed0698d5ec99e2813910e2b6c3d308453c7e19",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-062-04g",
+        "physical_line": 2599,
+        "literal": "| `CASE-INT-062-04g` | 062/AC-INT-062-04 | 順序だけ逆転（全receiptは存在） | CASE-INT-062-02gの同一order-negative索引。独立fixture数へ重ねない。 |",
+        "sha256": "8e5e384502120ad996cbeecef456585f5a9838cb34a26a6d485115070ebf1a1f",
+        "classification": "index"
+      },
+      {
+        "case_id": "CASE-INT-062-04h",
+        "physical_line": 2600,
+        "literal": "| `CASE-INT-062-04h` | 062/AC-INT-062-04 | HARNESS verification resultだけ不合格 | verificationを未成立にしHARNESS verification ownerへ戻す。 |",
+        "sha256": "88fe1f77b05ad65cb80257b119c5965b6d76baf52a3dad44b3ab0fbc3f935a83",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-062-04i",
+        "physical_line": 2601,
+        "literal": "| `CASE-INT-062-04i` | 062/AC-INT-062-04 | OS acceptance inputだけ未完了 | acceptanceを未成立に保ちOSへ戻す。 |",
+        "sha256": "ac9f7d8f8118acd1f6cbe292e321bdef70fb52a93315a27ddd9246495342454d",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-063-04a",
+        "physical_line": 2602,
+        "literal": "| `CASE-INT-063-04a` | 063/AC-INT-063-04 | LABO評価だけ不足 | 効果結論を保留しLABOへ戻す。 |",
+        "sha256": "2c8a088c23c9bab4b95ed1645ce4b0ea546493a0f93902fccf5770f00c96d9b8",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-063-04b",
+        "physical_line": 2603,
+        "literal": "| `CASE-INT-063-04b` | 063/AC-INT-063-04 | BRAIN sourceだけ不明 | knowledge適用をunknownとしBRAINへ戻す。 |",
+        "sha256": "899f43d34e8aab5202ad27324ccd60cc621ca36ddca5e8e393ed36de88fa2cda",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-063-04c",
+        "physical_line": 2604,
+        "literal": "| `CASE-INT-063-04c` | 063/AC-INT-063-04 | OS実行だけ未完 | loop完了をclaimせずOSへ戻す。 |",
+        "sha256": "65c6b74c1b341860901a798b672a3b2cda14a374f65d56649900a5171ffd7bca",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-063-04d",
+        "physical_line": 2605,
+        "literal": "| `CASE-INT-063-04d` | 063/AC-INT-063-04 | historical evaluationだけcurrent stateへ上書き | 時点を分け、current stateを保持する。 |",
+        "sha256": "cef4b8320c0e1786508f028f2dc20fe1809c8c5480777a3a5499a9474b5dccd8",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-063-04e",
+        "physical_line": 2606,
+        "literal": "| `CASE-INT-063-04e` | 063/AC-INT-063-04 | 未承認BRAIN candidateだけ一般知識扱い | canonical知識化せずBRAINへ戻す。 |",
+        "sha256": "6f41544477eee26c0f2a739b0cc9e0608782090c56ea9e9360728cab299132a5",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-063-04f",
+        "physical_line": 2607,
+        "literal": "| `CASE-INT-063-04f` | 063/AC-INT-063-04 | delayed outcome（正常）を元episodeへ遅着 | 元episode/source/timeを保ちcurrent judgmentは上書きしない。 |",
+        "sha256": "50329b76af87d5d61a84871b0ddcfff3ec03f3e2ef1f5f61a312d42a20c4fb7d",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-063-04g",
+        "physical_line": 2608,
+        "literal": "| `CASE-INT-063-04g` | 063/AC-INT-063-04 | out-of-order outcome（正常）を元episodeへ到着 | 到着順でcurrent episodeを巻き戻さず履歴へ結ぶ。 |",
+        "sha256": "9cdee4d194ebad2a4124711cd5db0c0bdcd337f6c7ac94b287cbac92bf74cefd",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-063-04h",
+        "physical_line": 2609,
+        "literal": "| `CASE-INT-063-04h` | 063/AC-INT-063-04 | duplicate outcomeだけ別episodeへ適用 | 二重計上せず元episodeを保持する。 |",
+        "sha256": "9b4a324babee4e83e43e592b79111f8beca37c83f492483927c8f93ec5e141ea",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-06a",
+        "physical_line": 2610,
+        "literal": "| `CASE-INT-069-06a` | 069/AC-INT-069-06 | HARNESS-010 pack identityだけ欠落 | input contractを成立扱いせずHARNESS ownerへ戻す。 |",
+        "sha256": "14d9744e830783d5453fdac8a28dcdece4cdef1676550cd51b4fd49bb5696ccf",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-06b",
+        "physical_line": 2611,
+        "literal": "| `CASE-INT-069-06b` | 069/AC-INT-069-06 | HARNESS-010 contract revisionだけstale | calculationを保留しHARNESSへ戻す。 |",
+        "sha256": "d62b2078289ac09c4c87bd364a9a1a381a8de83d65cd80a26c2ca28b2febd5c6",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-06c",
+        "physical_line": 2612,
+        "literal": "| `CASE-INT-069-06c` | 069/AC-INT-069-06 | HARNESS-010 scopeだけ不一致 | 別scope契約を流用せずHARNESSへ戻す。 |",
+        "sha256": "29be3f3d0272d2ad6b051996affa768248d9450bb890298732c7bc2e767bc514",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-06d",
+        "physical_line": 2613,
+        "literal": "| `CASE-INT-069-06d` | 069/AC-INT-069-06 | HARNESS-010 provenanceだけ欠落 | 出所不明をunknownにしHARNESSへ戻す。 |",
+        "sha256": "cbeb5dd64926e2de38cf9ce65a9b219b0480ffd8895c0c2442176a964c830c16",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-06e",
+        "physical_line": 2614,
+        "literal": "| `CASE-INT-069-06e` | 069/AC-INT-069-06 | HARNESS-L2-011 callを選択したoperationでcall identityだけ欠落 | callを成立扱いせずHARNESS pack contract ownerへ戻す。HARNESSが計算実行主体になるとは扱わない。 |",
+        "sha256": "33f212194766aa00cb18ffcce819c00bc1633abfa7c896605861db80c0e500a1",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-06f",
+        "physical_line": 2615,
+        "literal": "| `CASE-INT-069-06f` | 069/AC-INT-069-06 | HARNESS-L2-011 callを選択したoperationでcall contract revisionだけstale | 該当callを保留しHARNESS pack contract ownerへ戻す。 |",
+        "sha256": "86e749772ec5dd2ccaa216083494d7a8e5779abea9e7133bfba638f3033570d4",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-06g",
+        "physical_line": 2616,
+        "literal": "| `CASE-INT-069-06g` | 069/AC-INT-069-06 | HARNESS-L2-011 callを選択したoperationでcall scopeだけ不一致 | 別scope contractを混ぜずHARNESS pack contract ownerへ戻す。 |",
+        "sha256": "49a170a75813cd13f221cdc2f7f407abdf5ab6b6992426cf88b056b611ad87b7",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-06h",
+        "physical_line": 2617,
+        "literal": "| `CASE-INT-069-06h` | 069/AC-INT-069-06 | HARNESS-L2-011 callを選択したoperationでcall provenanceだけ欠落 | 出所を推測せずHARNESS pack contract ownerへ戻す。 |",
+        "sha256": "b82b9ad13e2b9086119de787848b757f97c8602f69da621228c11e133aa0da03",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-06i",
+        "physical_line": 2618,
+        "literal": "| `CASE-INT-069-06i` | 069/AC-INT-069-06 | 選択model/source identityだけ不一致 | model resultを結ばずsource ownerへ戻す。 |",
+        "sha256": "7bbae9d7ae71a16d59180a163235f98f406e0cf1a31d004b4645c26c8214a34c",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-06j",
+        "physical_line": 2619,
+        "literal": "| `CASE-INT-069-06j` | 069/AC-INT-069-06 | L2-033 input receiptだけ欠落 | 単体計算のCORE入力を作らずsource ownerへ戻す。 |",
+        "sha256": "441820df4c3ded3bab365a3c6f820a8e95992aa9eca29696b54ed7968e912194",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-06k",
+        "physical_line": 2620,
+        "literal": "| `CASE-INT-069-06k` | 069/AC-INT-069-06 | L2-003 current state sourceだけ欠落 | source-owned stateを補完せず当該source ownerへ戻す。 |",
+        "sha256": "8043b87b891d738f0938f094c506a08d1a7a03839e5508017d2ad43a2ff44e76",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-06l",
+        "physical_line": 2621,
+        "literal": "| `CASE-INT-069-06l` | 069/AC-INT-069-06 | L2-004 fact/inference区分だけ欠落 | 区分不明を保持し、該当source ownerを特定できる場合だけそこへ照合する。特定できなければ戻し先unknown。 |",
+        "sha256": "40be036e777954157935aa79c8221eb895f1480c0adb49a5477771134907f818",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-06m",
+        "physical_line": 2622,
+        "literal": "| `CASE-INT-069-06m` | 069/AC-INT-069-06 | L2-012 unknown/source attributionだけ欠落 | 不確実性を確定値にせずunknownに保つ。source identityからownerを特定できる場合だけそのsource ownerへ照合し、特定できなければ戻し先unknown。 |",
+        "sha256": "9a4979a48340ded3e72a5782b418dca297f0da7066650b6fb27a11b90d68e53b",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-06n",
+        "physical_line": 2623,
+        "literal": "| `CASE-INT-069-06n` | 069/AC-INT-069-06 | L2-013 trace/source revisionだけ欠落 | traceを結ばず該当source ownerへ戻す。 |",
+        "sha256": "82fc14b1b6ae8c27647c16b00c0129fb4de356bc2401cf4b74152954e2b972e4",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-06o",
+        "physical_line": 2624,
+        "literal": "| `CASE-INT-069-06o` | 069/AC-INT-069-06 | 適用data-use/authority条件だけ欠落 | 利用可能と推測せず、適用される既存SECURITY/source ownerが特定できる場合だけ戻す。 |",
+        "sha256": "2d765130dc14ab88d9fafadd290ba9bb72cde86e8ea29e90e15b1019cb785b06",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-06p",
+        "physical_line": 2625,
+        "literal": "| `CASE-INT-069-06p` | 069/AC-INT-069-06 | stop conditionだけ欠落 | 完了を作らずsource/選択source ownerが明示される場合だけそこへ照合する。 |",
+        "sha256": "b0974abc9ff151deaf9b36a5e680816c66e6b80a3504fe88aabdec34e25bf47b",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-06q",
+        "physical_line": 2626,
+        "literal": "| `CASE-INT-069-06q` | 069/AC-INT-069-06 | unselected model/sourceへのfallbackだけ追加 | 未選択sourceを未観測に保ちfallbackを拒否する。 |",
+        "sha256": "24e5d8b63980260d1aaaac2f7e3ac595ae3b4412aad32c342836eae00f4180e4",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-06r",
+        "physical_line": 2627,
+        "literal": "| `CASE-INT-069-06r` | 069/AC-INT-069-06 | HARNESS-L2-011 pack contract identityだけ欠落（call未選択） | 常時必須contract照合を成立扱いせずHARNESS pack ownerへ戻す。 |",
+        "sha256": "8415558d1a7087ee98f43dd37a16d439dc7766dce42cd769dd0aeab1e782a077",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-06s",
+        "physical_line": 2628,
+        "literal": "| `CASE-INT-069-06s` | 069/AC-INT-069-06 | HARNESS-L2-011 pack contract revisionだけstale（call未選択） | stale contractを使わずHARNESS pack ownerへ戻す。 |",
+        "sha256": "dacca2b447f4db7be48d50ebdf2de9f2a6e8ff50f07b9acb877f6e127b3f8f1c",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-06t",
+        "physical_line": 2629,
+        "literal": "| `CASE-INT-069-06t` | 069/AC-INT-069-06 | HARNESS-L2-011 contract scopeだけ不一致（call未選択） | contract照合を不成立としHARNESS pack ownerへ戻す。 |",
+        "sha256": "7a058914c7719f6d32185f36a85568b62b053d5794cf808eb80e477eef002baf",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-06u",
+        "physical_line": 2630,
+        "literal": "| `CASE-INT-069-06u` | 069/AC-INT-069-06 | HARNESS-L2-011 contract provenanceだけ欠落（call未選択） | 出所を推測せずHARNESS pack ownerへ戻す。 |",
+        "sha256": "3b5e6bedbd37e540e79416ed037480914a875a78dc2409f150dd5dbdcead3897",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-07a",
+        "physical_line": 2631,
+        "literal": "| `CASE-INT-069-07a` | 069/AC-INT-069-07 | 通常計算で期待値oracleもHARNESS-L2-011 callも選択されない（正常） | HARNESS-L2-010/011の常時必須pack contractを照合し、入力source/ruleと明示model/ruleから結果・trace・unknownを算出する。call固有inputは未選択で、oracleやcall inputの不存在だけを理由に保留しない。 |",
+        "sha256": "22cbdc4958eb9347a21c5f8c1b352ed7fea83ec28c3e357f8d1d01c1dee34a32",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-07b",
+        "physical_line": 2632,
+        "literal": "| `CASE-INT-069-07b` | 069/AC-INT-069-07 | 通常計算で070/040/LABO-024後段receiptなし（正常） | 計算結果を返し、後段connection未完を別保持する。 |",
+        "sha256": "3b53bc1e08ca09046fbec143dc285964b48085af0ebe9222c66ea7a9d713cba0",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-07c",
+        "physical_line": 2633,
+        "literal": "| `CASE-INT-069-07c` | 069/AC-INT-069-07 | 利用者指定verificationの期待値oracleだけ欠落 | そのverificationだけ保留しscenario author/選択source ownerへ戻す。 |",
+        "sha256": "9c94910f7867176da61ec15c37b3c64b3bf511fdf1a6a1182662762efd3b6918",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-07d",
+        "physical_line": 2634,
+        "literal": "| `CASE-INT-069-07d` | 069/AC-INT-069-07 | stop/cutoff位置だけ欠落 | 成功完了にせず打切り位置unknownを保持する。 |",
+        "sha256": "8777571c8ad230640a62afa815c3bb6c5932fa7d24f10f3ddb989a5b62272571",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-07e",
+        "physical_line": 2635,
+        "literal": "| `CASE-INT-069-07e` | 069/AC-INT-069-07 | 計算resourceだけ不足 | 途中resultと停止位置を保持し、OS運転成功に変換しない。 |",
+        "sha256": "614119489c7ebb88a29359e23a318ec40f43f931f938da308a690d25c4970b54",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-07f",
+        "physical_line": 2636,
+        "literal": "| `CASE-INT-069-07f` | 069/AC-INT-069-07 | 選択source/permissionだけ期限切れ | 該当operationだけ保留し、選択sourceまたは固定SECURITY permission ownerへ戻す。 |",
+        "sha256": "cf050362786e58a4d4c32b726469d9a2bf34132ec9d96eb3f43c951f846c21a8",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-07a",
+        "physical_line": 2637,
+        "literal": "| `CASE-INT-070-07a` | 070/AC-INT-070-07 | HELIXINTELLIGENCE-L2-040送達契約だけ欠落 | send未成立を保持し、既存L2-040の責務ownerへ戻す。 |",
+        "sha256": "3fef4c6e83f1b418215ec4fb8d9d1ffdc286056b090fc37b7942be20e1075534",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-07b",
+        "physical_line": 2638,
+        "literal": "| `CASE-INT-070-07b` | 070/AC-INT-070-07 | HELIXINTELLIGENCE-L2-040送達契約revisionだけ不一致 | send receiptを結ばず、既存L2-040の責務ownerへ戻す。 |",
+        "sha256": "ea57db93baf0e9ba80786d7d3fb3d4da589d279bdb145f813a4a8337edcccf1f",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-07c",
+        "physical_line": 2639,
+        "literal": "| `CASE-INT-070-07c` | 070/AC-INT-070-07 | correlationだけ別 | 別operationのreceiptを混ぜない。 |",
+        "sha256": "bf396a180e76bff64d5ccd53c23fe16481b787ef2ef46ee2188aa143f5bc296f",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-07d",
+        "physical_line": 2640,
+        "literal": "| `CASE-INT-070-07d` | 070/AC-INT-070-07 | target scopeだけ別 | 対象scopeのsend未完として保持する。 |",
+        "sha256": "c0a3cf9fd2560fd64c50abdffdf139745f8ddc06987faa04ca9e7ab4f0625759",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-07e",
+        "physical_line": 2641,
+        "literal": "| `CASE-INT-070-07e` | 070/AC-INT-070-07 | LABO-024 consumer contractだけ欠落 | consumer受領を成立させずLABOへ戻す。 |",
+        "sha256": "355cd730fa391352dcb7aa231b1c514fd32410696038f73bd83d0e57af5d6172",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-07f",
+        "physical_line": 2642,
+        "literal": "| `CASE-INT-070-07f` | 070/AC-INT-070-07 | LABO-024 contract revisionだけ不一致 | 別版consumer契約を流用せずLABOへ戻す。 |",
+        "sha256": "2d4c78d81088580f56593f16cfc8f9f0eb7ea5c7ca9b975e46b05a8d90a20dc3",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-07g",
+        "physical_line": 2643,
+        "literal": "| `CASE-INT-070-07g` | 070/AC-INT-070-07 | input source identityだけ不一致 | stage bindingを失敗にし該当source ownerへ戻す。 |",
+        "sha256": "cf82381388c895a71af916789d1cd496e4f265ee21fc7c4019a21e91c2857c44",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-07h",
+        "physical_line": 2644,
+        "literal": "| `CASE-INT-070-07h` | 070/AC-INT-070-07 | model identityだけ不一致 | resultを結ばずCORE model authorityであるProduct Core/HARNESSへ照合する。 |",
+        "sha256": "f2487059eeb1fb13d0374a62b083d256c2a15b0139f83f41ed0e191887b6e503",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-07i",
+        "physical_line": 2645,
+        "literal": "| `CASE-INT-070-07i` | 070/AC-INT-070-07 | data-use bindingだけ欠落 | 計算/送達への利用を成立扱いせず該当SECURITY/source ownerへ戻す。 |",
+        "sha256": "a2e1aa79ca13ec33c6680716391cab41b28b0d45f7fec0eb4e735cd91adb53f3",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-07j",
+        "physical_line": 2646,
+        "literal": "| `CASE-INT-070-07j` | 070/AC-INT-070-07 | 選択connector登録だけ欠落 | 通信段階を未完に保ちCONNECTへ戻す。source identity不一致は07g/07hで照合する。 |",
+        "sha256": "4435ed471f3f635422ebea225464587092e5aad526f5e88024888e7bbcb72b0a",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-07k",
+        "physical_line": 2647,
+        "literal": "| `CASE-INT-070-07k` | 070/AC-INT-070-07 | 選択connector互換判定だけstale | 通信段階を未完に保ちCONNECTへ戻す。 |",
+        "sha256": "b0364560da32142b1b2d1d965b2bae2adc10ffd6556d4bc9d6e344d6a60297e8",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-07l",
+        "physical_line": 2648,
+        "literal": "| `CASE-INT-070-07l` | 070/AC-INT-070-07 | 選択connector transport receiptだけ欠落 | 送達未成立を保持しCONNECTへ戻す。 |",
+        "sha256": "c79b0c0c61ae0a5d9d79fd211da8e700bb8efca0ce834cba349392c10a8c870b",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-08a",
+        "physical_line": 2649,
+        "literal": "| `CASE-INT-070-08a` | 070/AC-INT-070-08 | simulation statusだけactualへ変更 | virtual結果を実測へ昇格しない。 |",
+        "sha256": "2886da0d1151bc49f1e54446830e9d66773e49546d9bfd9e8cd2c77419e12d2a",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-08b",
+        "physical_line": 2650,
+        "literal": "| `CASE-INT-070-08b` | 070/AC-INT-070-08 | predictionとactual source identityだけ同一化 | 二つのsource/時点を分離する。 |",
+        "sha256": "222af26388eac8c378f614844ee59d7d4674d9dae1756224d54b86d1a0726ce3",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-08c",
+        "physical_line": 2651,
+        "literal": "| `CASE-INT-070-08c` | 070/AC-INT-070-08 | later observation windowだけ不一致 | 比較不能としてLABOへ戻す。 |",
+        "sha256": "4f489f12bf611a6e5641840358ca26d8a6b41003fd3515757a47a76c82ace7e7",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-08d",
+        "physical_line": 2652,
+        "literal": "| `CASE-INT-070-08d` | 070/AC-INT-070-08 | 未決閾値だけpass/failへ変異 | 測定値のみ保持し閾値判断を作らない。 |",
+        "sha256": "1e69a7bf85f9c28b992d45847cb4924f38895b7992d79ca51d414aac3453e712",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-08e",
+        "physical_line": 2653,
+        "literal": "| `CASE-INT-070-08e` | 070/AC-INT-070-08 | 未選択consumer fieldだけ一般互換と解釈 | 外挿せずunknownを保持する。 |",
+        "sha256": "ebf2043fbb2e5a071adb100dcedfbd0c8815eea4fbb85cf354612179da20d760",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-04a",
+        "physical_line": 2654,
+        "literal": "| `CASE-INT-071-04a` | 071/AC-INT-071-04 | 固定baseline/load正常scenario | 5/5・5/10 arrival、cap 8の計算と6出力facetを独立照合する。 |",
+        "sha256": "fb876c7cfc9d2260eea07851226c2a545c465333dfd3e535e71df8bebd331845",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-04b",
+        "physical_line": 2655,
+        "literal": "| `CASE-INT-071-04b` | 071/AC-INT-071-04 | 固定DB断正常scenario | 明示order edgeだけblocked、recovery未定義を保持する。 |",
+        "sha256": "9bff053a8b389a284b8bd5e196ec80d8b9a34c74c544d1b8422d86ebac8e44c8",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-04c",
+        "physical_line": 2656,
+        "literal": "| `CASE-INT-071-04c` | 071/AC-INT-071-04 | 固定virtual worker 2→4正常scenario | 3→2.25 min、1.50→2.025 creditsを算術照合しOS assignmentを不変にする。 |",
+        "sha256": "2cc1faff23926c3802cbab59a6c6fc5b2ba964e2190ed6ad2384d38fbe53ceca",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-04d",
+        "physical_line": 2657,
+        "literal": "| `CASE-INT-071-04d` | 071/AC-INT-071-04 | comparison coefficientだけ不一致 | 該当scenarioだけを未比較にする。 |",
+        "sha256": "0900fff2be96a7f709114ae5e978b364239ab7910e7095cf88a01ecc7ffccf3e",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-04e",
+        "physical_line": 2658,
+        "literal": "| `CASE-INT-071-04e` | 071/AC-INT-071-04 | observation windowだけ不一致 | 該当scenarioだけを未比較にする。 |",
+        "sha256": "0549b4f80f4833ec07ccadf14bdbb35346328d3cf1c34ae184ee2e1f8f9841f2",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-04f",
+        "physical_line": 2659,
+        "literal": "| `CASE-INT-071-04f` | 071/AC-INT-071-04 | modelにretry ruleだけ存在しない | retry成功を補わずunknown/blockedを保持し、ownerを推測しない。 |",
+        "sha256": "eb86b2882c62cee97fed8864002e7bdfbe35b2ff68b4d5b97d7eb3ed9bd6d06a",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-04g",
+        "physical_line": 2660,
+        "literal": "| `CASE-INT-071-04g` | 071/AC-INT-071-04 | modelにrecovery ruleだけ存在しない | recoveryを創作せずunknown/blockedを保持し、ownerを推測しない。 |",
+        "sha256": "4204adbe5d1fa8902737d758831cb41f0a16ab7cbadda629a310d422baff063d",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-04h",
+        "physical_line": 2661,
+        "literal": "| `CASE-INT-071-04h` | 071/AC-INT-071-04 | edge外failureだけ伝播 | edge外stateを不変にしunsupported/blockedを保持、ownerを推測しない。 |",
+        "sha256": "d18863cb75dc02049f4a778498666a4d6e0d01853f5a86b69b833794856f606f",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-04i",
+        "physical_line": 2662,
+        "literal": "| `CASE-INT-071-04i` | 071/AC-INT-071-04 | simulationだけactualへ昇格 | 実測へ昇格しない。 |",
+        "sha256": "3431ac74d9f451bee67351397a3ce603dbae3c48df6c4f733bf5daaf22e726fb",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-04j",
+        "physical_line": 2663,
+        "literal": "| `CASE-INT-071-04j` | 071/AC-INT-071-04 | simulationだけLABO評価済みへ昇格 | 評価済みへ昇格せずLABOへ戻す。 |",
+        "sha256": "b13e3ce08c10c512d3de1e6e3ee147389082b0af30eb11e897fde05d5d491f18",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-05a",
+        "physical_line": 2664,
+        "literal": "| `CASE-INT-074-05a` | 074/AC-INT-074-05 | source completenessだけ欠落 | 評価済み適用をclaimせずLABOへ戻す。 |",
+        "sha256": "71d6566586adc66d1904ae739592fa17225608a8d3d2a1d92717cbbe84d85864",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-05b",
+        "physical_line": 2665,
+        "literal": "| `CASE-INT-074-05b` | 074/AC-INT-074-05 | observation windowだけ欠落 | windowを推測せずLABOへ戻す。 |",
+        "sha256": "ba0c4b1615132fbbbeaf455fff521874d45c09adbc8824fe8ffb7026953f8201",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-05c",
+        "physical_line": 2666,
+        "literal": "| `CASE-INT-074-05c` | 074/AC-INT-074-05 | applicability statusだけunknown | statusをunknownに保ち、owner/戻し先を推測しない。 |",
+        "sha256": "21238399eed8b4bcf4feeb3bb7b09b09f76bee84876a905c9083c328d9c65617",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-05d",
+        "physical_line": 2667,
+        "literal": "| `CASE-INT-074-05d` | 074/AC-INT-074-05 | task attributeだけ欠落 | task/ticket条件をOSへ戻す。 |",
+        "sha256": "8c22cdf99f51bcb5c44374d1603402d0fe3feec502282ffb23900649422658fd",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-05e",
+        "physical_line": 2668,
+        "literal": "| `CASE-INT-074-05e` | 074/AC-INT-074-05 | scopeだけ不足 | 適用scopeをunknownに保ち、LABOへ戻す。 |",
+        "sha256": "7956ca22d1ba7ec2db60584c96893d55a32067123f0b20782af71bc3efcb9ddb",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-05f",
+        "physical_line": 2669,
+        "literal": "| `CASE-INT-074-05f` | 074/AC-INT-074-05 | evaluation stateだけ未評価 | eligible evidenceにしない。 |",
+        "sha256": "d9bbb04a2cef4d95cb6e8e6c49e8f3e0a2eca97584a80e77ad113a1eb59ac87f",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-05g",
+        "physical_line": 2670,
+        "literal": "| `CASE-INT-074-05g` | 074/AC-INT-074-05 | comparisonだけ不能 | 比較不能をunknownのままLABOへ戻す。 |",
+        "sha256": "611ff848a075ae2a8ed8488423003feb1f99f8e8cd2bd57a86cd932d637d7d5d",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-05h",
+        "physical_line": 2671,
+        "literal": "| `CASE-INT-074-05h` | 074/AC-INT-074-05 | comparison sourceだけ欠落 | sourceを補完せずLABOへ戻す。 |",
+        "sha256": "6f6ef3ef8071b5d664a09e2d1718cfa58800c48fe09b68dd146e27c2c16254fa",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-05i",
+        "physical_line": 2672,
+        "literal": "| `CASE-INT-074-05i` | 074/AC-INT-074-05 | comparison revisionだけstale | current evidenceへ流用しない。 |",
+        "sha256": "a0b9dbc53571fab211841221100fa13d2813614fd9718c2b49ebdebab5036f1f",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-05j",
+        "physical_line": 2673,
+        "literal": "| `CASE-INT-074-05j` | 074/AC-INT-074-05 | comparison scopeだけ別 | CASE-INT-074-05yと同一scope mismatchの旧index。独立計上しない。 |",
+        "sha256": "4617a32b1b2d461086f90157240ac7bdc758e621d29e8ae488f0d66c6c7f9caf",
+        "classification": "index"
+      },
+      {
+        "case_id": "CASE-INT-074-05k",
+        "physical_line": 2674,
+        "literal": "| `CASE-INT-074-05k` | 074/AC-INT-074-05 | feedback target revisionだけ別 | current evidenceへ流用しない。 |",
+        "sha256": "c837a86b9dae52c3add644c6fee7201a25f7846c3b4333f9d2fe5b876fa60a08",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-05l",
+        "physical_line": 2675,
+        "literal": "| `CASE-INT-074-05l` | 074/AC-INT-074-05 | task classだけ異なる | 別taskへの転用を拒否する。 |",
+        "sha256": "363b8974ee48a82ce039ad8968f6d6ed7ac1caa2fcd70e59a45107cdb369ad39",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-05m",
+        "physical_line": 2676,
+        "literal": "| `CASE-INT-074-05m` | 074/AC-INT-074-05 | 単一feedbackから恒久除外 | 永続状態を作らない。 |",
+        "sha256": "9124141382ecffcc5bcbd725b591b2636aa9432770566ebe045945abe5981479",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-05n",
+        "physical_line": 2677,
+        "literal": "| `CASE-INT-074-05n` | 074/AC-INT-074-05 | 単一feedbackから恒久昇格 | 永続状態を作らない。 |",
+        "sha256": "353bdeef9006fefd1e79c4cae5253035ecf8a3ee33dfd752eda6fbcb778d729c",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-05o",
+        "physical_line": 2678,
+        "literal": "| `CASE-INT-074-05o` | 074/AC-INT-074-05 | feedbackだけから因果能力差を確定 | 因果結論を作らない。 |",
+        "sha256": "f31b278a9a863ce45f84e555f60abde7dafdc53ffe8c6cc16b2ec28d52e8a036",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-05p",
+        "physical_line": 2679,
+        "literal": "| `CASE-INT-074-05p` | 074/AC-INT-074-05 | feedbackだけから恒久順位を更新 | rankを更新しない。 |",
+        "sha256": "c28fe01898abdbfb06d48f152b5f9ab6d116d26030a117f32c2cc24d026b5f9c",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-05q",
+        "physical_line": 2680,
+        "literal": "| `CASE-INT-074-05q` | 074/AC-INT-074-05 | feedbackからmodelを直接更新 | writeを拒否する。 |",
+        "sha256": "6328d38f34a052763663eb566e69946e87cbd87755d7177abcfcbcf3d2a77a70",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-05r",
+        "physical_line": 2681,
+        "literal": "| `CASE-INT-074-05r` | 074/AC-INT-074-05 | feedbackからRequirementを直接更新 | writeを拒否する。 |",
+        "sha256": "44b70121fd28b6c9ac20e8c1be48461a0ce0c3475af1cf9c95a836497328097a",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-05s",
+        "physical_line": 2682,
+        "literal": "| `CASE-INT-074-05s` | 074/AC-INT-074-05 | INTELLIGENCEからticketを直接発行 | 発行を拒否しOSへ戻す。 |",
+        "sha256": "a51f32c008875f3198473b645cdf620c9552115c592c305f0f4ee69248b13d7e",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-05t",
+        "physical_line": 2683,
+        "literal": "| `CASE-INT-074-05t` | 074/AC-INT-074-05 | INTELLIGENCEからreissueを直接発行 | 発行を拒否しOSへ戻す。 |",
+        "sha256": "b6ef4e45ac6ce4dcdc08b6cd5a09bb9da8e3c33322a9db70a92c68288b260661",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-05u",
+        "physical_line": 2684,
+        "literal": "| `CASE-INT-074-05u` | 074/AC-INT-074-05 | INTELLIGENCEからassignmentを直接変更 | 変更を拒否しOSへ戻す。 |",
+        "sha256": "9b58412565435572f925c1d2596e9575f92ff5edad6442bae07aa71e9599c367",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-05v",
+        "physical_line": 2685,
+        "literal": "| `CASE-INT-074-05v` | 074/AC-INT-074-05 | INTELLIGENCEからdispatchを実行 | 実行を拒否しOSへ戻す。 |",
+        "sha256": "294721e436c406c3b6f0b53355a3cd3b3630eae75daccdad13a678c3a6d67ac9",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-05w",
+        "physical_line": 2686,
+        "literal": "| `CASE-INT-074-05w` | 074/AC-INT-074-05 | 正常feedbackのtrace（正常fixture） | return reason、missing input/oracle、再発行後verification状態、母集団/window、再評価条件を同一評価receiptへ結ぶ。 |",
+        "sha256": "01ce88f05ef0eb208077e52a59fe401b42b9809d2cc16c3500529ac58e7c1399",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-05x",
+        "physical_line": 2687,
+        "literal": "| `CASE-INT-074-05x` | 074/AC-INT-074-05 | 同じ理由class・宣言済み同scopeの未見正常例 | 根拠の引用と再評価条件を保ち、成功や適格性は自動生成しない。 |",
+        "sha256": "ba9a7d86520f5586127d8aac09578e1f12a2f7b303d374fc363ea344656fc839",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-05y",
+        "physical_line": 2688,
+        "literal": "| `CASE-INT-074-05y` | 074/AC-INT-074-05 | 同じ理由classだが異なるscope | feedbackを転用せず適用外/unknownを保持しLABOへ戻す。05jと重複計上しない。 |",
+        "sha256": "2e485806deea1c07ec1750b3c4aa17c3750083c16531bb710c3ab36cd1e19d41",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-05z",
+        "physical_line": 2689,
+        "literal": "| `CASE-INT-074-05z` | 074/AC-INT-074-05 | evidenceだけ不足（scopeは一致） | scope一致を保ちつつevidence不足だけで評価適用を成立させず、LABOへ戻す。 |",
+        "sha256": "4d99b0938030f576d9f51725b97bf74dcea37e6f82cfae638a2b0b8c1733a5dd",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-05a",
+        "physical_line": 2690,
+        "literal": "| `CASE-INT-077-05a` | 077/AC-INT-077-05 | unknownを0へ変異 | unknownを保持する。 |",
+        "sha256": "5cf1f8d55a8651066f45df783a04cac7b636b8b748e2774c52321c301dee6035",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-05b",
+        "physical_line": 2691,
+        "literal": "| `CASE-INT-077-05b` | 077/AC-INT-077-05 | unknownをneutralへ変異 | unknownを保持する。 |",
+        "sha256": "201b5fe21948d8877618a4fd97df2afc01f0d1a1683d8deca8f8b5bee1d936ef",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-05c",
+        "physical_line": 2692,
+        "literal": "| `CASE-INT-077-05c` | 077/AC-INT-077-05 | unknownをunchangedへ変異 | unknownを保持する。 |",
+        "sha256": "fc40b39cacf326fa7ff3dd0cfcf5c3dfc32c5afd256cd1705cc802ee970b521d",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-05d",
+        "physical_line": 2693,
+        "literal": "| `CASE-INT-077-05d` | 077/AC-INT-077-05 | unknownをobservedへ変異 | unknownを保持する。 |",
+        "sha256": "89812fb890e688aff71d8f4f9eb6549f18fab4fc24b175faa6f400633fc11ea3",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-05e",
+        "physical_line": 2694,
+        "literal": "| `CASE-INT-077-05e` | 077/AC-INT-077-05 | Requirementへ直接write | writeを拒否し既存正本を不変にする。 |",
+        "sha256": "0fee13a53f6f3553fe8d3239c868a7c321821f9877ab0e3f84dddb2171b7eaa7",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-05f",
+        "physical_line": 2695,
+        "literal": "| `CASE-INT-077-05f` | 077/AC-INT-077-05 | Designへ直接write | writeを拒否する。 |",
+        "sha256": "75ce9b880eef005cb39135e5be5de62b6cab54f391e05eb260277debf198a4d4",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-05g",
+        "physical_line": 2696,
+        "literal": "| `CASE-INT-077-05g` | 077/AC-INT-077-05 | Releaseへ直接write | writeを拒否する。 |",
+        "sha256": "da2f2bdc8295ef85287284006787f00d33bbdb614a0adfb01c943c9bee4bd6c7",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-05h",
+        "physical_line": 2697,
+        "literal": "| `CASE-INT-077-05h` | 077/AC-INT-077-05 | Assignmentへ直接write | writeを拒否する。 |",
+        "sha256": "36bf86c7232fb1e73fbff1aa1c762d9159e94a9ebfe8a3d3ddb37b92799c8550",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-05i",
+        "physical_line": 2698,
+        "literal": "| `CASE-INT-077-05i` | 077/AC-INT-077-05 | merge authority/stateを直接変更 | authority/stateを変更しない。 |",
+        "sha256": "9dbd5d009b5898ebdc579f8bc75d266fe7a8f855a388c4a918674aaa5dcfc98a",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-05j",
+        "physical_line": 2699,
+        "literal": "| `CASE-INT-077-05j` | 077/AC-INT-077-05 | selected receipt identityだけ欠落 | 別sourceで補完せず選択source ownerへ戻す。 |",
+        "sha256": "b3d20a452d08087981cf59161a9f0821a5df8d656f46d3210b7713e3e20ad408",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-05k",
+        "physical_line": 2700,
+        "literal": "| `CASE-INT-077-05k` | 077/AC-INT-077-05 | selected receipt identityだけ不一致 | receiptを結ばず選択source ownerへ戻す。 |",
+        "sha256": "3ce3437c1448b0261d5c635c66281ba8f9c64fb27a8cc02e4014c1a49d794688",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-05l",
+        "physical_line": 2701,
+        "literal": "| `CASE-INT-077-05l` | 077/AC-INT-077-05 | selected receipt revisionだけ欠落 | 別revisionで補完せず選択source ownerへ戻す。 |",
+        "sha256": "ef8e323f18c4e0607c0c4b23c2be75e22f1d5fc5799aea0fd24c05c3b83f8cd5",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-05m",
+        "physical_line": 2702,
+        "literal": "| `CASE-INT-077-05m` | 077/AC-INT-077-05 | 選択receiptのrevisionが要求対象revisionと不一致、他bindingは一致 | receiptをcurrent candidateへ流用せずstale/unknownにし、選択source ownerへ戻す。 |",
+        "sha256": "d1e2d0ad4f0a9805afb6c3e3566c72da163ad368dbcc2e1a2003e7ccbd63d127",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-05n",
+        "physical_line": 2703,
+        "literal": "| `CASE-INT-077-05n` | 077/AC-INT-077-05 | origin typeだけ欠落 | internal/externalを推測せずunknownを保つ。fixtureで選択source identityが明示される場合だけ、そのsource ownerへ照合する。 |",
+        "sha256": "751122c2b0897fbc529de90fe01622b33186ad1adfdcba6f2e6b4a4a8a1c7a35",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-05o",
+        "physical_line": 2704,
+        "literal": "| `CASE-INT-077-05o` | 077/AC-INT-077-05 | origin typeだけ不一致 | originを統合せずsource ownerへ戻す。 |",
+        "sha256": "0d96a8612bc9df00b11ee0cb5a054abfd6bafd61be9bf9eb4da28255433c582a",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-05p",
+        "physical_line": 2705,
+        "literal": "| `CASE-INT-077-05p` | 077/AC-INT-077-05 | source owner identityだけ欠落 | ownerを推測せずunknownを保つ。selected source identityが既知でもownerが明示されない場合は戻し先unknown。 |",
+        "sha256": "dbd2c1746a0cbbb6f393d251f7864faaa9bea4d6b701a93919d2fcaf72567d6b",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-05q",
+        "physical_line": 2706,
+        "literal": "| `CASE-INT-077-05q` | 077/AC-INT-077-05 | source owner identityだけ不一致 | owner不一致をunknownに保ち、選択source ownerへ照合する。 |",
+        "sha256": "8942c933200dd32b30a2bd716807551ea340cf263205657632ca42422db537cf",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-05r",
+        "physical_line": 2707,
+        "literal": "| `CASE-INT-077-05r` | 077/AC-INT-077-05 | qualification evidenceだけ欠落 | qualified扱いせずselected source ownerへ戻す。 |",
+        "sha256": "0363c48a29f5b402062214ebe4552833beef6742f85cc50cbc2b501d00bb5751",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-05s",
+        "physical_line": 2708,
+        "literal": "| `CASE-INT-077-05s` | 077/AC-INT-077-05 | qualification evidenceだけ不一致 | qualificationを継承せずselected source ownerへ戻す。 |",
+        "sha256": "ab3af8cbeae22c3a4ab89ccc27d739c189ddcefbda257e27a03a4de3d9ec7e7b",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-05t",
+        "physical_line": 2709,
+        "literal": "| `CASE-INT-077-05t` | 077/AC-INT-077-05 | selected receiptだけstale | candidateをincompleteに保ち、選択source ownerへ照合する。 |",
+        "sha256": "e337133942e5c0a71d3314d203cbb7bf629d7614cfae4ded9d852c694b5eafa5",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-05u",
+        "physical_line": 2710,
+        "literal": "| `CASE-INT-077-05u` | 077/AC-INT-077-05 | selected receiptだけread failure | candidateをincompleteに保ち、選択source ownerへ照合する。 |",
+        "sha256": "770f544bd58cb00d273c02a794774f1bc36c936d467c9e4978c6bfbde10fda16",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-05v",
+        "physical_line": 2711,
+        "literal": "| `CASE-INT-077-05v` | 077/AC-INT-077-05 | unselected receiptへfallback | unselectedを未観測のまま保つ。 |",
+        "sha256": "917ed0e17bd88f58ee749f72a41e0cfa1bd13a97938ea711725875064da06463",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-05w",
+        "physical_line": 2712,
+        "literal": "| `CASE-INT-077-05w` | 077/AC-INT-077-05 | reference-only資料をselected sourceへ昇格 | 参照資料を資格根拠へしない。 |",
+        "sha256": "d56efbe85bafb7a363e02a033964bf88e186fca341f42182422d15977fd52c49",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-05x",
+        "physical_line": 2713,
+        "literal": "| `CASE-INT-077-05x` | 077/AC-INT-077-05 | internal sourceをexternal/TERへ付替 | source identity/originを維持しHELIX defectを推定しない。 |",
+        "sha256": "aa8ea099bb07b5b12435d863a53694cacfc244f6500332caa237a0c4fc5da83c",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-05y",
+        "physical_line": 2714,
+        "literal": "| `CASE-INT-077-05y` | 077/AC-INT-077-05 | external sourceをinternal/UILだけへ付替 | source identity/originを維持し必要ならunknownで戻す。 |",
+        "sha256": "f6a81ab826ab9fdbf22907db4033e9c7237e240623ae1f90716536d24cd48284",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-05z",
+        "physical_line": 2715,
+        "literal": "| `CASE-INT-077-05z` | 077/AC-INT-077-05 | external release observationだけからHELIX defectを確定 | defectを確定せずfinding/candidateを未確定で保持する。 |",
+        "sha256": "a4c2670491d76d6a79b8b84ff1313e673a1570bccb047a8aa6b23850f51e5db8",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-060-06a",
+        "physical_line": 2725,
+        "literal": "| `CASE-INT-060-06a` | 060/AC-INT-060-06 | approved requirement revisionだけ欠落 | planを実行可能にせず、該当requirement sourceへ戻す。 |",
+        "sha256": "1497835497126225bc39412a4efaac52728a865ef35e99ee8ff6218b9f487443",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-060-06b",
+        "physical_line": 2726,
+        "literal": "| `CASE-INT-060-06b` | 060/AC-INT-060-06 | approved requirement revisionだけunknown | requirement状態をunknownのまま保持し、他入力で埋めず該当sourceへ戻す。 |",
+        "sha256": "70093c4abdc17b8f4719f43864cfa11622419deef8823bdd6f416ac206a13e74",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-060-06c",
+        "physical_line": 2727,
+        "literal": "| `CASE-INT-060-06c` | 060/AC-INT-060-06 | approved requirement revisionだけstale | 当該requirementを使うnodeだけ保留しrequirement sourceへ戻す。 |",
+        "sha256": "43fe8de7168b476e17d53631dab49eac26066e6ac2061870179c195f6a493955",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-060-06d",
+        "physical_line": 2728,
+        "literal": "| `CASE-INT-060-06d` | 060/AC-INT-060-06 | HARNESS process contractだけunknown | 適用contractを推測せずHARNESSへ戻す。 |",
+        "sha256": "6d6fa32021e32c26fc61950640ab91962f136c189a3ec483a6d1b23f284fec81",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-060-06e",
+        "physical_line": 2729,
+        "literal": "| `CASE-INT-060-06e` | 060/AC-INT-060-06 | HARNESS process contractだけstale | stale contract依存nodeだけ未完にしHARNESSへ戻す。 |",
+        "sha256": "292e64c72b842edf9fcb1bf65e9c9006f1ff05ab6ad9481c810d1579e88af2c4",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-060-06f",
+        "physical_line": 2730,
+        "literal": "| `CASE-INT-060-06f` | 060/AC-INT-060-06 | HARNESS process contractだけ欠落 | 対応nodeを保留しHARNESSへ戻す。 |",
+        "sha256": "2f287bfcadbb449cbf45e1dcfdcd22f2d2a02acefbd2d7bf96d885f0089589a6",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-060-06g",
+        "physical_line": 2731,
+        "literal": "| `CASE-INT-060-06g` | 060/AC-INT-060-06 | OS current stateだけunknown | current state依存nodeをunknownに保ちOS state ownerへ戻す。 |",
+        "sha256": "e1654845d4f78f3867428f29198af67c9bfd60ed4fb2f2e8f8769fcc51c44ce6",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-060-06h",
+        "physical_line": 2732,
+        "literal": "| `CASE-INT-060-06h` | 060/AC-INT-060-06 | OS current stateだけstale | 古いstateで現在計画を確定せずOS state ownerへ戻す。 |",
+        "sha256": "625e7cdf99855dcbf29bd244050e7f7cd5187fa9fe95ea7cf2fa0c820562739a",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-060-06i",
+        "physical_line": 2733,
+        "literal": "| `CASE-INT-060-06i` | 060/AC-INT-060-06 | OS current stateだけ欠落 | affected planだけ保留しOS state ownerへ戻す。 |",
+        "sha256": "6c75aca24c3fbf87df31b43499b201adb26081fe328f4b5ce13a4eec1052d99b",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-060-06j",
+        "physical_line": 2734,
+        "literal": "| `CASE-INT-060-06j` | 060/AC-INT-060-06 | selected BRAIN knowledgeだけstale | applicabilityを流用せずBRAIN source ownerへ戻す。 |",
+        "sha256": "acdc4d4fdd95ddb1bee373e2e687bd905b0e5ee671adf40ab9548ca1c71d1c45",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-060-06k",
+        "physical_line": 2735,
+        "literal": "| `CASE-INT-060-06k` | 060/AC-INT-060-06 | selected BRAIN knowledgeだけunknown | knowledge applicabilityをunknownのまま保持しBRAINへ戻す。 |",
+        "sha256": "b6da1eb3e8a3d9ba6182df7c312a45622f01af247bb153aa152288c22f3aad0d",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-060-06l",
+        "physical_line": 2736,
+        "literal": "| `CASE-INT-060-06l` | 060/AC-INT-060-06 | selected BRAIN knowledgeだけ欠落 | selected knowledgeを使うnodeだけ未完にしBRAINへ戻す。 |",
+        "sha256": "0a2d6dd7360cfb7aad203feb848625cd6cae62cce6befaabbf1f967ce73ea8cc",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-061-06a",
+        "physical_line": 2737,
+        "literal": "| `CASE-INT-061-06a` | 061/AC-INT-061-06 | task identityだけ欠落 | task別proposalを確定せずscopeを推測しない。固定L2にこの不足の個別返却先指定はないため戻し先unknown。 |",
+        "sha256": "f4f6deb46d69118378d6749df69189dafe3f895bed2724671420de80e51bb08a",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-061-06b",
+        "physical_line": 2738,
+        "literal": "| `CASE-INT-061-06b` | 061/AC-INT-061-06 | Worker実績sourceだけ欠落 | 実績を未評価としLABOへ戻す。 |",
+        "sha256": "df097449c4d929c9bbdb6f5db570fd8df56b389913c53d73dbb2c5b8cb86e7f8",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-061-06c",
+        "physical_line": 2739,
+        "literal": "| `CASE-INT-061-06c` | 061/AC-INT-061-06 | Worker実績revisionだけstale | stale実績をcurrent proposalへ流用せずLABOへ戻す。 |",
+        "sha256": "9cb1d47807264952e4d68d5db7f3d82eb304df892b84460d55c76c240ec9a26b",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-062-05a",
+        "physical_line": 2740,
+        "literal": "| `CASE-INT-062-05a` | 062/AC-INT-062-05 | repair candidateだけ欠落 | repairを未完とし、固定L2がこの入力欠落のownerを指定しないため戻し先unknown。 |",
+        "sha256": "8eeb29b665418ba8d686f74f61844a1776a1c0e84d06b6f6cd1babaf3cd90dfe",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-062-05b",
+        "physical_line": 2741,
+        "literal": "| `CASE-INT-062-05b` | 062/AC-INT-062-05 | 有効な正常repair結果だけを既知regressionで置換 | regressionを成功扱いしない。検証はHARNESS、検収はOSの固定責務に従い、原因ownerはsourceで特定できる範囲だけ返す。 |",
+        "sha256": "7e25d9e496973339c53281d625fa1743d3aeb17755cfe0178712d6d029629413",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-062-05c",
+        "physical_line": 2742,
+        "literal": "| `CASE-INT-062-05c` | 062/AC-INT-062-05 | HARNESS write-set外の一変更だけを結果へ加える | 対象を不合格にしHARNESS verificationへ戻す。 |",
+        "sha256": "58cef2e9812b6469607df9d2ad99dee438b38934db40be75c819ad8e6aad8d4a",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-062-05d",
+        "physical_line": 2743,
+        "literal": "| `CASE-INT-062-05d` | 062/AC-INT-062-05 | HARNESS verification obligationだけ変更 | acceptanceに昇格させずHARNESSへ戻す。 |",
+        "sha256": "45628ad52c252433460382f58702f49284ac36e8baa8d1428f5788984dbeae17",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-062-05e",
+        "physical_line": 2744,
+        "literal": "| `CASE-INT-062-05e` | 062/AC-INT-062-05 | 既存HARNESS obligationの一つだけstale | 当該検証を未成立としHARNESSへ戻す。 |",
+        "sha256": "4a1b9c2a5d1e4c087184e7be93c47ee33d5b145013ea96a7ca847a3b09e2e28b",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-063-05a",
+        "physical_line": 2745,
+        "literal": "| `CASE-INT-063-05a` | 063/AC-INT-063-05 | current INT judgmentだけ欠落 | historical LABO/BRAIN inputsから判断を生成せず、判断材料を未完とする。固定L2の個別return指定外なら戻し先unknown。 |",
+        "sha256": "055e3d228d29890ef8d616ef4ea4ee75ca88649d44b47d3c5d3f0872b560aeda",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-063-05b",
+        "physical_line": 2746,
+        "literal": "| `CASE-INT-063-05b` | 063/AC-INT-063-05 | current INT judgmentだけstale | stale判断をcurrent扱いしない。INTELLIGENCE判断を未確定で保持する。 |",
+        "sha256": "c9be058d1647e576b114468a3d11890556b0fd201af93e658f754dbea2ae5227",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-063-05c",
+        "physical_line": 2747,
+        "literal": "| `CASE-INT-063-05c` | 063/AC-INT-063-05 | HARNESS process contractだけ欠落 | 工程contractを推測せずHARNESSへ戻す。 |",
+        "sha256": "485af75a1c4526b50204ffc72bf83f72dec814c753c9af0cab32fd93798bd0f3",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-063-05d",
+        "physical_line": 2748,
+        "literal": "| `CASE-INT-063-05d` | 063/AC-INT-063-05 | HARNESS process contractだけstale | stale contractを使った循環を未完としHARNESSへ戻す。 |",
+        "sha256": "b59af4f6a4c74ab0a2a3e2e0db263c367865a592dadf9911c5f928f276f15356",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-08a",
+        "physical_line": 2749,
+        "literal": "| `CASE-INT-069-08a` | 069/AC-INT-069-08 | model revisionだけstale | 計算をcurrent結果として結ばずmodel/source ownerへ戻す。 |",
+        "sha256": "b688df708b5349d0fa0ce6f903ad495d163a3e4c6a33e81e4c06a1f6334fb06f",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-08b",
+        "physical_line": 2750,
+        "literal": "| `CASE-INT-069-08b` | 069/AC-INT-069-08 | model schema versionだけ欠落 | schema適用をunknownにする。CORE model schema authorityであるProduct Core/HARNESSへ照合する。 |",
+        "sha256": "650d168c0b5d1e71c7eb56c94d7717c9ea1f026870d0903a32c2f93acbb5974a",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-08c",
+        "physical_line": 2751,
+        "literal": "| `CASE-INT-069-08c` | 069/AC-INT-069-08 | finite state setだけ欠落 | stateを補わず未対応/unknownとし、選択source ownerが明示される場合だけ照合する。 |",
+        "sha256": "803d506c2811f013ef4993130ae25f57f43e0ba0af436f1b1d478d5a516ad66f",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-08d",
+        "physical_line": 2752,
+        "literal": "| `CASE-INT-069-08d` | 069/AC-INT-069-08 | initial stateだけ欠落 | 遷移計算を開始せずunknownを保持し、選択source ownerが明示される場合だけ照合する。 |",
+        "sha256": "0bee37c84d719ab7689989f1355597ead47fefe4920410ab65c8e32d01ebdccc",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-08e",
+        "physical_line": 2753,
+        "literal": "| `CASE-INT-069-08e` | 069/AC-INT-069-08 | baseline条件だけ欠落 | 比較結果を作らずscenario author/sourceへ戻す。 |",
+        "sha256": "3e0d33de469307c4969fb80ffd35ae7e258fe5f13b949552f40e903722fa5559",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-08f",
+        "physical_line": 2754,
+        "literal": "| `CASE-INT-069-08f` | 069/AC-INT-069-08 | scenario条件だけ欠落 | baselineのみから比較を作らずscenario author/sourceへ戻す。 |",
+        "sha256": "71fbca49cd32042eef128b368b027daae8e3750871f9c1459bc42f942f50df5e",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-08g",
+        "physical_line": 2755,
+        "literal": "| `CASE-INT-069-08g` | 069/AC-INT-069-08 | input event seriesだけ欠落 | eventを捏造せず計算を未完にする。 |",
+        "sha256": "c6725f56e4df26e96498d05c03143ff285560be529da5e2756b132d403f5803f",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-08h",
+        "physical_line": 2756,
+        "literal": "| `CASE-INT-069-08h` | 069/AC-INT-069-08 | load seriesだけ欠落 | 負荷結果をunknownとし選択source ownerへ戻す。 |",
+        "sha256": "2b726f9517850c1185db4e4fac824186296412ca869aa3a50f2ff0a8f77e0d8e",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-08i",
+        "physical_line": 2757,
+        "literal": "| `CASE-INT-069-08i` | 069/AC-INT-069-08 | capacityだけ欠落 | throughput/timeを計算せず選択source ownerへ戻す。 |",
+        "sha256": "428070eb7f4808882a210383fd5abe1bed1ca514a455e14bbc63548d02cfcaef",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-08j",
+        "physical_line": 2758,
+        "literal": "| `CASE-INT-069-08j` | 069/AC-INT-069-08 | service rateだけunknown | 率を補わず時間/throughputをunknownとする。 |",
+        "sha256": "2392c716e0f4ebdd49963ac4317b049562bcd5ed09acc135f8c240a9f528d194",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-08k",
+        "physical_line": 2759,
+        "literal": "| `CASE-INT-069-08k` | 069/AC-INT-069-08 | currencyだけ欠落 | costを比較せずprice source ownerへ戻す。 |",
+        "sha256": "619dfc9fbd24ceb92fa33ba932cb32b0184008d19ec29ff43126defc33994023",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-08l",
+        "physical_line": 2760,
+        "literal": "| `CASE-INT-069-08l` | 069/AC-INT-069-08 | price effective timestampだけstale | stale priceをcurrent costに流用しprice source ownerへ戻す。 |",
+        "sha256": "63fa88662d93466b7df7c63f3d997b27ef287780f6e2e0e44c4fafefb1696687",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-08m",
+        "physical_line": 2761,
+        "literal": "| `CASE-INT-069-08m` | 069/AC-INT-069-08 | source owner identityだけ欠落 | source authorityを推測せず該当model/sourceをunknownとする。 |",
+        "sha256": "b4b0f5a5da6b08c8c5eb954b3153ae2e2be7c9c792aec44f7114a8a46303443a",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-08n",
+        "physical_line": 2762,
+        "literal": "| `CASE-INT-069-08n` | 069/AC-INT-069-08 | stop/cutoff conditionだけ欠落 | 計算完了位置を捏造せず途中結果を未確定とする。 |",
+        "sha256": "51f2730be2361d5accf533b52ac0561d0da724d911ea506340c7377cdc7c7591",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-069-08o",
+        "physical_line": 2763,
+        "literal": "| `CASE-INT-069-08o` | 069/AC-INT-069-08 | selected model digestだけ不一致（revisionは一致） | digest不一致modelを使わずunknown/未完とし、固定L2が指定する選択source ownerへ照合する。特定できなければ戻し先unknown。 |",
+        "sha256": "2b47dc517228f25329f8c9da78d0ec5534a11efc0ebec44943a842b8df4ee202",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-09a",
+        "physical_line": 2764,
+        "literal": "| `CASE-INT-070-09a` | 070/AC-INT-070-09 | 033 input receiptだけ欠落 | 後段計算/送達receiptを前提にせずinput段階だけ未成立とする。 |",
+        "sha256": "379f952db9b14a0ddfa715cf172956d0fcfd90b0ad170e2de3180dfdb5004a4e",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-09b",
+        "physical_line": 2765,
+        "literal": "| `CASE-INT-070-09b` | 070/AC-INT-070-09 | 033 input receipt revisionだけstale | current inputと結ばずsource ownerへ戻す。 |",
+        "sha256": "9dc93ffe13284a5020d4bb4ca805a97d6baf9b3e27fe5ab712b408282d91f77b",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-09c",
+        "physical_line": 2766,
+        "literal": "| `CASE-INT-070-09c` | 070/AC-INT-070-09 | 069 result receiptだけ欠落 | input成立は保持し、result/send/consumerを未成立とする。 |",
+        "sha256": "718f672637eed241c7b83bb6f5c1b18534deedc5582616e2e3aecee1ffb1694c",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-09d",
+        "physical_line": 2767,
+        "literal": "| `CASE-INT-070-09d` | 070/AC-INT-070-09 | scenario identityだけ不一致 | resultをinput scenarioへ束ねない。 |",
+        "sha256": "cfac897736b5438a3dddc9189022a160ccda57d4c94d33655bde5a901d58ac65",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-09e",
+        "physical_line": 2768,
+        "literal": "| `CASE-INT-070-09e` | 070/AC-INT-070-09 | product identityだけ不一致 | 別product receiptを混ぜずsource ownerへ戻す。 |",
+        "sha256": "43e4e050553f80a3d98b6dba8cc125dd13b24150537d884b9f075b87acbac57f",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-09f",
+        "physical_line": 2769,
+        "literal": "| `CASE-INT-070-09f` | 070/AC-INT-070-09 | known regressionの誤予測だけ成功扱い | comparisonを不合格とし後の実測/evaluationをLABO ownerへ残す。 |",
+        "sha256": "d3f3bc6b239ac7eb9394108cc94f1188f6440e67484ac70f7934ad99fca47ed9",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-070-09g",
+        "physical_line": 2770,
+        "literal": "| `CASE-INT-070-09g` | 070/AC-INT-070-09 | source design authorityだけをINTELLIGENCEへ移す | authorityを移さず既存design source ownerを保持する。 |",
+        "sha256": "4db37070077abf0efd856a6292b7308139606b0788bef893ab8763ae3e6c6e28",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-05a",
+        "physical_line": 2771,
+        "literal": "| `CASE-INT-071-05a` | 071/AC-INT-071-05 | expected-result verification operationだけoracle欠落 | そのverificationだけ保留。通常scenario計算は引き続き明示ruleから結果/trace/unknownを返す。 |",
+        "sha256": "c9ec314155676e575e52ff50fae97deb622ddb55688b9cc49e238e7d563bd47e",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-05b",
+        "physical_line": 2772,
+        "literal": "| `CASE-INT-071-05b` | 071/AC-INT-071-05 | 通常scenarioにoracleがないことだけを失敗扱い | 固定L2/L11に反してoracle必須化しない。明示rule計算を受け入れる。 |",
+        "sha256": "9a152d905d26117501eed13ba2445a7c6631da8ed9212b917db7326d303f3f1e",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-05c",
+        "physical_line": 2773,
+        "literal": "| `CASE-INT-071-05c` | 071/AC-INT-071-05 | 数値threshold decisionだけ未決 | 実測/計算値のみ記録し合否/適格化を付けない。 |",
+        "sha256": "b0f4ff56bec4525b9f5a2bfe5df2520b9b67a76b6b61d32893fd4263165f9917",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-05d",
+        "physical_line": 2774,
+        "literal": "| `CASE-INT-071-05d` | 071/AC-INT-071-05 | 入力前に後段receiptを要求 | 順序を不成立とし、該当stageのreceiptはそのstage後に照合する。 |",
+        "sha256": "e89f55575413d16cae84c3fbf0d5118c8a4b322fc291c11a20cbfd0ac9692e2d",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-05e",
+        "physical_line": 2775,
+        "literal": "| `CASE-INT-071-05e` | 071/AC-INT-071-05 | modelにないrollbackだけ生成 | rollbackを補完せず当該scenarioをunknown/blockedに保つ。 |",
+        "sha256": "e061057b790ea239a9c0ad6de6788482ac06c7baed7890db37d8f6263cc82841",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-05f",
+        "physical_line": 2776,
+        "literal": "| `CASE-INT-071-05f` | 071/AC-INT-071-05 | modelにないretryだけ生成 | retry成功を作らず明示failure edgeの状態を保つ。 |",
+        "sha256": "60b5474c36aa1602d4481c4c93f1668b87624cc7e35e61fcbb22795aa95a3a57",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-05g",
+        "physical_line": 2777,
+        "literal": "| `CASE-INT-071-05g` | 071/AC-INT-071-05 | worker数から線形speedupだけ仮定 | shared ceiling/service ruleを維持し比例改善を主張しない。 |",
+        "sha256": "5352f9ad96603d7b2f8743e65b9df84f5b2e9b17399b45250073c65cad7a5aa1",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-05h",
+        "physical_line": 2778,
+        "literal": "| `CASE-INT-071-05h` | 071/AC-INT-071-05 | recovery ruleだけ未定義 | recoveryを生成せず当該failure scenarioをblocked/unknownにする。 |",
+        "sha256": "abc89f4b69e7fc08a535c9b5f6b56fda74fb43ea81882461dec48c62dbb448d1",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-05i",
+        "physical_line": 2779,
+        "literal": "| `CASE-INT-071-05i` | 071/AC-INT-071-05 | 033 input receiptだけ欠落 | calculationを開始せずinput stageを未完とする。 |",
+        "sha256": "d43ff3599b6ccdf6bea27ac74b56074d2f7d57a8b591db88f2702c22e295c541",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-05j",
+        "physical_line": 2780,
+        "literal": "| `CASE-INT-071-05j` | 071/AC-INT-071-05 | 033 input receiptだけstale | stale inputをcurrent comparisonへ結ばない。 |",
+        "sha256": "5ef186d224770e05ae93c502f502cf708428f0bf388a9317e253a5fff72e0a55",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-05k",
+        "physical_line": 2781,
+        "literal": "| `CASE-INT-071-05k` | 071/AC-INT-071-05 | selected connector contractだけ欠落 | connection inputを成立扱いせずCONNECT/source contract ownerへ戻す。 |",
+        "sha256": "bf651b98812ffbf40054d574a085380a92a3a3407729565abc9aa141be03e137",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-05l",
+        "physical_line": 2782,
+        "literal": "| `CASE-INT-071-05l` | 071/AC-INT-071-05 | same-unit load seriesだけ欠落 | 欠落seriesを補わず該当sourceをunknownとする。 |",
+        "sha256": "9f2f1f454591b1df4b0c3709c3cb3b5b5187f3a9fd208e30085f5d4cac8c2d09",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-05m",
+        "physical_line": 2783,
+        "literal": "| `CASE-INT-071-05m` | 071/AC-INT-071-05 | stop conditionだけ欠落 | 無制限完了を主張せず停止条件unknownを保持する。 |",
+        "sha256": "6833cab039409ffd04d8d6fdacd4834452f0329e47f82185e6621099c45cfb6b",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-05n",
+        "physical_line": 2784,
+        "literal": "| `CASE-INT-071-05n` | 071/AC-INT-071-05 | known unsupported stateだけsuccessへ置換 | unsupported/unknownをsuccessにしない。 |",
+        "sha256": "9782136bb062b92689799ccaded1e92ae10e6145e39395444e1cc45f378e6adf",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-05o",
+        "physical_line": 2785,
+        "literal": "| `CASE-INT-071-05o` | 071/AC-INT-071-05 | 常時必須HARNESS-L2-010 pack contract identityだけ欠落 | contract成立とせずHARNESS pack contract ownerへ戻す。 |",
+        "sha256": "2dbf3b761789a76383962179eb2e814177900e311cf53044a283195e0b5ca1a1",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-05p",
+        "physical_line": 2786,
+        "literal": "| `CASE-INT-071-05p` | 071/AC-INT-071-05 | 常時必須HARNESS-L2-011 pack contract revisionだけstale | stale contractを使わずHARNESS pack contract ownerへ戻す。call固有inputはこのfixtureで変えない。 |",
+        "sha256": "461f0e728c2a1d20f0928ece45aaf5e730c1828fd046cc6ac2e57c2aa0ac72c8",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-05q",
+        "physical_line": 2787,
+        "literal": "| `CASE-INT-071-05q` | 071/AC-INT-071-05 | 宣言済みoperationに適用するHARNESS-L2-023 dependency classだけ欠落 | dependency適用を成立扱いせずHARNESS pack contract ownerへ照合し、他の契約/operation状態を保持する。 |",
+        "sha256": "430f32479e38200c294715c648223d2740d3e7c53368b43d507cd1b208ea03ba",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-071-05r",
+        "physical_line": 2788,
+        "literal": "| `CASE-INT-071-05r` | 071/AC-INT-071-05 | L1-013 provenanceだけ欠落 | provenanceを補わず当該sourceをunknownにし、固定L2が指定する該当source ownerへ照合する。 |",
+        "sha256": "c82de10db58e8a49bc7ee36783dc0ac20166e36ceff8a1adbb1986358c606065",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-06a",
+        "physical_line": 2789,
+        "literal": "| `CASE-INT-074-06a` | 074/AC-INT-074-06 | reason classだけ欠落 | feedback分類を推測せずLABO評価を未確定とする。 |",
+        "sha256": "ab92399bcc158b6d5f144407a5b311c080b01d349f52aa84cfce30db6a3db95c",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-06b",
+        "physical_line": 2790,
+        "literal": "| `CASE-INT-074-06b` | 074/AC-INT-074-06 | missing input listだけ欠落 | missing inputを補わずLABOへ戻す。 |",
+        "sha256": "d4230591594cb6640f382ff0b15f460763bfe2da361b2a675c29c76d50a4145d",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-06c",
+        "physical_line": 2791,
+        "literal": "| `CASE-INT-074-06c` | 074/AC-INT-074-06 | oracle identityだけ欠落 | 再評価成立を推測せずLABOへ戻す。 |",
+        "sha256": "2807274aba58d348067eb85d160af74768d4508cde5345da2b0bdfc5ed065865",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-06d",
+        "physical_line": 2792,
+        "literal": "| `CASE-INT-074-06d` | 074/AC-INT-074-06 | reissue verification stateだけstale | 古い成立状態を流用せずLABOへ戻す。 |",
+        "sha256": "8c22d2906919bffb92c95126cb330fa9c2010b503adaeeb667519333f00d297f",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-06e",
+        "physical_line": 2793,
+        "literal": "| `CASE-INT-074-06e` | 074/AC-INT-074-06 | domain/task classだけ不一致 | 別taskへの転用を拒否しLABOへ戻す。 |",
+        "sha256": "46c75c6ba2110f91f240c962409e3739ba86fb893062f3d03f83f562e1c8cdab",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-06f",
+        "physical_line": 2794,
+        "literal": "| `CASE-INT-074-06f` | 074/AC-INT-074-06 | observation populationだけ欠落 | 母集団を捏造せず評価適用をunknownにする。 |",
+        "sha256": "04aacda94cca260a526c990d1cda0c2da7c4c80962d25544f1eb6d08ecc14ecf",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-06g",
+        "physical_line": 2795,
+        "literal": "| `CASE-INT-074-06g` | 074/AC-INT-074-06 | observation windowだけstale | 古いwindowからcurrentを推定せずLABOへ戻す。 |",
+        "sha256": "86b8a874c11c468395d195e31e28e7fe8bad8b937a32b31f317764859b1aeb97",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-074-06h",
+        "physical_line": 2796,
+        "literal": "| `CASE-INT-074-06h` | 074/AC-INT-074-06 | LABO evaluation stateだけunknown | 評価済みと推測せずLABO評価をunknownに保ちLABOへ戻す。 |",
+        "sha256": "759a229b7bcbdb89ca86b217772cb840bb8b553c68dfe654147e2d2be80eb2a1",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-06a",
+        "physical_line": 2797,
+        "literal": "| `CASE-INT-077-06a` | 077/AC-INT-077-06 | constant dependency identityだけ欠落 | closureを成立扱いせず、HARNESS-L2-023分類契約とsource identityを照合する。 |",
+        "sha256": "afcd62d3df21d0d0646c76561425a6d60b155884256018b3834b16e84ecabbb4",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-06b",
+        "physical_line": 2798,
+        "literal": "| `CASE-INT-077-06b` | 077/AC-INT-077-06 | dependency contract revisionだけstale | stale dependencyを現在適用せず契約ownerへ照合する。 |",
+        "sha256": "bb181e41eef55804257fa5976415891cc55658dcc91667f2407f1d1faf30648d",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-06c",
+        "physical_line": 2799,
+        "literal": "| `CASE-INT-077-06c` | 077/AC-INT-077-06 | selected-source conditionだけ欠落 | source qualificationを推測せずselected source状態をunknownにする。 |",
+        "sha256": "38e5e2da593920caa8c145dc454f748739d949bd1ab447a0fe1859857e9594a6",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-06d",
+        "physical_line": 2800,
+        "literal": "| `CASE-INT-077-06d` | 077/AC-INT-077-06 | 特定operation条件だけ常時必須へ混同 | 適用外operationへ追加義務を持ち込まず親のoperation別条件を保つ。 |",
+        "sha256": "4098199d04f454abc6c0f8ff2cb4c0e1d80b1e107e053e4fcce486779d57e04f",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-06e",
+        "physical_line": 2801,
+        "literal": "| `CASE-INT-077-06e` | 077/AC-INT-077-06 | reference-only資料だけselected sourceとして扱う | 資料をauthority/qualificationへ昇格しない。 |",
+        "sha256": "afc00107b55f5509175f7833da0a27ac4b61a771cc2376ac9b074e0a2de06430",
+        "classification": "individual_or_unmarked"
+      },
+      {
+        "case_id": "CASE-INT-077-06f",
+        "physical_line": 2802,
+        "literal": "| `CASE-INT-077-06f` | 077/AC-INT-077-06 | 未選択sourceのreceiptだけunknown | 未選択sourceは未観測であり、successful/failedいずれも推測しない。 |",
+        "sha256": "d86e51ff745e64f167d901c91649628b2a3667b4f00b95a33d8348bdff686e62",
+        "classification": "individual_or_unmarked"
+      }
+    ]
+  },
+  "finding_dispositions_reference": "docs/governance/audits/requirements-stage/intelligence-stage5-review01-correction-2026-10-06.json",
+  "limitations": [
+    "計数はStage5のfirst-column table定義。heading/箇条はこの計数に含めず、全定義数や実装被覆を意味しない。",
+    "43所見のRoot補正とWorker候補の独立review解消は次revisionレビュー待ち。",
+    "旧source/固定親全範囲の意味実読はWorker監査へ帰属。Root SHA再計算から実読を生成しない。",
+    "未承認・未実行。Bun/旧runtime/test/CIなし。"
+  ]
+}
