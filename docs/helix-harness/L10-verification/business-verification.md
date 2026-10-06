@@ -113,6 +113,8 @@ L2-054のconnection目的に対する業務観点は、HARNESS handoffが同じt
 | 観点 | 合成確認 | 境界 |
 |---|---|---|
 | OS assignment責務との接続 | c01/c03でOS通常assignmentとHARNESS handoffを別状態にする | 実assignmentを実施した主張ではない |
+| layer/drive適用範囲 | c03で各axisのsource-input applicability-scopeとhandoff出力を項目別に照合し、c55–c62で各axisの4状態を個別に保留する | scope値は合成fixture入力。実際のlayer/drive mappingを新設・承認しない |
+| 出力authority境界 | c51–c54で仮登録から要求採択/L3承認/assignment、handoffから実行許可を各field単独で拒否する | source入力を不足扱いせず誤ったHARNESS出力を訂正する |
 | 複数contract handoff | c03で固定入力の全contract参照集合と集合digestが出力に一致し、c20–c22で一項目だけの欠落/不一致を拒否する | digest algorithm、実契約集合、実行結果を定義しない |
 | 証拠の非昇格 | c29–c34でsource/coverage receipt・候補・fixture・OS記録例が存在しても、禁止状態fieldを個別生成しない | 正常な証拠入力に問題を転嫁せず、実行/受入を主張しない |
 | 不確実条件 | c08でunknown/deferを維持する | 個別owner identityを創作しない |

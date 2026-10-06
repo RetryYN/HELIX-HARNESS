@@ -773,8 +773,8 @@ HARNESS-L2-054の型付きhandoff条件を満たし、L2-047のmuster判断をOS
 #### 受入条件
 
 - `AC-HARNESS-L3-054-01`：入力sourceと比較条件が十分なとき、HARNESSは `muster_candidate`、`existing_role_sufficient`、`unknown_or_defer` のいずれかを対象task/scope/revisionと理由・比較情報に結ぶ。muster出力の契約参照は複数の場合に全参照集合とその集合digestを含め、参照集合・input/output digest・generation-rule revision・理由・比較対象/evidence・guard結果を同scope/revisionの入力source値と項目ごとに照合する。digest algorithmやwire formatは定義しない。既存role十分分岐のrole参照・比較根拠も同じ入力値と一致する。
-- `AC-HARNESS-L3-054-02`：必須軸、source/revision、適用範囲、oracle、evidence適用性、contract digestまたはOS条件の欠落・stale・conflictを推定補完せず、原因別の既存責務へ戻す。`unknown_or_defer`の不足条件、既知の責務区分、再照合に必要な入力は原因入力に対応する既存機構区分へ無条件で示す。個体source/owner identityが不明でも、既知区分への返却を停止せず、個体identityだけunknownとして別fieldに保持する。機構区分やownerを推測して新設しない。
-- `AC-HARNESS-L3-054-03`：muster候補の契約参照（複数なら全参照集合とその集合digest）/input-output digest、generation-rule revision、理由、比較/evidence、guard結果を同一scope/revisionへ結び、対応する入力値と一致するか項目ごとに照合する。OS response/assignmentの対応有無と区別し、正規assignmentはOSだけが発行する。
+- `AC-HARNESS-L3-054-02`：必須軸、source/revision、適用範囲、oracle、evidence適用性、contract digestまたはOS条件の欠落・stale・conflict・unknownを推定補完せず、原因別の既存責務へ戻す。layer applicability-scopeとdrive applicability-scopeはそれぞれ別fieldとしてmissing/stale/conflict/unknownを一つずつ判定し、他軸をcurrentに保つ。`unknown_or_defer`の不足条件、既知の責務区分、再照合に必要な入力は原因入力に対応する既存機構区分へ無条件で示す。個体source/owner identityが不明でも、既知区分への返却を停止せず、個体identityだけunknownとして別fieldに保持する。機構区分やownerを推測して新設しない。
+- `AC-HARNESS-L3-054-03`：muster候補の契約参照（複数なら全参照集合とその集合digest）/input-output digest、generation-rule revision、理由、比較/evidence、guard結果を同一scope/revisionへ結び、対応する入力値と一致するか項目ごとに照合する。layer/drive適用条件の正常値も各選択source入力と出力で一致を確認する。仮登録を根拠に要求採択・L3承認・assignmentを、HARNESS handoffを根拠に実行許可を出力する候補を各一fieldで拒否する。OS response/assignmentの対応有無と区別し、正規assignmentはOSだけが発行する。
 - `AC-HARNESS-L3-054-04`：既存role十分時は入力と一致する対象既存role参照および比較根拠を返し、いずれかの出力値の欠落・別値は不成立として当該HARNESS handoff出力を訂正する。追加specialist contract/assignmentを生成しない。通常の既存role assignmentはOS既存契約に従う。handoff、source/coverage receipt、候補本文、fixture、OS記録例の存在から要求採択、L3承認、authority、実行許可、oracle実行・合格、runtime projection、assignment、Worker起動、security許可、成果受入または利用者受入を生成しない。正常入力に対するHARNESS自身の候補出力誤りはHARNESS側で拒否・訂正し、正常入力をowner不足へ転嫁しない。
 
 #### L3境界

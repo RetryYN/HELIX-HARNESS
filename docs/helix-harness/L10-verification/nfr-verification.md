@@ -199,10 +199,10 @@ NFR CASEは測定candidate分類であり、実測・CI success・performance SL
 
 | 品質特性 | 静的oracle確認 | 制限 |
 |---|---|---|
-| 追跡可能性 | c03/c20–c22で複数時の参照全体集合・集合digestを正常照合し、field単独欠落/集合不一致を拒否。c04–c07でscope/revision等を照合 | 集合digestは合成fixture値であり算法/wire formatを定義しない |
-| authority境界 | c09–c12/c23–c28/c32–c35/c38–c50でassignment、Worker起動、authority、実行許可、security許可、要求採択、L3承認、provider/model差からの独立性推定を独立fieldで拒否 | 実行・承認・security decisionを示さない |
+| 追跡可能性 | c03でlayer/drive applicability-scopeのsource inputと出力値を項目別照合し、複数時の全参照集合・集合digestも正常照合する。c20–c22はfield単独欠落/集合不一致を拒否し、c04–c07はscope/revision等を照合 | 値は合成fixture source-input。集合digestはalgorithm/wire formatを定義しない |
+| authority境界 | c09–c12/c23–c28/c32–c35/c38–c54でassignment、Worker起動、authority、実行許可、security許可、要求採択、L3承認、provider/model差からの独立性推定を独立fieldで拒否。c51–c54は仮登録3出力とhandoff実行許可を単独で拒否 | 実行・承認・security decisionを示さない |
 | 証拠の非昇格 | c29–c34/c38–c47でsource/coverage receipt・候補・fixture・OS例から要求採択/L3承認、仮登録・候補本文からWorker起動、証拠存在からoracle実行/合格、runtime projection、assignment、security許可、利用者受入が生成される各fieldを個別拒否 | すべて静的合成fixtureであり、正常入力を既存ownerへ転嫁しない |
-| fail-closedな不確実性 | c08/c36/c37で既知axis fieldの欠落とunknown axisの別軸への畳込みを別々に拒否 | owner個体が未知ならunknownのまま |
+| fail-closedな不確実性 | c08/c36/c37に加えc55–c62でlayer/drive applicability-scopeのmissing/stale/conflict/unknownを各field単独で保留 | owner個体が未知ならunknownのまま |
 | 既存role境界 | c01/c02でOS既存roleの普通のassignmentを許し、追加specialistだけを拒否 | 比較条件の新閾値を追加しない |
 
 **測定方法**：本candidateでは構造化された合成fixture fieldの静的照合のみを提案する。実測値、性能閾値、環境、toolchain、runtime projection、実行済み結果は定義・主張しない。
