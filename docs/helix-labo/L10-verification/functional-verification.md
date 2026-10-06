@@ -2633,7 +2633,7 @@ CASE-01は旧snapshot上の高水準正常説明である。各下記candidate�
 | `L10-LABO-059-CASE-03m` | LABO-059-AC-03 | rework costだけ除外 | 総費用の成功比較にしない。欠落したrework費用・effortの提供元が識別できれば該当sourceまたはLABO-055へ戻し、identity不明ならunknown。 |
 | `L10-LABO-059-CASE-04a` | LABO-059-AC-03 | LABOがWorkerを割当 | 拒否。OS ownerへ戻す。 戻し先: OS。 |
 | `L10-LABO-059-CASE-04b` | LABO-059-AC-03 | LABOがpriority/toleranceを確定 | 拒否。既存decision ownerに残す。 |
-| `L10-LABO-059-CASE-05` | LABO-059-AC-03 | 単独変異: 有効なscope内decisionにrunごとの再確認を要求だけを変更。その他の入力は `CASE-01` と同一。 | 有効なscope内decisionを再確認要求せず再利用する 戻し先: 既存decision owner。 |
+| `L10-LABO-059-CASE-05` | LABO-059-AC-03 | 単独変異: 有効なscope内decisionにrunごとの再確認を要求だけを変更。その他の入力は `CASE-01` と同一。 | この有効なscope内decisionへのrunごとの再確認要求を拒否し、既決decisionをそのまま再利用する。このケースからdecision ownerへの再確認・戻しを生成しない（固定L2-059:420/422、L11:170）。 |
 | `L10-LABO-059-CASE-06` | LABO-059-AC-03 | 単独変異: decisionの有効期限切れだけを変更。その他の入力は `CASE-01` と同一。 | 優先値を適用せず既存decision ownerへ返す 戻し先: 既存decision owner。 |
 | `L10-LABO-059-CASE-07` | LABO-059-AC-03 | 基準入力ではquality oracleが不成立、他receipt/price/適用可能decisionは有効。入力を固定し、出力だけを低価格で品質不成立を成功化する。 | 誤った成功出力を拒否し、品質不成立/比較不成立を保つ。quality oracleを変更せず、oracle自体の不明時だけHARNESS/要求ownerへ返す。 |
 | `L10-LABO-059-CASE-08` | LABO-059-AC-03 | 基準入力ではquality oracleが不成立、他receipt/duration/適用可能decisionは有効。入力を固定し、出力だけを短いdurationで品質不成立を成功化する。 | 誤った成功出力を拒否し、品質不成立/比較不成立を保つ。quality oracleを変更せず、oracle自体の不明時だけHARNESS/要求ownerへ返す。 |
