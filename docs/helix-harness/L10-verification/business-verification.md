@@ -97,8 +97,12 @@ execution_status: designed_only_not_executed
 
 **対象business requirement**：`BR-HARNESS-L3-044-01`。同一要求revision/scopeの義務class、contract、reuse/delta/new/reasoned-N/A、uncovered/duplicate根拠を説明できること。新しい収益・優先順位・導入価値条件は設けない。
 
-| L10 case ID | L3 AC / BR | 入力と比較 | 観測・判定 | 失敗・未評価 |
-|---|---|---|---|---|
-| `CASE-HARNESS-L10-044-r16-normal-nine-class` | `AC-HARNESS-L3-044-01` / `BR-HARNESS-L3-044-01` | 合成入力で選択scopeに既存の9 contract class、その各source identity/revision、applicability、normative contract/version、対oracleを与える。reuse/delta/new/reasoned-N/Aはclassの固定根拠に沿って入力し、fixture側でclassを増減しない。 | 同一scope/revision内のclass-to-contract対応を再構成し、uncovered=0、duplicate=0を照合。これは固定parent基準の合成観測で、実績ではない。 | 必須source・契約・oracleの固定範囲が不足なら未評価。新しいclass一覧やbusiness thresholdを生成しない。 |
-| `CASE-HARNESS-L10-044-r16-normal-delta` | `AC-HARNESS-L3-044-01` | 一つの既存classに、義務意味とoracleを保存する十分なdelta contractと理由を持つ合成baseline。 | deltaがそのclassの義務・oracleを満たし、他classを変えず、portfolioのclosureを保つ場合に限りcoverageへ反映する。 | 意味対応oracleが不足なら未評価／未完。 |
-| `CASE-HARNESS-L10-044-r16-delta-insufficient` | `AC-HARNESS-L3-044-02` | 十分なdeltaを持つ正常baselineから、対象deltaの義務意味対応relationだけを欠落させる。 | 当該classをuncovered/未完として返し、coverage=0やportfolio closureへ変換しない。 | classまたはoracle自体のidentityが未確定ならunknownとして未評価。 |
+**主fixtureの参照**：以下はfunctional-verification.mdにある主CASEのbusiness観点の索引で、CASEを再定義しない。入力・単独変異・期待値は主CASEをそのまま照合し、独立fixtureとして重複計上しない。
+
+**不足時の返却**：要求意味・authority不足は既存要求owner、template適用と義務導出不足はHARNESS-L2-009/対象template owner、atom抽出不足はHARNESS-L2-041、具体設計・delta relationと対oracle不足はHARNESS-L2-026/022等の原因別既存責務区分へ返す。責務区分を確定できない意味/authority不足は既存要求ownerへ返す。個体source/owner identity不明は別にunknownを保持し、既知区分への返却を止めない。不足scopeは未完/未評価に保ちportfolio closureを主張しない。
+
+| 主fixture参照 | L3 AC / BR | business観点 |
+|---|---|---|
+| `CASE-HARNESS-L10-044-r16-normal-nine-class` | `AC-HARNESS-L3-044-01` / `BR-HARNESS-L3-044-01` | 主CASEの同scope/revisionのC1–C9入力を用い、義務意味と対oracleを再構成し未被覆0・意味重複0を照合する。固定範囲不足は上の原因別既存責務へ返す。 |
+| `CASE-HARNESS-L10-044-r16-normal-delta` | `AC-HARNESS-L3-044-01` | 主CASEの十分なdeltaを使い、義務意味・oracle・他classを保つcoverageを照合する。設計relation・pair oracle不足は既存026/022等の区分へ返し未完とする。 |
+| `CASE-HARNESS-L10-044-r16-delta-insufficient` | `AC-HARNESS-L3-044-02` | 主CASEのdelta relation一つの欠落を使い、該当class未被覆/未完とportfolio closure拒否、および既存026/022等の区分への原因別返却を照合する。identity不明は区分と分けunknownに保つ。 |
