@@ -1485,8 +1485,25 @@ AC-018-01の入力条件はR001〜R034に加えR056/R057で個別欠落、R058�
 
 ### M5の未分離範囲
 
-固定L2:913はAffected/Unaffected/Unknownを分け、L11:676はUX完了時のunknown applicability、証拠scope/revision違い、stale/missingを拒否しつつ候補形成を止めない。継承したfixtureには各UX軸のevidence missing/stale/unknown、walkthrough scope/revision、非UI N/A例があるが、各軸のapplicability unknownとUX evidence scope mismatchを全て独立入力としては区別しない。確認した行に当該区別を通してUX完了へ誤昇格するoracleはない。この意味上の残余は記録し、fixture列挙だけを理由に新CASEを必須化しない。
+固定L2:913はAffected/Unaffected/Unknownを分け、L11:676はUX完了時のunknown applicability、証拠scope/revision違い、stale/missingを拒否しつつ候補形成を止めない。継承したfixtureには各UX軸のevidence missing/stale/unknown、walkthrough scope/revisionとUI軸のN/A拒否例があるが、各軸のapplicability unknownとUX evidence scope mismatchを全て独立入力としては区別しない。確認した行に当該区別を通してUX完了へ誤昇格するoracleはない。この意味上の残余は記録し、fixture列挙だけを理由に新CASEを必須化しない。
 
 ### ACとCASEの照合境界
 
-`functional-requirements.md`のAC-01〜05が要件の正本であり、表の全134定義行は完全CASE IDとAC IDを直接示す。索引行から独立変異を推定せず、PoC仮説のadopted、requirement adoption、source-supported unadopted candidate、implemented、ux_verifiedを別stateとして扱う。UI/UXの7軸evidenceは同一scope/revisionと適用条件を確認し、個別のfuture evidence未完はそのux_verified主張だけを未確認にする。
+`functional-requirements.md`のAC-01〜05が要件の正本であり、表の全143定義行は完全CASE IDとAC IDを直接示す。索引行から独立変異を推定せず、PoC仮説のadopted、requirement adoption、source-supported unadopted candidate、implemented、ux_verifiedを別stateとして扱う。UI/UXの7軸evidenceは同一scope/revisionと適用条件を確認し、個別のfuture evidence未完はそのux_verified主張だけを未確認にする。
+
+
+### review01 M1/M2の境界fixture
+
+旧134 IDを保持し、固定親の非UI UX完了禁止と自己承認/権限生成禁止を受ける9候補を追加する。下記は入力を固定し誤出力だけを照合する未実行の設計であり、追加数から完全性を生成しない。
+
+| CASE ID | FR ID | AC ID | 正常baseline | 単独誤出力 | oracle・既存戻し先 |
+|---|---|---|---|---|---|
+| `CASE-HARNESS-L10-039-r01-non-ui-ux-completion` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-02` | 非UIの同一scope/revision、根拠付きN/Aと再評価条件、Experience graph、既存V-pairによる実装状態を保持する。UX完了は非適用。 | 入力不変。N/Aによる証拠の空集合を根拠にux_verifiedだけを生成した誤出力。 | UX完了生成を拒否し根拠付きN/Aを保持する。implementedと候補形成は取り消さず、screen適用性は既存HARNESS-L2-024、段階状態oracleは022へ不足を返す。 |
+| `CASE-HARNESS-L10-039-r01-self-approves-user-acceptance` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 対象scope/revisionの候補・評価材料と、L11利用者acceptanceの既存owner判断を別fieldで記録する。owner判断は未決。 | 入力不変。HARNESS/AIがL11利用者acceptanceの承認済stateだけを自己生成する。 | 自己承認を拒否し既存owner判断を未決に保つ。HARNESS-L2-022の該当段階oracleと既存authority境界へ返し、候補を人の判断の代替にしない。 |
+| `CASE-HARNESS-L10-039-r01-self-approves-improvement-adoption` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 対象scope/revisionの候補・評価材料と、L12改善採否の既存owner判断を別fieldで記録する。owner判断は未決。 | 入力不変。HARNESS/AIがL12改善採否の承認済stateだけを自己生成する。 | 自己承認を拒否し既存owner判断を未決に保つ。HARNESS-L2-022の該当段階oracleと既存authority境界へ返し、候補を人の判断の代替にしない。 |
+| `CASE-HARNESS-L10-039-r01-generation-generates-operation-permission` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 同一scope/revisionで、sourceに根拠あるcandidateのgeneration結果と既存authority/permissionを別fieldに保持する。新しい操作権限は発行されていない。 | 入力不変。candidateのgeneration結果だけから操作権限fieldを許可済へ変える。 | 権限/許可生成を拒否し既存authorityを保持する。candidate結果は比較材料のまま、HARNESS-L2-008/024の既存合意境界と022の段階authority条件へ返す。OSの既決authorityに従う実行責務を移さない。 |
+| `CASE-HARNESS-L10-039-r01-generation-generates-execution-permission` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 同一scope/revisionで、sourceに根拠あるcandidateのgeneration結果と既存authority/permissionを別fieldに保持する。新しい実行許可は発行されていない。 | 入力不変。candidateのgeneration結果だけから実行許可fieldを許可済へ変える。 | 権限/許可生成を拒否し既存authorityを保持する。candidate結果は比較材料のまま、HARNESS-L2-008/024の既存合意境界と022の段階authority条件へ返す。OSの既決authorityに従う実行責務を移さない。 |
+| `CASE-HARNESS-L10-039-r01-comparison-generates-operation-permission` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 同一scope/revisionで、sourceに根拠あるcandidateのcomparison結果と既存authority/permissionを別fieldに保持する。新しい操作権限は発行されていない。 | 入力不変。candidateのcomparison結果だけから操作権限fieldを許可済へ変える。 | 権限/許可生成を拒否し既存authorityを保持する。candidate結果は比較材料のまま、HARNESS-L2-008/024の既存合意境界と022の段階authority条件へ返す。OSの既決authorityに従う実行責務を移さない。 |
+| `CASE-HARNESS-L10-039-r01-comparison-generates-execution-permission` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 同一scope/revisionで、sourceに根拠あるcandidateのcomparison結果と既存authority/permissionを別fieldに保持する。新しい実行許可は発行されていない。 | 入力不変。candidateのcomparison結果だけから実行許可fieldを許可済へ変える。 | 権限/許可生成を拒否し既存authorityを保持する。candidate結果は比較材料のまま、HARNESS-L2-008/024の既存合意境界と022の段階authority条件へ返す。OSの既決authorityに従う実行責務を移さない。 |
+| `CASE-HARNESS-L10-039-r01-inspection-generates-operation-permission` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 同一scope/revisionで、sourceに根拠あるcandidateのinspection結果と既存authority/permissionを別fieldに保持する。新しい操作権限は発行されていない。 | 入力不変。candidateのinspection結果だけから操作権限fieldを許可済へ変える。 | 権限/許可生成を拒否し既存authorityを保持する。candidate結果は比較材料のまま、HARNESS-L2-008/024の既存合意境界と022の段階authority条件へ返す。OSの既決authorityに従う実行責務を移さない。 |
+| `CASE-HARNESS-L10-039-r01-inspection-generates-execution-permission` | `FR-HARNESS-L3-039` | `AC-HARNESS-L3-039-04` | 同一scope/revisionで、sourceに根拠あるcandidateのinspection結果と既存authority/permissionを別fieldに保持する。新しい実行許可は発行されていない。 | 入力不変。candidateのinspection結果だけから実行許可fieldを許可済へ変える。 | 権限/許可生成を拒否し既存authorityを保持する。candidate結果は比較材料のまま、HARNESS-L2-008/024の既存合意境界と022の段階authority条件へ返す。OSの既決authorityに従う実行責務を移さない。 |
