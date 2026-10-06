@@ -97,3 +97,8 @@ paired_l10: ../L10-verification/business-verification.md
 ## Stage 3 親034の業務要件
 
 HARNESS-L2-034から独立business requirement、事業KPI、ROI閾値または事業ownerを作らない。対象別metric contractと完成判定はfunctional FR/ACで扱う。計測結果、coverage、case数、CI結果を事業価値、利用者受入、承認へ読み替えない。旧business-detailにある別の意味は移植しない。
+
+
+## Stage 3 親036の業務要件
+
+`HARNESS-L2-036`はCOREの検証契約を扱うため、独立business requirement、business owner、事業価値閾値、商業acceptanceを導出しない。W/cross-detection、local/CI parity、画面条件付き検証の結果を製品価値・事業判断へ読み替えない。旧business-detailのBR-21/Learning Engine評価を本親へ移植しない。
