@@ -1603,10 +1603,10 @@ Stage 2b review01の集約CASEは索引としてのみ保持する。個別fixtu
 
 - `LABO-060-AC-01` 正常: 比較前に固定した同条件の支援あり/なし両receiptを結び、quality resultと費用/時間/人介入を別表示する。
 - `LABO-060-AC-02` 未見正常: 同じ比較条件を保つ未見taskでも選択支援入力だけを記録する。選択されていない支援/相談機能を全比較の依存にしない。
-- `LABO-060-AC-03` 不成立・戻し先: model/provider/effort・task/oracle・条件差、対照群への支援漏れ、片群receiptや救援/人作業の欠落を同条件・効果ありと扱わない。SECURITY data-use/実行許可、evidence freshness、OS assignment、HARNESS-L2-022 oracle契約を個別に照合し、選択した比較母集団の一部runを欠落させない。retry/rework/review/CI費用・時間とINTELLIGENCE proposalは該当scopeで必要な場合に個別記録する。LABOが支援、相談、実行、割当を開始しない。不足は固定親が示すOS、INTELLIGENCE、SECURITY、HARNESSまたはsource ownerへ戻す。
+- `LABO-060-AC-03` 不成立・戻し先: model/provider/effort・task/oracle・条件差、対照群への支援漏れ、片群receiptや救援/人作業の欠落を同条件・効果ありと扱わない。SECURITY data-use/実行許可、evidence freshness、OS assignment、HARNESS-L2-022 oracle契約を個別に照合し、選択した比較母集団の一部runを欠落させない。retry/rework/review/CI費用・時間とINTELLIGENCE proposalは該当scopeで必要な場合に個別記録する。LABOが支援、相談、実行、割当を開始しない。実行context/assignment/result receiptの不足はOS、選択支援proposal/use evidenceの不足はINTELLIGENCE、oracle適用性/契約の不足はHARNESS/要求owner、data-use/実行許可はSECURITY、比較scopeまたは評価能力の不足はLABOへ、固定親の既存境界に従って戻す。
 - 旧source: `LEGACY-ASSET-28FB139B26CD61CC51EE` の同条件・比較可能evidence、`LEGACY-ASSET-A952A3A175EB82A4781B`、`LEGACY-ASSET-9114D4E463E95B67DD0C` / `LEGACY-ASSET-C6ADB99F1353965C5449` とInfinity Loop L1 `LEGACY-ASSET-719D5EC9C06FC4AAD0FF:151–152`を参照する。これらは支援有無だけを独立変数とする本条件の直接一致ではなく隣接比較材料である。比較意味はPO原文第5項と固定L2から再導出し、旧provider/runtime/admissionは置換する。対応が弱い旧sourceを直接起点と誇張しない。
 
-- 追補CASE trace: `L10-LABO-060-CASE-05`〜`CASE-45`は `LABO-060-AC-03` のCASE索引であり（独立fixture行とalias/index行を区別し）、各入力変異と期待oracleは対のStage 5 L10表に記録する。
+- 追補CASE trace: `L10-LABO-060-CASE-05`〜`CASE-46`は `LABO-060-AC-03` のCASE索引であり（独立fixture行とalias/index行を区別し）、各入力変異と期待oracleは対のStage 5 L10表に記録する。
 
 ### LABO-061-FR-01 — 比較評価のtask・oracle隔離と履歴
 
@@ -1614,10 +1614,10 @@ Stage 2b review01の集約CASEは索引としてのみ保持する。個別fixtu
 
 - `LABO-061-AC-01` 正常: 選択比較の全適用条件・履歴を同じrun identityへ束縛し、public fixtureと適用時のhidden oracle可視範囲を分け、比較に使える結果だけを059へ渡す。
 - `LABO-061-AC-02` 未見正常: 選択task classの未見fixtureもtask契約の同じ範囲で照合し、契約が明示的に非適用とする条件は理由を添え、適用範囲外へ一般化しない。
-- `LABO-061-AC-03` 不成立・戻し先: task snapshotの15条件は各々適用/明示非適用を記録し、適用時の値unknown・欠落・空値・stale・mismatchを区別する。各fieldのidentity/version/digest/context/actor/permission/receiptを一つずつ欠落・空値/stale/mismatchした場合、別runのsnapshot流用、hidden oracle/future answer等の漏洩を検出した場合、そのrunだけを無効/未評価とする。平均・安さ・速度で取消/失敗を相殺せず、失敗runの削除を拒否する。機微なsecret等の生値を監査出力へ複写しない。historical runの当時model/runtime/toolchain/actor/authority/permission証拠不足をcurrentで補わない。055通常履歴へhidden条件を強制せず、完全snapshotも059 quality不成立を合格に変えない。assignment/result receiptはOS、漏洩した入力と添付は識別可能な入力source ownerおよびSECURITY、data-use/実行許可そのものはSECURITY、task/acceptanceはHARNESS/要求owner、評価scopeは既存scope ownerへ返す。receiptや結果からqualification、assignment、許可、admission、judge任命権を生成しない。LABOはoracle、task、judgeの権限を作らない。
+- `LABO-061-AC-03` 不成立・戻し先: task snapshotの15条件は各々適用/明示非適用を記録し、適用時の値unknown・欠落・空値・stale・mismatchを区別する。各fieldのidentity/version/digest/context/actor/permission/receiptを一つずつ欠落・空値/stale/mismatchした場合、別runのsnapshot流用、hidden oracle/future answer等の漏洩を検出した場合、そのrunだけを無効/未評価とする。平均・安さ・速度で取消/失敗を相殺せず、失敗runの削除を拒否する。機微なsecret等の生値を監査出力へ複写しない。historical runの当時model/runtime/toolchain/actor/authority/permission証拠不足をcurrentで補わない。055通常履歴へhidden条件を強制せず、完全snapshotも059 quality不成立を合格に変えない。assignment/result receiptはOS、漏洩した入力と添付は識別可能な入力source ownerおよびSECURITY、data-use/実行許可そのものはSECURITY、task/acceptanceはHARNESS/要求ownerへ返す。評価scopeはLABOが未完の比較範囲として保持し、固定親が別ownerを特定しない場合に新しい戻し先を作らない。receiptや結果からqualification、assignment、許可、admission、judge任命権を生成しない。LABOはoracle、task、judgeの権限を作らない。
 - 旧source: `LEGACY-ASSET-28FB139B26CD61CC51EE` R-04–08 (`:96–120,143–147`) とpaired `LEGACY-ASSET-A952A3A175EB82A4781B`、WCC L3/L10 `LEGACY-ASSET-9114D4E463E95B67DD0C` / `LEGACY-ASSET-C6ADB99F1353965C5449`を読む。snapshot・blind/context隔離と再現性の意味を選択比較scopeに再導出。旧15-field schema、seed/timeout/cache/hardware固定値、judge runtime、全比較へのblind強制は置換/除外する。
 
-- 追補CASE trace: `L10-LABO-061-CASE-05`〜`CASE-113`（CASE-110は欠番。CASE-102は通常履歴の非適用対照）は `LABO-061-AC-03`、canonical judge oracleの正常CASE-24は`LABO-061-AC-01`のtraceである。独立fixture行とalias/index行を区別し、入力変異と期待oracleは対のStage 5 L10表に記録する。
+- 追補CASE trace: `L10-LABO-061-CASE-05`〜`CASE-114`（CASE-110は欠番。CASE-102は通常履歴の非適用対照）は `LABO-061-AC-03`、canonical judge oracleの正常CASE-24は`LABO-061-AC-01`のtraceである。独立fixture行とalias/index行を区別し、入力変異と期待oracleは対のStage 5 L10表に記録する。
 
 ### LABO-063-FR-01 — 修復再発評価から予防candidateへの還流
 
@@ -1625,10 +1625,10 @@ Stage 2b review01の集約CASEは索引としてのみ保持する。個別fixtu
 
 - `LABO-063-AC-01` 正常: 修復・検証後の対象同一scopeで観測された再発と反例を、元episode/対象revisionとともに評価し、支持範囲だけを予防candidateへ返す。
 - `LABO-063-AC-02` 未見正常: 同条件の未見再発eventもsource/evidenceと条件が追跡できる範囲で候補へ記録し、別scopeへの一般化をしない。
-- `LABO-063-AC-03` 不成立・戻し先: 原因候補/適用条件、修復手順/結果証拠、OS execution、LABO evaluation、HARNESS verificationの各欠落/stale、別target/episode混合、知識保持欠落、backlog登録不成立、canonical sourceへの直接write/promote、およびLABOがgateを直接有効化・強制することを個別に不成立とする。修復候補だけ、登録だけ、頻出検出だけで成功/予防完了としない。再発relationだけ欠落ならL2-063に従いLABO評価を未完としてLABOへ戻す。source欠落は該当source ownerへ、OS executionはOS、HARNESS verificationはHARNESS、登録/routingはOS、canonical source変更は元ownerが担う。
+- `LABO-063-AC-03` 不成立・戻し先: 原因候補/適用条件、修復手順/結果証拠、OS execution、LABO evaluation、HARNESS verificationの各欠落/stale、別target/episode混合、知識保持欠落、backlog登録不成立、canonical sourceへの直接write/promote、およびLABOがgateを直接有効化・強制することを個別に不成立とする。修復候補だけ、登録だけ、頻出検出だけで成功/予防完了としない。再発relationだけ欠落ならL2-063に従いLABO評価を未完としてLABOへ戻す。source欠落は該当source ownerへ、OS executionはOS、HARNESS verificationはHARNESS、登録/routingはOS、canonical source変更は元ownerが担う。重複送信・重複観測で件数を水増しせず、閾値/母集団不明を0で補わず、頻出未解消をcandidate/warningなしに閉じず、target変更後の未完や運用後観測欠落を成功へ丸めず、改版時には旧頻度/成功を再評価し、未再評価結果をcurrentへ流用せず、memoryを正本化せず、BRAINへ無条件一般化せず、頻度から実行権限を生成せず、異なる原因/適用条件を混ぜない。原因だけが異なる場合と適用条件だけが異なる場合を別々に不成立とし、各event群を分離する。
 - 旧source: `LEGACY-ASSET-EE5DBACC7F28F7D1F605` (`pillar-functional-requirements.md:154–156,237–242`) とpaired P4 `LEGACY-ASSET-44DD86E3DEC09E65EF51`、UIL L3/L10 `LEGACY-ASSET-02D897E62EF2FA267267` / `LEGACY-ASSET-0B5B38F146D9538C9A36`。再発/effect/recipe候補の評価意味だけ再導出する。旧P4 HR-FR-P4-02/HAC-P4-02a,bの成功recipe保持、backlog連携、反復閾値、gate/detector candidate、未処理warningを保持点として読む。2026-09-24 PO判断に従い、評価対象知識の保持はLABO、既存backlog登録/routingはOS、canonical sourceの変更は既存ownerへ意味を再導出する。旧harness memory authority、自治的doctor/runtime、旧owner配置は置換し、LABOの評価知識保持まで禁止しない。
 
-- 追補CASE trace: `L10-LABO-063-CASE-06`〜`CASE-53`は `LABO-063-AC-03` のCASE索引であり（独立fixture行とalias/index行を区別し）、正常CASE-05/07/10（AC-01）は不成立条件ではなく、各入力変異と期待oracleは対のStage 5 L10表に記録する。
+- 追補CASE trace: `L10-LABO-063-CASE-06`〜`CASE-65`は `LABO-063-AC-03` のCASE索引であり（独立fixture行とalias/index行を区別し）、正常CASE-05/07/10（AC-01）は不成立条件ではなく、各入力変異と期待oracleは対のStage 5 L10表に記録する。
 
 ### LABO-064-FR-01 — 候補名遮蔽と比較再現性
 
@@ -1636,10 +1636,10 @@ Stage 2b review01の集約CASEは索引としてのみ保持する。個別fixtu
 
 - `LABO-064-AC-01` 正常: 選択blind scopeで候補名がjudge-visible資料から除かれ、同一比較条件が再現可能で、元候補identityは別のrestricted mappingで復元可能に記録される。
 - `LABO-064-AC-02` 未見正常: 未見candidate pairでも同じ選択scope/rubric/fixtureの条件を維持し、非選択通常履歴にblind条件を要求しない。
-- `LABO-064-AC-03` 不成立・戻し先: fixture/rubric/judge-version/sample/retryの各fieldが欠落または変更、候補名が直接表示、security failure・scope逸脱run・judgeが検証できないrunの各単独変異を高得点など他runの平均で相殺、通常履歴へ後付けblind印を付与した場合は該当runをblind済みとしない。identity mapping欠落はmapping source、可視scope条件不明は既存evaluation ownerへ返す。固定親にないHARNESS/要求owner・OS・SECURITY routeを追加しない。
+- `LABO-064-AC-03` 不成立・戻し先: fixture/rubric/judge-version/sample/retryの各fieldが欠落または変更、候補名が直接表示、security failure・scope逸脱run・judgeが検証できないrunの各単独変異を高得点など他runの平均で相殺、通常履歴へ後付けblind印を付与した場合は該当runをblind済みとしない。identity mappingの追跡不能は観測元へ返し、元identityを確定できなければunknownを保つ。可視scope条件不明はLABOで比較不能として保持し、固定親にない戻し先を追加しない。smokeだけで完全な適格性を主張せず、評価からassignment、qualification、admissionを生成しない。選択scope内で候補名が露出した場合は旧blind結果を継承せず当該scopeを再評価する。
 - 旧source: `LEGACY-ASSET-28FB139B26CD61CC51EE` R-03–08、paired `LEGACY-ASSET-A952A3A175EB82A4781B`、WCC L3/L10、Infinity L1 `LEGACY-ASSET-719D5EC9C06FC4AAD0FF:215`を読む。identity maskingと比較再現性だけを再導出。固定class, provider/lane, qualification threshold, expiry, old judge/runtimeは置換/除外する。
 
-- 追補CASE trace: `L10-LABO-064-CASE-05`〜`CASE-36`は `LABO-064-AC-03` のCASE索引であり（独立fixture行とalias/index行を区別し）、各入力変異と期待oracleは対のStage 5 L10表に記録する。
+- 追補CASE trace: `L10-LABO-064-CASE-05`〜`CASE-33`および`CASE-35`〜`CASE-39`は `LABO-064-AC-03` の索引である。判定を持たない正常baseline `CASE-34` は `LABO-064-AC-01` に属しAC-03のnegative分母に含めない。各fixtureと索引を区別して対のL10表を参照する。
 
 ### LABO-065-FR-01 — 選択scopeの資格証拠とtask scorecard
 
@@ -1647,10 +1647,10 @@ Stage 2b review01の集約CASEは索引としてのみ保持する。個別fixtu
 
 - `LABO-065-AC-01` 正常: 選択scopeのmachine smokeとblind full benchが別に報告され、適用軸すべての証拠または理由付き未完状態、receipt、scorecard各fieldが保持される。選択scopeでない一般Worker履歴にfull benchを要求しない。
 - `LABO-065-AC-02` 未見正常: 未見taskを同じ選択資格scopeのfixture/rubric/receipt条件で評価し、評価可能範囲だけ報告する。採択scope外や未選択qualificationはunassessedのまま。
-- `LABO-065-AC-03` 不成立・戻し先: 選択scopeのfixture/oracle/rubric/assignment/context/independent judge、field単位のtask receipt/price根拠、bench manifestのfixture/rubric digestが欠落・stale/mismatchなら資格済みや0として補わない。hidden answerをWorker-visible fixtureへ置く、lint未計測を0、retry費用欠落、fixture/rubric revision不一致、security failureを平均で相殺、品質未達を低価格/短時間で相殺、対象外根拠を示さずmetricを0として扱うこと、別runtime/scoreから未見scope資格を推論、assignment receipt/oracle欠落を個別に不成立とする。smokeをfull benchへ昇格、scoreからprovider/model選択やpermission/admissionを生成、LABOがWorkerを割当/実行する行為を拒否する。oracleはHARNESS/要求owner、runはOS、許可はSECURITY、decisionは当該既存ownerへ返す。rescue/retry costの記録元がOSと確認できる場合のみOSへ返し、費用source/責任主体が不明ならunknownを保持する。数値threshold、sample数、全製品共通diff/lint単位は追加しない。
+- `LABO-065-AC-03` 不成立・戻し先: 選択scopeのfixture/oracle/rubric/assignment/context/independent judge、field単位のtask receipt/price根拠、bench manifestのfixture/rubric digestが欠落・stale/mismatchなら資格済みや0として補わない。異なるtask classまたはmeasurement definitionのtrendを混ぜない。hidden answerをWorker-visible fixtureへ置く、lint未計測を0、retry費用欠落、fixture/rubric revision不一致、security failureを平均で相殺、品質未達を低価格/短時間で相殺、対象外根拠を示さずmetricを0として扱うこと、別runtime/scoreから未見scope資格を推論、assignment receipt/oracle欠落を個別に不成立とする。smokeをfull benchへ昇格、scoreからprovider/model選択、adoption/limited/quarantine/retire decision、permission/admissionを生成、LABOがWorkerを割当/実行する行為を拒否する。oracleはHARNESS/要求owner、runはOS、許可はSECURITY、decisionは当該既存ownerへ返す。rescue/retry costの記録元がOSと確認できる場合のみOSへ返し、費用source/責任主体が不明ならunknownを保持する。retry後のpassをfirst_passへ読み替えない。数値threshold、sample数、全製品共通diff/lint単位は追加しない。
 - 旧source: `LEGACY-ASSET-719D5EC9C06FC4AAD0FF` (`infinity-loop-platform-requirements.md:151–152`) と`LEGACY-ASSET-28FB139B26CD61CC51EE` R-04/R-06/R-08、paired Bench L10を読む。選択資格scopeの複数軸・task証拠のみ再導出し、旧runtime、provider、fixed schema/score/admissionは置換する。通常履歴全件へのblind full benchは移さない。
 
-- 追補CASE trace: `L10-LABO-065-CASE-05`〜`CASE-40`は `LABO-065-AC-03` のCASE索引（範囲内の独立fixtureとalias/indexを区別）、`CASE-05/12/23`は `LABO-065-AC-01` の正常oracleである。入力と期待oracleは対のStage 5 L10表に記録する。
+- 追補CASE trace: `L10-LABO-065-CASE-05`〜`CASE-51`は `LABO-065-AC-03` の索引（独立fixture行とalias/index行を区別）であり、`CASE-05/12/23`は `LABO-065-AC-01` の正常oracleで不成立条件ではない。入力と期待oracleは対のStage 5 L10表に記録する。
 
 ### LABO-066-FR-01 — A比較の誤修復数と未解消数
 
@@ -1658,10 +1658,10 @@ Stage 2b review01の集約CASEは索引としてのみ保持する。個別fixtu
 
 - `LABO-066-AC-01` 正常: 同じ事前確定集合とoracleをA/候補の両方へ適用し、誤修復・未解消を別分子と分母で算出して059の比較証拠へ結ぶ。
 - `LABO-066-AC-02` 未見正常: 未見caseでも事前定義されたeligible predicate/oracleを同じ比較条件内で適用する。predicate/oracleの適用性が未知ならそのcaseはunknownとして未評価にする。
-- `LABO-066-AC-03` 不成立・戻し先: A identity、eligible集合、oracle、cutoff、群ごとのreceiptを一つずつ欠落・mismatch/staleにすると比較を未評価/比較不能にする。Aと候補のeligible case集合が異なる場合も比較不能とし、共通でない集合を同一母集団にしない。task/scope/対象revision/scorerの不一致、結果後のeligible集合・分母変更、oracleに結ばない誤修復/未解消数を個別に拒否する。成功率・費用・速度だけでmisrepairまたはunresolvedを隠す変異をそれぞれ拒否し、費用によるmisrepair隠蔽と成功率によるunresolved隠蔽も独立に拒否して各指標を別に保持する。oracle不足はHARNESS/要求owner、run証拠はOS、集計定義はLABOの既存評価ownerへ戻す。Bugbotや修復器を実装/起動せず新閾値を設けない。
+- `LABO-066-AC-03` 不成立・戻し先: A identity、eligible集合、oracle、cutoff、群ごとのreceiptを一つずつ欠落・mismatch/staleにすると比較を未評価/比較不能にする。Aと候補のeligible case集合が異なる場合も比較不能とし、共通でない集合を同一母集団にしない。task/scope/対象revision/scorerの不一致、結果後のeligible集合・分母変更、oracleに結ばない誤修復/未解消数を個別に拒否する。成功率・費用・速度だけでmisrepairまたはunresolvedを隠す変異をそれぞれ拒否し、費用によるmisrepair隠蔽と成功率によるunresolved隠蔽も独立に拒否して各指標を別に保持する。費用項目と手戻り費用は別々に両群同条件で比較し、どちらも片群だけ除外しない。結果を見た後にoracleを変更しない。oracle不足はHARNESS/要求owner、run証拠はOS、集計定義はLABOの既存評価ownerへ戻す。Bugbotや修復器を実装/起動せず新閾値を設けない。
 - 旧source: `LEGACY-ASSET-D881AF6AFD277B1DE934` (`bugbot-bounded-repair-requirements.md:75`) とpaired `LEGACY-ASSET-901CD182B52024593E41`。誤修復/未解消数の限定atomだけ同条件比較・oracleへ再導出し、旧Bugbot候補全体、修復runtime、採択/実験許可は置換/除外する。
 
-- 追補CASE trace: `L10-LABO-066-CASE-05`〜`CASE-41`は `LABO-066-AC-03` のCASE索引であり（独立fixture行とalias/index行を区別し）、各入力変異と期待oracleは対のStage 5 L10表に記録する。
+- 追補CASE trace: `L10-LABO-066-CASE-05`〜`CASE-43`は `LABO-066-AC-03` のCASE索引であり（独立fixture行とalias/index行を区別し）、各入力変異と期待oracleは対のStage 5 L10表に記録する。
 
 ### LABO-067-FR-01 — 最初の適格candidateと同一Attempt内修復回数
 
@@ -1669,10 +1669,10 @@ Stage 2b review01の集約CASEは索引としてのみ保持する。個別fixtu
 
 - `LABO-067-AC-01` 正常: first eligibleをevent順で特定し、後続candidate変更やroundをdigest/result receiptへ結び、後から上書きしない。
 - `LABO-067-AC-02` 未見正常: 未見task classも既存predicate適用が明示された範囲だけで同じ観測を行い、新predicate/oracleを作らない。
-- `LABO-067-AC-03` 不成立・戻し先: predicate/oracle/Attempt/candidate identity/event欠落、順序不明、別Attempt混合、再送重複、最終提出からの逆算は当該指標をunknown/未評価にする。総Attempt countを本候補指標にする、065のfirst_passを候補結果へ置換、065 retry_countへ内部roundを加算、059 cost/quality gateを変更する場合も拒否する。predicate/oracleはtask/要求owner、Attempt/eventはOS、出力candidateはLABOへ返す。
+- `LABO-067-AC-03` 不成立・戻し先: predicate/oracle/Attempt/candidate identity/event欠落、順序不明、別Attempt混合、再送重複、最終提出からの逆算は当該指標をunknown/未評価にする。総Attempt countを本候補指標にする、065のfirst_passを候補結果へ置換、065 retry_countへ内部roundを加算、059 cost/quality gateを変更する場合も拒否する。predicate/oracleはtask/要求owner、Attempt/eventはOS、出力candidateはLABOへ返す。selected predicate/source/oracle revisionまたはscopeがmissing/stale/mismatchならfirst-eligible判定を未評価とし、task/要求ownerへ返す。
 - 旧source: `LEGACY-ASSET-3A15E5645D2D2A59DFF5` (`execution-ticket-requirements.md:399`) のselected first-eligible/within-attempt repair subatomのみ。`MPR-SH-CANDIDATE-003`とsource-lines/coverage receiptを根拠に、その2 subatomへ範囲限定して再導出する。source line全体やAttempt countをここで被覆したとはしない。
 
-- 追補CASE trace: `L10-LABO-067-CASE-04b`と `L10-LABO-067-CASE-05`〜`CASE-23`は `LABO-067-AC-03` のCASE索引であり（独立fixture行とalias/index行を区別し）、各入力変異と期待oracleは対のStage 5 L10表に記録する。
+- 追補CASE trace: `L10-LABO-067-CASE-03a`〜`CASE-03g`、`CASE-04b`、`CASE-05`〜`CASE-23`は `LABO-067-AC-03` のCASE索引であり（独立fixture行とalias/index行を区別し）、各入力変異と期待oracleは対のStage 5 L10表に記録する。
 
 ### LABO-068-FR-01 — OS記録にある異なるAttempt数
 
@@ -1691,10 +1691,10 @@ Stage 2b review01の集約CASEは索引としてのみ保持する。個別fixtu
 
 - `LABO-069-AC-01` 正常: 同じticket family/scopeの観測群と母数/window/source completenessが揃う場合、分母と成立/不成立/未評価を示す。
 - `LABO-069-AC-02` 未見正常: 未見の返却reasonはsourceとreasonが確認できる場合も既存分類で表現できる範囲だけ分類し、該当しないものをunknown/unclassifiedで保持する。
-- `LABO-069-AC-03` 不成立・戻し先: ticket/assignment identity、source identity、観測時点、evidence、評価可能/未評価状態を個別に照合し、scope/revision/window/causal relation/denominator/source completenessの一項目ずつmissing/stale/mismatchを比較不能とする。異なるscope/revisionを同一cohortにせず、欠測0、前後件数だけの因果・発行精度改善、ticket/priority/oracle/assignment変更を拒否する。不足したticket/evidenceはOSまたは該当source ownerへ戻す。受入findingのoracle不足はsourceとreasonを別々に保持する。source欠落とreason欠落はそれぞれ独立にunknown/unclassifiedとして扱い、既存OS返却境界を保つ。固定親にない評価owner routeは追加しない。閾値・統計/学習方式を追加しない。
+- `LABO-069-AC-03` 不成立・戻し先: ticket/assignment identity、source identity、観測時点、evidence、評価可能/未評価状態を個別に照合し、scope/revision/window/causal relation/denominator/source completenessの一項目ずつmissing/stale/mismatchを比較不能とする。異なるscope/revisionを同一cohortにせず、欠測0、未追跡をdefect 0件とすること、前後件数だけの因果・発行精度改善、ticket/priority/oracle/assignment変更を拒否する。不足したticket/evidenceはOSまたは該当source ownerへ戻す。受入findingのoracle不足はsourceとreasonを別々に保持する。source欠落とreason欠落はそれぞれ独立にunknown/unclassifiedとして扱い、既存OS返却境界を保つ。固定親にない評価owner routeは追加しない。閾値・統計/学習方式を追加しない。
 - 旧source: `LEGACY-ASSET-17C4BF78919578FEBB18` / paired `LEGACY-ASSET-F46AB11BD14F2C0469F4`のOPS-R10/11/13診断・戻し・closure evidenceと`LEGACY-ASSET-3A15E5645D2D2A59DFF5` line 399のticket lifecycleを意味近接として読む。因果関連の成立評価はO2依頼summaryからの新規案で、旧source完全移管や効果証明は主張しない。
 
-- 追補CASE trace: `L10-LABO-069-CASE-05`〜`CASE-30`は `LABO-069-AC-03` のCASE索引であり（独立fixture行とalias/index行を区別し）、各入力変異と期待oracleは対のStage 5 L10表に記録する。未見reason classのCASE-29は `LABO-069-AC-02` に対応する。
+- 追補CASE trace: `L10-LABO-069-CASE-05`〜`CASE-32`は `LABO-069-AC-03` のCASE索引であり（独立fixture行とalias/index行を区別し）、各入力変異と期待oracleは対のStage 5 L10表に記録する。未見reason classのCASE-29は `LABO-069-AC-02` に対応する。
 
 ### LABO-070-FR-01 — 9項目の補助telemetry scorecard
 
@@ -1702,10 +1702,10 @@ Stage 2b review01の集約CASEは索引としてのみ保持する。個別fixtu
 
 - `LABO-070-AC-01` 正常: 選択scope・event境界・oracle・unitを確認できる各selected atomを個別に表示し、同一receiptを費用/時間で二重算入しない。067/068はそれぞれの独立定義で適用可能な値のみ別fieldに出す。
 - `LABO-070-AC-02` 未見正常: 未見event/sourceでも定義元・時刻・identity・scopeを確認できるfieldだけ観測し、他はunknown/unavailableのままにする。
-- `LABO-070-AC-03` 不成立・戻し先: duration定義revision、escaped-defect relation/母数追跡完全性/oracle revision、rollback/Recovery event identity/scope、queue-wait unitに加え、start/end eventとclockの妥当性、裏付けのない推計・換算の禁止、freshness timestamp、067/068の換算・合算禁止、旧12指標との同一視禁止を個別に照合する。欠落/stale/単位不一致をunknownにし、success扱いしない。source event/assignmentは特定できる既存source ownerへ戻し、owner不明はunknownのままにする。escaped-defect oracle不足は要求ownerへ、data/execution permission不足は適用中のSECURITY境界へ戻す。これらをすべてHARNESSやOSへ一律にrouteしない。070候補の採択から、別定義・別receiptである067/068候補の採択を推定しない。4値を合算して059のend-to-end wall-clockを再定義せず、重複する待ちを按分しない。rollback/Recovery result記録の欠落を発生なしとしない。LABOはthreshold・rollback許可・ageからauthorityを作らない。source `coverage`の2未解決atom・旧12指標とのidentity relationはsource-heldのままにする。
+- `LABO-070-AC-03` 不成立・戻し先: duration定義revision、escaped-defect relation/母数追跡完全性/oracle revision、rollback/Recovery event identity/scope、queue-wait unitに加え、start/end eventとclockの妥当性、裏付けのない推計・換算の禁止、freshness timestamp、067/068の換算・合算禁止、旧12指標との同一視禁止を個別に照合する。欠落/stale/単位不一致をunknownにしsuccess扱いしない。source event/assignmentは特定できる既存source ownerへ戻し、owner不明はunknownのままにする。escaped-defect oracle不足は要求ownerへ、data/execution permission不足は適用中のSECURITY境界へ戻す。これらをすべてHARNESSやOSへ一律にrouteしない。070候補の採択から、別定義・別receiptである067/068候補の採択を推定しない。4値を合算して059のend-to-end wall-clockを再定義せず、重複する待ちを按分しない。rollback/Recovery result記録の欠落を発生なしとしない。LABOはthreshold・rollback許可・ageからauthorityを作らない。source `coverage`の2未解決atom・旧12指標とのidentity relationはsource-heldのままにする。
 - 旧source: `LEGACY-ASSET-3A15E5645D2D2A59DFF5` line 399。selected 9 atomだけ再導出し、別receiptの067/068 atom、`coverage`/旧12 metric relationの2 unresolved atom、行tail/隣接行は非対象として保全。full source line successor/closureを主張しない。
 
-- 追補CASE trace: `L10-LABO-070-CASE-04a/04b`と `L10-LABO-070-CASE-05`〜`CASE-67`は `LABO-070-AC-03` のCASE索引であり（独立fixture行とalias/index行を区別し）、各入力変異と期待oracleは対のStage 5 L10表に記録する。
+- 追補CASE trace: `L10-LABO-070-CASE-04a/04b`と `L10-LABO-070-CASE-05`〜`CASE-73`は `LABO-070-AC-03` のCASE索引であり（独立fixture行とalias/index行を区別し）、各入力変異と期待oracleは対のStage 5 L10表に記録する。
 
 ### LABO-071-FR-01 — GitHub監査task class別qualification
 
