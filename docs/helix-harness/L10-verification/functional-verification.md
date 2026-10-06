@@ -1705,6 +1705,11 @@ AC-018-01の入力条件はR001〜R034に加えR056/R057で個別欠落、R058�
 **indexと重複の扱い**：旧index/互換alias行はsource IDを保持するが、直接fixtureの独立件数へ加算しない。025 composite output、043 example coverage、旧HIL-FR-55、レビュー所見はcoverage inputまたは監査contextであって044の直接oracleの代わりではない。正常reuse/delta/newを「承認済み」と扱わず、N/Aの証拠なしを合格にしない。
 
 **owner返却**：要求意味／authority不足は既存要求owner、template適用・義務導出不足はHARNESS-L2-009/対象template owner、atom extraction不足はHARNESS-L2-041の既存owner、設計contract/version/boundary不足はHARNESS-L2-026、oracle不足はHARNESS-L2-022等固定L2で示されたownerへ原因別に返す。責務区分が既知なら該当する既存owner区分へ返却し、個体のowner identityが不明な場合はidentity unknownを別に保持する。意味またはauthorityが不明で原因別の既存責務区分を確定できない場合は、固定L2-044に従い既存要求ownerへ返す。M7にある003/004/008への意味authority付替えは行わない。
+
+### 出力要素の単独照合
+
+| CASE ID | FR/AC | 正常baseline | 単独変異 | 期待oracle | 限界 |
+|---|---|---|---|---|---|
 | `CASE-HARNESS-L10-044-r04-classification-reuse` | `FR-HARNESS-L3-044-01/02` / `AC-HARNESS-L3-044-01/02` | 合成入力T0/R0/S0、source atom・適用class・normative contract/version・対oracleが既知。同じR0/S0の正常portfolioで各classの入力関係と処置区分・根拠を照合できる。 選択class Creuseのsource適用根拠・契約relationが再利用を一意に示し、正常出力区分も一致する。 | Creuseの出力区分ラベルだけをdeltaへ変える。source・relation・他classの出力は不変。 | 出力区分の誤対応を拒否しportfolioを未完に保ちclosureを拒否する。既知のclass-to-contract設計relationを担う026責務へ照合を返す。個体owner identity unknownは別記する。 | 出力field一つだけの合成変異。新owner・許可・要求意味を生成しない。 |
 | `CASE-HARNESS-L10-044-r04-classification-delta` | `FR-HARNESS-L3-044-01/02` / `AC-HARNESS-L3-044-01/02` | 合成入力T0/R0/S0、source atom・適用class・normative contract/version・対oracleが既知。同じR0/S0の正常portfolioで各classの入力関係と処置区分・根拠を照合できる。 選択class Cdeltaのsource適用根拠・契約relationがdelta追加を一意に示し、正常出力区分も一致する。 | Cdeltaの出力区分ラベルだけをreuseへ変える。source・relation・他classの出力は不変。 | 出力区分の誤対応を拒否しportfolioを未完に保ちclosureを拒否する。既知のclass-to-contract設計relationを担う026責務へ照合を返す。個体owner identity unknownは別記する。 | 出力field一つだけの合成変異。新owner・許可・要求意味を生成しない。 |
 | `CASE-HARNESS-L10-044-r04-classification-new` | `FR-HARNESS-L3-044-01/02` / `AC-HARNESS-L3-044-01/02` | 合成入力T0/R0/S0、source atom・適用class・normative contract/version・対oracleが既知。同じR0/S0の正常portfolioで各classの入力関係と処置区分・根拠を照合できる。 選択class Cnewのsource適用根拠・契約relationが新規契約を一意に示し、正常出力区分も一致する。 | Cnewの出力区分ラベルだけをreuseへ変える。source・relation・他classの出力は不変。 | 出力区分の誤対応を拒否しportfolioを未完に保ちclosureを拒否する。既知のclass-to-contract設計relationを担う026責務へ照合を返す。個体owner identity unknownは別記する。 | 出力field一つだけの合成変異。新owner・許可・要求意味を生成しない。 |
