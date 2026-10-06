@@ -729,7 +729,7 @@ AC-035-05はS5-027/028/042および035〜038（旧revision計測、機能数だ�
 
 **FR-HARNESS-L3-044-01 — scope-bound obligation-to-contract coverage**：選択された対象L1／要求／design scopeとrevision、および選択入力に含むsource identity/revisionから適用義務classを固定し、各classをnormative contract・契約版・対oracle・適用根拠へ対応付ける。各classについて再利用、delta追加、新規契約、根拠付き非適用を区別し、対象revision・scopeを出力portfolioへ明示し、重複割当、未被覆class、意味重複、複数contract分割の境界と各finding根拠を出す。portfolio候補は未被覆class 0・意味重複0を満たす場合に限って閉包候補として提示する。これらの0は固定L2/L11の範囲であり新閾値ではない。
 
-**FR-HARNESS-L3-044-02 — 未確定と隣接scopeの保持**：必須identity、scope/revision、applicability、contract revision、oracle、class-to-contract relationの欠落・unknown・conflict・stale、または意味対応をoracleで評価できない場合、portfolioを未完／未評価として保持する。025のcomposite整合、043のexample coverage、契約数の少なさ、portfolio fieldの存在だけで代替・合格扱いしない。N/Aはsource atomと適用根拠を伴う場合だけclassごとに記録する。
+**FR-HARNESS-L3-044-02 — 未確定と隣接scopeの保持**：必須identity、scope/revision、applicability、contract revision、oracle、class-to-contract relationの欠落・unknown・conflict・stale、または意味対応をoracleで評価できない場合、portfolioを未完／未評価として保持する。025のcomposite整合、043のexample coverage、契約数の少なさ、portfolio fieldの存在だけで代替・合格扱いしない。N/Aはsource atomと適用根拠を伴う場合だけclassごとに記録する。template由来義務、041抽出、025/026設計成果など選択した入力元に応じて必須となるsourceは、選択時にsource identity/revision・scope・適用範囲・互換を照合する。未選択sourceは未観測として保持し、不在や合格を推測しない。常時必須の既存scope obligation根拠で確立した適用classを、source未選択だけを理由に分母から落とさず、未選択sourceをclosure根拠にしない。
 
 **FR-HARNESS-L3-044-03 — 既存能力の非変更**：HARNESS-L2-025/026の既存scopeと契約を無断で拡張しない。選択された025/026出力は、対象scope・revision・契約版を結び付けて参照し、入力として不足なら原因を該当ownerへ返す。候補結果から固定要求や隣接候補を編集しない。
 
@@ -737,7 +737,7 @@ AC-035-05はS5-027/028/042および035〜038（旧revision計測、機能数だ�
 
 **AC-HARNESS-L3-044-01 — 正常なclass coverageと契約処置**：同じscope/revision内の固定された適用class・oracle・契約・根拠から、再利用／delta／新規／根拠付きN/Aを区別したcoverageを再構成でき、未被覆0・意味重複0である。合成正常fixtureは選択された9 contract classを既存inputとして与える。9件はfixtureの母集団であり、新classや新しい一般的閾値を作らない。出力のreuse/delta/new/根拠付きN/A区分が各classの義務意味・oracle・適用根拠に対応すること、対象revision/scopeとfinding根拠が出力に保たれることを確かめる。
 
-**AC-HARNESS-L3-044-02 — 単一欠落・誤対応**：source atom、active template、applicability、oracle、contract version、class identityまたはrelationを一度に一つ欠落／矛盾／staleにしたとき、未完・未被覆・unknownを維持し、適用範囲からclassを落とさない。根拠のないN/A、意味重複、旧denominator receipt再利用、025/043による代替、意味対応oracleの欠落を拒否する。入力が正常でも、出力処置区分の誤り、出力対象revision/scopeの欠落・不一致、出力finding根拠の欠落をそれぞれ拒否しportfolioを未完に保ちclosureを主張しない。これらは入力不足への固定親返却区分に該当しない044自身の候補出力誤りであり、当該出力処理の訂正を要する。入力側009/026等へ返却責務を追加しない。
+**AC-HARNESS-L3-044-02 — 単一欠落・誤対応**：source atom、active template、applicability、oracle、contract version、class identityまたはrelationを一度に一つ欠落／矛盾／staleにしたとき、未完・未被覆・unknownを維持し、適用範囲からclassを落とさない。根拠のないN/A、意味重複、旧denominator receipt再利用、025/043による代替、意味対応oracleの欠落を拒否する。入力が正常でも、出力処置区分の誤り、出力対象revision/scopeの欠落・不一致、出力finding根拠の欠落をそれぞれ拒否しportfolioを未完に保ちclosureを主張しない。選択した入力元に応じて必須となるsourceについて、未選択sourceは未観測とし、不在や合格を推測しない。常時必須の既存scope obligation根拠で確立した適用classの分母を未選択sourceだけを理由に落とさず、未選択sourceの合格をclosure根拠にしない。これらは入力不足への固定親返却区分に該当しない044自身の候補出力誤りであり、当該出力処理の訂正を要する。入力側009/026等へ返却責務を追加しない。
 
 **AC-HARNESS-L3-044-03 — portfolio閉包と候補状態**：義務最小化を理由に独立classを落とさず、複数contractの必要な境界と理由を示す。既知の境界・理由欠落、無説明の重複割当、根拠なしN/A、規範contractの孤立は不合格とし、portfolioを未完に保つ。初見でsource・適用性・oracleが不明な場合のunknown/未評価とは区別する。候補は候補のままとし、portfolio出力だけで承認・採択を生成しない。
 
