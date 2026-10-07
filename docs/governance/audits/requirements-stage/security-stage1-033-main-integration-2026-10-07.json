@@ -1,0 +1,16 @@
+{
+  "authority_effect": "none",
+  "base": "1edd5f70e7b18f6cf3a201488f7485269274a2b8",
+  "integrated_head": "6d7bd8363d13f5def543ab0864ad7384459c1b80",
+  "draft_revision": "50dc1884f",
+  "scope": "Stage1 parent033 only; Stage5 changes from main retained without deriving fresh approval",
+  "six_document_sha256": {
+    "docs/helix-security/L10-verification/business-verification.md": "7da2a3b88c866c276065c793036708a633109b176b0381829c8d3c8293ff70a4",
+    "docs/helix-security/L10-verification/functional-verification.md": "d3670f2b1b47bb760dd5b6d7d31730e519d1e91cc9719242177bd29a4c4a5f92",
+    "docs/helix-security/L10-verification/nfr-verification.md": "444560c4ffe00c4a330d6b8a76ad2c86798be1bd4ab506886c96ce0cc4a40e43",
+    "docs/helix-security/L3-requirements/business-requirements.md": "30a0456a17c4c65e9427cc8931905cb7c1adf54c207514f948a7b179dcdb7019",
+    "docs/helix-security/L3-requirements/functional-requirements.md": "14bcf872f21e5d4b53ee44ae0009b9ac125d1bf620872e0459797ed609703be4",
+    "docs/helix-security/L3-requirements/nfr-grade.md": "5b4a647220bea4192788ac937f9ee889574abb49639493f5e78edadc2950f66e"
+  },
+  "static_validation": "diffcheck/govcheck; fixture not executed; independent review pending"
+}

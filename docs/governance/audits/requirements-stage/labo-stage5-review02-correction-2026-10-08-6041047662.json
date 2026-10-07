@@ -1,0 +1,144 @@
+{
+  "artifact_type": "LABO Stage5 review02 correction evidence; point-in-time audit, not approval",
+  "created_local_date": "2026-10-08",
+  "target": {
+    "pr": 2661,
+    "review_comment_id": 6041047662,
+    "review_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2661#issuecomment-6041047662",
+    "review_body_sha256": "fa544ef15c7f204b3538ca5764d3a5e403460f9fd953e817faefc3d26e2bc671",
+    "reviewed_HEAD": "3668218f39b241170ecb09b77c66212d3ddf2991",
+    "worktree": "/home/tenni/.helix-worktrees/l3-labo-stage5-oracle-repair",
+    "branch": "codex/l3-labo-stage5-oracle-repair",
+    "base_HEAD": "3668218f39b241170ecb09b77c66212d3ddf2991",
+    "commit_or_push": false
+  },
+  "findings_and_treatment": [
+    {
+      "id": "M1",
+      "finding": "CASE-128–130 were outside the 070 six-column GFM table due to a blank line after CASE-127.",
+      "treatment": "Removed the blank line; CASE-128–130 now continue the same table."
+    },
+    {
+      "id": "M2",
+      "finding": "FV parent-070 count described 84 + CASE-85 + CASE-86..127 as 127 rows.",
+      "treatment": "Updated to 84 + CASE-85 + CASE-86..130 (45 rows) = 130 rows."
+    },
+    {
+      "id": "m5",
+      "finding": "Three tables counted 86 unique IDs but five separate r08 line IDs were not included in stated count.",
+      "treatment": "Clarified 86 unique CASE IDs plus 5 distinct r08 line IDs = 91 line-ID rows."
+    },
+    {
+      "id": "m6",
+      "finding": "CASE-130 returned definition-revision mismatch to broad 068/OS responsibility, conflating definition ownership with OS Attempt identity source.",
+      "treatment": "Return to the existing task/requirement-owner responsibility category from fixed FR-070; retain OS Attempt identity/completeness only in normal baseline."
+    },
+    {
+      "id": "m7",
+      "finding": "Trace paragraphs in FR-070, BR-070, and NFR grade omitted CASE-128–130.",
+      "treatment": "Added CASE-128–130 to FR-070 trace, BR-070 trace and NFR-grade trace. NFR verification already listed these cases."
+    },
+    {
+      "id": "m8",
+      "finding": "CASE-79–82 prohibit fixed parent fields not explicit in FR-066 prose.",
+      "treatment": "Added source-mapped statement to FR-066 AC-03 matching CASE-79 fixed result target, CASE-80 rate/tolerance, CASE-81 imposed trial count while preserving observed N/receipt display, and CASE-82 pass/fail threshold."
+    }
+  ],
+  "fixed_source_pins": {
+    "l2_066": {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "full_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+      "lines": "518-528",
+      "span_sha256": "5a67776a3f4567fa662c86898caf275fddbe8dc806fd3a19622cae9f733cdb69",
+      "span_bytes": 4684
+    },
+    "l11_066": {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "full_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+      "lines": "261-268",
+      "span_sha256": "dd302f23a38d74475e707be64d9ee69a0bfda35b98902c62173c45d8c369a556",
+      "span_bytes": 2304
+    },
+    "l2_070": {
+      "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "full_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+      "lines": "561-574",
+      "span_sha256": "07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533",
+      "span_bytes": 6468
+    },
+    "l11_070": {
+      "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "full_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+      "lines": "297-307",
+      "span_sha256": "c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1",
+      "span_bytes": 4672
+    },
+    "legacy_execution_ticket_source": {
+      "revision": "af93d1f171d994f9fae2e78026b39ac27f896f5c",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "line": 399,
+      "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "raw_lf_line_sha256": "aa9dacc58969d896bbfbe38ce9c2ed6b55f47476b4cd3a411041d62bebf70468",
+      "literal": "追加するのは、first-pass acceptance、Attempt count、repair rounds、queue/active/review/Human待ち時間、escaped defects、rollback/Recovery、coverage、observer overhead、evidence freshnessなどである。これらは既存12指標のsilent renameではない。First-passの「初回」は最初のeligible candidateとし、内部で何度も修正した後の提出を隠さないためAttempt/repair回数を併記する。"
+    }
+  },
+  "prior_record_immutability": {
+    "record": "docs/governance/audits/requirements-stage/labo-stage5-parent066-review09-disposition-2026-10-07-6edbaed0.json",
+    "modified": false,
+    "note": "Historical review disposition and prior audit records remain unchanged."
+  },
+  "six_current_body_pins": [
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "bytes": 32819,
+      "sha256": "3e2bbc689b933773c06bf396df267516810d8d21bf976c0831a9c6e07687db8d",
+      "ends_lf": true
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "bytes": 353087,
+      "sha256": "fd2b4605dfa3eca4ad99861d9fb9966c6511f2cf777161258c85527aa78f144f",
+      "ends_lf": true
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "bytes": 91242,
+      "sha256": "343604239051cfc452d924688a98c15288b0e30f3e02492cda843269bbf58b4b",
+      "ends_lf": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "bytes": 31354,
+      "sha256": "bf240469ba0333665e9eabb49becb1443c8426e425f8c67e82c81baa4d0b1709",
+      "ends_lf": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "bytes": 692047,
+      "sha256": "6e096ff10779acad20f94a7a89e56bcec4bb04339634a395cbd5b2737fe0d666",
+      "ends_lf": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "bytes": 82074,
+      "sha256": "2983f735ae142e126946039b195a0be483b476ffa35ef5cffee976d9f299146a",
+      "ends_lf": true
+    }
+  ],
+  "static_verification": {
+    "git_diff_check": "pass",
+    "same_table_case127_128_129_130": "pass; no blank line between CASE-127 and CASE-128",
+    "parent070_row_count": "pass; 84 + 1 + 45 = 130",
+    "id_count_statement": "pass; 86 unique CASE IDs plus 5 distinct r08 line IDs = 91 rows",
+    "case130_return_category": "pass; task/requirement owner separated from OS Attempt source",
+    "trace_case128_130": "pass; FR/BR/NFR grade and existing NFR verification cross-reference",
+    "fixed066_forbidden_output_mapping": "pass; CASE-79–82 mapped to exact fixed L2 prohibition",
+    "runtime_tests_ci": "not run; document-only upper-layer verification",
+    "authority_effect": "none; no approval, acceptance, or implementation authority created"
+  },
+  "unverified_or_open": []
+}
