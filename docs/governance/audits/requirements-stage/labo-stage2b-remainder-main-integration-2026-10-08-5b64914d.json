@@ -1,0 +1,97 @@
+{
+  "record_type": "main_integration_recheck",
+  "authority_effect": "none",
+  "base_revision": "5b64914de7357853b267d297e445cae18e204304",
+  "integrated_head": "d9012754494d7ad73e2258b89ad45ebf530fd515",
+  "scope": "HELIXLABO-L2-012–030,034,035,058; Stage2b remainder22",
+  "six_bodies": {
+    "BR": {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "sha256": "3e2bbc689b933773c06bf396df267516810d8d21bf976c0831a9c6e07687db8d",
+      "bytes": 32819
+    },
+    "FR": {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "sha256": "fd2b4605dfa3eca4ad99861d9fb9966c6511f2cf777161258c85527aa78f144f",
+      "bytes": 353087
+    },
+    "NFR": {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "sha256": "343604239051cfc452d924688a98c15288b0e30f3e02492cda843269bbf58b4b",
+      "bytes": 91242
+    },
+    "BV": {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "sha256": "bf240469ba0333665e9eabb49becb1443c8426e425f8c67e82c81baa4d0b1709",
+      "bytes": 31354
+    },
+    "FV": {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "sha256": "6e096ff10779acad20f94a7a89e56bcec4bb04339634a395cbd5b2737fe0d666",
+      "bytes": 692047
+    },
+    "NFRV": {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "sha256": "2983f735ae142e126946039b195a0be483b476ffa35ef5cffee976d9f299146a",
+      "bytes": 82074
+    }
+  },
+  "stage2b_sections": {
+    "BR::## Stage 2b — 残22親の業務境界": {
+      "line_start": 27,
+      "line_end": 57,
+      "raw_sha256": "1842fa1d131dbc4cee873b441931cbfaa6ad8563fec936e76950ae8affc24e47",
+      "unchanged_from_c0dab045_inventory": true
+    },
+    "FR::## Stage 2b 接続・条件補足22件（部分草稿・未承認）": {
+      "line_start": 555,
+      "line_end": 587,
+      "raw_sha256": "ca287614775ea5a036c8470a0cdaa2931b3c2e9d594767a1b82bb50fead6f34a",
+      "unchanged_from_c0dab045_inventory": true
+    },
+    "FR::## Stage 2b — 独立case追補のFR/AC trace": {
+      "line_start": 1504,
+      "line_end": 1553,
+      "raw_sha256": "3d5fe5979b38ca6fb8b58442c892d7604e53a32e12f59c36e9d45a6d0f39d75b",
+      "unchanged_from_c0dab045_inventory": true
+    },
+    "NFR::## Stage 2b — 残22親のNFR候補": {
+      "line_start": 101,
+      "line_end": 131,
+      "raw_sha256": "1c56783c1acbc051abb471731f9546d443da8e5e138494cd39720700a7058819",
+      "unchanged_from_c0dab045_inventory": true
+    },
+    "NFR::## Stage 2b — 過去追補のNFR索引（現在の個別fixture参照）": {
+      "line_start": 132,
+      "line_end": 160,
+      "raw_sha256": "b65880aa9d427caf9307bd8dea58858245091047a875a1d160fbbb94b9272401",
+      "unchanged_from_c0dab045_inventory": true
+    },
+    "BV::## Stage 2b — 残22親の業務境界": {
+      "line_start": 25,
+      "line_end": 55,
+      "raw_sha256": "e1fe7ec0f5ea08cc812219f2d03ab369c1a5a421c9abe9471a238dcdf34c3947",
+      "unchanged_from_c0dab045_inventory": true
+    },
+    "FV::## Stage 2b 接続・条件補足22件（未承認・未実行）": {
+      "line_start": 561,
+      "line_end": 1206,
+      "raw_sha256": "25a5375123d57d745d7f33ac258132ee9621c87aa46210c120a0d3b5589ff46c",
+      "unchanged_from_c0dab045_inventory": true
+    },
+    "FV::## Stage 2b — 22親の独立反例fixture追補": {
+      "line_start": 1207,
+      "line_end": 1753,
+      "raw_sha256": "bfc0b98a655397a20ba8a04b4d951d127c97878262246417640b3c495dcd736a",
+      "unchanged_from_c0dab045_inventory": true
+    },
+    "NFRV::## Stage 2b — 残22親のNFR測定設計": {
+      "line_start": 86,
+      "line_end": 118,
+      "raw_sha256": "59f984709b1c825730851ec4317fedca71e1643a752b4f2732fb3bb5cd9b519a",
+      "unchanged_from_c0dab045_inventory": true
+    }
+  },
+  "approval_status": "fresh exact current-body Opus/Fable review pending; old approval not inherited",
+  "fixture_execution": "not executed"
+}

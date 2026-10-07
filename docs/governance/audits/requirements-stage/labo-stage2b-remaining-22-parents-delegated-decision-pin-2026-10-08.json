@@ -1,0 +1,420 @@
+{
+  "record_kind": "delegated_l3_l10_decision_pin",
+  "source_revision": null,
+  "review_base": "00298f79229198965d889ebf0b6a1bedc4d03648",
+  "review_content_head": "3c00829014aec3e42e35e175c11778c452ff9332",
+  "body_revision": "3c00829014aec3e42e35e175c11778c452ff9332",
+  "authority_effect": "none_pending_condition3_and_main_admission",
+  "decision_status": "recorded_pending_condition3",
+  "decision_record_path": "docs/governance/decisions/helix-labo-stage2b-remaining-22-parents-l3-l10-delegated-decision-2026-10-08.md",
+  "explicit_decision": "approve the exact six L3/L10 bodies for LABO Stage 2b, version_target 1.0, for the 22 listed adopted parents only",
+  "scope": {
+    "mechanism": "HELIX-LABO",
+    "stage": "Stage 2b",
+    "version_target": "1.0",
+    "parents": [
+      "HELIXLABO-L2-012",
+      "HELIXLABO-L2-013",
+      "HELIXLABO-L2-014",
+      "HELIXLABO-L2-015",
+      "HELIXLABO-L2-016",
+      "HELIXLABO-L2-017",
+      "HELIXLABO-L2-018",
+      "HELIXLABO-L2-019",
+      "HELIXLABO-L2-020",
+      "HELIXLABO-L2-021",
+      "HELIXLABO-L2-022",
+      "HELIXLABO-L2-023",
+      "HELIXLABO-L2-024",
+      "HELIXLABO-L2-025",
+      "HELIXLABO-L2-026",
+      "HELIXLABO-L2-027",
+      "HELIXLABO-L2-028",
+      "HELIXLABO-L2-029",
+      "HELIXLABO-L2-030",
+      "HELIXLABO-L2-034",
+      "HELIXLABO-L2-035",
+      "HELIXLABO-L2-058"
+    ],
+    "parent_count": 22,
+    "fv_coverage_addendum": "L10 FV Root acceptance supplement FV:1754–2560 is included in the reviewed content and decision scope",
+    "excluded": [
+      "Stage 2b initial nine parents",
+      "HELIXLABO-L2-052",
+      "HELIXLABO-L2-054",
+      "HELIXLABO-L2-055",
+      "all other parent identities, stages, mechanisms, versions"
+    ]
+  },
+  "formal_review_comment": {
+    "id": 6042932038,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2671#issuecomment-6042932038",
+    "reviewer": "Claude review_merge; Opus 5.5 and Fable 5.1 views",
+    "raw_utf8_body_bytes": 6858,
+    "raw_utf8_body_sha256": "93ff56417d1c92a47d485812bce78a49cbffe8f17720a32a0535700c2d4db646",
+    "raw_utf8_body": "## review02（HEAD 3c00829014aec3e42e35e175c11778c452ff9332、merge-base 00298f79229198965d889ebf0b6a1bedc4d03648）\n\nreviewer：Claude（lane `review_merge`、**Opus 5.5**）\n- 条件1：Opus 5.5のブラインド照合と、reviewerの原文確認で判定した。\n- 条件2：Fable advisor（claude-fable-5-1）の見解である。\n\n照合の範囲：\n- LABO Stage 2b残り22親（012〜030、034、035、058）の、6本文の節全体。\n- 固定親 `f6dad2a33`：L2の167–262と403–415、L11の63–86と156–162。\n- PO採択 `633bf12ea`。\n- 前回 `bb66dff79` からの本文差分：FR・FV・BR・BVの該当行だけ（`git diff bb66dff79 HEAD -- docs/helix-labo`）。\n\n### 静的確認\n- scfctl validate 147/0、stale 0、residuals 0\n- govcheck ok\n- `git diff --check` clean\n- `git merge-tree`：最新mainと衝突なし\n\n### review01 M1〜M3への対応\n- **M1（029）は解消した。**\n  - FR:1305、FV:1282–1292、FV:2511–2515で、戻し先が次のとおり置かれた。\n    - OS execution evidence/receiptの欠落・不一致 → OS execution evidence owner\n    - HARNESS verification contractのstale → HARNESS verification contract owner\n    - permission/classification → SECURITY\n  - 根拠は、固定L2-029:237の依存（HARNESS verification contractとOS実行証拠）、L2:73、L2-058:413、L11:162である。030-AC-02の書き方とも合う。\n  - 誤ったownerへ返したら不合格とする文が入った。検査scope欠落をsource ownerへ戻す既存の固定ルートも保持している。\n- **M2（023）は解消した。** FR:1054とFV:2500–2504で、contract欠落を固定L2-023:213の依存「BRAIN source contract」のownerへ戻すようになった。identity不明をBRAINへ戻す固定文も保持している。\n- **M3（058-C15）は解消した。** FV:2090–2094で、operation変更後の旧receipt不一致を選択sourceのownerへ、permission/classificationをSECURITYへ戻す。固定L2-058:413とL11:161–162の区分内である。\n- **類型5：** 変更した各CASEに、旧文の要素が残っている（pass・成功を生成しない、unknownを保持する、CIを起動しない、BRAIN正本を移管しない、旧receiptを流用しない）。\n- **ID：** 058-C41、025-C10、029-C17〜C19は全表に入っている。FR 058 traceへのC08・C11・C23の追加（review01のMinor）も、実在するCASEと一致する。\n\n### Major\nなし。review01のM1〜M3は、すべて解消した。\n\n### Minor（返却しない。誤った完了は通らない。次に触るときに直せばよい）\n- m1：029-AC-02の「permission/classificationの不備はSECURITYへ」は、L2-058:413から導いた文である。これを単独で照合する029のCASEがない（Opusと、FableのMinor 3が同じ指摘）。\n- m2：058-C15（FV:2093）の「source ownerやLABOなど誤ったownerへの返却は不合格」が、operation不一致にもかかると読める。固定L11:162は入力契約・版の戻し先を「各sourceとLABO」としているので、AC-02（FR:1472）と同じく「permission/classificationについて」と限ると明確になる。\n- m3：023-AC-02（FR:1054）から、contract欠落について明示していた「拒否/unknownを保ち」の文言が抜けた。冒頭の「受理せず」とC13が保っているので、境界は残っている。\n- m4：029-C19（FV:2515）には「CIを起動しない」の明記がない（前revisionから同じ）。AC-02とC10が担保している。\n- m5：C13のoracleにある「source identity不明も同じ責務へ戻す」は、このfixture（identityは有効のまま）の外の条件である。\n- m6（Fable）：FR:1319の029「責務ownerと変更禁止境界」行のoracle文が「OSへ／HARNESSへ返す」になったが、同じ行のC10/C11/C12/C16は戻し先のない拒否のみのCASEである。説明はC17〜C19にだけ当たる。\n- review01で返さなかったMinorのうち、§24 #1の単独CASE、035-C05/C06の戻し先、017-C05のAC記載は、そのまま残っている。\n\n### Fableの見解（同じHEADの6本文と固定親をFable自身が読んだもの）\n- 結論行は原文のまま：「承認してよい」\n- Major：なし。M1〜M3への修正は固定親から導け、L2の意味・範囲・担当・版を変えていないとしている。\n- Minor：上のm1・m6。もう一つ、判断記録への注記として、22親のFV本文は依頼文の561・1207節のほかに「Root検収追補」（FV 1754〜2560、今回変えた058-C15やreview04追補を含む）にもある。判断記録で節を挙げるなら、この節も含めること。\n- 照合した対象revision：`3c0082901`。6本文のSHA-256はFableが自分で計算し、下の値と一致した。\n- 未確認範囲：PO判断行のsemantic digest（算出元が示されていない）、L11 §24（固定親の指定行外）、repair記録・inventory JSON（6本文外）。\n\n### 未確認範囲の扱い\nOpusとFableが残した点は、次のとおり閉じた。\n- **差分外の22親本文**：review01でOpusが節全体を照合し、M1〜M3以外はMajor 0だった。Fableは今回、22親の節を全文読んだ。\n- **PO判断行**：Fableが633bf12eaの60〜83行と98行を読んだ。review01でもFableが22親分の一致を確認している。\n- **semantic digest**：算出方法が記録されていないため、照合できない。raw span SHAは22件すべて一致しており、この値は承認の根拠にしない。\n- **L11 §24、監査JSON**：固定親の指定範囲外、または6本文の外であり、承認対象ではない。\n\n### 委任条件の状態\n- **条件1（Opus `no_findings`）：成立。** Major 0。Minorは返さないと判断した。\n- **条件2（Fable）：成立。** 結論行は原文のまま「承認してよい」。\n- 条件1と2は、同じbody revision（`3c0082901`）でそろった。\n- **条件3は未照合。** 判断記録の作成後に、6本文が次のSHA-256から変わっていないことを照合する。判断記録では、FVの対象節にFV:1754以降の「Root検収追補」も含めること。\n\n| 文書 | SHA-256 |\n|---|---|\n| L3-BR | `7908f4f075e3aa4514656a1f5e65ddfced120f6800fc9372fd9a6f673c28e99a` |\n| L3-FR | `5a97eef5d322f8b79d5bce433494c7ad1548fa1b6ef1eb27749882036f7afece` |\n| L3-NFR | `343604239051cfc452d924688a98c15288b0e30f3e02492cda843269bbf58b4b` |\n| L10-BV | `2a8486d6ce980a934ece785b0d6670f0dc308da36ebe100aaeb099cac4cc5cac` |\n| L10-FV | `5242a94fed5618792f7d2ecc8c1b6a13cf4788e79fb66b2e0b2312f34425a29e` |\n| L10-NFR | `2983f735ae142e126946039b195a0be483b476ffa35ef5cffee976d9f299146a` |\n\n### 未確認範囲\nなし。\n\n本commentから、承認の効力、PO確認、merge admissionは生成しない。\n",
+    "conditions": {
+      "condition1": "satisfied: Opus no_findings, Major 0, unreturned minors retained",
+      "condition2": "satisfied: Fable literal verdict 承認してよい for the same body revision",
+      "condition3": "pending: independent post-record exact-body/source/decision-pin verification"
+    }
+  },
+  "review_result_limits": {
+    "fable_semantic_digest": "unverified because source/derivation is unspecified; not used as approval basis",
+    "l11_section_24": "outside designated fixed-parent source span and not an approval basis",
+    "audit_json_and_repair_inventory": "outside the six approved requirement/verification bodies; evidence only",
+    "legacy_consumer_coverage": "no claim that every old-source consumer was reviewed",
+    "unreturned_minor_findings": "retained as recorded in formal review02 and prior review01; not promoted to blockers or silently resolved"
+  },
+  "delegation": {
+    "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+    "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220",
+    "explicit_approval_scope": "L3 requirements and paired L10 integrated verification design only",
+    "post_confirmation": "PO post-confirmation is not recorded yet"
+  },
+  "operating_model": {
+    "path": "docs/governance/github-upstream-operating-model.md",
+    "sha256": "eed2b774bb78545ac53c7d55f3ae3ab4e9c4f421b4eaf3ac3bcdbcdd869dd27b"
+  },
+  "fixed_parent_pins": [
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "bytes": 73845,
+      "sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "spans": [
+        {
+          "start_line": 167,
+          "end_line": 262,
+          "bytes": 10132,
+          "sha256_raw_lf": "00bb8552fe42b64f32f83307bcc8d9a6341fbd906b54a67f02abe62c958fa2a1"
+        },
+        {
+          "start_line": 403,
+          "end_line": 415,
+          "bytes": 3695,
+          "sha256_raw_lf": "b2bbcdc2a4687314eef773ecae25517776e548be7df8c23818549eb6841ac9cf"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "bytes": 40455,
+      "sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "spans": [
+        {
+          "start_line": 63,
+          "end_line": 86,
+          "bytes": 5286,
+          "sha256_raw_lf": "26f3c6619de28a07fc2abff2b4abddf158bf2db14267175dc4fa5ddd6c4f8779"
+        },
+        {
+          "start_line": 156,
+          "end_line": 162,
+          "bytes": 1407,
+          "sha256_raw_lf": "8bd48dea9ee4e634eae46ead9dbf989b8d5e425aaecd35ef637e10f60cf96734"
+        }
+      ]
+    }
+  ],
+  "po_adoption": {
+    "decision_path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+    "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "bytes": 12756,
+    "sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0",
+    "span": {
+      "start_line": 60,
+      "end_line": 98,
+      "bytes": 3286,
+      "sha256_raw_lf": "4b02a2556174727bc227a2ca7feb6d1ae08e9d4fb4a55f8c24c452d6f64f5f99",
+      "meaning": "22 parent identities belong to the 53 explicitly adopted LABO identities; kind/version_target are as recorded"
+    },
+    "register": {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "bytes": 2108075,
+      "sha256": "e7dc1180361869379966fb33f4ab263cabdfe1137ceea32dedc2b6edfea388d1",
+      "target_rows": [
+        {
+          "identity": "HELIXLABO-L2-012",
+          "registration_id": "MPR-RC-HELIXLABO-L2-012-001",
+          "line": 246,
+          "bytes": 2598,
+          "sha256_raw_lf": "d818a1284cc4398402d97401e7c0da0fa09e2a485c44f4290474285811cdab9d",
+          "requirement_kind": "connection"
+        },
+        {
+          "identity": "HELIXLABO-L2-013",
+          "registration_id": "MPR-RC-HELIXLABO-L2-013-001",
+          "line": 247,
+          "bytes": 2598,
+          "sha256_raw_lf": "0376314301e9bd9c011e4f028a0700752bfddf84d021bce10d2461d493f959f6",
+          "requirement_kind": "connection"
+        },
+        {
+          "identity": "HELIXLABO-L2-014",
+          "registration_id": "MPR-RC-HELIXLABO-L2-014-001",
+          "line": 248,
+          "bytes": 2598,
+          "sha256_raw_lf": "982a0da85fa268ef09c5339515ed5a0b0aed9a503b25629839912be428c23650",
+          "requirement_kind": "connection"
+        },
+        {
+          "identity": "HELIXLABO-L2-015",
+          "registration_id": "MPR-RC-HELIXLABO-L2-015-001",
+          "line": 249,
+          "bytes": 2598,
+          "sha256_raw_lf": "2e425f44a212c3f90f2efd71a7467569818eedb303f7141ad5f57a4d8feb816e",
+          "requirement_kind": "connection"
+        },
+        {
+          "identity": "HELIXLABO-L2-016",
+          "registration_id": "MPR-RC-HELIXLABO-L2-016-001",
+          "line": 250,
+          "bytes": 2598,
+          "sha256_raw_lf": "8c33922bb8feaca0cb4857219389ff59374e7a54e98e57413f9026b228303b81",
+          "requirement_kind": "connection"
+        },
+        {
+          "identity": "HELIXLABO-L2-017",
+          "registration_id": "MPR-RC-HELIXLABO-L2-017-001",
+          "line": 251,
+          "bytes": 2598,
+          "sha256_raw_lf": "67131ee6fad313e455de795cb3b13574d4c4356e4a27408c4ac367409502843f",
+          "requirement_kind": "connection"
+        },
+        {
+          "identity": "HELIXLABO-L2-018",
+          "registration_id": "MPR-RC-HELIXLABO-L2-018-001",
+          "line": 252,
+          "bytes": 2598,
+          "sha256_raw_lf": "135be1b17ea46255358fea1b3a1f69c4d1b2357c604af4b3c55200597f4d2950",
+          "requirement_kind": "connection"
+        },
+        {
+          "identity": "HELIXLABO-L2-019",
+          "registration_id": "MPR-RC-HELIXLABO-L2-019-001",
+          "line": 253,
+          "bytes": 2598,
+          "sha256_raw_lf": "05ceed129276317cda0d985dc7054ca6ed650b48d4ff71f6dd2ea700faae3bf2",
+          "requirement_kind": "connection"
+        },
+        {
+          "identity": "HELIXLABO-L2-020",
+          "registration_id": "MPR-RC-HELIXLABO-L2-020-001",
+          "line": 254,
+          "bytes": 2598,
+          "sha256_raw_lf": "9797ac61bc6b7ee9f4b49f40e11bda63d136eac01bfb3a29423ec8e55f16932a",
+          "requirement_kind": "connection"
+        },
+        {
+          "identity": "HELIXLABO-L2-021",
+          "registration_id": "MPR-RC-HELIXLABO-L2-021-001",
+          "line": 255,
+          "bytes": 2598,
+          "sha256_raw_lf": "502a3f523533d0d2395ee7fd3b7f9488d4e4b540a3d5505e0f82ec9c27cec08c",
+          "requirement_kind": "connection"
+        },
+        {
+          "identity": "HELIXLABO-L2-022",
+          "registration_id": "MPR-RC-HELIXLABO-L2-022-001",
+          "line": 256,
+          "bytes": 2598,
+          "sha256_raw_lf": "555854154ce6ef40da153aaf8a4954a6bece82c5ecbb2640a6708513f35179fa",
+          "requirement_kind": "connection"
+        },
+        {
+          "identity": "HELIXLABO-L2-023",
+          "registration_id": "MPR-RC-HELIXLABO-L2-023-001",
+          "line": 257,
+          "bytes": 2598,
+          "sha256_raw_lf": "2a4bb532bfe9efd90805430ea19a414978a3292da70f377c01bc6b9d6081d3d0",
+          "requirement_kind": "connection"
+        },
+        {
+          "identity": "HELIXLABO-L2-024",
+          "registration_id": "MPR-RC-HELIXLABO-L2-024-001",
+          "line": 258,
+          "bytes": 2598,
+          "sha256_raw_lf": "603c40440d8a4afa1c39572bea4bd1ce5920f7a4d13cbdc160b7ec143d4a8d48",
+          "requirement_kind": "connection"
+        },
+        {
+          "identity": "HELIXLABO-L2-025",
+          "registration_id": "MPR-RC-HELIXLABO-L2-025-001",
+          "line": 259,
+          "bytes": 2598,
+          "sha256_raw_lf": "c987a79ce2ff34cea6ccff34e43c26fa8000e8552add9544b459a4c0abf1c431",
+          "requirement_kind": "connection"
+        },
+        {
+          "identity": "HELIXLABO-L2-026",
+          "registration_id": "MPR-RC-HELIXLABO-L2-026-001",
+          "line": 260,
+          "bytes": 2598,
+          "sha256_raw_lf": "00831f5a85eba46d3667cf6fddf04db4eab3f0917a4669d48079fd9fce27de04",
+          "requirement_kind": "connection"
+        },
+        {
+          "identity": "HELIXLABO-L2-027",
+          "registration_id": "MPR-RC-HELIXLABO-L2-027-001",
+          "line": 261,
+          "bytes": 2598,
+          "sha256_raw_lf": "7d4af3134b12988cc9649a9501ecc4e469b1bd491bebe066e1cecbbd56b74d1d",
+          "requirement_kind": "connection"
+        },
+        {
+          "identity": "HELIXLABO-L2-028",
+          "registration_id": "MPR-RC-HELIXLABO-L2-028-001",
+          "line": 262,
+          "bytes": 2598,
+          "sha256_raw_lf": "9448a30238861afe0771f0aa26ae7628db53c565c17703e771ea3c8e1164cdda",
+          "requirement_kind": "connection"
+        },
+        {
+          "identity": "HELIXLABO-L2-029",
+          "registration_id": "MPR-RC-HELIXLABO-L2-029-001",
+          "line": 263,
+          "bytes": 2598,
+          "sha256_raw_lf": "e57ed0db58df2dde69f2e3d6be24c1a942e38d13f1edabc450f3815854b06500",
+          "requirement_kind": "connection"
+        },
+        {
+          "identity": "HELIXLABO-L2-030",
+          "registration_id": "MPR-RC-HELIXLABO-L2-030-001",
+          "line": 264,
+          "bytes": 2598,
+          "sha256_raw_lf": "38a8a9d93f1fd760b86227cbdcfcce4e66e3e75fc6951036f080b27904eaa36d",
+          "requirement_kind": "connection"
+        },
+        {
+          "identity": "HELIXLABO-L2-034",
+          "registration_id": "MPR-RC-HELIXLABO-L2-034-001",
+          "line": 268,
+          "bytes": 2598,
+          "sha256_raw_lf": "c12b6fbe1bc32da0f882bda439e56729e46fa152f3aefce39e2a8ef8d9870020",
+          "requirement_kind": "connection"
+        },
+        {
+          "identity": "HELIXLABO-L2-035",
+          "registration_id": "MPR-RC-HELIXLABO-L2-035-001",
+          "line": 269,
+          "bytes": 2598,
+          "sha256_raw_lf": "a6b3c3f613d35b2218cc90871609439f11dfd15f31ec2afa279e2bf9decbe0a0",
+          "requirement_kind": "connection"
+        },
+        {
+          "identity": "HELIXLABO-L2-058",
+          "registration_id": "MPR-RC-HELIXLABO-L2-058-001",
+          "line": 350,
+          "bytes": 2460,
+          "sha256_raw_lf": "bbba25e553c0b2d163660d65e6cb373fbac5e5b4bdae2711ed4f6015cabfd067",
+          "requirement_kind": "unit"
+        }
+      ]
+    }
+  },
+  "historical_attribution_inventory": [
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage2b-remainder-attribution-inventory-2026-10-08-c0dab045.md",
+      "sha256": "0c7907200283ab939479c48cd026cbc863a88259b22c32af8f9513618d6709d7",
+      "bytes": 12323,
+      "revision": "current reviewed HEAD inventory pin"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage2b-remainder-attribution-inventory-2026-10-08-c0dab045.json",
+      "sha256": "e338e24bb38422dbc6b4068de079012b5111f0850febba7721521490af04b02e",
+      "bytes": 75493,
+      "revision": "current reviewed HEAD inventory pin"
+    }
+  ],
+  "legacy_source_ids_from_inventory": [
+    "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+    "LEGACY-ASSET-FA8C6E69463183D6A19B",
+    "LEGACY-ASSET-02D897E62EF2FA267267",
+    "LEGACY-ASSET-0B5B38F146D9538C9A36"
+  ],
+  "documents": [
+    {
+      "label": "L3-BR",
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "revision": "3c00829014aec3e42e35e175c11778c452ff9332",
+      "bytes": 32852,
+      "sha256": "7908f4f075e3aa4514656a1f5e65ddfced120f6800fc9372fd9a6f673c28e99a"
+    },
+    {
+      "label": "L3-FR",
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "revision": "3c00829014aec3e42e35e175c11778c452ff9332",
+      "bytes": 354046,
+      "sha256": "5a97eef5d322f8b79d5bce433494c7ad1548fa1b6ef1eb27749882036f7afece"
+    },
+    {
+      "label": "L3-NFR",
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "revision": "3c00829014aec3e42e35e175c11778c452ff9332",
+      "bytes": 91242,
+      "sha256": "343604239051cfc452d924688a98c15288b0e30f3e02492cda843269bbf58b4b"
+    },
+    {
+      "label": "L10-BV",
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "revision": "3c00829014aec3e42e35e175c11778c452ff9332",
+      "bytes": 31387,
+      "sha256": "2a8486d6ce980a934ece785b0d6670f0dc308da36ebe100aaeb099cac4cc5cac"
+    },
+    {
+      "label": "L10-FV",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "revision": "3c00829014aec3e42e35e175c11778c452ff9332",
+      "bytes": 692699,
+      "sha256": "5242a94fed5618792f7d2ecc8c1b6a13cf4788e79fb66b2e0b2312f34425a29e"
+    },
+    {
+      "label": "L10-NFR",
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "revision": "3c00829014aec3e42e35e175c11778c452ff9332",
+      "bytes": 82074,
+      "sha256": "2983f735ae142e126946039b195a0be483b476ffa35ef5cffee976d9f299146a"
+    }
+  ],
+  "condition3": {
+    "status": "pending_independent_recheck_after_record_addition",
+    "required": "independently verify exact six body SHA values, formal raw body, f6dad fixed parent full/span pins, 633bf12 adoption/register pins, this decision record and pin JSON, then confirm current main admission before authority effect"
+  },
+  "authority_limitations": {
+    "l10_execution": "not executed; no execution/pass implied",
+    "old_decisions": "not inherited",
+    "po_confirmation": "not recorded; delegated mechanism-by-stage post-confirmation remains later",
+    "implementation_release_or_issue_close": "not authorized"
+  },
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-labo-stage2b-remaining-22-parents-l3-l10-delegated-decision-2026-10-08.md",
+    "sha256": "5f1e5bbcef965e36d19f51ca9cefdec30f67be5f97746d505cb401261efbc0cd",
+    "bytes": 5479,
+    "source_revision": null
+  },
+  "limits": "Draft evidence only; no commit, push, Ready, merge, or independent condition3 check.",
+  "prior_review01_comment": {
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2671#issuecomment-6042406553",
+    "reviewer": "Claude review_merge; Opus 5.5 and Fable 5.1 views",
+    "raw_utf8_body_bytes": 6687,
+    "raw_utf8_body_sha256": "0ecee6a75f25d16817663802e5960e7d325284160786ddfc8711bf649e304fb3",
+    "raw_utf8_body": "## review01（HEAD bb66dff7929bcbfe3cbee563af3883c10eff99d2、merge-base 5b64914de7357853b267d297e445cae18e204304）\n\nreviewer：Claude（lane `review_merge`。Opus 5.5の独立照合と、Fable 5.1の見解）\n\n照合の範囲：\n- LABO Stage 2b残り22親（012〜030、034、035、058）の、6本文の節全体。\n- 固定親 `f6dad2a33`：L2の167–262と403–415、L11の63–86と156–162。\n- PO採択 `633bf12ea`：helix-labo-requirements-po-decision-2026-09-28.md の60–98行。\n- 本PRで6本文に差分はない（base比で0件）。\n\n### 結論：Major 3。委任の条件1は成立しない\n\n3件とも類型1（宛先が決まらない）である。固定親は、選択したsourceの入力・契約・receiptに不備があったときの戻し先を、次のとおり定めている。\n- L2:73：欠落はsource責務へ戻す。\n- L2-058:413：選択sourceのversion/scope/許可/receiptが不足・不一致ならsource owner／SECURITYへ戻す。\n- L11:162：入力契約・版は各sourceとLABOへ、許可/classificationはSECURITYへ戻す。\n\n同じPRの030-AC-02（FR:1346）は、この3行からProduct Core source ownerへの戻し先を導いている。次の3か所だけが、同じ構造なのに宛先を置いていない。\n\n**M1（029：CI/test → Aggregate）**\n- LABO-029-AC-02（FR:1305）は、「receipt・contract・実行証拠の不備には固定親にない宛先を作らず拒否/unknownを保持する」としている。\n- 次の3つのCASEも、戻し先なしのunknown保持である。\n  - FV:1286（C17）：OS実行証拠の欠落。「追加owner routeを固定L2-029から導けない」としている。\n  - FV:1292（C18）：HARNESS verification contractのstale。\n  - FV:2513（C19）：OS execution receiptの不一致。\n- L2-029単独には宛先がないが、L2-058:413とL11:162から宛先が決まる。\n\n**M2（023：BRAIN → Aggregate）**\n- LABO-023-AC-02（FR:1054）とFV:2503（C13：BRAIN source contractの欠落）は、contractの欠落を「拒否/unknown保持」だけにしていて、戻し先を置いていない。\n- L11:162とL2:73から、戻し先は決まる。\n\n**M3（058-C15）**\n- FV:2094（operationの変更後に旧receiptを流用するCASE）は、「owner戻し先は固定L2で特定されないため拒否のみ」としている。\n- しかしL11:161は、操作の変更を再照合の対象として名指ししている。L2-058:413も、receiptの不足・不一致の戻し先をsource owner／SECURITYと定めている。\n- 同じ構造のC14（新source）とC16（scope変更、FV:2100）は宛先を持っている。C15だけが外れている。\n\n求める変更（今の拒否・unknown保持・CIを起動しない・passを生成しないは残し、次を足す）：\n- 029-AC-02、C17〜C19、023-AC-02、C13、058-C15に、固定親L2-058:413、L11:162、L2:73から導いた戻し先を足す。\n  - 当該の選択source owner（OS実行証拠・receiptはOS、verification contractはHARNESS、BRAIN source contractはBRAIN）\n  - 許可・classificationに関わるものはSECURITY\n- 030-AC-02と同じ書き方で、導いた根拠の行を示す。\n- 他の宛先へ返したら不合格とする文も足す。\n\n### Fableの見解（同じHEADの6本文と固定親をFable自身が読んだもの）\n- 結論行は原文のまま：「承認してよい」\n- Major：なし。\n- Minor：\n  - (1) FR:1529の独立case追補trace表の058行に、`L10-LABO-058-C41`がない（索引の不整合のみ）。\n  - (2) FR 1538–1548のL11 §24 named-parent trace（review03）が、052/054/055を「未確認・未完」と自分で記している。22親の外の補助traceである。\n  - (3) 注記：節一覧にないFV:1754「Root検収追補」が、22親の個別fixtureの大半を定義している。判断記録はこの節も含めて示すこと。\n- 照合した対象revision：`bb66dff79`。6本文のSHA-256はFableが自分で計算し、下の値と一致した。\n- 未確認範囲：inventory内のGitHub comment ID・body SHA（条件2の対象外）。\n\n### 判断の扱い\n- OpusはM1〜M3を挙げ、Fableは「承認してよい」とした。見解は一致していない。\n- github-upstream-operating-model.md「L3／L10承認の委任」に従い、OpusがM1〜M3を固定親L2:73、L2-058:413、L11:161–162の原文で確かめた。妥当なので、作成側へfindingとして返す。\n- 修正で本文revisionが変わったら、新しいrevisionで条件1と2をやり直す。\n\n### Minor（返却しない。M1〜M3と一緒に直してよい）\n- FR:1529の058行にC41がない（Fable(1)、Opusも同じ指摘）。\n- BR:27とBV:25の025行に、review04の追加CASE C10が書かれていない。\n- 058のFR親句trace表に、C08・C11・C23がない（negative一覧には含まれている）。\n- §24 #1「scope未許可のまま横断済みとする」の単独CASEがあるのは021・023・025だけで、他は058-C22/C40の一般形に頼っている。\n- 035-C05/C06は、LABO側の出力欠落を「当該source owner」へ返している。欠陥の発生元と宛先が一致していない。\n- 017-C05の「既存rule source owner」はL2:129から導けるが、AC-02には書かれていない。\n- 034/035のconnector欠落→CONNECTのconnector契約ownerは、L2:159–162から導けるので許容範囲と見た。\n- review側の記録：照合依頼文で058のL11を156–177と書いたが、164–177はL2-059の行で、058は156–162である。判定には影響していない。\n\n### 静的検査（exact HEAD）\n- `scfctl validate` 147/0、`stale=0`、`residuals=0`\n- `govcheck ok atoms=7622`\n- `git diff --check` clean、merge-treeでconflictなし\n\n### 6本文のSHA-256（HEAD bb66dff79）\n| 文書 | SHA-256 |\n|---|---|\n| L3-BR | `3e2bbc689b933773c06bf396df267516810d8d21bf976c0831a9c6e07687db8d` |\n| L3-FR | `fd2b4605dfa3eca4ad99861d9fb9966c6511f2cf777161258c85527aa78f144f` |\n| L3-NFR | `343604239051cfc452d924688a98c15288b0e30f3e02492cda843269bbf58b4b` |\n| L10-BV | `bf240469ba0333665e9eabb49becb1443c8426e425f8c67e82c81baa4d0b1709` |\n| L10-FV | `6e096ff10779acad20f94a7a89e56bcec4bb04339634a395cbd5b2737fe0d666` |\n| L10-NFR | `2983f735ae142e126946039b195a0be483b476ffa35ef5cffee976d9f299146a` |\n\n### 未確認範囲（Opus）\n- 旧asset（archive）の引用行とSHA（FableはSHAを確認済み）\n- 012・058以外のspan SHA（Fableは22件の一致を確認済み）\n- §24 #9の052/054/055（対象外）\n- 034〜035の旧source起点の妥当性\n\n本commentから、要求の意味、承認、PO確認、merge admissionは生成しない。\n"
+  },
+  "prior_review01_unreturned_minor_residuals": [
+    {
+      "finding": "§24 #1 scope-unapproved cross-parent claim has a dedicated case only for 021/023/025; other cases rely on generic 058-C22/C40 forms",
+      "status": "unreturned and remains as recorded"
+    },
+    {
+      "finding": "035-C05/C06 route missing LABO-side output to the source owner although source attribution differs from the failure origin",
+      "status": "unreturned and remains as recorded"
+    },
+    {
+      "finding": "017-C05 routes to the existing rule source owner derivable from fixed L2:129, but AC-02 does not state that route",
+      "status": "unreturned and remains as recorded"
+    }
+  ]
+}
