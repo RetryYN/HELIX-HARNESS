@@ -1,0 +1,80 @@
+{
+  "authority_effect": "none_pending_condition3_and_main_admission",
+  "scope": [
+    "HELIXOS-L2-018",
+    "HELIXOS-L2-019"
+  ],
+  "stage": "2a",
+  "review_base": "ba0df9a49ab635c020e4ec74fc05c72a49352c90",
+  "reviewed_content_revision": "de1397f59f36db658e9feb1253385cf990d64806",
+  "formal_review": {
+    "comment_id": 6041046932,
+    "raw_utf8_bytes": 2396,
+    "raw_body_sha256": "bd2f9f6766c87490fa02863903979a02773f09585608c5d50d7ebe44e1215088",
+    "raw_body": "## review03（independent review、HEAD de1397f59f36db658e9feb1253385cf990d64806、merge-base ba0df9a49ab635c020e4ec74fc05c72a49352c90）\n\nreviewer: Claude（lane `review_merge`、**Opus 5.5**）。条件1は、Opus 5.5の照合とreviewerの確認で判定した。条件2は、Fable advisor（claude-fable-5-1）がHEADの6本文と固定親f6dad2a33を読み直して出した見解である。\n\n### main統合後の再照合\n- 本PRは、#2657（OS Stage5 026/031/047）のmerge後のmainを取り込んだ。そのため6本文のrevisionが変わった。\n- 本PRの差分（32行）は、review02で照合した差分と完全に一致した。比べたのは、`git diff ba0df9a49 HEAD -- docs/helix-os` の±行と、`git diff 1edd5f70e 2fe42b346 -- docs/helix-os` の±行。reviewer・Opus・Fableが、それぞれ`cmp`で確かめた。\n- 統合で入ったStage5の行は、どれも018/019節より後ろにある。018/019節は次の位置にある。\n  - BR-OS-019：35–37\n  - FR-OS-019：166–177\n  - FV：417–452\n  - NFR：61–63／51–53\n  - BV：27\n- 範囲表、trace表、IDは重ならない。FRが参照する固定親の行も、ずれていない。\n- 固定L2:672–691とL11:345–358は、f6dad2a33とHEADで字句が同じである。\n\n### 静的確認\n- scfctl validate 147/0、stale 0、residuals 0\n- govcheck ok\n- `git diff --check` clean\n- `git merge-tree`：最新main（74e82abff）と衝突なし。merge-base以降、mainでhelix-osの本文は変わっていない。\n\n### Major\nなし（review02の結論から変わる点はない）。\n\n### Minor\nreview02のm5〜m9のまま。追加はない。\n\n### 委任条件の状態\n- **条件1（Opus `no_findings`）：成立。** Major 0。\n- **条件2（Fable）：成立。** 結論行は原文のまま「承認してよい」。\n- 条件1と2は、同じbody revision（de1397f59）でそろった。\n- **条件3は未照合。** 判断記録の作成後に、6本文が次のSHA-256から変わっていないことを照合する。\n\n| 文書 | SHA-256 |\n|---|---|\n| L3-BR | `75914cb7…e194` |\n| L3-FR | `7f828bf1…093b` |\n| L3-NFR | `e84bb08c…47f4` |\n| L10-BV | `0d03019b…2665` |\n| L10-FV | `7676276e…b78c` |\n| L10-NFR | `6fac9d80…4c01` |\n\n### 未確認範囲\nなし。Stage5 026/031/047節の内容は、#2657で承認・mergeされたもので、本PRの承認対象ではない。\n"
+  },
+  "conditions": {
+    "1": "Opus 5.5 no_findings Major0 unreviewed0",
+    "2": "Fable claude-fable-5-1 same six bodies and fixed parent: 承認してよい",
+    "3": "pending independent record/pin/body verification"
+  },
+  "six_document_sha256": {
+    "docs/helix-os/L10-verification/business-verification.md": "0d03019b7f6db1db7ffce49dd69c02a8c72982693a66613c3a8db3a378bb2665",
+    "docs/helix-os/L10-verification/functional-verification.md": "7676276eb79384f580022f05c5843bafd0b7913dc0af3d254dfc89418dc2b78c",
+    "docs/helix-os/L10-verification/nfr-verification.md": "6fac9d8063383e6753c6930f7a412de054f7195d0ccec8ddca4669b95f9d4c01",
+    "docs/helix-os/L3-requirements/business-requirements.md": "75914cb7a6b87c59f0f936c2896ce91cb830b5b00820daff28f6f228592ce194",
+    "docs/helix-os/L3-requirements/functional-requirements.md": "7f828bf15e54aefc3a8ae532b461a9d64023f3457ad4bc2915b57292875e093b",
+    "docs/helix-os/L3-requirements/nfr-grade.md": "e84bb08cd5126f13084a5e8c2be9f1bf9689da514a2b98536ef28d16a94647f4"
+  },
+  "fixed_parent_sources": {
+    "docs/helix-os/L2-requirements/governance-requirements.md": {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "full_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "spans": [
+        {
+          "start_line": 672,
+          "end_line": 681,
+          "raw_sha256": "41d0788d372793e0dd2c61d54d7e59886cfa45987a993cdeabdcb2c3b3b5ea72"
+        },
+        {
+          "start_line": 682,
+          "end_line": 691,
+          "raw_sha256": "acea5c3a2f1b3a2c8aff97a37ed5476ad360d8707280f0bb0e8957b601a9e79f"
+        }
+      ]
+    },
+    "docs/helix-os/L11-acceptance/governance-acceptance.md": {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "full_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "spans": [
+        {
+          "start_line": 345,
+          "end_line": 351,
+          "raw_sha256": "257fbc3de623fb45dd26c284137ece6b0bc615577bf0ed937ae058537968b891"
+        },
+        {
+          "start_line": 352,
+          "end_line": 357,
+          "raw_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351"
+        }
+      ]
+    }
+  },
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-os-stage2a-parent018019-l3-l10-delegated-decision-2026-10-08.md",
+    "sha256": "562fc08c3735cee468c93c27d1911d33dd1a9e9ac0cc41a59ea95132f6749060"
+  },
+  "prior_evidence": [
+    {
+      "path": "docs/governance/audits/requirements-stage/os-stage2a-hold-expiry-review01-correction-2026-10-07.json",
+      "sha256": "08034be7058f5bc37c05012abfa1b96a05aa2b506e53a16cdb4f970d34625ba3",
+      "unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/os-stage2a-main-integration-recheck-2026-10-07.json",
+      "sha256": "38ffb4a861e63028e46a987c75bb67c252b17656b15ce9a138d31cb290b1411f",
+      "unchanged": true
+    }
+  ],
+  "L10_executed": false
+}
