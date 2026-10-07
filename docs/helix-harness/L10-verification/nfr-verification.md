@@ -214,6 +214,12 @@ NFR CASEは測定candidate分類であり、実測・CI success・performance SL
 
 **実行限界**：fixtureは設計候補で未実行。full integration、性能、release、L3承認、受入実施を示さない。source pinがcurrent branchで不一致の場合、固定対象revisionとの差として記録し、latest baseの本文をこの測定結果へ混ぜない。
 
+## Stage 3 親043の非機能検証
+
+| CASE ID | NFR候補 | 検証対象 | 観測 | 限界 |
+|---|---|---|---|---|
+| `CASE-HARNESS-L10-NFR-043-01` | 独立NFRなし | fixed L2-043の選択scope内adequacy matrix | 数値性能・coverage率ではなく、適用rule/branchとoracle/risk根拠のtraceを機能ACで確認する。 | 新規閾値やall-combinations実行を設けない。 |
+
 ## Stage 3 親046の非機能検証
 
 起草候補。Stage 3、`version_target: 1.0`。対象は採択済みHARNESS-L2-046のFull V workflow条件と、明示的にProduction Scrumが選択・許可されたscopeのScrum slice/backfill条件に限る。候補文書・検証fixtureは採択済みL2/L11本文や運転結果を置換せず、releaseやruntime authorityを付与しない。

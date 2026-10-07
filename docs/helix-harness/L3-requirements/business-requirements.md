@@ -157,6 +157,12 @@ HARNESS-L2-041から独立business requirement、business owner、ROI/KPI/商業
 
 **旧source処置記録**：HIL-FR-54の「class-wise coverage」「再利用／delta／新規／N/A」「uncovered/duplicate」を意味再導出。HIL-FR-55のexample positive/negativeは保持対象外で043のscopeへ置く。HR-FR-HIL-20、HOT-HIL-50、HAT-HIL-20の複合workflow全体は再利用せず、対象のslice境界確認に限定する。
 
+## Stage 3 親043の業務要件
+
+| L2親 | business requirement | 理由 |
+|---|---|---|
+| `HARNESS-L2-043` | 独立したbusiness requirementを導出しない | 例coverageは選択scopeのverification adequacyであり、別の事業成果や価値閾値を追加しない。 |
+
 ## Stage 3 親046の業務要件
 
 起草候補。Stage 3、`version_target: 1.0`。対象は採択済みHARNESS-L2-046のFull V workflow条件と、明示的にProduction Scrumが選択・許可されたscopeのScrum slice/backfill条件に限る。候補文書・検証fixtureは採択済みL2/L11本文や運転結果を置換せず、releaseやruntime authorityを付与しない。
