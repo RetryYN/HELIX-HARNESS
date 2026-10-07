@@ -1,0 +1,94 @@
+{
+  "record_type": "intelligence_stage4_nfr_review02_delegated_decision_pin",
+  "authority_effect": "none_pending_condition3_and_main_admission",
+  "scope": {
+    "mechanism": "HELIX-INTELLIGENCE",
+    "stage": "Stage 4",
+    "parents": [
+      "017",
+      "030",
+      "031",
+      "032",
+      "033",
+      "034",
+      "035",
+      "036",
+      "037",
+      "038",
+      "039",
+      "040",
+      "041",
+      "044",
+      "045"
+    ],
+    "version": "1.0",
+    "limited_to": "NFR計測定義修正。全negative CASE意味検収ではない"
+  },
+  "review": {
+    "formal_comment_id": 6044943033,
+    "formal_comment_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2678#issuecomment-6044943033",
+    "formal_body_raw": "## review02（HEAD 75777de4aa33d55bb5e4146b676532ec21a9ce6c / base 5857c0a396cb24a23d765e3079a18a2367b6d078）— Claude review_merge\n\n### 結論：Major 0。同じ本文revisionで委任条件1（Opus）・条件2（Fable「承認してよい」）が成立\nOpusとFableがこのrevisionを独立に読み、どちらもMajorなし、承認してよいと判断しました。判断記録と6本文pinを追加した後に、条件3を別途照合します。旧reviewの判断は継承していません。\n\n### review01の解消\n**M1（解消）**\n- L3 nfr-grade.md:66 と L10 nfr-verification.md:62・64・65 は、どちらも「planned positive分母」に揃いました。\n  - 計画された全positive fixture/runに適用されるrequired field数を分母にします。\n  - 未実行・観測不能のpositive runは分母に残し、件数を併記します。分子や成功には入れません。\n  - 「実行できたrunだけで100%を成立させない」と明記されています。\n- L3とL10は同じ意味で、矛盾はありません。\n- L10:85（045段落）とL3:170（045節）にある「positive fixtureに限る」は、期待oracleによる分類の話です。実行状態による分母の除外とは別の軸なので、整合しています。\n- 候補値（100%、wrong bind 0）、閾値、gate、SLAは変更されていません。\n\n**Minor（すべて解消）**\n- m1：追補監査が、review04-correction:26 と review05-correction:18 の経緯、02k/04bを移した理由（FV:1280、FV:1297）を記録しました。\n- m2：L3:66 と L10:64 に「誤bindはpositive/negativeを問わず数える」と明記されました。\n- m3：L10:83 の045行に 02a・03・04a が加わり、L3:171 の根拠CASEと一致しました。\n\n### 照合・静的検査\n- **変更範囲**：変更したのは nfr-grade と nfr-verification の2本だけです。FR、BR、BV、FVは変更されていません。\n- **SHA照合**：次はすべて実bytesと一致しました。\n  - 追補監査に記載された6本文SHA（修正前と修正後）\n  - review01 comment本文（6,140 bytes、`6e337ab7…`）\n  - 旧source（`2197b4d2…`）\n- **静的検査**：`scfctl validate` 147/0、`stale=0`、`git diff --check` が通りました。\n\n### 新しい6本文（次の判断記録・pinで固定するbytes）\n| 本文 | bytes | SHA-256 |\n|---|---:|---|\n| BR | 26,155 | `026d95fb…` |\n| FR | 212,693 | `01ceffad…` |\n| NFR | 61,271 | `b26a9317…` |\n| BV | 29,673 | `b476b093…` |\n| FV | 732,032 | `aa6cb83a…` |\n| NFRV | 58,116 | `a8008b4e…` |\n\n### 返さない所見（Minor。承認は止めず、解消済みとも扱いません）\n- L3:66 の「計画対象外runは母集団に加えない」について、「計画」が何を指すかはL3単体では定義されていません。\n- L10:62 とL3:173（L10への委譲）を合わせて読めば閉じているので、承認は止めません。\n- 次に修正する機会に「計画＝対L10表とFVのfixture集合」と添えると、plan外と宣言して分母を縮める読み方を防げます。\n\n### 未確認範囲\n- 15親すべてのnegative CASEの意味照合は、review01と同じく未実施です。\n- fixtureは実行していません。\n\n本reviewは承認・merge admissionを生成しません。\n",
+    "formal_body_utf8_bytes": 3333,
+    "formal_body_sha256": "6f09571d06f673bafcee15afd854c1a2b0741e32b98209abc469d8f521be82aa",
+    "reviewed_head": "75777de4aa33d55bb5e4146b676532ec21a9ce6c",
+    "review_base": "5857c0a396cb24a23d765e3079a18a2367b6d078",
+    "condition1": "satisfied: Opus Major 0",
+    "condition2": "satisfied: Fable 承認してよい",
+    "condition3": "pending"
+  },
+  "six_body_pins": [
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "bytes": 26155,
+      "sha256": "026d95fbf023ef384834ebd3b215a469f2fea648190d15d45494b5ea4cc91959"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "bytes": 212693,
+      "sha256": "01ceffadc184ead3c5a73e4df4f308610394590630c222a53930e4857ee71c5a"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "bytes": 61271,
+      "sha256": "b26a93177d8857cfe9dba92a37ccf6153d1fb5cdf08e5b808e0b3d94ef8b42c1"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "bytes": 29673,
+      "sha256": "b476b0939b7da50cf75db66d235095f94e591ac929ef046721224b5112d04552"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "bytes": 732032,
+      "sha256": "aa6cb83a2eaeeaf0d4d0fd955698e5071e27c81232ba43a1c3af94918fbccc77"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "bytes": 58116,
+      "sha256": "a8008b4ed973d43ff20952a496db241da1dcb438cd79056a55ae24dd30ea1e5e"
+    }
+  ],
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-intelligence-stage4-nfr-review02-l3-l10-delegated-decision-2026-10-08.md",
+    "bytes": 3690,
+    "sha256": "c4253d48d71fab947a0bac8ba605afb424ad1a69e10f39fb0f893a37a31649d4"
+  },
+  "fixed_parent_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+  "legacy_source": {
+    "asset_id": "LEGACY-ASSET-DB669724249A14A665F0",
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+    "sha256": "2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d",
+    "lines": [
+      "21-34",
+      "58-81"
+    ],
+    "disposition": "docs/governance/legacy-asset-disposition.jsonl:350",
+    "reuse": "Trait→measurement→acceptance structure only; IPA grade/thresholds/runtime/CI not reused. Current split rederived from fixed L2/L11 and current L3/L10 oracle."
+  },
+  "minor_not_returned": "計画のL3単独定義未解消。対L10/FV参照で閉じる。",
+  "limits": [
+    "15親全negative CASE意味照合未実施",
+    "fixture未実行",
+    "274検収未完"
+  ]
+}
