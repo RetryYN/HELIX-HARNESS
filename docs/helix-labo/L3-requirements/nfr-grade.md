@@ -309,6 +309,8 @@ L10は69個の完全ID定義を保持する。literalから抽出した分類候
 
 許容率、速度値、性能threshold、sample count、運用期間、合否閾値は提案しない。計測できない場合はunknown/未評価を記録し、0や合格へ置換しない。これは根拠付き測定設計候補であり、実測結果・承認値ではない。
 
+固定L2-066の固定target、許容率/tolerance、事前に課す試行件数、合否thresholdは、それぞれfunctional verification CASE-79–82で独立した禁止出力として照合する。既存のeligible set分母・観測済みreceipt数の表示は、新しい試行件数目標を課すこととは区別する。
+
 ## Stage 5 — HELIXLABO-L2-070 補助運用telemetryとAttempt scorecard併記
 
 固定親はPO live26の49行が採択した `MPR-RC-HELIXLABO-L2-070-001`。source revision `ea6f756f96a7370de78e412d737c7a7ed472114a` のL2:561–574 SHA `07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533`、L11:297–307 SHA `c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1`をraw-LFで照合した。旧候補が参照した0abb2894の同範囲とbytesは一致し、採択状態はPO記録で確認する。
@@ -322,7 +324,7 @@ L10は69個の完全ID定義を保持する。literalから抽出した分類候
 | rollback/Recovery fidelity | source event/result receipt、identity/scope/stateを保持し、059費用・時間とのreceipt参照を一回に保つ。 | 固定L2 rollback clause、FV CASE-03f/g、59–62、70、85、90–91。missing source inputは既存event/assignment責務区分へ返し、CASE-85/90/91はrollback trigger/permission/executionを、CASE-102/103はRecovery操作権限/実行をそれぞれ単独fieldで拒否。 | 観測から操作・trigger permissionを生成しない。 |
 | observer overhead | source定義に従った直接測定資源をtask workから区分。 | 固定L2 overhead clause、FV CASE-03h、12、71。 | unknownを0や推計値にしない。 |
 | evidence freshness | sourceの有効時刻と観測時刻の差だけを値として提示。 | 固定L2 freshness clause、FV CASE-03i、14–15。CASE-15は有効入力からの誤ったauthority出力を拒否し、070出力処理を訂正。 | ageからfresh/stale状態・expiry・適格性/admission/permissionを作らない。CASE-104–106は各単独field生成を拒否。 |
-| metric identity | 067/068の定義revision/receiptと070 field identityを保持。 | 固定L2 Attempt co-presentationと既存12 metric境界、FV CASE-16–21、65–73。CASE-19の有効067/068 inputからの換算出力を拒否し、CASE-68はtotal countとresult state双方をunknownにする。 | 065 retry等への換算・合算・代替、旧12指標へのsilent renameなし。 |
+| metric identity | 067/068の定義revision/receiptと070 field identityを保持。 | 固定L2 Attempt co-presentationと既存12 metric境界、FV CASE-01、16–21、65–73、127。CASE-18/127は067/068のscope mismatchを個別に隔離し、CASE-19の有効067/068 inputからの換算出力を拒否し、CASE-68はtotal countとresult state双方をunknownにする。 | 065 retry等への換算・合算・代替、旧12指標へのsilent renameなし。 |
 | provenance fidelity | 各evidenceのsource identity/revision/provenance実値をsource receiptから保ち、正常出力のprovenanceと完全一致させる。 | 固定L2-070 freshnessとL2-001 source preservation、FV CASE-01/125/126。 | provenanceが欠落/不一致のLABO出力は訂正し、正常receipt供給元へ誤りを返さない。新provenance schemaを作らない。 |
 
 authority境界の単独出力field確認はFV CASE-85–93/96–98およびCASE-102–109に対応する。target revision/source revisionの一致確認はFV CASE-99–101に対応する。不足・stale・矛盾14セルと時計不正はCASE-110–124、provenance出力の欠落/別値はCASE-125/126に対応する。性能・保持・監視周期を数値化する根拠は固定parentにない。必要な値が生じたら既存source定義と対の測定候補を記録し、閾値を推測で追加しない。

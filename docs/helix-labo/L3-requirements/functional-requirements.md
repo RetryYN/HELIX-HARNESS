@@ -1933,7 +1933,7 @@ L10 CASE IDsは照合用であり、ID数・独立fixture数から完全性を�
 
 `LABO-066-AC-02`（未見・FR-01/02/03）：B0とは別の合成比較scopeで、未見caseを含むeligible set N1を結果閲覧前に固定する。同じpredicate/oracleを適用できる根拠があればN1のcaseとして数え、適用不能ならunknown/未評価を保ち、oracle適用性不足を既存HARNESSまたは要求ownerへ返す。A identity/conditionの不足ならその入力の既存sourceへ戻し、特定個体不明はunknownを保持してLABO評価義務を残す。既存B0のNは変更しない。unknownを含む合成正常対照では、理由と影響するcase identityが該当入力のoracle適用結果/receiptと一致して表示され、Nに当該caseを保持し、その比較が未評価/比較不能で率非出力となることを照合する。
 
-`LABO-066-AC-03`（異常・境界・FR-01/02/03）：単独field mutationとして、task/scope/target revision各欠落、A version競合、時間measurement receipt欠落・source receipt不一致・比較出力不一致、費用receipt不一致、結果閲覧後の共通cutoff変更、unknown除外、その他の条件不一致、stale/missing receipt、費用receiptの片側欠落・非対称、結果閲覧後のoracle/N変更を個別に与え、各当該比較の率を出さず比較不能/未評価へ分ける。固定L2-066:527の不足・不一致は原因ごとの既存責務ownerへ返す。oracle/acceptance/scorer適用性およびoracle/判定receiptはHARNESSまたは要求owner、task/scope/target revision・A identity・eligible-set等の入力recordはその入力を供給する既存sourceの責務、assignment/run receiptはOS、result/cost/time receiptは各receiptの既存供給元、comparison scope/measurement/comparison/evaluationはLABOへ返し、個別source/owner identity unknownは別に保持する。LABOの評価義務は返却先個体の特定有無で消えない。新しいownerや分類を作らない。評価結果から採択・効果達成・実験/run許可・repair permission/action・placement・admission・requirement_complete・Worker/修復器の選定・割当・起動・実行を生成しない。旧Bugbot候補の採択、Bugbot/修復器の実装要求・実装開始・実装自体を生成しない。
+`LABO-066-AC-03`（異常・境界・FR-01/02/03）：単独field mutationとして、task/scope/target revision各欠落、A version競合、時間measurement receipt欠落・source receipt不一致・比較出力不一致、費用receipt不一致、結果閲覧後の共通cutoff変更、unknown除外、その他の条件不一致、stale/missing receipt、費用receiptの片側欠落・非対称、結果閲覧後のoracle/N変更を個別に与え、各当該比較の率を出さず比較不能/未評価へ分ける。さらに固定L2-066が禁止する固定target、許容率/tolerance、事前に課す試行件数、合否thresholdの生成を別々のCASE-79–82で拒否する。観測された分母・試行結果の記録は、固定件数や合否条件の新設と混同しない。固定L2-066:527の不足・不一致は原因ごとの既存責務ownerへ返す。oracle/acceptance/scorer適用性およびoracle/判定receiptはHARNESSまたは要求owner、task/scope/target revision・A identity・eligible-set等の入力recordはその入力を供給する既存sourceの責務、assignment/run receiptはOS、result/cost/time receiptは各receiptの既存供給元、comparison scope/measurement/comparison/evaluationはLABOへ返し、個別source/owner identity unknownは別に保持する。LABOの評価義務は返却先個体の特定有無で消えない。新しいownerや分類を作らない。評価結果から採択・効果達成・実験/run許可・repair permission/action・placement・admission・requirement_complete・Worker/修復器の選定・割当・起動・実行を生成しない。旧Bugbot候補の採択、Bugbot/修復器の実装要求・実装開始・実装自体を生成しない。
 
 ## Stage 5 — HELIXLABO-L2-070 補助運用telemetryとAttempt scorecard併記
 
@@ -1957,7 +1957,7 @@ HELIXLABO-L1-005をprimary、L1-011をcontextとして、旧source line 399か�
 - **LABO-070-AC-02 — 正常な異単位field**：source定義に一致する異なるunitのfieldは別fieldのまま表示し、相互換算・合算しない。
 - **LABO-070-AC-03 — 欠落・不一致の隔離**：必要event/clock/unit/time/source/revision/oracle/scope/relation/receiptが欠落・不明・矛盾・staleなら該当fieldだけunknown/invalid/unavailableとし、0・成功・不存在に置き換えない。他の根拠あるfieldは別に保持する。
 - **LABO-070-AC-04 — 固定親の境界保持**：4 durationは独立、escaped defectは既存oracleと受入済対象/受入境界後の検証済みrelationに限定、rollbackは観測だけ、overheadは直接測定だけ、freshnessはage観測だけ。追加の観測window/重大度/合否threshold/expiry/decisionを作らない。Recovery操作権限/実行、age由来fresh/stale/期限/適格性、LABO作成の受入境界/受入済み/escapedの単独field生成拒否はL10 CASE-102–109で確認する。
-- **LABO-070-AC-05 — Attempt co-presentation**：scope適用可能な067/068 fieldを元定義とreceiptどおり独立表示し、不在・不一致のfieldは理由付きunavailable/unknownにする。換算・合算・代替で完全scorecardに見せない。
+- **LABO-070-AC-05 — Attempt co-presentation**：scope適用可能な067/068 fieldを元定義とreceiptどおり独立表示し、不在・不一致のfieldは理由付きunavailable/unknownにする。換算・合算・代替で完全scorecardに見せない。L10の正常CASE-01、欠落CASE-16/17、scope mismatch CASE-18/127、metric置換禁止CASE-19、067/068未採択を推定しないCASE-65、predicate/oracle/結果receipt・出力field欠落CASE-66/68/67/73、および065からの置換禁止CASE-72をこのACで照合する。
 
 ### 欠落・不一致と出典保持の照合
 

@@ -1,0 +1,85 @@
+{
+  "authority_effect": "none",
+  "status": "draft_unapproved_unexecuted",
+  "scope": "HELIX-LABO Stage5 parents066/070 residual oracle coverage",
+  "previous_content_revision": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+  "fixed_parent_pins": [
+    {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "lines": [
+        518,
+        528
+      ],
+      "full_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+      "span_sha256": "5a67776a3f4567fa662c86898caf275fddbe8dc806fd3a19622cae9f733cdb69",
+      "span_bytes": 4684
+    },
+    {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "lines": [
+        261,
+        268
+      ],
+      "full_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+      "span_sha256": "dd302f23a38d74475e707be64d9ee69a0bfda35b98902c62173c45d8c369a556",
+      "span_bytes": 2304
+    },
+    {
+      "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "lines": [
+        561,
+        574
+      ],
+      "full_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+      "span_sha256": "07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533",
+      "span_bytes": 6468
+    },
+    {
+      "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "lines": [
+        297,
+        307
+      ],
+      "full_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+      "span_sha256": "c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1",
+      "span_bytes": 4672
+    }
+  ],
+  "legacy_pins": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "line": 75,
+      "full_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+      "line_sha256": "678d10fb645494bf12216a7dd4a4ff9f45a6cb88e4dfc6d7d23d9de30a15fbe8"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "line": 399,
+      "full_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "line_sha256": "aa9dacc58969d896bbfbe38ce9c2ed6b55f47476b4cd3a411041d62bebf70468"
+    }
+  ],
+  "disposition": "意味の再導出。旧sourceのA同条件比較とAttempt系の独立併記を保持し、固定親の禁止値とfield隔離を文書CASEにする。旧candidate全体やruntimeの採択を生成しない。",
+  "changes": [
+    "066 AC03 固定target/許容率/固定試行件数/合否thresholdを各単独CASE79..82",
+    "070 AC05に正常/欠落/各scope不一致/換算禁止を明示trace、CASE127は068scope単独変異",
+    "Root検収で066追加CASE表に専用header追加、六列の役割を明示"
+  ],
+  "six_body_sha256": {
+    "docs/helix-labo/L10-verification/business-verification.md": "bf240469ba0333665e9eabb49becb1443c8426e425f8c67e82c81baa4d0b1709",
+    "docs/helix-labo/L10-verification/functional-verification.md": "e19c48dc65793de641e0e873aba153d1c86740d6a434980168f096fbe07e3a15",
+    "docs/helix-labo/L10-verification/nfr-verification.md": "a8b9b7b0e49f2f49bfcd136368c806f8ae9e75abe7ff221745d843fef83d5cdb",
+    "docs/helix-labo/L3-requirements/business-requirements.md": "0f8ac8cd03c76c62492f9c5f4e3557eb7f84dc8e761e17186bac532fb5efff43",
+    "docs/helix-labo/L3-requirements/functional-requirements.md": "fc44628eafb5c114202b7df5d1f96b5f55a9c3fcb5d94d8bb8027bde06635263",
+    "docs/helix-labo/L3-requirements/nfr-grade.md": "c98c44b0a5ee58985837d8ecbb53ad92b31525a6a7da252f13184649b2e9feff"
+  },
+  "checks": {
+    "unique_target_case_ids": 218,
+    "fixture_execution": false
+  },
+  "approval": "新六本文revisionへのOpus/Fable独立確認待ち。旧判断記録を変更しない。"
+}
