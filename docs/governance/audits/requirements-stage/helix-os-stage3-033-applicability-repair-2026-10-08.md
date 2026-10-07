@@ -13,12 +13,12 @@
 
 |文書|変更|
 |---|---|
-|`docs/helix-os/L3-requirements/functional-requirements.md`|FR-033 input now explicitly carries selected detector-to-engine/output-kind applicability; AC-033-02 rejects individual missing/mismatch and routes detector declaration defects to detector meaning owner, OS receipt-only defects to OS registration receipt owner.|
-|`docs/helix-os/L10-verification/functional-verification.md`|Existing CASE-033-02 adds three isolated mutations (declaration missing, declared target mismatch, correct declaration but OS receipt missing/mismatch); every other field/input stays valid and no full-scope reproduction claim is accepted.|
-|`docs/helix-os/L3-requirements/nfr-grade.md`|NFR-033 candidate observes declaration/selected target/OS receipt consistency and does not count absent or misbound applicability as reproduction success; no new numeric threshold.|
-|`docs/helix-os/L10-verification/nfr-verification.md`|NFRV-033-01 measures those existing-contract failure modes and cause-specific return counts.|
-|`docs/helix-os/L3-requirements/business-requirements.md`|BR-033 keeps no quality KPI while tracing OS registry/provenance responsibility.|
-|`docs/helix-os/L10-verification/business-verification.md`|BIZ-033 retains selected-scope reproduced vs unevaluated distinction; bad applicability remains unevaluated and returns to existing owner.|
+|`docs/helix-os/L3-requirements/functional-requirements.md`|FR-033に選択detectorとengine/output種別の適用関係を明記。AC-033-02で単独欠落・不一致を拒否し、detector宣言の意味不備とOS登録receiptのみの不備を既存の担当へ分けて戻す。|
+|`docs/helix-os/L10-verification/functional-verification.md`|既存CASE-033-02へ3つの独立変異を追加（適用先宣言欠落、宣言と選択対象の不一致、宣言は正しいがOS receiptが欠落・不一致）。他の入力・fieldは正常とし、scope全体の再現成功を拒否する。|
+|`docs/helix-os/L3-requirements/nfr-grade.md`|NFR-033候補に宣言・選択対象・OS receiptの一致性を加え、適用関係の欠落・誤結合を再現成功として数えない。新しい数値閾値は設けない。|
+|`docs/helix-os/L10-verification/nfr-verification.md`|NFRV-033-01で既存契約の失敗条件と原因別の戻し先を計測する。|
+|`docs/helix-os/L3-requirements/business-requirements.md`|BR-033の品質KPIなしを維持し、選択detectorの適用関係を含むOS registry/provenance責務を追跡する。|
+|`docs/helix-os/L10-verification/business-verification.md`|BIZ-033でscope限定の再現と未評価を分け、適用関係の不備は未評価のまま既存担当へ戻す。|
 
 CASE-OS-L10-033-01の正常run/rerun条件は不変。CASE-033-02に同じ既存AC配下で独立armを置いた。
 
