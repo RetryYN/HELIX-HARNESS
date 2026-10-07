@@ -1,0 +1,93 @@
+{
+  "artifact_type": "intelligence_stage3_review02_followup_repair",
+  "authority_effect": "none; prior delegated decision remains pinned to its historical revision; no approval or L10 pass generated",
+  "scope": {
+    "mechanism": "HELIX-INTELLIGENCE",
+    "stage": 3,
+    "parents": [
+      "HELIXINTELLIGENCE-L2-072",
+      "HELIXINTELLIGENCE-L2-007"
+    ],
+    "followup_only": "072 source categories and 007 episode/source trace; 011 price/metric changes are in the preceding review02 repair, not excluded from the overall PR"
+  },
+  "base": "3a256fc638198b7efbb51e16a409f60529fca2be",
+  "working_head_before_followup": "65af0caa2ea95b9a89a05240fb0274135a034a4a",
+  "formal_review_comment": {
+    "issue": "#2658",
+    "comment_id": 6040489039,
+    "body_utf8_bytes": 5890,
+    "body_sha256": "f113e3b21c5f6b360ed1dccab36ac82131a2ac1ba5d585e8605994b948c4b645"
+  },
+  "fixed_source_pins": {
+    "L2-072": "633bf12ea8f948db8ba3d6600179c4a9507377a7 docs/helix-intelligence/L2-requirements/intelligence-requirements.md:561-590 raw span SHA256 d4ddbd574b6e551f34f6ed49b22c5c6e2af5aba3d281976e3be7da376af720d2",
+    "L2-007": "633bf12ea8f948db8ba3d6600179c4a9507377a7 docs/helix-intelligence/L2-requirements/intelligence-requirements.md:84-90 raw span SHA256 6b922cf9e44859741a7d9e98093cd4db0db6adad840c6f6168396fa7fc86cc93",
+    "L11": "633bf12ea8f948db8ba3d6600179c4a9507377a7 docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md; full SHA256 98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+    "legacy_boundary_inventory": "docs/governance/audits/requirements-stage/intelligence-stage3-delegation-recheck-2026-10-07.md; SHA256 b6990bf91b63d25e33e45657e57f00204009059706fdff1e24901a0270426d6e; read-only old source inventory retained",
+    "legacy_asset_28fb": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md:19-84; SHA256 a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+    "legacy_asset_a952": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md:30-41; SHA256 6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185"
+  },
+  "restored_historical_predicates": {
+    "CASE-INTELLIGENCE-L10-072-07-04": "required evidence output missing; prior independent predicate retained at same ID; fixture category is target/requirement evidence and routes to target requirement owner or unknown if fixed source cannot identify one",
+    "CASE-INTELLIGENCE-L10-072-07-07": "model-suitability output missing; prior independent predicate retained at same ID; selected evaluation source is LABO and route is LABO evaluation owner",
+    "CASE-INTELLIGENCE-L10-072-07-09": "candidate pack version output missing; prior independent predicate retained at same ID; candidate version is distinct from HARNESS common pack contract version and routes to INTELLIGENCE candidate owner"
+  },
+  "separate_new_mutations": [
+    "CASE-INTELLIGENCE-L10-072-07-10a: BRAIN knowledge source identity alone missing -> BRAIN",
+    "CASE-INTELLIGENCE-L10-072-07-10b: BRAIN knowledge source version alone missing -> BRAIN",
+    "CASE-INTELLIGENCE-L10-072-07-11: model suitability shadow experiment/evaluation evidence alone missing -> LABO",
+    "CASE-INTELLIGENCE-L10-072-07-12: HARNESS common pack contract version alone missing -> HARNESS-L2-010/011"
+  ],
+  "CASE-INTELLIGENCE-L10-007-03": "same episode is shared; obs-a, obs-b, and obs-c retain each observation own source identity/revision, so support/refutation sources need not share one source revision",
+  "preserved_review02_audit": {
+    "path": "docs/governance/audits/requirements-stage/intelligence-stage3-review02-repair-2026-10-07.json",
+    "sha256": "7ecf2061baf37095697610e20cc15373ae4a7181439e0961cfe995cd38c49556",
+    "unchanged": true
+  },
+  "six_document_sha256": {
+    "docs/helix-intelligence/L3-requirements/business-requirements.md": "fbfffce9874cedd0073e35d45bd9f9ac0eefdd9f30ead7d6bc085050b590704e",
+    "docs/helix-intelligence/L3-requirements/functional-requirements.md": "d3c3823861ea648fa1ad35d2a83f16d0310c61d7fe6a902719aa54722d99b224",
+    "docs/helix-intelligence/L3-requirements/nfr-grade.md": "57ac3d6e04242fd3742a146e65798175db3bd4d0a667491850520e171f53d1ad",
+    "docs/helix-intelligence/L10-verification/business-verification.md": "00c40012d38bb32c681813ee1e9dc3868af4a7b40be9cae42fd4f0c5551b71a7",
+    "docs/helix-intelligence/L10-verification/functional-verification.md": "942a4f2439adcb6b011cd77f53e2bcecb76c888b7f8d6e547cee2ef61abf7838",
+    "docs/helix-intelligence/L10-verification/nfr-verification.md": "5b05acba379da5f136450fe16facd34ee14a58210b92bc2ae7e90f39b6f0e8bb"
+  },
+  "validation": "Compared former 65af0caa rows to restored 072-07-04/07/09 predicates; verified distinct IDs for added single-field cases; checked 007-03 wording, all six document hashes and git diff --check. Fixture/runtime/old tests/old CLI/hooks/CI not executed; independent review pending.",
+  "source_pin_corrections": {
+    "fixed_L2:011_108_113": {
+      "previous_reported_sha256": "03d87e0c313f91b6a5422f7e9e448fba1138df83017d89f6a2021b25afc7944c",
+      "raw_span_with_original_line_endings_sha256": "0a2a1ccf96f44e4d8ccbba8d4663e47844dca60c5135d087d25f6d47504d3deb"
+    },
+    "fixed_L2:067_466_481": {
+      "previous_reported_sha256": "40aca8ff913aa97426d05d22d6e73cc1fdb1997b473c56d9ee570d205d71c219",
+      "raw_span_with_original_line_endings_sha256": "2b8f8948e38b2238d6922b2b17062466d49038c23cfd606a342605cac3a51e37"
+    },
+    "fixed_L2:072_561_590": {
+      "previous_reported_sha256": "a828bff2126dfe8b029c75ff922f4b52613e6aa48cd957a3f8056be635b97dd2",
+      "raw_span_with_original_line_endings_sha256": "d4ddbd574b6e551f34f6ed49b22c5c6e2af5aba3d281976e3be7da376af720d2"
+    },
+    "fixed_L2:078_646_658": {
+      "previous_reported_sha256": "33ebb03ec9ae16d07276001f8b8bbd3a7c92876240754060e5ef884121fa7967",
+      "raw_span_with_original_line_endings_sha256": "855512dea63dfe30bdd768d8c59f75f278a3b8c2cceccc0177be6c81020dc292"
+    },
+    "fixed_L11:146": {
+      "previous_reported_sha256": "92cd9ea3c6e4e0e36f2825f093cb20354307defbc965b31f458ca7710f94f337",
+      "raw_span_with_original_line_endings_sha256": "a8bef9c3d04880c3e9c72decb40d1772da65e3d801c668e4d7ac94afba90ef50"
+    },
+    "fixed_L11:160": {
+      "previous_reported_sha256": "faa6f64cffb2f9047ec3447937a93cd8e8b934c3b6e38ac3a9173bdffb9d0eb2",
+      "raw_span_with_original_line_endings_sha256": "cdde393b9e4981d177b72d38519840f5b30de03b2718b6cea3a7d99e9d4b3105"
+    },
+    "fixed_L11:164": {
+      "previous_reported_sha256": "f3b5b6c96322d045af0d8e574b0becad3054fe16de7231422d3dacfb6fa39915",
+      "raw_span_with_original_line_endings_sha256": "2c55d84aa7408b27e5fa5dda0f7b9ff4d03873390791553f4de19e6b304b32b3"
+    },
+    "fixed_L11:168": {
+      "previous_reported_sha256": "af0507bf5de2a6eae1877783c9599bc1fa4a33da48f616211f65a412428e1fbd",
+      "raw_span_with_original_line_endings_sha256": "2972133abb7d73fb4fd980159ca38530c6e3fe72842669bfaeb5726200e9bc8d"
+    },
+    "fixed_L11:171": {
+      "previous_reported_sha256": "1bc7dd98d5bd23d4a57090368f05e891c8dc93d22283a4ca4952a33e0fbe0b92",
+      "raw_span_with_original_line_endings_sha256": "040b7be804e6a52dbde56546b3bbc7f617055b5a077e0b843d4433e14ea50d92"
+    }
+  }
+}
