@@ -1,12 +1,12 @@
 # L3／L10 PO事後確認一覧
 
-このファイルはPO事後確認のための**更新される一覧**であり、版ごとの複製を作らない。現行状態の確認基点はmain `00298f79229198965d889ebf0b6a1bedc4d03648`。機構×Stageの対象revisionと判断出典を以下に示す。2026-10-07以前の大表はその時点の一覧記録として保持し、最新のadmission状態は下記の更新表と[2026-10-08 snapshot](audits/requirements-stage/l3-post-confirmation-admission-refresh-2026-10-08-00298f79.json)を優先する。
+このファイルはPO事後確認のための**更新される一覧**であり、版ごとの複製を作らない。現行状態の確認基点はmain `911b896f9207c86feba65c65042363f13ae408a3`。機構×Stageの対象revisionと判断出典を以下に示す。以前の一覧と[00298f79 snapshot](audits/requirements-stage/l3-post-confirmation-admission-refresh-2026-10-08-00298f79.json)はその時点の記録として保持し、最新状態は下記の14-scope更新表と、[final admission closure snapshot](audits/requirements-stage/l3-final-admission-closure-2026-10-08-911b896f.json)で示す。snapshotには承認記録・正式comment・対象Git blobの照合結果と検証範囲を固定した。
 
 本PRの作成担当はCodex、独立review担当はClaudeである。review側が一覧をPOへ出す役割は、既存の[GitHub上流運用モデル「POの事後確認」](github-upstream-operating-model.md#poの事後確認)155行に記載されている。
 
-## 2026-10-08時点のmain admission更新
+## main admission更新（現在基点 911b896f）
 
-PRのmerge/read-afterと対象scopeの6本文pinをGitHub API・Gitから照合した。次の11 scopeでは委任条件1〜3とmain admissionが確認済みである。親集合、対象revision、formal・condition3・merge/read-after locator、6本文SHA、判断記録SHAはリンク先snapshotに固定した。CONNECTは過去のFable/Opus帰属訂正を現行revisionへ反映した記録である。HARNESS Stage3はparent043、Stage5は固定5親、LABO Stage5は066/070の範囲に限る。
+確認基点911b896fでは、従来の11 scopeにINTELLIGENCE Stage4（#2670、15親）、HARNESS Stage2b残部（#2669、5親）、LABO Stage2b残部（#2671、22親）を加えた計14 scopeについて、委任条件1〜3とmain admissionが成立している。各scopeの対象親・対象revision・formal・condition3・merge/read-after locator・6本文SHA・判断記録SHAはfinal closure snapshotに固定した。新しい承認を作るものではない。以前の00298f79 snapshotは、当時3 scopeを未admittedと記録した歴史状態として残し、現在状態と混同しない。CONNECTは過去のFable/Opus帰属訂正を現行revisionへ反映した記録である。各scopeは以下の対象範囲に限り、Stage全体や親集合全体へ拡張しない。
 
 | 機構／Stage | 親 | PR | 状態 |
 |---|---|---:|---|
@@ -21,14 +21,17 @@ PRのmerge/read-afterと対象scopeの6本文pinをGitHub API・Gitから照合�
 | SECURITY／Stage 1 | 033 | 2663 | 同上。Stage 2c parent031を含まない |
 | LABO／Stage 5 | 066/070 | 2661 | 同上 |
 | INTELLIGENCE／Stage 3 | 22親 | 2658 | 同上。condition3 #6042097667、main merge/read-after #6042137173を確認 |
+| INTELLIGENCE／Stage 4 | 017/030–041/044/045 | [2670](https://github.com/RetryYN/HELIX-HARNESS/pull/2670) | 911b896fで当該15親scopeのmain admission済み |
+| HARNESS／Stage 2b残部 | 017/018/019/020/024 | [2669](https://github.com/RetryYN/HELIX-HARNESS/pull/2669) | 911b896fで当該残部5親scopeのmain admission済み |
+| LABO／Stage 2b残部 | 012–030/034/035/058 | [2671](https://github.com/RetryYN/HELIX-HARNESS/pull/2671) | 911b896fで当該残部22親scopeのmain admission済み |
 
-これは機構×Stage単位の委任承認状態の投影であり、PO事後確認、L10 fixture実行・合格、全274親の意味完了を示さない。未admitの範囲は[同snapshotの未admitted一覧](audits/requirements-stage/l3-post-confirmation-admission-refresh-2026-10-08-00298f79.json)に保持する。現時点の未admit scopeはHARNESS Stage2b残部（#2669、review02でMajor 1返却）、INTELLIGENCE Stage4（#2670、review02 M2修正後にreview03のOpus/Fable再照合を依頼中。formal対象HEADからPR HEADが進行）、LABO Stage2b残部（#2671、review01でMajor 3返却）である。
+上表は今回再確認・更新した14 scopeの投影であり、全274親の新しい承認判断ではない。全親の既存承認経路との対応はsnapshotのparent_authority_mappingに分けて示す。PO事後確認、L10 fixture実行・合格、全274親の意味完了も示さない。00298f79 snapshotが未admittedと記録したHARNESS Stage2b残部（#2669）、INTELLIGENCE Stage4（#2670）、LABO Stage2b残部（#2671）は、いずれも当時の段階では未成立だった。その後の各scopeの条件3とmain admission成立を経て、911b896f時点ではadmittedとなった。これは当時の未admitted記録を書き換えるものではなく、段階ごとの状態差である。
 
 ## 確認状況
 
-- 対象は固定1.0 rosterの274親、8機構・41機構×Stage group、48の現在L3/L10正本である。
-- 固定rosterは274親である。path presence 274/274の既存確認はmain `83cb0bcd8bb3efe7022bf74f393b1fc0a0d746f1` を対象とした時点記録であり、このrefreshでは全親のpath再集計をしていない。path presenceは判断状態を示さない。
-- Stage 1の直接PO判断記録は4ファイル。PO判断sourceとFable補足を分け、Opus/Fable委任経路と混ぜない。前回snapshotのfull-six delegated leaf recordは64件。上記11件の新しいadmissionは、対象別判断記録・pin・formal comment・condition3・merge/read-afterを[更新snapshot](audits/requirements-stage/l3-post-confirmation-admission-refresh-2026-10-08-00298f79.json)に固定した。
+- 対象母集団は固定1.0 rosterの274親、8機構・41機構×Stage group、48の現在L3/L10正本である。今回更新した14 scopeは41 groupの一部であり、他の既存承認を未承認に戻すものではない。
+- 固定roster274親の承認記録との対応を再集計した。直接PO判断12親、明示condition3〜main chain85親、既存main承認記録177親で、274 identity・41 groupに重複割当はない。既存177親は51の現行record pathに対応し、過去を含む64記録の対象revisionに対する384本文pinを照合した。path存在だけを承認根拠にしていない。
+- Stage 1の直接PO判断記録は4ファイル。PO判断sourceとFable補足を分け、Opus/Fable委任経路と混ぜない。00298f79 snapshotは従来11 scopeの時点記録である。後続3 scopeを含む現行14 scopeの詳細pinsは、[final closure snapshot](audits/requirements-stage/l3-final-admission-closure-2026-10-08-911b896f.json)に固定した。
 - **POの事後確認は未記録**。記録path、formal locator、condition3、merge commentの記載からPO事後確認済み・差戻しなしを生成しない。
 - 本一覧はL3要件の意味完了、L10 fixture実行・合格、下流実装完了を示さない。fixtureは未実施。
 - 35後続版親と保留5／現行版不採択5は、固定1.0の274親から分け、この一覧へ加えない。
@@ -175,7 +178,7 @@ resource/environment状態をsource付きで観測し、限定recovery pathの�
 
 ## 41の機構×Stage区分の親集合と正式判断locator
 
-各行は固定274親のStage groupを保つ。以下の行群は2026-10-07までの一覧snapshotを引き継ぎ、2026-10-08の最新admission差分は冒頭の更新表とsnapshot JSONに追補した。新旧行を混ぜず、最新の対象revision・formal・condition3・merge/read-after・6本文pinは更新snapshotを参照する。先行する判断recordはJSONのhistory inventoryに保持し、最新leafと混ぜない。Stage 1直接PO記録は別のsource経路として表示する。condition3・merge/read-after locatorも判断record leafやPO事後確認とは別に扱う。
+各行は固定274親のStage groupを保つ。以下の行群は既存時点記録を保持する。00298f79までの11-scope admission差分は当該時点snapshotに固定され、後続3 scopeを含む911b896f時点の14-scope状態は冒頭の更新表とfinal closure snapshotで区別する。新旧行を混ぜず、最新の対象revision・formal・condition3・merge/read-after・6本文pinはfinal closure snapshotを参照する。先行する判断recordはJSONのhistory inventoryに保持し、最新leafと混ぜない。Stage 1直接PO記録は別のsource経路として表示する。condition3・merge/read-after locatorも判断record leafやPO事後確認とは別に扱う。
 
 | 機構×Stage | 対象親ID | 判断記録・formal locator | 正本 |
 |---|---|---|---|
@@ -269,7 +272,7 @@ Stage 1の直接PO判断は、次の4ファイルとPO出典commentに保持さ�
 
 ## 承認対象の本文revisionと正式判断locator（Git記録読取）
 
-以下の旧locator表は2026-10-07 main `83cb0bcd8bb3efe7022bf74f393b1fc0a0d746f1`時点のhistory snapshotであり、現行の対象revisionには適用しない。現行11 scopeは直前の「2026-10-08 current full-six target leaves」とリンク先snapshotを参照する。旧表・旧判断記録は履歴として維持し、PO事後確認は未記録。
+以下の旧locator表は2026-10-07 main `83cb0bcd8bb3efe7022bf74f393b1fc0a0d746f1`時点のhistory snapshotであり、現行の対象revisionには適用しない。従来11 scopeの現行leafは00298f79時点snapshotを参照する。後続3 scopeを含む現在14 scopeのadmissionは911b896f時点の更新表とfinal closure snapshotを参照する。旧表・旧判断記録は履歴として維持し、PO事後確認は未記録。
 
 |対象親ID／機構×Stage|PR|記録上の本文revision（full Git commit OID）|承認対象6文書SHA-256（full）|判断記録（current leaf）|Opus／Fable formal locator|
 |---|---|---|---|---|---|
@@ -378,7 +381,7 @@ HARNESS043/046/054、LABO066/070等の非blocker残余は、証拠のformal_resi
 
 過去の判断対象六本文は、その後の他親の追補を含む現在本文と全文hashが異なる。承認対象revisionの408pinは各対象Git blobと一致し、現在48正本のhashは別に保存している。064の本文revisionとreviewed HEADの違い、071のcondition3 clarificationを通常のfull-six leafへ読み替えない。
 
-前回訂正snapshotの110 unique comment locatorは時点記録として保持する。2026-10-08の更新対象11 scopeの正式commentとmain admissionは[更新snapshot](audits/requirements-stage/l3-post-confirmation-admission-refresh-2026-10-08-00298f79.json)に分けて固定する。一覧の追加locatorや記録pathから、PO事後確認・全274親の意味完了を生成しない。
+前回訂正snapshotの110 unique comment locatorは時点記録として保持する。2026-10-08時点の従来11 scopeのformal commentとmain admissionは[当時の更新snapshot](audits/requirements-stage/l3-post-confirmation-admission-refresh-2026-10-08-00298f79.json)に分けて固定する。後続3 scopeのpinsはfinal closure snapshotに固定した。一覧の追加locatorや記録pathから、PO事後確認・全274親の意味完了を生成しない。
 
 歴史的根拠（現行条件1ではない）: INTELLIGENCE Stage 3のFable原結論は別本文 `67ef7d435` への見解で、`7c39f1fc0` への持ち越しはStage 3 suffix不変が条件だった。現行承認対象 `352153f90587956964966b4590f31962c2946c84` の条件1/2はformal #6041829827、condition3は#6042097667で新たに照合され、main merge/read-after #6042137173によりadmitされた。[固定統合監査](audits/requirements-stage/intelligence-stage3-main-stage4-integration-2026-10-06.json)が6文書の旧suffix保持を記録し、[旧条件1出典（実際はFable、Opus証拠ではない） #6004252416](https://github.com/RetryYN/HELIX-HARNESS/pull/2607#issuecomment-6004252416)は対象本文・HEADの6 bytes不変とFable見解の有効性を照合している。Rootも旧本文/旧mainと対象本文/対象mainを6文書で切り分け、suffix実bytes一致を再検算した。#6004124962は旧HEAD `4fba48a6` のOpus指摘（Minor 2）であり、現対象の結論根拠に含めない。
 
