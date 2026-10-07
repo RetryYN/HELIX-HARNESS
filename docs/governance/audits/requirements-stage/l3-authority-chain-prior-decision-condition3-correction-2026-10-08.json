@@ -1,0 +1,408 @@
+{
+  "record_type": "superseded-decision-vs-final-condition3-link-correction",
+  "recorded_at": "2026-10-08",
+  "target_main": "ce70628e53ff5f78c1321accf57429c740ea585d",
+  "source_chain_snapshot_path": "docs/governance/audits/requirements-stage/l3-authority-chain-41groups-ce70628.json",
+  "source_chain_snapshot_sha256": "f40140efaeaa1cc84067adbc77d189f79c56ba991cb54d751760343335ed23bb",
+  "authority_effect": "none; correction note only; does not alter decision records or chain snapshot",
+  "root_question": "Whether old OS023 review01 and SECURITY009/012 review02 records were incorrectly attached to later final C3 claims.",
+  "cases": [
+    {
+      "label": "OS023",
+      "pr": 2686,
+      "parent_ids": [
+        "HELIXOS-L2-023"
+      ],
+      "old_review": "review01",
+      "final_review": "review03",
+      "old_head": "5dfc81884a29bfe0069bb5c4f88f1054d5b8bdd2",
+      "final_head": "5eddb1063a05837bf7216276e8334d6c7a600ce5",
+      "c3_head": "e64f1ff873a27660188478a6679fc551d2bbb332",
+      "c3_id": 6046563574,
+      "final_formal_id": 6046523635,
+      "old_formal_id": 6046140606,
+      "old_decision": "docs/governance/decisions/helix-os-stage2a-parent023-review01-l3-l10-delegated-decision-2026-10-08.md",
+      "final_decision": "docs/governance/decisions/helix-os-stage2a-parent023-review03-l3-l10-delegated-decision-2026-10-08.md",
+      "old_pin": "docs/governance/audits/requirements-stage/os-stage2a-parent023-review01-delegated-decision-pin-2026-10-08.json",
+      "final_pin": "docs/governance/audits/requirements-stage/os-stage2a-parent023-review03-delegated-decision-pin-2026-10-08.json",
+      "old_decision_record_sha256": "29986105ce5655f631050989b09a1550fa5c08c401e6d494014efc609c9111bc",
+      "old_decision_record_bytes": 3151,
+      "final_decision_record_sha256": "5a6cab38f8659ff1314ffeb8501a2fe4e63c2f5e2cdc400c6e1f3e4ab23605c4",
+      "final_decision_record_bytes": 3381,
+      "old_pin_json_sha256": "fd622de3ede0a1cca4e878a8edd4d76b9b48d7049ad6c022254676a8e409771c",
+      "old_pin_json_bytes": 7167,
+      "final_pin_json_sha256": "5823246df787d49d9609a3eab3a842d4d887443bbb04131b47ffd18faa06ce5c",
+      "final_pin_json_bytes": 5730,
+      "old_formal_comment": {
+        "id": 6046140606,
+        "raw_bytes": 4332,
+        "raw_sha256": "f750a51fa8862d0dbf9cdad4e862b3f3996d000a011cf69f9eb0673407a0b0c1",
+        "pin_body_sha256": "f750a51fa8862d0dbf9cdad4e862b3f3996d000a011cf69f9eb0673407a0b0c1",
+        "pin_body_bytes": 4332,
+        "condition3_in_pin": "pending",
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2686#issuecomment-6046140606",
+        "raw_body_matches_pin": true,
+        "url_api_exact": true
+      },
+      "final_formal_comment": {
+        "id": 6046523635,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2686#issuecomment-6046523635",
+        "raw_bytes": 2908,
+        "raw_sha256": "605e13c9504089203d04f286fbf9e824d36b7dd9f65ac1844ea5ff5fa97f2d1c",
+        "pin_body_sha256": "605e13c9504089203d04f286fbf9e824d36b7dd9f65ac1844ea5ff5fa97f2d1c",
+        "pin_body_bytes": 2908,
+        "condition3_in_pin": "pending",
+        "raw_body_matches_pin": true,
+        "url_api_exact": true
+      },
+      "condition3_comment": {
+        "id": 6046563574,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2686#issuecomment-6046563574",
+        "created_at": "2026-10-07T20:48:10Z",
+        "raw_bytes": 2615,
+        "raw_sha256": "430a3421a27d7a92d6f1e2ab85b5e5fb1d22a3c5869f2c0aee6724f730575aef",
+        "reviewed_head_from_title": "e64f1ff873a27660188478a6679fc551d2bbb332",
+        "explicit_established": true,
+        "references_final_formal_id": true,
+        "references_old_formal_id": false,
+        "body_excerpt": "## review04・条件3照合（HEAD e64f1ff873a27660188478a6679fc551d2bbb332 / base e7a695d4b2de64aec69a1a123de2fde33be724cf）— Claude review_merge"
+      },
+      "c3_text_scope_references_final_decision": true,
+      "old_to_final_changed_blob_count": 4,
+      "final_pin_and_c3_head_all_match": true,
+      "per_document": [
+        {
+          "path": "docs/helix-os/L3-requirements/business-requirements.md",
+          "old_pin_sha256": "60b43aab032c879b32f29566c482a4c0f984d7f4c522614befba02994895d5ab",
+          "old_head_recomputed_sha256": "60b43aab032c879b32f29566c482a4c0f984d7f4c522614befba02994895d5ab",
+          "final_pin_sha256": "60b43aab032c879b32f29566c482a4c0f984d7f4c522614befba02994895d5ab",
+          "final_head_recomputed_sha256": "60b43aab032c879b32f29566c482a4c0f984d7f4c522614befba02994895d5ab",
+          "c3_head_recomputed_sha256": "60b43aab032c879b32f29566c482a4c0f984d7f4c522614befba02994895d5ab",
+          "target_main_sha256": "da524c179c66fea54c3e967a949fe5d8a1dc89b2241e513def4fca50e3cadb01",
+          "old_pin_matches_old_head": true,
+          "final_pin_matches_final_head": true,
+          "final_head_matches_c3_head": true,
+          "changed_old_to_final": false,
+          "target_main_equals_c3_head": false
+        },
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+          "old_pin_sha256": "f72308d3b2d6fe2dbe8cd6a075dee3d982c60a6a0a6376b08d935fe0bf5841ca",
+          "old_head_recomputed_sha256": "f72308d3b2d6fe2dbe8cd6a075dee3d982c60a6a0a6376b08d935fe0bf5841ca",
+          "final_pin_sha256": "dd227fbf6a250916cd62800ce30ac85d13c894bff96c188224b1fafca7cdf1d8",
+          "final_head_recomputed_sha256": "dd227fbf6a250916cd62800ce30ac85d13c894bff96c188224b1fafca7cdf1d8",
+          "c3_head_recomputed_sha256": "dd227fbf6a250916cd62800ce30ac85d13c894bff96c188224b1fafca7cdf1d8",
+          "target_main_sha256": "be029fcba4a073b55b2c219e9d14058ec423ca9b4c27584a1a1c357d0a7f09d7",
+          "old_pin_matches_old_head": true,
+          "final_pin_matches_final_head": true,
+          "final_head_matches_c3_head": true,
+          "changed_old_to_final": true,
+          "target_main_equals_c3_head": false
+        },
+        {
+          "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+          "old_pin_sha256": "04fb47b3386a9fc31556a60727b4004628256ada37c163202b33ac888b651f4a",
+          "old_head_recomputed_sha256": "04fb47b3386a9fc31556a60727b4004628256ada37c163202b33ac888b651f4a",
+          "final_pin_sha256": "4e20115c7eb56deda0f8bda7f894d755bec36329731c73af0511bb189fe7112f",
+          "final_head_recomputed_sha256": "4e20115c7eb56deda0f8bda7f894d755bec36329731c73af0511bb189fe7112f",
+          "c3_head_recomputed_sha256": "4e20115c7eb56deda0f8bda7f894d755bec36329731c73af0511bb189fe7112f",
+          "target_main_sha256": "4a85cea8d1e9394243cbd701a69849a0f30de9d6c3e3620225605df2166496d5",
+          "old_pin_matches_old_head": true,
+          "final_pin_matches_final_head": true,
+          "final_head_matches_c3_head": true,
+          "changed_old_to_final": true,
+          "target_main_equals_c3_head": false
+        },
+        {
+          "path": "docs/helix-os/L10-verification/business-verification.md",
+          "old_pin_sha256": "254351ea2067e4bb19e50adee9c544d589a2b2adc589568addb30c59982d03e9",
+          "old_head_recomputed_sha256": "254351ea2067e4bb19e50adee9c544d589a2b2adc589568addb30c59982d03e9",
+          "final_pin_sha256": "254351ea2067e4bb19e50adee9c544d589a2b2adc589568addb30c59982d03e9",
+          "final_head_recomputed_sha256": "254351ea2067e4bb19e50adee9c544d589a2b2adc589568addb30c59982d03e9",
+          "c3_head_recomputed_sha256": "254351ea2067e4bb19e50adee9c544d589a2b2adc589568addb30c59982d03e9",
+          "target_main_sha256": "8d028efe0e14ecd1769c95a5bf1926ab6e04d6b53981f9a9826635f8dc5ae9ad",
+          "old_pin_matches_old_head": true,
+          "final_pin_matches_final_head": true,
+          "final_head_matches_c3_head": true,
+          "changed_old_to_final": false,
+          "target_main_equals_c3_head": false
+        },
+        {
+          "path": "docs/helix-os/L10-verification/functional-verification.md",
+          "old_pin_sha256": "0edd2bb07d8ee213c6e25c03f0fdad803cad2d2d0be613ebf895778c38f784ed",
+          "old_head_recomputed_sha256": "0edd2bb07d8ee213c6e25c03f0fdad803cad2d2d0be613ebf895778c38f784ed",
+          "final_pin_sha256": "1426f5c5f6473ef712f8eda530bbf8844e92ca4035c54d80979d2ed99536627b",
+          "final_head_recomputed_sha256": "1426f5c5f6473ef712f8eda530bbf8844e92ca4035c54d80979d2ed99536627b",
+          "c3_head_recomputed_sha256": "1426f5c5f6473ef712f8eda530bbf8844e92ca4035c54d80979d2ed99536627b",
+          "target_main_sha256": "394b9a3ca45eb5d07f34a64215cbe655481a3c65de3fff328765b1d40e2a466c",
+          "old_pin_matches_old_head": true,
+          "final_pin_matches_final_head": true,
+          "final_head_matches_c3_head": true,
+          "changed_old_to_final": true,
+          "target_main_equals_c3_head": false
+        },
+        {
+          "path": "docs/helix-os/L10-verification/nfr-verification.md",
+          "old_pin_sha256": "bab3201da8be170f0dc5ac295dc4828ae28306c27b952e4215a0b37d099509c2",
+          "old_head_recomputed_sha256": "bab3201da8be170f0dc5ac295dc4828ae28306c27b952e4215a0b37d099509c2",
+          "final_pin_sha256": "c6d3bbb4d4b46313068992a485d52e792b4039ff487565f4d8392cf5f12d68df",
+          "final_head_recomputed_sha256": "c6d3bbb4d4b46313068992a485d52e792b4039ff487565f4d8392cf5f12d68df",
+          "c3_head_recomputed_sha256": "c6d3bbb4d4b46313068992a485d52e792b4039ff487565f4d8392cf5f12d68df",
+          "target_main_sha256": "8fdce24ec5a1201e73b9c0add64921abaf53fe90d1cdacd40ad4ba0aad0ad262",
+          "old_pin_matches_old_head": true,
+          "final_pin_matches_final_head": true,
+          "final_head_matches_c3_head": true,
+          "changed_old_to_final": true,
+          "target_main_equals_c3_head": false
+        }
+      ],
+      "old_record_status": "historical/superseded candidate; condition3 was pending on this record and the later C3 references the final-review formal comment, not this old formal comment",
+      "final_record_status": "the final-review record/pin is the record referenced by the C3 claim; target-main ancestry and marker projection are retained separately",
+      "target_main_parent_projection_from_existing_snapshot": [
+        {
+          "parent_id": "HELIXOS-L2-023",
+          "effective_decision_path_in_snapshot": "docs/governance/decisions/helix-os-stage2a-parent023-review03-l3-l10-delegated-decision-2026-10-08.md",
+          "pr": 2686,
+          "condition3_reviewed_revision": "e64f1ff873a27660188478a6679fc551d2bbb332",
+          "status": "retained",
+          "per_document_status": [
+            {
+              "docs/helix-os/L3-requirements/business-requirements.md": "retained"
+            },
+            {
+              "docs/helix-os/L3-requirements/functional-requirements.md": "retained"
+            },
+            {
+              "docs/helix-os/L3-requirements/nfr-grade.md": "retained"
+            },
+            {
+              "docs/helix-os/L10-verification/business-verification.md": "retained"
+            },
+            {
+              "docs/helix-os/L10-verification/functional-verification.md": "retained"
+            },
+            {
+              "docs/helix-os/L10-verification/nfr-verification.md": "retained"
+            }
+          ]
+        }
+      ],
+      "all_formal_review_comment_raw_bodies_match_pins": true
+    },
+    {
+      "label": "SEC009012",
+      "pr": 2676,
+      "parent_ids": [
+        "HELIXSECURITY-L2-009",
+        "HELIXSECURITY-L2-012"
+      ],
+      "old_review": "review02",
+      "final_review": "review04",
+      "old_head": "cb66a4d49b64420a103f9847a232964d2b2e36d9",
+      "final_head": "09dda5431bd92c23ea61a1a8adfe35547ecba655",
+      "c3_head": "ec540d649317e21435223c173a41fe83cef1eb19",
+      "c3_id": 6044919993,
+      "final_formal_id": 6044761871,
+      "old_formal_id": 6044310089,
+      "old_decision": "docs/governance/decisions/helix-security-stage1-parents009012-review02-l3-l10-delegated-decision-2026-10-08.md",
+      "final_decision": "docs/governance/decisions/helix-security-stage1-parents009012-review04-l3-l10-delegated-decision-2026-10-08.md",
+      "old_pin": "docs/governance/audits/requirements-stage/security-stage1-parents009012-review02-delegated-decision-pin-2026-10-08.json",
+      "final_pin": "docs/governance/audits/requirements-stage/security-stage1-parents009012-review04-delegated-decision-pin-2026-10-08.json",
+      "old_decision_record_sha256": "e64bc34fe17d6afae5d672c293ac345e25e22ad7c7d32a31a1842b98bb31ef58",
+      "old_decision_record_bytes": 6020,
+      "final_decision_record_sha256": "10ff5dc3f5496a195bb4ab4beaf50e0e4093d5e64260ef5e0d8acbad74f06faf",
+      "final_decision_record_bytes": 3710,
+      "old_pin_json_sha256": "6db0612ea6d1337855ad68b3ae11701c1348a21d6d642e9ff639489020fa357c",
+      "old_pin_json_bytes": 14803,
+      "final_pin_json_sha256": "63290ee9f2ef7fd13b002385b85377933c0b0d2306c156f7396a78d890840d38",
+      "final_pin_json_bytes": 12275,
+      "old_formal_comment": {
+        "id": 6044310089,
+        "raw_bytes": 4140,
+        "raw_sha256": "967d3e3deffd6436e25ec5617cad56eebaa6096cdcffb9a6df191fed4f197576",
+        "pin_body_sha256": "967d3e3deffd6436e25ec5617cad56eebaa6096cdcffb9a6df191fed4f197576",
+        "pin_body_bytes": 4140,
+        "condition3_in_pin": {
+          "status": "pending_after_decision_record_and_six_body_pins",
+          "evidence": "Formal review requires independent post-record/post-pin six-body identity check; not performed by this draft."
+        },
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2676#issuecomment-6044310089",
+        "raw_body_matches_pin": true,
+        "url_api_exact": true
+      },
+      "final_formal_comment": {
+        "id": 6044761871,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2676#issuecomment-6044761871",
+        "raw_bytes": 3607,
+        "raw_sha256": "2eba17496b97fdd6ba080d9381baa5fc85a7caf0c0153db1490523b729eb3ca1",
+        "pin_body_sha256": "2eba17496b97fdd6ba080d9381baa5fc85a7caf0c0153db1490523b729eb3ca1",
+        "pin_body_bytes": 3607,
+        "condition3_in_pin": "pending",
+        "raw_body_matches_pin": true,
+        "url_api_exact": true
+      },
+      "condition3_comment": {
+        "id": 6044919993,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2676#issuecomment-6044919993",
+        "created_at": "2026-10-07T19:08:49Z",
+        "raw_bytes": 3254,
+        "raw_sha256": "9e91220c2312e939380fdf41a90c61937a457d366ca0324f55e420e36db6e57a",
+        "reviewed_head_from_title": "ec540d649317e21435223c173a41fe83cef1eb19",
+        "explicit_established": true,
+        "references_final_formal_id": true,
+        "references_old_formal_id": false,
+        "body_excerpt": "## review05・条件3照合（HEAD ec540d649317e21435223c173a41fe83cef1eb19 / base 5857c0a396cb24a23d765e3079a18a2367b6d078）— Claude review_merge"
+      },
+      "c3_text_scope_references_final_decision": true,
+      "old_to_final_changed_blob_count": 4,
+      "final_pin_and_c3_head_all_match": true,
+      "per_document": [
+        {
+          "path": "docs/helix-security/L3-requirements/business-requirements.md",
+          "old_pin_sha256": "30a0456a17c4c65e9427cc8931905cb7c1adf54c207514f948a7b179dcdb7019",
+          "old_head_recomputed_sha256": "30a0456a17c4c65e9427cc8931905cb7c1adf54c207514f948a7b179dcdb7019",
+          "final_pin_sha256": "30a0456a17c4c65e9427cc8931905cb7c1adf54c207514f948a7b179dcdb7019",
+          "final_head_recomputed_sha256": "30a0456a17c4c65e9427cc8931905cb7c1adf54c207514f948a7b179dcdb7019",
+          "c3_head_recomputed_sha256": "30a0456a17c4c65e9427cc8931905cb7c1adf54c207514f948a7b179dcdb7019",
+          "target_main_sha256": "30a0456a17c4c65e9427cc8931905cb7c1adf54c207514f948a7b179dcdb7019",
+          "old_pin_matches_old_head": true,
+          "final_pin_matches_final_head": true,
+          "final_head_matches_c3_head": true,
+          "changed_old_to_final": false,
+          "target_main_equals_c3_head": true
+        },
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+          "old_pin_sha256": "817fcfb01339151047f6688276cc66bc341b3e1b8b1396eee9f2cd0f403bda6e",
+          "old_head_recomputed_sha256": "817fcfb01339151047f6688276cc66bc341b3e1b8b1396eee9f2cd0f403bda6e",
+          "final_pin_sha256": "d01a8a9a4e89ffc3f86ad377ea4a5f76cf3322c352cdad496388b3f09b2830b8",
+          "final_head_recomputed_sha256": "d01a8a9a4e89ffc3f86ad377ea4a5f76cf3322c352cdad496388b3f09b2830b8",
+          "c3_head_recomputed_sha256": "d01a8a9a4e89ffc3f86ad377ea4a5f76cf3322c352cdad496388b3f09b2830b8",
+          "target_main_sha256": "f6872a3ee941d63c80a9717bca7e81de832c043ad05cc9ac0c2db77eb264ee9e",
+          "old_pin_matches_old_head": true,
+          "final_pin_matches_final_head": true,
+          "final_head_matches_c3_head": true,
+          "changed_old_to_final": true,
+          "target_main_equals_c3_head": false
+        },
+        {
+          "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+          "old_pin_sha256": "5b4a647220bea4192788ac937f9ee889574abb49639493f5e78edadc2950f66e",
+          "old_head_recomputed_sha256": "5b4a647220bea4192788ac937f9ee889574abb49639493f5e78edadc2950f66e",
+          "final_pin_sha256": "bd8533006ead1dacde26ad88733c88379bf7453d297211387564db053cbec59b",
+          "final_head_recomputed_sha256": "bd8533006ead1dacde26ad88733c88379bf7453d297211387564db053cbec59b",
+          "c3_head_recomputed_sha256": "bd8533006ead1dacde26ad88733c88379bf7453d297211387564db053cbec59b",
+          "target_main_sha256": "d2c1d93cf4fb142ba6abae13c7e640a7c9826f6c0ed5ce49de7991cb8f884c3b",
+          "old_pin_matches_old_head": true,
+          "final_pin_matches_final_head": true,
+          "final_head_matches_c3_head": true,
+          "changed_old_to_final": true,
+          "target_main_equals_c3_head": false
+        },
+        {
+          "path": "docs/helix-security/L10-verification/business-verification.md",
+          "old_pin_sha256": "7da2a3b88c866c276065c793036708a633109b176b0381829c8d3c8293ff70a4",
+          "old_head_recomputed_sha256": "7da2a3b88c866c276065c793036708a633109b176b0381829c8d3c8293ff70a4",
+          "final_pin_sha256": "7da2a3b88c866c276065c793036708a633109b176b0381829c8d3c8293ff70a4",
+          "final_head_recomputed_sha256": "7da2a3b88c866c276065c793036708a633109b176b0381829c8d3c8293ff70a4",
+          "c3_head_recomputed_sha256": "7da2a3b88c866c276065c793036708a633109b176b0381829c8d3c8293ff70a4",
+          "target_main_sha256": "7da2a3b88c866c276065c793036708a633109b176b0381829c8d3c8293ff70a4",
+          "old_pin_matches_old_head": true,
+          "final_pin_matches_final_head": true,
+          "final_head_matches_c3_head": true,
+          "changed_old_to_final": false,
+          "target_main_equals_c3_head": true
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.md",
+          "old_pin_sha256": "21b774e5c59aa0355bcc2de3569c82549e25278a4abd997a6d39570fdceb5079",
+          "old_head_recomputed_sha256": "21b774e5c59aa0355bcc2de3569c82549e25278a4abd997a6d39570fdceb5079",
+          "final_pin_sha256": "1ed95d5dee48a5c2effac2210a595c9b527dd40775ff98727878c24cbb2d7a14",
+          "final_head_recomputed_sha256": "1ed95d5dee48a5c2effac2210a595c9b527dd40775ff98727878c24cbb2d7a14",
+          "c3_head_recomputed_sha256": "1ed95d5dee48a5c2effac2210a595c9b527dd40775ff98727878c24cbb2d7a14",
+          "target_main_sha256": "0d81d49d2a16cb70b78b5ef7d0379e3b64632bbe18ac6fda9e3302f00c5bb40b",
+          "old_pin_matches_old_head": true,
+          "final_pin_matches_final_head": true,
+          "final_head_matches_c3_head": true,
+          "changed_old_to_final": true,
+          "target_main_equals_c3_head": false
+        },
+        {
+          "path": "docs/helix-security/L10-verification/nfr-verification.md",
+          "old_pin_sha256": "444560c4ffe00c4a330d6b8a76ad2c86798be1bd4ab506886c96ce0cc4a40e43",
+          "old_head_recomputed_sha256": "444560c4ffe00c4a330d6b8a76ad2c86798be1bd4ab506886c96ce0cc4a40e43",
+          "final_pin_sha256": "a52d221d47f0ec92e1d14969ce322b7f1ff88200e8cdb574a63fd9fb06dcf2d7",
+          "final_head_recomputed_sha256": "a52d221d47f0ec92e1d14969ce322b7f1ff88200e8cdb574a63fd9fb06dcf2d7",
+          "c3_head_recomputed_sha256": "a52d221d47f0ec92e1d14969ce322b7f1ff88200e8cdb574a63fd9fb06dcf2d7",
+          "target_main_sha256": "3675115f6d1b242a511651e627e8c46cfc71013ce9cf129c5045f1ce51e5f685",
+          "old_pin_matches_old_head": true,
+          "final_pin_matches_final_head": true,
+          "final_head_matches_c3_head": true,
+          "changed_old_to_final": true,
+          "target_main_equals_c3_head": false
+        }
+      ],
+      "old_record_status": "historical/superseded candidate; condition3 was pending on this record and the later C3 references the final-review formal comment, not this old formal comment",
+      "final_record_status": "the final-review record/pin is the record referenced by the C3 claim; target-main ancestry and marker projection are retained separately",
+      "target_main_parent_projection_from_existing_snapshot": [
+        {
+          "parent_id": "HELIXSECURITY-L2-009",
+          "effective_decision_path_in_snapshot": "docs/governance/decisions/helix-security-stage1-parents009012-review04-l3-l10-delegated-decision-2026-10-08.md",
+          "pr": 2676,
+          "condition3_reviewed_revision": "ec540d649317e21435223c173a41fe83cef1eb19",
+          "status": "unknown",
+          "per_document_status": [
+            {
+              "docs/helix-security/L3-requirements/business-requirements.md": "unknown"
+            },
+            {
+              "docs/helix-security/L3-requirements/functional-requirements.md": "retained"
+            },
+            {
+              "docs/helix-security/L3-requirements/nfr-grade.md": "retained"
+            },
+            {
+              "docs/helix-security/L10-verification/business-verification.md": "unknown"
+            },
+            {
+              "docs/helix-security/L10-verification/functional-verification.md": "retained"
+            },
+            {
+              "docs/helix-security/L10-verification/nfr-verification.md": "retained"
+            }
+          ]
+        },
+        {
+          "parent_id": "HELIXSECURITY-L2-012",
+          "effective_decision_path_in_snapshot": "docs/governance/decisions/helix-security-stage1-parents009012-review04-l3-l10-delegated-decision-2026-10-08.md",
+          "pr": 2676,
+          "condition3_reviewed_revision": "ec540d649317e21435223c173a41fe83cef1eb19",
+          "status": "unknown",
+          "per_document_status": [
+            {
+              "docs/helix-security/L3-requirements/business-requirements.md": "unknown"
+            },
+            {
+              "docs/helix-security/L3-requirements/functional-requirements.md": "retained"
+            },
+            {
+              "docs/helix-security/L3-requirements/nfr-grade.md": "retained"
+            },
+            {
+              "docs/helix-security/L10-verification/business-verification.md": "unknown"
+            },
+            {
+              "docs/helix-security/L10-verification/functional-verification.md": "retained"
+            },
+            {
+              "docs/helix-security/L10-verification/nfr-verification.md": "unknown"
+            }
+          ]
+        }
+      ],
+      "all_formal_review_comment_raw_bodies_match_pins": true
+    }
+  ],
+  "conclusion": "The final C3 comments explicitly reference the final review comments (OS review03 / SECURITY review04), state the final reviewed HEAD, and say prior old decision status does not inherit. Old records were pending condition3 and must remain historical/superseded, not effective C3 candidates. Existing chain JSON is immutable; this appendix supplies corrected interpretation.",
+  "unknown_marker_handling": "OS023 final record projection is retained across its six extracted documents. SECURITY009/012 retain marker-extraction unknowns for files with no parent-specific marker rows; final six-body pins and C3 do not create missing parent marker rows, so those unknowns remain, rather than being declared resolved."
+}
