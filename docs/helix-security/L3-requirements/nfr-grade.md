@@ -23,7 +23,7 @@
 | `HELIXSECURITY-L2-015` | — |
 | `HELIXSECURITY-L2-016` | SEC-NFR-003 |
 | `HELIXSECURITY-L2-020` | SEC-NFR-004 |
-| `HELIXSECURITY-L2-028` | — |
+| `HELIXSECURITY-L2-028` | SEC-NFR-028-01 |
 | `HELIXSECURITY-L2-033` | SEC-NFR-001, SEC-NFR-007, SEC-NFR-008 |
 
 候補値は下表の根拠・測定条件に限って扱う。独立候補のない親へ未指定のlatency/retention/quota閾値を補わず、機能ACの判定を代替しない。共有候補の全意味は一行だけ定義し、親crosswalkは適用先を示す。
@@ -41,6 +41,7 @@
 | `SEC-NFR-007` / `SECURITY-AC-005-01`, `SECURITY-AC-008-01`, `SECURITY-AC-009-01`, `SECURITY-AC-033-01` | revoke/credential re-check point | dispatch開始時および既存operationのresume/retry時にcurrent authority・expiry・bindingを再照合する案を候補とし、再照合点を追加した時の検出差を比較する。L2-033「以前のbindingを流用せず再照合」に反する「初回だけ照合」は候補に含めない。expiry境界の比較候補はA=`now < expires_at`のみ有効（`now >= expires_at`でdeny）、B=`now <= expires_at`も有効（`now > expires_at`でdeny）とし、保守候補Aを推奨する。これはPO承認値ではなく、expiryを越える利用を許さない候補解釈である。 | L2-008 tuple/expiry、L2-009 revoke、L2-033のdrift後に以前のbindingを流用しない条件。 | expiry直前/境界/経過後、revoked後resume、HEAD/assignment変更をfixtureし、stale/expired operationのsuccess化を0件とする。durationの値は作らない。 |
 | `SEC-NFR-008` / `SECURITY-AC-005-01`, `SECURITY-AC-009-01`, `SECURITY-AC-010-01`, `SECURITY-AC-013-01`, `SECURITY-AC-033-01` | evidence retention | 保存期間は固定候補値なし。minimum evidenceはsource identity/revision、decision reason、recipient/owner stateで、raw secret値は常に0件。 | `HELIXSECURITY-L2-005/009/010/013/033`。sourceにretention期間なし。 | 必要なdecision traceが定めたverification windowで参照できるか測定し、window自体はownerが宣言したときだけ適用する。 |
 | `SEC-NFR-014-01` / `SECURITY-AC-014-01` | target別decision trace | memory、training dataset、BRAIN knowledgeの各target classについて、source/provenance/classification、allow/deny/hold、理由の対応欠落0件を候補とする。 | L2-014の3 target classと理由付き判定を、分類結果だけ数える案と比較する。分類のみでは誤ったtargetや理由欠落を隠すため、target別のdecision trace候補を選ぶ。 | 合成入力で3 classと欠落/unknown/wrong-targetを比較し、`SECURITY-CASE-014-01`の同一入力とfield対応を測定に使う。handoff、LABO評価、保存、BRAIN登録の成立は測定対象にしない。 |
+| `SEC-NFR-028-01` / `SECURITY-AC-028-01` | pack descriptor/verification target binding coverage | 固定L2-028に明記されたcontract version/scope/target-artifact照合fixtureをすべて個別に測るcoverage 100%と、欠落・不一致を通すfalse acceptance 0件を候補とする。運用SLAではない。 | 固定L2-028のdescriptor inputと、検証target/update artifact integrity correspondence。共通pack lifecycleは対象外。 | SECURITY-CASE-028-01の正常例、contract version/scope欠落、scope単独mismatch、target/artifact identity/version/digest単独mismatchを別fixtureで測り、明示した有限fixture集合を分母とする。unknown/missing/applicability不明を0やpassへ丸めない。 |
 
 候補は合成fixtureの設計であり、実secret、実runtime、実保存を使った測定は行わない。`SEC-NFR-007`のexpiry比較候補A/Bは未承認の候補解釈であり、PO承認済み閾値と扱わない。
 

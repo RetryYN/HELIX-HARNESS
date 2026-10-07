@@ -516,6 +516,10 @@ OS-016から対象要求revision、unit/connection/composite relationとsource-b
 | `CASE-OS-023-02l` | 他のhandoff bindingを正常に保ち、unit successだけからconnection acceptedを生成 | connection acceptanceを拒否しunit outcomeを保つ |
 | `CASE-OS-023-02m` | 他のhandoff bindingを正常に保ち、unit successだけからcomposite acceptedを生成 | composite acceptanceを拒否しunit/connection stateを保つ |
 | `CASE-OS-023-02n` | 他のhandoff bindingを正常に保ち、unit successだけからnext-stage acceptedを生成 | 次段acceptanceを拒否しunit/connection/composite判定を別に保つ |
+| `CASE-OS-023-02o` | 他のbindingを正常に保ち、causal IDだけを欠落 | connection unresolved、元sourceまたは管理へ返し、元ticketと未完義務を保持 |
+| `CASE-OS-023-02p` | 他のbindingを正常に保ち、scope値だけを別scopeへ変更 | connection unresolved、元sourceまたは管理へ返し、scopeを推測・補正しない |
+| `CASE-OS-023-02q` | 他のbindingを正常に保ち、receiver受領setから未完dutyを一件だけ欠落 | 受領不成立、未完dutyと元ticketを保持し元sourceまたは管理へ返す |
+| `CASE-OS-023-02r` | 他のbindingを正常に保ち、stop reasonだけを別値へ変更 | connection unresolved、未完状態と元source/管理の返却先を保つ |
 
 ### CASE-OS-023-03 — mixed-duties unseen handoff（AC-OS-023-03）
 
