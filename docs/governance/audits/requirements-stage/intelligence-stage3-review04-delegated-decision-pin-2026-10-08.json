@@ -183,10 +183,11 @@
       },
       {
         "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
-        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/requirements.json",
-        "locator": "#/HIL-NFR-34 (semantic source locator 214 above)",
-        "sha256": "asset snapshot identified in immutable legacy inventory; semantic source bytes pinned by 719D source",
-        "disposition": "retain bounded requirement atom; do not extend to full agent generation/lifecycle"
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+        "locator": "#/HIL-NFR-34; lines 5842-5884",
+        "sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+        "disposition": "retain bounded requirement atom; do not extend to full agent generation/lifecycle",
+        "source_path_correction": "Unpublished draft used incorrect docs/design/helix path. Asset disposition row2866 specifies requirements-ir/requirements.json; Root read exact HIL-NFR-34 item."
       },
       {
         "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
