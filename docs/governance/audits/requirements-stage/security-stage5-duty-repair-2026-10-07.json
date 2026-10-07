@@ -1,0 +1,75 @@
+{
+  "kind": "static_repair_evidence",
+  "authority_effect": "none",
+  "base": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+  "scope": "HELIX-SECURITY Stage5 HELIXSECURITY-L2-027",
+  "findings_source": "https://github.com/RetryYN/HELIX-HARNESS/pull/2617#issuecomment-6039139172",
+  "fixed_parent_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+  "fixed_parent_lines": {
+    "L2": "332-341",
+    "L11": "51"
+  },
+  "legacy": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+      "lines": "97-113"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+      "sha256": "b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4",
+      "lines": "23"
+    }
+  ],
+  "disposition": "意味の再導出。classification/sink分離と単独negativeの形式を保持。旧broker sink enum/実行経路/default denyは移さない。未完義務の提供と接続先ownerは固定L2-027から再導出。",
+  "repairs": {
+    "M1": "AC027-01/02/03、正常deny/hold CASE002/003/027/028/052/053の未完義務値一致、単独変異CASE094-105"
+  },
+  "six_documents": [
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "base_sha256": "a9cdc5dcdc06c46995cf0117803efd42cff5fd7cd61648d46ea91725381327e0",
+      "candidate_sha256": "a9cdc5dcdc06c46995cf0117803efd42cff5fd7cd61648d46ea91725381327e0",
+      "unchanged": true
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "base_sha256": "332100c33a03e916e2a11672b1b8a259d8545df6c64f68b0939219a6f6d4c021",
+      "candidate_sha256": "575644b1302c8fc3cae39f9ebf158edb7b53b43906e7fa80a9da1bed1d545209",
+      "unchanged": false
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "base_sha256": "d48a883daf59e682bef8da78c4f3f27475cc9933f282a1ad04a52d632c6e9e40",
+      "candidate_sha256": "d48a883daf59e682bef8da78c4f3f27475cc9933f282a1ad04a52d632c6e9e40",
+      "unchanged": true
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "base_sha256": "6f6785a248a8e2d2e05944e936b2fcac09311cab5115c3610d62c330442414d2",
+      "candidate_sha256": "6f6785a248a8e2d2e05944e936b2fcac09311cab5115c3610d62c330442414d2",
+      "unchanged": true
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "base_sha256": "6e9c8bef19fb87f01c138a8e3221dec43dfab54d7bf3b2d0499ce6e62ce90bee",
+      "candidate_sha256": "aff32f8259c08c15fd100b012d720b31a87ea410a2f0753f4141c9d0ddad69e0",
+      "unchanged": false
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "base_sha256": "f2fc75329497b8a7d15bb6d60783c4eb6d67dd262051d005b953c321b2970055",
+      "candidate_sha256": "f2fc75329497b8a7d15bb6d60783c4eb6d67dd262051d005b953c321b2970055",
+      "unchanged": true
+    }
+  ],
+  "checks": {
+    "git_diff_check": "pass",
+    "scfctl_validate": "147 bindings, fail=0",
+    "govcheck": "ok atoms=7622 requirements=57 files=58",
+    "parent_027_case_definitions": 105,
+    "unique_case_definitions": 105
+  },
+  "approval": "未成立。旧条件1はFableでありOpus独立確認の証拠ではない。新六本文revisionについて委任条件を再照合する。",
+  "fixture_execution": false
+}
