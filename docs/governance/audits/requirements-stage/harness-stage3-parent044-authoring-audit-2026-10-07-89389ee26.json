@@ -1,0 +1,1121 @@
+{
+  "audit_type": "HARNESS-044 authoring integration physical audit",
+  "status": "read-only audit of Root integration; no canonical changes; no independent review or approval",
+  "created_utc": "2026-10-06T18:15:30.551090+00:00",
+  "worktree": "/home/tenni/.helix-worktrees/l3-harness-stage3-parent044",
+  "branch": "l3-harness-stage3-parent044",
+  "head": "89389ee260343b392a32c5bda9aea79dc0d698aa",
+  "base": "f5a974a4059a209982cb1cdec39c0537f52683b8",
+  "parent": "f5a974a4059a209982cb1cdec39c0537f52683b8",
+  "clean_worktree": true,
+  "diff_file_count": 6,
+  "fixed_and_po_pins": {
+    "L2-fixed": {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "lines": [
+        1002,
+        1014
+      ],
+      "file_bytes": 254934,
+      "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+      "span_bytes": 4405,
+      "span_sha256": "b005641da8a8dffac0bbddd33b5ef71762f7a9c221fa31b23cb1bb2111e1a26d",
+      "span_text": "### HARNESS-L2-044 design obligation portfolioの契約coverage候補（HELIX-HARNESS内の部品候補）\n\n**対応要求**：HARNESS-L2-044（HELIX-HARNESS内の部品候補、単体能力、`version_target: 1.0`、未採択。個別部品の配置はPO判断待ち）。親L1は`HARNESS-L1-001/004/009`。旧sourceはHIL-FR-54、`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:144`（line SHA-256 `502ef00823463c0fd4218c7b554e4b6959fc28aa9006d6d6eb79f555b86b4f67`）。旧PO packet `docs/governance/crosswalks/concept-requirement-po-decision-packet.md:1008`の配置表示は`HELIX-HARNESS、部品`までであり、より具体的な所属は特定しない。\n\n- **種別・scope**：対象revisionのrequirement atomとdesign obligationを契約coverageの意味classへ整理し、適用されるclassとnormative contractの割当を照合するHELIX-HARNESS内の部品候補（単体能力）。旧sourceの分類語やportfolio schemaを現行の固定形式にしない。\n- **入力**：対象L1・要求・design scopeとrevision、当該scopeに適用されるrequirement atom／Design Obligation Graph、関連するnormative contract・対oracleのidentity/revisionと適用根拠。L2-009等から導かれる義務や025/026の設計成果を参照する場合も、そのsource revisionとscopeを結ぶ。required atom、契約、適用性またはoracleがunknown/conflict/staleなら閉包判定を行わない。\n- **出力**：authority、lifecycle、interface/data/state/event/failure/security/observability/operation、V-pair oracle等の適用義務を意味classへまとめたobligation-to-contract coverageと、対象revision・scope付きportfolio提案。classごとにnormative contractを原則1件割り当て、既存契約の再利用、delta追加、新規契約、根拠付き非適用を区別する。重複割当・意味重複・未被覆classと根拠を示し、未被覆0かつ意味重複0となる最小portfolio候補を提示する。\n- **依存区分**（HARNESS-L2-023の4区分）：**常時必須**＝選択された対象L1／要求／design scopeとrevision、そのscopeの適用義務class、normative contract、対oracleおよび各identity・契約版・適用根拠。**特定操作時のみ必須**＝当該portfolioを評価・提案する操作とそのscope。評価操作を選んだときは対象範囲のcoverage閉包を完了できないmissing/unknown/staleがあれば未完または保留を返す。**選択した入力元に応じて必須**＝template由来義務、041の抽出結果、025/026の設計成果を選択入力に含めるscopeでは、そのsource identity/revision・適用範囲・互換を照合する。未選択sourceは未観測とし、不在や合格を推測しない。**参照資料のみ**＝旧schema、旧runtime、背景説明、今回のscopeやauthority・義務・契約・oracleを定めない資料。これらを現行依存や評価根拠へ変換しない。\n- **保証と差戻し**：適用classの全てに契約または根拠付き非適用が対応し、各割当が同じ義務意味と対oracleを覆うか照合できる。複数契約への分割は必要な境界と根拠を明示する。意味不明・authority不足は要求ownerへ、template適用・義務導出の不足はHARNESS-L2-009/対象template ownerへ、設計要素やpair oracleの不足はHARNESS-L2-026/022等の該当ownerへ返す。旧schema、旧runtime、特定のPlanner実装は要求せず、候補の出力は要求合意、設計承認、実装、候補採択を生成しない。\n- **既存候補との境界**：009はtemplate選択・適用と設計義務を導出し、041はtemplate要素の抽出と未対応gapを示し、043はrule/branchごとの例coverageを評価する。026はunit設計と対検証設計を構成し、025はgeneric compositeの設計整合を検査する。044はそれらの成果を入力に契約portfolio全体のclass coverageを照合する候補であり、義務抽出・設計生成・例妥当性判定・構成体設計oracleを重複実装しない。旧FR-55の例coverageは043、旧FR-56のworkflow phase bindingは別scopeとして扱う。\n\n### HARNESS-L2-045 WBS作業単位の形の規範契約（単体候補、version_target: 1.0）\n\n"
+    },
+    "L11-fixed": {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "lines": [
+        735,
+        745
+      ],
+      "file_bytes": 172806,
+      "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+      "span_bytes": 3224,
+      "span_sha256": "9c79b73100f4afa63abba7f79d47b8931a1c29983ac08a3e4ded95e56107bfc8",
+      "span_text": "### HARNESS-L2-044 design obligation portfolioの契約coverage（HELIX-HARNESS内の部品候補）\n\n**対応要求**：HARNESS-L2-044（HELIX-HARNESS内の部品候補、単体能力、`version_target: 1.0`、未採択。個別部品の配置はPO判断待ち）。親L1は`HARNESS-L1-001/004/009`。本候補は旧HIL-FR-54、`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:144`（line SHA-256 `502ef00823463c0fd4218c7b554e4b6959fc28aa9006d6d6eb79f555b86b4f67`）の意味条件を現行の抽象的なcoverage契約へ再導出する。旧PO packet `docs/governance/crosswalks/concept-requirement-po-decision-packet.md:1008`の配置表示は汎用の`HELIX-HARNESS、部品`までで、個別所属は決めない。受入は未実行であり、候補採択を意味しない。\n\n**正常例**：同一対象revision/scopeの適用requirement atom、design obligation、normative contractと対oracleを意味classへ整理し、authority、lifecycle、interface/data/state/event/failure/security/observability/operation、V-pair oracle等の該当条件を各classで追跡する。各classについて、原則一つのnormative contractへの割当、既存契約の再利用、delta追加、新規作成、または根拠付き非適用を確認する。classごとの義務とoracleが割当先に対応し、未被覆classと意味重複がゼロであることをcoverageから再構成できる場合に限り、そのscopeのportfolio閉包を受け入れる。\n\n**誤りを含む例**：適用義務classに契約／oracleがない、同じ意味の義務を複数契約へ無説明で割り当てる、根拠なしに非適用とする、既存normative contractを孤立させる、または未被覆・意味重複を残したまま最小portfolioとする場合は不合格とする。複数契約が必要な場合に境界・理由が示されない例も不合格とする。fieldやmatrixが存在しても、義務内容と契約の意味対応をoracleで照合できなければ受け入れない。\n\n**未見・失敗例**：作成側に伏せた適用義務class、契約revision、またはapplicability branchを加え、分母とportfolio coverageを更新する。新classが未割当なら未被覆として検出され、意味重複があれば該当classとcontractを示す。source atom、active template、適用性、oracle、契約版の欠落・矛盾・staleはunknown／未評価に残し、合格扱いにしない。変更された入力に既存receiptを流用しない。\n\n**戻し先と境界**：要求意味・authority不足は要求owner、template適用と義務導出不足はHARNESS-L2-009/対象template owner、template atom抽出不足はHARNESS-L2-041相当の契約owner、具体設計と対oracle不足はHARNESS-L2-026/022等の該当ownerへ戻す。HARNESS-L2-025のgeneric composite整合やHARNESS-L2-043の例coverageだけで本候補のportfolio閉包を代替しない。候補や受入結果は要求合意、L3承認、設計承認、実装、OS実行、利用者受入を生成せず、旧schema／runtime固有の形式を要求しない。\n"
+    },
+    "L2-current-main": {
+      "revision": "f5a974a4059a209982cb1cdec39c0537f52683b8",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "lines": [
+        1002,
+        1014
+      ],
+      "file_bytes": 442914,
+      "file_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+      "span_bytes": 4405,
+      "span_sha256": "b005641da8a8dffac0bbddd33b5ef71762f7a9c221fa31b23cb1bb2111e1a26d",
+      "span_text": "### HARNESS-L2-044 design obligation portfolioの契約coverage候補（HELIX-HARNESS内の部品候補）\n\n**対応要求**：HARNESS-L2-044（HELIX-HARNESS内の部品候補、単体能力、`version_target: 1.0`、未採択。個別部品の配置はPO判断待ち）。親L1は`HARNESS-L1-001/004/009`。旧sourceはHIL-FR-54、`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:144`（line SHA-256 `502ef00823463c0fd4218c7b554e4b6959fc28aa9006d6d6eb79f555b86b4f67`）。旧PO packet `docs/governance/crosswalks/concept-requirement-po-decision-packet.md:1008`の配置表示は`HELIX-HARNESS、部品`までであり、より具体的な所属は特定しない。\n\n- **種別・scope**：対象revisionのrequirement atomとdesign obligationを契約coverageの意味classへ整理し、適用されるclassとnormative contractの割当を照合するHELIX-HARNESS内の部品候補（単体能力）。旧sourceの分類語やportfolio schemaを現行の固定形式にしない。\n- **入力**：対象L1・要求・design scopeとrevision、当該scopeに適用されるrequirement atom／Design Obligation Graph、関連するnormative contract・対oracleのidentity/revisionと適用根拠。L2-009等から導かれる義務や025/026の設計成果を参照する場合も、そのsource revisionとscopeを結ぶ。required atom、契約、適用性またはoracleがunknown/conflict/staleなら閉包判定を行わない。\n- **出力**：authority、lifecycle、interface/data/state/event/failure/security/observability/operation、V-pair oracle等の適用義務を意味classへまとめたobligation-to-contract coverageと、対象revision・scope付きportfolio提案。classごとにnormative contractを原則1件割り当て、既存契約の再利用、delta追加、新規契約、根拠付き非適用を区別する。重複割当・意味重複・未被覆classと根拠を示し、未被覆0かつ意味重複0となる最小portfolio候補を提示する。\n- **依存区分**（HARNESS-L2-023の4区分）：**常時必須**＝選択された対象L1／要求／design scopeとrevision、そのscopeの適用義務class、normative contract、対oracleおよび各identity・契約版・適用根拠。**特定操作時のみ必須**＝当該portfolioを評価・提案する操作とそのscope。評価操作を選んだときは対象範囲のcoverage閉包を完了できないmissing/unknown/staleがあれば未完または保留を返す。**選択した入力元に応じて必須**＝template由来義務、041の抽出結果、025/026の設計成果を選択入力に含めるscopeでは、そのsource identity/revision・適用範囲・互換を照合する。未選択sourceは未観測とし、不在や合格を推測しない。**参照資料のみ**＝旧schema、旧runtime、背景説明、今回のscopeやauthority・義務・契約・oracleを定めない資料。これらを現行依存や評価根拠へ変換しない。\n- **保証と差戻し**：適用classの全てに契約または根拠付き非適用が対応し、各割当が同じ義務意味と対oracleを覆うか照合できる。複数契約への分割は必要な境界と根拠を明示する。意味不明・authority不足は要求ownerへ、template適用・義務導出の不足はHARNESS-L2-009/対象template ownerへ、設計要素やpair oracleの不足はHARNESS-L2-026/022等の該当ownerへ返す。旧schema、旧runtime、特定のPlanner実装は要求せず、候補の出力は要求合意、設計承認、実装、候補採択を生成しない。\n- **既存候補との境界**：009はtemplate選択・適用と設計義務を導出し、041はtemplate要素の抽出と未対応gapを示し、043はrule/branchごとの例coverageを評価する。026はunit設計と対検証設計を構成し、025はgeneric compositeの設計整合を検査する。044はそれらの成果を入力に契約portfolio全体のclass coverageを照合する候補であり、義務抽出・設計生成・例妥当性判定・構成体設計oracleを重複実装しない。旧FR-55の例coverageは043、旧FR-56のworkflow phase bindingは別scopeとして扱う。\n\n### HARNESS-L2-045 WBS作業単位の形の規範契約（単体候補、version_target: 1.0）\n\n"
+    },
+    "L11-current-main": {
+      "revision": "f5a974a4059a209982cb1cdec39c0537f52683b8",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "lines": [
+        740,
+        750
+      ],
+      "file_bytes": 343806,
+      "file_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+      "span_bytes": 3224,
+      "span_sha256": "9c79b73100f4afa63abba7f79d47b8931a1c29983ac08a3e4ded95e56107bfc8",
+      "span_text": "### HARNESS-L2-044 design obligation portfolioの契約coverage（HELIX-HARNESS内の部品候補）\n\n**対応要求**：HARNESS-L2-044（HELIX-HARNESS内の部品候補、単体能力、`version_target: 1.0`、未採択。個別部品の配置はPO判断待ち）。親L1は`HARNESS-L1-001/004/009`。本候補は旧HIL-FR-54、`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:144`（line SHA-256 `502ef00823463c0fd4218c7b554e4b6959fc28aa9006d6d6eb79f555b86b4f67`）の意味条件を現行の抽象的なcoverage契約へ再導出する。旧PO packet `docs/governance/crosswalks/concept-requirement-po-decision-packet.md:1008`の配置表示は汎用の`HELIX-HARNESS、部品`までで、個別所属は決めない。受入は未実行であり、候補採択を意味しない。\n\n**正常例**：同一対象revision/scopeの適用requirement atom、design obligation、normative contractと対oracleを意味classへ整理し、authority、lifecycle、interface/data/state/event/failure/security/observability/operation、V-pair oracle等の該当条件を各classで追跡する。各classについて、原則一つのnormative contractへの割当、既存契約の再利用、delta追加、新規作成、または根拠付き非適用を確認する。classごとの義務とoracleが割当先に対応し、未被覆classと意味重複がゼロであることをcoverageから再構成できる場合に限り、そのscopeのportfolio閉包を受け入れる。\n\n**誤りを含む例**：適用義務classに契約／oracleがない、同じ意味の義務を複数契約へ無説明で割り当てる、根拠なしに非適用とする、既存normative contractを孤立させる、または未被覆・意味重複を残したまま最小portfolioとする場合は不合格とする。複数契約が必要な場合に境界・理由が示されない例も不合格とする。fieldやmatrixが存在しても、義務内容と契約の意味対応をoracleで照合できなければ受け入れない。\n\n**未見・失敗例**：作成側に伏せた適用義務class、契約revision、またはapplicability branchを加え、分母とportfolio coverageを更新する。新classが未割当なら未被覆として検出され、意味重複があれば該当classとcontractを示す。source atom、active template、適用性、oracle、契約版の欠落・矛盾・staleはunknown／未評価に残し、合格扱いにしない。変更された入力に既存receiptを流用しない。\n\n**戻し先と境界**：要求意味・authority不足は要求owner、template適用と義務導出不足はHARNESS-L2-009/対象template owner、template atom抽出不足はHARNESS-L2-041相当の契約owner、具体設計と対oracle不足はHARNESS-L2-026/022等の該当ownerへ戻す。HARNESS-L2-025のgeneric composite整合やHARNESS-L2-043の例coverageだけで本候補のportfolio閉包を代替しない。候補や受入結果は要求合意、L3承認、設計承認、実装、OS実行、利用者受入を生成せず、旧schema／runtime固有の形式を要求しない。\n"
+    },
+    "PO": {
+      "revision": "17a2f310358ee7fe209b9d37cddf4a927c740248",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "lines": [
+        49,
+        49
+      ],
+      "file_bytes": 45099,
+      "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "span_bytes": 730,
+      "span_sha256": "212948ea669ed647a3a3b188b0efb39a9e2d2fdf020e7be5cd8f088fac79807b",
+      "span_text": "| `HARNESS-L2-044` | 条件付き採択：Bルート、名称はDesign Contract Portfolio。採択済み025/026へ無断追記しない。 | `MPR-RC-HARNESS-L2-044-002` | `docs/helix-harness/L2-requirements/product-requirements.md` | `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09` | `sha256:690f2bfa866c778be47459baa99139905260d3ca569739a4d4707c61096212f2` | `HARNESS-L2-044` | `docs/helix-harness/L11-acceptance/product-acceptance.md` | `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5` | `sha256:9c79b73100f4afa63abba7f79d47b8931a1c29983ac08a3e4ded95e56107bfc8` | `docs/governance/audits/requirement-registration/harness-contract-portfolio-coverage-receipt-2026-09-28.json#HARNESS-L2-044` |\n"
+    }
+  },
+  "six_documents": {
+    "docs/helix-harness/L3-requirements/business-requirements.md": {
+      "base_bytes": 12912,
+      "base_sha256": "87e3533a49f5284aed2535f9216683f9ef013ed7434c9816a73596b81a5e09fb",
+      "full_bytes": 16483,
+      "full_sha256": "8108c69be7a189dda90a6b4cadb3a6500461438163a04895d0ccc0946a6d5f37",
+      "suffix_bytes": 3571,
+      "suffix_sha256": "73e6a1a20bd5cc91f4e09e0c425f25a99484016c2574efc9f39f4a39acdaab4f",
+      "prefix_matches": true,
+      "candidate_markdown_bytes": 3570,
+      "candidate_markdown_sha256": "981700a1ef871fa18e65a66189c412032b12a007485ba02fb3171a99392971d7",
+      "physical_suffix_equals_lf_plus_markdown": true,
+      "candidate_metadata": {
+        "bytes": 3570,
+        "utf8_bytes": 3570,
+        "sha256": "981700a1ef871fa18e65a66189c412032b12a007485ba02fb3171a99392971d7",
+        "suffix_sha256": "04e2bbc34b45b4ac79366b69fbeca5129cf325afa8132e582c259396c20b7eef",
+        "ends_with_lf": true
+      },
+      "recomputed_candidate_markdown_bytes": 3570,
+      "recomputed_candidate_markdown_utf8_bytes": 3570,
+      "recomputed_candidate_markdown_sha256": "981700a1ef871fa18e65a66189c412032b12a007485ba02fb3171a99392971d7",
+      "recomputed_physical_suffix_sha256": "73e6a1a20bd5cc91f4e09e0c425f25a99484016c2574efc9f39f4a39acdaab4f"
+    },
+    "docs/helix-harness/L3-requirements/functional-requirements.md": {
+      "base_bytes": 200552,
+      "base_sha256": "ddc4288e77effd48553c1cf4ada66e74dffef39c5fc209c1d3038b0bc83a8ad8",
+      "full_bytes": 206925,
+      "full_sha256": "54c8d46c8079ca427d8659f39217ba6ac118d29e165974d1ff7bf2ddcff8c18c",
+      "suffix_bytes": 6373,
+      "suffix_sha256": "a8e8252b7a0f0b513a49ea708164d59032349c84915d3b62d9400d7888a16326",
+      "prefix_matches": true,
+      "candidate_markdown_bytes": 6372,
+      "candidate_markdown_sha256": "2fcd5aac3648a7c2deb41b4ae82b46304dff0cc7a2a44a8a6ce78cca1f29f885",
+      "physical_suffix_equals_lf_plus_markdown": true,
+      "candidate_metadata": {
+        "bytes": 6372,
+        "utf8_bytes": 6313,
+        "sha256": "2fcd5aac3648a7c2deb41b4ae82b46304dff0cc7a2a44a8a6ce78cca1f29f885",
+        "suffix_sha256": "e5121daa80b5f313687121995b5bf08af7bb17a903b3d4721f4d0d9edebff541",
+        "ends_with_lf": true
+      },
+      "recomputed_candidate_markdown_bytes": 6372,
+      "recomputed_candidate_markdown_utf8_bytes": 6372,
+      "recomputed_candidate_markdown_sha256": "2fcd5aac3648a7c2deb41b4ae82b46304dff0cc7a2a44a8a6ce78cca1f29f885",
+      "recomputed_physical_suffix_sha256": "a8e8252b7a0f0b513a49ea708164d59032349c84915d3b62d9400d7888a16326"
+    },
+    "docs/helix-harness/L3-requirements/nfr-grade.md": {
+      "base_bytes": 42424,
+      "base_sha256": "75cbdcc058aff99a9efd99b9d3344e6920e864b1bb603a1ac77a0e447f2f60af",
+      "full_bytes": 45932,
+      "full_sha256": "dd6d72d306441f7aa25308b51b2e6e399593e8ecbaae9e07da744f86d8b76c79",
+      "suffix_bytes": 3508,
+      "suffix_sha256": "6c53a95997343de698afd625a7ba82fa79d09cae5095762029d0c38361277908",
+      "prefix_matches": true,
+      "candidate_markdown_bytes": 3507,
+      "candidate_markdown_sha256": "57c388994d56d143b5ec5ca53cf4459b23785f6d48c18793f30e00e98eabd98f",
+      "physical_suffix_equals_lf_plus_markdown": true,
+      "candidate_metadata": {
+        "bytes": 3507,
+        "utf8_bytes": 3507,
+        "sha256": "57c388994d56d143b5ec5ca53cf4459b23785f6d48c18793f30e00e98eabd98f",
+        "suffix_sha256": "f243282143f2387c16e3f01c2d9b5966a783e5a58046dd6c39e4f142f4b7d79e",
+        "ends_with_lf": true
+      },
+      "recomputed_candidate_markdown_bytes": 3507,
+      "recomputed_candidate_markdown_utf8_bytes": 3507,
+      "recomputed_candidate_markdown_sha256": "57c388994d56d143b5ec5ca53cf4459b23785f6d48c18793f30e00e98eabd98f",
+      "recomputed_physical_suffix_sha256": "6c53a95997343de698afd625a7ba82fa79d09cae5095762029d0c38361277908"
+    },
+    "docs/helix-harness/L10-verification/business-verification.md": {
+      "base_bytes": 8569,
+      "base_sha256": "a1ff88366ef98368fa8cbd628f499aa50a73cd05a75d54ff64e353a1626cd67c",
+      "full_bytes": 12681,
+      "full_sha256": "b39633172478d956d58458e412397491eac2756634d2655a26f6032734de2cd6",
+      "suffix_bytes": 4112,
+      "suffix_sha256": "9e3eebf82c16e72d8fc71d2675e965ad808f146ed17f738a8536c8640e474410",
+      "prefix_matches": true,
+      "candidate_markdown_bytes": 4111,
+      "candidate_markdown_sha256": "0a730b5d516d17ef0d5eed12bf28ee8ce59560df8ceccf2a1fd1a8084673a7a0",
+      "physical_suffix_equals_lf_plus_markdown": true,
+      "candidate_metadata": {
+        "bytes": 4111,
+        "utf8_bytes": 4115,
+        "sha256": "0a730b5d516d17ef0d5eed12bf28ee8ce59560df8ceccf2a1fd1a8084673a7a0",
+        "suffix_sha256": "b89dbbdcf0dd1d98324c02f6f0e3903c077cec87e4031f7865e854721c22cd89",
+        "ends_with_lf": true
+      },
+      "recomputed_candidate_markdown_bytes": 4111,
+      "recomputed_candidate_markdown_utf8_bytes": 4111,
+      "recomputed_candidate_markdown_sha256": "0a730b5d516d17ef0d5eed12bf28ee8ce59560df8ceccf2a1fd1a8084673a7a0",
+      "recomputed_physical_suffix_sha256": "9e3eebf82c16e72d8fc71d2675e965ad808f146ed17f738a8536c8640e474410"
+    },
+    "docs/helix-harness/L10-verification/functional-verification.md": {
+      "base_bytes": 615326,
+      "base_sha256": "4f87643397e4e1c2a94d07537770510f634c509eaeb1701c3159a0d143d98cc1",
+      "full_bytes": 646504,
+      "full_sha256": "ed48a47e9b23221c6678274872d4aee7f52789618797b6faa4678fb12de9bafd",
+      "suffix_bytes": 31178,
+      "suffix_sha256": "6b149c92ab11b4aae7a96423912e2c467c1b875c1990939ae059b79751fd4b95",
+      "prefix_matches": true,
+      "candidate_markdown_bytes": 31177,
+      "candidate_markdown_sha256": "6f32c8a82060682acefd6ad99a7b6938c9b11ead682bea7de23ee299b4270159",
+      "physical_suffix_equals_lf_plus_markdown": true,
+      "candidate_metadata": {
+        "bytes": 31177,
+        "utf8_bytes": 30195,
+        "sha256": "6f32c8a82060682acefd6ad99a7b6938c9b11ead682bea7de23ee299b4270159",
+        "suffix_sha256": "a4834d9625e32b8e3ddef610ea02b6dc684b952214fe7404f618f75443813930",
+        "ends_with_lf": true
+      },
+      "recomputed_candidate_markdown_bytes": 31177,
+      "recomputed_candidate_markdown_utf8_bytes": 31177,
+      "recomputed_candidate_markdown_sha256": "6f32c8a82060682acefd6ad99a7b6938c9b11ead682bea7de23ee299b4270159",
+      "recomputed_physical_suffix_sha256": "6b149c92ab11b4aae7a96423912e2c467c1b875c1990939ae059b79751fd4b95"
+    },
+    "docs/helix-harness/L10-verification/nfr-verification.md": {
+      "base_bytes": 36003,
+      "base_sha256": "e5b090ba97c6a5237b47b890d7a86453ed5f602ee09c9e531ab3b55698d13a7a",
+      "full_bytes": 40146,
+      "full_sha256": "aebc69066ebbd1feaaf410216e44de162094daae072b450923a1074e0f9139fb",
+      "suffix_bytes": 4143,
+      "suffix_sha256": "55451863b2686da8555150ce3f791a6d02044407b0b2cd52f07697f8ca77aa05",
+      "prefix_matches": true,
+      "candidate_markdown_bytes": 4142,
+      "candidate_markdown_sha256": "d43f34cdce423c424f69ddf7f9cdcf6126a496fd029f07aad1acdacf7090e378",
+      "physical_suffix_equals_lf_plus_markdown": true,
+      "candidate_metadata": {
+        "bytes": 4142,
+        "utf8_bytes": 4142,
+        "sha256": "d43f34cdce423c424f69ddf7f9cdcf6126a496fd029f07aad1acdacf7090e378",
+        "suffix_sha256": "55e846c685203178f98ce518a6a5e728e43a4095d78646c5c498147cdbfb26e8",
+        "ends_with_lf": true
+      },
+      "recomputed_candidate_markdown_bytes": 4142,
+      "recomputed_candidate_markdown_utf8_bytes": 4142,
+      "recomputed_candidate_markdown_sha256": "d43f34cdce423c424f69ddf7f9cdcf6126a496fd029f07aad1acdacf7090e378",
+      "recomputed_physical_suffix_sha256": "55451863b2686da8555150ce3f791a6d02044407b0b2cd52f07697f8ca77aa05"
+    }
+  },
+  "six_documents_stage_version": [
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "has_stage3": true,
+      "has_version_target_1_0": true
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "has_stage3": true,
+      "has_version_target_1_0": true
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "has_stage3": true,
+      "has_version_target_1_0": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "has_stage3": true,
+      "has_version_target_1_0": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "has_stage3": true,
+      "has_version_target_1_0": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "has_stage3": true,
+      "has_version_target_1_0": true
+    }
+  ],
+  "fixture_inventory": {
+    "path": "docs/helix-harness/L10-verification/functional-verification.md",
+    "current_row_count": 51,
+    "current_unique_id_count": 51,
+    "current_case_ids": [
+      "CASE-HARNESS-L10-044-01",
+      "CASE-HARNESS-L10-044-02",
+      "CASE-HARNESS-L10-044-03",
+      "CASE-HARNESS-L10-044-04",
+      "CASE-HARNESS-L10-044-05",
+      "CASE-HARNESS-L10-044-06",
+      "CASE-HARNESS-L10-044-07",
+      "CASE-HARNESS-L10-044-08",
+      "CASE-HARNESS-L10-044-r04-na-rationale-missing",
+      "CASE-HARNESS-L10-044-r04-source-atom-missing",
+      "CASE-HARNESS-L10-044-r04-active-template-missing",
+      "CASE-HARNESS-L10-044-r04-applicability-missing",
+      "CASE-HARNESS-L10-044-r04-oracle-missing",
+      "CASE-HARNESS-L10-044-r04-contract-version-missing",
+      "CASE-HARNESS-L10-044-r04-class-oracle-absent",
+      "CASE-HARNESS-L10-044-r14-class-contract-relation-missing",
+      "CASE-HARNESS-L10-044-r04-025-output-substitution",
+      "CASE-HARNESS-L10-044-r04-043-output-substitution",
+      "CASE-HARNESS-L10-044-r04-044-denominator-old-receipt",
+      "CASE-HARNESS-L10-044-r04-semantic-duplicate",
+      "CASE-HARNESS-L10-044-r04-unsupported-na",
+      "CASE-HARNESS-L10-044-r04-source-atom-conflict",
+      "CASE-HARNESS-L10-044-r04-active-template-stale",
+      "CASE-HARNESS-L10-044-r04-applicability-conflict",
+      "CASE-HARNESS-L10-044-r04-oracle-stale",
+      "CASE-HARNESS-L10-044-r04-contract-version-conflict",
+      "CASE-HARNESS-L10-044-r05-minimum-portfolio-drops-obligation",
+      "CASE-HARNESS-L10-044-r05-candidate-promoted-to-approval",
+      "CASE-HARNESS-L10-044-r05-source-atom-stale",
+      "CASE-HARNESS-L10-044-r05-active-template-conflict",
+      "CASE-HARNESS-L10-044-r05-applicability-stale",
+      "CASE-HARNESS-L10-044-r05-oracle-conflict",
+      "CASE-HARNESS-L10-044-r05-contract-version-stale",
+      "CASE-HARNESS-L10-044-r06-semantic-map-unverifiable",
+      "CASE-HARNESS-L10-044-r09-001",
+      "CASE-HARNESS-L10-044-r09-002",
+      "CASE-HARNESS-L10-044-r09-003",
+      "CASE-HARNESS-L10-044-r09-004",
+      "CASE-HARNESS-L10-044-r10-old-denominator-receipt",
+      "CASE-HARNESS-L10-044-r16-normal-nine-class",
+      "CASE-HARNESS-L10-044-r16-normal-reuse",
+      "CASE-HARNESS-L10-044-r16-normal-delta",
+      "CASE-HARNESS-L10-044-r16-normal-new-contract",
+      "CASE-HARNESS-L10-044-r16-delta-insufficient",
+      "CASE-HARNESS-L10-044-r16-refuse-requirement-agreement",
+      "CASE-HARNESS-L10-044-r16-refuse-l3-approval",
+      "CASE-HARNESS-L10-044-r16-refuse-design-approval",
+      "CASE-HARNESS-L10-044-r16-refuse-adoption",
+      "CASE-HARNESS-L10-044-r16-refuse-implementation",
+      "CASE-HARNESS-L10-044-r16-refuse-os-execution",
+      "CASE-HARNESS-L10-044-r16-refuse-user-acceptance"
+    ],
+    "current_case_rows": [
+      {
+        "id": "CASE-HARNESS-L10-044-01",
+        "literal": "| `CASE-HARNESS-L10-044-01` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-01` | 選択されたobligation classと規範contractのsource/coverage対応を示す索引。 | 索引のみ。`CASE-HARNESS-L10-044-r04-active-template-missing`, `CASE-HARNESS-L10-044-r04-active-template-stale`, `CASE-HARNESS-L10-044-r04-applicability-conflict`, `CASE-HARNESS-L10-044-r04-applicability-missing`, `CASE-HARNESS-L10-044-r04-class-oracle-absent`, `CASE-HARNESS-L10-044-r14-class-contract-relation-missing`, `CASE-HARNESS-L10-044-r04-contract-version-conflict`, `CASE-HARNESS-L10-044-r04-contract-version-missing`, `CASE-HARNESS-L10-044-r04-na-rationale-missing` (AC-01/02), `CASE-HARNESS-L10-044-r04-oracle-missing`, `CASE-HARNESS-L10-044-r04-oracle-stale`, `CASE-HARNESS-L10-044-r04-source-atom-conflict`, `CASE-HARNESS-L10-044-r04-source-atom-missing`, `CASE-HARNESS-L10-044-r05-active-template-conflict`, `CASE-HARNESS-L10-044-r05-applicability-stale`, `CASE-HARNESS-L10-044-r05-contract-version-stale`, `CASE-HARNESS-L10-044-r05-oracle-conflict`, `CASE-HARNESS-L10-044-r05-source-atom-stale`, `CASE-HARNESS-L10-044-r06-semantic-map-unverifiable`, `CASE-HARNESS-L10-044-r09-001`, `CASE-HARNESS-L10-044-r09-002`, `CASE-HARNESS-L10-044-r09-003`, `CASE-HARNESS-L10-044-r09-004`, `CASE-HARNESS-L10-044-r10-old-denominator-receipt`を個別参照する。 | 未被覆classを列挙し、意味対応をoracleで照合できなければ未評価にする。 | 索引／互換IDとして保持し、参照先fixtureを個別評価する。本行をnegative件数へ重複計上しない。 |",
+        "literal_sha256": "0ac2b61a62a3d075ff04352c2de3bc17c4b98dbf0a4b94155253870545095e2e",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-01"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-02",
+        "literal": "| `CASE-HARNESS-L10-044-02` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-02` | 意味重複、根拠なしN/A、隣接025/043出力だけでの代替を検査する索引。 | 索引のみ。`CASE-HARNESS-L10-044-r04-025-output-substitution`, `CASE-HARNESS-L10-044-r04-043-output-substitution`, `CASE-HARNESS-L10-044-r04-semantic-duplicate`はAC-02のfixtureとして個別参照する。`CASE-HARNESS-L10-044-r04-na-rationale-missing`はAC-01/02に定義された直接fixtureとして一度だけ参照する。既存の`unsupported-na`互換別名行は削除せず維持し、この索引からは経由しない。入力fieldの欠落/stale/conflictはAC-01の044-01索引に分ける。 | 各fixtureの定義ACに従って個別照合し、互換別名と索引を独立negative件数に数えない。 | 索引／互換IDとして保持し、参照先fixtureを個別評価する。本行をnegative件数へ重複計上しない。 |",
+        "literal_sha256": "074111869d6829b21e23bcfb886f60047aa0d3efa472fdc8d0a2a4e72be9840c",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-02"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-03",
+        "literal": "| `CASE-HARNESS-L10-044-03` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-03` | 意味上独立した契約と同義重複文書を比較するmatrix。 | 索引のみ。義務削減とcandidate承認昇格は`CASE-HARNESS-L10-044-r05-minimum-portfolio-drops-obligation`、`CASE-HARNESS-L10-044-r05-candidate-promoted-to-approval`で個別に検査する。 | 義務を維持しauthorityを作らない。indexを独立negativeに数えない。 | 索引／互換IDとして保持し、参照先fixtureを個別評価する。本行をnegative件数へ重複計上しない。 |",
+        "literal_sha256": "08683f38e7b2b761432d3bb48311f86b86ceaf1f6fd2b098bc527cd054b1bc01",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-03"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-04",
+        "literal": "| `CASE-HARNESS-L10-044-04` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-01` | 選択classのcontract/oracle traceを閉じる別名索引。 | 索引のみ。直接fixture `CASE-HARNESS-L10-044-r04-class-oracle-absent`（oracle欠落）と`CASE-HARNESS-L10-044-r14-class-contract-relation-missing`（relation欠落）を別々に参照し、他の索引を経由しない。 | 独立変異として数えず、二つの直接fixtureを別々に評価する。`CASE-HARNESS-L10-044-r04-class-oracle-absent`はoracle欠落による不合格・未被覆oracleを、`CASE-HARNESS-L10-044-r14-class-contract-relation-missing`はclass identity・contract・oracleを保ったrelation欠落による未被覆classを照合する。 | 索引／互換IDとして保持し、参照先fixtureを個別評価する。本行をnegative件数へ重複計上しない。 |",
+        "literal_sha256": "552647b8b387cc44a16a6a6bba0144a2daca9ba18588fd67f9e1dc9e1ebdd4d1",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-01"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-05",
+        "literal": "| `CASE-HARNESS-L10-044-05` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-02` | 適用classと各contractの境界・oracleを固定する。 | 必要な複数contract間の境界または理由だけを欠く。 | 判定をunknown/未完に保つ。設計要素不足はHARNESS-L2-026、対oracle不足はHARNESS-L2-022の既存ownerへ別々に戻す。 | 旧raw literalは監査JSONに完全保持。独立fixtureならこの単一mutationだけを実施。 |",
+        "literal_sha256": "3e3c9c1ffba8dae953c99cbeba7d13bb53fa5ac2faec02a0101318f64e9f9f20",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-02"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-06",
+        "literal": "| `CASE-HARNESS-L10-044-06` | `FR-HARNESS-L3-044-03` / `AC-HARNESS-L3-044-03` | 採択済み025/026のscopeと他portfolio fieldはcurrent。 | 固定scopeへ新しい義務を承認・採択receiptなしに一件だけ追加する。 | 追加義務を受理せず未採択として保持する。意味判断の戻し先は固定sourceが示す既存要求ownerに限り、identityが示されなければunknownを維持する。 | 旧raw literalは監査JSONに完全保持。独立fixtureならこの単一mutationだけを実施。 |",
+        "literal_sha256": "57197a7c312bc82dc70e0fa71e284e2e3204af037ef0fc8852d784d0d76b42fb",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-03"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-03"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-07",
+        "literal": "| `CASE-HARNESS-L10-044-07` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-01` | 別名索引。hidden classの直接fixture=`CASE-HARNESS-L10-044-r09-004`、旧receipt流用の直接fixture=`CASE-HARNESS-L10-044-r10-old-denominator-receipt`を参照する。 | 索引のみ。 | 各参照先の単独oracleを評価し、本行を独立fixtureに数えない。 | 索引／互換IDとして保持し、参照先fixtureを個別評価する。本行をnegative件数へ重複計上しない。 |",
+        "literal_sha256": "52f9f693d9a6e32bd3e7c2dcdeafdba6a6c440203181e33606b142dc3d5ea4f1",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-01"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-08",
+        "literal": "| `CASE-HARNESS-L10-044-08` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-02` | 適用義務class、normative contract、対oracleをportfolio内で対応づける。 | 適用contractを義務classとの関係からだけ孤立させる。 | 未完findingを返す。設計要素不足はHARNESS-L2-026、対oracle不足はHARNESS-L2-022、要求意味不足は固定sourceが特定する既存要求ownerへ原因別に戻す。 | 旧raw literalは監査JSONに完全保持。独立fixtureならこの単一mutationだけを実施。 |",
+        "literal_sha256": "9a6c2fe7d8b683f5b9e89744ea7cdec6e4e7664cb421778581c912582243b977",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-02"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r04-na-rationale-missing",
+        "literal": "| `CASE-HARNESS-L10-044-r04-na-rationale-missing` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-01` / `AC-HARNESS-L3-044-02` | 適用classとsource atom根拠を提示する。 | N/A根拠だけを除去。 | N/Aを拒否しclass未完、根拠なしN/Aの適用判断はHARNESS-L2-009/対象template ownerへ戻す。 | 旧raw literalは監査JSONに完全保持。独立fixtureならこの単一mutationだけを実施。 |",
+        "literal_sha256": "9943b4d4a5d813ef3b1a7ae8566c61703c542166e3ebbffcc99bd49cccfece01",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-01",
+          "AC-HARNESS-L3-044-02"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r04-source-atom-missing",
+        "literal": "| `CASE-HARNESS-L10-044-r04-source-atom-missing` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-01` | selected class/contract/scope/revisionと、source atomのsource type/identityを正常入力として固定する。他bindingはcurrent。 | source atomだけをmissingにする。 | unknown/未完を保持する。template applicability由来ならHARNESS-L2-009、atom抽出/対応由来ならHARNESS-L2-041、要求meaning由来なら既存要求ownerへ戻す。source type/identityが特定できなければunknownを維持し、template ownerを推定しない。 | 旧raw literalは監査JSONに完全保持。独立fixtureならこの単一mutationだけを実施。 |",
+        "literal_sha256": "9b6f825e1ce1d5559c6341e63cc7b7040b3cb9ad19ac23d35e94f3c500148e9c",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-01"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r04-active-template-missing",
+        "literal": "| `CASE-HARNESS-L10-044-r04-active-template-missing` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-01` | class/contract traceの他条件がcurrent。 | active-templateだけmissingにする。 | unknown/未完とし、HARNESS-L2-009の既存template ownerへ戻す。 | 旧raw literalは監査JSONに完全保持。独立fixtureならこの単一mutationだけを実施。 |",
+        "literal_sha256": "5dcd19f8c4b19e8de36339afc5d8bd723839e55a6434ee1abf90e404b8c6d230",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-01"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r04-applicability-missing",
+        "literal": "| `CASE-HARNESS-L10-044-r04-applicability-missing` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-01` | class/contract traceの他条件がcurrent。 | applicabilityだけmissingにする。 | unknown/未完とし、HARNESS-L2-009の既存template ownerへ戻す。 | 旧raw literalは監査JSONに完全保持。独立fixtureならこの単一mutationだけを実施。 |",
+        "literal_sha256": "dc93628fe92dbd5c2a66c4d1828d5406f11742317509832bb6ef82e692037880",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-01"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r04-oracle-missing",
+        "literal": "| `CASE-HARNESS-L10-044-r04-oracle-missing` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-01` | class/contract traceの他条件がcurrent。 | oracleだけmissingにする。 | unknown/未完とし、HARNESS-L2-022の既存oracle ownerへ戻す。 | 旧raw literalは監査JSONに完全保持。独立fixtureならこの単一mutationだけを実施。 |",
+        "literal_sha256": "b2baeaceeeec76952918b8bd5070993b47c801b0813e3e7035dd8d67d84b900c",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-01"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r04-contract-version-missing",
+        "literal": "| `CASE-HARNESS-L10-044-r04-contract-version-missing` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-01` | class/contract traceの他条件がcurrent。 | contract-versionだけmissingにする。 | unknown/未完とし、HARNESS-L2-026の既存contract design ownerへ戻す。 | 旧raw literalは監査JSONに完全保持。独立fixtureならこの単一mutationだけを実施。 |",
+        "literal_sha256": "7b60a92a2b4c38913c3faf2aafc41b6e0939e4a8fd335fab91b3a50e9db0d476",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-01"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r04-class-oracle-absent",
+        "literal": "| `CASE-HARNESS-L10-044-r04-class-oracle-absent` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-01` | classに適用oracleが結び付く。 | class oracleだけを欠落。 | 不合格として未被覆classを列挙し、unknownで閉じない。 | 旧raw literalは監査JSONに完全保持。独立fixtureならこの単一mutationだけを実施。 |",
+        "literal_sha256": "60422099125dfc90de92077f18dd5ada276a0b9ebd3a30bdf44ae02119588d28",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-01"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r14-class-contract-relation-missing",
+        "literal": "| `CASE-HARNESS-L10-044-r14-class-contract-relation-missing` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-01` | 適用が確定したinterface義務classのidentity、normative contractと対oracleのidentity/revision、applicability根拠、およびclassからcontractへの対応関係を同一scope/revisionで固定する。 | class identity、normative contract、oracle、適用性は維持したまま、classからcontractへのrelationだけを欠落させる。 | relation欠落により当該classを未被覆として列挙しportfolio closureを拒否する。oracle欠落やclass identity欠落へ読み替えない。原因に応じて、義務導出/適用根拠不足はHARNESS-L2-009/対象template owner、設計要素不足はHARNESS-L2-026、対oracle不足はHARNESS-L2-022、要求意味/authority不足は既存要求ownerへ戻す。原因またはowner identityをsourceから特定できない場合だけunknownを維持する。 | 旧raw literalは監査JSONに完全保持。独立fixtureならこの単一mutationだけを実施。 |",
+        "literal_sha256": "360b6320e94b3ff68ce62ef34e707d381d89ed3272fbc4f53f14ee1b92cc467d",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-01"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r04-025-output-substitution",
+        "literal": "| `CASE-HARNESS-L10-044-r04-025-output-substitution` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-02` | portfolioに独自source/class/contract relationがある。 | 025出力だけでportfolio coverageを成立扱いする。 | 代替を拒否し044の独立義務を未完にする。 | 旧raw literalは監査JSONに完全保持。独立fixtureならこの単一mutationだけを実施。 |",
+        "literal_sha256": "adef92c87a52304eab7d2f592b2ff5570f1dc4d1cb725c688e7edee2b95b499a",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-02"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r04-043-output-substitution",
+        "literal": "| `CASE-HARNESS-L10-044-r04-043-output-substitution` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-02` | portfolioに独自source/class/contract relationがある。 | 043出力だけでportfolio coverageを成立扱いする。 | 代替を拒否し044の独立義務を未完にする。 | 旧raw literalは監査JSONに完全保持。独立fixtureならこの単一mutationだけを実施。 |",
+        "literal_sha256": "4c4677038dbaf3498b4a01542332e8d93e487150fb973bc375f27b79289fda1a",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-02"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r04-044-denominator-old-receipt",
+        "literal": "| `CASE-HARNESS-L10-044-r04-044-denominator-old-receipt` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-01` | `CASE-HARNESS-L10-044-r10-old-denominator-receipt`の索引参照。 | 独立変異として数えない。 | class denominator変更後の旧receipt流用だけを実在CASEで照合し、unknown/uncoveredを維持して選択template applicabilityならHARNESS-L2-009の既存ownerへ戻す。要求意味が異なる場合は既存要求owner、identity不明ならunknownを維持する。 | 索引／互換IDとして保持し、参照先fixtureを個別評価する。本行をnegative件数へ重複計上しない。 |",
+        "literal_sha256": "9ac568a81439b90895e15a01b52df0de062bae337851e6e11ded61e38e65a6e7",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-01"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r04-semantic-duplicate",
+        "literal": "| `CASE-HARNESS-L10-044-r04-semantic-duplicate` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-02` | 同一選択class/portfolioの他bindingがcurrent。 | 意味重複するcontractだけ追加。 | 重複findingを返し、独立義務を落とさない。design boundary不足はHARNESS-L2-026へ戻す。 | 旧raw literalは監査JSONに完全保持。独立fixtureならこの単一mutationだけを実施。 |",
+        "literal_sha256": "f86dd27550c373cbc164c23272888d1db698c62f69eb0bb600f2685646382e09",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-02"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r04-unsupported-na",
+        "literal": "| `CASE-HARNESS-L10-044-r04-unsupported-na` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-02` | AC-02の互換別名。実fixture`CASE-HARNESS-L10-044-r04-na-rationale-missing`はAC-01/02に属し、本行はID互換のため残す。 | 独立変異として数えない。 | 参照先の単独oracleと既存owner戻しを照合し、二重計上しない。 | 索引／互換IDとして保持し、参照先fixtureを個別評価する。本行をnegative件数へ重複計上しない。 |",
+        "literal_sha256": "1d80f74b40b4a619d0ee717b927912508e9a32fca8cc2d7977d24e29e25a7bcc",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-02"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r04-source-atom-conflict",
+        "literal": "| `CASE-HARNESS-L10-044-r04-source-atom-conflict` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-01` | 同一選択class/portfolioでtemplate由来source atom・revisionおよび他bindingがすべてcurrent。 | source atomだけ他revisionとconflict。 | unknown/未完として保持し、入力sourceがtemplate由来と特定できるためHARNESS-L2-009の選択template ownerへ戻す。025/043で代替しない。 | 旧raw literalは監査JSONに完全保持。独立fixtureならこの単一mutationだけを実施。 |",
+        "literal_sha256": "ccaac30a1e50b325dbf6bbacdc8d7b7449701ab0e6133d7316555d2d68b890c2",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-01"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r04-active-template-stale",
+        "literal": "| `CASE-HARNESS-L10-044-r04-active-template-stale` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-01` | 同一選択class/portfolioの他bindingがcurrent。 | active templateだけstale。 | unknown/未完として保持し、HARNESS-L2-009/対象template ownerへ戻す。 | 旧raw literalは監査JSONに完全保持。独立fixtureならこの単一mutationだけを実施。 |",
+        "literal_sha256": "a437b6cdf7f3c1feeea5479349fe5740eb497aa9b16214f3e71451b8ceb0df90",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-01"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r04-applicability-conflict",
+        "literal": "| `CASE-HARNESS-L10-044-r04-applicability-conflict` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-01` | 同一選択class/portfolioの他bindingがcurrent。 | applicabilityだけconflict。 | unknown/未完として保持し対象外にしない。HARNESS-L2-009/対象template ownerへ戻す。 | 旧raw literalは監査JSONに完全保持。独立fixtureならこの単一mutationだけを実施。 |",
+        "literal_sha256": "af0555ac209f7c340f8b911a5da422a8673ed0c962a1919d0dbcaf6baaba22b3",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-01"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r04-oracle-stale",
+        "literal": "| `CASE-HARNESS-L10-044-r04-oracle-stale` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-01` | 同一選択class/portfolioの他bindingがcurrent。 | oracleだけstale。 | unknown/未完として保持しHARNESS-L2-022の既存oracle ownerへ戻す。 | 旧raw literalは監査JSONに完全保持。独立fixtureならこの単一mutationだけを実施。 |",
+        "literal_sha256": "2dea3d2fe8f53d87cf93286ef119163cde11b3caf23a66c9f69ae4f2f6b363bf",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-01"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r04-contract-version-conflict",
+        "literal": "| `CASE-HARNESS-L10-044-r04-contract-version-conflict` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-01` | 同一選択class/portfolioの他bindingがcurrent。 | contract versionだけconflict。 | unknown/未完として保持しHARNESS-L2-026の既存contract design ownerへ戻す。他出力で代替しない。 | 旧raw literalは監査JSONに完全保持。独立fixtureならこの単一mutationだけを実施。 |",
+        "literal_sha256": "ab2bf40beacdc647dbf4284016e5fc4f787b1b755ed76ae6cbb4aa075efe0d92",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-01"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r05-minimum-portfolio-drops-obligation",
+        "literal": "| `CASE-HARNESS-L10-044-r05-minimum-portfolio-drops-obligation` | `FR-HARNESS-L3-044-01` / `AC-HARNESS-L3-044-03` | 同一selected scope/revisionの複数適用義務を個別に保持し、各義務のsource type/identityと適用状態を特定する。 | 件数最小化だけを理由に独立義務一つを落とす。 | 義務削減を拒否しportfolioを未完にする。意味/要求の不足は既存要求owner、template applicabilityはL2-009、atom抽出はL2-041、design boundaryはL2-026へ原因に応じて戻す。source identity不明ならunknownを維持する。 | 旧raw literalは監査JSONに完全保持。独立fixtureならこの単一mutationだけを実施。 |",
+        "literal_sha256": "ef99eae02599e2168f4c98441d07d70cebe38b290c8cbafef044a9fa1caac08f",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-01"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-03"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r05-candidate-promoted-to-approval",
+        "literal": "| `CASE-HARNESS-L10-044-r05-candidate-promoted-to-approval` | `FR-HARNESS-L3-044-04` / `AC-HARNESS-L3-044-04` | 索引。r16-refuse-design-approvalとr16-refuse-adoptionの独立output fixtureを参照する。 | 独立変異なし。各子fixtureを単独に実施する。 | 設計承認と採択を束ねて単一拒否へ数えず、それぞれの生成拒否oracleを照合する。 | 旧IDとrawは監査へ保持する。索引自体は独立fixtureへ計上しない。 |",
+        "literal_sha256": "72f1326a134e2936ee7ea3a1c9e000f4f7fa65c4c141b0bfcecad5930afe2da8",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-04"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-04"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r05-source-atom-stale",
+        "literal": "| `CASE-HARNESS-L10-044-r05-source-atom-stale` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-01` | class/contract traceの他条件がcurrent。 | source-atomだけをstaleへ変異する。 | source atom由来をunknown/未完に保つ。意味不明として固定L2:1010の要求ownerへ戻す。個別identityを創作せず不明を保持する。 | 旧raw literalは監査JSONに完全保持。独立fixtureならこの単一mutationだけを実施。 |",
+        "literal_sha256": "42fc25b0ebf250708a5a8167801eb0bcd08993baab6fd49a085d419f92be726f",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-01"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r05-active-template-conflict",
+        "literal": "| `CASE-HARNESS-L10-044-r05-active-template-conflict` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-01` | class/contract traceの他条件がcurrent。 | active-templateだけをconflictへ変異する。 | unknown/未完を保持し、HARNESS-L2-009の既存template ownerへ戻す。 | 旧raw literalは監査JSONに完全保持。独立fixtureならこの単一mutationだけを実施。 |",
+        "literal_sha256": "5e70ffde679e351f7095a623ee0a02c50c94a5e3f2ba184905c78213da9c6081",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-01"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r05-applicability-stale",
+        "literal": "| `CASE-HARNESS-L10-044-r05-applicability-stale` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-01` | class/contract traceの他条件がcurrent。 | applicabilityだけをstaleへ変異する。 | unknown/未完を保持し、HARNESS-L2-009の既存template ownerへ戻す。 | 旧raw literalは監査JSONに完全保持。独立fixtureならこの単一mutationだけを実施。 |",
+        "literal_sha256": "e20752692e0ab18f1684136f097fac98f25fd3a62442383d5e579981e8aad72a",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-01"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r05-oracle-conflict",
+        "literal": "| `CASE-HARNESS-L10-044-r05-oracle-conflict` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-01` | class/contract traceの他条件がcurrent。 | oracleだけをconflictへ変異する。 | unknown/未完を保持し、HARNESS-L2-022の既存oracle ownerへ戻す。 | 旧raw literalは監査JSONに完全保持。独立fixtureならこの単一mutationだけを実施。 |",
+        "literal_sha256": "71aa712f310bddf2dbeb567c151b5bce927e42c68b33546b621e280499521a5e",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-01"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r05-contract-version-stale",
+        "literal": "| `CASE-HARNESS-L10-044-r05-contract-version-stale` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-01` | class/contract traceの他条件がcurrent。 | contract-versionだけをstaleへ変異する。 | unknown/未完を保持し、HARNESS-L2-026の既存contract design ownerへ戻す。 | 旧raw literalは監査JSONに完全保持。独立fixtureならこの単一mutationだけを実施。 |",
+        "literal_sha256": "d06ad4928e55ebfd24b7514abdac593fbf349fc4d99e1d41a9f40f6143fd8615",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-01"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r06-semantic-map-unverifiable",
+        "literal": "| `CASE-HARNESS-L10-044-r06-semantic-map-unverifiable` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-01` | fieldとmatrixが存在し、適用義務class・contract・oracleを同scope/revisionへ結ぶ。 | 義務内容と契約の意味対応だけoracleで照合不能にする。 | 受入を拒否し、classを未被覆/未評価で保持する。 | 旧raw literalは監査JSONに完全保持。独立fixtureならこの単一mutationだけを実施。 |",
+        "literal_sha256": "16c305c75bd749a4c519fa3ad592cd224fa65a39822ed03f761afaeda0de6858",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-01"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r09-001",
+        "literal": "| `CASE-HARNESS-L10-044-r09-001` | `FR-HARNESS-L3-044-01` / `AC-HARNESS-L3-044-01` | 同一portfolio/scopeでobligation class、contract revision、applicability branchを固定する。 | 同じ義務classを説明なしに複数contractへ重複割当する。 | 重複割当findingを返しportfolioを未完とする。境界設計はHARNESS-L2-026、対oracleはHARNESS-L2-022の各既存ownerへ戻す。 | 旧raw literalは監査JSONに完全保持。独立fixtureならこの単一mutationだけを実施。 |",
+        "literal_sha256": "87e964c60c07ea51d3eeaefb0327726fb349d7ac0a96c42b560fa92ab54956da",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-01"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-01"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r09-002",
+        "literal": "| `CASE-HARNESS-L10-044-r09-002` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-01` | 同一portfolio/scopeでobligation class、contract revision、applicability branchを固定する。 | contract revisionだけを隠す。 | unknown revisionとしてcoverageを未完にする。contract revision不足は固定L2:1010のHARNESS-L2-026既存設計契約ownerへ戻し、template適用性の欠落と混同しない。 | 旧raw literalは監査JSONに完全保持。独立fixtureならこの単一mutationだけを実施。 |",
+        "literal_sha256": "ac6a5c785cb3bb13fc58c0dfbd7c32afcdf9c9eaea11ff5cb14a2261fac51761",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-01"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r09-003",
+        "literal": "| `CASE-HARNESS-L10-044-r09-003` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-01` | 同一portfolio/scopeでobligation class、contract revision、applicability branchを固定する。 | applicability branchだけを隠す。 | 未観測branchを分母から除外しない。 applicability branchはHARNESS-L2-009の既存template ownerへ戻す。 | 旧raw literalは監査JSONに完全保持。独立fixtureならこの単一mutationだけを実施。 |",
+        "literal_sha256": "76be4dc3688e615c1a3c51ede1ad7c0baf1b5e16f91cd29e5acf3800780b34e6",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-01"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r09-004",
+        "literal": "| `CASE-HARNESS-L10-044-r09-004` | `FR-HARNESS-L3-044-01` / `AC-HARNESS-L3-044-01` | 同一portfolio/scopeでobligation class、contract revision、applicability branchを固定する。 | applicable obligation class identityだけを一件隠す。 | 隠れたclassをuncovered findingとして列挙し、closureを未完にする。この行自身で個別oracleを判定し、044-07のindex連結だけにしない。戻し先: 固定L2:1010の既存要求ownerへ返す。 | 旧raw literalは監査JSONに完全保持。独立fixtureならこの単一mutationだけを実施。 |",
+        "literal_sha256": "a5a9c73746b49f72792ce74a30ce234e4887298f8741c2f2fe9421da1e649be8",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-01"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-01"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r10-old-denominator-receipt",
+        "literal": "| `CASE-HARNESS-L10-044-r10-old-denominator-receipt` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-01` | 現在のobligation class denominatorとscopeは特定済みで、旧scopeのreceiptがある。 | receiptを前回の異なるclass denominatorへ結び、現在のcoverageとして扱う。 | receiptをstaleとしてcoverageを未完とし、class applicability/template由来ならHARNESS-L2-009の現行template ownerへ再照合する。要求意味が異なる場合に限り既存要求ownerへ戻し、ID不明はunknownを維持する。 | 旧raw literalは監査JSONに完全保持。独立fixtureならこの単一mutationだけを実施。 |",
+        "literal_sha256": "895e1219d8303908c2de3201d4fac18cd528986f024835e1ac637be6cf7bfee2",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-01"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r16-normal-nine-class",
+        "literal": "| `CASE-HARNESS-L10-044-r16-normal-nine-class` | `FR-HARNESS-L3-044-01` / `AC-HARNESS-L3-044-01` | 合成scope S0/revision V0に既存入力の適用class C1–C9があり、各source identity/version・contract/version・oracle・relation・適用根拠が既知で整合する。reuse/delta/new/根拠付きN/Aの区分は各義務意味から与える。全値は合成で新しいclass定義ではない。 | 正常対照。入力を変えない。 | 各classの同義務意味と対oracleへの対応を再構成し、uncovered=0、説明のないsemantic duplicate=0を確認する。 | scope付きcoverage材料だけを返し、一般件数閾値・authority・設計承認を生成しない。 |",
+        "literal_sha256": "7a8d29b34f4a9f3db569eb347e1b7170854682adedccf6974d4f9652521f6781",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-01"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-01"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r16-normal-reuse",
+        "literal": "| `CASE-HARNESS-L10-044-r16-normal-reuse` | `FR-HARNESS-L3-044-01` / `AC-HARNESS-L3-044-01` | 正常合成baseline：固定scope/revision、選択済み義務class、各identity/applicability、既存normative contract/version、対応oracleと根拠を固定。対象classは9-class母集団のうち既存contract再利用に該当するもの。 | 変異なし。 | 既存contractが同じ義務意味と対oracleを満たし、portfolio closureに寄与すること。0値は固定L2に由来。 | 正常例であり、新しいauthority状態を出さない。実測claimなし。 |",
+        "literal_sha256": "810975e7574c19d7c6eb48a16685ad11eff969feba994afe8e0fc982d7cfa74a",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-01"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-01"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r16-normal-delta",
+        "literal": "| `CASE-HARNESS-L10-044-r16-normal-delta` | `FR-HARNESS-L3-044-01` / `AC-HARNESS-L3-044-01` | 正常合成baseline：他条件currentのまま、9-class母集団の選択済みclassに、根拠とrelationを持つ十分なdelta contractを与える。 | 変異なし。 | deltaが義務意味とoracleを保ち、対象外classを変えず、coverageへ適切に反映されること。 | 合成positive fixture。設計承認／採択を意味しない。 |",
+        "literal_sha256": "3f0ada282c612103c2997c41beff60102617f42c7126d7a56fae9a2bfdabb9b2",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-01"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-01"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r16-normal-new-contract",
+        "literal": "| `CASE-HARNESS-L10-044-r16-normal-new-contract` | `FR-HARNESS-L3-044-01` / `AC-HARNESS-L3-044-01` | 正常合成baseline：新規normative contractを要する既存適用classについてsource、identity/version、applicability、oracle、理由を固定。 | 変異なし。 | 新規contractが同じclassの義務と対oracleに結び付き、他classとの意味重複がないこと。 | 新規契約分類を承認状態へ昇格しない。 |",
+        "literal_sha256": "62e227daf14c962b345f5e9d6842fd2e9d2fdaaec2d6b0ee1ae36f3a5e10ade1",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-01"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-01"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r16-delta-insufficient",
+        "literal": "| `CASE-HARNESS-L10-044-r16-delta-insufficient` | `FR-HARNESS-L3-044-02` / `AC-HARNESS-L3-044-02` | 十分なdelta relationと全required classが対応する正常baseline。 | 対象deltaの義務意味を覆うrelation一つだけ欠落。 | 該当classを未被覆／未完として返し、portfolio closureを拒否。zero uncoveredへ丸めない。 | 固定L2-026/022等の既存owner区分へ原因別に戻す。 |",
+        "literal_sha256": "5b6cf85c18be10fb0bc99aa240fd12a6315098cdce670eeebf3c78cedcd8cf65",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-02"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-02"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r16-refuse-requirement-agreement",
+        "literal": "| `CASE-HARNESS-L10-044-r16-refuse-requirement-agreement` | `FR-HARNESS-L3-044-04` / `AC-HARNESS-L3-044-04` | authority valueを持たない正常なcandidate portfolioと同じ入力。対象output fieldの他fieldは固定する。 | `要求合意` output field一つだけを候補結果から生成する。 | 要求合意を生成せずcandidate状態と既存authority状態をそのまま保つ。 | このCASEは `要求合意` 一出力のみを検査し、他の禁止出力を同時変異しない。 |",
+        "literal_sha256": "43de4843f93f02079cbfdaeed4380e09bfcb7eddeee6fffdb59d989095fde48f",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-04"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-04"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r16-refuse-l3-approval",
+        "literal": "| `CASE-HARNESS-L10-044-r16-refuse-l3-approval` | `FR-HARNESS-L3-044-04` / `AC-HARNESS-L3-044-04` | authority valueを持たない正常なcandidate portfolioと同じ入力。対象output fieldの他fieldは固定する。 | `L3承認` output field一つだけを候補結果から生成する。 | L3承認を生成せずcandidate状態と既存authority状態をそのまま保つ。 | このCASEは `L3承認` 一出力のみを検査し、他の禁止出力を同時変異しない。 |",
+        "literal_sha256": "5e6e235f610e68433d6a677efdcd94ed21cddbb94cc5159be3784fdce526f787",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-04"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-04"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r16-refuse-design-approval",
+        "literal": "| `CASE-HARNESS-L10-044-r16-refuse-design-approval` | `FR-HARNESS-L3-044-04` / `AC-HARNESS-L3-044-04` | authority valueを持たない正常なcandidate portfolioと同じ入力。対象output fieldの他fieldは固定する。 | `設計承認` output field一つだけを候補結果から生成する。 | 設計承認を生成せずcandidate状態と既存authority状態をそのまま保つ。 | このCASEは `設計承認` 一出力のみを検査し、他の禁止出力を同時変異しない。 |",
+        "literal_sha256": "600df722da1f0e52ed0ad6b23adf581f33e3ee54a6b7503f41336cc3fdc8d6c9",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-04"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-04"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r16-refuse-adoption",
+        "literal": "| `CASE-HARNESS-L10-044-r16-refuse-adoption` | `FR-HARNESS-L3-044-04` / `AC-HARNESS-L3-044-04` | authority valueを持たない正常なcandidate portfolioと同じ入力。対象output fieldの他fieldは固定する。 | `要求／候補採択` output field一つだけを候補結果から生成する。 | 要求／候補採択を生成せずcandidate状態と既存authority状態をそのまま保つ。 | このCASEは `要求／候補採択` 一出力のみを検査し、他の禁止出力を同時変異しない。 |",
+        "literal_sha256": "816d1686c4cde26836d4f1b461ec5aaac456d7f309d8197cbb26240fc29996db",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-04"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-04"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r16-refuse-implementation",
+        "literal": "| `CASE-HARNESS-L10-044-r16-refuse-implementation` | `FR-HARNESS-L3-044-04` / `AC-HARNESS-L3-044-04` | authority valueを持たない正常なcandidate portfolioと同じ入力。対象output fieldの他fieldは固定する。 | `実装成立` output field一つだけを候補結果から生成する。 | 実装成立を生成せずcandidate状態と既存authority状態をそのまま保つ。 | このCASEは `実装成立` 一出力のみを検査し、他の禁止出力を同時変異しない。 |",
+        "literal_sha256": "1e8726849451bdf58622ccd017060eb0b3d6162abb25b8c54c16d9a7d6668a06",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-04"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-04"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r16-refuse-os-execution",
+        "literal": "| `CASE-HARNESS-L10-044-r16-refuse-os-execution` | `FR-HARNESS-L3-044-04` / `AC-HARNESS-L3-044-04` | authority valueを持たない正常なcandidate portfolioと同じ入力。対象output fieldの他fieldは固定する。 | `OS実行` output field一つだけを候補結果から生成する。 | OS実行を生成せずcandidate状態と既存authority状態をそのまま保つ。 | このCASEは `OS実行` 一出力のみを検査し、他の禁止出力を同時変異しない。 |",
+        "literal_sha256": "c0c0950ef0236b43810c31df91b6be2adef0f92472948a26a5a299750c0b78bd",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-04"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-04"
+        ]
+      },
+      {
+        "id": "CASE-HARNESS-L10-044-r16-refuse-user-acceptance",
+        "literal": "| `CASE-HARNESS-L10-044-r16-refuse-user-acceptance` | `FR-HARNESS-L3-044-04` / `AC-HARNESS-L3-044-04` | authority valueを持たない正常なcandidate portfolioと同じ入力。対象output fieldの他fieldは固定する。 | `利用者受入` output field一つだけを候補結果から生成する。 | 利用者受入を生成せずcandidate状態と既存authority状態をそのまま保つ。 | このCASEは `利用者受入` 一出力のみを検査し、他の禁止出力を同時変異しない。 |",
+        "literal_sha256": "97a3e0babaedde17a0f9e85a7febd9e95e29aebae1a39691f5a1a3051cc89db4",
+        "fr_refs": [
+          "FR-HARNESS-L3-044-04"
+        ],
+        "ac_refs": [
+          "AC-HARNESS-L3-044-04"
+        ]
+      }
+    ],
+    "current_case_literal_section_sha256": "6a426c39033b71f66a7d06317f271fdb7d2321254d875746e13ffc6b8877ec48",
+    "old_case_checkpoint": {
+      "checkpoint_revision": "3fd20391f842310012d09c33f5383497898b3afe",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "checkpoint_file_sha256": "94704ba448b00df43651ca1dfa01835472132ce3023d829ea5bb690926fa3f02",
+      "checkpoint_json_sha256": "41800f8eea2894afa278f1cf226f4fd14a8842aa419c127180ba310893a7a1f5",
+      "literal_definition_count": 39,
+      "rows": 39,
+      "old_ids": [
+        "CASE-HARNESS-L10-044-01",
+        "CASE-HARNESS-L10-044-02",
+        "CASE-HARNESS-L10-044-03",
+        "CASE-HARNESS-L10-044-04",
+        "CASE-HARNESS-L10-044-05",
+        "CASE-HARNESS-L10-044-06",
+        "CASE-HARNESS-L10-044-07",
+        "CASE-HARNESS-L10-044-08",
+        "CASE-HARNESS-L10-044-r04-na-rationale-missing",
+        "CASE-HARNESS-L10-044-r04-source-atom-missing",
+        "CASE-HARNESS-L10-044-r04-active-template-missing",
+        "CASE-HARNESS-L10-044-r04-applicability-missing",
+        "CASE-HARNESS-L10-044-r04-oracle-missing",
+        "CASE-HARNESS-L10-044-r04-contract-version-missing",
+        "CASE-HARNESS-L10-044-r04-class-oracle-absent",
+        "CASE-HARNESS-L10-044-r14-class-contract-relation-missing",
+        "CASE-HARNESS-L10-044-r04-025-output-substitution",
+        "CASE-HARNESS-L10-044-r04-043-output-substitution",
+        "CASE-HARNESS-L10-044-r04-044-denominator-old-receipt",
+        "CASE-HARNESS-L10-044-r04-semantic-duplicate",
+        "CASE-HARNESS-L10-044-r04-unsupported-na",
+        "CASE-HARNESS-L10-044-r04-source-atom-conflict",
+        "CASE-HARNESS-L10-044-r04-active-template-stale",
+        "CASE-HARNESS-L10-044-r04-applicability-conflict",
+        "CASE-HARNESS-L10-044-r04-oracle-stale",
+        "CASE-HARNESS-L10-044-r04-contract-version-conflict",
+        "CASE-HARNESS-L10-044-r05-minimum-portfolio-drops-obligation",
+        "CASE-HARNESS-L10-044-r05-candidate-promoted-to-approval",
+        "CASE-HARNESS-L10-044-r05-source-atom-stale",
+        "CASE-HARNESS-L10-044-r05-active-template-conflict",
+        "CASE-HARNESS-L10-044-r05-applicability-stale",
+        "CASE-HARNESS-L10-044-r05-oracle-conflict",
+        "CASE-HARNESS-L10-044-r05-contract-version-stale",
+        "CASE-HARNESS-L10-044-r06-semantic-map-unverifiable",
+        "CASE-HARNESS-L10-044-r09-001",
+        "CASE-HARNESS-L10-044-r09-002",
+        "CASE-HARNESS-L10-044-r09-003",
+        "CASE-HARNESS-L10-044-r09-004",
+        "CASE-HARNESS-L10-044-r10-old-denominator-receipt"
+      ],
+      "all_old_ids_retained": true,
+      "duplicates": []
+    },
+    "new_case_ids": [
+      "CASE-HARNESS-L10-044-r16-normal-nine-class",
+      "CASE-HARNESS-L10-044-r16-normal-reuse",
+      "CASE-HARNESS-L10-044-r16-normal-delta",
+      "CASE-HARNESS-L10-044-r16-normal-new-contract",
+      "CASE-HARNESS-L10-044-r16-delta-insufficient",
+      "CASE-HARNESS-L10-044-r16-refuse-requirement-agreement",
+      "CASE-HARNESS-L10-044-r16-refuse-l3-approval",
+      "CASE-HARNESS-L10-044-r16-refuse-design-approval",
+      "CASE-HARNESS-L10-044-r16-refuse-adoption",
+      "CASE-HARNESS-L10-044-r16-refuse-implementation",
+      "CASE-HARNESS-L10-044-r16-refuse-os-execution",
+      "CASE-HARNESS-L10-044-r16-refuse-user-acceptance"
+    ],
+    "new_case_count": 12,
+    "expected_new_case_count": 12,
+    "fr_definitions": [
+      "FR-HARNESS-L3-044-01",
+      "FR-HARNESS-L3-044-02",
+      "FR-HARNESS-L3-044-03",
+      "FR-HARNESS-L3-044-04"
+    ],
+    "ac_definitions": [
+      "AC-HARNESS-L3-044-01",
+      "AC-HARNESS-L3-044-02",
+      "AC-HARNESS-L3-044-03",
+      "AC-HARNESS-L3-044-04"
+    ],
+    "fv_fr_refs": [
+      "FR-HARNESS-L3-044-01",
+      "FR-HARNESS-L3-044-02",
+      "FR-HARNESS-L3-044-03",
+      "FR-HARNESS-L3-044-04"
+    ],
+    "fv_ac_refs": [
+      "AC-HARNESS-L3-044-01",
+      "AC-HARNESS-L3-044-02",
+      "AC-HARNESS-L3-044-03",
+      "AC-HARNESS-L3-044-04"
+    ],
+    "unresolved_fr_refs": [],
+    "unresolved_ac_refs": [],
+    "all_refs_resolve": true
+  },
+  "legacy_sources_and_consumer_pins": [
+    {
+      "name": "L1-HIL-FR54",
+      "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "lines": [
+        144,
+        144
+      ],
+      "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "span_sha256": "b8c3eb6a8d4e25985f97f95281851e79a0cf6bf6576d3d6a074abdb1df97b070",
+      "text": "| **HIL-FR-54** | Contract Portfolio Plannerはrequirement atomとDesign Obligation Graphを、authority、lifecycle、interface/data/state/event/failure/security/observability/operation、V-pair oracleの同値classへ分ける。各classにnormative contractを原則1件割り当て、既存契約の再利用、delta追加、新規作成、根拠付きN/Aを判定し、未被覆0かつ意味重複0となる最小portfolioを提案する。 | obligation-to-contract matrix、portfolio manifest、reuse/delta/new/N/A receipt、uncovered/duplicate finding |\n"
+    },
+    {
+      "name": "L1-HIL-FR55-adjacent",
+      "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "lines": [
+        145,
+        145
+      ],
+      "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "span_sha256": "191b3b22d5985f085548d44a736590502d5f424511d71262d1b0fe07871663c2",
+      "text": "| **HIL-FR-55** | Template Example Calibratorはactive templateの各validation ruleとapplicability branchに対し、最低限canonical positive 1件と境界negative 1件を要求する。状態遷移、failure、security、migration、multi-runtime差異はrisk分析で未被覆の場合だけ例を追加し、例の個数ではなくrule/branch/risk coverageで十分性を判定する。 | example adequacy matrix、positive/negative fixture、risk追加理由、redundancy finding |\n"
+    },
+    {
+      "name": "L3-HR-FR-HIL20",
+      "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "lines": [
+        54,
+        54
+      ],
+      "file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_sha256": "891d8f93c03c358ae53f81f390613e15962e20524f8361c75d3ba62b906ee857",
+      "text": "| HR-FR-HIL-20 | HIL-BR-27, HIL-BR-28, HIL-FR-54, HIL-FR-55, HIL-FR-56, HIL-NFR-33 | 要求義務から必要十分な設計契約と見本を導出し、Forward各layerとScrum S0–S4へ同一snapshot・返却edge付きでbindする | requirement/obligation/risk/templateあり → 未被覆・重複0のportfolioとworkflow binding | 固定冊数、positive-only、別正本Scrum、S4前昇格 / portfolio、example、phase、back-propagation receipt | HAC-HIL-20a, HAC-HIL-20b, HAC-HIL-20c |\n"
+    },
+    {
+      "name": "L3-HR-pair-map",
+      "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "lines": [
+        83,
+        83
+      ],
+      "file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_sha256": "34a1f8f6f63ffcf5518d03febde4210ee0db020d445590c3875b381eb4d82e95",
+      "text": "| HR-FR-HIL-20 | HAC-HIL-20a: 最小portfolioをForward/Scrumへbind | HAC-HIL-20b: 義務・negative・S4 edge欠落を拒否 | HAC-HIL-20c: 発見deltaを要求/templateへ逆伝播 |\n"
+    },
+    {
+      "name": "L1-HOT-HIL50",
+      "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+      "lines": [
+        77,
+        77
+      ],
+      "file_sha256": "4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+      "span_sha256": "a7b36143b888b5ab368c7cbb4252f14337f7828702a31f20b29dcd5aae0c30f7",
+      "text": "| **HOT-HIL-50** | HIL-BR-27, HIL-FR-54/55, HIL-NFR-33 | 同一意味の義務、既存契約、未被覆risk、positive-only見本、冗長見本を混在させる | 未被覆0・意味重複0の最小portfolioとrule/branch/risk単位のpositive/negative coverageを要求し、冊数・見本数だけの合格を拒否する |\n"
+    },
+    {
+      "name": "L3-HAT-HIL20",
+      "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "lines": [
+        52,
+        52
+      ],
+      "file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_sha256": "285644f8f87e5695393bb54515ded8a781527915b6eb0f99d6cc8652a46b1e8b",
+      "text": "| HAT-HIL-20 | HR-FR-HIL-20 / HAC-HIL-20a, HAC-HIL-20b, HAC-HIL-20c | HOT-HIL-50, HOT-HIL-51 | 設計契約portfolioをForward/Scrumへ接続 | coverage、example、phase snapshot、S4/backprop receipt | 固定冊数、negative欠落、別正本、早期昇格 |\n"
+    },
+    {
+      "name": "HIL-BR27-HOT50",
+      "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-assertion-coverage-ledger.md",
+      "lines": [
+        57,
+        57
+      ],
+      "file_sha256": "bd3b4bf3a58980edd47d4964ef56c78b88a986ffd4b0e77724af312c6a920386",
+      "span_sha256": "dae0c236d31ba33b182c6253c81a329cb42dcce921283d06a1d1e80d0073e347",
+      "text": "| HIL-BR-27 | HIA-BR-027 | 要求義務とriskがある | portfolioを導出する | 未被覆・重複0にする | `HIL_CONTRACT_PORTFOLIO_INADEQUATE` | HOT-HIL-50 | ContractPortfolioPlanner | draft-defined | not-implemented |\n"
+    },
+    {
+      "name": "HIL-FR54-assertion-ledger",
+      "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-assertion-coverage-ledger.md",
+      "lines": [
+        122,
+        122
+      ],
+      "file_sha256": "bd3b4bf3a58980edd47d4964ef56c78b88a986ffd4b0e77724af312c6a920386",
+      "span_sha256": "23c279d314f279abe8e8a408597f5f4fb8e241e276e3fe85ec9feb821539b557",
+      "text": "| HIL-FR-54 | HIA-FR-054 | obligation集合がある | contractへ割当てる | uncovered/duplicate 0にする | `HIL_CONTRACT_PORTFOLIO_INADEQUATE` | HOT-HIL-50 | ContractPortfolioPlanner | draft-defined | not-implemented |\n"
+    },
+    {
+      "name": "requirement-coverage",
+      "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-requirement-coverage-ledger.md",
+      "lines": [
+        117,
+        117
+      ],
+      "file_sha256": "9a96e61ffd6bfca6c7d7c48ff0a9d4e002f7b1a67acba4ee0373289a4f39afc4",
+      "span_sha256": "e829107e811ab8b0e37a7b3f4997cda1d880550115b19eaf1c82dbe4861a38c4",
+      "text": "| HIL-FR-54 | ContractPortfolioPlanner | HOT-HIL-50 | HIA-FR-054 | 追跡草案（trace-draft） |\n"
+    }
+  ],
+  "candidate_artifacts": {
+    "candidate_path": "/tmp/root-harness044-six-suffixes-candidate.json",
+    "candidate_file_sha256": "3f0faa278d9f883e66a312563a77a0b7a41a8becc72674f91f36bebeeead3527",
+    "preflight_path": "/tmp/harness044-parent-authoring-preflight-worker.json",
+    "preflight_file_sha256": "fbde23073e318bbf53d3f513d6feaf3c59d0fcdc56dcba128cae8094941d7ddf",
+    "old_checkpoint_json_path": "/tmp/root-harness044-old-case-literal-checkpoint.json",
+    "old_checkpoint_json_sha256": "41800f8eea2894afa278f1cf226f4fd14a8842aa419c127180ba310893a7a1f5",
+    "artifact_candidate_current_candidate_rows": 50,
+    "candidate_current_candidate_rows_status": "historical/intermediate metadata (50); final physical HEAD has 51 rows",
+    "embedded_suffix_auxiliary_metadata_status": "Root-maintained secondary metadata was not refreshed; historical values retained in candidate, recomputed physical LF+markdown hashes/bytes are authoritative for this integration audit",
+    "corrections": {
+      "known_role_vs_unknown_identity": "FR owner-return and CASE owner routing preserve fixed existing responsibility class; if source does not identify the specific owner identity, only that identity remains unknown. No generic new owner.",
+      "r05_index": "Legacy r05 candidate-promoted index is not counted as an independent fixture; it now indexes separate r16-refuse-design-approval and r16-refuse-adoption fixtures, each with one output field mutation.",
+      "stage": "Stage 3 (not Stage 1); version_target 1.0 stays a candidate and is not advanced.",
+      "normal_nine_class": "C1-C9 are synthetic selected fixture inputs; coverage check only, no general count threshold, authority, or design approval."
+    }
+  },
+  "verification": {
+    "six_files_exact_prefix_of_main": true,
+    "physical_suffix_equals_lf_plus_candidate_markdown": true,
+    "old39_all_retained": true,
+    "current_51_unique": true,
+    "new12": true,
+    "refs_resolve": true,
+    "fixture_execution_performed": false,
+    "ci_or_tests_run": false,
+    "independent_review_performed": false,
+    "l3_approval_inferred": false
+  },
+  "limitations": [
+    "Static physical content/source pin verification only; fixture execution, tests, CI, and independent review were not performed.",
+    "The legacy consumer files contain broader composite contracts; only pinned lines and their scoped boundary evidence are attributed here.",
+    "This audit does not establish L3 approval, readiness, merge admission, or implementation/execution."
+  ],
+  "root_exact_PO_parent_span": {
+    "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+    "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+    "start": 1002,
+    "end_inclusive": 1011,
+    "span_sha256": "690f2bfa866c778be47459baa99139905260d3ca569739a4d4707c61096212f2",
+    "raw_literal": "### HARNESS-L2-044 design obligation portfolioの契約coverage候補（HELIX-HARNESS内の部品候補）\n\n**対応要求**：HARNESS-L2-044（HELIX-HARNESS内の部品候補、単体能力、`version_target: 1.0`、未採択。個別部品の配置はPO判断待ち）。親L1は`HARNESS-L1-001/004/009`。旧sourceはHIL-FR-54、`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:144`（line SHA-256 `502ef00823463c0fd4218c7b554e4b6959fc28aa9006d6d6eb79f555b86b4f67`）。旧PO packet `docs/governance/crosswalks/concept-requirement-po-decision-packet.md:1008`の配置表示は`HELIX-HARNESS、部品`までであり、より具体的な所属は特定しない。\n\n- **種別・scope**：対象revisionのrequirement atomとdesign obligationを契約coverageの意味classへ整理し、適用されるclassとnormative contractの割当を照合するHELIX-HARNESS内の部品候補（単体能力）。旧sourceの分類語やportfolio schemaを現行の固定形式にしない。\n- **入力**：対象L1・要求・design scopeとrevision、当該scopeに適用されるrequirement atom／Design Obligation Graph、関連するnormative contract・対oracleのidentity/revisionと適用根拠。L2-009等から導かれる義務や025/026の設計成果を参照する場合も、そのsource revisionとscopeを結ぶ。required atom、契約、適用性またはoracleがunknown/conflict/staleなら閉包判定を行わない。\n- **出力**：authority、lifecycle、interface/data/state/event/failure/security/observability/operation、V-pair oracle等の適用義務を意味classへまとめたobligation-to-contract coverageと、対象revision・scope付きportfolio提案。classごとにnormative contractを原則1件割り当て、既存契約の再利用、delta追加、新規契約、根拠付き非適用を区別する。重複割当・意味重複・未被覆classと根拠を示し、未被覆0かつ意味重複0となる最小portfolio候補を提示する。\n- **依存区分**（HARNESS-L2-023の4区分）：**常時必須**＝選択された対象L1／要求／design scopeとrevision、そのscopeの適用義務class、normative contract、対oracleおよび各identity・契約版・適用根拠。**特定操作時のみ必須**＝当該portfolioを評価・提案する操作とそのscope。評価操作を選んだときは対象範囲のcoverage閉包を完了できないmissing/unknown/staleがあれば未完または保留を返す。**選択した入力元に応じて必須**＝template由来義務、041の抽出結果、025/026の設計成果を選択入力に含めるscopeでは、そのsource identity/revision・適用範囲・互換を照合する。未選択sourceは未観測とし、不在や合格を推測しない。**参照資料のみ**＝旧schema、旧runtime、背景説明、今回のscopeやauthority・義務・契約・oracleを定めない資料。これらを現行依存や評価根拠へ変換しない。\n- **保証と差戻し**：適用classの全てに契約または根拠付き非適用が対応し、各割当が同じ義務意味と対oracleを覆うか照合できる。複数契約への分割は必要な境界と根拠を明示する。意味不明・authority不足は要求ownerへ、template適用・義務導出の不足はHARNESS-L2-009/対象template ownerへ、設計要素やpair oracleの不足はHARNESS-L2-026/022等の該当ownerへ返す。旧schema、旧runtime、特定のPlanner実装は要求せず、候補の出力は要求合意、設計承認、実装、候補採択を生成しない。\n- **既存候補との境界**：009はtemplate選択・適用と設計義務を導出し、041はtemplate要素の抽出と未対応gapを示し、043はrule/branchごとの例coverageを評価する。026はunit設計と対検証設計を構成し、025はgeneric compositeの設計整合を検査する。044はそれらの成果を入力に契約portfolio全体のclass coverageを照合する候補であり、義務抽出・設計生成・例妥当性判定・構成体設計oracleを重複実装しない。旧FR-55の例coverageは043、旧FR-56のworkflow phase bindingは別scopeとして扱う。\n"
+  },
+  "root_publication": "Worker/tmp監査をRoot検収後に公開。共有slice1002–1014とPOexact採択spanを区別。"
+}
