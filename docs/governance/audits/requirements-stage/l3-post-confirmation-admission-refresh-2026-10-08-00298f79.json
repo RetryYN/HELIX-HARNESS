@@ -1,0 +1,986 @@
+{
+  "record_type": "immutable_post_confirmation_admission_refresh",
+  "created_local_date": "2026-10-08",
+  "authority_effect": "none; status projection only; no PO confirmation, L10 result, meaning change, or new approval procedure",
+  "main_head": "00298f79229198965d889ebf0b6a1bedc4d03648",
+  "roster": {
+    "parents": 274,
+    "mechanism_stage_groups": 41,
+    "current_l3_l10_documents": 48,
+    "mechanisms": 8
+  },
+  "observed_path_presence": {
+    "prior_main": "83cb0bcd8bb3efe7022bf74f393b1fc0a0d746f1",
+    "decision_record_path": "274/274",
+    "missing": 0,
+    "evidence": "living list prior snapshot; current 5b64914 not re-counted in this refresh",
+    "meaning_completion_inferred": false
+  },
+  "fixture_execution": false,
+  "PO_postconfirmation_recorded": false,
+  "living_document_before_update": {
+    "path": "docs/governance/l3-l10-po-post-confirmation.md",
+    "bytes": 144217,
+    "sha256": "db2e466aadf0234caadb092726195759992b0d6ae958939dcd4ae93d3d6f6c77"
+  },
+  "previous_snapshot": {
+    "path": "docs/governance/audits/requirements-stage/l3-post-confirmation-admission-refresh-2026-10-07-83cb0bcd.json",
+    "sha256": "aa845eae52e224b9667bcb2c9c36145b9489a8fedb517d3cfc47497dbdb7dd94"
+  },
+  "admitted_scopes": [
+    {
+      "pr": 2662,
+      "api_state": "closed",
+      "merged": true,
+      "merged_at": "2026-10-07T15:20:55Z",
+      "api_head_sha": "9d780c9912d77722530ada1d319fee3d120defb9",
+      "api_base_sha": "ba0df9a49ab635c020e4ec74fc05c72a49352c90",
+      "api_merge_commit_sha": "2d6fef954eb87a3bc036dfe062369282b5f2553a",
+      "mechanism": "HELIX-BRAIN",
+      "stage": "1",
+      "fixed_parents": [
+        "HELIXBRAIN-L2-007"
+      ],
+      "content_revision": "2919f7344f90ff8bde4db60ef7142b3c47bea0a8",
+      "reviewed_content_head": "9d780c9912d77722530ada1d319fee3d120defb9",
+      "formal_condition1_comment": {
+        "id": 6040506426,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2662#issuecomment-6040506426",
+        "created_at": "2026-10-07T14:49:03Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 2909,
+        "body_sha256": "64c74e151081252e512968028afeee5fa33eab814a541d73afa20b9e8af9aa9a"
+      },
+      "condition2_comment": {
+        "id": 6040506426,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2662#issuecomment-6040506426",
+        "created_at": "2026-10-07T14:49:03Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 2909,
+        "body_sha256": "64c74e151081252e512968028afeee5fa33eab814a541d73afa20b9e8af9aa9a"
+      },
+      "condition3_comment": {
+        "id": 6040860539,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2662#issuecomment-6040860539",
+        "created_at": "2026-10-07T15:16:54Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 1945,
+        "body_sha256": "855e7e0422785815f9367c81ed202e3e68addfe68b6e4fc78cbc0fa0b4ab6b5b"
+      },
+      "merge_read_after_comment": {
+        "id": 6040960721,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2662#issuecomment-6040960721",
+        "created_at": "2026-10-07T15:21:15Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 1185,
+        "body_sha256": "4de73d02a0ef3fb04554ba71d6956c748f8aade6628adac6ced3a8b792e9b28c"
+      },
+      "merge_commit": "2d6fef954eb87a3bc036dfe062369282b5f2553a",
+      "six_body_sha256": {
+        "docs/helix-brain/L3-requirements/business-requirements.md": "035d6c2b93ea7d72d016b81cc712135f81ac5dec9f14d20cd7971db6fae96cd7",
+        "docs/helix-brain/L3-requirements/functional-requirements.md": "2868fd63e0ded8fb0861e1707bbd021f6cf86ae2ff5d542c0d3bddd2da938759",
+        "docs/helix-brain/L3-requirements/nfr-grade.md": "4a391af39f7c4fbf2062cd5a1c6a895498625f651d60e56596a612ca2d831daf",
+        "docs/helix-brain/L10-verification/business-verification.md": "0ab3f29516c6a0ce7185424b988f8abcfab5340b00fad48e3f77d7154e22b997",
+        "docs/helix-brain/L10-verification/functional-verification.md": "215a4f91a657e5967d5f202f1d92073c033022d882365a0c9f30171c8e6ed552",
+        "docs/helix-brain/L10-verification/nfr-verification.md": "61c4a7cf4405565bdc133bd6e2bf2de3effc71a8c34b283b934baee5d50ef21b"
+      },
+      "decision_record": {
+        "path": "docs/governance/decisions/helix-brain-stage1-parent007-l3-l10-delegated-decision-2026-10-07.md",
+        "sha256": "943074a5a5f523d351d5bfcd1f072a6693197833b416cd6d4c6da5b8918bf892",
+        "bytes": 5230
+      },
+      "decision_pin": {
+        "path": "docs/governance/audits/requirements-stage/brain-stage1-parent007-delegated-decision-pin-2026-10-07.json",
+        "sha256": "5c3c1a828ed0a22348ed3ce89d63b22491b88f58e1e25fc07210c72ba1ee861a"
+      },
+      "authority_state": "conditions_1_2_3_satisfied_and_main_admitted_for_this_scope",
+      "L10_executed": false,
+      "PO_postconfirmation_recorded": false
+    },
+    {
+      "pr": 2659,
+      "api_state": "closed",
+      "merged": true,
+      "merged_at": "2026-10-07T15:23:15Z",
+      "api_head_sha": "80759b0da7f4de78ab658deb5dd0ed5dabf19f14",
+      "api_base_sha": "83cb0bcd8bb3efe7022bf74f393b1fc0a0d746f1",
+      "api_merge_commit_sha": "74e82abff8f06d390ea8727966fd3169864a79f0",
+      "mechanism": "HELIX-INFRASTRUCTURE",
+      "stage": "5",
+      "fixed_parents": [
+        "HELIXINFRASTRUCTURE-L2-011"
+      ],
+      "content_revision": "ddb82381cea08930c2ef965aba59b450b8a142dc",
+      "reviewed_content_head": "80759b0da7f4de78ab658deb5dd0ed5dabf19f14",
+      "formal_condition1_comment": {
+        "id": 6040505715,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2659#issuecomment-6040505715",
+        "created_at": "2026-10-07T14:49:01Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 4522,
+        "body_sha256": "9b0b2a353e64a94948579025488dcee3d24b7a57a975b7f6b37ba6824d7c4926"
+      },
+      "condition2_comment": {
+        "id": 6040505715,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2659#issuecomment-6040505715",
+        "created_at": "2026-10-07T14:49:01Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 4522,
+        "body_sha256": "9b0b2a353e64a94948579025488dcee3d24b7a57a975b7f6b37ba6824d7c4926"
+      },
+      "condition3_comment": {
+        "id": 6040768224,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2659#issuecomment-6040768224",
+        "created_at": "2026-10-07T15:02:38Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 2804,
+        "body_sha256": "a6be418348f3dde960285ac321337d3c2c8a33dbdcccb0a3fdf5bb33d0be712f"
+      },
+      "merge_read_after_comment": {
+        "id": 6041008747,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2659#issuecomment-6041008747",
+        "created_at": "2026-10-07T15:23:35Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 1290,
+        "body_sha256": "14b783a3b81aadc50435a39135d0a3032c3cae9225b9dac3de11b0a2c630c0f4"
+      },
+      "merge_commit": "74e82abff8f06d390ea8727966fd3169864a79f0",
+      "six_body_sha256": {
+        "docs/helix-infrastructure/L3-requirements/business-requirements.md": "429291b0cec7dcf63271b4aef419120476e70bff9054002aeb872e888c8eb328",
+        "docs/helix-infrastructure/L3-requirements/functional-requirements.md": "425d0746efe875dbfbeebc26562adea99a3cdd8e8ef6377a0164bca1d624cc2d",
+        "docs/helix-infrastructure/L3-requirements/nfr-grade.md": "7a6e9bd1d2125805791756c031a1a9228e7e3467c10b35bb473245338284ad75",
+        "docs/helix-infrastructure/L10-verification/business-verification.md": "c0c583732c75ba2545e0c3229f98ea4d280c82dfedc449a9ee6be0fb77f0a79f",
+        "docs/helix-infrastructure/L10-verification/functional-verification.md": "163107e7cd9d6ef04f38b5ffd974f487b96a9501980f27e37a9d2095099a9a52",
+        "docs/helix-infrastructure/L10-verification/nfr-verification.md": "4e8d94b7515e87da8c809b26d190e1e08e7d21060f1c6fdefbfc9d75ca65145b"
+      },
+      "decision_record": {
+        "path": "docs/governance/decisions/helix-infrastructure-stage5-l3-l10-delegated-decision-2026-10-07.md",
+        "sha256": "0d68f78ce32702158a625db5daf769d22831469e6dbacd2e5866c35deb7dde99",
+        "bytes": 5674
+      },
+      "decision_pin": {
+        "path": "docs/governance/audits/requirements-stage/infrastructure-stage5-delegated-decision-pin-2026-10-07.json",
+        "sha256": "969e288572ba5038fdab9e04edac46b974b492f69efb4558f2c79ca336f1e050"
+      },
+      "authority_state": "conditions_1_2_3_satisfied_and_main_admitted_for_this_scope",
+      "L10_executed": false,
+      "PO_postconfirmation_recorded": false
+    },
+    {
+      "pr": 2660,
+      "api_state": "closed",
+      "merged": true,
+      "merged_at": "2026-10-07T15:37:42Z",
+      "api_head_sha": "5769fd01b45638700cd3bf9fa735c3dff5ae8a81",
+      "api_base_sha": "74e82abff8f06d390ea8727966fd3169864a79f0",
+      "api_merge_commit_sha": "d0732751671633bd30e43b263c621325bc2d6f4b",
+      "mechanism": "HELIX-OS",
+      "stage": "2a",
+      "fixed_parents": [
+        "HELIXOS-L2-018",
+        "HELIXOS-L2-019"
+      ],
+      "content_revision": "de1397f59f36db658e9feb1253385cf990d64806",
+      "reviewed_content_head": "5769fd01b45638700cd3bf9fa735c3dff5ae8a81",
+      "formal_condition1_comment": {
+        "id": 6041046932,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2660#issuecomment-6041046932",
+        "created_at": "2026-10-07T15:25:33Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 2396,
+        "body_sha256": "bd2f9f6766c87490fa02863903979a02773f09585608c5d50d7ebe44e1215088"
+      },
+      "condition2_comment": {
+        "id": 6041046932,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2660#issuecomment-6041046932",
+        "created_at": "2026-10-07T15:25:33Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 2396,
+        "body_sha256": "bd2f9f6766c87490fa02863903979a02773f09585608c5d50d7ebe44e1215088"
+      },
+      "condition3_comment": {
+        "id": 6041174985,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2660#issuecomment-6041174985",
+        "created_at": "2026-10-07T15:32:28Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 1741,
+        "body_sha256": "efb1f103b571b99aefef58305c9abdab02b17e891645dc084c77d42d781f2e7d"
+      },
+      "merge_read_after_comment": {
+        "id": 6041275940,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2660#issuecomment-6041275940",
+        "created_at": "2026-10-07T15:37:52Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 960,
+        "body_sha256": "95a2b8b5f82d62126227f3441abace420867db2e1a105af31f96135091dd64fb"
+      },
+      "merge_commit": "d0732751671633bd30e43b263c621325bc2d6f4b",
+      "six_body_sha256": {
+        "docs/helix-os/L10-verification/business-verification.md": "0d03019b7f6db1db7ffce49dd69c02a8c72982693a66613c3a8db3a378bb2665",
+        "docs/helix-os/L10-verification/functional-verification.md": "7676276eb79384f580022f05c5843bafd0b7913dc0af3d254dfc89418dc2b78c",
+        "docs/helix-os/L10-verification/nfr-verification.md": "6fac9d8063383e6753c6930f7a412de054f7195d0ccec8ddca4669b95f9d4c01",
+        "docs/helix-os/L3-requirements/business-requirements.md": "75914cb7a6b87c59f0f936c2896ce91cb830b5b00820daff28f6f228592ce194",
+        "docs/helix-os/L3-requirements/functional-requirements.md": "7f828bf15e54aefc3a8ae532b461a9d64023f3457ad4bc2915b57292875e093b",
+        "docs/helix-os/L3-requirements/nfr-grade.md": "e84bb08cd5126f13084a5e8c2be9f1bf9689da514a2b98536ef28d16a94647f4"
+      },
+      "decision_record": {
+        "path": "docs/governance/decisions/helix-os-stage2a-parent018019-l3-l10-delegated-decision-2026-10-08.md",
+        "sha256": "562fc08c3735cee468c93c27d1911d33dd1a9e9ac0cc41a59ea95132f6749060",
+        "bytes": 3179
+      },
+      "decision_pin": {
+        "path": "docs/governance/audits/requirements-stage/os-stage2a-parent018019-delegated-decision-pin-2026-10-08.json",
+        "sha256": "a267787ddea97e58a2636116c338938c1192b8888fe999fbfa5831ceb3f73e8e"
+      },
+      "authority_state": "conditions_1_2_3_satisfied_and_main_admitted_for_this_scope",
+      "L10_executed": false,
+      "PO_postconfirmation_recorded": false
+    },
+    {
+      "pr": 2667,
+      "api_state": "closed",
+      "merged": true,
+      "merged_at": "2026-10-07T15:38:29Z",
+      "api_head_sha": "6dd5fb25b6ad69d3d0fef387e07b9405cbdfdd94",
+      "api_base_sha": "74e82abff8f06d390ea8727966fd3169864a79f0",
+      "api_merge_commit_sha": "d831cac8f1994d027ecd05d0e6cc5bbaa6418a23",
+      "mechanism": "HELIX-CONNECT",
+      "stage": "5",
+      "fixed_parents": [
+        "HELIXCONNECT-L2-007"
+      ],
+      "content_revision": "af0c0641c9b6df37a0742bbb9325d868db3e815a",
+      "reviewed_content_head": "6dd5fb25b6ad69d3d0fef387e07b9405cbdfdd94",
+      "formal_condition1_comment": {
+        "id": 6039141314,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2615#issuecomment-6039141314",
+        "created_at": "2026-10-07T13:37:18Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 2053,
+        "body_sha256": "c96c4afe6afd020b2ffd8949107665992aadcb2d094a84a31bb806602c1169db"
+      },
+      "condition2_comment": {
+        "id": 6003274683,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2615#issuecomment-6003274683",
+        "created_at": "2026-10-05T21:26:52Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 3442,
+        "body_sha256": "dbca06f94af25037412ab6c7c234a59670ddffae449806ea43cd645b2df5a55e"
+      },
+      "condition3_comment": {
+        "id": 6041202285,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2667#issuecomment-6041202285",
+        "created_at": "2026-10-07T15:33:55Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 2675,
+        "body_sha256": "3bb319635b7bd01fcfd058f6610c650ca502f025b979ecb8d1712e81870d34de"
+      },
+      "merge_read_after_comment": {
+        "id": 6041290258,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2667#issuecomment-6041290258",
+        "created_at": "2026-10-07T15:38:39Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 1136,
+        "body_sha256": "9aff1429b45d9a1b4c3cb3461a7ccd9b31e6dd7ce4b8c75094a0351c3561fd2b"
+      },
+      "merge_commit": "d831cac8f1994d027ecd05d0e6cc5bbaa6418a23",
+      "six_body_sha256": {
+        "docs/helix-connect/L10-verification/business-verification.md": "ecfe151650418d88e69726d3102f542bb43e75faeb8737224f1e04c4181dfec0",
+        "docs/helix-connect/L10-verification/functional-verification.md": "fdff7c3edba7be7c7a169a92c72b1befe697dc3c3af39ec7733315ec20fa2d2f",
+        "docs/helix-connect/L10-verification/nfr-verification.md": "9efc5ddc902da565ad3d1295b2088ade1e7ab3427f1b4206ff3d4686a1197e48",
+        "docs/helix-connect/L3-requirements/business-requirements.md": "3ff964c1b762c9f67228214d62df5e208d0e0ab5bd4f2ffb57b26f8684ebd925",
+        "docs/helix-connect/L3-requirements/functional-requirements.md": "85e3186fbb82d8f61a12351f567a118850b856473b7928a334cea1e5f28464a4",
+        "docs/helix-connect/L3-requirements/nfr-grade.md": "8becd7af6701e3de40a300c617aa3eca2d0214a867a2685b8615efcf8b7582aa"
+      },
+      "decision_record": {
+        "path": "docs/governance/decisions/helix-connect-stage5-l3-l10-attribution-correction-2026-10-08.md",
+        "sha256": "69bda9950dccb721bf0640c6d590ea8f5c7a990b8e5d0ea3114c8916d8f0ac97",
+        "bytes": 3054
+      },
+      "decision_pin": {
+        "path": "docs/governance/audits/requirements-stage/connect-stage5-historical-attribution-reproof-2026-10-08.json",
+        "sha256": "58fe401a0e5d9fc319321f2f15d7644adf367bb3f5f50fce1cc76edf4e5cf64c"
+      },
+      "authority_state": "conditions_1_2_3_satisfied_and_main_admitted_for_this_scope",
+      "L10_executed": false,
+      "PO_postconfirmation_recorded": false,
+      "additional_formal_comments": [
+        {
+          "id": 6003274683,
+          "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2615#issuecomment-6003274683",
+          "created_at": "2026-10-05T21:26:52Z",
+          "author": "RetryYN",
+          "body_utf8_bytes": 3442,
+          "body_sha256": "dbca06f94af25037412ab6c7c234a59670ddffae449806ea43cd645b2df5a55e"
+        }
+      ]
+    },
+    {
+      "pr": 2666,
+      "api_state": "closed",
+      "merged": true,
+      "merged_at": "2026-10-07T15:47:35Z",
+      "api_head_sha": "4ebcc8e63296c81ff57adc222c344942a2f3da9d",
+      "api_base_sha": "d831cac8f1994d027ecd05d0e6cc5bbaa6418a23",
+      "api_merge_commit_sha": "f14ac303d265b6d23ecb1847b5dfd52901a442c6",
+      "mechanism": "HELIX-HARNESS",
+      "stage": "3",
+      "fixed_parents": [
+        "HARNESS-L2-043"
+      ],
+      "content_revision": "69be139c372ff5d8966c50242a90e4a783fcc8a0",
+      "reviewed_content_head": "4ebcc8e63296c81ff57adc222c344942a2f3da9d",
+      "formal_condition1_comment": {
+        "id": 6041256040,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2666#issuecomment-6041256040",
+        "created_at": "2026-10-07T15:36:47Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 4353,
+        "body_sha256": "584040baaca9d494a3eec9ad5c17185f8628cc52952e227c325540a8cf132b5f"
+      },
+      "condition2_comment": {
+        "id": 6041256040,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2666#issuecomment-6041256040",
+        "created_at": "2026-10-07T15:36:47Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 4353,
+        "body_sha256": "584040baaca9d494a3eec9ad5c17185f8628cc52952e227c325540a8cf132b5f"
+      },
+      "condition3_comment": {
+        "id": 6041421422,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2666#issuecomment-6041421422",
+        "created_at": "2026-10-07T15:45:27Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 1823,
+        "body_sha256": "2def277992f838cb0b34a884fbe244e49d3a3ee9e6c928f5d70545855e7a7142"
+      },
+      "merge_read_after_comment": {
+        "id": 6041464009,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2666#issuecomment-6041464009",
+        "created_at": "2026-10-07T15:47:44Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 1088,
+        "body_sha256": "bd96a098bf8b588ced7df1ac0ded5901ef3f7782c389a69463ad7bcafa9ca2ff"
+      },
+      "merge_commit": "f14ac303d265b6d23ecb1847b5dfd52901a442c6",
+      "six_body_sha256": {
+        "docs/helix-harness/L3-requirements/functional-requirements.md": "e3b18c538d2903e7adfd3d800bc82f6eb7190a6de870e72ac2e4913b733de885",
+        "docs/helix-harness/L3-requirements/business-requirements.md": "781e337ff60f8765467b216edefdeca14416c2b8c1fd3889b8afa5d6f4d7cb33",
+        "docs/helix-harness/L3-requirements/nfr-grade.md": "ed08243e009b629aba5167786bf47d946f27e2e1ff8526d61480d826cd3a8317",
+        "docs/helix-harness/L10-verification/functional-verification.md": "0cb0d7a9fc0fc23d38c809dd47cca770f860c47905cd60e7d7f59222d3a07f9c",
+        "docs/helix-harness/L10-verification/business-verification.md": "84f68583915cc9c206d44d08e188508f73b0b9ea69ae73b82b61ceec8196f1a4",
+        "docs/helix-harness/L10-verification/nfr-verification.md": "def2277503ef06c49fef4868dce7eab2322f761c9ff31e630b217f133325a53e"
+      },
+      "decision_record": {
+        "path": "docs/governance/decisions/helix-harness-stage3-parent043-l3-l10-delegated-decision-2026-10-08.md",
+        "sha256": "6d1187e2f3787ab6cc8e54a3e505e947b36865997561ffc2871523869daea345",
+        "bytes": 2904
+      },
+      "decision_pin": {
+        "path": "docs/governance/audits/requirements-stage/harness-stage3-parent043-delegated-decision-pin-2026-10-08.json",
+        "sha256": "380e07a388acc27ef1208c196191dff1dbdf8bff09ae777c919c94bc5c9c354b"
+      },
+      "authority_state": "conditions_1_2_3_satisfied_and_main_admitted_for_this_scope",
+      "L10_executed": false,
+      "PO_postconfirmation_recorded": false
+    },
+    {
+      "pr": 2655,
+      "api_state": "closed",
+      "merged": true,
+      "merged_at": "2026-10-07T16:03:53Z",
+      "api_head_sha": "05c9cc6bae60e3506610caffa39e07163e2aad20",
+      "api_base_sha": "f14ac303d265b6d23ecb1847b5dfd52901a442c6",
+      "api_merge_commit_sha": "4fdcd449fac8ffbc7c6ab18654b355497be07b91",
+      "mechanism": "HELIX-HARNESS",
+      "stage": "5",
+      "fixed_parents": [
+        "HARNESS-L2-021",
+        "HARNESS-L2-025",
+        "HARNESS-L2-033",
+        "HARNESS-L2-035",
+        "HARNESS-L2-037"
+      ],
+      "content_revision": "c21523111debdbb4de8622f7557ed794319e4a7e",
+      "reviewed_content_head": "05c9cc6bae60e3506610caffa39e07163e2aad20",
+      "formal_condition1_comment": {
+        "id": 6041633885,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2655#issuecomment-6041633885",
+        "created_at": "2026-10-07T15:56:47Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 4193,
+        "body_sha256": "1d9547637296f14c7bd5c62489626849fd400046c358a0b349de93a6b13e6480"
+      },
+      "condition2_comment": {
+        "id": 6041633885,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2655#issuecomment-6041633885",
+        "created_at": "2026-10-07T15:56:47Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 4193,
+        "body_sha256": "1d9547637296f14c7bd5c62489626849fd400046c358a0b349de93a6b13e6480"
+      },
+      "condition3_comment": {
+        "id": 6041743957,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2655#issuecomment-6041743957",
+        "created_at": "2026-10-07T16:02:45Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 1757,
+        "body_sha256": "fa18fbc5b3b2d24af665319e37dd7dc8bed24567285955457e5dccfd71f0b953"
+      },
+      "merge_read_after_comment": {
+        "id": 6041768045,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2655#issuecomment-6041768045",
+        "created_at": "2026-10-07T16:04:02Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 954,
+        "body_sha256": "81c6417b2d1715898335a0b4f6dccfaa880af7c6baccc0ead2eba9635f103ff1"
+      },
+      "merge_commit": "4fdcd449fac8ffbc7c6ab18654b355497be07b91",
+      "six_body_sha256": {
+        "docs/helix-harness/L3-requirements/business-requirements.md": "9fb531a55c61c4836ae614cadbd850f3967119cb1f0f2eb36dad1e39ebab75e2",
+        "docs/helix-harness/L3-requirements/functional-requirements.md": "bd038522d001d95229fb2e96e7f88f2adfe82a30b927224a42246b74aa378c0c",
+        "docs/helix-harness/L3-requirements/nfr-grade.md": "ee84bc87ff324eea929d266934c0debb856018aca25c0044f68b11c141c3263d",
+        "docs/helix-harness/L10-verification/business-verification.md": "864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad",
+        "docs/helix-harness/L10-verification/functional-verification.md": "191dcb11cb400c10516e2a437314ffea60de97cb7432091ff6ee47f964640e9a",
+        "docs/helix-harness/L10-verification/nfr-verification.md": "b8a2ac27f92d9023dd3c24f7f3e16f6647e18e9272f2b3d94b7ced721b427386"
+      },
+      "decision_record": {
+        "path": "docs/governance/decisions/helix-harness-stage5-l3-l10-delegated-decision-2026-10-08.md",
+        "sha256": "57a35a075f0f3c3582ba45f58fddd1bb6b1bfc509ccbd1a8a64726358177e914",
+        "bytes": 2445
+      },
+      "decision_pin": {
+        "path": "docs/governance/audits/requirements-stage/harness-stage5-delegated-decision-pin-2026-10-08.json",
+        "sha256": "db0b947f2ca1f6fbb4a97d1d1f18d1e045c0577c085ebd96c06af0add26658cf"
+      },
+      "authority_state": "conditions_1_2_3_satisfied_and_main_admitted_for_this_scope",
+      "L10_executed": false,
+      "PO_postconfirmation_recorded": false
+    },
+    {
+      "pr": 2665,
+      "api_state": "closed",
+      "merged": true,
+      "merged_at": "2026-10-07T16:12:36Z",
+      "api_head_sha": "1c7e4c1a547c072951429cb05c7193cad5ec178e",
+      "api_base_sha": "4fdcd449fac8ffbc7c6ab18654b355497be07b91",
+      "api_merge_commit_sha": "4be8c8fe8cfe695c354129680b0a5eab497bf393",
+      "mechanism": "HELIX-OS",
+      "stage": "5",
+      "fixed_parents": [
+        "HELIXOS-L2-025"
+      ],
+      "content_revision": "4a848e2ba65070f3502d04fc020d36de1cfa1d7a",
+      "reviewed_content_head": "1c7e4c1a547c072951429cb05c7193cad5ec178e",
+      "formal_condition1_comment": {
+        "id": 6041782252,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2665#issuecomment-6041782252",
+        "created_at": "2026-10-07T16:04:49Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 4271,
+        "body_sha256": "95047f599642de7a226a1545a55a5b4622097c141f5c8791f9f1081c7b9a86b1"
+      },
+      "condition2_comment": {
+        "id": 6041782252,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2665#issuecomment-6041782252",
+        "created_at": "2026-10-07T16:04:49Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 4271,
+        "body_sha256": "95047f599642de7a226a1545a55a5b4622097c141f5c8791f9f1081c7b9a86b1"
+      },
+      "condition3_comment": {
+        "id": 6041829191,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2665#issuecomment-6041829191",
+        "created_at": "2026-10-07T16:07:22Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 1725,
+        "body_sha256": "dfa414b0c35adbf6dab3183fe6578c78cfe0bf9ffa8de70e2ad5f0eae44fe1ef"
+      },
+      "merge_read_after_comment": {
+        "id": 6041921731,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2665#issuecomment-6041921731",
+        "created_at": "2026-10-07T16:12:45Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 1147,
+        "body_sha256": "affa30e3b4772dade10380a86610af7f681d435b98b4785eda20eb852cd4d51a"
+      },
+      "merge_commit": "4be8c8fe8cfe695c354129680b0a5eab497bf393",
+      "six_body_sha256": {
+        "docs/helix-os/L3-requirements/business-requirements.md": "cbe1866df47503b17e8a11b786dee8da58cd8a2a0a99778b64bd4a669b2fa702",
+        "docs/helix-os/L3-requirements/functional-requirements.md": "95a6f1c5bdd1015d8849829de88fd99e62c842784135e4ebdbd5b4140d843544",
+        "docs/helix-os/L3-requirements/nfr-grade.md": "ec63ecd54db5258ff14714624c3df6bcfd3c1c189ac9a08a29271c06231e3066",
+        "docs/helix-os/L10-verification/business-verification.md": "5a75c21ce10b33fc8441adda71253870fd20a8687c18e7939cfe8b25f9d393c8",
+        "docs/helix-os/L10-verification/functional-verification.md": "8a99792f723abb96034274c72424902fba51df515e2a99f637823427aa03821c",
+        "docs/helix-os/L10-verification/nfr-verification.md": "3019648b66a351418945033646bf82c84d0c7ef771edee49378cef2be266e256"
+      },
+      "decision_record": {
+        "path": "docs/governance/decisions/helix-os-stage5-parent025-l3-l10-delegated-decision-2026-10-08.md",
+        "sha256": "7058499c6a12aa29b76d7f03dd19c6b72060fc55a1a861ba9fd366648bd320d8",
+        "bytes": 2571
+      },
+      "decision_pin": {
+        "path": "docs/governance/audits/requirements-stage/os-stage5-parent025-delegated-decision-pin-2026-10-08.json",
+        "sha256": "c26b87a2f58eea20b6fe9f3d8b09cdeaa25ab8cb462149a0065fe60a604f94d2"
+      },
+      "authority_state": "conditions_1_2_3_satisfied_and_main_admitted_for_this_scope",
+      "L10_executed": false,
+      "PO_postconfirmation_recorded": false
+    },
+    {
+      "pr": 2663,
+      "api_state": "closed",
+      "merged": true,
+      "merged_at": "2026-10-07T16:13:43Z",
+      "api_head_sha": "33cf6b5a3ba016b78247949239b8aa45da1aed07",
+      "api_base_sha": "4fdcd449fac8ffbc7c6ab18654b355497be07b91",
+      "api_merge_commit_sha": "c0dab045c9708f1eabde20407609cb3e5fb5734a",
+      "mechanism": "HELIX-SECURITY",
+      "stage": "1",
+      "fixed_parents": [
+        "HELIXSECURITY-L2-033"
+      ],
+      "content_revision": "6098740c61f2c6dbd6d59921bf05d594103a99f2",
+      "reviewed_content_head": "33cf6b5a3ba016b78247949239b8aa45da1aed07",
+      "formal_condition1_comment": {
+        "id": 6041610577,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2663#issuecomment-6041610577",
+        "created_at": "2026-10-07T15:55:33Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 3478,
+        "body_sha256": "5ced57916467920dbcd5e78797448ee34e7c28b27ed77e08725f3eba6537689e"
+      },
+      "condition2_comment": {
+        "id": 6041610577,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2663#issuecomment-6041610577",
+        "created_at": "2026-10-07T15:55:33Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 3478,
+        "body_sha256": "5ced57916467920dbcd5e78797448ee34e7c28b27ed77e08725f3eba6537689e"
+      },
+      "condition3_comment": {
+        "id": 6041851527,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2663#issuecomment-6041851527",
+        "created_at": "2026-10-07T16:08:37Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 1635,
+        "body_sha256": "b38a3260978aefeb1decbefaf95895650c3025560a1dcdeb8b2cd004d64c9bf5"
+      },
+      "merge_read_after_comment": {
+        "id": 6041938133,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2663#issuecomment-6041938133",
+        "created_at": "2026-10-07T16:13:52Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 1033,
+        "body_sha256": "34a1ed84c18867d02c044a19939854bab1d74131b36b9667ab4ec4f7d4274b5f"
+      },
+      "merge_commit": "c0dab045c9708f1eabde20407609cb3e5fb5734a",
+      "six_body_sha256": {
+        "docs/helix-security/L3-requirements/business-requirements.md": "30a0456a17c4c65e9427cc8931905cb7c1adf54c207514f948a7b179dcdb7019",
+        "docs/helix-security/L3-requirements/functional-requirements.md": "f6da676a3c816e6e845e7cc7c8e7711f9f0d9e4a6b8fa6a6c6595dd730aa8ea5",
+        "docs/helix-security/L3-requirements/nfr-grade.md": "5b4a647220bea4192788ac937f9ee889574abb49639493f5e78edadc2950f66e",
+        "docs/helix-security/L10-verification/business-verification.md": "7da2a3b88c866c276065c793036708a633109b176b0381829c8d3c8293ff70a4",
+        "docs/helix-security/L10-verification/functional-verification.md": "30b4e33419b617c0f7b2710f26e2aa8ae771b67e3fa29510aa01495e0200947a",
+        "docs/helix-security/L10-verification/nfr-verification.md": "444560c4ffe00c4a330d6b8a76ad2c86798be1bd4ab506886c96ce0cc4a40e43"
+      },
+      "decision_record": {
+        "path": "docs/governance/decisions/helix-security-stage1-parent033-l3-l10-delegated-decision-2026-10-08.md",
+        "sha256": "255779f2d0001b832797aedef5d6a3e4eabc893ae26edea5171a66de7a6c4135",
+        "bytes": 7626
+      },
+      "decision_pin": {
+        "path": "docs/governance/audits/requirements-stage/security-stage1-parent033-review04-delegated-decision-pin-2026-10-08-6098740c.json",
+        "sha256": "9916df5b6cdcaba2137014e06c7e24b7f55d0effe0526cd76154352d8341f70f"
+      },
+      "authority_state": "conditions_1_2_3_satisfied_and_main_admitted_for_this_scope",
+      "L10_executed": false,
+      "PO_postconfirmation_recorded": false
+    },
+    {
+      "pr": 2661,
+      "api_state": "closed",
+      "merged": true,
+      "merged_at": "2026-10-07T16:19:00Z",
+      "api_head_sha": "fae9a8ce6f6c97b6173da56879ce277da7fe27ac",
+      "api_base_sha": "c0dab045c9708f1eabde20407609cb3e5fb5734a",
+      "api_merge_commit_sha": "2b0d761e656f721e05741cb6f8c925fce5fee46b",
+      "mechanism": "HELIX-LABO",
+      "stage": "5",
+      "fixed_parents": [
+        "HELIXLABO-L2-066",
+        "HELIXLABO-L2-070"
+      ],
+      "content_revision": "b713e1a2ef2bab08983dfdfc92ae22dc2cc5c12e",
+      "reviewed_content_head": "fae9a8ce6f6c97b6173da56879ce277da7fe27ac",
+      "formal_condition1_comment": {
+        "id": 6041593075,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2661#issuecomment-6041593075",
+        "created_at": "2026-10-07T15:54:38Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 3560,
+        "body_sha256": "d4f39ead20b4a0eac41755522938fc531308f73f65f8ec52b50be05d3b245493"
+      },
+      "condition2_comment": {
+        "id": 6041593075,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2661#issuecomment-6041593075",
+        "created_at": "2026-10-07T15:54:38Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 3560,
+        "body_sha256": "d4f39ead20b4a0eac41755522938fc531308f73f65f8ec52b50be05d3b245493"
+      },
+      "condition3_comment": {
+        "id": 6041966225,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2661#issuecomment-6041966225",
+        "created_at": "2026-10-07T16:15:30Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 2448,
+        "body_sha256": "d8e9d27f71f7172926bf8bda287bdb8e10cebf38f139b7cfb2204bf526855deb"
+      },
+      "merge_read_after_comment": {
+        "id": 6042037042,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2661#issuecomment-6042037042",
+        "created_at": "2026-10-07T16:19:31Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 1264,
+        "body_sha256": "2e93a6261cce0e2362e49afb7681fd8dcf71f796f9127923e8d7634bef8ef5d4"
+      },
+      "merge_commit": "2b0d761e656f721e05741cb6f8c925fce5fee46b",
+      "six_body_sha256": {
+        "docs/helix-labo/L3-requirements/business-requirements.md": "3e2bbc689b933773c06bf396df267516810d8d21bf976c0831a9c6e07687db8d",
+        "docs/helix-labo/L3-requirements/functional-requirements.md": "fd2b4605dfa3eca4ad99861d9fb9966c6511f2cf777161258c85527aa78f144f",
+        "docs/helix-labo/L3-requirements/nfr-grade.md": "343604239051cfc452d924688a98c15288b0e30f3e02492cda843269bbf58b4b",
+        "docs/helix-labo/L10-verification/business-verification.md": "bf240469ba0333665e9eabb49becb1443c8426e425f8c67e82c81baa4d0b1709",
+        "docs/helix-labo/L10-verification/functional-verification.md": "6e096ff10779acad20f94a7a89e56bcec4bb04339634a395cbd5b2737fe0d666",
+        "docs/helix-labo/L10-verification/nfr-verification.md": "2983f735ae142e126946039b195a0be483b476ffa35ef5cffee976d9f299146a"
+      },
+      "decision_record": {
+        "path": "docs/governance/decisions/helix-labo-stage5-parent066-070-l3-l10-delegated-approval-2026-10-08.md",
+        "sha256": "83a99bc96d803aaf74bc9ae90a95239ca8cb327cf66cc6d4a1e792d349c2fa94",
+        "bytes": 2196
+      },
+      "decision_pin": {
+        "path": "docs/governance/audits/requirements-stage/labo-stage5-parent066-070-review03-delegated-decision-evidence-2026-10-08-6041593075.json",
+        "sha256": "ebd329c1f6a366f24899a6567443a70495e18d79f520e8bb009605d90f66f24b"
+      },
+      "authority_state": "conditions_1_2_3_satisfied_and_main_admitted_for_this_scope",
+      "L10_executed": false,
+      "PO_postconfirmation_recorded": false,
+      "additional_formal_comments": [
+        {
+          "id": 6041873444,
+          "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2661#issuecomment-6041873444",
+          "created_at": "2026-10-07T16:09:50Z",
+          "author": "RetryYN",
+          "body_utf8_bytes": 3037,
+          "body_sha256": "cec540d9db0e854093a5e846649f3ed772b5dc356b866aa116cebb7f5e51fd98"
+        }
+      ],
+      "review_history_note": "6041873444 condition3 reread returned missing approval-decision statement; supplemental delegated approval record was added and final condition3 comment 6041966225 verified same six body pins."
+    },
+    {
+      "pr": 2658,
+      "api_state": "closed",
+      "merged": true,
+      "merged_at": "2026-10-07T16:24:34Z",
+      "api_head_sha": "6ff31fbf0fe3a6d6b718bb92773eba8b2cb71780",
+      "api_base_sha": "2b0d761e656f721e05741cb6f8c925fce5fee46b",
+      "api_merge_commit_sha": "5b64914de7357853b267d297e445cae18e204304",
+      "mechanism": "HELIX-INTELLIGENCE",
+      "stage": "3",
+      "fixed_parents": [
+        "HELIXINTELLIGENCE-L2-001",
+        "HELIXINTELLIGENCE-L2-002",
+        "HELIXINTELLIGENCE-L2-003",
+        "HELIXINTELLIGENCE-L2-004",
+        "HELIXINTELLIGENCE-L2-005",
+        "HELIXINTELLIGENCE-L2-006",
+        "HELIXINTELLIGENCE-L2-007",
+        "HELIXINTELLIGENCE-L2-008",
+        "HELIXINTELLIGENCE-L2-009",
+        "HELIXINTELLIGENCE-L2-011",
+        "HELIXINTELLIGENCE-L2-012",
+        "HELIXINTELLIGENCE-L2-013",
+        "HELIXINTELLIGENCE-L2-014",
+        "HELIXINTELLIGENCE-L2-015",
+        "HELIXINTELLIGENCE-L2-016",
+        "HELIXINTELLIGENCE-L2-018",
+        "HELIXINTELLIGENCE-L2-019",
+        "HELIXINTELLIGENCE-L2-020",
+        "HELIXINTELLIGENCE-L2-067",
+        "HELIXINTELLIGENCE-L2-072",
+        "HELIXINTELLIGENCE-L2-073",
+        "HELIXINTELLIGENCE-L2-078"
+      ],
+      "content_revision": "352153f90587956964966b4590f31962c2946c84",
+      "reviewed_content_head": "6ff31fbf0fe3a6d6b718bb92773eba8b2cb71780",
+      "formal_condition1_comment": {
+        "id": 6041829827,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2658#issuecomment-6041829827",
+        "created_at": "2026-10-07T16:07:24Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 4308,
+        "body_sha256": "4f53a517dc339fb2a61a0348974e97a081fd3edb68fd32492581fede0d079b9c"
+      },
+      "condition2_comment": {
+        "id": 6041829827,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2658#issuecomment-6041829827",
+        "created_at": "2026-10-07T16:07:24Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 4308,
+        "body_sha256": "4f53a517dc339fb2a61a0348974e97a081fd3edb68fd32492581fede0d079b9c"
+      },
+      "condition3_comment": {
+        "id": 6042097667,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2658#issuecomment-6042097667",
+        "created_at": "2026-10-07T16:22:48Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 3590,
+        "body_sha256": "cfe0d3f5d99097a9420ac2686722c342455de62f62eeeaf442a6c1957040b81d"
+      },
+      "merge_read_after_comment": {
+        "id": 6042137173,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2658#issuecomment-6042137173",
+        "created_at": "2026-10-07T16:24:57Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 1353,
+        "body_sha256": "e10442ed3e4fb7251d255fef9a701e3a2f2c4ee37aeb77e66c46d4177c4c869a"
+      },
+      "merge_commit": "5b64914de7357853b267d297e445cae18e204304",
+      "six_body_sha256": {
+        "docs/helix-intelligence/L3-requirements/business-requirements.md": "bde86431339e3464e9e893dcd4e2f7aa9f6b7a81035762938621a258e2b2cc44",
+        "docs/helix-intelligence/L3-requirements/functional-requirements.md": "c19825b3fa82edaafd787bd092076bea910a89b99d13aa4c208b0c51e781b82f",
+        "docs/helix-intelligence/L3-requirements/nfr-grade.md": "a50c5379206610db3dd730a230ad4a52657f9600f7c8363101e1603d59ac8681",
+        "docs/helix-intelligence/L10-verification/business-verification.md": "386251e6fd6097b8892ace2ba2db5c69ce009fdb843a1c5bca3996f8cf581c4a",
+        "docs/helix-intelligence/L10-verification/functional-verification.md": "aeefde170f0087794bf86d3d3895c35c7646b5b7ec2a68666b90c4f0f35913a0",
+        "docs/helix-intelligence/L10-verification/nfr-verification.md": "f38e48d6dc2928009caa14147d675dd1d7572cd0f8c2c65c993fbe5dc43baf12"
+      },
+      "decision_record": {
+        "path": "docs/governance/decisions/helix-intelligence-stage3-l3-l10-delegated-decision-2026-10-08.md",
+        "sha256": "72285296790caff92fb956e1491e24e78aea292a559b90d27e67ca1d797c5032",
+        "bytes": 4469
+      },
+      "decision_pin": {
+        "path": "docs/governance/audits/requirements-stage/intelligence-stage3-review04-delegated-decision-pin-2026-10-08.json",
+        "sha256": "8850c14e60a65fb2f3780a2c362eee8983a45a5ab6a793999bec7cc2e6aff78d"
+      },
+      "authority_state": "conditions_1_2_3_satisfied_and_main_admitted_for_this_scope",
+      "L10_executed": false,
+      "PO_postconfirmation_recorded": false
+    },
+    {
+      "pr": 2668,
+      "api_state": "closed",
+      "merged": true,
+      "merged_at": "2026-10-07T16:39:39Z",
+      "api_head_sha": "46d106ee5275642fe6d08896c8cc6701122b2a5b",
+      "api_base_sha": "5b64914de7357853b267d297e445cae18e204304",
+      "api_merge_commit_sha": "00298f79229198965d889ebf0b6a1bedc4d03648",
+      "mechanism": "HELIX-BRAIN",
+      "stage": "5",
+      "fixed_parents": [
+        "HELIXBRAIN-L2-024"
+      ],
+      "content_revision": "3cf703d86166e82bbc31caff98766e744f613d22",
+      "reviewed_content_head": "46d106ee5275642fe6d08896c8cc6701122b2a5b",
+      "formal_condition1_comment": {
+        "id": 6042118353,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2668#issuecomment-6042118353",
+        "created_at": "2026-10-07T16:23:55Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 5636,
+        "body_sha256": "54b4ab6844bedbbc892ea7335d5a5132f973143a288f955afe201c1d23817345"
+      },
+      "condition2_comment": {
+        "id": 6042118353,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2668#issuecomment-6042118353",
+        "created_at": "2026-10-07T16:23:55Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 5636,
+        "body_sha256": "54b4ab6844bedbbc892ea7335d5a5132f973143a288f955afe201c1d23817345"
+      },
+      "condition3_comment": {
+        "id": 6042386762,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2668#issuecomment-6042386762",
+        "created_at": "2026-10-07T16:38:15Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 4085,
+        "body_sha256": "78bc991b60ce607fe595375e5ba314013062cfee0d1712e2d4ea92bbe20d0097"
+      },
+      "merge_read_after_comment": {
+        "id": 6042419655,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2668#issuecomment-6042419655",
+        "created_at": "2026-10-07T16:40:00Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 1340,
+        "body_sha256": "de95714b6e7390c0fefb8f294df76cde1648ca25db91b625fb0b9f0b3722958d"
+      },
+      "merge_commit": "00298f79229198965d889ebf0b6a1bedc4d03648",
+      "six_body_sha256": {
+        "docs/helix-brain/L3-requirements/business-requirements.md": "e3dfad1e76e4120d4a438e1b8145d5efc28f7cda0f039021b47339e4c264ccb8",
+        "docs/helix-brain/L3-requirements/functional-requirements.md": "6cf8be0c095fcd5ad5e52b6ee99e607c18d1b26be6f0d2e625e727d868a33cdf",
+        "docs/helix-brain/L3-requirements/nfr-grade.md": "07b6c0843cde302252228675088a3a74147672a540c4da5c63e30b2d51f85793",
+        "docs/helix-brain/L10-verification/business-verification.md": "65fc061d4e78b7360cf77d83a396d4c303f4159c1ba047990b31fb6810992d6e",
+        "docs/helix-brain/L10-verification/functional-verification.md": "866f1e1d852b272611d6233c725035d3138d8b013f932f539a9af02bbefeba6c",
+        "docs/helix-brain/L10-verification/nfr-verification.md": "40fbd13f0a253a4686d8c127cf190d63c342ecc0e18aae3796b414eae33d5b70"
+      },
+      "decision_record": {
+        "path": "docs/governance/decisions/helix-brain-stage5-parent024-l3-l10-delegated-decision-2026-10-08.md",
+        "sha256": "201dc99826cf5a45118c8fd047f3526590f509aa230c991e9b798eb254a5e3be",
+        "bytes": 5616
+      },
+      "decision_pin": {
+        "path": "docs/governance/audits/requirements-stage/brain-stage5-parent024-delegated-decision-pin-2026-10-08.json",
+        "sha256": "31776b7b1654b3dabd4aa0e47e020492dd7aebc39bd9226f796b84609e8b2a3c"
+      },
+      "authority_state": "conditions_1_2_satisfied_for_content_revision_3cf703d86; condition3 verified for exact HEAD 46d106ee5; main admitted after merge/read-after",
+      "approval_body_revision": "3cf703d86166e82bbc31caff98766e744f613d22",
+      "condition3_head": "46d106ee5275642fe6d08896c8cc6701122b2a5b",
+      "L10_executed": false,
+      "PO_postconfirmation_recorded": false,
+      "history_note": "#6042118353 is review02 condition1/2 on approved content 3cf703d86; condition3 #6042386762 checks committed 46d106ee5 and decision record; merge/read-after #6042419655 admits 46d106ee5 as PR head."
+    }
+  ],
+  "unadmitted_or_not_currently_confirmed": [
+    {
+      "scope": "HELIX-HARNESS Stage2b remainder parents017/018/019/020/024",
+      "pr": 2669,
+      "state": "open",
+      "draft": true,
+      "current_head": "9ee03bd90393a53c21b9ed2fed01de71520192d8",
+      "base": "5b64914de7357853b267d297e445cae18e204304",
+      "latest_formal_review_or_request": {
+        "id": 6042441548,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2669#issuecomment-6042441548",
+        "created_at": "2026-10-07T16:41:12Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 7971,
+        "body_sha256": "19b50f42fd5fc509814bbd32693a970ba4fe5d990df22f5629641cca9e7cd567",
+        "body": "## review02（HEAD 9ee03bd90393a53c21b9ed2fed01de71520192d8、merge-base 5b64914de7357853b267d297e445cae18e204304）\n\nreviewer：Claude（lane `review_merge`。Opus 5.5の独立照合と、Fable 5.1の見解）\n\n照合の範囲：\n- 6本文のStage 2b残件節の全体（FR 361–456、FV 372–619、BR、BV、NFRG、NFRVの対応行）\n- 固定親 `f6dad2a33`：L2の403–437と499–525、L11の212–215と235–260\n- PO判断記録の46–49行と53行\n- 前回 `cf3cc158b` からの本文差分：FR:439、FV:552・606–612、NFRV:94だけ\n\n### 結論：Major 1。委任の条件1は成立しない\n\n**review01 M1の扱い**：原文・選択肢・推奨案・影響候補・判断ownerの5要素について、要素ごとの正常（R074）と単独欠落（R096〜R100）がそろった。戻し先（HARNESS要求owner）、ID連番、NFRV:94の分母、FV:612のtraceもそろっている。判断ownerを5要素目に入れたことは、L2:514「未ownerの必須事項は形成資料不足」とL11:247の正常例に根拠があり、L2の意味は変えていない。旧文の拒否・保留・補完禁止もすべて残っている（類型5に該当なし）。\n\nただし、次のM-aが残る。\n\n**M-a（類型3・4）推奨案・影響候補・選択肢を「入力をそのまま保つもの」として扱っている**\n- 固定親の定め：\n  - L2:505の入力に、推奨案・影響候補を含む判断packetはない。\n  - L2:507では、残る必須人間判断の「原文、決める選択肢、推奨案、影響候補」はengineの出力である。\n  - L2:512は「人間専決値はエンジンが補完せず、原文・選択肢・推奨・影響候補を持つ判断待ちへ送る」とし、L11:247の正常例でもこれらを提示する主体はengineである。\n- 現行の照合：\n  - AC-024-03（FR:439）は、5要素が「入力と同じidentity/value…のまま保たれる場合に限り」候補として提示するとしている。\n  - R074（FV:552）は、5要素すべてを入力として固定している。\n  - R098（推奨案）とR099（影響候補）は、「入力のpacketからその要素を欠落させる」と形成資料不足になる、としている。\n- 起きうること：\n  - engineが推奨案・影響候補・選択肢を形成する義務を観測していない。\n  - 根拠から推奨案・影響候補を正しく形成して提示するengineが、R098・R099で不合格になる。L3がL2の担当（engineの出力）を入力側の義務へ移している。\n- **review側の誤りの記録**：この形は、review01でreviewerが求めた変更（「出力packetの各要素が入力のidentityのまま保たれていることを照合する」）から生じた。要素の由来を分けずに書いたreviewerの誤りであり、作成側の修正は依頼文に忠実だった。\n- 求める変更（今の5要素の完備・単独欠落の構成は残し、要素の由来を分ける）：\n  - **入力をそのまま保つ要素**：原文と判断owner。R074の値・identity一致と、R096（原文）・R100（判断owner）の入力欠落CASEはそのまま残す。\n  - **engineが形成して出力する要素**：決める選択肢、推奨案、影響候補。\n    - R074には、これらが出力packetにあり、入力の根拠（source identity/revision/scope）に結びついていることを照合する形で足す。人が決める値そのものは補完しないことも明記する。\n    - R097（選択肢）・R098（推奨案）・R099（影響候補）は、入力のpacketからその要素を欠かす形をやめる。代わりに、その要素の形成に必要な根拠だけを欠かした入力にする。期待は、その要素を推定・捏造せず、形成資料不足として示し、「人の確認・合意待ちの候補」として提示しないこと。戻し先はHARNESS要求owner。\n  - AC-024-03の文を、上の由来の区別に合わせて直す。人間専決値を補完しないことは、そのまま残す。\n\n### Fableの見解（同じHEADの6本文と固定親をFable自身が読んだもの）\n- 結論行は原文のまま：「承認してよい」\n- Major：なし。判断ownerを5要素目にして、欠けたらHARNESS要求ownerへ返す扱いは、L2:514・L11:247の範囲内としている。\n- Minor：\n  - FR:439の「固定L2-024:507の…判断owner」は位置の示し方が不正確である。507は4要素だけで、判断ownerの根拠はL2:514とL11:247。\n  - R096〜R100に共通の「欠けた人間判断値またはownerを補完せず」は、R098（推奨案はengineの生成物）には当てはまらない。ただし害はない。\n  - 参考：PR本文の「本文変更なし」は、今の内容と食い違っている。\n- 照合した対象revision：`9ee03bd90`。6本文のSHA-256はFableが自分で計算し、下の値と一致した。\n- 未確認範囲：Stage 2bの全245 CASE行の逐語再読、監査JSON、PO採択行、business/NFR側の固定親pin。\n\n### 判断の扱い\n- OpusはM-aを挙げ、Fableは「承認してよい」とした。見解は一致していない。\n- Fable自身のMinor 2も、推奨案がengineの生成物であることを指摘しており、M-aと同じ点を見ている。\n- 運用モデル「L3／L10承認の委任」に従い、OpusがM-aを固定親L2:505／507／512とL11:247の原文で確かめた。妥当なので、作成側へfindingとして返す。\n- 修正で本文revisionが変わったら、新しいrevisionで条件1と2をやり直す。\n\n### Opusの残余（Minor以下。返さない。M-aと一緒に直してよい）\n- FR:439の5要素の根拠は、「L2:507／514、L11:247」と併記するのが正確である（Fableと同じ指摘）。\n- FV:612は照合先を旧RDJ-FR-003／AC-003としているが、owner／re-entryを含むのはRDJ-FR-007／AC-007である。\n- R057とR086はownerを含まない4要素の判断待ちを返しており、AC-03の5要素と書き方がそろっていない。\n- AC-03の「value／identityを保つ」には、値の改変だけを変える単独反例がない（R074の正しい値の照合でだけ検出する）。\n- 017-R012（再現性）は正常CASEだけで、digest不一致の単独反例がない（既存）。\n- NFR-C-024-01の候補値に、packet要素の欠落件数がない。\n- FR:373の017の範囲は403–410、reaudit JSONは403–409（空行1行の差。表のSHAは403–410と一致）。\n\n### pin照合（Opusが自分で計算した）\n次はすべて一致した。review01の未確認範囲は、ここで解消した。\n- 固定L2の全文 `aed75cb4…`、L11の全文 `09b29631…`\n- L2の5親span、507・514行\n- L11の212–215と240–260のspan、212〜215行と247行\n- PO判断記録の全文 `c7a6d39c…` と46–49・53行\n- 旧RDJ-FR／AC の全文とspan、FR:453の他の旧sourceの全文とspan\n\n### 静的検査（exact HEAD）\n- `scfctl validate` 147/0、`stale=0`、`residuals=0`\n- `govcheck ok atoms=7622`\n- `git diff --check` clean、merge-treeでconflictなし\n\n### 6本文のSHA-256（HEAD 9ee03bd90）\n| 文書 | SHA-256 |\n|---|---|\n| L3-BR | `9fb531a55c61c4836ae614cadbd850f3967119cb1f0f2eb36dad1e39ebab75e2` |\n| L3-FR | `c97255103e145d88774bef297be593281ff09336161a41f7a4fceffdcd7fb3f4` |\n| L3-NFR | `ee84bc87ff324eea929d266934c0debb856018aca25c0044f68b11c141c3263d` |\n| L10-BV | `864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad` |\n| L10-FV | `eb37f40f850147597f5a205a1c0a63e69aa843636f3d0733f8d0d9fb624c6b90` |\n| L10-NFR | `17ee1dc8ab6786416680e496ba8fb83a714756dd8f853830afe036ddcc9b36e9` |\n\n### 未確認範囲（Opus）\n- FR表のsemantic digest列（算出方法が記録されていない）\n- integration・reaudit JSONの補助hash\n\n本commentから、要求の意味、承認、PO確認、merge admissionは生成しない。\n",
+        "formal_target_head": "9ee03bd90393a53c21b9ed2fed01de71520192d8"
+      },
+      "authority_effect": "none; latest formal 6042441548 has unresolved findings; PR remains open and no condition3/main admission for this scope"
+    },
+    {
+      "scope": "HELIX-INTELLIGENCE Stage4 parents017/030–041/044/045",
+      "pr": 2670,
+      "state": "open",
+      "draft": true,
+      "current_head": "db3f490e4401fbc30eafad6fb76caf56cb07f58c",
+      "base": "00298f79229198965d889ebf0b6a1bedc4d03648",
+      "latest_formal_review_or_request": {
+        "id": 6042571002,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2670#issuecomment-6042571002",
+        "created_at": "2026-10-07T16:47:53Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 783,
+        "body_sha256": "b4c1ea9016c9405894bc0934282a3d16779bcbcf99341216cf327acf89695955",
+        "body": "修正後の独立reviewを依頼します。\n\nHEAD `db3f490e4401fbc30eafad6fb76caf56cb07f58c`、base `00298f79229198965d889ebf0b6a1bedc4d03648`。\n\nreview02 M2修正：nfr-gradeの017-02p/036-02p参照を同期。新監査intelligence-stage4-review02-nfr-grade-sync-2026-10-08.jsonにformal実本文と6文書SHAを固定。Stage4対象15親についてOpus/Fable同6本文の全体再照合を依頼。review01から持ち越したBR/BV/nfr-grade本文、旧asset内容、pack内容、類型5範囲の未確認を解消し、固定親とPO採択、CASE対応を確認してください。L10未実行、旧承認非継承。\n\nRoot静的検証と公開/Git実bytes照合を確認。Draft、fixture未実行。旧reviewや時点記録から新本文の承認を生成しません。\n",
+        "formal_target_head": "db3f490e4401fbc30eafad6fb76caf56cb07f58c"
+      },
+      "authority_effect": "none; latest formal 6042571002 requests fresh full Opus/Fable condition1/2 on current content and remains unadmitted"
+    },
+    {
+      "scope": "HELIX-LABO Stage2b remainder",
+      "pr": 2671,
+      "state": "open",
+      "draft": true,
+      "current_head": "bb66dff7929bcbfe3cbee563af3883c10eff99d2",
+      "base": "5b64914de7357853b267d297e445cae18e204304",
+      "latest_formal_review_or_request": {
+        "id": 6042406553,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2671#issuecomment-6042406553",
+        "created_at": "2026-10-07T16:39:18Z",
+        "author": "RetryYN",
+        "body_utf8_bytes": 6687,
+        "body_sha256": "0ecee6a75f25d16817663802e5960e7d325284160786ddfc8711bf649e304fb3",
+        "body": "## review01（HEAD bb66dff7929bcbfe3cbee563af3883c10eff99d2、merge-base 5b64914de7357853b267d297e445cae18e204304）\n\nreviewer：Claude（lane `review_merge`。Opus 5.5の独立照合と、Fable 5.1の見解）\n\n照合の範囲：\n- LABO Stage 2b残り22親（012〜030、034、035、058）の、6本文の節全体。\n- 固定親 `f6dad2a33`：L2の167–262と403–415、L11の63–86と156–162。\n- PO採択 `633bf12ea`：helix-labo-requirements-po-decision-2026-09-28.md の60–98行。\n- 本PRで6本文に差分はない（base比で0件）。\n\n### 結論：Major 3。委任の条件1は成立しない\n\n3件とも類型1（宛先が決まらない）である。固定親は、選択したsourceの入力・契約・receiptに不備があったときの戻し先を、次のとおり定めている。\n- L2:73：欠落はsource責務へ戻す。\n- L2-058:413：選択sourceのversion/scope/許可/receiptが不足・不一致ならsource owner／SECURITYへ戻す。\n- L11:162：入力契約・版は各sourceとLABOへ、許可/classificationはSECURITYへ戻す。\n\n同じPRの030-AC-02（FR:1346）は、この3行からProduct Core source ownerへの戻し先を導いている。次の3か所だけが、同じ構造なのに宛先を置いていない。\n\n**M1（029：CI/test → Aggregate）**\n- LABO-029-AC-02（FR:1305）は、「receipt・contract・実行証拠の不備には固定親にない宛先を作らず拒否/unknownを保持する」としている。\n- 次の3つのCASEも、戻し先なしのunknown保持である。\n  - FV:1286（C17）：OS実行証拠の欠落。「追加owner routeを固定L2-029から導けない」としている。\n  - FV:1292（C18）：HARNESS verification contractのstale。\n  - FV:2513（C19）：OS execution receiptの不一致。\n- L2-029単独には宛先がないが、L2-058:413とL11:162から宛先が決まる。\n\n**M2（023：BRAIN → Aggregate）**\n- LABO-023-AC-02（FR:1054）とFV:2503（C13：BRAIN source contractの欠落）は、contractの欠落を「拒否/unknown保持」だけにしていて、戻し先を置いていない。\n- L11:162とL2:73から、戻し先は決まる。\n\n**M3（058-C15）**\n- FV:2094（operationの変更後に旧receiptを流用するCASE）は、「owner戻し先は固定L2で特定されないため拒否のみ」としている。\n- しかしL11:161は、操作の変更を再照合の対象として名指ししている。L2-058:413も、receiptの不足・不一致の戻し先をsource owner／SECURITYと定めている。\n- 同じ構造のC14（新source）とC16（scope変更、FV:2100）は宛先を持っている。C15だけが外れている。\n\n求める変更（今の拒否・unknown保持・CIを起動しない・passを生成しないは残し、次を足す）：\n- 029-AC-02、C17〜C19、023-AC-02、C13、058-C15に、固定親L2-058:413、L11:162、L2:73から導いた戻し先を足す。\n  - 当該の選択source owner（OS実行証拠・receiptはOS、verification contractはHARNESS、BRAIN source contractはBRAIN）\n  - 許可・classificationに関わるものはSECURITY\n- 030-AC-02と同じ書き方で、導いた根拠の行を示す。\n- 他の宛先へ返したら不合格とする文も足す。\n\n### Fableの見解（同じHEADの6本文と固定親をFable自身が読んだもの）\n- 結論行は原文のまま：「承認してよい」\n- Major：なし。\n- Minor：\n  - (1) FR:1529の独立case追補trace表の058行に、`L10-LABO-058-C41`がない（索引の不整合のみ）。\n  - (2) FR 1538–1548のL11 §24 named-parent trace（review03）が、052/054/055を「未確認・未完」と自分で記している。22親の外の補助traceである。\n  - (3) 注記：節一覧にないFV:1754「Root検収追補」が、22親の個別fixtureの大半を定義している。判断記録はこの節も含めて示すこと。\n- 照合した対象revision：`bb66dff79`。6本文のSHA-256はFableが自分で計算し、下の値と一致した。\n- 未確認範囲：inventory内のGitHub comment ID・body SHA（条件2の対象外）。\n\n### 判断の扱い\n- OpusはM1〜M3を挙げ、Fableは「承認してよい」とした。見解は一致していない。\n- github-upstream-operating-model.md「L3／L10承認の委任」に従い、OpusがM1〜M3を固定親L2:73、L2-058:413、L11:161–162の原文で確かめた。妥当なので、作成側へfindingとして返す。\n- 修正で本文revisionが変わったら、新しいrevisionで条件1と2をやり直す。\n\n### Minor（返却しない。M1〜M3と一緒に直してよい）\n- FR:1529の058行にC41がない（Fable(1)、Opusも同じ指摘）。\n- BR:27とBV:25の025行に、review04の追加CASE C10が書かれていない。\n- 058のFR親句trace表に、C08・C11・C23がない（negative一覧には含まれている）。\n- §24 #1「scope未許可のまま横断済みとする」の単独CASEがあるのは021・023・025だけで、他は058-C22/C40の一般形に頼っている。\n- 035-C05/C06は、LABO側の出力欠落を「当該source owner」へ返している。欠陥の発生元と宛先が一致していない。\n- 017-C05の「既存rule source owner」はL2:129から導けるが、AC-02には書かれていない。\n- 034/035のconnector欠落→CONNECTのconnector契約ownerは、L2:159–162から導けるので許容範囲と見た。\n- review側の記録：照合依頼文で058のL11を156–177と書いたが、164–177はL2-059の行で、058は156–162である。判定には影響していない。\n\n### 静的検査（exact HEAD）\n- `scfctl validate` 147/0、`stale=0`、`residuals=0`\n- `govcheck ok atoms=7622`\n- `git diff --check` clean、merge-treeでconflictなし\n\n### 6本文のSHA-256（HEAD bb66dff79）\n| 文書 | SHA-256 |\n|---|---|\n| L3-BR | `3e2bbc689b933773c06bf396df267516810d8d21bf976c0831a9c6e07687db8d` |\n| L3-FR | `fd2b4605dfa3eca4ad99861d9fb9966c6511f2cf777161258c85527aa78f144f` |\n| L3-NFR | `343604239051cfc452d924688a98c15288b0e30f3e02492cda843269bbf58b4b` |\n| L10-BV | `bf240469ba0333665e9eabb49becb1443c8426e425f8c67e82c81baa4d0b1709` |\n| L10-FV | `6e096ff10779acad20f94a7a89e56bcec4bb04339634a395cbd5b2737fe0d666` |\n| L10-NFR | `2983f735ae142e126946039b195a0be483b476ffa35ef5cffee976d9f299146a` |\n\n### 未確認範囲（Opus）\n- 旧asset（archive）の引用行とSHA（FableはSHAを確認済み）\n- 012・058以外のspan SHA（Fableは22件の一致を確認済み）\n- §24 #9の052/054/055（対象外）\n- 034〜035の旧source起点の妥当性\n\n本commentから、要求の意味、承認、PO確認、merge admissionは生成しない。\n",
+        "formal_target_head": "bb66dff7929bcbfe3cbee563af3883c10eff99d2"
+      },
+      "authority_effect": "none; latest formal 6042406553 has unresolved findings; PR remains open and no condition3/main admission for this scope"
+    }
+  ],
+  "legacy_sources": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L0-charter/helix-charter_v0.1.md",
+      "lines": "18,24-30,59-60",
+      "sha256": "8eff96bf58e6bb2cca247acef18c4f6cf07e304f3f23fb4179ddd8e5b19b23d8",
+      "asset_id": "LEGACY-ASSET-3B16BCFFAF353ADA813A",
+      "ledger_line": 419
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+      "lines": "82-85",
+      "sha256": "7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb",
+      "asset_id": "LEGACY-ASSET-6EBDB617A8104A7756D0",
+      "ledger_line": 211
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/README.md",
+      "lines": "87-89",
+      "sha256": "21a875ca5b46a8396485690a8405923ea197552fe4aa2302b1eaad6f7e650985",
+      "asset_id": "LEGACY-ASSET-80FD1264A2C50E2E4AA4",
+      "ledger_line": 2289
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    }
+  ],
+  "source_pin_disposition": "Existing decision records, pin JSON, formal comment bodies, and old audits remain immutable. All eleven 2026-10-07/08 newly admitted scopes above have exact-revision six-document hashes and formal/condition3/merge-read-after comment locators. Current record hashes are calculated from main blobs; scope limitation remains per each decision record.",
+  "limits": [
+    "PO post-confirmation remains unrecorded.",
+    "L10 fixtures are not executed.",
+    "No claim that all 274 parents are semantically closed.",
+    "INT Stage4, HARNESS Stage2b, and LABO Stage2b remain unadmitted.",
+    "Parent counts and group counts stay 274/41/48; admitted statuses do not change denominator."
+  ],
+  "included_read_only_inventories": [
+    {
+      "path": "docs/governance/audits/requirements-stage/harness-stage3-parent046-bv-fv-case-inventory-m20-2026-10-08.md",
+      "bytes": 4757,
+      "sha256": "323c27a2e0690f5b8f9f663355a7d3bcd7776dffe0d0beefc0a89b588d13e2b3",
+      "same_bytes_as_source_worktree": true,
+      "scope": "HARNESS Stage3 parent046 BV/FV same CASE ID only; no new independent fixture count; authority/decision effect none"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/harness-stage3-parent046-bv-fv-case-inventory-m20-2026-10-08.json",
+      "bytes": 20302,
+      "sha256": "7240830bf941c4dbdece1875a9cb02b40d119cc2d30ba2ccae43289b961c9fae",
+      "same_bytes_as_source_worktree": true,
+      "scope": "HARNESS Stage3 parent046 BV/FV same CASE ID only; no new independent fixture count; authority/decision effect none"
+    }
+  ],
+  "preserved_old_audits": [
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-post-confirmation-admission-refresh-2026-10-07-83cb0bcd.json",
+      "sha256": "aa845eae52e224b9667bcb2c9c36145b9489a8fedb517d3cfc47497dbdb7dd94",
+      "modified": false
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-po-post-confirmation-evidence-correction-2026-10-07-8e2751e3.json",
+      "sha256": "f266e9cc36c3bfa7ee0446a4afb1121e793e25f942b1ea60b9b30c7664c39fed",
+      "modified": false
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-po-post-confirmation-evidence-correction-2026-10-07-27c34bd3.json",
+      "sha256": "8f74247b793e7b714b1ed59f5c5ae0846b386fbc6acdf51b25b7ecc5460b5150",
+      "modified": false
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-po-post-confirmation-evidence-2026-10-07-5b7503aa.json",
+      "sha256": "e7052dffa18d27099675881aeb6098a5bca77ed80247df39ae1152a03266c464",
+      "modified": false
+    }
+  ],
+  "living_document_after_update": {
+    "path": "docs/governance/l3-l10-po-post-confirmation.md",
+    "bytes": 167308,
+    "sha256": "6c362efcbe10d0c8f7840dccb2d24a45acd4f954fd6b3d8e9497296bd8956e4f"
+  },
+  "refresh_target_main": "00298f79229198965d889ebf0b6a1bedc4d03648",
+  "current_target_scopes": 11,
+  "previous_working_snapshot": {
+    "path": "docs/governance/audits/requirements-stage/l3-post-confirmation-admission-refresh-2026-10-08-5b64914d.json",
+    "sha256": "54d1ef244723bf15978a5328ac424236373c9656e2717c89b36db416a5c284d7",
+    "published": false
+  }
+}
