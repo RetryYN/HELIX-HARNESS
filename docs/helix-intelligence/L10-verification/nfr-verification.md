@@ -199,7 +199,7 @@ selected internal/external sourceを別populationで集計し、CASE-INT-077-03a
 | `CASE-NFR-INT-061-03` | `CASE-INT-061-06a`–`CASE-INT-061-06c` | task identity、実績source、実績revisionを各1変異で計上する。 |
 | `CASE-NFR-INT-062-03` | `CASE-INT-062-05a`–`CASE-INT-062-05e` | candidate欠落、regression、write-set、obligation変更、obligation staleを分離する。 |
 | `CASE-NFR-INT-063-03` | `CASE-INT-063-05a`–`CASE-INT-063-05d` | current judgment/contractのmissing/staleを別fixtureで計上する。除外CASE-063-02dは分母に入れない。 |
-| `CASE-NFR-INT-069-03` | `CASE-INT-069-08a`–`CASE-INT-069-08o`, `CASE-INT-069-04h`–`CASE-INT-069-04i` | model入力15fieldとexplanation/ceiling 2条件を別populationで数え、通常scenarioの不足値は計算不能/部分unknownに保つ。 |
+| `CASE-NFR-INT-069-03` | `CASE-INT-069-08a`–`CASE-INT-069-08o`, `CASE-INT-069-04h`–`CASE-INT-069-04j` | model入力15fieldを、explanation、選択sourceのceiling=8を計算が無視する誤り、選択sourceからceilingが欠落した状態の3条件と別populationで数える。後者は通常scenarioの不足値と同様、数値を補わず計算不能/部分unknownに保つ。 |
 | `CASE-NFR-INT-070-03` | `CASE-INT-070-09a`–`CASE-INT-070-09g`, `CASE-INT-070-06a`–`CASE-INT-070-06i`, `CASE-INT-070-10a`–`CASE-INT-070-10c` | stage receipt、scenario/product identity、誤予測、out-of-order/stale receiptを別に計上する。段階順は033→069→040→LABO-024。 |
 | `CASE-NFR-INT-071-03` | `CASE-INT-071-05a`–`CASE-INT-071-05e`, `CASE-INT-071-05g`, `CASE-INT-071-05i`–`CASE-INT-071-05r` | 05f/05hは04f/04gへの完全ID indexで独立分母外。oracle適用条件、未決threshold、後段順序、比例仮定、HARNESS-L2-010/011常時pack contractと適用時023 classを別に評価する。retry/recoveryはAC-071-04の04f/04gで数え、この母集団へ重ねない。rollback生成05eは本母集団に含む。 |
 | `CASE-NFR-INT-074-03` | `CASE-INT-074-06a`–`CASE-INT-074-06h` | feedback入力fieldの欠落/stale/unknown状態を別々に記録し、LABO評価状態を未評価のまま保ち、未定義のapplicability ownerを作らない。 |

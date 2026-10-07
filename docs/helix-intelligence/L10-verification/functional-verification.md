@@ -2481,7 +2481,8 @@ DB disconnect eventと要求されたdependency/failure/retry edgeを入力す�
 | `CASE-INT-069-04f` | recovery ruleだけ不在 | recovery/retry成功を補完せずunknown/blockedを保持し、固定L2が指定するownerを特定できない場合は戻し先unknown。 |
 | `CASE-INT-069-04g` | virtual resultを実環境結果と表示 | virtual/actualを区別し不合格、actual観測は未成立のままにする。実測sourceを入力が特定しない場合は戻し先unknown。 |
 | `CASE-INT-069-04h` | AI explanationだけをtransition evidenceとして提示 | explanationをstate transition根拠とせず、source/model rule traceを照合する。 |
-| `CASE-INT-069-04i` | shared DB ceilingだけを削除 | worker追加の速度比例を算出せず、明示されたceilingを維持する。 |
+| `CASE-INT-069-04i` | 選択済みの有効な同revision sourceにshared DB ceiling=8を残したまま、計算だけがceiling制約を落としてworker追加を比例速度とする | 不合格。選択sourceのceiling=8を有効上限として適用し、L11の正常oracleどおりn=4でもthroughputは8 jobs/minとする。 |
+| `CASE-INT-069-04j` | 選択sourceのshared DB ceiling fieldだけ欠落。同revisionの別sourceやfallbackはない。他の入力・source identity/revision/owner/scopeは維持 | ceiling/throughput/timeの数値を補完せず、該当計算を計算不能/部分unknownにする。L11正常fixtureの値を欠落入力へ移植せず、L2が定めない追加ownerも作らない。 |
 
 ### CASE-INT-069-05 — 未見の有限state/rule (AC-INT-069-05)
 
