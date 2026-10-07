@@ -12,8 +12,8 @@
 
 ### 検証fixtureとcase
 
-- **L10-BRAIN-007-C01**（AC `BRAIN-007-AC-01`／`BRAIN-007-AC-02`に対応）：L1-007、L2-011/025およびLABO→BRAIN `HELIXBRAIN-L2-020`の参照revisionを記録した上で、必須source/provenance/evidence/scope等が揃いLABO対象revisionが一致する候補を投入し、各owner stateが分離されることを確認する。 **期待oracle**：候補はsource identity/revisionと全入力fieldを保持し、LABO評価・OS登録・BRAIN独立検証・採否を別stateとして返す。
-- **L10-BRAIN-007-C02**（AC `BRAIN-007-AC-01`／`BRAIN-007-AC-02`に対応）：source identity、revision、provenance、evidence、adopted reason、evaluated scope、counterexample、limitationの欠落・stale・danglingをfieldごとに個別に与える。加えてLABO評価未実施なのに評価済みclaimを返す変異を個別に与える。 **期待oracle**：candidate stateを維持しpromotionを止める。根拠fieldの不足・staleは未採用候補へ戻してpromotionを停止し、LABO未評価はLABOの既存評価契約へ戻す。上流意味変更が必要な場合だけL1へ戻す。
+- **L10-BRAIN-007-C01**（AC `BRAIN-007-AC-01`／`BRAIN-007-AC-02`に対応）：L1-007、L2-011/025およびLABO→BRAIN `HELIXBRAIN-L2-020`の参照revisionを記録した上で、7 provenance group（source identity/revision、provenance、evidence、adopted reason、evaluated scope、counterexample、limitation）と8番目のLABO評価対象revisionが揃い、LABO対象revisionがcandidate revisionに一致する候補を投入し、各owner stateが分離されることを確認する。 **期待oracle**：候補は全8 groupを保持し、source identityとsource revisionを別atomic fieldとして照合し、LABO評価・OS登録・BRAIN独立検証・採否を別stateとして返す。
+- **L10-BRAIN-007-C02**（AC `BRAIN-007-AC-01`／`BRAIN-007-AC-02`に対応）：7 provenance group内の8 atomic field（source identity、source revision、provenance、evidence、adopted reason、evaluated scope、counterexample、limitation）の欠落・stale・dangling・不一致を各atomic fieldで個別に与える。LABO評価未実施なのに評価済みclaimを返す変異も個別に与えるが、これらは8-group denominatorのfield数には加えない。LABO評価対象revision欠落は単独case C10で照合する。 **期待oracle**：candidate stateを維持しpromotionを止める。根拠fieldの不足・staleは未採用候補へ戻してpromotionを停止し、LABO未評価はLABOの既存評価契約へ戻す。上流意味変更が必要な場合だけL1へ戻す。
 - **L10-BRAIN-007-C03**（AC `BRAIN-007-AC-02`）：evaluated scope、counterexample、limitation、adopted reasonをそれぞれ個別に欠落させる。**期待oracle**：該当fieldを特定しaccepted/matureを拒否する。未採用候補へ戻してpromotionを停止し、上流意味変更が必要な場合だけ該当L1へ戻す。
 - **L10-BRAIN-007-C04**（AC `BRAIN-007-AC-01`／`BRAIN-007-AC-02`に対応）：AI生成のみ、成功実績一件のみでaccepted/matureを要求し、昇格が起きないことを確認する。 **期待oracle**：accepted/matureへの遷移が起きず、AI生成または単一成功実績のみを根拠にできないことを返す。
 - **L10-BRAIN-007-C05**（AC `BRAIN-007-AC-01`／`BRAIN-007-AC-02`に対応）：LABO評価対象revisionを候補revisionと不一致にする。 **期待oracle**：LABO結果を対象revision不一致として保留し、評価の修正・再提示を既存LABO評価契約へ返す。BRAIN candidate revisionと採否stateは変えない。
@@ -21,7 +21,8 @@
 - **L10-BRAIN-007-C07**（AC `BRAIN-007-AC-02`）：LABO評価receiptのみ、OS登録receiptのみ、OS振分け状態のみ、BRAIN独立検証recordのみをそれぞれ独立した変異として採用扱いにする。**期待oracle**：各recordはそれぞれの状態として保持され、採否stateは未変更。LABO評価、OS登録・振分け、独立検証、採否の4状態を別々に観測する。採否の順序は依存先L2-025の条件で、本caseのoracleでは判定しない。
 - **L10-BRAIN-007-C08**（AC `BRAIN-007-AC-01`に対応）：現行契約に適合し、source/evidence/scope、LABO対象revision、OS登録・振分け、独立検証および既存採否根拠がすでに揃ったrecordを与える。 **期待oracle**：採用済みrecordから全根拠・owner stateをsourceまで遡れ、accepted/matureの根拠を表示できる。新しい実績数・threshold・actor承認を要求しない。
 
-- **L10-BRAIN-007-C09 — 未見正常（`BRAIN-007-AC-01`）**：既存fixtureにないPattern/Unit/Part候補の組合せを使うが、8由来field、LABO対象revision、必要なowner記録は全て固定契約どおり与える。**期待oracle**：C01と同じAC-01に従って候補または既存採用記録のsource-to-decision traceとLABO/OS/BRAIN各stateを照合する。新しい実績数、threshold、actor承認は要求しない。必須入力を満たせない場合は正常fixtureとして扱わず、該当AC-02のunknown/holdへ分類する。
+- **L10-BRAIN-007-C09 — 未見正常（`BRAIN-007-AC-01`）**：既存fixtureにないPattern/Unit/Part候補の組合せを使うが、7 provenance group（source identityとrevisionは同一group内の別atomic field）とLABO評価対象revisionを合わせた8必須group、および必要なowner記録を全て固定契約どおり与える。**期待oracle**：C01と同じAC-01に従って候補または既存採用記録のsource-to-decision traceとLABO/OS/BRAIN各stateを照合する。新しい実績数、threshold、actor承認は要求しない。必須入力を満たせない場合は正常fixtureとして扱わず、該当AC-02のunknown/holdへ分類する。
+- **L10-BRAIN-007-C10 — LABO対象revision欠落（`BRAIN-007-AC-02`、単独negative）**：C01の7 provenance group、candidate revision、評価内容、owner記録を正常に保ち、LABO評価対象revisionだけを欠落させる。**期待oracle**：LABO評価対象をcandidate revisionと一致したものと推定せず、評価を保留してLABOの既存評価契約へ返す。candidate stateと採否状態は変えず、accepted/matureへ進めない。
 
 ### 観測点とoracle
 
