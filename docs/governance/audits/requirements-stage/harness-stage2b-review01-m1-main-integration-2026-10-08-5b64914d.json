@@ -1,0 +1,35 @@
+{
+  "record_type": "main_integration_recheck",
+  "authority_effect": "none",
+  "base": "5b64914de7357853b267d297e445cae18e204304",
+  "head": "ffb00fe2dd29b74632e2276ba05d1c8e3503fbb4",
+  "six_body_bytes_unchanged_from_review01_m1_repair": true,
+  "six_bodies": {
+    "docs/helix-harness/L3-requirements/business-requirements.md": {
+      "bytes": 27827,
+      "sha256": "9fb531a55c61c4836ae614cadbd850f3967119cb1f0f2eb36dad1e39ebab75e2"
+    },
+    "docs/helix-harness/L3-requirements/functional-requirements.md": {
+      "bytes": 270832,
+      "sha256": "c97255103e145d88774bef297be593281ff09336161a41f7a4fceffdcd7fb3f4"
+    },
+    "docs/helix-harness/L3-requirements/nfr-grade.md": {
+      "bytes": 60172,
+      "sha256": "ee84bc87ff324eea929d266934c0debb856018aca25c0044f68b11c141c3263d"
+    },
+    "docs/helix-harness/L10-verification/business-verification.md": {
+      "bytes": 26039,
+      "sha256": "864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad"
+    },
+    "docs/helix-harness/L10-verification/functional-verification.md": {
+      "bytes": 1165008,
+      "sha256": "eb37f40f850147597f5a205a1c0a63e69aa843636f3d0733f8d0d9fb624c6b90"
+    },
+    "docs/helix-harness/L10-verification/nfr-verification.md": {
+      "bytes": 54341,
+      "sha256": "17ee1dc8ab6786416680e496ba8fb83a714756dd8f853830afe036ddcc9b36e9"
+    }
+  },
+  "scope": "HARNESS Stage2b remainder017018019020024; M1 packet oracle repair; fresh Opus/Fable pending",
+  "fixture_execution": "not executed"
+}
