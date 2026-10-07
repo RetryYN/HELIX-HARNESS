@@ -190,7 +190,7 @@
 |---|---|---|
 | `LABO-061-NFR-01` 比較適格性と不成立保持 | 実測母集団は選択・適用されたrunで構成し、valid・failed・invalid・missing・unknown・stale・censoredを全て状態別に保持する。率を示す場合は母集団数/分母を明記し、分母0または不明では率なし。実測がなければ未実測。 | CASEは設計上のfixture定義であり実測母集団ではない。normalも適用runなら実測母集団に含む。索引はfixture定義数へ重複計上せず、具体的traceはNFR検証文書で示す。 |
 | `LABO-061-NFR-02` 履歴・field完全性 | 15 task snapshot fieldとtask/oracle/protocol/scorer identity・version・digestを個別に追跡する。missing、unknown、stale、mismatchは混同しない。 | fieldごとのL10 oracleを照合し、CASE数を測定値や被覆率へ変換しない。 |
-| `LABO-061-NFR-03` 漏洩・role separation・authority境界 | secret等の機微値を合成canaryで扱い、実secret/PIIは用いない。leakage、author/judge混同、receipt由来のauthority誤生成を個別に保持する。 | L10の具体的な単独変異と期待状態。固定閾値・最低N・固定SLAを新設しない。 |
+| `LABO-061-NFR-03` 漏洩・role separation・authority境界 | secret等の機微値を合成canaryで扱い、実secret/PIIは用いない。leakage、author/judge混同、receipt由来のauthority誤生成、Worker起動/candidate採択、固定059 revisionへの遡及適用を個別に保持する。 | L10の具体的な単独変異と期待状態。固定閾値・最低N・固定SLAを新設しない。 |
 
 
 ## Stage 5 — HELIXLABO-L2-063 技術計測候補

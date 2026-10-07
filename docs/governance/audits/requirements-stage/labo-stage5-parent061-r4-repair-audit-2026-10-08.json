@@ -1,0 +1,202 @@
+{
+  "title": "LABO Stage5 parent061 R4 repair audit",
+  "reviewed_base": "a00711ee8a0817cf6553b8a671a0abee54ce6e73",
+  "branch": "codex/labo-stage5-061-r4-repair",
+  "authority_effect": "none",
+  "approval_effect": "none",
+  "scope": [
+    "LABO Stage5 parent061 R4 only",
+    "CASE-115 registration/delivery receipt is not isolation proof when actual worker context is unverified",
+    "CASE-116 prohibit LABO-started Worker from comparison result",
+    "CASE-117 prohibit candidate adoption from comparison receipt alone",
+    "CASE-118 no retroactive application of L2-061 to fixed L2-059 revision",
+    "AC-02 applicability unknown routed to existing task/oracle owner, identity unknown retained; no unconditional safe-state inheritance",
+    "six paired L3/L10 document trace and counts"
+  ],
+  "fixed_parent": {
+    "commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+    "L2": {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "lines": "457-469",
+      "file_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+      "span_sha256": "9f064d206645f1db6ef946a78ddfd2fe6656c003c4af86ed46c54dab2ee4ad3a",
+      "span_bytes": 4951
+    },
+    "L11": {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "lines": "205-215",
+      "file_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+      "span_sha256": "d7c170e0b047db4a74ef955f1295a5d8fc893cd0ca84aefc72d96b764ed1bb1b",
+      "span_bytes": 3030
+    },
+    "L2_059_scope_boundary": "L2-061:459 explicitly says not to retroactively apply the supplement to the fixed L2-059 revision; L2-061:466 scopes it to selected task comparisons; L11-061:214-215 unknown applicability is returned to owner and unknown tasks do not inherit prior safety unconditionally."
+  },
+  "legacy_sources": [
+    {
+      "asset_id": "LEGACY-ASSET-28FB139B26CD61CC51EE",
+      "name": "HELIX-Bench R04 task snapshot and R08 integrity/history",
+      "R04": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+        "revision": "a00711ee8a0817cf6553b8a671a0abee54ce6e73",
+        "lines": "96-120",
+        "file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+        "span_sha256": "104c380e9629448b328712956892ea2227537041196a68699453a1282170bd81",
+        "span_bytes": 524
+      },
+      "R08": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+        "revision": "a00711ee8a0817cf6553b8a671a0abee54ce6e73",
+        "lines": "143-147",
+        "file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+        "span_sha256": "1528cbcdf178907860401f6155b405693cce7e21540e05bc5cc013ad39963c9f",
+        "span_bytes": 351
+      },
+      "treatment": "意味再導出の起点。15-field/safety separation/author-judge separation/historical condition retention; legacy implementation/runtime not reused."
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A952A3A175EB82A4781B",
+      "name": "HELIX-Bench paired acceptance AC005/006/012/013",
+      "AC005_AC006": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+        "revision": "a00711ee8a0817cf6553b8a671a0abee54ce6e73",
+        "lines": "32-33",
+        "file_sha256": "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185",
+        "span_sha256": "3cdb4d91077389acb1aefe0363808c0b342071281813c137076bab1bc73a2873",
+        "span_bytes": 346
+      },
+      "AC012_AC013": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+        "revision": "a00711ee8a0817cf6553b8a671a0abee54ce6e73",
+        "lines": "39-40",
+        "file_sha256": "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185",
+        "span_sha256": "c45e013b69458a51a0526292f616881e3fccfc0daa39bed27f5b5526be216e55",
+        "span_bytes": 367
+      },
+      "treatment": "paired consumer, not direct requirement authority."
+    }
+  ],
+  "authority_records": {
+    "parent061_decision": {
+      "path": "docs/governance/decisions/helix-labo-stage5-parent061-l3-l10-po-decision-2026-10-06.md",
+      "bytes": 9102,
+      "sha256": "4dc5a19dbf5a494b074f6fe0e447887a2f9ae4f78913aebbae096e04ce53aa62"
+    },
+    "prior_residual_classification": {
+      "path": "/tmp/root-labo-stage5-decision-residual-review-f0e210b3.md",
+      "bytes": 9173,
+      "sha256": "821eb25720dd7d7637688a98f07980c0b5d1bbc54d76259e665ef3c7437b6d34",
+      "note": "historical/read-only parent classification; not edited."
+    }
+  },
+  "six_document_pins": {
+    "BR": {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "before_blob": "638fdbd59170dfa410b83096f964929445dae562",
+      "before_bytes": 32852,
+      "before_sha256": "9f56b674f11f9b666bc546a20e7a7492d1dfe377a24495d351392698c8389777",
+      "after_bytes": 32933,
+      "after_sha256": "de87a0a155e2ad9b12ce95d35f8a826ec93d9c612cf05fcd32d780153c46b9b6"
+    },
+    "FR": {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "before_blob": "0bdea32c084c33689e604a028fcf6016bb7e22e1",
+      "before_bytes": 354627,
+      "before_sha256": "0f11b654be30baae1749800ce3c184a146ceb4bce22710f762ef368f5d40e536",
+      "after_bytes": 355690,
+      "after_sha256": "781507b5c9089c055bb31ff5a922d7e8fc81031c273a1509b7aa7b07e423c99c"
+    },
+    "NFR": {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "before_blob": "70dd3111b152bc6389c8b9a551346a7ce05b217b",
+      "before_bytes": 91404,
+      "before_sha256": "d5838368f1ec9ee9e57cc143aa6e346ae1ff7f924d46c234880798098936b773",
+      "after_bytes": 91474,
+      "after_sha256": "2a8f9fc49c8f23b3876ca8b300f4c971a1b9c1779b2dfcc2a1202369ab4ae381"
+    },
+    "BV": {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "before_blob": "5f587607eaa2862dcd66245471aac4e6b2b7203d",
+      "before_bytes": 31387,
+      "before_sha256": "54e42a8af0d30f7eb1c2b75810b51fab6197558633ab3bac7a50b024e581445e",
+      "after_bytes": 31561,
+      "after_sha256": "e8bff4f74988303135bfe50ac45d56a8bafd625b82ac9ecb891e3ed7a590cf8f"
+    },
+    "FV": {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "before_blob": "95275eb62f744b30fa8fc3d9fcffac24f4aa5741",
+      "before_bytes": 693873,
+      "before_sha256": "304aebc0edf618fd0eba2d73b745611b1d259ffd94429c0375df16ca58874bb4",
+      "after_bytes": 695654,
+      "after_sha256": "9cdc288ae8bc906d036fe7ce3d45a2c9529d30d6f9b86d47a888f48d2a09d34e"
+    },
+    "NFRV": {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "before_blob": "45d48e573e765016ba1cef0104286dc7611b3b68",
+      "before_bytes": 82275,
+      "before_sha256": "922f8fccc63917178606dbb5edd165f5bdc6805de3753ead6d703b8342fdb8b7",
+      "after_bytes": 82388,
+      "after_sha256": "d92ab6df7bdb5b54e15856509be34ada3846cfdfd0e2403d817335283a81e3d6"
+    }
+  },
+  "changes": [
+    {
+      "id": "R4-context-receipt",
+      "files": [
+        "FR",
+        "FV",
+        "NFR",
+        "NFRV",
+        "BR",
+        "BV"
+      ],
+      "effect": "receipt success alone cannot stand in for source-bound evidence of the actual worker-visible context and isolation; CASE-115 keeps result unverified and returns missing context/assignment evidence to existing execution owner."
+    },
+    {
+      "id": "R4-actor-boundary",
+      "files": [
+        "FR",
+        "FV",
+        "NFR",
+        "NFRV",
+        "BR",
+        "BV"
+      ],
+      "effect": "CASE-116 and CASE-117 independently reject LABO starting a Worker and adopting a candidate from comparison receipts; existing OS assignment and target-owner decision state remain."
+    },
+    {
+      "id": "R4-version-scope",
+      "files": [
+        "FR",
+        "FV",
+        "NFR",
+        "NFRV",
+        "BR",
+        "BV"
+      ],
+      "effect": "CASE-118 independently rejects retroactive application of L2-061 to fixed L2-059; no new L2 scope or permission."
+    },
+    {
+      "id": "unknown-applicability",
+      "files": [
+        "FR",
+        "FV"
+      ],
+      "effect": "AC-02 / CASE-03e retain applicability unknown, route to existing task/oracle owner and preserve owner identity unknown; no prior-task safe result inheritance."
+    }
+  ],
+  "validation": {
+    "git_diff_check": "PASS",
+    "six_sha_recomputed": "PASS",
+    "case_ids": "PASS: 136 unique table IDs; base had 132; CASE-115..118 are unique negative fixtures",
+    "new_case_ac": "PASS: all four rows AC-03; existing CASE-03e/18 remain existing unknown applicability oracle",
+    "sync": "PASS: BR/BV range 01–118; NFRV count 136; FR trace and NFR-03 mention all added boundaries",
+    "legacy_runtime_tests_ci": "not run"
+  },
+  "limitations": [
+    "Design fixtures only; no L10/runtime execution.",
+    "No approval, actual isolation result, assignment, Worker start, candidate adoption, or historical status change is generated.",
+    "Scope limited to Stage5 parent061 R4; other parent residuals remain outside this audit."
+  ]
+}

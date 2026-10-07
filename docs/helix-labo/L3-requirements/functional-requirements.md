@@ -1695,6 +1695,8 @@ L10に置く一項目変異候補を個別に照合し、単一点性は独立re
 | author/judgeのidentity・session・context分離と、judgeが使うoracleをWorker漏洩と混同しない | L2-061:462–465; L11-061:209–211 | `LABO-061-AC-01/03`; 役割/可視範囲を区別し、盲検成立・任命をLABOが生成しない。 |
 | selected taskに限ってsnapshot fieldを照合し、055通常履歴や未選択sourceへ一律適用しない | L2-061:465–467; L11-061:211–213 | `LABO-061-AC-02/03`; 適用scopeを選択taskへ束ね、非適用根拠のある通常履歴はfield欠落へ変換しない。 |
 | failed/invalid/historical evidenceを保持し、別run・current値で補わず、score/receiptからauthorityを作らない | L2-061:467–469; L11-061:213–215 | `LABO-061-AC-03`; task/oracle条件はその既存owner、漏洩はSECURITYと識別可能なsource owner、実行context/assignment/receiptは実行主体へ返す。個人・source identity不明はidentity unknownを維持する。 |
+| 適用性unknownを既知の安全性へ継承せず、登録/配送receiptだけで隔離を成立扱いしない | L2-061:463,467; L11-061:214–215 | `LABO-061-AC-02/03`; CASE-03e/18でtask/oracle ownerへ戻し、CASE-115で実context欠落とreceipt成功を分ける。 |
+| receipt/scoreからWorker起動・candidate採択を行わず、061条件を固定059 revisionへ遡及適用しない | L2-061:459,461,464–467; L11-061:207,214–215 | `LABO-061-AC-03`; CASE-116/117/118で起動・採否・revision scopeを独立照合する。 |
 
 ### LABO-061-AC-01 — 選択taskの正常比較
 
@@ -1702,15 +1704,15 @@ L10に置く一項目変異候補を個別に照合し、単一点性は独立re
 
 ### LABO-061-AC-02 — 未見正常と非適用対照
 
-別の未見fixtureでも同じ選択task契約へ結び、適用fieldだけを照合する。055通常履歴のようにtask snapshotが非適用である根拠が入力にある場合は、その非適用理由を保持し、15 field欠落やblind評価失敗として数えない。適用性が未確定ならunknownを返す。未選択task/sourceは参照のみで、実行依存へ昇格しない。
+別の未見fixtureでも同じ選択task契約へ結び、適用fieldだけを照合する。055通常履歴のようにtask snapshotが非適用である根拠が入力にある場合は、その非適用理由を保持し、15 field欠落やblind評価失敗として数えない。task/oracleの適用性が未確定ならunknownを保持して既存task/oracle ownerへ返し、owner identityを入力根拠から特定できない場合はunknownを保つ。別taskの既知安全判定を未見taskへ継承しない。未選択task/sourceは参照のみで、実行依存へ昇格しない。
 
 ### LABO-061-AC-03 — 不成立、履歴と責務境界
 
-L10の各単独fixtureを用い、値を推測・currentから補完せず、missing field、value unknown、stale、revision mismatch、選択scope違いを区別する。Worker-visible漏洩を含むrunは比較不適格のまま保持しSECURITYへ戻す。historical runの当時model/runtime/toolchain/actor/version/authority evidenceは各々保存し、欠落をcurrent stateで埋めない。failed/invalid runを削除・平均点・低費用・短時間で相殺しない。receipt・score・比較結果からOS assignment、permission、admission、judge任命、qualificationを生成しない。正当な材料・既存状態は保持する。
+L10の各単独fixtureを用い、値を推測・currentから補完せず、missing field、value unknown、stale、revision mismatch、選択scope違いを区別する。Worker-visible漏洩を含むrunは比較不適格のまま保持しSECURITYへ戻す。registration/delivery receiptだけから情報隔離の成立を推定せず、実context未確認は未確認のまま実行context/assignment証拠の既存主体へ返す。historical runの当時model/runtime/toolchain/actor/version/authority evidenceは各々保存し、欠落をcurrent stateで埋めない。failed/invalid runを削除・平均点・低費用・短時間で相殺しない。receipt・score・比較結果からOS assignment、Worker起動、permission、admission、judge任命、qualification、candidate採択を生成しない。固定059 revisionへ本追補を遡及適用しない。正当な材料・既存状態は保持する。
 
 #### 旧sourceからの再導出
 
-`LEGACY-ASSET-28FB139B26CD61CC51EE` の `helix-bench-evaluation.md` R-04/R-08と `LEGACY-ASSET-A952A3A175EB82A4781B` の対応acceptance AC005/006/012/013を、task snapshot、当時条件、反例・履歴保持の起点として再導出する。旧文字列schema、runtime、test、CI、閉ループ、資格・permission・admissionの仕組みは移さない。旧consumerは対応検証の読み方であり、直接要件sourceとは区別する。旧a4本文で存在した132定義はIDを保持して本L10へ移し、機械的ID保持を独立fixture性・完全性の証明とはしない。
+`LEGACY-ASSET-28FB139B26CD61CC51EE` の `helix-bench-evaluation.md` R-04/R-08と `LEGACY-ASSET-A952A3A175EB82A4781B` の対応acceptance AC005/006/012/013を、task snapshot、当時条件、反例・履歴保持の起点として再導出する。旧文字列schema、runtime、test、CI、閉ループ、資格・permission・admissionの仕組みは移さない。旧consumerは対応検証の読み方であり、直接要件sourceとは区別する。旧a4本文で存在した132定義はIDを保持して本L10へ移し、今回のR4補強でCASE-115〜118を追加する。機械的ID保持を独立fixture性・完全性の証明とはしない。
 
 
 ## Stage 5 — HELIXLABO-L2-063 修復再発評価と予防候補

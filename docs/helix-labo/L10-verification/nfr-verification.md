@@ -139,8 +139,8 @@
 
 - `LABO-061-NFR-01`: 選択task/runを母集団にし、valid/failed/invalid/missing/unknown/stale/censoredを別区分で保持する。割合は対象数と分母を併記し、分母0または不明なら率なし。実測値なしは未実測とする。
 - `LABO-061-NFR-02`: 選択task snapshotの15 fieldとtask/fixture/oracle/protocol/scorerのidentity・version・digestの状態をfield別に照合する。未選択sourceや055通常履歴を分母へ含めない。
-- `LABO-061-NFR-03`: 漏洩、role separation、歴史補完、receipt由来のauthority誤生成をL10の独立oracleに従って照合する。実secret/PIIをfixtureへ含めず、synthetic canaryのみを使う。
-- 現行L10には旧a4から保持した132 IDが132 table rowとしてある。旧snapshot側の形は130 table rowとnormal bullet 2件だった。CASE定義は測定runそのものではなく、indexは独立fixture数へ重ねない。ID数を網羅性や実行結果へ読み替えない。固定試行数、SLA、性能閾値、合格率は追加しない。
+- `LABO-061-NFR-03`: 漏洩、role separation、歴史補完、receipt由来のauthority誤生成、receipt/score起点のWorker起動/candidate採択、固定059 revisionへの遡及適用をL10の独立oracleに従って照合する。実secret/PIIをfixtureへ含めず、synthetic canaryのみを使う。
+- 現行L10は136 unique ID（136 table rows）を持ち、うちR4補強CASE-115〜118を追加した。旧a4 snapshotの132 IDは歴史的起点として保持する。CASE定義は測定runそのものではなく、indexは独立fixture数へ重ねない。ID数を網羅性や実行結果へ読み替えない。固定試行数、SLA、性能閾値、合格率は追加しない。
 
 
 ## Stage 5 — HELIXLABO-L2-063 NFR検証設計

@@ -2787,7 +2787,7 @@ CASE-01は旧snapshot上の高水準正常説明である。各下記candidate�
 ## Stage 5 — HELIXLABO-L2-061 L10 fixture候補
 
 
-対象は選択taskの比較適格性と履歴整合である。すべて合成fixture候補であり、実行・受入・権限・資格を生成しない。CASE-01/02はnormal/未見normal。旧a4 snapshot由来のCASE定義132 IDを保持する（表130、normal bullet 2）。索引は非独立で分母に重ねず、個別fixture扱い/網羅性は独立reviewで確かめる。15 fieldはtask ID/version、fixture digest、requirement IDs、acceptance IDs、base HEAD、allowed/forbidden paths、hidden-oracle digest、seed、toolchain versions、timeout/retry/cache policy、hardware class。missing/value unknown/stale/mismatchを区別する。
+対象は選択taskの比較適格性と履歴整合である。すべて合成fixture候補であり、実行・受入・権限・資格を生成しない。CASE-01/02はnormal/未見normal。旧a4 snapshot由来の132 IDを保持し、R4確認の単独negative CASE-115〜118を追補した（現行計136 unique ID、136 table rows）。索引は非独立で分母に重ねず、個別fixture扱い/網羅性は独立reviewで確かめる。15 fieldはtask ID/version、fixture digest、requirement IDs、acceptance IDs、base HEAD、allowed/forbidden paths、hidden-oracle digest、seed、toolchain versions、timeout/retry/cache policy、hardware class。missing/value unknown/stale/mismatchを区別する。
 
 | CASE ID | 対応AC | 準備・一つの変異または索引 | 期待oracle / 責務境界 |
 |---|---|---|---|
@@ -2797,7 +2797,7 @@ CASE-01は旧snapshot上の高水準正常説明である。各下記candidate�
 | `L10-LABO-061-CASE-03b` | `LABO-061-AC-03` | baselineはCASE-01と同じ選択task契約。単独変異: oracle revisionだけが適用契約とstale。 | 当該task比較を成立扱いせず、固定task/oracle ownerへ戻す。入力から具体owner identityを識別できる場合だけ示し、識別できなければowner identity unknownを保つ。 |
 | `L10-LABO-061-CASE-03c` | `LABO-061-AC-03` | Worker-visible contextだけ漏洩。 | 比較を無効にし、SECURITYへ常に戻す。漏洩元を識別できる場合は入力source ownerへも戻し、source identity不明時だけsource ownerをunknownとする。 |
 | `L10-LABO-061-CASE-03d` | `LABO-061-AC-03` | 索引（独立fixtureではない）: author/judge同一の `L10-LABO-061-CASE-12` と、identity名は異なるがcontext/session共有の `L10-LABO-061-CASE-13` を参照する。二つの独立した反例をこの索引だけで二重計上しない。 | CASE-12/13各々のoracleを直接照合し、この行を独立negativeに含めない。 |
-| `L10-LABO-061-CASE-03e` | `LABO-061-AC-03` | 単独変異: 選択task契約に記録されたhidden oracle適用性だけunknown。その他の入力はCASE-01と同一。 | 非適用と推論せずunknownを保持し、固定task/oracle ownerへ返す。入力から具体owner identityを識別できない場合はidentity unknown。 |
+| `L10-LABO-061-CASE-03e` | `LABO-061-AC-03` | 単独変異: 選択task契約に記録されたhidden oracle適用性だけunknown。別taskの既知安全判定は入力に持ち込まない。その他の入力はCASE-01と同一。 | 非適用や隔離済みと推論せずunknownを保持し、固定task/oracle ownerへ返す。入力から具体owner identityを識別できない場合はidentity unknown。 |
 | `L10-LABO-061-CASE-03f` | `LABO-061-AC-03` | 索引（独立fixtureではない）: L10-LABO-061-CASE-28の同一変異を参照する。 | 主fixtureを参照し、同じ変異を二重計上しない。 |
 | `L10-LABO-061-CASE-03t` | `LABO-061-AC-03` | 索引（独立fixtureではない）: L10-LABO-061-CASE-31の同一変異を参照する。 | 主fixtureを参照し、同じ変異を二重計上しない。 |
 | `L10-LABO-061-CASE-03g` | `LABO-061-AC-03` | 索引（独立fixtureではない）: L10-LABO-061-CASE-35の同一変異を参照する。 | 主fixtureを参照し、同じ変異を二重計上しない。 |
@@ -2923,6 +2923,10 @@ CASE-01は旧snapshot上の高水準正常説明である。各下記candidate�
 | `L10-LABO-061-CASE-112` | `LABO-061-AC-03` | 準備: L10-LABO-061-CASE-01と同じ比較入力にtask/oracle版不一致で無効となったrunを1件、無効状態を正しく保持して加える。単独変異: そのrunの不成立だけを短時間で相殺する。 | 無効/未評価を保持し、短時間で相殺しない。 |
 | `L10-LABO-061-CASE-113` | `LABO-061-AC-03` | 単独変異: result receiptだけを根拠にWorker qualificationが成立したと主張。その他の入力はL10-LABO-061-CASE-01と同一。 | qualificationを生成せず、既存資格/authority状態を維持する。 |
 | `L10-LABO-061-CASE-114` | `LABO-061-AC-03` | 準備: L10-LABO-061-CASE-01と同じ比較入力にWorker-visible leakageで無効となったrunを1件、invalid stateとidentityを正しく保持して加える。単独変異: その無効runだけを他runの平均点で相殺する。 | 無効runを有効化せず、平均点による相殺を拒否する。 |
+| `L10-LABO-061-CASE-115` | `LABO-061-AC-03` | 準備: 選択taskの登録/配送receiptは成功として記録されるが、実際にWorkerへ渡ったcontextの参照/可視範囲は未確認。単独変異: receipt成功だけを根拠に情報隔離済みと主張する。 | 隔離済みと判定せずcontext状態を未確認として比較を未評価に保つ。実context/assignment証拠を既存実行主体へ返し、identityを特定できない場合はunknownを維持する。 |
+| `L10-LABO-061-CASE-116` | `LABO-061-AC-03` | 準備: CASE-01相当の比較結果と既存OS assignment状態を保持する。単独変異: 比較結果を受けたLABOがWorkerを起動する。 | Workerを起動せず、OSのassignment/実行責務と既存状態を保持する。 |
+| `L10-LABO-061-CASE-117` | `LABO-061-AC-03` | 準備: CASE-01相当の評価材料と未決のcandidate採否状態を保持する。単独変異: 比較receiptだけでLABOがcandidateを採択済みにする。 | 採択状態を生成/変更せず未決を保持する。既存target ownerの採否判断や実行permissionを代行しない。 |
+| `L10-LABO-061-CASE-118` | `LABO-061-AC-03` | 準備: 固定revisionのHELIXLABO-L2-059に基づく過去比較と、その時点での有効な状態を保持する。単独変異: 後から採択されたL2-061のsnapshot/隔離条件を固定059 revisionへ遡及適用し、過去比較を不成立へ書き換える。 | 固定059 revisionの状態を遡及変更せず、L2-061を選択した比較scopeにのみ適用する。過去結果をcurrent証拠へ流用することとも区別する。 |
 
 
 ## Stage 5 — HELIXLABO-L2-063 修復再発評価と予防候補
