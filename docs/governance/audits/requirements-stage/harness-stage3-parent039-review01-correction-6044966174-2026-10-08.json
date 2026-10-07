@@ -1,0 +1,179 @@
+{
+  "title": "HARNESS Stage 3 親039 review01指摘補正追補（review01 formal 6044966174）",
+  "record_state": "作成側の時点補正記録。旧review01処置auditは不変。本文差分の独立review・委任承認・条件3・main admissionは未成立。",
+  "created_date": "2026-10-08",
+  "scope": {
+    "pr": 2679,
+    "parent": "HARNESS-L2-039",
+    "review_comment_id": 6044966174,
+    "review_head": "9afad3c8b6016568f860f6f8e4faa0c82a48398a",
+    "review_base": "5857c0a396cb24a23d765e3079a18a2367b6d078",
+    "documents_modified": [
+      "docs/helix-harness/L10-verification/functional-verification.md",
+      "docs/helix-harness/L3-requirements/functional-requirements.md"
+    ]
+  },
+  "formal_review": {
+    "comment_id": 6044966174,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2679#issuecomment-6044966174",
+    "body_bytes": 5887,
+    "body_sha256": "d1dfa6966d3ad0130df5dbda7dde560b0307a9351ce977c91f41630960280129",
+    "raw_body": "## review01（HEAD 9afad3c8b6016568f860f6f8e4faa0c82a48398a / base 5857c0a396cb24a23d765e3079a18a2367b6d078）— Claude review_merge\n\n**結論：Major 1、Minor 5。現HEADは承認しません。**\n- OpusとFableが、それぞれ独立に読みました。\n  - Fableは「承認してよい」（Major 0）。\n  - OpusはMajor 1を挙げました。\n- 見解が分かれたため、運用モデル「L3／L10承認の委任」に従い、Opusが固定親と同じ文書の該当行を確かめました。そのうえでM1を返します。\n- 追加した21 CASEの意味は、固定親と一致しています。直すのは、同じ文書の中に残っている古い記述だけです。\n\n### M1（Major：同じFV文書の中でID・範囲が食い違っている）`docs/helix-harness/L10-verification/functional-verification.md`\n- **:1549–1551「M5の未分離範囲」の古い主張が残っている**\n  - この節は今も「各軸のapplicability unknownとUX evidence scope mismatchを全て独立入力としては区別しない」と書いています。続けて、残余を記録して新CASEを必須化しない、という現在形の主張もそのままです。\n  - 本PRのr19の21件（:1396–1417）は、まさにこの区別を単独CASEにしたものです。新しいCASEと矛盾します。\n  - CASE-039-05の索引だけは更新されましたが、M5節は更新されていません。\n- **:1555「表の全143定義行」の件数が古い**\n  - 数え直すと、HEADでは主表155行と境界fixture 9行で、合わせて164行です。143行のままになっています。\n- **修正案**\n  - **保つもの**：継承したfixtureでは、当時この区別がなかったという経緯の記録。\n  - **足すもの**\n    - M5節に「この残余は、r19の21件（7軸 × 適用性unknown／evidence scope不一致／evidence revision不一致）で個別に照合するようにした」と追記してください。\n    - 「区別しない」「必須化しない」という現在形の主張は外してください。\n    - :1555の件数を、164（主表155＋境界fixture 9）に直してください。\n  - 入力を供給するのは固定L11:676で、記述を形成するのはL10の作成側です。\n  - 直した後は、監査JSONの `functional_l10` のSHAと `changed_spans` を再計算してください。\n\n### Minor（承認の条件にはしません。M1と一緒に直すと安く済みます）\n1. **文字列の結合ミス**：L10の14行で「responsiveevidence」「motionevidence」「accessibilityevidence」「performanceevidence」「continuityevidence」のように語がつながっています。「responsive軸のevidence」などに直してください。\n2. **入力列の定型文**：scope/revision不一致の14行すべての入力列に「human-evaluationが対象軸なら…」が入っています。human-evaluation以外の軸の行では不要です。また、基準のCASE-039-05との差は「主張対象scope/revisionに結ばれていたevidenceの結び付け先だけを、別のscope/revisionへ変える」と書くと、単独変異であることが読み取りやすくなります。\n3. **L3 AC-02（FR:681）の言い回し**：「他の6軸や人間評価」は重複表現です。人間評価は7軸の1つです。\n4. **監査JSONのSHAの時点**：監査JSONの `current_six_document_sha256.functional_l3/l10` は、`full_sha256` が変更後のSHAで、`git_blob_before_change` が変更前のblobです。1つのobjectに2つの時点が混在しているので、後で6本文をpinする前に、フィールド名などで時点を明示してください。\n5. **repository外のpath**：`finding_source.prior_semantic_audit` が、repository外の `/tmp/...` を指しています。repository内の記録へ置くか、「repository外の作業メモで、再現不要」と明記してください。\n\n### 成立を確認した点\n- **21件の根拠**\n  - 適用性unknownの7件は、固定L2:929と、L11:676「7軸のいずれかの適用性がunknown…拒否し、N/Aへ変換しない」に根拠があります。\n  - scope/revision不一致の14件は、L2:929の「同じ対象scope/revision」と、L11:676「対象revision/scopeが異なる…その軸以外の証拠がそろっていても拒否」に根拠があります。\n  - L3が新しく作った拒否理由ではありません。gate、field、owner、閾値も追加していません。\n- **止める状態**：21件はすべて `ux_verified` だけを拒否します。implemented、候補形成、設計開始は保持しています（L11:676と一致）。\n- **戻し先**：21件はすべて005/022です。これはL2:921「test oracle/段階証拠不足は005/022」の範囲内です。既存のaxis行とも一致しています。\n- **既存のevidence unknown変異との関係**：既存のaxis-N-unknown（L10:1442）はevidenceをunknownにする変異です。今回の適用性unknownとは別のもので、重複していません。\n- **既存の境界check**：削除はありません。NFRとBV/BRは、AC-02への委譲を維持しています。\n- **SHA**：固定親（L2:891–930、L11:670–676、採択row 44）と旧source（v1.3:650、baseline:631）は、全体とspanのSHAが実bytesと一致しました。6本文と変更spanのSHAも一致しました。\n- **静的検査**：`scfctl validate` 147/0、`stale=0`、`git diff --check` が通りました。\n\n### 未確認範囲\n- fixtureは実行していません。\n- 005/022の本文側の詳細は読んでいません。戻し先の確認は、L2:921のカテゴリとの一致までです。\n\n本reviewは承認やmerge admissionを生成しません。修正後は新しいHEADで再依頼してください。OpusとFableで、M1を中心に絞って再照合します。\n",
+    "finding": "Major 1 (M5節の現在形と21 r19 CASEの矛盾、および定義数)、Minor 5。"
+  },
+  "previous_immutable_audit": {
+    "path": "docs/governance/audits/requirements-stage/harness-stage3-parent039-review01-disposition-2026-10-07-851900866.json",
+    "bytes": 169232,
+    "sha256": "c70ab91b9f385a081f818fe16f116d31bbe2afe26e98394eb839097a93c73c1e",
+    "mutated": false
+  },
+  "corrections": [
+    {
+      "finding": "M1",
+      "change": "M5節を当時のfixture限界として明示し、r19の21 CASE（7軸×適用性unknown/scope mismatch/revision mismatch）へ個別照合を接続。各CASEの単独変異、ux_verifiedのみ拒否、implementedと候補/設計開始保持を明記。表の全定義数を164（主表155＋境界fixture9）へ補正。"
+    },
+    {
+      "finding": "Minor 1",
+      "change": "14件のr19 scope/revision mismatch行にあるresponsiveevidence等の語結合を修正。"
+    },
+    {
+      "finding": "Minor 2",
+      "change": "14件の正常入力をCASE-039-05 baselineとの関係で記述し、scopeまたはrevisionだけを変える個別negativeに統一。対象外human-evaluation軸にだけ現れていた条件文を除去。"
+    },
+    {
+      "finding": "Minor 3",
+      "change": "AC-02から「他の6軸や人間評価」の重複表現を除き、人間評価を7軸の一つとして保つ。"
+    },
+    {
+      "finding": "Minor 4",
+      "change": "この追補のsix_document_hashesでbefore revisionとafter worktreeのSHAを別fieldに記録。"
+    },
+    {
+      "finding": "Minor 5",
+      "change": "prior_semantic_auditはrepository外の一時作業メモであり、sourceでも再現対象でもないと明記。既存auditに含まれる/tmp pathは書き換えず、本追補では再利用しない。"
+    }
+  ],
+  "case_inventory": {
+    "functional_l10_stage3_parent039_table_definition_count": 164,
+    "unique_case_ids": 164,
+    "main_table_definition_rows": 155,
+    "boundary_fixture_definition_rows": 9,
+    "count_check": true,
+    "source": "exact functional-verification.md worktree bytes; one CASE definition per table row; index mentions excluded"
+  },
+  "six_document_hashes": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "before_revision": "9afad3c8b6016568f860f6f8e4faa0c82a48398a",
+      "before_bytes": 271691,
+      "before_sha256": "43e4c188068d8d857b2309a4cd64b0033b7ebcc952e229cc21ef9a6f436fd33d",
+      "after_worktree_bytes": 271676,
+      "after_worktree_sha256": "2180967f0075f467c99a553d34f688a1fdf434703803b1a34e7e147d6a7d2df5",
+      "unchanged": false
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "before_revision": "9afad3c8b6016568f860f6f8e4faa0c82a48398a",
+      "before_bytes": 27827,
+      "before_sha256": "9fb531a55c61c4836ae614cadbd850f3967119cb1f0f2eb36dad1e39ebab75e2",
+      "after_worktree_bytes": 27827,
+      "after_worktree_sha256": "9fb531a55c61c4836ae614cadbd850f3967119cb1f0f2eb36dad1e39ebab75e2",
+      "unchanged": true
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "before_revision": "9afad3c8b6016568f860f6f8e4faa0c82a48398a",
+      "before_bytes": 60172,
+      "before_sha256": "ee84bc87ff324eea929d266934c0debb856018aca25c0044f68b11c141c3263d",
+      "after_worktree_bytes": 60172,
+      "after_worktree_sha256": "ee84bc87ff324eea929d266934c0debb856018aca25c0044f68b11c141c3263d",
+      "unchanged": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "before_revision": "9afad3c8b6016568f860f6f8e4faa0c82a48398a",
+      "before_bytes": 1184060,
+      "before_sha256": "61ac766ad331595dd25cf0fb4a90d63a3144a392aa51ba4798e22fc2cffb6777",
+      "after_worktree_bytes": 1182694,
+      "after_worktree_sha256": "1a426f004b3212dc10f8e15beff3e8e2f1fa9b8eeb1a04581380ef02198870e1",
+      "unchanged": false
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "before_revision": "9afad3c8b6016568f860f6f8e4faa0c82a48398a",
+      "before_bytes": 26039,
+      "before_sha256": "864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad",
+      "after_worktree_bytes": 26039,
+      "after_worktree_sha256": "864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad",
+      "unchanged": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "before_revision": "9afad3c8b6016568f860f6f8e4faa0c82a48398a",
+      "before_bytes": 54341,
+      "before_sha256": "17ee1dc8ab6786416680e496ba8fb83a714756dd8f853830afe036ddcc9b36e9",
+      "after_worktree_bytes": 54341,
+      "after_worktree_sha256": "17ee1dc8ab6786416680e496ba8fb83a714756dd8f853830afe036ddcc9b36e9",
+      "unchanged": true
+    }
+  ],
+  "changed_spans": [
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "start_line": 1396,
+      "end_line": 1417,
+      "label": "r19の21 CASE入力・変異・oracle",
+      "before_raw_lf_sha256": "32dd0bb9dc3cbfb2a11462b92bd8327db4f329f4bfed66c0f7f5da06e33352b9",
+      "after_raw_lf_sha256": "453b274f27f24b9d38ca5fd6e5e9accf22c629fd808bcbafad5c1597e7ad3ff6",
+      "before_span_bytes": 21325,
+      "after_span_bytes": 19705
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "start_line": 1549,
+      "end_line": 1555,
+      "label": "M5当時残余の履歴化と164定義行の件数",
+      "before_raw_lf_sha256": "74d49a59e96e37bce5c40dfe3f755e768c98dba55a62f510372a763b60c60a51",
+      "after_raw_lf_sha256": "f02bd70bd593626c563931a64dbd7cc6bd55e2697ff852ba4fadd9c0306e063c",
+      "before_span_bytes": 1157,
+      "after_span_bytes": 1411
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "start_line": 681,
+      "end_line": 681,
+      "label": "AC-02の7軸表現",
+      "before_raw_lf_sha256": "190f988652ccc8e5e506e0cacc2287cdd35a7f44873b37ba364be62a4a663f32",
+      "after_raw_lf_sha256": "545a4a93537a68f020581ba64a17360e96eec65069769033877124c221da7a65",
+      "before_span_bytes": 1022,
+      "after_span_bytes": 1007
+    }
+  ],
+  "temporary_prior_memo": {
+    "classification": "repository外の一時作業メモ。source根拠ではなく、再現不要。",
+    "path": "/tmp prior semantic audit (exact path deliberately not carried forward)",
+    "used_as_evidence": false
+  },
+  "limits": [
+    "fixture/runtime/旧test/旧CIは実行していない。",
+    "6本文全体の不変箇所はSHAのみ照合し、意味承認の証拠へ変換しない。",
+    "HARNESS-L2-005/022の本文詳細はこの作業範囲で追加読了していない。"
+  ],
+  "static_checks": {
+    "git_diff_check": true,
+    "audit_json_validation": "passed (parsed with Python json)",
+    "case_count_and_unique_id_check": true,
+    "r19_axis_partition_check": true,
+    "no_old_runtime_or_CI": "confirmed not invoked"
+  },
+  "r19_partition": {
+    "total_definitions": 21,
+    "unique_definitions": 21,
+    "applicability_unknown": 7,
+    "evidence_scope_mismatch": 7,
+    "evidence_revision_mismatch": 7,
+    "joined_axis_evidence_tokens_remaining": 0,
+    "stale_review_phrases_remaining": [],
+    "check_pass": true
+  }
+}
