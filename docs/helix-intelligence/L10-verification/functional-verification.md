@@ -252,6 +252,7 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 | `CASE-INT-017-02h` | 修復candidateに包括write authorityを付与 | 包括write authorityを拒否し、SECURITY permission/isolationとWorker実行・HARNESS検証・OS検収それぞれの既存owner責務を保持する。 |
 | `CASE-INT-017-02i` | 実行時点ですでに期限切れのpermissionで実行（revokedは別CASE-INT-017-02o） | 操作を実行可能にせず、完了扱いしない。SECURITY permission/isolation ownerへ戻す。 |
 | `CASE-INT-017-02o` | 実行時点permissionの状態だけをrevokedにする。他のtarget/scope/期限/receiptは正常 | 当該操作を実行可能/完了扱いせずSECURITY permission/isolation ownerへ戻す。他の有効段階証拠を保持する。 |
+| `CASE-INT-017-02p` | permission自身のrevision・状態と他receiptを正常値に固定し、permissionの対象target revisionだけを統合結果のtarget revisionと別revisionにする | permission evidenceを不一致として完了から除外し、SECURITY permission/isolation ownerへ戻す。対象operationを実行可能にせず、他の有効段階証拠は保持する。 |
 | `CASE-INT-017-02j` | Worker result target revisionだけを別revisionへ変更 | 当該Worker証拠を不一致として完了から除外し、Worker execution/result ownerへ戻す。 |
 | `CASE-INT-017-02k` | HARNESS検証対象revisionだけを別revisionへ変更 | 当該検証証拠を不一致として完了から除外し、HARNESS verification ownerへ戻す。 |
 | `CASE-INT-017-02l` | OS検収対象revisionだけを別revisionへ変更 | 当該検収証拠を不一致として完了から除外し、OS acceptance ownerへ戻す。 |
@@ -720,7 +721,7 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 
 入力: operation candidateのactor/action/target/scope/revisionとSECURITY permission/constraint/revocation結果。出力: 修復candidateに付くpermission照合結果。permission/isolation authorityはSECURITY。責務: SECURITY permission/isolation owner; 適用CONNECT contract owner。
 
-**期待oracle:** actor/action/target/scopeに対する操作時点で有効なSECURITY permissionと制約を照合し、permissionを発行/変更しない。期限切れ/revoked permissionでは操作を実行可能にしない。 L3に明記したowner/authorityとL11 R2187-01の当該親rowの正常条件を照合し、receiptの存在だけでは合格にしない。
+**期待oracle:** actor/action/target/scopeとtarget revisionが一致する、操作時点で有効なSECURITY permissionと制約を照合し、permissionを発行/変更しない。期限切れ/revoked permissionでは操作を実行可能にしない。 L3に明記したowner/authorityとL11 R2187-01の当該親rowの正常条件を照合し、receiptの存在だけでは合格にしない。
 
 ### CASE-INT-036-02 — 親固有fieldの独立negative（AC-INT-036-02）
 
@@ -742,6 +743,7 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 | `CASE-INT-036-02l` | permissionは有効だがSECURITY constraintに違反するactionを許可扱いする | 不合格。operationを実行可能にせず、SECURITY permission/isolation ownerへ戻す。 |
 | `CASE-INT-036-02n` | 別actionのpermissionを流用（actor/targetは一致） | action mismatchだけを拒否し、当該operationを実行可能にしない。SECURITY permission/isolation ownerへ照合を戻し、他fieldは保持する。 |
 | `CASE-INT-036-02o` | 別targetのpermissionを流用（actor/actionは一致） | target mismatchだけを拒否し、当該operationを実行可能にしない。SECURITY permission/isolation ownerへ照合を戻し、他fieldは保持する。 |
+| `CASE-INT-036-02p` | permission自身のrevision・状態・actor/action/target/scopeは正常値に固定し、permissionの対象target revisionだけをoperation candidateと別revisionにする | target revision mismatchだけを不成立としてSECURITY permission/isolation ownerへ戻す。当該operationを実行せず、実行可能にも昇格させない。他fieldと無関係なoperationは保持する。 |
 
 ### CASE-INT-036-03 — 未見入力の親oracle（AC-INT-036-03）
 
