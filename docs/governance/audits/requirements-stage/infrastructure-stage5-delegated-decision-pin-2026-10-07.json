@@ -1,0 +1,230 @@
+{
+  "record_kind": "delegated_l3_l10_decision_pin",
+  "review_base": "3a256fc638198b7efbb51e16a409f60529fca2be",
+  "review_content_head": "ddb82381cea08930c2ef965aba59b450b8a142dc",
+  "body_revision": "ddb82381cea08930c2ef965aba59b450b8a142dc",
+  "authority_effect": "none_pending_condition3_and_main_admission",
+  "delegation": {
+    "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+    "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220"
+  },
+  "operating_model": {
+    "path": "docs/governance/github-upstream-operating-model.md",
+    "sha256": "eed2b774bb78545ac53c7d55f3ae3ab4e9c4f421b4eaf3ac3bcdbcdd869dd27b"
+  },
+  "formal_comment": {
+    "id": 6040505715,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2659#issuecomment-6040505715",
+    "created_at": "2026-10-07T14:49:01Z",
+    "bytes": 4522,
+    "sha256": "9b0b2a353e64a94948579025488dcee3d24b7a57a975b7f6b37ba6824d7c4926",
+    "raw_body": "## review02（independent review、HEAD ddb82381cea08930c2ef965aba59b450b8a142dc、merge-base 3a256fc638198b7efbb51e16a409f60529fca2be）\n\nreviewer: Claude（lane `review_merge`、**Opus 5.5**）。\n- 条件1は、Opus 5.5のブラインド照合とreviewerの確認で判定した。\n- 条件2は、Fable advisor（claude-fable-5-1）が6本文と固定親を読み直して出した見解である。読んだ固定親は次のとおり。\n  - f6dad2aのOS L2:538/549\n  - INFRA L2-025:292/294/295、L2-010:132、L2-011:146、L11:148\n  - 9/26のPO判断\n\n### 静的確認\n- scfctl validate 147/0、stale 0、residuals 0\n- govcheck ok\n- `git merge-tree`：最新main（1edd5f70e）と衝突なし。merge-base以降、mainでhelix-infrastructureの本文は変わっていない。\n- **`git diff --check`：不合格。** `docs/governance/audits/requirements-stage/l3-infra-worker-contract-owner-review01-repair-2026-10-07-6039983344.md` の3〜5行目に、行末の空白がある（Markdownの強制改行用の空白2つ）。\n  - 6本文の外なので、委任条件1・2の判定には影響しない。\n  - mergeの前提である静的確認は通っていないので、Ready化の前に直してほしい（下の「merge前のblocker」を参照）。\n\n### review01（#6039983344）への対応\n- **M1は解消した。** FV:875、884、893（CASE-049〜051）が、FR:428とFR:495〜497と同じ文になった。中身は次の4点である。\n  - Worker共通実行契約の責務ownerはHELIX-OS\n  - 具体的なout-of-band contractのmissing/unknown/staleは、未完のまま保持する\n  - OSが停止している間は、OS runtime・ticket・通常のL2-009応答を開始条件にしない\n  - OSが復帰した後に、OS Work/Changeへ同期してOS契約ownerへ返す\n  \n  OS停止中にOSへ依存する記述はなく、OSへ返すのは復帰後に限られる。これは固定L2-010:131とL11:148に合っている。resource source owner=unknownとSECURITYの戻し先は保たれている。\n- **M2は解消した。** FR:531（CASE-071）とFV:1075〜1076が一致した。\n- **M3**（監査記録と本文の食い違い）：6本文の外なので、判定の対象にしない。本文どうしの整合は成立している。\n- **m1〜m4も解消した。**\n  - m1：locatorを直した。\n  - m2：「OS/SECURITY条件はそれぞれの既存owner」を戻した（FR:418、465、FV:848、857、866）。\n  - m3：OS復帰後の戻し先を書いた。\n  - m4：要求IDと行番号を分けて書くようにした。\n- 旧文と新文の突き合わせ（類型5）：差分は対象の行だけで、それ以外の行は変わっていない。CASE-020（binding.resourceの欠落）がunknownのまま残っているのは正しい。\n\n### Major\nなし。\n\n### Minor（返却しない）\n- m5：項目17系（FR:428、495〜497／FV:875、884、893）とCASE-071だけ、引用に「2026-09-26 PO判断」が書かれていない。538行自体がPO判断へリンクしているので、意味の差はない。\n- m6：項目17の「未完の契約状態をOS Work/Changeへ同期」は、L2-010:131の「operation/resultの同期」を少し広げている。L2-011の未完義務の引継ぎと、OSの契約ownerから導ける範囲である。\n- m7：FR:494（S5-048）、FR:467（S5-021）、FV:605、623は、「OS/SECURITY条件は既存owner」を書いていない。base時点から同じで、このPRで弱めたものではない。\n- m8：FR:531「固定親が特定しない場合に限りunknown」と、FV:1076「sourceに示されない限りunknown」は、文言が違う。意味は同じである。\n\n### 委任条件の状態\n- **条件1（Opus `no_findings`）：成立。** Major 0。\n- **条件2（Fable）：成立。** 結論行は原文のまま「承認してよい」。\n- 条件1と2は、同じbody revision（ddb82381c）でそろった。\n- **条件3は未照合。** 判断記録を作った後に、6本文が次のSHA-256から変わっていないことを照合する。\n\n| 文書 | SHA-256 |\n|---|---|\n| L3-BR | `429291b0…b328` |\n| L3-FR | `425d0746…cc2d` |\n| L3-NFR | `7a6e9bd1…ad75` |\n| L10-BV | `c0c58373…a79f` |\n| L10-FV | `163107e7…9a52` |\n| L10-NFR | `4e8d94b7…145b` |\n\n### merge前のblocker\n- 上の監査mdの行末空白を直す（6本文は変わらないので、条件1・2はやり直さなくてよい）。\n\n### 未確認範囲\nなし。監査mdと証拠JSONの内容は、承認対象の外である。\n",
+    "review_result": {
+      "opus": "no_findings",
+      "major": 0,
+      "unreviewed": 0,
+      "fable_verdict_literal": "承認してよい",
+      "minor_returned": false
+    }
+  },
+  "approved_parents": [
+    "HELIXINFRASTRUCTURE-L2-011"
+  ],
+  "dependency_references_not_approval_parents": [
+    "HELIXINFRASTRUCTURE-L2-025",
+    "HELIXINFRASTRUCTURE-L2-010",
+    "HELIXOS-L2-004"
+  ],
+  "po_adoption": {
+    "decision_path": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+    "revision": "0eda20f14c133c74d99fb6d5c12dddfe5dd7d5e5",
+    "sha256": "0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f",
+    "fixed_requirement_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "adopted_parent": "HELIXINFRASTRUCTURE-L2-011",
+    "version_target": "1.0",
+    "source_pins": [
+      {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md",
+        "full_sha256": "1c93bf0aadccfdf6b536a32d3923a17fbd00a1fd830850f9369b5b6d6b12efb2",
+        "bytes": 17732,
+        "spans": [
+          {
+            "start_line": 28,
+            "end_line": 37,
+            "raw_lf_sha256": "c8372b307e5d67293a7fb03ffddd0f843ea22cd123efb0a6246c01acb65aba58",
+            "literal_utf8": "## Workerの置き場所\n\n原文は、Workerを「HELIXにおける唯一の共通作業実行主体」とするが、共通部品かどうかは書いていない。AIが、共通部品にするか、コア機構にするか、機構の表には置かないかを聞いたところ、POは「機構の表には置かない」を選んだ。\n\nAIの整理：\n- Conceptの機構の表から「Runner／Sandbox（共通部品）」の行を除き、Workerの行は加えない。Workerは、図と説明の段落で示す。\n- Conceptの機構と共通部品の数は、8つの機構と1つの共通部品（HELIX-CONNECT）になる。\n- 原文の実際の資源の持ち手「HELIX Runtime Infrastructure」は、新しいコア機構HELIX-INFRASTRUCTUREの案として、POが全体を見てから扱いを決めるアイデアの段階にある（[判断記録](infrastructure-l1-idea-po-decisions-2026-09-26.md)、PR #2148）。そのため、Conceptでは「実行基盤」と書き、機構の名前は入れない。\n\n## 旧HELIXとの対応\n"
+          }
+        ]
+      },
+      {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/governance/decisions/infrastructure-concept-placement-po-decisions-2026-09-26.md",
+        "full_sha256": "59c45ce845c674866703a595159fff3df32d077f1c36dca23858499b3480bf2f",
+        "bytes": 16306,
+        "spans": [
+          {
+            "start_line": 70,
+            "end_line": 84,
+            "raw_lf_sha256": "3a54d076b4bf8e280a6dfb187bfc40ac56ad60f842232cadea12ecc94d7c3ecb",
+            "literal_utf8": "- 同候補の「未確定の点」にある「本書を要求（L2）の本文へ入れるか、候補のまま残すかは、POが仮決めのL2の最終確認のときに決める」の一文は、本記録の反映では変えない。POの回答から、この一文の扱いは別に確かめる。\n\n## 回答2の整理の修正（同日）\n\n本記録の最初の版の反映で、AIは、18項目に名前がない要求にAIの版の案（多くは1.0）を付け、「PO確認待ち」として企画案と本記録に一覧にした。これを見たPOは、次のように述べた。\n\n> は？何を言ってんの？\n\nAIの整理：\n- POの回答2は「1.0は18項目、残りは後の版」であり、18項目に当たらない要求はすべて後の版である。選択肢の説明文の「18項目に名前がない故障の単位・費用の観測などは、どの版かを企画案で個別に示して確認に出す」を、AIが1.0へ入れる案を付けてよいと読み、回答の範囲を超えて1.0の案を付けたのは誤りだった。\n- 企画案の版の列を直し、18項目に当たらない要求をすべて「1.0より後（版は未定）」にした。「18項目に名前がない要求の版の案」の表と、本記録の「PO確認待ちの一覧」を削った。\n- 企画案の「後の版へ回すもの」の表の「1.0で入れておくもの」の列から、18項目に当たらない要求（012、013、025、026、040）を外し、18項目に当たる要求だけにした。\n- 原文の18項目の15「OS connection」は、企画案の接続の表のOSとの行として1.0のままとする。\n\n## 旧HELIXとの対応\n"
+          }
+        ]
+      },
+      {
+        "revision": "0eda20f14c133c74d99fb6d5c12dddfe5dd7d5e5",
+        "path": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+        "full_sha256": "0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f",
+        "bytes": 6241,
+        "spans": [
+          {
+            "start_line": 18,
+            "end_line": 22,
+            "raw_lf_sha256": "3d415a1a35999ac873c2c52eb3501691c57b0aac117d9c28f236b8adcdd95969",
+            "literal_utf8": "## PO原文（全文）\n\n> #2198〜#2205について、各確認資料が固定したL1の対象revisionを確定し、L2と対になるL11の要求一式に合意する。各PRの明示候補集合は、記載されているversion_targetと適用条件を保持して採用する。\n> HARNESSの所属は029＝CORE、031＝共通部品、032＝COREとする。\n> SECURITYはA案を採用する。全操作のauthority境界を適用するが、有効な既決権限を再利用し、通常作業の毎回の人間承認は追加しない。\n"
+          },
+          {
+            "start_line": 44,
+            "end_line": 50,
+            "raw_lf_sha256": "92825ccb8e207719a6cec4ffb8ea727ffe2b733c9aea86b9782926c6bf1f8bd6",
+            "literal_utf8": "## 採用する明示候補集合\n\nPOは以下の全26件を、確認資料に記載された各version_targetと適用条件を保持して採用した。\n\nHELIXINFRASTRUCTURE-L2-001, HELIXINFRASTRUCTURE-L2-002, HELIXINFRASTRUCTURE-L2-003, HELIXINFRASTRUCTURE-L2-004, HELIXINFRASTRUCTURE-L2-005, HELIXINFRASTRUCTURE-L2-006, HELIXINFRASTRUCTURE-L2-007, HELIXINFRASTRUCTURE-L2-008, HELIXINFRASTRUCTURE-L2-009, HELIXINFRASTRUCTURE-L2-010, HELIXINFRASTRUCTURE-L2-011, HELIXINFRASTRUCTURE-L2-012, HELIXINFRASTRUCTURE-L2-013, HELIXINFRASTRUCTURE-L2-014, HELIXINFRASTRUCTURE-L2-015, HELIXINFRASTRUCTURE-L2-016, HELIXINFRASTRUCTURE-L2-017, HELIXINFRASTRUCTURE-L2-018, HELIXINFRASTRUCTURE-L2-019, HELIXINFRASTRUCTURE-L2-020, HELIXINFRASTRUCTURE-L2-021, HELIXINFRASTRUCTURE-L2-022, HELIXINFRASTRUCTURE-L2-023, HELIXINFRASTRUCTURE-L2-024, HELIXINFRASTRUCTURE-L2-025, HELIXINFRASTRUCTURE-L2-026\n\nL2-001〜011および025の1.0、L2-012〜024/026の「1.0より後（版は未定）」を各適用条件とともに維持する。PO既決の最低18項目を変更せず、後続版を1.0へ前倒ししない。\n"
+          }
+        ]
+      }
+    ]
+  },
+  "fixed_parent_pins": [
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "full_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "bytes": 60825,
+      "spans": [
+        {
+          "start_line": 127,
+          "end_line": 134,
+          "raw_lf_sha256": "2ddba5195e8fc02b6b985cd03e75bd049de88d282382506f19c626aaeadedc39",
+          "literal_utf8": "\n- **親L1**：`HELIXINFRASTRUCTURE-L1-021`、`HELIXINFRASTRUCTURE-L1-028`、`HELIXINFRASTRUCTURE-L1-029`、`HELIXINFRASTRUCTURE-L1-039`。\n- **入力**：INFRASTRUCTUREの限定操作要求（target/project/action/revision/scope/expiry）、SECURITYのauthority/credential/network/isolation/egress条件、通常OS/Worker経路ではOS assignment/ticket、実行後のWorker結果receipt。結果receiptは開始前の入力ではなく後段で受け取る。更新・変更を適用するoperationに限り、該当target/revision/scopeのSECURITY update-admission状態を受ける。独立bootstrap/recovery operationではL2-006のresource/pathと別SECURITY authorityを入力にし、停止中OSのticketを開始条件にしない。\n- **提供**：SECURITYで認可された範囲だけをWorkerが実行し、操作対象、scope、before/after resource state、結果/evidenceへ接続する実操作経路。\n- **保証**：INFRASTRUCTUREがsecurity policyや自身のauthorityを作らず、credential valueをresource normal state、backup、snapshotへ無条件に保存しない。Workerは無制限Shell主体にならない。実操作はOS/SECURITY/Workerの役割を越えずに停止・回収できる。\n- **単独成立の依存・版**：全operationでL2-001の対象resource/actual stateと、対象・action・revision・scope・expiryに適用される有効なSECURITY authorityを照合する。全実操作はSECURITY制約下のWorker実行契約を通す。通常OS/Worker経路ではOS assignment/ticketとL2-009 Work/Change接続を用いる。更新・変更を適用する場合のみ、該当target/revision/scopeのSECURITY update admissionがacceptedであることを追加条件とする。state-changing operationでは、そのactionに適用されるL2-005のbefore/after、backup/restore/rollback/recovery義務を確認し、該当義務が不明または未充足なら変更を保留する。無関係な復旧義務を全操作へ一律要求しない。bootstrap/recovery operationもSECURITY制約下のWorker実行契約を通し、L2-006の独立resource/pathと別SECURITY authorityを開始条件とする。OS/通常Control Plane停止中にそのticketまたは通常L2-009応答を必須にせず、復旧後はoperation/resultをOSへ同期する。この限定は通常operation ticket/authorityの一般免除ではない。`version_target: 1.0`。\n- **失敗時の戻し先・未完義務**：authority/credential scope/target/revision不一致なら実行前に拒否しSECURITY/OSへ返す。部分実行は成功にせず、実際の状態と未完操作、復旧/rollback obligationsを記録する。\n- **束ねる条件**：原文minimum item 14 (SECURITY connection)、16 (Worker execution)、HRI-L1-021/028/029/039。\n"
+        },
+        {
+          "start_line": 138,
+          "end_line": 146,
+          "raw_lf_sha256": "6bebc7a8fecafca8fa776e06bf718c0774ef7ae9c96de4bce50155b203a54351",
+          "literal_utf8": "### HELIXINFRASTRUCTURE-L2-011 HELIX自身のInfrastructure 1.0構成体\n\n- **親L1**：`HELIXINFRASTRUCTURE-L1-001`、`HELIXINFRASTRUCTURE-L1-002`、`HELIXINFRASTRUCTURE-L1-003`、`HELIXINFRASTRUCTURE-L1-004`、`HELIXINFRASTRUCTURE-L1-005`、`HELIXINFRASTRUCTURE-L1-006`、`HELIXINFRASTRUCTURE-L1-007`、`HELIXINFRASTRUCTURE-L1-009`、`HELIXINFRASTRUCTURE-L1-010`、`HELIXINFRASTRUCTURE-L1-011`、`HELIXINFRASTRUCTURE-L1-014`、`HELIXINFRASTRUCTURE-L1-016`、`HELIXINFRASTRUCTURE-L1-017`、`HELIXINFRASTRUCTURE-L1-018`、`HELIXINFRASTRUCTURE-L1-019`、`HELIXINFRASTRUCTURE-L1-020`、`HELIXINFRASTRUCTURE-L1-021`、`HELIXINFRASTRUCTURE-L1-022`、`HELIXINFRASTRUCTURE-L1-028`、`HELIXINFRASTRUCTURE-L1-029`、`HELIXINFRASTRUCTURE-L1-038`、`HELIXINFRASTRUCTURE-L1-039`。\n- **入力**：L2-001〜010および025の必要なversioned identities/evidence、HELIX-HARNESS-COREの設計、OS/SECURITY/Worker接続、対象runtime・recovery environment。\n- **提供**：HELIX自身の構成に対する1.0 Infrastructure実行環境、状態、観測、操作、backup/restore/rollback、独立recoveryとrebuildabilityのend-to-end結果。\n- **保証**：POが列挙した18最低項目すべてを一つずつ検証範囲に含む。resource/topology/environment/design-target-vs-actual/drift/compute-network-storage/model-worker/capacity/observability/incident/backup-restore/rollback/deployment-version/SECURITY/OS/Worker/bootstrap-recovery/rebuildabilityを個別に確認した後、機構接続と構成体受入を別に行う。HELIX-WEB-OSの顧客runtimeを含めず、後続版の機能を1.0構成の前提にしない。\n- **単独成立の依存・版**：L2-001〜010および025の必要な採択済み要求/verification、必要なCORE/OS/SECURITY/Worker契約と実資源。`version_target: 1.0`。この要求は設計/実装/運用許可ではない。\n- **失敗時の戻し先・未完義務**：個別unit/connection/最低項目が一つでも欠ける、unknown/stale/未認可が残る、独立recovery/rebuildabilityが不成立なら構成体を未成立に保ち、欠けたunit/connectionのownerへ戻す。部分成功・未完義務・既存稼働版/適格rollback先を引き継ぐ。\n- **束ねる条件**：18最低項目と、L1の単体/接続/構成体表のうち1.0対象。HELIXOS-L2-014は本構成をHELIX自身の段階releaseへ収載するときだけstage contractとして参照し、独立したInfrastructure 1.0受入の依存にはしない。OSがInfrastructure stateを所有することも意味しない。\n"
+        },
+        {
+          "start_line": 287,
+          "end_line": 295,
+          "raw_lf_sha256": "7465361b4d272cc1bf352a019272d6212a59282c938af704583ba1c0d493554c",
+          "literal_utf8": "### HELIXINFRASTRUCTURE-L2-025 Workerと実行資源の接続\n\n- **親L1**：`HELIXINFRASTRUCTURE-L1-009`、`HELIXINFRASTRUCTURE-L1-039`。\n- **入力**：Worker identity、OS ticket・要求・作業責務の参照、必要なCPU/memory/GPU/storage/network、process/container等の実行環境、SECURITYの隔離条件。\n- **提供**：Workerと実際の実行資源・容量・状態の対応、および資源が変わった場合も作業の参照を失わない接続。\n- **保証**：Workerは計算機そのものではない。INFRASTRUCTUREは実資源と状態を所有し、その資源で利用できる方式で隔離条件を適用する。Workerが必要に応じ別資源へ移る場合もticket、要求、Workerの責務を保持し、それらの正本をINFRASTRUCTUREへ移さない。資源の同一性とWorkerの同一性を混同しない。\n- **依存・版**：L2-001/003、Worker実行契約、OSの作業参照、SECURITY隔離条件。`version_target: 1.0`。自動配置最適化や高度な自動増減を依存にしない。\n- **失敗時・未完義務**：資源不足・隔離不能・ticket対応不明なら接続成立とせず、資源ownerまたはOS/SECURITYへ戻す。未完作業と元資源・移動先の観測状態を保持する。\n- **束ねる条件**：最低項目7（Model/Worker Runtime）・16（Worker execution）のWorkerと資源の区別。2026-09-26 Worker判断をL1接続表に従って適用する。実操作の認可から実行までの構成体はL2-010と別に検証する。\n"
+        }
+      ]
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "full_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "bytes": 40777,
+      "spans": [
+        {
+          "start_line": 140,
+          "end_line": 150,
+          "raw_lf_sha256": "08f92ca108c502d3e63f530e3e4c05078e1e6b293619fcfe24ae8519b53e9581",
+          "literal_utf8": "### HELIXINFRASTRUCTURE-L2-011 HELIX自身のInfrastructure 1.0構成体\n\n- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-001`、`HELIXINFRASTRUCTURE-L1-002`、`HELIXINFRASTRUCTURE-L1-003`、`HELIXINFRASTRUCTURE-L1-004`、`HELIXINFRASTRUCTURE-L1-005`、`HELIXINFRASTRUCTURE-L1-006`、`HELIXINFRASTRUCTURE-L1-007`、`HELIXINFRASTRUCTURE-L1-009`、`HELIXINFRASTRUCTURE-L1-010`、`HELIXINFRASTRUCTURE-L1-011`、`HELIXINFRASTRUCTURE-L1-014`、`HELIXINFRASTRUCTURE-L1-016`、`HELIXINFRASTRUCTURE-L1-017`、`HELIXINFRASTRUCTURE-L1-018`、`HELIXINFRASTRUCTURE-L1-019`、`HELIXINFRASTRUCTURE-L1-020`、`HELIXINFRASTRUCTURE-L1-021`、`HELIXINFRASTRUCTURE-L1-022`、`HELIXINFRASTRUCTURE-L1-028`、`HELIXINFRASTRUCTURE-L1-029`、`HELIXINFRASTRUCTURE-L1-038`、`HELIXINFRASTRUCTURE-L1-039`。\n\n- **受入手順**：対象範囲と除外範囲を固定し、L2-001〜010および025の採択済み要求と必要契約を同一構成manifestへpinする。最低18項目それぞれにtest input、expected outcome、observed evidence、結果を記録し、正常構成と失敗/rollback構成を端から端まで評価する。通常のInfrastructure構成体受入と、HELIXOS-L2-014のstageへ収載する場合のstage integration evidenceを区別する。\n- **成功条件**：1〜18の各minimum itemに対応する証拠があり、単体機能、CORE/OS/SECURITY/Worker接続、構成体の成立が別に判定される。Backup/Restore/Rollbackと独立Bootstrap/Recovery、Rebuildabilityの復旧端まで確認される。未完義務は次のowner/ticket/recovery pathに残り、稼働中構成と適格rollback先が特定できる。stageへ収載する場合は、そのstage identityとの対応も確認するが、HELIXOS-L2-014自体を通常のInfrastructure構成体受入の前提にはしない。\n- **反例・失敗条件**：18項目のいずれかが欠落、unobserved/unknown/stale/mismatch/unauthorizedがpass扱い、backupだけでrestore合格、部分接続の成功だけで構成体pass、又は後続版条件を暗黙に必須化する場合は不合格。HELIX-WEB顧客runtimeを本体Infrastructure構成体へ混ぜても不合格。\n- **操作別の追加oracle**：最低18項目の構成体全体ではBackup/Restore/Rollback・独立Bootstrap/Recovery・Rebuildabilityをすべて確認する。個々の操作では、許可済み更新、read-only/no-change、適用復旧義務付きstate change、OS停止中の独立recoveryを別fixtureにする。更新はL2-010のupdate admission、read-onlyは適用scope内のwrite禁止と操作起因の変更なし、変更操作はそのactionに適用される復旧義務を照合する。無関係なread-only操作までbackup全件を必須にはしないが、構成体の最低18項目から復旧能力を除外しない。\n- **独立復旧の追加oracle**：停止中OSのticket/assignmentまたは通常L2-009応答なしでも、独立path/resourceと別SECURITY authority、SECURITY制約下のWorker実行契約により限定recoveryを開始し、復旧後にoperation/resultをOSへ同期する。許可欠落、適用復旧義務unknownの変更、通常操作へのticket免除、または同期欠落は構成体成功にしない。\n- **失敗戻し先**：失敗したunit/connectionのownerへ戻し、構成体は未成立のままにする。部分成功と未完義務は各ownerへ引継ぎ、rollbackまたは現行stage維持の判断材料を残す。\n- **最低範囲対応**：1–18すべて。L2の「1.0最低18項目と要求IDの対応」表を証拠indexとして使うが、表自体は原要求や個別試験の代用ではない。\n"
+        },
+        {
+          "start_line": 288,
+          "end_line": 297,
+          "raw_lf_sha256": "e1cd1894cd8e15226035920b2e4862a6bfa220aeffd2a45c0f5e2b430a79b8e9",
+          "literal_utf8": "## Worker資源の接続受入（version_target: 1.0）\n\n### HELIXINFRASTRUCTURE-L2-025 Workerと実行資源の接続\n\n- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-009`、`HELIXINFRASTRUCTURE-L1-039`。\n\n- **入力・手順**：同じWorkerとticketを、異なる実資源へ対応づけるcase、資源不足、隔離不能、作業参照の欠落caseを用意する。\n- **成功条件**：CPU/memory/GPU/storage/networkとprocess/containerの資源・状態がWorkerと区別される。必要時の移動後もticket、要求、作業責務、未完義務が同じ作業へ辿れ、資源で利用できる隔離がSECURITY条件に対応する。\n- **反例**：計算機変更をWorkerの責務消失とする、INFRASTRUCTUREへticket状態を移管する、隔離不能でも成立扱いする、自動配置最適化を本受入の必須条件にする。\n- **失敗戻し先**：資源/OS/SECURITYの該当owner。元資源と移動先の状態、未完作業を保持する。\n"
+        }
+      ]
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "full_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "bytes": 153353,
+      "spans": [
+        {
+          "start_line": 538,
+          "end_line": 538,
+          "raw_lf_sha256": "b1e3c7676204bfd40d924be4ece646a5e859c4d4ece9394fc967e577201f15b7",
+          "literal_utf8": "Workerの共通の実行契約はHELIX-OSが持つ（[2026-09-26 PO判断](../../governance/decisions/worker-execution-model-po-decisions-2026-09-26.md)）。Workerは独立した機構ではなく、作業を実行する主体である。作成やreview等の役割はレーンへ割り当て、Workerはレーンの主がSubagentとして呼び出して作業させるモデルである（例：GUIのレーンの主がOpusなら、Subagentとして呼び出したSonnetがWorker）。\n"
+        },
+        {
+          "start_line": 549,
+          "end_line": 549,
+          "raw_lf_sha256": "3aa2cf12d06d0354167ecf42007aae9fc459fd5a6113393feb0c385c39316895",
+          "literal_utf8": "authority・権限の制約・隔離の条件はSECURITY、CPU・GPU・host等の実際の資源とその状態はHELIX-INFRASTRUCTURE（[2026-09-26 PO判断](../../governance/decisions/infrastructure-concept-placement-po-decisions-2026-09-26.md)）、Workerの配置の案はINTELLIGENCEが持ち、OSはこれらを重複して定義しない。OSが持つのは作業と変更の状態（Work／Change State）であり、HELIX-INFRASTRUCTUREの実行環境の資源の状態（Runtime Resource State）を二重に正本にしない。\n"
+        }
+      ]
+    }
+  ],
+  "documents": [
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "revision": "ddb82381cea08930c2ef965aba59b450b8a142dc",
+      "sha256": "429291b0cec7dcf63271b4aef419120476e70bff9054002aeb872e888c8eb328",
+      "bytes": 5634,
+      "working_tree_equal": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "revision": "ddb82381cea08930c2ef965aba59b450b8a142dc",
+      "sha256": "425d0746efe875dbfbeebc26562adea99a3cdd8e8ef6377a0164bca1d624cc2d",
+      "bytes": 146169,
+      "working_tree_equal": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "revision": "ddb82381cea08930c2ef965aba59b450b8a142dc",
+      "sha256": "7a6e9bd1d2125805791756c031a1a9228e7e3467c10b35bb473245338284ad75",
+      "bytes": 19668,
+      "working_tree_equal": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "revision": "ddb82381cea08930c2ef965aba59b450b8a142dc",
+      "sha256": "c0c583732c75ba2545e0c3229f98ea4d280c82dfedc449a9ee6be0fb77f0a79f",
+      "bytes": 4607,
+      "working_tree_equal": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "revision": "ddb82381cea08930c2ef965aba59b450b8a142dc",
+      "sha256": "163107e7cd9d6ef04f38b5ffd974f487b96a9501980f27e37a9d2095099a9a52",
+      "bytes": 229121,
+      "working_tree_equal": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "revision": "ddb82381cea08930c2ef965aba59b450b8a142dc",
+      "sha256": "4e8d94b7515e87da8c809b26d190e1e08e7d21060f1c6fdefbfc9d75ca65145b",
+      "bytes": 17717,
+      "working_tree_equal": true
+    }
+  ],
+  "condition3": {
+    "status": "pending_independent_recheck_after_record_addition",
+    "required": "reviewer verifies this record and all six document hashes against formal review comment"
+  },
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-infrastructure-stage5-l3-l10-delegated-decision-2026-10-07.md",
+    "sha256": "0d68f78ce32702158a625db5daf769d22831469e6dbacd2e5866c35deb7dde99",
+    "bytes": 5674
+  },
+  "historic_audit_check_blocker": {
+    "path": "docs/governance/audits/requirements-stage/l3-infra-worker-contract-owner-review01-repair-2026-10-07-6039983344.md",
+    "sha256": "c2c1e4f6d54770af2568b99dea34b97857101189405cce1e8e9b606158ebd7b9",
+    "bytes": 4506,
+    "lines_3_5_utf8": [
+      "status: audit_supplement  \n",
+      "authority_effect: none  \n",
+      "reviewed_head: `01f6b8ca0a846b5cdec22750056be9540cb5dbbe`  \n"
+    ],
+    "changed": false,
+    "finding": "git diff --check over review base to HEAD flags three Markdown hard-break spaces; no repository rule authorizes path-scoped or global whitespace-check exemptions."
+  },
+  "limits": "Only condition 1 and 2 are recorded as satisfied. No approval authority is effective before condition 3 and main admission. Existing decision/audit files are immutable; no commit or push."
+}
