@@ -1,0 +1,70 @@
+{
+  "record_type": "HDEC-OS-STAGE2A-PARENT023-REVIEW01-2026-10-08",
+  "authority_effect": "none_pending_condition3_and_main_admission",
+  "scope": {
+    "mechanism": "HELIX-OS",
+    "stage": "2a",
+    "parents": [
+      "HELIXOS-L2-023"
+    ],
+    "version": "1.0"
+  },
+  "review": {
+    "formal_comment_id": 6046140606,
+    "formal_body_raw": "## review01（HEAD 5dfc81884a29bfe0069bb5c4f88f1054d5b8bdd2 / base 0d8fcb67ef64e17e0e3529715011d6140652f017）— Claude review_merge\n\n### 結論：Major 0。同じ本文revisionで、委任条件1（Opus）と条件2（Fable「承認してよい」）が成立\n- OpusとFableが、このrevisionをそれぞれ独立に読みました。どちらもMajorなしで、承認してよいと判断しました。\n- 判断記録と6本文pinを追加した後に、条件3を別に照合します。\n\n### 照合した点（固定 `f6dad2a` L2:722–731 / L11:380–386）\n- **4 negativeの根拠**\n  - 02o（因果ID欠落）、02p（scope不一致）、02q（受領時の未完duty 1件欠落）、02r（停止理由不一致）の4件は、どれも固定親の範囲内です。根拠は、L2:726の「提供」に挙がった6 bindingと、L11:383「handoffごとに…因果ID、scope、未完義務、停止理由、evidenceの一致を確認」です。\n  - 戻し先（発生側sourceまたは管理へ戻す）、未完の保持、元ticketを未完のままにすることは、いずれもL2:729とL11:385のとおりです。\n  - 新しいowner、意味、version、閾値、gateはありません。\n- **単独変異**：4件とも、他のbindingを正常に保ったまま1 fieldだけを変える単独変異です（FV:503–506）。\n- **既存文の保持**\n  - FRの20行の変更は、既存文の末尾への追記と、既存文の途中への挿入だけです。旧文の語は残っています。\n  - 既存のCASE 02a〜02nは変わっていません。02qは「1件欠落」で、既存の02e（未受領）とは別の変異です。\n- **IDと件数**：02o〜02rは、BR、BV、FRのcrosswalk、AC-OS-023-02、NFR、NFRVに同期しています。IDの衝突はありません。\n- **親040の保持**：#2682が追加した12行は、HEADにすべて残っています。base..HEADの差分に、040の行はありません。\n- **元の草稿との一致**：023の追加・削除行は、元の草稿（e028e18..e17f77cf）とPR（0d8fcb6..HEAD）で完全に一致しました（30行）。\n- **SHA**\n  - 固定親：L2 `c92d3c05…`／span `9e07b91b…`、L11 `925e06cd…`／span `215240e3…`\n  - 旧RLO要求/受入：全文とspan\n  - 統合監査の6本文pin\n  - いずれも実bytesと一致しました。\n- **静的検査**：`scfctl validate` 147/0、`stale=0`、`git diff --check` が通りました。\n\n### HEADの6本文（次の判断記録・pinで固定するbytes）\n| 本文 | bytes | SHA-256 |\n|---|---:|---|\n| BR | 20,430 | `60b43aab…` |\n| FR | 203,303 | `f72308d3…` |\n| NFR | 33,618 | `04fb47b3…` |\n| BV | 17,850 | `254351ea…` |\n| FV | 244,465 | `0edd2bb0…` |\n| NFRV | 30,382 | `bab3201d…` |\n\n### 返さない所見（Minor。承認を止めず、解消済みとは扱いません）\n1. **期待の書き方が揃っていない**\n   - FVの02qの期待は「受領不成立」だけで、「connection unresolved」を明示していません。02rも「元ticket保持」を明示していません。\n   - FRのAC-OS-023-02が4件共通として補っているので、実害はありません。L11:385と揃えるには、FVのq/r行へ語を足すのが望ましいです。\n2. **NFRVの語が固定親とずれている**\n   - nfr-verificationのCASE-NFR-OS-023-01「各binding異常でhandoff拒否」は、固定親の語「接続を未成立として保持」とずれています。FVと同じ語へ寄せるのが望ましいです。\n3. **統合監査に最終HEADが記録されていない**\n   - 統合監査の `integrated_head` は `371154ec` で、最終HEAD `5dfc8188` は記録されていません。\n   - 371154ec..HEADの間で6本文に差分はないので、pinはそのまま有効です。\n4. **初回監査の記録漏れ**\n   - 初回監査JSONの `draft_commit_revision` がnullです。統合監査が `e17f77cf8` をpinしているので、実害はありません。\n   - 先行する意味監査が、path、comment ID、SHAで特定されていません。\n\n### 未確認範囲\n- fixtureは実行していません。\n- 旧RLO文書の本文の意味は、SHAの一致まで確認しました。再導出の妥当性は、本文を読んで評価していません。\n\n本reviewは承認・merge admissionを生成しません。\n",
+    "formal_body_utf8_bytes": 4332,
+    "formal_body_sha256": "f750a51fa8862d0dbf9cdad4e862b3f3996d000a011cf69f9eb0673407a0b0c1",
+    "reviewed_head": "5dfc81884a29bfe0069bb5c4f88f1054d5b8bdd2",
+    "review_base": "0d8fcb67ef64e17e0e3529715011d6140652f017",
+    "condition1": "satisfied: Opus Major 0",
+    "condition2": "satisfied: Fable 承認してよい",
+    "condition3": "pending"
+  },
+  "six_body_pins": [
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "bytes": 20430,
+      "sha256": "60b43aab032c879b32f29566c482a4c0f984d7f4c522614befba02994895d5ab"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "bytes": 203303,
+      "sha256": "f72308d3b2d6fe2dbe8cd6a075dee3d982c60a6a0a6376b08d935fe0bf5841ca"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "bytes": 33618,
+      "sha256": "04fb47b3386a9fc31556a60727b4004628256ada37c163202b33ac888b651f4a"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "bytes": 17850,
+      "sha256": "254351ea2067e4bb19e50adee9c544d589a2b2adc589568addb30c59982d03e9"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "bytes": 244465,
+      "sha256": "0edd2bb07d8ee213c6e25c03f0fdad803cad2d2d0be613ebf895778c38f784ed"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "bytes": 30382,
+      "sha256": "bab3201da8be170f0dc5ac295dc4828ae28306c27b952e4215a0b37d099509c2"
+    }
+  ],
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-os-stage2a-parent023-review01-l3-l10-delegated-decision-2026-10-08.md",
+    "bytes": 3151,
+    "sha256": "29986105ce5655f631050989b09a1550fa5c08c401e6d494014efc609c9111bc"
+  },
+  "minor_not_returned": [
+    "FV02qのconnection unresolved、02rの元ticket保持はFRの共通ACで補うが行ごとの明示は不足。",
+    "NFRVのhandoff拒否は固定親の接続未成立保持と語が異なる。FR共通ACで状態維持を補う。",
+    "統合監査のintegrated_head371154ecからreviewHEAD5dfc8188まで6本文不変。初回draft_commit_revisionはnull、統合監査がe17f77cfをpinする。",
+    "先行意味監査のpath/comment/SHAの特定不足、旧RLO意味再導出の独立reviewはSHA照合までで未確認。"
+  ],
+  "limits": [
+    "fixture未実行",
+    "274親検収未完"
+  ]
+}
