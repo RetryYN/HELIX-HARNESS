@@ -138,6 +138,10 @@ L11-028:462-463のAPI契約を固定oracleとする。`amount <= configured maxi
 | `CASE-OS-028-03p` | 選択sourceの利用範囲だけを当該ticket scope外にする | ticket scope外のsource利用を拒み、source owner/SECURITY/OSへ戻す |
 | `CASE-OS-028-03q` | 実consultでsource/相談案receiptだけを欠落させる | connectionを未成立のまま保持しINTELLIGENCE/source owner/OSへ戻す |
 | `CASE-OS-028-03r` | response等は揃え、元Workerへのreturn handoff receiptだけを欠落させる | connectionを未成立のまま保持しOS/元Workerへ戻す |
+| `CASE-OS-028-03s` | consultの有無は変えず、実際に選択したsource identityだけをmissing/別sourceへ変える。他source fieldは固定 | そのsourceを使う支援だけをholdしsource owner/INTELLIGENCE/OSへ戻す。別sourceへ推測置換しない |
+| `CASE-OS-028-03t` | 選択sourceのprovenanceだけをmissingにする。identity/revision/permission等は固定 | source利用を成功扱いせず当該支援をholdし、source owner/INTELLIGENCE/OSへ戻す |
+| `CASE-OS-028-03u` | 選択sourceのrelevanceだけをunknown/不適合にする。他source fieldは固定 | 関連性を推定せず当該支援をholdしINTELLIGENCE/source owner/OSへ戻す |
+| `CASE-OS-028-03v` | 選択sourceのconstraintsだけをmissingにする。他source fieldは固定 | 制約適用を確認できるまで当該支援をholdし、source/利用許可の不足はsource owner/SECURITYへ、実resource制約はINFRASTRUCTUREへ、ticket/scope/authorityの状態はOS/SECURITYへ戻す |
 
 ### CASE-OS-028-04 — 未見endpointとoracle適用可否（AC-OS-028-04）
 
@@ -145,11 +149,23 @@ L11-028:465の未見fixture。別endpointでvalidation不具合が出たが、�
 
 ### CASE-OS-029-01 — 相談なしの準備と作業（AC-OS-029-01）
 
-L11-029:473のnormal routeを別fixtureで表す。確定assignmentを持つ元Workerの作業前taskでsupportを選択した場合は、INTELLIGENCEがapproved request/designとHARNESS-022の既存oracleからtest/instruction candidateを正確なsource revisionへ結び、OSが同じ軽量Worker設定でticketを開始する。consultは選択せずOS-028 receiptを要求しない。approved requirement/pair/oracleの適用、元Workerの実作業、HARNESS-022が定める許可済み検証の実行結果とsource-bound receipt、元Workerおよびsupport/test候補作成者とは別identityの独立reviewerによるcurrent差分・oracle・resultの確認を維持する。findingがあれば同じ軽量Worker設定の元Workerへ返して修正・再検証し、新HEADとresultを再び束縛する。LABO-L2-060は効果測定を明示的に選んだ場合だけcomparison materialとして参照し、runtime prerequisiteにしない。oracle適用はHARNESS-022に宣言された義務だけで行い、このcaseで新しいbusiness outcomeを補わない。
+L11-029:473のnormal routeを別fixtureで表す。確定assignmentを持つ元Workerの作業前taskでsupportを選択した場合は、INTELLIGENCEがapproved request/designとHARNESS-022の既存oracleからtest/instruction candidateを正確なsource revisionへ結び、OSが同じ軽量Worker設定でticketを開始する。consultは選択せずOS-028 receiptを要求しない。approved requirement/pair/oracleの適用、元Workerの実作業、HARNESS-022が定める許可済み検証の実行結果とsource-bound receipt、元Workerおよびsupport/test候補作成者とは別identityの独立reviewerによるcurrent差分・oracle・resultの確認を維持する。findingがあれば同じ軽量Worker設定の元Workerへ返して修正・再検証し、新HEADとresultを再び束縛する。LABO-L2-060は効果測定を明示的に選んだ場合だけcomparison materialとして参照し、runtime prerequisiteにしない。oracle適用はHARNESS-022に宣言された義務だけで行い、このcaseで新しいbusiness outcomeを補わない。選択support sourceのidentity/version/scope/provenance/利用permissionだけを一項目ずつ欠落/不一致にするconsultなしのnegativeはCASE-OS-029-08a–08eで、CASE-OS-029-01の正常基準と同じ他条件を保って照合する。
 
 ### CASE-OS-029-07 — supportとconsultを選ばない作業・検証（AC-OS-029-01/06）
 
 L2-029:873のsupport-unselected条件を、CASE-OS-029-01のINTELLIGENCE事前candidate経路と分けたnormal fixtureで照合する。確定assignmentを持つ元Workerがapproved requirementとpaired designを直接用い、既存HARNESS-022 oracleの適用義務を確認して許可済み経路で実作業と実検証を行い、対象source revisionに結ばれた結果receiptを記録する。support proposalとOS-028 consult receiptはいずれも要求しないが、必要な独立review/owner receiptは維持する。独立reviewerは元Workerと別identityでcurrent resultを確認する。findingがあれば元Workerが同一の軽量Worker設定で修正・再検証し、その新revisionのresult receiptと独立reviewを結び直す。proposal不要を検証義務免除と扱わず、oracleやbusiness outcomeを新設しない。
+
+### CASE-OS-029-08 — 作業前support選択・相談なしのsource binding negative（AC-OS-029-01）
+
+CASE-OS-029-01のsupport選択・consultなしの正常fixtureを基準にし、approved request/design、HARNESS-022 oracle、assignment、実作業/検証、result、review、他のsource fieldを固定する。各行は選択されたsupport sourceの一項目だけを変異し、選択sourceの使用だけを保留し、L2-029:876の既存カテゴリに従ってINTELLIGENCE/OS、元Worker/OSまたはSECURITY/OSへ戻して未完義務を保持する。実consultは行わずOS-028 receiptを要求しない。未選択supportではsource fieldsを要求せずCASE-OS-029-07の正常を維持する。
+
+| CASE | 単独変異 | 期待状態／戻し先 |
+|---|---|---|
+| `CASE-OS-029-08a` | 選択support source identityだけをmissing/別sourceにする | sourceを推測置換せず選択supportの使用を保留しINTELLIGENCE/OSへ戻す |
+| `CASE-OS-029-08b` | 選択support source versionだけをmissing/staleにする | versionを推測せず選択supportの使用を保留しINTELLIGENCE/OSへ戻す |
+| `CASE-OS-029-08c` | 選択support source scopeだけをmissing/対象外にする | source scope適合を推定せず選択supportの使用を保留しINTELLIGENCE/OSへ戻す。task scopeの不一致なら元Worker/OSへ戻す |
+| `CASE-OS-029-08d` | 選択support source provenanceだけをmissingにする | source来歴を推測せず選択supportの使用を保留しINTELLIGENCE/OSへ戻す |
+| `CASE-OS-029-08e` | 選択support source利用permissionだけをmissing/restrictedにする | 利用権限を推測せず当該supportをholdしSECURITY/OSへ戻す |
 
 ### CASE-OS-029-02 — 相談選択時のPATCH oracle（AC-OS-029-02）
 
@@ -206,8 +222,8 @@ L11-029:478の全因果順を、L11-029:474のPATCH fixtureとは別のfixture i
 
 | 固定親 | 機能要件 | AC / CASE | L11固定oracle |
 |---|---|---|---|
-| `HELIXOS-L2-028` | `FR-OS-028` | `AC-OS-028-01`→`CASE-OS-028-01`; `AC-OS-028-02`→`CASE-OS-028-02`, `CASE-OS-028-02a`, `CASE-OS-028-02b`, `CASE-OS-028-05`; `AC-OS-028-07`→`CASE-OS-028-07a`, `CASE-OS-028-07b`, `CASE-OS-028-07c`; `AC-OS-028-03`→`CASE-OS-028-03a`, `CASE-OS-028-03b`, `CASE-OS-028-03c`, `CASE-OS-028-03d`, `CASE-OS-028-03e`, `CASE-OS-028-03f`, `CASE-OS-028-03g`, `CASE-OS-028-03h`, `CASE-OS-028-03i`, `CASE-OS-028-03j`–`CASE-OS-028-03r`（`CASE-OS-028-02b`もL2-028:856の限定初回条件についてAC-OS-028-03へ対応）; `AC-OS-028-04`→`CASE-OS-028-04`; `AC-OS-028-05`→`CASE-OS-028-05`; `AC-OS-028-06`→`CASE-OS-028-06a`, `CASE-OS-028-06b`, `CASE-OS-028-06c`, `CASE-OS-028-06d`, `CASE-OS-028-06e` | L11:457-466 |
-| `HELIXOS-L2-029` | `FR-OS-029` | `AC-OS-029-01`→`CASE-OS-029-01`, `CASE-OS-029-07`; `AC-OS-029-02`→`CASE-OS-029-02`; `AC-OS-029-03`→`CASE-OS-029-03`; `AC-OS-029-04`→`CASE-OS-029-04a`, `CASE-OS-029-04b`, `CASE-OS-029-04c`, `CASE-OS-029-04d`, `CASE-OS-029-04e`, `CASE-OS-029-04f`, `CASE-OS-029-04g`, `CASE-OS-029-04h`, `CASE-OS-029-04i`, `CASE-OS-029-04j`, `CASE-OS-029-04k`, `CASE-OS-029-04l`; `AC-OS-029-05`→`CASE-OS-029-05`; `AC-OS-029-06`→`CASE-OS-029-07` (unselected support/consult finding rework/retest), `CASE-OS-029-06a`, `CASE-OS-029-06b`, `CASE-OS-029-06c`, `CASE-OS-029-06d`, `CASE-OS-029-06e` | L11:468-478 |
+| `HELIXOS-L2-028` | `FR-OS-028` | `AC-OS-028-01`→`CASE-OS-028-01`; `AC-OS-028-02`→`CASE-OS-028-02`, `CASE-OS-028-02a`, `CASE-OS-028-02b`, `CASE-OS-028-05`; `AC-OS-028-07`→`CASE-OS-028-07a`, `CASE-OS-028-07b`, `CASE-OS-028-07c`; `AC-OS-028-03`→`CASE-OS-028-03a`, `CASE-OS-028-03b`, `CASE-OS-028-03c`, `CASE-OS-028-03d`, `CASE-OS-028-03e`, `CASE-OS-028-03f`, `CASE-OS-028-03g`, `CASE-OS-028-03h`, `CASE-OS-028-03i`, `CASE-OS-028-03j`–`CASE-OS-028-03v`（`CASE-OS-028-02b`もL2-028:856の限定初回条件についてAC-OS-028-03へ対応）; `AC-OS-028-04`→`CASE-OS-028-04`; `AC-OS-028-05`→`CASE-OS-028-05`; `AC-OS-028-06`→`CASE-OS-028-06a`, `CASE-OS-028-06b`, `CASE-OS-028-06c`, `CASE-OS-028-06d`, `CASE-OS-028-06e` | L11:457-466 |
+| `HELIXOS-L2-029` | `FR-OS-029` | `AC-OS-029-01`→`CASE-OS-029-01`, `CASE-OS-029-07`, `CASE-OS-029-08a`, `CASE-OS-029-08b`, `CASE-OS-029-08c`, `CASE-OS-029-08d`, `CASE-OS-029-08e`; `AC-OS-029-02`→`CASE-OS-029-02`; `AC-OS-029-03`→`CASE-OS-029-03`; `AC-OS-029-04`→`CASE-OS-029-04a`, `CASE-OS-029-04b`, `CASE-OS-029-04c`, `CASE-OS-029-04d`, `CASE-OS-029-04e`, `CASE-OS-029-04f`, `CASE-OS-029-04g`, `CASE-OS-029-04h`, `CASE-OS-029-04i`, `CASE-OS-029-04j`, `CASE-OS-029-04k`, `CASE-OS-029-04l`; `AC-OS-029-05`→`CASE-OS-029-05`; `AC-OS-029-06`→`CASE-OS-029-07` (unselected support/consult finding rework/retest), `CASE-OS-029-06a`, `CASE-OS-029-06b`, `CASE-OS-029-06c`, `CASE-OS-029-06d`, `CASE-OS-029-06e` | L11:468-478 |
 
 ## C13 未解消事項の引継ぎ（identityのみ）
 
