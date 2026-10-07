@@ -231,6 +231,12 @@ NFR候補はL10定義の測定母集団の設計にとどまり、抽出器の�
 
 **制約**：候補はscope限定のcoverage oracleであり、実装性能、費用、時間、成功率、最小契約数、全HARNESS全体の完成を数値化しない。9-class fixtureを上限・一般閾値・class定義としない。旧sourceにないSLAや閾値を新設しない。実測値は未取得である。
 
+## Stage 3 親043の非機能候補
+
+| NFR候補 / L2親 | 候補値 | 固定根拠 | 限界 |
+|---|---|---|---|
+| `HARNESS-L2-043` | 独立した数値NFRを導出しない | 固定L2-043はrule/branch/risk coverageを意味で判定し、正例・境界負例を各適用rule/branchに対応させる。 | case数の総量、coverage率の新閾値、全組合せ数を追加しない。未選択scopeを分母に加えない。 |
+
 ## Stage 3 親054の非機能要件：専門Worker判定・契約のOS割当handoff（起草候補、version_target: 1.0）
 
 **採択本文の固定**：PO記録のsource_repository_revision `5aa100319361b0cc86edd3c51815ec777d55410a`。L2 `product-requirements.md:1154–1162` SHA-256 `b76b7b1adec804a25bd9333663aa9b0d074f68518764c2874c994bcdf6ead193`、L11 `product-acceptance.md:865–875` SHA-256 `5d1ab0bad44ae305053932f0c82bcf472e145046125b638f5facab13eaaa2aa0`。旧調査snapshot e94838f5の同本文とbyte一致。末尾空行込みの物理span digestは別の監査pinとして区別する。

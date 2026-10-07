@@ -157,6 +157,12 @@ HARNESS-L2-041から独立business requirement、business owner、ROI/KPI/商業
 
 **旧source処置記録**：HIL-FR-54の「class-wise coverage」「再利用／delta／新規／N/A」「uncovered/duplicate」を意味再導出。HIL-FR-55のexample positive/negativeは保持対象外で043のscopeへ置く。HR-FR-HIL-20、HOT-HIL-50、HAT-HIL-20の複合workflow全体は再利用せず、対象のslice境界確認に限定する。
 
+## Stage 3 親043の業務要件
+
+| L2親 | business requirement | 理由 |
+|---|---|---|
+| `HARNESS-L2-043` | 独立したbusiness requirementを導出しない | 例coverageは選択scopeのverification adequacyであり、別の事業成果や価値閾値を追加しない。 |
+
 ## Stage 3 親054の業務要件：専門Worker判定・契約のOS割当handoff（起草候補、version_target: 1.0）
 
 **採択本文の固定**：PO記録のsource_repository_revision `5aa100319361b0cc86edd3c51815ec777d55410a`。L2 `product-requirements.md:1154–1162` SHA-256 `b76b7b1adec804a25bd9333663aa9b0d074f68518764c2874c994bcdf6ead193`、L11 `product-acceptance.md:865–875` SHA-256 `5d1ab0bad44ae305053932f0c82bcf472e145046125b638f5facab13eaaa2aa0`。旧調査snapshot e94838f5の同本文とbyte一致。末尾空行込みの物理span digestは別の監査pinとして区別する。

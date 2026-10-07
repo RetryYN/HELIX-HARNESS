@@ -1,0 +1,2125 @@
+{
+  "record_type": "harness_stage3_parent043_post_body_authoring_audit",
+  "status": "post_body_integrity_and_source_pin_audit_only_not_independent_review_not_approval_not_fixture_execution",
+  "captured_at_local": "2026-10-07 Asia/Tokyo (wall-clock not separately recorded)",
+  "worktree": "/home/tenni/.helix-worktrees/l3-harness-stage3-parent043",
+  "head": "a289a91cd7c37490346ac6f2acc3cb5a40992f23",
+  "head_sha256": "not_applicable_git_commit_oid",
+  "base": "3c3c512c09320c0494904602b23e544a81206eed",
+  "worktree_clean": true,
+  "authoring_context": {
+    "root_checkpoint_path": "/tmp/root-harness043-body-checkpoint.json",
+    "root_checkpoint_sha256": "637024e0f7eef912192a217415cb7444a95f92861f68ddee0cde28f03289b3ad",
+    "candidate_path": "/tmp/harness043-japanese-suffix-candidate.json",
+    "candidate_sha256": "cb1087584c07dfc1aab89f0e48bf8e4b500c2c44d63215ea4f0c36cdb4b657d0",
+    "candidate_status": "japanese_fv_prose_candidate_only_not_canonical_not_reviewed_not_approved",
+    "authoring_base": {
+      "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+      "latest_main_commit": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+      "canonical_or_worktree_edited": false,
+      "commit_push_pr": false
+    },
+    "canonical_body_commit": "a289a91cd7c37490346ac6f2acc3cb5a40992f23",
+    "canonical_body_authoring_claimed_by_root": true,
+    "independent_review": false,
+    "po_l3_approval": false,
+    "fixtures_executed": false
+  },
+  "six_document_physical_checks": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "base_revision": "3c3c512c09320c0494904602b23e544a81206eed",
+      "head_revision": "a289a91cd7c37490346ac6f2acc3cb5a40992f23",
+      "base_prefix_bytes": 204919,
+      "base_prefix_sha256": "4fce6bb6cd3af5938a11719866050bd729234adbebf70c4210398aa90cad5dff",
+      "checkpoint_prefix_sha256": "4fce6bb6cd3af5938a11719866050bd729234adbebf70c4210398aa90cad5dff",
+      "prefix_match": true,
+      "physical_suffix_bytes": 5053,
+      "physical_suffix_sha256": "1846f2332175f82e6570639d33c17bc30583fb8521e68fb8d2a7b22ad60c6c51",
+      "checkpoint_suffix_sha256": "1846f2332175f82e6570639d33c17bc30583fb8521e68fb8d2a7b22ad60c6c51",
+      "physical_full_bytes": 209972,
+      "physical_full_sha256": "9f4851eed6ef4ae88e2a6e1ab265b9f1749defeb8a2a3b43d657624f9d62c2cb",
+      "checkpoint_full_sha256": "9f4851eed6ef4ae88e2a6e1ab265b9f1749defeb8a2a3b43d657624f9d62c2cb",
+      "candidate_text_bytes": 5052,
+      "candidate_text_sha256": "6f309cde181b320560a6f26ccd0e394cd930c8b350b72418e375b02b337f4ead",
+      "candidate_content_matches_after_single_separator_lf": true,
+      "leading_separator_bytes": 1
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "base_revision": "3c3c512c09320c0494904602b23e544a81206eed",
+      "head_revision": "a289a91cd7c37490346ac6f2acc3cb5a40992f23",
+      "base_prefix_bytes": 13240,
+      "base_prefix_sha256": "c51f0bc2b98ae5c6a77bfa354050ec70ee87a70641b5f0161b14d5a3afd33e8f",
+      "checkpoint_prefix_sha256": "c51f0bc2b98ae5c6a77bfa354050ec70ee87a70641b5f0161b14d5a3afd33e8f",
+      "prefix_match": true,
+      "physical_suffix_bytes": 283,
+      "physical_suffix_sha256": "8d806b285b554f895d1e3b8125b92e398db31ca5bcab68296d866a06c07e9129",
+      "checkpoint_suffix_sha256": "8d806b285b554f895d1e3b8125b92e398db31ca5bcab68296d866a06c07e9129",
+      "physical_full_bytes": 13523,
+      "physical_full_sha256": "76d0608a75c0b92dfa4802d3903e1057f83cde6308a47e79255d840b3a92592d",
+      "checkpoint_full_sha256": "76d0608a75c0b92dfa4802d3903e1057f83cde6308a47e79255d840b3a92592d",
+      "candidate_text_bytes": 282,
+      "candidate_text_sha256": "445d876bca15e7ae01c444eeffe6ea19f2ed9c6dc2f1031b61ca976d7bd36c33",
+      "candidate_content_matches_after_single_separator_lf": true,
+      "leading_separator_bytes": 1
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "base_revision": "3c3c512c09320c0494904602b23e544a81206eed",
+      "head_revision": "a289a91cd7c37490346ac6f2acc3cb5a40992f23",
+      "base_prefix_bytes": 42916,
+      "base_prefix_sha256": "b364e8c6dc92f4548df34638488fefec1533d13941a991de685a74bb64471fc9",
+      "checkpoint_prefix_sha256": "b364e8c6dc92f4548df34638488fefec1533d13941a991de685a74bb64471fc9",
+      "prefix_match": true,
+      "physical_suffix_bytes": 434,
+      "physical_suffix_sha256": "be99bed2c7755145b8a0f1ae8703e398f42926d5c39721857ca780954022cdf3",
+      "checkpoint_suffix_sha256": "be99bed2c7755145b8a0f1ae8703e398f42926d5c39721857ca780954022cdf3",
+      "physical_full_bytes": 43350,
+      "physical_full_sha256": "ecebd6f33a2c9a7c50079bd6f0018124c1ea3bb0f536ace87a4a7ba3a3e5c061",
+      "checkpoint_full_sha256": "ecebd6f33a2c9a7c50079bd6f0018124c1ea3bb0f536ace87a4a7ba3a3e5c061",
+      "candidate_text_bytes": 433,
+      "candidate_text_sha256": "0b2f725ceaa2f70d89d752283a01d08255681c3acb1100919b96edb2239bb923",
+      "candidate_content_matches_after_single_separator_lf": true,
+      "leading_separator_bytes": 1
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "base_revision": "3c3c512c09320c0494904602b23e544a81206eed",
+      "head_revision": "a289a91cd7c37490346ac6f2acc3cb5a40992f23",
+      "base_prefix_bytes": 636566,
+      "base_prefix_sha256": "bc63c3abbabd727dbb2cfa37a5c3741985181308ad93378ebf2e5846907770f0",
+      "checkpoint_prefix_sha256": "bc63c3abbabd727dbb2cfa37a5c3741985181308ad93378ebf2e5846907770f0",
+      "prefix_match": true,
+      "physical_suffix_bytes": 19761,
+      "physical_suffix_sha256": "7f0323655f455edfc6d8dd1da88e2756b1b3893e5e6664b6b423457797cf4f32",
+      "checkpoint_suffix_sha256": "7f0323655f455edfc6d8dd1da88e2756b1b3893e5e6664b6b423457797cf4f32",
+      "physical_full_bytes": 656327,
+      "physical_full_sha256": "675b523e2128ef12f9f26e210ed3d9adde2b85fefb93df65fad70045ee293cb0",
+      "checkpoint_full_sha256": "675b523e2128ef12f9f26e210ed3d9adde2b85fefb93df65fad70045ee293cb0",
+      "candidate_text_bytes": 19760,
+      "candidate_text_sha256": "e3c956d3ad398a41ddfc5431af0b6e1d8dd94c4caa687b2694bc528eb0f33c5a",
+      "candidate_content_matches_after_single_separator_lf": true,
+      "leading_separator_bytes": 1
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "base_revision": "3c3c512c09320c0494904602b23e544a81206eed",
+      "head_revision": "a289a91cd7c37490346ac6f2acc3cb5a40992f23",
+      "base_prefix_bytes": 8819,
+      "base_prefix_sha256": "2faacacf78b835b5127e990b805adb97b079439c887a1ef2bd6d69f2478d53c9",
+      "checkpoint_prefix_sha256": "2faacacf78b835b5127e990b805adb97b079439c887a1ef2bd6d69f2478d53c9",
+      "prefix_match": true,
+      "physical_suffix_bytes": 233,
+      "physical_suffix_sha256": "233f15d3911b5fe44c4b6041f9ed348e08d2cd6814fd27dcfd4c1cb12c0a1c9f",
+      "checkpoint_suffix_sha256": "233f15d3911b5fe44c4b6041f9ed348e08d2cd6814fd27dcfd4c1cb12c0a1c9f",
+      "physical_full_bytes": 9052,
+      "physical_full_sha256": "51a4cbd6825a72cafbbdf50a487445bb3373e6c2d8199094f645d139a8e2355f",
+      "checkpoint_full_sha256": "51a4cbd6825a72cafbbdf50a487445bb3373e6c2d8199094f645d139a8e2355f",
+      "candidate_text_bytes": 232,
+      "candidate_text_sha256": "6c7ea10edc1f86139eabd77880b2d49cd8a860a5613defb2e5efe67e388e7ca4",
+      "candidate_content_matches_after_single_separator_lf": true,
+      "leading_separator_bytes": 1
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "base_revision": "3c3c512c09320c0494904602b23e544a81206eed",
+      "head_revision": "a289a91cd7c37490346ac6f2acc3cb5a40992f23",
+      "base_prefix_bytes": 36464,
+      "base_prefix_sha256": "bb319529b2c2e2af75067c36bf204d386816fb7e78d48f18043973be6290ccd1",
+      "checkpoint_prefix_sha256": "bb319529b2c2e2af75067c36bf204d386816fb7e78d48f18043973be6290ccd1",
+      "prefix_match": true,
+      "physical_suffix_bytes": 392,
+      "physical_suffix_sha256": "047c937dc87c01fb22b44ce900e932a0e47d43e02609695d90eb6b55df576281",
+      "checkpoint_suffix_sha256": "047c937dc87c01fb22b44ce900e932a0e47d43e02609695d90eb6b55df576281",
+      "physical_full_bytes": 36856,
+      "physical_full_sha256": "6e5b9afef8ed3f5be83f8dd3a77e58fe0a19209c54d104fcb4222b885a56a14d",
+      "checkpoint_full_sha256": "6e5b9afef8ed3f5be83f8dd3a77e58fe0a19209c54d104fcb4222b885a56a14d",
+      "candidate_text_bytes": 391,
+      "candidate_text_sha256": "66ef1f58bd31bc22bffe0494adaec039afb94af81e5cab46cd480ea15831907e",
+      "candidate_content_matches_after_single_separator_lf": true,
+      "leading_separator_bytes": 1
+    }
+  ],
+  "fixed_pin_rechecks": {
+    "count": 25,
+    "all_full_and_span_checks_pass": true,
+    "separation_note": "PO_authority_pin is the exact HARNESS-L2-043 PO decision row. The two fixed_parent_checkpoint_pins are shared 042/043 requirement spans and are not treated as PO-specific authority.",
+    "pins": [
+      {
+        "group": "PO_authority_pin",
+        "ordinal": 1,
+        "role": null,
+        "pin": {
+          "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "full_bytes_actual": 45099,
+          "full_sha256_actual": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "full_sha256_expected": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "full_match": true,
+          "physical_start": 48,
+          "physical_end_inclusive": 48,
+          "span_bytes_actual": 669,
+          "span_bytes_expected": 669,
+          "span_sha256_actual": "3e70c29706991c761369571523dfcf0ffa3be62eb0bc5d574a1b509c8a7cc264",
+          "span_sha256_expected": "3e70c29706991c761369571523dfcf0ffa3be62eb0bc5d574a1b509c8a7cc264",
+          "span_match": true
+        }
+      },
+      {
+        "group": "fixed_parent_checkpoint_pins",
+        "ordinal": 1,
+        "role": null,
+        "pin": {
+          "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "full_bytes_actual": 254934,
+          "full_sha256_actual": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+          "full_sha256_expected": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+          "full_match": true,
+          "physical_start": 972,
+          "physical_end_inclusive": 1000,
+          "span_bytes_actual": 9091,
+          "span_bytes_expected": 9091,
+          "span_sha256_actual": "323c25a94d55314871769f782f6e2b2d9fa0609240b1f11b22ec914e62de2804",
+          "span_sha256_expected": "323c25a94d55314871769f782f6e2b2d9fa0609240b1f11b22ec914e62de2804",
+          "span_match": true
+        }
+      },
+      {
+        "group": "fixed_parent_checkpoint_pins",
+        "ordinal": 2,
+        "role": null,
+        "pin": {
+          "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "full_bytes_actual": 172806,
+          "full_sha256_actual": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+          "full_sha256_expected": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+          "full_match": true,
+          "physical_start": 711,
+          "physical_end_inclusive": 733,
+          "span_bytes_actual": 5709,
+          "span_bytes_expected": 5709,
+          "span_sha256_actual": "9446bffeeeae51d37ab4a3b6255931c0b55cc3660dd2747c24cb929bb38e3da4",
+          "span_sha256_expected": "9446bffeeeae51d37ab4a3b6255931c0b55cc3660dd2747c24cb929bb38e3da4",
+          "span_match": true
+        }
+      },
+      {
+        "group": "current_main_support_source_pins",
+        "ordinal": 1,
+        "role": "L2-004 trace/impact unknown; L2-005 selects ticket/risk-specific obligations; unknown not skip; no acceptance generation",
+        "pin": {
+          "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "full_bytes_actual": 442914,
+          "full_sha256_actual": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+          "full_sha256_expected": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+          "full_match": true,
+          "physical_start": 117,
+          "physical_end_inclusive": 121,
+          "span_bytes_actual": 4739,
+          "span_bytes_expected": 4739,
+          "span_sha256_actual": "a1112df992a2908347f4692b17957090dba9eab8b48d7eb24b4a81f2d9a5c8a3",
+          "span_sha256_expected": "a1112df992a2908347f4692b17957090dba9eab8b48d7eb24b4a81f2d9a5c8a3",
+          "span_match": true
+        }
+      },
+      {
+        "group": "current_main_support_source_pins",
+        "ordinal": 2,
+        "role": "L2-026 owns concrete unit design and paired verification design; no duplicate scope",
+        "pin": {
+          "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "full_bytes_actual": 442914,
+          "full_sha256_actual": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+          "full_sha256_expected": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+          "full_match": true,
+          "physical_start": 530,
+          "physical_end_inclusive": 543,
+          "span_bytes_actual": 5177,
+          "span_bytes_expected": 5177,
+          "span_sha256_actual": "445574626f02ccd6ed198ac0f48241d9e667293dbff98375889e5d5e1676ddc5",
+          "span_sha256_expected": "445574626f02ccd6ed198ac0f48241d9e667293dbff98375889e5d5e1676ddc5",
+          "span_match": true
+        }
+      },
+      {
+        "group": "current_main_support_source_pins",
+        "ordinal": 3,
+        "role": "L2-025 owns composite design/oracle; no duplicate scope",
+        "pin": {
+          "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "full_bytes_actual": 442914,
+          "full_sha256_actual": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+          "full_sha256_expected": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+          "full_match": true,
+          "physical_start": 544,
+          "physical_end_inclusive": 558,
+          "span_bytes_actual": 4293,
+          "span_bytes_expected": 4293,
+          "span_sha256_actual": "498c9cc708c4fe1d8b3e9c07f011e1d1065f64a3b7dc366f93147ac0d10defd7",
+          "span_sha256_expected": "498c9cc708c4fe1d8b3e9c07f011e1d1065f64a3b7dc366f93147ac0d10defd7",
+          "span_match": true
+        }
+      },
+      {
+        "group": "current_main_support_source_pins",
+        "ordinal": 4,
+        "role": "L2-041 owns active template obligation extraction and gaps",
+        "pin": {
+          "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "full_bytes_actual": 442914,
+          "full_sha256_actual": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+          "full_sha256_expected": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+          "full_match": true,
+          "physical_start": 957,
+          "physical_end_inclusive": 971,
+          "span_bytes_actual": 3968,
+          "span_bytes_expected": 3968,
+          "span_sha256_actual": "c5411d1ea27f741017bf5c67b19425f8d5562b7c085f17f948e419a731d924f3",
+          "span_sha256_expected": "c5411d1ea27f741017bf5c67b19425f8d5562b7c085f17f948e419a731d924f3",
+          "span_match": true
+        }
+      },
+      {
+        "group": "current_main_support_source_pins",
+        "ordinal": 5,
+        "role": "L2-043 fixed source text (PO row resolves stale pending metadata)",
+        "pin": {
+          "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "full_bytes_actual": 442914,
+          "full_sha256_actual": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+          "full_sha256_expected": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+          "full_match": true,
+          "physical_start": 986,
+          "physical_end_inclusive": 1000,
+          "span_bytes_actual": 5449,
+          "span_bytes_expected": 5449,
+          "span_sha256_actual": "da678d9181ebe76ae93084c27744d253c617ebe03b709d79f55b79d2abbc6666",
+          "span_sha256_expected": "da678d9181ebe76ae93084c27744d253c617ebe03b709d79f55b79d2abbc6666",
+          "span_match": true
+        }
+      },
+      {
+        "group": "legacy_source_and_consumer_pins",
+        "ordinal": 1,
+        "role": "HIL-FR-55 primary source: positive and boundary-negative per applicable rule/branch; add risk examples only when uncovered; no count-only sufficiency",
+        "pin": {
+          "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "full_bytes_actual": 56091,
+          "full_sha256_actual": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "full_sha256_expected": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "full_match": true,
+          "physical_start": 145,
+          "physical_end_inclusive": 145,
+          "span_bytes_actual": 492,
+          "span_bytes_expected": 492,
+          "span_sha256_actual": "191b3b22d5985f085548d44a736590502d5f424511d71262d1b0fe07871663c2",
+          "span_sha256_expected": "191b3b22d5985f085548d44a736590502d5f424511d71262d1b0fe07871663c2",
+          "span_match": true
+        }
+      },
+      {
+        "group": "legacy_source_and_consumer_pins",
+        "ordinal": 2,
+        "role": "HR-FR-HIL-20 old L3 source/parent consumer; broader portfolio semantics are not imported wholesale",
+        "pin": {
+          "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+          "full_bytes_actual": 18905,
+          "full_sha256_actual": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+          "full_sha256_expected": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+          "full_match": true,
+          "physical_start": 54,
+          "physical_end_inclusive": 54,
+          "span_bytes_actual": 496,
+          "span_bytes_expected": 496,
+          "span_sha256_actual": "891d8f93c03c358ae53f81f390613e15962e20524f8361c75d3ba62b906ee857",
+          "span_sha256_expected": "891d8f93c03c358ae53f81f390613e15962e20524f8361c75d3ba62b906ee857",
+          "span_match": true
+        }
+      },
+      {
+        "group": "legacy_source_and_consumer_pins",
+        "ordinal": 3,
+        "role": "HR-FR-HIL-20 AC mapping",
+        "pin": {
+          "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+          "full_bytes_actual": 18905,
+          "full_sha256_actual": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+          "full_sha256_expected": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+          "full_match": true,
+          "physical_start": 83,
+          "physical_end_inclusive": 83,
+          "span_bytes_actual": 186,
+          "span_bytes_expected": 186,
+          "span_sha256_actual": "34a1f8f6f63ffcf5518d03febde4210ee0db020d445590c3875b381eb4d82e95",
+          "span_sha256_expected": "34a1f8f6f63ffcf5518d03febde4210ee0db020d445590c3875b381eb4d82e95",
+          "span_match": true
+        }
+      },
+      {
+        "group": "legacy_source_and_consumer_pins",
+        "ordinal": 4,
+        "role": "HAT-HIL-20 old acceptance consumer",
+        "pin": {
+          "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+          "full_bytes_actual": 7819,
+          "full_sha256_actual": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+          "full_sha256_expected": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+          "full_match": true,
+          "physical_start": 52,
+          "physical_end_inclusive": 52,
+          "span_bytes_actual": 263,
+          "span_bytes_expected": 263,
+          "span_sha256_actual": "285644f8f87e5695393bb54515ded8a781527915b6eb0f99d6cc8652a46b1e8b",
+          "span_sha256_expected": "285644f8f87e5695393bb54515ded8a781527915b6eb0f99d6cc8652a46b1e8b",
+          "span_match": true
+        }
+      },
+      {
+        "group": "legacy_source_and_consumer_pins",
+        "ordinal": 5,
+        "role": "HOT-HIL-50 old operational consumer for rule/branch/risk example coverage",
+        "pin": {
+          "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+          "full_bytes_actual": 16537,
+          "full_sha256_actual": "4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+          "full_sha256_expected": "4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+          "full_match": true,
+          "physical_start": 77,
+          "physical_end_inclusive": 77,
+          "span_bytes_actual": 331,
+          "span_bytes_expected": 331,
+          "span_sha256_actual": "a7b36143b888b5ab368c7cbb4252f14337f7828702a31f20b29dcd5aae0c30f7",
+          "span_sha256_expected": "a7b36143b888b5ab368c7cbb4252f14337f7828702a31f20b29dcd5aae0c30f7",
+          "span_match": true
+        }
+      },
+      {
+        "group": "old_six_document_pins",
+        "ordinal": 1,
+        "role": null,
+        "pin": {
+          "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+          "full_bytes_actual": 268052,
+          "full_sha256_actual": "24f1d9f4973166a05218550874f8cda5a4978105f3bf3a6ccfa8c3c94fa18677",
+          "full_sha256_expected": "24f1d9f4973166a05218550874f8cda5a4978105f3bf3a6ccfa8c3c94fa18677",
+          "full_match": true
+        }
+      },
+      {
+        "group": "old_six_document_pins",
+        "ordinal": 2,
+        "role": null,
+        "pin": {
+          "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+          "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+          "full_bytes_actual": 13722,
+          "full_sha256_actual": "6aa26ed4ec7257db515f56a02dce5a42378b284105e93b177cf865550dc8bbcc",
+          "full_sha256_expected": "6aa26ed4ec7257db515f56a02dce5a42378b284105e93b177cf865550dc8bbcc",
+          "full_match": true
+        }
+      },
+      {
+        "group": "old_six_document_pins",
+        "ordinal": 3,
+        "role": null,
+        "pin": {
+          "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+          "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+          "full_bytes_actual": 46517,
+          "full_sha256_actual": "54c420e4f958b09524f96bd7ce8ef0c89d8a3dbbf519e3393b83688f10d7fbee",
+          "full_sha256_expected": "54c420e4f958b09524f96bd7ce8ef0c89d8a3dbbf519e3393b83688f10d7fbee",
+          "full_match": true
+        }
+      },
+      {
+        "group": "old_six_document_pins",
+        "ordinal": 4,
+        "role": null,
+        "pin": {
+          "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+          "path": "docs/helix-harness/L10-verification/functional-verification.md",
+          "full_bytes_actual": 767540,
+          "full_sha256_actual": "94704ba448b00df43651ca1dfa01835472132ce3023d829ea5bb690926fa3f02",
+          "full_sha256_expected": "94704ba448b00df43651ca1dfa01835472132ce3023d829ea5bb690926fa3f02",
+          "full_match": true
+        }
+      },
+      {
+        "group": "old_six_document_pins",
+        "ordinal": 5,
+        "role": null,
+        "pin": {
+          "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+          "path": "docs/helix-harness/L10-verification/business-verification.md",
+          "full_bytes_actual": 8800,
+          "full_sha256_actual": "758b2e9bf32a12cf2945a9ded075978d6f265e2883fc4e23e173190681583426",
+          "full_sha256_expected": "758b2e9bf32a12cf2945a9ded075978d6f265e2883fc4e23e173190681583426",
+          "full_match": true
+        }
+      },
+      {
+        "group": "old_six_document_pins",
+        "ordinal": 6,
+        "role": null,
+        "pin": {
+          "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+          "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+          "full_bytes_actual": 47589,
+          "full_sha256_actual": "5d53ffaf9d1ef89ace77f760c92972a439b87e52335deb916eca3683b38f85cc",
+          "full_sha256_expected": "5d53ffaf9d1ef89ace77f760c92972a439b87e52335deb916eca3683b38f85cc",
+          "full_match": true
+        }
+      },
+      {
+        "group": "current_main_six_target_base_pins",
+        "ordinal": 1,
+        "role": null,
+        "pin": {
+          "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+          "full_bytes_actual": 200552,
+          "full_sha256_actual": "ddc4288e77effd48553c1cf4ada66e74dffef39c5fc209c1d3038b0bc83a8ad8",
+          "full_sha256_expected": "ddc4288e77effd48553c1cf4ada66e74dffef39c5fc209c1d3038b0bc83a8ad8",
+          "full_match": true
+        }
+      },
+      {
+        "group": "current_main_six_target_base_pins",
+        "ordinal": 2,
+        "role": null,
+        "pin": {
+          "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+          "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+          "full_bytes_actual": 12912,
+          "full_sha256_actual": "87e3533a49f5284aed2535f9216683f9ef013ed7434c9816a73596b81a5e09fb",
+          "full_sha256_expected": "87e3533a49f5284aed2535f9216683f9ef013ed7434c9816a73596b81a5e09fb",
+          "full_match": true
+        }
+      },
+      {
+        "group": "current_main_six_target_base_pins",
+        "ordinal": 3,
+        "role": null,
+        "pin": {
+          "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+          "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+          "full_bytes_actual": 42424,
+          "full_sha256_actual": "75cbdcc058aff99a9efd99b9d3344e6920e864b1bb603a1ac77a0e447f2f60af",
+          "full_sha256_expected": "75cbdcc058aff99a9efd99b9d3344e6920e864b1bb603a1ac77a0e447f2f60af",
+          "full_match": true
+        }
+      },
+      {
+        "group": "current_main_six_target_base_pins",
+        "ordinal": 4,
+        "role": null,
+        "pin": {
+          "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+          "path": "docs/helix-harness/L10-verification/functional-verification.md",
+          "full_bytes_actual": 615326,
+          "full_sha256_actual": "4f87643397e4e1c2a94d07537770510f634c509eaeb1701c3159a0d143d98cc1",
+          "full_sha256_expected": "4f87643397e4e1c2a94d07537770510f634c509eaeb1701c3159a0d143d98cc1",
+          "full_match": true
+        }
+      },
+      {
+        "group": "current_main_six_target_base_pins",
+        "ordinal": 5,
+        "role": null,
+        "pin": {
+          "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+          "path": "docs/helix-harness/L10-verification/business-verification.md",
+          "full_bytes_actual": 8569,
+          "full_sha256_actual": "a1ff88366ef98368fa8cbd628f499aa50a73cd05a75d54ff64e353a1626cd67c",
+          "full_sha256_expected": "a1ff88366ef98368fa8cbd628f499aa50a73cd05a75d54ff64e353a1626cd67c",
+          "full_match": true
+        }
+      },
+      {
+        "group": "current_main_six_target_base_pins",
+        "ordinal": 6,
+        "role": null,
+        "pin": {
+          "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+          "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+          "full_bytes_actual": 36003,
+          "full_sha256_actual": "e5b090ba97c6a5237b47b890d7a86453ed5f602ee09c9e531ab3b55698d13a7a",
+          "full_sha256_expected": "e5b090ba97c6a5237b47b890d7a86453ed5f602ee09c9e531ab3b55698d13a7a",
+          "full_match": true
+        }
+      }
+    ]
+  },
+  "current_fv_case_rows": {
+    "path": "docs/helix-harness/L10-verification/functional-verification.md",
+    "count": 43,
+    "unique_id_count": 43,
+    "six_columns_as_candidate_contract": [
+      "CASE ID",
+      "FR ID",
+      "AC ID",
+      "baseline",
+      "mutation",
+      "oracle / route"
+    ],
+    "physical_row_ids_and_pins": [
+      {
+        "line": 1645,
+        "id": "CASE-HARNESS-L10-043-01",
+        "raw_line_sha256": "d7d2c15ffb72dec6bfd7736f6f07e31f69f68fa15cd5016beb3c5ea6546686a1"
+      },
+      {
+        "line": 1646,
+        "id": "CASE-HARNESS-L10-043-02",
+        "raw_line_sha256": "ef7c8b6bd02ce624cf1868b5a2e377edf7eda1a8b0d0fed2aee2ff81d5415346"
+      },
+      {
+        "line": 1647,
+        "id": "CASE-HARNESS-L10-043-03",
+        "raw_line_sha256": "22e068dca843c02ca9fd2f09be96f81d9f2ca9371e32f9d3d31bcde2eb5ae4f8"
+      },
+      {
+        "line": 1648,
+        "id": "CASE-HARNESS-L10-043-04",
+        "raw_line_sha256": "d34d654ee1aad8a36f909df593ccf86e43347b47b18486cd693d73a0847386ca"
+      },
+      {
+        "line": 1649,
+        "id": "CASE-HARNESS-L10-043-05",
+        "raw_line_sha256": "e0af6e77af95829527e324c2c99f9462e6c578f3899a36dfff670a56c28e50a7"
+      },
+      {
+        "line": 1650,
+        "id": "CASE-HARNESS-L10-043-06",
+        "raw_line_sha256": "4bae9c92f401a7d7e194e2016bb4c485faa3b3455868363e1b30879879bde797"
+      },
+      {
+        "line": 1651,
+        "id": "CASE-HARNESS-L10-043-07",
+        "raw_line_sha256": "f0a738103f848740d04222359bccec39bd05cda18e9bcdd2f347fbd19c0be175"
+      },
+      {
+        "line": 1652,
+        "id": "CASE-HARNESS-L10-043-r02-negative-not-boundary",
+        "raw_line_sha256": "c8a420f1b39e56cadf0d817ece08117a5cc43a3451664c2b5b64711955363101"
+      },
+      {
+        "line": 1653,
+        "id": "CASE-HARNESS-L10-043-r03-other-revision-unseen",
+        "raw_line_sha256": "3578b443a5ca6f80970f75e3c1df5e3ec40284bdb8e6675847b80d2f6e53f728"
+      },
+      {
+        "line": 1654,
+        "id": "CASE-HARNESS-L10-043-r04-oracle-unbound",
+        "raw_line_sha256": "f5994a554210412657566a3ab85a5401ec053b78e7ca6d6084d61b84134a076b"
+      },
+      {
+        "line": 1655,
+        "id": "CASE-HARNESS-L10-043-r04-count-only-sufficiency",
+        "raw_line_sha256": "473235e114cb85e65edd7123ac28475c5605766e1bcdc10d95487f102cb4d282"
+      },
+      {
+        "line": 1656,
+        "id": "CASE-HARNESS-L10-043-r04-rule-branch-conflict",
+        "raw_line_sha256": "6bf2aa67f1b81b708a67425cc4e94a689deb34812d924782973e9cf6c76104f6"
+      },
+      {
+        "line": 1657,
+        "id": "CASE-HARNESS-L10-043-r04-extracted-rule-missing",
+        "raw_line_sha256": "a268ef51663fab7dfabbded5e4233120985fc85413e3b43bf7cfd3e3235abc3c"
+      },
+      {
+        "line": 1658,
+        "id": "CASE-HARNESS-L10-043-r04-applicability-unknown",
+        "raw_line_sha256": "f5516ac7c0223299c86aed1d705d142e897fa86c5af6de8dd3a56c5f0e83caab"
+      },
+      {
+        "line": 1659,
+        "id": "CASE-HARNESS-L10-043-r04-risk-rationale-missing",
+        "raw_line_sha256": "b8e487f7bda819530addcd50a9dfd3187b051260c55cc092260452459a7c4675"
+      },
+      {
+        "line": 1660,
+        "id": "CASE-HARNESS-L10-043-r04-active-revision-stale",
+        "raw_line_sha256": "2c655fbdc898163128e0fe5db57aece993df708d2a855265c944eb2bc6047df9"
+      },
+      {
+        "line": 1661,
+        "id": "CASE-HARNESS-L10-043-r05-unselected-template-extrapolation",
+        "raw_line_sha256": "2b67dc0638f4d1d198696f77502c52b84c28f020068e57c756d53b7251ddaf6f"
+      },
+      {
+        "line": 1662,
+        "id": "CASE-HARNESS-L10-043-r05-other-scope-extrapolation",
+        "raw_line_sha256": "56be5760f40f5e7c8043e31dd783fa56844ae05e656e260ea863bf1fb3553729"
+      },
+      {
+        "line": 1663,
+        "id": "CASE-HARNESS-L10-043-r05-unseen-oracle-valid-rejected",
+        "raw_line_sha256": "93ea4f222c66e06849743f83b18c804250eba11f8fbc601ce5dc1be6a7b8a229"
+      },
+      {
+        "line": 1664,
+        "id": "CASE-HARNESS-L10-043-r06-na-without-basis",
+        "raw_line_sha256": "bb34de0e313ab30f2dbff1f7e1686b310720bfe6aed565d92803bbad37457558"
+      },
+      {
+        "line": 1665,
+        "id": "CASE-HARNESS-L10-043-r06-tbd-unfilled",
+        "raw_line_sha256": "be768af2c2b989c8f314baeaa9b6408dd2f5701c05c1c1efe539e86da9c70638"
+      },
+      {
+        "line": 1666,
+        "id": "CASE-HARNESS-L10-043-r06-new-revision-missing",
+        "raw_line_sha256": "c833e5fa86d8296997b45290ddf8ec1d40be1b154423947e3582f7ef697c6baa"
+      },
+      {
+        "line": 1667,
+        "id": "CASE-HARNESS-L10-043-r06-risk-basis-conflict",
+        "raw_line_sha256": "32f35f23658562c69cffe23df38617ff1a7e44ddb86dfcba457372938d9368f2"
+      },
+      {
+        "line": 1668,
+        "id": "CASE-HARNESS-L10-043-r06-risk-basis-stale",
+        "raw_line_sha256": "455b5d887e4afb25c81c57284400fce60d38252eb36fec2ae0fa89b401d03b68"
+      },
+      {
+        "line": 1669,
+        "id": "CASE-HARNESS-L10-043-r06-active-revision-missing",
+        "raw_line_sha256": "f89fd0460a488f9853349505804ec6cd6c20138795f803710334df8f22e85a32"
+      },
+      {
+        "line": 1670,
+        "id": "CASE-HARNESS-L10-043-r09-001",
+        "raw_line_sha256": "be24e41d8d670763e975d101bdd8b672e8a5721c6b5103d3f5dc96f66b14b8b0"
+      },
+      {
+        "line": 1671,
+        "id": "CASE-HARNESS-L10-043-r09-002",
+        "raw_line_sha256": "4ab2892f91e1f7fa4e1889422df92f60ac524478c9574f91bec6c8aa928b1442"
+      },
+      {
+        "line": 1672,
+        "id": "CASE-HARNESS-L10-043-r09-003",
+        "raw_line_sha256": "4ec16ca04ccd4748e7b0034c17b30b34878964506c2a24ccc9971e2c096a9697"
+      },
+      {
+        "line": 1673,
+        "id": "CASE-HARNESS-L10-043-r10-valid-selected-profile-no-mutation",
+        "raw_line_sha256": "f937834ab462a43c9adbc239a13a0b54ac1cf5f1eb4a60246e4b1a51eae0df2b"
+      },
+      {
+        "line": 1674,
+        "id": "CASE-HARNESS-L10-043-r10-profile-missing-to-005",
+        "raw_line_sha256": "ac2fa9888a0415c4bff5a44248f4658fb4147aa1e2e0756a2576881860fd950b"
+      },
+      {
+        "line": 1675,
+        "id": "CASE-HARNESS-L10-043-r10-template-applicability-to-009",
+        "raw_line_sha256": "bfa206dbddb7b93b7c4934d00ad4431115c1c2f306190840ce5256e04e905860"
+      },
+      {
+        "line": 1676,
+        "id": "CASE-HARNESS-L10-043-r10-extracted-atom-to-041",
+        "raw_line_sha256": "713a56638aac1dd7c5bec3ac957a226377ed1c7adcf0b97ba2df0ce97ac0a219"
+      },
+      {
+        "line": 1677,
+        "id": "CASE-HARNESS-L10-043-r10-risk-oracle-to-004",
+        "raw_line_sha256": "df3c0c467a044e11e488937e14c47add565f286a70e31948e3d19d557c83dfbc"
+      },
+      {
+        "line": 1678,
+        "id": "CASE-HARNESS-L10-043-r10-025-not-substituted",
+        "raw_line_sha256": "338f0652d8e0ab30aff5aa3cd480978e1c3b3febfdbd7508e684c97a331d3ed0"
+      },
+      {
+        "line": 1679,
+        "id": "CASE-HARNESS-L10-043-r10-026-not-substituted",
+        "raw_line_sha256": "ac179cf3c5ad37f57d562c936fbabfafbfed6a09608fc3ca160a063825fcbdb9"
+      },
+      {
+        "line": 1680,
+        "id": "CASE-HARNESS-L10-043-r10-requirement-agreement-not-generated",
+        "raw_line_sha256": "269279ec7e1de0a2ee9329e4f7d790ac563235b14b8202a6752f4ef5d7839443"
+      },
+      {
+        "line": 1681,
+        "id": "CASE-HARNESS-L10-043-r10-adoption-not-generated",
+        "raw_line_sha256": "4cfa40532301925650e448235489fa8919b45fe2a50700ac9ea53494fa9737ff"
+      },
+      {
+        "line": 1682,
+        "id": "CASE-HARNESS-L10-043-r10-l3-approval-not-generated",
+        "raw_line_sha256": "4848530a907fbb022036a9d259ed1f4ac06bf65ed278f2189c6c7beee308ea01"
+      },
+      {
+        "line": 1683,
+        "id": "CASE-HARNESS-L10-043-r10-design-established-not-generated",
+        "raw_line_sha256": "e20a40925e9379724b1b76680090a28f1b34d802ab0dbdf7f6e454ab0e47b5a5"
+      },
+      {
+        "line": 1684,
+        "id": "CASE-HARNESS-L10-043-r10-implementation-not-generated",
+        "raw_line_sha256": "c23a0f4170fe28141bd3ab90354e58d0dc4f8267a8cb7d7becc3b645b2c594e0"
+      },
+      {
+        "line": 1685,
+        "id": "CASE-HARNESS-L10-043-r10-execution-not-generated",
+        "raw_line_sha256": "5eb1b520c1bba61fb7e40566e6c01b60728d91a067d005e957a8f5ed007c4e7f"
+      },
+      {
+        "line": 1686,
+        "id": "CASE-HARNESS-L10-043-r10-acceptance-not-generated",
+        "raw_line_sha256": "897be354c61a4b84fed33903d826506876959af8396668c623c8fea1a57f2c17"
+      },
+      {
+        "line": 1687,
+        "id": "CASE-HARNESS-L10-043-r10-no-cartesian-expansion",
+        "raw_line_sha256": "dfd01f0664fda1ace47e10f22bee4ff9f88d1a56904d6f20e9ed587975f2d45d"
+      }
+    ],
+    "matches_candidate_order": true,
+    "old_28_ids_subset_preserved": true,
+    "count_is_not_semantic_completeness_claim": true
+  },
+  "legacy_28_literal_inventory": {
+    "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+    "raw_lf_hashes_rechecked_from_physical_git_lines": true,
+    "count": 28,
+    "items": [
+      {
+        "id": "CASE-HARNESS-L10-043-01",
+        "parent": "043",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 859,
+        "physical_raw_lf_sha256": "ed6c50d8a68ba122d8242cbf6d87a641be1a8c787d7d0359cf3acb05136c0d41",
+        "expected_raw_lf_sha256": "ed6c50d8a68ba122d8242cbf6d87a641be1a8c787d7d0359cf3acb05136c0d41",
+        "raw_sha_match": true,
+        "literal": "| `CASE-HARNESS-L10-043-01` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-01` | 正例と境界負例、および正条件に使うbranch denominatorの索引。実在単独CASEは`CASE-HARNESS-L10-043-r09-001`, `CASE-HARNESS-L10-043-r09-002`, `CASE-HARNESS-L10-043-r04-oracle-unbound`, `CASE-HARNESS-L10-043-r04-count-only-sufficiency`。 | 索引のみ。 | 各IDのoracleを個別適用し、indexを分母に加えない。 |\n",
+        "treatment": "raw literal retained; meaning re-derived in current 6-column fixture"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-02",
+        "parent": "043",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 860,
+        "physical_raw_lf_sha256": "b26a19e13a561061b775073de071471f31cb99266700954e0bb92af44e164487",
+        "expected_raw_lf_sha256": "b26a19e13a561061b775073de071471f31cb99266700954e0bb92af44e164487",
+        "raw_sha_match": true,
+        "literal": "| `CASE-HARNESS-L10-043-02` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-02` | 索引のみ。適用性unknown=`CASE-HARNESS-L10-043-r04-applicability-unknown`、risk rationale missing=`CASE-HARNESS-L10-043-r04-risk-rationale-missing`、active revision stale=`CASE-HARNESS-L10-043-r04-active-revision-stale`、rule/branch conflict=`CASE-HARNESS-L10-043-r04-rule-branch-conflict`、extracted rule missing=`CASE-HARNESS-L10-043-r04-extracted-rule-missing`、NA without basis=`CASE-HARNESS-L10-043-r06-na-without-basis`、TBD=`CASE-HARNESS-L10-043-r06-tbd-unfilled`、new revision missing=`CASE-HARNESS-L10-043-r06-new-revision-missing`、risk basis conflict/stale=`CASE-HARNESS-L10-043-r06-risk-basis-conflict`, `CASE-HARNESS-L10-043-r06-risk-basis-stale`、active revision missing=`CASE-HARNESS-L10-043-r06-active-revision-missing`; denominator-only=`CASE-HARNESS-L10-043-r09-003`。 | 索引のみ。 | 各実在IDの単独oracleで分母・risk根拠を照合する。 |\n",
+        "treatment": "raw literal retained; meaning re-derived in current 6-column fixture"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-03",
+        "parent": "043",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 861,
+        "physical_raw_lf_sha256": "55cb06ea5bb2c29d996602ea3a0207c62c7f1919962cc2ad7b3a5598b9127bf8",
+        "expected_raw_lf_sha256": "55cb06ea5bb2c29d996602ea3a0207c62c7f1919962cc2ad7b3a5598b9127bf8",
+        "raw_sha_match": true,
+        "literal": "| `CASE-HARNESS-L10-043-03` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-03` | risk未被覆が示された状態で追加例と未見正常例を区別するmatrix。 | 索引のみ。未選択template、別scope外挿、oracle適合の未見正常拒否は`CASE-HARNESS-L10-043-r05-unselected-template-extrapolation`、`CASE-HARNESS-L10-043-r05-other-scope-extrapolation`、`CASE-HARNESS-L10-043-r05-unseen-oracle-valid-rejected`で個別に照合する。 | 対象scope/risk根拠を維持し、三つの既存単独CASEだけをnegative/positive coverageへ数える。 |\n",
+        "treatment": "raw literal retained; meaning re-derived in current 6-column fixture"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-04",
+        "parent": "043",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 906,
+        "physical_raw_lf_sha256": "071cff7382dcff7d3d1af9eb69c23ab8270d9426f767e956c6301bcfae6b0ff6",
+        "expected_raw_lf_sha256": "071cff7382dcff7d3d1af9eb69c23ab8270d9426f767e956c6301bcfae6b0ff6",
+        "raw_sha_match": true,
+        "literal": "| `CASE-HARNESS-L10-043-04` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-04` | PO採択済みB/HARNESS-CORE routeの適用rule/branch、risk根拠、positive/boundary-negativeの対応と未見の有効branchを与える。 | 新revisionを一つだけ追加し、分母更新を欠く変異を与える。 | branch更新後の母集団を用いてcoverageを再評価。unknown分母は未評価、未選択scopeは未観測。 |\n",
+        "treatment": "raw literal retained; meaning re-derived in current 6-column fixture"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-05",
+        "parent": "043",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 956,
+        "physical_raw_lf_sha256": "05f95fb6ed228b420eee1a573db4e6ed75160ad5ea4ccadd0ce2e4ef7a5c6ede",
+        "expected_raw_lf_sha256": "05f95fb6ed228b420eee1a573db4e6ed75160ad5ea4ccadd0ce2e4ef7a5c6ede",
+        "raw_sha_match": true,
+        "literal": "| `CASE-HARNESS-L10-043-05` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-04` | 適用rule/branchのsource identity、scope/revisionとpositive条件を特定し、template由来なら適用templateをcurrentに保つ。 | positiveが当該rule条件だけを満たさない。 | 例coverage不成立としてunknownを保ち、template適用ならHARNESS-L2-009、抽出rule/branchならHARNESS-L2-041、oracle不足ならHARNESS-L2-004へ戻す。source identityが特定できなければunknownを維持する。 |\n",
+        "treatment": "raw literal retained; meaning re-derived in current 6-column fixture"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-06",
+        "parent": "043",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 957,
+        "physical_raw_lf_sha256": "f64ceb40d621186d44765868e4ee3d82e0ebeda7045ec8086545b1dc88e2fe77",
+        "expected_raw_lf_sha256": "f64ceb40d621186d44765868e4ee3d82e0ebeda7045ec8086545b1dc88e2fe77",
+        "raw_sha_match": true,
+        "literal": "| `CASE-HARNESS-L10-043-06` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-04` | risk分析で未被覆と示されたscopeに追加例を対応。 | 未被覆と示された領域に例を追加しない。 | risk coverage未完。 |\n",
+        "treatment": "raw literal retained; meaning re-derived in current 6-column fixture"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-07",
+        "parent": "043",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 958,
+        "physical_raw_lf_sha256": "c21e591ad53f5453c4133ffabbefcf2475b362e8980ece6f08fa7ac1fa7d7b6c",
+        "expected_raw_lf_sha256": "c21e591ad53f5453c4133ffabbefcf2475b362e8980ece6f08fa7ac1fa7d7b6c",
+        "raw_sha_match": true,
+        "literal": "| `CASE-HARNESS-L10-043-07` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-04` | matrix内で重複/冗長性findingを根拠付きで示す。 | L2:993の重複/冗長findingを落とす。 | finding coverage未完。 |\n",
+        "treatment": "raw literal retained; meaning re-derived in current 6-column fixture"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r02-negative-not-boundary",
+        "parent": "043",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 1275,
+        "physical_raw_lf_sha256": "4488ff6af26b017d41ed41301736a18903fa996ec425da533cfb81b522d00ce7",
+        "expected_raw_lf_sha256": "4488ff6af26b017d41ed41301736a18903fa996ec425da533cfb81b522d00ce7",
+        "raw_sha_match": true,
+        "literal": "| `CASE-HARNESS-L10-043-r02-negative-not-boundary` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-04` | 適用rule/branch、positive、境界を試すnegative、必要なrisk理由を対応させる。 | negative例だけをruleの境界を試さない入力へ置き換える。件数・revisionは同じ。 | negative例が境界条件を被覆していないことを示し、004の既存risk/oracle ownerへ不足を返す。例数で相殺しない。 |\n",
+        "treatment": "raw literal retained; meaning re-derived in current 6-column fixture"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r03-other-revision-unseen",
+        "parent": "043",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 1364,
+        "physical_raw_lf_sha256": "6100ba9d15e2407f00bf1e8176610abe66bdfe4fa731b1ff43c1cdb989efe33d",
+        "expected_raw_lf_sha256": "6100ba9d15e2407f00bf1e8176610abe66bdfe4fa731b1ff43c1cdb989efe33d",
+        "raw_sha_match": true,
+        "literal": "| `CASE-HARNESS-L10-043-r03-other-revision-unseen` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-04` | 選択rule/branch revision内でpositive/boundary-negativeを対応づける。 | 適合結果だけを未見の別revisionへ外挿する。 | 外挿を拒否し新revisionの分母をunknownとして再照合する。 |\n",
+        "treatment": "raw literal retained; meaning re-derived in current 6-column fixture"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r04-oracle-unbound",
+        "parent": "043",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 1409,
+        "physical_raw_lf_sha256": "3109741274f08e0482ae07cecde365b0ae3bf54e9698b273a7582929c298bd95",
+        "expected_raw_lf_sha256": "3109741274f08e0482ae07cecde365b0ae3bf54e9698b273a7582929c298bd95",
+        "raw_sha_match": true,
+        "literal": "| `CASE-HARNESS-L10-043-r04-oracle-unbound` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-01` | 期待結果が適用oracleへ結ばれたbranch例。 | 期待結果とoracleのbindingだけ切断。 | adequacy成立にせずHARNESS-L2-004/該当oracle ownerへ戻す。 |\n",
+        "treatment": "raw literal retained; meaning re-derived in current 6-column fixture"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r04-count-only-sufficiency",
+        "parent": "043",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 1410,
+        "physical_raw_lf_sha256": "8a13be2cec5e54e28d08a7b04bcbb9d97de14b1ebc29f785f25fea4c39cfbf64",
+        "expected_raw_lf_sha256": "8a13be2cec5e54e28d08a7b04bcbb9d97de14b1ebc29f785f25fea4c39cfbf64",
+        "raw_sha_match": true,
+        "literal": "| `CASE-HARNESS-L10-043-r04-count-only-sufficiency` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-01` | branch/rule別positiveとboundary-negativeを対応する。 | 例数だけを根拠に十分と主張。 | 件数のみの主張を拒否し、oracle境界を未完とする。 |\n",
+        "treatment": "raw literal retained; meaning re-derived in current 6-column fixture"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r04-rule-branch-conflict",
+        "parent": "043",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 1411,
+        "physical_raw_lf_sha256": "9221c9161315511cf5b8f6b0d00217959db7921f9c59d2dd4b42bf9dd60905f5",
+        "expected_raw_lf_sha256": "9221c9161315511cf5b8f6b0d00217959db7921f9c59d2dd4b42bf9dd60905f5",
+        "raw_sha_match": true,
+        "literal": "| `CASE-HARNESS-L10-043-r04-rule-branch-conflict` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-02` | active rule/branch revisionが一意でcurrent。 | rule/branch適用値だけconflictにする。 | 成功扱いせず分母unknown、HARNESS-L2-009/対象template ownerへ戻す。 |\n",
+        "treatment": "raw literal retained; meaning re-derived in current 6-column fixture"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r04-extracted-rule-missing",
+        "parent": "043",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 1412,
+        "physical_raw_lf_sha256": "49d9e2e641dbd290138777eef47835b44579b8cea100ef1fcc3f5fce15a992fe",
+        "expected_raw_lf_sha256": "49d9e2e641dbd290138777eef47835b44579b8cea100ef1fcc3f5fce15a992fe",
+        "raw_sha_match": true,
+        "literal": "| `CASE-HARNESS-L10-043-r04-extracted-rule-missing` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-02` | 抽出済みrule/branchがsource spanとactive revisionへ対応する。 | extracted rule/branchだけ欠落。 | 不足をHARNESS-L2-041の抽出契約ownerへ戻す。 |\n",
+        "treatment": "raw literal retained; meaning re-derived in current 6-column fixture"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r04-applicability-unknown",
+        "parent": "043",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 1456,
+        "physical_raw_lf_sha256": "32de4617cc51ec272108e670572a0a1014c8e5decaa35cf7c466be0e518a828a",
+        "expected_raw_lf_sha256": "32de4617cc51ec272108e670572a0a1014c8e5decaa35cf7c466be0e518a828a",
+        "raw_sha_match": true,
+        "literal": "| `CASE-HARNESS-L10-043-r04-applicability-unknown` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-02` | 同一selected scopeのactive rule/branch、oracle、risk rationaleがcurrent。 | applicabilityだけunknown。 | branch分母unknown、成功扱いせずHARNESS-L2-009の対象template ownerへ。 |\n",
+        "treatment": "raw literal retained; meaning re-derived in current 6-column fixture"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r04-risk-rationale-missing",
+        "parent": "043",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 1457,
+        "physical_raw_lf_sha256": "871b7b88298ec10988b58ff7a73bd59af969a3a4bfe14d80f96bf7fd30b35b32",
+        "expected_raw_lf_sha256": "871b7b88298ec10988b58ff7a73bd59af969a3a4bfe14d80f96bf7fd30b35b32",
+        "raw_sha_match": true,
+        "literal": "| `CASE-HARNESS-L10-043-r04-risk-rationale-missing` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-02` | 同一selected scopeのactive rule/branch、oracle、risk rationaleがcurrent。 | risk rationaleだけ欠落。 | 追加例十分性を主張せずHARNESS-L2-004の該当oracle ownerへ。 |\n",
+        "treatment": "raw literal retained; meaning re-derived in current 6-column fixture"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r04-active-revision-stale",
+        "parent": "043",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 1458,
+        "physical_raw_lf_sha256": "6442ebd1853a9f18811ae0457153a89153f7afed0e8663f865224d81cdb8c51d",
+        "expected_raw_lf_sha256": "6442ebd1853a9f18811ae0457153a89153f7afed0e8663f865224d81cdb8c51d",
+        "raw_sha_match": true,
+        "literal": "| `CASE-HARNESS-L10-043-r04-active-revision-stale` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-02` | 選択rule/branchのsource identityとcurrent revision、scope、他根拠を正常入力として固定する。 | active revisionだけをstaleにする。 | unknown/未完を保持し、選択template applicabilityならHARNESS-L2-009、抽出rule/sourceならHARNESS-L2-041へ戻す。source identity不明ならunknownを維持する。 |\n",
+        "treatment": "raw literal retained; meaning re-derived in current 6-column fixture"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r05-unselected-template-extrapolation",
+        "parent": "043",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 1513,
+        "physical_raw_lf_sha256": "73a4e099db8c46642b91589a9ee43c32732405929614b8cfa7e1838419d2ae92",
+        "expected_raw_lf_sha256": "73a4e099db8c46642b91589a9ee43c32732405929614b8cfa7e1838419d2ae92",
+        "raw_sha_match": true,
+        "literal": "| `CASE-HARNESS-L10-043-r05-unselected-template-extrapolation` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-03` | 選択template/scope内のrule/branch、oracle、適用根拠がcurrent。 | 選択templateのcoverage結果だけを未選択templateへ外挿する。 | 外挿を拒否し、未選択templateを未観測に保つ。HARNESS-L2-009/対象template ownerへ戻す。 |\n",
+        "treatment": "raw literal retained; meaning re-derived in current 6-column fixture"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r05-other-scope-extrapolation",
+        "parent": "043",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 1514,
+        "physical_raw_lf_sha256": "2b739f0c5ce13e15c0e9092f93d04a390093f3d71c8ae9021070a34168b51c16",
+        "expected_raw_lf_sha256": "2b739f0c5ce13e15c0e9092f93d04a390093f3d71c8ae9021070a34168b51c16",
+        "raw_sha_match": true,
+        "literal": "| `CASE-HARNESS-L10-043-r05-other-scope-extrapolation` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-03` | 同revision内の選択scopeだけでpositive/boundary-negativeをoracleへ結ぶ。 | 選択scopeの結果だけを別scopeへ外挿する。 | 外挿を拒否し別scopeを未評価に保つ。対応する固定親にscope ownerが明示されない場合はunknownを保ち、ownerを推測しない。 |\n",
+        "treatment": "raw literal retained; meaning re-derived in current 6-column fixture"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r05-unseen-oracle-valid-rejected",
+        "parent": "043",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 1515,
+        "physical_raw_lf_sha256": "994fcda9ecf6a83fcb0c49424eb592c598f066818d888f030fd29f6fc707feeb",
+        "expected_raw_lf_sha256": "994fcda9ecf6a83fcb0c49424eb592c598f066818d888f030fd29f6fc707feeb",
+        "raw_sha_match": true,
+        "literal": "| `CASE-HARNESS-L10-043-r05-unseen-oracle-valid-rejected` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-03` | 選択template/scopeの未見正常例が既存適用oracle・fixtureに適合する。 | 他条件を保ったまま未見という理由だけで正常例を拒否する。 | oracle適合例を受け入れ、unknownへ反転させない。未見だけを理由に拒否しない。 |\n",
+        "treatment": "raw literal retained; meaning re-derived in current 6-column fixture"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r06-na-without-basis",
+        "parent": "043",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 1655,
+        "physical_raw_lf_sha256": "59112c76d1807645ec0ea6968ef40d2e072a541ad76d02bc295810556f40783f",
+        "expected_raw_lf_sha256": "59112c76d1807645ec0ea6968ef40d2e072a541ad76d02bc295810556f40783f",
+        "raw_sha_match": true,
+        "literal": "| `CASE-HARNESS-L10-043-r06-na-without-basis` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-02` | 適用rule/branch、revision、scope、oracleとN/A根拠が固定される。 | N/A根拠だけを除去する。 | 根拠のないN/Aを拒否しunknown/未評価を保持する。適用条件・active templateの不足はHARNESS-L2-009/対象template ownerへ、rule/branch抽出済みcoverageの不足だけはHARNESS-L2-041相当の契約ownerへ戻す。 |\n",
+        "treatment": "raw literal retained; meaning re-derived in current 6-column fixture"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r06-tbd-unfilled",
+        "parent": "043",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 1656,
+        "physical_raw_lf_sha256": "48a013c2a7794b0fb6ea0f448ee186287840d33b4434b89fbe60a4b6c1c93e13",
+        "expected_raw_lf_sha256": "48a013c2a7794b0fb6ea0f448ee186287840d33b4434b89fbe60a4b6c1c93e13",
+        "raw_sha_match": true,
+        "literal": "| `CASE-HARNESS-L10-043-r06-tbd-unfilled` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-02` | 選択rule/branchとsource revision、oracleが固定される。 | TBDを推測した値でTBDを埋める。 | TBDの推測補完を拒否しunknown/未評価を保持する。templateのactive revision/適用条件はHARNESS-L2-009/対象template owner、抽出済みrule/branchの欠落はHARNESS-L2-041相当の契約ownerへ戻す。区別できない場合はunknownとして両条件を明示し、ownerを新設しない。 |\n",
+        "treatment": "raw literal retained; meaning re-derived in current 6-column fixture"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r06-new-revision-missing",
+        "parent": "043",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 1657,
+        "physical_raw_lf_sha256": "5df98ec03681c2ee16cd89b1775a2eb93d03f40ee9374e4ca950581edc0375d0",
+        "expected_raw_lf_sha256": "5df98ec03681c2ee16cd89b1775a2eb93d03f40ee9374e4ca950581edc0375d0",
+        "raw_sha_match": true,
+        "literal": "| `CASE-HARNESS-L10-043-r06-new-revision-missing` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-02` | 適用branchのcurrent revisionとscope、oracleが固定される。 | 適用branchのcurrent revision identityだけをmissingにする。他条件は保持する。 | adequacy分母を確定せずunknown/未評価とし、新revision/applicabilityの不足をHARNESS-L2-009/対象template ownerへ戻す。 |\n",
+        "treatment": "raw literal retained; meaning re-derived in current 6-column fixture"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r06-risk-basis-conflict",
+        "parent": "043",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 1658,
+        "physical_raw_lf_sha256": "082d2998f50ea827383e0655f419166c9eb0c04a96829512308e0a0c3934fcfe",
+        "expected_raw_lf_sha256": "082d2998f50ea827383e0655f419166c9eb0c04a96829512308e0a0c3934fcfe",
+        "raw_sha_match": true,
+        "literal": "| `CASE-HARNESS-L10-043-r06-risk-basis-conflict` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-02` | 選択risk根拠とsource revisionが一致する。 | risk根拠だけを相互に矛盾させる。 | risk追加例のadequacyをunknownにし、HARNESS-L2-004/該当risk-oracle ownerへ戻す。抽出済みrule/branch欠落のときだけHARNESS-L2-041相当ownerへ戻す。 |\n",
+        "treatment": "raw literal retained; meaning re-derived in current 6-column fixture"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r06-risk-basis-stale",
+        "parent": "043",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 1659,
+        "physical_raw_lf_sha256": "9f9ee80fa693aaa0cc2d8bfdee687ca51e64a8221a8e0166f407a0f84b167340",
+        "expected_raw_lf_sha256": "9f9ee80fa693aaa0cc2d8bfdee687ca51e64a8221a8e0166f407a0f84b167340",
+        "raw_sha_match": true,
+        "literal": "| `CASE-HARNESS-L10-043-r06-risk-basis-stale` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-02` | 選択risk根拠が同じcurrent source revisionへ結ばれる。 | risk根拠revisionだけをstaleにする。 | risk追加例のadequacyをunknownにし、HARNESS-L2-004/該当risk-oracle ownerへ戻す。抽出済みrule/branch欠落のときだけHARNESS-L2-041相当ownerへ戻す。 |\n",
+        "treatment": "raw literal retained; meaning re-derived in current 6-column fixture"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r06-active-revision-missing",
+        "parent": "043",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 1679,
+        "physical_raw_lf_sha256": "98fac9c0934bb2c160ac7a9b353b100a05896e7fa0f90c445911133990b6375f",
+        "expected_raw_lf_sha256": "98fac9c0934bb2c160ac7a9b353b100a05896e7fa0f90c445911133990b6375f",
+        "raw_sha_match": true,
+        "literal": "| `CASE-HARNESS-L10-043-r06-active-revision-missing` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-02` | 選択scopeのactive source/rule revisionとoracleがcurrent。 | active revisionだけをmissingにする。 | coverage分母を確定せずunknown/未評価とし、template選択・必須input・applicability不足をHARNESS-L2-009/該当template ownerへ戻す。 |\n",
+        "treatment": "raw literal retained; meaning re-derived in current 6-column fixture"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r09-001",
+        "parent": "043",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 1881,
+        "physical_raw_lf_sha256": "2824178659d6339ba75b4739a49640a619dec1ba84cd362b1de05b07faae6271",
+        "expected_raw_lf_sha256": "2824178659d6339ba75b4739a49640a619dec1ba84cd362b1de05b07faae6271",
+        "raw_sha_match": true,
+        "literal": "| `CASE-HARNESS-L10-043-r09-001` | `FR-HARNESS-L3-043`|`AC-HARNESS-L3-043-01`| active rule/branchの正しい条件、boundary oracle、negative exampleを固定する。 | canonical positive exampleだけを削除する。 | positive coverageを未完にする。固定L2:995/L11:733に沿って、positive oracle/検証義務不足としてHARNESS-L2-004および該当既存ownerへ戻す。正常に固定したtemplate/rule抽出へ返却を生成しない。 |\n",
+        "treatment": "raw literal retained; meaning re-derived in current 6-column fixture"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r09-002",
+        "parent": "043",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 1882,
+        "physical_raw_lf_sha256": "ae6d7f2d2c89ff89170d585ec4cc6257a13bbd3ba861ac829c3345bab8541883",
+        "expected_raw_lf_sha256": "ae6d7f2d2c89ff89170d585ec4cc6257a13bbd3ba861ac829c3345bab8541883",
+        "raw_sha_match": true,
+        "literal": "| `CASE-HARNESS-L10-043-r09-002` | `FR-HARNESS-L3-043`|`AC-HARNESS-L3-043-01`| active rule/branchの正しい条件、positive example、negative oracleを固定する。 | boundary-negative exampleだけを削除する。 | boundary coverageを未完にする。固定L2:995/L11:733に沿って、oracle不足はHARNESS-L2-004と該当既存ownerへ戻す。 |\n",
+        "treatment": "raw literal retained; meaning re-derived in current 6-column fixture"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r09-003",
+        "parent": "043",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "line": 1883,
+        "physical_raw_lf_sha256": "964693699fd0420436086f85e99a4def423f0c08a0dca70c5b6e703f36ae1203",
+        "expected_raw_lf_sha256": "964693699fd0420436086f85e99a4def423f0c08a0dca70c5b6e703f36ae1203",
+        "raw_sha_match": true,
+        "literal": "| `CASE-HARNESS-L10-043-r09-003` | `FR-HARNESS-L3-043`|`AC-HARNESS-L3-043-02`| active template applicabilityと適用branch集合が確定し、他branchと例は保持する。 | 適用branchの一つだけを分母から除外する。 | 分母隠蔽を拒否しcoverageを未完にする。抽出済みrule/branch分母の不足はHARNESS-L2-041相当の抽出契約へ戻す。 |\n",
+        "treatment": "raw literal retained; meaning re-derived in current 6-column fixture"
+      }
+    ]
+  },
+  "translation_history": {
+    "source_candidate_path": "/tmp/harness-stage3-parent043-six-suffix-candidate-2026-10-07-a1bcdba1.json",
+    "source_candidate_sha256": "206a5b986ea6eee7a401b4f8756e41c18d17314a71c30e911b86e6b46d4beb31",
+    "translated_candidate_path": "/tmp/harness043-japanese-suffix-candidate.json",
+    "translated_candidate_sha256": "cb1087584c07dfc1aab89f0e48bf8e4b500c2c44d63215ea4f0c36cdb4b657d0",
+    "translated_case_count": 42,
+    "changed_cell_count": 117,
+    "source_work_record": {
+      "source_candidate_path": "/tmp/harness-stage3-parent043-six-suffix-candidate-2026-10-07-a1bcdba1.json",
+      "source_candidate_sha256": "206a5b986ea6eee7a401b4f8756e41c18d17314a71c30e911b86e6b46d4beb31",
+      "scope": "L10 functional-verification suffix only: baseline, mutation and oracle/route prose cells translated to Japanese. Six-column layout, 43 IDs, FR/AC IDs, all old CASE source literals/raw digests, source pins, checkpoints and the other five suffixes are retained.",
+      "translated_case_count": 42,
+      "changed_cell_count": 117,
+      "before_after_cell_changes": [
+        {
+          "case_id": "CASE-HARNESS-L10-043-01",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "index row only: selected ticket/risk profile, active template revision/scope, applicable rule/branch denominator, oracle and selected risk evidence are referenced.",
+          "after": "索引行のみ：選択済みticket/riskプロファイル、適用中templateのrevision/scope、適用されるrule/branchの分母、oracle、および選択riskの根拠を参照する。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-01",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "none; resolve the named child CASEs individually; index does not add a rule/branch, risk factor or fixture to the denominator.",
+          "after": "変異なし。列挙された子CASEを個別に解決する。索引はrule/branch、risk要因、分母へ加えるfixtureを増やさない。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-01",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "evaluate only the named child cases; do not treat this index as independent evidence or an all-combinations requirement.",
+          "after": "列挙された子CASEだけを評価する。この索引を独立した証拠や全組合せの要求として扱わない。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-02",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "index row only: selected ticket/risk profile, active template revision/scope, applicable rule/branch denominator, oracle and selected risk evidence are referenced.",
+          "after": "索引行のみ：選択済みticket/riskプロファイル、適用中templateのrevision/scope、適用されるrule/branchの分母、oracle、および選択riskの根拠を参照する。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-02",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "none; resolve the named child CASEs individually; index does not add a rule/branch, risk factor or fixture to the denominator.",
+          "after": "変異なし。列挙された子CASEを個別に解決する。索引はrule/branch、risk要因、分母へ加えるfixtureを増やさない。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-02",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "evaluate only the named child cases; do not treat this index as independent evidence or an all-combinations requirement.",
+          "after": "列挙された子CASEだけを評価する。この索引を独立した証拠や全組合せの要求として扱わない。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-03",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "index row only: selected ticket/risk profile, active template revision/scope, applicable rule/branch denominator, oracle and selected risk evidence are referenced.",
+          "after": "索引行のみ：選択済みticket/riskプロファイル、適用中templateのrevision/scope、適用されるrule/branchの分母、oracle、および選択riskの根拠を参照する。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-03",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "none; resolve the named child CASEs individually; index does not add a rule/branch, risk factor or fixture to the denominator.",
+          "after": "変異なし。列挙された子CASEを個別に解決する。索引はrule/branch、risk要因、分母へ加えるfixtureを増やさない。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-03",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "evaluate only the named child cases; do not treat this index as independent evidence or an all-combinations requirement.",
+          "after": "列挙された子CASEだけを評価する。この索引を独立した証拠や全組合せの要求として扱わない。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-04",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "selected active template/revision/scope and applicable rule/branch set are known; PO-adopted B/CORE placement is sourced externally from the fixed PO decision.",
+          "after": "選択済みtemplate/revision/scopeと、適用されるrule/branchの集合が既知である。POが採択したB/CORE配置は固定PO判断から外部入力される。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-04",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "add one applicable branch in a new revision but fail to update that revision-specific denominator.",
+          "after": "新revisionで適用branchを一つ追加するが、そのrevision固有の分母だけを更新しない。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-04",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "recompute only the applicable denominator within selected scope; if template/applicability input is absent or stale return to L2-009/template owner; if extracted atom is missing return to L2-041; other scopes remain unobserved.",
+          "after": "選択scope内の適用対象分母だけを再計算する。templateの適用情報が欠落またはstaleならL2-009/template ownerへ戻す。抽出atomが欠落している場合はL2-041へ戻す。ほかのscopeは未観測のまま保つ。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-05",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "selected applicability and rule identity are current; a positive example is mapped to the rule and existing oracle.",
+          "after": "選択済みの適用性とrule identityはcurrentであり、正例一つがruleと既存oracleに対応付いている。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-05",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "the positive example alone no longer satisfies its rule condition.",
+          "after": "正例一つだけを、そのrule条件を満たさない例へ置き換える。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-05",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "positive coverage is incomplete; rule extraction gaps route to L2-041, template applicability to L2-009, and requirement/risk/oracle deficiency to L2-004. Do not send one cause to all owners.",
+          "after": "正例coverageを未完とする。rule抽出gapはL2-041へ、template適用性はL2-009へ、要求/risk/oracleの不足はL2-004へ戻す。一つの原因をすべてのownerへ送らない。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-06",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "L2-005 selected ticket/risk profile identifies a specific uncovered risk in the selected scope.",
+          "after": "選択scope内で、L2-005がticket/riskプロファイルに基づき、coverage不足のriskを一つ特定している。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-06",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "omit an example for that identified uncovered risk only.",
+          "after": "その特定riskに対する例だけを除く。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-06",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "risk-based additional coverage remains incomplete; missing risk basis/oracle routes to L2-004/that risk-oracle source owner.",
+          "after": "riskに基づく追加coverageを未完のままにする。risk根拠/oracleが不足する場合はL2-004および該当するrisk-oracle source ownerへ戻す。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-07",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "matrix records only evidence-backed duplicate/redundancy findings for selected scope.",
+          "after": "選択scope内で、証拠に基づく重複/冗長性の所見だけがmatrixに記録されている。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-07",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "drop an established duplicate/redundancy finding only.",
+          "after": "確立済みの重複/冗長性の所見だけを削除する。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-07",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "coverage finding remains incomplete; do not infer additional combinations or remove obligations without an existing owner decision.",
+          "after": "coverage所見を未完とする。全組合せを推測で追加したり、既存ownerの判断なしに義務を削除したりしない。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r02-negative-not-boundary",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "適用rule/branch、positive、境界を試すnegative、必要なrisk理由を対応させる。",
+          "after": "適用rule/branch、正例、境界を試す負例、および必要なrisk理由を対応付ける。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r02-negative-not-boundary",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "negative例だけをruleの境界を試さない入力へ置き換える。件数・revisionは同じ。",
+          "after": "負例だけを、ruleの境界を試さない入力へ置き換える。件数とrevisionは変えない。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r02-negative-not-boundary",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "coverage成立とせず、例の適用oracle/risk根拠不足はHARNESS-L2-004/該当ownerへ戻す。抽出rule gapやtemplate applicabilityとは混同しない。",
+          "after": "coverage成立とせず、例に適用するoracle/risk根拠の不足はHARNESS-L2-004/該当ownerへ戻す。抽出rule gapやtemplate適用性とは混同しない。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r03-other-revision-unseen",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "選択rule/branch revision内でpositive/boundary-negativeを対応づける。",
+          "after": "選択rule/branch revision内で、正例と境界負例を対応付ける。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r03-other-revision-unseen",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "別revisionへの外挿を拒否し、新revisionのselected scope/applicability denominatorを再照合する。input revision/applicability不足は009、extracted rules不足は041へ。",
+          "after": "別revisionへの外挿を拒否し、新revisionの選択scope/適用分母を再照合する。入力revision/適用性の不足はL2-009へ、抽出ruleの不足はL2-041へ戻す。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r04-count-only-sufficiency",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "branch/rule別positiveとboundary-negativeを対応する。",
+          "after": "branch/ruleごとに正例と境界負例を対応付ける。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r04-count-only-sufficiency",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "例数だけを根拠に十分と主張。",
+          "after": "例の件数だけを根拠に十分と主張する。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r04-count-only-sufficiency",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "件数のみの主張を拒否し、oracle境界を未完とする。",
+          "after": "件数だけの主張を拒否し、oracle境界の確認を未完とする。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r04-rule-branch-conflict",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "active rule/branch revisionが一意でcurrent。",
+          "after": "有効な規則/分岐のrevisionは一意で現行である。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r04-rule-branch-conflict",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "rule/branch適用値だけconflictにする。",
+          "after": "rule/branchの適用値だけをconflictにする。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r04-rule-branch-conflict",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "分母を確定せずunknown/未評価。selected template/revision/applicabilityの不足はHARNESS-L2-009/対象template ownerへ。抽出済みrule/branchのgapだけHARNESS-L2-041へ。",
+          "after": "分母を確定せずunknown/未評価とする。選択template/revision/適用性の不足はHARNESS-L2-009/対象template ownerへ戻し、抽出済みrule/branchのgapだけをHARNESS-L2-041へ戻す。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r04-extracted-rule-missing",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "抽出済みrule/branchがsource spanとactive revisionへ対応する。",
+          "after": "抽出済みrule/branchがsource spanとactive revisionに対応している。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r04-extracted-rule-missing",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "extracted rule/branchだけ欠落。",
+          "after": "抽出済みrule/branchだけを欠落させる。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r04-extracted-rule-missing",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "extracted rule/branch atom gapを保持しHARNESS-L2-041抽出契約ownerへ戻す。templateの選択/適用不足は009へ分離。",
+          "after": "extracted rule/branch atom gapを保持し、HARNESS-L2-041の抽出契約ownerへ戻す。templateの選択/適用不足はL2-009へ分けて戻す。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r04-applicability-unknown",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "同一selected scopeのactive rule/branch、oracle、risk rationaleがcurrent。",
+          "after": "同じ選択適用範囲における有効な規則/分岐、oracle、risk根拠は現行である。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r04-applicability-unknown",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "applicabilityだけunknown。",
+          "after": "適用性だけをunknownにする。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r04-applicability-unknown",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "分母を確定せずunknown/未評価。selected template/revision/applicabilityの不足はHARNESS-L2-009/対象template ownerへ。抽出済みrule/branchのgapだけHARNESS-L2-041へ。",
+          "after": "分母を確定せずunknown/未評価とする。選択template/revision/適用性の不足はHARNESS-L2-009/対象template ownerへ戻し、抽出済みrule/branchのgapだけをHARNESS-L2-041へ戻す。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r04-risk-rationale-missing",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "同一selected scopeのactive rule/branch、oracle、risk rationaleがcurrent。",
+          "after": "同じ選択適用範囲における有効な規則/分岐、oracle、risk根拠は現行である。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r04-risk-rationale-missing",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "risk rationaleだけ欠落。",
+          "after": "risk rationaleだけを欠落させる。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r04-risk-rationale-missing",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "risk coverageをunknown/未評価にする。risk/oracle根拠の不備はHARNESS-L2-004と該当risk-oracle source ownerへ。template applicability/extracted-ruleの不備とは分ける。",
+          "after": "risk coverageをunknown/未評価とする。risk/oracle根拠の不足はHARNESS-L2-004および該当risk-oracle source ownerへ戻し、template適用性/extracted-ruleの不足とは分ける。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r04-active-revision-stale",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "選択rule/branchのsource identityとcurrent revision、scope、他根拠を正常入力として固定する。",
+          "after": "選択規則/分岐のsource identity、現行revision、適用範囲、ほかの根拠を正常入力として固定する。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r04-active-revision-stale",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "分母を確定せずunknown/未評価。selected template/revision/applicabilityの不足はHARNESS-L2-009/対象template ownerへ。抽出済みrule/branchのgapだけHARNESS-L2-041へ。",
+          "after": "分母を確定せずunknown/未評価とする。選択template/revision/適用性の不足はHARNESS-L2-009/対象template ownerへ戻し、抽出済みrule/branchのgapだけをHARNESS-L2-041へ戻す。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r05-unselected-template-extrapolation",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "選択template/scope内のrule/branch、oracle、適用根拠がcurrent。",
+          "after": "選択template/scope内のrule/branch、oracle、適用根拠はcurrentである。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r05-unselected-template-extrapolation",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "外挿を拒否し未選択templateを未観測に保つ。selection/applicability責務はHARNESS-L2-009/対象template owner。",
+          "after": "外挿を拒否し、未選択templateは未観測のまま保つ。選択/適用性の責務はHARNESS-L2-009/対象template ownerに戻す。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r05-other-scope-extrapolation",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "同revision内の選択scopeだけでpositive/boundary-negativeをoracleへ結ぶ。",
+          "after": "同じrevision内の選択scopeだけで、正例/境界負例をoracleへ結び付ける。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r05-other-scope-extrapolation",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "外挿を拒否し別scopeを未評価に保つ。対応する固定親にscope ownerが明示されない場合はunknownを保ちownerを推測しない。",
+          "after": "外挿を拒否し、別scopeを未評価のまま保つ。対応する固定親にscope ownerが明示されない場合はunknownを保持し、ownerを推測しない。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r05-unseen-oracle-valid-rejected",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "選択template/scopeの未見正常例が既存適用oracle・fixtureに適合する。",
+          "after": "選択template/scope内の未見正常例が、既存の適用oracle/fixtureに適合している。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r05-unseen-oracle-valid-rejected",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "他条件を保ったまま未見という理由だけで正常例を拒否する。",
+          "after": "ほかの条件を保ち、「未見である」という理由だけで正常例を拒否する。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r05-unseen-oracle-valid-rejected",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "既存適用oracleに適合する未見例を受け入れる。未見という理由だけで拒否しない。",
+          "after": "既存の適用oracleに適合する未見例を受け入れる。「未見」という理由だけでは拒否しない。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r06-na-without-basis",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "適用rule/branch、revision、scope、oracleとN/A根拠が固定される。",
+          "after": "適用規則/分岐、revision、適用範囲、oracle、N/A根拠が固定されている。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r06-na-without-basis",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "根拠のないN/Aを拒否しunknown/未評価。適用性はL2-009/template owner、抽出atom gapはL2-041、risk/oracleの意味不足はL2-004へcause別に戻す。",
+          "after": "根拠のないN/Aを拒否しunknown/未評価とする。適用性はL2-009/template ownerへ、抽出atom gapはL2-041へ、risk/oracleの意味不足はL2-004へ、原因別に戻す。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r06-tbd-unfilled",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "選択rule/branchとsource revision、oracleが固定される。",
+          "after": "選択規則/分岐、source revision、oracleは固定され、対象の出力fieldは既に`TBD`である。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r06-tbd-unfilled",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "TBDを推測した値でTBDを埋める。",
+          "after": "その出力fieldの既存`TBD`だけを、根拠のない推測値へ置き換えて補完済みとして出力する。ほかの入力と出力は変えない。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r06-tbd-unfilled",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "TBDを推測補完せずunknown/未評価。template/applicabilityならL2-009、extracted atomならL2-041、risk/oracleならL2-004。原因を混同しない。",
+          "after": "既存`TBD`を推測で補完せず不明/未評価のまま保つ。template/適用性ならL2-009、抽出atomならL2-041、risk/oracleならL2-004へ戻す。原因を混同しない。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r06-new-revision-missing",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "適用branchのcurrent revisionとscope、oracleが固定される。",
+          "after": "適用branchのcurrent revisionとscope、oracleは固定されている。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r06-new-revision-missing",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "適用branchのcurrent revision identityだけをmissingにする。他条件は保持する。",
+          "after": "適用branchのcurrent revision identityだけを欠落させる。ほかの条件は保持する。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r06-new-revision-missing",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "分母を確定せずunknown/未評価。selected template/revision/applicabilityの不足はHARNESS-L2-009/対象template ownerへ。抽出済みrule/branchのgapだけHARNESS-L2-041へ。",
+          "after": "分母を確定せずunknown/未評価とする。選択template/revision/適用性の不足はHARNESS-L2-009/対象template ownerへ戻し、抽出済みrule/branchのgapだけをHARNESS-L2-041へ戻す。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r06-risk-basis-conflict",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "選択risk根拠とsource revisionが一致する。",
+          "after": "選択risk根拠とsource revisionが一致している。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r06-risk-basis-conflict",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "risk coverageをunknown/未評価にする。risk/oracle根拠の不備はHARNESS-L2-004と該当risk-oracle source ownerへ。template applicability/extracted-ruleの不備とは分ける。",
+          "after": "risk coverageをunknown/未評価とする。risk/oracle根拠の不足はHARNESS-L2-004と該当risk-oracle source ownerへ戻し、template適用性/extracted-ruleの不足とは分ける。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r06-risk-basis-stale",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "選択risk根拠が同じcurrent source revisionへ結ばれる。",
+          "after": "選択risk根拠が同じcurrent source revisionに結び付いている。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r06-risk-basis-stale",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "risk根拠revisionだけをstaleにする。",
+          "after": "risk根拠のrevisionだけをstaleにする。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r06-risk-basis-stale",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "risk coverageをunknown/未評価にする。risk/oracle根拠の不備はHARNESS-L2-004と該当risk-oracle source ownerへ。template applicability/extracted-ruleの不備とは分ける。",
+          "after": "risk coverageをunknown/未評価とする。risk/oracle根拠の不足はHARNESS-L2-004と該当risk-oracle source ownerへ戻し、template適用性/extracted-ruleの不足とは分ける。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r06-active-revision-missing",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "選択scopeのactive source/rule revisionとoracleがcurrent。",
+          "after": "選択scopeのactive source/rule revisionとoracleはcurrentである。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r06-active-revision-missing",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "active revisionだけをmissingにする。",
+          "after": "active revisionだけを欠落させる。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r06-active-revision-missing",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "分母を確定せずunknown/未評価。selected template/revision/applicabilityの不足はHARNESS-L2-009/対象template ownerへ。抽出済みrule/branchのgapだけHARNESS-L2-041へ。",
+          "after": "分母を確定せずunknown/未評価とする。選択template/revision/適用性の不足はHARNESS-L2-009/対象template ownerへ戻し、抽出済みrule/branchのgapだけをHARNESS-L2-041へ戻す。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r09-001",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "active rule/branchの正しい条件、boundary oracle、negative exampleを固定する。",
+          "after": "active rule/branchの正しい条件、boundary oracle、負例を固定する。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r09-001",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "positive coverageを未完にする。固定L2:995/L11:733に沿って、positive oracle/検証義務不足としてHARNESS-L2-004および該当既存ownerへ戻す。正常に固定したtemplate/rule抽出へ返却を生成しない。",
+          "after": "正例coverageを未完とする。固定L2:995/L11:733に沿って、正例oracle/検証義務の不足としてHARNESS-L2-004および該当既存ownerへ戻す。正常に固定したtemplate/rule抽出へ返却しない。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r09-002",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "active rule/branchの正しい条件、positive example、negative oracleを固定する。",
+          "after": "有効な規則/分岐の正しい条件、正例、負例oracleを固定する。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r09-002",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "boundary coverageを未完にする。固定L2:995/L11:733に沿って、oracle不足はHARNESS-L2-004と該当既存ownerへ戻す。",
+          "after": "境界coverageを未完とする。oracle不足は固定L2:995/L11:733に沿ってHARNESS-L2-004と該当既存ownerへ戻す。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r09-003",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "active template applicabilityと適用branch集合が確定し、他branchと例は保持する。",
+          "after": "active templateの適用性と適用branchの集合が確定し、ほかのbranchと例は保持されている。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r09-003",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "分母隠蔽を拒否しcoverageを未完にする。抽出済みrule/branch分母の不足はHARNESS-L2-041相当の抽出契約へ戻す。",
+          "after": "分母の隠蔽を拒否しcoverageを未完とする。抽出済みrule/branch分母の不足はHARNESS-L2-041相当の抽出契約へ戻す。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-valid-selected-profile-no-mutation",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "L2-005 has selected a ticket/risk verification profile; L2-009 current template applicability and 041-extracted rule/branch denominator are available; each scoped branch has oracle-bound canonical positive and boundary-negative examples; only risk-selected uncovered items receive additions.",
+          "after": "L2-005がticket/risk検証profileを選択済みであり、L2-009のcurrent template適用性とL2-041が抽出したrule/branch分母が利用可能である。選択scope内の各branchにはoracleに結び付いたcanonical正例と境界負例があり、追加するのはrisk選択により不足が明示された対象だけである。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-valid-selected-profile-no-mutation",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "none; apply the selected denominator and scoped evidence unchanged.",
+          "after": "変異なし。選択済み分母とscope内の証拠をそのまま適用する。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-valid-selected-profile-no-mutation",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "Accept the content-adequacy result for this selected scope without requesting unrelated combinations or rejecting valid covered examples. No execution or downstream acceptance is implied.",
+          "after": "無関係な組合せを要求せず、既にcoverage済みの有効例も拒否せず、この選択scopeの内容充足結果を受け入れる。実行や下流受入を意味しない。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-profile-missing-to-005",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "Ticket/risk selection under L2-005 identifies the verification profile and its obligations.",
+          "after": "L2-005のticket/risk選択により、検証profileとその義務が特定されている。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-profile-missing-to-005",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "remove only the selected profile/obligation selection.",
+          "after": "選択済みprofile/義務の対応だけを除去する。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-profile-missing-to-005",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "Do not invent a profile or denominator; unknown/unassessed. Return profile-selection deficiency to HARNESS-L2-005 owner.",
+          "after": "profileや分母を推測で作らず、unknown/未評価とする。profile選択の不足をHARNESS-L2-005 ownerへ戻す。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-template-applicability-to-009",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "Selected active template revision and applicability for the same scope are current.",
+          "after": "同じscopeに対する選択済みactive template revisionと適用性はcurrentである。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-template-applicability-to-009",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "make only the template applicability/active selection missing or unknown.",
+          "after": "そのtemplateの選択/適用情報だけを欠落またはunknownにする。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-template-applicability-to-009",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "Do not determine rule/branch denominator; return selection/applicability deficiency to HARNESS-L2-009/template owner.",
+          "after": "rule/branch分母を確定せず、選択/適用性の不足をHARNESS-L2-009/template ownerへ戻す。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-extracted-atom-to-041",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "Selected template and applicability are current and a rule/branch source obligation exists.",
+          "after": "選択templateと適用性はcurrentであり、rule/branchのsource義務が存在する。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-extracted-atom-to-041",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "drop only its extracted atom/source-span mapping while retaining template selection.",
+          "after": "template選択は保持したまま、抽出atom/source span対応だけを欠落させる。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-extracted-atom-to-041",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "Preserve an extraction gap; return to HARNESS-L2-041 extraction-contract owner. Do not route this as a 009 selection defect.",
+          "after": "抽出gapを保持し、HARNESS-L2-041の抽出契約ownerへ戻す。L2-009の選択欠陥として扱わない。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-risk-oracle-to-004",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "Selected rule/branch atom exists; L2-005 profile/risk and L2-004 requirement/risk/oracle trace are current.",
+          "after": "選択rule/branch atomが存在し、L2-005のprofile/riskとL2-004の要求/risk/oracle traceはcurrentである。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-risk-oracle-to-004",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "remove only the risk rationale/oracle binding for the selected coverage claim.",
+          "after": "選択coverage主張に対するrisk rationale/oracle bindingだけを除去する。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-risk-oracle-to-004",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "Mark the affected adequacy as unknown/incomplete and return the risk/requirement/oracle deficiency to HARNESS-L2-004 and its source owner; do not send it to 041/009 unless their distinct inputs are missing too.",
+          "after": "該当coverage充足度をunknown/未完とし、要求/risk/oracleの不足をHARNESS-L2-004および該当source ownerへ戻す。異なる不足も同時にある場合を除き、L2-041/009へ回さない。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-025-not-substituted",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "043 example adequacy matrix is available; composite design/oracle is independently governed by L2-025.",
+          "after": "043の例coverage matrixは利用可能であり、composite design/oracleは別途L2-025が担当する。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-025-not-substituted",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "emit the 043 matrix as if it were the L2-025 composite design/oracle result.",
+          "after": "043 matrixをL2-025のcomposite design/oracle結果として出力する。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-025-not-substituted",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "Reject substitution; 043 does not create composite design/oracle. Return the missing composite design/oracle to L2-025 owner.",
+          "after": "代替を拒否する。043はcomposite design/oracleを作らない。不足する成果物はL2-025 ownerへ戻す。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-026-not-substituted",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "043 example adequacy matrix is available; concrete unit design and paired verification design are independently governed by L2-026.",
+          "after": "043の例coverage matrixは利用可能であり、具体的なunit designと対のverification designは別途L2-026が担当する。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-026-not-substituted",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "emit the 043 matrix as if it were the L2-026 unit design/paired verification output.",
+          "after": "043 matrixをL2-026のunit design/対verification design出力として出す。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-026-not-substituted",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "Reject substitution; 043 does not create unit design or paired verification design. Return that missing deliverable to L2-026 owner.",
+          "after": "代替を拒否する。043はunit designや対verification designを作らない。不足成果物はL2-026 ownerへ戻す。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-requirement-agreement-not-generated",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "The fixed PO decision row is an external authority input; the 043 matrix remains a content-coverage result only.",
+          "after": "固定PO判断行は外部authority入力であり、043 matrixは内容coverage結果に限られる。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-requirement-agreement-not-generated",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "generate requirement agreement from the 043 document/matrix.",
+          "after": "043文書/matrixから要求合意だけを生成する。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-requirement-agreement-not-generated",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "Reject only this generated agreement state; preserve the externally fixed PO decision without changing it. 043 does not create requirement agreement.",
+          "after": "生成された要求合意だけを拒否し、外部の固定PO判断は変更せず保持する。043は要求合意を作らない。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-adoption-not-generated",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "Current PO conditional adoption B / HARNESS-CORE is externally fixed and distinct from this L3 candidate.",
+          "after": "現行POの条件付きB採択/HARNESS-CORE配置は外部で固定され、このL3候補とは別の状態である。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-adoption-not-generated",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "generate or alter adoption from 043 candidate content.",
+          "after": "043候補の内容から採択状態だけを生成または変更する。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-adoption-not-generated",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "Reject candidate-generated adoption; preserve actual PO row and scope. Do not undo or expand the actual decision.",
+          "after": "候補から生成した採択状態を拒否し、実際のPO判断とその範囲を保持する。判断を取り消したり広げたりしない。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-l3-approval-not-generated",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "L3 remains pending delegated Opus/Fable consensus; 043 matrix is candidate content.",
+          "after": "L3承認は委任されたOpus/Fableの一致を待っており、043 matrixは候補内容である。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-l3-approval-not-generated",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "claim L3 approval from document/fixture existence.",
+          "after": "文書やfixtureの存在だけからL3承認状態を主張する。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-l3-approval-not-generated",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "Reject L3 approval claim; do not create an approval or infer it from PO L2 adoption.",
+          "after": "L3承認の主張を拒否し、承認を生成しない。POのL2採択から推論しない。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-design-established-not-generated",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "The matrix measures rule/branch/risk example coverage and has no design-acceptance authority.",
+          "after": "matrixが測るのはrule/branch/riskの例coverageであり、設計受入のauthorityは持たない。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-design-established-not-generated",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "claim design established from coverage pass.",
+          "after": "coverage通過だけから設計確立状態を主張する。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-design-established-not-generated",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "Reject design-established state; route design deliverable/oracle to 025 or 026 as applicable.",
+          "after": "設計確立状態の生成を拒否し、設計成果物/oracleの不足は該当するL2-025またはL2-026へ戻す。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-implementation-not-generated",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "Only content matrix and fixed inputs are available; no implementation receipt is supplied.",
+          "after": "内容matrixと固定入力だけがあり、実装receiptは与えられていない。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-implementation-not-generated",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "claim implementation complete from the candidate or matrix.",
+          "after": "候補またはmatrixから実装完了状態を主張する。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-implementation-not-generated",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "Reject implementation-complete state; do not infer implementation from specification or content adequacy.",
+          "after": "実装完了状態の生成を拒否し、仕様や内容充足から実装を推論しない。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-execution-not-generated",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "No OS execution receipt is supplied; matrix result is not an execution result.",
+          "after": "OS実行receiptは与えられておらず、matrix結果は実行結果ではない。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-execution-not-generated",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "claim OS execution completed from matrix/document presence.",
+          "after": "matrix/文書の存在だけからOS実行完了を主張する。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-execution-not-generated",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "Reject execution state; keep execution unknown and defer to the existing OS execution contract/owner.",
+          "after": "実行状態の生成を拒否し、実行状態はunknownのまま既存OS実行契約/ownerへ戻す。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-acceptance-not-generated",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "No user acceptance evidence is supplied; matrix result is not acceptance.",
+          "after": "利用者の受入証拠はなく、matrix結果は受入結果ではない。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-acceptance-not-generated",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "claim user acceptance from matrix/document presence.",
+          "after": "matrix/文書の存在だけから利用者受入を主張する。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-acceptance-not-generated",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "Reject acceptance state; do not generate user acceptance from L3/L10 content.",
+          "after": "利用者受入の生成を拒否し、L3/L10内容から受入を作らない。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-no-cartesian-expansion",
+          "column_index": 4,
+          "column_name": "baseline",
+          "before": "Only selected ticket/risk scope, applicable rule/branch denominator, per-rule/branch positive and boundary-negative examples, and explicitly uncovered selected risks are included.",
+          "after": "対象は選択済みticket/risk適用範囲、適用規則/分岐の分母、規則/分岐ごとの正例と境界負例、および選択riskにより不足が明示された項目に限る。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-no-cartesian-expansion",
+          "column_index": 5,
+          "column_name": "mutation",
+          "before": "require every possible cross-product of unrelated rules, branches, risk factors, and environment values, despite no selected risk basis or L2 requirement.",
+          "after": "選択risk根拠やL2要求がないのに、無関係なrule、branch、risk要因、環境値の全組合せを要求する。"
+        },
+        {
+          "case_id": "CASE-HARNESS-L10-043-r10-no-cartesian-expansion",
+          "column_index": 6,
+          "column_name": "oracle / route",
+          "before": "Reject scope expansion; do not create an all-combinations obligation. Additional examples require the selected risk basis and remain within fixed L2-043.",
+          "after": "scope拡張を拒否し、全組合せの義務を作らない。追加例は選択済みrisk根拠に必要な範囲で、固定L2-043内に保つ。"
+        }
+      ],
+      "special_correction_r06_tbd": {
+        "issue": "TBD出力補完変異の前提がbaselineに明示されていなかった。",
+        "case_id": "CASE-HARNESS-L10-043-r06-tbd-unfilled",
+        "baseline_before": "選択rule/branchとsource revision、oracleが固定される。",
+        "baseline_after": "選択規則/分岐、source revision、oracleは固定され、対象の出力fieldは既に`TBD`である。",
+        "mutation_before": "TBDを推測した値でTBDを埋める。",
+        "mutation_after": "その出力fieldの既存`TBD`だけを、根拠のない推測値へ置き換えて補完済みとして出力する。ほかの入力と出力は変えない。",
+        "oracle_after": "既存`TBD`を推測で補完せず不明/未評価のまま保つ。template/適用性ならL2-009、抽出atomならL2-041、risk/oracleならL2-004へ戻す。原因を混同しない。",
+        "single_field": true
+      },
+      "all_old_28_ids_preserved": true,
+      "current_43_unique_ids_preserved": true,
+      "all_rows_six_cells": true,
+      "semantic_guards": [
+        "normal selected-profile fixture remains no-mutation and accepts only selected scope content adequacy",
+        "seven authority-output refusals remain seven separate one-output mutations",
+        "L2-005 profile, L2-009 template/applicability, L2-041 extraction atom, L2-004 risk/oracle routes remain cause-specific",
+        "L2-025 composite design and L2-026 unit design/paired verification remain separate non-substitution boundaries",
+        "index rows remain non-independent; no Cartesian expansion is required"
+      ]
+    },
+    "r06_tbd_correction": {
+      "issue": "TBD出力補完変異の前提がbaselineに明示されていなかった。",
+      "case_id": "CASE-HARNESS-L10-043-r06-tbd-unfilled",
+      "baseline_before": "選択rule/branchとsource revision、oracleが固定される。",
+      "baseline_after": "選択規則/分岐、source revision、oracleは固定され、対象の出力fieldは既に`TBD`である。",
+      "mutation_before": "TBDを推測した値でTBDを埋める。",
+      "mutation_after": "その出力fieldの既存`TBD`だけを、根拠のない推測値へ置き換えて補完済みとして出力する。ほかの入力と出力は変えない。",
+      "oracle_after": "既存`TBD`を推測で補完せず不明/未評価のまま保つ。template/適用性ならL2-009、抽出atomならL2-041、risk/oracleならL2-004へ戻す。原因を混同しない。",
+      "single_field": true
+    },
+    "six_document_map": [
+      {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "bytes": 5052,
+        "sha256": "6f309cde181b320560a6f26ccd0e394cd930c8b350b72418e375b02b337f4ead",
+        "text": "## Stage 3 親043の機能要件候補\n\n### FR-HARNESS-L3-043 — active templateのrule／branch別例coverage\n\n**authorityと範囲**：HARNESS-L2-043はPO decision `MPR-RC-HARNESS-L2-043-002`で条件付き採択されたBルート、所属HARNESS-COREである。L2本文と旧source checkpointに残る「配置はPO未決」の記述は当時のcandidate metadataとして保持し、現在のauthorityはPO decision行から読む。親L1はHARNESS-L1-001/004/009、version_targetはL2-043の1.0を保持する。本L3本文はその固定scopeを具体化する候補で、L3承認前である。POの採択を再生成・拡張しない。\n\n**由来と処置**：旧HIL-FR-55（Template Example Calibrator）、旧L3 HR-FR-HIL-20/HAC-HIL-20a/b/c、およびHAT-HIL-20/HOT-HIL-50を起点とする。保持する意味は選択されたactive templateに適用される各validation rule/applicability branchへcanonical positiveとboundary negativeを結び、L2-005で選択されたticket/riskの未被覆領域だけ追加し、件数のみで十分性を判定しないこと。名前や旧IDが同じだけでは同じ意味とせず、旧28 CASEの原文/raw digestを監査source inventoryへ残し、内容oracleを固定親の意味へ再導出する。旧schema/runtime/workflow/実装経路は移植しない。\n\n**責務境界**：HARNESS-L2-005がticketとriskから検証義務/profileを選択する。043は選択済みscope/profileを受け、全組合せの作成や検証の実行をしない。HARNESS-L2-009がactive template選択と適用条件を所有し、HARNESS-L2-041がそのtemplate要素の抽出・source span・gapを所有する。HARNESS-L2-004が要求・設計・検証のtrace、risk/oracle条件を所有する。HARNESS-L2-026は要求からunitの具体設計と対のverification designを、HARNESS-L2-025はcomposite design/oracleを構成・検査する。043はそれらの代替にならず、025/026のcompletion receiptを一律に開始前提としても要求しない。OSが検証を実行・保存する。\n\n**入力と出力**：ticket/riskからL2-005で選択されたverification obligations/profile、対象revision/scope、L2-009で選択されたactive template identity/revision/applicability、L2-041の適用rule/branch atomとsource span、該当scopeのrisk basis、L2-004でtraceされる検証oracleを対応付ける。出力は同じscope/revision限定のadequacy matrixで、分母は選択scopeに適用されるrule/branch。各rule/branchにcanonical positiveとboundary negativeを最低一例ずつ対応させる。追加risk例はL2-005で選択されL2-004根拠で未被覆と示されたriskに限る。rule×branch×riskや他の全factorのCartesian productを要求しない。未選択template、未選択scope、未選択riskは未観測のままとする。\n\n**受入基準**：\n\n- **AC-HARNESS-L3-043-01**：選択scope内の各適用rule/branchにpositiveとboundary-negativeを結び、例の条件・期待結果・既存oracle・source provenanceを追跡する。例数だけで十分性を主張しない。\n- **AC-HARNESS-L3-043-02**：applicability/denominator、抽出atom、risk basis、oracleを別根拠として照合する。unknown/conflict/stale/TBD/根拠なしN/Aは推測で埋めず未評価として、L2-009（選択/適用）、041（抽出済みrule gap）、004（要求/risk/oracle）の原因別ownerへ返す。\n- **AC-HARNESS-L3-043-03**：coverage結果は選択されたtemplate/revision/scopeに限る。未選択template/scope/revisionへ外挿せず、固定oracleに適合する未見例は未見だけを理由に拒否しない。\n- **AC-HARNESS-L3-043-04**：risk追加例はL2-005で選択されたriskとL2-004の根拠で未被覆とされたものに限定し、欠落入力を補完せず元ownerへ返す。043のmatrixは要求合意、L2採択、L3承認、設計成立、実装、OS実行、利用者受入を生成せず、L2-025/026の成果も代替しない。\n\n**原因別戻し先**：ticket/risk profileが未選択なら005 owner。template identity、active revision、適用条件が不足なら009/対象template owner。選択templateに存在するrule/branchの抽出atom/source spanが欠けるなら041抽出契約owner。requirement relation、risk rationale、expected result/oracle bindingが欠けるなら004/そのsource owner。025のcomposite design/oracleまたは026のunit design/paired verification designそのものが求められて未作成なら該当する025/026 ownerへ返すが、これらを043評価の一般開始条件や代替outputにはしない。責務不明はunknownを保持し新ownerを推測しない。\n\n**authority出力境界**：実際のB-route/CORE PO採択はdecision rowで既に固定される。043 candidateやmatrixからその採択を作り直さない。また要求合意、L3承認、設計成立、実装完了、OS実行完了、利用者受入成功を個別に生成しない。matrixは内容上のcoverage候補だけを示す。\n",
+        "changed_by_this_candidate": false
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+        "bytes": 282,
+        "sha256": "445d876bca15e7ae01c444eeffe6ea19f2ed9c6dc2f1031b61ca976d7bd36c33",
+        "text": "## Stage 3 親043の業務要件\n\n| L2親 | business requirement | 理由 |\n|---|---|---|\n| `HARNESS-L2-043` | 独立したbusiness requirementを導出しない | 例coverageは選択scopeのverification adequacyであり、別の事業成果や価値閾値を追加しない。 |\n",
+        "changed_by_this_candidate": false
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+        "bytes": 433,
+        "sha256": "0b2f725ceaa2f70d89d752283a01d08255681c3acb1100919b96edb2239bb923",
+        "text": "## Stage 3 親043の非機能候補\n\n| NFR候補 / L2親 | 候補値 | 固定根拠 | 限界 |\n|---|---|---|---|\n| `HARNESS-L2-043` | 独立した数値NFRを導出しない | 固定L2-043はrule/branch/risk coverageを意味で判定し、正例・境界負例を各適用rule/branchに対応させる。 | case数の総量、coverage率の新閾値、全組合せ数を追加しない。未選択scopeを分母に加えない。 |\n",
+        "changed_by_this_candidate": false
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "bytes": 19760,
+        "sha256": "e3c956d3ad398a41ddfc5431af0b6e1d8dd94c4caa687b2694bc528eb0f33c5a",
+        "text": "## Stage 3 親043の機能検証候補\n\n**内容oracle候補・未実行**：旧28定義IDはsource inventoryに全literal/raw SHAで保持し、current rowsでは六列へ正規化して意味を再導出する。indexは独立fixtureとして数えない。追加risk例は選択risk根拠がある場合のみ。全組合せ要求を導入しない。authority拒否fixtureは固定L2/L11の境界に限定し、既存PO adoptionを変更しない。\n\n| CASE ID | FR ID | AC ID | baseline | mutation | oracle / route |\n|---|---|---|---|---|---|\n| `CASE-HARNESS-L10-043-01` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-01` | 索引行のみ：選択済みticket/riskプロファイル、適用中templateのrevision/scope、適用されるrule/branchの分母、oracle、および選択riskの根拠を参照する。 | 変異なし。列挙された子CASEを個別に解決する。索引はrule/branch、risk要因、分母へ加えるfixtureを増やさない。 | 列挙された子CASEだけを評価する。この索引を独立した証拠や全組合せの要求として扱わない。 |\n| `CASE-HARNESS-L10-043-02` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-02` | 索引行のみ：選択済みticket/riskプロファイル、適用中templateのrevision/scope、適用されるrule/branchの分母、oracle、および選択riskの根拠を参照する。 | 変異なし。列挙された子CASEを個別に解決する。索引はrule/branch、risk要因、分母へ加えるfixtureを増やさない。 | 列挙された子CASEだけを評価する。この索引を独立した証拠や全組合せの要求として扱わない。 |\n| `CASE-HARNESS-L10-043-03` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-03` | 索引行のみ：選択済みticket/riskプロファイル、適用中templateのrevision/scope、適用されるrule/branchの分母、oracle、および選択riskの根拠を参照する。 | 変異なし。列挙された子CASEを個別に解決する。索引はrule/branch、risk要因、分母へ加えるfixtureを増やさない。 | 列挙された子CASEだけを評価する。この索引を独立した証拠や全組合せの要求として扱わない。 |\n| `CASE-HARNESS-L10-043-04` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-04` | 選択済みtemplate/revision/scopeと、適用されるrule/branchの集合が既知である。POが採択したB/CORE配置は固定PO判断から外部入力される。 | 新revisionで適用branchを一つ追加するが、そのrevision固有の分母だけを更新しない。 | 選択scope内の適用対象分母だけを再計算する。templateの適用情報が欠落またはstaleならL2-009/template ownerへ戻す。抽出atomが欠落している場合はL2-041へ戻す。ほかのscopeは未観測のまま保つ。 |\n| `CASE-HARNESS-L10-043-05` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-04` | 選択済みの適用性とrule identityはcurrentであり、正例一つがruleと既存oracleに対応付いている。 | 正例一つだけを、そのrule条件を満たさない例へ置き換える。 | 正例coverageを未完とする。rule抽出gapはL2-041へ、template適用性はL2-009へ、要求/risk/oracleの不足はL2-004へ戻す。一つの原因をすべてのownerへ送らない。 |\n| `CASE-HARNESS-L10-043-06` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-04` | 選択scope内で、L2-005がticket/riskプロファイルに基づき、coverage不足のriskを一つ特定している。 | その特定riskに対する例だけを除く。 | riskに基づく追加coverageを未完のままにする。risk根拠/oracleが不足する場合はL2-004および該当するrisk-oracle source ownerへ戻す。 |\n| `CASE-HARNESS-L10-043-07` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-04` | 選択scope内で、証拠に基づく重複/冗長性の所見だけがmatrixに記録されている。 | 確立済みの重複/冗長性の所見だけを削除する。 | coverage所見を未完とする。全組合せを推測で追加したり、既存ownerの判断なしに義務を削除したりしない。 |\n| `CASE-HARNESS-L10-043-r02-negative-not-boundary` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-04` | 適用rule/branch、正例、境界を試す負例、および必要なrisk理由を対応付ける。 | 負例だけを、ruleの境界を試さない入力へ置き換える。件数とrevisionは変えない。 | coverage成立とせず、例に適用するoracle/risk根拠の不足はHARNESS-L2-004/該当ownerへ戻す。抽出rule gapやtemplate適用性とは混同しない。 |\n| `CASE-HARNESS-L10-043-r03-other-revision-unseen` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-04` | 選択rule/branch revision内で、正例と境界負例を対応付ける。 | 適合結果だけを未見の別revisionへ外挿する。 | 別revisionへの外挿を拒否し、新revisionの選択scope/適用分母を再照合する。入力revision/適用性の不足はL2-009へ、抽出ruleの不足はL2-041へ戻す。 |\n| `CASE-HARNESS-L10-043-r04-oracle-unbound` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-01` | 期待結果が適用oracleへ結ばれたbranch例。 | 期待結果とoracleのbindingだけ切断。 | coverage成立とせず、例の適用oracle/risk根拠不足はHARNESS-L2-004/該当ownerへ戻す。抽出rule gapやtemplate applicabilityとは混同しない。 |\n| `CASE-HARNESS-L10-043-r04-count-only-sufficiency` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-01` | branch/ruleごとに正例と境界負例を対応付ける。 | 例の件数だけを根拠に十分と主張する。 | 件数だけの主張を拒否し、oracle境界の確認を未完とする。 |\n| `CASE-HARNESS-L10-043-r04-rule-branch-conflict` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-02` | 有効な規則/分岐のrevisionは一意で現行である。 | rule/branchの適用値だけをconflictにする。 | 分母を確定せずunknown/未評価とする。選択template/revision/適用性の不足はHARNESS-L2-009/対象template ownerへ戻し、抽出済みrule/branchのgapだけをHARNESS-L2-041へ戻す。 |\n| `CASE-HARNESS-L10-043-r04-extracted-rule-missing` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-02` | 抽出済みrule/branchがsource spanとactive revisionに対応している。 | 抽出済みrule/branchだけを欠落させる。 | extracted rule/branch atom gapを保持し、HARNESS-L2-041の抽出契約ownerへ戻す。templateの選択/適用不足はL2-009へ分けて戻す。 |\n| `CASE-HARNESS-L10-043-r04-applicability-unknown` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-02` | 同じ選択適用範囲における有効な規則/分岐、oracle、risk根拠は現行である。 | 適用性だけをunknownにする。 | 分母を確定せずunknown/未評価とする。選択template/revision/適用性の不足はHARNESS-L2-009/対象template ownerへ戻し、抽出済みrule/branchのgapだけをHARNESS-L2-041へ戻す。 |\n| `CASE-HARNESS-L10-043-r04-risk-rationale-missing` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-02` | 同じ選択適用範囲における有効な規則/分岐、oracle、risk根拠は現行である。 | risk rationaleだけを欠落させる。 | risk coverageをunknown/未評価とする。risk/oracle根拠の不足はHARNESS-L2-004および該当risk-oracle source ownerへ戻し、template適用性/extracted-ruleの不足とは分ける。 |\n| `CASE-HARNESS-L10-043-r04-active-revision-stale` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-02` | 選択規則/分岐のsource identity、現行revision、適用範囲、ほかの根拠を正常入力として固定する。 | active revisionだけをstaleにする。 | 分母を確定せずunknown/未評価とする。選択template/revision/適用性の不足はHARNESS-L2-009/対象template ownerへ戻し、抽出済みrule/branchのgapだけをHARNESS-L2-041へ戻す。 |\n| `CASE-HARNESS-L10-043-r05-unselected-template-extrapolation` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-03` | 選択template/scope内のrule/branch、oracle、適用根拠はcurrentである。 | 選択templateのcoverage結果だけを未選択templateへ外挿する。 | 外挿を拒否し、未選択templateは未観測のまま保つ。選択/適用性の責務はHARNESS-L2-009/対象template ownerに戻す。 |\n| `CASE-HARNESS-L10-043-r05-other-scope-extrapolation` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-03` | 同じrevision内の選択scopeだけで、正例/境界負例をoracleへ結び付ける。 | 選択scopeの結果だけを別scopeへ外挿する。 | 外挿を拒否し、別scopeを未評価のまま保つ。対応する固定親にscope ownerが明示されない場合はunknownを保持し、ownerを推測しない。 |\n| `CASE-HARNESS-L10-043-r05-unseen-oracle-valid-rejected` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-03` | 選択template/scope内の未見正常例が、既存の適用oracle/fixtureに適合している。 | ほかの条件を保ち、「未見である」という理由だけで正常例を拒否する。 | 既存の適用oracleに適合する未見例を受け入れる。「未見」という理由だけでは拒否しない。 |\n| `CASE-HARNESS-L10-043-r06-na-without-basis` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-02` | 適用規則/分岐、revision、適用範囲、oracle、N/A根拠が固定されている。 | N/A根拠だけを除去する。 | 根拠のないN/Aを拒否しunknown/未評価とする。適用性はL2-009/template ownerへ、抽出atom gapはL2-041へ、risk/oracleの意味不足はL2-004へ、原因別に戻す。 |\n| `CASE-HARNESS-L10-043-r06-tbd-unfilled` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-02` | 選択規則/分岐、source revision、oracleは固定され、対象の出力fieldは既に`TBD`である。 | その出力fieldの既存`TBD`だけを、根拠のない推測値へ置き換えて補完済みとして出力する。ほかの入力と出力は変えない。 | 既存`TBD`を推測で補完せず不明/未評価のまま保つ。template/適用性ならL2-009、抽出atomならL2-041、risk/oracleならL2-004へ戻す。原因を混同しない。 |\n| `CASE-HARNESS-L10-043-r06-new-revision-missing` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-02` | 適用branchのcurrent revisionとscope、oracleは固定されている。 | 適用branchのcurrent revision identityだけを欠落させる。ほかの条件は保持する。 | 分母を確定せずunknown/未評価とする。選択template/revision/適用性の不足はHARNESS-L2-009/対象template ownerへ戻し、抽出済みrule/branchのgapだけをHARNESS-L2-041へ戻す。 |\n| `CASE-HARNESS-L10-043-r06-risk-basis-conflict` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-02` | 選択risk根拠とsource revisionが一致している。 | risk根拠だけを相互に矛盾させる。 | risk coverageをunknown/未評価とする。risk/oracle根拠の不足はHARNESS-L2-004と該当risk-oracle source ownerへ戻し、template適用性/extracted-ruleの不足とは分ける。 |\n| `CASE-HARNESS-L10-043-r06-risk-basis-stale` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-02` | 選択risk根拠が同じcurrent source revisionに結び付いている。 | risk根拠のrevisionだけをstaleにする。 | risk coverageをunknown/未評価とする。risk/oracle根拠の不足はHARNESS-L2-004と該当risk-oracle source ownerへ戻し、template適用性/extracted-ruleの不足とは分ける。 |\n| `CASE-HARNESS-L10-043-r06-active-revision-missing` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-02` | 選択scopeのactive source/rule revisionとoracleはcurrentである。 | active revisionだけを欠落させる。 | 分母を確定せずunknown/未評価とする。選択template/revision/適用性の不足はHARNESS-L2-009/対象template ownerへ戻し、抽出済みrule/branchのgapだけをHARNESS-L2-041へ戻す。 |\n| `CASE-HARNESS-L10-043-r09-001` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-01` | active rule/branchの正しい条件、boundary oracle、負例を固定する。 | canonical positive exampleだけを削除する。 | 正例coverageを未完とする。固定L2:995/L11:733に沿って、正例oracle/検証義務の不足としてHARNESS-L2-004および該当既存ownerへ戻す。正常に固定したtemplate/rule抽出へ返却しない。 |\n| `CASE-HARNESS-L10-043-r09-002` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-01` | 有効な規則/分岐の正しい条件、正例、負例oracleを固定する。 | boundary-negative exampleだけを削除する。 | 境界coverageを未完とする。oracle不足は固定L2:995/L11:733に沿ってHARNESS-L2-004と該当既存ownerへ戻す。 |\n| `CASE-HARNESS-L10-043-r09-003` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-02` | active templateの適用性と適用branchの集合が確定し、ほかのbranchと例は保持されている。 | 適用branchの一つだけを分母から除外する。 | 分母の隠蔽を拒否しcoverageを未完とする。抽出済みrule/branch分母の不足はHARNESS-L2-041相当の抽出契約へ戻す。 |\n| `CASE-HARNESS-L10-043-r10-valid-selected-profile-no-mutation` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-01` | L2-005がticket/risk検証profileを選択済みであり、L2-009のcurrent template適用性とL2-041が抽出したrule/branch分母が利用可能である。選択scope内の各branchにはoracleに結び付いたcanonical正例と境界負例があり、追加するのはrisk選択により不足が明示された対象だけである。 | 変異なし。選択済み分母とscope内の証拠をそのまま適用する。 | 無関係な組合せを要求せず、既にcoverage済みの有効例も拒否せず、この選択scopeの内容充足結果を受け入れる。実行や下流受入を意味しない。 |\n| `CASE-HARNESS-L10-043-r10-profile-missing-to-005` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-02` | L2-005のticket/risk選択により、検証profileとその義務が特定されている。 | 選択済みprofile/義務の対応だけを除去する。 | profileや分母を推測で作らず、unknown/未評価とする。profile選択の不足をHARNESS-L2-005 ownerへ戻す。 |\n| `CASE-HARNESS-L10-043-r10-template-applicability-to-009` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-02` | 同じscopeに対する選択済みactive template revisionと適用性はcurrentである。 | そのtemplateの選択/適用情報だけを欠落またはunknownにする。 | rule/branch分母を確定せず、選択/適用性の不足をHARNESS-L2-009/template ownerへ戻す。 |\n| `CASE-HARNESS-L10-043-r10-extracted-atom-to-041` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-02` | 選択templateと適用性はcurrentであり、rule/branchのsource義務が存在する。 | template選択は保持したまま、抽出atom/source span対応だけを欠落させる。 | 抽出gapを保持し、HARNESS-L2-041の抽出契約ownerへ戻す。L2-009の選択欠陥として扱わない。 |\n| `CASE-HARNESS-L10-043-r10-risk-oracle-to-004` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-02` | 選択rule/branch atomが存在し、L2-005のprofile/riskとL2-004の要求/risk/oracle traceはcurrentである。 | 選択coverage主張に対するrisk rationale/oracle bindingだけを除去する。 | 該当coverage充足度をunknown/未完とし、要求/risk/oracleの不足をHARNESS-L2-004および該当source ownerへ戻す。異なる不足も同時にある場合を除き、L2-041/009へ回さない。 |\n| `CASE-HARNESS-L10-043-r10-025-not-substituted` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-03` | 043の例coverage matrixは利用可能であり、composite design/oracleは別途L2-025が担当する。 | 043 matrixをL2-025のcomposite design/oracle結果として出力する。 | 代替を拒否する。043はcomposite design/oracleを作らない。不足する成果物はL2-025 ownerへ戻す。 |\n| `CASE-HARNESS-L10-043-r10-026-not-substituted` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-03` | 043の例coverage matrixは利用可能であり、具体的なunit designと対のverification designは別途L2-026が担当する。 | 043 matrixをL2-026のunit design/対verification design出力として出す。 | 代替を拒否する。043はunit designや対verification designを作らない。不足成果物はL2-026 ownerへ戻す。 |\n| `CASE-HARNESS-L10-043-r10-requirement-agreement-not-generated` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-04` | 固定PO判断行は外部authority入力であり、043 matrixは内容coverage結果に限られる。 | 043文書/matrixから要求合意だけを生成する。 | 生成された要求合意だけを拒否し、外部の固定PO判断は変更せず保持する。043は要求合意を作らない。 |\n| `CASE-HARNESS-L10-043-r10-adoption-not-generated` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-04` | 現行POの条件付きB採択/HARNESS-CORE配置は外部で固定され、このL3候補とは別の状態である。 | 043候補の内容から採択状態だけを生成または変更する。 | 候補から生成した採択状態を拒否し、実際のPO判断とその範囲を保持する。判断を取り消したり広げたりしない。 |\n| `CASE-HARNESS-L10-043-r10-l3-approval-not-generated` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-04` | L3承認は委任されたOpus/Fableの一致を待っており、043 matrixは候補内容である。 | 文書やfixtureの存在だけからL3承認状態を主張する。 | L3承認の主張を拒否し、承認を生成しない。POのL2採択から推論しない。 |\n| `CASE-HARNESS-L10-043-r10-design-established-not-generated` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-04` | matrixが測るのはrule/branch/riskの例coverageであり、設計受入のauthorityは持たない。 | coverage通過だけから設計確立状態を主張する。 | 設計確立状態の生成を拒否し、設計成果物/oracleの不足は該当するL2-025またはL2-026へ戻す。 |\n| `CASE-HARNESS-L10-043-r10-implementation-not-generated` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-04` | 内容matrixと固定入力だけがあり、実装receiptは与えられていない。 | 候補またはmatrixから実装完了状態を主張する。 | 実装完了状態の生成を拒否し、仕様や内容充足から実装を推論しない。 |\n| `CASE-HARNESS-L10-043-r10-execution-not-generated` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-04` | OS実行receiptは与えられておらず、matrix結果は実行結果ではない。 | matrix/文書の存在だけからOS実行完了を主張する。 | 実行状態の生成を拒否し、実行状態はunknownのまま既存OS実行契約/ownerへ戻す。 |\n| `CASE-HARNESS-L10-043-r10-acceptance-not-generated` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-04` | 利用者の受入証拠はなく、matrix結果は受入結果ではない。 | matrix/文書の存在だけから利用者受入を主張する。 | 利用者受入の生成を拒否し、L3/L10内容から受入を作らない。 |\n| `CASE-HARNESS-L10-043-r10-no-cartesian-expansion` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-01` | 対象は選択済みticket/risk適用範囲、適用規則/分岐の分母、規則/分岐ごとの正例と境界負例、および選択riskにより不足が明示された項目に限る。 | 選択risk根拠やL2要求がないのに、無関係なrule、branch、risk要因、環境値の全組合せを要求する。 | scope拡張を拒否し、全組合せの義務を作らない。追加例は選択済みrisk根拠に必要な範囲で、固定L2-043内に保つ。 |\n",
+        "changed_by_this_candidate": true
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/business-verification.md",
+        "bytes": 232,
+        "sha256": "6c7ea10edc1f86139eabd77880b2d49cd8a860a5613defb2e5efe67e388e7ca4",
+        "text": "## Stage 3 親043の業務検証\n\n| L2親 | 独立criterion | 対応関係 |\n|---|---|---|\n| `HARNESS-L2-043` | 独立criterionなし | business outcomeは増やさず、選択scopeのrule/branch/risk content ACを照合する。 |\n",
+        "changed_by_this_candidate": false
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+        "bytes": 391,
+        "sha256": "66ef1f58bd31bc22bffe0494adaec039afb94af81e5cab46cd480ea15831907e",
+        "text": "## Stage 3 親043の非機能検証\n\n| CASE ID | NFR候補 | 検証対象 | 観測 | 限界 |\n|---|---|---|---|---|\n| `CASE-HARNESS-L10-NFR-043-01` | 独立NFRなし | fixed L2-043の選択scope内adequacy matrix | 数値性能・coverage率ではなく、適用rule/branchとoracle/risk根拠のtraceを機能ACで確認する。 | 新規閾値やall-combinations実行を設けない。 |\n",
+        "changed_by_this_candidate": false
+      }
+    ]
+  },
+  "formal_review_history": {
+    "source": "formal_review19_043_original_blocks",
+    "preserved_original_blocks": [
+      {
+        "finding_heading": "- **M13（043：生成禁止と025/026代替禁止に単独fixtureがない。差分外）**：→守るべき行：L2「HARNESS-L2-043 保証と戻し先」末文と「既存候補との境界」、L11 043「戻し先と境界」。",
+        "line_start": 59,
+        "line_end_inclusive": 59,
+        "literal": "- **M13（043：生成禁止と025/026代替禁止に単独fixtureがない。差分外）**：→守るべき行：L2「HARNESS-L2-043 保証と戻し先」末文と「既存候補との境界」、L11 043「戻し先と境界」。\n",
+        "raw_lf_sha256": "661cc68a26322c8c8d496e9807d1bdedfc51aa29649b8a7d11b76ec00ed68e62",
+        "treatment": "verbatim finding retained; M13 receives single-output denial cases; M16 receives no-mutation valid case; m7 denominator wording corrected in candidate without changing old literal"
+      },
+      {
+        "finding_heading": "- **M16（040/043/044：L11の正常例に、変異なしで受理する単独fixtureがない。差分外）**：044には、再利用・delta・新規の区別を誤るCASEもない。→守るべき行：L11 040/043/044「正常例」、L2「HARNESS-L2-044 出力」。",
+        "line_start": 62,
+        "line_end_inclusive": 62,
+        "literal": "- **M16（040/043/044：L11の正常例に、変異なしで受理する単独fixtureがない。差分外）**：044には、再利用・delta・新規の区別を誤るCASEもない。→守るべき行：L11 040/043/044「正常例」、L2「HARNESS-L2-044 出力」。\n",
+        "raw_lf_sha256": "194928bb72e82eb40c1328b4515ee564db0d982a931cc879b5f2c8bd34d81b25",
+        "treatment": "verbatim finding retained; M13 receives single-output denial cases; M16 receives no-mutation valid case; m7 denominator wording corrected in candidate without changing old literal"
+      },
+      {
+        "finding_heading": "- **m7（043：表記。review18 m2の残り）**：FV:859の「branch denominatorの索引」。",
+        "line_start": 86,
+        "line_end_inclusive": 86,
+        "literal": "- **m7（043：表記。review18 m2の残り）**：FV:859の「branch denominatorの索引」。\n",
+        "raw_lf_sha256": "fb7573b93017ecb58c41a2aef8c2d8203b6f3233bf12bf12a044713b8287fb0a",
+        "treatment": "verbatim finding retained; M13 receives single-output denial cases; M16 receives no-mutation valid case; m7 denominator wording corrected in candidate without changing old literal"
+      },
+      {
+        "finding_heading": "- **m9（戻し先の分岐が入力で決まらない）**：",
+        "line_start": 88,
+        "line_end_inclusive": 92,
+        "literal": "- **m9（戻し先の分岐が入力で決まらない）**：\n  - FV:1445（review18 m4の残り。Fable m-6）\n  - FV:956、1458、1655、1656、1414、1516、1971、1438（043/044）\n  - FV:1094、1525、1309（047/054）\n  - source atomの軸では、兄弟行のあいだで宛先が違う。\n",
+        "raw_lf_sha256": "3aab0e61eb367d7b21b6a695aa0dae4392b7a8795d1826b96e6d316df810c7c8",
+        "treatment": "verbatim finding retained; M13 receives single-output denial cases; M16 receives no-mutation valid case; m7 denominator wording corrected in candidate without changing old literal"
+      }
+    ],
+    "not_a_new_review": true
+  },
+  "reuse_derive_replace": [
+    {
+      "old_item": "HIL-FR-55 positive/boundary-negative per active applicable validation rule/branch; risk add-ons only when uncovered",
+      "treatment": "meaning re-derived under PO-adopted L2-043",
+      "preserved": "selected active template/scope, rule/branch denominator, positive and boundary-negative, risk-justified additions, content adequacy not count-only",
+      "changed": "ticket/risk selection is explicitly from L2-005; template selection/applicability from L2-009; extraction from L2-041; risk/oracle trace from L2-004",
+      "reason": "cause ownership and authority boundaries in fixed current contracts; no old runtime/schema reuse"
+    },
+    {
+      "old_item": "old HIL-FR-55 placement generic part / old L2-043 pending metadata",
+      "treatment": "old metadata preserved as history; superseded for current authority by PO decision row",
+      "preserved": "old source placement text and old checkpoint bytes remain pinned",
+      "changed": "current adoption status is conditional B-route, HARNESS-CORE per MPR-RC-HARNESS-L2-043-002",
+      "reason": "exact current PO row in main authoritatively resolves old pending placement metadata"
+    },
+    {
+      "old_item": "old 28 CASE identities/literals and old L3/consumer matrix",
+      "treatment": "raw literal retained; technical fixture meaning re-derived",
+      "preserved": "28 unique old IDs, source line raw SHA, old six-doc pins, HIL-FR-55 and HR-FR-HIL-20/HAT-HIL-20/HOT-HIL-50 source pins",
+      "changed": "current FV six-column format; index rows remain non-independent; add selected-profile/cause-route/normal/authority-boundary fixtures",
+      "reason": "review19 M13/M16 plus 005/009/041/004 and fixed parent boundaries"
+    }
+  ],
+  "limitations": [
+    "No semantic-completeness certification. Old inventory is limited to 28 CASE definitions in the pinned six legacy documents; other historic sources are not exhaustively mapped.",
+    "No test/runtime/CI/old command executed; no case executed.",
+    "No L3 approval, implementation, execution or acceptance is generated.",
+    "Root semantic inspection and independent review remain pending."
+  ],
+  "verification": {
+    "physical_git_bytes_only": true,
+    "static_checks": [
+      "exact commit and clean worktree",
+      "25 full/span source pins",
+      "six base-prefix/suffix/full hashes",
+      "six suffix match with one leading separator LF",
+      "43 physical FV rows and unique IDs/order",
+      "old 28 raw literal SHA preservation"
+    ],
+    "semantic_completeness_certified": false,
+    "independent_review_completed": false
+  },
+  "root_exact_PO_parent_spans": [
+    {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "start": 986,
+      "end": 1000,
+      "sha256": "da678d9181ebe76ae93084c27744d253c617ebe03b709d79f55b79d2abbc6666",
+      "raw_lf_text": "### HARNESS-L2-043 active templateのrule／branch別例coverage（HARNESS-CORE unit候補、version_target: 1.0）\n\n- **所属候補・旧差分**：推奨配置はHARNESS-COREとするが、PO未決である。旧HIL-FR-55の対応印は`docs/governance/crosswalks/concept-requirement-po-decision-packet.md:1009`で`HELIX-HARNESS、部品`までを示し、COREまたは個別部品名までは特定しない。HARNESS-L2-009の同packet `:174–178`は同要求自身を`部品：Design Template`へ置く根拠だが、その配置をHIL-FR-55へ移す根拠ではない。CORE案は、選択scopeの例coverage oracleが製品固有の意味・設計を持つHARNESS core側の責務で、BRAINを設計patternの知識源としてconnector接続するという2026-09-25 PO記録（`docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md:51–55`）を理由とする提案であり、旧配置の証明ではない。043のCORE案は、この限定された候補scopeに対する配置提案として人の選択を待つ。\n\n- **親L1**：`HARNESS-L1-001`, `HARNESS-L1-004`, `HARNESS-L1-009`。001の正規V-pair、004の対象revision/riskに合う検証義務・反例・証拠・差戻し、009のtemplate選択・適用と設計義務を具体化する。親L1の意味やrevisionは変更しない。\n- **種別・scope**：HARNESS-COREの単体能力候補（推奨配置、PO未決）。選択されたactive template revisionと対象scopeに適用されるvalidation ruleおよびapplicability branchについて、rule／branchごとの例coverageを評価する。template要素の機械抽出・ledger候補行・抽出gapは041、具体設計生成と設計構成体のoracleは026/025の責務とし、043はそれらを重複実装しない。\n- **入力**：対象L1 revision、要求kind・構成・scope、HARNESS-L2-009で選択されたtemplateのidentity/revisionと適用条件、各validation rule/applicability branchの識別可能な内容、rule／branchに適用するrisk根拠、対応するoracle契約。041のtemplate atomが利用可能な場合はsource spanと抽出結果を参照する。active版・適用条件・rule／branch分母・必要なrisk根拠がunknown、conflictまたはstaleなら十分性を判定しない。\n- **出力**：対象revision/scope、template版、適用rule／branchの分母、各rule／branchに対応するcanonical positive例と境界negative例、例が確かめるoracle、risk追加例とその不足根拠、重複・冗長性findingを結ぶexample adequacy matrix。全適用rule／branchに最低1件ずつのpositiveとboundary negativeを対応付ける。状態遷移、failure、security、migration、multi-runtime差異は、対象scopeのrisk分析で未被覆と示された場合に限り追加例を求める。例の件数だけで十分性を決めず、rule／branch／該当riskのcoverageを照合する。\n- **依存区分**：**常時必須**＝対象HARNESS-L1 revision、対象scope/revision、HARNESS-L2-009のactive template選択・適用契約、適用rule／branchと照合するoracleの識別。**特定操作時のみ**＝選択scopeについてexample adequacy matrixと例coverageを評価する処理。**選択した入力元に応じて必須**＝041のatomを使う場合はそのtemplate/source revisionと抽出scope、risk追加例を判定する場合はその対象scopeのrisk根拠と未被覆領域、multi-runtime差異を扱う場合は選択scope内のruntime条件。**参照資料のみ**＝旧schema、旧runtime、未選択templateやscope外の例。\n- **保証と戻し先**：各適用rule／branchにpositiveと境界negativeの双方を対応させ、例がどの条件・oracleを検証するかを追跡できる。対応例またはoracleが欠けるrule／branch、根拠のないN/A、risk未評価、版不一致は未完またはunknownとして示し、件数で相殺しない。active版・適用性不足はHARNESS-L2-009/対象template ownerへ、抽出済みrule／branchの欠落は041相当の抽出契約ownerへ、risk・oracle・検証義務の不足はHARNESS-L2-004/該当ownerへ戻す。候補や例は要求合意、設計成立、採択、実装、受入成功を生成しない。\n- **既存候補との境界**：041はactive templateの要素抽出と未対応・空/TBD・抽出不能・重複のgap提示を扱い、rule／branchに対するpositive/negative例の妥当性やcoverage十分性は判定しない。026/025は承認済み要求から具体設計と対oracleを構成・検査し、本候補のtemplate例coverageを代替しない。OSは選択された操作の実行・保存・状態記録を別契約で担う。\n\n- **配置差の選択境界**：旧HIL-FR-55の`部品`という対応印を保持しつつ、現行CORE所属は暫定推奨にとどめる。POが`部品：Design Template`を選ぶ場合も、それはHARNESS-L2-009に示された当該部品の候補配置を043へ適用する新しい判断であり、旧HIL-FR-55から確定済みとして継承しない。\n\n**旧根拠**：`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:145`、旧行SHA-256 `78a2e6c819e73153ce2bbd832c0f87777dba08750fa1b84fcafc916fa7cafa30`。旧Template Example Calibratorの意味条件を保持し、旧schema／runtimeを移植しない。\n",
+      "full_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09"
+    },
+    {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "start": 723,
+      "end": 733,
+      "sha256": "583bfaf669729d3148e072be3ca74f1ef125997e933f6a1a94f08c732cb6f4b4",
+      "raw_lf_text": "### HARNESS-L2-043 active templateのrule／branch別例coverage\n\n**対応要求**：HARNESS-L2-043（HARNESS-CORE unit候補、`version_target: 1.0`、未採択、CORE配置は推奨案でPO未決）。親L1はHARNESS-L1-001/004/009。043は例coverage契約を定め、template選択・適用はL2-009、active templateの要素抽出は041、設計unit/compositeと対oracleは026/025へ分ける。旧sourceはHIL-FR-55、`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:145`（line SHA-256 `78a2e6c819e73153ce2bbd832c0f87777dba08750fa1b84fcafc916fa7cafa30`）。旧packet `concept-requirement-po-decision-packet.md:1009`の配置表記は汎用の`部品`である。HARNESS-L2-009の同packet `:174–178`にある`部品：Design Template`は009自身の配置例であり、FR-55または043の既決配置を意味しない。CORE案は、選択scopeの例coverage oracleが製品固有の意味・設計を持つHARNESS core側の責務で、BRAINを設計patternの知識源としてconnector接続するという2026-09-25 PO記録（`docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md:51–55`）を理由とする提案であり、旧配置の証明ではない。COREは現候補の推奨配置にとどまり、PO判断を待つ。\n\n**正常例**：選択されたactive template revisionと適用scopeの全validation rule／applicability branchを分母として確定する。各rule／branchにcanonical positive例と境界negative例を最低1件ずつ対応付け、例ごとに適用条件、期待する受理／拒否、oracle、source spanを照合する。状態遷移、failure、security、migration、multi-runtime差異については対象risk分析で未被覆と特定された場合だけ追加例と理由を示す。例の数ではなく、適用rule／branchと該当riskが内容上検査されたかを判定する。\n\n**誤りを含む例**：いずれかの適用rule／branchについてpositiveまたは境界negativeを欠く、positive例がrule条件を満たさない、negative例が境界条件を試さない、期待結果とoracleが結び付かない、適用branchを飛ばす、または例数だけで十分とする入力は不合格または未評価とする。risk分析で未被覆とされた領域に追加例がない場合もcoverage未完とする。TBD・unknown・適用性不明を推測で埋めない。\n\n**未見例**：作成側に伏せたactive template revisionまたは新しいapplicability branchを与え、対象rule／branchの分母を更新し、positive／boundary-negative例とoracleへの対応を照合する。新revisionやrisk根拠が欠落・矛盾・staleの場合は十分性を主張せずunknown／未評価にする。結果を未選択template、別scope、別revisionへ外挿しない。\n\n**戻し先と境界**：templateのactive版・適用条件不足はHARNESS-L2-009/対象template owner、rule／branch抽出の不足はHARNESS-L2-041相当の契約owner、oracle・検証義務・risk根拠の不足はHARNESS-L2-004/該当ownerへ戻す。例のcoverage結果は要求合意、設計成立、L3承認、候補採択、実装、OS実行または利用者受入を生成しない。旧schemaやruntime固有形式を受入条件にしない。\n",
+      "full_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5"
+    }
+  ]
+}

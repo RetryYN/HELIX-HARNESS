@@ -1,0 +1,2333 @@
+{
+  "record_type": "Root delegated decision addendum evidence",
+  "head_before_record": "330272a4231c092ff8c456e5dc47f447175bc95f",
+  "condition3_status": "independent post-record check pending; Draft; no Ready/merge/admission",
+  "candidate_snapshot_bytes": 33796,
+  "candidate_snapshot_sha256": "d7926a4a5d7062bc5b7dd542010bd6c32d8074cc9805cb2d69ddd6afd9c33fe0",
+  "candidate_snapshot": {
+    "artifact_type": "HARNESS043 review12 delegated decision addendum candidate evidence",
+    "language": "ja",
+    "candidate_status": "awaiting_root_inspection",
+    "authority_effect": "none_while_candidate; effective only if this addendum is admitted to main",
+    "decision_record_target": {
+      "path": "docs/governance/decisions/helix-harness-stage3-parent043-l3-l10-decision-addendum-2026-10-07-330272a42.md",
+      "review_base": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+      "reviewed_content_head": "330272a4231c092ff8c456e5dc47f447175bc95f",
+      "prior_decision_record": {
+        "revision": "330272a4231c092ff8c456e5dc47f447175bc95f",
+        "path": "docs/governance/decisions/helix-harness-stage3-parent043-l3-l10-po-decision-2026-10-07.md",
+        "bytes": 16646,
+        "sha256": "b776920254d3269f40f1412b39be9e76ea00f7f80b2dcdbfbc42977b3213f2d6"
+      }
+    },
+    "review_target": {
+      "parent": "HARNESS-L2-043",
+      "registration_id": "MPR-RC-HARNESS-L2-043-002",
+      "adoption_scope": "条件付き採択 Bルート / HARNESS-CORE",
+      "stage": "Stage 3",
+      "version_target": "1.0",
+      "formal_comment_id": 6030127214
+    },
+    "decision": {
+      "condition_1_and_2": "formal review12 reports Major 0 and Fable approval with Opus support for the exact six-document HEAD/base",
+      "condition_3": "pending independent exact-HEAD check after addendum is added and before merge",
+      "historical_DECISION01_X1": "formal review12 explicitly says the main-conflict X1 from check01/comment 6029965067 is resolved by this incorporation",
+      "ready_merge": "not established"
+    },
+    "formal_review12": {
+      "comment_id": 6030127214,
+      "body_bytes": 5263,
+      "body_sha256": "b6c2dd0a8ca2c4b5c128b3aca810e14af6697932243f8f5bacd82d42be99df2e",
+      "body_raw_exact": "## review12（independent review、PR #2642 親HARNESS-L2-043、HEAD 330272a4231c092ff8c456e5dc47f447175bc95f、base main d27d6f67d）：Major 0\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2642-HARNESS-STAGE3-PARENT043-12` に応える。\n\n### 本文を評価する前の確認（採択記録・対象版・追補条件）\n- **採択記録**：57候補記録の48行が、`MPR-RC-HARNESS-L2-043-002`を採択している（条件付き：Bルート、HARNESS-CORE）。`-003`はlocator訂正のsuccessorで、採択記録はない。\n- **対象版**：固定親は318ec4a（L2 986–1001、L11 723–734）である。Fableが、file SHA-256がPO行の値と一致することを確かめた。\n- **base整合**：merge-baseは依頼のbase（d27d6f67d、最新main）と一致し、削除行は0である。\n  - 043節の追加行は、78e7c026c→97f24eeaaと、d27d6f67d→HEADとで、ソートした追加行がバイト一致する。\n  - 判断記録の照合01（comment 6029965067）のX1（main衝突）は、この取り込みで解消した。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - 6本文と判断記録の範囲で、`git diff --check`は成功\n  - merge-treeは衝突なし\n\n### 照合の経過\n6本文のbytesは044節の挿入で変わったので、新しい本文revisionで条件1・2をやり直した（運用モデル130行）。照合範囲は、review10・11で固定した範囲である。主眼は、044節との相互作用に置いた。\n\n1. **Opusシンプルブラインド**：Major 0。\n   - 044節との間に、ID衝突はない。\n   - 戻し先は、044と同じ区分にそろっている（template適用・義務導出は009、atom抽出は041）。\n   - 044は「043はHIL-FR-55側で044 ownerではない」としている。043も、044の意味や担当を変えていない。\n   - authorityの閉じた列挙7項目は、一致している。\n   - 043節は`##`なので、044の`###`の文が043に掛からない。\n2. **Fableの判断**：「承認してよい」。固定親、PO記録、6本文を自分で読んで照合した。R34は、誤った完了が通るoracleではなく、網羅の不足であるとした。\n3. **Opusによる敵対照合**：「Fableの判断を支持する」。次の点を照合したが、崩せなかった。\n   - unknown条件の4項目×3状態\n   - L11の誤り例の全列挙\n   - 外挿の3方向\n   - authority\n   - 戻し先\n   - 044との相互作用\n   - **R34**：正常fixture（r10-valid-selected-profile-no-mutation、r20-independent-rule-branch-input-normal）は、各branchの正例・境界負例とoracle・sourceの一致を要求している。そのため、025/026のreceiptだけでは成立しない。誤った完了が通る経路はない。\n4. **reviewerの結論**：委任の条件1（Opusのexact HEADでのMajor 0）と条件2（Fableの同一本文revisionでの判断）が、このHEADでそろった。\n\n### 6本文（このHEADのSHA-256）\n- business-verification `8810721f…`\n- functional-verification `5ea03922…`\n- nfr-verification `7de02090…`\n- business-requirements `ebe592ad…`\n- functional-requirements `f3f7e263…`\n- nfr-grade `927ad86a…`\n\n### 後で直す残余（承認を止めない）\n- **R1〜R17、R19〜R21、R23〜R27、R29〜R33**：前回のとおり。\n- **R34（025/026による代替）**：固定L2:996の禁止の向きは、「025/026の成果を043のcoverageの代わりにしない」である。これに対し、r10-025/026-not-substitutedとAC-043-04は、逆向き（「043のmatrixを025/026の代わりにしない」）しか検査していない。L2の向きを本文で守っているのは、原因別戻し先の「025/026を043評価の…代替outputにしない」だけである。L2の向きの拒否fixture（r10-025/026-receipt-not-coverage相当）を足し、AC-04の文言の向きを直すことを勧める。\n- **R35（不足根拠の出力）**：「risk追加例とその不足根拠」のうち不足根拠は、正常fixtureで値を照合していない。出力側で単独に変えるCASEもない。\n- **R36（044の見出し）**：044の各節は、6本文すべてで049の`##`の下に`###`として置かれている（base側の構造。#2641 review11のR33と同じ）。\n- **R37（宛先の表記）**：044のr05-source-atom-staleは要求ownerへ、043のr22-denominator-source-revision-staleは009/source ownerへ返す。対象が別の要求なので同じ原因ではないが、表記上は紛れやすい。\n- **R38（CASE 043-07）**：CASE 043-07（重複・冗長性の所見の削除）には、戻し先も「043自身の出力の訂正」も書かれていない。AC-02の自己訂正の範囲は、「参照・期待結果の誤り」に限られている。\n\n### 次の手順\n- 結論：このHEADの6本文に、未解消のblockerはない。\n- mergeへ進むには、次の2つが要る。\n  - このexact HEADの6本文のbytesとSHA-256を固定する、判断記録の追補。既存の判断記録はimmutableである。\n  - Ready化。\n- 本文のrevisionが変わった場合は、条件1・2をやり直す。\n"
+    },
+    "mailbox_response_separate_source": {
+      "snapshot_path": "/tmp/root-mailbox-receive-current382.json",
+      "snapshot_bytes": 3939,
+      "snapshot_sha256": "2199ac4762be6a23ff69f2876e31b802d068c180594d84bf8652eb91462c7514",
+      "snapshot_status": "claimed",
+      "snapshot_ack": null,
+      "response": {
+        "schema": "scaffold-review-response.v1",
+        "evidence_kind": "scaffold",
+        "authority_effect": "none",
+        "request_id": "RH-PR2642-HARNESS-STAGE3-PARENT043-12",
+        "request_payload_sha256": "f98807aed3a52f7369e73d54379a8416491c0fc5cc85e871a6a2e8643b751312",
+        "base_sha": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+        "content_sha": "330272a4231c092ff8c456e5dc47f447175bc95f",
+        "reviewer": "claude",
+        "result": "no_findings",
+        "findings": [],
+        "unreviewed": []
+      },
+      "authority_effect": "none",
+      "root_inspect_ack_reported_by_parent": true,
+      "note": "Mailbox response snapshot reports no_findings and empty findings/unreviewed, authority_effect none; saved snapshot remains claimed/ack null. Root inspect/ACK is separately reported, not inferred from snapshot."
+    },
+    "immutable_prior_chain": {
+      "original_decision_record": {
+        "revision": "330272a4231c092ff8c456e5dc47f447175bc95f",
+        "path": "docs/governance/decisions/helix-harness-stage3-parent043-l3-l10-po-decision-2026-10-07.md",
+        "bytes": 16646,
+        "sha256": "b776920254d3269f40f1412b39be9e76ea00f7f80b2dcdbfbc42977b3213f2d6"
+      },
+      "prior_evidence_bundle": {
+        "revision": "330272a4231c092ff8c456e5dc47f447175bc95f",
+        "path": "docs/governance/audits/requirements-stage/harness043-review11-delegated-decision-evidence-2026-10-07-97f24eeaa.json",
+        "bytes": 368897,
+        "sha256": "ac58029eb6885b09597c1971edb5ed896284379736a1f7756c6bea149568bf4b"
+      },
+      "prior_status": "immutable; this addendum does not rewrite it"
+    },
+    "fixed_parent_source_actual": {
+      "fixed_parent_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "requirement_identity": "HARNESS-L2-043",
+      "registration_002_adopted": "MPR-RC-HARNESS-L2-043-002",
+      "registration_003_locator_only": {
+        "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "bytes": 4046,
+        "sha256": "1a37ae8ff8497f66e7ca176494e1b3c7b864d413d3d7f2b059f074fe9dcdd3e1",
+        "physical_lines": "995-995",
+        "source_file_bytes": 3370048,
+        "source_file_sha256": "d24a982af1c468bb32c9822777a3234d3ce065ff63b89c944b7b04447610c99b"
+      },
+      "conditional_scope": "B route, HARNESS-CORE",
+      "PO_adoption_row": {
+        "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "bytes": 669,
+        "sha256": "3e70c29706991c761369571523dfcf0ffa3be62eb0bc5d574a1b509c8a7cc264",
+        "physical_lines": "48-48",
+        "source_file_bytes": 45099,
+        "source_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+      },
+      "registration_001": {
+        "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "bytes": 2649,
+        "sha256": "e3fa45efe7445beb17dc33c9f325689f4baa209275636e0e7c23c0dd12bb09ac",
+        "physical_lines": "547-547",
+        "source_file_bytes": 3370048,
+        "source_file_sha256": "d24a982af1c468bb32c9822777a3234d3ce065ff63b89c944b7b04447610c99b"
+      },
+      "registration_002": {
+        "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "bytes": 3788,
+        "sha256": "2c62f3632f778775ca971cf5221e30ccffe24a08b2c7b10ad3e3d3540a3ed54e",
+        "physical_lines": "548-548",
+        "source_file_bytes": 3370048,
+        "source_file_sha256": "d24a982af1c468bb32c9822777a3234d3ce065ff63b89c944b7b04447610c99b"
+      },
+      "L2_physical_span": {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "bytes": 5450,
+        "sha256": "4817136b4aca117e056abd02e0d3a138beec59b6a3a3989ace216f062dd2a048",
+        "physical_lines": "986-1001",
+        "source_file_bytes": 254934,
+        "source_file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09"
+      },
+      "L2_PO_registered_span": {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "bytes": 5449,
+        "sha256": "da678d9181ebe76ae93084c27744d253c617ebe03b709d79f55b79d2abbc6666",
+        "physical_lines": "986-1000",
+        "source_file_bytes": 254934,
+        "source_file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09"
+      },
+      "L11_physical_span": {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "bytes": 3377,
+        "sha256": "6c4377e4db0f8473c22cb6185ded4d0fa5e0e2ecf731097b0f346b4d3fd04503",
+        "physical_lines": "723-734",
+        "source_file_bytes": 172806,
+        "source_file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5"
+      },
+      "L11_PO_registered_span": {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "bytes": 3376,
+        "sha256": "583bfaf669729d3148e072be3ca74f1ef125997e933f6a1a94f08c732cb6f4b4",
+        "physical_lines": "723-733",
+        "source_file_bytes": 172806,
+        "source_file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5"
+      },
+      "L2_full": {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "bytes": 254934,
+        "sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09"
+      },
+      "L11_full": {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "bytes": 172806,
+        "sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5"
+      },
+      "meaning": "002 is the PO adopted conditional B/CORE candidate. 003 is locator-only with authority_effect none and is not a new adoption. Physical spans include terminal blank line; PO registered spans exclude it."
+    },
+    "legacy_authority_and_reuse_basis": {
+      "legacy_source_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "legacy_source_atom": "HIL-FR-55",
+      "source": {
+        "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "bytes": 492,
+        "sha256": "191b3b22d5985f085548d44a736590502d5f424511d71262d1b0fe07871663c2",
+        "physical_lines": "145-145",
+        "source_file_bytes": 56091,
+        "source_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+      },
+      "source_full": {
+        "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "bytes": 56091,
+        "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+      },
+      "asset_ledger_row": {
+        "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "bytes": 2312,
+        "sha256": "057a8508576084d4fc805a4434a71be99cf391074bc15f866628b237d59c57b1",
+        "physical_lines": "424-424",
+        "source_file_bytes": 4857919,
+        "source_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+      },
+      "asset_ledger_full": {
+        "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "bytes": 4857919,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+      },
+      "reuse_policy": {
+        "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+        "path": "docs/governance/legacy-asset-reuse-control.md",
+        "bytes": 7991,
+        "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582"
+      },
+      "disposition": "meaning re-derived: positive and boundary-negative examples for each validation rule/applicability branch; add risk examples only when uncovered; judge by coverage, not count. No old runtime/test/CI execution."
+    },
+    "delegation_policy_sources": {
+      "PO_delegation_decision": {
+        "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+        "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+        "bytes": 6210,
+        "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220"
+      },
+      "github_upstream_operating_model": {
+        "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+        "path": "docs/governance/github-upstream-operating-model.md",
+        "bytes": 53710,
+        "sha256": "eed2b774bb78545ac53c7d55f3ae3ab4e9c4f421b4eaf3ac3bcdbcdd869dd27b"
+      }
+    },
+    "six_target_document_actual_pins": [
+      {
+        "path": "docs/helix-harness/L10-verification/business-verification.md",
+        "current_head": {
+          "revision": "330272a4231c092ff8c456e5dc47f447175bc95f",
+          "path": "docs/helix-harness/L10-verification/business-verification.md",
+          "bytes": 15154,
+          "sha256": "8810721feb7845094f41eed08a2b7abff05872784d70bc021d1996018a984d46",
+          "terminal_lf": true
+        },
+        "new_main_base_prefix": {
+          "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+          "path": "docs/helix-harness/L10-verification/business-verification.md",
+          "bytes": 14921,
+          "sha256": "8083bfe67737eaa86077dacf56736a8a7cc624b0be7f405216dc57f46925fe68",
+          "exact_prefix": true
+        },
+        "043_suffix": {
+          "path": "docs/helix-harness/L10-verification/business-verification.md",
+          "bytes": 233,
+          "sha256": "233f15d3911b5fe44c4b6041f9ed348e08d2cd6814fd27dcfd4c1cb12c0a1c9f",
+          "byte_identical_to_old_043_suffix": true
+        },
+        "old_review11_full": {
+          "revision": "97f24eeaa23eca5b14cb37428f229bab77a1f84a",
+          "path": "docs/helix-harness/L10-verification/business-verification.md",
+          "bytes": 10848,
+          "sha256": "8448b02131f019774d1bc4a7baa0b782912824c4a50f824e18cb52d08cd34a8a"
+        },
+        "old_review11_base_prefix": {
+          "revision": "78e7c026c6633730868347040bd0393f4b5d2fb5",
+          "path": "docs/helix-harness/L10-verification/business-verification.md",
+          "bytes": 10615,
+          "sha256": "d645bd8ed00c536e355d44162c1b0c552a2bc1ca296597783d36395e275e35a1"
+        }
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "current_head": {
+          "revision": "330272a4231c092ff8c456e5dc47f447175bc95f",
+          "path": "docs/helix-harness/L10-verification/functional-verification.md",
+          "bytes": 974688,
+          "sha256": "5ea03922bd74e81c29c8f12d37137ee93ef31104c94cafa3ea21389eba1c698e",
+          "terminal_lf": true
+        },
+        "new_main_base_prefix": {
+          "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+          "path": "docs/helix-harness/L10-verification/functional-verification.md",
+          "bytes": 942032,
+          "sha256": "977f33a7a42851828330aa4040b70c319009991be9e99d2dcf361344b278b1f8",
+          "exact_prefix": true
+        },
+        "043_suffix": {
+          "path": "docs/helix-harness/L10-verification/functional-verification.md",
+          "bytes": 32656,
+          "sha256": "654bd4698ed216460bb8c5364d78a0ee46d97773f9eb65b3b0164bba24c106aa",
+          "byte_identical_to_old_043_suffix": true
+        },
+        "old_review11_full": {
+          "revision": "97f24eeaa23eca5b14cb37428f229bab77a1f84a",
+          "path": "docs/helix-harness/L10-verification/functional-verification.md",
+          "bytes": 892783,
+          "sha256": "7112b55a60c133fbc693c3773ca08265244a124158acf2968ead407e70ca6a94"
+        },
+        "old_review11_base_prefix": {
+          "revision": "78e7c026c6633730868347040bd0393f4b5d2fb5",
+          "path": "docs/helix-harness/L10-verification/functional-verification.md",
+          "bytes": 860127,
+          "sha256": "0d46ef7417c625a826bf64870a2d228b0ad7b527b7b039001b339357d97f5d98"
+        }
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+        "current_head": {
+          "revision": "330272a4231c092ff8c456e5dc47f447175bc95f",
+          "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+          "bytes": 43676,
+          "sha256": "7de02090d036eb8acbc2ba5ab9e18380b070932c065087812dc7e0ec3a731f08",
+          "terminal_lf": true
+        },
+        "new_main_base_prefix": {
+          "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+          "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+          "bytes": 43284,
+          "sha256": "0bab8269e20b898451a58262c3cb646f4aa0a8d51851e798e44304b763e2f29e",
+          "exact_prefix": true
+        },
+        "043_suffix": {
+          "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+          "bytes": 392,
+          "sha256": "047c937dc87c01fb22b44ce900e932a0e47d43e02609695d90eb6b55df576281",
+          "byte_identical_to_old_043_suffix": true
+        },
+        "old_review11_full": {
+          "revision": "97f24eeaa23eca5b14cb37428f229bab77a1f84a",
+          "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+          "bytes": 39540,
+          "sha256": "7672898a50494da1c644141ff2cb8de67425b5119665c1a652256997ff4fad7c"
+        },
+        "old_review11_base_prefix": {
+          "revision": "78e7c026c6633730868347040bd0393f4b5d2fb5",
+          "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+          "bytes": 39148,
+          "sha256": "022e14272f92cf62e9f9782c72ffd077304bf36f1e4ecf4c8a69a137fbd7b2bf"
+        }
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+        "current_head": {
+          "revision": "330272a4231c092ff8c456e5dc47f447175bc95f",
+          "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+          "bytes": 18645,
+          "sha256": "ebe592adb748d9368811bb42a23810d2b64e15e3a6b0932f9077700af4bf6228",
+          "terminal_lf": true
+        },
+        "new_main_base_prefix": {
+          "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+          "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+          "bytes": 18362,
+          "sha256": "72a10ec1cfb6bbe74f3d07316981ffcf8489f68ab52dae89de2b6faea86354a1",
+          "exact_prefix": true
+        },
+        "043_suffix": {
+          "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+          "bytes": 283,
+          "sha256": "8d806b285b554f895d1e3b8125b92e398db31ca5bcab68296d866a06c07e9129",
+          "byte_identical_to_old_043_suffix": true
+        },
+        "old_review11_full": {
+          "revision": "97f24eeaa23eca5b14cb37428f229bab77a1f84a",
+          "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+          "bytes": 15074,
+          "sha256": "cb1df4e0cf46469ef84498fec8f2734100e8adec53ab7969db1fec3b65be83c9"
+        },
+        "old_review11_base_prefix": {
+          "revision": "78e7c026c6633730868347040bd0393f4b5d2fb5",
+          "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+          "bytes": 14791,
+          "sha256": "7ea9e004f813e3e7cdd94f7d612753d6224c4ffa1fde7bba775959e303d8ef65"
+        }
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "current_head": {
+          "revision": "330272a4231c092ff8c456e5dc47f447175bc95f",
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+          "bytes": 249459,
+          "sha256": "f3f7e2633817efb201937c06e73dceae71d15c5493e3328fa6c8159c9c5174fc",
+          "terminal_lf": true
+        },
+        "new_main_base_prefix": {
+          "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+          "bytes": 241790,
+          "sha256": "833cbd47e3e41a2ee7c03a53d1bd41a31ed0b321084a734624cdf6839251e3c7",
+          "exact_prefix": true
+        },
+        "043_suffix": {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+          "bytes": 7669,
+          "sha256": "766a40d1bcc0ee82359b512802df7ce236f915437f137906970dd9ff922628c9",
+          "byte_identical_to_old_043_suffix": true
+        },
+        "old_review11_full": {
+          "revision": "97f24eeaa23eca5b14cb37428f229bab77a1f84a",
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+          "bytes": 240625,
+          "sha256": "37a410a469923cd51d108240b50f8dae7422442f484996c34912d87d6b20616f"
+        },
+        "old_review11_base_prefix": {
+          "revision": "78e7c026c6633730868347040bd0393f4b5d2fb5",
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+          "bytes": 232956,
+          "sha256": "702bb566bfa0e814868a36ac97b2e058e99b8353a2ba901af971e2a0bfd70820"
+        }
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+        "current_head": {
+          "revision": "330272a4231c092ff8c456e5dc47f447175bc95f",
+          "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+          "bytes": 49324,
+          "sha256": "927ad86a4c37ff6cb0f971f761c62bef34486a15cf746d6ec7efa3c7348dfd68",
+          "terminal_lf": true
+        },
+        "new_main_base_prefix": {
+          "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+          "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+          "bytes": 48890,
+          "sha256": "e699ca1eb75f24fb8ca22b882f4bc9a8f3807b9c2873b321095fdfd347924ed6",
+          "exact_prefix": true
+        },
+        "043_suffix": {
+          "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+          "bytes": 434,
+          "sha256": "be99bed2c7755145b8a0f1ae8703e398f42926d5c39721857ca780954022cdf3",
+          "byte_identical_to_old_043_suffix": true
+        },
+        "old_review11_full": {
+          "revision": "97f24eeaa23eca5b14cb37428f229bab77a1f84a",
+          "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+          "bytes": 45828,
+          "sha256": "20bcb16b5ea67eb57a2902512881565d7cb97765140550ed82bf7c32f2288bae"
+        },
+        "old_review11_base_prefix": {
+          "revision": "78e7c026c6633730868347040bd0393f4b5d2fb5",
+          "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+          "bytes": 45394,
+          "sha256": "b2694e221a5f0342fc4ef212ec453e2d934b4123d959891c0c9b704d63ca3de7"
+        }
+      }
+    ],
+    "source_pins": {
+      "fixed_L2_physical_span": {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "bytes": 5450,
+        "sha256": "4817136b4aca117e056abd02e0d3a138beec59b6a3a3989ace216f062dd2a048",
+        "physical_lines": "986-1001",
+        "source_file_bytes": 254934,
+        "source_file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09"
+      },
+      "PO_registered_L2_span": {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "bytes": 5449,
+        "sha256": "da678d9181ebe76ae93084c27744d253c617ebe03b709d79f55b79d2abbc6666",
+        "physical_lines": "986-1000",
+        "source_file_bytes": 254934,
+        "source_file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09"
+      },
+      "fixed_L11_physical_span": {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "bytes": 3377,
+        "sha256": "6c4377e4db0f8473c22cb6185ded4d0fa5e0e2ecf731097b0f346b4d3fd04503",
+        "physical_lines": "723-734",
+        "source_file_bytes": 172806,
+        "source_file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5"
+      },
+      "PO_registered_L11_span": {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "bytes": 3376,
+        "sha256": "583bfaf669729d3148e072be3ca74f1ef125997e933f6a1a94f08c732cb6f4b4",
+        "physical_lines": "723-733",
+        "source_file_bytes": 172806,
+        "source_file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5"
+      },
+      "fixed_L2_full": {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "bytes": 254934,
+        "sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09"
+      },
+      "fixed_L11_full": {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "bytes": 172806,
+        "sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5"
+      },
+      "PO_row48": {
+        "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "bytes": 669,
+        "sha256": "3e70c29706991c761369571523dfcf0ffa3be62eb0bc5d574a1b509c8a7cc264",
+        "physical_lines": "48-48",
+        "source_file_bytes": 45099,
+        "source_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+      },
+      "registration_001": {
+        "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "bytes": 2649,
+        "sha256": "e3fa45efe7445beb17dc33c9f325689f4baa209275636e0e7c23c0dd12bb09ac",
+        "physical_lines": "547-547",
+        "source_file_bytes": 3370048,
+        "source_file_sha256": "d24a982af1c468bb32c9822777a3234d3ce065ff63b89c944b7b04447610c99b"
+      },
+      "registration_002_adopted": {
+        "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "bytes": 3788,
+        "sha256": "2c62f3632f778775ca971cf5221e30ccffe24a08b2c7b10ad3e3d3540a3ed54e",
+        "physical_lines": "548-548",
+        "source_file_bytes": 3370048,
+        "source_file_sha256": "d24a982af1c468bb32c9822777a3234d3ce065ff63b89c944b7b04447610c99b"
+      },
+      "registration_003_locator_only": {
+        "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "bytes": 4046,
+        "sha256": "1a37ae8ff8497f66e7ca176494e1b3c7b864d413d3d7f2b059f074fe9dcdd3e1",
+        "physical_lines": "995-995",
+        "source_file_bytes": 3370048,
+        "source_file_sha256": "d24a982af1c468bb32c9822777a3234d3ce065ff63b89c944b7b04447610c99b"
+      },
+      "registration_full": {
+        "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "bytes": 3370048,
+        "sha256": "d24a982af1c468bb32c9822777a3234d3ce065ff63b89c944b7b04447610c99b"
+      },
+      "delegation_decision": {
+        "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+        "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+        "bytes": 6210,
+        "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220"
+      },
+      "operating_model": {
+        "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+        "path": "docs/governance/github-upstream-operating-model.md",
+        "bytes": 53710,
+        "sha256": "eed2b774bb78545ac53c7d55f3ae3ab4e9c4f421b4eaf3ac3bcdbcdd869dd27b"
+      },
+      "legacy_reuse_policy": {
+        "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+        "path": "docs/governance/legacy-asset-reuse-control.md",
+        "bytes": 7991,
+        "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582"
+      },
+      "legacy_HIL_FR55": {
+        "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "bytes": 492,
+        "sha256": "191b3b22d5985f085548d44a736590502d5f424511d71262d1b0fe07871663c2",
+        "physical_lines": "145-145",
+        "source_file_bytes": 56091,
+        "source_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+      },
+      "legacy_HIL_source_full": {
+        "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "bytes": 56091,
+        "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+      },
+      "legacy_asset_row": {
+        "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "bytes": 2312,
+        "sha256": "057a8508576084d4fc805a4434a71be99cf391074bc15f866628b237d59c57b1",
+        "physical_lines": "424-424",
+        "source_file_bytes": 4857919,
+        "source_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+      },
+      "legacy_asset_ledger_full": {
+        "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "bytes": 4857919,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+      },
+      "prior_decision_record": {
+        "revision": "330272a4231c092ff8c456e5dc47f447175bc95f",
+        "path": "docs/governance/decisions/helix-harness-stage3-parent043-l3-l10-po-decision-2026-10-07.md",
+        "bytes": 16646,
+        "sha256": "b776920254d3269f40f1412b39be9e76ea00f7f80b2dcdbfbc42977b3213f2d6"
+      },
+      "prior_evidence_bundle": {
+        "revision": "330272a4231c092ff8c456e5dc47f447175bc95f",
+        "path": "docs/governance/audits/requirements-stage/harness043-review11-delegated-decision-evidence-2026-10-07-97f24eeaa.json",
+        "bytes": 368897,
+        "sha256": "ac58029eb6885b09597c1971edb5ed896284379736a1f7756c6bea149568bf4b"
+      }
+    },
+    "candidate_snapshot": {
+      "path": "/tmp/harness043-review12-decision-addendum-candidate-330272a42.md",
+      "note": "JSON intentionally does not contain a hash of candidate Markdown; Markdown points one-way to this evidence JSON."
+    },
+    "limits": [
+      "Candidate only; canonical record not yet added.",
+      "Condition 3 is pending after-record independent verification.",
+      "No fixture/runtime execution.",
+      "Review does not create new requirement adoption, implementation permission, Ready or merge admission."
+    ]
+  },
+  "formal_review12_actual_api": {
+    "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6030127214",
+    "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2642#issuecomment-6030127214",
+    "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2642",
+    "id": 6030127214,
+    "node_id": "IC_kwDOTG8BRc8AAAABZ2xwbg",
+    "user": {
+      "login": "RetryYN",
+      "id": 131282486,
+      "node_id": "U_kgDOB9M2Ng",
+      "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/RetryYN",
+      "html_url": "https://github.com/RetryYN",
+      "followers_url": "https://api.github.com/users/RetryYN/followers",
+      "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+      "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+      "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+      "repos_url": "https://api.github.com/users/RetryYN/repos",
+      "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "created_at": "2026-10-07T03:12:43Z",
+    "updated_at": "2026-10-07T03:12:43Z",
+    "body": "## review12（independent review、PR #2642 親HARNESS-L2-043、HEAD 330272a4231c092ff8c456e5dc47f447175bc95f、base main d27d6f67d）：Major 0\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2642-HARNESS-STAGE3-PARENT043-12` に応える。\n\n### 本文を評価する前の確認（採択記録・対象版・追補条件）\n- **採択記録**：57候補記録の48行が、`MPR-RC-HARNESS-L2-043-002`を採択している（条件付き：Bルート、HARNESS-CORE）。`-003`はlocator訂正のsuccessorで、採択記録はない。\n- **対象版**：固定親は318ec4a（L2 986–1001、L11 723–734）である。Fableが、file SHA-256がPO行の値と一致することを確かめた。\n- **base整合**：merge-baseは依頼のbase（d27d6f67d、最新main）と一致し、削除行は0である。\n  - 043節の追加行は、78e7c026c→97f24eeaaと、d27d6f67d→HEADとで、ソートした追加行がバイト一致する。\n  - 判断記録の照合01（comment 6029965067）のX1（main衝突）は、この取り込みで解消した。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - 6本文と判断記録の範囲で、`git diff --check`は成功\n  - merge-treeは衝突なし\n\n### 照合の経過\n6本文のbytesは044節の挿入で変わったので、新しい本文revisionで条件1・2をやり直した（運用モデル130行）。照合範囲は、review10・11で固定した範囲である。主眼は、044節との相互作用に置いた。\n\n1. **Opusシンプルブラインド**：Major 0。\n   - 044節との間に、ID衝突はない。\n   - 戻し先は、044と同じ区分にそろっている（template適用・義務導出は009、atom抽出は041）。\n   - 044は「043はHIL-FR-55側で044 ownerではない」としている。043も、044の意味や担当を変えていない。\n   - authorityの閉じた列挙7項目は、一致している。\n   - 043節は`##`なので、044の`###`の文が043に掛からない。\n2. **Fableの判断**：「承認してよい」。固定親、PO記録、6本文を自分で読んで照合した。R34は、誤った完了が通るoracleではなく、網羅の不足であるとした。\n3. **Opusによる敵対照合**：「Fableの判断を支持する」。次の点を照合したが、崩せなかった。\n   - unknown条件の4項目×3状態\n   - L11の誤り例の全列挙\n   - 外挿の3方向\n   - authority\n   - 戻し先\n   - 044との相互作用\n   - **R34**：正常fixture（r10-valid-selected-profile-no-mutation、r20-independent-rule-branch-input-normal）は、各branchの正例・境界負例とoracle・sourceの一致を要求している。そのため、025/026のreceiptだけでは成立しない。誤った完了が通る経路はない。\n4. **reviewerの結論**：委任の条件1（Opusのexact HEADでのMajor 0）と条件2（Fableの同一本文revisionでの判断）が、このHEADでそろった。\n\n### 6本文（このHEADのSHA-256）\n- business-verification `8810721f…`\n- functional-verification `5ea03922…`\n- nfr-verification `7de02090…`\n- business-requirements `ebe592ad…`\n- functional-requirements `f3f7e263…`\n- nfr-grade `927ad86a…`\n\n### 後で直す残余（承認を止めない）\n- **R1〜R17、R19〜R21、R23〜R27、R29〜R33**：前回のとおり。\n- **R34（025/026による代替）**：固定L2:996の禁止の向きは、「025/026の成果を043のcoverageの代わりにしない」である。これに対し、r10-025/026-not-substitutedとAC-043-04は、逆向き（「043のmatrixを025/026の代わりにしない」）しか検査していない。L2の向きを本文で守っているのは、原因別戻し先の「025/026を043評価の…代替outputにしない」だけである。L2の向きの拒否fixture（r10-025/026-receipt-not-coverage相当）を足し、AC-04の文言の向きを直すことを勧める。\n- **R35（不足根拠の出力）**：「risk追加例とその不足根拠」のうち不足根拠は、正常fixtureで値を照合していない。出力側で単独に変えるCASEもない。\n- **R36（044の見出し）**：044の各節は、6本文すべてで049の`##`の下に`###`として置かれている（base側の構造。#2641 review11のR33と同じ）。\n- **R37（宛先の表記）**：044のr05-source-atom-staleは要求ownerへ、043のr22-denominator-source-revision-staleは009/source ownerへ返す。対象が別の要求なので同じ原因ではないが、表記上は紛れやすい。\n- **R38（CASE 043-07）**：CASE 043-07（重複・冗長性の所見の削除）には、戻し先も「043自身の出力の訂正」も書かれていない。AC-02の自己訂正の範囲は、「参照・期待結果の誤り」に限られている。\n\n### 次の手順\n- 結論：このHEADの6本文に、未解消のblockerはない。\n- mergeへ進むには、次の2つが要る。\n  - このexact HEADの6本文のbytesとSHA-256を固定する、判断記録の追補。既存の判断記録はimmutableである。\n  - Ready化。\n- 本文のrevisionが変わった場合は、条件1・2をやり直す。\n",
+    "author_association": "OWNER",
+    "reactions": {
+      "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6030127214/reactions",
+      "total_count": 0,
+      "+1": 0,
+      "-1": 0,
+      "laugh": 0,
+      "hooray": 0,
+      "confused": 0,
+      "heart": 0,
+      "rocket": 0,
+      "eyes": 0
+    },
+    "performed_via_github_app": null,
+    "minimized": null
+  },
+  "formal_thread_actual_api_snapshot": [
+    {
+      "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6022887049",
+      "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2642#issuecomment-6022887049",
+      "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2642",
+      "id": 6022887049,
+      "node_id": "IC_kwDOTG8BRc8AAAABZv32iQ",
+      "user": {
+        "login": "RetryYN",
+        "id": 131282486,
+        "node_id": "U_kgDOB9M2Ng",
+        "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/RetryYN",
+        "html_url": "https://github.com/RetryYN",
+        "followers_url": "https://api.github.com/users/RetryYN/followers",
+        "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+        "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+        "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+        "repos_url": "https://api.github.com/users/RetryYN/repos",
+        "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-06T18:32:31Z",
+      "updated_at": "2026-10-06T18:32:31Z",
+      "body": "043 review01依頼。base3c3c512c09320c0494904602b23e544a81206eed、HEAD72a16dc16db37c21cef20c9ce918d402a4f298fb、bodya289a91cd7c37490346ac6f2acc3cb5a40992f23。PO48採択MPR043002、固定318のL2:986–1000/L11:723–733 exact digestを共同042/043spanから区別して監査に固定。全6本文と43unique CASE/旧28literalを実読・検算、7非生成出力単独拒否、025026代用/事前条件の分離、009/041/004原因別返却、TBDbaseline補正。翻訳42CASE/117cell履歴保持。main042六prefix/SHA、25pins、gov/diff/public8PASS。件数を完全性証明とせず初回独立reviewと同HEAD Fable判断をお願いします。Draft/未承認。\n",
+      "author_association": "OWNER",
+      "reactions": {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6022887049/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": null,
+      "minimized": null
+    },
+    {
+      "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6022949036",
+      "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2642#issuecomment-6022949036",
+      "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2642",
+      "id": 6022949036,
+      "node_id": "IC_kwDOTG8BRc8AAAABZv7orA",
+      "user": {
+        "login": "RetryYN",
+        "id": 131282486,
+        "node_id": "U_kgDOB9M2Ng",
+        "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/RetryYN",
+        "html_url": "https://github.com/RetryYN",
+        "followers_url": "https://api.github.com/users/RetryYN/followers",
+        "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+        "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+        "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+        "repos_url": "https://api.github.com/users/RetryYN/repos",
+        "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-06T18:36:08Z",
+      "updated_at": "2026-10-06T18:36:08Z",
+      "body": "## review01（independent review、PR #2642 親HARNESS-L2-043、HEAD 72a16dc16db37c21cef20c9ce918d402a4f298fb、base main 3c3c512c0）：Major 2\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼comment 6022887049（`RH-PR2642-HARNESS-STAGE3-PARENT043-01`）に応える。\n\n### 照合の方法と結果\n- **事前確認（本文を評価する前）**：問題はなかった。\n  - HARNESS-L2-043の採択記録は、mainでは`po-decision-2026-09-29-57candidates.md:48`だけである（`MPR-RC-HARNESS-L2-043-002`、条件付き採択：Bルート、所属はHARNESS-CORE）。本文の参照も一致している。\n  - merge-baseは依頼のbaseと一致し、削除行は0である。\n  - 条件付きの戻し先（「特定できれば」など）は0件だった。\n- **Opusのブラインド照合**：Majorの候補を2件挙げた。reviewerが、固定親（318ec4a product-requirements.md:986–1001、product-acceptance.md:723–734）の原文と本文で確かめ、2件ともMajorとした。\n  - Bルート、COREの条件は保たれている。\n  - 生成の禁止7項目（要求合意、採択、L3承認、設計成立、実装、OS実行、利用者受入）には、それぞれ拒否fixtureがある。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - origin/mainとの`merge-tree`は衝突なし\n- **今後の流れ**：Majorがあるので、Fableの判断は回していない。\n\n### Major\n**M1（固定親にないHARNESS-L2-005の選択を前提にして、risk追加例の条件を狭め、005への戻し先を作っている）**\n- **欠陥**：\n  - L3 functional-requirementsは、「L2-005がticketとriskから検証義務/profileを選択し、043は選択済みscope/profileを受ける」としている。\n  - 追加のrisk例は「L2-005で選択されたticket/riskの未被覆領域だけ」としている（AC-04と、由来と処置の行）。\n  - 「ticket/risk profile未選択なら005 owner」へ戻すとしている。\n  - L10の`CASE-HARNESS-L10-043-r10-profile-missing-to-005`は、profileが欠けると評価全体をunknown/未評価にし、HARNESS-L2-005 ownerへ戻す。\n- **固定親との差**：固定L2-043とL11-043には、L2-005が一度も出てこない（0件）。\n  - risk根拠は「risk追加例を判定する場合はその対象scopeのrisk根拠と未被覆領域」という、選択した入力元に応じて必須になる入力である。\n  - 追加例の条件は「risk分析で未被覆と示された場合に限り」である。\n  - 戻し先は009、041、004/該当ownerである。\n- **類型**：L3は、ticket profileを常に必要な前提にした。そのうえで、条件に005の選択を重ねて狭め、固定親の区分にない005への戻し先を作った（類型3と類型1）。\n- **守るべき行**：L2-043「入力」「依存区分」「保証と戻し先」（318ec4a product-requirements.md:993–997）\n\n**M2（原因を一つに固定したfixtureで、戻し先が決まらない）**\n- **欠陥**：次の3行のfixtureは、どれも原因を一つに固定しているのに、oracleが戻し先を「041へ／009へ／004へ」と並べるだけで、宛先を一つに決めていない。どのownerへ返す実装でも合格する。\n  - `CASE-HARNESS-L10-043-05`：baselineで適用性とrule identityをcurrentに固定し、正例一つだけを不適合にしている。\n  - `CASE-HARNESS-L10-043-r06-na-without-basis`：N/A根拠だけを除いている。\n  - `CASE-HARNESS-L10-043-r06-tbd-unfilled`：既存のTBDを推測で補っている。\n- **守るべき行**：L2-043「保証と戻し先」（product-requirements.md:997）、L11-043の戻し先（product-acceptance.md:733）。固定親は、原因ごとに戻し先を一つに決めている。active版・適用性は009、抽出済みrule/branchは041、risk・oracle・検証義務は004である。\n\n### 後で直す残余（承認を止めない）\n- **R1（索引の参照先）**：CASE 043-01〜03は索引行で、子CASEが列挙されていない。\n- **R2（戻し先の欠落）**：CASE 043-07は、重複・冗長性のfindingが欠けたときの戻し先がない。\n- **R3（宛先の特定）**：r10-execution-not-generatedの戻し先「既存OS実行契約/owner」が、どれを指すのか特定されていない。\n- **R4（025/026への戻し）**：r10-design-establishedとL3は、設計の不足を025/026へ戻すとしている。固定親では、025/026は代替しない境界として出てくるだけである。\n- **R5（包括条項）**：L3の「責務不明はunknownを保持し新ownerを推測しない」と、r05-other-scopeの「scope ownerが明示されない場合はunknown」は、固定親にない包括条項である。009/041/004への戻し先そのものには条件を付けていない。\n- **R6（原因の分け方）**：r09-001/002は、例そのものの欠落を004の「正例oracle/検証義務の不足」へ戻している。baselineでoracleを固定しているので、原因の分け方として無理がある。\n- **R7（例示の欠落）**：L3は、固定L2の追加riskの例示（状態遷移、failure、security、migration、multi-runtime差異）を本文に残していない。\n- **R8（判定語）**：L11の「不合格または未評価」を、L10は「未完／coverage成立とせず」と書いている。固定L2の「未完」の範囲内である。\n\n### 次の手順\n- M1とM2を直す。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+      "author_association": "OWNER",
+      "reactions": {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6022949036/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": null,
+      "minimized": null
+    },
+    {
+      "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6023276079",
+      "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2642#issuecomment-6023276079",
+      "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2642",
+      "id": 6023276079,
+      "node_id": "IC_kwDOTG8BRc8AAAABZwPmLw",
+      "user": {
+        "login": "RetryYN",
+        "id": 131282486,
+        "node_id": "U_kgDOB9M2Ng",
+        "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/RetryYN",
+        "html_url": "https://github.com/RetryYN",
+        "followers_url": "https://api.github.com/users/RetryYN/followers",
+        "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+        "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+        "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+        "repos_url": "https://api.github.com/users/RetryYN/repos",
+        "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-06T18:55:15Z",
+      "updated_at": "2026-10-06T18:55:15Z",
+      "body": "043 review02依頼。base3c3c512c09320c0494904602b23e544a81206eed、HEAD9e554ec7990ad5740042b401e5f78403ebd4e36a、body44962549199a781ceeaf2b32a558d33f06e907b4。正式6022949036を固定L2/L11から処置し、根拠のない005必須profile/返却を除去、risk追加操作だけ必要risk根拠を保持。05正例期待不整合004、N/A適用根拠009、TBD抽出value041へ原因別単一返却。43ID/旧28raw/25pins/旧時点不変、gov/newdiff/public10/六actualSHA PASS。正式rawR1–8保持。mainが後続069へ進んだため独立照合時の最新base評価もお願いします。Draft/mailreview02配送済み。\n",
+      "author_association": "OWNER",
+      "reactions": {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6023276079/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": null,
+      "minimized": null
+    },
+    {
+      "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6023382905",
+      "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2642#issuecomment-6023382905",
+      "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2642",
+      "id": 6023382905,
+      "node_id": "IC_kwDOTG8BRc8AAAABZwWHeQ",
+      "user": {
+        "login": "RetryYN",
+        "id": 131282486,
+        "node_id": "U_kgDOB9M2Ng",
+        "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/RetryYN",
+        "html_url": "https://github.com/RetryYN",
+        "followers_url": "https://api.github.com/users/RetryYN/followers",
+        "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+        "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+        "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+        "repos_url": "https://api.github.com/users/RetryYN/repos",
+        "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-06T19:01:07Z",
+      "updated_at": "2026-10-06T19:01:07Z",
+      "body": "## review02（independent review、PR #2642 親HARNESS-L2-043、HEAD 9e554ec7990ad5740042b401e5f78403ebd4e36a、base main 3c3c512c0）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼comment 6023276079（`RH-PR2642-HARNESS-STAGE3-PARENT043-02`）に応える。\n\n### 事前確認と静的検査\n- **採択記録**：57候補記録48行（`-002`、条件付き採択：Bルート、所属はHARNESS-CORE）だけで、後日に別revisionを採択した記録はない。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：0件だった。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - origin/mainとの`merge-tree`は衝突なし\n\n### 照合の経過\n1. **Opusのシンプルなブラインド照合**：Majorの候補は1件で、生成を拒否するfixture 4行が戻し先を025/026/OSへ向けている件だった。\n   - reviewerは、review01のR4、069のR9、046のR6と扱いをそろえて、残余とした。拒否そのものは成立しており、誤った完了やauthorityは通らない。\n   - review01のM1（L2-005の前提）とM2（宛先が決まらない）は、解消している。\n2. **Fableの判断**：「承認してよい」。上の残余の判断にも同意した。\n3. **Opusによる敵対照合**：「Fableの判断を支持しない」。崩した点は下のM1である。\n4. **reviewerの確認**：6本文の043の追補を「重複」「冗長」で検索し、L3の追補では0件であることを確かめた。M1をMajorと確定する。\n\n### Major\n**M1（L2の出力要素「重複・冗長性finding」がL3で落ちていて、CASE-07の期待値がどのACからも導けない）**\n- **欠陥**：\n  - L3 functional-requirementsの043の追補を見ると、「入力と出力」が挙げる出力は、scopeとrevisionに限ったmatrix、分母、各rule/branchのpositive/negative、risk追加例の限定だけである。\n  - AC-01〜04にも、重複・冗長性findingを出力する義務がない。L3の043の追補には、「重複」「冗長」という語が1回も出てこない。\n  - 一方で、L10の`CASE-HARNESS-L10-043-07`は、「重複/冗長性所見の削除→coverage所見を未完」を期待値とし、AC-04に結び付けている。AC-04は、risk例の限定とauthorityを生成しないことしか定めていない。\n- **起こること**：L3のFR/ACだけに合わせた設計は、冗長性findingを出力しなくても、すべてのACを満たしてしまう。L3がL2の出力の意味を狭めている（類型3・4）。\n- **守るべき行**：L2-043「出力」（318ec4a product-requirements.md:990「…risk追加例とその不足根拠、重複・冗長性findingを結ぶexample adequacy matrix」）\n\n### 後で直す残余（承認を止めない）\n- **R1〜R8**：review01から変わらない。R4は、今回のブラインドがMajorの候補に挙げた生成拒否fixture 4行の件で、残余のままにする。\n- **R9（未完化の義務）**：AC-04には、固定L11:731の「risk分析で未被覆とされた領域に追加例がない場合もcoverage未完」に当たる未完化の義務がない。CASE-06と由来の段落だけが、これを担っている。M1を直すときに、AC-04へ一文を足すのが望ましい。\n- **R10（ID名）**：CASE IDの「to-005」は、旧版からの名前として残っていて、誤読を招く。\n- **R11（共通文言の並記）**：共通の文言「009へ戻し、抽出gapだけを041へ」が、5行に並べて書かれている。r06-new-revision-missingは、宛先がどちらに決まるのか弱い。\n- **R12（列挙の「等」）**：AC-04のriskの列挙に「等」が付いている。\n\n### 次の手順\n- M1を直す。FRの出力とACに、重複・冗長性findingを加え、CASE-07を根拠のあるACに結び付ける。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+      "author_association": "OWNER",
+      "reactions": {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6023382905/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": null,
+      "minimized": null
+    },
+    {
+      "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6024010737",
+      "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2642#issuecomment-6024010737",
+      "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2642",
+      "id": 6024010737,
+      "node_id": "IC_kwDOTG8BRc8AAAABZw8b8Q",
+      "user": {
+        "login": "RetryYN",
+        "id": 131282486,
+        "node_id": "U_kgDOB9M2Ng",
+        "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/RetryYN",
+        "html_url": "https://github.com/RetryYN",
+        "followers_url": "https://api.github.com/users/RetryYN/followers",
+        "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+        "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+        "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+        "repos_url": "https://api.github.com/users/RetryYN/repos",
+        "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-06T19:36:17Z",
+      "updated_at": "2026-10-06T19:36:17Z",
+      "body": "review03依頼。base `ceda1c53b53c53fffb8c23f394add1f2b809deb1`、HEAD `0a19f671a25f3175c263a6fca56493cc3668e5be`。正式6023382905出力finding復元、AC04未被覆未完、43ID保持・4exact・六actualSHA/R1–12raw。gov/diff/public bytes PASS。Draft。fixture実行・承認未。独立reviewと同六本文Fable判断をお願いします。\n",
+      "author_association": "OWNER",
+      "reactions": {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6024010737/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": null,
+      "minimized": null
+    },
+    {
+      "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6024455464",
+      "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2642#issuecomment-6024455464",
+      "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2642",
+      "id": 6024455464,
+      "node_id": "IC_kwDOTG8BRc8AAAABZxXlKA",
+      "user": {
+        "login": "RetryYN",
+        "id": 131282486,
+        "node_id": "U_kgDOB9M2Ng",
+        "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/RetryYN",
+        "html_url": "https://github.com/RetryYN",
+        "followers_url": "https://api.github.com/users/RetryYN/followers",
+        "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+        "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+        "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+        "repos_url": "https://api.github.com/users/RetryYN/repos",
+        "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-06T20:04:36Z",
+      "updated_at": "2026-10-06T20:04:36Z",
+      "body": "## review03（independent review、PR #2642 親HARNESS-L2-043、HEAD 0a19f671a25f3175c263a6fca56493cc3668e5be、base main ceda1c53b）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2642-HARNESS-STAGE3-PARENT043-03` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：57候補記録48行（`MPR-RC-HARNESS-L2-043-002`、条件付き採択：Bルート、所属はHARNESS-CORE）。後日の別revisionの採択はない。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - origin/mainとの`merge-tree`は衝突なし\n- **照合の範囲**：照合したのは043節だけである。main 069節は文脈として見えるが、対象外とした。\n\n### 照合の経過\n1. **review02の解消の確認**（reviewerが差分で確かめた）：M1は解消した。\n   - 「入力と出力」とAC-01に、重複・冗長性findingが戻った。\n   - CASE-07は、AC-01に付け替えられた。\n   - AC-04に、「risk分析で未被覆とされた領域に追加例がない場合はcoverage未完」が入った。\n2. **Opusシンプルブラインド**：Major 0。\n3. **Fableの判断**：「承認してよい」。ただし、041 atomへの入力限定を「文言残余」として補足した。\n4. **Opusによる敵対照合**：「Fableの判断を支持しない」。崩したのは、下のM1である。\n5. **reviewerの確認**：固定L2の992行と994行（依存区分）、L3の732行、CASE-04、r10-valid、r10-extracted-atom-to-041を読み、Majorと確定した。\n\n### Major\n**M1（041 atomを、L2にない常時必須の入力にしている）**\n- **欠陥**：\n  - L3「入力と出力」（functional-requirements.md:732）は、入力を「L2-041が抽出した適用rule/branch atomとsource span」に限っている。\n  - L10もこれを前提にしている。\n    - CASE-043-04は、「抽出atomが欠落している場合はL2-041へ戻す」と条件を付けずに書いている。\n    - 正常fixtureのr10-validは、baselineに「L2-041抽出rule/branch分母が利用可能」を置いている。\n    - r10-extracted-atom-to-041は、atomが欠ければ041のgapとして返すだけである。\n  - そのため、041 atomを入力元に選ばず、rule/branchの識別可能な内容から評価するscopeを受け入れる正常fixtureがない。このscopeは041 gapとして、unknownに倒れる。\n  - L3/L10が、L2にない常時依存を足して、評価できる範囲を狭めている（類型3）。\n  - 041がPO採択済みであっても、L2のこの条件付きの分類は変わらない。\n- **守るべき行**：固定L2-043（318ec4a product-requirements.md）\n  - 992行：「各validation rule/applicability branchの識別可能な内容」を独立の入力に置き、041 atomは「利用可能な場合は…参照する」としている。\n  - 994行（依存区分）：041 atomは「**選択した入力元に応じて必須**＝041のatomを使う場合はそのtemplate/source revisionと抽出scope」に分類されていて、常時必須ではない。\n\n### 後で直す残余（承認を止めない）\n- **R1〜R12**：review02から変わらない。\n- **R13（AC-01の文言）**：「所見が欠ければ未完」は、重複のないscopeでも未完と読める余地がある。CASE-07のbaselineは「証拠に基づく重複所見がある」状態なので、fixtureはこの読みを裏付けない。重複0件のscopeを正常とするfixtureを置くか、「確立済みの所見が欠ければ」とすることを勧める。\n- **R14（入力の明示）**：固定L2:989の入力「要求kind・構成」と、依存区分の「multi-runtime差異を扱う場合のruntime条件」が、L3の入力に明示されていない。009の選択入力とrisk領域の列挙で、同じ境界は保たれている。\n- **R15（ブラインドの残余）**：\n  - CASE名r10-profile-missing-to-005が旧名のまま残っている。\n  - revision・適用性を変異させる5件のoracleが、009と041を並べて書いている。\n  - CASE-04/05/r02/r03がAC-04に割り当てられている。\n  - 索引行が、子CASEを列挙していない。\n\n### 次の手順\n- M1を直す。\n  - L3:732の入力を、固定L2:992/994のとおりに書き直す。rule/branchの識別可能な内容を独立の入力とし、041 atomは「利用する場合は、そのtemplate/source revisionと抽出scopeを必須とする」条件付きの入力にする。\n  - L10に、041 atomを入力元に選ばないscopeの正常fixtureを置く。\n  - CASE-04の「抽出atomが欠落している場合」は、041 atomを入力元に選んだ場合に限る。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+      "author_association": "OWNER",
+      "reactions": {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6024455464/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": null,
+      "minimized": null
+    },
+    {
+      "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6024770353",
+      "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2642#issuecomment-6024770353",
+      "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2642",
+      "id": 6024770353,
+      "node_id": "IC_kwDOTG8BRc8AAAABZxqzMQ",
+      "user": {
+        "login": "RetryYN",
+        "id": 131282486,
+        "node_id": "U_kgDOB9M2Ng",
+        "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/RetryYN",
+        "html_url": "https://github.com/RetryYN",
+        "followers_url": "https://api.github.com/users/RetryYN/followers",
+        "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+        "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+        "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+        "repos_url": "https://api.github.com/users/RetryYN/repos",
+        "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-06T20:23:52Z",
+      "updated_at": "2026-10-06T20:23:52Z",
+      "body": "review04依頼。base `ceda1c53b53c53fffb8c23f394add1f2b809deb1`、HEAD `74b429dbce3be4d282dbdd992cfa78d9e56a0339`。review03 M1: 041 atom選択依存/非041正常scope、45core旧43保持、Rootr04/r09出力責務補正、AC01確立済finding、R1–15原文/旧28raw/六SHA。gov/diff/public14 PASS。Draft、fixture実行・独立再review・承認未。固定L2/L11・旧sourceを起点に独立照合と同六本文Fable判断をお願いします。\n",
+      "author_association": "OWNER",
+      "reactions": {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6024770353/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": null,
+      "minimized": null
+    },
+    {
+      "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6025229381",
+      "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2642#issuecomment-6025229381",
+      "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2642",
+      "id": 6025229381,
+      "node_id": "IC_kwDOTG8BRc8AAAABZyG0RQ",
+      "user": {
+        "login": "RetryYN",
+        "id": 131282486,
+        "node_id": "U_kgDOB9M2Ng",
+        "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/RetryYN",
+        "html_url": "https://github.com/RetryYN",
+        "followers_url": "https://api.github.com/users/RetryYN/followers",
+        "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+        "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+        "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+        "repos_url": "https://api.github.com/users/RetryYN/repos",
+        "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-06T20:52:14Z",
+      "updated_at": "2026-10-06T20:52:14Z",
+      "body": "## review04（independent review、PR #2642 親HARNESS-L2-043、HEAD 74b429dbce3be4d282dbdd992cfa78d9e56a0339、base main ceda1c53b）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2642-HARNESS-STAGE3-PARENT043-04` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：57候補記録48行（`MPR-RC-HARNESS-L2-043-002`、条件付き採択：Bルート、所属HARNESS-CORE）。後日の別revisionの採択はない。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - origin/mainとの`merge-tree`は衝突なし\n- 照合したのは043節だけである。\n\n### 照合の経過\n1. **review03の解消の確認**（reviewerが差分で確かめた）：M1の入力条件は解消した。\n   - L3の入力が、「識別可能なrule/branch内容を独立入力とし、041 atomは入力元に選んだ場合だけ必須」になった。\n   - 041を選ばないscopeの正常fixture（r20-independent-rule-branch-input-normal）と、出力不一致のCASE（r20-…-output-mismatch）が置かれた。\n2. **Opusシンプルブラインド**：Major 1を挙げた。r03/r06の3行が、戻し先に009と041を並べて書いている点である。\n   - reviewerは、3行の判定を原文で読んだ。revisionの欠落と外挿は、「選択template/revision/適用性の不足は009」で宛先が1つに決まる。041の句は「抽出済みrule/branchのgapだけ」に限る条件句で、これらの変異には当てはまらない。\n   - そのため、review03のR15と同じく、残余（R16）と暫定判断した。\n3. **Fableの判断**：「承認してよい」。上の暫定判断にも同意した。\n4. **Opusによる敵対照合**：「Fableの判断を支持しない」。\n   - R16の格下げは「崩せない」とした。\n   - 別に、下のM1を崩した。\n5. **reviewerの確認**：L3:741（原因別戻し先）と、固定L2:995、L11:733の原文を読み、M1をMajorと確定した。\n\n### Major\n**M1（041を選ばないscopeで、rule/branch内容の不足を返す先がない）**\n- **欠陥**：\n  - L3のAC-02（functional-requirements.md:737）と原因別戻し先（:741）は、041へ返す場合を「041 atomを入力元に選んだscopeで、その抽出済みrule/branchのatom/source spanが欠ける場合だけ」に限っている。\n  - そのうえで、「041を選んでいないscopeでは、識別可能なrule/branch内容を直接照合し、041 atomの不在を抽出gapとして扱わない」と書くだけである。\n  - そのため、041を選ばないscopeで、直接入力したsourceから適用rule/branchの識別可能な内容が欠ける、またはTBDのまま残る場合の戻し先が、どこにもない。この不足は、009の区分（選択・active revision・適用条件）にも、004の区分（risk・oracle）にも当たらない。\n  - L10にも、この変異のfixtureはない。\n    - r04-rule-branch-conflictは、conflictを009へ返すCASEである。\n    - r06-tbd-unfilledは、041の入力を固定した前提のCASEである。\n  - 固定親は、抽出の不足を「041**相当**」の抽出契約ownerへ返すとしている。入力元を条件にしていない。L3はこれを「041選択時に限る」へ狭め、非選択scopeの不足を区分の外に置いている（類型1・3）。\n- **守るべき行**：\n  - 固定L2-043（318ec4a product-requirements.md:995）「抽出済みrule／branchの欠落は041相当の抽出契約ownerへ」\n  - L11-043（product-acceptance.md:733）「rule／branch抽出の不足はHARNESS-L2-041相当の契約owner」\n- **経緯**：review03のM1は、入力の依存区分（041 atomは選択時のみ必須）を直すよう求めたものである。戻し先を絞ることは求めていない。今回の修正で、入力の条件付けが戻し先にも及んだ。入力の条件付け自体は、固定L2:992/994と一致していて正しい。\n\n### 後で直す残余（承認を止めない）\n- **R1〜R15**：review03から変わらない。\n- **R16（009と041の並記）**：r03-other-revision-unseen、r06-new-revision-missing、r06-active-revision-missingの3行が、戻し先に009と041を並べて書いている。ブラインドはMajorとしたが、reviewerは残余と判定した。Fableと敵対照合も、この判定を支持している。\n  - 宛先は009に1つに決まる。\n  - 041の句に、「041選択時に限る」を明記することを勧める。\n- **R17（確立済みの所見）**：AC-01の「確立済みの所見」への限定に対して、「重複があるのにfindingが出ない」fixtureがない。\n\n### 次の手順\n- M1を直す。\n  - 原因別戻し先とAC-02で、041を選ばないscopeの不足の宛先を決める。直接入力したsourceから、適用rule/branchの識別可能な内容が欠ける、またはTBDのまま残る場合である。\n  - 宛先は、固定親の「041相当の抽出契約owner」に戻す。つまり、その入力元のrule/branch内容を供給する抽出契約ownerである。\n  - あわせて、この変異の単独CASEを置く。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+      "author_association": "OWNER",
+      "reactions": {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6025229381/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": null,
+      "minimized": null
+    },
+    {
+      "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6025375228",
+      "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2642#issuecomment-6025375228",
+      "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2642",
+      "id": 6025375228,
+      "node_id": "IC_kwDOTG8BRc8AAAABZyPt_A",
+      "user": {
+        "login": "RetryYN",
+        "id": 131282486,
+        "node_id": "U_kgDOB9M2Ng",
+        "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/RetryYN",
+        "html_url": "https://github.com/RetryYN",
+        "followers_url": "https://api.github.com/users/RetryYN/followers",
+        "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+        "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+        "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+        "repos_url": "https://api.github.com/users/RetryYN/repos",
+        "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-06T21:01:36Z",
+      "updated_at": "2026-10-06T21:01:36Z",
+      "body": "最新main取込み後の独立再レビューを依頼します。\n\nHEAD `3d60393a4d5084a387ff62a55c97f5ddfb109644`、base `0acbed34bfda48e32092feb63db61d2eff6d5ec4`。041 main本文prefixと親043の修正済suffixをそれぞれbyte保持して衝突解消しました。Root govcheck、公開/Git全16文書一致を確認済みです。\n\nreview04 M1はAC02・原因別返却区分を固定親の041相当抽出契約ownerへ戻し、非041scopeのrule predicate内容missing/TBDを各単独反例にしました。47 ID、旧45保持。時点監査 review04-disposition-2026-10-07-18601e49 は旧base本文の記録です。監査MD末尾LFは初公開前に整形しました。\n\n新base/HEADに対する独立review・同六本文Fable判断をお願いします。\n",
+      "author_association": "OWNER",
+      "reactions": {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6025375228/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": null,
+      "minimized": null
+    },
+    {
+      "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6025768289",
+      "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2642#issuecomment-6025768289",
+      "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2642",
+      "id": 6025768289,
+      "node_id": "IC_kwDOTG8BRc8AAAABZyntYQ",
+      "user": {
+        "login": "RetryYN",
+        "id": 131282486,
+        "node_id": "U_kgDOB9M2Ng",
+        "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/RetryYN",
+        "html_url": "https://github.com/RetryYN",
+        "followers_url": "https://api.github.com/users/RetryYN/followers",
+        "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+        "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+        "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+        "repos_url": "https://api.github.com/users/RetryYN/repos",
+        "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-06T21:27:02Z",
+      "updated_at": "2026-10-06T21:27:02Z",
+      "body": "## review05（independent review、PR #2642 親HARNESS-L2-043、HEAD 3d60393a4d5084a387ff62a55c97f5ddfb109644、base main 0acbed34b）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2642-HARNESS-STAGE3-PARENT043-05` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：57候補記録48行（`MPR-RC-HARNESS-L2-043-002`、条件付き採択：Bルート、所属HARNESS-CORE）。後日の別revisionの採択はない。\n- **base整合**：merge-baseは依頼のbase（0acbed34b）と一致し、削除行は0である。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - `merge-tree`は衝突なし\n- **mainの取り込み**：最新mainの041節は、文脈として取り込まれている。043の本文は、review04のHEADから、下の修正だけが変わっている。\n\n### 照合の経過\n1. **review04の解消の確認**（reviewerが本文修正commit 18601e495で確かめた）：M1は解消した。\n   - 原因別戻し先とAC-02が、次のように直った。\n     - 適用rule/branchの識別可能な内容、または選択した041 atom/source spanの抽出が欠落・TBDなら、「041入力を選択したかにかかわらず」、そのrule/branch内容を供給する既存sourceの041相当の抽出契約ownerへ返す。\n     - 041 atomが非選択というだけでは、抽出gapにしない。\n   - 041非選択scopeの単独CASEとして、r21-independent-rule-content-missingとr21-independent-rule-content-tbdが置かれた。\n2. **Opusシンプルブラインド**：Major 1。出力要素、禁止の全件照合、閉じた列挙の一致、前回までの残余R1〜R17の洗い直しも行った。Majorがあったので、Fableへは回していない。\n3. **reviewerの確認**：固定L11の723〜734行（731行）を読み、043のCASEを「revision」で確かめた。Majorと確定した。\n\n### Major\n**M1（新revisionの「矛盾」に、拒否CASEがない）**\n- **欠陥**：\n  - 固定L11:731は、新revisionとrisk根拠について、それぞれ「欠落・矛盾・stale」の3状態を挙げている。\n  - risk根拠は、r06-risk-basis-missing/conflict/staleで3状態がそろっている。\n  - 新revisionは、欠落（r06-new-revision-missing、r06-active-revision-missing）とstale（r04-active-revision-stale）だけである。revision identity自体が矛盾する単独CASEがない。\n  - r04-rule-branch-conflictが扱うのは、rule/branch内容のconflictで、revisionの矛盾ではない。\n  - そのため、revisionが矛盾したまま十分性を主張する誤った完了が、照合で止まらない（類型4）。\n- **守るべき行**：L11-043（318ec4a product-acceptance.md:731）「新revisionやrisk根拠が欠落・矛盾・staleの場合は十分性を主張せずunknown／未評価にする」\n\n### 後で直す残余（承認を止めない）\n- **R1〜R17**：変わらない。ブラインドが洗い直したが、Majorに当たるものはなかった。R9はAC-04への追記で解消した。R17はCASE-07で覆われている。\n- **R18（041相当の適用範囲）**：AC-02、原因別戻し先、r21の2件は、独立source（041非選択）のrule内容の欠落とTBDを、「041相当の抽出契約owner」へ返している。固定L2:995の文言は「抽出済みrule／branchの欠落」なので、適用範囲を読み替えている。ただし、宛先は固定区分の中に収まっている。review04でreviewerが求めた形でもある。\n- **R19（範囲・形式の注記）**：次の注記には、単独CASEがない。\n  - L11:734「旧schemaやruntime固有形式を受入条件にしない」\n  - L2:991「041/026/025を重複実装しない」\n\n### 次の手順\n- M1を直す。新revisionのidentityが矛盾する変異（同じscopeに二つの異なるcurrent revisionが示される等）を、単独のCASEとして置く。判定は、十分性を主張せずunknown/未評価とし、009へ返すこととする。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+      "author_association": "OWNER",
+      "reactions": {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6025768289/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": null,
+      "minimized": null
+    },
+    {
+      "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6025920155",
+      "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2642#issuecomment-6025920155",
+      "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2642",
+      "id": 6025920155,
+      "node_id": "IC_kwDOTG8BRc8AAAABZyw-mw",
+      "user": {
+        "login": "RetryYN",
+        "id": 131282486,
+        "node_id": "U_kgDOB9M2Ng",
+        "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/RetryYN",
+        "html_url": "https://github.com/RetryYN",
+        "followers_url": "https://api.github.com/users/RetryYN/followers",
+        "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+        "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+        "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+        "repos_url": "https://api.github.com/users/RetryYN/repos",
+        "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-06T21:37:29Z",
+      "updated_at": "2026-10-06T21:37:29Z",
+      "body": "review05 M1修正後の独立再レビューを依頼します。\n\nHEAD `585a2d2a2d6e825fbc9e750de7d08fe654d7992d`、base `0acbed34bfda48e32092feb63db61d2eff6d5ec4`。同じscope S0のcurrent revision identityがfixture値template-revision-Aとtemplate-revision-Bで競合する単独入力変異を追加しました。他のapplicability/rule/risk/oracleは保持し、分母・十分性を確定せずunknown/未評価とし、既存L2-009/対象template ownerへ返します。\n\n48 unique、旧47ID/28raw/R1–19履歴保持。FR/ACに既存の矛盾時処理があるためFV一行のみ追補しました。Root gov/diff、六actual SHA/bytes時点監査、公開/Git全18対象一致PASS。Draft、fixture未実行、承認未成立。同六本文の独立reviewとFable判断をお願いします。\n",
+      "author_association": "OWNER",
+      "reactions": {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6025920155/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": null,
+      "minimized": null
+    },
+    {
+      "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6026394271",
+      "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2642#issuecomment-6026394271",
+      "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2642",
+      "id": 6026394271,
+      "node_id": "IC_kwDOTG8BRc8AAAABZzN6nw",
+      "user": {
+        "login": "RetryYN",
+        "id": 131282486,
+        "node_id": "U_kgDOB9M2Ng",
+        "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/RetryYN",
+        "html_url": "https://github.com/RetryYN",
+        "followers_url": "https://api.github.com/users/RetryYN/followers",
+        "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+        "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+        "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+        "repos_url": "https://api.github.com/users/RetryYN/repos",
+        "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-06T22:11:56Z",
+      "updated_at": "2026-10-06T22:11:56Z",
+      "body": "## review06（independent review、PR #2642 親HARNESS-L2-043、HEAD 585a2d2a2d6e825fbc9e750de7d08fe654d7992d、base main 0acbed34b）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2642-HARNESS-STAGE3-PARENT043-06` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：57候補記録48行（-002、条件付き採択：Bルート、所属HARNESS-CORE）。後日の別revisionの採択はない。\n- **base整合**：merge-baseは依頼のbase（0acbed34b）と一致し、削除行は0である。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - `merge-tree`は衝突なし\n\n### 照合の経過\n1. **review05の解消の確認**（reviewerが差分で確かめた）：M1は解消した。r06-new-revision-identity-conflict（同じscopeで2つのtemplate revisionが同時にcurrent）が置かれ、009へ返している。\n2. **Opusシンプルブラインド**：Major 1。Majorがあったので、Fableへは回していない。\n3. **reviewerの確認**：固定L2:992の原文を読んだ。043のCASEを、状態語（missing/unknown/conflict/stale）で並べて確かめ、Majorと確定した。\n\n### Major\n**M1（固定L2:992の「4項目×3状態」のうち、stale等に単独CASEがない組み合わせがある）**\n- **欠陥**：\n  - 固定L2:992は、4項目（active版、適用条件、rule/branch分母、必要なrisk根拠）について、「unknown、conflictまたはstaleなら十分性を判定しない」と定めている。\n  - 現在のCASEを並べると、次のとおりである。\n\n| 項目 | unknown | conflict | stale |\n|---|---|---|---|\n| active版 | missing（r06-active-revision-missing）のみ | r06-new-revision-identity-conflict | r04-active-revision-stale |\n| 適用条件 | r04-applicability-unknown、r10-template-applicability-to-009 | **なし**（r04-rule-branch-conflictはrule/branch内容のconflict） | **なし** |\n| rule/branch分母（独立source含む） | r21-independent-rule-content-missing（missing）のみ | r04-rule-branch-conflict | **なし**（r04-active-revision-staleはsource revisionをcurrentに固定） |\n| risk根拠 | missing（r06-risk-basis-missing等） | r06-risk-basis-conflict | r06-risk-basis-stale |\n\n  - 少なくとも、適用条件のstale、分母（入力sourceのrule/branch revision）のstale、適用条件のconflictに、単独CASEがない。\n  - そのため、これらの状態のまま十分性を主張する誤った完了が、照合で止まらない（類型4）。\n  - AC-02の「stale…は未評価」という一般規定はあるが、単独fixtureで照合されていない。review05 M1（revisionのconflict）と同じ構造である。\n- **守るべき行**：固定L2-043（318ec4a product-requirements.md:992）「active版・適用条件・rule／branch分母・必要なrisk根拠がunknown、conflictまたはstaleなら十分性を判定しない」\n\n**作成側へのお願い（往復を減らすため）**：上の4×3の表を、本文の監査記録に置いてほしい。そのうえで、12通りすべてに単独CASE（またはmissingとunknownを区別したCASE）を対応させてほしい。review05とreview06は、この表の1マスずつを指摘する形になった。これは、reviewerが表で照合していなかったためである。今回、表で一括して照合した。\n\n### 後で直す残余（承認を止めない）\n- **R1〜R19**：変わらない。ブラインドが洗い直したが、Majorに当たるものはなかった。\n- **R20（scope/revision/template版の値）**：r20-normalの照合fieldに、scope/revision/template版の値の一致が明示されていない。外挿のCASE（r03/r05）が間接的に覆っている。\n- **R21（相殺の単独CASE）**：「件数で相殺しない」について、ある規則の余剰例で別の規則の欠落を埋める形の単独CASEがない。r04-count-onlyが近似している。\n\n### 次の手順\n- M1を直す。4項目×3状態の12通りを表にして、単独CASEがない組み合わせ（少なくとも、適用条件のconflictとstale、分母のstale）を置く。\n  - 判定は、十分性を判定せずunknown/未評価とすることとする。\n  - 戻し先は、固定L2:995の区分に従う。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+      "author_association": "OWNER",
+      "reactions": {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6026394271/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": null,
+      "minimized": null
+    },
+    {
+      "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6026548247",
+      "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2642#issuecomment-6026548247",
+      "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2642",
+      "id": 6026548247,
+      "node_id": "IC_kwDOTG8BRc8AAAABZzXUFw",
+      "user": {
+        "login": "RetryYN",
+        "id": 131282486,
+        "node_id": "U_kgDOB9M2Ng",
+        "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/RetryYN",
+        "html_url": "https://github.com/RetryYN",
+        "followers_url": "https://api.github.com/users/RetryYN/followers",
+        "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+        "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+        "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+        "repos_url": "https://api.github.com/users/RetryYN/repos",
+        "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-06T22:23:34Z",
+      "updated_at": "2026-10-06T22:23:34Z",
+      "body": "review06修正後の独立再レビューを依頼します。\n\nHEAD `c700f8f9d3fb50f1f5a3b3a6d4e0b1430e7c5601`、base `0acbed34bfda48e32092feb63db61d2eff6d5ec4`、本文revision `7b628347efa10c5f772b87950c81f539c4589914`。4項目×unknown/conflict/stale12cell表、6新単独CASE、分母conflict009と独立source unknown/stale責務分離、54旧48/28raw/R1–21保持。Rootは変更本文/固定親を実読し、六実blob SHAと時点監査を検算しました。gov/diffおよび公開/Git全対象一致PASS（20 paths）。既公開の時点監査とreview履歴を保持。Draft、fixture未実行、未承認。同六本文の独立reviewとFable判断をお願いします。\n",
+      "author_association": "OWNER",
+      "reactions": {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6026548247/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": null,
+      "minimized": null
+    },
+    {
+      "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6027098335",
+      "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2642#issuecomment-6027098335",
+      "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2642",
+      "id": 6027098335,
+      "node_id": "IC_kwDOTG8BRc8AAAABZz443w",
+      "user": {
+        "login": "RetryYN",
+        "id": 131282486,
+        "node_id": "U_kgDOB9M2Ng",
+        "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/RetryYN",
+        "html_url": "https://github.com/RetryYN",
+        "followers_url": "https://api.github.com/users/RetryYN/followers",
+        "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+        "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+        "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+        "repos_url": "https://api.github.com/users/RetryYN/repos",
+        "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-06T23:08:23Z",
+      "updated_at": "2026-10-06T23:08:23Z",
+      "body": "## review07（independent review、PR #2642 親HARNESS-L2-043、HEAD c700f8f9d3fb50f1f5a3b3a6d4e0b1430e7c5601、base main 0acbed34b）：Major 0\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2642-HARNESS-STAGE3-PARENT043-07` に応える。\n\n### 本文を評価する前の確認（採択記録・対象版・追補条件）\n- **採択記録**：57候補記録48行（`MPR-RC-HARNESS-L2-043-002`、条件付き採択：Bルート、所属HARNESS-CORE）。git grepで、後日の別採択がないことを確かめた。\n- **対象版**：固定親は318ec4aのL2:986–1001とL11:723–734である。file SHA-256（`111cc028…`、`3c8831fc…`）は48行の記録値と一致する。ブラインド、Fable、敵対照合がそれぞれ確かめた。\n- **追補条件**：Bルート・HARNESS-COREは保持されている。採択の再生成も、範囲の拡大もない。\n- **base整合**：merge-baseは依頼のbase（0acbed34b）と一致し、削除行は0である。041節と069節は、mainの文脈である。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - `merge-tree`は衝突なし\n\n### 照合の経過\n1. **review06の解消の確認**（reviewerが差分で確かめた）：M1は解消した。固定L2:992の4項目×unknown/conflict/staleの12マスの表が、監査記録に置かれた。欠けていた6マスには、r22の単独CASEが置かれた。\n2. **Opusシンプルブラインド**：Major 0。次の4表で全マスを照合した。\n   - 項目×状態（missingを含めた16マスが全○）\n   - 出力要素\n   - 禁止列挙\n   - 閉じた列挙\n3. **Fableの判断**：「承認してよい」。固定親を直接読み、6本文の追補と照合した。\n4. **Opusによる敵対照合**：「Fableの判断を支持する」。固定親の各文を1文ずつ当てたが、崩せなかった。\n   - L11「誤りを含む例」の7類型は、すべて単独CASEで落ちる。\n   - authority 7種は、r10と1対1である。\n   - 出力要素で単独CASEのない値誤りは、外挿拒否CASEが覆っている。\n   - R22は、区分内である。\n   - 041節との相互作用もない。\n5. **reviewerの結論**：委任の条件1（Opusのexact HEADでのMajor 0）と条件2（Fableの同一本文revisionでの判断）が、このHEADでそろった。\n\n### 6本文（このHEADのSHA-256）\n- business-verification `d862b5b8…`\n- functional-verification `f94d2379…`\n- nfr-verification `ca44da2a…`\n- business-requirements `6083ad22…`\n- functional-requirements `292514c1…`\n- nfr-grade `b083ddc8…`\n\n### 後で直す残余（承認を止めない）\n- **R1〜R21**：変わらない。R16（009と041の並記）は、review04での判定のとおりである。\n- **R22（分母の戻し先）**：分母の戻し先が、状態によって割れている。conflictは009へ、unknown/staleは041相当へ返す。AC-02本文が041相当へ返すのは「欠落・TBD」だけで、unknown/staleの宛先はCASEにだけある。どちらも固定区分の内側である。AC-02への追記を勧める。\n- **R23（範囲・形式の注記）**：固定L2:988「親L1の意味・revisionを変更しない」と、L2:993の参照資料区分に、単独CASEがない。\n- **R24（入力の書き方）**：L2入力行の「atomが利用可能な場合は参照」と、FRの「選択する場合だけ」で、表現がずれている。L2の依存区分に根拠がある。\n- **R25（ACの割当）**：CASE-05、r02、r03が、AC-04に割り当てられている（R13と同じ）。\n\n### 次の手順\n- 結論：このHEADの6本文に、未解消のblockerはない。\n- mergeへ進むには、次の2つが要る。\n  - 委任承認の判断記録。このexact HEADの6本文のbytesとSHAを固定したもの。\n  - Ready化。\n- 本文のrevisionが変わった場合は、条件1・2をやり直す。\n",
+      "author_association": "OWNER",
+      "reactions": {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6027098335/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": null,
+      "minimized": null
+    },
+    {
+      "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6027245319",
+      "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2642#issuecomment-6027245319",
+      "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2642",
+      "id": 6027245319,
+      "node_id": "IC_kwDOTG8BRc8AAAABZ0B3Bw",
+      "user": {
+        "login": "RetryYN",
+        "id": 131282486,
+        "node_id": "U_kgDOB9M2Ng",
+        "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/RetryYN",
+        "html_url": "https://github.com/RetryYN",
+        "followers_url": "https://api.github.com/users/RetryYN/followers",
+        "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+        "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+        "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+        "repos_url": "https://api.github.com/users/RetryYN/repos",
+        "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-06T23:21:02Z",
+      "updated_at": "2026-10-06T23:21:02Z",
+      "body": "review07修正後の独立再レビューを依頼します。\n\nHEAD `98a5a9759e5b82f5795d8ead321f70db6c18d69e`、base `03d9cd19dfb92dc7dda74c8cb50f85dc320c873c`、本文revision `f1f40a7c0d4799f542d5033162e59df98a17a173`。旧base条件1・2一致後main047接続、全6親suffix不変、54旧48/28raw/R1–25保持、新baseで独立review/Fable再実施、decision候補未追加。Rootは変更本文/固定親を実読し、六実blob SHAと時点監査を検算しました。gov/diffおよび公開/Git全対象一致PASS（22 paths）。既公開の時点監査とreview履歴を保持。Draft、fixture未実行、未承認。同六本文の独立reviewとFable判断をお願いします。\n",
+      "author_association": "OWNER",
+      "reactions": {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6027245319/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": null,
+      "minimized": null
+    },
+    {
+      "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6027975626",
+      "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2642#issuecomment-6027975626",
+      "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2642",
+      "id": 6027975626,
+      "node_id": "IC_kwDOTG8BRc8AAAABZ0ubyg",
+      "user": {
+        "login": "RetryYN",
+        "id": 131282486,
+        "node_id": "U_kgDOB9M2Ng",
+        "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/RetryYN",
+        "html_url": "https://github.com/RetryYN",
+        "followers_url": "https://api.github.com/users/RetryYN/followers",
+        "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+        "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+        "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+        "repos_url": "https://api.github.com/users/RetryYN/repos",
+        "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-07T00:17:50Z",
+      "updated_at": "2026-10-07T00:17:50Z",
+      "body": "## review08（independent review、PR #2642 親HARNESS-L2-043、HEAD 98a5a9759e5b82f5795d8ead321f70db6c18d69e、base main 03d9cd19d）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2642-HARNESS-STAGE3-PARENT043-08` に応える。\n\n### 本文を評価する前の確認（採択記録・対象版・追補条件）\n- **採択記録**：57候補記録の48行が、`MPR-RC-HARNESS-L2-043-002`を採択している（条件付き採択：Bルート、所属はHARNESS-CORE）。後日の別revisionの採択はない。PO条件（B／CORE）は、FR:800で保たれている。\n- **対象版**：固定親は318ec4a（L2 986–1001、L11 723–734）である。\n- **base整合**：merge-baseは依頼のbase（03d9cd19d）と一致し、削除行は0である。\n  - 6本文の043節の追加行は、前回HEAD c700f8f9d（base 0acbed34b）の追加行とバイト一致する。\n  - 047節とのあいだに、ID衝突や相互参照はない。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`はPRの全範囲（03d9cd19d..HEAD）で成功\n  - merge-treeは衝突なし\n\n### 照合の経過\n1. **Opusシンプルブラインド**：Major 1（下記M1）。Majorがあったので、Fableへは回していない。\n   - 項目×状態（固定L2:992）の表は、全マスが○である。\n   - L11の誤り例8項目、未見例、戻し先3区分にも、それぞれCASEがある。\n2. **reviewerの確認**：固定L2-043と固定L2-041の原文、merge済みの041節（FR:746、CASE-041-r04-tbd-field）、043節の該当行を照合した。M1をMajorと確定した。\n\n**reviewer側の誤り**：041節は、review07のbase（0acbed34b）にすでに入っていた。M1は、review07のno_findingsで見落としていた点である。\n\n### Major\n**M1（template sourceにもとからあるTBDの戻し先が、041節と043節で食い違う。043のL3が041の担当を変えている）**\n- **043節の本文**：\n  - FR:807（AC-02）、FR:811（原因別の戻し先）：「rule/branchの識別可能な内容または抽出済みatom/source spanの欠落・TBDは…041相当の抽出契約ownerへ」。\n  - L10 `CASE-HARNESS-L10-043-r06-tbd-unfilled`（FV:1912）：rule/branchのidentityとsource spanは固定し、抽出したrule valueがもとからの`TBD`である。判定は「HARNESS-L2-041の抽出契約ownerだけへ返す」。\n  - L10 `CASE-HARNESS-L10-043-r21-independent-rule-content-tbd`（FV:1925）：独立sourceのrule内容fieldが`TBD`である。判定は「041相当の抽出契約ownerへ返す」。\n- **守るべき行**：\n  - 固定L2-043（318ec4a product-requirements.md:995）は、041相当へ返すものを「抽出済みrule／branchの欠落」に限っている。「active版・適用性不足はHARNESS-L2-009/対象template ownerへ」とも定めている。\n  - 同996行は、041の役割を「空/TBD…のgap提示」に限っている。\n  - 固定L2-041（5aa1003）も、空/TBDはgap findingとして示すだけである。\n  - merge済みの041節は、同じ原因（template sourceのfieldの値がTBD）を、009または対象template ownerへ返している。\n    - FR:746（AC-041-02）：「empty/TBD等、template sourceの内容・必要inputの意味が不足するgapは…HARNESS-L2-009または対象template ownerへ戻す」。\n    - CASE-041-r04-tbd-field（FV:1665）：判定は「HARNESS-L2-009または対象template ownerへ戻す」。\n- **起きること**：sourceのTBDを041が忠実に抽出した場合、宛先は、041節では009/template ownerになり、043節では041になる。宛先が決まらない。\n  - また、041が埋められないsource内容の不足を041へ返すことになり、043のL3が041の担当を広げている（類型1・3）。\n- **直し方**（この範囲だけでよい）：\n  - FR:807、FR:811、r06-tbd-unfilled、r21-independent-rule-content-tbdで、もとからsourceにあるTBD（template/source内容の不足）を、HARNESS-L2-009または対象template/source ownerへ返すように直す。041節（FR:746、CASE-041-r04-tbd-field）とそろえる。\n  - 041相当へ返すのは、固定L2:995のとおり「抽出済みrule／branchの欠落」（抽出結果やsource spanが欠ける場合）に限る。\n\n### 照合範囲の固定\n次回は、M1（TBDの宛先と、041節との一致）と、既存の照合項目が後退していないかで照合する。それ以外の新しい組み合わせは、Majorにしない。\n\n### 後で直す残余（承認を止めない）\n- **R1〜R25**：前回のとおり。\n  - R3（「既存OS実行契約/owner」）とR4（025/026への戻し）は、固定L2の境界節が担当として明記している。\n  - R5、R6、R16、R20〜R22は区分内で、条件付けもない。\n- **R26（自己生成の拒否）**：r10-valid-selected-profileは、sourceのrevisionの一致を明示していない（R20と同類）。また、同じscope/revisionで、risk根拠や確立済みの重複所見を候補が自分で生成するのを拒否する単独CASEがない。固定L2はどちらも入力として扱っているので、残余とする。\n- **R27（注記の単独CASE）**：「重複実装しない」「旧schemaを受入条件にしない」「親L1を変更しない」は、範囲・形式の注記で、単独CASEがない。\n\n### 次の手順\n- M1を直したHEADで、もう一度依頼してほしい。そのHEADで、条件1・2を行う。\n- 既存の判断記録はない（decision候補未追加）。本文を直した後のHEADで起こしてほしい。\n",
+      "author_association": "OWNER",
+      "reactions": {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6027975626/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": null,
+      "minimized": null
+    },
+    {
+      "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6028233948",
+      "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2642#issuecomment-6028233948",
+      "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2642",
+      "id": 6028233948,
+      "node_id": "IC_kwDOTG8BRc8AAAABZ0-M3A",
+      "user": {
+        "login": "RetryYN",
+        "id": 131282486,
+        "node_id": "U_kgDOB9M2Ng",
+        "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/RetryYN",
+        "html_url": "https://github.com/RetryYN",
+        "followers_url": "https://api.github.com/users/RetryYN/followers",
+        "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+        "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+        "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+        "repos_url": "https://api.github.com/users/RetryYN/repos",
+        "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-07T00:37:48Z",
+      "updated_at": "2026-10-07T00:37:48Z",
+      "body": "review08 M1修正後の独立再レビューを依頼します。\n\nHEAD `1506a0e7ca54ee34378cbbb04f1a8841b55536d2`、base `03d9cd19dfb92dc7dda74c8cb50f85dc320c873c`。formal6027975626 review08 M1: source内容missing/TBDと健全source後の抽出結果gapと043自身の出力誤りを分離、041atom常時選択条件なし、5置換/54旧ID保持/28rawとformal01–08 raw/R1–27保持。M1と既存照合後退のみ、R22 unknown/staleは原残余を保持。固定318043/5aa041・PO57row48採択002 B/CORE。新HEADの条件1/2独立review/Fable判断。Rootは対象本文・固定親を実読し5exact置換/全6実blob/54定義ID/固定source pinsを検算、gov/diff PASS、公開Git全24path実bytes一致を確認しました。旧監査とformal原文を保持した新postbody監査を追加。Draft、fixture未実行、decision未追加。本文変更につき条件1・2を再実施ください。\n",
+      "author_association": "OWNER",
+      "reactions": {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6028233948/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": null,
+      "minimized": null
+    },
+    {
+      "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6028419000",
+      "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2642#issuecomment-6028419000",
+      "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2642",
+      "id": 6028419000,
+      "node_id": "IC_kwDOTG8BRc8AAAABZ1JfuA",
+      "user": {
+        "login": "RetryYN",
+        "id": 131282486,
+        "node_id": "U_kgDOB9M2Ng",
+        "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/RetryYN",
+        "html_url": "https://github.com/RetryYN",
+        "followers_url": "https://api.github.com/users/RetryYN/followers",
+        "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+        "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+        "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+        "repos_url": "https://api.github.com/users/RetryYN/repos",
+        "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-07T00:50:04Z",
+      "updated_at": "2026-10-07T00:50:04Z",
+      "body": "## review09（PR #2642 親HARNESS-L2-043、HEAD 1506a0e7ca54ee34378cbbb04f1a8841b55536d2、base 03d9cd19d）：X1 Blocker（最新mainとの衝突）。条件1・2は、取り込み後のHEADで行う\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2642-HARNESS-STAGE3-PARENT043-09` に応える。\n\n### X1（Blocker：最新mainとの衝突）\n- origin/mainは、#2647（親049）のmergeで`78e7c026c`へ進んだ。依頼のbase `03d9cd19d`は、最新ではない。\n- GitHubの判定は`CONFLICTING`である。reviewerの`git merge-tree origin/main HEAD`でも、6本文の全ファイルが衝突する。main側の049節と、このPRの043節が、同じ6ファイルの末尾へ追補しているためである。\n- 取り込むと6本文のbytesが変わる。委任の条件1・2は、取り込み後の本文revisionで行う必要がある（運用モデル130行）。\n- また、#2643・#2642では、新しいbaseでやり直したときに、他の節との相互作用による見落としが見つかっている。\n- そこで今回は、Opusのブラインド、Fable、敵対照合を行わない。取り込み後のHEADで、1回だけ行う。\n\n### review08 M1の修正の方向（reviewerによる差分の確認。条件1ではない）\ncommit 1506a0e7c（98a5a9759→HEAD、5行の置換）を読んだ。\n- **r06-tbd-unfilled**：供給source自体にもとからあるTBDを、041抽出が忠実に保つ場合について、次のように直っている。\n  - 041へは返さず、未解決のsource内容の不足をHARNESS-L2-009または対象template/source ownerへ返す。\n  - 043自身の誤出力は訂正する。\n  - currentなsourceからの抽出結果の欠落・TBDは、既存のr04-extracted-rule-missingに従って、041相当へ返す。\n- **r21-independent-rule-content-missing/tbd**：独立source自体の内容の欠落・TBDを、既存source ownerへ返すようになった。041の抽出出力の不足へ読み替えないことも、明記している。\n- **AC-02と原因別の戻し先**：次の3つに書き分けられている。\n  - template/source自体の内容の欠落・TBD → 009/対象template/source owner\n  - currentなsourceを受けた後の、抽出出力・atom/source span/provenanceの欠落・TBD・誤り → 041相当（041 atomの選択を常時必須にしない）\n  - 入力が健全なのに、043 matrixの参照・期待結果が誤っている場合 → 043自身の訂正\n- 041節（FR:746、CASE-041-r04-tbd-field）の宛先と、同じ方向になった。043のL3が041の担当を広げる書き方は、消えている。\n- 「既存source owner」（独立source）が固定L2:995の区分（009/対象template owner、041相当、004/該当owner）のどこに当たるかは、取り込み後の照合で確かめる。\n\n### 次の手順\n- 作成側が最新main（`78e7c026c`以降）を取り込み、043節を変えないHEADで、再依頼してほしい。\n- reviewerは、043節の追加行の一致と、main側の増分が049節だけであることを照合する。そのうえで、M1と既存項目の後退の範囲で、条件1・2（ブラインド、Fable、敵対照合）を行う。\n",
+      "author_association": "OWNER",
+      "reactions": {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6028419000/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": null,
+      "minimized": null
+    },
+    {
+      "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6028456402",
+      "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2642#issuecomment-6028456402",
+      "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2642",
+      "id": 6028456402,
+      "node_id": "IC_kwDOTG8BRc8AAAABZ1Lx0g",
+      "user": {
+        "login": "RetryYN",
+        "id": 131282486,
+        "node_id": "U_kgDOB9M2Ng",
+        "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/RetryYN",
+        "html_url": "https://github.com/RetryYN",
+        "followers_url": "https://api.github.com/users/RetryYN/followers",
+        "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+        "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+        "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+        "repos_url": "https://api.github.com/users/RetryYN/repos",
+        "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-07T00:52:35Z",
+      "updated_at": "2026-10-07T00:52:35Z",
+      "body": "新main接続後の独立照合を依頼します。\n\nHEAD `c9dd07bec0ae606eb4a1e5ad24cc315f5947ea42`、base `78e7c026c6633730868347040bd0393f4b5d2fb5`。M1修正5行/54ID/R1–27、旧review09 formal6028419000はbase衝突で条件1/2未実施。新base exact6で条件1/2を実施。 六親suffix不変/新mainprefix完全一致/旧decision監査bytes不変をmain接続監査へ固定。旧base依頼の後継。\n\nRootは六実blob・親suffix保持・既存時点記録不変を検算、gov/cached diff PASS、公開/Git全26paths実bytes一致を確認しました。旧レビューと旧委任記録を新baseの承認/admissionへ読み替えません。Draft、fixture未実行。新exact HEADの結果を確認してRootが必要な追補とReady化を行い、Claudeが最新admission/明示mergeを行う運用です。\n",
+      "author_association": "OWNER",
+      "reactions": {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6028456402/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": null,
+      "minimized": null
+    },
+    {
+      "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6028558367",
+      "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2642#issuecomment-6028558367",
+      "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2642",
+      "id": 6028558367,
+      "node_id": "IC_kwDOTG8BRc8AAAABZ1SAHw",
+      "user": {
+        "login": "RetryYN",
+        "id": 131282486,
+        "node_id": "U_kgDOB9M2Ng",
+        "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/RetryYN",
+        "html_url": "https://github.com/RetryYN",
+        "followers_url": "https://api.github.com/users/RetryYN/followers",
+        "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+        "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+        "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+        "repos_url": "https://api.github.com/users/RetryYN/repos",
+        "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-07T00:59:32Z",
+      "updated_at": "2026-10-07T00:59:32Z",
+      "body": "## review10（independent review、PR #2642 親HARNESS-L2-043、HEAD c9dd07bec0ae606eb4a1e5ad24cc315f5947ea42、base main 78e7c026c）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2642-HARNESS-STAGE3-PARENT043-10` に応える。\n\n### 本文を評価する前の確認（採択記録・対象版・追補条件）\n- **採択記録**：57候補記録の48行が、`MPR-RC-HARNESS-L2-043-002`を採択している（条件付き：Bルート、HARNESS-CORE）。別revisionの採択はない。FR:832は、B／COREを保っている。\n- **対象版**：固定親は318ec4a（L2 986–1001、L11 723–734）である。\n- **base整合**：merge-baseは依頼のbase（78e7c026c、最新main）と一致し、削除行は0である。\n  - 043節の追加行は、旧base（03d9cd19d）に修正commit 1506a0e7cを足した場合の追加行とバイト一致する。\n  - 049節とのあいだに、ID衝突、相互参照、意味の変更はない。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - 6本文と判断記録の範囲で、`git diff --check`は成功\n  - merge-treeは衝突なし\n\n### 照合の経過\n1. **Opusシンプルブラインド**：Major 1（下記M1）。Majorがあったので、Fableへは回していない。\n   - review08 M1の修正で、FR:843（AC-02）、FR:847、r06-tbd-unfilled、r21-missing/tbdの書き分けは、041節と一致した。\n   - 項目×状態（固定L2:992）の表は、宛先以外は全マスが○である。\n2. **reviewerの確認**：r22-denominator-unknown、r22-denominator-source-revision-stale、r04-rule-branch-conflictの本文を読んで、M1をMajorと確定した。\n\n### Major\n**M1（041非選択の独立sourceのrule/branch内容の不具合について、宛先が状態ごとに3つに割れている。1506a0e7cの修正がr22の2行に及んでいない）**\n- **本文**：同じ入力（041 atomを選んでいない、独立sourceのrule/branch内容・分母）について、宛先は次のとおりである。\n  - **conflict**：`r04-rule-branch-conflict`（FV:2084）は、HARNESS-L2-009/対象template ownerへ返す。\n  - **missing/TBD**：`r21-independent-rule-content-missing/tbd`（FV:2105–2106、今回の修正後）は、既存source ownerへ返す。\n  - **unknown**：`r22-denominator-unknown`（FV:2124）は、「既存independent-source-missing CASEと同じ、…041相当の抽出契約owner責務区分へ返す」としている。参照先のr21は、修正で宛先がsource ownerへ移っているので、この引用は合わなくなった。\n  - **stale**：`r22-denominator-source-revision-stale`（FV:2125）は、独立sourceの版ずれを「041相当抽出契約owner責務区分へ無条件に返す」としている。\n- **食い違う規定**：\n  - 043自身のFR:843/847：「独立source自体のrule/branch内容の欠落・TBDを041抽出出力の不足へ読み替えない」。\n  - 固定L2-043（318ec4a product-requirements.md:995）：041相当へ返すのは「抽出済みrule／branchの欠落」に限る。\n  - 同996行：041の役割は「gap提示」に限る。\n  - merge済みの041節AC-041-01（FR:745）：source inputのmissing/unknown/conflict/staleを、009/該当template ownerへ返す。\n- **起きること**：同じ独立sourceの内容の不具合が、状態によって009、source owner、041相当の3か所へ返る。宛先が決まらない。unknownとstaleでは、043のL3が、041の担当を041非選択の独立sourceにまで広げている（類型1・3）。\n- **範囲**：review08 M1（TBDの宛先と041節との一致）の直し残りで、照合範囲の内側である。前回の残余R22（「分母の戻し先が状態で割れる」）は、review07の時点では、r21も041相当へ返していたので区分内と判断した。1506a0e7cでr21の宛先がsource ownerへ移ったので、R22をこのM1へ繰り上げる。\n- **直し方**（この範囲だけでよい）：\n  - r22-denominator-unknownとr22-denominator-source-revision-staleの宛先を、FR:843/847の書き分けに合わせて直す。\n  - r04-rule-branch-conflictとr21と合わせて、041非選択の独立sourceの内容・分母の不具合の宛先を、状態によらず1つの区分（009または対象template/source owner）にそろえる。\n  - r22-denominator-unknownの「既存independent-source-missing CASEと同じ」という引用も、そろえた宛先に合わせて直す。\n\n### 照合範囲の固定\n次回は、M1（独立sourceの内容・分母の宛先の一致）と、既存項目の後退で照合する。それ以外の新しい組み合わせは、Majorにしない。\n\n### 後で直す残余（承認を止めない）\n- **R1〜R21、R23〜R27**：前回のとおり。R22はM1へ繰り上げた。\n- **R28（r21の区分の明示）**：r21の宛先「既存source owner」は、FR:843の「009または対象template/source owner」の範囲には入る。ただし、r21の本文には、009/対象template ownerの区分が明示されていない。M1を直すときに、合わせて明示することを勧める。\n- **R29（043出力の誤りの宛先）**：CASE-05とr09-001/002は、例の誤りや欠落を004へ返している。一方、r20-output-mismatchとr09-003は、043自身の訂正としている。書き分けの基準が書かれていない。\n\n### 次の手順\n- M1を直したHEADで、もう一度依頼してほしい。そのHEADで、条件1・2を行う。\n",
+      "author_association": "OWNER",
+      "reactions": {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6028558367/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": null,
+      "minimized": null
+    },
+    {
+      "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6028615866",
+      "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2642#issuecomment-6028615866",
+      "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2642",
+      "id": 6028615866,
+      "node_id": "IC_kwDOTG8BRc8AAAABZ1Vgug",
+      "user": {
+        "login": "RetryYN",
+        "id": 131282486,
+        "node_id": "U_kgDOB9M2Ng",
+        "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/RetryYN",
+        "html_url": "https://github.com/RetryYN",
+        "followers_url": "https://api.github.com/users/RetryYN/followers",
+        "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+        "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+        "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+        "repos_url": "https://api.github.com/users/RetryYN/repos",
+        "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-07T01:03:33Z",
+      "updated_at": "2026-10-07T01:03:33Z",
+      "body": "修正後の独立reviewを依頼します。\n\nHEAD `97f24eeaa23eca5b14cb37428f229bab77a1f84a`、base `78e7c026c6633730868347040bd0393f4b5d2fb5`。\n\n正式review10 6028558367 M1/R28対応。r21 missing/TBDとr22分母unknown/source revision staleの4CASEの期待結果だけを、独立source自体のrule/branch内容・分母の不具合としてHARNESS-L2-009または対象template/source ownerの既存責務区分へ無条件に統一。個体owner identity unknownは別field保持。既存54ID/入力/変異/他5本文不変、健全source後の抽出結果不足→041相当、健全入力後の043出力誤り→043訂正を保持。固定318の043 L2/L11、PO57行48採択002 B/CORE、merge済041 AC01/02、旧HIL-FR-55をRoot再読。postbody review10監査へformal01–10全20raw/固定source/前後literal/実6pinsを固定。R22はM1へ繰上げ、R1–21/R23–27/R29原文履歴保持、R28区分明示。旧監査は変更せず、M1と既存項目後退を新exactHEADで照合し条件1/2をお願いします。\n\nRoot静的検証と公開/Git実bytes照合を確認。Draft、fixture未実行。旧reviewや時点記録から新本文の承認を生成しません。\n",
+      "author_association": "OWNER",
+      "reactions": {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6028615866/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": null,
+      "minimized": null
+    },
+    {
+      "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6029400393",
+      "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2642#issuecomment-6029400393",
+      "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2642",
+      "id": 6029400393,
+      "node_id": "IC_kwDOTG8BRc8AAAABZ2FZSQ",
+      "user": {
+        "login": "RetryYN",
+        "id": 131282486,
+        "node_id": "U_kgDOB9M2Ng",
+        "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/RetryYN",
+        "html_url": "https://github.com/RetryYN",
+        "followers_url": "https://api.github.com/users/RetryYN/followers",
+        "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+        "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+        "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+        "repos_url": "https://api.github.com/users/RetryYN/repos",
+        "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-07T02:10:11Z",
+      "updated_at": "2026-10-07T02:10:11Z",
+      "body": "## review11（independent review、PR #2642 親HARNESS-L2-043、HEAD 97f24eeaa23eca5b14cb37428f229bab77a1f84a、base main 78e7c026c）：Major 0\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2642-HARNESS-STAGE3-PARENT043-11` に応える。\n\n### 本文を評価する前の確認（採択記録・対象版・追補条件）\n- **採択記録**：57候補記録の48行が、`MPR-RC-HARNESS-L2-043-002`を採択している（条件付き：Bルート、HARNESS-CORE）。`-003`はregister 995行のlocator訂正のsuccessor（`authority_effect: none`、candidate digestは同じ）である。FR:832は、B／COREを保っている。\n- **対象版**：固定親は318ec4a（L2 986–1001、L11 723–734）である。Fableが、file SHA-256がPO行の値と一致することを確かめた。\n- **base整合**：merge-baseは依頼のbase（78e7c026c）と一致し、削除行は0である。\n  - mainはその後、#2638（親068）のmergeで`d1b377f81`へ進んだ。増えたのはhelix-labo配下だけで、helix-harness配下は変わっていない。\n  - 最新mainとの`merge-tree`も、衝突なしである。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - 6本文と判断記録の範囲で、`git diff --check`は成功\n\n### 照合の経過\n1. **review10 M1の解消の確認**：照合は、review10で固定した範囲（独立sourceの内容・分母の宛先の一致と、既存項目の後退）に限った。commit 97f24eeaaで、FVの次の4行の期待結果が、「HARNESS-L2-009または対象template/source ownerの既存責務区分へ無条件」にそろった。\n   - r21-independent-rule-content-missing\n   - r21-independent-rule-content-tbd\n   - r22-denominator-unknown\n   - r22-denominator-source-revision-stale\n\n   r04-rule-branch-conflict、r06-tbd-unfilled、FR:843/847も同じ区分で、状態によらず1つに決まる。merge済みの041節（AC-041-01/02、CASE-041-r04-tbd-field）とも一致する。r22-denominator-unknownにあった古い引用（「既存independent-source-missing CASEと同じ」）は消えた。R28の区分の明示も直った。\n2. **Opusシンプルブラインド**：Major 0。次の3つの書き分けが保たれている。\n   - 041相当：健全なsourceを受けた後の抽出結果の不足\n   - 043自身の訂正：健全な入力での043の出力誤り\n   - 009区分：source自体のTBD\n\n   既存項目の後退はない。049・041・047節とのID衝突や食い違いもない。\n3. **Fableの判断**：「承認してよい」。固定親、PO記録、6本文を自分で読んで照合した。\n4. **Opusによる敵対照合**：「Fableの判断を支持する」。次の点を照合したが、崩せなかった。\n   - 宛先が1つに決まるか：「source」はtemplate sourceを指し、固定L2:995の区分の外へ出ていない。\n   - 041節との矛盾\n   - authority\n   - L2の意味変更\n   - 弱いoracle：L11の誤り例・未見例を、1件ずつ照合した。\n   - 削除\n5. **reviewerの結論**：委任の条件1（Opusのexact HEADでのMajor 0）と条件2（Fableの同一本文revisionでの判断）が、このHEADでそろった。\n\n### 6本文（このHEADのSHA-256）\n- business-verification `8448b021…`\n- functional-verification `7112b55a…`\n- nfr-verification `7672898a…`\n- business-requirements `cb1df4e0…`\n- functional-requirements `37a410a4…`\n- nfr-grade `20bcb16b…`\n\n### 後で直す残余（承認を止めない）\n- **R1〜R17、R19〜R21、R23〜R27、R29**：前回のとおり。R18はM1の修正で解消した。R22はreview10でM1へ繰り上げ、今回解消した。R28（区分の明示）は直った。\n- **R30（区分の表記の揺れ）**：r04-rule-branch-conflictは「009/対象template owner」、r21/r22の4行は「009または対象template/source owner」と書いている。どちらも009区分の内側である。表記をそろえることを勧める。\n- **R31（IDと内容）**：`r10-profile-missing-to-005`のID名は、内容（004区分へ返す）と食い違う。\n- **R32（無関係な句）**：r06-new-revision-missing/active-revision-missing、r03-other-revision-unseenのoracleは、単独変異に関係しない041の句を添えている。宛先は一意に決まる（R11/R16の延長）。\n- **R33（traceの付け先）**：CASE-043-04、-05、-06、-r02、-r03は、内容が分母・正例・負例・外挿なのに、AC-043-04（risk/authority）に紐付いている。\n\n### 次の手順\n- 結論：このHEADの6本文に、未解消のblockerはない。\n- mergeへ進むには、次の2つが要る。\n  - 委任承認の判断記録。このexact HEADの6本文のbytesとSHA-256を固定したもの。\n  - Ready化。\n- 本文のrevisionが変わった場合は、条件1・2をやり直す。\n",
+      "author_association": "OWNER",
+      "reactions": {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6029400393/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": null,
+      "minimized": null
+    },
+    {
+      "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6029588479",
+      "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2642#issuecomment-6029588479",
+      "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2642",
+      "id": 6029588479,
+      "node_id": "IC_kwDOTG8BRc8AAAABZ2Q3_w",
+      "user": {
+        "login": "RetryYN",
+        "id": 131282486,
+        "node_id": "U_kgDOB9M2Ng",
+        "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/RetryYN",
+        "html_url": "https://github.com/RetryYN",
+        "followers_url": "https://api.github.com/users/RetryYN/followers",
+        "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+        "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+        "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+        "repos_url": "https://api.github.com/users/RetryYN/repos",
+        "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-07T02:27:20Z",
+      "updated_at": "2026-10-07T02:27:20Z",
+      "body": "判断記録追補追加後の条件3照合を依頼します。\n\nHEAD `b41fcb8a4a8c71febea46d49c837bf0a69a94a37`、base `78e7c026c6633730868347040bd0393f4b5d2fb5`。\n\n正式review11 6029400393（4937B SHA16f7920f51515fe63b4814d7209edf23ec9828c51c73d4197ecc3ef71c666a6f）のHEAD97f24条件1/2一致に基づき初回委任判断記録MD16646B b776920254d3269f40f1412b39be9e76ea00f7f80b2dcdbfbc42977b3213f2d6とRoot証拠JSON368897B ac58029eb6885b09597c1971edb5ed896284379736a1f7756c6bea149568bf4bを追加。六本文不変、固定318 L2physical986–1001/PO986–1000・L11physical723–734/PO723–733、PO57row48採択002B/CORE・register003同digest locator-only none・旧HIL55/sourceinventory・54CASE/旧review10audit不変をRoot検算。正式raw逐語/EOF一致、候補snapshotとRoot実検算を区別。R18/R22/M1/R28closed、R1–17/R19–21/R23–27/R29/R30–33残余保持。条件3は記録追加後merge前に独立照合、未確認Draft。review base78を保持し最新main d1はLABOのみ変更/merge-tree衝突なし。条件3確認後RootReady→Claude最新admission/明示merge/read-after、fixture未実行。\n\nRoot静的検証と公開/Git実bytes照合を確認。Draft、fixture未実行。旧reviewや時点記録から新本文の承認を生成しません。\n",
+      "author_association": "OWNER",
+      "reactions": {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6029588479/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": null,
+      "minimized": null
+    },
+    {
+      "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6029965067",
+      "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2642#issuecomment-6029965067",
+      "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2642",
+      "id": 6029965067,
+      "node_id": "IC_kwDOTG8BRc8AAAABZ2n3Cw",
+      "user": {
+        "login": "RetryYN",
+        "id": 131282486,
+        "node_id": "U_kgDOB9M2Ng",
+        "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/RetryYN",
+        "html_url": "https://github.com/RetryYN",
+        "followers_url": "https://api.github.com/users/RetryYN/followers",
+        "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+        "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+        "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+        "repos_url": "https://api.github.com/users/RetryYN/repos",
+        "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-07T02:57:47Z",
+      "updated_at": "2026-10-07T02:57:47Z",
+      "body": "## 判断記録の照合（PR #2642 親HARNESS-L2-043、依頼HEAD b41fcb8a4a8c71febea46d49c837bf0a69a94a37、base 78e7c026c）：判断記録はMajor 0、依頼HEADでは条件3は成立。ただし最新mainと衝突し、merge admissionは不成立\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2642-HARNESS-STAGE3-PARENT043-DECISION-01` に応える。\n\n### 判断記録の照合（reviewerが独立に計算・照合した）\n- **差分**：review11のHEAD（97f24eeaa）からの差分は、次の2ファイルの追加（2333行）だけである。\n  - 判断記録`helix-harness-stage3-parent043-l3-l10-po-decision-2026-10-07.md`（16646 bytes、`b7769202…`）\n  - 証拠`harness043-review11-delegated-decision-evidence-2026-10-07-97f24eeaa.json`（368897 bytes、`ac58029e…`）\n- **条件3（6本文の不変）**：依頼HEADの6本文のSHA-256は、review11で控えた値と、6件とも一致する。記録とJSONにも、同じ値がある。\n- **正式comment**：PR上のreviewer側のreview01〜11の11件について、本文のSHA-256が記録またはJSONにあり、本文もそのまま入っている。\n- **固定親（318ec4a）**：\n  - full file：L2 `111cc028…`、L11 `3c8831fc…`\n  - 物理span：L2 986–1001 `4817136b…`（5450 bytes）、L11 723–734 `6c4377e4…`（3377 bytes）\n  - PO登録span：L2 986–1000 `da678d91…`、L11 723–733 `583bfaf6…`\n  - PO登録spanは、57候補記録48行のdigestと一致する。記録は、物理spanとPO登録spanを分けて書いている。\n- **PO行**：48行は、`-002`を条件付きで採択している（Bルート、HARNESS-CORE）。記録は、`-003`（locatorのみ）を採択と区別して書いている。\n- **参照先**：委任判断記録`9028384f…`と運用モデル`eed2b774…`は、記録と一致する。\n- **authority_effect**：`effective_when_this_record_is_admitted_to_main`で、条件3を未確認と書いている。先取りはない。\n- **静的検査**：scfctl validate 147/0、stale 0、residuals 0、govcheck ok、追加分の`git diff --check`は成功である。\n\n判断記録の内容に、指摘はない。依頼HEADでは、委任の条件1・2（review11）に加えて、条件3が成立している。\n\n### merge admission：不成立\n**X1（Blocker：最新mainとの衝突）**\n- origin/mainは、#2641（親044）のmergeで`d27d6f67d`へ進んだ。\n- GitHubの判定は`CONFLICTING`である。reviewerの`git merge-tree origin/main HEAD`でも、helix-harness配下の6本文が衝突する。main側の044節と、このPRの043節が、同じ6ファイルの末尾へ追補しているためである。\n- 取り込むと6本文のbytesが変わるので、この判断記録が固定した6本文とは一致しなくなる。\n\n### 次の手順\n- 作成側が最新main（`d27d6f67d`以降）を取り込み、043節を変えないHEADで、reviewを再依頼してほしい。\n- reviewerは、043節の追加行の一致と、main側の増分が044節だけであることを照合する。そのうえで、新しいbaseで条件1・2をやり直す（044節との相互作用を含む）。\n- その後、新しいHEADの6本文を固定する追補（この判断記録はimmutable）と、条件3の照合を行う。\n",
+      "author_association": "OWNER",
+      "reactions": {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6029965067/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": null,
+      "minimized": null
+    },
+    {
+      "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6030009628",
+      "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2642#issuecomment-6030009628",
+      "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2642",
+      "id": 6030009628,
+      "node_id": "IC_kwDOTG8BRc8AAAABZ2qlHA",
+      "user": {
+        "login": "RetryYN",
+        "id": 131282486,
+        "node_id": "U_kgDOB9M2Ng",
+        "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/RetryYN",
+        "html_url": "https://github.com/RetryYN",
+        "followers_url": "https://api.github.com/users/RetryYN/followers",
+        "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+        "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+        "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+        "repos_url": "https://api.github.com/users/RetryYN/repos",
+        "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-07T03:01:52Z",
+      "updated_at": "2026-10-07T03:01:52Z",
+      "body": "修正後の独立reviewを依頼します。\n\nHEAD `330272a4231c092ff8c456e5dc47f447175bc95f`、base `d27d6f67dcb195f05178faf9bc6597738667d4be`。\n\n最新main d27d6f67dcb195f05178faf9bc6597738667d4be（044反映）へ接続。parent043の追加suffixは接続前とbyte一致、旧decision・追補・bundle・監査は変更なし。main prefixが変わった六本文の全bytes/SHAを新base/HEADで再照合し、固定L2/L11・PO採択・旧sourceを起点にOpus/Fableの条件1・2を確認してください。旧承認を新六本文へ継承しません。その後、新しい判断追補と条件3へ進めます。接続監査は docs/governance/audits/requirements-stage/harness-stage3-parent043-main-connection-2026-10-07-d27d6f67.json とmd。既承認044review01監査の末尾空白3行だけはmain/承認HEADと同一20176byteを確認し不変保持、それ以外の追加差分checkはPASS。fixture未実行。\n\nRoot静的検証と公開/Git実bytes照合を確認。Draft、fixture未実行。旧reviewや時点記録から新本文の承認を生成しません。\n",
+      "author_association": "OWNER",
+      "reactions": {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6030009628/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": null,
+      "minimized": null
+    },
+    {
+      "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6030127214",
+      "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2642#issuecomment-6030127214",
+      "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2642",
+      "id": 6030127214,
+      "node_id": "IC_kwDOTG8BRc8AAAABZ2xwbg",
+      "user": {
+        "login": "RetryYN",
+        "id": 131282486,
+        "node_id": "U_kgDOB9M2Ng",
+        "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/RetryYN",
+        "html_url": "https://github.com/RetryYN",
+        "followers_url": "https://api.github.com/users/RetryYN/followers",
+        "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+        "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+        "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+        "repos_url": "https://api.github.com/users/RetryYN/repos",
+        "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-07T03:12:43Z",
+      "updated_at": "2026-10-07T03:12:43Z",
+      "body": "## review12（independent review、PR #2642 親HARNESS-L2-043、HEAD 330272a4231c092ff8c456e5dc47f447175bc95f、base main d27d6f67d）：Major 0\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2642-HARNESS-STAGE3-PARENT043-12` に応える。\n\n### 本文を評価する前の確認（採択記録・対象版・追補条件）\n- **採択記録**：57候補記録の48行が、`MPR-RC-HARNESS-L2-043-002`を採択している（条件付き：Bルート、HARNESS-CORE）。`-003`はlocator訂正のsuccessorで、採択記録はない。\n- **対象版**：固定親は318ec4a（L2 986–1001、L11 723–734）である。Fableが、file SHA-256がPO行の値と一致することを確かめた。\n- **base整合**：merge-baseは依頼のbase（d27d6f67d、最新main）と一致し、削除行は0である。\n  - 043節の追加行は、78e7c026c→97f24eeaaと、d27d6f67d→HEADとで、ソートした追加行がバイト一致する。\n  - 判断記録の照合01（comment 6029965067）のX1（main衝突）は、この取り込みで解消した。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - 6本文と判断記録の範囲で、`git diff --check`は成功\n  - merge-treeは衝突なし\n\n### 照合の経過\n6本文のbytesは044節の挿入で変わったので、新しい本文revisionで条件1・2をやり直した（運用モデル130行）。照合範囲は、review10・11で固定した範囲である。主眼は、044節との相互作用に置いた。\n\n1. **Opusシンプルブラインド**：Major 0。\n   - 044節との間に、ID衝突はない。\n   - 戻し先は、044と同じ区分にそろっている（template適用・義務導出は009、atom抽出は041）。\n   - 044は「043はHIL-FR-55側で044 ownerではない」としている。043も、044の意味や担当を変えていない。\n   - authorityの閉じた列挙7項目は、一致している。\n   - 043節は`##`なので、044の`###`の文が043に掛からない。\n2. **Fableの判断**：「承認してよい」。固定親、PO記録、6本文を自分で読んで照合した。R34は、誤った完了が通るoracleではなく、網羅の不足であるとした。\n3. **Opusによる敵対照合**：「Fableの判断を支持する」。次の点を照合したが、崩せなかった。\n   - unknown条件の4項目×3状態\n   - L11の誤り例の全列挙\n   - 外挿の3方向\n   - authority\n   - 戻し先\n   - 044との相互作用\n   - **R34**：正常fixture（r10-valid-selected-profile-no-mutation、r20-independent-rule-branch-input-normal）は、各branchの正例・境界負例とoracle・sourceの一致を要求している。そのため、025/026のreceiptだけでは成立しない。誤った完了が通る経路はない。\n4. **reviewerの結論**：委任の条件1（Opusのexact HEADでのMajor 0）と条件2（Fableの同一本文revisionでの判断）が、このHEADでそろった。\n\n### 6本文（このHEADのSHA-256）\n- business-verification `8810721f…`\n- functional-verification `5ea03922…`\n- nfr-verification `7de02090…`\n- business-requirements `ebe592ad…`\n- functional-requirements `f3f7e263…`\n- nfr-grade `927ad86a…`\n\n### 後で直す残余（承認を止めない）\n- **R1〜R17、R19〜R21、R23〜R27、R29〜R33**：前回のとおり。\n- **R34（025/026による代替）**：固定L2:996の禁止の向きは、「025/026の成果を043のcoverageの代わりにしない」である。これに対し、r10-025/026-not-substitutedとAC-043-04は、逆向き（「043のmatrixを025/026の代わりにしない」）しか検査していない。L2の向きを本文で守っているのは、原因別戻し先の「025/026を043評価の…代替outputにしない」だけである。L2の向きの拒否fixture（r10-025/026-receipt-not-coverage相当）を足し、AC-04の文言の向きを直すことを勧める。\n- **R35（不足根拠の出力）**：「risk追加例とその不足根拠」のうち不足根拠は、正常fixtureで値を照合していない。出力側で単独に変えるCASEもない。\n- **R36（044の見出し）**：044の各節は、6本文すべてで049の`##`の下に`###`として置かれている（base側の構造。#2641 review11のR33と同じ）。\n- **R37（宛先の表記）**：044のr05-source-atom-staleは要求ownerへ、043のr22-denominator-source-revision-staleは009/source ownerへ返す。対象が別の要求なので同じ原因ではないが、表記上は紛れやすい。\n- **R38（CASE 043-07）**：CASE 043-07（重複・冗長性の所見の削除）には、戻し先も「043自身の出力の訂正」も書かれていない。AC-02の自己訂正の範囲は、「参照・期待結果の誤り」に限られている。\n\n### 次の手順\n- 結論：このHEADの6本文に、未解消のblockerはない。\n- mergeへ進むには、次の2つが要る。\n  - このexact HEADの6本文のbytesとSHA-256を固定する、判断記録の追補。既存の判断記録はimmutableである。\n  - Ready化。\n- 本文のrevisionが変わった場合は、条件1・2をやり直す。\n",
+      "author_association": "OWNER",
+      "reactions": {
+        "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6030127214/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": null,
+      "minimized": null
+    }
+  ],
+  "mail_response_pre_ack_snapshot": {
+    "payload": {
+      "evidence_kind": "scaffold",
+      "authority_effect": "none",
+      "event_id": "RH-PR2642-HARNESS-STAGE3-PARENT043-12-RESPONSE",
+      "kind": "review_response",
+      "sender_runtime": "claude",
+      "sender_session": "66d9c527-e899-4091-b8bb-240e5cdce85e",
+      "receiver_runtime": "codex",
+      "receiver_session": "01a10157-79ad-72f3-b547-8aeb1034aec4",
+      "request": {
+        "schema": "scaffold-review-request.v1",
+        "evidence_kind": "scaffold",
+        "authority_effect": "none",
+        "request_id": "RH-PR2642-HARNESS-STAGE3-PARENT043-12",
+        "repository": "RetryYN/HELIX-HARNESS",
+        "pr": 2642,
+        "base_sha": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+        "content_sha": "330272a4231c092ff8c456e5dc47f447175bc95f",
+        "author": "codex",
+        "reviewer": "claude",
+        "purpose": "指摘修正後のexact base/HEAD独立review",
+        "scope": [
+          "最新main d27d6f67dcb195f05178faf9bc6597738667d4be（044反映）へ接続。parent043の追加suffixは接続前とbyte一致、旧decision・追補・bundle・監査は変更なし。main prefixが変わった六本文の全bytes/SHAを新base/HEADで再照合し、固定L2/L11・PO採択・旧sourceを起点にOpus/Fableの条件1・2を確認してください。旧承認を新六本文へ継承しません。その後、新しい判断追補と条件3へ進めます。接続監査は docs/governance/audits/requirements-stage/harness-stage3-parent043-main-connection-2026-10-07-d27d6f67.json とmd。既承認044review01監査の末尾空白3行だけはmain/承認HEADと同一20176byteを確認し不変保持、それ以外の追加差分checkはPASS。fixture未実行。"
+        ],
+        "route": "vscode_gui_mailbox",
+        "references": [
+          {
+            "path": "AGENTS.md",
+            "kind": "project_rule",
+            "sha256": "386d30378d49b96c055d237ccaa88ed02f3e43359ccfe006e4fd9c96bf5a595c"
+          },
+          {
+            "path": "CLAUDE.md",
+            "kind": "project_context",
+            "sha256": "910635d193d29146e145b1543b8f1398e2b42bdf2bea412d57eddf88874f8d74"
+          },
+          {
+            "path": "docs/governance/new-generation-start-here.md",
+            "kind": "work_entry",
+            "sha256": "864274542beb009f331ebd7590a108c7c19cfde066c8552eba82fe1c3004b01f"
+          },
+          {
+            "path": "docs/governance/github-upstream-operating-model.md",
+            "kind": "operation_contract",
+            "sha256": "eed2b774bb78545ac53c7d55f3ae3ab4e9c4f421b4eaf3ac3bcdbcdd869dd27b"
+          },
+          {
+            "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+            "kind": "decision_record",
+            "sha256": "b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2"
+          },
+          {
+            "path": "docs/governance/decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md",
+            "kind": "decision_record",
+            "sha256": "899cc2affe05ae0c72fa873fe1c5dfe9f6bbe3a0e77089ef2e087ed63a4765cf"
+          },
+          {
+            "path": "docs/helix-os/L1-planning/system-intent.md",
+            "kind": "upstream_reference",
+            "sha256": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e"
+          },
+          {
+            "path": "docs/governance/candidates/legacy-rule-derived-requirements.md",
+            "kind": "candidate_reference_only",
+            "sha256": "f647bbbcbe21ef775186760086decac511c6a7845f7575952eb7eb551dd55101"
+          },
+          {
+            "path": "scaffold/governance/index.md",
+            "kind": "scaffold_reference_only",
+            "sha256": "df813986485eab51022fbb472605b7bf1948c18d5b367881271d481fd6e4f818"
+          }
+        ],
+        "payload_sha256": "f98807aed3a52f7369e73d54379a8416491c0fc5cc85e871a6a2e8643b751312"
+      },
+      "response": {
+        "schema": "scaffold-review-response.v1",
+        "evidence_kind": "scaffold",
+        "authority_effect": "none",
+        "request_id": "RH-PR2642-HARNESS-STAGE3-PARENT043-12",
+        "request_payload_sha256": "f98807aed3a52f7369e73d54379a8416491c0fc5cc85e871a6a2e8643b751312",
+        "base_sha": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+        "content_sha": "330272a4231c092ff8c456e5dc47f447175bc95f",
+        "reviewer": "claude",
+        "result": "no_findings",
+        "findings": [],
+        "unreviewed": []
+      }
+    },
+    "digest": "c9cce93178c444e0b93fb25aae456f0f13dabe96a8b29aca01e81bea29eaa155",
+    "created": 1791342763.8288555,
+    "expires": 1791346363.8288555,
+    "status": "claimed",
+    "claim": {
+      "session": "01a10157-79ad-72f3-b547-8aeb1034aec4",
+      "at": 1791342764.4392853,
+      "nonce": "9748bd9475be4057ba56a882dca63b83"
+    },
+    "ack": null
+  },
+  "root_actual_source_pin_checks": [
+    {
+      "path": "docs/governance/decisions/helix-harness-stage3-parent043-l3-l10-po-decision-2026-10-07.md",
+      "revision": "330272a4231c092ff8c456e5dc47f447175bc95f",
+      "bytes": 16646,
+      "sha256": "b776920254d3269f40f1412b39be9e76ea00f7f80b2dcdbfbc42977b3213f2d6"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-stage3-parent043-l3-l10-po-decision-2026-10-07.md",
+      "revision": "330272a4231c092ff8c456e5dc47f447175bc95f",
+      "bytes": 16646,
+      "sha256": "b776920254d3269f40f1412b39be9e76ea00f7f80b2dcdbfbc42977b3213f2d6"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/harness043-review11-delegated-decision-evidence-2026-10-07-97f24eeaa.json",
+      "revision": "330272a4231c092ff8c456e5dc47f447175bc95f",
+      "bytes": 368897,
+      "sha256": "ac58029eb6885b09597c1971edb5ed896284379736a1f7756c6bea149568bf4b"
+    },
+    {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+      "bytes": 4046,
+      "sha256": "1a37ae8ff8497f66e7ca176494e1b3c7b864d413d3d7f2b059f074fe9dcdd3e1"
+    },
+    {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+      "bytes": 669,
+      "sha256": "3e70c29706991c761369571523dfcf0ffa3be62eb0bc5d574a1b509c8a7cc264"
+    },
+    {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+      "bytes": 2649,
+      "sha256": "e3fa45efe7445beb17dc33c9f325689f4baa209275636e0e7c23c0dd12bb09ac"
+    },
+    {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+      "bytes": 3788,
+      "sha256": "2c62f3632f778775ca971cf5221e30ccffe24a08b2c7b10ad3e3d3540a3ed54e"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "bytes": 5450,
+      "sha256": "4817136b4aca117e056abd02e0d3a138beec59b6a3a3989ace216f062dd2a048"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "bytes": 5449,
+      "sha256": "da678d9181ebe76ae93084c27744d253c617ebe03b709d79f55b79d2abbc6666"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "bytes": 3377,
+      "sha256": "6c4377e4db0f8473c22cb6185ded4d0fa5e0e2ecf731097b0f346b4d3fd04503"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "bytes": 3376,
+      "sha256": "583bfaf669729d3148e072be3ca74f1ef125997e933f6a1a94f08c732cb6f4b4"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "bytes": 254934,
+      "sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "bytes": 172806,
+      "sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+      "bytes": 492,
+      "sha256": "191b3b22d5985f085548d44a736590502d5f424511d71262d1b0fe07871663c2"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+      "bytes": 56091,
+      "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+      "bytes": 2312,
+      "sha256": "057a8508576084d4fc805a4434a71be99cf391074bc15f866628b237d59c57b1"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+      "bytes": 4857919,
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "path": "docs/governance/legacy-asset-reuse-control.md",
+      "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+      "bytes": 7991,
+      "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582"
+    },
+    {
+      "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+      "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+      "bytes": 6210,
+      "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220"
+    },
+    {
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+      "bytes": 53710,
+      "sha256": "eed2b774bb78545ac53c7d55f3ae3ab4e9c4f421b4eaf3ac3bcdbcdd869dd27b"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "revision": "330272a4231c092ff8c456e5dc47f447175bc95f",
+      "bytes": 15154,
+      "sha256": "8810721feb7845094f41eed08a2b7abff05872784d70bc021d1996018a984d46"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+      "bytes": 14921,
+      "sha256": "8083bfe67737eaa86077dacf56736a8a7cc624b0be7f405216dc57f46925fe68"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "revision": "97f24eeaa23eca5b14cb37428f229bab77a1f84a",
+      "bytes": 10848,
+      "sha256": "8448b02131f019774d1bc4a7baa0b782912824c4a50f824e18cb52d08cd34a8a"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "revision": "78e7c026c6633730868347040bd0393f4b5d2fb5",
+      "bytes": 10615,
+      "sha256": "d645bd8ed00c536e355d44162c1b0c552a2bc1ca296597783d36395e275e35a1"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "revision": "330272a4231c092ff8c456e5dc47f447175bc95f",
+      "bytes": 974688,
+      "sha256": "5ea03922bd74e81c29c8f12d37137ee93ef31104c94cafa3ea21389eba1c698e"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+      "bytes": 942032,
+      "sha256": "977f33a7a42851828330aa4040b70c319009991be9e99d2dcf361344b278b1f8"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "revision": "97f24eeaa23eca5b14cb37428f229bab77a1f84a",
+      "bytes": 892783,
+      "sha256": "7112b55a60c133fbc693c3773ca08265244a124158acf2968ead407e70ca6a94"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "revision": "78e7c026c6633730868347040bd0393f4b5d2fb5",
+      "bytes": 860127,
+      "sha256": "0d46ef7417c625a826bf64870a2d228b0ad7b527b7b039001b339357d97f5d98"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "revision": "330272a4231c092ff8c456e5dc47f447175bc95f",
+      "bytes": 43676,
+      "sha256": "7de02090d036eb8acbc2ba5ab9e18380b070932c065087812dc7e0ec3a731f08"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+      "bytes": 43284,
+      "sha256": "0bab8269e20b898451a58262c3cb646f4aa0a8d51851e798e44304b763e2f29e"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "revision": "97f24eeaa23eca5b14cb37428f229bab77a1f84a",
+      "bytes": 39540,
+      "sha256": "7672898a50494da1c644141ff2cb8de67425b5119665c1a652256997ff4fad7c"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "revision": "78e7c026c6633730868347040bd0393f4b5d2fb5",
+      "bytes": 39148,
+      "sha256": "022e14272f92cf62e9f9782c72ffd077304bf36f1e4ecf4c8a69a137fbd7b2bf"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "revision": "330272a4231c092ff8c456e5dc47f447175bc95f",
+      "bytes": 18645,
+      "sha256": "ebe592adb748d9368811bb42a23810d2b64e15e3a6b0932f9077700af4bf6228"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+      "bytes": 18362,
+      "sha256": "72a10ec1cfb6bbe74f3d07316981ffcf8489f68ab52dae89de2b6faea86354a1"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "revision": "97f24eeaa23eca5b14cb37428f229bab77a1f84a",
+      "bytes": 15074,
+      "sha256": "cb1df4e0cf46469ef84498fec8f2734100e8adec53ab7969db1fec3b65be83c9"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "revision": "78e7c026c6633730868347040bd0393f4b5d2fb5",
+      "bytes": 14791,
+      "sha256": "7ea9e004f813e3e7cdd94f7d612753d6224c4ffa1fde7bba775959e303d8ef65"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "revision": "330272a4231c092ff8c456e5dc47f447175bc95f",
+      "bytes": 249459,
+      "sha256": "f3f7e2633817efb201937c06e73dceae71d15c5493e3328fa6c8159c9c5174fc"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+      "bytes": 241790,
+      "sha256": "833cbd47e3e41a2ee7c03a53d1bd41a31ed0b321084a734624cdf6839251e3c7"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "revision": "97f24eeaa23eca5b14cb37428f229bab77a1f84a",
+      "bytes": 240625,
+      "sha256": "37a410a469923cd51d108240b50f8dae7422442f484996c34912d87d6b20616f"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "revision": "78e7c026c6633730868347040bd0393f4b5d2fb5",
+      "bytes": 232956,
+      "sha256": "702bb566bfa0e814868a36ac97b2e058e99b8353a2ba901af971e2a0bfd70820"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "revision": "330272a4231c092ff8c456e5dc47f447175bc95f",
+      "bytes": 49324,
+      "sha256": "927ad86a4c37ff6cb0f971f761c62bef34486a15cf746d6ec7efa3c7348dfd68"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+      "bytes": 48890,
+      "sha256": "e699ca1eb75f24fb8ca22b882f4bc9a8f3807b9c2873b321095fdfd347924ed6"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "revision": "97f24eeaa23eca5b14cb37428f229bab77a1f84a",
+      "bytes": 45828,
+      "sha256": "20bcb16b5ea67eb57a2902512881565d7cb97765140550ed82bf7c32f2288bae"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "revision": "78e7c026c6633730868347040bd0393f4b5d2fb5",
+      "bytes": 45394,
+      "sha256": "b2694e221a5f0342fc4ef212ec453e2d934b4123d959891c0c9b704d63ca3de7"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "bytes": 5450,
+      "sha256": "4817136b4aca117e056abd02e0d3a138beec59b6a3a3989ace216f062dd2a048"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "bytes": 5449,
+      "sha256": "da678d9181ebe76ae93084c27744d253c617ebe03b709d79f55b79d2abbc6666"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "bytes": 3377,
+      "sha256": "6c4377e4db0f8473c22cb6185ded4d0fa5e0e2ecf731097b0f346b4d3fd04503"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "bytes": 3376,
+      "sha256": "583bfaf669729d3148e072be3ca74f1ef125997e933f6a1a94f08c732cb6f4b4"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "bytes": 254934,
+      "sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "bytes": 172806,
+      "sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5"
+    },
+    {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+      "bytes": 669,
+      "sha256": "3e70c29706991c761369571523dfcf0ffa3be62eb0bc5d574a1b509c8a7cc264"
+    },
+    {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+      "bytes": 2649,
+      "sha256": "e3fa45efe7445beb17dc33c9f325689f4baa209275636e0e7c23c0dd12bb09ac"
+    },
+    {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+      "bytes": 3788,
+      "sha256": "2c62f3632f778775ca971cf5221e30ccffe24a08b2c7b10ad3e3d3540a3ed54e"
+    },
+    {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+      "bytes": 4046,
+      "sha256": "1a37ae8ff8497f66e7ca176494e1b3c7b864d413d3d7f2b059f074fe9dcdd3e1"
+    },
+    {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+      "bytes": 3370048,
+      "sha256": "d24a982af1c468bb32c9822777a3234d3ce065ff63b89c944b7b04447610c99b"
+    },
+    {
+      "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+      "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+      "bytes": 6210,
+      "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220"
+    },
+    {
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+      "bytes": 53710,
+      "sha256": "eed2b774bb78545ac53c7d55f3ae3ab4e9c4f421b4eaf3ac3bcdbcdd869dd27b"
+    },
+    {
+      "path": "docs/governance/legacy-asset-reuse-control.md",
+      "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+      "bytes": 7991,
+      "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+      "bytes": 492,
+      "sha256": "191b3b22d5985f085548d44a736590502d5f424511d71262d1b0fe07871663c2"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+      "bytes": 56091,
+      "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+      "bytes": 2312,
+      "sha256": "057a8508576084d4fc805a4434a71be99cf391074bc15f866628b237d59c57b1"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "revision": "d27d6f67dcb195f05178faf9bc6597738667d4be",
+      "bytes": 4857919,
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-stage3-parent043-l3-l10-po-decision-2026-10-07.md",
+      "revision": "330272a4231c092ff8c456e5dc47f447175bc95f",
+      "bytes": 16646,
+      "sha256": "b776920254d3269f40f1412b39be9e76ea00f7f80b2dcdbfbc42977b3213f2d6"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/harness043-review11-delegated-decision-evidence-2026-10-07-97f24eeaa.json",
+      "revision": "330272a4231c092ff8c456e5dc47f447175bc95f",
+      "bytes": 368897,
+      "sha256": "ac58029eb6885b09597c1971edb5ed896284379736a1f7756c6bea149568bf4b"
+    }
+  ],
+  "root_verification": "actual six full blobs, d27 main prefixes and old043 suffixes, fixed physical and PO-registered spans, PO/register, legacy/policy, original decision/bundle and tracked connection checked; formal raw and no-findings mailbox checked; inspect/ACK completed separately"
+}
