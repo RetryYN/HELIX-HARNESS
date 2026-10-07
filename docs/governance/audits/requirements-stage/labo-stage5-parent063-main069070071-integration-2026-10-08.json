@@ -1,0 +1,43 @@
+{
+  "authority_effect": "none",
+  "base": "ce70628e53ff5f78c1321accf57429c740ea585d",
+  "prior_repair_head": "4ea253ff07e4b019057cd8d17a677b936dfee0ff",
+  "parent063_added_deleted_lines_identical": true,
+  "six_body_pins": [
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "bytes": 32997,
+      "sha256": "b201d0b7ebf8e3289bb914a354a3ee749f35b626852d2ab572c1b454ebcaca55"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "bytes": 357249,
+      "sha256": "f9aa4d2fd0029e982bfa47050b6659b8caac84eabd352f9b2337569092a27ec9"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "bytes": 92697,
+      "sha256": "2003cfac5a9703f523158548651fd552580f1afa488ffb5498cc1d32d0be6cc0"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "bytes": 31875,
+      "sha256": "64f4c266c08a09bcea0c82a4dc22d30ad834ad936bfe73200f659a6befde1c4f"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "bytes": 699004,
+      "sha256": "23e4c65d2c4ff60daaca623ad364859a6dd9836e6e4fde494a7c922b865f0c2c"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "bytes": 83342,
+      "sha256": "ae8e80356a120a07c733a0aac8822c4937de414faee6fc221d0323cbe8f777e9"
+    }
+  ],
+  "limits": [
+    "fixture未実行",
+    "新本文独立review前",
+    "274意味検収未完"
+  ]
+}
