@@ -1,0 +1,466 @@
+{
+  "record_type": "immutable_delegated_l3_l10_decision_evidence",
+  "authority_effect": "none_pending_condition3_and_main_admission",
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-harness-stage2b-remainder-l3-l10-delegated-decision-2026-10-08.md",
+    "source_revision": null,
+    "reviewed_content_head": "099a3aa6a8911bb2726e05c523a81767a1412044",
+    "approved_content_revision": "099a3aa6a8911bb2726e05c523a81767a1412044",
+    "review_base": "00298f79229198965d889ebf0b6a1bedc4d03648",
+    "bytes": 7747,
+    "sha256": "15955337b9d7cd5bfe6054b4430a13e8c06cf4ef9698cbc47a5de7b209310948"
+  },
+  "scope": {
+    "mechanism": "HELIX-HARNESS",
+    "stage": "2b",
+    "parents": [
+      "HARNESS-L2-017",
+      "HARNESS-L2-018",
+      "HARNESS-L2-019",
+      "HARNESS-L2-020",
+      "HARNESS-L2-024"
+    ],
+    "version_target": "1.0"
+  },
+  "explicit_decision": "PO（委任：Opus・Fable一致）として当該revisionの対象5親L3/L10を承認する。効力は条件3独立照合とmain admission後。",
+  "condition_status": {
+    "condition1_opus_no_findings": "satisfied; formal review03 Major 0 with reviewer original check",
+    "condition2_fable": "satisfied; conclusion literal 承認してよい",
+    "same_reviewed_body_revision": "099a3aa6a8911bb2726e05c523a81767a1412044",
+    "condition3": "pending independent exact-body comparison after decision record commit and before main admission",
+    "po_post_confirmation": "not_recorded",
+    "l10_execution": "not_run"
+  },
+  "formal_review03": {
+    "comment_id": 6042879381,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2669#issuecomment-6042879381",
+    "reviewer": "Claude review_merge / Opus 5.5; Fable advisor conclusion included in body",
+    "created_at": "2026-10-07T17:10:29Z",
+    "review_head": "099a3aa6a8911bb2726e05c523a81767a1412044",
+    "merge_base": "00298f79229198965d889ebf0b6a1bedc4d03648",
+    "raw_body_utf8_bytes": 7309,
+    "raw_body_sha256": "0d6495709318d9cf31f90ad0d33a1ea2be6cb1026888944a8f345ec55793755f",
+    "raw_body": "## review03（HEAD 099a3aa6a8911bb2726e05c523a81767a1412044、merge-base 00298f79229198965d889ebf0b6a1bedc4d03648）\n\nreviewer：Claude（lane `review_merge`、**Opus 5.5**）\n- 条件1：Opus 5.5のブラインド照合と、reviewerの原文確認で判定した。\n- 条件2：Fable advisor（claude-fable-5-1）の見解である。\n\n照合の範囲：\n- HARNESS Stage 2b残件（017/018/019/020/024）の、6本文の節全体。\n- 固定親 `f6dad2a33`：L2の403–437と499–525、L11の212–215と235–260。\n- 前回 `9ee03bd90` からの本文差分：FR:439、FV:552・606–612だけ（`git diff 9ee03bd90 HEAD -- docs/helix-harness`）。\n\n### 静的確認\n- scfctl validate 147/0、stale 0、residuals 0\n- govcheck ok\n- `git diff --check` clean\n- `git merge-tree`：最新main `00298f792` と衝突なし\n\n### review02 M-aへの対応\n**M-aは解消した。** 判断packetの要素を、由来で次の2つに分けた。\n- **入力をそのまま保つ要素**：原文と判断owner。根拠はL2:505（指示・参照根拠、actor/owner）、L2:514、L11:247。\n- **engineが入力根拠から形成して出力する要素**：選択肢・推奨案・影響候補。根拠はL2:507の出力契約と、L2:512（判断待ちへ送る主体はengine）。\n\nこの区別は、AC-024-03（FR:439）とR074（FV:552）で一致している。\n- R096とR100は、入力の原文・判断ownerの単独欠落である。\n- R097〜R099は、形成に必要な既存の入力根拠を一件だけ欠かすCASEで、新しいsourceを足していない。\n- どのCASEも「合意待ち候補にしない」「推定・捏造しない」「人の専決値を補完しない」「合意・freeze・採択・操作許可を生成しない」を保っている。戻し先は、L2:521の区分内のHARNESS要求ownerである。\n\nID：CASEは017=20、018=58、019=24、020=23、024=100件で、重複も欠番もない。NFRV:94の分母R100とも一致している。旧文の拒否・保留・補完禁止も残っている（類型5に該当なし）。\n\n### Major\nなし。前回までに返したMajor（review01 M1、review02 M-a）は、すべて解消した。\n\n### Minor（返却しない。誤った完了は通らない。次に触るときに直せばよい）\n- m1：R098（FV:608）とR099（FV:609）は、入力側で「決める選択肢」「推奨案」を「正常値に固定」と書いている。M-aの区別に従えば、「形成根拠を正常値に固定」と書くほうが正確である。\n- m2：R097（FV:607）の「選択肢を区別するために必要な根拠一件」が、L2:505の入力項目のどれに当たるかが示されていない（Fableも同じ指摘）。\n- m3：R098は、不確実性根拠の欠落という点でR003と同じ変異である。R098のoracleには、順位がどうなるか（選択未確定かどうか）が書かれていない。R003・R002とは入力の基準とoracleで区別できるが、「別fixture」の明記はない（Fableも同じ指摘）。\n- m4：FV:612は旧RDJ-FR-003/AC-003を「選択肢形成」の根拠に挙げているが、旧sourceは次の質問の選択とimpact式を定めるだけで、対応づけが広い。\n- m5：R074のoracleは、形成された要素の存在とtraceを照合するだけで、期待値は固定していない。L2が形成方式を固定していないためである。\n- m6：R057とR086は、判断ownerを含まない4要素の判断待ちのままである（既存）。\n- m7（Fable）：推奨案の形成根拠を不確実性に限った理由が、固定親から導かれていない（設計上の選択）。\n\n### Info（監査記録の誤り。判断記録で直すこと）\nOpusが計算し直したところ、監査JSONに2件の食い違いがあった。reviewerも実bytesで確かめた。\n- `harness-stage2b-review02-ma-repair-2026-10-08.json` の`six_document_sha256_after`にあるFV値 `66c14b80…` は、実値 `8f6b66dd…` と合わない。この点は、pin-correction JSONが訂正済みである。\n- `harness-stage2b-review02-ma-pin-correction-2026-10-08.json` の`prior_audit.sha256`は `6b0f4fe2…`（「unchanged: true」）だが、対象のrepair JSONの実際のSHA-256は `5978c522b8a9b68e2e07e8916a537d37fef3aa5c79507b047b795e31d16bb3bb` である。\n\nどちらも本文の結論には影響しない。判断記録とpin JSONでは、下の表の6本文SHAと実際のSHAで固定すること。既存の監査記録は書き換えない。\n\n### Fableの見解（同じHEADの6本文と固定親をFable自身が読んだもの）\n- 結論行は原文のまま：「承認してよい」\n- Major：なし。M-aへの修正は固定親の意味の範囲内であり、前の版でL2の担当を入力側へ移していた問題を解消している、としている。\n- Minor：上のm2・m3・m6・m7（返す必要なし）。\n- 照合した対象revision：`099a3aa6a`。\n- 6本文のSHA-256：Fableが自分で計算した値のうち、BR・FR・NFR・FV・NFRVの5件は下の表と一致した。BVは報告での転記が崩れていたので、reviewerが計算し直した値を下の表に示す。BVはcf3cc158b以降変わっていない。Fableも、自分の計算値がpin-correction JSONの6件と一致したと述べている。\n- 未確認範囲：017–020のCASE本文の逐語再読（IDと範囲の確認のみ）、BVの対応行本文、監査JSONの補助hash、FR表のsemantic digest列。\n\n### 未確認範囲の扱い\nOpus・Fableが残した点は、次のとおり閉じた。\n- **017〜020の逐語再読、BVの対応行**：本文はreview02（`9ee03bd90`）から変わっていない。review02でOpusが5親の節全体を照合し、M-a以外はMajor 0だった。\n- **PO採択行、business/NFR側の固定親pin**：review02でOpusが計算し直し、すべて一致していた。対象のファイルは変わっていない。\n- **FR表のsemantic digest列**：算出方法が記録されていないため照合できない。raw span SHAはすべて一致している。この列は承認の根拠にしない。\n- **監査JSONの補助hash**：上のInfoのとおり。本文の承認対象ではない。\n\n### 委任条件の状態\n- **条件1（Opus `no_findings`）：成立。** Major 0。Minorは返さないと判断した。\n- **条件2（Fable）：成立。** 結論行は原文のまま「承認してよい」。\n- 条件1と2は、同じbody revision（`099a3aa6a`）でそろった。\n- **条件3は未照合。** 判断記録の作成後に、6本文が次のSHA-256から変わっていないことを照合する。\n\n| 文書 | SHA-256 |\n|---|---|\n| L3-BR | `9fb531a55c61c4836ae614cadbd850f3967119cb1f0f2eb36dad1e39ebab75e2` |\n| L3-FR | `cb58f9ff835c71d198be990a4ddbc378a10ec381c83fd3093d78eb703bf4f6a7` |\n| L3-NFR | `ee84bc87ff324eea929d266934c0debb856018aca25c0044f68b11c141c3263d` |\n| L10-BV | `864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad` |\n| L10-FV | `8f6b66dd73a715165099456095108aa459749e29079de655298474b150782741` |\n| L10-NFR | `17ee1dc8ab6786416680e496ba8fb83a714756dd8f853830afe036ddcc9b36e9` |\n\n### 未確認範囲\nなし。\n\n本commentから、承認の効力、PO確認、merge admissionは生成しない。\n"
+  },
+  "prior_opus_review02_support": {
+    "comment_id": 6042441548,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2669#issuecomment-6042441548",
+    "review_head": "9ee03bd90393a53c21b9ed2fed01de71520192d8",
+    "raw_body_utf8_bytes": 7971,
+    "raw_body_sha256": "19b50f42fd5fc509814bbd32693a970ba4fe5d990df22f5629641cca9e7cd567",
+    "raw_body": "## review02（HEAD 9ee03bd90393a53c21b9ed2fed01de71520192d8、merge-base 5b64914de7357853b267d297e445cae18e204304）\n\nreviewer：Claude（lane `review_merge`。Opus 5.5の独立照合と、Fable 5.1の見解）\n\n照合の範囲：\n- 6本文のStage 2b残件節の全体（FR 361–456、FV 372–619、BR、BV、NFRG、NFRVの対応行）\n- 固定親 `f6dad2a33`：L2の403–437と499–525、L11の212–215と235–260\n- PO判断記録の46–49行と53行\n- 前回 `cf3cc158b` からの本文差分：FR:439、FV:552・606–612、NFRV:94だけ\n\n### 結論：Major 1。委任の条件1は成立しない\n\n**review01 M1の扱い**：原文・選択肢・推奨案・影響候補・判断ownerの5要素について、要素ごとの正常（R074）と単独欠落（R096〜R100）がそろった。戻し先（HARNESS要求owner）、ID連番、NFRV:94の分母、FV:612のtraceもそろっている。判断ownerを5要素目に入れたことは、L2:514「未ownerの必須事項は形成資料不足」とL11:247の正常例に根拠があり、L2の意味は変えていない。旧文の拒否・保留・補完禁止もすべて残っている（類型5に該当なし）。\n\nただし、次のM-aが残る。\n\n**M-a（類型3・4）推奨案・影響候補・選択肢を「入力をそのまま保つもの」として扱っている**\n- 固定親の定め：\n  - L2:505の入力に、推奨案・影響候補を含む判断packetはない。\n  - L2:507では、残る必須人間判断の「原文、決める選択肢、推奨案、影響候補」はengineの出力である。\n  - L2:512は「人間専決値はエンジンが補完せず、原文・選択肢・推奨・影響候補を持つ判断待ちへ送る」とし、L11:247の正常例でもこれらを提示する主体はengineである。\n- 現行の照合：\n  - AC-024-03（FR:439）は、5要素が「入力と同じidentity/value…のまま保たれる場合に限り」候補として提示するとしている。\n  - R074（FV:552）は、5要素すべてを入力として固定している。\n  - R098（推奨案）とR099（影響候補）は、「入力のpacketからその要素を欠落させる」と形成資料不足になる、としている。\n- 起きうること：\n  - engineが推奨案・影響候補・選択肢を形成する義務を観測していない。\n  - 根拠から推奨案・影響候補を正しく形成して提示するengineが、R098・R099で不合格になる。L3がL2の担当（engineの出力）を入力側の義務へ移している。\n- **review側の誤りの記録**：この形は、review01でreviewerが求めた変更（「出力packetの各要素が入力のidentityのまま保たれていることを照合する」）から生じた。要素の由来を分けずに書いたreviewerの誤りであり、作成側の修正は依頼文に忠実だった。\n- 求める変更（今の5要素の完備・単独欠落の構成は残し、要素の由来を分ける）：\n  - **入力をそのまま保つ要素**：原文と判断owner。R074の値・identity一致と、R096（原文）・R100（判断owner）の入力欠落CASEはそのまま残す。\n  - **engineが形成して出力する要素**：決める選択肢、推奨案、影響候補。\n    - R074には、これらが出力packetにあり、入力の根拠（source identity/revision/scope）に結びついていることを照合する形で足す。人が決める値そのものは補完しないことも明記する。\n    - R097（選択肢）・R098（推奨案）・R099（影響候補）は、入力のpacketからその要素を欠かす形をやめる。代わりに、その要素の形成に必要な根拠だけを欠かした入力にする。期待は、その要素を推定・捏造せず、形成資料不足として示し、「人の確認・合意待ちの候補」として提示しないこと。戻し先はHARNESS要求owner。\n  - AC-024-03の文を、上の由来の区別に合わせて直す。人間専決値を補完しないことは、そのまま残す。\n\n### Fableの見解（同じHEADの6本文と固定親をFable自身が読んだもの）\n- 結論行は原文のまま：「承認してよい」\n- Major：なし。判断ownerを5要素目にして、欠けたらHARNESS要求ownerへ返す扱いは、L2:514・L11:247の範囲内としている。\n- Minor：\n  - FR:439の「固定L2-024:507の…判断owner」は位置の示し方が不正確である。507は4要素だけで、判断ownerの根拠はL2:514とL11:247。\n  - R096〜R100に共通の「欠けた人間判断値またはownerを補完せず」は、R098（推奨案はengineの生成物）には当てはまらない。ただし害はない。\n  - 参考：PR本文の「本文変更なし」は、今の内容と食い違っている。\n- 照合した対象revision：`9ee03bd90`。6本文のSHA-256はFableが自分で計算し、下の値と一致した。\n- 未確認範囲：Stage 2bの全245 CASE行の逐語再読、監査JSON、PO採択行、business/NFR側の固定親pin。\n\n### 判断の扱い\n- OpusはM-aを挙げ、Fableは「承認してよい」とした。見解は一致していない。\n- Fable自身のMinor 2も、推奨案がengineの生成物であることを指摘しており、M-aと同じ点を見ている。\n- 運用モデル「L3／L10承認の委任」に従い、OpusがM-aを固定親L2:505／507／512とL11:247の原文で確かめた。妥当なので、作成側へfindingとして返す。\n- 修正で本文revisionが変わったら、新しいrevisionで条件1と2をやり直す。\n\n### Opusの残余（Minor以下。返さない。M-aと一緒に直してよい）\n- FR:439の5要素の根拠は、「L2:507／514、L11:247」と併記するのが正確である（Fableと同じ指摘）。\n- FV:612は照合先を旧RDJ-FR-003／AC-003としているが、owner／re-entryを含むのはRDJ-FR-007／AC-007である。\n- R057とR086はownerを含まない4要素の判断待ちを返しており、AC-03の5要素と書き方がそろっていない。\n- AC-03の「value／identityを保つ」には、値の改変だけを変える単独反例がない（R074の正しい値の照合でだけ検出する）。\n- 017-R012（再現性）は正常CASEだけで、digest不一致の単独反例がない（既存）。\n- NFR-C-024-01の候補値に、packet要素の欠落件数がない。\n- FR:373の017の範囲は403–410、reaudit JSONは403–409（空行1行の差。表のSHAは403–410と一致）。\n\n### pin照合（Opusが自分で計算した）\n次はすべて一致した。review01の未確認範囲は、ここで解消した。\n- 固定L2の全文 `aed75cb4…`、L11の全文 `09b29631…`\n- L2の5親span、507・514行\n- L11の212–215と240–260のspan、212〜215行と247行\n- PO判断記録の全文 `c7a6d39c…` と46–49・53行\n- 旧RDJ-FR／AC の全文とspan、FR:453の他の旧sourceの全文とspan\n\n### 静的検査（exact HEAD）\n- `scfctl validate` 147/0、`stale=0`、`residuals=0`\n- `govcheck ok atoms=7622`\n- `git diff --check` clean、merge-treeでconflictなし\n\n### 6本文のSHA-256（HEAD 9ee03bd90）\n| 文書 | SHA-256 |\n|---|---|\n| L3-BR | `9fb531a55c61c4836ae614cadbd850f3967119cb1f0f2eb36dad1e39ebab75e2` |\n| L3-FR | `c97255103e145d88774bef297be593281ff09336161a41f7a4fceffdcd7fb3f4` |\n| L3-NFR | `ee84bc87ff324eea929d266934c0debb856018aca25c0044f68b11c141c3263d` |\n| L10-BV | `864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad` |\n| L10-FV | `eb37f40f850147597f5a205a1c0a63e69aa843636f3d0733f8d0d9fb624c6b90` |\n| L10-NFR | `17ee1dc8ab6786416680e496ba8fb83a714756dd8f853830afe036ddcc9b36e9` |\n\n### 未確認範囲（Opus）\n- FR表のsemantic digest列（算出方法が記録されていない）\n- integration・reaudit JSONの補助hash\n\n本commentから、要求の意味、承認、PO確認、merge admissionは生成しない。\n"
+  },
+  "review_scope_resolution": {
+    "fable_unverified": [
+      "017–020 CASE本文の逐語再読（IDと範囲の確認のみ）",
+      "BVの対応行本文",
+      "監査JSON補助hash",
+      "FR表のsemantic digest列"
+    ],
+    "reviewer_opus_resolution": [
+      {
+        "scope": "017–020 CASE本文およびBV対応行",
+        "basis": "review02 Opus full-section review at 9ee03bd; review03 identifies only FR:439 and FV:552/606–612 as changed; reviewer verified relevant bytes unchanged. This does not attribute this check to Fable."
+      },
+      {
+        "scope": "BV body SHA",
+        "basis": "Fable transcription in review03 was corrupted; reviewer recomputed actual unchanged BV bytes as 864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad"
+      },
+      {
+        "scope": "semantic digest",
+        "basis": "method undocumented; excluded from approval evidence"
+      }
+    ],
+    "formal_review03_minor_1_to_7": "all retained as nonreturned; no claim that they were fixed"
+  },
+  "six_document_sha256": {
+    "docs/helix-harness/L3-requirements/business-requirements.md": {
+      "sha256_git_object": "9fb531a55c61c4836ae614cadbd850f3967119cb1f0f2eb36dad1e39ebab75e2",
+      "sha256_worktree": "9fb531a55c61c4836ae614cadbd850f3967119cb1f0f2eb36dad1e39ebab75e2",
+      "equal": true
+    },
+    "docs/helix-harness/L3-requirements/functional-requirements.md": {
+      "sha256_git_object": "cb58f9ff835c71d198be990a4ddbc378a10ec381c83fd3093d78eb703bf4f6a7",
+      "sha256_worktree": "cb58f9ff835c71d198be990a4ddbc378a10ec381c83fd3093d78eb703bf4f6a7",
+      "equal": true
+    },
+    "docs/helix-harness/L3-requirements/nfr-grade.md": {
+      "sha256_git_object": "ee84bc87ff324eea929d266934c0debb856018aca25c0044f68b11c141c3263d",
+      "sha256_worktree": "ee84bc87ff324eea929d266934c0debb856018aca25c0044f68b11c141c3263d",
+      "equal": true
+    },
+    "docs/helix-harness/L10-verification/business-verification.md": {
+      "sha256_git_object": "864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad",
+      "sha256_worktree": "864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad",
+      "equal": true
+    },
+    "docs/helix-harness/L10-verification/functional-verification.md": {
+      "sha256_git_object": "8f6b66dd73a715165099456095108aa459749e29079de655298474b150782741",
+      "sha256_worktree": "8f6b66dd73a715165099456095108aa459749e29079de655298474b150782741",
+      "equal": true
+    },
+    "docs/helix-harness/L10-verification/nfr-verification.md": {
+      "sha256_git_object": "17ee1dc8ab6786416680e496ba8fb83a714756dd8f853830afe036ddcc9b36e9",
+      "sha256_worktree": "17ee1dc8ab6786416680e496ba8fb83a714756dd8f853830afe036ddcc9b36e9",
+      "equal": true
+    }
+  },
+  "fixed_parent_source_pins": {
+    "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "L2": {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "full_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "parent_lines": {
+        "017": "403-409",
+        "018": "411-417",
+        "019": "419-425",
+        "020": "427-436",
+        "024": "499-525"
+      }
+    },
+    "L11": {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "full_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "parent_lines": {
+        "017": "212",
+        "018": "213",
+        "019": "214",
+        "020": "215",
+        "024": "235-260"
+      }
+    },
+    "parent_span_sha256_with_lf": [
+      {
+        "parent": "017",
+        "L2": {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "lines": "403-409",
+          "sha256_with_lf": "623b91b59a5cf09055e8604c3c84aebfe9428b86f950a0bcb2a9c1605d710d17",
+          "bytes": 1435
+        },
+        "L11": {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "lines": "212",
+          "sha256_with_lf": "dd093988f8f43e946d56f3837c6fac2753b2d40f1a8f5bfcfb8a494d43dd4f5d",
+          "bytes": 673
+        }
+      },
+      {
+        "parent": "018",
+        "L2": {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "lines": "411-417",
+          "sha256_with_lf": "3497158cd4b39bb9059c20f9cfe2c0a647181e3dd566ff0d247ad5f4d5fc4671",
+          "bytes": 1284
+        },
+        "L11": {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "lines": "213",
+          "sha256_with_lf": "95a19c6b40416224eb1ba001d975ef1a13a49f20e106b2ac1c759d5268ba8a7c",
+          "bytes": 398
+        }
+      },
+      {
+        "parent": "019",
+        "L2": {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "lines": "419-425",
+          "sha256_with_lf": "7bd3d180259af1febe50e013eea5aa5609d5af3c28ce89191c4670f3e8c88000",
+          "bytes": 909
+        },
+        "L11": {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "lines": "214",
+          "sha256_with_lf": "272a6649b26e16d38a8679a36832e3aa621a46373b6beb73c9847969d5a1af89",
+          "bytes": 352
+        }
+      },
+      {
+        "parent": "020",
+        "L2": {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "lines": "427-436",
+          "sha256_with_lf": "d68ecbe2512b45f6f4c09cf395bd05b164a8243997f954e5459d42b29c69de7d",
+          "bytes": 1453
+        },
+        "L11": {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "lines": "215",
+          "sha256_with_lf": "4f46adcdb07a0f5a2cb2c0ac54e39a6a6856b9e908570e3826dc4ddaa9204a3d",
+          "bytes": 609
+        }
+      },
+      {
+        "parent": "024",
+        "L2": {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "lines": "499-525",
+          "sha256_with_lf": "ec4ece6e411152941c16cd8dc25a1c43613dff5e6b5c3051ef675c66c8b9b2cc",
+          "bytes": 8583
+        },
+        "L11": {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "lines": "235-260",
+          "sha256_with_lf": "638e6ddf383c40fab1d17c57ccec6fafbb56aa724216c547863da2f65d1e49cc",
+          "bytes": 6033
+        }
+      }
+    ],
+    "source_inventory_path": "docs/governance/audits/requirements-stage/harness-stage2b-remainder-misattribution-reaudit-2026-10-08-f14ac303.json",
+    "source_inventory_sha256": "13a83d6023f532ea25fb3b313018a1c612307421bc44db2405b9b185ae7c24c0"
+  },
+  "po_adoption": {
+    "roster_source": {
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "lines": "46-49,53",
+      "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+    },
+    "historical_records": {
+      "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md": {
+        "bytes": 17865,
+        "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+        "historical_immutable": true
+      },
+      "docs/governance/decisions/helix-harness-stage2b-remainder-l3-l10-po-decision-2026-10-06.md": {
+        "bytes": 3757,
+        "sha256": "55056cf356964eefcd69cbad3a3b24da87943465b606d52589dde4576f6f6438",
+        "historical_immutable": true
+      },
+      "docs/governance/audits/requirements-stage/harness-stage2b-remainder-delegated-decision-pin-2026-10-06.json": {
+        "bytes": 5490,
+        "sha256": "77475a2006d9ede25ecae0be5f20fe869875a8b23b3b2e487842d806d728ddd1",
+        "historical_immutable": true
+      },
+      "docs/governance/audits/requirements-stage/harness-stage2b-remainder-root-review08-acceptance-2026-10-06.json": {
+        "bytes": 181271,
+        "sha256": "c97f82d2d0d301bf0bf572878354a359eb00091f772de45bf19e626a5f186928",
+        "historical_immutable": true
+      }
+    },
+    "adopted_parent_set": [
+      "017",
+      "018",
+      "019",
+      "020",
+      "024"
+    ]
+  },
+  "legacy_source_disposition": {
+    "source": "existing current-revision inventory; no old decision inheritance",
+    "inventory_path": "docs/governance/audits/requirements-stage/harness-stage2b-remainder-misattribution-reaudit-2026-10-08-f14ac303.json",
+    "inventory_sha256": "13a83d6023f532ea25fb3b313018a1c612307421bc44db2405b9b185ae7c24c0",
+    "parent_source_dispositions": [
+      {
+        "parent": "017",
+        "origin": "reuse/rederive/replace",
+        "sources": [
+          {
+            "asset": "LEGACY-ASSET-A2F6A697D7FFFD490B57",
+            "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md",
+            "locator": "82-100,123-131",
+            "sha256": "336d361ec89c36ca377113aca2f08b6b510cd0127ddbba191d311cec4990c89c",
+            "relevant_span_sha256": [
+              "e02b17fc5f52ea6c5b26d37ed65f52520153ac25ff40ebc697a27c210c308f6c",
+              "008e6a506cdca651baec2484f34d2ac964ed9949f4d5355e9afc190fc53c7f88"
+            ]
+          },
+          {
+            "asset": "LEGACY-ASSET-35C7D2CCFBDA7AAD304D",
+            "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/release-module-bundle-composition-acceptance.md",
+            "locator": "22-42",
+            "sha256": "71600a710a31b47c1db3434d68fd6135366058f1c591df489a57a51732cd423b",
+            "relevant_span_sha256": [
+              "dffeae81102d651da3deac3ce8f1f3e05c6184fa1b0f80e6cb2ded558d3a24a8"
+            ]
+          }
+        ],
+        "disposition": "artifact reproducibility / rollback observation shape re-derived; old Module/Bundle schema, fixed initial set, SemVer/channel, DevOS promotion, external release gate replaced by fixed parent."
+      },
+      {
+        "parent": "018",
+        "origin": "rederive/replace",
+        "sources": [
+          {
+            "asset": "LEGACY-ASSET-17C4BF78919578FEBB18",
+            "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+            "locator": "66-143,173-197",
+            "sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+            "relevant_span_sha256": [
+              "50d4c5e38f722eb52928f1d46b9c23a1786ce620fd323eadf0da236075954602",
+              "708296f405a8db744740d061f379b4d6a42eaa72532527c2e6fb5ee9d57675f1"
+            ]
+          },
+          {
+            "asset": "LEGACY-ASSET-F46AB11BD14F2C0469F4",
+            "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/product-lifecycle-operations-acceptance.md",
+            "locator": "22-47",
+            "sha256": "19c75a442154b4d17e645143f4adaaa23791a1043caa73178e5d75cc468b7d58",
+            "relevant_span_sha256": [
+              "9b8c3ce8ca0576117398150e5758e3dc66e5aa00dc46f0c15c221339156eee00"
+            ]
+          }
+        ],
+        "disposition": "lifecycle separation, artifact/actual-state separation, and missing observation negatives re-derived; legacy schema, staged promotion, permissions/credentials/infrastructure and fixed thresholds replaced."
+      },
+      {
+        "parent": "019",
+        "origin": "rederive/replace",
+        "sources": [
+          {
+            "asset": "LEGACY-ASSET-02D897E62EF2FA267267",
+            "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+            "locator": "78-169 (crosswalk bounded context 78-169; semantic root includes 145-150)",
+            "sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+            "relevant_span_sha256": [
+              "9a11817f29ed1c541c8259aede0b0e93df1a6f105e57b31bddfcda90a4a593dc"
+            ]
+          },
+          {
+            "asset": "LEGACY-ASSET-0B5B38F146D9538C9A36",
+            "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-improvement-loop-acceptance.md",
+            "locator": "16-43",
+            "sha256": "f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943",
+            "relevant_span_sha256": [
+              "7c229fcaadeab4ea8d4156c2ae146dbf34b47ffaf8af79c6ca2deb713e3b0c3e"
+            ]
+          },
+          {
+            "asset": "LEGACY-ASSET-68D46138F1FA40748C52",
+            "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/reverse.md",
+            "locator": "1-130",
+            "sha256": "459b0454d97a6d991be963703f20238e38f0eba6684b8035f067d54458032b83",
+            "relevant_span_sha256": [
+              "459b0454d97a6d991be963703f20238e38f0eba6684b8035f067d54458032b83"
+            ]
+          }
+        ],
+        "disposition": "partial-input/unknown preservation, input boundary and result trace re-derived. Old candidate schema, detector registry, state machine, DB projection/replay, runtime, R0-R4/routing enums and old-layer/PO gate replaced by L2-019/L11."
+      },
+      {
+        "parent": "020",
+        "origin": "near analogy only; meaning re-derived",
+        "sources": [
+          {
+            "asset": "LEGACY-ASSET-A2F6A697D7FFFD490B57",
+            "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md",
+            "locator": "123-131",
+            "sha256": "336d361ec89c36ca377113aca2f08b6b510cd0127ddbba191d311cec4990c89c",
+            "relevant_span_sha256": [
+              "008e6a506cdca651baec2484f34d2ac964ed9949f4d5355e9afc190fc53c7f88"
+            ]
+          },
+          {
+            "asset": "LEGACY-ASSET-B7E240E4CE0263FDBDF6",
+            "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L5-pillar-integration-test-design.md",
+            "locator": "20-60",
+            "sha256": "0bf20d470daba6a63b515ebd0d53509ee24c64df2c9e6bd6235e7874af23a8f5",
+            "relevant_span_sha256": [
+              "af36a201fce44f0b5210efe7306dc18ae2d562b9d9354bd5950b6da8b1d035eb"
+            ]
+          }
+        ],
+        "disposition": "legacy RLS-R-13 / L5 coverage are explicitly near analogies only, not direct handoff source; adopted coverage source atoms=0. Handoff duty re-derived from L2-020; old bundle/version graph replaced."
+      },
+      {
+        "parent": "024",
+        "origin": "rederive/replace; prototype conditional only",
+        "sources": [
+          {
+            "asset": "LEGACY-ASSET-E78B8D68CC327AA00991",
+            "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+            "locator": "48,52",
+            "sha256": "361a9ef773f7cf36cc0953f70cad205184ca952f2cb672431e5b929121ef1f61",
+            "relevant_span_sha256": [
+              "1ce3dae8056a97ff09bd954f0d3afaa20b679c3c682ed67372e5663eed9516a8",
+              "6ff1103782a2edde657b085c3130d78188f916fb86001e1dc29e822b2d967a85"
+            ]
+          },
+          {
+            "asset": "LEGACY-ASSET-AD746F4F3487103519F9",
+            "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+            "locator": "22,26",
+            "sha256": "3462b3da8269668c848799b07305f2fe135d8902de02121c2048d5686d98dc0e",
+            "relevant_span_sha256": [
+              "25e60c56118dfbb4bcc47acd42a0cb3355ad8be5138f22b6ff063c87a7abbe59",
+              "8699b50c5d42401d7f601b0443af4668eeb4722db255443728f3e5da58fbf9fd"
+            ]
+          },
+          {
+            "asset": "LEGACY-ASSET-63DEDB3F6F768B251BC5",
+            "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L6-screen-applicability-prototype-unit-test-design.md",
+            "locator": "30-43",
+            "sha256": "d72c002d485628ba059346b6af6a7233cead8bdf060a2630289d1c8148e0e26f",
+            "relevant_span_sha256": [
+              "148579143b5a2d92b96a3d864343737a19fa5194d99f5eb63a7dd70fec5f9b03"
+            ]
+          }
+        ],
+        "disposition": "question priority, contradictory/duplicate answers, convergence conditions, and human agreement re-derived; fixed 2-iteration minimum, strict JSON/schema/compiler/runtime/G1/G3 gate replaced. Prototype test only conditional applicability/agreement observation, not universal requirement."
+      }
+    ]
+  },
+  "immutable_prior_decision": {
+    "path": "docs/governance/audits/requirements-stage/harness-stage2b-remainder-delegated-decision-pin-2026-10-06.json",
+    "sha256": "77475a2006d9ede25ecae0be5f20fe869875a8b23b3b2e487842d806d728ddd1",
+    "decision_id": "historical only; not inherited",
+    "body_revision": "3aa88a697dbc8e726bdf23c27c8bb364867bb173",
+    "attribution_issue": "old record remains unchanged"
+  },
+  "informational_pin_corrections": {
+    "repair_audit": {
+      "path": "docs/governance/audits/requirements-stage/harness-stage2b-review02-ma-repair-2026-10-08.json",
+      "actual_sha256": "5978c522b8a9b68e2e07e8916a537d37fef3aa5c79507b047b795e31d16bb3bb",
+      "actual_FV_sha256": "8f6b66dd73a715165099456095108aa459749e29079de655298474b150782741",
+      "incorrect_recorded_FV_prefix": "66c14b80…"
+    },
+    "pin_correction_audit": {
+      "path": "docs/governance/audits/requirements-stage/harness-stage2b-review02-ma-pin-correction-2026-10-08.json",
+      "actual_sha256": "cdb90ea15155c717d0560a81199448079885d0954468a92d5083f7945695d8b7",
+      "recorded_prior_audit_sha256_prefix": "6b0f4fe2…",
+      "actual_prior_audit_sha256": "5978c522b8a9b68e2e07e8916a537d37fef3aa5c79507b047b795e31d16bb3bb"
+    },
+    "old_audits_modified": false
+  },
+  "static_verification": {
+    "formal_api_body_sha256_recomputed": true,
+    "formal_api_body_utf8_bytes": 7309,
+    "six_document_sha256_recomputed_from_git_and_worktree": true,
+    "six_hashes_match_formal_review03": true,
+    "review02_opus_body_sha256_recomputed": true,
+    "fixed_parent_locators_and_raw_span_hashes_recomputed": true,
+    "po_adoption_and_historical_pin_bytes_match_existing_inventory": true,
+    "repair_json_actual_sha256_recomputed": "5978c522b8a9b68e2e07e8916a537d37fef3aa5c79507b047b795e31d16bb3bb",
+    "pin_correction_actual_sha256_recomputed": "cdb90ea15155c717d0560a81199448079885d0954468a92d5083f7945695d8b7",
+    "semantic_digest_used_as_approval_basis": false,
+    "condition3_performed": false,
+    "po_post_confirmation_generated": false,
+    "l10_execution_run": false,
+    "old_audits_modified": false,
+    "commit_push": false
+  },
+  "delegation_basis": [
+    {
+      "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+      "revision": "099a3aa6a8911bb2726e05c523a81767a1412044",
+      "bytes": 6210,
+      "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220"
+    },
+    {
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "revision": "099a3aa6a8911bb2726e05c523a81767a1412044",
+      "bytes": 53710,
+      "sha256": "eed2b774bb78545ac53c7d55f3ae3ab4e9c4f421b4eaf3ac3bcdbcdd869dd27b"
+    }
+  ],
+  "root_verification": "formal03/02 API raw body, six bytes, fixed full/spans, PO/historical records, source inventory/full source, correction actual hashes independently recomputed; delegation pointer corrected to 2026-10-05 PO decision, not obsolete 2026-10-06 approval."
+}

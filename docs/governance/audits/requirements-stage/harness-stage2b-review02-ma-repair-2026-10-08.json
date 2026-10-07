@@ -1,0 +1,173 @@
+{
+  "record_type": "HARNESS Stage 2b review02 M-a repair audit draft",
+  "created_on": "2026-10-08",
+  "authority_effect": "none",
+  "approval_effect": "none",
+  "decision_effect": "none",
+  "worktree": "/home/tenni/.helix-worktrees/harness-stage2b-misattribution-inventory",
+  "branch": "codex/harness-stage2b-misattribution-inventory",
+  "base_revision": "9ee03bd90393a53c21b9ed2fed01de71520192d8",
+  "formal_head": "9ee03bd90393a53c21b9ed2fed01de71520192d8",
+  "scope": "HARNESS Stage 2b, HARNESS-L2-024 / AC-HARNESS-L3-024-03, CASE R074/R096-R100 and paired trace only; no other parent or Stage; no commit/push.",
+  "formal_comment": {
+    "comment_id": 6042441548,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2669#issuecomment-6042441548",
+    "author": "RetryYN",
+    "created_at": "2026-10-07T16:41:12Z",
+    "raw_body_utf8_bytes": 7971,
+    "raw_body_sha256": "19b50f42fd5fc509814bbd32693a970ba4fe5d990df22f5629641cca9e7cd567",
+    "raw_body": "## review02（HEAD 9ee03bd90393a53c21b9ed2fed01de71520192d8、merge-base 5b64914de7357853b267d297e445cae18e204304）\n\nreviewer：Claude（lane `review_merge`。Opus 5.5の独立照合と、Fable 5.1の見解）\n\n照合の範囲：\n- 6本文のStage 2b残件節の全体（FR 361–456、FV 372–619、BR、BV、NFRG、NFRVの対応行）\n- 固定親 `f6dad2a33`：L2の403–437と499–525、L11の212–215と235–260\n- PO判断記録の46–49行と53行\n- 前回 `cf3cc158b` からの本文差分：FR:439、FV:552・606–612、NFRV:94だけ\n\n### 結論：Major 1。委任の条件1は成立しない\n\n**review01 M1の扱い**：原文・選択肢・推奨案・影響候補・判断ownerの5要素について、要素ごとの正常（R074）と単独欠落（R096〜R100）がそろった。戻し先（HARNESS要求owner）、ID連番、NFRV:94の分母、FV:612のtraceもそろっている。判断ownerを5要素目に入れたことは、L2:514「未ownerの必須事項は形成資料不足」とL11:247の正常例に根拠があり、L2の意味は変えていない。旧文の拒否・保留・補完禁止もすべて残っている（類型5に該当なし）。\n\nただし、次のM-aが残る。\n\n**M-a（類型3・4）推奨案・影響候補・選択肢を「入力をそのまま保つもの」として扱っている**\n- 固定親の定め：\n  - L2:505の入力に、推奨案・影響候補を含む判断packetはない。\n  - L2:507では、残る必須人間判断の「原文、決める選択肢、推奨案、影響候補」はengineの出力である。\n  - L2:512は「人間専決値はエンジンが補完せず、原文・選択肢・推奨・影響候補を持つ判断待ちへ送る」とし、L11:247の正常例でもこれらを提示する主体はengineである。\n- 現行の照合：\n  - AC-024-03（FR:439）は、5要素が「入力と同じidentity/value…のまま保たれる場合に限り」候補として提示するとしている。\n  - R074（FV:552）は、5要素すべてを入力として固定している。\n  - R098（推奨案）とR099（影響候補）は、「入力のpacketからその要素を欠落させる」と形成資料不足になる、としている。\n- 起きうること：\n  - engineが推奨案・影響候補・選択肢を形成する義務を観測していない。\n  - 根拠から推奨案・影響候補を正しく形成して提示するengineが、R098・R099で不合格になる。L3がL2の担当（engineの出力）を入力側の義務へ移している。\n- **review側の誤りの記録**：この形は、review01でreviewerが求めた変更（「出力packetの各要素が入力のidentityのまま保たれていることを照合する」）から生じた。要素の由来を分けずに書いたreviewerの誤りであり、作成側の修正は依頼文に忠実だった。\n- 求める変更（今の5要素の完備・単独欠落の構成は残し、要素の由来を分ける）：\n  - **入力をそのまま保つ要素**：原文と判断owner。R074の値・identity一致と、R096（原文）・R100（判断owner）の入力欠落CASEはそのまま残す。\n  - **engineが形成して出力する要素**：決める選択肢、推奨案、影響候補。\n    - R074には、これらが出力packetにあり、入力の根拠（source identity/revision/scope）に結びついていることを照合する形で足す。人が決める値そのものは補完しないことも明記する。\n    - R097（選択肢）・R098（推奨案）・R099（影響候補）は、入力のpacketからその要素を欠かす形をやめる。代わりに、その要素の形成に必要な根拠だけを欠かした入力にする。期待は、その要素を推定・捏造せず、形成資料不足として示し、「人の確認・合意待ちの候補」として提示しないこと。戻し先はHARNESS要求owner。\n  - AC-024-03の文を、上の由来の区別に合わせて直す。人間専決値を補完しないことは、そのまま残す。\n\n### Fableの見解（同じHEADの6本文と固定親をFable自身が読んだもの）\n- 結論行は原文のまま：「承認してよい」\n- Major：なし。判断ownerを5要素目にして、欠けたらHARNESS要求ownerへ返す扱いは、L2:514・L11:247の範囲内としている。\n- Minor：\n  - FR:439の「固定L2-024:507の…判断owner」は位置の示し方が不正確である。507は4要素だけで、判断ownerの根拠はL2:514とL11:247。\n  - R096〜R100に共通の「欠けた人間判断値またはownerを補完せず」は、R098（推奨案はengineの生成物）には当てはまらない。ただし害はない。\n  - 参考：PR本文の「本文変更なし」は、今の内容と食い違っている。\n- 照合した対象revision：`9ee03bd90`。6本文のSHA-256はFableが自分で計算し、下の値と一致した。\n- 未確認範囲：Stage 2bの全245 CASE行の逐語再読、監査JSON、PO採択行、business/NFR側の固定親pin。\n\n### 判断の扱い\n- OpusはM-aを挙げ、Fableは「承認してよい」とした。見解は一致していない。\n- Fable自身のMinor 2も、推奨案がengineの生成物であることを指摘しており、M-aと同じ点を見ている。\n- 運用モデル「L3／L10承認の委任」に従い、OpusがM-aを固定親L2:505／507／512とL11:247の原文で確かめた。妥当なので、作成側へfindingとして返す。\n- 修正で本文revisionが変わったら、新しいrevisionで条件1と2をやり直す。\n\n### Opusの残余（Minor以下。返さない。M-aと一緒に直してよい）\n- FR:439の5要素の根拠は、「L2:507／514、L11:247」と併記するのが正確である（Fableと同じ指摘）。\n- FV:612は照合先を旧RDJ-FR-003／AC-003としているが、owner／re-entryを含むのはRDJ-FR-007／AC-007である。\n- R057とR086はownerを含まない4要素の判断待ちを返しており、AC-03の5要素と書き方がそろっていない。\n- AC-03の「value／identityを保つ」には、値の改変だけを変える単独反例がない（R074の正しい値の照合でだけ検出する）。\n- 017-R012（再現性）は正常CASEだけで、digest不一致の単独反例がない（既存）。\n- NFR-C-024-01の候補値に、packet要素の欠落件数がない。\n- FR:373の017の範囲は403–410、reaudit JSONは403–409（空行1行の差。表のSHAは403–410と一致）。\n\n### pin照合（Opusが自分で計算した）\n次はすべて一致した。review01の未確認範囲は、ここで解消した。\n- 固定L2の全文 `aed75cb4…`、L11の全文 `09b29631…`\n- L2の5親span、507・514行\n- L11の212–215と240–260のspan、212〜215行と247行\n- PO判断記録の全文 `c7a6d39c…` と46–49・53行\n- 旧RDJ-FR／AC の全文とspan、FR:453の他の旧sourceの全文とspan\n\n### 静的検査（exact HEAD）\n- `scfctl validate` 147/0、`stale=0`、`residuals=0`\n- `govcheck ok atoms=7622`\n- `git diff --check` clean、merge-treeでconflictなし\n\n### 6本文のSHA-256（HEAD 9ee03bd90）\n| 文書 | SHA-256 |\n|---|---|\n| L3-BR | `9fb531a55c61c4836ae614cadbd850f3967119cb1f0f2eb36dad1e39ebab75e2` |\n| L3-FR | `c97255103e145d88774bef297be593281ff09336161a41f7a4fceffdcd7fb3f4` |\n| L3-NFR | `ee84bc87ff324eea929d266934c0debb856018aca25c0044f68b11c141c3263d` |\n| L10-BV | `864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad` |\n| L10-FV | `eb37f40f850147597f5a205a1c0a63e69aa843636f3d0733f8d0d9fb624c6b90` |\n| L10-NFR | `17ee1dc8ab6786416680e496ba8fb83a714756dd8f853830afe036ddcc9b36e9` |\n\n### 未確認範囲（Opus）\n- FR表のsemantic digest列（算出方法が記録されていない）\n- integration・reaudit JSONの補助hash\n\n本commentから、要求の意味、承認、PO確認、merge admissionは生成しない。\n"
+  },
+  "review_error_provenance": {
+    "review01_comment_id": 6042075113,
+    "review01_body_sha256": "16d07c72725f620038b352508b6dd78a5d561d81d7af83285bdf2a6c45a9fff4",
+    "description": "review01 reviewer instruction treated all five packet elements as input fields. The creator followed that instruction; review02 explicitly records that the instruction omitted the distinction between input-preserved original/decision owner and engine-formed options/recommendation/impact candidates. Root review also missed this source mismatch before review02. This audit records the review process error without changing prior immutable records or assigning a new authority effect."
+  },
+  "fixed_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+  "fixed_raw_spans": [
+    {
+      "name": "L2-024-inputs",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "lines": "505-505",
+      "sha256_including_lf": "e7905f89f7896752b8a79cf25056ae0b89c485366a0920530c9ebc844d0a0b3e",
+      "literal": "**入力**：engine／product pack revision、対象ConceptとL1 revision、利用者の指示・参照根拠のidentity/revision/scope、現在とprior candidate、既回答・訂正・defer・agreementの記録とactor/owner、利用可能な過去iteration履歴と差分（履歴の固定件数を必須としない）、候補間の矛盾・重複、actor/task、正常/取消/failure/timeout/recovery、P0/P1 surface、implicit requirement matrix、prototype/非UIの適用性と、該当時には現行HARNESS-L2-008の工程で得た合意・根拠（非適用時には理由と再評価条件）、各不足の不確実性・影響・下流変更cost・人間専決区分。\n"
+    },
+    {
+      "name": "L2-024-output",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "lines": "507-507",
+      "sha256_including_lf": "32f54341020f48b67934cf9e057d4f4c28b3a4c37b12371cca93d02862da5bc6",
+      "literal": "**出力**：version/scope/sourceに結び付いた構造化要求候補と意味差分、質問・既存open questionの継続状態、優先理由と影響範囲、矛盾・欠落・未確定事項、deferのowner/re-entry条件、適用対象と非適用根拠、残る必須人間判断（原文、決める選択肢、推奨案、影響候補）、収束判定と不足理由を返す。候補は人間の訂正・合意・採否待ちであり、approved requirement、L3承認、操作許可へ昇格しない。\n"
+    },
+    {
+      "name": "L2-024-convergence-2",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "lines": "512-512",
+      "sha256_including_lf": "bb83a10148b794d6b75b4e51567e9c5554cdaa491c82950b754bcddd8e9ae9bc",
+      "literal": "2. 未解決質問候補の順序は旧RDJ-FR-003の影響度×不確実性×下流変更cost×人間専決度の各要素に対応する入力根拠を示し、影響の大きい不足・未決事項から先に提示する。数値weight、閾値、固定質問数を根拠なく新設せず、同順位なら、packのversioned inputとして固定したtie-break規則と根拠を適用し、同じ候補・既回答・入力revisionから次の質問と順序を一意に再現する。規則が未定義または同じ入力から複数の選択が残る場合は選択未確定を示し、pack契約ownerへ不足を戻す。実装方式や根拠のない数値weightをこの候補で固定しない。risk/authority等の人間専決値はエンジンが補完せず、原文・選択肢・推奨・影響候補を持つ判断待ちへ送る。\n"
+    },
+    {
+      "name": "L2-024-convergence-4",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "lines": "514-514",
+      "sha256_including_lf": "08110cfb896dcb027dd232da9841b7f247613e5a804b03f72dcf5178692aecae",
+      "literal": "4. 収束判定は、actor/task、正常・取消・failure・timeout・recovery、P0/P1 surface、矛盾/deferとowner/re-entry、暗黙matrixの必須領域、利用可能なiteration履歴と差分根拠、prototype/非UI適用性について現行HARNESS-L2-008の工程で得た合意・根拠（該当時）を確認する。旧条件の「直近2 iteration」を最低件数にせず、過去履歴がない/少ないこと自体を必須事項unknownと同一視しない。各要求領域を解決済み／明示保留／非適用（理由・判断者・対象revision・再評価条件）／必須事項unknownで区別する。必須事項unknown、未ownerの必須事項、未説明の矛盾、P0/P1の未分類欠落は形成資料の不足として提示し、PO確認待ちそのものとは区別する。必要な形成情報と根拠・残存判断一覧が揃った場合は「人の確認・合意待ちの候補」として提示できるが、これは合意・freeze・採択完了ではない。人の合意状態は別個に確認し、engineが収束判定から生成しない。prototype／非UI合意が該当して未了でも、要求候補・根拠・未決判断packetを形成して当該合意待ちの状態で提示できる。既存合意がある前提の記録欠落は形成資料不足として区別し、合意前のfreeze・下流承認を生成しない。\n"
+    },
+    {
+      "name": "L11-024-normal",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "lines": "247-247",
+      "sha256_including_lf": "e065c7c12b9ac96c164d9b3fa92e20214a8781c5e79a10b7bec11ba229f2f086",
+      "literal": "- **正常例・形成資料準備、合意待ち**：必須behavior fieldsとfailure/surface/matrixが解決または理由付き非適用で、残るsecurity/法務の決定について原文・選択肢・推奨・影響と判断ownerを提示する。必要情報が揃い、decision packetが確認可能なため人の確認待ちへ進めるが、必須情報unknownによる形成不備とは区別し、当該判断・人の要求合意・L3承認はpendingのまま。\n"
+    }
+  ],
+  "legacy_source_inventory_pins": [
+    {
+      "name": "RDJ-FR-003/007",
+      "asset_id": "LEGACY-ASSET-E78B8D68CC327AA00991",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "full_bytes": 6888,
+      "full_sha256": "361a9ef773f7cf36cc0953f70cad205184ca952f2cb672431e5b929121ef1f61",
+      "lines": "48-52",
+      "span_sha256_including_lf": "f0c7ae10f8b5a615dc6d427800bc5989a31a6af9f9d784f9307d05f37a76b758",
+      "span_literal": "| `RDJ-FR-003` | 次質問は影響度×不確実性×下流変更cost×人間専決度で選び、重複質問と理由なしの回答矛盾を拒否する | `HR-FR-HIL-17` | `RDJ-AC-003` |\n| `RDJ-FR-004` | `screen/cli/api/event/batch/notification/external_service/none`を共通surfaceとし、requirement→action→state transition→success/cancel/failure/timeout/recovery→AC→oracleを結ぶ。`none`は理由と再評価条件を要求する | `HR-FR-HIL-15` | `RDJ-AC-004` |\n| `RDJ-FR-005` | prototype reactionは自由文と構造化decisionを分離し、表示要求をunderlying need、actor/task/constraint、state/failure/recovery、candidate、AC、prototype revisionへ還元する | `HR-FR-HIL-15` | `RDJ-AC-005` |\n| `RDJ-FR-006` | 暗黙要件matrixはsecurity/privacy/permission/課金/法務を含む不足をderived candidateへ戻し、AIによる無断canonical化を拒否する。高影響判断は人間へ送る | `HR-FR-HIL-17` | `RDJ-AC-006` |\n| `RDJ-FR-007` | L2収束はactor/task、正常/取消/failure/timeout、P0/P1 surface、矛盾/defer、owner/re-entry、暗黙matrix、直近2 iteration、human prototype agreementの全条件で判定し、score単独判定を拒否する | `HR-FR-HIL-15` | `RDJ-AC-007` |\n"
+    },
+    {
+      "name": "RDJ-AC-003/007",
+      "asset_id": "LEGACY-ASSET-AD746F4F3487103519F9",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+      "full_bytes": 2714,
+      "full_sha256": "3462b3da8269668c848799b07305f2fe135d8902de02121c2048d5686d98dc0e",
+      "lines": "22-26",
+      "span_sha256_including_lf": "ddb5b49d8af9cf01a9b070d052ca8b626f04b035ca798fb2edab5894fee692fd",
+      "span_literal": "| `RDJ-AC-003` | impact式と過去回答から次質問を一意選択する | 重複質問、矛盾理由なし、回答捏造 |\n| `RDJ-AC-004` | 8 surface kindと全flow／AC／oracle edgeが閉じる | surface未割当、`none`理由なし、正常系だけ |\n| `RDJ-AC-005` | reactionからunderlying needとcandidate deltaを導出する | UI表現をそのままcanonical requirement化、古いrevision reaction再利用 |\n| `RDJ-AC-006` | 暗黙matrix findingをderived candidateとhuman decisionへ送る | security/privacy/課金/法務/権限をAIが自動accept |\n| `RDJ-AC-007` | 全収束条件とhuman agreementがcurrent revisionで成立する | score単独、P0/P1新規発生、stale agreement |\n"
+    }
+  ],
+  "six_document_sha256_before": {
+    "docs/helix-harness/L3-requirements/business-requirements.md": "9fb531a55c61c4836ae614cadbd850f3967119cb1f0f2eb36dad1e39ebab75e2",
+    "docs/helix-harness/L3-requirements/functional-requirements.md": "c97255103e145d88774bef297be593281ff09336161a41f7a4fceffdcd7fb3f4",
+    "docs/helix-harness/L3-requirements/nfr-grade.md": "ee84bc87ff324eea929d266934c0debb856018aca25c0044f68b11c141c3263d",
+    "docs/helix-harness/L10-verification/business-verification.md": "864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad",
+    "docs/helix-harness/L10-verification/functional-verification.md": "eb37f40f850147597f5a205a1c0a63e69aa843636f3d0733f8d0d9fb624c6b90",
+    "docs/helix-harness/L10-verification/nfr-verification.md": "17ee1dc8ab6786416680e496ba8fb83a714756dd8f853830afe036ddcc9b36e9"
+  },
+  "six_document_sha256_after": {
+    "docs/helix-harness/L3-requirements/business-requirements.md": "9fb531a55c61c4836ae614cadbd850f3967119cb1f0f2eb36dad1e39ebab75e2",
+    "docs/helix-harness/L3-requirements/functional-requirements.md": "cb58f9ff835c71d198be990a4ddbc378a10ec381c83fd3093d78eb703bf4f6a7",
+    "docs/helix-harness/L3-requirements/nfr-grade.md": "ee84bc87ff324eea929d266934c0debb856018aca25c0044f68b11c141c3263d",
+    "docs/helix-harness/L10-verification/business-verification.md": "864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad",
+    "docs/helix-harness/L10-verification/functional-verification.md": "66c14b802393ccf165b9840ceafec70e0f18efaeca108fa9db3888e7bf42a243",
+    "docs/helix-harness/L10-verification/nfr-verification.md": "17ee1dc8ab6786416680e496ba8fb83a714756dd8f853830afe036ddcc9b36e9"
+  },
+  "changes": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "change": "AC-HARNESS-L3-024-03 now separates input-preserved original/decision owner from engine-formed options/recommendation/impact candidates; preserves the non-fill of human-exclusive values; ties normal/missing/owner-routing to fixed L2:507/514 and L11:247; existing requirements and nonreturned review items preserved."
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "change": "R074 now supplies origin/owner and evidence inputs, then observes engine-formed outputs traced to source identity/revision/scope. R097-R099 each withhold only a relevant existing input basis for the designated formed output; each blocks inference/fabrication and confirmation-wait presentation and returns to HARNESS requirement owner. R096 and R100 remain input-only omissions."
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "change": "unchanged"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "change": "unchanged"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "change": "unchanged"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "change": "unchanged; existing R001-R100 planned denominator retained"
+    }
+  ],
+  "old_source_disposition": {
+    "RDJ-FR-003/RDJ-AC-003": "Meaning-origin for priority input basis and evidence-backed choice formation; current L2/L11 remain authority. Do not copy old priority runtime/weight.",
+    "RDJ-FR-007/RDJ-AC-007": "Meaning-origin for separating candidate formation from human agreement/approval-pending, including owner/re-entry. Preserve as trace; do not copy old fixed two-iteration rule or other old workflow."
+  },
+  "preserved_review_state": {
+    "Fable": "The same-HEAD Fable opinion “承認してよい” is recorded only as review context. Opus M-a and Fable opinion do not agree; no delegated approval is generated.",
+    "nonreturned_minor": "All Minor observations listed in comment 6042441548 remain nonreturned and are not claimed resolved except the specific trace precision item which is included in the requested correction.",
+    "opus_unverified": [
+      "FR semantic digest列の算出方法",
+      "integration/reaudit JSON補助hash"
+    ],
+    "fable_unverified": [
+      "Stage 2b全245 CASE逐語再読",
+      "監査JSON",
+      "PO採択行",
+      "business/NFR側固定親pin"
+    ]
+  },
+  "validation": {
+    "diff_check": "passed",
+    "case_definitions": "passed: R074 and R096-R100 each one FV definition, existing IDs kept",
+    "AC_trace": "passed: AC-024-03 distinguishes two input-field omissions from three formed-output-basis omissions; fixed L2:507/514, L11:247, legacy RDJ-003/AC-003 and RDJ-007/AC-007 cited",
+    "six_sha": "passed: before and after values recorded for all six; after values match current documents",
+    "formal_and_fixed_pins": "passed: full formal body, UTF-8 byte count, fixed raw spans and hashes, legacy full-file and span pins verified",
+    "nfr_denominator": "passed: planned fixture range ends at R100",
+    "cases_executed": false
+  },
+  "fixed_source_full_pins": {
+    "L2": {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "bytes": 138792,
+      "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a"
+    },
+    "L11": {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "bytes": 92483,
+      "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+    }
+  },
+  "root_pin_verification": "formal API body, six before/after bytes, fixed source raw spans, legacy full bytes and raw spans independently recomputed"
+}
