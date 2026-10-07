@@ -58,7 +58,7 @@
 
 ### CASE-NFR-OS-023-01 — handoff binding census
 
-親 `HELIXOS-L2-023`; 実際のhandoff edgeごとにrevision/digest/causal ID/scope/unfinished duty/stop reason/evidence presence/valueを照合する。unit-successからconnection acceptance、composite acceptance、next-stage acceptanceを個別に生成しないnegative fixtureを別々に数え、transport receiptとbusiness acceptanceを分ける。実測timestampがある場合はsenderからreceiver acceptanceまでを分布で示すだけで、任意latency KPIは設けない。
+親 `HELIXOS-L2-023`; 実際のhandoff edgeごとにrevision/digest/causal ID/scope/unfinished duty/stop reason/evidence presence/valueを照合する。CASE-OS-023-02o, CASE-OS-023-02p, CASE-OS-023-02q, CASE-OS-023-02rのcausal ID欠落、scope不一致、unfinished duty欠落、stop reason不一致を各々独立negative fixtureとして数え、各binding異常でhandoff拒否・未完保持・発生側source/管理への返却を照合する。unit-successからconnection acceptance、composite acceptance、next-stage acceptanceを個別に生成しないnegative fixtureを別々に数え、transport receiptとbusiness acceptanceを分ける。実測timestampがある場合はsenderからreceiver acceptanceまでを分布で示すだけで、任意latency KPIは設けない。
 
 ### CASE-NFR-OS-027-01 — eligibility/evaluation evidence
 

@@ -1,0 +1,269 @@
+{
+  "record_type": "os_stage2a_parent023_binding_negative_case_amendment_audit",
+  "created_local_date": "2026-10-08",
+  "source_revision": "e028e18c90e83295c84d77c4829702a349bce0dc",
+  "draft_commit_revision": null,
+  "authority_effect": "none; L3/L10 verification design supplement only; no L3 approval, execution, implementation, owner/meaning/version change, or new gate",
+  "scope": {
+    "mechanism": "HELIX-OS",
+    "stage": "2a",
+    "fixed_parent": "HELIXOS-L2-023",
+    "version_target": "1.0",
+    "documents": [
+      "docs/helix-os/L3-requirements/business-requirements.md",
+      "docs/helix-os/L3-requirements/functional-requirements.md",
+      "docs/helix-os/L3-requirements/nfr-grade.md",
+      "docs/helix-os/L10-verification/business-verification.md",
+      "docs/helix-os/L10-verification/functional-verification.md",
+      "docs/helix-os/L10-verification/nfr-verification.md"
+    ]
+  },
+  "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+  "fixed_parent_pins": {
+    "docs/helix-os/L2-requirements/governance-requirements.md": {
+      "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "bytes": 153353,
+      "spans": [
+        {
+          "lines": "722-731",
+          "sha256": "9e07b91bc6da6705d31bd24c2b6078807ad644d7266ba068a3c8aa5dbf849248"
+        }
+      ]
+    },
+    "docs/helix-os/L11-acceptance/governance-acceptance.md": {
+      "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "bytes": 82708,
+      "spans": [
+        {
+          "lines": "380-386",
+          "sha256": "215240e3045227f84a8f485fd17752e2def2c15c3db538e797ebbd8b58f4536d"
+        }
+      ]
+    }
+  },
+  "source_and_reuse": {
+    "fixed_requirement": "L2:722-731 requires each handoff bind subject revision/digest, causal ID, scope, unfinished duties, stop reason, and evidence; disagreement remains unresolved and returns to origin source/management (L2:729). L11:380-386 confirms each required value, separates unit/handoff/connection acceptance, and returns mismatch to source or management while ticket remains open until receiver accepts unfinished duties (L11:383,385).",
+    "legacy_sources": {
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md": {
+        "sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+        "bytes": 42556,
+        "spans": [
+          {
+            "lines": "534-541",
+            "sha256": "3250dddef98742feda21824c750b397eba492513e603d3672a8619e5fd3b38dd"
+          },
+          {
+            "lines": "545-552",
+            "sha256": "b37ed732d6fc1b8c24cad052a355472b3199d3c9220da3d0877f80b96bd1ed53"
+          },
+          {
+            "lines": "717-745",
+            "sha256": "130e2e132478a52856b1416bd5cd1a44a958a77cb875db60c86984db22e851f9"
+          }
+        ]
+      },
+      "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md": {
+        "sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+        "bytes": 4078,
+        "spans": [
+          {
+            "lines": "17-55",
+            "sha256": "36e097a074fe674fddd2719b6c196163a6aa625908c90f0125ff42a99e2a41da"
+          }
+        ]
+      }
+    },
+    "asset_ids": [
+      "LEGACY-ASSET-50CA1C554747F12266D3",
+      "LEGACY-ASSET-437A6A68F9A9E0AE1B9E"
+    ],
+    "reuse_rederive_replace": "旧RLO-FR-011..013/014..015とRLO-AC-011..015は、scope-bound worker inputs、exact HEAD/receipt、stale/incorrect receiver/reviewの反例という比較起点として意味を再導出した。現行CASE ID、固定L2 owner、connection unresolvedと未完保持は固定親から再導出し、旧resident-lane/lease/branch/Issue/CI runtime mechanismは置換・実行対象外とする。旧IDや旧test/runtimeを現行要件・oracleへ直接移植していない。"
+  },
+  "change": {
+    "finding": "親L2の必須binding値のうちcausal ID、scope、unfinished duty field、stop reasonの個別欠落/不一致fixtureがなかったため、既存AC-OS-023-02を4つの独立negativeで補強する。normal CASEと他bindingは正常に保つ。",
+    "new_case_ids": [
+      "CASE-OS-023-02o",
+      "CASE-OS-023-02p",
+      "CASE-OS-023-02q",
+      "CASE-OS-023-02r"
+    ],
+    "mutations": [
+      {
+        "id": "CASE-OS-023-02o",
+        "single_mutation": "causal ID欠落",
+        "oracle": "handoffをunresolvedにし、ticket/unfinished dutyを保持。発生側sourceまたは管理へ返す。"
+      },
+      {
+        "id": "CASE-OS-023-02p",
+        "single_mutation": "scope値を別scopeへ変更",
+        "oracle": "handoffをunresolvedにし、scopeを補正・推測せず、ticket/unfinished dutyを保持してsource/管理へ返す。"
+      },
+      {
+        "id": "CASE-OS-023-02q",
+        "single_mutation": "receiver受領setからunfinished dutyを1件欠落",
+        "oracle": "受領成立にせず、未完duty/ticketを保持してsource/管理へ返す。"
+      },
+      {
+        "id": "CASE-OS-023-02r",
+        "single_mutation": "stop reason値を別値へ変更",
+        "oracle": "handoffをunresolvedにし、unfinished stateを保持してsource/管理へ返す。"
+      }
+    ],
+    "synchronized_traces": "functional-requirements.md L2 inheritance crosswalk rows 001/002/003/004/007/008/009/010/011 and AC-023-02; business-requirements.md BR-023 case set; business-verification.md BV-023 case set; nfr-grade.md NFR-023-01; nfr-verification.md CASE-NFR-OS-023-01."
+  },
+  "prior_audit_language_supplement": "この追補は先行する意味監査の時点記録を変更せず、英語で記した要約を日本語で補正する。所見はL2意味の追加・変更ではなく、既存必須bindingの4項目に対するL10単独negative case不足である。",
+  "six_document_pins": {
+    "docs/helix-os/L3-requirements/business-requirements.md": {
+      "before": {
+        "sha256": "cbe1866df47503b17e8a11b786dee8da58cd8a2a0a99778b64bd4a669b2fa702",
+        "bytes": 20354,
+        "spans": [
+          {
+            "lines": "43-45",
+            "sha256": "8cbb14c554934dfa1382b46a19e76a119c308b6cc845fe37ee9f3f8830da9a41"
+          }
+        ]
+      },
+      "after": {
+        "sha256": "60b43aab032c879b32f29566c482a4c0f984d7f4c522614befba02994895d5ab",
+        "bytes": 20430,
+        "spans": [
+          {
+            "lines": "43-45",
+            "sha256": "9c5c209bcb134214b501f983a472c128297f2f95a4e742ffe15214625aad7548"
+          }
+        ]
+      }
+    },
+    "docs/helix-os/L3-requirements/functional-requirements.md": {
+      "before": {
+        "sha256": "68bf95443b494e16bb2a72506358536d7d8740fb620e09d55ed0b922d3b9ed03",
+        "bytes": 201811,
+        "spans": [
+          {
+            "lines": "112-124",
+            "sha256": "f2711b2c23b12557a7989ecbbfde1087a517ab47048d67d5fa2992b27129343b"
+          },
+          {
+            "lines": "188-195",
+            "sha256": "fc0b925104918d7437bfb05acbe4c6a6bdb5f5644272fd83245b7e7fbe004e0d"
+          }
+        ]
+      },
+      "after": {
+        "sha256": "600bb2594c7a67181f66a3b51d5fbf4cf0df4fd74bf4a55c997162b9634f8362",
+        "bytes": 202905,
+        "spans": [
+          {
+            "lines": "112-124",
+            "sha256": "e22da667f97e2b041ad5b3be04faedaf9993307a6bc84665166565e5dbfe5c1d"
+          },
+          {
+            "lines": "188-195",
+            "sha256": "e9e28b32de2115dd573e59144588716e9b0fd69312fa51a59812b35b4a9d8f81"
+          }
+        ]
+      }
+    },
+    "docs/helix-os/L3-requirements/nfr-grade.md": {
+      "before": {
+        "sha256": "d4e76c3dc15b28894937ddc0e39cb223aeef106284fae13b8ea4212dfce02726",
+        "bytes": 33002,
+        "spans": [
+          {
+            "lines": "69-72",
+            "sha256": "a67bad411f0e5830dc9c7bd84c2b31b3c86e71dea0596c5464458be4925f2253"
+          }
+        ]
+      },
+      "after": {
+        "sha256": "1ceab93e59396cc0a43aebb53295f44e3816e5d96c43adde7cf722ce7a04770f",
+        "bytes": 33282,
+        "spans": [
+          {
+            "lines": "69-72",
+            "sha256": "c296d25cdfa2d4ad3cf399555371108963f2fbd11a99b2cc04cdce38c9594cec"
+          }
+        ]
+      }
+    },
+    "docs/helix-os/L10-verification/business-verification.md": {
+      "before": {
+        "sha256": "f785e13aa9a1ef8494154f03e20d0582418916281c51a6b729d385d5b66ef051",
+        "bytes": 17774,
+        "spans": [
+          {
+            "lines": "27-30",
+            "sha256": "dc612b291edf6f859b312281aca1ad1faee9ee9aa7b88869c65a8b9002f93c1b"
+          }
+        ]
+      },
+      "after": {
+        "sha256": "254351ea2067e4bb19e50adee9c544d589a2b2adc589568addb30c59982d03e9",
+        "bytes": 17850,
+        "spans": [
+          {
+            "lines": "27-30",
+            "sha256": "c86168787a9ba690c57409fe636dea0bbe3fced47d12a26ff43794388b841bd1"
+          }
+        ]
+      }
+    },
+    "docs/helix-os/L10-verification/functional-verification.md": {
+      "before": {
+        "sha256": "2c2ce95380e2deb5478bb06c27057d519373bfeabc9259799e400b390e0c5d3e",
+        "bytes": 241506,
+        "spans": [
+          {
+            "lines": "481-506",
+            "sha256": "944662ec1944ef9fa8272663f6217a1762e7ae1ccbdecaf171eae7d29c8d8c31"
+          }
+        ]
+      },
+      "after": {
+        "sha256": "bc6228c177167bf3a0a3281407685fab08b283d8572676acfe03a43d1a3cdb6d",
+        "bytes": 242247,
+        "spans": [
+          {
+            "lines": "481-510",
+            "sha256": "63d6d84867844ece4086399fb5ee76f8cd205bb3a09eb7928bb76e9b9e28a29e"
+          }
+        ]
+      }
+    },
+    "docs/helix-os/L10-verification/nfr-verification.md": {
+      "before": {
+        "sha256": "156c0b6cf45630ba44f3540ceb97dae511fb7bdd93148e1a99ef4e0adfd9e543",
+        "bytes": 29758,
+        "spans": [
+          {
+            "lines": "59-62",
+            "sha256": "d697a349d424fb0b412bc73f83e78eef4d6cbe409baf6fb6c29606bea5313ab7"
+          }
+        ]
+      },
+      "after": {
+        "sha256": "254904085a70f5f632c3bbefaf220eb15e953df99ee3b62092171389abc5b675",
+        "bytes": 30057,
+        "spans": [
+          {
+            "lines": "59-62",
+            "sha256": "4c6756b13e5ddd2b8bc19b03b453322ad8f1ed3ce45eb7f6627388a95db477de"
+          }
+        ]
+      }
+    }
+  },
+  "static_checks": {
+    "case_ids_unique_intended": "4 new IDs each appear once as a functional fixture in AC-OS-023-02 table; refs synchronized across six documents and FR L2 index",
+    "mutation_isolation": "each row changes one named binding while all other bindings remain normal",
+    "return_owner": "existing L2:729/L11:385 route only: originating source or management; no new owner",
+    "scope": "no edits to L2/L11, other Stage/parent, owner, version, thresholds, metrics, or 019 index",
+    "runtime": "no legacy runtime, tests, CI, or fixture execution"
+  },
+  "limitations": [
+    "これは文書上のL10 oracle設計補強であり、実装behaviorやfixture実行結果を示さない。",
+    "Case field labels and expected responses were validated by reading fixed L2/L11 and crosswalked legacy source spans, not a live runtime.",
+    "019 hold-expiry index omission is excluded and remains a separate locatability matter."
+  ]
+}
