@@ -858,7 +858,7 @@ CASE番号は各親見出し内で一意。各列の固定句は親source全文�
 - **L10-BRAIN-024-C31 — 選択L2-INFRA-017 maturity contract revision不一致（AC-02、単独変異）**：C02に選択maturity contractの正常identity/revisionを束縛し、identityを保持してrevisionだけ既知の別revisionへ変える。非選択candidateにはこの条件を強制しない。**期待oracle**：選択範囲でのみmismatchを返す。
 
 - **L10-BRAIN-024-C32 — provider account保存（AC-02）**：C02のfixtureにprovider account identity/stateを1項目加えてBRAIN knowledgeへ保存する単独変異。**期待oracle**：保存/所有を拒否しRuntime ownerへ返す。
-- **L10-BRAIN-024-C33 — credential保存（AC-02）**：C02のfixtureにcredential valueまたはreferenceだけを加えてBRAINへ保存する単独変異。**期待oracle**：保存を拒否しRuntime ownerへ返す。
+- **L10-BRAIN-024-C33 — credential値の保存試行（AC-02）**：C02の合成fixtureで、credential値欄への単独変異は値の存在を示す非機密synthetic sentinelだけを用いる（実credential値・使用可能なsecretは作成・使用しない）。**期待oracle**：credential値の保存試行を拒否しRuntime ownerへ返す。
 - **L10-BRAIN-024-C34 — raw log保存（AC-02）**：C02のfixtureに実runtime logだけを加えてBRAINへ永続化する単独変異。**期待oracle**：保存を拒否しRuntime owner/LABO経路を示す。
 - **L10-BRAIN-024-C35 — raw metrics保存（AC-02）**：C02のfixtureに実runtime metricsだけを加えてBRAINへ永続化する単独変異。**期待oracle**：保存を拒否しRuntime owner/LABO経路を示す。
 - **L10-BRAIN-024-C36 — 選択L2-INFRA-010 contract identity unknown（AC-02、単独変異）**：availability設計を選択したfixtureでL2-INFRA-010 receipt identityだけunknown。**期待oracle**：適用可否を推定しない。
@@ -872,6 +872,15 @@ CASE番号は各親見出し内で一意。各列の固定句は親source全文�
 - **L10-BRAIN-024-C43 — 汎用Pattern意味の戻し先（AC-02）**：C01のsource/revision/receiptと製品固有の採択状態を保持し、汎用Pattern意味だけを選択済み設計知識契約と不整合なものへ変える。**期待oracle**：汎用Pattern意味の不整合は固定024どおりBRAINへ戻す。COREの製品設計採否やRuntime状態を変更しない。
 - **L10-BRAIN-024-C44 — credential流入時の受領停止（AC-02）**：C02の他入力を保持し、BRAIN候補packetへ合成credential参照だけを流入させる（秘密値は用いない）。**期待oracle**：固定024どおり受領を止めRuntime ownerへ返す。保存拒否だけで受領を継続しない。
 - **L10-BRAIN-024-C45 — raw runtime data流入時の受領停止（AC-02）**：C02の他入力を保持し、BRAIN候補packetへ実runtime logを模した合成raw dataだけを流入させる。**期待oracle**：固定024どおり受領を止めRuntime ownerへ返す。実log保存を許可しない。
+
+- **L10-BRAIN-024-C46 — L2-INFRA-017の通常依存trace（AC-01）**：C01/C02の他入力を保持する。固定L2-024の依存列が示す選択参照identityを`HELIXBRAIN-L2-INFRA-017`、source target revisionを合成値`R017`として入力source receiptに明示し、BRAIN出力にも同じidentityとrevisionを記録する。Infrastructure candidate maturityは選択しない。**期待oracle**：出力identity=`HELIXBRAIN-L2-INFRA-017`かつrevision=`R017`が入力source receiptと完全一致する。maturity固有state/evidenceは要求しない。
+- **L10-BRAIN-024-C47 — 通常armの依存参照identity unknown（AC-02、単独変異）**：C46の正常baselineと出力を使い、依存参照identityの入力source receiptだけunknownにする。revision=`R017`および他入力/出力は保持する。**期待oracle**：出力identityもunknownとして保持し、固定親の参照先を推測で補完せず、当該dependency traceをunknownとして止める。
+- **L10-BRAIN-024-C48 — 通常armの対象revision unknown（AC-02、単独変異）**：C46の正常baselineと出力を使い、依存参照sourceのtarget revisionだけunknownにする。identity=`HELIXBRAIN-L2-INFRA-017`および他入力/出力は保持する。**期待oracle**：出力revisionもunknownとして保持し、R017等のsource revisionを補完せず、当該dependency traceをunknownとして止める。
+- **L10-BRAIN-024-C49 — 通常armのsource/output対象revision不一致（AC-02、単独変異）**：C46の入力baselineはidentity=`HELIXBRAIN-L2-INFRA-017`、revision=`R017`で正常に保つ。出力revisionだけを既知の異なる合成値`R016`へ変え、identityおよび他の入力/出力は変えない。**期待oracle**：出力revision不一致を検出し、このdependency traceを一致扱いしない。compatibility relationはこのcaseの対象にしない。
+- **L10-BRAIN-024-C50 — maturity選択armの正常trace（AC-01）**：C46の依存identity/revisionの正常一致を保持し、Infrastructure candidate maturityを選択する。固定L2-INFRA-017で定義されたstate=`observed`、BRAIN version=`K0`、project usage version=`P0`、ならびに利用実績=`U0`、failure=`F0`、反例=`X0`、LABO評価=`E0`を各source receiptの合成値として与え、maturity state/evidenceとLABO評価対象がL2-020のcandidate/target revision=`R0`を指す。**期待oracle**：BRAIN出力のstate、BRAIN version、project usage version、4入力の各値と対応するsource receiptをfieldごとに照合し、source値・対象revisionとの完全一致を確認する。選択armだけに適用し、固定親にないschema/owner/閾値やauthorityを生成しない。
+- **L10-BRAIN-024-C51 — 選択maturity state欠落（AC-02、単独変異）**：C50の他項目を保持し、L2-INFRA-017に照合するmaturity stateだけを欠落させる。**期待oracle**：maturity判定をunknownのまま保留し、状態を推定しない。
+- **L10-BRAIN-024-C52 — 選択maturity evidence欠落（AC-02、単独変異）**：C50の他項目を保持し、L2-INFRA-017に照合するmaturity evidenceだけを欠落させる。**期待oracle**：evidence欠落として選択armを保留し、他の正常入力で補完しない。
+- **L10-BRAIN-024-C53 — 選択maturity対象revision不一致（AC-02、単独変異）**：C50の他項目を保持し、maturity state/evidenceが結ばれた対象revisionだけをL2-020 candidate revisionと不一致にする。**期待oracle**：選択armのmaturity照合を保留し、別revisionから補完しない。
 
 ### `HELIXBRAIN-L2-025` — `BRAIN-025-FR-01`, `BRAIN-025-AC-01..06`
 
