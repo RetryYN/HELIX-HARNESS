@@ -1,0 +1,1020 @@
+{
+  "record_type": "HARNESS-L2-049 review02 post-body authoring audit snapshot",
+  "language": "ja",
+  "snapshot_status": "integrated body at exact commit; static pin and case inventory verification only; not independent review, execution, or approval",
+  "body_revision": "2ee0540d139f54572012ffe20fb205fb7feb48ed",
+  "prior_body_revision": "97f9c790ab77e8ff4cc700719ec1e365d481b84b",
+  "authoring_head": "04d52812ec8636a5e6110a443dec0fe8524e908a",
+  "base_revision": "0acbed34bfda48e32092feb63db61d2eff6d5ec4",
+  "target_worktree": "/home/tenni/.helix-worktrees/l3-harness-stage3-parent049",
+  "target_paths": [
+    "docs/helix-harness/L3-requirements/business-requirements.md",
+    "docs/helix-harness/L3-requirements/functional-requirements.md",
+    "docs/helix-harness/L3-requirements/nfr-grade.md",
+    "docs/helix-harness/L10-verification/business-verification.md",
+    "docs/helix-harness/L10-verification/functional-verification.md",
+    "docs/helix-harness/L10-verification/nfr-verification.md"
+  ],
+  "commit": {
+    "full_sha": "2ee0540d139f54572012ffe20fb205fb7feb48ed",
+    "parent": "97f9c790ab77e8ff4cc700719ec1e365d481b84b",
+    "subject": "docs(harness): clarify per-layer completion rejection oracles",
+    "changed_files": [
+      "docs/helix-harness/L10-verification/functional-verification.md",
+      "docs/helix-harness/L3-requirements/functional-requirements.md"
+    ],
+    "worktree_status_clean": true
+  },
+  "formal_review": {
+    "comment_id": 6025506014,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2647#issuecomment-6025506014",
+    "raw_bytes": 7249,
+    "raw_sha256": "bcd89d6f33509bee9cc31118cb32ac982747a38cce9e4774a635a0b53f269b40",
+    "raw_body": "## review02（independent review、PR #2647 親HARNESS-L2-049（採択 -003）、HEAD 9f6aa39a9fd816b795f25b6f0b51eab42ce0fcae、base main ceda1c53b）：Major 4\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2647-HARNESS-STAGE3-PARENT049-02` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：live26記録39行（`MPR-RC-HARNESS-L2-049-003`）。後日の別採択はない。\n- **追補条件**：live26記録72行。試作品生成、Pattern選択、screen ID発行を含まないこと、-002を継承しないことは、引き続き守られている。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：1件。区分を保った許容形である。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n- **最新mainとの衝突**：現在のorigin/main（0acbed34b、#2637 merge後）との`merge-tree`は、6本文で衝突する。041と049が、同じファイル末尾へ追記しているためである。\n  - 意味の照合は、依頼のbase（ceda1c53b）で行った。\n  - merge admissionの前には、main取り込み後のHEADで、049節が不変であることと、条件1・2を照合し直す必要がある。#2643と同じ事情である。\n\n### 照合の経過\n1. **review01の解消の確認**（reviewerが差分で確かめた）：M1とM2は解消した。\n   - **M1**：修正候補を、正常判定でsource/oracleの値と照合する。missingとmismatchの単独CASEも置かれた。\n   - **M2**：L3要件freezeとL11利用者受入の自己生成に、それぞれ単独の拒否CASEが置かれた。\n   - **R3**：正常入力のrouteを「なし」と明記した。\n   - **R5**：正常判定で、全fieldの値の一致を照合するようになった。\n2. **Opusシンプルブラインド**：Major 4。今回から、禁止列挙の全件照合と、前回までの残余R1〜R5の洗い直しを加えた。Majorがあったので、Fableへは回していない。\n3. **reviewerの確認**：固定L2の1072、1082、1084、1086行と、L11の814行の原文を読み、049のCASEを確かめた。4件ともMajorと確定した。\n   - 「vision」でgrepすると60件ヒットするが、すべて「revision」の一部だった。vision・brand・見た目の好みの自己承認を拒否するCASEは、0件である。\n\n**reviewer側の誤り**：M3は、review01のM2と同じ文（L2:1086）に並ぶ項目である。review01では、その文からL3要件freezeとL11利用者受入だけをMajorにした。vision、brand、見た目の好み、prototypeへの合意を拾わなかった。prototypeへの合意は、agreementのCASEで覆われている。照合を1回で済ませるべきところを、取りこぼしていた。\n\n### Major\n**M1（「候補、fixture、測定回数だけで精度や品質を成立扱いにしない」のうち、照合されているのは1項目だけ）**\n- **欠陥**：\n  - 単独CASEは、「fixture登録数→accuracy」（FV:1653）だけである。\n  - 候補数だけ、または測定（実行）回数だけで精度を成立させる単独CASEがない。fixture・候補・回数から「品質」を成立させる単独CASEもない。\n  - AC:741は、文言だけでCASEに落ちていない（類型2・4）。\n- **守るべき行**：固定L2-049（ea6f756 product-requirements.md:1082）「候補、fixture、測定回数だけで精度や品質を成立扱いにしない」\n\n**M2（他候補の採択を推定・前提にする変異に、拒否CASEがない）**\n- **欠陥**：次のどちらかを単独で変異させるCASEがない。\n  - 039の採択を推定する、または前提にする（049のCASEに「039」は0件である）。\n  - BRAIN/LABO/INTELLIGENCEの候補を、採択済みとして扱う。\n  - 固定親が禁じる状態の推測に、拒否fixtureがない（類型2）。\n- **守るべき行**：\n  - 固定L2-049（:1072/1076/1088）「039の採択や未記載の生成能力を推定しない」\n  - 同:1084「各候補が採択済みであるとも扱わない」\n\n**M3（vision、brand、見た目の好みの自己承認に、拒否CASEがない）**\n- **欠陥**：\n  - 人の承認を扱うCASEは、次の4つだけである。\n    - 汎用のuser_approval\n    - agreement（prototypeへの合意）\n    - L3 freeze\n    - L11受入\n  - vision、brand、見た目の好みを、それぞれ単独で承認済みとして出力する変異の拒否CASEがない（類型2）。\n- **守るべき行**：固定L2-049（:1086）「HARNESS/AIはvision、brand、見た目の好み、prototypeへの合意、L3要件freeze、L11利用者受入を自己承認しない」\n\n**M4（「文書上の対応関係」「candidate登録」だけで完了を成立させる変異に、拒否CASEがない）**\n- **欠陥**：\n  - 文書上の対応関係だけ、またはcandidate登録だけを根拠に、要求採択・PO合意・実装・L3/L11の完了を成立させる単独CASEがない。\n  - FV:1661は、機械測定結果から受入を作る場合だけを扱っている。FV:1753〜1754は、描画済み扱いに限られる。\n  - これらの誤った完了を拒否するfixtureがない（類型2・4）。\n- **守るべき行**：L11-049（ea6f756 product-acceptance.md:814）「文書上の対応関係、candidate登録、fixture一覧、描画画像の存在だけでは要求採択、実測成功、検査精度、PO合意、実装、実利用者評価、L3/L11の実際の完了を成立させない」\n\n### 後で直す残余（承認を止めない）\n- **R1〜R4**：変わらない。今回、上の基準で洗い直したが、Majorに当たるものはなかった。\n- **R5**：解消した。\n- **R6（精度評価fixtureの戻し先）**：精度評価fixtureの戻し先が、CASEによって設計ownerとLABOに分かれている（FV:1717、1652、FR:732）。\n- **R7（閾値誤りの戻し先）**：一律閾値の誤りを、LABOへ返している（FV:1687）。固定L2:1090では、設計・oracle不足は設計ownerへ返す。\n- **R8（範囲の注記）**：次の注記には、単独CASEがない。\n  - 未選択Patternの存在推定\n  - 実行の生成\n  - 要求identityや接続の新設\n  - 承認gateの追加\n  - 保管・運転の所有\n\n### 次の手順\n- **M1**：候補数だけ、測定回数だけで精度を成立させる変異と、fixture・候補・回数から品質を成立させる変異を、それぞれ単独のCASEとして拒否する。\n- **M2**：039の採択を前提にする変異と、BRAIN/LABO/INTELLIGENCEの候補を採択済みとして扱う変異を、それぞれ単独のCASEとして拒否する。\n- **M3**：vision、brand、見た目の好みを、それぞれ単独で自己承認する変異を拒否する。\n- **M4**：文書上の対応関係だけ、candidate登録だけを根拠に完了・採択・合意を成立させる変異を、それぞれ単独のCASEとして拒否する。\n- 最新mainを取り込み、049節を変えずに衝突を解消したHEADで、もう一度依頼してほしい。\n",
+    "residual_R1_R8_raw": "### 後で直す残余（承認を止めない）\n- **R1〜R4**：変わらない。今回、上の基準で洗い直したが、Majorに当たるものはなかった。\n- **R5**：解消した。\n- **R6（精度評価fixtureの戻し先）**：精度評価fixtureの戻し先が、CASEによって設計ownerとLABOに分かれている（FV:1717、1652、FR:732）。\n- **R7（閾値誤りの戻し先）**：一律閾値の誤りを、LABOへ返している（FV:1687）。固定L2:1090では、設計・oracle不足は設計ownerへ返す。\n- **R8（範囲の注記）**：次の注記には、単独CASEがない。\n  - 未選択Patternの存在推定\n  - 実行の生成\n  - 要求identityや接続の新設\n  - 承認gateの追加\n  - 保管・運転の所有\n\n",
+    "reviewer_omission_raw": "**reviewer側の誤り**：M3は、review01のM2と同じ文（L2:1086）に並ぶ項目である。review01では、その文からL3要件freezeとL11利用者受入だけをMajorにした。vision、brand、見た目の好み、prototypeへの合意を拾わなかった。prototypeへの合意は、agreementのCASEで覆われている。照合を1回で済ませるべきところを、取りこぼしていた。\n",
+    "reviewer_omission_treatment": "review02 records that reviewer previously limited the same L2:1086 sentence to generic agreement/L3 freeze/L11 acceptance and missed vision, brand and visual taste self-approval cases. The post-body matrix now records each as separate CASE and self-correction oracle; no claim is made that reviewer omission changes source meaning.",
+    "R1_R8_treatment": "verbatim retained; not reclassified as resolved and no residual closure claim."
+  },
+  "adopted_source_pins": {
+    "fixed_revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+    "l2_049": {
+      "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "full_bytes": 304209,
+      "full_sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6",
+      "physical_line_start": 1070,
+      "physical_line_end_inclusive": 1092,
+      "span_bytes": 8823,
+      "span_sha256": "a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116",
+      "raw_literal": "### HARNESS-L2-049 画面prototypeの表示計測oracle・検査精度・文言量評価（HELIX-HARNESS unit候補、version_target: 1.0）\n\n**状態**：新規の未採択候補。O10作業依頼を起点に起草した候補であり、要求合意・L3承認・実装・実行を生成しない。049は既に与えられたrenderable prototypeを表示計測するoracleと精度評価だけを所有し、prototypeを生成しない。現在の`HARNESS-L2-039`候補はExperience/UI/Frontend関係とscreen/profile/source contractを扱うが、Pattern・製品CORE・UI profileの制約内でrenderable prototypeを作る能力は定めていない。O10が1.0方向に含めたこの生成能力のowner/scopeは未解決で、PO判断frame A/B/Cを別途提示する。049の現候補scopeは測定専用のままとし、039の採択や未記載の生成能力を推定しない。\n\n**親L1**：`HARNESS-L1-001`（V-model pair）、`HARNESS-L1-003`（変更影響とtrace）、`HARNESS-L1-004`（検証義務・反例・証拠）、`HARNESS-L1-006`（prototypeと合意）、`HARNESS-L1-009`（design template）。対象画面、要求revision、scope、適用する既存contractとそのauthority状態を記録する。候補の親は現在のL1 bytesであり、新しいL1要求や採択を推測しない。\n\n**種別・scope**：HELIX-HARNESSに属するVisual Design HARNESSの単体能力候補。既存のV-model層とpairを使い、別工程、独立承認者、独立実行機構を追加しない。入力されたrenderable prototypeと、その画面・領域・文言役割別profileに適用する表示計測oracleを定める。prototype生成、Experience/UI/Frontendの関係構成、semantic identityの発行はこの候補のscope外である。特にPattern・製品CORE・UI profileの制約内でprototypeを作る能力は現在の039にも記述されていない。O10のprototype生成scopeは未解決decisionとして残り、A＝将来の049 revisionへ追加、B＝別candidateへ分離、C＝deferをPOが選ぶ。どの選択もこの049測定候補を変更・採択せず、選択後の正確なrevisionへ反映する。039は未採択であり、049の入力条件として採択を前提にしない。049単独で成立する入力は、利用許可とscope/revisionが分かるrenderable prototype、選択された適用profile、および既知のpositive/negative fixtureである。pattern/style/Visual Identityは入力済みprototype/profileに明示される場合だけ計測条件として参照し、新しいprofile schemaや固定閾値を作らない。\n\n**入力・出力**：入力はrenderable prototype、対象screen scope/revision、測定対象のdevice classまたはdevice condition、view/viewport条件、適用profile、許可された測定項目とoracle、既知fixtureと期待分類である。prototypeに必要なscreen identityやsource traceがなければ新しく発行せず不足として返す。出力は実際に表示したscope/device/view条件、各測定項目・oracle・手段版・fixture、測定結果と証拠、適用外・未測定・unknown、修正候補、差戻し先を含む。\n\n**表示と機械計測**：入力された対象画面を指定device conditionとview/viewport条件のもとで実際に描画し、その結果に対して適用scopeで定めたアクセシビリティ、コントラスト、画面幅別の崩れ・はみ出し、主要状態（例：empty/loading/error）の有無、文言量を測る。device/view条件が未指定または表示証拠に結べない場合、その条件の測定はunknownとする。測定ごとに対象scope、device/view条件、oracle、手段・版、結果、証拠を結ぶ。O10で新規提案された文言検査は、UI profileの画面・領域・役割別上限目安を根拠に超過、反復、説明のためだけの説明を候補として返す。根拠のない固定上限や閾値は作らない。静止画、DOMの存在、prototypeの生成だけでは表示検証や合格を主張しない。\n\n**検査精度とLABO接続**：各機械検査の適用範囲と判定条件に対し、既知の正例・反例fixtureで誤検出と見逃しを評価可能にする。精度評価が確認できない検査は合格根拠に使わず、warningと未評価範囲を返す。LABOによる検査精度の評価は既存接続の範囲で受ける。評価者・fixtureのauthority、結果保管、配置・実行運転をこの要求が所有しない。候補、fixture、測定回数だけで精度や品質を成立扱いにしない。\n\n**依存・境界**：常時必須は対象scope/revision、UI適用性、既存要求・oracle・profile/source identityと利用許可、結果を結ぶ証拠契約である。Patternを選択する場合は既存BRAIN側の候補または確定済み契約の版・適用条件・反例を照合し、選択しなかったPatternを存在または適格と推定しない。製品固有screen/flow/token/Visual Identityは当該製品のHELIX-HARNESS-COREへ残す。LABOは測定後の評価、INTELLIGENCEは既存の配置案を担う。本候補はBRAIN/LABO/INTELLIGENCEに新しい要求identityや接続を追加せず、各候補が採択済みであるとも扱わない。実行・ticket・state記録・証拠保存は現行の既存owner契約へ渡す。\n\n**authority・状態**：HARNESS/AIはvision、brand、見た目の好み、prototypeへの合意、L3要件freeze、L11利用者受入を自己承認しない。候補出力・機械判定・fixture評価は人の判断を代替しない。049が返す検査状態は測定単位のpass/warning/unknownであり、`implemented`や`ux_verified`を生成しない。O10の状態区別は既存`HARNESS-L2-039`候補と同scopeで重複するため、049単独で状態成立を主張しない。実データ・実利用者によるUX評価、prototypeと実装のdrift検査、計測event結線はO10の後続版へ残す。後続scopeを1.0へ前倒ししない。\n\n**既存要求との境界**：`HARNESS-L2-039`候補はprototype/Experience/UI/Frontendの関係とscreen/profile/binding等のsource contractを広く扱う。049は既にrenderされたscreenについての測定oracleと検査精度・文言量findingだけに限り、039を置換、重複、または前提採択しない。`HARNESS-L2-022`はstageごとのoracle・evidence状態、`HARNESS-L2-005`は選択された検証義務、`HARNESS-L2-034`は選択した場合の計測契約をそれぞれ参照する。BRAIN/LABO/INTELLIGENCEの既存接続は、入力sourceが選択され有効な場合にだけその契約へ返し、新しいrequirement identityを追加しない。\n\n**不成立と戻し先**：prototype/profile/oracle/fixtureの版、scope、authority、利用許可が不明なら測定条件を確定しない。対象の画面が表示されていない、必要な測定・証拠が欠ける、known-positive/negative fixtureで精度を評価できない、profile上限や文言役割の根拠がない場合はpassを返さず、warning/unknownと未完条件を返す。要求意味・見た目の優先順位は上流ownerへ、prototype agreementは`HARNESS-L2-024`の既存境界へ、設計・oracle不足は既存設計ownerへ、検査精度評価はLABOへ戻す。人の判断境界や毎回のapproval gateを追加しない。\n\n**旧sourceと差分**：旧`LEGACY-ASSET-335176749F6322C3CD8D`の`ai-vision-design-harness-engine.md` VDH-FR-011の「主要stateとdevice/view条件」を選択spanとして起点にする。旧`LEGACY-ASSET-4E880D2FCD37879BA300`のdesign-harness-assessment-auditは、実装済みの文書管理と未実装のscreen/prototype機能を区別して改善順を示す背景auditとして参照する。保持点は旧screen state/device/view coverage evidenceである。O10の検査精度fixtureと文言量制約は新規提案であり、情報優先順位は保留した旧VDH-FR-005 spanを意味の参照元にする。既存039候補はExperience/UI/Frontend relationとsource contractを扱うが、Pattern/CORE/profile制約下のprototype generationを定義していない。049はmeasurement-onlyであり、生成範囲は未解決PO frame A/B/Cに保持する。VDH-FR-005のPATTERN spanを含む未選択旧sourceは`MPR-SH-VDH-O10-001`へ保全し、ここで候補入力へ移さない。semantic ID発行や人間承認も049へ再導出しない。変更点は現行layer・親L1・既存ownerへ配置し、211-file intake、旧sub-check、旧DB/runtime、旧L0-L14/旧processを移植しない。assessment auditの旧実装状態を現行の実装根拠にしない。対象sourceと保留分はO10 source inventory/coverage receiptに記録する。"
+    },
+    "l11_049": {
+      "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "full_bytes": 207907,
+      "full_sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e",
+      "physical_line_start": 802,
+      "physical_line_end_inclusive": 814,
+      "span_bytes": 4239,
+      "span_sha256": "f3fb47da21371084e9f8c7c7f7ca6dd945c8e98ae7c7b70597c3fc44e4e08ee7",
+      "raw_literal": "### HARNESS-L11-049 画面prototypeの表示計測oracle・検査精度・文言量評価の受入候補\n\n**対応要求**：`HARNESS-L2-049`（HELIX-HARNESS単体候補、`version_target: 1.0`、未採択）。以下は静的な受入oracle案であり、実際の描画、測定、LABO評価、PO合意を実施した証拠ではない。\n\n- **単独成立例：既存screen identityを持つrendered prototypeを測定する**：screen ID、対象revision、当該scope・revisionでの利用許可、適用profile、device/view/viewport等の測定条件が入力に揃ったrenderable prototypeを、049は単独成立する測定対象として受け付ける。既知のpositive/negative fixtureがある測定項目は期待分類と実測を照合する。この成立にprototype生成、Pattern selection、screen IDの発行処理や発行証拠は要らない。049は入力済みscreen IDとrevisionの対応を使い、IDを新規発行しない。\n- **screen ID欠落**：対象を指すscreen IDが入力に無い、または対象revisionへ結べない場合は、対象の測定をpassにせず不足／unknownとして返す。049は代替IDを作らず、欠落とrevision不一致を区別して記録する。screen IDが存在する場合に、その発行過程や発行者の証拠まで追加要求しない。\n- **正常例：表示と測定**：選択したdevice conditionとview/viewport条件で実際に描画した対象画面、主要stateなどの条件、各測定のoracle/手段/版、証拠が同じ対象revisionへ結ばれる。適用対象についてアクセシビリティ、コントラスト、画面幅別の崩れ・はみ出し、主要状態、profileに基づく文言量の各結果を個別に確認できる。device/view条件が未指定または証拠に結べない測定はunknownとする。適用外または未測定は理由付きで識別し、他項目の結果で埋めない。\n- **正常例：検査精度**：検査項目ごとの既知の正例・反例fixtureと期待分類、実測結果を照合し、誤検出・見逃しを評価できる。選択scopeと異なるfixture・source revisionの結果を流用しない。LABO評価が必要な範囲では既存接続経由の評価結果と未完義務を識別する。\n- **正常例：文字量**：profileが画面・領域・文言の役割と目安を定める範囲で、上限超過、同じ内容の反復、説明のためだけの説明を理由付き候補として作成側へ返す。閾値をprofileや根拠なしに作らず、人の文言判断や修正を承認済みとして扱わない。\n- **状態境界**：機械検査のpassは`implemented`や`ux_verified`を生成しない。両状態の分離は既存`HARNESS-L2-039`候補の範囲と重なるため、049の単独成立・測定結果から状態を主張できない。\n- **不成立例**：表示せずに生成物/静止画だけで測定済みとする、screen IDまたは対象revisionが欠落・不整合なのに測定をpassにする、採択されていないPatternやCORE制約を確定済みとして用いる、検査精度がunknownなのにpass根拠へ使う、文字数の一律閾値を追加する、人の合意をAIが代行する、`implemented`から`ux_verified`を推定する、後続版のreal-user UX/drift/analyticsを1.0完了条件に混入する場合は不合格またはunknownとする。prototype生成、Pattern selection、screen ID発行の証拠が無いことだけでは失敗にしない。\n- **未見例**：追加のdevice condition、view/viewport、画面状態、文言役割を与え、選択scopeのoracle・fixtureにない条件をunknownとして残せることを確認する。未選択の機器・役割・locale等について、実施・合格を推測しない。\n- **受入の限界**：文書上の対応関係、candidate登録、fixture一覧、描画画像の存在だけでは要求採択、実測成功、検査精度、PO合意、実装、実利用者評価、L3/L11の実際の完了を成立させない。O10で後続版へ回したreal-data/user evaluation、prototype-implementation drift、analytics event接続を1.0候補の合格要件にしない。"
+    },
+    "po_049": {
+      "revision": "3795bf0dcb731231a0b5ca1faa3cb67bdfeda22a",
+      "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+      "full_bytes": 16056,
+      "full_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+      "decision_line39": {
+        "revision": "3795bf0dcb731231a0b5ca1faa3cb67bdfeda22a",
+        "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+        "line": 39,
+        "bytes": 244,
+        "sha256": "928310ccfecf9d7269440a51d84123e5332f30236cc4396146f9862c6153a29a",
+        "literal": "| `HARNESS-L2-049` | 承認（通常採択22件に含む） | `MPR-RC-HARNESS-L2-049-003` | `sha256:a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116` | `sha256:f3fb47da21371084e9f8c7c7f7ca6dd945c8e98ae7c7b70597c3fc44e4e08ee7` |"
+      },
+      "scope_line72": {
+        "revision": "3795bf0dcb731231a0b5ca1faa3cb67bdfeda22a",
+        "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+        "line": 72,
+        "bytes": 887,
+        "sha256": "410b827982a782cf507851e49843ccef13b48f9dc920f22205dd6769dbd9255f",
+        "literal": "HARNESS-L2-049の採択は登録`-003`および訂正済L11 oracleの計測専用意味に限る。試作品生成、Pattern選択、screen ID発行は含まず、別revision `-002`の処置を継承しない。HARNESS-L2-055/056はそれぞれ選択済みFR-48 gate atom、選択済みFR-49の6 canonical V-pair atomに限る。HARNESS-L2-062は既存負債を免除・解消扱いしない。HARNESS-L2-063は選択した3条件だけを採り、導入版未指定を維持する。HELIXLABO-L2-071は資格を操作権限や割当へ自動変換しない境界を含む。HELIXOS-L2-104は新しい認可権限や追加承認を作らず、105は記録充足と実際の復旧完了・release許可を区別する。HELIXOS-L2-106/107は根拠不足を未解決として返し、108/109/110は明示入力範囲の検査に限る。これらの限定は選択対象を広げない。"
+      },
+      "meaning": "MPR-RC-HARNESS-L2-049-003 is adopted as measurement-only. Actual L2 adoption is kept separate from L3/L11 outcomes."
+    },
+    "current_main_039": {
+      "revision": "0acbed34bfda48e32092feb63db61d2eff6d5ec4",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "full_bytes": 45099,
+      "full_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "decision_line44": {
+        "revision": "0acbed34bfda48e32092feb63db61d2eff6d5ec4",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "line": 44,
+        "bytes": 621,
+        "sha256": "048d22bc06df04095a7ca95c8f1ae0119a20ac57cdca197fa62143e0dc529c9d",
+        "literal": "| `HARNESS-L2-039` | 採択 | `MPR-RC-HARNESS-L2-039-003` | `docs/helix-harness/L2-requirements/product-requirements.md` | `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09` | `sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0` | `HARNESS-L2-039` | `docs/helix-harness/L11-acceptance/product-acceptance.md` | `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5` | sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746 | `docs/governance/audits/requirement-registration/harness-experience-contract-coverage-receipt-2026-09-28-r3.json#HARNESS-L2-039` |"
+      },
+      "meaning": "HARNESS-L2-039-003 is actually adopted by its own PO decision at current main. 049 must neither infer this fact from its own status nor require a second 039 adoption record as a precondition."
+    }
+  },
+  "legacy_source_retention": {
+    "VDH_source": {
+      "asset_id": "LEGACY-ASSET-335176749F6322C3CD8D",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md",
+      "revision": "legacy-generation-2026-09-14 archived source at current body commit",
+      "full_bytes": 11150,
+      "full_sha256": "7dd1aff53747c60d080cdc367407751fb707e20b839ad64a9462537bb525cb2d",
+      "source_title_line13": "# AI Vision Design HARNESSエンジン要件",
+      "VDH_FR_011_line49": "| VDH-FR-011 | UX evidenceはreal data、responsive、motion、accessibility、performance、continuity、主要stateとdevice/view条件を含む | VDH-AC-011 |",
+      "VDH_FR_005_line43_contrast": "| VDH-FR-005 | AIは白紙生成せず、required/forbiddenを持つPattern Contract内で構成する。UI profileは情報優先順位、pattern/token、responsive、motion budget、reduced-motion、accessibility、brand制約、operational/expressive/mixed分類を持ち、product固有値を共通Rule Packへ混入しない | VDH-AC-005 |",
+      "retention": "VDH-FR-011 major-state and device/view evidence is a selective retained source; it does not import deferred VDH-FR-005 pattern behavior."
+    },
+    "historical_old_82_inventory": {
+      "checkpoint_path": "/tmp/root-harness049-old-case-literal-checkpoint.json",
+      "checkpoint_bytes": 52468,
+      "checkpoint_sha256": "ee97e9968c2098bc2786f70e9b16c0c99e9247d01a5dbb118a838375744ee48c",
+      "source_revision": "3fd20391",
+      "source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "old_source_file_bytes": 767540,
+      "old_source_file_sha256": "94704ba448b00df43651ca1dfa01835472132ce3023d829ea5bb690926fa3f02",
+      "rows": 82,
+      "row_raw_hash_verification": "82/82 physical LF-terminated source lines at recorded line numbers match checkpoint raw literal and raw_lf_sha256",
+      "concatenated_literal_sha256": "7b053690a2ec5fa4931de3b62db27047fffb1de3125b502771889d24e06fd1d9",
+      "retention": "This preserves the historical raw rows and IDs as an audit source; it is not a claim that the old CASE meanings are current or complete."
+    }
+  },
+  "v1_semantic_correction": {
+    "v1_path": "/tmp/harness049-review02-M1-M4-exact-candidate-2026-10-07.json",
+    "v1_sha256": "5ea00cdd5d7046671855a0f2d55bcbf4eed9f31eac1ba29c5f75a1ebcdd070a0",
+    "v2_path": "/tmp/harness049-review02-M1-M4-exact-candidate-v2-2026-10-07.json",
+    "v2_sha256": "65d7edbf5701c94a3e2251e0719e7a99cc6c9c4f8a27065dff3f8ae7ab470172",
+    "issue": "v1 used “L3要件採択” as if it were a defined output meaning, while fixed L11 enumerates “要求採択” and source did not establish an L3-specific adoption state.",
+    "correction": "Use the exact fixed L11 “要求採択” output. Its fixture refers to D0, an already-input-referenced target requirement identity whose own adoption-decision source remains unknown; correspondence/candidate registration alone does not make it adopted. Keep actual HARNESS-L2-049-003 adoption in its separate PO record. PO agreement fixture refers to agreement for the measured target prototype, which is absent, not an invented L3/L11-specific agreement."
+  },
+  "root_additional_correction": {
+    "source_checkpoint": "/tmp/root-harness049-review02-integration-checkpoint-final.json",
+    "candidate_v2_before_sha256": "65d7edbf5701c94a3e2251e0719e7a99cc6c9c4f8a27065dff3f8ae7ab470172",
+    "correction_count": 4,
+    "exact_changes": [
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m4-document-correspondence-only-l3_completion",
+        "candidate_v2_before_correction": "| `CASE-HARNESS-L10-049-r20-m4-document-correspondence-only-l3_completion` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | 有効な049入力、選択scope S0、oracle O0/r0、その他の正しいfield値を固定する。補助根拠は文書上の対応関係だけ。L3完了のsource recordは未入力で、baseline値はfalse/未成立。 当該field以外の出力はbaseline値（未確認はunknown、未成立の実装/完了はfalse）のまま。 | 文書上の対応関係だけを根拠にL3実際の完了fieldだけを成立済みにする。 | 文書上の対応関係だけでは固定L11のL3/L11実際の完了を成立させない。049自身が当該fieldをbaselineのunknown/falseへ訂正し、正常入力を返却せず、誤出力のままclosureしない。 |",
+        "integrated_after": "| `CASE-HARNESS-L10-049-r20-m4-document-correspondence-only-l3_completion` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | 有効な049入力、選択scope S0、oracle O0/r0、その他の正しいfield値を固定する。補助根拠は文書上の対応関係だけ。L3完了のsource recordは未入力で、baseline値はfalse/未成立。 当該field以外の出力はbaseline値（未確認はunknown、未成立の実装/完了はfalse）のまま。 | 文書上の対応関係だけを根拠にL3実際の完了fieldだけを成立済みにする。 | 文書上の対応関係だけでは固定L11が列挙するL3実際の完了を成立させない。049自身が当該fieldをbaselineのunknown/falseへ訂正し、正常入力を返却せず、誤出力のままclosureしない。 |",
+        "correction": "oracleは固定L11が列挙する対象field（L3完了またはL11完了）のみを対象化。別layerを一緒に列挙せず、そのCASEの単独出力oracleを保つ。"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m4-document-correspondence-only-l11_completion",
+        "candidate_v2_before_correction": "| `CASE-HARNESS-L10-049-r20-m4-document-correspondence-only-l11_completion` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | 有効な049入力、選択scope S0、oracle O0/r0、その他の正しいfield値を固定する。補助根拠は文書上の対応関係だけ。L11完了のsource recordは未入力で、baseline値はfalse/未成立。 当該field以外の出力はbaseline値（未確認はunknown、未成立の実装/完了はfalse）のまま。 | 文書上の対応関係だけを根拠にL11実際の完了fieldだけを成立済みにする. | 文書上の対応関係だけでは固定L11のL3/L11実際の完了を成立させない。049自身が当該fieldをbaselineのunknown/falseへ訂正し、正常入力を返却せず、誤出力のままclosureしない。 |",
+        "integrated_after": "| `CASE-HARNESS-L10-049-r20-m4-document-correspondence-only-l11_completion` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | 有効な049入力、選択scope S0、oracle O0/r0、その他の正しいfield値を固定する。補助根拠は文書上の対応関係だけ。L11完了のsource recordは未入力で、baseline値はfalse/未成立。 当該field以外の出力はbaseline値（未確認はunknown、未成立の実装/完了はfalse）のまま。 | 文書上の対応関係だけを根拠にL11実際の完了fieldだけを成立済みにする. | 文書上の対応関係だけでは固定L11が列挙するL11実際の完了を成立させない。049自身が当該fieldをbaselineのunknown/falseへ訂正し、正常入力を返却せず、誤出力のままclosureしない。 |",
+        "correction": "oracleは固定L11が列挙する対象field（L3完了またはL11完了）のみを対象化。別layerを一緒に列挙せず、そのCASEの単独出力oracleを保つ。"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m4-candidate-registration-only-l3_completion",
+        "candidate_v2_before_correction": "| `CASE-HARNESS-L10-049-r20-m4-candidate-registration-only-l3_completion` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | 有効な049入力、選択scope S0、oracle O0/r0、その他の正しいfield値を固定する。補助根拠はcandidate登録だけ。L3完了のsource recordは未入力で、baseline値はfalse/未成立。 当該field以外の出力はbaseline値（未確認はunknown、未成立の実装/完了はfalse）のまま。 | candidate登録だけを根拠にL3実際の完了fieldだけを成立済みにする。 | candidate登録だけでは固定L11のL3/L11実際の完了を成立させない。049自身が当該fieldをbaselineのunknown/falseへ訂正し、正常入力を返却せず、誤出力のままclosureしない。 |",
+        "integrated_after": "| `CASE-HARNESS-L10-049-r20-m4-candidate-registration-only-l3_completion` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | 有効な049入力、選択scope S0、oracle O0/r0、その他の正しいfield値を固定する。補助根拠はcandidate登録だけ。L3完了のsource recordは未入力で、baseline値はfalse/未成立。 当該field以外の出力はbaseline値（未確認はunknown、未成立の実装/完了はfalse）のまま。 | candidate登録だけを根拠にL3実際の完了fieldだけを成立済みにする。 | candidate登録だけでは固定L11が列挙するL3実際の完了を成立させない。049自身が当該fieldをbaselineのunknown/falseへ訂正し、正常入力を返却せず、誤出力のままclosureしない。 |",
+        "correction": "oracleは固定L11が列挙する対象field（L3完了またはL11完了）のみを対象化。別layerを一緒に列挙せず、そのCASEの単独出力oracleを保つ。"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m4-candidate-registration-only-l11_completion",
+        "candidate_v2_before_correction": "| `CASE-HARNESS-L10-049-r20-m4-candidate-registration-only-l11_completion` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | 有効な049入力、選択scope S0、oracle O0/r0、その他の正しいfield値を固定する。補助根拠はcandidate登録だけ。L11完了のsource recordは未入力で、baseline値はfalse/未成立。 当該field以外の出力はbaseline値（未確認はunknown、未成立の実装/完了はfalse）のまま。 | candidate登録だけを根拠にL11実際の完了fieldだけを成立済みにする. | candidate登録だけでは固定L11のL3/L11実際の完了を成立させない。049自身が当該fieldをbaselineのunknown/falseへ訂正し、正常入力を返却せず、誤出力のままclosureしない。 |",
+        "integrated_after": "| `CASE-HARNESS-L10-049-r20-m4-candidate-registration-only-l11_completion` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | 有効な049入力、選択scope S0、oracle O0/r0、その他の正しいfield値を固定する。補助根拠はcandidate登録だけ。L11完了のsource recordは未入力で、baseline値はfalse/未成立。 当該field以外の出力はbaseline値（未確認はunknown、未成立の実装/完了はfalse）のまま。 | candidate登録だけを根拠にL11実際の完了fieldだけを成立済みにする. | candidate登録だけでは固定L11が列挙するL11実際の完了を成立させない。049自身が当該fieldをbaselineのunknown/falseへ訂正し、正常入力を返却せず、誤出力のままclosureしない。 |",
+        "correction": "oracleは固定L11が列挙する対象field（L3完了またはL11完了）のみを対象化。別layerを一緒に列挙せず、そのCASEの単独出力oracleを保つ。"
+      }
+    ],
+    "verification": "Read all four final rows. Each case has one evidence-basis mutation and oracle names only its own L3 or L11 completion field; the two completion outcomes remain separate."
+  },
+  "fixture_inventory": {
+    "actual_FV_suffix_id_count": 131,
+    "actual_FV_suffix_unique_id_count": 131,
+    "prior_body_id_count": 102,
+    "prior_body_ids_retained": 102,
+    "new_r20_ids_count": 29,
+    "new_r20_ids": [
+      "CASE-HARNESS-L10-049-r20-m1-candidate-count-to-accuracy",
+      "CASE-HARNESS-L10-049-r20-m1-measurement-count-to-accuracy",
+      "CASE-HARNESS-L10-049-r20-m1-fixture-count-to-quality",
+      "CASE-HARNESS-L10-049-r20-m1-candidate-count-to-quality",
+      "CASE-HARNESS-L10-049-r20-m1-measurement-count-to-quality",
+      "CASE-HARNESS-L10-049-r20-m2-infer-039-adoption",
+      "CASE-HARNESS-L10-049-r20-m2-require-039-adoption",
+      "CASE-HARNESS-L10-049-r20-m2-brain-candidate-not-adopted",
+      "CASE-HARNESS-L10-049-r20-m2-labo-candidate-not-adopted",
+      "CASE-HARNESS-L10-049-r20-m2-intelligence-candidate-not-adopted",
+      "CASE-HARNESS-L10-049-r20-m3-self-approve-vision",
+      "CASE-HARNESS-L10-049-r20-m3-self-approve-brand",
+      "CASE-HARNESS-L10-049-r20-m3-self-approve-visual_taste",
+      "CASE-HARNESS-L10-049-r20-m4-document-correspondence-only-requirement_adoption",
+      "CASE-HARNESS-L10-049-r20-m4-document-correspondence-only-measurement_success",
+      "CASE-HARNESS-L10-049-r20-m4-document-correspondence-only-inspection_accuracy",
+      "CASE-HARNESS-L10-049-r20-m4-document-correspondence-only-po_agreement",
+      "CASE-HARNESS-L10-049-r20-m4-document-correspondence-only-implementation",
+      "CASE-HARNESS-L10-049-r20-m4-document-correspondence-only-actual_user_evaluation",
+      "CASE-HARNESS-L10-049-r20-m4-document-correspondence-only-l3_completion",
+      "CASE-HARNESS-L10-049-r20-m4-document-correspondence-only-l11_completion",
+      "CASE-HARNESS-L10-049-r20-m4-candidate-registration-only-requirement_adoption",
+      "CASE-HARNESS-L10-049-r20-m4-candidate-registration-only-measurement_success",
+      "CASE-HARNESS-L10-049-r20-m4-candidate-registration-only-inspection_accuracy",
+      "CASE-HARNESS-L10-049-r20-m4-candidate-registration-only-po_agreement",
+      "CASE-HARNESS-L10-049-r20-m4-candidate-registration-only-implementation",
+      "CASE-HARNESS-L10-049-r20-m4-candidate-registration-only-actual_user_evaluation",
+      "CASE-HARNESS-L10-049-r20-m4-candidate-registration-only-l3_completion",
+      "CASE-HARNESS-L10-049-r20-m4-candidate-registration-only-l11_completion"
+    ],
+    "old_literal_rows_count": 82,
+    "old_literal_ids_present_in_current": 82,
+    "all_102_prior_ids_retained": true,
+    "all_82_old_ids_retained": true,
+    "current_row_locations": [
+      {
+        "id": "CASE-HARNESS-L10-049-r10-screen-id-no-issuance-proof-normal",
+        "line": 1725,
+        "literal": "| `CASE-HARNESS-L10-049-r10-screen-id-no-issuance-proof-normal` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-01/03` | 対象revisionに結ばれた既存screen ID、利用許可、renderable prototype、current profile・選択device/view/locale、oracle/手段版、known fixtureを与える。各出力値はこの入力・oracleに対応し、修正候補はprofile/findingのsource根拠と一致、差戻し先は入力不足なしとしてnoneとする。screen IDの発行履歴証拠は入力しない。 | 変異なし。既存screen IDの発行履歴証拠だけを入力に要求するかを確認する。 | 計測を開始可能とし、定義された全出力の各field値が入力source・選択oracle・根拠から得た期待値と一致することを個別に照合する。修正候補はsource根拠と一致させ、入力不足がないため差戻し先をnoneとする。発行履歴がないことだけでunknownにせず、screen IDそのものの欠落とは区別する。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r10-unseen-device-unknown",
+        "line": 1726,
+        "literal": "| `CASE-HARNESS-L10-049-r10-unseen-device-unknown` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-01` | 選択device-Aのcurrent profile/oracle/evidenceと他条件を固定し、device-Bは選択scopeにもoracle/fixtureにも含めない。 | 未選択device-Bだけの測定状態をunknownからpassedへ変える。 | device-Bを未観測/unknownのまま保持し、device-Aの結果を流用しない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r10-unseen-view-unknown",
+        "line": 1727,
+        "literal": "| `CASE-HARNESS-L10-049-r10-unseen-view-unknown` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-01` | 選択view-Aのcurrent oracle/evidenceと他条件を固定し、view-Bは選択scopeにもoracle/fixtureにも含めない。 | 未選択view-Bだけの測定状態をunknownからpassedへ変える。 | view-Bを未観測/unknownのまま保持し、view-Aの結果を流用しない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r10-unseen-locale-unknown",
+        "line": 1728,
+        "literal": "| `CASE-HARNESS-L10-049-r10-unseen-locale-unknown` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-01` | 選択locale-Aのprofile/oracle/fixture/evidenceと他条件を固定し、locale-Bは選択scopeにもoracle/fixtureにも含めない。 | 未選択locale-Bだけの測定状態をunknownからpassedへ変える。 | locale-Bを未観測/unknownのまま保持し、locale-Aの結果や文言量findingを流用しない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r10-source-authority-unknown",
+        "line": 1729,
+        "literal": "| `CASE-HARNESS-L10-049-r10-source-authority-unknown` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-01` | 対象revision・renderable prototype・scope・profile・fixtureを固定し、選択sourceのauthority stateだけunknownにする。 | authority unknownだけをcurrent/validへ変える。 | 当該source依存測定をunknownのままにし、原因に応じて既存要求/visual-priorityまたはdesign ownerへ返す。generic source ownerを作らない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r10-scope-unknown",
+        "line": 1730,
+        "literal": "| `CASE-HARNESS-L10-049-r10-scope-unknown` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-01` | 対象revision・利用許可・profile・oracle・fixtureはcurrentだが、測定対象screen scopeだけを特定不能にする。 | scope identityだけを有効scopeへ補完する。 | 測定をunknown/未評価にし、選択scopeを推測しない。固定L2で特定できる既存責務へ原因別に返す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r10-profile-version-unknown",
+        "line": 1731,
+        "literal": "| `CASE-HARNESS-L10-049-r10-profile-version-unknown` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-01` | 対象revision・screen scope・利用許可・oracle・fixtureを固定し、適用profile revisionだけunknownとする。 | profile revision unknownだけをcurrentとして扱う。 | profile依存測定をunknownにし、profile identityを補完しない。 不足profile入力は既存design/oracle責務へ返し、個体identity unknownを別記する。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r10-fixture-version-unknown",
+        "line": 1732,
+        "literal": "| `CASE-HARNESS-L10-049-r10-fixture-version-unknown` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-02` | check・scope・oracle・手段版・期待分類を固定し、known positive/negative fixtureのsource revisionだけunknownにする。 | fixture revision unknownだけを適格/currentとして扱う。 | 精度評価を未評価に保ち、測定結果をaccuracy pass根拠にしない。既存LABO接続を必要に応じ使用する。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r10-precision-from-fixture-count",
+        "line": 1733,
+        "literal": "| `CASE-HARNESS-L10-049-r10-precision-from-fixture-count` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-02` | 合成正常baseline: 選択scope S0、選択oracle O0、oracle revision r0、対象revision R0、既存screen ID・利用許可・renderable prototypeは有効。実測fixtureの期待真値/観測値は未入力なのでaccuracy=unknown、quality=unknown。合成根拠件数は対象のfixture登録だけc=3。他の根拠数や測定結果はaccuracy/qualityの証拠にしない。すべての通常output fieldはbaseline source状態に固定し、未確認result/correction/approvalはunknown、pass/adopted/complete/implemented/ux_verified等の成功・承認・完了booleanはfalse/未発行とする。実測実績は主張しない。 | fixture件数c=3だけをaccuracy=passの根拠にする。他の全fieldはbaselineどおり。 | accuracy=unknown、quality=unknownを維持し、fixture件数だけによるpassを拒否する。正常入力を差戻さず、049自身のaccuracy誤出力を訂正し、pass根拠にしたclosureを拒否する。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r10-output-prototype-generation",
+        "line": 1734,
+        "literal": "| `CASE-HARNESS-L10-049-r10-output-prototype-generation` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-03` | 有効な測定入力とT0結果を固定し、出力fieldはprototype_generationだけを対象にする。 | 049が新しいrenderable prototypeを生成したと出力する。 | prototype_generationを生成せず、計測結果/入力prototypeを保持する。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r10-output-pattern-selection",
+        "line": 1735,
+        "literal": "| `CASE-HARNESS-L10-049-r10-output-pattern-selection` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-03` | 有効な測定入力とT0結果を固定し、Pattern採択状態は未選択として保持する。出力fieldはpattern_selectionだけを対象にする。 | 049がPatternを選択/採択済みと出力する。 | pattern_selectionを生成せず、未選択/未採択を保持する。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r10-output-screen-id-issuance",
+        "line": 1736,
+        "literal": "| `CASE-HARNESS-L10-049-r10-output-screen-id-issuance` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-03` | 有効なscreen IDを持つT0測定結果と入力状態を固定する。出力fieldはscreen_id_issuanceだけを対象にする。 | 049が新規screen ID発行を出力する。 | screen_id_issuanceを生成せず、入力identityを変えない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r10-output-correction-candidate-missing",
+        "line": 1737,
+        "literal": "| `CASE-HARNESS-L10-049-r10-output-correction-candidate-missing` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-01` | 対象revision・renderable prototype・scope・選択profile/oracle・測定値/evidenceを固定し、profile/oracleに根拠付く修正候補のsource期待値をT0に置く。全出力はsource/oracleと一致する。 | 修正候補fieldだけを欠落させる。 | 修正候補の欠落を不適合として検出し、候補出力を固定profile/oracleと根拠から再計算・訂正する。入力側ownerへ戻さず、欠落出力のままclosureしない。合成fixtureであり実測実績を主張しない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r10-output-correction-candidate-mismatch",
+        "line": 1738,
+        "literal": "| `CASE-HARNESS-L10-049-r10-output-correction-candidate-mismatch` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-01` | 対象revision・renderable prototype・scope・選択profile/oracle・測定値/evidenceを固定し、profile/oracleに根拠付く修正候補のsource期待値をT0に置く。全出力はsource/oracleと一致する。 | 修正候補fieldだけを、固定されたprofile/oracle/evidenceが裏付けない内容に変える。 | 修正候補の不一致を不適合として検出し、候補出力を固定profile/oracleと根拠に一致させる。入力側ownerへ戻さず、不一致出力のままclosureしない。合成fixtureであり実測実績を主張しない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r10-output-l3-requirements-freeze",
+        "line": 1739,
+        "literal": "| `CASE-HARNESS-L10-049-r10-output-l3-requirements-freeze` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-03` | 有効な測定入力と全ての正しい測定出力を固定し、L3要件freeze decisionは未入力とする。出力fieldはL3 requirement freezeだけを検査する。 | 049がL3要件freeze済みを出力する。 | L3要件freezeの自己生成出力を拒否し、049自身の当該出力を訂正してclosureを拒否する。decision未入力を保持し、正常な測定入力の不足として入力ownerへ返さない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r10-output-l11-user-acceptance",
+        "line": 1740,
+        "literal": "| `CASE-HARNESS-L10-049-r10-output-l11-user-acceptance` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-03` | 有効な測定入力と全ての正しい測定出力を固定し、L11利用者受入decisionは未入力とする。出力fieldはL11 user acceptanceだけを検査する。 | 049がL11利用者受入済みを出力する。 | L11利用者受入の自己生成出力を拒否し、049自身の当該出力を訂正してclosureを拒否する。decision未入力を保持し、正常な測定入力の不足として入力ownerへ返さない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r10-output-requirement-acceptance",
+        "line": 1741,
+        "literal": "| `CASE-HARNESS-L10-049-r10-output-requirement-acceptance` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | 有効な測定結果・精度状態を固定し、要求acceptance decisionは未入力のままにする。出力fieldはrequirement_acceptanceだけを対象にする。 | 機械測定結果からrequirement_acceptance=acceptedを生成する。 | requirement_acceptanceを生成せず、decision未提示を保持し、既存のrequirement authority/decision経路に残す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r10-output-user-approval",
+        "line": 1742,
+        "literal": "| `CASE-HARNESS-L10-049-r10-output-user-approval` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | 有効な計測結果を固定し、人のvisual/user approvalは未入力のままにする。出力fieldはuser_approvalだけを対象にする。 | 機械測定結果から人のapprovalを生成する。 | user_approvalを生成せず未提示を保持する。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r10-no-ux-verified-from-measurement",
+        "line": 1743,
+        "literal": "| `CASE-HARNESS-L10-049-r10-no-ux-verified-from-measurement` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | 選択scopeの測定結果をpassとし、implemented/ux_verified状態は未入力で固定する。 | measurement passだけからux_verifiedを生成する。 | ux_verifiedを生成せず、測定stateと既存stateを分離する。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r10-cause-specific-return-route",
+        "line": 1744,
+        "literal": "| `CASE-HARNESS-L10-049-r10-cause-specific-return-route` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-01` | 入力source authority、screen ID、target revision、permission、scope、profile、oracle・手段版、fixtureがすべてknown/currentで、測定値と他出力もsource/oracleと一致する正常な合成入力を固定する。入力不足はなくbaselineの差戻し先はnone。実測実績は主張しない。 | 049候補出力のroute fieldだけを、入力不足の既存ownerへ誤って返す値にする。入力値・測定値・他output fieldはbaselineのまま。 | 正常入力では差戻し先なしが期待値である。出力fieldの誤りを拒否し、049候補出力内で差戻し先をnoneに訂正する。L2入力ownerへは返さず、誤出力のままclosureしない。これは合成fixtureであり実装動作を主張しない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-01",
+        "line": 1753,
+        "literal": "| `CASE-HARNESS-L10-049-01` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-01` | 入力不足の索引。device/view=`CASE-HARNESS-L10-049-r09-001`、unbound evidence=`CASE-HARNESS-L10-049-r09-002`、permission unknown=`CASE-HARNESS-L10-049-r09-003`、oracle版=`CASE-HARNESS-L10-049-r09-004`、既知fixture=`CASE-HARNESS-L10-049-r09-005`、表示evidence=`CASE-HARNESS-L10-049-r09-006`、profile=`CASE-HARNESS-L10-049-r09-007`、DOM-only=`CASE-HARNESS-L10-049-r09-008`、LABO評価source unknown=`CASE-HARNESS-L10-049-r09-009`、permission missing=`CASE-HARNESS-L10-049-r09-030`、method version missing=`CASE-HARNESS-L10-049-r09-032`。 | 索引のみ。missingとunknownは別状態として扱う。 | 参照先の単独変異を評価し、索引を数えない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-02",
+        "line": 1754,
+        "literal": "| `CASE-HARNESS-L10-049-02` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-02` | check別 confusion-cell fixture index。5 checks各々のTP/FP/FN/TN実IDは`CASE-HARNESS-L10-049-r09-010`, `CASE-HARNESS-L10-049-r09-011`, `CASE-HARNESS-L10-049-r09-012`, `CASE-HARNESS-L10-049-r09-013`, `CASE-HARNESS-L10-049-r09-014`, `CASE-HARNESS-L10-049-r09-015`, `CASE-HARNESS-L10-049-r09-016`, `CASE-HARNESS-L10-049-r09-017`, `CASE-HARNESS-L10-049-r09-018`, `CASE-HARNESS-L10-049-r09-019`, `CASE-HARNESS-L10-049-r09-020`, `CASE-HARNESS-L10-049-r09-021`, `CASE-HARNESS-L10-049-r09-022`, `CASE-HARNESS-L10-049-r09-023`, `CASE-HARNESS-L10-049-r09-024`, `CASE-HARNESS-L10-049-r09-025`, `CASE-HARNESS-L10-049-r09-026`, `CASE-HARNESS-L10-049-r09-027`, `CASE-HARNESS-L10-049-r09-028`, `CASE-HARNESS-L10-049-r09-029`。 | 索引のみ。各fixtureは既知の真値と判定出力を持つ。 | check別TP/FP/FN/TN、適合率・再現率を参照先から集計し、誤分類出力を正解cellとして数えない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-03",
+        "line": 1755,
+        "literal": "| `CASE-HARNESS-L10-049-03` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-03` | minimum inputのみで測定する正常例。 | prototype生成、Pattern選択、screen ID発番証拠を追加必須inputとして要求。 | 固定L11にない追加条件で正常入力を拒否したら不合格。結果でagreement/acceptanceを生成しない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-04",
+        "line": 1756,
+        "literal": "| `CASE-HARNESS-L10-049-04` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-04` | profileと観測結果を同scope/revisionで結ぶ正常fixture。 | この行は各findingの独立CASE 049-11〜14および`CASE-HARNESS-L10-049-r17-na-reason-missing`を指す索引であり、個別negativeに算入しない。 | findingは各CASEで別々に分類し、根拠のない閾値は不成立。人の文言判断を承認扱いにしない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r17-na-reason-missing",
+        "line": 1757,
+        "literal": "| `CASE-HARNESS-L10-049-r17-na-reason-missing` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-04` | candidate fixture上で選択profileが文言量checkを既存根拠に基づき適用外と判定した入力を与え、scope/revision/authority・理由receiptと他check結果を保持する。実在profileや測定を主張しない。 | その理由receiptだけを欠落させる。 | N/Aを成立扱いせずunknown/未完にする。適用根拠入力の欠落は既存design/oracle責務へ返す。個人identity不明でも既知責務区分を保持し、N/A条件自体を新設しない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-05",
+        "line": 1758,
+        "literal": "| `CASE-HARNESS-L10-049-05` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-04` | screen IDと対象screen revisionを照合し、同じscopeで測定。 | 参照matrixのみ。screen ID欠落と別revisionはCASE-HARNESS-L10-049-root-screen-id-missing / CASE-HARNESS-L10-049-15で個別に試す。 | ID/revisionの不足や不一致はwarning/unknownとして保持し、固定L2が示す既存設計ownerへ戻す。HARNESS-L2-024はprototype agreement不足に限る。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-06",
+        "line": 1759,
+        "literal": "| `CASE-HARNESS-L10-049-06` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-04` | renderable prototype・対象revision・既存profile・screen sourceが有効である。 | 正常screen IDを入力したのに、判定器が代替screen IDを自動発行して測定対象を成立させる。 | 代替ID生成を拒否し、正常入力screen IDとscopeを保持する。049自身の候補出力誤りとして当該出力処理を訂正し、正常入力のdesign/oracle ownerへ返さない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-07",
+        "line": 1760,
+        "literal": "| `CASE-HARNESS-L10-049-07` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | machine checkはpassでもimplemented/ux_verifiedを生成しない。 | passからimplementedを作る。 | 状態生成を拒否。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-08",
+        "line": 1761,
+        "literal": "| `CASE-HARNESS-L10-049-08` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | implemented状態とUX evidenceを別々に保持。 | implementedからux_verifiedを推定する。 | 人の判断/状態の生成・推定を拒否し、当該049候補出力処理を訂正する。既存の人の判断と状態は変更せず、正常入力側ownerに出力訂正を負わせない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-09",
+        "line": 1762,
+        "literal": "| `CASE-HARNESS-L10-049-09` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | 1.0測定候補と将来real-user UX/drift/analyticsを別範囲にする。 | 参照matrixのみ。real-user UX/drift/analytics前倒しを`CASE-HARNESS-L10-049-20`、`CASE-HARNESS-L10-049-21`、`CASE-HARNESS-L10-049-22`で個別に試す。 | 1.0 closureに使わず未決scopeを維持。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-10",
+        "line": 1763,
+        "literal": "| `CASE-HARNESS-L10-049-10` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | LABO既存connection評価結果と人の文言判断状態を別に記録。 | 参照matrixのみ。machine result/LABO評価からの承認生成はCASE-HARNESS-L10-049-23、CASE-HARNESS-L10-049-24で個別に試す。 | 承認を生成せず、文言判断は既存上流ownerへ。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-11",
+        "line": 1764,
+        "literal": "| `CASE-HARNESS-L10-049-11` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-04` | profile上限と根拠に対し文字量の超過のみをfindingとして返す。 | 上限超過の入力をひとつ与える。 | 独立findingを作る。 選択profileの画面/領域/文言役割・目安と元測定receiptへ根拠を結び、当該finding分類・理由・対象scope/revisionがそれぞれ元入力/観測に一致することを照合する。人の承認を生成しない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-12",
+        "line": 1765,
+        "literal": "| `CASE-HARNESS-L10-049-12` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-04` | 同内容反復だけを検出する。 | 同内容の反復をprofile条件内で与える。 | 上限超過と別のfindingとして返す。 選択profileの画面/領域/文言役割・目安と元測定receiptへ根拠を結び、当該finding分類・理由・対象scope/revisionがそれぞれ元入力/観測に一致することを照合する。人の承認を生成しない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-13",
+        "line": 1766,
+        "literal": "| `CASE-HARNESS-L10-049-13` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-04` | 説明のためだけの説明を判断材料と区別する。 | 説明だけを与える。 | third findingを作り「適用理由」へ置換しない。 選択profileの画面/領域/文言役割・目安と元測定receiptへ根拠を結び、当該finding分類・理由・対象scope/revisionがそれぞれ元入力/観測に一致することを照合する。人の承認を生成しない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-14",
+        "line": 1767,
+        "literal": "| `CASE-HARNESS-L10-049-14` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-04` | 選択済みprofile、role、scope/revision、許可検査とoracleを固定する。 | profileの根拠にない一律文字数上限を全roleへ適用する。 | 任意の一律閾値を拒否し、役割別根拠がない測定はunknownにする。必要な検査精度評価はLABOの既存範囲へ返す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-15",
+        "line": 1768,
+        "literal": "| `CASE-HARNESS-L10-049-15` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-04` | 同一有効screen ID・target revision・scopeを使い、source revision=target revision=currentで一致する。 | source revisionだけをcurrent target revisionと不一致にする。 | revision不一致をunknownとして示し、固定L2:1078の入力欠陥として既存design/oracle責務へ返す。個人identityが未特定でも責務区分を保持する。HARNESS-L2-024へはprototype agreement入力不足の場合だけ返す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-16",
+        "line": 1769,
+        "literal": "| `CASE-HARNESS-L10-049-16` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-04` | screen ID自体が不足する。 | `CASE-HARNESS-L10-049-root-screen-id-missing`のID欠落を参照する索引。 | screen ID欠落はroot-screen-id-missingだけで計数する。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-17",
+        "line": 1770,
+        "literal": "| `CASE-HARNESS-L10-049-17` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-04` | 発行工程のinputだけが不足し、screen IDは既存で有効。 | 発行工程input不足をscreen ID欠落と同一扱いにする。 | 両欠落種別を区別し、追加必須条件は作らない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-18",
+        "line": 1771,
+        "literal": "| `CASE-HARNESS-L10-049-18` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-01` | 索引：device/view/localeごとの観測済み・合格主張をそれぞれ独立CASEで照合する。 | 索引のみ。単独CASEは049-r18-device-observed-only、device-passed-only、view-observed-only、view-passed-only、locale-observed-only、locale-passed-only。 | 各参照先の単独oracleだけを計数し、本行を変異に数えない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-root-screen-id-missing",
+        "line": 1772,
+        "literal": "| `CASE-HARNESS-L10-049-root-screen-id-missing` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-04` | 同一scopeの有効screen IDとrevisionを照合する。 | screen IDだけを欠落させる。 | IDを捏造せずwarning/unknown、固定L2:1078の入力欠陥として既存設計ownerへ戻す。HARNESS-L2-024へはprototype agreement不足の場合だけ戻す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-19",
+        "line": 1773,
+        "literal": "| `CASE-HARNESS-L10-049-19` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-04` | 同一scopeの有効screen IDとrevisionを照合する。 | `CASE-HARNESS-L10-049-15`のrevision mismatchを参照する索引。 | revision不一致は049-15だけで計数し二重計上しない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-20",
+        "line": 1774,
+        "literal": "| `CASE-HARNESS-L10-049-20` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | 将来real-user UXは後続版範囲として記録する。 | real-user UXだけを1.0完了の必須条件へ前倒しする。 | 新条件を拒否し1.0と後続版の範囲を保持する。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-21",
+        "line": 1775,
+        "literal": "| `CASE-HARNESS-L10-049-21` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | 将来drift測定は後続版範囲として記録する。 | 将来drift測定だけを1.0完了の必須条件へ前倒しする。 | 新条件を拒否し1.0と後続版の範囲を保持する。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-22",
+        "line": 1776,
+        "literal": "| `CASE-HARNESS-L10-049-22` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | 将来analyticsは後続版範囲として記録する。 | analyticsだけを1.0完了の必須条件へ前倒しする。 | 新条件を拒否し1.0と後続版の範囲を保持する。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-23",
+        "line": 1777,
+        "literal": "| `CASE-HARNESS-L10-049-23` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | machine resultと人の文言判断を別の状態へ結ぶ。 | machine resultだけから人の文言判断を承認済みとする。 | 人の判断/状態の生成・推定を拒否し、当該049候補出力処理を訂正する。既存の人の判断と状態は変更せず、正常入力側ownerに出力訂正を負わせない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-24",
+        "line": 1778,
+        "literal": "| `CASE-HARNESS-L10-049-24` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | LABO評価と人の文言判断を別の状態へ結ぶ。 | LABO評価だけから人の文言判断を承認済みとする。 | 人の判断/状態の生成・推定を拒否し、当該049候補出力処理を訂正する。既存の人の判断と状態は変更せず、正常入力側ownerに出力訂正を負わせない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r02-machine-pass-state",
+        "line": 1779,
+        "literal": "| `CASE-HARNESS-L10-049-r02-machine-pass-state` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | machine check passとimplemented/ux_verified状態を別に記録。 | passからux_verifiedを生成。 | 状態遷移を拒否し既存人間判断を保つ。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r02-ai-agreement",
+        "line": 1780,
+        "literal": "| `CASE-HARNESS-L10-049-r02-ai-agreement` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | 人のagreement decisionとAI所見が異なる記録主体で保存。 | AIが人のagreementを代行。 | agreement生成を拒否し人の決定状態を維持。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r04-static-image-only",
+        "line": 1781,
+        "literal": "| `CASE-HARNESS-L10-049-r04-static-image-only` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-02` | 索引：静止画とartifactのみの代用を別々に照合する。 | 索引のみ。単独CASEは`CASE-HARNESS-L10-049-r18-static-image-only`および`CASE-HARNESS-L10-049-r18-artifact-only`。 | 個別oracleを適用し本行を変異に数えない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r04-unadopted-pattern",
+        "line": 1782,
+        "literal": "| `CASE-HARNESS-L10-049-r04-unadopted-pattern` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-02` | 索引：未採択PatternとCORE制約を別々に照合する。 | 索引のみ。単独CASEは`CASE-HARNESS-L10-049-r18-unadopted-pattern-only`および`CASE-HARNESS-L10-049-r18-core-constraint-only`。 | 個別oracleを適用し本行を変異に数えない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r04-accuracy-unknown",
+        "line": 1783,
+        "literal": "| `CASE-HARNESS-L10-049-r04-accuracy-unknown` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-02` | 精度評価状態とpositive/negative fixtureが既知。 | 検査精度だけunknownにする。 | 精度状態をunknown/未評価として返し、LABOの既存比較評価ownerへ戻す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r04-unseen-screen-state",
+        "line": 1784,
+        "literal": "| `CASE-HARNESS-L10-049-r04-unseen-screen-state` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-01` | scope内screen stateと適用oracleが結ばれる。 | screen stateだけを未見にし、text roleと他条件を保持する。 | 選択scopeの適用oracle/fixtureに結ばれる未見screen stateは正常系として扱い、未見という理由だけでunknownに変更しない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r04-unseen-text-role",
+        "line": 1785,
+        "literal": "| `CASE-HARNESS-L10-049-r04-unseen-text-role` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-01` | scope内text roleと適用oracleが結ばれる。 | text roleだけを未見にし、screen stateと他条件を保持する。 | 選択scopeの適用oracle/fixtureに結ばれる未見text roleは正常系として扱い、未見という理由だけでunknownに変更しない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r04-049-upper-bound-exceeded",
+        "line": 1786,
+        "literal": "| `CASE-HARNESS-L10-049-r04-049-upper-bound-exceeded` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-04` | `CASE-HARNESS-L10-049-11`の索引参照。 | 独立変異として数えない。 | 参照先の単独oracleと既存owner戻しを照合し、二重計上しない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r05-unseen-screen-state-no-oracle",
+        "line": 1787,
+        "literal": "| `CASE-HARNESS-L10-049-r05-unseen-screen-state-no-oracle` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-01` | 選択scopeのscreen state、適用oracle、fixtureが結ばれている。 | 未見screen stateだけoracle/fixtureから欠落させる。 | 結果をunknown/未評価とし、実施・合格を推測しない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r05-unseen-text-role-no-oracle",
+        "line": 1788,
+        "literal": "| `CASE-HARNESS-L10-049-r05-unseen-text-role-no-oracle` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-01` | 選択scopeのtext role、適用oracle、fixtureが結ばれている。 | 未見text roleだけoracle/fixtureから欠落させる。 | 結果をunknown/未評価とし、実施・合格を推測しない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r06-denominator-zero",
+        "line": 1789,
+        "literal": "| `CASE-HARNESS-L10-049-r06-denominator-zero` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-02` | checkごとの適用条件と正例/負例が固定され、件数が観測可能である。 | 一checkの混同行列分母だけを0件にする。 | 精度値を算出せず、そのcheckだけ未評価/warningにする。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r06-fixture-insufficient",
+        "line": 1790,
+        "literal": "| `CASE-HARNESS-L10-049-r06-fixture-insufficient` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-02` | 各checkのpositive/negative fixtureが必要範囲を覆う。 | 一checkのfixture数だけ不足させる。 | そのcheckを未評価/warningにし、測定済み扱いしない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r06-cross-scope-result-reused",
+        "line": 1791,
+        "literal": "| `CASE-HARNESS-L10-049-r06-cross-scope-result-reused` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-02` | check結果が同一scope/revision/oracleへ結ばれる。 | 一checkの結果だけを別scopeから流用する。 | 結果をcurrent evidenceとせず再評価まで未評価にする。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r06-cross-revision-result-reused",
+        "line": 1792,
+        "literal": "| `CASE-HARNESS-L10-049-r06-cross-revision-result-reused` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-02` | check結果が同一scope/revision/oracleへ結ばれる。 | 一checkの結果だけを別revisionから流用する。 | 結果をcurrent evidenceとせず再評価まで未評価にする。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r09-001",
+        "line": 1793,
+        "literal": "| `CASE-HARNESS-L10-049-r09-001` | `FR-HARNESS-L3-049`|`AC-HARNESS-L3-049-01`| renderable prototype・screen ID・対象revisionと残る最小入力を固定する。 | device/view conditionだけを未指定にする。 | 測定をunknownに保つ。 戻し先: 固定L2:1090の既存設計owner。正常に固定したprototype合意へ差戻しを生成しない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r09-002",
+        "line": 1794,
+        "literal": "| `CASE-HARNESS-L10-049-r09-002` | `FR-HARNESS-L3-049`|`AC-HARNESS-L3-049-01`| renderable prototype・screen ID・対象revisionと残る最小入力を固定する。 | 表示evidenceだけをdevice/view scopeに結び付けない。 | evidenceを適用せずunknownにする。 戻し先: 固定L2:1090の既存設計owner。正常に固定したprototype合意へ差戻しを生成しない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r09-003",
+        "line": 1795,
+        "literal": "| `CASE-HARNESS-L10-049-r09-003` | `FR-HARNESS-L3-049`|`AC-HARNESS-L3-049-01`| renderable prototype・screen ID・対象revision・profile・device/view条件と他最小入力を固定する。 | 利用許可状態だけをunknownにする。 | 測定を保留しpermission unknownを保持する。固定L2:1090の要求意味に関する既存上流ownerへ戻し、identityが特定できなければunknownを維持する。L2-024へはprototype agreement不足の場合だけ戻す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r09-004",
+        "line": 1796,
+        "literal": "| `CASE-HARNESS-L10-049-r09-004` | `FR-HARNESS-L3-049`|`AC-HARNESS-L3-049-01`| renderable prototype・screen ID・対象revisionと他最小入力、手段版を固定する。 | 対象checkのoracle identity/versionだけを欠落させる。 | 該当check結果をunknownにする。 oracle identity/versionは既存設計ownerへ戻す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r09-005",
+        "line": 1797,
+        "literal": "| `CASE-HARNESS-L10-049-r09-005` | `FR-HARNESS-L3-049`|`AC-HARNESS-L3-049-01`| renderable prototype・screen ID・対象revisionと残る最小入力を固定する。 | known fixtureだけを欠落させる。 | oracleを評価せずunknownにする。 fixture不足は既存設計ownerへ戻す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r09-006",
+        "line": 1798,
+        "literal": "| `CASE-HARNESS-L10-049-r09-006` | `FR-HARNESS-L3-049`|`AC-HARNESS-L3-049-01`| renderable prototype・screen ID・対象revisionと残る最小入力を固定する。 | display evidenceだけを欠落させる。 | checkをunknownにし、他checkで相殺しない。 表示evidenceの内容/scope結合は既存設計ownerへ戻す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r09-007",
+        "line": 1799,
+        "literal": "| `CASE-HARNESS-L10-049-r09-007` | `FR-HARNESS-L3-049`|`AC-HARNESS-L3-049-01`| renderable prototype・screen ID・対象revisionと他の最小入力はcurrent。selected profile sourceは入力から特定できる。 | selected profileだけを欠落させる。 | profileを補完せずunknown/未完にする。戻し先: 固定L2:1090が示す既存設計owner。identityがsourceにない場合はunknownを維持する。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r09-008",
+        "line": 1800,
+        "literal": "| `CASE-HARNESS-L10-049-r09-008` | `FR-HARNESS-L3-049`|`AC-HARNESS-L3-049-01`| renderable prototype・screen ID・対象revisionと残る最小入力を固定する。 | DOM nodeの存在だけを観測し、画面描画の計測結果を与えない。 | DOM存在だけで表示適合を判定せずunknownを返す。 表示oracle/evidenceの内容は既存設計ownerへ戻す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r09-009",
+        "line": 1801,
+        "literal": "| `CASE-HARNESS-L10-049-r09-009` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-01` | renderable prototype・screen ID・対象revisionと残る最小入力を固定する。 | 精度評価sourceだけをunknownにする。 | 精度結果はunknownのままLABOへ返す。 戻し先: 選択されているLABOの既存検査精度評価。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r09-010",
+        "line": 1802,
+        "literal": "| `CASE-HARNESS-L10-049-r09-010` | `FR-HARNESS-L3-049`|`AC-HARNESS-L3-049-02`| accessibilityのknown fixtureで真値=findingあり、判定器出力=yesを与えるTP fixture。残るcheck、scope、revision、oracle/method versionは固定する。 | 変異なし。fixture truthと判定出力を固定した1観測として混同行列へ入れる。 | 実測セルをTPとして一度だけ計上する。別cellへの誤分類mutationは期待値と不一致として検出し、誤分類されたcellを正解扱いしない。正常なfixture truth・測定入力に対するcell集計出力の不一致は049の当該集計処理を訂正する。入力側design ownerへ訂正責務を移さない。検査精度の評価が選択scopeで適用される場合だけ、材料を既存LABO ownerへ渡す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r09-011",
+        "line": 1803,
+        "literal": "| `CASE-HARNESS-L10-049-r09-011` | `FR-HARNESS-L3-049`|`AC-HARNESS-L3-049-02`| accessibilityのknown fixtureで真値=findingなし、判定器出力=yesを与えるFP fixture。残るcheck、scope、revision、oracle/method versionは固定する。 | 変異なし。fixture truthと判定出力を固定した1観測として混同行列へ入れる。 | 実測セルをFPとして一度だけ計上する。別cellへの誤分類mutationは期待値と不一致として検出し、誤分類されたcellを正解扱いしない。正常なfixture truth・測定入力に対するcell集計出力の不一致は049の当該集計処理を訂正する。入力側design ownerへ訂正責務を移さない。検査精度の評価が選択scopeで適用される場合だけ、材料を既存LABO ownerへ渡す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r09-012",
+        "line": 1804,
+        "literal": "| `CASE-HARNESS-L10-049-r09-012` | `FR-HARNESS-L3-049`|`AC-HARNESS-L3-049-02`| accessibilityのknown fixtureで真値=findingあり、判定器出力=noを与えるFN fixture。残るcheck、scope、revision、oracle/method versionは固定する。 | 変異なし。fixture truthと判定出力を固定した1観測として混同行列へ入れる。 | 実測セルをFNとして一度だけ計上する。別cellへの誤分類mutationは期待値と不一致として検出し、誤分類されたcellを正解扱いしない。正常なfixture truth・測定入力に対するcell集計出力の不一致は049の当該集計処理を訂正する。入力側design ownerへ訂正責務を移さない。検査精度の評価が選択scopeで適用される場合だけ、材料を既存LABO ownerへ渡す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r09-013",
+        "line": 1805,
+        "literal": "| `CASE-HARNESS-L10-049-r09-013` | `FR-HARNESS-L3-049`|`AC-HARNESS-L3-049-02`| accessibilityのknown fixtureで真値=findingなし、判定器出力=noを与えるTN fixture。残るcheck、scope、revision、oracle/method versionは固定する。 | 変異なし。fixture truthと判定出力を固定した1観測として混同行列へ入れる。 | 実測セルをTNとして一度だけ計上する。別cellへの誤分類mutationは期待値と不一致として検出し、誤分類されたcellを正解扱いしない。正常なfixture truth・測定入力に対するcell集計出力の不一致は049の当該集計処理を訂正する。入力側design ownerへ訂正責務を移さない。検査精度の評価が選択scopeで適用される場合だけ、材料を既存LABO ownerへ渡す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r09-014",
+        "line": 1806,
+        "literal": "| `CASE-HARNESS-L10-049-r09-014` | `FR-HARNESS-L3-049`|`AC-HARNESS-L3-049-02`| contrastのknown fixtureで真値=findingあり、判定器出力=yesを与えるTP fixture。残るcheck、scope、revision、oracle/method versionは固定する。 | 変異なし。fixture truthと判定出力を固定した1観測として混同行列へ入れる。 | 実測セルをTPとして一度だけ計上する。別cellへの誤分類mutationは期待値と不一致として検出し、誤分類されたcellを正解扱いしない。正常なfixture truth・測定入力に対するcell集計出力の不一致は049の当該集計処理を訂正する。入力側design ownerへ訂正責務を移さない。検査精度の評価が選択scopeで適用される場合だけ、材料を既存LABO ownerへ渡す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r09-015",
+        "line": 1807,
+        "literal": "| `CASE-HARNESS-L10-049-r09-015` | `FR-HARNESS-L3-049`|`AC-HARNESS-L3-049-02`| contrastのknown fixtureで真値=findingなし、判定器出力=yesを与えるFP fixture。残るcheck、scope、revision、oracle/method versionは固定する。 | 変異なし。fixture truthと判定出力を固定した1観測として混同行列へ入れる。 | 実測セルをFPとして一度だけ計上する。別cellへの誤分類mutationは期待値と不一致として検出し、誤分類されたcellを正解扱いしない。正常なfixture truth・測定入力に対するcell集計出力の不一致は049の当該集計処理を訂正する。入力側design ownerへ訂正責務を移さない。検査精度の評価が選択scopeで適用される場合だけ、材料を既存LABO ownerへ渡す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r09-016",
+        "line": 1808,
+        "literal": "| `CASE-HARNESS-L10-049-r09-016` | `FR-HARNESS-L3-049`|`AC-HARNESS-L3-049-02`| contrastのknown fixtureで真値=findingあり、判定器出力=noを与えるFN fixture。残るcheck、scope、revision、oracle/method versionは固定する。 | 変異なし。fixture truthと判定出力を固定した1観測として混同行列へ入れる。 | 実測セルをFNとして一度だけ計上する。別cellへの誤分類mutationは期待値と不一致として検出し、誤分類されたcellを正解扱いしない。正常なfixture truth・測定入力に対するcell集計出力の不一致は049の当該集計処理を訂正する。入力側design ownerへ訂正責務を移さない。検査精度の評価が選択scopeで適用される場合だけ、材料を既存LABO ownerへ渡す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r09-017",
+        "line": 1809,
+        "literal": "| `CASE-HARNESS-L10-049-r09-017` | `FR-HARNESS-L3-049`|`AC-HARNESS-L3-049-02`| contrastのknown fixtureで真値=findingなし、判定器出力=noを与えるTN fixture。残るcheck、scope、revision、oracle/method versionは固定する。 | 変異なし。fixture truthと判定出力を固定した1観測として混同行列へ入れる。 | 実測セルをTNとして一度だけ計上する。別cellへの誤分類mutationは期待値と不一致として検出し、誤分類されたcellを正解扱いしない。正常なfixture truth・測定入力に対するcell集計出力の不一致は049の当該集計処理を訂正する。入力側design ownerへ訂正責務を移さない。検査精度の評価が選択scopeで適用される場合だけ、材料を既存LABO ownerへ渡す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r09-018",
+        "line": 1810,
+        "literal": "| `CASE-HARNESS-L10-049-r09-018` | `FR-HARNESS-L3-049`|`AC-HARNESS-L3-049-02`| responsive layoutのknown fixtureで真値=findingあり、判定器出力=yesを与えるTP fixture。残るcheck、scope、revision、oracle/method versionは固定する。 | 変異なし。fixture truthと判定出力を固定した1観測として混同行列へ入れる。 | 実測セルをTPとして一度だけ計上する。別cellへの誤分類mutationは期待値と不一致として検出し、誤分類されたcellを正解扱いしない。正常なfixture truth・測定入力に対するcell集計出力の不一致は049の当該集計処理を訂正する。入力側design ownerへ訂正責務を移さない。検査精度の評価が選択scopeで適用される場合だけ、材料を既存LABO ownerへ渡す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r09-019",
+        "line": 1811,
+        "literal": "| `CASE-HARNESS-L10-049-r09-019` | `FR-HARNESS-L3-049`|`AC-HARNESS-L3-049-02`| responsive layoutのknown fixtureで真値=findingなし、判定器出力=yesを与えるFP fixture。残るcheck、scope、revision、oracle/method versionは固定する。 | 変異なし。fixture truthと判定出力を固定した1観測として混同行列へ入れる。 | 実測セルをFPとして一度だけ計上する。別cellへの誤分類mutationは期待値と不一致として検出し、誤分類されたcellを正解扱いしない。正常なfixture truth・測定入力に対するcell集計出力の不一致は049の当該集計処理を訂正する。入力側design ownerへ訂正責務を移さない。検査精度の評価が選択scopeで適用される場合だけ、材料を既存LABO ownerへ渡す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r09-020",
+        "line": 1812,
+        "literal": "| `CASE-HARNESS-L10-049-r09-020` | `FR-HARNESS-L3-049`|`AC-HARNESS-L3-049-02`| responsive layoutのknown fixtureで真値=findingあり、判定器出力=noを与えるFN fixture。残るcheck、scope、revision、oracle/method versionは固定する。 | 変異なし。fixture truthと判定出力を固定した1観測として混同行列へ入れる。 | 実測セルをFNとして一度だけ計上する。別cellへの誤分類mutationは期待値と不一致として検出し、誤分類されたcellを正解扱いしない。正常なfixture truth・測定入力に対するcell集計出力の不一致は049の当該集計処理を訂正する。入力側design ownerへ訂正責務を移さない。検査精度の評価が選択scopeで適用される場合だけ、材料を既存LABO ownerへ渡す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r09-021",
+        "line": 1813,
+        "literal": "| `CASE-HARNESS-L10-049-r09-021` | `FR-HARNESS-L3-049`|`AC-HARNESS-L3-049-02`| responsive layoutのknown fixtureで真値=findingなし、判定器出力=noを与えるTN fixture。残るcheck、scope、revision、oracle/method versionは固定する。 | 変異なし。fixture truthと判定出力を固定した1観測として混同行列へ入れる。 | 実測セルをTNとして一度だけ計上する。別cellへの誤分類mutationは期待値と不一致として検出し、誤分類されたcellを正解扱いしない。正常なfixture truth・測定入力に対するcell集計出力の不一致は049の当該集計処理を訂正する。入力側design ownerへ訂正責務を移さない。検査精度の評価が選択scopeで適用される場合だけ、材料を既存LABO ownerへ渡す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r09-022",
+        "line": 1814,
+        "literal": "| `CASE-HARNESS-L10-049-r09-022` | `FR-HARNESS-L3-049`|`AC-HARNESS-L3-049-02`| primary-stateのknown fixtureで真値=findingあり、判定器出力=yesを与えるTP fixture。残るcheck、scope、revision、oracle/method versionは固定する。 | 変異なし。fixture truthと判定出力を固定した1観測として混同行列へ入れる。 | 実測セルをTPとして一度だけ計上する。別cellへの誤分類mutationは期待値と不一致として検出し、誤分類されたcellを正解扱いしない。正常なfixture truth・測定入力に対するcell集計出力の不一致は049の当該集計処理を訂正する。入力側design ownerへ訂正責務を移さない。検査精度の評価が選択scopeで適用される場合だけ、材料を既存LABO ownerへ渡す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r09-023",
+        "line": 1815,
+        "literal": "| `CASE-HARNESS-L10-049-r09-023` | `FR-HARNESS-L3-049`|`AC-HARNESS-L3-049-02`| primary-stateのknown fixtureで真値=findingなし、判定器出力=yesを与えるFP fixture。残るcheck、scope、revision、oracle/method versionは固定する。 | 変異なし。fixture truthと判定出力を固定した1観測として混同行列へ入れる。 | 実測セルをFPとして一度だけ計上する。別cellへの誤分類mutationは期待値と不一致として検出し、誤分類されたcellを正解扱いしない。正常なfixture truth・測定入力に対するcell集計出力の不一致は049の当該集計処理を訂正する。入力側design ownerへ訂正責務を移さない。検査精度の評価が選択scopeで適用される場合だけ、材料を既存LABO ownerへ渡す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r09-024",
+        "line": 1816,
+        "literal": "| `CASE-HARNESS-L10-049-r09-024` | `FR-HARNESS-L3-049`|`AC-HARNESS-L3-049-02`| primary-stateのknown fixtureで真値=findingあり、判定器出力=noを与えるFN fixture。残るcheck、scope、revision、oracle/method versionは固定する。 | 変異なし。fixture truthと判定出力を固定した1観測として混同行列へ入れる。 | 実測セルをFNとして一度だけ計上する。別cellへの誤分類mutationは期待値と不一致として検出し、誤分類されたcellを正解扱いしない。正常なfixture truth・測定入力に対するcell集計出力の不一致は049の当該集計処理を訂正する。入力側design ownerへ訂正責務を移さない。検査精度の評価が選択scopeで適用される場合だけ、材料を既存LABO ownerへ渡す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r09-025",
+        "line": 1817,
+        "literal": "| `CASE-HARNESS-L10-049-r09-025` | `FR-HARNESS-L3-049`|`AC-HARNESS-L3-049-02`| primary-stateのknown fixtureで真値=findingなし、判定器出力=noを与えるTN fixture。残るcheck、scope、revision、oracle/method versionは固定する。 | 変異なし。fixture truthと判定出力を固定した1観測として混同行列へ入れる。 | 実測セルをTNとして一度だけ計上する。別cellへの誤分類mutationは期待値と不一致として検出し、誤分類されたcellを正解扱いしない。正常なfixture truth・測定入力に対するcell集計出力の不一致は049の当該集計処理を訂正する。入力側design ownerへ訂正責務を移さない。検査精度の評価が選択scopeで適用される場合だけ、材料を既存LABO ownerへ渡す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r09-026",
+        "line": 1818,
+        "literal": "| `CASE-HARNESS-L10-049-r09-026` | `FR-HARNESS-L3-049`|`AC-HARNESS-L3-049-02`| word-volumeのknown fixtureで真値=findingあり、判定器出力=yesを与えるTP fixture。残るcheck、scope、revision、oracle/method versionは固定する。 | 変異なし。fixture truthと判定出力を固定した1観測として混同行列へ入れる。 | 実測セルをTPとして一度だけ計上する。別cellへの誤分類mutationは期待値と不一致として検出し、誤分類されたcellを正解扱いしない。正常なfixture truth・測定入力に対するcell集計出力の不一致は049の当該集計処理を訂正する。入力側design ownerへ訂正責務を移さない。検査精度の評価が選択scopeで適用される場合だけ、材料を既存LABO ownerへ渡す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r09-027",
+        "line": 1819,
+        "literal": "| `CASE-HARNESS-L10-049-r09-027` | `FR-HARNESS-L3-049`|`AC-HARNESS-L3-049-02`| word-volumeのknown fixtureで真値=findingなし、判定器出力=yesを与えるFP fixture。残るcheck、scope、revision、oracle/method versionは固定する。 | 変異なし。fixture truthと判定出力を固定した1観測として混同行列へ入れる。 | 実測セルをFPとして一度だけ計上する。別cellへの誤分類mutationは期待値と不一致として検出し、誤分類されたcellを正解扱いしない。正常なfixture truth・測定入力に対するcell集計出力の不一致は049の当該集計処理を訂正する。入力側design ownerへ訂正責務を移さない。検査精度の評価が選択scopeで適用される場合だけ、材料を既存LABO ownerへ渡す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r09-028",
+        "line": 1820,
+        "literal": "| `CASE-HARNESS-L10-049-r09-028` | `FR-HARNESS-L3-049`|`AC-HARNESS-L3-049-02`| word-volumeのknown fixtureで真値=findingあり、判定器出力=noを与えるFN fixture。残るcheck、scope、revision、oracle/method versionは固定する。 | 変異なし。fixture truthと判定出力を固定した1観測として混同行列へ入れる。 | 実測セルをFNとして一度だけ計上する。別cellへの誤分類mutationは期待値と不一致として検出し、誤分類されたcellを正解扱いしない。正常なfixture truth・測定入力に対するcell集計出力の不一致は049の当該集計処理を訂正する。入力側design ownerへ訂正責務を移さない。検査精度の評価が選択scopeで適用される場合だけ、材料を既存LABO ownerへ渡す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r09-029",
+        "line": 1821,
+        "literal": "| `CASE-HARNESS-L10-049-r09-029` | `FR-HARNESS-L3-049`|`AC-HARNESS-L3-049-02`| word-volumeのknown fixtureで真値=findingなし、判定器出力=noを与えるTN fixture。残るcheck、scope、revision、oracle/method versionは固定する。 | 変異なし。fixture truthと判定出力を固定した1観測として混同行列へ入れる。 | 実測セルをTNとして一度だけ計上する。別cellへの誤分類mutationは期待値と不一致として検出し、誤分類されたcellを正解扱いしない。正常なfixture truth・測定入力に対するcell集計出力の不一致は049の当該集計処理を訂正する。入力側design ownerへ訂正責務を移さない。検査精度の評価が選択scopeで適用される場合だけ、材料を既存LABO ownerへ渡す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r09-030",
+        "line": 1822,
+        "literal": "| `CASE-HARNESS-L10-049-r09-030` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-01` | renderable prototype・screen ID・対象revision・profile・device/view条件と他最小入力を固定する。 | 利用許可だけを欠落させ、unknownは与えない。 | 利用許可missingをunknownとして保留し、permission unknown fixtureと混同しない。固定L2:1090の要求意味に関する既存上流ownerへ戻し、identityが未特定ならunknownを維持する。L2-024はprototype agreementに限る。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r09-031",
+        "line": 1823,
+        "literal": "| `CASE-HARNESS-L10-049-r09-031` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-01` | 索引のみ。oracle identity/version欠落は `CASE-HARNESS-L10-049-r09-004` を参照する。 | 独立変異として計数しない。 | 参照先の個別oracleを用いる。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r09-032",
+        "line": 1824,
+        "literal": "| `CASE-HARNESS-L10-049-r09-032` | `FR-HARNESS-L3-049`|`AC-HARNESS-L3-049-01`| renderable prototype・screen ID・対象revision・oracle identity/versionと他最小入力を固定する。 | 測定method/versionだけを欠落させる。 | 該当check結果をunknownにする。 計測手段版は既存設計ownerへ戻す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r18-device-observed-only",
+        "line": 1825,
+        "literal": "| `CASE-HARNESS-L10-049-r18-device-observed-only` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-01` | 選択条件device=device-A・currentのrender/check oracle・scope/revisionを正常入力として固定し、別条件device-Bは未選択/未観測として記録する。 | 未選択の別条件device-Bだけをobserved扱いにする。 | 未選択条件を未観測/unknownに保ち、選択scope外を成功へ読み替えない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r18-device-passed-only",
+        "line": 1826,
+        "literal": "| `CASE-HARNESS-L10-049-r18-device-passed-only` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-01` | 選択条件device=device-A・currentのrender/check oracle・scope/revisionを正常入力として固定し、別条件device-Bは未選択/未観測として記録する。 | 未選択の別条件device-Bだけをpassed扱いにする。 | 未選択条件を未観測/unknownに保ち、選択scope外を成功へ読み替えない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r18-view-observed-only",
+        "line": 1827,
+        "literal": "| `CASE-HARNESS-L10-049-r18-view-observed-only` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-01` | 選択条件view=view-A・currentのrender/check oracle・scope/revisionを正常入力として固定し、別条件view-Bは未選択/未観測として記録する。 | 未選択の別条件view-Bだけをobserved扱いにする。 | 未選択条件を未観測/unknownに保ち、選択scope外を成功へ読み替えない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r18-view-passed-only",
+        "line": 1828,
+        "literal": "| `CASE-HARNESS-L10-049-r18-view-passed-only` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-01` | 選択条件view=view-A・currentのrender/check oracle・scope/revisionを正常入力として固定し、別条件view-Bは未選択/未観測として記録する。 | 未選択の別条件view-Bだけをpassed扱いにする。 | 未選択条件を未観測/unknownに保ち、選択scope外を成功へ読み替えない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r18-locale-observed-only",
+        "line": 1829,
+        "literal": "| `CASE-HARNESS-L10-049-r18-locale-observed-only` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-01` | 選択条件locale=locale-A・currentのrender/check oracle・scope/revisionを正常入力として固定し、別条件locale-Bは未選択/未観測として記録する。 | 未選択の別条件locale-Bだけをobserved扱いにする。 | 未選択条件を未観測/unknownに保ち、選択scope外を成功へ読み替えない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r18-locale-passed-only",
+        "line": 1830,
+        "literal": "| `CASE-HARNESS-L10-049-r18-locale-passed-only` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-01` | 選択条件locale=locale-A・currentのrender/check oracle・scope/revisionを正常入力として固定し、別条件locale-Bは未選択/未観測として記録する。 | 未選択の別条件locale-Bだけをpassed扱いにする。 | 未選択条件を未観測/unknownに保ち、選択scope外を成功へ読み替えない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r18-unadopted-pattern-only",
+        "line": 1831,
+        "literal": "| `CASE-HARNESS-L10-049-r18-unadopted-pattern-only` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-02` | 選択scope/revision、Pattern=not-adopted、CORE制約=current sourceの正常入力を固定する。 | 未採択Patternだけを採択済み根拠にする。 | 確定根拠とせずunknownを維持する。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r18-core-constraint-only",
+        "line": 1832,
+        "literal": "| `CASE-HARNESS-L10-049-r18-core-constraint-only` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-02` | CORE制約source/revision/適用範囲はcurrentで、そのCORE制約は未採択。Patternも未採択として状態を別管理する。 | CORE制約だけを確定済み根拠へ昇格させる。 | 確定根拠とせずunknownを維持する。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r18-static-image-only",
+        "line": 1833,
+        "literal": "| `CASE-HARNESS-L10-049-r18-static-image-only` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-02` | 対象screenを表示しrender測定と適用checkをcurrent oracleで観測する。 | 静止画だけをrender測定結果として扱う。 | 測定済み扱いを拒否し未測定を保持する。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r18-artifact-only",
+        "line": 1834,
+        "literal": "| `CASE-HARNESS-L10-049-r18-artifact-only` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-02` | 対象screenのrender測定と固定checkをcurrent oracleで観測し、artifactを添付する。 | artifactの存在だけをrender測定結果とする。 | 測定済み扱いを拒否し未測定を保持する。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m1-candidate-count-to-accuracy",
+        "line": 1835,
+        "literal": "| `CASE-HARNESS-L10-049-r20-m1-candidate-count-to-accuracy` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-02` | 合成正常baseline: 選択scope S0、選択oracle O0、oracle revision r0、対象revision R0、既存screen ID・利用許可・renderable prototypeは有効。実測fixtureの期待真値/観測値は未入力なのでaccuracy=unknown、quality=unknown。合成根拠件数は対象の候補数だけc=3。他の根拠数や測定結果はaccuracy/qualityの証拠にしない。すべての通常output fieldはbaseline source状態に固定し、未確認result/correction/approvalはunknown、pass/adopted/complete/implemented/ux_verified等の成功・承認・完了booleanはfalse/未発行とする。実測実績は主張しない。 | 候補数c=3だけをaccuracy=passの根拠にする。他の全fieldはbaselineどおり。 | accuracy=unknown、quality=unknownを維持し、当該件数だけによるpassを拒否する。正常入力を差戻さず049自身の誤出力を訂正し、誤ったpassでclosureしない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m1-measurement-count-to-accuracy",
+        "line": 1836,
+        "literal": "| `CASE-HARNESS-L10-049-r20-m1-measurement-count-to-accuracy` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-02` | 合成正常baseline: 選択scope S0、選択oracle O0、oracle revision r0、対象revision R0、既存screen ID・利用許可・renderable prototypeは有効。実測fixtureの期待真値/観測値は未入力なのでaccuracy=unknown、quality=unknown。合成根拠件数は対象の測定回数だけc=3。他の根拠数や測定結果はaccuracy/qualityの証拠にしない。すべての通常output fieldはbaseline source状態に固定し、未確認result/correction/approvalはunknown、pass/adopted/complete/implemented/ux_verified等の成功・承認・完了booleanはfalse/未発行とする。実測実績は主張しない。 | 測定回数c=3だけをaccuracy=passの根拠にする。他の全fieldはbaselineどおり。 | accuracy=unknown、quality=unknownを維持し、当該件数だけによるpassを拒否する。正常入力を差戻さず049自身の誤出力を訂正し、誤ったpassでclosureしない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m1-fixture-count-to-quality",
+        "line": 1837,
+        "literal": "| `CASE-HARNESS-L10-049-r20-m1-fixture-count-to-quality` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-02` | 合成正常baseline: 選択scope S0、選択oracle O0、oracle revision r0、対象revision R0、既存screen ID・利用許可・renderable prototypeは有効。実測fixtureの期待真値/観測値は未入力なのでaccuracy=unknown、quality=unknown。合成根拠件数は対象のfixture数だけc=3。他の根拠数や測定結果はaccuracy/qualityの証拠にしない。すべての通常output fieldはbaseline source状態に固定し、未確認result/correction/approvalはunknown、pass/adopted/complete/implemented/ux_verified等の成功・承認・完了booleanはfalse/未発行とする。実測実績は主張しない。 | fixture数c=3だけをquality=establishedの根拠にする。他の全fieldはbaselineどおり。 | accuracy=unknown、quality=unknownを維持し、当該件数だけによる品質成立を拒否する。正常入力を差戻さず049自身の誤出力を訂正し、誤った状態でclosureしない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m1-candidate-count-to-quality",
+        "line": 1838,
+        "literal": "| `CASE-HARNESS-L10-049-r20-m1-candidate-count-to-quality` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-02` | 合成正常baseline: 選択scope S0、選択oracle O0、oracle revision r0、対象revision R0、既存screen ID・利用許可・renderable prototypeは有効。実測fixtureの期待真値/観測値は未入力なのでaccuracy=unknown、quality=unknown。合成根拠件数は対象の候補数だけc=3。他の根拠数や測定結果はaccuracy/qualityの証拠にしない。すべての通常output fieldはbaseline source状態に固定し、未確認result/correction/approvalはunknown、pass/adopted/complete/implemented/ux_verified等の成功・承認・完了booleanはfalse/未発行とする。実測実績は主張しない。 | 候補数c=3だけをquality=establishedの根拠にする。他の全fieldはbaselineどおり。 | accuracy=unknown、quality=unknownを維持し、当該件数だけによる品質成立を拒否する。正常入力を差戻さず049自身の誤出力を訂正し、誤った状態でclosureしない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m1-measurement-count-to-quality",
+        "line": 1839,
+        "literal": "| `CASE-HARNESS-L10-049-r20-m1-measurement-count-to-quality` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-02` | 合成正常baseline: 選択scope S0、選択oracle O0、oracle revision r0、対象revision R0、既存screen ID・利用許可・renderable prototypeは有効。実測fixtureの期待真値/観測値は未入力なのでaccuracy=unknown、quality=unknown。合成根拠件数は対象の測定回数だけc=3。他の根拠数や測定結果はaccuracy/qualityの証拠にしない。すべての通常output fieldはbaseline source状態に固定し、未確認result/correction/approvalはunknown、pass/adopted/complete/implemented/ux_verified等の成功・承認・完了booleanはfalse/未発行とする。実測実績は主張しない。 | 測定回数c=3だけをquality=establishedの根拠にする。他の全fieldはbaselineどおり。 | accuracy=unknown、quality=unknownを維持し、当該件数だけによる品質成立を拒否する。正常入力を差戻さず049自身の誤出力を訂正し、誤った状態でclosureしない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m2-infer-039-adoption",
+        "line": 1840,
+        "literal": "| `CASE-HARNESS-L10-049-r20-m2-infer-039-adoption` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-03` | 049の有効測定入力を固定する。別の正式記録でHARNESS-L2-039-003が採択済みである事実も維持し、その決定本文・authorityを049出力の根拠にはしない。 | 049自身が039採択を新規に推定したという由来出力だけを付ける。 | 049から039採択を推定する出力を拒否し、実在する039正式採択記録をそのまま保持する。049の正常測定を差戻さない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m2-require-039-adoption",
+        "line": 1841,
+        "literal": "| `CASE-HARNESS-L10-049-r20-m2-require-039-adoption` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-03` | 049の有効最小入力が揃う正常状態を固定する。039の現行正式採択記録は別決定として保持する。 | 049開始条件fieldだけを「039の採択または追加証拠が必須」とする。 | 固定L2にない049の前提条件を拒否し、049の開始可否は049自身の最小入力で判定する。039の実採択は変更しない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m2-brain-candidate-not-adopted",
+        "line": 1842,
+        "literal": "| `CASE-HARNESS-L10-049-r20-m2-brain-candidate-not-adopted` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-03` | 049の有効測定入力とBRAINについての候補登録記録だけを固定する。BRAINに関する独立した採択decisionはこの入力に含まれない。 | BRAIN候補登録だけから当該候補の採択済みfieldをtrueにする。 | BRAIN候補の採択を出力せず未確定を保持し、049自身の誤出力を訂正する。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m2-labo-candidate-not-adopted",
+        "line": 1843,
+        "literal": "| `CASE-HARNESS-L10-049-r20-m2-labo-candidate-not-adopted` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-03` | 049の有効測定入力とLABOについての候補登録記録だけを固定する。LABOに関する独立した採択decisionはこの入力に含まれない。 | LABO候補登録だけから当該候補の採択済みfieldをtrueにする。 | LABO候補の採択を出力せず未確定を保持し、049自身の誤出力を訂正する。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m2-intelligence-candidate-not-adopted",
+        "line": 1844,
+        "literal": "| `CASE-HARNESS-L10-049-r20-m2-intelligence-candidate-not-adopted` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-03` | 049の有効測定入力とINTELLIGENCEについての候補登録記録だけを固定する。INTELLIGENCEに関する独立した採択decisionはこの入力に含まれない。 | INTELLIGENCE候補登録だけから当該候補の採択済みfieldをtrueにする。 | INTELLIGENCE候補の採択を出力せず未確定を保持し、049自身の誤出力を訂正する。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m3-self-approve-vision",
+        "line": 1845,
+        "literal": "| `CASE-HARNESS-L10-049-r20-m3-self-approve-vision` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | 有効な049測定結果とその他の正しい出力を固定し、当該人間判断のdecision/evidenceは未入力とする。 | 049自身のvision承認fieldだけを「承認済み」にする。 | 当該自己承認fieldを拒否し、049自身が出力を未入力/unknownへ訂正する。人のdecision/evidenceを生成せず、誤った承認のままclosureしない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m3-self-approve-brand",
+        "line": 1846,
+        "literal": "| `CASE-HARNESS-L10-049-r20-m3-self-approve-brand` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | 有効な049測定結果とその他の正しい出力を固定し、当該人間判断のdecision/evidenceは未入力とする。 | 049自身のbrand承認fieldだけを「承認済み」にする。 | 当該自己承認fieldを拒否し、049自身が出力を未入力/unknownへ訂正する。人のdecision/evidenceを生成せず、誤った承認のままclosureしない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m3-self-approve-visual_taste",
+        "line": 1847,
+        "literal": "| `CASE-HARNESS-L10-049-r20-m3-self-approve-visual_taste` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | 有効な049測定結果とその他の正しい出力を固定し、当該人間判断のdecision/evidenceは未入力とする。 | 049自身の見た目の好み承認fieldだけを「承認済み」にする。 | 当該自己承認fieldを拒否し、049自身が出力を未入力/unknownへ訂正する。人のdecision/evidenceを生成せず、誤った承認のままclosureしない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m4-document-correspondence-only-requirement_adoption",
+        "line": 1848,
+        "literal": "| `CASE-HARNESS-L10-049-r20-m4-document-correspondence-only-requirement_adoption` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | 有効な049入力、選択scope S0、oracle O0/r0、その他の正しいfield値を固定する。補助根拠は文書上の対応関係だけ。対象要求D0（既存入力で対象identityが示される要求）の採択decision sourceは未確認で、baseline値はunknown。D0を049や新規要求として作らず、identityは入力の参照値のままにする。別PO記録のHARNESS-L2-049-003実採択はそのまま保持し、D0の採択証拠に流用しない。 当該field以外の出力はbaseline値（未確認はunknown、未成立の実装/完了はfalse）のまま。 | 文書上の対応関係だけを根拠に要求採択fieldだけを採択済みにする。 | 文書上の対応関係だけでは固定L11の要求採択を成立させない。049自身が当該fieldをbaselineのunknown/falseへ訂正し、正常入力を返却せず、誤出力のままclosureしない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m4-document-correspondence-only-measurement_success",
+        "line": 1849,
+        "literal": "| `CASE-HARNESS-L10-049-r20-m4-document-correspondence-only-measurement_success` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-02` | 有効な049入力、選択scope S0、oracle O0/r0、その他の正しいfield値を固定する。補助根拠は文書上の対応関係だけ。測定の実結果sourceは未入力で、baseline値はunknown。 当該field以外の出力はbaseline値（未確認はunknown、未成立の実装/完了はfalse）のまま。 | 文書上の対応関係だけを根拠に実測成功fieldだけを成立済みにする。 | 文書上の対応関係だけでは固定L11の実測成功を成立させない。049自身が当該fieldをbaselineのunknown/falseへ訂正し、正常入力を返却せず、誤出力のままclosureしない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m4-document-correspondence-only-inspection_accuracy",
+        "line": 1850,
+        "literal": "| `CASE-HARNESS-L10-049-r20-m4-document-correspondence-only-inspection_accuracy` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-02` | 有効な049入力、選択scope S0、oracle O0/r0、その他の正しいfield値を固定する。補助根拠は文書上の対応関係だけ。精度に必要なknown truth/observed result pairは未入力で、baseline値はunknown。 当該field以外の出力はbaseline値（未確認はunknown、未成立の実装/完了はfalse）のまま。 | 文書上の対応関係だけを根拠に検査精度fieldだけを成立済み/passにする。 | 文書上の対応関係だけでは固定L11の検査精度を成立させない。049自身が当該fieldをbaselineのunknown/falseへ訂正し、正常入力を返却せず、誤出力のままclosureしない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m4-document-correspondence-only-po_agreement",
+        "line": 1851,
+        "literal": "| `CASE-HARNESS-L10-049-r20-m4-document-correspondence-only-po_agreement` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | 有効な049入力、選択scope S0、oracle O0/r0、その他の正しいfield値を固定する。補助根拠は文書上の対応関係だけ。当該測定対象prototypeへのPO合意decision/evidenceは未入力で、baseline値はunknown。HARNESS-L2-049-003の別対象L2採択記録は維持し、prototype合意へ読み替えない。 当該field以外の出力はbaseline値（未確認はunknown、未成立の実装/完了はfalse）のまま。 | 文書上の対応関係だけを根拠にPO合意fieldだけを成立済みにする。 | 文書上の対応関係だけでは固定L11のPO合意を成立させない。049自身が当該fieldをbaselineのunknown/falseへ訂正し、正常入力を返却せず、誤出力のままclosureしない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m4-document-correspondence-only-implementation",
+        "line": 1852,
+        "literal": "| `CASE-HARNESS-L10-049-r20-m4-document-correspondence-only-implementation` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | 有効な049入力、選択scope S0、oracle O0/r0、その他の正しいfield値を固定する。補助根拠は文書上の対応関係だけ。実装完了のsource evidenceは未入力で、baseline値はfalse/未成立。 当該field以外の出力はbaseline値（未確認はunknown、未成立の実装/完了はfalse）のまま。 | 文書上の対応関係だけを根拠に実装fieldだけを成立済みにする。 | 文書上の対応関係だけでは固定L11の実装を成立させない。049自身が当該fieldをbaselineのunknown/falseへ訂正し、正常入力を返却せず、誤出力のままclosureしない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m4-document-correspondence-only-actual_user_evaluation",
+        "line": 1853,
+        "literal": "| `CASE-HARNESS-L10-049-r20-m4-document-correspondence-only-actual_user_evaluation` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | 有効な049入力、選択scope S0、oracle O0/r0、その他の正しいfield値を固定する。補助根拠は文書上の対応関係だけ。実利用者評価のsource recordは未入力で、baseline値はunknown。 当該field以外の出力はbaseline値（未確認はunknown、未成立の実装/完了はfalse）のまま。 | 文書上の対応関係だけを根拠に実利用者評価fieldだけを完了済みにする。 | 文書上の対応関係だけでは固定L11の実利用者評価を成立させない。049自身が当該fieldをbaselineのunknown/falseへ訂正し、正常入力を返却せず、誤出力のままclosureしない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m4-document-correspondence-only-l3_completion",
+        "line": 1854,
+        "literal": "| `CASE-HARNESS-L10-049-r20-m4-document-correspondence-only-l3_completion` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | 有効な049入力、選択scope S0、oracle O0/r0、その他の正しいfield値を固定する。補助根拠は文書上の対応関係だけ。L3完了のsource recordは未入力で、baseline値はfalse/未成立。 当該field以外の出力はbaseline値（未確認はunknown、未成立の実装/完了はfalse）のまま。 | 文書上の対応関係だけを根拠にL3実際の完了fieldだけを成立済みにする。 | 文書上の対応関係だけでは固定L11が列挙するL3実際の完了を成立させない。049自身が当該fieldをbaselineのunknown/falseへ訂正し、正常入力を返却せず、誤出力のままclosureしない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m4-document-correspondence-only-l11_completion",
+        "line": 1855,
+        "literal": "| `CASE-HARNESS-L10-049-r20-m4-document-correspondence-only-l11_completion` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | 有効な049入力、選択scope S0、oracle O0/r0、その他の正しいfield値を固定する。補助根拠は文書上の対応関係だけ。L11完了のsource recordは未入力で、baseline値はfalse/未成立。 当該field以外の出力はbaseline値（未確認はunknown、未成立の実装/完了はfalse）のまま。 | 文書上の対応関係だけを根拠にL11実際の完了fieldだけを成立済みにする. | 文書上の対応関係だけでは固定L11が列挙するL11実際の完了を成立させない。049自身が当該fieldをbaselineのunknown/falseへ訂正し、正常入力を返却せず、誤出力のままclosureしない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m4-candidate-registration-only-requirement_adoption",
+        "line": 1856,
+        "literal": "| `CASE-HARNESS-L10-049-r20-m4-candidate-registration-only-requirement_adoption` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | 有効な049入力、選択scope S0、oracle O0/r0、その他の正しいfield値を固定する。補助根拠はcandidate登録だけ。対象要求D0（既存入力で対象identityが示される要求）の採択decision sourceは未確認で、baseline値はunknown。D0を049や新規要求として作らず、identityは入力の参照値のままにする。別PO記録のHARNESS-L2-049-003実採択はそのまま保持し、D0の採択証拠に流用しない。 当該field以外の出力はbaseline値（未確認はunknown、未成立の実装/完了はfalse）のまま。 | candidate登録だけを根拠に要求採択fieldだけを採択済みにする。 | candidate登録だけでは固定L11の要求採択を成立させない。049自身が当該fieldをbaselineのunknown/falseへ訂正し、正常入力を返却せず、誤出力のままclosureしない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m4-candidate-registration-only-measurement_success",
+        "line": 1857,
+        "literal": "| `CASE-HARNESS-L10-049-r20-m4-candidate-registration-only-measurement_success` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-02` | 有効な049入力、選択scope S0、oracle O0/r0、その他の正しいfield値を固定する。補助根拠はcandidate登録だけ。測定の実結果sourceは未入力で、baseline値はunknown。 当該field以外の出力はbaseline値（未確認はunknown、未成立の実装/完了はfalse）のまま。 | candidate登録だけを根拠に実測成功fieldだけを成立済みにする。 | candidate登録だけでは固定L11の実測成功を成立させない。049自身が当該fieldをbaselineのunknown/falseへ訂正し、正常入力を返却せず、誤出力のままclosureしない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m4-candidate-registration-only-inspection_accuracy",
+        "line": 1858,
+        "literal": "| `CASE-HARNESS-L10-049-r20-m4-candidate-registration-only-inspection_accuracy` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-02` | 有効な049入力、選択scope S0、oracle O0/r0、その他の正しいfield値を固定する。補助根拠はcandidate登録だけ。精度に必要なknown truth/observed result pairは未入力で、baseline値はunknown。 当該field以外の出力はbaseline値（未確認はunknown、未成立の実装/完了はfalse）のまま。 | candidate登録だけを根拠に検査精度fieldだけを成立済み/passにする。 | candidate登録だけでは固定L11の検査精度を成立させない。049自身が当該fieldをbaselineのunknown/falseへ訂正し、正常入力を返却せず、誤出力のままclosureしない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m4-candidate-registration-only-po_agreement",
+        "line": 1859,
+        "literal": "| `CASE-HARNESS-L10-049-r20-m4-candidate-registration-only-po_agreement` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | 有効な049入力、選択scope S0、oracle O0/r0、その他の正しいfield値を固定する。補助根拠はcandidate登録だけ。当該測定対象prototypeへのPO合意decision/evidenceは未入力で、baseline値はunknown。HARNESS-L2-049-003の別対象L2採択記録は維持し、prototype合意へ読み替えない。 当該field以外の出力はbaseline値（未確認はunknown、未成立の実装/完了はfalse）のまま。 | candidate登録だけを根拠にPO合意fieldだけを成立済みにする。 | candidate登録だけでは固定L11のPO合意を成立させない。049自身が当該fieldをbaselineのunknown/falseへ訂正し、正常入力を返却せず、誤出力のままclosureしない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m4-candidate-registration-only-implementation",
+        "line": 1860,
+        "literal": "| `CASE-HARNESS-L10-049-r20-m4-candidate-registration-only-implementation` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | 有効な049入力、選択scope S0、oracle O0/r0、その他の正しいfield値を固定する。補助根拠はcandidate登録だけ。実装完了のsource evidenceは未入力で、baseline値はfalse/未成立。 当該field以外の出力はbaseline値（未確認はunknown、未成立の実装/完了はfalse）のまま。 | candidate登録だけを根拠に実装fieldだけを成立済みにする。 | candidate登録だけでは固定L11の実装を成立させない。049自身が当該fieldをbaselineのunknown/falseへ訂正し、正常入力を返却せず、誤出力のままclosureしない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m4-candidate-registration-only-actual_user_evaluation",
+        "line": 1861,
+        "literal": "| `CASE-HARNESS-L10-049-r20-m4-candidate-registration-only-actual_user_evaluation` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | 有効な049入力、選択scope S0、oracle O0/r0、その他の正しいfield値を固定する。補助根拠はcandidate登録だけ。実利用者評価のsource recordは未入力で、baseline値はunknown。 当該field以外の出力はbaseline値（未確認はunknown、未成立の実装/完了はfalse）のまま。 | candidate登録だけを根拠に実利用者評価fieldだけを完了済みにする。 | candidate登録だけでは固定L11の実利用者評価を成立させない。049自身が当該fieldをbaselineのunknown/falseへ訂正し、正常入力を返却せず、誤出力のままclosureしない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m4-candidate-registration-only-l3_completion",
+        "line": 1862,
+        "literal": "| `CASE-HARNESS-L10-049-r20-m4-candidate-registration-only-l3_completion` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | 有効な049入力、選択scope S0、oracle O0/r0、その他の正しいfield値を固定する。補助根拠はcandidate登録だけ。L3完了のsource recordは未入力で、baseline値はfalse/未成立。 当該field以外の出力はbaseline値（未確認はunknown、未成立の実装/完了はfalse）のまま。 | candidate登録だけを根拠にL3実際の完了fieldだけを成立済みにする。 | candidate登録だけでは固定L11が列挙するL3実際の完了を成立させない。049自身が当該fieldをbaselineのunknown/falseへ訂正し、正常入力を返却せず、誤出力のままclosureしない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-049-r20-m4-candidate-registration-only-l11_completion",
+        "line": 1863,
+        "literal": "| `CASE-HARNESS-L10-049-r20-m4-candidate-registration-only-l11_completion` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-05` | 有効な049入力、選択scope S0、oracle O0/r0、その他の正しいfield値を固定する。補助根拠はcandidate登録だけ。L11完了のsource recordは未入力で、baseline値はfalse/未成立。 当該field以外の出力はbaseline値（未確認はunknown、未成立の実装/完了はfalse）のまま。 | candidate登録だけを根拠にL11実際の完了fieldだけを成立済みにする. | candidate登録だけでは固定L11が列挙するL11実際の完了を成立させない。049自身が当該fieldをbaselineのunknown/falseへ訂正し、正常入力を返却せず、誤出力のままclosureしない。 |"
+      }
+    ]
+  },
+  "actual_document_pins": {
+    "whole_documents": [
+      {
+        "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+        "bytes": 13935,
+        "sha256": "a45d862b351e1a56f576ac11bf07e4b57379afa6614bd4e7dccece229bc6d516",
+        "prior_full_bytes": 13935,
+        "prior_full_sha256": "a45d862b351e1a56f576ac11bf07e4b57379afa6614bd4e7dccece229bc6d516",
+        "changed_from_authoring_head": false
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "bytes": 224124,
+        "sha256": "9f7d24fcd3eeb43d16d7eb188d8c32244294088b1c67c333547d5f7ae52ce669",
+        "prior_full_bytes": 223939,
+        "prior_full_sha256": "43ba53d283149e03a0107b6b673a115930ed407a6358c83d23e02259d831a3d4",
+        "changed_from_authoring_head": true
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+        "bytes": 44511,
+        "sha256": "1ea58e888b09cc373753650f5aa6a8c858d16d8dab832b9a3830e41370973fd7",
+        "prior_full_bytes": 44511,
+        "prior_full_sha256": "1ea58e888b09cc373753650f5aa6a8c858d16d8dab832b9a3830e41370973fd7",
+        "changed_from_authoring_head": false
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/business-verification.md",
+        "bytes": 9772,
+        "sha256": "bee6109fc0ddc80e7b67ca1887f4c37f53f6eb19467fb7a82027ef014938a986",
+        "prior_full_bytes": 9772,
+        "prior_full_sha256": "bee6109fc0ddc80e7b67ca1887f4c37f53f6eb19467fb7a82027ef014938a986",
+        "changed_from_authoring_head": false
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "bytes": 753645,
+        "sha256": "fc6aa36c51eea50092a7ee8f8385b2c792798442ed0da378096c6ff6afb392f9",
+        "prior_full_bytes": 730801,
+        "prior_full_sha256": "64c603b9af97a531196579a93ac15c50741fa1298bca4df1c31f1a3ba75d48dc",
+        "changed_from_authoring_head": true
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+        "bytes": 38198,
+        "sha256": "b43f2ba8f4525be07adc13d69b557a97a826a9e3d17c50741f25c75195798b10",
+        "prior_full_bytes": 38198,
+        "prior_full_sha256": "b43f2ba8f4525be07adc13d69b557a97a826a9e3d17c50741f25c75195798b10",
+        "changed_from_authoring_head": false
+      }
+    ],
+    "049_suffixes": [
+      {
+        "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+        "section_marker": "## Stage 3 親049の業務要件",
+        "bytes": 408,
+        "sha256": "837d4b9fe3ef94e3106253c70af1358f68079cf572e0abbe4617ac0cac0676aa",
+        "prior_suffix_bytes": 408,
+        "prior_suffix_sha256": "837d4b9fe3ef94e3106253c70af1358f68079cf572e0abbe4617ac0cac0676aa",
+        "changed_from_authoring_head": false
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "section_marker": "## Stage 3 親049の表示計測要件（採択L2-049 / MPR-RC-HARNESS-L2-049-003）",
+        "bytes": 8297,
+        "sha256": "f2af6ba19f564d556631b4e672097caed9aa1f9a73bbbc4beee22603790a9404",
+        "prior_suffix_bytes": 8112,
+        "prior_suffix_sha256": "0f7c21a4a2e8f013c436626164bef277743efb6b815f114201c74dd7f757fc26",
+        "changed_from_authoring_head": true
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+        "section_marker": "## Stage 3 親049の非機能候補（表示計測のevidence integrity）",
+        "bytes": 682,
+        "sha256": "e42f66ea04010bc0b9bcf777f5aef978a96c42fe6bc26eba06f21be556bec7c0",
+        "prior_suffix_bytes": 682,
+        "prior_suffix_sha256": "e42f66ea04010bc0b9bcf777f5aef978a96c42fe6bc26eba06f21be556bec7c0",
+        "changed_from_authoring_head": false
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/business-verification.md",
+        "section_marker": "## Stage 3 親049の業務検証",
+        "bytes": 665,
+        "sha256": "2216d09b9d41021366fe053e2245f8ced4a079936d88d0e5a223f11b1d7d77d9",
+        "prior_suffix_bytes": 665,
+        "prior_suffix_sha256": "2216d09b9d41021366fe053e2245f8ced4a079936d88d0e5a223f11b1d7d77d9",
+        "changed_from_authoring_head": false
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "section_marker": "## Stage 3 親049の総合検証CASE候補",
+        "bytes": 74754,
+        "sha256": "300de8fa2d61b7840f0926664f87c7ee681865f7438b1a6e6f8c9519b1d111d5",
+        "prior_suffix_bytes": 51910,
+        "prior_suffix_sha256": "9ab30e2bf60b1292f4a20f119c39daa9e6efd12e8b2e17957764e5dd72bf9890",
+        "changed_from_authoring_head": true
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+        "section_marker": "## Stage 3 親049のNFR測定候補",
+        "bytes": 815,
+        "sha256": "e5aeb736ac361b4096e3edac10a76e094462c0611d640d209747dcda8490a6f9",
+        "prior_suffix_bytes": 815,
+        "prior_suffix_sha256": "e5aeb736ac361b4096e3edac10a76e094462c0611d640d209747dcda8490a6f9",
+        "changed_from_authoring_head": false
+      }
+    ],
+    "checkpoint_expected_whole_document_pins": [
+      {
+        "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+        "after_bytes": 13935,
+        "after_sha256": "a45d862b351e1a56f576ac11bf07e4b57379afa6614bd4e7dccece229bc6d516"
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "after_bytes": 224124,
+        "after_sha256": "9f7d24fcd3eeb43d16d7eb188d8c32244294088b1c67c333547d5f7ae52ce669"
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+        "after_bytes": 44511,
+        "after_sha256": "1ea58e888b09cc373753650f5aa6a8c858d16d8dab832b9a3830e41370973fd7"
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/business-verification.md",
+        "after_bytes": 9772,
+        "after_sha256": "bee6109fc0ddc80e7b67ca1887f4c37f53f6eb19467fb7a82027ef014938a986"
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "after_bytes": 753645,
+        "after_sha256": "fc6aa36c51eea50092a7ee8f8385b2c792798442ed0da378096c6ff6afb392f9"
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+        "after_bytes": 38198,
+        "after_sha256": "b43f2ba8f4525be07adc13d69b557a97a826a9e3d17c50741f25c75195798b10"
+      }
+    ]
+  },
+  "root_reported_checks": {
+    "source": "Root検収/統合checkpointと依頼本文",
+    "govcheck": "PASS (Root reported; this postbody worker did not run it)",
+    "git_diff_check": "PASS (Root reported; this postbody worker did not run it)",
+    "fixture_execution": "not run",
+    "independent_review": "not performed by this authoring audit",
+    "PO_approval_of_body_revision": "not inferred; 049 review02 remains unreviewed/approval pending unless separate decision records otherwise"
+  },
+  "limits": [
+    "この監査は文書revision、raw pin、CASE ID、4行のRoot補正を静的確認した時点記録である。",
+    "CASEの実行結果、意味の独立review、承認、L3/L10 acceptance、merge admissionを生成しない。",
+    "履歴監査または旧82 raw checkpointを上書きしない。"
+  ]
+}

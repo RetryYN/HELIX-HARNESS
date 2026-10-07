@@ -1,0 +1,259 @@
+{
+  "record_type": "HARNESS-L2-049 delegated L3/L10 decision record candidate bundle",
+  "language": "ja",
+  "status": "recorded_decision_record_candidate_for_root_inspection; no canonical file changed",
+  "target": {
+    "repository": "RetryYN/HELIX-HARNESS",
+    "pr": 2647,
+    "worktree": "/home/tenni/.helix-worktrees/l3-harness-stage3-parent049",
+    "head": "79a67c583857d607ae78c1cb9d2cc5dfc5ab533f",
+    "body_commit": "d72324ec1bff69c3a4632690bcc7edf23f1da071",
+    "base": "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c",
+    "merge_base": "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c"
+  },
+  "decision": {
+    "candidate_decision_status": "recorded",
+    "authority_effect": "effective_when_this_record_is_admitted_to_main",
+    "formal_review06_comment_id": 6027275759,
+    "formal_review06_result": "Major 0 and delegate conditions 1/2 aligned as reported in formal body",
+    "minor_zero_not_claimed": true,
+    "condition_3": "unverified: independent review after adding this record must verify all six body bytes unchanged",
+    "fixture_execution": "not run",
+    "semantic_completeness": "not asserted",
+    "decided_at": "2026-10-07",
+    "delegated_approval_recorded_for_exact_revision": true,
+    "condition_1_and_2": "recorded_as_aligned_by_formal review06",
+    "status_recorded_but_not_canonicalized": true,
+    "decider_role": "PO（委任：Opus・Fable一致）"
+  },
+  "adopted_parent": {
+    "identity": "HARNESS-L2-049",
+    "registration": "MPR-RC-HARNESS-L2-049-003",
+    "adoption_source": {
+      "revision": "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c",
+      "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+      "bytes": 16056,
+      "sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145"
+    },
+    "adoption_row_raw": "| `HARNESS-L2-049` | 承認（通常採択22件に含む） | `MPR-RC-HARNESS-L2-049-003` | `sha256:a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116` | `sha256:f3fb47da21371084e9f8c7c7f7ca6dd945c8e98ae7c7b70597c3fc44e4e08ee7` |",
+    "scope_condition_row_raw": "HARNESS-L2-049の採択は登録`-003`および訂正済L11 oracleの計測専用意味に限る。試作品生成、Pattern選択、screen ID発行は含まず、別revision `-002`の処置を継承しない。HARNESS-L2-055/056はそれぞれ選択済みFR-48 gate atom、選択済みFR-49の6 canonical V-pair atomに限る。HARNESS-L2-062は既存負債を免除・解消扱いしない。HARNESS-L2-063は選択した3条件だけを採り、導入版未指定を維持する。HELIXLABO-L2-071は資格を操作権限や割当へ自動変換しない境界を含む。HELIXOS-L2-104は新しい認可権限や追加承認を作らず、105は記録充足と実際の復旧完了・release許可を区別する。HELIXOS-L2-106/107は根拠不足を未解決として返し、108/109/110は明示入力範囲の検査に限る。これらの限定は選択対象を広げない。",
+    "unadopted_002_source": {
+      "revision": "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+      "bytes": 11473,
+      "sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5"
+    },
+    "unadopted_002_raw": "HARNESS-L2-049の現生存登録`MPR-RC-HARNESS-L2-049-002`（L2節digest `sha256:a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116`、L11節digest `sha256:37c83d82ef76a0198bdfb22317052d67e0249946d1cc21b406d5f6e5109230b8`）は採択しない。L2は与えられた表示可能prototypeの計測を対象とするが、現L11は生成工程・Pattern選択・画面ID発行の証拠が入力にない場合も不足として返すと読める。必要な画面ID・対象版・利用許可・profile・測定条件が揃えば、生成工程の証拠なしで計測を開始できる正常例へ訂正する。画面ID自体の欠落と発行工程の入力欠落を区別する。訂正L11を新revisionで仮登録した後、そのexact bytesについてPOが再確認するまで未採択とする。prototype生成能力は別途要求候補の対象に残す。先の57件の訂正対象`HELIXOS-L2-049/-050`と本項の`HARNESS-L2-049`は別identityであり、HELIXOS-L2-050の受入訂正は#2294で完了している。",
+    "historical_57_candidates": {
+      "revision": "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "bytes": 45099,
+      "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+    }
+  },
+  "fixed_parent": {
+    "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+    "L2": {
+      "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "line_start": 1070,
+      "line_end": 1092,
+      "bytes": 8823,
+      "sha256": "a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116",
+      "raw": "### HARNESS-L2-049 画面prototypeの表示計測oracle・検査精度・文言量評価（HELIX-HARNESS unit候補、version_target: 1.0）\n\n**状態**：新規の未採択候補。O10作業依頼を起点に起草した候補であり、要求合意・L3承認・実装・実行を生成しない。049は既に与えられたrenderable prototypeを表示計測するoracleと精度評価だけを所有し、prototypeを生成しない。現在の`HARNESS-L2-039`候補はExperience/UI/Frontend関係とscreen/profile/source contractを扱うが、Pattern・製品CORE・UI profileの制約内でrenderable prototypeを作る能力は定めていない。O10が1.0方向に含めたこの生成能力のowner/scopeは未解決で、PO判断frame A/B/Cを別途提示する。049の現候補scopeは測定専用のままとし、039の採択や未記載の生成能力を推定しない。\n\n**親L1**：`HARNESS-L1-001`（V-model pair）、`HARNESS-L1-003`（変更影響とtrace）、`HARNESS-L1-004`（検証義務・反例・証拠）、`HARNESS-L1-006`（prototypeと合意）、`HARNESS-L1-009`（design template）。対象画面、要求revision、scope、適用する既存contractとそのauthority状態を記録する。候補の親は現在のL1 bytesであり、新しいL1要求や採択を推測しない。\n\n**種別・scope**：HELIX-HARNESSに属するVisual Design HARNESSの単体能力候補。既存のV-model層とpairを使い、別工程、独立承認者、独立実行機構を追加しない。入力されたrenderable prototypeと、その画面・領域・文言役割別profileに適用する表示計測oracleを定める。prototype生成、Experience/UI/Frontendの関係構成、semantic identityの発行はこの候補のscope外である。特にPattern・製品CORE・UI profileの制約内でprototypeを作る能力は現在の039にも記述されていない。O10のprototype生成scopeは未解決decisionとして残り、A＝将来の049 revisionへ追加、B＝別candidateへ分離、C＝deferをPOが選ぶ。どの選択もこの049測定候補を変更・採択せず、選択後の正確なrevisionへ反映する。039は未採択であり、049の入力条件として採択を前提にしない。049単独で成立する入力は、利用許可とscope/revisionが分かるrenderable prototype、選択された適用profile、および既知のpositive/negative fixtureである。pattern/style/Visual Identityは入力済みprototype/profileに明示される場合だけ計測条件として参照し、新しいprofile schemaや固定閾値を作らない。\n\n**入力・出力**：入力はrenderable prototype、対象screen scope/revision、測定対象のdevice classまたはdevice condition、view/viewport条件、適用profile、許可された測定項目とoracle、既知fixtureと期待分類である。prototypeに必要なscreen identityやsource traceがなければ新しく発行せず不足として返す。出力は実際に表示したscope/device/view条件、各測定項目・oracle・手段版・fixture、測定結果と証拠、適用外・未測定・unknown、修正候補、差戻し先を含む。\n\n**表示と機械計測**：入力された対象画面を指定device conditionとview/viewport条件のもとで実際に描画し、その結果に対して適用scopeで定めたアクセシビリティ、コントラスト、画面幅別の崩れ・はみ出し、主要状態（例：empty/loading/error）の有無、文言量を測る。device/view条件が未指定または表示証拠に結べない場合、その条件の測定はunknownとする。測定ごとに対象scope、device/view条件、oracle、手段・版、結果、証拠を結ぶ。O10で新規提案された文言検査は、UI profileの画面・領域・役割別上限目安を根拠に超過、反復、説明のためだけの説明を候補として返す。根拠のない固定上限や閾値は作らない。静止画、DOMの存在、prototypeの生成だけでは表示検証や合格を主張しない。\n\n**検査精度とLABO接続**：各機械検査の適用範囲と判定条件に対し、既知の正例・反例fixtureで誤検出と見逃しを評価可能にする。精度評価が確認できない検査は合格根拠に使わず、warningと未評価範囲を返す。LABOによる検査精度の評価は既存接続の範囲で受ける。評価者・fixtureのauthority、結果保管、配置・実行運転をこの要求が所有しない。候補、fixture、測定回数だけで精度や品質を成立扱いにしない。\n\n**依存・境界**：常時必須は対象scope/revision、UI適用性、既存要求・oracle・profile/source identityと利用許可、結果を結ぶ証拠契約である。Patternを選択する場合は既存BRAIN側の候補または確定済み契約の版・適用条件・反例を照合し、選択しなかったPatternを存在または適格と推定しない。製品固有screen/flow/token/Visual Identityは当該製品のHELIX-HARNESS-COREへ残す。LABOは測定後の評価、INTELLIGENCEは既存の配置案を担う。本候補はBRAIN/LABO/INTELLIGENCEに新しい要求identityや接続を追加せず、各候補が採択済みであるとも扱わない。実行・ticket・state記録・証拠保存は現行の既存owner契約へ渡す。\n\n**authority・状態**：HARNESS/AIはvision、brand、見た目の好み、prototypeへの合意、L3要件freeze、L11利用者受入を自己承認しない。候補出力・機械判定・fixture評価は人の判断を代替しない。049が返す検査状態は測定単位のpass/warning/unknownであり、`implemented`や`ux_verified`を生成しない。O10の状態区別は既存`HARNESS-L2-039`候補と同scopeで重複するため、049単独で状態成立を主張しない。実データ・実利用者によるUX評価、prototypeと実装のdrift検査、計測event結線はO10の後続版へ残す。後続scopeを1.0へ前倒ししない。\n\n**既存要求との境界**：`HARNESS-L2-039`候補はprototype/Experience/UI/Frontendの関係とscreen/profile/binding等のsource contractを広く扱う。049は既にrenderされたscreenについての測定oracleと検査精度・文言量findingだけに限り、039を置換、重複、または前提採択しない。`HARNESS-L2-022`はstageごとのoracle・evidence状態、`HARNESS-L2-005`は選択された検証義務、`HARNESS-L2-034`は選択した場合の計測契約をそれぞれ参照する。BRAIN/LABO/INTELLIGENCEの既存接続は、入力sourceが選択され有効な場合にだけその契約へ返し、新しいrequirement identityを追加しない。\n\n**不成立と戻し先**：prototype/profile/oracle/fixtureの版、scope、authority、利用許可が不明なら測定条件を確定しない。対象の画面が表示されていない、必要な測定・証拠が欠ける、known-positive/negative fixtureで精度を評価できない、profile上限や文言役割の根拠がない場合はpassを返さず、warning/unknownと未完条件を返す。要求意味・見た目の優先順位は上流ownerへ、prototype agreementは`HARNESS-L2-024`の既存境界へ、設計・oracle不足は既存設計ownerへ、検査精度評価はLABOへ戻す。人の判断境界や毎回のapproval gateを追加しない。\n\n**旧sourceと差分**：旧`LEGACY-ASSET-335176749F6322C3CD8D`の`ai-vision-design-harness-engine.md` VDH-FR-011の「主要stateとdevice/view条件」を選択spanとして起点にする。旧`LEGACY-ASSET-4E880D2FCD37879BA300`のdesign-harness-assessment-auditは、実装済みの文書管理と未実装のscreen/prototype機能を区別して改善順を示す背景auditとして参照する。保持点は旧screen state/device/view coverage evidenceである。O10の検査精度fixtureと文言量制約は新規提案であり、情報優先順位は保留した旧VDH-FR-005 spanを意味の参照元にする。既存039候補はExperience/UI/Frontend relationとsource contractを扱うが、Pattern/CORE/profile制約下のprototype generationを定義していない。049はmeasurement-onlyであり、生成範囲は未解決PO frame A/B/Cに保持する。VDH-FR-005のPATTERN spanを含む未選択旧sourceは`MPR-SH-VDH-O10-001`へ保全し、ここで候補入力へ移さない。semantic ID発行や人間承認も049へ再導出しない。変更点は現行layer・親L1・既存ownerへ配置し、211-file intake、旧sub-check、旧DB/runtime、旧L0-L14/旧processを移植しない。assessment auditの旧実装状態を現行の実装根拠にしない。対象sourceと保留分はO10 source inventory/coverage receiptに記録する。\n"
+    },
+    "L11": {
+      "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "line_start": 802,
+      "line_end": 814,
+      "bytes": 4239,
+      "sha256": "f3fb47da21371084e9f8c7c7f7ca6dd945c8e98ae7c7b70597c3fc44e4e08ee7",
+      "raw": "### HARNESS-L11-049 画面prototypeの表示計測oracle・検査精度・文言量評価の受入候補\n\n**対応要求**：`HARNESS-L2-049`（HELIX-HARNESS単体候補、`version_target: 1.0`、未採択）。以下は静的な受入oracle案であり、実際の描画、測定、LABO評価、PO合意を実施した証拠ではない。\n\n- **単独成立例：既存screen identityを持つrendered prototypeを測定する**：screen ID、対象revision、当該scope・revisionでの利用許可、適用profile、device/view/viewport等の測定条件が入力に揃ったrenderable prototypeを、049は単独成立する測定対象として受け付ける。既知のpositive/negative fixtureがある測定項目は期待分類と実測を照合する。この成立にprototype生成、Pattern selection、screen IDの発行処理や発行証拠は要らない。049は入力済みscreen IDとrevisionの対応を使い、IDを新規発行しない。\n- **screen ID欠落**：対象を指すscreen IDが入力に無い、または対象revisionへ結べない場合は、対象の測定をpassにせず不足／unknownとして返す。049は代替IDを作らず、欠落とrevision不一致を区別して記録する。screen IDが存在する場合に、その発行過程や発行者の証拠まで追加要求しない。\n- **正常例：表示と測定**：選択したdevice conditionとview/viewport条件で実際に描画した対象画面、主要stateなどの条件、各測定のoracle/手段/版、証拠が同じ対象revisionへ結ばれる。適用対象についてアクセシビリティ、コントラスト、画面幅別の崩れ・はみ出し、主要状態、profileに基づく文言量の各結果を個別に確認できる。device/view条件が未指定または証拠に結べない測定はunknownとする。適用外または未測定は理由付きで識別し、他項目の結果で埋めない。\n- **正常例：検査精度**：検査項目ごとの既知の正例・反例fixtureと期待分類、実測結果を照合し、誤検出・見逃しを評価できる。選択scopeと異なるfixture・source revisionの結果を流用しない。LABO評価が必要な範囲では既存接続経由の評価結果と未完義務を識別する。\n- **正常例：文字量**：profileが画面・領域・文言の役割と目安を定める範囲で、上限超過、同じ内容の反復、説明のためだけの説明を理由付き候補として作成側へ返す。閾値をprofileや根拠なしに作らず、人の文言判断や修正を承認済みとして扱わない。\n- **状態境界**：機械検査のpassは`implemented`や`ux_verified`を生成しない。両状態の分離は既存`HARNESS-L2-039`候補の範囲と重なるため、049の単独成立・測定結果から状態を主張できない。\n- **不成立例**：表示せずに生成物/静止画だけで測定済みとする、screen IDまたは対象revisionが欠落・不整合なのに測定をpassにする、採択されていないPatternやCORE制約を確定済みとして用いる、検査精度がunknownなのにpass根拠へ使う、文字数の一律閾値を追加する、人の合意をAIが代行する、`implemented`から`ux_verified`を推定する、後続版のreal-user UX/drift/analyticsを1.0完了条件に混入する場合は不合格またはunknownとする。prototype生成、Pattern selection、screen ID発行の証拠が無いことだけでは失敗にしない。\n- **未見例**：追加のdevice condition、view/viewport、画面状態、文言役割を与え、選択scopeのoracle・fixtureにない条件をunknownとして残せることを確認する。未選択の機器・役割・locale等について、実施・合格を推測しない。\n- **受入の限界**：文書上の対応関係、candidate登録、fixture一覧、描画画像の存在だけでは要求採択、実測成功、検査精度、PO合意、実装、実利用者評価、L3/L11の実際の完了を成立させない。O10で後続版へ回したreal-data/user evaluation、prototype-implementation drift、analytics event接続を1.0候補の合格要件にしない。\n"
+    }
+  },
+  "delegation_policy_sources": {
+    "decision": {
+      "revision": "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c",
+      "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+      "bytes": 6210,
+      "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220"
+    },
+    "operating_model": {
+      "revision": "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c",
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "bytes": 53710,
+      "sha256": "eed2b774bb78545ac53c7d55f3ae3ab4e9c4f421b4eaf3ac3bcdbcdd869dd27b"
+    },
+    "operating_model_L3_L10_excerpt": "## L3／L10承認の委任\n\n2026-10-05のPO判断（[判断記録](decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md)）により、\n`design_verification` PRのL3／L10の対象revision承認は、Opus（Claudeの`review_merge` lane）とFable（Claudeのadvisor）の見解が一致した場合に成立する。\n委任はL3／L10に限る。Concept、企画（L1）、要求とprototype／非UIの合意（L2）は人が判断する。要求の意味・範囲・担当・版を変える必要が出た場合は、L2へ戻してPOへ上げる。\n\n### 見解の一致\n\n次の三つが、同じ対象の本文revisionについてそろった場合だけ、見解が一致したとする。\n\n1. Opusの独立reviewが、exact base／content HEADについてBlocker、Major、Minor、未確認範囲をすべて0としている（`no_findings`）。\n2. Fableが、同じ本文revisionの6文書と固定親を自分で読み、承認を止める問題がないと結論している。Fableには、review経過を入力として渡してよいが、結論は本文と固定親を読んだうえでFable自身が出す。\n3. 1と2の後で、6文書のbytesが変わっていない。\n\nFableが承認を止める問題を挙げた場合は、一致しない。Opusがその問題を固定親に照らして確かめ、妥当なら作成側へfindingとして返す。\n修正で本文revisionが変わった場合は、新しいrevisionについて1と2をやり直す。OpusとFableの判断が分かれたまま解けない場合は、両方の見解を添えてPOへ上げる。\nFableが挙げたMinorだけの場合も、返すかどうかはOpusが固定親に照らして決める。返した場合は本文revisionが変わるので、1と2をやり直す。\n\n### 記録とmerge\n\n- Opusは、Fableの結論（承認可否、残る問題、照合した対象revision）を、Fableの本文から要約せずにPR commentへ記録する。Opusの`no_findings`も、従来どおりPR commentとmailboxで返す。\n- 作成側は、従来のPO判断記録と同じ形式で判断記録を加える。`decider_role`は`PO（委任：Opus・Fable一致）`とし、次を固定する。\n  - 本委任の判断記録\n  - Opusの`no_findings` commentとFableの結論commentのIDと、取得したbodyのSHA-256\n  - 承認対象の本文revisionと、6文書のSHA-256\n- review側は、判断記録の引用と、6文書が承認対象から変わっていないことを照合する。照合の後は、従来どおり作成側がReady化し、review側がmerge admissionを再照合して明示mergeする。\n- 委任による承認は、POの承認を待たない。本委任より前に受けたPO承認は、そのまま有効である。\n\n### 人に承認を求める回数を減らす\n\n作業はヒューマンアウトオブザループを前提とし、計画や承認済みの文書は、やってみて分かったことで直してよい（変更耐性）。人の判断は省かず、求める回数を減らす。\n\n"
+  },
+  "six_actual_documents": [
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "head_bytes": 14791,
+      "head_sha256": "7ea9e004f813e3e7cdd94f7d612753d6224c4ffa1fde7bba775959e303d8ef65",
+      "body_bytes": 14791,
+      "body_sha256": "7ea9e004f813e3e7cdd94f7d612753d6224c4ffa1fde7bba775959e303d8ef65",
+      "matches_pin_sha": true,
+      "matches_body": true,
+      "terminal_lf": true
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "head_bytes": 232956,
+      "head_sha256": "702bb566bfa0e814868a36ac97b2e058e99b8353a2ba901af971e2a0bfd70820",
+      "body_bytes": 232956,
+      "body_sha256": "702bb566bfa0e814868a36ac97b2e058e99b8353a2ba901af971e2a0bfd70820",
+      "matches_pin_sha": true,
+      "matches_body": true,
+      "terminal_lf": true
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "head_bytes": 45394,
+      "head_sha256": "b2694e221a5f0342fc4ef212ec453e2d934b4123d959891c0c9b704d63ca3de7",
+      "body_bytes": 45394,
+      "body_sha256": "b2694e221a5f0342fc4ef212ec453e2d934b4123d959891c0c9b704d63ca3de7",
+      "matches_pin_sha": true,
+      "matches_body": true,
+      "terminal_lf": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "head_bytes": 10615,
+      "head_sha256": "d645bd8ed00c536e355d44162c1b0c552a2bc1ca296597783d36395e275e35a1",
+      "body_bytes": 10615,
+      "body_sha256": "d645bd8ed00c536e355d44162c1b0c552a2bc1ca296597783d36395e275e35a1",
+      "matches_pin_sha": true,
+      "matches_body": true,
+      "terminal_lf": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "head_bytes": 860127,
+      "head_sha256": "0d46ef7417c625a826bf64870a2d228b0ad7b527b7b039001b339357d97f5d98",
+      "body_bytes": 860127,
+      "body_sha256": "0d46ef7417c625a826bf64870a2d228b0ad7b527b7b039001b339357d97f5d98",
+      "matches_pin_sha": true,
+      "matches_body": true,
+      "terminal_lf": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "head_bytes": 39148,
+      "head_sha256": "022e14272f92cf62e9f9782c72ffd077304bf36f1e4ecf4c8a69a137fbd7b2bf",
+      "body_bytes": 39148,
+      "body_sha256": "022e14272f92cf62e9f9782c72ffd077304bf36f1e4ecf4c8a69a137fbd7b2bf",
+      "matches_pin_sha": true,
+      "matches_body": true,
+      "terminal_lf": true
+    }
+  ],
+  "formal_review_comments": [
+    {
+      "comment_id": 6024926713,
+      "body_bytes": 6273,
+      "body_sha256": "7e76d419719555ad85565586b80b0f21bb483d01ce088be811386e567ca341d7",
+      "body": "## review01（independent review、PR #2647 親HARNESS-L2-049（採択 -003）、HEAD f74a0e1cb51a2e35dae8b2f7fe949d5e7b5f71f0、base main ceda1c53b）：Major 2\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2647-HARNESS-STAGE3-PARENT049-01` に応える。\n\n### 本文を評価する前の確認（採択記録・対象版・追補条件）\n- **採択記録**：live26記録（po-decision-2026-09-30-live26.md）の39行が、`MPR-RC-HARNESS-L2-049-003`を採択している。git grepで、ほかに採択がないことを確かめた。11候補記録の-002は未採択の判断である。\n- **対象版**：固定親は`ea6f756f96a7370de78e412d737c7a7ed472114a`（live26記録23行の最新main）である。\n  - **L2**：product-requirements.md:1070–1092の節SHA-256は`a5df1f7b…`。\n  - **L11**：product-acceptance.md:802–814の節SHA-256は`f3fb47da…`。\n  - reviewerが`git show`から計算し、39行の記録値と一致することを確かめた。\n- **追補条件**：live26記録72行「049の採択は登録`-003`および訂正済L11 oracleの計測専用意味に限る。試作品生成、Pattern選択、screen ID発行は含まず、別revision `-002`の処置を継承しない」。\n  - ブラインドが照合し、6本文はこの3つを正常系に含めていない。\n  - 3つそれぞれに、拒否CASEがある（r10-output-prototype-generation、output-pattern-selection、output-screen-id-issuance）。\n  - -002を継承しないことも、L3 FRに明記されている。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：1件ある。「固定L2:1090の要求意味に関する既存上流ownerへ戻し、identityが特定できなければunknownを維持する」で、区分を保ったうえで個体identityをunknownにする許容形である。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - origin/mainとの`merge-tree`は衝突なし\n\n### 照合の経過\n1. **Opusシンプルブラインド**：Major 3。Majorがあったので、Fableへは回していない。\n2. **reviewerの確認**：固定L2の1070〜1092行（「入力・出力」「authority・状態」「不成立と戻し先」）を読み、L3とL10の049節をgrepした。\n   - 1件目と2件目は、M1・M2としてMajorと確定した。\n   - 3件目は、下のR3とした。\n\n### Major\n**M1（固定L2の出力要素「修正候補」が、L3にもL10にもない）**\n- **欠陥**：\n  - FR-HARNESS-L3-049（functional-requirements.md:732）とAC-01〜05は、出力に結果・根拠・未測定/適用外/unknown・文言findingを挙げている。「修正候補」はない。\n  - L3の049節に、「修正候補」の語は0件である。\n  - L10の049節のCASEにも0件で、正常判定での照合も、単独CASEもない。\n  - L3がL2の出力要素を落としている（類型3）。そのため、修正候補を出さない実装が合格する（類型4）。\n- **守るべき行**：固定L2-049（ea6f756 product-requirements.md「入力・出力」）「出力は…測定結果と証拠、適用外・未測定・unknown、修正候補、差戻し先を含む」\n\n**M2（「L3要件freeze」と「L11利用者受入」を自己生成する出力に、拒否fixtureがない）**\n- **欠陥**：\n  - AC-03（functional-requirements.md:742）は、「L3/L11 acceptance」を出力しないと書いている。\n  - しかし、L10の拒否CASEが扱うのは、requirement_acceptance、user_approval、agreement、implemented、ux_verifiedだけである。\n  - L3要件freezeやL11利用者受入を出力する単一の変異は、ない（L10の049節で「freeze」「L11受入」は0件）。\n  - 固定親が禁じる生成に、拒否fixtureがない（類型2）。#2638（068）review06 M1、#2645（071）review01 M1と同じ型である。\n- **守るべき行**：固定L2-049「authority・状態」「HARNESS/AIはvision、brand、見た目の好み、prototypeへの合意、L3要件freeze、L11利用者受入を自己承認しない」\n\n### 後で直す残余（承認を止めない）\n- **R1（利用許可の戻し先）**：利用許可のunknown/missingを、「要求意味に関する既存上流owner」へ戻している（r09-003、r09-030）。固定L2の「不成立と戻し先」は、利用許可の宛先を区分していない。\n- **R2（localeの追加）**：localeを、選択入力の条件に加えている。固定L2の入力はdevice/viewだけで、localeは固定L11の未見例「locale等」にとどまる。\n- **R3（出力routeの誤りの訂正先）**：ブラインドはMajorとしたが、reviewerが残余とした。対象はr10-cause-specific-return-routeとFR:734である。\n  - これらは、入力が正常なときの049出力のroute誤りを、「049候補出力内で訂正し、L2入力ownerへは返さない」としている。\n  - これは、#2641（044）review05でreviewerが求めた形（自分の出力誤りは自分で訂正し、入力側ownerへ押し付けない）と同じである。そのため、固定親の返却区分の外にある新しい宛先とはみなさない。\n  - ただし、「正しい測定scopeのroute」の期待値がbaselineに書かれていない。正常入力ではrouteが「なし」になるのかを、明記することを勧める。\n- **R4（測定項目ごとの相殺）**：「各測定項目」ごとに、他項目の結果で埋めない単独CASEはない。r09-006が部分的に代替している。\n- **R5（正常判定の値）**：正常のr10-screen-id-no-issuance-proof-normalは、出力要素の値を照合していない。要素ごとの単独CASEが補っている。\n\n### 次の手順\n- **M1**：FRとACの出力に「修正候補」を加える。正常判定で修正候補の値を照合するか、修正候補だけを欠落・別値にする単独CASEを置く。\n- **M2**：FR/ACの非生成の列挙に「L3要件freeze」「L11利用者受入」を明示する。それぞれを単独で生成させる拒否CASEを置く。\n- 直した後のHEADで、もう一度依頼してほしい。\n"
+    },
+    {
+      "comment_id": 6025506014,
+      "body_bytes": 7249,
+      "body_sha256": "bcd89d6f33509bee9cc31118cb32ac982747a38cce9e4774a635a0b53f269b40",
+      "body": "## review02（independent review、PR #2647 親HARNESS-L2-049（採択 -003）、HEAD 9f6aa39a9fd816b795f25b6f0b51eab42ce0fcae、base main ceda1c53b）：Major 4\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2647-HARNESS-STAGE3-PARENT049-02` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：live26記録39行（`MPR-RC-HARNESS-L2-049-003`）。後日の別採択はない。\n- **追補条件**：live26記録72行。試作品生成、Pattern選択、screen ID発行を含まないこと、-002を継承しないことは、引き続き守られている。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：1件。区分を保った許容形である。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n- **最新mainとの衝突**：現在のorigin/main（0acbed34b、#2637 merge後）との`merge-tree`は、6本文で衝突する。041と049が、同じファイル末尾へ追記しているためである。\n  - 意味の照合は、依頼のbase（ceda1c53b）で行った。\n  - merge admissionの前には、main取り込み後のHEADで、049節が不変であることと、条件1・2を照合し直す必要がある。#2643と同じ事情である。\n\n### 照合の経過\n1. **review01の解消の確認**（reviewerが差分で確かめた）：M1とM2は解消した。\n   - **M1**：修正候補を、正常判定でsource/oracleの値と照合する。missingとmismatchの単独CASEも置かれた。\n   - **M2**：L3要件freezeとL11利用者受入の自己生成に、それぞれ単独の拒否CASEが置かれた。\n   - **R3**：正常入力のrouteを「なし」と明記した。\n   - **R5**：正常判定で、全fieldの値の一致を照合するようになった。\n2. **Opusシンプルブラインド**：Major 4。今回から、禁止列挙の全件照合と、前回までの残余R1〜R5の洗い直しを加えた。Majorがあったので、Fableへは回していない。\n3. **reviewerの確認**：固定L2の1072、1082、1084、1086行と、L11の814行の原文を読み、049のCASEを確かめた。4件ともMajorと確定した。\n   - 「vision」でgrepすると60件ヒットするが、すべて「revision」の一部だった。vision・brand・見た目の好みの自己承認を拒否するCASEは、0件である。\n\n**reviewer側の誤り**：M3は、review01のM2と同じ文（L2:1086）に並ぶ項目である。review01では、その文からL3要件freezeとL11利用者受入だけをMajorにした。vision、brand、見た目の好み、prototypeへの合意を拾わなかった。prototypeへの合意は、agreementのCASEで覆われている。照合を1回で済ませるべきところを、取りこぼしていた。\n\n### Major\n**M1（「候補、fixture、測定回数だけで精度や品質を成立扱いにしない」のうち、照合されているのは1項目だけ）**\n- **欠陥**：\n  - 単独CASEは、「fixture登録数→accuracy」（FV:1653）だけである。\n  - 候補数だけ、または測定（実行）回数だけで精度を成立させる単独CASEがない。fixture・候補・回数から「品質」を成立させる単独CASEもない。\n  - AC:741は、文言だけでCASEに落ちていない（類型2・4）。\n- **守るべき行**：固定L2-049（ea6f756 product-requirements.md:1082）「候補、fixture、測定回数だけで精度や品質を成立扱いにしない」\n\n**M2（他候補の採択を推定・前提にする変異に、拒否CASEがない）**\n- **欠陥**：次のどちらかを単独で変異させるCASEがない。\n  - 039の採択を推定する、または前提にする（049のCASEに「039」は0件である）。\n  - BRAIN/LABO/INTELLIGENCEの候補を、採択済みとして扱う。\n  - 固定親が禁じる状態の推測に、拒否fixtureがない（類型2）。\n- **守るべき行**：\n  - 固定L2-049（:1072/1076/1088）「039の採択や未記載の生成能力を推定しない」\n  - 同:1084「各候補が採択済みであるとも扱わない」\n\n**M3（vision、brand、見た目の好みの自己承認に、拒否CASEがない）**\n- **欠陥**：\n  - 人の承認を扱うCASEは、次の4つだけである。\n    - 汎用のuser_approval\n    - agreement（prototypeへの合意）\n    - L3 freeze\n    - L11受入\n  - vision、brand、見た目の好みを、それぞれ単独で承認済みとして出力する変異の拒否CASEがない（類型2）。\n- **守るべき行**：固定L2-049（:1086）「HARNESS/AIはvision、brand、見た目の好み、prototypeへの合意、L3要件freeze、L11利用者受入を自己承認しない」\n\n**M4（「文書上の対応関係」「candidate登録」だけで完了を成立させる変異に、拒否CASEがない）**\n- **欠陥**：\n  - 文書上の対応関係だけ、またはcandidate登録だけを根拠に、要求採択・PO合意・実装・L3/L11の完了を成立させる単独CASEがない。\n  - FV:1661は、機械測定結果から受入を作る場合だけを扱っている。FV:1753〜1754は、描画済み扱いに限られる。\n  - これらの誤った完了を拒否するfixtureがない（類型2・4）。\n- **守るべき行**：L11-049（ea6f756 product-acceptance.md:814）「文書上の対応関係、candidate登録、fixture一覧、描画画像の存在だけでは要求採択、実測成功、検査精度、PO合意、実装、実利用者評価、L3/L11の実際の完了を成立させない」\n\n### 後で直す残余（承認を止めない）\n- **R1〜R4**：変わらない。今回、上の基準で洗い直したが、Majorに当たるものはなかった。\n- **R5**：解消した。\n- **R6（精度評価fixtureの戻し先）**：精度評価fixtureの戻し先が、CASEによって設計ownerとLABOに分かれている（FV:1717、1652、FR:732）。\n- **R7（閾値誤りの戻し先）**：一律閾値の誤りを、LABOへ返している（FV:1687）。固定L2:1090では、設計・oracle不足は設計ownerへ返す。\n- **R8（範囲の注記）**：次の注記には、単独CASEがない。\n  - 未選択Patternの存在推定\n  - 実行の生成\n  - 要求identityや接続の新設\n  - 承認gateの追加\n  - 保管・運転の所有\n\n### 次の手順\n- **M1**：候補数だけ、測定回数だけで精度を成立させる変異と、fixture・候補・回数から品質を成立させる変異を、それぞれ単独のCASEとして拒否する。\n- **M2**：039の採択を前提にする変異と、BRAIN/LABO/INTELLIGENCEの候補を採択済みとして扱う変異を、それぞれ単独のCASEとして拒否する。\n- **M3**：vision、brand、見た目の好みを、それぞれ単独で自己承認する変異を拒否する。\n- **M4**：文書上の対応関係だけ、candidate登録だけを根拠に完了・採択・合意を成立させる変異を、それぞれ単独のCASEとして拒否する。\n- 最新mainを取り込み、049節を変えずに衝突を解消したHEADで、もう一度依頼してほしい。\n"
+    },
+    {
+      "comment_id": 6025724299,
+      "body_bytes": 2503,
+      "body_sha256": "50522fc45de9be95a448441cfdefa958c9697822cfc301fd3239a34415b35d8a",
+      "body": "## review03（independent review、PR #2647 親HARNESS-L2-049（採択 -003）、HEAD 04d52812ec8636a5e6110a443dec0fe8524e908a、base main 0acbed34b）：Major 4（review02 M1〜M4が未解消）\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2647-HARNESS-STAGE3-PARENT049-03` に応える。\n\n### 照合した項目\n- **今回のHEADの変更**：9f6aa39a9からの変更は、最新main（0acbed34b、#2637 merge）を取り込んだ衝突解消のmerge commit `04d52812e`だけである。\n- **049本文の不変**：L3/L10の6ファイルで、reviewerが次の2点を照合した。\n  - 9f6aa39a9→HEADの追加行は152行で、削除は0行である。これは、main側で041が追加した152行と内容が一致する。\n  - 0acbed34b→HEADの049の追加行は178行で、削除は0行である。これは、ceda1c53b→9f6aa39a9の049の追加行と内容が一致する。\n  - 以上から、049の本文は変わっていない。\n- **衝突の解消**：review02で記録した最新mainとの衝突は、解消された。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - `merge-tree`は衝突なし\n\n### 結論\n049の本文は、review02の対象と同一である。そのため、review02のM1〜M4は未解消のまま残る。\n\n- **M1**：「候補、fixture、測定回数だけで精度や品質を成立扱いにしない」のうち、照合されているのは「fixture登録数→accuracy」だけである。候補数だけ、測定回数だけで精度を成立させる変異と、品質を成立させる変異の拒否CASEがない。\n- **M2**：039の採択を推定・前提にする変異と、BRAIN/LABO/INTELLIGENCEの候補を採択済みとして扱う変異の拒否CASEがない。\n- **M3**：vision、brand、見た目の好みを自己承認する変異の拒否CASEがない。\n- **M4**：文書上の対応関係だけ、またはcandidate登録だけで、採択・合意・実装・L3/L11の完了を成立させる変異の拒否CASEがない。\n\n守るべき固定親の行は、review02のとおりである。\n- ea6f756 product-requirements.md：1072、1076、1082、1084、1086、1088行\n- product-acceptance.md：814行\n\n本文が同一なので、今回は照合を新たに回していない。\n\n### 次の手順\n- review02の「次の手順」のとおりに、M1〜M4を直す。\n- 直した後のHEADで、もう一度依頼してほしい。\n"
+    },
+    {
+      "comment_id": 6026163121,
+      "body_bytes": 7265,
+      "body_sha256": "ea4ea3b60160b07b3d8fda2ede7793ab26088ee5365b9f2b00f52d3f8eb11d2a",
+      "body": "## review04（independent review、PR #2647 親HARNESS-L2-049（採択 -003）、HEAD 7f64277540c40606011323a0641865e0eee95ebc、base main 0acbed34b）：Major 5\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2647-HARNESS-STAGE3-PARENT049-04` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：live26記録39行（-003）。後日の別採択はない。\n- **追補条件**：live26記録72行は、引き続き守られている（試作品生成・Pattern選択・screen ID発行を含まず、-002を継承しない）。\n- **base整合**：merge-baseは依頼のbase（0acbed34b）と一致する。041節は、mainの文脈である。\n- **条件付きの戻し先**：1件ある。区分を保ったうえで、個体identityだけをunknownにする許容形である。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - `merge-tree`は衝突なし\n\n### 照合の経過\n1. **review02/03の解消の確認**（reviewerが差分で確かめた）：M1〜M4は、それぞれ単独の拒否CASEで手当てされた。\n   - **M1**：候補数・測定回数・fixture数と、精度・品質の組み合わせ（r20-m1-*）\n   - **M2**：039の採択の推定・前提と、BRAIN・LABO・INTELLIGENCEの候補を採択済みとして扱うこと（r20-m2-*）\n   - **M3**：vision・brand・見た目の好み（r20-m3-*）\n   - **M4**：文書上の対応関係・candidate登録の各8出力（r20-m4-*）\n2. **Opusシンプルブラインド**：Major 5。Majorがあったので、Fableへは回していない。\n3. **reviewerの確認**：L11の810行と814行、L2の1074、1078、1090行の原文を読んだ。あわせて、該当するCASEの判定文（r10-scope-unknown、r10-source-authority-unknown、r10-fixture-version-unknown）を読んだ。版unknownのCASEの有無と、業務・FRの「採択意味」の文も照合した。5件ともMajorと確定した。\n\n**reviewer側の誤り**：\n- **M1**：review02のM4で、L11:814の4つの根拠（文書上の対応関係、candidate登録、fixture一覧、描画画像の存在）のうち、2つしか挙げていなかった。\n- **M2**：「承認gate・人の判断境界・独立承認者を追加しない」を、残余R8（範囲の注記）としていた。これは新しい承認手続きを生成することにあたるので、Majorとすべきだった。\n\n### Major\n**M1（L11:814の残り2つの根拠と、L11:810の修正承認に、拒否CASEがない）**\n- **欠陥**：\n  - 「fixture一覧だけ」「描画画像の存在だけ」から、要求採択・PO合意・実装・実利用者評価・L3/L11完了を成立させる変異の単独CASEがない。fixture数→精度と、静止画→実測の2組だけが、覆われている。\n  - 「修正を承認済みとして扱わない」にも、単独CASEがない。汎用のuser_approvalがあるだけである。\n- **守るべき行**：\n  - L11-049（ea6f756 product-acceptance.md:814）\n  - 同810行\n\n**M2（承認gate・人の判断境界・独立承認者を追加する変異に、拒否CASEがない。旧R8の一部を繰り上げ）**\n- **守るべき行**：\n  - 固定L2-049（ea6f756 product-requirements.md:1090）「人の判断境界や毎回のapproval gateを追加しない」\n  - 同1074行「独立承認者…を追加しない」\n\n**M3（prototype版・oracle版のunknownと、source traceの補完に、拒否CASEがない）**\n- **欠陥**：\n  - 版unknownのCASEがあるのは、profile版とfixture版だけである。prototype版のunknownとoracle版のunknownには、CASEが0件である。missing（r09-004）やrevision不一致（049-15）とは、別の状態である。\n  - source traceが欠けたときに、traceを補って作る変異の拒否CASEもない。\n- **守るべき行**：\n  - 固定L2-049（:1090）「prototype/profile/oracle/fixtureの版…が不明なら測定条件を確定しない」\n  - 同1078行「source traceがなければ新しく発行せず不足として返す」\n\n**M4（戻し先が決まらないCASEが3件ある）**\n- **欠陥**：\n  - **r10-scope-unknown**：「固定L2で特定できる既存責務へ原因別に返す」だけで、宛先がない。\n  - **r10-source-authority-unknown**：単一の原因に対して、「既存要求/visual-priorityまたはdesign owner」と宛先を二択のまま残している。\n  - **r10-fixture-version-unknown**：「既存LABO接続を必要に応じ使用する」だけで、戻し先を定めていない。\n  - 3件とも、宛先が決まらない（類型1）。#2646（054）review03 M1と同じ型である。\n- **守るべき行**：固定L2-049（:1090）の戻し先4区分（要求意味・見た目の優先順位→上流owner、prototype agreement→L2-024、設計・oracle不足→既存設計owner、検査精度評価→LABO）\n\n**M5（「採択意味」の範囲を言い切る文が、文書間で食い違っている）**\n- **欠陥**：\n  - business-requirements.mdは、「採択意味は、入力されたrenderable prototypeの画面表示を選択scopeで計測することに限る」と書いている。\n  - functional-requirements.md:770は、「…を測定し、機械検査の精度材料とprofile根拠の文言findingを返す範囲に限る」と書いている。\n  - 業務側では、検査精度と文言量の評価が範囲から落ちていて、閉じた範囲が文書間で一致していない（類型3）。\n- **守るべき行**：固定L2-049の1082行（検査精度）と、1080行（文言量）\n\n### 後で直す残余（承認を止めない）\n- **R1〜R4、R6、R7**：変わらない。\n- **R5**：解消した。\n- **R8**：一部をM2へ繰り上げた。残りは、未選択Patternの存在推定、実行の生成、要求identityや接続の新設、保管・運転の所有である。\n- **R9（束ねた変異）**：049-03は、生成・Pattern・ID発行の3項目を1つの複合mutationに束ねている。単独CASEは、別にある。\n- **R10（見出しの配下）**：049の固定親の記述が、041の見出しの配下に置かれている。\n- **R11（範囲の注記）**：次の注記には、拒否CASEがない。\n  - 「候補出力は人の判断を代替しない」\n  - 新profile schema\n  - 新L1要求・採択の推測\n\n### 次の手順\n- **M1**：fixture一覧だけ、描画画像の存在だけを根拠に、L11:814の各出力を成立させる変異を、それぞれ単独のCASEとして拒否する。修正を承認済みとする変異も、単独のCASEとして拒否する。\n- **M2**：承認gateの追加、人の判断境界の追加、独立承認者の追加を、それぞれ単独のCASEとして拒否する。\n- **M3**：prototype版unknownとoracle版unknownの単独CASEを置く。source traceの補完を拒否する単独CASEも置く。\n- **M4**：3件の戻し先を、L2:1090の4区分のうち、原因に当たる1つに決める。\n- **M5**：業務とFRの「採択意味」の範囲を、計測・検査精度材料・文言findingの3つでそろえる。\n- 直した後のHEADで、もう一度依頼してほしい。\n"
+    },
+    {
+      "comment_id": 6026807726,
+      "body_bytes": 6657,
+      "body_sha256": "800c993c721215908c1ef9c6e3542a40c445901fddec7b77507b9d7d94666b71",
+      "body": "## review05（independent review、PR #2647 親HARNESS-L2-049（採択 -003）、HEAD dd60a50c2c6c1436a0f9be9e72b8fb93b53523c3、base main 0acbed34b）：Major 3\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2647-HARNESS-STAGE3-PARENT049-05` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：live26記録39行（-003）。後日の別採択はない。\n- **追補条件**：live26記録72行は、引き続き守られている。正常系に試作品生成・Pattern選択・screen ID発行がない。3項目それぞれに単独の拒否CASEがある。-002は継承していない。\n- **base整合**：merge-baseは依頼のbase（0acbed34b）と一致し、削除行は0である。\n- **条件付きの戻し先**：1件ある。区分を保ったうえで、個体identityだけをunknownにする許容形である。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - `merge-tree`は衝突なし\n\n### 照合の経過\n1. **review04の解消の確認**（reviewerが差分で確かめた）：M1〜M5は解消した。\n   - **M1**：fixture一覧と描画画像の存在をそれぞれ根拠に、8つの出力を成立させる変異の拒否CASE（計16件）を置いた。修正承認の拒否CASEも置いた。\n   - **M2**：承認gate・人の判断境界・独立承認者の追加を、それぞれ拒否するCASEを置いた。\n   - **M3**：prototype版unknown、oracle版unknown、source traceの補完・発行を拒否するCASEを置いた。\n   - **M4**：戻し先が決まっていなかった3件を、原因別の区分に直した。\n   - **M5**：「採択意味」の範囲を、文書間でそろえた。\n2. **Opusシンプルブラインド**：Major 3。今回は、次の3つの表を作らせた。Majorがあったので、Fableへは回していない。\n   - 項目×状態の表\n   - 出力要素の表\n   - 禁止列挙の照合表\n3. **reviewerの確認**：表の×を、固定L2の1078、1080、1090行と、L11の807、812行と照らし合わせた。3件ともMajorと確定した。\n   - 出力要素の表と禁止列挙の表は、全行が○か、範囲の注記（残余R4、R8、R11）だった。\n\n### 照合の範囲の固定（049の項目×状態の表）\n○＝単独CASEあり、△＝複合のみ、×＝なし、−＝固定親が求めない。**太字**が今回のMajorである。\n\n| 項目 | 未指定/missing | unknown | 不一致/未結合 |\n|---|---|---|---|\n| device条件 | **×（r09-001は複合）** | − | **×（r09-002は複合）** |\n| view条件 | **×（同上）** | − | **×（同上）** |\n| prototype版 | − | ○ | − |\n| profile版 | ○ | ○ | − |\n| oracle版 | ○ | ○ | − |\n| fixture版 | ○ | ○ | ○ |\n| scope | − | ○ | ○ |\n| prototype authority | − | **×** | − |\n| profile authority | − | **△（複合）** | − |\n| oracle authority | − | **△（複合）** | − |\n| fixture authority | − | **×** | − |\n| 利用許可 | ○ | ○ | − |\n| screen ID | ○ | − | ○ |\n| 対象revision | **×** | − | ○ |\n| source trace | ○ | − | − |\n| 表示evidence | ○ | − | ○（複合） |\n\nreviewerは次回、この表の太字と、既存の照合項目で照合する。出力要素の表と禁止列挙の表は、今回で全行を照合済みとする。表の外から、新しい組み合わせを求めることはしない。\n\n### Major\n**M1（device/view条件を、片方だけ変える単独CASEがない）**\n- **欠陥**：r09-001とr09-002は、device/view条件の未指定と、表示evidenceの未結合を、それぞれ1行の複合mutationにしている。deviceだけ、viewだけを、未指定または未結合にする単独CASEがない。片方の軸だけが欠けたままpassになる誤りを、落とせない（類型4）。\n- **守るべき行**：固定L2-049（ea6f756 product-requirements.md:1080）「device/view条件が未指定または表示証拠に結べない場合、その条件の測定はunknown」\n\n**M2（prototype/profile/oracle/fixtureのauthorityがunknownの場合を、それぞれ単独で照合していない）**\n- **欠陥**：\n  - r10-source-authority-unknownは、profileとoracleのauthorityを1行に束ねている。\n  - prototypeのauthority unknownと、fixtureのauthority unknownには、CASEが1つもない。\n  - そのため、根拠不明のfixtureから精度passへ進む誤った完了を、落とせない（類型4）。\n- **守るべき行**：固定L2-049（:1090）「prototype/profile/oracle/fixtureの版、scope、authority、利用許可が不明なら測定条件を確定しない」\n\n**M3（対象revisionの欠落に、単独CASEがない）**\n- **欠陥**：対象revisionについては、不一致（049-15）と、prototype source revisionのunknownしかない。対象revisionそのものを欠落させる単独CASEがない（類型4）。\n- **守るべき行**：\n  - L11-049（ea6f756 product-acceptance.md:807、812）「screen IDまたは対象revisionが欠落・不整合なのにpass」\n  - 固定L2:1078（入力の対象screen scope/revision）\n\n### 後で直す残余（承認を止めない）\n- **R1〜R4、R6〜R11**：変わらない。ブラインドが上の基準で洗い直したが、Majorに当たるものはなかった。\n- **R5**：解消済みである。\n- **R12（NFR IDの対応）**：nfr-verificationの`NFR-C-HARNESS-049-01/02`は、nfr-gradeにIDの定義がない。\n- **R13（業務文書の採択意味）**：業務文書3本の「採択意味…に限る」は、計測、精度材料、文言findingの3つを挙げている。L2出力の修正候補と差戻し先は、入っていない。FRには修正候補が入っていて、狭める意図ではないと読める。そろえることを勧める。\n- **R14（正常判定の値）**：正常fixtureは、全出力のfield値をまとめて照合している。要素ごとの値は、明示していない。\n\n### 次の手順\n- **M1**：deviceだけ、viewだけを、それぞれ未指定・未結合にする単独CASEを置く（4件）。\n- **M2**：prototype、profile、oracle、fixtureのauthorityを、それぞれ単独でunknownにするCASEを置く（4件。profileとoracleの複合行は分ける）。\n- **M3**：対象revisionだけを欠落させる単独CASEを置く。\n- 判定は、どれもその条件の測定をunknownとし、passにしないこととする。戻し先は、固定L2:1090の区分に従う。\n- 直した後のHEADで、もう一度依頼してほしい。\n"
+    },
+    {
+      "comment_id": 6027275759,
+      "body_bytes": 4055,
+      "body_sha256": "5cfb77ce7ea993345083b6aa4f53a169c51072ec65b643e8d6888d4b877e1a1e",
+      "body": "## review06（independent review、PR #2647 親HARNESS-L2-049（採択 -003）、HEAD 79a67c583857d607ae78c1cb9d2cc5dfc5ab533f、base main 03d9cd19d）：Major 0\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2647-HARNESS-STAGE3-PARENT049-06` に応える。\n\n### 本文を評価する前の確認（採択記録・対象版・追補条件）\n- **採択記録**：live26記録39行（`MPR-RC-HARNESS-L2-049-003`）。後日の別採択はない。11候補記録46行の-002は、未採択の判断である。\n- **対象版**：固定親は`ea6f756f96a7370de78e412d737c7a7ed472114a`である。\n  - L2:1070–1092の節SHA-256は`a5df1f7b…`、L11:802–814は`f3fb47da…`である。\n  - review01でreviewerが計算し、39行と一致することを確かめた。Fableと敵対照合も再計算した。\n- **追補条件（live26記録72行）**：「計測専用意味に限る。試作品生成・Pattern選択・screen ID発行は含まず、-002の処置を継承しない」。\n  - 正常系、前提、期待値に、生成・選択・発行や-002の意味は入っていない。3者とも、そう確かめた。\n  - 3項目には、それぞれ単独の拒否CASEがある。\n- **base整合**：merge-baseは依頼のbase（03d9cd19d、#2644 merge後）と一致し、削除行は0である。\n  - reviewerは、新baseから見た049の追加250行が、旧base（0acbed34b）に修正commit `78c5bc12e`を足したものと一致することを確かめた。\n- **条件付きの戻し先**：1件ある。区分を保ったうえで、個体identityだけをunknownにする許容形である。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - `merge-tree`は衝突なし\n\n### 照合の経過\n1. **review05の解消の確認**（reviewerが差分で確かめた）：M1〜M3は解消した。review05で固定した表の太字マスに、r22の9件が置かれた。\n   - device/view条件の未指定・未結合：4件\n   - prototype/profile/oracle/fixtureのauthority unknown：4件\n   - 対象revisionの欠落：1件\n2. **Opusシンプルブラインド**：Major 0。固定した3表（項目×状態、出力要素、禁止列挙）は、全マスが○になった。041節・047節とのID衝突はない。\n3. **Fableの判断**：「承認してよい」。固定親のSHAを再計算した。PO追補条件の遵守、戻し先4区分、生成拒否も照合した。\n4. **Opusによる敵対照合**：「Fableの判断を支持する」。PO追補条件、3表の○マスが本当に誤りを落とすか、authority unknownの戻し先、041/047との相互作用を照合したが、崩せなかった。\n5. **reviewerの結論**：委任の条件1（Opusのexact HEADでのMajor 0）と条件2（Fableの同一本文revisionでの判断）が、このHEADでそろった。\n\n### 6本文（このHEADのSHA-256）\n- business-verification `d645bd8e…`\n- functional-verification `0d46ef74…`\n- nfr-verification `022e1427…`\n- business-requirements `7ea9e004…`\n- functional-requirements `702bb566…`\n- nfr-grade `b2694e22…`\n\n### 後で直す残余（承認を止めない）\n- **R1〜R4、R6〜R9、R11〜R14**：変わらない。\n- **R5、R10**：解消した。\n- **R15（fixture不足の戻し先）**：fixture不足の戻し先が、CASEによって揺れている。r09-005は設計ownerへ返し、r10-fixture-version-unknownとr22-m2-fixture-authority-unknownはLABOへ返している。どちらも、固定L2:1090の区分の中である。\n- **R16（CASE-049-14の戻し先）**：CASE-049-14のoracleは、profileの根拠がない場合の戻し先を明示していない。\n\n### 次の手順\n- 結論：このHEADの6本文に、未解消のblockerはない。\n- mergeへ進むには、次の2つが要る。\n  - 委任承認の判断記録。このexact HEADの6本文のbytesとSHAを固定したもの。\n  - Ready化。\n- 本文のrevisionが変わった場合は、条件1・2をやり直す。\n"
+    }
+  ],
+  "formal_comment_snapshot": {
+    "path": "/tmp/root-pr2647-comments-review06.json",
+    "bytes": 57582,
+    "sha256": "f04f17ed7eb8d01e180f052038c80a73339ab0c2e5e2756c7d4bbb917086457f",
+    "comments_total": 12
+  },
+  "mailbox_response": {
+    "path": "/tmp/root-pr2647-review06-inspect.json",
+    "bytes": 3427,
+    "sha256": "78051948a4783cc60fb5bd33388c33edc0e281bf16929ebe1a927e10ddcc607b",
+    "response": {
+      "schema": "scaffold-review-response.v1",
+      "evidence_kind": "scaffold",
+      "authority_effect": "none",
+      "request_id": "RH-PR2647-HARNESS-STAGE3-PARENT049-06",
+      "request_payload_sha256": "0eeccbe72102342da0acd99c8639755b332687ee5efcb4bd2d70d62c30d804d5",
+      "base_sha": "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c",
+      "content_sha": "79a67c583857d607ae78c1cb9d2cc5dfc5ab533f",
+      "reviewer": "claude",
+      "result": "no_findings",
+      "findings": [],
+      "unreviewed": []
+    },
+    "authority_effect": "none"
+  },
+  "previous_postbody_audit": {
+    "path": "docs/governance/audits/requirements-stage/harness049-review05-postbody-audit-2026-10-07.json",
+    "bytes": 1586511,
+    "sha256": "d57c120f330ea6a44331d9b6aefa7746be1caa4b0ea5e5cb8320058f1a29cc8e",
+    "old_82_literal_sha256": "7b053690a2ec5fa4931de3b62db27047fffb1de3125b502771889d24e06fd1d9",
+    "old_82_literal_count": 82,
+    "old_source_revision": "3fd20391",
+    "legacy_source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+    "consumer_pin_count_claimed": 25,
+    "source_consumer_pin_groups": [
+      "old_82_raw_inventory",
+      "source_consumer_pins",
+      "primary_legacy_source",
+      "source_atom_and_coverage_pins",
+      "raw_source_blob"
+    ],
+    "source_artifact_path": "/tmp/harness049-review05-postbody-audit-2026-10-07.json",
+    "canonical_copy_path_reported_by_Root": "docs/governance/audits/requirements-stage/harness049-review05-postbody-audit-2026-10-07.json",
+    "canonical_copy_bytes_sha256_recorded_from_source_artifact": true
+  },
+  "root_integration_checkpoint": {
+    "path": "/tmp/root-harness049-review05-integration-checkpoint.json",
+    "bytes": 1237,
+    "sha256": "6d35140ec268cd50f2fffd99aa9993c7254d19a24d097d613080de8fe01bfbd2",
+    "used_as_auxiliary_evidence_only": true
+  },
+  "candidate_markdown": {
+    "intended_path": "docs/governance/decisions/helix-harness-stage3-parent049-l3-l10-po-decision-2026-10-07.md",
+    "bytes": 41392,
+    "sha256": "9df18e1f756fcbbacfec6f4f931c76ad1872905f44652ad2a8fbadb18b55b662",
+    "terminal_lf_count": 1,
+    "candidate_file_is_tmp_only": true
+  },
+  "limits": [
+    "Worker candidate is not an independent review and does not create delegated approval.",
+    "The exact post-addition condition 3 remains unverified.",
+    "No fixtures were executed and no actual measurement or semantic completeness is claimed.",
+    "The previous postbody audit remains immutable; its old 82 literals and legacy source/consumer pins are referenced, not altered."
+  ],
+  "decision_evidence_bundle": {
+    "intended_path": "docs/governance/audits/requirements-stage/harness049-l3-l10-decision-evidence-2026-10-07.json",
+    "relative_markdown_link": "../audits/requirements-stage/harness049-l3-l10-decision-evidence-2026-10-07.json",
+    "does_not_embed_its_own_hash": true
+  }
+}
