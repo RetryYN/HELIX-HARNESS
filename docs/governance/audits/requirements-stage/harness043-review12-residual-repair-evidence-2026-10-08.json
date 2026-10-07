@@ -1,0 +1,201 @@
+{
+  "record_type": "l3_l10_harness_043_review12_residual_repair_evidence",
+  "record_id": "harness043-review12-residual-repair-evidence-2026-10-08",
+  "language": "ja",
+  "scope": "HARNESS-L2-043 review12 R34/R35/R38の作成側修正証拠。既存review/decision recordはimmutable。",
+  "authority_effect": "none",
+  "formal_review": {
+    "pr": 2642,
+    "comment_id": 6030127214,
+    "reviewed_head": "330272a4231c092ff8c456e5dc47f447175bc95f",
+    "reviewed_base": "d27d6f67d",
+    "body_sha256_utf8_with_terminal_lf": "a8c785b31c1c0c1ca97c66b16b3ef7a3e8e2f26aa000170643c36a039fcaac92",
+    "source_copy": "/tmp/harness-043-review-comment.md",
+    "body_raw_utf8_sha256": "b6c2dd0a8ca2c4b5c128b3aca810e14af6697932243f8f5bacd82d42be99df2e",
+    "body_raw_utf8_bytes": 5263
+  },
+  "worktree": {
+    "path": "/home/tenni/.helix-worktrees/l3-harness-043-review-repair",
+    "branch": "codex/l3-harness-043-review-repair",
+    "base_head": "ba0df9a49ab635c020e4ec74fc05c72a49352c90"
+  },
+  "fixed_source_pins": [
+    {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "full_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+      "spans": [
+        {
+          "start_line": 986,
+          "end_line": 1001,
+          "sha256_raw_lf": "4817136b4aca117e056abd02e0d3a138beec59b6a3a3989ace216f062dd2a048"
+        }
+      ]
+    },
+    {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "full_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+      "spans": [
+        {
+          "start_line": 723,
+          "end_line": 734,
+          "sha256_raw_lf": "6c4377e4db0f8473c22cb6185ded4d0fa5e0e2ecf731097b0f346b4d3fd04503"
+        }
+      ]
+    }
+  ],
+  "legacy_source_pins": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "full_sha256_raw_lf": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "spans": [
+        {
+          "start_line": 145,
+          "end_line": 145,
+          "sha256_raw_lf": "191b3b22d5985f085548d44a736590502d5f424511d71262d1b0fe07871663c2"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF"
+    }
+  ],
+  "legacy_asset_disposition_pin": {
+    "path": "docs/governance/legacy-asset-disposition.jsonl",
+    "line": 424,
+    "sha256_raw_lf": "057a8508576084d4fc805a4434a71be99cf391074bc15f866628b237d59c57b1"
+  },
+  "body_documents": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "sha256": "e3b18c538d2903e7adfd3d800bc82f6eb7190a6de870e72ac2e4913b733de885"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "sha256": "781e337ff60f8765467b216edefdeca14416c2b8c1fd3889b8afa5d6f4d7cb33"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "sha256": "ed08243e009b629aba5167786bf47d946f27e2e1ff8526d61480d826cd3a8317"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "sha256": "0cb0d7a9fc0fc23d38c809dd47cca770f860c47905cd60e7d7f59222d3a07f9c"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "sha256": "84f68583915cc9c206d44d08e188508f73b0b9ea69ae73b82b61ceec8196f1a4"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "sha256": "def2277503ef06c49fef4868dce7eab2322f761c9ff31e630b217f133325a53e"
+    }
+  ],
+  "changed_spans": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "line": 869,
+      "sha256_raw_lf": "d1456d396a89d0ffe98f3d080183ad197e1e8686a42b32dd1cd427ada2a8f7d4",
+      "literal": "- **AC-HARNESS-L3-043-02**：applicability/denominator、識別可能なrule/branch内容、選択した場合の041 atom、risk basis、oracleを別根拠として照合する。041 atomを入力元に選んでいない場合、そのatomの不在だけをgapや未評価理由にしない。unknown/conflict/stale/TBD/根拠なしN/Aは推測で埋めず未評価とする。選択template/applicabilityまたはtemplate/source自体のrule/branch内容が欠落・TBDならHARNESS-L2-009または対象template/source ownerへ返す。currentなsource内容を入力として受けた後、対象の抽出契約が扱う抽出結果・source span/provenanceが欠落・TBDならHARNESS-L2-041相当の抽出契約ownerへ返す（041 atomを選択した場合を含み、選択を常時必須にしない）。独立source自体の内容欠落・TBDを041抽出結果の欠落へ読み替えない。入力sourceと、041 atomを選択した場合はその抽出結果が健全なのに043 matrixの参照・期待結果または確立済み重複・冗長性所見が欠落・誤記されている場合は、043自身の候補出力を訂正する。要求/risk/oracleの不足はL2-004と固定sourceが示す該当ownerへ原因別に返す。個別owner identityが不明な場合はidentity unknownを別に保持し、既知の責務区分を消さない。"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "line": 871,
+      "sha256_raw_lf": "f9e42d59a4e67c8cd2a03b2faa90f77058d889dbbef4cd7b354807c0aae94fef",
+      "literal": "- **AC-HARNESS-L3-043-04**：追加risk例は対象scopeのrisk分析で未被覆と根拠付きで示された領域（状態遷移、failure、security、migration、multi-runtime差異等）に限定する。risk分析で未被覆とされた領域に追加例がない場合はcoverage未完とする。その例を評価する操作でrisk根拠または未被覆領域が欠ける場合は補完せずHARNESS-L2-004と根拠sourceが示す該当ownerへ返す。L2-025のcomposite design/oracle output、またはL2-026のunit/pair-design outputだけでは043のrule/branch example coverageを成立させない（receiptだけを持つ場合を含む）。逆に043のmatrixもL2-025/026の各成果を代替しない。043のmatrixは要求合意、L2採択、L3承認、設計成立、実装、OS実行、利用者受入を生成しない。"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "line": 873,
+      "sha256_raw_lf": "469f05719e7d9b4d3f16e8e34cdb0043480bceb7249bf92cd1d91a9c46717ddc",
+      "literal": "**原因別戻し先**：template sourceの選択、active revision、適用条件の不足はHARNESS-L2-009/対象template ownerへ返す。template/source自体のrule/branch内容の欠落・TBDはHARNESS-L2-009または対象template/source ownerへ返す。currentで有効なsource内容を受けた後、対象の抽出契約が扱う抽出出力・atom/source span/provenanceが欠落・TBDまたは誤っている場合は、HARNESS-L2-041相当の抽出契約ownerへ返す（041 atomを選択した場合を含むが、返却を041 atom選択時に限定しない）。独立source自体のrule/branch内容の欠落・TBDを041抽出出力の不足へ読み替えない。入力sourceと、選択した場合の041抽出結果が健全なまま043 matrixの参照・期待結果または確立済み重複・冗長性所見の出力が欠落・誤っている場合は、043自身の候補出力を訂正する。個別owner identityが不明ならidentity unknownを別に保持し、ここに示した既知の責務区分を消さない。requirement relation、risk根拠、expected result/oracle bindingまたは検証義務の不足はHARNESS-L2-004と固定sourceが示す該当ownerへ返す。これらを一つのprofile前提やgeneric ownerへ束ねず、025/026を043評価の一般開始条件や代替outputにしない。"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 2194,
+      "sha256_raw_lf": "e73b9fc34b3c23d62c1045a970358889096ab314a1d6f59e5391bda7fbf27f9c",
+      "literal": "| `CASE-HARNESS-L10-043-07` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-01/02` | 選択scope内で、証拠に基づく重複/冗長性の所見だけがmatrixに記録され、元source・選択した場合の041抽出結果・所見根拠はcurrentである。 | 確立済みの重複/冗長性の所見出力だけを削除する。 | coverage所見を未完とし、043自身の候補matrix出力を訂正して確立済み所見を復元する。全組合せを推測で追加したり、既存ownerの判断なしに義務を削除したりしない。正常な入力sourceやowner責務へ返さない。 |"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 2228,
+      "sha256_raw_lf": "b6d5e7c669c9a7d6285689cfaa558872cbef2345fa610142a9c1df1428b85d20",
+      "literal": "| `CASE-HARNESS-L10-043-r10-025-receipt-only-not-coverage` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-04` | 選択scope/template applicability、source rule/branch denominator/revision、oracleはcurrentかつ健全で、043 candidate matrixのexample coverage outputだけが未完。L2-025 composite design/oracle output receiptは利用可能。 | 単独変異: 043 candidate matrixのcoverage status fieldだけをincompleteからcompleteへ変え、receiptをcoverage根拠にする。入力sourceとほかの出力は不変。 | 043 coverageを未完のまま保ち、025 receiptをcoverage evidenceとして受け入れない。coverageの欠落は043自身の候補出力として補正し、設計成果物の不足は025へ返す。 |"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 2229,
+      "sha256_raw_lf": "e751163420f41886b208a024f00ad3acd99e1f23420fc2ac9232e9f820fa25fa",
+      "literal": "| `CASE-HARNESS-L10-043-r10-026-receipt-only-not-coverage` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-04` | 選択scope/template applicability、source rule/branch denominator/revision、oracleはcurrentかつ健全で、043 candidate matrixのexample coverage outputだけが未完。L2-026 unit design/pair-verification output receiptは利用可能。 | 単独変異: 043 candidate matrixのcoverage status fieldだけをincompleteからcompleteへ変え、receiptをcoverage根拠にする。入力sourceとほかの出力は不変。 | 043 coverageを未完のまま保ち、026 receiptをcoverage evidenceとして受け入れない。coverageの欠落は043自身の候補出力として補正し、design/pair成果物の不足は026へ返す。 |"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 2243,
+      "sha256_raw_lf": "fb7bc2a0994215acc03e9fc12fc4d1e62b8fbc45c217b40e0acf831f69d7e7a8",
+      "literal": "| `CASE-HARNESS-L10-043-r35-risk-basis-output-equal` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-04` | risk追加例を評価するoperationが選択され、合成fixtureの選択scope S0 sourceに未被覆領域RISK-Aとbasis value `risk-register:S0:RISK-A@rev-3`が明示される。ほかのrule/branch、oracle、revision、scopeはcurrent。 | 変異なし。matrix outputのrisk-basis valueをsourceの値と照合する。 | output basisが `risk-register:S0:RISK-A@rev-3` と完全一致するときだけ根拠付きrisk例として受け入れる。 |"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 2244,
+      "sha256_raw_lf": "ec2409d607bb1564c9c548f5395a4c9eab0b5ae38115814fdfea27f524a9c0be",
+      "literal": "| `CASE-HARNESS-L10-043-r35-risk-basis-output-missing` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-04` | CASE-HARNESS-L10-043-r35-risk-basis-output-equalと同じsourceおよび正常candidate output。 | 単独変異: matrix outputのrisk-basis value fieldだけを欠落させる。source、ほかの出力は不変。 | risk例の根拠を照合済みとせず未完にし、正常sourceに対する043自身のcandidate outputを訂正する。source ownerへ返さない。 |"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "line": 2245,
+      "sha256_raw_lf": "13bb5790a918f26a5d1de762926781ff3c662b1eec2f3f898219792b50ff665d",
+      "literal": "| `CASE-HARNESS-L10-043-r35-risk-basis-output-mismatch` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-04` | CASE-HARNESS-L10-043-r35-risk-basis-output-equalと同じsourceおよび正常candidate output。 | 単独変異: matrix outputのrisk-basis value fieldだけを `risk-register:S0:RISK-B@rev-3` に変える。source、ほかの出力は不変。 | 不一致basisを受け入れず未完にし、正常sourceに対する043自身のcandidate outputを訂正する。source ownerへ返さない。 |"
+    }
+  ],
+  "finding_dispositions": [
+    {
+      "id": "R34",
+      "status": "修正",
+      "response": "AC-043-04 now states both directions: 025 composite design/oracle output or 026 unit/pair-design output alone do not establish 043 coverage, and 043 matrix does not replace those outputs. Added separate receipt-specific counterexample cases for 025 and 026 while preserving inverse substitution cases."
+    },
+    {
+      "id": "R35",
+      "status": "修正",
+      "response": "Added a normal synthetic case with exact source/output equality for risk-basis value and two isolated output-only mutations: missing basis and mismatched basis."
+    },
+    {
+      "id": "R38",
+      "status": "修正",
+      "response": "CASE-043-07 now routes a removed established duplicate/redundancy finding to correction of 043 own candidate output; AC-043-02 includes missing/incorrect established findings in self-correction."
+    }
+  ],
+  "static_verification": {
+    "git_diff_check": "clean",
+    "checks": [
+      "formal review comment body hash recorded",
+      "fixed L2 lines 986–1001 and L11 lines 723–734 pinned at exact revision",
+      "old HIL-FR-55 line 145 and legacy asset disposition row read and pinned",
+      "R34 retains inverse 025/026 substitutions; AC-04 bars relying on either L2 output alone, with separate receipt-specific negative cases; each baseline has healthy current sources and only 043 candidate coverage output incomplete",
+      "R35 normal synthetic fixture asserts exact source/output risk-basis value equality; missing and mismatch each mutate only output basis field",
+      "R38 CASE-043-07 retains coverage incomplete result and corrects 043 own output; AC-043-02 and cause-specific return paragraph include established-finding omission in self-correction",
+      "new CASE IDs unique and map to AC-HARNESS-L3-043-04; existing case IDs unchanged",
+      "six L3/L10 body SHA-256 values recorded",
+      "no authority or decision generated"
+    ],
+    "fixtures_executed": false,
+    "old_cli_runtime_ci_executed": false,
+    "independent_review": false,
+    "opus_fable_reconciliation": false,
+    "l3_approval": false
+  },
+  "actions_not_performed": [
+    "commit",
+    "push",
+    "PR comment/post",
+    "Ready",
+    "merge",
+    "L3 approval"
+  ],
+  "limitations": [
+    "CASEs are static specification only; no fixture execution.",
+    "Independent reviewer has not assessed the repaired revision."
+  ],
+  "audit_markdown_pin": {
+    "path": "docs/governance/audits/requirements-stage/harness043-review12-residual-repair-2026-10-08.md",
+    "sha256_utf8": "c59569800547f8a88fe9cea99c4fd937428e8d5807c3127d3295adde013d6a0a"
+  }
+}
