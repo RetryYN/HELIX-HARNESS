@@ -40,7 +40,7 @@
 
 ## 6本文のbyte比較
 
-変更前は `9229f59` のGit bytes、変更後はこの修正案のworktree bytesである。編集しなかった2文書はbyte不変である。
+変更前は `9229f59` のGit bytes、変更後はこの修正案のworktree bytesである。編集しなかった1文書はbyte不変である。
 
 | 文書 | 変更前 bytes / SHA-256 | 修正案 bytes / SHA-256 |
 |---|---|---|
