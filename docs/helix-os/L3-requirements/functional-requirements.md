@@ -237,9 +237,9 @@ L2意味・適用scope・owner・versionの変更が必要と判明した場合�
 - AC-OS-L3-032-06：policy create/change/extend/stop/applyの各operationで既存SECURITY-L2-008 authorityを個別に照合し、適用範囲・有効期間内の既決authorityを再利用する。authority欠落・別scope/actor/operation/revisionまたは失効はその操作だけ保留し、通常操作ごとの重複承認は作らない。
 
 ### FR-OS-L3-033 — HELIXOS-L2-033
-選択scope内engine capabilityとdetectorを別identity/owner/version/configで登録し、同じinput snapshot・target revisionのrun/rerun artifact/finding/provenanceを結ぶ。detector結果はidentity/version、finding code/severity/location/subject/evidence、dedupe identity、原provenanceを含む固定L11の必要fieldを照合する。artifact digestまたはfingerprintだけでfinding contract全体の一致を代表させない。engine機能/finding意味はOSが所有せず、HARNESS-L2-005 oracleとOS-L2-020 runを使う。
+選択scope内engine capabilityとdetectorを別identity/owner/version/configで登録し、各detectorがどの選択engine capability/output種別に適用されるかの登録関係を保ち、同じinput snapshot・target revisionのrun/rerun artifact/finding/provenanceを結ぶ。detector結果はidentity/version、finding code/severity/location/subject/evidence、dedupe identity、原provenanceを含む固定L11の必要fieldを照合する。artifact digestまたはfingerprintだけでfinding contract全体の一致を代表させない。engine機能/finding意味はOSが所有せず、HARNESS-L2-005 oracleとOS-L2-020 runを使う。
 - AC-OS-L3-033-01：選択された全engine/detectorの同一snapshot・版/config・target再実行で、artifact digest/finding fingerprint一致範囲だけ再現receipt。
-- AC-OS-L3-033-02：選択物の個別欠落、版/config/snapshot drift、artifact/finding混同、rerun差異、およびdetector必要fieldの各個別欠落はscope全体の再現成功にしない。
+- AC-OS-L3-033-02：選択物の個別欠落、版/config/snapshot drift、artifact/finding混同、rerun差異、detector必要fieldの各個別欠落に加え、他fieldを正常のまま選択detectorの適用engine/output種別関係だけを欠落または不一致にする各単独変異はscope全体の再現成功にしない。detectorの適用先宣言が欠落、または選択engine/output種別と不一致なら既存detector意味ownerへ戻す。宣言は存在し一致するのにOS登録receiptだけが欠落または不一致ならOSの登録receipt ownerへ戻し、原因を混同しない。
 - AC-OS-L3-033-03：未登録能力/版は選択分のみ未評価。未選択能力のrunは要求しない。
 - AC-OS-L3-033-04：各選択engineはrun identity、artifact identity/digest、exit statusを、各選択detectorはrun identity、finding code/severity/location/subject/evidence、dedupe identity、原provenanceを別receiptで結ぶ。artifact/finding fieldを一つずつ欠落・混同したfixtureでは全体再現を宣言しない。partial/failed runは成功receiptにしない。
 - AC-OS-L3-033-05：選択された全能力に有効な同一snapshotの未見正常fixtureは限定scopeだけ再現を示す。必要field/source/版の不足は当該機能owner、oracleはHARNESS-L2-005、run/receiptはOS-L2-020/007、authorityはSECURITY、資源はINFRASTRUCTUREへ個別に戻す。

@@ -1,0 +1,272 @@
+{
+  "audit_type": "append_only_semantic_trace_repair_evidence",
+  "scope": "HELIX-OS parent 033 only; no L2 meaning/scope/owner/version change",
+  "base_revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+  "fixed_parent_checkpoint": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+  "new_worktree": "/home/tenni/.helix-worktrees/os-stage3-033-applicability",
+  "branch": "codex/os-stage3-033-applicability",
+  "fixed_parent": {
+    "identity": "HELIXOS-L2-033",
+    "adopted_revision": "MPR-RC-HELIXOS-L2-033-001",
+    "semantic_digest": "580778c8ef3c0e4c4676d13de203c821f990893e9aa078d8d1d2f0b8901d2dbc",
+    "l2": {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "full_sha256": "c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a",
+      "bytes": 447207,
+      "start_line": 929,
+      "end_line": 944,
+      "span_sha256": "b1d3bef2920641726bebe86571a1fa10c65b94a5889863faa073eaf8a1422240",
+      "span_bytes": 4709
+    },
+    "l11": {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "full_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+      "bytes": 331746,
+      "start_line": 524,
+      "end_line": 538,
+      "span_sha256": "ebf8ecaff524a20989fc87ef04cb5a0f46b03d5768a6397719b563c08757f0f1",
+      "span_bytes": 4412
+    },
+    "po_adoption": {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "full_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "bytes": 45099,
+      "start_line": 56,
+      "end_line": 56,
+      "span_sha256": "1b2f3e8bd602b488a4af5f20db36de7674359673da3b3dcb0ed4f2f09df6855a",
+      "span_bytes": 594
+    }
+  },
+  "legacy_sources": {
+    "HIL-FR-25_26": {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "full_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "bytes": 56091,
+      "start_line": 115,
+      "end_line": 116,
+      "span_sha256": "1213b789939fbee358aa441a6e3e2b8ae940fcc99284200b99fda9cc29977b4f",
+      "span_bytes": 602
+    },
+    "HAT-HIL-10": {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "full_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "bytes": 7819,
+      "start_line": 42,
+      "end_line": 42,
+      "span_sha256": "b1c50a2c2dcd0f575c4cb8badace7d5a44072e841dc5729328d04876d8f472d8",
+      "span_bytes": 254
+    },
+    "HST-HIL-008_009": {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L9-infinity-loop-platform-system-test-design.md",
+      "full_sha256": "e518b0cfe15ca4b999bd85120b8d74941a18ab0939ff6cda3dc20a8b7611b705",
+      "bytes": 12926,
+      "start_line": 35,
+      "end_line": 36,
+      "span_sha256": "9ccf3cc4bba0c45f88cbf9dff660947980e8cd9bbc28d8a38618c5cfd0f7cf10",
+      "span_bytes": 627
+    },
+    "asset_ledger": {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "full_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "bytes": 4857919,
+      "start_line": 424,
+      "end_line": 424,
+      "span_sha256": "057a8508576084d4fc805a4434a71be99cf391074bc15f866628b237d59c57b1",
+      "span_bytes": 2312
+    },
+    "l3_l10_authoring_rule": {
+      "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "path": "docs/governance/l3-l10-authoring-layout.md",
+      "full_sha256": "d1fb0c89df30aca6bb828f28e58329d57c40bb7593df540625562b5ac920a7ca",
+      "bytes": 12199
+    }
+  },
+  "documents": {
+    "docs/helix-os/L3-requirements/business-requirements.md": {
+      "before": {
+        "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+        "path": "docs/helix-os/L3-requirements/business-requirements.md",
+        "full_sha256": "cbe1866df47503b17e8a11b786dee8da58cd8a2a0a99778b64bd4a669b2fa702",
+        "bytes": 20354,
+        "start_line": 62,
+        "end_line": 62,
+        "span_sha256": "5fcafdfb7eeb1e5a1d32d5f1707cb0906852c7ddc5718270e5f5a54503c4ec10",
+        "span_bytes": 178
+      },
+      "after": {
+        "revision": "working-tree-after-edit-before-commit",
+        "path": "docs/helix-os/L3-requirements/business-requirements.md",
+        "full_sha256": "445218a88d3b2b59a4eedc78cd979e19042e821fe7863ac0b3b8cce570ba556d",
+        "bytes": 20414,
+        "start_line": 62,
+        "end_line": 62,
+        "span_sha256": "b9995c6c7daa7edadb63b3c6d739e5c19ee9242c46e2e02278ae357b7ea07a52",
+        "span_bytes": 238
+      }
+    },
+    "docs/helix-os/L3-requirements/functional-requirements.md": {
+      "before": {
+        "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+        "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+        "full_sha256": "c2a11a70ccc7ad5af41eae92b3c690869c6e7e35fc22d2019b9287c980901731",
+        "bytes": 202209,
+        "start_line": 239,
+        "end_line": 246,
+        "span_sha256": "153ff1a2aebe7e9947bc720c628da24a1b5931f79cb81adb84a50565c771b8c6",
+        "span_bytes": 2036
+      },
+      "after": {
+        "revision": "working-tree-after-edit-before-commit",
+        "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+        "full_sha256": "409c60bfd94adef6c71addd54289df50a5335b83ecafa2fb9ca6959d9afd927a",
+        "bytes": 202727,
+        "start_line": 239,
+        "end_line": 246,
+        "span_sha256": "7e91699c17fa8d7f542da91684030a955de56f0f8d4ed41ad79a3d5afd418755",
+        "span_bytes": 2554
+      }
+    },
+    "docs/helix-os/L3-requirements/nfr-grade.md": {
+      "before": {
+        "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+        "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+        "full_sha256": "c815ea15001b7148a8b3257c36c2fb8a18cb19c035d0ef14f953ab9e993acacd",
+        "bytes": 33338,
+        "start_line": 88,
+        "end_line": 88,
+        "span_sha256": "366bcb8c73f38478d3ae0443a5274868e2d60ace0575adaf25b0d2bbe5f52a1f",
+        "span_bytes": 381
+      },
+      "after": {
+        "revision": "working-tree-after-edit-before-commit",
+        "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+        "full_sha256": "3494a6d54eee1950b820112ed205cc71b4698ba02cccd9c11fc2c160bb738ee0",
+        "bytes": 33615,
+        "start_line": 88,
+        "end_line": 88,
+        "span_sha256": "57ade2053ffc2f2ba4646f99b165ffd0b14bf11c49ff5d166131ac5d9c74b435",
+        "span_bytes": 658
+      }
+    },
+    "docs/helix-os/L10-verification/business-verification.md": {
+      "before": {
+        "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+        "path": "docs/helix-os/L10-verification/business-verification.md",
+        "full_sha256": "f785e13aa9a1ef8494154f03e20d0582418916281c51a6b729d385d5b66ef051",
+        "bytes": 17774,
+        "start_line": 51,
+        "end_line": 51,
+        "span_sha256": "d566a8b46e9f4ce15d60d8f4f14033398a0957bec1f4e7b1413214e13b6270c1",
+        "span_bytes": 140
+      },
+      "after": {
+        "revision": "working-tree-after-edit-before-commit",
+        "path": "docs/helix-os/L10-verification/business-verification.md",
+        "full_sha256": "7dcc791523511ae6ff00e6c164b02e555dffa0a0dc7abb7f1e70646095a893b0",
+        "bytes": 17887,
+        "start_line": 51,
+        "end_line": 51,
+        "span_sha256": "3cbc299ff221f70a2694ea9bf7b28bdbbad2858702bffa246228b4e3a90dcbbd",
+        "span_bytes": 253
+      }
+    },
+    "docs/helix-os/L10-verification/functional-verification.md": {
+      "before": {
+        "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+        "path": "docs/helix-os/L10-verification/functional-verification.md",
+        "full_sha256": "784b314d8425a26551a37951f777531570f287c87aef326d6ef751b521ad1822",
+        "bytes": 243724,
+        "start_line": 612,
+        "end_line": 614,
+        "span_sha256": "cc5cf43d90c5b0f46a9fa44ff11a4f1ba82ab5e64c3d5e6bafd5be51200cf0d3",
+        "span_bytes": 907
+      },
+      "after": {
+        "revision": "working-tree-after-edit-before-commit",
+        "path": "docs/helix-os/L10-verification/functional-verification.md",
+        "full_sha256": "7199bcf2a3e23b5e2edaaec37cd78f1612cec26d72fad9a53a05bee2776a7819",
+        "bytes": 244242,
+        "start_line": 612,
+        "end_line": 614,
+        "span_sha256": "6e139a4047607a24e7c2466e261a4fc0f325e47f50af15cedb56acea5543c497",
+        "span_bytes": 1425
+      }
+    },
+    "docs/helix-os/L10-verification/nfr-verification.md": {
+      "before": {
+        "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+        "path": "docs/helix-os/L10-verification/nfr-verification.md",
+        "full_sha256": "bd98bf3265c74d5ddddd879b4f87d4eaec9343bf63ee377950c63f32fb47e868",
+        "bytes": 30083,
+        "start_line": 78,
+        "end_line": 78,
+        "span_sha256": "f1ec6dae29e9f26a8da07c78c3ed2629255d73400fe06be425efe1aa97afb353",
+        "span_bytes": 276
+      },
+      "after": {
+        "revision": "working-tree-after-edit-before-commit",
+        "path": "docs/helix-os/L10-verification/nfr-verification.md",
+        "full_sha256": "b745abcae27687e7af59cb9afadff73d9f71e7447612a5a4fbc54ad4404ff18c",
+        "bytes": 30502,
+        "start_line": 78,
+        "end_line": 78,
+        "span_sha256": "41ce440be3500badb15a9bea5c5c4acad0f95156273bf35c1d51e1149e0363b2",
+        "span_bytes": 695
+      }
+    }
+  },
+  "trace_changes": [
+    {
+      "file": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "change": "FR-033 input now explicitly carries selected detector-to-engine/output-kind applicability; AC-033-02 rejects individual missing/mismatch and routes detector declaration defects to detector meaning owner, OS receipt-only defects to OS registration receipt owner."
+    },
+    {
+      "file": "docs/helix-os/L10-verification/functional-verification.md",
+      "change": "Existing CASE-033-02 adds three isolated mutations (declaration missing, declared target mismatch, correct declaration but OS receipt missing/mismatch); every other field/input stays valid and no full-scope reproduction claim is accepted."
+    },
+    {
+      "file": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "change": "NFR-033 candidate observes declaration/selected target/OS receipt consistency and does not count absent or misbound applicability as reproduction success; no new numeric threshold."
+    },
+    {
+      "file": "docs/helix-os/L10-verification/nfr-verification.md",
+      "change": "NFRV-033-01 measures those existing-contract failure modes and cause-specific return counts."
+    },
+    {
+      "file": "docs/helix-os/L3-requirements/business-requirements.md",
+      "change": "BR-033 keeps no quality KPI while tracing OS registry/provenance responsibility."
+    },
+    {
+      "file": "docs/helix-os/L10-verification/business-verification.md",
+      "change": "BIZ-033 retains selected-scope reproduced vs unevaluated distinction; bad applicability remains unevaluated and returns to existing owner."
+    }
+  ],
+  "preserved": {
+    "normal_case": "CASE-OS-L10-033-01 unchanged; same selected set/snapshot/revision/config run-rerun and owner receipts remain the normal oracle.",
+    "old_source": "HIL-FR-25/26 and HAT/HST retain distinct engine and detector identities, capability/detector categories, same-snapshot rerun and provenance. The applicability relation itself is made explicit from adopted L2:934, not attributed to old source.",
+    "owners": "existing detector meaning owner and OS registration-receipt owner only; no new owner.",
+    "version": "version_target 1.0 unchanged.",
+    "no_new": "No schema, threshold, gate, authority, parent, state, or implementation permission added."
+  },
+  "verification": {
+    "methods": [
+      "read-before-edit: AGENTS.md, CLAUDE.md, new-generation-start-here.md, l3-l10-authoring-layout.md, legacy-asset-reuse-control.md, fixed L2/L11, old sources and ledger, current six docs",
+      "git diff --check",
+      "static trace/ID assertions",
+      "SHA-256 recomputation for before/after six docs, fixed parent and old source spans"
+    ],
+    "tests_run": false,
+    "old_cli_hook_runtime_fixture_test_ci_run": false,
+    "limitations": [
+      "Static text/design verification only; L10 fixtures are not executed.",
+      "No claim about other OS parents, other Stage 3 scopes, or all 48 L3/L10 documents."
+    ]
+  }
+}
