@@ -60,7 +60,7 @@
 
 ### NFR-OS-019-01 — event recovery consistency
 
-親 `HELIXOS-L2-019` / `FR-OS-019`。Candidate 1: fixture内eventごとにduplicate/missing/stale/denied/not-run/success分類とreconstructed episodeの差を記録する。Candidate 2: normal crash/restartの再構築所要時間と、失敗位置から原eventで行うreplayの所要時間を別母集団に分け、各々実時刻がある場合のみ観測値として比較する。Candidate 3: 明示されたscope/revision内のhold・確認待ちを、期限宣言済/未宣言/期限切れ/判定unknown/AI未解決residueに分類し、各項目からsource・owner・未完義務・一覧またはPO提示へのtraceを確認する。観測値はfixture内の状態分類とtrace有無に限り、期限値、催促間隔、割合目標、保持期間、滞留閾値、replay時間の打切り閾値を設けない。L2の「誤successful checkpointを出さない」等を判定oracleにする。
+親 `HELIXOS-L2-019` / `FR-OS-019`。Candidate 1: fixture内eventごとにduplicate/missing/stale/denied/not-run/success分類とreconstructed episodeの差を記録する。Candidate 2: normal crash/restartの再構築所要時間と、失敗位置から原eventで行うreplayの所要時間を別母集団に分け、各々実時刻がある場合のみ観測値として比較する。Candidate 3: 明示されたscope/revision内のhold・確認待ちを、期限宣言済/未宣言/期限切れ/判定unknownに分類し、各項目からsource・owner・未完義務・L1-002/008に沿う人間向けL2-019 projection listへのtraceを確認する。AI解決可能性の分類やPO宛先は測定・要求しない。観測値はfixture内の状態分類とtrace有無に限り、期限値、催促間隔、割合目標、保持期間、滞留閾値、replay時間の打切り閾値を設けない。L2の「誤successful checkpointを出さない」等を判定oracleにする。
 
 ### NFR-OS-020-01 — obligation selection/execution census
 
