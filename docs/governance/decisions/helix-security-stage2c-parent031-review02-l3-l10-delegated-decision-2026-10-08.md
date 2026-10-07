@@ -23,7 +23,7 @@ authority_effect: none_pending_condition3_and_main_admission
 
 固定L2/L11本文は`633bf12ea8f948db8ba3d6600179c4a9507377a7`から取得した。L2 `docs/helix-security/L2-requirements/security-requirements.md:427–446`の全体SHA-256は`aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf`、raw span SHA-256は`3ff72f9130d888213e2f3e5226a22bfedb965b9e80beebea810b8fec04cd964a`。L11 `docs/helix-security/L11-acceptance/security-acceptance.md:104–115`の全体SHA-256は`e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0`、raw span SHA-256は`3b2700d511ea0feb8bbeb3dcedd7dd3eb9d1a26a2aeb9c79f57f835c045c0cd7`。
 
-PO採択は同revisionの`docs/governance/decisions/po-decision-2026-09-29-57candidates.md:90`、全体SHA-256 `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`、raw line SHA-256 `379137e4c6eeebab8e4291ed17c87dbbfb8f77e9074fdab642144ee4a6bd644a8`。registration IDは`MPR-RC-HELIXSECURITY-L2-031-001`。source pinsは対応するpin JSONにも記録する。
+PO採択は同revisionの`docs/governance/decisions/po-decision-2026-09-29-57candidates.md:90`、全体SHA-256 `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`、raw line SHA-256 `379137e4c6eeebab8e4291ed17c87dbbfb8f77e9074fdab642144ee4a6bd644a`。registration IDは`MPR-RC-HELIXSECURITY-L2-031-001`。source pinsは対応するpin JSONにも記録する。
 
 旧HELIXの対応関係と保持・置換判断は[review01 M1修正監査](../audits/requirements-stage/security-stage2c-payload-review01-m1-correction-2026-10-08.md)に記録した。そこでは`LEGACY-ASSET-C7F0C3B79CBAA72960BF`のHR-FR-HIL-23/HAC-HIL-23a/b/c line 57/86を読み、隔離内委譲、proposal再検証、egress/scope/confidentialityの拒否、失敗隔離を近接sourceとして保持した。未選択/未許可sourceの推測複製禁止と別source fallback禁止は旧sourceへ帰属せず、固定L2-031から再導出している。今回のreview02ではHR-FR-HIL-23旧本文を再読していないとformal reviewが明記する。この範囲を拡張して旧source全consumerの確認済みとはしない。
 
@@ -56,7 +56,7 @@ review02は、NFR/NFRV denominatorで`CASE-031-02c`/`02d`を別required negative
 
 - 条件1（Opus）：成立。formal review02は同revisionについてMajorなしと報告する。
 - 条件2（Fable）：成立。formal review02は同revisionについて「承認してよい」と報告する。
-- 条件3（判断記録と6本文pin後の独立一致照合）：未照合。Rootの照合を待つ。
+- 条件3（判断記録と6本文pin後の独立一致照合）：未照合。独立review側の照合を待つ。
 - 実fixtureは未実行。Stage 3–5、他親、他Stage、他機構、旧runtime/test/CI実行は本判断の対象外。
 - 本文revisionに対するPOの事後確認はこの記録に含めない。L10実行合格、実装・実行許可、release・tag・cutover・配布、Issue closeも含まない。
 

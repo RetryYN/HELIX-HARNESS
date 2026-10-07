@@ -165,8 +165,8 @@
   "decision_record": {
     "path": "docs/governance/decisions/helix-security-stage2c-parent031-review02-l3-l10-delegated-decision-2026-10-08.md",
     "revision": null,
-    "bytes": 7428,
-    "sha256": "d2e54e94da6e9bf66658d25acaa230c3da3d2782eca437e35c026bac49e58ca0"
+    "bytes": 7438,
+    "sha256": "67d7bc313bedec38a3668cb965b3a7b7c33ce46363130bae162523f15ff56e6b"
   },
   "verification": "Formal review02 body raw SHA is pinned. Six current body bytes at reviewed HEAD were recalculated and match the recorded hashes. These pins do not satisfy condition3; independent post-record/post-pin comparison remains pending."
 }
