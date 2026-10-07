@@ -1,0 +1,407 @@
+{
+  "status": "draft_static_evidence_not_approval",
+  "base_revision": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+  "branch": "codex/l3-harness-stage5-repair",
+  "formal_recheck": {
+    "comment_id": 6039140122,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2621#issuecomment-6039140122",
+    "body_sha256": "11a8b859053f958410ccd678e875eace25f0a7713954a4e8dc3513215798a629",
+    "finding_ids": [
+      "M1",
+      "M2",
+      "M3",
+      "M4",
+      "M5",
+      "M6"
+    ],
+    "old_target_revision": "ed1161e03f8ea9209e573f274f37c9b97605087a",
+    "condition1": "not_satisfied",
+    "delegated_authority": "unknown"
+  },
+  "fixed_parent_pins": [
+    {
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "parents": [
+        "HARNESS-L2-021",
+        "HARNESS-L2-025",
+        "HARNESS-L2-033"
+      ],
+      "l2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "bytes": 138792,
+        "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "spans": [
+          {
+            "start_line": 438,
+            "end_line_inclusive": 446,
+            "raw_bytes_sha256": "7ead08a9421e7b433ad54465ce880c5c31f79a180fac46a6032f7318748f0c31"
+          },
+          {
+            "start_line": 544,
+            "end_line_inclusive": 554,
+            "raw_bytes_sha256": "452339e55022f3b8a15c509eb6f05a36c2c01fc10bcac616a1c757b4187df979"
+          },
+          {
+            "start_line": 667,
+            "end_line_inclusive": 690,
+            "raw_bytes_sha256": "a8e6b5d217ef56b6197826c7b0606058900ad7c5796be3299b188d22502d07c8"
+          }
+        ]
+      },
+      "l11": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "bytes": 92483,
+        "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+        "spans": [
+          {
+            "start_line": 216,
+            "end_line_inclusive": 216,
+            "raw_bytes_sha256": "e4047883fe6bbda845bada035ec57d9a6b5b70b6d1cb370084209f17cc1a9d01"
+          },
+          {
+            "start_line": 342,
+            "end_line_inclusive": 360,
+            "raw_bytes_sha256": "49386ce1cc397fb8a83191e9520160fdf9c3be86ca356b2cf99dad8acd45a0bd"
+          },
+          {
+            "start_line": 432,
+            "end_line_inclusive": 444,
+            "raw_bytes_sha256": "adfc790851784306d09b2a15a8c8862f34a3388ac27381000679892ec07a8ef5"
+          },
+          {
+            "start_line": 457,
+            "end_line_inclusive": 457,
+            "raw_bytes_sha256": "52e33a02451ba1617815ef0493525cb45b3ce749b0a842406285290e9c2bea9b"
+          }
+        ]
+      }
+    },
+    {
+      "source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "parents": [
+        "HARNESS-L2-035",
+        "HARNESS-L2-037"
+      ],
+      "l2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "bytes": 254934,
+        "sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "spans": [
+          {
+            "start_line": 719,
+            "end_line_inclusive": 729,
+            "raw_bytes_sha256": "1ceb111c98b785009febbade687cfdde04acbb354a2484e86b931405b0b0ec1e"
+          },
+          {
+            "start_line": 931,
+            "end_line_inclusive": 941,
+            "raw_bytes_sha256": "d0dbe8212ac1aeeaf227043a316f277e6997938b1c07c2acbb4a02ad5a79e6f5"
+          },
+          {
+            "start_line": 777,
+            "end_line_inclusive": 833,
+            "raw_bytes_sha256": "100f1f50b8e6ed72adf89cc2130110aa0f3b5463975f9074452464d31c260270"
+          }
+        ]
+      },
+      "l11": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "bytes": 172806,
+        "sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "spans": [
+          {
+            "start_line": 485,
+            "end_line_inclusive": 492,
+            "raw_bytes_sha256": "e7e38bc2f5d22b27e973892d969d462efd82139ca9fa7e71f204f89f0fda2265"
+          },
+          {
+            "start_line": 678,
+            "end_line_inclusive": 686,
+            "raw_bytes_sha256": "6bdb18bf9cb0099608dfe29878764a00b8935e9ddd0867b8ade64bc9c010d440"
+          },
+          {
+            "start_line": 527,
+            "end_line_inclusive": 573,
+            "raw_bytes_sha256": "c7b24b6526978f062f322a447b35adaf5c9b195d771761b234b2a55a34322d38"
+          }
+        ]
+      }
+    }
+  ],
+  "legacy_source_pins": {
+    "021_FRS-BR-009_R-23_R-24_AC-025_AC-026": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md",
+        "bytes": 5412,
+        "sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20",
+        "spans": [
+          {
+            "start_line": 64,
+            "end_line_inclusive": 64,
+            "raw_bytes_sha256": "05bf8f538826046733272b14a6dffd5e10a5979ba617dff58db4d3bb0c5f0051"
+          }
+        ]
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+        "bytes": 13328,
+        "sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+        "spans": [
+          {
+            "start_line": 209,
+            "end_line_inclusive": 214,
+            "raw_bytes_sha256": "aa040d43e554b7dc62864d555065313a934d52c03381a5374376ecd6fd6f8fd9"
+          }
+        ]
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+        "bytes": 8294,
+        "sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+        "spans": [
+          {
+            "start_line": 58,
+            "end_line_inclusive": 59,
+            "raw_bytes_sha256": "3d69f4bf769176744c408d80d3ed677c31c92bca26869f273a5309d306eb489a"
+          },
+          {
+            "start_line": 81,
+            "end_line_inclusive": 81,
+            "raw_bytes_sha256": "f408962b9a84cb0a1430c15bc89e642ad843a267aa9f95e4458ede4a5367d56b"
+          }
+        ]
+      }
+    ],
+    "025_nearby_authority_example_no_direct_successor": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/multimodal-design-harness-authority.md",
+        "bytes": 7310,
+        "sha256": "baf570f59ac838302f69a27b17a6febca78bf911278af21a9d2f4f9e87a1edd2",
+        "spans": [
+          {
+            "start_line": 19,
+            "end_line_inclusive": 40,
+            "raw_bytes_sha256": "632070a512e335b79cd9b4f928b3633bfdafdcc4611ea9bb15017102f4ef2be7"
+          }
+        ]
+      }
+    ],
+    "033_FR-25_and_AT-FR-25_comparison_only": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+        "bytes": 72114,
+        "sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a",
+        "spans": [
+          {
+            "start_line": 574,
+            "end_line_inclusive": 612,
+            "raw_bytes_sha256": "7f95e6f7a1607db6959bbd791390a1dc65fed5f93cf96f16312ed9a350102ecd"
+          }
+        ]
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L3-acceptance-test-design.md",
+        "bytes": 28107,
+        "sha256": "27a92c3be07aa06b9e8a598b7b2b7bcc357ccb6afa876e27e45cd85e7f3d00c1",
+        "spans": [
+          {
+            "start_line": 121,
+            "end_line_inclusive": 126,
+            "raw_bytes_sha256": "5f1c6b0ed41a9621c381579ac141d5b5752ad7d4c8c39e59b40d4c3d1f9d1e76"
+          }
+        ]
+      }
+    ],
+    "035_HIL-FR-38_NFR-07_NFR-23_and_static_pair": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "bytes": 56091,
+        "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "spans": [
+          {
+            "start_line": 128,
+            "end_line_inclusive": 128,
+            "raw_bytes_sha256": "90f2931c10b9a821c7bb4dfbca14e91ccf0b1812098db113d50ee289dc8efa03"
+          },
+          {
+            "start_line": 187,
+            "end_line_inclusive": 187,
+            "raw_bytes_sha256": "c8e2b4a177c3228e343e3c499a471fe75992778c29e2df63a3c4e0053860afbd"
+          },
+          {
+            "start_line": 203,
+            "end_line_inclusive": 203,
+            "raw_bytes_sha256": "59bb3695045ffdbf8ef55b145ce542cfaec9570d40b916512af4857005661a91"
+          }
+        ]
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L9-infinity-loop-platform-system-test-design.md",
+        "bytes": 12926,
+        "sha256": "e518b0cfe15ca4b999bd85120b8d74941a18ab0939ff6cda3dc20a8b7611b705",
+        "spans": [
+          {
+            "start_line": 48,
+            "end_line_inclusive": 48,
+            "raw_bytes_sha256": "b40434529b50478c487fb56188086a535fe73b3ac2bd0549f2fb8593d6aeace8"
+          }
+        ]
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+        "bytes": 16537,
+        "sha256": "4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+        "spans": [
+          {
+            "start_line": 65,
+            "end_line_inclusive": 65,
+            "raw_bytes_sha256": "d4f5bd90ff2e5f733af9a2e860a82b0c5021ef36abd84706bddda4f2ddddf84d"
+          }
+        ]
+      }
+    ],
+    "037_FR-L1-28_A-74_and_handoff_shape": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+        "bytes": 49933,
+        "sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+        "spans": [
+          {
+            "start_line": 59,
+            "end_line_inclusive": 59,
+            "raw_bytes_sha256": "8186024e25dbf09ba7b7288b8df88a69ffaa4a960a4bd15e059f44fe170879db"
+          }
+        ]
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md",
+        "bytes": 142042,
+        "sha256": "b6cecb7bec29d85b36e299f8a594821c1d778328506fe2c056ca330ef76d968c",
+        "spans": [
+          {
+            "start_line": 343,
+            "end_line_inclusive": 361,
+            "raw_bytes_sha256": "51aadce9bd647e6a2d6d03d4281003c6d64cacacb39fb7c368d438503d925820"
+          }
+        ]
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/function-spec.md",
+        "bytes": 178041,
+        "sha256": "f80b69a4d153d7775ecd789aa9e261c140baf2a443ac53a851de710cfce02b14",
+        "spans": [
+          {
+            "start_line": 250,
+            "end_line_inclusive": 250,
+            "raw_bytes_sha256": "234b96ee8aa737a0b8d79f56087ea8f928eeb574a96bef340a740dc3569986d4"
+          }
+        ]
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/fr-unit-coverage.md",
+        "bytes": 14422,
+        "sha256": "477c95b229b4ddffd4c2ed76fdfb99d8f3a4e8241b21ae7e883ffa2607d39dbf",
+        "spans": [
+          {
+            "start_line": 64,
+            "end_line_inclusive": 64,
+            "raw_bytes_sha256": "54d0eb07cd769ca336cd8f332fcd5b04cb57901e50e443adcf82ee7d14e68588"
+          }
+        ]
+      }
+    ]
+  },
+  "reuse_derivation_replacement": {
+    "021": "旧FRS-BR-009とFRS-R-23/24の安全閉包・組合せ検収の意味を再導出。旧Lite/Full数値・unit分類・gateは置換。",
+    "025": "直接対応する旧L3要件を確認できず。旧Multi-modal Design HARNESSは権限・IR設計の近接比較例だけに限定。固定025から再導出。",
+    "033": "旧FR-25/AT-FR-25からtest/revision traceの形だけ比較。旧runtime/CI/testは再利用せず、incident/reductionの直接系譜としない。",
+    "035": "HIL-FR-38/NFR-07/NFR-23から根拠・受入寄与・最小性・代替・budget・循環拒否を再導出。旧Scope Authority runtime/gate/数値は置換。",
+    "037": "旧FR-L1-28/A-74等から適用範囲、Phase順、handoff/合流意味を再導出。旧層番号、drive、phase YAML、provider/runtimeは置換。"
+  },
+  "target_six_document_hashes": {
+    "docs/helix-harness/L3-requirements/business-requirements.md": {
+      "bytes": 27316,
+      "sha256": "781e337ff60f8765467b216edefdeca14416c2b8c1fd3889b8afa5d6f4d7cb33"
+    },
+    "docs/helix-harness/L3-requirements/functional-requirements.md": {
+      "bytes": 265896,
+      "sha256": "443afa6e92eaaa12b6f20d9b2bb7b4dcabcc1877ebf493302a40622f234da408"
+    },
+    "docs/helix-harness/L3-requirements/nfr-grade.md": {
+      "bytes": 59473,
+      "sha256": "ed08243e009b629aba5167786bf47d946f27e2e1ff8526d61480d826cd3a8317"
+    },
+    "docs/helix-harness/L10-verification/business-verification.md": {
+      "bytes": 25535,
+      "sha256": "84f68583915cc9c206d44d08e188508f73b0b9ea69ae73b82b61ceec8196f1a4"
+    },
+    "docs/helix-harness/L10-verification/functional-verification.md": {
+      "bytes": 1150622,
+      "sha256": "417880f7fd1622bd19b7a8a01b307d2d5d4c3cd35a6b9e95da276a5274a9a0d7"
+    },
+    "docs/helix-harness/L10-verification/nfr-verification.md": {
+      "bytes": 53769,
+      "sha256": "def2277503ef06c49fef4868dce7eab2322f761c9ff31e630b217f133325a53e"
+    }
+  },
+  "prior_decision_record": {
+    "path": "docs/governance/decisions/helix-harness-stage5-l3-l10-po-decision-2026-10-06.md",
+    "sha256_current": "fe9dbbb17234313b9d318789b8700fa7317fb443ff0749632e5fc91a8439a49b",
+    "expected_unchanged_sha256": "fe9dbbb17234313b9d318789b8700fa7317fb443ff0749632e5fc91a8439a49b"
+  },
+  "modified_scope": {
+    "requirement_pair_documents": [
+      "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "docs/helix-harness/L10-verification/functional-verification.md"
+    ],
+    "audit_and_evidence_artifacts": [
+      "docs/governance/audits/requirements-stage/l3-l10-harness-stage5-authority-recheck-2026-10-07-6039140122.md",
+      "docs/governance/audits/requirements-stage/l3-l10-harness-stage5-review-repair-evidence-2026-10-07-6039140122.json"
+    ]
+  },
+  "finding_to_requirement_and_case": {
+    "M1": [
+      "AC-HARNESS-L3-025-04",
+      "CASE-HARNESS-L10-025-S5-036..039 (one normal, three one-field negatives)"
+    ],
+    "M2": [
+      "AC-HARNESS-L3-033-08",
+      "CASE-HARNESS-L10-033-S5-038..044 (one normal, six independent negatives: adoption, requirement approval, release eligibility, release execution, agreement, L3 approval)"
+    ],
+    "M3": [
+      "AC-HARNESS-L3-035-09",
+      "CASE-HARNESS-L10-035-S5-043..044"
+    ],
+    "M4": [
+      "AC-HARNESS-L3-035-10",
+      "CASE-HARNESS-L10-035-S5-043,045"
+    ],
+    "M5": [
+      "AC-HARNESS-L3-037-05",
+      "CASE-HARNESS-L10-037-S5-059..061"
+    ],
+    "M6": [
+      "AC-HARNESS-L3-025-07/08",
+      "CASE-HARNESS-L10-025-S5-012/013 corrected destinations"
+    ]
+  },
+  "verification_limits": [
+    "CASE rows are specification fixtures; none executed.",
+    "No old CLI/runtime/test/CI/archive code was executed.",
+    "No new delegated approval or PO decision was generated.",
+    "Six-document approval status remains unknown pending fresh Opus/Fable review of identical bytes.",
+    "Root追加確認：依存先009/022/026全文とStage2c全CASE被覆は本監査の完了範囲に含まれない。033 agreement/L3 approvalは新規独立CASE043/044へ明示した。"
+  ],
+  "static_checks": {
+    "prior_decision_record_matches_base_bytes": true,
+    "runtime_test_or_CI_execution": "none",
+    "all_finding_requirement_AC_ids_unique_in_L3": true,
+    "finding_count": 6,
+    "unique_AC_id_count": 7,
+    "17_new_CASE_ids_unique_and_present_in_L10": true
+  },
+  "root_acceptance_notes": [
+    "Rootは035/037/025の該当固定親句と009/022/026依存記述を実読した。009はtable/追補であり独立見出しの新親へ変換しない。",
+    "033合意/L3承認の単独negativeをRootがCASE043/044へ追加した。Stage2c全CASE被覆は未確認のまま保持し、その不在を合格証拠にしない。"
+  ]
+}
