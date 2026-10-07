@@ -187,6 +187,17 @@ NFR CASEは測定candidate分類であり、実測・CI success・performance SL
 |---|---|---|---|---|
 | `CASE-HARNESS-L10-NFR-047-01` | 共通thresholdなし | task適用の利益・既存role比較 | task/scope/revisionと比較evidenceに結ばれた定性的・測定可能な根拠をACで確認する。 | 一律数値、固定team-size、provider/model単独の判定を加えない。OS budget適用とruntime performanceはHARNESS NFRへ移管しない。 |
 
+## Stage 3 親049のNFR測定候補
+
+**採択済み固定親**：PO `po-decision-2026-09-30-live26.md:39,72`の登録`MPR-RC-HARNESS-L2-049-003`。source_repository_revision `ea6f756f96a7370de78e412d737c7a7ed472114a`、L2 `product-requirements.md:1070–1092` SHA-256 `a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116`、L11 `product-acceptance.md:802–814` SHA-256 `f3fb47da21371084e9f8c7c7f7ca6dd945c8e98ae7c7b70597c3fc44e4e08ee7`。旧318のL11および登録-002を親にしない。
+
+| NFR候補 | 入力・母集団 | oracle・限界 |
+|---|---|---|
+| `NFR-C-HARNESS-049-01` | 選択scope/revision内のmeasurement rowごとに、screen ID、device/view/locale、profile、oracle/手段版、fixture、結果・evidenceを結ぶ。 | source側に数値性能値がないためthresholdを設けない。missing/unknown/unselectedを成功、0、coverageへ変換しない。 |
+| `NFR-C-HARNESS-049-02` | 検査精度はscope適用可能な既知fixtureと期待分類・観測結果の対応を母集団として扱う。 | fixture/candidate/run件数単独でaccuracy成立を作らず、unknown/missing fixture revisionは未評価とする。 |
+
+本表は測定候補であり、実測、performance SLO、検査精度、要求受入を成立させない。
+
 ## Stage 3 親046の非機能検証
 
 起草候補。Stage 3、`version_target: 1.0`。対象は採択済みHARNESS-L2-046のFull V workflow条件と、明示的にProduction Scrumが選択・許可されたscopeのScrum slice/backfill条件に限る。候補文書・検証fixtureは採択済みL2/L11本文や運転結果を置換せず、releaseやruntime authorityを付与しない。
