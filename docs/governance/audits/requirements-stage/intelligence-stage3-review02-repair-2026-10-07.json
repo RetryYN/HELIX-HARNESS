@@ -1,0 +1,128 @@
+{
+  "artifact_type": "intelligence_stage3_review02_repair",
+  "authority_effect": "none; existing delegated decision remains tied to its former content revision and no new approval is created",
+  "branch": "codex/l3-intelligence-stage3-repair",
+  "base": "3a256fc638198b7efbb51e16a409f60529fca2be",
+  "pre_repair_head": "65af0caa2ea95b9a89a05240fb0274135a034a4a",
+  "formal_review_comment": {
+    "number": 6040489039,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2658#issuecomment-6040489039",
+    "utf8_body_bytes": 5890,
+    "body_sha256": "f113e3b21c5f6b360ed1dccab36ac82131a2ac1ba5d585e8605994b948c4b645",
+    "reviewed_head": "65af0caa2ea95b9a89a05240fb0274135a034a4a",
+    "review_base": "3a256fc638198b7efbb51e16a409f60529fca2be"
+  },
+  "fixed_scope": {
+    "mechanism": "HELIX-INTELLIGENCE",
+    "stage": 3,
+    "fixed_parent_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "selected_parent_count": 22,
+    "version_target": "1.0",
+    "scope_changes": false,
+    "decision_record": {
+      "path": "docs/governance/decisions/helix-intelligence-stage3-l3-l10-po-decision-2026-10-06.md",
+      "sha256": "6d88abff1fee9759128759efe44664ad12197ade34db69bb384d1cee54edbf9e",
+      "prior_approved_content_revision": "7c39f1fc0553114214bb582e60297c62d61f3283",
+      "unchanged": true
+    }
+  },
+  "po_scope_source": {
+    "path": "docs/governance/decisions/po-decision-2026-10-03-later35.md",
+    "sha256": "e3ea2cc8d79c2568985bc086fbc4d08d25e162fcc546858d6db47bba768ac3d3",
+    "line": 122,
+    "decision": "INT-077/078 each retain A-limited scope; downstream owner and execution route remain unknown; proposals do not directly change requirement/design/assignment"
+  },
+  "source_pins": {
+    "fixed_L2": {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "full_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "spans": {
+        "011_108_113": "03d87e0c313f91b6a5422f7e9e448fba1138df83017d89f6a2021b25afc7944c",
+        "067_466_481": "40aca8ff913aa97426d05d22d6e73cc1fdb1997b473c56d9ee570d205d71c219",
+        "072_561_590": "a828bff2126dfe8b029c75ff922f4b52613e6aa48cd957a3f8056be635b97dd2",
+        "078_646_658": "33ebb03ec9ae16d07276001f8b8bbd3a7c92876240754060e5ef884121fa7967"
+      }
+    },
+    "fixed_L11": {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "line_spans": {
+        "146": "92cd9ea3c6e4e0e36f2825f093cb20354307defbc965b31f458ca7710f94f337",
+        "160": "faa6f64cffb2f9047ec3447937a93cd8e8b934c3b6e38ac3a9173bdffb9d0eb2",
+        "164": "f3b5b6c96322d045af0d8e574b0becad3054fe16de7231422d3dacfb6fa39915",
+        "168": "af0507bf5de2a6eae1877783c9599bc1fa4a33da48f616211f65a412428e1fbd",
+        "171": "1bc7dd98d5bd23d4a57090368f05e891c8dc93d22283a4ca4952a33e0fbe0b92"
+      }
+    },
+    "prior_legacy_source_audit": {
+      "path": "docs/governance/audits/requirements-stage/intelligence-stage3-review01-correction-2026-10-07.json",
+      "sha256": "813087f0575da9eb39ace4579b4f8dca2e92503e273481449d10a24e7ed375fb",
+      "retained_unchanged": true,
+      "legacy_assets": [
+        "LEGACY-ASSET-28FB139B26CD61CC51EE",
+        "LEGACY-ASSET-A952A3A175EB82A4781B",
+        "LEGACY-ASSET-EB3700B0088F311C2295",
+        "LEGACY-ASSET-CAC0C64EB7540180B1FE"
+      ]
+    },
+    "legacy_bench_requirement": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "lines": "19-84",
+      "asset_id": "LEGACY-ASSET-28FB139B26CD61CC51EE",
+      "sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+      "disposition": "required task snapshot, metric category/denominator, source-linked result and price provenance retained as meaning; old runner/scorer/runtime implementation is not copied"
+    },
+    "legacy_bench_acceptance": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "lines": "30-41",
+      "asset_id": "LEGACY-ASSET-A952A3A175EB82A4781B",
+      "sha256": "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185",
+      "disposition": "missing price basis, hidden condition differences, and role separation remain independent negative meanings"
+    },
+    "source_inventory_recheck": {
+      "path": "docs/governance/audits/requirements-stage/intelligence-stage3-delegation-recheck-2026-10-07.md",
+      "sha256": "b6990bf91b63d25e33e45657e57f00204009059706fdff1e24901a0270426d6e",
+      "status": "read-only source-boundary inventory; retained unchanged"
+    }
+  },
+  "repair_summary": {
+    "M1": "AC-078-12/CASE-078-12 remain within the PO-selected A-limited boundary; all three unpinned placement conditions and five unpinned roles/routes remain unknown. Eight single-field negatives reject guessed values; C is not evaluated as a placement candidate.",
+    "m6": "NFR-078-01 explicitly lists AC-078-01 through AC-078-12 individually.",
+    "m7": "Added independent output-field-missing fixtures for miss and FP; prior dropped-item single-counterexamples remain intact.",
+    "m8": "072-07-01..09 now route each missing element using fixed L2 responsibility categories: judgment meaning to requirement/target owner, selected BRAIN knowledge to BRAIN, experiment/evaluation evidence to LABO, and common pack contract version to HARNESS. Unspecified field/owner remains unknown.",
+    "m9": "Restored the AC-067-02 prohibition on creating another responsibility's state and added one isolated OS-assignment-state negative fixture.",
+    "m10": "007-03 now fixes obs-a/obs-b as separate source identity/revision support observations with type=support and obs-c as type=refutation.",
+    "m11": "011 price provenance terms now use effective timestamp/charging class across FR, FV, NFR verification, L3 NFR, and fixed L11 wording."
+  },
+  "preserved_prior_oracles_and_negative_cases": [
+    "CASE-INTELLIGENCE-L10-007-02a single-correlation counterexample",
+    "CASE-INTELLIGENCE-L10-R2607-011-miss-fp-dropped-miss",
+    "CASE-INTELLIGENCE-L10-R2607-011-miss-fp-dropped-fp",
+    "CASE-INTELLIGENCE-L10-078-13a through CASE-INTELLIGENCE-L10-078-13e single-field role/route negatives"
+  ],
+  "new_cases": [
+    "CASE-INTELLIGENCE-L10-R2607-011-miss-field-missing",
+    "CASE-INTELLIGENCE-L10-R2607-011-fp-field-missing",
+    "CASE-INTELLIGENCE-L10-R2607-067-other-responsibility-state-reject",
+    "CASE-INTELLIGENCE-L10-078-13f",
+    "CASE-INTELLIGENCE-L10-078-13g",
+    "CASE-INTELLIGENCE-L10-078-13h"
+  ],
+  "current_six_body_sha256": {
+    "docs/helix-intelligence/L3-requirements/business-requirements.md": "fbfffce9874cedd0073e35d45bd9f9ac0eefdd9f30ead7d6bc085050b590704e",
+    "docs/helix-intelligence/L3-requirements/functional-requirements.md": "d3c3823861ea648fa1ad35d2a83f16d0310c61d7fe6a902719aa54722d99b224",
+    "docs/helix-intelligence/L3-requirements/nfr-grade.md": "57ac3d6e04242fd3742a146e65798175db3bd4d0a667491850520e171f53d1ad",
+    "docs/helix-intelligence/L10-verification/business-verification.md": "00c40012d38bb32c681813ee1e9dc3868af4a7b40be9cae42fd4f0c5551b71a7",
+    "docs/helix-intelligence/L10-verification/functional-verification.md": "2af25c3056d440d97441bf9803cdd11bf9f782a927627f20e1d148860f281b20",
+    "docs/helix-intelligence/L10-verification/nfr-verification.md": "5b05acba379da5f136450fe16facd34ee14a58210b92bc2ae7e90f39b6f0e8bb"
+  },
+  "limits": [
+    "This static correction records the supplied review findings and source pins only; no fixture was executed.",
+    "No new L3 approval, PO confirmation, L10 pass, admission, or downstream permission is created.",
+    "The 2026-10-06 delegated decision remains a historical record for content revision 7c39f1fc0553114214bb582e60297c62d61f3283; this correction does not rewrite or replace it."
+  ]
+}
