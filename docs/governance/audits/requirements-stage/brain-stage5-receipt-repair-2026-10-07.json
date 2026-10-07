@@ -1,0 +1,70 @@
+{
+  "kind": "static_repair_evidence",
+  "authority_effect": "none",
+  "base": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+  "scope": "HELIX-BRAIN Stage5 HELIXBRAIN-L2-025",
+  "findings_source": "https://github.com/RetryYN/HELIX-HARNESS/pull/2618#issuecomment-6039138761",
+  "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+  "fixed_parent_lines": {
+    "L2": "464-473",
+    "L11": "65"
+  },
+  "legacy": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md",
+    "lines": "37-47",
+    "sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c",
+    "disposition": "意味の再導出。段階・責務と既存authorityの分離を保持。旧shadow/cross-project必須条件は移さない。receiptの具体的提供要素・戻し先は固定L2-025から再導出。"
+  },
+  "repairs": {
+    "M1": "AC01/06、C01/C53-56：finding receiptの正常値と単独変異",
+    "M2": "AC01/06、C01/C57-60：未完義務receiptの正常値と単独変異",
+    "M3": "AC04、C49：評価source不足の戻し先LABO、参照契約をowner化しない"
+  },
+  "six_documents": [
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.md",
+      "base_sha256": "b80c0603bed8dfb8973f2f60830cd9f47dec00fe8cf6a4772745887ac1f75064",
+      "candidate_sha256": "b80c0603bed8dfb8973f2f60830cd9f47dec00fe8cf6a4772745887ac1f75064",
+      "unchanged": true
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "base_sha256": "eae9d75918cb83b168fc0811097e163d2c533faee01921324e5be86e749a9aef",
+      "candidate_sha256": "6826529b83f44e515d57199904219ca42ba12583425bbaf9194deec53d81d747",
+      "unchanged": false
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/nfr-verification.md",
+      "base_sha256": "6b5586cbf0df2971845afe674319f9bac7783c9084af2065d9c383c0e290fc96",
+      "candidate_sha256": "6b5586cbf0df2971845afe674319f9bac7783c9084af2065d9c383c0e290fc96",
+      "unchanged": true
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.md",
+      "base_sha256": "3ad786e18e488ccc246c30114f21e683e6d52fb2fa32e0e96e80be084fd13c1b",
+      "candidate_sha256": "3ad786e18e488ccc246c30114f21e683e6d52fb2fa32e0e96e80be084fd13c1b",
+      "unchanged": true
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "base_sha256": "51e6dd396ddb7d6ea0304fd17b514f2bb41c8bd9020ecbbd80f820b66db9c4a0",
+      "candidate_sha256": "44e32ce54912a204cb1f68c26e948504481486144815f253db2270285c6d5a6b",
+      "unchanged": false
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/nfr-grade.md",
+      "base_sha256": "1e57eb1d3c08a2eaec77bb5c0014598c08e9adbe0aeaea54bfaa21c329674a02",
+      "candidate_sha256": "1e57eb1d3c08a2eaec77bb5c0014598c08e9adbe0aeaea54bfaa21c329674a02",
+      "unchanged": true
+    }
+  ],
+  "checks": {
+    "git_diff_check": "pass",
+    "scfctl_validate": "147 bindings, fail=0",
+    "govcheck": "ok atoms=7622 requirements=57 files=58",
+    "parent_025_case_definitions": 60,
+    "unique_case_definitions": 60
+  },
+  "approval": "未成立。旧Fable/Fableの判断から継承せず、新本文revisionのOpus独立no_findingsとFable確認、および六本文不変照合を要する。",
+  "fixture_execution": false
+}

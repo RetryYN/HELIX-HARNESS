@@ -874,10 +874,10 @@ CASE番号は各親見出し内で一意。各列の固定句は親source全文�
 - **L10-BRAIN-024-C44 — credential流入時の受領停止（AC-02）**：C02の他入力を保持し、BRAIN候補packetへ合成credential参照だけを流入させる（秘密値は用いない）。**期待oracle**：固定024どおり受領を止めRuntime ownerへ返す。保存拒否だけで受領を継続しない。
 - **L10-BRAIN-024-C45 — raw runtime data流入時の受領停止（AC-02）**：C02の他入力を保持し、BRAIN候補packetへ実runtime logを模した合成raw dataだけを流入させる。**期待oracle**：固定024どおり受領を止めRuntime ownerへ返す。実log保存を許可しない。
 
-### `HELIXBRAIN-L2-025` — `BRAIN-025-FR-01`, `BRAIN-025-AC-01..05`
+### `HELIXBRAIN-L2-025` — `BRAIN-025-FR-01`, `BRAIN-025-AC-01..06`
 
 - 固定source：L2 `docs/helix-brain/L2-requirements/brain-requirements.md:464-473`、paired L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:65`、PO decision row `helix-brain-requirements-po-decision-2026-09-28.md:84`。L2-007/008/009/011/012/020を照合し、Infrastructure maturityは該当candidateだけL2-INFRA-017へ結ぶ。
-- **L10-BRAIN-025-C01 — 正常な全段階trace（AC-01）**：source/provenance/revisionを持つ内部candidate、LABOの評価scope/method/result/failure/counterexample/unassessed range、OS registration/routing state、BRAIN change revisionへのindependent verificationとその結果、採否を別owner receiptで与える。**期待oracle**：状態順と対象revisionが揃い、adoptionと独立検証の根拠を追跡する。
+- **L10-BRAIN-025-C01 — 正常な全段階trace（AC-01）**：source/provenance/revisionを持つ内部candidate、LABOの評価scope/method/result/failure/counterexample/unassessed range、OS registration/routing state、BRAIN change revisionへのindependent verificationとその結果、採否を別owner receiptで与える。提供receiptの合成sourceにはfinding `finding-7`（内容 `未評価のrestore条件`、owner `LABO`、対象 `candidate@r4`）、未完義務 `duty-9`（内容 `採否後の再観測の進行追跡`、owner `OS`、対象 `candidate@r4`）、反例 `counterexample-3`（内容 `single-region-only`、owner `LABO`、対象 `candidate@r4`）を別identityで宣言する。これらはfixtureの値であり全candidateのowner割当規則ではない。OS routing確認はOS registration/routing stateへ完了eventとして記録し、BRAIN verificationとadoptionより前に終えている。`duty-9`は採否後に行う再観測の進行追跡の残余であり、このrouting前提とは別identityで未完を保持する。**期待oracle**：状態順と全段階の対象revisionが揃い（candidate・LABO評価・OS登録/振分け・BRAIN独立検証・採否はいずれも `candidate@r4`）、固定L2-025:469の順序どおりOS routing確認が終わった後にBRAIN独立検証・採否を追跡する。出力3receiptのidentity・内容・owner・対象revisionはそれぞれsource値に一致し、未完の`duty-9`を採否済みという理由で消去・完了扱いしない。
 - **L10-BRAIN-025-C02（AC-02、単独誤昇格）** AI生成だけを根拠にaccepted/matureを要求。**期待**：昇格を拒否しcandidateを維持。
 - **L10-BRAIN-025-C03（AC-02、単独誤昇格）** 単一実績だけを根拠にaccepted/matureを要求。**期待**：昇格を拒否し実績件数から閾値を作らない。
 - **L10-BRAIN-025-C04（AC-02、単独欠落）**：candidate、LABO evaluation、BRAIN change/verification evidence/resultは揃い、OS registration/routing receiptだけを欠く。**期待**：adoptionを保留しOS receipt不足を示す。
@@ -923,11 +923,31 @@ CASE番号は各親見出し内で一意。各列の固定句は親source全文�
 - **L10-BRAIN-025-C44（AC-03、単独unknown）**：C01のLABO evaluation receiptだけをunknownにし、OS/verification receiptはknownで保持する。**期待**：LABO ownerのunknownを保持する。
 - **L10-BRAIN-025-C45（AC-03、単独unknown）**：C01のBRAIN verification receiptだけをunknownにし、LABO/OS receiptはknownで保持する。**期待**：BRAIN change ownerのunknownを保持する。
 - **L10-BRAIN-025-C46（AC-01、追加approval要求のnegative）**：C33正常fixtureのsource/revision/evaluation/registration/verification/adoption evidenceは全て同一のまま、技術差分に追加human approval field/gateだけを要求する。**期待**：追加gateを固定L2-025の要件として拒否し、通常pathを止めない。
-- **L10-BRAIN-025-C47（AC-04、選択maturity state unknown）**：Infrastructure candidateでmaturity選択済み、L2-INFRA-017 stateだけunknown、同revision evidenceはknown。**期待**：stateを推定せず採否を保留する。
-- **L10-BRAIN-025-C48（AC-04、選択maturity evidence unknown）**：C29の同一fixtureでmaturity evidenceだけunknown、stateとrevisionはknown。**期待**：evidence不足を成功へ丸めない。
-- **L10-BRAIN-025-C49（AC-04、選択maturity revision mismatch）**：C29のmaturity evidence revisionだけを`r3`にする一変異。**期待**：revision mismatchとして保留し、maturity選択済みscopeに限ってL2-INFRA-017へ返す。
+- **L10-BRAIN-025-C47（AC-04、選択maturity state unknown）**：Infrastructure candidateでmaturity選択済み、L2-INFRA-017 stateだけunknown、同revision evidenceはknown。**期待**：stateを推定せず採否を保留し、選択maturityのsource/evaluation不足としてLABOへ返す。
+- **L10-BRAIN-025-C48（AC-04、選択maturity evidence unknown）**：C29の同一fixtureでmaturity evidenceだけunknown、stateとrevisionはknown。**期待**：evidence不足を成功へ丸めず、source/evaluation不足としてLABOへ返す。
+- **L10-BRAIN-025-C49（AC-04、選択maturity revision mismatch）**：C29のmaturity evidence revisionだけを`r3`にする一変異。**期待**：revision mismatchとして保留し、maturity選択済みscopeのsource/evaluation不足としてLABOへ返す。参照契約L2-INFRA-017をownerとして扱わない。
 - **L10-BRAIN-025-C50（AC-02、LABO評価だけの誤昇格）**：C01のcandidate/source/revisionを固定し、昇格根拠だけをLABO評価単独へ変える。**期待**：evaluationだけからaccepted/matureを生成せず、固定025の状態順序と未完義務を保持する。
 - **L10-BRAIN-025-C51（AC-02、OS ticketだけの誤昇格）**：C01のcandidate/source/revisionを固定し、昇格根拠だけをOS ticket単独へ変える。**期待**：ticketの存在だけからaccepted/matureを生成せず、固定025の独立検証・採否を代替しない。
 - **L10-BRAIN-025-C52（AC-02、知識意味の戻し先）**：C01のsource/provenance/revisionと各receiptを保持し、generic knowledge meaningだけを該当L1の固定意味と不整合へ変える。**期待**：知識意味の不整合として採用を止め、固定025どおり該当L1へ戻す。source/evaluation不足としてLABOへ振り替えない。
+
+- **L10-BRAIN-025-C53（AC-06、findingの単独変異）**：C01の他の入力・出力を正常に保ち、出力 `finding-7` のreceiptだけを欠落させる。**期待**：source値との照合でreceipt不足を特定する。元sourceの内容・owner `LABO`・対象 `candidate@r4` を保持し、source/evaluation不足として固定L2-025:471のLABO区分へ訂正を返す。変異した出力から残余解消・採否完了を生成しない。
+- **L10-BRAIN-025-C54（AC-06、findingの単独変異）**：C01の他の入力・出力を正常に保ち、出力 `finding-7` の内容だけを `解消済み` へ改変する。**期待**：source値との照合で内容の不一致を検出する。元sourceの内容・owner `LABO`・対象 `candidate@r4` を保持し、source/evaluation不足として固定L2-025:471のLABO区分へ訂正を返す。変異した出力から残余解消・採否完了を生成しない。
+- **L10-BRAIN-025-C55（AC-06、findingの単独変異）**：C01の他の入力・出力を正常に保ち、出力 `finding-7` のownerだけを `BRAIN` へ改変する。**期待**：source値との照合でownerの不一致を検出する。元sourceの内容・owner `LABO`・対象 `candidate@r4` を保持し、source/evaluation不足として固定L2-025:471のLABO区分へ訂正を返す。変異した出力から残余解消・採否完了を生成しない。
+- **L10-BRAIN-025-C56（AC-06、findingの単独変異）**：C01の他の入力・出力を正常に保ち、出力 `finding-7` の対象revisionだけを `candidate@r3` へ改変する。**期待**：source値との照合で対象revisionの不一致を検出する。元sourceの内容・owner `LABO`・対象 `candidate@r4` を保持し、source/evaluation不足として固定L2-025:471のLABO区分へ訂正を返す。変異した出力から残余解消・採否完了を生成しない。
+- **L10-BRAIN-025-C57（AC-06、未完義務の単独変異）**：C01の他の入力・出力を正常に保ち、出力 `duty-9` のreceiptだけを欠落させる。**期待**：source値との照合でreceipt不足を特定する。元sourceの内容・owner `OS`・対象 `candidate@r4` を保持し、登録/進行状態として固定L2-025:471のOS区分へ訂正を返す。変異した出力から残余解消・採否完了を生成しない。
+- **L10-BRAIN-025-C58（AC-06、未完義務の単独変異）**：C01の他の入力・出力を正常に保ち、出力 `duty-9` の内容だけを `解消済み` へ改変する。**期待**：source値との照合で内容の不一致を検出する。元sourceの内容・owner `OS`・対象 `candidate@r4` を保持し、登録/進行状態として固定L2-025:471のOS区分へ訂正を返す。変異した出力から残余解消・採否完了を生成しない。
+- **L10-BRAIN-025-C59（AC-06、未完義務の単独変異）**：C01の他の入力・出力を正常に保ち、出力 `duty-9` のownerだけを `BRAIN` へ改変する。**期待**：source値との照合でownerの不一致を検出する。元sourceの内容・owner `OS`・対象 `candidate@r4` を保持し、登録/進行状態として固定L2-025:471のOS区分へ訂正を返す。変異した出力から残余解消・採否完了を生成しない。
+- **L10-BRAIN-025-C60（AC-06、未完義務の単独変異）**：C01の他の入力・出力を正常に保ち、出力 `duty-9` の対象revisionだけを `candidate@r3` へ改変する。**期待**：source値との照合で対象revisionの不一致を検出する。元sourceの内容・owner `OS`・対象 `candidate@r4` を保持し、登録/進行状態として固定L2-025:471のOS区分へ訂正を返す。変異した出力から残余解消・採否完了を生成しない。
+- **L10-BRAIN-025-C61（AC-06、finding owner単独unknown）**：C01の他のsource receiptは正常のまま、元sourceの`finding-7` ownerだけをunknownにする。**期待**：ownerをLABO等へ推定せずunknown/holdを保ち、source/evaluation不足の戻し先区分はL2-025:471に従ってLABOとし、adoptionを完了しない。
+- **L10-BRAIN-025-C62（AC-06、未完義務owner単独unknown）**：C01の他のsource receiptは正常のまま、元sourceの`duty-9` ownerだけをunknownにする。**期待**：元ownerをOS等へ推定せずunknown/holdを保ち、登録/進行状態の戻し先区分はL2-025:471に従ってOSとし、adoptionを完了しない。
+- **L10-BRAIN-025-C63（AC-06、反例receipt単独欠落）**：C01の他の入力・出力を正常に保ち、出力`counterexample-3` receiptだけを欠落させる。**期待**：反例receipt不足を検出し、元内容・owner `LABO`・対象 `candidate@r4` を保持してsource/evaluation不足としてLABOへ返す。残余解消・adoption完了を生成しない。
+- **L10-BRAIN-025-C64（AC-06、反例receipt内容単独改変）**：C01の他の入力・出力を正常に保ち、`counterexample-3`の内容だけを`適用可能`へ改変する。**期待**：内容不一致を検出し、source値とLABOへの戻しを保持する。残余解消・adoption完了を生成しない。
+- **L10-BRAIN-025-C65（AC-06、反例receipt owner単独改変）**：C01の他の入力・出力を正常に保ち、`counterexample-3`のownerだけを`BRAIN`へ改変する。**期待**：owner不一致を検出し、元owner `LABO` を保持してsource/evaluation不足としてLABOへ返す。残余解消・adoption完了を生成しない。
+- **L10-BRAIN-025-C66（AC-06、反例receipt revision単独改変）**：C01の他の入力・出力を正常に保ち、`counterexample-3`の対象revisionだけを`candidate@r3`へ改変する。**期待**：revision不一致を検出し、元対象 `candidate@r4` を保持してLABOへ返す。残余解消・adoption完了を生成しない。
+
+- **L10-BRAIN-025-C67（AC-03、採否対象revision単独不一致）**：C01の全sourceと評価・登録・検証の対象 `candidate@r4` を保持し、adoption receiptの対象だけ `candidate@r3` に変える。**期待**：採否対象と検証済み対象の不一致を拒否し、adoptionを完了せずBRAIN change ownerへ返す。各receiptの存在と元revisionを保持する。
+- **L10-BRAIN-025-C68（AC-06、receipt分類単独unknown）**：C01のfinding receiptのidentity・内容・source owner・対象revisionは保持し、戻し先を決めるsource上の分類だけunknownにする。**期待**：分類および対応する戻し先をunknownとして保ち、source ownerから分類を推定せず保留する。receiptも未完残余も消さず、採否完了を生成しない。
+- **L10-BRAIN-025-C69（AC-06、知識意味receiptの戻し先）**：C01の他条件を保ち、sourceに知識意味分類のfinding `meaning-1`、内容 `generic meaning不整合`、ownerカテゴリ `該当L1`、対象 `candidate@r4` を宣言し、出力receiptだけ欠落させる。**期待**：元値を保持し知識意味の戻し先カテゴリである該当L1へ返す。具体owner identityが未特定でもカテゴリをLABO等へ付け替えず、欠落receiptから解消・採否完了を生成しない。
+- **L10-BRAIN-025-C70（AC-06、BRAIN変更検証receiptの戻し先）**：C01の他条件を保ち、sourceにBRAIN変更検証分類のfinding `verification-1`、内容 `変更検証根拠の不整合`、ownerカテゴリ `BRAIN change owner`、対象 `candidate@r4` を宣言し、出力receiptだけ欠落させる。**期待**：元値を保持しBRAIN change ownerへ返す。具体owner identityが未特定でもカテゴリをLABO等へ付け替えず、欠落receiptから解消・採否完了を生成しない。
 
 **全case共通の観測点**：candidate/source/revision tuple、LABO evaluation identity/scope/method/result/failure/counterexample/unassessed range、OS registration/routing state、BRAIN change/verifier/evidence/result/target revision、adoption/maturity state、Product Core境界、unknown/hold/rejectと戻し先。正常caseは正しいowner経路を許し、反例caseは当該変異を特定して状態を保留/拒否する。旧test designの実行を検証証拠にしない。
