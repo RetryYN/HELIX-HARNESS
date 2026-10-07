@@ -1,0 +1,122 @@
+{
+  "record_type": "immutable_design_audit",
+  "title": "OS Stage 3 parent 049 設定revision別計測window補強",
+  "date": "2026-10-08",
+  "worktree_branch": "codex/os049-window-stratification",
+  "base_revision": "37a8283be429c57f3706153ad522e7ad288fecc3",
+  "fixed_parent_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+  "scope": [
+    "HELIXOS-L2-049",
+    "AC-OS-L3-049-04",
+    "NFR-OS-L3-049-01",
+    "CASE-OS-L10-049-04",
+    "CASE-OS-L10-049-08",
+    "CASE-OS-L10-049-09",
+    "CASE-OS-L10-NFR-049-01",
+    "CASE-OS-L10-NFR-049-02",
+    "CASE-OS-L10-NFR-049-03"
+  ],
+  "authority_state": {
+    "po_register_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+    "po_register_line": 72,
+    "decision": "条件付き採択 MPR-RC-HELIXOS-L2-049-003",
+    "adoption_sha256": "sha256:e9372f19e5064cb5470141fef25a3212aa65cede5d44ecfff8c9ed86da83668b",
+    "condition": "割当前に後段の検証義務・担当・capacityを確保する。割当先task自体のreview/merge完了は割当条件にしない。"
+  },
+  "fixed_parent_pins": {
+    "docs/helix-os/L2-requirements/governance-requirements.md": {
+      "full_sha256": "c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a",
+      "span": "1205-1211",
+      "span_sha256": "e9372f19e5064cb5470141fef25a3212aa65cede5d44ecfff8c9ed86da83668b"
+    },
+    "docs/helix-os/L11-acceptance/governance-acceptance.md": {
+      "full_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+      "span": "821-828",
+      "span_sha256": "d5a3a0c361a6d0056a8c608f5230a52d206c000d7ac81ff969aeaba30ad4d810"
+    },
+    "docs/governance/decisions/po-decision-2026-09-29-57candidates.md": {
+      "full_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "span": "72",
+      "span_sha256": "d687c78415c220eeb40b695e4c6126951712eb1680e064be2dc87501edc8da5a"
+    }
+  },
+  "legacy_sources": [
+    {
+      "asset_id": "LEGACY-ASSET-11E8FE0479751F02A4A3",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/three-lane-capacity-profile-requests.md",
+      "lines": "15-17",
+      "full_sha256": "a428f2de8652b9508456aed358152865a1f96f6978e5d204b1e2dfd3a1d2e1ba",
+      "span_sha256": "5fa5dd54753c0f7d6de806ebdd5a4788c2c5e7aa39e3dd37722b7fd878336f9b"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-F172CBC75CAA4FCFC2EB",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/three-lane-capacity-profile-requirements.md",
+      "lines": "29-31",
+      "full_sha256": "d2df9851fcd3db79ffaed03116f85118da43fe26f943412045215a58cfa3804e",
+      "span_sha256": "f4cfd36029a75bfefa296aef38edb4b55538e1a57149006b9f5924a394fcb7a0"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-23D3D9769B093AFDCC25",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/management-integration-cell-requirements.md",
+      "lines": "56-60,102-106",
+      "full_sha256": "f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6",
+      "span_sha256": "f5410868cedfd32d77983ec79de795850885f9cbddc1ce4160805203eb3eca39",
+      "span_sha256_by_range": {
+        "56-60": "f5410868cedfd32d77983ec79de795850885f9cbddc1ce4160805203eb3eca39",
+        "102-106": "9508c4439c191599853307e0096d8ec21eabbe3dd98abed165be38d61531e222"
+      }
+    }
+  ],
+  "change": {
+    "reuse": "登録可能なpool上限とactive WIPの分離、下流能力に応じたbackpressureの意味を保持。",
+    "rederive": "設定が変更可能であるため、利用率の時間分母は同一config revisionが適用された時間へ対応させる。既存の変更時点で区間を分け、各区間のcapacity×経過時間を使う。",
+    "replace": "現行の15分候補、1分noise/overhead、60分では競合が隠れるという根拠なしの比較案を除去。固定bucket、数値threshold、schema、owner、新しいgateは追加しない。",
+    "reason": "一つのwindowでcapacity設定が変わると、単一capacity×全経過時間では異なる設定期間を誤集計する。設定revisionまたは観測時間の境界が不明なら算出不能としてunknown/未評価を保持し、0や成功率を作らない。",
+    "scope_boundary": "L2-049の要求意味・対象・owner・version_targetは変更しない。変更はAC-049-04の測定方法と対応するNFR/L10 oracleの具体化に限定。"
+  },
+  "six_document_sha256": {
+    "docs/helix-os/L3-requirements/functional-requirements.md": {
+      "before_base_37a8283": "68bf95443b494e16bb2a72506358536d7d8740fb620e09d55ed0b922d3b9ed03",
+      "after_working_tree": "68bf95443b494e16bb2a72506358536d7d8740fb620e09d55ed0b922d3b9ed03",
+      "changed": false
+    },
+    "docs/helix-os/L3-requirements/business-requirements.md": {
+      "before_base_37a8283": "cbe1866df47503b17e8a11b786dee8da58cd8a2a0a99778b64bd4a669b2fa702",
+      "after_working_tree": "cbe1866df47503b17e8a11b786dee8da58cd8a2a0a99778b64bd4a669b2fa702",
+      "changed": false
+    },
+    "docs/helix-os/L3-requirements/nfr-grade.md": {
+      "before_base_37a8283": "d4e76c3dc15b28894937ddc0e39cb223aeef106284fae13b8ea4212dfce02726",
+      "after_working_tree": "b13de2fe0b2a5401c27286e21984eaeef070fd64967eea5c44ae1b79947dff07",
+      "changed": true
+    },
+    "docs/helix-os/L10-verification/functional-verification.md": {
+      "before_base_37a8283": "2c2ce95380e2deb5478bb06c27057d519373bfeabc9259799e400b390e0c5d3e",
+      "after_working_tree": "ae7eb6acae3eff36ad76299db8cd4cc2b3e16cc519e9c8b2c72bec01475789ce",
+      "changed": true
+    },
+    "docs/helix-os/L10-verification/business-verification.md": {
+      "before_base_37a8283": "f785e13aa9a1ef8494154f03e20d0582418916281c51a6b729d385d5b66ef051",
+      "after_working_tree": "f785e13aa9a1ef8494154f03e20d0582418916281c51a6b729d385d5b66ef051",
+      "changed": false
+    },
+    "docs/helix-os/L10-verification/nfr-verification.md": {
+      "before_base_37a8283": "156c0b6cf45630ba44f3540ceb97dae511fb7bdd93148e1a99ef4e0adfd9e543",
+      "after_working_tree": "b15bb880d09b246bb523674d03621d2021cde1305caef6485181cbce64ec8ade",
+      "changed": true
+    }
+  },
+  "static_checks": {
+    "new_functional_cases_present": true,
+    "new_cases_trace_to_ac04904": true,
+    "nfr_case_03_present_and_traced": true,
+    "no_duplicate_049_case_ids": true,
+    "parent_ac04904_present": true,
+    "unsupported_15_60_bucket_removed_from_049_rows": true
+  },
+  "verification_limits": [
+    "静的なID/trace/差分確認のみ。fixtureは文書上の候補であり実行していない。",
+    "旧test/runtime/CIは実行していない。",
+    "本監査はOS-049の当該測定範囲に限定し、全OS Stage3または全旧source consumerの閉包を主張しない。"
+  ]
+}

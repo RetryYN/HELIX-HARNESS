@@ -1,0 +1,5 @@
+# OS親049のmain親040統合
+
+main `0d8fcb67ef64e17e0e3529715011d6140652f017` を修正草稿 `4d57559def2f1372555c154eef53c404b7b483d1` へ統合した。統合HEAD `3ad9a7f266fac715ff4b0f700e4b724db214ef31`。Rootが元草稿の親049追加削除全行とlatest main対比の全行の一致を検算した。競合なし。親040の承認済み変更を保持。旧監査は旧草稿の時点記録として不変。新6本文のSHA/bytesは同名JSONへ固定する。
+
+fixture未実行、独立再review前。承認・merge admission・274親完了を生成しない。

@@ -181,7 +181,7 @@
 以下は未計測の候補設計であり、固定L2/L11の意味・owner・version_targetを変更せず、最低N・成功率・SLA・順位閾値を加えない。
 
 - `NFR-LABO-060-01` 比較条件・quality・費用/人時間trace: 選択scope内のtask/snapshot、同一元Worker設定、支援有無、事前oracle、OS assignment/result receipt、選択support source/use、追加resource、retry/rework/review/CI、人作業数量・実費、price source/currency/effective time、failed/unknown/missingを個別に記録する。human quantityと金額は分離し、unknown/missing/未完をsuccess/0へ変換しない。これは測定設計であって測定値ではない。
-- L10の現在のCASE定義IDは51件（正常候補2、negative候補41、非独立索引候補8）。単一点性・独立性は独立review未確認で、ID数や一意性は完全性を証明しない。CASE-22/23/26/27/29/30/31/32は案上の索引で、個別fixture/negative分母へ重ねない。詳細をL10 functional verificationで照合する。
+- L10の現在のCASE定義IDは57件（正常候補2、negative候補47、非独立索引候補8）。単一点性・独立性は独立review未確認で、ID数や一意性は完全性を証明しない。CASE-22/23/26/27/29/30/31/32は案上の索引で、個別fixture/negative分母へ重ねない。詳細をL10 functional verificationで照合する。
 - 分母0/不明なら率を算出しない。source/owner不明はunknownのまま保持する。固定親にない数値thresholdや試行条件を新設せず、実行済み結果を主張しない。
 
 ## Stage 5 — HELIXLABO-L2-061 技術計測候補
