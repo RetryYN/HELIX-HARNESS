@@ -1,0 +1,19 @@
+{
+  "record_type": "immutable_root_main_integration",
+  "authority_effect": "none",
+  "integration_head": "e280b63d039b62d87bcf03a4566f932f11584cf5",
+  "base_main": "f14ac303d265b6d23ecb1847b5dfd52901a442c6",
+  "scope": "BRAIN Stage5 parent024 only",
+  "trace_correction": "AC02 C41-C45 plus C47-C49, excludes normal AC01 C46; prior worker snapshot preserved",
+  "integration_check": "Stage5 suffix six/six byte-identical to accepted candidate ad1aef885; main Stage1 parent007 changes integrated separately",
+  "six_document_sha256": {
+    "docs/helix-brain/L3-requirements/business-requirements.md": "f6245596e9a6f935199225d49ba57c290dbd7c653dc39fcfb696a66c8fbf7caa",
+    "docs/helix-brain/L3-requirements/functional-requirements.md": "66097f911a9eb0e4fa8ff2ac1644367c7abf9fd08a555179db4db888dccb8118",
+    "docs/helix-brain/L3-requirements/nfr-grade.md": "28b1095d0bd494d3e3ebcf96f05b02ac61aea18deb3744629e8da6172e890b8d",
+    "docs/helix-brain/L10-verification/business-verification.md": "bd35c29e7f5e5c2a92705894dc360fcc6d3e060f940af6728e214fe69eec5272",
+    "docs/helix-brain/L10-verification/functional-verification.md": "ed450d07f2b355f10927ccdfb708f86cb88d79ab0905778a9a60e99e09544f74",
+    "docs/helix-brain/L10-verification/nfr-verification.md": "61f55012116d740e5a7285b2020c83c34e10972a4bcf7ac1d9c14d6313371778"
+  },
+  "prior_followup_sha256": "1788a0c45ce56f2cfd7103dddde584c7b633154eddce91626dba35e0f0e06d5c",
+  "independent_review": "pending; no earlier approval inherited"
+}
