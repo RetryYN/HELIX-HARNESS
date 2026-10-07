@@ -264,9 +264,9 @@ L2意味・適用scope・owner・versionの変更が必要と判明した場合�
 ### FR-OS-L3-036 — HELIXOS-L2-036
 全Retrofit upgradeについて、対象upgradeごとにpreflightを計画確定前に同一ticket/対象revisionへ結び、計画確定後はapplyの直前にもcurrent source・結果・authorityを再照合する。preflight成功前も影響調査と未確定plan draftは続けられるが、failed/unknown/staleは計画確定・applyへ進めない。preflightの技術的意味/互換性はowner側に残す。
 - AC-OS-L3-036-01：正常fixtureでpreflight success後にだけ同ticket計画を確定し、apply直前の再照合receiptを結ぶ。未見のpackage manager/dependency/configuration形式でも、選択oracle/source contractが対応する範囲なら結果をscope/revisionへ結び、方式名・schema差だけでは拒否しない。対応oracleなしまたは対象不明はpassにせず未評価を保持する。
-- AC-OS-L3-036-02：未実施/failed、ticket/revision違い、stale result、apply直前drift、authority失効を各々変異し、確定またはapply 0。
-- AC-OS-L3-036-03：applicability/result owner unknownなら当該scopeを保留する。非upgrade Retrofit operationにはupgrade専用preflight順序条件を一律に課さないが、HARNESS-L2-005の選択により入力で選択・適用される既存HARNESS verification dutiesと他のread-only verify policyを維持し、preflight対象外であることをそれらの省略理由にしない。
-- AC-OS-L3-036-04：unknown HARNESS oracle、異なるdependency/config scope、一般CI green、rollback planのみを選択upgradeのpreflight結果として与える各fixtureでplan確定/applyを止める。oracle欠落はHARNESS、technical applicability/resultはそのsource owner、run/authority/resourceはOS/SECURITY/INFRASTRUCTUREへ戻し、OSが意味やSECURITY authorityを作らない。OSがHARNESS oracleを書換える、preflight結果からSECURITY authorityを生成する変異も独立に拒否する。
+- AC-OS-L3-036-02：未実施/failed、ticket/revision違い、stale result、apply直前drift、authority失効を各々独立に変異し、確定またはapply 0。ticket・source/target revision・選択scopeのbinding不一致はOS-L2-010へ戻す。
+- AC-OS-L3-036-03：applicability/result owner unknownなら当該scopeを保留する。非upgrade Retrofit operationにはupgrade専用preflight順序条件を一律に課さないが、HARNESS-L2-005が導く選択済みverification dutiesと、入力で選択・適用済みと示される他のread-only verify policyを維持し、preflight対象外であることをそれらの省略理由にしない。policy選択authorityは本要件で追加せず、selection/sourceがunknownならsource/domain ownerへ戻す。
+- AC-OS-L3-036-04：unknown HARNESS oracle、選択preflight resultのdependency/config scope不一致、一般CI green、rollback planのみを選択upgradeのpreflight結果として与える各fixtureでplan確定/applyを止める。ticket・source/target revision・選択scopeのbinding不一致はOS-L2-010へ戻す。oracle欠落はHARNESS、technical applicability/result unknownはそのsource owner、run/authority/resourceは既存OS/SECURITY/INFRASTRUCTURE経路へ戻し、OSが意味やSECURITY authorityを作らない。OSがHARNESS oracleを書換える、preflight結果からSECURITY authorityを生成する変異も独立に拒否する。
 
 ### FR-OS-L3-037 — HELIXOS-L2-037
 週次HARNESS設計/実装driftを対象scope・期間・source revisionとともに観測し、既存Reverse/Backflow経路へ渡す。またsource分類された累積負債はLABO評価後にOS-L2-022候補を経てOS-L2-010 repayment-plan候補へ進める。各経路の責務・優先順位・既存scope/gateは維持し、差分なしの結果も記録する。未観測は「差分なし」でない。週次は旧BR §3.3/FR-L1-11の頻度を保持し、L10 fixtureの観測期間数は受入閾値ではない。
