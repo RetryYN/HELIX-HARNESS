@@ -194,6 +194,14 @@
 
 表は受渡し設計であり、利用者benefit、資格完了、permission、assignment、実行許可またはPO承認の証拠ではない。
 
+### HELIXLABO-L2-066 — 既存比較business outcomeとの対応確認
+
+状態：未承認のL10候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。
+
+固定L2/L11から独立のbusiness outcome/ownerは導かれないため、独立BV/AC/BCASEを追加しない。L2-066が定める同条件比較の成果を、L3 functional requirementの `LABO-066-AC-01`〜`LABO-066-AC-03` に従って [L10 functional verification](functional-verification.md) で照合する。
+
+`LABO-066-BV-01` は独立成果判定ではなく、同じ比較材料（misrepair_count/N、unresolved_count/N、L2-059由来の費用・時間・手戻り）が固定scopeとsource receiptに追跡可能なことを記録する参照項目である。計測結果から効果達成、採択、実装、run許可、業務完了を生成しない。L10検証は未実行。
+
 ## Stage 5 — HELIXLABO-L2-070 補助運用telemetryとAttempt scorecard併記
 
 固定親はPO live26の49行が採択した `MPR-RC-HELIXLABO-L2-070-001`。source revision `ea6f756f96a7370de78e412d737c7a7ed472114a` のL2:561–574 SHA `07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533`、L11:297–307 SHA `c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1`をraw-LFで照合した。旧候補が参照した0abb2894の同範囲とbytesは一致し、採択状態はPO記録で確認する。

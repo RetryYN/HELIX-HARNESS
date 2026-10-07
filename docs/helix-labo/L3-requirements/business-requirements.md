@@ -192,6 +192,12 @@
 
 **旧source対応**：3L-BR-008のclass×revision評価とfield separation、major miss/model update invalidationを意味再導出する。旧L3の状態列やexpiry条件は歴史contextに留め、新business decisionを移さない。
 
+### HELIXLABO-L2-066 — A比較における誤修復・未解消数の明示
+
+状態：未承認のL3候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。
+
+固定L2-066は同条件比較で誤修復数・未解消数を測る機能結果を定める。これと独立したbusiness outcome/ownerは固定L2/L11から導かれないため、BR・独立AC・業務成果を追加しない。既存の比較結果はL2-066および採択済みL2-059の範囲に留め、別の採択、効果達成、事業判断を生成しない。成果と失敗はfunctional requirementの `LABO-066-AC-01`〜`LABO-066-AC-03` をL10 functional verificationで照合する。
+
 ## Stage 5 — HELIXLABO-L2-070 補助運用telemetryとAttempt scorecard併記
 
 固定親はPO live26の49行が採択した `MPR-RC-HELIXLABO-L2-070-001`。source revision `ea6f756f96a7370de78e412d737c7a7ed472114a` のL2:561–574 SHA `07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533`、L11:297–307 SHA `c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1`をraw-LFで照合した。旧候補が参照した0abb2894の同範囲とbytesは一致し、採択状態はPO記録で確認する。

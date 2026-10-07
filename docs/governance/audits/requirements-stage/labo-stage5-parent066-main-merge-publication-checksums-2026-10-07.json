@@ -1,0 +1,33 @@
+{
+  "record_type": "publication copy checksum manifest",
+  "target_parent": "066",
+  "main_merge_head": "5cefe16a1331d5a917b682725cfb1326e190167c",
+  "files": [
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage5-parent066-review13-postbody-audit-2026-10-07-3d3784307.json",
+      "bytes": 149485,
+      "sha256": "b15991353e31e2284908191093d3537dcd443e993597c4080ae00d3f3bb5e676",
+      "terminal_lf_count": null
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage5-parent066-review13-postbody-audit-2026-10-07-3d3784307.md",
+      "bytes": 4045,
+      "sha256": "9d94ec1aed97829dc8b29d3ac2956bccc4ee14bcea80f21b4acb34a724bfc750",
+      "terminal_lf_count": 1
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage5-parent066-main-merge-base-audit-2026-10-07-5cefe16a.json",
+      "bytes": 7851,
+      "sha256": "1fd242723fdb64091f18974aa236b6d9e53a7c40a07757edf3712ee33d1d2bdb",
+      "terminal_lf_count": null
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage5-parent066-main-merge-base-audit-2026-10-07-5cefe16a.md",
+      "bytes": 3784,
+      "sha256": "599c07b26db207b17898eb5d4d1347f6377d5cdbb87cce8aff45ca837ef7d436",
+      "terminal_lf_count": 1
+    }
+  ],
+  "source_combined_audit_sha256": "e0c58eb60f16a9b1de3c28512abf1ea625972f26d0c20b99ab38ddac47d4fc99",
+  "tmp_sources_unchanged": true
+}

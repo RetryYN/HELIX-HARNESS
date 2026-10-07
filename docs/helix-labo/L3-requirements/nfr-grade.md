@@ -299,6 +299,16 @@ L10は69個の完全ID定義を保持する。literalから抽出した分類候
 
 これらは固定意味から導く計測/追跡可能性の候補で、実測値・threshold・SLA・期限・合格率ではない。件数や欠落率を報告する場合の母集団は、事前選択されたscopeと現に利用可能なsource recordから受け取り、このparentで新設しない。
 
+### HELIXLABO-L2-066 — A比較における誤修復・未解消数の測定可能性
+
+状態：未承認のL3候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。
+
+`LABO-066-NG-01` 候補：比較結果はA/candidate identityとversion、eligible set identity/revision、task/scope/target revision、oracle/scorer revision、protocol/toolchain/environment/cutoff、両群のresultとoracle receipt、unknown理由、2指標の分子/分母を追跡可能にする。
+
+**候補値と根拠**：固定L2-066のcase分母N・oracleとの結合、L11-066の正常/誤り/unknown境界から必要なtrace fieldsを導く。測定値は合成B0入力・合成receipt上で分子/分母とsource revisionを再構成できるかで確認する。misrepair/unresolvedの間に排他条件を置かない。費用/時間/reworkのfield意味はL2-059の同じscope比較に合わせる。
+
+許容率、速度値、性能threshold、sample count、運用期間、合否閾値は提案しない。計測できない場合はunknown/未評価を記録し、0や合格へ置換しない。これは根拠付き測定設計候補であり、実測結果・承認値ではない。
+
 ## Stage 5 — HELIXLABO-L2-070 補助運用telemetryとAttempt scorecard併記
 
 固定親はPO live26の49行が採択した `MPR-RC-HELIXLABO-L2-070-001`。source revision `ea6f756f96a7370de78e412d737c7a7ed472114a` のL2:561–574 SHA `07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533`、L11:297–307 SHA `c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1`をraw-LFで照合した。旧候補が参照した0abb2894の同範囲とbytesは一致し、採択状態はPO記録で確認する。

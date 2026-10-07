@@ -1,0 +1,1805 @@
+{
+  "artifact": "LABO-066 frozen L3/L10 body audit candidate; point-in-time evidence, not approval/review",
+  "created_local_date": "2026-10-07",
+  "canonical_authoring": {
+    "repository": "RetryYN/HELIX-HARNESS",
+    "worktree": "/home/tenni/.helix-worktrees/l3-labo-stage5-parent066",
+    "base": "e015c3477e890c7079cd0b51859da1cec8f8fb7a",
+    "head": "fe489ac41b8703bac445fd42a3f493692afd1baa",
+    "commit_parent_list": [
+      "e015c3477e890c7079cd0b51859da1cec8f8fb7a"
+    ],
+    "draft_pr": 2635,
+    "independent_review": false,
+    "po_l3_approval": false,
+    "ready": false,
+    "merged": false,
+    "worktree_status_clean": true,
+    "changed_paths": [
+      "docs/helix-labo/L10-verification/business-verification.md",
+      "docs/helix-labo/L10-verification/functional-verification.md",
+      "docs/helix-labo/L10-verification/nfr-verification.md",
+      "docs/helix-labo/L3-requirements/business-requirements.md",
+      "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "docs/helix-labo/L3-requirements/nfr-grade.md"
+    ]
+  },
+  "authority_pins": {
+    "fixed_parent": {
+      "revision": "0dd946cec1c3fca8e144513b72e2e10d16c7c9c3",
+      "l2": {
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "full_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+        "lines": "518-528",
+        "span_sha256": "5a67776a3f4567fa662c86898caf275fddbe8dc806fd3a19622cae9f733cdb69",
+        "literal": "### HELIXLABO-L2-066 A比較における誤修復・未解消数の明示（単体追補候補、1.0）\n\n**kind / parent / status**：unit、`HELIXLABO-L1-005` primary、`HELIXLABO-L1-011` context、`version_target: 1.0`、`draft_candidate`。旧Bugbot候補の評価条件から、採択済みHELIXLABO-L2-059が定める品質優先・同条件比較・費用/時間/手戻りの評価を保ったまま、Aとの比較で誤修復数・未解消数を分母とoracleに結びつける不足だけを補う。059の本文・採択範囲は変更せず、旧Bugbot候補の採択、Bugbotや修復器の実装、実験実行許可を生成しない。\n\n- **旧sourceと範囲**：`LEGACY-ASSET-D881AF6AFD277B1DE934`、`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md:75`、file SHA-256 `81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb`、line SHA-256 `9facff56cbc42f9f7157dd85f1078605951af16a52fef5ec698bb62fd46681bc`。75行目は単独の一文で、前後行への文の継続はない。保持対象は、成功件数だけに頼らずAと同条件で費用・時間・手戻り・誤修復・未解消数を測る意味のうち、誤修復・未解消数の同条件比較を分母/oracle付きで観測する部分に限定する。73行目のoracle/mutation等の検証、74行目の反例、76行目の旧入口移管・rollback等は別のsource atomであり、本候補はそれらの移管・完了を主張しない。旧候補sourceの現行要求採択や旧runtime/実装の再利用もしない。\n- **入力**：比較目的・Aの明示的なidentity/version、比較対象のrepair method identity/version、両群に共通する事前固定のeligible case集合と各caseのtask/scope/対象revision、受入/quality oracleとrevision、oracle適用結果receipt、protocol・toolchain/environment、対象期間または同一の終了/cutoff条件、caseごとのresult/retry/rework/救援/費用/時間receiptを受け取る。各caseを結果を見る前に比較対象双方のeligible集合へ含め、重複caseは一件に正規化する。Aの意味や現行方式との対応が資料から特定できない場合は推測で命名せず、比較をunknown/未評価として戻す。\n- **提供・保証**：同一eligible case集合を分母`N`として、Aと対象候補の各々について、oracleが誤った修復と判定したcase数`misrepair_count/N`、終了/cutoff時に受入oracleを満たす解決がないcase数`unresolved_count/N`を別々に示す。割合だけでなく分子と分母、各caseの判定状態、oracle/判定receiptを辿れるようにする。oracleが適用不能または証拠不足のcaseはunknownとして分母から黙って除かず、理由・影響するcaseを表示してその比較を未評価/比較不能にする。misrepairとunresolvedは重なり得る指標として個別集計し、排他的な分類を装わない。費用、時間、手戻り等の定義と集計は採択済み059の条件を再利用し、ここで重複定義しない。\n- **比較条件と失敗**：Aと候補のtask/scope、対象revision、eligible case集合、oracle/scorer、実験protocol、toolchain/environment、期間/cutoffが異なる場合は同条件とせず比較不能にする。結果後に分母やoracleを変えない。成功件数だけで誤修復・未解消を隠す、重複/欠測/unknownを除いて率を改善する、caseごとのoracle証拠なしに数を確定する、総費用・手戻りを片側だけ省く場合は未評価/不成立とする。固定target、許容率、試行件数、合否thresholdを新設しない。\n- **依存・責務境界**：HELIXLABO-L2-059の同条件比較・品質gate・全費用・欠測条件を再利用し、本候補はA比較の2指標の可視性だけを補う。既存の許可されたresult/assignment receiptを評価する。新しい比較runを選ぶ場合は既存OS assignmentおよび該当するSECURITY許可に従い、LABO自身はWorker/修復器を選定・割当・起動・実行しない。oracleはHARNESSまたは要求owner、実行/assignmentはOS、計測と比較はLABOに残る。評価結果から採択、修復権限、配置、admission、要求完了を生成しない。\n- **戻し先・未完義務**：Aの定義/版、eligible case集合、対象scope/revision、oracle/判定receipt、結果・費用・時間receiptの不足や不一致は、各責務ownerへ返し、unknown/未評価/比較不能を維持する。候補の追加によって059の採択状態や1.0適用条件を遡及変更しない。\n\n"
+      },
+      "l11": {
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "full_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+        "lines": "261-268",
+        "span_sha256": "dd302f23a38d74475e707be64d9ee69a0bfda35b98902c62173c45d8c369a556",
+        "literal": "### HELIXLABO-L2-066 A比較における誤修復・未解消数の受入候補（単体、1.0）\n\n未実行の受入候補。親は`HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context。採択済みHELIXLABO-L2-059の品質優先・比較条件・費用等の意味を保持し、A比較の誤修復数と未解消数を分母およびoracleに結ぶ観測だけを補う。旧Bugbot候補の採択、Bugbot/修復器の実装、比較runの許可を生成しない。\n\n- **正常**：比較開始前に固定されたAと候補のidentity/version、同じtask/scope/対象revision、重複を除いた共通eligible case集合、受入/quality oracleとrevision、scorer/protocol/toolchain/environmentおよび同一の終了/cutoff条件を確認する。各群で同一caseへoracleを適用したreceiptがあり、各群別に`misrepair_count/N`（oracleが誤った修復と判定したcase数）と`unresolved_count/N`（終了/cutoff時に受入oracleを満たす解決がないcase数）を分子・分母付きで返す。oracleが適用不能またはreceiptが不足するcaseはunknownとして示し、分母から黙って除かず比較を未評価/比較不能にする。2指標は重なり得るため個別に数える。既存059の費用・時間・手戻りは同じscopeの比較として保持する。\n- **誤りを含む例**：Aの意味/版を推測する、結果を見た後でeligible集合・分母・oracleを変更する、Aと候補のcase集合や計測条件を変える、分子だけで割合を示す、unknown・欠測・重複caseを理由なく分母から落とす、oracleに結ばない数を誤修復/未解消と断定する、成功件数や費用/速度だけで誤修復・未解消を隠す、費用/手戻りを片側だけ除外する。それぞれ当該比較を不成立または未評価とし、unknownは0にしない。\n- **未見・権限境界**：Aのidentity/conditionやoracle適用性が初見で不明なら一般化せず、未評価/比較不能と必要なownerへの戻し先を返す。固定件数・rate threshold・合否thresholdを置かない。結果はLABOの計測・比較材料に留まり、要求採択、効果達成、実験許可、Worker/修復器の選定・割当・実行、authorityを生成しない。\n\n"
+      }
+    },
+    "po_decision": {
+      "observed_at_revision": "af8d0aac1a20cd3a41ca9df088bc7bf3501847ff",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "line": 81,
+      "line_sha256": "41121ae7430cd5890e3aae87edd38e1c3cc37b493cc20e65b6dacb0976d81d4f",
+      "same_bytes_at_current_author_base": "e015c3477e890c7079cd0b51859da1cec8f8fb7a",
+      "same_line_sha256_at_base": "41121ae7430cd5890e3aae87edd38e1c3cc37b493cc20e65b6dacb0976d81d4f",
+      "raw_line": "| `HELIXLABO-L2-066` | 採択 | `MPR-RC-HELIXLABO-L2-066-001` | `docs/helix-labo/L2-requirements/labo-requirements.md` | `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9` | `sha256:d65780351792a4587966a7eb45c34359626200af5bdd8eb55e197b0a6f0db184` | `HELIXLABO-L2-066` | `docs/helix-labo/L11-acceptance/labo-acceptance.md` | `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0` | `sha256:0a1d72d7d0fb3b97b14ce6f53738785b76bce642a2f9b7c83c4328a45fc68cce` | `docs/governance/audits/requirement-registration/labo-bugbot-misrepair-comparison-coverage-receipt-2026-09-28.json` |\n",
+      "decision": "採択 HELIXLABO-L2-066",
+      "mpr": "MPR-RC-HELIXLABO-L2-066-001"
+    },
+    "legacy_source": {
+      "revision": "af93d1f171d994f9fae2e78026b39ac27f896f5c",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+      "line": 75,
+      "line_sha256_excluding_lf": "9facff56cbc42f9f7157dd85f1078605951af16a52fef5ec698bb62fd46681bc",
+      "raw_lf_line_sha256": "678d10fb645494bf12216a7dd4a4ff9f45a6cb88e4dfc6d7d23d9de30a15fbe8",
+      "literal": "成功件数だけで評価せず、Aと同条件の費用・時間・手戻り・誤修復・未解消数を測定する。",
+      "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934"
+    },
+    "legacy_acceptance_consumer": {
+      "revision": "af93d1f171d994f9fae2e78026b39ac27f896f5c",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-acceptance.md",
+      "file_sha256": "cd2fdd3dcfaa98935db0fef6b876d6cdb7133b11b8c8877363c3d0138c4b8cbc",
+      "limitation": "draft_candidate;別紙02/03/05未提供、18 scenario全件を主張しない。consumer contextであり、現行066へ旧runtime/自動書込み/権限を移植しない。",
+      "read_lines": [
+        {
+          "line": 15,
+          "literal_with_lf": "原稿本文由来の受入候補。別紙02/03/05は未提供で、18シナリオ全件対応を主張しない。\n",
+          "raw_lf_sha256": "10b773cc833c97a61fab38f881ed44becb5234fd3624a0a2fc2366e0a828e971"
+        },
+        {
+          "line": 16,
+          "literal_with_lf": "各反例は独立oracle・mutationで拒否を検証し、合法入力が通る対照例を持つ。実証は未実施。\n",
+          "raw_lf_sha256": "d494e1584b017b4d4bd6d4eeed1db075bc9726e47bc40586dd30cda3ad8183cb"
+        },
+        {
+          "line": 20,
+          "literal_with_lf": "| BBR-AC01 | BBR-R01 | 既存対象限定検査で版・HEAD・観測/期待・根拠・強制度を返す。助言・合法REDを完成条件で誤拒否しない |\n",
+          "raw_lf_sha256": "8cf43b9710d027607e280b197d0fa59f070389b7db9c2b58cf2365ecea329c1b"
+        },
+        {
+          "line": 21,
+          "literal_with_lf": "| BBR-AC02 | BBR-R02 | 登録済み適用可能、意味判断必要、承認不足/未知を各処理先へ分け、proposalを実行許可に昇格させない |\n",
+          "raw_lf_sha256": "7a1ca06366bcc16ebdefbc800f2bb35bf9594ae2d3ccc38aa78778bdcce07f5d"
+        },
+        {
+          "line": 22,
+          "literal_with_lf": "| BBR-AC03 | BBR-R03 | 修復ID/版・実装・失敗コード・schema・write-set・副作用・予算等の不足を拒否。直前HEAD/bytes/Policy/生成器/所有権/lease/fence変更を各々拒否し、他者変更を保全。未信頼command・候補PR内修復器を特権実行しない。GH-FR-011のAI自己修復を修復器の自動write許可へ変換しない。既存対象・契機・episode・scope・権限が一致する対照例は既存経路で通し、追加差分だけ承認・正本化へ返す。新しい自動適用は修復ごとの契約・独立検証・実consumer検証の各欠落を個別に拒否し、すべて成立した対象範囲だけ有効化する対照例を検証。要求承認だけ・登録だけ・他修復または他consumerの合格から包括的書込み許可を導出しない |\n",
+          "raw_lf_sha256": "bed7e1b0d18367f56c550a294727b03e4a867e28f481da3fd17213f0cfafdb09"
+        },
+        {
+          "line": 23,
+          "literal_with_lf": "| BBR-AC04 | BBR-R04 | 同一修復再適用は差分ゼロ、重複eventで二重実行しない。session変更で試行/予算がresetせず、循環・再発・期限超過は停止してRecoveryへ返る |\n",
+          "raw_lf_sha256": "314190c94bd365642d07fdb358781658d8d8cd746e473b1b4e016f86ca9f42ae"
+        },
+        {
+          "line": 24,
+          "literal_with_lf": "| BBR-AC05 | BBR-R04 | 部分失敗とCAS競合で差分/記録を保全。不明な外部副作用を再試行せず、Helpと許可された調査は維持。HEAD変更後のstale CI/reviewでmergeしない |\n",
+          "raw_lf_sha256": "2a4cd9eefade9d96ffc880fed8e3808b56bd26e70d2bbdafeed00073e15fcc4c"
+        },
+        {
+          "line": 25,
+          "literal_with_lf": "| BBR-AC06 | BBR-R05 | 各禁止修復を個別拒否。旧Policy巻戻しや残義務削除で緑化せず、意味矛盾を上流へ送る |\n",
+          "raw_lf_sha256": "7916c58e3307f34c0a47640464bebcf063aadbcc4fb36fcac11548cb5f08bc73"
+        },
+        {
+          "line": 26,
+          "literal_with_lf": "| BBR-AC07 | BBR-R01, BBR-R02, BBR-R03, BBR-R04, BBR-R05 | 一つの実consumerで検出→許可確認→隔離差分→適用→再検証→独立reviewを通す。生成・適用・検収を別証拠で残す |\n",
+          "raw_lf_sha256": "c6122947ef92bfd8f5034b353696d473eaccc511316996558a83e95126bb1ecf"
+        },
+        {
+          "line": 28,
+          "literal_with_lf": "AC07ではAと同じ費用・時間・手戻り指標に加え、誤修復・未解消数を比較する。\n",
+          "raw_lf_sha256": "fabeeb1b2f40135a6dc64bca8d0e030b06ff4eb8371094132f5acb28d32f42c2"
+        },
+        {
+          "line": 29,
+          "literal_with_lf": "対象consumer・採否閾値を測定前に固定し、実行回数だけで改善としない。\n",
+          "raw_lf_sha256": "0b7465dd2ef174a8609a07659672542e8744e3e80a710c1266ec1e3a431e7795"
+        },
+        {
+          "line": 30,
+          "literal_with_lf": "実装PLAN、実receipt、旧入口移管/rollback、CI、review、main read-afterを別々に提出する。\n",
+          "raw_lf_sha256": "2d8a18430415a1f4c049a693e159abf0d0f5a66a14c744f883c1ddd1b294dcab"
+        }
+      ],
+      "source_limitation": "draft_candidate;別紙02/03/05未提供、18 scenario全件を主張しない。consumer contextであり、現行066へ旧runtime/自動書込み/権限を移植しない。"
+    },
+    "registration_receipt": {
+      "revision": "af93d1f171d994f9fae2e78026b39ac27f896f5c",
+      "path": "docs/governance/audits/requirement-registration/labo-bugbot-misrepair-comparison-coverage-receipt-2026-09-28.json",
+      "receipt_id": "MPR-RCPT-LABO-BUGBOT-MISREPAIR-COMPARISON-2026-09-28",
+      "file_sha256": "b678eee15274606442d9b4f6ac99767e8f6c50939d36793550913fa89a443d56",
+      "candidate_l2_digest": "d65780351792a4587966a7eb45c34359626200af5bdd8eb55e197b0a6f0db184",
+      "candidate_l11_digest": "0a1d72d7d0fb3b97b14ce6f53738785b76bce642a2f9b7c83c4328a45fc68cce",
+      "digest_match": true,
+      "parsed_receipt": {
+        "receipt_id": "MPR-RCPT-LABO-BUGBOT-MISREPAIR-COMPARISON-2026-09-28",
+        "authority_effect": "none",
+        "candidate_state": "unregistered_proposal; authority_effect:none; PO未採択",
+        "candidate_digest_rule": "L2の### ID見出しから次の同階層見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+        "source_atom_set_ref": "docs/governance/audits/requirement-registration/labo-bugbot-misrepair-comparison-source-lines-2026-09-28.jsonl#LEGACY-CAND-LINE-000425",
+        "source_atom_set_digest_rule": "atom_id + 半角空白 + sha256:付きsource_line_sha256。末尾改行なし。",
+        "source_atom_set_digest": "sha256:125b5e3abc880685ab28ac2560aa7bc8226beaab29aa5c31cc0edc515ca784a5",
+        "scope": "旧Bugbot限定修復候補の75行目にある単独文1 atomだけを入力する。成功数だけに依存しない品質優先・費用/時間/手戻りは採択済みHELIXLABO-L2-059と対L11の条件を再利用し、Aとの同条件比較および誤修復数・未解消数を共通eligible case分母と事前固定oracleへ結ぶ残りを未採択HELIXLABO-L2-066/L11-066へ対応させ、この1 atomをno_lossで閉じる。059の固定revision・意味・採択範囲は変更しない。旧候補全体、隣接別atom、別紙、実装、受入実行、旧runtimeの再利用、要求採択、固定target/閾値、全旧要求のno_lossは主張しない。",
+        "source_boundary_review": {
+          "sentence_spans_source_lines": false,
+          "selected_source_line_ids": [
+            "LEGACY-CAND-LINE-000425"
+          ],
+          "adjacent_lines_out_of_scope": [
+            "LEGACY-CAND-LINE-000423",
+            "LEGACY-CAND-LINE-000424",
+            "LEGACY-CAND-LINE-000426"
+          ],
+          "classification_false_negative_found": false,
+          "classification_note": "旧候補source line carry-forward inventoryに当該行が存在し、preserved_pending_atomization・successor_requirement_ids空として保持されている。文境界をまたぐnormative条件は確認されず、誤ったsource行分類も確認されない。現行coverageの限定gapは、採択済み059/060が周辺の比較責務を持つ一方、75行目のA同条件における誤修復・未解消数の分母とoracleを明示していない点。従って別個の分類訂正auditは不要。"
+        },
+        "candidates": [
+          {
+            "requirement_identity": "HELIXLABO-L2-066",
+            "requirement_kind": "unit",
+            "parent_l1_ids": [
+              "HELIXLABO-L1-005",
+              "HELIXLABO-L1-011"
+            ],
+            "version_target": "1.0",
+            "candidate_semantic_digest": "sha256:d65780351792a4587966a7eb45c34359626200af5bdd8eb55e197b0a6f0db184",
+            "acceptance_candidate_digest": "sha256:0a1d72d7d0fb3b97b14ce6f53738785b76bce642a2f9b7c83c4328a45fc68cce",
+            "source_atom_set_digest": "sha256:125b5e3abc880685ab28ac2560aa7bc8226beaab29aa5c31cc0edc515ca784a5",
+            "source_atom_count": 1,
+            "source_collection_scope": "旧Bugbot限定修復候補の75行目1atomのみ。隣接73/74/76行は独立source lineのため本candidateへ含めず、移管完了とも主張しない。",
+            "atoms": [
+              {
+                "atom_id": "LEGACY-CAND-LINE-000425",
+                "legacy_asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+                "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+                "source_file_sha256": "sha256:81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+                "source_line": 75,
+                "source_line_sha256": "sha256:9facff56cbc42f9f7157dd85f1078605951af16a52fef5ec698bb62fd46681bc",
+                "source_text": "成功件数だけで評価せず、Aと同条件の費用・時間・手戻り・誤修復・未解消数を測定する。",
+                "source_authority_state": "historical_candidate",
+                "target_authority_state": "draft_candidate",
+                "inventory_atomization_status": "preserved_pending_atomization",
+                "disposition": "narrow_candidate",
+                "relation": "A identity/versionと同一eligible case分母・事前固定oracleに結んだ誤修復数と未解消数をL2-066/L11-066へ候補化する。費用・時間・手戻りおよびquality-first比較は採択済み059を再利用する。"
+              }
+            ],
+            "current_condition_refs": [
+              "docs/helix-labo/L1-planning/labo-intent.md#HELIXLABO-L1-005",
+              "docs/helix-labo/L1-planning/labo-intent.md#HELIXLABO-L1-011",
+              "docs/helix-labo/L2-requirements/labo-requirements.md#HELIXLABO-L2-006",
+              "docs/helix-labo/L2-requirements/labo-requirements.md#HELIXLABO-L2-059",
+              "docs/helix-labo/L2-requirements/labo-requirements.md#HELIXLABO-L2-060",
+              "docs/helix-labo/L11-acceptance/labo-acceptance.md#HELIXLABO-L2-059",
+              "docs/helix-labo/L11-acceptance/labo-acceptance.md#HELIXLABO-L2-060",
+              "docs/helix-labo/L2-requirements/labo-requirements.md#HELIXLABO-L2-066",
+              "docs/helix-labo/L11-acceptance/labo-acceptance.md#HELIXLABO-L2-066"
+            ],
+            "coverage_result": "no_loss",
+            "unaccounted_atom_refs": [],
+            "carried_atom_refs": [
+              "LEGACY-CAND-LINE-000425"
+            ]
+          }
+        ]
+      }
+    },
+    "old_47_inventory": {
+      "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "file_sha256": "7a6c7dc1f88c77bbd628a1320c0393f0ad6c14b76d5a30db0c4cda27d22b9d16",
+      "definitions": 47,
+      "rows": [
+        {
+          "case_id": "L10-LABO-066-CASE-01",
+          "line": 2847,
+          "literal_with_lf": "- `L10-LABO-066-CASE-01`（対応AC: `LABO-066-AC-01`） 正常: 共通eligible case集合Nとoracleを事前固定し、A/候補のmisrepair_count/Nとunresolved_count/Nを独立に照合する。\n",
+          "raw_lf_sha256": "583ae355f741cffaae6cd373274d97ce66308db09e1ce37b75e595b7aca66d5c"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-02",
+          "line": 2848,
+          "literal_with_lf": "- `L10-LABO-066-CASE-02`（対応AC: `LABO-066-AC-02`） 未見正常: 未見caseにも同じpredicate/oracleが適用可能な場合だけ追加し、適用不能はunknownで残す。\n",
+          "raw_lf_sha256": "2d4741a4bb7575a652035287fb511d297f09927ce25c4afbab14dcefb511f4f5"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-03a",
+          "line": 2852,
+          "literal_with_lf": "| `L10-LABO-066-CASE-03a` | `LABO-066-AC-03` | A identityだけ欠落 | 比較不能とし、A/source identityの既存責務ownerが特定できれば返し、できなければunknownを保持する。 |\n",
+          "raw_lf_sha256": "5c1e38d0e2602191ffe2f6601dd94a419391badb35762c74bd9704301a59ecb5"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-03b",
+          "line": 2853,
+          "literal_with_lf": "| `L10-LABO-066-CASE-03b` | `LABO-066-AC-03` | eligible denominatorだけ欠落 | 分率を出さず未評価とし、母集団/denominatorの既存責務ownerが特定できれば返し、できなければunknownを保持する。 |\n",
+          "raw_lf_sha256": "b7d92537174222253aa4c708fa1b66158e3a083ca6f3bbf14cbdcf32b54b9268"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-03c",
+          "line": 2854,
+          "literal_with_lf": "| `L10-LABO-066-CASE-03c` | `LABO-066-AC-03` | oracle revisionだけ異なる | 当該比較を無効にし、固定oracleのHARNESSまたは要求ownerへ戻す。 |\n",
+          "raw_lf_sha256": "7904fbd13d6784928b84787bf919338769c1a5e2e5975deae1f68f5bc45d211e"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-03d",
+          "line": 2855,
+          "literal_with_lf": "| `L10-LABO-066-CASE-03d` | `LABO-066-AC-03` | unknown caseだけ分母から除外 | 欠測を隠さず比較不能とし、unknown case/適用可能性の既存責務ownerが特定できれば返し、できなければunknownを保持する。 |\n",
+          "raw_lf_sha256": "fd08e2b031a9c2d69d5a4c6cf2033e3f0b5fa90907d983991e96752c14d157f6"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-03e",
+          "line": 2856,
+          "literal_with_lf": "| `L10-LABO-066-CASE-03e` | `LABO-066-AC-03` | unresolvedだけ成功へ置換 | 不合格を保持し、解決根拠/状態の既存責務ownerが特定できれば返し、できなければunknownを保持する。 |\n",
+          "raw_lf_sha256": "7d0ba3b553704da212c7c96ff370ebcdda7f8db3bbb4b35e673d7c1cdaa6836c"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-04a",
+          "line": 2857,
+          "literal_with_lf": "| `L10-LABO-066-CASE-04a` | `LABO-066-AC-03` | LABOが修復を実行 | 拒否しOS/Worker責務へ戻す。 |\n",
+          "raw_lf_sha256": "e1eccf1578b062f3a2f4a88f0f0341178dd9a2d996ca19267e892f10166a8603"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-05",
+          "line": 3198,
+          "literal_with_lf": "| `L10-LABO-066-CASE-05` | `LABO-066-AC-03` | 単独変異: method version だけ変更。その他の入力は `CASE-01` と同一。 | 同一比較として合算せず、method/versionの既存責務ownerが特定できれば返す。できなければunknownを保持する。 |\n",
+          "raw_lf_sha256": "9fb76c5b2d53114734d155188c6d51d6883a8c70f7bb21a36389151f05d9e145"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-06",
+          "line": 3199,
+          "literal_with_lf": "| `L10-LABO-066-CASE-06` | `LABO-066-AC-03` | 単独変異: cutoff だけ異なる。その他の入力は `CASE-01` と同一。 | 母集団を分離し、cutoff/母集団の既存責務ownerが特定できれば返す。できなければunknownを保持する。 |\n",
+          "raw_lf_sha256": "e160a0dc315f0a87ba218064b54a22f66e41a0f4e8be76a3fe9cc67303fdee3c"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-07",
+          "line": 3200,
+          "literal_with_lf": "| `L10-LABO-066-CASE-07` | `LABO-066-AC-03` |索引（独立fixtureではない）: `L10-LABO-066-CASE-14`、`L10-LABO-066-CASE-15`、`L10-LABO-066-CASE-16`。protocol、toolchain、environmentの各単独変異を参照する。|各単独CASEのoracleを個別に確認し、複合変異を独立計上しない。|\n",
+          "raw_lf_sha256": "f7386db89d17588956add8e76a26a198b7ac4b0f9257377d8dc18622f6e3a4f0"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-08",
+          "line": 3201,
+          "literal_with_lf": "| `L10-LABO-066-CASE-08` | `LABO-066-AC-03` | 単独変異: 片側group receipt だけ欠落。その他の入力は `CASE-01` と同一。 | 群別結果を未評価 戻し先: OS。 |\n",
+          "raw_lf_sha256": "931b05cb9b8c31db6ee1ce408d2f5425c651b53ed22f9f2beec097d6b273f724"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-09",
+          "line": 3202,
+          "literal_with_lf": "| `L10-LABO-066-CASE-09` | `LABO-066-AC-03` | 単独変異: 結果観測後にoracle結果だけ変更。その他の入力は `CASE-01` と同一。 | 事後変更を拒否し事前oracleで再評価 戻し先: HARNESS。 |\n",
+          "raw_lf_sha256": "e18b431d09651874c936cb06cf80cd5d7bcae19a55d9f4e735c1456f9dad7e08"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-10",
+          "line": 3203,
+          "literal_with_lf": "| `L10-LABO-066-CASE-10` | `LABO-066-AC-03` | 単独変異: duplicate case identity だけ追加。その他の入力は `CASE-01` と同一。 | eligible Nを重複計上しない 戻し先: LABO。 |\n",
+          "raw_lf_sha256": "29040962d8024fa0e4db2ff78545f85c5a1dcf5b8e0e02aff7ddca07c108dc3c"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-11",
+          "line": 3204,
+          "literal_with_lf": "| `L10-LABO-066-CASE-11` | `LABO-066-AC-03` | 単独変異: denominatorなしのnumeratorだけを変更。その他の入力は `CASE-01` と同一。 | 割合を出さない 戻し先: LABO。 |\n",
+          "raw_lf_sha256": "fc2f4eb567a765161f2aed0d7464e976aa20ef579c53b887caea63efe8332e82"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-12",
+          "line": 3205,
+          "literal_with_lf": "| `L10-LABO-066-CASE-12` | `LABO-066-AC-03` | 単独変異: A側の費用項目だけ比較から除外する。その他の入力はCASE-01と同一。 | 費用完全性を不成立とし、除外された費用sourceが識別できればLABO-055またはその既存source ownerへ返す。OSへ費用source ownerを推定しない。 |\n",
+          "raw_lf_sha256": "cc033b5b2ac029632f433c38e922152f05061800d6cb97e2540f634211cb1d09"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-13",
+          "line": 3206,
+          "literal_with_lf": "| `L10-LABO-066-CASE-13` | `LABO-066-AC-03` | 同一eligible caseが各oracleでmisrepairとunresolvedの両方に該当する正常入力で、集計時に二指標を排他的分類へ変える唯一の変異。その他の入力はCASE-01と同一。 | 当該caseをmisrepairとunresolvedの各分子へ独立に含め、eligible Nのcase identityを重複計上せず各指標を別々に返す。二指標の重なりを理由に片方を除外しない。 |\n",
+          "raw_lf_sha256": "cec863b8dc31a83ccf748a8039e56f20460a87808120cf1074704976708492d2"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-14",
+          "line": 2861,
+          "literal_with_lf": "| `L10-LABO-066-CASE-14` | `LABO-066-AC-03` | 単独変異: protocolだけ異なる。その他の入力はCASE-01と同一。 | 比較不能として分離する。protocol source ownerは固定親から特定できないため新ownerを推定しない。 |\n",
+          "raw_lf_sha256": "c5c3598b611e0ce6a7a84852a9a19d8474c4946ce9ecb9d20753180260a38965"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-15",
+          "line": 2862,
+          "literal_with_lf": "| `L10-LABO-066-CASE-15` | `LABO-066-AC-03` | 単独変異: toolchainだけ異なる。その他の入力はCASE-01と同一。 | 比較不能として分離する。toolchain source ownerは固定親から特定できないため新ownerを推定しない。 |\n",
+          "raw_lf_sha256": "ea62b622ab6f9893d7cfa16db97936a733906fa8e8e24f7e20fc5c8f1981608c"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-16",
+          "line": 2863,
+          "literal_with_lf": "| `L10-LABO-066-CASE-16` | `LABO-066-AC-03` | 単独変異: environmentだけ異なる。その他の入力はCASE-01と同一。 | 比較不能として分離する。environment source ownerは固定親から特定できないため新ownerを推定しない。 |\n",
+          "raw_lf_sha256": "e3e70b206cd331d5fc2dc3911368fdfc2c724bf229f610ef53a4ff3dbc08d969"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-17",
+          "line": 2867,
+          "literal_with_lf": "| `L10-LABO-066-CASE-17` | `LABO-066-AC-03` | task identityだけ不一致 | 比較不能としtask契約/identityの既存責務ownerへ返す。ownerを特定できなければunknownを保つ。 |\n",
+          "raw_lf_sha256": "426e4b0607935a235eca4608a978c56a2e6bb40398ff1a737e9df1b40c5d493f"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-18",
+          "line": 2868,
+          "literal_with_lf": "| `L10-LABO-066-CASE-18` | `LABO-066-AC-03` | scopeだけ不一致 | 比較不能としscopeを持つ既存責務ownerへ返す。ownerを特定できなければunknownを保つ。 |\n",
+          "raw_lf_sha256": "a425564aca2c562093ec552f3e108bd8bd240962e6f3d3a1c50e979b3fc75f8c"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-19",
+          "line": 2869,
+          "literal_with_lf": "| `L10-LABO-066-CASE-19` | `LABO-066-AC-03` | target revisionだけ不一致 | 比較不能とし当該target/sourceの既存ownerへ返す。ownerを特定できなければunknownを保つ。 |\n",
+          "raw_lf_sha256": "e2eed01a273fe7793af8fd1c0cbbd30f33e6119c46bc949e7cc08abe7c227c3f"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-20",
+          "line": 2870,
+          "literal_with_lf": "| `L10-LABO-066-CASE-20` | `LABO-066-AC-03` | scorer identityだけ不一致 | 比較不能としscorer/oracleの既存責務ownerへ返す。ownerを特定できなければunknownを保つ。 |\n",
+          "raw_lf_sha256": "ca50238ce6822c896978a629119112b671feab6ab37b495904863d64db9c37d0"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-21",
+          "line": 2871,
+          "literal_with_lf": "| `L10-LABO-066-CASE-21` | `LABO-066-AC-03` | 結果後にeligible集合/分母だけ変更 | 事前集合からの変更を拒否する。 |\n",
+          "raw_lf_sha256": "6f508ec75a539a36b8f6fb46b39378f955ad1671fb2d65e7f5e50ad4ae05c318"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-22",
+          "line": 2872,
+          "literal_with_lf": "| `L10-LABO-066-CASE-22` | `LABO-066-AC-03` | 索引（独立fixtureではない）: CASE-23/24のmisrepair countとunresolved countを個別に参照する。 | 2ケースを別々に検証し、複合変異を独立計上しない。 |\n",
+          "raw_lf_sha256": "b1d917e44b181e76dfef0d00550feca2be7f6319129128893916d1fa56f3ad87"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-23",
+          "line": 2876,
+          "literal_with_lf": "| `L10-LABO-066-CASE-23` | `LABO-066-AC-03` | oracleに結ばないmisrepair countだけ提示 | misrepair数を未評価にする。 |\n",
+          "raw_lf_sha256": "95711e14d67b2af3a7d3013a4ecb1449ccff5033ea4d5bd068feac8ea1d54841"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-24",
+          "line": 2877,
+          "literal_with_lf": "| `L10-LABO-066-CASE-24` | `LABO-066-AC-03` | oracleに結ばないunresolved countだけ提示 | unresolved数を未評価にする。 |\n",
+          "raw_lf_sha256": "64c32f4e47e59828f2dc2d02a6abbb30c65d22a6192b817f50d1434c7d71898b"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-25",
+          "line": 2878,
+          "literal_with_lf": "| `L10-LABO-066-CASE-25` | `LABO-066-AC-03` | 準備: CASE-01の有効eligible集合に誤修復を1件記録し、A/候補両群のoracle/receiptを保つ。単独変異: 成功率だけで誤修復を隠す。 | misrepairを別に保持し成功率で相殺しない。 |\n",
+          "raw_lf_sha256": "6f90db6028180e591dfbc37123f12d967088884f2186a5045d343cb811fb1737"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-26",
+          "line": 2879,
+          "literal_with_lf": "| `L10-LABO-066-CASE-26` | `LABO-066-AC-03` | 準備: CASE-01の有効eligible集合に未解消を1件記録し、A/候補両群のoracle/receiptを保つ。単独変異: 費用だけで未解消を隠す。 | unresolvedを別に保持し費用で相殺しない。 |\n",
+          "raw_lf_sha256": "9d19cdc330c9911d66d4f35f61d60aac6e79fb6665a8ee97542c4141193acbf3"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-27",
+          "line": 2880,
+          "literal_with_lf": "| `L10-LABO-066-CASE-27` | `LABO-066-AC-03` | A result receiptだけstale | A側の比較結果を未評価としOS/run receipt ownerへ戻す。 |\n",
+          "raw_lf_sha256": "c5a917b8f54a577298841e0d8c55cffd7bc36c30b0ec9384219f45b489f1d5f7"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-28",
+          "line": 2881,
+          "literal_with_lf": "| `L10-LABO-066-CASE-28` | `LABO-066-AC-03` | candidate-group result receiptだけstale | 候補側の比較結果を未評価としOS/run receipt ownerへ戻す。 |\n",
+          "raw_lf_sha256": "f9a4642eab77d787a4e18d793ce0e1b2b8f4cb5395b1f72142f3acd9daf4529f"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-29",
+          "line": 3331,
+          "literal_with_lf": "| `L10-LABO-066-CASE-29` | `LABO-066-AC-03` | 準備: 有効なeligible comparisonにmisrepairを1件記録し、speedを通常値として保持する。単独変異: misrepairだけを表示から外しspeed改善だけを報告する。 | misrepair countを独立に保持し、速度で相殺しない。 |\n",
+          "raw_lf_sha256": "b77211e43e99654fb3c7a37548c36542da2f0b1a7bb9f0c01b0b7c0641968678"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-30",
+          "line": 3332,
+          "literal_with_lf": "| `L10-LABO-066-CASE-30` | `LABO-066-AC-03` | 準備: 有効なeligible comparisonにunresolvedを1件記録し、speedを通常値として保持する。単独変異: unresolvedだけを表示から外しspeed改善だけを報告する。 | unresolved countを独立に保持し、速度で相殺しない。 |\n",
+          "raw_lf_sha256": "378c44b10cbbd941984c69f8805cd6bd07ed156b5ca5a9c87c3165b44662d954"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-31",
+          "line": 3333,
+          "literal_with_lf": "| `L10-LABO-066-CASE-31` | `LABO-066-AC-03` | 有効な比較入力のoracleで誤修復が記録されている状態を保ち、唯一の変異は表示から誤修復を外して費用だけを示すこと。eligible set、oracle、receiptは `CASE-01` と同じ。 | 誤修復分子を費用と別に保持し、oracle結果を相殺しない。 |\n",
+          "raw_lf_sha256": "a293810a430026a161b30c2609511e2c81eb2d5e20ba32a49b9ac13ef1c8e7ba"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-32",
+          "line": 3334,
+          "literal_with_lf": "| `L10-LABO-066-CASE-32` | `LABO-066-AC-03` | 有効な比較入力のoracleで未解消が記録されている状態を保ち、唯一の変異は表示から未解消を外して成功率だけを示すこと。eligible set、oracle、receiptは `CASE-01` と同じ。 | 未解消分子を成功率と別に保持し、oracle判定を相殺しない。 |\n",
+          "raw_lf_sha256": "19127aa0d48998d248cfa0346eb1deb7480c26d59a2b2cbb22c18a25e901c29d"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-33",
+          "line": 3335,
+          "literal_with_lf": "| `L10-LABO-066-CASE-33` | `LABO-066-AC-03` | A identityだけunknown。その他の比較条件・候補側入力・oracle receiptはCASE-01と同一。 | Aを推測せず比較をunknown/未評価とし率を確定しない。Aの定義/版ownerが特定できれば戻し、できなければowner unknownを保つ。 |\n",
+          "raw_lf_sha256": "f2cb5156bba0f38def888ad7ffc95e84c06c79af79aa87eacd2c92e355f69782"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-34",
+          "line": 3358,
+          "literal_with_lf": "| `L10-LABO-066-CASE-34` | `LABO-066-AC-03` | 単独変異: A群と候補群のeligible case集合だけが異なる。その他の比較条件は有効。 | 比較不能として分離し、同一母集団の率を出さない。eligible集合を提供する既存source ownerが識別できればそこへ返し、unknownはunknownのまま。 |\n",
+          "raw_lf_sha256": "8b61065eafe8d0ba92e6eec859700cc824a73d54f9c98ae63fab8a3f355f31d9"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-35",
+          "line": 3360,
+          "literal_with_lf": "| `L10-LABO-066-CASE-35` | `LABO-066-AC-03` | 単独変異: 適用oracleだけ欠落。A/候補両群の他条件はCASE-01と同一。 | 比較をunknown/未評価とし、oracle不足をHARNESS/要求ownerへ返す。 |\n",
+          "raw_lf_sha256": "82cf3c740bfadecf516b0d5471a0f1fbc8f30ef3746fe964027d4d7c3e46c56f"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-36",
+          "line": 3361,
+          "literal_with_lf": "| `L10-LABO-066-CASE-36` | `LABO-066-AC-03` | 単独変異: cutoffだけ欠落。oracleと他条件はCASE-01と同一。 | eligible母集団を確定せず割合を出さない。cutoffを持つ既存source ownerが識別できればそこへ返し、特定不能はunknown。 |\n",
+          "raw_lf_sha256": "cffcd87df82449975e8e1f328cb9c0c31f8f16ceb452873625eec46734bff80e"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-37",
+          "line": 3362,
+          "literal_with_lf": "| `L10-LABO-066-CASE-37` | `LABO-066-AC-03` | 単独変異: cutoff revisionだけstale。その他はCASE-01と同一。 | stale cutoffで比較せず未評価にする。cutoff source ownerが識別できればそこへ返し、特定不能はunknown。 |\n",
+          "raw_lf_sha256": "314b98f56265f99ec930147d01be1a0484734ab6a6ab45fb6eaf264056567de3"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-38",
+          "line": 3363,
+          "literal_with_lf": "| `L10-LABO-066-CASE-38` | `LABO-066-AC-03` | 単独変異: 事前確定eligible集合のrevisionだけstale。A/候補両群は同じ古い集合を参照。 | stale集合から現在の分母を推定せず比較不能にする。eligible-set source ownerが識別できればそこへ返し、特定不能はunknown。 |\n",
+          "raw_lf_sha256": "2a9b84c17de965ffb200e0a1addd4e631e13603f92bd666581f3bb5cc8f595e2"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-39",
+          "line": 3364,
+          "literal_with_lf": "| `L10-LABO-066-CASE-39` | `LABO-066-AC-03` | 単独変異: 観測されたA identityだけが事前固定A identityとmismatch。候補identityと他の比較条件はCASE-01と同一。 | 固定Aを別identityへ置換せず比較をunknown/未評価にする。A identity source ownerが識別できればそこへ、できなければunknownを保つ。 |\n",
+          "raw_lf_sha256": "9df5b7dc3b8d2e4583e12fc017127db8284958e464a6868ddd28ae0fb2c38a26"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-40",
+          "line": 3365,
+          "literal_with_lf": "| `L10-LABO-066-CASE-40` | `LABO-066-AC-03` | 単独変異: A identity revisionだけstale。その他の入力はCASE-01と同一。 | stale identityを現在Aとして流用せず比較不能にする。A identity ownerが識別できればそこへ返し、特定不能はunknown。 |\n",
+          "raw_lf_sha256": "c8b128fb484bec5f2cbca01b7d15cdd59130e04038c6d90c49b4680befba6a4a"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-41",
+          "line": 3366,
+          "literal_with_lf": "| `L10-LABO-066-CASE-41` | `LABO-066-AC-03` | 単独変異: rework costだけA側/候補側の片側から除外。その他の条件はCASE-01と同一。 | 片側だけ費用を除外した比較を不成立とし、総費用の対称性を保持する。欠けたeffort/cost sourceが識別できればLABO-055またはそのsourceへ返し、特定不能はunknown。 |\n",
+          "raw_lf_sha256": "27093db83f6bb023ca0360beffb148168e84e75cf51e74a9ac95094d33a3a479"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-42",
+          "line": 3395,
+          "literal_with_lf": "| `L10-LABO-066-CASE-42` | `LABO-066-AC-03` | 準備: A/候補の同一eligible集合で費用項目が両側に記録されている。単独変異: 候補側の費用項目だけを比較から除外する。 | 非対称な費用比較を拒否する。手戻り費用だけの片側除外はCASE-41で個別に照合する。 |\n",
+          "raw_lf_sha256": "eae63071a139d9c141234223d7f2931181a249095c9d54864c41496f6e9c53e4"
+        },
+        {
+          "case_id": "L10-LABO-066-CASE-43",
+          "line": 3396,
+          "literal_with_lf": "| `L10-LABO-066-CASE-43` | `LABO-066-AC-03` | 単独変異: outcomeを確認した後にoracleだけを変更する。その他の比較入力はCASE-01と同一。 | 事後oracle変更を拒否し、元oracle結果を保持する。 |\n",
+          "raw_lf_sha256": "d4922275685773355b0779c7c1f15a7216635bab6cec33e2373152b6c4643a20"
+        }
+      ]
+    },
+    "review05": {
+      "pr": 2620,
+      "comment_id": 6010745544,
+      "body_sha256": "761f8eb92265a9b7325daf2340cd96847d5fa11a5ef2d344c1fc455788fe341a",
+      "body_utf8_bytes": 8059,
+      "066_findings": [
+        {
+          "label": "m3",
+          "status": "found",
+          "raw_text": "- **M3（066-29/30：準備状態と変異が食い違う。review04 M7の残り）**：準備では「speedを通常値として保持」としているのに、変異は「speed改善だけを報告」になっている。隠すことと、速度の主張を変えることの2点が変異になるのか、baselineが一意に決まらない。066-31/32と書き方がそろっていない。agentの確信度は中程度で、Opus側はbaselineが一意でないためMajorとする。→守るべき行：L2-066「比較条件と失敗」、L11-066の誤り例（成功件数・費用・速度だけで隠す）。\n\n**Minor**\n",
+          "utf8_bytes": 631,
+          "sha256": "247d050c8a6084da10d71dd2dbee3bfa2cb3bcb4e5e8ddae1a65b65a69ff641a"
+        },
+        {
+          "label": "m5",
+          "status": "found",
+          "raw_text": "- **m5（重複計上）**：新しく追加したCASEの多くが、既存の単独fixtureと同じ変異を持っている。\n  - 063：54≒08、56/57≒49/50、58≒13、59≒12、61≒15、62≒16、64/65≒41/42\n  - 065-45≒065-11\n  - 066-43≒066-09\n  - 064-38/39≒064-04a（04aは2変異の行のまま残っている）\n  - NVとNGは、063の54〜62と64/65を独立したnegativeとして数えている。063-58には、063-13にある「観測提供主体へ返す」がない。\n  - 補足：review04 M11が求めたのは、FRへの禁止句の追補だけだった。対応する既存CASEは、すでにAC-03をtraceしていた。\n",
+          "utf8_bytes": 651,
+          "sha256": "5c78ae97513b9b0d2343ecfeaf9be20e0d62b57e60b2a549e14312dcf9bce357"
+        },
+        {
+          "label": "m6",
+          "status": "found",
+          "raw_text": "- **m6（戻し先の併記漏れ）**：\n  - 065-41〜44、069-31/32、070-63、066-42/43に戻し先がない。\n  - 070-69は、対象fieldも特定していない。\n  - 064-24/33/35/36から、evaluation ownerが削られた。064-33は「再評価義務を返す」を「当該scopeを再評価する」に変えている。\n  - →守るべき行：L2-065/069/066「戻し先」、L11-064の未見例、L11-070の個別反例。\n",
+          "utf8_bytes": 436,
+          "sha256": "7a8a4717d3940e9242b1b4e5a52640d1263f42526de46cccf951b1efcab995fc"
+        }
+      ]
+    }
+  },
+  "body_manifest": {
+    "algorithm": "SHA-256 over b\"HELIX-LABO-066-FROZEN-BODY-v1\\0\" then, in the listed six-path order: UTF8 path, NUL, 8-byte big-endian prefix length, prefix bytes, 8-byte big-endian suffix length, suffix bytes.",
+    "sha256": "0a912da070eb6d001a415e6b830153d088476714fd8be58bcafed222e2dc9d2e"
+  },
+  "files": [
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "base_prefix_bytes": 14872,
+      "base_prefix_sha256": "71b81422df7431fe42e15f20cb46c40ee36274162ecd8123adccb3f2b2fafc49",
+      "suffix_bytes": 803,
+      "suffix_sha256": "3dc759a6eb597cc46b0014dbedc2dc705810eebcc810e0bee891afbf3941fc3a",
+      "full_bytes": 15675,
+      "full_file_sha256": "bfcd5a64b295a9e3d434fd9369d97ffb45172b11dcccd40bfd205e9375af6ec6",
+      "base_had_final_lf": true,
+      "frozen_file_has_final_lf": true,
+      "suffix_text": "\n### HELIXLABO-L2-066 — A比較における誤修復・未解消数の明示\n\n状態：未承認のL3候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。\n\n固定L2-066は同条件比較で誤修復数・未解消数を測る機能結果を定める。これと独立したbusiness outcome/ownerは固定L2/L11から導かれないため、BR・独立AC・業務成果を追加しない。既存の比較結果はL2-066および採択済みL2-059の範囲に留め、別の採択、効果達成、事業判断を生成しない。成果と失敗はfunctional requirementの `LABO-066-AC-01`〜`LABO-066-AC-03` をL10 functional verificationで照合する。\n"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "base_prefix_bytes": 298371,
+      "base_prefix_sha256": "a457a383bebc8f579f27d93e991d01b2c7789bd698e6362a47bec7f600dd8ba1",
+      "suffix_bytes": 5901,
+      "suffix_sha256": "c2836aa13303d64d5b884de5438a4c01c7ba07410634687682850d6c0fef175d",
+      "full_bytes": 304272,
+      "full_file_sha256": "6098885299fbab6b15a3bf0b62f5fcfed7df33984cf3d1a11479322c8cdcad42",
+      "base_had_final_lf": true,
+      "frozen_file_has_final_lf": true,
+      "suffix_text": "\n### HELIXLABO-L2-066 — A比較における誤修復・未解消数の明示\n\n状態：未承認のL3候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。\n\n**固定sourceとPO状態**：固定revision `0dd946cec1c3fca8e144513b72e2e10d16c7c9c3` のL2 `docs/helix-labo/L2-requirements/labo-requirements.md:518-528`（file SHA-256 `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9`、span SHA-256 `5a67776a3f4567fa662c86898caf275fddbe8dc806fd3a19622cae9f733cdb69`）およびL11 `docs/helix-labo/L11-acceptance/labo-acceptance.md:261-268`（file SHA-256 `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0`、span SHA-256 `dd302f23a38d74475e707be64d9ee69a0bfda35b98902c62173c45d8c369a556`）を対で起点にする。PO記録 `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:81` は、候補base `af8d0aac1a20cd3a41ca9df088bc7bf3501847ff` 上の当該行をactualReadして確認した。行SHA-256 `41121ae7430cd5890e3aae87edd38e1c3cc37b493cc20e65b6dacb0976d81d4f`。同行はHELIXLABO-L2-066を採択し、`MPR-RC-HELIXLABO-L2-066-001` と固定本文digestを指す。登録証拠 `MPR-RCPT-LABO-BUGBOT-MISREPAIR-COMPARISON-2026-09-28`（SHA-256 `b678eee15274606442d9b4f6ac99767e8f6c50939d36793550913fa89a443d56`）は旧source atomと候補対応を記録する。L2本文の事前metadata `draft_candidate` はそのまま保持し、PO採択状態と混同しない。\n\n**旧HELIX起点と処置**：旧source `LEGACY-ASSET-D881AF6AFD277B1DE934` の `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md:75`（file SHA-256 `81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb`、line SHA-256 `9facff56cbc42f9f7157dd85f1078605951af16a52fef5ec698bb62fd46681bc`）は「成功件数だけで評価せず、Aと同条件の費用・時間・手戻り・誤修復・未解消数を測定する。」の単独atomである。保持する意図はAとの同条件比較で誤修復・未解消数を隠さないこと。成功数以外の費用・時間・手戻り、品質優先、比較条件は採択済みL2-059から再利用する。旧sourceの残る意味を、共通eligible case分母Nと事前固定oracleに結んだ2指標として再導出する。隣接73/74/76行、旧Bugbot全要求、runtime/test/実装はこの親へ移さず、旧実行・write・assignment/admission authorityは現行L2-066の責務境界に置換する。\n\n旧paired consumer `LEGACY-ASSET-901CD182B52024593E41`（`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-acceptance.md`、file SHA-256 `cd2fdd3dcfaa98935db0fef6b876d6cdb7133b11b8c8877363c3d0138c4b8cbc`）はdraft候補で、別紙02/03/05が未提供であり、旧18シナリオ全件対応を主張しない。旧consumer全体を現行の許可や実行条件として再利用しない。\n\n**要求本文**\n\n`LABO-066-FR-01` 比較前にA identity/version、候補repair method identity/version、task/scope/target revision、共通eligible case集合とそのrevision、受入/quality oracle・scorer identity/revision、protocol、toolchain、environment、期間または同一終了/cutoffを受け取る。case identity重複は一件に正規化する。比較開始後にeligible集合、N、oracle、cutoffを変更しない。\n\n`LABO-066-FR-02` A群・候補群ごとに、oracleが誤修復と判定した件数 `misrepair_count/N` と、終了/cutoff時に受入oracleを満たす解決のない件数 `unresolved_count/N` を別々に分子・分母・case判定receipt付きで示す。両指標は同じcaseに該当し得る。適用不能・receipt不足のcaseはunknownとして記録し、Nから黙って除外せず、その比較の割合を未評価/比較不能にする。費用・時間・手戻りの意味と集計はL2-059を再利用する。\n\n`LABO-066-FR-03` task/scope/target/oracle/cutoff/eligible setの不一致、stale/missing result receipt、費用の片側欠落、unknown証拠を比較不能/未評価へ分ける。固定L2の既知責務区分を保つ：oracle/acceptance/task-scope contractはHARNESSまたは要求owner、assignment/run receiptはOS、measurement/comparison/evaluationはLABO。ある個体のidentityがunknownでも、LABOの評価義務と既知の責務区分を消さない。個体mappingのunknownは別に残し、sourceにない個別ownerを作らない。評価結果からL2採択、repair permission/action、placement、admission、requirement completionを生成しない。新しい比較runは既存OS assignmentと該当SECURITY許可に従い、LABO自身はWorker/methodを選定・割当・起動・実行しない。\n\n**Acceptance criteria（定義は本L3 functional suffixのみ）**\n\n`LABO-066-AC-01`（正常・FR-01/02）：B0の入力fieldと両群receiptがそろう合成比較で、各群の2指標を共通Nの分子・分母・oracle receiptから再構成し、互いに独立して提示する。\n\n`LABO-066-AC-02`（未見・FR-01/02/03）：B0とは別の合成比較scopeで、未見caseを含むeligible set N1を結果閲覧前に固定する。同じpredicate/oracleを適用できる根拠があればN1のcaseとして数え、適用不能ならunknown/未評価を保つ。既存B0のNは変更しない。\n\n`LABO-066-AC-03`（異常・境界・FR-01/02/03）：単独field mutationとして、unknown除外、条件不一致、stale/missing receipt、費用非対称、oracle/N/cutoff事後変更を与え、率を出さず比較不能/未評価へ分ける。既知owner区分を保ち、個体unknownを別に保持する。評価結果から採択・repair permission・placement・admission・requirement_completeを生成しない。\n"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "base_prefix_bytes": 66454,
+      "base_prefix_sha256": "fc22cc61757139a102a4d713ece92c314d15aefea970d6fc592eeb27f209889a",
+      "suffix_bytes": 1313,
+      "suffix_sha256": "77be1f306c73a558daebba11ba608a02444940775b7695665c8e455f19932834",
+      "full_bytes": 67767,
+      "full_file_sha256": "e694de8312cc215bac2b9331c78a2df8ae21ce8948e51ee7f4a5a037abecc91f",
+      "base_had_final_lf": true,
+      "frozen_file_has_final_lf": true,
+      "suffix_text": "\n### HELIXLABO-L2-066 — A比較における誤修復・未解消数の測定可能性\n\n状態：未承認のL3候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。\n\n`LABO-066-NG-01` 候補：比較結果はA/candidate identityとversion、eligible set identity/revision、task/scope/target revision、oracle/scorer revision、protocol/toolchain/environment/cutoff、両群のresultとoracle receipt、unknown理由、2指標の分子/分母を追跡可能にする。\n\n**候補値と根拠**：固定L2-066のcase分母N・oracleとの結合、L11-066の正常/誤り/unknown境界から必要なtrace fieldsを導く。測定値は合成B0入力・合成receipt上で分子/分母とsource revisionを再構成できるかで確認する。misrepair/unresolvedの間に排他条件を置かない。費用/時間/reworkのfield意味はL2-059の同じscope比較に合わせる。\n\n許容率、速度値、性能threshold、sample count、運用期間、合否閾値は提案しない。計測できない場合はunknown/未評価を記録し、0や合格へ置換しない。これは根拠付き測定設計候補であり、実測結果・承認値ではない。\n"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "base_prefix_bytes": 12514,
+      "base_prefix_sha256": "4e0dd519b80d5a56f4a62869e21186c15522c15712ffc550b004188a90ad64fd",
+      "suffix_bytes": 988,
+      "suffix_sha256": "1d82064b50b3a3baa01dd013087966fa3202dd7f0e82b17ce512fcc2c2609553",
+      "full_bytes": 13502,
+      "full_file_sha256": "0065a82c60de87190750f09e889dfa4d4d85631c5685da807e8589ec32f342f9",
+      "base_had_final_lf": true,
+      "frozen_file_has_final_lf": true,
+      "suffix_text": "\n### HELIXLABO-L2-066 — 既存比較business outcomeとの対応確認\n\n状態：未承認のL10候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。\n\n固定L2/L11から独立のbusiness outcome/ownerは導かれないため、独立BV/AC/BCASEを追加しない。L2-066が定める同条件比較の成果を、L3 functional requirementの `LABO-066-AC-01`〜`LABO-066-AC-03` に従って [L10 functional verification](functional-verification.md) で照合する。\n\n`LABO-066-BV-01` は独立成果判定ではなく、同じ比較材料（misrepair_count/N、unresolved_count/N、L2-059由来の費用・時間・手戻り）が固定scopeとsource receiptに追跡可能なことを記録する参照項目である。計測結果から効果達成、採択、実装、run許可、業務完了を生成しない。L10検証は未実行。\n"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "base_prefix_bytes": 421399,
+      "base_prefix_sha256": "ab940253986a0a7f24e532c256dceffb387781e236f21a1e4738d6dd97adbd5c",
+      "suffix_bytes": 27312,
+      "suffix_sha256": "13065d1321ee6d28831f59e811d3761a6e7a56df32dbce2ab9c86bb495b52870",
+      "full_bytes": 448711,
+      "full_file_sha256": "4f530883784ec6bcee8dd853988a08dbac309f73840a4894e684769a2ee16805",
+      "base_had_final_lf": true,
+      "frozen_file_has_final_lf": true,
+      "suffix_text": "\n### HELIXLABO-L2-066 — 同条件比較のfunctional verification / 52 CASE\n\n状態：未承認のL10候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。\n\n**状態と起点**：未実行の合成fixture/oracle候補。固定L2/L11が定める条件をfunctional ACへ対応させる。旧L10 `docs/helix-labo/L10-verification/functional-verification.md` のrevision `a4a365dcdfe824ebb28d040c8bc3bc924556efad`、file SHA-256 `7a6c7dc1f88c77bbd628a1320c0393f0ad6c14b76d5a30db0c4cda27d22b9d16` にある旧47 CASE IDは順序・IDで保持する。旧本文literalは監査用JSONの `legacy_case_matrix` に行番号・line SHAとともに保全し、下表のbaseline/mutation/oracleはL2/L11から再導出した候補条件である。旧本文byteをcanonical要件として複製する意味ではない。\n\n旧CASE-07/22はliteralがindexと明記するため独立fixture数に含めず、参照先CASEのみを数える。review05のm3/m5/m6は過去findingとして保持し、今回の文面を独立review済み・finding解消済みとは扱わない。CASE-29/30はspeed improvementをすでに持つ合成観測receiptをbaselineとして、metric表示だけを除く単独変異に再導出した。実測実績は主張しない。CASE-11はN欠落をbaselineとして、欠落Nで率を出す誤出力だけを検査する。CASE-02は別scopeのN1を閲覧前に固定し、既存B0/Nは変えない。\n\n**共通合成正常入力 B0（CASE-01）**：結果閲覧前にA identity/versionとcandidate repair method identity/version、task/scope/target revision、case identityを重複正規化した同一eligible set N、受入oracle/scorer identity+revision、protocol、toolchain、environment、同一periodまたは終了/cutoffを固定する。A群とcandidate群の各caseにresult・oracle判定receiptがあり、retry/rework/rescueと費用・時間receiptが両群に存在する。費用の意味・集計はL2-059に合わせる。N・oracle・cutoffは結果後に変えない。\n\n以下は6列52 CASE。列中のowner routeは固定L2/L11が明示する既知責務区分だけを用いる。責務カテゴリが分かっている場合、それを個体identity unknownで消さない。個体owner自体がsourceから特定できない場合は個体unknownも記録する。\n\n| CASE ID | FR ID | AC ID | baseline/input | mutation/index role | expected oracle / return route |\n|---|---|---|---|---|---|\n| `L10-LABO-066-CASE-01` | `LABO-066-FR-01` | `LABO-066-AC-01` | B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。 | 正常対照。入力を変更しない。 | A/候補の各群についてmisrepair_count/Nとunresolved_count/Nを分子・分母・case判定receipt付きで別々に再構成し、2指標の重複を許す。 |\n| `L10-LABO-066-CASE-02` | `LABO-066-FR-02` | `LABO-066-AC-02` | B0とは別の合成比較scopeを用意し、結果閲覧前に未見caseを含むeligible集合N1を固定する。追加caseにも同じpredicate/oracleが適用できる根拠を確認する。既存B0のNは変更しない。 | 別scopeでの未見case追加は独立正常対照の入力。適用不能時はcaseをunknownとして扱う。 | 適用可能ならN1内で同じoracleにより判定し、不能ならunknown/未評価を保持してN1から黙って除かない。旧CASE-02の意味を保ち、B0の母集団を事後変更しない。 |\n| `L10-LABO-066-CASE-03a` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | A identityだけ欠落 | 比較不能とし、A/source identityの既存責務ownerが特定できれば返し、できなければunknownを保持する。 |\n| `L10-LABO-066-CASE-03b` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | eligible denominatorだけ欠落 | 分率を出さず未評価とし、母集団/denominatorの既存責務ownerが特定できれば返し、できなければunknownを保持する。 |\n| `L10-LABO-066-CASE-03c` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | oracle revisionだけ異なる | 当該比較を無効にし、固定oracleのHARNESSまたは要求ownerへ戻す。 |\n| `L10-LABO-066-CASE-03d` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0の対象集合にQunknownが既に含まれる。Qunknownはoracle適用不能であり、この時点でrateは未確定。 | Qunknownをeligible denominatorから除外し、除外後のNでrateを確定出力する誤処理だけを注入する。 | QunknownをunknownとしてN/記録に残し、rateを確定しない。適用可能性/receiptの既存責務ownerを特定できる場合だけ返し、LABOは評価未完了を維持する。 |\n| `L10-LABO-066-CASE-03e` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0のeligible setにU0が含まれ、oracle receiptはcutoff時点でunresolved=trueを示す。 | U0のunresolved表示を落とし、success表示だけに置換する誤処理を注入する。 | U0のunresolved判定とreceiptを保持し、successだけへの置換を拒否する。解決状態sourceの既存ownerが特定できる場合だけ返し、特定不能はunknownを残す。 |\n| `L10-LABO-066-CASE-04a` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | LABOが修復を実行 | 拒否しOS/Worker責務へ戻す。 |\n| `L10-LABO-066-CASE-05` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | 単独変異: method version だけ変更。その他の入力は `CASE-01` と同一。 | 同一比較として合算せず、method/versionの既存責務ownerが特定できれば返す。できなければunknownを保持する。 |\n| `L10-LABO-066-CASE-06` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | 単独変異: cutoff だけ異なる。その他の入力は `CASE-01` と同一。 | 母集団を分離し、cutoff/母集団の既存責務ownerが特定できれば返す。できなければunknownを保持する。 |\n| `L10-LABO-066-CASE-07` | `LABO-066-FR-03` | `LABO-066-AC-03` | 参照先fixtureを個別実行し、索引自体を独立N/fixtureに数えない。 | 索引: 索引（独立fixtureではない）: `L10-LABO-066-CASE-14`、`L10-LABO-066-CASE-15`、`L10-LABO-066-CASE-16`。protocol、toolchain、environmentの各単独変異を参照する。 | 各単独CASEのoracleを個別に確認し、複合変異を独立計上しない。 |\n| `L10-LABO-066-CASE-08` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | 単独変異: 片側group receipt だけ欠落。その他の入力は `CASE-01` と同一。 | 群別結果を未評価 戻し先: OS。 |\n| `L10-LABO-066-CASE-09` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | 単独変異: 結果観測後にoracle結果だけ変更。その他の入力は `CASE-01` と同一。 | 事後変更を拒否し事前oracleで再評価 戻し先: HARNESS。 |\n| `L10-LABO-066-CASE-10` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | 単独変異: duplicate case identity だけ追加。その他の入力は `CASE-01` と同一。 | eligible Nを重複計上しない 戻し先: LABO。 |\n| `L10-LABO-066-CASE-11` | `LABO-066-FR-03` | `LABO-066-AC-03` | 比較入力のその他はB0相当だが、eligible denominator Nだけが未提示。numeratorは存在し、Nなし状態をbaselineとする。 | この無効入力でシステムがnumerator/Nの率を確定・表示する誤出力だけを注入する。 | 割合を出さず未評価にする。母集団/denominatorを生む既存sourceが特定できる場合だけ返し、LABOは比較評価未完了の責務を保持する。 |\n| `L10-LABO-066-CASE-12` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | 単独変異: A側の費用項目だけ比較から除外する。その他の入力はCASE-01と同一。 | 費用完全性を不成立とし、除外された費用sourceが識別できればLABO-055またはその既存source ownerへ返す。OSへ費用source ownerを推定しない。 |\n| `L10-LABO-066-CASE-13` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0のeligible case一件に、受入oracleがmisrepair=trueかつcutoff時unresolved=trueの双方を記録した状態。 | 集計時に2指標を排他的分類へ変え、一方の分子から当該caseを除く誤出力だけを注入。 | 1 case identityとしてNには一度だけ数え、misrepair/unresolved双方の分子へ個別に含める。 |\n| `L10-LABO-066-CASE-14` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。 | protocol identity/valueだけをA群と候補群で不一致にする（他はB0同一）。 | LABOは同条件比較を拒否して比較不能にする。LABOのeval dutyは保持する。protocol値のsource ownerは固定親から特定不能ならunknownを併記し、創設しない。 |\n| `L10-LABO-066-CASE-15` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。 | toolchain identity/valueだけをA群と候補群で不一致にする（他はB0同一）。 | LABOは同条件比較を拒否。LABOのeval dutyは保持し、toolchain source ownerがsourceから特定不能なら個別owner unknownを併記する。 |\n| `L10-LABO-066-CASE-16` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。 | environment identity/valueだけをA群と候補群で不一致にする（他はB0同一）。 | LABOは同条件比較を拒否。LABOのeval dutyは保持し、environment source ownerがsourceから特定不能なら個別owner unknownを併記する。 |\n| `L10-LABO-066-CASE-17` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。 | task identityだけを両群間で不一致にする。 | 比較不能。task/acceptance contractをHARNESSまたは要求ownerが供給する固定L2区分へ戻す。LABOは差異評価義務を保持する。 |\n| `L10-LABO-066-CASE-18` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。 | scopeだけを両群間で不一致にする。 | 比較不能。scope/要求contractの既存HARNESSまたは要求owner区分へ戻し、LABOは比較不成立を記録する。 |\n| `L10-LABO-066-CASE-19` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。 | target revisionだけを両群間で不一致にする。 | 比較不能。revision/対象contractを持つ既存HARNESS/要求owner区分へ戻し、LABOは比較を成立扱いしない。 |\n| `L10-LABO-066-CASE-20` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。 | scorer/oracle identityだけを両群間で不一致にする。 | 比較不能。oracle/scorerの固定source区分HARNESS/要求ownerへ戻し、LABOは結果を混算しない。 |\n| `L10-LABO-066-CASE-21` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | 結果後にeligible集合/分母だけ変更 | 事前集合からの変更を拒否する。 |\n| `L10-LABO-066-CASE-22` | `LABO-066-FR-03` | `LABO-066-AC-03` | 参照先fixtureを個別実行し、索引自体を独立N/fixtureに数えない。 | 索引: 索引（独立fixtureではない）: CASE-23/24のmisrepair countとunresolved countを個別に参照する。 | 2ケースを別々に検証し、複合変異を独立計上しない。 |\n| `L10-LABO-066-CASE-23` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | oracleに結ばないmisrepair countだけ提示 | misrepair数を未評価にする。 |\n| `L10-LABO-066-CASE-24` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | oracleに結ばないunresolved countだけ提示 | unresolved数を未評価にする。 |\n| `L10-LABO-066-CASE-25` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0の有効比較。両群receiptと費用/time/reworkは揃い、oracleは候補群1 caseをmisrepairと判定。成功件数もreceiptにある。 | misrepair表示/countだけを落とし成功件数を示す。成功件数自体は変更しない。 | misrepair countを独立して表示する。成功数で相殺せずoracle receiptを保持する。 |\n| `L10-LABO-066-CASE-26` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0の有効比較。両群receiptと費用/time/reworkは揃い、oracleは候補群1 caseをcutoff時unresolvedと判定。費用receiptもある。 | unresolved表示/countだけを落とし費用だけを示す。費用値自体は変更しない。 | unresolved countを独立して表示し費用で相殺しない。 |\n| `L10-LABO-066-CASE-27` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | A result receiptだけstale | A側の比較結果を未評価としOS/run receipt ownerへ戻す。 |\n| `L10-LABO-066-CASE-28` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | candidate-group result receiptだけstale | 候補側の比較結果を未評価としOS/run receipt ownerへ戻す。 |\n| `L10-LABO-066-CASE-29` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0の有効比較。候補群にmisrepair=trueの1 caseがあり、同じ合成観測receiptでspeed improvementも成立している。speed値とoracle/result receiptを固定する。実測実績を主張しない。 | misrepair表示/countだけを出力から除外する。speed improvementの有無・値は変更しない。 | misrepair countを別に保持し、speed improvementも元receipt値のまま表示。片方で他方を相殺しない。 |\n| `L10-LABO-066-CASE-30` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0の有効比較。候補群にcutoff時unresolved=trueの1 caseがあり、同じ合成観測receiptでspeed improvementも成立している。speed値とoracle/result receiptを固定する。実測実績を主張しない。 | unresolved表示/countだけを出力から除外する。speed improvementの有無・値は変更しない。 | unresolved countを別に保持し、speed improvementも元receipt値のまま表示。 |\n| `L10-LABO-066-CASE-31` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0の有効比較でoracleがmisrepair=trueを記録し、両側cost receiptも固定済み。 | misrepair表示/countだけを除き、cost valuesはそのまま出力する。 | misrepairをcostと独立保持し、oracle結果をcostで相殺しない。 |\n| `L10-LABO-066-CASE-32` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0の有効比較でoracleがunresolved=trueを記録し、success receiptsも固定済み。 | unresolved表示/countだけを除き、success valuesはそのまま出力する。 | unresolvedをsuccessと独立保持し、oracle結果を成功数で相殺しない。 |\n| `L10-LABO-066-CASE-33` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0のA identity/version、候補identity/version、scope、oracle、全receiptsが既知で整合する。 | A identity fieldだけunknownにする。A version fieldと他すべてのB0入力は既知・不変のままにする。 | LABOは比較をunknown/未評価にし率を確定しない。A identityの既知責務区分とLABO evaluation dutyを保ち、個体mapping unknownは別に記録する。 |\n| `L10-LABO-066-CASE-34` | `LABO-066-FR-03` | `LABO-066-AC-03` | A群と候補群がそれぞれsource revision付きeligible集合を提示する比較評価。 | Aと候補のeligible case identity集合だけを異ならせる。 | LABOは同分母比較を拒否し比較不能を記録。母集団を供給する既存source ownerが識別できなければunknownを併記し、LABOのeval dutyは保持する。 |\n| `L10-LABO-066-CASE-35` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | 単独変異: 適用oracleだけ欠落。A/候補両群の他条件はCASE-01と同一。 | 比較をunknown/未評価とし、oracle不足をHARNESS/要求ownerへ返す。 |\n| `L10-LABO-066-CASE-36` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。 | 終了/cutoff fieldだけを欠落させる。 | LABOは分母を確定せず割合を出さない。cutoffを供給する既存source ownerが不明ならunknown、LABOの評価義務は保持。 |\n| `L10-LABO-066-CASE-37` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。 | cutoff revisionだけをstaleにする。 | LABOはstale cutoffで比較を成立扱いしない。既存cutoff source ownerが特定できなければunknownを併記し、LABO eval dutyを保持。 |\n| `L10-LABO-066-CASE-38` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。 | 事前確定eligible集合revisionだけをstaleにする（両群は同じstale setを参照）。 | LABOは現在分母を推測せず比較不能。set source ownerが不明ならunknownを併記し、LABO eval dutyを保持。 |\n| `L10-LABO-066-CASE-39` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。 | 観測A identityだけを事前固定A identityと不一致にする。 | LABOはAを置換推定せず比較をunknown/未評価。固定identityの既知責務区分を保持し、観測された個体mapping unknownは個別に記録。 |\n| `L10-LABO-066-CASE-40` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。 | A identity revisionだけをstaleにする。 | LABOはstale identityを現行Aとして使わず比較不能。identityを供給する既存source ownerが不明でもLABO eval dutyは維持し、個体unknownを併記する。 |\n| `L10-LABO-066-CASE-41` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0の費用・時間・result/oracle receiptsおよびrework-cost receiptはA/candidate両群で存在し、同じ059定義で対応付く。 | A側rework-cost receiptの欠落だけを入力変異とする。 | 費用比較を非対称として不成立/未評価にする。欠落費用sourceが特定できる場合は既存LABO-055またはそのsourceへ戻し、特定不能はunknownを保持する。 |\n| `L10-LABO-066-CASE-42` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0の同一eligible setに対してA群/候補群の全費用項目receiptが揃う。 | 候補側の費用項目だけを比較表示から一つ除外する。 | 非対称費用比較を拒否。手戻り費用だけ片側欠落のCASE-41と混同せず、欠落費用のsourceが不明ならowner unknownを併記する。 |\n| `L10-LABO-066-CASE-43` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | 単独変異: outcomeを確認した後にoracleだけを変更する。その他の比較入力はCASE-01と同一。 | 事後oracle変更を拒否し、元oracle結果を保持する。 |\n| `L10-LABO-066-CASE-44` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: CASE-01の有効比較入力と両群の評価receiptだけ。 | 誤出力: 結果fieldとして HELIXLABO-L2-066 の採択decisionだけを生成する。 | 測定結果だけを返し、採択decisionを生成しない。新たなdecision ownerを推測しない。 |\n| `L10-LABO-066-CASE-45` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: CASE-01の有効比較入力と両群の評価receiptだけ。 | 誤出力: 特定repair methodに対するrepair_permission fieldだけを生成する。 | repair_permissionを生成せず比較材料を返す。CASE-04aの修復実行拒否とは別出力である。 |\n| `L10-LABO-066-CASE-46` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: CASE-01の有効比較入力と両群の評価receiptだけ。 | 誤出力: placement fieldだけを生成する。 | placementを生成せず比較材料を返す。assignment一般の境界は追加しない。 |\n| `L10-LABO-066-CASE-47` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: CASE-01の有効比較入力と両群の評価receiptだけ。 | 誤出力: admission decision fieldだけを生成する。 | admission decisionを生成せず比較材料を返す。資格評価一般の禁止は追加しない。 |\n| `L10-LABO-066-CASE-48` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: CASE-01の有効比較入力と両群の評価receiptだけ。 | 誤出力: requirement_complete fieldだけを生成する。 | requirement_completeを生成せず比較材料を返す。effect_achieved等の隣接fieldへ禁止範囲を広げない。 |\n\nこの表は候補fixture設計である。実行、実測、合法control、oracle適用、independent reviewは未実施であり、合格・完全性を主張しない。CASE-44..48はこの候補内の安定IDで、canonical採番の確定ではない。\n"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "base_prefix_bytes": 56818,
+      "base_prefix_sha256": "06faf6b11b5a5d9634f80bf16e6ecf184fd12cce36a823d9e0d00b9b67a4a364",
+      "suffix_bytes": 1522,
+      "suffix_sha256": "ff6980f1fd020fd36e80d6f9f06da6c7338652b47d3fb518b14f47b750646192",
+      "full_bytes": 58340,
+      "full_file_sha256": "d292897a00f9763f5c723434259b821aa2d734c128bb25a01aa80592c75e4fdd",
+      "base_had_final_lf": true,
+      "frozen_file_has_final_lf": true,
+      "suffix_text": "\n### HELIXLABO-L2-066 — 同条件比較NFR測定候補\n\n状態：未承認のL10候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。\n\n`LABO-066-NV-01` 測定設計：L3の `LABO-066-NG-01` と同一のB0/N1、scope、revision、oracle/scorer、両群receiptを用い、raw receiptから `misrepair_count/N` と `unresolved_count/N` を別々に再構成できるか記録する。両指標の重なりを維持し、unknown caseがcase ledgerとNの扱いに残り、unknownを0にせず、事後N/oracle/cutoff変更で割合を作らないことを合成単独変異で確認する。\n\nprotocol/toolchain/environment/task/scope/target/oracle/cutoffの一要素だけ不一致・stale/missingのfixtureは比較不能/未評価となるかを記録する。戻し先は既存HARNESS/要求owner（contract/oracle）、OS（run receipt）、LABO（比較評価）の既知責務区分に結び、個体identityがunknownでもその区分を保持する。個体ownerがsourceから特定できない場合はunknownを別に記録し、sourceにない担当を作らない。費用/時間/reworkはL2-059と同scopeで確認し、別定義しない。\n\n試行件数、性能値、threshold、許容率、期間値などの数値候補を追加しない。L10実行・oracle適用は未実施である。これは候補測定方法で、実測値や合否判定ではない。\n"
+    }
+  ],
+  "git_diff": {
+    "patch_sha256": "f31d860647a1994cfd5ca9657ea47de408e58f80dcd71656056d42da1c913900",
+    "git_diff_check": "PASS",
+    "changed_path_count": 6,
+    "insertions": 129,
+    "deletions": 0
+  },
+  "root_reported_authoring_history": {
+    "source": "Root lane message; final-state evidence independently checked against Git. Intermediate writer state itself is not reconstructable from the final commit alone.",
+    "events": [
+      "初回6suffix追記でBR/FRの2文書を書いた後、NG候補suffixの末尾LF assertionが失敗した。原因は候補suffixの末尾LFなしで、既存canonicalファイルの末尾ではない。処理はそこで停止した。",
+      "停止後、既存prefixと追記suffixをactualReadで比較し、全6文書へ末尾LFを揃えてから追記した。",
+      "Root報告ではその後governance checkとdiff checkが成功。今回のworker独立検証でも6prefix/suffix/hash、6変更path、LF、52行/6列、`git diff --check`を再確認した。",
+      "最終本文commit `fe489ac41b8703bac445fd42a3f493692afd1baa` を作成し、Draft PR #2635として共有。独立review、L3承認、mergeは未実施。"
+    ],
+    "claim_limit": "中間2ファイル状態とgovernance checkの具体コマンド/ログはこの監査作業では独立再構築できない。最終Git bytesとdiff checkはactualReadで検証した。"
+  },
+  "root_body_checkpoint": {
+    "path": "/tmp/root-labo066-body-checkpoint.json",
+    "sha256": "8848994fb6dc3eced9841ba8df407188899aef42f6210e401c17ae4a00e4b58e",
+    "content": {
+      "base": "e015c3477e890c7079cd0b51859da1cec8f8fb7a",
+      "files": [
+        {
+          "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+          "base_sha256": "71b81422df7431fe42e15f20cb46c40ee36274162ecd8123adccb3f2b2fafc49",
+          "suffix_sha256": "3dc759a6eb597cc46b0014dbedc2dc705810eebcc810e0bee891afbf3941fc3a",
+          "full_sha256": "bfcd5a64b295a9e3d434fd9369d97ffb45172b11dcccd40bfd205e9375af6ec6"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+          "base_sha256": "a457a383bebc8f579f27d93e991d01b2c7789bd698e6362a47bec7f600dd8ba1",
+          "suffix_sha256": "c2836aa13303d64d5b884de5438a4c01c7ba07410634687682850d6c0fef175d",
+          "full_sha256": "6098885299fbab6b15a3bf0b62f5fcfed7df33984cf3d1a11479322c8cdcad42"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+          "base_sha256": "fc22cc61757139a102a4d713ece92c314d15aefea970d6fc592eeb27f209889a",
+          "suffix_sha256": "77be1f306c73a558daebba11ba608a02444940775b7695665c8e455f19932834",
+          "full_sha256": "e694de8312cc215bac2b9331c78a2df8ae21ce8948e51ee7f4a5a037abecc91f"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/business-verification.md",
+          "base_sha256": "4e0dd519b80d5a56f4a62869e21186c15522c15712ffc550b004188a90ad64fd",
+          "suffix_sha256": "1d82064b50b3a3baa01dd013087966fa3202dd7f0e82b17ce512fcc2c2609553",
+          "full_sha256": "0065a82c60de87190750f09e889dfa4d4d85631c5685da807e8589ec32f342f9"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "base_sha256": "ab940253986a0a7f24e532c256dceffb387781e236f21a1e4738d6dd97adbd5c",
+          "suffix_sha256": "13065d1321ee6d28831f59e811d3761a6e7a56df32dbce2ab9c86bb495b52870",
+          "full_sha256": "4f530883784ec6bcee8dd853988a08dbac309f73840a4894e684769a2ee16805"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+          "base_sha256": "06faf6b11b5a5d9634f80bf16e6ecf184fd12cce36a823d9e0d00b9b67a4a364",
+          "suffix_sha256": "ff6980f1fd020fd36e80d6f9f06da6c7338652b47d3fb518b14f47b750646192",
+          "full_sha256": "d292897a00f9763f5c723434259b821aa2d734c128bb25a01aa80592c75e4fdd"
+        }
+      ],
+      "old_ids": 47,
+      "current_unique_ids": 52,
+      "six_columns": true,
+      "body": "fe489ac41b8703bac445fd42a3f493692afd1baa",
+      "root_final_nv_correction": "既知責務区分を保持し、個体unknownを別に記録"
+    }
+  },
+  "old_47_literal_audit_rows": [
+    {
+      "case_id": "L10-LABO-066-CASE-01",
+      "line": 2847,
+      "literal_with_lf": "- `L10-LABO-066-CASE-01`（対応AC: `LABO-066-AC-01`） 正常: 共通eligible case集合Nとoracleを事前固定し、A/候補のmisrepair_count/Nとunresolved_count/Nを独立に照合する。\n",
+      "raw_lf_sha256": "583ae355f741cffaae6cd373274d97ce66308db09e1ce37b75e595b7aca66d5c"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-02",
+      "line": 2848,
+      "literal_with_lf": "- `L10-LABO-066-CASE-02`（対応AC: `LABO-066-AC-02`） 未見正常: 未見caseにも同じpredicate/oracleが適用可能な場合だけ追加し、適用不能はunknownで残す。\n",
+      "raw_lf_sha256": "2d4741a4bb7575a652035287fb511d297f09927ce25c4afbab14dcefb511f4f5"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-03a",
+      "line": 2852,
+      "literal_with_lf": "| `L10-LABO-066-CASE-03a` | `LABO-066-AC-03` | A identityだけ欠落 | 比較不能とし、A/source identityの既存責務ownerが特定できれば返し、できなければunknownを保持する。 |\n",
+      "raw_lf_sha256": "5c1e38d0e2602191ffe2f6601dd94a419391badb35762c74bd9704301a59ecb5"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-03b",
+      "line": 2853,
+      "literal_with_lf": "| `L10-LABO-066-CASE-03b` | `LABO-066-AC-03` | eligible denominatorだけ欠落 | 分率を出さず未評価とし、母集団/denominatorの既存責務ownerが特定できれば返し、できなければunknownを保持する。 |\n",
+      "raw_lf_sha256": "b7d92537174222253aa4c708fa1b66158e3a083ca6f3bbf14cbdcf32b54b9268"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-03c",
+      "line": 2854,
+      "literal_with_lf": "| `L10-LABO-066-CASE-03c` | `LABO-066-AC-03` | oracle revisionだけ異なる | 当該比較を無効にし、固定oracleのHARNESSまたは要求ownerへ戻す。 |\n",
+      "raw_lf_sha256": "7904fbd13d6784928b84787bf919338769c1a5e2e5975deae1f68f5bc45d211e"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-03d",
+      "line": 2855,
+      "literal_with_lf": "| `L10-LABO-066-CASE-03d` | `LABO-066-AC-03` | unknown caseだけ分母から除外 | 欠測を隠さず比較不能とし、unknown case/適用可能性の既存責務ownerが特定できれば返し、できなければunknownを保持する。 |\n",
+      "raw_lf_sha256": "fd08e2b031a9c2d69d5a4c6cf2033e3f0b5fa90907d983991e96752c14d157f6"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-03e",
+      "line": 2856,
+      "literal_with_lf": "| `L10-LABO-066-CASE-03e` | `LABO-066-AC-03` | unresolvedだけ成功へ置換 | 不合格を保持し、解決根拠/状態の既存責務ownerが特定できれば返し、できなければunknownを保持する。 |\n",
+      "raw_lf_sha256": "7d0ba3b553704da212c7c96ff370ebcdda7f8db3bbb4b35e673d7c1cdaa6836c"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-04a",
+      "line": 2857,
+      "literal_with_lf": "| `L10-LABO-066-CASE-04a` | `LABO-066-AC-03` | LABOが修復を実行 | 拒否しOS/Worker責務へ戻す。 |\n",
+      "raw_lf_sha256": "e1eccf1578b062f3a2f4a88f0f0341178dd9a2d996ca19267e892f10166a8603"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-05",
+      "line": 3198,
+      "literal_with_lf": "| `L10-LABO-066-CASE-05` | `LABO-066-AC-03` | 単独変異: method version だけ変更。その他の入力は `CASE-01` と同一。 | 同一比較として合算せず、method/versionの既存責務ownerが特定できれば返す。できなければunknownを保持する。 |\n",
+      "raw_lf_sha256": "9fb76c5b2d53114734d155188c6d51d6883a8c70f7bb21a36389151f05d9e145"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-06",
+      "line": 3199,
+      "literal_with_lf": "| `L10-LABO-066-CASE-06` | `LABO-066-AC-03` | 単独変異: cutoff だけ異なる。その他の入力は `CASE-01` と同一。 | 母集団を分離し、cutoff/母集団の既存責務ownerが特定できれば返す。できなければunknownを保持する。 |\n",
+      "raw_lf_sha256": "e160a0dc315f0a87ba218064b54a22f66e41a0f4e8be76a3fe9cc67303fdee3c"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-07",
+      "line": 3200,
+      "literal_with_lf": "| `L10-LABO-066-CASE-07` | `LABO-066-AC-03` |索引（独立fixtureではない）: `L10-LABO-066-CASE-14`、`L10-LABO-066-CASE-15`、`L10-LABO-066-CASE-16`。protocol、toolchain、environmentの各単独変異を参照する。|各単独CASEのoracleを個別に確認し、複合変異を独立計上しない。|\n",
+      "raw_lf_sha256": "f7386db89d17588956add8e76a26a198b7ac4b0f9257377d8dc18622f6e3a4f0"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-08",
+      "line": 3201,
+      "literal_with_lf": "| `L10-LABO-066-CASE-08` | `LABO-066-AC-03` | 単独変異: 片側group receipt だけ欠落。その他の入力は `CASE-01` と同一。 | 群別結果を未評価 戻し先: OS。 |\n",
+      "raw_lf_sha256": "931b05cb9b8c31db6ee1ce408d2f5425c651b53ed22f9f2beec097d6b273f724"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-09",
+      "line": 3202,
+      "literal_with_lf": "| `L10-LABO-066-CASE-09` | `LABO-066-AC-03` | 単独変異: 結果観測後にoracle結果だけ変更。その他の入力は `CASE-01` と同一。 | 事後変更を拒否し事前oracleで再評価 戻し先: HARNESS。 |\n",
+      "raw_lf_sha256": "e18b431d09651874c936cb06cf80cd5d7bcae19a55d9f4e735c1456f9dad7e08"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-10",
+      "line": 3203,
+      "literal_with_lf": "| `L10-LABO-066-CASE-10` | `LABO-066-AC-03` | 単独変異: duplicate case identity だけ追加。その他の入力は `CASE-01` と同一。 | eligible Nを重複計上しない 戻し先: LABO。 |\n",
+      "raw_lf_sha256": "29040962d8024fa0e4db2ff78545f85c5a1dcf5b8e0e02aff7ddca07c108dc3c"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-11",
+      "line": 3204,
+      "literal_with_lf": "| `L10-LABO-066-CASE-11` | `LABO-066-AC-03` | 単独変異: denominatorなしのnumeratorだけを変更。その他の入力は `CASE-01` と同一。 | 割合を出さない 戻し先: LABO。 |\n",
+      "raw_lf_sha256": "fc2f4eb567a765161f2aed0d7464e976aa20ef579c53b887caea63efe8332e82"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-12",
+      "line": 3205,
+      "literal_with_lf": "| `L10-LABO-066-CASE-12` | `LABO-066-AC-03` | 単独変異: A側の費用項目だけ比較から除外する。その他の入力はCASE-01と同一。 | 費用完全性を不成立とし、除外された費用sourceが識別できればLABO-055またはその既存source ownerへ返す。OSへ費用source ownerを推定しない。 |\n",
+      "raw_lf_sha256": "cc033b5b2ac029632f433c38e922152f05061800d6cb97e2540f634211cb1d09"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-13",
+      "line": 3206,
+      "literal_with_lf": "| `L10-LABO-066-CASE-13` | `LABO-066-AC-03` | 同一eligible caseが各oracleでmisrepairとunresolvedの両方に該当する正常入力で、集計時に二指標を排他的分類へ変える唯一の変異。その他の入力はCASE-01と同一。 | 当該caseをmisrepairとunresolvedの各分子へ独立に含め、eligible Nのcase identityを重複計上せず各指標を別々に返す。二指標の重なりを理由に片方を除外しない。 |\n",
+      "raw_lf_sha256": "cec863b8dc31a83ccf748a8039e56f20460a87808120cf1074704976708492d2"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-14",
+      "line": 2861,
+      "literal_with_lf": "| `L10-LABO-066-CASE-14` | `LABO-066-AC-03` | 単独変異: protocolだけ異なる。その他の入力はCASE-01と同一。 | 比較不能として分離する。protocol source ownerは固定親から特定できないため新ownerを推定しない。 |\n",
+      "raw_lf_sha256": "c5c3598b611e0ce6a7a84852a9a19d8474c4946ce9ecb9d20753180260a38965"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-15",
+      "line": 2862,
+      "literal_with_lf": "| `L10-LABO-066-CASE-15` | `LABO-066-AC-03` | 単独変異: toolchainだけ異なる。その他の入力はCASE-01と同一。 | 比較不能として分離する。toolchain source ownerは固定親から特定できないため新ownerを推定しない。 |\n",
+      "raw_lf_sha256": "ea62b622ab6f9893d7cfa16db97936a733906fa8e8e24f7e20fc5c8f1981608c"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-16",
+      "line": 2863,
+      "literal_with_lf": "| `L10-LABO-066-CASE-16` | `LABO-066-AC-03` | 単独変異: environmentだけ異なる。その他の入力はCASE-01と同一。 | 比較不能として分離する。environment source ownerは固定親から特定できないため新ownerを推定しない。 |\n",
+      "raw_lf_sha256": "e3e70b206cd331d5fc2dc3911368fdfc2c724bf229f610ef53a4ff3dbc08d969"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-17",
+      "line": 2867,
+      "literal_with_lf": "| `L10-LABO-066-CASE-17` | `LABO-066-AC-03` | task identityだけ不一致 | 比較不能としtask契約/identityの既存責務ownerへ返す。ownerを特定できなければunknownを保つ。 |\n",
+      "raw_lf_sha256": "426e4b0607935a235eca4608a978c56a2e6bb40398ff1a737e9df1b40c5d493f"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-18",
+      "line": 2868,
+      "literal_with_lf": "| `L10-LABO-066-CASE-18` | `LABO-066-AC-03` | scopeだけ不一致 | 比較不能としscopeを持つ既存責務ownerへ返す。ownerを特定できなければunknownを保つ。 |\n",
+      "raw_lf_sha256": "a425564aca2c562093ec552f3e108bd8bd240962e6f3d3a1c50e979b3fc75f8c"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-19",
+      "line": 2869,
+      "literal_with_lf": "| `L10-LABO-066-CASE-19` | `LABO-066-AC-03` | target revisionだけ不一致 | 比較不能とし当該target/sourceの既存ownerへ返す。ownerを特定できなければunknownを保つ。 |\n",
+      "raw_lf_sha256": "e2eed01a273fe7793af8fd1c0cbbd30f33e6119c46bc949e7cc08abe7c227c3f"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-20",
+      "line": 2870,
+      "literal_with_lf": "| `L10-LABO-066-CASE-20` | `LABO-066-AC-03` | scorer identityだけ不一致 | 比較不能としscorer/oracleの既存責務ownerへ返す。ownerを特定できなければunknownを保つ。 |\n",
+      "raw_lf_sha256": "ca50238ce6822c896978a629119112b671feab6ab37b495904863d64db9c37d0"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-21",
+      "line": 2871,
+      "literal_with_lf": "| `L10-LABO-066-CASE-21` | `LABO-066-AC-03` | 結果後にeligible集合/分母だけ変更 | 事前集合からの変更を拒否する。 |\n",
+      "raw_lf_sha256": "6f508ec75a539a36b8f6fb46b39378f955ad1671fb2d65e7f5e50ad4ae05c318"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-22",
+      "line": 2872,
+      "literal_with_lf": "| `L10-LABO-066-CASE-22` | `LABO-066-AC-03` | 索引（独立fixtureではない）: CASE-23/24のmisrepair countとunresolved countを個別に参照する。 | 2ケースを別々に検証し、複合変異を独立計上しない。 |\n",
+      "raw_lf_sha256": "b1d917e44b181e76dfef0d00550feca2be7f6319129128893916d1fa56f3ad87"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-23",
+      "line": 2876,
+      "literal_with_lf": "| `L10-LABO-066-CASE-23` | `LABO-066-AC-03` | oracleに結ばないmisrepair countだけ提示 | misrepair数を未評価にする。 |\n",
+      "raw_lf_sha256": "95711e14d67b2af3a7d3013a4ecb1449ccff5033ea4d5bd068feac8ea1d54841"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-24",
+      "line": 2877,
+      "literal_with_lf": "| `L10-LABO-066-CASE-24` | `LABO-066-AC-03` | oracleに結ばないunresolved countだけ提示 | unresolved数を未評価にする。 |\n",
+      "raw_lf_sha256": "64c32f4e47e59828f2dc2d02a6abbb30c65d22a6192b817f50d1434c7d71898b"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-25",
+      "line": 2878,
+      "literal_with_lf": "| `L10-LABO-066-CASE-25` | `LABO-066-AC-03` | 準備: CASE-01の有効eligible集合に誤修復を1件記録し、A/候補両群のoracle/receiptを保つ。単独変異: 成功率だけで誤修復を隠す。 | misrepairを別に保持し成功率で相殺しない。 |\n",
+      "raw_lf_sha256": "6f90db6028180e591dfbc37123f12d967088884f2186a5045d343cb811fb1737"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-26",
+      "line": 2879,
+      "literal_with_lf": "| `L10-LABO-066-CASE-26` | `LABO-066-AC-03` | 準備: CASE-01の有効eligible集合に未解消を1件記録し、A/候補両群のoracle/receiptを保つ。単独変異: 費用だけで未解消を隠す。 | unresolvedを別に保持し費用で相殺しない。 |\n",
+      "raw_lf_sha256": "9d19cdc330c9911d66d4f35f61d60aac6e79fb6665a8ee97542c4141193acbf3"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-27",
+      "line": 2880,
+      "literal_with_lf": "| `L10-LABO-066-CASE-27` | `LABO-066-AC-03` | A result receiptだけstale | A側の比較結果を未評価としOS/run receipt ownerへ戻す。 |\n",
+      "raw_lf_sha256": "c5a917b8f54a577298841e0d8c55cffd7bc36c30b0ec9384219f45b489f1d5f7"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-28",
+      "line": 2881,
+      "literal_with_lf": "| `L10-LABO-066-CASE-28` | `LABO-066-AC-03` | candidate-group result receiptだけstale | 候補側の比較結果を未評価としOS/run receipt ownerへ戻す。 |\n",
+      "raw_lf_sha256": "f9a4642eab77d787a4e18d793ce0e1b2b8f4cb5395b1f72142f3acd9daf4529f"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-29",
+      "line": 3331,
+      "literal_with_lf": "| `L10-LABO-066-CASE-29` | `LABO-066-AC-03` | 準備: 有効なeligible comparisonにmisrepairを1件記録し、speedを通常値として保持する。単独変異: misrepairだけを表示から外しspeed改善だけを報告する。 | misrepair countを独立に保持し、速度で相殺しない。 |\n",
+      "raw_lf_sha256": "b77211e43e99654fb3c7a37548c36542da2f0b1a7bb9f0c01b0b7c0641968678"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-30",
+      "line": 3332,
+      "literal_with_lf": "| `L10-LABO-066-CASE-30` | `LABO-066-AC-03` | 準備: 有効なeligible comparisonにunresolvedを1件記録し、speedを通常値として保持する。単独変異: unresolvedだけを表示から外しspeed改善だけを報告する。 | unresolved countを独立に保持し、速度で相殺しない。 |\n",
+      "raw_lf_sha256": "378c44b10cbbd941984c69f8805cd6bd07ed156b5ca5a9c87c3165b44662d954"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-31",
+      "line": 3333,
+      "literal_with_lf": "| `L10-LABO-066-CASE-31` | `LABO-066-AC-03` | 有効な比較入力のoracleで誤修復が記録されている状態を保ち、唯一の変異は表示から誤修復を外して費用だけを示すこと。eligible set、oracle、receiptは `CASE-01` と同じ。 | 誤修復分子を費用と別に保持し、oracle結果を相殺しない。 |\n",
+      "raw_lf_sha256": "a293810a430026a161b30c2609511e2c81eb2d5e20ba32a49b9ac13ef1c8e7ba"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-32",
+      "line": 3334,
+      "literal_with_lf": "| `L10-LABO-066-CASE-32` | `LABO-066-AC-03` | 有効な比較入力のoracleで未解消が記録されている状態を保ち、唯一の変異は表示から未解消を外して成功率だけを示すこと。eligible set、oracle、receiptは `CASE-01` と同じ。 | 未解消分子を成功率と別に保持し、oracle判定を相殺しない。 |\n",
+      "raw_lf_sha256": "19127aa0d48998d248cfa0346eb1deb7480c26d59a2b2cbb22c18a25e901c29d"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-33",
+      "line": 3335,
+      "literal_with_lf": "| `L10-LABO-066-CASE-33` | `LABO-066-AC-03` | A identityだけunknown。その他の比較条件・候補側入力・oracle receiptはCASE-01と同一。 | Aを推測せず比較をunknown/未評価とし率を確定しない。Aの定義/版ownerが特定できれば戻し、できなければowner unknownを保つ。 |\n",
+      "raw_lf_sha256": "f2cb5156bba0f38def888ad7ffc95e84c06c79af79aa87eacd2c92e355f69782"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-34",
+      "line": 3358,
+      "literal_with_lf": "| `L10-LABO-066-CASE-34` | `LABO-066-AC-03` | 単独変異: A群と候補群のeligible case集合だけが異なる。その他の比較条件は有効。 | 比較不能として分離し、同一母集団の率を出さない。eligible集合を提供する既存source ownerが識別できればそこへ返し、unknownはunknownのまま。 |\n",
+      "raw_lf_sha256": "8b61065eafe8d0ba92e6eec859700cc824a73d54f9c98ae63fab8a3f355f31d9"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-35",
+      "line": 3360,
+      "literal_with_lf": "| `L10-LABO-066-CASE-35` | `LABO-066-AC-03` | 単独変異: 適用oracleだけ欠落。A/候補両群の他条件はCASE-01と同一。 | 比較をunknown/未評価とし、oracle不足をHARNESS/要求ownerへ返す。 |\n",
+      "raw_lf_sha256": "82cf3c740bfadecf516b0d5471a0f1fbc8f30ef3746fe964027d4d7c3e46c56f"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-36",
+      "line": 3361,
+      "literal_with_lf": "| `L10-LABO-066-CASE-36` | `LABO-066-AC-03` | 単独変異: cutoffだけ欠落。oracleと他条件はCASE-01と同一。 | eligible母集団を確定せず割合を出さない。cutoffを持つ既存source ownerが識別できればそこへ返し、特定不能はunknown。 |\n",
+      "raw_lf_sha256": "cffcd87df82449975e8e1f328cb9c0c31f8f16ceb452873625eec46734bff80e"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-37",
+      "line": 3362,
+      "literal_with_lf": "| `L10-LABO-066-CASE-37` | `LABO-066-AC-03` | 単独変異: cutoff revisionだけstale。その他はCASE-01と同一。 | stale cutoffで比較せず未評価にする。cutoff source ownerが識別できればそこへ返し、特定不能はunknown。 |\n",
+      "raw_lf_sha256": "314b98f56265f99ec930147d01be1a0484734ab6a6ab45fb6eaf264056567de3"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-38",
+      "line": 3363,
+      "literal_with_lf": "| `L10-LABO-066-CASE-38` | `LABO-066-AC-03` | 単独変異: 事前確定eligible集合のrevisionだけstale。A/候補両群は同じ古い集合を参照。 | stale集合から現在の分母を推定せず比較不能にする。eligible-set source ownerが識別できればそこへ返し、特定不能はunknown。 |\n",
+      "raw_lf_sha256": "2a9b84c17de965ffb200e0a1addd4e631e13603f92bd666581f3bb5cc8f595e2"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-39",
+      "line": 3364,
+      "literal_with_lf": "| `L10-LABO-066-CASE-39` | `LABO-066-AC-03` | 単独変異: 観測されたA identityだけが事前固定A identityとmismatch。候補identityと他の比較条件はCASE-01と同一。 | 固定Aを別identityへ置換せず比較をunknown/未評価にする。A identity source ownerが識別できればそこへ、できなければunknownを保つ。 |\n",
+      "raw_lf_sha256": "9df5b7dc3b8d2e4583e12fc017127db8284958e464a6868ddd28ae0fb2c38a26"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-40",
+      "line": 3365,
+      "literal_with_lf": "| `L10-LABO-066-CASE-40` | `LABO-066-AC-03` | 単独変異: A identity revisionだけstale。その他の入力はCASE-01と同一。 | stale identityを現在Aとして流用せず比較不能にする。A identity ownerが識別できればそこへ返し、特定不能はunknown。 |\n",
+      "raw_lf_sha256": "c8b128fb484bec5f2cbca01b7d15cdd59130e04038c6d90c49b4680befba6a4a"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-41",
+      "line": 3366,
+      "literal_with_lf": "| `L10-LABO-066-CASE-41` | `LABO-066-AC-03` | 単独変異: rework costだけA側/候補側の片側から除外。その他の条件はCASE-01と同一。 | 片側だけ費用を除外した比較を不成立とし、総費用の対称性を保持する。欠けたeffort/cost sourceが識別できればLABO-055またはそのsourceへ返し、特定不能はunknown。 |\n",
+      "raw_lf_sha256": "27093db83f6bb023ca0360beffb148168e84e75cf51e74a9ac95094d33a3a479"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-42",
+      "line": 3395,
+      "literal_with_lf": "| `L10-LABO-066-CASE-42` | `LABO-066-AC-03` | 準備: A/候補の同一eligible集合で費用項目が両側に記録されている。単独変異: 候補側の費用項目だけを比較から除外する。 | 非対称な費用比較を拒否する。手戻り費用だけの片側除外はCASE-41で個別に照合する。 |\n",
+      "raw_lf_sha256": "eae63071a139d9c141234223d7f2931181a249095c9d54864c41496f6e9c53e4"
+    },
+    {
+      "case_id": "L10-LABO-066-CASE-43",
+      "line": 3396,
+      "literal_with_lf": "| `L10-LABO-066-CASE-43` | `LABO-066-AC-03` | 単独変異: outcomeを確認した後にoracleだけを変更する。その他の比較入力はCASE-01と同一。 | 事後oracle変更を拒否し、元oracle結果を保持する。 |\n",
+      "raw_lf_sha256": "d4922275685773355b0779c7c1f15a7216635bab6cec33e2373152b6c4643a20"
+    }
+  ],
+  "current_52_table": {
+    "path": "docs/helix-labo/L10-verification/functional-verification.md",
+    "columns": [
+      "CASE ID",
+      "FR ID",
+      "AC ID",
+      "baseline/input",
+      "mutation/index role",
+      "expected oracle / return route"
+    ],
+    "unique_case_ids": 52,
+    "raw_rows": [
+      {
+        "line_number": 3128,
+        "raw_with_lf": "| `L10-LABO-066-CASE-01` | `LABO-066-FR-01` | `LABO-066-AC-01` | B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。 | 正常対照。入力を変更しない。 | A/候補の各群についてmisrepair_count/Nとunresolved_count/Nを分子・分母・case判定receipt付きで別々に再構成し、2指標の重複を許す。 |\n",
+        "raw_lf_sha256": "3b075d56a7183291ea5b290a24aa61ee6e11af11899ff222da8aef6a44dece6d",
+        "fields_six": [
+          "`L10-LABO-066-CASE-01`",
+          "`LABO-066-FR-01`",
+          "`LABO-066-AC-01`",
+          "B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。",
+          "正常対照。入力を変更しない。",
+          "A/候補の各群についてmisrepair_count/Nとunresolved_count/Nを分子・分母・case判定receipt付きで別々に再構成し、2指標の重複を許す。"
+        ]
+      },
+      {
+        "line_number": 3129,
+        "raw_with_lf": "| `L10-LABO-066-CASE-02` | `LABO-066-FR-02` | `LABO-066-AC-02` | B0とは別の合成比較scopeを用意し、結果閲覧前に未見caseを含むeligible集合N1を固定する。追加caseにも同じpredicate/oracleが適用できる根拠を確認する。既存B0のNは変更しない。 | 別scopeでの未見case追加は独立正常対照の入力。適用不能時はcaseをunknownとして扱う。 | 適用可能ならN1内で同じoracleにより判定し、不能ならunknown/未評価を保持してN1から黙って除かない。旧CASE-02の意味を保ち、B0の母集団を事後変更しない。 |\n",
+        "raw_lf_sha256": "d52d79bf777028e6e5489ebd972c2cc31e8642a61aeb25ac34f2a3ae94ed1f96",
+        "fields_six": [
+          "`L10-LABO-066-CASE-02`",
+          "`LABO-066-FR-02`",
+          "`LABO-066-AC-02`",
+          "B0とは別の合成比較scopeを用意し、結果閲覧前に未見caseを含むeligible集合N1を固定する。追加caseにも同じpredicate/oracleが適用できる根拠を確認する。既存B0のNは変更しない。",
+          "別scopeでの未見case追加は独立正常対照の入力。適用不能時はcaseをunknownとして扱う。",
+          "適用可能ならN1内で同じoracleにより判定し、不能ならunknown/未評価を保持してN1から黙って除かない。旧CASE-02の意味を保ち、B0の母集団を事後変更しない。"
+        ]
+      },
+      {
+        "line_number": 3130,
+        "raw_with_lf": "| `L10-LABO-066-CASE-03a` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | A identityだけ欠落 | 比較不能とし、A/source identityの既存責務ownerが特定できれば返し、できなければunknownを保持する。 |\n",
+        "raw_lf_sha256": "9757b7e0ad40ae0b4afce1c98c706f1b1862ef2bac56e98eaf485b9480099bd4",
+        "fields_six": [
+          "`L10-LABO-066-CASE-03a`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。",
+          "A identityだけ欠落",
+          "比較不能とし、A/source identityの既存責務ownerが特定できれば返し、できなければunknownを保持する。"
+        ]
+      },
+      {
+        "line_number": 3131,
+        "raw_with_lf": "| `L10-LABO-066-CASE-03b` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | eligible denominatorだけ欠落 | 分率を出さず未評価とし、母集団/denominatorの既存責務ownerが特定できれば返し、できなければunknownを保持する。 |\n",
+        "raw_lf_sha256": "6ce70743990230171987c32b3a6b96b2d41e5a73600735b16fc83854d9f04a2e",
+        "fields_six": [
+          "`L10-LABO-066-CASE-03b`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。",
+          "eligible denominatorだけ欠落",
+          "分率を出さず未評価とし、母集団/denominatorの既存責務ownerが特定できれば返し、できなければunknownを保持する。"
+        ]
+      },
+      {
+        "line_number": 3132,
+        "raw_with_lf": "| `L10-LABO-066-CASE-03c` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | oracle revisionだけ異なる | 当該比較を無効にし、固定oracleのHARNESSまたは要求ownerへ戻す。 |\n",
+        "raw_lf_sha256": "f29d932f9f6f0806a332028ace3b3803af8415aebc878ae8544c7fcddf7c942d",
+        "fields_six": [
+          "`L10-LABO-066-CASE-03c`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。",
+          "oracle revisionだけ異なる",
+          "当該比較を無効にし、固定oracleのHARNESSまたは要求ownerへ戻す。"
+        ]
+      },
+      {
+        "line_number": 3133,
+        "raw_with_lf": "| `L10-LABO-066-CASE-03d` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0の対象集合にQunknownが既に含まれる。Qunknownはoracle適用不能であり、この時点でrateは未確定。 | Qunknownをeligible denominatorから除外し、除外後のNでrateを確定出力する誤処理だけを注入する。 | QunknownをunknownとしてN/記録に残し、rateを確定しない。適用可能性/receiptの既存責務ownerを特定できる場合だけ返し、LABOは評価未完了を維持する。 |\n",
+        "raw_lf_sha256": "8d598a915a4c78f9c2aaff92d23b5f07384f86588328ca9e6ff8e22cdfbe0373",
+        "fields_six": [
+          "`L10-LABO-066-CASE-03d`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "B0の対象集合にQunknownが既に含まれる。Qunknownはoracle適用不能であり、この時点でrateは未確定。",
+          "Qunknownをeligible denominatorから除外し、除外後のNでrateを確定出力する誤処理だけを注入する。",
+          "QunknownをunknownとしてN/記録に残し、rateを確定しない。適用可能性/receiptの既存責務ownerを特定できる場合だけ返し、LABOは評価未完了を維持する。"
+        ]
+      },
+      {
+        "line_number": 3134,
+        "raw_with_lf": "| `L10-LABO-066-CASE-03e` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0のeligible setにU0が含まれ、oracle receiptはcutoff時点でunresolved=trueを示す。 | U0のunresolved表示を落とし、success表示だけに置換する誤処理を注入する。 | U0のunresolved判定とreceiptを保持し、successだけへの置換を拒否する。解決状態sourceの既存ownerが特定できる場合だけ返し、特定不能はunknownを残す。 |\n",
+        "raw_lf_sha256": "87c59a443cc084ff4fcd2bbc2b87add720960f56283aba481639c9ce30473f70",
+        "fields_six": [
+          "`L10-LABO-066-CASE-03e`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "B0のeligible setにU0が含まれ、oracle receiptはcutoff時点でunresolved=trueを示す。",
+          "U0のunresolved表示を落とし、success表示だけに置換する誤処理を注入する。",
+          "U0のunresolved判定とreceiptを保持し、successだけへの置換を拒否する。解決状態sourceの既存ownerが特定できる場合だけ返し、特定不能はunknownを残す。"
+        ]
+      },
+      {
+        "line_number": 3135,
+        "raw_with_lf": "| `L10-LABO-066-CASE-04a` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | LABOが修復を実行 | 拒否しOS/Worker責務へ戻す。 |\n",
+        "raw_lf_sha256": "c387c1d4aad1fbf10979d86a1bc68cf99512aeada5446e203a90bfbf5cca05f1",
+        "fields_six": [
+          "`L10-LABO-066-CASE-04a`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。",
+          "LABOが修復を実行",
+          "拒否しOS/Worker責務へ戻す。"
+        ]
+      },
+      {
+        "line_number": 3136,
+        "raw_with_lf": "| `L10-LABO-066-CASE-05` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | 単独変異: method version だけ変更。その他の入力は `CASE-01` と同一。 | 同一比較として合算せず、method/versionの既存責務ownerが特定できれば返す。できなければunknownを保持する。 |\n",
+        "raw_lf_sha256": "f8dde334d8aa6f59c4f0e09241d2654497bf51f03df4915e1cfc4b66873b4a41",
+        "fields_six": [
+          "`L10-LABO-066-CASE-05`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。",
+          "単独変異: method version だけ変更。その他の入力は `CASE-01` と同一。",
+          "同一比較として合算せず、method/versionの既存責務ownerが特定できれば返す。できなければunknownを保持する。"
+        ]
+      },
+      {
+        "line_number": 3137,
+        "raw_with_lf": "| `L10-LABO-066-CASE-06` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | 単独変異: cutoff だけ異なる。その他の入力は `CASE-01` と同一。 | 母集団を分離し、cutoff/母集団の既存責務ownerが特定できれば返す。できなければunknownを保持する。 |\n",
+        "raw_lf_sha256": "c9ba79d17d27d4b58fb0fe6c512981c377205ffd066a1a37314bba7156635cb6",
+        "fields_six": [
+          "`L10-LABO-066-CASE-06`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。",
+          "単独変異: cutoff だけ異なる。その他の入力は `CASE-01` と同一。",
+          "母集団を分離し、cutoff/母集団の既存責務ownerが特定できれば返す。できなければunknownを保持する。"
+        ]
+      },
+      {
+        "line_number": 3138,
+        "raw_with_lf": "| `L10-LABO-066-CASE-07` | `LABO-066-FR-03` | `LABO-066-AC-03` | 参照先fixtureを個別実行し、索引自体を独立N/fixtureに数えない。 | 索引: 索引（独立fixtureではない）: `L10-LABO-066-CASE-14`、`L10-LABO-066-CASE-15`、`L10-LABO-066-CASE-16`。protocol、toolchain、environmentの各単独変異を参照する。 | 各単独CASEのoracleを個別に確認し、複合変異を独立計上しない。 |\n",
+        "raw_lf_sha256": "b6a0f6ff1a72d9b6ac89c5b84bbf2ebbcd3d1cf076e104f769d0c5ff2d019ca5",
+        "fields_six": [
+          "`L10-LABO-066-CASE-07`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "参照先fixtureを個別実行し、索引自体を独立N/fixtureに数えない。",
+          "索引: 索引（独立fixtureではない）: `L10-LABO-066-CASE-14`、`L10-LABO-066-CASE-15`、`L10-LABO-066-CASE-16`。protocol、toolchain、environmentの各単独変異を参照する。",
+          "各単独CASEのoracleを個別に確認し、複合変異を独立計上しない。"
+        ]
+      },
+      {
+        "line_number": 3139,
+        "raw_with_lf": "| `L10-LABO-066-CASE-08` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | 単独変異: 片側group receipt だけ欠落。その他の入力は `CASE-01` と同一。 | 群別結果を未評価 戻し先: OS。 |\n",
+        "raw_lf_sha256": "786f909050b119059e743ef78cd66642be17e3facef973999abefeee81017937",
+        "fields_six": [
+          "`L10-LABO-066-CASE-08`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。",
+          "単独変異: 片側group receipt だけ欠落。その他の入力は `CASE-01` と同一。",
+          "群別結果を未評価 戻し先: OS。"
+        ]
+      },
+      {
+        "line_number": 3140,
+        "raw_with_lf": "| `L10-LABO-066-CASE-09` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | 単独変異: 結果観測後にoracle結果だけ変更。その他の入力は `CASE-01` と同一。 | 事後変更を拒否し事前oracleで再評価 戻し先: HARNESS。 |\n",
+        "raw_lf_sha256": "8746e18253a0e8cc7e087df2824a23a2844c08d5212328baf02075787c15f9c7",
+        "fields_six": [
+          "`L10-LABO-066-CASE-09`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。",
+          "単独変異: 結果観測後にoracle結果だけ変更。その他の入力は `CASE-01` と同一。",
+          "事後変更を拒否し事前oracleで再評価 戻し先: HARNESS。"
+        ]
+      },
+      {
+        "line_number": 3141,
+        "raw_with_lf": "| `L10-LABO-066-CASE-10` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | 単独変異: duplicate case identity だけ追加。その他の入力は `CASE-01` と同一。 | eligible Nを重複計上しない 戻し先: LABO。 |\n",
+        "raw_lf_sha256": "2fe5c88f32352c3e702a4b171307d18abf275417b61d5125d73460f1e86ca6aa",
+        "fields_six": [
+          "`L10-LABO-066-CASE-10`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。",
+          "単独変異: duplicate case identity だけ追加。その他の入力は `CASE-01` と同一。",
+          "eligible Nを重複計上しない 戻し先: LABO。"
+        ]
+      },
+      {
+        "line_number": 3142,
+        "raw_with_lf": "| `L10-LABO-066-CASE-11` | `LABO-066-FR-03` | `LABO-066-AC-03` | 比較入力のその他はB0相当だが、eligible denominator Nだけが未提示。numeratorは存在し、Nなし状態をbaselineとする。 | この無効入力でシステムがnumerator/Nの率を確定・表示する誤出力だけを注入する。 | 割合を出さず未評価にする。母集団/denominatorを生む既存sourceが特定できる場合だけ返し、LABOは比較評価未完了の責務を保持する。 |\n",
+        "raw_lf_sha256": "ccce67fd49325fb3b441deb226455e21abd1580511d5221fb57a7e793ecb47e7",
+        "fields_six": [
+          "`L10-LABO-066-CASE-11`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "比較入力のその他はB0相当だが、eligible denominator Nだけが未提示。numeratorは存在し、Nなし状態をbaselineとする。",
+          "この無効入力でシステムがnumerator/Nの率を確定・表示する誤出力だけを注入する。",
+          "割合を出さず未評価にする。母集団/denominatorを生む既存sourceが特定できる場合だけ返し、LABOは比較評価未完了の責務を保持する。"
+        ]
+      },
+      {
+        "line_number": 3143,
+        "raw_with_lf": "| `L10-LABO-066-CASE-12` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | 単独変異: A側の費用項目だけ比較から除外する。その他の入力はCASE-01と同一。 | 費用完全性を不成立とし、除外された費用sourceが識別できればLABO-055またはその既存source ownerへ返す。OSへ費用source ownerを推定しない。 |\n",
+        "raw_lf_sha256": "b4bc29e4030fe571c0beb6ac001ced9fb49bfc54d8847321a9b4b1c604e197b2",
+        "fields_six": [
+          "`L10-LABO-066-CASE-12`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。",
+          "単独変異: A側の費用項目だけ比較から除外する。その他の入力はCASE-01と同一。",
+          "費用完全性を不成立とし、除外された費用sourceが識別できればLABO-055またはその既存source ownerへ返す。OSへ費用source ownerを推定しない。"
+        ]
+      },
+      {
+        "line_number": 3144,
+        "raw_with_lf": "| `L10-LABO-066-CASE-13` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0のeligible case一件に、受入oracleがmisrepair=trueかつcutoff時unresolved=trueの双方を記録した状態。 | 集計時に2指標を排他的分類へ変え、一方の分子から当該caseを除く誤出力だけを注入。 | 1 case identityとしてNには一度だけ数え、misrepair/unresolved双方の分子へ個別に含める。 |\n",
+        "raw_lf_sha256": "09ae63b92e0bc010db2f553bcce8889c33419a509ce84695694f890f05004c47",
+        "fields_six": [
+          "`L10-LABO-066-CASE-13`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "B0のeligible case一件に、受入oracleがmisrepair=trueかつcutoff時unresolved=trueの双方を記録した状態。",
+          "集計時に2指標を排他的分類へ変え、一方の分子から当該caseを除く誤出力だけを注入。",
+          "1 case identityとしてNには一度だけ数え、misrepair/unresolved双方の分子へ個別に含める。"
+        ]
+      },
+      {
+        "line_number": 3145,
+        "raw_with_lf": "| `L10-LABO-066-CASE-14` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。 | protocol identity/valueだけをA群と候補群で不一致にする（他はB0同一）。 | LABOは同条件比較を拒否して比較不能にする。LABOのeval dutyは保持する。protocol値のsource ownerは固定親から特定不能ならunknownを併記し、創設しない。 |\n",
+        "raw_lf_sha256": "e633614742ba050121b0394f62341d17c97cf32f31c8edce896df8f3fc4a1a6c",
+        "fields_six": [
+          "`L10-LABO-066-CASE-14`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。",
+          "protocol identity/valueだけをA群と候補群で不一致にする（他はB0同一）。",
+          "LABOは同条件比較を拒否して比較不能にする。LABOのeval dutyは保持する。protocol値のsource ownerは固定親から特定不能ならunknownを併記し、創設しない。"
+        ]
+      },
+      {
+        "line_number": 3146,
+        "raw_with_lf": "| `L10-LABO-066-CASE-15` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。 | toolchain identity/valueだけをA群と候補群で不一致にする（他はB0同一）。 | LABOは同条件比較を拒否。LABOのeval dutyは保持し、toolchain source ownerがsourceから特定不能なら個別owner unknownを併記する。 |\n",
+        "raw_lf_sha256": "5bfb2e607c6922276aa5223c70f04912568fec11a980eeed8cd03177ec91a42b",
+        "fields_six": [
+          "`L10-LABO-066-CASE-15`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。",
+          "toolchain identity/valueだけをA群と候補群で不一致にする（他はB0同一）。",
+          "LABOは同条件比較を拒否。LABOのeval dutyは保持し、toolchain source ownerがsourceから特定不能なら個別owner unknownを併記する。"
+        ]
+      },
+      {
+        "line_number": 3147,
+        "raw_with_lf": "| `L10-LABO-066-CASE-16` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。 | environment identity/valueだけをA群と候補群で不一致にする（他はB0同一）。 | LABOは同条件比較を拒否。LABOのeval dutyは保持し、environment source ownerがsourceから特定不能なら個別owner unknownを併記する。 |\n",
+        "raw_lf_sha256": "69bab17362e7e0585160de190e60c5349332290610621ec8a8aac18fc1255eaa",
+        "fields_six": [
+          "`L10-LABO-066-CASE-16`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。",
+          "environment identity/valueだけをA群と候補群で不一致にする（他はB0同一）。",
+          "LABOは同条件比較を拒否。LABOのeval dutyは保持し、environment source ownerがsourceから特定不能なら個別owner unknownを併記する。"
+        ]
+      },
+      {
+        "line_number": 3148,
+        "raw_with_lf": "| `L10-LABO-066-CASE-17` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。 | task identityだけを両群間で不一致にする。 | 比較不能。task/acceptance contractをHARNESSまたは要求ownerが供給する固定L2区分へ戻す。LABOは差異評価義務を保持する。 |\n",
+        "raw_lf_sha256": "d319ee21c78baf04180e9dafef84dbb5dc7a9466f10a6bee22842ed1f78b8dcc",
+        "fields_six": [
+          "`L10-LABO-066-CASE-17`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。",
+          "task identityだけを両群間で不一致にする。",
+          "比較不能。task/acceptance contractをHARNESSまたは要求ownerが供給する固定L2区分へ戻す。LABOは差異評価義務を保持する。"
+        ]
+      },
+      {
+        "line_number": 3149,
+        "raw_with_lf": "| `L10-LABO-066-CASE-18` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。 | scopeだけを両群間で不一致にする。 | 比較不能。scope/要求contractの既存HARNESSまたは要求owner区分へ戻し、LABOは比較不成立を記録する。 |\n",
+        "raw_lf_sha256": "964d83b05dc6604ffcbdb5f911c74339d1212749cf9ace780b54fe4282c74f3c",
+        "fields_six": [
+          "`L10-LABO-066-CASE-18`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。",
+          "scopeだけを両群間で不一致にする。",
+          "比較不能。scope/要求contractの既存HARNESSまたは要求owner区分へ戻し、LABOは比較不成立を記録する。"
+        ]
+      },
+      {
+        "line_number": 3150,
+        "raw_with_lf": "| `L10-LABO-066-CASE-19` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。 | target revisionだけを両群間で不一致にする。 | 比較不能。revision/対象contractを持つ既存HARNESS/要求owner区分へ戻し、LABOは比較を成立扱いしない。 |\n",
+        "raw_lf_sha256": "04da8d407c77d6c4adb0816bdda3759ebfd3787ffd48779ffb4006c7b985da05",
+        "fields_six": [
+          "`L10-LABO-066-CASE-19`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。",
+          "target revisionだけを両群間で不一致にする。",
+          "比較不能。revision/対象contractを持つ既存HARNESS/要求owner区分へ戻し、LABOは比較を成立扱いしない。"
+        ]
+      },
+      {
+        "line_number": 3151,
+        "raw_with_lf": "| `L10-LABO-066-CASE-20` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。 | scorer/oracle identityだけを両群間で不一致にする。 | 比較不能。oracle/scorerの固定source区分HARNESS/要求ownerへ戻し、LABOは結果を混算しない。 |\n",
+        "raw_lf_sha256": "f7a6aed64b1c8e7b45ae31e1501eac3872bc1af442478f8f2b6688078d541146",
+        "fields_six": [
+          "`L10-LABO-066-CASE-20`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。",
+          "scorer/oracle identityだけを両群間で不一致にする。",
+          "比較不能。oracle/scorerの固定source区分HARNESS/要求ownerへ戻し、LABOは結果を混算しない。"
+        ]
+      },
+      {
+        "line_number": 3152,
+        "raw_with_lf": "| `L10-LABO-066-CASE-21` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | 結果後にeligible集合/分母だけ変更 | 事前集合からの変更を拒否する。 |\n",
+        "raw_lf_sha256": "beda35e0e2d8a806ca75de7a412c53294436a7642a45ed1d766038d8c15e27d2",
+        "fields_six": [
+          "`L10-LABO-066-CASE-21`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。",
+          "結果後にeligible集合/分母だけ変更",
+          "事前集合からの変更を拒否する。"
+        ]
+      },
+      {
+        "line_number": 3153,
+        "raw_with_lf": "| `L10-LABO-066-CASE-22` | `LABO-066-FR-03` | `LABO-066-AC-03` | 参照先fixtureを個別実行し、索引自体を独立N/fixtureに数えない。 | 索引: 索引（独立fixtureではない）: CASE-23/24のmisrepair countとunresolved countを個別に参照する。 | 2ケースを別々に検証し、複合変異を独立計上しない。 |\n",
+        "raw_lf_sha256": "7be837b2b793b0ec86be4b749b016fba5e6144029d0602a114657a1bc203e6b9",
+        "fields_six": [
+          "`L10-LABO-066-CASE-22`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "参照先fixtureを個別実行し、索引自体を独立N/fixtureに数えない。",
+          "索引: 索引（独立fixtureではない）: CASE-23/24のmisrepair countとunresolved countを個別に参照する。",
+          "2ケースを別々に検証し、複合変異を独立計上しない。"
+        ]
+      },
+      {
+        "line_number": 3154,
+        "raw_with_lf": "| `L10-LABO-066-CASE-23` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | oracleに結ばないmisrepair countだけ提示 | misrepair数を未評価にする。 |\n",
+        "raw_lf_sha256": "42562c306ba0bfa152eee55ca491b18cb86149ed6ac0779dd8a667ffc8c0a342",
+        "fields_six": [
+          "`L10-LABO-066-CASE-23`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。",
+          "oracleに結ばないmisrepair countだけ提示",
+          "misrepair数を未評価にする。"
+        ]
+      },
+      {
+        "line_number": 3155,
+        "raw_with_lf": "| `L10-LABO-066-CASE-24` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | oracleに結ばないunresolved countだけ提示 | unresolved数を未評価にする。 |\n",
+        "raw_lf_sha256": "4d2b33d832bb5bd81c6d614f37bc5976c1620d64cdc712f2af8aa81905e56ea6",
+        "fields_six": [
+          "`L10-LABO-066-CASE-24`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。",
+          "oracleに結ばないunresolved countだけ提示",
+          "unresolved数を未評価にする。"
+        ]
+      },
+      {
+        "line_number": 3156,
+        "raw_with_lf": "| `L10-LABO-066-CASE-25` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0の有効比較。両群receiptと費用/time/reworkは揃い、oracleは候補群1 caseをmisrepairと判定。成功件数もreceiptにある。 | misrepair表示/countだけを落とし成功件数を示す。成功件数自体は変更しない。 | misrepair countを独立して表示する。成功数で相殺せずoracle receiptを保持する。 |\n",
+        "raw_lf_sha256": "bea5febdc2d7e6c197d1c6cd141be8b2edef152a5723a2fc9f4e815d708fa9e3",
+        "fields_six": [
+          "`L10-LABO-066-CASE-25`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "B0の有効比較。両群receiptと費用/time/reworkは揃い、oracleは候補群1 caseをmisrepairと判定。成功件数もreceiptにある。",
+          "misrepair表示/countだけを落とし成功件数を示す。成功件数自体は変更しない。",
+          "misrepair countを独立して表示する。成功数で相殺せずoracle receiptを保持する。"
+        ]
+      },
+      {
+        "line_number": 3157,
+        "raw_with_lf": "| `L10-LABO-066-CASE-26` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0の有効比較。両群receiptと費用/time/reworkは揃い、oracleは候補群1 caseをcutoff時unresolvedと判定。費用receiptもある。 | unresolved表示/countだけを落とし費用だけを示す。費用値自体は変更しない。 | unresolved countを独立して表示し費用で相殺しない。 |\n",
+        "raw_lf_sha256": "30d7386cbf99bf53c1c8f614e50a60d62df20d4cb334c929cba5ccfe8bdf0a02",
+        "fields_six": [
+          "`L10-LABO-066-CASE-26`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "B0の有効比較。両群receiptと費用/time/reworkは揃い、oracleは候補群1 caseをcutoff時unresolvedと判定。費用receiptもある。",
+          "unresolved表示/countだけを落とし費用だけを示す。費用値自体は変更しない。",
+          "unresolved countを独立して表示し費用で相殺しない。"
+        ]
+      },
+      {
+        "line_number": 3158,
+        "raw_with_lf": "| `L10-LABO-066-CASE-27` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | A result receiptだけstale | A側の比較結果を未評価としOS/run receipt ownerへ戻す。 |\n",
+        "raw_lf_sha256": "0be63e9d2d53b59e0b8ab350b5dae45baee13a7638e01058a835c824a03cd0e3",
+        "fields_six": [
+          "`L10-LABO-066-CASE-27`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。",
+          "A result receiptだけstale",
+          "A側の比較結果を未評価としOS/run receipt ownerへ戻す。"
+        ]
+      },
+      {
+        "line_number": 3159,
+        "raw_with_lf": "| `L10-LABO-066-CASE-28` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | candidate-group result receiptだけstale | 候補側の比較結果を未評価としOS/run receipt ownerへ戻す。 |\n",
+        "raw_lf_sha256": "87c0b95d5e001480137d61532f04f3cd73156b0e583b14d1e7ef3efa662344cd",
+        "fields_six": [
+          "`L10-LABO-066-CASE-28`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。",
+          "candidate-group result receiptだけstale",
+          "候補側の比較結果を未評価としOS/run receipt ownerへ戻す。"
+        ]
+      },
+      {
+        "line_number": 3160,
+        "raw_with_lf": "| `L10-LABO-066-CASE-29` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0の有効比較。候補群にmisrepair=trueの1 caseがあり、同じ合成観測receiptでspeed improvementも成立している。speed値とoracle/result receiptを固定する。実測実績を主張しない。 | misrepair表示/countだけを出力から除外する。speed improvementの有無・値は変更しない。 | misrepair countを別に保持し、speed improvementも元receipt値のまま表示。片方で他方を相殺しない。 |\n",
+        "raw_lf_sha256": "b2ba1413b3213edc1d8253c8bc8ac1ab229484e5fbdd058f0d7d3e1e35beff27",
+        "fields_six": [
+          "`L10-LABO-066-CASE-29`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "B0の有効比較。候補群にmisrepair=trueの1 caseがあり、同じ合成観測receiptでspeed improvementも成立している。speed値とoracle/result receiptを固定する。実測実績を主張しない。",
+          "misrepair表示/countだけを出力から除外する。speed improvementの有無・値は変更しない。",
+          "misrepair countを別に保持し、speed improvementも元receipt値のまま表示。片方で他方を相殺しない。"
+        ]
+      },
+      {
+        "line_number": 3161,
+        "raw_with_lf": "| `L10-LABO-066-CASE-30` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0の有効比較。候補群にcutoff時unresolved=trueの1 caseがあり、同じ合成観測receiptでspeed improvementも成立している。speed値とoracle/result receiptを固定する。実測実績を主張しない。 | unresolved表示/countだけを出力から除外する。speed improvementの有無・値は変更しない。 | unresolved countを別に保持し、speed improvementも元receipt値のまま表示。 |\n",
+        "raw_lf_sha256": "ebde3474181b5ce34627b1638f908dcd1222c2df14206c03b702d1ce6cd1ea77",
+        "fields_six": [
+          "`L10-LABO-066-CASE-30`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "B0の有効比較。候補群にcutoff時unresolved=trueの1 caseがあり、同じ合成観測receiptでspeed improvementも成立している。speed値とoracle/result receiptを固定する。実測実績を主張しない。",
+          "unresolved表示/countだけを出力から除外する。speed improvementの有無・値は変更しない。",
+          "unresolved countを別に保持し、speed improvementも元receipt値のまま表示。"
+        ]
+      },
+      {
+        "line_number": 3162,
+        "raw_with_lf": "| `L10-LABO-066-CASE-31` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0の有効比較でoracleがmisrepair=trueを記録し、両側cost receiptも固定済み。 | misrepair表示/countだけを除き、cost valuesはそのまま出力する。 | misrepairをcostと独立保持し、oracle結果をcostで相殺しない。 |\n",
+        "raw_lf_sha256": "9aa6764696da0ba66fdb9938c7922ca55f827ced7a62c08cb13e0c8e162dd541",
+        "fields_six": [
+          "`L10-LABO-066-CASE-31`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "B0の有効比較でoracleがmisrepair=trueを記録し、両側cost receiptも固定済み。",
+          "misrepair表示/countだけを除き、cost valuesはそのまま出力する。",
+          "misrepairをcostと独立保持し、oracle結果をcostで相殺しない。"
+        ]
+      },
+      {
+        "line_number": 3163,
+        "raw_with_lf": "| `L10-LABO-066-CASE-32` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0の有効比較でoracleがunresolved=trueを記録し、success receiptsも固定済み。 | unresolved表示/countだけを除き、success valuesはそのまま出力する。 | unresolvedをsuccessと独立保持し、oracle結果を成功数で相殺しない。 |\n",
+        "raw_lf_sha256": "f1f1ba443bf64ebb63db0f6e8a1e2973fae8178d2cd1d85f7e9ec79e8e77292d",
+        "fields_six": [
+          "`L10-LABO-066-CASE-32`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "B0の有効比較でoracleがunresolved=trueを記録し、success receiptsも固定済み。",
+          "unresolved表示/countだけを除き、success valuesはそのまま出力する。",
+          "unresolvedをsuccessと独立保持し、oracle結果を成功数で相殺しない。"
+        ]
+      },
+      {
+        "line_number": 3164,
+        "raw_with_lf": "| `L10-LABO-066-CASE-33` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0のA identity/version、候補identity/version、scope、oracle、全receiptsが既知で整合する。 | A identity fieldだけunknownにする。A version fieldと他すべてのB0入力は既知・不変のままにする。 | LABOは比較をunknown/未評価にし率を確定しない。A identityの既知責務区分とLABO evaluation dutyを保ち、個体mapping unknownは別に記録する。 |\n",
+        "raw_lf_sha256": "0fe1b2ffbafae909226aea9c5a08217ab6a0c94b6aab2540488456fb99d3e205",
+        "fields_six": [
+          "`L10-LABO-066-CASE-33`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "B0のA identity/version、候補identity/version、scope、oracle、全receiptsが既知で整合する。",
+          "A identity fieldだけunknownにする。A version fieldと他すべてのB0入力は既知・不変のままにする。",
+          "LABOは比較をunknown/未評価にし率を確定しない。A identityの既知責務区分とLABO evaluation dutyを保ち、個体mapping unknownは別に記録する。"
+        ]
+      },
+      {
+        "line_number": 3165,
+        "raw_with_lf": "| `L10-LABO-066-CASE-34` | `LABO-066-FR-03` | `LABO-066-AC-03` | A群と候補群がそれぞれsource revision付きeligible集合を提示する比較評価。 | Aと候補のeligible case identity集合だけを異ならせる。 | LABOは同分母比較を拒否し比較不能を記録。母集団を供給する既存source ownerが識別できなければunknownを併記し、LABOのeval dutyは保持する。 |\n",
+        "raw_lf_sha256": "4dd82afb5caacfac79ce2b1917f0f0a54979a1cde686a76ac33d78c8dcee5da8",
+        "fields_six": [
+          "`L10-LABO-066-CASE-34`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "A群と候補群がそれぞれsource revision付きeligible集合を提示する比較評価。",
+          "Aと候補のeligible case identity集合だけを異ならせる。",
+          "LABOは同分母比較を拒否し比較不能を記録。母集団を供給する既存source ownerが識別できなければunknownを併記し、LABOのeval dutyは保持する。"
+        ]
+      },
+      {
+        "line_number": 3166,
+        "raw_with_lf": "| `L10-LABO-066-CASE-35` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | 単独変異: 適用oracleだけ欠落。A/候補両群の他条件はCASE-01と同一。 | 比較をunknown/未評価とし、oracle不足をHARNESS/要求ownerへ返す。 |\n",
+        "raw_lf_sha256": "5ea2d13436d139f51877c0c13d1f04cde5d8d83cd60a616a694754df2aa34816",
+        "fields_six": [
+          "`L10-LABO-066-CASE-35`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。",
+          "単独変異: 適用oracleだけ欠落。A/候補両群の他条件はCASE-01と同一。",
+          "比較をunknown/未評価とし、oracle不足をHARNESS/要求ownerへ返す。"
+        ]
+      },
+      {
+        "line_number": 3167,
+        "raw_with_lf": "| `L10-LABO-066-CASE-36` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。 | 終了/cutoff fieldだけを欠落させる。 | LABOは分母を確定せず割合を出さない。cutoffを供給する既存source ownerが不明ならunknown、LABOの評価義務は保持。 |\n",
+        "raw_lf_sha256": "81add3eab3b3ff77682bce5c8f0bebc4d40f88543bee611adb6c59d103d4b954",
+        "fields_six": [
+          "`L10-LABO-066-CASE-36`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。",
+          "終了/cutoff fieldだけを欠落させる。",
+          "LABOは分母を確定せず割合を出さない。cutoffを供給する既存source ownerが不明ならunknown、LABOの評価義務は保持。"
+        ]
+      },
+      {
+        "line_number": 3168,
+        "raw_with_lf": "| `L10-LABO-066-CASE-37` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。 | cutoff revisionだけをstaleにする。 | LABOはstale cutoffで比較を成立扱いしない。既存cutoff source ownerが特定できなければunknownを併記し、LABO eval dutyを保持。 |\n",
+        "raw_lf_sha256": "87ce95a8d9f232a06d3778c3d2ae35424c8c8d6adad267a03bd99360c6c8cbbc",
+        "fields_six": [
+          "`L10-LABO-066-CASE-37`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。",
+          "cutoff revisionだけをstaleにする。",
+          "LABOはstale cutoffで比較を成立扱いしない。既存cutoff source ownerが特定できなければunknownを併記し、LABO eval dutyを保持。"
+        ]
+      },
+      {
+        "line_number": 3169,
+        "raw_with_lf": "| `L10-LABO-066-CASE-38` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。 | 事前確定eligible集合revisionだけをstaleにする（両群は同じstale setを参照）。 | LABOは現在分母を推測せず比較不能。set source ownerが不明ならunknownを併記し、LABO eval dutyを保持。 |\n",
+        "raw_lf_sha256": "f42087b2307e93d317e6c57d0cc97c803af3f5ef16c85d200a5e847a3c059c1c",
+        "fields_six": [
+          "`L10-LABO-066-CASE-38`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。",
+          "事前確定eligible集合revisionだけをstaleにする（両群は同じstale setを参照）。",
+          "LABOは現在分母を推測せず比較不能。set source ownerが不明ならunknownを併記し、LABO eval dutyを保持。"
+        ]
+      },
+      {
+        "line_number": 3170,
+        "raw_with_lf": "| `L10-LABO-066-CASE-39` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。 | 観測A identityだけを事前固定A identityと不一致にする。 | LABOはAを置換推定せず比較をunknown/未評価。固定identityの既知責務区分を保持し、観測された個体mapping unknownは個別に記録。 |\n",
+        "raw_lf_sha256": "4dc10a2cc69750a9e1db2e99f78bc33eb92cf34a5b2da5f9be8b4c5bea1f67d9",
+        "fields_six": [
+          "`L10-LABO-066-CASE-39`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。",
+          "観測A identityだけを事前固定A identityと不一致にする。",
+          "LABOはAを置換推定せず比較をunknown/未評価。固定identityの既知責務区分を保持し、観測された個体mapping unknownは個別に記録。"
+        ]
+      },
+      {
+        "line_number": 3171,
+        "raw_with_lf": "| `L10-LABO-066-CASE-40` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。 | A identity revisionだけをstaleにする。 | LABOはstale identityを現行Aとして使わず比較不能。identityを供給する既存source ownerが不明でもLABO eval dutyは維持し、個体unknownを併記する。 |\n",
+        "raw_lf_sha256": "85a46225e4193dc3de350d873449f0f049c7f783da456eba0d21919ff117226f",
+        "fields_six": [
+          "`L10-LABO-066-CASE-40`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "B0: 結果閲覧前に固定したA identity/versionと候補method identity/version、同じtask/scope/target revision、同一eligible case identity集合N（重複正規化済み）、同一受入oracle/scorer identity+revision、同一protocol/toolchain/environment、同一period/end-cutoffを提示。A群/候補群各caseのresult・oracle判定receipt、retry/rework/rescue、費用・時間receiptがあり、両群費用は同じ059定義で対応付く。",
+          "A identity revisionだけをstaleにする。",
+          "LABOはstale identityを現行Aとして使わず比較不能。identityを供給する既存source ownerが不明でもLABO eval dutyは維持し、個体unknownを併記する。"
+        ]
+      },
+      {
+        "line_number": 3172,
+        "raw_with_lf": "| `L10-LABO-066-CASE-41` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0の費用・時間・result/oracle receiptsおよびrework-cost receiptはA/candidate両群で存在し、同じ059定義で対応付く。 | A側rework-cost receiptの欠落だけを入力変異とする。 | 費用比較を非対称として不成立/未評価にする。欠落費用sourceが特定できる場合は既存LABO-055またはそのsourceへ戻し、特定不能はunknownを保持する。 |\n",
+        "raw_lf_sha256": "5ef4d6675e532580823482049ace545cbe4f2116abe283e78567a96ce25fb1a7",
+        "fields_six": [
+          "`L10-LABO-066-CASE-41`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "B0の費用・時間・result/oracle receiptsおよびrework-cost receiptはA/candidate両群で存在し、同じ059定義で対応付く。",
+          "A側rework-cost receiptの欠落だけを入力変異とする。",
+          "費用比較を非対称として不成立/未評価にする。欠落費用sourceが特定できる場合は既存LABO-055またはそのsourceへ戻し、特定不能はunknownを保持する。"
+        ]
+      },
+      {
+        "line_number": 3173,
+        "raw_with_lf": "| `L10-LABO-066-CASE-42` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0の同一eligible setに対してA群/候補群の全費用項目receiptが揃う。 | 候補側の費用項目だけを比較表示から一つ除外する。 | 非対称費用比較を拒否。手戻り費用だけ片側欠落のCASE-41と混同せず、欠落費用のsourceが不明ならowner unknownを併記する。 |\n",
+        "raw_lf_sha256": "89c47d00f0c54781f89b411591cd66e9a09e89e4d647457c66d6a5f616c0bdeb",
+        "fields_six": [
+          "`L10-LABO-066-CASE-42`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "B0の同一eligible setに対してA群/候補群の全費用項目receiptが揃う。",
+          "候補側の費用項目だけを比較表示から一つ除外する。",
+          "非対称費用比較を拒否。手戻り費用だけ片側欠落のCASE-41と混同せず、欠落費用のsourceが不明ならowner unknownを併記する。"
+        ]
+      },
+      {
+        "line_number": 3174,
+        "raw_with_lf": "| `L10-LABO-066-CASE-43` | `LABO-066-FR-03` | `LABO-066-AC-03` | CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。 | 単独変異: outcomeを確認した後にoracleだけを変更する。その他の比較入力はCASE-01と同一。 | 事後oracle変更を拒否し、元oracle結果を保持する。 |\n",
+        "raw_lf_sha256": "d1fb48318eac10f5a913255db9427f61e5394ab52084be45dde6f8ffb32767b7",
+        "fields_six": [
+          "`L10-LABO-066-CASE-43`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "CASE-01有効入力を基準とする。準備条件は原文にある場合そのまま保持。",
+          "単独変異: outcomeを確認した後にoracleだけを変更する。その他の比較入力はCASE-01と同一。",
+          "事後oracle変更を拒否し、元oracle結果を保持する。"
+        ]
+      },
+      {
+        "line_number": 3175,
+        "raw_with_lf": "| `L10-LABO-066-CASE-44` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: CASE-01の有効比較入力と両群の評価receiptだけ。 | 誤出力: 結果fieldとして HELIXLABO-L2-066 の採択decisionだけを生成する。 | 測定結果だけを返し、採択decisionを生成しない。新たなdecision ownerを推測しない。 |\n",
+        "raw_lf_sha256": "29d1a0d2b861bca82e50afc1cf6106c8c0bf81452796d036e9271c356f64af2c",
+        "fields_six": [
+          "`L10-LABO-066-CASE-44`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "B0: CASE-01の有効比較入力と両群の評価receiptだけ。",
+          "誤出力: 結果fieldとして HELIXLABO-L2-066 の採択decisionだけを生成する。",
+          "測定結果だけを返し、採択decisionを生成しない。新たなdecision ownerを推測しない。"
+        ]
+      },
+      {
+        "line_number": 3176,
+        "raw_with_lf": "| `L10-LABO-066-CASE-45` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: CASE-01の有効比較入力と両群の評価receiptだけ。 | 誤出力: 特定repair methodに対するrepair_permission fieldだけを生成する。 | repair_permissionを生成せず比較材料を返す。CASE-04aの修復実行拒否とは別出力である。 |\n",
+        "raw_lf_sha256": "1caa6d12a090546b329c7e3bf6b4c250eb08d490cf41025185d392a287a64967",
+        "fields_six": [
+          "`L10-LABO-066-CASE-45`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "B0: CASE-01の有効比較入力と両群の評価receiptだけ。",
+          "誤出力: 特定repair methodに対するrepair_permission fieldだけを生成する。",
+          "repair_permissionを生成せず比較材料を返す。CASE-04aの修復実行拒否とは別出力である。"
+        ]
+      },
+      {
+        "line_number": 3177,
+        "raw_with_lf": "| `L10-LABO-066-CASE-46` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: CASE-01の有効比較入力と両群の評価receiptだけ。 | 誤出力: placement fieldだけを生成する。 | placementを生成せず比較材料を返す。assignment一般の境界は追加しない。 |\n",
+        "raw_lf_sha256": "a0d35003883545ea166b8f61de45415e3fa5f0906584473672981062e6057669",
+        "fields_six": [
+          "`L10-LABO-066-CASE-46`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "B0: CASE-01の有効比較入力と両群の評価receiptだけ。",
+          "誤出力: placement fieldだけを生成する。",
+          "placementを生成せず比較材料を返す。assignment一般の境界は追加しない。"
+        ]
+      },
+      {
+        "line_number": 3178,
+        "raw_with_lf": "| `L10-LABO-066-CASE-47` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: CASE-01の有効比較入力と両群の評価receiptだけ。 | 誤出力: admission decision fieldだけを生成する。 | admission decisionを生成せず比較材料を返す。資格評価一般の禁止は追加しない。 |\n",
+        "raw_lf_sha256": "5c9ab51363d57d65703f260cc4f9d5ce53180e12a9a6b5aaba7d473bab353e9f",
+        "fields_six": [
+          "`L10-LABO-066-CASE-47`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "B0: CASE-01の有効比較入力と両群の評価receiptだけ。",
+          "誤出力: admission decision fieldだけを生成する。",
+          "admission decisionを生成せず比較材料を返す。資格評価一般の禁止は追加しない。"
+        ]
+      },
+      {
+        "line_number": 3179,
+        "raw_with_lf": "| `L10-LABO-066-CASE-48` | `LABO-066-FR-03` | `LABO-066-AC-03` | B0: CASE-01の有効比較入力と両群の評価receiptだけ。 | 誤出力: requirement_complete fieldだけを生成する。 | requirement_completeを生成せず比較材料を返す。effect_achieved等の隣接fieldへ禁止範囲を広げない。 |\n",
+        "raw_lf_sha256": "64234360c42c6b34b2b7ac09be773d6a4ff0d96e9238e3f67d71e13bddf9ea45",
+        "fields_six": [
+          "`L10-LABO-066-CASE-48`",
+          "`LABO-066-FR-03`",
+          "`LABO-066-AC-03`",
+          "B0: CASE-01の有効比較入力と両群の評価receiptだけ。",
+          "誤出力: requirement_complete fieldだけを生成する。",
+          "requirement_completeを生成せず比較材料を返す。effect_achieved等の隣接fieldへ禁止範囲を広げない。"
+        ]
+      }
+    ]
+  },
+  "new_authority_output_differences": [
+    {
+      "case_id": "`L10-LABO-066-CASE-44`",
+      "baseline": "B0: CASE-01の有効比較入力と両群の評価receiptだけ。",
+      "mutation": "誤出力: 結果fieldとして HELIXLABO-L2-066 の採択decisionだけを生成する。",
+      "expected": "測定結果だけを返し、採択decisionを生成しない。新たなdecision ownerを推測しない。"
+    },
+    {
+      "case_id": "`L10-LABO-066-CASE-45`",
+      "baseline": "B0: CASE-01の有効比較入力と両群の評価receiptだけ。",
+      "mutation": "誤出力: 特定repair methodに対するrepair_permission fieldだけを生成する。",
+      "expected": "repair_permissionを生成せず比較材料を返す。CASE-04aの修復実行拒否とは別出力である。"
+    },
+    {
+      "case_id": "`L10-LABO-066-CASE-46`",
+      "baseline": "B0: CASE-01の有効比較入力と両群の評価receiptだけ。",
+      "mutation": "誤出力: placement fieldだけを生成する。",
+      "expected": "placementを生成せず比較材料を返す。assignment一般の境界は追加しない。"
+    },
+    {
+      "case_id": "`L10-LABO-066-CASE-47`",
+      "baseline": "B0: CASE-01の有効比較入力と両群の評価receiptだけ。",
+      "mutation": "誤出力: admission decision fieldだけを生成する。",
+      "expected": "admission decisionを生成せず比較材料を返す。資格評価一般の禁止は追加しない。"
+    },
+    {
+      "case_id": "`L10-LABO-066-CASE-48`",
+      "baseline": "B0: CASE-01の有効比較入力と両群の評価receiptだけ。",
+      "mutation": "誤出力: requirement_complete fieldだけを生成する。",
+      "expected": "requirement_completeを生成せず比較材料を返す。effect_achieved等の隣接fieldへ禁止範囲を広げない。"
+    }
+  ],
+  "review05_treatment": {
+    "comment_id": 6010745544,
+    "body_sha256": "761f8eb92265a9b7325daf2340cd96847d5fa11a5ef2d344c1fc455788fe341a",
+    "original_target_findings": [
+      {
+        "label": "M3",
+        "status": "found",
+        "raw_text": "- **M3（066-29/30：準備状態と変異が食い違う。review04 M7の残り）**：準備では「speedを通常値として保持」としているのに、変異は「speed改善だけを報告」になっている。隠すことと、速度の主張を変えることの2点が変異になるのか、baselineが一意に決まらない。066-31/32と書き方がそろっていない。agentの確信度は中程度で、Opus側はbaselineが一意でないためMajorとする。→守るべき行：L2-066「比較条件と失敗」、L11-066の誤り例（成功件数・費用・速度だけで隠す）。\n\n**Minor**\n",
+        "utf8_bytes": 631,
+        "sha256": "247d050c8a6084da10d71dd2dbee3bfa2cb3bcb4e5e8ddae1a65b65a69ff641a"
+      },
+      {
+        "label": "m5",
+        "status": "found",
+        "raw_text": "- **m5（重複計上）**：新しく追加したCASEの多くが、既存の単独fixtureと同じ変異を持っている。\n  - 063：54≒08、56/57≒49/50、58≒13、59≒12、61≒15、62≒16、64/65≒41/42\n  - 065-45≒065-11\n  - 066-43≒066-09\n  - 064-38/39≒064-04a（04aは2変異の行のまま残っている）\n  - NVとNGは、063の54〜62と64/65を独立したnegativeとして数えている。063-58には、063-13にある「観測提供主体へ返す」がない。\n  - 補足：review04 M11が求めたのは、FRへの禁止句の追補だけだった。対応する既存CASEは、すでにAC-03をtraceしていた。\n",
+        "utf8_bytes": 651,
+        "sha256": "5c78ae97513b9b0d2343ecfeaf9be20e0d62b57e60b2a549e14312dcf9bce357"
+      },
+      {
+        "label": "m6",
+        "status": "found",
+        "raw_text": "- **m6（戻し先の併記漏れ）**：\n  - 065-41〜44、069-31/32、070-63、066-42/43に戻し先がない。\n  - 070-69は、対象fieldも特定していない。\n  - 064-24/33/35/36から、evaluation ownerが削られた。064-33は「再評価義務を返す」を「当該scopeを再評価する」に変えている。\n  - →守るべき行：L2-065/069/066「戻し先」、L11-064の未見例、L11-070の個別反例。\n",
+        "utf8_bytes": 436,
+        "sha256": "7a8a4717d3940e9242b1b4e5a52640d1263f42526de46cccf951b1efcab995fc"
+      }
+    ],
+    "candidate_treatment": [
+      {
+        "finding": "M3",
+        "classification": "baseline/one-factor ambiguity",
+        "treatment": "CASE-29/30 synthesized observation receipt holds a speed-improvement value; metric visibility alone is mutated; no empirical claim."
+      },
+      {
+        "finding": "m5",
+        "classification": "duplicate-fixture/count risk",
+        "treatment": "CASE-43/09 relation retained as finding; no closure or independent fixture claim."
+      },
+      {
+        "finding": "m6",
+        "classification": "missing return destination",
+        "treatment": "CASE-42 returns only to an identifiable pre-existing cost source, otherwise unknown. CASE-43 rejects post-result oracle change; exact owner route remains unadjudicated. No closure claim."
+      }
+    ]
+  },
+  "draft_candidate_metadata_vs_po": "The pinned L2 candidate bytes contain draft_candidate metadata. PO decision line 81 adopts the pinned L2-066 revision and MPR-RC registration. These are distinct states; no L3 approval follows.",
+  "root_final_corrections_observed_in_current_git": [
+    "CASE-41 baseline has both groups receipts present; only A-side rework-cost receipt absence is the mutation.",
+    "CASE-03d baseline is limited to Qunknown oracle inapplicability; its denominator-exclusion/rate-emission is the mutation.",
+    "NFR keeps known responsibility categories while recording per-instance identity unknown separately."
+  ],
+  "validation": {
+    "all_six_current_files_prefix_matches_base": true,
+    "all_six_current_files_match_root_checkpoint": true,
+    "all_current_files_end_lf": true,
+    "all_base_content_preserved_byte_for_byte": true,
+    "old_literal_rows": 47,
+    "current_case_rows": 52,
+    "current_case_ids_unique": true,
+    "table_has_six_columns": true,
+    "only_six_paths_changed": true,
+    "diff_check_pass": true,
+    "governance_check": "Root-reported PASS; not rerun as part of this audit worker action",
+    "runtime_or_l10_execution": false,
+    "semantic_completeness_claim": false,
+    "independent_review_claim": false
+  },
+  "limits": [
+    "The transient two-file write state and exact filenames cannot be reconstructed from the final commit; their chronology is recorded as Root-reported history.",
+    "Root governance-check result is reported, not independently rerun here. `git diff --check` and exact Git-byte checks were independently rerun.",
+    "Fixture execution, legal controls, oracle application, requirement semantic completeness, independent review, L3 delegation decision, and merge remain outstanding."
+  ],
+  "context_after_authoring": {
+    "base": "0f05156f38415bc07a8a2d9c937b87db2d1af220",
+    "body": "fe489ac41b8703bac445fd42a3f493692afd1baa",
+    "files": [
+      {
+        "path": "docs/helix-labo/L10-verification/business-verification.md",
+        "suffix_sha256": "1d82064b50b3a3baa01dd013087966fa3202dd7f0e82b17ce512fcc2c2609553",
+        "main_prefix_sha256": "b656030b686b0939f7a2e1f39e463198df30f936a12cdd60567d891579bd7753",
+        "full_sha256": "b2af1cc8c934864d211219b4a60fd563a5fa159ea6552f58e01b34bcdaf0cb7d"
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "suffix_sha256": "13065d1321ee6d28831f59e811d3761a6e7a56df32dbce2ab9c86bb495b52870",
+        "main_prefix_sha256": "7cb7c6a27205165958680182d7f30d6b1f96ca539a328a11fa0060cc48f020e5",
+        "full_sha256": "aeeac107d7add154ee40b4a6faa2d596cbbe7e1d2ad27511a95710b357d9c72d"
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+        "suffix_sha256": "ff6980f1fd020fd36e80d6f9f06da6c7338652b47d3fb518b14f47b750646192",
+        "main_prefix_sha256": "3c127485a1c112703b1480e5475eadcf4dd7e29198b2e7cb6b3aa01d3e6d2d01",
+        "full_sha256": "6f3aa94d9b0588f0bbf5ace2b0cf7eeadfb3e9573c37e4e892b5cf2b5ee3a527"
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+        "suffix_sha256": "3dc759a6eb597cc46b0014dbedc2dc705810eebcc810e0bee891afbf3941fc3a",
+        "main_prefix_sha256": "fa02afbda5c2db97fb7782dcc8eac65bf5ee023c04459018861a2c7fe6db5e1e",
+        "full_sha256": "77f70aa2429d3aa7e447b1892eeb7f761606a9da945760f9415e0c64648ecd39"
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+        "suffix_sha256": "c2836aa13303d64d5b884de5438a4c01c7ba07410634687682850d6c0fef175d",
+        "main_prefix_sha256": "fe6734281d6b130a2d7c00aee7959bb33e4693eb5eb412822b085e2f14d258c6",
+        "full_sha256": "1b85be470499b4e65abf76bdba75128d075eaef553196b8c366e15e8c2fe9863"
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+        "suffix_sha256": "77be1f306c73a558daebba11ba608a02444940775b7695665c8e455f19932834",
+        "main_prefix_sha256": "1765a0f8d82820bc74857bebc06badb898da5b7c3e48f43f8bbfe32543239aac",
+        "full_sha256": "548dfc3f85f9b27f1926a9d2e5883bfb6e14768a61cf4cbf87f95cdfca89009c"
+      }
+    ],
+    "commit": "c258e9a7d22b4a2f9d66d6ddde35945a68281244"
+  },
+  "root_candidate_corrections": [
+    "current52 raw行は同一SHAだが候補line_numberが全件+1だったためactualGit物理行へ訂正。",
+    "LF失敗原因を候補NGsuffix末尾へ訂正。",
+    "review05 M3 Majorとm3 Minorを識別。rawfinding原文/SHA不変。"
+  ]
+}

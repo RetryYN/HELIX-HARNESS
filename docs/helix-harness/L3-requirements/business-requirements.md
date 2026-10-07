@@ -156,3 +156,9 @@ HARNESS-L2-041から独立business requirement、business owner、ROI/KPI/商業
 **対象・境界**：固定L2-044のscopeに限る。HARNESS-L2-009のtemplate適用・義務導出、041のatom抽出、026のunit設計とpair oracle、025のgeneric composite整合、043のexample coverageを再実装しない。025/026は固定済み候補の成果を入力として参照できるが、その完了を044が生成・代替せず、044も025/026を変更しない。HARNESS-L2-045は対象外。
 
 **旧source処置記録**：HIL-FR-54の「class-wise coverage」「再利用／delta／新規／N/A」「uncovered/duplicate」を意味再導出。HIL-FR-55のexample positive/negativeは保持対象外で043のscopeへ置く。HR-FR-HIL-20、HOT-HIL-50、HAT-HIL-20の複合workflow全体は再利用せず、対象のslice境界確認に限定する。
+
+## Stage 3 親043の業務要件
+
+| L2親 | business requirement | 理由 |
+|---|---|---|
+| `HARNESS-L2-043` | 独立したbusiness requirementを導出しない | 例coverageは選択scopeのverification adequacyであり、別の事業成果や価値閾値を追加しない。 |

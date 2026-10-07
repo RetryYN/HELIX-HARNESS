@@ -242,6 +242,16 @@ L3の `NFR-LABO-071-01` binding候補を、選択scopeの証跡で静的照合�
 
 母集団は実行が許可された場合に選択されるtask class/model revision/evaluation scopeから受け取り、CASE定義数で代用しない。数字のthreshold・固定観測期間・資格率は導入しない。candidateだけから資格状態、permission、assignment、L3承認や実行済み結果を発生させない。
 
+### HELIXLABO-L2-066 — 同条件比較NFR測定候補
+
+状態：未承認のL10候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。
+
+`LABO-066-NV-01` 測定設計：L3の `LABO-066-NG-01` と同一のB0/N1、scope、revision、oracle/scorer、両群receiptを用い、raw receiptから `misrepair_count/N` と `unresolved_count/N` を別々に再構成できるか記録する。両指標の重なりを維持し、unknown caseがcase ledgerとNの扱いに残り、unknownを0にせず、事後N/oracle/cutoff変更で割合を作らないことを合成単独変異で確認する。
+
+protocol/toolchain/environment/task/scope/target/oracle/cutoffの一要素だけ不一致・stale/missingのfixtureは比較不能/未評価となるかを記録する。戻し先は既存HARNESS/要求owner（oracle/acceptance適用性）、OSまたは観測source（task/scope/target revision入力record）、OS（assignment/run receipt）、LABO（comparison scope/比較評価）の既知責務区分に結び、個体identityがunknownでもその区分を保持する。個体ownerがsourceから特定できない場合はunknownを別に記録し、sourceにない担当を作らない。費用/時間/reworkはL2-059と同scopeで確認し、別定義しない。
+
+試行件数、性能値、threshold、許容率、期間値などの数値候補を追加しない。L10実行・oracle適用は未実施である。これは候補測定方法で、実測値や合否判定ではない。
+
 ## Stage 5 — HELIXLABO-L2-070 補助運用telemetryとAttempt scorecard併記
 
 固定親はPO live26の49行が採択した `MPR-RC-HELIXLABO-L2-070-001`。source revision `ea6f756f96a7370de78e412d737c7a7ed472114a` のL2:561–574 SHA `07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533`、L11:297–307 SHA `c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1`をraw-LFで照合した。旧候補が参照した0abb2894の同範囲とbytesは一致し、採択状態はPO記録で確認する。

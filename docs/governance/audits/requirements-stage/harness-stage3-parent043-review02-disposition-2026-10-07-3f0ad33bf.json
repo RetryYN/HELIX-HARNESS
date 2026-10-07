@@ -1,0 +1,984 @@
+{
+  "artifact_type": "HARNESS-043 review02 post-body static audit evidence (candidate-only)",
+  "status": "/tmp-only point-in-time audit candidate; no canonical audit/document edit by worker; not independent review, approval, or execution",
+  "target": {
+    "pr": 2642,
+    "formal_comment_id": 6023382905,
+    "body_commit": "3f0ad33bfad5dfab1bcf8e555bbab2bd9a7cd6ef",
+    "latest_context_HEAD": "6bc9ef619e68b97a78e7319432ab94e12d76f2a5",
+    "base_context": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+    "worktree": "/home/tenni/.helix-worktrees/l3-harness-stage3-parent043"
+  },
+  "inputs": {
+    "formal_comments_json": "/tmp/root-pr2642-comments-review02.json",
+    "formal_comments_json_sha256": "96deaab557778b0ea7659a0489a21610cb1c643370fdab5f9760ced1e9033ded",
+    "exact_changes_json": "/tmp/root-harness043-review02-exact-changes.json",
+    "exact_changes_json_sha256": "ee21be14805b10c8f7108390bc4bb4b2fc86cff9865d0490ef4a8fa6ff966d40",
+    "prior_review01_audit_json": "/tmp/harness043-review01-postbody-audit-2026-10-07-449625.json",
+    "prior_review01_audit_sha256": "9fce53ad46a2a1847e09cf7dbf4ab20ad3a7e19c26c20b8c983885f7c31a737c",
+    "previous_postbody_audit_json": "/tmp/harness043-post-body-authoring-audit-2026-10-07-a289a91c.json",
+    "previous_postbody_audit_sha256": "42678b9c922a10034e63f8fd67e21b67a85d83f046b35db2fdde70e2cc2fa5d9"
+  },
+  "formal_review_raw": {
+    "review01_comment_id": 6022949036,
+    "review01_body": "## review01（independent review、PR #2642 親HARNESS-L2-043、HEAD 72a16dc16db37c21cef20c9ce918d402a4f298fb、base main 3c3c512c0）：Major 2\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼comment 6022887049（`RH-PR2642-HARNESS-STAGE3-PARENT043-01`）に応える。\n\n### 照合の方法と結果\n- **事前確認（本文を評価する前）**：問題はなかった。\n  - HARNESS-L2-043の採択記録は、mainでは`po-decision-2026-09-29-57candidates.md:48`だけである（`MPR-RC-HARNESS-L2-043-002`、条件付き採択：Bルート、所属はHARNESS-CORE）。本文の参照も一致している。\n  - merge-baseは依頼のbaseと一致し、削除行は0である。\n  - 条件付きの戻し先（「特定できれば」など）は0件だった。\n- **Opusのブラインド照合**：Majorの候補を2件挙げた。reviewerが、固定親（318ec4a product-requirements.md:986–1001、product-acceptance.md:723–734）の原文と本文で確かめ、2件ともMajorとした。\n  - Bルート、COREの条件は保たれている。\n  - 生成の禁止7項目（要求合意、採択、L3承認、設計成立、実装、OS実行、利用者受入）には、それぞれ拒否fixtureがある。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - origin/mainとの`merge-tree`は衝突なし\n- **今後の流れ**：Majorがあるので、Fableの判断は回していない。\n\n### Major\n**M1（固定親にないHARNESS-L2-005の選択を前提にして、risk追加例の条件を狭め、005への戻し先を作っている）**\n- **欠陥**：\n  - L3 functional-requirementsは、「L2-005がticketとriskから検証義務/profileを選択し、043は選択済みscope/profileを受ける」としている。\n  - 追加のrisk例は「L2-005で選択されたticket/riskの未被覆領域だけ」としている（AC-04と、由来と処置の行）。\n  - 「ticket/risk profile未選択なら005 owner」へ戻すとしている。\n  - L10の`CASE-HARNESS-L10-043-r10-profile-missing-to-005`は、profileが欠けると評価全体をunknown/未評価にし、HARNESS-L2-005 ownerへ戻す。\n- **固定親との差**：固定L2-043とL11-043には、L2-005が一度も出てこない（0件）。\n  - risk根拠は「risk追加例を判定する場合はその対象scopeのrisk根拠と未被覆領域」という、選択した入力元に応じて必須になる入力である。\n  - 追加例の条件は「risk分析で未被覆と示された場合に限り」である。\n  - 戻し先は009、041、004/該当ownerである。\n- **類型**：L3は、ticket profileを常に必要な前提にした。そのうえで、条件に005の選択を重ねて狭め、固定親の区分にない005への戻し先を作った（類型3と類型1）。\n- **守るべき行**：L2-043「入力」「依存区分」「保証と戻し先」（318ec4a product-requirements.md:993–997）\n\n**M2（原因を一つに固定したfixtureで、戻し先が決まらない）**\n- **欠陥**：次の3行のfixtureは、どれも原因を一つに固定しているのに、oracleが戻し先を「041へ／009へ／004へ」と並べるだけで、宛先を一つに決めていない。どのownerへ返す実装でも合格する。\n  - `CASE-HARNESS-L10-043-05`：baselineで適用性とrule identityをcurrentに固定し、正例一つだけを不適合にしている。\n  - `CASE-HARNESS-L10-043-r06-na-without-basis`：N/A根拠だけを除いている。\n  - `CASE-HARNESS-L10-043-r06-tbd-unfilled`：既存のTBDを推測で補っている。\n- **守るべき行**：L2-043「保証と戻し先」（product-requirements.md:997）、L11-043の戻し先（product-acceptance.md:733）。固定親は、原因ごとに戻し先を一つに決めている。active版・適用性は009、抽出済みrule/branchは041、risk・oracle・検証義務は004である。\n\n### 後で直す残余（承認を止めない）\n- **R1（索引の参照先）**：CASE 043-01〜03は索引行で、子CASEが列挙されていない。\n- **R2（戻し先の欠落）**：CASE 043-07は、重複・冗長性のfindingが欠けたときの戻し先がない。\n- **R3（宛先の特定）**：r10-execution-not-generatedの戻し先「既存OS実行契約/owner」が、どれを指すのか特定されていない。\n- **R4（025/026への戻し）**：r10-design-establishedとL3は、設計の不足を025/026へ戻すとしている。固定親では、025/026は代替しない境界として出てくるだけである。\n- **R5（包括条項）**：L3の「責務不明はunknownを保持し新ownerを推測しない」と、r05-other-scopeの「scope ownerが明示されない場合はunknown」は、固定親にない包括条項である。009/041/004への戻し先そのものには条件を付けていない。\n- **R6（原因の分け方）**：r09-001/002は、例そのものの欠落を004の「正例oracle/検証義務の不足」へ戻している。baselineでoracleを固定しているので、原因の分け方として無理がある。\n- **R7（例示の欠落）**：L3は、固定L2の追加riskの例示（状態遷移、failure、security、migration、multi-runtime差異）を本文に残していない。\n- **R8（判定語）**：L11の「不合格または未評価」を、L10は「未完／coverage成立とせず」と書いている。固定L2の「未完」の範囲内である。\n\n### 次の手順\n- M1とM2を直す。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+    "review01_utf8_bytes": 5649,
+    "review01_sha256": "8d5572240c33869b563b2df6c4d24da2a75a08138a6db0cbf13d31347aada12f",
+    "review02_comment_id": 6023382905,
+    "review02_body": "## review02（independent review、PR #2642 親HARNESS-L2-043、HEAD 9e554ec7990ad5740042b401e5f78403ebd4e36a、base main 3c3c512c0）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼comment 6023276079（`RH-PR2642-HARNESS-STAGE3-PARENT043-02`）に応える。\n\n### 事前確認と静的検査\n- **採択記録**：57候補記録48行（`-002`、条件付き採択：Bルート、所属はHARNESS-CORE）だけで、後日に別revisionを採択した記録はない。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：0件だった。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - origin/mainとの`merge-tree`は衝突なし\n\n### 照合の経過\n1. **Opusのシンプルなブラインド照合**：Majorの候補は1件で、生成を拒否するfixture 4行が戻し先を025/026/OSへ向けている件だった。\n   - reviewerは、review01のR4、069のR9、046のR6と扱いをそろえて、残余とした。拒否そのものは成立しており、誤った完了やauthorityは通らない。\n   - review01のM1（L2-005の前提）とM2（宛先が決まらない）は、解消している。\n2. **Fableの判断**：「承認してよい」。上の残余の判断にも同意した。\n3. **Opusによる敵対照合**：「Fableの判断を支持しない」。崩した点は下のM1である。\n4. **reviewerの確認**：6本文の043の追補を「重複」「冗長」で検索し、L3の追補では0件であることを確かめた。M1をMajorと確定する。\n\n### Major\n**M1（L2の出力要素「重複・冗長性finding」がL3で落ちていて、CASE-07の期待値がどのACからも導けない）**\n- **欠陥**：\n  - L3 functional-requirementsの043の追補を見ると、「入力と出力」が挙げる出力は、scopeとrevisionに限ったmatrix、分母、各rule/branchのpositive/negative、risk追加例の限定だけである。\n  - AC-01〜04にも、重複・冗長性findingを出力する義務がない。L3の043の追補には、「重複」「冗長」という語が1回も出てこない。\n  - 一方で、L10の`CASE-HARNESS-L10-043-07`は、「重複/冗長性所見の削除→coverage所見を未完」を期待値とし、AC-04に結び付けている。AC-04は、risk例の限定とauthorityを生成しないことしか定めていない。\n- **起こること**：L3のFR/ACだけに合わせた設計は、冗長性findingを出力しなくても、すべてのACを満たしてしまう。L3がL2の出力の意味を狭めている（類型3・4）。\n- **守るべき行**：L2-043「出力」（318ec4a product-requirements.md:990「…risk追加例とその不足根拠、重複・冗長性findingを結ぶexample adequacy matrix」）\n\n### 後で直す残余（承認を止めない）\n- **R1〜R8**：review01から変わらない。R4は、今回のブラインドがMajorの候補に挙げた生成拒否fixture 4行の件で、残余のままにする。\n- **R9（未完化の義務）**：AC-04には、固定L11:731の「risk分析で未被覆とされた領域に追加例がない場合もcoverage未完」に当たる未完化の義務がない。CASE-06と由来の段落だけが、これを担っている。M1を直すときに、AC-04へ一文を足すのが望ましい。\n- **R10（ID名）**：CASE IDの「to-005」は、旧版からの名前として残っていて、誤読を招く。\n- **R11（共通文言の並記）**：共通の文言「009へ戻し、抽出gapだけを041へ」が、5行に並べて書かれている。r06-new-revision-missingは、宛先がどちらに決まるのか弱い。\n- **R12（列挙の「等」）**：AC-04のriskの列挙に「等」が付いている。\n\n### 次の手順\n- M1を直す。FRの出力とACに、重複・冗長性findingを加え、CASE-07を根拠のあるACに結び付ける。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+    "review02_utf8_bytes": 4074,
+    "review02_sha256": "a9fa55d522f75d4bbad11fb191165570801b0d6c32f2b107f49e7a3d5586028a",
+    "R1_R12_raw_fragments": [
+      {
+        "ids": [
+          "R1",
+          "R2",
+          "R3",
+          "R4",
+          "R5",
+          "R6",
+          "R7",
+          "R8"
+        ],
+        "raw_fragment": "- **R1〜R8**：review01から変わらない。R4は、今回のブラインドがMajorの候補に挙げた生成拒否fixture 4行の件で、残余のままにする。",
+        "sha256": "c18bdd0f7efae762fccee51ea112d8b82219f21850e530986c602304d51d220a",
+        "formal_comment_id": 6023382905
+      },
+      {
+        "ids": [
+          "R9"
+        ],
+        "raw_fragment": "- **R9（未完化の義務）**：AC-04には、固定L11:731の「risk分析で未被覆とされた領域に追加例がない場合もcoverage未完」に当たる未完化の義務がない。CASE-06と由来の段落だけが、これを担っている。M1を直すときに、AC-04へ一文を足すのが望ましい。",
+        "sha256": "ac40fbb26392f50445451f399423d3f73524b0496e25da11df8eeae2e6c295b4",
+        "formal_comment_id": 6023382905
+      },
+      {
+        "ids": [
+          "R10"
+        ],
+        "raw_fragment": "- **R10（ID名）**：CASE IDの「to-005」は、旧版からの名前として残っていて、誤読を招く。",
+        "sha256": "c6d70cddd3aca3572c116f13d9eec079506e9c720c67812dba5d5d18671be499",
+        "formal_comment_id": 6023382905
+      },
+      {
+        "ids": [
+          "R11"
+        ],
+        "raw_fragment": "- **R11（共通文言の並記）**：共通の文言「009へ戻し、抽出gapだけを041へ」が、5行に並べて書かれている。r06-new-revision-missingは、宛先がどちらに決まるのか弱い。",
+        "sha256": "8b2a76994174bad988b3383f9d80d29cce7476467af5982f4de07e0617f73467",
+        "formal_comment_id": 6023382905
+      },
+      {
+        "ids": [
+          "R12"
+        ],
+        "raw_fragment": "- **R12（列挙の「等」）**：AC-04のriskの列挙に「等」が付いている。",
+        "sha256": "0115eca6c326e929cab41c193d64cd1d4069dfdf99904e69c56bf5ede9c11ec2",
+        "formal_comment_id": 6023382905
+      }
+    ],
+    "R1_R12_all_covered": true
+  },
+  "fixed_parent_and_PO_pins_recomputed": [
+    {
+      "name": "L2-043 adopted requirement/output",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "lines": [
+        986,
+        1000
+      ],
+      "file_bytes": 254934,
+      "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+      "span_bytes": 5449,
+      "span_raw_lf_sha256": "da678d9181ebe76ae93084c27744d253c617ebe03b709d79f55b79d2abbc6666",
+      "raw_literal": "### HARNESS-L2-043 active templateのrule／branch別例coverage（HARNESS-CORE unit候補、version_target: 1.0）\n\n- **所属候補・旧差分**：推奨配置はHARNESS-COREとするが、PO未決である。旧HIL-FR-55の対応印は`docs/governance/crosswalks/concept-requirement-po-decision-packet.md:1009`で`HELIX-HARNESS、部品`までを示し、COREまたは個別部品名までは特定しない。HARNESS-L2-009の同packet `:174–178`は同要求自身を`部品：Design Template`へ置く根拠だが、その配置をHIL-FR-55へ移す根拠ではない。CORE案は、選択scopeの例coverage oracleが製品固有の意味・設計を持つHARNESS core側の責務で、BRAINを設計patternの知識源としてconnector接続するという2026-09-25 PO記録（`docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md:51–55`）を理由とする提案であり、旧配置の証明ではない。043のCORE案は、この限定された候補scopeに対する配置提案として人の選択を待つ。\n\n- **親L1**：`HARNESS-L1-001`, `HARNESS-L1-004`, `HARNESS-L1-009`。001の正規V-pair、004の対象revision/riskに合う検証義務・反例・証拠・差戻し、009のtemplate選択・適用と設計義務を具体化する。親L1の意味やrevisionは変更しない。\n- **種別・scope**：HARNESS-COREの単体能力候補（推奨配置、PO未決）。選択されたactive template revisionと対象scopeに適用されるvalidation ruleおよびapplicability branchについて、rule／branchごとの例coverageを評価する。template要素の機械抽出・ledger候補行・抽出gapは041、具体設計生成と設計構成体のoracleは026/025の責務とし、043はそれらを重複実装しない。\n- **入力**：対象L1 revision、要求kind・構成・scope、HARNESS-L2-009で選択されたtemplateのidentity/revisionと適用条件、各validation rule/applicability branchの識別可能な内容、rule／branchに適用するrisk根拠、対応するoracle契約。041のtemplate atomが利用可能な場合はsource spanと抽出結果を参照する。active版・適用条件・rule／branch分母・必要なrisk根拠がunknown、conflictまたはstaleなら十分性を判定しない。\n- **出力**：対象revision/scope、template版、適用rule／branchの分母、各rule／branchに対応するcanonical positive例と境界negative例、例が確かめるoracle、risk追加例とその不足根拠、重複・冗長性findingを結ぶexample adequacy matrix。全適用rule／branchに最低1件ずつのpositiveとboundary negativeを対応付ける。状態遷移、failure、security、migration、multi-runtime差異は、対象scopeのrisk分析で未被覆と示された場合に限り追加例を求める。例の件数だけで十分性を決めず、rule／branch／該当riskのcoverageを照合する。\n- **依存区分**：**常時必須**＝対象HARNESS-L1 revision、対象scope/revision、HARNESS-L2-009のactive template選択・適用契約、適用rule／branchと照合するoracleの識別。**特定操作時のみ**＝選択scopeについてexample adequacy matrixと例coverageを評価する処理。**選択した入力元に応じて必須**＝041のatomを使う場合はそのtemplate/source revisionと抽出scope、risk追加例を判定する場合はその対象scopeのrisk根拠と未被覆領域、multi-runtime差異を扱う場合は選択scope内のruntime条件。**参照資料のみ**＝旧schema、旧runtime、未選択templateやscope外の例。\n- **保証と戻し先**：各適用rule／branchにpositiveと境界negativeの双方を対応させ、例がどの条件・oracleを検証するかを追跡できる。対応例またはoracleが欠けるrule／branch、根拠のないN/A、risk未評価、版不一致は未完またはunknownとして示し、件数で相殺しない。active版・適用性不足はHARNESS-L2-009/対象template ownerへ、抽出済みrule／branchの欠落は041相当の抽出契約ownerへ、risk・oracle・検証義務の不足はHARNESS-L2-004/該当ownerへ戻す。候補や例は要求合意、設計成立、採択、実装、受入成功を生成しない。\n- **既存候補との境界**：041はactive templateの要素抽出と未対応・空/TBD・抽出不能・重複のgap提示を扱い、rule／branchに対するpositive/negative例の妥当性やcoverage十分性は判定しない。026/025は承認済み要求から具体設計と対oracleを構成・検査し、本候補のtemplate例coverageを代替しない。OSは選択された操作の実行・保存・状態記録を別契約で担う。\n\n- **配置差の選択境界**：旧HIL-FR-55の`部品`という対応印を保持しつつ、現行CORE所属は暫定推奨にとどめる。POが`部品：Design Template`を選ぶ場合も、それはHARNESS-L2-009に示された当該部品の候補配置を043へ適用する新しい判断であり、旧HIL-FR-55から確定済みとして継承しない。\n\n**旧根拠**：`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:145`、旧行SHA-256 `78a2e6c819e73153ce2bbd832c0f87777dba08750fa1b84fcafc916fa7cafa30`。旧Template Example Calibratorの意味条件を保持し、旧schema／runtimeを移植しない。\n"
+    },
+    {
+      "name": "L11-043 acceptance",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "lines": [
+        723,
+        733
+      ],
+      "file_bytes": 172806,
+      "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+      "span_bytes": 3376,
+      "span_raw_lf_sha256": "583bfaf669729d3148e072be3ca74f1ef125997e933f6a1a94f08c732cb6f4b4",
+      "raw_literal": "### HARNESS-L2-043 active templateのrule／branch別例coverage\n\n**対応要求**：HARNESS-L2-043（HARNESS-CORE unit候補、`version_target: 1.0`、未採択、CORE配置は推奨案でPO未決）。親L1はHARNESS-L1-001/004/009。043は例coverage契約を定め、template選択・適用はL2-009、active templateの要素抽出は041、設計unit/compositeと対oracleは026/025へ分ける。旧sourceはHIL-FR-55、`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:145`（line SHA-256 `78a2e6c819e73153ce2bbd832c0f87777dba08750fa1b84fcafc916fa7cafa30`）。旧packet `concept-requirement-po-decision-packet.md:1009`の配置表記は汎用の`部品`である。HARNESS-L2-009の同packet `:174–178`にある`部品：Design Template`は009自身の配置例であり、FR-55または043の既決配置を意味しない。CORE案は、選択scopeの例coverage oracleが製品固有の意味・設計を持つHARNESS core側の責務で、BRAINを設計patternの知識源としてconnector接続するという2026-09-25 PO記録（`docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md:51–55`）を理由とする提案であり、旧配置の証明ではない。COREは現候補の推奨配置にとどまり、PO判断を待つ。\n\n**正常例**：選択されたactive template revisionと適用scopeの全validation rule／applicability branchを分母として確定する。各rule／branchにcanonical positive例と境界negative例を最低1件ずつ対応付け、例ごとに適用条件、期待する受理／拒否、oracle、source spanを照合する。状態遷移、failure、security、migration、multi-runtime差異については対象risk分析で未被覆と特定された場合だけ追加例と理由を示す。例の数ではなく、適用rule／branchと該当riskが内容上検査されたかを判定する。\n\n**誤りを含む例**：いずれかの適用rule／branchについてpositiveまたは境界negativeを欠く、positive例がrule条件を満たさない、negative例が境界条件を試さない、期待結果とoracleが結び付かない、適用branchを飛ばす、または例数だけで十分とする入力は不合格または未評価とする。risk分析で未被覆とされた領域に追加例がない場合もcoverage未完とする。TBD・unknown・適用性不明を推測で埋めない。\n\n**未見例**：作成側に伏せたactive template revisionまたは新しいapplicability branchを与え、対象rule／branchの分母を更新し、positive／boundary-negative例とoracleへの対応を照合する。新revisionやrisk根拠が欠落・矛盾・staleの場合は十分性を主張せずunknown／未評価にする。結果を未選択template、別scope、別revisionへ外挿しない。\n\n**戻し先と境界**：templateのactive版・適用条件不足はHARNESS-L2-009/対象template owner、rule／branch抽出の不足はHARNESS-L2-041相当の契約owner、oracle・検証義務・risk根拠の不足はHARNESS-L2-004/該当ownerへ戻す。例のcoverage結果は要求合意、設計成立、L3承認、候補採択、実装、OS実行または利用者受入を生成しない。旧schemaやruntime固有形式を受入条件にしない。\n"
+    },
+    {
+      "name": "PO MPR-RC-HARNESS-L2-043-002",
+      "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "lines": [
+        48,
+        48
+      ],
+      "file_bytes": 45099,
+      "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "span_bytes": 669,
+      "span_raw_lf_sha256": "3e70c29706991c761369571523dfcf0ffa3be62eb0bc5d574a1b509c8a7cc264",
+      "raw_literal": "| `HARNESS-L2-043` | 条件付き採択：Bルート、所属はHARNESS-CORE。 | `MPR-RC-HARNESS-L2-043-002` | `docs/helix-harness/L2-requirements/product-requirements.md` | `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09` | `sha256:da678d9181ebe76ae93084c27744d253c617ebe03b709d79f55b79d2abbc6666` | `HARNESS-L2-043` | `docs/helix-harness/L11-acceptance/product-acceptance.md` | `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5` | `sha256:583bfaf669729d3148e072be3ca74f1ef125997e933f6a1a94f08c732cb6f4b4` | `docs/governance/audits/requirement-registration/harness-template-example-coverage-receipt-2026-09-28.json#HARNESS-L2-043` |\n"
+    }
+  ],
+  "prior_25_pin_audit_preserved": {
+    "count": 25,
+    "passed": 25,
+    "all_pass": true,
+    "pins": [
+      {
+        "group": "PO_authority_pin",
+        "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "lines": [
+          48,
+          48
+        ],
+        "actual_full_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "expected_full_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "actual_span_sha256": "3e70c29706991c761369571523dfcf0ffa3be62eb0bc5d574a1b509c8a7cc264",
+        "expected_span_sha256": "3e70c29706991c761369571523dfcf0ffa3be62eb0bc5d574a1b509c8a7cc264",
+        "pass": true,
+        "errors": []
+      },
+      {
+        "group": "fixed_parent_checkpoint_pins",
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "lines": [
+          972,
+          1000
+        ],
+        "actual_full_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "expected_full_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "actual_span_sha256": "323c25a94d55314871769f782f6e2b2d9fa0609240b1f11b22ec914e62de2804",
+        "expected_span_sha256": "323c25a94d55314871769f782f6e2b2d9fa0609240b1f11b22ec914e62de2804",
+        "pass": true,
+        "errors": []
+      },
+      {
+        "group": "fixed_parent_checkpoint_pins",
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "lines": [
+          711,
+          733
+        ],
+        "actual_full_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "expected_full_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "actual_span_sha256": "9446bffeeeae51d37ab4a3b6255931c0b55cc3660dd2747c24cb929bb38e3da4",
+        "expected_span_sha256": "9446bffeeeae51d37ab4a3b6255931c0b55cc3660dd2747c24cb929bb38e3da4",
+        "pass": true,
+        "errors": []
+      },
+      {
+        "group": "current_main_support_source_pins",
+        "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "lines": [
+          117,
+          121
+        ],
+        "actual_full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+        "expected_full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+        "actual_span_sha256": "a1112df992a2908347f4692b17957090dba9eab8b48d7eb24b4a81f2d9a5c8a3",
+        "expected_span_sha256": "a1112df992a2908347f4692b17957090dba9eab8b48d7eb24b4a81f2d9a5c8a3",
+        "pass": true,
+        "errors": []
+      },
+      {
+        "group": "current_main_support_source_pins",
+        "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "lines": [
+          530,
+          543
+        ],
+        "actual_full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+        "expected_full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+        "actual_span_sha256": "445574626f02ccd6ed198ac0f48241d9e667293dbff98375889e5d5e1676ddc5",
+        "expected_span_sha256": "445574626f02ccd6ed198ac0f48241d9e667293dbff98375889e5d5e1676ddc5",
+        "pass": true,
+        "errors": []
+      },
+      {
+        "group": "current_main_support_source_pins",
+        "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "lines": [
+          544,
+          558
+        ],
+        "actual_full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+        "expected_full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+        "actual_span_sha256": "498c9cc708c4fe1d8b3e9c07f011e1d1065f64a3b7dc366f93147ac0d10defd7",
+        "expected_span_sha256": "498c9cc708c4fe1d8b3e9c07f011e1d1065f64a3b7dc366f93147ac0d10defd7",
+        "pass": true,
+        "errors": []
+      },
+      {
+        "group": "current_main_support_source_pins",
+        "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "lines": [
+          957,
+          971
+        ],
+        "actual_full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+        "expected_full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+        "actual_span_sha256": "c5411d1ea27f741017bf5c67b19425f8d5562b7c085f17f948e419a731d924f3",
+        "expected_span_sha256": "c5411d1ea27f741017bf5c67b19425f8d5562b7c085f17f948e419a731d924f3",
+        "pass": true,
+        "errors": []
+      },
+      {
+        "group": "current_main_support_source_pins",
+        "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "lines": [
+          986,
+          1000
+        ],
+        "actual_full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+        "expected_full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+        "actual_span_sha256": "da678d9181ebe76ae93084c27744d253c617ebe03b709d79f55b79d2abbc6666",
+        "expected_span_sha256": "da678d9181ebe76ae93084c27744d253c617ebe03b709d79f55b79d2abbc6666",
+        "pass": true,
+        "errors": []
+      },
+      {
+        "group": "legacy_source_and_consumer_pins",
+        "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "lines": [
+          145,
+          145
+        ],
+        "actual_full_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "expected_full_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "actual_span_sha256": "191b3b22d5985f085548d44a736590502d5f424511d71262d1b0fe07871663c2",
+        "expected_span_sha256": "191b3b22d5985f085548d44a736590502d5f424511d71262d1b0fe07871663c2",
+        "pass": true,
+        "errors": []
+      },
+      {
+        "group": "legacy_source_and_consumer_pins",
+        "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+        "lines": [
+          54,
+          54
+        ],
+        "actual_full_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+        "expected_full_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+        "actual_span_sha256": "891d8f93c03c358ae53f81f390613e15962e20524f8361c75d3ba62b906ee857",
+        "expected_span_sha256": "891d8f93c03c358ae53f81f390613e15962e20524f8361c75d3ba62b906ee857",
+        "pass": true,
+        "errors": []
+      },
+      {
+        "group": "legacy_source_and_consumer_pins",
+        "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+        "lines": [
+          83,
+          83
+        ],
+        "actual_full_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+        "expected_full_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+        "actual_span_sha256": "34a1f8f6f63ffcf5518d03febde4210ee0db020d445590c3875b381eb4d82e95",
+        "expected_span_sha256": "34a1f8f6f63ffcf5518d03febde4210ee0db020d445590c3875b381eb4d82e95",
+        "pass": true,
+        "errors": []
+      },
+      {
+        "group": "legacy_source_and_consumer_pins",
+        "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+        "lines": [
+          52,
+          52
+        ],
+        "actual_full_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+        "expected_full_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+        "actual_span_sha256": "285644f8f87e5695393bb54515ded8a781527915b6eb0f99d6cc8652a46b1e8b",
+        "expected_span_sha256": "285644f8f87e5695393bb54515ded8a781527915b6eb0f99d6cc8652a46b1e8b",
+        "pass": true,
+        "errors": []
+      },
+      {
+        "group": "legacy_source_and_consumer_pins",
+        "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+        "lines": [
+          77,
+          77
+        ],
+        "actual_full_sha256": "4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+        "expected_full_sha256": "4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+        "actual_span_sha256": "a7b36143b888b5ab368c7cbb4252f14337f7828702a31f20b29dcd5aae0c30f7",
+        "expected_span_sha256": "a7b36143b888b5ab368c7cbb4252f14337f7828702a31f20b29dcd5aae0c30f7",
+        "pass": true,
+        "errors": []
+      },
+      {
+        "group": "old_six_document_pins",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "lines": null,
+        "actual_full_sha256": "24f1d9f4973166a05218550874f8cda5a4978105f3bf3a6ccfa8c3c94fa18677",
+        "expected_full_sha256": "24f1d9f4973166a05218550874f8cda5a4978105f3bf3a6ccfa8c3c94fa18677",
+        "actual_span_sha256": null,
+        "expected_span_sha256": null,
+        "pass": true,
+        "errors": []
+      },
+      {
+        "group": "old_six_document_pins",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+        "lines": null,
+        "actual_full_sha256": "6aa26ed4ec7257db515f56a02dce5a42378b284105e93b177cf865550dc8bbcc",
+        "expected_full_sha256": "6aa26ed4ec7257db515f56a02dce5a42378b284105e93b177cf865550dc8bbcc",
+        "actual_span_sha256": null,
+        "expected_span_sha256": null,
+        "pass": true,
+        "errors": []
+      },
+      {
+        "group": "old_six_document_pins",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+        "lines": null,
+        "actual_full_sha256": "54c420e4f958b09524f96bd7ce8ef0c89d8a3dbbf519e3393b83688f10d7fbee",
+        "expected_full_sha256": "54c420e4f958b09524f96bd7ce8ef0c89d8a3dbbf519e3393b83688f10d7fbee",
+        "actual_span_sha256": null,
+        "expected_span_sha256": null,
+        "pass": true,
+        "errors": []
+      },
+      {
+        "group": "old_six_document_pins",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "lines": null,
+        "actual_full_sha256": "94704ba448b00df43651ca1dfa01835472132ce3023d829ea5bb690926fa3f02",
+        "expected_full_sha256": "94704ba448b00df43651ca1dfa01835472132ce3023d829ea5bb690926fa3f02",
+        "actual_span_sha256": null,
+        "expected_span_sha256": null,
+        "pass": true,
+        "errors": []
+      },
+      {
+        "group": "old_six_document_pins",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L10-verification/business-verification.md",
+        "lines": null,
+        "actual_full_sha256": "758b2e9bf32a12cf2945a9ded075978d6f265e2883fc4e23e173190681583426",
+        "expected_full_sha256": "758b2e9bf32a12cf2945a9ded075978d6f265e2883fc4e23e173190681583426",
+        "actual_span_sha256": null,
+        "expected_span_sha256": null,
+        "pass": true,
+        "errors": []
+      },
+      {
+        "group": "old_six_document_pins",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+        "lines": null,
+        "actual_full_sha256": "5d53ffaf9d1ef89ace77f760c92972a439b87e52335deb916eca3683b38f85cc",
+        "expected_full_sha256": "5d53ffaf9d1ef89ace77f760c92972a439b87e52335deb916eca3683b38f85cc",
+        "actual_span_sha256": null,
+        "expected_span_sha256": null,
+        "pass": true,
+        "errors": []
+      },
+      {
+        "group": "current_main_six_target_base_pins",
+        "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "lines": null,
+        "actual_full_sha256": "ddc4288e77effd48553c1cf4ada66e74dffef39c5fc209c1d3038b0bc83a8ad8",
+        "expected_full_sha256": "ddc4288e77effd48553c1cf4ada66e74dffef39c5fc209c1d3038b0bc83a8ad8",
+        "actual_span_sha256": null,
+        "expected_span_sha256": null,
+        "pass": true,
+        "errors": []
+      },
+      {
+        "group": "current_main_six_target_base_pins",
+        "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+        "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+        "lines": null,
+        "actual_full_sha256": "87e3533a49f5284aed2535f9216683f9ef013ed7434c9816a73596b81a5e09fb",
+        "expected_full_sha256": "87e3533a49f5284aed2535f9216683f9ef013ed7434c9816a73596b81a5e09fb",
+        "actual_span_sha256": null,
+        "expected_span_sha256": null,
+        "pass": true,
+        "errors": []
+      },
+      {
+        "group": "current_main_six_target_base_pins",
+        "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+        "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+        "lines": null,
+        "actual_full_sha256": "75cbdcc058aff99a9efd99b9d3344e6920e864b1bb603a1ac77a0e447f2f60af",
+        "expected_full_sha256": "75cbdcc058aff99a9efd99b9d3344e6920e864b1bb603a1ac77a0e447f2f60af",
+        "actual_span_sha256": null,
+        "expected_span_sha256": null,
+        "pass": true,
+        "errors": []
+      },
+      {
+        "group": "current_main_six_target_base_pins",
+        "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "lines": null,
+        "actual_full_sha256": "4f87643397e4e1c2a94d07537770510f634c509eaeb1701c3159a0d143d98cc1",
+        "expected_full_sha256": "4f87643397e4e1c2a94d07537770510f634c509eaeb1701c3159a0d143d98cc1",
+        "actual_span_sha256": null,
+        "expected_span_sha256": null,
+        "pass": true,
+        "errors": []
+      },
+      {
+        "group": "current_main_six_target_base_pins",
+        "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+        "path": "docs/helix-harness/L10-verification/business-verification.md",
+        "lines": null,
+        "actual_full_sha256": "a1ff88366ef98368fa8cbd628f499aa50a73cd05a75d54ff64e353a1626cd67c",
+        "expected_full_sha256": "a1ff88366ef98368fa8cbd628f499aa50a73cd05a75d54ff64e353a1626cd67c",
+        "actual_span_sha256": null,
+        "expected_span_sha256": null,
+        "pass": true,
+        "errors": []
+      },
+      {
+        "group": "current_main_six_target_base_pins",
+        "revision": "a1bcdba15b4c10271d80291dc6062cf31250cf3e",
+        "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+        "lines": null,
+        "actual_full_sha256": "e5b090ba97c6a5237b47b890d7a86453ed5f602ee09c9e531ab3b55698d13a7a",
+        "expected_full_sha256": "e5b090ba97c6a5237b47b890d7a86453ed5f602ee09c9e531ab3b55698d13a7a",
+        "actual_span_sha256": null,
+        "expected_span_sha256": null,
+        "pass": true,
+        "errors": []
+      }
+    ]
+  },
+  "old_28_raw_literal_inventory_preserved": {
+    "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+    "count": 28,
+    "passed": 28,
+    "all_exact_raw_lf_match": true,
+    "items": [
+      {
+        "id": "CASE-HARNESS-L10-043-01",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 859,
+        "raw_lf_sha256": "ed6c50d8a68ba122d8242cbf6d87a641be1a8c787d7d0359cf3acb05136c0d41",
+        "expected_raw_lf_sha256": "ed6c50d8a68ba122d8242cbf6d87a641be1a8c787d7d0359cf3acb05136c0d41",
+        "pass": true,
+        "literal": "| `CASE-HARNESS-L10-043-01` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-01` | 正例と境界負例、および正条件に使うbranch denominatorの索引。実在単独CASEは`CASE-HARNESS-L10-043-r09-001`, `CASE-HARNESS-L10-043-r09-002`, `CASE-HARNESS-L10-043-r04-oracle-unbound`, `CASE-HARNESS-L10-043-r04-count-only-sufficiency`。 | 索引のみ。 | 各IDのoracleを個別適用し、indexを分母に加えない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-02",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 860,
+        "raw_lf_sha256": "b26a19e13a561061b775073de071471f31cb99266700954e0bb92af44e164487",
+        "expected_raw_lf_sha256": "b26a19e13a561061b775073de071471f31cb99266700954e0bb92af44e164487",
+        "pass": true,
+        "literal": "| `CASE-HARNESS-L10-043-02` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-02` | 索引のみ。適用性unknown=`CASE-HARNESS-L10-043-r04-applicability-unknown`、risk rationale missing=`CASE-HARNESS-L10-043-r04-risk-rationale-missing`、active revision stale=`CASE-HARNESS-L10-043-r04-active-revision-stale`、rule/branch conflict=`CASE-HARNESS-L10-043-r04-rule-branch-conflict`、extracted rule missing=`CASE-HARNESS-L10-043-r04-extracted-rule-missing`、NA without basis=`CASE-HARNESS-L10-043-r06-na-without-basis`、TBD=`CASE-HARNESS-L10-043-r06-tbd-unfilled`、new revision missing=`CASE-HARNESS-L10-043-r06-new-revision-missing`、risk basis conflict/stale=`CASE-HARNESS-L10-043-r06-risk-basis-conflict`, `CASE-HARNESS-L10-043-r06-risk-basis-stale`、active revision missing=`CASE-HARNESS-L10-043-r06-active-revision-missing`; denominator-only=`CASE-HARNESS-L10-043-r09-003`。 | 索引のみ。 | 各実在IDの単独oracleで分母・risk根拠を照合する。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-03",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 861,
+        "raw_lf_sha256": "55cb06ea5bb2c29d996602ea3a0207c62c7f1919962cc2ad7b3a5598b9127bf8",
+        "expected_raw_lf_sha256": "55cb06ea5bb2c29d996602ea3a0207c62c7f1919962cc2ad7b3a5598b9127bf8",
+        "pass": true,
+        "literal": "| `CASE-HARNESS-L10-043-03` | `FR-HARNESS-L3-043` | `AC-HARNESS-L3-043-03` | risk未被覆が示された状態で追加例と未見正常例を区別するmatrix。 | 索引のみ。未選択template、別scope外挿、oracle適合の未見正常拒否は`CASE-HARNESS-L10-043-r05-unselected-template-extrapolation`、`CASE-HARNESS-L10-043-r05-other-scope-extrapolation`、`CASE-HARNESS-L10-043-r05-unseen-oracle-valid-rejected`で個別に照合する。 | 対象scope/risk根拠を維持し、三つの既存単独CASEだけをnegative/positive coverageへ数える。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-04",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 906,
+        "raw_lf_sha256": "071cff7382dcff7d3d1af9eb69c23ab8270d9426f767e956c6301bcfae6b0ff6",
+        "expected_raw_lf_sha256": "071cff7382dcff7d3d1af9eb69c23ab8270d9426f767e956c6301bcfae6b0ff6",
+        "pass": true,
+        "literal": "| `CASE-HARNESS-L10-043-04` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-04` | PO採択済みB/HARNESS-CORE routeの適用rule/branch、risk根拠、positive/boundary-negativeの対応と未見の有効branchを与える。 | 新revisionを一つだけ追加し、分母更新を欠く変異を与える。 | branch更新後の母集団を用いてcoverageを再評価。unknown分母は未評価、未選択scopeは未観測。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-05",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 956,
+        "raw_lf_sha256": "05f95fb6ed228b420eee1a573db4e6ed75160ad5ea4ccadd0ce2e4ef7a5c6ede",
+        "expected_raw_lf_sha256": "05f95fb6ed228b420eee1a573db4e6ed75160ad5ea4ccadd0ce2e4ef7a5c6ede",
+        "pass": true,
+        "literal": "| `CASE-HARNESS-L10-043-05` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-04` | 適用rule/branchのsource identity、scope/revisionとpositive条件を特定し、template由来なら適用templateをcurrentに保つ。 | positiveが当該rule条件だけを満たさない。 | 例coverage不成立としてunknownを保ち、template適用ならHARNESS-L2-009、抽出rule/branchならHARNESS-L2-041、oracle不足ならHARNESS-L2-004へ戻す。source identityが特定できなければunknownを維持する。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-06",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 957,
+        "raw_lf_sha256": "f64ceb40d621186d44765868e4ee3d82e0ebeda7045ec8086545b1dc88e2fe77",
+        "expected_raw_lf_sha256": "f64ceb40d621186d44765868e4ee3d82e0ebeda7045ec8086545b1dc88e2fe77",
+        "pass": true,
+        "literal": "| `CASE-HARNESS-L10-043-06` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-04` | risk分析で未被覆と示されたscopeに追加例を対応。 | 未被覆と示された領域に例を追加しない。 | risk coverage未完。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-07",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 958,
+        "raw_lf_sha256": "c21e591ad53f5453c4133ffabbefcf2475b362e8980ece6f08fa7ac1fa7d7b6c",
+        "expected_raw_lf_sha256": "c21e591ad53f5453c4133ffabbefcf2475b362e8980ece6f08fa7ac1fa7d7b6c",
+        "pass": true,
+        "literal": "| `CASE-HARNESS-L10-043-07` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-04` | matrix内で重複/冗長性findingを根拠付きで示す。 | L2:993の重複/冗長findingを落とす。 | finding coverage未完。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r02-negative-not-boundary",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1275,
+        "raw_lf_sha256": "4488ff6af26b017d41ed41301736a18903fa996ec425da533cfb81b522d00ce7",
+        "expected_raw_lf_sha256": "4488ff6af26b017d41ed41301736a18903fa996ec425da533cfb81b522d00ce7",
+        "pass": true,
+        "literal": "| `CASE-HARNESS-L10-043-r02-negative-not-boundary` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-04` | 適用rule/branch、positive、境界を試すnegative、必要なrisk理由を対応させる。 | negative例だけをruleの境界を試さない入力へ置き換える。件数・revisionは同じ。 | negative例が境界条件を被覆していないことを示し、004の既存risk/oracle ownerへ不足を返す。例数で相殺しない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r03-other-revision-unseen",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1364,
+        "raw_lf_sha256": "6100ba9d15e2407f00bf1e8176610abe66bdfe4fa731b1ff43c1cdb989efe33d",
+        "expected_raw_lf_sha256": "6100ba9d15e2407f00bf1e8176610abe66bdfe4fa731b1ff43c1cdb989efe33d",
+        "pass": true,
+        "literal": "| `CASE-HARNESS-L10-043-r03-other-revision-unseen` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-04` | 選択rule/branch revision内でpositive/boundary-negativeを対応づける。 | 適合結果だけを未見の別revisionへ外挿する。 | 外挿を拒否し新revisionの分母をunknownとして再照合する。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r04-oracle-unbound",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1409,
+        "raw_lf_sha256": "3109741274f08e0482ae07cecde365b0ae3bf54e9698b273a7582929c298bd95",
+        "expected_raw_lf_sha256": "3109741274f08e0482ae07cecde365b0ae3bf54e9698b273a7582929c298bd95",
+        "pass": true,
+        "literal": "| `CASE-HARNESS-L10-043-r04-oracle-unbound` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-01` | 期待結果が適用oracleへ結ばれたbranch例。 | 期待結果とoracleのbindingだけ切断。 | adequacy成立にせずHARNESS-L2-004/該当oracle ownerへ戻す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r04-count-only-sufficiency",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1410,
+        "raw_lf_sha256": "8a13be2cec5e54e28d08a7b04bcbb9d97de14b1ebc29f785f25fea4c39cfbf64",
+        "expected_raw_lf_sha256": "8a13be2cec5e54e28d08a7b04bcbb9d97de14b1ebc29f785f25fea4c39cfbf64",
+        "pass": true,
+        "literal": "| `CASE-HARNESS-L10-043-r04-count-only-sufficiency` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-01` | branch/rule別positiveとboundary-negativeを対応する。 | 例数だけを根拠に十分と主張。 | 件数のみの主張を拒否し、oracle境界を未完とする。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r04-rule-branch-conflict",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1411,
+        "raw_lf_sha256": "9221c9161315511cf5b8f6b0d00217959db7921f9c59d2dd4b42bf9dd60905f5",
+        "expected_raw_lf_sha256": "9221c9161315511cf5b8f6b0d00217959db7921f9c59d2dd4b42bf9dd60905f5",
+        "pass": true,
+        "literal": "| `CASE-HARNESS-L10-043-r04-rule-branch-conflict` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-02` | active rule/branch revisionが一意でcurrent。 | rule/branch適用値だけconflictにする。 | 成功扱いせず分母unknown、HARNESS-L2-009/対象template ownerへ戻す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r04-extracted-rule-missing",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1412,
+        "raw_lf_sha256": "49d9e2e641dbd290138777eef47835b44579b8cea100ef1fcc3f5fce15a992fe",
+        "expected_raw_lf_sha256": "49d9e2e641dbd290138777eef47835b44579b8cea100ef1fcc3f5fce15a992fe",
+        "pass": true,
+        "literal": "| `CASE-HARNESS-L10-043-r04-extracted-rule-missing` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-02` | 抽出済みrule/branchがsource spanとactive revisionへ対応する。 | extracted rule/branchだけ欠落。 | 不足をHARNESS-L2-041の抽出契約ownerへ戻す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r04-applicability-unknown",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1456,
+        "raw_lf_sha256": "32de4617cc51ec272108e670572a0a1014c8e5decaa35cf7c466be0e518a828a",
+        "expected_raw_lf_sha256": "32de4617cc51ec272108e670572a0a1014c8e5decaa35cf7c466be0e518a828a",
+        "pass": true,
+        "literal": "| `CASE-HARNESS-L10-043-r04-applicability-unknown` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-02` | 同一selected scopeのactive rule/branch、oracle、risk rationaleがcurrent。 | applicabilityだけunknown。 | branch分母unknown、成功扱いせずHARNESS-L2-009の対象template ownerへ。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r04-risk-rationale-missing",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1457,
+        "raw_lf_sha256": "871b7b88298ec10988b58ff7a73bd59af969a3a4bfe14d80f96bf7fd30b35b32",
+        "expected_raw_lf_sha256": "871b7b88298ec10988b58ff7a73bd59af969a3a4bfe14d80f96bf7fd30b35b32",
+        "pass": true,
+        "literal": "| `CASE-HARNESS-L10-043-r04-risk-rationale-missing` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-02` | 同一selected scopeのactive rule/branch、oracle、risk rationaleがcurrent。 | risk rationaleだけ欠落。 | 追加例十分性を主張せずHARNESS-L2-004の該当oracle ownerへ。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r04-active-revision-stale",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1458,
+        "raw_lf_sha256": "6442ebd1853a9f18811ae0457153a89153f7afed0e8663f865224d81cdb8c51d",
+        "expected_raw_lf_sha256": "6442ebd1853a9f18811ae0457153a89153f7afed0e8663f865224d81cdb8c51d",
+        "pass": true,
+        "literal": "| `CASE-HARNESS-L10-043-r04-active-revision-stale` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-02` | 選択rule/branchのsource identityとcurrent revision、scope、他根拠を正常入力として固定する。 | active revisionだけをstaleにする。 | unknown/未完を保持し、選択template applicabilityならHARNESS-L2-009、抽出rule/sourceならHARNESS-L2-041へ戻す。source identity不明ならunknownを維持する。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r05-unselected-template-extrapolation",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1513,
+        "raw_lf_sha256": "73a4e099db8c46642b91589a9ee43c32732405929614b8cfa7e1838419d2ae92",
+        "expected_raw_lf_sha256": "73a4e099db8c46642b91589a9ee43c32732405929614b8cfa7e1838419d2ae92",
+        "pass": true,
+        "literal": "| `CASE-HARNESS-L10-043-r05-unselected-template-extrapolation` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-03` | 選択template/scope内のrule/branch、oracle、適用根拠がcurrent。 | 選択templateのcoverage結果だけを未選択templateへ外挿する。 | 外挿を拒否し、未選択templateを未観測に保つ。HARNESS-L2-009/対象template ownerへ戻す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r05-other-scope-extrapolation",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1514,
+        "raw_lf_sha256": "2b739f0c5ce13e15c0e9092f93d04a390093f3d71c8ae9021070a34168b51c16",
+        "expected_raw_lf_sha256": "2b739f0c5ce13e15c0e9092f93d04a390093f3d71c8ae9021070a34168b51c16",
+        "pass": true,
+        "literal": "| `CASE-HARNESS-L10-043-r05-other-scope-extrapolation` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-03` | 同revision内の選択scopeだけでpositive/boundary-negativeをoracleへ結ぶ。 | 選択scopeの結果だけを別scopeへ外挿する。 | 外挿を拒否し別scopeを未評価に保つ。対応する固定親にscope ownerが明示されない場合はunknownを保ち、ownerを推測しない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r05-unseen-oracle-valid-rejected",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1515,
+        "raw_lf_sha256": "994fcda9ecf6a83fcb0c49424eb592c598f066818d888f030fd29f6fc707feeb",
+        "expected_raw_lf_sha256": "994fcda9ecf6a83fcb0c49424eb592c598f066818d888f030fd29f6fc707feeb",
+        "pass": true,
+        "literal": "| `CASE-HARNESS-L10-043-r05-unseen-oracle-valid-rejected` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-03` | 選択template/scopeの未見正常例が既存適用oracle・fixtureに適合する。 | 他条件を保ったまま未見という理由だけで正常例を拒否する。 | oracle適合例を受け入れ、unknownへ反転させない。未見だけを理由に拒否しない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r06-na-without-basis",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1655,
+        "raw_lf_sha256": "59112c76d1807645ec0ea6968ef40d2e072a541ad76d02bc295810556f40783f",
+        "expected_raw_lf_sha256": "59112c76d1807645ec0ea6968ef40d2e072a541ad76d02bc295810556f40783f",
+        "pass": true,
+        "literal": "| `CASE-HARNESS-L10-043-r06-na-without-basis` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-02` | 適用rule/branch、revision、scope、oracleとN/A根拠が固定される。 | N/A根拠だけを除去する。 | 根拠のないN/Aを拒否しunknown/未評価を保持する。適用条件・active templateの不足はHARNESS-L2-009/対象template ownerへ、rule/branch抽出済みcoverageの不足だけはHARNESS-L2-041相当の契約ownerへ戻す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r06-tbd-unfilled",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1656,
+        "raw_lf_sha256": "48a013c2a7794b0fb6ea0f448ee186287840d33b4434b89fbe60a4b6c1c93e13",
+        "expected_raw_lf_sha256": "48a013c2a7794b0fb6ea0f448ee186287840d33b4434b89fbe60a4b6c1c93e13",
+        "pass": true,
+        "literal": "| `CASE-HARNESS-L10-043-r06-tbd-unfilled` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-02` | 選択rule/branchとsource revision、oracleが固定される。 | TBDを推測した値でTBDを埋める。 | TBDの推測補完を拒否しunknown/未評価を保持する。templateのactive revision/適用条件はHARNESS-L2-009/対象template owner、抽出済みrule/branchの欠落はHARNESS-L2-041相当の契約ownerへ戻す。区別できない場合はunknownとして両条件を明示し、ownerを新設しない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r06-new-revision-missing",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1657,
+        "raw_lf_sha256": "5df98ec03681c2ee16cd89b1775a2eb93d03f40ee9374e4ca950581edc0375d0",
+        "expected_raw_lf_sha256": "5df98ec03681c2ee16cd89b1775a2eb93d03f40ee9374e4ca950581edc0375d0",
+        "pass": true,
+        "literal": "| `CASE-HARNESS-L10-043-r06-new-revision-missing` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-02` | 適用branchのcurrent revisionとscope、oracleが固定される。 | 適用branchのcurrent revision identityだけをmissingにする。他条件は保持する。 | adequacy分母を確定せずunknown/未評価とし、新revision/applicabilityの不足をHARNESS-L2-009/対象template ownerへ戻す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r06-risk-basis-conflict",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1658,
+        "raw_lf_sha256": "082d2998f50ea827383e0655f419166c9eb0c04a96829512308e0a0c3934fcfe",
+        "expected_raw_lf_sha256": "082d2998f50ea827383e0655f419166c9eb0c04a96829512308e0a0c3934fcfe",
+        "pass": true,
+        "literal": "| `CASE-HARNESS-L10-043-r06-risk-basis-conflict` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-02` | 選択risk根拠とsource revisionが一致する。 | risk根拠だけを相互に矛盾させる。 | risk追加例のadequacyをunknownにし、HARNESS-L2-004/該当risk-oracle ownerへ戻す。抽出済みrule/branch欠落のときだけHARNESS-L2-041相当ownerへ戻す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r06-risk-basis-stale",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1659,
+        "raw_lf_sha256": "9f9ee80fa693aaa0cc2d8bfdee687ca51e64a8221a8e0166f407a0f84b167340",
+        "expected_raw_lf_sha256": "9f9ee80fa693aaa0cc2d8bfdee687ca51e64a8221a8e0166f407a0f84b167340",
+        "pass": true,
+        "literal": "| `CASE-HARNESS-L10-043-r06-risk-basis-stale` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-02` | 選択risk根拠が同じcurrent source revisionへ結ばれる。 | risk根拠revisionだけをstaleにする。 | risk追加例のadequacyをunknownにし、HARNESS-L2-004/該当risk-oracle ownerへ戻す。抽出済みrule/branch欠落のときだけHARNESS-L2-041相当ownerへ戻す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r06-active-revision-missing",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1679,
+        "raw_lf_sha256": "98fac9c0934bb2c160ac7a9b353b100a05896e7fa0f90c445911133990b6375f",
+        "expected_raw_lf_sha256": "98fac9c0934bb2c160ac7a9b353b100a05896e7fa0f90c445911133990b6375f",
+        "pass": true,
+        "literal": "| `CASE-HARNESS-L10-043-r06-active-revision-missing` | `FR-HARNESS-L3-043` / `AC-HARNESS-L3-043-02` | 選択scopeのactive source/rule revisionとoracleがcurrent。 | active revisionだけをmissingにする。 | coverage分母を確定せずunknown/未評価とし、template選択・必須input・applicability不足をHARNESS-L2-009/該当template ownerへ戻す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r09-001",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1881,
+        "raw_lf_sha256": "2824178659d6339ba75b4739a49640a619dec1ba84cd362b1de05b07faae6271",
+        "expected_raw_lf_sha256": "2824178659d6339ba75b4739a49640a619dec1ba84cd362b1de05b07faae6271",
+        "pass": true,
+        "literal": "| `CASE-HARNESS-L10-043-r09-001` | `FR-HARNESS-L3-043`|`AC-HARNESS-L3-043-01`| active rule/branchの正しい条件、boundary oracle、negative exampleを固定する。 | canonical positive exampleだけを削除する。 | positive coverageを未完にする。固定L2:995/L11:733に沿って、positive oracle/検証義務不足としてHARNESS-L2-004および該当既存ownerへ戻す。正常に固定したtemplate/rule抽出へ返却を生成しない。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r09-002",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1882,
+        "raw_lf_sha256": "ae6d7f2d2c89ff89170d585ec4cc6257a13bbd3ba861ac829c3345bab8541883",
+        "expected_raw_lf_sha256": "ae6d7f2d2c89ff89170d585ec4cc6257a13bbd3ba861ac829c3345bab8541883",
+        "pass": true,
+        "literal": "| `CASE-HARNESS-L10-043-r09-002` | `FR-HARNESS-L3-043`|`AC-HARNESS-L3-043-01`| active rule/branchの正しい条件、positive example、negative oracleを固定する。 | boundary-negative exampleだけを削除する。 | boundary coverageを未完にする。固定L2:995/L11:733に沿って、oracle不足はHARNESS-L2-004と該当既存ownerへ戻す。 |"
+      },
+      {
+        "id": "CASE-HARNESS-L10-043-r09-003",
+        "revision": "3fd20391f842310012d09c33f5383497898b3afe",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "physical_line": 1883,
+        "raw_lf_sha256": "964693699fd0420436086f85e99a4def423f0c08a0dca70c5b6e703f36ae1203",
+        "expected_raw_lf_sha256": "964693699fd0420436086f85e99a4def423f0c08a0dca70c5b6e703f36ae1203",
+        "pass": true,
+        "literal": "| `CASE-HARNESS-L10-043-r09-003` | `FR-HARNESS-L3-043`|`AC-HARNESS-L3-043-02`| active template applicabilityと適用branch集合が確定し、他branchと例は保持する。 | 適用branchの一つだけを分母から除外する。 | 分母隠蔽を拒否しcoverageを未完にする。抽出済みrule/branch分母の不足はHARNESS-L2-041相当の抽出契約へ戻す。 |"
+      }
+    ]
+  },
+  "body_commit_six_document_full_pins": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "bytes": 210418,
+      "sha256": "fcde7e6003cfbbfa5c5c1ef92a9ad6db8e44fbeaab10571bf670fda14195a87f"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "bytes": 13523,
+      "sha256": "76d0608a75c0b92dfa4802d3903e1057f83cde6308a47e79255d840b3a92592d"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "bytes": 43350,
+      "sha256": "ecebd6f33a2c9a7c50079bd6f0018124c1ea3bb0f536ace87a4a7ba3a3e5c061"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "bytes": 657566,
+      "sha256": "1d9287fa97e84c0f417f667452efe62a4be2c5cd39ae7583ae094bd71fbefbee"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "bytes": 9052,
+      "sha256": "51a4cbd6825a72cafbbdf50a487445bb3373e6c2d8199094f645d139a8e2355f"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "bytes": 36856,
+      "sha256": "6e5b9afef8ed3f5be83f8dd3a77e58fe0a19209c54d104fcb4222b885a56a14d"
+    }
+  ],
+  "latest_context_six_document_full_pins": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "bytes": 210418,
+      "sha256": "fcde7e6003cfbbfa5c5c1ef92a9ad6db8e44fbeaab10571bf670fda14195a87f"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "bytes": 13523,
+      "sha256": "76d0608a75c0b92dfa4802d3903e1057f83cde6308a47e79255d840b3a92592d"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "bytes": 43350,
+      "sha256": "ecebd6f33a2c9a7c50079bd6f0018124c1ea3bb0f536ace87a4a7ba3a3e5c061"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "bytes": 657566,
+      "sha256": "1d9287fa97e84c0f417f667452efe62a4be2c5cd39ae7583ae094bd71fbefbee"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "bytes": 9052,
+      "sha256": "51a4cbd6825a72cafbbdf50a487445bb3373e6c2d8199094f645d139a8e2355f"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "bytes": 36856,
+      "sha256": "6e5b9afef8ed3f5be83f8dd3a77e58fe0a19209c54d104fcb4222b885a56a14d"
+    }
+  ],
+  "exact_four_change_presence_checks": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "before_sha256": "fd33cf1c77bd2cde83497e2e1a193de86487904bc6d67aa8f7dbb54c5028ac41",
+      "after_sha256": "f246c12697010a6f077da0a7a1405a77b23166818c37d53cb326a3e37e48298f",
+      "body_before_occurrences": 0,
+      "body_after_occurrences": 1,
+      "latest_before_occurrences": 0,
+      "latest_after_occurrences": 1,
+      "note": "The first before phrase is a substring of its after phrase and therefore remains present within the corrected sentence; occurrence counts are literal presence, not a standalone-old-sentence check."
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "before_sha256": "0a8e17204a17a36acfb1f075379d77a9c933176fd4433d0b20ab0478c6c31d02",
+      "after_sha256": "f79e111cc024da5ae01fbca0367034bb23994089e5f27c17f97e57b7cc0226e8",
+      "body_before_occurrences": 1,
+      "body_after_occurrences": 1,
+      "latest_before_occurrences": 1,
+      "latest_after_occurrences": 1,
+      "note": ""
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "before_sha256": "67b32681c6f2df75503786371f464b60dd4e1e2504a853de6c3af2d58d0f8834",
+      "after_sha256": "cf3b4cea1201d031da2e39aab5daacc43281a44d798ec2b32f131c7cc01913a7",
+      "body_before_occurrences": 1,
+      "body_after_occurrences": 1,
+      "latest_before_occurrences": 1,
+      "latest_after_occurrences": 1,
+      "note": ""
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "before_sha256": "f0a738103f848740d04222359bccec39bd05cda18e9bcdd2f347fbd19c0be175",
+      "after_sha256": "b82d01b863cf4dd35a4edd2344a780f8b323d31fbf02cf90f3b2042c9aaec18e",
+      "body_before_occurrences": 0,
+      "body_after_occurrences": 1,
+      "latest_before_occurrences": 0,
+      "latest_after_occurrences": 1,
+      "note": ""
+    }
+  ],
+  "root_body_prefix_suffix_checkpoint": {
+    "base": "3c3c512c09320c0494904602b23e544a81206eed",
+    "six": [
+      {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "prefix_sha256": "4fce6bb6cd3af5938a11719866050bd729234adbebf70c4210398aa90cad5dff",
+        "suffix_sha256": "1846f2332175f82e6570639d33c17bc30583fb8521e68fb8d2a7b22ad60c6c51",
+        "sha256": "9f4851eed6ef4ae88e2a6e1ab265b9f1749defeb8a2a3b43d657624f9d62c2cb"
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+        "prefix_sha256": "c51f0bc2b98ae5c6a77bfa354050ec70ee87a70641b5f0161b14d5a3afd33e8f",
+        "suffix_sha256": "8d806b285b554f895d1e3b8125b92e398db31ca5bcab68296d866a06c07e9129",
+        "sha256": "76d0608a75c0b92dfa4802d3903e1057f83cde6308a47e79255d840b3a92592d"
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+        "prefix_sha256": "b364e8c6dc92f4548df34638488fefec1533d13941a991de685a74bb64471fc9",
+        "suffix_sha256": "be99bed2c7755145b8a0f1ae8703e398f42926d5c39721857ca780954022cdf3",
+        "sha256": "ecebd6f33a2c9a7c50079bd6f0018124c1ea3bb0f536ace87a4a7ba3a3e5c061"
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "prefix_sha256": "bc63c3abbabd727dbb2cfa37a5c3741985181308ad93378ebf2e5846907770f0",
+        "suffix_sha256": "7f0323655f455edfc6d8dd1da88e2756b1b3893e5e6664b6b423457797cf4f32",
+        "sha256": "675b523e2128ef12f9f26e210ed3d9adde2b85fefb93df65fad70045ee293cb0"
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/business-verification.md",
+        "prefix_sha256": "2faacacf78b835b5127e990b805adb97b079439c887a1ef2bd6d69f2478d53c9",
+        "suffix_sha256": "233f15d3911b5fe44c4b6041f9ed348e08d2cd6814fd27dcfd4c1cb12c0a1c9f",
+        "sha256": "51a4cbd6825a72cafbbdf50a487445bb3373e6c2d8199094f645d139a8e2355f"
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+        "prefix_sha256": "bb319529b2c2e2af75067c36bf204d386816fb7e78d48f18043973be6290ccd1",
+        "suffix_sha256": "047c937dc87c01fb22b44ce900e932a0e47d43e02609695d90eb6b55df576281",
+        "sha256": "6e5b9afef8ed3f5be83f8dd3a77e58fe0a19209c54d104fcb4222b885a56a14d"
+      }
+    ]
+  },
+  "current_CASE_inventory": {
+    "path": "docs/helix-harness/L10-verification/functional-verification.md",
+    "physical_rows": 43,
+    "unique_ids": 43,
+    "columns": [
+      6
+    ],
+    "old_28_ids_all_present": true,
+    "all_43_current_case_ids": [
+      "CASE-HARNESS-L10-043-01",
+      "CASE-HARNESS-L10-043-02",
+      "CASE-HARNESS-L10-043-03",
+      "CASE-HARNESS-L10-043-04",
+      "CASE-HARNESS-L10-043-05",
+      "CASE-HARNESS-L10-043-06",
+      "CASE-HARNESS-L10-043-07",
+      "CASE-HARNESS-L10-043-r02-negative-not-boundary",
+      "CASE-HARNESS-L10-043-r03-other-revision-unseen",
+      "CASE-HARNESS-L10-043-r04-oracle-unbound",
+      "CASE-HARNESS-L10-043-r04-count-only-sufficiency",
+      "CASE-HARNESS-L10-043-r04-rule-branch-conflict",
+      "CASE-HARNESS-L10-043-r04-extracted-rule-missing",
+      "CASE-HARNESS-L10-043-r04-applicability-unknown",
+      "CASE-HARNESS-L10-043-r04-risk-rationale-missing",
+      "CASE-HARNESS-L10-043-r04-active-revision-stale",
+      "CASE-HARNESS-L10-043-r05-unselected-template-extrapolation",
+      "CASE-HARNESS-L10-043-r05-other-scope-extrapolation",
+      "CASE-HARNESS-L10-043-r05-unseen-oracle-valid-rejected",
+      "CASE-HARNESS-L10-043-r06-na-without-basis",
+      "CASE-HARNESS-L10-043-r06-tbd-unfilled",
+      "CASE-HARNESS-L10-043-r06-new-revision-missing",
+      "CASE-HARNESS-L10-043-r06-risk-basis-conflict",
+      "CASE-HARNESS-L10-043-r06-risk-basis-stale",
+      "CASE-HARNESS-L10-043-r06-active-revision-missing",
+      "CASE-HARNESS-L10-043-r09-001",
+      "CASE-HARNESS-L10-043-r09-002",
+      "CASE-HARNESS-L10-043-r09-003",
+      "CASE-HARNESS-L10-043-r10-valid-selected-profile-no-mutation",
+      "CASE-HARNESS-L10-043-r10-profile-missing-to-005",
+      "CASE-HARNESS-L10-043-r10-template-applicability-to-009",
+      "CASE-HARNESS-L10-043-r10-extracted-atom-to-041",
+      "CASE-HARNESS-L10-043-r10-risk-oracle-to-004",
+      "CASE-HARNESS-L10-043-r10-025-not-substituted",
+      "CASE-HARNESS-L10-043-r10-026-not-substituted",
+      "CASE-HARNESS-L10-043-r10-requirement-agreement-not-generated",
+      "CASE-HARNESS-L10-043-r10-adoption-not-generated",
+      "CASE-HARNESS-L10-043-r10-l3-approval-not-generated",
+      "CASE-HARNESS-L10-043-r10-design-established-not-generated",
+      "CASE-HARNESS-L10-043-r10-implementation-not-generated",
+      "CASE-HARNESS-L10-043-r10-execution-not-generated",
+      "CASE-HARNESS-L10-043-r10-acceptance-not-generated",
+      "CASE-HARNESS-L10-043-r10-no-cartesian-expansion"
+    ]
+  },
+  "root_reported_checks": {
+    "govcheck": "PASS per parent report for the 043 body/context; not run by this worker",
+    "diff_check": "PASS per prior 043 review01 audit, not rerun for review02 by this worker",
+    "fixture_oracle_execution": "not run",
+    "independent_review_of_post_body": "not performed",
+    "Fable": "not requested/reported for this post-body candidate",
+    "L3_approval": "not inferred"
+  },
+  "worker_static_checks": {
+    "all_4_after_literals_present_once_at_body_and_latest_HEAD": true,
+    "six_document_body_and_latest_full_hashes_recorded": true,
+    "fixed318_parent_and_PO_spans_recomputed": true,
+    "prior25pin_audit_passed_and_preserved": true,
+    "old28_raw_lines_pinned_and_IDs_retained": true,
+    "43_unique_six_column_CASE_rows": true,
+    "worktree_clean_at_capture": true
+  },
+  "limitations": [
+    "Root exact-changes record is the authoring record; this worker records presence and physical revision pins, not semantic closure.",
+    "R1-R12 are preserved raw; only M1 response is represented by the four exact changes, no residual is adjudicated.",
+    "Root-reported govcheck is not independently reproduced here.",
+    "No fixture/runtime/test/CI execution, independent review, Fable decision, or L3 approval is claimed."
+  ]
+}
