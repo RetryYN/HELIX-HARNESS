@@ -79,7 +79,7 @@
 
 | 固定親 | 独立business outcome | 正本AC / CASE索引 |
 |---|---|---|
-| `HELIXLABO-L2-060` | なし。独立KPIなし。 | `LABO-060-AC-01/02/03`; `L10-LABO-060-CASE-01/02/03a–e/04a–b/05–46`。現行分類案は正常候補2、negative候補41、非独立索引候補8（CASE-22/23/26/27/29/30/31/32）。単一点性・独立性は独立review未確認で、ID数や一意性は完全性を証明しない。索引候補を個別fixture件数・negative分母へ重ねない。 |
+| `HELIXLABO-L2-060` | なし。独立KPIなし。 | `LABO-060-AC-01/02/03`; `L10-LABO-060-CASE-01/02/03a–e/04a–b/05–52`。現行分類案は正常候補2、negative候補47、非独立索引候補8（CASE-22/23/26/27/29/30/31/32）。単一点性・独立性は独立review未確認で、ID数や一意性は完全性を証明しない。索引候補を個別fixture件数・negative分母へ重ねない。 |
 
 これは未実行design参照であり、実business outcome/承認/実験を表さない。
 
