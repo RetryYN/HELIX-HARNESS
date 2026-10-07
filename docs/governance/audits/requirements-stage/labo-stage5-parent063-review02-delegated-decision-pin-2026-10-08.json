@@ -1,0 +1,68 @@
+{
+  "record_type": "HDEC-LABO-STAGE5-PARENT063-REVIEW02-2026-10-08",
+  "authority_effect": "none_pending_condition3_and_main_admission",
+  "scope": {
+    "mechanism": "HELIX-LABO",
+    "stage": "5",
+    "parents": [
+      "HELIXLABO-L2-063"
+    ],
+    "version": "1.0"
+  },
+  "review": {
+    "formal_comment_id": 6047400034,
+    "formal_body_raw": "## review02（HEAD dd0a6425a42673fe3a38208b4011ae001f0302b3 / base 6e26ee3929e55bfa23dd7c809b7e6a1c88de0431）— Claude review_merge\n\n**結論：Major 0。条件1・2が成立。** review01（comment 6047159268、HEAD 838caee4）のM1とMinor 1〜5への修正を、OpusとFableが独立に読み、次のとおり一致しました。\n- Opus：Major 0\n- Fable：Major 0、「承認してよい」\n\n運用モデル「L3／L10承認の委任」の条件1・2は、本HEADの本文revisionで成立します。review01の判定は継承していません。条件3（判断記録と6本文pinの追加後の照合）とmain admissionは、まだ成立していません。\n\n### 対象\n- 本PR自身の差分（`merge-tree(6e26ee39, 838caee4)`→HEAD）は、本文ではFR:1721–1743・1758とFV CASE-66だけです。ほかは訂正追補の監査記録1組の追加です。\n- mainから取り込んだ差分はOS文書とOS監査だけで、LABOの固定L2/L11と6本文はmainと同じです。\n\n### 修正の確認\n- **M1（解消）**：FR:1758を「72件（旧69件にCASE-66〜68を追補）、正常6（01/02/05/07/10/67）、negative 55、索引11」に揃えています。FVの063は72行・72 unique ID（AC-01=5、AC-02=2、AC-03=65）で、FV:2954、NFR:204、NFRV:151の件数と一致します。索引11 ID、CASE-58/13の注記、「意味的独立性・完全性の認定ではない」という限定は保たれています。\n- **Minor 1**：L2:487の行をAC-01/02/03、L2:488の行をAC-02/03に対応付けています。\n- **Minor 2**：AC-03に、HARNESSの返却がL2:483「HARNESSの検証」に由来すること（HARNESSは検証証拠の提供元で、LABOが効果を評価する）を注記しています。L2:488「ownerによる変更が欠けた予防候補は循環未完」も追記されています。\n- **Minor 3**：L2:482（採用・修復実行許可・改善採否を継承しない）とL2:489（旧P4-02、HMC-BR-003、memory境界）の行を追加しています。固定 `318ec4a` の該当行と内容が一致します。\n- **Minor 4**：AC-02は識別できない間のunknown/open保持、AC-03は識別できる不足の返却、という役割分担を一文で書いています。\n- **Minor 5**：CASE-66は、CASE-67相当の完全な根拠入力を保ったまま、success-basisの参照だけを単一green resultへ結ぶ出力側の単独変異になりました。CASE-34（candidateだけ）、CASE-20（手順欠落）、CASE-46（HARNESS receipt欠落）とは軸が分かれています。oracle（単一greenを成功手順とせず、success-basisを未完としてLABO評価に保持し、入力の根拠を失わない）はL2:483に一致し、実行・採用を生成しません。\n\n### 監査記録\n- review01 comment 6047159268の本文は、API取得でUTF-8 6341 bytes、SHA-256 `8573a207…` です。追補の記録と一致します。\n- 固定親（`318ec4a` L2 `5d939d81…`、L11 `30de41e2…`）と、修正後の6本文pinがHEADの実bytesと一致します。\n- 旧の残余監査と統合監査は書き換えられていません。旧fixture-count PASSの範囲は、追補で訂正されています。\n- **main統合**：統合前後で、本PRの063の追加・削除行は同じです（sorted ± hash `d8051842075e`）。\n\n### 静的検査\n`scfctl validate` 147/0、`stale=0`、govcheck ok（atoms=7622）、`git diff --check` が通りました。\n\n### 返さない所見（Minor。承認の条件にしません）\n1. FR:1731のL2-063:488のtrace行に、「verification不足はHARNESSへ」が残っています。固定L2:488の戻し先の列挙にHARNESSはありません。AC-03本文にはL2:483由来の注記がありますが、trace表の帰属は未修正です。この句をL2-063:483の行（FR:1725）へ移すか、「（HARNESS返却はL2-063:483由来）」を付けると、記録の精度が上がります。意味は変わりません。\n2. CASE-66は出力bindingの変異です。FR:1758の索引段落かFV:2954に一言あると、後続のreviewで迷いません（任意）。\n\n### 未確認範囲\n- fixtureは実行していません。\n- 274親の意味検収は、本reviewの範囲外です。\n\n本reviewから、承認の効力、merge admission、PO事後確認、L10の実行合格、実装・release許可、Issue closeを生成しません。条件3は、判断記録と6本文pinの追加後に新しいHEADで照合します。\n",
+    "formal_body_utf8_bytes": 4474,
+    "formal_body_sha256": "ef4e14352bc327334fe7b808d77a541a3195524c4223ac47d2e95d6483034850",
+    "reviewed_head": "dd0a6425a42673fe3a38208b4011ae001f0302b3",
+    "review_base": "6e26ee3929e55bfa23dd7c809b7e6a1c88de0431",
+    "condition1": "satisfied: Opus Major 0",
+    "condition2": "satisfied: Fable 承認してよい",
+    "condition3": "pending"
+  },
+  "six_body_pins": [
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "bytes": 32997,
+      "sha256": "b201d0b7ebf8e3289bb914a354a3ee749f35b626852d2ab572c1b454ebcaca55"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "bytes": 358302,
+      "sha256": "46f4b661f4a605433f9c2ea825db37d6fd8365e55378364fd9648765aaaa4718"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "bytes": 92697,
+      "sha256": "2003cfac5a9703f523158548651fd552580f1afa488ffb5498cc1d32d0be6cc0"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "bytes": 31875,
+      "sha256": "64f4c266c08a09bcea0c82a4dc22d30ad834ad936bfe73200f659a6befde1c4f"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "bytes": 699349,
+      "sha256": "34af787d35c067198041166b6e3bd7a4aee6c94907a93f336415a694a6e053d8"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "bytes": 83342,
+      "sha256": "ae8e80356a120a07c733a0aac8822c4937de414faee6fc221d0323cbe8f777e9"
+    }
+  ],
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-labo-stage5-parent063-review02-l3-l10-delegated-decision-2026-10-08.md",
+    "bytes": 2894,
+    "sha256": "61cbdf53f57c8b6f89b717e0830d52de70b52119f1853bf742bd5fbc5af2ead2"
+  },
+  "minor_not_returned": [
+    "crosswalk L2:488行のHARNESS返却句はAC03が明記するL2:483由来であり、488の逐語列挙ではない。trace表への由来注記は未追加。",
+    "CASE66は出力success-basis bindingの単独変異である。索引段落への追加説明は任意として未追加。fixture未実行、274意味検収は別範囲。"
+  ],
+  "limits": [
+    "fixture未実行",
+    "274親検収未完"
+  ]
+}
