@@ -1,0 +1,7 @@
+# SECURITY親028 review01訂正追補
+
+対象HEAD `88d05678270230908ca0634cbe79e5364a19b1b9`、正式コメント6046185992/6046234336を起点とする。旧監査は時点記録として保持する。旧監査の「L11 oracle保持」「既存戻し先保持」はreview対象本文について誤りであり、本追補で訂正する。
+
+固定f6dadのL11:52原文を引用行へ完全復元し、L2:345のdescriptor fieldと347のtarget/artifact integrityから導出した補強は引用外fixtureに保持した。戻し先349にないartifact ownerを除去し、L1-010、L1-013、HARNESSへ限定した。candidate/target identity/version/digest欠落・unknownをACに戻し、宣言scopeの検証結果提示を条件とする表現へ変更し実行主体を追加しない。
+
+旧sourceの対応・保持・再導出は先行監査の記録範囲を継続し、旧runtime等は実行していない。6本文の前後SHAは隣接JSON。引用の固定L11原文一致、BR/BV/NFR不変、diff checkを静的に確認する。独立再レビュー、対象revision承認、fixture実行は未完。
