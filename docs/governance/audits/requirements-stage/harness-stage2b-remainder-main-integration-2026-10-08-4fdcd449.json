@@ -1,0 +1,218 @@
+{
+  "record_type": "harness_stage2b_remainder_main_integration_reaudit",
+  "authority_effect": "none",
+  "created_at": "2026-10-08",
+  "integrated_main_revision": "4fdcd449fac8ffbc7c6ab18654b355497be07b91",
+  "previous_snapshot_base": "f14ac303d265b6d23ecb1847b5dfd52901a442c6",
+  "branch": "codex/harness-stage2b-misattribution-inventory",
+  "task_scope": "Integrate latest main and pin exact current six full-body SHA plus Stage 2b span continuity and historical review attribution. No L3 approval is created.",
+  "previous_snapshot": {
+    "json_path": "docs/governance/audits/requirements-stage/harness-stage2b-remainder-misattribution-reaudit-2026-10-08-f14ac303.json",
+    "json_bytes": 21796,
+    "json_sha256": "13a83d6023f532ea25fb3b313018a1c612307421bc44db2405b9b185ae7c24c0",
+    "md_path": "docs/governance/audits/requirements-stage/harness-stage2b-remainder-misattribution-reaudit-2026-10-08-f14ac303.md",
+    "md_bytes": 7481,
+    "md_sha256": "65fabf82c3095e9519c625cca6fdf0705ed7c47f72f0f87c7350ea34f19a65b3",
+    "immutable": true
+  },
+  "upstream_change_context": {
+    "integration_commit": "4fdcd449fac8ffbc7c6ab18654b355497be07b91",
+    "commit_subject": "Merge pull request #2655 from RetryYN/codex/l3-harness-stage5-repair",
+    "scope": "Six HELIX-HARNESS Stage 5 suffix/body files changed in main; Stage 2b section bytes in all six target documents remained byte-identical to preintegration f14ac."
+  },
+  "current_body_and_stage_span_comparison": [
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "old_approved_full_body_sha256": "a1c0ed86d63a523ebad07105ceb6dbbca602bb1bd3c6a76af5c8a9e10fbab4b2",
+      "preintegration_f14ac_full_body_sha256": "781e337ff60f8765467b216edefdeca14416c2b8c1fd3889b8afa5d6f4d7cb33",
+      "integrated_main_full_body_sha256": "9fb531a55c61c4836ae614cadbd850f3967119cb1f0f2eb36dad1e39ebab75e2",
+      "old_full_body_equals_integrated": false,
+      "preintegration_full_body_equals_integrated": false,
+      "old_target_span": {
+        "bytes": 1163,
+        "sha256": "b6ea82680f800ce2b0569bb4987cb79283005fc0d93ec72a9a47f40e9c34dca2"
+      },
+      "preintegration_target_span": {
+        "bytes": 1164,
+        "sha256": "3608967db129b66b2670bdf64d1f18be7cb3915ab6abda34e6084492ebdf6031"
+      },
+      "integrated_target_span": {
+        "bytes": 1164,
+        "sha256": "3608967db129b66b2670bdf64d1f18be7cb3915ab6abda34e6084492ebdf6031"
+      },
+      "integrated_span_equals_f14ac": true,
+      "current_span_minus_one_terminal_lf_equals_old": true,
+      "current_raw_span_difference": "one extra terminal LF vs old; section content bytes otherwise equal"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "old_approved_full_body_sha256": "9734e536774f62ba6d53a8804ca16649e00dda307ae60114431f61ad21daa3b4",
+      "preintegration_f14ac_full_body_sha256": "e3b18c538d2903e7adfd3d800bc82f6eb7190a6de870e72ac2e4913b733de885",
+      "integrated_main_full_body_sha256": "bd038522d001d95229fb2e96e7f88f2adfe82a30b927224a42246b74aa378c0c",
+      "old_full_body_equals_integrated": false,
+      "preintegration_full_body_equals_integrated": false,
+      "old_target_span": {
+        "bytes": 26551,
+        "sha256": "3306d3242ac47c2d70b65b39f1c011aaf95c8073aa9d30ea5b76e5a8def99eba"
+      },
+      "preintegration_target_span": {
+        "bytes": 26552,
+        "sha256": "8e9fb46121c60dc8b6690ce6dd5c30d7973410cbd6c150f436137b90f963c23b"
+      },
+      "integrated_target_span": {
+        "bytes": 26552,
+        "sha256": "8e9fb46121c60dc8b6690ce6dd5c30d7973410cbd6c150f436137b90f963c23b"
+      },
+      "integrated_span_equals_f14ac": true,
+      "current_span_minus_one_terminal_lf_equals_old": true,
+      "current_raw_span_difference": "one extra terminal LF vs old; section content bytes otherwise equal"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "old_approved_full_body_sha256": "ab37418cb9d3004d6ba0467b4c82bfe4d75f90eb8f4c136902f691e8e3c876b6",
+      "preintegration_f14ac_full_body_sha256": "ed08243e009b629aba5167786bf47d946f27e2e1ff8526d61480d826cd3a8317",
+      "integrated_main_full_body_sha256": "ee84bc87ff324eea929d266934c0debb856018aca25c0044f68b11c141c3263d",
+      "old_full_body_equals_integrated": false,
+      "preintegration_full_body_equals_integrated": false,
+      "old_target_span": {
+        "bytes": 3278,
+        "sha256": "ff64bb5f2e245ecfbfffb73453146aef79617b9a8fc869e50e4d30a7d0804256"
+      },
+      "preintegration_target_span": {
+        "bytes": 3279,
+        "sha256": "d3e4d261ca743397107632661d930ee570a649435fc52041ec1dde8158ff0143"
+      },
+      "integrated_target_span": {
+        "bytes": 3279,
+        "sha256": "d3e4d261ca743397107632661d930ee570a649435fc52041ec1dde8158ff0143"
+      },
+      "integrated_span_equals_f14ac": true,
+      "current_span_minus_one_terminal_lf_equals_old": true,
+      "current_raw_span_difference": "one extra terminal LF vs old; section content bytes otherwise equal"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "old_approved_full_body_sha256": "788c690368c3be1721410f65d5970dad1731b8e79a0a5b7b80c26e3475698309",
+      "preintegration_f14ac_full_body_sha256": "84f68583915cc9c206d44d08e188508f73b0b9ea69ae73b82b61ceec8196f1a4",
+      "integrated_main_full_body_sha256": "864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad",
+      "old_full_body_equals_integrated": false,
+      "preintegration_full_body_equals_integrated": false,
+      "old_target_span": {
+        "bytes": 791,
+        "sha256": "8d218e2ea02794e328c446516828e95a06f78adeeee96fe1ec7edcba34e96eb7"
+      },
+      "preintegration_target_span": {
+        "bytes": 792,
+        "sha256": "bad59c1d18626e27de2dd4990e8f16f56b955832670adfc8739b7a3b3b19c938"
+      },
+      "integrated_target_span": {
+        "bytes": 792,
+        "sha256": "bad59c1d18626e27de2dd4990e8f16f56b955832670adfc8739b7a3b3b19c938"
+      },
+      "integrated_span_equals_f14ac": true,
+      "current_span_minus_one_terminal_lf_equals_old": true,
+      "current_raw_span_difference": "one extra terminal LF vs old; section content bytes otherwise equal"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "old_approved_full_body_sha256": "0a7fb5d4cc88d6fec1576260d5b3bd2adf71d0ed6939b1168cf4ee621dd538dc",
+      "preintegration_f14ac_full_body_sha256": "0cb0d7a9fc0fc23d38c809dd47cca770f860c47905cd60e7d7f59222d3a07f9c",
+      "integrated_main_full_body_sha256": "191dcb11cb400c10516e2a437314ffea60de97cb7432091ff6ee47f964640e9a",
+      "old_full_body_equals_integrated": false,
+      "preintegration_full_body_equals_integrated": false,
+      "old_target_span": {
+        "bytes": 80313,
+        "sha256": "ee358f64a85ce39d694c800c256777b01907e5873260b02a9d1d7c28281eee61"
+      },
+      "preintegration_target_span": {
+        "bytes": 80314,
+        "sha256": "dea6989e31e19a0b7125721937505e52f42b67808600a2f3d99a422795689485"
+      },
+      "integrated_target_span": {
+        "bytes": 80314,
+        "sha256": "dea6989e31e19a0b7125721937505e52f42b67808600a2f3d99a422795689485"
+      },
+      "integrated_span_equals_f14ac": true,
+      "current_span_minus_one_terminal_lf_equals_old": true,
+      "current_raw_span_difference": "one extra terminal LF vs old; section content bytes otherwise equal"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "old_approved_full_body_sha256": "245f1c655276338ac163ba35ded36e8453769197638412a305a2b0aec658fd82",
+      "preintegration_f14ac_full_body_sha256": "def2277503ef06c49fef4868dce7eab2322f761c9ff31e630b217f133325a53e",
+      "integrated_main_full_body_sha256": "b8a2ac27f92d9023dd3c24f7f3e16f6647e18e9272f2b3d94b7ced721b427386",
+      "old_full_body_equals_integrated": false,
+      "preintegration_full_body_equals_integrated": false,
+      "old_target_span": {
+        "bytes": 3318,
+        "sha256": "84353058bbde34ff232f810b9b7a2248c5dc057d62faea12148651dcf6fb4fa2"
+      },
+      "preintegration_target_span": {
+        "bytes": 3319,
+        "sha256": "c4b0e3ed5e67fd9316e1260f5d4e943491497c37c684758c255a5c9b279ed8ff"
+      },
+      "integrated_target_span": {
+        "bytes": 3319,
+        "sha256": "c4b0e3ed5e67fd9316e1260f5d4e943491497c37c684758c255a5c9b279ed8ff"
+      },
+      "integrated_span_equals_f14ac": true,
+      "current_span_minus_one_terminal_lf_equals_old": true,
+      "current_raw_span_difference": "one extra terminal LF vs old; section content bytes otherwise equal"
+    }
+  ],
+  "historical_review_attribution": {
+    "historical_decision_path": "docs/governance/decisions/helix-harness-stage2b-remainder-l3-l10-po-decision-2026-10-06.md",
+    "historical_decision_sha256": "55056cf356964eefcd69cbad3a3b24da87943465b606d52589dde4576f6f6438",
+    "historic_pin_path": "docs/governance/audits/requirements-stage/harness-stage2b-remainder-delegated-decision-pin-2026-10-06.json",
+    "historic_pin_sha256": "77475a2006d9ede25ecae0be5f20fe869875a8b23b3b2e487842d806d728ddd1",
+    "root_review08_path": "docs/governance/audits/requirements-stage/harness-stage2b-remainder-root-review08-acceptance-2026-10-06.json",
+    "root_review08_sha256": "c97f82d2d0d301bf0bf572878354a359eb00091f772de45bf19e626a5f186928",
+    "actual_opus_comment": {
+      "id": 6039142042,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2613#issuecomment-6039142042",
+      "body_utf8_bytes": 2225,
+      "body_sha256": "9d20653bebacb5890ef3fdcb63aaaf14f662c239b0ac1b79e6772582a1dd150a",
+      "identity": "Opus 5.5; actual independent review over old exact six-body revision 3aa88a697dbc8e726bdf23c27c8bb364867bb173 / HEAD 9981f376c50691c80f7cdeb1893588748aa4714d; Major 0 and unconfirmed 0."
+    },
+    "fable_comment": {
+      "id": 6003038860,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2613#issuecomment-6003038860",
+      "body_utf8_bytes": 3166,
+      "body_sha256": "67e59bfb59f0bc561b7825c38eae54123928c89faa6595bef9f1536ca99de7d6",
+      "identity": "Claude review_merge lane / Fable 5.1; conclusion 承認してよい for old exact six-body revision."
+    },
+    "correction": "Historical decision/pin confused Fable comment 6003038860 with Opus. Actual Opus formal source is 6039142042. Old records remain unchanged; this is a factual integration pin."
+  },
+  "review_requirement": {
+    "fresh_opus_and_fable_review_required": true,
+    "reason": "The integrated main full-body set differs from the old approved six-body set. The Stage 2b section content remains unchanged, but delegated approval binds the exact complete six-body revision. No fresh review of the integrated exact current six-body set is pinned here.",
+    "approval_inherited": false,
+    "target_revision": "4fdcd449fac8ffbc7c6ab18654b355497be07b91",
+    "target_base": "4fdcd449fac8ffbc7c6ab18654b355497be07b91"
+  },
+  "fixed_scope_and_source_inventory_reference": {
+    "path": "docs/governance/audits/requirements-stage/harness-stage2b-remainder-misattribution-reaudit-2026-10-08-f14ac303.json",
+    "sha256": "13a83d6023f532ea25fb3b313018a1c612307421bc44db2405b9b185ae7c24c0",
+    "scope": [
+      "HARNESS-L2-017",
+      "HARNESS-L2-018",
+      "HARNESS-L2-019",
+      "HARNESS-L2-020",
+      "HARNESS-L2-024"
+    ],
+    "note": "Previous full snapshot contains fixed L2/L11 and old-source locator pins, all rechecked by Root; immutable. This integration snapshot does not rewrite or duplicate those source records."
+  },
+  "static_verification": {
+    "six_current_full_body_sha_recomputed": true,
+    "six_current_full_body_sha_match_new_base": true,
+    "six_stage2b_spans_byte_equal_preintegration": true,
+    "six_current_spans_match_old_after_removing_one_terminal_lf": true,
+    "six_full_bodies_equal_old_approved": false,
+    "old_decision_and_pin_modified": false,
+    "previous_snapshot_modified": false,
+    "fresh_review_present": false,
+    "fresh_review_required": true,
+    "tests_ci_runtime_run": false,
+    "commit_push_pr_comment_merge": false
+  }
+}
