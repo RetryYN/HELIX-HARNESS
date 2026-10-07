@@ -1,0 +1,399 @@
+{
+  "record_type": "requirements_semantic_correction_audit",
+  "as_of": "2026-10-08",
+  "scope": {
+    "mechanism": "SECURITY",
+    "stage": "Stage 1",
+    "parent": "HELIXSECURITY-L2-028",
+    "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "current_base": "0d8fcb67ef64e17e0e3529715011d6140652f017",
+    "finding": "固定L2-028のdescriptor contract version・verification scope入力とverification target/update artifact integrity correspondenceが、現行L3/L10の具体的な判定・独立negativeに欠けていた。"
+  },
+  "fixed_sources": {
+    "docs/helix-security/L2-requirements/security-requirements.md": {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "lines": [
+        342,
+        350
+      ],
+      "span_bytes": 1766,
+      "span_sha256": "76740f351c9bad546326e6f322ba4358348f622799a644ad1f4e0372c5ecefb1",
+      "same_at_main": true
+    },
+    "docs/helix-security/L11-acceptance/security-acceptance.md": {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "lines": [
+        52,
+        52
+      ],
+      "span_bytes": 590,
+      "span_sha256": "40bf0c7a90dbac79da072bee458309750676a1e80640dd067becc97cade6b16e",
+      "same_at_main": true
+    }
+  },
+  "current_six_body_pins": {
+    "docs/helix-security/L3-requirements/business-requirements.md": {
+      "before": {
+        "revision": "0d8fcb67ef64e17e0e3529715011d6140652f017",
+        "bytes": 2999,
+        "sha256": "30a0456a17c4c65e9427cc8931905cb7c1adf54c207514f948a7b179dcdb7019"
+      },
+      "after": {
+        "working_tree": true,
+        "bytes": 2999,
+        "sha256": "30a0456a17c4c65e9427cc8931905cb7c1adf54c207514f948a7b179dcdb7019"
+      },
+      "unchanged": true
+    },
+    "docs/helix-security/L3-requirements/functional-requirements.md": {
+      "before": {
+        "revision": "0d8fcb67ef64e17e0e3529715011d6140652f017",
+        "bytes": 137065,
+        "sha256": "d01a8a9a4e89ffc3f86ad377ea4a5f76cf3322c352cdad496388b3f09b2830b8"
+      },
+      "after": {
+        "working_tree": true,
+        "bytes": 137682,
+        "sha256": "aa967870fbf155c32973c24ccfedefdfd4b46b0f968c79276b9a58cb8bdd19a2"
+      },
+      "unchanged": false
+    },
+    "docs/helix-security/L3-requirements/nfr-grade.md": {
+      "before": {
+        "revision": "0d8fcb67ef64e17e0e3529715011d6140652f017",
+        "bytes": 18198,
+        "sha256": "bd8533006ead1dacde26ad88733c88379bf7453d297211387564db053cbec59b"
+      },
+      "after": {
+        "working_tree": true,
+        "bytes": 18947,
+        "sha256": "d2c1d93cf4fb142ba6abae13c7e640a7c9826f6c0ed5ce49de7991cb8f884c3b"
+      },
+      "unchanged": false
+    },
+    "docs/helix-security/L10-verification/business-verification.md": {
+      "before": {
+        "revision": "0d8fcb67ef64e17e0e3529715011d6140652f017",
+        "bytes": 2356,
+        "sha256": "7da2a3b88c866c276065c793036708a633109b176b0381829c8d3c8293ff70a4"
+      },
+      "after": {
+        "working_tree": true,
+        "bytes": 2356,
+        "sha256": "7da2a3b88c866c276065c793036708a633109b176b0381829c8d3c8293ff70a4"
+      },
+      "unchanged": true
+    },
+    "docs/helix-security/L10-verification/functional-verification.md": {
+      "before": {
+        "revision": "0d8fcb67ef64e17e0e3529715011d6140652f017",
+        "bytes": 177815,
+        "sha256": "1ed95d5dee48a5c2effac2210a595c9b527dd40775ff98727878c24cbb2d7a14"
+      },
+      "after": {
+        "working_tree": true,
+        "bytes": 178507,
+        "sha256": "dc216f70d350c51c4cb7df746918a3bc900513632ffb7a9c626b145af70e4361"
+      },
+      "unchanged": false
+    },
+    "docs/helix-security/L10-verification/nfr-verification.md": {
+      "before": {
+        "revision": "0d8fcb67ef64e17e0e3529715011d6140652f017",
+        "bytes": 13684,
+        "sha256": "a52d221d47f0ec92e1d14969ce322b7f1ff88200e8cdb574a63fd9fb06dcf2d7"
+      },
+      "after": {
+        "working_tree": true,
+        "bytes": 14275,
+        "sha256": "dea5e91b347e74d95749b9ec4dd56fb6218a3ad170e8c451cb951328a976d000"
+      },
+      "unchanged": false
+    }
+  },
+  "legacy_sources": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "revision": "0d8fcb67ef64e17e0e3529715011d6140652f017",
+      "bytes": 65731,
+      "sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "read_lines": [
+        [
+          168,
+          171
+        ],
+        [
+          183,
+          189
+        ],
+        [
+          294,
+          302
+        ]
+      ],
+      "disposition": "再利用せず意味を再導出。外部filter/trust/target/integrityの隣接根拠は確認したが、SECURITY-HARNESS共通pack descriptorのverification scope/target-artifact束縛の直接対応は確認できなかった。",
+      "read_span_pins": [
+        {
+          "lines": [
+            168,
+            171
+          ],
+          "bytes": 912,
+          "sha256": "e8a9bb380860412a602572814f10c7dbc792863f7858f596fa930534d8d01511"
+        },
+        {
+          "lines": [
+            183,
+            189
+          ],
+          "bytes": 2290,
+          "sha256": "5d7dc07cbde4541c863ea9934c93ec9e08d89c83ec83a0d1b09c3b0b3e1b99a1"
+        },
+        {
+          "lines": [
+            294,
+            302
+          ],
+          "bytes": 1714,
+          "sha256": "1953b8f004fc95a9c7466cb0262ee439eeadd65779d9cd14f180ea2a70db33f4"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "asset_id": "LEGACY-ASSET-B62E49D2E156232B8C63",
+      "revision": "0d8fcb67ef64e17e0e3529715011d6140652f017",
+      "bytes": 10302,
+      "sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+      "read_lines": [
+        [
+          30,
+          43
+        ],
+        [
+          68,
+          80
+        ]
+      ],
+      "disposition": "再利用せず意味を再導出。外部filter/trust/target/integrityの隣接根拠は確認したが、SECURITY-HARNESS共通pack descriptorのverification scope/target-artifact束縛の直接対応は確認できなかった。",
+      "read_span_pins": [
+        {
+          "lines": [
+            30,
+            43
+          ],
+          "bytes": 463,
+          "sha256": "df2572c2fd49dbb1b36df582fb3bc30599d496354d18c1e048455589388db0e9"
+        },
+        {
+          "lines": [
+            68,
+            80
+          ],
+          "bytes": 1106,
+          "sha256": "133a7131ddb4f080db50f8d5cc94b79d9d14dbbb1b729d855ffd2013fe96db1e"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+      "asset_id": "LEGACY-ASSET-170112AB2FA2FFDBFEE9",
+      "revision": "0d8fcb67ef64e17e0e3529715011d6140652f017",
+      "bytes": 5198,
+      "sha256": "b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4",
+      "read_lines": [
+        [
+          18,
+          29
+        ],
+        [
+          55,
+          59
+        ]
+      ],
+      "disposition": "再利用せず意味を再導出。外部filter/trust/target/integrityの隣接根拠は確認したが、SECURITY-HARNESS共通pack descriptorのverification scope/target-artifact束縛の直接対応は確認できなかった。",
+      "read_span_pins": [
+        {
+          "lines": [
+            18,
+            29
+          ],
+          "bytes": 2317,
+          "sha256": "1c151e23defe9429c30264d9868ea89c6f148eb6bd57915ead415d682b4f1938"
+        },
+        {
+          "lines": [
+            55,
+            59
+          ],
+          "bytes": 326,
+          "sha256": "fcd21414c7097bd545cc489cc25457d96c5a0ffb51c6b931c6d78dace75132ee"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md",
+      "asset_id": "LEGACY-ASSET-A6E2C7F0565E5F804F06",
+      "revision": "0d8fcb67ef64e17e0e3529715011d6140652f017",
+      "bytes": 16399,
+      "sha256": "99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d",
+      "read_lines": [
+        [
+          21,
+          39
+        ],
+        [
+          84,
+          104
+        ]
+      ],
+      "disposition": "再利用せず意味を再導出。外部filter/trust/target/integrityの隣接根拠は確認したが、SECURITY-HARNESS共通pack descriptorのverification scope/target-artifact束縛の直接対応は確認できなかった。",
+      "read_span_pins": [
+        {
+          "lines": [
+            21,
+            39
+          ],
+          "bytes": 1602,
+          "sha256": "ade5075e3df236216603e1e0d3fb83c8cdae007f7f319e49bd4af1c5d4efca5e"
+        },
+        {
+          "lines": [
+            84,
+            104
+          ],
+          "bytes": 1876,
+          "sha256": "f79e52ce0ac3797d30c46573a61f8115656ece2f8485461c728cdcf50fa4b38f"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "asset_id": "LEGACY-ASSET-44DD86E3DEC09E65EF51",
+      "revision": "0d8fcb67ef64e17e0e3529715011d6140652f017",
+      "bytes": 30874,
+      "sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+      "read_lines": [
+        [
+          126,
+          126
+        ],
+        [
+          141,
+          141
+        ]
+      ],
+      "disposition": "再利用せず意味を再導出。外部filter/trust/target/integrityの隣接根拠は確認したが、SECURITY-HARNESS共通pack descriptorのverification scope/target-artifact束縛の直接対応は確認できなかった。",
+      "read_span_pins": [
+        {
+          "lines": [
+            126,
+            126
+          ],
+          "bytes": 178,
+          "sha256": "7e96e83e8387620234573b7bebac01a679a1d0b49785b84eb86d16a1d43c13a0"
+        },
+        {
+          "lines": [
+            141,
+            141
+          ],
+          "bytes": 175,
+          "sha256": "8ead1659cf7af75b1cf999d42092a03b39213fdb64b363073c140f7475cc64e0"
+        }
+      ]
+    }
+  ],
+  "change_disposition": {
+    "reuse": "旧資産のsecurity filter/trust boundary/target identity/integrity概念を隣接根拠として参照。",
+    "rederive": "固定L2-028からdescriptor contract version/scopeを受け取り、宣言scopeで検証し、検証対象と更新artifactのidentity/version/digestを照合する意味を再導出。",
+    "replace": "旧資産にSECURITY-HARNESS pack descriptorの同等fixture/oracleがないため、現行SECURITY-FR/AC/CASEとNFR候補に限定補完。",
+    "retained": "既存L11 oracle文、既存SECURITY固有受入条件、HARNESS共通lifecycle owner、SECURITY L1-010/013戻し先、version_target区別を保持。",
+    "not_added": "contract version許容値・互換政策・実行性能閾値・新owner・新承認・実runtime動作を追加しない。"
+  },
+  "static_verification": {
+    "checks": {
+      "one_case_definition": true,
+      "case_has_individual_contract_missing": true,
+      "case_has_individual_scope_missing": true,
+      "case_has_scope_only_mismatch": true,
+      "case_has_target_artifact_identity_version_digest_independent": true,
+      "case_has_unseen_normal": true,
+      "nfr_crosswalk_added": true,
+      "nfr_verification_trace_added": true,
+      "BR_BV_unchanged": true,
+      "NFR_tables_rectangular": true
+    },
+    "all_pass": true,
+    "meaning": "文書上の一対一変異とtraceの静的確認のみ。runtime/CI/実装試験は未実行。"
+  },
+  "parent020_read_only_watchpoint": {
+    "parent": "HELIXSECURITY-L2-020",
+    "l2_lines": [
+      260,
+      268
+    ],
+    "l11_line": 44,
+    "current_fr_lines": [
+      282,
+      294
+    ],
+    "current_fv_lines": [
+      204,
+      211
+    ],
+    "current_nfr_grade_row": 25,
+    "current_nfr_verification_row": 12,
+    "assessment": "8 Guard名は正常fixtureに列挙され、Secret/Egress/Permissionの1.x deferred境界は独立例がある。未定義・不適用・観測欠落はgeneric unknown/hold。固定L2は各Guardの個別applicability判定schemaを定めないため、個別schemaを創作する修正は行わずwatchpointとして残す。",
+    "not_modified": true
+  },
+  "authority_and_execution": {
+    "approval_created": false,
+    "l3_approval_effect": false,
+    "implementation_or_runtime_executed": false,
+    "legacy_runtime_or_ci_executed": false
+  },
+  "changed_semantic_spans": [
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "anchor": "### SECURITY-FR-028-01",
+      "before_bytes": 2746,
+      "before_sha256": "5d215fd1ee54201059ba317d3cfd0474d611fb53ffc137ec48fab1641d8d36e6",
+      "after_bytes": 3363,
+      "after_sha256": "f14107f76d39b1adcb4ca4be7b213b84ad678ee213d532c0673bf51cdfd0e759"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "anchor": "### SECURITY-CASE-028-01",
+      "before_bytes": 2120,
+      "before_sha256": "c14e262f25bcaf3d21a5ed0234f037b50f30578b37e638b8c0877fd7c60cd634",
+      "after_bytes": 2812,
+      "after_sha256": "c87bc3d1a5e30256bda38147e45a6e70faf3ef2af285e13a165230e93c1d47cb"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "anchor": "| `HELIXSECURITY-L2-028` |",
+      "before_bytes": 33,
+      "before_sha256": "9dc66237c40d49a545ec2ded0e5e00d2ae751b015aaffeb12119ae0f512a6869",
+      "after_bytes": 44,
+      "after_sha256": "b287f39ccf667be8ac4250ce54d78b9f8ec2498e91a574f35199b94aaa74f60b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "anchor": "| `SEC-NFR-028-01` /",
+      "before_bytes": 0,
+      "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after_bytes": 738,
+      "after_sha256": "fe7b15a79b7a5fb5821137a8110563bfb71f9a9a657d81f068364b874147ed2f"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "anchor": "| `SEC-NFR-028-01` /",
+      "before_bytes": 0,
+      "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after_bytes": 591,
+      "after_sha256": "702bd7f4ecfccf7bba7ee49777893d600eb9f8b076d785f50ad25c6107430ab5"
+    }
+  ]
+}

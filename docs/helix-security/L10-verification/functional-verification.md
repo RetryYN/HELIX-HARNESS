@@ -213,11 +213,11 @@ L2-002の命令様入力からsecurity policy変更へ直結させない条件�
 ### SECURITY-CASE-028-01 — SECURITY pack更新
 
 - **対象AC**: `SECURITY-AC-028-01`
-- **固定L11受入oracle**：HARNESS-L2-010/011の共通pack descriptorを入力し、SECURITY更新candidateのidentity/version/artifact digestがdescriptorと一致し、dependency versionが宣言compatibility range内で、provenanceとL2-010/013のSECURITY条件を満たす場合だけSECURITY固有の受入判定を返す。`version_target`は目標版で実版ではない。identity/version/digest欠落、不一致、range外、unknownを通せば不合格。共通交換/rollback/未完義務lifecycleの所有・受入をSECURITY-L2-028の証拠に含めたら不合格。
-- **fixture/oracle**: descriptorとcandidateが一致するpositiveを置き、L2-010 condition false、L2-013 condition falseを別々に変異してreject/unknownを確認する。identity/version/digestは各々欠落・不一致を独立化し、`version_target`と実版の不一致も追加する。dependency range外、unknownを対比し、共通pack lifecycleをSECURITYへ帰属させない。
-- **未見の正常例**：declared compatibility range内の未見artifact revisionでdescriptor、identity/version/digest、dependency、provenanceが一致する場合に限り、SECURITY固有の判定を返す。共通lifecycle完了は主張しない。
-- **negative/boundary oracle**：descriptor/SECURITY artifact identity・version・digest不一致、dependency range外、provenance missing/unknownを受入れたら不合格。version_targetを実artifact versionと解釈しない。共通exchange/rollback/unfinished lifecycleをSECURITY所有として検証しない。
-- **owner oracle・失敗時の戻し先**：SECURITYは固有のaccept/reject/unknown判定、HARNESSは共通descriptor・交換・rollback・未完義務lifecycleを所有する。OS progression/artifact ownerの責務を本親で追加しない。SECURITY固有の受入軸の変更はL1-010、artifact identity/integrityはL1-013、共通lifecycle契約の不足はHARNESS L2-010/011へ戻す。本caseはHARNESS lifecycleを肩代わりしない。
+- **固定L11受入oracle**：L11 line 52の現行文「共通pack descriptorを入力し、SECURITY更新candidateのidentity/version/artifact digestがdescriptorと一致し、dependency versionが宣言compatibility range内で、provenanceとL2-010/013のSECURITY条件を満たす場合だけ受入判定を返す」を維持する。別途、固定L2-028:345–349が指定するdescriptorのcontract version/verification scopeと、検証対象・更新artifactのintegrity対応を確認する。`version_target`は目標版で実版ではない。固定L2/L11のいずれも共通交換/rollback/未完義務lifecycleをSECURITYへ帰属させない。
+- **fixture/oracle**：正常fixtureはdescriptor field、candidate、provenanceが一致し、declared verification scopeで同一の更新artifactを検証する。L2-010 condition false、L2-013 condition false、identity/version/digestの欠落・不一致、`version_target`と実版の不一致、dependency range外、unknownはそれぞれ単独に変異してreject/unknownを確認する。さらにdescriptor contract version欠落、verification scope欠落、実行verification scopeだけの不一致、検証targetと更新artifactのidentity/version/digestの各不一致を一要素ずつ独立に変異し、それぞれ受入不可とする。共通pack lifecycleをSECURITYへ帰属させない。
+- **未見の正常例**：declared compatibility range内の未見artifact revisionを、descriptor field、declared verification scope、検証targetと更新artifactのidentity/version/digest、dependency、provenanceが一致する条件で確認し、SECURITY固有の判定だけを返す。共通lifecycle完了は主張しない。
+- **negative/boundary oracle**：descriptor/SECURITY artifact identity・version・digest不一致、contract version欠落、scope欠落/不一致、verification targetと更新artifactのidentity/version/digest不一致、dependency range外、provenance missing/unknownを受入れたら不合格。`version_target`を実artifact versionと解釈しない。共通exchange/rollback/unfinished lifecycleをSECURITY所有として検証しない。
+- **owner oracle・失敗時の戻し先**：SECURITYは固有のaccept/reject/unknown判定、HARNESSは共通descriptor・交換・rollback・未完義務lifecycleを所有する。descriptor field/scopeの不足はHARNESS L2-010/011 ownerへ、artifact identity/integrityまたは検証target/artifactの不一致はSECURITY L1-013および該当artifact ownerへ戻す。SECURITY固有の受入軸の変更はL1-010へ戻す。OS progression/artifact ownerの責務を本親で追加しない。本caseはHARNESS lifecycleを肩代わりしない。
 
 ### SECURITY-CASE-033-01 — 外部AI Worker contextと出力
 
