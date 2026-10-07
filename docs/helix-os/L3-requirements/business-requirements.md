@@ -34,7 +34,7 @@
 
 ### BR-OS-019 — 継続性と証拠の正確な再構築
 
-固定親 `HELIXOS-L2-019` version target `1.0` の成果は、source-bound eventからepisodeを再構築し、欠落/重複/stale/拒否/未実行と成功を区別し、restart後も累積制約とdata-use境界を保つこと。provider memory/summary自体をcanonical authorityにしない。Acceptanceは `AC-OS-019-01`, `AC-OS-019-02`, `AC-OS-019-03` と `CASE-OS-019-01`, `CASE-OS-019-02a`, `CASE-OS-019-02b`, `CASE-OS-019-02c`, `CASE-OS-019-02d`, `CASE-OS-019-02e`, `CASE-OS-019-02f`, `CASE-OS-019-03` を参照する。
+固定親 `HELIXOS-L2-019` version target `1.0` の成果は、source-bound eventからepisodeを再構築し、欠落/重複/stale/拒否/未実行と成功を区別し、restart後も累積制約とdata-use境界を保つこと。hold/確認待ちは期限未宣言・期限切れ・期限判定unknownを区別して、L1-002/008に沿う人間向け確認対象一覧としてL2-019 projectionへ投影し、source、owner、状態、未完義務を追跡する。この一覧はAI解決可能性を分類せずPO宛先も定めない。一覧から期限値、承認、要求解決、完了、停止・再割当を生成しない。provider memory/summary自体をcanonical authorityにしない。Acceptanceは `AC-OS-019-01`, `AC-OS-019-02`, `AC-OS-019-03`, `AC-OS-019-04` と `CASE-OS-019-01`, `CASE-OS-019-02a`, `CASE-OS-019-02b`, `CASE-OS-019-02c`, `CASE-OS-019-02d`, `CASE-OS-019-02e`, `CASE-OS-019-02f`, `CASE-OS-019-02g`, `CASE-OS-019-02h`, `CASE-OS-019-02i`, `CASE-OS-019-02j1a`, `CASE-OS-019-02j1b`, `CASE-OS-019-02j1c`, `CASE-OS-019-02j2`, `CASE-OS-019-02j3`, `CASE-OS-019-02j4`, `CASE-OS-019-02k`, `CASE-OS-019-02l`, `CASE-OS-019-03` を参照する。
 
 ### BR-OS-020 — 要求された検証義務を運転する
 
