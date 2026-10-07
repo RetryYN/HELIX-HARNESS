@@ -1,0 +1,71 @@
+{
+  "authority_effect": "none",
+  "scope": "HARNESS Stage5 review03 M1/M2/m9-m12; fixed five-parent scope unchanged",
+  "pre_repair_head": "954383eb5ee1ed87cc217cf3977528c1773d4c64",
+  "formal_review": {
+    "comment_id": 6041081106,
+    "raw_body": "## review03（independent review、HEAD 954383eb5ee1ed87cc217cf3977528c1773d4c64、merge-base 6cfcb122ab930c8b86d917c985eeaeeca213ba33）\n\nreviewer: Claude（lane `review_merge`、**Opus 5.5**）。\n- 条件1は、Opus 5.5のブラインド照合と、reviewerによる原文の確認で判定した。\n- 条件2は、Fable advisor（claude-fable-5-1）が6本文と固定親（f6dad2a33、318ec4a04）を読み直して出した見解である。\n\n### 静的確認\n- scfctl validate 147/0、stale 0、residuals 0\n- govcheck ok\n- `git diff --check` clean\n- `git merge-tree`：最新mainと衝突なし\n\n### review02（#6040449879）への対応\n- **M1は解消した。** S5-059（FV:860）の正常oracleで、根拠・適用限界のfieldとsource bindingの値が一致するかを照合するようになった。単独欠落のS5-060／061も残っている。\n- **M2は1か所を除いて解消した。** 次の箇所が「L3要件承認」にそろい、L2:807–808の合意と承認の区別も明記された。残る1か所は下のM2である。\n  - AC-037-06\n  - S5-059、S5-063\n  - nfr-grade、nfr-verification、business-verification\n- **M3は一つに決まった。** S5-012/062とAC-025-07/10は、「COREのBRAIN connector契約」（L2-026:542、正本はHELIXBRAIN-L2-030）を指すようになった。ただし、その副作用が下のM1である。\n- **旧Minorの対応：**\n  - m1：S5-065（L2合意の非生成）を追加した。\n  - m2：AC-035-10は実行許可、AC-035-11は実装許可に分かれた。\n  - m4とm8も解消した。\n- 次の単独拒否CASEも確認できた。\n  - 025：採択（S5-037）、実装済み（S5-038）、利用者受入（S5-039）\n  - 033：要求承認、release、合意、L3承認、test pass、Integrated、Verified、Accepted（固定L11:442）\n\n### Major\n**M1（類型5・1、025）：CORE契約そのものの版がunknownの場合を照合するCASEがなくなった**\n- 欠陥：S5-012の変異対象が、「COREのBRAIN connector契約」の版に付け替えられた（FR:492、502、505、FV:675）。同じFR:492は、「CORE自身の製品契約を指さない」とも明記している。\n- 結果：\n  - base（6cfcb122a）のS5-012は「CORE connector contract version unknown→保留」を照合していた。HEADでは、その照合がなくなった。\n  - 固定L2:552が常時必須として挙げる3つの依存（CORE／Design Template／BRAIN connector）のうち、**CORE契約の版・互換**がunknownまたは範囲外になる単独CASEが、025に一つもない。\n  - Templateは S5-013 が、BRAIN connectorは S5-012・014 が受け持っている。\n  - 026側では、CASE-026-04 が「CORE contractのstale→CORE ownerへ戻す」を持っている。\n- 守るべき固定親：f6dad L2:552（CORE版・互換を常時必須とする）、L11:360（Design Template／CORE／BRAIN connector契約を常時照合し、unknownなら保留する）。\n- **原因はreview側にある。** review02のM3で、直し方を「L2:542を指すならそう書く／CORE契約を指すならCORE ownerへ」と、どちらか一方を選ぶ形で書いた。CORE契約とCOREのBRAIN connector契約は別の依存なので、両方を別のCASEで持つよう求めるべきだった。\n- 直し方：S5-012（COREのBRAIN connector契約）は今のまま残す。そのうえで、CORE契約そのものの版がunknownの場合の単独CASEを新しく足す。戻し先は、026の既存の「CORE owner」（CASE-026-04）にそろえる。FR:492の「CORE自身の契約ownerを新設しない」も、既存のCORE ownerを指す書き方に整える。\n- Fableも、同じ点をMinor 1として挙げている。\n\n**M2（類型3、037）：business-requirements.md:90に「要求承認」が残っている**\n- business-requirements.md:90の037行は、「設計承認・要求承認・実装許可の非生成」のままである。\n- 固定L2-037:779は「要件承認」であり、同じrevisionの中で、AC-037-06・S5-063と層の名前が食い違っている。\n- 条件2のFableは、この点を理由に「止める」と判断した。reviewerも原文で確認した。\n\n### Minor（M1・M2と一緒に直してよい）\n- m9：025のL3要件承認の単独変異はS5-006だけである。ところが、基準の入力にL3承認のsource状態が書かれていない。S5-036では、利用中のrevisionのL3承認が成立済みとされている。そのため、変異の前と後の区別があいまいになっている。\n- m10：S5-013とAC-08の戻し先「L2-009適用契約source owner」は、根拠を他の親（L2-037:787、L11:709）に置いている。L11:709は、318ecではL2-040節の文である。025のL2:554の区分には明示がない。\n- m11：次の3か所は、新しいCASEや状態を反映していない（矛盾ではなく、不完全）。\n  - business-verification:55の境界一覧に、035-S5-044/045と、033-S5-039〜042がない。\n  - business-requirements:82に、025-S5-065がない。\n  - business-requirements:87（025行）とnfr-grade:132は、L2合意とL3要件承認の非生成に触れていない。\n- m12：025の戻し先の書き方で、「BRAIN」と「BRAIN connector contract owner」が混在している（S5-002とS5-014）。\n\n### 委任条件の状態\n- **条件1（Opus `no_findings`）：不成立。** Major 1件。reviewerが確認したM2を加えて、計2件。\n- **条件2（Fable）：** 結論行は原文のまま「止める（docs/helix-harness/L3-requirements/business-requirements.md:90 の037行が「設計承認・要求承認・実装許可の非生成」のまま残り、M2の「L3要件承認」への修正が承認対象6文書で同期していない）」。\n- 修正後のrevisionで、条件1と2をやり直す。\n\n### 未確認範囲\nなし。021は、今回の差分がbusiness側の行だけで、FR／CASEの本文は前回の照合から変わっていない。\n",
+    "raw_utf8_bytes": 6009,
+    "raw_sha256": "37e4834ca6857069679804b746eb90cfc803b164646c8285991aac8306d7f2f5"
+  },
+  "dispositions": {
+    "M1": "S5-012 connector版を保持しCORE自身の版unknownをS5-066/AC025-11で独立照合、既存CORE ownerへ",
+    "M2": "BR037要求承認をL3要件承認へ同期",
+    "m9": "S5-006対象の別候補revision未承認sourceと利用中revision承認済みsourceを分離",
+    "m10": "025が常時参照する026依存538を根拠とし、037/040戻し先の転用を除去。source供給元への確認返却、個別identity unknown保持",
+    "m11": "BR/BV/NFR境界とCASE traceを同期",
+    "m12": "BRAIN connector identity欠落をconnector契約owner表現へ同期しPattern意味はBRAINのまま"
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "full_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "spans": [
+        {
+          "start": 532,
+          "end": 542,
+          "raw_sha256": "ad97ba24b82316f305196354e430e0031381635c7fd241ccb2ca43abbfecc23a"
+        },
+        {
+          "start": 545,
+          "end": 554,
+          "raw_sha256": "8b6e459f6b2d1c9a3f52aefd62d6d13d7c05a44793ad10aad7277f36b033edbf"
+        },
+        {
+          "start": 773,
+          "end": 789,
+          "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "full_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "spans": [
+        {
+          "start": 360,
+          "end": 360,
+          "raw_sha256": "be3096f2e40c653d552e145f1517a32b202d8c5e71f8f9b03f0b43699db12d56"
+        }
+      ]
+    }
+  ],
+  "six_document_sha256": {
+    "docs/helix-harness/L3-requirements/nfr-grade.md": "355fd8d89888a85a542f1470713db5955c5fce51c9c61eda5bfc44e34cc58c5b",
+    "docs/helix-harness/L3-requirements/business-requirements.md": "9fb531a55c61c4836ae614cadbd850f3967119cb1f0f2eb36dad1e39ebab75e2",
+    "docs/helix-harness/L3-requirements/functional-requirements.md": "3f3fa2dd185e3558fea120e07a7047a5b2e66ad3742ced23f0990aa7682b342f",
+    "docs/helix-harness/L10-verification/business-verification.md": "864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad",
+    "docs/helix-harness/L10-verification/nfr-verification.md": "d71dde1ae6707e2f614deb3633b291a762db47a5da1af60bc6644c91123e04f7",
+    "docs/helix-harness/L10-verification/functional-verification.md": "d52c9d511962279f6ab8ae44a8b18f32fa873e8e04fa826c4b54dc7db8858d39"
+  },
+  "prior_evidence": {
+    "path": "docs/governance/audits/requirements-stage/harness-stage5-review02-correction-evidence-2026-10-07-6040449879.json",
+    "sha256": "6ae784acc6f15091bbd9b62c65e8d295e6aefd4892e046175a0ecf509ef5d555",
+    "unchanged": true
+  },
+  "legacy_disposition": "既存review02監査の旧source限定比較を保持。新規source意味やruntimeを導入せず、今回は固定親の依存と出力非生成oracleの不足を再導出する。",
+  "fixture_execution": false,
+  "new_approval": false
+}

@@ -52,7 +52,7 @@ execution_status: designed_only_not_executed
 
 ### Root検収補正 — Stage5 CASE境界
 
-追加functional CASE（各親の既存001–00Nと続番S5行）は固定5親の工程・設計・根拠・適用性oracleを検証する。025-S5-040/041、033-S5-045–047、035-S5-046、025-S5-062/063/065、033-S5-043/044、037-S5-062–064のauthority boundaryは対のfunctional-verification.mdで検証し、business CASEへ重複計上しない。独立business requirement/KPI/business CASEは0件のままであり、件数や結果から事業価値、release、利用者受入、承認を生成しない。
+追加functional CASE（各親の既存001–00Nと続番S5行）は固定5親の工程・設計・根拠・適用性oracleを検証する。025-S5-040/041、033-S5-045–047、035-S5-044/045/046、033-S5-039〜042、025-S5-062/063/065/066、033-S5-043/044、037-S5-062–064のauthority boundaryは対のfunctional-verification.mdで検証し、business CASEへ重複計上しない。独立business requirement/KPI/business CASEは0件のままであり、件数や結果から事業価値、release、利用者受入、承認を生成しない。
 
 
 ## Stage 3 親034の業務総合検証
