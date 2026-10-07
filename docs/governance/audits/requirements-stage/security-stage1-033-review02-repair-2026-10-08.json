@@ -1,0 +1,68 @@
+{
+  "record_type": "immutable_stage_repair_evidence",
+  "record_date": "2026-10-08",
+  "authority_effect": "none",
+  "scope": {
+    "mechanism": "HELIX-SECURITY",
+    "stage": "Stage 1",
+    "fixed_parent": "HELIXSECURITY-L2-033 / MPR-RC-HELIXSECURITY-L2-033-002",
+    "findings": "#2663 review02 Major 1, Major 2, Minor 6-9 only"
+  },
+  "worktree": {
+    "path": "/home/tenni/.helix-worktrees/l3-security-stage2c-owner-repair",
+    "branch": "codex/l3-security-stage2c-owner-repair",
+    "base": "a1ce5ccb302fe560103e11c423f0ad435c325b42",
+    "reviewed_head_before_repair": "a1ce5ccb302fe560103e11c423f0ad435c325b42"
+  },
+  "review_comment": {
+    "issue": "#2663",
+    "comment_id": 6040990909,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2663#issuecomment-6040990909",
+    "body_utf8_bytes": 4734,
+    "body_sha256": "1347545078fb33b5e0fb1517e9f3f72430d91e1a41e3efe8ca220be765d7a1eb"
+  },
+  "fixed_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+  "fixed_sources": {
+    "l2_007": "docs/helix-security/L2-requirements/security-requirements.md:130-138; raw LF span sha256 1ee4d42a1e4178d598ce11b75268845578ba83bcb8ea471e2642ff8630c49504; Worker execution environment is the enforcer; unobserved/unsupported stops unknown; confirmed physical enforcement absence is an INFRASTRUCTURE connection candidate.",
+    "l2_033": "docs/helix-security/L2-requirements/security-requirements.md:455-465; raw LF span sha256 85097dbe6b785747b5b53f319ef4220943ecd5bd19c6fd7c11cd7836ea42bf54; fixed parent semantic digest b486a0c44e8f21a6f8738dedeac91dcb94da335b73409b6adeaecf8fa639bf1a.",
+    "l2_034": "docs/helix-security/L2-requirements/security-requirements.md:468-474; raw LF span sha256 39645b092ffb48f78fa3dd59084236bc4b19ee6e28d1b9169cb8c6d548bf39dc; Worker execution environment/INFRASTRUCTURE jointly perform physical application and observation.",
+    "l11_033": "docs/helix-security/L11-acceptance/security-acceptance.md:124-133; raw LF span sha256 6d83abe63e3e852d58d9a9a60ae39c6b29284b6b8ab781bdb86456e479e60be0; SECURITY compares existing authority/policy with constraint application state; Worker execution environment enforces.",
+    "l11_p0": "docs/helix-security/L11-acceptance/security-acceptance.md:145-151; raw LF span sha256 e4bed8944412cc5ca6effc0c6ddd2a314ea309aa23f36c88d6467e3c7010d0a6",
+    "worker_owner_po": "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md; full sha256 1c93bf0aadccfdf6b536a32d3923a17fbd00a1fd830850f9369b5b6d6b12efb2",
+    "os_l2": "docs/helix-os/L2-requirements/governance-requirements.md:538-549; raw LF span sha256 25356def32d0302d981b35daef65fd5a9f6f3ac261667dca373689c5eb7f0351",
+    "infra_l2": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:287-298; raw LF span sha256 87c375ccf69c1c802bdca7e8323d870289bc2d006c422aac85530e46fb1f6179",
+    "legacy_source": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md:428; LEGACY-ASSET-02319C2481B9E01698D5; whole-file sha256 788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406; asset disposition ledger line 956; prior source inventory remains the starting attribution record."
+  },
+  "historical_audit_pins": {
+    "security-stage1-worker-isolation-owner-repair-2026-10-07.md": "efe03fe6129cbb0c147188674ebef86282c5596cb3b7db392de771c8c311e53c",
+    "security-stage1-033-main-integration-2026-10-07.json": "4ed5df403ab56967f3441ce461e9c78d59c6c238b70f14737270f4ef50acb7aa",
+    "security-stage1-033-review01-repair-2026-10-08.md": "cccf7856e53a65f31d03e18364e0a64a90da0bd09d538bc8a1ab170469bd76de",
+    "security-stage1-033-review01-repair-2026-10-08.json": "3c703a62fc25e8073e24d3f069461e493c5642edd2b5b23a5468dcdb24c38034"
+  },
+  "six_document_sha256": {
+    "docs/helix-security/L10-verification/business-verification.md": "7da2a3b88c866c276065c793036708a633109b176b0381829c8d3c8293ff70a4",
+    "docs/helix-security/L10-verification/functional-verification.md": "140811b97098f4dd2960d148a03754ce808f7d9022e3537f90e0d63c6e12227a",
+    "docs/helix-security/L10-verification/nfr-verification.md": "444560c4ffe00c4a330d6b8a76ad2c86798be1bd4ab506886c96ce0cc4a40e43",
+    "docs/helix-security/L3-requirements/business-requirements.md": "30a0456a17c4c65e9427cc8931905cb7c1adf54c207514f948a7b179dcdb7019",
+    "docs/helix-security/L3-requirements/functional-requirements.md": "ea2ca1e79ad484a3dfe160daf048683e6aab07316fda31e8a7285dc301d64f96",
+    "docs/helix-security/L3-requirements/nfr-grade.md": "5b4a647220bea4192788ac937f9ee889574abb49639493f5e78edadc2950f66e"
+  },
+  "repair_summary": [
+    "責務表現を固定原文へ整合: SECURITYは既存authority/policyと制約適用状態を照合し、Worker実行環境はenforcer、Worker実行環境／INFRASTRUCTUREは既存条件の物理適用・観測を担う。",
+    "CASE-033-05〜07をowner中立の実行環境適用観測契約表記へ変更し、identity/version/effective stateのunknownは各一変数・他条件正常の独立見出しへ分離した。",
+    "FV indexとFR mappingをCASE-033-01〜15へ同期し、033の各CASEに独自見出しと対象ACを付けた。",
+    "重複する自由形式owner negative 1〜6を廃止し、CASE-08/10/11/15およびCASE-12〜14のID付き独立fixtureへ統合した。",
+    "物理適用欠落CASEはWorker実行環境／INFRASTRUCTUREの観測があり、SECURITYの既存制約との照合がnot-appliedを確認するoracleに限定。未観測CASE-07はunknownのままとした。",
+    "Stage1件数を19 FR、19 AC、33 functional CASEへ訂正。"
+  ],
+  "static_validation": {
+    "fr_to_ac_to_case": "passed: parent mapping names CASE-033-01..15",
+    "case_definitions": "passed: unique standalone headings CASE-033-01..15; each names SECURITY-AC-033-01",
+    "scope_and_owner_checks": "passed: neutral CASE-05..07 names; no duplicated unlabelled owner-negative list; confirmed-unapplied oracle distinguishes CASE-07 unobserved unknown",
+    "stage1_count": "passed: 19 FR, 19 AC, 33 functional CASE IDs",
+    "historical_audits": "passed: pinned files unchanged from review01 evidence values",
+    "git_diff_check": "passed",
+    "execution": "No fixture/runtime/legacy CLI/hook/test/CI executed."
+  },
+  "authority_and_review_state": "No requirement decision, approval, version, or meaning change generated. Independent review conditions 1 and 2 remain to be requested/obtained for this exact six-document revision."
+}
