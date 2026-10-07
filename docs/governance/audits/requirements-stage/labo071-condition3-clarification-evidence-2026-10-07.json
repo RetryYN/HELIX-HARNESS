@@ -1,0 +1,412 @@
+{
+  "record_type": "condition3 timing clarification evidence",
+  "status": "independent check pending; no authority effect",
+  "addendum": {
+    "path": "docs/governance/decisions/helix-labo-stage5-parent071-l3-l10-condition3-clarification-2026-10-07.md",
+    "bytes": 3873,
+    "sha256": "2f3e23c97f90f5ae09eb70e92e2be58b720c005912007505bdd1ed98f30ba3da"
+  },
+  "source_candidate": {
+    "record_type": "LABO071 condition-3 timing clarification addendum candidate",
+    "status": "proposal-only source packet; no canonical edit, no PR change, not issued, not a condition-3 completion record",
+    "created_at": "2026-10-07",
+    "target": {
+      "pr": 2645,
+      "worktree": "/home/tenni/.helix-worktrees/l3-labo-stage5-parent071",
+      "branch": "l3-labo-stage5-parent071",
+      "checked_HEAD": "d9d86657c5703418e242ba8e9ae7929324d35958",
+      "base": "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c",
+      "original_decision_record_path": "docs/governance/decisions/helix-labo-stage5-parent071-l3-l10-po-decision-2026-10-07.md",
+      "original_decision_record_bytes": 40512,
+      "original_decision_record_sha256": "78c2ac3160542126d9055ccd61d92a3014f0107a1df1c21c8bafadbbb50c5d9e"
+    },
+    "clarification_scope": "Resolve the time wording between original decision table line 27 and paragraph line 79 by stating that the condition-3 read-after occurs on the PR HEAD after the decision record is added and before Root marks Ready; after Ready, existing current-base admission recheck and explicit merge/read-after occur.",
+    "addendum_markdown_candidate": "## 条件3の時点と既存順序の明確化（候補）\n\nこの追補は、判断記録本文を改訂せず、表の条件3（27行）と「適用範囲と残る確認」（79行）が示す確認時点を既存の承認委任手順に沿って明確にする。対象は親071のStage 5と、原判断記録が承認対象として固定した同じ本文revision `7320dbaa25a052fa1571d5eae28d620b126d9473`、六本文のSHA-256である。親L2、対象revision、条件1・2・3の要件、委任された承認の範囲は変えない。\n\n条件3で独立review側が読むのは、委任判断記録をPRへ追加した後の、その追加を含むexact PR HEADである。reviewerはそのHEADの六本文を記録済み六SHA-256／bytesと照合し、引用とsource参照も確認する。このrecord-added HEADのread-afterが条件3の確認点であり、元の表にある「main admission直前/後」は、この条件3をmain merge後へ移動する意味ではない。既存運用のlatest merge-admission再照合と、merge後read-afterを指す。\n\n独立review側のrecord-added HEAD確認の後、RootがPRをReady化する。Ready後、review側が最新base、exact HEAD、判断記録の引用、merge admissionとmerge可能性を再照合し、成立していればClaudeが`gh pr merge --merge`で明示mergeする。merge後はread-afterする。判断記録のauthority effectは既存front matterどおり、その判断記録がmainへadmitされた時点で生じる。六本文のrevisionが変わった場合は既存policyどおり条件1・2を新revisionで再実施する。\n\nこの候補文は、条件3の実施済み・成立、Ready、merge admission、merge、authority effectのいずれも記録または生成しない。条件1・2の成立を再判定せず、レビュー結果やPO確認を追加条件にもせず、対象六本文も変更しない。",
+    "sources": {
+      "original_decision": {
+        "revision": "d9d86657c5703418e242ba8e9ae7929324d35958",
+        "path": "docs/governance/decisions/helix-labo-stage5-parent071-l3-l10-po-decision-2026-10-07.md",
+        "bytes": 40512,
+        "sha256": "78c2ac3160542126d9055ccd61d92a3014f0107a1df1c21c8bafadbbb50c5d9e",
+        "line_27_condition3": {
+          "revision": "d9d86657c5703418e242ba8e9ae7929324d35958",
+          "path": "docs/governance/decisions/helix-labo-stage5-parent071-l3-l10-po-decision-2026-10-07.md",
+          "first_line": 23,
+          "last_line": 27,
+          "whole_file_bytes": 40512,
+          "whole_file_sha256": "78c2ac3160542126d9055ccd61d92a3014f0107a1df1c21c8bafadbbb50c5d9e",
+          "span_bytes": 653,
+          "span_sha256": "b0186459682bf7bfcb4f8efa1b2a1d1914b47a0b042639a37ba6a04a4dbbf5f9",
+          "raw_span": "| 委任条件 | 状態 | 根拠 |\n|---|---|---|\n| 1. exact base/content HEADでOpus独立reviewにBlocker/Major/Minor/未確認範囲がない | review07のformalとresponseで確認 | formal: Major 0、戻し先0、未解消blockerなし; 別のmailbox response: `no_findings`、`unreviewed=[]`、`authority_effect=none` |\n| 2. Fableが同じ六本文と固定親を読んで承認を止める問題なしと判断 | review06から保持 | Fable「承認してよい」; review07でFable再実施なし; 六本文blobが同一 |\n| 3. 判断記録追加後も六本文のbytesが不変 | 未確認 | main admission直前/後の別read-afterが必要 |\n"
+        },
+        "line_79_condition3_order": {
+          "revision": "d9d86657c5703418e242ba8e9ae7929324d35958",
+          "path": "docs/governance/decisions/helix-labo-stage5-parent071-l3-l10-po-decision-2026-10-07.md",
+          "first_line": 77,
+          "last_line": 79,
+          "whole_file_bytes": 40512,
+          "whole_file_sha256": "78c2ac3160542126d9055ccd61d92a3014f0107a1df1c21c8bafadbbb50c5d9e",
+          "span_bytes": 654,
+          "span_sha256": "8fb1f9747806d2fc6a6768e06f595328115d3f4d4322733565a73d85637d90d4",
+          "raw_span": "本判断は親071のStage 5、上記six body revisionだけに適用する。L10 fixtureの実行、意味完全性の独立証明、他親・他Stage・別revisionの承認、上流要求の変更、releaseまたはIssue closeを意味しない。fixtureは未実行である。\n\n**条件3は未確認である。** 判断記録をPRへ追加した後、独立review側がそのexact HEADを読み、六本文のbytes/SHAが上表と不変であることと引用・source参照を確認する。そのread-afterが終わった後にRootがReady化する。本文revisionが変わった場合は既存policyに従って条件1・2を再実施する。\n"
+        },
+        "no_edit": true
+      },
+      "operating_model": {
+        "reviewed_at_revision": "d9d86657c5703418e242ba8e9ae7929324d35958",
+        "line_123_131_same_revision_conditions_and_retry": {
+          "revision": "d9d86657c5703418e242ba8e9ae7929324d35958",
+          "path": "docs/governance/github-upstream-operating-model.md",
+          "first_line": 123,
+          "last_line": 131,
+          "whole_file_bytes": 53710,
+          "whole_file_sha256": "eed2b774bb78545ac53c7d55f3ae3ab4e9c4f421b4eaf3ac3bcdbcdd869dd27b",
+          "span_bytes": 1192,
+          "span_sha256": "859e807658c208c1b3f02ca964873db78a10a22b84f4ed577f178a9135eab6c9",
+          "raw_span": "次の三つが、同じ対象の本文revisionについてそろった場合だけ、見解が一致したとする。\n\n1. Opusの独立reviewが、exact base／content HEADについてBlocker、Major、Minor、未確認範囲をすべて0としている（`no_findings`）。\n2. Fableが、同じ本文revisionの6文書と固定親を自分で読み、承認を止める問題がないと結論している。Fableには、review経過を入力として渡してよいが、結論は本文と固定親を読んだうえでFable自身が出す。\n3. 1と2の後で、6文書のbytesが変わっていない。\n\nFableが承認を止める問題を挙げた場合は、一致しない。Opusがその問題を固定親に照らして確かめ、妥当なら作成側へfindingとして返す。\n修正で本文revisionが変わった場合は、新しいrevisionについて1と2をやり直す。OpusとFableの判断が分かれたまま解けない場合は、両方の見解を添えてPOへ上げる。\nFableが挙げたMinorだけの場合も、返すかどうかはOpusが固定親に照らして決める。返した場合は本文revisionが変わるので、1と2をやり直す。\n"
+        },
+        "line_133_140_record_and_merge_order": {
+          "revision": "d9d86657c5703418e242ba8e9ae7929324d35958",
+          "path": "docs/governance/github-upstream-operating-model.md",
+          "first_line": 133,
+          "last_line": 140,
+          "whole_file_bytes": 53710,
+          "whole_file_sha256": "eed2b774bb78545ac53c7d55f3ae3ab4e9c4f421b4eaf3ac3bcdbcdd869dd27b",
+          "span_bytes": 843,
+          "span_sha256": "681e8160375e2181222d03a101d0106f3d6172fa9f0db397eabcac18275e1eb1",
+          "raw_span": "### 記録とmerge\n\n- Opusは、Fableの結論（承認可否、残る問題、照合した対象revision）を、Fableの本文から要約せずにPR commentへ記録する。Opusの`no_findings`も、従来どおりPR commentとmailboxで返す。\n- 作成側は、従来のPO判断記録と同じ形式で判断記録を加える。`decider_role`は`PO（委任：Opus・Fable一致）`とし、次を固定する。\n  - 本委任の判断記録\n  - Opusの`no_findings` commentとFableの結論commentのIDと、取得したbodyのSHA-256\n  - 承認対象の本文revisionと、6文書のSHA-256\n- review側は、判断記録の引用と、6文書が承認対象から変わっていないことを照合する。照合の後は、従来どおり作成側がReady化し、review側がmerge admissionを再照合して明示mergeする。\n"
+        }
+      },
+      "delegation_PO_decision": {
+        "reviewed_at_revision": "d9d86657c5703418e242ba8e9ae7929324d35958",
+        "line_78_89": {
+          "revision": "d9d86657c5703418e242ba8e9ae7929324d35958",
+          "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+          "first_line": 78,
+          "last_line": 89,
+          "whole_file_bytes": 6210,
+          "whole_file_sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220",
+          "span_bytes": 1704,
+          "span_sha256": "eb0b1b1b09d87d86745fd51684bd65d7b96b97256b0ebc435c7b9885bd8118c3",
+          "raw_span": "## 決まったこと\n\n1. L3要件とL10総合検証設計の対象revisionの承認は、Opus（Claudeの`review_merge` lane）の独立reviewと、Fable（Claudeのadvisor）の独立確認の見解が、同じ対象revisionについて一致した場合に成立する。\n2. 委任はL3／L10に限る。Concept、企画（L1）、要求とprototype／非UIの合意（L2）は、今までどおり人が判断する。要求の意味・範囲・担当・版を変える必要が出た場合は、今までどおりL2へ戻してPOへ上げる。\n3. 一致したPRは、PO承認を待たずに判断記録の追加、Ready化、merge admission、mergeまで進める。\n4. POは、機構×Stageの区切りで、委任により承認したものの一覧をまとめて事後確認する。問題があれば差し戻しの判断記録を作る。\n5. 作業はヒューマンアウトオブザループを前提とし、変更に強くする。計画や承認済みの文書は、やってみて分かったことで直してよい。\n6. 委任の範囲はL3までのまま広げない。人が持つ判断（Concept、L1、L2）は残し、人に承認を求める回数を減らす。\n7. 人に聞く前に、PoC、画面prototype、調査、およびHELIX-BRAIN・HELIX-INTELLIGENCEの機能で論点を絞り、証拠を添える。これらの機構は、人に聞く回数を減らし、やってみて分かることを取り込むためにある。\n\n手続きの詳細（「見解の一致」の条件、記録の形、一致しない場合の扱い、事後確認の一覧）は、\n[GitHub上流運用モデル](../github-upstream-operating-model.md)「L3／L10承認の委任」に置く。\n"
+        }
+      },
+      "legacy_basis": {
+        "asset_id": "LEGACY-ASSET-6EBDB617A8104A7756D0",
+        "source": {
+          "revision": "d9d86657c5703418e242ba8e9ae7929324d35958",
+          "path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+          "first_line": 82,
+          "last_line": 85,
+          "whole_file_bytes": 23313,
+          "whole_file_sha256": "7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb",
+          "span_bytes": 287,
+          "span_sha256": "fc924232f93af2593a0d8ec97c36224a3c2f641ca5c03468ecae747107bd4785",
+          "raw_span": "### 自律境界（charter §3）\n\n- **人**: L0 企画 / L1 要求 / L2 デザインモック（モックが最後の直接関与）／ L3 要件は**承認のみ**。\n- **AI**: L3 起草 ＋ L4 以降〜GitHub PR/CI/merge/tag を**完全自動**（不可逆操作のみ escalate）。\n"
+        },
+        "old_github_source": {
+          "revision": "d9d86657c5703418e242ba8e9ae7929324d35958",
+          "path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+          "first_line": 195,
+          "last_line": 199,
+          "whole_file_bytes": 23313,
+          "whole_file_sha256": "7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb",
+          "span_bytes": 516,
+          "span_sha256": "07aea94bf14358c68c685328030f388f884f2e9c1cdbd3ba829348c8df3000a2",
+          "raw_span": "- main は branch protection 済み: required check = `harness-check` (strict)、enforce_admins、\n  **人間 approve 不要 (PO 明示承認)**。品質ゲートは CI と harness 内クロスランタイム\n  review evidence が担う。force-push / branch 削除は GitHub 側でも禁止。\n- main への取り込みはPR経由。承認前でも非正本review proposalとしてDraft PRを作成できる。\n  必要な承認、current HEADの独立AI-B review、CI、DB追従が揃った後にReady化する。\n"
+        },
+        "reuse_disposition": "meaning re-derivation: old source retains human L3 approval/AI execution autonomy; the current PO delegated L3/L10 to same-revision Opus/Fable concurrence and stage-level PO post-check, as recorded in current source; this addendum only clarifies sequence timing."
+      }
+    },
+    "formal_review_pins": {
+      "review06": {
+        "comment_id": 6027010560,
+        "body_bytes": 4660,
+        "body_sha256": "a04217c030e4b3b64020c0b420dcba6e1f7948c15aa005ea1892a140b0137e26",
+        "comment_head": "72ecb125505a1bb06b06d7f4c5927b6ed8fc66e7",
+        "comment_base": "0acbed34bfda48e32092feb63db61d2eff6d5ec4",
+        "formal_file": "/tmp/root-pr2645-comments-review06.json",
+        "formal_file_bytes": 51363,
+        "formal_file_sha256": "e2091224b8a8107202920fd559080e91c7f053d8ba044e2fc25faf2a837baac9",
+        "comment_raw": {
+          "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6027010560",
+          "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2645#issuecomment-6027010560",
+          "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2645",
+          "id": 6027010560,
+          "node_id": "IC_kwDOTG8BRc8AAAABZzziAA",
+          "user": {
+            "login": "RetryYN",
+            "id": 131282486,
+            "node_id": "U_kgDOB9M2Ng",
+            "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/RetryYN",
+            "html_url": "https://github.com/RetryYN",
+            "followers_url": "https://api.github.com/users/RetryYN/followers",
+            "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+            "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+            "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+            "repos_url": "https://api.github.com/users/RetryYN/repos",
+            "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "created_at": "2026-10-06T23:00:57Z",
+          "updated_at": "2026-10-06T23:00:57Z",
+          "body": "## review06（independent review、PR #2645 親HELIXLABO-L2-071、HEAD 72ecb125505a1bb06b06d7f4c5927b6ed8fc66e7、base main 0acbed34b）：Major 0\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2645-LABO-STAGE5-PARENT071-06` に応える。\n\n### 本文を評価する前の確認（採択記録・対象版・追補条件）\n- **採択記録**：live26記録（po-decision-2026-09-30-live26.md）の50行が、`MPR-RC-HELIXLABO-L2-071-001`を採択している。\n  - MPR register 1031行に、`MPR-RC-HELIXLABO-L2-071-002`（supersedes -001、2026-10-03）がある。reviewerはこれを読んで確かめた。\n  - -002の`correction_reason`は、「L3-D0 current locator correction: refresh current holding/receipt locators only; candidate meaning, source/candidate digests, counts, state, authority, owner and human-decision status are unchanged」である。\n  - -002の`candidate_semantic_digest`は、-001と同じ`3036e4c3…`である。`authority_effect`は`none`である。\n  - `docs/governance/decisions/`で-002を参照する判断記録は、0件である。\n  - 以上から、固定親を-001（ea6f756）とする扱いは正しい。採択版の取り違えはない。\n- **対象版**：固定親は`ea6f756f96a7370de78e412d737c7a7ed472114a`である。L2節SHA-256は`3036e4c3…`、L11節は`029c6bce…`である。いずれも、review01でreviewerが計算して、50行と一致することを確かめている。敵対照合も再計算した。\n- **追補条件**：live26記録72行「資格を操作権限や割当へ自動変換しない」は、CASE-03e、03f、14、20と、r03の推論拒否・失効分離のCASEで受けている。\n- **base整合**：merge-baseは依頼のbase（0acbed34b）と一致し、削除行は0である。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - `merge-tree`は衝突なし\n\n### 照合の経過\n1. **review05の解消の確認**（reviewerが差分で確かめた）：M1は解消した。r05-evidence-qualification-scope-conflictが置かれ、4項目×不足・矛盾の8マスがそろった。\n2. **Opusシンプルブラインド**：Major 0。次の4つの表で全マスを照合した。×は、称号の生成（R4）と範囲の注記（R9、R10）だけだった。\n   - 項目×状態\n   - 相互推論12方向\n   - 出力要素\n   - 禁止列挙\n3. **Fableの判断**：「承認してよい」。固定親とPO記録、6本文を自分で読んで照合した。\n4. **Opusによる敵対照合**：「Fableの判断を支持する」。採択revision（register -002）、R3、R6、4表の漏れを照合したが、崩せなかった。\n   - Fableの「全推論方向（r03）」という記述は言い過ぎで、→titleの3方向は既知の残余R4である。ただし、Majorには当たらないとした。\n5. **R3とR6の評価**：review05でブラインドがMajorとし、reviewerが残余と判定した点である。今回、ブラインド、Fable、敵対照合の3者が、残余とする判定を支持した。\n6. **reviewerの結論**：委任の条件1（Opusのexact HEADでのMajor 0）と条件2（Fableの同一本文revisionでの判断）が、このHEADでそろった。\n\n### 6本文（このHEADのSHA-256）\n- business-verification `9dde43b0…`\n- functional-verification `ce147450…`\n- nfr-verification `2c369556…`\n- business-requirements `2dd7a80e…`\n- functional-requirements `b257cd28…`\n- nfr-grade `a74e197f…`\n\n### 後で直す残余（承認を止めない）\n- **R1、R2**：解消済みである。\n- **R3（staleの定義）**：FR-03と業務L3で、stale＝source revisionの食い違い、と定義を明記することを勧める。\n- **R4（称号の生成）**：qualification/permission/assignment→titleの3方向に、単独CASEがない。\n- **R5〜R7、R9〜R13**：変わらない。\n- **R8**：繰り上げ済みである。\n- **R14（stale単独CASE）**：class、revision、scopeのstaleに、単独CASEがない（staleはL3で加えた状態で、R3と同じ扱い）。\n- **R15（NFRの比較方向）**：nfr-verificationとNFR-03は、比較の向きを5方向に絞って書いている。FR-03の一般禁止は残っている。\n\n### 次の手順\n- 結論：このHEADの6本文に、未解消のblockerはない。\n- mergeへ進むには、次の2つが要る。\n  - 委任承認の判断記録。このexact HEADの6本文のbytesとSHAを固定したもの。\n  - Ready化。\n- 本文のrevisionが変わった場合は、条件1・2をやり直す。\n",
+          "author_association": "OWNER",
+          "reactions": {
+            "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6027010560/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+          },
+          "performed_via_github_app": null,
+          "minimized": null
+        }
+      },
+      "review07": {
+        "comment_id": 6027878656,
+        "body_bytes": 3418,
+        "body_sha256": "e3e05d006a3207c45a4059ef9970aded624681b25099f38b6efcd341cb21e8b1",
+        "comment_head": "a933722a5c67c6fc5097971d78c65751f3eab542",
+        "comment_base": "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c",
+        "formal_file": "/tmp/root-pr2645-comments-review07.json",
+        "formal_file_bytes": 58716,
+        "formal_file_sha256": "760cb7408ff1934a0e75a51cb62a0da91df77e4f545b517492f3c2729bebc9dc",
+        "comment_raw": {
+          "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6027878656",
+          "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2645#issuecomment-6027878656",
+          "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2645",
+          "id": 6027878656,
+          "node_id": "IC_kwDOTG8BRc8AAAABZ0ohAA",
+          "user": {
+            "login": "RetryYN",
+            "id": 131282486,
+            "node_id": "U_kgDOB9M2Ng",
+            "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/RetryYN",
+            "html_url": "https://github.com/RetryYN",
+            "followers_url": "https://api.github.com/users/RetryYN/followers",
+            "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+            "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+            "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+            "repos_url": "https://api.github.com/users/RetryYN/repos",
+            "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "created_at": "2026-10-07T00:09:37Z",
+          "updated_at": "2026-10-07T00:09:37Z",
+          "body": "## review07（independent review、PR #2645 親HELIXLABO-L2-071、HEAD a933722a5c67c6fc5097971d78c65751f3eab542、base main 03d9cd19d）：Major 0\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2645-LABO-STAGE5-PARENT071-07` に応える。\n\n### 本文を評価する前の確認（採択記録・対象版・追補条件）\n- **採択記録**：live26記録の50行が、`MPR-RC-HELIXLABO-L2-071-001`を採択している。register -002はlocator correctionだけである（review06で確認済み）。`docs/governance/decisions/`に、-002や-003を参照する判断記録はない。\n- **対象版**：固定親はea6f756である。review06から変わっていない。\n- **base整合**：merge-baseは依頼のbase（03d9cd19d）と一致し、削除行は0である。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`はPRの全範囲（03d9cd19d..HEAD）で成功\n  - merge-treeは衝突なし\n\n### 6本文はreview06と同じ本文revision\n- `git diff 72ecb1255 HEAD -- docs/helix-labo`は、空である。\n- 6本文のファイル全体のSHA-256は、review06（HEAD 72ecb1255）でreviewerが控えた値と、6件とも一致する。\n  - business-verification `9dde43b0…`\n  - functional-verification `ce147450…`\n  - nfr-verification `2c369556…`\n  - business-requirements `2dd7a80e…`\n  - functional-requirements `b257cd28…`\n  - nfr-grade `a74e197f…`\n- baseの更新（0acbed34b→03d9cd19d）は、HARNESS-047節とその監査記録のmergeである。helix-labo配下には触れていない。\n- 作成側の接続監査（`labo-stage5-parent071-base-connection-audit-2026-10-07-fe107229.md`）の6本文のblob SHAも、上の値と一致する。既存の時点記録はmerge前後で不変とある。承認やadmissionを主張する記述はない。\n- PRの72ecb1255以降の追加は、mainから入った047関係のファイルと、071の接続監査2件だけである。\n\n### 委任の条件について\n- **条件1**：このreviewが、exact base／content HEAD（03d9cd19d／a933722a5）での独立reviewである。6本文、固定親、採択記録、静的検査を確かめた。Major 0である。\n- **条件2**：Fableの判断（review06、「承認してよい」）は、同じ本文revision（上の6件のSHA）についてのものである。\n  - 運用モデル（github-upstream-operating-model.md 126行、130行）は、本文revisionが変わった場合に1と2をやり直すと定める。今回は本文revisionが変わっていない。\n  - そのため、依頼にあった「Fable再実施」は行わず、review06のFable判断を同じ本文revisionの判断として引き継ぐ。\n  - 047節はhelix-labo配下に入っていないので、6本文の意味に相互作用はない。\n- 以上で、このHEADで条件1・2がそろっている。\n\n### 後で直す残余（承認を止めない）\n- review06のR1〜R15のとおりである（本文が同じなので変わらない）。\n\n### 次の手順\n- 結論：このHEADの6本文に、未解消のblockerはない。\n- mergeへ進むには、次の2つが要る。\n  - 委任承認の判断記録。6本文のbytesとSHA（上の6件）を固定したもの。\n  - Ready化。\n- 本文のrevisionが変わった場合は、条件1・2をやり直す。\n",
+          "author_association": "OWNER",
+          "reactions": {
+            "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6027878656/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+          },
+          "performed_via_github_app": null,
+          "minimized": null
+        }
+      },
+      "six_review07_pins_packet": {
+        "path": "/tmp/root-pr2645-review07-decision-pins.json",
+        "bytes": 5256,
+        "sha256": "d442ff99d718a5c6e194c1f32e64710c9ddf0cbb4422fcad5e0b79980f77665c",
+        "documents": [
+          {
+            "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+            "base_bytes": 17356,
+            "base_sha256": "6eb0e6094202a519d34b84670c7c9fa9143ced0c8e25883bddc22c9a395feae7",
+            "body_revision_bytes": 23554,
+            "body_revision_sha256": "2dd7a80e980b398edd0c7c9aadfe3f7ddcf940e01d8a98019e2b87b29df0a68d",
+            "old_review06_head_bytes": 23554,
+            "old_review06_head_sha256": "2dd7a80e980b398edd0c7c9aadfe3f7ddcf940e01d8a98019e2b87b29df0a68d",
+            "review07_head_bytes": 23554,
+            "review07_head_sha256": "2dd7a80e980b398edd0c7c9aadfe3f7ddcf940e01d8a98019e2b87b29df0a68d",
+            "body_equals_old_review06_head": true,
+            "body_equals_review07_head": true,
+            "base_prefix_exact": true,
+            "suffix_bytes": 6198,
+            "suffix_sha256": "f88cbd8bd1e5cf72569f158025c85dcf04d4af6c516d9f4a476fb7050eb22589"
+          },
+          {
+            "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+            "base_bytes": 314755,
+            "base_sha256": "24dff56c5e90120360fe446c38e1e3b4b4b58db569fa8eb40d2be8b338161426",
+            "body_revision_bytes": 322914,
+            "body_revision_sha256": "b257cd28667e337282444e9454bed5f77be149ed970521f751b7addcf10b227d",
+            "old_review06_head_bytes": 322914,
+            "old_review06_head_sha256": "b257cd28667e337282444e9454bed5f77be149ed970521f751b7addcf10b227d",
+            "review07_head_bytes": 322914,
+            "review07_head_sha256": "b257cd28667e337282444e9454bed5f77be149ed970521f751b7addcf10b227d",
+            "body_equals_old_review06_head": true,
+            "body_equals_review07_head": true,
+            "base_prefix_exact": true,
+            "suffix_bytes": 8159,
+            "suffix_sha256": "1c66432bf993e9e80c0ddf74cf109b752fc5c5329bb607bef12eeb03d07903e9"
+          },
+          {
+            "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+            "base_bytes": 70949,
+            "base_sha256": "e39aadaf35521a2c9c49001581c2d6e7770156749a0705666105b579b4387be7",
+            "body_revision_bytes": 77681,
+            "body_revision_sha256": "a74e197f67f7ab76743ee5dbab6495e1d6f871333b7294a33f3ad8103275b578",
+            "old_review06_head_bytes": 77681,
+            "old_review06_head_sha256": "a74e197f67f7ab76743ee5dbab6495e1d6f871333b7294a33f3ad8103275b578",
+            "review07_head_bytes": 77681,
+            "review07_head_sha256": "a74e197f67f7ab76743ee5dbab6495e1d6f871333b7294a33f3ad8103275b578",
+            "body_equals_old_review06_head": true,
+            "body_equals_review07_head": true,
+            "base_prefix_exact": true,
+            "suffix_bytes": 6732,
+            "suffix_sha256": "fe29e9ae3cb0f070990d2afd2bb66d696cee7b5d0ea80ce289c4fa3075a43a62"
+          },
+          {
+            "path": "docs/helix-labo/L10-verification/business-verification.md",
+            "base_bytes": 15331,
+            "base_sha256": "43115cad1beeeb4aa887c80206936d2ecec6ef507447a559b4544222f8ccb089",
+            "body_revision_bytes": 21287,
+            "body_revision_sha256": "9dde43b0f457050a8eb0a7601651413d79642c2e844fef469108c0a6595157d4",
+            "old_review06_head_bytes": 21287,
+            "old_review06_head_sha256": "9dde43b0f457050a8eb0a7601651413d79642c2e844fef469108c0a6595157d4",
+            "review07_head_bytes": 21287,
+            "review07_head_sha256": "9dde43b0f457050a8eb0a7601651413d79642c2e844fef469108c0a6595157d4",
+            "body_equals_old_review06_head": true,
+            "body_equals_review07_head": true,
+            "base_prefix_exact": true,
+            "suffix_bytes": 5956,
+            "suffix_sha256": "305754a89def7ef7570f70e08b6aca08b13de53bbc426a99a257bd1a145e77d7"
+          },
+          {
+            "path": "docs/helix-labo/L10-verification/functional-verification.md",
+            "base_bytes": 487997,
+            "base_sha256": "2d0d893deb6ce95836b5b1b1f3b6a01511db36ce956a881788b5de1c26f5783b",
+            "body_revision_bytes": 518864,
+            "body_revision_sha256": "ce147450d150b5bffd936937e7e28aa7ad23543f10024aba9eed11fac2fde35c",
+            "old_review06_head_bytes": 518864,
+            "old_review06_head_sha256": "ce147450d150b5bffd936937e7e28aa7ad23543f10024aba9eed11fac2fde35c",
+            "review07_head_bytes": 518864,
+            "review07_head_sha256": "ce147450d150b5bffd936937e7e28aa7ad23543f10024aba9eed11fac2fde35c",
+            "body_equals_old_review06_head": true,
+            "body_equals_review07_head": true,
+            "base_prefix_exact": true,
+            "suffix_bytes": 30867,
+            "suffix_sha256": "46aad77ed41e71a52e9d955bc5ade6f5a34ab614cd4b0ce50ea23eb66b995af2"
+          },
+          {
+            "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+            "base_bytes": 60801,
+            "base_sha256": "d2c9c508465305c3edf9af1f6d2d247cd19f07617aefeca25f320eeaba56ceca",
+            "body_revision_bytes": 67755,
+            "body_revision_sha256": "2c369556d4a5c4188fd8e4ddf857e0061a059c108b879883a3d737556a792960",
+            "old_review06_head_bytes": 67755,
+            "old_review06_head_sha256": "2c369556d4a5c4188fd8e4ddf857e0061a059c108b879883a3d737556a792960",
+            "review07_head_bytes": 67755,
+            "review07_head_sha256": "2c369556d4a5c4188fd8e4ddf857e0061a059c108b879883a3d737556a792960",
+            "body_equals_old_review06_head": true,
+            "body_equals_review07_head": true,
+            "base_prefix_exact": true,
+            "suffix_bytes": 6954,
+            "suffix_sha256": "62ec5644b04f4e6e7b4846d43f39f42ae77da5315297c7713b718248a3f7005c"
+          }
+        ],
+        "pin_check_scope": "six file body hashes and byte counts only"
+      }
+    },
+    "six_approved_body_pins": [
+      {
+        "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+        "current_checked_HEAD": "d9d86657c5703418e242ba8e9ae7929324d35958",
+        "current_bytes": 23554,
+        "current_sha256": "2dd7a80e980b398edd0c7c9aadfe3f7ddcf940e01d8a98019e2b87b29df0a68d",
+        "original_decision_recorded_bytes": 23554,
+        "original_decision_recorded_sha256": "2dd7a80e980b398edd0c7c9aadfe3f7ddcf940e01d8a98019e2b87b29df0a68d",
+        "matches_decision_table": true
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+        "current_checked_HEAD": "d9d86657c5703418e242ba8e9ae7929324d35958",
+        "current_bytes": 322914,
+        "current_sha256": "b257cd28667e337282444e9454bed5f77be149ed970521f751b7addcf10b227d",
+        "original_decision_recorded_bytes": 322914,
+        "original_decision_recorded_sha256": "b257cd28667e337282444e9454bed5f77be149ed970521f751b7addcf10b227d",
+        "matches_decision_table": true
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+        "current_checked_HEAD": "d9d86657c5703418e242ba8e9ae7929324d35958",
+        "current_bytes": 77681,
+        "current_sha256": "a74e197f67f7ab76743ee5dbab6495e1d6f871333b7294a33f3ad8103275b578",
+        "original_decision_recorded_bytes": 77681,
+        "original_decision_recorded_sha256": "a74e197f67f7ab76743ee5dbab6495e1d6f871333b7294a33f3ad8103275b578",
+        "matches_decision_table": true
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/business-verification.md",
+        "current_checked_HEAD": "d9d86657c5703418e242ba8e9ae7929324d35958",
+        "current_bytes": 21287,
+        "current_sha256": "9dde43b0f457050a8eb0a7601651413d79642c2e844fef469108c0a6595157d4",
+        "original_decision_recorded_bytes": 21287,
+        "original_decision_recorded_sha256": "9dde43b0f457050a8eb0a7601651413d79642c2e844fef469108c0a6595157d4",
+        "matches_decision_table": true
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "current_checked_HEAD": "d9d86657c5703418e242ba8e9ae7929324d35958",
+        "current_bytes": 518864,
+        "current_sha256": "ce147450d150b5bffd936937e7e28aa7ad23543f10024aba9eed11fac2fde35c",
+        "original_decision_recorded_bytes": 518864,
+        "original_decision_recorded_sha256": "ce147450d150b5bffd936937e7e28aa7ad23543f10024aba9eed11fac2fde35c",
+        "matches_decision_table": true
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+        "current_checked_HEAD": "d9d86657c5703418e242ba8e9ae7929324d35958",
+        "current_bytes": 67755,
+        "current_sha256": "2c369556d4a5c4188fd8e4ddf857e0061a059c108b879883a3d737556a792960",
+        "original_decision_recorded_bytes": 67755,
+        "original_decision_recorded_sha256": "2c369556d4a5c4188fd8e4ddf857e0061a059c108b879883a3d737556a792960",
+        "matches_decision_table": true
+      }
+    ],
+    "authority_limits": {
+      "new_approval_created": false,
+      "condition1_or_2_changed_or_recomputed": false,
+      "condition3_fulfilled_or_claimed": false,
+      "root_ready_claimed": false,
+      "latest_merge_admission_claimed": false,
+      "merge_claimed_or_performed": false,
+      "authority_effect_claimed": false,
+      "six_bodies_changed": false,
+      "original_decision_changed": false
+    },
+    "limitations": [
+      "Current checked HEAD pins are read-only observations and do not establish condition 3, Root Ready, latest merge admission, merge, or authority effect.",
+      "No new reviewer response or PO decision is produced.",
+      "Root may bind any later emitted request to the then-current exact PR HEAD/base."
+    ]
+  }
+}
