@@ -1,0 +1,68 @@
+{
+  "record_type": "HDEC-LABO-STAGE5-PARENT060-REVIEW02-2026-10-08",
+  "authority_effect": "none_pending_condition3_and_main_admission",
+  "scope": {
+    "mechanism": "HELIX-LABO",
+    "stage": 5,
+    "parents": [
+      "LABO-L2-060"
+    ],
+    "version": "1.0"
+  },
+  "review": {
+    "formal_comment_id": 6045783681,
+    "formal_body_raw": "## review02（HEAD cf96099f8a566e54696383079f85a51bdcaecbd9 / base e028e18c90e83295c84d77c4829702a349bce0dc）— Claude review_merge\n\n### 結論：Major 0。同じ本文revisionで、委任条件1（Opus）と条件2（Fable「承認してよい」）が成立\n- OpusとFableが、このrevisionを独立に読みました。どちらもMajorなしで、承認してよいと判断しました。\n- review01の判断は継承していません。\n- 判断記録と6本文pinを追加した後に、条件3を別途照合します。\n\n### review01 M1の解消\nNFR-grade:184は「57件（正常候補2、negative候補47、非独立索引候補8）」に揃いました。6本文の親060の件数と範囲の表記は、すべて一致しています。\n\n| 本文 | 箇所 | 表記 |\n|---|---|---|\n| BR | :84 | `05–52`、2/47/8 |\n| BV | :82 | `05–52`、2/47/8 |\n| NFR | :184 | 57件、2/47/8 |\n| FR | :1677 | 57件、2/47/8 |\n| FV | :2715 | 57ID、2/47/8 |\n| NFRV | :135 | 57件、2/47/8（分割範囲表記で集合は同じ） |\n\n- FVで一意の `L10-LABO-060-CASE-*` IDは57件です。\n  - 正常：CASE-01/02（FV:2719–2720）\n  - 索引：CASE-22/23/26/27/29/30/31/32の8件（FV:2748–2758に「索引（独立fixtureではない）」と明記）\n  - 残りの47件がnegativeで、分類と一致します。\n- 旧件数（`05–46`、41、51件）が残っているのは、時点記録（過去の監査、PO判断記録の指摘文）だけです。現在の意味を持つ本文には残っていません。\n\n### 成立を確認した点\n- **変更の範囲**\n  - PRで変えたのは、BR、BV、NFRの3行だけです。FR、FV、NFRVは、baseとHEADで同じbytesです。\n  - owner、version_target、閾値、戻し先、AC、CASEは、どれも追加していません。\n- **CASE-47〜52**\n  - LABOがINTELLIGENCEのproposal、Worker推奨、採用、配置水準、受入authority、merge authorityを生成する誤出力を、それぞれ単独で拒否するCASEです。\n  - 固定 `f6dad2a` のL2:447/448、L11:186の境界内に収まっています。\n  - 旧P2-04（要件147、AC224）とpaired HAT104の「closing authority越えはfail-close」から再導出したものと整合します。\n- **SHA**\n  - 次の値は、すべて実bytesと一致しました。\n    - 固定親：L2 `f1c39e5e…`／span `4293e966…`、L11 `bcd77438…`／span `a5b4369c…`\n    - 旧source：pillar 147/224行、HAT 104行\n    - 監査JSONの6本文のbefore/after\n    - review01 comment本文：2,865 bytes、`c31f38b2…`\n- **静的検査**：`scfctl validate` 147/0、`stale=0`、`git diff --check` が通りました。\n\n### HEADの6本文（次の判断記録・pinで固定するbytes）\n| 本文 | bytes | SHA-256 |\n|---|---:|---|\n| BR | 32,852 | `057cacee…` |\n| FR | 354,046 | `5a97eef5…` |\n| NFR | 91,242 | `1272733e…` |\n| BV | 31,387 | `df60d5b7…` |\n| FV | 692,699 | `5242a94f…` |\n| NFRV | 82,074 | `2983f735…` |\n\n### 返さない所見（Minor。承認は止めず、解消済みとは扱いません）\n1. PR本文（description）に「他4本文不変」が残っています。最終的な差分は、BR、BV、NFRの3本文の変更です。Ready化のときに揃えてください。\n2. 2つめの監査JSON（`…review01-nfr-count-correction…json`）には、`base` とnfr-gradeのbefore SHAがありません。1つめの監査JSONと合わせて読めば辿れますが、このファイルだけでは変更前の状態が分かりません。\n\n### 未確認範囲\n- fixtureは実行していません。\n- FR:1665–1670に挙がっている他のconsumerの本文は、FRが変わっていないため読み直していません。\n\n本reviewは承認・merge admissionを生成しません。\n",
+    "formal_body_utf8_bytes": 3763,
+    "formal_body_sha256": "3e9b13be09e730d4189448c23486e2d052f42c378b72a137c441c2d7c854f381",
+    "reviewed_head": "cf96099f8a566e54696383079f85a51bdcaecbd9",
+    "review_base": "e028e18c90e83295c84d77c4829702a349bce0dc",
+    "condition1": "satisfied: Opus Major 0",
+    "condition2": "satisfied: Fable 承認してよい",
+    "condition3": "pending"
+  },
+  "six_body_pins": [
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "bytes": 32852,
+      "sha256": "057caceeb0d2269cfc58bec6011ea26233c4272cef71ec90fbaabc497f78d183"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "bytes": 354046,
+      "sha256": "5a97eef5d322f8b79d5bce433494c7ad1548fa1b6ef1eb27749882036f7afece"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "bytes": 91242,
+      "sha256": "1272733e555a25b5ee62bdeb87e3caf47ac41bc4fb982d4faca4006fffb8ddbc"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "bytes": 31387,
+      "sha256": "df60d5b7410107c249636b3dc5989f0cfdf6291a17e8e169a37971cd36bf37cb"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "bytes": 692699,
+      "sha256": "5242a94fed5618792f7d2ecc8c1b6a13cf4788e79fb66b2e0b2312f34425a29e"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "bytes": 82074,
+      "sha256": "2983f735ae142e126946039b195a0be483b476ffa35ef5cffee976d9f299146a"
+    }
+  ],
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-labo-stage5-parent060-review02-l3-l10-delegated-decision-2026-10-08.md",
+    "bytes": 2747,
+    "sha256": "4f3340f315f94f7799e3f38fba09230219aa8a763161ab4b7fe93e0aa448bb6d"
+  },
+  "minor_not_returned": [
+    "PR descriptionの旧「他4本文不変」は最終のBR/BV/NFR3本文変更へ修正する。",
+    "2つめの監査JSONにbase/nfr-grade before SHAがなく、最初の監査JSONとの組で変更前を辿る。旧時点記録は不変。"
+  ],
+  "limits": [
+    "fixture未実行",
+    "274親検収未完"
+  ]
+}
