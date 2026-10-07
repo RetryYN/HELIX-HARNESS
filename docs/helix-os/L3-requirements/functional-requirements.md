@@ -166,11 +166,15 @@ HXT詳細は固定L2 `governance-requirements.md:578-609` と固定L11 `governan
 ### FR-OS-019 — Evidence・continuity
 
 - 親: `HELIXOS-L2-019`、version target `1.0`。固定L2 `governance-requirements.md:682-691`、L11 `governance-acceptance.md:352-358`。
+- deadline入力・assignment/handoff境界は依存元 `HELIXOS-L2-018`（固定L2 `governance-requirements.md:672-681`、L11 `governance-acceptance.md:341-351`）に従い、episodeの継続・projectionはL2-019に従う。L2-004/009は両親に束ねられた条件参照であり、このStage 2aの直接parentへ昇格しない。OS-009を独立FR/BRまたは追加parentとして作らない。
 - **FR-OS-019**: event/source revision/correlation ID/actor/data-use class、execution/verification result、correction/checkpoint/unfinished dutyからepisodeの原記録・projection・再開情報を構成する。provider memoryはcontinuityの正本にしない。
 - Owner: OSはevent/projection/recoveryを担う。event meaningとsourceはorigin owner、data-use permission/classificationは該当SECURITY/source ownerに残す。
 - **AC-OS-019-01 正常**: event provenance/correctionからepisodeを再構築し、missing/duplicate/stale/denied/not-runをsuccessと区別する。session/runtime交代後もscope/deadline/budget/failure count/unfinished dutiesが残る。
 - **AC-OS-019-02 negative**: 重複配送が二重副作用にならない、failed save/projectionをsuccessful checkpointとして公開しない、provider summaryのみの再開を拒否する。用途外data-useを別project/learningへ流用しない。記録件数だけでepisode完了を主張しない。replay失敗時は原eventを用い、固定L2の失敗位置から再構築し、失敗と未完義務を保持する。
 - **AC-OS-019-03 unseen normal**: 未見のcrash/restart/replay順序からraw eventsを使い再構築し、欠落証拠をorigin ownerへ戻す。projectionのみからsuccessを生成しない。
+- **AC-OS-019-04 hold・確認待ちの期限とresidue**: deadline入力は採択親L2-018のassignment/handoff条件から受け、event履歴・episode再構築・一覧projectionはL2-019で保持する。deadline状態は、適用する既存source/契約が宣言した値、そのsource revision/scope、および同sourceが定める期限判定境界が揃う場合だけ判定する。宣言がないものは「期限未宣言」、source・scope・判定境界がmissing/stale/conflict/unknownならunknownとして、期限や期限切れを補わない。既存契約の境界により期限切れが確定した未解決hold/確認待ちは、OS管理の確認対象一覧へowner、source/revision、scope、deadline、状態、未完義務とともに投影し、解決または訂正のsource-bound eventまで追跡する。一覧・期限切れ・通知はcurrent guidance、承認、要求解決、完了、実行停止・再割当の新しい根拠にならない。旧business要件 `LEGACY-ASSET-9F48ADEEB477DCA54039`（`archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md:147-156,160-164`、source SHA-256 `09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61`）の「AIが解消できないresidueをPOへ返す」意味を再導出する。旧L番号やL4以降の旧gate/merge責務は移さず、residueを根拠、owner、期限状態、未完義務とともにPOへ提示しても、提示・未応答・応答の存在だけでPO判断、authority、解決または完了を生成しない。期限値、比較境界、催促間隔、滞留閾値、自動停止・再割当は新設しない。
+
+期限projectionの境界：AC-OS-019-04は一覧の観測・再構築を対象とし、L2-018のassignment実行に適用される既存の期限・authority等の不一致時停止を無効にしない。新しい停止規則を一覧から生成せず、実行契約の不一致は既存AC-OS-018へ戻す。
 
 ### FR-OS-020 — 検収・CI運転
 

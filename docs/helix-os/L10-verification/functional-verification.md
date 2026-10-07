@@ -418,6 +418,8 @@ identity/context/authority evidenceの不足も既存ownerへ戻し、CASE-OS-01
 
 source/revision/correlation ID/actor/data-use class付きの要求・判断・作業・検証・backflow/checkpoint eventからepisodeを再構成。Oracleはmissing/duplicate/stale/denied/not-runとsuccessを区別し、restart後もscope/deadline/budget/failure count/unfinished dutiesを保持する。
 
+期限fixtureの合成宣言値はsource `deadline-policy-sim@r1`、scope `hold-sim`、owner `OS`、deadline `2030-01-01T10:00:00Z`、比較境界 `now >= deadline` とする。02gの現在時刻は `2030-01-01T09:59:00Z`、02iは `2030-01-01T10:00:00Z` とし、他CASEはこの宣言を保って指定の一項目だけを変える。これはfixture値であり製品の期限既定値ではない。対象は確認待ち一覧のprojectionであり、実行中assignmentの既存停止条件を無効にしない。
+
 ### AC-OS-019-02 — continuity negatives（AC-OS-019-02）
 
 | CASE | mutation（他条件は正常） | expected / owner |
@@ -428,10 +430,25 @@ source/revision/correlation ID/actor/data-use class付きの要求・判断・�
 | `CASE-OS-019-02d` | unauthorized data-use classを他project/learning用途へ送る | 送信を拒否しSECURITY/origin ownerへ返す |
 | `CASE-OS-019-02e` | event/record countだけをepisode completionとする | completionを拒否しrequired state/evidenceへ戻す |
 | `CASE-OS-019-02f` | replay時に失敗位置の証拠を欠落させraw-event全件再読込で成功扱い | checkpointを確定せず失敗位置・未完義務を保持してorigin ownerへ返す |
+| `CASE-OS-019-02g` | 契約ownerが期限と比較境界を宣言したhold/確認待ちを期限前に中断し、期限内に再開 | 期限前状態をholdとして表示し、restart後も同じsource/revision/scope、deadline、未完義務を保持する。期限切れを早期に立てない |
+| `CASE-OS-019-02h` | 他の入力は有効なままdeadline宣言だけを欠落 | 「期限未宣言」として一覧に残し、期限・期限切れ・継続停止を推測しない。適用する既存ownerへ確認を戻す |
+| `CASE-OS-019-02i` | 既存sourceの期限と比較境界により期限切れが確定し、hold/確認待ちが未解決 | OS管理の確認対象一覧で期限切れとして識別し、owner/source/revision/scope/deadline/未完義務を示す。古い通知をcurrent guidanceや成功checkpointへ戻さず、source-boundな解決まで履歴を追跡する。自動停止・再割当はしない |
+| `CASE-OS-019-02j1a` | deadlineのsource revisionだけをmissingにする | 期限状態をunknown/未完として表示し、期限切れまたは有効を断定せず、既存のsource ownerへ戻す |
+| `CASE-OS-019-02j1b` | deadlineのsource revisionだけをstaleにする | 期限状態をunknown/未完として表示し、期限切れまたは有効を断定せず、既存のsource ownerへ戻す |
+| `CASE-OS-019-02j1c` | deadlineのsource revisionだけをconflictにする | 期限状態をunknown/未完として表示し、期限切れまたは有効を断定せず、既存のsource ownerへ戻す |
+| `CASE-OS-019-02j2` | deadlineの適用scopeだけをunknownにする | 期限状態をunknown/未完として表示し、他scopeの期限を流用しない |
+| `CASE-OS-019-02j3` | 期限判定に用いる現在時刻だけをunknownにする | 期限切れまたは有効を断定せず、期限状態をunknown/未完に保つ |
+| `CASE-OS-019-02j4` | 期限sourceの比較境界だけを欠落させる | 境界を推測せずunknown/未完に保ち、deadlineを新しい期限規則へ変換しない |
+| `CASE-OS-019-02k` | 他条件が有効なままAIが解決できないresidueを識別し、PO応答がない | 根拠、owner、期限状態、未完義務を添えてPOへ提示し、未完のまま保持する。提示だけでPO判断、authority、要求解決、完了を生成しない |
+| `CASE-OS-019-02l` | 02kと同一のresidueにPO応答eventだけを加える。応答は明示的な上流要求判断ではない | 応答を履歴へsource-boundに記録するが、応答の存在だけでPO判断、authority、要求解決、完了を生成しない |
 
 ### CASE-OS-019-03 — unseen crash/replay sequence（AC-OS-019-03）
 
 未見のcrash/restart/replay順序をheld-out入力にし、raw sourceからepisodeを復元する。記録件数やprojection生成だけをcompletionとしない。
+
+### CASE-OS-019-04 — hold期限状態とresidue projection（AC-OS-019-04）
+
+上記02g〜02lは期限値・境界・間隔をfixture固有の既存契約sourceからのみ入力し、一CASEにつき期限状態またはPO提示条件の一つを変える。CASEは実運用の催促、停止、再割当、PO承認、L10実行を意味しない。
 
 ### CASE-OS-020-01 — scoped obligation profile/run（AC-OS-020-01）
 

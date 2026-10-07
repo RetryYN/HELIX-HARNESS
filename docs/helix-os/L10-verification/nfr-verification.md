@@ -50,7 +50,7 @@
 
 ### CASE-NFR-OS-019-01 — event/replay classification
 
-親 `HELIXOS-L2-019`; fixture eventをmissing/duplicate/stale/denied/not-run/success別に数え、normal crash/restartの測定と失敗後replayを分ける。normalでは通常のcrash/restart eventから再構築し、negative/replayでは原eventを使い固定L2の失敗位置から再構築した差分を示す。実timestampがある場合の各durationは別母集団として観測候補に表示し、保持日数/復旧時間のcutoffにしない。
+親 `HELIXOS-L2-019`; fixture eventをmissing/duplicate/stale/denied/not-run/success別に数え、normal crash/restartの測定と失敗後replayを分ける。hold/確認待ちfixtureは宣言済/未宣言/期限切れ/判定unknown/AI未解決residue別に数え、各々のsource・owner・未完義務と一覧/PO提示へのtrace completenessを別記する。normalでは通常のcrash/restart eventから再構築し、negative/replayでは原eventを使い固定L2の失敗位置から再構築した差分を示す。実timestampがある場合の各durationは別母集団として観測候補に表示し、保持日数/復旧時間のcutoff、期限値・催促間隔・滞留率/目標にしない。
 
 ### CASE-NFR-OS-020-01 — applicable verification obligation census
 
