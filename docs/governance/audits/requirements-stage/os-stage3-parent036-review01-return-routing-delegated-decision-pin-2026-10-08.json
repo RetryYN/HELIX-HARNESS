@@ -1,0 +1,70 @@
+{
+  "record_type": "HDEC-OS-STAGE3-PARENT036-REVIEW01-2026-10-08",
+  "authority_effect": "none_pending_condition3_and_main_admission",
+  "scope": {
+    "mechanism": "HELIX-OS",
+    "stage": "3",
+    "parents": [
+      "HELIXOS-L2-036"
+    ],
+    "version": "1.0"
+  },
+  "review": {
+    "formal_comment_id": 6047392796,
+    "formal_body_raw": "## review01（HEAD 69e723851f38982c8fffebbf5ef75588eb2b27d6 / base 6e26ee3929e55bfa23dd7c809b7e6a1c88de0431）— Claude review_merge\n\n**結論：Major 0。条件1・2が成立。** OpusとFableがこのrevisionを独立に読み、次のとおり一致しました。\n- Opus：Major 0\n- Fable：Major 0、「承認してよい」\n\n運用モデル「L3／L10承認の委任」の条件1・2は、本HEADの本文revisionで成立します。条件3（判断記録と6本文pinの追加後の照合）とmain admissionは、まだ成立していません。\n\n### 対象\n本文の差分は6行だけです。FR AC-OS-L3-036-02/03/04、FV CASE-OS-L10-036-02/04/08b。ほかの差分は監査ファイル3組の追加です。\n\n### 成立を確認した点\n- **tuple不一致の返却（AC-02/04、CASE-02/04）**\n  - ticket identity、source/target revision、選択dependency/config scopeのbinding不一致だけをOS-L2-010へ戻しています。これは固定 `633bf12` L2:1053「scope・ticket・revision不一致はOS L2-010へ戻す」と、L2:1043・1047（同じsource/target revision・dependency/config scopeへの束縛）に一致します。\n  - base側のCASE-04は「異なるdependency/config scope」をtechnical/source owner側へ戻していました。今回の変更で固定区分とのずれが解消されています。\n  - oracle欠落はHARNESS、applicability/result unknownはsource owner、run/authority/resourceは既存OS/SECURITY/INFRASTRUCTURE経路、という残りの区分はL2:1053の範囲内です。CASE-06a/06b（oracle改変・authority生成の拒否）は保持されています。\n- **非upgradeのread-only policy（AC-03、CASE-08b）**\n  - 固定L2:1037は、HARNESS-L2-005のoracleと旧registry `RETROFIT_STANDARD_SAFE`（read-only command policy）を別物として書いています。固定L11:634も「既存HARNESS verification dutiesと**他の**read-only verify policy」と書き分けています。HARNESS-L2-005の固定本文は、read-only policyの選択主体を定めていません。\n  - このため、policy欠落の戻し先をHARNESS-L2-005 ownerから既存policyのsource/domain ownerへ移したことは、固定L2:1053の区分2（source/domain owner）の範囲内です。選択authorityをOS/HARNESSへ新設しないことも明記されており、L2:1035「別機構・ticket種別・承認者は作らない」に合います。\n  - #2680 review02で受け入れた帰属の訂正にあたります。L2の意味の変更ではありません。反転の理由はrepair監査の「policy selectionの範囲」に記録されています。\n  - CASE-08a（duty欠落→HARNESS-L2-005 owner）とCASE-08b（policy欠落→source/domain owner）が分かれ、それぞれ単独のreject CASEとして残っています。\n- **関連本文**：BR:65、BV:54、NFR:91、NFRV:81、FV CASE-036-01/03/05/06a/06b/07/08aは、新しいAC/CASEと矛盾しません。CASE-036の10 IDは一意です。既存の境界checkは削除されていません。\n- **main統合**：036の追加・削除行は、統合前（3c6372eb→7d742a98）と統合後（6e26ee39→HEAD）で同じです（sorted ± hash `e090a9d83328`）。`merge-tree(6e26ee39, 7d742a98)` の本文はHEADとbyte一致します。\n- **SHA**：固定L2の全file `c530b01d…`、span `1db82b6f…`（633bf12とd629で同じbytes）、d629の全file `97f9158b…`、L11の全file/spanを再計算し、repair JSONと一致しました。旧限定監査の全file SHAの誤記は新追補で分離して訂正されており、旧ファイルは変わっていません。統合JSONの6本文pinはHEADの実bytesと一致します。\n- **静的検査**：`scfctl validate` 147/0、`stale=0`、govcheck ok（atoms=7622）、`git diff --check` が通りました。\n\n### 返さない所見（Minor。承認の条件にしません）\n1. FR:268（AC-03）末尾の「selection/sourceがunknownなら」は、dutyにも掛かると読めます。「policyの」と限定すると、CASE-08aとの齟齬に見えなくなります。\n2. FV:716（CASE-08b）の「source/owner自体がunknownならunknownを保持してsource/domainへ戻し」は、unknownなsourceへ戻すという循環した表現です。「unknownを保持し、OS/HARNESSにowner/selectorを補作しない（固定L2:1053の区分2）」のように、保持する側の語へ寄せる余地があります。\n3. FV:643（CASE-02）の「他のfailureは既存の該当ownerと未完理由を維持する」は、入力のowner＝出力のownerを照合するoracleとして成立します。ただしAC-04ほど区分を挙げていません。L2:1053の区分語で挙げると、oracleが強くなります。\n4. AC-02のtupleには「選択scope」がありますが、CASE-02の変異列にscope不一致はなく、CASE-04で照合しています。CASE-02に「scope不一致はCASE-036-04で照合」と一言あると、traceを追いやすくなります。\n\n### 未確認範囲\n- fixtureは実行していません。\n- 274親の意味検収は、本reviewの範囲外です。\n\n本reviewから、承認の効力、merge admission、PO事後確認、L10の実行合格、実装・release許可、Issue closeを生成しません。条件3は、判断記録と6本文pinの追加後に新しいHEADで照合します。\n",
+    "formal_body_utf8_bytes": 5345,
+    "formal_body_sha256": "45c6cb90d15034aff7e3ba19468378950716f4eeee861aacde87a5d231ec6163",
+    "reviewed_head": "69e723851f38982c8fffebbf5ef75588eb2b27d6",
+    "review_base": "6e26ee3929e55bfa23dd7c809b7e6a1c88de0431",
+    "condition1": "satisfied: Opus Major 0",
+    "condition2": "satisfied: Fable 承認してよい",
+    "condition3": "pending"
+  },
+  "six_body_pins": [
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "bytes": 20530,
+      "sha256": "c0411b7940db8f9c6d1f13ebe41375bb15b6745fdf6064dcd26ac72a845a6568"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "bytes": 204973,
+      "sha256": "666200db50ea9a2e7f0d67d57496a71368e497f2fdb6e3485d4838339000b393"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "bytes": 35375,
+      "sha256": "615fd3a232335cbee97e1e9fd76b132415068aaa9a25dc4f114aa4f2066b0c94"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "bytes": 18061,
+      "sha256": "ff70287629c2087601ec50c2b06091aa20a953ef11ec80f1b41b4f461cab54d1"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "bytes": 254300,
+      "sha256": "84e377c9f281b911549970cef7e11c43cfd0eeb552f6a7ae8d24ad7892e53eea"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "bytes": 32546,
+      "sha256": "c9eab3ce4d97057953fc16e31332241c91c088a338b888481e7b19d2c87fd135"
+    }
+  ],
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-os-stage3-parent036-review01-return-routing-l3-l10-delegated-decision-2026-10-08.md",
+    "bytes": 3143,
+    "sha256": "00ad26e70235b564ad3b28495a7edec437972038adf2ba05ca584247bdfcafc7"
+  },
+  "minor_not_returned": [
+    "AC03 selection/source unknownの語はpolicyに限定すると明確になる。CASE08aのduty→HARNESS区分は保持。",
+    "CASE08bのunknown sourceへの返却表現は循環して見えるが、unknown保持とowner/selector補作禁止の意味を保持する。",
+    "CASE02の他failureは入力ownerと未完理由を維持するoracleであり、AC04ほど個別区分を列挙していない。",
+    "scope不一致はCASE04で照合する。CASE02への参照注記は未追加。fixture未実行、274意味検収は別範囲。"
+  ],
+  "limits": [
+    "fixture未実行",
+    "274親検収未完"
+  ]
+}

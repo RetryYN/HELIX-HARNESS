@@ -1,0 +1,70 @@
+{
+  "record_type": "HDEC-SECURITY-STAGE1-PARENT002007-REVIEW01-2026-10-08",
+  "authority_effect": "none_pending_condition3_and_main_admission",
+  "scope": {
+    "mechanism": "HELIX-SECURITY",
+    "stage": "1",
+    "parents": [
+      "HELIXSECURITY-L2-002",
+      "HELIXSECURITY-L2-007"
+    ],
+    "version": "1.0"
+  },
+  "review": {
+    "formal_comment_id": 6046824508,
+    "formal_body_raw": "## review01（HEAD 5cea59c85553b646311561048b5e13a8b9ff3ada / base f0e210b3cdf5c1f95dfcf07cfc3504a240dd2e4d）— Claude review_merge\n\n### 結論：Major 0。同じ本文revisionで、委任条件1（Opus）と条件2（Fable「承認してよい」）が成立\n- OpusとFableが、このrevisionをそれぞれ独立に読みました。どちらもMajorなしで、承認してよいと判断しました。\n- 判断記録と6本文pinを追加した後に、条件3を別途照合します。\n\n### 照合した点\n- **変更範囲**：本文の変更は、FVの「固定L11受入oracle」の2行だけです。\n  - 002（FV:50）は、先頭の「例」を除き、読点を原文に揃えました。\n  - 007（FV:98）は、「以下の9制御fixture表で」を「後掲の9制御fixtureで」に変えました。\n- **固定L11原文との一致**：FVにあるすべての「固定L11受入oracle」行（001〜016、020、028の18行）を、固定 `f6dad2a` L11の第3セルと文字列で比較しました。18行すべてが完全に一致しました。\n  - これにより、#2676、#2689で扱ったのと同じ型の既存の改変が、すべて解消されています。\n  - 033はspan参照の形式で、変更されていません。\n- **補足が失われていないこと**\n  - 002：「例」を外しても、同じCASEのfixture/oracle行「固定5文例の各々を個別入力にし…」が、5つの文例を列挙する意図を保っています。\n  - 007：「後掲の9制御fixture」は、直後の表 `SECURITY-CASE-007-01 の9制御fixture`（9行）と、L11:69の9制御受入fixtureに対応して解決します。\n  - CASE、AC、owner、意味、分母は変わっていません。\n- **親028と033の保持**：最新mainの親028（FR:296–309、CASE-028:213–221）と033のspan SHAは、HEADでも一致しました。FV以外の5本文は、mainとbyte単位で同一です。\n- **SHA**\n  - 監査JSONの次の値は、すべて実bytesと一致しました。\n    - 固定親（L2/L11全体、L11:26/31の行）\n    - FV:50/98のbefore/after\n    - 6本文\n    - 旧source（pillar HR-NFR-P8-02、CAP-006/007、HAT-N8-02/P2-05）\n    - 033固定source\n  - 旧監査は変わっていません。\n- **静的検査**：`scfctl validate` 147/0、`stale=0`、`git diff --check` が通りました。\n\n### HEADの6本文（次の判断記録・pinで固定するbytes）\n| 本文 | bytes | SHA-256 |\n|---|---:|---|\n| BR | 2,999 | `30a0456a…` |\n| FR | 137,779 | `f6872a3e…` |\n| NFR | 18,947 | `d2c1d93c…` |\n| BV | 2,356 | `7da2a3b8…` |\n| FV | 178,400 | `0d81d49d…` |\n| NFRV | 14,254 | `3675115f…` |\n\n### 返さない所見（Minor。承認を止めず、解消済みとは扱いません）\n1. **統合MDの記載順が逆になっている**\n   - 統合MDの5行目「以前の引用監査MD/JSONは `30133dc1…` / `43b6bd48…`」は、ラベルの順と値の順が逆です。値はJSON、MDの順に並んでいます。\n   - 作成側が申告しているとおりで、JSONのpathとの対応は正しく、記録は書き換えない原則に沿っています。\n   - 直す場合は、別の追補記録で行ってください。\n2. **HAT_P2_05のpinに項目が足りない**\n   - 修正監査JSONの `paired_legacy_acceptance_pins.HAT_P2_05` に、pathとfull_sha256がありません。\n   - 同じファイルを指すHAT_N8_02の値に依存した構造になっています。SHA自体は一致しています。\n\n### 未確認範囲\n- fixtureは実行していません。\n- 028の本文の意味を読み直すreviewは行っていません。byteが保持されていることだけを確認しました。\n\n本reviewは承認・merge admissionを生成しません。\n",
+    "formal_body_utf8_bytes": 3752,
+    "formal_body_sha256": "5107c064156bc285f7c07f0c79002580ed44e4a8359d6040dd85871f4ee8de8d",
+    "reviewed_head": "5cea59c85553b646311561048b5e13a8b9ff3ada",
+    "review_base": "f0e210b3cdf5c1f95dfcf07cfc3504a240dd2e4d",
+    "condition1": "satisfied: Opus Major 0",
+    "condition2": "satisfied: Fable 承認してよい",
+    "condition3": "pending"
+  },
+  "six_body_pins": [
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "bytes": 2999,
+      "sha256": "30a0456a17c4c65e9427cc8931905cb7c1adf54c207514f948a7b179dcdb7019"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "bytes": 137779,
+      "sha256": "f6872a3ee941d63c80a9717bca7e81de832c043ad05cc9ac0c2db77eb264ee9e"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "bytes": 18947,
+      "sha256": "d2c1d93cf4fb142ba6abae13c7e640a7c9826f6c0ed5ce49de7991cb8f884c3b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "bytes": 2356,
+      "sha256": "7da2a3b88c866c276065c793036708a633109b176b0381829c8d3c8293ff70a4"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "bytes": 178400,
+      "sha256": "0d81d49d2a16cb70b78b5ef7d0379e3b64632bbe18ac6fda9e3302f00c5bb40b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "bytes": 14254,
+      "sha256": "3675115f6d1b242a511651e627e8c46cfc71013ce9cf129c5045f1ce51e5f685"
+    }
+  ],
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-security-stage1-parent002007-review01-l3-l10-delegated-decision-2026-10-08.md",
+    "bytes": 2804,
+    "sha256": "eba9af60eaa4ff23e53d3dda6740d172986ddf46bb140f0b59b683876fa8b9a4"
+  },
+  "minor_not_returned": [
+    "統合MDの旧MD/JSON SHAの並びが逆。JSONの各pathに記録されたSHAは実bytesと一致する。",
+    "旧修正監査HAT_P2_05 pinにpath/full_sha256が省略され、同ファイルのHAT_N8_02に依存。SHA実値一致を独立reviewが確認。",
+    "028は今回意味再読せず実bytes保持だけの確認。"
+  ],
+  "limits": [
+    "fixture未実行",
+    "274親検収未完"
+  ]
+}

@@ -125,7 +125,7 @@
 ## Stage 5 — HELIXLABO-L2-059 NFR検証設計
 
 - CASE-NFR-LABO-059-01: 選択群に適用する同条件、quality/acceptance result、既決decisionのscope/effectivity、OS assignment/result receipt、各費目・price source、human intervention quantity、duration definition、未選択群/unknownを個別に再計算する。実行済み値を生成せず、missing/unknown/未価格化/未完をsuccessまたは0へ変換しない。率を示す場合は分子/分母と適用scopeを出し、分母0/不明は率なし。固定閾値なし。
-- Functional CASE定義の参照対象はCASE-01/02、03a–m、04a/b、05–21、22–29、30–47、48–70。非独立index CASE-22/33–36、複合CASE-30は個別独立negativeの分母から除く。設計分類では定義83件、独立fixture 77件、compound1件、index5件。CASE-48は正常、CASE-49–70はnegative。数値はCASE定義数であり実測ではない。
+- Functional CASE定義の参照対象はCASE-01/02、03a–m、04a/b、05–21、22–29、30–47、48–72。非独立index CASE-22/33–36、複合CASE-30は個別独立negativeの分母から除く。設計分類では定義85件、独立fixture 79件、compound1件、index5件。CASE-48は正常、CASE-49–72はnegative。CASE-14はtask revision、CASE-58はsource revision、CASE-71はrequirement revision、CASE-72はacceptance-oracle revisionの不一致をそれぞれ単独で照合し、戻し先区分も分ける。数値はCASE定義数であり実測ではない。
 - Provider label変更とactual model identity/revision mismatchを異なるfield/CASEとして扱う。CASE64は入力labelだけの違いに対してscoreが不変かを見る。human investigation/verification quantityは通貨換算と分離する。
 
 
@@ -139,8 +139,8 @@
 
 - `LABO-061-NFR-01`: 選択task/runを母集団にし、valid/failed/invalid/missing/unknown/stale/censoredを別区分で保持する。割合は対象数と分母を併記し、分母0または不明なら率なし。実測値なしは未実測とする。
 - `LABO-061-NFR-02`: 選択task snapshotの15 fieldとtask/fixture/oracle/protocol/scorerのidentity・version・digestの状態をfield別に照合する。未選択sourceや055通常履歴を分母へ含めない。
-- `LABO-061-NFR-03`: 漏洩、role separation、歴史補完、receipt由来のauthority誤生成をL10の独立oracleに従って照合する。実secret/PIIをfixtureへ含めず、synthetic canaryのみを使う。
-- 現行L10には旧a4から保持した132 IDが132 table rowとしてある。旧snapshot側の形は130 table rowとnormal bullet 2件だった。CASE定義は測定runそのものではなく、indexは独立fixture数へ重ねない。ID数を網羅性や実行結果へ読み替えない。固定試行数、SLA、性能閾値、合格率は追加しない。
+- `LABO-061-NFR-03`: 漏洩、role separation、歴史補完、receipt由来のauthority誤生成、receipt/score起点のWorker起動/candidate採択、固定059 revisionへの遡及適用、旧runtime起動要求をL10の独立oracleに従って照合する。実secret/PIIをfixtureへ含めず、synthetic canaryのみを使う。
+- 現行L10は137 unique ID（137 table rows）を持ち、うちR4補強CASE-115〜118とR12 CASE-119を追加した。旧a4 snapshotの132 IDは歴史的起点として保持する。CASE定義は測定runそのものではなく、indexは独立fixture数へ重ねない。ID数を網羅性や実行結果へ読み替えない。固定試行数、SLA、性能閾値、合格率は追加しない。
 
 
 ## Stage 5 — HELIXLABO-L2-063 NFR検証設計
@@ -148,7 +148,7 @@
 - `LABO-063-NFR-01`: 実測対象は選択scope内の許可された修復/再発観測episode。repair target/revision、cause/applicability、OS execution/result receipt、HARNESS verification、LABO evaluation、counterexample、post-operation observationの識別状態を分ける。valid/failed/missing/unknown/stale/openを保持し、分母不明または0では率を出さない。
 - `LABO-063-NFR-02`: 同一性をproblem/cause/procedure/applicability/revision/episode単位で照合し、duplicate resendを重ねず、異なる原因・条件・revisionを混ぜない。母集団/閾値は既決入力。unknownを0へ変換せず固定反復数・観測窓・最低N・SLAを作らない。
 - `LABO-063-NFR-03`: warning、予防candidate、OS registration/routing、target-owner adoption/change、HARNESS verification、post-operation observation/effect evaluationを別状態として追跡する。source欠落は固定L2に沿う責務区分へ返し、未特定identityはunknownとする。どの状態からも完了/authority/permissionを生成しない。
-- CASE inventory: L10の旧公開完全ID 69件を維持する: `L10-LABO-063-CASE-01`, `L10-LABO-063-CASE-02`, `L10-LABO-063-CASE-03a`, `L10-LABO-063-CASE-03b`, `L10-LABO-063-CASE-03c`, `L10-LABO-063-CASE-03d`, `L10-LABO-063-CASE-04a`, `L10-LABO-063-CASE-04b`, `L10-LABO-063-CASE-18`, `L10-LABO-063-CASE-19`, `L10-LABO-063-CASE-20`, `L10-LABO-063-CASE-21`, `L10-LABO-063-CASE-22`, `L10-LABO-063-CASE-23`, `L10-LABO-063-CASE-24`, `L10-LABO-063-CASE-25`, `L10-LABO-063-CASE-26`, `L10-LABO-063-CASE-27`, `L10-LABO-063-CASE-28`, `L10-LABO-063-CASE-29`, `L10-LABO-063-CASE-30`, `L10-LABO-063-CASE-31`, `L10-LABO-063-CASE-32`, `L10-LABO-063-CASE-33`, `L10-LABO-063-CASE-34`, `L10-LABO-063-CASE-35`, `L10-LABO-063-CASE-36`, `L10-LABO-063-CASE-37`, `L10-LABO-063-CASE-38`, `L10-LABO-063-CASE-39`, `L10-LABO-063-CASE-40`, `L10-LABO-063-CASE-41`, `L10-LABO-063-CASE-42`, `L10-LABO-063-CASE-43`, `L10-LABO-063-CASE-44`, `L10-LABO-063-CASE-45`, `L10-LABO-063-CASE-46`, `L10-LABO-063-CASE-47`, `L10-LABO-063-CASE-48`, `L10-LABO-063-CASE-49`, `L10-LABO-063-CASE-50`, `L10-LABO-063-CASE-05`, `L10-LABO-063-CASE-06`, `L10-LABO-063-CASE-07`, `L10-LABO-063-CASE-08`, `L10-LABO-063-CASE-09`, `L10-LABO-063-CASE-10`, `L10-LABO-063-CASE-11`, `L10-LABO-063-CASE-12`, `L10-LABO-063-CASE-13`, `L10-LABO-063-CASE-14`, `L10-LABO-063-CASE-15`, `L10-LABO-063-CASE-16`, `L10-LABO-063-CASE-17`, `L10-LABO-063-CASE-51`, `L10-LABO-063-CASE-52`, `L10-LABO-063-CASE-53`, `L10-LABO-063-CASE-54`, `L10-LABO-063-CASE-55`, `L10-LABO-063-CASE-56`, `L10-LABO-063-CASE-57`, `L10-LABO-063-CASE-58`, `L10-LABO-063-CASE-59`, `L10-LABO-063-CASE-60`, `L10-LABO-063-CASE-61`, `L10-LABO-063-CASE-62`, `L10-LABO-063-CASE-63`, `L10-LABO-063-CASE-64`, `L10-LABO-063-CASE-65`。literal由来分類候補は正常5、negative 53、非独立索引11。非独立索引IDは `L10-LABO-063-CASE-03a`, `L10-LABO-063-CASE-24`, `L10-LABO-063-CASE-25`, `L10-LABO-063-CASE-30`, `L10-LABO-063-CASE-31`, `L10-LABO-063-CASE-32`, `L10-LABO-063-CASE-33`, `L10-LABO-063-CASE-35`, `L10-LABO-063-CASE-36`, `L10-LABO-063-CASE-39`, `L10-LABO-063-CASE-63`。索引をnegative分母へ重複計上しない。L10-LABO-063-CASE-58とL10-LABO-063-CASE-13は同じ観測欠落軸を含み、L10-LABO-063-CASE-58は観測提供主体への返却oracleの補足として保持する。ID数はcase意味の完全性や独立性を証明しない。
+- CASE inventory: L10の旧公開完全ID 69件に追補CASE-66〜68を加えた72件を保持する: `L10-LABO-063-CASE-01`, `L10-LABO-063-CASE-02`, `L10-LABO-063-CASE-03a`, `L10-LABO-063-CASE-03b`, `L10-LABO-063-CASE-03c`, `L10-LABO-063-CASE-03d`, `L10-LABO-063-CASE-04a`, `L10-LABO-063-CASE-04b`, `L10-LABO-063-CASE-18`, `L10-LABO-063-CASE-19`, `L10-LABO-063-CASE-20`, `L10-LABO-063-CASE-21`, `L10-LABO-063-CASE-22`, `L10-LABO-063-CASE-23`, `L10-LABO-063-CASE-24`, `L10-LABO-063-CASE-25`, `L10-LABO-063-CASE-26`, `L10-LABO-063-CASE-27`, `L10-LABO-063-CASE-28`, `L10-LABO-063-CASE-29`, `L10-LABO-063-CASE-30`, `L10-LABO-063-CASE-31`, `L10-LABO-063-CASE-32`, `L10-LABO-063-CASE-33`, `L10-LABO-063-CASE-34`, `L10-LABO-063-CASE-35`, `L10-LABO-063-CASE-36`, `L10-LABO-063-CASE-37`, `L10-LABO-063-CASE-38`, `L10-LABO-063-CASE-39`, `L10-LABO-063-CASE-40`, `L10-LABO-063-CASE-41`, `L10-LABO-063-CASE-42`, `L10-LABO-063-CASE-43`, `L10-LABO-063-CASE-44`, `L10-LABO-063-CASE-45`, `L10-LABO-063-CASE-46`, `L10-LABO-063-CASE-47`, `L10-LABO-063-CASE-48`, `L10-LABO-063-CASE-49`, `L10-LABO-063-CASE-50`, `L10-LABO-063-CASE-05`, `L10-LABO-063-CASE-06`, `L10-LABO-063-CASE-07`, `L10-LABO-063-CASE-08`, `L10-LABO-063-CASE-09`, `L10-LABO-063-CASE-10`, `L10-LABO-063-CASE-11`, `L10-LABO-063-CASE-12`, `L10-LABO-063-CASE-13`, `L10-LABO-063-CASE-14`, `L10-LABO-063-CASE-15`, `L10-LABO-063-CASE-16`, `L10-LABO-063-CASE-17`, `L10-LABO-063-CASE-51`, `L10-LABO-063-CASE-52`, `L10-LABO-063-CASE-53`, `L10-LABO-063-CASE-54`, `L10-LABO-063-CASE-55`, `L10-LABO-063-CASE-56`, `L10-LABO-063-CASE-57`, `L10-LABO-063-CASE-58`, `L10-LABO-063-CASE-59`, `L10-LABO-063-CASE-60`, `L10-LABO-063-CASE-61`, `L10-LABO-063-CASE-62`, `L10-LABO-063-CASE-63`, `L10-LABO-063-CASE-64`, `L10-LABO-063-CASE-65`, `L10-LABO-063-CASE-66`, `L10-LABO-063-CASE-67`, `L10-LABO-063-CASE-68`。分類候補は正常6（01/02/05/07/10/67）、negative55、非独立索引11。非独立索引IDは `L10-LABO-063-CASE-03a`, `L10-LABO-063-CASE-24`, `L10-LABO-063-CASE-25`, `L10-LABO-063-CASE-30`, `L10-LABO-063-CASE-31`, `L10-LABO-063-CASE-32`, `L10-LABO-063-CASE-33`, `L10-LABO-063-CASE-35`, `L10-LABO-063-CASE-36`, `L10-LABO-063-CASE-39`, `L10-LABO-063-CASE-63`。索引をnegative分母へ重複計上しない。L10-LABO-063-CASE-58とL10-LABO-063-CASE-13は同じ観測欠落軸を含み、L10-LABO-063-CASE-58は観測提供主体への返却oracleの補足として保持する。ID数はcase意味の完全性や独立性を証明しない。
 - 実測されたepisodeがない場合は「未実測」とする。過去fixture定義を測定実績・既定threshold・頻度へ読み替えない。
 
 ### L10-LABO-065 — NFR測定設計候補
@@ -177,7 +177,7 @@ NFRの分母は許可された選択scope内のrunであり、CASE定義数で�
 ## Stage 5 — HELIXLABO-L2-067 NFR verification design
 
 - `CASE-NLABO-067-FR-01-01`: selected task/scope/revisionに属するpredicate/oracle revision、candidate digest/event receipt、OS assignment/AttemptID、LABO observation/result receiptのfield completenessを再照合する。ordered repair countはevent receiptとidentityが確定した同一assignment Attempt内だけを再計算し、unknown/missing/duplicate/out-of-order/Attempt-mismatchを区別する。source individual identityがunknownでもtask/要求owner, OS, LABO, SECURITYというknown role classificationを保持する。minimum N、rate threshold、実測値、completion/permissionを出力しない。
-- Functional CASE index: old 30 `L10-LABO-067-CASE-01/02/03a–g/04a–b/05–23` と追加候補 `CASE-24–38` を参照する。index/countは意味完全性、独立性、実行済み結果を証明しない。
+- Functional CASE index: old 30 `L10-LABO-067-CASE-01/02/03a–g/04a–b/05–23` と追加候補 `CASE-24–39` を参照する。index/countは意味完全性、独立性、実行済み結果を証明しない。
 
 ## Stage 5 — HELIX-LABO L10 NFR検証候補 — HELIXLABO-L2-069
 
@@ -186,9 +186,10 @@ NFRの分母は許可された選択scope内のrunであり、CASE定義数で�
 | 観測項目 | 合成入力・変異 | 判定材料 |
 |---|---|---|
 | 比較入力の追跡 | CASE-01の全要素を与え、CASE-05–10/20–26/28–30でscope, revision, completeness, result, denominator, classification, identity, time, evidence, stateの一項ずつを欠落/変更。 | 要素ごとに不足を特定しrate/resultを未評価にする。未知値を補完しない。 |
+| 評価candidateの必須構成 | CASE-01の有効candidateにCASE-44–47の各必須要素を一つずつ欠落させる。 | 4要素それぞれの欠落をAC-01不適合として検出し、他の根拠ある出力を保持する。 |
 | 観測状態忠実性 | CASE-03b, 07, 11, 12, 31, 32のwindow未満、untracked、未実行、censored、missingを独立入力。 | 未追跡/欠測/未実行を成功やzero defectへ写さない。 |
 | relationと因果境界 | CASE-03cのrelation欠落、CASE-13/33の単一事例、CASE-01の有効relationを比較。 | relation evidenceの欠落は未評価。個別relationを保持しても効果/発行精度を一般化しない。時間/path近接だけで因果を断定しない。 |
-| owner/authority境界 | CASE-04a/14/16–19/34–43のticket・restricted data・priority・oracle・assignment・permission・採否・execution/completion・target/placement mutation。 | 元ticket/closure/source stateを保持し、LABO生成の権限・操作・完了を拒否する。 |
+| owner/authority境界 | CASE-04a/14/16–19/34–43/48のticket・restricted data・priority・oracle・assignment・permission・採否・execution/completion・target/placement・未評価結果からのticket発行mutation。 | 元ticket/closure/source stateを保持し、LABO生成の権限・操作・完了・ticket発行を拒否する。 |
 | unknown routing | CASE-20–25/28–32でroute roleが固定L2にある状態とspecific source/person identityが不明な状態を組合せる。 | 既存OSまたは識別可能なsource-owner roleを保持する。個別identity unknownを既知ownerまたは新ownerで埋めない。 |
 
 固定数値threshold、severity分類、観測期間の値、性能目標は測定案に含めない。測定不能/未観測は失敗0または成功ではなくunknown/未評価のままにする。
@@ -237,7 +238,7 @@ L3の `NFR-LABO-071-01` binding候補を、選択scopeの証跡で静的照合�
 |---|---|---|---|
 | class/revision/scope/evidence binding | evaluation recordのtask class、model revision、scope、evidence ID/revision、qualification state | fieldごとの存在・一致・stale・unknownをsource recordに沿って保持し、複合資格状態を推測しない | 既定class、最低件数、成功率・合格率、閾値を設定しない |
 | qualification invalidation | 対象revisionに明記されたmajor miss record、model revision update、旧資格record | 事象source、対象revision、qualificationの失効・新revision未評価を別に追跡する | 失効triggerは固定親の2種類のみ。期限、window、再評価schedule、major miss分類を追加しない |
-| independent state boundary | title、qualification、permission、authority、assignment roleの各source identity/value | title→permission、title→authority、title→assignment、permission→assignment、assignment→permissionの各fieldを個別に比較する。03c/03dのqualification失効ではP0/A0/authorityがそれぞれ独立source値と一致し、permission等へ波及しない。 | permissionはSECURITY、assignmentはOSの既存責務。L10は変更・発行せず、LABO候補出力だけの誤りは自身で訂正する。 |
+| independent state boundary | title、qualification、permission、authority、assignment roleの各source identity/value | title→qualification、qualification→title、title→permission、title→authority、title→assignment、permission→assignment、assignment→permissionの各fieldを個別に比較する。CASE-r06-qualification-to-titleも含む。03c/03dのqualification失効ではP0/A0/authorityがそれぞれ独立source値と一致し、permission等へ波及しない。 | permissionはSECURITY、assignmentはOSの既存責務。L10は変更・発行せず、LABO候補出力だけの誤りは自身で訂正する。 |
 | evidence handoff | missing/stale/mismatchの根拠source identityと既存owner参照 | 個体owner特定の有無にかかわらず既存source責務区分へ返し、個体identity unknownは別に保持する | 新owner/責務/承認を生成しない |
 
 母集団は実行が許可された場合に選択されるtask class/model revision/evaluation scopeから受け取り、CASE定義数で代用しない。数字のthreshold・固定観測期間・資格率は導入しない。candidateだけから資格状態、permission、assignment、L3承認や実行済み結果を発生させない。
@@ -258,7 +259,7 @@ protocol/toolchain/environment/task/scope/target/oracle/cutoffの一要素だけ
 
 固定親はPO live26の49行が採択した `MPR-RC-HELIXLABO-L2-070-001`。source revision `ea6f756f96a7370de78e412d737c7a7ed472114a` のL2:561–574 SHA `07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533`、L11:297–307 SHA `c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1`をraw-LFで照合した。旧候補が参照した0abb2894の同範囲とbytesは一致し、採択状態はPO記録で確認する。
 
-実行前の測定設計候補。旧84 literalとraw ID/hashはJSON監査側に保持し、現行FVは旧84 IDを6列へ意味再導出し、CASE-85およびCASE-86..130を加えた130行の候補とする。以下は各測定軸に対する観測/判定材料で、実測結果ではない。
+実行前の測定設計候補。旧84 literalとraw ID/hashはJSON監査側に保持し、現行FVは旧84 IDを6列へ意味再導出し、CASE-85およびCASE-86..132を加えた132行の候補とする。以下は各測定軸に対する観測/判定材料で、実測結果ではない。
 
 | 測定軸 | 合成入力・比較 | 判定材料 |
 |---|---|---|
@@ -268,6 +269,7 @@ protocol/toolchain/environment/task/scope/target/oracle/cutoffの一要素だけ
 | overhead | direct measured observer-resource receiptを与え、CASE-03h/12/71でreceiptだけ欠落・対象workへの二重算入を変異。 | source定義単位の直接計測だけ保持。unknownはunknown、0や根拠なき推計値にしない。 |
 | freshness | source effective/occurred timeとobserved timeを正常に与え、CASE-03i/14/15でtimestamp不正/欠落とage起点の権限生成を個別に変異。 | age観測値またはunknown/invalidのみ。CASE-104/105/106はfresh/stale状態、期限、適格性をそれぞれ単独で生成する変異を拒否する。CASE-15の入力は有効であり、ageからのauthority/permission誤出力を拒否して070出力処理を訂正する。expiry/適格性/採否/許可を生成しない。 |
 | co-present metrics | 適用可能な067 first-eligible/same-Attempt repair fieldsと068 total Attempt fieldを各元receipt・revisionで示し、CASE-01、16–21/65–73、127–130を照合。 | identity/grain/revision/scope/receiptを分離し換算・合算・代替しない。CASE-18/127は067/068のscope mismatchを個別に隔離し、CASE-128は一般telemetryとscorecardのscope mismatchを隔離し、CASE-129/130は067/068のdefinition revision mismatchを個別に隔離する。CASE-19は正常な067/068入力の換算誤出力を拒否して070出力処理を訂正し、CASE-68はtotal Attempt countとresult stateの双方をunknownとする。欠落は原因別の既存責務区分へ返し、個別identity unknownを分ける。 |
+| 禁止success-rate生成 | CASE-01の有効scorecard入力に対し、CASE-131/132で`task_success_rate`と`attempt_success_rate`を各々単独生成する変異。 | 固定L2-068の「定義しない」を既存FR-LABO-068-03が生成禁止へ導く意味と、070の固定9 atom/L11-070「分子・分母の適用可能性が証明できない場合はrateを出さない」境界を照合して各field生成を拒否する。正常な067/068 fieldとowner identity unknownは保持する。成功率のoracle/分母/閾値は定義しない。 |
 | evidence validity and provenance | CASE-110–126およびCASE-128–130で、source completeness・identity・revision・unit・oracle・relation・receipt・scope/windowの固定親照合と、clock validity/provenanceの単独変異を照合する。正常CASE-01ではsource receiptのprovenance実値を期待値にする。 | 該当する欠落/stale/矛盾fieldはunknown/invalid/unavailable。正常receiptに対するprovenance出力誤りは070出力を訂正し、source責務へ返さない。 |
 
 追加の観測window/重大度/合否threshold/expiryの数値評価は行わない。固定親にない性能値や集計閾値を合否oracleへ足さない。
@@ -279,4 +281,4 @@ protocol/toolchain/environment/task/scope/target/oracle/cutoffの一要素だけ
 | 検証対象 | 合成入力・比較 | 判定材料 |
 |---|---|---|
 | revision consistency | CASE-01の正常値とCASE-99–101を比較し、target revision出力欠落、異なるtarget revisionの同一aggregate混入、入力source_revision欠落を個別に判定する。 | 受理可能なtarget/source revisionはsource receiptと一致し、欠落や混在をunknown/未評価として扱う。 |
-| authority/操作・source生成拒否 | 有効CASE-01 inputへ、CASE-85–93/96–98/102–109の各出力fieldを一つずつ単独生成する変異を適用。 | 各禁止fieldの生成を拒否し、他の根拠あるscorecard値および既存owner状態を保つ。CASE-10/15/19は正常入力の誤出力として070出力処理を訂正し、入力側ownerへ責務を移さない。 |
+| authority/操作・source生成拒否 | 有効CASE-01 inputへ、CASE-85–93/96–98/102–109/131/132の各出力fieldを一つずつ単独生成する変異を適用。 | 各禁止fieldの生成を拒否し、他の根拠あるscorecard値および既存owner状態を保つ。CASE-10/15/19は正常入力の誤出力として070出力処理を訂正し、入力側ownerへ責務を移さない。 |

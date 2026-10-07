@@ -1,0 +1,341 @@
+{
+  "schema": "os-stage2c-028-029-review01-correction/v1",
+  "base_revision": "8634d28bf30f622a8733c4afe8ac19a1d95d8dad",
+  "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+  "scope": [
+    "HELIXOS-L2-028",
+    "HELIXOS-L2-029",
+    "Stage 2c"
+  ],
+  "review_comments": {
+    "6046174165": {
+      "body_sha256": "157afe916797e4643a272d854cbe3eb294f2f9f6a49936ad9f36b267714417a1",
+      "body_bytes": 4787
+    },
+    "6046209966": {
+      "body_sha256": "4d63e94cf9d05277a0a619e6f63fe9fbd183c3d391bca144d2e808ae3265ca38",
+      "body_bytes": 3180
+    }
+  },
+  "fixed_parent_pins": {
+    "028": {
+      "L2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "full_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+        "spans": [
+          {
+            "lines": [
+              847,
+              862
+            ],
+            "sha256": "1b81d41d7aba1f2801978e81d39b132eac4d2b6818a332d484152bd23330e313",
+            "bytes": 5371
+          }
+        ]
+      },
+      "L11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "full_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+        "spans": [
+          {
+            "lines": [
+              457,
+              466
+            ],
+            "sha256": "4eb5b74e57c0d8441d5bb41fc3cba5f5cb31d58d780c31e0f735692a6e060b93",
+            "bytes": 3192
+          }
+        ]
+      }
+    },
+    "029": {
+      "L2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "full_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+        "spans": [
+          {
+            "lines": [
+              863,
+              877
+            ],
+            "sha256": "59a37b8d83fb269c12263089d937e696d0b9bfe8684d46822e267588802878f8",
+            "bytes": 6358
+          }
+        ]
+      },
+      "L11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "full_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+        "spans": [
+          {
+            "lines": [
+              468,
+              478
+            ],
+            "sha256": "921d184ab89892a7a257600e13e80290053dc49749e9f708909f27f2bd2f42ea",
+            "bytes": 5830
+          }
+        ]
+      }
+    }
+  },
+  "current_documents": {
+    "BR": {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "before_sha256": "cbe1866df47503b17e8a11b786dee8da58cd8a2a0a99778b64bd4a669b2fa702",
+      "after_sha256": "cbe1866df47503b17e8a11b786dee8da58cd8a2a0a99778b64bd4a669b2fa702",
+      "before_spans": [
+        {
+          "lines": [
+            9,
+            12
+          ],
+          "sha256": "6b9411dc461481e75d9e01869532740eb8c8f1feb137c99acaa8078998542d34",
+          "bytes": 533
+        }
+      ],
+      "after_spans": [
+        {
+          "lines": [
+            9,
+            12
+          ],
+          "sha256": "6b9411dc461481e75d9e01869532740eb8c8f1feb137c99acaa8078998542d34",
+          "bytes": 533
+        }
+      ],
+      "changed": false
+    },
+    "FR": {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "before_sha256": "bbce9cd4ddf12d181486c3cd9ca8166a8114b12dd79703b823028ba96d9b7c88",
+      "after_sha256": "e85234dbd13e7de59eb2b350009d144d1366cbe118399993da7ef257cef2fbc6",
+      "before_spans": [
+        {
+          "lines": [
+            57,
+            81
+          ],
+          "sha256": "acf8b8b788c71030459bd1734c891006a7aefe19c493372e53d683f1caca753b",
+          "bytes": 14380
+        }
+      ],
+      "after_spans": [
+        {
+          "lines": [
+            57,
+            81
+          ],
+          "sha256": "4cd748af4f8f9ba442471cb783f17ff0055e06e2e7f6af1a15d2c67cc1607d4e",
+          "bytes": 14535
+        }
+      ],
+      "changed": true
+    },
+    "NFR": {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "before_sha256": "1adbf2c993afada579bf465b25ffc661be1c7e23a8049fbbeddf0757eea959aa",
+      "after_sha256": "053d0055439e1b135914762ef8890c7c99e97614cda1915bca3bd7bcf2133cb4",
+      "before_spans": [
+        {
+          "lines": [
+            17,
+            38
+          ],
+          "sha256": "76d06c429e39c7a02662904ab12897e39b266603fd57266bdd1645084f8652d9",
+          "bytes": 4668
+        }
+      ],
+      "after_spans": [
+        {
+          "lines": [
+            17,
+            38
+          ],
+          "sha256": "43695f403c893d4f7dd01235ffb362d81b1f03161e2a20fefd4aac4a97942ad8",
+          "bytes": 5135
+        }
+      ],
+      "changed": true
+    },
+    "BV": {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "before_sha256": "f785e13aa9a1ef8494154f03e20d0582418916281c51a6b729d385d5b66ef051",
+      "after_sha256": "f785e13aa9a1ef8494154f03e20d0582418916281c51a6b729d385d5b66ef051",
+      "before_spans": [
+        {
+          "lines": [
+            13,
+            16
+          ],
+          "sha256": "69ce11731d49164fdfd03c388ae75062b241005c19ff4aac50a635119ab6ed10",
+          "bytes": 760
+        }
+      ],
+      "after_spans": [
+        {
+          "lines": [
+            13,
+            16
+          ],
+          "sha256": "69ce11731d49164fdfd03c388ae75062b241005c19ff4aac50a635119ab6ed10",
+          "bytes": 760
+        }
+      ],
+      "changed": false
+    },
+    "FV": {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "before_sha256": "18db9ef75dae92c613a3f9c2cb8666cf5ed75bf1ca550b351669218c4b2f039c",
+      "after_sha256": "4cc500da760fa125bba08d36d67f86a2a344613b604850c7591980fde2b6ed63",
+      "before_spans": [
+        {
+          "lines": [
+            79,
+            242
+          ],
+          "sha256": "07066dab23d47a711ab10c0750a4fd459dcd19b0e8c647e4f693dfa648900c85",
+          "bytes": 23254
+        }
+      ],
+      "after_spans": [
+        {
+          "lines": [
+            79,
+            242
+          ],
+          "sha256": "d865d7ddebeacdc1cf6c266998ac27d48a4dd3f38b601dccb0425fbdfe140518",
+          "bytes": 23445
+        }
+      ],
+      "changed": true
+    },
+    "NFRV": {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "before_sha256": "8203e109d5dbd1c862f16ee54ba8f275c0802e7c003f84319b5e2e942aabc7e2",
+      "after_sha256": "9a9b445d20bf24b1996bf4d4d8811d249e7f1cacad0c4cfaa3f292037413c454",
+      "before_spans": [
+        {
+          "lines": [
+            15,
+            30
+          ],
+          "sha256": "37af06bbfa997196c4a8514b264c834ee35eb141b2af29f3b9d913b5adb02dfb",
+          "bytes": 3992
+        }
+      ],
+      "after_spans": [
+        {
+          "lines": [
+            15,
+            30
+          ],
+          "sha256": "ec57caa9469853444ad091fd01e8d5b8eae225d74fc377897939d1b2ffad16cc",
+          "bytes": 4346
+        }
+      ],
+      "changed": true
+    }
+  },
+  "legacy_p2_04": {
+    "HR-FR-P2-04": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "full_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "spans": [
+        {
+          "lines": [
+            147,
+            147
+          ],
+          "sha256": "80e5e1458b29a3a528da1363136da617fc21bc6212b46074b871e2ef0d6964cf",
+          "bytes": 1118
+        }
+      ]
+    },
+    "HAT-P2-04": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "asset_id": "LEGACY-ASSET-44DD86E3DEC09E65EF51",
+      "full_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+      "spans": [
+        {
+          "lines": [
+            104,
+            104
+          ],
+          "sha256": "c2d5905826996429f528a247e4781d58609a6f753eb5776498dda78629f8eb49",
+          "bytes": 1587
+        }
+      ]
+    }
+  },
+  "previous_inventory_audit": {
+    "path": "docs/governance/audits/requirements-stage/os-stage2b-014-stage2c-028-029-meaning-audit-e028e18.md",
+    "sha256": "769c34dbcccd5e1b910e33f0245e25d6974b579be9150c08d9d8aece65353de8",
+    "json_path": "docs/governance/audits/requirements-stage/os-stage2b-014-stage2c-028-029-meaning-audit-e028e18.json",
+    "json_sha256": "dfb417dfd3a4814d4027932f23950bc9c4420964cc75bb0c3b519d8d70abcf66",
+    "byte_identical_to_original_tmp": true,
+    "original_tmp_path": "/tmp/os-stage2b-014_stage2c-028-029-meaning-audit-e028e18.md",
+    "original_tmp_json_path": "/tmp/os-stage2b-014_stage2c-028-029-meaning-audit-e028e18.json"
+  },
+  "corrections": [
+    {
+      "finding": "M1",
+      "cases": [
+        "CASE-OS-029-08a",
+        "CASE-OS-029-08b",
+        "CASE-OS-029-08c",
+        "CASE-OS-029-08d",
+        "CASE-OS-029-08e"
+      ],
+      "change": "L2-029:876 categories only; 08a/b/d -> INTELLIGENCE/OS; 08c source-scope issue -> INTELLIGENCE/OS, task-scope mismatch -> original Worker/OS; 08e -> SECURITY/OS. No source owner added. Preserve selected-support hold, no OS-028 receipt, and unfinished duty."
+    },
+    {
+      "finding": "Minor selection-state",
+      "change": "NFR/NFRV 028/029 count missing/unknown source/support selection state as missing/unknown, never as unselected; incomplete required fields cannot enter completed numerator."
+    },
+    {
+      "finding": "Minor CASE-OS-028-03t",
+      "change": "Make selected support hold explicit."
+    },
+    {
+      "finding": "Supplement Minor 1 CASE-OS-028-03v",
+      "change": "Route source/permission to source owner/SECURITY, resource constraints to INFRASTRUCTURE, and ticket/scope/authority state to OS."
+    },
+    {
+      "finding": "Supplement Minor 2 FR-OS-029",
+      "change": "Align FR requirement/AC with L2-029:873 staged support method/consult/repair record."
+    },
+    {
+      "finding": "Supplement Minor 3 NFR-OS-028-01",
+      "change": "Explicitly disclose numerator required-field set expansion (provenance/scope/constraints included) while keeping denominator definition unchanged."
+    },
+    {
+      "finding": "Supplement Minor 4 prior audit evidence",
+      "change": "Pin the exact prior inventory audit MD/JSON bytes under docs/governance/audits/requirements-stage; old audit JSON remains immutable."
+    }
+  ],
+  "legacy_p2_04_disposition": {
+    "reuse": "TDD support-before-implementation ordering and preserving consultation-pending until response are represented only where applicable under current fixed L2-029 selected-support/consult stages.",
+    "rederive": "Current source binding, OS/INTELLIGENCE/SECURITY/INFRASTRUCTURE returns, independent reviewer separation, and incomplete/unfinished semantics derive from fixed L2/L11-028/029.",
+    "replace_or_not_carried": "API/SDK avoidance premise; PLAN freeze; harness DB trace-span implementation; eval-green promotion gate; fixed difficulty-to-maxFixCycles policy; pair-agent CLI/runtime/evidence schema and old test assertions are not imported because current fixed L2/L11 do not require those specifics.",
+    "sources_read": "HR-FR-P2-04 line 147 and paired HAT-P2-04 line 104, full files and exact spans pinned above."
+  },
+  "verification": {
+    "fixtures_executed": false,
+    "legacy_runtime_cli_tests_ci_executed": false,
+    "git_diff_check": "passed",
+    "json_parse": "passed",
+    "six_document_full_and_span_pin_recalculation": "passed",
+    "fixed_parent_full_and_span_pin_recalculation": "passed",
+    "case_id_uniqueness_and_ac_trace_mapping": "passed",
+    "029_return_route_categories": "passed",
+    "selection_state_missing_unknown_guards_in_NFR_NFRV": "passed",
+    "prior_inventory_audit_byte_identity_against_tmp": "passed",
+    "approval_or_admission_created": false
+  }
+}

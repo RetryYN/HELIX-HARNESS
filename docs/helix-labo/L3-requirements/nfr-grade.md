@@ -172,7 +172,7 @@
 未計測設計。固定L2/L11のfieldとoracleだけを使い、最低N、成功率/資格threshold、SLA、freshness期限、PO別parameter approvalを加えない。
 
 - NFR-LABO-059-01 比較可能性・費用/時間内訳: 選択されたscope/cohortごとにtask/snapshot、quality/acceptance oracle、decision scope、protocol/scorer/hardware/toolchain、receipt completeness、費目、human quantity、duration、未選択群/未測定状態を別々に記録する。欠測・unknown・未価格化・未完を成功/0へ変えない。分母0/不明では率を出さない。
-- 対象定義はL10-LABO-059の全定義83件。正常/未見正常とnegative、compound CASE-30、non-independent index CASE-22/33–36を分類別に集計する。独立fixture設計は77件（既存54＋追加23）、compound1件・index5件は分母外。これは設計上の件数で、実測母集団や成功件数ではない。
+- 対象定義はL10-LABO-059の全定義85件。正常/未見正常とnegative、compound CASE-30、non-independent index CASE-22/33–36を分類別に集計する。独立fixture設計は79件（既存54＋追加25）、compound1件・index5件は分母外。CASE-14はtask revision、CASE-58はsource revision、CASE-71はrequirement revision、CASE-72はacceptance-oracle revisionの不一致を個別に照合する。これは設計上の件数で、実測母集団や成功件数ではない。
 - CASE-NFR-LABO-059-01は実行記録ではない。CASE-64ではprovider labelのみの入力差とactual model identityを分離し、score invarianceを別観点として数える。人間調査/検証時間は貨幣費用と別fieldとする。
 
 
@@ -190,7 +190,7 @@
 |---|---|---|
 | `LABO-061-NFR-01` 比較適格性と不成立保持 | 実測母集団は選択・適用されたrunで構成し、valid・failed・invalid・missing・unknown・stale・censoredを全て状態別に保持する。率を示す場合は母集団数/分母を明記し、分母0または不明では率なし。実測がなければ未実測。 | CASEは設計上のfixture定義であり実測母集団ではない。normalも適用runなら実測母集団に含む。索引はfixture定義数へ重複計上せず、具体的traceはNFR検証文書で示す。 |
 | `LABO-061-NFR-02` 履歴・field完全性 | 15 task snapshot fieldとtask/oracle/protocol/scorer identity・version・digestを個別に追跡する。missing、unknown、stale、mismatchは混同しない。 | fieldごとのL10 oracleを照合し、CASE数を測定値や被覆率へ変換しない。 |
-| `LABO-061-NFR-03` 漏洩・role separation・authority境界 | secret等の機微値を合成canaryで扱い、実secret/PIIは用いない。leakage、author/judge混同、receipt由来のauthority誤生成を個別に保持する。 | L10の具体的な単独変異と期待状態。固定閾値・最低N・固定SLAを新設しない。 |
+| `LABO-061-NFR-03` 漏洩・role separation・authority境界 | secret等の機微値を合成canaryで扱い、実secret/PIIは用いない。leakage、author/judge混同、receipt由来のauthority誤生成、Worker起動/candidate採択、固定059 revisionへの遡及適用、旧runtime起動要求を個別に保持する。 | L10の具体的な単独変異と期待状態。固定閾値・最低N・固定SLAを新設しない。 |
 
 
 ## Stage 5 — HELIXLABO-L2-063 技術計測候補
@@ -201,7 +201,7 @@
 | `LABO-063-NFR-02` 状態遷移と戻し先 | warning、candidate、OS registration/routing、owner adoption/change、HARNESS verification、post-operation observation、effect evaluationを区別し、未完stateを成功へ変換しない。 | 個々の欠落/stale oracleはL10の定義と固定L2/L11を参照する。対象owner/observation sourceの個体識別ができない場合はunknownを保持する。 |
 | `LABO-063-NFR-03` authority境界と未完状態 | LABOは知識を評価・保持し、gate強制、canonical write、採否/assignment/permission/authority生成をしない。OS registration、対象owner adoption/change、HARNESS verification、post-operation observation/effect evaluationを別状態に保ち、candidate/receipt/修復成功を完了へ丸めない。 | L3 `LABO-063-AC-03` とL10 `LABO-063-NFR-03` の状態境界を対応させる。固定L2/L11の既存責務区分のみを適用し、generic owner・新threshold・新authorityを追加しない。 |
 
-L10は69個の完全ID定義を保持する。literalから抽出した分類候補は正常5、negative 53、非独立索引11だが、独立性や意味的被覆の検収結果ではない。L10-LABO-063-CASE-58はL10-LABO-063-CASE-13と同じ観測欠落軸を含むため、単独負例の実測分母へ二重計上しない。実測母集団とCASE inventoryを混同しない。固定再発閾値、観測窓、最低試行数、SLA、合格率を新設せず、入力された母集団/閾値が不明ならunknownとする。
+L10は旧公開69 IDと追補CASE-66〜68を含む72個の完全ID定義を持つ。分類候補は正常6（CASE-01/02/05/07/10/67）、negative55、非独立索引11であり、独立性や意味的被覆の検収結果ではない。L10-LABO-063-CASE-58はL10-LABO-063-CASE-13と同じ観測欠落軸を含むため、単独負例の実測分母へ二重計上しない。実測母集団とCASE inventoryを混同しない。固定再発閾値、観測窓、最低試行数、SLA、合格率を新設せず、入力された母集団/閾値が不明ならunknownとする。
 
 ### HELIXLABO-L2-065 — 根拠付き測定候補（1.0候補）
 
@@ -238,7 +238,7 @@ L10は69個の完全ID定義を保持する。literalから抽出した分類候
 未計測設計。固定L2/L11にない数値threshold、最低N、成功率、SLA、timeliness/freshness値を追加しない。unknown/missing/重複/順序不明を0または正常値に変えない。
 
 - `NLABO-067-FR-01-01` first-eligible/repair-event evidence completeness: selected task/scope/revisionに対するpredicate/oracle identity+revision、candidate identity/digest、OS assignment/AttemptID、eligibility/repair/result receiptsの観測可能性とunknownをfield別に記録する。roundは同一assignment Attempt内で観測receiptが確定した範囲だけ数え、別Attemptと総Attempt countを混ぜない。source/個体 identityがunknownならrole分類とunknown stateを保持する。これは計測設計で実測ではない。
-- `L10-LABO-067` CASE定義は旧30 literalと本候補追加CASE-24–38を個別IDで索引する。単一点性・独立性は未reviewであり、CASE数は完全性の証明ではない。
+- `L10-LABO-067` CASE定義は旧30 literalと本候補追加CASE-24–39を個別IDで索引する。単一点性・独立性は未reviewであり、CASE数は完全性の証明ではない。
 
 ## Stage 5 — HELIX-LABO L3 NFR候補 — HELIXLABO-L2-069
 
@@ -247,9 +247,10 @@ L10は69個の完全ID定義を保持する。literalから抽出した分類候
 | 性質 | 候補 | 根拠・対の観測 | 限界 |
 |---|---|---|---|
 | 比較の再現性 | resultに使ったticket/assignment, source/revision, scope, classification, denominator, window, completeness, relation/evidenceを追跡可能にする。入力不足時は同じ不足状態をunknown/未評価として保持する。 | 固定L2比較保証とL11比較不能例。FV-069 CASE-01, 05–10, 20–26, 28–32。 | 新しい必須schema field・rate threshold・window長は定義しない。 |
+| 評価candidateの必須構成 | 固定L2が求める理由別傾向、counterexample、regression risk、revalidation conditionをcandidateへ含める。 | FV-069 CASE-01/44–47でCASE-01正常出力と4要素の各単独欠落を照合する。 | 追加metric・threshold・統計方式を設けない。 |
 | 欠測忠実性 | 欠測/unknown/censored/untracked/window未満を0または成功へ変換しない。 | 固定L2/L11明示条件。FV CASE-03b, 07–12, 20–25, 28, 30–32。 | 数値上限・統計方式を追加しない。 |
 | 因果claim境界 | evidence-backed relationの個別記録と、因果効果/発行精度改善の一般化を分ける。時間/pathだけ、単一例だけ、単純前後比較だけで一般化しない。 | 旧source line 319、固定L2比較保証、L11不合格例。FV CASE-03c, 13, 33。 | 因果推論方式/confidence thresholdは要求しない。 |
-| authority isolation | LABO評価の書込み先をcandidateに限り、ticket/priority/assignment/oracle/authorityおよびsource closureを書き換えない。 | 固定L2境界、L11不合格/受入限界。FV CASE-04a, 14–19, 34–43。 | 既存ownerの内部実装やSECURITY分類を再定義しない。 |
+| authority isolation | LABO評価の書込み先をcandidateに限り、ticket/priority/assignment/oracle/authorityおよびsource closureを書き換えない。 | 固定L2境界、L11不合格/受入限界。FV CASE-04a, 14–19, 34–43, 48（未評価結果からのticket発行拒否）。 | 既存ownerの内部実装やSECURITY分類を再定義しない。 |
 
 旧sourceの数値を引き継がない。技術parameterが必要になった場合は候補値・比較根拠・測定方法を対で記録するが、ここで閾値を新設しない。
 
@@ -295,7 +296,7 @@ L10は69個の完全ID定義を保持する。literalから抽出した分類候
 |---|---|---|---|
 | `NFR-LABO-071-01` — qualification binding | 選択task class、model revision、evaluation scope、evidence identity/revision、qualification state | 全keyが同じ対象を指す場合だけqualification stateを追跡可能にする。欠落/stale/mismatchはunknown/未評価。 | 固定L2/L11のbinding条件に由来。数値閾値、必須class集合、最低sample数は設定しない。 |
 | `NFR-LABO-071-02` — invalidation provenance | recorded major-miss sourceと対象revision、model revision updateと旧qualification記録 | 対象資格だけを失効し、新revisionへ旧資格をコピーしない。事象・revisionの根拠欠落はunknown。 | triggerは固定親の二種類のみ。独自expiry、時間window、再評価schedule、重大度分類を作らない。 |
-| `NFR-LABO-071-03` — field/authority isolation | title, qualification, permission, authority, assignment role, scope, source refsを独立fieldで照合。title→permission/authority/assignment、permission→assignment、assignment→permissionの各出力fieldを個別に比較する。 | 一 fieldの変化から他fieldを自動更新しない。qualification invalidation時もpermission P0、assignment A0、authority H0は各independent source値と一致させる。 | qualificationからpermission・assignmentを生成しない。permissionのexpiry/revocation規則をLABOへ複製しない。各outputは既存SECURITY/OS状態のまま。 |
+| `NFR-LABO-071-03` — field/authority isolation | title, qualification, permission, authority, assignment role, scope, source refsを独立fieldで照合。title→qualification、qualification→title、title→permission/authority/assignment、permission→assignment、assignment→permissionの各出力fieldを個別に比較する。 | 一 fieldの変化から他fieldを自動更新しない。FV CASE-r06-qualification-to-titleを含む。qualification invalidation時もpermission P0、assignment A0、authority H0は各independent source値と一致させる。 | qualificationからpermission・assignmentを生成しない。permissionのexpiry/revocation規則をLABOへ複製しない。各outputは既存SECURITY/OS状態のまま。 |
 
 これらは固定意味から導く計測/追跡可能性の候補で、実測値・threshold・SLA・期限・合格率ではない。件数や欠落率を報告する場合の母集団は、事前選択されたscopeと現に利用可能なsource recordから受け取り、このparentで新設しない。
 
@@ -325,6 +326,7 @@ L10は69個の完全ID定義を保持する。literalから抽出した分類候
 | observer overhead | source定義に従った直接測定資源をtask workから区分。 | 固定L2 overhead clause、FV CASE-03h、12、71。 | unknownを0や推計値にしない。 |
 | evidence freshness | sourceの有効時刻と観測時刻の差だけを値として提示。 | 固定L2 freshness clause、FV CASE-03i、14–15。CASE-15は有効入力からの誤ったauthority出力を拒否し、070出力処理を訂正。 | ageからfresh/stale状態・expiry・適格性/admission/permissionを作らない。CASE-104–106は各単独field生成を拒否。 |
 | metric identity | 067/068の定義revision/receiptと070 field identityを保持。 | 固定L2 Attempt co-presentationと既存12 metric境界、FV CASE-01、16–21、65–73、127–130。CASE-18/127は067/068のscope mismatchを個別に隔離し、CASE-128は汎用telemetryとscorecardのscope不一致を分離し、CASE-129/130は067/068のdefinition revision mismatchを個別に隔離する。CASE-19の有効067/068 inputからの換算出力を拒否し、CASE-68はtotal countとresult state双方をunknownにする。 | 065 retry等への換算・合算・代替、旧12指標へのsilent renameなし。 |
+| 禁止success-rate生成 | 070の正常scorecard入力で`task_success_rate`と`attempt_success_rate`を各々一つだけ生成する誤出力。 | FV CASE-131/132で各禁止fieldを単独で拒否し、他の入力/scorecard fieldと既知・unknownのowner状態を保持する。 | 固定L2-068の「定義しない」を既存FR-LABO-068-03が生成禁止へ導く意味として適用する。070の固定9 atomとL11-070の分子/分母適用可能性なしのrate不出力も保ち、新しい分母・oracle・閾値・ownerは作らない。 |
 | provenance fidelity | 各evidenceのsource identity/revision/provenance実値をsource receiptから保ち、正常出力のprovenanceと完全一致させる。 | 固定L2-070 freshnessとL2-001 source preservation、FV CASE-01/125/126。 | provenanceが欠落/不一致のLABO出力は訂正し、正常receipt供給元へ誤りを返さない。新provenance schemaを作らない。 |
 
-authority境界の単独出力field確認はFV CASE-85–93/96–98およびCASE-102–109に対応する。target revision/source revisionの一致確認はFV CASE-99–101に対応する。不足・stale・矛盾14セルと時計不正はCASE-110–124、正常入力からの一般telemetry scope不一致はCASE-128、067/068定義revision不一致はCASE-129/130、provenance出力の欠落/別値はCASE-125/126に対応する。性能・保持・監視周期を数値化する根拠は固定parentにない。必要な値が生じたら既存source定義と対の測定候補を記録し、閾値を推測で追加しない。
+authority境界の単独出力field確認はFV CASE-85–93/96–98/102–109/131/132に対応する。CASE-131/132は、固定L2-068の「定義しない」を既存FR-LABO-068-03が生成禁止へ導くtask success rate/Attempt success rateについて、070の9 atom/L11-070 rate不出力境界を保ち各出力を単独で拒否する。target revision/source revisionの一致確認はFV CASE-99–101に対応する。不足・stale・矛盾14セルと時計不正はCASE-110–124、正常入力からの一般telemetry scope不一致はCASE-128、067/068定義revision不一致はCASE-129/130、provenance出力の欠落/別値はCASE-125/126に対応する。性能・保持・監視周期を数値化する根拠は固定parentにない。必要な値が生じたら既存source定義と対の測定候補を記録し、閾値を推測で追加しない。

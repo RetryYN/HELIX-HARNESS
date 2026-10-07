@@ -1,0 +1,296 @@
+{
+  "record_type": "read-only-source-pinned / implementation evidence; not an approval or runtime result",
+  "task": "LABO Stage5 selected design additions for 069/070/071",
+  "worktree": "/home/tenni/.helix-worktrees/labo-stage5-minor-index-cases",
+  "branch": "codex/labo-stage5-minor-index-cases",
+  "base_revision": "0d8fcb67ef64e17e0e3529715011d6140652f017",
+  "old_audit_main_pin_correction": {
+    "prior_immutable_record_md": "/tmp/root-labo-stage5-semantic-audit-068-071-6f9462f1.md",
+    "prior_immutable_record_json": "/tmp/root-labo-stage5-semantic-audit-068-071-6f9462f1.json",
+    "prior_md_sha256": "23ce55b8b04c0d77ec0b37964df1b4c18b5d2aa328c0108591c037500fa86ba6",
+    "prior_json_sha256": "caa8163f1de17567f477f042614e6852e546bf8f2530c14c3aae6d35ab954bc9",
+    "wrong_json_main_revision": "6f9462f1706a9e8670b97ad259e96c8c40632a4",
+    "correct_exact_revision": "6f9462f1706a9e8670b97ad259e96c8c40632a4a",
+    "old_record_mutated": false
+  },
+  "fixed_parent_pins": {
+    "069": {
+      "L2": {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "lines": [
+          552,
+          559
+        ],
+        "file_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+        "span_sha256": "605acfa9ec39bbdc0d964f3bf3c644122f1c081c202ddea48fe682ac31be5bc9"
+      },
+      "L11": {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "lines": [
+          288,
+          295
+        ],
+        "file_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+        "span_sha256": "d1cc8c180bab90b84ef6300bf91c79d622cff416a596131fe0b1843fd6aa61db"
+      }
+    },
+    "068_boundary_for_070": {
+      "L2": {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "lines": [
+          541,
+          550
+        ],
+        "file_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+        "span_sha256": "7e3df32b0131722c88ae148c4cbfa9a1be20f81826099c0ceb29a674e07030e2"
+      },
+      "L11": {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "lines": [
+          278,
+          286
+        ],
+        "file_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+        "span_sha256": "3dcf068de1351b2e8c1f2d772ec9273cb7908368a32b389ee40ce51929ad8d94"
+      }
+    },
+    "070": {
+      "L2": {
+        "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "lines": [
+          561,
+          574
+        ],
+        "file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+        "span_sha256": "07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533"
+      },
+      "L11": {
+        "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "lines": [
+          297,
+          307
+        ],
+        "file_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+        "span_sha256": "c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1"
+      }
+    },
+    "071": {
+      "L2": {
+        "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "lines": [
+          576,
+          584
+        ],
+        "file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+        "span_sha256": "3036e4c300ee6f78e74b819657d456c0bad08b8ccb483882cfc3b59fa5bbbe1f"
+      },
+      "L11": {
+        "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "lines": [
+          309,
+          316
+        ],
+        "file_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+        "span_sha256": "029c6bcea5a206a15c8bbe9706ff25917fbf9a6496b3891288fc2660634f7bc0"
+      }
+    }
+  },
+  "legacy_source_pins": [
+    {
+      "label": "069 post-close assessment",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+      "lines": [
+        319,
+        319
+      ],
+      "local_file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "local_span_sha256": "69d2c0a4cb59e7b85d25745a78823d614869d15923aa0d5793a3f50263d2e476"
+    },
+    {
+      "label": "069 acceptance/consumer",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+      "lines": [
+        92,
+        140
+      ],
+      "local_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "local_span_sha256": "062f0c31b19914bb7e506606b0bd2046bd3d40ccbda00e5ad561e438e5acd6f5"
+    },
+    {
+      "label": "069 feedback lifecycle",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/feedback-lifecycle.md",
+      "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+      "lines": [
+        24,
+        24
+      ],
+      "local_file_sha256": "2e0a028fc48c6acc92a5b09ada9fc511ed0389b71af9deee782ec81aa731a655",
+      "local_span_sha256": "5afb8c01c5f3705e0c8ee690ca4f302db5cb3e2907b3ae1e12c93b773e2bdcb4"
+    },
+    {
+      "label": "070 selected telemetry atoms",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+      "lines": [
+        399,
+        399
+      ],
+      "local_file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "local_span_sha256": "aa9dacc58969d896bbfbe38ce9c2ed6b55f47476b4cd3a411041d62bebf70468"
+    },
+    {
+      "label": "071 old L1 request",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+      "source_revision": "3795bf0dcb731231a0b5ca1faa3cb67bdfeda22a",
+      "lines": [
+        67,
+        69
+      ],
+      "local_file_sha256": "e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765",
+      "local_span_sha256": "ab29276edf0e04c4c163ab5d4e3889b0c845fbbd86fc0f7d23f8bd32a7ffdb4e"
+    },
+    {
+      "label": "071 old L3 requirement",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/three-lane-cloud-governance-requirements.md",
+      "source_revision": "3795bf0dcb731231a0b5ca1faa3cb67bdfeda22a",
+      "lines": [
+        77,
+        79
+      ],
+      "local_file_sha256": "4b388cda67484f1808b0f4b8834d5d234a47de49f7db6dcb12d92d2dcfbee185",
+      "local_span_sha256": "e7c4bec23a84c57b06c826c67ae19d011293a689d1b7463c10ea0d5950a313dd"
+    },
+    {
+      "label": "071 old acceptance",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/three-lane-cloud-governance-acceptance.md",
+      "source_revision": "3795bf0dcb731231a0b5ca1faa3cb67bdfeda22a",
+      "lines": [
+        44,
+        47
+      ],
+      "local_file_sha256": "785421188d23f371290ff5bacecba6c5215e7baa66110c461f548cae8f6a2fc7",
+      "local_span_sha256": "db3f977c22140f8ef9cb9628fa0341fe261daabaf7240051211df91ce6406993"
+    }
+  ],
+  "six_document_sha256": [
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "before_sha256": "7908f4f075e3aa4514656a1f5e65ddfced120f6800fc9372fd9a6f673c28e99a",
+      "before_bytes": 32852,
+      "after_sha256": "7908f4f075e3aa4514656a1f5e65ddfced120f6800fc9372fd9a6f673c28e99a",
+      "after_bytes": 32852,
+      "changed": false
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "before_sha256": "5a97eef5d322f8b79d5bce433494c7ad1548fa1b6ef1eb27749882036f7afece",
+      "before_bytes": 354046,
+      "after_sha256": "451aa601054da454e87826fe4453c32f8a9664b0a3739783df40d2d3ae08ad0a",
+      "after_bytes": 354536,
+      "changed": true
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "before_sha256": "343604239051cfc452d924688a98c15288b0e30f3e02492cda843269bbf58b4b",
+      "before_bytes": 91242,
+      "after_sha256": "b99360dec26e5e0d6ae23686b9e03fda8807417992b2517477dd744aa7505c60",
+      "after_bytes": 92216,
+      "changed": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "before_sha256": "2a8486d6ce980a934ece785b0d6670f0dc308da36ebe100aaeb099cac4cc5cac",
+      "before_bytes": 31387,
+      "after_sha256": "e941a08a9e73e718e9dabc8bc69c3b5dc8b0bfabde2fdeaa09b27512e965c89e",
+      "after_bytes": 31659,
+      "changed": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "before_sha256": "5242a94fed5618792f7d2ecc8c1b6a13cf4788e79fb66b2e0b2312f34425a29e",
+      "before_bytes": 692699,
+      "after_sha256": "98702111105905e2a7bbf562493652aa8378b7ce47804fda427054927bb77af4",
+      "after_bytes": 695437,
+      "changed": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "before_sha256": "2983f735ae142e126946039b195a0be483b476ffa35ef5cffee976d9f299146a",
+      "before_bytes": 82074,
+      "after_sha256": "f131998c58e45325d2b0888746ea648aa1ab13686ecc33d84c20e163b7ba3a88",
+      "after_bytes": 82807,
+      "changed": true
+    }
+  ],
+  "case_counts": {
+    "069": {
+      "before": 52,
+      "after": 52,
+      "unique_after": 52,
+      "added_ids": [],
+      "duplicate_rows": 0
+    },
+    "070": {
+      "before": 130,
+      "after": 132,
+      "unique_after": 132,
+      "added_ids": [
+        "CASE-131",
+        "CASE-132"
+      ],
+      "duplicate_rows": 0
+    },
+    "071": {
+      "before": 45,
+      "after": 46,
+      "unique_after": 46,
+      "added_ids": [
+        "CASE-r06-qualification-to-title"
+      ],
+      "duplicate_rows": 0
+    }
+  },
+  "design_changes": [
+    {
+      "parent": "069",
+      "change": "NFR/NFRV trace-index only: CASE-44–47 cover four required AC-01 candidate outputs individually; CASE-48 covers ticket-issue generation from unevaluated result. Existing fixture semantics and 52-row count unchanged."
+    },
+    {
+      "parent": "070",
+      "change": "Two local independent output-generation negatives: CASE-131 task_success_rate only; CASE-132 attempt_success_rate only. All other fields/source states retained, including unknown oracle/individual owner identity. Existing 068 prohibition is cited; no rate definition, denominator, owner, threshold, or gate added. 130→132 cases."
+    },
+    {
+      "parent": "071",
+      "change": "One independent qualification→title output mutation under existing FR-03/AC-03; baseline current values remain separate, only title output changes; restore source title and preserve owner identity unknown. 45→46 cases."
+    }
+  ],
+  "static_validation": {
+    "git_diff_check": "PASS",
+    "070_case_row_ids_unique": true,
+    "071_added_id_occurs_once": true,
+    "no_duplicate_within_parent": true,
+    "scope": "only LABO Stage5 069/070/071 plus 068 fixed negative boundary cited by explicit 070 scope",
+    "old_runtime_test_ci_archival_execution": "not run"
+  },
+  "unverified": [
+    "Independent Claude review has not occurred.",
+    "No runtime execution, CI, L10 operation, approval, or authority effect is asserted.",
+    "Parent semantic review remains Root responsibility."
+  ],
+  "old_immutable_audit_file_sha256": {
+    "/tmp/root-labo-stage5-semantic-audit-068-071-6f9462f1.md": "23ce55b8b04c0d77ec0b37964df1b4c18b5d2aa328c0108591c037500fa86ba6",
+    "/tmp/root-labo-stage5-semantic-audit-068-071-6f9462f1.json": "caa8163f1de17567f477f042614e6852e546bf8f2530c14c3aae6d35ab954bc9"
+  },
+  "implementation_commit": "04816106774ffff47f651acfb7742c697c256cf4",
+  "push_status": "not pushed"
+}

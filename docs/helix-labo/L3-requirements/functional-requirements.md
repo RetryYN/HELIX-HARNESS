@@ -1609,17 +1609,17 @@ LABOはFeedbackの評価・candidate提示・変更後re-observationを担う。
 
 | 固定条件 | L3で保つ意味 | 対AC | 既存/追加L10根拠 |
 |---|---|---|---|
-| L2-059:420、L11:170 | 同一task/work scope、要求/受入/oracle revision、対象期間、scorer/run condition、OS receiptを選択比較に束縛する。 | AC-01/03 | CASE-01/02、03a/b/i、10–14、51、57–62 |
+| L2-059:420、L11:170 | 同一task/work scope、要求/受入/oracle revision、対象期間、scorer/run condition、OS receiptを選択比較に束縛する。task revision、source revision、requirement revision、acceptance-oracle revisionを別fieldとして照合する。 | AC-01/03 | CASE-01/02、03a/b/i、10–14、51、57–62、71–72 |
 | L2-059:420/426、L11:170/173–175 | 実験条件とcohortを別軸にし、目的別に二群/三群を選ぶ。未選択群を必須化しない。 | AC-01/02/03 | CASE-01/02、03h/i、15、21、50 |
 | L2-059:420/429、L11:170/173/176 | 現行OS割当とhistorical当時のactor/authority/receiptを保ち、assignmentを後付けしない。 | AC-01/03 | CASE-01、16、51 |
 | L2-059:421–422、L11:170/173–175 | oracle別のquality/acceptance出力、同順位/比較不能、品質先行、適用可能な既決priorityの再利用。 | AC-01/02/03 | CASE-01/02、03b–d、05–08、48–49 |
 | L2-059:423–424、L11:170/173–174 | receipt付き全費目、人時間数量、duration定義、accepted outcome/未完状態を分離する。 | AC-01/03 | CASE-01、03e/f/m/g/j–l、17–20、22–30、37、39–56 |
-| L2-059:425/427 | LABOはeffort/Workerを選ばず、source identity/version/digestと依存契約を保持する。 | AC-01/03 | CASE-01、04a、38、57–62 |
-| L2-059:428–429 | 保証限界と変更禁止を保ち、欠落原因別に既存戻し先を使う。 | AC-03 | CASE-03a–l/m、04a/b、31–32、37、48–70 |
+| L2-059:425/427 | LABOはeffort/Workerを選ばず、source identity/version/digestと依存契約を保持する。 | AC-01/03 | CASE-01、04a、14、38、57–62、71–72 |
+| L2-059:428–429 | 保証限界と変更禁止を保ち、欠落原因別に既存戻し先を使う。 | AC-03 | CASE-03a–l/m、04a/b、31–32、37、48–72 |
 
 - LABO-059-AC-01 正常: 選択目的に必要な比較群と同一条件、適用可能なquality oracle/既決decision、OS assignment/実験結果receiptを対応づけ、quality、acceptance、cost、time、人介入、effortと比較不能項目を別々に返す。有効decisionは同scope内で再利用する。
 - LABO-059-AC-02 未見正常: 条件が選択scope内で適用可能な未見taskでも、選択した群の証拠を保って比較する。未選択群の欠落で選択済み比較を拒否しない。未見taskへの一般化は主張しない。
-- LABO-059-AC-03 不成立・戻し先: 条件/receipt/identity/revisionの欠落や不一致、品質未達の相殺、cost/time/human quantityの欠落、未完runの成功化、過去結果のcurrent化、scope外claim、LABOによるauthority副作用を独立oracleで拒否する。戻し先はL2-059:429に明記された原因別既存source区分へ限定し、未特定ならunknownを保つ。
+- LABO-059-AC-03 不成立・戻し先: 条件/receipt/identity/revisionの欠落や不一致、品質未達の相殺、cost/time/human quantityの欠落、未完runの成功化、過去結果のcurrent化、scope外claim、LABOによるauthority副作用を独立oracleで拒否する。task revision（CASE-14）とsource revision（既存CASE-58）、requirement revision（CASE-71）、acceptance-oracle revision（CASE-72）を別fieldとして照合する。task/source側の不一致は既存OSまたは観測sourceへ、requirement/acceptance-oracle側の不一致は既存HARNESS/要求ownerへ戻す。個別source/owner identityが特定できない場合はunknownを保つ（L10 CASE-14/58/71/72）。その他の戻し先もL2-059:429に明記された原因別既存source区分へ限定し、未特定ならunknownを保つ。
 
 #### 旧source起点と対応
 
@@ -1694,7 +1694,10 @@ L10に置く一項目変異候補を個別に照合し、単一点性は独立re
 | secret・future answer・hidden oracle等がWorker-visible contextへ漏れた比較を有効扱いしない | L2-061:461–464; L11-061:208–210 | `LABO-061-AC-03`; 情報漏洩の判定・permissionはSECURITY、識別可能な入力sourceはその既存ownerへ返す。 |
 | author/judgeのidentity・session・context分離と、judgeが使うoracleをWorker漏洩と混同しない | L2-061:462–465; L11-061:209–211 | `LABO-061-AC-01/03`; 役割/可視範囲を区別し、盲検成立・任命をLABOが生成しない。 |
 | selected taskに限ってsnapshot fieldを照合し、055通常履歴や未選択sourceへ一律適用しない | L2-061:465–467; L11-061:211–213 | `LABO-061-AC-02/03`; 適用scopeを選択taskへ束ね、非適用根拠のある通常履歴はfield欠落へ変換しない。 |
-| failed/invalid/historical evidenceを保持し、別run・current値で補わず、score/receiptからauthorityを作らない | L2-061:467–469; L11-061:213–215 | `LABO-061-AC-03`; task/oracle条件はその既存owner、漏洩はSECURITYと識別可能なsource owner、実行context/assignment/receiptは実行主体へ返す。個人・source identity不明はidentity unknownを維持する。 |
+| failed/invalid/historical evidenceを保持し、別run・current値で補わず、score/receiptからauthorityを作らない | L2-061:465–467; L11-061:213–215 | `LABO-061-AC-03`; task/oracle条件はその既存owner、漏洩はSECURITYと識別可能なsource owner、実行context/assignment/receiptは実行主体へ返す。個人・source identity不明はidentity unknownを維持する。 |
+| 適用性unknownを既知の安全性へ継承せず、登録/配送receiptだけで隔離を成立扱いしない | L2-061:463,467; L11-061:214–215 | `LABO-061-AC-02/03`; CASE-03e/18でtask/oracle ownerへ戻し、CASE-115で実context欠落とreceipt成功を分ける。 |
+| receipt/scoreからWorker起動・candidate採択を行わず、061条件を固定059 revisionへ遡及適用しない | L2-061:459,461,464–467; L11-061:207,214–215 | `LABO-061-AC-03`; CASE-116/117/118で起動・採否・revision scopeを独立照合する。 |
+| historical resultをcurrent証拠へ偽装せず、旧runtimeを起動しない | L2-061:465–467; L11-061:213 | `LABO-061-AC-03`; CASE-83は当時runtime欠落、CASE-119は旧runtime replay要求をそれぞれ照合する。 |
 
 ### LABO-061-AC-01 — 選択taskの正常比較
 
@@ -1702,15 +1705,15 @@ L10に置く一項目変異候補を個別に照合し、単一点性は独立re
 
 ### LABO-061-AC-02 — 未見正常と非適用対照
 
-別の未見fixtureでも同じ選択task契約へ結び、適用fieldだけを照合する。055通常履歴のようにtask snapshotが非適用である根拠が入力にある場合は、その非適用理由を保持し、15 field欠落やblind評価失敗として数えない。適用性が未確定ならunknownを返す。未選択task/sourceは参照のみで、実行依存へ昇格しない。
+別の未見fixtureでも同じ選択task契約へ結び、適用fieldだけを照合する。055通常履歴のようにtask snapshotが非適用である根拠が入力にある場合は、その非適用理由を保持し、15 field欠落やblind評価失敗として数えない。task/oracleの適用性が未確定ならunknownを保持して既存task/oracle ownerへ返し、owner identityを入力根拠から特定できない場合はunknownを保つ。別taskの既知安全判定を未見taskへ継承しない。未選択task/sourceは参照のみで、実行依存へ昇格しない。
 
 ### LABO-061-AC-03 — 不成立、履歴と責務境界
 
-L10の各単独fixtureを用い、値を推測・currentから補完せず、missing field、value unknown、stale、revision mismatch、選択scope違いを区別する。Worker-visible漏洩を含むrunは比較不適格のまま保持しSECURITYへ戻す。historical runの当時model/runtime/toolchain/actor/version/authority evidenceは各々保存し、欠落をcurrent stateで埋めない。failed/invalid runを削除・平均点・低費用・短時間で相殺しない。receipt・score・比較結果からOS assignment、permission、admission、judge任命、qualificationを生成しない。正当な材料・既存状態は保持する。
+L10の各単独fixtureを用い、値を推測・currentから補完せず、missing field、value unknown、stale、revision mismatch、選択scope違いを区別する。Worker-visible漏洩を含むrunは比較不適格のまま保持しSECURITYへ戻す。registration/delivery receiptだけから情報隔離の成立を推定せず、実context未確認は未確認のまま実行context/assignment証拠の既存主体へ返す。historical runの当時model/runtime/toolchain/actor/version/authority evidenceは各々保存し、欠落をcurrent stateで埋めない。failed/invalid runを削除・平均点・低費用・短時間で相殺しない。保存済みhistorical evidenceを再実行で補完・再生成せず、旧runtimeを起動しない。receipt・score・比較結果からOS assignment、Worker起動、permission、admission、judge任命、qualification、candidate採択を生成しない。固定059 revisionへ本追補を遡及適用しない。正当な材料・既存状態は保持する。
 
 #### 旧sourceからの再導出
 
-`LEGACY-ASSET-28FB139B26CD61CC51EE` の `helix-bench-evaluation.md` R-04/R-08と `LEGACY-ASSET-A952A3A175EB82A4781B` の対応acceptance AC005/006/012/013を、task snapshot、当時条件、反例・履歴保持の起点として再導出する。旧文字列schema、runtime、test、CI、閉ループ、資格・permission・admissionの仕組みは移さない。旧consumerは対応検証の読み方であり、直接要件sourceとは区別する。旧a4本文で存在した132定義はIDを保持して本L10へ移し、機械的ID保持を独立fixture性・完全性の証明とはしない。
+`LEGACY-ASSET-28FB139B26CD61CC51EE` の `helix-bench-evaluation.md` R-04/R-08と `LEGACY-ASSET-A952A3A175EB82A4781B` の対応acceptance AC005/006/012/013を、task snapshot、当時条件、反例・履歴保持の起点として再導出する。旧文字列schema、runtime、test、CI、閉ループ、資格・permission・admissionの仕組みは移さない。旧consumerは対応検証の読み方であり、直接要件sourceとは区別する。旧a4本文で存在した132定義はIDを保持して本L10へ移し、今回のR4補強でCASE-115〜118を追加する。機械的ID保持を独立fixture性・完全性の証明とはしない。
 
 
 ## Stage 5 — HELIXLABO-L2-063 修復再発評価と予防候補
@@ -1721,16 +1724,25 @@ LABOは、許可された修復観測と既存の評価記録から、成功修�
 
 | 固定sourceの句 | trace先 | 条件と境界 |
 |---|---|---|
-| L2-063:480–482 成功した修復知識、入力field、source/evidence | `LABO-063-AC-01/03` | 対象/版、原因候補、適用条件、修復手順・結果、検証、反例を元episodeへ結ぶ。案や単独greenで成功としない。 |
-| L2-063:482–484 recipe・適用scope・原証拠・残義務の保持とOS Feedback登録 | `LABO-063-AC-01/03` | 知識評価・保持はLABO、既存Feedbackでの登録/routingはOS。修復作業終了だけでどちらも完了しない。 |
-| L2-063:484–485 同種反復、同一性、閾値/観測範囲 | `LABO-063-AC-01/03` | 問題・手順・適用条件・版・episodeを照合し、再送/重複観測を重ねず、異なる原因/条件を混ぜない。閾値と母集団は入力であり、新数値を定めない。unknownを0としない。 |
-| L2-063:485–487 gate/detector候補と未処理warning | `LABO-063-AC-01/03` | 根拠付き候補とwarningを可視化する。LABOは直接有効化・強制しない。 |
-| L2-063:487–489 既存依存と必要時のOS割当/HARNESS検証 | `LABO-063-AC-01/03` | 過去履歴の評価に新規repairを要求しない。再実験・修正を選んだ場合のみ既存OS assignmentとHARNESS契約を使う。特定知識を無条件にBRAINへ一般化しない。 |
-| L2-063:489–490 原因別戻し先と版変更後の再評価 | `LABO-063-AC-03` | 観測/target版不足は観測提供主体、修復成功/再発防止根拠不足はLABO評価、登録/routing不成立はOS、verification不足はHARNESSへ。source identityが固定sourceから分からない場合はunknownを保つ。 |
-| L11-063:225–226 成功手順、独立検証、候補、根拠、未処理warning | `LABO-063-AC-01/02/03` | 同種性・閾値根拠・母集団・反例を添える。未見eventは別evidenceとして追跡し、条件の異なる群へ一般化しない。 |
-| L11-063:226–228 個別反例 | `LABO-063-AC-03` | 以下L10定義の入力変異とoracleで照合する。CASE数・索引・列挙は意味の完全性を証明しない。 |
-| L11-063:228–230 未見、版変更、未完義務 | `LABO-063-AC-02/03` | cause/applicabilityが違えば同種と断定しない。旧成功を改版後へ流用せず、登録失敗、変更未完、運用後観測欠落を分けて保持する。 |
-| L11-063:230–231 知識・authorityの境界 | `LABO-063-AC-03` | LABO知識評価、OS登録/routing、対象ownerの採否/変更を区別し、memory正本化、未評価BRAIN一般化、頻度由来の権限生成を拒否する。 |
+| L2-063:482 採用・修復実行許可・個々の改善採否は継承しない | `LABO-063-AC-03` | 候補、OS登録、採用、変更を別状態で保持し、この要求から既存判断や許可を継承しない。 |
+| L2-063:483 入力field、source/evidence | `LABO-063-AC-01/03` | 対象/版、原因候補、適用条件、修復手順・結果、検証、反例を元episodeへ結ぶ。案や単独greenで成功としない。HARNESSは検証契約・結果の証拠提供元、LABOはその証拠を用いた効果評価を担う。 |
+| L2-063:484 recipe・適用scope・原証拠・残義務の保持とOS Feedback登録 | `LABO-063-AC-01/03` | 知識評価・保持はLABO、既存Feedbackでの登録/routingはOS。修復作業終了だけでどちらも完了しない。 |
+| L2-063:485 同種反復、同一性、閾値/観測範囲 | `LABO-063-AC-01/03` | 問題・手順・適用条件・版・episodeを照合し、再送/重複観測を重ねず、異なる原因/条件を混ぜない。閾値と母集団は入力であり、新数値を定めない。unknownを0としない。 |
+| L2-063:486 gate/detector候補と未処理warning | `LABO-063-AC-01/03` | 根拠付き候補とwarningを可視化する。LABOは直接有効化・強制しない。 |
+| L2-063:487 既存依存と必要時のOS割当/HARNESS検証 | `LABO-063-AC-01/02/03` | 過去履歴の評価に新規repairを要求しない。再実験・修正を選んだ場合のみ既存OS assignmentとHARNESS契約を使う。特定知識を無条件にBRAINへ一般化しない。 |
+| L2-063:488 原因別戻し先と版変更後の再評価 | `LABO-063-AC-02/03` | 観測/target版不足は観測提供主体、修復成功/再発防止根拠不足はLABO評価、登録/routing不成立はOS、verification不足はHARNESSへ。source identityが固定sourceから分からない場合はunknownを保つ。 |
+| L2-063:489 旧sourceと既決の意味変更 | `LABO-063-AC-01/03` | 旧P4-02を起点に知識保持の意味を再導出し、HMC-BR-003に基づき1.0の評価対象知識はLABOが評価・保持する。旧memory/doctor runtimeや権限は復活させない。 |
+| L11-063:228 成功手順、独立検証、候補、根拠、未処理warning | `LABO-063-AC-01/02/03` | 同種性・閾値根拠・母集団・反例を添える。未見eventは別evidenceとして追跡し、条件の異なる群へ一般化しない。 |
+| L11-063:229 個別反例 | `LABO-063-AC-03` | 以下L10定義の入力変異とoracleで照合する。CASE数・索引・列挙は意味の完全性を証明しない。 |
+| L11-063:230 未見、版変更、未完義務 | `LABO-063-AC-02/03` | cause/applicabilityが違えば同種と断定しない。旧成功を改版後へ流用せず、登録失敗、変更未完、運用後観測欠落を分けて保持する。 |
+| L11-063:231 知識・authorityの境界 | `LABO-063-AC-03` | LABO知識評価、OS登録/routing、対象ownerの採否/変更を区別し、memory正本化、未評価BRAIN一般化、頻度由来の権限生成を拒否する。 |
+
+#### LABO-063受入条件
+
+- **LABO-063-AC-01 — 正常評価と系譜保持**：許可された修復観測について、対象/target revision、問題・原因候補・適用条件、修復手順/結果、HARNESS検証、再発・反例、episodeをsourceへ結んで保持する。根拠のある同種反復と既決の閾値/母集団から予防candidateを評価し、LABO知識保持、OS Feedback登録/routing、target ownerの採否/変更、HARNESS検証、運用後観測/effect評価をそれぞれ既存主体のsource-bound状態として区別する。正常例は合成fixtureであり、実行やauthorityを生成しない。対応CASE: 01/05/07/10/67。
+- **LABO-063-AC-02 — 未見・unknown・未完保持**：原因/適用条件/target revisionまたは母集団/閾値がunknown、変更後の再評価や後続義務が未完の場合、既存の成功/頻度を補完せずunknown/openを保持する。target revision/applicabilityを識別できない間はunknown/openを保持し、AC-03の返却でunknownを消さない。過去の評価だけを理由に新規repair/OS assignmentを要求せず、未見eventを根拠なしに別scopeへ一般化しない。対応CASE: 02/68。改版・staleを変異させるCASE12/27/40/59は、CASE表の対応ACどおりAC-03のnegative oracleであり、AC-02のnormative fixture IDには重ねない。
+- **LABO-063-AC-03 — 不成立・固定責務へ返却**：単独の欠落/stale/mismatch、重複、根拠不足、またはLABOが正本化・gate強制・authority/assignmentを生成する変異を拒否する。観測または対象版の不足は既存の観測提供主体へ、修復成功/再発防止根拠の不足はLABO評価へ、Feedback登録/routing不成立はOSへ返す。HARNESS検証契約・結果の不足は、L2-063:483で検証証拠の提供元とされたHARNESSへ返し、LABOはその証拠を含め効果を評価する。ownerによる変更または運用後観測が欠けた予防候補は循環未完としてLABO評価に保持する。source/owner identityが特定できなければunknownを保ち、新ownerを作らない。AC-02は不明を保持し、AC-03は識別できる不足を対応する既存責務区分へ返す。対応CASE: 03a–d/04a–b/06/08/09/11–66。
+
 
 ### 旧source起点、保持と差分
 
@@ -1746,7 +1758,7 @@ LABOは、許可された修復観測と既存の評価記録から、成功修�
 
 #### CASE/AC trace索引
 
-L10の69件の定義は既存旧IDの保持と追跡索引である。literal上の分類候補は正常5、negative 53、索引11で、意味的独立性・完全性の認定ではない。索引IDは `L10-LABO-063-CASE-03a`, `L10-LABO-063-CASE-24`, `L10-LABO-063-CASE-25`, `L10-LABO-063-CASE-30`, `L10-LABO-063-CASE-31`, `L10-LABO-063-CASE-32`, `L10-LABO-063-CASE-33`, `L10-LABO-063-CASE-35`, `L10-LABO-063-CASE-36`, `L10-LABO-063-CASE-39`, `L10-LABO-063-CASE-63`。索引は示された主fixtureを参照し、独立fixture/negative分母として重ねない。`L10-LABO-063-CASE-58`は`L10-LABO-063-CASE-13`と同じ運用後観測欠落の旧軸を保持し、今回固定された観測提供主体への返却とidentity unknown保持を明示する。既存IDの保持や本索引だけでCASEの一変異性・完全性を主張しない。
+L10の72件（旧69件にCASE-66〜68を追補）の定義は既存旧IDの保持と追跡索引である。literal上の分類候補は正常6（01/02/05/07/10/67）、negative 55、索引11で、意味的独立性・完全性の認定ではない。索引IDは `L10-LABO-063-CASE-03a`, `L10-LABO-063-CASE-24`, `L10-LABO-063-CASE-25`, `L10-LABO-063-CASE-30`, `L10-LABO-063-CASE-31`, `L10-LABO-063-CASE-32`, `L10-LABO-063-CASE-33`, `L10-LABO-063-CASE-35`, `L10-LABO-063-CASE-36`, `L10-LABO-063-CASE-39`, `L10-LABO-063-CASE-63`。索引は示された主fixtureを参照し、独立fixture/negative分母として重ねない。`L10-LABO-063-CASE-58`は`L10-LABO-063-CASE-13`と同じ運用後観測欠落の旧軸を保持し、今回固定された観測提供主体への返却とidentity unknown保持を明示する。既存IDの保持や本索引だけでCASEの一変異性・完全性を主張しない。
 
 ### HELIXLABO-L2-065 — 選択qualification scopeとtask scorecard（1.0候補）
 
@@ -1902,13 +1914,13 @@ L10 CASE IDsは照合用であり、ID数・独立fixture数から完全性を�
 
 - **`LABO-071-FR-01` — task-class/model-revision qualification記録**：選択scopeのtask class、対象model revision、evaluation scope、evidence source/revisionとqualification記録の対象revisionを一つの追跡可能な記録に結ぶ。evidenceとqualification記録が同じtask class/model revision/scopeに束縛される場合だけその状態を返し、revisionが食い違う場合はunknown/未評価にする。表示称号、qualification、permission/authority、assignment roleは別identity/fieldとして保持し、互いから推論しない。
 - **`LABO-071-FR-02` — 固定失効事象の適用**：根拠sourceに対象revisionのmajor missが記録されたとき、その資格対象revisionのqualificationを失効させる。model revisionが更新されたとき旧revisionのqualificationを失効し、新revisionへ継承しない。新revisionはそのrevision固有のevidenceが記録されるまで未評価とする。二つの事象以外のexpiry triggerを足さない。
-- **`LABO-071-FR-03` — unknown・返却・非authority**：class/revision/scope/evidenceが欠落、stale、矛盾、またはsource identityを結べない場合はqualificationをunknown/未評価とする。不足evidenceは個体identity特定の有無にかかわらずその既存source責務区分へ返し、個体identity unknownは別に保持する。title、qualification、permission/authority、assignment roleは一つのfieldから別のfieldを補完せず、title→permission、title→authority、title→assignment、permission→assignment、assignment→permissionの出力をしない。qualificationからmodel/provider/laneの選択、称号、permission、authority、assignment、実行許可、採否、完了を生成しない。permissionやauthorityの実体はSECURITY、assignmentはOSの既存責務に残す。
+- **`LABO-071-FR-03` — unknown・返却・非authority**：class/revision/scope/evidenceが欠落、stale、矛盾、またはsource identityを結べない場合はqualificationをunknown/未評価とする。不足evidenceは個体identity特定の有無にかかわらずその既存source責務区分へ返し、個体identity unknownは別に保持する。title、qualification、permission/authority、assignment roleは一つのfieldから別のfieldを補完せず、title→qualification、qualification→title、title→permission、title→authority、title→assignment、permission→assignment、assignment→permissionの出力をしない。qualificationからmodel/provider/laneの選択、称号、permission、authority、assignment、実行許可、採否、完了を生成しない。permissionやauthorityの実体はSECURITY、assignmentはOSの既存責務に残す。
 
 **受入条件候補**
 
 - **`LABO-071-AC-01` — 同じ対象の正常**：evaluation evidenceが同一task class/model revisionへ結び付く場合、そのscopeのqualification stateを証拠どおり返す。称号/permission/roleは変えない。
 - **`LABO-071-AC-02` — 未見class/revisionの正常**：新たに選択されたtask class/model revisionの組合せをその固有evidenceで評価し、別class・別revision・称号から未評価を補わない。既定class集合を作らない。
-- **`LABO-071-AC-03` — 不成立・返却**：class/revision/scope/evidence欠落・stale・mismatch、record済みmajor miss見落とし、資格のrevision間継承、title/qualification/permission/authority/assignment role各field間の補完または相互更新を各々拒否する。qualificationからのmodel/provider/lane選択、実行許可・採否・完了の生成、major miss rubricまたは既定task-class集合の出力追加も拒否する。不足評価根拠は個体identity特定の有無にかかわらず原因となった既存source責務区分へ返す。実際に不足・矛盾するpermission/authority根拠はSECURITY、assignment根拠はOSの既存責務区分へ返し、個体owner不明はunknownとする。入力が正常なのにLABOがpermission/authority/assignmentを誤出力した場合は、入力側へ返さずLABO自身が該当出力を訂正する。
+- **`LABO-071-AC-03` — 不成立・返却**：class/revision/scope/evidence欠落・stale・mismatch、record済みmajor miss見落とし、資格のrevision間継承、title/qualification/permission/authority/assignment role各field間の補完または相互更新（qualification→titleを含む）を各々拒否する。qualificationからのmodel/provider/lane選択、実行許可・採否・完了の生成、major miss rubricまたは既定task-class集合の出力追加も拒否する。不足評価根拠は個体identity特定の有無にかかわらず原因となった既存source責務区分へ返す。実際に不足・矛盾するpermission/authority根拠はSECURITY、assignment根拠はOSの既存責務区分へ返し、個体owner不明はunknownとする。入力が正常なのにLABOがpermission/authority/assignmentを誤出力した場合は、入力側へ返さずLABO自身が該当出力を訂正する。
 
 ### HELIXLABO-L2-066 — A比較における誤修復・未解消数の明示
 
@@ -1957,8 +1969,8 @@ HELIXLABO-L1-005をprimary、L1-011をcontextとして、旧source line 399か�
 - **LABO-070-AC-01 — 出典付きscorecard**：9 selected atomの適用可能な値を明示scope/revision/window/event-or-result receiptに結ぶ。各fieldの定義・単位・identityを保持し、出力値とsource receiptまたはsource-defined計算値の一致をL10正常fixtureで照合する。source identity/revisionに加え、各evidenceのprovenance出力は対応する有効source receiptのprovenance実値と一致させる。対象revisionとsource identity/revisionの一致はCASE-01およびCASE-99–101で確認する。
 - **LABO-070-AC-02 — 正常な異単位field**：source定義に一致する異なるunitのfieldは別fieldのまま表示し、相互換算・合算しない。
 - **LABO-070-AC-03 — 欠落・不一致の隔離**：必要event/clock/unit/time/source/revision/oracle/scope/relation/receiptが欠落・不明・矛盾・staleなら該当fieldだけunknown/invalid/unavailableとし、0・成功・不存在に置き換えない。他の根拠あるfieldは別に保持する。
-- **LABO-070-AC-04 — 固定親の境界保持**：4 durationは独立、escaped defectは既存oracleと受入済対象/受入境界後の検証済みrelationに限定、rollbackは観測だけ、overheadは直接測定だけ、freshnessはage観測だけ。追加の観測window/重大度/合否threshold/expiry/decisionを作らない。Recovery操作権限/実行、age由来fresh/stale/期限/適格性、LABO作成の受入境界/受入済み/escapedの単独field生成拒否はL10 CASE-102–109で確認する。
-- **LABO-070-AC-05 — Attempt co-presentation**：scope適用可能な067/068 fieldを元定義とreceiptどおり独立表示し、不在・不一致のfieldは理由付きunavailable/unknownにする。換算・合算・代替で完全scorecardに見せない。L10の正常CASE-01、欠落CASE-16/17、067/068個別scope mismatch CASE-18/127、067/068定義revision mismatch CASE-129/130、metric置換禁止CASE-19、067/068未採択を推定しないCASE-65、predicate欠落CASE-66、oracle欠落CASE-73、結果receipt欠落CASE-68、出力field欠落CASE-67、および065からの置換禁止CASE-72をこのACで照合する。汎用telemetry event/receiptとscorecardのscope不一致はCASE-128で別に照合する。
+- **LABO-070-AC-04 — 固定親の境界保持**：4 durationは独立、escaped defectは既存oracleと受入済対象/受入境界後の検証済みrelationに限定、rollbackは観測だけ、overheadは直接測定だけ、freshnessはage観測だけ。追加の観測window/重大度/合否threshold/expiry/decisionを作らない。Recovery操作権限/実行、age由来fresh/stale/期限/適格性、LABO作成の受入境界/受入済み/escapedの単独field生成拒否はL10 CASE-102–109で確認する。task success rateとAttempt success rateは固定L2-068が「定義しない」とする指標であり、既存FR-LABO-068-03がその意味を出力fieldの生成禁止へ導く。070は固定L2/L11の9 atomに限り、L11-070の「分子・分母の適用可能性が証明できない場合はrateを出さない」境界も保つ。CASE-131/132で各rate fieldを独立に生成拒否し、AC-05の正常な067/068併記fieldは保持する。
+- **LABO-070-AC-05 — Attempt co-presentation**：scope適用可能な067/068 fieldを元定義とreceiptどおり独立表示し、不在・不一致のfieldは理由付きunavailable/unknownにする。換算・合算・代替で完全scorecardに見せない。L10の正常CASE-01、欠落CASE-16/17、067/068個別scope mismatch CASE-18/127、067/068定義revision mismatch CASE-129/130、metric置換禁止CASE-19、067/068未採択を推定しないCASE-65、predicate欠落CASE-66、oracle欠落CASE-73、結果receipt欠落CASE-68、出力field欠落CASE-67、および065からの置換禁止CASE-72をこのACで照合する。禁止rate誤出力を拒否するCASE-131/132でも正常な067/068併記fieldが保たれることを照合する。汎用telemetry event/receiptとscorecardのscope不一致はCASE-128で別に照合する。
 
 ### 欠落・不一致と出典保持の照合
 
@@ -1974,4 +1986,4 @@ CASE-01の正常oracleは、各evidenceのsource identity/revisionとともに�
 
 許可済みsource event/assignmentは既存source owner（OS等）の責務区分、quality/acceptance oracleは既存要求owner、data/execution permissionは適用されるSECURITY境界に従う。固定親が定める責務区分を保ち、individual source/owner identityが不明な場合はそのidentityだけをunknownとして別に保持する。observer overheadの直接計測資源またはreceiptが不足する場合、値はunknownとして、その資源・receiptを提供する既存source owner責務区分へ無条件で返す。個別source/owner identityが不明なら、そのidentityだけをunknownとして別に保持し、責務区分を消さず、新ownerも作らない。CASE-10/15/19のように入力が有効で070自身の出力が誤る場合、入力側sourceへ返却せず当該出力処理を訂正する。
 
-CASE-85–93、CASE-96–98およびCASE-102–109は、source event・oracle・threshold・計測許可・要求採択・実験/run許可・Worker assignment・rollback permission/execution・Recovery操作権限/実行・fresh/stale状態・evidence期限/適格性・受入境界/受入済み/escaped出力・L3承認・requirement completionの出力生成を一つずつ拒否し、他の根拠あるscorecard fieldと既存状態を保つ。これらのCASEは固定親が禁じる生成の確認であり、権限/decisionを新設しない。CASE-99–101はAC-01のrevision照合、CASE-102–109はAC-04のRecovery・age由来判定・受入境界および状態出力の拒否であり、固定親が禁じる単独field生成を確認する。
+CASE-85–93、CASE-96–98、CASE-102–109およびCASE-131/132は、source event・oracle・threshold・計測許可・要求採択・実験/run許可・Worker assignment・rollback permission/execution・Recovery操作権限/実行・fresh/stale状態・evidence期限/適格性・受入境界/受入済み/escaped出力・L3承認・requirement completion・task success rate・Attempt success rateの出力生成を一つずつ拒否し、他の根拠あるscorecard fieldと既存状態を保つ。これらのCASEは固定親が禁じる生成の確認であり、権限/decisionを新設しない。CASE-99–101はAC-01のrevision照合、CASE-102–109はAC-04のRecovery・age由来判定・受入境界および状態出力の拒否、CASE-131/132は固定L2-068が禁じる2種のsuccess-rate出力の拒否であり、固定親が禁じる単独field生成を確認する。

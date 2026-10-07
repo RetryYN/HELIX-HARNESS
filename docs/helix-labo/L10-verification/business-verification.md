@@ -85,7 +85,7 @@
 
 ## Stage 5 — HELIXLABO-L2-061 業務証拠
 
-`HELIXLABO-L2-061`には固定L2/L11上の独立business outcomeを追加しない。業務側の照合は `LABO-061-AC-01/02/03` と `L10-LABO-061-CASE-01`〜`CASE-114`を使う。実験実行・判断・authorityの発生はこの設計から主張しない。個別fixtureと索引の区別はL10本文に従う。
+`HELIXLABO-L2-061`には固定L2/L11上の独立business outcomeを追加しない。業務側の照合は `LABO-061-AC-01/02/03` と `L10-LABO-061-CASE-01`〜`CASE-119`を使う。実験実行・判断・authorityの発生はこの設計から主張しない。登録/配送receiptだけで隔離済みとせず、比較結果からWorker起動/candidate採択を生成せず、固定059 revisionへ061条件を遡及適用せず、旧runtimeを起動しない。個別fixtureと索引の区別はL10本文に従う。
 
 
 ## Stage 5 — HELIXLABO-L2-063 業務証拠
@@ -94,7 +94,7 @@
 
 | 固定親 | 業務上の区分 | 対応先 |
 |---|---|---|
-| `HELIXLABO-L2-063` | LABOは許可された修復観測とepisode知識の範囲評価/保持、OSは既存Feedbackのregistration/routing、対象ownerはadoption/change、HARNESSは選択された変更のverificationを担う。post-operation observation/effect evaluationは後続状態として残す。 | `LABO-063-AC-01/02/03`。L10には旧ID保持、単独候補と非独立索引候補を区別して記録する。 |
+| `HELIXLABO-L2-063` | LABOは許可された修復観測とepisode知識の範囲評価/保持、OSは既存Feedbackのregistration/routing、対象ownerはadoption/change、HARNESSは選択された変更のverificationを担う。post-operation observation/effect evaluationは後続状態として残す。 | `LABO-063-AC-01/02/03`。CASE-67はOS登録、対象ownerの採否/変更、HARNESS検証、運用後観測/effectを既存source receiptとして一系譜で照合する合成正常fixture。CASE-66/68は単一greenと過去評価からの新規repair要求を拒否する。新しい実行・権限・採否を生成しない。 |
 
 個体source/owner identityが固定sourceから決まらない場合はunknownのままにする。G0順序metadata、CASE数、candidate、OS receiptから承認・実行許可・完了を生成しない。
 
@@ -128,7 +128,7 @@
 
 | 固定親 | 独立business outcome | 正本AC / CASE index |
 |---|---|---|
-| `HELIXLABO-L2-067` | なし。candidate/Attempt内修復の未実行観測evidenceだけ。 | `LABO-067-AC-01/02/03`; `L10-LABO-067-CASE-01/02/03a–g/04a–b/05–23/24–38` |
+| `HELIXLABO-L2-067` | なし。candidate/Attempt内修復の未実行観測evidenceだけ。 | `LABO-067-AC-01/02/03`; `L10-LABO-067-CASE-01/02/03a–g/04a–b/05–23/24–39` |
 
 これは未実行design参照であり、business completionや実験を表さない。
 
@@ -184,7 +184,7 @@
 
 **L2-055との関係**：採択済み `HELIXLABO-L2-055` のWorker履歴に基づく作業種別/model class別の水準・根拠・範囲・未評価集計は既存契約として再利用する。071が追補するのはGitHub監査task classとmodel revisionに結ぶqualificationおよび二つの固定失効条件である。055/059の一般評価・比較契約、OS assignment、SECURITY permission/expiry/revocationを複製・変更しない。
 
-このparent固有のbusiness acceptance outcome/KPIは追加しない。L10はevidenceの受渡しと状態分離だけを確認する。`LABO-071-AC-01/02/03`の定義はL3 functional requirementsに置き、この表で再定義しない。
+このparent固有のbusiness acceptance outcome/KPIは追加しない。L10はevidenceの受渡しと状態分離だけを確認する。`LABO-071-AC-01/02/03`の定義はL3 functional requirementsに置き、この表で再定義しない。qualification→titleを含む各field間の独立性はFV CASE-r06-qualification-to-titleを含む固定AC-03のcaseで照合する。
 
 | 受渡し対象 | L10 business確認候補 | 境界 |
 |---|---|---|
@@ -216,4 +216,4 @@
 | overhead/freshness | overhead直接観測値とtask workを分け、freshness ageをsource時刻に束ねる。provenanceは各有効source receiptの実値と完全一致させる。 | unknown overhead=0、ageからexpiry/admissionを決める、provenance欠落/別値を受理する。 |
 | 067/068同時表示 | 各fieldが適用可能なら独立定義とreceiptを同時に示す。 | 換算・合算・代替、未採択値の採択推定。 |
 
-CASE-10/15/19は有効入力に対する070自身の出力誤りを拒否し、正常source/oracle/metricへ不足責務を返さない。CASE-85–93/96–98/102–109はFV主fixtureを参照し、固定親が禁じる各単独出力fieldの生成拒否と既存状態保持をbusiness viewから照合する。これらは業務成果や新しい採否/permissionを追加しない。CASE-01/99–101ではtarget revisionとsource identity/revisionをreceiptの実値と照合し、CASE-01/125/126ではprovenance実値を照合する。CASE-110–123はreview05表が示す不足14セル、CASE-124は時計不正を各単独で照合する。target revision出力欠落、target revision混在、入力source_revision欠落を別々に判定する。overhead直接計測receiptの不足は値をunknownにして既存source owner責務区分へ返し、個別identity unknownは分離する。
+CASE-10/15/19は有効入力に対する070自身の出力誤りを拒否し、正常source/oracle/metricへ不足責務を返さない。CASE-85–93/96–98/102–109/131/132はFV主fixtureを参照し、固定親が禁じる各単独出力fieldの生成拒否と既存状態保持をbusiness viewから照合する。CASE-131/132ではtask success rateとAttempt success rateを別々に拒否し、率のoracle・分母・ownerは作らない。これらは業務成果や新しい採否/permissionを追加しない。CASE-01/99–101ではtarget revisionとsource identity/revisionをreceiptの実値と照合し、CASE-01/125/126ではprovenance実値を照合する。CASE-110–123はreview05表が示す不足14セル、CASE-124は時計不正を各単独で照合する。target revision出力欠落、target revision混在、入力source_revision欠落を別々に判定する。overhead直接計測receiptの不足は値をunknownにして既存source owner責務区分へ返し、個別identity unknownは分離する。
