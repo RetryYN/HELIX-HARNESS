@@ -1,0 +1,70 @@
+{
+  "record_type": "HDEC-LABO-STAGE5-PARENT069070071-REVIEW02-2026-10-08",
+  "authority_effect": "none_pending_condition3_and_main_admission",
+  "scope": {
+    "mechanism": "HELIX-LABO",
+    "stage": "5",
+    "parents": [
+      "HELIXLABO-L2-069",
+      "HELIXLABO-L2-070",
+      "HELIXLABO-L2-071"
+    ],
+    "version": "1.0"
+  },
+  "review": {
+    "formal_comment_id": 6046922666,
+    "formal_body_raw": "## review02（HEAD 240ee3e7248efc7a2dc109fbdee4c0cb07151771 / base f0e210b3cdf5c1f95dfcf07cfc3504a240dd2e4d）— Claude review_merge\n\n### 結論：Major 0。新しい本文revisionで、委任条件1（Opus）と条件2（Fable「承認してよい」）が成立\n- 作成側がreview01のMinorを修正し、main（親059/067 #2687）を統合したため、本文のbytesが変わりました。このため、review01の承認は継承していません。\n- OpusとFableが、このrevisionを改めて独立に読みました。\n- 監査記録に、Minor 1件があります（下記）。\n\n### review01 Minorの反映（固定 `318ec4a` L2-068:541–550、`ea6f756` L2-070:561–574 / L2-071:576–584、L11-070:303）\n- **070の根拠**：CASE-131/132と関連する表の根拠を、次の2つに分けて書くようになりました。\n  - 固定L2-068の「定義しない」を、既存のFR-LABO-068-03が生成禁止へ導く意味\n  - 070の9 atomと、L11-070「分子・分母の適用可能性が証明できない場合はrateを出さない」の境界\n\n  これは固定親の原文と既存の導出を忠実に言い換えたものです。新しい率の定義、分母、oracle、閾値、owner、gateはありません。\n- **AC-05（FR:1961）**：CASE-131/132を加えました。\n- **071 r06**：baselineの列と期待の列が、どちらも「個別owner identityの値またはunknown状態はbaseline入力どおり保持」で揃いました。\n- **旧監査の参照**：repository内の相対pathを、新しい追補に記録しました。\n\n### 統合の照合\n- **手編集なし**：`git merge-tree --write-tree f0e210b3c 871af62fd`（Minor修正のcommit）の結果とHEADの差は、新しい統合監査の2ファイルだけです。手編集はありません。\n- **059/067の節**：mainとbyte単位で同一です（FV 2611–3452、CASE-14/58/71/72を含む）。\n- **CASE行の件数**：059は82行、067は46行で、mainと同じです。069は52行、070は132行、071は46行です。\n- **親068のFR**：変わっていません。\n- **SHA**：次の値が、実bytesと一致しました。\n  - 統合監査の6本文pin\n  - Minor修正監査のbefore/after\n  - 固定親と旧sourceのpin 14件\n- **既存の監査**：変わっていません。\n- **静的検査**：`scfctl validate` 147/0、`stale=0`、`git diff --check` が通りました。\n\n### HEADの6本文（次の判断記録・pinで固定するbytes）\n| 本文 | bytes | SHA-256 |\n|---|---:|---|\n| BR | 32,852 | `9f56b674…` |\n| FR | 355,411 | `0e33a04d…` |\n| NFR | 92,654 | `d66f37a5…` |\n| BV | 31,659 | `5733fe88…` |\n| FV | 696,870 | `3f443a37…` |\n| NFRV | 83,223 | `02849ed4…` |\n\n### 返さない所見（Minor。承認は止めませんが、条件3の前に訂正を推奨します）\n- **review01 commentのSHAが実値と違う**\n  - `labo-stage5-review01-minor-correction-2026-10-08.json` の `review.body_sha256` は `9695f60b…` です。\n  - GitHub APIで取得したreview01 comment 6046547648の本文は、5,020 bytes、SHA-256 `68260fcd8c75d7f89c64685388d3dea6889df6432a969f6a0ceba8af83b95548` です。\n  - bytes数は一致していますが、SHAが一致しません。commentは編集されていません（created = updated）。\n  - Opusが投稿元のfileからも再計算し、`68260fcd…` であることを確認しました。\n  - 本文の意味、固定親pin、6本文pinには影響しません。ただし、監査記録のpinとしては不正確です。\n- **訂正方法**\n  - 次の判断記録・pinを追加する際に、追補として正しい値を記録してください。既存の監査ファイルは書き換えないでください。\n  - 条件3の照合では、この訂正の有無も確認します。\n\n### 未確認範囲\n- fixtureは実行していません。\n- semantic-audit JSONの全CASE行は、照合し直していません。\n\n本reviewは承認・merge admissionを生成しません。\n",
+    "formal_body_utf8_bytes": 3997,
+    "formal_body_sha256": "df38e7791b39dce9f199793612dc9526b65e36708ec808ffd9c53000ae197322",
+    "reviewed_head": "240ee3e7248efc7a2dc109fbdee4c0cb07151771",
+    "review_base": "f0e210b3cdf5c1f95dfcf07cfc3504a240dd2e4d",
+    "condition1": "satisfied: Opus Major 0",
+    "condition2": "satisfied: Fable 承認してよい",
+    "condition3": "pending"
+  },
+  "six_body_pins": [
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "bytes": 32852,
+      "sha256": "9f56b674f11f9b666bc546a20e7a7492d1dfe377a24495d351392698c8389777"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "bytes": 355411,
+      "sha256": "0e33a04d53bc296292ba7fb510d91d89f410896a99118ccda2b92c03aa09ef94"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "bytes": 92654,
+      "sha256": "d66f37a55ba040e0701e6e1313cfe1bca6ae1d0cb9392d584023c4053793e45d"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "bytes": 31659,
+      "sha256": "5733fe88329629f5dce896c2f8b420cee895b4f796632d13addf2bc8568c5b94"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "bytes": 696870,
+      "sha256": "3f443a3713831920b2333a950a2b7ebbd99b8287775dd0ed5e3f8dc29296a200"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "bytes": 83223,
+      "sha256": "02849ed4493af37c40e9a9fb0fde813fde1703ce2932bac982c76c461ac9edf3"
+    }
+  ],
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-labo-stage5-parent069070071-review02-l3-l10-delegated-decision-2026-10-08.md",
+    "bytes": 2922,
+    "sha256": "f0094eed0700e4293e3a66faea8415ef164f004c1408e228afe34d7cfce09339"
+  },
+  "minor_not_returned": [
+    "旧labo-stage5-review01-minor-correction-2026-10-08.json review.body_sha256 9695f60b…は誤記。正式6046547648のAPI raw UTF-8 5,020 bytesをRoot再取得・再計算した正値は68260fcd8c75d7f89c64685388d3dea6889df6432a969f6a0ceba8af83b95548。本追補で訂正し、旧時点監査は書き換えない。",
+    "semantic-audit JSONの全CASE行は独立review02で再照合していない。fixture未実行。"
+  ],
+  "limits": [
+    "fixture未実行",
+    "274親検収未完"
+  ]
+}

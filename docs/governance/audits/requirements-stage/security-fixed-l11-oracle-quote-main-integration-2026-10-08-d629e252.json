@@ -1,0 +1,115 @@
+{
+  "record_type": "security_l11_quote_correction_main_integration_supplement",
+  "scope": [
+    "HELIXSECURITY-L2-002",
+    "HELIXSECURITY-L2-007"
+  ],
+  "explicitly_unchanged": [
+    "HELIXSECURITY-L2-033",
+    "HELIXSECURITY-L2-028 content integrated from main"
+  ],
+  "previous_correction_commit": "aad4aba2d264725eecef006374460c06c956bf03",
+  "previous_correction_audit": {
+    "json_path": "docs/governance/audits/requirements-stage/security-fixed-l11-oracle-quote-correction-2026-10-08-e7a695d4.json",
+    "json_sha256": "30133dc18b5dfe93e2f3c43693d2b96e1fce6411bd0656630b7b1d7915ad1898",
+    "md_path": "docs/governance/audits/requirements-stage/security-fixed-l11-oracle-quote-correction-2026-10-08-e7a695d4.md",
+    "md_sha256": "43b6bd4851d0b0c56c58134759742672c15af075d74bd00bed8209ee33e378b2",
+    "immutability": "byte-identical to correction commit; not rewritten"
+  },
+  "integrated_main": {
+    "pre_2689_main": "e7a695d4b2de64aec69a1a123de2fde33be724cf",
+    "security_028_merge": "e77d62dcdbb422dda61517abd52163f76b98e39b",
+    "current_latest_main": "d629e25254a7c1d505543a0ce6ca3183c3fc4d67",
+    "current_latest_main_title": "Merge pull request #2686 from RetryYN/codex/os-stage2a-023-binding-cases",
+    "integration_head_before_supplement_commit": "45e9116c91b0f268b677797cd44fe44bf3737a70"
+  },
+  "six_final_document_sha256": {
+    "L3-BR": "30a0456a17c4c65e9427cc8931905cb7c1adf54c207514f948a7b179dcdb7019",
+    "L3-FR": "f6872a3ee941d63c80a9717bca7e81de832c043ad05cc9ac0c2db77eb264ee9e",
+    "L3-NFR": "d2c1d93cf4fb142ba6abae13c7e640a7c9826f6c0ed5ce49de7991cb8f884c3b",
+    "L10-BV": "7da2a3b88c866c276065c793036708a633109b176b0381829c8d3c8293ff70a4",
+    "L10-FV": "0d81d49d2a16cb70b78b5ef7d0379e3b64632bbe18ac6fda9e3302f00c5bb40b",
+    "L10-NFRV": "3675115f6d1b242a511651e627e8c46cfc71013ce9cf129c5045f1ce51e5f685"
+  },
+  "six_document_sha256_at_latest_main": {
+    "L3-BR": "30a0456a17c4c65e9427cc8931905cb7c1adf54c207514f948a7b179dcdb7019",
+    "L3-FR": "f6872a3ee941d63c80a9717bca7e81de832c043ad05cc9ac0c2db77eb264ee9e",
+    "L3-NFR": "d2c1d93cf4fb142ba6abae13c7e640a7c9826f6c0ed5ce49de7991cb8f884c3b",
+    "L10-BV": "7da2a3b88c866c276065c793036708a633109b176b0381829c8d3c8293ff70a4",
+    "L10-FV": "f37da9b01739f8a7718be2b6ff124c56c0a21342a8b32bae11337368f3480910",
+    "L10-NFRV": "3675115f6d1b242a511651e627e8c46cfc71013ce9cf129c5045f1ce51e5f685"
+  },
+  "six_document_equal_to_latest_main_except_two_quote_lines": true,
+  "independent_worktree_diff_vs_latest_main": {
+    "only_content_file": "docs/helix-security/L10-verification/functional-verification.md",
+    "changed_lines": {
+      "002": {
+        "line": 50,
+        "l11_row": 26,
+        "fixed_l11_row_raw_lf_sha256": "e3be2a9d718395db4d018280b458e3c85e508bb68c59ae9828f1e486c99c3890",
+        "current_fv_raw_lf_sha256": "a49a7058c35ba7149c113fe040d2145261b7627bc193e51e55b45b80c213dfca",
+        "exact_third_cell_match": true
+      },
+      "007": {
+        "line": 98,
+        "l11_row": 31,
+        "fixed_l11_row_raw_lf_sha256": "bb6dc9697c4bc21ad94cce4f2ad97c796706327d33686858eed1831378b4c155",
+        "current_fv_raw_lf_sha256": "593ddbddde9943a1d875fb84e99df5ca17fdd84c0d1c352d9d84b1d12745a0cf",
+        "exact_third_cell_match": true
+      }
+    },
+    "other_five_documents_byte_identical_to_latest_main": true,
+    "033_fv_line225_raw_lf_sha256": "815a6914c26aceada4b5cc85ee8907d54c7429b01a606ddd30f9b59fc6e41077",
+    "033_fv_line225_unchanged_vs_latest_main": true
+  },
+  "security_028_main_preservation": {
+    "latest_main_revision": "d629e25254a7c1d505543a0ce6ca3183c3fc4d67",
+    "full_sha256_for_fv_families": {
+      "docs/helix-security/L3-requirements/functional-requirements.md": "f6872a3ee941d63c80a9717bca7e81de832c043ad05cc9ac0c2db77eb264ee9e",
+      "docs/helix-security/L3-requirements/nfr-grade.md": "d2c1d93cf4fb142ba6abae13c7e640a7c9826f6c0ed5ce49de7991cb8f884c3b",
+      "docs/helix-security/L10-verification/functional-verification.md": "f37da9b01739f8a7718be2b6ff124c56c0a21342a8b32bae11337368f3480910",
+      "docs/helix-security/L10-verification/nfr-verification.md": "3675115f6d1b242a511651e627e8c46cfc71013ce9cf129c5045f1ce51e5f685"
+    },
+    "integrated_worktree_full_sha256": {
+      "docs/helix-security/L3-requirements/functional-requirements.md": "f6872a3ee941d63c80a9717bca7e81de832c043ad05cc9ac0c2db77eb264ee9e",
+      "docs/helix-security/L3-requirements/nfr-grade.md": "d2c1d93cf4fb142ba6abae13c7e640a7c9826f6c0ed5ce49de7991cb8f884c3b",
+      "docs/helix-security/L10-verification/functional-verification.md": "0d81d49d2a16cb70b78b5ef7d0379e3b64632bbe18ac6fda9e3302f00c5bb40b",
+      "docs/helix-security/L10-verification/nfr-verification.md": "3675115f6d1b242a511651e627e8c46cfc71013ce9cf129c5045f1ce51e5f685"
+    },
+    "FR028_section_296_309_sha256_latest_main": "755fadd7d6165d703f96d98e72ae9a74b2d0b9221eaf37d15960b31f9589cf70",
+    "FR028_section_296_309_sha256_integrated": "755fadd7d6165d703f96d98e72ae9a74b2d0b9221eaf37d15960b31f9589cf70",
+    "CASE028_section_213_221_sha256_latest_main": "73aa4511768f6ed3d76a217b686a250952aa294dac2c9f7e8e69e3f5b1b4a341",
+    "CASE028_section_213_221_sha256_integrated": "73aa4511768f6ed3d76a217b686a250952aa294dac2c9f7e8e69e3f5b1b4a341",
+    "all_028_sections_byte_identical_to_latest_main": true
+  },
+  "fixed_source_033_unchanged": {
+    "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+    "l11_full_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
+    "l11_124_133_span_sha256": "6d83abe63e3e852d58d9a9a60ae39c6b29284b6b8ab781bdb86456e479e60be0",
+    "l11_145_151_p0_span_sha256": "e4bed8944412cc5ca6effc0c6ddd2a314ea309aa23f36c88d6467e3c7010d0a6",
+    "po_decision_checkpoint": "633bf12ea8f948db8ba3d6600179c4a9507377a7"
+  },
+  "verification": {
+    "exact_l11_third_cell_002": true,
+    "exact_l11_third_cell_007": true,
+    "six_document_pins_recomputed": true,
+    "git_diff_check": "passed after staging supplement",
+    "scfctl_validate": {
+      "command": "python3 scaffold/tools/scfctl.py validate",
+      "exit_code": 0,
+      "result": "bindings=147 fail=0"
+    },
+    "scfctl_stale": {
+      "command": "python3 scaffold/tools/scfctl.py stale",
+      "exit_code": 0,
+      "result": "stale=0"
+    },
+    "fixtures_executed": false,
+    "archive_runtime_ci_executed": false
+  },
+  "limits": [
+    "This is a static integration/pin check, not a full semantic re-review of all SECURITY Stage 1 content.",
+    "No fixture/runtime/CI or archive command was run.",
+    "The 028 content is shown preserved byte-for-byte relative to latest main; this does not claim 028 semantics were re-reviewed in this supplement."
+  ]
+}
