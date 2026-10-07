@@ -63,7 +63,7 @@ NFR候補の選択や運用値はPOへparameterごとの質問にせず、根拠
 
 共通HARNESS-L2-010/011 packのfield母集団は全対象operationで照合する。例外として、L2-017は固定L2に共通pack句がないため、当該operationがpackを実際に消費する場合だけ該当fieldを必須分母へ含める。
 
-親が有限個で明示するrequired source/field/ownerを照合するNFR候補。100%候補のsource-bound coverageは、正常なsource-bound入力を与えるpositive fixtureのrequired fieldだけで算出する。誤ったsource/owner bind 0候補は別に記録する。negative fixtureは各CASEの期待状態・拒否・戻し先へのoracle適合として別記録し、正しい拒否をnormal coverageの成功または失敗へ算入しない。missing/unknown/stale/conflictをsource-bound fieldや成功へ変換しない。未実行・観測不能は未実測/観測不能として別記録し、分母へ入れない。未選択sourceを母集団へ入れない。これらは計測候補の定義であり、親の意味、閾値、gateを変更しない。既定SLA、minimum sample、runtime latencyを新設しない。
+親が有限個で明示するrequired source/field/ownerを照合するNFR候補。100%候補のnormal source-bound coverageは、計画されたpositive fixture/runで適用されるrequired field数（planned positive分母）を母集団として、実行され観測でき、正しいsource/revision/scope/ownerへ束縛されたfield数を分子にする。未実行positive runと観測不能positive runもplanned positive分母に残し、それぞれの件数を併記するが、分子または成功へ入れない。未実行・観測不能を除いて実行できたpositive runだけで100%を成立させない。未選択sourceや計画対象外runは母集団に加えない。誤ったsource/owner bind 0候補は、positive/negativeを問わず観測されたbind誤りの件数として別に記録する。negative fixtureは各CASEの期待状態・拒否・戻し先へのoracle適合として別記録し、正しい拒否をnormal coverageの成功または失敗へ算入しない。missing/unknown/stale/conflictをsource-bound fieldや成功へ変換しない。これらは計測候補の定義であり、親の意味、閾値、gateを変更しない。既定SLA、minimum sample、runtime latencyを新設しない。
 
 ### NFR-INT-017-01 — required source binding completeness候補
 
