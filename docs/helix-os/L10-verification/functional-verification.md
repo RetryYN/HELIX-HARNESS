@@ -628,8 +628,8 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | CASE-OS-L10-038-01 | AC-OS-L3-038-01 | 有効HARNESS contract/templateと041-003の対応済み抽出結果、選択layer、L0別anchor、source atom proposalを入力。 | 一度だけappend、snapshotとreceiptのbase/template/contract/scope/source digestが往復追跡可能。approval stateは不変。 |
 | CASE-OS-L10-038-02 | AC-OS-L3-038-02 | stale base/template、authority/scope欠落、L0 row化、同一proposal再送、各保存境界失敗、および041-003の複数obligationを単一atomにまとめたfindingを個別投入。 | stale/unauthorized拒否、duplicate append 0、L0 layer row 0、部分成功claim 0。非原子的findingではcandidate row増分0、rejected outcome findingを追記し、snapshot bytes不変。 |
 | CASE-OS-L10-038-03 | AC-OS-L3-038-03 | 対象input/template/extractor versionに束縛済みのHARNESS-L2-041-003 nondeterminism findingを入力し、別fixtureで未対応atom/contractと独立した適格layerを入力。 | OSは抽出を再比較・再判定しない。findingに従うwriter outcomeを記録しquarantine/current update 0/snapshot不変を保つ。未知atomはgapのまま、独立適格layerだけ継続可能。 |
-| CASE-OS-L10-040-01 | AC-OS-L3-040-01 | 入力済retry上限へ到達したattemptと現行ticket routeを投入。 | retryを止め、既存typed route candidate、cause、lineage/open dutyを保持。 |
-| CASE-OS-L10-040-02 | AC-OS-L3-040-02 | 上限未到達、別scope、値欠落/改変、再送を各々試す。 | premature route、counter reset、二重Recoveryは0。 |
+| CASE-OS-L10-040-01 | AC-OS-L3-040-01 | 入力policyと同一episodeのattempt eventを用意し、初回attemptを数えるpolicyと数えないpolicyを別々の正常fixtureにする。各fixtureでpolicyが定めるfailure classと累積回数から上限到達前後を照合する。 | 各policyのcounter semanticsどおりの回数でのみ判定し、上限到達時はretryを止めて既存typed route candidate、cause、lineage/open dutyを保持する。 |
+| CASE-OS-L10-040-02 | AC-OS-L3-040-02 | 上限未到達、別scope、counter semantics/policy値の欠落・改変、再送を各々試す。 | premature route、counter reset、二重Recoveryは0。 |
 | CASE-OS-L10-040-03 | AC-OS-L3-040-03 | policy/route不明、旧route名だけ存在するfixture。 | 継続せずunknown owner return。旧名だけで型を作らない。 |
 | CASE-OS-L10-041-01 | AC-OS-L3-041-01 | sourceを読めないsession後、現行canonical sourceと既存coordination-only stateから再開。 | current source revisionでだけ再結合。未完義務/停止理由維持。 |
 | CASE-OS-L10-041-02 | AC-OS-L3-041-02 | source drift/取得失敗/authority revoke/禁止情報持越しを個別変異。 | 継続は保留されtyped return。receipt/fixtureにsecret/private reasoningがない。 |
@@ -666,7 +666,7 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | CASE-OS-L10-037-05 | AC-OS-L3-037-05 | sourceなしcandidate、candidateからexecution/priorityへの自動昇格、LABO-063別scopeの一般化をそれぞれ入力する。 | 候補を作らず/昇格せずscopeを保つ。owner/source/priority unknownはそのownerへ戻す。no-delta、not observed、condition not metは区別する。 |
 | CASE-OS-L10-038-04 | AC-OS-L3-038-04 | base L11 671–689、supplement 690–696、adopted unseen-normal 698–700、boundary/result 702–704を別spanとして照合し、PO row 35とscope 37–40、HARNESS-041-003 adoptionを関連付ける。 | supplement適用条件を確認するが抽出findingの意味は再判定しない。historical “unadopted” wordingだけから状態を作らない。 |
 | CASE-OS-L10-038-05g | AC-OS-L3-038-04 | 固定L11にない組合せの新contract revisionを入力し、HARNESS契約がそのrevisionを明示的に支持し、source span・scope・atom schema・layer/baseが一致する。 | 内容をOSが補完せず、既存writer条件を満たすproposalとして通常appendする。これは未見正常例で、unknown/stale条件を省略しない。 |
-| CASE-OS-L10-040-04 | AC-OS-L3-040-04 | 同じ本線attemptでWorker/sessionを交代しresume、別に実験retryを交代/resumeし本線を並行入力する。 | 各lineageのcounter/budgetを交代で初期化しない。実験budgetを本線に混ぜない。 |
+| CASE-OS-L10-040-04 | AC-OS-L3-040-04 | 同じ本線episodeでWorker/sessionを交代しresumeし、別fixtureでは実験retryを交代/resumeして本線と並行入力する。 | policy指定の初回計上有無・failure class・同一episode累積を交代で変えず、counter/budgetを初期化しない。実験budgetを本線に混ぜない。 |
 | CASE-OS-L10-040-05 | AC-OS-L3-040-05 | retry ledgerをmissing/unreadableにするfixtureと、有効ledgerで入力済みcapへ到達するfixtureを別々に実施する。 | missingはHELIXOS-L2-019記録ownerへ戻し追加retryを保留。cap到達だけが既存typed routeへ戻る。 |
 | CASE-OS-L10-040-06 | AC-OS-L3-040-06 | task Aのcap到達と、別task Bの許可済み継続を同時に入力する。 | task Aだけを既存routeへ戻し、Bを停止しない。 |
 | CASE-OS-L10-041-04 | AC-OS-L3-041-04 | withdrawn claimと旧instructionを含むcoordination stateを別々に用い、source rereadはmissingにする。 | 両者の値をsecret/private reasoningから復元しない。coordination-only未完として固定L2が示す既存authority ownerへ戻す。 |
@@ -760,6 +760,10 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | CASE-OS-L10-040-07d | AC-OS-L3-040-01 | Backflow→要求engine、Recovery→中断工程の型別戻し先。 | 各入力を固定L2 routeへ返し別型を混同しない。 |
 | CASE-OS-L10-040-07e | AC-OS-L3-040-03 | 未見budget/policy revisionで適用上限が不明。 | 追加retryを保留し、記録ではなく上限を決定する既存policy ownerへ戻す。 |
 | CASE-OS-L10-040-07f | AC-OS-L3-040-05 | ledgerに遅着attempt eventがあり、current lineageの再構築が未完。 | cap到達を推定せず追加retryを保留し、元eventと未完状態をHELIXOS-L2-019記録ownerへ戻す。 |
+| CASE-OS-L10-040-07g | AC-OS-L3-040-02 | 初回attemptを数えるpolicyを固定した共通正常入力で、現在までの正しい同一episode累積がNであることを確認する。集計側だけ初回を除外する変異を与える。 | 正しい現在累積Nでは上限到達済みなので追加retryを許さない。変異後にN-1と見えても、誤集計を採用せず上限到達、元policy semantics、未完義務を保持する。 |
+| CASE-OS-L10-040-07h | AC-OS-L3-040-02 | 現在までのattempt eventの正しい累積が入力済上限Nである境界で、対象に含めるfailure classのattempt一つだけを集計から除外する。 | 誤集計でN-1と見えてもretryを許さず、現在までの正しい累積が既に上限に達しているものとして扱う。 |
+| CASE-OS-L10-040-07i | AC-OS-L3-040-02 | 適用中policyの正しい同一episode集計がN-1となる境界で、対象内eventだけを使う正常判定では同一scopeの次回retryを許可する。別fixtureでは、他の条件を固定して対象外failure classのattempt一つだけを集計へ誤混入する。 | 正常判定では正しいN-1に基づき同一scopeの次回retryを許可する。誤混入fixtureでは見かけ上Nでもpremature typed routeを作らず、policy対象内eventだけで上限を判定する。 |
+| CASE-OS-L10-040-07j | AC-OS-L3-040-02 | 初回attemptを数えないpolicyの正常fixtureで、初回eventを除いた現在の同一episode累積がN-1となる状態を固定する。集計側だけ初回eventを含める一つの変異を与える。 | 正常状態のN-1では同一scopeの次回retryを許可する。初回を誤算入してNと見えてもpremature typed routeを作らず、適用policyどおり初回を除いた累積N-1を保持する。 |
 | CASE-OS-L10-041-05a | AC-OS-L3-041-02 | 会話要約だけでcanonical sourceの代わりにする。 | 正本確認済みとせずcoordination-only未完で固定L2の既存authority ownerへ戻す。 |
 | CASE-OS-L10-041-05b | AC-OS-L3-041-02 | conflict sourceを確認済みと表示。 | conflictを保持し継続を保留して固定L2の既存authority ownerへ戻す。 |
 | CASE-OS-L10-041-05c | AC-OS-L3-041-02 | CLR-R06 candidateまたはpacket存在を採択根拠に昇格。 | candidate/packetをauthorityにせず、固定L2の既存authority ownerへ戻す。 |

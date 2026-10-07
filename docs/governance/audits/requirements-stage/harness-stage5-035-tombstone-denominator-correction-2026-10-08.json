@@ -1,0 +1,128 @@
+{
+  "title": "HARNESS-L2-035 S5-033 tombstone denominator correction",
+  "status": "修正証拠／authority_effectなし",
+  "base_main": "37a8283be429c57f3706153ad522e7ad288fecc3",
+  "branch": "codex/harness-stage5-035-tombstone-correction",
+  "scope": [
+    "HARNESS-L2-035",
+    "Stage 5",
+    "NFR-C-HARNESS-035-01"
+  ],
+  "finding_reference": {
+    "finding_id": "H5-MEAS-035-01",
+    "prior_readonly_audit": "/tmp/harness-stage5-021-025-033-035-037-semantic-audit-c9e73.md",
+    "prior_audit_sha256": "cac418c10e5b47c4610d08c56610e1e206e20e3393415ec02198a11fc95acd4b"
+  },
+  "fixed_parent": {
+    "adoption": "HARNESS-L2-035 adopted, MPR-RC-HARNESS-L2-035-002, 2026-09-29 PO decision row 40; 1.0 / Stage5",
+    "source_audit_fixed_parent": {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "line_start": 719,
+      "line_end": 729,
+      "full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+      "raw_lf_span_sha256": "1ceb111c98b785009febbade687cfdde04acbb354a2484e86b931405b0b0ec1e"
+    },
+    "scope_measurement_l2": {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "line_start": 931,
+      "line_end": 939,
+      "file_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+      "raw_lf_span_sha256": "f095be7d491d81ea7d406556b6fee7d426d8849be4413fc4f130ba00d1b6b808",
+      "literal": "## HARNESS-L2-035 scope拡張の計測条件（追補）\n\n既存035と一体の未採択候補。親HARNESS-L1-008、version_target: 1.0を保持する。\n\nscope拡張候補の受入寄与・最小性を照合するとき、追加機能数だけでなく、複雑さ（complexity）、外部へ公開する面（public surface）、運用上の負債について、変更前後の測定対象・方法・条件・結果を識別できるようにする。候補の形だけを数えて、API/CLI/schema/設定/依存や運用義務の増加を隠さない。HARNESS-L2-034の計測契約を使う場合はその対象・版・適用条件へ結び、測定前の値や適用予算が不明ならunknownとして残す。特定の数式、全製品共通の閾値、唯一の実装方式は原文にないため追加しない。\n\n候補の起草開始には測定完了を要求しない。scope拡張の必要性を満たしたと主張する段階では、上の三観点とauthoritative oracleへの寄与・代替案・minimum-necessary proofを一緒に示す。測定欠落は該当するscope判定を未完にし、低い追加機能数や別観点の好成績で相殺しない。不要な拡張は既存035へ戻し、新たに必要と判明した変更は既存Backflow/ticket境界へ戻す。実行authority、全作業の同期gate、通常作業の毎回の人確認は追加しない。\n\n旧根拠：HIL-NFR-07。原文と所在は[scope計測の原文照合](../../governance/audits/requirements-stage/scope-measures-legacy-differences-2026-09-28.md)。既存035の導出連鎖・循環拒否を置換しない。\n"
+    },
+    "scope_measurement_l11": {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "line_start": 678,
+      "line_end": 684,
+      "file_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+      "raw_lf_span_sha256": "5cd7416ba2260603c98458669c35ee5a16e9e2030b9ca7ef9416447676521ef7",
+      "literal": "## HARNESS-L2-035 scope計測追補の受入\n\n既存L11-035と併せる未実行・未採択候補。\n\n- **正常**：scope拡張候補に、複雑さ、公開面、運用負債の変更前後の対象・方法・条件・結果と、受入oracleへの寄与、代替案、最小必要性の根拠を与える。同じscope/revisionで照合でき、三観点のどの義務が増減したかを示す。測定の実行手段や数式が違っても、宣言した条件と証拠へ辿る。\n- **誤り**：追加機能数は少ないが公開API/設定面と保守義務を増やした候補に対して、追加数のみで最小必要とする。運用負債または複雑さの結果が欠けた例、旧revisionの計測を流用する例、別観点の好成績で欠測を相殺する例も、scope判定の根拠充足としない。原文にない共通閾値をAIが補って拒否・許可する例も不成立。\n- **未見・開始境界**：新しい変更種別で測定値がまだない入力でも、候補形成と不足項目の提示は行える。測定方法・条件が未定なら該当ownerへ返し、結果や必要性成立を捏造しない。後段の計測完了を起草開始の前提にせず、未完のscope判定から実行権限を生成しない。\n"
+    },
+    "po_additional_acceptance_row": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:122, digest sha256:5cd7416ba2260603c98458669c35ee5a16e9e2030b9ca7ef9416447676521ef7",
+    "baseline_l2_parent": {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "line_start": 719,
+      "line_end": 729,
+      "file_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+      "raw_lf_span_sha256": "1ceb111c98b785009febbade687cfdde04acbb354a2484e86b931405b0b0ec1e",
+      "literal": "### HARNESS-L2-035 要求候補の導出根拠と受入への寄与の照合（CORE単体追補候補、1.0）\n\n- **親・状態**：HARNESS-L1-008。`version_target: 1.0`、未採択の追補候補。既存008/024の要求形成に、scopeの根拠を後付けの候補だけで循環させない照合を具体化する。人の指示を受けて候補を起こすことと、その候補を採用済みにすることを分ける。\n- **入力**：対象機能・要求候補、目的・scope/non-goal、原指示とその出所、対象Concept/L1/既存要求のrevisionとauthority状態、候補までの導出関係、寄与する受入条件、必要性・代替案・適用予算の根拠を受け取る。原指示は指示として保持し、記録されたことだけで対象revisionの合意へ変換しない。\n- **提供・保証**：各候補について、原指示または該当する上流revisionまでの導出経路、受入への寄与、不要なscope拡張の有無、代替案との違い、予算消費の根拠、不足・矛盾を返す。根拠のある上流から候補へ至る関係と、その関係のauthority状態を辿れることを要する。候補自身、同時に作った要求ID同士、AIの提案だけを互いの唯一の根拠にして正当化しない。要求番号があることや台帳登録があることを根拠充足としない。\n- **循環と未完の区別**：根拠の導出関係が循環する、上流が存在しない、対象revisionが異なる、出所の状態が不明な場合、根拠充足を主張せず不足として要求形成へ戻す。正常なFeedback循環、sourceからの訂正履歴、実行の反復をこの導出関係と混同して一律に拒否しない。単にgraph形が非循環でも、上流の意味に含まれない能力ならscope逸脱として返す。\n- **必要性の照合**：最小性は、選択scopeの受入・安全・依存条件へ必要な寄与を持つか、不要な拡張や代替可能性を説明できるかを検査する意味とする。全体最適の数値や唯一の実装方式をここで推定しない。後続版・先行投資として根拠のある候補を、初版の最小構成に入らない理由だけで削除しない。budgetの値が不明なら不明として区別し、0と見なしたり新しい人間承認手続きを加えたりしない。\n- **依存・責務**：常時必要なのは008/024の対象sourceと上流意味・候補・受入条件。OSを使う構成ではOSのauthority/記録・ticket登録へ結果を渡すが、COREの意味照合をOSへ移さず、OSの実行権限をCOREが決めない。外部の管理機構やCIをCORE単体の成立に必須化しない。実装・実行は別操作であり、本照合の結果から許可しない。\n- **失敗時**：原文・上流revision不足はsource ownerへ、意味衝突・根拠循環・不要拡張は要求形成の訂正へ戻し、該当候補と不足根拠を保持する。人が決める要求意味の差がある場合だけ、原文・選択肢・推奨・影響先を付けて既存の人間判断へ返す。\n- **旧source**：旧`infinity-loop-platform-requirements.md`（`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`）のHIL-FR-38（128行）とHIL-NFR-23（203行）、およびRequirement IRの同identityを起点に、scope根拠・受入寄与・最小性・代替案・budget根拠・循環拒否を保持する。旧L0表記は現行Concept/L1等の上流へ対応させ、旧Scope Authority Gateというruntimeや毎操作のgateを新設しない。sourceの正確なpath・行・SHAとIR対応は被覆receiptに保存する。\n\n"
+    },
+    "preserved_semantics": "複雑さ、外部公開面、運用負債を対象・方法・条件・結果で別に測り、欠測を相殺せずscope判定未完に保つ。候補起草開始のgateにはせず、数式・共通閾値を追加しない。"
+  },
+  "legacy_source": {
+    "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+    "source_audit_pin": {
+      "role": "旧NFR source",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "line_start": 187,
+      "line_end": 187,
+      "full_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "raw_lf_span_sha256": "c8e2b4a177c3228e343e3c499a471fe75992778c29e2df63a3c4e0053860afbd",
+      "literal": "| **HIL-NFR-07** | Scope Gateは機能追加数だけでなくcomplexity、public surface、運用負債を測り、authoritative oracleへの寄与とminimum-necessary proofがない拡張を拒否する。 |",
+      "atom_id": null
+    },
+    "meaning": "HIL-NFR-07は機能数だけでなくcomplexity/public surface/運用負債とoracle寄与/minimum-necessary proofを求める。旧threshold/runtimeは移植せず三観点の測定意味のみ再導出。"
+  },
+  "old_decision_records_unchanged": [
+    "docs/governance/audits/requirement-registration/harness-stage5-021-025-033-035-037-source-audit-2026-10-06.json",
+    "docs/governance/audits/requirements-stage/harness-stage5-review04-root-correction-2026-10-06.json",
+    "docs/governance/audits/requirements-stage/harness-stage5-review05-worker-correction-2026-10-06.md"
+  ],
+  "change": {
+    "before": "NFR planned ranges 035-S5-007–046 included S5-033 despite its explicit tombstone exclusion.",
+    "after": "NFR/NFRV planned ranges are S5-007–032 plus S5-034–046; S5-033 tombstone explicitly excluded. S5-041 remains the sole operational-debt missing-result CASE.",
+    "case_definition": "functional-verification S5-033 and S5-041 bytes unchanged; no ID revived or reassigned.",
+    "scope": "Only denominator range presentation/exclusion note changed; fixed parent meaning, owner, threshold, authority and gate unchanged."
+  },
+  "six_document_sha256": {
+    "BR": {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "before": "9fb531a55c61c4836ae614cadbd850f3967119cb1f0f2eb36dad1e39ebab75e2",
+      "after": "9fb531a55c61c4836ae614cadbd850f3967119cb1f0f2eb36dad1e39ebab75e2",
+      "changed": false
+    },
+    "FR": {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "before": "2180967f0075f467c99a553d34f688a1fdf434703803b1a34e7e147d6a7d2df5",
+      "after": "2180967f0075f467c99a553d34f688a1fdf434703803b1a34e7e147d6a7d2df5",
+      "changed": false
+    },
+    "NFR": {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "before": "ee84bc87ff324eea929d266934c0debb856018aca25c0044f68b11c141c3263d",
+      "after": "b83709b35a6f3ea93badf9e6586c01bef85ceabdbf19ec6c4b68208c3d47489a",
+      "changed": true
+    },
+    "BV": {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "before": "864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad",
+      "after": "864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad",
+      "changed": false
+    },
+    "FV": {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "before": "d1c55ca4e6b432ccdc941d8d9813c88e5f33476ef2c2d55aa0bfafe549b6726f",
+      "after": "d1c55ca4e6b432ccdc941d8d9813c88e5f33476ef2c2d55aa0bfafe549b6726f",
+      "changed": false
+    },
+    "NFRV": {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "before": "17ee1dc8ab6786416680e496ba8fb83a714756dd8f853830afe036ddcc9b36e9",
+      "after": "8a731bb2a1e27006cdead8430075889cea75ed7bd830c491727eca049e6ae912",
+      "changed": true
+    }
+  },
+  "static_checks": {
+    "NFR_and_NFRV_035_ranges_exclude_033_and_include_041": true,
+    "S5_033_definition_unchanged": true,
+    "S5_041_definition_unchanged": true,
+    "BR_FR_BV_FV_unchanged": true,
+    "no_tests_or_legacy_runtime_executed": true,
+    "git_diff_check": "PASS",
+    "json_parse": "PASS"
+  },
+  "limitations": [
+    "静的文書整合のみ。CASEを実行していない。",
+    "独立review・承認・L10実行・実測は本記録から生成しない。"
+  ]
+}
