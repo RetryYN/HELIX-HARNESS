@@ -1,0 +1,274 @@
+{
+  "status": "draft_static_evidence_not_approval",
+  "base_revision": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+  "fixed_l2_l11_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+  "formal_recheck": {
+    "comment_id": 6038681135,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2652#issuecomment-6038681135",
+    "body_sha256": "0b54dcfc2524c59f962d1476523f925f08a11c7d20d43a5cf320e9c91bf07f1f",
+    "scope": "INFRA Stage5 Worker execution-contract owner attribution correction; no SECURITY Stage2c change"
+  },
+  "finding": {
+    "id": "A",
+    "summary": "責務ownerはHELIX-OS、具体contract identity/revision/sourceの状態は別扱い。固定親で明記された資源・SECURITY ownerは維持する。"
+  },
+  "source_pins": {
+    "infra_l2_011_and_025": {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "bytes": 60825,
+      "sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "spans": [
+        {
+          "start_line": 138,
+          "end_line_inclusive": 146,
+          "raw_bytes_sha256": "6bebc7a8fecafca8fa776e06bf718c0774ef7ae9c96de4bce50155b203a54351"
+        },
+        {
+          "start_line": 287,
+          "end_line_inclusive": 295,
+          "raw_bytes_sha256": "7465361b4d272cc1bf352a019272d6212a59282c938af704583ba1c0d493554c"
+        }
+      ]
+    },
+    "infra_l11_011_and_025": {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "bytes": 40777,
+      "sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "spans": [
+        {
+          "start_line": 140,
+          "end_line_inclusive": 150,
+          "raw_bytes_sha256": "08f92ca108c502d3e63f530e3e4c05078e1e6b293619fcfe24ae8519b53e9581"
+        },
+        {
+          "start_line": 290,
+          "end_line_inclusive": 297,
+          "raw_bytes_sha256": "385ffc1a0f77205bc932cba48db5a889df57b2cb3545c2aef6e424f0d889ce7c"
+        }
+      ]
+    },
+    "os_l2_004": {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "bytes": 153353,
+      "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "spans": [
+        {
+          "start_line": 538,
+          "end_line_inclusive": 552,
+          "raw_bytes_sha256": "ea26864ddbb17fbd2c1091a4aa4cd8766b3a815b289fd14e37b6c52600f8d195"
+        }
+      ]
+    },
+    "os_l11_004": {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "bytes": 82708,
+      "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "spans": [
+        {
+          "start_line": 24,
+          "end_line_inclusive": 24,
+          "raw_bytes_sha256": "2c3954ea845306a2120f9119ea3b6503ba4957b5eab2b23b946a2f04cc5a19a1"
+        },
+        {
+          "start_line": 36,
+          "end_line_inclusive": 50,
+          "raw_bytes_sha256": "ffda3162193dc08497fd04f6793634e2f2483cf63676364679ce183eb97791b2"
+        }
+      ]
+    },
+    "security_l2_007": {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "bytes": 55544,
+      "sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+      "spans": [
+        {
+          "start_line": 130,
+          "end_line_inclusive": 138,
+          "raw_bytes_sha256": "1ee4d42a1e4178d598ce11b75268845578ba83bcb8ea471e2642ff8630c49504"
+        }
+      ]
+    },
+    "security_l11_007_ownership": {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "bytes": 20428,
+      "sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01",
+      "spans": [
+        {
+          "start_line": 31,
+          "end_line_inclusive": 31,
+          "raw_bytes_sha256": "bb6dc9697c4bc21ad94cce4f2ad97c796706327d33686858eed1831378b4c155"
+        }
+      ]
+    },
+    "worker_execution_po_record": {
+      "revision": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+      "path": "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md",
+      "bytes": 17732,
+      "sha256": "1c93bf0aadccfdf6b536a32d3923a17fbd00a1fd830850f9369b5b6d6b12efb2",
+      "spans": [
+        {
+          "start_line": 82,
+          "end_line_inclusive": 92,
+          "raw_bytes_sha256": "f31016f6a5647f2dcd7bddc5df210d060ba8596fd0fd10201821412287d287d7"
+        }
+      ]
+    },
+    "legacy_worker_common_contract": {
+      "revision": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+      "bytes": 14499,
+      "sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+      "spans": [
+        {
+          "start_line": 55,
+          "end_line_inclusive": 60,
+          "raw_bytes_sha256": "5ef2909bde56e5ca52dee82c6ff7f0eb0b3bb1735296403d2a383c9239cf469c"
+        },
+        {
+          "start_line": 95,
+          "end_line_inclusive": 99,
+          "raw_bytes_sha256": "cdd8f7dddcdd7f67c9c4f2ceb1a3f3b7b4df1a1ac66e2ba46b0577b6d0fbe70a"
+        },
+        {
+          "start_line": 129,
+          "end_line_inclusive": 129,
+          "raw_bytes_sha256": "63e5401c84b6d9adc05d3aaf86f26de8ac35ee1aff2e83b26a135c077cc06cd7"
+        }
+      ]
+    },
+    "legacy_asset_inventory_row": {
+      "revision": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "bytes": 4857919,
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "spans": [
+        {
+          "start_line": 497,
+          "end_line_inclusive": 497,
+          "raw_bytes_sha256": "864692d438c74a029739105d9faeac33fa2906e5c27d11c83c160a03e7ad12cd"
+        }
+      ]
+    },
+    "authoring_layout": {
+      "revision": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+      "path": "docs/governance/l3-l10-authoring-layout.md",
+      "bytes": 12199,
+      "sha256": "d1fb0c89df30aca6bb828f28e58329d57c40bb7593df540625562b5ac920a7ca",
+      "spans": [
+        {
+          "start_line": 1,
+          "end_line_inclusive": 39,
+          "raw_bytes_sha256": "964f83201bd16dfdb00ea0b429e2db6ce1995d2c95ae52357ca2d4abb036523a"
+        }
+      ]
+    }
+  },
+  "legacy_reuse_derivation_replacement": {
+    "asset_id": "LEGACY-ASSET-9114D4E463E95B67DD0C",
+    "source": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+    "treatment": "意味を再導出。旧Worker契約が版付き識別子・隔離実行・証拠を扱う点を出自として読む。旧provider wrapper/sandbox/runtime/testを実行・複製しない。現在の契約責務ownerは2026-09-26 PO判断とOS L2-004からHELIX-OSと特定。具体contract record/source identityの欠落は別状態で保持する。",
+    "asset_inventory_row": 497
+  },
+  "corrected_l3_fixture_rows": [
+    "07",
+    "16",
+    "INFRA-011-S5-019",
+    "INFRA-011-S5-021",
+    "INFRA-011-S5-046",
+    "INFRA-011-S5-047",
+    "INFRA-011-S5-048",
+    "17",
+    "INFRA-011-S5-049",
+    "INFRA-011-S5-050",
+    "INFRA-011-S5-051"
+  ],
+  "corresponding_l10_cases": [
+    "CASE-INFRA-011-S5-019",
+    "CASE-INFRA-011-S5-021",
+    "CASE-INFRA-011-S5-046",
+    "CASE-INFRA-011-S5-047",
+    "CASE-INFRA-011-S5-048",
+    "CASE-INFRA-011-S5-071",
+    "CASE-INFRA-011-S5-049",
+    "CASE-INFRA-011-S5-050",
+    "CASE-INFRA-011-S5-051"
+  ],
+  "six_document_snapshot": {
+    "docs/helix-infrastructure/L3-requirements/business-requirements.md": {
+      "base_bytes": 5634,
+      "base_sha256": "429291b0cec7dcf63271b4aef419120476e70bff9054002aeb872e888c8eb328",
+      "current_bytes": 5634,
+      "current_sha256": "429291b0cec7dcf63271b4aef419120476e70bff9054002aeb872e888c8eb328",
+      "changed_from_base": false
+    },
+    "docs/helix-infrastructure/L3-requirements/functional-requirements.md": {
+      "base_bytes": 142675,
+      "base_sha256": "075ba025fa2fbf2c7dde9a0e5e216e0a9ab2d1b5089c05c545145746e6b8c575",
+      "current_bytes": 143980,
+      "current_sha256": "915ebb5e990cfa7dd2e154dada12791809f7056759fb8de22cd810c8da2635e7",
+      "changed_from_base": true
+    },
+    "docs/helix-infrastructure/L3-requirements/nfr-grade.md": {
+      "base_bytes": 19668,
+      "base_sha256": "7a6e9bd1d2125805791756c031a1a9228e7e3467c10b35bb473245338284ad75",
+      "current_bytes": 19668,
+      "current_sha256": "7a6e9bd1d2125805791756c031a1a9228e7e3467c10b35bb473245338284ad75",
+      "changed_from_base": false
+    },
+    "docs/helix-infrastructure/L10-verification/business-verification.md": {
+      "base_bytes": 4607,
+      "base_sha256": "c0c583732c75ba2545e0c3229f98ea4d280c82dfedc449a9ee6be0fb77f0a79f",
+      "current_bytes": 4607,
+      "current_sha256": "c0c583732c75ba2545e0c3229f98ea4d280c82dfedc449a9ee6be0fb77f0a79f",
+      "changed_from_base": false
+    },
+    "docs/helix-infrastructure/L10-verification/functional-verification.md": {
+      "base_bytes": 226676,
+      "base_sha256": "fc68285e5ec963f11d0bc4365f407f1aabfd6e256b0b9ce6ba52fe0d317f7045",
+      "current_bytes": 227243,
+      "current_sha256": "846aa0ca0a61283f3121adb3bda62e840cc107a6e9484c3af4be73440f9eca69",
+      "changed_from_base": true
+    },
+    "docs/helix-infrastructure/L10-verification/nfr-verification.md": {
+      "base_bytes": 17717,
+      "base_sha256": "4e8d94b7515e87da8c809b26d190e1e08e7d21060f1c6fdefbfc9d75ca65145b",
+      "current_bytes": 17717,
+      "current_sha256": "4e8d94b7515e87da8c809b26d190e1e08e7d21060f1c6fdefbfc9d75ca65145b",
+      "changed_from_base": false
+    }
+  },
+  "modified_requirement_text_scope": [
+    "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+    "docs/helix-infrastructure/L10-verification/functional-verification.md"
+  ],
+  "audit_artifacts": [
+    "docs/governance/audits/requirements-stage/l3-infra-worker-contract-owner-correction-2026-10-07-6038681135.md",
+    "docs/governance/audits/requirements-stage/l3-infra-worker-contract-owner-correction-evidence-2026-10-07-6038681135.json"
+  ],
+  "static_checks": {
+    "six_l10_cases_marked_unexecuted": true,
+    "resource_and_recovery_unknowns_retained": true,
+    "six_document_snapshot_complete": true,
+    "only_functional_l3_l10_docs_changed_from_base": true,
+    "security_stage2c_033_modified": false,
+    "old_cli_runtime_test_ci_executed": false,
+    "approval_generated": false,
+    "all_worker_common_contract_owner_unknowns_resolved": true,
+    "out_of_band_resource_recovery_unknowns_retained": true
+  },
+  "verification_limits": [
+    "Fixture CASEs are specification only and unexecuted.",
+    "No implementation/runtime/test/CI was executed.",
+    "No PO approval or new authority state was generated."
+  ],
+  "root_acceptance_notes": [
+    "Root found out-of-range empty SECURITY L11:183–186 span and removed it. Fixed L11:31 supports actual-environment observation, owner split derives from OS L2:548 / INFRA L2:291 / Worker PO record, not nonexistent L11 ownership tuple.",
+    "Root also corrected out-of-band Worker common contract owner in item17/CASE049–051. OS owner attribution does not require OS live runtime; resource/recovery source owner remains unknown and OS ticket remains none."
+  ]
+}
