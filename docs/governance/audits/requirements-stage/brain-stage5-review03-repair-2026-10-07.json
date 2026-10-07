@@ -1,0 +1,28 @@
+{
+  "authority_effect": "none",
+  "status": "draft_unapproved_unexecuted",
+  "review_comment": 6039971107,
+  "previous_content_revision": "7691a6711472cb175f1fa04efc276375a9e7133a",
+  "fixed_parent_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+  "fixed_parent_lines": {
+    "L2": "464-473",
+    "L11": "65"
+  },
+  "changes": [
+    "M1 C01全段階revision一致の復元、C67採否対象単独不一致",
+    "m1 C68分類unknown、C69該当L1、C70BRAIN change owner receipt",
+    "m2 duty9を再観測の進行追跡へ明確化",
+    "m3 C47/C48 LABO返却明示",
+    "6本文の範囲C70へ同期"
+  ],
+  "six_body_sha256": {
+    "docs/helix-brain/L10-verification/business-verification.md": "c0417e7fa14acfb6dbb408b4bafc59820fa154ba6af6bd9d153a07736bf12c99",
+    "docs/helix-brain/L10-verification/functional-verification.md": "857c25372d27632b7fc80963b9d35803b6bbcdd5e1d3f1835a1b6ca466ca716a",
+    "docs/helix-brain/L10-verification/nfr-verification.md": "6a0abd94aa982a8aaffb67efc1f33cb4e6f19fb0838800672df50cd3de174044",
+    "docs/helix-brain/L3-requirements/business-requirements.md": "91938d4d33d9ced2ea79e860843a88084c8460d586bbd937c7afcd1a5a21ccd8",
+    "docs/helix-brain/L3-requirements/functional-requirements.md": "88d17de0dcd5cec559f321a4456bfa7aa1bcbc417aecb19a140ffb279dea11c1",
+    "docs/helix-brain/L3-requirements/nfr-grade.md": "e4ff12ae0c74dfaf8b5e8bca5210a834dd99a756711bdaceca600649e701f912"
+  },
+  "fixture_execution": false,
+  "legacy_disposition": "既存brain-stage5-receipt-repair監査のRCLS-BR-004/006とAC-004/007/019の意味再導出を維持。新ownerやapprovalを追加しない。"
+}
