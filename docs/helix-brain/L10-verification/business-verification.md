@@ -90,7 +90,7 @@
 
 | 親L2 | 独立business判定 | functional L10参照 |
 |---|---|---|
-| `HELIXBRAIN-L2-024` | 独立business outcomeなし。 | `BRAIN-024-AC-01`、`BRAIN-024-AC-02`。functional CASE `L10-BRAIN-024-C01`–`C53` |
+| `HELIXBRAIN-L2-024` | 独立business outcomeなし。 | `BRAIN-024-AC-01`、`BRAIN-024-AC-02`。functional CASE `L10-BRAIN-024-C01`–`C54`はC02のsource/evaluation値一致、C33 value保存拒否、C44 reference流入停止、C54 reference保存先拒否、C46–49通常依存trace、C51 unknown owner、C52–53 LABO戻しを照合する。 |
 | `HELIXBRAIN-L2-025` | 独立business outcomeなし。 | `BRAIN-025-AC-01`〜`BRAIN-025-AC-06`。functional CASE `L10-BRAIN-025-C01`–`C70` |
 
 旧RCLS-AC-017由来のcross-project human approvalやshadow metricを別business acceptanceとして追加しない。

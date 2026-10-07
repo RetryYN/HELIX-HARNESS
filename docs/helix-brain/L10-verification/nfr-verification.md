@@ -107,7 +107,7 @@ L2-024/025の固定sourceは独立数値NFRを指定していないため、NFR 
 
 | 親L2 | NFR L10判定 | functional CASE参照 |
 |---|---|---|
-| `HELIXBRAIN-L2-024` | 独立NFRなし。実測や性能達成の主張はない。 | `BRAIN-024-AC-01/02`、functional fixture `L10-BRAIN-024-C01`–`C53` |
+| `HELIXBRAIN-L2-024` | 独立NFRなし。実測や性能達成の主張はない。 | `BRAIN-024-AC-01/02`、functional fixture `L10-BRAIN-024-C01`–`C54`でC02 source/evaluation値一致、C33 value保存拒否、C44 reference流入停止、C54 reference保存先拒否、C46–49通常dependency trace、C51 unknown保持、C52–53 LABO戻しを意味照合する。 |
 | `HELIXBRAIN-L2-025` | 独立NFRなし。独立検証stateはfunctional oracleであり性能目標ではない。 | `BRAIN-025-AC-01`〜`BRAIN-025-AC-06`、functional fixture `L10-BRAIN-025-C01`–`C70` |
 
 旧RCLS shadow判定値は現行NFR/合格基準として使用しない。

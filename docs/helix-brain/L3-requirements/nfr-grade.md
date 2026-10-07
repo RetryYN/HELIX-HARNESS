@@ -119,7 +119,7 @@
 
 | 親L2 | 独立NFR候補 | 根拠・照合対象 |
 |---|---|---|
-| `HELIXBRAIN-L2-024` | 固定親に独立数値NFRなし。 | `BRAIN-024-AC-01/02`、functional fixture `L10-BRAIN-024-C01`–`C53`の機能CASEで各route、直接read/write/learning、実server/network/database状態、provider account、credential、操作権限、実log/metrics、owner境界を照合。時間・性能値を追加しない。 |
+| `HELIXBRAIN-L2-024` | 固定親に独立数値NFRなし。 | `BRAIN-024-AC-01/02`、functional fixture `L10-BRAIN-024-C01`–`C54`の機能CASEでC02 source/evaluation値一致、C33 value保存拒否、C44 reference流入停止、C54 reference保存先拒否、C46–49通常依存trace、C51 unknown保持、C52–53 LABO戻しと各route/owner境界を照合。時間・性能値を追加しない。 |
 | `HELIXBRAIN-L2-025` | 固定親に独立数値NFRなし。 | `BRAIN-025-AC-01`〜`BRAIN-025-AC-06`、functional fixture `L10-BRAIN-025-C01`–`C70`の機能CASEでowner別state/revision/独立検証/hold-rejectを照合。cross-project sample countやshadow thresholdを追加しない。 |
 
 本欄は「未測定の数値要件」を意味しない。固定親が定義していない独立NFRを創作しない。
