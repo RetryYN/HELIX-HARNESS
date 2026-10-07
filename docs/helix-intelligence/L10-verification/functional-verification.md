@@ -2799,7 +2799,7 @@ qualified external receiptを別origin typeで示す。external observationだ�
 | `CASE-INT-069-08f` | 069/AC-INT-069-08 | scenario条件だけ欠落 | baselineのみから比較を作らず計算不能/部分unknownを返す。固定L2が返却ownerを指定しないため戻し先unknown。 |
 | `CASE-INT-069-08g` | 069/AC-INT-069-08 | input event seriesだけ欠落 | eventを捏造せず計算を未完にする。 |
 | `CASE-INT-069-08h` | 069/AC-INT-069-08 | load seriesだけ欠落 | 負荷結果を計算不能/部分unknownとする。固定L2はload欠落に戻し先を指定しないため、ownerを追加しない。 |
-| `CASE-INT-069-08i` | 069/AC-INT-069-08 | capacityだけ欠落 | throughput/timeを計算不能/部分unknownとする。固定L2はcapacity欠落に戻し先を指定しないため、ownerを追加しない。 |
+| `CASE-INT-069-08i` | 069/AC-INT-069-08 | worker capacityだけ欠落（shared DB ceilingの欠落は04jで別判定） | throughput/timeを計算不能/部分unknownとする。固定L2はcapacity欠落に戻し先を指定しないため、ownerを追加しない。 |
 | `CASE-INT-069-08j` | 069/AC-INT-069-08 | service rateだけunknown | 率を補わず時間/throughputをunknownとする。 |
 | `CASE-INT-069-08k` | 069/AC-INT-069-08 | currencyだけ欠落 | costを比較せずunknownを保つ。固定L2はcurrency欠落に戻し先を指定しないため、ownerを追加しない。 |
 | `CASE-INT-069-08l` | 069/AC-INT-069-08 | selected price source identity/ownerを明示した上でprice effective timestampだけstale | stale priceをcurrent costへ流用せずcostをunknownに保ち、Product Core/HARNESS/SECURITYへ照合する。 |
