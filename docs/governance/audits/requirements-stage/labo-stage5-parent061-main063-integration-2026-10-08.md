@@ -1,0 +1,3 @@
+# LABO Stage5 親061のmain063統合監査
+
+最新main `691afef75aeab0f315c937f91a14746802542c63` を統合。親061の追加削除行は旧補強HEAD `cdbefa476597aed26e5d36296cf9d5bbca51a86d` と同一で、main063/059/067/069/070/071を保持する。新6本文pinは同名JSONに固定。137定義のうちCASE115–119補強、過去runtime起動禁止、選択unknown保持と固定059非適用境界を維持する。旧監査は時点記録のまま保持する。新本文Opus/Fable独立review前、fixture未実行、274意味検収未完。

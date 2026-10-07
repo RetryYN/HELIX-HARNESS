@@ -89,7 +89,7 @@
 
 | 親 | 独立業務outcome | 正本AC/照合先 |
 |---|---|---|
-| `HELIXLABO-L2-061` | 固定L2/L11から独立したbusiness KPI・ownerは導かれない。task比較の適格/不成立、unknown、既存責務への返却を保持し、比較receiptから判断・permission・assignmentを生成しない。 | `LABO-061-AC-01/02/03` と `L10-LABO-061-CASE-01`〜`CASE-114`。索引行は個別fixtureへ参照し、独立outcomeや二重計数にしない。 |
+| `HELIXLABO-L2-061` | 固定L2/L11から独立したbusiness KPI・ownerは導かれない。task比較の適格/不成立、unknown、既存責務への返却を保持し、比較receiptから判断・permission・assignment・Worker起動・candidate採択を生成せず、固定059 revisionへ061を遡及適用せず、旧runtimeを起動しない。 | `LABO-061-AC-01/02/03` と `L10-LABO-061-CASE-01`〜`CASE-119`。索引行は個別fixtureへ参照し、独立outcomeや二重計数にしない。 |
 
 
 ## Stage 5 — HELIXLABO-L2-063 業務境界

@@ -1,0 +1,72 @@
+{
+  "record_type": "HDEC-LABO-STAGE5-PARENT061-REVIEW01-2026-10-08",
+  "authority_effect": "none_pending_condition3_and_main_admission",
+  "scope": {
+    "mechanism": "HELIX-LABO",
+    "stage": "5",
+    "parents": [
+      "HELIXLABO-L2-061"
+    ],
+    "version": "1.0"
+  },
+  "review": {
+    "formal_comment_id": 6047576368,
+    "formal_body_raw": "## review01（HEAD 60cfd0bd8044e17e3c5fd2433a206037aee95ba0 / base 691afef75aeab0f315c937f91a14746802542c63）— Claude review_merge\n\n**結論：Major 0。条件1・2が成立。** OpusとFableがこのrevisionを独立に読み、次のとおり一致しました。\n- Opus：Major 0\n- Fable：Major 0、「承認してよい」\n\n運用モデル「L3／L10承認の委任」の条件1・2は、本HEADの本文revisionで成立します。条件3（判断記録と6本文pinの追加後の照合）とmain admissionは、まだ成立していません。\n\n### 成立を確認した点\n- **CASE-115〜119**：各々が単独変異で、固定 `318ec4a` に根拠があります。\n  | CASE | 内容 | 根拠 |\n  |---|---|---|\n  | 115 | 登録/配送receiptの成功だけでは隔離済みとしない。実contextの証拠は実行主体へ返す | L2:463「検証できない場合は隔離済みと推定しない」、L2:467「配送・登録成功を情報隔離の成功へ変換しない」、L11:214 |\n  | 116 | LABOがWorkerを起動しない | L2:464 |\n  | 117 | 比較receiptだけでcandidateを採択済みにしない | L11:207「実験起動・候補採択の許可を生成しない」 |\n  | 118 | 061の条件を固定059 revisionへ遡及適用しない | L2:459、L2:466 |\n  | 119 | 旧runtimeを起動してreplayしない | L11:213「旧runtimeは起動しない」 |\n\n  いずれも拒否するoracleで、承認、authority、起動、採否を生成しません。戻し先はL2:467の区分内です。\n- **AC-02/03**\n  - 適用性unknownを保持し、task/oracle ownerへ返します。owner identityが不明ならunknownを保ちます。\n  - receiptから隔離を推定しません。\n  - 起動・採択・遡及を拒否します。\n\n  いずれも固定L2:463–467、L11:207・213–215の範囲内で、L2の意味を変えません。CASE-102はラベルの変更だけで、変異とoracleは同じです。\n- **新しいcrosswalkの行**：L2:463,467、L2:459,461,464–467、L2:465–467、L11:213–215のlocatorは、実際の行と一致します。既存行の `467–469` を `465–467` に直したのも、実際の行に合っています。\n- **件数**：FVの061は137行・137 unique IDです（正常はCASE-01/02/24、索引を含む）。BR/BVの「CASE-01〜CASE-119」、FV:2790とNFRV:143の「137」、R12/統合監査JSONの数とも一致します。R4監査の「136」は時点の記録で、R12監査が読み替えを明記しています。\n- **main統合**：統合前（ce70628e→cdbefa47）と統合後（691afef7→HEAD）で、061の追加・削除行は同じです（sorted ± hash `57f1a33b804a`）。`merge-tree(691afef7, cdbefa47)` の本文はHEADとbyte一致します。\n- **監査**：監査ファイルは8件とも追加だけで、既存の監査記録は変わっていません。固定L2/L11はHEADでも `318ec4a` と同じです。\n- **静的検査**：`scfctl validate` 147/0、`stale=0`、govcheck ok（atoms=7622）、`git diff --check` が通りました。\n\n### 返さない所見（Minor。承認の条件にしません。Ready前に同じPRで直すなら、本文が変わるため新しいOpus/Fable reviewが要ります）\n1. FR:1716の再導出段落は「R4補強でCASE-115〜118を追加する」とだけ書いており、R12のCASE-119がありません。件数の数値は矛盾していません。「…R4補強でCASE-115〜118、R12でCASE-119を追加する（現行137）」とする余地があります。\n2. FV:2790の「CASE-01/02/24は正常、CASE-02は未見正常」は、CASE-02を二度書いています。「CASE-01/24は正常、CASE-02は未見正常」とすると明確です。\n3. FR:1708（AC-02）の「別taskの既知安全判定を未見taskへ継承しない」は、固定L11:214「未知taskへ既存の安全判定を**無条件**継承しない」より強く読めます。「無条件に」を入れて、L11の文言に揃えることを推奨します。拒否の方向に寄せた書き方で、authorityの生成や戻し先の変更ではないため、Majorとはしません。\n4. FR:1699（Worker起動・採択・遡及の行）のL11参照 `207,214–215` のうち、214（未見・安全判定の継承）は、この行の内容に対応しません。`207,215` が適切です。既存のcrosswalk行1693–1696のlocatorも、実際の行より1行ほど前にずれています（本PRより前からあるもの）。\n5. CASE-115とCASE-11（実context参照の欠落）は、前提が近いです。CASE-115の準備欄に「CASE-11と区別し、receipt成功を根拠にする点だけを変異とする」と一文あると、二重計上の疑いを避けられます。\n6. CASE-117 oracleの「既存target owner」は、固定L2-061/L11-061にない語です。戻し先ではなく「代行しない」相手の呼び方なので、区分違反ではありません。061の固定親の語に寄せるか、出所を注記する余地があります。\n\n### 未確認範囲\n- fixtureは実行していません。\n- 274親の意味検収は、本reviewの範囲外です。\n\n本reviewから、承認の効力、merge admission、PO事後確認、L10の実行合格、実装・release許可、Issue closeを生成しません。\n",
+    "formal_body_utf8_bytes": 5299,
+    "formal_body_sha256": "eb6e0606df1ee6e86a338717d4479a3ec097faa082cefae576738b6fc4d29a75",
+    "reviewed_head": "60cfd0bd8044e17e3c5fd2433a206037aee95ba0",
+    "review_base": "691afef75aeab0f315c937f91a14746802542c63",
+    "condition1": "satisfied: Opus Major 0",
+    "condition2": "satisfied: Fable 承認してよい",
+    "condition3": "pending"
+  },
+  "six_body_pins": [
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "bytes": 33106,
+      "sha256": "a5ff375934e21901d5b355498ab1339227109b24d1603c55e5e87f8ffc09e07a"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "bytes": 359702,
+      "sha256": "362979fc4489c137d7641278a8ea8e55461f3592d56d802bb285ec34abc4a9b8"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "bytes": 92792,
+      "sha256": "84a05a25d9569f7b2397cc9b4358cc5ab83ce347ba6ebe9014d59a5839f7eb4c"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "bytes": 32077,
+      "sha256": "9cf3239c23a2af69bcc9b5999d215b0f1d76268ec22c6ad162bd92c9a47c1f4b"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "bytes": 701633,
+      "sha256": "24540ff0cbddb7dc2663b1f699b92a3c96fd37e5c0fec47983bb715d51ec4534"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "bytes": 83495,
+      "sha256": "5e62806b8994d8739ad94eb053421ce8e03208bfd44aed727fae8dcf2195c0eb"
+    }
+  ],
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-labo-stage5-parent061-review01-l3-l10-delegated-decision-2026-10-08.md",
+    "bytes": 3285,
+    "sha256": "5b3798fae570a68be3a08dd5e3329dbee6ddbf72da912fa1397bc389fc6087e4"
+  },
+  "minor_not_returned": [
+    "FR:1716のR4補強の歴史記述にR12 CASE119の追記余地がある。現在137件の索引と矛盾はない。",
+    "FV:2790は正常CASE02を二度挙げる。",
+    "FR:1708の安全判定継承拒否は固定L11:214の「無条件」を省略し、より強く読める。拒否方向でauthority生成や戻し先変更はないと独立reviewが判定した。",
+    "FR:1699のL11参照214は当該行に対応せず、既存1693–1696のlocatorにも約1行のずれがある。",
+    "CASE115と11の差はreceipt成功を根拠とする変異であり、準備欄に差の追記余地がある。",
+    "CASE117の「既存target owner」は固定親の語に寄せるか出所注記の余地がある。戻し先の新設ではない。"
+  ],
+  "limits": [
+    "fixture未実行",
+    "274親検収未完"
+  ]
+}
