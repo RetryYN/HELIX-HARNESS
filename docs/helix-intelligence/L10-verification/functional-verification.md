@@ -2481,7 +2481,8 @@ DB disconnect eventと要求されたdependency/failure/retry edgeを入力す�
 | `CASE-INT-069-04f` | recovery ruleだけ不在 | recovery/retry成功を補完せずunknown/blockedを保持し、固定L2が指定するownerを特定できない場合は戻し先unknown。 |
 | `CASE-INT-069-04g` | virtual resultを実環境結果と表示 | virtual/actualを区別し不合格、actual観測は未成立のままにする。実測sourceを入力が特定しない場合は戻し先unknown。 |
 | `CASE-INT-069-04h` | AI explanationだけをtransition evidenceとして提示 | explanationをstate transition根拠とせず、source/model rule traceを照合する。 |
-| `CASE-INT-069-04i` | shared DB ceilingだけを削除 | worker追加の速度比例を算出せず、明示されたceilingを維持する。 |
+| `CASE-INT-069-04i` | 選択済みの有効な同revision sourceにshared DB ceiling=8を残したまま、計算だけがceiling制約を落としてworker追加を比例速度とする | 不合格。選択sourceのceiling=8を有効上限として適用し、L11の正常oracleどおりn=4でもthroughputは8 jobs/minとする。 |
+| `CASE-INT-069-04j` | 選択sourceのshared DB ceiling fieldだけ欠落。同revisionの別sourceやfallbackはない。他の入力・source identity/revision/owner/scopeは維持 | ceiling/throughput/timeの数値を補完せず、該当計算を計算不能/部分unknownにする。L11正常fixtureの値を欠落入力へ移植せず、L2が定めない追加ownerも作らない。 |
 
 ### CASE-INT-069-05 — 未見の有限state/rule (AC-INT-069-05)
 
@@ -2798,7 +2799,7 @@ qualified external receiptを別origin typeで示す。external observationだ�
 | `CASE-INT-069-08f` | 069/AC-INT-069-08 | scenario条件だけ欠落 | baselineのみから比較を作らず計算不能/部分unknownを返す。固定L2が返却ownerを指定しないため戻し先unknown。 |
 | `CASE-INT-069-08g` | 069/AC-INT-069-08 | input event seriesだけ欠落 | eventを捏造せず計算を未完にする。 |
 | `CASE-INT-069-08h` | 069/AC-INT-069-08 | load seriesだけ欠落 | 負荷結果を計算不能/部分unknownとする。固定L2はload欠落に戻し先を指定しないため、ownerを追加しない。 |
-| `CASE-INT-069-08i` | 069/AC-INT-069-08 | capacityだけ欠落 | throughput/timeを計算不能/部分unknownとする。固定L2はcapacity欠落に戻し先を指定しないため、ownerを追加しない。 |
+| `CASE-INT-069-08i` | 069/AC-INT-069-08 | worker capacityだけ欠落（shared DB ceilingの欠落は04jで別判定） | throughput/timeを計算不能/部分unknownとする。固定L2はcapacity欠落に戻し先を指定しないため、ownerを追加しない。 |
 | `CASE-INT-069-08j` | 069/AC-INT-069-08 | service rateだけunknown | 率を補わず時間/throughputをunknownとする。 |
 | `CASE-INT-069-08k` | 069/AC-INT-069-08 | currencyだけ欠落 | costを比較せずunknownを保つ。固定L2はcurrency欠落に戻し先を指定しないため、ownerを追加しない。 |
 | `CASE-INT-069-08l` | 069/AC-INT-069-08 | selected price source identity/ownerを明示した上でprice effective timestampだけstale | stale priceをcurrent costへ流用せずcostをunknownに保ち、Product Core/HARNESS/SECURITYへ照合する。 |
