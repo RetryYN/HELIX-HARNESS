@@ -132,7 +132,7 @@
 
 | 固定親 | 独立業務条件 | 正本AC / 照合先 |
 |---|---|---|
-| `HELIXLABO-L2-067` | 独立outcome/KPIなし。既存predicate/oracleに基づくcandidate結果と同一Attempt内修復の観測証拠だけ。 | `LABO-067-AC-01/02/03`; `L10-LABO-067-CASE-01/02/03a–g/04a–b/05–23/24–38` |
+| `HELIXLABO-L2-067` | 独立outcome/KPIなし。既存predicate/oracleに基づくcandidate結果と同一Attempt内修復の観測証拠だけ。 | `LABO-067-AC-01/02/03`; `L10-LABO-067-CASE-01/02/03a–g/04a–b/05–23/24–39` |
 
 これは未実行design索引であり、実business outcomeを示さない。
 

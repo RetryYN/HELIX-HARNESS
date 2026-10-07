@@ -1,0 +1,69 @@
+{
+  "record_type": "HDEC-SECURITY-STAGE1-PARENT028-REVIEW02-2026-10-08",
+  "authority_effect": "none_pending_condition3_and_main_admission",
+  "scope": {
+    "mechanism": "HELIX-SECURITY",
+    "stage": "1",
+    "parents": [
+      "HELIXSECURITY-L2-028"
+    ],
+    "version": "1.0"
+  },
+  "review": {
+    "formal_comment_id": 6046495295,
+    "formal_body_raw": "## review02（HEAD cea18391e3cad9af5df0fa9e3650fe136a885f46 / base e7a695d4b2de64aec69a1a123de2fde33be724cf）— Claude review_merge\n\n### 結論：Major 0。同じ本文revisionで、委任条件1（Opus）と条件2（Fable「承認してよい」）が成立\n- OpusとFableが、このrevisionを独立に読みました。どちらもMajorなしで、承認してよいと判断しました。\n- review01の判断は継承していません。\n- 判断記録と6本文pinを追加した後に、条件3を別途照合します。\n\n### review01の解消\n- **M1は解消しました。**\n  - FV:216「固定L11受入oracle」は、固定 `f6dad2a` のL11:52の第3セルと文字列が完全に一致しました。\n  - contract version、verification scope、target-artifact対応の補強は、引用行の外に移っています。FV:218（fixture）、FV:219（未見正常）、FV:220（negative/boundary）とNFRV:18に、単独negativeとして残っています。\n- **M2は解消しました。**\n  - FV:220とNFRV:18から、戻し先の「該当artifact owner」が除かれました。\n  - 戻し先はL1-010、L1-013、HARNESS（L2-010/011 owner）の3区分だけです。これは固定L2:349と一致します。\n  - 「artifact owner」という語は、「責務/意味を本親で追加しない」という否定文の中にだけ残っています（FR:304、FV:220）。\n- **m1は解消しました。**\n  - AC-028-01（FR:306）の不合格条件に、「candidateまたは検証対象のidentity/version/digest欠落/unknown」が加わりました。\n  - これは固定L2:347/348とL11:52を明示したもので、新しい条件ではありません。\n- **m2は解消しました。**\n  - 「検証が実行され」が「宣言verification scopeに対応する検証結果が提示され」に変わりました。\n  - 実行主体、owner、gateは新設していません。\n\n### 照合\n- **既存の境界check**：残っています（L2-010/013 condition false、`version_target`と実版の区別、range外、unknown、共通lifecycleを帰属させないこと）。\n- **追補監査のpin**：新しい追補監査（`security-stage1-parent028-review01-correction-2026-10-08.json`）について、6本文のbefore（88d056782）とafter（HEAD）のSHAが、実bytesとすべて一致しました。\n- **旧監査**：変更されていません。旧監査のafter SHAは、新監査のbefore SHAと連続しています。旧監査の誤った保持主張は、新しい追補で訂正されています。\n- **mainの統合**：#2684（OS 049）は `docs/helix-security` に触れていません。\n- **静的検査**：`scfctl validate` 147/0、`stale=0`、`git diff --check` が通りました。\n\n### HEADの6本文（次の判断記録・pinで固定するbytes）\n| 本文 | bytes | SHA-256 |\n|---|---:|---|\n| BR | 2,999 | `30a0456a…` |\n| FR | 137,779 | `f6872a3e…` |\n| NFR | 18,947 | `d2c1d93c…` |\n| BV | 2,356 | `7da2a3b8…` |\n| FV | 178,403 | `f37da9b0…` |\n| NFRV | 14,254 | `3675115f…` |\n\n### 返さない所見（Minor。承認は止めず、解消済みとも扱いません）\n1. **FV:218に「実行」の語が残っている**\n   - FV:218の「実行verification scopeだけの不一致」「declared verification scopeで同一の更新artifactを検証する」は、主体が曖昧です。m2と同じ型の読み方が残ります。\n   - 前回HEADから変わっていない行です。次の修正の機会に、「実施された検証scope」などへ揃えるのが安全です。\n2. **追補JSONにcomment本文のpinがない**\n   - 新しい追補JSONの `formal_comments` には、comment IDだけが記録されています。body SHA-256とbytesが記録されていません。\n   - GitHubのcommentは編集できるため、#2676の前例のように、body SHAを足すことを推奨します。\n\n### 未確認範囲\n- fixtureは実行していません。\n- 旧source 5件のspan SHAは照合していません。\n- FVのうち、固定L11原文と一致しない他のcase（002、007、033）は、本PRの範囲外として確認していません。\n\n本reviewは承認・merge admissionを生成しません。\n",
+    "formal_body_utf8_bytes": 4210,
+    "formal_body_sha256": "f1cd84b0b3e0e873134caabb2d6b07ddadbaed86c425fe6c5ff85031d32831cd",
+    "reviewed_head": "cea18391e3cad9af5df0fa9e3650fe136a885f46",
+    "review_base": "e7a695d4b2de64aec69a1a123de2fde33be724cf",
+    "condition1": "satisfied: Opus Major 0",
+    "condition2": "satisfied: Fable 承認してよい",
+    "condition3": "pending"
+  },
+  "six_body_pins": [
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "bytes": 2999,
+      "sha256": "30a0456a17c4c65e9427cc8931905cb7c1adf54c207514f948a7b179dcdb7019"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "bytes": 137779,
+      "sha256": "f6872a3ee941d63c80a9717bca7e81de832c043ad05cc9ac0c2db77eb264ee9e"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "bytes": 18947,
+      "sha256": "d2c1d93cf4fb142ba6abae13c7e640a7c9826f6c0ed5ce49de7991cb8f884c3b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "bytes": 2356,
+      "sha256": "7da2a3b88c866c276065c793036708a633109b176b0381829c8d3c8293ff70a4"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "bytes": 178403,
+      "sha256": "f37da9b01739f8a7718be2b6ff124c56c0a21342a8b32bae11337368f3480910"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "bytes": 14254,
+      "sha256": "3675115f6d1b242a511651e627e8c46cfc71013ce9cf129c5045f1ce51e5f685"
+    }
+  ],
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-security-stage1-parent028-review02-l3-l10-delegated-decision-2026-10-08.md",
+    "bytes": 3117,
+    "sha256": "b3afa4090f25f4be4614a617b293e1e69f25db3c0502902b4b0b97e545e8d5c0"
+  },
+  "minor_not_returned": [
+    "FV218の実行verification scope等は主体が曖昧な語を保持する。FR/ACは検証結果提示へ修正し、実行主体を追加しない。",
+    "旧追補JSONのformal_commentsはIDのみ。この判断記録は正式review02 raw本文をSHA/bytesとともに固定する。",
+    "旧source5件のspan SHAはRoot検算済み、独立reviewでは未照合。他親002/007/033引用は範囲外で別監査中。"
+  ],
+  "limits": [
+    "fixture未実行",
+    "274親検収未完"
+  ]
+}

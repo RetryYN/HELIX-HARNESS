@@ -1,0 +1,70 @@
+{
+  "record_type": "HDEC-OS-STAGE2A-PARENT023-REVIEW03-2026-10-08",
+  "authority_effect": "none_pending_condition3_and_main_admission",
+  "scope": {
+    "mechanism": "HELIX-OS",
+    "stage": "2a",
+    "parents": [
+      "HELIXOS-L2-023"
+    ],
+    "version": "1.0"
+  },
+  "review": {
+    "formal_comment_id": 6046523635,
+    "formal_body_raw": "## review03（HEAD 5eddb1063a05837bf7216276e8334d6c7a600ce5 / base e7a695d4b2de64aec69a1a123de2fde33be724cf）— Claude review_merge\n\n### 結論：Major 0。最新mainを統合した新しい本文revisionで、委任条件1（Opus）と条件2（Fable「承認してよい」）が成立\n- merge保留の指摘（[comment 6046397170](https://github.com/RetryYN/HELIX-HARNESS/pull/2686#issuecomment-6046397170)）を受けて、作成側がmain `e7a695d`（親049）を統合しました。\n- 統合で6本文のbytesが変わったため、旧承認は継承していません。OpusとFableが、このrevisionを改めて独立に読みました。\n\n### 統合の機械的な照合\n- **手編集なし**：HEADのtree `b7198709…` は、`git merge-tree --write-tree e7a695d4b 51ae3f0a4` の自動merge結果と同一でした。\n- **023の変更行が前回承認分と一致**：本PRの `docs/helix-os` の変更行（e7a695d..HEAD）は、前回承認した分（4084ab1..51ae3f0a4）と、並べ替えて比較して完全に一致しました。\n- **049の変更行がすべて残っている**：#2684の変更行（4084ab1..e7a695d）は、統合後の差分（51ae3f0a4..HEAD）にすべて残っています。\n- **2つの変更は干渉しない**：023と049の変更は、別のhunk・別の行です。ID衝突も、共通scope文の共有もありません。\n\n### 統合後の本文\n- **親023**（前回承認どおり）\n  - 02a〜02nは変わっていません。新たに02o〜02r（FV:503–506）を置いています。\n  - AC-OS-023-02（FR:194）は、既存文を保ったまま4 caseを定義しています。\n  - 固定 `f6dad2a` L2:722–731 / L11:380–386 と、束縛field、戻し先、未完の保持が一致します。\n- **親049**（#2684承認どおり）\n  - AC-049-04の「window中は同一設定revision」、CASE-049-04/08/09、NFR-049-01〜03が保持されています。\n- **固定親の引用**：変わっていません。L2/L11ファイルは本PRで変更していません。\n- **静的検査**：`scfctl validate` 147/0、`stale=0`、`govcheck` ok、`git diff --check` が通りました。\n\n### HEADの6本文（次の判断記録・pinで固定するbytes）\n| 本文 | bytes | SHA-256 |\n|---|---:|---|\n| BR | 20,430 | `60b43aab…` |\n| FR | 203,340 | `dd227fbf…` |\n| NFR | 34,044 | `4e20115c…` |\n| BV | 17,850 | `254351ea…` |\n| FV | 245,358 | `1426f5c5…` |\n| NFRV | 31,285 | `c6d3bbb4…` |\n\n### 手続き\n- 既存の判断記録とpin（`reviewed_content_head: 5dfc81884`）は、前のrevisionの時点記録です。HEADの本文はこれでは覆われません。\n- 書き換えずに、`5eddb1063` 用の判断記録と6本文pinを追加してください。その後、条件3を依頼してください。\n\n### 未確認範囲\n- fixtureは実行していません。\n\n本reviewは承認・merge admissionを生成しません。\n",
+    "formal_body_utf8_bytes": 2908,
+    "formal_body_sha256": "605e13c9504089203d04f286fbf9e824d36b7dd9f65ac1844ea5ff5fa97f2d1c",
+    "reviewed_head": "5eddb1063a05837bf7216276e8334d6c7a600ce5",
+    "review_base": "e7a695d4b2de64aec69a1a123de2fde33be724cf",
+    "condition1": "satisfied: Opus Major 0",
+    "condition2": "satisfied: Fable 承認してよい",
+    "condition3": "pending"
+  },
+  "six_body_pins": [
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "bytes": 20430,
+      "sha256": "60b43aab032c879b32f29566c482a4c0f984d7f4c522614befba02994895d5ab"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "bytes": 203340,
+      "sha256": "dd227fbf6a250916cd62800ce30ac85d13c894bff96c188224b1fafca7cdf1d8"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "bytes": 34044,
+      "sha256": "4e20115c7eb56deda0f8bda7f894d755bec36329731c73af0511bb189fe7112f"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "bytes": 17850,
+      "sha256": "254351ea2067e4bb19e50adee9c544d589a2b2adc589568addb30c59982d03e9"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "bytes": 245358,
+      "sha256": "1426f5c5f6473ef712f8eda530bbf8844e92ca4035c54d80979d2ed99536627b"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "bytes": 31285,
+      "sha256": "c6d3bbb4d4b46313068992a485d52e792b4039ff487565f4d8392cf5f12d68df"
+    }
+  ],
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-os-stage2a-parent023-review03-l3-l10-delegated-decision-2026-10-08.md",
+    "bytes": 3381,
+    "sha256": "5a6cab38f8659ff1314ffeb8501a2fe4e63c2f5e2cdc400c6e1f3e4ab23605c4"
+  },
+  "minor_not_returned": [
+    "FV02qのconnection unresolved、02rの元ticket保持はFRの共通ACで補うが行ごとの明示は不足。",
+    "NFRVのhandoff拒否は固定親の接続未成立保持と語が異なる。FR共通ACで状態維持を補う。",
+    "統合監査のintegrated_head371154ecからreviewHEAD5dfc8188まで6本文不変。初回draft_commit_revisionはnull、統合監査がe17f77cfをpinする。",
+    "先行意味監査のpath/comment/SHAの特定不足、旧RLO意味再導出の独立reviewはSHA照合までで未確認。"
+  ],
+  "limits": [
+    "fixture未実行",
+    "274親検収未完"
+  ]
+}

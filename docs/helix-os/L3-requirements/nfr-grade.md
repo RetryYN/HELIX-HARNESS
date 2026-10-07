@@ -68,7 +68,7 @@
 
 ### NFR-OS-023-01 — handoff binding completeness
 
-親 `HELIXOS-L2-023` / `FR-OS-023`。Candidate 1: 実handoffごとにrevision/digest/causal ID/scope/duties/stop reason/evidence bindingのpresence/valueを全数照合する。unit successだけからconnection accepted、composite accepted、next-stage acceptedを作らないnegativeは各々独立fixtureとして数える。Candidate 2: sender-sendからreceiver-duty-accept receiptまでの実測時間を分類別に提示する。親が求める全必須bindingの欠落なしをoracleとし、任意のlatency targetやthroughput KPIは作らない。
+親 `HELIXOS-L2-023` / `FR-OS-023`。Candidate 1: 実handoffごとにrevision/digest/causal ID/scope/duties/stop reason/evidence bindingのpresence/valueを全数照合する。unit successだけからconnection accepted、composite accepted、next-stage acceptedを作らないnegativeは各々独立fixtureとして数える。CASE-OS-023-02o, CASE-OS-023-02p, CASE-OS-023-02q, CASE-OS-023-02rのcausal ID欠落、scope不一致、unfinished duty欠落、stop reason不一致も各々独立negativeとして数え、該当bindingが不完全なhandoffはunresolvedのまま発生側source/管理へ返す。Candidate 2: sender-sendからreceiver-duty-accept receiptまでの実測時間を分類別に提示する。親が求める全必須bindingの欠落なしをoracleとし、任意のlatency targetやthroughput KPIは作らない。
 
 ### NFR-OS-027-01 — eligibility conjunction・evaluation evidence
 
