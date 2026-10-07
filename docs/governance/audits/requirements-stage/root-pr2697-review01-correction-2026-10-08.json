@@ -1,0 +1,846 @@
+{
+  "record_type": "append_only_evidence_correction_for_pr2697_review01",
+  "recorded_at": "2026-10-08",
+  "authority_effect": "none; records evidence corrections for PR review only; creates no L3 approval, PO post-confirmation, merge admission, or L10 execution result",
+  "review": {
+    "pr": 2697,
+    "formal_comment_id": 6048009544,
+    "formal_comment_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2697#issuecomment-6048009544",
+    "formal_comment_file": "/tmp/pr2697-review01-formal-6048009544.txt",
+    "formal_comment_utf8_bytes": 7372,
+    "formal_comment_raw_sha256": "42fa8f571852538c925fa9d245d4f963362fa981c8df882a72dcef0497a236ef",
+    "reviewed_head": "75e84b2c4602dd45b20bcc32aa6064619a9fbcb2",
+    "base": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+    "formal_counts": {
+      "major": 1,
+      "minor": 7
+    },
+    "formal_verdict": "not mergeable at reviewed HEAD; evidence correction required",
+    "scope": "correct evidence wording, locator/reference navigation, duplicate presentation, source-reported hash discrepancy, time-scoped status and revision provenance only"
+  },
+  "reviewed_artifact_pins": [
+    {
+      "path": "docs/governance/audits/requirements-stage/root-274-semantic-index-review-note-d8ba018-2026-10-08.md",
+      "revision": "75e84b2c4602dd45b20bcc32aa6064619a9fbcb2",
+      "bytes": 3345,
+      "sha256": "f61a507c2eccb322b96005e51be672c81290d959131ee6de505e9f87485ece2f"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-authority-chain-post-ce706-limited-decisions-d8ba018-2026-10-08.md",
+      "revision": "75e84b2c4602dd45b20bcc32aa6064619a9fbcb2",
+      "bytes": 5290,
+      "sha256": "8c8c3eb4602ce1b9f4e49378488d185dc3fe564da9b384099bf3b7a091083fa5"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-authority-chain-post-ce706-limited-decisions-d8ba018-2026-10-08.json",
+      "revision": "75e84b2c4602dd45b20bcc32aa6064619a9fbcb2",
+      "bytes": 36297,
+      "sha256": "9690c054d0f0dc34354d71af74a48aadc49ac4b3886c6834f79bcc8d5f7580d4"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-authority-chain-41groups-ce70628.json",
+      "revision": "75e84b2c4602dd45b20bcc32aa6064619a9fbcb2",
+      "bytes": 15440560,
+      "sha256": "f40140efaeaa1cc84067adbc77d189f79c56ba991cb54d751760343335ed23bb"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-index-followup-entry-2026-10-08.md",
+      "revision": "75e84b2c4602dd45b20bcc32aa6064619a9fbcb2",
+      "bytes": 5677,
+      "sha256": "035ec8a987766e122172c1f800bb68f8d894aeea3d7b652b60b3f5f37ebc4139"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-index-followup-entry-2026-10-08.json",
+      "revision": "75e84b2c4602dd45b20bcc32aa6064619a9fbcb2",
+      "bytes": 8952,
+      "sha256": "4963d2ed7abcaaace87437966bd9a225adb316a296ec1fb11272df3db2ad2b31"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/root-274-audit-source-parent-readscope-followup-2026-10-08.md",
+      "revision": "75e84b2c4602dd45b20bcc32aa6064619a9fbcb2",
+      "bytes": 6110,
+      "sha256": "f937b6e6bb3768c4167d8144f33d7a8af0da571717dafecc05d7b7eecfa0b738"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/root-274-finding-closure-followup-2026-10-08.md",
+      "revision": "75e84b2c4602dd45b20bcc32aa6064619a9fbcb2",
+      "bytes": 8205,
+      "sha256": "d0d6aae726dc07520ba791a24a0cadfd0a2eed9f5fc4f896d50f08d3caee9f62"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/root-274-finding-closure-followup-2026-10-08.json",
+      "revision": "75e84b2c4602dd45b20bcc32aa6064619a9fbcb2",
+      "bytes": 78975,
+      "sha256": "25f863719640890abed16c85f848c6c260c60106156cf6e84c68e4ecb5f1f971"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-final-admission-closure-2026-10-08-911b896f.json",
+      "revision": "75e84b2c4602dd45b20bcc32aa6064619a9fbcb2",
+      "bytes": 1487750,
+      "sha256": "9a5cf035205436bdef182aa94426f221b8cdeed793254185bd06a8dfcb189165"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-index-d629e2525-2026-10-08.json",
+      "revision": "75e84b2c4602dd45b20bcc32aa6064619a9fbcb2",
+      "bytes": 1060032,
+      "sha256": "95447df5f9f63e07e19cd884744a48328031f5cdc1dea2d22602871314b9458f"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
+      "revision": "75e84b2c4602dd45b20bcc32aa6064619a9fbcb2",
+      "bytes": 1823772,
+      "sha256": "ec970df79eaaf693f8825045b235c43ea10aefa7925701b1fff2a974df3e4e0a"
+    },
+    {
+      "path": "docs/governance/l3-l10-po-post-confirmation.md",
+      "revision": "75e84b2c4602dd45b20bcc32aa6064619a9fbcb2",
+      "bytes": 169217,
+      "sha256": "de7462ec5660158492092ec838a5105235cb4fe477ec9073d768e41792b39157"
+    },
+    {
+      "path": "docs/governance/decisions/po-l3-l10-post-confirmation-and-internal-deployment-policy6-2026-10-08.md",
+      "revision": "75e84b2c4602dd45b20bcc32aa6064619a9fbcb2",
+      "bytes": 8889,
+      "sha256": "a5061e7438c4be4ca9d14637ac9f5f04689fb00fd3b7cb7d9d59ae775f7a0571"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/root-4mechanism-semantic-audit-scope-d629e2525.md",
+      "revision": "75e84b2c4602dd45b20bcc32aa6064619a9fbcb2",
+      "bytes": 95493,
+      "sha256": "fbc91213a2c1ab9c93628931d6cc85a9913e0d6d4a5e43684ba603ade14c0a9f"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/root-4mechanism-semantic-audit-scope-d629e2525.json",
+      "revision": "75e84b2c4602dd45b20bcc32aa6064619a9fbcb2",
+      "bytes": 527262,
+      "sha256": "8f820d2ac8b3e85ca2b9e2aeb03901cd5b240de7cbbdea3fe4bc27e0bd8564b7"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/root-274-unknown-HARNESS-OS-SECURITY-CONNECT-followup-2026-10-08.md",
+      "revision": "75e84b2c4602dd45b20bcc32aa6064619a9fbcb2",
+      "bytes": 30434,
+      "sha256": "c58992ab79daddfa3ad88094597f5030a6fcaabe6846ae8c04d30471997b3483"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/root-274-unknown-HARNESS-OS-SECURITY-CONNECT-followup-2026-10-08.json",
+      "revision": "75e84b2c4602dd45b20bcc32aa6064619a9fbcb2",
+      "bytes": 676796,
+      "sha256": "f09a89f23a67de891868d54e64fec48b3a0892155dae7ec6aef74e57c4d79949"
+    }
+  ],
+  "findings": [
+    {
+      "id": "M1",
+      "severity": "major",
+      "source": {
+        "path": "docs/governance/audits/requirements-stage/root-274-semantic-index-review-note-d8ba018-2026-10-08.md",
+        "line": 19,
+        "sha256": "f61a507c2eccb322b96005e51be672c81290d959131ee6de505e9f87485ece2f"
+      },
+      "contradictory_same_pr_source": {
+        "path": "docs/governance/audits/requirements-stage/l3-authority-chain-post-ce706-limited-decisions-d8ba018-2026-10-08.md",
+        "line": 19,
+        "json_path": "docs/governance/audits/requirements-stage/l3-authority-chain-post-ce706-limited-decisions-d8ba018-2026-10-08.json",
+        "sha256": "8c8c3eb4602ce1b9f4e49378488d185dc3fe564da9b384099bf3b7a091083fa5"
+      },
+      "correction": "本PR内のRoot独立post-merge proofは#2696の1件。残る#2688/#2692/#2694/#2695についてこのPRのchainはClaudeのmerge/read-after commentを根拠に記録している。他のPRでRootが別途read-afterを行った可能性まで否定しない。",
+      "claim_scope": "evidence pinned in this PR only"
+    },
+    {
+      "id": "Minor1",
+      "severity": "minor",
+      "source": {
+        "path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-index-followup-entry-2026-10-08.md",
+        "line": 31,
+        "json_path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-index-followup-entry-2026-10-08.json/status",
+        "sha256": "035ec8a987766e122172c1f800bb68f8d894aeea3d7b652b60b3f5f37ebc4139"
+      },
+      "correction": "「未commit」はレビュー対象HEAD上の状態説明として誤り。対象の追補ファイル群はreviewed HEADに含まれ、git treeから読める。status `root_inspected_pending_independent_review` は保持し、「Root検収済み・独立review前（reviewed HEADにcommit済み）」と表示する。",
+      "status_not_reassessed_after_review_head": true
+    },
+    {
+      "id": "Minor2",
+      "severity": "minor",
+      "source": {
+        "path": "docs/governance/audits/requirements-stage/root-274-audit-source-parent-readscope-followup-2026-10-08.md",
+        "line": 9,
+        "sha256": "f937b6e6bb3768c4167d8144f33d7a8af0da571717dafecc05d7b7eecfa0b738"
+      },
+      "correction_source": {
+        "path": "docs/governance/audits/requirements-stage/root-274-finding-closure-followup-2026-10-08.md",
+        "line": 54,
+        "json_path": "docs/governance/audits/requirements-stage/root-274-finding-closure-followup-2026-10-08.json",
+        "sha256": "d0d6aae726dc07520ba791a24a0cadfd0a2eed9f5fc4f896d50f08d3caee9f62"
+      },
+      "correction": "readscope項の302件を最終値334件（親別120件＋group-level 214件）へ導く参照を追加する。既存readscope snapshotは不変。",
+      "confirmed_count": 334,
+      "components": {
+        "parent_specific": 120,
+        "group_level": 214
+      },
+      "navigation_links": [
+        {
+          "label": "readscope report",
+          "relative_path": "root-274-audit-source-parent-readscope-followup-2026-10-08.md"
+        },
+        {
+          "label": "closure correction",
+          "relative_path": "root-274-finding-closure-followup-2026-10-08.md"
+        },
+        {
+          "label": "index entry",
+          "relative_path": "l3-stage-274-semantic-audit-index-followup-entry-2026-10-08.md"
+        }
+      ]
+    },
+    {
+      "id": "Minor3",
+      "severity": "minor",
+      "source": {
+        "path": "docs/governance/audits/requirements-stage/l3-authority-chain-41groups-ce70628.json",
+        "json_pointer": "/limitations",
+        "sha256": "f40140efaeaa1cc84067adbc77d189f79c56ba991cb54d751760343335ed23bb"
+      },
+      "correction": "既存17 limitation stringsの並びは変更しない。以下の完全一致句は1件を正規表示し、残りを重複として扱う。sourceの9 occurrencesは不変。",
+      "duplicate_text": "Per-parent later target-chain projection requires a tagged condition3_claim plus a read-after comment and merge ancestry. It uses full issue-comment body SHA and extracted reviewed HEAD but does not semantically review those comments or re-run an independent Opus/Fable decision check.",
+      "occurrence_count": 9,
+      "zero_based_positions": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "one_based_positions": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "unique_display_count": 1
+    },
+    {
+      "id": "Minor4",
+      "severity": "minor",
+      "source": {
+        "path": "docs/governance/audits/requirements-stage/l3-authority-chain-41groups-ce70628.json",
+        "sha256": "f40140efaeaa1cc84067adbc77d189f79c56ba991cb54d751760343335ed23bb"
+      },
+      "correction": "`source_reported_body_sha256`はAPI raw SHAではなく元source側の報告値として別フィールドに保つ。6 comment IDsの84 occurrencesを6 unique raw commentsへ正規化し、API raw SHAを追補に列挙する。rawはsnapshotの`body_sha256`と6/6一致し、source-reported値とは6/6不一致。旧snapshotは不変。",
+      "snapshot_mismatch_occurrence_count": 84,
+      "unique_comment_count": 6,
+      "api_raw_comments": [
+        {
+          "comment_id": 6042918585,
+          "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2670#issuecomment-6042918585",
+          "utf8_bytes": 3530,
+          "raw_body_sha256": "cdae9557a4ade50e1e9490fc3b843dad6d69f0145e9d109bd9c1681d5c3e18ae",
+          "created_at": "2026-10-07T17:12:24Z",
+          "source_reported_body_sha256": "e028bc9b621571554dcdee8fa530b49526b268029a82a31b1f2c65782790d9ab",
+          "snapshot_body_sha256": "cdae9557a4ade50e1e9490fc3b843dad6d69f0145e9d109bd9c1681d5c3e18ae",
+          "raw_matches_snapshot_body_sha256": true,
+          "source_reported_differs_from_raw": true,
+          "occurrence_count_in_41group_snapshot": 15,
+          "occurrences": [
+            {
+              "json_pointer": "$/parents/116/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 116
+            },
+            {
+              "json_pointer": "$/parents/120/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 120
+            },
+            {
+              "json_pointer": "$/parents/121/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 121
+            },
+            {
+              "json_pointer": "$/parents/122/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 122
+            },
+            {
+              "json_pointer": "$/parents/123/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 123
+            },
+            {
+              "json_pointer": "$/parents/124/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 124
+            },
+            {
+              "json_pointer": "$/parents/125/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 125
+            },
+            {
+              "json_pointer": "$/parents/126/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 126
+            },
+            {
+              "json_pointer": "$/parents/127/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 127
+            },
+            {
+              "json_pointer": "$/parents/128/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 128
+            },
+            {
+              "json_pointer": "$/parents/129/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 129
+            },
+            {
+              "json_pointer": "$/parents/130/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 130
+            },
+            {
+              "json_pointer": "$/parents/131/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 131
+            },
+            {
+              "json_pointer": "$/parents/132/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 132
+            },
+            {
+              "json_pointer": "$/parents/133/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 133
+            }
+          ]
+        },
+        {
+          "comment_id": 6042950159,
+          "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2670#issuecomment-6042950159",
+          "utf8_bytes": 1379,
+          "raw_body_sha256": "a1d028de5ddbfa5dd14d5f5a37eff75ecf430a46e1798ec3aa1683408a07b099",
+          "created_at": "2026-10-07T17:14:07Z",
+          "source_reported_body_sha256": "dac89a65f0d2048d2e61b7d09cc0abb4ff6967f7d350905ba9a6ed045d2e6d9f",
+          "snapshot_body_sha256": "a1d028de5ddbfa5dd14d5f5a37eff75ecf430a46e1798ec3aa1683408a07b099",
+          "raw_matches_snapshot_body_sha256": true,
+          "source_reported_differs_from_raw": true,
+          "occurrence_count_in_41group_snapshot": 15,
+          "occurrences": [
+            {
+              "json_pointer": "$/parents/116/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 116
+            },
+            {
+              "json_pointer": "$/parents/120/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 120
+            },
+            {
+              "json_pointer": "$/parents/121/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 121
+            },
+            {
+              "json_pointer": "$/parents/122/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 122
+            },
+            {
+              "json_pointer": "$/parents/123/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 123
+            },
+            {
+              "json_pointer": "$/parents/124/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 124
+            },
+            {
+              "json_pointer": "$/parents/125/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 125
+            },
+            {
+              "json_pointer": "$/parents/126/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 126
+            },
+            {
+              "json_pointer": "$/parents/127/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 127
+            },
+            {
+              "json_pointer": "$/parents/128/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 128
+            },
+            {
+              "json_pointer": "$/parents/129/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 129
+            },
+            {
+              "json_pointer": "$/parents/130/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 130
+            },
+            {
+              "json_pointer": "$/parents/131/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 131
+            },
+            {
+              "json_pointer": "$/parents/132/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 132
+            },
+            {
+              "json_pointer": "$/parents/133/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 133
+            }
+          ]
+        },
+        {
+          "comment_id": 6043087447,
+          "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2669#issuecomment-6043087447",
+          "utf8_bytes": 3719,
+          "raw_body_sha256": "84807974aae72ecad474fd97ffabf3b020739d7f3e503236b382112fe6a3caae",
+          "created_at": "2026-10-07T17:21:45Z",
+          "source_reported_body_sha256": "30449f6f44ddb7d94d9416504ca7d87b538dce80cd728bc3e5eeab0262ef8155",
+          "snapshot_body_sha256": "84807974aae72ecad474fd97ffabf3b020739d7f3e503236b382112fe6a3caae",
+          "raw_matches_snapshot_body_sha256": true,
+          "source_reported_differs_from_raw": true,
+          "occurrence_count_in_41group_snapshot": 5,
+          "occurrences": [
+            {
+              "json_pointer": "$/parents/7/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 7
+            },
+            {
+              "json_pointer": "$/parents/8/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 8
+            },
+            {
+              "json_pointer": "$/parents/9/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 9
+            },
+            {
+              "json_pointer": "$/parents/10/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 10
+            },
+            {
+              "json_pointer": "$/parents/14/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 14
+            }
+          ]
+        },
+        {
+          "comment_id": 6043108257,
+          "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2671#issuecomment-6043108257",
+          "utf8_bytes": 3398,
+          "raw_body_sha256": "3d00504e571d4dc7408722e5c17c09c0fbc44050b6c88d3256bf27accf8a40e6",
+          "created_at": "2026-10-07T17:22:58Z",
+          "source_reported_body_sha256": "ed8095687cd53c9e7c75be7ff4823b861da2df061fdbc372702ddb314b816e64",
+          "snapshot_body_sha256": "3d00504e571d4dc7408722e5c17c09c0fbc44050b6c88d3256bf27accf8a40e6",
+          "raw_matches_snapshot_body_sha256": true,
+          "source_reported_differs_from_raw": true,
+          "occurrence_count_in_41group_snapshot": 22,
+          "occurrences": [
+            {
+              "json_pointer": "$/parents/161/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 161
+            },
+            {
+              "json_pointer": "$/parents/162/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 162
+            },
+            {
+              "json_pointer": "$/parents/163/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 163
+            },
+            {
+              "json_pointer": "$/parents/164/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 164
+            },
+            {
+              "json_pointer": "$/parents/165/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 165
+            },
+            {
+              "json_pointer": "$/parents/166/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 166
+            },
+            {
+              "json_pointer": "$/parents/167/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 167
+            },
+            {
+              "json_pointer": "$/parents/168/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 168
+            },
+            {
+              "json_pointer": "$/parents/169/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 169
+            },
+            {
+              "json_pointer": "$/parents/170/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 170
+            },
+            {
+              "json_pointer": "$/parents/171/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 171
+            },
+            {
+              "json_pointer": "$/parents/172/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 172
+            },
+            {
+              "json_pointer": "$/parents/173/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 173
+            },
+            {
+              "json_pointer": "$/parents/174/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 174
+            },
+            {
+              "json_pointer": "$/parents/175/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 175
+            },
+            {
+              "json_pointer": "$/parents/176/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 176
+            },
+            {
+              "json_pointer": "$/parents/177/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 177
+            },
+            {
+              "json_pointer": "$/parents/178/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 178
+            },
+            {
+              "json_pointer": "$/parents/179/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 179
+            },
+            {
+              "json_pointer": "$/parents/180/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 180
+            },
+            {
+              "json_pointer": "$/parents/181/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 181
+            },
+            {
+              "json_pointer": "$/parents/194/authority_chain/limited_followup_repairs/0/condition3_comment",
+              "parent_index": 194
+            }
+          ]
+        },
+        {
+          "comment_id": 6043124045,
+          "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2669#issuecomment-6043124045",
+          "utf8_bytes": 1371,
+          "raw_body_sha256": "fa4ea83a6d55699061c79b6bf14cc52045538bf4a7fbf0a3c4f5ddb90a066608",
+          "created_at": "2026-10-07T17:23:53Z",
+          "source_reported_body_sha256": "aaa4f92057f89455e6af5a8c4c251c620b76a3c60109ed96e384641e7daeea9f",
+          "snapshot_body_sha256": "fa4ea83a6d55699061c79b6bf14cc52045538bf4a7fbf0a3c4f5ddb90a066608",
+          "raw_matches_snapshot_body_sha256": true,
+          "source_reported_differs_from_raw": true,
+          "occurrence_count_in_41group_snapshot": 5,
+          "occurrences": [
+            {
+              "json_pointer": "$/parents/7/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 7
+            },
+            {
+              "json_pointer": "$/parents/8/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 8
+            },
+            {
+              "json_pointer": "$/parents/9/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 9
+            },
+            {
+              "json_pointer": "$/parents/10/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 10
+            },
+            {
+              "json_pointer": "$/parents/14/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 14
+            }
+          ]
+        },
+        {
+          "comment_id": 6043144570,
+          "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2671#issuecomment-6043144570",
+          "utf8_bytes": 1767,
+          "raw_body_sha256": "e90f38fb765c7312e69eabab0da7c25ca84375d845a931fe9f8c9146070de146",
+          "created_at": "2026-10-07T17:25:06Z",
+          "source_reported_body_sha256": "7c7282a75f570d9b2a886a7f04145d2f1b2ea9221429bd4fb81c81ef01821c2c",
+          "snapshot_body_sha256": "e90f38fb765c7312e69eabab0da7c25ca84375d845a931fe9f8c9146070de146",
+          "raw_matches_snapshot_body_sha256": true,
+          "source_reported_differs_from_raw": true,
+          "occurrence_count_in_41group_snapshot": 22,
+          "occurrences": [
+            {
+              "json_pointer": "$/parents/161/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 161
+            },
+            {
+              "json_pointer": "$/parents/162/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 162
+            },
+            {
+              "json_pointer": "$/parents/163/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 163
+            },
+            {
+              "json_pointer": "$/parents/164/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 164
+            },
+            {
+              "json_pointer": "$/parents/165/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 165
+            },
+            {
+              "json_pointer": "$/parents/166/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 166
+            },
+            {
+              "json_pointer": "$/parents/167/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 167
+            },
+            {
+              "json_pointer": "$/parents/168/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 168
+            },
+            {
+              "json_pointer": "$/parents/169/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 169
+            },
+            {
+              "json_pointer": "$/parents/170/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 170
+            },
+            {
+              "json_pointer": "$/parents/171/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 171
+            },
+            {
+              "json_pointer": "$/parents/172/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 172
+            },
+            {
+              "json_pointer": "$/parents/173/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 173
+            },
+            {
+              "json_pointer": "$/parents/174/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 174
+            },
+            {
+              "json_pointer": "$/parents/175/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 175
+            },
+            {
+              "json_pointer": "$/parents/176/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 176
+            },
+            {
+              "json_pointer": "$/parents/177/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 177
+            },
+            {
+              "json_pointer": "$/parents/178/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 178
+            },
+            {
+              "json_pointer": "$/parents/179/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 179
+            },
+            {
+              "json_pointer": "$/parents/180/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 180
+            },
+            {
+              "json_pointer": "$/parents/181/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 181
+            },
+            {
+              "json_pointer": "$/parents/194/authority_chain/limited_followup_repairs/0/merge_read_after_comment",
+              "parent_index": 194
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Minor5",
+      "severity": "minor",
+      "source": {
+        "path": "docs/governance/audits/requirements-stage/l3-authority-chain-post-ce706-limited-decisions-d8ba018-2026-10-08.md",
+        "line": 29,
+        "json_path": "docs/governance/audits/requirements-stage/l3-authority-chain-post-ce706-limited-decisions-d8ba018-2026-10-08.json/limitations",
+        "entry_path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-index-followup-entry-2026-10-08.md",
+        "entry_line": 36,
+        "sha256": "8c8c3eb4602ce1b9f4e49378488d185dc3fe564da9b384099bf3b7a091083fa5"
+      },
+      "correction": "未記録の範囲はce706後に追加された当該5件の限定decision revisionsに限る。「PO事後確認は未記録」を全体状態として記さない。L10未実行も当該時点の記録範囲に限り、現在全体の状態を主張しない。",
+      "limited_prs": [
+        2688,
+        2692,
+        2694,
+        2695,
+        2696
+      ],
+      "basis_main": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+      "existing_po_confirmation_source": {
+        "path": "docs/governance/l3-l10-po-post-confirmation.md",
+        "revision": "75e84b2c4602dd45b20bcc32aa6064619a9fbcb2",
+        "bytes": 169217,
+        "sha256": "de7462ec5660158492092ec838a5105235cb4fe477ec9073d768e41792b39157"
+      },
+      "po_decision_source": {
+        "path": "docs/governance/decisions/po-l3-l10-post-confirmation-and-internal-deployment-policy6-2026-10-08.md",
+        "revision": "75e84b2c4602dd45b20bcc32aa6064619a9fbcb2",
+        "bytes": 8889,
+        "sha256": "a5061e7438c4be4ca9d14637ac9f5f04689fb00fd3b7cb7d9d59ae775f7a0571",
+        "scope": "confirmation basis 911b896f; excludes revisions changed after that basis"
+      },
+      "closure_source": {
+        "path": "docs/governance/audits/requirements-stage/l3-final-admission-closure-2026-10-08-911b896f.json",
+        "revision": "75e84b2c4602dd45b20bcc32aa6064619a9fbcb2",
+        "bytes": 1487750,
+        "sha256": "9a5cf035205436bdef182aa94426f221b8cdeed793254185bd06a8dfcb189165",
+        "target_main": "911b896f9207c86feba65c65042363f13ae408a3"
+      }
+    },
+    {
+      "id": "Minor6",
+      "severity": "minor",
+      "source": {
+        "paths": [
+          "/tmp/root-pr2696-postmerge-proof.json",
+          "/tmp/l3-final-274-parent-roster.json"
+        ],
+        "reviewed_head": "75e84b2c4602dd45b20bcc32aa6064619a9fbcb2",
+        "exists_in_reviewed_head": false
+      },
+      "correction": "reviewed HEADにはrepo mirrorがない。現在の共有worktreeには同名mirror 2件が存在するが、作成時点のgit statusではuntrackedであるため、これは当該PR HEADへの収録を証明しない。各mirrorの実bytes/SHAを以下に固定し、reviewed-HEAD absenceとcurrent-worktree availabilityを分ける。",
+      "current_worktree_mirrors": [
+        {
+          "path": "docs/governance/audits/requirements-stage/root-pr2696-postmerge-proof.json",
+          "bytes": 1815,
+          "sha256": "df93486de39107f8671fc130ae126b7766cbac916ae404b488f8bd81971342ca",
+          "exists_in_reviewed_head": false,
+          "current_worktree_status": "?? docs/governance/audits/requirements-stage/root-pr2696-postmerge-proof.json"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/l3-final-274-parent-roster.json",
+          "bytes": 1274394,
+          "sha256": "701a85ae844bf257c627e54ce70438bded3dff609f8c43cf7203e79fb4044a3a",
+          "exists_in_reviewed_head": false,
+          "current_worktree_status": "?? docs/governance/audits/requirements-stage/l3-final-274-parent-roster.json"
+        }
+      ],
+      "followup_commit_plan": "include both repo mirrors in the same next commit as the correction followup; no future commit SHA is claimed or pinned here",
+      "limitation": "review01 HEAD absence is established; current worktree files are presently untracked; their inclusion in the next correction commit is planned, not yet verified"
+    },
+    {
+      "id": "Minor7",
+      "severity": "minor",
+      "source": {
+        "path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-index-d629e2525-2026-10-08.json",
+        "json_pointer": "/roster_source/basis_main",
+        "line": 8,
+        "sha256": "95447df5f9f63e07e19cd884744a48328031f5cdc1dea2d22602871314b9458f"
+      },
+      "correction": "`basis_main=633bf12...`はaddendumのbasisとして保持し、addendum bytes/SHAを取得・検証したrevisionは別に記す。対象addendumは633bf12時点に存在せず、d629/ce706/d8ba018では確認できる。633bf12がそのfile SHAを直接検証したという意味を与えない。",
+      "basis_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "artifact_revision_verified": [
+        "d629e25254a7c1d505543a0ce6ca3183c3fc4d67",
+        "ce70628e53ff5f78c1321accf57429c740ea585d",
+        "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+        "75e84b2c4602dd45b20bcc32aa6064619a9fbcb2"
+      ],
+      "artifact": {
+        "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
+        "bytes": 1823772,
+        "sha256": "ec970df79eaaf693f8825045b235c43ea10aefa7925701b1fff2a974df3e4e0a"
+      }
+    }
+  ],
+  "supporting_formal_comment_raw_checks": {
+    "description": "The 9 sample comments explicitly enumerated in the formal review; their local REST response body raw hashes and byte counts were recomputed. This does not claim all comments were checked.",
+    "count": 9,
+    "comments": [
+      {
+        "comment_id": 6047075617,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2688#issuecomment-6047075617",
+        "utf8_bytes": 2566,
+        "raw_body_sha256": "e753575e3d7b6aed8f8bac510c1edcc40aacae41ba9656cf7c0d056c1e91bb23",
+        "created_at": "2026-10-07T21:19:55Z"
+      },
+      {
+        "comment_id": 6046990637,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2688#issuecomment-6046990637",
+        "utf8_bytes": 2351,
+        "raw_body_sha256": "2b4a04af991ccd84ef3d2a0e5aecc59931f1a8422edc7b9f24f08febadc05aa4",
+        "created_at": "2026-10-07T21:14:48Z"
+      },
+      {
+        "comment_id": 6047658257,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2696#issuecomment-6047658257",
+        "utf8_bytes": 939,
+        "raw_body_sha256": "fc84b677b63a1cb617da91fb8a6a5720677e784ac15dd987f9428fb53e290ea3",
+        "created_at": "2026-10-07T21:56:51Z"
+      },
+      {
+        "comment_id": 6047643546,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2696#issuecomment-6047643546",
+        "utf8_bytes": 1958,
+        "raw_body_sha256": "9db19a618977df3b5e559f939eb9d3976e1ff585f4ca470e2dbf92cee691bbf9",
+        "created_at": "2026-10-07T21:55:51Z"
+      },
+      {
+        "comment_id": 6047400034,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2694#issuecomment-6047400034",
+        "utf8_bytes": 4474,
+        "raw_body_sha256": "ef4e14352bc327334fe7b808d77a541a3195524c4223ac47d2e95d6483034850",
+        "created_at": "2026-10-07T21:40:46Z"
+      },
+      {
+        "comment_id": 6046563574,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2686#issuecomment-6046563574",
+        "utf8_bytes": 2615,
+        "raw_body_sha256": "430a3421a27d7a92d6f1e2ab85b5e5fb1d22a3c5869f2c0aee6724f730575aef",
+        "created_at": "2026-10-07T20:48:10Z"
+      },
+      {
+        "comment_id": 6044919993,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2676#issuecomment-6044919993",
+        "utf8_bytes": 3254,
+        "raw_body_sha256": "9e91220c2312e939380fdf41a90c61937a457d366ca0324f55e420e36db6e57a",
+        "created_at": "2026-10-07T19:08:49Z"
+      },
+      {
+        "comment_id": 6044310089,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2676#issuecomment-6044310089",
+        "utf8_bytes": 4140,
+        "raw_body_sha256": "967d3e3deffd6436e25ec5617cad56eebaa6096cdcffb9a6df191fed4f197576",
+        "created_at": "2026-10-07T18:32:44Z"
+      },
+      {
+        "comment_id": 6043087447,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2669#issuecomment-6043087447",
+        "utf8_bytes": 3719,
+        "raw_body_sha256": "84807974aae72ecad474fd97ffabf3b020739d7f3e503236b382112fe6a3caae",
+        "created_at": "2026-10-07T17:21:45Z"
+      }
+    ],
+    "all_recomputed": true
+  },
+  "append_only_constraints": {
+    "original_snapshot_files_modified": false,
+    "original_source_reported_hashes_overwritten": false,
+    "new_approval_or_gate_created": false,
+    "po_post_confirmation_generated": false,
+    "l10_execution_asserted": false
+  },
+  "verification": {
+    "json_source_parsed": true,
+    "duplicate_occurrences_extracted": 84,
+    "unique_mismatched_comment_ids": 6,
+    "all_six_api_raw_match_snapshot_body_sha": true,
+    "nine_formal_sample_comment_hashes_recomputed": 9,
+    "formal_raw_sha256": "42fa8f571852538c925fa9d245d4f963362fa981c8df882a72dcef0497a236ef",
+    "target_blob_hashes_recomputed": 18
+  }
+}

@@ -1,0 +1,376 @@
+{
+  "record_type": "read-only source locator correction follow-up",
+  "as_of": "2026-10-08",
+  "target_review": "PR #2697 author-identified locator correction; old reviewed HEAD 75e84b2; formal 6047931895",
+  "scope": "Locator validation/correction only for the 79-parent follow-up and structured pointers in the 159-parent four-mechanism scope report. No semantic re-review or body change.",
+  "immutable_inputs": [
+    {
+      "path": "/tmp/root-274-unknown-HARNESS-OS-SECURITY-CONNECT-followup-2026-10-08.json",
+      "bytes": 676796,
+      "sha256": "f09a89f23a67de891868d54e64fec48b3a0892155dae7ec6aef74e57c4d79949"
+    },
+    {
+      "path": "/tmp/root-274-unknown-HARNESS-OS-SECURITY-CONNECT-followup-2026-10-08.md",
+      "bytes": 30434,
+      "sha256": "c58992ab79daddfa3ad88094597f5030a6fcaabe6846ae8c04d30471997b3483"
+    },
+    {
+      "path": "/tmp/root-4mechanism-semantic-audit-scope-d629e2525.json",
+      "bytes": 527262,
+      "sha256": "8f820d2ac8b3e85ca2b9e2aeb03901cd5b240de7cbbdea3fe4bc27e0bd8564b7"
+    },
+    {
+      "path": "/home/tenni/.helix-worktrees/requirements-stage-274-semantic-audit-index/docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-index-d629e2525-2026-10-08.json",
+      "bytes": 1060032,
+      "sha256": "95447df5f9f63e07e19cd884744a48328031f5cdc1dea2d22602871314b9458f"
+    }
+  ],
+  "snapshot_source_pins": [
+    {
+      "audit_ref": "A002",
+      "path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/root-meaning-audit-stage1-2026-10-08.json",
+      "bytes": 9422,
+      "line_count": 212,
+      "sha256": "c127c9d47f6771b2a1f6fbadc42b73015c69d128f88bc0f09ed9c35a3b1e2359"
+    },
+    {
+      "audit_ref": "A003",
+      "path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/root-meaning-audit-stage1-2026-10-08.md",
+      "bytes": 4296,
+      "line_count": 25,
+      "sha256": "7493cf41eb097b615979b20265da417a9137c70c0301828ed7d0f7d4d5265b91"
+    },
+    {
+      "audit_ref": "A005",
+      "path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/root-meaning-audit-stage2a-c-2026-10-08.md",
+      "bytes": 9261,
+      "line_count": 43,
+      "sha256": "cbe46426f36c41289bcc975235dc70363ca2401da3a2e322290d7f69ca3748fc"
+    },
+    {
+      "audit_ref": "A006",
+      "path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/root-meaning-audit-stage2a-c-2026-10-08.md",
+      "bytes": 9261,
+      "line_count": 43,
+      "sha256": "cbe46426f36c41289bcc975235dc70363ca2401da3a2e322290d7f69ca3748fc"
+    },
+    {
+      "audit_ref": "A047",
+      "path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/os-stage2a-015-018-audit-37a8283.json",
+      "bytes": 28562,
+      "line_count": 772,
+      "sha256": "b1ac54c686d6f5ee2d19256d5517752b07bc0837120743a2799ef90e620693d5"
+    },
+    {
+      "audit_ref": "A055",
+      "path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/os-stage3-049-051-audit-c9e73bcc.json",
+      "bytes": 57728,
+      "line_count": 1065,
+      "sha256": "c09bc75b448d53847f9395a7c35a1b49b92611bcff89db6da83a21dbe0d0ea85"
+    },
+    {
+      "audit_ref": "A056",
+      "path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/os-stage4-021-022-024-046-048-052-semantic-audit-2026-10-08.json",
+      "bytes": 51911,
+      "line_count": 1226,
+      "sha256": "2672a9f5276e3f0aeb6cea4e5f7fb19fbef4122d75712971f6ee73a9c6d47fc1"
+    },
+    {
+      "audit_ref": "A058",
+      "path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/root-meaning-audit-stage2a-c-2026-10-08.md",
+      "bytes": 9261,
+      "line_count": 43,
+      "sha256": "cbe46426f36c41289bcc975235dc70363ca2401da3a2e322290d7f69ca3748fc"
+    },
+    {
+      "audit_ref": "A076",
+      "path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/root-connect-stage4-two-semantic-review-9229f59.md",
+      "bytes": 1555,
+      "line_count": 5,
+      "sha256": "ab93083424067478c80f5ba3f233dddd5aa31ca9f226b33c859b44e00f70cf49"
+    }
+  ],
+  "confirmed_locator_corrections": [
+    {
+      "parent_id": "HARNESS-L2-010",
+      "old_locator": "A003 source lines 28–36",
+      "corrected_locator": "A003 source lines 9, 15, 25",
+      "source_audit_ref": "A003",
+      "source_path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/root-meaning-audit-stage1-2026-10-08.md",
+      "source_bytes": 4296,
+      "source_line_count": 25,
+      "source_sha256": "7493cf41eb097b615979b20265da417a9137c70c0301828ed7d0f7d4d5265b91",
+      "basis": "A003 snapshotは25行。9行がHARNESS010/011/023の限定所見、15行が対応する旧source範囲、25行が未確認範囲を示す。"
+    },
+    {
+      "parent_id": "HARNESS-L2-011",
+      "old_locator": "A003 source lines 28–36",
+      "corrected_locator": "A003 source lines 9, 15, 25",
+      "source_audit_ref": "A003",
+      "source_path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/root-meaning-audit-stage1-2026-10-08.md",
+      "source_bytes": 4296,
+      "source_line_count": 25,
+      "source_sha256": "7493cf41eb097b615979b20265da417a9137c70c0301828ed7d0f7d4d5265b91",
+      "basis": "A003 snapshotは25行。9行がHARNESS010/011/023の限定所見、15行が対応する旧source範囲、25行が未確認範囲を示す。"
+    },
+    {
+      "parent_id": "HARNESS-L2-023",
+      "old_locator": "A003 source lines 28–36",
+      "corrected_locator": "A003 source lines 9, 15, 25",
+      "source_audit_ref": "A003",
+      "source_path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/root-meaning-audit-stage1-2026-10-08.md",
+      "source_bytes": 4296,
+      "source_line_count": 25,
+      "source_sha256": "7493cf41eb097b615979b20265da417a9137c70c0301828ed7d0f7d4d5265b91",
+      "basis": "A003 snapshotは25行。9行がHARNESS010/011/023の限定所見、15行が対応する旧source範囲、25行が未確認範囲を示す。"
+    },
+    {
+      "parent_id": "HARNESS-L2-022",
+      "old_locator": "A005/A058 source lines 1–45 (parent scope table and conclusion)",
+      "corrected_locator": "A005/A058 source lines 1–43 (scope/conclusion/limits)",
+      "source_audit_ref": "A058",
+      "source_path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/root-meaning-audit-stage2a-c-2026-10-08.md",
+      "source_bytes": 9261,
+      "source_line_count": 43,
+      "source_sha256": "cbe46426f36c41289bcc975235dc70363ca2401da3a2e322290d7f69ca3748fc",
+      "basis": "A005/A058は同一snapshot SHA。実ファイルは43行で、親別scope tableは14–18行、限定結論は10行、未確認範囲は38行。"
+    },
+    {
+      "parent_id": "HARNESS-L2-030",
+      "old_locator": "A005/A058 source lines 1–45 (parent scope table and conclusion)",
+      "corrected_locator": "A005/A058 source lines 1–43 (scope/conclusion/limits)",
+      "source_audit_ref": "A058",
+      "source_path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/root-meaning-audit-stage2a-c-2026-10-08.md",
+      "source_bytes": 9261,
+      "source_line_count": 43,
+      "source_sha256": "cbe46426f36c41289bcc975235dc70363ca2401da3a2e322290d7f69ca3748fc",
+      "basis": "A005/A058は同一snapshot SHA。実ファイルは43行で、親別scope tableは14–18行、限定結論は10行、未確認範囲は38行。"
+    },
+    {
+      "parent_id": "HARNESS-L2-031",
+      "old_locator": "A005/A058 source lines 1–45 (parent scope table and conclusion)",
+      "corrected_locator": "A005/A058 source lines 1–43 (scope/conclusion/limits)",
+      "source_audit_ref": "A058",
+      "source_path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/root-meaning-audit-stage2a-c-2026-10-08.md",
+      "source_bytes": 9261,
+      "source_line_count": 43,
+      "source_sha256": "cbe46426f36c41289bcc975235dc70363ca2401da3a2e322290d7f69ca3748fc",
+      "basis": "A005/A058は同一snapshot SHA。実ファイルは43行で、親別scope tableは14–18行、限定結論は10行、未確認範囲は38行。"
+    },
+    {
+      "parent_id": "HARNESS-L2-032",
+      "old_locator": "A005/A058 source lines 1–45 (parent scope table and conclusion)",
+      "corrected_locator": "A005/A058 source lines 1–43 (scope/conclusion/limits)",
+      "source_audit_ref": "A058",
+      "source_path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/root-meaning-audit-stage2a-c-2026-10-08.md",
+      "source_bytes": 9261,
+      "source_line_count": 43,
+      "source_sha256": "cbe46426f36c41289bcc975235dc70363ca2401da3a2e322290d7f69ca3748fc",
+      "basis": "A005/A058は同一snapshot SHA。実ファイルは43行で、親別scope tableは14–18行、限定結論は10行、未確認範囲は38行。"
+    },
+    {
+      "parent_id": "HELIXCONNECT-L2-006",
+      "old_locator": "A005/A006 source lines 1–45 (CONNECT-006 row and conclusion)",
+      "corrected_locator": "A005/A006 source lines 1–43 (CONNECT-006 row and conclusion)",
+      "source_audit_ref": "A006",
+      "source_path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/root-meaning-audit-stage2a-c-2026-10-08.md",
+      "source_bytes": 9261,
+      "source_line_count": 43,
+      "source_sha256": "cbe46426f36c41289bcc975235dc70363ca2401da3a2e322290d7f69ca3748fc",
+      "basis": "A005/A006は同一snapshot SHA。実ファイルは43行で、CONNECT-006は18行、結論は34行。"
+    },
+    {
+      "parent_id": "HELIXCONNECT-L2-008",
+      "old_locator": "A076 source lines 1–6",
+      "corrected_locator": "A076 source lines 1–5",
+      "source_audit_ref": "A076",
+      "source_path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/root-connect-stage4-two-semantic-review-9229f59.md",
+      "source_bytes": 1555,
+      "source_line_count": 5,
+      "source_sha256": "ab93083424067478c80f5ba3f233dddd5aa31ca9f226b33c859b44e00f70cf49",
+      "basis": "A076 snapshotは5行。1–5行が表題、読了範囲、結論、限界を含む。"
+    },
+    {
+      "parent_id": "HELIXCONNECT-L2-009",
+      "old_locator": "A076 source lines 1–6",
+      "corrected_locator": "A076 source lines 1–5",
+      "source_audit_ref": "A076",
+      "source_path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/root-connect-stage4-two-semantic-review-9229f59.md",
+      "source_bytes": 1555,
+      "source_line_count": 5,
+      "source_sha256": "ab93083424067478c80f5ba3f233dddd5aa31ca9f226b33c859b44e00f70cf49",
+      "basis": "A076 snapshotは5行。1–5行が表題、読了範囲、結論、限界を含む。"
+    },
+    {
+      "parent_id": "HELIXOS-L2-015",
+      "old_locator": "A047 $/no_finding_observations[parents includes 015]",
+      "corrected_locator": "A047 $/no_finding_observations/0",
+      "source_audit_ref": "A047",
+      "source_path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/os-stage2a-015-018-audit-37a8283.json",
+      "source_bytes": 28562,
+      "source_line_count": 772,
+      "source_sha256": "b1ac54c686d6f5ee2d19256d5517752b07bc0837120743a2799ef90e620693d5",
+      "basis": "A047のno_finding_observations配列index 0 のparents配列にsuffix 015 が記録される。"
+    },
+    {
+      "parent_id": "HELIXOS-L2-016",
+      "old_locator": "A047 $/no_finding_observations[parents includes 016]",
+      "corrected_locator": "A047 $/no_finding_observations/1",
+      "source_audit_ref": "A047",
+      "source_path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/os-stage2a-015-018-audit-37a8283.json",
+      "source_bytes": 28562,
+      "source_line_count": 772,
+      "source_sha256": "b1ac54c686d6f5ee2d19256d5517752b07bc0837120743a2799ef90e620693d5",
+      "basis": "A047のno_finding_observations配列index 1 のparents配列にsuffix 016 が記録される。"
+    },
+    {
+      "parent_id": "HELIXOS-L2-017",
+      "old_locator": "A047 $/no_finding_observations[parents includes 017]",
+      "corrected_locator": "A047 $/no_finding_observations/2",
+      "source_audit_ref": "A047",
+      "source_path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/os-stage2a-015-018-audit-37a8283.json",
+      "source_bytes": 28562,
+      "source_line_count": 772,
+      "source_sha256": "b1ac54c686d6f5ee2d19256d5517752b07bc0837120743a2799ef90e620693d5",
+      "basis": "A047のno_finding_observations配列index 2 のparents配列にsuffix 017 が記録される。"
+    },
+    {
+      "parent_id": "HELIXOS-L2-018",
+      "old_locator": "A047 $/no_finding_observations[parents includes 018]",
+      "corrected_locator": "A047 $/no_finding_observations/3",
+      "source_audit_ref": "A047",
+      "source_path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/os-stage2a-015-018-audit-37a8283.json",
+      "source_bytes": 28562,
+      "source_line_count": 772,
+      "source_sha256": "b1ac54c686d6f5ee2d19256d5517752b07bc0837120743a2799ef90e620693d5",
+      "basis": "A047のno_finding_observations配列index 3 のparents配列にsuffix 018 が記録される。"
+    },
+    {
+      "parent_id": "HELIXOS-L2-021",
+      "old_locator": "A056 $/parent_rows[021]",
+      "corrected_locator": "A056 $/parent_rows/0",
+      "source_audit_ref": "A056",
+      "source_path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/os-stage4-021-022-024-046-048-052-semantic-audit-2026-10-08.json",
+      "source_bytes": 51911,
+      "source_line_count": 1226,
+      "source_sha256": "2672a9f5276e3f0aeb6cea4e5f7fb19fbef4122d75712971f6ee73a9c6d47fc1",
+      "basis": "A056のparent_rows配列index 0 のidがHELIXOS-L2-021。"
+    },
+    {
+      "parent_id": "HELIXOS-L2-022",
+      "old_locator": "A056 $/parent_rows[022]",
+      "corrected_locator": "A056 $/parent_rows/1",
+      "source_audit_ref": "A056",
+      "source_path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/os-stage4-021-022-024-046-048-052-semantic-audit-2026-10-08.json",
+      "source_bytes": 51911,
+      "source_line_count": 1226,
+      "source_sha256": "2672a9f5276e3f0aeb6cea4e5f7fb19fbef4122d75712971f6ee73a9c6d47fc1",
+      "basis": "A056のparent_rows配列index 1 のidがHELIXOS-L2-022。"
+    },
+    {
+      "parent_id": "HELIXOS-L2-024",
+      "old_locator": "A056 $/parent_rows[024]",
+      "corrected_locator": "A056 $/parent_rows/2",
+      "source_audit_ref": "A056",
+      "source_path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/os-stage4-021-022-024-046-048-052-semantic-audit-2026-10-08.json",
+      "source_bytes": 51911,
+      "source_line_count": 1226,
+      "source_sha256": "2672a9f5276e3f0aeb6cea4e5f7fb19fbef4122d75712971f6ee73a9c6d47fc1",
+      "basis": "A056のparent_rows配列index 2 のidがHELIXOS-L2-024。"
+    },
+    {
+      "parent_id": "HELIXOS-L2-046",
+      "old_locator": "A056 $/parent_rows[046]",
+      "corrected_locator": "A056 $/parent_rows/3",
+      "source_audit_ref": "A056",
+      "source_path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/os-stage4-021-022-024-046-048-052-semantic-audit-2026-10-08.json",
+      "source_bytes": 51911,
+      "source_line_count": 1226,
+      "source_sha256": "2672a9f5276e3f0aeb6cea4e5f7fb19fbef4122d75712971f6ee73a9c6d47fc1",
+      "basis": "A056のparent_rows配列index 3 のidがHELIXOS-L2-046。"
+    },
+    {
+      "parent_id": "HELIXOS-L2-048",
+      "old_locator": "A056 $/parent_rows[048]",
+      "corrected_locator": "A056 $/parent_rows/4",
+      "source_audit_ref": "A056",
+      "source_path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/os-stage4-021-022-024-046-048-052-semantic-audit-2026-10-08.json",
+      "source_bytes": 51911,
+      "source_line_count": 1226,
+      "source_sha256": "2672a9f5276e3f0aeb6cea4e5f7fb19fbef4122d75712971f6ee73a9c6d47fc1",
+      "basis": "A056のparent_rows配列index 4 のidがHELIXOS-L2-048。"
+    },
+    {
+      "parent_id": "HELIXOS-L2-052",
+      "old_locator": "A056 $/parent_rows[052]",
+      "corrected_locator": "A056 $/parent_rows/5",
+      "source_audit_ref": "A056",
+      "source_path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/os-stage4-021-022-024-046-048-052-semantic-audit-2026-10-08.json",
+      "source_bytes": 51911,
+      "source_line_count": 1226,
+      "source_sha256": "2672a9f5276e3f0aeb6cea4e5f7fb19fbef4122d75712971f6ee73a9c6d47fc1",
+      "basis": "A056のparent_rows配列index 5 のidがHELIXOS-L2-052。"
+    },
+    {
+      "parent_id": "HELIXOS-L2-049",
+      "old_locator": "A055 $/observations[parent=HELIXOS-L2-049]",
+      "corrected_locator": "A055 $/observations/0; $/observations/1",
+      "source_audit_ref": "A055",
+      "source_path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/os-stage3-049-051-audit-c9e73bcc.json",
+      "source_bytes": 57728,
+      "source_line_count": 1065,
+      "source_sha256": "c09bc75b448d53847f9395a7c35a1b49b92611bcff89db6da83a21dbe0d0ea85",
+      "basis": "A055 observations配列index 0と1のparentはいずれもHELIXOS-L2-049（異なるobservation type）。"
+    },
+    {
+      "parent_id": "HELIXOS-L2-050",
+      "old_locator": "A055 $/observations[parent=HELIXOS-L2-050]",
+      "corrected_locator": "A055 $/observations/2",
+      "source_audit_ref": "A055",
+      "source_path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/os-stage3-049-051-audit-c9e73bcc.json",
+      "source_bytes": 57728,
+      "source_line_count": 1065,
+      "source_sha256": "c09bc75b448d53847f9395a7c35a1b49b92611bcff89db6da83a21dbe0d0ea85",
+      "basis": "A055 observations配列index 2のparentがHELIXOS-L2-050。"
+    },
+    {
+      "parent_id": "HELIXOS-L2-051",
+      "old_locator": "A055 $/observations[parent=HELIXOS-L2-051]",
+      "corrected_locator": "A055 $/observations/3",
+      "source_audit_ref": "A055",
+      "source_path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/os-stage3-049-051-audit-c9e73bcc.json",
+      "source_bytes": 57728,
+      "source_line_count": 1065,
+      "source_sha256": "c09bc75b448d53847f9395a7c35a1b49b92611bcff89db6da83a21dbe0d0ea85",
+      "basis": "A055 observations配列index 3のparentがHELIXOS-L2-051。"
+    }
+  ],
+  "159_parent_pointer_validation": {
+    "parent_count": 159,
+    "source_audit_refs": 39,
+    "explicit_structured_parent_pointers_checked": 65,
+    "unique_parent_pointers": 59,
+    "unique_parent_ids_with_explicit_pointer": 61,
+    "invalid_or_unresolvable_pointer_count": 0,
+    "result": "全65 locatorを対応するsource JSONへ解決。invalid pointerなし。group-level scope表記は親別pointerとして扱わない。"
+  },
+  "validation": {
+    "79_parent_followup_rows": 79,
+    "correction_count": 23,
+    "distinct_parent_count": 23,
+    "all_bad_line_ranges_corrected": true,
+    "all_invalid_pseudo_json_selectors_replaced_by_exact_pointer": true,
+    "valid_A002_findings_array_locator_retained": true,
+    "159_parent_invalid_pointer_count": 0,
+    "source_hashes_match_index": true,
+    "original_79_parent_snapshot_modified": false,
+    "original_159_parent_snapshot_modified": false
+  },
+  "limits": [
+    "locatorのみの修正であり、元の意味評価・finding・scopeを変更しない。",
+    "A002 /findings locatorは有効な配列pointerなので変更せず、CONNECT001のみという注記を維持する。",
+    "79親追補全bodyの意味再監査ではない。",
+    "159親は構造化json_pointerの実在性のみ検査し、意味を再評価していない。",
+    "旧runtime/test/CIは実行していない。"
+  ]
+}

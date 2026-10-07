@@ -1,0 +1,449 @@
+{
+  "audit": "LABO Stage5 read-only semantic audit",
+  "target_commit": "37a8283be429c57f3706153ad522e7ad288fecc3",
+  "target_tree": "all current L3/L10 target bytes read from git show at exact commit; worktree HEAD is not target and was not used for content",
+  "read_only": true,
+  "execution": "No old runtime, CI, or CASE execution; only git show, line/span reading, and SHA-256 calculation. No repository edits.",
+  "current_six_document_sha256": {
+    "BR": {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "sha256": "7908f4f075e3aa4514656a1f5e65ddfced120f6800fc9372fd9a6f673c28e99a",
+      "bytes": 32852
+    },
+    "FR": {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "sha256": "5a97eef5d322f8b79d5bce433494c7ad1548fa1b6ef1eb27749882036f7afece",
+      "bytes": 354046
+    },
+    "NFR": {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "sha256": "343604239051cfc452d924688a98c15288b0e30f3e02492cda843269bbf58b4b",
+      "bytes": 91242
+    },
+    "BV": {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "sha256": "2a8486d6ce980a934ece785b0d6670f0dc308da36ebe100aaeb099cac4cc5cac",
+      "bytes": 31387
+    },
+    "FV": {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "sha256": "5242a94fed5618792f7d2ecc8c1b6a13cf4788e79fb66b2e0b2312f34425a29e",
+      "bytes": 692699
+    },
+    "NFRV": {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "sha256": "2983f735ae142e126946039b195a0be483b476ffa35ef5cffee976d9f299146a",
+      "bytes": 82074
+    }
+  },
+  "parents": {
+    "064": {
+      "adoption": "採択 / MPR-RC-HELIXLABO-L2-064-002",
+      "decisionLine": 79,
+      "l2": [
+        491,
+        501
+      ],
+      "l11": [
+        233,
+        239
+      ],
+      "fixed": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "old": [
+        [
+          "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-platform-requirements.md",
+          "151-152,215"
+        ],
+        [
+          "LEGACY-ASSET-28FB139B26CD61CC51EE",
+          "archive/legacy-generation-2026-09-14/root/docs/design/helix/helix-bench-evaluation.md",
+          "96-120,143-147"
+        ]
+      ],
+      "fixed_spans": {
+        "L2": {
+          "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+          "line_start": 491,
+          "line_end": 501,
+          "file_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+          "span_sha256_raw_lf": "e28da5b2f47c3d1327cc091003d14a7ab572a3282040b2ed7ec6614dae7079b8"
+        },
+        "L11": {
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "line_start": 233,
+          "line_end": 239,
+          "file_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+          "span_sha256_raw_lf": "4f51be505b3c169f08aa61c2dd192b21b1b185db0f5243f556853bcb3e1a1fe3"
+        }
+      },
+      "adoption_row": {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "line": 79,
+        "sha256_raw_lf": "21e65876f5d6e336541578f29a1450435782bf248b060a4a8e4d3cc1cd65255d"
+      },
+      "current_spans": {
+        "BR": {
+          "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+          "line_start": 119,
+          "line_end": 127,
+          "span_sha256_raw_lf": "b3b4542b2e15daa737b4397917af08ebdc1b1802785e6873158f6756a8ed9a6c"
+        },
+        "FR": {
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+          "line_start": 1773,
+          "line_end": 1814,
+          "span_sha256_raw_lf": "0369d96b07cf0d8e58269550f6136dfd043eacb2fb9015763d2d096791da325c"
+        },
+        "NFR": {
+          "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+          "line_start": 224,
+          "line_end": 234,
+          "span_sha256_raw_lf": "93c8ef51bd7c3ccd5d8751653159493313bb8b93625ad8d3373505558281fd7f"
+        },
+        "BV": {
+          "path": "docs/helix-labo/L10-verification/business-verification.md",
+          "line_start": 115,
+          "line_end": 123,
+          "span_sha256_raw_lf": "34d13ca2b4d60060bf03413ee894f95d4bdf3973d9c17305be53268032b3ff9c"
+        },
+        "FV": {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line_start": 3118,
+          "line_end": 3176,
+          "span_sha256_raw_lf": "a89aefa00a6a4a7417ff3a1aed4bc95859323a572878952a50554b4432ac9006"
+        },
+        "NFRV": {
+          "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+          "line_start": 169,
+          "line_end": 175,
+          "span_sha256_raw_lf": "b8751ec3fec698a7e261dc76b2964bc889fe166b59b56134b2f1721e00c4df2b"
+        }
+      }
+    },
+    "065": {
+      "adoption": "条件付き採択 D1。最初のAttempt結果。067と別指標 / MPR-RC-HELIXLABO-L2-065-001",
+      "decisionLine": 80,
+      "l2": [
+        503,
+        516
+      ],
+      "l11": [
+        241,
+        259
+      ],
+      "fixed": "0dd946cec1c3fca8e144513b72e2e10d16c7c9c3",
+      "old": [
+        [
+          "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-platform-requirements.md",
+          "151-152,215"
+        ],
+        [
+          "LEGACY-ASSET-28FB139B26CD61CC51EE",
+          "archive/legacy-generation-2026-09-14/root/docs/design/helix/helix-bench-evaluation.md",
+          "96-120,143-147"
+        ]
+      ],
+      "fixed_spans": {
+        "L2": {
+          "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+          "line_start": 503,
+          "line_end": 516,
+          "file_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+          "span_sha256_raw_lf": "6f50887b94a8d3341c55700393896798cc1273324a868071447bf0e5a95cf019"
+        },
+        "L11": {
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "line_start": 241,
+          "line_end": 259,
+          "file_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+          "span_sha256_raw_lf": "c70905fd036f0c6e6bfdce0368e462cd85acd467354bcad599d1112634d9b1b6"
+        }
+      },
+      "adoption_row": {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "line": 80,
+        "sha256_raw_lf": "4da9b1a4c726fe61731598a555d52f3e655d0cfa5e1c60eb78d79dbfe618b763"
+      },
+      "current_spans": {
+        "BR": {
+          "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+          "line_start": 105,
+          "line_end": 117,
+          "span_sha256_raw_lf": "0c1079b7dd6369182721ac2c1c062ca45c1928a1531c8575ed121c67f6481939"
+        },
+        "FR": {
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+          "line_start": 1751,
+          "line_end": 1771,
+          "span_sha256_raw_lf": "f490ffbecfdf5e5f7446d29b6c1490d1c1cec0628035ebef056d66d75d32683b"
+        },
+        "NFR": {
+          "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+          "line_start": 206,
+          "line_end": 221,
+          "span_sha256_raw_lf": "3dd8d07b22f62b0439e300efa777533bb89dfdddb122f8e926450ea45f7cd178"
+        },
+        "BV": {
+          "path": "docs/helix-labo/L10-verification/business-verification.md",
+          "status": "独立BV/CASEなし。BR-065 lines 105–117 は別business outcome/acceptanceを置かないと明記。"
+        },
+        "FV": {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line_start": 3026,
+          "line_end": 3114,
+          "span_sha256_raw_lf": "290969efe04f1ab517b956cbad968492493dc692a395f560a9b33528c460258e"
+        },
+        "NFRV": {
+          "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+          "line_start": 154,
+          "line_end": 166,
+          "span_sha256_raw_lf": "8a3b5181905a4e91cda009e37b9b74c2c937566d4e84e1efefbedd38add34dc2"
+        }
+      }
+    },
+    "066": {
+      "adoption": "採択 / MPR-RC-HELIXLABO-L2-066-001",
+      "decisionLine": 81,
+      "l2": [
+        518,
+        528
+      ],
+      "l11": [
+        261,
+        268
+      ],
+      "fixed": "0dd946cec1c3fca8e144513b72e2e10d16c7c9c3",
+      "old": [
+        [
+          "LEGACY-ASSET-D881AF6AFD277B1DE934",
+          "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+          "75"
+        ],
+        [
+          "LEGACY-ASSET-901CD182B52024593E41",
+          "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-acceptance.md",
+          "draft consumer; missing appendices 02/03/05"
+        ]
+      ],
+      "fixed_spans": {
+        "L2": {
+          "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+          "line_start": 518,
+          "line_end": 528,
+          "file_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+          "span_sha256_raw_lf": "5a67776a3f4567fa662c86898caf275fddbe8dc806fd3a19622cae9f733cdb69"
+        },
+        "L11": {
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "line_start": 261,
+          "line_end": 268,
+          "file_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+          "span_sha256_raw_lf": "dd302f23a38d74475e707be64d9ee69a0bfda35b98902c62173c45d8c369a556"
+        }
+      },
+      "adoption_row": {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "line": 81,
+        "sha256_raw_lf": "41121ae7430cd5890e3aae87edd38e1c3cc37b493cc20e65b6dacb0976d81d4f"
+      },
+      "current_spans": {
+        "BR": {
+          "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+          "line_start": 195,
+          "line_end": 202,
+          "span_sha256_raw_lf": "d45fa2091ed3e91e75b9e96803aad9cd34d9084a3a46664d4ac47ee61e48f226"
+        },
+        "FR": {
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+          "line_start": 1913,
+          "line_end": 1937,
+          "span_sha256_raw_lf": "af57289dbbb9809e8b09339498b34f5be84a192deed512b4d1da891bd89e6a8c"
+        },
+        "NFR": {
+          "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+          "line_start": 302,
+          "line_end": 312,
+          "span_sha256_raw_lf": "18bc8f210f5104dc7bb41f89cad8358786860d82ba5c08f4557ef1f37fb36f78"
+        },
+        "BV": {
+          "path": "docs/helix-labo/L10-verification/business-verification.md",
+          "line_start": 197,
+          "line_end": 203,
+          "span_sha256_raw_lf": "9bb79a8fd864d1ab21e905d8a6238971daf220f062dd9f7d97bb5b1f6eb8c162"
+        },
+        "FV": {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line_start": 3465,
+          "line_end": 3593,
+          "span_sha256_raw_lf": "f7685bb3795e77657332062c720869058329e4c98f02e644082f2b630d4b7de3"
+        },
+        "NFRV": {
+          "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+          "line_start": 245,
+          "line_end": 256,
+          "span_sha256_raw_lf": "4b35a54caa74ceac0ef4c752dd051f1f4b5480476357bb0fe35f72613747203c"
+        }
+      }
+    },
+    "067": {
+      "adoption": "条件付き採択 D1。最初の適格candidate結果と同一Attempt内修正回数。065と統合しない / MPR-RC-HELIXLABO-L2-067-001",
+      "decisionLine": 82,
+      "l2": [
+        529,
+        540
+      ],
+      "l11": [
+        269,
+        277
+      ],
+      "fixed": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "old": [
+        [
+          "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+          "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+          "399"
+        ]
+      ],
+      "fixed_spans": {
+        "L2": {
+          "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+          "line_start": 529,
+          "line_end": 540,
+          "file_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+          "span_sha256_raw_lf": "bf545a7b5e4714f442c4f96cec498ac07056f314b13765fc05ad049b69a8c188"
+        },
+        "L11": {
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "line_start": 269,
+          "line_end": 277,
+          "file_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+          "span_sha256_raw_lf": "7b3e55cbeeb4fb0f2ae322b3ea439b63ea6acfcaabf2753a642aee158f378a16"
+        }
+      },
+      "adoption_row": {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "line": 82,
+        "sha256_raw_lf": "43c0a571d50108e4a7d72790d38c4e91cb4637567f2bd89fa3efb1bdc901b139"
+      },
+      "current_spans": {
+        "BR": {
+          "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+          "line_start": 129,
+          "line_end": 133,
+          "span_sha256_raw_lf": "298ecdd771286032faec1eb7b8f276959a7fa4da5aa0c5ae3b0327cf15ece828"
+        },
+        "FR": {
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+          "line_start": 1816,
+          "line_end": 1838,
+          "span_sha256_raw_lf": "9a5b9923d407850cc5b5e22de10dbbd689b33bc5df88aa79bb091aa18815bd15"
+        },
+        "NFR": {
+          "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+          "line_start": 236,
+          "line_end": 241,
+          "span_sha256_raw_lf": "c68042fa19edecc51869267d1228661bae24729efa7d5e3933b639e808f0fadc"
+        },
+        "BV": {
+          "path": "docs/helix-labo/L10-verification/business-verification.md",
+          "line_start": 125,
+          "line_end": 133,
+          "span_sha256_raw_lf": "3c608c93ea5f9d8ccf6cc6ffd6efc268f2ab932fbbf3e106e568a45f96039566"
+        },
+        "FV": {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "line_start": 3178,
+          "line_end": 3233,
+          "span_sha256_raw_lf": "6b08475c369649dbef8e1000bf811ff648a0acc1d5a03cfa66ef77173780d577"
+        },
+        "NFRV": {
+          "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+          "line_start": 177,
+          "line_end": 181,
+          "span_sha256_raw_lf": "a8a998d7141af3b4b5f36c2391b9ceb5d64ca0c552c23d85506d22e5f32258dc"
+        }
+      }
+    }
+  },
+  "findings": [
+    {
+      "id": "F-067-INDEX-CASE39",
+      "classification": "明確なL10 cross-document index/trace omission。実FV CASE自体は存在するため、ここから未検証・false successとは推論しない。",
+      "evidence": [
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "lines": "3231",
+          "detail": "L10-LABO-067-CASE-39 is an individual LABO-067-AC-03 negative: normal observed inputs with L2-059 cost definition preserved, and only erroneous output changing the existing cost gate; expected rejection and LABO-output correction."
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+          "lines": "131",
+          "detail": "BR index lists CASE 01/02/03a–g/04a–b/05–23/24–38; omits CASE-39."
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/business-verification.md",
+          "lines": "131",
+          "detail": "BV CASE index also ends 24–38; omits CASE-39."
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+          "lines": "180",
+          "detail": "Functional CASE index also ends 24–38; omits CASE-39."
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+          "lines": "1828,1832",
+          "detail": "067 FR explicitly preserves adopted 059 quality/cost meaning and prohibits LABO-generated authority; AC-03 covers boundary/evidence."
+        }
+      ],
+      "impact": "BR/BV/NFRV indexes understate the actual 067 FV scope by one explicit boundary case and can make indexed cross-document coverage look complete while the CASE-39 cost-gate preservation oracle is not listed. Direct FV case and FR context exist, so no demonstrated acceptance false-pass.",
+      "minimum_followup": "If Root chooses to repair later, add CASE-39 to only the BR, BV, and NFRV index ranges (or add a narrow explicit reference) while preserving the existing CASE oracle and adopted L2-059 boundary; no new case/gate/meaning."
+    },
+    {
+      "id": "F-059-CASE14-OWNER-AMBIGUITY",
+      "classification": "補足read-only候補。revision不一致の否定oracle自体はあるが、異なるsource種別を一fixtureにまとめたため戻し先の根拠が不足/曖昧。false-successは示していない。",
+      "evidence": [
+        {
+          "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+          "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "lines": "427–429",
+          "detail": "L2-059:427 requires task, source, requirement and acceptance revisions/digests to be retained. L2-059:429 routes missing task/scope/assignment/result/receipt to OS or observation source and unknown quality/acceptance oracle to HARNESS/requirements owner; it does not explicitly assign all task-revision versus requirement-revision mismatches to one owner."
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "revision": "37a8283be429c57f3706153ad522e7ad288fecc3",
+          "lines": "2647",
+          "detail": "CASE-14 changes “requirement/task revision” as one grouped revision condition and routes the comparison mismatch to HARNESS."
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+          "revision": "37a8283be429c57f3706153ad522e7ad288fecc3",
+          "lines": "1622",
+          "detail": "AC-03 says only fixed L2-059:429 cause-specific existing source classes may be used; unknown if not identified."
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "lines": "76–94",
+          "detail": "Old R-03 keeps concrete runtime/model/effort/role versioned and avoids provider/model-name scoring; it does not define the current task-vs-requirement source-owner route."
+        }
+      ],
+      "impact": "The comparison is rejected, but the case cannot independently establish a correct return destination for both alternatives. Task/target revision provenance may be OS/observation-source input; requirement/acceptance contract version belongs to the contract/requirements source. Fixed L2-059 does not give enough basis to hardcode the same HARNESS return for both.",
+      "minimum_followup": "If repaired, retain CASE-14 as a compatibility/index reference or split into two single-field cases: task/target revision mismatch and requirement/acceptance revision mismatch. Keep both comparisons unmeasured; route only by an explicitly fixed existing source category, and preserve unknown if individual owner is not identified. No new owner/approval or threshold."
+    }
+  ],
+  "review_results": {
+    "064": "L2/L11 fixed source adopted; Stage5 semantic mapping reviewed across BR/FR/NFR/BV/FV/NFRV. No new false-success found. Historical residual CASE-22 lacks explicit return destination is retained as a prior residual, not upgraded to blocker. CASE-03a/24 overlap is known and is not counted twice. All fixtures synthetic/unexecuted.",
+    "065": "D1 first-Attempt metric remains separate from 067; 8-axis full-bench, task scorecard, retry/first_pass, unknown handling, cost/quality separation and decision/permission boundary align across FR/AC and CASEs. All 66 CASE definitions in FV section were read; no new false-success found. No independent BV outcome is intentionally defined per BR.",
+    "066": "A-vs-candidate same-condition N, separate misrepair/unresolved counts, overlapping cases, unknown kept in N/no rate, and fixed prohibited target/tolerance/trial/threshold outputs are represented by FR/AC and individual CASEs 79–82. All listed CASE rows in FV section were read. No new false-success found.",
+    "067": "First eligible candidate result and same-assignment Attempt repair rounds remain separate from 065 and 068; owner roles/unknowns and no authority output align. One cross-document CASE-39 index omission is finding F-067-INDEX-CASE39; direct FV test exists and no false-pass was shown."
+  },
+  "limits": [
+    "This is a static semantic review of specified parent spans and related CASE tables, not execution evidence.",
+    "Not a full 274-parent consumer-depth review.",
+    "Historical non-returning review minors were not converted to blockers.",
+    "Current L3/L10 documents remain unapproved design candidates unless a separate admission chain says otherwise; L2 adoption does not approve these drafts.",
+    "Read-only 059 addendum is a targeted follow-up prompted by Root and is not a full audit of parent 059."
+  ]
+}

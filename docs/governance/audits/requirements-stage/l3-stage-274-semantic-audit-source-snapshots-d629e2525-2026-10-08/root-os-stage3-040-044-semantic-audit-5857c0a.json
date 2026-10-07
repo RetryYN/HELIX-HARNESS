@@ -1,0 +1,359 @@
+{
+  "audit": "HELIX-OS Stage 3 semantic audit, parents 040-044",
+  "basis": {
+    "current_revision": "5857c0a396cb24a23d765e3079a18a2367b6d078",
+    "current_branch_at_read": "main",
+    "checkout_head": "fa642cddc3c4446e3635f1c6badd90209862cfac",
+    "fixed_parent_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "fixed_full_sha256": {
+      "L2": "c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a",
+      "L11": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997"
+    }
+  },
+  "adoption": {
+    "crosswalk": "docs/helix-os/L3-requirements/functional-requirements.md:367-371",
+    "po_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:63-67",
+    "status": "040-044 are listed as adopted by later PO record; fixed source historical unadopted wording was not treated as current state"
+  },
+  "documents": {
+    "BR": {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "bytes": 20354,
+      "sha256": "cbe1866df47503b17e8a11b786dee8da58cd8a2a0a99778b64bd4a669b2fa702",
+      "read_ranges": [
+        {
+          "lines": "57-61",
+          "bytes": 565,
+          "sha256": "92d806381d77e98adec693d86c6d5e34faa3aa4fc298d3e875f337aa023c09d1"
+        }
+      ]
+    },
+    "FR": {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "bytes": 201537,
+      "sha256": "95a6f1c5bdd1015d8849829de88fd99e62c842784135e4ebdbd5b4140d843544",
+      "read_ranges": [
+        {
+          "lines": "286-324",
+          "bytes": 7543,
+          "sha256": "1e5d4d5ab55f9a99160537eed4f0c915499492a3863d060a5884f4db867f3934"
+        }
+      ]
+    },
+    "NFR": {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "bytes": 32737,
+      "sha256": "ec63ecd54db5258ff14714624c3df6bcfd3c1c189ac9a08a29271c06231e3066",
+      "read_ranges": [
+        {
+          "lines": "84-88",
+          "bytes": 940,
+          "sha256": "a9e7ad304960a296b8f5846468708a44ecf225c1a7bcef5eb64d354f748d031c"
+        }
+      ]
+    },
+    "BV": {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "bytes": 17702,
+      "sha256": "5a75c21ce10b33fc8441adda71253870fd20a8687c18e7939cfe8b25f9d393c8",
+      "read_ranges": [
+        {
+          "lines": "57-61",
+          "bytes": 706,
+          "sha256": "0bfba342b1f692b0c21456e3c0d98d3ad1500515e7007fd3f1e985ba5be4d364"
+        }
+      ]
+    },
+    "FV": {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "bytes": 240108,
+      "sha256": "8a99792f723abb96034274c72424902fba51df515e2a99f637823427aa03821c",
+      "read_ranges": [
+        {
+          "lines": "631-645",
+          "bytes": 3310,
+          "sha256": "5eab9a0a3d92044aff04ad147fe1e4340abd4d4c5646c326f8c0e175cfbcaf33"
+        },
+        {
+          "lines": "669-677",
+          "bytes": 2521,
+          "sha256": "a10bd020816708d1a91ed9e82d269d7cc527cf83008cfb335409f722bc44c56e"
+        },
+        {
+          "lines": "694-696",
+          "bytes": 972,
+          "sha256": "a86dd17b6fc2f0f7c58431ffc8d90aa06d6b034e0820aefc4285dfd61532ac7a"
+        },
+        {
+          "lines": "754-776",
+          "bytes": 3709,
+          "sha256": "4a277ea1fd2e3e1f1af89f0419a7f7d5fc4e7baade55ee1783d9db9f93a6fab2"
+        }
+      ]
+    },
+    "NFRV": {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "bytes": 29480,
+      "sha256": "3019648b66a351418945033646bf82c84d0c7ef771edee49378cef2be266e256",
+      "read_ranges": [
+        {
+          "lines": "83-88",
+          "bytes": 1444,
+          "sha256": "a4be7e688469a60463bffa090bf88c401bc20e3736b4f84f574f363470533704"
+        }
+      ]
+    }
+  },
+  "fixed_parent_spans": {
+    "040": {
+      "fixed_L2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "lines": "1125-1134",
+        "bytes": 3403,
+        "sha256": "a5ba2bdca6bfc8adcf3216f523e882b53898d0a0424b886c1a5a6885542c3aee"
+      },
+      "fixed_L11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "lines": "732-743",
+        "bytes": 2296,
+        "sha256": "2fdcdc32156561d4b9f9931ee20194bf39b297ff96d477e58ff0d48c3abe232b"
+      }
+    },
+    "041": {
+      "fixed_L2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "lines": "1135-1143",
+        "bytes": 3366,
+        "sha256": "606c5eb4b8166af4c21521ccf65c85d185b65bdb6861aa4fd3e537e749a2d74c"
+      },
+      "fixed_L11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "lines": "744-755",
+        "bytes": 2782,
+        "sha256": "aeb6a5f0ea9ceeb9a960da1527256876a55a4f53da6bfe7d0fa701b2e07c1043"
+      }
+    },
+    "042": {
+      "fixed_L2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "lines": "1144-1152",
+        "bytes": 3359,
+        "sha256": "af2f9f98196667ecd7583349e64a309c7e0a1bff58f4bac065105d9c55c9acfb"
+      },
+      "fixed_L11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "lines": "756-769",
+        "bytes": 2900,
+        "sha256": "1bb759afc770196f8d3ac09bc8c708398293f56a05351a84645d52210f8c591e"
+      }
+    },
+    "043": {
+      "fixed_L2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "lines": "1153-1161",
+        "bytes": 2599,
+        "sha256": "909df8f324b181387bb9a5abf875e8b4cc9d935bd092145b0d088f6db4b8f585"
+      },
+      "fixed_L11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "lines": "770-778",
+        "bytes": 2589,
+        "sha256": "9b36703719d1de859d2601cebda576763ba006fadaf2159aaf333b48aa26d6a7"
+      }
+    },
+    "044": {
+      "fixed_L2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "lines": "1162-1168",
+        "bytes": 1480,
+        "sha256": "a9708b9e792b5b3dc3ab013da906181d40c0d5f629a373b47f768b947c2d813f"
+      },
+      "fixed_L11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "lines": "779-785",
+        "bytes": 1316,
+        "sha256": "403364124a80f11b82ef006e74b132db9817fc2db51280843283300bb4ad1918"
+      }
+    }
+  },
+  "semantic_review": [
+    {
+      "parent": "040",
+      "status": "candidate_oracle_clarity_finding",
+      "basis": "Fixed L11 specifies policy revision, initial-attempt counting semantics, failure classes, N and same-semantics attempt events. FR-040-01/02 and CASE-040-01/02 say configured cap and values missing/changed, but do not explicitly state the normal expected count semantics or each semantic mutant.",
+      "potential_false_success": "If the active policy counts the initial attempt but the implementation counts retries only, it may allow one extra retry before typed return. Whether the generic “value changed” fixture catches this is unclear.",
+      "classification": "Do not infer L2 meaning change; root should determine whether existing fixture intent proves this, and if not make a minimal L10 oracle clarification."
+    },
+    {
+      "parent": "041",
+      "status": "no_confirmed_gap",
+      "basis": "Current canonical source/revision, coordination-only scope, forbidden carryover, conflict/unknown owner return and unrelated work continuation trace to fixed L2/L11 and old IPC-R07 source."
+    },
+    {
+      "parent": "042",
+      "status": "no_confirmed_gap",
+      "basis": "Strict schema and payload digest, selected contract applicability, HARNESS oracle, no OS-issued schema/oracle/authority, and exact-scope/revision revalidation receipts are represented in AC/CASE normal and independent negatives."
+    },
+    {
+      "parent": "043",
+      "status": "no_confirmed_gap",
+      "basis": "Request-required versus request-free normal operations are both explicit; event absence/mismatch, ACK, tool-call permission, result completion/write authority and unresolved Node-only authority are separately handled."
+    },
+    {
+      "parent": "044",
+      "status": "no_confirmed_gap",
+      "basis": "Prose-only handover remains open; unknown/stale/conflict is finding-local and existing-status-only. Broader lifecycle and source-head mismatch remain outside the parent."
+    }
+  ],
+  "legacy_sources_read": [
+    {
+      "parent": "040",
+      "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "lines": "240-242",
+      "full_bytes": 46889,
+      "full_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "span_bytes": 394,
+      "span_sha256": "e0eb944d58ec0a4cedd2515c537089b92a817c0f3903580728b8423968d2bfe1",
+      "scope_note": "direct requirement source"
+    },
+    {
+      "parent": "040",
+      "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "lines": "43-43",
+      "full_bytes": 13648,
+      "full_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "span_bytes": 83,
+      "span_sha256": "870ad165536e0233a5124db170f349386e7355fad08edca2b91795c28cd42b5e",
+      "scope_note": "direct acceptance source"
+    },
+    {
+      "parent": "041",
+      "asset_id": "LEGACY-ASSET-CC651ADF5019614AE426",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+      "lines": "43-46",
+      "full_bytes": 4008,
+      "full_sha256": "4a0dc04f1cf100770c5cc0440b0ca9a056b7d443f8d0b04e0978483b442cfe04",
+      "span_bytes": 275,
+      "span_sha256": "7b0279e5f9e2dfbc2196e2423a33d20c88702cc0cec0cf35af2aaf3eb8f6450d",
+      "scope_note": "direct requirement source"
+    },
+    {
+      "parent": "041",
+      "asset_id": "LEGACY-ASSET-B825D9174CA3DC548055",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/instruction-path-change-resilience-acceptance.md",
+      "lines": "40-42",
+      "full_bytes": 3246,
+      "full_sha256": "9cf2e82d714fe5818e292a9f957540e0e00b0911e2378cb21dfe83e99463f454",
+      "span_bytes": 233,
+      "span_sha256": "4de41630121ad814cbd88aeae458248ab03361966e093944513fc66ea09384ea",
+      "scope_note": "related acceptance source; old transition mechanics not migrated"
+    },
+    {
+      "parent": "042",
+      "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "lines": "151-151",
+      "full_bytes": 65731,
+      "full_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "span_bytes": 213,
+      "span_sha256": "45a01b04408fe74cb4a1ccd6ae5b8a3c2c02f03500d57c68c8a372b412a81410",
+      "scope_note": "direct requirement atom"
+    },
+    {
+      "parent": "042",
+      "asset_id": "LEGACY-ASSET-9114D4E463E95B67DD0C",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+      "lines": "59-59",
+      "full_bytes": 14499,
+      "full_sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+      "span_bytes": 298,
+      "span_sha256": "6a822cd9d22357566163dc1e8be15efb85510e1abfcd195bb5ef471361ca564f",
+      "scope_note": "direct worker contract"
+    },
+    {
+      "parent": "042",
+      "asset_id": "LEGACY-ASSET-44DD86E3DEC09E65EF51",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "lines": "108-108",
+      "full_bytes": 30874,
+      "full_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+      "span_bytes": 219,
+      "span_sha256": "12d0996da13ade5ce5c802556cedb98ba5fedb478ca7f15fb8bd131187807127",
+      "scope_note": "related acceptance oracle"
+    },
+    {
+      "parent": "042",
+      "asset_id": "LEGACY-ASSET-C6ADB99F1353965C5449",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/worker-common-contract-acceptance.md",
+      "lines": "35-57",
+      "full_bytes": 7122,
+      "full_sha256": "c8dff734891a6a7350feb9b698c40e1616946cdd424433d662f1da49d8ac800d",
+      "span_bytes": 2750,
+      "span_sha256": "260cdc771250c55b98ec96bdf6c5fd1c81e6bee4950dca3657b8501d1e7ab10d",
+      "scope_note": "related acceptance oracle"
+    },
+    {
+      "parent": "043",
+      "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "lines": "149-149",
+      "full_bytes": 65731,
+      "full_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "span_bytes": 418,
+      "span_sha256": "2a51f5fd235d0b62970b539861de48671b4b186cdd2524085332b479e1ead47a",
+      "scope_note": "direct requirement atom; unresolved Node-only authority not migrated"
+    },
+    {
+      "parent": "043",
+      "asset_id": "LEGACY-ASSET-9114D4E463E95B67DD0C",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+      "lines": "36-60",
+      "full_bytes": 14499,
+      "full_sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+      "span_bytes": 4064,
+      "span_sha256": "d2d88f1619c10d3164205490c38443c91fa9572754e5dc791cad106e10203559",
+      "scope_note": "related event/authority contract"
+    },
+    {
+      "parent": "043",
+      "asset_id": "LEGACY-ASSET-44DD86E3DEC09E65EF51",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "lines": "106-106",
+      "full_bytes": 30874,
+      "full_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+      "span_bytes": 357,
+      "span_sha256": "66b2e42a505e1ad493ba47c57888c5965af9f56563fe928b7ef63c804323bcbc",
+      "scope_note": "related acceptance oracle"
+    },
+    {
+      "parent": "044",
+      "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "lines": "290-290",
+      "full_bytes": 64313,
+      "full_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "span_bytes": 280,
+      "span_sha256": "6fa474edaa613a1ec55664b0087f086df9c02fe08965cc5605059ae733f73b1e",
+      "scope_note": "direct source atom HR-AC-HYB-006"
+    },
+    {
+      "parent": "044",
+      "asset_id": "LEGACY-ASSET-8686BB8CF396BAF57F2E",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-merge-admission-requirements.md",
+      "lines": "27-31",
+      "full_bytes": 16006,
+      "full_sha256": "cdd4f9fd0ab9b4862ec52c6b6dbcd9fd5f97c5e7bb5440f1b2cda69d37c504f8",
+      "span_bytes": 565,
+      "span_sha256": "5845b9f6db69a25f3bc675bb5a29c5ab5981171595be873fabee2e50c1bd6864",
+      "scope_note": "related out-of-scope boundary only"
+    }
+  ],
+  "limits": [
+    "Document-only semantic audit; no fixtures executed.",
+    "Legacy source review is limited to listed relevant source/consumer lines; no claim of all legacy assets/consumers reviewed.",
+    "No claim that all OS Stage 3 parents or all 274 documents received an equivalent semantic review.",
+    "OS040 counter-semantics expectation remains an ambiguity for root adjudication."
+  ]
+}

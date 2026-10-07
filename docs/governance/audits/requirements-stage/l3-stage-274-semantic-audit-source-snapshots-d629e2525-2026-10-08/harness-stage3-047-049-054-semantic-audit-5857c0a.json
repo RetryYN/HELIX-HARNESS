@@ -1,0 +1,335 @@
+{
+  "audit": "HARNESS Stage3 parent 047/049/054 semantic review",
+  "base_revision": "5857c0a396cb24a23d765e3079a18a2367b6d078",
+  "method": "All current-revision source reads via git show <exact revision>:path; no checkout content substituted. Static semantic inspection only; no archived runtime/test/CI execution.",
+  "current": {
+    "BR": {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "full_sha256": "9fb531a55c61c4836ae614cadbd850f3967119cb1f0f2eb36dad1e39ebab75e2",
+      "line_count": 196,
+      "parent_spans": {
+        "047": {
+          "line_start": 134,
+          "line_end": 139,
+          "sha256": "a50c7dd7f4d6ad0cfe885bc83a8d3c62afeb382545c3f5c415d877fa9a730eb2"
+        },
+        "049": {
+          "line_start": 140,
+          "line_end": 177,
+          "sha256": "fbc760dab8e9ae28ab2f48d5dbc829ba1f35e392bbf2a8aff1d7418346ea34f8"
+        },
+        "054": {
+          "line_start": 178,
+          "line_end": 196,
+          "sha256": "8d86a9077cc219400d02b14ea771a2115babdb691bd0e91719207f467b6ae9a9"
+        }
+      }
+    },
+    "FR": {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "full_sha256": "cb58f9ff835c71d198be990a4ddbc378a10ec381c83fd3093d78eb703bf4f6a7",
+      "line_count": 932,
+      "parent_spans": {
+        "047": {
+          "line_start": 776,
+          "line_end": 803,
+          "sha256": "a7827f178c1e40cc6f72b90701536946fdfe0f6823abde0a31d2d7b2c1b8d1fa"
+        },
+        "049": {
+          "line_start": 804,
+          "line_end": 914,
+          "sha256": "0370f8066729df82eed27801a901a991f5c9f416bd5a1d8133babc616895dfff"
+        },
+        "054": {
+          "line_start": 915,
+          "line_end": 932,
+          "sha256": "ce44cb93741bcd6e9ed51d7c3f87460084bdd228254b74de0ec08ae74817fd0d"
+        }
+      }
+    },
+    "NFR": {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "full_sha256": "ee84bc87ff324eea929d266934c0debb856018aca25c0044f68b11c141c3263d",
+      "line_count": 274,
+      "parent_spans": {
+        "047": {
+          "line_start": 206,
+          "line_end": 211,
+          "sha256": "c55806c8ffffd9067eef31c472aba14acd1b49d6d23374bce21c1168b1bd3b32"
+        },
+        "049": {
+          "line_start": 212,
+          "line_end": 255,
+          "sha256": "040e0e05369d603c03a1b86a359bc7d7a9266b28a6ae373580250e3e4521e70a"
+        },
+        "054": {
+          "line_start": 256,
+          "line_end": 274,
+          "sha256": "cf12e91d3237c91bb33ab3a615bdce084290fb0311eb9ba2432a8a2bf748dba8"
+        }
+      }
+    },
+    "BV": {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "full_sha256": "864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad",
+      "line_count": 179,
+      "parent_spans": {
+        "047": {
+          "line_start": 95,
+          "line_end": 100,
+          "sha256": "735bd55089f120bd506a22bc2c1f3f02cb7b22c90bfad8597731afcc719c5268"
+        },
+        "049": {
+          "line_start": 101,
+          "line_end": 152,
+          "sha256": "7d5740e55693761817d418e2384fc09578d0e7052287cbf14ef299ed5494af1b"
+        },
+        "054": {
+          "line_start": 153,
+          "line_end": 178,
+          "sha256": "f9ec323807047dfedad855c6749ef1f2acee7e13f2e82aaf9fc2db0c8214123f"
+        }
+      }
+    },
+    "FV": {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "full_sha256": "8f6b66dd73a715165099456095108aa459749e29079de655298474b150782741",
+      "line_count": 2615,
+      "parent_spans": {
+        "047": {
+          "line_start": 1761,
+          "line_end": 1927,
+          "sha256": "9f56e104b0f1c0066b4b41e5aa95c66b1fd782590a50c59a57dafa6cba3932d8"
+        },
+        "049": {
+          "line_start": 1928,
+          "line_end": 2224,
+          "sha256": "413d3a1dbe858902dd84e9f0a0b2f3271cf0a100f2b7762e8346440dbb240607"
+        },
+        "054": {
+          "line_start": 2415,
+          "line_end": 2608,
+          "sha256": "7ce9fa7d02a15e589b07ce051545955cca9c7fd191264f270814160c40528e21"
+        }
+      },
+      "case_counts": {
+        "047": {
+          "definition_rows": 154,
+          "unique_ids": 154,
+          "first_line": 1767,
+          "last_line": 1926,
+          "ids_sha256_lf_joined": "bc4bae373a31096d80d3f0d8068342bfa2ec6d5024e7b480058e698b1ae4060d"
+        },
+        "049": {
+          "definition_rows": 164,
+          "unique_ids": 164,
+          "first_line": 1936,
+          "last_line": 2107,
+          "ids_sha256_lf_joined": "69581ebd9f82143ddbbf03a46379dec61ae3a2cec015a75948df1b4c3eb48e3b"
+        },
+        "054": {
+          "definition_rows": 162,
+          "unique_ids": 162,
+          "first_line": 2441,
+          "last_line": 2607,
+          "ids_sha256_lf_joined": "18f823b08750b887e5119a12ad2c2427c18a27a249e7895c160ca2f8a123586b"
+        }
+      }
+    },
+    "NFV": {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "full_sha256": "17ee1dc8ab6786416680e496ba8fb83a714756dd8f853830afe036ddcc9b36e9",
+      "line_count": 263,
+      "parent_spans": {
+        "047": {
+          "line_start": 184,
+          "line_end": 189,
+          "sha256": "dcff0fc832688d019b48daa6f8ac06b97d7f3a26f6938dd7aee74da7659280d4"
+        },
+        "049": {
+          "line_start": 190,
+          "line_end": 238,
+          "sha256": "3b89e353f0271636b7b813547ef5f60f089fbff1cdf4bc25cce64fc24215fb1c"
+        },
+        "054": {
+          "line_start": 239,
+          "line_end": 263,
+          "sha256": "080c4424eb34448a02ae8fc37d3c53423bd08224eff862658ee062e864056710"
+        }
+      }
+    },
+    "L2": {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+      "line_count": 1544,
+      "parent_spans": {
+        "047": {
+          "line_start": 1039,
+          "line_end": 1052,
+          "sha256": "733201471492a400db194369980f54499faa7f7860e1e1465c18589a43daa9b9"
+        },
+        "049": {
+          "line_start": 1070,
+          "line_end": 1090,
+          "sha256": "d766694708a3cb6618542029cc6d1bcd754d8dfceb19903342953fb85a4b6da0"
+        },
+        "054": {
+          "line_start": 1154,
+          "line_end": 1162,
+          "sha256": "b76b7b1adec804a25bd9333663aa9b0d074f68518764c2874c994bcdf6ead193"
+        }
+      }
+    },
+    "L11": {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "full_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+      "line_count": 1340,
+      "parent_spans": {
+        "047": {
+          "line_start": 778,
+          "line_end": 790,
+          "sha256": "8d92bb157dff9cffd87f72a43c2ce19977667a2fd928b5a3780f1f55912bdcb2"
+        },
+        "049": {
+          "line_start": 788,
+          "line_end": 814,
+          "sha256": "b5c4d9c33aed4c1dc7e1a018a23d25dace82f326e1862771db5e469b6f204c14"
+        },
+        "054": {
+          "line_start": 868,
+          "line_end": 876,
+          "sha256": "fc3fd0d7ea1e2ff881280cc53c4bc92926eef569d51421b8ce597592e7537731"
+        }
+      }
+    },
+    "old_hil": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "full_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "line_count": 257,
+      "spans": [
+        {
+          "line_start": 61,
+          "line_end": 61,
+          "sha256": "6630ac1eaf1f037f65098300fef95fbff5ae6eb17c68120b42b207e9d1734906",
+          "text": "| **HIL-BR-09** | 工程表のlayer×drive×task-kind×verification patternからHARNESS所有agent contractとW-agent teamを生成し、Claude/Codex固有定義へ決定論的に射影する。 |"
+        },
+        {
+          "line_start": 82,
+          "line_end": 82,
+          "sha256": "2d60ecedd1241e398d4b8af90a0be3cda76c86663d5088619d6159286778a0fc",
+          "text": "| **HIL-BR-30** | HARNESSは工程表、Design Contract Portfolio、判断pack、task分類から専門agent contractを必要時に自動生成し、runtime固有subagent定義へ射影する。専門化の根拠がないagent増殖を避け、worker/verifier/authority分離、最小context、tool/path権限、budget、停止条件を生成時に拘束する。 |"
+        },
+        {
+          "line_start": 149,
+          "line_end": 150,
+          "sha256": "6fb108bda0e823b1c81582e2d20ddef6e867e7178e4fd4afdb87a486d76fa41b",
+          "text": "| **HIL-FR-59** | Specialist Agent Contract Compilerはworkflow phase、task-kind、設計義務、domain object、risk、judgment packからobjective、成果物schema、tool guidance、task boundary、context selectors、allowed/denied tools/paths、model/effort class、budget、checkpoint、escalation、verification contractを持つruntime中立agent contractを生成する。 | generated agent contract、input/output digest、generation rationale、guard validation receipt | | **HIL-FR-60** | Specialist Muster Gateは専門知識、独立context、並列性、blind verificationのいずれかに測定可能な利益がある場合だけ生成agentをmusterし、単一agentで十分なtaskは既存roleへ送る。生成agentをallowlist済みruntime型へ射影し、workerとverifierのprovider/model/authority分離、lease、fencing、retireを検査する。 | specialization decision、TeamDefinition、runtime projection、worker/verifier separation、lifecycle receipt |"
+        }
+      ]
+    },
+    "old_vdh": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md",
+      "full_sha256": "7dd1aff53747c60d080cdc367407751fb707e20b839ad64a9462537bb525cb2d",
+      "line_count": 126,
+      "spans": [
+        {
+          "line_start": 43,
+          "line_end": 43,
+          "sha256": "711774a660cecaba30226b8e1e3b770f63d6f089b56f3e4efb76f85bef0212a6",
+          "text": "| VDH-FR-005 | AIは白紙生成せず、required/forbiddenを持つPattern Contract内で構成する。UI profileは情報優先順位、pattern/token、responsive、motion budget、reduced-motion、accessibility、brand制約、operational/expressive/mixed分類を持ち、product固有値を共通Rule Packへ混入しない | VDH-AC-005 |"
+        },
+        {
+          "line_start": 49,
+          "line_end": 49,
+          "sha256": "02aeac39ed1fee5d3f84a1c2b14fe7358d05f09152d37431a82a164698e0138e",
+          "text": "| VDH-FR-011 | UX evidenceはreal data、responsive、motion、accessibility、performance、continuity、主要stateとdevice/view条件を含む | VDH-AC-011 |"
+        }
+      ]
+    },
+    "old_assessment": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/design-harness-assessment-audit-2026-07-19.md",
+      "full_sha256": "9699f18b937dae6ec9edcbf18aba8d3d0854192baa217a02fee7ca67914cef56",
+      "line_count": 86,
+      "spans": [
+        {
+          "line_start": 33,
+          "line_end": 36,
+          "sha256": "b7b8398180a583fcafedcbe1b5081dd44086a4a8f5f51f366ccea12ac9213adb",
+          "text": "- `screen-applicability-prototype.md`（全 PLAN の `prototype_required`/`not_applicable` 分類、 操作可能プロトタイプ、9 状態、walkthrough 証跡、no-UI 判定の stale 化）は `status: draft`。 - runtime 側は `src/lint/screen-impl-pair-freeze.ts` 等の部分的 lint のみで、 ScreenApplicabilityGate・prototype manifest・walkthrough receipt のエンジンは未実装。"
+        },
+        {
+          "line_start": 70,
+          "line_end": 82,
+          "sha256": "5e8c09c978fe2733c1b24a0654c543cc0009433a43b430700da821c75770130e",
+          "text": "5. **設計↔実装 drift 検査**: prototype↔画面要求、prototype↔実装 DOM/component、 design token↔CSS、interaction↔E2E、content↔表示文言、analytics↔実装発火、 accessibility 要求↔実測、の差分検出を semantic diff の次段として追加。 6. **要求原子化のやりすぎ防止**: 原子要求に親となる利用者目的・業務価値・対象シナリオ・ 前後文脈・成功結果・判断理由を必ず残し、User Task / Business Outcome 単位の親グラフを併存維持。  ## 実装優先順位  1. DESIGN-HARNESS 統合 capability registry 2. ScreenApplicabilityGate の runtime 化 3. 実行可能prototype manifestとwalkthrough receipt 4. screen / interaction / state ↔ 要件・API・test の結線 5. prototype ↔ 実装 drift detector"
+        }
+      ]
+    },
+    "po_047": {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "full_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "spans": [
+        {
+          "line_start": 52,
+          "line_end": 52,
+          "sha256": "89a6add22224c89b73c6a5fc54734977e80eddce7a59fd4cad1de2b23c839e37",
+          "text": "| `HARNESS-L2-047` | 条件付き採択：A配置（HARNESSが契約生成規範を所有）。 | `MPR-RC-HARNESS-L2-047-001` | `docs/helix-harness/L2-requirements/product-requirements.md` | `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09` | `sha256:733201471492a400db194369980f54499faa7f7860e1e1465c18589a43daa9b9` | `HARNESS-L2-047` | `docs/helix-harness/L11-acceptance/product-acceptance.md` | `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5` | `sha256:8d92bb157dff9cffd87f72a43c2ce19977667a2fd928b5a3780f1f55912bdcb2` | `docs/governance/audits/requirement-registration/harness-specialist-contract-coverage-receipt-2026-09-29.json` |"
+        }
+      ]
+    },
+    "po_049": {
+      "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+      "full_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+      "spans": [
+        {
+          "line_start": 39,
+          "line_end": 39,
+          "sha256": "928310ccfecf9d7269440a51d84123e5332f30236cc4396146f9862c6153a29a",
+          "text": "| `HARNESS-L2-049` | 承認（通常採択22件に含む） | `MPR-RC-HARNESS-L2-049-003` | `sha256:a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116` | `sha256:f3fb47da21371084e9f8c7c7f7ca6dd945c8e98ae7c7b70597c3fc44e4e08ee7` |"
+        },
+        {
+          "line_start": 72,
+          "line_end": 72,
+          "sha256": "410b827982a782cf507851e49843ccef13b48f9dc920f22205dd6769dbd9255f",
+          "text": "HARNESS-L2-049の採択は登録`-003`および訂正済L11 oracleの計測専用意味に限る。試作品生成、Pattern選択、screen ID発行は含まず、別revision `-002`の処置を継承しない。HARNESS-L2-055/056はそれぞれ選択済みFR-48 gate atom、選択済みFR-49の6 canonical V-pair atomに限る。HARNESS-L2-062は既存負債を免除・解消扱いしない。HARNESS-L2-063は選択した3条件だけを採り、導入版未指定を維持する。HELIXLABO-L2-071は資格を操作権限や割当へ自動変換しない境界を含む。HELIXOS-L2-104は新しい認可権限や追加承認を作らず、105は記録充足と実際の復旧完了・release許可を区別する。HELIXOS-L2-106/107は根拠不足を未解決として返し、108/109/110は明示入力範囲の検査に限る。これらの限定は選択対象を広げない。"
+        }
+      ]
+    },
+    "po_054": {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+      "full_sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+      "spans": [
+        {
+          "line_start": 34,
+          "line_end": 34,
+          "sha256": "5ad1167ad45d7f2befba1423f20dd5ffc0d9e4c2c5846f913b8174f836d17a7d",
+          "text": "| `HARNESS-L2-054` | 採択 | `MPR-RC-HARNESS-L2-054-001` | `docs/helix-harness/L2-requirements/product-requirements.md` | `45955ffba1293b603f3c513ec1e9e328dd7bcf24b038463eb20dd480d1dc2108` | `sha256:b76b7b1adec804a25bd9333663aa9b0d074f68518764c2874c994bcdf6ead193` | `docs/helix-harness/L11-acceptance/product-acceptance.md` | `216a8dccfff723408fd4b54701933a8e257f29e5c775aaef2a4458d1f36d3cc7` | `sha256:5d1ab0bad44ae305053932f0c82bcf472e145046125b638f5facab13eaaa2aa0` | `docs/governance/audits/requirement-registration/harness-specialist-handoff-coverage-receipt-2026-09-29.json` |"
+        }
+      ]
+    }
+  },
+  "findings": [],
+  "coverage": {
+    "047": {
+      "fixed_meaning": "Task-scoped specialist muster only when measured task-relevant benefit is evidenced; otherwise existing role sufficient or unknown/defer. Contract generation is conditional on muster and traces 8 selected source identity/revision/scope values with normalized-input/rule reproducibility. Worker/verifier identity/context/authority separate; OS runtime/assignment/lifecycle and SECURITY authority/isolation remain external.",
+      "observed_cases": "FV AC01 normal+single-axis negatives include unknown promoted, sufficient role ignored, provider/price/Bench-only, LABO evidence unassessed/stale/missing, comparison target/task boundary/single-worker comparison missing. AC02 includes normal source trace and six isolated missing revision references; digest/guard/contract child cases separately. AC03 has separate identity/context/authority and provider/model-only counterexamples; OS profile/lifecycle and SECURITY authority boundaries are separate. AC04 keeps unknown/defer causes and interruption/budget/deadline partial state separate, including assignment/authentication isolation.",
+      "assessment": "No concrete false-success or false-reject defect confirmed in the covered 047 L3/L10 scope. The CASE index rows are explicitly non-counting aliases and point to underlying cases; all cited candidate authority outputs are blocked rather than inferred."
+    },
+    "049": {
+      "fixed_meaning": "Measurement-only for an already-renderable, permitted prototype at selected screen/scope/revision and profile. It measures selected device/view, oracle, fixtures, text profile guidance; does not create prototype, select Pattern, issue screen ID, or move future real-user UX/drift/analytics into 1.0. No unsupported threshold or fixture-count success.",
+      "observed_cases": "FV has 164 unique CASE rows (48 AC01, 46 AC02, 20 AC03, 15 AC04, 35 AC05): selected-scope valid measurement and unseen-in-scope normal cases; missing/unbound/revision mismatch and unknown conditions; positive/negative fixture classification and independent denominator/fixture insufficiency cases; no generation/Pattern/ID issuance requirements or outputs; text profile evidence without invented thresholds; machine pass cannot output agreement/L3 acceptance/implemented/ux_verified.",
+      "assessment": "No concrete false-success or false-reject defect confirmed in the covered 049 L3/L10 scope. Normal unseen selected oracle conditions are not rejected solely for being unseen, while unknown out-of-scope conditions stay unknown."
+    },
+    "054": {
+      "fixed_meaning": "Connection only from 047 meaning into existing OS assignment. Preserve task/scope/revision and layer×drive inputs, phase/task/oracle, selected evidence, and typed muster_candidate/existing_role_sufficient/unknown_or_defer. Mapping/enum/schema and fixed Worker count remain undefined; OS assignment/profile/lifecycle, SECURITY authority, LABO evidence applicability, INTELLIGENCE placement remain their owners.",
+      "observed_cases": "FV has 162 unique definitions (24 numbered base rows, 38 r-series rows, and c01–c62 rows). It includes input/output source-value match for normal muster and existing-role branches; missing/stale/conflict/unknown returns; separate non-generation mutations for adoption, L3 approval, assignment, execution permission, worker start, authority and acceptance; independent same-identity/context/authority despite provider/model difference cases; layer and drive applicability-scope missing/stale/conflict/unknown each isolated (c55–c62). Index rows point to independent child cases and are not counted as independent mutations.",
+      "assessment": "No concrete false-success or false-reject defect confirmed in the covered 054 L3/L10 scope. The cases distinguish known responsibility category from unknown individual identity and send normal HARNESS output errors back to HARNESS rather than misrouting them as missing upstream authority."
+    }
+  },
+  "limitations": [
+    "No runtime, test, CI, or archived test was executed; fixtures/oracles are static specification only.",
+    "This is limited to adopted/fixed parents 047, 049, 054 and their scoped L3/L10 consumers. No assertion of whole HARNESS Stage3 or all 274 parent semantic closure.",
+    "OS/SECURITY/LABO/INTELLIGENCE consumer requirements were inspected only where referenced in the fixed parents and relevant local consumer sections; no full cross-mechanism consumer closure is claimed.",
+    "Legacy assessment was read only at the pinned lines 33–36 and 70–82; no claim about its uninspected remainder."
+  ]
+}

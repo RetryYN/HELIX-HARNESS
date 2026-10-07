@@ -1,0 +1,212 @@
+{
+  "audit": "Stage1 semantic audit",
+  "source_revision": "786ee7c85c5454e3b2314c1d8ee3ca28f5178db1",
+  "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+  "mode": "read-only; no repository edit or legacy execution",
+  "canonical_stage_scope": {
+    "HARNESS": {
+      "parents": [
+        "HARNESS-L2-010",
+        "HARNESS-L2-011",
+        "HARNESS-L2-023"
+      ],
+      "locators": "implementation-order-addendum-2026-10-03.md:42-43,55"
+    },
+    "CONNECT": {
+      "parents": [
+        "HELIXCONNECT-L2-001",
+        "HELIXCONNECT-L2-002",
+        "HELIXCONNECT-L2-003",
+        "HELIXCONNECT-L2-004",
+        "HELIXCONNECT-L2-005"
+      ],
+      "locators": "implementation-order-addendum-2026-10-03.md:153-157"
+    }
+  },
+  "body_documents": [
+    {
+      "mechanism": "HARNESS",
+      "layer": "L3",
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "read_line_span": "1-16",
+      "full_bytes": 27827,
+      "sha256": "9fb531a55c61c4836ae614cadbd850f3967119cb1f0f2eb36dad1e39ebab75e2"
+    },
+    {
+      "mechanism": "HARNESS",
+      "layer": "L3",
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "read_line_span": "1-97; FR/AC 25-84",
+      "full_bytes": 271404,
+      "sha256": "cb58f9ff835c71d198be990a4ddbc378a10ec381c83fd3093d78eb703bf4f6a7"
+    },
+    {
+      "mechanism": "HARNESS",
+      "layer": "L3",
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "read_line_span": "1-50",
+      "full_bytes": 60172,
+      "sha256": "ee84bc87ff324eea929d266934c0debb856018aca25c0044f68b11c141c3263d"
+    },
+    {
+      "mechanism": "HARNESS",
+      "layer": "L10",
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "read_line_span": "1-16",
+      "full_bytes": 26039,
+      "sha256": "864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad"
+    },
+    {
+      "mechanism": "HARNESS",
+      "layer": "L10",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "read_line_span": "1-30",
+      "full_bytes": 1165699,
+      "sha256": "8f6b66dd73a715165099456095108aa459749e29079de655298474b150782741"
+    },
+    {
+      "mechanism": "HARNESS",
+      "layer": "L10",
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "read_line_span": "1-23",
+      "full_bytes": 54341,
+      "sha256": "17ee1dc8ab6786416680e496ba8fb83a714756dd8f853830afe036ddcc9b36e9"
+    },
+    {
+      "mechanism": "CONNECT",
+      "layer": "L3",
+      "path": "docs/helix-connect/L3-requirements/business-requirements.md",
+      "read_line_span": "1-7",
+      "full_bytes": 2305,
+      "sha256": "3ff964c1b762c9f67228214d62df5e208d0e0ab5bd4f2ffb57b26f8684ebd925"
+    },
+    {
+      "mechanism": "CONNECT",
+      "layer": "L3",
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "read_line_span": "1-127",
+      "full_bytes": 52326,
+      "sha256": "85e3186fbb82d8f61a12351f567a118850b856473b7928a334cea1e5f28464a4"
+    },
+    {
+      "mechanism": "CONNECT",
+      "layer": "L3",
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "read_line_span": "1-17",
+      "full_bytes": 9340,
+      "sha256": "8becd7af6701e3de40a300c617aa3eca2d0214a867a2685b8615efcf8b7582aa"
+    },
+    {
+      "mechanism": "CONNECT",
+      "layer": "L10",
+      "path": "docs/helix-connect/L10-verification/business-verification.md",
+      "read_line_span": "1-5",
+      "full_bytes": 1950,
+      "sha256": "ecfe151650418d88e69726d3102f542bb43e75faeb8737224f1e04c4181dfec0"
+    },
+    {
+      "mechanism": "CONNECT",
+      "layer": "L10",
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "read_line_span": "1-77",
+      "full_bytes": 100547,
+      "sha256": "fdff7c3edba7be7c7a169a92c72b1befe697dc3c3af39ec7733315ec20fa2d2f"
+    },
+    {
+      "mechanism": "CONNECT",
+      "layer": "L10",
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "read_line_span": "1-13",
+      "full_bytes": 8472,
+      "sha256": "9efc5ddc902da565ad3d1295b2088ade1e7ab3427f1b4206ff3d4686a1197e48"
+    }
+  ],
+  "fixed_parent_reads": [
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "span": "320-362;463-498"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "span": "205-206;219-233"
+    },
+    {
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "span": "56-111"
+    },
+    {
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "span": "32-36;42-65"
+    }
+  ],
+  "legacy_sources_read": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "span": "148-168",
+      "disposition": "FR+AC/L10 pair form only"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md",
+      "span": "16-56",
+      "disposition": "three subdocs/old L12 pair form only"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+      "span": "119-196",
+      "disposition": "old FR-03/04/05 comparison; old PLAN schema/gates/numerical edge counts not carried"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L3-acceptance-test-design.md",
+      "span": "60-69",
+      "disposition": "case form only, no execution"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/source-boundary-contracts.md",
+      "span": "60-70",
+      "disposition": "checkpoint/expiry/drift comparison root"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+      "span": "60-92;115-142;209-212",
+      "disposition": "adjacent analogy only"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/distribution-package-release-requirements.md",
+      "span": "24-83",
+      "disposition": "CONNECT adjacent package identity/compatibility only"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/distribution-package-release-system-test-design.md",
+      "span": "1-58",
+      "disposition": "CONNECT adjacent test format only"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/nfr-grade.md",
+      "span": "1-73",
+      "disposition": "NFR candidate/measurement form only; old numeric values excluded"
+    }
+  ],
+  "findings": [
+    {
+      "id": "CONNECT-001-applicable-id-coverage",
+      "assessment": "bounded potential coverage gap; root meaning determination needed",
+      "locators": "fixed L2 connect-requirements.md:62-65; L3 functional-requirements.md:21-45; L10 functional-verification.md:25,32-39; fixed L11 connect-acceptance.md:42-45",
+      "detail": "L2-001 input includes applicable SECURITY permission and data-use/classification identifiers; L3 common binding says applicable identifiers are passed. CASE-001-01 normal fixture does not explicitly include them and its independent negative list does not mutate an applicable identifier missing/unknown. Failure return for registration is generic source/consumer owner. This leaves a bounded path where an applicable identifier could be absent and registration appear usable. These are references to pass/trace, not a requirement to authorize send at registration. L2 says applicable IDs are input; L11-001 complete descriptor list omits these IDs, so do not strengthen registration authority without resolving this ambiguity."
+    }
+  ],
+  "coverage": {
+    "HARNESS": "010: owner/manifest/runtime dependency, single replacement/recovery, version/maturity separation; 011: environment-independent invocation, scope/authority, correlation, resume/expiry; 023: four classes, operation/source conditions, true/false/unknown/contradiction, fallback/reference-only/safety/human delegation/determinism. Unseen positives include multi-release component/core, other provider/tenant and explicit new source input.",
+    "CONNECT": "001: unique registration, endpoint sharing distinction, no approval/permission creation; 002: read-only compatibility vs send authority; 003: bound envelope and incomplete handoff; 004: retry classification/limits/digest; 005: append-only ordered trace/payload exclusion. Unseen descriptor/revision/envelope/event positives present. See bounded finding for applicable IDs in 001."
+  },
+  "unreviewed": [
+    "L4+ design/implementation/runtime consumers, OS/SECURITY real application, external transports",
+    "other Stage/parent scopes",
+    "actual implementation/tests/runtime/CI",
+    "PO post-confirmation and L10 execution"
+  ],
+  "prior_stage2_provenance": "Prior report /tmp/root-meaning-audit-stage2a-c-2026-10-08.md claims all target reads used git show. Its CONNECT-006/HARNESS-030/031/032 suffix locators exist at 786ee7 and are deleted from checkout fa642. This is consistent with exact-target reads; command transcript unavailable, so no stronger provenance guarantee. Accidental checkout reads in the current Stage1 task were discarded.",
+  "verification": {
+    "repo_modified": false,
+    "legacy_execution": false
+  }
+}

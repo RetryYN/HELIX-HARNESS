@@ -1,0 +1,172 @@
+{
+  "revision": "c9e73bcc367a9d5203c92ef9775511013da4f85d",
+  "parents": [
+    "036",
+    "037",
+    "038"
+  ],
+  "six_sha256": {
+    "docs/helix-labo/L3-requirements/business-requirements.md": "7908f4f075e3aa4514656a1f5e65ddfced120f6800fc9372fd9a6f673c28e99a",
+    "docs/helix-labo/L3-requirements/functional-requirements.md": "5a97eef5d322f8b79d5bce433494c7ad1548fa1b6ef1eb27749882036f7afece",
+    "docs/helix-labo/L3-requirements/nfr-grade.md": "343604239051cfc452d924688a98c15288b0e30f3e02492cda843269bbf58b4b",
+    "docs/helix-labo/L10-verification/business-verification.md": "2a8486d6ce980a934ece785b0d6670f0dc308da36ebe100aaeb099cac4cc5cac",
+    "docs/helix-labo/L10-verification/functional-verification.md": "5242a94fed5618792f7d2ecc8c1b6a13cf4788e79fb66b2e0b2312f34425a29e",
+    "docs/helix-labo/L10-verification/nfr-verification.md": "2983f735ae142e126946039b195a0be483b476ffa35ef5cffee976d9f299146a"
+  },
+  "cases": {
+    "036": [
+      {
+        "id": "L10-LABO-036-CASE-01",
+        "row_sha256": "40924b1e7503f88201b29cfb0ef99d95625080ae800c66bc058f5b208959ed8f"
+      },
+      {
+        "id": "L10-LABO-036-CASE-02",
+        "row_sha256": "afc7b4bcbfaed3b8b0bf7fb58486cb8b7b298ba63b6f2c332add4fc0b34ee61d"
+      },
+      {
+        "id": "L10-LABO-036-CASE-03",
+        "row_sha256": "0c29b81f3f07fe9be4f72656a962363bf418f116b84a766f5580c4cbf6ff5ad8"
+      },
+      {
+        "id": "L10-LABO-036-CASE-04",
+        "row_sha256": "db1098add54a38bdc7f03a529063d230ae090501a176c63e3ed45ebefd9dd536"
+      },
+      {
+        "id": "L10-LABO-036-CASE-05",
+        "row_sha256": "b5fee6b3419a188889f20bdf8ae7ae6b1cc26dd402d95b8f5a2831dc309d7f8e"
+      },
+      {
+        "id": "L10-LABO-036-CASE-06",
+        "row_sha256": "0b5870b98fa5b7281fbfcb64bd7aa03b747d4ffd1746645cbbbc49906439ffad"
+      },
+      {
+        "id": "L10-LABO-036-CASE-07",
+        "row_sha256": "2ed7d83d802d8e77c3e0ddec3e7d3697d6c43adc9cdca681a1bbb67b3fc7b91a"
+      },
+      {
+        "id": "L10-LABO-036-CASE-09",
+        "row_sha256": "aa0dea1f778731f32e7d357940c68a8be93b7c66a22d3425777658817c7d1684"
+      },
+      {
+        "id": "L10-LABO-036-CASE-10",
+        "row_sha256": "60cc1f4b3afe1e1f9fc3a9a59f6097a47bdfc4bf5c24aea43bc03b356df955fc"
+      },
+      {
+        "id": "L10-LABO-036-CASE-11",
+        "row_sha256": "c88c0cf4e30b78b6c81a3da263a84fca37fb8b378730948661543e16a5662036"
+      },
+      {
+        "id": "L10-LABO-036-CASE-12",
+        "row_sha256": "3756439d8877b27ac0536338e08343b87b93c07758e2e1b77123b86901f0c8ec"
+      }
+    ],
+    "037": [
+      {
+        "id": "L10-LABO-037-CASE-01",
+        "row_sha256": "fcfb3796582b87d28b2dcb639789ceb0d626548cb37c6862c037e33ae4669624"
+      },
+      {
+        "id": "L10-LABO-037-CASE-02",
+        "row_sha256": "380c39a023e744a27858e634186b1b5d24bf100701d1161a3bdef6f11e871f05"
+      },
+      {
+        "id": "L10-LABO-037-CASE-03",
+        "row_sha256": "7f6b7d0fc3f6d372329f55cf23579bb7b0ae9f26e90227fc15b66a895ac13298"
+      },
+      {
+        "id": "L10-LABO-037-CASE-04",
+        "row_sha256": "f1b8a4a859cfdc34930cad82ae08348b44423a9a6052273dea0f8fbdac09232b"
+      },
+      {
+        "id": "L10-LABO-037-CASE-05",
+        "row_sha256": "5c52a0530ec02b69f2054b8179a46eacd8170c62d71d75a6401adbc4f3631c02"
+      },
+      {
+        "id": "L10-LABO-037-CASE-06",
+        "row_sha256": "ad6924d27fadbf9c367c97e65282b74a58d5e55045bb7d28930370aa9dfadbd8"
+      },
+      {
+        "id": "L10-LABO-037-CASE-07",
+        "row_sha256": "c3843c3bc8202c550f62295dc467eae7191f5a18485e18cbb814141a7993c141"
+      },
+      {
+        "id": "L10-LABO-037-CASE-08",
+        "row_sha256": "e1ef98e61fcf78c5ac80d840988bc932b301973421378af3c11cd443f06b8407"
+      },
+      {
+        "id": "L10-LABO-037-CASE-09",
+        "row_sha256": "1726e7ba4c93284f5521b971e92c042628109183f465ce9fcbd3696af478bd58"
+      },
+      {
+        "id": "L10-LABO-037-CASE-10",
+        "row_sha256": "a2fd7556f56616d1af4c88a4c8fc905467551a9d9de150bee0e8521be7d778ca"
+      },
+      {
+        "id": "L10-LABO-037-CASE-11",
+        "row_sha256": "faf67fcfbe0c73fa44a1d281429929be1333e7fc135188d85af602a38abe7ad1"
+      },
+      {
+        "id": "L10-LABO-037-CASE-12",
+        "row_sha256": "485091fa6dd0d3fa615bc8854a5640738136a14e0d16686fb0b031c7d628e630"
+      },
+      {
+        "id": "L10-LABO-037-CASE-13",
+        "row_sha256": "54144119d17e5662cbb6cdfb23f06e5d361e2420cf3ea056d716b96bdc1325e2"
+      },
+      {
+        "id": "L10-LABO-037-CASE-14",
+        "row_sha256": "f36215c97906743057761074c277ecb7eae0fd2002e8e56ff99d7a50c2dc8b19"
+      }
+    ],
+    "038": [
+      {
+        "id": "L10-LABO-038-CASE-01",
+        "row_sha256": "092d77254e69681213b69b3e16c8cd363cb19fd71549e76c30a86e3717dd7d18"
+      },
+      {
+        "id": "L10-LABO-038-CASE-02",
+        "row_sha256": "7f574a3a344af39a46452583d814b5307b3520ad851375a458d1543131b19368"
+      },
+      {
+        "id": "L10-LABO-038-CASE-03",
+        "row_sha256": "1645d6ffc79cd5bbc68e15268372b6b7a53472e12978341df1e34d562b86b5fb"
+      },
+      {
+        "id": "L10-LABO-038-CASE-04",
+        "row_sha256": "d94ef4dc8995c20e8c76a7770c994c674cb1c7a75b86a1552cd226dd31b564c4"
+      },
+      {
+        "id": "L10-LABO-038-CASE-05",
+        "row_sha256": "1be454288080ebfbdf62be9a9d9189521ac9ad54df602a7246c9e7a7e5b0856f"
+      },
+      {
+        "id": "L10-LABO-038-CASE-06",
+        "row_sha256": "10acb07ec0861721aeba13134cc331fd0daa56415cccec8e866ca1d96fa60dbf"
+      },
+      {
+        "id": "L10-LABO-038-CASE-07",
+        "row_sha256": "8a4cec4368d634996d5a52d961ba8add1f8497f2192aa11cf31b0f00152c80b8"
+      },
+      {
+        "id": "L10-LABO-038-CASE-08",
+        "row_sha256": "fbcb16ec0cea659f05fb0219fb8213112a0b2e36d8784ce53654f25c41c38c97"
+      },
+      {
+        "id": "L10-LABO-038-CASE-09",
+        "row_sha256": "a27cfe47a33d178cbb0b71a7eb42908852b992c7107ee90ddfa257df0173588d"
+      },
+      {
+        "id": "L10-LABO-038-CASE-10",
+        "row_sha256": "228f9a292ed329e179caeeb6c1100dcc37108dc199883895858c6655689fd4bc"
+      }
+    ]
+  },
+  "authority_effect": "none",
+  "finding": "限定範囲で具体的欠落なし",
+  "limits": [
+    "fixture未実行",
+    "独立review未実施",
+    "全旧consumer未照合",
+    "274完了ではない"
+  ]
+}

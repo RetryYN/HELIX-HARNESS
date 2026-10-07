@@ -1,0 +1,49 @@
+{
+  "authority_effect": "none",
+  "revision": "f0e210b3cdf5c1f95dfcf07cfc3504a240dd2e4d",
+  "parent": "HELIXOS-L2-014",
+  "evidence_pins": [
+    {
+      "revision": "f0e210b3cdf5c1f95dfcf07cfc3504a240dd2e4d",
+      "path": "docs/governance/decisions/stage-release-internal-deployment-po-decisions-2026-10-07.md",
+      "full_bytes": 12637,
+      "full_sha256": "b7bd5a34fb0c722be49f90a58ba917de65a1dc8d28db36ae9eb86336cbbea0cb"
+    },
+    {
+      "revision": "f0e210b3cdf5c1f95dfcf07cfc3504a240dd2e4d",
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "full_bytes": 245358,
+      "full_sha256": "1426f5c5f6473ef712f8eda530bbf8844e92ca4035c54d80979d2ed99536627b",
+      "lines": [
+        1,
+        78
+      ],
+      "span_bytes": 19874,
+      "span_sha256": "7ade17a1b6597182ef284dc2dc812bf2df0a1bab67340c99c5b269e78c6204a6"
+    },
+    {
+      "revision": "f0e210b3cdf5c1f95dfcf07cfc3504a240dd2e4d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "full_bytes": 13712,
+      "full_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "lines": [
+        162,
+        170
+      ],
+      "span_bytes": 645,
+      "span_sha256": "ae9173793efb444a32a1c78239ba4c69609ea37db00a1592d9e56b67cb65ca5d"
+    }
+  ],
+  "report": {
+    "path": "/tmp/root-os014-internal-deployment-synthetic-scope-2026-10-08.md",
+    "bytes": 1751,
+    "sha256": "285478c4ef7790f9db546e520c544c78e078221f14a943bfdb51d8ddc9adf9af"
+  },
+  "conclusion": "合成未実行fixture設計は実cutoverではなくfixture毎人間許可の新gateを作らない。実内部deployment切替には既存PO許可条件適用。限定範囲で新gap特定なし。",
+  "limits": [
+    "独立review未完",
+    "fixture未実行",
+    "全consumer網羅なし",
+    "274意味検収未完"
+  ]
+}

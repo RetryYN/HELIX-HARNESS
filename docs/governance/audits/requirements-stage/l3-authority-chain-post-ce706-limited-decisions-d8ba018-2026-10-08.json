@@ -1,0 +1,774 @@
+{
+  "record_type": "post_ce706_limited_delegated_decision_condition3_merge_chain_snapshot",
+  "recorded_at": "2026-10-08",
+  "target_main": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+  "target_worktree_head": "39bee76fabeb1ee31e4658a954a9973af558d259",
+  "authority_effect": "時点chain照合記録のみ。条件3・main admissionは各記録の固定限定scopeに限る。親意味監査完了、PO事後確認、L10実行合格を生成しない。",
+  "prior_immutable_sources": [
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-authority-chain-41groups-ce70628.json",
+      "target_main": "ce70628e53ff5f78c1321accf57429c740ea585d",
+      "bytes": 15440560,
+      "sha256": "f40140efaeaa1cc84067adbc77d189f79c56ba991cb54d751760343335ed23bb",
+      "preservation": "変更なし。ce706時点snapshotとして保持。"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-authority-chain-prior-decision-condition3-correction-2026-10-08.json",
+      "bytes": 24129,
+      "sha256": "38966fb6180fac3032a1d4949c877b03f988874e221bae5111502171cb42f65a",
+      "preservation": "変更なし。OS023/SECURITY009/012旧condition3 mislink訂正を参照."
+    }
+  ],
+  "scope_summary": {
+    "pr_count": 5,
+    "parent_scope_count": 6,
+    "parents_sorted": [
+      "HELIXLABO-L2-061",
+      "HELIXLABO-L2-063",
+      "HELIXOS-L2-025",
+      "HELIXOS-L2-028",
+      "HELIXOS-L2-029",
+      "HELIXOS-L2-036"
+    ],
+    "scope_rule": "各PR pin scopeのみ。Stage全体または274親全体へ承認を拡張しない。"
+  },
+  "limited_decision_chains": [
+    {
+      "pr": 2688,
+      "mechanism": "HELIX-OS",
+      "stage": "Stage 2c",
+      "parents": [
+        "HELIXOS-L2-028",
+        "HELIXOS-L2-029"
+      ],
+      "version": "1.0",
+      "delegated_decision_scope": "親028/029のsource・根拠・判定・返却・選択unknown保持、および029 support method / owner区分の限定補強。",
+      "scope_limit": "このPRのdecision/C3/mergeは上記親と限定差分だけに適用。機構・Stageの他親や全6本文全範囲へ拡張しない。",
+      "decision_record": {
+        "path": "docs/governance/decisions/helix-os-stage2c-parent028029-review04-l3-l10-delegated-decision-2026-10-08.md",
+        "bytes": 2845,
+        "sha256": "19863826ee41434b4ab54a477718e2607820bdc4fc53b17c11dcdc6e8868f910",
+        "decision_record_id": "HDEC-OS-STAGE2C-PARENT028029-REVIEW04-2026-10-08",
+        "reviewed_content_head": "beb3090a6cb372491a706dea97eb66b83c17d510",
+        "authority_effect_at_recording": "none_pending_condition3_and_main_admission"
+      },
+      "decision_pin": {
+        "path": "docs/governance/audits/requirements-stage/os-stage2c-parent028029-review04-delegated-decision-pin-2026-10-08.json",
+        "bytes": 4977,
+        "sha256": "1b1dadd9c828bb6a2e54b5ef7c0179cb75ae41e6acd9595bc44301ae39224dd5",
+        "pinned_review_formal_comment_id": 6046990637,
+        "pinned_review_formal_body_bytes": 2351,
+        "pinned_review_formal_body_sha256": "2b4a04af991ccd84ef3d2a0e5aecc59931f1a8422edc7b9f24f08febadc05aa4",
+        "review_condition1": "satisfied: Opus Major 0",
+        "review_condition2": "satisfied: Fable 承認してよい",
+        "formal_review_comment_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2688#issuecomment-6046990637",
+        "formal_review_created_at": "2026-10-07T21:14:48Z"
+      },
+      "condition3": {
+        "claim": "成立",
+        "comment_id": 6047075617,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2688#issuecomment-6047075617",
+        "created_at": "2026-10-07T21:19:55Z",
+        "raw_body_utf8_bytes": 2566,
+        "raw_body_sha256": "e753575e3d7b6aed8f8bac510c1edcc40aacae41ba9656cf7c0d056c1e91bb23",
+        "explicitly_cites_formal_comment_id": 6046990637,
+        "reviewed_content_head_in_comment": "1eaf8265db542fc06a7757f5da505e72f255dc9c"
+      },
+      "merge_and_read_after": {
+        "comment_id": 6047095096,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2688#issuecomment-6047095096",
+        "created_at": "2026-10-07T21:21:09Z",
+        "raw_body_utf8_bytes": 1724,
+        "raw_body_sha256": "6fd252653df159f70682df7204dae1aa4a131e6907eb36cd32838e93ee086cd6",
+        "merge_commit": "dddab671b034b866efeb56af8f6c0f192a06fe3f",
+        "merge_commit_is_ancestor_of_target_main": true,
+        "read_after_basis": "PR上のClaude review_merge merge/read-after comment"
+      },
+      "root_postmerge_read_after": null,
+      "current_scope_notes": "review04の親028/029本文はC3 HEADと同一blob。main取り込み由来の他機構文書変更を承認scopeへ含めない。",
+      "six_body_pin_crosscheck": {
+        "count": 6,
+        "all_match_reviewed_content_head": true,
+        "all_match_condition3_head": true,
+        "paths": [
+          {
+            "path": "docs/helix-os/L3-requirements/business-requirements.md",
+            "reviewed_head_sha_matches": true,
+            "condition3_head_sha_matches": true
+          },
+          {
+            "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+            "reviewed_head_sha_matches": true,
+            "condition3_head_sha_matches": true
+          },
+          {
+            "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+            "reviewed_head_sha_matches": true,
+            "condition3_head_sha_matches": true
+          },
+          {
+            "path": "docs/helix-os/L10-verification/business-verification.md",
+            "reviewed_head_sha_matches": true,
+            "condition3_head_sha_matches": true
+          },
+          {
+            "path": "docs/helix-os/L10-verification/functional-verification.md",
+            "reviewed_head_sha_matches": true,
+            "condition3_head_sha_matches": true
+          },
+          {
+            "path": "docs/helix-os/L10-verification/nfr-verification.md",
+            "reviewed_head_sha_matches": true,
+            "condition3_head_sha_matches": true
+          }
+        ]
+      }
+    },
+    {
+      "pr": 2692,
+      "mechanism": "HELIX-OS",
+      "stage": "Stage 5",
+      "parents": [
+        "HELIXOS-L2-025"
+      ],
+      "version": "1.0",
+      "delegated_decision_scope": "親025の複数project・7段階の区別、composite未完と既成立/未完状態の保持、CASE056/057既存source owner返却の限定補強。",
+      "scope_limit": "このPRのdecision/C3/mergeは上記親と限定差分だけに適用。機構・Stageの他親や全6本文全範囲へ拡張しない。",
+      "decision_record": {
+        "path": "docs/governance/decisions/helix-os-stage5-parent025-review02-l3-l10-delegated-decision-2026-10-08.md",
+        "bytes": 2789,
+        "sha256": "518dc43af760521352f9c9d7727a80ae312f55c6ebe4d52fdc154c037bd1e6ff",
+        "decision_record_id": "HDEC-OS-STAGE5-PARENT025-REVIEW02-2026-10-08",
+        "reviewed_content_head": "0ee0f8bd80b74f6686db17d7537d2eeed50bf0de",
+        "authority_effect_at_recording": "none_pending_condition3_and_main_admission"
+      },
+      "decision_pin": {
+        "path": "docs/governance/audits/requirements-stage/os-stage5-parent025-review02-delegated-decision-pin-2026-10-08.json",
+        "bytes": 6809,
+        "sha256": "fdeb4903e1028519e21f31136508b29839b9692574c946effe367763c7711e50",
+        "pinned_review_formal_comment_id": 6047203907,
+        "pinned_review_formal_body_bytes": 4103,
+        "pinned_review_formal_body_sha256": "daa3199e496cd982400617e3c6b7c6e7ce98e586cfa652b81f1d08300a0c9ff3",
+        "review_condition1": "satisfied: Opus Major 0",
+        "review_condition2": "satisfied: Fable 承認してよい",
+        "formal_review_comment_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2692#issuecomment-6047203907",
+        "formal_review_created_at": "2026-10-07T21:28:10Z"
+      },
+      "condition3": {
+        "claim": "成立",
+        "comment_id": 6047248398,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2692#issuecomment-6047248398",
+        "created_at": "2026-10-07T21:31:09Z",
+        "raw_body_utf8_bytes": 1868,
+        "raw_body_sha256": "5d1d7f4068d4bd33e9cf709f0183d27c2a847223c9c9b711e7067cc2429201b0",
+        "explicitly_cites_formal_comment_id": 6047203907,
+        "reviewed_content_head_in_comment": "5ea22b1736b0595edbbfa33623a0e07cf64c70e2"
+      },
+      "merge_and_read_after": {
+        "comment_id": 6047268248,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2692#issuecomment-6047268248",
+        "created_at": "2026-10-07T21:32:18Z",
+        "raw_body_utf8_bytes": 879,
+        "raw_body_sha256": "93eb1c815a340b577f3613679661b6da5b80623a0c88dc6933c150a1b173286c",
+        "merge_commit": "6e26ee3929e55bfa23dd7c809b7e6a1c88de0431",
+        "merge_commit_is_ancestor_of_target_main": true,
+        "read_after_basis": "PR上のClaude review_merge merge/read-after comment"
+      },
+      "root_postmerge_read_after": null,
+      "current_scope_notes": "C3はreview02の6本文がHEADで同一と明記。未追加の任意A単独負例等のMinorは未解消のまま。",
+      "six_body_pin_crosscheck": {
+        "count": 6,
+        "all_match_reviewed_content_head": true,
+        "all_match_condition3_head": true,
+        "paths": [
+          {
+            "path": "docs/helix-os/L3-requirements/business-requirements.md",
+            "reviewed_head_sha_matches": true,
+            "condition3_head_sha_matches": true
+          },
+          {
+            "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+            "reviewed_head_sha_matches": true,
+            "condition3_head_sha_matches": true
+          },
+          {
+            "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+            "reviewed_head_sha_matches": true,
+            "condition3_head_sha_matches": true
+          },
+          {
+            "path": "docs/helix-os/L10-verification/business-verification.md",
+            "reviewed_head_sha_matches": true,
+            "condition3_head_sha_matches": true
+          },
+          {
+            "path": "docs/helix-os/L10-verification/functional-verification.md",
+            "reviewed_head_sha_matches": true,
+            "condition3_head_sha_matches": true
+          },
+          {
+            "path": "docs/helix-os/L10-verification/nfr-verification.md",
+            "reviewed_head_sha_matches": true,
+            "condition3_head_sha_matches": true
+          }
+        ]
+      }
+    },
+    {
+      "pr": 2694,
+      "mechanism": "HELIX-LABO",
+      "stage": "Stage 5",
+      "parents": [
+        "HELIXLABO-L2-063"
+      ],
+      "version": "1.0",
+      "delegated_decision_scope": "親063のAC01–03、fixed-source crosswalk、CASE03b/04b/66–68、候補分類・既存責務区分と循環未完保持の限定補強。",
+      "scope_limit": "このPRのdecision/C3/mergeは上記親と限定差分だけに適用。機構・Stageの他親や全6本文全範囲へ拡張しない。",
+      "decision_record": {
+        "path": "docs/governance/decisions/helix-labo-stage5-parent063-review02-l3-l10-delegated-decision-2026-10-08.md",
+        "bytes": 2894,
+        "sha256": "61cbdf53f57c8b6f89b717e0830d52de70b52119f1853bf742bd5fbc5af2ead2",
+        "decision_record_id": "HDEC-LABO-STAGE5-PARENT063-REVIEW02-2026-10-08",
+        "reviewed_content_head": "dd0a6425a42673fe3a38208b4011ae001f0302b3",
+        "authority_effect_at_recording": "none_pending_condition3_and_main_admission"
+      },
+      "decision_pin": {
+        "path": "docs/governance/audits/requirements-stage/labo-stage5-parent063-review02-delegated-decision-pin-2026-10-08.json",
+        "bytes": 7117,
+        "sha256": "6a3c86173147fff269ef66bcc51ed2b0f2b74ba746ecde4e645be68341659624",
+        "pinned_review_formal_comment_id": 6047400034,
+        "pinned_review_formal_body_bytes": 4474,
+        "pinned_review_formal_body_sha256": "ef4e14352bc327334fe7b808d77a541a3195524c4223ac47d2e95d6483034850",
+        "review_condition1": "satisfied: Opus Major 0",
+        "review_condition2": "satisfied: Fable 承認してよい",
+        "formal_review_comment_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2694#issuecomment-6047400034",
+        "formal_review_created_at": "2026-10-07T21:40:46Z"
+      },
+      "condition3": {
+        "claim": "成立",
+        "comment_id": 6047432658,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2694#issuecomment-6047432658",
+        "created_at": "2026-10-07T21:42:39Z",
+        "raw_body_utf8_bytes": 2012,
+        "raw_body_sha256": "956dd9ddefa72c2b47acafb8e65c8cd5edb39a1d0ebe1e078b21888211f7fc57",
+        "explicitly_cites_formal_comment_id": 6047400034,
+        "reviewed_content_head_in_comment": "421e209a49067d6e728bc5c686cd845c8aca3889"
+      },
+      "merge_and_read_after": {
+        "comment_id": 6047464544,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2694#issuecomment-6047464544",
+        "created_at": "2026-10-07T21:44:25Z",
+        "raw_body_utf8_bytes": 1350,
+        "raw_body_sha256": "76c9ec9526c1795ad88c230d58473d0ca90f0a947650506dd4717e20ca971c66",
+        "merge_commit": "691afef75aeab0f315c937f91a14746802542c63",
+        "merge_commit_is_ancestor_of_target_main": true,
+        "read_after_basis": "PR上のClaude review_merge merge/read-after comment"
+      },
+      "root_postmerge_read_after": null,
+      "current_scope_notes": "C3はreview02の6本文とDecision MD/pinを確認。未返却Minorを維持し、旧fixture-countの誤claimは訂正記録へ接続。",
+      "six_body_pin_crosscheck": {
+        "count": 6,
+        "all_match_reviewed_content_head": true,
+        "all_match_condition3_head": true,
+        "paths": [
+          {
+            "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+            "reviewed_head_sha_matches": true,
+            "condition3_head_sha_matches": true
+          },
+          {
+            "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+            "reviewed_head_sha_matches": true,
+            "condition3_head_sha_matches": true
+          },
+          {
+            "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+            "reviewed_head_sha_matches": true,
+            "condition3_head_sha_matches": true
+          },
+          {
+            "path": "docs/helix-labo/L10-verification/business-verification.md",
+            "reviewed_head_sha_matches": true,
+            "condition3_head_sha_matches": true
+          },
+          {
+            "path": "docs/helix-labo/L10-verification/functional-verification.md",
+            "reviewed_head_sha_matches": true,
+            "condition3_head_sha_matches": true
+          },
+          {
+            "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+            "reviewed_head_sha_matches": true,
+            "condition3_head_sha_matches": true
+          }
+        ]
+      }
+    },
+    {
+      "pr": 2695,
+      "mechanism": "HELIX-OS",
+      "stage": "Stage 3",
+      "parents": [
+        "HELIXOS-L2-036"
+      ],
+      "version": "1.0",
+      "delegated_decision_scope": "親036のFR AC02/03/04・FV CASE02/04/08bにある6行の限定修正。tuple不一致をOS-L2-010へ戻し、非upgrade dutyと既存policy source/domain責務を分離。",
+      "scope_limit": "このPRのdecision/C3/mergeは上記親と限定差分だけに適用。機構・Stageの他親や全6本文全範囲へ拡張しない。",
+      "decision_record": {
+        "path": "docs/governance/decisions/helix-os-stage3-parent036-review01-return-routing-l3-l10-delegated-decision-2026-10-08.md",
+        "bytes": 3143,
+        "sha256": "00ad26e70235b564ad3b28495a7edec437972038adf2ba05ca584247bdfcafc7",
+        "decision_record_id": "HDEC-OS-STAGE3-PARENT036-REVIEW01-2026-10-08",
+        "reviewed_content_head": "69e723851f38982c8fffebbf5ef75588eb2b27d6",
+        "authority_effect_at_recording": "none_pending_condition3_and_main_admission"
+      },
+      "decision_pin": {
+        "path": "docs/governance/audits/requirements-stage/os-stage3-parent036-review01-return-routing-delegated-decision-pin-2026-10-08.json",
+        "bytes": 8190,
+        "sha256": "f9d7ea9a0a9293814edd0bede136672c5f4fbf7748100ced6c1c904393f4de5c",
+        "pinned_review_formal_comment_id": 6047392796,
+        "pinned_review_formal_body_bytes": 5345,
+        "pinned_review_formal_body_sha256": "45c6cb90d15034aff7e3ba19468378950716f4eeee861aacde87a5d231ec6163",
+        "review_condition1": "satisfied: Opus Major 0",
+        "review_condition2": "satisfied: Fable 承認してよい",
+        "formal_review_comment_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2695#issuecomment-6047392796",
+        "formal_review_created_at": "2026-10-07T21:40:20Z"
+      },
+      "condition3": {
+        "claim": "成立",
+        "comment_id": 6047419887,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2695#issuecomment-6047419887",
+        "created_at": "2026-10-07T21:41:55Z",
+        "raw_body_utf8_bytes": 1896,
+        "raw_body_sha256": "b8732d2d3cf13c58c3409ada3ae41175bfb3e2baa39a15d97968e61bea6760e9",
+        "explicitly_cites_formal_comment_id": 6047392796,
+        "reviewed_content_head_in_comment": "d8bc0d4f4a8d68e358d0fd8a5907c09c711a970c"
+      },
+      "merge_and_read_after": {
+        "comment_id": 6047445605,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2695#issuecomment-6047445605",
+        "created_at": "2026-10-07T21:43:22Z",
+        "raw_body_utf8_bytes": 1001,
+        "raw_body_sha256": "a8f51fef78ada763899ced31787835351c8a2671fdeb4dc2c659b0f861fd9367",
+        "merge_commit": "553227b0e6a3d32995208ebde9b3642f00469864",
+        "merge_commit_is_ancestor_of_target_main": true,
+        "read_after_basis": "PR上のClaude review_merge merge/read-after comment"
+      },
+      "root_postmerge_read_after": null,
+      "current_scope_notes": "Decision filenameのreview01は正しい。別の古い#2680 review02 decision（HEAD 091624f、formal 6045205061）は今回のC3対象ではない。",
+      "six_body_pin_crosscheck": {
+        "count": 6,
+        "all_match_reviewed_content_head": true,
+        "all_match_condition3_head": true,
+        "paths": [
+          {
+            "path": "docs/helix-os/L3-requirements/business-requirements.md",
+            "reviewed_head_sha_matches": true,
+            "condition3_head_sha_matches": true
+          },
+          {
+            "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+            "reviewed_head_sha_matches": true,
+            "condition3_head_sha_matches": true
+          },
+          {
+            "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+            "reviewed_head_sha_matches": true,
+            "condition3_head_sha_matches": true
+          },
+          {
+            "path": "docs/helix-os/L10-verification/business-verification.md",
+            "reviewed_head_sha_matches": true,
+            "condition3_head_sha_matches": true
+          },
+          {
+            "path": "docs/helix-os/L10-verification/functional-verification.md",
+            "reviewed_head_sha_matches": true,
+            "condition3_head_sha_matches": true
+          },
+          {
+            "path": "docs/helix-os/L10-verification/nfr-verification.md",
+            "reviewed_head_sha_matches": true,
+            "condition3_head_sha_matches": true
+          }
+        ]
+      }
+    },
+    {
+      "pr": 2696,
+      "mechanism": "HELIX-LABO",
+      "stage": "Stage 5",
+      "parents": [
+        "HELIXLABO-L2-061"
+      ],
+      "version": "1.0",
+      "delegated_decision_scope": "親061のAC02/03/03e、fixed-source crosswalk、CASE115–119、137件索引の限定補強。receiptと実context隔離を区別し、起動/採択/遡及/旧runtimeを拒否。",
+      "scope_limit": "このPRのdecision/C3/mergeは上記親と限定差分だけに適用。機構・Stageの他親や全6本文全範囲へ拡張しない。",
+      "decision_record": {
+        "path": "docs/governance/decisions/helix-labo-stage5-parent061-review01-l3-l10-delegated-decision-2026-10-08.md",
+        "bytes": 3285,
+        "sha256": "5b3798fae570a68be3a08dd5e3329dbee6ddbf72da912fa1397bc389fc6087e4",
+        "decision_record_id": "HDEC-LABO-STAGE5-PARENT061-REVIEW01-2026-10-08",
+        "reviewed_content_head": "60cfd0bd8044e17e3c5fd2433a206037aee95ba0",
+        "authority_effect_at_recording": "none_pending_condition3_and_main_admission"
+      },
+      "decision_pin": {
+        "path": "docs/governance/audits/requirements-stage/labo-stage5-parent061-review01-delegated-decision-pin-2026-10-08.json",
+        "bytes": 8364,
+        "sha256": "b33cea7378857e309374d78432cf069bb3528824ff9ccf53b72e3939e3904c14",
+        "pinned_review_formal_comment_id": 6047576368,
+        "pinned_review_formal_body_bytes": 5299,
+        "pinned_review_formal_body_sha256": "eb6e0606df1ee6e86a338717d4479a3ec097faa082cefae576738b6fc4d29a75",
+        "review_condition1": "satisfied: Opus Major 0",
+        "review_condition2": "satisfied: Fable 承認してよい",
+        "formal_review_comment_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2696#issuecomment-6047576368",
+        "formal_review_created_at": "2026-10-07T21:51:50Z"
+      },
+      "condition3": {
+        "claim": "成立",
+        "comment_id": 6047643546,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2696#issuecomment-6047643546",
+        "created_at": "2026-10-07T21:55:51Z",
+        "raw_body_utf8_bytes": 1958,
+        "raw_body_sha256": "9db19a618977df3b5e559f939eb9d3976e1ff585f4ca470e2dbf92cee691bbf9",
+        "explicitly_cites_formal_comment_id": 6047576368,
+        "reviewed_content_head_in_comment": "46fde619b8d0e399bb52c6147c96c12429c6add4"
+      },
+      "merge_and_read_after": {
+        "comment_id": 6047658257,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2696#issuecomment-6047658257",
+        "created_at": "2026-10-07T21:56:51Z",
+        "raw_body_utf8_bytes": 939,
+        "raw_body_sha256": "fc84b677b63a1cb617da91fb8a6a5720677e784ac15dd987f9428fb53e290ea3",
+        "merge_commit": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+        "merge_commit_is_ancestor_of_target_main": true,
+        "read_after_basis": "PR上のClaude review_merge merge/read-after comment"
+      },
+      "root_postmerge_read_after": {
+        "evidence_path": "/tmp/root-pr2696-postmerge-proof.json",
+        "evidence_bytes": 1815,
+        "evidence_sha256": "df93486de39107f8671fc130ae126b7766cbac916ae404b488f8bd81971342ca",
+        "merge": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+        "head": "46fde619b8d0e399bb52c6147c96c12429c6add4",
+        "tree": "05cb5c6b6020b4f1b7277415cbed3e1773c2fe61",
+        "changed_paths_count": 16,
+        "root_read_after": "PASS: all changed bytes and tree"
+      },
+      "current_scope_notes": "Root postmerge read-after proofを別途添付。decision/pinはreview01対象revisionを固定し、旧R4件数は時点値のまま.",
+      "six_body_pin_crosscheck": {
+        "count": 6,
+        "all_match_reviewed_content_head": true,
+        "all_match_condition3_head": true,
+        "paths": [
+          {
+            "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+            "reviewed_head_sha_matches": true,
+            "condition3_head_sha_matches": true
+          },
+          {
+            "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+            "reviewed_head_sha_matches": true,
+            "condition3_head_sha_matches": true
+          },
+          {
+            "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+            "reviewed_head_sha_matches": true,
+            "condition3_head_sha_matches": true
+          },
+          {
+            "path": "docs/helix-labo/L10-verification/business-verification.md",
+            "reviewed_head_sha_matches": true,
+            "condition3_head_sha_matches": true
+          },
+          {
+            "path": "docs/helix-labo/L10-verification/functional-verification.md",
+            "reviewed_head_sha_matches": true,
+            "condition3_head_sha_matches": true
+          },
+          {
+            "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+            "reviewed_head_sha_matches": true,
+            "condition3_head_sha_matches": true
+          }
+        ]
+      }
+    }
+  ],
+  "current_48_l3_l10_full_blobs": {
+    "target_main": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+    "count": 48,
+    "hashes_recomputed_from_git_show": true,
+    "note": "現行全本文の状態pinであり、どのlimited decision scopeも他本文または全親へ広げる承認根拠として使わない。",
+    "files": [
+      {
+        "path": "docs/helix-brain/L10-verification/business-verification.md",
+        "bytes": 10704,
+        "sha256": "65fc061d4e78b7360cf77d83a396d4c303f4159c1ba047990b31fb6810992d6e"
+      },
+      {
+        "path": "docs/helix-brain/L10-verification/functional-verification.md",
+        "bytes": 235946,
+        "sha256": "866f1e1d852b272611d6233c725035d3138d8b013f932f539a9af02bbefeba6c"
+      },
+      {
+        "path": "docs/helix-brain/L10-verification/nfr-verification.md",
+        "bytes": 29199,
+        "sha256": "40fbd13f0a253a4686d8c127cf190d63c342ecc0e18aae3796b414eae33d5b70"
+      },
+      {
+        "path": "docs/helix-brain/L3-requirements/business-requirements.md",
+        "bytes": 12755,
+        "sha256": "e3dfad1e76e4120d4a438e1b8145d5efc28f7cda0f039021b47339e4c264ccb8"
+      },
+      {
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+        "bytes": 174168,
+        "sha256": "6cf8be0c095fcd5ad5e52b6ee99e607c18d1b26be6f0d2e625e727d868a33cdf"
+      },
+      {
+        "path": "docs/helix-brain/L3-requirements/nfr-grade.md",
+        "bytes": 38738,
+        "sha256": "07b6c0843cde302252228675088a3a74147672a540c4da5c63e30b2d51f85793"
+      },
+      {
+        "path": "docs/helix-connect/L10-verification/business-verification.md",
+        "bytes": 2121,
+        "sha256": "5d03d9c92b4b19cf291c3de6f96107b371f679b77bc9ae49183af7b2e97b8b5a"
+      },
+      {
+        "path": "docs/helix-connect/L10-verification/functional-verification.md",
+        "bytes": 103995,
+        "sha256": "75a384b335c0d7e1f816644f498982e903fb0c5003a5e266a6d1019cecad6dcc"
+      },
+      {
+        "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+        "bytes": 8472,
+        "sha256": "9efc5ddc902da565ad3d1295b2088ade1e7ab3427f1b4206ff3d4686a1197e48"
+      },
+      {
+        "path": "docs/helix-connect/L3-requirements/business-requirements.md",
+        "bytes": 2305,
+        "sha256": "3ff964c1b762c9f67228214d62df5e208d0e0ab5bd4f2ffb57b26f8684ebd925"
+      },
+      {
+        "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+        "bytes": 52841,
+        "sha256": "b3e4a47c0f49978880fc9bae7697d9b67eeaf72a112f821fef167c230c9d2e4b"
+      },
+      {
+        "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+        "bytes": 9340,
+        "sha256": "8becd7af6701e3de40a300c617aa3eca2d0214a867a2685b8615efcf8b7582aa"
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/business-verification.md",
+        "bytes": 26039,
+        "sha256": "864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad"
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "bytes": 1182856,
+        "sha256": "d1c55ca4e6b432ccdc941d8d9813c88e5f33476ef2c2d55aa0bfafe549b6726f"
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+        "bytes": 54525,
+        "sha256": "8a731bb2a1e27006cdead8430075889cea75ed7bd830c491727eca049e6ae912"
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+        "bytes": 27827,
+        "sha256": "9fb531a55c61c4836ae614cadbd850f3967119cb1f0f2eb36dad1e39ebab75e2"
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "bytes": 271676,
+        "sha256": "2180967f0075f467c99a553d34f688a1fdf434703803b1a34e7e147d6a7d2df5"
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+        "bytes": 60266,
+        "sha256": "b83709b35a6f3ea93badf9e6586c01bef85ceabdbf19ec6c4b68208c3d47489a"
+      },
+      {
+        "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+        "bytes": 4607,
+        "sha256": "c0c583732c75ba2545e0c3229f98ea4d280c82dfedc449a9ee6be0fb77f0a79f"
+      },
+      {
+        "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+        "bytes": 229121,
+        "sha256": "163107e7cd9d6ef04f38b5ffd974f487b96a9501980f27e37a9d2095099a9a52"
+      },
+      {
+        "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+        "bytes": 17717,
+        "sha256": "4e8d94b7515e87da8c809b26d190e1e08e7d21060f1c6fdefbfc9d75ca65145b"
+      },
+      {
+        "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+        "bytes": 5634,
+        "sha256": "429291b0cec7dcf63271b4aef419120476e70bff9054002aeb872e888c8eb328"
+      },
+      {
+        "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+        "bytes": 146169,
+        "sha256": "425d0746efe875dbfbeebc26562adea99a3cdd8e8ef6377a0164bca1d624cc2d"
+      },
+      {
+        "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+        "bytes": 19668,
+        "sha256": "7a6e9bd1d2125805791756c031a1a9228e7e3467c10b35bb473245338284ad75"
+      },
+      {
+        "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+        "bytes": 29673,
+        "sha256": "b476b0939b7da50cf75db66d235095f94e591ac929ef046721224b5112d04552"
+      },
+      {
+        "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+        "bytes": 732671,
+        "sha256": "9c23fbf6fbdc4b76f599ad0dd756f303558fe9a170179ff41d12b78fcef2e6bc"
+      },
+      {
+        "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+        "bytes": 58258,
+        "sha256": "c1df947d3876e9203df20846f757bcb193275ee34ad0ca28eddbe3541a4cded5"
+      },
+      {
+        "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+        "bytes": 26155,
+        "sha256": "026d95fbf023ef384834ebd3b215a469f2fea648190d15d45494b5ea4cc91959"
+      },
+      {
+        "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+        "bytes": 213400,
+        "sha256": "35e936a6d83d7a83310cc2a1900e8f199c54923472df9e9b0d7a9bdeec059457"
+      },
+      {
+        "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+        "bytes": 61402,
+        "sha256": "eb29e885802ff863cdc147b06861fc945531d2e9e6d3a9fddde543c4cc60cba8"
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/business-verification.md",
+        "bytes": 32077,
+        "sha256": "9cf3239c23a2af69bcc9b5999d215b0f1d76268ec22c6ad162bd92c9a47c1f4b"
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "bytes": 701633,
+        "sha256": "24540ff0cbddb7dc2663b1f699b92a3c96fd37e5c0fec47983bb715d51ec4534"
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+        "bytes": 83495,
+        "sha256": "5e62806b8994d8739ad94eb053421ce8e03208bfd44aed727fae8dcf2195c0eb"
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+        "bytes": 33106,
+        "sha256": "a5ff375934e21901d5b355498ab1339227109b24d1603c55e5e87f8ffc09e07a"
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+        "bytes": 359702,
+        "sha256": "362979fc4489c137d7641278a8ea8e55461f3592d56d802bb285ec34abc4a9b8"
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+        "bytes": 92792,
+        "sha256": "84a05a25d9569f7b2397cc9b4358cc5ab83ce347ba6ebe9014d59a5839f7eb4c"
+      },
+      {
+        "path": "docs/helix-os/L10-verification/business-verification.md",
+        "bytes": 18061,
+        "sha256": "ff70287629c2087601ec50c2b06091aa20a953ef11ec80f1b41b4f461cab54d1"
+      },
+      {
+        "path": "docs/helix-os/L10-verification/functional-verification.md",
+        "bytes": 254300,
+        "sha256": "84e377c9f281b911549970cef7e11c43cfd0eeb552f6a7ae8d24ad7892e53eea"
+      },
+      {
+        "path": "docs/helix-os/L10-verification/nfr-verification.md",
+        "bytes": 32546,
+        "sha256": "c9eab3ce4d97057953fc16e31332241c91c088a338b888481e7b19d2c87fd135"
+      },
+      {
+        "path": "docs/helix-os/L3-requirements/business-requirements.md",
+        "bytes": 20530,
+        "sha256": "c0411b7940db8f9c6d1f13ebe41375bb15b6745fdf6064dcd26ac72a845a6568"
+      },
+      {
+        "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+        "bytes": 204973,
+        "sha256": "666200db50ea9a2e7f0d67d57496a71368e497f2fdb6e3485d4838339000b393"
+      },
+      {
+        "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+        "bytes": 35375,
+        "sha256": "615fd3a232335cbee97e1e9fd76b132415068aaa9a25dc4f114aa4f2066b0c94"
+      },
+      {
+        "path": "docs/helix-security/L10-verification/business-verification.md",
+        "bytes": 2356,
+        "sha256": "7da2a3b88c866c276065c793036708a633109b176b0381829c8d3c8293ff70a4"
+      },
+      {
+        "path": "docs/helix-security/L10-verification/functional-verification.md",
+        "bytes": 178400,
+        "sha256": "0d81d49d2a16cb70b78b5ef7d0379e3b64632bbe18ac6fda9e3302f00c5bb40b"
+      },
+      {
+        "path": "docs/helix-security/L10-verification/nfr-verification.md",
+        "bytes": 14254,
+        "sha256": "3675115f6d1b242a511651e627e8c46cfc71013ce9cf129c5045f1ce51e5f685"
+      },
+      {
+        "path": "docs/helix-security/L3-requirements/business-requirements.md",
+        "bytes": 2999,
+        "sha256": "30a0456a17c4c65e9427cc8931905cb7c1adf54c207514f948a7b179dcdb7019"
+      },
+      {
+        "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+        "bytes": 137779,
+        "sha256": "f6872a3ee941d63c80a9717bca7e81de832c043ad05cc9ac0c2db77eb264ee9e"
+      },
+      {
+        "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+        "bytes": 18947,
+        "sha256": "d2c1d93cf4fb142ba6abae13c7e640a7c9826f6c0ed5ce49de7991cb8f884c3b"
+      }
+    ]
+  },
+  "checks": {
+    "PR_REST_numeric_comment_ids_and_urls": true,
+    "formal_review_body_bytes_sha_matches_pin_json": true,
+    "decision_record_bytes_sha_matches_pin_json": true,
+    "condition3_raw_body_sha_captured": true,
+    "merge_comment_ids_and_read_after_bodies_captured": true,
+    "all_five_merge_commits_ancestor_of_target_main": true,
+    "root_postmerge_proof_2696_sha_recomputed": true,
+    "prior_immutable_snapshot_hashes_recomputed": true,
+    "48_current_blob_hashes_recomputed": true
+  },
+  "limitations": [
+    "PO事後確認は未記録。",
+    "L10実行は未実施。",
+    "274親の意味完了、全親承認、全48本文同時承認を主張しない。",
+    "旧decision correction appendixのOS023/SECURITY009/012訂正を参照し、C3は各commentが明示する最終review/decisionへ紐付ける。",
+    "#2696に対するRoot postmerge proofのみ別途確認済み。その他4件はPR上のClaude merge/read-after commentを根拠とし、Root独立read-afterとは扱わない。"
+  ],
+  "mechanical_roster_text_check": {
+    "source_g0_path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
+    "source_g0_sha256": "ec970df79eaaf693f8825045b235c43ea10aefa7925701b1fff2a974df3e4e0a",
+    "source_main": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+    "adopted_1_0_unique_parent_identities": 274,
+    "identities_with_literal_substring_occurrence_across_48_current_l3_l10_bodies": 274,
+    "missing_identity_substrings": [],
+    "sequence_stage_mechanism_groups": 41,
+    "groups_match_prior_chain_group_keys": true,
+    "scope_limit": "文字列出現と順序groupの機械照合だけ。意味適合、要件充足、fixture、approval、completionの証拠ではない。"
+  }
+}

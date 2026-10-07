@@ -1,0 +1,620 @@
+{
+  "audit_type": "read-only semantic audit; exact git-show bytes; no repository edits",
+  "base_commit": "37a8283be429c57f3706153ad522e7ad288fecc3",
+  "scope": [
+    "HELIXSECURITY-L2-006",
+    "HELIXSECURITY-L2-007",
+    "HELIXSECURITY-L2-008",
+    "HELIXSECURITY-L2-010",
+    "HELIXSECURITY-L2-011"
+  ],
+  "authority": {
+    "fixed_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "po_decision_path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+    "po_adoption_rows": {
+      "44": {
+        "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+        "lines": "44-44",
+        "bytes": 173,
+        "sha256_including_lf": "ac98c4ab1162bf2fa7633422c5f6db09f776b8dc9f151b1b2138d6c46810b60b",
+        "text": "| `HELIXSECURITY-L2-006` | `unit` | 1.0 | `MPR-RC-HELIXSECURITY-L2-006-001` | `SECURITY-functional` | `registered_proposal` / authority_effect `none` / coverage `no_loss` |\n"
+      },
+      "45": {
+        "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+        "lines": "45-45",
+        "bytes": 210,
+        "sha256_including_lf": "dd76bccbc42fbb41c68b5b47042d5ba595311af9fd37c15b64f606c165a59ca8",
+        "text": "| `HELIXSECURITY-L2-007` | `connection` | 1.0 | `MPR-RC-HELIXSECURITY-L2-007-001 → MPR-RC-HELIXSECURITY-L2-007-002` | `SECURITY-stage` | `registered_proposal` / authority_effect `none` / coverage `no_loss` |\n"
+      },
+      "46": {
+        "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+        "lines": "46-46",
+        "bytes": 173,
+        "sha256_including_lf": "9e57fb5d91284a753d6e237d4bc0ae28eff9dfab0890e889ca53fb624c3b0d0a",
+        "text": "| `HELIXSECURITY-L2-008` | `unit` | 1.0 | `MPR-RC-HELIXSECURITY-L2-008-001` | `SECURITY-functional` | `registered_proposal` / authority_effect `none` / coverage `no_loss` |\n"
+      },
+      "47": {
+        "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+        "lines": "47-47",
+        "bytes": 209,
+        "sha256_including_lf": "c1b7c98cc2bfebae86a60bdefc9890a37218d80bfa92e50ecbb3b164ce3057ea",
+        "text": "| `HELIXSECURITY-L2-009` | `composite` | 1.0 | `MPR-RC-HELIXSECURITY-L2-009-001 → MPR-RC-HELIXSECURITY-L2-009-002` | `SECURITY-stage` | `registered_proposal` / authority_effect `none` / coverage `no_loss` |\n"
+      },
+      "48": {
+        "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+        "lines": "48-48",
+        "bytes": 173,
+        "sha256_including_lf": "2c9fa8975b8130cb39bfef2fbdce1207e7458eb310cacb797e4e5a7b1dc89f8c",
+        "text": "| `HELIXSECURITY-L2-010` | `unit` | 1.0 | `MPR-RC-HELIXSECURITY-L2-010-001` | `SECURITY-functional` | `registered_proposal` / authority_effect `none` / coverage `no_loss` |\n"
+      },
+      "49": {
+        "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+        "lines": "49-49",
+        "bytes": 173,
+        "sha256_including_lf": "1300ce4fc99d51bbdcf8ef1ca9817222bb63748249a92dc479056852d8190204",
+        "text": "| `HELIXSECURITY-L2-011` | `unit` | 1.0 | `MPR-RC-HELIXSECURITY-L2-011-001` | `SECURITY-functional` | `registered_proposal` / authority_effect `none` / coverage `no_loss` |\n"
+      }
+    },
+    "note": "Registration metadata authority_effect=none is not the PO adoption source."
+  },
+  "full_document_pins": {
+    "BR": {
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "bytes": 2999,
+      "sha256": "30a0456a17c4c65e9427cc8931905cb7c1adf54c207514f948a7b179dcdb7019"
+    },
+    "FR": {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "bytes": 137065,
+      "sha256": "d01a8a9a4e89ffc3f86ad377ea4a5f76cf3322c352cdad496388b3f09b2830b8"
+    },
+    "NFR": {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "bytes": 18198,
+      "sha256": "bd8533006ead1dacde26ad88733c88379bf7453d297211387564db053cbec59b"
+    },
+    "BV": {
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "bytes": 2356,
+      "sha256": "7da2a3b88c866c276065c793036708a633109b176b0381829c8d3c8293ff70a4"
+    },
+    "FV": {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "bytes": 177815,
+      "sha256": "1ed95d5dee48a5c2effac2210a595c9b527dd40775ff98727878c24cbb2d7a14"
+    },
+    "NFV": {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "bytes": 13684,
+      "sha256": "a52d221d47f0ec92e1d14969ce322b7f1ff88200e8cdb574a63fd9fb06dcf2d7"
+    },
+    "L2": {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "bytes": 94568,
+      "sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf"
+    },
+    "L11": {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "bytes": 58006,
+      "sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0"
+    },
+    "PO": {
+      "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+      "bytes": 11584,
+      "sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff"
+    }
+  },
+  "parent_scope_pins": {
+    "006": {
+      "L2": {
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "lines": "120-128",
+        "bytes": 1361,
+        "sha256_including_lf": "8bcb8c56772c18c8afb3bbd016cade4511da47533cbc39cb0f775860fe4bbee3",
+        "text": "### HELIXSECURITY-L2-006 Network / Egress境界\n\n- **受け取るもの**：送信元、destination、protocol、endpoint/path、data classification、送信量、purpose、authority、expiry。\n- **提供するもの**：default denyを基準とした許可一覧、許可判断、計測値、data minimization結果。\n- **保証すること**：必要な宛先のみ明示許可し、vendorのprivacy設定だけをHELIX側の保証にしない。許可範囲・目的・期限が一致しない送信を拒否する。\n- **単独依存**：L2-005のsecret検査、L2-016の1.0分類基盤（data-use classificationとasset exposure classの記録だけ）、CONNECTの論理接続、INFRASTRUCTUREの実network経路。L2-019のCore Asset Egress GuardとL2-016の1.x sink enforcementは依存に含めない。\n- **検証範囲／版**：外部通信の宛先・protocol・path・data classification・量・目的・authorityの対応。分類入力は1.0の分類基盤で扱い、asset-specific egress blockingはL2-019 (1.x)へ分ける。定量上限はL1にないため追加しない。1.0。\n- **失敗時の戻し先**：宛先/分類/目的/authorityがunknownならdenyし、方針の意味差はL1-006へ戻す。物理経路の不明はL2-024へ。\n- **束ねる既存条件**：L1-006、PO §7、旧brokerのdata/sink分類とunknown拒否。\n"
+      },
+      "L11": {
+        "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "lines": "30-30",
+        "bytes": 497,
+        "sha256_including_lf": "a910c8b1352414d2e6e3ad39f093a936f19b8a3c353411eeefa7a877fba3f7e7",
+        "text": "| HELIXSECURITY-L2-006 | 1.0 | 送信先/protocol/endpoint/data class/bytes/purpose/authority/expiryを照合し、明示許可された範囲内の送信だけを通す。分類はL2-016の1.0分類記録基盤から読み、L2-019や1.x sink enforcementが存在しない状態でも1.0の送信判定は成立する。vendor側privacy設定だけがある送信、未許可destination、未知classificationが通れば不合格。L2-019のasset-specific egressは別の1.x受入とする。 |\n"
+      },
+      "FR": {
+        "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+        "lines": "128-140",
+        "bytes": 2619,
+        "sha256_including_lf": "ed0fa2cea99d68c9876f6c49e49e953f6a916add92958ae80db3a21c2c24c6e8",
+        "text": "### SECURITY-FR-006-01 — Network/egress境界\n\n送信元/destination/protocol/endpoint/path/classification/bytes/purpose/authority/expiryを照合し、明示許可された範囲のみ送る。unknownはdeny。定量上限を新設せず、L2-019/Core Asset Guardと1.x sink enforcementを1.0へ前倒ししない。\n\n**旧HELIX対応（再利用/再導出/置換）**：旧CAP-004（同前掲asset/path/lines/SHA）のdata classificationとsink authorityの分離は本要件の直接的な部分根拠である。egress scopeは固定L2から再導出する。旧CAP-006はruntime surface coverageであり、この要件への根拠ではない。asset別Web sink/publication policyは1.0へ含めない。\n\n- **固定親**：`HELIXSECURITY-L2-006` / `MPR-RC-HELIXSECURITY-L2-006-001`、semantic digest `sha256:8bcb8c56772c18c8afb3bbd016cade4511da47533cbc39cb0f775860fe4bbee3`。L2 `docs/helix-security/L2-requirements/security-requirements.md#L120`（section SHA `sha256:09459643b100dbe79ef0cf47100a4b56834d975ef309322bc3f8d7f4055d888a`）、対L11 `30行`（section SHA `sha256:a910c8b1352414d2e6e3ad39f093a936f19b8a3c353411eeefa7a877fba3f7e7`）。PO decision `docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md`、固定revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。\n\n**責務・依存とfailure時の戻し先（固定L2の保持）**：L2-005のsecret検査、L2-016の1.0分類基盤（data-use classificationとasset exposure classの記録だけ）、CONNECTの論理接続、INFRASTRUCTUREの実network経路。L2-019のCore Asset Egress GuardとL2-016の1.x sink enforcementは依存に含めない。 戻し先: 宛先/分類/目的/authorityがunknownならdenyし、方針の意味差はL1-006へ戻す。物理経路の不明はL2-024へ。\n\n**L3 acceptance (`SECURITY-AC-006-01`)**：送信元、destination、protocol、endpoint/path、data class、bytes、purpose、authority、expiryを個別に照合し、許可一覧・operation判断・計測値・data-minimization結果を返す。既知でもscopeだけ不一致、purposeだけ不一致、authority tupleだけ不一致の変異を互いに独立して与え、全てを拒否する。source identity欠落もnegativeにする。明示許可された別source/destinationの正常例は通す。unknown classification/purpose/authority/expiry、vendor privacyだけの根拠では送信しない。物理network path unknownはL2-024へ戻す。送信量上限を追加しない。L2-019/1.x sink enforcementは1.0の必須条件にしない。\n\n**対応L11 acceptance**：`HELIXSECURITY-L2-006`。\n"
+      },
+      "FV": {
+        "path": "docs/helix-security/L10-verification/functional-verification.md",
+        "lines": "86-93",
+        "bytes": 2263,
+        "sha256_including_lf": "2912b109d8a275cce9e53e058297913ec3ec419556af962040050128db89a975",
+        "text": "### SECURITY-CASE-006-01 — egress\n\n- **対象AC**: `SECURITY-AC-006-01`\n- **固定L11受入oracle**：送信先/protocol/endpoint/data class/bytes/purpose/authority/expiryを照合し、明示許可された範囲内の送信だけを通す。分類はL2-016の1.0分類記録基盤から読み、L2-019や1.x sink enforcementが存在しない状態でも1.0の送信判定は成立する。vendor側privacy設定だけがある送信、未許可destination、未知classificationが通れば不合格。L2-019のasset-specific egressは別の1.x受入とする。\n- **fixture/oracle**: 明示許可内、宛先/protocol/path不一致、source identity欠落、unknown class/authority、期限切れをそれぞれ独立fixtureで対比し、default-deny基準の許可一覧、個別判断、送信量計測とdata-minimization結果を出力として照合する。source identityを欠くfixtureは送信せずunknown/denyへ戻す。vendor privacy設定のみの根拠では許可されず、既知のpurpose不一致・authority不一致・送信元不一致も各々拒否する。物理経路unknownはL2-024へ戻す。1.0判定を1.x sink availabilityへ依存させない。\n- **未見の正常例**：既存ruleで明示許可された別endpoint/protocol/data classの組合せをscope内で扱い、未知・未許可条件だけをdenyする。\n- **negative/boundary oracle**：未許可destination/protocol/path、source identity欠落、既知purpose mismatch、既知authority mismatch、source mismatch、unknown classification/purpose/authority/expiryを各々送信可能にしたら不合格。物理経路unknownはL2-024へ返す。vendor privacy設定だけでallowしない。asset-specific 1.x sinkがないことだけで1.0一般egress判断を不合格にしない。\n- **owner oracle・失敗時の戻し先**：L2-005のsecret検査、L2-016の1.0分類基盤（data-use classificationとasset exposure classの記録だけ）、CONNECTの論理接続、INFRASTRUCTUREの実network経路。L2-019のCore Asset Egress GuardとL2-016の1.x sink enforcementは依存に含めない。 失敗時は、宛先/分類/目的/authorityがunknownならdenyし、方針の意味差はL1-006へ戻す。物理経路の不明はL2-024へ。\n"
+      },
+      "NFR": {
+        "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+        "lines": "14-14",
+        "bytes": 33,
+        "sha256_including_lf": "618a584ac8071b6c25f4b744907fed0bb5bf26737659ff4e44267b6929ceb94e",
+        "text": "| `HELIXSECURITY-L2-006` | — |\n"
+      },
+      "NFV": {
+        "path": "docs/helix-security/L10-verification/nfr-verification.md",
+        "lines": "9-9",
+        "bytes": 381,
+        "sha256_including_lf": "c8dcfa9a182e94a7ec8df6ce1b285d4c0dcd3169ee0623da87930b65d3ced9ec",
+        "text": "| `SEC-NFR-001` / `SECURITY-AC-005-01`, `SECURITY-AC-033-01` | 合成secret markerをcontext/log/artifact/Tool result/Worker payload/environmentを含むtask contextへ投入し、全出力を値非記録matcherで走査する。 | raw secret値露出0。fixture/result自体にも値を記録しない。 | 露出でoperationを停止し、credential/security ownerへ返す。 |\n"
+      }
+    },
+    "007": {
+      "L2": {
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "lines": "130-138",
+        "bytes": 1371,
+        "sha256_including_lf": "1ee4d42a1e4178d598ce11b75268845578ba83bcb8ea471e2642ff8630c49504",
+        "text": "### HELIXSECURITY-L2-007 Worker実行環境への制約適用（接続）\n\n- **受け取るもの**：SECURITYが決めたscope/authority制約とOSのassignment identity、Worker実行環境のcapabilities。\n- **提供するもの**：実行前に適用された制約、結果/証拠の回収状態、停止・rollback・再開可否。\n- **保証すること**：許可された隔離環境だけでWorker/CLI/Agent/Toolを動かす。write path限定、network制限、credential遮断、environment variable最小化、timeout、resource limit、file差分検査、rollback、結果回収を検証対象とする。Workerは制約を自分で広げない。具体のenforcerはWorkerの実行環境でありSECURITYではない。\n- **単独依存**：Concept/Worker実行契約、OS assignment、INFRASTRUCTURE実資源、L2-003/005/006/008。旧Runner/Sandbox actorを復活させない。\n- **検証範囲／版**：制約ごとの要求→Worker実行環境への受渡し→適用証拠の対応。適用不能はhostへfallbackしない。1.0。\n- **失敗時の戻し先**：未適用/未観測/unsupportedは実行停止・unknown。SECURITY方針不足はL1-007、物理enforcement欠落はINFRASTRUCTURE接続の候補へ戻す。\n- **束ねる既存条件**：L1-007、PO §8、Worker統一判断。実装が利用可能であるとは主張しない。\n"
+      },
+      "L11": {
+        "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "lines": "31-31",
+        "bytes": 653,
+        "sha256_including_lf": "bb6dc9697c4bc21ad94cce4f2ad97c796706327d33686858eed1831378b4c155",
+        "text": "| HELIXSECURITY-L2-007 | 1.0 | 各制約（write path、network、credential、environment、timeout、resource、diff検査、rollback、result collection）がWorker実行環境へ渡り、適用・観測状態を確認できる。いずれか未適用/unknownなのにhost fallbackで実行、制約をWorkerが自己拡張したら不合格。read-onlyでもwrite禁止の適用と操作対象scopeの実行後の変更なし観測を要する。rollbackだけは変更なしを確認できた場合に限り適用対象外とでき、変更有無がunknownなら成功扱いしない。後掲の9制御fixtureで条件を個別に確認する。 |\n"
+      },
+      "FR": {
+        "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+        "lines": "142-154",
+        "bytes": 2770,
+        "sha256_including_lf": "78f43d0cb4967b32df831997a034ab8711b93b8faffd97463007825963eeecf6",
+        "text": "### SECURITY-FR-007-01 — Worker実行環境への制約適用\n\npath/network/credential/environment/timeout/resource/diff/rollback/result collection等の既存SECURITY制約をOS assignmentに基づき実行環境へ渡し、適用/観測を示す。制約の出所・値はSECURITY policy revision、実行適用ownerはWorker実行環境、物理適用の観測ownerはINFRASTRUCTUREとする。適用不能はunknown/停止、host fallback禁止。\n\n**旧HELIX対応（再利用/再導出/置換）**：旧CAP-006（同前掲asset/path/lines/SHA）はruntimeごとのhook/sandbox coverageとunsupported時のhost fallback禁止を扱い、未適用時に停止する点だけ部分類似である。旧CAP-007はcanonical safety failureをlegacy greenで相殺せずreason receiptへ残す要件で、Worker制約適用とは別である。worker constraintsは固定L2から再導出し、旧Runner/Sandboxを復帰させない。\n\n- **固定親**：`HELIXSECURITY-L2-007` / `MPR-RC-HELIXSECURITY-L2-007-002`、semantic digest `sha256:1ee4d42a1e4178d598ce11b75268845578ba83bcb8ea471e2642ff8630c49504`。L2 `docs/helix-security/L2-requirements/security-requirements.md#L130`（section SHA `sha256:052c634e25dff6bd1cba742d240f87d07c6d395852e994414522e4fcd243f210`）、対L11要約表 `31行`（section SHA `sha256:bb6dc9697c4bc21ad94cce4f2ad97c796706327d33686858eed1831378b4c155`）、詳細な9制御受入 `69–87行`（network `76行`、resource `80行`、rollback `82行`、result collection `83行`）。PO decision `docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md`、固定revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。\n\n**責務・依存とfailure時の戻し先（固定L2の保持）**：Concept/Worker実行契約、OS assignment、INFRASTRUCTURE実資源、L2-003/005/006/008。旧Runner/Sandbox actorを復活させない。 戻し先: 未適用/未観測/unsupportedは実行停止・unknown。SECURITY方針不足はL1-007、物理enforcement欠落はINFRASTRUCTURE接続の候補へ戻す。\n\n**L3 acceptance (`SECURITY-AC-007-01`)**：各9制約（write path、network、credential、environment、timeout、resource、diff検査、rollback、result collection）について、SECURITY policy revision上の要求値がWorker実行環境に届き、適用と実適用観測を区別する。出力に停止可否・rollback可否・再開可否を含め、再開可否unknownなら再開しない。read-onlyというlabelだけで変更後観測を省かず、拒否receiptに内容やsecretを露出しない。1制約欠落/unknownを他制約のgreen/receiptで相殺したら不合格。具体の変異とownerはL10の9制御表に対応する。\n\n**対応L11 acceptance**：`HELIXSECURITY-L2-007`。\n"
+      },
+      "FV": {
+        "path": "docs/helix-security/L10-verification/functional-verification.md",
+        "lines": "95-120",
+        "bytes": 7620,
+        "sha256_including_lf": "56e95b36cc89a5974f351f15712723ea633b87867245524c076ad53ac803dc74",
+        "text": "### SECURITY-CASE-007-01 — 実行環境制約\n\n- **対象AC**: `SECURITY-AC-007-01`\n- **固定L11受入oracle**：各制約（write path、network、credential、environment、timeout、resource、diff検査、rollback、result collection）がWorker実行環境へ渡り、適用・観測状態を確認できる。いずれか未適用/unknownなのにhost fallbackで実行、制約をWorkerが自己拡張したら不合格。read-onlyでもwrite禁止の適用と操作対象scopeの実行後の変更なし観測を要する。rollbackだけは変更なしを確認できた場合に限り適用対象外とでき、変更有無がunknownなら成功扱いしない。以下の9制御fixture表で条件を個別に確認する。\n- **fixture/oracle**: 制約ごとにrequest→environment acknowledgement/evidenceを検査。欠落・unsupported・自己拡張を投入し、起動停止/unknownを確認する。read-onlyもscope内変更なしを観測。read-only labelだけでpost-state観測を省かず、拒否receiptは内容/secretを露出しない。rollback N/Aは変更なし確認時のみ。\n- **fixture追加（停止・rollback・再開可否）**：同じassignment、SECURITY policy revision、実行環境観測に束縛した正常例で、停止要否・rollback可否・再開可否を結果に明示し、それぞれの状態を根拠と対応づける。再開可否が既存条件と観測から確認できる例ではその可否を出力し、結果やWorker自己申告だけから決めない。\n- **negative追加（再開可否unknown）**：再開可否だけをunknownにした合成例を与え、他の制約がgreenでも再開を許可しない。unknown状態、対象revision、不足根拠、既存ownerへの戻し先を結果に保持する。再開可否を停止可否やrollback可否から推定した場合は不合格。\n- **未見の正常例**：新しいread-only assignmentでも、各適用可能な制約とSECURITY policy revisionの宣言値・実適用観測がそろい、read-only変更なしを確認できる場合に同じ契約で扱う。\n- **negative/boundary oracle**：一つでもconstraint→実行環境適用が未確認/unsupported/unknownなのに開始、host fallback、Worker自身のscope拡張があれば不合格。read-onlyで変更があれば不合格。変更なしを確認したrollback N/Aだけ許す。\n- **owner oracle・失敗時の戻し先**：Concept/Worker実行契約、OS assignment、INFRASTRUCTURE実資源、L2-003/005/006/008。旧Runner/Sandbox actorを復活させない。 失敗時は、未適用/未観測/unsupportedは実行停止・unknown。SECURITY方針不足はL1-007、物理enforcement欠落はINFRASTRUCTURE接続の候補へ戻す。\n\n## SECURITY-CASE-007-01 の9制御fixture\n\n各行はL2-007が列挙する独立制約を一つずつ欠落・不一致にする。合成fixtureのみを使い、外部作用は行わない。\n\n| 制御 | fixture入力 | 欠落/不一致条件 | 観測owner・証拠 | 合格条件 |\n|---|---|---|---|---|\n| write path | assignment scope内の許可pathとread-only/write条件 | pathを一つscope外へ差替え、write禁止欠落、read-only labelでpost-state観測を省略する変異 | Worker実行環境/INFRASTRUCTURE;要求/実効pathと実行後状態、拒否receipt | scope外write 0、read-only時変更なしを確認し、receiptが内容/secretを露出しない |\n| network | deny-allを宣言した合成assignment、隔離endpoint、destination/protocol | 許可外destination/protocolへの接続を試し、別fixtureでhost networkまたは別backendへ切替えて継続を試す | Worker/INFRASTRUCTURE owner; endpoint、実適用状態、拒否結果 | 接続なし、未許可egressなし、host/別backend fallbackなし。適用観測が欠ければunknownとして停止 |\n| credential | `credentials: none`とSECURITY policy revision | provider credential参照、適用state unknown、context混入、environment混入を各独立変異。各々で停止を確認 | SECURITY policy owner;値を含まないreceipt。Worker実行環境/INFRASTRUCTURE適用観測 | policy credentials:noneに反する参照とunknown適用は停止。context/env混入とraw value記録0。033の有効scoped-use positiveは別CASEで扱う |\n| environment | SECURITYが宣言しassignment/policy revisionへ束縛した許可set、Worker実行環境identity | 固定L11例の`TASK_MODE`/`LANG`だけを許可し、許可外の`HOST_SECRET_REF`（値なし）を拒否する。許可set欠落/改変・別環境適用も独立変異 | SECURITY policy owner + Worker enforcement owner;宣言setと実適用観測 | SECURITY policy revisionとsource revisionへ束縛されたsetだけ適用。許可外変数の継承と適用観測欠落/unknownでの実行0。secret値を露出させない |\n| timeout | SECURITY policy revisionに束縛したfixture descriptor `90s`（値の由来はfixtureと記録） | 期限内positive、期限到達後side effect、適用観測unknownを別々に投入 | Worker実行環境/INFRASTRUCTURE;policy revision、fixtureの時間値、停止event | 期限後side effectをsuccessにせず、unknownで停止。`90s`はfixture由来で製品既定値でない |\n| resource | SECURITY制約へ結び付いたpolicy revision、assignment内resource条件（このfixtureではCPU=1、memory=256MiB）、Workerの実適用状態 | 条件を欠落、設定だけ宣言して適用観測を欠落、実resourceを境界超過させる、Workerが条件を自己拡張する変異を独立投入 | SECURITY policy owner + Worker enforcement owner;要求/実効resource観測 | Worker自己拡張も拒否する。設定だけで適用済みとしない。欠落/unknown/超過/自己拡張で継続しない。CPU・memory値はこのfixtureだけの固定L11例であり製品閾値ではない |\n| diff検査 | operation前後の対象scope diff | 許可scope内の実差分positive、scope外差分、実post-stateとdiff不一致、secret markerを含むdiff記録、diff receipt欠落を独立投入 | Worker実行環境/INFRASTRUCTURE;前後identityとdiff scope | 実post-state照合に合う許可範囲のみ受入れ、scope外差分とsecret記録0、receipt欠落はunknown |\n| rollback | operation前のstate digest、変更有無と既存rollback条件 | rollback計画だけで復旧済と主張、rollback不能、部分復元、無関係scopeも復元、rollback receipt欠落、変更有無unknownを独立投入 | Worker実行環境/INFRASTRUCTURE;前状態identity/digest、実行後状態・rollback結果 | 復旧不能はrecovery/unknownでsuccessにしない。計画は復旧証拠でない。前後stateを照合し、部分/無関係scope復元を拒否する。partial rollbackをsuccessに変換しない。変更なしを確認できた場合だけ適用外。unknownは成功扱いしない |\n| result collection | assignment/policy/source revision、status、制約適用状態、diff digest、rollback状態、collection scopeと相関ID | stdout/自己申告だけで適用済みとする、result field/receipt欠落またはstale、異なるoperationのreceipt混入、partial rollbackをsuccessとする変異を独立投入 | Worker実行環境/INFRASTRUCTUREの観測 + SECURITY policy revision | 他制御のgreen/receiptで不足を相殺しない。上記の束縛項目を持ち期待tupleと相関するreceiptだけを収集済みとする。必須field欠落、stale、誤相関、失敗/partial rollbackをsuccess扱いしない。host/別backend fallbackなし |\n"
+      },
+      "NFR": {
+        "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+        "lines": "15-15",
+        "bytes": 41,
+        "sha256_including_lf": "f4d6f6ab080fd654c3021b7c1a85d96d9df63e1426b06ee8408e37b79003e6ae",
+        "text": "| `HELIXSECURITY-L2-007` | SEC-NFR-006 |\n"
+      },
+      "NFV": {
+        "path": "docs/helix-security/L10-verification/nfr-verification.md",
+        "lines": "10-10",
+        "bytes": 393,
+        "sha256_including_lf": "11548098270142f7fc33c5a2f7f5470c07d41aaff8031cee95d489278057c419",
+        "text": "| `SEC-NFR-002` / `SECURITY-AC-008-01` | actor/target/operation/revision/environment/scope/expiryの7要素を一つずつdriftさせ、exact tuple正例とnegativeを測る。purposeはL2-006のegress条件で、このcaseへ混ぜない。 | exact 7要素tupleだけ対象operationを許可。各要素の欠落/不一致でallow 0。 | 拒否理由をSECURITY authority ownerへ返す。 |\n"
+      }
+    },
+    "008": {
+      "L2": {
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "lines": "140-148",
+        "bytes": 1091,
+        "sha256_including_lf": "6135842a799b9883cb29c5ce9e6ffcf601997d66cb3d314c8031ba9cbbae9f2c",
+        "text": "### HELIXSECURITY-L2-008 操作ごとのauthority\n\n- **受け取るもの**：actor、target、operation、revision、environment、scope、expiryと操作要求。\n- **提供するもの**：operation-specific allow/deny/constrainの判断と判断理由。\n- **保証すること**：read/write/execute/network/install/delete/merge/release/deploy/credential-use/security-change等を別authorityとして扱う。「Agentを使える」から包括write/deployを生成しない。高影響操作は全tupleが一致する個別authorityを求める。\n- **単独依存**：L2-003 identity、L2-004構成integrity、L2-005 credential、L2-006 egress、OSの進行。\n- **検証範囲／版**：操作名、主体、対象、revision、環境、scope、expiryの一致と未知・欠落時の拒否。1.0。\n- **失敗時の戻し先**：未認可、drift、expiry、unknownではdenyし、意味の変更はL1-008へ戻す。停止伝播はL2-009/022で検証。\n- **束ねる既存条件**：L1-008、PO §9、旧SEAのaction-specific authorityとtarget/environment/scope/expiry拘束。\n"
+      },
+      "L11": {
+        "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "lines": "32-32",
+        "bytes": 421,
+        "sha256_including_lf": "05d6af862333dd496de98c2f469b6e50a9d2817442b7b1c83c93ac9348821a25",
+        "text": "| HELIXSECURITY-L2-008 | 1.0 | 異なるread/write/execute/network/install/delete/merge/release/deploy/credential-use/security-change操作で別authorityを要求し、actor/target/operation/revision/environment/scope/expiryが完全一致したときだけ影響の大きいoperationを許可する。Agent利用権から包括write/deployが生じる、または欠落・期限切れ・driftを通すと不合格。 |\n"
+      },
+      "FR": {
+        "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+        "lines": "156-168",
+        "bytes": 2450,
+        "sha256_including_lf": "8718fdb6221f377b83bfce80491d8fc11d9dc7bc811a50b269f880b69a182323",
+        "text": "### SECURITY-FR-008-01 — 操作ごとのauthority\n\nactor/target/operation/revision/environment/scope/expiryが一致するoperation別判断と理由を返す。read/write/execute/network/install/delete/merge/release/deploy/credential-use/security-changeを包括権限にまとめない。\n\n**旧HELIX対応（再利用/再導出/置換）**：旧source `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md`（asset `LEGACY-ASSET-B62E49D2E156232B8C63`、全体SHA-256 `161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7`、関連CAP lines 160–166）およびtest asset `LEGACY-ASSET-170112AB2FA2FFDBFEE9`, `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md` lines 1–59、SHA `b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4`: typed tuple/negative fixtureは部分的な前例である。旧runtime/testは実行しない。\n\n- **固定親**：`HELIXSECURITY-L2-008` / `MPR-RC-HELIXSECURITY-L2-008-001`、semantic digest `sha256:6135842a799b9883cb29c5ce9e6ffcf601997d66cb3d314c8031ba9cbbae9f2c`。L2 `docs/helix-security/L2-requirements/security-requirements.md#L140`（section SHA `sha256:e00f26365cfbe64a4ee8369a9f6001ca4f1fb6f7f933b8055dd6ea47f0019d59`）、対L11 `32行`（section SHA `sha256:05d6af862333dd496de98c2f469b6e50a9d2817442b7b1c83c93ac9348821a25`）。PO decision `docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md`、固定revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。\n\n**責務・依存とfailure時の戻し先（固定L2の保持）**：L2-003 identity、L2-004構成integrity、L2-005 credential、L2-006 egress、OSの進行。 戻し先: 未認可、drift、expiry、unknownではdenyし、意味の変更はL1-008へ戻す。停止伝播はL2-009/022で検証。\n\n**L3 acceptance (`SECURITY-AC-008-01`)**：read、write、execute、network、install、delete、merge、release、deploy、credential-use、security-changeの11種を別々のoperation fixtureとして入力し、actor/target/operation/revision/environment/scope/expiryが一致したoperationだけを判定する。各結果はallow/deny/constrainと判断理由を返す。read authorityから残り10 operationへの各単独置換を拒否し、Agent利用権から包括write/deployを生成しない。\n\n**対応L11 acceptance**：`HELIXSECURITY-L2-008`。\n"
+      },
+      "FV": {
+        "path": "docs/helix-security/L10-verification/functional-verification.md",
+        "lines": "122-129",
+        "bytes": 1537,
+        "sha256_including_lf": "923f8db78b63464bf1dfa85c8e8bd8c6e033579bf7198f309a4eae3ff1fe3570",
+        "text": "### SECURITY-CASE-008-01 — operation authority\n\n- **対象AC**: `SECURITY-AC-008-01`\n- **固定L11受入oracle**：異なるread/write/execute/network/install/delete/merge/release/deploy/credential-use/security-change操作で別authorityを要求し、actor/target/operation/revision/environment/scope/expiryが完全一致したときだけ影響の大きいoperationを許可する。Agent利用権から包括write/deployが生じる、または欠落・期限切れ・driftを通すと不合格。\n- **fixture/oracle**: 11操作それぞれを個別fixtureにし、read→write/execute/network/install/delete/merge/release/deploy/credential-use/security-changeへの単独置換、残り各操作間の置換を独立にdenyする。結果はallow/deny/constrainと理由を返す。target/revision/scope/expiry driftも各々拒否。\n- **未見の正常例**：既存decisionで有効な別operation tupleがactor/target/operation/revision/environment/scope/expiryに一致するとき、そのoperationだけを判定する。\n- **negative/boundary oracle**：actor/target/operation/revision/environment/scope/expiryのいずれかが不一致/unknownなのにallow、またはread/Agent利用からwrite/deploy権限を推定したら不合格。\n- **owner oracle・失敗時の戻し先**：L2-003 identity、L2-004構成integrity、L2-005 credential、L2-006 egress、OSの進行。 失敗時は、未認可、drift、expiry、unknownではdenyし、意味の変更はL1-008へ戻す。停止伝播はL2-009/022で検証。\n"
+      },
+      "NFR": {
+        "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+        "lines": "16-16",
+        "bytes": 54,
+        "sha256_including_lf": "54bc4a6fbbef9b46030bcf83eebca6ae618e233fed59b0394653929441f9b4a5",
+        "text": "| `HELIXSECURITY-L2-008` | SEC-NFR-002, SEC-NFR-007 |\n"
+      },
+      "NFV": {
+        "path": "docs/helix-security/L10-verification/nfr-verification.md",
+        "lines": "11-11",
+        "bytes": 395,
+        "sha256_including_lf": "345163894fcca1e09ab8e9f98c79c0a64b42d967c08aa9676e2c235096041559",
+        "text": "| `SEC-NFR-003` / `SECURITY-AC-016-01` | public/customer-owned/service-internal/HELIX-confidential/HELIX-restricted/secretの各classとmissing/unknownを1つずつ入力し記録完全性を測る。 | 6/6 classを区別し、unknownをpublic/allowへ写像した件数0。1.x sink enforcementは対象外。 | missing/unknownをSECURITY分類ownerへ返し、unknown状態を維持する。 |\n"
+      }
+    },
+    "010": {
+      "L2": {
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "lines": "160-168",
+        "bytes": 1563,
+        "sha256_including_lf": "8d63bbbd688538d1a743705539e404b3a684d0631fcd585c74ef387bfca2fb31",
+        "text": "### HELIXSECURITY-L2-010 更新受入\n\n- **受け取るもの**：更新candidate。対象はsource code、dependency、package、plugin、MCP、Skill、Agent definition、Hook、runtime config、sandbox policy、model、model weights、prompt/system instruction、Connector、infrastructure configuration。各対象のsource/provenance、digest、dependency/permission/network/credential/hook-config差分、新規実行物、known finding、rollback可否を含む。\n- **提供するもの**：SECURITYによるaccept/reject/unknownと、その根拠のセット。\n- **保証すること**：新しいversionであることだけを更新理由にせず、未知の出所・権限・副作用・rollback欠落を黙って受け入れない。\n- **単独依存**：L2-011能力差分、L2-012 supply-chain provenance、L2-013 artifact integrity、L2-008 authority。\n- **検証範囲／版**：PO §11の15対象を個別に扱う: source code、dependency、package、plugin、MCP、Skill、Agent definition、Hook、runtime config、sandbox policy、model、model weights、prompt/system instruction、Connector、infrastructure configuration。対象ごとにprovenance、digest、dependency/permission/network/credential/hook-config差分、新規実行物、known finding、rollback可否を照合する。1.0。\n- **失敗時の戻し先**：情報不足はunknown/reject、意味や必要な判定軸の差はL1-010へ戻す。実行/昇格はL2-023に従う。\n- **束ねる既存条件**：L1-010、PO §11、Conceptの構成版固定と切戻し。\n"
+      },
+      "L11": {
+        "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "lines": "34-34",
+        "bytes": 540,
+        "sha256_including_lf": "8c5d010b69e32c1ba25e091f8b2eb07af70988ff06190786f394fc32005a2f89",
+        "text": "| HELIXSECURITY-L2-010 | 1.0 | source code、dependency、package、plugin、MCP、Skill、Agent definition、Hook、runtime config、sandbox policy、model、model weights、prompt/system instruction、Connector、infrastructure configurationの15対象それぞれについて、provenance、digest、dependency/permission/network/credential/hook-config差分、新規実行物、known finding、rollback情報が揃い採否と根拠を追える。単に新version、または欠落情報をunknownのまま採用したら不合格。 |\n"
+      },
+      "FR": {
+        "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+        "lines": "184-196",
+        "bytes": 2288,
+        "sha256_including_lf": "e68bdc3c194077e97c92022a11f1b59328c13f780d2d1ac9b2104ba922bdb0c7",
+        "text": "### SECURITY-FR-010-01 — 更新受入\n\n15対象のsource/provenance/digest/dependency/permission/network/credential/config差分/new executable/known finding/rollbackを照合し、accept/reject/unknownと根拠を返す。単にversionが新しいだけでは受入れない。\n\n**旧HELIX対応（再利用/再導出/置換）**：旧pillar FR `LEGACY-ASSET-EE5DBACC7F28F7D1F605`（`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md` lines 22–349、SHA `7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544`）は能力/updateに隣接する根拠である。現L2の15対象と処置は再導出し、旧対象集合を再利用したとは主張しない。\n\n- **固定親**：`HELIXSECURITY-L2-010` / `MPR-RC-HELIXSECURITY-L2-010-001`、semantic digest `sha256:8d63bbbd688538d1a743705539e404b3a684d0631fcd585c74ef387bfca2fb31`。L2 `docs/helix-security/L2-requirements/security-requirements.md#L160`（section SHA `sha256:9f4db5957220915c4df1843aa0c02b647e35c54adbeb83fefe79da5c0870bdb5`）、対L11 `34行`（section SHA `sha256:8c5d010b69e32c1ba25e091f8b2eb07af70988ff06190786f394fc32005a2f89`）。PO decision `docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md`、固定revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。\n\n**責務・依存とfailure時の戻し先（固定L2の保持）**：L2-011能力差分、L2-012 supply-chain provenance、L2-013 artifact integrity、L2-008 authority。 戻し先: 情報不足はunknown/reject、意味や必要な判定軸の差はL1-010へ戻す。実行/昇格はL2-023に従う。\n\n**L3 acceptance (`SECURITY-AC-010-01`)**：source code、dependency、package、plugin、MCP、Skill、Agent definition、Hook、runtime config、sandbox policy、model、model weights、prompt/system instruction、Connector、infrastructure configurationの15対象それぞれについて、provenance、digest、dependency/permission/network/credential/hook-config差分、新規実行物、credential差分、hook-config差分、known finding、rollback情報が揃い採否と根拠を追える。単に新version、または欠落情報をunknownのまま採用したら不合格。\n\n**対応L11 acceptance**：`HELIXSECURITY-L2-010`。\n"
+      },
+      "FV": {
+        "path": "docs/helix-security/L10-verification/functional-verification.md",
+        "lines": "140-147",
+        "bytes": 1758,
+        "sha256_including_lf": "0f2cf3a8870dfe6a3324f41a12682dfc99146bf45029a465ab8e497d6c3f624b",
+        "text": "### SECURITY-CASE-010-01 — 更新受入\n\n- **対象AC**: `SECURITY-AC-010-01`\n- **固定L11受入oracle**：source code、dependency、package、plugin、MCP、Skill、Agent definition、Hook、runtime config、sandbox policy、model、model weights、prompt/system instruction、Connector、infrastructure configurationの15対象それぞれについて、provenance、digest、dependency/permission/network/credential/hook-config差分、新規実行物、known finding、rollback情報が揃い採否と根拠を追える。単に新version、または欠落情報をunknownのまま採用したら不合格。\n- **fixture/oracle**: 15種類の対象を代表fixture各一つとして列挙し、provenance/digest/dependency/permission/network/credential/hook-config差分、明示した新規実行物、known finding、rollbackをそれぞれ確認する。各項目欠落でunknown/rejectとなる。scanner等の特定実装は前提にしない。\n- **未見の正常例**：15対象のいずれかについて、対象型に必要なprovenance・digest・dependency/permission/network差分・finding・rollback情報がそろう別candidateを同じ条件で判定する。\n- **negative/boundary oracle**：15種のいずれかでprovenance/digest/差分/known finding/rollback等の該当情報を欠落させても採用、または新versionだけで採用したら不合格。未知はunknown/rejectで、特定scannerの不在は失敗条件にしない。\n- **owner oracle・失敗時の戻し先**：L2-011能力差分、L2-012 supply-chain provenance、L2-013 artifact integrity、L2-008 authority。 失敗時は、情報不足はunknown/reject、意味や必要な判定軸の差はL1-010へ戻す。実行/昇格はL2-023に従う。\n"
+      },
+      "NFR": {
+        "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+        "lines": "18-18",
+        "bytes": 41,
+        "sha256_including_lf": "3f7abc3d04eb3872614a32f2de4d5bb306c2395d6c8f9d4977e6c73246f41581",
+        "text": "| `HELIXSECURITY-L2-010` | SEC-NFR-008 |\n"
+      },
+      "NFV": {
+        "path": "docs/helix-security/L10-verification/nfr-verification.md",
+        "lines": "12-12",
+        "bytes": 637,
+        "sha256_including_lf": "a84d8fa85d4040177b9d97c5b0fc08453050dc4ee3217525326454e859be2f65",
+        "text": "| `SEC-NFR-004` / `SECURITY-AC-020-01` | 8 Guard責務ごとに同一入力のBotなし/任意Bot補助と、rule未定義・適用不能・必要観測欠落入力を比較し、決定的判定/必須条件抜け/owner返却状態を測る。 | 決定ruleをBotに委ねた件数0、Guard条件抜け0。未定義・不適用・観測欠落は成功判定にせず該当enforcement ownerへunknown/holdを返す。候補Botの稼働数はpass条件でない。1.x sink enforcementを1.0 pass条件に含めない。 | policy/rule意味はSECURITY、物理実行・適用観測の不足は既存Worker/INFRASTRUCTURE ownerへ返す。 |\n"
+      }
+    },
+    "011": {
+      "L2": {
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "lines": "170-178",
+        "bytes": 806,
+        "sha256_including_lf": "dcd26abfcd8bff20835c05541fe7c3360e5e1a512679c48d6e7c53e368f22496",
+        "text": "### HELIXSECURITY-L2-011 Capability Drift\n\n- **受け取るもの**：更新前後の構成とファイル差分、read/write/shell/network等の能力記述。\n- **提供するもの**：version diffからcapability diff、security impactへ辿る比較結果。\n- **保証すること**：ファイル差分だけで能力変更を見落とさず、model/Agent/MCP/plugin等にも適用する。\n- **単独依存**：L2-004の構成identity、L2-010のcandidate revision。比較不能はunknownとする。\n- **検証範囲／版**：PO §12のread-onlyからread+write+shell+networkへの例と同等の能力変化。1.0。\n- **失敗時の戻し先**：能力を分類できない変更は受け入れず、分類意味の不足をL1-011へ戻す。\n- **束ねる既存条件**：L1-011、PO §12。\n"
+      },
+      "L11": {
+        "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "lines": "35-35",
+        "bytes": 244,
+        "sha256_including_lf": "ca300d27bd9d76885f8c7ceeb139db7d96bbca82e0b6211ac3005250dcfbdfbd",
+        "text": "| HELIXSECURITY-L2-011 | 1.0 | 同じfile変更でもread-only→write+shell+networkの能力差分を検出し、model/Agent/MCP/pluginにも適用される。hash一致/ファイル名だけでcapability不変と結論したら不合格。 |\n"
+      },
+      "FR": {
+        "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+        "lines": "198-210",
+        "bytes": 2029,
+        "sha256_including_lf": "c147b31d1f2e1ecde48ae2f3ac895faf8644af9e722d3bcd83866d169c727080",
+        "text": "### SECURITY-FR-011-01 — Capability drift\n\n同一file/hash/nameから能力不変を推定せず、更新前後のread/write/shell/network等のcapability差を識別する。比較不能はunknown。\n\n**旧HELIX対応（再利用/再導出/置換）**：旧pillar FR asset（旧path lines 22–349、全体SHAは上記）と旧受入test `LEGACY-ASSET-44DD86E3DEC09E65EF51`（`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md` lines 1–200、SHA `df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6`）はrisk/changeの隣接例およびtest consumerの記録に限る。正確なcapability-diff条件は再導出。\n\n- **固定親**：`HELIXSECURITY-L2-011` / `MPR-RC-HELIXSECURITY-L2-011-001`、semantic digest `sha256:dcd26abfcd8bff20835c05541fe7c3360e5e1a512679c48d6e7c53e368f22496`。L2 `docs/helix-security/L2-requirements/security-requirements.md#L170`（section SHA `sha256:c75ce0a2c3ee1c84fc8b9b5c4a3221126fb74a2f967a4e377a4f4cff4809fd6f`）、対L11 `35行`（section SHA `sha256:ca300d27bd9d76885f8c7ceeb139db7d96bbca82e0b6211ac3005250dcfbdfbd`）。PO decision `docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md`、固定revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。\n\n**責務・依存とfailure時の戻し先（固定L2の保持）**：L2-004の構成identity、L2-010のcandidate revision。比較不能はunknownとする。 戻し先: 能力を分類できない変更は受け入れず、分類意味の不足をL1-011へ戻す。\n\n**L3 acceptance (`SECURITY-AC-011-01`)**：更新前後の構成・file差分・能力記述からversion差分、capability差分、security impactを対応付けて返し、model/Agent/MCP/pluginにも適用する。同じfile変更でもread-only→write+shell+networkの能力変化を検出する。比較不能はunknownとし、hash一致/ファイル名だけでcapability不変と結論したら不合格。\n\n**対応L11 acceptance**：`HELIXSECURITY-L2-011`。\n"
+      },
+      "FV": {
+        "path": "docs/helix-security/L10-verification/functional-verification.md",
+        "lines": "149-156",
+        "bytes": 1273,
+        "sha256_including_lf": "b903a4f9d2b023e73144ebe29524d23688260b7a14b34c1f36765db57bfaddaa",
+        "text": "### SECURITY-CASE-011-01 — capability drift\n\n- **対象AC**: `SECURITY-AC-011-01`\n- **固定L11受入oracle**：同じfile変更でもread-only→write+shell+networkの能力差分を検出し、model/Agent/MCP/pluginにも適用される。hash一致/ファイル名だけでcapability不変と結論したら不合格。\n- **fixture/oracle**: 同一ファイル名/ハッシュの固定例でもpermission manifestが変わるfixtureを用い、version差分→capability差分→security impactの比較結果を検出する。model/Agent/MCP/plugin種別で適用を確認する。\n- **未見の正常例**：未見のmodel/Agent/MCP/plugin等でも、manifest上のpermission/capabilityに差分がない場合は同じ比較契約を適用し、名前/hashだけで差分なしと推定しない。\n- **negative/boundary oracle**：同じfile name/hashでもread-only→write/shell/network等の能力差があれば検知する。差を分類できない状態でcapability不変・受入可としたら不合格。\n- **owner oracle・失敗時の戻し先**：L2-004の構成identity、L2-010のcandidate revision。比較不能はunknownとする。 失敗時は、能力を分類できない変更は受け入れず、分類意味の不足をL1-011へ戻す。\n"
+      },
+      "NFR": {
+        "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+        "lines": "19-19",
+        "bytes": 33,
+        "sha256_including_lf": "6ea9e370a06cec2e132a2c8b83c0eccb882b69384222d68cbfaf474368454602",
+        "text": "| `HELIXSECURITY-L2-011` | — |\n"
+      },
+      "NFV": {
+        "path": "docs/helix-security/L10-verification/nfr-verification.md",
+        "lines": "12-12",
+        "bytes": 637,
+        "sha256_including_lf": "a84d8fa85d4040177b9d97c5b0fc08453050dc4ee3217525326454e859be2f65",
+        "text": "| `SEC-NFR-004` / `SECURITY-AC-020-01` | 8 Guard責務ごとに同一入力のBotなし/任意Bot補助と、rule未定義・適用不能・必要観測欠落入力を比較し、決定的判定/必須条件抜け/owner返却状態を測る。 | 決定ruleをBotに委ねた件数0、Guard条件抜け0。未定義・不適用・観測欠落は成功判定にせず該当enforcement ownerへunknown/holdを返す。候補Botの稼働数はpass条件でない。1.x sink enforcementを1.0 pass条件に含めない。 | policy/rule意味はSECURITY、物理実行・適用観測の不足は既存Worker/INFRASTRUCTURE ownerへ返す。 |\n"
+      }
+    }
+  },
+  "case_definition_counts": {
+    "006": {
+      "case_id": "SECURITY-CASE-006-01",
+      "definition_heading_count": 1,
+      "AC_paragraph_count": 1
+    },
+    "007": {
+      "case_id": "SECURITY-CASE-007-01",
+      "definition_heading_count": 1,
+      "AC_paragraph_count": 1
+    },
+    "008": {
+      "case_id": "SECURITY-CASE-008-01",
+      "definition_heading_count": 1,
+      "AC_paragraph_count": 1
+    },
+    "010": {
+      "case_id": "SECURITY-CASE-010-01",
+      "definition_heading_count": 1,
+      "AC_paragraph_count": 1
+    },
+    "011": {
+      "case_id": "SECURITY-CASE-011-01",
+      "definition_heading_count": 1,
+      "AC_paragraph_count": 1
+    }
+  },
+  "business_layer": {
+    "BR": {
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "lines": "1-5",
+      "bytes": 747,
+      "sha256_including_lf": "fcf2504a4fef152d1829fddb1a9d65397cb16114a6edbd964c619422da75097d",
+      "text": "# HELIX-SECURITY L3 業務要件 — Stage 1（19親の候補）\n\n> 状態：この19親のscopeに独立したbusiness identity/ACはない。これは他機構・他Stageへ一般化しない。\n\n固定L2/L11がbusiness meaning、承認、実保存を別ownerに残す境界を保つ。SECURITYは各operationのpolicy/authority判定を返し、OS assignment、CONNECT送達、HARNESS共通pack lifecycle、LABO評価、BRAIN登録、実保存の成功を代行しない。receipt、classification、decision、未見正常判定はbusiness success・approval・保存完了を生成しない。業務ownerが持つmeaning/resultは当該ownerの契約に残す。意味・範囲・owner・版の変更が必要な場合だけ親L2へ戻す。\n"
+    },
+    "BV": {
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "lines": "1-3",
+      "bytes": 526,
+      "sha256_including_lf": "717e206126b910a8261e5448227bb73b0961ac3dbf3f1f71a41ef487dc0f6ee5",
+      "text": "# HELIX-SECURITY L10 業務検証 — Stage 1（19親の候補）\n\nこの19親に独立したbusiness ACはない。[L3業務要件](../L3-requirements/business-requirements.md)のowner境界を、Stage 1 functional casesの正常・negative・unknown結果と照合する。各親についてreceiptやSECURITY判断だけからbusiness success、approval、canonical save、LABO評価、BRAIN登録を作る入力はnegativeとし、業務意味と結果は既存ownerへ返す。本書で別ACやownerを新設しない。\n"
+    },
+    "interpretation": "Stage1 has no independent business identity/AC for these parents; BR/BV expressly defer business outcomes to owning contracts. No independent BR/BV AC was created."
+  },
+  "legacy_source_consumer_pins": [
+    {
+      "label": "legacy_CAP_requirements",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "full_bytes": 10302,
+      "full_sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+      "spans": [
+        {
+          "lines": "160-166",
+          "bytes": 1034,
+          "sha256_including_lf": "851ea0172fb9de5c90248726fc4073ca24ab58180e635fc3bb1d8f8b8c43f279",
+          "text": "| `SEC-FR-CAP-001` | operation capabilityとimpactを独立typed fieldで保持し、未知・混同・欠落を拒否する | `SEC-AC-CAP-001` |\n| `SEC-FR-CAP-002` | lexical/physical target、target set、TOCTOU identityを実行直前に検証する | `SEC-AC-CAP-002` |\n| `SEC-FR-CAP-003` | direct/bounded/script/generated/unknown provenanceを区別し、未検証間接実行をhostへ渡さない | `SEC-AC-CAP-003` |\n| `SEC-FR-CAP-004` | data classificationとsink authorityを分離し、credential／PII／archive egressをbroker外で拒否する | `SEC-AC-CAP-004` |\n| `SEC-FR-CAP-005` | external/destructive actionをexact target、dry-run、postcondition、rollback、expiry、action bindingへ束縛する | `SEC-AC-CAP-005` |\n| `SEC-FR-CAP-006` | hook/sandbox coverageをruntime別に検査し、unsupported surfaceをhost実行へfallbackしない | `SEC-AC-CAP-006` |\n| `SEC-FR-CAP-007` | canonical safety failureをlegacy greenで相殺せず、値非表示のreceiptへ全reasonを記録する | `SEC-AC-CAP-007` |\n"
+        }
+      ]
+    },
+    {
+      "label": "legacy_CAP_acceptance",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+      "full_bytes": 5198,
+      "full_sha256": "b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4",
+      "spans": [
+        {
+          "lines": "20-26",
+          "bytes": 1645,
+          "sha256_including_lf": "b94695dd9ed0c861b84bb164656116766196d3923a2d9a1a99dc4146fe733b0a",
+          "text": "| `SEC-AC-CAP-001` | `SEC-FR-CAP-001` | operation、impact、approvalを同一enumへ混在、未知値、欠落、複数候補 | 軸混同・未知・欠落をreason付き`unresolved`で拒否する |\n| `SEC-AC-CAP-002` | `SEC-FR-CAP-002` | repo内literal、ancestor symlink、junction、bind mount、hardlink、repo外realpath、glob、TOCTOU変更 | exact physical identityとtarget setが一致するliteralだけ許可候補。その他は拒否する |\n| `SEC-AC-CAP-003` | `SEC-FR-CAP-003` | direct literal、bounded wrapper、script digest、find/xargs、変数、dynamic interpreter、解析深度超過 | bounded以外の間接実行をhostへ渡さず、sandboxまたは拒否へ送る |\n| `SEC-AC-CAP-004` | `SEC-FR-CAP-004` | public/repository/sensitive/PII/credential/unknownとlocal/GitHub/network/cloud sinkの直積 | credential、PII、archive、unknownはbroker外送信を拒否し、ログにも値を出さない |\n| `SEC-AC-CAP-005` | `SEC-FR-CAP-005` | destructive external actionのtarget、dry-run、rollback、expiry、approval receiptの各欠落・drift | exact tupleが揃うまで`approval_required`または`unresolved`で実行を拒否する |\n| `SEC-AC-CAP-006` | `SEC-FR-CAP-006` | Claude、Codex CLI/IDE、Cursor、hosted tool、workerのcovered/unsupported/trust drift/sandbox unavailable | unsupported、drift、sandbox unavailableはhost実行へfallbackせずfail-closeする |\n| `SEC-AC-CAP-007` | `SEC-FR-CAP-007` | canonical failure、legacy guard green、別scanner green、値を含むraw error | AND admissionを維持し、legacy/別scannerのgreenで相殺せずredacted receiptだけを残す |\n"
+        },
+        {
+          "lines": "44-51",
+          "bytes": 704,
+          "sha256_including_lf": "73abd3287afa0ee6d21ea1ec28e4a5580c5dd7a3607fe8d1333bedaa8bd19ad3",
+          "text": "- lexical pathだけを検証してphysical target検証を削除するmutationは、symlink/junction/mount/\n  hardlink fixtureで必ずredになる。\n- `generated_indirect`を`direct_literal`へ変換するmutationは、find/xargs、shell variable、\n  interpreter、package scriptのfixtureで必ずredになる。\n- data classificationまたはsink authorityを`network_allowed`へ潰すmutationは、credential、\n  PII、repository archiveのegress fixtureで必ずredになる。\n- current canonical failureをlegacy guard greenで相殺するmutationはAND admissionでredになる。\n- unsupported runtimeをhost実行へfallbackするmutationは、sandbox unavailable fixtureでredになる。\n"
+        }
+      ]
+    },
+    {
+      "label": "legacy_SEA",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requirements.md",
+      "full_bytes": 5164,
+      "full_sha256": "38a68e48ca26cb277b6f5d88439b33b58aecf48f5b650f7596aec04e438b6b16",
+      "spans": [
+        {
+          "lines": "24-25",
+          "bytes": 457,
+          "sha256_including_lf": "e6d03fa20ea2d8a21022cb3970e753e4e07f7e0ccec1b5fbabba3ad33200db33",
+          "text": "| `SEA-FR-001` | `SecurityAuthorization`はauthorization ID、asset owner、source、authorized target exact set、allowed／forbidden action、environment、network／data scope、issued／expiry、human authority、provider access class、digestを別fieldで保持する。 |\n| `SEA-FR-002` | authorization不在、期限切れ、target／scope／environment／provider class／digest不一致ではmodel、tool、network invocationを0件にする。 |\n"
+        },
+        {
+          "lines": "39-43",
+          "bytes": 578,
+          "sha256_including_lf": "3fbf6a0f55f09660a00b501086e95c78b105822555023bbd74a22f08dd2fbd99",
+          "text": "- `SEA-NFR-001 Fail-close`: unknown、ambiguous、missing、stale、multi-target driftを推測しない。\n- `SEA-NFR-002 Least privilege`: credentialとnetwork capabilityはengagement、target、operation、TTLの最小範囲に限定する。\n- `SEA-NFR-003 Confidentiality`: receipt、error、telemetryにraw sensitive valueを出さない。\n- `SEA-NFR-004 Independence`: verifierとworkerのauthority、session、evidence custodyを分離する。\n- `SEA-NFR-005 Revocability`: revokeは新規処理だけでなくin-flight leaseとcredential capabilityへ伝播する。\n"
+        }
+      ]
+    },
+    {
+      "label": "legacy_pillar_FR",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "full_bytes": 65731,
+      "full_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "spans": [
+        {
+          "lines": "89-91",
+          "bytes": 2972,
+          "sha256_including_lf": "68a9b4eecd0eb7e3aed433346d797e53740ba84efe4e3f4b8f1292948e4db83f",
+          "text": "| 連続自律走行 / style slice分割 / version-up | HBR-P1 / HR-FR-P1-01..04 | confirmed 51件に含む | 3 development styleを同列に扱い、Discovery／PoCを分割方式として暗黙起動しない。version-up modeは正本化済み。parked workはactivation decision / parked review / action-binding approval / reapproval trigger / activation snapshot binding / version dry-run result digestをplan-only activation packetに出す。HEAD/scope/source/evidence/dry-run result driftがあればdry-run・activation packet・doctor・approval packetを再実行し、古い承認根拠を流用しない。GitHub Actionsをactivation/dry-runに使う場合は`GITHUB_TOKEN`権限、least privilege、`pull_request_target`未信頼コード実行、自動PR承認リスクをsource ledgerとexternal rehearsalに含める。`PLAN-L7-146`はarchiveでは閉じず、外部公開・HMAC・access-control approvalが必要なfuture backlogとして残す |\n| agent/tool/runtime guardrail + pair-agent TDD route | HR-FR-P2-01..04 / HAC-P2-01a..04b | confirmed 51 件に含む | tool contract registry、loop effort budget、Codex/Claude adapter parity、hosted API preflight、pair-agent TDD route を同じ P2 runtime guardrail family として扱う。L6 `validateToolContractSurface` / `tickLoopEffortBudget` / `validateAdapterParityMap` / `requireHostedSurfacePreflight` / `buildPairAgentTddPlan` / `runPairAgentTddPlan` へ降下済み。smart test/oracle -> light implementation/consultation -> smart review/instruction -> light fix の順序契約であり、consultation question が実装証跡と混在しても pending consultation を優先する。light agent は完了/承認権限を持たず、`VERDICT` / `FINAL_VERDICT` / `COMPLETION_CLAIM` / `CLOSE_PLAN` / `PLAN_STATUS` / `READY_FOR_REVIEW` / `APPROVAL` marker を出す light output は fail-close する。pair-agent plan は task difficulty と `maxFixCyclesSource` を保持し、未指定 max cycle は difficulty policy で決め、max 到達は `max-fix-cycles-exhausted` finding として残す。PLAN-L7-177 / PLAN-L7-221 / PLAN-L7-222 で plan/run evidence 保存・DB projection まで実装済みで、plan evidence は adapter plan / prompt digest / frontier guardrail を監査可能にし、run evidence は `loop_summary` / `transcript_digest` / phase `output_excerpt_digest` により consultation/fix/review loop を監査可能にする。保存済み `phase_spans` は `smart_test_author` 起点、`light_implementation` / `smart_review` 交互順序で DB rebuild 時に再検査し、違反 evidence は `pair-agent-run-evidence` gate を `blocked` にする。local verdict と pair-agent evidence は CI/merge gate の代替ではない |\n| 強い検証 / test-first / 実装精度 | HBR-P3 / HNFR-P3 | confirmed 51 件に含む | L6 verification family へ降下済み。green command・review・runtime provenance の実証跡が無い runtime claim は閉じない |\n"
+        },
+        {
+          "lines": "141-141",
+          "bytes": 1136,
+          "sha256_including_lf": "f0eb400b39bde9da33cb39742da7131e663a6eea07dd66b90603b43f2eb7d141",
+          "text": "| HR-FR-P1-02 | HBR-P1 | `version_target` / release tag / migration / rollback を持つ version-up lifecycle を提供し、今版外作業を失わない。parked work は activation decision、parked review、action-binding approval、reapproval trigger を `version-up-activation-packet.v1` として出せるが、packet は plan-only で apply surface を持たない。HEAD/scope/source/evidence drift がある場合は dry-run・doctor・approval packet を再実行し、古い承認根拠を流用しない。GitHub Actions を activation/dry-run workflow として採用する候補では、`GITHUB_TOKEN` 権限、least privilege、`pull_request_target` 未信頼コード実行、自動 PR 承認リスクを `approval_scope` / `dry_run_plan` / `external_rehearsal_plan` / provenance / audit の判断材料に含め、CI があることを安全証明にしない。同一 PLAN に複数判断境界がある場合は `relatedDecisionPackets[]` で primary/supporting packet route を保持し、S4 / version-up / rename / action-binding のどれか一つだけを見て完了扱いしない | HAC-P1-02a / HAC-P1-02b |\n"
+        },
+        {
+          "lines": "185-190",
+          "bytes": 1787,
+          "sha256_including_lf": "cbfd016ba572f6e6fdb0f4b5f9ad4dc488acbcb391520a09d6ff5ef007537df3",
+          "text": "| HR-NFR-P8-01 | HNFR-P8 | 認証/認可/決済/PII/secret/license/schema migration/destructive data/external API・infra 変更は action-binding approval なしに適用しない。version-up activation / rename cutover の action-binding approval は `reviewed_snapshot_binding` に packet field 名だけでなく current `sha256:` snapshotId を記録するまで pending とし、古い承認材料を実行許可に流用しない | HAC-N8-01a / HAC-N8-01b |\n| HR-NFR-P8-02 | HNFR-P8 / HBR-P8 | prompt injection / tool injection / data exfiltration 誘導を検出・分類し、外部データ由来の命令を隔離、redaction、human review、deny のいずれかに送る | HAC-N8-02a / HAC-N8-02b |\n| HR-NFR-P8-03 | HNFR-P8 / HBR-P8 | agentic AI 機能は段階導入を既定にし、task-scoped permission、least privilege、監査ログ、rollback/reversibility、risk owner、継続監視、threat model 更新を持たない限り自動適用範囲へ昇格しない | HAC-N8-03a / HAC-N8-03b |\n| HR-NFR-AC-01 | HNFR-AC | rule-drift は Claude/Codex だけでなく agent/template/skill/runtime adapter へ一般化し、単一 core から逸脱する規則差分を検出する | HAC-NAC-01a / HAC-NAC-01b |\n| HR-NFR-AC-02 | HNFR-AC | hosted API/developer tool surface は repo hook 非強制であることを明示し、作業前 preflight と監査ログを必須にする | HAC-NAC-02a / HAC-NAC-02b |\n| HR-NFR-AC-03 | HNFR-AC / HBR-P2 / HBR-P8 | AI runtime は provider API 直叩きや SDK 常駐実行を前提にせず、PLAN artifact、repo-local CLI adapter、harness DB trace、dry-run plan を正本にする。外部 API / infra / GitHub 操作は plan emit と action-binding approval を経ない限り実適用しない | HAC-NAC-03a / HAC-NAC-03b |\n"
+        },
+        {
+          "lines": "347-349",
+          "bytes": 1082,
+          "sha256_including_lf": "146e8e7203d897a3725ac1e6fbb1aadea3360680fb783056c13cd6b401dc51fe",
+          "text": "- 本書で新規に閉じる残 GAP: loop trace/eval 昇格規律、Glossary SSoT、DDD context map、P0/P1（continuous-run / version-up / development style slice分割 / L2 design template + mock workflow）/P3/P4/P6（TDD test-first evidence / gated push / setup / release ADR / CI repush confidence）/P8（external grounding / skillify / MicroVM/gVisor sandbox / security filter / agentic AI staged adoption）/P9、HNFR-P3（実装精度・層別 regression fence）/P5（context/test workload budget / 層境界数値 / 可逆圧縮証跡）/P8（外部データ security filter / prompt injection 防御）/AC、計測・改善基盤。typed agent-tool request/response contract registry core は PLAN-L7-213 で `validateToolContractSurface` + doctor hard gate として、loop effort-budget core は PLAN-L7-214 で `tickLoopEffortBudget` + `tick` pre/post gate として、hosted/API preflight core は PLAN-L7-215 で `validateAdapterParityMap` / `requireHostedSurfacePreflight` + `helix guard preflight --json` evidence として先行実装済み。\n\n## §4 L10 pair\n"
+        }
+      ]
+    },
+    {
+      "label": "legacy_pillar_acceptance",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "full_bytes": 30874,
+      "full_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+      "spans": [
+        {
+          "lines": "98-100",
+          "bytes": 1930,
+          "sha256_including_lf": "aef62cf94518eb7ffbb9681862640a4dd3796e2e2040c7f3876fc498d4056b7d",
+          "text": "| HAT-P1-02 | HR-FR-P1-02 | HAC-P1-02a/b | version_target と tag bump dry-run が migration/rollback を出す。parked PLAN の activation packet は activation/parked review/action-binding approval、source ledger freshness、reapproval trigger、activation snapshot binding、version dry-run result digest を判断材料として出すが、plan-only で apply/activation permission を持たない。status / completion decision packet / continuation read model の version-up summary は親 field だけでなく、activation snapshot id、dry-run/rollback plan、readiness evidence、source ledger rows digest、version dry-run digest、release tag 解決、security checklist route impact、reapproval action の具体 field を出す。source ledger stale / 必須 source 欠落、external rehearsal / provenance evidence pending、HEAD/scope/source/evidence/dry-run result drift は activation 前 blocker または再承認 route になる。GitHub Actions activation/dry-run workflow を含む場合は secure-use source、`GITHUB_TOKEN` 権限、least privilege、`pull_request_target`、自動 PR 承認リスクが approval / dry-run / external rehearsal / provenance / audit の期待値に入る | version-up tests / plan lint / activation-packet CLI smoke |\n| HAT-P1-03 | HR-FR-P1-03 | HAC-P1-03a/b | 大きい要求が選択済みdevelopment styleのsliceに分割され、各sliceがparent・返却先・acceptance・budget・DB-backed next_actionを持つ。Discovery／PoCを分割方式として暗黙起動しない | scrum/work-breakdown / continuation tests |\n| HAT-P1-04 | HR-FR-P1-04 | HAC-P1-04a/b | template生成だけでL3凍結を許可しない。UIの要求／プロト合意、非UIの適用性receiptを検査し、欠落を拒否する。後日mockの差分をL2へ反映して再合意し、影響するL3／L11を再検証する | L2-template／適用性receipt／back-propagation tests |\n"
+        },
+        {
+          "lines": "123-126",
+          "bytes": 669,
+          "sha256_including_lf": "ca8f16187600d4e2428fc78b67eb3a5dea3c2460095dfe9cf15d76746922bed9",
+          "text": "| HAT-P8-01 | HR-FR-P8-01 | HAC-P8-01a/b | external research artifact が source/span を持ち未検証採用を防ぐ | research-grounding tests |\n| HAT-P8-02 | HR-FR-P8-02 | HAC-P8-02a/b | skillify candidate は license/safety review なしに registry 入りしない | skillify tests |\n| HAT-P8-03 | HR-FR-P8-03 | HAC-P8-03a/b | external code/API は一次出典で検証済みの MicroVM/gVisor sandbox と token policy に従い無制限実行しない | sandbox/token-policy tests |\n| HAT-P8-04 | HR-FR-P8-04 | HAC-P8-04a/b | 外部 text が raw/metadata/trusted extraction/instruction に分離され、命令として直結しない | security-filter tests |\n"
+        },
+        {
+          "lines": "139-145",
+          "bytes": 1941,
+          "sha256_including_lf": "fb571a9a84b5f6e68dbe14fa9e1ae309858ed9bd82bcd0492c63020dc09de1bb",
+          "text": "| HAT-N5-03 | HR-NFR-P5-03 | HAC-N5-03a/b | isolated test/verification profile、parallel worker/resource budget、timeout、p95 duration budget、実行時間 evidence により通常 loop が不要な full suite を強制しない。fast<=120s / default<=600s / full<=1800s の初期 budget を超える場合は blocker/improvement として観測する | verification-profile / test runtime metrics |\n| HAT-N8-01 | HR-NFR-P8-01 | HAC-N8-01a/b | high-impact operation は action-binding approval なしに適用されない。version-up / cutover approval は current packet の `sha256:` snapshotId を `reviewed_snapshot_binding` に持たない限り approval packet 上 pending であり、`activationSnapshot.snapshotId` / `cutoverSnapshot.snapshotId` という field 名だけでは実行許可にならない。version-up approval は repo HEAD に bound した current activation snapshot で検証し、`repoHeadSha` が無い直接入力では null HEAD snapshot を正とせず pending にする | approval-boundary tests |\n| HAT-N8-02 | HR-NFR-P8-02 | HAC-N8-02a/b | prompt injection / tool injection / exfiltration 誘導が audit され deny/review に止まる | prompt-injection filter tests |\n| HAT-N8-03 | HR-NFR-P8-03 | HAC-N8-03a/b | agentic AI 昇格が task scope、least privilege、rollback、monitoring、risk owner、threat model 更新を要求する | agentic-risk gate tests |\n| HAT-NAC-01 | HR-NFR-AC-01 | HAC-NAC-01a/b | runtime adapter/agent/skill/template の rule drift を検出する | rule-drift/catalog tests |\n| HAT-NAC-02 | HR-NFR-AC-02 | HAC-NAC-02a/b | hosted API/developer tool surface は preflight evidence なしに通らない | `tests/hosted-preflight.test.ts` |\n| HAT-NAC-03 | HR-NFR-AC-03 | HAC-NAC-03a/b | AI runtime が provider API 直叩き前提ではなく PLAN artifact / CLI adapter / harness DB trace / dry-run plan を正本にする | runtime-route / approval-boundary tests |\n"
+        }
+      ]
+    },
+    {
+      "label": "legacy_architecture_single_secret_predicate",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L4-basic-design/architecture.md",
+      "full_bytes": 38025,
+      "full_sha256": "f4b9fcb98b4250879955f6eca0f2916dc1a27046820a8ad687e8f816b856bea2",
+      "spans": [
+        {
+          "lines": "61-64",
+          "bytes": 1378,
+          "sha256_including_lf": "f3e3e7a78946dcf2810c9eb7e8c2fe5c48f1d0f343460a3e5e3a78f4e7de5810",
+          "text": "| **policy** (`src/policy/`) | DB/runtime 非依存の判断 policy。feedback lifecycle の codec / reconcile / resolve を保持し、projection と journal adapter の共有核にする | `resolveFeedbackLifecycle()` / `reconcileFeedbackLifecycle()` | security |\n| **semantic** (`src/semantic/`) | Python 意味コアが返す semantic result envelope と hybrid document sidecar descriptor を Node 実行境界側で形式再検証する pure layer (ADR-010 / PLAN-L7-524、Issue #230)。schema / digest 再計算 / provenance / contract 束縛だけを検査し、payload の意味は再実装しない (意味判定重複 0)。filesystem / clock / DB を読まず write authority を持たない | `canonicalizeSidecarDescriptor()` / `revalidateSemanticEnvelope()` | (なし — 依存の末端 = pure 検証層) |\n| **security** (`src/security/`) | secret 様 token の pattern / predicate を機能 module から独立した単一正本として保持する | `SECRET_PATTERN` / `isSecretLike()` | (なし — 依存の末端 = 安定核) |\n| **shared** (`src/shared/`) | runtime / lint / audit など複数層が共有する、業務判断を持たない低位の pure utility。repository identity と shell quoting の重複実装を防ぎ、上位 module への逆依存を禁止する | `resolveRepositoryIdentity()` / `quoteShellArg()` | Node 標準 API のみ |\n"
+        }
+      ]
+    }
+  ],
+  "semantic_findings": [
+    {
+      "parent": "006",
+      "finding": "none identified in scoped document oracle",
+      "reason": "fixed source/destination/protocol/path/classification/bytes/purpose/authority/expiry; explicit allowed positive, separate mismatches/unknown negatives; 1.0 general egress is not gated on 1.x asset sink. No L1-unbacked amount threshold added.",
+      "legacy_treatment": "CAP-004 (authority doc lines 163-164; paired test row23, mutation 48-49) partial reuse analogy for classification/sink separation; current scope and owner split rederived from fixed L2; no legacy runtime copied."
+    },
+    {
+      "parent": "007",
+      "finding": "none identified in scoped document oracle",
+      "reason": "all 9 controls have independent fixture row, expected evidence owner and fail condition; L10 has separate enforcement-unknown and unobserved cases at AC level; NFR-006 uses declared policy values and no invented resource/timeout threshold. 90s/CPU1/256MiB are marked fixture-only and match fixed L11 detailed fixtures.",
+      "legacy_treatment": "CAP-006 paired acceptance row25 partially analogous only for runtime surface coverage/unsupported-host-fallback stop. Full per-control tuple rederived from fixed L2/L11; Runner/Sandbox actors not reinstated."
+    },
+    {
+      "parent": "008",
+      "finding": "none identified in scoped document oracle",
+      "reason": "11 operation kinds are separate; AC has individual operation substitution negatives; seven tuple fields independently drift in NFR-002, with purpose kept under 006. No false success via broad Agent permission identified.",
+      "legacy_treatment": "CAP-001/paired row20 partial analogy for typed operation/impact and fail-close; SEA rows24-25 adjacent source for authority tuple/expiry; current operation set and owner split rederived from fixed L2, old runtime not reused."
+    },
+    {
+      "parent": "010",
+      "finding": "none identified; watchpoint only",
+      "reason": "15 target kinds are listed in fixed L2/L11 and current AC/CASE. Each target representative fixture enumerates relevant provenance/digest/delta/new executable/finding/rollback fields; omission for any of 15 is expected unknown/reject. Unseen valid candidate keeps same contract. CASE wording groups the matrix of missing fields rather than enumerating 15xN separate CASE IDs, but FR/CASE oracle applies missing relevant info per target and NFR-008 supplies crosscut evidence rule; no concrete paired false-success path found.",
+      "watchpoint": "If future elaboration claims each target×field has a separately executable negative, current case IDs do not enumerate that matrix. Do not infer execution from this static oracle; no new CASE/gate recommended from this audit alone.",
+      "legacy_treatment": "Pillar FR and acceptance sections read; adjacent version-up/rollback and provenance coverage is not an exact update-candidate 15-target source. Treat old assets as adjacent evidence only; derive list/fields from fixed PO §11/L2-010."
+    },
+    {
+      "parent": "011",
+      "finding": "none identified in scoped document oracle",
+      "reason": "same-file/read-only→write+shell+network capability transition negative plus model/Agent/MCP/plugin applicability; unknown classification is not accepted and true no-diff is a distinct unseen positive. No product capability algorithm or threshold invented.",
+      "legacy_treatment": "Pillar FR/test relevant adjacent risk/change examples only; exact capability-diff rule rederived from PO §12/fixed L2. No old runtime/test used."
+    }
+  ],
+  "nfr_applicability": {
+    "006": null,
+    "007": [
+      "SEC-NFR-006"
+    ],
+    "008": [
+      "SEC-NFR-002",
+      "SEC-NFR-007"
+    ],
+    "010": [
+      "SEC-NFR-008"
+    ],
+    "011": [],
+    "pins": {
+      "row006": {
+        "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+        "lines": "14-14",
+        "bytes": 33,
+        "sha256_including_lf": "618a584ac8071b6c25f4b744907fed0bb5bf26737659ff4e44267b6929ceb94e",
+        "text": "| `HELIXSECURITY-L2-006` | — |\n"
+      },
+      "row007": {
+        "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+        "lines": "15-15",
+        "bytes": 41,
+        "sha256_including_lf": "f4d6f6ab080fd654c3021b7c1a85d96d9df63e1426b06ee8408e37b79003e6ae",
+        "text": "| `HELIXSECURITY-L2-007` | SEC-NFR-006 |\n"
+      },
+      "row008": {
+        "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+        "lines": "16-16",
+        "bytes": 54,
+        "sha256_including_lf": "54bc4a6fbbef9b46030bcf83eebca6ae618e233fed59b0394653929441f9b4a5",
+        "text": "| `HELIXSECURITY-L2-008` | SEC-NFR-002, SEC-NFR-007 |\n"
+      },
+      "row010": {
+        "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+        "lines": "18-18",
+        "bytes": 41,
+        "sha256_including_lf": "3f7abc3d04eb3872614a32f2de4d5bb306c2395d6c8f9d4977e6c73246f41581",
+        "text": "| `HELIXSECURITY-L2-010` | SEC-NFR-008 |\n"
+      },
+      "row011": {
+        "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+        "lines": "19-19",
+        "bytes": 33,
+        "sha256_including_lf": "6ea9e370a06cec2e132a2c8b83c0eccb882b69384222d68cbfaf474368454602",
+        "text": "| `HELIXSECURITY-L2-011` | — |\n"
+      }
+    },
+    "notes": "SEC-NFR-007 is shared across 008 but expiry candidate comparator is not PO-approved; current text labels it candidate. 010 uses retention evidence only; no fixed retention duration."
+  },
+  "prior_audit_corrections": {
+    "security_001_005": {
+      "prior_md": "/tmp/security-stage1-001-005-semantic-audit-37a8283.md",
+      "prior_json": "/tmp/security-stage1-001-005-semantic-audit-37a8283.json",
+      "correction": "Prior audit wrote abbreviated 39-character base commit. Exact 40-character base is 37a8283be429c57f3706153ad522e7ad288fecc3. Prior record retained immutable. It has exactly five CASE definition headings total, one for each of the five parents 001–005; JSON per-parent case_definition_heading_count=1 is the source. It does not mean five cases per parent."
+    },
+    "harness_054": {
+      "prior_addendum_json": "/tmp/harness-stage3-parent054-adoption-attribution-correction-2026-10-08.json",
+      "decision_path": "docs/governance/decisions/helix-harness-stage3-parent054-l3-l10-po-decision-2026-10-07.md",
+      "decision_record_snapshot_commit": "37a8283be429c57f3706153ad522e7ad288fecc3",
+      "decision_record_blob_sha256": "1618022852982d0bec7257c4236f70bc13dc392b4770f3f99a9500c2887b6e6a",
+      "reviewed_content_revision": "3f8dd46b933cec2f1733d98e17cc30e046d6bb06",
+      "review_base": "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c",
+      "reviewed_content_head": "2254c2458fc088e06561a5a10874744012f3a5ff",
+      "authority_effect": "effective_when_this_record_is_admitted_to_main",
+      "correction": "Prior addendum field stage3_scope_decision.revision used base/read-as-of commit C as though it identified the reviewed Stage3 revision. It should distinguish record read snapshot C from decision record reviewed_content_revision, review_base, reviewed_content_head, and decision-record blob SHA above. No claim about the commit that originally introduced the decision file is made."
+    }
+  },
+  "not_checked": [
+    "Runtime/implementation behavior, all fixtures/tests/CI; no old runtime/test executed.",
+    "Other Stage1 parents 012–016,020,028,033; Stage2c; later stages; external consumer closure.",
+    "L3 approval, PO post-confirmation, L10 execution/measurement, production credentials."
+  ],
+  "static_checks": {
+    "exact_commit_resolves": true,
+    "read_source": "git show <40-char commit>:<path>",
+    "case_heading_counts_all_one": true,
+    "BR_BV_no_independent_stage1_AC_confirmed": true,
+    "repo_mutation": false,
+    "old_runtime_or_ci_run": false,
+    "recomputed_full_and_span_pins_pass": true,
+    "pin_comparison_count": 66,
+    "case_and_AC_count_pass": true
+  }
+}

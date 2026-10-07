@@ -1,0 +1,208 @@
+{
+  "record_type": "append_only_semantic_audit_index_mapping_correction",
+  "record_date": "2026-10-08",
+  "recorded_at_utc": "2026-10-07T21:24:26Z",
+  "current_main": "dddab671b034b866efeb56af8f6c0f192a06fe3f",
+  "index_snapshot_base": "d629e25254a7c1d505543a0ce6ca3183c3fc4d67",
+  "immutable_original_index": [
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-index-d629e2525-2026-10-08.md",
+      "bytes": 90171,
+      "sha256": "5a844bad47ad27662200c70cacbaef0d67e3c585fcd6381dd983aa27f3719aa7",
+      "changed": false
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-index-d629e2525-2026-10-08.json",
+      "bytes": 1060032,
+      "sha256": "95447df5f9f63e07e19cd884744a48328031f5cdc1dea2d22602871314b9458f",
+      "changed": false
+    }
+  ],
+  "source_snapshot": {
+    "path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/os-stage2b-014_stage2c-028-029-meaning-audit-e028e18.json",
+    "bytes": 22055,
+    "sha256": "dfb417dfd3a4814d4027932f23950bc9c4420964cc75bb0c3b519d8d70abcf66",
+    "locator": "$/reported_findings/findings/0"
+  },
+  "corrections": [
+    {
+      "parent": "HELIXLABO-L2-063",
+      "original_index_locator": {
+        "md_line": 211,
+        "json_pointer": "/parents/198"
+      },
+      "from": "PR #2687 OPEN",
+      "to": "PR #2694 OPEN, scoped residual-repair proposal; #2687 removed",
+      "evidence": {
+        "pr": 2694,
+        "state": "OPEN",
+        "head": "838caee4f198a7dfe66c1137ac4c7a04ce8f512a",
+        "base": "ce70628e53ff5f78c1321accf57429c740ea585d",
+        "author_comment_id": 6047025779,
+        "author_comment_sha256": "84423e073fdcae8253b19fefa61efeba026ddaa4c3b6766922cce46c518cc5bf",
+        "independent_formal_review": "not present at snapshot"
+      },
+      "scope_note": "#2687 formal review02/03 and diff are limited to LABO059/067; #2694 addresses LABO063 but is not independently reviewed or semantically complete."
+    },
+    {
+      "parent": "HELIXLABO-L2-064",
+      "original_index_locator": {
+        "md_line": 212,
+        "json_pointer": "/parents/199"
+      },
+      "from": "PR #2687 OPEN",
+      "to": "unknown; remove #2687",
+      "evidence": {
+        "pr": 2687,
+        "state": "MERGED",
+        "head": "d3b54c0edffe741bb15235c031405ed63a790c1f",
+        "merge": "f0e210b3cdf5c1f95dfcf07cfc3504a240dd2e4d",
+        "formal_comments": [
+          6046633021,
+          6046670771
+        ]
+      },
+      "scope_note": "#2687 scope covers only 059/067."
+    },
+    {
+      "parent": "HELIXLABO-L2-065",
+      "original_index_locator": {
+        "md_line": 213,
+        "json_pointer": "/parents/200"
+      },
+      "from": "PR #2687 OPEN",
+      "to": "unknown; remove #2687",
+      "evidence": {
+        "pr": 2687,
+        "state": "MERGED",
+        "head": "d3b54c0edffe741bb15235c031405ed63a790c1f",
+        "merge": "f0e210b3cdf5c1f95dfcf07cfc3504a240dd2e4d",
+        "formal_comments": [
+          6046633021,
+          6046670771
+        ]
+      },
+      "scope_note": "#2687 scope covers only 059/067."
+    },
+    {
+      "parent": "HELIXLABO-L2-061",
+      "original_index_locator": {
+        "md_line": 210,
+        "json_pointer": "/parents/197"
+      },
+      "from": "unknown",
+      "to": "unknown (unchanged)",
+      "evidence": {
+        "original_authoring_pr": 2629,
+        "state": "MERGED",
+        "merge": "048a1770d10f5a1f24f7cf0a95f43dfdc318591d",
+        "title": "LABO親061のL3要件とL10総合検証を再導出",
+        "repair_pr": "not identified in current PR API snapshot",
+        "root_report": "Root reports internal acceptance of a parent061 correction; a corresponding dedicated repair PR was not identified in the API snapshot."
+      },
+      "scope_note": "Keep the PR-to-parent mapping unknown; distinguish reported internal acceptance from external PR mapping and semantic completion."
+    },
+    {
+      "parent": "HELIXLABO-L2-070",
+      "original_index_locator": {
+        "md_line": 218,
+        "json_pointer": "/parents/205"
+      },
+      "from": "#2661 MERGED",
+      "to": "#2661 MERGED; add #2691 MERGED",
+      "evidence": {
+        "pr": 2691,
+        "head": "2224d101c2fd62ecea57e0b87abc153ccd7b5dc1",
+        "merge": "ce70628e53ff5f78c1321accf57429c740ea585d",
+        "formal_comments": [
+          6046922666,
+          6046956598
+        ],
+        "current_locators": [
+          "docs/helix-labo/L3-requirements/functional-requirements.md:1961",
+          "docs/helix-labo/L10-verification/functional-verification.md:3736-3737"
+        ]
+      },
+      "scope_note": "CASE131/132 prohibit separate task_success_rate and attempt_success_rate output; merge is not whole-parent semantic closure."
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-063",
+      "original_index_locator": {
+        "md_line": 150,
+        "json_pointer": "/parents/137"
+      },
+      "from": "no repair PR mapped",
+      "to": "add #2681 MERGED",
+      "evidence": {
+        "pr": 2681,
+        "head": "94e43fa6d28ba8e798ff6bb78ac523f325aa501d",
+        "merge": "e028e18c90e83295c84d77c4829702a349bce0dc",
+        "formal_comments": [
+          6045484458,
+          6045559566
+        ],
+        "current_locators": [
+          "docs/helix-intelligence/L3-requirements/functional-requirements.md:690",
+          "docs/helix-intelligence/L10-verification/functional-verification.md:2454",
+          "docs/helix-intelligence/L10-verification/functional-verification.md:2652-2653"
+        ]
+      },
+      "scope_note": "Limited INT063/069 index/case consistency correction; not full parent semantic closure."
+    },
+    {
+      "parent": "HELIXOS-L2-028",
+      "original_index_locator": {
+        "md_line": 234,
+        "json_pointer": "/parents/221"
+      },
+      "from": "contract version/verification scope descriptor coverage follow-up",
+      "to": "selected-source identity/provenance/relevance/constraints independent oracle and NFR census candidate; #2688 MERGED",
+      "evidence": {
+        "source_audit": "A049",
+        "pr": 2688,
+        "state": "MERGED",
+        "head": "1eaf8265db542fc06a7757f5da505e72f255dc9c",
+        "merge": "dddab671b034b866efeb56af8f6c0f192a06fe3f",
+        "formal_comments": [
+          6046174165,
+          6046990637
+        ],
+        "case_locator": "docs/helix-os/L10-verification/functional-verification.md:141-144"
+      },
+      "scope_note": "Corrected finding text follows A049; PR is limited to OS028/029 and does not certify whole-parent closure."
+    },
+    {
+      "parent": "HELIXOS-L2-036",
+      "original_index_locator": {
+        "md_line": 241,
+        "json_pointer": "/parents/228"
+      },
+      "from": "unknown; #2680 MERGED",
+      "to": "unknown; #2680 remains a narrow merged correction; old audit hash correction pending",
+      "evidence": {
+        "pr": 2680,
+        "state": "MERGED",
+        "head": "3fa0f40c62bc937252ca0bf98be772661eedd320",
+        "merge": "d8a6be234c17a8ce44b9f000c2f41ebf15a70434",
+        "historical_audit_refs": [
+          "A051",
+          "A052"
+        ],
+        "hash_correction": "not performed by this supplement"
+      },
+      "scope_note": "No semantic completion inferred; original snapshot remains immutable."
+    }
+  ],
+  "api_snapshot": {
+    "main": "dddab671b034b866efeb56af8f6c0f192a06fe3f",
+    "observed_at_utc": "2026-10-07T21:24:26Z"
+  },
+  "limitations": [
+    "No full 274-parent semantic re-review.",
+    "No fixtures were run.",
+    "PR merge and review metadata do not create approval or semantic completion.",
+    "LABO061 remains unknown.",
+    "LABO063 #2694 is open and awaiting independent review.",
+    "OS036 A051/A052 historical audit hash correction is outside this supplement and remains pending."
+  ]
+}

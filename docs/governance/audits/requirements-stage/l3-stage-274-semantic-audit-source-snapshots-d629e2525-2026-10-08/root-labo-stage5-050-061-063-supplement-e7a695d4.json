@@ -1,0 +1,984 @@
+{
+  "kind": "read_only_semantic_audit_supplement",
+  "created_at": "2026-10-08",
+  "main_revision": "e7a695d4b2de64aec69a1a123de2fde33be724cf",
+  "authority_effect": "none",
+  "previous_reports": {
+    "/tmp/root-labo-stage5-050-semantic-review-37a8283.md": {
+      "bytes": 1521,
+      "sha256": "99ea05f1bca8cf390fec7f9e99c4fe1a86ba89d6eb2bb2f3b43d207e7df19ba5"
+    },
+    "/tmp/root-labo-stage5-050-semantic-review-37a8283.json": {
+      "bytes": 2745,
+      "sha256": "8b9c0cb976d163fc7cec460a62f552adeffef7ed9099961ebc435b849e9a426b"
+    },
+    "/tmp/root-labo-stage5-061-semantic-review-0d8fcb67.md": {
+      "bytes": 1166,
+      "sha256": "d9d74273b8065e6182e51897f7385fddc6b59d11c4307ca2ffa56adc1d621e32"
+    },
+    "/tmp/root-labo-stage5-061-semantic-review-0d8fcb67.json": {
+      "bytes": 16732,
+      "sha256": "41a2ac9f8829a770898656fde0657be6347d11780cf9af4befbb6039c089b65a"
+    },
+    "/tmp/root-labo-stage5-063-semantic-review-0d8fcb67.md": {
+      "bytes": 1218,
+      "sha256": "43f9b9ebf8aef7394122a4b7c4a27097363503c13c96608132aa5aea312755b4"
+    },
+    "/tmp/root-labo-stage5-063-semantic-review-0d8fcb67.json": {
+      "bytes": 10405,
+      "sha256": "7dae01d7039e59ffa53dfbe86c4eed7b58d0878c31ce31f98cf1c4f54ac3e4ff"
+    }
+  },
+  "parents": {
+    "050": {
+      "previous_report_revision": "37a8283be429c57f3706153ad522e7ad288fecc",
+      "fixed_authority_parent": {
+        "decision": "docs/governance/decisions/helix-labo-stage5-parent050-l3-l10-po-decision-2026-10-06.md",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "pins": [
+          {
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "full_bytes": 73845,
+            "full_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+            "lines": [
+              298,
+              303
+            ],
+            "span_bytes": 1246,
+            "span_sha256": "cf8c0d89eed3ce45df65af0f5813f94a2e8bfc0508547c5157f11ac117f3f907"
+          },
+          {
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "full_bytes": 40455,
+            "full_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+            "lines": [
+              120,
+              126
+            ],
+            "span_bytes": 1507,
+            "span_sha256": "9cb6f2b92ea221e92a410a39cc4012ac2050337d08a41ac51bac7863a8e8c5bd"
+          }
+        ]
+      },
+      "six_docs": {
+        "BR": {
+          "revision": "origin/main",
+          "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+          "full_bytes": 32852,
+          "full_sha256": "057caceeb0d2269cfc58bec6011ea26233c4272cef71ec90fbaabc497f78d183",
+          "lines": [
+            58,
+            64
+          ],
+          "span_bytes": 601,
+          "span_sha256": "25960306ce511961d802c4b5e76d16440e22ba97164416355a9372a73b46a62d",
+          "scope_matches_previous_report_span": true
+        },
+        "FR": {
+          "revision": "origin/main",
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+          "full_bytes": 354046,
+          "full_sha256": "5a97eef5d322f8b79d5bce433494c7ad1548fa1b6ef1eb27749882036f7afece",
+          "lines": [
+            1555,
+            1597
+          ],
+          "span_bytes": 8805,
+          "span_sha256": "89ffd03a7218a34999cb4d9806004c4f63b7001cdca1f0c7d50e4c5f49453d41",
+          "scope_matches_previous_report_span": true
+        },
+        "NFR": {
+          "revision": "origin/main",
+          "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+          "full_bytes": 91242,
+          "full_sha256": "1272733e555a25b5ee62bdeb87e3caf47ac41bc4fb982d4faca4006fffb8ddbc",
+          "lines": [
+            161,
+            167
+          ],
+          "span_bytes": 2277,
+          "span_sha256": "4faf1b79adfe09795c9ad5adc1af9a5e6b8e042c7990d01d5cdb7b321f72c91d",
+          "scope_matches_previous_report_span": true
+        },
+        "BV": {
+          "revision": "origin/main",
+          "path": "docs/helix-labo/L10-verification/business-verification.md",
+          "full_bytes": 31387,
+          "full_sha256": "df60d5b7410107c249636b3dc5989f0cfdf6291a17e8e169a37971cd36bf37cb",
+          "lines": [
+            58,
+            63
+          ],
+          "span_bytes": 453,
+          "span_sha256": "126e4a6e0d310b18aabea67f1c4751903ac05fd6ea930d7d827637cb5e6da9ea",
+          "scope_matches_previous_report_span": true
+        },
+        "FV": {
+          "revision": "origin/main",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "full_bytes": 692699,
+          "full_sha256": "5242a94fed5618792f7d2ecc8c1b6a13cf4788e79fb66b2e0b2312f34425a29e",
+          "lines": [
+            2561,
+            2609
+          ],
+          "span_bytes": 12240,
+          "span_sha256": "222a96ff2504c5dd33faff7565f0492083159e988dd99424de4c1a6919c0c925",
+          "scope_matches_previous_report_span": true
+        },
+        "NFRV": {
+          "revision": "origin/main",
+          "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+          "full_bytes": 82074,
+          "full_sha256": "2983f735ae142e126946039b195a0be483b476ffa35ef5cffee976d9f299146a",
+          "lines": [
+            119,
+            123
+          ],
+          "span_bytes": 1758,
+          "span_sha256": "9f5fa6c45fdd5db60ac1a30dd2d88d50d8c0ba3b379711fe08ea3e7fc3ea8315",
+          "scope_matches_previous_report_span": true
+        }
+      },
+      "legacy_assets": [
+        {
+          "role": "旧要件source",
+          "asset_id": "LEGACY-ASSET-02D897E62EF2FA267267",
+          "source": {
+            "asset_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+            "bytes": 12101,
+            "full_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+            "spans": [
+              {
+                "lines": [
+                  43,
+                  76
+                ],
+                "bytes": 2720,
+                "sha256": "f6637e2a6d7a7d22377ad32f54b642dfb1165e35338e4fb99b36c9b4619d4262"
+              },
+              {
+                "lines": [
+                  162,
+                  196
+                ],
+                "bytes": 1901,
+                "sha256": "8ad6227a7fcdb0bdf425c276f160814a233cf9e4a9aacc761d79b530ea9969c4"
+              },
+              {
+                "lines": [
+                  175,
+                  187
+                ],
+                "bytes": 715,
+                "sha256": "a8bc402d973c893760ab2c0a915afc06edfd13de98efe4e45c6153e946a4cab0"
+              },
+              {
+                "lines": [
+                  210,
+                  220
+                ],
+                "bytes": 313,
+                "sha256": "0993323c98cb022e42bec06ed94653d5bd707ab1b555cea30d3b6d6d42ca8b1c"
+              }
+            ]
+          },
+          "mapping": "UIL-R-01/02/15 (43–76), change/effect/terminal (162–196); R-11/R-12 (175–187) and lifecycle sequence (210–220)."
+        },
+        {
+          "role": "paired acceptance consumer",
+          "asset_id": "LEGACY-ASSET-0B5B38F146D9538C9A36",
+          "source": {
+            "asset_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-improvement-loop-acceptance.md",
+            "bytes": 4977,
+            "full_sha256": "f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943",
+            "spans": [
+              {
+                "lines": [
+                  20,
+                  42
+                ],
+                "bytes": 3749,
+                "sha256": "0153d16f55121852caf7c84d57b92bbc0b584a8e654063bffff4be1ee789c673"
+              },
+              {
+                "lines": [
+                  36,
+                  37
+                ],
+                "bytes": 300,
+                "sha256": "0f47af7ba6f0c426ec31a4dcedcdf33447a5b2112f437e1698ef7c26e4066ff2"
+              },
+              {
+                "lines": [
+                  39,
+                  39
+                ],
+                "bytes": 142,
+                "sha256": "2057047d67792b67674a840bf81104aa50b995cfac1bbdcaffe716f858e5e99f"
+              }
+            ]
+          },
+          "mapping": "UIL-AC-001–023 (20–42), including state order/identity AC-020 at 39."
+        },
+        {
+          "role": "関連旧requirement source",
+          "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+          "source": {
+            "asset_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+            "bytes": 65731,
+            "full_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+            "spans": [
+              {
+                "lines": [
+                  149,
+                  156
+                ],
+                "bytes": 1842,
+                "sha256": "b5bc55097d47878fc3943b621ffeed2a7ad657313f3c9e809cf7b5f80962344a"
+              },
+              {
+                "lines": [
+                  230,
+                  242
+                ],
+                "bytes": 2006,
+                "sha256": "8f3e61c2f01e11362d07e74edacce7ba835e2249b03f2ac4b674ea27a970f616"
+              }
+            ]
+          },
+          "mapping": "HR-FR-P4-02 (155), HAC-P4-02a/b (239–240); repair close/recipe保存と予防候補."
+        },
+        {
+          "role": "paired acceptance consumer",
+          "asset_id": "LEGACY-ASSET-44DD86E3DEC09E65EF51",
+          "source": {
+            "asset_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+            "bytes": 30874,
+            "full_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+            "spans": [
+              {
+                "lines": [
+                  111,
+                  113
+                ],
+                "bytes": 561,
+                "sha256": "ebdbb94005d30a24c3e61e3d0b2077c7c13d24f8c7ba5f30ef0fff9994f8c01b"
+              },
+              {
+                "lines": [
+                  112,
+                  112
+                ],
+                "bytes": 164,
+                "sha256": "7e567d6913cb01071968d1f08e6f8e48883e57f2174af8c043408734e5e0ac9e"
+              }
+            ]
+          },
+          "mapping": "HAT-P4-02 at 112 (paired to P4-02a/b); consumer reference only."
+        },
+        {
+          "role": "関連旧requirement source",
+          "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+          "source": {
+            "asset_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+            "bytes": 18905,
+            "full_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+            "spans": [
+              {
+                "lines": [
+                  33,
+                  83
+                ],
+                "bytes": 16653,
+                "sha256": "1d08c991cceede0ae99275a39865df9f71b0049bc6f7efde6a2ac282dcadf788"
+              }
+            ]
+          },
+          "mapping": "HAC-HIL-02b at 65; observable FR/AC, transition/failure contract as format precedent."
+        },
+        {
+          "role": "paired acceptance consumer",
+          "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+          "source": {
+            "asset_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+            "bytes": 7819,
+            "full_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+            "spans": [
+              {
+                "lines": [
+                  31,
+                  56
+                ],
+                "bytes": 6193,
+                "sha256": "ac49626b80b39d8c071d692d3e76e311e6b2408bc22fcd612702bcb4dbe71fd2"
+              }
+            ]
+          },
+          "mapping": "HAT-HIL-02 at 34; paired requirement/acceptance consumer."
+        }
+      ]
+    },
+    "061": {
+      "previous_report_revision": "0d8fcb67ef64e17e0e3529715011d6140652f017",
+      "fixed_authority_parent": {
+        "decision": "docs/governance/decisions/helix-labo-stage5-parent061-l3-l10-po-decision-2026-10-06.md",
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "pins": [
+          {
+            "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "full_bytes": 113504,
+            "full_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+            "lines": [
+              457,
+              469
+            ],
+            "span_bytes": 4951,
+            "span_sha256": "9f064d206645f1db6ef946a78ddfd2fe6656c003c4af86ed46c54dab2ee4ad3a"
+          },
+          {
+            "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "full_bytes": 66593,
+            "full_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+            "lines": [
+              205,
+              215
+            ],
+            "span_bytes": 3030,
+            "span_sha256": "d7c170e0b047db4a74ef955f1295a5d8fc893cd0ca84aefc72d96b764ed1bb1b"
+          }
+        ]
+      },
+      "six_docs": {
+        "BR": {
+          "revision": "origin/main",
+          "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+          "full_bytes": 32852,
+          "full_sha256": "057caceeb0d2269cfc58bec6011ea26233c4272cef71ec90fbaabc497f78d183",
+          "lines": [
+            88,
+            94
+          ],
+          "span_bytes": 514,
+          "span_sha256": "e6812d05ee55102ca7201695ead6c4031bebcded7066ba541048680cb25a0961",
+          "scope_matches_previous_report_span": true
+        },
+        "FR": {
+          "revision": "origin/main",
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+          "full_bytes": 354046,
+          "full_sha256": "5a97eef5d322f8b79d5bce433494c7ad1548fa1b6ef1eb27749882036f7afece",
+          "lines": [
+            1687,
+            1715
+          ],
+          "span_bytes": 4884,
+          "span_sha256": "b9f1941fce8da7089da5d373d80c403ec3ee788e2f73efeb1607c7f6d2659a61",
+          "scope_matches_previous_report_span": true
+        },
+        "NFR": {
+          "revision": "origin/main",
+          "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+          "full_bytes": 91242,
+          "full_sha256": "1272733e555a25b5ee62bdeb87e3caf47ac41bc4fb982d4faca4006fffb8ddbc",
+          "lines": [
+            187,
+            195
+          ],
+          "span_bytes": 1327,
+          "span_sha256": "2bc27335c61d7ffe153943476b84f8249b98ee8881164d9355de880c3297eab0",
+          "scope_matches_previous_report_span": true
+        },
+        "BV": {
+          "revision": "origin/main",
+          "path": "docs/helix-labo/L10-verification/business-verification.md",
+          "full_bytes": 31387,
+          "full_sha256": "df60d5b7410107c249636b3dc5989f0cfdf6291a17e8e169a37971cd36bf37cb",
+          "lines": [
+            86,
+            90
+          ],
+          "span_bytes": 366,
+          "span_sha256": "fcf42762e748ab7f9f2662907463f29d2c3cef575fbc5ae4b6fa40c23278df71",
+          "scope_matches_previous_report_span": true
+        },
+        "FV": {
+          "revision": "origin/main",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "full_bytes": 692699,
+          "full_sha256": "5242a94fed5618792f7d2ecc8c1b6a13cf4788e79fb66b2e0b2312f34425a29e",
+          "lines": [
+            2785,
+            2925
+          ],
+          "span_bytes": 39737,
+          "span_sha256": "bccb0766e18db0bd578268b7553d1fa7e8ca448b1ef8921a7f364174af1283a6",
+          "scope_matches_previous_report_span": true
+        },
+        "NFRV": {
+          "revision": "origin/main",
+          "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+          "full_bytes": 82074,
+          "full_sha256": "2983f735ae142e126946039b195a0be483b476ffa35ef5cffee976d9f299146a",
+          "lines": [
+            138,
+            144
+          ],
+          "span_bytes": 1111,
+          "span_sha256": "e2ed928d13dfbc2fc7728f9a9e717492b63ff6a0ebeaaa3288a78e189d5623e2",
+          "scope_matches_previous_report_span": true
+        }
+      },
+      "legacy_assets": [
+        {
+          "role": "旧requirement source",
+          "asset_id": "LEGACY-ASSET-28FB139B26CD61CC51EE",
+          "source": {
+            "asset_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+            "bytes": 6446,
+            "full_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+            "spans": [
+              {
+                "lines": [
+                  96,
+                  120
+                ],
+                "bytes": 524,
+                "sha256": "104c380e9629448b328712956892ea2227537041196a68699453a1282170bd81"
+              },
+              {
+                "lines": [
+                  143,
+                  147
+                ],
+                "bytes": 351,
+                "sha256": "1528cbcdf178907860401f6155b405693cce7e21540e05bc5cc013ad39963c9f"
+              }
+            ]
+          },
+          "mapping": "HELIX-BENCH-R-04 required task snapshot (96–120) and R-08 version/digest, author/judge/history (143–147)."
+        },
+        {
+          "role": "paired acceptance consumer",
+          "asset_id": "LEGACY-ASSET-A952A3A175EB82A4781B",
+          "source": {
+            "asset_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+            "bytes": 3701,
+            "full_sha256": "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185",
+            "spans": [
+              {
+                "lines": [
+                  32,
+                  33
+                ],
+                "bytes": 346,
+                "sha256": "3cdb4d91077389acb1aefe0363808c0b342071281813c137076bab1bc73a2873"
+              },
+              {
+                "lines": [
+                  39,
+                  40
+                ],
+                "bytes": 367,
+                "sha256": "c45e013b69458a51a0526292f616881e3fccfc0daa39bed27f5b5526be216e55"
+              }
+            ]
+          },
+          "mapping": "AC-005/006 (32–33) and AC-012/013 (39–40), respectively paired to R-04/R-08."
+        }
+      ]
+    },
+    "063": {
+      "previous_report_revision": "0d8fcb67ef64e17e0e3529715011d6140652f017",
+      "fixed_authority_parent": {
+        "decision": "docs/governance/decisions/helix-labo-stage5-parent063-l3-l10-po-decision-2026-10-06.md",
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "pins": [
+          {
+            "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "full_bytes": 113504,
+            "full_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+            "lines": [
+              480,
+              489
+            ],
+            "span_bytes": 4297,
+            "span_sha256": "274ea8f4562f7677b90f72bdbc8ba474540fdb74e3f6ff9e6632ad1274566c1a"
+          },
+          {
+            "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "full_bytes": 66593,
+            "full_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+            "lines": [
+              225,
+              231
+            ],
+            "span_bytes": 1928,
+            "span_sha256": "5e7c8afa50b3f430b01b641f145abee034e0b4ef87af3a4146c820c9c9aea174"
+          }
+        ]
+      },
+      "six_docs": {
+        "BR": {
+          "revision": "origin/main",
+          "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+          "full_bytes": 32852,
+          "full_sha256": "057caceeb0d2269cfc58bec6011ea26233c4272cef71ec90fbaabc497f78d183",
+          "lines": [
+            95,
+            104
+          ],
+          "span_bytes": 1194,
+          "span_sha256": "209765cf03462d10a332cfa6081d0b65f6c13e5d14a47d9b4e80debaca8a36c4",
+          "scope_matches_previous_report_span": true
+        },
+        "FR": {
+          "revision": "origin/main",
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+          "full_bytes": 354046,
+          "full_sha256": "5a97eef5d322f8b79d5bce433494c7ad1548fa1b6ef1eb27749882036f7afece",
+          "lines": [
+            1716,
+            1772
+          ],
+          "span_bytes": 13113,
+          "span_sha256": "679643faed899a36a77dc465807b6be6872b91d1790d07ced278370e13e8de60",
+          "scope_matches_previous_report_span": true
+        },
+        "NFR": {
+          "revision": "origin/main",
+          "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+          "full_bytes": 91242,
+          "full_sha256": "1272733e555a25b5ee62bdeb87e3caf47ac41bc4fb982d4faca4006fffb8ddbc",
+          "lines": [
+            196,
+            205
+          ],
+          "span_bytes": 2124,
+          "span_sha256": "ecf67db38160a811aadccfcf0a5b980a7763e325802f521ea863e62437b3d4d3",
+          "scope_matches_previous_report_span": true
+        },
+        "BV": {
+          "revision": "origin/main",
+          "path": "docs/helix-labo/L10-verification/business-verification.md",
+          "full_bytes": 31387,
+          "full_sha256": "df60d5b7410107c249636b3dc5989f0cfdf6291a17e8e169a37971cd36bf37cb",
+          "lines": [
+            91,
+            100
+          ],
+          "span_bytes": 1003,
+          "span_sha256": "9d4e46759f280b255b4384828646d3a7fc0707558c7f8ed64c220e4ed6011346",
+          "scope_matches_previous_report_span": true
+        },
+        "FV": {
+          "revision": "origin/main",
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "full_bytes": 692699,
+          "full_sha256": "5242a94fed5618792f7d2ecc8c1b6a13cf4788e79fb66b2e0b2312f34425a29e",
+          "lines": [
+            2926,
+            3030
+          ],
+          "span_bytes": 22127,
+          "span_sha256": "da5dda6d2f8ab5565941613a9c4648e1426a38ab49253ae28def08c6cac51004",
+          "scope_matches_previous_report_span": true
+        },
+        "NFRV": {
+          "revision": "origin/main",
+          "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+          "full_bytes": 82074,
+          "full_sha256": "2983f735ae142e126946039b195a0be483b476ffa35ef5cffee976d9f299146a",
+          "lines": [
+            146,
+            153
+          ],
+          "span_bytes": 3656,
+          "span_sha256": "7cbf1e5580e56ae1c4b25fadd671509016cd920814022c75ae42225bb3488f6b",
+          "scope_matches_previous_report_span": true
+        }
+      },
+      "legacy_assets": [
+        {
+          "role": "direct old requirement source",
+          "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+          "source": {
+            "asset_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+            "bytes": 65731,
+            "full_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+            "spans": [
+              {
+                "lines": [
+                  149,
+                  156
+                ],
+                "bytes": 1842,
+                "sha256": "b5bc55097d47878fc3943b621ffeed2a7ad657313f3c9e809cf7b5f80962344a"
+              },
+              {
+                "lines": [
+                  230,
+                  242
+                ],
+                "bytes": 2006,
+                "sha256": "8f3e61c2f01e11362d07e74edacce7ba835e2249b03f2ac4b674ea27a970f616"
+              }
+            ]
+          },
+          "mapping": "HR-FR-P4-02 (155), HAC-P4-02a/b (239–240); success recipe storage and repeat repair promotion candidate."
+        },
+        {
+          "role": "paired acceptance consumer",
+          "asset_id": "LEGACY-ASSET-44DD86E3DEC09E65EF51",
+          "source": {
+            "asset_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+            "bytes": 30874,
+            "full_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+            "spans": [
+              {
+                "lines": [
+                  111,
+                  113
+                ],
+                "bytes": 561,
+                "sha256": "ebdbb94005d30a24c3e61e3d0b2077c7c13d24f8c7ba5f30ef0fff9994f8c01b"
+              },
+              {
+                "lines": [
+                  112,
+                  112
+                ],
+                "bytes": 164,
+                "sha256": "7e567d6913cb01071968d1f08e6f8e48883e57f2174af8c043408734e5e0ac9e"
+              }
+            ]
+          },
+          "mapping": "HAT-P4-02 at 112, paired to P4-02a/b."
+        },
+        {
+          "role": "related old requirement source",
+          "asset_id": "LEGACY-ASSET-02D897E62EF2FA267267",
+          "source": {
+            "asset_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+            "bytes": 12101,
+            "full_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+            "spans": [
+              {
+                "lines": [
+                  43,
+                  76
+                ],
+                "bytes": 2720,
+                "sha256": "f6637e2a6d7a7d22377ad32f54b642dfb1165e35338e4fb99b36c9b4619d4262"
+              },
+              {
+                "lines": [
+                  162,
+                  196
+                ],
+                "bytes": 1901,
+                "sha256": "8ad6227a7fcdb0bdf425c276f160814a233cf9e4a9aacc761d79b530ea9969c4"
+              },
+              {
+                "lines": [
+                  175,
+                  187
+                ],
+                "bytes": 715,
+                "sha256": "a8bc402d973c893760ab2c0a915afc06edfd13de98efe4e45c6153e946a4cab0"
+              },
+              {
+                "lines": [
+                  210,
+                  220
+                ],
+                "bytes": 313,
+                "sha256": "0993323c98cb022e42bec06ed94653d5bd707ab1b555cea30d3b6d6d42ca8b1c"
+              }
+            ]
+          },
+          "mapping": "UIL-R-11/R-12 (175–187) and recurrence lifecycle (210–220), related source for recipe promotion and recurrence tracking, not the direct P4 authority."
+        },
+        {
+          "role": "paired acceptance consumer",
+          "asset_id": "LEGACY-ASSET-0B5B38F146D9538C9A36",
+          "source": {
+            "asset_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-improvement-loop-acceptance.md",
+            "bytes": 4977,
+            "full_sha256": "f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943",
+            "spans": [
+              {
+                "lines": [
+                  20,
+                  42
+                ],
+                "bytes": 3749,
+                "sha256": "0153d16f55121852caf7c84d57b92bbc0b584a8e654063bffff4be1ee789c673"
+              },
+              {
+                "lines": [
+                  36,
+                  37
+                ],
+                "bytes": 300,
+                "sha256": "0f47af7ba6f0c426ec31a4dcedcdf33447a5b2112f437e1698ef7c26e4066ff2"
+              },
+              {
+                "lines": [
+                  39,
+                  39
+                ],
+                "bytes": 142,
+                "sha256": "2057047d67792b67674a840bf81104aa50b995cfac1bbdcaffe716f858e5e99f"
+              }
+            ]
+          },
+          "mapping": "UIL-AC-017/018 (36–37), paired consumer for recurrence/promotion source; related, not substitute for HAT-P4-02."
+        }
+      ]
+    }
+  },
+  "legacy_file_pins": {
+    "uil_requirements": {
+      "asset_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "bytes": 12101,
+      "full_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "spans": [
+        {
+          "lines": [
+            43,
+            76
+          ],
+          "bytes": 2720,
+          "sha256": "f6637e2a6d7a7d22377ad32f54b642dfb1165e35338e4fb99b36c9b4619d4262"
+        },
+        {
+          "lines": [
+            162,
+            196
+          ],
+          "bytes": 1901,
+          "sha256": "8ad6227a7fcdb0bdf425c276f160814a233cf9e4a9aacc761d79b530ea9969c4"
+        },
+        {
+          "lines": [
+            175,
+            187
+          ],
+          "bytes": 715,
+          "sha256": "a8bc402d973c893760ab2c0a915afc06edfd13de98efe4e45c6153e946a4cab0"
+        },
+        {
+          "lines": [
+            210,
+            220
+          ],
+          "bytes": 313,
+          "sha256": "0993323c98cb022e42bec06ed94653d5bd707ab1b555cea30d3b6d6d42ca8b1c"
+        }
+      ]
+    },
+    "uil_acceptance": {
+      "asset_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-improvement-loop-acceptance.md",
+      "bytes": 4977,
+      "full_sha256": "f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943",
+      "spans": [
+        {
+          "lines": [
+            20,
+            42
+          ],
+          "bytes": 3749,
+          "sha256": "0153d16f55121852caf7c84d57b92bbc0b584a8e654063bffff4be1ee789c673"
+        },
+        {
+          "lines": [
+            36,
+            37
+          ],
+          "bytes": 300,
+          "sha256": "0f47af7ba6f0c426ec31a4dcedcdf33447a5b2112f437e1698ef7c26e4066ff2"
+        },
+        {
+          "lines": [
+            39,
+            39
+          ],
+          "bytes": 142,
+          "sha256": "2057047d67792b67674a840bf81104aa50b995cfac1bbdcaffe716f858e5e99f"
+        }
+      ]
+    },
+    "pillar_requirements": {
+      "asset_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "bytes": 65731,
+      "full_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "spans": [
+        {
+          "lines": [
+            149,
+            156
+          ],
+          "bytes": 1842,
+          "sha256": "b5bc55097d47878fc3943b621ffeed2a7ad657313f3c9e809cf7b5f80962344a"
+        },
+        {
+          "lines": [
+            230,
+            242
+          ],
+          "bytes": 2006,
+          "sha256": "8f3e61c2f01e11362d07e74edacce7ba835e2249b03f2ac4b674ea27a970f616"
+        }
+      ]
+    },
+    "infinity_requirements": {
+      "asset_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "bytes": 18905,
+      "full_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "spans": [
+        {
+          "lines": [
+            33,
+            83
+          ],
+          "bytes": 16653,
+          "sha256": "1d08c991cceede0ae99275a39865df9f71b0049bc6f7efde6a2ac282dcadf788"
+        }
+      ]
+    },
+    "infinity_acceptance": {
+      "asset_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "bytes": 7819,
+      "full_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "spans": [
+        {
+          "lines": [
+            31,
+            56
+          ],
+          "bytes": 6193,
+          "sha256": "ac49626b80b39d8c071d692d3e76e311e6b2408bc22fcd612702bcb4dbe71fd2"
+        }
+      ]
+    },
+    "pillar_acceptance": {
+      "asset_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "bytes": 30874,
+      "full_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+      "spans": [
+        {
+          "lines": [
+            111,
+            113
+          ],
+          "bytes": 561,
+          "sha256": "ebdbb94005d30a24c3e61e3d0b2077c7c13d24f8c7ba5f30ef0fff9994f8c01b"
+        },
+        {
+          "lines": [
+            112,
+            112
+          ],
+          "bytes": 164,
+          "sha256": "7e567d6913cb01071968d1f08e6f8e48883e57f2174af8c043408734e5e0ac9e"
+        }
+      ]
+    },
+    "bench_requirements": {
+      "asset_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+      "bytes": 6446,
+      "full_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+      "spans": [
+        {
+          "lines": [
+            96,
+            120
+          ],
+          "bytes": 524,
+          "sha256": "104c380e9629448b328712956892ea2227537041196a68699453a1282170bd81"
+        },
+        {
+          "lines": [
+            143,
+            147
+          ],
+          "bytes": 351,
+          "sha256": "1528cbcdf178907860401f6155b405693cce7e21540e05bc5cc013ad39963c9f"
+        }
+      ]
+    },
+    "bench_acceptance": {
+      "asset_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+      "bytes": 3701,
+      "full_sha256": "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185",
+      "spans": [
+        {
+          "lines": [
+            32,
+            33
+          ],
+          "bytes": 346,
+          "sha256": "3cdb4d91077389acb1aefe0363808c0b342071281813c137076bab1bc73a2873"
+        },
+        {
+          "lines": [
+            39,
+            40
+          ],
+          "bytes": 367,
+          "sha256": "c45e013b69458a51a0526292f616881e3fccfc0daa39bed27f5b5526be216e55"
+        }
+      ]
+    }
+  },
+  "findings": [
+    {
+      "id": "C-050-01",
+      "status": "prior-record correction, not content finding",
+      "detail": "050旧JSONはfixed_sourceにL2 298–302/L11 98と誤記。公式PO委任decisionが固定するf6dad2aのL2 298–303 span cf8c0d89... とL11 120–126 span 9cb6f2b9...へ訂正。"
+    },
+    {
+      "id": "C-061-01",
+      "status": "revision attribution correction",
+      "detail": "061公式委任decisionのauthority sourceは318ec4a L2:457–469/L11:205–215。旧監査の633bf12は後続本文snapshotであり、該当span SHAは同一だが固定source identityとして読み替えない。"
+    },
+    {
+      "id": "C-063-01",
+      "status": "revision attribution/range correction",
+      "detail": "063公式decisionのauthority sourceは318ec4a L2:480–489/L11:225–231。旧監査は633bf12を比較span sourceとしL2 478–491/L11 223–232と記載。固定範囲は公式decisionを優先する。318ec4aとmain e7a695dの固定範囲raw bytesは一致。"
+    },
+    {
+      "id": "F-050-known-residual",
+      "status": "existing non-blocking recorded residual, not a new finding",
+      "detail": "公式decision R1/R2既記録。固定parentがOS ticket/receipt不備とexperiment/target binding不成立の細かな戻し先分割を明文で列挙せず、CASE-19/29 oracleの戻し先が固定根拠から明示されない点。既存承認記録にある残余として保持し、ここでgate化しない。"
+    },
+    {
+      "id": "F-061-known-residual",
+      "status": "existing recorded residual, not re-raised",
+      "detail": "公式decision review残余R1–R13は旧記録のまま保持。現在のFR/FV/NFRV対象spanは旧監査snapshotとbyte-identicalで、新しいscope変更は確認していない。"
+    },
+    {
+      "id": "F-063-known-residual",
+      "status": "existing recorded residual, not re-raised",
+      "detail": "公式decision review残余R1–R17は旧記録のまま保持。現在のFR/FV/NFRV対象spanは旧監査snapshotとbyte-identicalで、新しいscope変更は確認していない。"
+    }
+  ],
+  "limits": [
+    "旧sourceは記載span単位で読んだが、archive全体と全consumerは監査していない。",
+    "fixture/runtime/test/CIを実行していない。",
+    "この追補は固定authority decisionやapproval statusを変更しない。",
+    "最新mainと各公式decisionを参照したread-only再検算であり、274親の完了証明ではない。"
+  ],
+  "semantic_recheck": {
+    "050": "現行FRは11段階、ticket/experiment/target revision binding、OS assignmentとWorker result、cause-specific return、target owner change/verification、LABO re-observationとeffect/regression別評価を明記。CASE 03a-f/24-28等は各binding変異、04a/b責務、未完/partial-successを個別化し、03gは非独立、07–10は索引として明記。NFRは32独立/5非独立区分とし、固定されないSLA/閾値を作らない。BR/BVは独立KPIを作らず役割状態を区別。",
+    "061": "FR/FV/NFR/NFRV scopesは prior full reviewとhash一致。R04 15 fields、context/hidden oracle隔離、author/judgeの独立、history preservation、role/authority boundaryが別状態。prior reviewの132 ID全部を独立fixtureとする誤計上は避けられ、CASE03a-tの単一変異とその他独立ケースを親NFR denominatorと分離。具体戻し先はOS/SECURITY/task-oracle owner/execution actorを列挙しidentity unknownを維持。",
+    "063": "FR/FV/NFR/NFRV scopesは prior full reviewとhash一致。LABO knowledge retention、OS registration/routing、target owner decision/change、HARNESS verification/post-operation observationを分離し、candidate/receipt/greenだけで完了・authorityにしない。原因・適用条件・revisionの独立negativeを分け、58/13等索引重複を分母から除く。source identityが固定できない場合unknown。"
+  }
+}

@@ -1,0 +1,278 @@
+{
+  "audit_id": "INTELLIGENCE-STAGE4-MEANING-AUDIT-9229F59",
+  "target_commit": "9229f59edc36b8396ea99bde5f6f903b35c1ccdf",
+  "scope": {
+    "mechanism": "HELIX-INTELLIGENCE",
+    "stage": "Stage 4",
+    "parents": [
+      "HELIXINTELLIGENCE-L2-017",
+      "HELIXINTELLIGENCE-L2-030",
+      "HELIXINTELLIGENCE-L2-031",
+      "HELIXINTELLIGENCE-L2-032",
+      "HELIXINTELLIGENCE-L2-033",
+      "HELIXINTELLIGENCE-L2-034",
+      "HELIXINTELLIGENCE-L2-035",
+      "HELIXINTELLIGENCE-L2-036",
+      "HELIXINTELLIGENCE-L2-037",
+      "HELIXINTELLIGENCE-L2-038",
+      "HELIXINTELLIGENCE-L2-039",
+      "HELIXINTELLIGENCE-L2-040",
+      "HELIXINTELLIGENCE-L2-041",
+      "HELIXINTELLIGENCE-L2-044",
+      "HELIXINTELLIGENCE-L2-045"
+    ],
+    "parent_count": 15,
+    "included_stages_only": "Stage 4"
+  },
+  "six_documents": {
+    "docs/helix-intelligence/L3-requirements/business-requirements.md": {
+      "sha256": "026d95fbf023ef384834ebd3b215a469f2fea648190d15d45494b5ea4cc91959",
+      "bytes": 26155
+    },
+    "docs/helix-intelligence/L3-requirements/functional-requirements.md": {
+      "sha256": "01ceffadc184ead3c5a73e4df4f308610394590630c222a53930e4857ee71c5a",
+      "bytes": 212693
+    },
+    "docs/helix-intelligence/L3-requirements/nfr-grade.md": {
+      "sha256": "a1113329da1b463968b2a67a19692db77c41b0fcdb6bf028ac969d83921066a2",
+      "bytes": 60303
+    },
+    "docs/helix-intelligence/L10-verification/business-verification.md": {
+      "sha256": "b476b0939b7da50cf75db66d235095f94e591ac929ef046721224b5112d04552",
+      "bytes": 29673
+    },
+    "docs/helix-intelligence/L10-verification/functional-verification.md": {
+      "sha256": "aa6cb83a2eaeeaf0d4d0fd955698e5071e27c81232ba43a1c3af94918fbccc77",
+      "bytes": 732032
+    },
+    "docs/helix-intelligence/L10-verification/nfr-verification.md": {
+      "sha256": "1049e8edef98fd41f1f2c57caff98eebc999e65652e558b42646976e517614a1",
+      "bytes": 55626
+    }
+  },
+  "per_parent": [
+    {
+      "parent": "HELIXINTELLIGENCE-L2-017",
+      "l2_l11_alignment": "confirmed semantic comparison; see MD",
+      "explicit_fv_case_section_headings": [
+        "CASE-INT-017-01",
+        "CASE-INT-017-01a",
+        "CASE-INT-017-02",
+        "CASE-INT-017-03",
+        "CASE-INT-017-03a",
+        "CASE-INT-017-04"
+      ],
+      "note": "headings are section-family labels only; row-level case fixtures are enumerated in functional-verification.md tables and referred to in NFRV"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-030",
+      "l2_l11_alignment": "confirmed semantic comparison; see MD",
+      "explicit_fv_case_section_headings": [
+        "CASE-INT-030-01",
+        "CASE-INT-030-02",
+        "CASE-INT-030-03",
+        "CASE-INT-030-04"
+      ],
+      "note": "headings are section-family labels only; row-level case fixtures are enumerated in functional-verification.md tables and referred to in NFRV"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-031",
+      "l2_l11_alignment": "confirmed semantic comparison; see MD",
+      "explicit_fv_case_section_headings": [
+        "CASE-INT-031-01",
+        "CASE-INT-031-02",
+        "CASE-INT-031-03",
+        "CASE-INT-031-04"
+      ],
+      "note": "headings are section-family labels only; row-level case fixtures are enumerated in functional-verification.md tables and referred to in NFRV"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-032",
+      "l2_l11_alignment": "confirmed semantic comparison; see MD",
+      "explicit_fv_case_section_headings": [
+        "CASE-INT-032-01",
+        "CASE-INT-032-02",
+        "CASE-INT-032-03",
+        "CASE-INT-032-04"
+      ],
+      "note": "headings are section-family labels only; row-level case fixtures are enumerated in functional-verification.md tables and referred to in NFRV"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-033",
+      "l2_l11_alignment": "confirmed semantic comparison; see MD",
+      "explicit_fv_case_section_headings": [
+        "CASE-INT-033-01",
+        "CASE-INT-033-02",
+        "CASE-INT-033-03",
+        "CASE-INT-033-03a",
+        "CASE-INT-033-04"
+      ],
+      "note": "headings are section-family labels only; row-level case fixtures are enumerated in functional-verification.md tables and referred to in NFRV"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-034",
+      "l2_l11_alignment": "confirmed semantic comparison; see MD",
+      "explicit_fv_case_section_headings": [
+        "CASE-INT-034-01",
+        "CASE-INT-034-02",
+        "CASE-INT-034-03",
+        "CASE-INT-034-04"
+      ],
+      "note": "headings are section-family labels only; row-level case fixtures are enumerated in functional-verification.md tables and referred to in NFRV"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-035",
+      "l2_l11_alignment": "confirmed semantic comparison; see MD",
+      "explicit_fv_case_section_headings": [
+        "CASE-INT-035-01",
+        "CASE-INT-035-02",
+        "CASE-INT-035-03",
+        "CASE-INT-035-04"
+      ],
+      "note": "headings are section-family labels only; row-level case fixtures are enumerated in functional-verification.md tables and referred to in NFRV"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-036",
+      "l2_l11_alignment": "confirmed semantic comparison; see MD",
+      "explicit_fv_case_section_headings": [
+        "CASE-INT-036-01",
+        "CASE-INT-036-02",
+        "CASE-INT-036-03",
+        "CASE-INT-036-03a",
+        "CASE-INT-036-03b",
+        "CASE-INT-036-04"
+      ],
+      "note": "headings are section-family labels only; row-level case fixtures are enumerated in functional-verification.md tables and referred to in NFRV"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-037",
+      "l2_l11_alignment": "confirmed semantic comparison; see MD",
+      "explicit_fv_case_section_headings": [
+        "CASE-INT-037-01",
+        "CASE-INT-037-02",
+        "CASE-INT-037-03",
+        "CASE-INT-037-04"
+      ],
+      "note": "headings are section-family labels only; row-level case fixtures are enumerated in functional-verification.md tables and referred to in NFRV"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-038",
+      "l2_l11_alignment": "confirmed semantic comparison; see MD",
+      "explicit_fv_case_section_headings": [
+        "CASE-INT-038-01",
+        "CASE-INT-038-02",
+        "CASE-INT-038-03",
+        "CASE-INT-038-04"
+      ],
+      "note": "headings are section-family labels only; row-level case fixtures are enumerated in functional-verification.md tables and referred to in NFRV"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-039",
+      "l2_l11_alignment": "confirmed semantic comparison; see MD",
+      "explicit_fv_case_section_headings": [
+        "CASE-INT-039-01",
+        "CASE-INT-039-02",
+        "CASE-INT-039-03",
+        "CASE-INT-039-03a",
+        "CASE-INT-039-03b",
+        "CASE-INT-039-04"
+      ],
+      "note": "headings are section-family labels only; row-level case fixtures are enumerated in functional-verification.md tables and referred to in NFRV"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-040",
+      "l2_l11_alignment": "confirmed semantic comparison; see MD",
+      "explicit_fv_case_section_headings": [
+        "CASE-INT-040-01",
+        "CASE-INT-040-01a",
+        "CASE-INT-040-01b",
+        "CASE-INT-040-01c",
+        "CASE-INT-040-01d",
+        "CASE-INT-040-01e",
+        "CASE-INT-040-02",
+        "CASE-INT-040-03",
+        "CASE-INT-040-03a",
+        "CASE-INT-040-04"
+      ],
+      "note": "headings are section-family labels only; row-level case fixtures are enumerated in functional-verification.md tables and referred to in NFRV"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-041",
+      "l2_l11_alignment": "confirmed semantic comparison; see MD",
+      "explicit_fv_case_section_headings": [
+        "CASE-INT-041-01",
+        "CASE-INT-041-02",
+        "CASE-INT-041-03",
+        "CASE-INT-041-03a",
+        "CASE-INT-041-03b",
+        "CASE-INT-041-04"
+      ],
+      "note": "headings are section-family labels only; row-level case fixtures are enumerated in functional-verification.md tables and referred to in NFRV"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-044",
+      "l2_l11_alignment": "confirmed semantic comparison; see MD",
+      "explicit_fv_case_section_headings": [
+        "CASE-INT-044-01",
+        "CASE-INT-044-02",
+        "CASE-INT-044-03",
+        "CASE-INT-044-04"
+      ],
+      "note": "headings are section-family labels only; row-level case fixtures are enumerated in functional-verification.md tables and referred to in NFRV"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-045",
+      "l2_l11_alignment": "confirmed semantic comparison; see MD",
+      "explicit_fv_case_section_headings": [
+        "CASE-INT-045-01",
+        "CASE-INT-045-02",
+        "CASE-INT-045-03",
+        "CASE-INT-045-04"
+      ],
+      "note": "headings are section-family labels only; row-level case fixtures are enumerated in functional-verification.md tables and referred to in NFRV"
+    }
+  ],
+  "finding_candidates": [
+    {
+      "id": "INT4-NFR-01",
+      "status": "measurement_definition_ambiguity_candidate",
+      "severity": "unclassified",
+      "refs": [
+        "docs/helix-intelligence/L3-requirements/nfr-grade.md:66,68-73",
+        "docs/helix-intelligence/L10-verification/nfr-verification.md:62-65",
+        "docs/helix-intelligence/L10-verification/functional-verification.md:746",
+        "docs/helix-intelligence/L10-verification/functional-verification.md:1270"
+      ],
+      "finding": "No common rule in the six documents says whether a negative whose expected result is correctly unknown/incomplete/unrouted counts as source-bound coverage success. The NFRV population includes applicable mutation cases, while the expression and 100% candidate are stated as source-bound required fields. Literal reading makes correct fail-close negatives reduce coverage; intended expected-state accounting is unspecified.",
+      "effect": "ambiguous NFR candidate measurement / possible false low coverage only; no case oracle mismatch, no new requirement gate, no implementation blocker",
+      "suggestion": "clarify expected-state-conformant handling vs source-binding coverage or scope the latter to positive applicable fixtures; no threshold/gate addition"
+    },
+    {
+      "id": "INT4-SEM-OTHER",
+      "status": "no_confirmed_finding",
+      "severity": null,
+      "finding": "No additional confirmed requirement or expected-oracle defect found in reviewed parent scopes; the NFR issue is wording/measurement ambiguity only."
+    }
+  ],
+  "legacy_assets_read": [
+    "BBR-R02/R04 and request context",
+    "GitHub autonomous operations FR-011",
+    "SYN requirements and paired acceptance",
+    "UWJ requirements and paired acceptance",
+    "Design Registry family requirements",
+    "DAC requirements and paired acceptance",
+    "HELIX-Bench requirements and paired acceptance",
+    "RLO requirements and paired acceptance",
+    "SEC capability broker requirements/acceptance",
+    "Worker Common Contract requirements/acceptance",
+    "Bugbot Generation requirements/acceptance"
+  ],
+  "unverified": [
+    "fixture execution and implementation/runtime behavior",
+    "full-archive search for direct BRAIN source (only explicitly recorded bounded search was relied on)",
+    "all downstream consumers at full depth",
+    "all non-Stage4 parents"
+  ],
+  "authority_effect": "none",
+  "repository_mutations": 0
+}

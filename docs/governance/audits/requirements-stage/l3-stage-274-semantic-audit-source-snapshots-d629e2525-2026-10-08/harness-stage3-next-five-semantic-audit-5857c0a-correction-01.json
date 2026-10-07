@@ -1,0 +1,2223 @@
+{
+  "artifact_kind": "correction_supplement_to_read_only_audit",
+  "base_commit": "5857c0a396cb24a23d765e3079a18a2367b6d078",
+  "original_artifacts_preserved": [
+    "/tmp/harness-stage3-next-five-semantic-audit-5857c0a.md",
+    "/tmp/harness-stage3-next-five-semantic-audit-5857c0a.json"
+  ],
+  "case_count_method": "Exact `git show` blob; count table-definition rows where first cell is a CASE-HARNESS-L10-<parent> ID within the stated span; unique IDs independently counted; references in cells not counted as definitions. Index-only is tracked separately and excluded from independent fixture count.",
+  "parents": {
+    "041": {
+      "span": {
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "lines": [
+          1690,
+          1759
+        ],
+        "sha256_lf": "164d31a874aa0e7381bbdfd70647bd6c8f5c95a3e22f080c64c7efbdc82ca2cc",
+        "bytes": 41023
+      },
+      "definition_count": 70,
+      "unique_id_count": 70,
+      "index_rows": [
+        "CASE-HARNESS-L10-041-01",
+        "CASE-HARNESS-L10-041-02",
+        "CASE-HARNESS-L10-041-03",
+        "CASE-HARNESS-L10-041-04",
+        "CASE-HARNESS-L10-041-06",
+        "CASE-HARNESS-L10-041-r04-active-version",
+        "CASE-HARNESS-L10-041-r04-target-scope",
+        "CASE-HARNESS-L10-041-11",
+        "CASE-HARNESS-L10-041-12"
+      ],
+      "direct_or_case_rows": [
+        "CASE-HARNESS-L10-041-r09-004",
+        "CASE-HARNESS-L10-041-05",
+        "CASE-HARNESS-L10-041-07",
+        "CASE-HARNESS-L10-041-08",
+        "CASE-HARNESS-L10-041-09",
+        "CASE-HARNESS-L10-041-10",
+        "CASE-HARNESS-L10-041-r04-unselected-template-extrapolation",
+        "CASE-HARNESS-L10-041-r04-source-span",
+        "CASE-HARNESS-L10-041-r04-atom-gap",
+        "CASE-HARNESS-L10-041-r04-empty-field",
+        "CASE-HARNESS-L10-041-r04-tbd-field",
+        "CASE-HARNESS-L10-041-r04-branch-missing",
+        "CASE-HARNESS-L10-041-r04-extractor-unavailable",
+        "CASE-HARNESS-L10-041-r04-duplicate-atom",
+        "CASE-HARNESS-L10-041-r04-one-obligation-split",
+        "CASE-HARNESS-L10-041-r04-two-obligations-merge",
+        "CASE-HARNESS-L10-041-r04-digest-mismatch",
+        "CASE-HARNESS-L10-041-r04-digest-atom-gap",
+        "CASE-HARNESS-L10-041-r04-active-version-missing",
+        "CASE-HARNESS-L10-041-r04-active-version-unknown",
+        "CASE-HARNESS-L10-041-r04-active-version-stale",
+        "CASE-HARNESS-L10-041-r04-target-scope-missing",
+        "CASE-HARNESS-L10-041-r04-target-scope-unknown",
+        "CASE-HARNESS-L10-041-r04-target-scope-conflict",
+        "CASE-HARNESS-L10-041-r04-active-version-conflict",
+        "CASE-HARNESS-L10-041-r04-target-scope-stale",
+        "CASE-HARNESS-L10-041-r05-root-revision-hidden",
+        "CASE-HARNESS-L10-041-r08-digest-match-other-scope",
+        "CASE-HARNESS-L10-041-r09-001",
+        "CASE-HARNESS-L10-041-r09-002",
+        "CASE-HARNESS-L10-041-r09-003",
+        "CASE-HARNESS-L10-041-r10-l2-009-applicability-unknown",
+        "CASE-HARNESS-L10-041-r10-candidate-template-authority",
+        "CASE-HARNESS-L10-041-r10-candidate-ledger-registration",
+        "CASE-HARNESS-L10-041-r10-candidate-adoption",
+        "CASE-HARNESS-L10-041-r10-candidate-requirement-agreement",
+        "CASE-HARNESS-L10-041-r10-candidate-design-success",
+        "CASE-HARNESS-L10-041-r10-candidate-user-acceptance",
+        "CASE-HARNESS-L10-041-r10-candidate-l3-approval",
+        "CASE-HARNESS-L10-041-r10-candidate-implementation-complete",
+        "CASE-HARNESS-L10-041-r10-candidate-os-registration",
+        "CASE-HARNESS-L10-041-r10-candidate-os-save",
+        "CASE-HARNESS-L10-041-r10-candidate-os-projection",
+        "CASE-HARNESS-L10-041-r10-candidate-os-execution",
+        "CASE-HARNESS-L10-041-r10-owner-individual-unknown-class-preserved",
+        "CASE-HARNESS-L10-041-r10-unresolved-obligation-aggregate-covered",
+        "CASE-HARNESS-L10-041-r10-025-completion-required-before-extraction",
+        "CASE-HARNESS-L10-041-r10-025-receipt-substitutes-extraction",
+        "CASE-HARNESS-L10-041-r10-026-completion-required-before-extraction",
+        "CASE-HARNESS-L10-041-r10-026-receipt-substitutes-extraction",
+        "CASE-HARNESS-L10-041-r10-025-result-generated-from-extraction",
+        "CASE-HARNESS-L10-041-r10-026-result-generated-from-extraction",
+        "CASE-HARNESS-L10-041-r11-template-meaning-unknown",
+        "CASE-HARNESS-L10-041-r06-output-extractor-digest-missing",
+        "CASE-HARNESS-L10-041-r06-output-extractor-digest-mismatch",
+        "CASE-HARNESS-L10-041-r07-output-kind-missing",
+        "CASE-HARNESS-L10-041-r07-output-kind-mismatch",
+        "CASE-HARNESS-L10-041-r07-output-branch-missing",
+        "CASE-HARNESS-L10-041-r07-output-branch-mismatch",
+        "CASE-HARNESS-L10-041-r07-output-template-revision-missing",
+        "CASE-HARNESS-L10-041-r07-output-template-revision-mismatch"
+      ],
+      "definitions": [
+        {
+          "id": "CASE-HARNESS-L10-041-01",
+          "line": 1690,
+          "kind": "index"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-02",
+          "line": 1691,
+          "kind": "index"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r09-004",
+          "line": 1692,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-03",
+          "line": 1693,
+          "kind": "index"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-04",
+          "line": 1694,
+          "kind": "index"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-05",
+          "line": 1695,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-06",
+          "line": 1696,
+          "kind": "index"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-07",
+          "line": 1697,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-08",
+          "line": 1698,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-09",
+          "line": 1699,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-10",
+          "line": 1700,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-active-version",
+          "line": 1701,
+          "kind": "index"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-target-scope",
+          "line": 1702,
+          "kind": "index"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-unselected-template-extrapolation",
+          "line": 1703,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-source-span",
+          "line": 1704,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-atom-gap",
+          "line": 1705,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-empty-field",
+          "line": 1706,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-tbd-field",
+          "line": 1707,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-branch-missing",
+          "line": 1708,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-extractor-unavailable",
+          "line": 1709,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-duplicate-atom",
+          "line": 1710,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-one-obligation-split",
+          "line": 1711,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-two-obligations-merge",
+          "line": 1712,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-digest-mismatch",
+          "line": 1713,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-digest-atom-gap",
+          "line": 1714,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-active-version-missing",
+          "line": 1715,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-active-version-unknown",
+          "line": 1716,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-active-version-stale",
+          "line": 1717,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-target-scope-missing",
+          "line": 1718,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-target-scope-unknown",
+          "line": 1719,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-target-scope-conflict",
+          "line": 1720,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-active-version-conflict",
+          "line": 1721,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r04-target-scope-stale",
+          "line": 1722,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r05-root-revision-hidden",
+          "line": 1723,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r08-digest-match-other-scope",
+          "line": 1724,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r09-001",
+          "line": 1725,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r09-002",
+          "line": 1726,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r09-003",
+          "line": 1727,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-l2-009-applicability-unknown",
+          "line": 1728,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-candidate-template-authority",
+          "line": 1729,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-candidate-ledger-registration",
+          "line": 1730,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-candidate-adoption",
+          "line": 1731,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-candidate-requirement-agreement",
+          "line": 1732,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-candidate-design-success",
+          "line": 1733,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-candidate-user-acceptance",
+          "line": 1734,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-candidate-l3-approval",
+          "line": 1735,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-candidate-implementation-complete",
+          "line": 1736,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-candidate-os-registration",
+          "line": 1737,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-candidate-os-save",
+          "line": 1738,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-candidate-os-projection",
+          "line": 1739,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-candidate-os-execution",
+          "line": 1740,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-owner-individual-unknown-class-preserved",
+          "line": 1741,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-unresolved-obligation-aggregate-covered",
+          "line": 1742,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-025-completion-required-before-extraction",
+          "line": 1743,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-025-receipt-substitutes-extraction",
+          "line": 1744,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-026-completion-required-before-extraction",
+          "line": 1745,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-026-receipt-substitutes-extraction",
+          "line": 1746,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-11",
+          "line": 1747,
+          "kind": "index"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-12",
+          "line": 1748,
+          "kind": "index"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-025-result-generated-from-extraction",
+          "line": 1749,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r10-026-result-generated-from-extraction",
+          "line": 1750,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r11-template-meaning-unknown",
+          "line": 1751,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r06-output-extractor-digest-missing",
+          "line": 1752,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r06-output-extractor-digest-mismatch",
+          "line": 1753,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r07-output-kind-missing",
+          "line": 1754,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r07-output-kind-mismatch",
+          "line": 1755,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r07-output-branch-missing",
+          "line": 1756,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r07-output-branch-mismatch",
+          "line": 1757,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r07-output-template-revision-missing",
+          "line": 1758,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-041-r07-output-template-revision-mismatch",
+          "line": 1759,
+          "kind": "fixture_or_case"
+        }
+      ]
+    },
+    "042": {
+      "span": {
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "lines": [
+          1635,
+          1679
+        ],
+        "sha256_lf": "a68c6001b5ba57710cbcbf50eeb378c159643970fbaa3ccf3ced08645d25d1a8",
+        "bytes": 20476
+      },
+      "definition_count": 45,
+      "unique_id_count": 45,
+      "index_rows": [],
+      "direct_or_case_rows": [
+        "CASE-HARNESS-L10-042-01",
+        "CASE-HARNESS-L10-042-02",
+        "CASE-HARNESS-L10-042-03",
+        "CASE-HARNESS-L10-042-04",
+        "CASE-HARNESS-L10-042-05",
+        "CASE-HARNESS-L10-042-06",
+        "CASE-HARNESS-L10-042-07",
+        "CASE-HARNESS-L10-042-08",
+        "CASE-HARNESS-L10-042-09",
+        "CASE-HARNESS-L10-042-10",
+        "CASE-HARNESS-L10-042-11",
+        "CASE-HARNESS-L10-042-r02-semantic-similarity-missing",
+        "CASE-HARNESS-L10-042-r02-semantic-similarity-stale",
+        "CASE-HARNESS-L10-042-r02-consumer-missing",
+        "CASE-HARNESS-L10-042-r02-consumer-stale",
+        "CASE-HARNESS-L10-042-r02-oracle-missing",
+        "CASE-HARNESS-L10-042-r02-oracle-stale",
+        "CASE-HARNESS-L10-042-r02-dependency-graph-missing",
+        "CASE-HARNESS-L10-042-r02-dependency-graph-stale",
+        "CASE-HARNESS-L10-042-r02-other-scope",
+        "CASE-HARNESS-L10-042-r02-other-revision",
+        "CASE-HARNESS-L10-042-r02-feature",
+        "CASE-HARNESS-L10-042-r02-downstream-execution",
+        "CASE-HARNESS-L10-042-r02-normal-similarity",
+        "CASE-HARNESS-L10-042-r03-name-only-similarity",
+        "CASE-HARNESS-L10-042-r03-revision-unknown",
+        "CASE-HARNESS-L10-042-r04-042-revision-unidentified",
+        "CASE-HARNESS-L10-042-r04-042-l2-019-return",
+        "CASE-HARNESS-L10-042-r05-public-contract-change",
+        "CASE-HARNESS-L10-042-r05-requirement-meaning-change",
+        "CASE-HARNESS-L10-042-r05-persistent-state-change",
+        "CASE-HARNESS-L10-042-r06-unseen-consumer-valid",
+        "CASE-HARNESS-L10-042-r06-consumer-unknown",
+        "CASE-HARNESS-L10-042-r09-001",
+        "CASE-HARNESS-L10-042-r09-002",
+        "CASE-HARNESS-L10-042-r09-003",
+        "CASE-HARNESS-L10-042-r10-authority-generation-denied",
+        "CASE-HARNESS-L10-042-r10-requirement-adopted-denied",
+        "CASE-HARNESS-L10-042-r10-l3-approved-denied",
+        "CASE-HARNESS-L10-042-r10-implementation-complete-denied",
+        "CASE-HARNESS-L10-042-r10-execution-complete-denied",
+        "CASE-HARNESS-L10-042-r10-acceptance-complete-denied",
+        "CASE-HARNESS-L10-042-r10-name-or-ticket-only-denied",
+        "CASE-HARNESS-L10-042-r10-performance-threshold-generation-denied",
+        "CASE-HARNESS-L10-042-r11-contract-absent-return"
+      ],
+      "definitions": [
+        {
+          "id": "CASE-HARNESS-L10-042-01",
+          "line": 1635,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-02",
+          "line": 1636,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-03",
+          "line": 1637,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-04",
+          "line": 1638,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-05",
+          "line": 1639,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-06",
+          "line": 1640,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-07",
+          "line": 1641,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-08",
+          "line": 1642,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-09",
+          "line": 1643,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-10",
+          "line": 1644,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-11",
+          "line": 1645,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r02-semantic-similarity-missing",
+          "line": 1646,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r02-semantic-similarity-stale",
+          "line": 1647,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r02-consumer-missing",
+          "line": 1648,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r02-consumer-stale",
+          "line": 1649,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r02-oracle-missing",
+          "line": 1650,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r02-oracle-stale",
+          "line": 1651,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r02-dependency-graph-missing",
+          "line": 1652,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r02-dependency-graph-stale",
+          "line": 1653,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r02-other-scope",
+          "line": 1654,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r02-other-revision",
+          "line": 1655,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r02-feature",
+          "line": 1656,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r02-downstream-execution",
+          "line": 1657,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r02-normal-similarity",
+          "line": 1658,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r03-name-only-similarity",
+          "line": 1659,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r03-revision-unknown",
+          "line": 1660,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r04-042-revision-unidentified",
+          "line": 1661,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r04-042-l2-019-return",
+          "line": 1662,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r05-public-contract-change",
+          "line": 1663,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r05-requirement-meaning-change",
+          "line": 1664,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r05-persistent-state-change",
+          "line": 1665,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r06-unseen-consumer-valid",
+          "line": 1666,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r06-consumer-unknown",
+          "line": 1667,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r09-001",
+          "line": 1668,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r09-002",
+          "line": 1669,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r09-003",
+          "line": 1670,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r10-authority-generation-denied",
+          "line": 1671,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r10-requirement-adopted-denied",
+          "line": 1672,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r10-l3-approved-denied",
+          "line": 1673,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r10-implementation-complete-denied",
+          "line": 1674,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r10-execution-complete-denied",
+          "line": 1675,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r10-acceptance-complete-denied",
+          "line": 1676,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r10-name-or-ticket-only-denied",
+          "line": 1677,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r10-performance-threshold-generation-denied",
+          "line": 1678,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-042-r11-contract-absent-return",
+          "line": 1679,
+          "kind": "fixture_or_case"
+        }
+      ]
+    },
+    "043": {
+      "span": {
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "lines": [
+          2230,
+          2288
+        ],
+        "sha256_lf": "1e1dd7723df8df118398388821d18d8a98694fb6bb7f1afb9ca1289a334b6def",
+        "bytes": 35239
+      },
+      "definition_count": 59,
+      "unique_id_count": 59,
+      "index_rows": [
+        "CASE-HARNESS-L10-043-01",
+        "CASE-HARNESS-L10-043-02",
+        "CASE-HARNESS-L10-043-03"
+      ],
+      "direct_or_case_rows": [
+        "CASE-HARNESS-L10-043-04",
+        "CASE-HARNESS-L10-043-05",
+        "CASE-HARNESS-L10-043-06",
+        "CASE-HARNESS-L10-043-07",
+        "CASE-HARNESS-L10-043-r02-negative-not-boundary",
+        "CASE-HARNESS-L10-043-r03-other-revision-unseen",
+        "CASE-HARNESS-L10-043-r04-oracle-unbound",
+        "CASE-HARNESS-L10-043-r04-count-only-sufficiency",
+        "CASE-HARNESS-L10-043-r04-rule-branch-conflict",
+        "CASE-HARNESS-L10-043-r04-extracted-rule-missing",
+        "CASE-HARNESS-L10-043-r04-applicability-unknown",
+        "CASE-HARNESS-L10-043-r04-risk-rationale-missing",
+        "CASE-HARNESS-L10-043-r04-active-revision-stale",
+        "CASE-HARNESS-L10-043-r05-unselected-template-extrapolation",
+        "CASE-HARNESS-L10-043-r05-other-scope-extrapolation",
+        "CASE-HARNESS-L10-043-r05-unseen-oracle-valid-rejected",
+        "CASE-HARNESS-L10-043-r06-na-without-basis",
+        "CASE-HARNESS-L10-043-r06-tbd-unfilled",
+        "CASE-HARNESS-L10-043-r06-new-revision-missing",
+        "CASE-HARNESS-L10-043-r06-new-revision-identity-conflict",
+        "CASE-HARNESS-L10-043-r06-risk-basis-conflict",
+        "CASE-HARNESS-L10-043-r06-risk-basis-stale",
+        "CASE-HARNESS-L10-043-r06-active-revision-missing",
+        "CASE-HARNESS-L10-043-r09-001",
+        "CASE-HARNESS-L10-043-r09-002",
+        "CASE-HARNESS-L10-043-r09-003",
+        "CASE-HARNESS-L10-043-r10-valid-selected-profile-no-mutation",
+        "CASE-HARNESS-L10-043-r20-independent-rule-branch-input-normal",
+        "CASE-HARNESS-L10-043-r20-independent-rule-branch-output-mismatch",
+        "CASE-HARNESS-L10-043-r21-independent-rule-content-missing",
+        "CASE-HARNESS-L10-043-r21-independent-rule-content-tbd",
+        "CASE-HARNESS-L10-043-r10-profile-missing-to-005",
+        "CASE-HARNESS-L10-043-r10-template-applicability-to-009",
+        "CASE-HARNESS-L10-043-r10-extracted-atom-to-041",
+        "CASE-HARNESS-L10-043-r10-risk-oracle-to-004",
+        "CASE-HARNESS-L10-043-r10-025-not-substituted",
+        "CASE-HARNESS-L10-043-r10-026-not-substituted",
+        "CASE-HARNESS-L10-043-r10-025-receipt-only-not-coverage",
+        "CASE-HARNESS-L10-043-r10-026-receipt-only-not-coverage",
+        "CASE-HARNESS-L10-043-r10-requirement-agreement-not-generated",
+        "CASE-HARNESS-L10-043-r10-adoption-not-generated",
+        "CASE-HARNESS-L10-043-r10-l3-approval-not-generated",
+        "CASE-HARNESS-L10-043-r10-design-established-not-generated",
+        "CASE-HARNESS-L10-043-r10-implementation-not-generated",
+        "CASE-HARNESS-L10-043-r10-execution-not-generated",
+        "CASE-HARNESS-L10-043-r10-acceptance-not-generated",
+        "CASE-HARNESS-L10-043-r10-no-cartesian-expansion",
+        "CASE-HARNESS-L10-043-r22-active-revision-unknown",
+        "CASE-HARNESS-L10-043-r22-applicability-conflict",
+        "CASE-HARNESS-L10-043-r22-applicability-stale",
+        "CASE-HARNESS-L10-043-r22-denominator-unknown",
+        "CASE-HARNESS-L10-043-r22-denominator-source-revision-stale",
+        "CASE-HARNESS-L10-043-r35-risk-basis-output-equal",
+        "CASE-HARNESS-L10-043-r35-risk-basis-output-missing",
+        "CASE-HARNESS-L10-043-r35-risk-basis-output-mismatch",
+        "CASE-HARNESS-L10-043-r22-risk-basis-unknown"
+      ],
+      "definitions": [
+        {
+          "id": "CASE-HARNESS-L10-043-01",
+          "line": 2230,
+          "kind": "index"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-02",
+          "line": 2231,
+          "kind": "index"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-03",
+          "line": 2232,
+          "kind": "index"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-04",
+          "line": 2233,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-05",
+          "line": 2234,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-06",
+          "line": 2235,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-07",
+          "line": 2236,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r02-negative-not-boundary",
+          "line": 2237,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r03-other-revision-unseen",
+          "line": 2238,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r04-oracle-unbound",
+          "line": 2239,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r04-count-only-sufficiency",
+          "line": 2240,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r04-rule-branch-conflict",
+          "line": 2241,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r04-extracted-rule-missing",
+          "line": 2242,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r04-applicability-unknown",
+          "line": 2243,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r04-risk-rationale-missing",
+          "line": 2244,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r04-active-revision-stale",
+          "line": 2245,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r05-unselected-template-extrapolation",
+          "line": 2246,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r05-other-scope-extrapolation",
+          "line": 2247,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r05-unseen-oracle-valid-rejected",
+          "line": 2248,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r06-na-without-basis",
+          "line": 2249,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r06-tbd-unfilled",
+          "line": 2250,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r06-new-revision-missing",
+          "line": 2251,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r06-new-revision-identity-conflict",
+          "line": 2252,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r06-risk-basis-conflict",
+          "line": 2253,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r06-risk-basis-stale",
+          "line": 2254,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r06-active-revision-missing",
+          "line": 2255,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r09-001",
+          "line": 2256,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r09-002",
+          "line": 2257,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r09-003",
+          "line": 2258,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-valid-selected-profile-no-mutation",
+          "line": 2259,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r20-independent-rule-branch-input-normal",
+          "line": 2260,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r20-independent-rule-branch-output-mismatch",
+          "line": 2261,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r21-independent-rule-content-missing",
+          "line": 2262,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r21-independent-rule-content-tbd",
+          "line": 2263,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-profile-missing-to-005",
+          "line": 2264,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-template-applicability-to-009",
+          "line": 2265,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-extracted-atom-to-041",
+          "line": 2266,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-risk-oracle-to-004",
+          "line": 2267,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-025-not-substituted",
+          "line": 2268,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-026-not-substituted",
+          "line": 2269,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-025-receipt-only-not-coverage",
+          "line": 2270,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-026-receipt-only-not-coverage",
+          "line": 2271,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-requirement-agreement-not-generated",
+          "line": 2272,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-adoption-not-generated",
+          "line": 2273,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-l3-approval-not-generated",
+          "line": 2274,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-design-established-not-generated",
+          "line": 2275,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-implementation-not-generated",
+          "line": 2276,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-execution-not-generated",
+          "line": 2277,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-acceptance-not-generated",
+          "line": 2278,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r10-no-cartesian-expansion",
+          "line": 2279,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r22-active-revision-unknown",
+          "line": 2280,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r22-applicability-conflict",
+          "line": 2281,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r22-applicability-stale",
+          "line": 2282,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r22-denominator-unknown",
+          "line": 2283,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r22-denominator-source-revision-stale",
+          "line": 2284,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r35-risk-basis-output-equal",
+          "line": 2285,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r35-risk-basis-output-missing",
+          "line": 2286,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r35-risk-basis-output-mismatch",
+          "line": 2287,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-043-r22-risk-basis-unknown",
+          "line": 2288,
+          "kind": "fixture_or_case"
+        }
+      ]
+    },
+    "044": {
+      "span": {
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "lines": [
+          2123,
+          2222
+        ],
+        "sha256_lf": "03258a7f5b33364ed3ab0c46c3e199c7b82d2796d5b75380526569959b28e4ce",
+        "bytes": 78651
+      },
+      "definition_count": 91,
+      "unique_id_count": 91,
+      "index_rows": [
+        "CASE-HARNESS-L10-044-01",
+        "CASE-HARNESS-L10-044-02",
+        "CASE-HARNESS-L10-044-03",
+        "CASE-HARNESS-L10-044-04",
+        "CASE-HARNESS-L10-044-07"
+      ],
+      "direct_or_case_rows": [
+        "CASE-HARNESS-L10-044-05",
+        "CASE-HARNESS-L10-044-06",
+        "CASE-HARNESS-L10-044-08",
+        "CASE-HARNESS-L10-044-r04-na-rationale-missing",
+        "CASE-HARNESS-L10-044-r04-source-atom-missing",
+        "CASE-HARNESS-L10-044-r04-active-template-missing",
+        "CASE-HARNESS-L10-044-r04-applicability-missing",
+        "CASE-HARNESS-L10-044-r04-oracle-missing",
+        "CASE-HARNESS-L10-044-r04-contract-version-missing",
+        "CASE-HARNESS-L10-044-r04-class-oracle-absent",
+        "CASE-HARNESS-L10-044-r14-class-contract-relation-missing",
+        "CASE-HARNESS-L10-044-r04-025-output-substitution",
+        "CASE-HARNESS-L10-044-r04-043-output-substitution",
+        "CASE-HARNESS-L10-044-r04-044-denominator-old-receipt",
+        "CASE-HARNESS-L10-044-r04-semantic-duplicate",
+        "CASE-HARNESS-L10-044-r04-unsupported-na",
+        "CASE-HARNESS-L10-044-r04-source-atom-conflict",
+        "CASE-HARNESS-L10-044-r04-active-template-stale",
+        "CASE-HARNESS-L10-044-r04-applicability-conflict",
+        "CASE-HARNESS-L10-044-r04-oracle-stale",
+        "CASE-HARNESS-L10-044-r04-contract-version-conflict",
+        "CASE-HARNESS-L10-044-r05-minimum-portfolio-drops-obligation",
+        "CASE-HARNESS-L10-044-r05-candidate-promoted-to-approval",
+        "CASE-HARNESS-L10-044-r05-source-atom-stale",
+        "CASE-HARNESS-L10-044-r05-active-template-conflict",
+        "CASE-HARNESS-L10-044-r05-applicability-stale",
+        "CASE-HARNESS-L10-044-r05-oracle-conflict",
+        "CASE-HARNESS-L10-044-r05-contract-version-stale",
+        "CASE-HARNESS-L10-044-r06-semantic-map-unverifiable",
+        "CASE-HARNESS-L10-044-r09-001",
+        "CASE-HARNESS-L10-044-r09-002",
+        "CASE-HARNESS-L10-044-r09-003",
+        "CASE-HARNESS-L10-044-r09-004",
+        "CASE-HARNESS-L10-044-r10-old-denominator-receipt",
+        "CASE-HARNESS-L10-044-r16-normal-nine-class",
+        "CASE-HARNESS-L10-044-r16-normal-reuse",
+        "CASE-HARNESS-L10-044-r16-normal-delta",
+        "CASE-HARNESS-L10-044-r16-normal-new-contract",
+        "CASE-HARNESS-L10-044-r16-delta-insufficient",
+        "CASE-HARNESS-L10-044-r16-refuse-requirement-agreement",
+        "CASE-HARNESS-L10-044-r16-refuse-l3-approval",
+        "CASE-HARNESS-L10-044-r16-refuse-design-approval",
+        "CASE-HARNESS-L10-044-r16-refuse-adoption",
+        "CASE-HARNESS-L10-044-r16-refuse-implementation",
+        "CASE-HARNESS-L10-044-r16-refuse-os-execution",
+        "CASE-HARNESS-L10-044-r16-refuse-user-acceptance",
+        "CASE-HARNESS-L10-044-r04-classification-reuse",
+        "CASE-HARNESS-L10-044-r04-classification-delta",
+        "CASE-HARNESS-L10-044-r04-classification-new",
+        "CASE-HARNESS-L10-044-r04-classification-na",
+        "CASE-HARNESS-L10-044-r04-output-revision-missing",
+        "CASE-HARNESS-L10-044-r04-output-revision-mismatch",
+        "CASE-HARNESS-L10-044-r04-output-scope-missing",
+        "CASE-HARNESS-L10-044-r04-output-scope-mismatch",
+        "CASE-HARNESS-L10-044-r04-finding-duplicate-assignment-basis-missing",
+        "CASE-HARNESS-L10-044-r04-finding-semantic-duplicate-basis-missing",
+        "CASE-HARNESS-L10-044-r04-finding-uncovered-class-basis-missing",
+        "CASE-HARNESS-L10-044-r17-unselected-source-drops-established-class",
+        "CASE-HARNESS-L10-044-r17-unselected-source-assumed-pass-closure",
+        "CASE-HARNESS-L10-044-r18-input-target-l1-missing",
+        "CASE-HARNESS-L10-044-r18-input-target-l1-stale",
+        "CASE-HARNESS-L10-044-r18-input-target-l1-conflict",
+        "CASE-HARNESS-L10-044-r18-input-target-requirement-missing",
+        "CASE-HARNESS-L10-044-r18-input-target-requirement-stale",
+        "CASE-HARNESS-L10-044-r18-input-target-requirement-conflict",
+        "CASE-HARNESS-L10-044-r18-input-design-scope-missing",
+        "CASE-HARNESS-L10-044-r18-input-design-scope-stale",
+        "CASE-HARNESS-L10-044-r18-input-design-scope-conflict",
+        "CASE-HARNESS-L10-044-r18-input-target-revision-missing",
+        "CASE-HARNESS-L10-044-r18-input-target-revision-stale",
+        "CASE-HARNESS-L10-044-r18-input-target-revision-conflict",
+        "CASE-HARNESS-L10-044-r19-target-l1-unknown",
+        "CASE-HARNESS-L10-044-r19-target-requirement-unknown",
+        "CASE-HARNESS-L10-044-r19-design-scope-unknown",
+        "CASE-HARNESS-L10-044-r19-target-revision-unknown",
+        "CASE-HARNESS-L10-044-r19-source-atom-unknown",
+        "CASE-HARNESS-L10-044-r19-active-template-unknown",
+        "CASE-HARNESS-L10-044-r19-applicability-unknown",
+        "CASE-HARNESS-L10-044-r19-oracle-unknown",
+        "CASE-HARNESS-L10-044-r19-contract-version-unknown-field-present",
+        "CASE-HARNESS-L10-044-r19-class-identity-unknown",
+        "CASE-HARNESS-L10-044-r19-class-contract-relation-unknown",
+        "CASE-HARNESS-L10-044-r19-class-identity-conflict",
+        "CASE-HARNESS-L10-044-r19-class-identity-stale",
+        "CASE-HARNESS-L10-044-r19-class-contract-relation-conflict",
+        "CASE-HARNESS-L10-044-r19-class-contract-relation-stale"
+      ],
+      "definitions": [
+        {
+          "id": "CASE-HARNESS-L10-044-01",
+          "line": 2123,
+          "kind": "index"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-02",
+          "line": 2124,
+          "kind": "index"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-03",
+          "line": 2125,
+          "kind": "index"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-04",
+          "line": 2126,
+          "kind": "index"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-05",
+          "line": 2127,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-06",
+          "line": 2128,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-07",
+          "line": 2129,
+          "kind": "index"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-08",
+          "line": 2130,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-na-rationale-missing",
+          "line": 2131,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-source-atom-missing",
+          "line": 2132,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-active-template-missing",
+          "line": 2133,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-applicability-missing",
+          "line": 2134,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-oracle-missing",
+          "line": 2135,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-contract-version-missing",
+          "line": 2136,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-class-oracle-absent",
+          "line": 2137,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r14-class-contract-relation-missing",
+          "line": 2138,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-025-output-substitution",
+          "line": 2139,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-043-output-substitution",
+          "line": 2140,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-044-denominator-old-receipt",
+          "line": 2141,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-semantic-duplicate",
+          "line": 2142,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-unsupported-na",
+          "line": 2143,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-source-atom-conflict",
+          "line": 2144,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-active-template-stale",
+          "line": 2145,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-applicability-conflict",
+          "line": 2146,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-oracle-stale",
+          "line": 2147,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-contract-version-conflict",
+          "line": 2148,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r05-minimum-portfolio-drops-obligation",
+          "line": 2149,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r05-candidate-promoted-to-approval",
+          "line": 2150,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r05-source-atom-stale",
+          "line": 2151,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r05-active-template-conflict",
+          "line": 2152,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r05-applicability-stale",
+          "line": 2153,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r05-oracle-conflict",
+          "line": 2154,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r05-contract-version-stale",
+          "line": 2155,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r06-semantic-map-unverifiable",
+          "line": 2156,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r09-001",
+          "line": 2157,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r09-002",
+          "line": 2158,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r09-003",
+          "line": 2159,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r09-004",
+          "line": 2160,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r10-old-denominator-receipt",
+          "line": 2161,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r16-normal-nine-class",
+          "line": 2162,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r16-normal-reuse",
+          "line": 2163,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r16-normal-delta",
+          "line": 2164,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r16-normal-new-contract",
+          "line": 2165,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r16-delta-insufficient",
+          "line": 2166,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r16-refuse-requirement-agreement",
+          "line": 2167,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r16-refuse-l3-approval",
+          "line": 2168,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r16-refuse-design-approval",
+          "line": 2169,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r16-refuse-adoption",
+          "line": 2170,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r16-refuse-implementation",
+          "line": 2171,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r16-refuse-os-execution",
+          "line": 2172,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r16-refuse-user-acceptance",
+          "line": 2173,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-classification-reuse",
+          "line": 2183,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-classification-delta",
+          "line": 2184,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-classification-new",
+          "line": 2185,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-classification-na",
+          "line": 2186,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-output-revision-missing",
+          "line": 2187,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-output-revision-mismatch",
+          "line": 2188,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-output-scope-missing",
+          "line": 2189,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-output-scope-mismatch",
+          "line": 2190,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-finding-duplicate-assignment-basis-missing",
+          "line": 2191,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-finding-semantic-duplicate-basis-missing",
+          "line": 2192,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r04-finding-uncovered-class-basis-missing",
+          "line": 2193,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r17-unselected-source-drops-established-class",
+          "line": 2194,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r17-unselected-source-assumed-pass-closure",
+          "line": 2195,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r18-input-target-l1-missing",
+          "line": 2196,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r18-input-target-l1-stale",
+          "line": 2197,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r18-input-target-l1-conflict",
+          "line": 2198,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r18-input-target-requirement-missing",
+          "line": 2199,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r18-input-target-requirement-stale",
+          "line": 2200,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r18-input-target-requirement-conflict",
+          "line": 2201,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r18-input-design-scope-missing",
+          "line": 2202,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r18-input-design-scope-stale",
+          "line": 2203,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r18-input-design-scope-conflict",
+          "line": 2204,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r18-input-target-revision-missing",
+          "line": 2205,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r18-input-target-revision-stale",
+          "line": 2206,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r18-input-target-revision-conflict",
+          "line": 2207,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r19-target-l1-unknown",
+          "line": 2208,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r19-target-requirement-unknown",
+          "line": 2209,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r19-design-scope-unknown",
+          "line": 2210,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r19-target-revision-unknown",
+          "line": 2211,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r19-source-atom-unknown",
+          "line": 2212,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r19-active-template-unknown",
+          "line": 2213,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r19-applicability-unknown",
+          "line": 2214,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r19-oracle-unknown",
+          "line": 2215,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r19-contract-version-unknown-field-present",
+          "line": 2216,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r19-class-identity-unknown",
+          "line": 2217,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r19-class-contract-relation-unknown",
+          "line": 2218,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r19-class-identity-conflict",
+          "line": 2219,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r19-class-identity-stale",
+          "line": 2220,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r19-class-contract-relation-conflict",
+          "line": 2221,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-044-r19-class-contract-relation-stale",
+          "line": 2222,
+          "kind": "fixture_or_case"
+        }
+      ]
+    },
+    "046": {
+      "span": {
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "lines": [
+          2304,
+          2413
+        ],
+        "sha256_lf": "398a1b6c74d33668fabc95e3067b9cbd2e2cfb31ae8cbd86d90e0b32f8866353",
+        "bytes": 48519
+      },
+      "definition_count": 81,
+      "unique_id_count": 81,
+      "index_rows": [
+        "CASE-HARNESS-L10-046-01",
+        "CASE-HARNESS-L10-046-02",
+        "CASE-HARNESS-L10-046-03",
+        "CASE-HARNESS-L10-046-06",
+        "CASE-HARNESS-L10-046-r02-exception-missing"
+      ],
+      "direct_or_case_rows": [
+        "CASE-HARNESS-L10-046-04",
+        "CASE-HARNESS-L10-046-05",
+        "CASE-HARNESS-L10-046-07",
+        "CASE-HARNESS-L10-046-08",
+        "CASE-HARNESS-L10-046-09",
+        "CASE-HARNESS-L10-046-10",
+        "CASE-HARNESS-L10-046-11",
+        "CASE-HARNESS-L10-046-12",
+        "CASE-HARNESS-L10-046-r02-slice-only",
+        "CASE-HARNESS-L10-046-r02-other-revision-sr4",
+        "CASE-HARNESS-L10-046-r02-general-v-pair",
+        "CASE-HARNESS-L10-046-root-r02-unseen-valid",
+        "CASE-HARNESS-L10-046-root-r02-scope-extrapolation",
+        "CASE-HARNESS-L10-046-r04-046-oracle-missing",
+        "CASE-HARNESS-L10-046-r04-046-applicability-missing",
+        "CASE-HARNESS-L10-046-r04-046-source-revision-missing",
+        "CASE-HARNESS-L10-046-r04-oracle-conflict",
+        "CASE-HARNESS-L10-046-r04-oracle-stale",
+        "CASE-HARNESS-L10-046-r04-applicability-conflict",
+        "CASE-HARNESS-L10-046-r04-applicability-stale",
+        "CASE-HARNESS-L10-046-r04-source-revision-conflict",
+        "CASE-HARNESS-L10-046-r04-source-revision-stale",
+        "CASE-HARNESS-L10-046-r05-full-v-freeze-missing",
+        "CASE-HARNESS-L10-046-r05-nonscrum-scrum-obligations",
+        "CASE-HARNESS-L10-046-r05-slice-delta-missing",
+        "CASE-HARNESS-L10-046-r05-backfill-missing",
+        "CASE-HARNESS-L10-046-r05-sr4-receipt-missing",
+        "CASE-HARNESS-L10-046-r05-root-checkpoint-missing",
+        "CASE-HARNESS-L10-046-r06-slice-delta-not-returned",
+        "CASE-HARNESS-L10-046-r06-backfill-missing",
+        "CASE-HARNESS-L10-046-r06-applicability-unknown",
+        "CASE-HARNESS-L10-046-r10-transition-missing",
+        "CASE-HARNESS-L10-046-r10-loop-missing",
+        "CASE-HARNESS-L10-046-r10-terminal-missing",
+        "CASE-HARNESS-L10-046-r10-permission-missing",
+        "CASE-HARNESS-L10-046-r10-timeout-missing",
+        "CASE-HARNESS-L10-046-r10-notification-missing",
+        "CASE-HARNESS-L10-046-r10-audit-missing",
+        "CASE-HARNESS-L10-046-r10-data-missing",
+        "CASE-HARNESS-L10-046-r10-switching-missing",
+        "CASE-HARNESS-L10-046-r10-routing-missing",
+        "CASE-HARNESS-L10-046-r10-resource-allocation-missing",
+        "CASE-HARNESS-L10-046-r10-exception-missing",
+        "CASE-HARNESS-L10-046-r12-fullv-normal",
+        "CASE-HARNESS-L10-046-r12-fullv-no-scrum",
+        "CASE-HARNESS-L10-046-r12-fullv-refuse-slice-delta",
+        "CASE-HARNESS-L10-046-r12-fullv-refuse-scrum-reverse",
+        "CASE-HARNESS-L10-046-r12-fullv-refuse-sr4-obligation",
+        "CASE-HARNESS-L10-046-r12-fullv-condition-missing",
+        "CASE-HARNESS-L10-046-r12-scrum-normal",
+        "CASE-HARNESS-L10-046-r15-refuse-sr4-receipt-generation",
+        "CASE-HARNESS-L10-046-r12-scrum-backfill-missing",
+        "CASE-HARNESS-L10-046-r12-scrum-sr4-missing",
+        "CASE-HARNESS-L10-046-r12-style-unknown",
+        "CASE-HARNESS-L10-046-r12-pair-oracle-unknown",
+        "CASE-HARNESS-L10-046-r12-refuse-adoption",
+        "CASE-HARNESS-L10-046-r12-refuse-agreement",
+        "CASE-HARNESS-L10-046-r12-refuse-requirement-approval",
+        "CASE-HARNESS-L10-046-r12-refuse-os-ticket",
+        "CASE-HARNESS-L10-046-r12-refuse-execution",
+        "CASE-HARNESS-L10-046-r12-refuse-release-permission",
+        "CASE-HARNESS-L10-046-r12-refuse-user-acceptance",
+        "CASE-HARNESS-L10-046-r12-refuse-workflow-instance",
+        "CASE-HARNESS-L10-046-r12-refuse-os-saved-state",
+        "CASE-HARNESS-L10-046-r12-refuse-os-runtime",
+        "CASE-HARNESS-L10-046-r12-composed-scrum-sr4-missing",
+        "CASE-HARNESS-L10-046-r13-sr0-receipt-missing",
+        "CASE-HARNESS-L10-046-r13-sr1-receipt-missing",
+        "CASE-HARNESS-L10-046-r13-sr2-receipt-missing",
+        "CASE-HARNESS-L10-046-r13-sr3-receipt-missing",
+        "CASE-HARNESS-L10-046-r14-refuse-style-rewrite",
+        "CASE-HARNESS-L10-046-r14-refuse-method-definition-rewrite",
+        "CASE-HARNESS-L10-046-r14-refuse-composition-permission-rewrite",
+        "CASE-HARNESS-L10-046-r14-refuse-trigger-condition-rewrite",
+        "CASE-HARNESS-L10-046-r14-refuse-common-process-rewrite",
+        "CASE-HARNESS-L10-046-r14-composition-permission-missing"
+      ],
+      "definitions": [
+        {
+          "id": "CASE-HARNESS-L10-046-01",
+          "line": 2304,
+          "kind": "index"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-02",
+          "line": 2305,
+          "kind": "index"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-03",
+          "line": 2306,
+          "kind": "index"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-04",
+          "line": 2307,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-05",
+          "line": 2308,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-06",
+          "line": 2309,
+          "kind": "index"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-07",
+          "line": 2310,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-08",
+          "line": 2311,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-09",
+          "line": 2312,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-10",
+          "line": 2313,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-11",
+          "line": 2314,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-12",
+          "line": 2315,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r02-slice-only",
+          "line": 2316,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r02-other-revision-sr4",
+          "line": 2317,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r02-exception-missing",
+          "line": 2318,
+          "kind": "index"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r02-general-v-pair",
+          "line": 2319,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-root-r02-unseen-valid",
+          "line": 2320,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-root-r02-scope-extrapolation",
+          "line": 2321,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r04-046-oracle-missing",
+          "line": 2322,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r04-046-applicability-missing",
+          "line": 2323,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r04-046-source-revision-missing",
+          "line": 2324,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r04-oracle-conflict",
+          "line": 2325,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r04-oracle-stale",
+          "line": 2326,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r04-applicability-conflict",
+          "line": 2327,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r04-applicability-stale",
+          "line": 2328,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r04-source-revision-conflict",
+          "line": 2329,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r04-source-revision-stale",
+          "line": 2330,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r05-full-v-freeze-missing",
+          "line": 2331,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r05-nonscrum-scrum-obligations",
+          "line": 2332,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r05-slice-delta-missing",
+          "line": 2333,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r05-backfill-missing",
+          "line": 2334,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r05-sr4-receipt-missing",
+          "line": 2335,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r05-root-checkpoint-missing",
+          "line": 2336,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r06-slice-delta-not-returned",
+          "line": 2337,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r06-backfill-missing",
+          "line": 2338,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r06-applicability-unknown",
+          "line": 2339,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-transition-missing",
+          "line": 2340,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-loop-missing",
+          "line": 2341,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-terminal-missing",
+          "line": 2342,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-permission-missing",
+          "line": 2343,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-timeout-missing",
+          "line": 2344,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-notification-missing",
+          "line": 2345,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-audit-missing",
+          "line": 2346,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-data-missing",
+          "line": 2347,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-switching-missing",
+          "line": 2348,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-routing-missing",
+          "line": 2349,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-resource-allocation-missing",
+          "line": 2350,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-exception-missing",
+          "line": 2351,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-fullv-normal",
+          "line": 2352,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-fullv-no-scrum",
+          "line": 2353,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-fullv-refuse-slice-delta",
+          "line": 2354,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-fullv-refuse-scrum-reverse",
+          "line": 2355,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-fullv-refuse-sr4-obligation",
+          "line": 2356,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-fullv-condition-missing",
+          "line": 2357,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-scrum-normal",
+          "line": 2358,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r15-refuse-sr4-receipt-generation",
+          "line": 2359,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-scrum-backfill-missing",
+          "line": 2360,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-scrum-sr4-missing",
+          "line": 2361,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-style-unknown",
+          "line": 2362,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-pair-oracle-unknown",
+          "line": 2363,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-refuse-adoption",
+          "line": 2364,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-refuse-agreement",
+          "line": 2365,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-refuse-requirement-approval",
+          "line": 2366,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-refuse-os-ticket",
+          "line": 2367,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-refuse-execution",
+          "line": 2368,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-refuse-release-permission",
+          "line": 2369,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-refuse-user-acceptance",
+          "line": 2370,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-refuse-workflow-instance",
+          "line": 2371,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-refuse-os-saved-state",
+          "line": 2372,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-refuse-os-runtime",
+          "line": 2373,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r12-composed-scrum-sr4-missing",
+          "line": 2383,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r13-sr0-receipt-missing",
+          "line": 2389,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r13-sr1-receipt-missing",
+          "line": 2390,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r13-sr2-receipt-missing",
+          "line": 2391,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r13-sr3-receipt-missing",
+          "line": 2392,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r14-refuse-style-rewrite",
+          "line": 2408,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r14-refuse-method-definition-rewrite",
+          "line": 2409,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r14-refuse-composition-permission-rewrite",
+          "line": 2410,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r14-refuse-trigger-condition-rewrite",
+          "line": 2411,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r14-refuse-common-process-rewrite",
+          "line": 2412,
+          "kind": "fixture_or_case"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r14-composition-permission-missing",
+          "line": 2413,
+          "kind": "fixture_or_case"
+        }
+      ]
+    }
+  },
+  "parent_semantic_mapping": {
+    "041": {
+      "fixed_requirement": "選択済みactive template/scopeにある各章・field・table row・applicability rule・done-when・pair contractをatomまたは理由付きgapへ対応し、source/provenanceを結ぶ。template意味/適用性は009、ledger契約不整合は040相当へ戻す。",
+      "FR_AC": "AC-01選択/入力の適用性、AC-02原子atom-or-gap閉包、AC-03sourceと出力provenance/digest、AC-04 authority非生成、AC-05 025/026非前提・非代替。",
+      "cases": "L10 01-10とr04-r11で正例、inputのmissing/unknown/conflict/stale、atom/gap、重複/分割/merge、digest・kind/branch/revisionの単独変異。r10候補状態非生成、owner class保持、未解決義務、025/026 receipt代用/開始前提禁止を個別CASEで照合。"
+    },
+    "042": {
+      "fixed_requirement": "Design Refactor判定にsemantic similarity・consumer・oracle・dependency graphを使い、名称だけで統合しない。機能追加と同一episodeに混載せず、Performance Refactor値は016へ委譲し、新閾値を作らない。",
+      "FR_AC": "AC-01挙動/契約保持は016、AC-02各根拠とunknownを分ける、AC-03機能追加分離、AC-04対象revision・019逆戻しとauthority境界。",
+      "cases": "normal/criteria各missing・stale、名称だけ、他scope/revision、feature混在、公開契約/要求/persistent state変更、未見consumer正常とconsumer unknown、019戻し、authorityと性能threshold非生成を個別化。"
+    },
+    "043": {
+      "fixed_requirement": "各適用rule/branchにpositiveと境界negativeを対応させ、risk追加例は対象scopeのrisk分析が未被覆を示す場合だけ。件数/全組合せで閉じない。CORE配置は提案でPO未決。",
+      "FR_AC": "AC-01選択scopeのrule/branch分母とcoverage、AC-02source/applicability/risk入力の状態、AC-03scope・revision境界、AC-04例の意味/oracle/risk十分性と権限境界。",
+      "cases": "FV 2230-2232はindex-only（fixture母数に数えない）。2233以降の直接CASEは、分母から新branchを落とす誤出力、positive/negative境界不適合、risk欠落、oracle binding、unselected scope拒否、source-independent rule input、041 selected vs non-selected owner経路、025/026 output/receipt代用禁止、risk output一致/欠落/不一致を照合。"
+    },
+    "044": {
+      "fixed_requirement": "対象scopeの適用obligation class全てをcontractまたは根拠付きN/Aへ対応させ、未被覆0・意味重複0のportfolioを候補出力する。025/026/043の成果だけで閉包しない。",
+      "FR_AC": "AC-01 class/contract/oracle分類、AC-02sourceとclosure、AC-03scope/revision、不明やowner返却、AC-04 authority非生成。",
+      "cases": "normal 9-class fixtureとreuse/delta/new/N-A、source/class/contract/relation/oracle/output bindingの欠落・状態変異、unselected sourceによる消去/assumed pass、各禁止authority outputを個別化。BR/BVは索引でありfunctional casesの重複件数に加算しない。"
+    },
+    "046": {
+      "fixed_requirement": "Full VはL1-L5段階freezeと12 workflow条件を確認しScrum artifactを要求しない。Production Scrum/許可合成内Scrumだけslice/backfill/SR4条件を適用し、trigger由来のcheckpointと全Scrum scopeのSR4 release-ready境界を区別。",
+      "FR_AC": "AC-01 Full V/12条件、AC-02 Scrum/backfill/triggerとSR4 source値、AC-03 unknownと既存owner return、AC-04 authority/OS state非生成。",
+      "cases": "Full V normal/no-Scrum正例とScrum artifactを誤要求/生成する各単独拒否、12条件別欠落、Scrum trigger成立/不成立profile、backfill/SR0-SR3 checkpoint/SR4欠落、scope/revision/oracle unknown、OS/authority出力拒否を照合。L11 fixed parent lines770-772と旧v1.3 L259/102/104-106から範囲を確認。"
+    }
+  },
+  "case_execution": "全て未実行の候補oracle。静的文書照合のみ。",
+  "043_reconciliation": {
+    "definition_rows": 59,
+    "unique_ids": 59,
+    "index_only_rows": 3,
+    "direct_or_case_rows": 56,
+    "last_definition_line": 2288,
+    "last_definition_id": "CASE-HARNESS-L10-043-r22-risk-basis-unknown",
+    "count_60_status": "exact table definitions and unique IDs both 59. A 60th ID/row was not found in this exact base; if Root uses a different counting unit, it needs a locator."
+  },
+  "limitations": [
+    "No oracle/test/runtime/CI execution.",
+    "No full consumer closure beyond the inspected fixed L2/L11 consumers and named legacy-source links.",
+    "Other HARNESS Stage 3 parents are out of scope."
+  ]
+}

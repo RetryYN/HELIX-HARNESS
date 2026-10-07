@@ -1,0 +1,175 @@
+{
+  "record_type": "draft_index_entry_for_append_only_semantic_audit_followups",
+  "recorded_at": "2026-10-08",
+  "status": "root_inspected_pending_independent_review",
+  "immutable_index": {
+    "path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-index-d629e2525-2026-10-08.json",
+    "basis_main": "d629e25254a7c1d505543a0ce6ca3183c3fc4d67",
+    "bytes": 1060032,
+    "sha256": "95447df5f9f63e07e19cd884744a48328031f5cdc1dea2d22602871314b9458f"
+  },
+  "chain_snapshot_not_modified": {
+    "path": "docs/governance/audits/requirements-stage/l3-authority-chain-41groups-ce70628.json",
+    "target_main": "ce70628e53ff5f78c1321accf57429c740ea585d",
+    "sha256": "f40140efaeaa1cc84067adbc77d189f79c56ba991cb54d751760343335ed23bb"
+  },
+  "copy_source_artifacts": [
+    {
+      "source": "/tmp/root-4mechanism-semantic-audit-scope-d629e2525.md",
+      "path": "docs/governance/audits/requirements-stage/root-4mechanism-semantic-audit-scope-d629e2525.md",
+      "bytes": 95493,
+      "sha256": "fbc91213a2c1ab9c93628931d6cc85a9913e0d6d4a5e43684ba603ade14c0a9f"
+    },
+    {
+      "source": "/tmp/root-4mechanism-semantic-audit-scope-d629e2525.json",
+      "path": "docs/governance/audits/requirements-stage/root-4mechanism-semantic-audit-scope-d629e2525.json",
+      "bytes": 527262,
+      "sha256": "8f820d2ac8b3e85ca2b9e2aeb03901cd5b240de7cbbdea3fe4bc27e0bd8564b7"
+    },
+    {
+      "source": "/tmp/root-274-unknown-HARNESS-OS-SECURITY-CONNECT-followup-2026-10-08.md",
+      "path": "docs/governance/audits/requirements-stage/root-274-unknown-HARNESS-OS-SECURITY-CONNECT-followup-2026-10-08.md",
+      "bytes": 30434,
+      "sha256": "c58992ab79daddfa3ad88094597f5030a6fcaabe6846ae8c04d30471997b3483"
+    },
+    {
+      "source": "/tmp/root-274-unknown-HARNESS-OS-SECURITY-CONNECT-followup-2026-10-08.json",
+      "path": "docs/governance/audits/requirements-stage/root-274-unknown-HARNESS-OS-SECURITY-CONNECT-followup-2026-10-08.json",
+      "bytes": 676796,
+      "sha256": "f09a89f23a67de891868d54e64fec48b3a0892155dae7ec6aef74e57c4d79949"
+    }
+  ],
+  "meaning_limits": [
+    "159-parent source-scope extraction and 79-parent unknown-row followup are distinct populations; do not sum as semantic completion.",
+    "Unknown followup source snapshot records origin/main 691afef; #2694/#2695 merge/read-after are later than earlier ce706 snapshot.",
+    "Root later report: #2696 condition3 check requested for HEAD 46fde619b8d0e399bb52c6147c96c12429c6add4; this later status does not rewrite older snapshots.",
+    "No semantic approval, full 274 closure, runtime/test/CI, PO post-confirmation, or L10 execution is generated."
+  ],
+  "later_chain_followup": {
+    "path": "docs/governance/audits/requirements-stage/l3-authority-chain-post-ce706-limited-decisions-d8ba018-2026-10-08.md",
+    "json_path": "docs/governance/audits/requirements-stage/l3-authority-chain-post-ce706-limited-decisions-d8ba018-2026-10-08.json",
+    "target_main": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+    "limited_prs": [
+      2688,
+      2692,
+      2694,
+      2695,
+      2696
+    ],
+    "covered_parent_count": 6,
+    "current_l3_l10_blob_count": 48,
+    "authority_limit": "6親の各記録scopeだけ。全274親の意味完了・全件承認を生成しない。",
+    "immutable_prior_chain_preserved": true,
+    "markdown_bytes": 5290,
+    "markdown_sha256": "8c8c3eb4602ce1b9f4e49378488d185dc3fe564da9b384099bf3b7a091083fa5",
+    "json_bytes": 36297,
+    "json_sha256": "9690c054d0f0dc34354d71af74a48aadc49ac4b3886c6834f79bcc8d5f7580d4"
+  },
+  "limited_semantic_confirmation_followup": {
+    "artifacts": [
+      {
+        "kind": "md",
+        "source": "/tmp/root-labo19-infra011-current-confirmation-d629e2525.md",
+        "path": "docs/governance/audits/requirements-stage/root-labo19-infra011-current-confirmation-d629e2525.md",
+        "bytes": 13492,
+        "sha256": "073dfe45967184fbc3abbd65bde5bb6e52f0b38ad7d1d8725467a9d5d6e1e1c5"
+      },
+      {
+        "kind": "json",
+        "source": "/tmp/root-labo19-infra011-current-confirmation-d629e2525.json",
+        "path": "docs/governance/audits/requirements-stage/root-labo19-infra011-current-confirmation-d629e2525.json",
+        "bytes": 103195,
+        "sha256": "00ed2d1b97281608427cb1ecf953774cd8dea13528f8044bf11adc8394539047"
+      }
+    ],
+    "scope": "LABO 19親 + INFRASTRUCTURE 011の計20親",
+    "target_main": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+    "interpretation_limit": "限定照合のみ。全274親の意味完了、承認、実行を示さない。"
+  },
+  "finding_closure_followup": {
+    "artifacts": [
+      {
+        "kind": "md",
+        "source": "/tmp/root-274-finding-closure-followup-2026-10-08.md",
+        "path": "docs/governance/audits/requirements-stage/root-274-finding-closure-followup-2026-10-08.md",
+        "bytes": 8205,
+        "sha256": "d0d6aae726dc07520ba791a24a0cadfd0a2eed9f5fc4f896d50f08d3caee9f62"
+      },
+      {
+        "kind": "json",
+        "source": "/tmp/root-274-finding-closure-followup-2026-10-08.json",
+        "path": "docs/governance/audits/requirements-stage/root-274-finding-closure-followup-2026-10-08.json",
+        "bytes": 78975,
+        "sha256": "25f863719640890abed16c85f848c6c260c60106156cf6e84c68e4ecb5f1f971"
+      },
+      {
+        "kind": "review_memo",
+        "source": "/tmp/root-274-semantic-index-review-note-d8ba018-2026-10-08.md",
+        "path": "docs/governance/audits/requirements-stage/root-274-semantic-index-review-note-d8ba018-2026-10-08.md",
+        "bytes": 3345,
+        "sha256": "f61a507c2eccb322b96005e51be672c81290d959131ee6de505e9f87485ece2f"
+      }
+    ],
+    "target_main": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+    "scope": "274 parent identity/status/finding-candidate and later targeted-scope bookkeeping; not a same-depth semantic review or completion claim."
+  },
+  "root_review_memo": {
+    "kind": "review_memo",
+    "source": "/tmp/root-274-semantic-index-review-note-d8ba018-2026-10-08.md",
+    "path": "docs/governance/audits/requirements-stage/root-274-semantic-index-review-note-d8ba018-2026-10-08.md",
+    "bytes": 3345,
+    "sha256": "f61a507c2eccb322b96005e51be672c81290d959131ee6de505e9f87485ece2f"
+  },
+  "reproduction_source_mirrors": [
+    {
+      "source_path": "/tmp/root-274-finding-unknown-residual-extract-2026-10-08.md",
+      "repository_path": "docs/governance/audits/requirements-stage/root-274-finding-unknown-residual-extract-2026-10-08.md",
+      "bytes": 13427,
+      "sha256": "417a6c4c4110f29a8b4b0898ad9755e23a5c7ff853f1a14b4f59bcf157f12edc",
+      "copy_is_byte_identical": true
+    },
+    {
+      "source_path": "/tmp/root-274-finding-unknown-residual-extract-2026-10-08.json",
+      "repository_path": "docs/governance/audits/requirements-stage/root-274-finding-unknown-residual-extract-2026-10-08.json",
+      "bytes": 448258,
+      "sha256": "5c63b6cc7ea1dd19871a87034b63ae55e322bc4efc408b0a08e1b79b80a8bd27",
+      "copy_is_byte_identical": true
+    },
+    {
+      "source_path": "/tmp/root-274-audit-source-parent-readscope-followup-2026-10-08.md",
+      "repository_path": "docs/governance/audits/requirements-stage/root-274-audit-source-parent-readscope-followup-2026-10-08.md",
+      "bytes": 6110,
+      "sha256": "f937b6e6bb3768c4167d8144f33d7a8af0da571717dafecc05d7b7eecfa0b738",
+      "copy_is_byte_identical": true
+    },
+    {
+      "source_path": "/tmp/root-274-audit-source-parent-readscope-followup-2026-10-08.json",
+      "repository_path": "docs/governance/audits/requirements-stage/root-274-audit-source-parent-readscope-followup-2026-10-08.json",
+      "bytes": 1992927,
+      "sha256": "e1ab7b5bf97377145e559d7020accac11b6e824fd26764359e8a7700b5a9d531",
+      "copy_is_byte_identical": true
+    },
+    {
+      "source_path": "/tmp/root-os014-internal-deployment-synthetic-scope-2026-10-08.md",
+      "repository_path": "docs/governance/audits/requirements-stage/root-os014-internal-deployment-synthetic-scope-2026-10-08.md",
+      "bytes": 1751,
+      "sha256": "285478c4ef7790f9db546e520c544c78e078221f14a943bfdb51d8ddc9adf9af",
+      "copy_is_byte_identical": true
+    },
+    {
+      "source_path": "/tmp/root-os014-internal-deployment-synthetic-scope-2026-10-08.json",
+      "repository_path": "docs/governance/audits/requirements-stage/root-os014-internal-deployment-synthetic-scope-2026-10-08.json",
+      "bytes": 1910,
+      "sha256": "1ce5f0f8f32f8960ee3d3fc54ead6db76a6bae8e19f5baf3dee69a7f14e035ee",
+      "copy_is_byte_identical": true
+    },
+    {
+      "source_path": "/tmp/root-4mechanism-semantic-audit-scope-d629e2525.json",
+      "repository_path": "docs/governance/audits/requirements-stage/root-4mechanism-semantic-audit-scope-d629e2525.json",
+      "bytes": 527262,
+      "sha256": "8f820d2ac8b3e85ca2b9e2aeb03901cd5b240de7cbbdea3fe4bc27e0bd8564b7",
+      "copy_is_byte_identical": true,
+      "note": "既存コピー。今回新規コピー対象外。"
+    }
+  ]
+}

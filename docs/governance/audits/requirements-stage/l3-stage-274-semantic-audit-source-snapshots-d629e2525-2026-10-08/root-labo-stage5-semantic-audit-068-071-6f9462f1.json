@@ -1,0 +1,3408 @@
+{
+  "record_type": "read_only_semantic_audit",
+  "main_revision": "6f9462f1706a9e8670b97ad259e96c8c40632a4",
+  "scope": "LABO Stage 5 adopted parents 068/069/070/071 only",
+  "parent_pins": {
+    "068": {
+      "l2": {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "line_start": 541,
+        "line_end": 550,
+        "full_bytes": 113504,
+        "full_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+        "span_bytes": 4106,
+        "span_sha256": "7e3df32b0131722c88ae148c4cbfa9a1be20f81826099c0ceb29a674e07030e2"
+      },
+      "l11": {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "line_start": 278,
+        "line_end": 286,
+        "full_bytes": 66593,
+        "full_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+        "span_bytes": 3129,
+        "span_sha256": "3dcf068de1351b2e8c1f2d772ec9273cb7908368a32b389ee40ce51929ad8d94"
+      }
+    },
+    "069": {
+      "l2": {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "line_start": 552,
+        "line_end": 559,
+        "full_bytes": 113504,
+        "full_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+        "span_bytes": 2410,
+        "span_sha256": "605acfa9ec39bbdc0d964f3bf3c644122f1c081c202ddea48fe682ac31be5bc9"
+      },
+      "l11": {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "line_start": 288,
+        "line_end": 295,
+        "full_bytes": 66593,
+        "full_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+        "span_bytes": 1663,
+        "span_sha256": "d1cc8c180bab90b84ef6300bf91c79d622cff416a596131fe0b1843fd6aa61db"
+      }
+    },
+    "070": {
+      "l2": {
+        "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "line_start": 561,
+        "line_end": 574,
+        "full_bytes": 123228,
+        "full_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+        "span_bytes": 6468,
+        "span_sha256": "07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533"
+      },
+      "l11": {
+        "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "line_start": 297,
+        "line_end": 307,
+        "full_bytes": 73036,
+        "full_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+        "span_bytes": 4672,
+        "span_sha256": "c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1"
+      }
+    },
+    "071": {
+      "l2": {
+        "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "line_start": 576,
+        "line_end": 584,
+        "full_bytes": 123228,
+        "full_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+        "span_bytes": 3254,
+        "span_sha256": "3036e4c300ee6f78e74b819657d456c0bad08b8ccb483882cfc3b59fa5bbbe1f"
+      },
+      "l11": {
+        "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "line_start": 309,
+        "line_end": 316,
+        "full_bytes": 73036,
+        "full_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+        "span_bytes": 1769,
+        "span_sha256": "029c6bcea5a206a15c8bbe9706ff25917fbf9a6496b3891288fc2660634f7bc0"
+      }
+    }
+  },
+  "six_document_pins": {
+    "docs/helix-labo/L3-requirements/business-requirements.md": {
+      "bytes": 32852,
+      "sha256": "7908f4f075e3aa4514656a1f5e65ddfced120f6800fc9372fd9a6f673c28e99a"
+    },
+    "docs/helix-labo/L3-requirements/functional-requirements.md": {
+      "bytes": 354046,
+      "sha256": "5a97eef5d322f8b79d5bce433494c7ad1548fa1b6ef1eb27749882036f7afece"
+    },
+    "docs/helix-labo/L3-requirements/nfr-grade.md": {
+      "bytes": 91242,
+      "sha256": "343604239051cfc452d924688a98c15288b0e30f3e02492cda843269bbf58b4b"
+    },
+    "docs/helix-labo/L10-verification/business-verification.md": {
+      "bytes": 31387,
+      "sha256": "2a8486d6ce980a934ece785b0d6670f0dc308da36ebe100aaeb099cac4cc5cac"
+    },
+    "docs/helix-labo/L10-verification/functional-verification.md": {
+      "bytes": 692699,
+      "sha256": "5242a94fed5618792f7d2ecc8c1b6a13cf4788e79fb66b2e0b2312f34425a29e"
+    },
+    "docs/helix-labo/L10-verification/nfr-verification.md": {
+      "bytes": 82074,
+      "sha256": "2983f735ae142e126946039b195a0be483b476ffa35ef5cffee976d9f299146a"
+    }
+  },
+  "legacy_source_pins": [
+    {
+      "label": "068/070 selected telemetry + attempt atom",
+      "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "line_start": 399,
+      "line_end": 399,
+      "full_bytes": 46889,
+      "full_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "span_bytes": 445,
+      "span_sha256": "aa9dacc58969d896bbfbe38ce9c2ed6b55f47476b4cd3a411041d62bebf70468"
+    },
+    {
+      "label": "069 post-close source",
+      "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "line_start": 319,
+      "line_end": 319,
+      "full_bytes": 46889,
+      "full_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "span_bytes": 393,
+      "span_sha256": "69d2c0a4cb59e7b85d25745a78823d614869d15923aa0d5793a3f50263d2e476"
+    },
+    {
+      "label": "069 feedback lifecycle source",
+      "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/feedback-lifecycle.md",
+      "line_start": 24,
+      "line_end": 24,
+      "full_bytes": 16913,
+      "full_sha256": "2e0a028fc48c6acc92a5b09ada9fc511ed0389b71af9deee782ec81aa731a655",
+      "span_bytes": 125,
+      "span_sha256": "5afb8c01c5f3705e0c8ee690ca4f302db5cb3e2907b3ae1e12c93b773e2bdcb4"
+    },
+    {
+      "label": "069 paired consumer",
+      "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "line_start": 92,
+      "line_end": 140,
+      "full_bytes": 13648,
+      "full_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "span_bytes": 5597,
+      "span_sha256": "062f0c31b19914bb7e506606b0bd2046bd3d40ccbda00e5ad561e438e5acd6f5"
+    },
+    {
+      "label": "069 feedback lifecycle test-design context",
+      "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L8-unit-test-design.md",
+      "line_start": 320,
+      "line_end": 360,
+      "full_bytes": 82476,
+      "full_sha256": "c654b3947423f7f8967cd4d6abacaa6c110d33803dc7f315c61956d2cb669b05",
+      "span_bytes": 5912,
+      "span_sha256": "573628a6e57c266fd07842e8e4ce98b5a511f96e81768908494805067099052c"
+    },
+    {
+      "label": "071 old L1 request",
+      "revision": "3795bf0dcb731231a0b5ca1faa3cb67bdfeda22a",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+      "line_start": 67,
+      "line_end": 69,
+      "full_bytes": 4629,
+      "full_sha256": "e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765",
+      "span_bytes": 258,
+      "span_sha256": "ab29276edf0e04c4c163ab5d4e3889b0c845fbbd86fc0f7d23f8bd32a7ffdb4e"
+    },
+    {
+      "label": "071 old L3 requirement",
+      "revision": "3795bf0dcb731231a0b5ca1faa3cb67bdfeda22a",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/three-lane-cloud-governance-requirements.md",
+      "line_start": 77,
+      "line_end": 79,
+      "full_bytes": 8903,
+      "full_sha256": "4b388cda67484f1808b0f4b8834d5d234a47de49f7db6dcb12d92d2dcfbee185",
+      "span_bytes": 542,
+      "span_sha256": "e7c4bec23a84c57b06c826c67ae19d011293a689d1b7463c10ea0d5950a313dd"
+    },
+    {
+      "label": "071 old acceptance consumer",
+      "revision": "3795bf0dcb731231a0b5ca1faa3cb67bdfeda22a",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/three-lane-cloud-governance-acceptance.md",
+      "line_start": 44,
+      "line_end": 47,
+      "full_bytes": 4889,
+      "full_sha256": "785421188d23f371290ff5bacecba6c5215e7baa66110c461f548cae8f6a2fc7",
+      "span_bytes": 440,
+      "span_sha256": "db3f977c22140f8ef9cb9628fa0341fe261daabaf7240051211df91ce6406993"
+    }
+  ],
+  "functional_verification_case_inventory": {
+    "068": {
+      "count": 45,
+      "unique_ids": 45,
+      "rows": [
+        {
+          "id": "01",
+          "line": 3324,
+          "ac": [
+            "`LABO-068-AC-01`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "77e1b0263ba5c2d676fc8c903cdc3ca286d58d1d3f69d62bba7ad82e4a2bc5d6",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-01` | `FR-LABO-068-01/02` | `LABO-068-AC-01` | B0: 選択scope S0/rev R0/eval E0。OS完全性receipt有り。identity A/B/C/D各1件、stateはsuccess/failure/interrupted/denied。拒否intake I0はidentityなし。別に実行前拒否されていないassignment J0があり、Attempt identityは未発行。I0/J0は別record、A〜Dの完全記録に影響しない。同じ入力にS1/R1/E1のAttempt Xを置き、Xのidentity・scope link・event/result receipt・完全性証拠はS1で整合する。 | 変異なし（正常fixture）。 | A〜Dを各1件で`attempt_count=4`。A=success/B=failure/C=interrupted/D=deniedという各出力stateが元OS記録の同identityの値と一致することを照合する。stateを別値へ変更・補完せず、元state/receipt対応を保持し、I0とJ0およびscope外Xをcountしない。 |"
+        },
+        {
+          "id": "02",
+          "line": 3325,
+          "ac": [
+            "`LABO-068-AC-02`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "acf6e404a091967d22d9cc8e10341b0153b0388cd83ef49b790a143e0357652a",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-02` | `FR-LABO-068-01/02` | `LABO-068-AC-02` | B1: outcome閲覧前に固定した別scope S1/rev R1/eval E1。未見case群の全identity/event receiptとcompleteness evidence有り。 | 変異なし（別scopeの正常fixture）。 | S1内だけを同じ規則で数える。B0の対象集合・receipt・数値を変更しない。 |"
+        },
+        {
+          "id": "03a",
+          "line": 3326,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "815d0ef760ef91eb3fa866a5cb1e03d04d3657e4e80ce428c382daae05f37172",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-03a` | `FR-LABO-068-01/02` | `LABO-068-AC-03` | B0にidentity A/B/C/Dと完全性receipt。 | Aのidentity linkだけ欠落。 | 対象identityを確定できず総数unknown。既知OS record責務区分へ返し、missing identityの個体owner不明は別unknown。 |"
+        },
+        {
+          "id": "03b",
+          "line": 3327,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "1fdd359be96af528a979ab395a0e6e0f51ac9808209a7098ce3ad0f58fc9d012",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-03b` | `FR-LABO-068-02` | `LABO-068-AC-03` | B0のeventは観測できるが、sourceが全件捕捉を証明するcompleteness receiptはない状態。 | 変異なし（完全性unknown fixture）。 | 総数unknown。観測sourceまたはOS record owner区分へ不足を返す。 |"
+        },
+        {
+          "id": "03c",
+          "line": 3328,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "68669743782fce18971aa13524f77f78cc5679903d845133f468c9a17fa98e07",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-03c` | `FR-LABO-068-01/02` | `LABO-068-AC-03` | B0のA/B/C/Dと完全性receipt。 | Aの同一identity・同一receiptを一度だけ再配送。 | distinct identityは4。duplicateを加算しない。 |"
+        },
+        {
+          "id": "03d",
+          "line": 3329,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "d8fa232a70cd640610548f5f0bbd8c47440b5b31625c57b4ccc097b375e1bdc6",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-03d` | `FR-LABO-068-02` | `LABO-068-AC-03` | 正常B0: scope S0のidentity/event receiptとscope全体のcapture-completeness receiptが有効。 | Aのevent receipt一件だけを遅延状態にする。他fieldはB0と同一。 | 総数をunknown/未評価にし、既知の観測sourceまたはOS記録ownerへ不足を返す。既存完全性receiptから遅延eventの内容を推測せず、個体unknownでも責務区分を保持する。 |"
+        },
+        {
+          "id": "03e",
+          "line": 3330,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "c632e78ed6bb4aea873b733120b4432c07b2d15ffef094b21897a089bec9be71",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-03e` | `FR-LABO-068-01/02` | `LABO-068-AC-03` | B0にA/B/C/Dの完全記録。別に実行前denied intake I0があり、OS Attempt identityは未発行。 | 変異なし（境界fixture）。 | I0をAttempt countに含めず、intake denialとして別記。 |"
+        },
+        {
+          "id": "03f",
+          "line": 3331,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "5da8bf3138b845732945d8f0427a595ea97c88ab2e71f234702dffed4ae5c804",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-03f` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のidentity記録と、別fieldの065 retry_count receipt。 | Attempt identityを追加せず、retry_countから`+1`を計算してcountへ足そうとする。 | 換算を拒否し、B0の068 identity countを維持する。 |"
+        },
+        {
+          "id": "03g",
+          "line": 3332,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "b33bc718fe6fe31d4488ce05ab644b44cdbdc21da1c08bc3bb32c2b8a54421da",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-03g` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のidentity記録と、既存Attempt内の067 repair-round receipt。 | repair roundを新Attemptとして加算しようとする。 | 換算を拒否し、同一Attempt identityのまま保持する。 |"
+        },
+        {
+          "id": "04a",
+          "line": 3333,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "0498db25977bb0c6437f87ca3946a4b5e3976aacdd38946d903f85e5d63cc75a",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-04a` | `FR-LABO-068-03` | `LABO-068-AC-03` | 入力にはOSが発行したB0 identity/eventだけがある。 | LABO側出力が新しいAttempt identityを生成する。 | 生成を拒否。既存OS/観測source責務区分へ戻し、LABOはcount evidenceだけを返す。 |"
+        },
+        {
+          "id": "04b",
+          "line": 3334,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "dff16934dc0335b267c327f1eb08865f0307f9c17529d4958f573df85c1deeef",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-04b` | `FR-LABO-068-03` | `LABO-068-AC-03` | 既存OS identityと固定scopeのみ。 | LABOがcounting policy/identity採番規則を新設する。 | policy生成を拒否。既知OS責務区分を維持し、個別担当identityは推測しない。 |"
+        },
+        {
+          "id": "13",
+          "line": 3335,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "e70ae5de90e236fbc0137cf667d46ea7250007a800e47a68f6c635dbb8db3d8a",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-13` | `FR-LABO-068-01` | `LABO-068-AC-03` | B0のscope S0はidentity A/B/C/Dと完全性receiptが整合する正常状態。別scope S1のXもAttempt identity・source scope・OS scope link・関連receiptがS1で一致し、記録は完全。 | XのOS scope link一箇所だけをS1からS0へ変える。他のsource identity、scope evidence、receipt、B0記録は不変。 | S0/S1間のlink矛盾をLABOが解消せず、Xを含め対象境界の比較総数を `unknown`/未評価にする。4件確定、X除外、いずれかのlink上書き/修復をしない。矛盾した全記録を保持し、既知の観測sourceまたはOS記録ownerへ不足を返す。個体owner identity unknownは別記し、既知責務区分を維持する。 |"
+        },
+        {
+          "id": "14",
+          "line": 3336,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "b5e1fa21656317ac50ff0f143c957fc2e0f57fdd95654744a0f07bf0423d9613",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-14` | `FR-LABO-068-02/03` | `LABO-068-AC-03` | handoff後もOSのknown record-owner responsibility区分とA/B/C/Dは保持される。 | 担当交代後のA lineage linkだけ欠落。 | 総数unknown。known OS/observation-source区分は保持し、個体owner identity unknownを別に残す。 |"
+        },
+        {
+          "id": "15",
+          "line": 3337,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "index",
+          "line_sha256": "f99e7022ff18bf17a2936f216313d8b3f273dc993249bbf5023cb866204b1c2f",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-15` | `FR-LABO-068-01/02` | `LABO-068-AC-03` | 索引対象はCASE-03cのA duplicate receipt。 | 独立変異なし（CASE-03cへの索引）。 | CASE-03cを直接参照。Aを重ねて数えない。 |"
+        },
+        {
+          "id": "16",
+          "line": 3338,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "index",
+          "line_sha256": "3f3357c2a2467308aa95ec44abd505923c8017b627107de41f93656737b5d941",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-16` | `FR-LABO-068-02` | `LABO-068-AC-03` | 索引対象はCASE-03bのsource completeness unknown。 | 独立変異なし（CASE-03bへの索引）。 | CASE-03bを直接参照。CASE-08と同じ索引関係も二重計上しない。 |"
+        },
+        {
+          "id": "17",
+          "line": 3339,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "f747d772c03ae9ce9880e8e49f07f0e4bcc10be430696f524d6dcc15881dbe73",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-17` | `FR-LABO-068-02` | `LABO-068-AC-03` | B0のevent observationはあるが、completeness evidenceは存在しない。 | 入力にcompleteness=trueのassertionだけを追加し、根拠receiptは追加しない。 | assertionだけでは確定せずunknown。根拠不足はknown OS/source responsibilityへ返す。 |"
+        },
+        {
+          "id": "05",
+          "line": 3340,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "7103fa21fcda6532a0885d11178c31da04891541da9cfd3f9c880e45bfe5f915",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-05` | `FR-LABO-068-01/02` | `LABO-068-AC-03` | B0からscope ID以外のfield、identity、receiptは揃う。 | scope fieldだけ欠落。 | 母集団が確定しないため総数unknown。既知OS record responsibilityへ返す。 |"
+        },
+        {
+          "id": "06",
+          "line": 3341,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "eb9569b7071960489e6f9c815f0c27b08956c39fbdb52408175b705472db446d",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-06` | `FR-LABO-068-01/02` | `LABO-068-AC-03` | B0のsource revisionは選択revision R0と一致。 | source revisionだけstale。 | stale recordをcurrent totalに含めず、current scope countは未評価/unknown。 |"
+        },
+        {
+          "id": "07",
+          "line": 3342,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "8c4a89ef758a944cc89cefcc830d4134df435b033f765cff627a69f4443abdc4",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-07` | `FR-LABO-068-02` | `LABO-068-AC-03` | B0でidentity Aに結び付く訂正eventと元eventがある。 | correction lineage linkだけ欠落。 | 訂正を同一identityへ確実に結べないため総数unknown。OS/source責務区分へ返す。 |"
+        },
+        {
+          "id": "08",
+          "line": 3343,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "index",
+          "line_sha256": "019b07529c6b4a1617c184dda91930b542765bbfea41c2838250c372a88a7f4c",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-08` | `FR-LABO-068-02` | `LABO-068-AC-03` | 索引対象はCASE-03bのsource completeness unknown。 | 独立変異なし（CASE-03bへの索引）。 | CASE-03bを直接参照。CASE-16との重複indexで独立fixtureを増やさない。 |"
+        },
+        {
+          "id": "09",
+          "line": 3344,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "1defc0cd53bc6b79921f91bccd5754d172727a065352ad01237662bea2ae6cd1",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-09` | `FR-LABO-068-02` | `LABO-068-AC-03` | B0のvalid event/completeness receipt。 | stale eventだけが追加/残存し、現在scopeの整合を確認できない。 | 総数をunknown/未評価として保持し、既知のOS記録ownerまたは観測sourceへ不足を返す。個体identityが不明ならそのidentity unknownを別記し、既知の責務区分を保持する。 |"
+        },
+        {
+          "id": "10",
+          "line": 3345,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "578eb418d9401a63dc221e2afce96b07366ed39705e2518c3b7ffa5d6d327bc8",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-10` | `FR-LABO-068-01/02` | `LABO-068-AC-03` | B0のidentity A/B/C/Dは一意。 | Aに衝突する別identity recordだけ存在。 | 衝突を解消するまでtotal unknown。勝手にdedupeまたは5件扱いしない。 |"
+        },
+        {
+          "id": "11",
+          "line": 3346,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "034b3bcf27b3f01ffa3e7dd9b5bd815705d2dc72462b2582fedb0074bcaa2e34",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-11` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のidentity A/B/C/D。 | 既存Aに同一scope/revisionのCI rerunだけを追加。 | 新identityがないためcountを増やさない。rerun receiptはAへ結び保持。 |"
+        },
+        {
+          "id": "12",
+          "line": 3347,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "1c8a21ea0f5423be0bc143bcdbed73b1eb12a8f3ed5ce51431389cb456431123",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-12` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のidentity A/B/C/D。 | 新identityなしのretry_count fieldだけ増加。 | 068 countを増やさず、065 retry_countは別指標で保持。 |"
+        },
+        {
+          "id": "18",
+          "line": 3348,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "e67b54b4ed568d23eb835dfc45a66bc94806562583aa95a8d19e559f542f88b6",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-18` | `FR-LABO-068-02` | `LABO-068-AC-03` | B0と同じscope S0のAttempt identity A/B/C/D、scope全体のcapture-completeness receipt、identity集合の完全性receipt、event/correction lineageと全result receiptが揃い、すべて有効。 | Aのresult receiptだけ欠落。他のreceipt、identity、scope、event、state、完全性証拠は変えない。 | result receipt欠落だけで総数をunknown/未評価とし、Aのresult stateも別fieldでunknownにする。scope全体とidentity集合の完全性receiptがあっても総数4を確定せず、既知の観測sourceまたはOS記録owner区分へ不足を返す。個体identityが不明ならidentity unknownを別に保持し、責務区分は消さない。 |"
+        },
+        {
+          "id": "19",
+          "line": 3349,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "375750c395158289f767e4e198319495fc9d7b40fc1338de8d305fbc15954055",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-19` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0に完全なAttempt identity count inputと既存の評価契約参照。 | LABO output fieldだけでtask_evaluation_oracle=O1を新規生成する。 | oracle field生成を拒否。count結果からtask評価oracleや合格条件を定義しない。 |"
+        },
+        {
+          "id": "20",
+          "line": 3350,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "3b447f6f90e7029f7177c8a739ad05b765287733c3dcb155455c56392efb8801",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-20` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のOS assignment A0は既存stateとして入力される。 | LABO output fieldだけでassignment=A1を新規生成する。 | assignment生成を拒否しOSの既存stateを変更しない。 |"
+        },
+        {
+          "id": "21",
+          "line": 3351,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "2a9e659eb1f462b6ba8ad2ff9f582da583df461b04882c5c042101446536b465",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-21` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0にAttempt evidenceはあるが新規Worker start eventはない。 | LABO output fieldだけでworker_started=trueを追加する。 | Worker起動を生成しない。count evidenceから実行を開始しない。 |"
+        },
+        {
+          "id": "22",
+          "line": 3352,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "c03b819cfe93bc86f937ca838e74fb5162aaec990758bc35be6bd69b2c9d1c68",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-22` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0にAttempt evidenceがあり、retry state/policyは別fieldのまま。 | LABO output fieldだけでretry_requested=trueを追加する。 | retryを要求しない。既存OS retry責務/stateを変更しない。 |"
+        },
+        {
+          "id": "23",
+          "line": 3353,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "34c2c62d07081fe971390d5a63130f0effe5d65368fe495b9afbeb6dba41e8b8",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-23` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のcount evidenceと合成scopeのadoption stateは未決のまま（固定PO採択状態は別scopeで変更しない）。 | LABO output fieldだけでadopted=trueを新規生成する。 | 採否を生成せず既存decision stateを変更しない。 |"
+        },
+        {
+          "id": "24",
+          "line": 3354,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "aafb873e8ed6bd015ce0faeca68a725e5736adb71a049f639277916368d37982",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-24` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のcount evidenceと合成scopeのqualification stateは未決のまま。 | LABO output fieldだけでqualified=trueを新規生成する。 | qualificationを生成せずcountから資格を推論しない。 |"
+        },
+        {
+          "id": "25",
+          "line": 3355,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "3f8aec073863fd6c6ac550222c6f827d90bc24fcc10c6e132f6b9ce8f12b4c0e",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-25` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のcount evidenceと合成scopeのadmission stateは未決のまま。 | LABO output fieldだけでadmitted=trueを新規生成する。 | admissionを生成せず既存authority/decision stateを変更しない。 |"
+        },
+        {
+          "id": "26",
+          "line": 3356,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "55a38a8dce0301debde20d9bc6aba94fbf209f6e173095898f4a00ddd61d35da",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-26` | `FR-LABO-068-02` | `LABO-068-AC-03` | 正常B0: scope S0のidentity・lineage・完全性receiptとOS訂正event C0が既知で整合する。 | OS訂正event C0の配送状態だけを遅延にする。他fieldはB0と同一。 | 総数をunknown/未評価にし、既知の記録sourceまたはOS記録ownerへ不足を返す。identity統合・分割や欠落Attemptを遅延eventから推測せず、個体unknownでも責務区分を保持する。 |"
+        },
+        {
+          "id": "r06-experiment-permission",
+          "line": 3357,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "dc4501d1fadbdb066f84fe2b4512bde45f9c04e9630812c8b2d45b0883225dbe",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-r06-experiment-permission` | `FR-LABO-068-03` | `LABO-068-AC-03` | 完全なB0記録とcount=4。既存OS assignment・適用SECURITY許可状態は別記録。 | count結果だけを根拠に実験許可を生成する出力field一つを追加。 | 実験許可の生成を拒否し既存assignment/許可状態を変更しない。 |"
+        },
+        {
+          "id": "r06-security-permission",
+          "line": 3358,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "906efc0a628995eaf17ab84f82a602a4fb3c3a06e3d38479bc5b11fd5439aa07",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-r06-security-permission` | `FR-LABO-068-03` | `LABO-068-AC-03` | 完全なB0記録とcount=4。既存OS assignment・適用SECURITY許可状態は別記録。 | count結果だけを根拠にSECURITY許可を生成する出力field一つを追加。 | SECURITY許可の生成を拒否し既存assignment/許可状態を変更しない。 |"
+        },
+        {
+          "id": "r06-unidentified-assignment-count",
+          "line": 3359,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "6f8b79db0731b707306037bd7fa68a2bd2e4744a21ccf9c242306125105d5385",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-r06-unidentified-assignment-count` | `FR-LABO-068-01/02` | `LABO-068-AC-03` | B0のA〜D完全記録、identityなし拒否intake I0と、拒否されていないがAttempt identity未発行のassignment J0。正常count=4。 | 出力countだけをJ0算入の5へ変える。 | 誤算入を拒否しcount=4を保つ。J0は実行Attemptにせず元assignment状態を別記する。OS identityを生成・推定しない。 |"
+        },
+        {
+          "id": "r07-output-state-mismatch",
+          "line": 3360,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "bf5ef4fb9d1c9ecc60bed78df6904614a703ec728c5c8a5929b9699d35f3f594",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-r07-output-state-mismatch` | `FR-LABO-068-02` | `LABO-068-AC-03` | B0の全Attempt記録・source receipt・完全性は有効。Bの元OS state=failure、正常出力B state=failure、count=4。他identity/state/inputは不変。 | 出力のB result-state fieldだけをfailureからsuccessへ変える。 count=4と元OS記録は不変。 | 元OS記録の値と不一致または欠落した出力stateを拒否する。B=failureと元receiptへの対応を保持し、count一致をstate改変の合格根拠にしない。LABOの観測出力訂正責務を保持しOS stateを変更しない。 |"
+        },
+        {
+          "id": "r07-output-state-missing",
+          "line": 3361,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "b55f8cdbe1dda0031eb1034a505f7d20ff9f7fdb5c2eab2047bf86e64cb15bb9",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-r07-output-state-missing` | `FR-LABO-068-02` | `LABO-068-AC-03` | B0の全Attempt記録・source receipt・完全性は有効。Bの元OS state=failure、正常出力B state=failure、count=4。他identity/state/inputは不変。 | 出力のB result-state fieldだけを欠落させる。 count=4と元OS記録は不変。 | 元OS記録の値と不一致または欠落した出力stateを拒否する。B=failureと元receiptへの対応を保持し、count一致をstate改変の合格根拠にしない。LABOの観測出力訂正責務を保持しOS stateを変更しない。 |"
+        },
+        {
+          "id": "27",
+          "line": 3362,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "eb40957c81b48c0b3c4779c2399625f72d35c9aa99b931aac0eed3f4ef8b227d",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-27` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のOS発行identity/event/result/completeness receiptとOS状態が有効。正常出力はAttempt count/stateだけでAttempt/Retry policy fieldはない。 | LABO出力fieldに`attempt_retry_policy`だけを新設する（policy内容や規則値はこのfixtureで定義しない）。 | 固定親が定めないAttempt/Retry policyの生成fieldを拒否し、LABO出力から除く。正常なOS記録を責務先へ戻さず、identity・count・stateは変えない。 |"
+        },
+        {
+          "id": "28",
+          "line": 3363,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "6a8a0ce7c5f39862b8f5f54995cb682c49c03384451ba0ccae722d3c7d1a41c9",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-28` | `FR-LABO-068-03` | `LABO-068-AC-03` | CASE-27と同じ有効B0。正常出力にretry上限fieldはない。 | LABO出力に`retry_upper_limit` fieldだけを追加する。上限数値は定義しない。 | 固定親が定めないretry上限の生成を拒否し、LABO出力からfieldを除く。正常入力・他出力を変更しない。 |"
+        },
+        {
+          "id": "29",
+          "line": 3364,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "dc1ca44ce70ccf40387034dae776dd0f6f3aa46ad7b289d80c7e038265673a20",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-29` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0の全Attempt identity/state/receiptが有効で、正常出力はcount/stateに限る。task success rate fieldはない。 | LABO出力fieldに`task_success_rate`だけを追加する。数値や分母定義は与えず、率の意味を新設しない。 | 固定親のtask success rate非定義を守り、field生成を拒否してLABO出力から除く。健康な入力を別ownerへ返さず、count/stateを維持する。 |"
+        },
+        {
+          "id": "30",
+          "line": 3365,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "2adb384cac102508e86a1345b82a63bffe113fbc434b5e591b4b139bf441f230",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-30` | `FR-LABO-068-03` | `LABO-068-AC-03` | CASE-29と同じ有効B0。Attempt success rate fieldはない。 | LABO出力fieldに`attempt_success_rate`だけを追加する。数値や分母定義は与えず、率の意味を新設しない。 | 固定親のAttempt success rate非定義を守り、field生成を拒否してLABO出力から除く。健康な入力を別ownerへ返さず、count/stateを維持する。 |"
+        },
+        {
+          "id": "r08-outside-scope-counted",
+          "line": 3366,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "da3bf787c3359c87cc9b3ab0163e51c7890ff1889b541d102bf0b21dd8d3f8f5",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-r08-outside-scope-counted` | `FR-LABO-068-01` | `LABO-068-AC-03` | 正常B0。S0/R0/E0のA〜Dと、S1/R1/E1へ確定的に属するXを同じ観測入力に置く。全identity・scope link・event/result receipt・訂正/完全性証拠は各scopeで整合し、S0の正常count=4。 | 入力記録・scope link・state・receiptを変えず、S0出力のattempt_countだけをX算入の5へ変える。 | scope外Xを混ぜた誤countを拒否しS0 count=4とX除外を照合する。健康なOS入力は変更せずLABO観測出力の訂正責務を保持する。個体owner identity不明は別unknownとして既知責務区分を消さない。 |"
+        },
+        {
+          "id": "31",
+          "line": 3367,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "5765b3a5a540193a8026ca57127c68ef19554b8e3dcbad34e22e752967473161",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-31` | `FR-LABO-068-02` | `LABO-068-AC-03` | 正常B0: S0/R0/E0の同じ既選択範囲、OS記録のdistinct identity A/B/C/D、scope link、event/result/correction receipt、観測record集合A/B/C/D、stateはすべて有効。通常の完全性receiptも同じ範囲・revision R0でA/B/C/Dを表す。 | 観測record・identity集合・scope・event/state/result/correction等を変えず、完全性receiptの観測identity集合の記載だけをA/B/C/DからA/B/Cへ変える。 | receiptと同範囲の観測record集合の矛盾を解消・補完せず、attempt_countをunknown/未評価にして確定総数や0にしない。矛盾したreceiptを保持し、既知の観測sourceまたはOS記録owner責務区分へ不足を戻す。個体identity unknownは別に保持する。 |"
+        },
+        {
+          "id": "32",
+          "line": 3368,
+          "ac": [
+            "`LABO-068-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "f65b127e1f171484c0e7695856b56b4d8587001545afa59cc1a8ca22570c8e9b",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-068-CASE-32` | `FR-LABO-068-02` | `LABO-068-AC-03` | 正常B0: S0/R0/E0の同じ既選択範囲、OS記録のdistinct identity A/B/C/D、scope link、event/result/correction receipt、観測record集合A/B/C/D、stateはすべて有効。完全性receiptも同じ範囲・revision R0でA/B/C/Dを表す。 | 観測record・identity集合・scope・event/state/result/correction等を変えず、完全性receiptのsource revision参照だけをR0から既知の旧revision Rprevへ変える。 | 完全性receiptのstaleを有効とみなさず、attempt_countをunknown/未評価にして確定総数や0にしない。元の記録を修復・推定せず、receiptの既知の観測sourceまたはOS記録owner責務区分へ不足を戻す。個体identity unknownは別に保持する。 |"
+        }
+      ]
+    },
+    "069": {
+      "count": 52,
+      "unique_ids": 52,
+      "rows": [
+        {
+          "id": "01",
+          "line": 3243,
+          "ac": [
+            "`LABO-069-AC-01`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "be55a0c7bab361022955d7c0906680eb275e52a564865f1e48c7e2a4216d5bf1",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-01` | `LABO-069-AC-01` | 正常 | 同一ticket family・scope・revisionのreturn reason、適用母数、window/source completeness、再発行後resultと証拠付きrelationが有効。 | 変異なし | 正常fixtureの評価candidateに、固定L2所定の理由別傾向・counterexample・regression risk・revalidation conditionをすべて含める。oracleは4項目それぞれの出力有無と固定scope/revision/windowに結び付いた根拠を確認し、返却理由・件数・分母・scope/revision/window、再発行後resultの成立/不成立/未評価、元closure/source authorityの保持、ticket不変更と併せて判定する。新しい数値threshold・計算方式は要求しない。 |"
+        },
+        {
+          "id": "02",
+          "line": 3244,
+          "ac": [
+            "`LABO-069-AC-02`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "7a7042e115be2a34ada82c94342aa2a6d4a57928628fd5cd865a2e3bcb5e8793",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-02` | `LABO-069-AC-02` | 未見正常 | CASE-01と同じ有効条件。reasonのみ既存分類にない。 | 新しいreason classを追加せずunknown/unclassifiedを保持。 | 該当resultを既知の成立/不成立へ推測変換せず、未評価として既存OSまたは識別可能なsource-owner区分へ返す。 |"
+        },
+        {
+          "id": "03a",
+          "line": 3245,
+          "ac": [
+            "`LABO-069-AC-03`"
+          ],
+          "kind": "index",
+          "line_sha256": "a121eeed8a6e6e63fd88f8bb46cb7103052ca89cbedae090a82836255c57d649",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-03a` | `LABO-069-AC-03` | 索引・独立fixtureではない | CASE-09のdenominator欠落を参照。 | 独立変異なし。 | CASE-09を参照し二重計上しない。 |"
+        },
+        {
+          "id": "03b",
+          "line": 3246,
+          "ac": [
+            "`LABO-069-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "4f59e3f9f50c3a87cb32e68396610cbfaa2f164e91d827789cff3b21a8b29761",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-03b` | `LABO-069-AC-03` | 単独変異 | CASE-01 valid baseline。 | 観測window内の結果観測だけ未完。 | window未満をdefect 0や成立へ変換せず、未評価として保持する。 |"
+        },
+        {
+          "id": "03c",
+          "line": 3247,
+          "ac": [
+            "`LABO-069-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "c86050a8156477b4438e6bc175addeaacef03fa739ef1bd9d297eaf00f90175d",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-03c` | `LABO-069-AC-03` | 単独変異 | CASE-01 valid baseline。 | 再発行結果と元findingを結ぶevidence-backed relationだけ欠落。 | 因果・比較を出さず、relation/evidence不足を固定L2のOSまたは識別可能なsource-owner区分へ返す。 |"
+        },
+        {
+          "id": "03d",
+          "line": 3248,
+          "ac": [
+            "`LABO-069-AC-03`"
+          ],
+          "kind": "index",
+          "line_sha256": "5ea7f7f01b960679976326c32acc0b489337732c5405f08cb5b9b5a25c5b0355",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-03d` | `LABO-069-AC-03` | 索引・独立fixtureではない | CASE-06のstale revisionを参照。 | 独立変異なし。 | CASE-06を参照し二重計上しない。 |"
+        },
+        {
+          "id": "03e",
+          "line": 3249,
+          "ac": [
+            "`LABO-069-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "dcee6129abc8ca6a61a4e5a1c7aa85d425641e8f1f3b8cd6a36b2f2d59a0623e",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-03e` | `LABO-069-AC-03` | 単独変異 | 同じ適用範囲の前回と今回の件数を有効な同一条件として提示。 | 件数が減少したという表示だけをquality closureへ変換。 | 件数減少のみを品質証明とせず、gate/actionable・terminal化根拠等の入力にない結果を作らない。 |"
+        },
+        {
+          "id": "04a",
+          "line": 3250,
+          "ac": [
+            "`LABO-069-AC-04`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "5428d44edcf23fe7e6f04673d9d253c18cd253f36bdac83a05f3fc2c0d9bb69e",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-04a` | `LABO-069-AC-04` | 単独変異 | CASE-01 valid baseline。OSが保有するticket。 | LABOがticket本文を編集。 | 変更を拒否し元ticketを保持。OSのticket責務を侵さない。 |"
+        },
+        {
+          "id": "20",
+          "line": 3251,
+          "ac": [
+            "`LABO-069-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "8b11ef5dff85f4c9e6062c9cbb60d93264eb59b5f39974685d524cd8768e13f3",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-20` | `LABO-069-AC-03` | 単独変異 | 同scope/revisionの適合ticket identity、母数・分類・window・source completeness・resultが有効。 | ticket identityだけ欠落。 | 件数/rate/resultを未評価とし、OSまたは識別可能なsource-owner区分へ返す。identity値を捏造しない。 |"
+        },
+        {
+          "id": "21",
+          "line": 3252,
+          "ac": [
+            "`LABO-069-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "8f1b7ba5066a4e0cbae79835e9ef9b97cba3fab2fed9ec1ab83317e592ee1d09",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-21` | `LABO-069-AC-03` | 単独変異 | CASE-01 valid baseline。OS assignmentとticketの束縛が有効。 | assignment identityだけ欠落。 | run/ticket対応を確定せず、既存OS責務へ不足を返す。 |"
+        },
+        {
+          "id": "22",
+          "line": 3253,
+          "ac": [
+            "`LABO-069-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "df7ad1845ce5d52288ed0b9adeb50558cb445a30a316a182e65695d2c60767c5",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-22` | `LABO-069-AC-03` | 単独変異 | CASE-01 valid baseline。source identity以外は揃う。 | source identityだけ欠落。 | source ownerを推測しない。特定できない個別source identityはunknownのまま、既存OSまたは識別可能なsource-owner区分へ不足を返す。 |"
+        },
+        {
+          "id": "23",
+          "line": 3254,
+          "ac": [
+            "`LABO-069-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "1ce5f1e714fad8fb925897f2ace8ee870e7a91dd048114d0af7418cce83d90d8",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-23` | `LABO-069-AC-03` | 単独変異 | CASE-01 valid baseline。観測windowの他情報は揃う。 | 観測時点だけ欠落。 | window比較を確定せず、既存OSまたは識別可能な観測source-owner区分へ時点不足を返す。 |"
+        },
+        {
+          "id": "24",
+          "line": 3255,
+          "ac": [
+            "`LABO-069-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "c0a7c581f5c173b7a5a9bfd940100300c49d0b29400b5be8f2abf1264a3efefd",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-24` | `LABO-069-AC-03` | 単独変異 | CASE-01 valid baseline。evidence以外は揃う。 | relation/result evidenceだけ欠落。 | 成立/不成立を確定せず不足を返す。時間的近接やpathから因果を補わない。 不足証拠は既存OSまたはsource ownerへ返す。個別identityが不明でも既知責務区分を保つ。 |"
+        },
+        {
+          "id": "25",
+          "line": 3256,
+          "ac": [
+            "`LABO-069-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "37525d917000c5ce33beca612a8c9bdadb50cfe1ed3c0a8265628fec7562c6c6",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-25` | `LABO-069-AC-03` | 単独変異 | CASE-01 valid baseline。評価可能/未評価状態がsourceにある。 | 評価状態だけ欠落。 | state unknownとしてrate/resultを確定せず、既存OSまたは識別可能な状態source-owner区分へ不足を返す。 |"
+        },
+        {
+          "id": "26",
+          "line": 3257,
+          "ac": [
+            "`LABO-069-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "fd45f2432b51da004977d42f9cd79ec527afa5bdb843a833f22b8da44c1e93bb",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-26` | `LABO-069-AC-03` | 単独変異 | 同一scope・対象revisionで定義されたcohort。 | 異なるscopeまたはrevisionのrecordだけ混入。 | 異なるcohortに分離し、まとめない。 |"
+        },
+        {
+          "id": "27",
+          "line": 3258,
+          "ac": [
+            "`LABO-069-AC-03`"
+          ],
+          "kind": "index",
+          "line_sha256": "680af9bcc4e64a7337db32d702d23dc44670940c4d470b3f99c73f228e1c837b",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-27` | `LABO-069-AC-03` | 索引・独立fixtureではない | CASE-11の未実行ticket成功表示変異を参照。 | 独立変異なし。 | CASE-11 oracleを参照し二重計上しない。 |"
+        },
+        {
+          "id": "05",
+          "line": 3259,
+          "ac": [
+            "`LABO-069-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "ba6c608122a685bde80d14b026d7e0cdf01f82fb5c1c8fe453d4c6542a4e68cf",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-05` | `LABO-069-AC-03` | 単独変異 | CASE-01 valid baseline。 | ticket scopeだけ欠落。 | 比較不能/未評価。既存OSへscope不足を返す。 |"
+        },
+        {
+          "id": "06",
+          "line": 3260,
+          "ac": [
+            "`LABO-069-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "644ac8de3529eefbd1f8ed872b15f61b2f4e71b1dca159f8da869178db44516f",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-06` | `LABO-069-AC-03` | 単独変異 | CASE-01 valid baseline。 | 対象revisionだけstale。 | current比較に使わず、元revisionを保持し既存OSへ返す。 |"
+        },
+        {
+          "id": "07",
+          "line": 3261,
+          "ac": [
+            "`LABO-069-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "5fc931dc58cdf741bd1c369658cb6fb945bb650e1c5a3df571a0637174237b8b",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-07` | `LABO-069-AC-03` | 単独変異 | CASE-01 valid baseline。 | source completenessだけ不明。 | 母数/rateを確定せずunknownを保持し、既存OSまたは識別可能なsource-owner区分へ返す。 |"
+        },
+        {
+          "id": "08",
+          "line": 3262,
+          "ac": [
+            "`LABO-069-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "234cbda8b2d45cc4da99530b2e25ff8abf26eb64623ef18f64e516bfcceffaa7",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-08` | `LABO-069-AC-03` | 単独変異 | CASE-01 valid baseline。 | 再発行後resultだけ欠落。 | 成立状況unknown/未評価。結果を補完せず返す。 不足証拠は既存OSまたはsource ownerへ返す。個別identityが不明でも既知責務区分を保つ。 |"
+        },
+        {
+          "id": "09",
+          "line": 3263,
+          "ac": [
+            "`LABO-069-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "e2f094ed6bdce004a89e234775790eaad3a684ead5e3149941c7e912663631e6",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-09` | `LABO-069-AC-03` | 単独変異 | CASE-01 valid baseline。 | 適用denominatorだけ欠落。 | rateを出さず、既存OSまたは識別可能なsource-owner区分へ母数不足を返す。 |"
+        },
+        {
+          "id": "10",
+          "line": 3264,
+          "ac": [
+            "`LABO-069-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "96281943924a89bb88eb88017da80a0ac67817d4af6ba6412303bacc5fb1df98",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-10` | `LABO-069-AC-03` | 単独変異 | CASE-01 valid baseline。 | 結果観測後に分類だけ変更。 | 事後分類から成功を作らず、入力分類とsource revisionを保持する。 |"
+        },
+        {
+          "id": "11",
+          "line": 3265,
+          "ac": [
+            "`LABO-069-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "1ab30ea32e360dad341be1730ae8693525b022b49143a06b38fa9f9532d8e9da",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-11` | `LABO-069-AC-03` | 単独変異 | ticketに実行結果がない。 | 未実行ticketを成功と表示。 | 成功扱いしない。実行結果のない状態を保つ。 |"
+        },
+        {
+          "id": "12",
+          "line": 3266,
+          "ac": [
+            "`LABO-069-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "0baa9a723940002908f319c345688e617f07c4e3b2dbe0b7afc4c484a3e4c496",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-12` | `LABO-069-AC-03` | 単独変異 | CASE-01 valid baseline。 | censored observationをfailure 0として表示。 | 打切り状態を保持しzero扱いしない。 |"
+        },
+        {
+          "id": "13",
+          "line": 3267,
+          "ac": [
+            "`LABO-069-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "1e8af71a8f5d505fd25bffe4241a3e1071e900b63ffd97458a89264670a8fc9a",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-13` | `LABO-069-AC-03` | 単独変異 | 一件のticketとその個別結果。 | 一件だけから全体の因果効果/改善を主張。 | 全体因果効果や発行精度の改善を出さない。個別assessmentとevidence-backed relationの範囲に限る。 |"
+        },
+        {
+          "id": "14",
+          "line": 3268,
+          "ac": [
+            "`LABO-069-AC-04`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "08dfd6287a0235d2d8c0a009f001a3b778b856610e2e0bab7911bd2b3f3a295b",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-14` | `LABO-069-AC-04` | 単独変異 | 通常packet向けに適用中のdata-use条件を満たす入力。 | restricted dataを通常packetへ複写。 | packet出力を拒否し、適用中のSECURITY/data-use条件を保つ。固定L2以上の新ownerを作らない。 |"
+        },
+        {
+          "id": "15",
+          "line": 3269,
+          "ac": [
+            "`LABO-069-AC-04`"
+          ],
+          "kind": "index",
+          "line_sha256": "ac1c29d357778bacfe1bca87dccb915fb05cfbaa71387b296bbfb56a3e3281db",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-15` | `LABO-069-AC-04` | 索引・独立fixtureではない | CASE-04aとCASE-16/17/18を直接参照。 | 独立変異なし。 | 各主fixtureを個別参照し索引連鎖・二重計上をしない。 |"
+        },
+        {
+          "id": "16",
+          "line": 3270,
+          "ac": [
+            "`LABO-069-AC-04`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "797b8a76de44b5d357f177e74ebbf09617112f4ec5dec4e0f78b457b00815068",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-16` | `LABO-069-AC-04` | 単独変異 | CASE-01 valid baseline。 | LABOがpriorityだけを変更。 | 変更を拒否。固定L2が判断ownerを特定しない場合、個別ownerを捏造せずunknownを保持する。 |"
+        },
+        {
+          "id": "17",
+          "line": 3271,
+          "ac": [
+            "`LABO-069-AC-04`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "6b65d6fa65c6fd0a7c3199e81c37b173d3425bc71664335507bc9b2a0940021f",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-17` | `LABO-069-AC-04` | 単独変異 | CASE-01 valid baseline。 | LABOがverification oracleだけを変更。 | 変更を拒否。識別可能なsource責務がない場合は新routeを作らずunknownを保つ。 |"
+        },
+        {
+          "id": "18",
+          "line": 3272,
+          "ac": [
+            "`LABO-069-AC-04`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "3fdaabb20ffb606ab79191b497b2f565394b3ddeba0f437f863a08131c34c0a2",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-18` | `LABO-069-AC-04` | 単独変異 | CASE-01 valid baseline。 | LABOがOS assignmentだけを変更。 | 変更を拒否し、既存OS責務へ戻す。 |"
+        },
+        {
+          "id": "19",
+          "line": 3273,
+          "ac": [
+            "`LABO-069-AC-04`"
+          ],
+          "kind": "index",
+          "line_sha256": "0b0271b4e66995ce40d5f0784e46bc1f1192ee3e5849808139e52d0c17013244",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-19` | `LABO-069-AC-04` | 索引・独立fixtureではない | CASE-04a ticket変更を直接参照。 | 独立変異なし。 | CASE-04aを参照し二重計上しない。 |"
+        },
+        {
+          "id": "28",
+          "line": 3274,
+          "ac": [
+            "`LABO-069-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "ab991ddd1625e0da1077364712906d4490ac639649eae9a2fbc92fe44b8627fa",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-28` | `LABO-069-AC-03` | 単独変異 | 受入findingのreason/source identity/revisionは有効。 | oracle不足を示すsourceだけ欠落。 | closure/成功に変換せずsource欠落unknownを保ち、既存OSまたは識別可能なsource-owner区分へ返す。 |"
+        },
+        {
+          "id": "29",
+          "line": 3275,
+          "ac": [
+            "`LABO-069-AC-02`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "2d51f21a07c1d8539d7ec027f621b603cb8827d617f37930bf129e8ed829c8f0",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-29` | `LABO-069-AC-02` | 未見正常 | 固定L11「未見例」のscope内。有効source identity/revision付きoracle不足finding。 | reasonだけ既存分類に一致しない。 | 新分類を作らずunknown/unclassifiedを保つ。固定L2の戻し先roleはOSまたは識別可能なsource-owner区分。個別IDが証拠にない場合はunknown。 |"
+        },
+        {
+          "id": "30",
+          "line": 3276,
+          "ac": [
+            "`LABO-069-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "0201a5cd4742edf70578badcb6c3fa598dd640d2053cf13be1c6c3aad7cf3583",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-30` | `LABO-069-AC-03` | 単独変異 | 受入findingのsource identity/revisionは有効。 | oracle不足reasonだけ欠落。 | 既知成立/不成立へ推測せずunknown/unclassifiedを保ち、固定L2既存戻し先へ不足を返す。 |"
+        },
+        {
+          "id": "31",
+          "line": 3277,
+          "ac": [
+            "`LABO-069-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "02cd46db5e8b8b7323b0aeb47e2c265e234c7554d8c40cff15cd3acf2821de23",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-31` | `LABO-069-AC-03` | 単独変異 | 有効source identity/windowのfindingが返却済み。固定L2の戻し先区分はOSまたは識別可能なsource-owner。 | 返却後追跡が未実施なのにdefect 0と主張。 | 未追跡は未評価として保ち0扱いしない。route roleは既知のOS/source-owner区分に限り、証拠に個人/具体source identityがない場合はそのidentityをunknownのままにする。 |"
+        },
+        {
+          "id": "32",
+          "line": 3278,
+          "ac": [
+            "`LABO-069-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "7ee18081c9b9eae722b38e66bd28a2fa390d01865826429adf3b794cb421f277",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-32` | `LABO-069-AC-03` | 単独変異 | CASE-01 valid baseline。 | 欠測値だけを0として集計。 | 欠測を0にせずunknownを保持。欠測原因sourceが識別不能なら新ownerを作らず、固定L2のOS/source-owner区分と個別identity unknownを分ける。 |"
+        },
+        {
+          "id": "33",
+          "line": 3279,
+          "ac": [
+            "`LABO-069-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "7eed4208b97f8a5c251bb9885b5aa7130a6f5a78310e7ef183ed1445afaabaa7",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-33` | `LABO-069-AC-03` | 単独変異・CASE-13と意図的に重複 | CASE-01の有効evidence-backed relationと個別再発行後assessment（既存CASE-13も単一ticketを扱う）。 | 単一caseから`causal_effect_improvement=true`を生成。 | 個別relation/resultは保持できるが、固定L2が禁じる単一事例からの因果効果・発行精度改善は生成しない。CASE-13と重複する境界再照合で、新しい因果方式/閾値は加えない。 |"
+        },
+        {
+          "id": "34",
+          "line": 3280,
+          "ac": [
+            "`LABO-069-AC-04`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "b22c9e1f94b31696ae398f50475e5a260b1334b83ea2a9c5da823fd1cfa5d633",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-34` | `LABO-069-AC-04` | 単独変異 | 評価candidateのみを返す正常baseline。OSがassignmentを保持。 | 評価結果から`assignment` fieldを書き換える。 | assignmentを生成/変更せず、OSの既存責務を保つ。 |"
+        },
+        {
+          "id": "35",
+          "line": 3281,
+          "ac": [
+            "`LABO-069-AC-04`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "baf66481a06632f7653acf82e679ab4ed39ea54f4c967f70e7c75da391f18c73",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-35` | `LABO-069-AC-04` | 単独変異 | 評価candidateのみを返す正常baseline。OSがticket登録・routing・発行を保持。 | 評価結果から`ticket_issue` fieldを生成する。 | ticket issue/reissueを生成せず、OSの既存責務を保つ。 |"
+        },
+        {
+          "id": "36",
+          "line": 3282,
+          "ac": [
+            "`LABO-069-AC-04`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "a51382906dab3c7290fa316aaf535d52b955e5452dc8e12fdb5389b981c1326c",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-36` | `LABO-069-AC-04` | 単独変異 | 評価candidateのみを返す正常baseline。適用中のauthority条件を保持。 | 評価結果から`permission` fieldを付与する。 | permissionを生成せず、適用中の既存authority条件を保つ。 |"
+        },
+        {
+          "id": "37",
+          "line": 3283,
+          "ac": [
+            "`LABO-069-AC-04`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "41246bc91ea7d1820fe54fdab038d5cfaa90eed1cb1e5ec00a397ed654c96fbb",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-37` | `LABO-069-AC-04` | 単独変異 | 評価candidateのみを返す正常baseline。authority fieldは入力値どおり。 | 評価結果から`authority` fieldを拡張/変更する。 | authorityを生成/変更せず、入力の既存authority境界を保つ。 |"
+        },
+        {
+          "id": "38",
+          "line": 3284,
+          "ac": [
+            "`LABO-069-AC-04`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "f7025cc9ab757e6d85860a23ce18050252c298e5183d15804a72c90f04b0a02a",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-38` | `LABO-069-AC-04` | 単独変異 | 評価candidateのみを返す正常baseline。ticket採否は既存ownerの状態。 | 評価結果から`adoption_decision` fieldを生成する。 | 採否決定を生成しない。評価candidateと既存owner decisionを区別する。 |"
+        },
+        {
+          "id": "39",
+          "line": 3285,
+          "ac": [
+            "`LABO-069-AC-04`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "61bfe8698fbd9703e4ac53f5abe6563a60f65b0620abe76d4e36911ece36a9cf",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-39` | `LABO-069-AC-04` | 単独変異 | 評価candidateのみを返す正常baseline。実行状態は既存owner/sourceの状態。 | 評価結果から`execution_started` fieldを生成する。 | 実行開始を生成せず、評価をproposalとして返す。 |"
+        },
+        {
+          "id": "40",
+          "line": 3286,
+          "ac": [
+            "`LABO-069-AC-04`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "2b2682b6c3e080059d76186bc575be56cb9bace452ab69866f82fb988372813a",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-40` | `LABO-069-AC-04` | 単独変異 | 評価candidateのみを返す正常baseline。改善完了状態は既存owner/sourceの状態。 | 評価結果から`improvement_complete` fieldを生成する。 | 改善完了を生成しない。元ticket/source stateを保持する。 |"
+        },
+        {
+          "id": "41",
+          "line": 3287,
+          "ac": [
+            "`LABO-069-AC-04`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "6b55796e04f6494cdb72a9109b65227a1a93ed7fc43103de9bf13513f7af110e",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-41` | `LABO-069-AC-04` | 単独変異 | 本069節内の合成scope S069の返却/再発行評価inputは必要証拠不足により未評価。既存target/placementを入力のまま保持し、元closureは不変。 | 入力不変で、未評価結果だけから`target_changed=true`をLABO出力に新規生成する。 | `target_changed`を生成せず評価candidateと不足証拠を返す。OS/source ownerの入力状態とINTELLIGENCEの配置案責務を保ち、誤出力をLABO評価責務へ戻す。 不足証拠は既存OSまたはsource ownerへ返す。個別identityが不明でも既知責務区分を保つ。 |"
+        },
+        {
+          "id": "42",
+          "line": 3288,
+          "ac": [
+            "`LABO-069-AC-04`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "c70a3b852b6dc91dee56700b3b99a3d4b0abd86754442a7e5a62d3a119ca8309",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-42` | `LABO-069-AC-04` | 単独変異 | 本069節内の合成scope S069の返却/再発行評価inputは必要証拠不足により未評価。既存target/placementを入力のまま保持し、元closureは不変。 | 入力不変で、未評価結果だけから`placement_changed=true`をLABO出力に新規生成する。 | `placement_changed`を生成せず評価candidateと不足証拠を返す。OS/source ownerの入力状態とINTELLIGENCEの配置案責務を保ち、誤出力をLABO評価責務へ戻す。 不足証拠は既存OSまたはsource ownerへ返す。個別identityが不明でも既知責務区分を保つ。 |"
+        },
+        {
+          "id": "43",
+          "line": 3289,
+          "ac": [
+            "`LABO-069-AC-04`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "90e77e0a30a956ae3f34fdbad65c245d8bb49a46eb923dfed8bf34d989c97a0d",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-43` | `LABO-069-AC-04` | 単独変異（M1） | 本節内だけの固定scope label `S069`を持つ、L2-069の必要条件を満たした評価済みticket-return/reissue candidate。ticket family・scope・対象revision、evidence-backed relation、denominator、reason分類、window、source completeness、再発行後result、元closureは有効で不変。`placement_changed`は正常candidateの出力にない。 | 評価済みresultからLABO出力field `placement_changed=true`だけを新規生成する。 | `placement_changed`を拒否し、入力のtarget/placement・元closureを変えず、配置案を既存INTELLIGENCE責務に残す。評価済みか未評価かにかかわらず、L2配置境界からplacement変更をLABO出力に生成しない。 |"
+        },
+        {
+          "id": "44",
+          "line": 3290,
+          "ac": [
+            "`LABO-069-AC-01`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "2ab341fa78ed588258d7b6f5b0869488f14256459b1a7b974a7a1f665f461ff5",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-44` | `LABO-069-AC-01` | 単独変異（M2・理由別傾向） | CASE-01と同一の有効なticket family/scope/revision、relation/evidence、denominator、分類、window、source completeness、再発行後resultを用い、評価candidateにはL2-069所定の4項目（理由別傾向・counterexample・regression risk・revalidation condition）を含める。 | 出力candidateの`reason-specific trends`項目だけを欠落させ、他の全項目・証拠・適用条件は保持する。 | AC-01の正常candidateとして合格させず、理由別傾向の欠落を明示する。残る3項目と既存必須出力は保持される。新しい指標、数値threshold、統計方式は追加しない。 出力欠落の修正はLABO評価責務へ戻し、他の入力・出力を変更しない。 |"
+        },
+        {
+          "id": "45",
+          "line": 3291,
+          "ac": [
+            "`LABO-069-AC-01`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "63242259f76b286e39b72986e82ec23712c25b13e95ea3ecd664cf0627f9fcf2",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-45` | `LABO-069-AC-01` | 単独変異（M2・counterexample） | CASE-01と同一の有効条件。評価candidateにはL2-069所定の4項目すべてを含め、counterexampleは固定scope/revisionと根拠sourceに結び付く。 | 出力candidateの`counterexample`項目だけを欠落させ、他の全項目・証拠・適用条件は保持する。 | AC-01の正常candidateとして合格させず、counterexampleの欠落を明示する。新しい反証規則や閾値は追加しない。 出力欠落の修正はLABO評価責務へ戻し、他の入力・出力を変更しない。 |"
+        },
+        {
+          "id": "46",
+          "line": 3292,
+          "ac": [
+            "`LABO-069-AC-01`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "60562d4fc337a48b5c9d2cd4860b595efb2f7c3336eedac6cee125ef99d57c97",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-46` | `LABO-069-AC-01` | 単独変異（M2・regression risk） | CASE-01と同一の有効条件。評価candidateにはL2-069所定の4項目すべてを含め、regression riskは固定scope/revisionと根拠sourceに結び付く。 | 出力candidateの`regression risk`項目だけを欠落させ、他の全項目・証拠・適用条件は保持する。 | AC-01の正常candidateとして合格させず、regression riskの欠落を明示する。severityやrisk閾値を新設しない。 出力欠落の修正はLABO評価責務へ戻し、他の入力・出力を変更しない。 |"
+        },
+        {
+          "id": "47",
+          "line": 3293,
+          "ac": [
+            "`LABO-069-AC-01`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "4bc1bc764a1d56ecd49259a66b29d6c8ccb3677f8220525ad3699d45b0309298",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-47` | `LABO-069-AC-01` | 単独変異（M2・revalidation condition） | CASE-01と同一の有効条件。評価candidateにはL2-069所定の4項目すべてを含め、revalidation conditionは固定scope/revisionと根拠sourceに結び付く。 | 出力candidateの`revalidation condition`項目だけを欠落させ、他の全項目・証拠・適用条件は保持する。 | AC-01の正常candidateとして合格させず、revalidation conditionの欠落を明示する。新しい再検証threshold、期限、方式は追加しない。 出力欠落の修正はLABO評価責務へ戻し、他の入力・出力を変更しない。 |"
+        },
+        {
+          "id": "48",
+          "line": 3294,
+          "ac": [
+            "`LABO-069-AC-04`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "c996364cd4cc00c6fa9c063ac9ba0e8d4a44ebb79eff0853bd6f499eb8ad19fc",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-069-CASE-48` | `LABO-069-AC-04` | 単独変異（未評価ticket発行拒否） | 本069節の合成scope S069。返却/再発行評価inputは必要証拠不足により未評価で、元ticket/closure/assignmentは不変。入力にはOSの既存ticket発行状態を保持し、LABOによる新ticket発行はない。 | 入力不変で、未評価結果だけから`ticket_issue=true`をLABO出力に新規生成する。 | 未評価結果からticket発行を生成せず評価candidateと不足証拠だけを返す。OSの登録/routing/ticket発行責務を保ち、不足証拠は既存OSまたはsource ownerへ返す。誤出力修正はLABO評価責務へ戻し、元ticket/closure/assignmentを変更しない。 |"
+        }
+      ]
+    },
+    "070": {
+      "count": 130,
+      "unique_ids": 130,
+      "rows": [
+        {
+          "id": "01",
+          "line": 3603,
+          "ac": [
+            "`LABO-070-AC-01`",
+            "`LABO-070-AC-05`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "4caf2dced996a7e99ebdd4c694864ddee3b0351c7ccb4be31060d475041d48cf",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-01` | `LABO-070-AC-01`, `LABO-070-AC-05` | 正常scorecard入力B0。全行の対象revisionは選択値T0で一致し、各source identity/revisionは有効receiptの実値である。各evidenceのprovenance baselineは、対応する各receiptに実在するprovenance field値そのもの（以後P0と略記）である。P0はfixture内の参照略号であり新schema/value規則ではない。9 selected atomの適用可能fieldへsource receiptと定義revisionを与え、各時刻・unit・identity・scope/window・event/result値を固定する。067/068値は独立元receiptに束縛する。異unitは各source定義と一致する別field。適用不可fieldは別正常profileで原因を一つずつ固定する。 | なし（正常/未見正常の入力） | 各出力値をsource receiptの値と照合する。各行の対象revisionは入力T0と完全一致し、各source identity/revisionも対応するreceiptの実値と完全一致する。各evidenceのprovenance出力も対応する有効source receiptのprovenance実値と完全一致する。revisionを省略・混在・別値へ置換しない。4 durationはsource-defined同clockの開始/終了時刻差を各unitのまま計算した期待値と一致し、event identity/clock/unit/occurred_at/observed_at/scope/windowも元sourceと一致する。escaped-defect観測は既存oracle/revisionで検証済みの受入境界後event集合とrelationに一致し、適用母数/追跡完全性の範囲だけを数える。rollback/Recoveryのidentity/scope/発生・結果stateは元event receiptと一致する。overheadは直接計測資源/receiptの値・定義・単位をそのまま保持し、ageはsource時刻とobserved時刻の差に一致する。適用可能な067 first-eligible/repair-round値と068 count/stateは元定義revision/identity/grain/scope/receiptの値にそれぞれ一致する。067/068不在の別正常profileでは各理由が入力の不採択/不在/scope不一致条件に対応することを照合し、そのfieldのみunavailable/unknownにする。059費用/時間の同一receiptは一度だけ算入し、換算・合算・代替をしない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "02",
+          "line": 3604,
+          "ac": [
+            "`LABO-070-AC-02`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "8750e5048e0c3ff24993fb69b0f5983f4f11d029b03c8b3632fdb385ce130ce9",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-02` | `LABO-070-AC-02` | CASE-01同様の正常scorecard入力。新source eventのうち契約/単位/時刻が適用できるatomだけ計測し、残りはunknown/unavailableとする。 | なし（正常/未見正常の入力） | 適用可能なfieldは定義元・scope/window・unit・receiptへ結び、適用できないfieldはunknown/unavailableとする。換算・合算しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "03a",
+          "line": 3605,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "index",
+          "line_sha256": "4e26df1c68fecd956d05ab8deeeaf04b1c697842581357f5d56b9e0de393cf34",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-03a` | `LABO-070-AC-03` | 参照先主fixtureの入力をそのまま使用。 | なし（索引/alias。新たな変異を加えない） | CASE-06の主fixtureを参照する索引であり、独立変異を追加しない。主fixtureのoracleを確認し、本行を二重計上しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "03b",
+          "line": 3606,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "32b9e95b6ee6c369c2a5e4263aad34e94f9a2ac2f42072b37b187a3e34de610f",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-03b` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | active timeの実測unitだけが固定sourceのunitと不一致 | 換算せず当該fieldをunknown/invalidとし不足理由を示す。source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "03c",
+          "line": 3607,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "e1552e11c895163593fc33af32a008fde026e9c2f990318deb5324d56a57586f",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-03c` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | review waitの実測unitだけが固定sourceのunitと不一致 | 換算せず当該fieldをunknown/invalidとし不足理由を示す。source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "03d",
+          "line": 3608,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "aed317dcc896702a52b6adb8ac5d5f2fa4e7e2102ee6531b5c5e8ddce056105e",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-03d` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | Human waitの実測unitだけが固定sourceのunitと不一致 | 換算せず当該fieldをunknown/invalidとし不足理由を示す。source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "03e",
+          "line": 3609,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "5831a30a0276a098cdb58545e7d10b0a6ed16e08a478c70da985f4fc92910c04",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-03e` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | escaped-defect quality oracleだけ欠落（relationと他入力は保持） | defect countを確定せず、oracle不足は既存の要求owner責務区分へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "03f",
+          "line": 3610,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "59f288237604474e03b7cb3a6aeb3ec98cc58776a72ba224440ba7ea89cbf438",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-03f` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | rollback result receiptだけ欠落 | event不在とせずunknown。戻し先: source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "03g",
+          "line": 3611,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "b6cf834f15e2dc167f6f3798b0227872009a965afe593389952df8679cf22d89",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-03g` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | Recovery result receiptだけ欠落 | event不在とせずunknown。戻し先: source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "03h",
+          "line": 3612,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "3e80176e09b22679b16f54f7c5ba76f73ccb623a716cc68eeabbe7e6289aa775",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-03h` | `LABO-070-AC-03` | CASE-01と同じ有効scorecard入力。observer overheadの対象資源・source責務区分は既知で、個別source/owner identityも確認できる。 | 単独変異: overheadの直接計測資源receiptだけを欠落させる。他fieldと責務区分は保持する。 | overhead値をunknown/未評価とし、直接計測資源またはreceiptを提供する既存source owner責務区分へ無条件で返す。個別identityが別途不明ならidentityだけunknownとし、責務区分を消さない。新ownerを作らない。 | 固定L2/L11の該当atomに限定。unknown値を0や推計へ変換しない。 |"
+        },
+        {
+          "id": "03i",
+          "line": 3613,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "b3aaa4838471b7c2dcdcd5506f3f44948b78210cf5cbabb514c5303b9ecffad7",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-03i` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | evidence timestampだけ不正 | freshness ageをinvalid/unknownとし、既知のsource timestamp/evidence責務区分へ無条件で返す。個別source/owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "03j",
+          "line": 3614,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "index",
+          "line_sha256": "1d5f9a7819413d978c7a126d824186fea35d86ad6a8df2ae09a10de324e349c3",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-03j` | `LABO-070-AC-03` | 参照先主fixtureの入力をそのまま使用。 | なし（索引/alias。新たな変異を加えない） | CASE-19の主fixtureを参照する索引であり、独立変異を追加しない。主fixtureのoracleを確認し、本行を二重計上しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "03k",
+          "line": 3615,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "index",
+          "line_sha256": "65b59a067fe6871bd0fee3054a4cb132f3ef27a2429bedeb6dc878fb6cef6249",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-03k` | `LABO-070-AC-03` | 参照先主fixtureの入力をそのまま使用。 | なし（索引/alias。新たな変異を加えない） | CASE-70（rollback/Recovery費用の二重算入）とCASE-71（observer overheadの二重算入）を別々に参照する索引であり、新規変異を束ねず各主fixtureを重複計上しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "04a",
+          "line": 3616,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "16c24d487da748d4da5635253955d741bd7fed2a10e7898859a7767cdc0d7807",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-04a` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | LABOがtelemetry thresholdを作成 | 拒否し、固定親が個別特定しない判断ownerはunknownとして保持する。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "04b",
+          "line": 3617,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "index",
+          "line_sha256": "a620e39088a92882415b53502cb514cd9da04ed6c59af2c06b2557445be6aeb7",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-04b` | `LABO-070-AC-03` | 参照先主fixtureの入力をそのまま使用。 | なし（索引/alias。新たな変異を加えない） | CASE-51のrollback permission発行拒否を参照する索引であり、同じ変異を二重計上しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "54",
+          "line": 3618,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "cb1549711a8c8c590bae7b6c7c4ec8fd3575fd6935d6a3dba0f91cfd39a0710b",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-54` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象durationのsource-defined definition revisionは既知でcurrent。 | 単独変異: 対象durationのdefinition revisionだけを欠落させる。 | duration値を定義不明としてunknownにし、定義とeventを提供する既存source責務区分へ無条件で返す。個別source/owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "55",
+          "line": 3619,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "2210504cb6acc54f1fd25613dc672047c8fe33a1a955b8c1b575e6a2529ab2a6",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-55` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象durationのsource-defined definition revisionは既知でcurrent。 | 単独変異: 対象durationのdefinition revisionだけをstaleにする。 | stale定義をcurrentへ自動流用せず対象durationをunknown/未評価にし、定義/eventの既存source責務区分へ無条件で返す。個別source/owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "56",
+          "line": 3620,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "c986eb36fdc980f18959f54ef1b6f8688abfef9dc2006697776b40a7ce21b1bd",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-56` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、既存quality oracle/revision、受入済対象/scope、受入境界後のverified eventとそのrelationが揃う。 | 単独変異: verified defect eventと受入済対象を結ぶrelationだけを欠落させる。 | escaped-defectと断定せず該当fieldをunknown/未評価とし、relation/受入判断の既存要求・受入責務区分へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "57",
+          "line": 3621,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "a09e43b45ba7684a8652b9cbfe24a4229f7abd6c54ccb856c47c51f4f8fa42ab",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-57` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、既存quality oracle/revision、対象relation、適用母数と追跡完全性receiptが有効。 | 単独変異: escaped-defect母数または追跡完全性receiptだけを欠落させる。 | count/rateを確定せずunknown/未評価にし、quality/acceptanceの母数・追跡責務を持つ既存要求/受入責務区分へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "58",
+          "line": 3622,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "dea8c5d513e4b2e11a6beacea5c4d615692bf071bcbf45cdf323c1b18601e546",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-58` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、既存要求ownerのquality oracleとそのrevisionがcurrent。 | 単独変異: escaped-defect quality oracle revisionだけを欠落させる。 | 合否/countを確定せず、quality oracleを提供する既存要求owner責務区分へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "59",
+          "line": 3623,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "7515d90f188e9a340c1009a7427fdb3dc2234eaee79abc982596602bfd1350d6",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-59` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、許可済みsourceのrollback event identity、scope、result state、receiptが有効。 | 単独変異: rollback event identityだけを欠落させる。 | rollback計数/resultをunknownとし、source event/assignmentの既存責務区分へ無条件で返す。個別source/owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "60",
+          "line": 3624,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "ce4bc07c83df5c8000a93d816db65463ac89f8e9df22b7afe6603a12469159a0",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-60` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、許可済みsourceのrollback event scopeと他receiptが有効。 | 単独変異: rollback event scopeだけを欠落させる。 | 別scopeを混ぜず該当fieldをunknown/未評価にし、source event/assignmentのscope責務区分へ無条件で返す。個別source/owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "61",
+          "line": 3625,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "12efe98a8387743320b0081de83dffa61be332f9f4070d900f821e85b5fdbb7b",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-61` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、許可済みsourceのRecovery event identity、scope、result state、receiptが有効。 | 単独変異: Recovery event identityだけを欠落させる。 | Recovery結果を確定せずunknown/未評価とし、source event/assignmentの既存責務区分へ無条件で返す。個別source/owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "62",
+          "line": 3626,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "720e1206f2b76309e9571a1537141f3ff5d5234eaa00d48142e2ab0aa9137276",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-62` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、許可済みsourceのRecovery event scopeと他receiptが有効。 | 単独変異: Recovery event scopeだけを欠落させる。 | 別scopeを混ぜず該当fieldをunknown/未評価にし、source event/assignmentのscope責務区分へ無条件で返す。個別source/owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "63",
+          "line": 3627,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "da12383158e1cb8dc57c54f339d9bf476dd4f09d70c38131e219dd866432cd48",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-63` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、queue waitの開始/終了event、clock、unit、scope/window、receiptとsource宣言unitが有効。 | 単独変異: queue waitのunitだけを固定sourceの宣言unitと矛盾させる。その他の入力はCASE-01と同一。 | 換算せずqueue wait fieldをunknown/invalidとし、unitを定義するsource event/assignmentの既存責務区分へ無条件で返す。個別source/owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "64",
+          "line": 3628,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "index",
+          "line_sha256": "7b34abe10b55ee74e0a4cd5815ec1209d6769e64437403b5f022cf482e701acd",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-64` | `LABO-070-AC-03` | 参照先主fixtureの入力をそのまま使用。 | なし（索引/alias。新たな変異を加えない） | CASE-58のescaped-defect oracle revision欠落を参照する索引であり、主fixtureのoracleを使い新たな変異を追加しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "05",
+          "line": 3629,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "62f9cf6b02f846c3dcc0cbed03dad2e29507d42f8b83c1b6cdd2548fefb2e55b",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-05` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | queue-wait start eventだけ欠落 | queue waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "06",
+          "line": 3630,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "5c78731c29d12baab4994c95529dcd0ad7cda7c731e2df7a74134d9c41c05d9d",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-06` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | queue-wait end eventだけ欠落 | queue waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "07",
+          "line": 3631,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "c234a9adf9e2815289d1460c9870125a352fb6e04e058257c57cc52f7a09cef4",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-07` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | queue-wait clock identityだけ欠落 | queue waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "08",
+          "line": 3632,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "9300fb4a36a80f5ae62bab002e248f7d979129bb4b35270addd1a1ff8743d267",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-08` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | queue-wait occurred_atだけ欠落 | queue waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "09",
+          "line": 3633,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "index",
+          "line_sha256": "a8fd9c99dc5e3a9b8a0b107352daecdf3925a7e44c247f1742f2968b91a5ccd7",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-09` | `LABO-070-AC-03` | 参照先主fixtureの入力をそのまま使用。 | なし（索引/alias。新たな変異を加えない） | CASE-52（4種duration加算）とCASE-53（重複時間按分）を別々に参照する索引であり、複合変異を作らず各主fixtureを二重計上しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "10",
+          "line": 3634,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "be7f6d224edbc3bd5176cfc0d2708e464615f9df9af6fcd362e94a1c8c57f660",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-10` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、既存要求ownerのquality oracle/revision、受入済対象/scope、受入境界後event receiptとfinding relationが有効。対象findingはsourceにより未確認である。 | 単独変異: 070の出力fieldだけを、未確認findingから escaped_defect=true へ昇格する。oracle・source・relation・他のscorecard入力と出力は不変。 | escaped-defectへの誤昇格を拒否し、有効な既存oracle/revisionと未確認stateを保つ。これは入力oracle不足ではなく070自身の候補出力誤りであり、当該出力処理を訂正する。要求ownerへ返却責務を追加しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "11",
+          "line": 3635,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "7bf8c6377588e734c98bebddd1664f17978be804f196143c15bc9a3608d7cb31",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-11` | `LABO-070-AC-03` | CASE-01と同じ有効入力。適用oracle/revisionとsource evidenceは有効で、入力側の不足はない。 | 単独変異: 070出力fieldだけでoutcome後に選んだoracleを採用する。oracle・source・他fieldは不変。 | 結果後のoracle選択を拒否し、既存oracle/revisionと元の入力を保持する。入力不足ではなく070自身の誤出力として当該出力処理を訂正し、正常な要求ownerへ不足責務を返さない。 | 固定L2/L11の該当atomに限定。新oracle・決定権を生成しない。 |"
+        },
+        {
+          "id": "12",
+          "line": 3636,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "6a618ef2b35f8a31ebf182dde0ffc47e9204e6206e3efcc0f08b3f2ca128c92c",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-12` | `LABO-070-AC-03` | CASE-01と同じ有効入力。overheadの直接計測資源receipt、定義、unit、source identity/revisionは揃い有効である。 | 単独変異: 070出力fieldだけでreceipt値の代わりにoverhead推計値を出す。他inputとreceiptは不変。 | 推計出力を拒否し、有効receiptの実測値・定義・unitを保持する。入力は正常でsource返却は行わず、070自身の出力処理を訂正する。新ownerを作らない。 | 固定L2/L11の該当atomに限定。実測値を推計・0扱いへ置換しない。 |"
+        },
+        {
+          "id": "13",
+          "line": 3637,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "index",
+          "line_sha256": "f36546030f925cb8438be45bae94f784b655a7d415e848709ea725bfd6eb7e16",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-13` | `LABO-070-AC-03` | 参照先主fixtureの入力をそのまま使用。 | なし（索引/alias。新たな変異を加えない） | CASE-70（rollback/Recovery費用）とCASE-71（observer overhead）の二重算入を別々に参照する索引であり、各主fixtureを二重計上しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "14",
+          "line": 3638,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "b6d86e446ef251c6867d8c84a86ae30de75b71985e73547d61fc8f914cd8dea8",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-14` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | freshness timestampの欠落だけを変更。その他の入力は `CASE-01` と同一 | ageをunknownとし、既知のsource timestamp/evidence責務区分へ無条件で返す。個別identity不明は別fieldでunknownとする。ageからexpiry/authority/permissionを生成しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "15",
+          "line": 3639,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "adf8c6cd830fd5220f69113153a305838af70912464b077d81550760eb693acd",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-15` | `LABO-070-AC-03` | CASE-01と同じ有効入力。evidence freshness age、既存source identity/revision/provenance、authority stateはすべて有効で、許可・権限出力は未生成。 | 単独変異: ageからauthority/permissionを生成する出力fieldだけを追加する。age・source・既存authority stateは不変。 | authority/permission生成を拒否し、ageと既存authority stateを保持する。入力は有効なのでsource不足への返却は行わず、070自身の誤出力として当該出力処理を訂正する。新owner/permissionを作らない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "16",
+          "line": 3640,
+          "ac": [
+            "`LABO-070-AC-03`",
+            "`LABO-070-AC-05`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "80134d07ddf11ae53e00df449c77c25f0886a8c7436b8e744cce5ad420dc06bb",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-16` | `LABO-070-AC-03`, `LABO-070-AC-05` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | 067 fieldのOS Attempt identity receiptだけ欠落。predicate/oracle・他fieldはCASE-01と同一 | 067 fieldを理由付きunavailableとし、complete co-present scorecardとしない。欠落したAttempt identity receiptはOSへ戻す。他fieldで代替しない。067 Attempt identity/evidenceの既存OS責務区分へ無条件で返し、個別identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "17",
+          "line": 3641,
+          "ac": [
+            "`LABO-070-AC-03`",
+            "`LABO-070-AC-05`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "108c35efe95099b592e1ceaf22bddbf083b39471d5fb13998cf5e6ba06a3fa0a",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-17` | `LABO-070-AC-03`, `LABO-070-AC-05` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | 068 fieldのOS Attempt identity receiptだけ欠落。predicate/oracleと他fieldはCASE-01と同一 | 068 fieldを理由付きunavailableとし、067/065で代替せずcomplete co-present scorecardとしない。欠落したAttempt identity receiptは既存OS責務区分へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "18",
+          "line": 3642,
+          "ac": [
+            "`LABO-070-AC-03`",
+            "`LABO-070-AC-05`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "ffc57a0c8a7830d8b7b601e9dc6a95c621207be28702eba1ccbfc10e76bc2c09",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-18` | `LABO-070-AC-03`, `LABO-070-AC-05` | CASE-01の有効scorecard入力で、067/068 scope、definition revision、identity/grain、各receiptは独立して有効。 | 067 fieldのscopeだけをCASE-01のscorecard scopeと異なる値へ変える。他の067/068条件と全fieldは同一。 | 067 fieldだけを理由付きunavailable/unknownにし、scorecard scopeを混ぜない。068 fieldと他の正常fieldは保持し、complete co-present scorecardとしない。戻し先はLABO scope評価責務。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "19",
+          "line": 3643,
+          "ac": [
+            "`LABO-070-AC-03`",
+            "`LABO-070-AC-05`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "efb9717e1f18d782bb817ed4e03dab783158012c1bf64f4af897b5625138bb7a",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-19` | `LABO-070-AC-03`, `LABO-070-AC-05` | CASE-01と同じ有効入力。適用可能な067 first-eligible/same-Attempt repair値と068 distinct Attempt値の定義revision、identity/grain、scope、receiptはそれぞれ有効で独立する。 | 単独変異: 070出力fieldだけで067と068の値を換算または代替する。両元metricの定義・receipt・他fieldは不変。 | 換算・代替出力を拒否し両元metricを別fieldのまま保持する。入力sourceは正常なのでmetric sourceへ返却せず、070自身の誤出力として当該出力処理を訂正する。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "20",
+          "line": 3644,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "4337173d4a15b19b1abecd052d3fcbf7035a4123984dea262a56020b6238a2a8",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-20` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | unresolved coverageを結果なしに補ってclosureする。その他の入力は `CASE-01` と同一 | unknown/unresolvedを保ち、closure扱いしない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "21",
+          "line": 3645,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "12de6187f3645d7fe4bece8fd5391d245aaa9c04c2684ef554abb8217d18327b",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-21` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | 070の9 atomを既存12 metricへ混同だけを変更。その他の入力は `CASE-01` と同一 | metric identityを分ける 戻し先: LABO。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "22",
+          "line": 3646,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "index",
+          "line_sha256": "2c35a618e4cac416c7336dacd65b6c6d587c1545e0b5ae51e8fe816e86dfd405",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-22` | `LABO-070-AC-03` | 参照先主fixtureの入力をそのまま使用。 | なし（索引/alias。新たな変異を加えない） | CASE-04a（threshold生成拒否）とCASE-51（rollback permission生成拒否）を別々に参照する索引であり、複合変異を作らず各主fixtureを二重計上しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "23",
+          "line": 3647,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "175868bd79a430ad2bfd1dc26fc8a31f11483d30d24a1ea108c2c4e90e956296",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-23` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | queue waitのobserved_atだけ欠落 | queue waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "24",
+          "line": 3648,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "72b07b5982b47a7d2f4d6ec16f7ef7322b74568a9aff4bd524961ac20b7ea047",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-24` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | queue waitのmeasurement windowだけ欠落 | queue waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "25",
+          "line": 3649,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "8b526c49bcd79e8448210a7e271cdfbee3efe15b6962ee8440f0c9f489d821de",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-25` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | queue waitのsource identityだけ欠落 | queue waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "26",
+          "line": 3650,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "9e69c538f124038c971c2499f9fc5d260295759c7c5c2bcc2e08908a97bc40d1",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-26` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | queue waitのreceiptだけ欠落 | queue waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "27",
+          "line": 3651,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "c309a720b9b505e980d625dd7c77940da3aef973a912a967acaabfe5564fc1d4",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-27` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | active timeのstart eventだけ欠落 | active timeをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "28",
+          "line": 3652,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "0e31d474a108b15583564d2088ccd3b405bc85dad4729f88b9bf5be0b0d4224f",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-28` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | active timeのend eventだけ欠落 | active timeをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "29",
+          "line": 3653,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "f545214415357cacc38b91c1abe0288b3a5c5428cad0e68eded10464cde404ba",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-29` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | active timeのclock identityだけ欠落 | active timeをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "30",
+          "line": 3654,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "196319d6f1867487949d92ebfd284065f918d9d15353071972c8994a4d115d23",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-30` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | active timeのoccurred_atだけ欠落 | active timeをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "31",
+          "line": 3655,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "b34c163c3910fe622cc948ec5a55318ef7a871e0f38a2cb9d5e9b72258d01d2d",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-31` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | active timeのobserved_atだけ欠落 | active timeをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "32",
+          "line": 3656,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "6c53286530ecfad5a5658eeeb445eb5778251134794520f8ad36ec1fec9d454c",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-32` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | active timeのmeasurement windowだけ欠落 | active timeをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "33",
+          "line": 3657,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "77707be7f8f06db6417df72546b462c8d52c5b12105b0f72def702c4625c36dc",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-33` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | active timeのsource identityだけ欠落 | active timeをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "34",
+          "line": 3658,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "c11f0706728c968b5af53d1754963f190831d9c5c3e35c3524a0e0474865eea7",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-34` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | active timeのreceiptだけ欠落 | active timeをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "35",
+          "line": 3659,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "6bd63813178ad435d8c92e98fa8e71bafecb2991ebbe98aa7784773f23ce2ead",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-35` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | review waitのstart eventだけ欠落 | review waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "36",
+          "line": 3660,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "aba856442bd4f6c3e5c007ea84500050473f261815726ba3c35d3fb13a70a527",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-36` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | review waitのend eventだけ欠落 | review waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "37",
+          "line": 3661,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "38e79ce6653a2752c353fd393149fd641d6c4327c4949c0590fe254babfe79bc",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-37` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | review waitのclock identityだけ欠落 | review waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "38",
+          "line": 3662,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "451ba6ee90b13c0a900f6aee294514a6841b49c13cb36d0928c88ba7e0d29aa2",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-38` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | review waitのoccurred_atだけ欠落 | review waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "39",
+          "line": 3663,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "d319ae95986d1bc69ac6080f1b9838fb240a75f802f9e9b4aa4693ceb8fbc78c",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-39` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | review waitのobserved_atだけ欠落 | review waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "40",
+          "line": 3664,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "8071804fd289056093fb60aae9695c4005723996be91ad6f5dfb4a335035a7f1",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-40` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | review waitのmeasurement windowだけ欠落 | review waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "41",
+          "line": 3665,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "2882d9fc0ae93814c41ce6af104c057b9740b94a72acc24d89e083b52ba3a84d",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-41` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | review waitのsource identityだけ欠落 | review waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "42",
+          "line": 3666,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "158e95869f9345d2c85f28be70c5ee32e3a49c87c6029422050ef01766aeefd9",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-42` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | review waitのreceiptだけ欠落 | review waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "43",
+          "line": 3667,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "746f3a8d09962274cde15fb310638230b7e6283c31482b6b21e61a64beaaa8ac",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-43` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | human waitのstart eventだけ欠落 | human waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "44",
+          "line": 3668,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "befb3e525989c49a88443750febfea87c79d0c80f86409713ac386d9327f13a9",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-44` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | human waitのend eventだけ欠落 | human waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "45",
+          "line": 3669,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "f567a09cc61dd56e1e58d9154440d7bcc113b5f0fd55d7cdf7bd958f01d62240",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-45` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | human waitのclock identityだけ欠落 | human waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "46",
+          "line": 3670,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "643cbc989da04871e9b95d1867fab7687efc631997a4553c3867393bbb35782b",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-46` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | human waitのoccurred_atだけ欠落 | human waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "47",
+          "line": 3671,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "27b4aefe960bdace85afc27f02b792cabff670ae6e96291916c9f9e8cb475704",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-47` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | human waitのobserved_atだけ欠落 | human waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "48",
+          "line": 3672,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "628852617c5aeaeca9be402a8f099a0a8687d770fb96a4046f0f969719906e92",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-48` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | human waitのmeasurement windowだけ欠落 | human waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "49",
+          "line": 3673,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "c20caf73485d705361a9968acfe384a726c9454ed26a16066bfac9eda2f54e6b",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-49` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | human waitのsource identityだけ欠落 | human waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "50",
+          "line": 3674,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "27e637ac62e2012ad382f6747a95453db56ff48943fd5d2764abe9f0823f981d",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-50` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、対象fieldはsource定義どおり有効。 | human waitのreceiptだけ欠落 | human waitをunknownとし、source event/assignmentの既存責務区分（OS等の既存source owner）へ無条件で返す。個別owner identity不明は別fieldでunknownとする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "51",
+          "line": 3675,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "d6b727e811a8c0e47ea2b545978d514a29507800c84cc53f58bd1d9d066d7aeb",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-51` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | LABOがrollback permissionを発行。その他の入力は `CASE-01` と同一 | permission発行を拒否。rollbackの実行ownerをこの候補から推定しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "52",
+          "line": 3676,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "024507ed12ea655cc66c98a73459ba3be5e9afee7062be151aaa482cf7718fbe",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-52` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | 4種durationを加算。その他の入力は `CASE-01` と同一 | 各durationを別fieldのまま保持し、059のend-to-end時間へ合算しない。戻し先: LABO。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "53",
+          "line": 3677,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "b6763aeac7661b0cffea2a0bd1d1bb1b5fc259767f355b19c4e1b8f4a896a068",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-53` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | 重複する待ち時間を排他的に按分。その他の入力は `CASE-01` と同一 | 重複時間を推測按分せず各durationを保持する。戻し先: LABO。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "65",
+          "line": 3678,
+          "ac": [
+            "`LABO-070-AC-03`",
+            "`LABO-070-AC-05`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "955f442ef1ffbfbc005f7054ff997734afe333ababc92b570436ea53ac4c9851",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-65` | `LABO-070-AC-03`, `LABO-070-AC-05` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | LABO candidateの採択だけを根拠に、別定義の067/068結果も採択済みと主張。その他はCASE-01と同一 | 067/068の独立定義・receiptを参照し、070候補からその採択を推定しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "66",
+          "line": 3679,
+          "ac": [
+            "`LABO-070-AC-03`",
+            "`LABO-070-AC-05`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "cd4a1677b4f7bf064a35c337a838f17783f594784d6b1a1b5352d73c2ff03f8d",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-66` | `LABO-070-AC-03`, `LABO-070-AC-05` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | 067 fieldのpredicate revisionだけ欠落。OS Attempt identity・oracle・他fieldはCASE-01と同一 | 067 fieldを理由付きunavailableとし、固定親のtask/要求owner責務区分へ無条件で返す。個別owner identity不明は別fieldでunknownとする。complete co-present scorecardとしない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "67",
+          "line": 3680,
+          "ac": [
+            "`LABO-070-AC-03`",
+            "`LABO-070-AC-05`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "fd138a4b99cb39ab56e7e9d97803f29e308525a02338a5c90b62d05fd06056f9",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-67` | `LABO-070-AC-03`, `LABO-070-AC-05` | OS Attempt identity receiptと他の全fieldは有効で、LABOが068集計を行う | LABO出力から068 distinct Attempt identity fieldだけ欠落 | 068 fieldを理由付きunavailableとし、OS receiptの不足と混同せずLABO集計を未完に保つ。complete co-present scorecardとしない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "68",
+          "line": 3681,
+          "ac": [
+            "`LABO-070-AC-03`",
+            "`LABO-070-AC-05`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "96aac1fab231bccd088b84ce22715d77236b987797309305f69db0854965ff11",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-68` | `LABO-070-AC-03`, `LABO-070-AC-05` | B0と同じscope S0のAttempt identity A/B/C/D、scope全体のcapture-completeness receipt、identity集合の完全性receipt、event/correction lineage、全result receiptが揃い有効。 | 単独変異: Aのresult receiptだけを欠落させる。他のreceipt、identity、scope、event、state、完全性証拠は変えない。 | result receipt欠落だけでscope内total Attempt countをunknown/未評価とし、Aのresult stateも別fieldでunknownにする。完全性receiptがあっても総数4を確定しない。既知の観測source/OS記録責務区分へ無条件で返し、個体identity不明は別fieldでunknownとする。065/067で代替しない。根拠: 固定L2-068のAttempt記録完全性条件と、`MPR-RCPT-LABO-ATTEMPT-COUNT-2026-09-28` coverage receipt（S3C）。未mergeの068本文CASEには依存しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "69",
+          "line": 3682,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "49aaaf49dac26029106c1531e4e98d6544eaf2d77bb548743a04f1c3590f602e",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-69` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | outcomeを確認した後にobservation windowだけを選択する | 結果後に選んだwindowで判定せず未評価にする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "70",
+          "line": 3683,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "65e745127cd4e705583ce9f5d2551980e0953cc8998650cdc8c973a6978a4191",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-70` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | rollback/recovery費用を059の対象費用へ二重算入する。その他はCASE-01と同一 | 059費用への重複算入を拒否し、rollback/recovery費用を該当別fieldに保つ。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "71",
+          "line": 3684,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "b68660398a6610953703b5bfa5113de237b211a42d42131f9230a6aefb3d0b7f",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-71` | `LABO-070-AC-03` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | measurement overheadを対象作業費用へ二重算入する。その他はCASE-01と同一 | overheadと対象作業費用を分離し二重計上を拒否する。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "72",
+          "line": 3685,
+          "ac": [
+            "`LABO-070-AC-03`",
+            "`LABO-070-AC-05`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "611ec5a9302c4f6b1049a883cfce9832e2e5c573b87a3f62f97ae4289053b849",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-72` | `LABO-070-AC-03`, `LABO-070-AC-05` | 有効な068 distinct Attempt identity数と065 retry_countを別々に保持する | 068 identity数を065 retry_count+1で置き換える | 068の元identity数を保持し、retry_countから換算した値で置き換えない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "73",
+          "line": 3686,
+          "ac": [
+            "`LABO-070-AC-03`",
+            "`LABO-070-AC-05`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "498fbb44c0a10c32af7fdccd36a29582cc4b5fce07a87f236ba2a3ac3b9914d0",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-73` | `LABO-070-AC-03`, `LABO-070-AC-05` | CASE-01の有効scorecard入力で、変異対象fieldはsource定義どおり有効。 | 067 fieldのoracle revisionだけ欠落。predicate/Attempt identity/他fieldはCASE-01と同一 | 067 fieldを理由付きunavailableとし、固定親のtask/要求owner責務区分へ無条件で返す。個別owner identity不明は別fieldでunknownとする。co-present complete scorecardとしない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "85",
+          "line": 3687,
+          "ac": [
+            "`LABO-070-AC-04`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "5c17255eaa887ef40ac35229b1cb24659673355af0816e7e61578f3bb38dbe0b",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-85` | `LABO-070-AC-04` | 許可済みsourceからrollback event identity・scope・result state・receiptを観測し、scorecardへ記録。LABOは操作しない。 | 観測eventから単一の`rollback_trigger_requested=true` output fieldを生成する。 | field生成を拒否。観測結果は保持するが、rollbackを開始/決定せずtrigger/permissionを作らない。固定L2のrollback/Recovery責務境界だけを判定する。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "86",
+          "line": 3688,
+          "ac": [
+            "`LABO-070-AC-04`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "9419776fa22b3028236e85501560491abc14118d682983210ee8e180f1ecd092",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-86` | `LABO-070-AC-04` | CASE-01と同じ有効scorecard入力。requirement_adoption出力は未生成。 | 単独変異: `requirement_adopted=true` fieldだけを生成する。 | 要求採択を生成せず、他のscorecard fieldを保持する。PO decision/採択状態を変えない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "87",
+          "line": 3689,
+          "ac": [
+            "`LABO-070-AC-04`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "b8d3b3ab16ce161c21581a851a0c75ce6034fc10186f3a7d0f35a20bc761d134",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-87` | `LABO-070-AC-04` | CASE-01と同じ有効scorecard入力。measurement_permission出力は未生成。 | 単独変異: `measurement_permission=true` fieldだけを生成する。 | 計測許可を生成せず、既存SECURITY等のauthority境界を保持する。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "88",
+          "line": 3690,
+          "ac": [
+            "`LABO-070-AC-04`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "25b4e1ea96411cb9a497005e00b090439d290aeb00a7dfffc9c20d794f4118d6",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-88` | `LABO-070-AC-04` | CASE-01と同じ有効scorecard入力。experiment_run_permission出力は未生成。 | 単独変異: `experiment_run_permission=true` fieldだけを生成する。 | 実験/run許可を生成しない。許可判断は既存SECURITY境界に従い、対象fixtureから推定しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "89",
+          "line": 3691,
+          "ac": [
+            "`LABO-070-AC-04`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "9acb0c5a934487e26993f7738a69b937407fdf48b34d13970014d90d45560d78",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-89` | `LABO-070-AC-04` | CASE-01と同じ有効scorecard入力。worker_assignment出力は未生成。 | 単独変異: `worker_assignment` fieldだけを生成する。 | Worker assignmentを生成しない。既存OS assignment状態を変更しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "90",
+          "line": 3692,
+          "ac": [
+            "`LABO-070-AC-04`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "3cc6fad088d8751f50d06f1f5fad81407d630a6a47c27b537c6d3a89ce766da0",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-90` | `LABO-070-AC-04` | CASE-01と同じ有効scorecard入力。rollback_permission出力は未生成。 | 単独変異: `rollback_permission=true` fieldだけを生成する。 | rollback permissionを生成せず、観測eventを操作authorityへ変換しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "91",
+          "line": 3693,
+          "ac": [
+            "`LABO-070-AC-04`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "4ade06f6c657d8963968420c9ec4470434b5d3ada712d3ab0f1daedd96f50598",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-91` | `LABO-070-AC-04` | CASE-01と同じ有効scorecard入力。rollback_execution出力は未生成。 | 単独変異: `rollback_execution=true` fieldだけを生成する。 | rollbackを実行せず、観測結果だけを保持する。既存操作責務をこの候補から決めない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "92",
+          "line": 3694,
+          "ac": [
+            "`LABO-070-AC-04`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "5b5cccf4a1f3fa3bd25a13e47a35257faa59286145c0e934599fb18d49b3a210",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-92` | `LABO-070-AC-04` | CASE-01と同じ有効scorecard入力。L3 requirement approval出力は未生成。 | 単独変異: `l3_requirement_approved=true` fieldだけを生成する。 | L3承認を生成しない。既存委任authorityを変更しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "93",
+          "line": 3695,
+          "ac": [
+            "`LABO-070-AC-04`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "23acdaa01987882e16318d3312bfaec616805f400f45cecfdfbe0c31e9914571",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-93` | `LABO-070-AC-04` | CASE-01と同じ有効scorecard入力。requirement completion出力は未生成。 | 単独変異: `requirement_complete=true` fieldだけを生成する。 | requirement completionを生成せず、測定receipt/scorecardを完了判断に変換しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "94",
+          "line": 3696,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "f23b3a401ccf8bbdc1c488a417a76d3e679f0e4cc44871736822a01dbdf3060e",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-94` | `LABO-070-AC-03` | 有効な時間event receiptを持ち、既存source event/assignment責務区分とtest-only individual owner identityが既知。source category、event、clock、unit、scope/window、他receiptは有効。 | 単独変異: individual owner identityだけを欠落させる。source category、event、clock、unit、scope/window、全receiptは保持する。 | 個別owner identityのみunknownとして保持する。測定fieldは有効receiptに基づく値を保持しunknown/未完へ変えない。既知source event/assignment責務区分を維持し、個体identity unknownを測定根拠欠落と混同しない。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "95",
+          "line": 3697,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "3cdd39c1fe2b36a7183a0eb34ec18aca6b54e528478da7d21882a36de0950db1",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-95` | `LABO-070-AC-03` | active-time start/end eventが同じsource-defined clock identityで有効。source event/assignment責務区分、other scorecard fieldとreceiptもCASE-01相当で有効。 | 単独変異: end eventのclock identityだけをstart eventと異なる値にする。 | 異なるclock間の差を計算/換算せずactive-time fieldをunknown/invalidとし、既知source event/assignment責務区分へ無条件で返す。個別source/owner identity不明は別fieldでunknownとし、他fieldは保持する。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "96",
+          "line": 3698,
+          "ac": [
+            "`LABO-070-AC-04`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "282598aaca711026d93ba4c91a0d00f368765c2fce4c1b4edf2f8eb65bfd503c",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-96` | `LABO-070-AC-04` | CASE-01と同じ有効入力。許可済みsource event/receiptだけが存在し、LABO生成eventはない。 | 単独変異: `source_event_created=true` output fieldだけを生成する。 | source eventを生成せず、許可済みsource observationだけを保持する。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "97",
+          "line": 3699,
+          "ac": [
+            "`LABO-070-AC-04`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "0e1d297101bfb83a5550114f0f300ce46d713aa6ac2deaf3e9421b7df1117000",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-97` | `LABO-070-AC-04` | CASE-01と同じ有効入力。適用oracleは既存要求ownerが供給し、LABO生成oracleはない。 | 単独変異: `acceptance_oracle_created=true` output fieldだけを生成する。 | oracleを生成/差し替えず、既存要求ownerのoracle・revisionに留める。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "98",
+          "line": 3700,
+          "ac": [
+            "`LABO-070-AC-04`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "21cf90bab41decb9b759c82b9318c7904b9b9ab6c747649b88fca25a26c11dad",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-98` | `LABO-070-AC-04` | CASE-01と同じ有効入力。候補が追加するthresholdは存在しない。 | 単独変異: `telemetry_threshold` output fieldだけを生成する。 | thresholdを生成せず、固定親が定めない値をunknown/未設定のままにする。 | 固定L2/L11の該当atomに限定。個別identity不明は既知責務区分と分離し、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "99",
+          "line": 3701,
+          "ac": [
+            "`LABO-070-AC-01`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "28f9ed057ef3895930d45b817102c61da0567e9cd5c98fbf7be5ac0d92dd8325",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-99` | `LABO-070-AC-01` | CASE-01と同じ有効入力。全source identity/revisionと他の対象revisionは有効。 | 単独変異: 一つのscorecard行のtarget revision出力fieldだけを欠落させる。source receipt、他行、他fieldは不変。 | target revision出力fieldの欠落を合格させず、対象revisionをunknown/未評価とする。入力は正常なので070自身の出力誤りとして当該出力処理を訂正し、source責務区分へ不足を返さず、他の根拠あるfieldは保持する。 | 固定L2の対象revision・同一scope条件に限定。T0/T1を混ぜて集計しない。 |"
+        },
+        {
+          "id": "100",
+          "line": 3702,
+          "ac": [
+            "`LABO-070-AC-01`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "5e3b5239fa1f390e7384eef1c155caa4b4a742635044daa00508e49162435664",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-100` | `LABO-070-AC-01` | CASE-01と同様に各fieldが実source receiptと一致する有効入力。別aggregateのT0行とT1行はそれぞれ有効で、別集計に保たれている。 | 単独変異: T0とT1の二行を同一scorecard aggregateへ混在させる出力fieldだけを生成する。他の入力・fieldは不変。 | 異なる対象revisionを含むaggregateを合格させず、T0/T1を別集計のまま保持する。正常入力に対する070自身の混在出力誤りとして当該出力処理を訂正し、sourceへ不足を返さない。 | 固定L2の異なるscope/revisionを同一集計に混ぜない境界に限定。新window/閾値を作らない。 |"
+        },
+        {
+          "id": "101",
+          "line": 3703,
+          "ac": [
+            "`LABO-070-AC-01`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "de86043455786b0fb14ff0e9b3bc059d2a372f880a9c75a086046e77dcc76afe",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-101` | `LABO-070-AC-01` | CASE-01と同じ有効入力。各sourceのtarget revision、identity、source_revision値、他receiptは有効。 | 単独変異: 一つの正常source入力receiptのsource_revision値だけを欠落させる。LABOの出力field欠落ではなく、他のreceipt/inputは不変。 | 当該fieldをunknown/未評価として合格させず、当該source identity/revision/provenanceを提供する既存source owner責務区分へ無条件で返す。個別identity unknownは別fieldとし、他の有効fieldは保持する。 | 固定L2のsource identity/revision保持に限定。欠落revisionを推測・補完しない。 |"
+        },
+        {
+          "id": "102",
+          "line": 3704,
+          "ac": [
+            "`LABO-070-AC-04`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "4266152baaa98f867314ae6baa358652dd7824d516cb4a884153537b11580ed7",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-102` | `LABO-070-AC-04` | CASE-01と同じ有効scorecard入力。許可済みRecovery event/result receiptは観測値として保持され、Recovery操作権限fieldは未生成。 | 単独変異: `recovery_operation_permission=true` output fieldだけを生成する。入力receipt、他のfieldは不変。 | Recovery操作権限fieldを生成せず、既存SECURITY/owner境界と観測receiptを保持する。入力は有効なのでsourceへ不足責務を返さず、070自身の誤出力処理を訂正する。 | 固定L2/L11のrollback/Recovery境界に限定。新しいownerや権限を作らない。 |"
+        },
+        {
+          "id": "103",
+          "line": 3705,
+          "ac": [
+            "`LABO-070-AC-04`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "3e7162e209ac7c5fbc3bfb74633f434e84a89c56f105b22d55a3ad3df18ba64f",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-103` | `LABO-070-AC-04` | CASE-01と同じ有効scorecard入力。許可済みRecovery event/result receiptは観測値として保持され、Recovery実行fieldは未生成。 | 単独変異: `recovery_execution=true` output fieldだけを生成する。入力receipt、他のfieldは不変。 | Recovery実行fieldを生成せず、既存SECURITY/owner境界と観測receiptを保持する。入力は有効なのでsourceへ不足責務を返さず、070自身の誤出力処理を訂正する。 | 固定L2/L11のrollback/Recovery境界に限定。新しい実行権限を作らない。 |"
+        },
+        {
+          "id": "104",
+          "line": 3706,
+          "ac": [
+            "`LABO-070-AC-04`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "f2b8ba65cbe8f2784d5e2652e92c5b5e7d8a5e32272b4366ae77b16b4954e0c6",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-104` | `LABO-070-AC-04` | CASE-01と同じ出典・revision照合条件を満たす別の正常入力。source effective/occurred時刻、observed時刻、identity/revision/provenanceは有効で、ageの観測値はsource receipt値と一致する。fresh値の実行とstale値の実行は別々の正常入力として扱う。 | 単独出力変異: `freshness_state` fieldだけをageから生成する。fresh値を出す実行とstale値を出す実行は、それぞれ別個に適用する代替変異であり、同時には適用しない。 | fresh/stale判定を生成せず、source由来ageと既存stateを保持する。入力は有効なのでsourceへ返さず、070自身の出力処理を訂正する。 | 固定L2/L11のevidence freshness境界に限定。閾値を新設しない。 |"
+        },
+        {
+          "id": "105",
+          "line": 3707,
+          "ac": [
+            "`LABO-070-AC-04`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "6a4b0d1c77a180230d09a087fa3a27be671e76f12505efa47de824abb2f8a408",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-105` | `LABO-070-AC-04` | CASE-01と同じ有効evidence receipt。source時刻とage観測値は有効かつsource値と一致する。 | 単独変異: `evidence_expiry` output fieldだけをageから生成する。 | expiry fieldを生成せず、source由来ageを観測値として保持する。入力は有効なのでsourceへ返さず、070自身の出力処理を訂正する。 | 固定L2/L11のevidence freshness境界に限定。期限値を新設しない。 |"
+        },
+        {
+          "id": "106",
+          "line": 3708,
+          "ac": [
+            "`LABO-070-AC-04`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "172f689203c5a8afea62071c3fe4114262d7b0afe5c188d171bf680de7e7be88",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-106` | `LABO-070-AC-04` | CASE-01と同じ有効evidence receipt。source時刻とage観測値は有効、既存ownerの適用可能性情報も変異対象ではない。 | 単独変異: `evidence_eligibility=true` output fieldだけをageから生成する。 | 適格性fieldを生成せず、source由来ageと既存owner stateを保持する。入力は有効なのでsourceへ返さず、070自身の出力処理を訂正する。 | 固定L2/L11のevidence freshness境界に限定。閾値/適格性を新設しない。 |"
+        },
+        {
+          "id": "107",
+          "line": 3709,
+          "ac": [
+            "`LABO-070-AC-04`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "869d2098d4760daf41360cc8d190b8528c93a00457f87056400e3ded2cedf84e",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-107` | `LABO-070-AC-04` | CASE-01と同じ有効入力。既存要求/受入ownerのoracle、revision、対象scope、受入境界receiptは有効で、LABO作成の境界fieldは未生成。 | 単独変異: `acceptance_boundary` output fieldだけにLABO独自の境界値を生成する。 | LABO独自の受入境界fieldを拒否し、既存ownerの境界とreceiptを保持する。入力は有効なので要求ownerへ不足を返さず、070自身の出力処理を訂正する。 | 固定L2/L11のescaped-defect境界に限定。既存oracleや受入境界を置換しない。 |"
+        },
+        {
+          "id": "108",
+          "line": 3710,
+          "ac": [
+            "`LABO-070-AC-04`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "f2946bf3454da5e2c85b64bb2ade4bfb3a64017832c76692d04a2761a4e8de44",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-108` | `LABO-070-AC-04` | CASE-01と同じ出典・revision照合条件を満たす別の正常入力。既存要求/受入owner oracle、revision、対象receiptは有効で、ownerの現在stateは未受入という正常観測値である。 | 単独変異: `target_accepted=true` output fieldだけをLABOが生成する。 | 受入済みfieldをLABOが生成することを拒否し、既存ownerの未受入stateを保持する。入力は有効なので要求ownerへ返さず、070自身の誤出力処理を訂正する。 | 固定L2/L11のescaped-defect境界に限定。新しい受入判断を作らない。 |"
+        },
+        {
+          "id": "109",
+          "line": 3711,
+          "ac": [
+            "`LABO-070-AC-04`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "bc806b6648c9fe333cbce5f253232e29366486f75491a8c23729b1ce7d254501",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-109` | `LABO-070-AC-04` | CASE-01と同じ出典・revision照合条件を満たす別の正常入力。既存oracle/revision、受入境界receipt、verified event receiptは有効である。eventが既存owner境界より前でowner oracle上escapedでないことも、正常な観測値として明示される。 | 単独変異: `escaped_defect=true` output fieldだけをLABOが生成する。 | escaped判定fieldの誤出力を拒否し、既存owner oracleと境界およびevent receiptを保つ。入力は有効なのでsource/要求ownerへ不足を返さず、070自身の出力処理を訂正する。 | 固定L2/L11のescaped-defect境界に限定。新しい境界、window、severity、合否thresholdを作らない。 |"
+        },
+        {
+          "id": "110",
+          "line": 3712,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "5f5cb2e5bf52a69f9d1c9051c779444367701e4aef1d4064b6d15010ea73d7c0",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-110` | `LABO-070-AC-03` | CASE-01と同じ正常入力B0。既存quality oracle/revision、受入済対象scope、対象relation、escaped-defectの適用母数・追跡完全性receipt、source identity/revision/provenance、scope/windowと他のreceipt/fieldは有効で、母数・追跡完全性receiptのsource revisionは現行R0である。 | 単独変異: escaped-defect母数・追跡完全性receiptのsource revisionだけを現行R0から既知の旧revision Rprevへ変える。ほかの入力・receipt・出力fieldは不変。 | receiptがstaleなためescaped-defectのcount/rateをunknown/未評価とし、確定値・0・成功へ変換しない。quality/acceptanceの母数・追跡責務を持つ既存要求/受入責務区分へ無条件で返す。個別owner identity不明は別fieldでunknownとする。固定L2-070/L11-070の該当境界に限定し、新しい閾値・expiry・owner・decisionを加えない。 | 固定親 review07 M1の対象receiptと宛先だけを照合。個別identity unknownは既知責務区分から分け、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "111",
+          "line": 3713,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "814ebcf2935a61f66ff08e7c7f6afc9fee3a674fff628098137a6c1c0349ec22",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-111` | `LABO-070-AC-03` | CASE-01と同じ正常入力B0。既存quality oracle/revision、受入済対象scope、対象relation、escaped-defectの適用母数・追跡完全性receipt、source identity/revision/provenance、scope/windowと他のreceipt/fieldは有効で、receiptの宣言集合は不変source record集合に一致する。 | 単独変異: escaped-defect母数・追跡完全性receiptの宣言するidentity/evidence集合だけを、変更しないsource record集合と食い違わせる。ほかの入力・receipt・出力fieldは不変。 | 矛盾するreceiptを受理せず、escaped-defectのcount/rateをunknown/未評価とし、確定値・0・成功へ変換しない。quality/acceptanceの母数・追跡責務を持つ既存要求/受入責務区分へ無条件で返す。個別owner identity不明は別fieldでunknownとする。固定L2-070/L11-070の該当境界に限定し、新しい閾値・expiry・owner・decisionを加えない。 | 固定親 review07 M1の対象receiptと宛先だけを照合。個別identity unknownは既知責務区分から分け、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "112",
+          "line": 3714,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "d48a86c784b759996d2122b4548352e9aee4b661a77d4ac044b01721e740ee53",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-112` | `LABO-070-AC-03` | CASE-01と同じ正常入力B0。対象revision T0、source identity/revision/provenanceのsource receipt実値、scope/window、適用可能なoracle、他のreceipt/fieldは固定して有効。event identityのbaselineは正常かつ現在の選択範囲に一致する。 | 単独変異: event identity receiptのsource revisionだけを現行R0から既知の旧revision Rprevへ変える。ほかの入力・receipt・出力fieldは不変。 | event identity fieldをunknown/invalidとして数えず、既存event/source責務区分へ無条件で返し、個別identity unknownは別記する。固定L2-070/L11-070の該当境界に限定し、新しい閾値・expiry・owner・decisionを加えない。 | 固定親 review05 M1/M2の当該fieldだけを照合。個体identity unknownは既知責務区分から分け、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "113",
+          "line": 3715,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "630e3838940a9fb698593405928d1b24cd6b77e241198ce98a19dd66d748d52b",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-113` | `LABO-070-AC-03` | CASE-01と同じ正常入力B0。対象revision T0、source identity/revision/provenanceのsource receipt実値、scope/window、適用可能なoracle、他のreceipt/fieldは固定して有効。event identityのbaselineは正常かつ現在の選択範囲に一致する。 | 単独変異: event receiptのidentity値だけを変更せず保持したsource event identityと不一致にする。ほかの入力・receipt・出力fieldは不変。 | identity一致/countを成立させず、該当fieldをunknown/invalidとし成功へしない。既存event/source責務区分へ無条件で返し、個別identity unknownは別記する。固定L2-070/L11-070の該当境界に限定し、新しい閾値・expiry・owner・decisionを加えない。 | 固定親 review05 M1/M2の当該fieldだけを照合。個体identity unknownは既知責務区分から分け、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "114",
+          "line": 3716,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "d63ae44c0cf804844095103ceeae6a72fb5b7a29abe01f558f1439c192349320",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-114` | `LABO-070-AC-03` | CASE-01と同じ正常入力B0。対象revision T0、source identity/revision/provenanceのsource receipt実値、scope/window、適用可能なoracle、他のreceipt/fieldは固定して有効。一般source/metric definition revisionのbaselineは正常かつ現在の選択範囲に一致する。067/068 predicate/oracle/task定義はこのCASEの対象外で、CASE-66/73のtask/要求owner区分に対応する。 | 単独変異: 一般source/metric definition-revision参照だけをD0から既知の異なるrevision D1へ変える。ほかの入力・receipt・出力fieldは不変。 | 互換しない一般source/metric定義を適用・混合せず、該当metricをunknown/未評価とする。既存source/definition責務区分へ無条件で返し、個別identity unknownは別記する。067/068 field定義の責務区分と混同しない。固定L2-070/L11-070の該当境界に限定し、新しい閾値・expiry・owner・decisionを加えない。 | 固定親 review05 M1/M2の当該fieldだけを照合。個体identity unknownは既知責務区分から分け、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "115",
+          "line": 3717,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "a142ab8cb90e7095adbe10ce72087f0b51b0cdf42a0990b2eff4cff44a36aa12",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-115` | `LABO-070-AC-03` | CASE-01と同じ正常入力B0。対象revision T0、source identity/revision/provenanceのsource receipt実値、scope/window、適用可能なoracle、他のreceipt/fieldは固定して有効。unitのbaselineは正常かつ現在の選択範囲に一致する。 | 単独変異: 一つのmeasurement receiptのunit値だけを欠落させる。ほかの入力・receipt・出力fieldは不変。 | unitを推測・換算せず該当measurementをunknown/invalidとし0にしない。既存source/observation責務区分へ無条件で返し、個別identity unknownは別記する。固定L2-070/L11-070の該当境界に限定し、新しい閾値・expiry・owner・decisionを加えない。 | 固定親 review05 M1/M2の当該fieldだけを照合。個体identity unknownは既知責務区分から分け、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "116",
+          "line": 3718,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "9de341f2bef09508667a0b6c548a0f1764ef3cd46edc61bccde6e89199cfdd87",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-116` | `LABO-070-AC-03` | CASE-01と同じ正常入力B0。対象revision T0、source identity/revision/provenanceのsource receipt実値、scope/window、適用可能なoracle、他のreceipt/fieldは固定して有効。unitのbaselineは正常かつ現在の選択範囲に一致する。 | 単独変異: そのreceiptのunit definition referenceだけを既知のstale definition Dprevへ変える。ほかの入力・receipt・出力fieldは不変。 | stale unit definitionを再利用・換算せず該当fieldをunknown/invalidとする。既存source/definition責務区分へ無条件で返し、個別identity unknownは別記する。固定L2-070/L11-070の該当境界に限定し、新しい閾値・expiry・owner・decisionを加えない。 | 固定親 review05 M1/M2の当該fieldだけを照合。個体identity unknownは既知責務区分から分け、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "117",
+          "line": 3719,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "bb378716cb6e717cb20534f6167f6b1b1a3de650f72de3ebb1e34b8a6a30c753",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-117` | `LABO-070-AC-03` | CASE-01と同じ正常入力B0。対象revision T0、source identity/revision/provenanceのsource receipt実値、scope/window、適用可能なoracle、他のreceipt/fieldは固定して有効。oracleのbaselineは正常かつ現在の選択範囲に一致する。 | 単独変異: oracle revision receiptだけを既知のstale revision Oprevへ変える。ほかの入力・receipt・出力fieldは不変。 | stale oracleで評価・再ラベルせず、該当quality fieldをunknown/未評価とする。既存requirement/acceptance owner責務区分へ無条件で返し、個別identity unknownは別記する。固定L2-070/L11-070の該当境界に限定し、新しい閾値・expiry・owner・decisionを加えない。 | 固定親 review05 M1/M2の当該fieldだけを照合。個体identity unknownは既知責務区分から分け、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "118",
+          "line": 3720,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "5e3e34e9c64fcdf5218e948e95e3560584b30d125a55730abb7c38c235d88e92",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-118` | `LABO-070-AC-03` | CASE-01と同じ正常入力B0。対象revision T0、source identity/revision/provenanceのsource receipt実値、scope/window、適用可能なoracle、他のreceipt/fieldは固定して有効。oracleのbaselineは正常かつ現在の選択範囲に一致する。 | 単独変異: evidence receipt内のoracle referenceだけを、変更しない適用oracle O0と矛盾するO1へ変える。ほかの入力・receipt・出力fieldは不変。 | 矛盾oracleの結果を受理せず該当quality fieldをunknown/未評価とする。既存requirement/acceptance owner責務区分へ無条件で返し、個別identity unknownは別記する。固定L2-070/L11-070の該当境界に限定し、新しい閾値・expiry・owner・decisionを加えない。 | 固定親 review05 M1/M2の当該fieldだけを照合。個体identity unknownは既知責務区分から分け、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "119",
+          "line": 3721,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "e29bb0148a1505dc35e466c9fc7aaeb876b5d6617949e2df2ba084556247163d",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-119` | `LABO-070-AC-03` | CASE-01同様、受入済対象に対するverified escaped-defect eventとのrelation receiptはtarget identity T0、target_revision T0、scope S0、window W0で正常。 | 単独変異: 同じescaped-defect eventと受入済対象を結ぶrelation receiptのtarget_revision fieldだけをT0から既知の旧revision Tprevへ変える。target identity T0、scope S0、window W0は不変。 | stale relationを現行のescaped-defect linkとして扱わず、関係fieldをunknown/未評価とする。CASE-56と同じrelation/受入判断の既存要求・受入責務区分へ無条件で返し、個別identity unknownは別記する。固定L2-070/L11-070の該当境界に限定し、新しい閾値・expiry・owner・decisionを加えない。 | 固定親 review05 M1/M2の当該fieldだけを照合。個体identity unknownは既知責務区分から分け、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "120",
+          "line": 3722,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "9b9af8117d15d35d017c4ead3bc5f301d030273477f8218fabd9539c2bb53682",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-120` | `LABO-070-AC-03` | CASE-01同様、受入済対象に対するverified escaped-defect eventとのrelation receiptはtarget identity T0、target_revision T0、scope S0、window W0で正常。 | 単独変異: 同じescaped-defect eventと受入済対象を結ぶrelation receiptのtarget identity fieldだけをT0から別のT1へ変える。target_revision T0、scope S0、window W0は不変。 | eventを誤った受入対象へcount/linkせず、関係fieldをunknown/未評価とする。CASE-56と同じrelation/受入判断の既存要求・受入責務区分へ無条件で返し、個別identity unknownは別記する。固定L2-070/L11-070の該当境界に限定し、新しい閾値・expiry・owner・decisionを加えない。 | 固定親 review05 M1/M2の当該fieldだけを照合。個体identity unknownは既知責務区分から分け、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "121",
+          "line": 3723,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "bfabb355cf3ed370f901522d95ead351f75d12f0f7c4472e1c3ae855327d77e7",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-121` | `LABO-070-AC-03` | CASE-01同様、receiptはsource_revision R0、evaluation_window W0、event identity E0、result identity Z0で正常。 | 単独変異: このreceiptのsource_revision fieldだけをR0から既知の旧revision Rprevへ変える。evaluation_window W0、event identity E0、result identity Z0は不変。 | stale receiptで現行値を裏付けず、該当fieldをunknown/未評価とする。既存receipt/source責務区分へ無条件で返し、個別identity unknownは別記する。固定L2-070/L11-070の該当境界に限定し、新しい閾値・expiry・owner・decisionを加えない。 | 固定親 review05 M1/M2の当該fieldだけを照合。個体identity unknownは既知責務区分から分け、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "122",
+          "line": 3724,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "842f3bdb6077943e57b6ad91b1a0993286c3584bb0d5fbe791e31f911cce4cbd",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-122` | `LABO-070-AC-03` | CASE-01同様、source recordとreceiptはevent identity E0/result identity Z0で現行かつ内部整合。 | 単独変異: receiptのevent_identity fieldだけをE0から別のE1へ変える。result_identity Z0、source recordと他のreceiptは不変。 | 矛盾receiptを拒否し該当fieldをunknown/未評価とする。既存receipt/source責務区分へ無条件で返し、個別identity unknownは別記する。固定L2-070/L11-070の該当境界に限定し、新しい閾値・expiry・owner・decisionを加えない。 | 固定親 review05 M1/M2の当該fieldだけを照合。個体identity unknownは既知責務区分から分け、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "123",
+          "line": 3725,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "db2edc13ba19b36d96c1903018eb322c602c0fa14b56fbcd4438353883235ed9",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-123` | `LABO-070-AC-03` | CASE-01と同じ正常入力B0。対象revision T0、source identity/revision/provenanceのsource receipt実値、scope/window、適用可能なoracle、他のreceipt/fieldは固定して有効。scope/windowのbaselineは正常かつ現在の選択範囲に一致する。 | 単独変異: 適用するevent/measurement receiptのwindowだけを現行W0から既知の旧window Wprevへ変える。ほかの入力・receipt・出力fieldは不変。 | stale receiptをS0/W0へjoinせず該当fieldをunknown/未評価とする。既存event/source責務区分へ無条件で返し、個別identity unknownは別記する。固定L2-070/L11-070の該当境界に限定し、新しい閾値・expiry・owner・decisionを加えない。 | 固定親 review05 M1/M2の当該fieldだけを照合。個体identity unknownは既知責務区分から分け、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "124",
+          "line": 3726,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "c396e2b3d42e04b3771550e71c6ab0faf8e7177d4727c65b64eb49e5eb4c7f58",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-124` | `LABO-070-AC-03` | CASE-01と同じ正常入力B0。対象revision T0、source identity/revision/provenanceのsource receipt実値、scope/window、適用可能なoracle、他のreceipt/fieldは固定して有効。evidence clock validityのbaselineは正常かつ現在の選択範囲に一致する。 | 単独変異: timestamp pairのsource clock-validity evidenceだけをinvalidにし、他fieldは変えない ほかの入力・receipt・出力fieldは不変。 | freshness ageを確定age/0/authority stateへ変換せずunknown/invalidとする。既存event/source責務区分へ無条件で返し、個別identity unknownは別記する。固定L2-070/L11-070の該当境界に限定し、新しい閾値・expiry・owner・decisionを加えない。 | 固定親 review05 M1/M2の当該fieldだけを照合。個体identity unknownは既知責務区分から分け、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "125",
+          "line": 3727,
+          "ac": [
+            "`LABO-070-AC-01`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "016ed2aee653a6cdc95869b58b03ae085d068cd111f69d4bea094b83081e994b",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-125` | `LABO-070-AC-01` | CASE-01と同じ正常入力B0。対象revision T0、source identity/revision/provenanceのsource receipt実値、scope/window、適用可能なoracle、他のreceipt/fieldは固定して有効。source provenance outputのbaselineは正常かつ現在の選択範囲に一致する。 | 単独変異: LABO outputのprovenance fieldだけを欠落させる。ほかの入力・receipt・出力fieldは不変。 | 不完全なLABO出力を拒否し、当該出力fieldをreceiptの実値P0へ訂正する。正常sourceへ返さず他の出力fieldを保持する。固定L2-070/L11-070の該当境界に限定し、新しい閾値・expiry・owner・decisionを加えない。 | 固定親 review05 M1/M2の当該fieldだけを照合。個体identity unknownは既知責務区分から分け、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "126",
+          "line": 3728,
+          "ac": [
+            "`LABO-070-AC-01`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "73756032c7dac665b218fe3333205164cba2b408170f6ba72bfa303735ae3a20",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-126` | `LABO-070-AC-01` | CASE-01と同じ正常入力B0。対象revision T0、source identity/revision/provenanceのsource receipt実値、scope/window、適用可能なoracle、他のreceipt/fieldは固定して有効。source provenance outputのbaselineは正常かつ現在の選択範囲に一致する。 | 単独変異: LABO outputのprovenance fieldだけをP0から異なるP1へ変える。ほかの入力・receipt・出力fieldは不変。 | 不一致のLABO出力を拒否し、当該出力fieldを正確なP0へ訂正する。正常sourceへ返さず他の出力fieldを保持する。固定L2-070/L11-070の該当境界に限定し、新しい閾値・expiry・owner・decisionを加えない。 | 固定親 review05 M1/M2の当該fieldだけを照合。個体identity unknownは既知責務区分から分け、件数から完全性を主張しない。 |"
+        },
+        {
+          "id": "127",
+          "line": 3729,
+          "ac": [
+            "`LABO-070-AC-03`",
+            "`LABO-070-AC-05`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "b2eb7810cd2c50fdd2687328a13bd06ada5d2657e47d01870ff224f65cdab80e",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-127` | `LABO-070-AC-03`, `LABO-070-AC-05` | CASE-01と同じ有効な067/068 field。各定義revision、identity/grain、receipt、scorecard scopeは基準scope S0と一致する。 | 単独変異: 068 fieldのscopeだけをS0と異なる値にする。067 fieldと全source/output条件は不変。 | 068 fieldだけを理由付きunavailable/unknownにし、067 fieldと他の正常fieldを保持する。scope違いのAttempt countを混ぜず、complete co-present scorecardとしない。LABO scope評価責務へ戻す。 | 固定L2/L11-070のscope不一致時のfield隔離を照合。 |"
+        },
+        {
+          "id": "128",
+          "line": 3730,
+          "ac": [
+            "`LABO-070-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "73e2b78fed6f3f7755a323f1c62aa68488c451886597b761865588d50102e395",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-128` | `LABO-070-AC-03` | CASE-01と同じ正常scorecard入力B0。scorecard scope S0、4 duration、escaped-defect、rollback/Recovery、observer overhead、freshnessの各汎用event/receipt scope S0、067/068 fieldは有効で一致する。全scope値は合成fixture値。 | 単独変異: 汎用telemetryのqueue-wait event/receiptのscope fieldだけをS0からS1へ変える。他のevent/receipt、scorecard scope、067/068 field、他の入力・出力は不変。 | scope不一致のqueue-wait fieldをreason付きunknown/unavailableとし、S1 eventをS0 scorecardへ混ぜない。他のscope一致する汎用metric・067/068 fieldは保持し、queue-waitの欠落を隠して完全なscorecardと主張しない。比較・scope評価責務はLABOに残す。 | 固定L2/L11-070の汎用event scope隔離を、067/068固有scope CASE-18/127と分けて照合。 |"
+        },
+        {
+          "id": "129",
+          "line": 3731,
+          "ac": [
+            "`LABO-070-AC-03`",
+            "`LABO-070-AC-05`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "50af1ad1d17d99131df251744d10abfc643990538b32a757b7a55aa36678e650",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-129` | `LABO-070-AC-03`, `LABO-070-AC-05` | CASE-01と同じ正常scorecard入力B0。067 definition revision D0670（D0670/D0671は合成fixtureラベル）、predicate/oracle、identity/grain、scope、receiptと、068側を含む他fieldは有効で一致する。 | 単独変異: 067 fieldのdefinition_revision参照だけをD0670から互換性のない既知revision D0671へ変える。predicate/oracle、068 field、他のreceipt/outputは不変。 | 067 fieldだけをunknown/unavailableとして理由を保ち、068と他の正常fieldを保持する。異なる定義revisionを適用・換算せず、067定義/receiptの既存責務区分へ返す。complete co-present scorecardとしない。 | 固定L2/L11-070の067定義revision一致とfield隔離を照合。 |"
+        },
+        {
+          "id": "130",
+          "line": 3732,
+          "ac": [
+            "`LABO-070-AC-03`",
+            "`LABO-070-AC-05`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "f4c349a7583d421dc5222f4406f3e0b247360f1d008f8d481b605597e29fab9b",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-070-CASE-130` | `LABO-070-AC-03`, `LABO-070-AC-05` | CASE-01と同じ正常scorecard入力B0。068 definition revision D0680（D0680/D0681は合成fixtureラベル）、OS Attempt identity集合/完全性receipt、identity/grain、scopeと、067側を含む他fieldは有効で一致する。 | 単独変異: 068 fieldのdefinition_revision参照だけをD0680から互換性のない既知revision D0681へ変える。Attempt identities/完全性receipt、067 field、他のreceipt/outputは不変。 | 068 fieldだけをunknown/unavailableとして理由を保ち、067と他の正常fieldを保持する。異なる定義revisionを適用・換算せず、固定FR-070が定めるtask/要求ownerの既存責務区分へ返す。OS Attempt identity集合と完全性receiptはCASE-130の正常baselineとして保持し、定義revisionの戻し先とは混同しない。complete co-present scorecardとしない。 | 固定L2/L11-070の068定義revision一致とfield隔離を照合。 |"
+        }
+      ]
+    },
+    "071": {
+      "count": 45,
+      "unique_ids": 45,
+      "rows": [
+        {
+          "id": "01",
+          "line": 3404,
+          "ac": [
+            "`LABO-071-AC-01`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "33626a76c90b30c1dc27a750826dd6d630ba7ad106ec1cea05a68c40d117636e",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-01` | `LABO-071-FR-01` | `LABO-071-AC-01` | B0: 選択task class C0、model revision V0、scope S0、revision整合したevidence E0とsource identity、資格対象relationが固定済み。title T0、qualification state Q0、permission P0、assignment role A0は別identity/fieldで記録。 | 変異なし（正常合成fixture）。 | Q0をE0に基づきS0/C0/V0へ記録。T0/P0/A0は不変。合成fixtureであり実評価ではない。 |"
+        },
+        {
+          "id": "02",
+          "line": 3405,
+          "ac": [
+            "`LABO-071-AC-02`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "5183a20bc0252346a6dd0d5cf63825082387563c2d4ccf3640bdf09f9d534c9c",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-02` | `LABO-071-FR-01/03` | `LABO-071-AC-02` | B1: 結果を見る前に選択された新task class C1×model revision V1×scope S1。固有evidence E1がある。B0とは別の対象。 | 変異なし（未見組合せの正常fixture）。 | C1/V1固有のE1だけでstateを判定。C0/V0やtitleから流用せず既定class集合を補わない。 |"
+        },
+        {
+          "id": "03a",
+          "line": 3406,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "9b85adb1dcd4c4798e6cead68d6edaeb9a3e5a14a4f081a4f1fd8d5600dee29b",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-03a` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | B0のclass/revision/scope/evidenceは一致し、source revisionはcurrent。 | evidence source revisionだけstaleにする。 | qualificationをunknown/未評価にし、他class/revision/scopeやtitleから補わない。不足・不一致の評価根拠を供給する既存source owner責務区分へ返し、個体source/owner identity unknownは別に保持する。 |"
+        },
+        {
+          "id": "03b",
+          "line": 3407,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "aacdc25772ad7f93868f538e9ae8cf106bf68713a5d105d110096481d4fd165e",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-03b` | `LABO-071-FR-01` | `LABO-071-AC-03` | B0のevidenceはC0/V0/S0に一致。 | task class fieldだけをC1へ変える。 | qualificationをunknown/未評価にし、他class/revision/scopeやtitleから補わない。不足・不一致の評価根拠を供給する既存source owner責務区分へ返し、個体source/owner identity unknownは別に保持する。 |"
+        },
+        {
+          "id": "03c",
+          "line": 3408,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "9040e9e1425cb793872aecd258f593c3e32eb3db031a84b207ff6edf6e2fe456",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-03c` | `LABO-071-FR-02/03` | `LABO-071-AC-03` | B0のclass C0/model revision V0/scope S0/evidence E0とqualified Q0はcurrent sourceに一致し、permission P0、authority H0、assignment A0は各独立sourceのcurrent値として記録。 | model revisionだけをV0からV1へ更新する。 | V0のqualificationだけを失効し、V1には固有evidenceが記録されるまでunknown/未評価を返す。P0/H0/A0はそれぞれ独立sourceの値と一致させ、資格失効からpermission・authority・assignmentの変更を生成しない。 |"
+        },
+        {
+          "id": "03d",
+          "line": 3409,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "204cdabaeb44ee6799856fa97ade8e757574b5a4304a7e502664092275767327",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-03d` | `LABO-071-FR-02/03` | `LABO-071-AC-03` | B0のclass C0/model revision V0/scope S0/evidence E0、qualification Q0とrecord済みmajor miss M0をsourceで照合。permission P0、authority H0、assignment A0は各独立sourceのcurrent値。 | 出力summaryだけからrecord済みM0を隠す。元sourceは不変。 | sourceに記録済みのM0に従いV0のqualificationだけを失効する。P0/H0/A0は各独立source値と一致させ、summaryによる隠蔽や資格失効からの状態変更を拒否する。 |"
+        },
+        {
+          "id": "03e",
+          "line": 3410,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "eb0b51d0b3444cf6d59439fc28254dfff0505a2027ceb822540188cc9dcc5109",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-03e` | `LABO-071-FR-03` | `LABO-071-AC-03` | B0のQ0/P0状態は別々のsource recordにありpermission issueは発生していない。 | qualification Q0だけから新permission P1を出力しようとする。 | P1生成を拒否。既存SECURITY permission stateを変えず、実際のpermission根拠不足があればSECURITY責務へ返す。 |"
+        },
+        {
+          "id": "03f",
+          "line": 3411,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "0f37a07a9cd9962e4c41d20ec3825f2464df35e90e50b23e7aca5b70e0ce8ff3",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-03f` | `LABO-071-FR-03` | `LABO-071-AC-03` | B0のQ0/A0は別state。OS assignment sourceは不変。 | qualification Q0だけからassignment role A1を出力する。 | A1生成を拒否。既存OS assignment stateを変えない。 |"
+        },
+        {
+          "id": "04a",
+          "line": 3412,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "7a672207ecca6a880d4813a8e2327a5ec3b807f543607feb4988a0d6feff163c",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-04a` | `LABO-071-FR-02/03` | `LABO-071-AC-03` | B0の入力・stateは固定親に従い、独自thresholdやscheduleは存在しない。 | LABO出力へ根拠のないqualification threshold field一つを追加する。 | 追加ruleを拒否。固定親外の値、期限、ownerを作らない。 |"
+        },
+        {
+          "id": "05",
+          "line": 3413,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "3b405d1e022e6ebac196f4e4063ff86914f807a012f9e4774a2f6cab19d57643",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-05` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | B0からtask class以外の入力、E0、scope、stateは揃う。 | task class fieldだけ欠落。 | qualificationをunknown/未評価にし、他class/revision/scopeやtitleから補わない。不足・不一致の評価根拠を供給する既存source owner責務区分へ返し、個体source/owner identity unknownは別に保持する。 |"
+        },
+        {
+          "id": "06",
+          "line": 3414,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "71f0def3e750279973954487e5a0ba624fe6e7c733919251573b593258cb567b",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-06` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | B0からmodel revision以外の入力とE0は揃う。 | model revisionだけ欠落。 | qualificationをunknown/未評価にし、他class/revision/scopeやtitleから補わない。不足・不一致の評価根拠を供給する既存source owner責務区分へ返し、個体source/owner identity unknownは別に保持する。 |"
+        },
+        {
+          "id": "07",
+          "line": 3415,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "72476a63e7511bca7597accac346567416d762cf77723b0f206885597df98177",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-07` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | B0のclass/revision/evidenceは有効でevaluation scopeが明示される。 | evaluation scopeだけ欠落。 | qualificationをunknown/未評価にし、他class/revision/scopeやtitleから補わない。不足・不一致の評価根拠を供給する既存source owner責務区分へ返し、個体source/owner identity unknownは別に保持する。 |"
+        },
+        {
+          "id": "08",
+          "line": 3416,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "d715272c8aff1f00af30021fa97a9adddce1e6a8b6e736328896115e361b4205",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-08` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | B0のclass/revision/scopeはある。 | evidence fieldだけ欠落。 | qualificationをunknown/未評価にし、他class/revision/scopeやtitleから補わない。不足・不一致の評価根拠を供給する既存source owner責務区分へ返し、個体source/owner identity unknownは別に保持する。 |"
+        },
+        {
+          "id": "09",
+          "line": 3417,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "index",
+          "line_sha256": "25f652a9e31ef43fab9675b02cdfb5448ef05bdab489e532d81565f9e41edaee",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-09` | `LABO-071-FR-02` | `LABO-071-AC-03` | CASE-03dのV0記録済みmajor miss M0。 | 独立変異なし（CASE-03dへの索引）。 | CASE-03dの失効oracleを参照。同じmissを独立fixture/分母に数えない。 |"
+        },
+        {
+          "id": "10",
+          "line": 3418,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "fe2eb2676a1f6cbd72756cbcdd756ccd893c45389ed6fb2e0f0c3659bbb9ed9c",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-10` | `LABO-071-FR-02/03` | `LABO-071-AC-03` | B0からmajor miss statusがknown absence。 | major miss statusだけunknownにする。 | qualificationをunknown/未評価にし、他class/revision/scopeやtitleから補わない。不足・不一致の評価根拠を供給する既存source owner責務区分へ返し、個体source/owner identity unknownは別に保持する。 |"
+        },
+        {
+          "id": "11",
+          "line": 3419,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "index",
+          "line_sha256": "f095865dd2d9b7ea19887455fa12cf8df19ec21ce621c661b3d0202771fc1496",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-11` | `LABO-071-FR-02` | `LABO-071-AC-03` | CASE-03cのV0→V1 model update。 | 独立変異なし（CASE-03cへの索引）。 | CASE-03cを直接参照し、revision変更を二重計上しない。 |"
+        },
+        {
+          "id": "12",
+          "line": 3420,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "2f783c62af4f5d40b7b7c9924fa0ad4dd403f531f0b7ab0d7154f3fefb690268",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-12` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | B0のT0とQ0は同じ対象について別々のfield/sourceを持つ。 | 表示title T0だけをqualification Q0と同一値・同一状態として扱う。 | titleとqualificationを分離。titleだけでは資格を得ず、missing source identityはunknown。 |"
+        },
+        {
+          "id": "13",
+          "line": 3421,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "index",
+          "line_sha256": "88e32e372cdb8ddf5139c824136e839945e8812b061f37c6d57be6c0f3268603",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-13` | `LABO-071-FR-03` | `LABO-071-AC-03` | CASE-03eのQ0/P0独立field。 | 独立変異なし（CASE-03eへの索引）。 | CASE-03eを参照しpermission生成を二重計上しない。 |"
+        },
+        {
+          "id": "14",
+          "line": 3422,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "0d035343e54af9f172f8b34a8c16a8133e83dc31b20cc8706453d6bcf37fe61b",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-14` | `LABO-071-FR-03` | `LABO-071-AC-03` | B0でqualificationから独立したauthority stateは既存sourceに保管。 | qualification Q0だけから新authority stateを生成。 | authority生成を拒否し、既存owner stateを維持。qualificationからowner identityを推測せずunknownとする。 |"
+        },
+        {
+          "id": "15",
+          "line": 3423,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "index",
+          "line_sha256": "2df1a02a8ae99d2b601dd53762e39ce3f25e8d80675a233d0168de5a163c9284",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-15` | `LABO-071-FR-03` | `LABO-071-AC-03` | CASE-03fのQ0/A0独立field。 | 独立変異なし（CASE-03fへの索引）。 | CASE-03fを参照しassignment変更を二重計上しない。 |"
+        },
+        {
+          "id": "r02-permission-to-qualification",
+          "line": 3424,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "68ce14390fd59b32f94c0c4e643d6705140e18dd27613e330e5f366c0057613b",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-r02-permission-to-qualification` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | B0-P: 同一class/revision/scopeのcurrent source/evaluation record E0がqualification state Q0=`unknown`を明示し、permission P0は独立のcurrent recordとして存在する。title、assignment role、全入力とsourceは有効で、P0は資格evidenceとして参照しない。合成正常baseline。 | permission P0だけを根拠にqualification stateを`qualified`へ補完する出力にする。他field/入力/sourceは不変。 | E0に記録されたQ0=`unknown`を保ち、P0からqualificationを補う出力を拒否する。正常入力のsource ownerへ返さず、LABO候補出力の誤りを訂正する。permissionとqualificationのsourceを混同しない。 |"
+        },
+        {
+          "id": "r02-assignment-to-qualification",
+          "line": 3425,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "ba799d4694f45bb32067b8483770a04f547fdd664f991273ae8e8e1b0eec2bd6",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-r02-assignment-to-qualification` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | B0-A: 同一class/revision/scopeのcurrent source/evaluation record E0がqualification state Q0=`unknown`を明示し、assignment role A0は独立のcurrent recordとして存在する。title、permission、全入力とsourceは有効で、A0は資格evidenceとして参照しない。合成正常baseline。 | assignment role A0だけを根拠にqualification stateを`qualified`へ補完する出力にする。他field/入力/sourceは不変。 | E0に記録されたQ0=`unknown`を保ち、A0からqualificationを補う出力を拒否する。正常入力のsource ownerへ返さず、LABO候補出力の誤りを訂正する。assignment roleとqualificationのsourceを混同しない。 |"
+        },
+        {
+          "id": "16",
+          "line": 3426,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "3f377a57f36fa473316aa27be55106bb8adebd8945a0cca2be37c2ceb4ecdad9",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-16` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | B0のclass/revision/scope/evidence contentはある。 | evidence source identityだけ欠落。 | qualificationをunknown/未評価にし、他class/revision/scopeやtitleから補わない。不足・不一致の評価根拠を供給する既存source owner責務区分へ返し、個体source/owner identity unknownは別に保持する。 |"
+        },
+        {
+          "id": "17",
+          "line": 3427,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "d1d47d7d8607b13221393bd1f1e58a9f4f189f0d4a9c247bfe81c5778dbaa8b3",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-17` | `LABO-071-FR-03` | `LABO-071-AC-03` | evidence defectとsource identityが入力で特定可能。 | 返却先だけをLABO固定に変更し、元source owner参照を無視。 | LABOへの一律返却を拒否し、不足評価根拠を供給する既存source owner責務区分へ返す。個体identity unknownでも責務区分を消さず別記する。 |"
+        },
+        {
+          "id": "18",
+          "line": 3428,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "index",
+          "line_sha256": "f98f1a4c394ee5809a405a016bfe5283a4848c3008a440d0e9148d880cb80ecf",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-18` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | CASE-16のevidence-source identity欠落。 | 独立変異なし（CASE-16への索引）。 | CASE-16のunknown oracleを直接参照。同一欠落を二重計上しない。 |"
+        },
+        {
+          "id": "19",
+          "line": 3429,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "e5ff0f4013aa6b386a1b24eaf610804580484f0a14f93c63207627292d8dbe66",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-19` | `LABO-071-FR-02/03` | `LABO-071-AC-03` | B0のQ0 evidence有効。recorded major missなし、model revision更新なし。 | 既存の有効evidenceとrevisionを保ち、時刻経過だけを理由にqualification expiredという誤出力field一つを追加する。 | 固定親にないexpiry条件による失効を拒否。根拠あるQ0状態を保持し、他要件がunknownならunknownのまま。新expiry/windowを定義しない。 |"
+        },
+        {
+          "id": "20",
+          "line": 3445,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "4654eb84cb9756b95dc8f34806cba169af407585744cf46e8c653dca6cad46d5",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-20` | `LABO-071-FR-03` | `LABO-071-AC-03` | CASE-01と同じB0。C0/V0/S0/E0/Q0、title T0・permission P0・assignment A0は固定親どおり別field/state。synthetic only。 | Qualification Q0だけを根拠に、別fieldの実行許可を新規生成する出力を一つ追加要求する。ほかの入力・出力は変えない。 | 実行許可の生成を拒否し、既存のpermission/authority stateは変えない。実際のpermission責務は固定親のSECURITY区分のまま。新しい権限field/APIを定義するケースではない。 |"
+        },
+        {
+          "id": "21",
+          "line": 3446,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "54b8a32d9cb02a76424e912c5a8e963af16453f26d5f5fda3a34edb8dbec1098",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-21` | `LABO-071-FR-03` | `LABO-071-AC-03` | CASE-01と同じB0。C0/V0/S0/E0/Q0、title T0・permission P0・assignment A0は固定親どおり別field/state。synthetic only。 | Qualification Q0だけを根拠に、要件の採否を新規生成する出力を一つ追加要求する。ほかの入力・出力は変えない。 | 採否出力を拒否し、PO decision/adoption stateは変えない。GitHub記録やqualificationからPO判断を生成しない。出力slotはfixture上の観測であり、新schema/APIを作らない。 |"
+        },
+        {
+          "id": "22",
+          "line": 3447,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "942179d642533ac73cbd5a89e7bf1d572cd5d01e9860bef624dc85a461407e22",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-22` | `LABO-071-FR-03` | `LABO-071-AC-03` | CASE-01と同じB0。C0/V0/S0/E0/Q0、title T0・permission P0・assignment A0は固定親どおり別field/state。synthetic only。 | Qualification Q0だけを根拠に、要件の完了を新規生成する出力を一つ追加要求する。ほかの入力・出力は変えない。 | 完了出力を拒否し、requirement lifecycle stateは変えない。qualificationは実装・実行・完了証跡ではない。出力slotはfixture上の観測であり、新schema/APIを作らない。 |"
+        },
+        {
+          "id": "23",
+          "line": 3448,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "401448bd43610600f691320dd81d858c40e7f48d474d58558c674b522fe87ca0",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-23` | `LABO-071-FR-02/03` | `LABO-071-AC-03` | B0の入力・stateは固定親に従い独自scheduleは存在しない。 | LABO出力へ根拠のないrequalification schedule field一つを追加する。 | schedule追加を拒否し、再評価方法・時期・新ownerを定めない。 |"
+        },
+        {
+          "id": "r02-major-miss-rubric-output",
+          "line": 3449,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "9387ef2c1ae3fd9410c46c1a2a59d27309886915832918c24242b8e0b76ca2f6",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-r02-major-miss-rubric-output` | `LABO-071-FR-02/03` | `LABO-071-AC-03` | B0: class/revision/scope/evidenceとqualification stateはsourceに一致し、record済みmajor miss状態・threshold・既存sourceすべて正常。新規rubricは入力されていない。合成fixture。 | LABO候補出力にmajor miss rubric／分類基準fieldだけを追加する。他の入力・出力は不変。 | rubric追加を拒否し、LABO候補出力から当該fieldを除いて出力を訂正する。source側入力を不足扱いせず、normal input ownerへ返さない。固定親が未定義のrubricを新設しない。 |"
+        },
+        {
+          "id": "r02-default-class-set-output",
+          "line": 3450,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "5ec98c3b4efdd5f06cbff7512ba8b06f4634e8b0765718242e517f3c6c8f66f0",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-r02-default-class-set-output` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | B0: 選択scopeは明示されたtask class C0だけを含み、class/revision/evaluation evidenceとqualification stateはcurrent sourceに一致する。default class setは入力されていない。合成fixture。 | LABO候補出力に既定task-class集合fieldだけを追加する。他の入力・出力は不変。 | 既定class集合の追加を拒否し、LABO候補出力から当該fieldを除いて出力を訂正する。選択scope外classを補わず、正常入力ownerへ返さない。 |"
+        },
+        {
+          "id": "r01-model-selection",
+          "line": 3451,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "6f1f369b2834b8f49438e3290d60b3c1ee37d68602e877ec8c7673a2b0646adb",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-r01-model-selection` | `LABO-071-FR-03` | `LABO-071-AC-03` | 有効B0。C0/V0/S0/E0/Q0とtitle/permission/assignment/authorityは別fieldのまま有効。qualificationからのmodel/provider/lane選択出力は未生成。 | qualification Q0だけから`selected_model`出力field一つを生成する。他二つの選択field・全入力・資格状態・既存状態は不変。 | 当該model選択の生成を拒否し、資格状態と根拠だけを返す。正常入力へ不足責務を転嫁せず、LABO候補出力処理を訂正する。provider/lane/modelの選択ownerや新選択契約をこのCASEで作らない。 |"
+        },
+        {
+          "id": "r01-provider-selection",
+          "line": 3452,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "30481a39a2d3f7e5faaa6d2b35d5afb6f832b25c9e237e7f97f38a3e1a89f8ae",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-r01-provider-selection` | `LABO-071-FR-03` | `LABO-071-AC-03` | 有効B0。C0/V0/S0/E0/Q0とtitle/permission/assignment/authorityは別fieldのまま有効。qualificationからのmodel/provider/lane選択出力は未生成。 | qualification Q0だけから`selected_provider`出力field一つを生成する。他二つの選択field・全入力・資格状態・既存状態は不変。 | 当該provider選択の生成を拒否し、資格状態と根拠だけを返す。正常入力へ不足責務を転嫁せず、LABO候補出力処理を訂正する。provider/lane/modelの選択ownerや新選択契約をこのCASEで作らない。 |"
+        },
+        {
+          "id": "r01-lane-selection",
+          "line": 3453,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "26867d582d080fe5a375217ca90185bb3d752914527bd39713bcd472fd51e36e",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-r01-lane-selection` | `LABO-071-FR-03` | `LABO-071-AC-03` | 有効B0。C0/V0/S0/E0/Q0とtitle/permission/assignment/authorityは別fieldのまま有効。qualificationからのmodel/provider/lane選択出力は未生成。 | qualification Q0だけから`selected_lane`出力field一つを生成する。他二つの選択field・全入力・資格状態・既存状態は不変。 | 当該lane選択の生成を拒否し、資格状態と根拠だけを返す。正常入力へ不足責務を転嫁せず、LABO候補出力処理を訂正する。provider/lane/modelの選択ownerや新選択契約をこのCASEで作らない。 |"
+        },
+        {
+          "id": "r03-evidence-qualification-revision-mismatch",
+          "line": 3454,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "a027baa5f6b5bf4c901e4a0fb5f35a385d53325084dcb31de93666662920e2a6",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-r03-evidence-qualification-revision-mismatch` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | 同じtask class C0/scope S0のqualification recordはmodel revision V0を示す一方、根拠evidence E1はV1に束縛される。title T0、permission P0、authority H0、assignment A0は別のcurrent source値として固定し、個体owner識別の有無も入力値のまま保持する。 | revision不一致のまま、qualification output fieldだけをV1-qualifiedにする。入力・他出力は不変。 | class/revision/evidenceの対応不一致を拒否し、V1 qualificationをunknown/未評価とする。V0状態をV1へ継承しない。不足する固定既存評価根拠は、その根拠を供給する既存source owner責務区分へ無条件に返し、個体identity unknownは別記する。誤ったV1-qualified出力はLABO自身でunknown/未評価へ訂正する。 |"
+        },
+        {
+          "id": "r03-title-only-no-evidence",
+          "line": 3455,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "be488aaf5491b78debd1c358b3a1f2b219544de71e08e6e42e70515a2739a306",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-r03-title-only-no-evidence` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | C0/V0/S0とtitle T0を入力。必要な評価evidence receiptは欠落し、qualification Q0はsource状態unknown。欠落routeは既存CASE-08/16のsource責務区分・個体identity unknownと同じscopeで保持する。permission P0、authority H0、assignment A0は他のcurrent sourceと一致する。 | title T0だけからqualification fieldをqualifiedへ補完する。全入力、route、他出力は不変。 | qualification outputをunknownへLABO自身で訂正し、titleから補完しない。欠落evidenceの既存返却区分とidentity unknownを分けて維持し、候補出力の誤りをmissing-input ownerへ返さない。 |"
+        },
+        {
+          "id": "r03-title-to-permission",
+          "line": 3456,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "2d2ad87f1e38b775ffb1a26ae36085d620776ae4a088900acb7a4ae5c8ccf9de",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-r03-title-to-permission` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | 正常合成baseline B0で選択class C0/revision V0/scope S0、qualification Q0、title T0、permission P0、authority H0、assignment A0がそれぞれ独立current sourceと一致する。状態は別identity/fieldで保持。 | title T0だけからpermission P1に変える。当該output fieldだけを変え、全入力および残りの出力は不変。 | 誤ったpermission outputを、正常入力に対応する独立SECURITY source値P0へLABO自身で訂正する。title/Q0と他fieldは変更しない。 |"
+        },
+        {
+          "id": "r03-title-to-authority",
+          "line": 3457,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "53398b67fddfe89d34ddb34b586249602fe3d4f8ef89c9cf7e37566f991073b7",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-r03-title-to-authority` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | 正常合成baseline B0で選択class C0/revision V0/scope S0、qualification Q0、title T0、permission P0、authority H0、assignment A0がそれぞれ独立current sourceと一致する。状態は別identity/fieldで保持。 | title T0だけからauthority H1に変える。当該output fieldだけを変え、全入力および残りの出力は不変。 | 誤ったauthority outputを独立source値H0へLABO自身で訂正する。title/Q0と他fieldは変更せず、個体identity unknownは別に保持する。 |"
+        },
+        {
+          "id": "r03-title-to-assignment",
+          "line": 3458,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "57b28fb3faf5e9902b85d300537fec905e07355a7c22a6cf05b5d3ae7458d46a",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-r03-title-to-assignment` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | 正常合成baseline B0で選択class C0/revision V0/scope S0、qualification Q0、title T0、permission P0、authority H0、assignment A0がそれぞれ独立current sourceと一致する。状態は別identity/fieldで保持。 | title T0だけからassignment A1に変える。当該output fieldだけを変え、全入力および残りの出力は不変。 | 誤ったassignment outputを独立OS source値A0へLABO自身で訂正する。title/qualificationと他fieldは変更しない。 |"
+        },
+        {
+          "id": "r03-permission-to-assignment",
+          "line": 3459,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "d34f5f5f380cc1712dff332051896dfa20a57fbf100c3dfe51c834b657867ce3",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-r03-permission-to-assignment` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | 正常合成baseline B0で選択class C0/revision V0/scope S0、qualification Q0、title T0、permission P0、authority H0、assignment A0がそれぞれ独立current sourceと一致する。状態は別identity/fieldで保持。 | permission P0だけからassignment A1に変える。当該output fieldだけを変え、全入力および残りの出力は不変。 | 誤ったassignment outputを独立OS source値A0へLABO自身で訂正する。permission P0と他fieldは変更しない。 |"
+        },
+        {
+          "id": "r03-assignment-to-permission",
+          "line": 3460,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "positive_or_boundary",
+          "line_sha256": "a80ba4c73cbfa862f56da77531f541df6f0fa4c7ca8a5f95a286edb6042c4661",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-r03-assignment-to-permission` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | 正常合成baseline B0で選択class C0/revision V0/scope S0、qualification Q0、title T0、permission P0、authority H0、assignment A0がそれぞれ独立current sourceと一致する。状態は別identity/fieldで保持。 | assignment A0だけからpermission P1に変える。当該output fieldだけを変え、全入力および残りの出力は不変。 | 誤ったpermission outputを独立SECURITY source値P0へLABO自身で訂正する。assignment A0と他fieldは変更しない。 |"
+        },
+        {
+          "id": "r03-revision-update-permission-isolation",
+          "line": 3461,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "238f096a233d801df3659d44e488fc92e2830dbf6b09ac282e9f2df970e24afa",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-r03-revision-update-permission-isolation` | `LABO-071-FR-02/03` | `LABO-071-AC-03` | B0のC0/V0/Q0と独立SECURITY permission P0、OS assignment A0、authority H0のcurrent sourceを固定。model revision V0→V1更新が記録され、V0資格だけが失効しV1は未評価となる。permissionに独立expiry/revocationはない。 | 資格失効を根拠にpermission output field P0だけをexpiredまたはrevokedへ変える（どちらか一方だけを選ぶ代替変異。両方は同時に変えない）。Q1、A0、H0および全入力はbaselineどおり。 | V0 qualificationの失効を保持しつつ、permission P0を独立SECURITY source値へLABO自身で訂正する。A0/H0も各source値と一致させ、資格失効からpermission expiryを生成せず、誤出力をSECURITY入力不足として返さない。 |"
+        },
+        {
+          "id": "r03-major-miss-permission-isolation",
+          "line": 3462,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "a9973510910e0be69d3385195d22971864dcd64c6d88663cff4f935b3bf4a020",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-r03-major-miss-permission-isolation` | `LABO-071-FR-02/03` | `LABO-071-AC-03` | B0のC0/V0/Q0とrecord済みmajor miss M0を固定。独立SECURITY permission P0、OS assignment A0、authority H0はcurrentで、permissionに独立expiry/revocationはない。M0によりqualification Q0だけが失効する。 | Q0失効を根拠にpermission output field P0だけをexpiredまたはrevokedへ変える（どちらか一方だけを選ぶ代替変異。両方は同時に変えない）。M0/source、A0、H0および全入力は不変。 | 記録済みM0に従いqualificationを失効し、permission P0を独立SECURITY source値へLABO自身で訂正する。A0/H0も各source値と一致させ、資格失効からpermission expiryを生成しない。 |"
+        },
+        {
+          "id": "r05-evidence-qualification-scope-conflict",
+          "line": 3463,
+          "ac": [
+            "`LABO-071-AC-03`"
+          ],
+          "kind": "mutation_or_boundary",
+          "line_sha256": "81638c3238462b279de07fbb010806dae057a7a1a8ae25d76d9488cd23b22dde",
+          "has_expected_oracle_text": true,
+          "raw_line": "| `L10-LABO-071-CASE-r05-evidence-qualification-scope-conflict` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | B0のtask class C0/model revision V0、qualification記録scope S0、evidence E0のscope S0は一致し、source identity/revisionはcurrent。title T0、permission P0、authority H0、assignment A0は各独立current source値と一致する。 | evidence E0の評価範囲fieldだけを別scope S1へ変え、qualification記録のS0との矛盾を作る。class/revision、source版、他入力は不変。 | evidence scope S1とqualification記録scope S0を比較して不一致を検出し、qualificationをunknown/未評価にする。S0の資格をS1へ外挿せず、titleや他属性から補わない。不足・不一致の評価根拠を供給する既存source owner責務区分へ返し、個別identity unknownは別に保持する。P0/H0/A0とtitleは各source値のまま変更しない。 |"
+        }
+      ]
+    }
+  },
+  "checkpoint_note": "633bf12ea8f948db8ba3d6600179c4a9507377a7 is PO #2554 checkpoint; adopted body revisions remain 318ec4a... for 068/069 and ea6f756... for 070/071. It is not substituted for their L2/L11 bytes.",
+  "limits": [
+    "This is a static semantic audit of four parent scopes; no fixture/runtime/test/CI executed.",
+    "No claim that all 274 adopted parents are semantically complete.",
+    "Historical formal minor items are not promoted to blockers."
+  ],
+  "findings": [
+    {
+      "id": "CAND-069-NFR-INDEX",
+      "severity": "candidate_trace_gap_nonblocking",
+      "parent": "HELIXLABO-L2-069",
+      "evidence": [
+        {
+          "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+          "lines": "249-252",
+          "detail": "reproducibility index names CASE-01,05-10,20-26,28-32 and omits the four new individual required-output-field omissions CASE-44-47; authority-isolation index ends at CASE-43 and omits CASE-48 ticket_issue generation."
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+          "lines": "188-192",
+          "detail": "NFR verification index similarly omits CASE-44-48."
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "lines": "3290-3294",
+          "detail": "FV defines CASE-44-47 as individual missing-output mutations and CASE-48 as ticket_issue field-only generation; each has an oracle and correction/owner boundary."
+        }
+      ],
+      "impact": "The functional acceptance is present, so this is not an uncovered FR/AC or observed false-success. The NFR/NFRV measurement trace does not enumerate newer cases.",
+      "proposed_minimum": "Add CASE-44-47 to the relevant reproducibility/required-output row and CASE-48 to authority-isolation rows in L3 NFR and L10 NFRV; keep semantics and scope unchanged."
+    },
+    {
+      "id": "CAND-071-QUALIFICATION-TO-TITLE",
+      "severity": "candidate_single_negative_gap_nonblocking",
+      "parent": "HELIXLABO-L2-071",
+      "evidence": [
+        {
+          "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+          "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+          "lines": "576-584",
+          "detail": "qualification/title/permission/authority/assignment are separate state fields and must not be inferred from one another."
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "lines": "3420-3463",
+          "detail": "CASE-12/r03-title-only-no-evidence test title→qualification; r03-title-to-permission/authority/assignment tests title→those outputs; qualification→permission/assignment/authority/model/provider/lane, permission↔assignment, revision and major-miss isolation are tested. No CASE varies qualification alone and checks title remains unchanged."
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+          "lines": "236-241",
+          "detail": "independent-state NFR directional list also omits qualification→title."
+        },
+        {
+          "path": "docs/governance/decisions/helix-labo-stage5-parent071-l3-l10-po-decision-2026-10-07.md",
+          "lines": "66-71",
+          "detail": "formal residual R4 already records the missing reverse direction; it is a non-blocking residual, not promoted here."
+        }
+      ],
+      "impact": "The separate-field AC and normal fixture exist; no direct false-success was established. The reverse direction is an explicit fixed-parent independence relation lacking its own negative oracle.",
+      "proposed_minimum": "Add one single-field mutation changing only the LABO title output based on qualification while all independent title source inputs remain fixed, then synchronize NFR/NFRV references."
+    },
+    {
+      "id": "CAND-070-068-RATE-OUTPUT",
+      "severity": "candidate_cross_scope_negative_gap_nonblocking",
+      "parent": "HELIXLABO-L2-070",
+      "evidence": [
+        {
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+          "lines": "1945-1962",
+          "detail": "070 scorecard and AC-05 require separate source-bound co-presentation and prohibit conversion/aggregation/substitution."
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "lines": "3601-3732",
+          "detail": "130 CASE rows cover receipt/source/value integrity, 067/068 pairing, scope/revision, authority outputs; no explicit 070-only single output mutation for task_success_rate or attempt_success_rate was found in the 070 case table."
+        },
+        {
+          "path": "docs/governance/decisions/helix-labo-stage5-parent070-l3-l10-po-decision-2026-10-07.md",
+          "lines": "59-64,127-133",
+          "detail": "formal residual R23 names this exact lack of a standalone 070 negative and treats the separate 068 cases as coverage rationale."
+        }
+      ],
+      "impact": "068 has standalone rejection fixtures for both rates, and 070 AC-05 prohibits metric conversion; so no demonstrated acceptance of an illegal rate was found. A scorecard-local single negative would make the cross-parent boundary explicit.",
+      "proposed_minimum": "If addressed in a future 070 refresh, add separate single-field output mutations for each forbidden rate only if the selected 070 atoms allow that output surface; otherwise preserve the residual as cross-parent coverage. Do not expand the fixed nine-atom scope."
+    }
+  ],
+  "parent_semantic_summary": {
+    "068": {
+      "fixed_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "po_row": "57candidates:83",
+      "ac": [
+        "LABO-068-AC-01",
+        "LABO-068-AC-02",
+        "LABO-068-AC-03"
+      ],
+      "fr": [
+        "FR-LABO-068-01",
+        "FR-LABO-068-02",
+        "FR-LABO-068-03"
+      ],
+      "nfr_rows": 3,
+      "fv_cases": 45,
+      "indexes": 3,
+      "summary": "distinct OS Attempt identity count; completeness/identity/state/correction/revision/scope/result receipt unknowns return to existing OS/observation-source responsibility; isolated prohibitions include assignment/start/retry/adoption/qualification/admission/permission/policies/rates. NFR has no threshold."
+    },
+    "069": {
+      "fixed_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "po_row": "57candidates:84",
+      "ac": [
+        "LABO-069-AC-01",
+        "LABO-069-AC-02",
+        "LABO-069-AC-03",
+        "LABO-069-AC-04"
+      ],
+      "fr": [
+        "LABO-069-FR-01"
+      ],
+      "nfr_rows": 4,
+      "fv_cases": 52,
+      "indexes": 5,
+      "summary": "positive same-cohort case and unknown reason case; missing/stale/scope/relation/denominator/window/censoring fields fail to unknown/unassessed; no new metric thresholds/statistics/learning. Candidate trace gap CAND-069-NFR-INDEX."
+    },
+    "070": {
+      "fixed_revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+      "po_row": "live26:49",
+      "ac": [
+        "LABO-070-AC-01",
+        "LABO-070-AC-02",
+        "LABO-070-AC-03",
+        "LABO-070-AC-04",
+        "LABO-070-AC-05"
+      ],
+      "fr": [
+        "LABO-070-FR-01"
+      ],
+      "nfr_rows": 9,
+      "fv_cases": 130,
+      "indexes": 8,
+      "summary": "nine selected atoms; positive and unknown profiles, source-receipt exactness, single-field missing/stale/mismatch, 067/068 co-presentation and owner boundary. No numerical thresholds. CAND-070-068-RATE-OUTPUT remains non-blocking."
+    },
+    "071": {
+      "fixed_revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+      "po_row": "live26:50 (+ boundary row 72)",
+      "ac": [
+        "LABO-071-AC-01",
+        "LABO-071-AC-02",
+        "LABO-071-AC-03"
+      ],
+      "fr": [
+        "LABO-071-FR-01",
+        "LABO-071-FR-02",
+        "LABO-071-FR-03"
+      ],
+      "nfr_rows": 3,
+      "fv_cases": 45,
+      "indexes": 5,
+      "summary": "class/revision/scope/evidence binding; two fixed invalidation triggers; field/authority separation and explicit owner return. No threshold/schedule. Qualification→title independent negative absent (known formal residual)."
+    }
+  },
+  "completion_context": {
+    "origin_main_at_completion": "0d8fcb67ef64e17e0e3529715011d6140652f017",
+    "initial_pinned_main": "6f9462f1706a9e8670b97ad259e96c8c40632a4",
+    "target_six_documents_fixed_l2_l11_and_po_rows_unchanged_between_these_revisions": true,
+    "scope": "read-only audit remains pinned to initial 6f9462f1; checked direct diff for all six target docs, L2/L11, and adoption records; no changes in those paths"
+  }
+}

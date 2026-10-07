@@ -1,0 +1,1251 @@
+{
+  "title": "HARNESS Stage 5 5親 L3/L10 意味照合（read-only）",
+  "target_main": "c9e73bcc367a9d5203c92ef9775511013da4f85d",
+  "basis": "exact git show bytes at target commit; local checkout HEAD intentionally not used as basis",
+  "review_scope": [
+    "HARNESS-L2-021",
+    "HARNESS-L2-025",
+    "HARNESS-L2-033",
+    "HARNESS-L2-035",
+    "HARNESS-L2-037"
+  ],
+  "adoption_and_source_evidence": [
+    {
+      "identity": "HARNESS-L2-021",
+      "registration": {
+        "registration_id": "MPR-RC-HARNESS-L2-021-001",
+        "disposition": "adopted",
+        "version_class": "1.0",
+        "sequence_stage": "Stage 5",
+        "sequence_population": "original 250 carry-forward",
+        "candidate_semantic_digest": "sha256:c036a0a10beeb7c93587e3e71897c750c56c55a51df3850a1bb5ffb58dc446dc",
+        "stage_basis": "9/27 assignment JSON exact identity mapping",
+        "stage_prerequisite_ids": [],
+        "stage_dependency_ids_not_adopted": [],
+        "sequence_stage_rationale": "9/27 assignment JSON exact identity mapping"
+      },
+      "fixed_l2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "line_start": 438,
+        "line_end": 446,
+        "full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+        "raw_lf_span_sha256": "7ead08a9421e7b433ad54465ce880c5c31f79a180fac46a6032f7318748f0c31"
+      },
+      "fixed_l11": [
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line_start": 216,
+          "line_end": 216,
+          "full_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+          "raw_lf_span_sha256": "e4047883fe6bbda845bada035ec57d9a6b5b70b6d1cb370084209f17cc1a9d01"
+        }
+      ],
+      "adoption_decision": {
+        "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "line_start": 50,
+        "line_end": 50,
+        "full_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+        "raw_lf_span_sha256": "6ce65646a96c10ca3f88333357bc61c5d3030f1cb1fe10caa5e832bae3cd98ad"
+      },
+      "old_source_pins": [
+        {
+          "role": "対応旧要件",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md",
+          "line_start": 64,
+          "line_end": 67,
+          "full_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20",
+          "raw_lf_span_sha256": "5c0880ba5d92fbbed6ff32ff350ca6911a572f527a82f50fd975cf6ac0a729ac",
+          "atom_id": null,
+          "disposition": null
+        },
+        {
+          "role": "旧L3相当候補要求",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+          "line_start": 209,
+          "line_end": 219,
+          "full_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+          "raw_lf_span_sha256": "c3d2ac243b216a2ea718b2bafeaebb686510f8319a20e95367ce723d360605bf",
+          "atom_id": null,
+          "disposition": null
+        },
+        {
+          "role": "paired consumer / acceptance crosswalk",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+          "line_start": 58,
+          "line_end": 59,
+          "full_sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+          "raw_lf_span_sha256": "3d69f4bf769176744c408d80d3ed677c31c92bca26869f273a5309d306eb489a",
+          "atom_id": null,
+          "disposition": null
+        },
+        {
+          "role": "paired consumer / FRS-BR mapping",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+          "line_start": 81,
+          "line_end": 81,
+          "full_sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+          "raw_lf_span_sha256": "f408962b9a84cb0a1430c15bc89e642ad843a267aa9f95e4458ede4a5367d56b",
+          "atom_id": null,
+          "disposition": null
+        }
+      ],
+      "old_source_search_limit": {
+        "scope": "Registration receipt source atoms and fixed L2 cited source lines; exact targeted archive search for linked identifiers",
+        "terms": [
+          "receipt source atom identifiers / old L2-linked identifiers"
+        ],
+        "result": "direct legacy lineage pinned through atom/path and crosswalk evidence; full semantic comparison still limited to pinned spans.",
+        "exact_identity_register_search": "no direct old asset keyed to current parent identity",
+        "query_scope": "exact identity search in legacy-asset-disposition.jsonl on origin/main; archive legacy source files are not included by this register query",
+        "finding_ja": "receiptに対応する旧FRS見出し/本文2 atomを限定pin。旧L3相当要求とpaired acceptance範囲の意味closureまではこのatom集合から言えない。"
+      },
+      "ac_ids": [
+        "AC-HARNESS-L3-021-01",
+        "AC-HARNESS-L3-021-02",
+        "AC-HARNESS-L3-021-03",
+        "AC-HARNESS-L3-021-04"
+      ],
+      "ac_lines": [
+        481,
+        482,
+        483,
+        484
+      ],
+      "case_ids": [
+        "CASE-HARNESS-L10-021-S5-001",
+        "CASE-HARNESS-L10-021-S5-002",
+        "CASE-HARNESS-L10-021-S5-003",
+        "CASE-HARNESS-L10-021-S5-004",
+        "CASE-HARNESS-L10-021-S5-005",
+        "CASE-HARNESS-L10-021-S5-006",
+        "CASE-HARNESS-L10-021-S5-007",
+        "CASE-HARNESS-L10-021-S5-008",
+        "CASE-HARNESS-L10-021-S5-009",
+        "CASE-HARNESS-L10-021-S5-010",
+        "CASE-HARNESS-L10-021-S5-011",
+        "CASE-HARNESS-L10-021-S5-012",
+        "CASE-HARNESS-L10-021-S5-013",
+        "CASE-HARNESS-L10-021-S5-014",
+        "CASE-HARNESS-L10-021-S5-015",
+        "CASE-HARNESS-L10-021-S5-016"
+      ],
+      "case_lines": [
+        626,
+        627,
+        628,
+        629,
+        630,
+        631,
+        665,
+        666,
+        667,
+        668,
+        669,
+        670,
+        671,
+        672,
+        673,
+        674
+      ],
+      "case_count": 16,
+      "case_id_unique": true,
+      "special_nonfixture_ids": [
+        "CASE-HARNESS-L10-021-S5-011"
+      ],
+      "ac_case_reference_check": "all AC IDs have at least one referenced Stage5 L10 CASE; no undeclared AC references (static exact-ID scan)"
+    },
+    {
+      "identity": "HARNESS-L2-025",
+      "registration": {
+        "registration_id": "MPR-RC-HARNESS-L2-025-002",
+        "disposition": "adopted",
+        "version_class": "1.0",
+        "sequence_stage": "Stage 5",
+        "sequence_population": "original 250 carry-forward",
+        "candidate_semantic_digest": "sha256:452339e55022f3b8a15c509eb6f05a36c2c01fc10bcac616a1c757b4187df979",
+        "stage_basis": "9/27 assignment JSON exact identity mapping",
+        "stage_prerequisite_ids": [],
+        "stage_dependency_ids_not_adopted": [],
+        "sequence_stage_rationale": "9/27 assignment JSON exact identity mapping"
+      },
+      "fixed_l2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "line_start": 544,
+        "line_end": 554,
+        "full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+        "raw_lf_span_sha256": "452339e55022f3b8a15c509eb6f05a36c2c01fc10bcac616a1c757b4187df979"
+      },
+      "fixed_l11": [
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line_start": 342,
+          "line_end": 342,
+          "full_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+          "raw_lf_span_sha256": "f3220fdf53a91ca694720a0ded3abeb5f13462290b9a476aa13afece3bf225e2"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line_start": 360,
+          "line_end": 360,
+          "full_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+          "raw_lf_span_sha256": "be3096f2e40c653d552e145f1517a32b202d8c5e71f8f9b03f0b43699db12d56"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line_start": 551,
+          "line_end": 551,
+          "full_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+          "raw_lf_span_sha256": "1cb13e2bc366dd31fe37985ddf07b207f7712990a103037071a51fcf82bef4e7"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line_start": 709,
+          "line_end": 709,
+          "full_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+          "raw_lf_span_sha256": "bf0e84a3a5bba5d9e0a358ae808b3894393a1829f115b94515d8c8c59fd082c4"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line_start": 750,
+          "line_end": 750,
+          "full_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+          "raw_lf_span_sha256": "7449dfa8c7bbc81d31d84d318abfdb187dd01fa3cc474ea891c02eadd299d6d8"
+        }
+      ],
+      "adoption_decision": {
+        "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "line_start": 54,
+        "line_end": 54,
+        "full_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+        "raw_lf_span_sha256": "e9997c4d5ed1ac3734c994cf6ec8b8b4b677c22b9727f7141f7e771a2eb43375"
+      },
+      "old_source_pins": [],
+      "old_source_search_limit": {
+        "scope": "全archive/legacy-generation-2026-09-14/root/docs text via exact case-insensitive git grep",
+        "terms": [
+          "HARNESS-L2-025",
+          "端から端設計",
+          "対oracle",
+          "HELIXBRAIN-L2-030"
+        ],
+        "result": "0 literal hits; no direct legacy L3/requirement/consumer crosswalk located; candidate is current L1/PO-derived according to receipt; unsearched: synonym/semantic full archive review.",
+        "exact_identity_register_search": "no direct old asset keyed to current parent identity",
+        "query_scope": "exact identity search in legacy-asset-disposition.jsonl on origin/main; archive legacy source files are not included by this register query",
+        "finding_ja": "指定語句の完全一致は0件。旧L3/要求/paired consumerの直接crosswalkは特定できていない。別名・意味上の全archive検索は未実施。"
+      },
+      "ac_ids": [
+        "AC-HARNESS-L3-025-01",
+        "AC-HARNESS-L3-025-02",
+        "AC-HARNESS-L3-025-03",
+        "AC-HARNESS-L3-025-04",
+        "AC-HARNESS-L3-025-05",
+        "AC-HARNESS-L3-025-06",
+        "AC-HARNESS-L3-025-07",
+        "AC-HARNESS-L3-025-08",
+        "AC-HARNESS-L3-025-09",
+        "AC-HARNESS-L3-025-10",
+        "AC-HARNESS-L3-025-11"
+      ],
+      "ac_lines": [
+        496,
+        497,
+        498,
+        499,
+        500,
+        501,
+        502,
+        503,
+        504,
+        505,
+        506
+      ],
+      "case_ids": [
+        "CASE-HARNESS-L10-025-S5-001",
+        "CASE-HARNESS-L10-025-S5-002",
+        "CASE-HARNESS-L10-025-S5-003",
+        "CASE-HARNESS-L10-025-S5-004",
+        "CASE-HARNESS-L10-025-S5-005",
+        "CASE-HARNESS-L10-025-S5-006",
+        "CASE-HARNESS-L10-025-S5-007",
+        "CASE-HARNESS-L10-025-S5-008",
+        "CASE-HARNESS-L10-025-S5-009",
+        "CASE-HARNESS-L10-025-S5-010",
+        "CASE-HARNESS-L10-025-S5-011",
+        "CASE-HARNESS-L10-025-S5-012",
+        "CASE-HARNESS-L10-025-S5-013",
+        "CASE-HARNESS-L10-025-S5-014",
+        "CASE-HARNESS-L10-025-S5-015",
+        "CASE-HARNESS-L10-025-S5-016",
+        "CASE-HARNESS-L10-025-S5-017",
+        "CASE-HARNESS-L10-025-S5-018",
+        "CASE-HARNESS-L10-025-S5-019",
+        "CASE-HARNESS-L10-025-S5-020",
+        "CASE-HARNESS-L10-025-S5-021",
+        "CASE-HARNESS-L10-025-S5-022",
+        "CASE-HARNESS-L10-025-S5-023",
+        "CASE-HARNESS-L10-025-S5-024",
+        "CASE-HARNESS-L10-025-S5-025",
+        "CASE-HARNESS-L10-025-S5-026",
+        "CASE-HARNESS-L10-025-S5-027",
+        "CASE-HARNESS-L10-025-S5-028",
+        "CASE-HARNESS-L10-025-S5-029",
+        "CASE-HARNESS-L10-025-S5-030",
+        "CASE-HARNESS-L10-025-S5-031",
+        "CASE-HARNESS-L10-025-S5-032",
+        "CASE-HARNESS-L10-025-S5-033",
+        "CASE-HARNESS-L10-025-S5-034",
+        "CASE-HARNESS-L10-025-S5-035",
+        "CASE-HARNESS-L10-025-S5-036",
+        "CASE-HARNESS-L10-025-S5-037",
+        "CASE-HARNESS-L10-025-S5-038",
+        "CASE-HARNESS-L10-025-S5-039",
+        "CASE-HARNESS-L10-025-S5-040",
+        "CASE-HARNESS-L10-025-S5-041",
+        "CASE-HARNESS-L10-025-S5-062",
+        "CASE-HARNESS-L10-025-S5-063",
+        "CASE-HARNESS-L10-025-S5-065",
+        "CASE-HARNESS-L10-025-S5-066"
+      ],
+      "case_lines": [
+        632,
+        633,
+        634,
+        635,
+        636,
+        637,
+        675,
+        676,
+        677,
+        678,
+        679,
+        680,
+        681,
+        682,
+        683,
+        684,
+        685,
+        686,
+        687,
+        688,
+        689,
+        690,
+        691,
+        692,
+        693,
+        694,
+        695,
+        696,
+        697,
+        698,
+        772,
+        773,
+        774,
+        830,
+        831,
+        842,
+        843,
+        844,
+        845,
+        846,
+        847,
+        848,
+        849,
+        850,
+        851
+      ],
+      "case_count": 45,
+      "case_id_unique": true,
+      "special_nonfixture_ids": [],
+      "ac_case_reference_check": "all AC IDs have at least one referenced Stage5 L10 CASE; no undeclared AC references (static exact-ID scan)"
+    },
+    {
+      "identity": "HARNESS-L2-033",
+      "registration": {
+        "registration_id": "MPR-RC-HARNESS-L2-033-002",
+        "disposition": "adopted",
+        "version_class": "1.0",
+        "sequence_stage": "Stage 5",
+        "sequence_population": "original 250 carry-forward",
+        "candidate_semantic_digest": "sha256:67e08069cb58f6f62c54d452e2d04c1587f1106f210254b2fc82ae00a10e10dd",
+        "stage_basis": "9/27 assignment JSON exact identity mapping",
+        "stage_prerequisite_ids": [],
+        "stage_dependency_ids_not_adopted": [],
+        "sequence_stage_rationale": "9/27 assignment JSON exact identity mapping"
+      },
+      "fixed_l2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "line_start": 667,
+        "line_end": 686,
+        "full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+        "raw_lf_span_sha256": "ce1c11a600e0f2a33d46dbd0794ea994e05249b2800fbe5ca65629c1594ae518"
+      },
+      "fixed_l11": [
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line_start": 432,
+          "line_end": 432,
+          "full_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+          "raw_lf_span_sha256": "f8523cbf3a604bd8747bc8564396a19e73523597a19f8b664f4b946161375391"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line_start": 457,
+          "line_end": 457,
+          "full_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+          "raw_lf_span_sha256": "52e33a02451ba1617815ef0493525cb45b3ce749b0a842406285290e9c2bea9b"
+        }
+      ],
+      "adoption_decision": {
+        "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "line_start": 62,
+        "line_end": 62,
+        "full_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+        "raw_lf_span_sha256": "04ab519a191a915f3b6ee56d08f4c3eadae6e710a1cdb550a4e7421bedadd8d9"
+      },
+      "old_source_pins": [],
+      "old_source_search_limit": {
+        "scope": "全archive/legacy-generation-2026-09-14/root/docs text via exact case-insensitive git grep",
+        "terms": [
+          "failure-to-regression",
+          "reduction candidate",
+          "回帰candidate",
+          "incident-derived"
+        ],
+        "result": "0 literal hits; no direct old source found by these terms. New paired L3/L10 derivation remains ungrounded in a specific old source until meaning-level search.",
+        "exact_identity_register_search": "no direct old asset keyed to current parent identity",
+        "query_scope": "exact identity search in legacy-asset-disposition.jsonl on origin/main; archive legacy source files are not included by this register query",
+        "finding_ja": "failure-to-regression等の指定4語句は0件。個別旧source/paired consumerを特定できていない。検索語外の同義表現・意味的な全source照合は未実施。"
+      },
+      "ac_ids": [
+        "AC-HARNESS-L3-033-01",
+        "AC-HARNESS-L3-033-02",
+        "AC-HARNESS-L3-033-03",
+        "AC-HARNESS-L3-033-04",
+        "AC-HARNESS-L3-033-05",
+        "AC-HARNESS-L3-033-06",
+        "AC-HARNESS-L3-033-07",
+        "AC-HARNESS-L3-033-08",
+        "AC-HARNESS-L3-033-09"
+      ],
+      "ac_lines": [
+        516,
+        517,
+        518,
+        519,
+        520,
+        521,
+        522,
+        523,
+        524
+      ],
+      "case_ids": [
+        "CASE-HARNESS-L10-033-S5-001",
+        "CASE-HARNESS-L10-033-S5-002",
+        "CASE-HARNESS-L10-033-S5-003",
+        "CASE-HARNESS-L10-033-S5-004",
+        "CASE-HARNESS-L10-033-S5-005",
+        "CASE-HARNESS-L10-033-S5-006",
+        "CASE-HARNESS-L10-033-S5-007",
+        "CASE-HARNESS-L10-033-S5-008",
+        "CASE-HARNESS-L10-033-S5-009",
+        "CASE-HARNESS-L10-033-S5-010",
+        "CASE-HARNESS-L10-033-S5-011",
+        "CASE-HARNESS-L10-033-S5-012",
+        "CASE-HARNESS-L10-033-S5-013",
+        "CASE-HARNESS-L10-033-S5-014",
+        "CASE-HARNESS-L10-033-S5-015",
+        "CASE-HARNESS-L10-033-S5-016",
+        "CASE-HARNESS-L10-033-S5-017",
+        "CASE-HARNESS-L10-033-S5-018",
+        "CASE-HARNESS-L10-033-S5-019",
+        "CASE-HARNESS-L10-033-S5-020",
+        "CASE-HARNESS-L10-033-S5-021",
+        "CASE-HARNESS-L10-033-S5-022",
+        "CASE-HARNESS-L10-033-S5-023",
+        "CASE-HARNESS-L10-033-S5-024",
+        "CASE-HARNESS-L10-033-S5-025",
+        "CASE-HARNESS-L10-033-S5-026",
+        "CASE-HARNESS-L10-033-S5-027",
+        "CASE-HARNESS-L10-033-S5-028",
+        "CASE-HARNESS-L10-033-S5-029",
+        "CASE-HARNESS-L10-033-S5-030",
+        "CASE-HARNESS-L10-033-S5-031",
+        "CASE-HARNESS-L10-033-S5-032",
+        "CASE-HARNESS-L10-033-S5-033",
+        "CASE-HARNESS-L10-033-S5-034",
+        "CASE-HARNESS-L10-033-S5-035",
+        "CASE-HARNESS-L10-033-S5-036",
+        "CASE-HARNESS-L10-033-S5-037",
+        "CASE-HARNESS-L10-033-S5-038",
+        "CASE-HARNESS-L10-033-S5-039",
+        "CASE-HARNESS-L10-033-S5-040",
+        "CASE-HARNESS-L10-033-S5-041",
+        "CASE-HARNESS-L10-033-S5-042",
+        "CASE-HARNESS-L10-033-S5-043",
+        "CASE-HARNESS-L10-033-S5-044",
+        "CASE-HARNESS-L10-033-S5-045",
+        "CASE-HARNESS-L10-033-S5-046",
+        "CASE-HARNESS-L10-033-S5-047"
+      ],
+      "case_lines": [
+        638,
+        639,
+        640,
+        641,
+        642,
+        643,
+        644,
+        699,
+        700,
+        701,
+        702,
+        703,
+        704,
+        705,
+        706,
+        707,
+        708,
+        709,
+        710,
+        711,
+        712,
+        713,
+        714,
+        715,
+        716,
+        775,
+        776,
+        777,
+        778,
+        779,
+        780,
+        781,
+        782,
+        783,
+        784,
+        785,
+        832,
+        852,
+        853,
+        854,
+        855,
+        856,
+        857,
+        858,
+        859,
+        860,
+        861
+      ],
+      "case_count": 47,
+      "case_id_unique": true,
+      "special_nonfixture_ids": [],
+      "ac_case_reference_check": "all AC IDs have at least one referenced Stage5 L10 CASE; no undeclared AC references (static exact-ID scan)"
+    },
+    {
+      "identity": "HARNESS-L2-035",
+      "registration": {
+        "registration_id": "MPR-RC-HARNESS-L2-035-002",
+        "disposition": "adopted",
+        "version_class": "1.0",
+        "sequence_stage": "Stage 5",
+        "sequence_population": "new124 addition",
+        "candidate_semantic_digest": "sha256:4e37d81ee53b22319a316aa7090b30ccb94688d23ed6547551e914b2903a29c2",
+        "stage_basis": "source-linked dependency / capability role with 9/27 stage model; no additional global completion gate",
+        "stage_prerequisite_ids": [],
+        "stage_dependency_ids_not_adopted": [],
+        "sequence_stage_rationale": "L2項目「HARNESS-L2-035 要求候補の導出根拠と受入への寄与の照合（CORE単体追補候補、1.0）」の役割に照らし、複合体、統合・評価・閉ループの証拠を結ぶ。L2節の直接依存/適用条件は L2節に明示された採択済みL2 prerequisite IDなし。producer/consumerまたは個別operation契約が不明ならその選択scopeだけを保留し、他候補の全体gateにしない。"
+      },
+      "fixed_l2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "line_start": 719,
+        "line_end": 729,
+        "full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+        "raw_lf_span_sha256": "1ceb111c98b785009febbade687cfdde04acbb354a2484e86b931405b0b0ec1e"
+      },
+      "fixed_l11": [
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line_start": 485,
+          "line_end": 485,
+          "full_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+          "raw_lf_span_sha256": "27e2a3a383553ea13a36f022fb70dda0ebbb0f8edf1b246971c4edfa5b47b886"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line_start": 678,
+          "line_end": 678,
+          "full_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+          "raw_lf_span_sha256": "d917d73183ab9acf170bc3b2a6f707f447d3d60a67c5b9b5247d35f134fa0fbc"
+        }
+      ],
+      "adoption_decision": {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "line_start": 40,
+        "line_end": 40,
+        "full_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "raw_lf_span_sha256": "45f3fe7e0e489e1c29d9347ce821061bd7620a3b242c7ddf3c91f7a9b701e402"
+      },
+      "old_source_pins": [
+        {
+          "role": "旧L3 definition",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+          "line_start": 39,
+          "line_end": 39,
+          "full_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+          "raw_lf_span_sha256": "937b2eacf7bcbd43aee17f301204050acbbfbd56768d8b8c8bd83a273722da64",
+          "atom_id": null,
+          "disposition": null
+        },
+        {
+          "role": "旧要求source",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line_start": 128,
+          "line_end": 128,
+          "full_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "raw_lf_span_sha256": "90f2931c10b9a821c7bb4dfbca14e91ccf0b1812098db113d50ee289dc8efa03",
+          "atom_id": null,
+          "disposition": null
+        },
+        {
+          "role": "旧NFR source",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line_start": 187,
+          "line_end": 187,
+          "full_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "raw_lf_span_sha256": "c8e2b4a177c3228e343e3c499a471fe75992778c29e2df63a3c4e0053860afbd",
+          "atom_id": null,
+          "disposition": null
+        },
+        {
+          "role": "旧NFR source",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line_start": 203,
+          "line_end": 203,
+          "full_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "raw_lf_span_sha256": "59bb3695045ffdbf8ef55b145ce542cfaec9570d40b916512af4857005661a91",
+          "atom_id": null,
+          "disposition": null
+        },
+        {
+          "role": "paired consumer / L9 system test",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L9-infinity-loop-platform-system-test-design.md",
+          "line_start": 48,
+          "line_end": 48,
+          "full_sha256": "e518b0cfe15ca4b999bd85120b8d74941a18ab0939ff6cda3dc20a8b7611b705",
+          "raw_lf_span_sha256": "b40434529b50478c487fb56188086a535fe73b3ac2bd0549f2fb8593d6aeace8",
+          "atom_id": null,
+          "disposition": null
+        },
+        {
+          "role": "paired consumer / HAT acceptance",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+          "line_start": 37,
+          "line_end": 37,
+          "full_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+          "raw_lf_span_sha256": "c752ed0797d3f10712e4b483ef46fa42698a3f1f4feacf69ce14212d5c638b82",
+          "atom_id": null,
+          "disposition": null
+        }
+      ],
+      "old_source_search_limit": {
+        "scope": "Registration receipt source atoms and fixed L2 cited source lines; exact targeted archive search for linked identifiers",
+        "terms": [
+          "receipt source atom identifiers / old L2-linked identifiers"
+        ],
+        "result": "direct legacy lineage pinned through atom/path and crosswalk evidence; full semantic comparison still limited to pinned spans.",
+        "exact_identity_register_search": "no direct old asset keyed to current parent identity",
+        "query_scope": "exact identity search in legacy-asset-disposition.jsonl on origin/main; archive legacy source files are not included by this register query",
+        "finding_ja": "receiptがHIL-FR-38/HIL-NFR-23/HIL-NFR-07の3選定atomを示す。L3全体/IR全体の意味被覆ではない。"
+      },
+      "ac_ids": [
+        "AC-HARNESS-L3-035-01",
+        "AC-HARNESS-L3-035-02",
+        "AC-HARNESS-L3-035-03",
+        "AC-HARNESS-L3-035-04",
+        "AC-HARNESS-L3-035-05",
+        "AC-HARNESS-L3-035-06",
+        "AC-HARNESS-L3-035-07",
+        "AC-HARNESS-L3-035-08",
+        "AC-HARNESS-L3-035-09",
+        "AC-HARNESS-L3-035-10",
+        "AC-HARNESS-L3-035-11"
+      ],
+      "ac_lines": [
+        534,
+        535,
+        536,
+        537,
+        538,
+        539,
+        540,
+        541,
+        542,
+        543,
+        544
+      ],
+      "case_ids": [
+        "CASE-HARNESS-L10-035-S5-001",
+        "CASE-HARNESS-L10-035-S5-002",
+        "CASE-HARNESS-L10-035-S5-003",
+        "CASE-HARNESS-L10-035-S5-004",
+        "CASE-HARNESS-L10-035-S5-005",
+        "CASE-HARNESS-L10-035-S5-006",
+        "CASE-HARNESS-L10-035-S5-007",
+        "CASE-HARNESS-L10-035-S5-008",
+        "CASE-HARNESS-L10-035-S5-009",
+        "CASE-HARNESS-L10-035-S5-010",
+        "CASE-HARNESS-L10-035-S5-011",
+        "CASE-HARNESS-L10-035-S5-012",
+        "CASE-HARNESS-L10-035-S5-013",
+        "CASE-HARNESS-L10-035-S5-014",
+        "CASE-HARNESS-L10-035-S5-015",
+        "CASE-HARNESS-L10-035-S5-016",
+        "CASE-HARNESS-L10-035-S5-017",
+        "CASE-HARNESS-L10-035-S5-018",
+        "CASE-HARNESS-L10-035-S5-019",
+        "CASE-HARNESS-L10-035-S5-020",
+        "CASE-HARNESS-L10-035-S5-021",
+        "CASE-HARNESS-L10-035-S5-022",
+        "CASE-HARNESS-L10-035-S5-023",
+        "CASE-HARNESS-L10-035-S5-024",
+        "CASE-HARNESS-L10-035-S5-025",
+        "CASE-HARNESS-L10-035-S5-026",
+        "CASE-HARNESS-L10-035-S5-027",
+        "CASE-HARNESS-L10-035-S5-028",
+        "CASE-HARNESS-L10-035-S5-029",
+        "CASE-HARNESS-L10-035-S5-030",
+        "CASE-HARNESS-L10-035-S5-031",
+        "CASE-HARNESS-L10-035-S5-032",
+        "CASE-HARNESS-L10-035-S5-033",
+        "CASE-HARNESS-L10-035-S5-034",
+        "CASE-HARNESS-L10-035-S5-035",
+        "CASE-HARNESS-L10-035-S5-036",
+        "CASE-HARNESS-L10-035-S5-037",
+        "CASE-HARNESS-L10-035-S5-038",
+        "CASE-HARNESS-L10-035-S5-039",
+        "CASE-HARNESS-L10-035-S5-040",
+        "CASE-HARNESS-L10-035-S5-041",
+        "CASE-HARNESS-L10-035-S5-042",
+        "CASE-HARNESS-L10-035-S5-043",
+        "CASE-HARNESS-L10-035-S5-044",
+        "CASE-HARNESS-L10-035-S5-045",
+        "CASE-HARNESS-L10-035-S5-046"
+      ],
+      "case_lines": [
+        645,
+        646,
+        647,
+        648,
+        649,
+        650,
+        717,
+        718,
+        719,
+        720,
+        721,
+        722,
+        723,
+        724,
+        725,
+        726,
+        727,
+        728,
+        729,
+        730,
+        731,
+        732,
+        733,
+        734,
+        735,
+        736,
+        786,
+        787,
+        788,
+        789,
+        790,
+        791,
+        814,
+        815,
+        816,
+        817,
+        818,
+        819,
+        820,
+        821,
+        822,
+        833,
+        862,
+        863,
+        864,
+        865
+      ],
+      "case_count": 46,
+      "case_id_unique": true,
+      "special_nonfixture_ids": [
+        "CASE-HARNESS-L10-035-S5-033"
+      ],
+      "ac_case_reference_check": "all AC IDs have at least one referenced Stage5 L10 CASE; no undeclared AC references (static exact-ID scan)"
+    },
+    {
+      "identity": "HARNESS-L2-037",
+      "registration": {
+        "registration_id": "MPR-RC-HARNESS-L2-037-002",
+        "disposition": "adopted",
+        "version_class": "1.0",
+        "sequence_stage": "Stage 5",
+        "sequence_population": "new124 addition",
+        "candidate_semantic_digest": "sha256:3dcead1bfe0ef30da76a4f781b3e3c0b4817672269e7055a18cb4b35781b95f2",
+        "stage_basis": "source-linked dependency / capability role with 9/27 stage model; no additional global completion gate",
+        "stage_prerequisite_ids": [],
+        "stage_dependency_ids_not_adopted": [],
+        "sequence_stage_rationale": "L2項目「HARNESS-L2-037 HELIX W二段設計を合流する（composite candidate）」の役割に照らし、複合体、統合・評価・閉ループの証拠を結ぶ。L2節の直接依存/適用条件は L2節に明示された採択済みL2 prerequisite IDなし。producer/consumerまたは個別operation契約が不明ならその選択scopeだけを保留し、他候補の全体gateにしない。"
+      },
+      "fixed_l2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "line_start": 777,
+        "line_end": 833,
+        "full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+        "raw_lf_span_sha256": "100f1f50b8e6ed72adf89cc2130110aa0f3b5463975f9074452464d31c260270"
+      },
+      "fixed_l11": [
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line_start": 527,
+          "line_end": 527,
+          "full_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+          "raw_lf_span_sha256": "e5590351dace46a40fadfa1afc5fe775c33d5becc9bd356d5be3350affd2c0f7"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line_start": 529,
+          "line_end": 529,
+          "full_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+          "raw_lf_span_sha256": "c6acb4a74a3759e44f1dfde54cb9b91c9391d4077f1ecf07d144e2f4138d81cc"
+        }
+      ],
+      "adoption_decision": {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "line_start": 42,
+        "line_end": 42,
+        "full_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "raw_lf_span_sha256": "1f093963a6a30ccf3363a3eefa744ee2dc7740d2a814148b6fc81afd451e2040"
+      },
+      "old_source_pins": [
+        {
+          "role": "旧L3 definition",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+          "line_start": 742,
+          "line_end": 742,
+          "full_sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a",
+          "raw_lf_span_sha256": "01afca1e9acf49c84850ad087a5661c5ce51e31521619a63b1d961e99a6f5f40",
+          "atom_id": null,
+          "disposition": null
+        },
+        {
+          "role": "旧L3 definition",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+          "line_start": 761,
+          "line_end": 761,
+          "full_sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a",
+          "raw_lf_span_sha256": "82d0734f64d5dbdc22af9b05b8bebc8f4a515fcb67387241601de727d80a11ca",
+          "atom_id": null,
+          "disposition": null
+        },
+        {
+          "role": "旧要求 / L1",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+          "line_start": 59,
+          "line_end": 59,
+          "full_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+          "raw_lf_span_sha256": "8186024e25dbf09ba7b7288b8df88a69ffaa4a960a4bd15e059f44fe170879db",
+          "atom_id": null,
+          "disposition": null
+        },
+        {
+          "role": "paired consumer / L6 coverage",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/fr-unit-coverage.md",
+          "line_start": 64,
+          "line_end": 64,
+          "full_sha256": "477c95b229b4ddffd4c2ed76fdfb99d8f3a4e8241b21ae7e883ffa2607d39dbf",
+          "raw_lf_span_sha256": "54d0eb07cd769ca336cd8f332fcd5b04cb57901e50e443adcf82ee7d14e68588",
+          "atom_id": null,
+          "disposition": null
+        },
+        {
+          "role": "paired consumer / L6 detail",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/function-spec.md",
+          "line_start": 250,
+          "line_end": 250,
+          "full_sha256": "f80b69a4d153d7775ecd789aa9e261c140baf2a443ac53a851de710cfce02b14",
+          "raw_lf_span_sha256": "234b96ee8aa737a0b8d79f56087ea8f928eeb574a96bef340a740dc3569986d4",
+          "atom_id": null,
+          "disposition": null
+        },
+        {
+          "role": "paired consumer / screen acceptance",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md",
+          "line_start": 464,
+          "line_end": 464,
+          "full_sha256": "e5b6964567242a2440ded28ed99c1783f37a9326624c02283c7a975c3020063b",
+          "raw_lf_span_sha256": "f1250ab44c078412cf875eefbb7f0a9104e7dd5326406d5eaa591d5834b55939",
+          "atom_id": null,
+          "disposition": null
+        }
+      ],
+      "old_source_search_limit": {
+        "scope": "Registration receipt source atoms and fixed L2 cited source lines; exact targeted archive search for linked identifiers",
+        "terms": [
+          "receipt source atom identifiers / old L2-linked identifiers"
+        ],
+        "result": "direct legacy lineage pinned through atom/path and crosswalk evidence; full semantic comparison still limited to pinned spans.",
+        "exact_identity_register_search": "no direct old asset keyed to current parent identity",
+        "query_scope": "exact identity search in legacy-asset-disposition.jsonl on origin/main; archive legacy source files are not included by this register query",
+        "finding_ja": "receiptがFR-L1-28、I-4、旧Conceptと選定されたconsumer補助spanを示す。選択atom範囲のhash照合であり旧source全文closureではない。"
+      },
+      "ac_ids": [
+        "AC-HARNESS-L3-037-01",
+        "AC-HARNESS-L3-037-02",
+        "AC-HARNESS-L3-037-03",
+        "AC-HARNESS-L3-037-04",
+        "AC-HARNESS-L3-037-05",
+        "AC-HARNESS-L3-037-06"
+      ],
+      "ac_lines": [
+        558,
+        559,
+        560,
+        561,
+        562,
+        563
+      ],
+      "case_ids": [
+        "CASE-HARNESS-L10-037-S5-001",
+        "CASE-HARNESS-L10-037-S5-002",
+        "CASE-HARNESS-L10-037-S5-003",
+        "CASE-HARNESS-L10-037-S5-004",
+        "CASE-HARNESS-L10-037-S5-005",
+        "CASE-HARNESS-L10-037-S5-006",
+        "CASE-HARNESS-L10-037-S5-007",
+        "CASE-HARNESS-L10-037-S5-008",
+        "CASE-HARNESS-L10-037-S5-009",
+        "CASE-HARNESS-L10-037-S5-010",
+        "CASE-HARNESS-L10-037-S5-011",
+        "CASE-HARNESS-L10-037-S5-012",
+        "CASE-HARNESS-L10-037-S5-013",
+        "CASE-HARNESS-L10-037-S5-014",
+        "CASE-HARNESS-L10-037-S5-015",
+        "CASE-HARNESS-L10-037-S5-016",
+        "CASE-HARNESS-L10-037-S5-017",
+        "CASE-HARNESS-L10-037-S5-018",
+        "CASE-HARNESS-L10-037-S5-019",
+        "CASE-HARNESS-L10-037-S5-020",
+        "CASE-HARNESS-L10-037-S5-021",
+        "CASE-HARNESS-L10-037-S5-022",
+        "CASE-HARNESS-L10-037-S5-023",
+        "CASE-HARNESS-L10-037-S5-024",
+        "CASE-HARNESS-L10-037-S5-025",
+        "CASE-HARNESS-L10-037-S5-026",
+        "CASE-HARNESS-L10-037-S5-027",
+        "CASE-HARNESS-L10-037-S5-028",
+        "CASE-HARNESS-L10-037-S5-029",
+        "CASE-HARNESS-L10-037-S5-030",
+        "CASE-HARNESS-L10-037-S5-031",
+        "CASE-HARNESS-L10-037-S5-032",
+        "CASE-HARNESS-L10-037-S5-033",
+        "CASE-HARNESS-L10-037-S5-034",
+        "CASE-HARNESS-L10-037-S5-035",
+        "CASE-HARNESS-L10-037-S5-036",
+        "CASE-HARNESS-L10-037-S5-037",
+        "CASE-HARNESS-L10-037-S5-038",
+        "CASE-HARNESS-L10-037-S5-039",
+        "CASE-HARNESS-L10-037-S5-040",
+        "CASE-HARNESS-L10-037-S5-041",
+        "CASE-HARNESS-L10-037-S5-042",
+        "CASE-HARNESS-L10-037-S5-043",
+        "CASE-HARNESS-L10-037-S5-044",
+        "CASE-HARNESS-L10-037-S5-045",
+        "CASE-HARNESS-L10-037-S5-046",
+        "CASE-HARNESS-L10-037-S5-047",
+        "CASE-HARNESS-L10-037-S5-048",
+        "CASE-HARNESS-L10-037-S5-049",
+        "CASE-HARNESS-L10-037-S5-050",
+        "CASE-HARNESS-L10-037-S5-051",
+        "CASE-HARNESS-L10-037-S5-052",
+        "CASE-HARNESS-L10-037-S5-053",
+        "CASE-HARNESS-L10-037-S5-054",
+        "CASE-HARNESS-L10-037-S5-055",
+        "CASE-HARNESS-L10-037-S5-056",
+        "CASE-HARNESS-L10-037-S5-057",
+        "CASE-HARNESS-L10-037-S5-058",
+        "CASE-HARNESS-L10-037-S5-059",
+        "CASE-HARNESS-L10-037-S5-060",
+        "CASE-HARNESS-L10-037-S5-061",
+        "CASE-HARNESS-L10-037-S5-062",
+        "CASE-HARNESS-L10-037-S5-063",
+        "CASE-HARNESS-L10-037-S5-064"
+      ],
+      "case_lines": [
+        651,
+        652,
+        653,
+        654,
+        655,
+        656,
+        657,
+        737,
+        738,
+        739,
+        740,
+        741,
+        742,
+        743,
+        744,
+        745,
+        746,
+        747,
+        748,
+        749,
+        750,
+        751,
+        752,
+        753,
+        754,
+        755,
+        756,
+        757,
+        758,
+        759,
+        760,
+        761,
+        762,
+        763,
+        764,
+        765,
+        766,
+        767,
+        768,
+        769,
+        770,
+        771,
+        792,
+        793,
+        794,
+        795,
+        796,
+        797,
+        798,
+        799,
+        800,
+        801,
+        802,
+        803,
+        804,
+        805,
+        806,
+        834,
+        866,
+        867,
+        868,
+        869,
+        870,
+        871
+      ],
+      "case_count": 64,
+      "case_id_unique": true,
+      "special_nonfixture_ids": [
+        "CASE-HARNESS-L10-037-S5-057"
+      ],
+      "ac_case_reference_check": "all AC IDs have at least one referenced Stage5 L10 CASE; no undeclared AC references (static exact-ID scan)"
+    }
+  ],
+  "six_document_current_full_sha256": {
+    "BR": {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "sha256": "9fb531a55c61c4836ae614cadbd850f3967119cb1f0f2eb36dad1e39ebab75e2",
+      "bytes": 27827
+    },
+    "FR": {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "sha256": "cb58f9ff835c71d198be990a4ddbc378a10ec381c83fd3093d78eb703bf4f6a7",
+      "bytes": 271404
+    },
+    "GRADE": {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "sha256": "ee84bc87ff324eea929d266934c0debb856018aca25c0044f68b11c141c3263d",
+      "bytes": 60172
+    },
+    "BV": {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "sha256": "864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad",
+      "bytes": 26039
+    },
+    "FV": {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "sha256": "8f6b66dd73a715165099456095108aa459749e29079de655298474b150782741",
+      "bytes": 1165699
+    },
+    "NV": {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "sha256": "17ee1dc8ab6786416680e496ba8fb83a714756dd8f853830afe036ddcc9b36e9",
+      "bytes": 54341
+    }
+  },
+  "authority_revision_context": {
+    "record": "docs/governance/decisions/helix-harness-stage5-l3-l10-po-decision-2026-10-06.md",
+    "reviewed_content_revision": "ed1161e03f8ea9209e573f274f37c9b97605087a",
+    "current_target_full_bytes_match_recorded_revision": false,
+    "interpretation": "本タスクは意味照合。c9e73の六本文SHAは当該recordのed1161 SHAと異なる。現在の承認効力/後続revisionのauthority評価は別途必要であり、この監査は承認へ推定しない。"
+  },
+  "semantic_checks": {
+    "business_layer": "BR/BVは5親すべて独立business requirement/oracle/CASEなしとし、機能trace件数等からKPI・事業価値・承認を作らない。固定親の範囲と整合。",
+    "functional_coverage": "各親のFR AC IDはすべて該当Stage5 FV CASEから参照され、余剰・未定義AC参照は静的走査で検出されなかった。CASE normal/negative、source-revision-scope、owner return、authority non-generationを確認。",
+    "nfr": "021/025/033/035/037のNFR値は技術候補と明記。固定親の完全性/状態分離を根拠とし、旧閾値・性能SLO・実測値を持ち込まない。planned集合、alias、unknown/unselectedの分類を確認。035 tombstone範囲だけはfinding参照。",
+    "stage_scope": "021構成体composite、025設計composite、033 failure-to-regression、035根拠/寄与/最小性、037 L2-009条件付き二段設計の5 scopeは相互に区別。037適用性unknown/falseと後続Stageのauthority/receiptを混同しない。",
+    "parent_adoption": "021/025/033は2026-09-28採択行・original250 carry-forward、035/037は2026-09-29 PO #57採択行・new124 additionとして各source auditへ記録され、いずれもStage5/version_target 1.0。037の固定L2内「未採択」は決定前の本文表現として区別されている。"
+  },
+  "old_source_and_consumer_reading": [
+    {
+      "parent": "021",
+      "sources": "FRS-BR-009 (2 receipt atoms), FRS-R-23/24, paired FRS-AC-025/026, mapping",
+      "result": "安全依存closureとcomposite統合/update/rollback/L12還流を再導出。receiptは2 atomsだけで旧全要求closureを主張しない。"
+    },
+    {
+      "parent": "025",
+      "sources": "multimodal-design-harness-authority.md:35–54 and multimodal-design-harness-authority-acceptance.md:21–40 as comparison only",
+      "result": "Design IR authority/evidence promotionは近接比較で、現行025の直接旧L3/consumer crosswalkではない。指定4語句のarchive一致検索0件。別名・意味のarchive全体調査は未完。"
+    },
+    {
+      "parent": "033",
+      "sources": "old harness functional-requirements.md FR-25/AC-FR-25-01..06 and L3-acceptance-test-design.md AT-FR-25-01..06 as comparison only",
+      "result": "旧FR-25はRefactor behavior-invariance/regression test guard。現行033は当該consumerと直接同一視せず、incident-minimization lineageは未特定としている。specified four phrase search 0 hits; synonym/meaning full archive review remains unverified."
+    },
+    {
+      "parent": "035",
+      "sources": "legacy L3 HR-FR-HIL-05; HIL-FR-38; HIL-NFR-07/23; paired HST-HIL-021/HAT-HIL-05 selected spans",
+      "result": "source root, acceptance contribution, necessity/alternative/budget, three measurement dimensions, acyclic authoritative-root graphから再導出。receipt is three selected atoms, not whole old IR closure."
+    },
+    {
+      "parent": "037",
+      "sources": "old FR-L1-28, Concept A-74, paired L6 coverage/function-spec and screen acceptance spans",
+      "result": "Phase 1 general system→Phase 2 agent-specific scope, pair and handoff meaning retained/rederived; old drive=agent/provider/phase schema and layer numbering not carried. 15 selected atoms do not prove full old source closure."
+    }
+  ],
+  "finding_candidates": [
+    {
+      "finding_id": "H5-MEAS-035-01",
+      "severity": "限定的な意味整合の曖昧さ（計数母集団）",
+      "scope": "HARNESS-L2-035 / Stage 5 / NFR-C-HARNESS-035-01 と対応NFR検証CASE",
+      "evidence": [
+        {
+          "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+          "line": 134,
+          "text": "| `NFR-C-HARNESS-035-01` / `HARNESS-L2-035` | 選択候補の根拠/受入寄与/代替/budget-state trace保持率候補 **100%**、rootless candidateを根拠充足と扱う件数 **0**、実装/実行許可の誤生成 **0**（別計数）。 | 固定L2-035/L11:485,678およびL2:931–941の根拠経路・scope境界を測る。候補のID/存在のみを見る案Aと、上流revision・relation・authority状態・scope拡張時の複雑さ/公開面/運用負債の変更前後を追う案Bを比較し、Bを候補とする。三観点それぞれの対象/方法/条件が未測定ならunknownを残す。 | planned denominatorは選択候補の必須field/edge。unknown budgetはunknownのまま分母に残し、数値予算/複雑度閾値を作らない。通常Feedback履歴は導出循環のfailure countにしない。 |"
+        },
+        {
+          "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+          "line": 146,
+          "text": "| `HARNESS-L2-035` | `CASE-HARNESS-L10-035-S5-001–006` + `CASE-HARNESS-L10-035-S5-007–046` | root source、authority/revision、non-goal/scope、acceptance contribution、necessity/alternative、budgetをfield単独planned化しunknown/stale/mismatchを分母に保持。実装許可と実行許可は別field・別negativeとして扱う。 |"
+        },
+        {
+          "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+          "line": 153,
+          "text": "035-S5-033は撤去した旧変異のID保全用時点注記であり、同一変異aliasではない。個別fixture分母から除外し、運用負債欠測の個別変異は035-S5-041だけで評価する。"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+          "line": 107,
+          "text": "| `CASE-HARNESS-L10-NFR-035-S5-01` | `NFR-C-HARNESS-035-01` | 選択candidateごとにroot source、relation、acceptance contribution、alternative、budget-stateをplanned fieldとして固定し、scope拡張時は複雑さ・外部公開面・運用負債の変更前後測定も各々別fieldとして列挙する。`CASE-HARNESS-L10-035-S5-001`〜`006`および`CASE-HARNESS-L10-035-S5-007`〜`046`を個別集計する。 | root/authority relation保持率とrootless false acceptanceを分ける。実装許可と実行許可の非生成は別field/fixtureにする。budget unknownおよび三観点いずれかの測定欠落はplanned内のunknown/missingとして保持し、0や別観点による相殺へ変換しない。閾値は追加しない。 |"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+          "line": 119,
+          "text": "| `HARNESS-L2-035` | `CASE-HARNESS-L10-035-S5-001–006` + `CASE-HARNESS-L10-035-S5-007–046` | root source、authority/revision、non-goal/scope、acceptance contribution、necessity/alternative、budgetをfield単独planned化しunknown/stale/mismatchを分母に保持。実装許可と実行許可は別negative。 |"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+          "line": 126,
+          "text": "035-S5-033は撤去した旧変異のID保全用時点注記であり、同一変異aliasではない。個別fixture分母から除外し、運用負債欠測の個別変異は035-S5-041だけで評価する。"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/functional-verification.md",
+          "line": 814,
+          "text": "| `CASE-HARNESS-L10-035-S5-033` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-06` | 旧ID保全の時点注記（tombstone）。Worker時点の相互循環行は撤去済みで、本IDを運用負債欠測の個別変異へ再利用しない。運用負債欠測は`CASE-HARNESS-L10-035-S5-041`。 | 原監査の時点記録を保ち、本時点注記を独立fixtureにも同一変異aliasにも数えない。 |"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/functional-verification.md",
+          "line": 822,
+          "text": "| `CASE-HARNESS-L10-035-S5-041` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-06` | scope拡張の同一対象・revision・方法・条件を保持し、運用負債の結果だけを欠落させる。複雑さ・公開面の結果は有利。 | 欠測を他観点で相殺せずscope判定を未完にし、要求形成ownerへ返す。 |"
+        }
+      ],
+      "basis": "固定L2-035:931–941、L11-035:678–686で三観点を個別に計測する。Stage 5 CASE-HARNESS-L10-035-S5-033は本文上tombstoneであり、NFR本文も独立fixture分母から除外すると明記する一方、NFR候補行とplanned CASE rangeは007–046を「個別集計」「planned field」として列挙し、S5-033を含む範囲のままである。実際の運用負債欠測はS5-041と指定済み。",
+      "impact": "planned denominatorを範囲表のまま機械的に作るconsumerは、非fixture tombstone S5-033を必須観測として数え、S5-041との計数を誤る可能性がある。明示的除外段落を優先すれば現行の意図は復元できるが、表だけでは母集団が一意でない。",
+      "minimal_resolution_candidate": "NFR-grade.md:134,146とnfr-verification.md:107,119のCASE範囲を「007–032、034–046」へ限定するか、範囲列挙にS5-033 tombstone除外注記を同じ行で明示する。S5-041の独立運用負債欠測CASEは保持し、数値閾値・固定親・gateは変えない。",
+      "status": "本文上の具体的な計数不整合候補。採択/修正判断は未実施。"
+    }
+  ],
+  "verified": [
+    "exact target revision inspected via git show",
+    "six current full-byte SHA-256 calculated",
+    "five fixed-parent/adoption/source-audit rows extracted",
+    "5 parents: AC-to-CASE static ID mapping found no missing AC reference",
+    "all source review is read-only; no old runtime/test/CLI/archive execution"
+  ],
+  "not_verified": [
+    "legacy archive semantic exhaustiveness for 025/033 and all unpinned material",
+    "runtime behavior, test execution, real measurement, implementation, L10 execution",
+    "current delegated approval validity for c9e73; current bytes differ from historical reviewed_content_revision",
+    "full semantic validation of every old consumer beyond pinned and explicitly read spans"
+  ],
+  "limitations": [
+    "CASE fixtures are design text only; no runtime result inferred.",
+    "Static ID closure does not establish fixture oracle correctness in execution.",
+    "This audit does not change requirements, approval, parent meaning, or create a new gate."
+  ],
+  "linked_fixed_context_spans": [
+    {
+      "label": "L2-025 dependency clarification",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "line_start": 538,
+      "line_end": 542,
+      "full_file_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+      "raw_lf_span_sha256": "4442d37ce28ca6bc51f0e1df0a0ac4813aa6502b58678ac9b7fc4a6d3b21c350",
+      "literal": "- **依存区分**：**常時必須**＝承認済みL3要件/対象revision、HARNESS-L2-009設計義務、Design Templateの対応契約版、COREおよびBRAIN connectorの契約版・互換範囲、HARNESS-L2-010/011 pack契約とHARNESS-L2-022の対検証設計契約（026の出力である対の生成自体は省略しない）。**特定操作時のみ**＝UI対象を扱う操作のprototype/非UI適用合意・screen contract、各設計対象に適用される個別oracle（適用対象で必要な欠落は保留）。**選択した入力元に応じて必須**＝具体Patternを利用する操作ではそのPattern identity/version/compatibility/applicability/required input/relation/反例をすべて照合する。特定Patternを選ばないscopeは未選択・未観測と記録し、全BRAIN知識が存在すると推測しない。**参照資料のみ**＝背景説明や旧設計例。required input、authority、oracle、security/permissionを参照扱いへ落とさない。\n- **正常・境界例**：「申請は承認後に編集できない」という承認済みL3要件から、申請state/承認遷移、編集API/command precondition、actor別permission、画面の編集可否と拒否結果、DB/data更新不変条件を一貫した候補設計としてtraceする。DB製品や実装方式は固定せず、どの設計でも不変条件を満たすoracleを定義する。\n- **失敗・戻し先**：画面だけ編集不可でAPIは更新可能、permissionが残る、state raceでDB更新が通る、traceが別revisionを指す場合は不整合。意味の不足はHARNESS-L2-008の要求形成、L3要件の変更はそのauthority owner、Patternの意味・版はBRAIN、設計contract/traceはHARNESSへ戻す。承認後訂正を許す意味変更を本candidateで決めない。\n\nBRAIN知識接続の正本は、[HELIXBRAIN-L2-030](../../helix-brain/L2-requirements/brain-requirements.md)とその対の受入に置く。本unitはCOREのBRAIN connector契約を常時必須とし、個別Pattern利用時にだけそのPatternの条件・版・required inputを照合する。\n"
+    },
+    {
+      "label": "L2-033 post-parent candidate/version boundary",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "line_start": 687,
+      "line_end": 689,
+      "full_file_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+      "raw_lf_span_sha256": "febd077028a9246cc5e3d889e20926c58798f1f79127072859772aced2d239f1",
+      "literal": "### 候補関係と1.0境界\n\n`HARNESS-L2-014`は対の設計、`HARNESS-L2-022`はoracle/義務/stage受入契約を所有し、`HARNESS-L2-030`/`031`はそれらを入力にする独立versioned capability pack/unit、`HARNESS-L2-032`は選択executorへの接続、`HARNESS-L2-033`は全段階を追う構成体を所有する。HARNESS-L2-010は各pack identity/version/依存境界、HARNESS-L2-011はcall/input/scope/compatibility/receiptを所有する。既存014/022の置換・意味変更ではない。PO第4項が求めるtest/data/double/repro/regression能力を含む一方、v0.1収載、必要case数、coverage率、mutation閾値、reduction上限、全欠陥不存在の保証は未採択。実行は選択したOS-020または利用者CI、oracle authorityはHARNESS-L2-022/上流requirementに残す。030/031/032のpackまたは依存契約を交換・更新した場合、HARNESS-L2-010/011のversion/compatibility照合後、影響を受ける未実行candidate・artifact・consumer packetを新revisionへ結び直し、選択したoperationのcase/oracle/reduction・consumer適合性を再検証する。HARNESS-L2-014の対設計またはHARNESS-L2-022のoracle/義務契約が更新された場合も、それに依存するcase/repro/regression candidateのtrace・期待値・適用scopeを新契約へ再照合し、不一致はstaleとして該当operationを再生成/再検証する。旧pack/result receiptを新版の合格へ流用しない。\n"
+    },
+    {
+      "label": "L2-035 scope measurement supplement",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "line_start": 931,
+      "line_end": 939,
+      "full_file_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+      "raw_lf_span_sha256": "f095be7d491d81ea7d406556b6fee7d426d8849be4413fc4f130ba00d1b6b808",
+      "literal": "## HARNESS-L2-035 scope拡張の計測条件（追補）\n\n既存035と一体の未採択候補。親HARNESS-L1-008、version_target: 1.0を保持する。\n\nscope拡張候補の受入寄与・最小性を照合するとき、追加機能数だけでなく、複雑さ（complexity）、外部へ公開する面（public surface）、運用上の負債について、変更前後の測定対象・方法・条件・結果を識別できるようにする。候補の形だけを数えて、API/CLI/schema/設定/依存や運用義務の増加を隠さない。HARNESS-L2-034の計測契約を使う場合はその対象・版・適用条件へ結び、測定前の値や適用予算が不明ならunknownとして残す。特定の数式、全製品共通の閾値、唯一の実装方式は原文にないため追加しない。\n\n候補の起草開始には測定完了を要求しない。scope拡張の必要性を満たしたと主張する段階では、上の三観点とauthoritative oracleへの寄与・代替案・minimum-necessary proofを一緒に示す。測定欠落は該当するscope判定を未完にし、低い追加機能数や別観点の好成績で相殺しない。不要な拡張は既存035へ戻し、新たに必要と判明した変更は既存Backflow/ticket境界へ戻す。実行authority、全作業の同期gate、通常作業の毎回の人確認は追加しない。\n\n旧根拠：HIL-NFR-07。原文と所在は[scope計測の原文照合](../../governance/audits/requirements-stage/scope-measures-legacy-differences-2026-09-28.md)。既存035の導出連鎖・循環拒否を置換しない。\n"
+    },
+    {
+      "label": "L11-035 scope measurement acceptance supplement",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "line_start": 678,
+      "line_end": 684,
+      "full_file_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+      "raw_lf_span_sha256": "5cd7416ba2260603c98458669c35ee5a16e9e2030b9ca7ef9416447676521ef7",
+      "literal": "## HARNESS-L2-035 scope計測追補の受入\n\n既存L11-035と併せる未実行・未採択候補。\n\n- **正常**：scope拡張候補に、複雑さ、公開面、運用負債の変更前後の対象・方法・条件・結果と、受入oracleへの寄与、代替案、最小必要性の根拠を与える。同じscope/revisionで照合でき、三観点のどの義務が増減したかを示す。測定の実行手段や数式が違っても、宣言した条件と証拠へ辿る。\n- **誤り**：追加機能数は少ないが公開API/設定面と保守義務を増やした候補に対して、追加数のみで最小必要とする。運用負債または複雑さの結果が欠けた例、旧revisionの計測を流用する例、別観点の好成績で欠測を相殺する例も、scope判定の根拠充足としない。原文にない共通閾値をAIが補って拒否・許可する例も不成立。\n- **未見・開始境界**：新しい変更種別で測定値がまだない入力でも、候補形成と不足項目の提示は行える。測定方法・条件が未定なら該当ownerへ返し、結果や必要性成立を捏造しない。後段の計測完了を起草開始の前提にせず、未完のscope判定から実行権限を生成しない。\n"
+    },
+    {
+      "label": "L11-037 full acceptance supplement",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "line_start": 527,
+      "line_end": 573,
+      "full_file_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+      "raw_lf_span_sha256": "c7b24b6526978f062f322a447b35adaf5c9b195d771761b234b2a55a34322d38",
+      "literal": "### HARNESS-L2-037 対L11受入追補候補\n\n**対応要求**：`HARNESS-L2-037`（HARNESS-CORE所属のcomposite候補、`version_target: 1.0`、未採択。新サービスではない）。親L1は`HARNESS-L1-001`, `HARNESS-L1-004`, `HARNESS-L1-009`。HARNESSは二段設計・照合条件と受入へ渡すtraceを定義し、HELIX-OSは選択された工程・実行・state記録を運転する。適用scopeは現行`HARNESS-L2-009`が要求kind・target・構成・risk・domainと版付きDesign Templateから導出する。旧`drive=agent`は2026-09-24 PO判断で廃止されたdrive分類の意味としてのみ参照する。\n\n**現行pairへの意味対応**\n\n旧FR-L1-28の出力欄はPhaseごとの「L9成果物」、合流「L10」、後続「L11〜L12統合flow」と書く。旧screen requirementはW二段状態をTrace viewに表示するscopeも示しているため、trace UIを含む選択scopeでは表示上のphase/合流状態を受け入れ、UIを含まないscopeでは対応artifactのtraceで同じ意味を確認する。これは旧層番号として保持し、現行layerへ直写ししない。各Phaseは要求・要件を含むVであり、L4/L9だけへ縮めない。`HARNESS-L2-001`の現行pairに照らし、Phaseごとの設計成果をL4、各対検証をL9、両Phaseの合意済みL2要求・承認済みL3要件と統合system検証をL3↔L10、利用者受入をL2↔L11、運用評価をL1↔L12へ対応させる。037はpairやstateを新設・上書きせず、`HARNESS-L2-022`が定める各段階のoracle・証拠・state契約へ渡す。\n\n**受入例**\n\n| 種別 | 入力と期待結果 | 不合格または保留となる反例 |\n|---|---|---|\n| 正常：適用判定と二段実行 | 現行HARNESS-L2-009が要求kind・target・構成・risk・domainおよび版付きDesign Templateから二段scopeを導出する。開始入力にはPhase 1の合意済みL2要求・承認済みL3要件とPhase 1設計入力を与え、まだ生成されていないL4/L9成果は要求しない。Phase 1 L4生成後に対応L9 receiptを得て、その結果をPhase 2固有のL2形成へ渡す。Phase 2のL2合意・L3承認を確認してからL4を生成し、その後に対応L9 receiptを得てから合流する。両Phaseの異なる要求/要件revisionと合流対象revisionのrelationが対応し、Phase 2がPhase 1 contractを維持するか差分を解消していれば統合設計成果をL3↔L10 oracleへ渡す。 | 037の開始時に両PhaseのL9実行receiptを要求する、Phase 2をPhase 1より先に開始する、revision違いの結果を結ぶ、またはPhase 2がPhase 1 invariantを黙って変更したのに合流済みにする。 |\n| 正常：後続pair | 統合設計とL3↔L10 resultを対象revision付きでL2↔L11 acceptance条件へつなぎ、利用者受入のoracle/result/recordを別途確認する。さらにL1↔L12 observationへ運用scope・結果のtraceを渡す。L10 passだけではL11 AcceptedにもL12 Observedにもならない。 | phase mergeのreceipt、設計文書、L10 passのいずれかだけからL11 acceptanceやL12運用評価の成功状態を作る。 |\n| 誤り：意味・境界の不一致 | Phase 2のagent固有設計が一般systemのapproved contract、permission/invariant、error boundaryまたは対応oracleと矛盾する例を与える。037は差分と影響scopeを明示し、未解消なら統合設計を返さない。意味変更はHARNESS-L2-008/該当上流へ、設計template/required input不足はHARNESS-L2-009へ、oracle不足はHARNESS-L2-022へ戻す。 | Phase 2を理由にPhase 1の一般system意味を上書きする、HARNESSが上流authorityを書き換える、またはOSの実行結果で設計意味差を閉じる。 |\n| 誤り：欠損・stale | Phase receipt/handoffがmissing、contract versionが互換範囲外、traceの対象revisionがstale、またはどちらかのPhaseのL9対検証証拠が欠ける例を与える。037はgap/差戻し先を返し、unknownをmerged/passとして扱わない。 | 文書・phase fieldの存在だけを合流証拠とする、古いPhase結果を現対象revisionに流用する、gap一覧なしに成功を返す。 |\n| 未見：既知範囲内 | fixtureにない新しいagent構成でも、037の明示された適用契約範囲内であり、一般system制約、Phase 2設計、current L4/L9 pair oracleが特定できるなら、同じ内容oracleでtraceと差分を判定する。既知条件内の適合結果をfixture未収載だけで拒否しない。 | fixture未収載だけを理由に適用scope内の有効な設計を一律拒否する、または旧実装と同じ構造でないことだけで失敗にする。 |\n| 正常：選択scopeのtrace表示 | 旧screen requirement由来のtrace UIを含む選択scopeでは、UIがPhase 1/2の状態、対象revision、合流状態、未解消gapを追える。UIを含まないscopeでは設計/検証artifactの同じtraceを確認する。いずれも専用の旧Trace画面実装を要求しない。 | UI scopeが選択されているのに片方のphase状態やgapが画面で追えない。または非UI scopeに専用画面を追加しなければ合格しないと扱う。 |\n| 未見：適用・oracle不明 | 対象がagent-system scopeに該当するか不明、または一般system contract、Phase 2の適用template、L3 authority、必要oracleが不明の入力を与える。該当部分をunknown/未評価として示し、統合済み・Verified・Acceptedへ昇格しない。 | 未知の適用性を037の適用済みへ補完する、authority/oracleを自動生成する、または対象が不明というだけで固定の新しい人承認手続きを要求する。 |\n\n**既存受入との対応と責務**\n\n- 現行`HARNESS-L2-009`の対L11 `docs/helix-harness/L11-acceptance/product-acceptance.md:29,69,129-130`は、unit/connection/composite template、required input不足のBackflow、誤ったtemplate適用を確認する。037はこれを二つのphase scopeに適用するが、template内容を複製しない。\n- 現行`HARNESS-L2-022`の対L11 `docs/helix-harness/L11-acceptance/product-acceptance.md:298-304`は、L8/L9 Integrated、L10 Verified、L11 Acceptedを別stateとし、oracle/result/evidence/revisionを確認する。037はその検証責務を置換せず、段階出力を用意する。\n- 現行`HARNESS-L2-025/026`の対L11 `docs/helix-harness/L11-acceptance/product-acceptance.md:332-360`はunit設計と汎用composite整合を受け入れる。037はそのphase固有scopeをつなぐworkflowを受け入れ、既存のdesign unit/composite oracleを再実装しない。\n- 適用scope内の二段階とPhase 1→Phase 2の依存順は旧FR-L1-28の意味なので受入で保持する。新たな全対象共通workflow、追加phase、固定運用substepは作らない。旧screen requirementの表示意味はtrace UIを選んだscopeに限って受け入れ、UIを含まないscopeではartifact traceを受け入れる。旧API/field/runtime実行や全外部agent/platformの一律依存は追加しない。L11 acceptance結果は利用者受入の条件・記録とともに別途確定する。\n\n**原文参照と旧条件の保持**\n\n- `LEGACY-ASSET-6B6C5CB0E481BE01088B`：`docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md:59`（FR-L1-28、file SHA-256 `a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008`、line SHA-256 `a7b461949218e37e67110567ee4aad528901e8a2536341fc6d23a5cb35590106`）。保持する原条件は一般systemをPhase 1、agent昇華をPhase 2とするscope、Phase別成果、合流成果、後続acceptance/operationへのtrace、development style/case-driven modelとの分離。旧層番号は前節の通り現行pairへ意味対応する。\n- `LEGACY-ASSET-3B905BB196962E2BE624`：`docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/screen-requirements.md:464`（file SHA-256 `e5b6964567242a2440ded28ed99c1783f37a9326624c02283c7a975c3020063b`、line SHA-256 `096ba44a8a6a5c8ea7538755f94af4155201ddae5ead9d726611e4712f4d972f`）。旧Traceビューは旧screen requirementが対象とするUI scopeで二段状態を画面追跡する条件として保持する。UI scopeが選択されればphase state・revision・合流/gapを表示し、非UI scopeでは同じ情報をartifact traceで確認する。旧画面の固有実装や画面を全scopeへ強制することはしない。\n- `LEGACY-ASSET-96CCD05C4CCA06F50D3D`：`docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/technical-requirements.md:169`（I-4、file SHA-256 `3e105358418cb54af0bc2e414d0b06171715ab2a26ea3b44dd16f932bcbfef88`、line SHA-256 `cc12f3fae870d6917c65a8c671f7de283c931f31788c61502561c894c6c52a5b`）。適用が確定したW scopeにPhase 1/2から統合状態がある意味は保持し、旧`phase.yaml`/`phase_merge`は固定しない。\n- `LEGACY-ASSET-809D616D0D7D844F5720`：`archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/function-spec.md:250`（file SHA-256 `f80b69a4d153d7775ecd789aa9e261c140baf2a443ac53a851de710cfce02b14`、line SHA-256 `da0f68bfde9fb763e7936678b9393b42c7b924630bdf1b07f2d53baf09a30785`）。旧候補の正常出力（merged stateまたはgap）とlayer boundary保持を参照し、関数名・実装I/Oを規範化しない。\n- `LEGACY-ASSET-978C267AADC50615A1E2`：`archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/fr-unit-coverage.md:64`（file SHA-256 `477c95b229b4ddffd4c2ed76fdfb99d8f3a4e8241b21ae7e883ffa2607d39dbf`、line SHA-256 `b5ff66c0f85a00aa4aa13700b2970733155b99bed54340f5fc8997803168e137`）。旧coverage対応がPhase merge state/handoffを成功・不成功で確認する方向を持った事実を保持する。旧test/runtime実行やそのgreenは現行受入証拠としない。\n\n**現行適用判断の根拠**：2026-09-24のPO判断 `docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md:75-83` は旧driveをticket種別へ置換し、開発styleと分ける。よって旧`drive=agent`は適用判定値ではなく、現行`HARNESS-L2-009`の要求kind/target/configuration/risk/domainと版付きtemplate適用に基づいて二段scopeを受け入れる。\n\n**照合固定点**：現行`docs/helix-harness/L1-planning/product-intent.md`（HEAD `2beddd2b9e295f46bd6086de5f14148421144513`、SHA-256 `238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f`）の`:31,34,39`（L1-001/004/009）。現行L2同HEAD・SHA-256 `07fe4e2e7a8205d37571fc745f1154022559cf6489022ec6711f3efad3940bcf`の`:60,116`（L2-009）、`:447-461`（L2-022）、`:530-540`（L2-026）、`:544-554`（L2-025）。現行L11同HEAD・SHA-256 `006c929d9c00d349b263bcbaa371e7d1638176966511420075cc85a45b9b8321`の`:29,69,129-130`, `:298-304`, `:332-360`。現行L2-001は標準V-pairを既に所有し、L2-022がstage transitionを所有するため037はそれらの定義を追加・変更しない。\n\n- **実物がない反例**：PhaseのL4設計文書と静的整合結果だけがあり、必要な実装・L9実行証拠がない入力では、設計案を保持するが合流済みにしない。037がL9 receiptを自己生成する、利用者の実行手段を使うscopeに内部OS一式を必須とする場合は不合格。選択executorが後段で返したcurrentな結果だけを022の契約に照らして受理する。\n\n- **各Vの上流判断の正常・反例**：Phase 1の確定仕様/検証結果を入力にPhase 2のL2候補を形成し、人のL2合意、その要求から導出したL3要件への承認がそれぞれPhase 2 identity/revisionへ結び付いて初めてPhase 2設計へ進む。Phase 1の承認だけでPhase 2を開始、単一L3へ黙って併合、Phase 2のL2/L3を飛ばす、別Phaseの判断を流用する例は不合格。未合意中は要求候補/未完を保持する。\n- **上流変更の未見例**：未fixtureのagent目的が外殻の制約を変更するとき、Phase 1の該当上流へBackflowして影響pairをstaleにし、Phaseごとの再判断/revision対応を確認する。未知の要求を一般systemの承認から推定しない。\n- **A-74の適用外**：HARNESS自身を対象に二回のVを強制する入力を拒否する。本候補は対象repositoryのagent systemへ提供する能力であり、自身の工程をWへ変更しない。\n\n旧Concept根拠：`LEGACY-ASSET-75776FE016E550F5355F`、`archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md:343–361`、SHA-256 `b6cecb7bec29d85b36e299f8a594821c1d778328506fe2c056ca330ef76d968c`。一般系とagent系で各々要求/要件からVを通る意味とA-74の自身適用除外を保持する。旧L0-L14は現行ConceptとL1-L12の正規pairへ再導出し、旧provider環境を実装前提にしない。単一L3への畳み込みは本候補では採らない。\n\n"
+    }
+  ]
+}

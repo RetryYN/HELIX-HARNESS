@@ -1,0 +1,86 @@
+{
+  "record_type": "既存read-only意味監査の日本語訂正追補（翻訳のみ。所見・scope・判定は不変）",
+  "record_date": "2026-10-08",
+  "base_commit": "c9e73bcc367a9d5203c92ef9775511013da4f85d",
+  "fixed_parent_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+  "scope": [
+    "HELIXINTELLIGENCE-L2-070",
+    "HELIXINTELLIGENCE-L2-071",
+    "HELIXINTELLIGENCE-L2-074",
+    "HELIXINTELLIGENCE-L2-077"
+  ],
+  "prior_record": {
+    "markdown_path": "/tmp/intelligence-stage5-070-071-074-077-meaning-audit-c9e73bcc.md",
+    "markdown_sha256": "e466acc8606a42baf2e1f826b1831b4ed3eb5a2aebdb1ab43ce729442e5e3454",
+    "json_path": "/tmp/intelligence-stage5-070-071-074-077-meaning-audit-c9e73bcc.json",
+    "json_sha256": "5498deba7deec4ec55f63ef8ef730db1b56f456ba3ba87e40c1c556490a9d511",
+    "prior_bytes_modified": false
+  },
+  "fixed_l2_l11": {
+    "sha256_fixed": {
+      "L2": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "L11": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33"
+    },
+    "sha256_at_base": {
+      "L2": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "L11": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33"
+    },
+    "same_bytes_at_fixed_revision": true
+  },
+  "six_document_sha256": {
+    "BR": "026d95fbf023ef384834ebd3b215a469f2fea648190d15d45494b5ea4cc91959",
+    "FR": "01ceffadc184ead3c5a73e4df4f308610394590630c222a53930e4857ee71c5a",
+    "NFR": "b26a93177d8857cfe9dba92a37ccf6153d1fb5cdf08e5b808e0b3d94ef8b42c1",
+    "BV": "b476b0939b7da50cf75db66d235095f94e591ac929ef046721224b5112d04552",
+    "FV": "aa6cb83a2eaeeaf0d4d0fd955698e5071e27c81232ba43a1c3af94918fbccc77",
+    "NFRV": "a8008b4ed973d43ff20952a496db241da1dcb438cd79056a55ae24dd30ea1e5e"
+  },
+  "parent_summaries_ja": [
+    {
+      "parent": "HELIXINTELLIGENCE-L2-070",
+      "stage": 5,
+      "fixed_l2": "633bf12:528-543",
+      "fixed_l11": "rows 229-238,251-257",
+      "ac": "AC-INT-070-01..09",
+      "case_population_ja": "01〜04は段階ごとの正常例。05a〜fは接続負例。06a〜iと10a〜cは重複・順序遅延・互換性・順序違い・staleの条件。07a〜lは契約・結合負例。08a〜eは予測／実績／閾値／consumer unknown（08aは05cの索引）。09a〜gはsource・結果・identity・回帰・authorityの負例。",
+      "meaning_assessment_ja": "033入力→069結果→040送信→LABO-024 consumerの順序を保持する。各段階は個別receiptを持ち、後段receiptを前段の入力前提にしない。仮想結果と後続観測、receiptとLABO評価を区別する。NFR-070-01は段階ledger、-02は07/08（08aを除く）のfixture母集団、-03は09/06/10の母集団を測り、NFRVも段階状態を分けている。遅延/SLA閾値や事業KPIは追加しない。",
+      "owner_boundaries_ja": "Product Core/HARNESSはsource authority、CONNECTはconnector/transport、SECURITYはdata-use、LABOはconsumer/evaluationを担当する。L2が戻し先を定めていないcorrelation/scopeはunknownのまま保持する。"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-071",
+      "stage": 5,
+      "fixed_l2": "633bf12:544-560",
+      "fixed_l11": "rows 239-257",
+      "ac": "AC-INT-071-01..05",
+      "case_population_ja": "01正常例。02a〜hは独立mismatch。03はheld-out。04a〜cは固定正常scenario、04d〜jは独立負例。05a〜rはoperation/receipt/contract負例で、05f/hは04f/gを指す索引。",
+      "meaning_assessment_ja": "baseline/load、DB切断、仮想Workerのscenarioに別々の固定oracleがある。同一model revision、scope、単位、因果edge、shared ceiling、数値unknown、後段receiptを保つ。L2/L11がoracleを要求するのは固定受入fixtureまたは明示選択したverification operationであり、通常計算には要求しない（05a/bがその境界を保つ）。NFR-071-02は正常3件と負例7件を分け、02hのscope mismatchを含める。-03は索引の05f/hを重複計上せず、operationと契約条件を分離する。simulationは実績、LABO評価、OS assignmentではない。"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-074",
+      "stage": 5,
+      "fixed_l2": "633bf12:609-617",
+      "fixed_l11": "rows 328-335",
+      "ac": "AC-INT-074-01..06",
+      "case_population_ja": "01正常例。02a〜dは主要負例で、02e/fは索引。03はheld-out。04a〜cは単独field unknown。05a〜aaは24個の固有fixture（05f/l/yは索引、05w/xは正常例）。06a〜h（06eは索引）。",
+      "meaning_assessment_ja": "一致するtask/revision/scopeに適用可能で、評価済みのfeedbackだけが次proposalの根拠になる。LABOが評価し、INTELLIGENCEが提案し、OSがticket発行・再発行・assignmentを行う。単一feedbackから永続的Worker順位・資格・model/requirement変更を作らない。05aaはL2-010のcapability条件を保ちつつ、評価receiptだけではproposal資格が成立しないことを独立に確認する。適用ownerが不明ならunknownのままにする。NFR-074-01はeligible/unknown/excluded件数、-02は3種のunknown facetと24固有fixture、-03は新閾値を作らずmissing/stale feedback fieldを別計測する。"
+    },
+    {
+      "parent": "HELIXINTELLIGENCE-L2-077",
+      "stage": 5,
+      "fixed_l2": "633bf12:635-645",
+      "fixed_l11": "rows 352-362",
+      "ac": "AC-INT-077-01..06",
+      "case_population_ja": "01は内部qualified sourceの正常例。02は外部sourceの正常例。03a〜mは索引/負例で、独立したconsumer unknownは03gのみ。04はheld-out。05a〜zはorigin/authority/fieldの26独立case。06a〜gは四依存区分caseで、06e/fは索引。",
+      "meaning_assessment_ja": "選択されたqualified receiptのidentity/revision/owner/originを区別する。unknownを0/neutral/unchanged/observedに変えず、未選択・参照sourceへfallbackせず、Requirement/Design/Release/Assignment/mergeを直接変更しない。正式consumer/routeが不明ならunknownのままにする。NFR-077-01は内部/外部の選択母集団、-02は05a〜zと03gを別計測し、runtime rateや一般的pass閾値を設けない。"
+    }
+  ],
+  "legacy_sources_translation_note_ja": "旧sourceは既存JSONにあるsource path/span/SHAのまま。本文中の対応説明は、receipt/source identity、unknown/failure、owner境界、独立negativeの意味を保持し、旧provider/runtime/route/資格判定を移していない。071に記された唯一のsimulation語句sourceである旧RLOのpre-merge simulationはPR差分のgovernance projection確認であり、有限製品model計算の根拠ではない。074のexecution-ticket sourceはJSON記載の実在path execution-ticket-requirements.md:399–401であり、FRのbasename locatorと対応する。",
+  "findings": [],
+  "decision_effect": "none; 既存の限定no-finding判定を変更・拡張せず、PO判断、承認、gateを生成しない",
+  "limits_ja": [
+    "旧受入pair、runtime、test、CLI、hook、CIは実行していない。",
+    "旧consumer全体の同深度reviewではない。",
+    "実際の接続・評価・性能・資格・承認状態を本文外の情報から推定しない。"
+  ],
+  "repo_edits": false
+}

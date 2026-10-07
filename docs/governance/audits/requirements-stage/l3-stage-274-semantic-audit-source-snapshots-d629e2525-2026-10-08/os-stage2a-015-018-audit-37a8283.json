@@ -1,0 +1,772 @@
+{
+  "audit_kind": "read_only_semantic_audit",
+  "audit_date": "2026-10-08",
+  "target_main": "37a8283be429c57f3706153ad522e7ad288fecc3",
+  "scope": [
+    "HELIXOS-L2-015",
+    "HELIXOS-L2-016",
+    "HELIXOS-L2-017",
+    "HELIXOS-L2-018"
+  ],
+  "authority": {
+    "prior_stage2a_approval_pin": {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-os-stage2a-delegated-decision-pin-2026-10-05.json",
+      "source_revision": "37a8283be429c57f3706153ad522e7ad288fecc3",
+      "latest_reviewed_main": "3b63e2a99f82d83e8ad76e9b33dc1199924f9a7c",
+      "reviewed_head": "c73d5efbc9807c8e6bc77edb2678d07985db0550",
+      "approved_body_revision": "5ade9866f0b184e6f3da78551e123e2b33b5859c",
+      "approved_parents": [
+        "HELIXOS-L2-015",
+        "HELIXOS-L2-016",
+        "HELIXOS-L2-017",
+        "HELIXOS-L2-018",
+        "HELIXOS-L2-019",
+        "HELIXOS-L2-020",
+        "HELIXOS-L2-023",
+        "HELIXOS-L2-027"
+      ],
+      "authority_effect": "pin record only"
+    },
+    "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "bundle_adoption_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "adoption_basis": "PO decision main633 row 48 applies bundle OS-014..029; do not treat it as individual candidate-row semantic hashes. 018 addendum MPR-RC-HELIXOS-L2-018-002 is separately adopted in decision row 34 and registered.",
+    "018_additional_adoption": {
+      "registration_id": "MPR-RC-HELIXOS-L2-018-002",
+      "adoption_decision_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "decision_record": "docs/governance/decisions/po-decision-2026-10-03-additions10.md",
+      "decision_row": 34,
+      "l2_span": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "lines": [
+          1604,
+          1619
+        ],
+        "semantic_sha256": "5e2a621be8b4bda140bd796a48bedf2b3369daf5fad2665060ac41aa1a3174d2",
+        "raw_lf_inclusive_sha256": "634b700e1ed79c60f53235f6fb0e73348b7cc07264d4e4f8afb69e107aa1996d"
+      },
+      "l11_span": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "lines": [
+          1259,
+          1276
+        ],
+        "semantic_sha256": "e32e45319a3ac91004e3e1a985c7ff44e91b9e86f05b85c266d6b8d67acf87b5",
+        "raw_lf_inclusive_sha256": "ba303351c99a385506d9f151d0b51c03fb08922ce7d2848ffb3b1f485c4c221c"
+      },
+      "note": "f6dad2a baseline contains no -002; pin the adopted addition separately."
+    }
+  },
+  "fixed_parent_spans": [
+    {
+      "parent": "015",
+      "role": "L2",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "lines": [
+        642,
+        651
+      ],
+      "full_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "span_sha256": "18756826fc4dda35a81059eebcecb81df554937cd60f828eb67a5f1cc3fbda69",
+      "span_bytes": 1359
+    },
+    {
+      "parent": "016",
+      "role": "L2",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "lines": [
+        652,
+        661
+      ],
+      "full_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "span_sha256": "55d5b2e72438019d672d7cfd39c2c3908248bc9783952f678b0288132bdac7e8",
+      "span_bytes": 1386
+    },
+    {
+      "parent": "017",
+      "role": "L2",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "lines": [
+        662,
+        671
+      ],
+      "full_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "span_sha256": "1f74fdb3677c997071c80a618cd48d7c1f5f9cac2650efe61ecc197539f9f2f7",
+      "span_bytes": 1765
+    },
+    {
+      "parent": "018",
+      "role": "L2",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "lines": [
+        672,
+        681
+      ],
+      "full_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "span_sha256": "41d0788d372793e0dd2c61d54d7e59886cfa45987a993cdeabdcb2c3b3b5ea72",
+      "span_bytes": 1468
+    },
+    {
+      "parent": "015",
+      "role": "L11",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "lines": [
+        324,
+        329
+      ],
+      "full_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "span_sha256": "79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0",
+      "span_bytes": 857
+    },
+    {
+      "parent": "016",
+      "role": "L11",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "lines": [
+        331,
+        336
+      ],
+      "full_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "span_sha256": "2dc46eb36e8ca552c079ade0dad329c2ca0c244f4c2493a06eec4f60647897a3",
+      "span_bytes": 922
+    },
+    {
+      "parent": "017",
+      "role": "L11",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "lines": [
+        338,
+        344
+      ],
+      "full_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "span_sha256": "b5a2d6f02bc5ab05df8d482b171cd4db0b005e23ddf2f54c463aeebff8555cf2",
+      "span_bytes": 1040
+    },
+    {
+      "parent": "018",
+      "role": "L11",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "lines": [
+        345,
+        351
+      ],
+      "full_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "span_sha256": "257fbc3de623fb45dd26c284137ece6b0bc615577bf0ed937ae058537968b891",
+      "span_bytes": 1006
+    }
+  ],
+  "l3_l10_documents": [
+    {
+      "key": "FR",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "full_sha256": "68bf95443b494e16bb2a72506358536d7d8740fb620e09d55ed0b922d3b9ed03",
+      "bytes": 201811,
+      "stage2a_start_line": 55,
+      "stage2a_end_line": 81,
+      "stage2a_span_sha256": "6ed47c9a8e161b26720c1f34702147ed8543e469e2afe785cea7a332608d84cb",
+      "stage2a_span_bytes": 14853,
+      "approved_body_full_sha256": "ca5242813debd8ba7c253fca7eab03a33d41afd8629aa4bd49cb607358f56426",
+      "approved_body_bytes": 78655
+    },
+    {
+      "key": "BR",
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "full_sha256": "cbe1866df47503b17e8a11b786dee8da58cd8a2a0a99778b64bd4a669b2fa702",
+      "bytes": 20354,
+      "stage2a_start_line": 13,
+      "stage2a_end_line": 54,
+      "stage2a_span_sha256": "d7ac5eda63d2b22ae3527e4cbba15015a312140c54328ab7bce5a109ad1693c6",
+      "stage2a_span_bytes": 10742,
+      "approved_body_full_sha256": "962e1e8e69ed1741df81e8cbde8d6e3dd2b20065fdd3fbd6a670ad9fc4e14320",
+      "approved_body_bytes": 11491
+    },
+    {
+      "key": "NFR",
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "full_sha256": "d4e76c3dc15b28894937ddc0e39cb223aeef106284fae13b8ea4212dfce02726",
+      "bytes": 33002,
+      "stage2a_start_line": 39,
+      "stage2a_end_line": 80,
+      "stage2a_span_sha256": "0dcd9279ab4aa5a8db785eca1c7989113ccedbdb93634792da4a0e5ceb7054f2",
+      "stage2a_span_bytes": 9438,
+      "approved_body_full_sha256": "7bc05bf76903ac81705d333f4c5183d9d04b3a30e4429fde6903e2455abcf681",
+      "approved_body_bytes": 16041
+    },
+    {
+      "key": "FV",
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "full_sha256": "2c2ce95380e2deb5478bb06c27057d519373bfeabc9259799e400b390e0c5d3e",
+      "bytes": 241506,
+      "stage2a_start_line": 227,
+      "stage2a_end_line": 602,
+      "stage2a_span_sha256": "1a11e28df5ca8d9d89eeb408f436e3457a38156383bb7f8f033c86510482c540",
+      "stage2a_span_bytes": 53503,
+      "approved_body_full_sha256": "a925e5c84143cecb4e479f8f5bfb36f84515cfdc69effad3192a2dcc88da427c",
+      "approved_body_bytes": 89649
+    },
+    {
+      "key": "BV",
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "full_sha256": "f785e13aa9a1ef8494154f03e20d0582418916281c51a6b729d385d5b66ef051",
+      "bytes": 17774,
+      "stage2a_start_line": 17,
+      "stage2a_end_line": 39,
+      "stage2a_span_sha256": "ccb3c5ba0c9e8fb02be92a46bcf2626b239f0416e0f903f7e501a5247ac6c8c3",
+      "stage2a_span_bytes": 6635,
+      "approved_body_full_sha256": "b609bd995910f89c25bc2fed790463c4573509ed5b331f7716395d6c5fdb657a",
+      "approved_body_bytes": 7937
+    },
+    {
+      "key": "NFRV",
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "full_sha256": "156c0b6cf45630ba44f3540ceb97dae511fb7bdd93148e1a99ef4e0adfd9e543",
+      "bytes": 29758,
+      "stage2a_start_line": 31,
+      "stage2a_end_line": 70,
+      "stage2a_span_sha256": "9f6a7210a7940d4c35b6b1d4f8f0db6b814b5b0457683b9c8854054499864a03",
+      "stage2a_span_bytes": 8561,
+      "approved_body_full_sha256": "37a5ce98c2d7a868b6c951e6bc1cea3a95b2010c23651e1129625ba0958c539c",
+      "approved_body_bytes": 14456
+    }
+  ],
+  "case_map": {
+    "015": {
+      "AC": [
+        "AC-OS-015-01",
+        "AC-OS-015-02",
+        "AC-OS-015-03"
+      ],
+      "normal": [
+        "CASE-OS-015-01"
+      ],
+      "negative": [
+        "CASE-OS-015-02a",
+        "CASE-OS-015-02b",
+        "CASE-OS-015-02c",
+        "CASE-OS-015-02d",
+        "CASE-OS-015-02e",
+        "CASE-OS-015-02f",
+        "CASE-OS-015-02g",
+        "CASE-OS-015-02h",
+        "CASE-OS-015-02i",
+        "CASE-OS-015-02j",
+        "CASE-OS-015-02k"
+      ],
+      "unseen": [
+        "CASE-OS-015-03"
+      ]
+    },
+    "016": {
+      "AC": [
+        "AC-OS-016-01",
+        "AC-OS-016-02",
+        "AC-OS-016-03"
+      ],
+      "normal": [
+        "CASE-OS-016-01"
+      ],
+      "negative": [
+        "CASE-OS-016-02a",
+        "CASE-OS-016-02b",
+        "CASE-OS-016-02c",
+        "CASE-OS-016-02d",
+        "CASE-OS-016-02e",
+        "CASE-OS-016-02f",
+        "CASE-OS-016-02g",
+        "CASE-OS-016-02h",
+        "CASE-OS-016-02i"
+      ],
+      "unseen": [
+        "CASE-OS-016-03"
+      ]
+    },
+    "017": {
+      "AC": [
+        "AC-OS-017-01",
+        "AC-OS-017-02",
+        "AC-OS-017-03"
+      ],
+      "normal": [
+        "CASE-OS-017-01"
+      ],
+      "negative": [
+        "CASE-OS-017-02a",
+        "CASE-OS-017-02b",
+        "CASE-OS-017-02c",
+        "CASE-OS-017-02d",
+        "CASE-OS-017-02e",
+        "CASE-OS-017-02f",
+        "CASE-OS-017-02g",
+        "CASE-OS-017-02h",
+        "CASE-OS-017-02i",
+        "CASE-OS-017-02j"
+      ],
+      "unseen": [
+        "CASE-OS-017-03"
+      ],
+      "row_trace": [
+        "CASE-OS-017-HXT-TYPE-01",
+        "CASE-OS-017-HXT-TYPE-02",
+        "CASE-OS-017-HXT-TYPE-03",
+        "CASE-OS-017-HXT-TYPE-04",
+        "CASE-OS-017-HXT-TYPE-05",
+        "CASE-OS-017-HXT-TYPE-06",
+        "CASE-OS-017-HXT-TYPE-07",
+        "CASE-OS-017-HXT-TYPE-08",
+        "CASE-OS-017-HXT-TYPE-09",
+        "CASE-OS-017-HXT-TYPE-10",
+        "CASE-OS-017-HXT-TYPE-11",
+        "CASE-OS-017-HXT-TYPE-12",
+        "CASE-OS-017-HXT-TYPE-13",
+        "CASE-OS-017-HXT-TYPE-14",
+        "CASE-OS-017-HXT-TYPE-15",
+        "CASE-OS-017-HXT-TYPE-16",
+        "CASE-OS-017-HXT-TYPE-17",
+        "CASE-OS-017-HXT-TYPE-18",
+        "CASE-OS-017-HXT-TYPE-19",
+        "CASE-OS-017-HXT-TYPE-20",
+        "CASE-OS-017-HXT-TYPE-21",
+        "CASE-OS-017-HXT-FLOW-01",
+        "CASE-OS-017-HXT-FLOW-02",
+        "CASE-OS-017-HXT-FLOW-03",
+        "CASE-OS-017-HXT-FLOW-04",
+        "CASE-OS-017-HXT-FLOW-05",
+        "CASE-OS-017-HXT-FLOW-06",
+        "CASE-OS-017-HXT-FLOW-07",
+        "CASE-OS-017-HXT-FLOW-08",
+        "CASE-OS-017-HXT-FLOW-09",
+        "CASE-OS-017-HXT-SYS-01"
+      ]
+    },
+    "018": {
+      "AC": [
+        "AC-OS-018-01",
+        "AC-OS-018-02",
+        "AC-OS-018-03",
+        "AC-OS-018-04"
+      ],
+      "normal": [
+        "CASE-OS-018-01"
+      ],
+      "negative": [
+        "CASE-OS-018-02a",
+        "CASE-OS-018-02b",
+        "CASE-OS-018-02c",
+        "CASE-OS-018-02d",
+        "CASE-OS-018-02e",
+        "CASE-OS-018-02f",
+        "CASE-OS-018-02g",
+        "CASE-OS-018-02h",
+        "CASE-OS-018-02i",
+        "CASE-OS-018-02j",
+        "CASE-OS-018-02k",
+        "CASE-OS-018-02l",
+        "CASE-OS-018-02m",
+        "CASE-OS-018-02n",
+        "CASE-OS-018-02o",
+        "CASE-OS-018-02p"
+      ],
+      "unseen": [
+        "CASE-OS-018-03"
+      ],
+      "conditional": [
+        "CASE-OS-018-04a",
+        "CASE-OS-018-04b",
+        "CASE-OS-018-04c",
+        "CASE-OS-018-04d",
+        "CASE-OS-018-04e",
+        "CASE-OS-018-04f",
+        "CASE-OS-018-04g",
+        "CASE-OS-018-04h",
+        "CASE-OS-018-04i",
+        "CASE-OS-018-04j",
+        "CASE-OS-018-04k",
+        "CASE-OS-018-04l"
+      ],
+      "identity": [
+        "CASE-OS-018-05a",
+        "CASE-OS-018-05b"
+      ]
+    }
+  },
+  "static_checks": {
+    "015": {
+      "all_AC_declared_in_FR": true,
+      "all_CASE_ids_present_in_FV": true,
+      "all_ACs_named_in_FV": true,
+      "business_row_present": true,
+      "nfr_row_present": true,
+      "listed_case_count": 13,
+      "ids": [
+        "CASE-OS-015-01",
+        "CASE-OS-015-02a",
+        "CASE-OS-015-02b",
+        "CASE-OS-015-02c",
+        "CASE-OS-015-02d",
+        "CASE-OS-015-02e",
+        "CASE-OS-015-02f",
+        "CASE-OS-015-02g",
+        "CASE-OS-015-02h",
+        "CASE-OS-015-02i",
+        "CASE-OS-015-02j",
+        "CASE-OS-015-02k",
+        "CASE-OS-015-03"
+      ]
+    },
+    "016": {
+      "all_AC_declared_in_FR": true,
+      "all_CASE_ids_present_in_FV": true,
+      "all_ACs_named_in_FV": true,
+      "business_row_present": true,
+      "nfr_row_present": true,
+      "listed_case_count": 11,
+      "ids": [
+        "CASE-OS-016-01",
+        "CASE-OS-016-02a",
+        "CASE-OS-016-02b",
+        "CASE-OS-016-02c",
+        "CASE-OS-016-02d",
+        "CASE-OS-016-02e",
+        "CASE-OS-016-02f",
+        "CASE-OS-016-02g",
+        "CASE-OS-016-02h",
+        "CASE-OS-016-02i",
+        "CASE-OS-016-03"
+      ]
+    },
+    "017": {
+      "all_AC_declared_in_FR": true,
+      "all_CASE_ids_present_in_FV": true,
+      "all_ACs_named_in_FV": true,
+      "business_row_present": true,
+      "nfr_row_present": true,
+      "listed_case_count": 43,
+      "ids": [
+        "CASE-OS-017-01",
+        "CASE-OS-017-02a",
+        "CASE-OS-017-02b",
+        "CASE-OS-017-02c",
+        "CASE-OS-017-02d",
+        "CASE-OS-017-02e",
+        "CASE-OS-017-02f",
+        "CASE-OS-017-02g",
+        "CASE-OS-017-02h",
+        "CASE-OS-017-02i",
+        "CASE-OS-017-02j",
+        "CASE-OS-017-03",
+        "CASE-OS-017-HXT-TYPE-01",
+        "CASE-OS-017-HXT-TYPE-02",
+        "CASE-OS-017-HXT-TYPE-03",
+        "CASE-OS-017-HXT-TYPE-04",
+        "CASE-OS-017-HXT-TYPE-05",
+        "CASE-OS-017-HXT-TYPE-06",
+        "CASE-OS-017-HXT-TYPE-07",
+        "CASE-OS-017-HXT-TYPE-08",
+        "CASE-OS-017-HXT-TYPE-09",
+        "CASE-OS-017-HXT-TYPE-10",
+        "CASE-OS-017-HXT-TYPE-11",
+        "CASE-OS-017-HXT-TYPE-12",
+        "CASE-OS-017-HXT-TYPE-13",
+        "CASE-OS-017-HXT-TYPE-14",
+        "CASE-OS-017-HXT-TYPE-15",
+        "CASE-OS-017-HXT-TYPE-16",
+        "CASE-OS-017-HXT-TYPE-17",
+        "CASE-OS-017-HXT-TYPE-18",
+        "CASE-OS-017-HXT-TYPE-19",
+        "CASE-OS-017-HXT-TYPE-20",
+        "CASE-OS-017-HXT-TYPE-21",
+        "CASE-OS-017-HXT-FLOW-01",
+        "CASE-OS-017-HXT-FLOW-02",
+        "CASE-OS-017-HXT-FLOW-03",
+        "CASE-OS-017-HXT-FLOW-04",
+        "CASE-OS-017-HXT-FLOW-05",
+        "CASE-OS-017-HXT-FLOW-06",
+        "CASE-OS-017-HXT-FLOW-07",
+        "CASE-OS-017-HXT-FLOW-08",
+        "CASE-OS-017-HXT-FLOW-09",
+        "CASE-OS-017-HXT-SYS-01"
+      ]
+    },
+    "018": {
+      "all_AC_declared_in_FR": true,
+      "all_CASE_ids_present_in_FV": true,
+      "all_ACs_named_in_FV": true,
+      "business_row_present": true,
+      "nfr_row_present": true,
+      "listed_case_count": 32,
+      "ids": [
+        "CASE-OS-018-01",
+        "CASE-OS-018-02a",
+        "CASE-OS-018-02b",
+        "CASE-OS-018-02c",
+        "CASE-OS-018-02d",
+        "CASE-OS-018-02e",
+        "CASE-OS-018-02f",
+        "CASE-OS-018-02g",
+        "CASE-OS-018-02h",
+        "CASE-OS-018-02i",
+        "CASE-OS-018-02j",
+        "CASE-OS-018-02k",
+        "CASE-OS-018-02l",
+        "CASE-OS-018-02m",
+        "CASE-OS-018-02n",
+        "CASE-OS-018-02o",
+        "CASE-OS-018-02p",
+        "CASE-OS-018-03",
+        "CASE-OS-018-04a",
+        "CASE-OS-018-04b",
+        "CASE-OS-018-04c",
+        "CASE-OS-018-04d",
+        "CASE-OS-018-04e",
+        "CASE-OS-018-04f",
+        "CASE-OS-018-04g",
+        "CASE-OS-018-04h",
+        "CASE-OS-018-04i",
+        "CASE-OS-018-04j",
+        "CASE-OS-018-04k",
+        "CASE-OS-018-04l",
+        "CASE-OS-018-05a",
+        "CASE-OS-018-05b"
+      ]
+    }
+  },
+  "legacy_pins": [
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/document-authority-census-requirements.md",
+      "physical_lines": [
+        23,
+        69
+      ],
+      "full_file_sha256": "e05adb62d9ad07507f962cf060b3dbe66c161afc3f09391b29b3144ced57535c",
+      "raw_span_sha256_lf_inclusive": "e4d761d697c63b93ae4d03f67419cb99d10e2a5e3c2b42ec8799ed616c706dc5",
+      "asset_id": "LEGACY-ASSET-C6936A5DA79A6DAE4FE4",
+      "role": "L3",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/document-authority-census-requirements.md",
+      "physical_lines": [
+        70,
+        87
+      ],
+      "full_file_sha256": "e05adb62d9ad07507f962cf060b3dbe66c161afc3f09391b29b3144ced57535c",
+      "raw_span_sha256_lf_inclusive": "9cd38911e7a9758fd7cf8e8540332778f24e6e4a6b9df90112da38c23dec2a49",
+      "asset_id": "LEGACY-ASSET-C6936A5DA79A6DAE4FE4",
+      "role": "L3",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "physical_lines": [
+        38,
+        57
+      ],
+      "full_file_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "raw_span_sha256_lf_inclusive": "bdb56ad09b5ce182466bcfaa9494d2ceaf60be075fc76efd65bfa6709e2278dc",
+      "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "role": "shared old FR/AC trace and completeness form; no old numbers/IDs/late addenda copied; L3",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "physical_lines": [
+        134,
+        197
+      ],
+      "full_file_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "raw_span_sha256_lf_inclusive": "747723b54908e79652e347ab529875943afc051fc9f9182d149481f01475e5a0",
+      "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "role": "shared old FR/AC trace and completeness form; no old numbers/IDs/late addenda copied; L3",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "physical_lines": [
+        198,
+        307
+      ],
+      "full_file_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "raw_span_sha256_lf_inclusive": "7f3326adfef43b9fbcc3542cf2351058a87af78e7952875c7bc95f0343f985d5",
+      "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "role": "shared old FR/AC trace and completeness form; no old numbers/IDs/late addenda copied; L3",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "physical_lines": [
+        34,
+        124
+      ],
+      "full_file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "raw_span_sha256_lf_inclusive": "8b6ada1f94500116e296ce638344b7b602bc8a9299b0fc0f4879f82b47cd84a0",
+      "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+      "role": "L3",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "physical_lines": [
+        189,
+        390
+      ],
+      "full_file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "raw_span_sha256_lf_inclusive": "07524cef0d02ac05c73f6df89b339b7c2c32ce3eb0bb263192bd204b89e58ab4",
+      "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+      "role": "L3",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "physical_lines": [
+        391,
+        478
+      ],
+      "full_file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "raw_span_sha256_lf_inclusive": "0f48e87e85e60c638a63d1d5166aeb66fbe0944cd3b57924f81b3be60c657793",
+      "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+      "role": "L3",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "physical_lines": [
+        495,
+        620
+      ],
+      "full_file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "raw_span_sha256_lf_inclusive": "554570a7ff08ade2b1f47ed79352518cb38f260e0a5da8f349b11afe30ea693b",
+      "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+      "role": "L3",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "physical_lines": [
+        717,
+        856
+      ],
+      "full_file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "raw_span_sha256_lf_inclusive": "d3700cb6f753e41b61f23947aa7960261b0cd562e745958cda4d8aaff8523a00",
+      "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+      "role": "L3",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "physical_lines": [
+        858,
+        925
+      ],
+      "full_file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "raw_span_sha256_lf_inclusive": "90c2609174e8f9577cff56b86b6616f46b7da00f5ad31a8105036338164f4746",
+      "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+      "role": "L3",
+      "verified": true
+    },
+    {
+      "source_commit": "c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+      "physical_lines": [
+        17,
+        55
+      ],
+      "full_file_sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+      "raw_span_sha256_lf_inclusive": "36e097a074fe674fddd2719b6c196163a6aa625908c90f0125ff42a99e2a41da",
+      "asset_id": "LEGACY-ASSET-437A6A68F9A9E0AE1B9E",
+      "role": "paired_old_test_design",
+      "verified": true
+    }
+  ],
+  "legacy_extra_read": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "lines": [
+        240,
+        256
+      ],
+      "full_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "span_sha256": "1fe7f56a6a9d53064db41500ba7b2d90388ba69490a8fe2efb64a422efcbe393",
+      "role": "017のticket binding / attempt / retryを照合する旧候補、現authorityとは扱わない",
+      "actual_full_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "actual_full_sha256_matches": true,
+      "actual_span_sha256": "1fe7f56a6a9d53064db41500ba7b2d90388ba69490a8fe2efb64a422efcbe393",
+      "actual_span_sha256_matches": true
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "lines": [
+        43,
+        55
+      ],
+      "full_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "span_sha256": "4b23e4a88fe9b7b6e23d2e110f98d61d29389d17f57d31a3f88fb47c9b87fd95",
+      "role": "017 old acceptance consumer: duplicate execution, resume/retry budget, closure evidence; historical comparison only",
+      "actual_full_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "actual_full_sha256_matches": true,
+      "actual_span_sha256": "4b23e4a88fe9b7b6e23d2e110f98d61d29389d17f57d31a3f88fb47c9b87fd95",
+      "actual_span_sha256_matches": true
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/three-lane-capacity-profile-requirements.md",
+      "lines": [
+        1,
+        50
+      ],
+      "full_sha256": "d2df9851fcd3db79ffaed03116f85118da43fe26f943412045215a58cfa3804e",
+      "role": "018 historical candidate: capacity/WIP policies; fixed OS parent explicitly avoids importing fixed provider counts/burst slots",
+      "actual_full_sha256": "d2df9851fcd3db79ffaed03116f85118da43fe26f943412045215a58cfa3804e",
+      "actual_full_sha256_matches": true
+    }
+  ],
+  "findings": [],
+  "no_finding_observations": [
+    {
+      "parents": [
+        "015"
+      ],
+      "statement": "FR-OS-015/AC-01..03 and CASE-015-01/02a..k/03 preserve source identity/revision/digest/decision authority, projection/raw event separation, independent one-field negatives, and unseen correction-chain trace. No concrete semantic hole located in this pass."
+    },
+    {
+      "parents": [
+        "016"
+      ],
+      "statement": "FR-OS-016/AC-01..03 and CASE-016-01/02a..i/03 preserve target-specific unit/connection/composite state, owner/dependency/diff/verification missing states, cross-project boundary, stale/unresolved edge and no readiness inference."
+    },
+    {
+      "parents": [
+        "017"
+      ],
+      "statement": "FR-OS-017/AC-01..03 maps to normal/independent negatives/unseen plus explicit HXT type 21, flow 9 and system row trace cases. Candidate input unknown/conflict/scope/permission, HARNESS contract boundary, INT proposal authority, LABO optional evidence, version 1.0 vs 4.0 and return duties are represented. Row-level expected values remain references to fixed L2/L11 rows; no runtime pass is claimed."
+    },
+    {
+      "parents": [
+        "018"
+      ],
+      "statement": "FR-OS-018/AC-01..04 maps to normal, 16 independent control negatives, unseen handoff/resume, 12 conditional HIL-NFR-36 facets and two provider/identity cases. The 018-002 additional adoption is separated from f6dad baseline; source missing/unknown is not converted to no deviation, unselected/no-event normal is explicit, receipt facet does not become a new universal assignment gate."
+    }
+  ],
+  "limits": [
+    "旧sourceは文書として参照しただけで、旧runtime/test/CIは実行していない。",
+    "L3 approval recorded at reviewed body revision 5ade is not evidence of a new approval for later full-file revisions; this audit only compared the Stage2a target rows/IDs at exact main 37a with the fixed parents.",
+    "No fixture execution, implementation behavior, or all-stage/all-274-document semantic completeness is claimed.",
+    "019+ dependencies and downstream V-pairs are outside this read-only scope."
+  ]
+}

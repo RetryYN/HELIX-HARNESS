@@ -1,0 +1,195 @@
+{
+  "record_type": "read_only_parent_specific_semantic_audit",
+  "target_main": "dddab671b034b866efeb56af8f6c0f192a06fe3f",
+  "parents": [
+    "HELIXLABO-L2-064",
+    "HELIXLABO-L2-065"
+  ],
+  "scope": "fixed L2/L11, A042 source audit, parent-specific 6-document L3/L10 spans and old source only",
+  "index_rows": {
+    "064": {
+      "json_pointer": "/parents/199",
+      "md_line": 212
+    },
+    "065": {
+      "json_pointer": "/parents/200",
+      "md_line": 213
+    }
+  },
+  "source_audit": {
+    "audit_ref": "A042",
+    "path": "docs/governance/audits/requirements-stage/l3-stage-274-semantic-audit-source-snapshots-d629e2525-2026-10-08/root-labo-stage5-semantic-audit-064-067-37a8283.json",
+    "bytes": 21283,
+    "sha256": "a8cf94334c34f131a57aef98b1904222ddc9b4b633b800c542b3324415c2124c",
+    "recorded_target_commit": "37a8283be429c57f3706153ad522e7ad288fecc3",
+    "full_source_read": true
+  },
+  "authority_checkpoint": {
+    "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+    "rows": {
+      "064": 79,
+      "065": 80
+    },
+    "distinction": "L2 adoption status only; does not by itself approve current L3/L10 revision."
+  },
+  "fixed_sources": {
+    "064": {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "l2": {
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "lines": "491-501",
+        "file_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+        "span_sha256": "e28da5b2f47c3d1327cc091003d14a7ab572a3282040b2ed7ec6614dae7079b8"
+      },
+      "l11": {
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "lines": "233-239",
+        "file_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+        "span_sha256": "4f51be505b3c169f08aa61c2dd192b21b1b185db0f5243f556853bcb3e1a1fe3"
+      },
+      "l3_cited_revision": "0857205ecb7a18db9d8d926142e865776c1bf6e2",
+      "same_full_blobs_as_l3_cited_revision": true
+    },
+    "065": {
+      "revision": "0dd946cec1c3fca8e144513b72e2e10d16c7c9c3",
+      "l2": {
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "lines": "503-516",
+        "file_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+        "span_sha256": "6f50887b94a8d3341c55700393896798cc1273324a868071447bf0e5a95cf019"
+      },
+      "l11": {
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "lines": "241-259",
+        "file_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+        "span_sha256": "c70905fd036f0c6e6bfdce0368e462cd85acd467354bcad599d1112634d9b1b6"
+      }
+    }
+  },
+  "current_six_documents": [
+    {
+      "name": "BR",
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "bytes": 32852,
+      "file_sha256": "9f56b674f11f9b666bc546a20e7a7492d1dfe377a24495d351392698c8389777",
+      "064_span": "119-127",
+      "064_span_sha256": "b3b4542b2e15daa737b4397917af08ebdc1b1802785e6873158f6756a8ed9a6c",
+      "065_span": "105-117",
+      "065_span_sha256": "0c1079b7dd6369182721ac2c1c062ca45c1928a1531c8575ed121c67f6481939"
+    },
+    {
+      "name": "FR",
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "bytes": 355411,
+      "file_sha256": "0e33a04d53bc296292ba7fb510d91d89f410896a99118ccda2b92c03aa09ef94",
+      "064_span": "1773-1814",
+      "064_span_sha256": "0369d96b07cf0d8e58269550f6136dfd043eacb2fb9015763d2d096791da325c",
+      "065_span": "1751-1771",
+      "065_span_sha256": "f490ffbecfdf5e5f7446d29b6c1490d1c1cec0628035ebef056d66d75d32683b"
+    },
+    {
+      "name": "NFR",
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "bytes": 92654,
+      "file_sha256": "d66f37a55ba040e0701e6e1313cfe1bca6ae1d0cb9392d584023c4053793e45d",
+      "064_span": "224-234",
+      "064_span_sha256": "93c8ef51bd7c3ccd5d8751653159493313bb8b93625ad8d3373505558281fd7f",
+      "065_span": "206-221",
+      "065_span_sha256": "3dd8d07b22f62b0439e300efa777533bb89dfdddb122f8e926450ea45f7cd178"
+    },
+    {
+      "name": "BV",
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "bytes": 31659,
+      "file_sha256": "5733fe88329629f5dce896c2f8b420cee895b4f796632d13addf2bc8568c5b94",
+      "064_span": "115-123",
+      "064_span_sha256": "34d13ca2b4d60060bf03413ee894f95d4bdf3973d9c17305be53268032b3ff9c",
+      "065_span": "105-111",
+      "065_span_sha256": "62f8c46a51fe5342a8680d53cde9ab7efacf54715670cf733efdf0e95c016a41"
+    },
+    {
+      "name": "FV",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "bytes": 696870,
+      "file_sha256": "3f443a3713831920b2333a950a2b7ebbd99b8287775dd0ed5e3f8dc29296a200",
+      "064_span": "3120-3179",
+      "064_case_rows": 49,
+      "064_section_sha256": "783be2865ed275341263e1c3a12409d8444698f16056e09db88db2b8ccc3e268",
+      "065_span": "3028-3119",
+      "065_case_rows": 66,
+      "065_section_sha256": "82ec9a417d7b5e5eedc21e68ed4e72ec41d2bb3aee0a7868de5fd10d1b7864ac",
+      "comparison": "Both full parent sections are byte-identical to corresponding sections at A042 target 37a8283."
+    },
+    {
+      "name": "NFRV",
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "bytes": 83223,
+      "file_sha256": "02849ed4493af37c40e9a9fb0fde813fde1703ce2932bac982c76c461ac9edf3",
+      "064_span": "169-175",
+      "064_span_sha256": "b8751ec3fec698a7e261dc76b2964bc889fe166b59b56134b2f1721e00c4df2b",
+      "065_span": "154-166",
+      "065_span_sha256": "8a3b5181905a4e91cda009e37b9b74c2c937566d4e84e1efefbedd38add34dc2"
+    }
+  ],
+  "legacy_sources": [
+    {
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "bytes": 56091,
+      "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "spans": [
+        {
+          "lines": "151-152",
+          "sha256": "caf2e7ab4ce6f1f732644710dd5b3ec3f35f72011e334cee29f365fee58e2676"
+        },
+        {
+          "lines": "215",
+          "sha256": "930a87db86581b1433c4682bb626b9a83100503594f6447e3c2be2fd6860ec59"
+        }
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-28FB139B26CD61CC51EE",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+      "bytes": 6446,
+      "sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+      "spans": [
+        {
+          "lines": "96-120",
+          "sha256": "104c380e9629448b328712956892ea2227537041196a68699453a1282170bd81"
+        },
+        {
+          "lines": "143-147",
+          "sha256": "1528cbcdf178907860401f6155b405693cce7e21540e05bc5cc013ad39963c9f"
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "parent": "HELIXLABO-L2-064",
+      "finding_status": "historical_minor_reassessed_no_fixed_requirement_gap",
+      "case": "L10-LABO-064-CASE-22",
+      "current_locator": "docs/helix-labo/L10-verification/functional-verification.md:3140",
+      "evidence": "A042 review_results.064 records a prior residual because CASE-22 did not name a return destination. Current case 3140 has one output-only mutation: offset known security failure SF1 by high average; oracle preserves SF1 as fail and rejects permission output. Fixed L2:497 requires no averaging; L2:498 routes only unknown/leak/mismatch to comparison-not-established with task/evaluation reassessment; L2:500 routes identity trace loss and unknown visibility/fixed conditions to existing source/evaluation owners. SF1 is known failure rather than missing/unknown/mismatch, and L2/L11 do not assign that failure-result return to a new owner. Thus the historic explanation Minor does not demonstrate an unmet fixed requirement or false success; do not invent a route.",
+      "repair_recommendation": "No change. Preserve the A042 historical Minor record but do not treat it as a current requirement gap; no fixed-source basis exists for a new owner or return rule."
+    },
+    {
+      "parent": "HELIXLABO-L2-065",
+      "finding_status": "no_new_false_success_found_in_reviewed_scope",
+      "case": null,
+      "evidence": "A042 review_results.065 says all 66 FV CASE definitions and six-doc mappings were read; no new false-success. Current FV section is byte-identical to A042 target. No parent-specific repair PR identified; #2687 scope does not include 065.",
+      "repair_recommendation": "No repair supported by this scoped audit. Unknown PR mapping is not evidence of absent defects outside the reviewed scope."
+    }
+  ],
+  "case_execution": "not performed",
+  "repo_edit": "none for this audit",
+  "limits": [
+    "Not a full 274 parent review.",
+    "No all-consumer audit.",
+    "A042 scope and historical non-returning minors remain limited.",
+    "Current L3/L10 approval/admission is outside this audit.",
+    "PR merges are not semantic completion."
+  ]
+}
