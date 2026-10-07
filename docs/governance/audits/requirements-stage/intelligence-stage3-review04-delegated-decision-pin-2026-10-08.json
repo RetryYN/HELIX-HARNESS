@@ -1,0 +1,308 @@
+{
+  "artefact_type": "delegated_l3_l10_decision_pin",
+  "decision_record": "docs/governance/decisions/helix-intelligence-stage3-l3-l10-delegated-decision-2026-10-08.md",
+  "decision_status": "recorded_pending_condition3",
+  "approved_content_revision": "352153f90587956964966b4590f31962c2946c84",
+  "review_base": "f14ac303d265b6d23ecb1847b5dfd52901a442c6",
+  "authority_effect": "effective_after_condition3_crosscheck_and_main_admission",
+  "condition_status": {
+    "condition1": "satisfied: Opus 5.5 no_findings; Major 0; unreviewed scope 0",
+    "condition2": "satisfied: Fable exact conclusion 承認してよい for same revision",
+    "condition3": "pending: independent review-side read-after of this record, formal body, delegation/rule pins, and six document bytes"
+  },
+  "scope": {
+    "mechanism": "HELIX-INTELLIGENCE",
+    "stage": 3,
+    "version_target": "1.0",
+    "approved_parents": [
+      "HELIXINTELLIGENCE-L2-001",
+      "HELIXINTELLIGENCE-L2-002",
+      "HELIXINTELLIGENCE-L2-003",
+      "HELIXINTELLIGENCE-L2-004",
+      "HELIXINTELLIGENCE-L2-005",
+      "HELIXINTELLIGENCE-L2-006",
+      "HELIXINTELLIGENCE-L2-007",
+      "HELIXINTELLIGENCE-L2-008",
+      "HELIXINTELLIGENCE-L2-009",
+      "HELIXINTELLIGENCE-L2-011",
+      "HELIXINTELLIGENCE-L2-012",
+      "HELIXINTELLIGENCE-L2-013",
+      "HELIXINTELLIGENCE-L2-014",
+      "HELIXINTELLIGENCE-L2-015",
+      "HELIXINTELLIGENCE-L2-016",
+      "HELIXINTELLIGENCE-L2-018",
+      "HELIXINTELLIGENCE-L2-019",
+      "HELIXINTELLIGENCE-L2-020",
+      "HELIXINTELLIGENCE-L2-067",
+      "HELIXINTELLIGENCE-L2-072",
+      "HELIXINTELLIGENCE-L2-073",
+      "HELIXINTELLIGENCE-L2-078"
+    ],
+    "boundary": "Stage 3 only; no other revision, stage, mechanism or parent; parent meaning/scope/owner/version unchanged"
+  },
+  "formal_review_comment": {
+    "id": 6041829827,
+    "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2658#issuecomment-6041829827",
+    "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2658",
+    "created_at": "2026-10-07T16:07:24Z",
+    "updated_at": "2026-10-07T16:07:24Z",
+    "reviewer": "Claude review_merge / Opus 5.5; Fable advisor claude-fable-5-1",
+    "body_utf8_bytes": 4308,
+    "body_sha256": "4f53a517dc339fb2a61a0348974e97a081fd3edb68fd32492581fede0d079b9c",
+    "body": "## review04（independent review、HEAD 352153f90587956964966b4590f31962c2946c84、merge-base f14ac303d265b6d23ecb1847b5dfd52901a442c6）\n\nreviewer: Claude（lane `review_merge`、**Opus 5.5**）。\n- 条件1：Opus 5.5のブラインド照合と、reviewerの確認で判定した。\n- 条件2：Fable advisor（claude-fable-5-1）が、次の資料を読み直して出した見解である。\n  - 6本文\n  - 固定親@633bf12（L2：007/011/015/019/067/072/078、L11：68/72/76/79/197–199/289–314/363–382/398–434）\n  - PO採択行（later35:122）\n\n### 静的確認\n- scfctl validate 147/0、stale 0、residuals 0\n- govcheck ok\n- `git diff --check` clean\n- `git merge-tree`：最新mainと衝突なし\n\n### review03（#6041244687）への対応\n- **M1は解消した。** CASE-072-07-09（FV:1597）の戻し先が、「要求／対象owner、特定できなければunknown」になった。\n  - 不合格条件に、「4区分外へ振り分ける」と「ownerを創作する」が入った。\n  - AC-072-12（FR:567）にも、「専用のINTELLIGENCE candidate owner区分は新設しない」と明記された。\n  - 4区分は、固定L2:573と一致する。\n- **M2は解消した。** nfr-grade.md:202が「配置条件3項目＋formal 5項目＝計8値」になり、nfr-verification.md:116、CASE-078-13a〜h、AC-078-12と一致した。\n- **M3は解消した。** AC-072-12とNFR-072-01の両方の行に、次の3点が記載された。candidate pack自身のversionとの区別も書かれている。\n  - BRAIN source identity/versionの欠落 → BRAIN（07-10a/10b）\n  - shadow評価evidenceの欠落 → LABO（07-11）\n  - HARNESS共通pack contract versionの欠落 → HARNESS（07-12）\n- **m12〜m15は解消した。**\n  - m12：067-06d/06eを追加した。\n  - m13：011-06cを、値の不一致に限った。単位の不一致は、既存の06dが受け持つ。\n  - m14：072-07-02〜09の不合格条件に、誤ったownerを足した。\n  - m15：BR/BVに007を足した。\n- **旧文と新文の突き合わせ（類型5）：** 削除・置換された文言は、どれも同等以上の条件か、別のCASEが受け持っている。弱くなった条件はない。\n- **前回までの指摘：** review01の3件、review02のA限定（Cを評価する経路がないこと）も、維持されている。\n\n### Major\nなし。前回までに返したMajor（review01の3件、review02の1件、review03の3件）は、すべて解消した。\n\n### Minor（返却しない。次に触るときに直せばよい）\n- m16：072-07-02/03/05/06/08/09の期待する観測は、「要求／対象owner、または特定できなければunknown」という条件付きである。fixtureがownerを特定できる設定かどうかを固定していないので、どちらの出力でも合格する。ただし、誤った完了は通らない。\n- m17：CASE-078-13a〜eは「他4値…変更しない」のままである。13f〜h（「残る7 field」）や、8値にしたNFR-078-01と、粒度がそろっていない。\n- m18：067-06d/06eは、receiptが正常で、出力値だけが不一致の場合も、LABOへ返す。011-06a型（保留）と扱いがそろっていない。\n- m19：BR:98とBV:102の再照合親の列挙に、015/019が入っていない。\n- m20：AC-072-03の対応文が、072-09〜12を結んでいない（既存の欠落）。\n\n### 委任条件の状態\n- **条件1（Opus `no_findings`）：成立。** Major 0。\n- **条件2（Fable）：成立。** 結論行は原文のまま「承認してよい」。\n- 条件1と2は、同じbody revision（352153f90）でそろった。\n- **条件3は未照合。** 判断記録の作成後に、6本文が次のSHA-256から変わっていないことを照合する。\n\n| 文書 | SHA-256 |\n|---|---|\n| L3-BR | `bde86431…cc44` |\n| L3-FR | `c19825b3…b82f` |\n| L3-NFR | `a50c5379…8681` |\n| L10-BV | `386251e6…1c4a` |\n| L10-FV | `aeefde17…13a0` |\n| L10-NFR | `f38e48d6…af12` |\n\n### Info\n2026-10-06の判断記録は、旧本文7c39f1fc0を承認対象にしたままである。新しいrevisionで判断記録を作り、旧記録は書き換えない。\n\n### 未確認範囲\nなし。差分外のStage 3の行は、review01〜03の照合を引き継いだ。\n",
+    "raw_api_snapshot": "/tmp/intelligence-stage3-review04-6041829827.json"
+  },
+  "delegation_rule": {
+    "delegation_path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+    "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220"
+  },
+  "operating_rule": {
+    "path": "docs/governance/github-upstream-operating-model.md",
+    "sha256": "eed2b774bb78545ac53c7d55f3ae3ab4e9c4f421b4eaf3ac3bcdbcdd869dd27b"
+  },
+  "fixed_source_pins": {
+    "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "l2_file": {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "full_file_bytes": 151600,
+      "full_file_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "spans": {
+        "L2-007:84-89": {
+          "lines": "84-89",
+          "utf8_bytes": 1029,
+          "sha256": "4153a89cbc9a7961d84055eff23987e88332a994070bf682840be7d782dfea4e"
+        },
+        "L2-011:108-113": {
+          "lines": "108-113",
+          "utf8_bytes": 1081,
+          "sha256": "0a2a1ccf96f44e4d8ccbba8d4663e47844dca60c5135d087d25f6d47504d3deb"
+        },
+        "L2-015:132-137": {
+          "lines": "132-137",
+          "utf8_bytes": 1069,
+          "sha256": "c0810714b20ff87871f00c72404ec59280b2017786737a9be389d664db6aae2b"
+        },
+        "L2-019:150-155": {
+          "lines": "150-155",
+          "utf8_bytes": 1078,
+          "sha256": "261d31b7cacf83443d8a9c29284afcd055d08a239ae7b354411d0a23fa5e65fc"
+        },
+        "L2-067:466-490": {
+          "lines": "466-490",
+          "utf8_bytes": 8387,
+          "sha256": "1b014aca5a6695d47f5bda2b2a0d7135265da95160b471bfccd141da9cb53378"
+        },
+        "L2-072:561-598": {
+          "lines": "561-598",
+          "utf8_bytes": 13144,
+          "sha256": "7329b3b66941fcbc737b5b22bef36a2067f58fe6c7481d93b29cc29a84d53d61"
+        },
+        "L2-078:646-658": {
+          "lines": "646-658",
+          "utf8_bytes": 8356,
+          "sha256": "855512dea63dfe30bdd768d8c59f75f278a3b8c2cceccc0177be6c81020dc292"
+        },
+        "L2-078:673-687": {
+          "lines": "673-687",
+          "utf8_bytes": 6047,
+          "sha256": "511c0083b8aaeab292ab348f488367b197516a9faaf92a44a27df1e80c6f21d8"
+        }
+      }
+    },
+    "l11_file": {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "full_file_bytes": 123549,
+      "full_file_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "spans": {
+        "L11:68": {
+          "lines": "68",
+          "utf8_bytes": 300,
+          "sha256": "adc60e27650bcc6e3ecb42cf1bd0df88c5784c91235b57b7d4cd5e0126eb158c"
+        },
+        "L11:72": {
+          "lines": "72",
+          "utf8_bytes": 284,
+          "sha256": "8adac0c5ba0a9d7c441831d37cc8f054788201f351fc5f1c5f74421af9e346c3"
+        },
+        "L11:76": {
+          "lines": "76",
+          "utf8_bytes": 319,
+          "sha256": "92ceff8a05f5528290e373c8a06e25cedd26a237c85bc7243dd6c8cd8b17cbf7"
+        },
+        "L11:79": {
+          "lines": "79",
+          "utf8_bytes": 257,
+          "sha256": "549485556f1bba679a95723a8975bb0bcdeec5bf8734d2c88cdc606f66598716"
+        },
+        "L11:197-199": {
+          "lines": "197-199",
+          "utf8_bytes": 2385,
+          "sha256": "33731be8acc58fc615b246af9910ecbd4d8f3ddbc2f13e47a3caa2eb4795aaa2"
+        },
+        "L11:289-314": {
+          "lines": "289-314",
+          "utf8_bytes": 7298,
+          "sha256": "381e9d205a6d9fdeb61ec453dfb0ea768c13af6200494544c42cdf67062d302a"
+        },
+        "L11:363-382": {
+          "lines": "363-382",
+          "utf8_bytes": 10082,
+          "sha256": "25ddd37dca1f19ec9582273f3981ebdb180bc9a5d5aa71936b21066766830e77"
+        },
+        "L11:398-434": {
+          "lines": "398-434",
+          "utf8_bytes": 11076,
+          "sha256": "9884a284fbaecc0134936e0b3772871974d5eb24d78c4ebbef22ebf2c6bbb194"
+        }
+      }
+    },
+    "po_adoption_row": {
+      "path": "docs/governance/decisions/po-decision-2026-10-03-later35.md",
+      "lines": "122",
+      "utf8_bytes": 280,
+      "sha256": "02e7675ac9116d9140a15bc603fbcf8ba30f01e66c3c6881c92d6bd4f43d8b64"
+    }
+  },
+  "legacy_source_boundary": {
+    "inventory_path": "docs/governance/audits/requirements-stage/intelligence-stage3-delegation-recheck-2026-10-07.md",
+    "inventory_sha256": "b6990bf91b63d25e33e45657e57f00204009059706fdff1e24901a0270426d6e",
+    "assets_read": [
+      {
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "locator": "214",
+        "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "disposition": "snapshot/digest, source-change staleness and fail-close meaning rederived; old runtime and agent flow not transferred"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+        "locator": "55,84",
+        "sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+        "disposition": "pack/shadow/review and prohibition relations used as comparison; old identity, runtime guard, lifecycle not mechanically transferred"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/requirements.json",
+        "locator": "#/HIL-NFR-34 (semantic source locator 214 above)",
+        "sha256": "asset snapshot identified in immutable legacy inventory; semantic source bytes pinned by 719D source",
+        "disposition": "retain bounded requirement atom; do not extend to full agent generation/lifecycle"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+        "locator": "663-666",
+        "sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+        "disposition": "task-class effort evidence, explicit unevaluated state, and no authority from score used as comparison/rederivation basis"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-437A6A68F9A9E0AE1B9E",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+        "locator": "43",
+        "sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+        "disposition": "unevaluated effort must not be guessed; read only, old test not run"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+        "locator": "55-67,73-88",
+        "sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+        "disposition": "R06/07/09-12 delta/source/invalidation/replay semantics boundedly reused; old schema/runtime/Issue route replaced"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "locator": "20-26,43,46",
+        "sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+        "disposition": "negative oracle intent rederived as independent field mutations; old runtime/test not run"
+      }
+    ],
+    "classification": "reuse / semantic rederivation / replacement recorded per asset above; old runtime/test/CLI/hooks/CI not executed"
+  },
+  "six_documents": [
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "sha256": "bde86431339e3464e9e893dcd4e2f7aa9f6b7a81035762938621a258e2b2cc44",
+      "bytes": 26115
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "sha256": "c19825b3fa82edaafd787bd092076bea910a89b99d13aa4c208b0c51e781b82f",
+      "bytes": 212378
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "sha256": "a50c5379206610db3dd730a230ad4a52657f9600f7c8363101e1603d59ac8681",
+      "bytes": 60263
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "sha256": "386251e6fd6097b8892ace2ba2db5c69ce009fdb843a1c5bca3996f8cf581c4a",
+      "bytes": 29633
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "sha256": "aeefde170f0087794bf86d3d3895c35c7646b5b7ec2a68666b90c4f0f35913a0",
+      "bytes": 731187
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "sha256": "f38e48d6dc2928009caa14147d675dd1d7572cd0f8c2c65c993fbe5dc43baf12",
+      "bytes": 55586
+    }
+  ],
+  "preserved_old_decision": {
+    "path": "docs/governance/decisions/helix-intelligence-stage3-l3-l10-po-decision-2026-10-06.md",
+    "sha256": "6d88abff1fee9759128759efe44664ad12197ade34db69bb384d1cee54edbf9e",
+    "old_content_revision": "7c39f1fc0553114214bb582e60297c62d61f3283",
+    "unchanged": true,
+    "inheritance": "not carried to current revision"
+  },
+  "nonreturned_minors": [
+    {
+      "id": "m16",
+      "disposition": "not returned; non-blocking",
+      "finding": "CASE-072-07-02/03/05/06/08/09 expected owner output is conditional but fixture does not lock which owner is available; either output passes, while wrong completion remains blocked"
+    },
+    {
+      "id": "m17",
+      "disposition": "not returned; non-blocking",
+      "finding": "CASE-078-13a-e says other four values unchanged while 13f-h says remaining seven; granularity mismatch"
+    },
+    {
+      "id": "m18",
+      "disposition": "not returned; non-blocking",
+      "finding": "067-06d/e routes to LABO when receipt is normal but output value mismatches, unlike 011-06a pending behavior"
+    },
+    {
+      "id": "m19",
+      "disposition": "not returned; non-blocking",
+      "finding": "BR:98 and BV:102 parent lists omit 015/019"
+    },
+    {
+      "id": "m20",
+      "disposition": "not returned; non-blocking",
+      "finding": "AC-072-03 crosswalk does not link 072-09..12"
+    }
+  ],
+  "validation": {
+    "performed": [
+      "formal comment body UTF-8 byte count and SHA-256 recalculated",
+      "six document worktree SHA-256 and byte counts before adding the decision record matched formal comment",
+      "fixed L2/L11 spans and full file hashes recalculated from exact 633bf12 Git bytes",
+      "PO adoption row hash recalculated from exact 633bf12 Git bytes",
+      "legacy inventory and listed source spans read/pinned",
+      "prior decision source/hash read; old decision untouched",
+      "govcheck and whitespace check run after adding only new files"
+    ],
+    "not_performed": [
+      "condition3 independent review-side read-after",
+      "PO post-confirmation",
+      "L10/runtime/test execution",
+      "old CLI/hooks/runtime/CI",
+      "commit/push/main integration"
+    ],
+    "authority_effect_current": "none_pending_condition3_and_main_admission"
+  },
+  "commit_push_main_integration": "not performed"
+}
