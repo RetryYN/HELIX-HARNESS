@@ -99,9 +99,9 @@
 | 親 | business扱い | L10で照合する境界 |
 |---|---|---|
 | `HELIXOS-L2-025` | 独立BRなし | service①〜⑦ unit/選択connection/composite正常と部分未見正常を区別し、unknown/stale/未許可/human-wait・後続版・OS製品化・LABO移管境界、未決authorityと後続受入への義務引継ぎを個別CASEで保持する。|
-| `HELIXOS-L2-026` | 独立BRなし | 要求source/contract/compatibility/recovery/permission/owner/human processと各dependency stateを独立CASEで照合し、空集合・安全省略・未決pack・未撤去WT・他stage boot・一層削除minimumと必要な検証を除いた過小構成の誤りを拒否する。|
-| `HELIXOS-L2-031` | 独立BRなし | 測定全field/適用scope、correctnessと性能、4弱化、escaped defect/mutation/flake、warm cache/review HEAD、lease/fence/artifact/fallback/DAG/cancel/exactly-once/causal traceを区別する。|
-| `HELIXOS-L2-047` | 独立BRなし | reason/evidence/根拠source revision、assignment/attempt/result/authority非継承、provider-only変更、参照両方向、旧証拠とnew revision、split/scope/backflow既存owner、検収oracle不足/Worker入力不足の正常返却を独立照合する。|
+| `HELIXOS-L2-026` | 独立BRなし | 要求source/contract/compatibility/recovery/permission/owner/human processと各dependency state、packごとの版・適用対象、要求確認→作業→検証→結果記録までの出力経路を独立CASEで照合する。空集合・安全省略・未決pack・未撤去WT・他stage boot・一層削除minimumと必要な検証を除いた過小構成の誤りを拒否する。|
+| `HELIXOS-L2-031` | 独立BRなし | wall-clock、runner-minute、failure feedback latency p50/p95、原因分類を含む測定全field/適用scope、Recovery Issueを正本にしない境界、correctnessと性能、4弱化、escaped defect/mutation/flake、warm cache/review HEAD、lease/fence/artifact/fallback/DAG/cancel/exactly-once/causal traceを区別する。|
+| `HELIXOS-L2-047` | 独立BRなし | reason/evidence/根拠source revision、元assignmentとの因果relation・未完義務追跡、assignment/attempt/result/authority非継承、provider-only変更、参照両方向、旧証拠とnew revision、split/scope/backflow既存owner、検収oracle不足/Worker入力不足の正常返却を独立照合する。|
 
 この表は機能CASEへの参照境界だけを示す。Stage一式の承認待ちを新たなgateとせず、上流意味変更が必要な個別項目だけを既存authorityへ戻す。
 

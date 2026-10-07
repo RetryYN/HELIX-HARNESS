@@ -559,6 +559,8 @@ HELIX自身と複数projectの対象revisionごとに、L2-015〜024のunit、�
 
 **AC-OS-L3-026-03 — 最小性の境界**：候補空間または適格条件・代替比較が不足した例を、閉包状態を保持した「最小性未立証」とする。代替比較がある通常例でも、固定L2が定めない段階数、pack数、taxonomyを追加せず、stage採択や外部作用を生成しない。
 
+**AC-OS-L3-026-05 — packの版・適用対象と一周の出力**：正常な導出結果では、各packの版と適用対象を個別に示し、同一の対象revision・scopeで要求確認→作業→検証→結果記録まで閉じる経路、未成立の能力、未解決依存・不足入力、人の担当と戻し先、代替構成比較を返す。packの版、適用対象、または結果記録までの経路を一つだけ欠落させた場合は、その不足を保持して該当source／pack ownerへ返し、完結した構成として扱わない。L2-014の構成体受入は別状態に保つ。
+
 ### `FR-OS-L3-031` — `HELIXOS-L2-031` CI性能計測と非縮退回収
 
 適用性能予算とその根拠、target/source/base HEAD、HARNESSが要求した検証義務・selected/skipped集合digest、profile、runner/environment/toolchain/platform/lockfile/artifact、cache、resource/exclusive状態、区間計測、exit code、output digest、母集団・期間・除外理由を同一run/receiptへ結ぶ。正しさ状態と性能状態を独立に返し、性能超過は同episodeの改善候補・未完義務へ結ぶ。内部CIと外部CIは環境・receiptを分ける。p50/p95の母集団・期間・不足を保持し、0や前回値で補わない。必須obligationを保った順序・並列度・runner・artifact reuseの改善だけを候補とし、検査削減、oracle緩和、timeout延長、外部CI先送り、security指標劣化を改善完了にしない。変更の再実行は既存ticket/assignment/authorityへ委ね、LABO提案や観測からCI設定・authorityを直接変更しない。計測条件不明は実行/計測owner、検証義務差分はHARNESS、資源不足はINFRASTRUCTUREへ戻す。
@@ -571,6 +573,10 @@ HELIX自身と複数projectの対象revisionごとに、L2-015〜024のunit、�
 
 **AC-OS-L3-031-03 — 非縮退回収**：必須検証削減、oracle閾値緩和、timeout延長、外部環境への義務先送りの各単独変異を改善と認定しない。escaped defect、mutation detection、flake、warm/cold cache、review HEAD、lease/fence並列、artifact binding、fallback telemetry/quota/DAG、cancelled success、exactly-once、causal traceを独立に照合する。改善前後receipt、必須集合非縮退、review、再検証が揃わなければ未完を保持する。
 
+**AC-OS-L3-031-05 — 固定L2の計測field完備**：同一run・scopeへ束縛した正常receiptでは、wall-clock、runner-minute、failure feedback latencyのp50/p95、予算超過の原因分類を含むL2-031の全測定fieldを区別して保持する。どれか一つだけ欠落・stale・scope不一致なら該当fieldを未評価として返し、0・前回値・別scopeの値で補わない。p50/p95の標本数・期間や性能閾値は新設しない。
+
+**Recovery Issueの正本境界**：L2-031のRecovery Issueは作業projectionとして扱い、要求または要求採否の正本として用いない。Recovery Issueだけを正本とする入力は不成立としてOSの既存要求ownerへ戻し、ticket・authority・既存証拠の状態を保持する。
+
 ### `FR-OS-L3-047` — `HELIXOS-L2-047` 理由付きticket返却と新revision
 
 発行済ticketの誤り・不足・矛盾を、理由、対象条件、source/revision/evidence、未完義務、returning actor/scopeとともに発行元OSへ戻し、元ticket identity/revision/assignmentとの因果関係を記録する。元revision bytesは保持し、対処内容を含む再発行は既存typed relation/lineageで新revisionへ結ぶ。旧assignment、Attempt、結果、authorityを新revisionへ暗黙に継承せず、新revisionの現行契約が明示的に適格化した場合だけ参照する。provider/actor/model/session/branch/worktree/lease/priority/progress/measurement等の運用属性変更だけでticket意味revisionを変えない。要求意味・scope変更やsplitは既存authority/Backflow ownerへ戻す。OSが発行/再発行を担い、LABO/INTELLIGENCE proposalやIssue/PRのclose/mergeからticket意味や完了を作らない。Ticket本文を成果物参照の結節点にしない。既存のplanning/typed relation適用範囲だけを照合し、特定graph配置や新relation型を導入しない。
@@ -580,6 +586,8 @@ HELIX自身と複数projectの対象revisionごとに、L2-015〜024のunit、�
 **AC-OS-L3-047-02 — 再発行と非継承**：対処済み新ticketを別revisionとして発行し、既存typed relationで旧revisionと結ぶ。assignment、Attempt、result、authorityを契約上の適格化なしに引き継がない。provider等の運用属性だけが変わるfixtureはticket意味revisionを変えない。
 
 **AC-OS-L3-047-03 — unknownとTicket非参照境界**：reason/evidence/根拠source revisionを別々に欠落させ、Assignment/Attempt/result/authorityの非継承を各々独立に確かめる。target/returner/source/scope/relationをそれぞれ単独でunknown/staleにした場合、当該ticketだけ未完として発行元へ返す。provider差だけでは仕事identityを変えない。Ticket→artifactとartifact→Ticketの参照を別々に拒否し、旧証拠/new revision stateを分離し、split/scope/backflowは既存ownerへ戻す。Issue/PR状態のみの完了推定も拒否する。
+
+**AC-OS-L3-047-05 — 元assignmentと未完義務の追跡**：正常な返却では、元ticket identity/revisionと元assignmentを同じ返却へ因果的に結び、返却時点の未完義務を新revisionの対処・検証・再発行後の状態まで追跡可能にする。元assignmentへのrelationまたは未完義務の追跡だけを欠落させる単独変異では再発行／返却を完了扱いせず、他の有効な状態と元revisionを保ったままOS issuerへ返す。新しいassignment、obligation schema、authorityは追加しない。
 
 ### Stage 5の旧source対応・保持と変更理由
 
