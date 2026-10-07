@@ -1,0 +1,26 @@
+{
+  "record_type": "immutable_main_integration_recheck",
+  "authority_effect": "none",
+  "scope": "HARNESS Stage5 review04 correction",
+  "preintegration": "ad53fb8cf",
+  "integration_head": "f0313c9973c833419720b2ac1416558e902a5a6b",
+  "main": "f14ac303d265b6d23ecb1847b5dfd52901a442c6",
+  "six_document_sha256": {
+    "docs/helix-harness/L3-requirements/business-requirements.md": "9fb531a55c61c4836ae614cadbd850f3967119cb1f0f2eb36dad1e39ebab75e2",
+    "docs/helix-harness/L3-requirements/functional-requirements.md": "bd038522d001d95229fb2e96e7f88f2adfe82a30b927224a42246b74aa378c0c",
+    "docs/helix-harness/L3-requirements/nfr-grade.md": "ee84bc87ff324eea929d266934c0debb856018aca25c0044f68b11c141c3263d",
+    "docs/helix-harness/L10-verification/business-verification.md": "864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad",
+    "docs/helix-harness/L10-verification/functional-verification.md": "191dcb11cb400c10516e2a437314ffea60de97cb7432091ff6ee47f964640e9a",
+    "docs/helix-harness/L10-verification/nfr-verification.md": "b8a2ac27f92d9023dd3c24f7f3e16f6647e18e9272f2b3d94b7ced721b427386"
+  },
+  "comparisons": {
+    "docs/helix-harness/L3-requirements/business-requirements.md": "full byte-identical",
+    "docs/helix-harness/L3-requirements/functional-requirements.md": "Stage5 block byte-identical",
+    "docs/helix-harness/L3-requirements/nfr-grade.md": "full byte-identical",
+    "docs/helix-harness/L10-verification/business-verification.md": "full byte-identical",
+    "docs/helix-harness/L10-verification/functional-verification.md": "Stage5 block byte-identical",
+    "docs/helix-harness/L10-verification/nfr-verification.md": "full byte-identical"
+  },
+  "review": "latest6 must be reread Opus/Fable; earlier review not inherited",
+  "fixture_execution": false
+}
