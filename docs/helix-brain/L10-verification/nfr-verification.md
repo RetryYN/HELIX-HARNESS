@@ -4,8 +4,8 @@
 
 | 親L2 | 測定項目・入力/変異 | L10判定材料（AC/L10 trace） | 限界 |
 |---|---|---|---|
-| `HELIXBRAIN-L2-007` | required field coverage: 全8 fieldを満たすnormal fixture、および各fieldを個別にmissing/stale/wrong revisionへ変える。 | 8/8各fieldのsource trace、missing reason、candidate維持、accepted/mature誤遷移0候補を観測。`BRAIN-007-AC-01/02`; C01–C03,C05,C06,C09。 | 実績数/verifier人数は測らず、新しいthresholdにしない。 |
-| `HELIXBRAIN-L2-007` | false promotion: AI-generated-only、single success-only、counterexample/limitation欠落、LABO target revision mismatchと、LABO評価／OS登録／OS振分け／独立検証のみを採否へ代用する4変異を個別投入。 | accepted/mature遷移なし。不足field/sourceとLABO評価対象revision mismatchを区別しowner stateを観測。`BRAIN-007-AC-02`; C02–C05,C07。 | 未実行の設計候補。 |
+| `HELIXBRAIN-L2-007` | required provenance group coverage: 7 provenance group（source identity/revision、provenance、evidence、adopted reason、evaluated scope、counterexample、limitation）とLABO評価対象revisionの計8 groupを満たすnormal fixtureを使う。 | 8/8 group trace、missing reason、candidate維持、accepted/mature誤遷移0候補を観測。source identity/revisionは同一group内の別atomic fieldとして個別にmissing/stale/dangling/mismatchへ変異し、LABO対象revisionの欠落と不一致はC10/C05で別々に照合する。`BRAIN-007-AC-01/02`; C01–C03,C05,C06,C09,C10。 | group分母8とsource identity/revisionを分けたatomic mutant集合を混同しない。実績数/verifier人数は測らず、新しいthresholdにしない。 |
+| `HELIXBRAIN-L2-007` | false promotion: AI-generated-only、single success-only、counterexample/limitation欠落、LABO target revision missing/mismatchと、LABO評価／OS登録／OS振分け／独立検証のみを採否へ代用する4変異を個別投入。 | accepted/mature遷移なし。不足field/sourceとLABO評価対象revisionの欠落・不一致を区別しowner stateを観測。`BRAIN-007-AC-02`; C02–C05,C07,C10。 | 未実行の設計候補。 |
 | `HELIXBRAIN-L2-008` | state distinction/pin stability: 5 named stateを個別入力し、Product CoreがRを参照後にR superseded/R2追加する。R参照にR2を返す変異と同revision Rの内容を書き換える変異を個別投入する。 | stateを別値として保持し既存Core R参照とOS usageを維持、owner状態を分離。黙った置換の各変異を拒否／検出しBRAINへ戻す。`BRAIN-008-AC-01/02`; C01,C07,C08,C09。 | state遷移順やretentionは追加しない。 |
 | `HELIXBRAIN-L2-008` | unknown handling: identity/revision/state unknown/conflict、actual version欠落、version_targetのactual代用を個別投入。 | currentへの暗黙解決なし、candidate use停止、BRAIN知識stateとOS project-useの相互writebackなし。`BRAIN-008-AC-02`; C02,C03。 | state名・version grammarを新設しない。 |
 | `HELIXBRAIN-L2-028` | range/identity matrix: BRAIN-L2-028が指定するdescriptorと採択HARNESS L2-010/011のpack/call境界依存を分け、合成fixtureが宣言するrangeの内側・外側・欠落・解釈未確定を試す（fixture値は試験入力のみ）、descriptor/knowledge fieldを独立変異。 | 宣言range内かつ全field整合時だけapplicable。outside/unknown/mismatchは停止し、knowledge側はBRAIN（L2-008）、descriptor/range側はHARNESS ownerへ戻す。`BRAIN-028-AC-01/02`; C01–C04,C07。 | 固定L2にrange syntax/comparatorはないため製品規則として採択しない。range field自体がfixtureに欠ける場合、その枝は未評価/unknown。 |
@@ -108,6 +108,6 @@ L2-024/025の固定sourceは独立数値NFRを指定していないため、NFR 
 | 親L2 | NFR L10判定 | functional CASE参照 |
 |---|---|---|
 | `HELIXBRAIN-L2-024` | 独立NFRなし。実測や性能達成の主張はない。 | `BRAIN-024-AC-01/02`、functional fixture `L10-BRAIN-024-C01`–`C45` |
-| `HELIXBRAIN-L2-025` | 独立NFRなし。独立検証stateはfunctional oracleであり性能目標ではない。 | `BRAIN-025-AC-01`〜`BRAIN-025-AC-05`、functional fixture `L10-BRAIN-025-C01`–`C52` |
+| `HELIXBRAIN-L2-025` | 独立NFRなし。独立検証stateはfunctional oracleであり性能目標ではない。 | `BRAIN-025-AC-01`〜`BRAIN-025-AC-06`、functional fixture `L10-BRAIN-025-C01`–`C70` |
 
 旧RCLS shadow判定値は現行NFR/合格基準として使用しない。

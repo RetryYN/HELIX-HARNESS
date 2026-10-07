@@ -4,7 +4,7 @@
 
 | 親L2 | 独立business判定 | L10参照 |
 |---|---|---|
-| `HELIXBRAIN-L2-007` | 固定親から独立business outcomeなし。 | `BRAIN-007-AC-01/02`を`functional-verification.md`のC01–C09で照合。 |
+| `HELIXBRAIN-L2-007` | 固定親から独立business outcomeなし。 | `BRAIN-007-AC-01/02`を`functional-verification.md`のC01–C10で照合。 |
 | `HELIXBRAIN-L2-008` | 固定親から独立business outcomeなし。 | `BRAIN-008-AC-01/02`を`functional-verification.md`のC01–C09で照合。 |
 | `HELIXBRAIN-L2-028` | 固定親から独立business outcomeなし。 | `BRAIN-028-AC-01/02`を`functional-verification.md`のC01–C08で照合。 |
 
@@ -91,6 +91,6 @@
 | 親L2 | 独立business判定 | functional L10参照 |
 |---|---|---|
 | `HELIXBRAIN-L2-024` | 独立business outcomeなし。 | `BRAIN-024-AC-01`、`BRAIN-024-AC-02`。functional CASE `L10-BRAIN-024-C01`–`C45` |
-| `HELIXBRAIN-L2-025` | 独立business outcomeなし。 | `BRAIN-025-AC-01`〜`BRAIN-025-AC-05`。functional CASE `L10-BRAIN-025-C01`–`C52` |
+| `HELIXBRAIN-L2-025` | 独立business outcomeなし。 | `BRAIN-025-AC-01`〜`BRAIN-025-AC-06`。functional CASE `L10-BRAIN-025-C01`–`C70` |
 
 旧RCLS-AC-017由来のcross-project human approvalやshadow metricを別business acceptanceとして追加しない。

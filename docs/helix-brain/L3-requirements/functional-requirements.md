@@ -29,19 +29,21 @@ Pattern / Unit / Part候補を、source identity・revision、provenance、evide
 
 ### 受入条件（AC候補）
 
-- **BRAIN-007-AC-01 — 正常・追跡**：完全なsource/evidenceとscopeがあり、LABO対象revisionがcandidate revisionに一致する場合、採否前candidateの各owner stateを分離し由来を追跡する。既存契約に沿って採用済みの記録も、同じsource/evidenceからLABO評価、OS登録・振分け、独立検証および採否根拠まで辿れる。新しい判定閾値・actor承認は設けない。
-- **BRAIN-007-AC-02 — 異常・境界**：source identity/revision、provenance、evidence、adopted reason、evaluated scope、counterexample、limitationのいずれか欠落・stale・不一致、LABO評価を未実施なのに評価済みとする入力、LABO対象revisionの不一致、AI生成のみまたは実績一件のみでaccepted/matureとする入力は不成立。採用状態にしない理由と不足項目を示し、根拠欠落・staleはcandidateに保って未採用候補へ戻してpromotionを停止し、評価未実施・対象revision不一致はLABOの既存評価契約へ、上流意味変更は該当L1へ戻す。LABO評価、OS登録・振分け、BRAIN独立検証、採否の4状態を相互に代用しない。
+**必須groupは8つ**：source identity/revision、provenance、evidence、adopted reason、evaluated scope、counterexample、limitationの7 provenance groupに、LABO評価対象revisionを加える。source identityとsource revisionは同一provenance group内で別々に検査するatomic fieldであり、group数とatomic mutant数を混同しない。
+
+- **BRAIN-007-AC-01 — 正常・追跡**：8つの必須groupが揃い、LABO対象revisionがcandidate revisionに一致する場合、採否前candidateの各owner stateを分離し由来を追跡する。既存契約に沿って採用済みの記録も、同じsource/evidenceからLABO評価、OS登録・振分け、独立検証および採否根拠まで辿れる。新しい判定閾値・actor承認は設けない。
+- **BRAIN-007-AC-02 — 異常・境界**：8つの必須groupのいずれかの欠落・stale・不一致、source identity/revision各atomic fieldの個別欠落・stale・不一致、LABO評価未実施なのに評価済みとする入力、AI生成のみまたは実績一件のみでaccepted/matureとする入力は不成立。採用状態にしない理由と不足項目を示し、根拠欠落・staleはcandidateに保って未採用候補へ戻してpromotionを停止し、評価未実施・LABO対象revision不一致/欠落はLABOの既存評価契約へ、上流意味変更は該当L1へ戻す。LABO評価、OS登録・振分け、BRAIN独立検証、採否の4状態を相互に代用しない。
 
 ### 固定親句の被覆
 
 | 固定L2/L11の句・条件 | 要件／AC | 対応L10 case | 観測する状態・動作 |
 |---|---|---|---|
-| 入力／trace：Pattern・Unit・Part候補とsource、provenance、evidence、採用理由、evaluated scope、counterexample、limitation、LABO対象revision | `BRAIN-007-FR-01 / BRAIN-007-AC-01` | `L10-BRAIN-007-C01,C02,C03,C05` | 全field、source/revision、scope、LABO評価対象revision |
+| 入力／trace：Pattern・Unit・Part候補と8必須group（7 provenance group＋LABO対象revision） | `BRAIN-007-FR-01 / BRAIN-007-AC-01` | `L10-BRAIN-007-C01,C02,C03,C05,C10` | 8 groupの被覆とLABO評価対象revision。source identity/revisionは同一group内で別atomic fieldとして照合 |
 | 出力・責務：由来から採用状態まで追跡し、LABO評価、OS登録・振分け、BRAIN独立検証・採否は別状態 | `BRAIN-007-FR-01 / BRAIN-007-AC-01` | `L10-BRAIN-007-C01,C07,C08` | candidateと既採用record双方のsource-to-decision trace、各owner別state |
 | 否定・失敗：AI生成だけまたは一件の実績だけではaccepted/matureにしない | `BRAIN-007-AC-02` | `L10-BRAIN-007-C04` | 誤昇格0 |
-| 戻し先：source/evidence欠落時はcandidateへ戻しpromotionを止める。上流意味変更だけL1へ戻す | `BRAIN-007-AC-02` | `L10-BRAIN-007-C02,C03,C05` | 不足field・停止状態・未採用候補／LABO／該当L1戻し先 |
+| 戻し先：source/evidence欠落時はcandidateへ戻しpromotionを止める。LABO評価未実施・対象revision欠落/不一致はLABOへ戻す。上流意味変更だけL1へ戻す | `BRAIN-007-AC-02` | `L10-BRAIN-007-C02,C03,C05,C10` | 不足field・停止状態・未採用候補／LABO／該当L1戻し先 |
 | 依存・版：L1-007、L2-011/025、LABO→BRAIN `HELIXBRAIN-L2-020`、version 1.0 | `BRAIN-007-FR-01 / BRAIN-007-AC-01,AC-02` | `L10-BRAIN-007-C01,C05` | 依存revisionとcandidate/LABO対象revisionを照合し、version_targetを実装・採否と混同しない |
-| L11正常・反例caseのAC/L10結合 | `BRAIN-007-AC-01, BRAIN-007-AC-02` | `L10-BRAIN-007-C01`〜`L10-BRAIN-007-C09` | scope/counterexample欠落、revision mismatch、stale evidence、別owner receipt、採用済み記録を各fixtureで区別し、該当状態と戻し先を観測 |
+| L11正常・反例caseのAC/L10結合 | `BRAIN-007-AC-01, BRAIN-007-AC-02` | `L10-BRAIN-007-C01`〜`L10-BRAIN-007-C10` | 8 group coverage、source identity/revisionの別atomic変異、LABO対象revision欠落/不一致、scope/counterexample欠落、stale evidence、別owner receipt、採用済み記録を区別し、該当状態と戻し先を観測 |
 
 LABOへ評価を返す出典は、同PO固定revisionの`docs/helix-brain/L2-requirements/brain-requirements.md:414-423`（L2-020、失敗時の戻し先421行）である。評価と対象revisionが結べない場合はunknown候補として止め、LABOへ評価を返す。007のsource/evidence不足は未採用候補へ戻してpromotion停止を保つ。
 
@@ -726,11 +728,13 @@ BRAIN→HARNESS-CORE query/receipt接続において、常時必須のconnection
 
 **依存・版・戻し先**：L2-007/008/009/011/012/020、必要な場合のみL2-INFRA-017、LABO/OS/BRAIN change contracts。source/evaluation不足はLABO、登録・進行はOS、BRAIN changeのindependent verificationはBRAIN change owner、知識意味は該当L1、製品固有意味はProduct Coreへ戻す。unknown/hold/rejectはaccepted/matureへ進めない。`version_target: 1.0`。
 
-- **BRAIN-025-AC-01 — 正常な状態別trace**：内部candidateから始まり、source/provenance/revision、LABO evaluationの対象scope/method/result/failure/counterexample/unassessed range、OS registration/routing、BRAIN change revisionのindependent verificationと結果、最後の採否を個別owner・identity・対象revision付きで示す。全前提が固定契約どおり揃う場合に限りadoption stateへ進み、意味を変えない技術差分にhuman approvalを追加しない。
+- **BRAIN-025-AC-01 — 正常な状態別trace**：内部candidateから始まり、source/provenance/revision、LABO evaluationの対象scope/method/result/failure/counterexample/unassessed range、OS registration/routing、BRAIN change revisionのindependent verificationと結果、最後の採否を個別owner・identity・対象revision付きで示す。全前提が固定契約どおり揃う場合に限りadoption stateへ進み、意味を変えない技術差分にhuman approvalを追加しない。提供する未完義務・finding・反例の各receiptについて、入力sourceにあるidentity・内容・担当owner・対象revisionが出力でも一致する。これらの残余を消去して採否完了とはしない。
 - **BRAIN-025-AC-02 — 入力欠落・誤昇格**：source identity、provenance、candidate revision、LABO evaluation identity、evaluation scope、method、result、failure、counterexample、未評価範囲、OS registration/routing state、BRAIN change identity、BRAIN change revision、independent verification evidence、independent verification resultの各欠落を単独で与える。どれもsuccess/accepted/matureに丸めず、欠落fieldと担当ownerを示し、該当段階のまま保留する。AI生成のみ、単一成功のみ、LABO評価のみ、OS ticketのみ、文書存在のみからの昇格をそれぞれ独立に拒否する。
 - **BRAIN-025-AC-03 — 順序・revision・owner**：各receiptが存在していても、LABO評価より前に記録されたOS登録、OS振分けより前に記録されたBRAIN検証、independent verificationより前に記録されたadoptionは順序不成立として拒否する。receiptの存在は保持し、欠落/unknownへ読み替えない。評価対象とcandidate revisionの不一致、評価後にcandidate revisionだけが変化した状態、OS/LABO/BRAINのownerまたはstate取り違え、verification subject revision不一致をそれぞれ独立に拒否する。状態は推測で補わずunknownまたは保留を返し、誤ったownerへ書き戻さない。
-- **BRAIN-025-AC-04 — 正常なhold/rejectとmaturity適用条件**：根拠あるholdおよびrejectを正規終端状態として保持し、accepted/matureへ昇格させない。Infrastructure candidateでmaturityを扱うfixtureではL2-INFRA-017の状態/evidenceを対象revisionへ結ぶ。Infrastructureでない候補ではmaturity判定を不要とし、当該親の他の受入条件を満たす正常pathを認める。選択したmaturity state/evidence/revisionがunknownまたは不一致なら保留し、未選択candidateへ一律適用しない。
+- **BRAIN-025-AC-04 — 正常なhold/rejectとmaturity適用条件**：根拠あるholdおよびrejectを正規終端状態として保持し、accepted/matureへ昇格させない。Infrastructure candidateでmaturityを扱うfixtureではL2-INFRA-017の状態/evidenceを対象revisionへ結ぶ。Infrastructureでない候補ではmaturity判定を不要とし、当該親の他の受入条件を満たす正常pathを認める。選択したmaturity state/evidence/revisionがunknownまたは不一致なら保留し、未選択candidateへ一律適用しない。maturity evidenceの不足・対象revision不一致はsource/evaluation不足としてLABOへ返す。L2-INFRA-017は参照契約であって返却ownerにはしない。
 - **BRAIN-025-AC-05 — 製品固有意味の分離**：製品要求/業務規則/製品判断がcandidateに含まれるときgeneric BRAIN knowledgeへ昇格せず該当Product Coreへ返す。generic meaningとproduct-specific remainderを区別できる候補は、固定L2の他条件に従って評価を続ける。
+
+- **BRAIN-025-AC-06 — 提供receiptの個別照合**：AC-01の他条件を保ち、finding・未完義務・反例の各receiptについて、欠落、内容改変、owner取り違え、対象revision不一致を一項目ずつ独立に与える。既知のreceipt分類は固定L2-025:471の戻し先へ対応させる：source/evaluationに属するfinding・反例はLABO、登録/進行に属する未完義務はOS、知識意味は該当L1、BRAIN変更検証はBRAIN change ownerへ戻す。元sourceの内容・owner・対象revisionは保持する。元owner自体がunknownならそのunknownを保ち推定しない。分類と戻し先もunknownなら進行を保留し完了させない。receiptの存在だけで残余解消や採否完了を生成しない。
 
 
 | 親 | AC | 明示CASE trace |
@@ -739,6 +743,7 @@ BRAIN→HARNESS-CORE query/receipt接続において、常時必須のconnection
 | `HELIXBRAIN-L2-024` | `BRAIN-024-AC-02` | `L10-BRAIN-024-C03`–`L10-BRAIN-024-C39`（索引C10/C15を含む）、`L10-BRAIN-024-C41`–`L10-BRAIN-024-C45` |
 | `HELIXBRAIN-L2-025` | `BRAIN-025-AC-01` | `L10-BRAIN-025-C01`, `L10-BRAIN-025-C33`, `L10-BRAIN-025-C46` |
 | `HELIXBRAIN-L2-025` | `BRAIN-025-AC-02` | `L10-BRAIN-025-C02`, `L10-BRAIN-025-C03`, `L10-BRAIN-025-C04`, `L10-BRAIN-025-C05`, `L10-BRAIN-025-C06`, `L10-BRAIN-025-C10`, `L10-BRAIN-025-C11`, `L10-BRAIN-025-C12`, `L10-BRAIN-025-C13`, `L10-BRAIN-025-C14`, `L10-BRAIN-025-C15`, `L10-BRAIN-025-C16`, `L10-BRAIN-025-C17`, `L10-BRAIN-025-C18`, `L10-BRAIN-025-C19`, `L10-BRAIN-025-C20`, `L10-BRAIN-025-C21`, `L10-BRAIN-025-C22`, `L10-BRAIN-025-C35`, `L10-BRAIN-025-C36`, `L10-BRAIN-025-C50`, `L10-BRAIN-025-C51`, `L10-BRAIN-025-C52` |
-| `HELIXBRAIN-L2-025` | `BRAIN-025-AC-03` | `L10-BRAIN-025-C07`, `L10-BRAIN-025-C08`, `L10-BRAIN-025-C09`, `L10-BRAIN-025-C23`, `L10-BRAIN-025-C24`, `L10-BRAIN-025-C25`, `L10-BRAIN-025-C26`, `L10-BRAIN-025-C34`, `L10-BRAIN-025-C37`–`L10-BRAIN-025-C45` |
+| `HELIXBRAIN-L2-025` | `BRAIN-025-AC-03` | `L10-BRAIN-025-C07`, `L10-BRAIN-025-C08`, `L10-BRAIN-025-C09`, `L10-BRAIN-025-C23`, `L10-BRAIN-025-C24`, `L10-BRAIN-025-C25`, `L10-BRAIN-025-C26`, `L10-BRAIN-025-C34`, `L10-BRAIN-025-C37`–`L10-BRAIN-025-C45`, `L10-BRAIN-025-C67` |
 | `HELIXBRAIN-L2-025` | `BRAIN-025-AC-04` | `L10-BRAIN-025-C27`, `L10-BRAIN-025-C28`, `L10-BRAIN-025-C29`, `L10-BRAIN-025-C30`, `L10-BRAIN-025-C47`, `L10-BRAIN-025-C48`, `L10-BRAIN-025-C49` |
 | `HELIXBRAIN-L2-025` | `BRAIN-025-AC-05` | `L10-BRAIN-025-C31`, `L10-BRAIN-025-C32` |
+| `HELIXBRAIN-L2-025` | `BRAIN-025-AC-06` | `L10-BRAIN-025-C53`–`L10-BRAIN-025-C66`, `L10-BRAIN-025-C68`–`L10-BRAIN-025-C70` |

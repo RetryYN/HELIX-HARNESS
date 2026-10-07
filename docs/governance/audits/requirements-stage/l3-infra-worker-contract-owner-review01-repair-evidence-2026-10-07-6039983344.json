@@ -1,0 +1,241 @@
+{
+  "record_type": "infra_stage5_worker_contract_owner_review01_repair_evidence",
+  "record_id": "l3-infra-worker-contract-owner-review01-repair-2026-10-07-6039983344",
+  "language": "ja",
+  "status": "draft_static_repair_evidence_not_independent_review_or_approval",
+  "authority_effect": "none",
+  "scope": "HELIX-INFRASTRUCTURE Stage5 parent 011のWorker共通実行契約owner correction。M1-M3/m1-m4の修正候補。SECURITY Stage1 parent033、resource/recovery source owner判断は対象外。",
+  "worktree": {
+    "path": "/home/tenni/.helix-worktrees/l3-infra-worker-owner-correction",
+    "branch": "codex/l3-infra-worker-owner-correction",
+    "base": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+    "head_before_repair": "01f6b8ca0a846b5cdec22750056be9540cb5dbbe"
+  },
+  "formal_review01": {
+    "pr": 2659,
+    "comment_id": 6039983344,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2659#issuecomment-6039983344",
+    "reviewed_head": "01f6b8ca0a846b5cdec22750056be9540cb5dbbe",
+    "base": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+    "body_sha256_utf8": "abf91b44e3bc916cf3574a2164b2bfa0c14d66219e75be52e134e1222127f090",
+    "major_findings": 3,
+    "minor_findings": 4,
+    "review_outcome": "Both delegated conditions found blockers; rerun condition 1 and condition 2 on a corrected exact revision."
+  },
+  "previous_correction_records_immutable": [
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-infra-worker-contract-owner-correction-2026-10-07-6038681135.md",
+      "sha256": "721e9ba52894d20c7c4c4d34ad70800a8651aa7bf23be854b92082910dee034e",
+      "immutable": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-infra-worker-contract-owner-correction-evidence-2026-10-07-6038681135.json",
+      "sha256": "1dee9e0931a50c31534588b04ecc76d127b404829cdb269152149dd612452313",
+      "immutable": true
+    }
+  ],
+  "prior_false_completion_claim": {
+    "path": "docs/governance/audits/requirements-stage/l3-infra-worker-contract-owner-correction-evidence-2026-10-07-6038681135.json",
+    "json_pointer": "/static_checks/all_worker_common_contract_owner_unknowns_resolved",
+    "recorded_value": true,
+    "correction": "That value overstated completion because L10 CASE-049/050/051 and L3 CASE-071 still had generic unknown ownership in the reviewed content. This supplement supersedes only the historical completeness claim; prior record bytes remain unchanged."
+  },
+  "fixed_parent_source_pins": [
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "byte_length": 153353,
+      "full_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "spans": [
+        {
+          "start_line": 538,
+          "end_line": 538,
+          "sha256_raw_lf": "b1e3c7676204bfd40d924be4ece646a5e859c4d4ece9394fc967e577201f15b7"
+        },
+        {
+          "start_line": 549,
+          "end_line": 549,
+          "sha256_raw_lf": "3aa2cf12d06d0354167ecf42007aae9fc459fd5a6113393feb0c385c39316895"
+        }
+      ]
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "byte_length": 60825,
+      "full_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "spans": [
+        {
+          "start_line": 132,
+          "end_line": 132,
+          "sha256_raw_lf": "b690da9344c3b3b5dc728d837f991250dd7d0756cdc97fe75c51da137116e654"
+        },
+        {
+          "start_line": 292,
+          "end_line": 292,
+          "sha256_raw_lf": "37fb90f605a39ba287345e28f5417029d19b9f31bf8ceeacc46f078e0b926f49"
+        },
+        {
+          "start_line": 294,
+          "end_line": 294,
+          "sha256_raw_lf": "a31830c03e5c7a48e03149b5fef65aff8bbca2d39a0b19460ee23b0ba822b660"
+        }
+      ]
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "byte_length": 40777,
+      "full_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "spans": [
+        {
+          "start_line": 148,
+          "end_line": 148,
+          "sha256_raw_lf": "228fcdd6375a8a6552b458b1c0324d11d7fe954d0109e2c59389ba8a1521f3b0"
+        }
+      ]
+    },
+    {
+      "revision": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+      "path": "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md",
+      "byte_length": 17732,
+      "full_sha256": "1c93bf0aadccfdf6b536a32d3923a17fbd00a1fd830850f9369b5b6d6b12efb2",
+      "spans": [
+        {
+          "start_line": 87,
+          "end_line": 88,
+          "sha256_raw_lf": "5c972879512d83fea55057daf193c271b16d58540a7274d756ed1b35457f2093"
+        }
+      ]
+    }
+  ],
+  "legacy_source_pins": [
+    {
+      "revision": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+      "byte_length": 14499,
+      "full_sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+      "spans": [
+        {
+          "start_line": 55,
+          "end_line": 60,
+          "sha256_raw_lf": "5ef2909bde56e5ca52dee82c6ff7f0eb0b3bb1735296403d2a383c9239cf469c"
+        },
+        {
+          "start_line": 95,
+          "end_line": 99,
+          "sha256_raw_lf": "cdd8f7dddcdd7f67c9c4f2ceb1a3f3b7b4df1a1ac66e2ba46b0577b6d0fbe70a"
+        },
+        {
+          "start_line": 129,
+          "end_line": 129,
+          "sha256_raw_lf": "63e5401c84b6d9adc05d3aaf86f26de8ac35ee1aff2e83b26a135c077cc06cd7"
+        }
+      ]
+    },
+    {
+      "revision": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "byte_length": 4857919,
+      "full_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "spans": [
+        {
+          "start_line": 497,
+          "end_line": 497,
+          "sha256_raw_lf": "864692d438c74a029739105d9faeac33fa2906e5c27d11c83c160a03e7ad12cd"
+        }
+      ]
+    }
+  ],
+  "legacy_mapping": {
+    "asset_id": "LEGACY-ASSET-9114D4E463E95B67DD0C",
+    "treatment": "旧sourceはversioned Worker descriptor、隔離された実行、receipt/evidence意味の出自として保持。旧owner allocation/CLI/wrapper/sandbox/runtime/testを移植・実行しない。現行common contract ownerはPO decision 87-88と固定OS L2-004:538からHELIX-OSへ再導出。resource/authority/placement ownershipは各固定親の責務分担を維持。"
+  },
+  "repairs": [
+    {
+      "finding": "M1",
+      "status": "修正候補",
+      "response": "L10 CASE-049/050/051のWorker共通contract source ownerをHELIX-OSへ訂正。具体identity/revision/source unknownは別状態で保持。resource source owner unknownは維持。"
+    },
+    {
+      "finding": "M2",
+      "status": "修正候補",
+      "response": "L3 CASE-071のcontract missingをHELIX-OS contract ownerへ返し、L10と期待を一致。別の固定親未特定ownerだけunknown。"
+    },
+    {
+      "finding": "M3",
+      "status": "監査訂正",
+      "response": "以前の補正記録の「CASE049-051もOSへ直した」「all_worker...resolved=true」がHEAD本文と不一致だったことを明示。この追補が完了主張を訂正し、旧記録は変更しない。"
+    },
+    {
+      "finding": "m1",
+      "status": "修正候補",
+      "response": "source responsibility split locatorsをgovernance-requirements.md:549、infrastructure-requirements.md:292へ訂正。L2-004 IDとphysical line 538を表記上分離。"
+    },
+    {
+      "finding": "m2",
+      "status": "修正候補",
+      "response": "項目07、L3 CASE-019、L10 CASE-047でresource shortage、OS condition、SECURITY conditionを各既存ownerへ戻すと明示。"
+    },
+    {
+      "finding": "m3",
+      "status": "修正候補",
+      "response": "項目17のOOB contract identity/revision/source missing/unknown/staleは未完保持。OS停止中はOS runtime/ticket/通常L2-009 responseに依存せず、OS復帰後に未完状態とoperation/resultをWork/Changeへ同期し、OS contract ownerへ返す（固定L11:148）。"
+    },
+    {
+      "finding": "m4",
+      "status": "修正候補",
+      "response": "以前のaudit locatorを訂正し、line 549/292の実在source spanへ対応。"
+    }
+  ],
+  "body_document_pins": [
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "sha256": "425d0746efe875dbfbeebc26562adea99a3cdd8e8ef6377a0164bca1d624cc2d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "sha256": "163107e7cd9d6ef04f38b5ffd974f487b96a9501980f27e37a9d2095099a9a52"
+    }
+  ],
+  "static_verification": {
+    "git_diff_check": "clean",
+    "checks": [
+      "target Worker common-contract owner unknown statements removed from FR/FV while resource/recovery source unknown remains",
+      "L3/FV CASE-049/050/051 common contract owner matches HELIX-OS",
+      "L3 CASE-071 missing contract returns to HELIX-OS and matches FV",
+      "item07 / L3 CASE-019 / FV CASE-047 preserve OS and SECURITY return categories",
+      "item17 retains OS-outage no-runtime/ticket/normal-L2-009 dependency and post-recovery L11:148 synchronization",
+      "citation ID vs physical line notation is unambiguous",
+      "previous correction audit files unchanged"
+    ],
+    "fixtures_executed": false,
+    "old_cli_runtime_test_ci_executed": false,
+    "new_ci_executed": false
+  },
+  "authority_boundary": {
+    "l3_approval": "not_created",
+    "implementation_permission": "not_created",
+    "execution_permission": "not_created",
+    "security_authority_or_isolation_policy_changed": false
+  },
+  "not_performed": [
+    "commit",
+    "push",
+    "PR comment",
+    "Ready",
+    "merge",
+    "fixture execution",
+    "old CLI/runtime/test/CI",
+    "new CI"
+  ],
+  "verification_limits": [
+    "These are producer-side static corrections, not independent review.",
+    "Formal Opus/Fable conditions must be rerun against a corrected exact revision.",
+    "No L3/PO decision or operational/runtime behavior was executed."
+  ],
+  "audit_markdown_pin": {
+    "path": "docs/governance/audits/requirements-stage/l3-infra-worker-contract-owner-review01-repair-2026-10-07-6039983344.md",
+    "sha256": "c2c1e4f6d54770af2568b99dea34b97857101189405cce1e8e9b606158ebd7b9"
+  }
+}

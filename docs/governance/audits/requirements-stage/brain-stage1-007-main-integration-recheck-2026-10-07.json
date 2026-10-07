@@ -1,0 +1,18 @@
+{
+  "authority_effect": "none",
+  "record_type": "brain007_main_integration_recheck",
+  "base": "1edd5f70e7b18f6cf3a201488f7485269274a2b8",
+  "integrated_head": "c661f85e1e8edc0889d0f4959cfce6f53bd3971e",
+  "previous_reviewed_head": "bd78f71d4d9487619665cf8d1cd13ecf7c578048",
+  "previous_review_comment": 6040301542,
+  "reason": "#2653のStage5変更を統合したため6本文のSHAは変わった。旧結論を新6本文へ自動継承せず新条件1/2を依頼する。007差分と025差分を別scopeとして保つ。",
+  "six_document_sha256": {
+    "docs/helix-brain/L10-verification/business-verification.md": "0ab3f29516c6a0ce7185424b988f8abcfab5340b00fad48e3f77d7154e22b997",
+    "docs/helix-brain/L10-verification/functional-verification.md": "215a4f91a657e5967d5f202f1d92073c033022d882365a0c9f30171c8e6ed552",
+    "docs/helix-brain/L10-verification/nfr-verification.md": "61c4a7cf4405565bdc133bd6e2bf2de3effc71a8c34b283b934baee5d50ef21b",
+    "docs/helix-brain/L3-requirements/business-requirements.md": "035d6c2b93ea7d72d016b81cc712135f81ac5dec9f14d20cd7971db6fae96cd7",
+    "docs/helix-brain/L3-requirements/functional-requirements.md": "2868fd63e0ded8fb0861e1707bbd021f6cf86ae2ff5d542c0d3bddd2da938759",
+    "docs/helix-brain/L3-requirements/nfr-grade.md": "4a391af39f7c4fbf2062cd5a1c6a895498625f651d60e56596a612ca2d831daf"
+  },
+  "fixture_executed": false
+}

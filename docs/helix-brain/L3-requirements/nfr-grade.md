@@ -6,7 +6,7 @@
 
 | 親L2／測定項目 | 技術候補・比較 | 根拠・測定方法 | 判定材料・未確定範囲 |
 |---|---|---|---|
-| `HELIXBRAIN-L2-007` required provenance field coverage | 8/8 required fieldsを個別に解決可能とする候補。案Aは総数のみ、案Bはsource/provenance/evidence/adopted reason/evaluated scope/counterexample/limitation/LABO target revisionを個別照合し欠落を特定する。説明可能なBを候補とする。 | L2-007とL11:35の列挙に基づく。各fieldの欠落、stale、revision不一致を個別に与え、candidate stateとpromotion結果を観測。 | 欠落ごとのaccepted/mature誤遷移0を候補判定。必要実績件数・verifier人数は上流にないため候補化しない。 |
+| `HELIXBRAIN-L2-007` required provenance group coverage | 8/8 required groupを照合可能とする候補。分母はsource identity/revision、provenance、evidence、adopted reason、evaluated scope、counterexample、limitationの7 provenance groupと、LABO評価対象revisionの1 group。案Aは総数のみ、案Bは各groupの意味と不足理由を個別照合する。 | L2-007とL11:35の列挙に基づく。source identityとsource revisionは同一group内の別atomic fieldであり、FVC02で各々の欠落・stale・dangling・不一致を個別変異する。LABO対象revisionの欠落は単独CASE C10、revision不一致はC05で照合し、candidate stateとpromotion結果を観測。 | group coverageとatomic mutant数を混同しない。欠落ごとのaccepted/mature誤遷移0を候補判定。必要実績件数・verifier人数は上流にないため候補化しない。 |
 | `HELIXBRAIN-L2-007` false promotion | AI-generated-onlyまたはsingle successだけによるaccepted/mature遷移0を候補とする。 | L2-007/L11:35の明示否定条件。単独根拠mutationとowner別stateを照合。 | promotion結果、不足根拠・ownerを観測。実測前の候補値。 |
 | `HELIXBRAIN-L2-008` named state distinction and pin stability | L2列挙5 stateを個別識別し、supersession時も既存consumer exact revisionを保持する候補。案Aは現stateのみ、案Bは全state/consumer referenceを照合しsilent replacementを検出。 | current/superseded/deprecated/experimental/retiredを別々に与え、R参照中にR2 supersessionを作る正常fixtureと、R参照へR2を返す／同revision内容を書き換える独立negativeを用いる。 | 5値とR pinを照合。新state・semver grammar・transition SLA・保存期間は未指定。 |
 | `HELIXBRAIN-L2-008` unknown handling | unknown identity/revision/stateをcurrentへ推測解決しない、version_targetをactualとして受けない候補。 | unknown/競合/欠落mutationとversion_target差し替えを別々に投入。 | candidate use停止、BRAIN/OS owner分離を確認。新stateや追加ownerは作らない。 |
@@ -120,6 +120,6 @@
 | 親L2 | 独立NFR候補 | 根拠・照合対象 |
 |---|---|---|
 | `HELIXBRAIN-L2-024` | 固定親に独立数値NFRなし。 | `BRAIN-024-AC-01/02`、functional fixture `L10-BRAIN-024-C01`–`C45`の機能CASEで各route、直接read/write/learning、実server/network/database状態、provider account、credential、操作権限、実log/metrics、owner境界を照合。時間・性能値を追加しない。 |
-| `HELIXBRAIN-L2-025` | 固定親に独立数値NFRなし。 | `BRAIN-025-AC-01`〜`BRAIN-025-AC-05`、functional fixture `L10-BRAIN-025-C01`–`C52`の機能CASEでowner別state/revision/独立検証/hold-rejectを照合。cross-project sample countやshadow thresholdを追加しない。 |
+| `HELIXBRAIN-L2-025` | 固定親に独立数値NFRなし。 | `BRAIN-025-AC-01`〜`BRAIN-025-AC-06`、functional fixture `L10-BRAIN-025-C01`–`C70`の機能CASEでowner別state/revision/独立検証/hold-rejectを照合。cross-project sample countやshadow thresholdを追加しない。 |
 
 本欄は「未測定の数値要件」を意味しない。固定親が定義していない独立NFRを創作しない。
