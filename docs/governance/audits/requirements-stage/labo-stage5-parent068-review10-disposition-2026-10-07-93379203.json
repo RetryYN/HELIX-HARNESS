@@ -1,0 +1,173 @@
+{
+  "before_head": "ad3d01becb61e273cae7853f5b0b313c9e8d3030",
+  "base": "0acbed34bfda48e32092feb63db61d2eff6d5ec4",
+  "formal_review10": "## review10（independent review、PR #2638 親HELIXLABO-L2-068、HEAD 5b01902da54ed46783e6e487768da988a3393b00、base main ceda1c53b）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2638-LABO-STAGE5-PARENT068-10` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：57候補記録83行（`MPR-RC-HELIXLABO-L2-068-001`）。後日の別revisionの採択はない。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - 現在のorigin/main（0acbed34b）との`merge-tree`は衝突なし\n\n### 照合の経過\n1. **review09の解消の確認**（reviewerが差分で確かめた）：M1は解消した。次の単独拒否CASEが置かれた。\n   - CASE-27：`attempt_retry_policy`\n   - CASE-28：`retry_upper_limit`\n   - CASE-29：`task_success_rate`（R22の分）\n   - CASE-30：`attempt_success_rate`（R22の分）\n   - functional側のFR-03、AC-03、責務・返却の列挙にも、これらが入った。\n2. **Opusシンプルブラインド**：Major 0。\n   - review01/02/03/05/06/07/08/09の各Majorの解消を、本文で確かめた。結果記録欠落の確認例外が残っていないことも確かめた。\n   - 出力要素の照合、L11の個別反例・未見例の1対1の対応、禁止の全件照合、前回までの残余R1〜R22の洗い直しを、すべて行った。\n   - そのうえで、残余に下の1点を挙げた。\n3. **reviewerの確認**：6本文の「責務・返却」にある「固定親の生成禁止は…であり」の列挙を、並べて読んだ。その1点を、M1としてMajorと確定した。\n   - **確定の理由**：review06 M1でreviewerは、「L3がこの閉じた列挙で範囲を言い切っている以上、一般則で補えるとは言えない」という理由で、SECURITY許可の欠落をMajorとした。今回の件も同じ型なので、そろえる。\n\n### Major\n**M1（4本文の「責務・返却」の閉じた列挙が、Retry policy・retry上限・成功率を欠く）**\n- **欠陥**：\n  - 次の4本文の「責務・返却」は、「固定親の生成禁止はidentity/counting policy、task-evaluation oracle、assignment、Worker起動/retry、adoption、qualification、admission、実験許可、SECURITY許可であり」と、閉じた列挙で言い切っている。\n    - business-requirements.md\n    - nfr-grade.md\n    - business-verification.md\n    - nfr-verification.md\n  - この列挙には、Attempt/Retry policy、retry上限、task success rate、Attempt success rateがない。\n  - functional-requirements.mdとfunctional-verification.mdの同じ文には、この4項目が入っている。そのため、同じpairの中で、生成禁止の範囲が文書ごとに食い違っている。\n  - 拒否fixture（CASE-27〜30）はある。しかし、L3/L10の4本文が固定親の禁止範囲を狭く言い切っている（類型3）。\n- **守るべき行**：\n  - 固定L11-068（318ec4a labo-acceptance.md:286）「Attempt/Retry policyや成功oracleを定めない」\n  - 固定L2-068（labo-requirements.md:546）「task success rate、Attempt success rate、`retry_count`、repair round、retry上限を定義しない」\n  - 同548行\n\n### 後で直す残余（承認を止めない）\n- **R1〜R22**：変わらない。ブラインドが洗い直したが、Majorに当たるものはなかった。R19は、共通fixture B0にS1のXがあるので、CASE-03aが別scopeの履歴を持つ入力で総数unknownを求めている。\n- **R23（retry_countとrepair roundの定義）**：固定L2の「`retry_count`、repair roundを定義しない」には、068の出力fieldとして定義することを拒否する単独CASEがない。換算の拒否は、03f、03g、12で照合している。\n- **R24（Attempt境界の推測）**：L11:286の「Attempt境界を明示しない既存記録では定義を推測しない」には、直接のfixtureがない。04bと10が近い。\n- **R25（CASE-02の期待値）**：CASE-02の期待値は「同じ規則で数える」だけで、数値を固定していない。\n\n### 次の手順\n- M1を直す。4本文の「責務・返却」の列挙を、functional側と同じ全項目にそろえる。全項目は次のとおりである。\n  - identity/counting policy\n  - Attempt/Retry policy\n  - retry上限\n  - task success rate\n  - Attempt success rate\n  - task-evaluation oracle\n  - assignment\n  - Worker起動/retry\n  - adoption\n  - qualification\n  - admission\n  - 実験許可\n  - SECURITY許可\n- 本文のbytesが変わるので、直した後のHEADでもう一度依頼してほしい。そのHEADで、条件1・2をやり直す。\n",
+  "formal_comment_id": 6025555361,
+  "six": [
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "before_sha256": "12531b2701f5fbde7629bea49f796e2401046ee0839650a8a076996a725ee89e",
+      "after_sha256": "d44b377ccb147d71f853d714fb2955468e76e1d8e364b35f7106b3dc5b9bd05a",
+      "after_bytes": 23925,
+      "changed": true
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "before_sha256": "fbdede4c2f7731724ebd65fc2a1444f71bfad1443fe2b2fbfc01433d9ef0e0f9",
+      "after_sha256": "fbdede4c2f7731724ebd65fc2a1444f71bfad1443fe2b2fbfc01433d9ef0e0f9",
+      "after_bytes": 324540,
+      "changed": false
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "before_sha256": "b5f2fe7693fc356b0b7c406afacba6c26584478b1351badfa43571615c0d8566",
+      "after_sha256": "046aa3e56c599ca17ae5331b422602182a0f27070f8517786daaaf9aa0a61d59",
+      "after_bytes": 78204,
+      "changed": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "before_sha256": "b8d5a4abbaf8990dc0c9474faecb5cbdd7cba2ebf3a3744591697d2ee1ca3eda",
+      "after_sha256": "9b2055dc62147d15b19c00dea41cec9e884161f46699908d50c6de033b774a0e",
+      "after_bytes": 21713,
+      "changed": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "before_sha256": "c9652a5a9f1c600ddb059f00227d6d544497c14b0b9dc4a980fdba0776b427ec",
+      "after_sha256": "c9652a5a9f1c600ddb059f00227d6d544497c14b0b9dc4a980fdba0776b427ec",
+      "after_bytes": 512684,
+      "changed": false
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "before_sha256": "888552bfde521f0d6a501b8fc8aa8699ccc45b219c99cabf06490d2148aa4378",
+      "after_sha256": "3a9593e94e17827928beea9f02d5004f54472585b863d5419df1f13310549aea",
+      "after_bytes": 67841,
+      "changed": true
+    }
+  ],
+  "change": "4正文の生成禁止列挙を既存functional2正文と一致。43ID/旧38raw/過去監査変更なし。",
+  "independent_review": false,
+  "body_revision": "93379203c891791cf8fa7dc146455ebc137538bb",
+  "prior_audits_preserved": [
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage5-parent068-review09-disposition-2026-10-07-6c9db97a.md",
+      "sha256": "4fd58f02413f3b409901947dc8373ac6aa0dc2f9da37281c9cf6263e8d3a08dc",
+      "bytes": 1694
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage5-parent068-review07-disposition-2026-10-07-f56ce3625.json",
+      "sha256": "7636121340877d0c01c6a271e644d54a4560e4482fe2a202c43867b2efe9dae1",
+      "bytes": 1073652
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage5-parent068-review05-disposition-2026-10-07-e57127d89.json",
+      "sha256": "9e59c99b940b358f3a038ecf0f70bb37a19f0d54d93037d4e9047f86fda44e91",
+      "bytes": 65481
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage5-parent068-authoring-audit-2026-10-07-1f1e40c14.json",
+      "sha256": "1f856b0f7f7dbece4f6a9c5a915a9e694f6f18262f3a08790ce6813fe257da81",
+      "bytes": 262993
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage5-parent068-review09-disposition-2026-10-07-6c9db97a.json",
+      "sha256": "ed7d1ed08df1e4fd742cc7bf869aca0e6ed8e44d72f3d7d138a4e81b4068aba7",
+      "bytes": 2403208
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage5-parent068-review01-disposition-2026-10-07-7cd99f0b9.json",
+      "sha256": "e070ddb81bc9393f28377bb3e401b924c2831c4c931403bca5e9db934e84b85f",
+      "bytes": 25444
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage5-parent068-review06-disposition-2026-10-07-b4220ad45.json",
+      "sha256": "3ba95c418b854f01c960729cb2a64252d336b99b507a8f006a0cb4a274cf2a8f",
+      "bytes": 2102995
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage5-parent068-review07-disposition-2026-10-07-f56ce3625.md",
+      "sha256": "17e9fa11031a58c53170d191e5a27d84bbc5571388af403d5c6d7db54ae092ac",
+      "bytes": 790
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage5-parent068-review03-disposition-2026-10-07-171cfd446.md",
+      "sha256": "100accffa86220a4da4652bc55c4ea40ee347048a090983321c5c78948e96875",
+      "bytes": 4027
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage5-parent068-review02-disposition-2026-10-07-2a8ab67ec.md",
+      "sha256": "c44264b95ce3c6ab9b5926e5eb47122b85e1cbd79d9a56dec8fe880a4c3900b5",
+      "bytes": 4114
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage5-parent068-review08-disposition-2026-10-07-abb7f7a38.json",
+      "sha256": "7bdc6835c725ad217b7ac61b6bea09c7ae6b9fe939e737357ab628ca522d9455",
+      "bytes": 212686
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage5-parent068-review06-disposition-2026-10-07-b4220ad45.md",
+      "sha256": "1a4eb48e7a695321b023e186f72388cdaed7a9f68ab12845eef980346544fedc",
+      "bytes": 890
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage5-parent068-review08-disposition-2026-10-07-abb7f7a38.md",
+      "sha256": "553e3ed6a698050c8a08f3856821039d53cbb28f56ee5aeb303e73dc55f05b34",
+      "bytes": 2180
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage5-parent068-review01-disposition-2026-10-07-7cd99f0b9.md",
+      "sha256": "32fb078c97dcc2e9683ac465f113f011211f049b05afb2df83f626e907379169",
+      "bytes": 902
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage5-parent068-authoring-audit-2026-10-07-1f1e40c14.md",
+      "sha256": "fab79ef79df53722a1f4e53692c3f99b887af0a49774ee4e1b7fa47bd872096d",
+      "bytes": 1661
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage5-parent068-review03-disposition-2026-10-07-171cfd446.json",
+      "sha256": "4f85d58abc8a43afdfc0026d17bb4490b73c397994f42f62cb75206211179afa",
+      "bytes": 53458
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage5-parent068-review02-disposition-2026-10-07-2a8ab67ec.json",
+      "sha256": "bafac533211f65098cc41713e554ff8300090e68c64565f12dde7deff2a37d06",
+      "bytes": 54747
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage5-parent068-review05-disposition-2026-10-07-e57127d89.md",
+      "sha256": "91082645b28c665a536103d8499c8eaa5e2ba8715af50d178379761d47895261",
+      "bytes": 6737
+    }
+  ],
+  "fixed_source_actual_read": [
+    {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "lines": [
+        541,
+        550
+      ],
+      "sha256": "7e3df32b0131722c88ae148c4cbfa9a1be20f81826099c0ceb29a674e07030e2"
+    },
+    {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "lines": [
+        278,
+        286
+      ],
+      "sha256": "3dcf068de1351b2e8c1f2d772ec9273cb7908368a32b389ee40ce51929ad8d94"
+    }
+  ],
+  "static_verification": {
+    "govcheck": "ok atoms=7622 requirements=57 files=58",
+    "diff_check": "pass",
+    "case_definitions_changed": false,
+    "fixture_execution": false,
+    "authority_effect": "none",
+    "L3_approval": false
+  }
+}

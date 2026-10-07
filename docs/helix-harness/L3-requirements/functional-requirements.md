@@ -825,6 +825,32 @@ HARNESSは、利用許可と対象revisionに結ばれたscreen IDを持つrende
 - **現行意味から再導出**：採択L2-049-003と訂正L11に合わせ、scope/revisionごとのrender measurement、精度fixture、profile根拠の文言finding、unknown条件をL3/AC/L10へ割り当てる。screen IDの入力identityと発行履歴を区別する。device/view/localeの観測・合格は単一output単位で扱い、requirement acceptanceの責務は既存上流authorityへ残す。
 - **置換/不移植**：旧G3/L12の実行構成、旧211-file intake、sub-check、DB/runtime、hook/CLI、旧採番を移植しない。`VDH-FR-005`のPattern Contract span（source holding `MPR-SH-VDH-O10-001`）は049の入力scopeへ昇格しない。prototype生成、Pattern選択、screen ID発行、requirement acceptanceを049から生成する旧テスト期待は個別出力拒否へ再導出し、各項目を一行の複合mutationへ束ねない。
 
+### HELIX-HARNESS L2-044 — 機能要件（Stage 3、version_target: 1.0、起草候補）
+
+起草候補。Stage 3、`version_target: 1.0`。POがHARNESS-L2-044に条件付き採択したB route / Design Contract Portfolioを対象とする。この候補はL3承認・実装・実行・個別部品配置・設計成立を表さない。
+
+**固定親・判断根拠**：L2親は`318ec4a04abb3c1cc17111b3d939f913facd5fd3`の `docs/helix-harness/L2-requirements/product-requirements.md:1002–1014`、全file SHA-256 `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09`、span SHA-256 `b005641da8a8dffac0bbddd33b5ef71762f7a9c221fa31b23cb1bb2111e1a26d`。 L11対は同revisionの `docs/helix-harness/L11-acceptance/product-acceptance.md:735–745`、全file SHA-256 `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5`、span SHA-256 `9c79b73100f4afa63abba7f79d47b8931a1c29983ac08a3e4ded95e56107bfc8`。 PO判断は `17a2f310358ee7fe209b9d37cddf4a927c740248` の `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:49`、SHA-256 `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`、line SHA-256 `212948ea669ed647a3a3b188b0efb39a9e2d2fdf020e7be5cd8f088fac79807b`、registration `MPR-RC-HARNESS-L2-044-002`。POはB route / Design Contract Portfolioを条件付き採択し、採択済み025/026へ無断追記しない。
+
+**旧sourceと処置**：旧起点はHIL-FR-54、`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:144`、file SHA-256 `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`、line/span SHA-256 `b8c3eb6a8d4e25985f97f95281851e79a0cf6bf6576d3d6a074abdb1df97b070`。旧HIL-FR-55は別要求として043に残り、044へ移さない。 HR-FR-HIL-20/HAT-HIL-20/HOT-HIL-50等のpaired consumerは広い複合要求なので、044へ全量移管したとは扱わない。 旧資産の一部機能意味を再導出し、旧schema/tool/runtime/Plannerや旧L3/L10の番号体系は置換する。旧CASE 39件のIDとraw literalは監査artifactにそのまま保持し、現行fixture意味はこの文書とfunctional verificationで再導出する。
+
+**FR-HARNESS-L3-044-01 — scope-bound obligation-to-contract coverage**：選択された対象L1／要求／design scopeとrevision、および選択入力に含むsource identity/revisionから適用義務classを固定し、各classをnormative contract・契約版・対oracle・適用根拠へ対応付ける。各classについて再利用、delta追加、新規契約、根拠付き非適用を区別し、対象revision・scopeを出力portfolioへ明示し、重複割当、未被覆class、意味重複、複数contract分割の境界と各finding根拠を出す。portfolio候補は未被覆class 0・意味重複0を満たす場合に限って閉包候補として提示する。これらの0は固定L2/L11の範囲であり新閾値ではない。
+
+**FR-HARNESS-L3-044-02 — 未確定と隣接scopeの保持**：必須identity、scope/revision、applicability、contract revision、oracle、class-to-contract relationの欠落・unknown・conflict・stale、または意味対応をoracleで評価できない場合、portfolioを未完／未評価として保持する。025のcomposite整合、043のexample coverage、契約数の少なさ、portfolio fieldの存在だけで代替・合格扱いしない。N/Aはsource atomと適用根拠を伴う場合だけclassごとに記録する。template由来義務、041抽出、025/026設計成果など選択した入力元に応じて必須となるsourceは、選択時にsource identity/revision・scope・適用範囲・互換を照合する。未選択sourceは未観測として保持し、不在や合格を推測しない。常時必須の既存scope obligation根拠で確立した適用classを、source未選択だけを理由に分母から落とさず、未選択sourceをclosure根拠にしない。
+
+**FR-HARNESS-L3-044-03 — 既存能力の非変更**：HARNESS-L2-025/026の既存scopeと契約を無断で拡張しない。選択された025/026出力は、対象scope・revision・契約版を結び付けて参照し、入力として不足なら原因を該当ownerへ返す。候補結果から固定要求や隣接候補を編集しない。
+
+**FR-HARNESS-L3-044-04 — authority非生成**：portfolio候補または受入結果から、要求合意、L3承認、設計承認、要求／候補採択、実装成立、OS実行、利用者受入を生成しない。PO採択範囲は対象revisionの判断記録から読む。本文内のdraft/candidate metadata、matrix、CI相当の結果はauthorityでない。
+
+**AC-HARNESS-L3-044-01 — 正常なclass coverageと契約処置**：同じscope/revision内の固定された適用class・oracle・契約・根拠から、再利用／delta／新規／根拠付きN/Aを区別したcoverageを再構成でき、未被覆0・意味重複0である。合成正常fixtureは選択された9 contract classを既存inputとして与える。9件はfixtureの母集団であり、新classや新しい一般的閾値を作らない。出力のreuse/delta/new/根拠付きN/A区分が各classの義務意味・oracle・適用根拠に対応すること、対象revision/scopeとfinding根拠が出力に保たれることを確かめる。
+
+**AC-HARNESS-L3-044-02 — 単一欠落・誤対応**：対象L1参照、対象要求参照、design scope、対象revisionを独立した常時必須入力として照合し、それぞれの欠落／unknown／conflict／staleを一度に一つずつ扱う。source atom、active template、applicability、oracle、contract version、class identityまたはrelationについても、一度に一つ欠落／矛盾／staleにしたとき、未完・未被覆・unknownを維持し、適用範囲からclassを落とさない。根拠のないN/A、意味重複、旧denominator receipt再利用、025/043による代替、意味対応oracleの欠落を拒否する。入力が正常でも、出力処置区分の誤り、出力対象revision/scopeの欠落・不一致、出力finding根拠の欠落をそれぞれ拒否しportfolioを未完に保ちclosureを主張しない。選択した入力元に応じて必須となるsourceについて、未選択sourceは未観測とし、不在や合格を推測しない。常時必須の既存scope obligation根拠で確立した適用classの分母を未選択sourceだけを理由に落とさず、未選択sourceの合格をclosure根拠にしない。この自己訂正境界は、正常入力に対する出力処置区分の誤り、出力対象revision/scope bindingの欠落・不一致、出力finding根拠の欠落、未選択sourceを不在と推測して既存適用classを分母から除外する誤り、未選択sourceを合格と推測してclosureを出す誤りに限る。これは正常入力に対する044自身の出力誤りであり、当該出力処理の訂正を要する。対象L1参照・対象要求参照・design scope・対象revisionの入力不足、source／contract／oracle等の入力不足はこの自己訂正境界に含めず、固定L2:1010の既存責務区分へ戻す。意味またはauthorityが不明な場合は既存の要求ownerへ戻し、新しいowner・責務区分を追加しない。
+
+**AC-HARNESS-L3-044-03 — portfolio閉包と候補状態**：義務最小化を理由に独立classを落とさず、複数contractの必要な境界と理由を示す。既知の境界・理由欠落、無説明の重複割当、根拠なしN/A、規範contractの孤立は不合格とし、portfolioを未完に保つ。初見でsource・適用性・oracleが不明な場合のunknown/未評価とは区別する。候補は候補のままとし、portfolio出力だけで承認・採択を生成しない。
+
+**AC-HARNESS-L3-044-04 — authority出力を個別に拒否**：合成入力中の他fieldを固定し、要求合意、L3承認、設計承認、採択、実装成立、OS実行、利用者受入の各outputを一つずつ独立に生成させる変異を拒否する。各拒否fixtureは対象output field一つだけを変える。
+
+**owner・差戻し**：意味／authority不足は固定要求ownerへ。template選択・適用／義務導出不足はHARNESS-L2-009／対象template ownerへ。atom抽出不足はHARNESS-L2-041の既存ownerへ。具体設計・契約版・boundary不足はHARNESS-L2-026、対oracle不足はHARNESS-L2-022等の既存ownerへ。sourceまたは原因が個別identityを特定しない場合はそのidentityをunknownに保ち、既知の責務区分は維持する。新ownerを作らない。HARNESS-L2-043はHIL-FR-55側であり044 ownerではない。
+
 ## Stage 3 親054の機能要件：専門Worker判定・契約のOS割当handoff（起草候補、version_target: 1.0）
 
 **採択本文の固定**：PO記録のsource_repository_revision `5aa100319361b0cc86edd3c51815ec777d55410a`。L2 `product-requirements.md:1154–1162` SHA-256 `b76b7b1adec804a25bd9333663aa9b0d074f68518764c2874c994bcdf6ead193`、L11 `product-acceptance.md:865–875` SHA-256 `5d1ab0bad44ae305053932f0c82bcf472e145046125b638f5facab13eaaa2aa0`。旧調査snapshot e94838f5の同本文とbyte一致。末尾空行込みの物理span digestは別の監査pinとして区別する。

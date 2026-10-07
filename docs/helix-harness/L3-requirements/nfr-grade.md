@@ -215,6 +215,22 @@ NFR候補はL10定義の測定母集団の設計にとどまり、抽出器の�
 
 独立のperformance/latency/accuracy閾値、可用性目標、追加測定窓は固定L2-049から導出しない。選択scopeごとに対象revision、device/view/locale条件、profile、oracle/手段版、fixture、結果、evidenceの対応関係を追跡できることを定性的なevidence-integrity候補として記録する。欠落・不明はunknown/未評価として残し、未観測を0件・成功・合格へ丸めない。精度成立は候補数・fixture数・実行回数のみで推定しない。実測値と閾値は根拠sourceがないため本候補では設定しない。
 
+### HELIX-HARNESS L2-044 — NFR候補（Stage 3、version_target: 1.0、起草候補）
+
+起草候補。Stage 3、`version_target: 1.0`。POがHARNESS-L2-044に条件付き採択したB route / Design Contract Portfolioを対象とする。この候補はL3承認・実装・実行・個別部品配置・設計成立を表さない。
+
+**固定親・判断根拠**：L2親は`318ec4a04abb3c1cc17111b3d939f913facd5fd3`の `docs/helix-harness/L2-requirements/product-requirements.md:1002–1014`、全file SHA-256 `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09`、span SHA-256 `b005641da8a8dffac0bbddd33b5ef71762f7a9c221fa31b23cb1bb2111e1a26d`。 L11対は同revisionの `docs/helix-harness/L11-acceptance/product-acceptance.md:735–745`、全file SHA-256 `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5`、span SHA-256 `9c79b73100f4afa63abba7f79d47b8931a1c29983ac08a3e4ded95e56107bfc8`。 PO判断は `17a2f310358ee7fe209b9d37cddf4a927c740248` の `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:49`、SHA-256 `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`、line SHA-256 `212948ea669ed647a3a3b188b0efb39a9e2d2fdf020e7be5cd8f088fac79807b`、registration `MPR-RC-HARNESS-L2-044-002`。POはB route / Design Contract Portfolioを条件付き採択し、採択済み025/026へ無断追記しない。
+
+**旧sourceと処置**：旧起点はHIL-FR-54、`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:144`、file SHA-256 `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`、line/span SHA-256 `b8c3eb6a8d4e25985f97f95281851e79a0cf6bf6576d3d6a074abdb1df97b070`。旧HIL-FR-55は別要求として043に残り、044へ移さない。 HR-FR-HIL-20/HAT-HIL-20/HOT-HIL-50等のpaired consumerは広い複合要求なので、044へ全量移管したとは扱わない。 旧HIL-FR-54が求めたclass coverageとoracle対応を測定可能な関係として再導出する。旧portfolio runtime値、performance threshold、fixed portfolio sizeは移植しない。旧NFR/CI実績から現行達成値を主張しない。
+
+| 候補ID | 測る性質 | 根拠付き判定値・候補 | 測定単位・条件 |
+|---|---|---|---|
+| `NFR-C-HARNESS-044-01` | 適用義務class closure | 選択scope内で未被覆class `0`。固定L2-044出力・L11正常例に明記された候補判定値。 | 適用class identity集合と各classのcontractまたは根拠付きN/Aの対応を、同じsource/scope/revision/contract/oracle snapshotで照合する。 |
+| `NFR-C-HARNESS-044-02` | 意味重複 | 選択scope内で意味重複 `0`。固定L2-044出力・L11正常例に明記された候補判定値。 | classの義務意味、contract、対oracleと、複数割当の境界理由を合成fixtureで比較する。 |
+| `NFR-C-HARNESS-044-03` | 未確定入力の保持 | missing/unknown/conflict/staleが合格へ変換されないこと。新しい数値閾値なし。 | 各fieldを一つずつ変異し、portfolio状態・返却理由・既存owner区分を観測する。 |
+
+**制約**：候補はscope限定のcoverage oracleであり、実装性能、費用、時間、成功率、最小契約数、全HARNESS全体の完成を数値化しない。9-class fixtureを上限・一般閾値・class定義としない。旧sourceにないSLAや閾値を新設しない。実測値は未取得である。
+
 ## Stage 3 親054の非機能要件：専門Worker判定・契約のOS割当handoff（起草候補、version_target: 1.0）
 
 **採択本文の固定**：PO記録のsource_repository_revision `5aa100319361b0cc86edd3c51815ec777d55410a`。L2 `product-requirements.md:1154–1162` SHA-256 `b76b7b1adec804a25bd9333663aa9b0d074f68518764c2874c994bcdf6ead193`、L11 `product-acceptance.md:865–875` SHA-256 `5d1ab0bad44ae305053932f0c82bcf472e145046125b638f5facab13eaaa2aa0`。旧調査snapshot e94838f5の同本文とbyte一致。末尾空行込みの物理span digestは別の監査pinとして区別する。

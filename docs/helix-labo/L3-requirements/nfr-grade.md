@@ -252,3 +252,25 @@ L10は69個の完全ID定義を保持する。literalから抽出した分類候
 | authority isolation | LABO評価の書込み先をcandidateに限り、ticket/priority/assignment/oracle/authorityおよびsource closureを書き換えない。 | 固定L2境界、L11不合格/受入限界。FV CASE-04a, 14–19, 34–43。 | 既存ownerの内部実装やSECURITY分類を再定義しない。 |
 
 旧sourceの数値を引き継がない。技術parameterが必要になった場合は候補値・比較根拠・測定方法を対で記録するが、ここで閾値を新設しない。
+
+### HELIXLABO-L2-068 — Worker Attempt countの観測（Stage 5、version_target: 1.0、起草候補）
+
+**固定親と採択根拠**：PO判断記録 `af93d1f171d994f9fae2e78026b39ac27f896f5c` の `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:83` は `HELIXLABO-L2-068` を採択し、L2/L11の全体SHAと節digestを固定する。採択本文自体は `318ec4a04abb3c1cc17111b3d939f913facd5fd3` のL2 `docs/helix-labo/L2-requirements/labo-requirements.md:541–550`（file SHA-256 `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9`、節SHA-256 `7e3df32b0131722c88ae148c4cbfa9a1be20f81826099c0ceb29a674e07030e2`）とL11 `docs/helix-labo/L11-acceptance/labo-acceptance.md:278–286`（file SHA-256 `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0`、節SHA-256 `3dcf068de1351b2e8c1f2d772ec9273cb7908368a32b389ee40ce51929ad8d94`）である。line 83のhistorical MPR `MPR-RC-HELIXLABO-L2-068-001` はlocator correctionの後継 `...-002` と区別する。採択されたcandidate/digest/atom setは変わらず、receiptはauthorityを生成しない。候補本文内の `draft_candidate` は固定bytesのmetadataであり、PO採択状態は判断記録から読む。
+
+**旧source起点と処置**：`LEGACY-ASSET-3A15E5645D2D2A59DFF5`、`LEGACY-CAND-LINE-001656`、旧 `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md:399`（source revision `318ec4a04abb3c1cc17111b3d939f913facd5fd3`、file SHA-256 `f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b`、raw LF span SHA-256 `aa9dacc58969d896bbfbe38ce9c2ed6b55f47476b4cd3a411041d62bebf70468`)を起点に、S3C「総Attempt count」だけを意味再導出する。S3A/S3B、隣接line、旧candidate全体や全12指標へのcoverage/closureを主張しない。old asset ledgerは `unresolved`、paired consumer未確認であり、限定検索結果はconsumer不存在の証明ではない。
+
+**receiptのpin差**：採択節digestはPO行の`7e3df32b…`／`3dcf068d…`と一致する。coverage receipt r2はL11規則を「見出しからEOF」と記す一方、実際の採択digestはL11の068節span 278–286に一致する。これはreceipt本文の規則記述と実際の採択pinの差として残し、receiptから採択範囲やauthorityを作らない。
+
+**固定意味・境界**：明示選択されたtask/scope/revision/evaluation範囲に属するOS Worker Attempt identityのdistinct総数を数え、完全性が証明できない場合は総数を `unknown` とする。identityを持つdenied Attemptは数え、実行前に拒否されidentityのないintakeは数えない。result stateは別fieldで保持する。固定318の本文には065/067を「未採択」と記すが、現PO判断record `af93d1f171d994f9fae2e78026b39ac27f896f5c` line 80/82は両候補を条件付き採択と記録する。snapshot metadataと現authorityを区別し、どちらの採択状態にも068を依存させない。065 first_pass/retry_count、067 same-Attempt repair round、068 identity countは換算・代替・合算しない。比較時も採択済み `HELIXLABO-L2-059` の品質優先・費用の意味を変更しない。
+
+**責務・返却**：OSは既存assignment、Attempt identity、event/evidence、state/correctionを提供する。LABOは許可済み記録のdistinct countと比較証拠を返す。固定親の生成禁止はAttempt identity、identity/counting policy、Attempt/Retry policy、retry上限、task success rate、Attempt success rate、task-evaluation oracle、assignment、Worker起動/retry、adoption、qualification、admission、実験許可、SECURITY許可であり、L10で各出力fieldの生成を個別に拒否する。新規実験には既存OS assignmentと適用されるSECURITY許可を要し、count結果からその許可を生成しない。LABOはこれらを生成しない。identity対応・event/correction lineageの欠落、重複衝突、対象recordのstale・scope不一致、捕捉完全性不明は総数をunknown/未評価にする。result receiptだけが欠ける場合は、identity集合の完全性receiptだけで当該範囲のAttempt記録完全性を確認済みとせず、総数をunknown/未評価にする。該当result stateも別fieldでunknownとして保持し、既知の観測sourceまたはOS記録ownerへ不足を返す。event遅延（OSの訂正event遅延を含む）は総数をunknown/未評価にし、観測sourceまたはOS記録ownerへ不足を返す。完全性receiptが存在していても、遅延eventから総数を推測・確定しない。原因に沿って既知の観測sourceまたはOS record owner区分へ返す。個体source/owner identityが不明ならそのidentity unknownを別に保持し、既知責務区分を消さない。未採番の担当や権限を新設しない。
+
+**版・範囲**：旧a4の25 CASE IDを保持する。旧literalは監査材料に保全し、下の6列表のfixture setup/oracleは固定L2/L11へ意味再導出した候補であり、旧literalのbyteコピーを正本定義とみなさない。固定親は仕様として引用し、これらの候補表は意味完全性・単独変異性の証明ではない。
+
+| NFR候補 | 観測・候補値 | 照合材料 | 適用限界 |
+|---|---|---|---|
+| `LABO-068-NFR-01` — identity一意性・scope相関 | `attempt_count` は選択scopeのdistinct OS Attempt identity数。各identityは一度だけ。 | assignment、identity、task/scope/revision/evaluation key、event/correction lineage、scope内外の判別をidentityごとに照合する。 | 新しい件数閾値、成功率、最低Nを置かない。重複・scope不整合を補完しない。 |
+| `LABO-068-NFR-02` — 完全性・unknown伝播 | OSが当該選択範囲の捕捉完全性を示せないとき総数は`unknown`。同scopeの観測identity集合と完全性receiptの矛盾、およびreceipt revisionと選択source revisionの不一致もunknownの根拠として保持する。 | completeness claimをsource receipt・revision・correction状態と照合し、assertionだけでなく根拠を要求する。矛盾/stale receipt時も総数unknown/未評価として既知の観測sourceまたはOS記録owner責務区分へ不足を戻し、個体identity unknownは別記する。 | 固定遅延時間、SLA、観測window、欠測許容率を新設しない。event遅延・訂正event遅延は総数unknown。遅延eventや別scope履歴から欠落Attemptを推測しない。 |
+| `LABO-068-NFR-03` — state・訂正の分離 | denied-with-identityはcount、identityなしpre-execution denialはintakeとして別記。result receipt欠落時は当該範囲のAttempt記録完全性receiptの有無にかかわらず総数unknown/未評価、該当stateもunknownとして別fieldで保持し、既知の観測sourceまたはOS記録owner区分へ不足を返す。個体identityが不明ならunknownを別に保持する。 | 個体identityと結果state、duplicate resend/correction, CI rerun, same-Attempt repair roundを別field/source receiptで照合する。 | 状態を合算して品質評価しない。065/067と換算しない。新oracle、分類、権限を定義しない。 |
+
+候補技術値は固定L2/L11の観測単位・unknown動作から導いた提案で、実測根拠や採択済み閾値ではない。対象母集団・期間・cutoffは呼出し側が既に選択したscope/receiptから受け取り、この親で新設しない。実行・performance測定は未実施。
