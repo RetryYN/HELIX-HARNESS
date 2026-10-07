@@ -1735,8 +1735,8 @@ LABOは、許可された修復観測と既存の評価記録から、成功修�
 #### LABO-063受入条件
 
 - **LABO-063-AC-01 — 正常評価と系譜保持**：許可された修復観測について、対象/target revision、問題・原因候補・適用条件、修復手順/結果、HARNESS検証、再発・反例、episodeをsourceへ結んで保持する。根拠のある同種反復と既決の閾値/母集団から予防candidateを評価し、LABO知識保持、OS Feedback登録/routing、target ownerの採否/変更、HARNESS検証、運用後観測/effect評価をそれぞれ既存主体のsource-bound状態として区別する。正常例は合成fixtureであり、実行やauthorityを生成しない。対応CASE: 01/05/07/10/67。
-- **LABO-063-AC-02 — 未見・unknown・未完保持**：原因/適用条件/target revisionまたは母集団/閾値がunknown、変更後の再評価や後続義務が未完の場合、既存の成功/頻度を補完せずunknown/openを保持する。過去の評価だけを理由に新規repair/OS assignmentを要求せず、未見eventを根拠なしに別scopeへ一般化しない。対応CASE: 02/12/27/40/59/68。
-- **LABO-063-AC-03 — 不成立・固定責務へ返却**：単独の欠落/stale/mismatch、重複、根拠不足、またはLABOが正本化・gate強制・authority/assignmentを生成する変異を拒否する。観測または対象版の不足は既存の観測提供主体へ、修復成功/再発防止根拠の不足はLABO評価へ、Feedback登録/routing不成立はOSへ、verification不足はHARNESSへ返す。変更後の運用観測が欠ける場合は循環を未完としてLABO評価に保持する。source/owner identityが特定できなければunknownを保ち、新ownerを作らない。対応CASE: 03a–d/04a–b/06/08/09/11–66/68。
+- **LABO-063-AC-02 — 未見・unknown・未完保持**：原因/適用条件/target revisionまたは母集団/閾値がunknown、変更後の再評価や後続義務が未完の場合、既存の成功/頻度を補完せずunknown/openを保持する。過去の評価だけを理由に新規repair/OS assignmentを要求せず、未見eventを根拠なしに別scopeへ一般化しない。対応CASE: 02/68。改版・staleを変異させるCASE12/27/40/59は、CASE表の対応ACどおりAC-03のnegative oracleであり、AC-02のnormative fixture IDには重ねない。
+- **LABO-063-AC-03 — 不成立・固定責務へ返却**：単独の欠落/stale/mismatch、重複、根拠不足、またはLABOが正本化・gate強制・authority/assignmentを生成する変異を拒否する。観測または対象版の不足は既存の観測提供主体へ、修復成功/再発防止根拠の不足はLABO評価へ、Feedback登録/routing不成立はOSへ、verification不足はHARNESSへ返す。変更後の運用観測が欠ける場合は循環を未完としてLABO評価に保持する。source/owner identityが特定できなければunknownを保ち、新ownerを作らない。対応CASE: 03a–d/04a–b/06/08/09/11–66。
 
 
 ### 旧source起点、保持と差分

@@ -2,12 +2,13 @@
 
 - 対象base: `f0e210b3cdf5c1f95dfcf07cfc3504a240dd2e4d`
 - Branch: `codex/labo-stage5-063-ac03-revision-repair`
+- 取り込み後base: `a00711ee8a0817cf6553b8a671a0abee54ce6e73`。f0e以後のmain差分はOS Stage3の別scopeであり、LABO Stage5本文6件への外部差分はなかった。監査のreviewed baseは当初の `f0e210b3...` のまま保持する。
 - authority effect: `none`。本記録は要求承認、実行許可、L10実行、gateを生成しない。
 - 旧P4-02要件、paired consumer HAT-P4-02、HMC-BR-003を読み、固定L2/L11を起点にした。旧sourceの保存差分と全file/span SHAは同名JSONに記録する。
 
 ## 修正範囲
 
-- FRにLABO-063-AC-01/02/03を定義し、固定親の入力、循環、版、戻し先、knowledge/authority境界を接続した。crosswalkのL2/L11 locatorを実行と一致させた。
+- FRにLABO-063-AC-01/02/03を定義し、固定親の入力、循環、版、戻し先、knowledge/authority境界を接続した。crosswalkのL2/L11 locatorを実行と一致させた。AC-02の規範fixtureはCASE02/68、AC-03はCASE03a–d/04a–b/06/08/09/11–66。CASE12/27/40/59は各行が示すAC-03の補助negative例で、AC-02の規範IDとして重ねていない。CASE68はAC-02のみ。
 - FV CASE03bは `repair-result evidence record.target_revision`のみを変異させ、観測提供主体への返却とLABO評価未完を分けた。適用条件revision変更はこのCASEに混ぜない。
 - FV CASE04bはHMC-BR-003に基づき1.0の知識評価/保持をLABOへ明示する。
 - FV CASE66/67/68: 単一green拒否、source-bound synthetic positive full lineage、過去評価だけで新規repairを要求しない境界を補った。
@@ -24,17 +25,17 @@
 ## 六本文pin
 
 - BR `docs/helix-labo/L3-requirements/business-requirements.md` before SHA `9f56b674f11f9b666bc546a20e7a7492d1dfe377a24495d351392698c8389777` → after SHA `b201d0b7ebf8e3289bb914a354a3ee749f35b626852d2ab572c1b454ebcaca55` (32997 bytes).
-- FR `docs/helix-labo/L3-requirements/functional-requirements.md` before SHA `0f11b654be30baae1749800ce3c184a146ceb4bce22710f762ef368f5d40e536` → after SHA `73a22bd866b8114ced88f782c8843f2b052f21931bc1959519ce84de4453ae5e` (356316 bytes).
+- FR `docs/helix-labo/L3-requirements/functional-requirements.md` before SHA `0f11b654be30baae1749800ce3c184a146ceb4bce22710f762ef368f5d40e536` → after SHA `690421dd0bf5cae879e9c2f1cf18b9d046cabb8e89a1c2774a8a3b72be7f8399` (356465 bytes).
 - NFR `docs/helix-labo/L3-requirements/nfr-grade.md` before SHA `d5838368f1ec9ee9e57cc143aa6e346ae1ff7f924d46c234880798098936b773` → after SHA `703ffcd721ca20a2efbead89de3648801f4071f3ee3ec58c578b8aa7f6029eda` (91447 bytes).
 - BV `docs/helix-labo/L10-verification/business-verification.md` before SHA `54e42a8af0d30f7eb1c2b75810b51fab6197558633ab3bac7a50b024e581445e` → after SHA `d3d45f3162c86b29c4b2a10ee3d64fb7eb50c18f94185a5954f1b5db0b0b05de` (31603 bytes).
-- FV `docs/helix-labo/L10-verification/functional-verification.md` before SHA `304aebc0edf618fd0eba2d73b745611b1d259ffd94429c0375df16ca58874bb4` → after SHA `239a3b43a666c0c5c30039041035ab0a1ae08373a57ab308e941346d3625d638` (696009 bytes).
+- FV `docs/helix-labo/L10-verification/functional-verification.md` before SHA `304aebc0edf618fd0eba2d73b745611b1d259ffd94429c0375df16ca58874bb4` → after SHA `fff8de19d9922d1c0e01226752f110044b3c694e371875666d24dd2789ec8185` (696007 bytes).
 - NFRV `docs/helix-labo/L10-verification/nfr-verification.md` before SHA `922f8fccc63917178606dbb5edd165f5bdc6805de3753ead6d703b8342fdb8b7` → after SHA `0fcbc7b8b2475a88e225a08e4d0a0410cb02ec1678cb6a9d13b43947f62b9326` (82394 bytes).
 
 ## 静的検証
 
 - `git diff --check`: PASS。
 - 063 functional CASE定義: 72 unique IDs。NFR inventoryと72件が一致。分類候補は正常6、negative55、索引11。
-- L3 AC-01/02/03の定義、CASE03bの単一revision変異/戻し先、六本文post-change SHAを照合: PASS。
+- L3 AC-01/02/03とCASE行のAC対応、CASE03bの単一revision変異/戻し先、六本文post-change SHAを照合: PASS。AC-02はCASE02/68、AC-03はCASE03a–d/04a–b/06/08/09/11–66。CASE12/27/40/59は表のAC-03行にある補助negative例であり、AC-02 normative mappingに含めていない。
 - L10実行、旧runtime/test/CIは未実行。
 
 ## 正式review原文pin

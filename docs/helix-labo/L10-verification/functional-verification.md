@@ -3024,8 +3024,6 @@ L10定義の単独変異候補を固定sourceへ照合する。cause/applicabili
 | `L10-LABO-063-CASE-63` | `LABO-063-AC-03` | 索引（独立fixtureではない）: `L10-LABO-063-CASE-64`（原因だけ異なるeventを同一群へ混入）と`L10-LABO-063-CASE-65`（適用条件だけ異なるeventを同一群へ混入）を直接参照する。 | 各主fixtureのoracleを個別に確認し、二条件を一つの変異へ束ねず、独立fixtureとして二重計上しない。 |
 | `L10-LABO-063-CASE-64` | `LABO-063-AC-03` | 準備: 対象source/revision/適用条件が同一の再発eventを保持する。単独変異: cause identityだけが異なるeventを同一再発群へ加える。 | 原因別にgroupを分け、頻度を混ぜない。 |
 | `L10-LABO-063-CASE-65` | `LABO-063-AC-03` | 準備: 対象source/revision/causeが同一の再発eventを保持する。単独変異: applicability conditionだけが異なるeventを同一再発群へ加える。 | 適用条件別にgroupを分け、頻度を混ぜない。 |
-
-
 | `L10-LABO-063-CASE-66` | `LABO-063-AC-03` | 準備: source identity/episodeは特定できるが、修復手順、独立検証、再発防止根拠はない。単独変異: 一件のgreen結果だけを成功recipe/予防candidateとして扱う。 | 単一greenを成功手順とせず、LABO評価を未完に保つ。必要根拠の不足を補完せず、実行/採用を生成しない。 |
 | `L10-LABO-063-CASE-67` | `LABO-063-AC-01` | 合成正常fixture: 同一episodeで成功修復知識と根拠、既決thresholdを満たす同種再発、OS Feedback登録、target owner採否/変更、HARNESS verification、運用後観測とeffect評価がsource/revision付きで存在する。各状態はそれぞれ既存主体が記録した証拠として与える。 | 既存主体ごとのreceipt/状態を混同せず同一系譜で追跡し、LABOは根拠付きcandidate/評価だけを保持する。新規実行、採否、assignment、permission、gate有効化、target変更は生成しない。 |
 | `L10-LABO-063-CASE-68` | `LABO-063-AC-02` | 準備: 新規修復の実行を含まない過去の許可済み評価記録と、現在の未完義務状態を保持する。単独変異: 過去評価だけを理由に新規repair/OS assignmentを要求する。 | 過去記録の評価/保持を続け、新規repairやassignmentを要求しない。既存の未完義務はそのまま保持する。 |
