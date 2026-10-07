@@ -2,7 +2,7 @@
 
 > 状態: 検証設計・未実行。対象はHELIXCONNECT-L2-001〜005。
 
-独立business ACは新設せず、[L3業務要件](../L3-requirements/business-requirements.md)の分類を照合する。[機能検証](functional-verification.md)の各CONNECT-CASE-001-01〜005-01において、登録・技術送受信・再送・traceだけで業務成功、承認、SECURITY許可、保存完了を生成する反例を不合格とする。両端ownerが持つ業務結果はそのownerの受入へ引き渡し、CONNECTが代行しない。
+独立business ACは新設せず、[L3業務要件](../L3-requirements/business-requirements.md)の分類を照合する。[機能検証](functional-verification.md)の`CONNECT-CASE-001-01`〜`CONNECT-CASE-001-08`と`CONNECT-CASE-002-01`〜`CONNECT-CASE-005-01`において、登録・技術送受信・再送・traceだけで業務成功、承認、SECURITY許可、保存完了を生成する反例を不合格とする。CASE-001-02の適用識別子なし正常対照も、SECURITY許可が生成されたことにはしない。両端ownerが持つ業務結果はそのownerの受入へ引き渡し、CONNECTが代行しない。
 
 
 ## Stage 2a 追加 — HELIXCONNECT-L2-006のみ
