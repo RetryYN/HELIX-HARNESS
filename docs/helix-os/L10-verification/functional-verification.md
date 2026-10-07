@@ -139,9 +139,9 @@ L11-028:462-463のAPI契約を固定oracleとする。`amount <= configured maxi
 | `CASE-OS-028-03q` | 実consultでsource/相談案receiptだけを欠落させる | connectionを未成立のまま保持しINTELLIGENCE/source owner/OSへ戻す |
 | `CASE-OS-028-03r` | response等は揃え、元Workerへのreturn handoff receiptだけを欠落させる | connectionを未成立のまま保持しOS/元Workerへ戻す |
 | `CASE-OS-028-03s` | consultの有無は変えず、実際に選択したsource identityだけをmissing/別sourceへ変える。他source fieldは固定 | そのsourceを使う支援だけをholdしsource owner/INTELLIGENCE/OSへ戻す。別sourceへ推測置換しない |
-| `CASE-OS-028-03t` | 選択sourceのprovenanceだけをmissingにする。identity/revision/permission等は固定 | source利用を成功扱いせずsource owner/INTELLIGENCE/OSへ戻す |
+| `CASE-OS-028-03t` | 選択sourceのprovenanceだけをmissingにする。identity/revision/permission等は固定 | source利用を成功扱いせず当該支援をholdし、source owner/INTELLIGENCE/OSへ戻す |
 | `CASE-OS-028-03u` | 選択sourceのrelevanceだけをunknown/不適合にする。他source fieldは固定 | 関連性を推定せず当該支援をholdしINTELLIGENCE/source owner/OSへ戻す |
-| `CASE-OS-028-03v` | 選択sourceのconstraintsだけをmissingにする。他source fieldは固定 | 制約適用を確認できるまで当該支援をholdしsource owner/SECURITY/OSへ戻す |
+| `CASE-OS-028-03v` | 選択sourceのconstraintsだけをmissingにする。他source fieldは固定 | 制約適用を確認できるまで当該支援をholdし、source/利用許可の不足はsource owner/SECURITYへ、実resource制約はINFRASTRUCTUREへ、ticket/scope/authorityの状態はOSへ戻す |
 
 ### CASE-OS-028-04 — 未見endpointとoracle適用可否（AC-OS-028-04）
 
@@ -157,15 +157,15 @@ L2-029:873のsupport-unselected条件を、CASE-OS-029-01のINTELLIGENCE事前ca
 
 ### CASE-OS-029-08 — 作業前support選択・相談なしのsource binding negative（AC-OS-029-01）
 
-CASE-OS-029-01のsupport選択・consultなしの正常fixtureを基準にし、approved request/design、HARNESS-022 oracle、assignment、実作業/検証、result、review、他のsource fieldを固定する。各行は選択されたsupport sourceの一項目だけを変異し、選択sourceの使用だけを保留し、既存source owner/INTELLIGENCE/OSへ戻して未完義務を保持する。実consultは行わずOS-028 receiptを要求しない。未選択supportではsource fieldsを要求せずCASE-OS-029-07の正常を維持する。
+CASE-OS-029-01のsupport選択・consultなしの正常fixtureを基準にし、approved request/design、HARNESS-022 oracle、assignment、実作業/検証、result、review、他のsource fieldを固定する。各行は選択されたsupport sourceの一項目だけを変異し、選択sourceの使用だけを保留し、L2-029:876の既存カテゴリに従ってINTELLIGENCE/OS、元Worker/OSまたはSECURITY/OSへ戻して未完義務を保持する。実consultは行わずOS-028 receiptを要求しない。未選択supportではsource fieldsを要求せずCASE-OS-029-07の正常を維持する。
 
 | CASE | 単独変異 | 期待状態／戻し先 |
 |---|---|---|
-| `CASE-OS-029-08a` | 選択support source identityだけをmissing/別sourceにする | sourceを推測置換せず選択supportの使用を保留しINTELLIGENCE/source owner/OSへ戻す |
-| `CASE-OS-029-08b` | 選択support source versionだけをmissing/staleにする | versionを推測せず選択supportの使用を保留しsource owner/INTELLIGENCE/OSへ戻す |
-| `CASE-OS-029-08c` | 選択support source scopeだけをmissing/対象外にする | scope適合を推定せず選択supportの使用を保留しsource owner/INTELLIGENCE/OSへ戻す |
-| `CASE-OS-029-08d` | 選択support source provenanceだけをmissingにする | source来歴を推測せず選択supportの使用を保留しsource owner/INTELLIGENCE/OSへ戻す |
-| `CASE-OS-029-08e` | 選択support source利用permissionだけをmissing/restrictedにする | 利用権限を推測せず当該supportをholdしsource owner/SECURITY/OSへ戻す |
+| `CASE-OS-029-08a` | 選択support source identityだけをmissing/別sourceにする | sourceを推測置換せず選択supportの使用を保留しINTELLIGENCE/OSへ戻す |
+| `CASE-OS-029-08b` | 選択support source versionだけをmissing/staleにする | versionを推測せず選択supportの使用を保留しINTELLIGENCE/OSへ戻す |
+| `CASE-OS-029-08c` | 選択support source scopeだけをmissing/対象外にする | source scope適合を推定せず選択supportの使用を保留しINTELLIGENCE/OSへ戻す。task scopeの不一致なら元Worker/OSへ戻す |
+| `CASE-OS-029-08d` | 選択support source provenanceだけをmissingにする | source来歴を推測せず選択supportの使用を保留しINTELLIGENCE/OSへ戻す |
+| `CASE-OS-029-08e` | 選択support source利用permissionだけをmissing/restrictedにする | 利用権限を推測せず当該supportをholdしSECURITY/OSへ戻す |
 
 ### CASE-OS-029-02 — 相談選択時のPATCH oracle（AC-OS-029-02）
 
