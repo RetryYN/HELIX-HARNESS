@@ -1,0 +1,261 @@
+{
+  "record_type": "immutable-review-repair-evidence",
+  "authority_effect": "none",
+  "decision_effect": "none",
+  "base_head": "f4ccb9efa1d20dcda9a270c9d16f1b77f0eb8134",
+  "target_formal_revision": "f4ccb9efa1d20dcda9a270c9d16f1b77f0eb8134",
+  "formal_comment": {
+    "id": 6042291257,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2670#issuecomment-6042291257",
+    "author": "RetryYN",
+    "created_at": "2026-10-07T16:33:22Z",
+    "bytes": 5749,
+    "sha256": "7505a544e886395ebf9f6b8b059dc17772e2a1f8d27c5cb1e55cf75f871d1015",
+    "literal": "## review01（HEAD f4ccb9efa1d20dcda9a270c9d16f1b77f0eb8134、merge-base 5b64914de7357853b267d297e445cae18e204304）\n\nreviewer：Claude（lane `review_merge`。Opus 5.5の独立照合と、Fable 5.1の見解）\n\n照合の範囲：\n- INTELLIGENCE Stage 4の採択15親（017、030〜041、044、045）の6本文の節全体。FR 118–303、FV 224–1325、BR・BV・nfr-grade・NFRVのStage 4節。\n- 固定親 `633bf12ea`：L2の202–353、L11の92–108と260–280。\n- PO採択記録：helix-intelligence-requirements-po-decision-2026-09-28.md の73–89行。\n- 本PRで6本文に差分はない（base比で0件）。\n\n### 結論：Major 1。委任の条件1は成立しない\n\n**M1（類型4：弱いoracle）permissionの対象target revisionを一つだけ変えて試すCASEがない**\n\n固定親の定め：\n- L2-036:265の入力は「操作candidateと対象scope/revision」である。\n- L2-017:206は、permission・Worker・HARNESS・OSの四つの結果を「同一target revision/scope」にそろえることを依存条件にしている。\n\n現行の照合（036）：\n- AC-INT-036-01（FR:206）とCASE-INT-036-01（FV:723）の期待oracleは、照合対象をactor/action/target/scopeに限っている。FR:204の入力にあるrevisionの値一致は見ていない。\n- CASE-INT-036-02にあるのは、scopeの不一致（02d、FV:734）とpermission自身のrevisionがstale（02e、FV:735）だけである。\n- 04gは、permission revisionがunknownの場合を見ている。\n- 「有効だが別のtarget revision向けのpermission」を一つだけ変えて試すCASEがない。\n\n現行の照合（017）：\n- Worker・HARNESS・OSの結果のtarget revision不一致は、02j〜02l（FV:255–257）で一つずつ見ている。\n- permissionについてはtarget scopeの差し替え（02e、FV:249）しかない。四段階のうち、permissionだけtarget revisionの単独CASEがない。\n- AC-INT-017-02（FR:128）の列挙も同じである。\n\n起きうること：別のtarget revision向けに出た有効なpermissionで照合が通り、修復candidateが実行可能として扱われる。\n\n求める変更（今のCASEは残し、次を足す）：\n- 036：CASE-INT-036-01とAC-INT-036-01の期待oracleに、target revisionの値一致を足す。CASE-INT-036-02に「permissionのtarget revisionだけを別revisionにする」単独CASEを足す。期待は、実行しないこと、実行可能に昇格させないこと、SECURITY permission/isolation ownerへ戻すこと。\n- 017：CASE-INT-017-02に「permissionのtarget revisionだけを別revisionにする」単独CASEを足す。期待は、完了から除外し、SECURITY permission/isolation ownerへ戻すこと。AC-INT-017-02の列挙にも同じ項目を足す。\n- 範囲表・trace表・NFRVの分母も、追加したCASEにそろえる。\n\n### Fableの見解（同じHEADの6本文と固定親をFable自身が読んだもの）\n- 結論行は原文のまま：「承認してよい」\n- 所見：Major 0、Minor 0。\n- 照合した対象revision：`f4ccb9efa`。6本文のSHA-256はFableが自分で計算し、下の値と一致した。\n- 未確認範囲：旧asset 25 pinの実blobの再計算、GitHub commentの帰属。\n- 注記（所見にはしない）：\n  - 6文書の見出し「（Stage 2a）」は古い。\n  - PR内の監査mdのSHA表は旧base時点の値で、HEADの値はmain-integration JSON側が正しい。判断記録はJSON側を引くこと。\n\n### 判断の扱い\n- OpusはM1を挙げ、Fableは「承認してよい」とした。見解は一致していない。\n- github-upstream-operating-model.md「L3／L10承認の委任」に従い、OpusがM1を固定親L2-036:265とL2-017:206の原文で確かめた。妥当なので作成側へfindingとして返す。\n- 修正で本文revisionが変わったら、新しいrevisionで条件1と2をやり直す。\n\n### Opusの残余（Minor以下。返さない）\n- 035の戻し先がそろっていない。mapping推測の02e（FV:667）はINTELLIGENCEへ、mapping unknownの04d（FV:692）はOSへ照会としている。OSは保証句に名前があるので、区分外ではない。\n- 044-02hの戻し先はBRAIN ownerで、固定L2-044の戻し先はLABOである。BRAINは保証句の主体なので、許容範囲と見た。\n- 035のcandidate 5種別、033のdesign/meaning、045のgap/improvementには、040の01a〜eのような種別ごとの正常CASEがない。\n- AC-INT-045-03の「固定L11に照合できた後」という表現は曖昧である。\n- NFRV:69のNFR-INT-017-01の行が「| 100%」で切れていて、他の親の行と形がそろっていない。\n\n### 静的検査（exact HEAD）\n- `scfctl validate` 147/0、`stale=0`、`residuals=0`\n- `govcheck ok atoms=7622`\n- `git diff --check` clean、merge-treeでconflictなし\n\n### 6本文のSHA-256（HEAD f4ccb9efa）\n| 文書 | SHA-256 |\n|---|---|\n| L3-BR | `bde86431339e3464e9e893dcd4e2f7aa9f6b7a81035762938621a258e2b2cc44` |\n| L3-FR | `c19825b3fa82edaafd787bd092076bea910a89b99d13aa4c208b0c51e781b82f` |\n| L3-NFR | `a50c5379206610db3dd730a230ad4a52657f9600f7c8363101e1603d59ac8681` |\n| L10-BV | `386251e6fd6097b8892ace2ba2db5c69ce009fdb843a1c5bca3996f8cf581c4a` |\n| L10-FV | `aeefde170f0087794bf86d3d3895c35c7646b5b7ec2a68666b90c4f0f35913a0` |\n| L10-NFR | `f38e48d6dc2928009caa14147d675dd1d7572cd0f8c2c65c993fbe5dc43baf12` |\n\n### 未確認範囲（Opus）\n- 旧asset pinの内容\n- packの255行は、構造と件数だけを見た\n- BR・BV・nfr-gradeの本文は、CASE IDの集合以外を精読していない\n- 類型5は直近25 commitに限った\n\n本commentから、要求の意味、承認、PO確認、merge admissionは生成しない。\n"
+  },
+  "fixed_requirement_revision": "f4ccb9efa1d20dcda9a270c9d16f1b77f0eb8134",
+  "fixed_raw_spans": [
+    {
+      "name": "legacy_design_definition",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "lines": "148-168",
+      "sha256": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9",
+      "literal": "### L3 要件定義\n\n| 項目 | 内容 |\n|------|------|\n| 名称 | 要件定義 (System Requirements) |\n| 目的 | システム機能要件 (FR-*) + 受入条件 (AC-*) を確定し、設計への入力とする |\n| 主要成果物 ① | 3 sub-doc: functional-requirement / business-requirement / nfr-grade |\n| ③ テスト設計ペア | UX受入テスト設計（L10で実施） |\n| V-pair (右腕) | **L10** UX受入検証 |\n| 主要ゲート | **G3** 機能要件凍結 (FR+AC ⇔ L10 UX受入テスト設計 pair freeze) |\n| 入口 | G1/G2 exit 後 (L1 業務要求 BR-* が入力) |\n| 出口 | G3 通過 (FR+AC 全件確定 + 受入テスト設計 pair 揃い) |\n| 主要 role | `tl` 必須 (FR+AC 仕様化)、`po` 必須 (受入条件確認) |\n\n注: FR-* は L1 BR-* から双方向 trace する。AC 不在での G3 通過は fail (AP-4)。\nG3では`engineering_discipline_required: true`のPLAN契約により、no-code-first判断、責務owner、\n許容complexity、L10で観測する振る舞いをfreezeする。ここでobject modelを一律採用せず、\n`none` / `pure_function`を含む最小のmodeling判断を許可する。\n出典: concept v3.1 §3.1.2 / requirements v1.3.12 §2.2 G3\n\n---\n"
+    },
+    {
+      "name": "legacy_shared_fr_ac",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "lines": "134-197",
+      "sha256": "747723b54908e79652e347ab529875943afc051fc9f9182d149481f01475e5a0",
+      "literal": "## §1 FR/AC 一覧\n\n| ID | 親 | 要件 | 主な AC |\n|----|----|------|---------|\n| HR-FR-P0-01 | HBR-P0 | specialist workflowは`style_return`を持ち、Reverse/Recovery/Incident/Refactor/Retrofit/Research/Add-featureの出口が選択済みdevelopment styleへ戻るか、明示`gap-only` / `version_target`に隔離される。Discovery／PoCは別軸case-driven S0–S4として、S4判断後だけ選択済みstyleへ戻す | HAC-P0-01a / HAC-P0-01b |\n| HR-FR-P0-02 | HBR-P0 | runaway guard は budget time-cap、iteration cap、lock、Recovery escalation を単一停止判定に集約し、停止理由をappend-only continuation eventへ先にdurable appendし、DBへ冪等投影してから公開する | HAC-P0-02a / HAC-P0-02b |\n| HR-FR-P1-01 | HBR-P1 | continuous-run engine は resume 3 条件、job-queue、budget time-cap、fresh-session 再入をつなぎ、要件承認後の無人再開を成立させる | HAC-P1-01a / HAC-P1-01b |\n| HR-FR-P1-02 | HBR-P1 | `version_target` / release tag / migration / rollback を持つ version-up lifecycle を提供し、今版外作業を失わない。parked work は activation decision、parked review、action-binding approval、reapproval trigger を `version-up-activation-packet.v1` として出せるが、packet は plan-only で apply surface を持たない。HEAD/scope/source/evidence drift がある場合は dry-run・doctor・approval packet を再実行し、古い承認根拠を流用しない。GitHub Actions を activation/dry-run workflow として採用する候補では、`GITHUB_TOKEN` 権限、least privilege、`pull_request_target` 未信頼コード実行、自動 PR 承認リスクを `approval_scope` / `dry_run_plan` / `external_rehearsal_plan` / provenance / audit の判断材料に含め、CI があることを安全証明にしない。同一 PLAN に複数判断境界がある場合は `relatedDecisionPackets[]` で primary/supporting packet route を保持し、S4 / version-up / rename / action-binding のどれか一つだけを見て完了扱いしない | HAC-P1-02a / HAC-P1-02b |\n| HR-FR-P1-03 | HBR-P1 | 大きい要求は選択済みdevelopment styleのsliceへ分割され、各sliceがstyle返却先、budget、acceptance、DB-backed next_actionを持つ。Discovery／PoCを分割方式やScrum phaseとして暗黙起動しない | HAC-P1-03a / HAC-P1-03b |\n| HR-FR-P1-04 | HBR-P1 / HBR-P3 | L2要求・プロト合意をL3凍結の前提とし、非UIでも適用性receiptなしに暗黙skipしない。導入時や後続の要求変更時にL2 templateとmock workflowを生成・選択し、要求へのback-propagationを行えるようにする。templateの生成やdefer記録だけでL3凍結を許可しない | HAC-P1-04a / HAC-P1-04b |\n| HR-FR-P2-01 | HBR-P2 | agent->tool request/response は typed contract registry で検証され、未登録 tool surface は fail-close または明示 deferred になる | HAC-P2-01a / HAC-P2-01b |\n| HR-FR-P2-02 | HBR-P2 | loop 内 effort/budget は plan size、model role、iteration、tool use に紐づく上限を持ち、超過時は自己継続せず停止または version-up へ隔離する | HAC-P2-02a / HAC-P2-02b |\n| HR-FR-P2-03 | HBR-P2 / HNFR-AC | Codex CLI/IDE/hosted API surface は Claude hook intent と同じ guard intent に正規化され、`apply_patch` / `write_file` / `exec_command` / `local_shell` を Claude `Edit` / `Write` / `MultiEdit` / `Bash` 相当の adapter map で扱い、repo hook 非強制 surface では編集前 git/status preflight を必須にする | HAC-P2-03a / HAC-P2-03b |\n| HR-FR-P2-04 | HBR-P2 / HBR-P3 / HBR-P4 | agent loop は API/SDK 採用前提ではなく、外部 API/SDK 呼び出し前提でもなく、PLAN 駆動で動く。plan/tool/handoff/guardrail/eval outcome を harness DB の trace span として記録し、simple-composable workflow から eval green を確認してから multi-agent / long-running autonomy へ昇格する。TDD 実装では smart review agent が先に test/oracle を作り、light implementation agent が最小実装し、smart review agent が指示・テスト・レビューして fail 時に修正ループへ戻す pair programming route を持つ。light implementation は changed-files / targeted-test-command / implementation-notes の実装証跡、または consultation question を出し、consultation は pass ではなく smart review の implementation directive / fix response を経て次の light fix cycle に戻す。consultation question がある出力は、同時に implementation evidence を含んでも pending consultation として扱い、smart response 無しに pass へ進めない | HAC-P2-04a / HAC-P2-04b |\n| HR-FR-P2-05 | HBR-P2 / HNFR-P8 | 外部AI workerは登録済みdescriptor、隔離worktree、bounded resource、network default deny、non-authorityを必須とし、secret taskと未登録runtimeを起動前に拒否する。Python意味コアはADR-010の意味判断・生成authorityを持つ別の実行契約として扱い、登録済みdescriptor、bounded resource、network default denyを要求し、repository／DB path／credential／`.helix/`を渡さない | HAC-P2-05a / HAC-P2-05b |\n| HR-FR-P2-06 | HBR-P2 / HNFR-AC | Python意味コアとTypeScript/Node transactional boundaryの間はversioned typed wire eventだけを通す。ADR-010に従い、承認済み要求・判断記録・ADRの下でPythonは意味判断・生成、Nodeは再検証・単一transaction commit・外部副作用の同格の層別authorityを持つ。一方を他方の全面上位にしない | HAC-P2-06a / HAC-P2-06b |\n| HR-FR-P2-07 | HBR-P2 / HNFR-P8 | repository／credential／state／DBのpermanent bypass denyはone-shot markerやprovider flagより優先し、workerへauthority capabilityを渡さない | HAC-P2-07a / HAC-P2-07b |\n| HR-FR-P2-08 | HBR-P2 / HNFR-P3 | worker outputはstrict schema、digest、size、timeoutを既定で検証し、期限・owner・対象を持つ緩和profile以外をfail-closeする | HAC-P2-08a / HAC-P2-08b |\n| HR-FR-P3-01 | HBR-P3 | pair_closure / 片肺禁止 / 機械判定と AI 判定の境界を L3-L7 全 gate で formalize し、coverage 単独 pass を完了根拠にしない | HAC-P3-01a / HAC-P3-01b |\n| HR-FR-P3-02 | HBR-P3 / HNFR-P3 | external-truth grounding は URL/公開日/版/引用対象 span を記録し、外部根拠なき外部事実 claim を未検証として reject する | HAC-P3-02a / HAC-P3-02b |\n| HR-FR-P4-01 | HBR-P4 | drift/劣化/不整合 detector の event は repair candidate、route、owner、rollback を持つ修復 action へ変換される | HAC-P4-01a / HAC-P4-01b |\n| HR-FR-P4-02 | HBR-P4 | 成功 repair recipe は harness memory に記録され、頻出時は gate/detector/backlog へ promote される | HAC-P4-02a / HAC-P4-02b |\n| HR-FR-P4-03 | HBR-P4 / HBR-P9 | 実装精度、レビュー指摘、再作業、テスト時間、flake、デグレ検出を metric event として収集し、改善候補へ変換する | HAC-P4-03a / HAC-P4-03b |\n| HR-FR-P6-01 | HBR-P6 | gated push は GitHub Rulesets / required checks / Merge Queue で raw push を deny し、authorized path のみ通す | HAC-P6-01a / HAC-P6-01b |\n| HR-FR-P6-02 | HBR-P6 | PR cross-review と CI auto-fix-repush は worker≠verifier を維持し、信頼度閾値未満または反復上限超過時は Issue/escalation に止める | HAC-P6-02a / HAC-P6-02b |\n| HR-FR-P6-03 | HBR-P6 / HBR-P9 | 配布tag/release pinから`helix setup project`でconsumerを非破壊bootstrapする。consumerReadinessはNode.js LTS、Python、git、bare `helix`、adapter、task、state baseline、team定義を検査する。package-local経路は`npm run helix -- ...`を使い、Bunを要求しない。bare commandが解決できない場合は`fix_consumer_readiness`へ戻す。 | HAC-P6-03a / HAC-P6-03b |\n\n`helix-package-script` は bare `helix` と独立に検査し、package script のみ解決する状態も consumer ready としない。\n| HR-FR-P6-04 | HBR-P1 / HBR-P6 / HBR-P9 | tag bump / release pin 更新は current/target を検出し、migration、compatibility warning、rollback point、idempotency evidence を出す。PLAN-M-02 identifier rename は `helix` / `.helix` / `area=helix` の hit 数だけでなく、source/test/runtime-state/adapter-config/consumer-template/plan/design/governance/distribution surface 別の blast-radius checklist を出し、cutover/action-binding approval 前に旧識別子残渣を apply 可能と誤認させない。rename cutover の approval 判定は `approve_cutover` / `approve_action_binding` と actor/tool/target だけでは足りず、approved params、current `cutoverSnapshot` sha256 binding、review evidence、expiry、audit、backup/rollback/monitoring evidence が揃うまで blocked にする | HAC-P6-04a / HAC-P6-04b |\n| HR-FR-P6-05 | HBR-P6 | 自律 release tool 選定は semantic-release vs Release Please の ADR で決め、CI auto-fix repush は confidence 0.75 以上かつ iteration cap 内に限定する | HAC-P6-05a / HAC-P6-05b |\n| HR-FR-P6-06 | HBR-P6 / HBR-P9 | 配布package indexはcanonical indexから再生成し、first/third-party provenance、license、免責、digestを保持する。generated indexの手編集とaction-binding approval前の配布cutoverを拒否する | HAC-P6-06a / HAC-P6-06b |\n| HR-FR-P7-01 | HBR-P7 / HNFR-AC | Claude/Codex の SessionStart は同じDB continuation projectionと`.helix/memory`からbounded recallし、per-agent siloやprose continuationを正本にしない。provider delegation evidenceは監査専用に保持し、recall/continuation sourceへjoinしない | HAC-P7-01a / HAC-P7-01b |\n| HR-FR-P7-02 | HBR-P7 | Glossary SSoT は memory entry、DDD bounded context、docs 用語の同義語/改名を結び、用語発散を検出する | HAC-P7-02a / HAC-P7-02b |\n| HR-FR-P7-03 | HBR-P7 / HBR-P9 / HNFR-AC | DDD context map は bounded context、ubiquitous language、agent/tool/memory owner、published language / anti-corruption boundary を結び、context をまたぐ命令・用語・契約の混線を検出する | HAC-P7-03a / HAC-P7-03b |\n| HR-FR-P8-01 | HBR-P8 / HNFR-P3 | 外部検索・公式 docs・OSS 参照は source attribution と span-level verification を持つ research artifact に保存される | HAC-P8-01a / HAC-P8-01b |\n| HR-FR-P8-02 | HBR-P8 | 有益な外部知見は skillify candidate として抽出され、ライセンス/安全/適用範囲 review 後に skill registry へ入る | HAC-P8-02a / HAC-P8-02b |\n| HR-FR-P8-03 | HBR-P8 / HNFR-P8 | 外部コード実行・外部 API/GitHub 操作は MicroVM default / low-risk gVisor などの sandbox/trust-boundary と short-lived/fine-grained token 前提で、無制限実行を禁止する | HAC-P8-03a / HAC-P8-03b |\n| HR-FR-P8-04 | HBR-P8 / HNFR-P8 / HNFR-AC | 外部データは raw input、trusted metadata、executable instruction を分離する security filter を通し、未信頼 text を agent/system instruction として扱わない | HAC-P8-04a / HAC-P8-04b |\n| HR-FR-P9-01 | HBR-P9 | DB 未収束 artifact は完了扱いにせず、plan/status/trace/doctor が未収束を fail-close または blocker として表示する | HAC-P9-01a / HAC-P9-01b |\n| HR-FR-P9-02 | HBR-P9 | cross-artifact relation graph と contract ledger は doc/code/test/PR/check/state の関係を記録し、影響範囲分析に使える | HAC-P9-02a / HAC-P9-02b |\n| HR-FR-P9-03 | HBR-P9 / HBR-P3 | L階層ごとの baseline snapshot、gate result、metric trend、regression owner を harness DB に収束し、層単位のデグレを比較できる | HAC-P9-03a / HAC-P9-03b |\n| HR-FR-P9-04 | HBR-P9 / HNFR-AC | CLI、doctor、handover、completion packet、consumer guidance などの人間向け prose 文言は message catalog を正本にできる。`OK` / `warning` / `violation` / JSON key / env 名 / command 名などの machine-surface token は差し替え対象外として固定し、カタログ schema、欠落 key fail-close、未使用 key 検出、既存文言の baseline/grandfather を持つ | HAC-P9-04a / HAC-P9-04b |\n| HR-FR-P9-05 | HBR-P9 / HBR-P3 | FR registry は L3→L4→L5→L6 の中間層到達状況を層別に集計し、途中層で止まった FR、層を飛ばした FR、新規停滞を可視化・fail-close できる。既存 `descent-obligation` / `l6-fr-coverage` の判定意味は変えず、chain データの横断集計だけを追加する | HAC-P9-05a / HAC-P9-05b |\n| HR-FR-P9-06 | HBR-P9 / HNFR-AC | design / add-design PLAN は要件起草前 inventory evidence を構造化フィールドで持ち、既存資産、旧 HELIX repo、関連 gate/docs の照合先、照合日、採否結論、未採用理由を記録する。prose-only の「確認済み」は証跡にせず、baseline 対象外の新規 PLAN は evidence 欠落のまま confirmed に到達できない | HAC-P9-06a / HAC-P9-06b |\n| HR-NFR-P3-01 | HNFR-P3 | 合格主張は green command evidence、review tier、external-truth grounding の有無を区別し、self-verification 単独を禁止する | HAC-N3-01a / HAC-N3-01b |\n| HR-NFR-P3-02 | HNFR-P3 / HBR-P3 | 実装精度は design requirement ID、acceptance ID、code/test evidence、review finding の対応で計測し、未対応 claim を完了根拠にしない | HAC-N3-02a / HAC-N3-02b |\n| HR-NFR-P3-03 | HNFR-P3 / HBR-P9 | canonical L1-L12の層単位でregression fenceを持ち、層外L0 charterのauthority projectionも検査する。変更影響層のgate/test/doctorが未実行ならpassを出さない | HAC-N3-03a / HAC-N3-03b |\n| HR-NFR-P3-04 | HNFR-P3 / HBR-P3 | AI による実装作業は test-first を既定にし、Red evidence、expected failure、acceptance oracle、Green evidence、refactor safety を記録する。test-first 不適用は理由と代替 oracle を持たなければならない | HAC-N3-04a / HAC-N3-04b |\n| HR-NFR-P5-01 | HNFR-P5 | injection budget は直近逐語 / rolling summary / stable constraints の 3 層と層境界数値を持ち、可逆圧縮に必要な artifact trail と raw/evidence pointer を汎用要約から分離して保持する | HAC-N5-01a / HAC-N5-01b |\n| HR-NFR-P5-02 | HNFR-P5 | continuation checkpointはappend-only eventを先にdurable appendし、event idでDB projectionを冪等更新した後だけ公開する。append後/projection前crashからのrestart、bounded memory breadcrumbを保証する。session prose / `CURRENT.json` / handover CLIを生成せず、provider delegation evidenceは別契約として保持する | HAC-N5-02a / HAC-N5-02b |\n| HR-NFR-P5-03 | HNFR-P5 / HBR-P3 | verification workload は fast/default/full の test/verification profile、並列度、CPU/IO/resource budget、timeout、p95 duration budget、実行時間記録を持ち、通常 loop で必要以上の full suite を強制しない。初期 budget は fast<=120s / default<=600s / full<=1800s を上限目安とし、超過時は continuation/blocker/improvement task に変換する | HAC-N5-03a / HAC-N5-03b |\n| HR-NFR-P8-01 | HNFR-P8 | 認証/認可/決済/PII/secret/license/schema migration/destructive data/external API・infra 変更は action-binding approval なしに適用しない。version-up activation / rename cutover の action-binding approval は `reviewed_snapshot_binding` に packet field 名だけでなく current `sha256:` snapshotId を記録するまで pending とし、古い承認材料を実行許可に流用しない | HAC-N8-01a / HAC-N8-01b |\n| HR-NFR-P8-02 | HNFR-P8 / HBR-P8 | prompt injection / tool injection / data exfiltration 誘導を検出・分類し、外部データ由来の命令を隔離、redaction、human review、deny のいずれかに送る | HAC-N8-02a / HAC-N8-02b |\n| HR-NFR-P8-03 | HNFR-P8 / HBR-P8 | agentic AI 機能は段階導入を既定にし、task-scoped permission、least privilege、監査ログ、rollback/reversibility、risk owner、継続監視、threat model 更新を持たない限り自動適用範囲へ昇格しない | HAC-N8-03a / HAC-N8-03b |\n| HR-NFR-AC-01 | HNFR-AC | rule-drift は Claude/Codex だけでなく agent/template/skill/runtime adapter へ一般化し、単一 core から逸脱する規則差分を検出する | HAC-NAC-01a / HAC-NAC-01b |\n| HR-NFR-AC-02 | HNFR-AC | hosted API/developer tool surface は repo hook 非強制であることを明示し、作業前 preflight と監査ログを必須にする | HAC-NAC-02a / HAC-NAC-02b |\n| HR-NFR-AC-03 | HNFR-AC / HBR-P2 / HBR-P8 | AI runtime は provider API 直叩きや SDK 常駐実行を前提にせず、PLAN artifact、repo-local CLI adapter、harness DB trace、dry-run plan を正本にする。外部 API / infra / GitHub 操作は plan emit と action-binding approval を経ない限り実適用しない | HAC-NAC-03a / HAC-NAC-03b |\n\n**検証戦略 overlay (PLAN-L7-188 採用)**: HR-NFR-P3-01〜04 / HR-NFR-P5-03 / HR-NFR-AC-02〜03 は\nテスト戦略だけで閉じない。`fired` / `used` / `works` / `blocked` / `recovered` / `observed` など runtime\nbehavior claim は L7.5 RUN & Debug で実 `session_id`、実 `source`、adapter/runtime surface、timestamp、\nevidence path を捕捉し、projection-only telemetry を未検証として扱う。これにより右腕の検証戦略を\nL3 要件の受入条件として固定する。\n\n"
+    },
+    {
+      "name": "legacy_paired_acceptance",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "lines": "91-130",
+      "sha256": "f8d1fb992d2e045bd46fda6ad3ad0af580bc42c4c3b8ba8695d3ba130b616ccb",
+      "literal": "## §1 受入テスト\n\n| HAT-ID | 対応 L3 | 対応 AC | 受入観測 | 機械検証候補 |\n|--------|---------|---------|----------|--------------|\n| HAT-P0-01 | HR-FR-P0-01 | HAC-P0-01a/b | workflow PLANが選択済みdevelopment styleへの返却先または明示隔離を持つ。Discovery／PoCはS4判断後だけ接続し、返却先欠落・不存在・Scrumへの暗黙内包を拒否する | style返却先とcase-driven境界の検証／plan-governance |\n| HAT-P0-02 | HR-FR-P0-02 | HAC-P0-02a/b | cap/lock到達時に停止理由をevent-firstで保存し、DBへ冪等投影して二重実行しない | orchestration / continuation-integrity tests |\n| HAT-P1-01 | HR-FR-P1-01 | HAC-P1-01a/b | resume 3条件 + job + budget + event-first checkpoint + crash restartが連動し、projection成功前は公開せずsession prose/CURRENT/CLIを生成しない | loop-runner / continuation/resurrection tests |\n| HAT-P1-02 | HR-FR-P1-02 | HAC-P1-02a/b | version_target と tag bump dry-run が migration/rollback を出す。parked PLAN の activation packet は activation/parked review/action-binding approval、source ledger freshness、reapproval trigger、activation snapshot binding、version dry-run result digest を判断材料として出すが、plan-only で apply/activation permission を持たない。status / completion decision packet / continuation read model の version-up summary は親 field だけでなく、activation snapshot id、dry-run/rollback plan、readiness evidence、source ledger rows digest、version dry-run digest、release tag 解決、security checklist route impact、reapproval action の具体 field を出す。source ledger stale / 必須 source 欠落、external rehearsal / provenance evidence pending、HEAD/scope/source/evidence/dry-run result drift は activation 前 blocker または再承認 route になる。GitHub Actions activation/dry-run workflow を含む場合は secure-use source、`GITHUB_TOKEN` 権限、least privilege、`pull_request_target`、自動 PR 承認リスクが approval / dry-run / external rehearsal / provenance / audit の期待値に入る | version-up tests / plan lint / activation-packet CLI smoke |\n| HAT-P1-03 | HR-FR-P1-03 | HAC-P1-03a/b | 大きい要求が選択済みdevelopment styleのsliceに分割され、各sliceがparent・返却先・acceptance・budget・DB-backed next_actionを持つ。Discovery／PoCを分割方式として暗黙起動しない | scrum/work-breakdown / continuation tests |\n| HAT-P1-04 | HR-FR-P1-04 | HAC-P1-04a/b | template生成だけでL3凍結を許可しない。UIの要求／プロト合意、非UIの適用性receiptを検査し、欠落を拒否する。後日mockの差分をL2へ反映して再合意し、影響するL3／L11を再検証する | L2-template／適用性receipt／back-propagation tests |\n| HAT-P2-01 | HR-FR-P2-01 | HAC-P2-01a/b | tool contract registry が未登録 surface を許可せず、request/response の required/forbidden field を検証する | `tests/tool-contract.test.ts` / doctor `tool-contract-registry` |\n| HAT-P2-02 | HR-FR-P2-02 | HAC-P2-02a/b | loop effort/budget 超過で自己継続しない | `tests/orchestration/orchestration.test.ts` HU-PILLAR-P2-02 / `tickLoopEffortBudget` |\n| HAT-P2-03 | HR-FR-P2-03 | HAC-P2-03a/b | Codex `apply_patch` / `write_file` / `exec_command` / `local_shell` adapter map、direct hook parity、hosted API preflight が区別される | `tests/codex-hook-adapter.test.ts` / `tests/hosted-preflight.test.ts` / `helix guard preflight --json` |\n| HAT-P2-04 | HR-FR-P2-04 | HAC-P2-04a/b | API/SDK 呼び出し前提ではなく PLAN 駆動で、simple workflow 既定、multi-agent 昇格理由、harness DB loop trace span、eval outcome が残る。pair-agent TDD route は consultation question を含む light output を pending consultation として扱い、smart directive / fix response 無しに pass しない。light output が完了/承認 marker を出す場合は light agent の closing authority 越えとして fail-close する。task difficulty と `maxFixCyclesSource` を plan/run evidence に残し、未指定 max cycle は difficulty policy (`trivial/simple=1`, `standard=2`, `complex=3`, `critical=4`) から導出する。max cycle 到達は `max-fix-cycles-exhausted` finding として監査可能に残る。`pair-agent plan --save-evidence` は adapter plan / prompt digest / frontier guardrail を残し、`pair-agent run --save-evidence` は `loop_summary` / `transcript_digest` / phase `output_excerpt_digest` を残す。DB rebuild は保存済み `phase_spans` が `smart_test_author` から始まり `light_implementation` / `smart_review` が交互に続くことを検査し、違反時は `pair-agent-run-evidence` gate blocked と finding に投影する。plan/run phase agent は `model_runs`、gate は `gate_runs`、frontier approval は `guardrail_decisions`、phase/smart/light/review/consultation/pending consultation/failed review/fix cycle count は `quality_signals` へ投影する | agent-loop tracing / eval tests / `tests/pair-agent.test.ts` / `tests/projection-writer.test.ts` |\n| HAT-P2-05 | HR-FR-P2-05 | HAC-P2-05a/b | 外部AI workerの隔離worktree／non-authorityとPython意味コアの層別authorityを区別する。Pythonへrepository／DB path／credential／`.helix/`を渡さず、descriptor・resource上限・network denyを検査する。secret taskと未登録runtimeは起動前にdenyする | worker runtime admission設計test（未実装はdesignedとして追跡） |\n| HAT-P2-06 | HR-FR-P2-06 | HAC-P2-06a/b | Python意味判断・生成とNode実行境界をADR-010の同格の層別authorityとして検査する。typed wire eventをNodeが再検証し、Nodeだけが単一commitする。未登録event／直接write要求は実行しない | delegation wire adapter設計test（未実装はdesignedとして追跡） |\n| HAT-P2-07 | HR-FR-P2-07 | HAC-P2-07a/b | permanent bypass denyがone-shot marker／provider flagより優先し、無権限変更を拒否する | repository bypass policy設計test（未実装はdesignedとして追跡） |\n| HAT-P2-08 | HR-FR-P2-08 | HAC-P2-08a/b | strict既定のschema／digest検証と、期限付き緩和profileのfail-closeを検査する | worker output validation設計test（未実装はdesignedとして追跡） |\n| HAT-P3-01 | HR-FR-P3-01 | HAC-P3-01a/b | pair 欠落と coverage-only 完了主張を拒否する | pair-freeze / review-evidence tests |\n| HAT-P3-02 | HR-FR-P3-02 | HAC-P3-02a/b | 外部 claim は source attribution + 別 verifier を要求する | external-grounding tests |\n| HAT-P4-01 | HR-FR-P4-01 | HAC-P4-01a/b | detector event が repair candidate へ変換され、高リスクは approval 待ちになる | repair-routing tests |\n| HAT-P4-02 | HR-FR-P4-02 | HAC-P4-02a/b | repair recipe が memory/backlog へ残り、頻出時に promote 候補になる | memory + improvement-backlog tests |\n| HAT-P4-03 | HR-FR-P4-03 | HAC-P4-03a/b | 実装精度・レビュー・テスト時間・flake・再作業 metric と trace/metric/log observability が改善候補へ変換される | metric collector / improvement routing tests |\n| HAT-P6-01 | HR-FR-P6-01 | HAC-P6-01a/b | raw push/merge が required checks と bypass audit により制御される | GitHub rules dry-run tests + primary-source artifact |\n| HAT-P6-02 | HR-FR-P6-02 | HAC-P6-02a/b | PR review と CI auto-fix が worker≠verifier と confidence cap を守る | PR workflow tests |\n| HAT-P6-03 | HR-FR-P6-03 | HAC-P6-03a/b | fresh/brownfield setup が `.helix` / `.helix` state、consumer doctor baseline、baseline plan、import report、`skip_sub_doc` を非破壊に出す。導入先では `helix doctor --profile consumer` が dogfood design/plans 無しで通り、配布済み `.helix/teams/default-hybrid.yaml` を使った `helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json` dry-run が Codex worker / Claude reviewer 分離を検証する。`consumerReadiness.artifactReadiness` は AGENTS / VSCode task / `.helix` baseline / default-hybrid team の意味契約を検査し、artifact が欠けるか導線と worker/reviewer 分離が崩れた場合は環境 CLI が解決済みでも `fix_consumer_readiness` に戻す。projected hook / agent が呼ぶ bare `helix` の PATH 解決だけを `helix-cli` green 条件にし、`package.json.scripts.helix` / `bun run helix` は `helix-package-script` fallback 証跡に限定する。package script のみなら `cliResolution.strategy=package-script`、`bareCommandResolved=false`、`packageScriptAvailable=true`、`ok=false`、`postSetupWorkflow.nextRoute=fix_consumer_readiness` を観測し、VSCode task / CI / package-local smoke の成功を hook 自走性や setup ready に読み替えない。consumer doctor は `.helix/state/project-setup.json` の `completionClaimAllowed=false` と completion packet / consumer doctor verification command も検査し、setup ready を whole-program completion ready に読み替えない | setup/distribution tests |\n| HAT-P6-04 | HR-FR-P6-04 | HAC-P6-04a/b | tag bump が migration/rollback/idempotency plan を出し破壊的 apply を止める。rename/cutover は未承認のまま audit/cutover packet を出し、status / completion decision packet / continuation read model の summary に cutover snapshot digest、snapshot review、runbook write policy、backup/restore evidence、freeze policy、approval gate の具体 field を出す | version-up dry-run tests / identifier-rename tests |\n| HAT-P6-05 | HR-FR-P6-05 | HAC-P6-05a/b | release automation が一次出典つき ADR で選ばれ、CI auto-fix repush が confidence 0.75 と iteration cap を守る | release ADR / CI auto-fix tests |\n| HAT-P6-06 | HR-FR-P6-06 | HAC-P6-06a/b | canonical indexからgenerated indexを再現し、first/third-party provenance／license／免責／digestを保持し、手編集と未承認cutoverを拒否する | distribution package contract設計test（未実装はdesignedとして追跡） |\n| HAT-P7-01 | HR-FR-P7-01 | HAC-P7-01a/b | Claude/Codexが同じ共有memoryをbounded recallし、provider delegation evidenceとoperations transitionをrecall/continuation sourceにしない。retirement前後のcount・原本digest・provenance・schema・query/export可用性・retention metadata不変を確認する | memory surface / session-start / preserve evidence boundary and integrity tests |\n| HAT-P7-02 | HR-FR-P7-02 | HAC-P7-02a/b | Glossary SSoT が用語 rename/synonym drift を検出する | glossary lint tests |\n| HAT-P7-03 | HR-FR-P7-03 | HAC-P7-03a/b | DDD context map が bounded context、ubiquitous language、owner、published language、anti-corruption boundary を検査する | context-map / relation-graph tests |\n| HAT-P8-01 | HR-FR-P8-01 | HAC-P8-01a/b | external research artifact が source/span を持ち未検証採用を防ぐ | research-grounding tests |\n| HAT-P8-02 | HR-FR-P8-02 | HAC-P8-02a/b | skillify candidate は license/safety review なしに registry 入りしない | skillify tests |\n| HAT-P8-03 | HR-FR-P8-03 | HAC-P8-03a/b | external code/API は一次出典で検証済みの MicroVM/gVisor sandbox と token policy に従い無制限実行しない | sandbox/token-policy tests |\n| HAT-P8-04 | HR-FR-P8-04 | HAC-P8-04a/b | 外部 text が raw/metadata/trusted extraction/instruction に分離され、命令として直結しない | security-filter tests |\n| HAT-P9-01 | HR-FR-P9-01 | HAC-P9-01a/b | DB 未収束 artifact/setup baseline を完了扱いにしない。completion decision packet は S4 / version-up activation / cutover の requiredRecords に source ledger freshness、source status delta、adoption decision delta、workflow route impact を出し、stale source・採否差分不明・route 影響不明の終端 record では L14 / whole-program completion を閉じない。`workflowNextActions` / completion decision packet / handover は base packet command だけでなく PLAN-scoped packet command を出し、複数 pending PLAN がある状態で PO が S4 / version-up / action-binding packet の対象 PLAN を手で推測しなくてよい。action-binding summary は親 field だけでなく actor / tool / target / params / snapshot / expiry / audit の具体 `approvalRecord.*` と `approvalBindingChecks.*` を出し、承認者が見るべき binding を status から失わない。PO/chat 向け text surface は日本語の action/route/review を先に出し、同じ契約内に `action-id` / `required-action-id` / `route-id` / `review-id` の機械 field を残すことを cli-surface / completion-decision-packet / handover tests で確認する | projection/doctor tests / completion-decision-packet tests / cli-surface tests / handover tests |\n| HAT-P9-02 | HR-FR-P9-02 | HAC-P9-02a/b | relation graph / contract ledger が impact query と breaking classification を返す | relation-graph tests |\n| HAT-P9-03 | HR-FR-P9-03 | HAC-P9-03a/b | L階層 baseline、span、metric trend、regression query が未実行 gate/悪化 metric/owner を返す | layer-regression projection tests |\n| HAT-P9-04 | HR-FR-P9-04 | HAC-P9-04a/b | message catalog で人間向け prose を差し替えると CLI / doctor / completion packet の表示文言だけが変わり、`OK` / `warning` / `violation` / JSON key / command 名などの machine-surface token は不変である。catalog key、既定日本語 prose、owner、適用 surface、baseline/grandfather 区分は schema 検証され、欠落 key は fail-close、未使用 key は warning 以上になる | message-catalog lint / cli-surface smoke / doctor message tests |\n"
+    },
+    {
+      "name": "legacy_bounded_repair_requirements",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "lines": "35-58",
+      "sha256": "695b83590ee98937f05bad04807e5540d980fa51f43afb9689dd1d404089bf32",
+      "literal": "### BBR-R02 処理先分離（原稿B02）\n\n適用条件と安全性を検証できる登録済み処理のみ機械修復する。複数解・意味判断は既存workerへproposalとして返す。\n承認不足・矛盾・取得不能・未知は追加観測・判断・待機へ送る。候補・許可・適用・検収を別状態にする。\n\n### BBR-R03 自動適用契約（原稿B03）\n\n既存操作契約へ修復ID/版、信頼済み実装、失敗コード、入力schema、事前条件、write-set、\n副作用区分、予算・期限・再試行、事後検証、失敗処理を束縛する。登録・有効化は通常検収を通す。\nLLM confidenceや自己申告で許可しない。\n新しい自動適用権限は、対象修復ごとの契約・独立検証・実consumer検証がすべて成立した\n修復ID/版・対象consumer・許可write-setの範囲だけ有効化する。要求承認のみ、修復器登録のみ、\n他修復の合格では包括的な自動書込み権限を付与しない。既存契約内の通常検収へ毎回の人間再承認を新設しない。\n適用直前にHEAD・入力bytes・Policy・生成器・workspace所有権・lease/fenceを再照合する。\n隔離差分を検証し既存transaction/CASで反映する。write-set逸脱は拒否し、他者の変更を保全する。\n外部文章のcommand、候補PRが改変した修復器、未信頼入力を特権実行しない。\n\n### BBR-R04 収束と停止（原稿B04）\n\n再適用の差分ゼロ、findingの重複排除、episode累積の試行・予算を要求し、session変更でresetしない。\n相互修復の循環・同一失敗再発・期限超過で停止して既存Recoveryへ返す。\n内部正常化後に候補を確定し、HEAD変更でstaleとなるCI/reviewを正規更新する。\n修復成功で独立検収・merge許可を代替しない。途中失敗の差分・記録を保全し、不明な外部副作用を再試行しない。\n全面rollback可能と仮定せず、失敗した修復がHelpや許可された調査まで塞がないようにする。\n"
+    },
+    {
+      "name": "legacy_bounded_repair_requests",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requests.md",
+      "lines": "18-29",
+      "sha256": "671953612fd0b885f3cf73b5fc2d230cd8e5e82492311315815aab8b033d1cb6",
+      "literal": "BBR-BR02: 自動化しても権限・所有権・予算・独立検収を越えず、修復の失敗や反復が\n他レーンの変更・調査・Help・継続運転を壊さないこと。\n\n要件候補は[BBR-R01..05](bugbot-bounded-repair-requirements.md)、\n受入候補は[BBR-AC01..07](bugbot-bounded-repair-acceptance.md)へ接続する。\nBR01→R01/R02/R04→AC01/02/04/07、BR02→R03/R04/R05→AC03/04/05/06で追跡する。\n\n既存GH-FR-011の権限内の機械化は再利用する。#1595の診断・修復候補は実行権ではない。\n本候補のL1/L3/L10は`L3-PO-1642-001`で承認済み。正本化・該当IR admission後に実装・限定実証へ進む。\n新しい自動適用権限は修復ごとの契約・独立検証・実consumer検証が成立した範囲だけ有効化する。\n要求承認のみで包括的書込み権限を付与せず、未定義の意味・権限拡張だけ正規改訂へ返す。\n別Policy、DB、scheduler、万能コード生成器は作らず、Aとは別完了で追跡する。\n"
+    },
+    {
+      "name": "legacy_security_authority",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "lines": "160-166",
+      "sha256": "851ea0172fb9de5c90248726fc4073ca24ab58180e635fc3bb1d8f8b8c43f279",
+      "literal": "| `SEC-FR-CAP-001` | operation capabilityとimpactを独立typed fieldで保持し、未知・混同・欠落を拒否する | `SEC-AC-CAP-001` |\n| `SEC-FR-CAP-002` | lexical/physical target、target set、TOCTOU identityを実行直前に検証する | `SEC-AC-CAP-002` |\n| `SEC-FR-CAP-003` | direct/bounded/script/generated/unknown provenanceを区別し、未検証間接実行をhostへ渡さない | `SEC-AC-CAP-003` |\n| `SEC-FR-CAP-004` | data classificationとsink authorityを分離し、credential／PII／archive egressをbroker外で拒否する | `SEC-AC-CAP-004` |\n| `SEC-FR-CAP-005` | external/destructive actionをexact target、dry-run、postcondition、rollback、expiry、action bindingへ束縛する | `SEC-AC-CAP-005` |\n| `SEC-FR-CAP-006` | hook/sandbox coverageをruntime別に検査し、unsupported surfaceをhost実行へfallbackしない | `SEC-AC-CAP-006` |\n| `SEC-FR-CAP-007` | canonical safety failureをlegacy greenで相殺せず、値非表示のreceiptへ全reasonを記録する | `SEC-AC-CAP-007` |\n"
+    },
+    {
+      "name": "legacy_security_acceptance",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+      "lines": "20-24",
+      "sha256": "91b96231e2406f453d10062a0a706cbdea4bd497d5af2c20ebc54e683ccbb611",
+      "literal": "| `SEC-AC-CAP-001` | `SEC-FR-CAP-001` | operation、impact、approvalを同一enumへ混在、未知値、欠落、複数候補 | 軸混同・未知・欠落をreason付き`unresolved`で拒否する |\n| `SEC-AC-CAP-002` | `SEC-FR-CAP-002` | repo内literal、ancestor symlink、junction、bind mount、hardlink、repo外realpath、glob、TOCTOU変更 | exact physical identityとtarget setが一致するliteralだけ許可候補。その他は拒否する |\n| `SEC-AC-CAP-003` | `SEC-FR-CAP-003` | direct literal、bounded wrapper、script digest、find/xargs、変数、dynamic interpreter、解析深度超過 | bounded以外の間接実行をhostへ渡さず、sandboxまたは拒否へ送る |\n| `SEC-AC-CAP-004` | `SEC-FR-CAP-004` | public/repository/sensitive/PII/credential/unknownとlocal/GitHub/network/cloud sinkの直積 | credential、PII、archive、unknownはbroker外送信を拒否し、ログにも値を出さない |\n| `SEC-AC-CAP-005` | `SEC-FR-CAP-005` | destructive external actionのtarget、dry-run、rollback、expiry、approval receiptの各欠落・drift | exact tupleが揃うまで`approval_required`または`unresolved`で実行を拒否する |\n"
+    },
+    {
+      "name": "L2-017",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "revision": "f4ccb9efa1d20dcda9a270c9d16f1b77f0eb8134",
+      "lines": "202-206",
+      "sha256": "87e6263c2589637e34b9099ba27e65f72e90dcc309e32d901ffa5ee302a26d0e",
+      "literal": "### HELIXINTELLIGENCE-L2-017 — 限定修復の接続横断境界\n\n本identityは限定修復におけるSECURITY・Worker・HARNESS・OS間の境界受渡し全体を確認する接続横断契約であり、各connectorの個別I/OはHELIXINTELLIGENCE-L2-036～039で定める。INTELLIGENCEは包括write権限を得ず、いずれのowner責務も代替しない。version_target 1.0。\n\n- 親：HELIXINTELLIGENCE-L1-017。依存：HELIXINTELLIGENCE-L2-036, HELIXINTELLIGENCE-L2-037, HELIXINTELLIGENCE-L2-038, HELIXINTELLIGENCE-L2-039各接続のadmitted contractと同一target revision/scope。入力：permission/isolation・Worker実行・HARNESS検証義務・OS検収の各結果。出力：境界別の未完/完了状態を保持した統合修復結果。保証：いずれのowner責務・authorityも修復candidateで代替されない。失敗時戻し先：結果欠落は当該SECURITY/Worker/HARNESS/OS ownerへ戻し修復を未完了にする。`version_target: 1.0`。\n"
+    },
+    {
+      "name": "L2-036",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "revision": "f4ccb9efa1d20dcda9a270c9d16f1b77f0eb8134",
+      "lines": "262-269",
+      "sha256": "10f2ed02ab029383574361bdbf721e5a73b8c1004d1946dc08d70012f2b325d3",
+      "literal": "### HELIXINTELLIGENCE-L2-036 — INTELLIGENCE ↔ SECURITY\n\n- 親：HELIXINTELLIGENCE-L1-017。\n- 入力：操作candidateと対象scope/revision。\n- 出力：SECURITY permission/constraint/revocation照合結果を修復candidateへ返す。\n- 依存：各記載source/consumer ownerと専用HELIX-CONNECT connectorのadmitted contract。\n- 保証：permission・isolation authorityはSECURITY。\n- 失敗時戻し先：許可結果が欠落/失効/不明ならSECURITYへ戻し実行しない。`version_target: 1.0`。契約/成果物/依存版・compatibility・交換更新rollbackはHARNESS-L2-010/011共通pack contractを適用する。\n"
+    },
+    {
+      "name": "L11-017",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "revision": "f4ccb9efa1d20dcda9a270c9d16f1b77f0eb8134",
+      "lines": "92-92",
+      "sha256": "9f5b1b808d8188ae2a1f261996db714bb95466998c955d249150cbfc54eb9ef1",
+      "literal": "| HELIXINTELLIGENCE-L2-017 | 同一target revision/scopeでHELIXINTELLIGENCE-L2-036～HELIXINTELLIGENCE-L2-039のpermission/Worker/HARNESS/OS各結果を別々に保持し、未完義務を引き継ぐ | いずれかの結果で別ownerのpermission/execution/verification/acceptanceを代替する | 欠落stageのSECURITY/Worker/HARNESS/OS ownerへ戻し修復未完了 |\n"
+    },
+    {
+      "name": "L11-036",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "revision": "f4ccb9efa1d20dcda9a270c9d16f1b77f0eb8134",
+      "lines": "99-99",
+      "sha256": "04a433c4b064fa6b85a690d448b1c21730c9a6e424ecf616133fc12ec7fa333b",
+      "literal": "| HELIXINTELLIGENCE-L2-036 | 操作候補のSECURITY permission/constraint/revocationを照合し、authorityをSECURITYに残す | 許可を推測する、INTELLIGENCEからpermissionを変更する | permission欠落/失効/unknownはSECURITYへ戻し実行しない |\n"
+    },
+    {
+      "name": "L11-R2187-017",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "revision": "f4ccb9efa1d20dcda9a270c9d16f1b77f0eb8134",
+      "lines": "266-266",
+      "sha256": "274886b420955f6772ddbc2d6243566b4292ecd31329a1cb4f7cf020e159cd2e",
+      "literal": "| `HELIXINTELLIGENCE-L2-017` | 同一target revision/scopeについて、SECURITY permission、Worker実行結果、HARNESS検証、OS検収の別々の証拠を受ける。操作時点で有効だったpermissionと、その後の失効時刻を区別し、各段階の対応する証拠がそろった場合だけ完了する。 | 実行時点ですでに期限切れ/revoked、または別scopeのpermissionで実行した場合は不許可として扱い、完了にしない。HARNESS obligationが欠落した修復成功もOS検収済みに昇格させずHARNESS/OSへ戻す。 | 未見の段階順序では対象scopeとreceiptを照合する。後日失効したpermissionでも、実行時点に有効であった記録があれば過去の実行証拠として保持し、後日の失効で消去しない。実行時点のauthorityが確認できない場合だけ当該段階を保留する。 |\n"
+    },
+    {
+      "name": "L11-R2187-036",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "revision": "f4ccb9efa1d20dcda9a270c9d16f1b77f0eb8134",
+      "lines": "273-273",
+      "sha256": "63af5d167a5f624ac5fd707cae9942d79d60040d767e507970bc3a75e53f576c",
+      "literal": "| `HELIXINTELLIGENCE-L2-036` | 特定action/actor/target/scopeに有効なSECURITY許可と制約を照合し、そのactionの候補状態を表す。許可の発行/変更は行わない。 | revoke済み、期限切れ、別scopeの許可は有効と扱わず、該当操作を実行可能にしない。 | 未見actionは別actionの許可から推論せずSECURITYへ戻す。該当scopeの許可がunknownなら保留する。 |\n"
+    }
+  ],
+  "legacy_source_files": [
+    {
+      "name": "legacy_design_definition",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "bytes": 15617,
+      "asset_id": "LEGACY-ASSET-F542125805B777D8A56A"
+    },
+    {
+      "name": "legacy_shared_fr_ac",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "bytes": 65731,
+      "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605"
+    },
+    {
+      "name": "legacy_paired_acceptance",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+      "bytes": 30874,
+      "asset_id": "LEGACY-ASSET-44DD86E3DEC09E65EF51"
+    },
+    {
+      "name": "legacy_bounded_repair_requirements",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+      "bytes": 5990,
+      "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934"
+    },
+    {
+      "name": "legacy_bounded_repair_requests",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requests.md",
+      "sha256": "20f549aa879d84e92196976ab2106bacedb393767d7a9946483c4d308576024e",
+      "bytes": 1692,
+      "asset_id": "LEGACY-ASSET-35F5F438E0F8755B1CCE"
+    },
+    {
+      "name": "legacy_security_authority",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+      "bytes": 10302,
+      "asset_id": "LEGACY-ASSET-B62E49D2E156232B8C63"
+    },
+    {
+      "name": "legacy_security_acceptance",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+      "sha256": "b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4",
+      "bytes": 5198,
+      "asset_id": "LEGACY-ASSET-170112AB2FA2FFDBFEE9"
+    }
+  ],
+  "six_document_sha256_before": {
+    "docs/helix-intelligence/L3-requirements/business-requirements.md": "bde86431339e3464e9e893dcd4e2f7aa9f6b7a81035762938621a258e2b2cc44",
+    "docs/helix-intelligence/L3-requirements/functional-requirements.md": "c19825b3fa82edaafd787bd092076bea910a89b99d13aa4c208b0c51e781b82f",
+    "docs/helix-intelligence/L3-requirements/nfr-grade.md": "a50c5379206610db3dd730a230ad4a52657f9600f7c8363101e1603d59ac8681",
+    "docs/helix-intelligence/L10-verification/business-verification.md": "386251e6fd6097b8892ace2ba2db5c69ce009fdb843a1c5bca3996f8cf581c4a",
+    "docs/helix-intelligence/L10-verification/functional-verification.md": "aeefde170f0087794bf86d3d3895c35c7646b5b7ec2a68666b90c4f0f35913a0",
+    "docs/helix-intelligence/L10-verification/nfr-verification.md": "f38e48d6dc2928009caa14147d675dd1d7572cd0f8c2c65c993fbe5dc43baf12"
+  },
+  "six_document_sha256_after": {
+    "docs/helix-intelligence/L3-requirements/business-requirements.md": "026d95fbf023ef384834ebd3b215a469f2fea648190d15d45494b5ea4cc91959",
+    "docs/helix-intelligence/L3-requirements/functional-requirements.md": "01ceffadc184ead3c5a73e4df4f308610394590630c222a53930e4857ee71c5a",
+    "docs/helix-intelligence/L3-requirements/nfr-grade.md": "a50c5379206610db3dd730a230ad4a52657f9600f7c8363101e1603d59ac8681",
+    "docs/helix-intelligence/L10-verification/business-verification.md": "b476b0939b7da50cf75db66d235095f94e591ac929ef046721224b5112d04552",
+    "docs/helix-intelligence/L10-verification/functional-verification.md": "aa6cb83a2eaeeaf0d4d0fd955698e5071e27c81232ba43a1c3af94918fbccc77",
+    "docs/helix-intelligence/L10-verification/nfr-verification.md": "1049e8edef98fd41f1f2c57caff98eebc999e65652e558b42646976e517614a1"
+  },
+  "changes": [
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "items": [
+        "AC-INT-036-01 normal oracle explicitly requires permission target revision == operation target revision",
+        "AC-INT-036-02 adds CASE-INT-036-02p to the independent negative family",
+        "AC-INT-017-02 adds permission target revision-only mismatch to its negative family"
+      ]
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "items": [
+        "CASE-INT-036-01 normal oracle includes target revision equality",
+        "CASE-INT-036-02p isolates permission target revision mismatch; permission-own revision and other fields remain normal; refuse execution/elevation and return SECURITY",
+        "CASE-INT-017-02p isolates permission target revision mismatch; exclude evidence from completion, refuse executable state, return SECURITY"
+      ]
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "items": [
+        "017 and 036 parent fixture indexes include 02p"
+      ]
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "items": [
+        "017 and 036 parent fixture indexes include 02p"
+      ]
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "items": [
+        "NFR-INT-017-01 and NFR-INT-036-01 denominator fixture lists include 02p"
+      ]
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "items": [
+        "unchanged; outside this finding-specific denominator edit"
+      ]
+    }
+  ],
+  "preserved_review_state": {
+    "nonreturned_minor": "The formal review lists 5 nonreturned Minor observations; none is represented as resolved in this repair.",
+    "opus_unverified": [
+      "legacy asset pin underlying blobs",
+      "pack line 255 structure/count only",
+      "BR/BV/nfr-grade prose beyond CASE ID sets",
+      "type 5 limited to latest 25 commits"
+    ],
+    "fable": "The same-HEAD Fable opinion is recorded as review context only; Opus Major 1 differs, and changed-revision authorization is not generated."
+  },
+  "validation": {
+    "diff_check": "passed",
+    "case_id_uniqueness": "passed: new CASE-INT-017-02p and CASE-INT-036-02p each have one FV definition",
+    "case_index_sync": "passed: FR AC, BR, BV, and NFRV denominators include both new IDs",
+    "six_document_sha256": "passed against recorded after values",
+    "case_not_executed": true
+  },
+  "scope": "INTELLIGENCE Stage 4; fixed parents 017 and 036 only; no other Stage or parent; no commit/push.",
+  "po_decision_source": {
+    "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+    "lines": "73-89",
+    "sha256_full": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+    "sha256_span": "fa002998a044ca6cbff5ff1720e0cdaa60a6e395029635f9028edd892ec47ed1",
+    "reviewer_reported_adopted_scope": "017, 030–041, 044, 045"
+  },
+  "fixed_parent_intent": {
+    "L2-017": "same target revision/scope across permission, Worker, HARNESS, OS results; no authority substitution",
+    "L2-036": "operation candidate and target scope/revision input; return SECURITY permission/constraint/revocation match result",
+    "L11-017": "preserve four owner-specific results at same target revision/scope",
+    "L11-036": "valid SECURITY permission/constraint result, no guessed permission issuance/change"
+  },
+  "root_fixed_source_equivalence": {
+    "fixed_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "L2_L11_current_snapshot_full_blobs_equal_to_fixed_revision": true,
+    "raw_span_hashes_and_literals_recomputed": true
+  }
+}

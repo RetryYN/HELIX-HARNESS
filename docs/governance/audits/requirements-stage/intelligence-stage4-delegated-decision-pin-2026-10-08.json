@@ -1,0 +1,1279 @@
+{
+  "record_type": "HELIX-INTELLIGENCE Stage4 explicit delegated decision pins",
+  "as_of": "2026-10-08",
+  "decision_status": "recorded_pending_condition3",
+  "authority_effect": "none_pending_condition3_and_main_admission",
+  "scope": {
+    "mechanism": "HELIX-INTELLIGENCE",
+    "stage": 4,
+    "fixed_parents": [
+      "HELIXINTELLIGENCE-L2-017",
+      "HELIXINTELLIGENCE-L2-030",
+      "HELIXINTELLIGENCE-L2-031",
+      "HELIXINTELLIGENCE-L2-032",
+      "HELIXINTELLIGENCE-L2-033",
+      "HELIXINTELLIGENCE-L2-034",
+      "HELIXINTELLIGENCE-L2-035",
+      "HELIXINTELLIGENCE-L2-036",
+      "HELIXINTELLIGENCE-L2-037",
+      "HELIXINTELLIGENCE-L2-038",
+      "HELIXINTELLIGENCE-L2-039",
+      "HELIXINTELLIGENCE-L2-040",
+      "HELIXINTELLIGENCE-L2-041",
+      "HELIXINTELLIGENCE-L2-044",
+      "HELIXINTELLIGENCE-L2-045"
+    ],
+    "target_revision": "db3f490e4401fbc30eafad6fb76caf56cb07f58c",
+    "target_base": "00298f79229198965d889ebf0b6a1bedc4d03648",
+    "version_target": "fixed parent declarations; 041 remains source-specific",
+    "excluded": [
+      "other parents/stages",
+      "fixed L2/L11 meaning changes",
+      "L10 execution/pass",
+      "PO post-confirmation",
+      "implementation/operation/release/tag/cutover/distribution/issue closure"
+    ]
+  },
+  "reviewed_content": {
+    "exact_head": "db3f490e4401fbc30eafad6fb76caf56cb07f58c",
+    "exact_base": "00298f79229198965d889ebf0b6a1bedc4d03648",
+    "six_canonical_documents": [
+      {
+        "label": "L3-BR",
+        "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+        "sha256": "026d95fbf023ef384834ebd3b215a469f2fea648190d15d45494b5ea4cc91959",
+        "bytes": 26155,
+        "worktree_matches_exact_head": true
+      },
+      {
+        "label": "L3-FR",
+        "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+        "sha256": "01ceffadc184ead3c5a73e4df4f308610394590630c222a53930e4857ee71c5a",
+        "bytes": 212693,
+        "worktree_matches_exact_head": true
+      },
+      {
+        "label": "L3-NFR",
+        "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+        "sha256": "a1113329da1b463968b2a67a19692db77c41b0fcdb6bf028ac969d83921066a2",
+        "bytes": 60303,
+        "worktree_matches_exact_head": true
+      },
+      {
+        "label": "L10-BV",
+        "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+        "sha256": "b476b0939b7da50cf75db66d235095f94e591ac929ef046721224b5112d04552",
+        "bytes": 29673,
+        "worktree_matches_exact_head": true
+      },
+      {
+        "label": "L10-FV",
+        "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+        "sha256": "aa6cb83a2eaeeaf0d4d0fd955698e5071e27c81232ba43a1c3af94918fbccc77",
+        "bytes": 732032,
+        "worktree_matches_exact_head": true
+      },
+      {
+        "label": "L10-NFR",
+        "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+        "sha256": "1049e8edef98fd41f1f2c57caff98eebc999e65652e558b42646976e517614a1",
+        "bytes": 55626,
+        "worktree_matches_exact_head": true
+      }
+    ]
+  },
+  "formal_review_comment": {
+    "pr": 2670,
+    "comment_id": 6042665791,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2670#issuecomment-6042665791",
+    "created_at": "2026-10-07T17:00:53Z",
+    "author": "RetryYN",
+    "raw_utf8_bytes": 6472,
+    "raw_utf8_sha256": "299fd3042ba96010d7d7b0d069bbdbd92f2429c0496e4b7bff5eee52f0d3c6b0",
+    "body": "## review03（HEAD db3f490e4401fbc30eafad6fb76caf56cb07f58c、merge-base 00298f79229198965d889ebf0b6a1bedc4d03648）\n\nreviewer：Claude（lane `review_merge`、**Opus 5.5**）\n- 条件1：Opus 5.5のブラインド照合と、reviewerの原文確認で判定した。\n- 条件2：Fable advisor（claude-fable-5-1）の見解である。\n\n照合の範囲：\n- INTELLIGENCE Stage 4の採択15親（017、030〜041、044、045）の、6本文の節全体。\n- 固定親 `633bf12ea`：L2の202–353、L11の92–108と260–280。\n- PO採択：helix-intelligence-requirements-po-decision-2026-09-28.md の73〜89行。\n\n### 静的確認\n- scfctl validate 147/0、stale 0、residuals 0\n- govcheck ok\n- `git diff --check` clean\n- `git merge-tree`：最新main `00298f792` と衝突なし\n\n### 前回までの指摘への対応\n- **review01 M1は解消した。**\n  - 固定L2-036:265「対象scope/revision」に対して、AC-INT-036-01（FR:206）とCASE-INT-036-01の期待oracleに、target revisionの値一致が入った。\n  - 単独CASEとして、CASE-INT-036-02p（FV:744）とCASE-INT-017-02p（FV:253）がそろった。\n  - 戻し先はSECURITY permission/isolation ownerである。\n- **review02 M2は解消した。** nfr-grade.md:73と:122に02pが入り、6本文すべてで017-02p・036-02pがそろった。\n- **類型5：** 本PRの本文差分は追加だけである（`git diff f4ccb9efa HEAD`）。Opusは、Stage 4のIDを含む削除行を6本文の全履歴（51 commit）で調べた。HEADから消えたID（05r×15、017-03b、031-02h）は、いずれも過去revisionでの統合・番号整理だった。\n\n### Major\nなし。\n\n### Opusの照合結果（要約）\n- **15親の全体：** 固定L2の戻し先と、L11の禁止文（91〜108行、266〜280行）を、対応するCASEと照らした。類型1〜4に当たる欠陥はなかった。\n- **6本文のID対応：**\n  - FVに定義された15親のCASEは、BR・BV・NFRV・nfr-gradeの4表と一致した。差は、本文に明記された索引行（033-04f、034-02k、036-02j）と、045の分母外3件だけである。\n  - AC範囲もFVと一致した。L2/L11の行参照15件もすべて正しい。\n- **旧asset pin：** FRに書かれた33組を照合した。資産明細台帳のsource_pathとSHA-256は全件一致し、行範囲もすべてファイル内に収まった。\n- **共通pack 05a〜q：** 15親の表は全文同一で、固定HARNESS-L2-010（product-requirements.md:340–350）と011（352–360）の句に対応していた。\n\n### Minor（返却しない。誤った完了は通らない。次に触るときに直せばよい）\n- m1：FR:205のFR-036正常条件にtarget revisionの語がなく、AC-036-01と文言がそろっていない。同じFRの入力行には「scope/revision」がある（Fableの観察(a)と同じ点）。\n- m2：FR:205（036）とFR:243（039）の正常条件にpack保持文がない。AC側とFVの冒頭には適用が書かれている。\n- m3：017で別scopeだけを変える単独変異があるのはpermission（02e）だけである。Worker・HARNESS・OSの別scopeは、01の正常oracleと04の範囲にとどまる。\n- m4：031のL2入力「evidence」を「dependency evidence」（FV:387）にまとめていて、dependency以外のevidenceだけを欠かすCASEがない。033のProduct Core designも同じである。\n- m5：031と032の「未選択connector必須化」負例が、d6a06b175で削除された。境界自体は05qと04cに残っている。\n- m6：PO採択行85は041を「1.0」としているが、固定L2:314は「sourceごとに定義」で、L3はL2に従っている。\n- m7：045-02aと04aの「該当Product Core ownerへ照会」は宛先の書き方が広い。固定L2:350に由来する表現である。\n- m8：BRの036行と、FVの017-02表（02o／02p）の並び順が乱れている（Fableの観察(b)を含む）。\n\n### Fableの見解（同じHEADの6本文と固定親をFable自身が読んだもの）\n- 結論行は原文のまま：「承認してよい」\n- 所見：Major 0、Minor 0。承認を止めない観察として、(a) FR-INT-036の正常条件文にtarget revisionの一致が繰り返されていない（入力行とL2から導けるので、意味の欠落ではない）、(b) FVの017-02表で02o／02pの並び順が英字順でない、の2点を挙げた。\n- 照合した対象revision：`db3f490e4`。6本文のSHA-256はFableが自分で計算し、下の値と一致した。\n- 未確認範囲：PR comment、監査JSON／MD（承認対象外）、旧sourceの行範囲（Opusが照合済み）。\n\n### 未確認範囲の扱い\nOpusが残した3点は、次のとおり閉じた。\n- **nfr-gradeの「対象測定」**：reviewerが15行すべて（nfr-grade.md:71〜169）を、固定L2の各親の入力行と照合した。すべて一致した。\n- **全履歴の言い換え程度の変更**：本PRの本文差分は追加だけである。過去revisionでの変更は、それぞれのreviewで照合済みであり、本PRの類型5の対象外とした。\n- **旧source dispositionの否定主張**：旧資産の扱いを書いた記録であり、L3の意味ではない。旧asset pinのSHAと行範囲はOpusが照合済みである。\n\n### 委任条件の状態\n- **条件1（Opus `no_findings`）：成立。** Major 0。Minorは返さないと判断した。\n- **条件2（Fable）：成立。** 結論行は原文のまま「承認してよい」。\n- 条件1と2は、同じbody revision（`db3f490e4`）でそろった。\n- **条件3は未照合。** 判断記録の作成後に、6本文が次のSHA-256から変わっていないことを照合する。判断記録では、6本文のSHAをmain-integration JSON側の値でなく、下の表の値で示すこと。\n\n| 文書 | SHA-256 |\n|---|---|\n| L3-BR | `026d95fbf023ef384834ebd3b215a469f2fea648190d15d45494b5ea4cc91959` |\n| L3-FR | `01ceffadc184ead3c5a73e4df4f308610394590630c222a53930e4857ee71c5a` |\n| L3-NFR | `a1113329da1b463968b2a67a19692db77c41b0fcdb6bf028ac969d83921066a2` |\n| L10-BV | `b476b0939b7da50cf75db66d235095f94e591ac929ef046721224b5112d04552` |\n| L10-FV | `aa6cb83a2eaeeaf0d4d0fd955698e5071e27c81232ba43a1c3af94918fbccc77` |\n| L10-NFR | `1049e8edef98fd41f1f2c57caff98eebc999e65652e558b42646976e517614a1` |\n\n### 未確認範囲\nなし。\n\n本commentから、承認の効力、PO確認、merge admissionは生成しない。\n",
+    "conditions": {
+      "condition1_opus": "satisfied; Major 0, no unconfirmed scope",
+      "condition2_fable": "satisfied; verbatim conclusion 承認してよい, Major 0/Minor 0",
+      "same_revision": "db3f490e4401fbc30eafad6fb76caf56cb07f58c",
+      "condition3": "pending"
+    }
+  },
+  "unreturned_nonblocking_minors": [
+    {
+      "id": "m1",
+      "formal_text": "m1：FR:205のFR-036正常条件にtarget revisionの語がなく、AC-036-01と文言がそろっていない。同じFRの入力行には「scope/revision」がある（Fableの観察(a)と同じ点）。",
+      "returned": false
+    },
+    {
+      "id": "m2",
+      "formal_text": "m2：FR:205（036）とFR:243（039）の正常条件にpack保持文がない。AC側とFVの冒頭には適用が書かれている。",
+      "returned": false
+    },
+    {
+      "id": "m3",
+      "formal_text": "m3：017で別scopeだけを変える単独変異があるのはpermission（02e）だけである。Worker・HARNESS・OSの別scopeは、01の正常oracleと04の範囲にとどまる。",
+      "returned": false
+    },
+    {
+      "id": "m4",
+      "formal_text": "m4：031のL2入力「evidence」を「dependency evidence」（FV:387）にまとめていて、dependency以外のevidenceだけを欠かすCASEがない。033のProduct Core designも同じである。",
+      "returned": false
+    },
+    {
+      "id": "m5",
+      "formal_text": "m5：031と032の「未選択connector必須化」負例が、d6a06b175で削除された。境界自体は05qと04cに残っている。",
+      "returned": false
+    },
+    {
+      "id": "m6",
+      "formal_text": "m6：PO採択行85は041を「1.0」としているが、固定L2:314は「sourceごとに定義」で、L3はL2に従っている。",
+      "returned": false
+    },
+    {
+      "id": "m7",
+      "formal_text": "m7：045-02aと04aの「該当Product Core ownerへ照会」は宛先の書き方が広い。固定L2:350に由来する表現である。",
+      "returned": false
+    },
+    {
+      "id": "m8",
+      "formal_text": "m8：BRの036行と、FVの017-02表（02o／02p）の並び順が乱れている（Fableの観察(b)を含む）。",
+      "returned": false
+    }
+  ],
+  "fable_nonblocking_observations": [
+    {
+      "id": "a",
+      "formal_text": "FR-INT-036 normal-condition wording does not repeat target-revision equality; Fable says derivable from input and L2, not a semantic omission."
+    },
+    {
+      "id": "b",
+      "formal_text": "FV 017-02 table has 02o/02p order not alphabetical."
+    }
+  ],
+  "fable_scope_distinction": {
+    "reviewed": [
+      "same exact HEAD six body documents",
+      "fixed parents",
+      "six SHA independently computed, matching formal table"
+    ],
+    "not_reviewed": [
+      "PR comment",
+      "audit JSON/MD",
+      "legacy-source line ranges"
+    ],
+    "source": "formal review6042665791が明示する範囲に限定。PO採択・委任規則・両diffのFable実読はこのformalだけから追加主張しない。"
+  },
+  "fixed_sources": {
+    "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "files": [
+      {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "full_bytes": 151600,
+        "full_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+        "expected_bytes": 151600,
+        "expected_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+        "full_pass": true,
+        "parent_spans": [
+          {
+            "parent": "HELIXINTELLIGENCE-L2-017",
+            "lines": [
+              202,
+              207
+            ],
+            "sha256": "3500c2f35a7db483551d2523a6c35b95029bc02725fc0a2fcd0f6e72e2dd4863",
+            "expected_sha256": "3500c2f35a7db483551d2523a6c35b95029bc02725fc0a2fcd0f6e72e2dd4863",
+            "bytes": 994,
+            "pass": true
+          },
+          {
+            "parent": "HELIXINTELLIGENCE-L2-030",
+            "lines": [
+              208,
+              216
+            ],
+            "sha256": "9015b90e1b0dba0bb171c0d36bf831d3b80cc597a92839732d2a1e3bfc3f94db",
+            "expected_sha256": "9015b90e1b0dba0bb171c0d36bf831d3b80cc597a92839732d2a1e3bfc3f94db",
+            "bytes": 674,
+            "pass": true
+          },
+          {
+            "parent": "HELIXINTELLIGENCE-L2-031",
+            "lines": [
+              217,
+              225
+            ],
+            "sha256": "fd822025ade8c0aa1599e8f39cf0070ec547ddfaeb2fdb9835344bedd5084562",
+            "expected_sha256": "fd822025ade8c0aa1599e8f39cf0070ec547ddfaeb2fdb9835344bedd5084562",
+            "bytes": 598,
+            "pass": true
+          },
+          {
+            "parent": "HELIXINTELLIGENCE-L2-032",
+            "lines": [
+              226,
+              234
+            ],
+            "sha256": "409621de85f3029191d90529fe4473831c694b736266d9a60f0342b1295ce48f",
+            "expected_sha256": "409621de85f3029191d90529fe4473831c694b736266d9a60f0342b1295ce48f",
+            "bytes": 581,
+            "pass": true
+          },
+          {
+            "parent": "HELIXINTELLIGENCE-L2-033",
+            "lines": [
+              235,
+              243
+            ],
+            "sha256": "d56666c62ce267147d32036a0840e062010fc0b30a55f758eb7cfe6f2dd0495f",
+            "expected_sha256": "d56666c62ce267147d32036a0840e062010fc0b30a55f758eb7cfe6f2dd0495f",
+            "bytes": 675,
+            "pass": true
+          },
+          {
+            "parent": "HELIXINTELLIGENCE-L2-034",
+            "lines": [
+              244,
+              252
+            ],
+            "sha256": "891ef0aad488f1276e48afcfda47996732dabe436dde6013088091c6ae4c404d",
+            "expected_sha256": "891ef0aad488f1276e48afcfda47996732dabe436dde6013088091c6ae4c404d",
+            "bytes": 716,
+            "pass": true
+          },
+          {
+            "parent": "HELIXINTELLIGENCE-L2-035",
+            "lines": [
+              253,
+              261
+            ],
+            "sha256": "f2c2ce0b311d414a46cc618df617224b139a5d7619ef619401272380a5eeeea2",
+            "expected_sha256": "f2c2ce0b311d414a46cc618df617224b139a5d7619ef619401272380a5eeeea2",
+            "bytes": 787,
+            "pass": true
+          },
+          {
+            "parent": "HELIXINTELLIGENCE-L2-036",
+            "lines": [
+              262,
+              270
+            ],
+            "sha256": "47c04395733245b87d227a29afca2d1d1f2b8ab4a3025a1a11a3d0fea95b3b3c",
+            "expected_sha256": "47c04395733245b87d227a29afca2d1d1f2b8ab4a3025a1a11a3d0fea95b3b3c",
+            "bytes": 647,
+            "pass": true
+          },
+          {
+            "parent": "HELIXINTELLIGENCE-L2-037",
+            "lines": [
+              271,
+              279
+            ],
+            "sha256": "0ae3781b81d69f3884a39714e248f45d55255541dd9858efefcfdb3828e13885",
+            "expected_sha256": "0ae3781b81d69f3884a39714e248f45d55255541dd9858efefcfdb3828e13885",
+            "bytes": 713,
+            "pass": true
+          },
+          {
+            "parent": "HELIXINTELLIGENCE-L2-038",
+            "lines": [
+              280,
+              288
+            ],
+            "sha256": "da13d862b60943fce633aa21989d5f3daf98c0613b51660dea5ad1b6e2f99b29",
+            "expected_sha256": "da13d862b60943fce633aa21989d5f3daf98c0613b51660dea5ad1b6e2f99b29",
+            "bytes": 692,
+            "pass": true
+          },
+          {
+            "parent": "HELIXINTELLIGENCE-L2-039",
+            "lines": [
+              289,
+              297
+            ],
+            "sha256": "477dfaca06cf3072a2ea801331d7ce1683a91b45ff171e19d6e8790d4fb11c5a",
+            "expected_sha256": "477dfaca06cf3072a2ea801331d7ce1683a91b45ff171e19d6e8790d4fb11c5a",
+            "bytes": 617,
+            "pass": true
+          },
+          {
+            "parent": "HELIXINTELLIGENCE-L2-040",
+            "lines": [
+              298,
+              306
+            ],
+            "sha256": "1aed9bac9aab371bc9034f94b0c97c92f68916a2014034be2c2d64644ea81ebc",
+            "expected_sha256": "1aed9bac9aab371bc9034f94b0c97c92f68916a2014034be2c2d64644ea81ebc",
+            "bytes": 738,
+            "pass": true
+          },
+          {
+            "parent": "HELIXINTELLIGENCE-L2-041",
+            "lines": [
+              307,
+              315
+            ],
+            "sha256": "930812b3f41f23e3f7a3e2ae7edc28539169db429e8586268d1166932df3a2d4",
+            "expected_sha256": "930812b3f41f23e3f7a3e2ae7edc28539169db429e8586268d1166932df3a2d4",
+            "bytes": 797,
+            "pass": true
+          },
+          {
+            "parent": "HELIXINTELLIGENCE-L2-044",
+            "lines": [
+              334,
+              342
+            ],
+            "sha256": "6e0b792aa564928eddf4fea9660ecaa265d4871e3ef159dcd20c5d7fb48509ea",
+            "expected_sha256": "6e0b792aa564928eddf4fea9660ecaa265d4871e3ef159dcd20c5d7fb48509ea",
+            "bytes": 661,
+            "pass": true
+          },
+          {
+            "parent": "HELIXINTELLIGENCE-L2-045",
+            "lines": [
+              343,
+              353
+            ],
+            "sha256": "17ac62133b4016059f2f895376817bae4fb7368fdbbf24517f56b1a1f63225e0",
+            "expected_sha256": "17ac62133b4016059f2f895376817bae4fb7368fdbbf24517f56b1a1f63225e0",
+            "bytes": 665,
+            "pass": true
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "full_bytes": 123549,
+        "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+        "expected_bytes": 123549,
+        "expected_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+        "full_pass": true,
+        "spans": [
+          {
+            "label": "L11 common table rows 92-108",
+            "lines": [
+              92,
+              108
+            ],
+            "sha256": "91e493591106c77411ab6007f75ae913d4cf292adbc232dbd81e1f4bff6a85cf",
+            "expected_sha256": "91e493591106c77411ab6007f75ae913d4cf292adbc232dbd81e1f4bff6a85cf",
+            "bytes": 4136,
+            "pass": true
+          },
+          {
+            "label": "L11 R2187-01 rows 260-280",
+            "lines": [
+              260,
+              280
+            ],
+            "sha256": "581460408239a379b8f12d10031c1257028ceb5c30df0a1e2af6f2900b48e8a0",
+            "expected_sha256": "581460408239a379b8f12d10031c1257028ceb5c30df0a1e2af6f2900b48e8a0",
+            "bytes": 9426,
+            "pass": true
+          }
+        ],
+        "parent_rows": [
+          {
+            "parent": "HELIXINTELLIGENCE-L2-017",
+            "line": 266,
+            "sha256": "274886b420955f6772ddbc2d6243566b4292ecd31329a1cb4f7cf020e159cd2e",
+            "expected_sha256": "274886b420955f6772ddbc2d6243566b4292ecd31329a1cb4f7cf020e159cd2e",
+            "bytes": 909,
+            "pass": true
+          },
+          {
+            "parent": "HELIXINTELLIGENCE-L2-030",
+            "line": 267,
+            "sha256": "ad53f49a33685ae27ec8584a0d85aa74efdd86ed2acf583b89ed5760e9e252fc",
+            "expected_sha256": "ad53f49a33685ae27ec8584a0d85aa74efdd86ed2acf583b89ed5760e9e252fc",
+            "bytes": 499,
+            "pass": true
+          },
+          {
+            "parent": "HELIXINTELLIGENCE-L2-031",
+            "line": 268,
+            "sha256": "f0d242120d7180341dec0d491337678a77eae14febabde2600fd4a3e9d54c5b3",
+            "expected_sha256": "f0d242120d7180341dec0d491337678a77eae14febabde2600fd4a3e9d54c5b3",
+            "bytes": 549,
+            "pass": true
+          },
+          {
+            "parent": "HELIXINTELLIGENCE-L2-032",
+            "line": 269,
+            "sha256": "25bf336dc9fa02cf44bc5a27fc8662ff018e06f9f4a29d62fcd360fa5ea63931",
+            "expected_sha256": "25bf336dc9fa02cf44bc5a27fc8662ff018e06f9f4a29d62fcd360fa5ea63931",
+            "bytes": 661,
+            "pass": true
+          },
+          {
+            "parent": "HELIXINTELLIGENCE-L2-033",
+            "line": 270,
+            "sha256": "d9a1e1522d2d5996ba2dae6ddbe40fff8a8364b0eaaf1627ee6db8c6f3500ae0",
+            "expected_sha256": "d9a1e1522d2d5996ba2dae6ddbe40fff8a8364b0eaaf1627ee6db8c6f3500ae0",
+            "bytes": 496,
+            "pass": true
+          },
+          {
+            "parent": "HELIXINTELLIGENCE-L2-034",
+            "line": 271,
+            "sha256": "0fe3b0f9d91c00734112c9f41475d0526da2926a3f4ca59483b14426dfe8dc00",
+            "expected_sha256": "0fe3b0f9d91c00734112c9f41475d0526da2926a3f4ca59483b14426dfe8dc00",
+            "bytes": 503,
+            "pass": true
+          },
+          {
+            "parent": "HELIXINTELLIGENCE-L2-035",
+            "line": 272,
+            "sha256": "82166ddf4a40e34fa0ecbaa155d1cf696268b797ec81780ef1f81e6170a737ca",
+            "expected_sha256": "82166ddf4a40e34fa0ecbaa155d1cf696268b797ec81780ef1f81e6170a737ca",
+            "bytes": 439,
+            "pass": true
+          },
+          {
+            "parent": "HELIXINTELLIGENCE-L2-036",
+            "line": 273,
+            "sha256": "63af5d167a5f624ac5fd707cae9942d79d60040d767e507970bc3a75e53f576c",
+            "expected_sha256": "63af5d167a5f624ac5fd707cae9942d79d60040d767e507970bc3a75e53f576c",
+            "bytes": 435,
+            "pass": true
+          },
+          {
+            "parent": "HELIXINTELLIGENCE-L2-037",
+            "line": 274,
+            "sha256": "2fbe654169dd8ecc95ae5858bf5b9ede4ef0cd9ce2f6bfafc7ccf5544910cdf9",
+            "expected_sha256": "2fbe654169dd8ecc95ae5858bf5b9ede4ef0cd9ce2f6bfafc7ccf5544910cdf9",
+            "bytes": 604,
+            "pass": true
+          },
+          {
+            "parent": "HELIXINTELLIGENCE-L2-038",
+            "line": 275,
+            "sha256": "8cefa4752194c44895f51890f243cd34a0924a6ecd6ca375ae42e77a6d27daaf",
+            "expected_sha256": "8cefa4752194c44895f51890f243cd34a0924a6ecd6ca375ae42e77a6d27daaf",
+            "bytes": 427,
+            "pass": true
+          },
+          {
+            "parent": "HELIXINTELLIGENCE-L2-039",
+            "line": 276,
+            "sha256": "8e5935cfae15f323ffb6ed920c5624318ef94f1224ce09fbcc31cd1530d0969c",
+            "expected_sha256": "8e5935cfae15f323ffb6ed920c5624318ef94f1224ce09fbcc31cd1530d0969c",
+            "bytes": 488,
+            "pass": true
+          },
+          {
+            "parent": "HELIXINTELLIGENCE-L2-040",
+            "line": 277,
+            "sha256": "aac2a9c150320a54c1e93964830f7725b2dc6c6c4357e51dc82121d799622971",
+            "expected_sha256": "aac2a9c150320a54c1e93964830f7725b2dc6c6c4357e51dc82121d799622971",
+            "bytes": 449,
+            "pass": true
+          },
+          {
+            "parent": "HELIXINTELLIGENCE-L2-041",
+            "line": 278,
+            "sha256": "36caff44a1293bb41a6c6bd3a05d2a29eaa5b9448699f5851c4e9023b68c3f46",
+            "expected_sha256": "36caff44a1293bb41a6c6bd3a05d2a29eaa5b9448699f5851c4e9023b68c3f46",
+            "bytes": 495,
+            "pass": true
+          },
+          {
+            "parent": "HELIXINTELLIGENCE-L2-044",
+            "line": 279,
+            "sha256": "492c2193f01f9437c4740c633a5ef0bdb3718c4e0d3f240dd26759cdda20dc78",
+            "expected_sha256": "492c2193f01f9437c4740c633a5ef0bdb3718c4e0d3f240dd26759cdda20dc78",
+            "bytes": 398,
+            "pass": true
+          },
+          {
+            "parent": "HELIXINTELLIGENCE-L2-045",
+            "line": 280,
+            "sha256": "6260777fd0ad3e724f17d078a97fb3ad65b39dbd0cd708dc64b465519666af60",
+            "expected_sha256": "6260777fd0ad3e724f17d078a97fb3ad65b39dbd0cd708dc64b465519666af60",
+            "bytes": 425,
+            "pass": true
+          }
+        ]
+      }
+    ]
+  },
+  "po_adoption": {
+    "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "decision_path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+    "full_bytes": 13446,
+    "full_sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+    "adoption_span": {
+      "lines": [
+        73,
+        89
+      ],
+      "bytes": 1530,
+      "sha256": "fa002998a044ca6cbff5ff1720e0cdaa60a6e395029635f9028edd892ec47ed1"
+    },
+    "parents": [
+      {
+        "parent": "HELIXINTELLIGENCE-L2-017",
+        "line": 73,
+        "adoption_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-017-002",
+        "bytes": 90,
+        "sha256": "0027e708d690aaa8f04f0457e6c12c641403fb18e6349c4b69f8ed1894e65090",
+        "text": "| `HELIXINTELLIGENCE-L2-017` | `MPR-RC-HELIXINTELLIGENCE-L2-017-002` | connection / 1.0 |"
+      },
+      {
+        "parent": "HELIXINTELLIGENCE-L2-030",
+        "line": 74,
+        "adoption_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-030-002",
+        "bytes": 90,
+        "sha256": "efe0b05acb9c08ab3190842e2cad053809bb12730a2652c31947455206482354",
+        "text": "| `HELIXINTELLIGENCE-L2-030` | `MPR-RC-HELIXINTELLIGENCE-L2-030-002` | connection / 1.0 |"
+      },
+      {
+        "parent": "HELIXINTELLIGENCE-L2-031",
+        "line": 75,
+        "adoption_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-031-002",
+        "bytes": 90,
+        "sha256": "cea39c1d709a8a57bc942b1bfbe6f772ffe8cb9a3b4b4826d1209fb89b94376c",
+        "text": "| `HELIXINTELLIGENCE-L2-031` | `MPR-RC-HELIXINTELLIGENCE-L2-031-002` | connection / 1.0 |"
+      },
+      {
+        "parent": "HELIXINTELLIGENCE-L2-032",
+        "line": 76,
+        "adoption_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-032-002",
+        "bytes": 90,
+        "sha256": "d79ec2e5a3e097e1046f04727e22d4fee2d3a181113bfa78a096aca09964516b",
+        "text": "| `HELIXINTELLIGENCE-L2-032` | `MPR-RC-HELIXINTELLIGENCE-L2-032-002` | connection / 1.0 |"
+      },
+      {
+        "parent": "HELIXINTELLIGENCE-L2-033",
+        "line": 77,
+        "adoption_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-033-002",
+        "bytes": 90,
+        "sha256": "c6d8dedd71ce5629088f4be2baf389d958d4fabc93bff3cbe4ded531cbe9a0e2",
+        "text": "| `HELIXINTELLIGENCE-L2-033` | `MPR-RC-HELIXINTELLIGENCE-L2-033-002` | connection / 1.0 |"
+      },
+      {
+        "parent": "HELIXINTELLIGENCE-L2-034",
+        "line": 78,
+        "adoption_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-034-002",
+        "bytes": 90,
+        "sha256": "f392e9d12118261109de8887542077d99373cf19aca4afd084b98f7b59d16de6",
+        "text": "| `HELIXINTELLIGENCE-L2-034` | `MPR-RC-HELIXINTELLIGENCE-L2-034-002` | connection / 1.0 |"
+      },
+      {
+        "parent": "HELIXINTELLIGENCE-L2-035",
+        "line": 79,
+        "adoption_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-035-002",
+        "bytes": 90,
+        "sha256": "646a938699903eda980279f727ff1e0c6111f09adbef892af60a0154b0cc0ce3",
+        "text": "| `HELIXINTELLIGENCE-L2-035` | `MPR-RC-HELIXINTELLIGENCE-L2-035-002` | connection / 1.0 |"
+      },
+      {
+        "parent": "HELIXINTELLIGENCE-L2-036",
+        "line": 80,
+        "adoption_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-036-002",
+        "bytes": 90,
+        "sha256": "3a3e3440c6c983eb712b1285ad99d87cda9a8fe04b6a2c32ae4e6743212c489f",
+        "text": "| `HELIXINTELLIGENCE-L2-036` | `MPR-RC-HELIXINTELLIGENCE-L2-036-002` | connection / 1.0 |"
+      },
+      {
+        "parent": "HELIXINTELLIGENCE-L2-037",
+        "line": 81,
+        "adoption_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-037-002",
+        "bytes": 90,
+        "sha256": "1aa2b08406c905a4486b192f309bb447021d4b64376e37af0ce7eccea6eb6bae",
+        "text": "| `HELIXINTELLIGENCE-L2-037` | `MPR-RC-HELIXINTELLIGENCE-L2-037-002` | connection / 1.0 |"
+      },
+      {
+        "parent": "HELIXINTELLIGENCE-L2-038",
+        "line": 82,
+        "adoption_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-038-002",
+        "bytes": 90,
+        "sha256": "ce4694ecce981a1ff4ba449c070ff1447b55a6fa1ef2ac3d0b61515c4346064f",
+        "text": "| `HELIXINTELLIGENCE-L2-038` | `MPR-RC-HELIXINTELLIGENCE-L2-038-002` | connection / 1.0 |"
+      },
+      {
+        "parent": "HELIXINTELLIGENCE-L2-039",
+        "line": 83,
+        "adoption_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-039-002",
+        "bytes": 90,
+        "sha256": "85cfe99947b903a840ef24f4b1462f222f18ab2e0bb2ae61a668a80f2dfb2a0a",
+        "text": "| `HELIXINTELLIGENCE-L2-039` | `MPR-RC-HELIXINTELLIGENCE-L2-039-002` | connection / 1.0 |"
+      },
+      {
+        "parent": "HELIXINTELLIGENCE-L2-040",
+        "line": 84,
+        "adoption_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-040-002",
+        "bytes": 90,
+        "sha256": "1b1366b072819c2653dc22ff1181e7bb23525d249823dd72c711e1eac8ec0a74",
+        "text": "| `HELIXINTELLIGENCE-L2-040` | `MPR-RC-HELIXINTELLIGENCE-L2-040-002` | connection / 1.0 |"
+      },
+      {
+        "parent": "HELIXINTELLIGENCE-L2-041",
+        "line": 85,
+        "adoption_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-041-002",
+        "bytes": 90,
+        "sha256": "2fd4cf2ab2bd8a48fbce638b39c6fda37e88327d887a344f7d099d18c3c8e028",
+        "text": "| `HELIXINTELLIGENCE-L2-041` | `MPR-RC-HELIXINTELLIGENCE-L2-041-002` | connection / 1.0 |"
+      },
+      {
+        "parent": "HELIXINTELLIGENCE-L2-044",
+        "line": 88,
+        "adoption_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-044-002",
+        "bytes": 90,
+        "sha256": "af6c38897b0bd9a9b0ddfddac259428bee9f55e887b0c53146eb3a22fb999ab5",
+        "text": "| `HELIXINTELLIGENCE-L2-044` | `MPR-RC-HELIXINTELLIGENCE-L2-044-002` | connection / 1.0 |"
+      },
+      {
+        "parent": "HELIXINTELLIGENCE-L2-045",
+        "line": 89,
+        "adoption_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-045-002",
+        "bytes": 90,
+        "sha256": "a023a9ee1eb8d502492ccd41f6cb13f6aa2575bad2757a2a45b220d7866b91ec",
+        "text": "| `HELIXINTELLIGENCE-L2-045` | `MPR-RC-HELIXINTELLIGENCE-L2-045-002` | connection / 1.0 |"
+      }
+    ],
+    "register_path": "docs/governance/management-provisional-requirement-register.jsonl",
+    "register_full_bytes": 2108075,
+    "register_full_sha256": "e7dc1180361869379966fb33f4ab263cabdfe1137ceea32dedc2b6edfea388d1",
+    "register_rows": [
+      {
+        "parent": "HELIXINTELLIGENCE-L2-017",
+        "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-017-002",
+        "line": 455,
+        "bytes": 3429,
+        "sha256": "a7c1cd04cfcd5e5467efae4e5af1a470d80a07354b757ba6df49645d98de254e",
+        "requirement_kind": "connection",
+        "version_target": null,
+        "product_target": "HELIX-INTELLIGENCE"
+      },
+      {
+        "parent": "HELIXINTELLIGENCE-L2-030",
+        "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-030-002",
+        "line": 456,
+        "bytes": 3429,
+        "sha256": "8a10057f17c913a612a5a22db3ab31d8ae68a79b93caac9299912e645d156f0d",
+        "requirement_kind": "connection",
+        "version_target": null,
+        "product_target": "HELIX-INTELLIGENCE"
+      },
+      {
+        "parent": "HELIXINTELLIGENCE-L2-031",
+        "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-031-002",
+        "line": 457,
+        "bytes": 3429,
+        "sha256": "ca95728b121338de5328e7c76f3ce7c168af25ba2fe0823bb91f20f233042f8f",
+        "requirement_kind": "connection",
+        "version_target": null,
+        "product_target": "HELIX-INTELLIGENCE"
+      },
+      {
+        "parent": "HELIXINTELLIGENCE-L2-032",
+        "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-032-002",
+        "line": 458,
+        "bytes": 3429,
+        "sha256": "0952bf093d1ba3fe6f33ae8e3e9d7260d5d0278a70b5baf4a5075c9eea81ccf7",
+        "requirement_kind": "connection",
+        "version_target": null,
+        "product_target": "HELIX-INTELLIGENCE"
+      },
+      {
+        "parent": "HELIXINTELLIGENCE-L2-033",
+        "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-033-002",
+        "line": 459,
+        "bytes": 3429,
+        "sha256": "8e7fe391b2efeae973bff0a842d275b76140ec7cc510333c1c92b128def45998",
+        "requirement_kind": "connection",
+        "version_target": null,
+        "product_target": "HELIX-INTELLIGENCE"
+      },
+      {
+        "parent": "HELIXINTELLIGENCE-L2-034",
+        "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-034-002",
+        "line": 460,
+        "bytes": 3429,
+        "sha256": "e606d20bf59eacde9d0a813760a58d87327aa0921d862bb864fef9600724139c",
+        "requirement_kind": "connection",
+        "version_target": null,
+        "product_target": "HELIX-INTELLIGENCE"
+      },
+      {
+        "parent": "HELIXINTELLIGENCE-L2-035",
+        "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-035-002",
+        "line": 461,
+        "bytes": 3429,
+        "sha256": "c715c20123b5f189ff61ffe213bfcec47eb9216d4804c41fdf045f190146f180",
+        "requirement_kind": "connection",
+        "version_target": null,
+        "product_target": "HELIX-INTELLIGENCE"
+      },
+      {
+        "parent": "HELIXINTELLIGENCE-L2-036",
+        "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-036-002",
+        "line": 462,
+        "bytes": 3429,
+        "sha256": "935958a18984b52a914a50dc102a3874545458543e2f0948dd25ddd4f3984631",
+        "requirement_kind": "connection",
+        "version_target": null,
+        "product_target": "HELIX-INTELLIGENCE"
+      },
+      {
+        "parent": "HELIXINTELLIGENCE-L2-037",
+        "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-037-002",
+        "line": 463,
+        "bytes": 3429,
+        "sha256": "89abf544fe324fcbf321899b7994f7f9fabc177077e4a270f5e65a2a37679358",
+        "requirement_kind": "connection",
+        "version_target": null,
+        "product_target": "HELIX-INTELLIGENCE"
+      },
+      {
+        "parent": "HELIXINTELLIGENCE-L2-038",
+        "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-038-002",
+        "line": 464,
+        "bytes": 3429,
+        "sha256": "051d4e1e47f1eae5b5e34db62d172ae7a1db3a9ee1f49d821a9a4e0b43a84b9e",
+        "requirement_kind": "connection",
+        "version_target": null,
+        "product_target": "HELIX-INTELLIGENCE"
+      },
+      {
+        "parent": "HELIXINTELLIGENCE-L2-039",
+        "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-039-002",
+        "line": 465,
+        "bytes": 3429,
+        "sha256": "574808af408900ee0769adbdb19693710f40d8c869f873a2ad73f1e53f5d8f6b",
+        "requirement_kind": "connection",
+        "version_target": null,
+        "product_target": "HELIX-INTELLIGENCE"
+      },
+      {
+        "parent": "HELIXINTELLIGENCE-L2-040",
+        "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-040-002",
+        "line": 466,
+        "bytes": 3429,
+        "sha256": "1ffa33518266b456bdf7e4e22138a4923e4d6ff7c58f23e182ca0632fd572bed",
+        "requirement_kind": "connection",
+        "version_target": null,
+        "product_target": "HELIX-INTELLIGENCE"
+      },
+      {
+        "parent": "HELIXINTELLIGENCE-L2-041",
+        "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-041-002",
+        "line": 467,
+        "bytes": 3429,
+        "sha256": "547b5c73172831d16911d8a6599cc5cc4db6a7a68696b8e7174c9055350b0fae",
+        "requirement_kind": "connection",
+        "version_target": null,
+        "product_target": "HELIX-INTELLIGENCE"
+      },
+      {
+        "parent": "HELIXINTELLIGENCE-L2-044",
+        "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-044-002",
+        "line": 468,
+        "bytes": 3429,
+        "sha256": "6e6ea2b4a80d38c2b07171c99b3d6f4142d095a59512e306e7525a6453e5f084",
+        "requirement_kind": "connection",
+        "version_target": null,
+        "product_target": "HELIX-INTELLIGENCE"
+      },
+      {
+        "parent": "HELIXINTELLIGENCE-L2-045",
+        "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-045-002",
+        "line": 469,
+        "bytes": 3429,
+        "sha256": "615d5ba9fdc62aa07d7525d7da21997eae56a3151f5a236708c47fda59958405",
+        "requirement_kind": "connection",
+        "version_target": null,
+        "product_target": "HELIX-INTELLIGENCE"
+      }
+    ]
+  },
+  "delegation_basis": [
+    {
+      "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+      "pinned_revision": "db3f490e4401fbc30eafad6fb76caf56cb07f58c",
+      "bytes": 6210,
+      "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220"
+    },
+    {
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "pinned_revision": "db3f490e4401fbc30eafad6fb76caf56cb07f58c",
+      "bytes": 53710,
+      "sha256": "eed2b774bb78545ac53c7d55f3ae3ab4e9c4f421b4eaf3ac3bcdbcdd869dd27b"
+    }
+  ],
+  "historical_source_basis": {
+    "attribution_reaudit": {
+      "path": "docs/governance/audits/requirements-stage/intelligence-stage4-attribution-reaudit-2026-10-08.json",
+      "revision": "db3f490e4401fbc30eafad6fb76caf56cb07f58c",
+      "bytes": 51786,
+      "sha256": "b8567fc9d1512bd541e74ac0c8e82158c14609f5505c9f6504935e87491826a8",
+      "treatment": "immutable historical record/audit; no current approval inherited"
+    },
+    "prior_main_publication_inventory": {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-intelligence-stage4-main-publication-2026-10-06.json",
+      "revision": "db3f490e4401fbc30eafad6fb76caf56cb07f58c",
+      "bytes": 1039719,
+      "sha256": "f3daf64e1b132254dd03e9754b5877df57c4c48ba75e20ee748f30830af1918c",
+      "treatment": "immutable historical record/audit; no current approval inherited"
+    },
+    "review02_nfr_grade_sync": {
+      "path": "docs/governance/audits/requirements-stage/intelligence-stage4-review02-nfr-grade-sync-2026-10-08.json",
+      "revision": "db3f490e4401fbc30eafad6fb76caf56cb07f58c",
+      "bytes": 6058,
+      "sha256": "0e9fc8c902fc199f78aff734ecf7e5d10ab7c27abc0078c5f8a158fbb4c70b3b",
+      "treatment": "immutable historical record/audit; no current approval inherited"
+    },
+    "previous_decision_records": [
+      {
+        "path": "docs/governance/decisions/helix-intelligence-stage4-l3-l10-po-decision-2026-10-06.md",
+        "revision": "db3f490e4401fbc30eafad6fb76caf56cb07f58c",
+        "bytes": 4023,
+        "sha256": "0d27172976f29d0bd6064ac2604d93b5039daaacb132155e6e85d955c5da84b8",
+        "treatment": "immutable historical record/audit; no current approval inherited"
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/intelligence-stage4-delegated-decision-pin-2026-10-06.json",
+        "revision": "db3f490e4401fbc30eafad6fb76caf56cb07f58c",
+        "bytes": 5759,
+        "sha256": "c953ac7de71947803b7cd9bba3e0dd6bf208a9f59278dc31a4e61d43fbcf138f",
+        "treatment": "immutable historical record/audit; no current approval inherited"
+      }
+    ],
+    "current_vs_old_body_exact_match_count": 0,
+    "old_source_inventory_metrics": {
+      "source_pin_count": 97,
+      "legacy_pinned_spans": 36,
+      "legacy_unique_spans": 25,
+      "parent_scoped_reaudit_pins": 25
+    },
+    "parent_scoped_legacy_pins": [
+      {
+        "asset_id": "LEGACY-ASSET-F1F753F31DB8D874EF21",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/system-synthesis-requirements.md",
+        "start_line": 29,
+        "end_line": 68,
+        "full_sha256": "69c8a47a4b67729fceabb3df85ecd1c2caa0b9faa5e5b7d958eff48517fdbd79",
+        "raw_lf_sha256": "57dba991d0c59a1c08383ada5fac5e5066a7d00a54389763010fe6bfc88bbbf9",
+        "parent_scopes": [
+          "HELIXINTELLIGENCE-L2-017"
+        ],
+        "disposition_limit": "指定spanの明示内容/失敗形だけを再導出する。source item全体の採用・全要求への一般化・旧実行権限の移行を意味しない。",
+        "full_sha256_recomputed": "69c8a47a4b67729fceabb3df85ecd1c2caa0b9faa5e5b7d958eff48517fdbd79",
+        "span_sha256_recomputed": "57dba991d0c59a1c08383ada5fac5e5066a7d00a54389763010fe6bfc88bbbf9",
+        "recorded_source_matches": true
+      },
+      {
+        "asset_id": "LEGACY-ASSET-BEAB5EE27CD04F5E866F",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/system-synthesis-acceptance.md",
+        "start_line": 29,
+        "end_line": 42,
+        "full_sha256": "ed09b52fd9f0b0ed95e924730bc9132c375588520ad7041777188c726d994c16",
+        "raw_lf_sha256": "807312bcd9f184c4e97c1bfbb86cba9a9de002e37476e0fd325ef92c0f860605",
+        "parent_scopes": [
+          "HELIXINTELLIGENCE-L2-017",
+          "HELIXINTELLIGENCE-L2-030",
+          "HELIXINTELLIGENCE-L2-038"
+        ],
+        "disposition_limit": "指定spanの明示内容/失敗形だけを再導出する。source item全体の採用・全要求への一般化・旧実行権限の移行を意味しない。",
+        "full_sha256_recomputed": "ed09b52fd9f0b0ed95e924730bc9132c375588520ad7041777188c726d994c16",
+        "span_sha256_recomputed": "807312bcd9f184c4e97c1bfbb86cba9a9de002e37476e0fd325ef92c0f860605",
+        "recorded_source_matches": true
+      },
+      {
+        "asset_id": "LEGACY-ASSET-F1F753F31DB8D874EF21",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/system-synthesis-requirements.md",
+        "start_line": 40,
+        "end_line": 68,
+        "full_sha256": "69c8a47a4b67729fceabb3df85ecd1c2caa0b9faa5e5b7d958eff48517fdbd79",
+        "raw_lf_sha256": "b026dd6ef2d7014e655888350e6ca0b0704323f275ab6d300b69112112afabb3",
+        "parent_scopes": [
+          "HELIXINTELLIGENCE-L2-030",
+          "HELIXINTELLIGENCE-L2-038"
+        ],
+        "disposition_limit": "指定spanの明示内容/失敗形だけを再導出する。source item全体の採用・全要求への一般化・旧実行権限の移行を意味しない。",
+        "full_sha256_recomputed": "69c8a47a4b67729fceabb3df85ecd1c2caa0b9faa5e5b7d958eff48517fdbd79",
+        "span_sha256_recomputed": "b026dd6ef2d7014e655888350e6ca0b0704323f275ab6d300b69112112afabb3",
+        "recorded_source_matches": true
+      },
+      {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+        "start_line": 13,
+        "end_line": 55,
+        "full_sha256": "e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b",
+        "raw_lf_sha256": "991116726c60a47f761b316fa8a1442a9d080fa06f166af224ab9a59cccb3fe9",
+        "parent_scopes": [
+          "HELIXINTELLIGENCE-L2-031"
+        ],
+        "disposition_limit": "指定spanの明示内容/失敗形だけを再導出する。source item全体の採用・全要求への一般化・旧実行権限の移行を意味しない。",
+        "full_sha256_recomputed": "e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b",
+        "span_sha256_recomputed": "991116726c60a47f761b316fa8a1442a9d080fa06f166af224ab9a59cccb3fe9",
+        "recorded_source_matches": true
+      },
+      {
+        "asset_id": "LEGACY-ASSET-6FFD7F4E58066D08B053",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-workflow-ai-judgment-engine-acceptance.md",
+        "start_line": 17,
+        "end_line": 26,
+        "full_sha256": "1c4e07263eba5254cfe66b920c4baf46227e0e07cb47ff60ac2e854740645db3",
+        "raw_lf_sha256": "63154ad6ef69c6d93b45bfe37076feeea33c31202b5f1765fea04d98f9cf5b98",
+        "parent_scopes": [
+          "HELIXINTELLIGENCE-L2-031",
+          "HELIXINTELLIGENCE-L2-044"
+        ],
+        "disposition_limit": "指定spanの明示内容/失敗形だけを再導出する。source item全体の採用・全要求への一般化・旧実行権限の移行を意味しない。",
+        "full_sha256_recomputed": "1c4e07263eba5254cfe66b920c4baf46227e0e07cb47ff60ac2e854740645db3",
+        "span_sha256_recomputed": "63154ad6ef69c6d93b45bfe37076feeea33c31202b5f1765fea04d98f9cf5b98",
+        "recorded_source_matches": true
+      },
+      {
+        "asset_id": "LEGACY-ASSET-5CBA32E9DB5B0FE05589",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/design-registry-requirement-family-authority.md",
+        "start_line": 14,
+        "end_line": 58,
+        "full_sha256": "4f75f1fb5d285daaa582b2e4cbc016d8679d9e2364f60cc152dac3f5dece71ae",
+        "raw_lf_sha256": "0831c7a3efddcd4e6fd4ae86b3228a88113dae7808e9a6e0d653347ca83f621a",
+        "parent_scopes": [
+          "HELIXINTELLIGENCE-L2-032"
+        ],
+        "disposition_limit": "指定spanの明示内容/失敗形だけを再導出する。source item全体の採用・全要求への一般化・旧実行権限の移行を意味しない。",
+        "full_sha256_recomputed": "4f75f1fb5d285daaa582b2e4cbc016d8679d9e2364f60cc152dac3f5dece71ae",
+        "span_sha256_recomputed": "0831c7a3efddcd4e6fd4ae86b3228a88113dae7808e9a6e0d653347ca83f621a",
+        "recorded_source_matches": true
+      },
+      {
+        "asset_id": "LEGACY-ASSET-BBD687399574FEE23807",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/document-authority-census-acceptance.md",
+        "start_line": 24,
+        "end_line": 43,
+        "full_sha256": "d8cddea062fa44774a44f1c2cfff5f5d1f01cd186b4abdf8d631b9577f6fd4a6",
+        "raw_lf_sha256": "a4d58d4ff76e6f6c5b28082b57a9bb6287682e0a99d552e692c7968ea67540ac",
+        "parent_scopes": [
+          "HELIXINTELLIGENCE-L2-032",
+          "HELIXINTELLIGENCE-L2-033",
+          "HELIXINTELLIGENCE-L2-041"
+        ],
+        "disposition_limit": "指定spanの明示内容/失敗形だけを再導出する。source item全体の採用・全要求への一般化・旧実行権限の移行を意味しない。",
+        "full_sha256_recomputed": "d8cddea062fa44774a44f1c2cfff5f5d1f01cd186b4abdf8d631b9577f6fd4a6",
+        "span_sha256_recomputed": "a4d58d4ff76e6f6c5b28082b57a9bb6287682e0a99d552e692c7968ea67540ac",
+        "recorded_source_matches": true
+      },
+      {
+        "asset_id": "LEGACY-ASSET-C6936A5DA79A6DAE4FE4",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/document-authority-census-requirements.md",
+        "start_line": 27,
+        "end_line": 61,
+        "full_sha256": "e05adb62d9ad07507f962cf060b3dbe66c161afc3f09391b29b3144ced57535c",
+        "raw_lf_sha256": "065acdd27a4eccaa83fa89edf348735304db92c82bf34a0f8e6eed38e6f7cc47",
+        "parent_scopes": [
+          "HELIXINTELLIGENCE-L2-033",
+          "HELIXINTELLIGENCE-L2-041"
+        ],
+        "disposition_limit": "指定spanの明示内容/失敗形だけを再導出する。source item全体の採用・全要求への一般化・旧実行権限の移行を意味しない。",
+        "full_sha256_recomputed": "e05adb62d9ad07507f962cf060b3dbe66c161afc3f09391b29b3144ced57535c",
+        "span_sha256_recomputed": "065acdd27a4eccaa83fa89edf348735304db92c82bf34a0f8e6eed38e6f7cc47",
+        "recorded_source_matches": true
+      },
+      {
+        "asset_id": "LEGACY-ASSET-28FB139B26CD61CC51EE",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+        "start_line": 19,
+        "end_line": 84,
+        "full_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+        "raw_lf_sha256": "9402265e8d5beb01268d7c852eec6b0af14ff67ecdc2592f2889cd0303a6b1ad",
+        "parent_scopes": [
+          "HELIXINTELLIGENCE-L2-034",
+          "HELIXINTELLIGENCE-L2-040"
+        ],
+        "disposition_limit": "指定spanの明示内容/失敗形だけを再導出する。source item全体の採用・全要求への一般化・旧実行権限の移行を意味しない。",
+        "full_sha256_recomputed": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+        "span_sha256_recomputed": "9402265e8d5beb01268d7c852eec6b0af14ff67ecdc2592f2889cd0303a6b1ad",
+        "recorded_source_matches": true
+      },
+      {
+        "asset_id": "LEGACY-ASSET-A952A3A175EB82A4781B",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+        "start_line": 24,
+        "end_line": 41,
+        "full_sha256": "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185",
+        "raw_lf_sha256": "1f675c6a268a6678ba32b95f07732babb9bf106db8442cb298e6bcdb0e5ecddc",
+        "parent_scopes": [
+          "HELIXINTELLIGENCE-L2-034",
+          "HELIXINTELLIGENCE-L2-040"
+        ],
+        "disposition_limit": "指定spanの明示内容/失敗形だけを再導出する。source item全体の採用・全要求への一般化・旧実行権限の移行を意味しない。",
+        "full_sha256_recomputed": "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185",
+        "span_sha256_recomputed": "1f675c6a268a6678ba32b95f07732babb9bf106db8442cb298e6bcdb0e5ecddc",
+        "recorded_source_matches": true
+      },
+      {
+        "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+        "start_line": 189,
+        "end_line": 260,
+        "full_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+        "raw_lf_sha256": "2e6a042a6bdc51b4f828ce269db00cf000fa901592576bea04d83378671debaa",
+        "parent_scopes": [
+          "HELIXINTELLIGENCE-L2-035",
+          "HELIXINTELLIGENCE-L2-039"
+        ],
+        "disposition_limit": "指定spanの明示内容/失敗形だけを再導出する。source item全体の採用・全要求への一般化・旧実行権限の移行を意味しない。",
+        "full_sha256_recomputed": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+        "span_sha256_recomputed": "2e6a042a6bdc51b4f828ce269db00cf000fa901592576bea04d83378671debaa",
+        "recorded_source_matches": true
+      },
+      {
+        "asset_id": "LEGACY-ASSET-437A6A68F9A9E0AE1B9E",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+        "start_line": 17,
+        "end_line": 55,
+        "full_sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+        "raw_lf_sha256": "36e097a074fe674fddd2719b6c196163a6aa625908c90f0125ff42a99e2a41da",
+        "parent_scopes": [
+          "HELIXINTELLIGENCE-L2-035",
+          "HELIXINTELLIGENCE-L2-039"
+        ],
+        "disposition_limit": "指定spanの明示内容/失敗形だけを再導出する。source item全体の採用・全要求への一般化・旧実行権限の移行を意味しない。",
+        "full_sha256_recomputed": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+        "span_sha256_recomputed": "36e097a074fe674fddd2719b6c196163a6aa625908c90f0125ff42a99e2a41da",
+        "recorded_source_matches": true
+      },
+      {
+        "asset_id": "LEGACY-ASSET-B62E49D2E156232B8C63",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+        "start_line": 30,
+        "end_line": 121,
+        "full_sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+        "raw_lf_sha256": "4fe610941a7a70e351be32d8ae584bf6ba3bfff060635b7be05473c0068a71cd",
+        "parent_scopes": [
+          "HELIXINTELLIGENCE-L2-036"
+        ],
+        "disposition_limit": "指定spanの明示内容/失敗形だけを再導出する。source item全体の採用・全要求への一般化・旧実行権限の移行を意味しない。",
+        "full_sha256_recomputed": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+        "span_sha256_recomputed": "4fe610941a7a70e351be32d8ae584bf6ba3bfff060635b7be05473c0068a71cd",
+        "recorded_source_matches": true
+      },
+      {
+        "asset_id": "LEGACY-ASSET-170112AB2FA2FFDBFEE9",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+        "start_line": 18,
+        "end_line": 29,
+        "full_sha256": "b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4",
+        "raw_lf_sha256": "1c151e23defe9429c30264d9868ea89c6f148eb6bd57915ead415d682b4f1938",
+        "parent_scopes": [
+          "HELIXINTELLIGENCE-L2-036"
+        ],
+        "disposition_limit": "指定spanの明示内容/失敗形だけを再導出する。source item全体の採用・全要求への一般化・旧実行権限の移行を意味しない。",
+        "full_sha256_recomputed": "b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4",
+        "span_sha256_recomputed": "1c151e23defe9429c30264d9868ea89c6f148eb6bd57915ead415d682b4f1938",
+        "recorded_source_matches": true
+      },
+      {
+        "asset_id": "LEGACY-ASSET-9114D4E463E95B67DD0C",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+        "start_line": 47,
+        "end_line": 110,
+        "full_sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+        "raw_lf_sha256": "29aee7e56d632ab40cddf6311876300b43aa04ace80eefbe414820439a53a419",
+        "parent_scopes": [
+          "HELIXINTELLIGENCE-L2-037"
+        ],
+        "disposition_limit": "指定spanの明示内容/失敗形だけを再導出する。source item全体の採用・全要求への一般化・旧実行権限の移行を意味しない。",
+        "full_sha256_recomputed": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+        "span_sha256_recomputed": "29aee7e56d632ab40cddf6311876300b43aa04ace80eefbe414820439a53a419",
+        "recorded_source_matches": true
+      },
+      {
+        "asset_id": "LEGACY-ASSET-C6ADB99F1353965C5449",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/worker-common-contract-acceptance.md",
+        "start_line": 18,
+        "end_line": 64,
+        "full_sha256": "c8dff734891a6a7350feb9b698c40e1616946cdd424433d662f1da49d8ac800d",
+        "raw_lf_sha256": "a784efa162392e9186a54ada6b91e7b5377c64e3cb3ed61c0f78237cda1042d1",
+        "parent_scopes": [
+          "HELIXINTELLIGENCE-L2-037"
+        ],
+        "disposition_limit": "指定spanの明示内容/失敗形だけを再導出する。source item全体の採用・全要求への一般化・旧実行権限の移行を意味しない。",
+        "full_sha256_recomputed": "c8dff734891a6a7350feb9b698c40e1616946cdd424433d662f1da49d8ac800d",
+        "span_sha256_recomputed": "a784efa162392e9186a54ada6b91e7b5377c64e3cb3ed61c0f78237cda1042d1",
+        "recorded_source_matches": true
+      },
+      {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+        "start_line": 41,
+        "end_line": 55,
+        "full_sha256": "e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b",
+        "raw_lf_sha256": "ce2a8bacdc4676a5be0534b0b69570ca77c58c0ef4ab88707bb91a09d5c9cbba",
+        "parent_scopes": [
+          "HELIXINTELLIGENCE-L2-044"
+        ],
+        "disposition_limit": "指定spanの明示内容/失敗形だけを再導出する。source item全体の採用・全要求への一般化・旧実行権限の移行を意味しない。",
+        "full_sha256_recomputed": "e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b",
+        "span_sha256_recomputed": "ce2a8bacdc4676a5be0534b0b69570ca77c58c0ef4ab88707bb91a09d5c9cbba",
+        "recorded_source_matches": true
+      },
+      {
+        "asset_id": "LEGACY-ASSET-9B6FC1ED349F96394497",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/bugbot-generation-requirements.md",
+        "start_line": 18,
+        "end_line": 70,
+        "full_sha256": "3a2fe5f1090d86180806ef1ce4a75793ccb21d8be518a3f7d17c3bf914ce5a36",
+        "raw_lf_sha256": "d221c2eb47ff52f9bddd2e9ee4e4cef5d8d9f88d39ff67c6758393ff1f459911",
+        "parent_scopes": [
+          "HELIXINTELLIGENCE-L2-045"
+        ],
+        "disposition_limit": "指定spanの明示内容/失敗形だけを再導出する。source item全体の採用・全要求への一般化・旧実行権限の移行を意味しない。",
+        "full_sha256_recomputed": "3a2fe5f1090d86180806ef1ce4a75793ccb21d8be518a3f7d17c3bf914ce5a36",
+        "span_sha256_recomputed": "d221c2eb47ff52f9bddd2e9ee4e4cef5d8d9f88d39ff67c6758393ff1f459911",
+        "recorded_source_matches": true
+      },
+      {
+        "asset_id": "LEGACY-ASSET-658FF8439F9F8E694710",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/bugbot-generation-acceptance.md",
+        "start_line": 31,
+        "end_line": 41,
+        "full_sha256": "9a76d66a85616d72fe6f96732eb529ffc31fa890c25f5adf9ab296f6469ff6b6",
+        "raw_lf_sha256": "0eb8505f6837011f68a758323739f086567737629280b68eaf870f158c0ade9a",
+        "parent_scopes": [
+          "HELIXINTELLIGENCE-L2-045"
+        ],
+        "disposition_limit": "指定spanの明示内容/失敗形だけを再導出する。source item全体の採用・全要求への一般化・旧実行権限の移行を意味しない。",
+        "full_sha256_recomputed": "9a76d66a85616d72fe6f96732eb529ffc31fa890c25f5adf9ab296f6469ff6b6",
+        "span_sha256_recomputed": "0eb8505f6837011f68a758323739f086567737629280b68eaf870f158c0ade9a",
+        "recorded_source_matches": true
+      },
+      {
+        "asset_id": "LEGACY-ASSET-F542125805B777D8A56A",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+        "start_line": 148,
+        "end_line": 168,
+        "full_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+        "raw_lf_sha256": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9",
+        "parent_scopes": [
+          "common"
+        ],
+        "disposition_limit": "指定spanの明示内容/失敗形だけを再導出する。source item全体の採用・全要求への一般化・旧実行権限の移行を意味しない。",
+        "full_sha256_recomputed": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+        "span_sha256_recomputed": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9",
+        "recorded_source_matches": true
+      },
+      {
+        "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+        "start_line": 38,
+        "end_line": 57,
+        "full_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+        "raw_lf_sha256": "bdb56ad09b5ce182466bcfaa9494d2ceaf60be075fc76efd65bfa6709e2278dc",
+        "parent_scopes": [
+          "common"
+        ],
+        "disposition_limit": "指定spanの明示内容/失敗形だけを再導出する。source item全体の採用・全要求への一般化・旧実行権限の移行を意味しない。",
+        "full_sha256_recomputed": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+        "span_sha256_recomputed": "bdb56ad09b5ce182466bcfaa9494d2ceaf60be075fc76efd65bfa6709e2278dc",
+        "recorded_source_matches": true
+      },
+      {
+        "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+        "start_line": 134,
+        "end_line": 197,
+        "full_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+        "raw_lf_sha256": "747723b54908e79652e347ab529875943afc051fc9f9182d149481f01475e5a0",
+        "parent_scopes": [
+          "common"
+        ],
+        "disposition_limit": "指定spanの明示内容/失敗形だけを再導出する。source item全体の採用・全要求への一般化・旧実行権限の移行を意味しない。",
+        "full_sha256_recomputed": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+        "span_sha256_recomputed": "747723b54908e79652e347ab529875943afc051fc9f9182d149481f01475e5a0",
+        "recorded_source_matches": true
+      },
+      {
+        "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+        "start_line": 198,
+        "end_line": 307,
+        "full_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+        "raw_lf_sha256": "7f3326adfef43b9fbcc3542cf2351058a87af78e7952875c7bc95f0343f985d5",
+        "parent_scopes": [
+          "common"
+        ],
+        "disposition_limit": "指定spanの明示内容/失敗形だけを再導出する。source item全体の採用・全要求への一般化・旧実行権限の移行を意味しない。",
+        "full_sha256_recomputed": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+        "span_sha256_recomputed": "7f3326adfef43b9fbcc3542cf2351058a87af78e7952875c7bc95f0343f985d5",
+        "recorded_source_matches": true
+      },
+      {
+        "asset_id": "LEGACY-ASSET-44DD86E3DEC09E65EF51",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+        "start_line": 32,
+        "end_line": 90,
+        "full_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+        "raw_lf_sha256": "0b6f167d1e4002f0f92a80294992ee3b785f676685402c1945b15d5f38ee0228",
+        "parent_scopes": [
+          "common"
+        ],
+        "disposition_limit": "指定spanの明示内容/失敗形だけを再導出する。source item全体の採用・全要求への一般化・旧実行権限の移行を意味しない。",
+        "full_sha256_recomputed": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+        "span_sha256_recomputed": "0b6f167d1e4002f0f92a80294992ee3b785f676685402c1945b15d5f38ee0228",
+        "recorded_source_matches": true
+      },
+      {
+        "asset_id": "LEGACY-ASSET-44DD86E3DEC09E65EF51",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+        "start_line": 91,
+        "end_line": 216,
+        "full_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+        "raw_lf_sha256": "066ad9e1de61935f6a5c5a939a5e78a4348f29431a9737f187edb991b71d82e4",
+        "parent_scopes": [
+          "common"
+        ],
+        "disposition_limit": "指定spanの明示内容/失敗形だけを再導出する。source item全体の採用・全要求への一般化・旧実行権限の移行を意味しない。",
+        "full_sha256_recomputed": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+        "span_sha256_recomputed": "066ad9e1de61935f6a5c5a939a5e78a4348f29431a9737f187edb991b71d82e4",
+        "recorded_source_matches": true
+      }
+    ],
+    "disposition": "各15親ごとに旧source/paired acceptance 2 pinを上記に個別記録。旧L3/AC形式とsource identity/failure oracleを再導出し、旧ID/runtime/authority/route/approval/CIを現行L2/L11/ownerへ置換。6 shared legacy spansにも実読full/raw pinを付与。",
+    "formal_opus_old_source_statement": "33 old-source reference pairs in FR checked; source_path/SHA matched asset ledger, and line ranges fit source. Fable did not review legacy line ranges."
+  },
+  "condition3_checklist": [
+    "refetch exact formal API comment and verify UTF-8 body bytes/SHA",
+    "recompute six exact-head content hashes",
+    "recompute fixed 633bf12 L2/L11 full/span pins",
+    "recompute PO adoption span and 15 register rows",
+    "recompute delegation rule and operating-model pins",
+    "verify immutable old-source audit and decision record pins",
+    "compute this new decision record exact SHA after main admission",
+    "integrate latest main and recheck merge admission"
+  ],
+  "verification": {
+    "formal_api_raw_body": true,
+    "six_target_blobs_match_worktree": true,
+    "fixed_l2_l11_full_spans": true,
+    "po_adoption_rows": true,
+    "register_rows": true,
+    "attribution_audit_legacy_pins_referenced": true,
+    "condition3": "pending",
+    "main_admission": false,
+    "PO_post_confirmation_created": false,
+    "L10_fixture_executed": false,
+    "commit_or_push": false,
+    "legacy_cli_hook_runtime_test_ci_executed": false
+  },
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-intelligence-stage4-l3-l10-delegated-decision-2026-10-08.md",
+    "source_revision": null,
+    "sha256": "adb4fffa0312875184abebab404dbf9bed29d97ed2d1cbfab03a766a354950a6",
+    "bytes": 8844,
+    "revision_binding": "New record added after reviewed content; exact committed record bytes to be checked independently at condition3."
+  },
+  "decision_pin_json": {
+    "path": "docs/governance/audits/requirements-stage/intelligence-stage4-delegated-decision-pin-2026-10-08.json",
+    "self_sha256": "not_self_pinned; hash computed after serialization"
+  },
+  "root_verification": "formal API raw body and SHA, six exact/current bytes, fixed full/spans, PO adoption/register rows, delegation and historical source pins independently recomputed; Fable review scope narrowed to formal explicit evidence."
+}

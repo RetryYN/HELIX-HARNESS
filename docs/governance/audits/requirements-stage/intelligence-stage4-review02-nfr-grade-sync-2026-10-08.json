@@ -1,0 +1,60 @@
+{
+  "record_type": "review02-nfr-grade-reference-sync",
+  "authority_effect": "none",
+  "source_revision": "fe01face47fa0a4fe7d73f2ba9ff229ce5365261",
+  "formal_comment": {
+    "id": 6042466865,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2670#issuecomment-6042466865",
+    "body": "## review02（HEAD fe01face47fa0a4fe7d73f2ba9ff229ce5365261、merge-base 00298f79229198965d889ebf0b6a1bedc4d03648）\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）\n\n### 結論：Major 1（6本文のID対応）。本revisionではOpus・Fableの全体照合を行っていない\n\n**review01 M1の扱い：本文の修正は求めたとおりである**\n- 036：AC-INT-036-01と、CASE-INT-036-01の期待oracleに、permissionの対象target revisionの一致を足している。CASE-INT-036-02pでは、permission自身のrevision・状態・actor/action/target/scopeを正常値に固定し、target revisionだけを変えている。期待は、実行しないこと、実行可能に昇格させないこと、SECURITY permission/isolation ownerへ戻すこと。\n- 017：CASE-INT-017-02pで、permissionの対象target revisionだけを変えている。期待は、完了から除外し、SECURITYへ戻すこと。AC-INT-017-02の列挙にも、この項目が入った。\n- 既存のCASEはすべて残っている。差分は、FR・FV・BR・BV・NFRVの該当行だけである。\n\n**M2（6本文のID・範囲の不一致）nfr-gradeの根拠CASE一覧に、追加した02pがない**\n- nfr-grade.md:73（NFR-INT-017-01の根拠CASE）に `CASE-INT-017-02p` がない。\n- nfr-grade.md:122（NFR-INT-036-01の根拠CASE）に `CASE-INT-036-02p` がない。\n- 他の5本文（BR、BV、FR、FV、NFRV）には、017-02pと036-02pの両方が入っている。review01の時点では、6本文の参照集合は一致していた（570件）。\n- 求める変更：nfr-grade.md:73と:122の根拠CASE一覧に、`CASE-INT-017-02p` と `CASE-INT-036-02p` を足す。必要なら:173の「review06追補の個別変異」の記載も確かめる。\n\n### 委任条件\n- 本文revisionが変わったので、修正後のrevisionで条件1（Opus）と条件2（Fable）を全体についてやり直す。\n- 依頼にあった、review01の未確認範囲（BR・BV・nfr-gradeのID以外の本文、旧assetの内容、packの内容、類型5の範囲）の照合も、その時に行う。\n- 本revisionでは、上のM2がはっきりしているため、照合を先送りにした。\n\n### 静的検査（exact HEAD）\n- `scfctl validate` 147/0、`stale=0`、`residuals=0`\n- `govcheck ok atoms=7622`\n- `git diff --check` clean、最新main `00298f792` とのmerge-treeでconflictなし\n\n### 未確認範囲\n本revisionでは、Opus・Fableによる全体照合を行っていない（上記のとおり、次のrevisionで行う）。\n\n本commentから、要求の意味、承認、PO確認、merge admissionは生成しない。\n",
+    "bytes": 2652,
+    "sha256": "217c130ea842936bb6733d3258ea7ce39ce588ffe9ba6a6c705475f1cf6951ab"
+  },
+  "changes": [
+    "NFR-INT-017-01根拠CASEへCASE-INT-017-02p追加",
+    "NFR-INT-036-01根拠CASEへCASE-INT-036-02p追加"
+  ],
+  "six_document_sha256_before": {
+    "docs/helix-intelligence/L3-requirements/business-requirements.md": "026d95fbf023ef384834ebd3b215a469f2fea648190d15d45494b5ea4cc91959",
+    "docs/helix-intelligence/L3-requirements/functional-requirements.md": "01ceffadc184ead3c5a73e4df4f308610394590630c222a53930e4857ee71c5a",
+    "docs/helix-intelligence/L3-requirements/nfr-grade.md": "a50c5379206610db3dd730a230ad4a52657f9600f7c8363101e1603d59ac8681",
+    "docs/helix-intelligence/L10-verification/business-verification.md": "b476b0939b7da50cf75db66d235095f94e591ac929ef046721224b5112d04552",
+    "docs/helix-intelligence/L10-verification/functional-verification.md": "aa6cb83a2eaeeaf0d4d0fd955698e5071e27c81232ba43a1c3af94918fbccc77",
+    "docs/helix-intelligence/L10-verification/nfr-verification.md": "1049e8edef98fd41f1f2c57caff98eebc999e65652e558b42646976e517614a1"
+  },
+  "six_document_sha256_after": {
+    "docs/helix-intelligence/L3-requirements/business-requirements.md": "026d95fbf023ef384834ebd3b215a469f2fea648190d15d45494b5ea4cc91959",
+    "docs/helix-intelligence/L3-requirements/functional-requirements.md": "01ceffadc184ead3c5a73e4df4f308610394590630c222a53930e4857ee71c5a",
+    "docs/helix-intelligence/L3-requirements/nfr-grade.md": "a1113329da1b463968b2a67a19692db77c41b0fcdb6bf028ac969d83921066a2",
+    "docs/helix-intelligence/L10-verification/business-verification.md": "b476b0939b7da50cf75db66d235095f94e591ac929ef046721224b5112d04552",
+    "docs/helix-intelligence/L10-verification/functional-verification.md": "aa6cb83a2eaeeaf0d4d0fd955698e5071e27c81232ba43a1c3af94918fbccc77",
+    "docs/helix-intelligence/L10-verification/nfr-verification.md": "1049e8edef98fd41f1f2c57caff98eebc999e65652e558b42646976e517614a1"
+  },
+  "validation": {
+    "docs/helix-intelligence/L3-requirements/business-requirements.md": {
+      "017": true,
+      "036": true
+    },
+    "docs/helix-intelligence/L3-requirements/functional-requirements.md": {
+      "017": true,
+      "036": true
+    },
+    "docs/helix-intelligence/L3-requirements/nfr-grade.md": {
+      "017": true,
+      "036": true
+    },
+    "docs/helix-intelligence/L10-verification/business-verification.md": {
+      "017": true,
+      "036": true
+    },
+    "docs/helix-intelligence/L10-verification/functional-verification.md": {
+      "017": true,
+      "036": true
+    },
+    "docs/helix-intelligence/L10-verification/nfr-verification.md": {
+      "017": true,
+      "036": true
+    }
+  },
+  "limits": "参照同期のみ。固定親・技術値・責務・既存CASE本文を変更せず、L10未実行、承認を生成しない。review01の未確認範囲は再レビューへ持ち越す。",
+  "validation_note": "全6文書で017-02p/036-02pを確認。文書全体のCASE集合は対象Stage外の収録範囲が異なるため全体一致を主張しない。"
+}
