@@ -68,7 +68,7 @@ Acceptance/evidenceは `functional-requirements.md` のFR-INT-066およびAC-INT
 
 ## Stage 3 — 採択22親の業務境界
 
-固定L2に独立した業務成果基準がないため、このStage 3範囲で新たなbusiness requirement/KPI/事業ownerを導出しない。各親の機能条件はfunctional L3へ参照し、機能成立を事業価値達成・利用者受入と読み替えない。
+固定L2に独立した業務成果基準がないため、このStage 3範囲で新たなbusiness requirement/KPI/事業ownerを導出しない。各親の機能条件はfunctional L3へ参照し、機能成立を事業価値達成・利用者受入と読み替えない。011のmetric一致、067の採用候補/effort/evidence、072のpack candidateと非強制境界、078のdelta/role unknownも機能とsource traceの条件であり、事業成果・PO判断・採択結果ではない。
 
 | 親L2 | 扱い | 機能参照 | 境界 |
 |---|---|---|---|

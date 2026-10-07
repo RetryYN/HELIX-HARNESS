@@ -99,7 +99,7 @@
 | `CASE-INTELLIGENCE-L10-BIZ-073-01` | `HELIXINTELLIGENCE-L2-073` | `AC-INTELLIGENCE-L3-073-01` | 対象親の機能fixtureと責務境界を照合する。 | 機能判断は対応functional CASEで評価し、業務承認・事業成果は生成しない。 | 機能結果からowner/利用者判断、事業達成または独立business基準を推定したら不合格。 |
 | `CASE-INTELLIGENCE-L10-BIZ-078-01` | `HELIXINTELLIGENCE-L2-078` | `AC-INTELLIGENCE-L3-078-01` | 対象親の機能fixtureと責務境界を照合する。 | 機能判断は対応functional CASEで評価し、業務承認・事業成果は生成しない。 | 機能結果からowner/利用者判断、事業達成または独立business基準を推定したら不合格。 |
 
-review08追補の005/016/067/072各機能fixtureは対応ACへtraceする。独立business基準や業務成果の承認は追加せず、比較成立・候補成立・修復結果照合からownerの業務判断を生成しない。
+review08追補およびStage 3再照合の011/067/072/078各機能fixtureは対応ACへtraceする。独立business基準や業務成果の承認は追加せず、metric一致、配置候補、pack候補、delta/role境界の照合からownerの業務判断・承認・採択を生成しない。
 ## Stage 5 — business evidence範囲（INTELLIGENCE 9親）
 
 固定9親は独立した業務結果やbusiness owner/KPIを要求しない。以下はbusiness CASEではなく、FR/functional CASEを業務責務境界と照合する索引である。業務成果の実測、proposalの採択、L3承認を主張しない。
