@@ -545,11 +545,13 @@ ticket返却、検証不能、oracle/input不足のfindingを、finding identity
 
 HELIX自身と複数projectの対象revisionごとに、L2-015〜024のunit、必要なconnection、composite固有の端から端義務、owner、証拠、未完状態、戻し先を別identityとして束ねる。project単位の各HARNESS製品と選択接続の単独状態を保持し、構成体の成立はL2が定める1.0全体確認の範囲でのみ判定候補にする。個別の初期配布・単独成立を7製品すべての完成待ちにせず、後続version_targetの能力も前提にしない。単位の成功からconnection/compositeを推定せず、unknown、stale、未許可、人判断待ち、未完義務をそのまま記録する。欠落したsource/unit/connectionの既存ownerへ返し、未完義務を保持する。
 
-**責務／依存**：OSは統合状態とtrace、各unit ownerは自身の契約・証拠、HARNESS/周辺機構は明示済み接続契約を担う。新しいowner・承認・KPIを作らない。固定L2に列挙された既存L2と必要な接続だけを依存として扱う。
+**責務／依存**：OSは統合状態とtrace、各unit ownerは自身の契約・証拠、HARNESS/周辺機構は明示済み接続契約を担う。依存は固定L2-025が列挙する該当revision、Conceptと対象別L1/L2、必要なHARNESS/周辺機構の接続契約、および許可された資源に限る。新しいowner・承認・KPIを作らない。
 
-**AC-OS-L3-025-01 — 単独/接続/composite分離**：各project・対象revisionでunit、選択connection、composite固有端から端証拠を個別に参照する。選択されたHARNESSサービス①〜⑦のunit正常例、選択connection/composite正常、部分未見正常と、unknown/stale/未許可/human-waitの独立状態を照合する。固定L2/L11の1.0全体確認条件と単独作業の対象範囲を混同しない。
+**AC-OS-L3-025-01 — 単独/接続/composite分離と端から端trace**：HELIX自身と性質の異なる複数projectについて、各project・対象revisionでunit、選択connection、composite固有証拠を別identityで参照する。要求形成/authority→ticket→Worker→検収→提供/運用→LABO評価→OS還流の各段で、対象project、対象revision、scopeおよび直前段source参照の値が一致することを照合する。選択HARNESSサービス①〜⑦のunit正常、選択connection/composite正常、部分未見正常と、unknown/stale/未許可/human-waitの独立状態を確認し、固定L2/L11の1.0全体確認と単独作業を混同しない。
 
-**AC-OS-L3-025-02 — 部分成立と保持**：あるHARNESS製品の単独成立、別projectの未完了、L1-011/012のLABO移管状態をそれぞれ独立に扱う。後続版の前倒しとHELIX-OS外部製品化を拒否し、部分成立から7製品群・HELIX-OS全体の成立やfailure解消を作らない。
+**AC-OS-L3-025-02 — 部分成立と保持**：あるHARNESS製品の単独成立、別projectの未完了、L1-011/012のLABO移管状態をそれぞれ独立に扱う。個別初期配布は対象製品の条件で扱い、他の6製品を含む全7製品の完成待ちを前提にしない。後続版の前倒しとHELIX-OS外部製品化を拒否し、部分成立から7製品群・HELIX-OS全体の成立を作らない。未決authorityと未完受入義務は隠さず既存状態として保持し、後続受入への引継ぎはAC-025-03で照合する。failureの解消可否を新たに規定しない。
+
+**AC-OS-L3-025-03 — 入力束縛と構成体境界**：採用済みtarget revision、選択HARNESS構成版、各該当unitのidentity/revision/state/evidence、既存人間判断と停止条件を同一対象に束縛する。単独不足は該当source/unit/connectionの既存ownerへ返し、他の成立状態を保持する。文書または機構の存在だけではunit・connection・compositeを成立扱いしない。CASE-025-18は既存の人判断が入力されていて判断待ちの状態、CASE-025-031は必要な既存判断入力自体が欠けた状態を扱い、両者を区別する。未決authorityと残る受入義務は後続受入へ引き継ぎ、次の受入側でも未決状態と義務を保持する。
 
 ### `FR-OS-L3-026` — `HELIXOS-L2-026` 段階release構成の導出能力
 
@@ -604,9 +606,7 @@ HELIX自身と複数projectの対象revisionごとに、L2-015〜024のunit、�
 
 ### Stage 5 review01補正 — AC traceの優先追補
 
-以下はStage 5の既存ACを置換せず不足を補う。旧AC本文のうち「failure解消を作らない」は固定L2/L11にない追加条件なので適用しない。「部分成立から構成体の成立を推定しない」という境界は維持する。以降のL10 review01補正overlayは、同じCASE IDに明記した限定訂正を優先し、それ以外の既存要件・owner・versionは保持する。
-
-**AC-OS-L3-025-03 — 入力束縛と構成体境界**：採用済みtarget revision、選択HARNESS構成版、各該当unitのidentity/revision/state/evidence、既存人間判断と停止条件を同一対象に束縛する。単独不足は該当source/unit/connectionの既存ownerへ返し、他の成立状態を保持する。文書または機構の存在だけではunit・connection・compositeを成立扱いしない。 未決authorityと残る受入義務は後続受入へ引き継ぎ、次の受入側でも未決状態と義務を保持する。
+以下はStage 5の既存ACを置換せず、固定L2/L11に沿って不足を補う。failureの解消可否を一律に禁止する条件は置かず、部分成立から構成体の成立を推定しない境界と、固定親が求める未決authority・未完受入義務の保持をAC本文で照合する。以降のL10補正は同じCASE IDに明記した限定訂正を優先し、それ以外の既存要件・owner・versionは保持する。
 
 **AC-OS-L3-026-04 — 入力完全性と導出境界**：目的、仕事範囲、検証範囲、利用可能環境、比較基準、適格性条件、input/output、更新条件、rollback条件を独立に照合する。欠落は候補を成立とせず固定L2記載の既存要求/source/pack/HARNESS/依存/SECURITY/INFRASTRUCTURE ownerへ原因別に返す。許可された人による作業も依存契約・安全義務を閉包から外さない。導出だけで採択・実装・受入・tag・配布を生成しない。 必要な検証を外したより小さい構成は、同一目的・scope・許容分担の比較でも不適格とし、最小性未立証の状態と混同しない。
 
@@ -618,7 +618,7 @@ HELIX自身と複数projectの対象revisionごとに、L2-015〜024のunit、�
 
 review01 M5/M6のsource行はL11-046（main `governance-acceptance.md:798–799`）であり、L11-031:500–512ではないとreviewerがreview03で撤回した。031追補から046固有のauthority失効・無関係scope保存・prototype/古いreview/段間完了の例を除外し、L2-031:903–910およびL11-031:500–512に直接対応する既存測定・義務保持のfixtureだけを残す。L2-031が求めるsource/base HEAD・ticket・HARNESS義務/選択集合の測定束縛、正しさと性能の区分、非縮退回収、LABO/authority境界を各CASEへ明示した。これは既存固定要求の受入具体化であり、L2/L11の意味・owner・版を変えない。
 
-**Stage 5 CASE→AC対応補正**：025の既存CASE-025-01〜21は既存AC-025-01/02へ維持し、022〜032はAC-025-03へ結ぶ。026の既存対応は維持し、CASE-026-055をAC-026-04へ追加し、CASE-026-056〜059をAC-026-05、CASE-026-060をAC-026-03へ結ぶ。031ではAC-031-01を測定入力CASEと074/075、AC-031-02を03/04/26〜28/30/082、AC-031-03を05/26〜30/31〜51/069、AC-031-04を30/064/065/067/071/073/076/077/078〜081/083〜087、AC-031-05を088〜095へ結ぶ。031-066/068/070/072はL11-046の誤引用に由来するため031から除外し、L2-031/L11-031の義務として扱わない。031-29はAC-031-01でなくAC-031-03、031-30はAC-031-03/04双方で追跡する。047-037/038はAC-047-01へ追加し、047-039〜041はAC-047-05へ結ぶ。047既存対応・provider aliasを保持する。CASE行数は定義数であり実行・独立検証済み数ではない。
+**Stage 5 CASE→AC対応補正**：025の既存CASE-025-01〜21は既存AC-025-01/02へ維持し、022〜039はAC-025-03へ結ぶ。CASE-025-047/049はAC-025-02、CASE-025-048はAC-025-01へ結ぶ。既存IDは変更せず、以後の追加CASEは3桁連番を用いる。026の既存対応は維持し、CASE-026-055をAC-026-04へ追加し、CASE-026-056〜059をAC-026-05、CASE-026-060をAC-026-03へ結ぶ。031ではAC-031-01を測定入力CASEと074/075、AC-031-02を03/04/26〜28/30/082、AC-031-03を05/26〜30/31〜51/069、AC-031-04を30/064/065/067/071/073/076/077/078〜081/083〜087、AC-031-05を088〜095へ結ぶ。031-066/068/070/072はL11-046の誤引用に由来するため031から除外し、L2-031/L11-031の義務として扱わない。031-29はAC-031-01でなくAC-031-03、031-30はAC-031-03/04双方で追跡する。047-037/038はAC-047-01へ追加し、047-039〜041はAC-047-05へ結ぶ。047既存対応・provider aliasを保持する。CASE行数は定義数であり実行・独立検証済み数ではない。
 
 **旧source locator訂正**：Stage 5対応表の031旧要件文書は`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/`配下にある。047旧sourceは`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/`配下にある。本文に短縮名だけある箇所はこのlocatorで読む。既存表の誤った`governance/requirements/` locatorを正しいsource pathとして扱わず、追補監査でfull/raw pinを記録する。
 
