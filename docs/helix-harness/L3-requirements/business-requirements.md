@@ -137,6 +137,12 @@ HARNESS-L2-041から独立business requirement、business owner、ROI/KPI/商業
 |---|---|---|
 | `HARNESS-L2-047` | 独立business requirementを導出しない | specialist必要性の測定とruntime-neutral契約生成は固定要求の機能責務であり、別の業務成果や固定team-sizeを追加しない。 |
 
+## Stage 3 親049の業務要件
+
+**採択済み固定親**：PO `po-decision-2026-09-30-live26.md:39,72`の登録`MPR-RC-HARNESS-L2-049-003`。source_repository_revision `ea6f756f96a7370de78e412d737c7a7ed472114a`、L2 `product-requirements.md:1070–1092` SHA-256 `a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116`、L11 `product-acceptance.md:802–814` SHA-256 `f3fb47da21371084e9f8c7c7f7ca6dd945c8e98ae7c7b70597c3fc44e4e08ee7`。旧318のL11および登録-002を親にしない。
+
+`HARNESS-L2-049`の採択意味は、入力されたrenderable prototypeの画面表示を選択scopeで計測し、機械検査の精度材料とprofile根拠の文言findingを返す範囲に限る。独立した事業価値、business owner、ROI、利用者受入KPI、release判断を追加しない。計測結果、profile上の文言finding、CASE数、fixture数、LABO精度評価は要求採択や事業受入を生成しない。
+
 ## Stage 3 親054の業務要件：専門Worker判定・契約のOS割当handoff（起草候補、version_target: 1.0）
 
 **採択本文の固定**：PO記録のsource_repository_revision `5aa100319361b0cc86edd3c51815ec777d55410a`。L2 `product-requirements.md:1154–1162` SHA-256 `b76b7b1adec804a25bd9333663aa9b0d074f68518764c2874c994bcdf6ead193`、L11 `product-acceptance.md:865–875` SHA-256 `5d1ab0bad44ae305053932f0c82bcf472e145046125b638f5facab13eaaa2aa0`。旧調査snapshot e94838f5の同本文とbyte一致。末尾空行込みの物理span digestは別の監査pinとして区別する。
