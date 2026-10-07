@@ -1,5 +1,5 @@
 ---
-title: "HELIX-INFRASTRUCTURE Stage 1 business要件候補"
+title: "HELIX-INFRASTRUCTURE business要件候補"
 canonical_vmodel: L1-L12
 canonical_layer: L3
 canonical_pair: L10
@@ -12,7 +12,9 @@ pair_artifact: docs/helix-infrastructure/L10-verification/business-verification.
 stage: 1
 ---
 
-# HELIX-INFRASTRUCTURE Stage 1 business要件候補
+# HELIX-INFRASTRUCTURE business要件候補
+
+> **本書の範囲（2026-10-07追記）**：題名にあった「Stage 1」は、本書で最初に起草した節の範囲である。本書には、その後のStageの節（Stage 2a、Stage 2b、Stage 4、Stage 5）が追補されている。各節の対象親、対象revision、判断状態は[L3／L10 PO事後確認一覧](../../governance/l3-l10-po-post-confirmation.md)と各判断記録を正とする。冒頭の状態の記述は、最初の節を起草した時点のものとして読む。frontmatterの`stage: 1`も最初の節の値である。本追記は範囲の表示だけを直し、要件・検証の意味、ID、承認状態を変えない。
 
 固定親 `HELIXINFRASTRUCTURE-L2-001` と `HELIXINFRASTRUCTURE-L2-006` は資源状態の観測と限定recovery pathを定める。これらの親には独立したbusiness outcomeや業務成功oracleがないため、本書では別個のbusiness要件・受入条件を設けない。資源状態、owner境界、recovery結果の要件は[機能要件](functional-requirements.md)のFR/ACを正本とし、同じ条件をbusiness要件として重複させない。
 

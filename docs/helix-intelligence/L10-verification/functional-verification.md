@@ -1,4 +1,6 @@
-# HELIX-INTELLIGENCE L10 機能総合検証（Stage 2a）
+# HELIX-INTELLIGENCE L10 機能総合検証
+
+> **本書の範囲（2026-10-07追記）**：題名にあった「Stage 2a」は、本書で最初に起草した節の範囲である。本書には、その後のStageの節（Stage 2c、Stage 3、Stage 4、Stage 5）が追補されている。各節の対象親、対象revision、判断状態は[L3／L10 PO事後確認一覧](../../governance/l3-l10-po-post-confirmation.md)と各判断記録を正とする。冒頭の状態の記述は、最初の節を起草した時点のものとして読む。本追記は範囲の表示だけを直し、要件・検証の意味、ID、承認状態を変えない。
 
 状態: L3と対になる検証設計候補。実行結果、PO L3承認、実装/実行許可を生成しない。L3 `functional-requirements.md`のAC identityを参照し、固定L2/L11のsource/revision/scopeとowner境界をoracleにする。
 

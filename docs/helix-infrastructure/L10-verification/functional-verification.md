@@ -1,5 +1,5 @@
 ---
-title: "HELIX-INFRASTRUCTURE Stage 1 機能総合検証候補"
+title: "HELIX-INFRASTRUCTURE 機能総合検証候補"
 canonical_vmodel: L1-L12
 canonical_layer: L10
 canonical_pair: L3
@@ -12,7 +12,9 @@ pair_artifact: docs/helix-infrastructure/L3-requirements/functional-requirements
 stage: 1
 ---
 
-# HELIX-INFRASTRUCTURE Stage 1 機能総合検証候補
+# HELIX-INFRASTRUCTURE 機能総合検証候補
+
+> **本書の範囲（2026-10-07追記）**：題名にあった「Stage 1」は、本書で最初に起草した節の範囲である。本書には、その後のStageの節（Stage 2a、Stage 2b、Stage 4、Stage 5）が追補されている。各節の対象親、対象revision、判断状態は[L3／L10 PO事後確認一覧](../../governance/l3-l10-po-post-confirmation.md)と各判断記録を正とする。冒頭の状態の記述は、最初の節を起草した時点のものとして読む。frontmatterの`stage: 1`も最初の節の値である。本追記は範囲の表示だけを直し、要件・検証の意味、ID、承認状態を変えない。
 
 本書は[機能要件候補](../L3-requirements/functional-requirements.md)と対になる設計検証である。L3の承認、実装試験、実際のenvironment健全性・復旧完了を示さない。各caseは入力source/revision、対象environment、観測地点、期待結果、失敗時ownerを記録する。業務完了・incident close・authorityはこの検証から生成しない。
 
