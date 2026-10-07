@@ -1,0 +1,80 @@
+{
+  "record_type": "immutable_delegated_decision_pin",
+  "authority_effect": "none_pending_condition3_and_main_admission",
+  "scope": "OS Stage5 parent025 only",
+  "review_head": "4a848e2ba65070f3502d04fc020d36de1cfa1d7a",
+  "review_base": "f14ac303d265b6d23ecb1847b5dfd52901a442c6",
+  "review_comment_id": 6041782252,
+  "review_raw_body": "## review02（independent review、HEAD 4a848e2ba65070f3502d04fc020d36de1cfa1d7a、merge-base f14ac303d265b6d23ecb1847b5dfd52901a442c6）\n\nreviewer: Claude（lane `review_merge`、**Opus 5.5**）。\n- 条件1は、Opus 5.5のブラインド照合と、reviewerの確認で判定した。\n- 条件2は、Fable advisor（claude-fable-5-1）の見解である。Fableは、025 Stage 5節の全体と固定親@633bf12（L2:742–751、L11:394–399）を読み直したうえで判断した。HEADの同じ範囲とSHA-256が一致することも確かめている。\n\n### 静的確認\n- scfctl validate 147/0、stale 0、residuals 0\n- govcheck ok\n- `git diff --check` clean\n- `git merge-tree`：最新mainと衝突なし。merge-base以降、mainでhelix-osの本文は変わっていない。\n\n### review01（#6041232949）への対応\n- **M1は解消した。**\n  - 正常例CASE-025-01/13（FV:1031、1068）は、HELIX自身と性質の異なるproject（campaign-site、data-migration）の2本の連鎖を持つ。\n  - 連鎖の7段は、auth→ticket→worker→inspect→operate→labo→os-return である。各段で、project、target_revision、scope、authority_ref、直前の段のsource参照が一致するかを判定する。\n  - CASE-033〜039（FV:1277–1283）は、7段のうち1段だけを欠く単独の変異である。\n  - 段の名前は固定L2:746の7段と同じで、新しい段・owner・閾値は作っていない。戻し先は既存のsource/unit/connection ownerで、L2:750の区分の中にある。\n- **m1〜m7は解消した。**\n  - 依存をL2:747に限定した。\n  - 「failure解消を作らない」の条項を撤回した。\n  - CASE-18とCASE-031を区別した。\n  - 「7製品の完成を初期配布の前提にする」を、単独で拒否するCASE-047を足した。\n  - 1.0全体の正常例CASE-048と、1製品だけが欠けるCASE-049を足した。\n  - CASE-19/20/21に戻し先を書いた。\n  - NFRの範囲を同期した。\n- **禁止列挙**：L11:398の反例と、単独のCASEが1対1でそろっている。\n- **旧文と新文の突き合わせ（類型5）**：AC-025-03は、移動前の本文をそのまま残している。弱くなった条件はない。\n- **ID対応**：「01〜21, 022〜039, 047〜049」が、次の各文書でそろっている。古い「〜32」は残っていない。\n  - FVの範囲表とAC表\n  - FRの対応補正\n  - BR、BV、NFR grade、NFR verification\n\n### Major\nなし。\n\n### Minor（返却しない。次に025を触るときに直せばよい）\n- m8：FR AC-025-03の本文に「trace各段の単独欠落」という言葉がない。CASE-033〜039との対応は、一般的な文から読むしかない。\n- m9：段を欠落させるfixtureは、HELIX側の連鎖にしかない。性質の異なるproject側の連鎖にはない。\n- m10：CASE-025-040〜046が欠番になっていて、その理由が書かれていない。\n- m11：CASE-031のoracleは、旧文の「判断を捏造せず」から「判断入力を推測せず」に変わった。「新しい判断者・承認を作らない」は残っているが、言葉としては弱くなっている。\n- m12：AC-025-01の本文は、一致させる値にauthority_refを挙げていない（fixtureでは一致を見ている）。\n- m13：CASE-047では、追加の前提を拒否した後の戻し先が書かれていない。CASE-048の「同一scope/revision」と、7製品がそれぞれ別のrevisionを持つこととの関係も書かれていない。\n\n### 委任条件の状態\n- **条件1（Opus `no_findings`）：成立。** Major 0。\n- **条件2（Fable）：成立。** 結論行は原文のまま「承認してよい」。\n- 条件1と2は、同じbody revision（4a848e2ba）でそろった。\n- **条件3は未照合。** 判断記録の作成後に、6本文が次のSHA-256から変わっていないことを照合する。\n\n| 文書 | SHA-256 |\n|---|---|\n| L3-BR | `cbe1866d…a702` |\n| L3-FR | `95a6f1c5…3544` |\n| L3-NFR | `ec63ecd5…3066` |\n| L10-BV | `5a75c21c…93c8` |\n| L10-FV | `8a99792f…821c` |\n| L10-NFR | `3019648b…e256` |\n\n### 未確認範囲\nなし。026/031/047は#2657で承認済みであり、今回の対象外である。\n",
+  "review_raw_sha256": "95047f599642de7a226a1545a55a5b4622097c141f5c8791f9f1081c7b9a86b1",
+  "review_raw_bytes": 4271,
+  "six_document_sha256": {
+    "docs/helix-os/L3-requirements/business-requirements.md": "cbe1866df47503b17e8a11b786dee8da58cd8a2a0a99778b64bd4a669b2fa702",
+    "docs/helix-os/L3-requirements/functional-requirements.md": "95a6f1c5bdd1015d8849829de88fd99e62c842784135e4ebdbd5b4140d843544",
+    "docs/helix-os/L3-requirements/nfr-grade.md": "ec63ecd54db5258ff14714624c3df6bcfd3c1c189ac9a08a29271c06231e3066",
+    "docs/helix-os/L10-verification/business-verification.md": "5a75c21ce10b33fc8441adda71253870fd20a8687c18e7939cfe8b25f9d393c8",
+    "docs/helix-os/L10-verification/functional-verification.md": "8a99792f723abb96034274c72424902fba51df515e2a99f637823427aa03821c",
+    "docs/helix-os/L10-verification/nfr-verification.md": "3019648b66a351418945033646bf82c84d0c7ef771edee49378cef2be266e256"
+  },
+  "fixed_source_pins": {
+    "L2": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "full_sha256": "c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a",
+      "span_lines_inclusive": [
+        742,
+        751
+      ],
+      "span_sha256": "b7166f6399db9a0f1d3a9db76977ec4ec0f1e7f708503ccc42beea0ec97121e1"
+    },
+    "L11": {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "full_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+      "span_lines_inclusive": [
+        394,
+        399
+      ],
+      "span_sha256": "4fc6622e1bac457871fb23f84e693944fee7a9acebe90996c9e14ab86adb0c1f"
+    },
+    "PO_adoption": {
+      "identity": "HELIXOS-L2-025",
+      "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "decision_source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "decision_full_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "decision_span_lines_inclusive": [
+        45,
+        48
+      ],
+      "decision_span_sha256": "ceb82a2a8174197bf5df3f3e918e2af1d452958354579ddc28e3b67f40031c7a",
+      "register_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "register_source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "register_full_sha256": "e7dc1180361869379966fb33f4ab263cabdfe1137ceea32dedc2b6edfea388d1",
+      "register_line": 59,
+      "register_line_sha256": "c7907da917d87aaf38e06f5d81a97906ab226b958956967dae151f2a392c2e69"
+    }
+  },
+  "legacy_process_pin": {
+    "role": "旧L3 process形式/工程差分比較",
+    "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+    "line_start": 148,
+    "line_end": 168,
+    "full_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+    "raw_lf_span_sha256": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9",
+    "literal": "### L3 要件定義\n\n| 項目 | 内容 |\n|------|------|\n| 名称 | 要件定義 (System Requirements) |\n| 目的 | システム機能要件 (FR-*) + 受入条件 (AC-*) を確定し、設計への入力とする |\n| 主要成果物 ① | 3 sub-doc: functional-requirement / business-requirement / nfr-grade |\n| ③ テスト設計ペア | UX受入テスト設計（L10で実施） |\n| V-pair (右腕) | **L10** UX受入検証 |\n| 主要ゲート | **G3** 機能要件凍結 (FR+AC ⇔ L10 UX受入テスト設計 pair freeze) |\n| 入口 | G1/G2 exit 後 (L1 業務要求 BR-* が入力) |\n| 出口 | G3 通過 (FR+AC 全件確定 + 受入テスト設計 pair 揃い) |\n| 主要 role | `tl` 必須 (FR+AC 仕様化)、`po` 必須 (受入条件確認) |\n\n注: FR-* は L1 BR-* から双方向 trace する。AC 不在での G3 通過は fail (AP-4)。\nG3では`engineering_discipline_required: true`のPLAN契約により、no-code-first判断、責務owner、\n許容complexity、L10で観測する振る舞いをfreezeする。ここでobject modelを一律採用せず、\n`none` / `pure_function`を含む最小のmodeling判断を許可する。\n出典: concept v3.1 §3.1.2 / requirements v1.3.12 §2.2 G3\n\n---"
+  },
+  "legacy_limitations": {
+    "fixed_parent_summary": "HELIXOS-L2-025が示すHELIX-OS統合運転構成体。",
+    "reuse_rederive_replace": "旧atomは0件。現行L1/PO/既存条件を起点とし、共通旧工程定義は形式比較のみ。特定の旧L3 successorやpaired consumerを特定できていない。",
+    "candidate_evidence_method": "固定sourceに量的閾値なし。操作・workflowの統合条件を構成し、authorityと実行結果を同一視しない候補とする。",
+    "old_source_and_consumer_limit": "対象語exact search 0件。意味レベルの旧source確認とpaired consumerは未完。"
+  },
+  "prior_immutable_record": {
+    "path": "docs/governance/audits/requirements-stage/helix-os-stage5-four-parent-l3-l10-draft-2026-10-06.json",
+    "sha256": "29a8b1d4f3b34d547ee0ded520d4e2cb3cc8ef240bd655b394ed7c86c9facb4b"
+  },
+  "condition1": "Opus5.5 no_findings Major0",
+  "condition2": "Fable claude-fable-5-1 承認してよい",
+  "condition3": "pending independent comparison",
+  "minor_disposition": "m8-m13 explicitly not returned; retained without body edits"
+}

@@ -1,0 +1,48 @@
+{
+  "authority_effect": "none",
+  "scope": "HELIX-SECURITY Stage1; fixed parent HELIXSECURITY-L2-033 / MPR-RC-HELIXSECURITY-L2-033-002 only; no decision, approval, or meaning/version change generated",
+  "base": "1edd5f70e7b18f6cf3a201488f7485269274a2b8",
+  "reviewed_head_before_repair": "3656a55571daff85b59ec8f2e3b639beec4aa8b1",
+  "repair_worktree_base": "3656a55571daff85b59ec8f2e3b639beec4aa8b1",
+  "review_comment": {
+    "issue": "#2663",
+    "comment_id": 6040569205,
+    "body_utf8_bytes": 6978,
+    "body_sha256": "5ea923f8c4736828d670f52a4f2b447084eccfc0daf9b83d646b41dbcb7375ba"
+  },
+  "fixed_sources": {
+    "l2_033_318ec4a": "docs/helix-security/L2-requirements/security-requirements.md:455-465 raw LF span sha256 85097dbe6b785747b5b53f319ef4220943ecd5bd19c6fd7c11cd7836ea42bf54; semantic digest b486a0c44e8f21a6f8738dedeac91dcb94da335b73409b6adeaecf8fa639bf1a",
+    "l2_033_p0_318ec4a": "docs/helix-security/L2-requirements/security-requirements.md:479-485 raw LF span sha256 15c0ea7827a41bd6bca6ba2b0fb70597ad1e9a9d27b5073687b2b41745fdc6df",
+    "l2_007_318ec4a": "docs/helix-security/L2-requirements/security-requirements.md:130-138 raw LF span sha256 1ee4d42a1e4178d598ce11b75268845578ba83bcb8ea471e2642ff8630c49504",
+    "l11_033_318ec4a": "docs/helix-security/L11-acceptance/security-acceptance.md:124-133 raw LF span sha256 6d83abe63e3e852d58d9a9a60ae39c6b29284b6b8ab781bdb86456e479e60be0",
+    "l11_p0_318ec4a": "docs/helix-security/L11-acceptance/security-acceptance.md:145-151 raw LF span sha256 e4bed8944412cc5ca6effc0c6ddd2a314ea309aa23f36c88d6467e3c7010d0a6",
+    "po_decision": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md rows 92/113/124; full SHA256 c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+    "worker_owner_decision": "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md; SHA256 1c93bf0aadccfdf6b536a32d3923a17fbd00a1fd830850f9369b5b6d6b12efb2",
+    "os_l2": "318ec4a04abb3c1cc17111b3d939f913facd5fd3 docs/helix-os/L2-requirements/governance-requirements.md:538-549; verified raw LF span sha256 25356def32d0302d981b35daef65fd5a9f6f3ac261667dca373689c5eb7f0351",
+    "infra_l2": "318ec4a04abb3c1cc17111b3d939f913facd5fd3 docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:287-298; verified raw LF span sha256 87c375ccf69c1c802bdca7e8323d870289bc2d006c422aac85530e46fb1f6179",
+    "legacy_source": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md:428; LEGACY-ASSET-02319C2481B9E01698D5; whole-file SHA256 788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406; disposition ledger line 956"
+  },
+  "historical_audit_pins": {
+    "security-stage1-worker-isolation-owner-repair-2026-10-07.md": "efe03fe6129cbb0c147188674ebef86282c5596cb3b7db392de771c8c311e53c",
+    "security-stage1-033-main-integration-2026-10-07.json": "4ed5df403ab56967f3441ce461e9c78d59c6c238b70f14737270f4ef50acb7aa",
+    "draft_revision_50dc1884f": "historical Markdown correction hashes refer to this draft revision",
+    "integrated_revision_6d7bd8363d13f5def543ab0864ad7384459c1b80": "historical integration JSON hashes refer to this integrated snapshot",
+    "current_repair_context": "HEAD 3656a55571daff85b59ec8f2e3b639beec4aa8b1 is the later integrated context; this new addendum records the repair bytes below. Historical records remain immutable."
+  },
+  "six_document_sha256": {
+    "docs/helix-security/L10-verification/business-verification.md": "7da2a3b88c866c276065c793036708a633109b176b0381829c8d3c8293ff70a4",
+    "docs/helix-security/L10-verification/functional-verification.md": "d0f25afa2b402970961990cf7f6eb8c9af32b2499cf8fedef49f1860f5ce2efe",
+    "docs/helix-security/L10-verification/nfr-verification.md": "444560c4ffe00c4a330d6b8a76ad2c86798be1bd4ab506886c96ce0cc4a40e43",
+    "docs/helix-security/L3-requirements/business-requirements.md": "30a0456a17c4c65e9427cc8931905cb7c1adf54c207514f948a7b179dcdb7019",
+    "docs/helix-security/L3-requirements/functional-requirements.md": "a6aeef0a9275c66c6c721c102487c4f30a39ca72eb31ae4c99411df5a5727693",
+    "docs/helix-security/L3-requirements/nfr-grade.md": "5b4a647220bea4192788ac937f9ee889574abb49639493f5e78edadc2950f66e"
+  },
+  "repair_summary": [
+    "INFRASTRUCTURE owns physical resources and observation of actual application; Worker execution environment remains the enforcer. Unobserved/unknown stays stopped and unknown; only confirmed physical enforcement absence is an INFRASTRUCTURE connection candidate.",
+    "Restore binding stop-result route through the existing OS assignment, carrying reason, target revision, missing item, and owner classification; policy-meaning change returns to the relevant SECURITY L2 owner.",
+    "Add independent single-variable OS authority/policy misattribution negative; add physical enforcement absence candidate case.",
+    "Mark identity/version/state unknown cases as examples, not additional L2-033 binding fields; add FR-to-AC-to-CASE mapping and remove duplicated owner list.",
+    "Restore independent single-variable negatives for SECURITY deciding OS assignment and HARNESS substituting an unselected task contract; both retain the stop-result return through existing OS assignment and route only by fixed owner category."
+  ],
+  "validation": "Static source/span SHA verification, six-document SHA, finding-to-case mapping, unique CASE IDs, historical record immutability, git diff --check. No fixture/runtime/old CLI/hook/test/CI executed; independent review pending."
+}

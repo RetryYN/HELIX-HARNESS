@@ -1,0 +1,37 @@
+{
+  "record_type": "immutable_review03_correction",
+  "authority_effect": "none",
+  "scope": "SECURITY Stage1 parent033 only",
+  "review_head": "6a1fee53d9b11ad775787bef44b61dc2570000ad",
+  "review_comment": 6041490928,
+  "review_raw_body": "## review03（independent review、HEAD 6a1fee53d9b11ad775787bef44b61dc2570000ad、merge-base d831cac8f1994d027ecd05d0e6cc5bbaa6418a23）\n\nreviewer: Claude（lane `review_merge`、**Opus 5.5**）。条件1は、Opus 5.5のブラインド照合とreviewerの原文確認で判定した。条件2は、Fable advisor（claude-fable-5-1）の見解である。Fableは、6本文と次の固定親・判断記録を読み直したうえで判断した。\n- 固定親@318ec4a04：L2-007、L2-033、P0追補、L2-034:474、L11:124–133／145–151\n- PO採択行\n- 9/26のPO判断\n- OS L2:538／549\n\n### 静的確認\n- scfctl validate 147/0、stale 0、residuals 0\n- govcheck ok\n- `git diff --check` clean\n- `git merge-tree`：最新mainと衝突なし\n\n### review02（#6040990909）への対応\n- **M1は解消した。** FR:320とFV:235で、次の4点がそれぞれ固定親から導ける形になった。\n  - enforcerはWorker実行環境（L2-007:134、L2-033:463）\n  - SECURITYが制約適用状態を照合する（L11:132）\n  - 物理適用・観測は「Worker実行環境／INFRASTRUCTURE」の連名（L2-034:474と同じ文言）\n  - INFRASTRUCTUREは実資源と状態を持つ（OS L2:549、9/26のPO判断）\n  \n  CASE-05〜07の見出しも、ownerを付けない形になった。\n- **M2は解消した。** FV:33（01–15）、FR:324（01〜15）、CASEの見出し15件が一致し、Stage 1全体の33件とも合う。\n- **m6〜m9は解消した。**\n  - m6：CASEに独立した見出しを付けた。\n  - m7：重複していたnegativeを独立したCASE-12〜15に整理した。\n  - m8：CASE-09の確認主体をSECURITYにした。\n  - m9：件数を33件にした。\n- **旧文と新文の突き合わせ（類型5）：** 旧owner oracleの拒否は、すべて残っている（CASE-08、10、11、01）。弱くなった箇所はない。\n\n### Major\n**M1（類型4・1）：CASE-02〜07に、owner分類の期待値がない**\n- 欠陥：CASE-02〜07（FV:252–265付近）は、どれも「owner分類を停止結果に記録し、既存OS assignmentへ返す」とだけ書いていて、分類の値を示していない。\n  - FR:320/322が定める分類は、次の3つである。\n    - assignment・共通契約 → OS\n    - policy・authority → SECURITY\n    - 観測済みの物理欠落 → INFRASTRUCTURE候補\n  - CASE-02〜04（OS共通契約のidentity/version/state unknown）は、FRの規則からOSと導ける。ただし、CASE本文には書かれていない。\n  - CASE-05〜07（実行環境の適用観測契約）は、M1の修正で上の3つのどれにも入らなくなった。\n  - 一方で、CASE-08／10／15は分類を明記している。\n- 影響：CASE-05／06で、OSやSECURITYへ誤って分類しても、oracleでは不合格にならない。\n- 固定親：L2-033:460–461（停止結果に「戻し先」を含めて、既存OS assignmentへ返す）、L2-007:137（未観測は停止・unknown。ownerの指定はない）。\n- reviewerが原文で確認した。\n- 直し方（何を残して何を足すか）：\n  - CASE-02〜07の「既存OS assignmentへ返す」は、そのまま残す。\n  - 期待値として、次の分類を書き足す。\n    - CASE-02〜04は「OS」\n    - CASE-05〜07は「unknown（OSにもINFRASTRUCTURE候補にもしない）」\n  - それ以外の分類を記録したら不合格、という条件も書き足す。\n\n### Minor（M1と一緒に直してよい）\n- m10：CASE-09（観測したうえでnot-appliedと確認）とFRの「未適用…unknown」は、語が重なっている。CASE-09に「観測済みのnot-applied」という前提を一文で明示すると、誤読が減る。\n- m11：CASE-12〜14は、「物理適用観測を正常値に固定」と「dispatchを停止」を同時に書いている。評価の入力が宣言（またはreceipt・自己申告）だけであることを明記してほしい。\n- m12：CASE-09の旧文にあった「INFRASTRUCTUREへの確定的なowner移動や、戻し先の循環を作らない」が消えた。一般規則で補えるが、一文あるとよい。\n- m13：CASE-05〜07の「実行環境の適用観測契約」は、L3が付けた呼び名である。版付きの契約がすでに存在する前提に読めないよう、L2-007の「受渡し→適用証拠の対応」を指すことを明記するとよい。\n\n### 委任条件の状態\n- **条件1（Opus `no_findings`）：不成立。** Major 1件。\n- **条件2（Fable）：** 結論行は原文のまま「承認してよい」。\n- 両者の判断が分かれたので、運用モデル131行に従い、返すかどうかはOpusが固定親に照らして決めた。今回は**返す**。\n- 修正後のrevisionで、条件1と2をやり直す。\n\n### 未確認範囲\nなし。\n",
+  "review_raw_sha256": "0868ff2b2beb4ea53cccf0e73b6f7027558731a1f0fc63ccf488684eb1cecdeb",
+  "prior_review02_audit_sha256": "5d0d88033994c4a93844996a4eab105b9a0f20e4193207c04b3aa3dbdc440a31",
+  "fixed_sources": {
+    "l2_007": "docs/helix-security/L2-requirements/security-requirements.md:130-138; raw LF span sha256 1ee4d42a1e4178d598ce11b75268845578ba83bcb8ea471e2642ff8630c49504; Worker execution environment is the enforcer; unobserved/unsupported stops unknown; confirmed physical enforcement absence is an INFRASTRUCTURE connection candidate.",
+    "l2_033": "docs/helix-security/L2-requirements/security-requirements.md:455-465; raw LF span sha256 85097dbe6b785747b5b53f319ef4220943ecd5bd19c6fd7c11cd7836ea42bf54; fixed parent semantic digest b486a0c44e8f21a6f8738dedeac91dcb94da335b73409b6adeaecf8fa639bf1a.",
+    "l2_034": "docs/helix-security/L2-requirements/security-requirements.md:468-474; raw LF span sha256 39645b092ffb48f78fa3dd59084236bc4b19ee6e28d1b9169cb8c6d548bf39dc; Worker execution environment/INFRASTRUCTURE jointly perform physical application and observation.",
+    "l11_033": "docs/helix-security/L11-acceptance/security-acceptance.md:124-133; raw LF span sha256 6d83abe63e3e852d58d9a9a60ae39c6b29284b6b8ab781bdb86456e479e60be0; SECURITY compares existing authority/policy with constraint application state; Worker execution environment enforces.",
+    "l11_p0": "docs/helix-security/L11-acceptance/security-acceptance.md:145-151; raw LF span sha256 e4bed8944412cc5ca6effc0c6ddd2a314ea309aa23f36c88d6467e3c7010d0a6",
+    "worker_owner_po": "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md; full sha256 1c93bf0aadccfdf6b536a32d3923a17fbd00a1fd830850f9369b5b6d6b12efb2",
+    "os_l2": "docs/helix-os/L2-requirements/governance-requirements.md:538-549; raw LF span sha256 25356def32d0302d981b35daef65fd5a9f6f3ac261667dca373689c5eb7f0351",
+    "infra_l2": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:287-298; raw LF span sha256 87c375ccf69c1c802bdca7e8323d870289bc2d006c422aac85530e46fb1f6179",
+    "legacy_source": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md:428; LEGACY-ASSET-02319C2481B9E01698D5; whole-file sha256 788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406; asset disposition ledger line 956; prior source inventory remains the starting attribution record."
+  },
+  "changes": [
+    "M1 CASE02-04 owner classification OS,05-07 unknown; wrong classification fails; delivery OSassignment separate",
+    "m10 observed not-applied explicit",
+    "m11 evaluation input replaced by receipt/declaration/self-report only; healthy otherbinding not healthyobservation",
+    "m12 no definitive owner transfer/return cycle",
+    "m13 application-observation contract is L3 name for fixed007 correspondence, not existing versioned schema"
+  ],
+  "six_document_sha256": {
+    "docs/helix-security/L3-requirements/business-requirements.md": "30a0456a17c4c65e9427cc8931905cb7c1adf54c207514f948a7b179dcdb7019",
+    "docs/helix-security/L3-requirements/functional-requirements.md": "f6da676a3c816e6e845e7cc7c8e7711f9f0d9e4a6b8fa6a6c6595dd730aa8ea5",
+    "docs/helix-security/L3-requirements/nfr-grade.md": "5b4a647220bea4192788ac937f9ee889574abb49639493f5e78edadc2950f66e",
+    "docs/helix-security/L10-verification/business-verification.md": "7da2a3b88c866c276065c793036708a633109b176b0381829c8d3c8293ff70a4",
+    "docs/helix-security/L10-verification/functional-verification.md": "30b4e33419b617c0f7b2710f26e2aa8ae771b67e3fa29510aa01495e0200947a",
+    "docs/helix-security/L10-verification/nfr-verification.md": "444560c4ffe00c4a330d6b8a76ad2c86798be1bd4ab506886c96ce0cc4a40e43"
+  },
+  "static_validation": "diff check and govcheck pass; fixtures unexecuted; independent review pending"
+}

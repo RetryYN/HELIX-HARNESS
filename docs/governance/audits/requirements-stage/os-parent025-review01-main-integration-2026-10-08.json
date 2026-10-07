@@ -1,0 +1,39 @@
+{
+  "authority_effect": "none",
+  "base": "f14ac303d265b6d23ecb1847b5dfd52901a442c6",
+  "integration_head": "82e52b311a54dbf1860378ae33708d5d2f17f9d8",
+  "bodies": {
+    "BR": {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "sha256": "cbe1866df47503b17e8a11b786dee8da58cd8a2a0a99778b64bd4a669b2fa702",
+      "pre_integration_sha256": "3e74d098f400da46e22f477a0fb4dffc821648d37bd5f81640a53b2aebb55257"
+    },
+    "FR": {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "sha256": "95a6f1c5bdd1015d8849829de88fd99e62c842784135e4ebdbd5b4140d843544",
+      "pre_integration_sha256": "ed81934c228094e750ceca566de7c767ff5467162d3480e3fb82b561e6fc2b69"
+    },
+    "NFR": {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "sha256": "ec63ecd54db5258ff14714624c3df6bcfd3c1c189ac9a08a29271c06231e3066",
+      "pre_integration_sha256": "ec659c86fb695f670631c71f373b426824da4eafa78565fbcbb0b15c0d8a0904"
+    },
+    "BV": {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "sha256": "5a75c21ce10b33fc8441adda71253870fd20a8687c18e7939cfe8b25f9d393c8",
+      "pre_integration_sha256": "cd48bc57bd8b8ceac8edbd527a8b42b1074088af03749ba3fe7b2187292414b3"
+    },
+    "FV": {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "sha256": "8a99792f723abb96034274c72424902fba51df515e2a99f637823427aa03821c",
+      "pre_integration_sha256": "dde7de0983a2d87a11371e7d4ecea56ed789a55014148e438f22d7d632781135"
+    },
+    "NFRV": {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "sha256": "3019648b66a351418945033646bf82c84d0c7ef771edee49378cef2be266e256",
+      "pre_integration_sha256": "2beb31505b0d0855be712983ad1a21a53421ab940e37e490145e7f7fb0b953f0"
+    }
+  },
+  "note": "Latest main integrates OS Stage2a018019; parent025 review01 changes retained. Fresh exact six-body review required.",
+  "stage5_suffix_six_of_six_byte_identical": true
+}

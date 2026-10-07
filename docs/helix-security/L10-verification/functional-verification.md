@@ -30,7 +30,7 @@ L2-002の命令様入力からsecurity policy変更へ直結させない条件�
 | `HELIXSECURITY-L2-016` | `SECURITY-FR-016-01` | `SECURITY-AC-016-01` | `SECURITY-CASE-016-01` | 1.0は分類記録基盤、公開sinkへの適用は1.x |
 | `HELIXSECURITY-L2-020` | `SECURITY-FR-020-01` | `SECURITY-AC-020-01` | `SECURITY-CASE-020-01` | Guard基盤は1.0、Botは必要時のみ |
 | `HELIXSECURITY-L2-028` | `SECURITY-FR-028-01` | `SECURITY-AC-028-01` | `SECURITY-CASE-028-01` | 1.0 |
-| `HELIXSECURITY-L2-033` | `SECURITY-FR-033-01` | `SECURITY-AC-033-01` | `SECURITY-CASE-033-01` | 1.0 |
+| `HELIXSECURITY-L2-033` | `SECURITY-FR-033-01` | `SECURITY-AC-033-01` | `SECURITY-CASE-033-01`–`SECURITY-CASE-033-15` | 1.0 |
 
 ## Case catalog
 
@@ -232,7 +232,94 @@ L2-002の命令様入力からsecurity policy変更へ直結させない条件�
 
 - **未見の正常例**：bindingと既存authorityが一致する未見の通常taskを、秘密値/機密task内容なしでdispatch対象として扱い、Worker出力からapproval/stateを生成しない。有効なscoped credential-useだけを理由に拒否しない。
 - **negative/boundary oracle**：Worker version/config、target、規則revision、authority tupleの各要素、assignment scope、HEAD、boundaryの変更/欠落/unknownをそれぞれ個別fixtureにし、旧binding流用または未解決dispatchを拒否する。各結果に理由・対象revision・不足・owner戻し先を保持する。主Workerには追加runtime専用L2-029/031条件を課さず、選択された追加runtimeでは両条件を満たす。runtime採用/追加権限を推定しない。直接commit/adopt/merge/promoteを拒否し、isolated worktree内の通常成果作成は許可する。新schema/別承認者を作らない。raw secret値要求とsecret/機密task content露出は独立にdenyする。無関係taskの一律停止、有効な既存credential-useのみを理由としたdeny、別HEAD成果の受入、Worker出力だけによるapproval/verified/canonical state生成も不合格。
-- **owner oracle・失敗時の戻し先**：OSはassignment/progression、Worker実行環境は隔離/enforcementを所有し、物理適用観測はL2-007の適用観測ownerへ戻す。SECURITYはauthorityとpolicyを所有する。HARNESSはtaskが選択された場合のtask contractだけを所有する。OSがauthority、SECURITYがassignment、Worker出力がapproval、HARNESSが未選択契約を代行する各変異を個別に拒否する。CONNECT責務は生成しない。
+- **owner oracle・失敗時の戻し先**：OSはassignment/progressionとWorker共通実行契約を所有し、SECURITYは既存authority・policyと制約適用状態を照合する。Worker実行環境は制約を強制するenforcer、Workerは制約下のexecution subjectであり、Worker自身の出力は適用証拠にならない。Worker実行環境／INFRASTRUCTUREは既存security条件の物理適用・観測を担い、INFRASTRUCTUREは実資源と状態を保持する。HARNESSはtaskが選択された場合のtask contractだけを所有する。未適用・未観測・unsupportedはdispatchを停止しunknownを維持する。binding異常による停止結果（理由・対象revision・不足・owner分類）は既存OS assignmentへ返す。assignment/common contractの不足はOS、policy/authorityの不足はSECURITYへ分類する。OSのassignment／共通契約確認だけでは物理enforcement欠落を確定せず、unknownを維持する。物理enforcement欠落は、Worker実行環境／INFRASTRUCTUREの適用観測をSECURITYが既存制約と照合して確認できた場合だけINFRASTRUCTURE接続の候補へ戻す。未観測は欠落確認ではなく、CASE-033-07でunknownとして扱う。policy意味変更は該当SECURITY L2 ownerへ戻す。具体contract identity/version/stateはL2-033 binding項目の追加ではなく、unknownならunknownを維持し、名前・schema・適用済み状態を補作しない。CONNECT責務は生成しない。
+
+### SECURITY-CASE-033-02 — OS共通Worker契約identity unknown
+
+- **対象AC**: `SECURITY-AC-033-01`
+- **fixture/oracle**: OS共通Worker契約のidentityだけをunknownにし、version/state、assignment、他のbinding条件は正常値に固定する。identityを推定せずdispatchを停止しunknownを維持する。理由・対象revision・不足・owner分類を停止結果に記録し、既存OS assignmentへ返す。
+
+- **owner分類の期待値**: OS（共通Worker契約の不足）。この期待値以外の分類を記録したら不合格とする。停止結果の配送先である既存OS assignmentと、不足owner分類を混同しない。
+
+### SECURITY-CASE-033-03 — OS共通Worker契約version unknown
+
+- **対象AC**: `SECURITY-AC-033-01`
+- **fixture/oracle**: OS共通Worker契約のversionだけをunknownにし、identity/state、assignment、他のbinding条件は正常値に固定する。versionを推定せずdispatchを停止しunknownを維持する。理由・対象revision・不足・owner分類を停止結果に記録し、既存OS assignmentへ返す。
+
+- **owner分類の期待値**: OS（共通Worker契約の不足）。この期待値以外の分類を記録したら不合格とする。停止結果の配送先である既存OS assignmentと、不足owner分類を混同しない。
+
+### SECURITY-CASE-033-04 — OS共通Worker契約state unknown
+
+- **対象AC**: `SECURITY-AC-033-01`
+- **fixture/oracle**: OS共通Worker契約のstateだけをunknownにし、identity/version、assignment、他のbinding条件は正常値に固定する。stateを推定せずdispatchを停止しunknownを維持する。理由・対象revision・不足・owner分類を停止結果に記録し、既存OS assignmentへ返す。
+
+- **owner分類の期待値**: OS（共通Worker契約の不足）。この期待値以外の分類を記録したら不合格とする。停止結果の配送先である既存OS assignmentと、不足owner分類を混同しない。
+
+### SECURITY-CASE-033-05 — 実行環境の適用観測契約identity unknown
+
+- **対象AC**: `SECURITY-AC-033-01`
+- **呼称の範囲**: 「適用観測契約」は固定L2-007の受渡し→適用証拠の対応を指すL3上の呼び名で、具体identity/versionの存在や版付き契約の実装を前提にしない。
+- **fixture/oracle**: 実行環境の適用観測契約identityだけをunknownにし、version/effective state、assignment、他のbinding条件は正常値に固定する。具体identityを補作せずdispatchを停止しunknownを維持する。理由・対象revision・不足・owner分類を停止結果に記録し、既存OS assignmentへ返す。
+
+- **owner分類の期待値**: unknown（物理適用・観測の責務主体を固定sourceから確定しない）。この期待値以外の分類を記録したら不合格とする。停止結果の配送先である既存OS assignmentと、不足owner分類を混同しない。OS・SECURITYの不足へ読み替えず、観測済みの物理欠落を示さない限りINFRASTRUCTURE接続候補にも分類しない。
+
+### SECURITY-CASE-033-06 — 実行環境の適用観測契約version unknown
+
+- **対象AC**: `SECURITY-AC-033-01`
+- **呼称の範囲**: 「適用観測契約」は固定L2-007の受渡し→適用証拠の対応を指すL3上の呼び名で、具体identity/versionの存在や版付き契約の実装を前提にしない。
+- **fixture/oracle**: 実行環境の適用観測契約versionだけをunknownにし、identity/effective state、assignment、他のbinding条件は正常値に固定する。versionを補作せずdispatchを停止しunknownを維持する。理由・対象revision・不足・owner分類を停止結果に記録し、既存OS assignmentへ返す。
+
+- **owner分類の期待値**: unknown（物理適用・観測の責務主体を固定sourceから確定しない）。この期待値以外の分類を記録したら不合格とする。停止結果の配送先である既存OS assignmentと、不足owner分類を混同しない。OS・SECURITYの不足へ読み替えず、観測済みの物理欠落を示さない限りINFRASTRUCTURE接続候補にも分類しない。
+
+### SECURITY-CASE-033-07 — 実行環境のeffective state未観測
+
+- **対象AC**: `SECURITY-AC-033-01`
+- **呼称の範囲**: 「適用観測契約」は固定L2-007の受渡し→適用証拠の対応を指すL3上の呼び名で、具体identity/versionの存在や版付き契約の実装を前提にしない。
+- **fixture/oracle**: 実行環境のeffective state観測だけをunknownにし、適用観測契約identity/version、assignment、他のbinding条件は正常値に固定する。適用済み・未適用のいずれも推定せずdispatchを停止しunknownを維持する。理由・対象revision・不足・owner分類を停止結果に記録し、既存OS assignmentへ返す。観測がない状態から物理enforcement欠落を確定しない。
+
+- **owner分類の期待値**: unknown（物理適用・観測の責務主体を固定sourceから確定しない）。この期待値以外の分類を記録したら不合格とする。停止結果の配送先である既存OS assignmentと、不足owner分類を混同しない。OS・SECURITYの不足へ読み替えず、観測済みの物理欠落を示さない限りINFRASTRUCTURE接続候補にも分類しない。
+
+### SECURITY-CASE-033-08 — OSがauthority/policyを決定
+
+- **対象AC**: `SECURITY-AC-033-01`
+- **fixture/oracle**: 他のbinding項目と条件をすべて正常値に固定し、authority/policyの決定主体だけをOSへ誤帰属させる単独変異を拒否する。authority/policy不足はSECURITYへ分類し、理由・対象revision・不足・owner分類を含む停止結果を既存OS assignmentへ返す。authorityを新規生成しない。
+
+### SECURITY-CASE-033-09 — 観測済みの物理enforcement欠落
+
+- **対象AC**: `SECURITY-AC-033-01`
+- **fixture/oracle**: 他のbinding条件を正常値に固定し、Worker実行環境／INFRASTRUCTUREによる物理適用観測が存在する一方、SECURITYが既存authority/policyと照合した結果、制約が適用されていないと確認する状態だけを与える。dispatchを停止し、INFRASTRUCTURE接続を候補として示す。理由・対象revision・不足・候補戻し先を含む停止結果は既存OS assignmentへ返す。観測そのものがない状態はCASE-033-07のunknownとして扱い、欠落と同一視しない。
+
+- **前提と境界**: ここでいうnot-appliedは観測済みの照合結果であり、未観測からの推定ではない。INFRASTRUCTUREへの確定的なowner移動や戻し先循環を作らない。
+
+### SECURITY-CASE-033-10 — SECURITYがassignmentを決定
+
+- **対象AC**: `SECURITY-AC-033-01`
+- **fixture/oracle**: 他のbinding項目と条件をすべて正常値に固定し、assignmentの決定主体だけをSECURITYへ誤帰属させる単独変異を拒否する。assignment不足はOSへ分類し、理由・対象revision・不足・owner分類を含む停止結果を既存OS assignmentへ返す。
+
+### SECURITY-CASE-033-11 — 未選択HARNESS contractによる代行
+
+- **対象AC**: `SECURITY-AC-033-01`
+- **fixture/oracle**: 他のbinding項目と条件を正常値に固定し、未選択のHARNESS task contractをoperation根拠として用いる単独変異を拒否する。task contract選択ownerが固定sourceから特定できなければunknownを維持し、停止結果を既存OS assignmentへ返す。選択済みcontractの不足を確認した場合だけHARNESS contract ownerへ分類する。
+
+### SECURITY-CASE-033-12 — OS契約receiptを物理適用証拠へ誤用
+
+- **対象AC**: `SECURITY-AC-033-01`
+- **fixture/oracle**: assignment、共通Worker契約identity/version/stateと物理適用の他の条件を正常値に固定し、評価器への適用証拠入力を後記receiptだけへ差し替えて、OSのassignment／共通契約receiptだけを物理enforcement/effective stateの証拠として扱う単独変異を拒否する。receiptから物理適用済みも物理欠落も推定せず、dispatchを停止しunknownを維持する。理由・対象revision・不足・owner分類を停止結果に記録し、既存OS assignmentへ返す。
+
+### SECURITY-CASE-033-13 — SECURITY policy宣言だけを物理適用証拠へ誤用
+
+- **対象AC**: `SECURITY-AC-033-01`
+- **fixture/oracle**: 他のbinding項目を正常値に固定し、評価器へ渡す物理適用証拠は後記の宣言／自己申告だけへ差し替えて、SECURITY policy宣言だけをeffective enforcement evidenceとして扱う単独変異を拒否する。宣言だけから適用済みを推定せず、dispatchを停止しunknownを維持する。理由・対象revision・不足・owner分類を停止結果に記録し、既存OS assignmentへ返す。
+
+### SECURITY-CASE-033-14 — Worker自己申告をeffective state証拠へ誤用
+
+- **対象AC**: `SECURITY-AC-033-01`
+- **fixture/oracle**: 他のbinding項目を正常値に固定し、評価器へ渡す物理適用証拠は後記の宣言／自己申告だけへ差し替えて、Worker自身の自己申告だけをeffective state/effective enforcement evidenceとして扱う単独変異を拒否する。自己申告だけから適用済みを推定せず、dispatchを停止しunknownを維持する。理由・対象revision・不足・owner分類を停止結果に記録し、既存OS assignmentへ返す。
+
+### SECURITY-CASE-033-15 — INFRASTRUCTUREがpolicy/authorityを決定
+
+- **対象AC**: `SECURITY-AC-033-01`
+- **fixture/oracle**: 他のbinding項目と条件を正常値に固定し、policy/authorityの決定主体だけをINFRASTRUCTUREへ誤帰属させる単独変異を拒否する。policy/authority不足はSECURITYへ分類し、理由・対象revision・不足・owner分類を含む停止結果を既存OS assignmentへ返す。
 
 ## 親別 oracle の保持範囲
 
@@ -247,7 +334,7 @@ L2-002の命令様入力からsecurity policy変更へ直結させない条件�
 5. L2-010/011/012/013/028のupdate/artifact情報を同一descriptor/artifact chainで照合する。HARNESS共通交換/rollbackはHARNESSへ残す。
 6. L2-014はmemory/training/BRAIN target別のSECURITY判定のみを返し、handoff、LABO評価、BRAIN登録、実保存をこのsliceで成功扱いしない。
 
-総合判定候補はこのStage 1の19 FR/AC/CASEおよび適用するNFRだけを、同一対象revisionで照合する。設計は未実行であり、case greenやreceiptからL3承認、authority、実装・実行許可を生成しない。
+総合判定候補はこのStage 1の19 FR、19 AC、33 functional CASEおよび適用するNFRだけを、同一対象revisionで照合する。設計は未実行であり、case greenやreceiptからL3承認、authority、実装・実行許可を生成しない。
 
 ## Stage 2c（HELIXSECURITY-L2-031）— 対L3 functional verification
 
