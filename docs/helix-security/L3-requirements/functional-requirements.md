@@ -361,7 +361,7 @@ runtimeはassignment-bound isolated working copy/sandbox内でのみ動作し、
 
 ### SECURITY-FR-031-06 — owner別failure、未完義務、scope分離
 
-開始前にauthority/runtime/scope/isolation/credential/classification、ファイル情報を要するtaskに適用される選択payload、または条件付きegress条件が欠落・unknown・staleなら該当operationだけ開始しない。payloadの適用条件はFR-031-02に従い、ファイル情報を要しないtaskをpayload/manifest不在だけで拒否しない。適用性unknownを非該当へ丸めず、該当条件のownerへ返して保留する。開始後に境界逸脱、必要観測、diff、result receiptが欠落・unknown・staleなら該当結果を隔離/holdし、既存SEC-009/OS assignmentの未完義務へ戻す。policy/authority意味はSECURITY owner、assignment/開始停止/handoffはOS、enforcementはWorker、実resource/network/storage観測はINFRASTRUCTURE、proposal verificationはHARNESSへそれぞれ返す。runtime/version/config、scope、payload、credential/data classification、authorityが変わった場合は旧判定を流用せず再照合する。scope外read/write、許可path外diff、deny対象egress、制約適用unknown、host fallbackは対象runを停止し結果を隔離する。無関係なoperationや通常主Workerを一律停止しない。**SECURITY-AC-031-06**はownerごとのfailure destinationと無関係scopeの継続を受入条件とする。
+開始前にauthority/runtime/scope/isolation/credential/classification、ファイル情報を要するtaskに適用される選択payload、または条件付きegress条件が欠落・unknown・staleなら該当operationだけ開始しない。payloadの適用条件はFR-031-02に従い、ファイル情報を要しないtaskをpayload/manifest不在だけで拒否しない。適用性unknownを非該当へ丸めず、該当条件のownerへ返して保留する。開始後に境界逸脱、必要観測、diff、result receiptが欠落・unknown・staleなら該当結果を隔離/holdし、既存SEC-009/OS assignmentの未完義務へ戻す。policy/authority意味はSECURITY owner、assignment/開始停止/handoffはOS、enforcementはWorker、実resource/network/storage観測はINFRASTRUCTURE、proposal verificationはHARNESSへそれぞれ返す。runtime/version/config、scope、適用される選択payload、credential/data classification、authorityが変わった場合は旧判定を流用せず再照合する。scope外read/write、許可path外diff、deny対象egress、制約適用unknown、host fallbackは対象runを停止し結果を隔離する。無関係なoperationや通常主Workerを一律停止しない。**SECURITY-AC-031-06**はownerごとのfailure destinationと無関係scopeの継続を受入条件とする。
 
 
 ## Stage 3 — 選択operationのruntime・profile安全境界
