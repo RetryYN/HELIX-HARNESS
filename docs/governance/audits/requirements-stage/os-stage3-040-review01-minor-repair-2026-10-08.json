@@ -1,0 +1,88 @@
+{
+  "record_type": "review-correction-evidence",
+  "scope": {
+    "mechanism": "HELIX-OS",
+    "stage": 3,
+    "parent": "HELIXOS-L2-040",
+    "l3_requirement": "FR-OS-L3-040",
+    "l10_only_parent_scope": true,
+    "other_parent_changes": false,
+    "parent_036_unchanged": true,
+    "new_threshold_owner_gate_or_policy": false,
+    "authority_effect": "none"
+  },
+  "base_commit": "cc893eb2ec371f0cad654dca4128716efda16d29",
+  "formal_review": {
+    "pr": 2682,
+    "comment_id": 6045454030,
+    "raw_utf8_bytes": 5204,
+    "raw_body_sha256": "119d2bde6e3149c59e2d3d292fd749af92eb95f6dcf6644fb1bdb51ef2233c5c",
+    "minor_findings": [
+      {"id": 1, "correction": "初回を数えないpolicyで初回eventだけを誤算入する逆方向の単独変異CASE-040-07jを追加"},
+      {"id": 2, "correction": "07gの正しい現在累積Nを明記し、07iで正しいN-1に対する同scope次回retry許可を明記"},
+      {"id": 3, "correction": "failure classを固定L11の『対象となる失敗の範囲』へ対応付け"}
+    ]
+  },
+  "fixed_sources": [
+    {
+      "kind": "adopted-L2",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "lines": "1125-1134",
+      "file_sha256": "c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a",
+      "span_bytes": 3403,
+      "span_sha256": "a5ba2bdca6bfc8adcf3216f523e882b53898d0a0424b886c1a5a6885542c3aee"
+    },
+    {
+      "kind": "adopted-L11",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "lines": "732-743",
+      "file_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+      "span_bytes": 2296,
+      "span_sha256": "2fdcdc32156561d4b9f9931ee20194bf39b297ff96d477e58ff0d48c3abe232b"
+    },
+    {
+      "kind": "legacy-source-requirements",
+      "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "lines": "240-242",
+      "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "span_bytes": 394,
+      "span_sha256": "e0eb944d58ec0a4cedd2515c537089b92a817c0f3903580728b8423968d2bfe1"
+    },
+    {
+      "kind": "legacy-source-acceptance",
+      "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "lines": "43-43",
+      "file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "span_bytes": 83,
+      "span_sha256": "870ad165536e0233a5124db170f349386e7355fad08edca2b91795c28cd42b5e"
+    }
+  ],
+  "documents": [
+    {"name": "BR", "path": "docs/helix-os/L3-requirements/business-requirements.md", "before_bytes": 20354, "before_sha256": "cbe1866df47503b17e8a11b786dee8da58cd8a2a0a99778b64bd4a669b2fa702", "after_bytes": 20354, "after_sha256": "cbe1866df47503b17e8a11b786dee8da58cd8a2a0a99778b64bd4a669b2fa702"},
+    {"name": "FR", "path": "docs/helix-os/L3-requirements/functional-requirements.md", "before_bytes": 202151, "before_sha256": "55d68c119464756b1374be9a80dd1877ec5f6465c566915b3389bfab8cf96826", "after_bytes": 202209, "after_sha256": "c2a11a70ccc7ad5af41eae92b3c690869c6e7e35fc22d2019b9287c980901731"},
+    {"name": "NFR", "path": "docs/helix-os/L3-requirements/nfr-grade.md", "before_bytes": 33214, "before_sha256": "9d822aaefe3aece34ffa6c8c08bfa52946f4f4ca476ed54256ebbae01c269eb4", "after_bytes": 33338, "after_sha256": "c815ea15001b7148a8b3257c36c2fb8a18cb19c035d0ef14f953ab9e993acacd"},
+    {"name": "BV", "path": "docs/helix-os/L10-verification/business-verification.md", "before_bytes": 17774, "before_sha256": "f785e13aa9a1ef8494154f03e20d0582418916281c51a6b729d385d5b66ef051", "after_bytes": 17774, "after_sha256": "f785e13aa9a1ef8494154f03e20d0582418916281c51a6b729d385d5b66ef051"},
+    {"name": "FV", "path": "docs/helix-os/L10-verification/functional-verification.md", "before_bytes": 242863, "before_sha256": "9b1ec9f20ef7b81a7267c9721b5f5a7f62c03c3237969cca0c9a006f9ebe4b10", "after_bytes": 243724, "after_sha256": "784b314d8425a26551a37951f777531570f287c87aef326d6ef751b521ad1822"},
+    {"name": "NFRV", "path": "docs/helix-os/L10-verification/nfr-verification.md", "before_bytes": 29856, "before_sha256": "2b06afe1715a28705c3963b0eb017311e020333510a49730fedcf653b0b715c1", "after_bytes": 30083, "after_sha256": "bd98bf3265c74d5ddddd879b4f87d4eaec9343bf63ee377950c63f32fb47e868"}
+  ],
+  "verification": {
+    "checked": [
+      "6本文の変更前・変更後SHA-256を実bytesから算出",
+      "CASE-OS-L10-040-07j一意性とAC-02対応",
+      "NFR/NFRVから07g..07jへのtrace参照",
+      "固定親・旧source不変",
+      "036とBR/BV不変",
+      "git diff --check"
+    ],
+    "not_run": ["fixture/runtime/test/CI。旧runtime・旧CLI・旧hookも実行していない"]
+  },
+  "prior_audit": {
+    "path": "docs/governance/audits/requirements-stage/os-stage3-040-counter-semantics-2026-10-08-5857c0a.md",
+    "sha256": "65d15ff0218fd1fd22cdf56b51349fc3bd304e93e6eebd276f8de167d56957d0",
+    "modified": false
+  }
+}
