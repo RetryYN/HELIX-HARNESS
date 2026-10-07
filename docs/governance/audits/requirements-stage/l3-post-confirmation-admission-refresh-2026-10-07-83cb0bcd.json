@@ -1,0 +1,131 @@
+{
+  "authority_effect": "none",
+  "snapshot_main": "83cb0bcd8bb3efe7022bf74f393b1fc0a0d746f1",
+  "scope": "admitted subsets only; no inherited approval",
+  "groups": [
+    {
+      "mechanism": "brain",
+      "stage": 5,
+      "parents": [
+        "HELIXBRAIN-L2-025"
+      ],
+      "approved_body_revision": "6b0c3b2cc9d7f11eb1198e2fa678aa01e724aa48",
+      "record_path": "docs/governance/decisions/helix-brain-stage5-025-l3-l10-delegated-decision-2026-10-07.md",
+      "record_sha256": "85d058adf4427913bb3aed1c92e8a91dcf0c3d606bd6c0b7a15f04e3f4df41aa",
+      "six_body_sha256": {
+        "docs/helix-brain/L3-requirements/business-requirements.md": "91938d4d33d9ced2ea79e860843a88084c8460d586bbd937c7afcd1a5a21ccd8",
+        "docs/helix-brain/L3-requirements/functional-requirements.md": "88d17de0dcd5cec559f321a4456bfa7aa1bcbc417aecb19a140ffb279dea11c1",
+        "docs/helix-brain/L3-requirements/nfr-grade.md": "e4ff12ae0c74dfaf8b5e8bca5210a834dd99a756711bdaceca600649e701f912",
+        "docs/helix-brain/L10-verification/business-verification.md": "c0417e7fa14acfb6dbb408b4bafc59820fa154ba6af6bd9d153a07736bf12c99",
+        "docs/helix-brain/L10-verification/functional-verification.md": "857c25372d27632b7fc80963b9d35803b6bbcdd5e1d3f1835a1b6ca466ca716a",
+        "docs/helix-brain/L10-verification/nfr-verification.md": "6a0abd94aa982a8aaffb67efc1f33cb4e6f19fb0838800672df50cd3de174044"
+      },
+      "formal_comments": [
+        {
+          "id": 6040180811,
+          "body_sha256": "2736021647e46949547ef2122f3831f1880b7b1935b15c1cfdd2e5016ea92650",
+          "utf8_bytes": 3518
+        },
+        {
+          "id": 6040327553,
+          "body_sha256": "039807ef42c4435cb9e51ade89dd25f1fc7f7f7c42be70a3f40de942347cab79",
+          "utf8_bytes": 2513
+        },
+        {
+          "id": 6040391667,
+          "body_sha256": "b321be219fe65890889d8d2556f325b415e0fff40fd13b4a3d5b4f7901b7712b",
+          "utf8_bytes": 1317
+        }
+      ]
+    },
+    {
+      "mechanism": "security",
+      "stage": 5,
+      "parents": [
+        "HELIXSECURITY-L2-027"
+      ],
+      "approved_body_revision": "b3a9691f07e10ff56304f5575fd4b5f5fb60bc8a",
+      "record_path": "docs/governance/decisions/helix-security-stage5-l3-l10-delegated-decision-2026-10-07.md",
+      "record_sha256": "b86de06e1d4517ebf3c88da6c8d9dd211c0409299a80b2c30ee061e6b0f5ac5d",
+      "six_body_sha256": {
+        "docs/helix-security/L10-verification/business-verification.md": "7da2a3b88c866c276065c793036708a633109b176b0381829c8d3c8293ff70a4",
+        "docs/helix-security/L10-verification/functional-verification.md": "74608e7a60bebed5512eadabe45f991eb8f5f5d0d11f0dce216233608501f846",
+        "docs/helix-security/L10-verification/nfr-verification.md": "444560c4ffe00c4a330d6b8a76ad2c86798be1bd4ab506886c96ce0cc4a40e43",
+        "docs/helix-security/L3-requirements/business-requirements.md": "30a0456a17c4c65e9427cc8931905cb7c1adf54c207514f948a7b179dcdb7019",
+        "docs/helix-security/L3-requirements/functional-requirements.md": "711c6bd6f804642ec414ef4b4903841c82a3aca155e6bed7732775adbeee0cf5",
+        "docs/helix-security/L3-requirements/nfr-grade.md": "5b4a647220bea4192788ac937f9ee889574abb49639493f5e78edadc2950f66e"
+      },
+      "formal_comments": [
+        {
+          "id": 6039812226,
+          "body_sha256": "c28c7dd25e67b320807733de8e4f78745db6862efefb07cf7f1d27a7913c4120",
+          "utf8_bytes": 3043
+        },
+        {
+          "id": 6040030863,
+          "body_sha256": "b9cc655da3c02dac5f839f0b9eb8d18a3ab7aa21c361cb3a0d5fcb91e8789f87",
+          "utf8_bytes": 2282
+        },
+        {
+          "id": 6040230745,
+          "body_sha256": "1dd48e04b124b5cbffed96c504050383a713105c580b28c66fddbc9cb6d33b10",
+          "utf8_bytes": 1070
+        }
+      ]
+    },
+    {
+      "mechanism": "os",
+      "stage": 5,
+      "parents": [
+        "HELIXOS-L2-026",
+        "HELIXOS-L2-031",
+        "HELIXOS-L2-047"
+      ],
+      "approved_body_revision": "b293b404c99aeb346218f488f22d9800ef5f46ec",
+      "record_path": "docs/governance/decisions/helix-os-stage5-l3-l10-delegated-decision-2026-10-07.md",
+      "record_sha256": "83ee39c4032a495effc7cf65bbaa354afd508ad70690003a9ad98457acd2c066",
+      "six_body_sha256": {
+        "docs/helix-os/L10-verification/business-verification.md": "8102b93a3b1afe2825bc92d8acdfd98cca4fb50274974d61324707e547558a85",
+        "docs/helix-os/L10-verification/functional-verification.md": "abf2e5596557336434c1f39c2d137eebc402cb7b4d256bb01b220d4d3359bc93",
+        "docs/helix-os/L10-verification/nfr-verification.md": "2b7d63629298f33b34faf5add0b39645085d97234ace789397e97db37823a0b8",
+        "docs/helix-os/L3-requirements/business-requirements.md": "e12042f38e018c890155e2b6c5c51080a6504585fc4af94092ddc755795ae2f3",
+        "docs/helix-os/L3-requirements/functional-requirements.md": "04944e39cceca725136a90f970dcd08bda9d5354daa1c6e44a3c6b2e95eb6725",
+        "docs/helix-os/L3-requirements/nfr-grade.md": "948bd74bd5b20a3d359bb8aa42ba399aa6ddeecfbe1748dfe70e9a07201d4eac"
+      },
+      "formal_comments": [
+        {
+          "id": 6040359375,
+          "body_sha256": "afe788bcfdc008f086b03f4b1ce492285b0b73f840e15253f273caa505eb390a",
+          "utf8_bytes": 4897
+        },
+        {
+          "id": 6040549680,
+          "body_sha256": "4b7f8986f544ecf8567e3b126ad2b50bc587a28ed726a88354f816831362d89b",
+          "utf8_bytes": 2687
+        },
+        {
+          "id": 6040602637,
+          "body_sha256": "8bcc6cd3f4a02e94ae219a7ea09a3ffceceb16512f8682bb3fd4ec78c808b66b",
+          "utf8_bytes": 1013
+        }
+      ]
+    }
+  ],
+  "unapproved_subsets": [
+    "HELIXBRAIN-L2-024 Stage5",
+    "HELIXOS-L2-025 Stage5"
+  ],
+  "formal_locator_unique_count": 128,
+  "roster": {
+    "parents": 274,
+    "mechanisms": 8,
+    "groups": 41,
+    "documents": 48
+  },
+  "po_post_confirmation": "not recorded",
+  "fixture_execution": false,
+  "full_six_leaf_count": "not recomputed; old64 is historical snapshot only",
+  "legacy_basis": "Each admitted decision retains its existing source/reuse evidence; no new requirement or authority mechanism added",
+  "index_sha256": "2d164207f1231226dea273b779dbfea5b1073d861a35396d4c83cb3b6f5a636d",
+  "draft_source_counts_not_adopted": "single-scope draft counts65/113 were not carried into the combined current index; actual distinct locators recomputed as128"
+}
