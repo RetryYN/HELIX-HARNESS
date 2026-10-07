@@ -625,11 +625,11 @@ AC-018-01の入力条件はR001〜R034に加えR056/R057で個別欠落、R058�
 | `CASE-HARNESS-L10-021-S5-005` | `FR-HARNESS-L3-021` / `AC-HARNESS-L3-021-04` | 観測・評価・改善提案を保持したまま、OSの実行receiptだけを未選択にする。 | 実行・完了・要求承認を出さない。未選択の実行は未観測として残し、HARNESSに実行責務を移さない。 |
 | `CASE-HARNESS-L10-021-S5-006` | `FR-HARNESS-L3-021` / `AC-HARNESS-L3-021-01` | L12運用観測のscopeだけを欠落させる。 | 運用検証を完了扱いせず、当該観測source ownerへscope不足を返す。 |
 | `CASE-HARNESS-L10-025-S5-001` | `FR-HARNESS-L3-025` / `AC-HARNESS-L3-025-01` | 正常未見のcompositeで026 unit、L3 revision、CORE/Template/BRAIN connector、022 oracleを与え、Patternは非選択とする。 | 常時必須のtupleと双方向traceを確認し、Pattern receiptを要求しない。未選択Patternは未観測のまま。 |
-| `CASE-HARNESS-L10-025-S5-002` | `FR-HARNESS-L3-025` / `AC-HARNESS-L3-025-01` | `S5-001`からBRAIN connector契約identityだけを欠落させる。 | Pattern非選択でも必須connector欠落として保留し、BRAINへ戻す。 |
+| `CASE-HARNESS-L10-025-S5-002` | `FR-HARNESS-L3-025` / `AC-HARNESS-L3-025-01` | `S5-001`からBRAIN connector契約identityだけを欠落させる。 | Pattern非選択でも必須connector欠落として保留し、BRAIN connector契約ownerへ戻す。 |
 | `CASE-HARNESS-L10-025-S5-003` | `FR-HARNESS-L3-025` / `AC-HARNESS-L3-025-02` | Patternを選択したままHELIXBRAIN-L2-030 receiptだけを欠落させる。 | 選択Pattern利用を保留し、BRAINへ返す。常時connectorを代替にしない。 |
 | `CASE-HARNESS-L10-025-S5-004` | `FR-HARNESS-L3-025` / `AC-HARNESS-L3-025-02` | 選択Pattern receiptのrevisionだけを現在のPattern revisionよりstaleにする。 | 古いreceiptを適用せずstaleとしてBRAINへ戻す。 |
 | `CASE-HARNESS-L10-025-S5-005` | `FR-HARNESS-L3-025` / `AC-HARNESS-L3-025-03` | 承認後編集拒否traceでpermission stateだけを許可へ変える。 | 誤った許可経路とcompositeを不合格にし、固定L2にある戻し先へ限定し、設計/pair形成不足なら026/022形成、意味差なら008/上流へ返す。 |
-| `CASE-HARNESS-L10-025-S5-006` | `FR-HARNESS-L3-025` / `AC-HARNESS-L3-025-04` | 完全な設計traceの出力stateだけを「L3承認済み」とする。 | authority昇格を拒否し、設計結果を未承認のまま保つ。 |
+| `CASE-HARNESS-L10-025-S5-006` | `FR-HARNESS-L3-025` / `AC-HARNESS-L3-025-04` | 正常な設計traceで、利用中revisionのL3承認sourceは成立済み、別の候補revisionのL3承認sourceは未承認と明示する。別候補revisionの出力L3承認stateだけを「L3承認済み」に変え、source状態と他fieldは不変。 | 別候補revisionのauthority昇格を拒否し、その候補の未承認sourceを保持する。利用中revisionの成立済み承認も保持する。 |
 | `CASE-HARNESS-L10-033-S5-001` | `FR-HARNESS-L3-033` / `AC-HARNESS-L3-033-01` | incident sourceを選択しないnormal contract-derived case inputを与える。 | case candidateをsource/revision/oracle/scopeと共に返し、repro/run/passを未実施として保持する。 |
 | `CASE-HARNESS-L10-033-S5-002` | `FR-HARNESS-L3-033` / `AC-HARNESS-L3-033-02` | incident reductionを選択し、sanitized source permissionだけをmissingにする。 | reductionを開始せずsecurity/data ownerへpermission不足を返す。 |
 | `CASE-HARNESS-L10-033-S5-003` | `FR-HARNESS-L3-033` / `AC-HARNESS-L3-033-02` | reduction inputのfailure oracleだけをunknownにする。 | 同一failureを判定できないため成立claimを保留し、要求/設計oracle ownerへ戻す。 |
@@ -672,8 +672,8 @@ AC-018-01の入力条件はR001〜R034に加えR056/R057で個別欠落、R058�
 | `CASE-HARNESS-L10-025-S5-009` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-01` | 026 output contract/scopeを新revisionへ交換した直後のcompositeで、026 receiptだけ旧contract revisionに残す。 | old receiptをstaleとして保留し、設計/pair形成不足なら026/022形成へ戻す。 |
 | `CASE-HARNESS-L10-025-S5-010` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-01` | L3 authority stateだけをunknownにする。 | 保留し該当L3 ownerへ戻す。 |
 | `CASE-HARNESS-L10-025-S5-011` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-01` | L3対象revisionだけをcomposite scopeとmismatchにする。 | 保留し該当L3 ownerへ戻す。 |
-| `CASE-HARNESS-L10-025-S5-012` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-01` | CORE connector contract versionだけをunknownにする。 | connection/compositeを不適合として保留し、固定親にない戻し先は新設しない。設計/pair形成不足が確認できる場合だけ026/022形成へ。 |
-| `CASE-HARNESS-L10-025-S5-013` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-01` | 選択Template compatibility versionだけを固定適用range外にする。 | 互換範囲外として保留し、固定親にない戻し先は新設しない。設計/pair形成不足が確認できる場合だけ026/022形成へ。 |
+| `CASE-HARNESS-L10-025-S5-012` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-07 / AC-HARNESS-L3-025-10` | HARNESS-COREが常時使う「COREのBRAIN connector契約」（固定L2-026:542、正本HELIXBRAIN-L2-030）のversionだけをunknownにする。CORE/Design Template/BRAIN connectorの三依存を列挙する固定L2-025:552と区別し、BRAIN connector identity自体は存在する。fixture sourceはowner_identity=`core-brain-connector-contract-owner:fixture`を宣言し、oracleが出力owner_identityとのexact一致を確認する。これはCOREが使うBRAIN connector契約ownerカテゴリの合成fixture値で、製品の実owner identityを定めない。 | connection/compositeを不適合として保留し、BRAIN connector契約ownerへ不足を返す。BRAIN connector identity自体の欠落（S5-002/014）とは区別する。026/022形成へは設計/pair/oracle形成不足が確認できる場合だけ返す。 |
+| `CASE-HARNESS-L10-025-S5-013` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-08 / AC-HARNESS-L3-025-10` | 選択Template compatibility versionだけを固定適用range外にする。fixture sourceはowner_identity=`template-contract-source-owner:fixture`を宣言し、oracleが出力owner_identityとのexact一致を確認する。これはL2-009適用契約source ownerカテゴリの合成fixture値で、製品の実owner identityを定めない。 | compositeを不適合として保留し、L2-009の適用契約source ownerへ不足を返す（固定025:552が常時参照する026のL2-009／Design Template対応契約版の供給元。026:538を根拠とし、別親037/040の戻し先は根拠にしない）。具体identityが未提示ならそのidentityをunknownに保ち、別ownerを推定しない。026/022形成へはdesign/pair/oracle形成不足が別途確認できる場合だけ返し、BRAIN connector/knowledge source不足へ読み替えない。 |
 | `CASE-HARNESS-L10-025-S5-014` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-01` | BRAIN connector identityだけを欠落。Pattern非選択。 | 常時接続を保留しBRAIN connector contract ownerへ。 |
 | `CASE-HARNESS-L10-025-S5-015` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-01` | 022 oracle identityだけを欠落。 | oracleを推定せずL2-022 oracle formationへ。 |
 | `CASE-HARNESS-L10-025-S5-016` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-01` | 026 unit scopeだけをcomposite scopeとmismatchにする。 | 保留し026/022 formationへ。 |
@@ -802,7 +802,7 @@ AC-018-01の入力条件はR001〜R034に加えR056/R057で個別欠落、R058�
 
 ### Stage 5 Root検収追補 — 035計測と未完候補の独立反例
 
-各行は未実行の単独変異候補である。三観点の正常入力はCASE-HARNESS-L10-035-S5-028を参照し、他条件とsource/revision/scopeを保持する。根拠は固定L2-035:931–941・L11-035:678–686およびL2-035:727・L11-035:492であり、新しいthresholdやapprovalを追加しない。
+各行は未実行の単独変異候補である。三観点の正常入力はCASE-HARNESS-L10-035-S5-028を参照し、他条件とsource/revision/scopeを保持する。根拠は固定L2-035:931–941・L11-035:678–686およびL2-035:727・L11-035:491であり、新しいthresholdやapprovalを追加しない。
 
 | CASE ID | FR / AC | fixture input（変更する条件） | oracle / failure boundary |
 |---|---|---|---|
@@ -827,6 +827,43 @@ AC-018-01の入力条件はR001〜R034に加えR056/R057で個別欠落、R058�
 | `CASE-HARNESS-L10-033-S5-037` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-06` | 014対設計を新revisionへ更新した後、影響candidateのtrace・期待値・適用scopeだけを旧契約に保持する。packと022契約は同じ正常revision。 | 影響candidateをstaleとして新014契約へ再照合し、該当operationを再生成/再検証する。旧receiptを新版合格へ流用しない。 |
 | `CASE-HARNESS-L10-035-S5-042` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-05` | 三観点のうち複雑さの測定方法だけ未定。他の対象・条件・revision・結果と上流根拠は保持する。 | 方法unknownを保持し該当計測契約または要求形成ownerへ不足を返す。scope判定と必要性成立を未完とし、候補起草は継続できる。結果・閾値を補わない。 |
 | `CASE-HARNESS-L10-037-S5-058` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-01` | Phase 1の合意L2・承認L3・templateと開始入力が正常な開始時に、両Phaseの将来L9実行receiptが未生成という一点だけを理由に開始を拒否する。 | 将来receiptを開始条件にしない。Phase 1設計の開始候補を保持し、L9とPhase 2 handoffは各後段条件で別判定する。 |
+
+### Stage 5 Opus再照合補正 — #6039140122の6 finding
+
+以下は固定L2/L11の内容に対する未実行のnormal/単独変異CASEである。既存CASEは必要な場合に参照し、下表の各negativeは独立した一フィールド変異として扱う。これらのCASEは委任承認、実装、実行、releaseを生成しない。
+
+| CASE ID | FR / AC | fixture input（変更する条件） | oracle / failure boundary |
+|---|---|---|---|
+| `CASE-HARNESS-L10-025-S5-036` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-04` | 正常compositeに独立source inputを明示する。利用中requirement adoption/L3 approvalは成立済み、別の未採択candidateは未成立、design approval/implementation permissionは未成立、implementation completion/user acceptanceは未成立とし、出力の各対象identity別fieldはsource値に一致する。 | authority各fieldを対象identityごとのsource inputどおり保ち、composite結果から状態を生成しない正常照合。 |
+| `CASE-HARNESS-L10-025-S5-037` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-04` | S5-036の別未採択candidateについて、出力のrequirement-adoption stateだけを新たに採択済みに変える。他fieldと利用中requirement source authorityは不変。 | candidateの採択を生成せず、source authorityの状態を維持する。 |
+| `CASE-HARNESS-L10-025-S5-038` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-04` | 正常入力から出力のimplementation-complete stateだけを新たに完了へ変える。他fieldとsource receiptは不変。 | 実装完了を生成せず、既存source stateを維持する。 |
+| `CASE-HARNESS-L10-025-S5-039` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-04` | 正常入力から出力のuser-accepted stateだけを新たに受入済みへ変える。他fieldと受入recordは不変。 | 利用者受入を生成せず、既存受入source stateを維持する。 |
+| `CASE-HARNESS-L10-025-S5-040` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-09` | 正常compositeから出力のdesign-approval stateだけを新たに承認済みにする。他fieldと独立source authorityは不変。 | 設計承認を生成せず、独立source stateを維持する。 |
+| `CASE-HARNESS-L10-025-S5-041` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-09` | 正常compositeから出力のimplementation-permission stateだけを新たに許可済みにする。他fieldと独立source authorityは不変。 | 実装許可を生成せず、独立source stateを維持する。 |
+| `CASE-HARNESS-L10-025-S5-062` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-10` | S5-012のsourceからowner_identity=`core-brain-connector-contract-owner:fixture`だけを欠落させる。他の契約情報は同じ。 | COREが使うBRAIN connector契約ownerという既知の責務カテゴリを保ち、具体identityだけunknownとする。別ownerを推定せず、026/022へはdesign/pair/oracle不足が別途ある場合だけ返す。 |
+| `CASE-HARNESS-L10-025-S5-063` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-10` | S5-013のsourceからowner_identity=`template-contract-source-owner:fixture`だけを欠落させる。他の契約情報は同じ。 | L2-009の適用契約source ownerという既知カテゴリを保ち、identityだけunknownとする。別ownerを推定せずBRAINへ読み替えず、026/022へはdesign/pair/oracle不足が別途ある場合だけ返す。 |
+| `CASE-HARNESS-L10-025-S5-065` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-04` | 対象要求revisionのL2 agreement sourceが未合意と明示された正常compositeを与える。出力agreement stateだけを合意済みに変え、L3 requirement-approval stateなど他fieldとsourceは不変。 | 設計compositeからL2要求合意を生成する変異を拒否し、L2合意とL3要件承認を別々のauthority source stateとして保つ。 |
+| `CASE-HARNESS-L10-025-S5-066` | `FR-HARNESS-L3-025 / AC-HARNESS-L3-025-11` | S5-007の正常compositeからCORE自身の製品契約versionだけをunknownへ変える。Template/BRAIN connector契約identity/version/compatibility、L3 authority、026 receipt、scope/oracleは正常のまま。sourceはCORE owner_identity=`core-contract-owner:fixture`を宣言する。これは合成fixture識別値で実製品ownerを新設しない。 | compositeを保留し既存CORE ownerへ不足を返し、出力owner_identityがsource宣言値 `core-contract-owner:fixture` と完全一致することを照合する。BRAIN connectorやTemplateの正常版で補完せず、それらのownerへCORE契約の不足を振り替えない。 |
+| `CASE-HARNESS-L10-033-S5-038` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-08 / AC-HARNESS-L3-033-09` | 通常case candidate生成と選択consumerへのpacket handoffが正常。独立source inputでauthorityは未成立、run statusはnot-run、artifact lifecycleはProvisional、verification stateはnot-verifiedと明示し、出力はその値と一致する。 | 生成とhandoffを正常照合し、authority/result/lifecycle stateを独立sourceどおり保つ。 |
+| `CASE-HARNESS-L10-033-S5-039` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-08` | 正常入力から出力の対象要求採択stateだけを新たに採択済みへ変える。 | 要求採択を生成せず、独立source stateを維持する。 |
+| `CASE-HARNESS-L10-033-S5-040` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-08` | 正常入力から出力の対象revision requirement-approval stateだけを新たに承認済みへ変える。 | 要求承認を生成せず、独立authority sourceの状態を維持する。 |
+| `CASE-HARNESS-L10-033-S5-041` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-08` | 正常入力から出力のrelease-eligibility stateだけを新たに適格へ変える。 | release eligibilityを生成せず、他の結果とauthority stateを維持する。 |
+| `CASE-HARNESS-L10-033-S5-042` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-08` | 正常入力から出力のrelease-executed stateだけを新たに実行済みへ変える。 | release実行を生成せず、既存source stateを維持する。 |
+| `CASE-HARNESS-L10-033-S5-043` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-08` | S5-038の独立authority sourceで対象要求revisionの合意は未成立と明示し、出力agreement stateだけを合意済みに変える。他fieldはsourceどおり。 | 生成・handoffから合意を生成する変異を拒否し、入力sourceの未成立状態を維持する。 |
+| `CASE-HARNESS-L10-033-S5-044` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-08` | S5-038の独立authority sourceで対象L3 revisionの承認は未成立と明示し、出力L3-approval stateだけを承認済みに変える。他fieldはsourceどおり。 | 生成・handoffからL3承認を生成する変異を拒否し、入力sourceの未成立状態を維持する。 |
+| `CASE-HARNESS-L10-033-S5-045` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-09` | 正常なcase/test生成・handoffから出力test-pass stateだけを新たにpassへ変える。独立run receiptはsourceに存在しない。 | test passを生成せず、run/result authority stateをsourceどおり保つ。 |
+| `CASE-HARNESS-L10-033-S5-046` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-09` | 正常なcase/test生成・handoffからartifact lifecycle stateだけをProvisionalからIntegratedへ進める。独立integration resultはsourceに存在しない。 | lifecycle進行を生成せず、Provisional stateと独立sourceを保つ。 |
+| `CASE-HARNESS-L10-033-S5-047` | `FR-HARNESS-L3-033 / AC-HARNESS-L3-033-09` | 正常なcase/test生成・handoffから出力verification stateだけをVerifiedへ変える。独立verification resultはsourceに存在しない。 | Verifiedを生成せず、verification authority stateをsourceどおり保つ。 |
+| `CASE-HARNESS-L10-035-S5-043` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-09 / AC-HARNESS-L3-035-10 / AC-HARNESS-L3-035-11` | 原指示のsource/revisionを正常に記録し、対象revision付き独立合意decisionは未提示。照合fieldは全てsource inputと一致し、agreement、implementation-permission、execution-permissionは別fieldで未成立と明示する。 | 原指示記録を正常照合しつつ対象revision合意、実装許可、実行許可を各々未成立のまま保持する。 |
+| `CASE-HARNESS-L10-035-S5-044` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-09` | `S5-043`から対象revision agreement output fieldだけを合意済みに変更。 | 原指示の記録だけで合意を生成する変異を拒否し、合意stateをunknown/未成立へ戻す。 |
+| `CASE-HARNESS-L10-035-S5-045` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-10` | `S5-043`に全source/revision/scope/寄与/必要性/代替/budgetの正常照合結果を追加し、出力execution-permission fieldだけを許可済みに変更。 | 正常照合結果から実行許可を生成する変異を拒否し、既存authority stateを維持する。 |
+| `CASE-HARNESS-L10-035-S5-046` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-11` | `S5-043`に全source/revision/scope/寄与/必要性/代替/budgetの正常照合結果を追加し、出力implementation-permission fieldだけを許可済みに変更。他fieldはsourceどおり。 | 正常照合結果から実装許可を生成する変異を拒否し、既存authority stateを維持する。 |
+| `CASE-HARNESS-L10-037-S5-059` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-05` | 二段適用が既知の正常scopeで、両phaseに必要なL2 agreements/L3 approvalsは独立sourceに成立済みと明示する。出力設計承認、別の後続対象revisionのL3要件承認、実装許可は各々sourceに未成立/未発行と明示し、出力をその値と一致させる。各phaseのsource/revision、template applicability、handoff、merge relationに根拠と適用限界を結ぶ。 | 4種類の出力relationについて根拠・適用限界fieldと対応source bindingの値一致を確認し、authority fieldは独立source値に一致させる。既存decisionと追加authorityの状態を分けて確認する。 |
+| `CASE-HARNESS-L10-037-S5-060` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-05` | `S5-059`からsource/evidence basis fieldだけを欠落させる。他のfieldとtraceは正常。 | 根拠なしのrelationを確定せずtrace/merge candidateを未完に保つ。 |
+| `CASE-HARNESS-L10-037-S5-061` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-05` | `S5-059`からapplicability scope/limit fieldだけを欠落させる。他のfieldとtraceは正常。 | 適用範囲を推定せずtrace/merge candidateを未完に保つ。 |
+| `CASE-HARNESS-L10-037-S5-062` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-06` | S5-059の独立sourceに未成立とある、合流設計出力のdesign-approval stateだけを新たに承認済みに変える。他fieldと既存phase decisionsは不変。 | 設計承認を生成せず、出力設計承認source stateを維持する。 |
+| `CASE-HARNESS-L10-037-S5-063` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-06` | S5-059の独立sourceに未成立とある、入力に含まれない別の後続対象revisionのL3 requirement-approval state（L3要件承認）だけを新たに承認済みに変える。他fieldと既存phase decisionsは不変。 | 後続revisionのL3要件承認を生成せず、L2要求合意と区別して独立authority source stateを維持する。 |
+| `CASE-HARNESS-L10-037-S5-064` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-06` | S5-059の独立sourceに未発行とある実装許可stateだけを新たに許可済みに変える。他fieldと両phaseの独立source stateは不変。 | 実装許可を生成せず、独立authority source stateを維持する。 |
 
 
 ## Stage 3 親034の機能総合検証CASE
