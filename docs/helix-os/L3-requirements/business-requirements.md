@@ -112,6 +112,6 @@
 | 親 | business扱い | 補正後functional CASE範囲 | 境界 |
 |---|---|---|---|
 | 025 | 独立BRなし | CASE-025-01〜32 | target/version/unit状態の欠落、document/mechanismの存在だけによる誤成立を区別し、構成体の未完義務を保持し、HELIX-OSを外販製品と誤分類しない。|
-| 026 | 独立BRなし | CASE-026-01〜55 | 導出結果から採択/実装/受入/tag/外部配布を生成せず、適用scope外の機構完成を追加条件にしない。|
-| 031 | 独立BRなし | CASE-031-01〜87（066/068/070/072除外、031-25は031-06のalias） | old numeric comparison、ticket-driven duty、正しさ/性能、LABO/authority境界を分け、実測SLO/merge基準を作らない。|
-| 047 | 独立BRなし | CASE-047-01〜38、CASE-047-20はCASE-047-04のalias | issuerからの返却・revision lineage・参照境界を保ち、独立のticket効率KPIを作らない。|
+| 026 | 独立BRなし | CASE-026-01〜60 | 導出結果から採択/実装/受入/tag/外部配布を生成せず、適用scope外の機構完成を追加条件にしない。段階構成採択を導出成功から生成しない。|
+| 031 | 独立BRなし | CASE-031-01〜95（066/068/070/072除外、031-25は031-06のalias） | old numeric comparison、ticket-driven duty、正しさ/性能、LABO/authority境界を分け、実測SLO/merge基準を作らない。|
+| 047 | 独立BRなし | CASE-047-01〜41、CASE-047-20はCASE-047-04のalias | issuerからの返却・revision lineage・参照境界を保ち、独立のticket効率KPIを作らない。|

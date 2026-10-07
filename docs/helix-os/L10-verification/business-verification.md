@@ -88,7 +88,7 @@ fixtureと実観測を分けて記録し、各親についてtrace正確性、un
 | business CASE | 親・参照機能CASE | 照合 | 対象外 |
 |---|---|---|---|
 | `CASE-OS-L10-BIZ-025-01` | 025 / `CASE-OS-L10-025-01..32` | 各サービスunit/connection/compositeと正常・unknown等のstateを個別に保ち、固定L2外の製品化やstage条件を生成しない。| 全製品稼働率、新規owner/KPI。|
-| `CASE-OS-L10-BIZ-026-01` | 026 / `CASE-OS-L10-026-01..59` | 個別入力・各dependency state、pack版/適用対象/一周出力、復旧/permission/owner/human工程のmissingとclosure/minimum/実構成受入を混同しない。| 最小pack数・段階数目標。|
+| `CASE-OS-L10-BIZ-026-01` | 026 / `CASE-OS-L10-026-01..60` | 個別入力・各dependency state、pack版/適用対象/一周出力、復旧/permission/owner/human工程のmissingとclosure/minimum/実構成受入を混同せず、導出成功から段階採択を生成しない。| 最小pack数・段階数目標。|
 | `CASE-OS-L10-BIZ-031-01` | 031 / `CASE-OS-L10-031-01..95 (066/068/070/072 excluded; 031-25 aliases 031-06)` | wall-clock、runner-minute、failure feedback latency p50/p95、超過原因を含む全測定fieldとscope、Recovery Issueの正本誤用、correctness/performance/recovery、安全性・最適化の独立状態を保ち旧比較値を普遍SLOにしない。| 現行SLO、速度KPI、merge admission。|
 | `CASE-OS-L10-BIZ-047-01` | 047 / `CASE-OS-L10-047-01..41` | 返却根拠、元assignmentとの因果relationと未完義務追跡、全非継承軸、provider-only identity、双方向参照、revision証拠、split/scope/backflow境界を保ちIssue/PR完了を要求完了としない。| ticket処理時間・再発行率。|
 
@@ -101,7 +101,7 @@ fixtureと実観測を分けて記録し、各親についてtrace正確性、un
 | business CASE | 親 / 参照functional CASE | 照合境界 |
 |---|---|---|
 | `CASE-OS-L10-BIZ-025-01` | 025 / CASE-025-01〜32 | 個別入力束縛・単位境界のみ。fixture行数を製品完成率へ換算しない。|
-| `CASE-OS-L10-BIZ-026-01` | 026 / CASE-026-01〜59 | 導出状態・pack版/適用対象/一周出力と採択・実装・受入・配布を分離し、business成功を主張しない。|
+| `CASE-OS-L10-BIZ-026-01` | 026 / CASE-026-01〜60 | 導出状態・pack版/適用対象/一周出力と採択・実装・受入・配布・段階構成採択を分離し、business成功を主張しない。|
 | `CASE-OS-L10-BIZ-031-01` | 031 / CASE-031-01〜95（066/068/070/072除外、031-25は031-06のalias） | 全測定fieldとRecovery Issue非正本境界の記述上の照合のみ。実測、SLO、速度KPI、merge admissionを生成しない。|
 | `CASE-OS-L10-BIZ-047-01` | 047 / CASE-047-01〜41（047-20は047-04のalias） | 元assignment/未完義務の追跡とticket返却・revision境界のtraceのみ。ticket効率や処理成功率を追加しない。|
 
