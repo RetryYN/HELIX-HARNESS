@@ -1,0 +1,52 @@
+{
+  "record_type": "labo060_brbv_trace_correction",
+  "base": "e028e18c90e83295c84d77c4829702a349bce0dc",
+  "scope": [
+    "HELIXLABO-L2-060"
+  ],
+  "authority_effect": "none",
+  "six_body_pins": [
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "before_sha256": "7908f4f075e3aa4514656a1f5e65ddfced120f6800fc9372fd9a6f673c28e99a",
+      "after_sha256": "057caceeb0d2269cfc58bec6011ea26233c4272cef71ec90fbaabc497f78d183",
+      "bytes": 32852
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "before_sha256": "5a97eef5d322f8b79d5bce433494c7ad1548fa1b6ef1eb27749882036f7afece",
+      "after_sha256": "5a97eef5d322f8b79d5bce433494c7ad1548fa1b6ef1eb27749882036f7afece",
+      "bytes": 354046
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "before_sha256": "343604239051cfc452d924688a98c15288b0e30f3e02492cda843269bbf58b4b",
+      "after_sha256": "343604239051cfc452d924688a98c15288b0e30f3e02492cda843269bbf58b4b",
+      "bytes": 91242
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "before_sha256": "2a8486d6ce980a934ece785b0d6670f0dc308da36ebe100aaeb099cac4cc5cac",
+      "after_sha256": "df60d5b7410107c249636b3dc5989f0cfdf6291a17e8e169a37971cd36bf37cb",
+      "bytes": 31387
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "before_sha256": "5242a94fed5618792f7d2ecc8c1b6a13cf4788e79fb66b2e0b2312f34425a29e",
+      "after_sha256": "5242a94fed5618792f7d2ecc8c1b6a13cf4788e79fb66b2e0b2312f34425a29e",
+      "bytes": 692699
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "before_sha256": "2983f735ae142e126946039b195a0be483b476ffa35ef5cffee976d9f299146a",
+      "after_sha256": "2983f735ae142e126946039b195a0be483b476ffa35ef5cffee976d9f299146a",
+      "bytes": 82074
+    }
+  ],
+  "change": "BR/BV参照05–46→05–52、negative41→47。定義不変。",
+  "limits": [
+    "fixture未実行",
+    "独立review未実施",
+    "274親検収未完"
+  ]
+}
