@@ -191,3 +191,9 @@
 | 失効・未評価の説明 | recorded major miss/model updateによる対象revisionの資格失効、および根拠不足のunknownを区別する | 資格失効をpermission失効と同一視せず、未特定ownerを作らない |
 
 **旧source対応**：3L-BR-008のclass×revision評価とfield separation、major miss/model update invalidationを意味再導出する。旧L3の状態列やexpiry条件は歴史contextに留め、新business decisionを移さない。
+
+### HELIXLABO-L2-066 — A比較における誤修復・未解消数の明示
+
+状態：未承認のL3候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。
+
+固定L2-066は同条件比較で誤修復数・未解消数を測る機能結果を定める。これと独立したbusiness outcome/ownerは固定L2/L11から導かれないため、BR・独立AC・業務成果を追加しない。既存の比較結果はL2-066および採択済みL2-059の範囲に留め、別の採択、効果達成、事業判断を生成しない。成果と失敗はfunctional requirementの `LABO-066-AC-01`〜`LABO-066-AC-03` をL10 functional verificationで照合する。

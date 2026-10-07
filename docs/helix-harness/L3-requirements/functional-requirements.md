@@ -874,6 +874,32 @@ HARNESSは、利用許可と対象revisionに結ばれたscreen IDを持つrende
 
 **authority出力境界**：実際のB-route/CORE PO採択はdecision rowで既に固定される。043 candidateやmatrixからその採択を作り直さない。また要求合意、L3承認、設計成立、実装完了、OS実行完了、利用者受入成功を個別に生成しない。matrixは内容上のcoverage候補だけを示す。
 
+## Stage 3 親046の機能要件候補
+
+起草候補。Stage 3、`version_target: 1.0`。対象は採択済みHARNESS-L2-046のFull V workflow条件と、明示的にProduction Scrumが選択・許可されたscopeのScrum slice/backfill条件に限る。候補文書・検証fixtureは採択済みL2/L11本文や運転結果を置換せず、releaseやruntime authorityを付与しない。
+
+**固定親とPO根拠**：親L2は`318ec4a04abb3c1cc17111b3d939f913facd5fd3`の `docs/helix-harness/L2-requirements/product-requirements.md:1025–1035`（全file SHA-256 `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09`、対象span SHA-256 `47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e`）。対L11は同revisionの `docs/helix-harness/L11-acceptance/product-acceptance.md:759–771`（全file SHA-256 `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5`、span SHA-256 `a8e99f7df7166566c04b1113b045851d8417e17e8078c034f8f2a34ebfe4f37f`）。PO判断は `17a2f310358ee7fe209b9d37cddf4a927c740248` の `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:51`、file SHA-256 `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`、row SHA-256 `60fb90a139b313760ad5a259e2362e3c406e071aa1dfba8ed6d21d0cb9fb55a4`。POは`HARNESS-L2-046`を採択し、registrationは`MPR-RC-HARNESS-L2-046-001`。隣接row 52の`HARNESS-L2-047`は046へ混ぜない。
+
+**旧source・保持／変更**：旧起点はv1.3 `LEGACY-ASSET-02319C2481B9E01698D5`。§4.4 L259はFull Vのsystem workflow/L1–L5段階freezeと12 workflow条件の検証（atom S1）およびProduction Scrumのslice delta先行・Scrum Reverse/backfill時点・SR4前release-ready不可（独立atom S2）を別条件として記述する。§10 L647は両者を要約する別atomで、第三の独立条件に数えない。6fabd125 baselineの同文companionも別revisionとして保持する。旧consumerのUWJ-FR-015とL4 boundaryは確認範囲に限定し、consumer全体網羅は主張しない。 L259の2文を各別FRへ再導出し、L647は要約関係だけ記録する。POの4方式定義・合成許可は2026-09-25判断`docs/governance/decisions/po-optimal-draft-po-decisions-2026-09-25.md:51,61`に従う。旧FullVとScrum条件を混ぜない。
+
+**FR-HARNESS-L3-046 — 共通参照group**：CASE表にあるsuffixなしの`FR-HARNESS-L3-046`は、本節の`FR-HARNESS-L3-046-01`〜`-04`をまとめて参照するtraceability groupであり、独立した機能要求・oracle・scopeを追加しない。各CASEの意味と判定には個別のsuffix付きFRおよびACを用いる。
+
+**FR-HARNESS-L3-046-01 — Full V system workflow**：入力でstyle=`Full V`と対象system workflow revisionを明示する。選択scopeで適用されるL1–L5の設計資産を段階的に明確化・freezeし、対応V-pairでsystem全体のtransition、loop、terminal、exception、permission、timeout、notification、audit、data、switching、routing、resource allocationの12条件を検証する。条件または適用する層のapplicability/oracleが未確定ならclosureをunknown/未完とする。Full Vではslice delta、Scrum Reverse、SR0–SR4、SR4 receiptを要求しない。
+
+**FR-HARNESS-L3-046-02 — Production Scrum slice/backfill**：input styleがProduction Scrumであるscope、またはPOが許可した方式合成のうちL2-002/003に従ってScrumを適用するscopeだけを対象とする。slice deltaの先行を許容し、既存triggerに従うsprint review時またはrelease合流前にScrum Reverseでsystem workflowと該当L1–L5設計資産へbackfillする。SR0〜SR4を要する既存checkpoint triggerが成立するscopeでは、各段階SR0/SR1/SR2/SR3/SR4と各receiptを別々に確認し、段階identity・target scope/revision・source receiptの対応と値の一致を照合する。これとは別に、Production Scrumが選択・合成適用されるscopeではSR4 pair-freeze receiptがmissing/unknownなら、trigger成立有無にかかわらずrelease-ready候補へ進めない。SR4 receiptのidentity・target scope/revision・source evidence値は、trigger成立有無にかかわらず、同じscope/revisionに結び付く既存sourceの値と照合する。選択style、方式定義、合成許可、trigger条件、L3までの共通工程をこの要件が変更・推測しない。これらのsource値が正常な入力でも、候補がいずれか一項目を変更する出力を単独に拒否し、046自身の出力処理を訂正する。
+
+**FR-HARNESS-L3-046-03 — scope/source状態と返却先**：style selection、方式合成を適用するscopeの合成許可、scope/revision、system workflow、applicability、oracle、必要なScrum checkpointがmissing/unknown/conflict/staleなら、他scopeや別revisionから補完せずunknown/未完にする。Full Vの義務不足はScrum条件へ置換しない。workflow/style意味または既存trigger適用条件の不足は、そのscope/revisionや具体source identityを特定できるかにかかわらずHARNESS-L2-002/003の既存責務区分へ返す。verification obligation/V-pair oracleの不足も、個別source identityを特定できるかにかかわらずHARNESS-L2-004/022の既存責務区分へ返す。不足対象の種類で既存責務区分を選び、具体owner identityのunknownは別に保持する。identityの不明を返却停止条件にしない。新しいownerや分類を作らない。
+
+**FR-HARNESS-L3-046-04 — authority非生成**：候補／coverage receiptからL2/L11採択、要求合意、要件承認、OS ticket、OS workflow instance、OS保存state、OS runtime、実行結果、release許可、利用者受入を生成しない。この10種のauthority出力とは別の証拠境界として、coverage結果からSR4 pair-freeze receiptを生成・置換しない。OSはticket/workflow instance/state/runtimeの生成・記録・運転を所有し、候補は既存のOS保存state/runtimeを変更しない。
+
+**AC-HARNESS-L3-046-01 — Full V正常・12条件**：baselineでFull V style、system workflow revision、適用L1–L5層と段階freeze、12条件各々のapplicability・対応V-pair/oracleを固定する。これらが同scope/revisionで確認できる場合に限り対象workflow coverageを閉じる。Scrum delta/reverse/SR0–SR4/SR4はbaselineにも必須条件にも含めない。
+
+**AC-HARNESS-L3-046-02 — Scrum選択scope正常・backfill**：Production Scrumまたは許可合成内のScrum適用scopeを明示し、slice delta、system workflowと該当L1–L5資産へのbackfill、trigger条件、適用されるcheckpoint/SR4 receiptを同じscope/revisionで確認する。SR0〜SR4を要する既存triggerが成立するscopeでは、SR0/SR1/SR2/SR3/SR4の各段階identityとreceiptを別々に確認し、target scope/revision・source evidenceとの一致を照合する。これに加え、Production Scrumが選択・合成適用されるscopeでは、profile A/Bを問わずSR4 pair-freeze receiptのidentity・target scope/revision・source evidence値が同一scope/revisionに結び付く既存sourceと一致することを確認する。trigger不成立ではtrigger由来の追加checkpointを要求しない。両方の適用範囲でSR4 receiptがmissing/unknownなら、trigger成立有無にかかわらずrelease-ready候補にせず、release authorityも生成しない。
+
+**AC-HARNESS-L3-046-03 — 未見／誤scope／owner**：Full Vで一つの条件またはfreezeを欠落させればscope未完、Scrum scopeで一つのbackfill/SR4 fieldを欠落させれば該当scope未完。Full V fixtureにScrum artifactがないだけなら不合格にせずAC-01を評価する。workflow/style/trigger適用条件の不明はHARNESS-L2-002/003、verification obligation/V-pair oracleの不明はHARNESS-L2-004/022の既存責務区分へ返し、個別source/owner identityのunknownは別に保持する。一般化したownerや新しい分類を作らない。
+
+**AC-HARNESS-L3-046-04 — authority出力の単独拒否**：採択、要求合意、要件承認、OS ticket、OS workflow instance、OS保存state、OS runtime、実行結果、release許可、利用者受入の10種の出力を個別fixtureで一つずつ生成させる変異を拒否し、他output fieldおよび既存OS-owned state/runtimeは変えない。これら10種とは別に、coverage結果からSR4 pair-freeze receiptを生成・置換しない。
+
 ## Stage 3 親054の機能要件：専門Worker判定・契約のOS割当handoff（起草候補、version_target: 1.0）
 
 **採択本文の固定**：PO記録のsource_repository_revision `5aa100319361b0cc86edd3c51815ec777d55410a`。L2 `product-requirements.md:1154–1162` SHA-256 `b76b7b1adec804a25bd9333663aa9b0d074f68518764c2874c994bcdf6ead193`、L11 `product-acceptance.md:865–875` SHA-256 `5d1ab0bad44ae305053932f0c82bcf472e145046125b638f5facab13eaaa2aa0`。旧調査snapshot e94838f5の同本文とbyte一致。末尾空行込みの物理span digestは別の監査pinとして区別する。

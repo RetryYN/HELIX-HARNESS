@@ -298,3 +298,13 @@ L10は69個の完全ID定義を保持する。literalから抽出した分類候
 | `NFR-LABO-071-03` — field/authority isolation | title, qualification, permission, authority, assignment role, scope, source refsを独立fieldで照合。title→permission/authority/assignment、permission→assignment、assignment→permissionの各出力fieldを個別に比較する。 | 一 fieldの変化から他fieldを自動更新しない。qualification invalidation時もpermission P0、assignment A0、authority H0は各independent source値と一致させる。 | qualificationからpermission・assignmentを生成しない。permissionのexpiry/revocation規則をLABOへ複製しない。各outputは既存SECURITY/OS状態のまま。 |
 
 これらは固定意味から導く計測/追跡可能性の候補で、実測値・threshold・SLA・期限・合格率ではない。件数や欠落率を報告する場合の母集団は、事前選択されたscopeと現に利用可能なsource recordから受け取り、このparentで新設しない。
+
+### HELIXLABO-L2-066 — A比較における誤修復・未解消数の測定可能性
+
+状態：未承認のL3候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。
+
+`LABO-066-NG-01` 候補：比較結果はA/candidate identityとversion、eligible set identity/revision、task/scope/target revision、oracle/scorer revision、protocol/toolchain/environment/cutoff、両群のresultとoracle receipt、unknown理由、2指標の分子/分母を追跡可能にする。
+
+**候補値と根拠**：固定L2-066のcase分母N・oracleとの結合、L11-066の正常/誤り/unknown境界から必要なtrace fieldsを導く。測定値は合成B0入力・合成receipt上で分子/分母とsource revisionを再構成できるかで確認する。misrepair/unresolvedの間に排他条件を置かない。費用/時間/reworkのfield意味はL2-059の同じscope比較に合わせる。
+
+許容率、速度値、性能threshold、sample count、運用期間、合否閾値は提案しない。計測できない場合はunknown/未評価を記録し、0や合格へ置換しない。これは根拠付き測定設計候補であり、実測結果・承認値ではない。

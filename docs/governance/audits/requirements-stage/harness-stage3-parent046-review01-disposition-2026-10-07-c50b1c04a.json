@@ -1,0 +1,736 @@
+{
+  "artifact_type": "HARNESS-046 review01 post-body authoring audit candidate",
+  "status": "/tmp-only Japanese audit candidate; canonical audit not edited; source body is already committed by parent; no independent review or approval claim",
+  "target": {
+    "pr": 2643,
+    "body_commit": "c50b1c04a4ff7483312f74e0ae6103980e812c2a",
+    "body_parent": "b9bd5d2fff5e42024cefbb5daf722a383dd6a9d5",
+    "base": "3c3c512c09320c0494904602b23e544a81206eed",
+    "source_worktree": "/home/tenni/.helix-worktrees/l3-harness-stage3-parent046",
+    "commit_subject": "docs: preserve parent046 returns and Scrum SR4 readiness boundary",
+    "commit_epoch_seconds": 1791312941
+  },
+  "review01_disposition": {
+    "formal_comment_id": 6023207343,
+    "formal_review_raw_body_sha256": "c00702a558482ba19f7534f82d1e65a17df243e98608ea58ec4cda31099fe3b0",
+    "formal_review_raw_body_bytes": 5322,
+    "formal_review_raw_body": "## review01（independent review、PR #2643 親HARNESS-L2-046、HEAD b9bd5d2fff5e42024cefbb5daf722a383dd6a9d5、base main 3c3c512c0）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼comment 6023160374（`RH-PR2643-HARNESS-STAGE3-PARENT046-01`）に応える。\n\n### 事前確認と静的検査\n- **採択記録**：HARNESS-L2-046の採択記録は、mainでは57候補の51行（`MPR-RC-HARNESS-L2-046-001`）だけである。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：reviewerの正規表現では0件だった。ただし、下のM1の「同定できない場合は」は正規表現の対象外で、拾えていなかった。この語は正規表現に追加した。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - origin/mainとの`merge-tree`は衝突なし\n\n### 照合の結果\n- **Opusのブラインド照合**：Majorの候補を2件挙げた。reviewerは、固定親（318ec4a product-requirements.md:1025–1038、product-acceptance.md:759–772）の原文と本文で確かめ、1件をMajor（下のM1）、1件を残余（下のR1）とした。\n- **確かめたほかの点**：\n  - 固定親のfile SHAとspan SHAは、本文が引く値と一致する。\n  - authorityの7出力には、それぞれ単独の拒否fixtureがある。\n  - 差分は追加だけで、042の追補は変わっていない。\n- **今後の流れ**：Majorがあるので、Fableの判断は回していない。\n\n### Major\n**M1（戻し先が「原因・ownerを同定できる場合」に条件付けられ、同定できないと返却されない）**\n- **欠陥**：次の2か所は、原因やownerを同定できない場合にunknownを保つだけで、どこへも返していない。\n  - L3 functional-requirementsの`FR-HARNESS-L3-046-03`末尾：「原因を固定ownerで同定できない場合はunknownを保つ」\n  - L10 functional-verificationの「owner戻し先」：「source identity unknownはunknownのまま保持し」\n- **本文の中の食い違い**：同じL10のr04-source-revision-missing、conflict、staleは、「特定有無にかかわらず既存002/003または004/022へ返す」と書いている。\n- **これまでとの一致**：#2635（066）review05・06、#2641（044）review02のM2、067 M1と同じ型である。既知の責務区分へは無条件に返し、個体のowner identityが不明な場合は別にunknownを保持する形にする。\n- **守るべき行**：\n  - L2-046「適合・不明時」（318ec4a product-requirements.md:1034「既存のSR0〜SR4/checkpointの適用条件に不明があればHARNESS-L2-002/003へ返す」）\n  - L11-046の戻し先（product-acceptance.md:771「workflow semanticsまたはstyle適用条件の不足はHARNESS-L2-002/003、検証義務・pair oracleの不足はHARNESS-L2-004/022へ戻す」）\n\n### 後で直す残余（承認を止めない）\n- **R1（SR4欠落とtrigger）**：\n  - 現在の書き方：L3 nfr-gradeの`NFR-C-HARNESS-046-03`と、L10の`CASE-HARNESS-L10-NFR-046-03`は、「SR4欠落はtriggerが要求するscopeだけを未完とする」と書いている。\n  - Majorにしない理由：固定L11（:765、:767）自身が、「SR0〜SR4を要する既存checkpoint triggerが成立するscope」や「必要なSR4 receipt」と、triggerによる条件を置いている。そのため、固定親を狭めたとは断定しない。\n  - 直してほしい点：固定L2:1034は、Production Scrumのscopeで「SR4 receiptが不明／欠落している場合は…release-readyと主張できない」とし、ここには条件を付けていない。trigger不成立のScrum scopeが、SR4なしでrelease-ready候補にならないことを明示するのが望ましい。\n- **R2（checkpointとSR4の書き方）**：FR-HARNESS-L3-046-02とr12-scrum-normalが「checkpoint/SR4」をひとまとめに書いており、R1の読み違いを招いている。\n- **R3（ACの割当）**：r05-full-v-freeze-missingを、Scrum側のAC-HARNESS-L3-046-02に割り当てている。Full V側のAC-01に結ぶべきである。\n- **R4（ACの割当）**：CASE-046-05〜12は、相殺、routing、ticket/releaseの拒否を扱っている。しかし、すべてAC-04（authority出力の単独拒否）に割り当てられていて、AC-03との対応がずれている。\n- **R5（戻し先の分け方）**：r05-sr4-receipt-missingの戻し先が004/022になっている。checkpointの適用条件の不明は002/003に返すので、原因ごとに分けて書くのが望ましい。\n- **R6（戻し先の根拠）**：CASE-046-10は、release許可の生成を拒否した後、002/003へ「戻す」としている。固定親にこの戻し先の根拠はない。生成の拒否そのものは成立している。\n- **R7（判定語）**：L11は誤り例を「不成立またはunknown」と書き、L3は「未完／unknown」と書いている。L2:1034が「coverage未完」なので許容範囲だが、表記がそろっていない。\n\n### 次の手順\n- M1を直す。\n- R1は、M1とあわせて直すのが望ましい。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+    "raw_R1_R7_section_sha256": "9dba6abc2d28e7337eaa9e648c1d902e49ed48357e7e968fd9a7403fffe0fabf",
+    "raw_R1_R7_section": "### 後で直す残余（承認を止めない）\n- **R1（SR4欠落とtrigger）**：\n  - 現在の書き方：L3 nfr-gradeの`NFR-C-HARNESS-046-03`と、L10の`CASE-HARNESS-L10-NFR-046-03`は、「SR4欠落はtriggerが要求するscopeだけを未完とする」と書いている。\n  - Majorにしない理由：固定L11（:765、:767）自身が、「SR0〜SR4を要する既存checkpoint triggerが成立するscope」や「必要なSR4 receipt」と、triggerによる条件を置いている。そのため、固定親を狭めたとは断定しない。\n  - 直してほしい点：固定L2:1034は、Production Scrumのscopeで「SR4 receiptが不明／欠落している場合は…release-readyと主張できない」とし、ここには条件を付けていない。trigger不成立のScrum scopeが、SR4なしでrelease-ready候補にならないことを明示するのが望ましい。\n- **R2（checkpointとSR4の書き方）**：FR-HARNESS-L3-046-02とr12-scrum-normalが「checkpoint/SR4」をひとまとめに書いており、R1の読み違いを招いている。\n- **R3（ACの割当）**：r05-full-v-freeze-missingを、Scrum側のAC-HARNESS-L3-046-02に割り当てている。Full V側のAC-01に結ぶべきである。\n- **R4（ACの割当）**：CASE-046-05〜12は、相殺、routing、ticket/releaseの拒否を扱っている。しかし、すべてAC-04（authority出力の単独拒否）に割り当てられていて、AC-03との対応がずれている。\n- **R5（戻し先の分け方）**：r05-sr4-receipt-missingの戻し先が004/022になっている。checkpointの適用条件の不明は002/003に返すので、原因ごとに分けて書くのが望ましい。\n- **R6（戻し先の根拠）**：CASE-046-10は、release許可の生成を拒否した後、002/003へ「戻す」としている。固定親にこの戻し先の根拠はない。生成の拒否そのものは成立している。\n- **R7（判定語）**：L11は誤り例を「不成立またはunknown」と書き、L3は「未完／unknown」と書いている。L2:1034が「coverage未完」なので許容範囲だが、表記がそろっていない。\n\n",
+    "R1_current_disposition": "R1のSR4/trigger条件は今回本文へ反映された。これは作成側による差分照合であり、独立reviewによるR1 closure/承認を意味しない。",
+    "M1_current_disposition": "M1の既存責務区分返却と個別identity unknownの分離を今回本文へ反映した。独立reviewによるM1 closureは未確認。",
+    "R2_R7": "formal rawのまま保持。今回の処置候補はR1とM1に限る。"
+  },
+  "inputs": {
+    "applied_candidate": {
+      "path": "/tmp/harness046-review01-disposition-candidate-2026-10-07.json",
+      "sha256": "621bf5a02ad3288db8546adf63ae1dd10ee44b044fe0ec9b2fe7ee10cf04a597",
+      "bytes": 36916
+    },
+    "prior_authoring_audit": {
+      "path": "/tmp/harness046-postbody-authoring-audit-worker.json",
+      "sha256": "8ace3d0aba19f7f343cffd52c8fa13068970dcb3815bee0f25eca9a932cd50bd",
+      "bytes": 75492
+    },
+    "prior_full_candidate": {
+      "path": "/tmp/harness046-six-suffix-candidate-review-fixes-2026-10-07.json",
+      "sha256": "8a4f380a7f67ceaa8538c2312f5f3ffbc31ac6368e982fb5b21ae99e5166a60e",
+      "bytes": 320606
+    }
+  },
+  "body_commit_static_verification": {
+    "six_document_pins": [
+      {
+        "document": "BR",
+        "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+        "base_revision": "3c3c512c09320c0494904602b23e544a81206eed",
+        "base_prefix_bytes": 13240,
+        "base_prefix_sha256": "c51f0bc2b98ae5c6a77bfa354050ec70ee87a70641b5f0161b14d5a3afd33e8f",
+        "current_suffix_bytes": 3406,
+        "current_suffix_sha256": "3ba8c3453bf522b1eb0e2eec0dcac48c88489827ba0ee6712b0d76f9bf7a6c12",
+        "full_bytes": 16646,
+        "full_sha256": "730fa3ca94c1c20b6850c58084a9e3900950addeb008ee84c9de3583f02edc16",
+        "final_lf": true,
+        "base_prefix_byte_exact": true
+      },
+      {
+        "document": "FR",
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+        "base_revision": "3c3c512c09320c0494904602b23e544a81206eed",
+        "base_prefix_bytes": 204919,
+        "base_prefix_sha256": "4fce6bb6cd3af5938a11719866050bd729234adbebf70c4210398aa90cad5dff",
+        "current_suffix_bytes": 6817,
+        "current_suffix_sha256": "a02d9649fda78256c9bd7644ca17855852122041296c5744db1839cd39c280af",
+        "full_bytes": 211736,
+        "full_sha256": "324a1ea5a2d3fd2154af292a842132b5750052a731088694bbe7059ad9e268c1",
+        "final_lf": true,
+        "base_prefix_byte_exact": true
+      },
+      {
+        "document": "NFR",
+        "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+        "base_revision": "3c3c512c09320c0494904602b23e544a81206eed",
+        "base_prefix_bytes": 42916,
+        "base_prefix_sha256": "b364e8c6dc92f4548df34638488fefec1533d13941a991de685a74bb64471fc9",
+        "current_suffix_bytes": 3696,
+        "current_suffix_sha256": "ddfa295f59d445976d63b56f5a87de1cf145e8936fbc17bbb0d6611ff24a1dcf",
+        "full_bytes": 46612,
+        "full_sha256": "868886f3711e67c22ba1ba6c9de520f533204bc25f2fcb847c64a0ccd28bf47c",
+        "final_lf": true,
+        "base_prefix_byte_exact": true
+      },
+      {
+        "document": "BV",
+        "path": "docs/helix-harness/L10-verification/business-verification.md",
+        "base_revision": "3c3c512c09320c0494904602b23e544a81206eed",
+        "base_prefix_bytes": 8819,
+        "base_prefix_sha256": "2faacacf78b835b5127e990b805adb97b079439c887a1ef2bd6d69f2478d53c9",
+        "current_suffix_bytes": 3941,
+        "current_suffix_sha256": "9f39fd32adcd15f9b03a7fc6d62cb1ed5d0e5173dcff321a08f8b6e51c614032",
+        "full_bytes": 12760,
+        "full_sha256": "da7e3ec44ba7d04bab910a0e166c4d9fe329a1956e6a15a7eb772e82b27facd9",
+        "final_lf": true,
+        "base_prefix_byte_exact": true
+      },
+      {
+        "document": "FV",
+        "path": "docs/helix-harness/L10-verification/functional-verification.md",
+        "base_revision": "3c3c512c09320c0494904602b23e544a81206eed",
+        "base_prefix_bytes": 636566,
+        "base_prefix_sha256": "bc63c3abbabd727dbb2cfa37a5c3741985181308ad93378ebf2e5846907770f0",
+        "current_suffix_bytes": 38318,
+        "current_suffix_sha256": "3b792e1299d66e6fd82dcdbb8beb7cb3797a681d8141c2169e7fe4f5646fe807",
+        "full_bytes": 674884,
+        "full_sha256": "cf2358a50397d43d96c06de54b98ebb31c5f8cb49fda4762b57cec60e9b24bd9",
+        "final_lf": true,
+        "base_prefix_byte_exact": true
+      },
+      {
+        "document": "NFRV",
+        "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+        "base_revision": "3c3c512c09320c0494904602b23e544a81206eed",
+        "base_prefix_bytes": 36464,
+        "base_prefix_sha256": "bb319529b2c2e2af75067c36bf204d386816fb7e78d48f18043973be6290ccd1",
+        "current_suffix_bytes": 3876,
+        "current_suffix_sha256": "b8fd27f6435099adbae7dc4b784c8caf7e57639d24f0046e4936722bbcb3f40f",
+        "full_bytes": 40340,
+        "full_sha256": "d54c2cd3dfddef956fb32c03820cf91a497b76d09362fdf4b1c83263f3d58f48",
+        "final_lf": true,
+        "base_prefix_byte_exact": true
+      }
+    ],
+    "applied_exact_replacements": [
+      {
+        "document": "BR",
+        "target": "BR-HARNESS-L3-046-01",
+        "before_sha256": "6829f2f99e3f050282ea0019d88892c13d024bff1ded544ba5b7ec302b62e899",
+        "after_sha256": "492da1c99f909cc7ac63a569bdf9a77be3c2f91a713e0ab4d5a78920de312b01",
+        "before_count_current": 0,
+        "after_count_current": 1,
+        "matches_committed_candidate": true
+      },
+      {
+        "document": "FR",
+        "target": "FR-HARNESS-L3-046-02",
+        "before_sha256": "2ad1cf040a3216bfeb65faf4b8c58270a4661a6c12df332b5fee3b4c6d55eae6",
+        "after_sha256": "5c7f60797c1047615dc3890991611bd021786b7be385278ae23e1ed1e941b1e2",
+        "before_count_current": 0,
+        "after_count_current": 1,
+        "matches_committed_candidate": true
+      },
+      {
+        "document": "FR",
+        "target": "FR-HARNESS-L3-046-03",
+        "before_sha256": "1af39c72f57378a64fc24c62217d30c380e0cde84d66e76393370f3c94a5bef7",
+        "after_sha256": "8626f252bee1155aa0cb5868b26ae4dbbe892e39843ba38eb24b548af6c6c424",
+        "before_count_current": 0,
+        "after_count_current": 1,
+        "matches_committed_candidate": true
+      },
+      {
+        "document": "FR",
+        "target": "AC-HARNESS-L3-046-03",
+        "before_sha256": "97a33a78f181d3b4e28dd992a5e97919f883dd4a5aafaaa5cc144729d392006c",
+        "after_sha256": "959cb78f47f15f922850d7ee310208da0dd2cf200be70a3746d7ba0c45691337",
+        "before_count_current": 0,
+        "after_count_current": 1,
+        "matches_committed_candidate": true
+      },
+      {
+        "document": "NFR",
+        "target": "NFR-C-HARNESS-046-03",
+        "before_sha256": "7441feefada4cd643c6b380ad62ed73fb2c454cc63204cc583d536bcb9efe727",
+        "after_sha256": "0820a575fefb483b2e541027bb644475048c0a35b3f1fffd8027db63a7f10252",
+        "before_count_current": 0,
+        "after_count_current": 1,
+        "matches_committed_candidate": true
+      },
+      {
+        "document": "BV",
+        "target": "CASE-HARNESS-L10-046-r12-scrum-normal",
+        "before_sha256": "c47c291bc44649d08d38b86c056e77fa8f378b2296eaaab8aecbd6a6f5772728",
+        "after_sha256": "097d572b8506254a1c2f22f3f4250a0e35294ccd8b14539f16bebcc591918d25",
+        "before_count_current": 0,
+        "after_count_current": 1,
+        "matches_committed_candidate": true
+      },
+      {
+        "document": "FV",
+        "target": "CASE-HARNESS-L10-046-r12-scrum-sr4-missing",
+        "before_sha256": "16bfe432d43c17a7ef2901841c0cb11b96f1d92cbaf6c01e14d5a12ceff06ba1",
+        "after_sha256": "7e072ab3b6ad793f36c5755d35b74b44188f7d12f32354ee2438c483e277a5b7",
+        "before_count_current": 0,
+        "after_count_current": 1,
+        "matches_committed_candidate": true
+      },
+      {
+        "document": "FV",
+        "target": "owner戻し先",
+        "before_sha256": "ae0f5571881552b659d549e37af3484352eb5a52d35c1a1f0497f4814025b32b",
+        "after_sha256": "37ea50196aa371a17c3144f2957981c2d9e152440ba70b5a9b3e92bc1b3a9d08",
+        "before_count_current": 0,
+        "after_count_current": 1,
+        "matches_committed_candidate": true
+      },
+      {
+        "document": "NFRV",
+        "target": "CASE-HARNESS-L10-NFR-046-03",
+        "before_sha256": "1d8e228835ab918456b175f27c7567e15475b208f8fa4de48fd6f5e0788ea7db",
+        "after_sha256": "2a6f62c80193f01b031f0f4f39328a29340b6dfda91ee1ab5961d0035c5fd348",
+        "before_count_current": 0,
+        "after_count_current": 1,
+        "matches_committed_candidate": true
+      }
+    ],
+    "replacement_count": 9,
+    "base_prefixes_byte_exact": true,
+    "target_body_matches_candidate_after_texts": true,
+    "six_document_diff_only": true,
+    "changed_paths": [
+      "docs/helix-harness/L10-verification/business-verification.md",
+      "docs/helix-harness/L10-verification/functional-verification.md",
+      "docs/helix-harness/L10-verification/nfr-verification.md",
+      "docs/helix-harness/L3-requirements/business-requirements.md",
+      "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "docs/helix-harness/L3-requirements/nfr-grade.md"
+    ],
+    "root_reported_governance_check": "PASS (reported by parent; not rerun by worker)",
+    "root_reported_current_diff_check": "PASS (reported by parent; not rerun by worker)"
+  },
+  "case_inventory": {
+    "functional_verification_core_physical_rows": 66,
+    "functional_verification_core_unique_ids": 66,
+    "functional_verification_core_ids": [
+      "CASE-HARNESS-L10-046-01",
+      "CASE-HARNESS-L10-046-02",
+      "CASE-HARNESS-L10-046-03",
+      "CASE-HARNESS-L10-046-04",
+      "CASE-HARNESS-L10-046-05",
+      "CASE-HARNESS-L10-046-06",
+      "CASE-HARNESS-L10-046-07",
+      "CASE-HARNESS-L10-046-08",
+      "CASE-HARNESS-L10-046-09",
+      "CASE-HARNESS-L10-046-10",
+      "CASE-HARNESS-L10-046-11",
+      "CASE-HARNESS-L10-046-12",
+      "CASE-HARNESS-L10-046-r02-exception-missing",
+      "CASE-HARNESS-L10-046-r02-general-v-pair",
+      "CASE-HARNESS-L10-046-r02-other-revision-sr4",
+      "CASE-HARNESS-L10-046-r02-slice-only",
+      "CASE-HARNESS-L10-046-r04-046-applicability-missing",
+      "CASE-HARNESS-L10-046-r04-046-oracle-missing",
+      "CASE-HARNESS-L10-046-r04-046-source-revision-missing",
+      "CASE-HARNESS-L10-046-r04-applicability-conflict",
+      "CASE-HARNESS-L10-046-r04-applicability-stale",
+      "CASE-HARNESS-L10-046-r04-oracle-conflict",
+      "CASE-HARNESS-L10-046-r04-oracle-stale",
+      "CASE-HARNESS-L10-046-r04-source-revision-conflict",
+      "CASE-HARNESS-L10-046-r04-source-revision-stale",
+      "CASE-HARNESS-L10-046-r05-backfill-missing",
+      "CASE-HARNESS-L10-046-r05-full-v-freeze-missing",
+      "CASE-HARNESS-L10-046-r05-nonscrum-scrum-obligations",
+      "CASE-HARNESS-L10-046-r05-root-checkpoint-missing",
+      "CASE-HARNESS-L10-046-r05-slice-delta-missing",
+      "CASE-HARNESS-L10-046-r05-sr4-receipt-missing",
+      "CASE-HARNESS-L10-046-r06-applicability-unknown",
+      "CASE-HARNESS-L10-046-r06-backfill-missing",
+      "CASE-HARNESS-L10-046-r06-slice-delta-not-returned",
+      "CASE-HARNESS-L10-046-r10-audit-missing",
+      "CASE-HARNESS-L10-046-r10-data-missing",
+      "CASE-HARNESS-L10-046-r10-exception-missing",
+      "CASE-HARNESS-L10-046-r10-loop-missing",
+      "CASE-HARNESS-L10-046-r10-notification-missing",
+      "CASE-HARNESS-L10-046-r10-permission-missing",
+      "CASE-HARNESS-L10-046-r10-resource-allocation-missing",
+      "CASE-HARNESS-L10-046-r10-routing-missing",
+      "CASE-HARNESS-L10-046-r10-switching-missing",
+      "CASE-HARNESS-L10-046-r10-terminal-missing",
+      "CASE-HARNESS-L10-046-r10-timeout-missing",
+      "CASE-HARNESS-L10-046-r10-transition-missing",
+      "CASE-HARNESS-L10-046-r12-fullv-condition-missing",
+      "CASE-HARNESS-L10-046-r12-fullv-no-scrum",
+      "CASE-HARNESS-L10-046-r12-fullv-normal",
+      "CASE-HARNESS-L10-046-r12-fullv-refuse-scrum-reverse",
+      "CASE-HARNESS-L10-046-r12-fullv-refuse-slice-delta",
+      "CASE-HARNESS-L10-046-r12-fullv-refuse-sr4-obligation",
+      "CASE-HARNESS-L10-046-r12-pair-oracle-unknown",
+      "CASE-HARNESS-L10-046-r12-refuse-adoption",
+      "CASE-HARNESS-L10-046-r12-refuse-agreement",
+      "CASE-HARNESS-L10-046-r12-refuse-execution",
+      "CASE-HARNESS-L10-046-r12-refuse-os-ticket",
+      "CASE-HARNESS-L10-046-r12-refuse-release-permission",
+      "CASE-HARNESS-L10-046-r12-refuse-requirement-approval",
+      "CASE-HARNESS-L10-046-r12-refuse-user-acceptance",
+      "CASE-HARNESS-L10-046-r12-scrum-backfill-missing",
+      "CASE-HARNESS-L10-046-r12-scrum-normal",
+      "CASE-HARNESS-L10-046-r12-scrum-sr4-missing",
+      "CASE-HARNESS-L10-046-r12-style-unknown",
+      "CASE-HARNESS-L10-046-root-r02-scope-extrapolation",
+      "CASE-HARNESS-L10-046-root-r02-unseen-valid"
+    ],
+    "nfr_verification_physical_rows": 3,
+    "nfr_verification_unique_ids": 3,
+    "nfr_verification_ids": [
+      "CASE-HARNESS-L10-NFR-046-01",
+      "CASE-HARNESS-L10-NFR-046-02",
+      "CASE-HARNESS-L10-NFR-046-03"
+    ],
+    "new_ids_added_by_review01_disposition": 0,
+    "fixture_execution_or_total_completeness_claim": false
+  },
+  "old48_raw_inventory": {
+    "source_authoring_audit_path": "/tmp/harness046-postbody-authoring-audit-worker.json",
+    "source_authoring_audit_sha256": "8ace3d0aba19f7f343cffd52c8fa13068970dcb3815bee0f25eca9a932cd50bd",
+    "raw_inventory": {
+      "revision": "3fd20391",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "full_sha256": "94704ba448b00df43651ca1dfa01835472132ce3023d829ea5bb690926fa3f02",
+      "raw_case_count": 48,
+      "all_raw_literals_rechecked_in_source": true,
+      "id_count": 48,
+      "ids": [
+        "CASE-HARNESS-L10-046-01",
+        "CASE-HARNESS-L10-046-02",
+        "CASE-HARNESS-L10-046-03",
+        "CASE-HARNESS-L10-046-04",
+        "CASE-HARNESS-L10-046-05",
+        "CASE-HARNESS-L10-046-06",
+        "CASE-HARNESS-L10-046-07",
+        "CASE-HARNESS-L10-046-08",
+        "CASE-HARNESS-L10-046-09",
+        "CASE-HARNESS-L10-046-10",
+        "CASE-HARNESS-L10-046-11",
+        "CASE-HARNESS-L10-046-12",
+        "CASE-HARNESS-L10-046-r02-slice-only",
+        "CASE-HARNESS-L10-046-r02-other-revision-sr4",
+        "CASE-HARNESS-L10-046-r02-exception-missing",
+        "CASE-HARNESS-L10-046-r02-general-v-pair",
+        "CASE-HARNESS-L10-046-root-r02-unseen-valid",
+        "CASE-HARNESS-L10-046-root-r02-scope-extrapolation",
+        "CASE-HARNESS-L10-046-r04-046-oracle-missing",
+        "CASE-HARNESS-L10-046-r04-046-applicability-missing",
+        "CASE-HARNESS-L10-046-r04-046-source-revision-missing",
+        "CASE-HARNESS-L10-046-r04-oracle-conflict",
+        "CASE-HARNESS-L10-046-r04-oracle-stale",
+        "CASE-HARNESS-L10-046-r04-applicability-conflict",
+        "CASE-HARNESS-L10-046-r04-applicability-stale",
+        "CASE-HARNESS-L10-046-r04-source-revision-conflict",
+        "CASE-HARNESS-L10-046-r04-source-revision-stale",
+        "CASE-HARNESS-L10-046-r05-full-v-freeze-missing",
+        "CASE-HARNESS-L10-046-r05-nonscrum-scrum-obligations",
+        "CASE-HARNESS-L10-046-r05-slice-delta-missing",
+        "CASE-HARNESS-L10-046-r05-backfill-missing",
+        "CASE-HARNESS-L10-046-r05-sr4-receipt-missing",
+        "CASE-HARNESS-L10-046-r05-root-checkpoint-missing",
+        "CASE-HARNESS-L10-046-r06-slice-delta-not-returned",
+        "CASE-HARNESS-L10-046-r06-backfill-missing",
+        "CASE-HARNESS-L10-046-r06-applicability-unknown",
+        "CASE-HARNESS-L10-046-r10-transition-missing",
+        "CASE-HARNESS-L10-046-r10-loop-missing",
+        "CASE-HARNESS-L10-046-r10-terminal-missing",
+        "CASE-HARNESS-L10-046-r10-permission-missing",
+        "CASE-HARNESS-L10-046-r10-timeout-missing",
+        "CASE-HARNESS-L10-046-r10-notification-missing",
+        "CASE-HARNESS-L10-046-r10-audit-missing",
+        "CASE-HARNESS-L10-046-r10-data-missing",
+        "CASE-HARNESS-L10-046-r10-switching-missing",
+        "CASE-HARNESS-L10-046-r10-routing-missing",
+        "CASE-HARNESS-L10-046-r10-resource-allocation-missing",
+        "CASE-HARNESS-L10-046-r10-exception-missing"
+      ],
+      "raw_rows": [
+        {
+          "id": "CASE-HARNESS-L10-046-01",
+          "line": 865,
+          "literal": "| `CASE-HARNESS-L10-046-01` | `FR-HARNESS-L3-046` | `AC-HARNESS-L3-046-01` | Full V条件12項目の索引。transition=`CASE-HARNESS-L10-046-r10-transition-missing`、loop=`CASE-HARNESS-L10-046-r10-loop-missing`、terminal=`CASE-HARNESS-L10-046-r10-terminal-missing`、exception=`CASE-HARNESS-L10-046-r10-exception-missing`、permission=`CASE-HARNESS-L10-046-r10-permission-missing`、timeout=`CASE-HARNESS-L10-046-r10-timeout-missing`、notification=`CASE-HARNESS-L10-046-r10-notification-missing`、audit=`CASE-HARNESS-L10-046-r10-audit-missing`、data=`CASE-HARNESS-L10-046-r10-data-missing`、switching=`CASE-HARNESS-L10-046-r10-switching-missing`、routing=`CASE-HARNESS-L10-046-r10-routing-missing`、resource allocation=`CASE-HARNESS-L10-046-r10-resource-allocation-missing`。 | 索引のみ。各条件を個別に検査する。 | indexを数えず、Full V選択scopeの各参照先oracleを照合する。Production Scrum固有条件をFull Vへ適用しない。 |\n",
+          "raw_lf_sha256": "0e88c7721bfc2134d2f9b8dccae63820e096509f0a07554ea1f352fb6cb4d16f"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-02",
+          "line": 866,
+          "literal": "| `CASE-HARNESS-L10-046-02` | `FR-HARNESS-L3-046` | `AC-HARNESS-L3-046-02` | Production Scrum、許可済み合成内のScrum部分、Full Vのみを選択したscopeを比較する正常系index。 | 索引のみ。Full V freeze欠落は`CASE-HARNESS-L10-046-r05-full-v-freeze-missing`、Scrum非選択scopeへのScrum義務付与は`CASE-HARNESS-L10-046-r05-nonscrum-scrum-obligations`で個別に試す。 | Full VはL1〜L5 freezeを要しScrum delta/Reverse/SR0〜SR4を要求しない。indexを独立negativeに数えない。 |\n",
+          "raw_lf_sha256": "81ff12997abf1f45d460891b5519ad55329310751a5d10a9c374520af03d0ab0"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-03",
+          "line": 867,
+          "literal": "| `CASE-HARNESS-L10-046-03` | `FR-HARNESS-L3-046` | `AC-HARNESS-L3-046-03` | 選択済みScrum workflow/scopeの索引。単独欠落はslice delta=`CASE-HARNESS-L10-046-r05-slice-delta-missing`、L1–L5 backfill=`CASE-HARNESS-L10-046-r05-backfill-missing`、適用checkpoint=`CASE-HARNESS-L10-046-r05-root-checkpoint-missing`、SR4 receipt=`CASE-HARNESS-L10-046-r05-sr4-receipt-missing`。未見正常（AC-04）=`CASE-HARNESS-L10-046-root-r02-unseen-valid`。 | 索引のみ。 各欠落は一件ずつ変異する。 | 各IDの単独oracleで確認しindexをcoverageへ数えない。 |\n",
+          "raw_lf_sha256": "6f4535826f04a2f0cc012cd8c6133135e22063a27a909c1489f109833ce1b0fc"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-04",
+          "line": 908,
+          "literal": "| `CASE-HARNESS-L10-046-04` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | Production Scrumで選択したscope/revisionにおいて、slice delta、Reverse/backfill、適用trigger、SR0–SR4 checkpoint、SR4 pair-freeze receipt、workflow obligationを同一scopeで結ぶ正常fixture。 | 変異なし。 | 成立した正常fixtureとして記録する。scope外や別revisionのreceiptは流用しない。 |\n",
+          "raw_lf_sha256": "6dcb43092059deeeaf20b768df5df2db80446fd7372ebf58b48a7adb759edb57"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-05",
+          "line": 961,
+          "literal": "| `CASE-HARNESS-L10-046-05` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-04` | Scrum scopeと同じscope/revisionのworkflow obligation/pair evidenceを提示する正常fixture。 | slice単体成功による相殺はCASE-HARNESS-L10-046-r02-slice-only、一般V-pair流用はCASE-HARNESS-L10-046-r02-general-v-pairで独立に試す。 | 対象scope内の欠落義務のみ未完。 |\n",
+          "raw_lf_sha256": "5e3412f473c575880c90efab86a1d5a0fceac47e86ed1d2fa7a2081d43473b65"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-06",
+          "line": 962,
+          "literal": "| `CASE-HARNESS-L10-046-06` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-04` | coverage receiptはcoverage事実のまま保持する。 | 索引のみ。ticket発行とrelease許可生成は`CASE-HARNESS-L10-046-09`、`CASE-HARNESS-L10-046-10`で個別に試す。 | 状態/許可生成を拒否し、不足workflow/pair/oracleはHARNESS-L2-002/003または004/022の既存ownerへ戻す。indexを独立negativeに数えない。 |\n",
+          "raw_lf_sha256": "d4e614444c5e9b942090aeafd5784802c5a653f301d17833ec1cfe5cb570d8d4"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-07",
+          "line": 995,
+          "literal": "| `CASE-HARNESS-L10-046-07` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-04` | hidden transitionとslice deltaを選択scope/revision内の別要素として登録し、同scopeの適用oracleに沿う正常結果を得る。 | negativeは`CASE-HARNESS-L10-046-r10-exception-missing`、`CASE-HARNESS-L10-046-r02-other-revision-sr4`、`CASE-HARNESS-L10-046-r02-general-v-pair`で個別に確認する。AC-01のFull V条件欠落はAC-01 CASEへのcross-AC参照であり、このCASEの変異ではない。 | 選択scope内の結果だけを評価し、未見正常やselected Scrum scopeからID全体の成功を推定しない。AC-04未見正常は`CASE-HARNESS-L10-046-root-r02-unseen-valid`で別に確認する。 |\n",
+          "raw_lf_sha256": "3e8c61c21ad411152c69985e9db25533d121fb4949aedac6e3fc66de471f5f16"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-08",
+          "line": 996,
+          "literal": "| `CASE-HARNESS-L10-046-08` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-04` | workflow不整合、pair/oracle欠落をそれぞれ既存責務へ戻すmatrix。 | workflow→L2-002/003、pair/oracle→004/022の誤routeをCASE-HARNESS-L10-046-11、CASE-HARNESS-L10-046-12で個別に試す。 | 原因ごとのrouteのみを受理し、ownerを新設しない。 |\n",
+          "raw_lf_sha256": "d853bba7fe82afbbbff6dafbe48025ba601b592b0ee154218fb9275f2cae4348"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-09",
+          "line": 1090,
+          "literal": "| `CASE-HARNESS-L10-046-09` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-04` | coverage receiptを事実記録に限る。 | receiptからticketを発行する。 | ticket生成を拒否し既存OS boundaryへ戻す。 |\n",
+          "raw_lf_sha256": "6704af8746d5b9c811b084a5078c39ec9734459d0ee6ff3f92a8d827e3975f3b"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-10",
+          "line": 1091,
+          "literal": "| `CASE-HARNESS-L10-046-10` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-04` | coverage receiptを事実記録に限る。 | receiptからrelease許可を生成する。 | 許可生成を拒否しHARNESS-L2-002/003のworkflow契約ownerへ戻す。 |\n",
+          "raw_lf_sha256": "de9f69ec4b0fba73dab128a94200f943ef6a442da51bc912f0c4db2aaf02b68b"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-11",
+          "line": 1092,
+          "literal": "| `CASE-HARNESS-L10-046-11` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-04` | workflow/style contract不整合を既存L2-002/003へ戻す。 | workflow/style不整合をpair/oracle ownerへ返す。 | 誤routeを不合格としL2-002/003責務へ戻す。 |\n",
+          "raw_lf_sha256": "2ae1857a400303f6a6ff6df8f4e8d6677aa805e6beeb4b3a1b3a2a54883d20bb"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-12",
+          "line": 1093,
+          "literal": "| `CASE-HARNESS-L10-046-12` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-04` | pair/oracle不足を既存L2-004/022へ戻す。 | pair/oracle不足をworkflow ownerへ返す。 | 誤routeを不合格としL2-004/022責務へ戻す。 |\n",
+          "raw_lf_sha256": "6a4b0bf50beee8f7f48665b5a3b9fec4fb1ac2e311d5cb093f321c8946031198"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r02-slice-only",
+          "line": 1312,
+          "literal": "| `CASE-HARNESS-L10-046-r02-slice-only` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-04` | Scrum selected scopeのslice delta以外の義務も同revisionで揃う。 | slice単体成功だけを全scope完了としてclaim。 | 他義務の不足を相殺せずScrum scopeを未完に保つ。 |\n",
+          "raw_lf_sha256": "f32c939b463f42c8dc0f86881044c3dbb8fb1a98e0ef44dc9e66b1e765a4631b"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r02-other-revision-sr4",
+          "line": 1313,
+          "literal": "| `CASE-HARNESS-L10-046-r02-other-revision-sr4` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-04` | SR4 pair-freezeが対象revisionに結び付く。 | SR4だけを別revisionから流用。 | receiptを受領せず、対象revisionのpair evidenceを求める。 |\n",
+          "raw_lf_sha256": "357ff28ab0eae09b9ee52799c752a19c3ab38d732456514686edbdc34d086ee1"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r02-exception-missing",
+          "line": 1314,
+          "literal": "| `CASE-HARNESS-L10-046-r02-exception-missing` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-01` | 索引のみ。同じFull V exception条件欠落の `CASE-HARNESS-L10-046-r10-exception-missing` を参照。 | 索引のみ。 | `CASE-HARNESS-L10-046-r10-exception-missing` だけを独立fixtureへ計上し、Full V closure拒否とHARNESS-L2-002/003への返却をそこで照合する。 |\n",
+          "raw_lf_sha256": "ff5f6527f3c96a0a70560a5c540f0fab9e69027ac24ac8154a7c3fc6939096c8"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r02-general-v-pair",
+          "line": 1320,
+          "literal": "| `CASE-HARNESS-L10-046-r02-general-v-pair` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-04` | Scrum選択scopeの必要なSR4 pair evidenceを同revisionで結ぶ。 | 一般V-pair一覧だけをSR4 coverage receiptの代わりに使う。 | 不足を未完にし、HARNESS-L2-004/022の既存pair/oracle ownerへ戻す。ticket/release許可を生成しない。 |\n",
+          "raw_lf_sha256": "2cc027bf923f5bdccf9d4ecf37fea2134011cf76f872d8854dc6b38f1b2b1af5"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-root-r02-unseen-valid",
+          "line": 1327,
+          "literal": "| `CASE-HARNESS-L10-046-root-r02-unseen-valid` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-04` | 事前fixtureにないtransition・exception・slice deltaでも、選択scopeのworkflow契約・source revision・必要pair/oracleに適合する。 | 未見という理由だけで候補を拒否する。 | 一律拒否を不成立とし、適合する候補を受け入れる。下流実行の成功は生成しない。 |\n",
+          "raw_lf_sha256": "94713af5651ff8ef4a5ccdb5be5b94f7a8c7ead97a17cc75c15d2f5163c9b4d9"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-root-r02-scope-extrapolation",
+          "line": 1328,
+          "literal": "| `CASE-HARNESS-L10-046-root-r02-scope-extrapolation` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-04` | 選択scope/revision内のworkflow coverageを保持する。 | 別scopeの未評価義務へ成功を流用する。 | 流用を拒否し、002/003のworkflow契約ownerへ未完義務を返す。 |\n",
+          "raw_lf_sha256": "c66ee729cdaa74dda19ed3261b9516a6f41acb133dcd5e48c540ba867e559439"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r04-046-oracle-missing",
+          "line": 1439,
+          "literal": "| `CASE-HARNESS-L10-046-r04-046-oracle-missing` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | 選択workflow/scope、oracle以外の適用性とsource revision、他の正常条件はcurrent。 | oracleだけをmissingにする。 | unknown/未評価を保持し、HARNESS-L2-004/022の既存oracle ownerへ戻す。 |\n",
+          "raw_lf_sha256": "15370644e5b406ab524674fc6a41e47d53cfaa9323fa99e5ab891f70ed53d300"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r04-046-applicability-missing",
+          "line": 1440,
+          "literal": "| `CASE-HARNESS-L10-046-r04-046-applicability-missing` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | 選択workflow/scope、適用性以外のoracleとsource revision、他の正常条件はcurrent。 | applicabilityだけをmissingにする。 | unknown/未評価を保持し、HARNESS-L2-002/003の既存workflow applicability ownerへ戻す。 |\n",
+          "raw_lf_sha256": "1ec908bb2f7eef2581c20466ea36ec0444fbfac4a5727937a9b5c25980332232"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r04-046-source-revision-missing",
+          "line": 1441,
+          "literal": "| `CASE-HARNESS-L10-046-r04-046-source-revision-missing` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | 選択workflow/scope、source identity、他のfield/oracle/applicabilityはcurrent。 | source revisionだけをmissingにする。 | unknown/未評価を保持し、選択source identityの既存ownerへ戻す。source ownerを特定できなければunknownを維持する。 |\n",
+          "raw_lf_sha256": "7fd57c0b1384132aa5e8897462464349424a07f1a7dc2002b66e7382a23c21a5"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r04-oracle-conflict",
+          "line": 1483,
+          "literal": "| `CASE-HARNESS-L10-046-r04-oracle-conflict` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | 同一選択workflow scopeでoracle、適用性、source revisionのうち変異対象以外はcurrent。 | oracleだけをconflictへ変異。 | unknown/未評価としてHARNESS-L2-004/022の既存oracle ownerへ戻し、適用scopeを超える評価をしない。 |\n",
+          "raw_lf_sha256": "fa57987dea68db0efa274dc10c7fb544577e625d58021c095e9ae6890a74d4b1"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r04-oracle-stale",
+          "line": 1484,
+          "literal": "| `CASE-HARNESS-L10-046-r04-oracle-stale` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | 同一選択workflow scopeでoracle、適用性、source revisionのうち変異対象以外はcurrent。 | oracleだけをstaleへ変異。 | unknown/未評価としてHARNESS-L2-004/022の既存oracle ownerへ戻し、適用scopeを超える評価をしない。 |\n",
+          "raw_lf_sha256": "ab55c84d63a6632b4ce76c763cd11fcec795a061eeedc2d76824cd76d104b42b"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r04-applicability-conflict",
+          "line": 1485,
+          "literal": "| `CASE-HARNESS-L10-046-r04-applicability-conflict` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | 同一選択workflow scopeでoracle、適用性、source revisionのうち変異対象以外はcurrent。 | applicabilityだけをconflictへ変異。 | unknown/未評価としてHARNESS-L2-002/003の既存workflow applicability ownerへ戻し、適用scopeを超える評価をしない。 |\n",
+          "raw_lf_sha256": "61e9b32c32b612d02ee4a676535240a97654a4f512ca31ac796b2b0920a51886"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r04-applicability-stale",
+          "line": 1486,
+          "literal": "| `CASE-HARNESS-L10-046-r04-applicability-stale` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | 同一選択workflow scopeでoracle、適用性、source revisionのうち変異対象以外はcurrent。 | applicabilityだけをstaleへ変異。 | unknown/未評価としてHARNESS-L2-002/003の既存workflow applicability ownerへ戻し、適用scopeを超える評価をしない。 |\n",
+          "raw_lf_sha256": "8b3fb0375d0fbce070887d8d1db39828f83533c6519b0fd1f50c0fb29a24740d"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r04-source-revision-conflict",
+          "line": 1487,
+          "literal": "| `CASE-HARNESS-L10-046-r04-source-revision-conflict` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | 同一選択workflow scopeでoracle、適用性、source revisionのうち変異対象以外はcurrent。 | source revisionだけをconflictへ変異。 | unknown/未評価として選択sourceの既存owner（identity不明ならunknown）へ戻し、適用scopeを超える評価をしない。 |\n",
+          "raw_lf_sha256": "3acec922c90789c8881b01e2ccdc25325a17000d4de528ec0c40385286a3adfd"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r04-source-revision-stale",
+          "line": 1488,
+          "literal": "| `CASE-HARNESS-L10-046-r04-source-revision-stale` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | 同一選択workflow scopeでoracle、適用性、source revisionのうち変異対象以外はcurrent。 | source revisionだけをstaleへ変異。 | unknown/未評価として選択sourceの既存owner（identity不明ならunknown）へ戻し、適用scopeを超える評価をしない。 |\n",
+          "raw_lf_sha256": "cdd468a6b09b81715c4fc6836e42ef653a22b7aeac8fca16d24e65f50c4c2535"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r05-full-v-freeze-missing",
+          "line": 1518,
+          "literal": "| `CASE-HARNESS-L10-046-r05-full-v-freeze-missing` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-02` | Full Vで適用するL1〜L5設計層の段階freezeを同revisionで揃える。 | 適用L1〜L5 freezeだけを欠落させる。 | Full V closureを未完に保つ。HARNESS-L2-002/003のworkflow ownerへ戻す。Scrum receiptは要求しない。 |\n",
+          "raw_lf_sha256": "7ccd01d3a36576d272fcaf87a1ec0a56bf97f94d3213ebaf9e7b81b64fe8c843"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r05-nonscrum-scrum-obligations",
+          "line": 1519,
+          "literal": "| `CASE-HARNESS-L10-046-r05-nonscrum-scrum-obligations` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-02` | Full VまたはScrum非選択scopeで、その方式に適用する条件だけを照合する。 | Scrum非選択scopeだけへslice delta/Reverse/SR4 receiptを追加必須化する。 | 過剰適用を拒否し、非選択scopeへScrum条件を要求しない。 |\n",
+          "raw_lf_sha256": "f81465004ec304ea70ba511dbc739b92df3976f8df424aaf6a1e90cea26d85b3"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r05-slice-delta-missing",
+          "line": 1520,
+          "literal": "| `CASE-HARNESS-L10-046-r05-slice-delta-missing` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | 選択Scrum scopeのdelta、trigger、Reverse/backfill、SR4 receiptを同revisionで結ぶ。 | slice deltaだけを欠落させる。 | 当該Scrum scopeを未完に保ち、HARNESS-L2-002/003のworkflow ownerへ戻す。 |\n",
+          "raw_lf_sha256": "9deb05acd154fb0c1fe16594678ca71c3913f54056c7a4ca358481913f07c59b"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r05-backfill-missing",
+          "line": 1521,
+          "literal": "| `CASE-HARNESS-L10-046-r05-backfill-missing` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | 選択Scrum scopeのdelta、trigger、Reverse/backfill、SR4 receiptを同revisionで結ぶ。 | L1〜L5 workflow/design backfillだけを欠落させる。 | 当該Scrum scopeを未完に保ち、HARNESS-L2-002/003のworkflow ownerへ戻す。 |\n",
+          "raw_lf_sha256": "eb288648fd595fc158e5940f9bd47e096655b6f10129fd1177f9020fb0c725aa"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r05-sr4-receipt-missing",
+          "line": 1522,
+          "literal": "| `CASE-HARNESS-L10-046-r05-sr4-receipt-missing` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | 選択Scrum scopeで必要triggerに対応するSR4 pair-freeze receiptを同revisionへ結ぶ。 | SR4 receiptだけを欠落させる。 | Scrum scopeをrelease-ready候補にせず、HARNESS-L2-004/022の既存pair/oracle ownerへ戻す。 |\n",
+          "raw_lf_sha256": "10f944743796482a33038f087fb05bd8aadda110d26c5cc28b5db731282bcdc2"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r05-root-checkpoint-missing",
+          "line": 1648,
+          "literal": "| `CASE-HARNESS-L10-046-r05-root-checkpoint-missing` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | 選択Scrum scopeで既存triggerにより必要とされたcheckpointとdelta/Reverse/backfill/SR4 evidenceを同revisionへ結ぶ。 | 適用するcheckpoint一件の根拠だけを欠落させる。他義務は保持。 | 当該Scrum scopeを未完に保ち002/003 workflow ownerへ戻す。未選択checkpointや他styleへ条件を追加しない。 |\n",
+          "raw_lf_sha256": "00ef5fbc3d8e6407afe9513edbf5f750a6564474901f58e90ca31bb27cd1e79d"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r06-slice-delta-not-returned",
+          "line": 1680,
+          "literal": "| `CASE-HARNESS-L10-046-r06-slice-delta-not-returned` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | 選択Scrum scopeで適用slice deltaが固定workflowへ結ばれる。 | slice deltaだけsystem workflowへ戻さない。 | 合流を保留し、deltaを002/003 workflow ownerへ返す。 |\n",
+          "raw_lf_sha256": "e2c2f71c9919ce8166565b43ce633072c6989b4c53f6152c9f5f8428f03ca116"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r06-backfill-missing",
+          "line": 1681,
+          "literal": "| `CASE-HARNESS-L10-046-r06-backfill-missing` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | `CASE-HARNESS-L10-046-r05-backfill-missing`の索引参照。 | 独立変異として数えない。 | backfill欠落の単独oracleは参照先で照合し、重複計上しない。 |\n",
+          "raw_lf_sha256": "d7940f8a60ad29dd23d2ed6d5a183f3275d5921bdfb78875753e9cf49796e912"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r06-applicability-unknown",
+          "line": 1682,
+          "literal": "| `CASE-HARNESS-L10-046-r06-applicability-unknown` | `FR-HARNESS-L3-046` / `AC-HARNESS-L3-046-03` | selected source/workflow revisionと適用義務はcurrent。 | 適用根拠だけをunknownにする。 | 別revisionまたは別scopeへの外挿を止め、unknown/未評価を保持する。HARNESS-L2-002/003の既存workflow ownerへ適用根拠を戻す。 |\n",
+          "raw_lf_sha256": "c5636a5f354b1cc6c7a40f6f6d8728930fe7e4c354c1c652256aace2194c13bf"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-transition-missing",
+          "line": 1972,
+          "literal": "| `CASE-HARNESS-L10-046-r10-transition-missing` | `FR-HARNESS-L3-046` | `AC-HARNESS-L3-046-01` | Full V選択scope/revisionでtransition条件とoracleが適用され、他の11条件もcurrentである。 | transition条件だけを欠落させる。 | transition条件だけをunknown/未完として記録し、Full V closureを主張しない。workflow/style条件はHARNESS-L2-002/003の既存ownerへ返す。 |\n",
+          "raw_lf_sha256": "d6416b3fce4cb538db4a7fefd135967947cb1408c1bc0c8b1118d98bfc0cb076"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-loop-missing",
+          "line": 1973,
+          "literal": "| `CASE-HARNESS-L10-046-r10-loop-missing` | `FR-HARNESS-L3-046` | `AC-HARNESS-L3-046-01` | Full V選択scope/revisionでloop条件とoracleが適用され、他の11条件もcurrentである。 | loop条件だけを欠落させる。 | loop条件だけをunknown/未完として記録し、Full V closureを主張しない。workflow/style条件はHARNESS-L2-002/003の既存ownerへ返す。 |\n",
+          "raw_lf_sha256": "04b613de12710fc0726f61b760729c08fb63148bd27a1c1ff492d777b8024009"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-terminal-missing",
+          "line": 1974,
+          "literal": "| `CASE-HARNESS-L10-046-r10-terminal-missing` | `FR-HARNESS-L3-046` | `AC-HARNESS-L3-046-01` | Full V選択scope/revisionでterminal条件とoracleが適用され、他の11条件もcurrentである。 | terminal条件だけを欠落させる。 | terminal条件だけをunknown/未完として記録し、Full V closureを主張しない。workflow/style条件はHARNESS-L2-002/003の既存ownerへ返す。 |\n",
+          "raw_lf_sha256": "ef427301dacba743aab3bd4610fbb67a85ebd67991c91a6a00d3e0d924a4ac2b"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-permission-missing",
+          "line": 1975,
+          "literal": "| `CASE-HARNESS-L10-046-r10-permission-missing` | `FR-HARNESS-L3-046` | `AC-HARNESS-L3-046-01` | Full V選択scope/revisionでpermission条件とoracleが適用され、他の11条件もcurrentである。 | permission条件だけを欠落させる。 | permission条件だけをunknown/未完として記録し、Full V closureを主張しない。workflow/style条件はHARNESS-L2-002/003の既存ownerへ返す。 |\n",
+          "raw_lf_sha256": "5f5f582dd4d56f2b302557be4d7db78eaea7d6b9b83f2cd553685fa1c479382f"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-timeout-missing",
+          "line": 1976,
+          "literal": "| `CASE-HARNESS-L10-046-r10-timeout-missing` | `FR-HARNESS-L3-046` | `AC-HARNESS-L3-046-01` | Full V選択scope/revisionでtimeout条件とoracleが適用され、他の11条件もcurrentである。 | timeout条件だけを欠落させる。 | timeout条件だけをunknown/未完として記録し、Full V closureを主張しない。workflow/style条件はHARNESS-L2-002/003の既存ownerへ返す。 |\n",
+          "raw_lf_sha256": "894f4dfb47bfb9282ef6468fa8c7ae1743b6d9f8a3355e5f48c738d0422f1940"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-notification-missing",
+          "line": 1977,
+          "literal": "| `CASE-HARNESS-L10-046-r10-notification-missing` | `FR-HARNESS-L3-046` | `AC-HARNESS-L3-046-01` | Full V選択scope/revisionでnotification条件とoracleが適用され、他の11条件もcurrentである。 | notification条件だけを欠落させる。 | notification条件だけをunknown/未完として記録し、Full V closureを主張しない。workflow/style条件はHARNESS-L2-002/003の既存ownerへ返す。 |\n",
+          "raw_lf_sha256": "6a413c777ece2c2178b62ab0a0235c9c12f0bbdc17197856a1398b711c8639d3"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-audit-missing",
+          "line": 1978,
+          "literal": "| `CASE-HARNESS-L10-046-r10-audit-missing` | `FR-HARNESS-L3-046` | `AC-HARNESS-L3-046-01` | Full V選択scope/revisionでaudit条件とoracleが適用され、他の11条件もcurrentである。 | audit条件だけを欠落させる。 | audit条件だけをunknown/未完として記録し、Full V closureを主張しない。workflow/style条件はHARNESS-L2-002/003の既存ownerへ返す。 |\n",
+          "raw_lf_sha256": "4ef8dc10523895369f684160da656dccefb0b47a583b052c4871a2a905e87f60"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-data-missing",
+          "line": 1979,
+          "literal": "| `CASE-HARNESS-L10-046-r10-data-missing` | `FR-HARNESS-L3-046` | `AC-HARNESS-L3-046-01` | Full V選択scope/revisionでdata条件とoracleが適用され、他の11条件もcurrentである。 | data条件だけを欠落させる。 | data条件だけをunknown/未完として記録し、Full V closureを主張しない。workflow/style条件はHARNESS-L2-002/003の既存ownerへ返す。 |\n",
+          "raw_lf_sha256": "5be6563294308fc109ed9a48afd8e20858509e124ab1e4439ddba44d1074c5da"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-switching-missing",
+          "line": 1980,
+          "literal": "| `CASE-HARNESS-L10-046-r10-switching-missing` | `FR-HARNESS-L3-046` | `AC-HARNESS-L3-046-01` | Full V選択scope/revisionでswitching条件とoracleが適用され、他の11条件もcurrentである。 | switching条件だけを欠落させる。 | switching条件だけをunknown/未完として記録し、Full V closureを主張しない。workflow/style条件はHARNESS-L2-002/003の既存ownerへ返す。 |\n",
+          "raw_lf_sha256": "fd3cd86303942ae4030520506ee9a7460afb801ea74f3c1d1b92050df8e55b06"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-routing-missing",
+          "line": 1981,
+          "literal": "| `CASE-HARNESS-L10-046-r10-routing-missing` | `FR-HARNESS-L3-046` | `AC-HARNESS-L3-046-01` | Full V選択scope/revisionでrouting条件とoracleが適用され、他の11条件もcurrentである。 | routing条件だけを欠落させる。 | routing条件だけをunknown/未完として記録し、Full V closureを主張しない。workflow/style条件はHARNESS-L2-002/003の既存ownerへ返す。 |\n",
+          "raw_lf_sha256": "229556eabcecf5c9f9822bfd3aeda35946399d88e5b59f7299dc400316e9b3dc"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-resource-allocation-missing",
+          "line": 1982,
+          "literal": "| `CASE-HARNESS-L10-046-r10-resource-allocation-missing` | `FR-HARNESS-L3-046` | `AC-HARNESS-L3-046-01` | Full V選択scope/revisionでresource allocation条件とoracleが適用され、他の11条件もcurrentである。 | resource allocation条件だけを欠落させる。 | resource allocation条件だけをunknown/未完として記録し、Full V closureを主張しない。workflow/style条件はHARNESS-L2-002/003の既存ownerへ返す。 |\n",
+          "raw_lf_sha256": "d6eda7ab1106a28407c8fd09d4b198a6982012bd80cf41f95845a9bc79f40bdb"
+        },
+        {
+          "id": "CASE-HARNESS-L10-046-r10-exception-missing",
+          "line": 1983,
+          "literal": "| `CASE-HARNESS-L10-046-r10-exception-missing` | `FR-HARNESS-L3-046`|`AC-HARNESS-L3-046-01`| Full V選択scope/revisionとL1–L5 freezeを固定し、exception条件とそのoracleが適用され、他の11条件とoracleもcurrentである。 | exception条件だけを欠落させる。 | exception coverageを未完にしFull V closureを主張しない。workflow/style条件の不足はHARNESS-L2-002/003へ戻す（L2:1031/1034、L11:763/771）。 |\n",
+          "raw_lf_sha256": "00fa5d97369adf168363cfaa7d71d5e33db7356bd9bb8f2b4152b09238ca02e7"
+        }
+      ],
+      "old_ids_preserved_in_current": true
+    },
+    "prior_audit_reported_all_raw_literals_rechecked_in_source": true,
+    "worker_rechecked_all_48_source_literals": false
+  },
+  "fixed_parent_source_pins": {
+    "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+    "pins": [
+      {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "lines": [
+          1034,
+          1034
+        ],
+        "full_bytes": 254934,
+        "full_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "raw_lf_span_bytes": 551,
+        "raw_lf_span_sha256": "971ddcb4d1f911382e0e5d5f72e04f68fb33386b503f729af12df9dc68d0280f",
+        "literal": "- **適合・不明時**：Full V scopeではsystem workflowまたは列挙条件の適用・検証関係が不明ならcoverage未完またはunknownとするが、Scrumのslice/backfill/SR4条件を適用しない。Production Scrumが選択・合成適用されるscopeでbackfill対象・時点・SR4 receiptが不明／欠落している場合はScrum scopeのcoverage未完またはunknownとし、当該scopeをrelease-readyと主張できない。既存のSR0〜SR4/checkpointの適用条件に不明があればHARNESS-L2-002/003へ返す。\n"
+      },
+      {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "lines": [
+          765,
+          767
+        ],
+        "full_bytes": 172806,
+        "full_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "raw_lf_span_bytes": 1588,
+        "raw_lf_span_sha256": "2c629374a79b0d8a77808364c71dce0c956dcc7d335fe2051ffe3e89f8b6a8df",
+        "literal": "**Production Scrumを含むscopeの正常例**：Production Scrumを選択したscope、または2026-09-25 PO判断に基づき許可された方式合成のうちL2-002/003でScrumを適用する部分に、system workflowから切り出したslice deltaを先行適用する。既存triggerに従い、sprint review時またはrelease合流前にScrum Reverseがsystem workflowと該当L1〜L5設計資産へbackfillし、SR4 pair-freezeを得たScrum scopeだけをrelease-ready候補にできることを確認する。SR0〜SR4を要する既存checkpoint triggerが成立するscopeでは各段階とreceiptを別々に確認し、SR4 receiptが欠けるScrum scopeをrelease-readyとしない。方式定義・合成許可、L3までの共通工程とtrigger条件は変更しない。\n\n**誤りを含む例**：Full V scopeで適用するL1〜L5層の段階的freezeを欠く、system workflowのtransition等の適用条件を未検証のまま全体完了とする例は不成立またはunknownにする。Full VにScrum slice deltaやSR4 receiptがないことだけを理由に不成立とする判定は過剰適用であり、認めない。Production Scrumを選択・合成適用するscopeでは、slice deltaをsystem workflowへ戻さないままsprint reviewまたはrelease合流を進める、該当L1〜L5設計資産のbackfillを欠く、または必要なSR4 receiptなしにrelease-readyとする例を不成立またはunknownにする。slice単体の成功、一般的なV-pair一覧、別revisionのSR4 receiptでScrum scopeの不足を相殺しない。\n"
+      },
+      {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "lines": [
+          771,
+          771
+        ],
+        "full_bytes": 172806,
+        "full_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "raw_lf_span_bytes": 320,
+        "raw_lf_span_sha256": "94075306c100c42c8d784a42faeefa6a1bd1d86c92d17776bc83d9a08cc681f3",
+        "literal": "**戻し先と境界**：workflow semanticsまたはstyle適用条件の不足はHARNESS-L2-002/003、検証義務・pair oracleの不足はHARNESS-L2-004/022へ戻す。OS ticket、workflow instance、保存state、runtimeをこの候補の成果とせず、L11例は利用者受入の実行結果を生成しない。\n"
+      }
+    ]
+  },
+  "prior_audit_immutability": {
+    "prior_audit_paths_checked": [
+      {
+        "path": "docs/governance/audits/requirements-stage/harness-stage3-parent034-review02-disposition-2026-10-06-0460c9b35.json",
+        "parent_sha256": "2196e421f096e69da7c8a5730b1c29962559e19df38f7fb200d0270c05f0f7fe",
+        "head_sha256": "2196e421f096e69da7c8a5730b1c29962559e19df38f7fb200d0270c05f0f7fe",
+        "unchanged": true
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/harness-stage3-parent034-review02-disposition-2026-10-06-0460c9b35.md",
+        "parent_sha256": "ad2ac7314e8b0c64f42b6304b55b6ae660706b2e945c038538c3a03c67e8ea9b",
+        "head_sha256": "ad2ac7314e8b0c64f42b6304b55b6ae660706b2e945c038538c3a03c67e8ea9b",
+        "unchanged": true
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/os046-authority-interpretation-correction-2026-10-02.json",
+        "parent_sha256": "b4845655c80818c2c3237477a53d041dcba16bf39836854e3ff25cb5cb2072f5",
+        "head_sha256": "b4845655c80818c2c3237477a53d041dcba16bf39836854e3ff25cb5cb2072f5",
+        "unchanged": true
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/os046-authority-interpretation-correction-2026-10-02.md",
+        "parent_sha256": "05bedf8ceb1742d3919d752d54fafa8c23a0b7066a5f5c5f4f8f98f27e1d6f11",
+        "head_sha256": "05bedf8ceb1742d3919d752d54fafa8c23a0b7066a5f5c5f4f8f98f27e1d6f11",
+        "unchanged": true
+      }
+    ],
+    "unchanged_all": true,
+    "governance_audit_paths_changed_in_body_commit": false
+  },
+  "independent_scope_limit": {
+    "review01_raw_R1_R7_preserved": true,
+    "R2_R7_reclassified_or_closed": false,
+    "M1_independent_closure": false,
+    "R1_independent_closure": false,
+    "PO_or_L3_approval": false,
+    "fixture_runtime_test_CI_execution": false,
+    "consumer_completeness_beyond_existing_bounded_pins": false
+  }
+}

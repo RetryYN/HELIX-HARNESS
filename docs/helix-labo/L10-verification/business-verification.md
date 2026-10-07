@@ -193,3 +193,11 @@
 | 失効・unknown | 記録済みmajor missまたはmodel updateによる資格対象の失効と、根拠不備/不一致によるunknownを区別する | 資格失効をpermission失効へ伝播させない。owner不明はunknownのまま |
 
 表は受渡し設計であり、利用者benefit、資格完了、permission、assignment、実行許可またはPO承認の証拠ではない。
+
+### HELIXLABO-L2-066 — 既存比較business outcomeとの対応確認
+
+状態：未承認のL10候補。version_target: `1.0`。固定L2/L11は要件authority、POのL2採択は親のauthority登録であり、本候補からL3承認・実装・比較run・実測合格を生成しない。
+
+固定L2/L11から独立のbusiness outcome/ownerは導かれないため、独立BV/AC/BCASEを追加しない。L2-066が定める同条件比較の成果を、L3 functional requirementの `LABO-066-AC-01`〜`LABO-066-AC-03` に従って [L10 functional verification](functional-verification.md) で照合する。
+
+`LABO-066-BV-01` は独立成果判定ではなく、同じ比較材料（misrepair_count/N、unresolved_count/N、L2-059由来の費用・時間・手戻り）が固定scopeとsource receiptに追跡可能なことを記録する参照項目である。計測結果から効果達成、採択、実装、run許可、業務完了を生成しない。L10検証は未実行。
