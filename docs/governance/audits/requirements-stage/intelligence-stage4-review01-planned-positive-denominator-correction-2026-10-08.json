@@ -1,0 +1,70 @@
+{
+  "record_type": "intelligence-stage4-review01-planned-positive-denominator-correction",
+  "authority_effect": "none",
+  "formal_review": {
+    "comment_id": 6044673089,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2678#issuecomment-6044673089",
+    "raw_body_bytes_utf8": 6140,
+    "raw_body_sha256": "6e337ab76d1b2ff734bad4a2a8f2243c832f1dfcb536a03638f2cf143c09ce24",
+    "reviewed_head": "006f2f29b3c7b3bec8b534e2149e14cee36c956d",
+    "base": "5857c0a396cb24a23d765e3079a18a2367b6d078"
+  },
+  "fixed_parent_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+  "scope": {
+    "mechanism": "HELIX-INTELLIGENCE",
+    "stage": 4,
+    "files_changed": [
+      "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "docs/helix-intelligence/L10-verification/nfr-verification.md"
+    ],
+    "cases_changed": false,
+    "other_stages_changed": false
+  },
+  "corrections": {
+    "M1": "planned positive required-field denominator includes all planned positive runs; unexecuted/unobservable positives remain in the denominator, contribute no numerator/success, and are separately counted; L3 and L10 synchronized.",
+    "m2": "wrong-bind counts include observed binding errors regardless of positive/negative classification.",
+    "m3": "L10 NFR-INT-045-01 row now references CASE-INT-045-02a, -03, and -04a in addition to existing references.",
+    "045_history": {
+      "review04_correction": "docs/governance/audits/requirements-stage/l3-l10-intelligence-stage4-review04-correction-2026-10-06.md:26 says direct-route 02k remains measured.",
+      "review05_correction": "docs/governance/audits/requirements-stage/l3-l10-intelligence-stage4-review05-correction-2026-10-06.md:18 says 04b and direct-route 02k denominator inclusion was maintained.",
+      "current_classification_reason": {
+        "CASE-INT-045-02k": "target/owner/revision are correctly bound; direct route is a separate negative oracle in FV:1280, not detected by normal source-bound coverage.",
+        "CASE-INT-045-04b": "target is known and owner is unknown; correct hold/query is a negative oracle, and treating it as normal coverage would lower the coverage candidate for a correct hold."
+      }
+    }
+  },
+  "legacy_source": {
+    "asset_id": "LEGACY-ASSET-DB669724249A14A665F0",
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+    "sha256": "2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d",
+    "lines": ["21-34", "58-81"],
+    "disposition": "docs/governance/legacy-asset-disposition.jsonl:350",
+    "reuse": "Trait→measurement→acceptance structure only; IPA grade/thresholds/runtime/CI not reused. Current split rederived from fixed L2/L11 and current L3/L10 oracle."
+  },
+  "six_document_sha256": {
+    "before_head_006f2f29": {
+      "docs/helix-intelligence/L3-requirements/business-requirements.md": "026d95fbf023ef384834ebd3b215a469f2fea648190d15d45494b5ea4cc91959",
+      "docs/helix-intelligence/L3-requirements/functional-requirements.md": "01ceffadc184ead3c5a73e4df4f308610394590630c222a53930e4857ee71c5a",
+      "docs/helix-intelligence/L3-requirements/nfr-grade.md": "c6407848a70cb4dc0c85fd24055f1f0726fe890b96d4608542a135ae8ba49ed5",
+      "docs/helix-intelligence/L10-verification/business-verification.md": "b476b0939b7da50cf75db66d235095f94e591ac929ef046721224b5112d04552",
+      "docs/helix-intelligence/L10-verification/functional-verification.md": "aa6cb83a2eaeeaf0d4d0fd955698e5071e27c81232ba43a1c3af94918fbccc77",
+      "docs/helix-intelligence/L10-verification/nfr-verification.md": "9675fe8ee19a1f3e910b8f73fa37d0e767f7df1381b3a4f6a79a43542ad91851"
+    },
+    "after_worktree": {
+      "docs/helix-intelligence/L3-requirements/business-requirements.md": "026d95fbf023ef384834ebd3b215a469f2fea648190d15d45494b5ea4cc91959",
+      "docs/helix-intelligence/L3-requirements/functional-requirements.md": "01ceffadc184ead3c5a73e4df4f308610394590630c222a53930e4857ee71c5a",
+      "docs/helix-intelligence/L3-requirements/nfr-grade.md": "b26a93177d8857cfe9dba92a37ccf6153d1fb5cdf08e5b808e0b3d94ef8b42c1",
+      "docs/helix-intelligence/L10-verification/business-verification.md": "b476b0939b7da50cf75db66d235095f94e591ac929ef046721224b5112d04552",
+      "docs/helix-intelligence/L10-verification/functional-verification.md": "aa6cb83a2eaeeaf0d4d0fd955698e5071e27c81232ba43a1c3af94918fbccc77",
+      "docs/helix-intelligence/L10-verification/nfr-verification.md": "a8008b4ed973d43ff20952a496db241da1dcb438cd79056a55ae24dd30ea1e5e"
+    }
+  },
+  "validation": {
+    "git_diff_check": "passed",
+    "static_formula_and_case_reference_check": "passed: all six before/after SHA values recomputed; planned positive denominator, numerator exclusion/counting, wrong-bind scope, and NFR-045 CASE references checked",
+    "l10_execution": "not performed",
+    "runtime_tests_old_ci": "not run",
+    "independent_review": "pending",
+    "po_post_confirmation": "not performed"
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "record_type": "os_stage3_parent036_review02_delegated_decision_pin",
+  "authority_effect": "none_pending_condition3_and_main_admission",
+  "scope": {
+    "mechanism": "HELIX-OS",
+    "stage": 3,
+    "parents": [
+      "HELIXOS-L2-036"
+    ],
+    "version": "1.0"
+  },
+  "review": {
+    "formal_comment_id": 6045205061,
+    "formal_body_raw": "## review02（HEAD 091624f2366a36c24ab0fb887375930821a028d5 / base c9e73bcc367a9d5203c92ef9775511013da4f85d）— Claude review_merge\n\n### 結論：Major 0。同じ本文revisionで、委任条件1（Opus）と条件2（Fable「承認してよい」）が成立\n- OpusとFableが、このrevisionを独立に読みました。どちらもMajorなしで、承認してよいと判断しました。\n- 判断記録と6本文pinを追加した後に、条件3を別に照合します。旧reviewの判断は継承していません。\n\n### review01の解消\n**M1（解消）**\n- `nfr-grade.md:91` は、base `5857c0a39` の3列（coverage 100%、根拠「plan前だけではapply前driftを見逃す。通常operationへ拡張しない。」、計測「複数upgrade ticket fixtureで…欠落0」）を逐語で保持しています。非upgradeを別群として数える文は、その後ろに追記されています。\n- `nfr-verification.md:81` も、base「複数upgrade ticketの全Retrofit upgradeごとに…upgrade単位境界網羅率・stale pass数。」を逐語で保持し、その後ろに追記しています。\n- main側（5857..c9e73）では、これらの行は変わっていません。\n\n**M2（解消）**\n- CASE-036-08b（FV:696）の戻し先は、次の2つに分かれました。どちらも固定L2:1053（`633bf12`）のカテゴリ内です。\n  - 選択済みpolicyが欠けた場合：「HARNESS-L2-005 owner」\n  - policyのsource自体が不明な場合：「source/domain owner」\n- 次の3か所で、供給者（HARNESS-L2-005の選択）とOSの役割（保持と戻し）を区別しています。\n  - AC-03（FR:268）\n  - 08b\n  - 追補監査\n\n**Minor**\n- CASE-07は「いずれも省略せず保持する。既存の未完義務・検証状態を失わない。」になりました。新しい記録義務とは読めなくなり、L11:634の「維持する」と同じ保持oracleです。\n- AC-03の保留範囲と、監査のbase・decisionのpathは、追補監査に記録されました。\n\n### 照合・静的検査\n- **固定親との一致**：L2:1033–1064（`1db82b6f…`）とL11:624–636（`25b0a97d…`）は、HEADでも固定親と同じbytesです。\n- **新しい戻し先の根拠**：HARNESS-L2-005:56のspan（`6d4ca115…`）も実bytesと一致しました。\n- **6本文**：bytes数とSHAは、追補監査の記載と一致しました。\n\n| 本文 | bytes | SHA-256 |\n|---|---:|---|\n| BR | 20,354 | `cbe1866d…` |\n| FR | 201,811 | `68bf9544…` |\n| NFR | 33,002 | `d4e76c3d…` |\n| BV | 17,774 | `f785e13a…` |\n| FV | 241,506 | `2c2ce953…` |\n| NFRV | 29,758 | `156c0b6c…` |\n\n- **review01 comment**：本文は6,402 bytes、SHA `6d5912c4…` で、記載と一致しました。\n- **mainの取り込み**：取り込んだ後も、OSの本文は修正commitの時点から変わっていません。\n- **静的検査**：`scfctl validate` 147/0、`stale=0`、`git diff --check` が通りました。\n\n### 返さない所見（Minor。承認は止めず、解消済みとは扱いません）\n1. **policyの選択主体が固定親に明記されていない**\n   - 固定L2/L11は「他のread-only verify policy」をHARNESS verification dutiesと並べて書いていますが、その選択主体がHARNESS-L2-005だとは明記していません。\n   - AC-03と08bの「HARNESS-L2-005の選択により」は、L2:1053の戻し先区分とHARNESS-L2-005:56の責務から導いた読みです。この読みは、pinを付けて追補監査に記録されています。\n2. **08bのsource不明の分岐が発火しない**\n   - 08bの「source自体が不明なら…」は、記述された単独変異（選択済みpolicyを1つ抑止する）では発火しない条件節です。\n   - 次の修正で、別のfixtureとして独立させるかどうかを整理してください。\n3. **追補監査の基点の表記**\n   - 追補監査の基点の表記（「PR base 5857c0a」）は、現在のmerge-base `c9e73bc` と違います。\n   - 両者の間でOSの036行は変わっていないので、主張は成り立ちます。\n\n### 未確認範囲\n- fixtureは実行していません。\n- HARNESS-L2-005の他のconsumerと、他のStage 3親は見ていません。\n\n本reviewは承認・merge admissionを生成しません。\n",
+    "formal_body_utf8_bytes": 4329,
+    "formal_body_sha256": "cf1b5bb1d95a3ce5320277f23bb82bb2cef518023eadcc70cd9e803e7532771d",
+    "reviewed_head": "091624f2366a36c24ab0fb887375930821a028d5",
+    "review_base": "c9e73bcc367a9d5203c92ef9775511013da4f85d",
+    "condition1": "satisfied: Opus Major 0",
+    "condition2": "satisfied: Fable 承認してよい",
+    "condition3": "pending"
+  },
+  "fixed_parent_source": [
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "start_line": 1033,
+      "end_line_inclusive": 1064,
+      "full_sha256": "c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a",
+      "span_sha256": "1db82b6f6f2877d1938fa5082e91f781692c56fc59d726350a9ef6f2296d2921"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "start_line": 624,
+      "end_line_inclusive": 636,
+      "full_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+      "span_sha256": "25b0a97de4e4b36a4c3925664ff383455b94bfd3f3dfef1deea7bd78193bf0d1"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "start_line": 56,
+      "end_line_inclusive": 56,
+      "full_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+      "span_sha256": "6d4ca115f2d2114ddfa4dd41b4ec0305cb4818954b64ebb66bd2a08a39e5f63f"
+    }
+  ],
+  "six_body_pins": [
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "bytes": 20354,
+      "sha256": "cbe1866df47503b17e8a11b786dee8da58cd8a2a0a99778b64bd4a669b2fa702"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "bytes": 201811,
+      "sha256": "68bf95443b494e16bb2a72506358536d7d8740fb620e09d55ed0b922d3b9ed03"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "bytes": 33002,
+      "sha256": "d4e76c3dc15b28894937ddc0e39cb223aeef106284fae13b8ea4212dfce02726"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "bytes": 17774,
+      "sha256": "f785e13aa9a1ef8494154f03e20d0582418916281c51a6b729d385d5b66ef051"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "bytes": 241506,
+      "sha256": "2c2ce95380e2deb5478bb06c27057d519373bfeabc9259799e400b390e0c5d3e"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "bytes": 29758,
+      "sha256": "156c0b6cf45630ba44f3540ceb97dae511fb7bdd93148e1a99ef4e0adfd9e543"
+    }
+  ],
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-os-stage3-parent036-review02-l3-l10-delegated-decision-2026-10-08.md",
+    "bytes": 3163,
+    "sha256": "6bab4ae972633208cf7cf88e5e511cdcdebbc62756cd11f854119d36d2c75576"
+  },
+  "minor_not_returned": [
+    "policy選択主体HARNESS-L2-005は固定親の明文ではなく、固定戻し先区分と005責務からの記録済み導出。",
+    "08bのsource自体unknown分岐は選択済policy抑止の単独変異では発火しない。次編集時の別fixture整理候補。",
+    "追補監査のPR base 5857は歴史基点で現在base c9e73と異なる。対象036行不変。"
+  ],
+  "limits": [
+    "fixture未実行",
+    "HARNESS005他consumer未照合",
+    "他Stage3親未照合",
+    "274親検収未完"
+  ]
+}
