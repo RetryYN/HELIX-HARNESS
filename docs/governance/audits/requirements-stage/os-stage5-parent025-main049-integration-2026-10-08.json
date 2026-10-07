@@ -1,0 +1,30 @@
+{
+  "base": "e7a695d4b2de64aec69a1a123de2fde33be724cf",
+  "six_body_pins": {
+    "docs/helix-os/L3-requirements/business-requirements.md": {
+      "bytes": 20394,
+      "sha256": "1e499ff0f6cd559fbff69639cd724cf50e66e9126f8e54eedc779a7410ad5ca9"
+    },
+    "docs/helix-os/L3-requirements/functional-requirements.md": {
+      "bytes": 202337,
+      "sha256": "d7e822e63bc9128039d65bd5c038097d4a970ce4923b655427bb02b2d72f7b85"
+    },
+    "docs/helix-os/L3-requirements/nfr-grade.md": {
+      "bytes": 33972,
+      "sha256": "acb24370e1d72c85bcbb582af0bbc88b514713f6e385c0fc4fbc06debaa5a3a5"
+    },
+    "docs/helix-os/L10-verification/business-verification.md": {
+      "bytes": 17872,
+      "sha256": "bd136ea821f4619f89d93f5c460c80a046bad718b562340360301f715a7cdd16"
+    },
+    "docs/helix-os/L10-verification/functional-verification.md": {
+      "bytes": 248770,
+      "sha256": "658e76254da50110b87864f399350b70ba3f335a400b84149fa692ab7f4c0cc1"
+    },
+    "docs/helix-os/L10-verification/nfr-verification.md": {
+      "bytes": 31106,
+      "sha256": "b92b8fe97ecb9d8c5820675c78cce339e330a08ce1d4839aa4c41b726db9a098"
+    }
+  },
+  "old_section_text_note": "section_text omits final empty line; hash is exact raw LF span including empty line, verified separately"
+}
