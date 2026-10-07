@@ -418,6 +418,8 @@ identity/context/authority evidenceの不足も既存ownerへ戻し、CASE-OS-01
 
 source/revision/correlation ID/actor/data-use class付きの要求・判断・作業・検証・backflow/checkpoint eventからepisodeを再構成。Oracleはmissing/duplicate/stale/denied/not-runとsuccessを区別し、restart後もscope/deadline/budget/failure count/unfinished dutiesを保持する。
 
+期限fixtureの合成宣言値はsource `deadline-policy-sim@r1`、scope `hold-sim`、owner `OS`、deadline `2030-01-01T10:00:00Z`、比較境界 `now >= deadline` とする。02gの現在時刻は `2030-01-01T09:59:00Z`、02iは `2030-01-01T10:00:00Z` とし、他CASEはこの宣言を保って指定の一項目だけを変える。これはfixture値であり製品の期限既定値ではない。対象はL1-002/008に沿う人間向けL2-019確認対象一覧のprojectionであり、実行中assignmentの既存停止条件を無効にしない。
+
 ### AC-OS-019-02 — continuity negatives（AC-OS-019-02）
 
 | CASE | mutation（他条件は正常） | expected / owner |
@@ -428,6 +430,24 @@ source/revision/correlation ID/actor/data-use class付きの要求・判断・�
 | `CASE-OS-019-02d` | unauthorized data-use classを他project/learning用途へ送る | 送信を拒否しSECURITY/origin ownerへ返す |
 | `CASE-OS-019-02e` | event/record countだけをepisode completionとする | completionを拒否しrequired state/evidenceへ戻す |
 | `CASE-OS-019-02f` | replay時に失敗位置の証拠を欠落させraw-event全件再読込で成功扱い | checkpointを確定せず失敗位置・未完義務を保持してorigin ownerへ返す |
+
+### CASE-OS-019-02g–02l — hold・確認待ちの人間向け一覧projection（AC-OS-019-04）
+
+以下はL1-002/008に沿う人間向けL2-019 projection listの静的oracleである。期限値・境界・間隔はfixture固有の既存契約sourceからのみ入力し、一CASEにつき期限状態またはprojectionの一つを変える。CASEは実運用の催促、停止、再割当、要求判断、L10実行を意味しない。
+
+| CASE | mutation（他条件は正常） | expected / owner |
+|---|---|---|
+| `CASE-OS-019-02g` | 契約ownerが期限と比較境界を宣言したhold/確認待ちを期限前に中断し、期限内に再開 | L2-019 projection listに期限前状態をholdとして示し、restart後も同じsource/revision/scope、deadline、未完義務を保持する。期限切れを早期に立てない |
+| `CASE-OS-019-02h` | 他の入力は有効なままdeadline宣言だけを欠落 | L2-019 projection listに「期限未宣言」と残し、期限・期限切れ・継続停止を推測しない。該当source ownerへ確認を戻し、未完義務を保持する |
+| `CASE-OS-019-02i` | 既存sourceの期限と比較境界により期限切れが確定し、hold/確認待ちが未解決 | 人間向けL2-019 projection listで期限切れとして識別し、owner/source/revision/scope/deadline/未完義務を示す。古い通知をcurrent guidanceや成功checkpointへ戻さず、source-boundな解決まで履歴を追跡する。自動停止・再割当はしない |
+| `CASE-OS-019-02j1a` | deadlineのsource revisionだけをmissingにする | projection listで期限状態をunknown/未完として表示し、期限切れまたは有効を断定せず、該当source ownerへ確認を戻し、未完義務を保持する |
+| `CASE-OS-019-02j1b` | deadlineのsource revisionだけをstaleにする | projection listで期限状態をunknown/未完として表示し、期限切れまたは有効を断定せず、該当source ownerへ確認を戻し、未完義務を保持する |
+| `CASE-OS-019-02j1c` | deadlineのsource revisionだけをconflictにする | projection listで期限状態をunknown/未完として表示し、期限切れまたは有効を断定せず、該当source ownerへ確認を戻し、未完義務を保持する |
+| `CASE-OS-019-02j2` | deadlineの適用scopeだけをunknownにする | projection listで期限状態をunknown/未完として表示し、他scopeの期限を流用しない |
+| `CASE-OS-019-02j3` | 期限判定に用いる現在時刻だけをunknownにする | 期限切れまたは有効を断定せず、projection listの期限状態をunknown/未完に保つ |
+| `CASE-OS-019-02j4` | 期限sourceの比較境界だけを欠落させる | 境界を推測せずprojection listをunknown/未完に保ち、deadlineを新しい期限規則へ変換しない |
+| `CASE-OS-019-02k` | owner/source/revision/scopeと未完義務がsource-boundなhold/確認待ちを人間向け一覧へ投影する | L2-019 projection listにevidence、owner、期限状態、未完義務を表示し、一覧の表示だけでは判断、authority、要求解決、完了を生成しない |
+| `CASE-OS-019-02l` | 02kと同一入力で、projection listをdecision/authority/completionとして扱う誤出力をそれぞれ独立armで追加する。各armは単一出力fieldだけを変異させ、他の入力と出力を正常値に保つ | decision arm・authority arm・completion armを個別に拒否し、source-boundな未完義務と一覧projectionを維持する |
 
 ### CASE-OS-019-03 — unseen crash/replay sequence（AC-OS-019-03）
 

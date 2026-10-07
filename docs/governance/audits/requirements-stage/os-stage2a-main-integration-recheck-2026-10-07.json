@@ -1,0 +1,20 @@
+{
+  "authority_effect": "none",
+  "review02_comment": 6040768994,
+  "review02_content": "2fe42b346fba4114dc49cceae6fd654e9de6ecf6",
+  "integration_base": "ba0df9a49ab635c020e4ec74fc05c72a49352c90",
+  "integrated_body_revision": "79a530d2e9506b00b8913b4ec2a8dcc7f9214ba9",
+  "stage2a_changed_lines_identical": true,
+  "changed_line_count": 32,
+  "stage5_scope": "main approved 026/031/047 changes retained; not this Stage2a approval scope",
+  "documents_sha256": {
+    "docs/helix-os/L10-verification/business-verification.md": "0d03019b7f6db1db7ffce49dd69c02a8c72982693a66613c3a8db3a378bb2665",
+    "docs/helix-os/L10-verification/functional-verification.md": "7676276eb79384f580022f05c5843bafd0b7913dc0af3d254dfc89418dc2b78c",
+    "docs/helix-os/L10-verification/nfr-verification.md": "6fac9d8063383e6753c6930f7a412de054f7195d0ccec8ddca4669b95f9d4c01",
+    "docs/helix-os/L3-requirements/business-requirements.md": "75914cb7a6b87c59f0f936c2896ce91cb830b5b00820daff28f6f228592ce194",
+    "docs/helix-os/L3-requirements/functional-requirements.md": "7f828bf15e54aefc3a8ae532b461a9d64023f3457ad4bc2915b57292875e093b",
+    "docs/helix-os/L3-requirements/nfr-grade.md": "e84bb08cd5126f13084a5e8c2be9f1bf9689da514a2b98536ef28d16a94647f4"
+  },
+  "conditions1_2": "pending fresh independent confirmation on integrated six bodies",
+  "fixture_execution": false
+}
