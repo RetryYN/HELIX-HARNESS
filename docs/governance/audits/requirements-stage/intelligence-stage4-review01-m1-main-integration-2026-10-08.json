@@ -1,0 +1,17 @@
+{
+  "record_type": "main_integration_recheck",
+  "authority_effect": "none",
+  "base": "00298f79229198965d889ebf0b6a1bedc4d03648",
+  "integrated_head": "5e165f7d8e82d7942a9b21507cabcd309ddb652a",
+  "six_body_sha256": {
+    "docs/helix-intelligence/L3-requirements/business-requirements.md": "026d95fbf023ef384834ebd3b215a469f2fea648190d15d45494b5ea4cc91959",
+    "docs/helix-intelligence/L3-requirements/functional-requirements.md": "01ceffadc184ead3c5a73e4df4f308610394590630c222a53930e4857ee71c5a",
+    "docs/helix-intelligence/L3-requirements/nfr-grade.md": "a50c5379206610db3dd730a230ad4a52657f9600f7c8363101e1603d59ac8681",
+    "docs/helix-intelligence/L10-verification/business-verification.md": "b476b0939b7da50cf75db66d235095f94e591ac929ef046721224b5112d04552",
+    "docs/helix-intelligence/L10-verification/functional-verification.md": "aa6cb83a2eaeeaf0d4d0fd955698e5071e27c81232ba43a1c3af94918fbccc77",
+    "docs/helix-intelligence/L10-verification/nfr-verification.md": "1049e8edef98fd41f1f2c57caff98eebc999e65652e558b42646976e517614a1"
+  },
+  "six_body_bytes_unchanged_from_review01_m1_repair": true,
+  "scope": "INTELLIGENCE Stage4 15 parents; 017/036 M1 repair; fresh Opus/Fable pending",
+  "fixture_execution": "not executed"
+}

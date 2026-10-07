@@ -1,0 +1,101 @@
+{
+  "authority_effect": "none",
+  "record_type": "intelligence_stage4_current_main_integration_snapshot",
+  "main_revision": "5b64914de7357853b267d297e445cae18e204304",
+  "integration_head": "870a5c33bdb934c580cc1e91c0097585c1637425",
+  "prior_snapshot": {
+    "path": "docs/governance/audits/requirements-stage/intelligence-stage4-attribution-reaudit-2026-10-08.json",
+    "sha256": "b8567fc9d1512bd541e74ac0c8e82158c14609f5505c9f6504935e87491826a8"
+  },
+  "parent_scope": "INTELLIGENCE Stage4, adopted L2-017, 030–041, 044,045 only; six current L3/L10 body revisions. No transfer of earlier finding/approval to the current body.",
+  "six_documents": [
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "full_sha256": "bde86431339e3464e9e893dcd4e2f7aa9f6b7a81035762938621a258e2b2cc44",
+      "bytes": 26115,
+      "stage4_span": {
+        "found": true,
+        "start_line": 45,
+        "end_line_inclusive": 68,
+        "bytes": 13320,
+        "sha256": "b74bd443eed6abf3285e4ac922b7af492aae853a97cfb5915f4ed8a9f1c424a0",
+        "sha256_trim_terminal_blank_lines": "46201daf050db78e1726fbcbc1a783c1ade9b8c6d178583547ffd42d901541b9"
+      },
+      "stage4_span_unchanged_from_prior_snapshot": true
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "full_sha256": "c19825b3fa82edaafd787bd092076bea910a89b99d13aa4c208b0c51e781b82f",
+      "bytes": 212378,
+      "stage4_span": {
+        "found": true,
+        "start_line": 118,
+        "end_line_inclusive": 299,
+        "bytes": 60069,
+        "sha256": "1aec222c3a99687e700babcb2c3203e66800b224b7ad3d41b534a6535e603ae5",
+        "sha256_trim_terminal_blank_lines": "2c7a132c71b1e681d68fc7755a07f72a0ea7f560cddc592060271f859742c7e6"
+      },
+      "stage4_span_unchanged_from_prior_snapshot": true
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "full_sha256": "a50c5379206610db3dd730a230ad4a52657f9600f7c8363101e1603d59ac8681",
+      "bytes": 60263,
+      "stage4_span": {
+        "found": true,
+        "start_line": 62,
+        "end_line_inclusive": 174,
+        "bytes": 20751,
+        "sha256": "eac82e012d078df332cd90873323ca513dcf0c32ec1dda51a633743797c316a0",
+        "sha256_trim_terminal_blank_lines": "7bd2a80ab040b114429d62ddb5a8382df7d3fd36820bf571a8dcb666a1cf6c05"
+      },
+      "stage4_span_unchanged_from_prior_snapshot": true
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "full_sha256": "386251e6fd6097b8892ace2ba2db5c69ce009fdb843a1c5bca3996f8cf581c4a",
+      "bytes": 29633,
+      "stage4_span": {
+        "found": true,
+        "start_line": 49,
+        "end_line_inclusive": 72,
+        "bytes": 13145,
+        "sha256": "00cc54e7f1415e7354f7ea89f9676638cae3935b4b9360a2e73cc97397a55599",
+        "sha256_trim_terminal_blank_lines": "036913f8e30182bb73f3bd4bb551f3f1e27dc60d965b6ee3e90009796f5c4ab3"
+      },
+      "stage4_span_unchanged_from_prior_snapshot": true
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "full_sha256": "aeefde170f0087794bf86d3d3895c35c7646b5b7ec2a68666b90c4f0f35913a0",
+      "bytes": 731187,
+      "stage4_span": {
+        "found": true,
+        "start_line": 224,
+        "end_line_inclusive": 1325,
+        "bytes": 175244,
+        "sha256": "30bf6ab194d6c333d757d73f7134e595b1a9b3ecb09fd7ddd7b50ef29f28e996",
+        "sha256_trim_terminal_blank_lines": "c0565f3142f4c123e0d1ab312550b76cdf006323a2c7e928c3b6eff03796bde7"
+      },
+      "stage4_span_unchanged_from_prior_snapshot": true
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "full_sha256": "f38e48d6dc2928009caa14147d675dd1d7572cd0f8c2c65c993fbe5dc43baf12",
+      "bytes": 55586,
+      "stage4_span": {
+        "found": true,
+        "start_line": 60,
+        "end_line_inclusive": 88,
+        "bytes": 15686,
+        "sha256": "a985ba080ab884b5534e396fc498b6a31b86cebb3d7e9cb1ed3bca091ecee48d",
+        "sha256_trim_terminal_blank_lines": "098926070229d10ffcab3765f05c8a8cfc6f453c5360c4898c5b3db4a7001fe9"
+      },
+      "stage4_span_unchanged_from_prior_snapshot": true
+    }
+  ],
+  "body_change": "none; integrates Stage3 main while Stage4 spans remain raw-byte identical",
+  "review_status": "fresh Opus/Fable review required for current full six bodies; no old approval inherited",
+  "po_post_confirmation": "not recorded",
+  "fixture_execution": false
+}
