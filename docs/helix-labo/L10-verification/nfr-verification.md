@@ -215,6 +215,33 @@ NFRの分母は許可された選択scope内のrunであり、CASE定義数で�
 
 候補の技術的なunknown条件は固定L2/L11に根拠を置く提案で、実測閾値・期間・完全性率は設定しない。選択scopeの外へ一般化せず、過去eventから欠落分を推計しない。実行/測定は未実施。
 
+### HELIXLABO-L2-071 — GitHub監査task class別qualification（Stage 5、version_target: 1.0、起草候補）
+
+**採択済み固定親とPO根拠**：PO判断記録 `3795bf0dcb731231a0b5ca1faa3cb67bdfeda22a` の `docs/governance/decisions/po-decision-2026-09-30-live26.md:50` は `HELIXLABO-L2-071` を通常採択22件に含むものとして承認し、L2節digest `3036e4c300ee6f78e74b819657d456c0bad08b8ccb483882cfc3b59fa5bbbe1f` とL11節digest `029c6bcea5a206a15c8bbe9706ff25917fbf9a6496b3891288fc2660634f7bc0` に固定する。決定の`source_repository_revision`は `ea6f756f96a7370de78e412d737c7a7ed472114a`、`decision_basis_revision`は `81d1f35f9c5793c5312be4ae52526c96b609c254`。この二つを同一revisionと扱わない。
+
+固定L2本文は `ea6f756f96a7370de78e412d737c7a7ed472114a:docs/helix-labo/L2-requirements/labo-requirements.md:576–584`（全体SHA-256 `cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6`、節SHA-256 `3036e4c300ee6f78e74b819657d456c0bad08b8ccb483882cfc3b59fa5bbbe1f`）、固定L11は同revisionの `docs/helix-labo/L11-acceptance/labo-acceptance.md:309–316`（全体SHA-256 `39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a`、節SHA-256 `029c6bcea5a206a15c8bbe9706ff25917fbf9a6496b3891288fc2660634f7bc0`）である。PO行は `MPR-RC-HELIXLABO-L2-071-001` を参照する。候補中の `draft_candidate` は固定本文metadataであり、authority状態をそれ自体から読み替えない。
+
+**旧HELIX sourceと処置**：選択inputは `LEGACY-ASSET-A6926200F28B26300432` の旧L1 `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md:67,69`（revision `3795bf0dcb731231a0b5ca1faa3cb67bdfeda22a`のarchive bytes、file SHA-256 `e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765`、span 67–69 SHA-256 `ab29276edf0e04c4c163ab5d4e3889b0c845fbbd86fc0f7d23f8bd32a7ffdb4e`）である。3L-BR-008から、task class / model revision単位の評価、qualification・表示称号・permission/authority・assignment roleの分離、記録済みmajor missまたはmodel revision更新による資格対象revisionの失効だけを意味再導出する。
+
+旧L3 `LEGACY-ASSET-A26561A0EF7396D8F017`（同archive revisionの `three-lane-cloud-governance-requirements.md:77–79`、file SHA-256 `4b388cda67484f1808b0f4b8834d5d234a47de49f7db6dcb12d92d2dcfbee185`、span SHA-256 `e7c4bec23a84c57b06c826c67ae19d011293a689d1b7463c10ea0d5950a313dd`）と旧acceptance `LEGACY-ASSET-E9D6CA411D75485A0984`（`three-lane-cloud-governance-acceptance.md:44–47`、file SHA-256 `785421188d23f371290ff5bacecba6c5215e7baa66110c461f548cae8f6a2fc7`、span SHA-256 `db3f977c22140f8ef9cb9628fa0341fe261daabaf7240051211df91ce6406993`）は歴史的contextに限る。旧7 class固定一覧、状態遷移列、expiry条件、provider/lane、旧runtime/test behaviorを移さない。未確認のconsumerを読み切ったとは主張しない。
+
+**適用・責務境界**：対象task classは呼出し元が選択したscopeから受け取り、既定集合を作らない。qualification recordはtask class・model revision・evaluation scope・evidenceへ束縛する。表示称号、資格状態、permission/authority、assignment roleは別identity/fieldとして保持し、相互推論しない。LABOはqualification evidenceを記録・返却するだけで、provider/lane/modelの選択、評価実行、permission、assignment、authorityを発行/変更しない。permissionは既存SECURITY責務、assignmentは既存OS責務に残す。資格失効とpermission失効は別状態である。
+
+**unknown・失効条件**：class、revision、scope、evidenceが不足・stale・矛盾するときはqualificationを `unknown`/未評価にする。記録済みmajor missは対象revisionのqualificationを失効させる。model revision更新は旧revisionのqualificationを失効させ、新revisionへ継承しない。major missの分類・rubric、数値threshold、task class既定値、expiry条件、再評価方法/時期を新設しない。不足した評価根拠は、個体source/owner identityを特定できるかにかかわらず、その根拠を供給する既存source owner責務区分へ返す。個体identity unknownは別に保持する。role名やqualification outcomeから未特定ownerを作らない。
+
+**L2-055との関係**：採択済み `HELIXLABO-L2-055` のWorker履歴に基づく作業種別/model class別の水準・根拠・範囲・未評価集計は既存契約として再利用する。071が追補するのはGitHub監査task classとmodel revisionに結ぶqualificationおよび二つの固定失効条件である。055/059の一般評価・比較契約、OS assignment、SECURITY permission/expiry/revocationを複製・変更しない。
+
+L3の `NFR-LABO-071-01` binding候補を、選択scopeの証跡で静的照合する設計候補。実行・実測は未実施。
+
+| 測定対象 | 選択scopeから読むsource | 記録する状態 | 適用限界 |
+|---|---|---|---|
+| class/revision/scope/evidence binding | evaluation recordのtask class、model revision、scope、evidence ID/revision、qualification state | fieldごとの存在・一致・stale・unknownをsource recordに沿って保持し、複合資格状態を推測しない | 既定class、最低件数、成功率・合格率、閾値を設定しない |
+| qualification invalidation | 対象revisionに明記されたmajor miss record、model revision update、旧資格record | 事象source、対象revision、qualificationの失効・新revision未評価を別に追跡する | 失効triggerは固定親の2種類のみ。期限、window、再評価schedule、major miss分類を追加しない |
+| independent state boundary | title、qualification、permission、authority、assignment roleの各source identity/value | title→permission、title→authority、title→assignment、permission→assignment、assignment→permissionの各fieldを個別に比較する。03c/03dのqualification失効ではP0/A0/authorityがそれぞれ独立source値と一致し、permission等へ波及しない。 | permissionはSECURITY、assignmentはOSの既存責務。L10は変更・発行せず、LABO候補出力だけの誤りは自身で訂正する。 |
+| evidence handoff | missing/stale/mismatchの根拠source identityと既存owner参照 | 個体owner特定の有無にかかわらず既存source責務区分へ返し、個体identity unknownは別に保持する | 新owner/責務/承認を生成しない |
+
+母集団は実行が許可された場合に選択されるtask class/model revision/evaluation scopeから受け取り、CASE定義数で代用しない。数字のthreshold・固定観測期間・資格率は導入しない。candidateだけから資格状態、permission、assignment、L3承認や実行済み結果を発生させない。
+
 ## Stage 5 — HELIXLABO-L2-070 補助運用telemetryとAttempt scorecard併記
 
 固定親はPO live26の49行が採択した `MPR-RC-HELIXLABO-L2-070-001`。source revision `ea6f756f96a7370de78e412d737c7a7ed472114a` のL2:561–574 SHA `07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533`、L11:297–307 SHA `c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1`をraw-LFで照合した。旧候補が参照した0abb2894の同範囲とbytesは一致し、採択状態はPO記録で確認する。

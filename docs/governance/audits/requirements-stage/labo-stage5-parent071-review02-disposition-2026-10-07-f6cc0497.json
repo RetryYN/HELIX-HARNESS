@@ -1,0 +1,594 @@
+{
+  "artifact_type": "HELIX-LABO-071 review02 postbody時点監査",
+  "language": "ja",
+  "status": "/tmp静的時点監査。独立review/Fable判断/L3承認/fixture実行・qualification・permission/assignment実体の証拠ではない。",
+  "target": {
+    "pr": 2645,
+    "worktree": "/home/tenni/.helix-worktrees/l3-labo-stage5-parent071",
+    "body_revision": "f6cc04970d8d0e7278a9e90efe5e9d0bbf24a962",
+    "body_commit": "f6cc04970d8d0e7278a9e90efe5e9d0bbf24a962",
+    "prior_body_revision": "7e2398c3b8b1f2c34c84bb4145556eccd2a90882",
+    "base_revision": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+    "worktree_status": "## l3-labo-stage5-parent071...origin/l3-labo-stage5-parent071 [ahead 1]",
+    "changed_paths_from_base": [
+      "docs/governance/audits/requirements-stage/labo-stage5-parent071-authoring-audit-2026-10-07-c41c13a9b.json",
+      "docs/governance/audits/requirements-stage/labo-stage5-parent071-authoring-audit-2026-10-07-c41c13a9b.md",
+      "docs/governance/audits/requirements-stage/labo-stage5-parent071-review01-disposition-2026-10-07-d055c3c0.json",
+      "docs/governance/audits/requirements-stage/labo-stage5-parent071-review01-disposition-2026-10-07-d055c3c0.md",
+      "docs/helix-labo/L10-verification/business-verification.md",
+      "docs/helix-labo/L10-verification/functional-verification.md",
+      "docs/helix-labo/L10-verification/nfr-verification.md",
+      "docs/helix-labo/L3-requirements/business-requirements.md",
+      "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "docs/helix-labo/L3-requirements/nfr-grade.md"
+    ],
+    "prior_commit_before_body": "7e2398c3b8b1f2c34c84bb4145556eccd2a90882",
+    "prior_corrected_body_commit": "d055c3c01095bd4cb67da04f52cb68d254dff342",
+    "prior_corrected_body_role": "前回修正済み本文のcommit。現HEADの本文revision/body commitではなく、今回のHEAD f6ccへ更新された旧本文として記録。"
+  },
+  "integration_checkpoint": {
+    "path": "/tmp/root-labo071-review02-integration-checkpoint.json",
+    "bytes": 2568,
+    "sha256": "b980a3df6bae89fe6b1d60d664c4bfc1935a5534c87208374d049dee73c4ed5c",
+    "candidate_path": "/tmp/labo071-review02-M1-M2-exact-candidate-2026-10-07.json",
+    "candidate_sha256": "57452f1744d2afbb907fd7773d83b649849d5d7982d3faf4f07ef37cc224171c",
+    "root_extra": "matrix件数31→35・索引行込み",
+    "reproduced_root_change": "candidate FV matrix heading 31 CASE→35 CASE（索引行を含む）の1箇所",
+    "candidate_plus_root_heading_replay_matches_actual_six_bytes": true
+  },
+  "formal_review_history": {
+    "bundle_path": "/tmp/root-pr2645-comments-review02.json",
+    "bundle_bytes": 17017,
+    "bundle_sha256": "c72ef68dbd4d77d4e3f841c8b828a01037458d8e9d88f01b54ef4d7c4806ac92",
+    "comment_6024497040_body_sha256": "122add554b93cc2e21c2d1117a4d9c05a526c018affbd6d6078215ab6c09dc5c",
+    "review01_full_comment_verbatim": "## review01（independent review、PR #2645 親HELIXLABO-L2-071、HEAD 4dd580f0fa0537d1530a4ffe457fd64a30e50c80、base main ceda1c53b）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2645-LABO-STAGE5-PARENT071-01` に応える。\n\n### 本文を評価する前の確認（採択記録・対象版・追補条件）\n- **採択記録**：live26記録（po-decision-2026-09-30-live26.md）の50行が、`MPR-RC-HELIXLABO-L2-071-001`を採択している（通常採択）。git grepで、ほかの採択はないことを確かめた。ヒットしたHELIXINTELLIGENCE-L2-071は別IDである。\n- **対象版**：固定親は`ea6f756f96a7370de78e412d737c7a7ed472114a`である。live26記録23行の最新mainで、mainの祖先である。\n  - L2 labo-requirements.md:576–594の節SHA-256は`3036e4c3…`、L11 labo-acceptance.md:309–328は`029c6bce…`である。\n  - reviewerが`git show`から計算し、50行の記録値と一致することを確かめた。\n- **追補条件**：live26記録72行の「資格を操作権限や割当へ自動変換しない境界を含む」は、CASE-03e/03fが受けている。071だけに付いた条件は、ほかにない。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - origin/mainとの`merge-tree`は衝突なし\n\n### 照合の経過\n1. **Opusシンプルブラインド**：Major 1。Majorがあったので、Fableへは回していない。\n2. **reviewerの確認**：固定L2の576〜594行（とくに578行と「未評価・失敗」の行）と、071節のCASE-01〜23の全変異を読み、Majorと確定した。\n\n### Major\n**M1（qualificationからmodel/provider/laneの「選択」を生成する出力を、拒否するfixtureがない）**\n- **欠陥**：\n  - 固定L2の「未評価・失敗」は、次の非生成を並べている。\n    - model/provider/laneの選択\n    - 割当\n    - 実行\n    - GitHub authority\n    - permissionの発行・変更\n  - L10には、このうち次の非生成に単独の拒否fixtureがある。\n    - permission（03e）\n    - assignment（03f）\n    - authority（14）\n    - 実行許可（20）\n    - 採否（21）\n    - 完了（22）\n  - しかし、qualificationからmodel/provider/laneの選択を生成する出力を拒否するCASEがない。\n  - L3 FR-03（functional-requirements.md:1878）の非生成の列挙にも、「選択」が入っていない。\n  - 固定親が禁じる生成に、拒否fixtureがない（類型2）。#2638（068）review06 M1と同じ型である。\n- **守るべき行**：固定L2-071（ea6f756 labo-requirements.md）\n  - 578行：「candidateは特定provider/lane…を定めず」\n  - 582行（未評価・失敗）：「qualification状態のみを返し、model/provider/laneの選択、割当、実行、GitHub authority、permissionの発行・変更をしない」\n\n### 後で直す残余（承認を止めない）\n- **R1（表の描画）**：CASE-20〜23（functional-verification.md:3358–3361）が、「実行状態」の段落の後に見出し行なしで置かれている。そのため、表として描画されない。\n- **R2（見出しの件数）**：見出しの「旧24 ID」と、実際のCASE数28が合っていない。\n- **R3（staleの基準）**：L3とCASE-03aは、unknownの条件に「stale」を足している。固定L2の条件は「不足・矛盾」で、staleの基準は定義されていない。時間経過による失効の拒否（CASE-19）との境界を、明確にする余地がある。\n- **R4（逆向きの同一視）**：CASE-12は、titleをqualificationと同一視する向きだけを扱っている。qualificationからtitleを生成する逆向きの単独CASEはない。\n- **R5（戻し先の具体化）**：FR-03は、permission/authorityをSECURITYへ、assignmentをOSへ返すと具体化している。固定L2の責務区分の範囲内である。\n\n### 次の手順\n- M1を直す。\n  - FR-03とAC-03の非生成の列挙に、「model/provider/laneの選択」を加える。\n  - qualification結果からmodel/provider/laneの選択fieldだけを生成させる単独CASEを置き、拒否する。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+    "comment_6025081983_body_sha256": "aa9f93299af13937ca106cd3c82f8edb9f3d387c24d08b97eeeb46cd1f4e23b4",
+    "review02_full_comment_verbatim": "## review02（independent review、PR #2645 親HELIXLABO-L2-071、HEAD 7e2398c3b8b1f2c34c84bb4145556eccd2a90882、base main ceda1c53b）：Major 2\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2645-LABO-STAGE5-PARENT071-02` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：live26記録50行（`MPR-RC-HELIXLABO-L2-071-001`）。後日の別revisionの採択はない。\n- **固定親**：ea6f756。L2節`3036e4c3…`、L11節`029c6bce…`。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - origin/mainとの`merge-tree`は衝突なし\n\n### 照合の経過\n1. **review01の解消の確認**（reviewerが差分で確かめた）：M1は解消した。\n   - r01-model-selection、provider-selection、lane-selectionの単独拒否3件が置かれた。\n   - FR-03とAC-03の列挙にも、「qualificationからのmodel/provider/laneの選択」が入った。\n2. **Opusシンプルブラインド**：Major 3。Majorがあったので、Fableへは回していない。\n3. **reviewerの確認**：固定L2の576〜594行と、L11の309〜328行を読んだ。071の全CASEの変異列も、「rubric」「分類基準」「既定class」「permission/assignmentから」で確かめた。\n   - 3件とも、固定親が明示する禁止に対応するCASEがない。\n   - 2件目と3件目は、L11の同じ列挙の取りこぼしなので、M2にまとめた。\n\n### Major\n**M1（permissionやassignment roleからqualificationを推論する向きに、拒否fixtureがない）**\n- **欠陥**：\n  - 用意されている拒否fixtureは、次の2種類だけである。\n    - 逆向き（qualificationからpermission・assignment・authorityを生成する向き）：CASE-03e、03f、14、20\n    - titleからqualificationを推論する向き：CASE-12\n  - permission P0やassignment role A0を根拠に、Q0をqualifiedにする（またはunknownを補う）変異のCASEはない。\n  - そのため、P0やA0からqualificationを補う実装が合格する（類型4）。\n- **守るべき行**：\n  - 固定L2-071（ea6f756 labo-requirements.md:580）「表示用称号、task qualification、permission/authority、assignment roleは別のidentity/fieldとして保持し、互いから推論しない」\n  - L11-071 unknown例（labo-acceptance.md:315）「別revisionの資格、称号、permissionまたはassignment roleから補わない」\n\n**M2（L11の「追加しない」の列挙のうち、major miss rubricとclass既定値に拒否fixtureがない）**\n- **欠陥**：\n  - L11は、4項目を本acceptanceで追加しないと並べている。major miss rubric、数値threshold、class既定値、再評価scheduleである。\n  - このうち、拒否CASEがあるのは次の3つだけである。\n    - threshold：CASE-04a\n    - schedule：CASE-23\n    - expiry：CASE-19\n  - **rubric**：071のCASEに、「rubric」「分類基準」の語は0件である。major missの分類基準を足す変異のCASEがない。\n  - **class既定値**：「既定class集合を補わない」は、変異なしの正常fixtureであるCASE-02の期待欄に書かれているだけである。既定のclass集合を注入する変異のCASEはない。\n  - 固定親が禁じる追加に、拒否fixtureがない（類型2/4）。review01 M1と同じく、列挙の取りこぼしの型である。\n- **守るべき行**：\n  - 固定L2-071（labo-requirements.md:578）「対象task classは入力scopeに従い、既定のclass集合を作らない」\n  - 同581行「重大missの分類基準、評価threshold、失効後の再評価方法・時期はこの候補で新設しない」\n  - L11-071（labo-acceptance.md:316）「major miss rubric、数値threshold、class既定値、再評価scheduleを本acceptanceで追加しない」\n\n### 後で直す残余（承認を止めない）\n- **R1〜R5**：review01から変わらない。\n- **R6（SECURITYへの返却範囲）**：FR-03は、「permissionやauthorityの問題はSECURITY」へ返すとしている。固定L2でSECURITYに属するのは、permission/expiry/revocationのauthorityである。GitHub authority一般をSECURITYへ返すとも読める。\n- **R7（実行そのものの拒否）**：固定L2「実行をしない」に1対1で対応するCASEはない。CASE-20は、実行許可の生成を拒否している。\n- **R8（revisionの不一致だけのCASE）**：L11の「revision/evidenceの対応不一致」は、CASE-03cと03aで実質的に覆われている。revisionが不一致なだけのCASEはない。\n\n### 次の手順\n- **M1**：permission P0だけ、assignment role A0だけを根拠にQ0をqualifiedにする（またはunknownを補う）変異を、それぞれ単独のCASEにして拒否する。\n- **M2**：major miss rubricの分類基準を新設する変異と、既定のclass集合を注入する変異を、それぞれ単独のCASEにして拒否する。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+    "review01_R1_R5_verbatim": [
+      {
+        "source_comment_id": 6024497040,
+        "verbatim_section": "### 後で直す残余（承認を止めない）\n- **R1（表の描画）**：CASE-20〜23（functional-verification.md:3358–3361）が、「実行状態」の段落の後に見出し行なしで置かれている。そのため、表として描画されない。\n- **R2（見出しの件数）**：見出しの「旧24 ID」と、実際のCASE数28が合っていない。\n- **R3（staleの基準）**：L3とCASE-03aは、unknownの条件に「stale」を足している。固定L2の条件は「不足・矛盾」で、staleの基準は定義されていない。時間経過による失効の拒否（CASE-19）との境界を、明確にする余地がある。\n- **R4（逆向きの同一視）**：CASE-12は、titleをqualificationと同一視する向きだけを扱っている。qualificationからtitleを生成する逆向きの単独CASEはない。\n- **R5（戻し先の具体化）**：FR-03は、permission/authorityをSECURITYへ、assignmentをOSへ返すと具体化している。固定L2の責務区分の範囲内である。\n\n"
+      }
+    ],
+    "review02_R6_R8_verbatim": [
+      {
+        "id": "R6",
+        "verbatim": "- **R6（SECURITYへの返却範囲）**：FR-03は、「permissionやauthorityの問題はSECURITY」へ返すとしている。固定L2でSECURITYに属するのは、permission/expiry/revocationのauthorityである。GitHub authority一般をSECURITYへ返すとも読める。\n- **R7（実行そのものの拒否）**：固定L2「実行をしない」に1対1で対応するCASEはない。CASE-20は、実行許可の生成を拒否している。\n- **R8（revisionの不一致だけのCASE）**：L11の「revision/evidenceの対応不一致」は、CASE-03cと03aで実質的に覆われている。revisionが不一致なだけのCASEはない。\n"
+      },
+      {
+        "id": "R7",
+        "verbatim": "- **R7（実行そのものの拒否）**：固定L2「実行をしない」に1対1で対応するCASEはない。CASE-20は、実行許可の生成を拒否している。\n- **R8（revisionの不一致だけのCASE）**：L11の「revision/evidenceの対応不一致」は、CASE-03cと03aで実質的に覆われている。revisionが不一致なだけのCASEはない。\n"
+      },
+      {
+        "id": "R8",
+        "verbatim": "- **R8（revisionの不一致だけのCASE）**：L11の「revision/evidenceの対応不一致」は、CASE-03cと03aで実質的に覆われている。revisionが不一致なだけのCASEはない。\n"
+      }
+    ],
+    "review02_M1_M2_raw_present": true
+  },
+  "adopted_authority_and_source_pins": {
+    "registration_id": "MPR-RC-HELIXLABO-L2-071-001",
+    "fixed_adopted_source_revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+    "L2_L11_actual_physical_pins": [
+      {
+        "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "full_bytes": 123228,
+        "full_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+        "physical_line_start": 576,
+        "physical_line_end_inclusive": 594,
+        "span_bytes": 3254,
+        "span_raw_lf_sha256": "3036e4c300ee6f78e74b819657d456c0bad08b8ccb483882cfc3b59fa5bbbe1f"
+      },
+      {
+        "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "full_bytes": 73036,
+        "full_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+        "physical_line_start": 309,
+        "physical_line_end_inclusive": 328,
+        "span_bytes": 1769,
+        "span_raw_lf_sha256": "029c6bcea5a206a15c8bbe9706ff25917fbf9a6496b3891288fc2660634f7bc0"
+      }
+    ],
+    "PO_decision_record": {
+      "revision": "3795bf0dcb731231a0b5ca1faa3cb67bdfeda22a",
+      "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+      "bytes": 16056,
+      "sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+      "row_50": {
+        "physical_line": 50,
+        "bytes": 248,
+        "raw_lf_sha256": "2618bf7c08f66ba92b1e4c8fece234c73f05945401d430419d023596ea365676",
+        "literal": "| `HELIXLABO-L2-071` | 承認（通常採択22件に含む） | `MPR-RC-HELIXLABO-L2-071-001` | `sha256:3036e4c300ee6f78e74b819657d456c0bad08b8ccb483882cfc3b59fa5bbbe1f` | `sha256:029c6bcea5a206a15c8bbe9706ff25917fbf9a6496b3891288fc2660634f7bc0` |"
+      }
+    },
+    "registration_record": {
+      "revision": "3795bf0dcb731231a0b5ca1faa3cb67bdfeda22a",
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "line": 637,
+      "bytes": 3370048,
+      "full_sha256": "d24a982af1c468bb32c9822777a3234d3ce065ff63b89c944b7b04447610c99b",
+      "line_raw_lf_sha256": "cd4f7f18a099b768321d14b830a9871e50c576596b369b664b7ee4a869a57493",
+      "registration_id": "MPR-RC-HELIXLABO-L2-071-001"
+    },
+    "legacy_selected_source_actual": {
+      "asset_id": "LEGACY-ASSET-A6926200F28B26300432",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+      "full_bytes": 4629,
+      "full_sha256": "e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765",
+      "physical_start_line": 67,
+      "physical_end_line_inclusive": 69,
+      "span_bytes": 258,
+      "span_raw_lf_sha256": "ab29276edf0e04c4c163ab5d4e3889b0c845fbbd86fc0f7d23f8bd32a7ffdb4e",
+      "literal": "### 3L-BR-008 モデル能力をrevision単位で段階認定する\n\nHELIX-BenchはGitHub監査task classごとにmodel revisionを評価し、称号、資格、権限、assignment roleを分離する。重大missやmodel更新で資格を失効させる。",
+      "disposition": "3L-BR-008 selected meaning re-derived; no legacy fixed class/lifecycle/expiry/provider/runtime behavior imported",
+      "stored_copy_read_commit": "3795bf0dcb731231a0b5ca1faa3cb67bdfeda22a",
+      "stored_copy_revision_semantics": "このrevisionはarchive内source copyを含むrepository checkoutのcommit。歴史上の旧HELIX source revisionとは別。",
+      "historical_source_generation": "legacy-generation-2026-09-14",
+      "historical_source_path": "docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+      "historical_source_sha256": "e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765"
+    },
+    "old_24_raw_case_checkpoint": {
+      "preflight_path": "/tmp/labo071-parent-readonly-preflight-worker.json",
+      "preflight_sha256": "33a9cedfcc54668f74ab5aab99a5ca422ca0634af6643717fadbe41f48e27e62",
+      "old_raw_case_literal_count": 24,
+      "old_raw_literals": [
+        {
+          "id": "L10-LABO-071-CASE-01",
+          "line": 3008,
+          "raw_lf_sha256": "ffb50787db81817563ec69d7a854c33875ff098fcd638b9156f868d465f1b4f9",
+          "declared_kind": "normal_declared",
+          "literal": "- `L10-LABO-071-CASE-01`（対応AC: `LABO-071-AC-01`） 正常: 同じtask class/model revisionの根拠だけからqualification stateを記録し、称号/permission/roleを変えない。"
+        },
+        {
+          "id": "L10-LABO-071-CASE-02",
+          "line": 3009,
+          "raw_lf_sha256": "f185755549eb0c5a8eecf56376ca8538fa8297e72533edc5d4da4ce3d8aac331",
+          "declared_kind": "normal_declared",
+          "literal": "- `L10-LABO-071-CASE-02`（対応AC: `LABO-071-AC-02`） 未見正常: 未見class/revisionは固有evidenceで評価し、既定class listを補わない。"
+        },
+        {
+          "id": "L10-LABO-071-CASE-03a",
+          "line": 3013,
+          "raw_lf_sha256": "b5f1d55c835492117dff649a5b5b82ceb5e307d1cfd9f6fb56e9c75d8d035e21",
+          "declared_kind": "negative_or_boundary_declared",
+          "literal": "| `L10-LABO-071-CASE-03a` | `LABO-071-AC-03` | evidence revisionだけstale | 資格unknownを保持し、evidence source ownerが識別できる場合そのowner、特定できない場合unknown。 |"
+        },
+        {
+          "id": "L10-LABO-071-CASE-03b",
+          "line": 3014,
+          "raw_lf_sha256": "2864510f46c972bf4cb9d3f8481e03f42adac2a6b20099196f0e896cbbf9df80",
+          "declared_kind": "negative_or_boundary_declared",
+          "literal": "| `L10-LABO-071-CASE-03b` | `LABO-071-AC-03` | task classだけ別値 | qualificationを流用せずtask class source ownerへ戻す。 |"
+        },
+        {
+          "id": "L10-LABO-071-CASE-03c",
+          "line": 3015,
+          "raw_lf_sha256": "8484b985804ab608933f21b0fa62b7cf8f29a999bb19c9f9e058037e93ae9e2a",
+          "declared_kind": "negative_or_boundary_declared",
+          "literal": "| `L10-LABO-071-CASE-03c` | `LABO-071-AC-03` | 単独変異: model revisionだけ更新。旧revision qualificationの他条件はCASE-01と同一。 | 旧qualificationを失効し新revisionへ継承しない。新revisionは独立根拠が記録されるまで未評価とする。固定親が戻し先を特定しないため新ownerを作らない。 |"
+        },
+        {
+          "id": "L10-LABO-071-CASE-03d",
+          "line": 3016,
+          "raw_lf_sha256": "9dc22c1df06b0f848abf4de8bc160d82c57da3e6e255b3135169f0068c991d42",
+          "declared_kind": "negative_or_boundary_declared",
+          "literal": "| `L10-LABO-071-CASE-03d` | `LABO-071-AC-03` | record済みmajor missだけ隠す | 対象revisionのqualificationを失効し、major-miss source ownerが識別できればそこへ戻す。 |"
+        },
+        {
+          "id": "L10-LABO-071-CASE-03e",
+          "line": 3017,
+          "raw_lf_sha256": "3ae81cd0f9997e2177ffb038eec79b9bf76c6a19b2686ec25014bd3e201f7459",
+          "declared_kind": "negative_or_boundary_declared",
+          "literal": "| `L10-LABO-071-CASE-03e` | `LABO-071-AC-03` | qualificationからpermissionを推測 | 拒否しSECURITYへ。 |"
+        },
+        {
+          "id": "L10-LABO-071-CASE-03f",
+          "line": 3018,
+          "raw_lf_sha256": "58dd424b03f972fb460405d1e1d1a0c9406e2d80e4273182ffde50a4710b557c",
+          "declared_kind": "negative_or_boundary_declared",
+          "literal": "| `L10-LABO-071-CASE-03f` | `LABO-071-AC-03` | qualificationからassignment roleを変更 | 拒否しOSへ。 |"
+        },
+        {
+          "id": "L10-LABO-071-CASE-04a",
+          "line": 3019,
+          "raw_lf_sha256": "f74f0f620f69fef7e761e895e44be019400e4b090f5ff1e6250fc1d3cee15585",
+          "declared_kind": "negative_or_boundary_declared",
+          "literal": "| `L10-LABO-071-CASE-04a` | `LABO-071-AC-03` | LABOがthreshold/requalification scheduleを定義 | 拒否。要求意味を拡張しない。 |"
+        },
+        {
+          "id": "L10-LABO-071-CASE-05",
+          "line": 3291,
+          "raw_lf_sha256": "10e6cdfa3e5ea87805ec525e97f5e843ea780525a1a1ceeef4bc056cbd1dd0f7",
+          "declared_kind": "negative_or_boundary_declared",
+          "literal": "| `L10-LABO-071-CASE-05` | `LABO-071-AC-03` | 単独変異: task class だけ欠落。その他の入力は `CASE-01` と同一。 | 資格unknown。根拠source ownerが識別可能ならそのsourceへ戻し、できなければowner unknownを保持する。 |"
+        },
+        {
+          "id": "L10-LABO-071-CASE-06",
+          "line": 3292,
+          "raw_lf_sha256": "394c82ba5b42c19b13c9b9fd4bca20b622b1a503e577e8dff2af4b5d3d74ba59",
+          "declared_kind": "negative_or_boundary_declared",
+          "literal": "| `L10-LABO-071-CASE-06` | `LABO-071-AC-03` | 単独変異: model revision だけ欠落。その他の入力は `CASE-01` と同一。 | 資格unknown。根拠source ownerが識別可能ならそのsourceへ戻し、できなければowner unknownを保持する。 |"
+        },
+        {
+          "id": "L10-LABO-071-CASE-07",
+          "line": 3293,
+          "raw_lf_sha256": "34c560bf4605ac6719730dc8bb610161a9b0a9ac5de32cb6f67afb8e919bc55b",
+          "declared_kind": "negative_or_boundary_declared",
+          "literal": "| `L10-LABO-071-CASE-07` | `LABO-071-AC-03` | 単独変異: evaluation scope だけ欠落。その他の入力は `CASE-01` と同一。 | 資格unknown。根拠source ownerが識別可能ならそのsourceへ戻し、できなければowner unknownを保持する。 |"
+        },
+        {
+          "id": "L10-LABO-071-CASE-08",
+          "line": 3294,
+          "raw_lf_sha256": "f00b2ee35b815dc0c5bebf037d8150ad5e3bf004caf7183fd2dad91def95506a",
+          "declared_kind": "negative_or_boundary_declared",
+          "literal": "| `L10-LABO-071-CASE-08` | `LABO-071-AC-03` | 単独変異: evidence だけ欠落。その他の入力は `CASE-01` と同一。 | 資格unknown。根拠source ownerが識別可能ならそのsourceへ戻し、できなければowner unknownを保持する。 |"
+        },
+        {
+          "id": "L10-LABO-071-CASE-09",
+          "line": 3295,
+          "raw_lf_sha256": "dfbc303ce8f76bb41028edb056113763ef93c571169af4d20998c7f532890870",
+          "declared_kind": "index_alias_declared",
+          "literal": "| `L10-LABO-071-CASE-09` | `LABO-071-AC-03` | 索引（独立fixtureではない）: CASE-03dの記録済みmajor miss隠蔽を参照する。 | 主fixtureのoracleを使い、同じ変異を二重計上しない。 |"
+        },
+        {
+          "id": "L10-LABO-071-CASE-10",
+          "line": 3296,
+          "raw_lf_sha256": "f2544c61b2e73211676cf0da9a2e8e303c20250d17205ede06b5fb3ab0d3026a",
+          "declared_kind": "negative_or_boundary_declared",
+          "literal": "| `L10-LABO-071-CASE-10` | `LABO-071-AC-03` | 単独変異: major miss statusがunknownだけを変更。その他の入力は `CASE-01` と同一。 | qualificationを有効と推定せず、major-miss source ownerが識別できる場合そのowner、できない場合unknown。 |"
+        },
+        {
+          "id": "L10-LABO-071-CASE-11",
+          "line": 3297,
+          "raw_lf_sha256": "cd5c6519c416c346ff0faf33b398db80cc02d603290790c3ab2d01b84dd7d666",
+          "declared_kind": "index_alias_declared",
+          "literal": "| `L10-LABO-071-CASE-11` | `LABO-071-AC-03` | 索引（独立fixtureではない）: CASE-03cの同一変異を参照する。 | 主fixtureを参照し、同じ変異を二重計上しない。 |"
+        },
+        {
+          "id": "L10-LABO-071-CASE-12",
+          "line": 3298,
+          "raw_lf_sha256": "cadbee790d78e5fa533fe2610f3a0a1fb4ce1644d39fba986cb55bc8fc9f8b45",
+          "declared_kind": "negative_or_boundary_declared",
+          "literal": "| `L10-LABO-071-CASE-12` | `LABO-071-AC-03` | 単独変異: titleをqualificationと同一視だけを変更。その他の入力は `CASE-01` と同一。 | 表示称号とqualificationを分離し、根拠source ownerが不明なら戻し先unknown。 |"
+        },
+        {
+          "id": "L10-LABO-071-CASE-13",
+          "line": 3299,
+          "raw_lf_sha256": "5d40375fca8e6e695dc89fbbc6ace435b2fdcba14c6a7eb552ff9fd499226238",
+          "declared_kind": "index_alias_declared",
+          "literal": "| `L10-LABO-071-CASE-13` | `LABO-071-AC-03` | 索引（独立fixtureではない）: CASE-03eの同一変異を参照する。 | 主fixtureを参照し、同じ変異を二重計上しない。 |"
+        },
+        {
+          "id": "L10-LABO-071-CASE-14",
+          "line": 3300,
+          "raw_lf_sha256": "d0734ff0eab339e21d950f038acba472b4d9860d4d197d342db1378773925bae",
+          "declared_kind": "negative_or_boundary_declared",
+          "literal": "| `L10-LABO-071-CASE-14` | `LABO-071-AC-03` | 単独変異: qualificationからauthorityを生成だけを変更。その他の入力は `CASE-01` と同一。 | authority変更を拒否し既存ownerに残す 戻し先: unknown（qualificationからauthority ownerを推定しない）。 |"
+        },
+        {
+          "id": "L10-LABO-071-CASE-15",
+          "line": 3301,
+          "raw_lf_sha256": "d84894cc41409eb3e880917aff48bc445064296c9f27963ea05f20ac48949ca3",
+          "declared_kind": "index_alias_declared",
+          "literal": "| `L10-LABO-071-CASE-15` | `LABO-071-AC-03` | 索引（独立fixtureではない）: CASE-03fの同一変異を参照する。 | 主fixtureを参照し、同じ変異を二重計上しない。 |"
+        },
+        {
+          "id": "L10-LABO-071-CASE-16",
+          "line": 3305,
+          "raw_lf_sha256": "9af980649400731f4d483efb77bfd35c48d16bb3bf17c6ab2453826fdfde50a0",
+          "declared_kind": "negative_or_boundary_declared",
+          "literal": "| `L10-LABO-071-CASE-16` | `LABO-071-AC-03` | 評価根拠source identityだけ欠落 | qualificationをunknownとし、source ownerが識別できる場合そのsource、できない場合戻し先unknown。 |"
+        },
+        {
+          "id": "L10-LABO-071-CASE-17",
+          "line": 3306,
+          "raw_lf_sha256": "b770d02cd6168aa7d92990fae5ea68c74f6d394006552f48e870f4cbae9935e5",
+          "declared_kind": "negative_or_boundary_declared",
+          "literal": "| `L10-LABO-071-CASE-17` | `LABO-071-AC-03` | qualificationをLABOへ一律返却し、根拠source ownerを無視 | 既存source ownerへ返す。owner未特定はunknownのままとする。 |"
+        },
+        {
+          "id": "L10-LABO-071-CASE-18",
+          "line": 3307,
+          "raw_lf_sha256": "aa62ac4325bf4ffc989f4393cf31798a58dc7ee0a72f8842ddf9577d366bcccb",
+          "declared_kind": "index_alias_declared",
+          "literal": "| `L10-LABO-071-CASE-18` | `LABO-071-AC-03` | 索引（独立fixtureではない）: CASE-16の評価根拠source identity欠落を直接参照する。 | CASE-16のoracleを使いqualificationをunknownとして保ち、同じsource-identity欠落を二重計上しない。 |"
+        },
+        {
+          "id": "L10-LABO-071-CASE-19",
+          "line": 3308,
+          "raw_lf_sha256": "8bee16e06b433ed180dc0e5e51d3ae66f7720ffb2f6531df969e11ec0319c1fa",
+          "declared_kind": "negative_or_boundary_declared",
+          "literal": "| `L10-LABO-071-CASE-19` | `LABO-071-AC-03` | 根拠無しにexpiredを失効条件とする | 固定親にない期限条件を適用せずunknownを維持する。 |"
+        }
+      ],
+      "root_readonly_check_path": "/tmp/root-labo071-old-and-source-pin-check.json",
+      "root_readonly_check_sha256": "94774d561e71ca0a66918f4350a655004015a9d8198483a3bfacd745db10de1c",
+      "old_source_pins_actual_read": 10
+    }
+  },
+  "six_document_actual_pins": [
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "base_revision": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+      "base_bytes": 17356,
+      "base_full_sha256": "6eb0e6094202a519d34b84670c7c9fa9143ced0c8e25883bddc22c9a395feae7",
+      "base_prefix_byte_exact": true,
+      "prior_body_revision": "7e2398c3b8b1f2c34c84bb4145556eccd2a90882",
+      "prior_full_bytes": 23554,
+      "prior_full_sha256": "f35be71a37c8138115dcd33c8a8e75d5613063b4fbf6eb9391c4dcc115829908",
+      "actual_body_revision": "f6cc04970d8d0e7278a9e90efe5e9d0bbf24a962",
+      "actual_full_bytes": 23554,
+      "actual_full_sha256": "f35be71a37c8138115dcd33c8a8e75d5613063b4fbf6eb9391c4dcc115829908",
+      "actual_suffix_start_offset": 17356,
+      "actual_suffix_bytes": 6198,
+      "actual_suffix_sha256_raw": "7f350b91102281ec6a34a1e08736ce92d661b63a990ba984bfc200b89d1f7827",
+      "actual_suffix_ends_lf": true,
+      "root_checkpoint_sha_match": true,
+      "candidate_plus_root_count_heading_only_bytes_equal_actual": true,
+      "root_extra_exact": null
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "base_revision": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+      "base_bytes": 314755,
+      "base_full_sha256": "24dff56c5e90120360fe446c38e1e3b4b4b58db569fa8eb40d2be8b338161426",
+      "base_prefix_byte_exact": true,
+      "prior_body_revision": "7e2398c3b8b1f2c34c84bb4145556eccd2a90882",
+      "prior_full_bytes": 322295,
+      "prior_full_sha256": "45466723ae3b8d12af7982abeab10ac958d499e910eeaebb0ac1ee3e102c7e92",
+      "actual_body_revision": "f6cc04970d8d0e7278a9e90efe5e9d0bbf24a962",
+      "actual_full_bytes": 322554,
+      "actual_full_sha256": "3628f4ad57493cf0cc0ce6e4a0b8c21e617cd668427c70ff7145bd71be8af252",
+      "actual_suffix_start_offset": 314755,
+      "actual_suffix_bytes": 7799,
+      "actual_suffix_sha256_raw": "16e4734ecce389ecc6f1a484517af80eee915f75110f7f22765bc8c0bee55a48",
+      "actual_suffix_ends_lf": true,
+      "root_checkpoint_sha_match": true,
+      "candidate_plus_root_count_heading_only_bytes_equal_actual": true,
+      "root_extra_exact": null
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "base_revision": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+      "base_bytes": 70949,
+      "base_full_sha256": "e39aadaf35521a2c9c49001581c2d6e7770156749a0705666105b579b4387be7",
+      "base_prefix_byte_exact": true,
+      "prior_body_revision": "7e2398c3b8b1f2c34c84bb4145556eccd2a90882",
+      "prior_full_bytes": 77424,
+      "prior_full_sha256": "1fe941bf8993b410d94b032db87d13b7e011683fc4fc3637420b6f345c1ae2f2",
+      "actual_body_revision": "f6cc04970d8d0e7278a9e90efe5e9d0bbf24a962",
+      "actual_full_bytes": 77424,
+      "actual_full_sha256": "1fe941bf8993b410d94b032db87d13b7e011683fc4fc3637420b6f345c1ae2f2",
+      "actual_suffix_start_offset": 70949,
+      "actual_suffix_bytes": 6475,
+      "actual_suffix_sha256_raw": "545986a738cfda47064bae039352c34d0f38de20cad6d8df552f93681b9837a1",
+      "actual_suffix_ends_lf": true,
+      "root_checkpoint_sha_match": true,
+      "candidate_plus_root_count_heading_only_bytes_equal_actual": true,
+      "root_extra_exact": null
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "base_revision": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+      "base_bytes": 15331,
+      "base_full_sha256": "43115cad1beeeb4aa887c80206936d2ecec6ef507447a559b4544222f8ccb089",
+      "base_prefix_byte_exact": true,
+      "prior_body_revision": "7e2398c3b8b1f2c34c84bb4145556eccd2a90882",
+      "prior_full_bytes": 21287,
+      "prior_full_sha256": "4216eb7adc0215b34c3742a3eeb3eb435cc0236934e14521e6c1656b7b1cb1b2",
+      "actual_body_revision": "f6cc04970d8d0e7278a9e90efe5e9d0bbf24a962",
+      "actual_full_bytes": 21287,
+      "actual_full_sha256": "4216eb7adc0215b34c3742a3eeb3eb435cc0236934e14521e6c1656b7b1cb1b2",
+      "actual_suffix_start_offset": 15331,
+      "actual_suffix_bytes": 5956,
+      "actual_suffix_sha256_raw": "d7ecf534c998aca7c7d3bd5b0d8db8beadd171dc9a2678e0d655cc15e0727e9e",
+      "actual_suffix_ends_lf": true,
+      "root_checkpoint_sha_match": true,
+      "candidate_plus_root_count_heading_only_bytes_equal_actual": true,
+      "root_extra_exact": null
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "base_revision": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+      "base_bytes": 487997,
+      "base_full_sha256": "2d0d893deb6ce95836b5b1b1f3b6a01511db36ce956a881788b5de1c26f5783b",
+      "base_prefix_byte_exact": true,
+      "prior_body_revision": "7e2398c3b8b1f2c34c84bb4145556eccd2a90882",
+      "prior_full_bytes": 508384,
+      "prior_full_sha256": "93ac5deb6d7b21bb5f861562fbc06fb0c2f99e4356fa2ba2597ddfc500f81464",
+      "actual_body_revision": "f6cc04970d8d0e7278a9e90efe5e9d0bbf24a962",
+      "actual_full_bytes": 511243,
+      "actual_full_sha256": "e7d67a5b52e72d09ef3239dad60d9b61f0764d79a48e7bdbd97b5a58d1f5adf3",
+      "actual_suffix_start_offset": 487997,
+      "actual_suffix_bytes": 23246,
+      "actual_suffix_sha256_raw": "d1ad1dee6b0b9216c9628f52c9907ecfb218afe0e40380f5f34099ec39c38430",
+      "actual_suffix_ends_lf": true,
+      "root_checkpoint_sha_match": true,
+      "candidate_plus_root_count_heading_only_bytes_equal_actual": true,
+      "root_extra_exact": {
+        "before": "**6列・旧24 IDを保持する31 CASEの再導出matrix**",
+        "after": "**6列・旧24 IDを保持する35 CASEの再導出matrix（索引行を含む）**",
+        "before_in_candidate_count": 1,
+        "after_in_actual_count": 1,
+        "reason": "matrix件数31→35・索引行込み"
+      }
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "base_revision": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+      "base_bytes": 60801,
+      "base_full_sha256": "d2c9c508465305c3edf9af1f6d2d247cd19f07617aefeca25f320eeaba56ceca",
+      "base_prefix_byte_exact": true,
+      "prior_body_revision": "7e2398c3b8b1f2c34c84bb4145556eccd2a90882",
+      "prior_full_bytes": 67528,
+      "prior_full_sha256": "a5384004be82a63121b3289e0350b346a3c743f51ae82489dbb30e348972dde4",
+      "actual_body_revision": "f6cc04970d8d0e7278a9e90efe5e9d0bbf24a962",
+      "actual_full_bytes": 67528,
+      "actual_full_sha256": "a5384004be82a63121b3289e0350b346a3c743f51ae82489dbb30e348972dde4",
+      "actual_suffix_start_offset": 60801,
+      "actual_suffix_bytes": 6727,
+      "actual_suffix_sha256_raw": "8b0dfbb92d6c54008d92a4b10d72855955f347d3efe8e53385cc1e0f27b5dcc7",
+      "actual_suffix_ends_lf": true,
+      "root_checkpoint_sha_match": true,
+      "candidate_plus_root_count_heading_only_bytes_equal_actual": true,
+      "root_extra_exact": null
+    }
+  ],
+  "fixture_inventory": {
+    "old_current_31_ids_from_candidate": [
+      "L10-LABO-071-CASE-01",
+      "L10-LABO-071-CASE-02",
+      "L10-LABO-071-CASE-03a",
+      "L10-LABO-071-CASE-03b",
+      "L10-LABO-071-CASE-03c",
+      "L10-LABO-071-CASE-03d",
+      "L10-LABO-071-CASE-03e",
+      "L10-LABO-071-CASE-03f",
+      "L10-LABO-071-CASE-04a",
+      "L10-LABO-071-CASE-05",
+      "L10-LABO-071-CASE-06",
+      "L10-LABO-071-CASE-07",
+      "L10-LABO-071-CASE-08",
+      "L10-LABO-071-CASE-09",
+      "L10-LABO-071-CASE-10",
+      "L10-LABO-071-CASE-11",
+      "L10-LABO-071-CASE-12",
+      "L10-LABO-071-CASE-13",
+      "L10-LABO-071-CASE-14",
+      "L10-LABO-071-CASE-15",
+      "L10-LABO-071-CASE-16",
+      "L10-LABO-071-CASE-17",
+      "L10-LABO-071-CASE-18",
+      "L10-LABO-071-CASE-19",
+      "L10-LABO-071-CASE-20",
+      "L10-LABO-071-CASE-21",
+      "L10-LABO-071-CASE-22",
+      "L10-LABO-071-CASE-23",
+      "L10-LABO-071-CASE-r01-model-selection",
+      "L10-LABO-071-CASE-r01-provider-selection",
+      "L10-LABO-071-CASE-r01-lane-selection"
+    ],
+    "all_old31_ids_present_in_actual_35": true,
+    "old24_raw_case_ids": [
+      "L10-LABO-071-CASE-01",
+      "L10-LABO-071-CASE-02",
+      "L10-LABO-071-CASE-03a",
+      "L10-LABO-071-CASE-03b",
+      "L10-LABO-071-CASE-03c",
+      "L10-LABO-071-CASE-03d",
+      "L10-LABO-071-CASE-03e",
+      "L10-LABO-071-CASE-03f",
+      "L10-LABO-071-CASE-04a",
+      "L10-LABO-071-CASE-05",
+      "L10-LABO-071-CASE-06",
+      "L10-LABO-071-CASE-07",
+      "L10-LABO-071-CASE-08",
+      "L10-LABO-071-CASE-09",
+      "L10-LABO-071-CASE-10",
+      "L10-LABO-071-CASE-11",
+      "L10-LABO-071-CASE-12",
+      "L10-LABO-071-CASE-13",
+      "L10-LABO-071-CASE-14",
+      "L10-LABO-071-CASE-15",
+      "L10-LABO-071-CASE-16",
+      "L10-LABO-071-CASE-17",
+      "L10-LABO-071-CASE-18",
+      "L10-LABO-071-CASE-19"
+    ],
+    "all_old24_ids_present_in_actual_35": true,
+    "actual_35_ids_in_body_order": [
+      "L10-LABO-071-CASE-01",
+      "L10-LABO-071-CASE-02",
+      "L10-LABO-071-CASE-03a",
+      "L10-LABO-071-CASE-03b",
+      "L10-LABO-071-CASE-03c",
+      "L10-LABO-071-CASE-03d",
+      "L10-LABO-071-CASE-03e",
+      "L10-LABO-071-CASE-03f",
+      "L10-LABO-071-CASE-04a",
+      "L10-LABO-071-CASE-05",
+      "L10-LABO-071-CASE-06",
+      "L10-LABO-071-CASE-07",
+      "L10-LABO-071-CASE-08",
+      "L10-LABO-071-CASE-09",
+      "L10-LABO-071-CASE-10",
+      "L10-LABO-071-CASE-11",
+      "L10-LABO-071-CASE-12",
+      "L10-LABO-071-CASE-13",
+      "L10-LABO-071-CASE-14",
+      "L10-LABO-071-CASE-15",
+      "L10-LABO-071-CASE-r02-permission-to-qualification",
+      "L10-LABO-071-CASE-r02-assignment-to-qualification",
+      "L10-LABO-071-CASE-16",
+      "L10-LABO-071-CASE-17",
+      "L10-LABO-071-CASE-18",
+      "L10-LABO-071-CASE-19",
+      "L10-LABO-071-CASE-20",
+      "L10-LABO-071-CASE-21",
+      "L10-LABO-071-CASE-22",
+      "L10-LABO-071-CASE-23",
+      "L10-LABO-071-CASE-r02-major-miss-rubric-output",
+      "L10-LABO-071-CASE-r02-default-class-set-output",
+      "L10-LABO-071-CASE-r01-model-selection",
+      "L10-LABO-071-CASE-r01-provider-selection",
+      "L10-LABO-071-CASE-r01-lane-selection"
+    ],
+    "actual_row_count": 35,
+    "actual_unique_id_count": 35,
+    "each_row_has_six_cells": true,
+    "four_new_M1_M2_IDs": [
+      "L10-LABO-071-CASE-r02-permission-to-qualification",
+      "L10-LABO-071-CASE-r02-assignment-to-qualification",
+      "L10-LABO-071-CASE-r02-major-miss-rubric-output",
+      "L10-LABO-071-CASE-r02-default-class-set-output"
+    ],
+    "each_new_id_once": true,
+    "fixture_execution_claim": false
+  },
+  "root_count_correction": {
+    "before": "**6列・旧24 IDを保持する31 CASEの再導出matrix**",
+    "after": "**6列・旧24 IDを保持する35 CASEの再導出matrix（索引行を含む）**",
+    "actual_occurrences": 1,
+    "case_rows_include_index_rows": true
+  },
+  "checks": {
+    "all_six_base_prefixes_byte_exact": true,
+    "all_six_actual_full_hashes_bytes_match_root_checkpoint": true,
+    "candidate_plus_root_count_correction_replay_equals_actual_all_six": true,
+    "six_suffix_lf_bytes_hashed_without_appending": true,
+    "old31_and_old24_IDs_retained": true,
+    "all_35_fixture_rows_six_columns": true,
+    "fixed_source_PO_record_and_legacy_span_hashes_recomputed_from_Git": true,
+    "git_diff_check": {
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "expected_six_paths_only": false
+  },
+  "limits": [
+    "Rootはgov/diff PASSを報告。独立に再実行したのは`git diff --check`であり、govcheck実行を主張しない。",
+    "fixture実行、独立review、意味完全性、Fable判断、L3承認、実資格や実権限の確認は未実施。",
+    "Review01 R1–R5とreview02 R6–R8を原文保持し、closureを主張しない。"
+  ],
+  "correction_to_prior_audit": {
+    "prior_json_path": "/tmp/labo071-review02-postbody-audit-2026-10-07.json",
+    "prior_json_sha256": "0b52dfed921d2faca24619444f10a6632f74c1e608badf0a7e1252b4c83292af",
+    "prior_md_path": "/tmp/labo071-review02-postbody-audit-2026-10-07.md",
+    "prior_md_sha256": "034c97f690cf3d2e7b2071b8742aae580a45f1bbae2217d7d825689c021b0f8a",
+    "reason": "前版MDではbody commit欄に過去修正本文d055を置き、現HEAD f6ccと異なる表記になっていた。またarchive保管copyのread revision 3795を歴史source revisionと誤読できる文があった。",
+    "body_revision_and_commit_corrected_to": "f6cc04970d8d0e7278a9e90efe5e9d0bbf24a962",
+    "prior_corrected_body_commit_distinguished_as": "d055c3c01095bd4cb67da04f52cb68d254dff342",
+    "six_document_actual_pins_preserved": true,
+    "all_six_full_sha256_before_correction": [
+      "f35be71a37c8138115dcd33c8a8e75d5613063b4fbf6eb9391c4dcc115829908",
+      "3628f4ad57493cf0cc0ce6e4a0b8c21e617cd668427c70ff7145bd71be8af252",
+      "1fe941bf8993b410d94b032db87d13b7e011683fc4fc3637420b6f345c1ae2f2",
+      "4216eb7adc0215b34c3742a3eeb3eb435cc0236934e14521e6c1656b7b1cb1b2",
+      "e7d67a5b52e72d09ef3239dad60d9b61f0764d79a48e7bdbd97b5a58d1f5adf3",
+      "a5384004be82a63121b3289e0350b346a3c743f51ae82489dbb30e348972dde4"
+    ]
+  }
+}

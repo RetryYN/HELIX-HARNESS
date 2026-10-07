@@ -1,0 +1,755 @@
+{
+  "artifact_type": "HELIX-LABO-071 review03 M1–M3統合後時点監査",
+  "language": "ja",
+  "status": "/tmp静的時点監査。独立review/fixture実行/資格・permission・assignment実状態/承認を示さない。canonicalと過去監査は変更していない。",
+  "target": {
+    "pr": 2645,
+    "worktree": "/home/tenni/.helix-worktrees/l3-labo-stage5-parent071",
+    "body_revision": "9ba0ecf0b3b91f7130c6e29b5ed47c304c7ab7bc",
+    "body_commit": "9ba0ecf0b3b91f7130c6e29b5ed47c304c7ab7bc",
+    "body_commit_parent": "c46921306a92bf500bf68021451b6b02fb1448d9",
+    "base_revision": "0acbed34bfda48e32092feb63db61d2eff6d5ec4",
+    "status": "## l3-labo-stage5-parent071...origin/l3-labo-stage5-parent071 [ahead 1]",
+    "changed_paths": [
+      "docs/helix-labo/L3-requirements/business-requirements.md",
+      "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "docs/helix-labo/L10-verification/business-verification.md",
+      "docs/helix-labo/L10-verification/functional-verification.md",
+      "docs/helix-labo/L10-verification/nfr-verification.md"
+    ],
+    "worktree_porcelain_status": ""
+  },
+  "integration_checkpoint": {
+    "path": "/tmp/root-labo071-review03-integration-checkpoint.json",
+    "bytes": 4103,
+    "sha256": "bcf68d21cdb1b527b984d0bcef33dde3cda39cab1292ac28b3bf4311ad4fc117",
+    "root_reported_govcheck_and_diff_check": "PASS (Root reported; not independently rerun here)"
+  },
+  "candidate_lineage": {
+    "v1_candidate": {
+      "json_path": "/tmp/labo071-review03-M1-M3-exact-candidate-2026-10-07.json",
+      "json_sha256": "4b5b930b7bf21038f87bf1a67af011bc8f755335ee57e5b3d1de839aca1c8ec8",
+      "md_path": "/tmp/labo071-review03-M1-M3-exact-candidate-2026-10-07.md",
+      "md_sha256": "6d3949b49a88f26125f93ce602f9d1a032e2190c989d67c48af9554a28e942f6",
+      "disposition": "Root返却・採用せず。M1返却先の具体性、正常入力時の出力誤り訂正、permission/assignment境界の説明が曖昧だった。"
+    },
+    "v2_candidate": {
+      "path": "/tmp/labo071-review03-M1-M3-exact-candidate-2026-10-07-v2.json",
+      "bytes": 218863,
+      "sha256": "d5eec2110a3775628fc4055edf5e3f51425fc5695dec1d961bafc4da5aee9bc1",
+      "md_path": "/tmp/labo071-review03-M1-M3-exact-candidate-2026-10-07-v2.md",
+      "md_sha256": "8eca204130a9c7867ce910cea37158d0aea23ab9970bf84dcf048827fe0f9416",
+      "disposition": "Rootが全差分とfixed source全文を再読し、6 suffixを採用。"
+    },
+    "root_integration_adjustment": "既存prefixの区切りLFを保持してsuffixを置換。base revisionからの追加領域は0x0a + v2 candidate after_suffixであり、Rootが新規LFを付加したという意味ではない。"
+  },
+  "six_document_actual_pins": [
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "base_revision": "0acbed34bfda48e32092feb63db61d2eff6d5ec4",
+      "base_prefix_bytes": 17356,
+      "base_prefix_sha256": "6eb0e6094202a519d34b84670c7c9fa9143ced0c8e25883bddc22c9a395feae7",
+      "base_prefix_byte_exact": true,
+      "body_revision": "9ba0ecf0b3b91f7130c6e29b5ed47c304c7ab7bc",
+      "actual_full_bytes": 23554,
+      "actual_full_sha256": "2dd7a80e980b398edd0c7c9aadfe3f7ddcf940e01d8a98019e2b87b29df0a68d",
+      "checkpoint_bytes": 23554,
+      "checkpoint_sha256": "2dd7a80e980b398edd0c7c9aadfe3f7ddcf940e01d8a98019e2b87b29df0a68d",
+      "checkpoint_match": true,
+      "actual_suffix_start_offset": 17356,
+      "actual_suffix_bytes": 6198,
+      "actual_suffix_sha256_raw_lf": "f88cbd8bd1e5cf72569f158025c85dcf04d4af6c516d9f4a476fb7050eb22589",
+      "actual_suffix_ends_lf": true,
+      "candidate_v2_after_bytes": 6197,
+      "candidate_v2_after_sha256": "02b754c549cbce74c9718e20f58e1649ed43d1b178063d46ccca4c095619e26a",
+      "actual_source_citation_lines": {
+        "L2": "576–584",
+        "L11": "309–316"
+      },
+      "observed_prefix_separator": {
+        "bytes": 1,
+        "literal_hex": "0a",
+        "interpretation": "既存prefixの区切りLFを保持。base revisionからの追加領域はこのLF + v2 after_suffix。Rootが新たにLFを挿入したとは記録しない。"
+      },
+      "actual_suffix_equals_existing_seam_lf_plus_candidate_v2": true,
+      "actual_citation_text_verified": {
+        "L2_576_584": true,
+        "L11_309_316": true
+      }
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "base_revision": "0acbed34bfda48e32092feb63db61d2eff6d5ec4",
+      "base_prefix_bytes": 314755,
+      "base_prefix_sha256": "24dff56c5e90120360fe446c38e1e3b4b4b58db569fa8eb40d2be8b338161426",
+      "base_prefix_byte_exact": true,
+      "body_revision": "9ba0ecf0b3b91f7130c6e29b5ed47c304c7ab7bc",
+      "actual_full_bytes": 322914,
+      "actual_full_sha256": "b257cd28667e337282444e9454bed5f77be149ed970521f751b7addcf10b227d",
+      "checkpoint_bytes": 322914,
+      "checkpoint_sha256": "b257cd28667e337282444e9454bed5f77be149ed970521f751b7addcf10b227d",
+      "checkpoint_match": true,
+      "actual_suffix_start_offset": 314755,
+      "actual_suffix_bytes": 8159,
+      "actual_suffix_sha256_raw_lf": "1c66432bf993e9e80c0ddf74cf109b752fc5c5329bb607bef12eeb03d07903e9",
+      "actual_suffix_ends_lf": true,
+      "candidate_v2_after_bytes": 8158,
+      "candidate_v2_after_sha256": "0891169df55204afb97ee7f8008cd163b5f980fbdb0c5bccde309f48115ce62b",
+      "actual_source_citation_lines": {
+        "L2": "576–584",
+        "L11": "309–316"
+      },
+      "observed_prefix_separator": {
+        "bytes": 1,
+        "literal_hex": "0a",
+        "interpretation": "既存prefixの区切りLFを保持。base revisionからの追加領域はこのLF + v2 after_suffix。Rootが新たにLFを挿入したとは記録しない。"
+      },
+      "actual_suffix_equals_existing_seam_lf_plus_candidate_v2": true,
+      "actual_citation_text_verified": {
+        "L2_576_584": true,
+        "L11_309_316": true
+      }
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "base_revision": "0acbed34bfda48e32092feb63db61d2eff6d5ec4",
+      "base_prefix_bytes": 70949,
+      "base_prefix_sha256": "e39aadaf35521a2c9c49001581c2d6e7770156749a0705666105b579b4387be7",
+      "base_prefix_byte_exact": true,
+      "body_revision": "9ba0ecf0b3b91f7130c6e29b5ed47c304c7ab7bc",
+      "actual_full_bytes": 77681,
+      "actual_full_sha256": "a74e197f67f7ab76743ee5dbab6495e1d6f871333b7294a33f3ad8103275b578",
+      "checkpoint_bytes": 77681,
+      "checkpoint_sha256": "a74e197f67f7ab76743ee5dbab6495e1d6f871333b7294a33f3ad8103275b578",
+      "checkpoint_match": true,
+      "actual_suffix_start_offset": 70949,
+      "actual_suffix_bytes": 6732,
+      "actual_suffix_sha256_raw_lf": "fe29e9ae3cb0f070990d2afd2bb66d696cee7b5d0ea80ce289c4fa3075a43a62",
+      "actual_suffix_ends_lf": true,
+      "candidate_v2_after_bytes": 6731,
+      "candidate_v2_after_sha256": "ec45f6d709632a3b852db0294e4e070e73fcd3151d1b14ed339f69af8fa24e1b",
+      "actual_source_citation_lines": {
+        "L2": "576–584",
+        "L11": "309–316"
+      },
+      "observed_prefix_separator": {
+        "bytes": 1,
+        "literal_hex": "0a",
+        "interpretation": "既存prefixの区切りLFを保持。base revisionからの追加領域はこのLF + v2 after_suffix。Rootが新たにLFを挿入したとは記録しない。"
+      },
+      "actual_suffix_equals_existing_seam_lf_plus_candidate_v2": true,
+      "actual_citation_text_verified": {
+        "L2_576_584": true,
+        "L11_309_316": true
+      }
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "base_revision": "0acbed34bfda48e32092feb63db61d2eff6d5ec4",
+      "base_prefix_bytes": 15331,
+      "base_prefix_sha256": "43115cad1beeeb4aa887c80206936d2ecec6ef507447a559b4544222f8ccb089",
+      "base_prefix_byte_exact": true,
+      "body_revision": "9ba0ecf0b3b91f7130c6e29b5ed47c304c7ab7bc",
+      "actual_full_bytes": 21287,
+      "actual_full_sha256": "9dde43b0f457050a8eb0a7601651413d79642c2e844fef469108c0a6595157d4",
+      "checkpoint_bytes": 21287,
+      "checkpoint_sha256": "9dde43b0f457050a8eb0a7601651413d79642c2e844fef469108c0a6595157d4",
+      "checkpoint_match": true,
+      "actual_suffix_start_offset": 15331,
+      "actual_suffix_bytes": 5956,
+      "actual_suffix_sha256_raw_lf": "305754a89def7ef7570f70e08b6aca08b13de53bbc426a99a257bd1a145e77d7",
+      "actual_suffix_ends_lf": true,
+      "candidate_v2_after_bytes": 5955,
+      "candidate_v2_after_sha256": "55198a271004446ae2448e8485e515dcf583625742bcff8e2c3c9d097aa754de",
+      "actual_source_citation_lines": {
+        "L2": "576–584",
+        "L11": "309–316"
+      },
+      "observed_prefix_separator": {
+        "bytes": 1,
+        "literal_hex": "0a",
+        "interpretation": "既存prefixの区切りLFを保持。base revisionからの追加領域はこのLF + v2 after_suffix。Rootが新たにLFを挿入したとは記録しない。"
+      },
+      "actual_suffix_equals_existing_seam_lf_plus_candidate_v2": true,
+      "actual_citation_text_verified": {
+        "L2_576_584": true,
+        "L11_309_316": true
+      }
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "base_revision": "0acbed34bfda48e32092feb63db61d2eff6d5ec4",
+      "base_prefix_bytes": 487997,
+      "base_prefix_sha256": "2d0d893deb6ce95836b5b1b1f3b6a01511db36ce956a881788b5de1c26f5783b",
+      "base_prefix_byte_exact": true,
+      "body_revision": "9ba0ecf0b3b91f7130c6e29b5ed47c304c7ab7bc",
+      "actual_full_bytes": 517945,
+      "actual_full_sha256": "b1c3a6aa50ff3dabd766eb5b3f6bad5b950afe5603be9b67eab1a1e2a8ba0130",
+      "checkpoint_bytes": 517945,
+      "checkpoint_sha256": "b1c3a6aa50ff3dabd766eb5b3f6bad5b950afe5603be9b67eab1a1e2a8ba0130",
+      "checkpoint_match": true,
+      "actual_suffix_start_offset": 487997,
+      "actual_suffix_bytes": 29948,
+      "actual_suffix_sha256_raw_lf": "c6706385f04bb0722838431b202fd0b4997268e455198bb26df91eb7cab26870",
+      "actual_suffix_ends_lf": true,
+      "candidate_v2_after_bytes": 29947,
+      "candidate_v2_after_sha256": "6438681dc0d19252e359a5903c8bdb54bd9eac4ebde6dca734eb2fdcacb0f86f",
+      "actual_source_citation_lines": {
+        "L2": "576–584",
+        "L11": "309–316"
+      },
+      "observed_prefix_separator": {
+        "bytes": 1,
+        "literal_hex": "0a",
+        "interpretation": "既存prefixの区切りLFを保持。base revisionからの追加領域はこのLF + v2 after_suffix。Rootが新たにLFを挿入したとは記録しない。"
+      },
+      "actual_suffix_equals_existing_seam_lf_plus_candidate_v2": true,
+      "actual_citation_text_verified": {
+        "L2_576_584": true,
+        "L11_309_316": true
+      }
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "base_revision": "0acbed34bfda48e32092feb63db61d2eff6d5ec4",
+      "base_prefix_bytes": 60801,
+      "base_prefix_sha256": "d2c9c508465305c3edf9af1f6d2d247cd19f07617aefeca25f320eeaba56ceca",
+      "base_prefix_byte_exact": true,
+      "body_revision": "9ba0ecf0b3b91f7130c6e29b5ed47c304c7ab7bc",
+      "actual_full_bytes": 67755,
+      "actual_full_sha256": "2c369556d4a5c4188fd8e4ddf857e0061a059c108b879883a3d737556a792960",
+      "checkpoint_bytes": 67755,
+      "checkpoint_sha256": "2c369556d4a5c4188fd8e4ddf857e0061a059c108b879883a3d737556a792960",
+      "checkpoint_match": true,
+      "actual_suffix_start_offset": 60801,
+      "actual_suffix_bytes": 6954,
+      "actual_suffix_sha256_raw_lf": "62ec5644b04f4e6e7b4846d43f39f42ae77da5315297c7713b718248a3f7005c",
+      "actual_suffix_ends_lf": true,
+      "candidate_v2_after_bytes": 6953,
+      "candidate_v2_after_sha256": "6f850f819db3eb0143c18992251e55dad06dfee63cfd22e320de1b871bbd6b02",
+      "actual_source_citation_lines": {
+        "L2": "576–584",
+        "L11": "309–316"
+      },
+      "observed_prefix_separator": {
+        "bytes": 1,
+        "literal_hex": "0a",
+        "interpretation": "既存prefixの区切りLFを保持。base revisionからの追加領域はこのLF + v2 after_suffix。Rootが新たにLFを挿入したとは記録しない。"
+      },
+      "actual_suffix_equals_existing_seam_lf_plus_candidate_v2": true,
+      "actual_citation_text_verified": {
+        "L2_576_584": true,
+        "L11_309_316": true
+      }
+    }
+  ],
+  "fixed_adopted_source_and_PO": {
+    "registration_id": "MPR-RC-HELIXLABO-L2-071-001",
+    "source_revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+    "l2": {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "full_bytes": 123228,
+      "full_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+      "physical_line_start": 576,
+      "physical_line_end_inclusive": 584,
+      "span_bytes": 3254,
+      "span_sha256_raw_lf": "3036e4c300ee6f78e74b819657d456c0bad08b8ccb483882cfc3b59fa5bbbe1f",
+      "literal": "### HELIXLABO-L2-071 GitHub監査task class別qualification（単体追補候補、1.0）\n\n**kind / parent / status**：unit、`HELIXLABO-L1-011` primary、`version_target: 1.0`、`draft_candidate`。GitHub監査task classごとに、対象model revisionの評価結果から資格状態を記録する。対象task classは入力scopeに従い、既定のclass集合を作らない。candidateは特定provider/lane、評価threshold、再評価schedule、配置を定めず、要求採択やauthority変更を生成しない。\n\n- **入力・出力**：対象task class、model revision、評価範囲と評価証拠を結び、同じtask class/model revisionに束縛したqualification状態を返す。表示用称号、task qualification、permission/authority、assignment roleは別のidentity/fieldとして保持し、互いから推論しない。称号だけでqualifiedとせず、資格だけで権限・配置を与えない。\n- **qualificationの失効**：記録されたmajor missは、その資格対象のqualificationを失効させる。対象model revisionが更新された場合、旧revisionのqualificationを新revisionへ継承せず旧資格を失効させる。新revisionの評価・資格付与は別に記録する。重大missの分類基準、評価threshold、失効後の再評価方法・時期はこの候補で新設しない。\n- **未評価・失敗**：task class、model revision、評価範囲、または根拠が不足・矛盾する場合は`unknown`/未評価を維持し、他revisionや称号から補わない。qualification状態のみを返し、model/provider/laneの選択、割当、実行、GitHub authority、permissionの発行・変更をしない。\n- **既存要求との境界**：採択済みHELIXLABO-L2-055のWorker履歴に基づく作業種別/model class別水準、根拠、範囲、未評価集計は再利用する。本候補が補うのはGitHub監査task classとmodel revisionへ束縛したqualificationおよびmajor miss/revision更新による失効意味である。055/059の一般評価・比較契約、OSのassignment、SECURITYのpermission/expiry/revocation authorityを複製・変更しない。資格失効とpermission失効は別状態である。\n- **旧sourceと局所scope**：`LEGACY-ASSET-A6926200F28B26300432`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md:67,69`を起点とする。3L-BR-008のtask class別/model revision別評価、称号・資格・権限・assignment roleの分離、major miss/model更新による資格失効だけを対応づける。旧L3の固定class一覧、段階状態列、expiry条件、provider/lane、旧runtime/test behaviorは取り込まない。選択した一atomの候補対応であり、formal successor、source owner移管、意味の最終採否、要求採択、実装・実行または条件closureを主張しない。source-linesとreceiptは[登録記録](../../governance/audits/requirement-registration/labo-github-audit-qualification-source-lines-2026-09-29.jsonl)および[coverage receipt](../../governance/audits/requirement-registration/labo-github-audit-qualification-coverage-receipt-2026-09-29.json)を参照する。\n"
+    },
+    "l11": {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "full_bytes": 73036,
+      "full_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+      "physical_line_start": 309,
+      "physical_line_end_inclusive": 316,
+      "span_bytes": 1769,
+      "span_sha256_raw_lf": "029c6bcea5a206a15c8bbe9706ff25917fbf9a6496b3891288fc2660634f7bc0",
+      "literal": "### HELIXLABO-L2-071 GitHub監査task class別qualificationの受入候補（単体、1.0）\n\n対象task classとmodel revision、評価範囲、根拠、qualification状態が一つの記録で対応し、称号、qualification、permission/authority、assignment roleを独立して読めることを確認する。qualificationから権限・配置を発生させない。\n\n- **正常例**：評価証拠が特定task classとmodel revisionに結び付いている場合、そのrevisionに対するqualification状態と適用範囲を証拠に沿って返す。表示用称号、permission/authority、assignment roleが別に保持され、評価結果がそれらを変更しない。\n- **失効例**：資格対象revisionの評価にmajor missが記録された場合、そのrevisionのqualificationを失効させ、資格状態を保持する。model revisionが更新された場合も旧revisionのqualificationを失効させ、新revisionへ引き継がない。新revisionは独立した評価根拠が記録されるまで未評価とする。\n- **unknown例**：task class、model revision、評価範囲または根拠のいずれかを特定できない記録は`unknown`/未評価とし、別revisionの資格、称号、permissionまたはassignment roleから補わない。major missの有無が判別できない場合もqualificationを有効と推定しない。\n- **不成立・差戻し**：class/revision/evidenceの対応不一致、失効済み資格の継承、資格からのpermission・authority・割当変更、qualificationと称号等の同一視を拒否し、不足した評価根拠はそのsource ownerへ戻す。major miss rubric、数値threshold、class既定値、再評価scheduleを本acceptanceで追加しない。\n",
+      "formal_review03_04_refs_raw": "labo-acceptance.md:327–328 in formal comments; file physically ends at line 316 and those review references are preserved as formal text only."
+    },
+    "physical_source_citation_correction": {
+      "L2": "576–584",
+      "L11": "309–316",
+      "sha_and_literal_unchanged": true,
+      "old_formal_reference_preserved_verbatim": true
+    },
+    "PO_record": {
+      "revision": "3795bf0dcb731231a0b5ca1faa3cb67bdfeda22a",
+      "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+      "bytes": 16056,
+      "sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+      "line": 50,
+      "line_bytes": 248,
+      "line_sha256_raw_lf": "2618bf7c08f66ba92b1e4c8fece234c73f05945401d430419d023596ea365676",
+      "literal": "| `HELIXLABO-L2-071` | 承認（通常採択22件に含む） | `MPR-RC-HELIXLABO-L2-071-001` | `sha256:3036e4c300ee6f78e74b819657d456c0bad08b8ccb483882cfc3b59fa5bbbe1f` | `sha256:029c6bcea5a206a15c8bbe9706ff25917fbf9a6496b3891288fc2660634f7bc0` |\n",
+      "decision_basis_revision": "81d1f35f9c5793c5312be4ae52526c96b609c254",
+      "record_revision_is_distinct_from_source_revision": true
+    }
+  },
+  "legacy_source_and_raw_history": {
+    "source_revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+    "source_path": "docs/helix-labo/L10-verification/functional-verification.md",
+    "source_bytes": 452839,
+    "source_sha256": "7a6c7dc1f88c77bbd628a1320c0393f0ad6c14b76d5a30db0c4cda27d22b9d16",
+    "old_raw_definition_count": 24,
+    "all_24_physical_raw_lines_verified": true,
+    "old_case_literal_records": [
+      {
+        "id": "L10-LABO-071-CASE-01",
+        "line": 3008,
+        "raw_lf_sha256": "ffb50787db81817563ec69d7a854c33875ff098fcd638b9156f868d465f1b4f9",
+        "declared_kind": "normal_declared",
+        "literal": "- `L10-LABO-071-CASE-01`（対応AC: `LABO-071-AC-01`） 正常: 同じtask class/model revisionの根拠だけからqualification stateを記録し、称号/permission/roleを変えない。"
+      },
+      {
+        "id": "L10-LABO-071-CASE-02",
+        "line": 3009,
+        "raw_lf_sha256": "f185755549eb0c5a8eecf56376ca8538fa8297e72533edc5d4da4ce3d8aac331",
+        "declared_kind": "normal_declared",
+        "literal": "- `L10-LABO-071-CASE-02`（対応AC: `LABO-071-AC-02`） 未見正常: 未見class/revisionは固有evidenceで評価し、既定class listを補わない。"
+      },
+      {
+        "id": "L10-LABO-071-CASE-03a",
+        "line": 3013,
+        "raw_lf_sha256": "b5f1d55c835492117dff649a5b5b82ceb5e307d1cfd9f6fb56e9c75d8d035e21",
+        "declared_kind": "negative_or_boundary_declared",
+        "literal": "| `L10-LABO-071-CASE-03a` | `LABO-071-AC-03` | evidence revisionだけstale | 資格unknownを保持し、evidence source ownerが識別できる場合そのowner、特定できない場合unknown。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-03b",
+        "line": 3014,
+        "raw_lf_sha256": "2864510f46c972bf4cb9d3f8481e03f42adac2a6b20099196f0e896cbbf9df80",
+        "declared_kind": "negative_or_boundary_declared",
+        "literal": "| `L10-LABO-071-CASE-03b` | `LABO-071-AC-03` | task classだけ別値 | qualificationを流用せずtask class source ownerへ戻す。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-03c",
+        "line": 3015,
+        "raw_lf_sha256": "8484b985804ab608933f21b0fa62b7cf8f29a999bb19c9f9e058037e93ae9e2a",
+        "declared_kind": "negative_or_boundary_declared",
+        "literal": "| `L10-LABO-071-CASE-03c` | `LABO-071-AC-03` | 単独変異: model revisionだけ更新。旧revision qualificationの他条件はCASE-01と同一。 | 旧qualificationを失効し新revisionへ継承しない。新revisionは独立根拠が記録されるまで未評価とする。固定親が戻し先を特定しないため新ownerを作らない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-03d",
+        "line": 3016,
+        "raw_lf_sha256": "9dc22c1df06b0f848abf4de8bc160d82c57da3e6e255b3135169f0068c991d42",
+        "declared_kind": "negative_or_boundary_declared",
+        "literal": "| `L10-LABO-071-CASE-03d` | `LABO-071-AC-03` | record済みmajor missだけ隠す | 対象revisionのqualificationを失効し、major-miss source ownerが識別できればそこへ戻す。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-03e",
+        "line": 3017,
+        "raw_lf_sha256": "3ae81cd0f9997e2177ffb038eec79b9bf76c6a19b2686ec25014bd3e201f7459",
+        "declared_kind": "negative_or_boundary_declared",
+        "literal": "| `L10-LABO-071-CASE-03e` | `LABO-071-AC-03` | qualificationからpermissionを推測 | 拒否しSECURITYへ。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-03f",
+        "line": 3018,
+        "raw_lf_sha256": "58dd424b03f972fb460405d1e1d1a0c9406e2d80e4273182ffde50a4710b557c",
+        "declared_kind": "negative_or_boundary_declared",
+        "literal": "| `L10-LABO-071-CASE-03f` | `LABO-071-AC-03` | qualificationからassignment roleを変更 | 拒否しOSへ。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-04a",
+        "line": 3019,
+        "raw_lf_sha256": "f74f0f620f69fef7e761e895e44be019400e4b090f5ff1e6250fc1d3cee15585",
+        "declared_kind": "negative_or_boundary_declared",
+        "literal": "| `L10-LABO-071-CASE-04a` | `LABO-071-AC-03` | LABOがthreshold/requalification scheduleを定義 | 拒否。要求意味を拡張しない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-05",
+        "line": 3291,
+        "raw_lf_sha256": "10e6cdfa3e5ea87805ec525e97f5e843ea780525a1a1ceeef4bc056cbd1dd0f7",
+        "declared_kind": "negative_or_boundary_declared",
+        "literal": "| `L10-LABO-071-CASE-05` | `LABO-071-AC-03` | 単独変異: task class だけ欠落。その他の入力は `CASE-01` と同一。 | 資格unknown。根拠source ownerが識別可能ならそのsourceへ戻し、できなければowner unknownを保持する。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-06",
+        "line": 3292,
+        "raw_lf_sha256": "394c82ba5b42c19b13c9b9fd4bca20b622b1a503e577e8dff2af4b5d3d74ba59",
+        "declared_kind": "negative_or_boundary_declared",
+        "literal": "| `L10-LABO-071-CASE-06` | `LABO-071-AC-03` | 単独変異: model revision だけ欠落。その他の入力は `CASE-01` と同一。 | 資格unknown。根拠source ownerが識別可能ならそのsourceへ戻し、できなければowner unknownを保持する。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-07",
+        "line": 3293,
+        "raw_lf_sha256": "34c560bf4605ac6719730dc8bb610161a9b0a9ac5de32cb6f67afb8e919bc55b",
+        "declared_kind": "negative_or_boundary_declared",
+        "literal": "| `L10-LABO-071-CASE-07` | `LABO-071-AC-03` | 単独変異: evaluation scope だけ欠落。その他の入力は `CASE-01` と同一。 | 資格unknown。根拠source ownerが識別可能ならそのsourceへ戻し、できなければowner unknownを保持する。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-08",
+        "line": 3294,
+        "raw_lf_sha256": "f00b2ee35b815dc0c5bebf037d8150ad5e3bf004caf7183fd2dad91def95506a",
+        "declared_kind": "negative_or_boundary_declared",
+        "literal": "| `L10-LABO-071-CASE-08` | `LABO-071-AC-03` | 単独変異: evidence だけ欠落。その他の入力は `CASE-01` と同一。 | 資格unknown。根拠source ownerが識別可能ならそのsourceへ戻し、できなければowner unknownを保持する。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-09",
+        "line": 3295,
+        "raw_lf_sha256": "dfbc303ce8f76bb41028edb056113763ef93c571169af4d20998c7f532890870",
+        "declared_kind": "index_alias_declared",
+        "literal": "| `L10-LABO-071-CASE-09` | `LABO-071-AC-03` | 索引（独立fixtureではない）: CASE-03dの記録済みmajor miss隠蔽を参照する。 | 主fixtureのoracleを使い、同じ変異を二重計上しない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-10",
+        "line": 3296,
+        "raw_lf_sha256": "f2544c61b2e73211676cf0da9a2e8e303c20250d17205ede06b5fb3ab0d3026a",
+        "declared_kind": "negative_or_boundary_declared",
+        "literal": "| `L10-LABO-071-CASE-10` | `LABO-071-AC-03` | 単独変異: major miss statusがunknownだけを変更。その他の入力は `CASE-01` と同一。 | qualificationを有効と推定せず、major-miss source ownerが識別できる場合そのowner、できない場合unknown。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-11",
+        "line": 3297,
+        "raw_lf_sha256": "cd5c6519c416c346ff0faf33b398db80cc02d603290790c3ab2d01b84dd7d666",
+        "declared_kind": "index_alias_declared",
+        "literal": "| `L10-LABO-071-CASE-11` | `LABO-071-AC-03` | 索引（独立fixtureではない）: CASE-03cの同一変異を参照する。 | 主fixtureを参照し、同じ変異を二重計上しない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-12",
+        "line": 3298,
+        "raw_lf_sha256": "cadbee790d78e5fa533fe2610f3a0a1fb4ce1644d39fba986cb55bc8fc9f8b45",
+        "declared_kind": "negative_or_boundary_declared",
+        "literal": "| `L10-LABO-071-CASE-12` | `LABO-071-AC-03` | 単独変異: titleをqualificationと同一視だけを変更。その他の入力は `CASE-01` と同一。 | 表示称号とqualificationを分離し、根拠source ownerが不明なら戻し先unknown。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-13",
+        "line": 3299,
+        "raw_lf_sha256": "5d40375fca8e6e695dc89fbbc6ace435b2fdcba14c6a7eb552ff9fd499226238",
+        "declared_kind": "index_alias_declared",
+        "literal": "| `L10-LABO-071-CASE-13` | `LABO-071-AC-03` | 索引（独立fixtureではない）: CASE-03eの同一変異を参照する。 | 主fixtureを参照し、同じ変異を二重計上しない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-14",
+        "line": 3300,
+        "raw_lf_sha256": "d0734ff0eab339e21d950f038acba472b4d9860d4d197d342db1378773925bae",
+        "declared_kind": "negative_or_boundary_declared",
+        "literal": "| `L10-LABO-071-CASE-14` | `LABO-071-AC-03` | 単独変異: qualificationからauthorityを生成だけを変更。その他の入力は `CASE-01` と同一。 | authority変更を拒否し既存ownerに残す 戻し先: unknown（qualificationからauthority ownerを推定しない）。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-15",
+        "line": 3301,
+        "raw_lf_sha256": "d84894cc41409eb3e880917aff48bc445064296c9f27963ea05f20ac48949ca3",
+        "declared_kind": "index_alias_declared",
+        "literal": "| `L10-LABO-071-CASE-15` | `LABO-071-AC-03` | 索引（独立fixtureではない）: CASE-03fの同一変異を参照する。 | 主fixtureを参照し、同じ変異を二重計上しない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-16",
+        "line": 3305,
+        "raw_lf_sha256": "9af980649400731f4d483efb77bfd35c48d16bb3bf17c6ab2453826fdfde50a0",
+        "declared_kind": "negative_or_boundary_declared",
+        "literal": "| `L10-LABO-071-CASE-16` | `LABO-071-AC-03` | 評価根拠source identityだけ欠落 | qualificationをunknownとし、source ownerが識別できる場合そのsource、できない場合戻し先unknown。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-17",
+        "line": 3306,
+        "raw_lf_sha256": "b770d02cd6168aa7d92990fae5ea68c74f6d394006552f48e870f4cbae9935e5",
+        "declared_kind": "negative_or_boundary_declared",
+        "literal": "| `L10-LABO-071-CASE-17` | `LABO-071-AC-03` | qualificationをLABOへ一律返却し、根拠source ownerを無視 | 既存source ownerへ返す。owner未特定はunknownのままとする。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-18",
+        "line": 3307,
+        "raw_lf_sha256": "aa62ac4325bf4ffc989f4393cf31798a58dc7ee0a72f8842ddf9577d366bcccb",
+        "declared_kind": "index_alias_declared",
+        "literal": "| `L10-LABO-071-CASE-18` | `LABO-071-AC-03` | 索引（独立fixtureではない）: CASE-16の評価根拠source identity欠落を直接参照する。 | CASE-16のoracleを使いqualificationをunknownとして保ち、同じsource-identity欠落を二重計上しない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-19",
+        "line": 3308,
+        "raw_lf_sha256": "8bee16e06b433ed180dc0e5e51d3ae66f7720ffb2f6531df969e11ec0319c1fa",
+        "declared_kind": "negative_or_boundary_declared",
+        "literal": "| `L10-LABO-071-CASE-19` | `LABO-071-AC-03` | 根拠無しにexpiredを失効条件とする | 固定親にない期限条件を適用せずunknownを維持する。 |"
+      }
+    ],
+    "old_raw_checkpoint": {
+      "old_case_raw": 24,
+      "source_full_span": 10,
+      "errors": 0,
+      "scope": "fixed L2/L11 and old24 all literal Read; other pins mechanical only"
+    }
+  },
+  "formal_review_history": [
+    {
+      "comment_id": 6025651335,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2645#issuecomment-6025651335",
+      "raw_bytes": 6124,
+      "raw_sha256": "d011b286e1b3805533833e80da1a51e0b6d08a8b1fa0d9712eee753743033166",
+      "raw_body": "## review03（independent review、PR #2645 親HELIXLABO-L2-071、HEAD b428fc7e7ce40f283592886837bbc3d3aea7c40c、base main ceda1c53b）：Major 3\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2645-LABO-STAGE5-PARENT071-03` に応える。\n\n### 事前確認と静的検査\n- **採択記録**：live26記録50行（`MPR-RC-HELIXLABO-L2-071-001`）。後日の別revisionの採択はない。\n- **固定親**：ea6f756。\n- **追補条件**：live26記録72行の「資格を操作権限や割当へ自動変換しない」は、CASE-03e、03f、14、20で受けている。\n- **base整合**：merge-baseは依頼のbaseと一致し、削除行は0である。\n- **条件付きの戻し先**：0件。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功\n  - 現在のorigin/main（0acbed34b）との`merge-tree`は衝突なし\n\n### 照合の経過\n1. **review02の解消の確認**（reviewerが差分で確かめた）：\n   - **M1**：解消した。r02-permission-to-qualificationとr02-assignment-to-qualificationが置かれた。\n   - **M2**：解消した。r02-major-miss-rubric-outputとr02-default-class-set-outputが置かれた。\n2. **Opusシンプルブラインド**：Major 3。禁止列挙の全件照合、閉じた列挙の一致、残余R1〜R8の洗い直しを含めた。Majorがあったので、Fableへは回していない。\n3. **reviewerの確認**：固定L2の576〜594行（とくに580、582行と、8行目の責務区分）と、L11の309〜328行を読んだ。CASE-12のbaselineも確かめ、3件ともMajorと確定した。\n\n**reviewer側の誤り**：\n- **M1**：これまで残余R8（「revision/evidenceの対応不一致は03c・03aで実質的に覆われている」）としていた点である。L11は、この対応不一致を名指しの誤り例として挙げている。L11の誤り例はCASEと1対1で対応させる基準（#2638 review08で適用）に照らせば、Majorとすべきだった。\n- **M3**：review02のM1では、「互いから推論しない」4属性のうち、permission/assignment→qualificationの向きだけを挙げていた。残りの向きを取りこぼしていた。\n\n### Major\n**M1（revisionだけの対応不一致を拒否するCASEがない。旧R8からの繰り上げ）**\n- **欠陥**：\n  - 次の形の不一致を、単独で拒否するCASEがない：evidenceはV1のものなのに、qualificationの記録はV0になっている。\n  - 既存のCASEは、どれもこの不一致を扱っていない。\n    - CASE-03a：evidence source revisionのstale\n    - CASE-03c：model revisionの更新\n    - CASE-06：欠落\n  - そのため、revisionの束縛を確かめない実装が、誤ったqualified状態を返しても合格する（類型4）。\n- **守るべき行**：\n  - L11-071（ea6f756 labo-acceptance.md:328）「class/revision/evidenceの対応不一致…を拒否」\n  - 固定L2-071（labo-requirements.md:580）「同じtask class/model revisionに束縛したqualification状態を返す」\n\n**M2（「称号だけでqualifiedとしない」を、単独で確かめられない）**\n- **欠陥**：\n  - CASE-12は、表示title T0をqualification Q0と同一視する変異を入れる。しかし、前提のB0は有効なevidence E0を持っている。そのため、変異を入れても、正しくqualifiedとなる結果と区別できない。\n  - evidenceがなく、titleだけがある状態からqualifiedを出す出力を、拒否するCASEがない。permission/assignmentの向き（r02の2件）は、Q0=unknownで組んである。titleの向きには、同じ形のCASEがない。\n  - そのため、固定親の禁止が照合されない（類型2・4）。\n- **守るべき行**：\n  - 固定L2-071（:580）「称号だけでqualifiedとせず」\n  - L11-071（:327）「別revisionの資格、称号、permissionまたはassignment roleから補わない」\n\n**M3（qualificationを経由しない向きの推論・変更を、拒否するCASEがない）**\n- **欠陥**：固定親は、表示用称号、task qualification、permission/authority、assignment roleの4属性を、「互いから推論しない」としている。次の向きに、単独の拒否CASEがない。\n  - title→permission/authority\n  - title→assignment\n  - permission→assignment\n  - assignment→permission\n- さらに、資格の失効（03c/03d）の判定は、P0/A0が変わらないことを照合していない。資格の失効がpermissionの失効・変更へ波及する誤りが、合格する。permissionのexpiry/revocationは、SECURITYの責務である。\n- L10 NFRも、「qualification由来の派生変更」だけを見ている（類型2）。\n- **守るべき行**：\n  - 固定L2-071（:580）「互いから推論しない」\n  - 同（:582）「permissionの発行・変更をしない」\n  - 同節の責務区分「SECURITYのpermission/expiry…」\n\n### 後で直す残余（承認を止めない）\n- **R1、R2**：解消した。\n- **R3〜R7**：変わらない。\n- **R8**：M1へ繰り上げた。\n- **R9（再評価の方法）**：再評価の「方法」を新設しないことに、単独CASEがない。CASE-23は、scheduleだけを扱っている。\n- **R10（範囲の注記）**：「055/059/OS/SECURITYを複製・変更しない」「旧L3を取り込まない」は範囲の注記で、CASEはない。\n\n### 次の手順\n- **M1**：evidenceとqualification記録のrevisionだけが食い違う単独CASEを置き、拒否する。\n- **M2**：evidenceがなく、titleだけがあるbaseline（Q0=unknown）を置く。titleからqualifiedを補完する変異を、単独のCASEとして拒否する。\n- **M3**：title→permission/authority、title→assignment、permission→assignment、assignment→permissionの各向きを、それぞれ単独のCASEとして拒否する。資格の失効CASE（03c/03d）の判定に、P0/A0が変わらないことの照合を入れる。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+      "residual_R1_R10_raw": "### 後で直す残余（承認を止めない）\n- **R1、R2**：解消した。\n- **R3〜R7**：変わらない。\n- **R8**：M1へ繰り上げた。\n- **R9（再評価の方法）**：再評価の「方法」を新設しないことに、単独CASEがない。CASE-23は、scheduleだけを扱っている。\n- **R10（範囲の注記）**：「055/059/OS/SECURITYを複製・変更しない」「旧L3を取り込まない」は範囲の注記で、CASEはない。\n\n",
+      "reviewer_omission_raw": "**reviewer側の誤り**：\n- **M1**：これまで残余R8（「revision/evidenceの対応不一致は03c・03aで実質的に覆われている」）としていた点である。L11は、この対応不一致を名指しの誤り例として挙げている。L11の誤り例はCASEと1対1で対応させる基準（#2638 review08で適用）に照らせば、Majorとすべきだった。\n- **M3**：review02のM1では、「互いから推論しない」4属性のうち、permission/assignment→qualificationの向きだけを挙げていた。残りの向きを取りこぼしていた。\n",
+      "R_disposition": "R1/R2はreview03で解消と記録。R3–R7変わらず。R8は今回M1へ昇格。R9/R10は同comment rawの承認阻害なし残余として保持。今回closureを宣言しない。"
+    },
+    {
+      "comment_id": 6025698442,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2645#issuecomment-6025698442",
+      "raw_bytes": 1904,
+      "raw_sha256": "da13494b230aa54de32533c689357c0f9efa96c740be4d39636f1fd7cfdfb92f",
+      "raw_body": "## review04（independent review、PR #2645 親HELIXLABO-L2-071、HEAD c46921306a92bf500bf68021451b6b02fb1448d9、base main 0acbed34b）：Major 3（review03 M1〜M3が未解消）\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼 `RH-PR2645-LABO-STAGE5-PARENT071-04` に応える。\n\n### 照合した項目\n- **今回のHEADの変更**：b428fc7e7からの変更は、最新main（0acbed34b、#2637 merge）を取り込んだmerge commit `c46921306`だけである。\n- **6本文のbytes**：LABOの6本文は、review03の対象HEAD `b428fc7e7`と、6件とも全byte同一である。reviewerが`git show`で照合した。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `merge-tree`は衝突なし\n\n### 結論\n本文は、review03の対象と同一である。そのため、review03のM1〜M3は未解消のまま残る。\n\n- **M1**：evidenceとqualification記録のrevisionだけが食い違う対応不一致に、単独の拒否CASEがない（旧R8からの繰り上げ）。\n- **M2**：evidenceがなくtitleだけある状態から、qualifiedを補完する誤りを拒否するCASEがない。CASE-12のB0は有効なE0を持つので、この誤りを区別できない。\n- **M3**：qualificationを経由しない向きの推論（title→permission/authority、title→assignment、permission→assignment、assignment→permission）を拒否するCASEがない。資格失効のCASEも、P0/A0が変わらないことを照合していない。\n\n守るべき固定親の行は、review03のとおりである。ea6f756 labo-requirements.md:580、582と、labo-acceptance.md:327、328である。\n\n本文が同一なので、今回は照合を新たに回していない。\n\n### 次の手順\n- review03の「次の手順」のとおりに、M1〜M3を直す。\n- 直した後のHEADで、もう一度依頼してほしい。\n",
+      "review04_result": "review04 states the six body documents were byte-identical to review03 HEAD, so M1–M3 remained open and it performed no new independent reconciliation. Preserve this as formal history; this worker draft is a response candidate, not review closure.",
+      "formal_source_refs_verbatim": "review04 says fixed L2:580/582 and L11:327/328; preserve those raw formal references exactly in this record."
+    }
+  ],
+  "fixture_inventory": {
+    "prior_defined_ids": [
+      "L10-LABO-071-CASE-01",
+      "L10-LABO-071-CASE-02",
+      "L10-LABO-071-CASE-03a",
+      "L10-LABO-071-CASE-03b",
+      "L10-LABO-071-CASE-03c",
+      "L10-LABO-071-CASE-03d",
+      "L10-LABO-071-CASE-03e",
+      "L10-LABO-071-CASE-03f",
+      "L10-LABO-071-CASE-04a",
+      "L10-LABO-071-CASE-05",
+      "L10-LABO-071-CASE-06",
+      "L10-LABO-071-CASE-07",
+      "L10-LABO-071-CASE-08",
+      "L10-LABO-071-CASE-09",
+      "L10-LABO-071-CASE-10",
+      "L10-LABO-071-CASE-11",
+      "L10-LABO-071-CASE-12",
+      "L10-LABO-071-CASE-13",
+      "L10-LABO-071-CASE-14",
+      "L10-LABO-071-CASE-15",
+      "L10-LABO-071-CASE-r02-permission-to-qualification",
+      "L10-LABO-071-CASE-r02-assignment-to-qualification",
+      "L10-LABO-071-CASE-16",
+      "L10-LABO-071-CASE-17",
+      "L10-LABO-071-CASE-18",
+      "L10-LABO-071-CASE-19",
+      "L10-LABO-071-CASE-20",
+      "L10-LABO-071-CASE-21",
+      "L10-LABO-071-CASE-22",
+      "L10-LABO-071-CASE-23",
+      "L10-LABO-071-CASE-r02-major-miss-rubric-output",
+      "L10-LABO-071-CASE-r02-default-class-set-output",
+      "L10-LABO-071-CASE-r01-model-selection",
+      "L10-LABO-071-CASE-r01-provider-selection",
+      "L10-LABO-071-CASE-r01-lane-selection"
+    ],
+    "actual_defined_case_count": 44,
+    "actual_unique_defined_ids": 44,
+    "all_prior_ids_retained": true,
+    "added_ids": [
+      "L10-LABO-071-CASE-r03-evidence-qualification-revision-mismatch",
+      "L10-LABO-071-CASE-r03-title-only-no-evidence",
+      "L10-LABO-071-CASE-r03-title-to-permission",
+      "L10-LABO-071-CASE-r03-title-to-authority",
+      "L10-LABO-071-CASE-r03-title-to-assignment",
+      "L10-LABO-071-CASE-r03-permission-to-assignment",
+      "L10-LABO-071-CASE-r03-assignment-to-permission",
+      "L10-LABO-071-CASE-r03-revision-update-permission-isolation",
+      "L10-LABO-071-CASE-r03-major-miss-permission-isolation"
+    ],
+    "all_defined_rows_have_six_cells": true,
+    "actual_rows": [
+      {
+        "id": "L10-LABO-071-CASE-01",
+        "literal": "| `L10-LABO-071-CASE-01` | `LABO-071-FR-01` | `LABO-071-AC-01` | B0: 選択task class C0、model revision V0、scope S0、revision整合したevidence E0とsource identity、資格対象relationが固定済み。title T0、qualification state Q0、permission P0、assignment role A0は別identity/fieldで記録。 | 変異なし（正常合成fixture）。 | Q0をE0に基づきS0/C0/V0へ記録。T0/P0/A0は不変。合成fixtureであり実評価ではない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-02",
+        "literal": "| `L10-LABO-071-CASE-02` | `LABO-071-FR-01/03` | `LABO-071-AC-02` | B1: 結果を見る前に選択された新task class C1×model revision V1×scope S1。固有evidence E1がある。B0とは別の対象。 | 変異なし（未見組合せの正常fixture）。 | C1/V1固有のE1だけでstateを判定。C0/V0やtitleから流用せず既定class集合を補わない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-03a",
+        "literal": "| `L10-LABO-071-CASE-03a` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | B0のclass/revision/scope/evidenceは一致し、source revisionはcurrent。 | evidence source revisionだけstaleにする。 | qualificationをunknown/未評価にし、他class/revision/scopeやtitleから補わない。不足・不一致の評価根拠を供給する既存source owner責務区分へ返し、個体source/owner identity unknownは別に保持する。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-03b",
+        "literal": "| `L10-LABO-071-CASE-03b` | `LABO-071-FR-01` | `LABO-071-AC-03` | B0のevidenceはC0/V0/S0に一致。 | task class fieldだけをC1へ変える。 | qualificationをunknown/未評価にし、他class/revision/scopeやtitleから補わない。不足・不一致の評価根拠を供給する既存source owner責務区分へ返し、個体source/owner identity unknownは別に保持する。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-03c",
+        "literal": "| `L10-LABO-071-CASE-03c` | `LABO-071-FR-02/03` | `LABO-071-AC-03` | B0のclass C0/model revision V0/scope S0/evidence E0とqualified Q0はcurrent sourceに一致し、permission P0、authority H0、assignment A0は各独立sourceのcurrent値として記録。 | model revisionだけをV0からV1へ更新する。 | V0のqualificationだけを失効し、V1には固有evidenceが記録されるまでunknown/未評価を返す。P0/H0/A0はそれぞれ独立sourceの値と一致させ、資格失効からpermission・authority・assignmentの変更を生成しない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-03d",
+        "literal": "| `L10-LABO-071-CASE-03d` | `LABO-071-FR-02/03` | `LABO-071-AC-03` | B0のclass C0/model revision V0/scope S0/evidence E0、qualification Q0とrecord済みmajor miss M0をsourceで照合。permission P0、authority H0、assignment A0は各独立sourceのcurrent値。 | 出力summaryだけからrecord済みM0を隠す。元sourceは不変。 | sourceに記録済みのM0に従いV0のqualificationだけを失効する。P0/H0/A0は各独立source値と一致させ、summaryによる隠蔽や資格失効からの状態変更を拒否する。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-03e",
+        "literal": "| `L10-LABO-071-CASE-03e` | `LABO-071-FR-03` | `LABO-071-AC-03` | B0のQ0/P0状態は別々のsource recordにありpermission issueは発生していない。 | qualification Q0だけから新permission P1を出力しようとする。 | P1生成を拒否。既存SECURITY permission stateを変えず、実際のpermission根拠不足があればSECURITY責務へ返す。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-03f",
+        "literal": "| `L10-LABO-071-CASE-03f` | `LABO-071-FR-03` | `LABO-071-AC-03` | B0のQ0/A0は別state。OS assignment sourceは不変。 | qualification Q0だけからassignment role A1を出力する。 | A1生成を拒否。既存OS assignment stateを変えない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-04a",
+        "literal": "| `L10-LABO-071-CASE-04a` | `LABO-071-FR-02/03` | `LABO-071-AC-03` | B0の入力・stateは固定親に従い、独自thresholdやscheduleは存在しない。 | LABO出力へ根拠のないqualification threshold field一つを追加する。 | 追加ruleを拒否。固定親外の値、期限、ownerを作らない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-05",
+        "literal": "| `L10-LABO-071-CASE-05` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | B0からtask class以外の入力、E0、scope、stateは揃う。 | task class fieldだけ欠落。 | qualificationをunknown/未評価にし、他class/revision/scopeやtitleから補わない。不足・不一致の評価根拠を供給する既存source owner責務区分へ返し、個体source/owner identity unknownは別に保持する。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-06",
+        "literal": "| `L10-LABO-071-CASE-06` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | B0からmodel revision以外の入力とE0は揃う。 | model revisionだけ欠落。 | qualificationをunknown/未評価にし、他class/revision/scopeやtitleから補わない。不足・不一致の評価根拠を供給する既存source owner責務区分へ返し、個体source/owner identity unknownは別に保持する。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-07",
+        "literal": "| `L10-LABO-071-CASE-07` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | B0のclass/revision/evidenceは有効でevaluation scopeが明示される。 | evaluation scopeだけ欠落。 | qualificationをunknown/未評価にし、他class/revision/scopeやtitleから補わない。不足・不一致の評価根拠を供給する既存source owner責務区分へ返し、個体source/owner identity unknownは別に保持する。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-08",
+        "literal": "| `L10-LABO-071-CASE-08` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | B0のclass/revision/scopeはある。 | evidence fieldだけ欠落。 | qualificationをunknown/未評価にし、他class/revision/scopeやtitleから補わない。不足・不一致の評価根拠を供給する既存source owner責務区分へ返し、個体source/owner identity unknownは別に保持する。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-09",
+        "literal": "| `L10-LABO-071-CASE-09` | `LABO-071-FR-02` | `LABO-071-AC-03` | CASE-03dのV0記録済みmajor miss M0。 | 独立変異なし（CASE-03dへの索引）。 | CASE-03dの失効oracleを参照。同じmissを独立fixture/分母に数えない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-10",
+        "literal": "| `L10-LABO-071-CASE-10` | `LABO-071-FR-02/03` | `LABO-071-AC-03` | B0からmajor miss statusがknown absence。 | major miss statusだけunknownにする。 | qualificationをunknown/未評価にし、他class/revision/scopeやtitleから補わない。不足・不一致の評価根拠を供給する既存source owner責務区分へ返し、個体source/owner identity unknownは別に保持する。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-11",
+        "literal": "| `L10-LABO-071-CASE-11` | `LABO-071-FR-02` | `LABO-071-AC-03` | CASE-03cのV0→V1 model update。 | 独立変異なし（CASE-03cへの索引）。 | CASE-03cを直接参照し、revision変更を二重計上しない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-12",
+        "literal": "| `L10-LABO-071-CASE-12` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | B0のT0とQ0は同じ対象について別々のfield/sourceを持つ。 | 表示title T0だけをqualification Q0と同一値・同一状態として扱う。 | titleとqualificationを分離。titleだけでは資格を得ず、missing source identityはunknown。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-13",
+        "literal": "| `L10-LABO-071-CASE-13` | `LABO-071-FR-03` | `LABO-071-AC-03` | CASE-03eのQ0/P0独立field。 | 独立変異なし（CASE-03eへの索引）。 | CASE-03eを参照しpermission生成を二重計上しない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-14",
+        "literal": "| `L10-LABO-071-CASE-14` | `LABO-071-FR-03` | `LABO-071-AC-03` | B0でqualificationから独立したauthority stateは既存sourceに保管。 | qualification Q0だけから新authority stateを生成。 | authority生成を拒否し、既存owner stateを維持。qualificationからowner identityを推測せずunknownとする。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-15",
+        "literal": "| `L10-LABO-071-CASE-15` | `LABO-071-FR-03` | `LABO-071-AC-03` | CASE-03fのQ0/A0独立field。 | 独立変異なし（CASE-03fへの索引）。 | CASE-03fを参照しassignment変更を二重計上しない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-r02-permission-to-qualification",
+        "literal": "| `L10-LABO-071-CASE-r02-permission-to-qualification` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | B0-P: 同一class/revision/scopeのcurrent source/evaluation record E0がqualification state Q0=`unknown`を明示し、permission P0は独立のcurrent recordとして存在する。title、assignment role、全入力とsourceは有効で、P0は資格evidenceとして参照しない。合成正常baseline。 | permission P0だけを根拠にqualification stateを`qualified`へ補完する出力にする。他field/入力/sourceは不変。 | E0に記録されたQ0=`unknown`を保ち、P0からqualificationを補う出力を拒否する。正常入力のsource ownerへ返さず、LABO候補出力の誤りを訂正する。permissionとqualificationのsourceを混同しない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-r02-assignment-to-qualification",
+        "literal": "| `L10-LABO-071-CASE-r02-assignment-to-qualification` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | B0-A: 同一class/revision/scopeのcurrent source/evaluation record E0がqualification state Q0=`unknown`を明示し、assignment role A0は独立のcurrent recordとして存在する。title、permission、全入力とsourceは有効で、A0は資格evidenceとして参照しない。合成正常baseline。 | assignment role A0だけを根拠にqualification stateを`qualified`へ補完する出力にする。他field/入力/sourceは不変。 | E0に記録されたQ0=`unknown`を保ち、A0からqualificationを補う出力を拒否する。正常入力のsource ownerへ返さず、LABO候補出力の誤りを訂正する。assignment roleとqualificationのsourceを混同しない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-16",
+        "literal": "| `L10-LABO-071-CASE-16` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | B0のclass/revision/scope/evidence contentはある。 | evidence source identityだけ欠落。 | qualificationをunknown/未評価にし、他class/revision/scopeやtitleから補わない。不足・不一致の評価根拠を供給する既存source owner責務区分へ返し、個体source/owner identity unknownは別に保持する。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-17",
+        "literal": "| `L10-LABO-071-CASE-17` | `LABO-071-FR-03` | `LABO-071-AC-03` | evidence defectとsource identityが入力で特定可能。 | 返却先だけをLABO固定に変更し、元source owner参照を無視。 | LABOへの一律返却を拒否し、不足評価根拠を供給する既存source owner責務区分へ返す。個体identity unknownでも責務区分を消さず別記する。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-18",
+        "literal": "| `L10-LABO-071-CASE-18` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | CASE-16のevidence-source identity欠落。 | 独立変異なし（CASE-16への索引）。 | CASE-16のunknown oracleを直接参照。同一欠落を二重計上しない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-19",
+        "literal": "| `L10-LABO-071-CASE-19` | `LABO-071-FR-02/03` | `LABO-071-AC-03` | B0のQ0 evidence有効。recorded major missなし、model revision更新なし。 | 既存の有効evidenceとrevisionを保ち、時刻経過だけを理由にqualification expiredという誤出力field一つを追加する。 | 固定親にないexpiry条件による失効を拒否。根拠あるQ0状態を保持し、他要件がunknownならunknownのまま。新expiry/windowを定義しない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-20",
+        "literal": "| `L10-LABO-071-CASE-20` | `LABO-071-FR-03` | `LABO-071-AC-03` | CASE-01と同じB0。C0/V0/S0/E0/Q0、title T0・permission P0・assignment A0は固定親どおり別field/state。synthetic only。 | Qualification Q0だけを根拠に、別fieldの実行許可を新規生成する出力を一つ追加要求する。ほかの入力・出力は変えない。 | 実行許可の生成を拒否し、既存のpermission/authority stateは変えない。実際のpermission責務は固定親のSECURITY区分のまま。新しい権限field/APIを定義するケースではない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-21",
+        "literal": "| `L10-LABO-071-CASE-21` | `LABO-071-FR-03` | `LABO-071-AC-03` | CASE-01と同じB0。C0/V0/S0/E0/Q0、title T0・permission P0・assignment A0は固定親どおり別field/state。synthetic only。 | Qualification Q0だけを根拠に、要件の採否を新規生成する出力を一つ追加要求する。ほかの入力・出力は変えない。 | 採否出力を拒否し、PO decision/adoption stateは変えない。GitHub記録やqualificationからPO判断を生成しない。出力slotはfixture上の観測であり、新schema/APIを作らない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-22",
+        "literal": "| `L10-LABO-071-CASE-22` | `LABO-071-FR-03` | `LABO-071-AC-03` | CASE-01と同じB0。C0/V0/S0/E0/Q0、title T0・permission P0・assignment A0は固定親どおり別field/state。synthetic only。 | Qualification Q0だけを根拠に、要件の完了を新規生成する出力を一つ追加要求する。ほかの入力・出力は変えない。 | 完了出力を拒否し、requirement lifecycle stateは変えない。qualificationは実装・実行・完了証跡ではない。出力slotはfixture上の観測であり、新schema/APIを作らない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-23",
+        "literal": "| `L10-LABO-071-CASE-23` | `LABO-071-FR-02/03` | `LABO-071-AC-03` | B0の入力・stateは固定親に従い独自scheduleは存在しない。 | LABO出力へ根拠のないrequalification schedule field一つを追加する。 | schedule追加を拒否し、再評価方法・時期・新ownerを定めない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-r02-major-miss-rubric-output",
+        "literal": "| `L10-LABO-071-CASE-r02-major-miss-rubric-output` | `LABO-071-FR-02/03` | `LABO-071-AC-03` | B0: class/revision/scope/evidenceとqualification stateはsourceに一致し、record済みmajor miss状態・threshold・既存sourceすべて正常。新規rubricは入力されていない。合成fixture。 | LABO候補出力にmajor miss rubric／分類基準fieldだけを追加する。他の入力・出力は不変。 | rubric追加を拒否し、LABO候補出力から当該fieldを除いて出力を訂正する。source側入力を不足扱いせず、normal input ownerへ返さない。固定親が未定義のrubricを新設しない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-r02-default-class-set-output",
+        "literal": "| `L10-LABO-071-CASE-r02-default-class-set-output` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | B0: 選択scopeは明示されたtask class C0だけを含み、class/revision/evaluation evidenceとqualification stateはcurrent sourceに一致する。default class setは入力されていない。合成fixture。 | LABO候補出力に既定task-class集合fieldだけを追加する。他の入力・出力は不変。 | 既定class集合の追加を拒否し、LABO候補出力から当該fieldを除いて出力を訂正する。選択scope外classを補わず、正常入力ownerへ返さない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-r01-model-selection",
+        "literal": "| `L10-LABO-071-CASE-r01-model-selection` | `LABO-071-FR-03` | `LABO-071-AC-03` | 有効B0。C0/V0/S0/E0/Q0とtitle/permission/assignment/authorityは別fieldのまま有効。qualificationからのmodel/provider/lane選択出力は未生成。 | qualification Q0だけから`selected_model`出力field一つを生成する。他二つの選択field・全入力・資格状態・既存状態は不変。 | 当該model選択の生成を拒否し、資格状態と根拠だけを返す。正常入力へ不足責務を転嫁せず、LABO候補出力処理を訂正する。provider/lane/modelの選択ownerや新選択契約をこのCASEで作らない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-r01-provider-selection",
+        "literal": "| `L10-LABO-071-CASE-r01-provider-selection` | `LABO-071-FR-03` | `LABO-071-AC-03` | 有効B0。C0/V0/S0/E0/Q0とtitle/permission/assignment/authorityは別fieldのまま有効。qualificationからのmodel/provider/lane選択出力は未生成。 | qualification Q0だけから`selected_provider`出力field一つを生成する。他二つの選択field・全入力・資格状態・既存状態は不変。 | 当該provider選択の生成を拒否し、資格状態と根拠だけを返す。正常入力へ不足責務を転嫁せず、LABO候補出力処理を訂正する。provider/lane/modelの選択ownerや新選択契約をこのCASEで作らない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-r01-lane-selection",
+        "literal": "| `L10-LABO-071-CASE-r01-lane-selection` | `LABO-071-FR-03` | `LABO-071-AC-03` | 有効B0。C0/V0/S0/E0/Q0とtitle/permission/assignment/authorityは別fieldのまま有効。qualificationからのmodel/provider/lane選択出力は未生成。 | qualification Q0だけから`selected_lane`出力field一つを生成する。他二つの選択field・全入力・資格状態・既存状態は不変。 | 当該lane選択の生成を拒否し、資格状態と根拠だけを返す。正常入力へ不足責務を転嫁せず、LABO候補出力処理を訂正する。provider/lane/modelの選択ownerや新選択契約をこのCASEで作らない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-r03-evidence-qualification-revision-mismatch",
+        "literal": "| `L10-LABO-071-CASE-r03-evidence-qualification-revision-mismatch` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | 同じtask class C0/scope S0のqualification recordはmodel revision V0を示す一方、根拠evidence E1はV1に束縛される。title T0、permission P0、authority H0、assignment A0は別のcurrent source値として固定し、個体owner識別の有無も入力値のまま保持する。 | revision不一致のまま、qualification output fieldだけをV1-qualifiedにする。入力・他出力は不変。 | class/revision/evidenceの対応不一致を拒否し、V1 qualificationをunknown/未評価とする。V0状態をV1へ継承しない。不足する固定既存評価根拠は、その根拠を供給する既存source owner責務区分へ無条件に返し、個体identity unknownは別記する。誤ったV1-qualified出力はLABO自身でunknown/未評価へ訂正する。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-r03-title-only-no-evidence",
+        "literal": "| `L10-LABO-071-CASE-r03-title-only-no-evidence` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | C0/V0/S0とtitle T0を入力。必要な評価evidence receiptは欠落し、qualification Q0はsource状態unknown。欠落routeは既存CASE-08/16のsource責務区分・個体identity unknownと同じscopeで保持する。permission P0、authority H0、assignment A0は他のcurrent sourceと一致する。 | title T0だけからqualification fieldをqualifiedへ補完する。全入力、route、他出力は不変。 | qualification outputをunknownへLABO自身で訂正し、titleから補完しない。欠落evidenceの既存返却区分とidentity unknownを分けて維持し、候補出力の誤りをmissing-input ownerへ返さない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-r03-title-to-permission",
+        "literal": "| `L10-LABO-071-CASE-r03-title-to-permission` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | 正常合成baseline B0で選択class C0/revision V0/scope S0、qualification Q0、title T0、permission P0、authority H0、assignment A0がそれぞれ独立current sourceと一致する。状態は別identity/fieldで保持。 | title T0だけからpermission P1に変える。当該output fieldだけを変え、全入力および残りの出力は不変。 | 誤ったpermission outputを、正常入力に対応する独立SECURITY source値P0へLABO自身で訂正する。title/Q0と他fieldは変更しない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-r03-title-to-authority",
+        "literal": "| `L10-LABO-071-CASE-r03-title-to-authority` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | 正常合成baseline B0で選択class C0/revision V0/scope S0、qualification Q0、title T0、permission P0、authority H0、assignment A0がそれぞれ独立current sourceと一致する。状態は別identity/fieldで保持。 | title T0だけからauthority H1に変える。当該output fieldだけを変え、全入力および残りの出力は不変。 | 誤ったauthority outputを独立source値H0へLABO自身で訂正する。title/Q0と他fieldは変更せず、個体identity unknownは別に保持する。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-r03-title-to-assignment",
+        "literal": "| `L10-LABO-071-CASE-r03-title-to-assignment` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | 正常合成baseline B0で選択class C0/revision V0/scope S0、qualification Q0、title T0、permission P0、authority H0、assignment A0がそれぞれ独立current sourceと一致する。状態は別identity/fieldで保持。 | title T0だけからassignment A1に変える。当該output fieldだけを変え、全入力および残りの出力は不変。 | 誤ったassignment outputを独立OS source値A0へLABO自身で訂正する。title/qualificationと他fieldは変更しない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-r03-permission-to-assignment",
+        "literal": "| `L10-LABO-071-CASE-r03-permission-to-assignment` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | 正常合成baseline B0で選択class C0/revision V0/scope S0、qualification Q0、title T0、permission P0、authority H0、assignment A0がそれぞれ独立current sourceと一致する。状態は別identity/fieldで保持。 | permission P0だけからassignment A1に変える。当該output fieldだけを変え、全入力および残りの出力は不変。 | 誤ったassignment outputを独立OS source値A0へLABO自身で訂正する。permission P0と他fieldは変更しない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-r03-assignment-to-permission",
+        "literal": "| `L10-LABO-071-CASE-r03-assignment-to-permission` | `LABO-071-FR-01/03` | `LABO-071-AC-03` | 正常合成baseline B0で選択class C0/revision V0/scope S0、qualification Q0、title T0、permission P0、authority H0、assignment A0がそれぞれ独立current sourceと一致する。状態は別identity/fieldで保持。 | assignment A0だけからpermission P1に変える。当該output fieldだけを変え、全入力および残りの出力は不変。 | 誤ったpermission outputを独立SECURITY source値P0へLABO自身で訂正する。assignment A0と他fieldは変更しない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-r03-revision-update-permission-isolation",
+        "literal": "| `L10-LABO-071-CASE-r03-revision-update-permission-isolation` | `LABO-071-FR-02/03` | `LABO-071-AC-03` | B0のC0/V0/Q0と独立SECURITY permission P0、OS assignment A0、authority H0のcurrent sourceを固定。model revision V0→V1更新が記録され、V0資格だけが失効しV1は未評価となる。permissionに独立expiry/revocationはない。 | 資格失効を根拠にpermission output field P0だけをexpiredまたはrevokedへ変える（どちらか一方だけを選ぶ代替変異。両方は同時に変えない）。Q1、A0、H0および全入力はbaselineどおり。 | V0 qualificationの失効を保持しつつ、permission P0を独立SECURITY source値へLABO自身で訂正する。A0/H0も各source値と一致させ、資格失効からpermission expiryを生成せず、誤出力をSECURITY入力不足として返さない。 |"
+      },
+      {
+        "id": "L10-LABO-071-CASE-r03-major-miss-permission-isolation",
+        "literal": "| `L10-LABO-071-CASE-r03-major-miss-permission-isolation` | `LABO-071-FR-02/03` | `LABO-071-AC-03` | B0のC0/V0/Q0とrecord済みmajor miss M0を固定。独立SECURITY permission P0、OS assignment A0、authority H0はcurrentで、permissionに独立expiry/revocationはない。M0によりqualification Q0だけが失効する。 | Q0失効を根拠にpermission output field P0だけをexpiredまたはrevokedへ変える（どちらか一方だけを選ぶ代替変異。両方は同時に変えない）。M0/source、A0、H0および全入力は不変。 | 記録済みM0に従いqualificationを失効し、permission P0を独立SECURITY source値へLABO自身で訂正する。A0/H0も各source値と一致させ、資格失効からpermission expiryを生成しない。 |"
+      }
+    ],
+    "raw_old24_is_separate_inventory": true,
+    "fixture_execution_claim": false
+  },
+  "review03_M1_M3_disposition": {
+    "M1": "V1 evidence/V0 qualification mismatch single condition; incorrect qualified output corrected by LABO; fixed existing evaluation-evidence source responsibility returned unconditionally, individual identity unknown recorded separately.",
+    "M2": "title-only/evidence receipt missing/Q unknown baseline; title-derived qualified output alone rejected and LABO corrects its own output. Input shortage route remains separate.",
+    "M3": "five direction cases; wrong output with normal source inputs corrected by LABO. Existing SECURITY permission/authority and OS assignment responsibilities retained. 03c/03d compare independent P0/A0/H0. expired or revoked are alternative single-field mutations, never simultaneous.",
+    "R1_R10": "R1/R2 recorded resolved in review03. R3–R7 retained unchanged; R8 promoted to M1 by reviewer; R9/R10 remain nonblocking residuals. No broader closure claimed."
+  },
+  "checks": {
+    "head_matches_expected": true,
+    "worktree_clean": true,
+    "all_six_actual_full_hashes_match_root_checkpoint": true,
+    "all_six_actual_suffixes_equal_lf_plus_v2_candidate": true,
+    "base_prefixes_byte_exact": true,
+    "fixed_l2_l11_pins_recomputed_from_git": true,
+    "po_row_pin_recomputed_from_git": true,
+    "44_unique_fixture_definition_rows": true,
+    "prior_35_case_ids_retained": true,
+    "nine_added_ids_match_actual_delta": true,
+    "old24_raw_records_preserved": true,
+    "all_six_actual_citation_ranges_present": true,
+    "formal_review03_and_04_raw_sha_and_bytes_recomputed": true
+  },
+  "limits": [
+    "Rootはgov/diff PASSを報告。本監査はGit bytes/source pins/fixture inventoryの静的検算のみ。",
+    "Fixtureは未実行。意味完全性、独立review、Fable判断、L3承認、qualification/permission/assignment実状態を認定しない。",
+    "過去時点監査はimmutableに保持し、今回書き換えていない。"
+  ]
+}

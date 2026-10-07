@@ -142,3 +142,17 @@ HARNESS-L2-041から独立business requirement、business owner、ROI/KPI/商業
 **採択済み固定親**：PO `po-decision-2026-09-30-live26.md:39,72`の登録`MPR-RC-HARNESS-L2-049-003`。source_repository_revision `ea6f756f96a7370de78e412d737c7a7ed472114a`、L2 `product-requirements.md:1070–1092` SHA-256 `a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116`、L11 `product-acceptance.md:802–814` SHA-256 `f3fb47da21371084e9f8c7c7f7ca6dd945c8e98ae7c7b70597c3fc44e4e08ee7`。旧318のL11および登録-002を親にしない。
 
 `HARNESS-L2-049`の採択意味は、入力されたrenderable prototypeの画面表示を選択scopeで計測し、機械検査の精度材料とprofile根拠の文言findingを返す範囲に限る。独立した事業価値、business owner、ROI、利用者受入KPI、release判断を追加しない。計測結果、profile上の文言finding、CASE数、fixture数、LABO精度評価は要求採択や事業受入を生成しない。
+
+### HELIX-HARNESS L2-044 — 業務要件（Stage 3、version_target: 1.0、起草候補）
+
+起草候補。Stage 3、`version_target: 1.0`。POがHARNESS-L2-044に条件付き採択したB route / Design Contract Portfolioを対象とする。この候補はL3承認・実装・実行・個別部品配置・設計成立を表さない。
+
+**固定親・判断根拠**：L2親は`318ec4a04abb3c1cc17111b3d939f913facd5fd3`の `docs/helix-harness/L2-requirements/product-requirements.md:1002–1014`、全file SHA-256 `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09`、span SHA-256 `b005641da8a8dffac0bbddd33b5ef71762f7a9c221fa31b23cb1bb2111e1a26d`。 L11対は同revisionの `docs/helix-harness/L11-acceptance/product-acceptance.md:735–745`、全file SHA-256 `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5`、span SHA-256 `9c79b73100f4afa63abba7f79d47b8931a1c29983ac08a3e4ded95e56107bfc8`。 PO判断は `17a2f310358ee7fe209b9d37cddf4a927c740248` の `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:49`、SHA-256 `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`、line SHA-256 `212948ea669ed647a3a3b188b0efb39a9e2d2fdf020e7be5cd8f088fac79807b`、registration `MPR-RC-HARNESS-L2-044-002`。POはB route / Design Contract Portfolioを条件付き採択し、採択済み025/026へ無断追記しない。
+
+**旧sourceと処置**：旧起点はHIL-FR-54、`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:144`、file SHA-256 `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`、line/span SHA-256 `b8c3eb6a8d4e25985f97f95281851e79a0cf6bf6576d3d6a074abdb1df97b070`。旧HIL-FR-55は別要求として043に残り、044へ移さない。 HR-FR-HIL-20/HAT-HIL-20/HOT-HIL-50等のpaired consumerは広い複合要求なので、044へ全量移管したとは扱わない。 旧FR-54のrequirement atom一件から、選択scopeの義務classとnormative contractのcoverageを対応付ける意味を再導出する。旧portfolio schema、runtime、完了状態、実装名は再利用しない。旧consumer行、旧HAT/HOT/IR ledgerはscope境界の確認に使い、044全体の要求へ転用しない。
+
+**BR-HARNESS-L3-044-01 — scope付きportfolio候補を説明可能にする**：選択されたHARNESS要求revisionとdesign scopeについて、適用義務class、契約割当、再利用／delta／新規／根拠付き非適用の区分、および未被覆・意味重複の理由を同じscope/revisionへ結び付けて提示する。これはHARNESS工程内の設計coverage資料であり、経済価値、製品優先順位、release判断、POの採択状態を追加しない。
+
+**対象・境界**：固定L2-044のscopeに限る。HARNESS-L2-009のtemplate適用・義務導出、041のatom抽出、026のunit設計とpair oracle、025のgeneric composite整合、043のexample coverageを再実装しない。025/026は固定済み候補の成果を入力として参照できるが、その完了を044が生成・代替せず、044も025/026を変更しない。HARNESS-L2-045は対象外。
+
+**旧source処置記録**：HIL-FR-54の「class-wise coverage」「再利用／delta／新規／N/A」「uncovered/duplicate」を意味再導出。HIL-FR-55のexample positive/negativeは保持対象外で043のscopeへ置く。HR-FR-HIL-20、HOT-HIL-50、HAT-HIL-20の複合workflow全体は再利用せず、対象のslice境界確認に限定する。
