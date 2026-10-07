@@ -1,0 +1,242 @@
+{
+  "record_type": "review01-M1-disposition",
+  "body_revision": "7cd99f0b9f62182250565937d7556741e4cbcb2b",
+  "prior_review_head": "deddd579b07868b9bf1de569d56f711b5c912108",
+  "formal_review01": {
+    "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6021955421",
+    "html_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2638#issuecomment-6021955421",
+    "issue_url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/2638",
+    "id": 6021955421,
+    "node_id": "IC_kwDOTG8BRc8AAAABZu-_XQ",
+    "user": {
+      "login": "RetryYN",
+      "id": 131282486,
+      "node_id": "U_kgDOB9M2Ng",
+      "avatar_url": "https://avatars.githubusercontent.com/u/131282486?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/RetryYN",
+      "html_url": "https://github.com/RetryYN",
+      "followers_url": "https://api.github.com/users/RetryYN/followers",
+      "following_url": "https://api.github.com/users/RetryYN/following{/other_user}",
+      "gists_url": "https://api.github.com/users/RetryYN/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/RetryYN/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/RetryYN/subscriptions",
+      "organizations_url": "https://api.github.com/users/RetryYN/orgs",
+      "repos_url": "https://api.github.com/users/RetryYN/repos",
+      "events_url": "https://api.github.com/users/RetryYN/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/RetryYN/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "created_at": "2026-10-06T17:39:55Z",
+    "updated_at": "2026-10-06T17:39:55Z",
+    "body": "## review01（independent review、PR #2638 親HELIXLABO-L2-068、HEAD deddd579b07868b9bf1de569d56f711b5c912108、本文 1f1e40c14、base main a1bcdba15）：Major 1\n\nreviewer：Claude（lane `review_merge`、Opus 5.5）。依頼comment 6021855858に応える。方法はcomment 6013171449のとおり。\n\n### 照合の方法\n- **固定親**：PO判断記録`po-decision-2026-09-29-57candidates.md`の83行は、`HELIXLABO-L2-068`／採択／`MPR-RC-HELIXLABO-L2-068-001`である。照合の起点は、318ec4aのL2-068（541–550）とL11-068（278–286）、§24の関係行（#2、#3、#13）。依存先はL2-059、065、067。\n- **ブラインド照合（Opus）**：固定親、依存先、6本文の追補だけを読んだ。監査、PR comment、旧所見は見ていない。固定文を20群に種類分けし、対応CASE・ACに結び付けた。下のM1を見つけた。\n- **継続照合（Opus）**：旧#2620で068に向けた所見7件を全件判定した。解消4件、一部解消・残余へ移すもの1件（review04 m18）、残余へ移すもの2件（review04 m25、review05 m4）。070側の所見は対象外。Majorとして残るものは0件。\n  - 監査のpinを再計算し、source_pins 35件、6本文のbase/full/prefix/suffix、旧25行・現32行のliteralがすべて一致した。\n  - 新しいMajorとして、下のM1と同じ内容を独立に見つけた。\n- **reviewerの確認**：M1は、固定L2:549、L11:283–284の原文と、6本文の「責務・返却」、CASE-03d、NFR-02で確かめた。\n- **静的検査**：\n  - scfctl validate 147/0、stale 0、residuals 0\n  - govcheck ok\n  - `git diff --check`成功（baseからは追加だけ）\n  - origin/mainとの`merge-tree`は衝突なし\n\n### Major\n**M1（event遅延でunknownにする条件を、L3/L10が固定親より狭めている）**\n- **欠陥**：\n  - 6本文すべての「責務・返却」が「event遅延はscope全体のcapture completenessを証明できなくする場合だけunknownにし、完全性receiptが維持される遅延だけではcountを不成立にしない」と書いている。\n  - CASE-03dのoracleも「完全性receiptが有効な遅延はcountを維持」とし、NFR-02の適用限界も「完全性receiptが有効な遅延のみでunknownにしない」としている。\n  - この例外は訂正eventの遅延にも限っていない。訂正eventの遅延そのものをunknownとして返すfixtureもない。AC-03の否定列挙にも「遅延」がない。\n  - 固定親は、event遅延を「source completeness不明」とは別のunknown条件として並べている。\n- **起こりうること**：遅れて届く訂正eventがAttempt identityの統合・分割を含む場合、誤った総数が確定countとして通る。\n- **守るべき行**：\n  - HELIXLABO-L2-068「失敗・未見」（318ec4a labo-requirements.md:549「Attempt記録の欠落・重複・event遅延…があれば総数をunknown/未評価とし、観測sourceまたはOS記録ownerへ不足を戻す」）\n  - L11-068「個別反例」（labo-acceptance.md:283「記録欠落・遅延・stale・矛盾を0または確定総数に変換する」を不成立とする）\n  - L11-068「未見例」（:284「OSの訂正eventが遅延している…場合は総数をunknownとし、記録source ownerへ返す」）\n\n### 後で直す残余（承認を止めない）\n- **R1（戻し先の書き漏れ）**：CASE-03d、06、10、13、03f、03g、19〜25の期待oracleに戻し先がない。共通の「責務・返却」で宛先は決まる（review04 m18の残り）。\n- **R2（二重索引・束ね）**：CASE-08とCASE-16がどちらも03bを指している（review04 m25、review05 m4）。CASE-15は03cへの索引。\n- **R3（oracleの分岐）**：CASE-13のoracleが「確認できない→unknown／明確にS0外→除外」に分かれていて、baselineが一意に決まらない（L2:545、L11:283）。\n- **R4（SECURITY許可）**：L2:548「新規実験には既存OS assignmentと適用されるSECURITY許可を要する」のうち、SECURITY許可が6本文に出てこない。fixtureもない。LABOによる起動と割当はCASE-20・21で拒否されている。\n- **R5（単独fixtureの不足）**：\n  - 059の意味を変えないこと（L2:543。境界の文だけ）\n  - identityを持たないassignmentを数えないこと（L2:545。CASE-03eはintakeだけ）\n  - 欠落eventを0とすることの拒否（L2:549、L11:283。AC-03の文言では覆っている）\n  - 別scopeの履歴から欠落Attemptを推測しないこと（L11:284）、再構築できないこと（L2:549）\n- **R6（result receiptだけの欠落）**：CASE-18とNFR-03は、result receiptだけが欠けてidentity集合が完全ならcountを保つ。L2:549の「Attempt記録の欠落」にresult receiptが含まれるかは、固定親の文では決まっていない。固定L11:282の正常例はstateと元receiptを別に辿る構成なので、許される再導出とみなした。M1を直すときに併せて確認することを勧める。\n- **R7（固定親にない条件）**：AC-02、CASE-02、BRの「結果閲覧前に固定」「結果を見てからの母集団変更をしない」は、固定L2/L11-068にない条件である。\n- **R8（依存IDと文言）**：\n  - 依存IDの引用が抜けている（L1-005、L1-011、HELIXOS-L2-004/007/009/018/019/023）。\n  - 「6列表」はbusinessとNFRの表に当たらない（3列と4列）。「旧a4の25 CASE ID」を受けるのはfunctionalだけ。6ファイルが同じ前置きを重ねている。\n  - 「known OS/observation-source responsibility」などの英文と、日英の混在が残っている。\n- **R9（監査の処置記録）**：監査が068関連として処置を記録した旧所見はreview05 m4だけで、review02〜04の068所見6件の処置がない。\n- **R10（監査の外部参照）**：監査JSONの`worker_drafting_candidate_snapshot.artifact.target_worktree`（ローカルの絶対path）と`old_review05_snapshot.file`（`/tmp/labo5-review05-formal.txt`）は、repository外で再現できない。どちらも内容のSHAは記録されていて、review05のcomment SHAは本体と一致した。\n- **R11（監査の記録と基準）**：監査の`root_corrections[1]`は、M1の例外を意図的な補正として記録している。上のM1のとおり、固定親と合わない。\n\n### 判定\n- blocker 1（M1）。Major 1、残余11、未確認範囲0。\n- 委任承認は成立しない。Readyにはしない。merge admissionは本commentから生成しない。\n- M1を直したHEADでは、reviewerが差分を確かめる。Opusが`no_findings`なら、同じHEADでFableにブラインドで見てもらう。\n",
+    "author_association": "OWNER",
+    "reactions": {
+      "url": "https://api.github.com/repos/RetryYN/HELIX-HARNESS/issues/comments/6021955421/reactions",
+      "total_count": 0,
+      "+1": 0,
+      "-1": 0,
+      "laugh": 0,
+      "hooray": 0,
+      "confused": 0,
+      "heart": 0,
+      "rocket": 0,
+      "eyes": 0
+    },
+    "performed_via_github_app": null,
+    "minimized": null
+  },
+  "formal_body_bytes": 6826,
+  "formal_body_sha256": "e35161d6ccb1a1c40a8fb5ad756752636dd28e228f6be63f6fa15a8019905728",
+  "fixed_parent_read": [
+    "318ec4a:L2:541–550",
+    "318ec4a:L11:278–286"
+  ],
+  "M1": "Root以前のcapture-completeness条件付き遅延例外は固定親に合わなかった。六本文で削除し、event/OS訂正event遅延を総数unknown独立条件へ戻した。CASE03d単独遅延、CASE26単独OS訂正event遅延を明記。AC03/NFR02も補正。",
+  "R6": "結果receiptだけの欠落と完全identity集合の分離は固定L11正常例と正式review01の許容再導出の範囲で保持。event遅延へ例外を拡張しない。",
+  "remaining": "R1–R11原文はformal_review01へ不変保存。M1解消は独立review待ち。",
+  "six_full_sha256": {
+    "docs/helix-labo/L10-verification/business-verification.md": "ef388a9e9df29955e795e09733b653133746ab76bc7c86409b298d92541dbdbe",
+    "docs/helix-labo/L10-verification/functional-verification.md": "c19d8896a08f9c62410c52dc759cd1875c130e008720fb568b2ca7544aacc808",
+    "docs/helix-labo/L10-verification/nfr-verification.md": "b13da6ac2f0404b7b8e81b602c033c06fe788f7c140a08b10fc1fb1a434fbe10",
+    "docs/helix-labo/L3-requirements/business-requirements.md": "1214c722b90508bb143c21ea62ce5d0c9079ebed04554a5047cd779a529cd7d2",
+    "docs/helix-labo/L3-requirements/functional-requirements.md": "f7b508b118e88a45673762f4824921d92fc447a28b251fb40145611e4ae2c112",
+    "docs/helix-labo/L3-requirements/nfr-grade.md": "2c2b85535ed8dca5f4ff3fa443280505b8217526846f1ab40ca8433163511ca6"
+  },
+  "current_case_inventory": [
+    {
+      "physical_line": 3200,
+      "raw_lf": "| `L10-LABO-068-CASE-01` | `FR-LABO-068-01/02` | `LABO-068-AC-01` | B0: 選択scope S0/rev R0/eval E0。OS完全性receipt有り。identity A/B/C/D各1件、stateはsuccess/failure/interrupted/denied。拒否intake I0はidentityなし。 | 変異なし（正常fixture）。 | A〜Dを各1件で`attempt_count=4`。state別に保持し、I0をcountしない。 |\n",
+      "sha256": "ad1a986264e683793688a02d214912dc71b12e7d6b4076f63b8f6a9f68dd8c33"
+    },
+    {
+      "physical_line": 3201,
+      "raw_lf": "| `L10-LABO-068-CASE-02` | `FR-LABO-068-01/02` | `LABO-068-AC-02` | B1: outcome閲覧前に固定した別scope S1/rev R1/eval E1。未見case群の全identity/event receiptとcompleteness evidence有り。 | 変異なし（別scopeの正常fixture）。 | S1内だけを同じ規則で数える。B0の対象集合・receipt・数値を変更しない。 |\n",
+      "sha256": "acf6e404a091967d22d9cc8e10341b0153b0388cd83ef49b790a143e0357652a"
+    },
+    {
+      "physical_line": 3202,
+      "raw_lf": "| `L10-LABO-068-CASE-03a` | `FR-LABO-068-01/02` | `LABO-068-AC-03` | B0にidentity A/B/C/Dと完全性receipt。 | Aのidentity linkだけ欠落。 | 対象identityを確定できず総数unknown。既知OS record責務区分へ返し、missing identityの個体owner不明は別unknown。 |\n",
+      "sha256": "815d0ef760ef91eb3fa866a5cb1e03d04d3657e4e80ce428c382daae05f37172"
+    },
+    {
+      "physical_line": 3203,
+      "raw_lf": "| `L10-LABO-068-CASE-03b` | `FR-LABO-068-02` | `LABO-068-AC-03` | B0のeventは観測できるが、sourceが全件捕捉を証明するcompleteness receiptはない状態。 | 変異なし（完全性unknown fixture）。 | 総数unknown。観測sourceまたはOS record owner区分へ不足を返す。 |\n",
+      "sha256": "1fdd359be96af528a979ab395a0e6e0f51ac9808209a7098ce3ad0f58fc9d012"
+    },
+    {
+      "physical_line": 3204,
+      "raw_lf": "| `L10-LABO-068-CASE-03c` | `FR-LABO-068-01/02` | `LABO-068-AC-03` | B0のA/B/C/Dと完全性receipt。 | Aの同一identity・同一receiptを一度だけ再配送。 | distinct identityは4。duplicateを加算しない。 |\n",
+      "sha256": "68669743782fce18971aa13524f77f78cc5679903d845133f468c9a17fa98e07"
+    },
+    {
+      "physical_line": 3205,
+      "raw_lf": "| `L10-LABO-068-CASE-03d` | `FR-LABO-068-02` | `LABO-068-AC-03` | 正常B0: scope S0のidentity/event receiptとscope全体のcapture-completeness receiptが有効。 | Aのevent receipt一件だけを遅延状態にする。他fieldはB0と同一。 | 総数をunknown/未評価にし、既知の観測sourceまたはOS記録ownerへ不足を返す。既存完全性receiptから遅延eventの内容を推測せず、個体unknownでも責務区分を保持する。 |\n",
+      "sha256": "d8fa232a70cd640610548f5f0bbd8c47440b5b31625c57b4ccc097b375e1bdc6"
+    },
+    {
+      "physical_line": 3206,
+      "raw_lf": "| `L10-LABO-068-CASE-03e` | `FR-LABO-068-01/02` | `LABO-068-AC-03` | B0にA/B/C/Dの完全記録。別に実行前denied intake I0があり、OS Attempt identityは未発行。 | 変異なし（境界fixture）。 | I0をAttempt countに含めず、intake denialとして別記。 |\n",
+      "sha256": "c632e78ed6bb4aea873b733120b4432c07b2d15ffef094b21897a089bec9be71"
+    },
+    {
+      "physical_line": 3207,
+      "raw_lf": "| `L10-LABO-068-CASE-03f` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のidentity記録と、別fieldの065 retry_count receipt。 | Attempt identityを追加せず、retry_countから`+1`を計算してcountへ足そうとする。 | 換算を拒否し、B0の068 identity countを維持する。 |\n",
+      "sha256": "5da8bf3138b845732945d8f0427a595ea97c88ab2e71f234702dffed4ae5c804"
+    },
+    {
+      "physical_line": 3208,
+      "raw_lf": "| `L10-LABO-068-CASE-03g` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のidentity記録と、既存Attempt内の067 repair-round receipt。 | repair roundを新Attemptとして加算しようとする。 | 換算を拒否し、同一Attempt identityのまま保持する。 |\n",
+      "sha256": "b33bc718fe6fe31d4488ce05ab644b44cdbdc21da1c08bc3bb32c2b8a54421da"
+    },
+    {
+      "physical_line": 3209,
+      "raw_lf": "| `L10-LABO-068-CASE-04a` | `FR-LABO-068-03` | `LABO-068-AC-03` | 入力にはOSが発行したB0 identity/eventだけがある。 | LABO側出力が新しいAttempt identityを生成する。 | 生成を拒否。既存OS/観測source責務区分へ戻し、LABOはcount evidenceだけを返す。 |\n",
+      "sha256": "0498db25977bb0c6437f87ca3946a4b5e3976aacdd38946d903f85e5d63cc75a"
+    },
+    {
+      "physical_line": 3210,
+      "raw_lf": "| `L10-LABO-068-CASE-04b` | `FR-LABO-068-03` | `LABO-068-AC-03` | 既存OS identityと固定scopeのみ。 | LABOがcounting policy/identity採番規則を新設する。 | policy生成を拒否。既知OS責務区分を維持し、個別担当identityは推測しない。 |\n",
+      "sha256": "dff16934dc0335b267c327f1eb08865f0307f9c17529d4958f573df85c1deeef"
+    },
+    {
+      "physical_line": 3211,
+      "raw_lf": "| `L10-LABO-068-CASE-13` | `FR-LABO-068-01` | `LABO-068-AC-03` | B0 scope S0のA/B/C/Dと、同一revisionだが別scopeに属すX。 | Xのscope linkだけがS0に誤って混入。 | scope境界を確認できない場合は評価停止/unknown。明確にS0外ならcountから除外しscope外記録を保持。 |\n",
+      "sha256": "665221c4f6d81f26e9ab7debb8f4d659a5b43db4112289cee79fbc409be14949"
+    },
+    {
+      "physical_line": 3212,
+      "raw_lf": "| `L10-LABO-068-CASE-14` | `FR-LABO-068-02/03` | `LABO-068-AC-03` | handoff後もOSのknown record-owner responsibility区分とA/B/C/Dは保持される。 | 担当交代後のA lineage linkだけ欠落。 | 総数unknown。known OS/observation-source区分は保持し、個体owner identity unknownを別に残す。 |\n",
+      "sha256": "b5e1fa21656317ac50ff0f143c957fc2e0f57fdd95654744a0f07bf0423d9613"
+    },
+    {
+      "physical_line": 3213,
+      "raw_lf": "| `L10-LABO-068-CASE-15` | `FR-LABO-068-01/02` | `LABO-068-AC-03` | 索引対象はCASE-03cのA duplicate receipt。 | 独立変異なし（CASE-03cへの索引）。 | CASE-03cを直接参照。Aを重ねて数えない。 |\n",
+      "sha256": "f99e7022ff18bf17a2936f216313d8b3f273dc993249bbf5023cb866204b1c2f"
+    },
+    {
+      "physical_line": 3214,
+      "raw_lf": "| `L10-LABO-068-CASE-16` | `FR-LABO-068-02` | `LABO-068-AC-03` | 索引対象はCASE-03bのsource completeness unknown。 | 独立変異なし（CASE-03bへの索引）。 | CASE-03bを直接参照。CASE-08と同じ索引関係も二重計上しない。 |\n",
+      "sha256": "3f3357c2a2467308aa95ec44abd505923c8017b627107de41f93656737b5d941"
+    },
+    {
+      "physical_line": 3215,
+      "raw_lf": "| `L10-LABO-068-CASE-17` | `FR-LABO-068-02` | `LABO-068-AC-03` | B0のevent observationはあるが、completeness evidenceは存在しない。 | 入力にcompleteness=trueのassertionだけを追加し、根拠receiptは追加しない。 | assertionだけでは確定せずunknown。根拠不足はknown OS/source responsibilityへ返す。 |\n",
+      "sha256": "f747d772c03ae9ce9880e8e49f07f0e4bcc10be430696f524d6dcc15881dbe73"
+    },
+    {
+      "physical_line": 3216,
+      "raw_lf": "| `L10-LABO-068-CASE-05` | `FR-LABO-068-01/02` | `LABO-068-AC-03` | B0からscope ID以外のfield、identity、receiptは揃う。 | scope fieldだけ欠落。 | 母集団が確定しないため総数unknown。既知OS record responsibilityへ返す。 |\n",
+      "sha256": "7103fa21fcda6532a0885d11178c31da04891541da9cfd3f9c880e45bfe5f915"
+    },
+    {
+      "physical_line": 3217,
+      "raw_lf": "| `L10-LABO-068-CASE-06` | `FR-LABO-068-01/02` | `LABO-068-AC-03` | B0のsource revisionは選択revision R0と一致。 | source revisionだけstale。 | stale recordをcurrent totalに含めず、current scope countは未評価/unknown。 |\n",
+      "sha256": "eb9569b7071960489e6f9c815f0c27b08956c39fbdb52408175b705472db446d"
+    },
+    {
+      "physical_line": 3218,
+      "raw_lf": "| `L10-LABO-068-CASE-07` | `FR-LABO-068-02` | `LABO-068-AC-03` | B0でidentity Aに結び付く訂正eventと元eventがある。 | correction lineage linkだけ欠落。 | 訂正を同一identityへ確実に結べないため総数unknown。OS/source責務区分へ返す。 |\n",
+      "sha256": "8c4a89ef758a944cc89cefcc830d4134df435b033f765cff627a69f4443abdc4"
+    },
+    {
+      "physical_line": 3219,
+      "raw_lf": "| `L10-LABO-068-CASE-08` | `FR-LABO-068-02` | `LABO-068-AC-03` | 索引対象はCASE-03bのsource completeness unknown。 | 独立変異なし（CASE-03bへの索引）。 | CASE-03bを直接参照。CASE-16との重複indexで独立fixtureを増やさない。 |\n",
+      "sha256": "019b07529c6b4a1617c184dda91930b542765bbfea41c2838250c372a88a7f4c"
+    },
+    {
+      "physical_line": 3220,
+      "raw_lf": "| `L10-LABO-068-CASE-09` | `FR-LABO-068-02` | `LABO-068-AC-03` | B0のvalid event/completeness receipt。 | stale eventだけが追加/残存し、現在scopeの整合を確認できない。 | 確定数として採用しない。OS/observation-source responsibilityへ返す。 |\n",
+      "sha256": "c464d522fd27846e023126a5e7307b808445fe35f1afa6b88cd0d1dc7441fc5b"
+    },
+    {
+      "physical_line": 3221,
+      "raw_lf": "| `L10-LABO-068-CASE-10` | `FR-LABO-068-01/02` | `LABO-068-AC-03` | B0のidentity A/B/C/Dは一意。 | Aに衝突する別identity recordだけ存在。 | 衝突を解消するまでtotal unknown。勝手にdedupeまたは5件扱いしない。 |\n",
+      "sha256": "578eb418d9401a63dc221e2afce96b07366ed39705e2518c3b7ffa5d6d327bc8"
+    },
+    {
+      "physical_line": 3222,
+      "raw_lf": "| `L10-LABO-068-CASE-11` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のidentity A/B/C/D。 | 既存Aに同一scope/revisionのCI rerunだけを追加。 | 新identityがないためcountを増やさない。rerun receiptはAへ結び保持。 |\n",
+      "sha256": "034b3bcf27b3f01ffa3e7dd9b5bd815705d2dc72462b2582fedb0074bcaa2e34"
+    },
+    {
+      "physical_line": 3223,
+      "raw_lf": "| `L10-LABO-068-CASE-12` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のidentity A/B/C/D。 | 新identityなしのretry_count fieldだけ増加。 | 068 countを増やさず、065 retry_countは別指標で保持。 |\n",
+      "sha256": "1c8a21ea0f5423be0bc143bcdbed73b1eb12a8f3ed5ce51431389cb456431123"
+    },
+    {
+      "physical_line": 3224,
+      "raw_lf": "| `L10-LABO-068-CASE-18` | `FR-LABO-068-02` | `LABO-068-AC-03` | B0と同じidentity A/B/C/Dおよびidentity集合の完全性receipt。 | Aのresult receiptだけ欠落。 | distinct identity count=4を維持。Aのresult stateだけunknownとし、結果評価に使わずOS記録責務区分へ返す。 |\n",
+      "sha256": "9d476b3767f2e0776032e72d30a8e36d6d5ff4f9b12fdf22bf26f8dc00dcb350"
+    },
+    {
+      "physical_line": 3225,
+      "raw_lf": "| `L10-LABO-068-CASE-19` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0に完全なAttempt identity count inputと既存の評価契約参照。 | LABO output fieldだけでtask_evaluation_oracle=O1を新規生成する。 | oracle field生成を拒否。count結果からtask評価oracleや合格条件を定義しない。 |\n",
+      "sha256": "375750c395158289f767e4e198319495fc9d7b40fc1338de8d305fbc15954055"
+    },
+    {
+      "physical_line": 3226,
+      "raw_lf": "| `L10-LABO-068-CASE-20` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のOS assignment A0は既存stateとして入力される。 | LABO output fieldだけでassignment=A1を新規生成する。 | assignment生成を拒否しOSの既存stateを変更しない。 |\n",
+      "sha256": "3b447f6f90e7029f7177c8a739ad05b765287733c3dcb155455c56392efb8801"
+    },
+    {
+      "physical_line": 3227,
+      "raw_lf": "| `L10-LABO-068-CASE-21` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0にAttempt evidenceはあるが新規Worker start eventはない。 | LABO output fieldだけでworker_started=trueを追加する。 | Worker起動を生成しない。count evidenceから実行を開始しない。 |\n",
+      "sha256": "2a9e659eb1f462b6ba8ad2ff9f582da583df461b04882c5c042101446536b465"
+    },
+    {
+      "physical_line": 3228,
+      "raw_lf": "| `L10-LABO-068-CASE-22` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0にAttempt evidenceがあり、retry state/policyは別fieldのまま。 | LABO output fieldだけでretry_requested=trueを追加する。 | retryを要求しない。既存OS retry責務/stateを変更しない。 |\n",
+      "sha256": "c03b819cfe93bc86f937ca838e74fb5162aaec990758bc35be6bd69b2c9d1c68"
+    },
+    {
+      "physical_line": 3229,
+      "raw_lf": "| `L10-LABO-068-CASE-23` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のcount evidenceと合成scopeのadoption stateは未決のまま（固定PO採択状態は別scopeで変更しない）。 | LABO output fieldだけでadopted=trueを新規生成する。 | 採否を生成せず既存decision stateを変更しない。 |\n",
+      "sha256": "34c2c62d07081fe971390d5a63130f0effe5d65368fe495b9afbeb6dba41e8b8"
+    },
+    {
+      "physical_line": 3230,
+      "raw_lf": "| `L10-LABO-068-CASE-24` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のcount evidenceと合成scopeのqualification stateは未決のまま。 | LABO output fieldだけでqualified=trueを新規生成する。 | qualificationを生成せずcountから資格を推論しない。 |\n",
+      "sha256": "aafb873e8ed6bd015ce0faeca68a725e5736adb71a049f639277916368d37982"
+    },
+    {
+      "physical_line": 3231,
+      "raw_lf": "| `L10-LABO-068-CASE-25` | `FR-LABO-068-03` | `LABO-068-AC-03` | B0のcount evidenceと合成scopeのadmission stateは未決のまま。 | LABO output fieldだけでadmitted=trueを新規生成する。 | admissionを生成せず既存authority/decision stateを変更しない。 |\n",
+      "sha256": "3f8aec073863fd6c6ac550222c6f827d90bc24fcc10c6e132f6b9ce8f12b4c0e"
+    },
+    {
+      "physical_line": 3232,
+      "raw_lf": "| `L10-LABO-068-CASE-26` | `FR-LABO-068-02` | `LABO-068-AC-03` | 正常B0: scope S0のidentity・lineage・完全性receiptとOS訂正event C0が既知で整合する。 | OS訂正event C0の配送状態だけを遅延にする。他fieldはB0と同一。 | 総数をunknown/未評価にし、既知の記録sourceまたはOS記録ownerへ不足を返す。identity統合・分割や欠落Attemptを遅延eventから推測せず、個体unknownでも責務区分を保持する。 |\n",
+      "sha256": "55a38a8dce0301debde20d9bc6aba94fbf209f6e173095898f4a00ddd61d35da"
+    }
+  ],
+  "checks": {
+    "unique_case_rows": 33,
+    "columns": 6,
+    "govcheck": "ok",
+    "diff_check": "passed"
+  },
+  "authority": "新HEAD独立review・Fable判断待ち。旧監査は時点証拠として不変。"
+}
