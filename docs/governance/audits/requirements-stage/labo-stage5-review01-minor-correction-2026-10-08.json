@@ -1,0 +1,307 @@
+{
+  "record_type": "immutable review01 minor-correction addendum; no approval or authority effect",
+  "review": {
+    "pr": 2691,
+    "comment_id": 6046547648,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2691#issuecomment-6046547648",
+    "head": "faf298d280c91c96f1eb320ed77d4d65f281055a",
+    "base": "e7a695d4b2de64aec69a1a123de2fde33be724cf",
+    "body_utf8_bytes": 5020,
+    "body_sha256": "9695f60b77ef7f99d9ea133a3c9b0da6434aa9a82cf7c4a05599e98c180788b3",
+    "raw_body_retrieved_from_github_api": true
+  },
+  "integration": {
+    "origin_main_at_integration": "d629e25254a7c1d505543a0ce6ca3183c3fc4d67",
+    "worktree_merge_commit": "51f697dd5a187edd98cc5835476678a45f851c87",
+    "worker_branch": "codex/labo-stage5-minor-index-cases",
+    "push": false
+  },
+  "scope": [
+    "LABO Stage5 parent 070 AC-04/AC-05 and rate prohibitions",
+    "LABO Stage5 parent 071 CASE-r06 owner identity consistency",
+    "same-directory paths for earlier immutable audit records"
+  ],
+  "minor_dispositions": {
+    "M1": {
+      "status": "addressed",
+      "change": "AC-04, NFR grade, L10 NFRV, and CASE-131/132 now cite fixed L2-068 original “定義しない”, existing FR-LABO-068-03 derivation to generation prohibition, fixed 070 9-atom scope, and L11-070 no-rate boundary when numerator/denominator applicability is unproven. No denominator/oracle/threshold/owner defined."
+    },
+    "M2": {
+      "status": "addressed",
+      "change": "AC-05 explicitly references CASE-131/132 and their preservation of normal 067/068 co-present fields; FV CASE rows already trace to AC-04 and AC-05."
+    },
+    "M3": {
+      "status": "addressed",
+      "change": "071 CASE-r06 baseline and oracle both preserve each owner identity value or unknown state exactly as in baseline input."
+    },
+    "M4": {
+      "status": "addressed",
+      "change": "This addendum supplies repository-relative same-directory paths for old immutable semantic audit and pin/index correction records; original records remain unchanged."
+    }
+  },
+  "fixed_parent_pins": {
+    "068": {
+      "l2": {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "line_start": 541,
+        "line_end": 550,
+        "full_bytes": 113504,
+        "full_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+        "span_bytes": 4106,
+        "span_sha256": "7e3df32b0131722c88ae148c4cbfa9a1be20f81826099c0ceb29a674e07030e2"
+      },
+      "l11": {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "line_start": 278,
+        "line_end": 286,
+        "full_bytes": 66593,
+        "full_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+        "span_bytes": 3129,
+        "span_sha256": "3dcf068de1351b2e8c1f2d772ec9273cb7908368a32b389ee40ce51929ad8d94"
+      }
+    },
+    "070": {
+      "l2": {
+        "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "line_start": 561,
+        "line_end": 574,
+        "full_bytes": 123228,
+        "full_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+        "span_bytes": 6468,
+        "span_sha256": "07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533"
+      },
+      "l11": {
+        "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "line_start": 297,
+        "line_end": 307,
+        "full_bytes": 73036,
+        "full_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+        "span_bytes": 4672,
+        "span_sha256": "c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1"
+      }
+    },
+    "071": {
+      "l2": {
+        "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "line_start": 576,
+        "line_end": 584,
+        "full_bytes": 123228,
+        "full_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+        "span_bytes": 3254,
+        "span_sha256": "3036e4c300ee6f78e74b819657d456c0bad08b8ccb483882cfc3b59fa5bbbe1f"
+      },
+      "l11": {
+        "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "line_start": 309,
+        "line_end": 316,
+        "full_bytes": 73036,
+        "full_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+        "span_bytes": 1769,
+        "span_sha256": "029c6bcea5a206a15c8bbe9706ff25917fbf9a6496b3891288fc2660634f7bc0"
+      }
+    }
+  },
+  "legacy_source_pins": [
+    {
+      "label": "068/070 selected telemetry + attempt atom",
+      "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "line_start": 399,
+      "line_end": 399,
+      "full_bytes": 46889,
+      "full_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "span_bytes": 445,
+      "span_sha256": "aa9dacc58969d896bbfbe38ce9c2ed6b55f47476b4cd3a411041d62bebf70468"
+    },
+    {
+      "label": "069 post-close source",
+      "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "line_start": 319,
+      "line_end": 319,
+      "full_bytes": 46889,
+      "full_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "span_bytes": 393,
+      "span_sha256": "69d2c0a4cb59e7b85d25745a78823d614869d15923aa0d5793a3f50263d2e476"
+    },
+    {
+      "label": "069 feedback lifecycle source",
+      "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/feedback-lifecycle.md",
+      "line_start": 24,
+      "line_end": 24,
+      "full_bytes": 16913,
+      "full_sha256": "2e0a028fc48c6acc92a5b09ada9fc511ed0389b71af9deee782ec81aa731a655",
+      "span_bytes": 125,
+      "span_sha256": "5afb8c01c5f3705e0c8ee690ca4f302db5cb3e2907b3ae1e12c93b773e2bdcb4"
+    },
+    {
+      "label": "069 paired consumer",
+      "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "line_start": 92,
+      "line_end": 140,
+      "full_bytes": 13648,
+      "full_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "span_bytes": 5597,
+      "span_sha256": "062f0c31b19914bb7e506606b0bd2046bd3d40ccbda00e5ad561e438e5acd6f5"
+    },
+    {
+      "label": "069 feedback lifecycle test-design context",
+      "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L8-unit-test-design.md",
+      "line_start": 320,
+      "line_end": 360,
+      "full_bytes": 82476,
+      "full_sha256": "c654b3947423f7f8967cd4d6abacaa6c110d33803dc7f315c61956d2cb669b05",
+      "span_bytes": 5912,
+      "span_sha256": "573628a6e57c266fd07842e8e4ce98b5a511f96e81768908494805067099052c"
+    },
+    {
+      "label": "071 old L1 request",
+      "revision": "3795bf0dcb731231a0b5ca1faa3cb67bdfeda22a",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+      "line_start": 67,
+      "line_end": 69,
+      "full_bytes": 4629,
+      "full_sha256": "e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765",
+      "span_bytes": 258,
+      "span_sha256": "ab29276edf0e04c4c163ab5d4e3889b0c845fbbd86fc0f7d23f8bd32a7ffdb4e"
+    },
+    {
+      "label": "071 old L3 requirement",
+      "revision": "3795bf0dcb731231a0b5ca1faa3cb67bdfeda22a",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/three-lane-cloud-governance-requirements.md",
+      "line_start": 77,
+      "line_end": 79,
+      "full_bytes": 8903,
+      "full_sha256": "4b388cda67484f1808b0f4b8834d5d234a47de49f7db6dcb12d92d2dcfbee185",
+      "span_bytes": 542,
+      "span_sha256": "e7c4bec23a84c57b06c826c67ae19d011293a689d1b7463c10ea0d5950a313dd"
+    },
+    {
+      "label": "071 old acceptance consumer",
+      "revision": "3795bf0dcb731231a0b5ca1faa3cb67bdfeda22a",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/three-lane-cloud-governance-acceptance.md",
+      "line_start": 44,
+      "line_end": 47,
+      "full_bytes": 4889,
+      "full_sha256": "785421188d23f371290ff5bacecba6c5215e7baa66110c461f548cae8f6a2fc7",
+      "span_bytes": 440,
+      "span_sha256": "db3f977c22140f8ef9cb9628fa0341fe261daabaf7240051211df91ce6406993"
+    }
+  ],
+  "prior_records": {
+    "same_directory": "docs/governance/audits/requirements-stage/",
+    "files": {
+      "root-labo-stage5-semantic-audit-068-071-6f9462f1.md": {
+        "bytes": 6737,
+        "sha256": "23ce55b8b04c0d77ec0b37964df1b4c18b5d2aa328c0108591c037500fa86ba6"
+      },
+      "root-labo-stage5-semantic-audit-068-071-6f9462f1.json": {
+        "bytes": 248857,
+        "sha256": "caa8163f1de17567f477f042614e6852e546bf8f2530c14c3aae6d35ab954bc9"
+      },
+      "root-labo-stage5-main-pin-correction-2026-10-08.md": {
+        "bytes": 980,
+        "sha256": "cb003ea76b85a90dccbe545cbcd59d3419ff9bbd251543d9ad2e885a7d860dfd"
+      },
+      "root-labo-stage5-main-pin-correction-2026-10-08.json": {
+        "bytes": 825,
+        "sha256": "2a87046207d12e0b4320a532e397422e3a201fe03827af3eed397b96b8019958"
+      },
+      "root-labo-stage5-index-output-repair-0d8fcb67.md": {
+        "bytes": 4270,
+        "sha256": "3dd7278766e14ed5410a1e4a66d4f8272bb2040f3ca926fbdb1ae78b652ee144"
+      },
+      "root-labo-stage5-index-output-repair-0d8fcb67.json": {
+        "bytes": 12262,
+        "sha256": "b0385f95fa2109aff4d1cc605c227a17c166fa18a0cd1040228e3eeab078575d"
+      }
+    },
+    "tmp_paths_in_prior_records_are_historical_only": true,
+    "old_audit_modified": false
+  },
+  "six_document_pins": {
+    "docs/helix-labo/L3-requirements/business-requirements.md": {
+      "before": {
+        "bytes": 32852,
+        "sha256": "057caceeb0d2269cfc58bec6011ea26233c4272cef71ec90fbaabc497f78d183"
+      },
+      "after": {
+        "bytes": 32852,
+        "sha256": "057caceeb0d2269cfc58bec6011ea26233c4272cef71ec90fbaabc497f78d183"
+      },
+      "changed": false
+    },
+    "docs/helix-labo/L3-requirements/functional-requirements.md": {
+      "before": {
+        "bytes": 354409,
+        "sha256": "25cf7d6ce217c68a9b5203fbd467b4ef1bdd15598782f82dfe1c83da55d420fa"
+      },
+      "after": {
+        "bytes": 354830,
+        "sha256": "4fca0d09872fd19fc03c1d3f7b78219fdb20fcf6e2d605b6f1818c79d30fa000"
+      },
+      "changed": true
+    },
+    "docs/helix-labo/L3-requirements/nfr-grade.md": {
+      "before": {
+        "bytes": 92216,
+        "sha256": "a064f87616d83d2eac51e58b6ecaf2d1355798ae7deb711a208c05e7d9885772"
+      },
+      "after": {
+        "bytes": 92492,
+        "sha256": "4f81dc21e2256d8a484cf0d604c71d6fdb4d55875ae1d54225ab1c28a3f0d03a"
+      },
+      "changed": true
+    },
+    "docs/helix-labo/L10-verification/business-verification.md": {
+      "before": {
+        "bytes": 31659,
+        "sha256": "f5a3000d0bec14e1eae44f3961d0ebc37acf94778efc92e035bf2eb6d25b84b5"
+      },
+      "after": {
+        "bytes": 31659,
+        "sha256": "f5a3000d0bec14e1eae44f3961d0ebc37acf94778efc92e035bf2eb6d25b84b5"
+      },
+      "changed": false
+    },
+    "docs/helix-labo/L10-verification/functional-verification.md": {
+      "before": {
+        "bytes": 695437,
+        "sha256": "98702111105905e2a7bbf562493652aa8378b7ce47804fda427054927bb77af4"
+      },
+      "after": {
+        "bytes": 695696,
+        "sha256": "41a9057a87c5f2bc1ca4f4b663ebb0ca0e3aa3eeb43326831c0362419e1583a8"
+      },
+      "changed": true
+    },
+    "docs/helix-labo/L10-verification/nfr-verification.md": {
+      "before": {
+        "bytes": 82807,
+        "sha256": "f131998c58e45325d2b0888746ea648aa1ab13686ecc33d84c20e163b7ba3a88"
+      },
+      "after": {
+        "bytes": 83022,
+        "sha256": "c4a94cd1b91649d9f9e5f3b8ec8708c8c07bde2194689a905af1e9567fac3b78"
+      },
+      "changed": true
+    }
+  },
+  "validation": {
+    "git_diff_check": "PASS",
+    "static_assertions": "PASS: six pins verified; CASE-131/132 in FR AC-04+AC-05; both FV rows trace AC-04+AC-05; 071 r06 baseline/oracle preserve owner identity value or unknown from baseline",
+    "fixture_execution": "not run",
+    "legacy_runtime_ci_cli": "not run"
+  },
+  "authority_effect": "none",
+  "approval_effect": "none"
+}

@@ -1,0 +1,31 @@
+{
+  "base": "e7a695d4b2de64aec69a1a123de2fde33be724cf",
+  "six_body_pins": {
+    "docs/helix-labo/L3-requirements/business-requirements.md": {
+      "sha256": "057caceeb0d2269cfc58bec6011ea26233c4272cef71ec90fbaabc497f78d183",
+      "bytes": 32852
+    },
+    "docs/helix-labo/L3-requirements/functional-requirements.md": {
+      "sha256": "25cf7d6ce217c68a9b5203fbd467b4ef1bdd15598782f82dfe1c83da55d420fa",
+      "bytes": 354409
+    },
+    "docs/helix-labo/L3-requirements/nfr-grade.md": {
+      "sha256": "a064f87616d83d2eac51e58b6ecaf2d1355798ae7deb711a208c05e7d9885772",
+      "bytes": 92216
+    },
+    "docs/helix-labo/L10-verification/business-verification.md": {
+      "sha256": "f5a3000d0bec14e1eae44f3961d0ebc37acf94778efc92e035bf2eb6d25b84b5",
+      "bytes": 31659
+    },
+    "docs/helix-labo/L10-verification/functional-verification.md": {
+      "sha256": "98702111105905e2a7bbf562493652aa8378b7ce47804fda427054927bb77af4",
+      "bytes": 695437
+    },
+    "docs/helix-labo/L10-verification/nfr-verification.md": {
+      "sha256": "f131998c58e45325d2b0888746ea648aa1ab13686ecc33d84c20e163b7ba3a88",
+      "bytes": 82807
+    }
+  },
+  "change_from_worker": "068 FRへの070CASE131/132無限定参照を撤去。068本文不変、070側に限定。",
+  "authority_effect": "none"
+}

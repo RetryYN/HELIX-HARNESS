@@ -1,0 +1,16 @@
+{
+  "record_type": "immutable audit correction addendum; no semantic or authority effect",
+  "incorrect_main_revision": "6f9462f1706a9e8670b97ad259e96c8c40632a4",
+  "incorrect_length": 39,
+  "correct_main_revision": "6f9462f1706a9e8670b97ad259e96c8c40632a4a",
+  "correct_length": 40,
+  "correct_git_object_exists": true,
+  "old_markdown": "/tmp/root-labo-stage5-semantic-audit-068-071-6f9462f1.md",
+  "old_markdown_sha256": "23ce55b8b04c0d77ec0b37964df1b4c18b5d2aa328c0108591c037500fa86ba6",
+  "old_json": "/tmp/root-labo-stage5-semantic-audit-068-071-6f9462f1.json",
+  "old_json_sha256": "caa8163f1de17567f477f042614e6852e546bf8f2530c14c3aae6d35ab954bc9",
+  "old_records_modified": false,
+  "semantic_scope_revisited": false,
+  "authority_effect": "none",
+  "later_repair_base": "0d8fcb67ef64e17e0e3529715011d6140652f017"
+}

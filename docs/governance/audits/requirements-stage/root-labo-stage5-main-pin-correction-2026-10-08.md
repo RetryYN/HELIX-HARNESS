@@ -1,0 +1,7 @@
+# LABO Stage 5 旧意味監査のmain pin訂正
+
+訂正対象の旧意味監査Markdown/JSONは不変で保持する。旧JSONの`main_revision`とMarkdown冒頭に記録した`6f9462f1706a9e8670b97ad259e96c8c40632a4`は39桁で、正しいexact commit IDの末尾`a`が欠けていた。訂正後の完全な40桁IDは`6f9462f1706a9e8670b97ad259e96c8c40632a4a`であり、当該Git objectの存在を専用worktreeから確認した。旧ファイルを上書きせず、この追補だけで誤記を訂正する。
+
+旧監査時点の意味・CASE所見・source pin・scopeは本訂正で再評価しない。今回の新fixture設計の基点は別途記録した`0d8fcb67ef64e17e0e3529715011d6140652f017`であり、この訂正から旧監査の内容や承認状態を変更・推定しない。
+
+旧Markdown SHA-256 `23ce55b8b04c0d77ec0b37964df1b4c18b5d2aa328c0108591c037500fa86ba6`。旧JSON SHA-256 `caa8163f1de17567f477f042614e6852e546bf8f2530c14c3aae6d35ab954bc9`。
