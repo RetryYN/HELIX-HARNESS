@@ -850,3 +850,26 @@ HARNESSは、利用許可と対象revisionに結ばれたscreen IDを持つrende
 **AC-HARNESS-L3-044-04 — authority出力を個別に拒否**：合成入力中の他fieldを固定し、要求合意、L3承認、設計承認、採択、実装成立、OS実行、利用者受入の各outputを一つずつ独立に生成させる変異を拒否する。各拒否fixtureは対象output field一つだけを変える。
 
 **owner・差戻し**：意味／authority不足は固定要求ownerへ。template選択・適用／義務導出不足はHARNESS-L2-009／対象template ownerへ。atom抽出不足はHARNESS-L2-041の既存ownerへ。具体設計・契約版・boundary不足はHARNESS-L2-026、対oracle不足はHARNESS-L2-022等の既存ownerへ。sourceまたは原因が個別identityを特定しない場合はそのidentityをunknownに保ち、既知の責務区分は維持する。新ownerを作らない。HARNESS-L2-043はHIL-FR-55側であり044 ownerではない。
+
+## Stage 3 親043の機能要件候補
+
+### FR-HARNESS-L3-043 — active templateのrule／branch別例coverage
+
+**authorityと範囲**：HARNESS-L2-043はPO decision `MPR-RC-HARNESS-L2-043-002`で条件付き採択されたBルート、所属HARNESS-COREである。L2本文と旧source checkpointに残る「配置はPO未決」の記述は当時のcandidate metadataとして保持し、現在のauthorityはPO decision行から読む。親L1はHARNESS-L1-001/004/009、version_targetはL2-043の1.0を保持する。本L3本文はその固定scopeを具体化する候補で、L3承認前である。POの採択を再生成・拡張しない。
+
+**由来と処置**：旧HIL-FR-55（Template Example Calibrator）、旧L3 HR-FR-HIL-20/HAC-HIL-20a/b/c、およびHAT-HIL-20/HOT-HIL-50を起点とする。保持する意味は選択されたactive templateに適用される各validation rule/applicability branchへcanonical positiveとboundary negativeを結び、対象scopeのrisk分析で未被覆と示された状態遷移、failure、security、migration、multi-runtime差異などに限り追加例を求め、件数のみで十分性を判定しないこと。名前や旧IDが同じだけでは同じ意味とせず、旧28 CASEの原文/raw digestを監査source inventoryへ残し、内容oracleを固定親の意味へ再導出する。旧schema/runtime/workflow/実装経路は移植しない。
+
+**責務境界**：043は選択されたtemplate/scope/revisionに適用されるrule/branchの例coverageを評価し、全組合せの作成や検証の実行をしない。HARNESS-L2-009がactive template選択と適用条件を所有し、HARNESS-L2-041がそのtemplate要素の抽出・source span・gapを所有する。HARNESS-L2-004が要求・設計・検証のtrace、risk/oracle条件を所有する。HARNESS-L2-026は要求からunitの具体設計と対のverification designを、HARNESS-L2-025はcomposite design/oracleを構成・検査する。043はそれらの代替にならず、025/026のcompletion receiptを一律に開始前提としても要求しない。OSが検証を実行・保存する。
+
+**入力と出力**：対象revision/scope、L2-009で選択されたactive template identity/revision/applicability、各validation rule/applicability branchの識別可能な内容、および適用oracleをL2-004の検証義務へ結ぶ。識別可能なrule/branch内容は独立した入力であり、041 atomを入力元に選択しないscopeでも、rule/branchの内容、適用条件、oracleを照合できれば評価対象とする。041 atomを入力元に選択する場合だけ、そのtemplate/source revisionと抽出scope、該当atom/source spanを追加入力にする。追加risk例を評価する操作だけで、その対象scopeのrisk根拠と未被覆領域も入力する。出力は同じscope/revision限定のadequacy matrixで、分母は選択scopeに適用されるrule/branch。各rule/branchにcanonical positiveとboundary negativeを最低一例ずつ対応させ、同じscope/revisionの重複・冗長性findingをmatrixへ結ぶ。追加risk例は対象scopeのrisk分析で未被覆と根拠付きで示された領域（状態遷移、failure、security、migration、multi-runtime差異等）に限る。rule×branch×riskや他の全factorのCartesian productを要求しない。未選択template、未選択scope、未選択riskは未観測のままとする。
+
+**受入基準**：
+
+- **AC-HARNESS-L3-043-01**：選択scope内の各適用rule/branchにpositiveとboundary-negativeを結び、例の条件・期待結果・既存oracle・source provenanceを追跡する。例数だけで十分性を主張しない。同scopeの証拠により確立済みの重複・冗長性findingを出力し、その確立済み所見が欠ければcoverage所見は未完とする。
+- **AC-HARNESS-L3-043-02**：applicability/denominator、識別可能なrule/branch内容、選択した場合の041 atom、risk basis、oracleを別根拠として照合する。041 atomを入力元に選んでいない場合、そのatomの不在だけをgapや未評価理由にしない。unknown/conflict/stale/TBD/根拠なしN/Aは推測で埋めず未評価とする。選択template/applicabilityまたはtemplate/source自体のrule/branch内容が欠落・TBDならHARNESS-L2-009または対象template/source ownerへ返す。currentなsource内容を入力として受けた後、対象の抽出契約が扱う抽出結果・source span/provenanceが欠落・TBDならHARNESS-L2-041相当の抽出契約ownerへ返す（041 atomを選択した場合を含み、選択を常時必須にしない）。独立source自体の内容欠落・TBDを041抽出結果の欠落へ読み替えない。入力sourceと、041 atomを選択した場合はその抽出結果が健全なのに043 matrixの参照・期待結果が誤っている場合は、043自身の候補出力を訂正する。要求/risk/oracleの不足はL2-004と固定sourceが示す該当ownerへ原因別に返す。個別owner identityが不明な場合はidentity unknownを別に保持し、既知の責務区分を消さない。
+- **AC-HARNESS-L3-043-03**：coverage結果は選択されたtemplate/revision/scopeに限る。未選択template/scope/revisionへ外挿せず、固定oracleに適合する未見例は未見だけを理由に拒否しない。
+- **AC-HARNESS-L3-043-04**：追加risk例は対象scopeのrisk分析で未被覆と根拠付きで示された領域（状態遷移、failure、security、migration、multi-runtime差異等）に限定する。risk分析で未被覆とされた領域に追加例がない場合はcoverage未完とする。その例を評価する操作でrisk根拠または未被覆領域が欠ける場合は補完せずHARNESS-L2-004と根拠sourceが示す該当ownerへ返す。043のmatrixは要求合意、L2採択、L3承認、設計成立、実装、OS実行、利用者受入を生成せず、L2-025/026の成果も代替しない。
+
+**原因別戻し先**：template sourceの選択、active revision、適用条件の不足はHARNESS-L2-009/対象template ownerへ返す。template/source自体のrule/branch内容の欠落・TBDはHARNESS-L2-009または対象template/source ownerへ返す。currentで有効なsource内容を受けた後、対象の抽出契約が扱う抽出出力・atom/source span/provenanceが欠落・TBDまたは誤っている場合は、HARNESS-L2-041相当の抽出契約ownerへ返す（041 atomを選択した場合を含むが、返却を041 atom選択時に限定しない）。独立source自体のrule/branch内容の欠落・TBDを041抽出出力の不足へ読み替えない。入力sourceと、選択した場合の041抽出結果が健全なまま043 matrixの参照・期待結果が誤っている場合は、043自身の候補出力を訂正する。個別owner identityが不明ならidentity unknownを別に保持し、ここに示した既知の責務区分を消さない。requirement relation、risk根拠、expected result/oracle bindingまたは検証義務の不足はHARNESS-L2-004と固定sourceが示す該当ownerへ返す。これらを一つのprofile前提やgeneric ownerへ束ねず、025/026を043評価の一般開始条件や代替outputにしない。
+
+**authority出力境界**：実際のB-route/CORE PO採択はdecision rowで既に固定される。043 candidateやmatrixからその採択を作り直さない。また要求合意、L3承認、設計成立、実装完了、OS実行完了、利用者受入成功を個別に生成しない。matrixは内容上のcoverage候補だけを示す。

@@ -213,3 +213,9 @@ NFR CASEは測定candidate分類であり、実測・CI success・performance SL
 | `CASE-HARNESS-L10-NFR-044-03` | `NFR-C-HARNESS-044-03` | candidate stateのB0とauthority output単一変異fixture7件、missing/unknown/stale/conflictの既存fixtureを比較。 | candidateやunknownが承認・採択・実装・実行・利用者受入へ変換されず、unknownを合格にしない。 | authority baselineが未確定なら未評価。既存authorityを推測して生成すれば不合格。 |
 
 **実行限界**：fixtureは設計候補で未実行。full integration、性能、release、L3承認、受入実施を示さない。source pinがcurrent branchで不一致の場合、固定対象revisionとの差として記録し、latest baseの本文をこの測定結果へ混ぜない。
+
+## Stage 3 親043の非機能検証
+
+| CASE ID | NFR候補 | 検証対象 | 観測 | 限界 |
+|---|---|---|---|---|
+| `CASE-HARNESS-L10-NFR-043-01` | 独立NFRなし | fixed L2-043の選択scope内adequacy matrix | 数値性能・coverage率ではなく、適用rule/branchとoracle/risk根拠のtraceを機能ACで確認する。 | 新規閾値やall-combinations実行を設けない。 |

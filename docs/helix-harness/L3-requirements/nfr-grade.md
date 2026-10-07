@@ -230,3 +230,9 @@ NFR候補はL10定義の測定母集団の設計にとどまり、抽出器の�
 | `NFR-C-HARNESS-044-03` | 未確定入力の保持 | missing/unknown/conflict/staleが合格へ変換されないこと。新しい数値閾値なし。 | 各fieldを一つずつ変異し、portfolio状態・返却理由・既存owner区分を観測する。 |
 
 **制約**：候補はscope限定のcoverage oracleであり、実装性能、費用、時間、成功率、最小契約数、全HARNESS全体の完成を数値化しない。9-class fixtureを上限・一般閾値・class定義としない。旧sourceにないSLAや閾値を新設しない。実測値は未取得である。
+
+## Stage 3 親043の非機能候補
+
+| NFR候補 / L2親 | 候補値 | 固定根拠 | 限界 |
+|---|---|---|---|
+| `HARNESS-L2-043` | 独立した数値NFRを導出しない | 固定L2-043はrule/branch/risk coverageを意味で判定し、正例・境界負例を各適用rule/branchに対応させる。 | case数の総量、coverage率の新閾値、全組合せ数を追加しない。未選択scopeを分母に加えない。 |
