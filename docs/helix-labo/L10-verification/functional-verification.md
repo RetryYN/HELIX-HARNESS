@@ -2787,7 +2787,7 @@ CASE-01は旧snapshot上の高水準正常説明である。各下記candidate�
 ## Stage 5 — HELIXLABO-L2-061 L10 fixture候補
 
 
-対象は選択taskの比較適格性と履歴整合である。すべて合成fixture候補であり、実行・受入・権限・資格を生成しない。CASE-01/02はnormal/未見normal。旧a4 snapshot由来の132 IDを保持し、R4確認の単独negative CASE-115〜118を追補した（現行計136 unique ID、136 table rows）。索引は非独立で分母に重ねず、個別fixture扱い/網羅性は独立reviewで確かめる。15 fieldはtask ID/version、fixture digest、requirement IDs、acceptance IDs、base HEAD、allowed/forbidden paths、hidden-oracle digest、seed、toolchain versions、timeout/retry/cache policy、hardware class。missing/value unknown/stale/mismatchを区別する。
+対象は選択taskの比較適格性と履歴整合である。すべて合成fixture候補であり、実行・受入・権限・資格を生成しない。CASE-01/02/24は正常、CASE-02は未見正常。旧a4 snapshot由来の132 IDを保持し、R4確認の単独negative CASE-115〜118とR12のCASE-119を追補した（現行計137 unique ID、137 table rows）。索引は非独立で分母に重ねず、個別fixture扱い/網羅性は独立reviewで確かめる。15 fieldはtask ID/version、fixture digest、requirement IDs、acceptance IDs、base HEAD、allowed/forbidden paths、hidden-oracle digest、seed、toolchain versions、timeout/retry/cache policy、hardware class。missing/value unknown/stale/mismatchを区別する。
 
 | CASE ID | 対応AC | 準備・一つの変異または索引 | 期待oracle / 責務境界 |
 |---|---|---|---|
@@ -2911,7 +2911,7 @@ CASE-01は旧snapshot上の高水準正常説明である。各下記candidate�
 | `L10-LABO-061-CASE-99` | `LABO-061-AC-03` | `retry_policy` の値だけunknown。残る14条件はL10-LABO-061-CASE-01と同一。 | 適用policyを推測せず比較不能とし、固定L2のtask契約ownerへ返す。 |
 | `L10-LABO-061-CASE-100` | `LABO-061-AC-03` | `cache_policy` の値だけunknown。残る14条件はL10-LABO-061-CASE-01と同一。 | 適用policyを推測せず比較不能とし、固定L2のtask契約ownerへ返す。 |
 | `L10-LABO-061-CASE-101` | `LABO-061-AC-03` | `hardware_class` の値だけunknown。残る14条件はL10-LABO-061-CASE-01と同一。 | hardware条件を補完せず比較不能とし、固定L2のtask契約ownerへ返す。 |
-| `L10-LABO-061-CASE-102` | `LABO-061-AC-03` | normal baseline（通常履歴の非適用対照）: 選択taskではない055通常履歴で、task条件の明示的な非適用理由を維持する。単独変異はその履歴へtask snapshot 15条件すべてを適用対象と誤分類すること。 | 非適用条件を15個の欠落/不合格へ変換せず誤分類を拒否する。このfixtureは選択taskのfield-missing分母へ入れず、hidden oracle/blindの選択task反例はL10-LABO-061-CASE-75で別に照合する。 |
+| `L10-LABO-061-CASE-102` | `LABO-061-AC-03` | 非適用対照（選択taskのfield-missing分母外、通常Worker履歴）: 選択taskではない055通常履歴で、task条件の明示的な非適用理由を維持する。単独変異はその履歴へtask snapshot 15条件すべてを適用対象と誤分類すること。 | 非適用条件を15個の欠落/不合格へ変換せず誤分類を拒否する。このfixtureは選択taskのfield-missing分母へ入れず、hidden oracle/blindの選択task反例はL10-LABO-061-CASE-75で別に照合する。 |
 | `L10-LABO-061-CASE-103` | `LABO-061-AC-03` | 単独変異: result receiptだけを根拠にOS assignmentが成立したと主張。その他の入力はL10-LABO-061-CASE-01と同一。 | assignmentを生成せず、既存authority状態を維持する。 |
 | `L10-LABO-061-CASE-104` | `LABO-061-AC-03` | 単独変異: result receiptだけを根拠に実験permissionが成立したと主張。その他の入力はL10-LABO-061-CASE-01と同一。 | permissionを生成せず、既存SECURITY境界を維持する。 |
 | `L10-LABO-061-CASE-105` | `LABO-061-AC-03` | 単独変異: result receiptだけを根拠にadmissionが成立したと主張。その他の入力はL10-LABO-061-CASE-01と同一。 | admissionを生成せず、既存authority状態を維持する。 |
@@ -2927,6 +2927,7 @@ CASE-01は旧snapshot上の高水準正常説明である。各下記candidate�
 | `L10-LABO-061-CASE-116` | `LABO-061-AC-03` | 準備: CASE-01相当の比較結果と既存OS assignment状態を保持する。単独変異: 比較結果を受けたLABOがWorkerを起動する。 | Workerを起動せず、OSのassignment/実行責務と既存状態を保持する。 |
 | `L10-LABO-061-CASE-117` | `LABO-061-AC-03` | 準備: CASE-01相当の評価材料と未決のcandidate採否状態を保持する。単独変異: 比較receiptだけでLABOがcandidateを採択済みにする。 | 採択状態を生成/変更せず未決を保持する。既存target ownerの採否判断や実行permissionを代行しない。 |
 | `L10-LABO-061-CASE-118` | `LABO-061-AC-03` | 準備: 固定revisionのHELIXLABO-L2-059に基づく過去比較と、その時点での有効な状態を保持する。単独変異: 後から採択されたL2-061のsnapshot/隔離条件を固定059 revisionへ遡及適用し、過去比較を不成立へ書き換える。 | 固定059 revisionの状態を遡及変更せず、L2-061を選択した比較scopeにのみ適用する。過去結果をcurrent証拠へ流用することとも区別する。 |
+| `L10-LABO-061-CASE-119` | `LABO-061-AC-03` | 準備: 保存済みhistorical resultと当時のsource/revision/scopeを保持する。単独変異: その記録を再現確認するためarchive内の旧runtimeを起動してreplayするよう要求する。 | 旧runtimeを起動せず、既存historical evidenceを当時の証拠として保持する。replay結果を新規実測、current performance、比較成功へ変換しない。 |
 
 
 ## Stage 5 — HELIXLABO-L2-063 修復再発評価と予防候補

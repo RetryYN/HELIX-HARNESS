@@ -1,0 +1,188 @@
+{
+  "title": "LABO Stage 5 parent 061 R12 旧runtime境界補強・R1/R3/R5再照合",
+  "authority_effect": "none",
+  "approval_effect": "none",
+  "execution_effect": "none",
+  "reviewed_current_main": "ce70628e53ff5f78c1321accf57429c740ea585d",
+  "worktree_base_commit": "a30d1c81fc7e22bee501c46e0e9a2b4ab125045d",
+  "predecessor_repair_commit": "d88801887",
+  "scope": [
+    "LABO Stage5 parent061 only",
+    "R12 old-runtime prohibition fixture",
+    "R1 count synchronization after new fixture",
+    "R3 normal/non-applicability display synchronization",
+    "R5 fixed-source locator correction",
+    "self-check that 061 does not expand fixed 059 meaning"
+  ],
+  "fixed_parent": {
+    "commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+    "L2_061": {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "lines": "457-469",
+      "file_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+      "span_sha256": "9f064d206645f1db6ef946a78ddfd2fe6656c003c4af86ed46c54dab2ee4ad3a",
+      "span_bytes": 4951
+    },
+    "L11_061": {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "lines": "205-215",
+      "file_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+      "span_sha256": "d7c170e0b047db4a74ef955f1295a5d8fc893cd0ca84aefc72d96b764ed1bb1b",
+      "span_bytes": 3030
+    },
+    "L2_059_scope_boundary": {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "lines": "418-429",
+      "file_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+      "span_sha256": "f9bc3a4905ec37935471a527f58d17ca123257dfb48c3b5af0fcbc4d9d9e1316",
+      "span_bytes": 8991
+    }
+  },
+  "legacy_source_read_only": {
+    "asset_id": "LEGACY-ASSET-28FB139B26CD61CC51EE",
+    "description": "旧Bench R04 task snapshot / R08 integrity and historical evidence; read as derivation source, runtime/test not executed",
+    "spans": {
+      "R04": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "lines": "96-120",
+        "file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+        "span_sha256": "104c380e9629448b328712956892ea2227537041196a68699453a1282170bd81",
+        "span_bytes": 524
+      },
+      "R08": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "lines": "143-147",
+        "file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+        "span_sha256": "1528cbcdf178907860401f6155b405693cce7e21540e05bc5cc013ad39963c9f",
+        "span_bytes": 351
+      }
+    },
+    "paired_acceptance_asset_id": "LEGACY-ASSET-A952A3A175EB82A4781B",
+    "description_paired": "旧acceptance AC005/006/012/013; paired consumer, not direct requirement authority",
+    "spans_acceptance": {
+      "AC005_AC006": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "lines": "32-33",
+        "file_sha256": "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185",
+        "span_sha256": "3cdb4d91077389acb1aefe0363808c0b342071281813c137076bab1bc73a2873",
+        "span_bytes": 346
+      },
+      "AC012_AC013": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "lines": "39-40",
+        "file_sha256": "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185",
+        "span_sha256": "c45e013b69458a51a0526292f616881e3fccfc0daa39bed27f5b5526be216e55",
+        "span_bytes": 367
+      }
+    }
+  },
+  "immutable_predecessor_audit": {
+    "docs/governance/audits/requirements-stage/labo-stage5-parent061-r4-repair-audit-2026-10-08.md": {
+      "bytes": 5016,
+      "sha256": "11146d3810a7adc3cd1370059dbb7bf56df27dd2a306c5bc15ea7c697722f02a"
+    },
+    "docs/governance/audits/requirements-stage/labo-stage5-parent061-r4-repair-audit-2026-10-08.json": {
+      "bytes": 9353,
+      "sha256": "963c91ec77561a6130b843c3a52c0a83df247c571666b2e76e3150f33db21afd"
+    }
+  },
+  "self_review": {
+    "fixed_059_no_expansion": "CASE-118 は固定L2-061:459「固定L2-059 revisionへ本追補の採択を遡及しない」に対応する。固定L2-059は評価材料から対象変更・採用やassignmentを生成しない境界であり、CASE-117はreceiptだけからの採択生成を拒否し未決状態を保つ。CASE-118/117はL2-059の条件、状態、候補集合を変更しない。",
+    "R12": "固定L11-061:213に「旧runtimeは起動しない」と明記され、旧runtimeを起動して履歴を再現する独立要求変異がなかった。CASE-119は保存済みhistorical resultを入力にし、旧runtime replay要求のみを変異させる。期待は起動拒否、歴史記録の歴史性維持、新規実測/current performance/比較成功への読み替え拒否。",
+    "R5": "FR traceの旧 locator L2-061:467–469は根拠範囲をはみ出していた。固定本文上の失敗・履歴・範囲はL2-061:465–467にあるため修正した。",
+    "R1_R3": "FVは旧a4由来132 IDと既存補強CASE-115–118に今回119を加え、合計137 unique row/IDとする。CASE-24をnormal一覧に同期。CASE-102を正常fixtureという意味に変えず、選択taskのfield-missing denominator外の非適用対照と明記。"
+  },
+  "six_document_pins": {
+    "BR": {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "before_commit": "a30d1c81fc7e22bee501c46e0e9a2b4ab125045d",
+      "before_blob": "2646eebf718d3bad0e6cdfd40fee6b530af02772",
+      "before_bytes": 32933,
+      "before_sha256": "de87a0a155e2ad9b12ce95d35f8a826ec93d9c612cf05fcd32d780153c46b9b6",
+      "after_bytes": 32961,
+      "after_sha256": "007e64b8b5c06343cf522cc67f928f04f38f92796a0ca2b89e5c639640193e8d"
+    },
+    "FR": {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "before_commit": "a30d1c81fc7e22bee501c46e0e9a2b4ab125045d",
+      "before_blob": "7d9be5468f9b690f7b32fd8beed6121102f40ce8",
+      "before_bytes": 356474,
+      "before_sha256": "3f5b5d1750b8b5eb9a3d85b0e0554b33109ac9460c2f73da36f45e8908534e82",
+      "after_bytes": 356811,
+      "after_sha256": "94b45e1f60cebde48be71641de3eeb80067f95cc515b224c4b010ff2b4222cdf"
+    },
+    "NFR": {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "before_commit": "a30d1c81fc7e22bee501c46e0e9a2b4ab125045d",
+      "before_blob": "b18133f0ce532225cdb00c698d8e341ef4d6591a",
+      "before_bytes": 92724,
+      "before_sha256": "eafe281dda3460624d6667b76615a6b7fdd1c4fdd1e3eb5e1a4711482ce27b4a",
+      "after_bytes": 92749,
+      "after_sha256": "5a6b7032ecebc3dd7fd289c6841c23173667c53ccffe2b11331ab18d64db5caf"
+    },
+    "BV": {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "before_commit": "a30d1c81fc7e22bee501c46e0e9a2b4ab125045d",
+      "before_blob": "a7c2904313c6862060f2363e9b411234f9ce513b",
+      "before_bytes": 31833,
+      "before_sha256": "af05c9df395453a3d2b4ee19637aaeef76891fd5d0d199c8055867af9f15ea16",
+      "after_bytes": 31861,
+      "after_sha256": "43dec1e8a572c0cefa34fe594467014def5fbd3df8e0ba90bb46b31d9d8ff439"
+    },
+    "FV": {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "before_commit": "a30d1c81fc7e22bee501c46e0e9a2b4ab125045d",
+      "before_blob": "b079e9a8791e51eaf45743bc22b8d6691c944481",
+      "before_bytes": 698651,
+      "before_sha256": "e78180bd1f1b8d01920c7cd0d36b172cb66e2c7f4d5f97d808753098ffe0d229",
+      "after_bytes": 699154,
+      "after_sha256": "d16abfff1de19108b1e0b977dab81f20bb010a838596e596fa1b1f729f065335"
+    },
+    "NFRV": {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "before_commit": "a30d1c81fc7e22bee501c46e0e9a2b4ab125045d",
+      "before_blob": "ea1a35d89ea85a72b7ba840b3ba7248563a79cf9",
+      "before_bytes": 83336,
+      "before_sha256": "84f850ab157cbcde254fc15d6bdce150989098e9b185c9298de7593708243ac7",
+      "after_bytes": 83376,
+      "after_sha256": "65c02fd6d525f2b6608b16e59200d2a62761961de8d8e9bb70ada2451f0440c7"
+    }
+  },
+  "static_checks": {
+    "case_row_count": 137,
+    "unique_case_id_count": 137,
+    "first_id": "01",
+    "last_id": "119",
+    "case119_present_once": true,
+    "cases115_to119_ac03": true,
+    "case24_listed_as_normal": true,
+    "case102_not_normal_label": true,
+    "r5_correct_locator": true,
+    "br_range_119": true,
+    "bv_range_119": true,
+    "nfrv_count_137": true,
+    "old_runtime_in_nfr03": true,
+    "case119_single_replay_mutation": true,
+    "no_push_merge": "操作していない: push/PR/Ready/merge"
+  },
+  "validation": {
+    "git_diff_check": "PASS",
+    "legacy_runtime_test_ci_execution": "not run",
+    "L10_execution": "not run",
+    "push_pr_ready_merge": "not performed",
+    "six_sha_bytes_and_static_scope_checks": "PASS: exact before/after SHA and byte counts; 137 unique rows; CASE115–119 AC03; R3/R5 and count/range sync."
+  },
+  "limits": [
+    "CASEは候補設計でありL10実行結果ではない。",
+    "他Stage・他親・固定L2/L11の意味は変更していない。",
+    "旧source/旧acceptanceは読取のみ。旧runtime/test/CIは起動していない。",
+    "全旧consumerの意味完了やparent061全般の完全性を主張しない。"
+  ]
+}

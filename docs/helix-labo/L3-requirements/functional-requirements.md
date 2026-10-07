@@ -1694,9 +1694,10 @@ L10に置く一項目変異候補を個別に照合し、単一点性は独立re
 | secret・future answer・hidden oracle等がWorker-visible contextへ漏れた比較を有効扱いしない | L2-061:461–464; L11-061:208–210 | `LABO-061-AC-03`; 情報漏洩の判定・permissionはSECURITY、識別可能な入力sourceはその既存ownerへ返す。 |
 | author/judgeのidentity・session・context分離と、judgeが使うoracleをWorker漏洩と混同しない | L2-061:462–465; L11-061:209–211 | `LABO-061-AC-01/03`; 役割/可視範囲を区別し、盲検成立・任命をLABOが生成しない。 |
 | selected taskに限ってsnapshot fieldを照合し、055通常履歴や未選択sourceへ一律適用しない | L2-061:465–467; L11-061:211–213 | `LABO-061-AC-02/03`; 適用scopeを選択taskへ束ね、非適用根拠のある通常履歴はfield欠落へ変換しない。 |
-| failed/invalid/historical evidenceを保持し、別run・current値で補わず、score/receiptからauthorityを作らない | L2-061:467–469; L11-061:213–215 | `LABO-061-AC-03`; task/oracle条件はその既存owner、漏洩はSECURITYと識別可能なsource owner、実行context/assignment/receiptは実行主体へ返す。個人・source identity不明はidentity unknownを維持する。 |
+| failed/invalid/historical evidenceを保持し、別run・current値で補わず、score/receiptからauthorityを作らない | L2-061:465–467; L11-061:213–215 | `LABO-061-AC-03`; task/oracle条件はその既存owner、漏洩はSECURITYと識別可能なsource owner、実行context/assignment/receiptは実行主体へ返す。個人・source identity不明はidentity unknownを維持する。 |
 | 適用性unknownを既知の安全性へ継承せず、登録/配送receiptだけで隔離を成立扱いしない | L2-061:463,467; L11-061:214–215 | `LABO-061-AC-02/03`; CASE-03e/18でtask/oracle ownerへ戻し、CASE-115で実context欠落とreceipt成功を分ける。 |
 | receipt/scoreからWorker起動・candidate採択を行わず、061条件を固定059 revisionへ遡及適用しない | L2-061:459,461,464–467; L11-061:207,214–215 | `LABO-061-AC-03`; CASE-116/117/118で起動・採否・revision scopeを独立照合する。 |
+| historical resultをcurrent証拠へ偽装せず、旧runtimeを起動しない | L2-061:465–467; L11-061:213 | `LABO-061-AC-03`; CASE-83は当時runtime欠落、CASE-119は旧runtime replay要求をそれぞれ照合する。 |
 
 ### LABO-061-AC-01 — 選択taskの正常比較
 
@@ -1708,7 +1709,7 @@ L10に置く一項目変異候補を個別に照合し、単一点性は独立re
 
 ### LABO-061-AC-03 — 不成立、履歴と責務境界
 
-L10の各単独fixtureを用い、値を推測・currentから補完せず、missing field、value unknown、stale、revision mismatch、選択scope違いを区別する。Worker-visible漏洩を含むrunは比較不適格のまま保持しSECURITYへ戻す。registration/delivery receiptだけから情報隔離の成立を推定せず、実context未確認は未確認のまま実行context/assignment証拠の既存主体へ返す。historical runの当時model/runtime/toolchain/actor/version/authority evidenceは各々保存し、欠落をcurrent stateで埋めない。failed/invalid runを削除・平均点・低費用・短時間で相殺しない。receipt・score・比較結果からOS assignment、Worker起動、permission、admission、judge任命、qualification、candidate採択を生成しない。固定059 revisionへ本追補を遡及適用しない。正当な材料・既存状態は保持する。
+L10の各単独fixtureを用い、値を推測・currentから補完せず、missing field、value unknown、stale、revision mismatch、選択scope違いを区別する。Worker-visible漏洩を含むrunは比較不適格のまま保持しSECURITYへ戻す。registration/delivery receiptだけから情報隔離の成立を推定せず、実context未確認は未確認のまま実行context/assignment証拠の既存主体へ返す。historical runの当時model/runtime/toolchain/actor/version/authority evidenceは各々保存し、欠落をcurrent stateで埋めない。failed/invalid runを削除・平均点・低費用・短時間で相殺しない。保存済みhistorical evidenceを再実行で補完・再生成せず、旧runtimeを起動しない。receipt・score・比較結果からOS assignment、Worker起動、permission、admission、judge任命、qualification、candidate採択を生成しない。固定059 revisionへ本追補を遡及適用しない。正当な材料・既存状態は保持する。
 
 #### 旧sourceからの再導出
 

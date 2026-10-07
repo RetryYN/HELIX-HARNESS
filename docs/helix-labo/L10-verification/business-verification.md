@@ -85,7 +85,7 @@
 
 ## Stage 5 — HELIXLABO-L2-061 業務証拠
 
-`HELIXLABO-L2-061`には固定L2/L11上の独立business outcomeを追加しない。業務側の照合は `LABO-061-AC-01/02/03` と `L10-LABO-061-CASE-01`〜`CASE-118`を使う。実験実行・判断・authorityの発生はこの設計から主張しない。登録/配送receiptだけで隔離済みとせず、比較結果からWorker起動/candidate採択を生成せず、固定059 revisionへ061条件を遡及適用しない。個別fixtureと索引の区別はL10本文に従う。
+`HELIXLABO-L2-061`には固定L2/L11上の独立business outcomeを追加しない。業務側の照合は `LABO-061-AC-01/02/03` と `L10-LABO-061-CASE-01`〜`CASE-119`を使う。実験実行・判断・authorityの発生はこの設計から主張しない。登録/配送receiptだけで隔離済みとせず、比較結果からWorker起動/candidate採択を生成せず、固定059 revisionへ061条件を遡及適用せず、旧runtimeを起動しない。個別fixtureと索引の区別はL10本文に従う。
 
 
 ## Stage 5 — HELIXLABO-L2-063 業務証拠
