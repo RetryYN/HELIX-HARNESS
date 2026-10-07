@@ -1,0 +1,212 @@
+{
+  "record_type": "intelligence_stage3_review01_correction",
+  "authority_effect": "none; L3/L10 remain unapproved draft candidates",
+  "branch": "codex/l3-intelligence-stage3-repair",
+  "base": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+  "pre_correction_head": "e82e18c3bf7308a9d15a1cbc0fa142712b565a2a",
+  "fixed_parent_commit": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+  "formal_review_comment": {
+    "number": 6039757204,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2658#issuecomment-6039757204",
+    "body_sha256": "08001bbbcbfd1e43dba7b7e326087d351ce08d8f6b31c1c4a51a0f9936a813df"
+  },
+  "corrected_documents_sha256": {
+    "docs/helix-intelligence/L3-requirements/functional-requirements.md": "e47c2054c0b1953c8f88087c1e9fc317a059f1a95cf60c2f74255f352727c66e",
+    "docs/helix-intelligence/L3-requirements/business-requirements.md": "fbfffce9874cedd0073e35d45bd9f9ac0eefdd9f30ead7d6bc085050b590704e",
+    "docs/helix-intelligence/L3-requirements/nfr-grade.md": "57ac3d6e04242fd3742a146e65798175db3bd4d0a667491850520e171f53d1ad",
+    "docs/helix-intelligence/L10-verification/functional-verification.md": "252d34b41319719bc85e89c78379af5efa62e368fa1b081132ec72af548b668a",
+    "docs/helix-intelligence/L10-verification/business-verification.md": "00c40012d38bb32c681813ee1e9dc3868af4a7b40be9cae42fd4f0c5551b71a7",
+    "docs/helix-intelligence/L10-verification/nfr-verification.md": "58aa44fe466f816c1b50a9bf04839498c8b46c50378ff5c8cfcfc54b077c83eb"
+  },
+  "fixed_parent_source_pins": [
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "revision": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+      "full_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "line_ranges": [
+        [
+          108,
+          112
+        ]
+      ],
+      "span_sha256": "03d87e0c313f91b6a5422f7e9e448fba1138df83017d89f6a2021b25afc7944c",
+      "legacy_asset_id": "HELIXINTELLIGENCE-L2-011"
+    },
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "revision": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+      "full_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "line_ranges": [
+        [
+          466,
+          481
+        ]
+      ],
+      "span_sha256": "2b8f8948e38b2238d6922b2b17062466d49038c23cfd606a342605cac3a51e37",
+      "legacy_asset_id": "HELIXINTELLIGENCE-L2-067"
+    },
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "revision": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+      "full_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "line_ranges": [
+        [
+          561,
+          590
+        ]
+      ],
+      "span_sha256": "d4ddbd574b6e551f34f6ed49b22c5c6e2af5aba3d281976e3be7da376af720d2",
+      "legacy_asset_id": "HELIXINTELLIGENCE-L2-072"
+    },
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "revision": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+      "full_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "line_ranges": [
+        [
+          646,
+          657
+        ]
+      ],
+      "span_sha256": "00e2ca06792aa07e9aa03af44a25d9210560c166f6b7fd1bf6f7f6465cd82b73",
+      "legacy_asset_id": "HELIXINTELLIGENCE-L2-078"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "revision": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+      "full_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "line_ranges": [
+        [
+          146,
+          146
+        ],
+        [
+          160,
+          160
+        ],
+        [
+          164,
+          164
+        ],
+        [
+          168,
+          168
+        ],
+        [
+          171,
+          171
+        ]
+      ],
+      "span_sha256": "904ba20f0c6308d3e19119f3e30ee16fe846645564bc20822cd22d9e2a197d4c"
+    }
+  ],
+  "legacy_source_pins": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+      "revision": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+      "full_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+      "line_ranges": [
+        [
+          19,
+          84
+        ]
+      ],
+      "span_sha256": "9402265e8d5beb01268d7c852eec6b0af14ff67ecdc2592f2889cd0303a6b1ad",
+      "legacy_asset_id": "LEGACY-ASSET-28FB139B26CD61CC51EE"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+      "revision": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+      "full_sha256": "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185",
+      "line_ranges": [
+        [
+          30,
+          41
+        ]
+      ],
+      "span_sha256": "5d58b45aedb4b44b6984a1e5bc2fc9c204fd39fec240d75ca7fac423c2c634ba",
+      "legacy_asset_id": "LEGACY-ASSET-A952A3A175EB82A4781B"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+      "revision": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+      "full_sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+      "line_ranges": [
+        [
+          26,
+          45
+        ],
+        [
+          47,
+          110
+        ],
+        [
+          123,
+          137
+        ]
+      ],
+      "span_sha256": "6fb411a57bc1fabf100e7260692d8951d8de141a5045c2ff718c4d66a196c3f8",
+      "legacy_asset_id": "LEGACY-ASSET-9114D4E463E95B67DD0C"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/worker-common-contract-acceptance.md",
+      "revision": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+      "full_sha256": "c8dff734891a6a7350feb9b698c40e1616946cdd424433d662f1da49d8ac800d",
+      "line_ranges": [
+        [
+          18,
+          37
+        ],
+        [
+          39,
+          64
+        ]
+      ],
+      "span_sha256": "92757074018f7225c04e3086fba085cff4aa6158115c3356e577355d30b2786b",
+      "legacy_asset_id": "LEGACY-ASSET-C6ADB99F1353965C5449"
+    }
+  ],
+  "finding_resolution": {
+    "M1_NFR011_restored": true,
+    "M2_AC067_owner_categories": true,
+    "M2_case_return_destinations": true,
+    "M3_six_normal_oracles": true,
+    "m1_business_trace_symmetry": true,
+    "m2_case011_06d_order": true,
+    "m3_067_unknown_return": true,
+    "m3a_human_time_zero_case_retained": true,
+    "m4_pack_element_owner_source_defined": true,
+    "m5_optionC_exact_scope": true
+  },
+  "changes": {
+    "M1": "NFR-011-01 restores per-run FP/miss and cost pricing provenance, no hiding missing/different evidence, and no single-winner threshold; L10 NFR row aligned.",
+    "M2": "AC-067-02 and 067-06a/06c now route unknown or mismatched evidence by fixed L2-067 owner categories; priority and human-time cases have explicit destinations.",
+    "M3": "Normal 007-01/03, 015-01/03, 019-01/03 now state concrete fixture outputs and comparison oracles.",
+    "m1": "BR/BV functional fixture trace indexes synchronized to 005/011/016/067/072/078.",
+    "m2": "011-06d moved adjacent to 011-06c.",
+    "m3": "067 effort, priority, and human-time missing cases return to LABO or decision owner as fixed L2-067 requires.",
+    "m4": "072 element missing cases identify fixed source owner; when source does not identify one, preserve unknown. No generic pack-owner term.",
+    "m5": "078-12 preserves option C requirement to identify target L1, adopted L2/L11, and source-to-consumer connection; absence stays unknown."
+  },
+  "static_validation": {
+    "scope": "Text/ID/trace assertions only; no L10 case execution, runtime, CLI, old tests, CI, or operational validation.",
+    "assertions": {
+      "M1_NFR011_restored": true,
+      "M2_AC067_owner_categories": true,
+      "M2_case_return_destinations": true,
+      "M3_six_normal_oracles": true,
+      "m1_business_trace_symmetry": true,
+      "m2_case011_06d_order": true,
+      "m3_067_unknown_return": true,
+      "m3a_human_time_zero_case_retained": true,
+      "m4_pack_element_owner_source_defined": true,
+      "m5_optionC_exact_scope": true
+    },
+    "all_passed": true
+  },
+  "limits": [
+    "Normal fixture tokens describe the declared test oracle and do not create adopted requirement meaning or authority.",
+    "No L3/L10 approval is generated; independent reviewer/PO authority decision remains outstanding.",
+    "No commit or push."
+  ]
+}

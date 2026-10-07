@@ -1,0 +1,303 @@
+{
+  "artifact_type": "LABO_STAGE5_review03_delegated_decision_evidence",
+  "record_status": "conditions_1_2_reported_satisfied_condition_3_pending",
+  "authority_effect": "none; condition 3 has not been independently verified; no effective L3 approval or L10 pass is asserted",
+  "created_local_date": "2026-10-08",
+  "target": {
+    "pr": 2661,
+    "mechanism": "HELIX-LABO",
+    "stage": 5,
+    "parents": [
+      "HELIXLABO-L2-066",
+      "HELIXLABO-L2-070"
+    ],
+    "registration_ids": [
+      "MPR-RC-HELIXLABO-L2-066-001",
+      "MPR-RC-HELIXLABO-L2-070-001"
+    ],
+    "version_target": "1.0",
+    "reviewed_head": "b713e1a2ef2bab08983dfdfc92ae22dc2cc5c12e",
+    "review_base": "d831cac8f1994d027ecd05d0e6cc5bbaa6418a23",
+    "merge_base": "d831cac8f1994d027ecd05d0e6cc5bbaa6418a23",
+    "scope_limit": "Parents 066 and 070 only. No other LABO parent, Stage, mechanism, or revision is covered."
+  },
+  "formal_review_comment": {
+    "comment_id": 6041593075,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2661#issuecomment-6041593075",
+    "api_author": "RetryYN",
+    "created_at": "2026-10-07T15:54:38Z",
+    "updated_at": "2026-10-07T15:54:38Z",
+    "body_utf8_bytes": 3560,
+    "body_sha256": "d4f39ead20b4a0eac41755522938fc531308f73f65f8ec52b50be05d3b245493",
+    "raw_body": "## review03（independent review、HEAD b713e1a2ef2bab08983dfdfc92ae22dc2cc5c12e、merge-base d831cac8f1994d027ecd05d0e6cc5bbaa6418a23）\n\nreviewer: Claude（lane `review_merge`、**Opus 5.5**）。条件1は、Opus 5.5のブラインド照合とreviewerの確認で判定した。条件2は、Fable advisor（claude-fable-5-1）の見解である。Fableは、6本文と固定親（066 @318ec4a04 L2:518–528／L11:261–268、070 @ea6f756 L2:561–574／L11:297–307）を読み直し、span SHAを照合したうえで判断した。\n\n### 静的確認\n- scfctl validate 147/0、stale 0、residuals 0\n- govcheck ok\n- `git diff --check` clean\n- `git merge-tree`：最新mainと衝突なし。merge-base以降、mainでhelix-laboの本文は変わっていない。\n\n### review02（#6041047662）への対応\n- **M1は解消した。** 070の表（FV:3599–3730）は、空行のない一続きの6列表になった。130行、130 unique ID で、CASE-128〜130も表の中に入った。\n- **M2は解消した。** FV:3597とnfr-verification:261は、どちらも「CASE-86..130／130行」になった。\n- **m5〜m7は解消した。**\n  - m5：066は3つの表で86 unique CASE、r08系の5 IDを加えて91行であり、FV:3484と一致した。\n  - m6：CASE-130の戻し先を、task/要求ownerにそろえた。\n  - m7：FR-070、BR-070、nfr-grade に CASE-128〜130 のtraceを足した。\n- **旧文と新文の突き合わせ（類型5）**：既存の条件で弱まったものはない。\n- **066 CASE-79〜82**：固定L2:525／L11:268の4つの禁止に、一つずつ対応している。\n- **AC-05**：CASE列挙の14件が、FV表のAC-05行の14件と完全に一致した。\n\n### Major\nなし。\n\n### Minor（返却しない。次に触るときに直せばよい）\n- m9：CASE-128はscopeの不一致をLABOに残している。一方、FR-070「欠落・不一致」段落は、scope/windowをsource/eventの区分へ返すとしている。言葉の上で食い違って見えるので、次の2つを段落の中で書き分けるとよい。\n  - scopeの不一致（joinしない、LABO）\n  - scope/windowの不足・stale（sourceの区分、CASE-123）\n- m10：CASE-129の戻し先「067定義/receiptの既存責務区分」は、CASE-130の「task/要求owner責務区分」と書き方がそろっていない。\n- m11：CASE-130の「固定FR-070」は、L3を固定親のように読ませる語である。\n- m12：FR-066 AC-03の「L2-066:523–527」は、実際の禁止文がある525行より広い範囲を指している。\n- m13：business-verificationの070節は、CASE-127〜130を参照していない。この節はもともと全CASEの範囲表を持たず、一部のCASEを例として参照する形なので、範囲表のずれにはあたらない。次の更新でtraceを足すとよい。\n- m14：CASE-128の対象は、queue-waitの1 fieldだけである。\n\n### 委任条件の状態\n- **条件1（Opus `no_findings`）：成立。** Major 0。\n- **条件2（Fable）：成立。** 結論行は原文のまま「承認してよい」。\n- 条件1と2は、同じbody revision（b713e1a2e）でそろった。\n- **条件3は未照合。** 判断記録の作成後に、6本文が次のSHA-256から変わっていないことを照合する。\n\n| 文書 | SHA-256 |\n|---|---|\n| L3-BR | `3e2bbc68…db8d` |\n| L3-FR | `fd2b4605…144f` |\n| L3-NFR | `34360423…8b4b` |\n| L10-BV | `bf240469…1709` |\n| L10-FV | `6e096ff1…e666` |\n| L10-NFR | `2983f735…146a` |\n\n### 未確認範囲\nなし。\n"
+  },
+  "delegation_conditions": {
+    "condition_1": {
+      "status": "reported_satisfied",
+      "basis": "The exact formal body reports Opus 5.5 blind review, Major 0, and conclusion that condition 1 is met for reviewed HEAD b713e1a2e."
+    },
+    "condition_2": {
+      "status": "reported_satisfied",
+      "basis": "The exact formal body reports Fable read the same six current body revisions and fixed parents, concluded the original phrase “承認してよい”, and Opus supported that conclusion."
+    },
+    "condition_3": {
+      "status": "pending_unverified",
+      "basis": "Formal review explicitly says to verify after adding the decision record that all six bodies remain byte-identical to the pinned SHA-256 values. This task records the condition as pending; no independent post-record condition-3 determination is made."
+    }
+  },
+  "unreturned_minor_findings": {
+    "status": "retained_as_nonblocking_formal_review_residuals_not_resolved_by_this_record",
+    "items": [
+      "m9 scope mismatch versus scope/window missing or stale return route wording",
+      "m10 CASE-129 and CASE-130 return-route terminology inconsistency",
+      "m11 “fixed FR-070” wording may misstate FR as a fixed parent",
+      "m12 FR-066 AC-03 cites L2-066:523–527 although prohibition text is at line 525",
+      "m13 business-verification 070 section lacks explicit CASE-127–130 trace",
+      "m14 CASE-128 changes only queue-wait field"
+    ]
+  },
+  "fixed_parent_pins": {
+    "HELIXLABO-L2-066": {
+      "source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "l2": {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "line_start": 518,
+        "line_end_inclusive": 528,
+        "file_bytes": 113504,
+        "file_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+        "span_bytes": 4684,
+        "span_sha256": "5a67776a3f4567fa662c86898caf275fddbe8dc806fd3a19622cae9f733cdb69"
+      },
+      "l11": {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "line_start": 261,
+        "line_end_inclusive": 268,
+        "file_bytes": 66593,
+        "file_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+        "span_bytes": 2304,
+        "span_sha256": "dd302f23a38d74475e707be64d9ee69a0bfda35b98902c62173c45d8c369a556"
+      },
+      "adopted_registration": "MPR-RC-HELIXLABO-L2-066-001",
+      "version_target": "1.0"
+    },
+    "HELIXLABO-L2-070": {
+      "source_revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+      "l2": {
+        "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "line_start": 561,
+        "line_end_inclusive": 574,
+        "file_bytes": 123228,
+        "file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+        "span_bytes": 6468,
+        "span_sha256": "07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533"
+      },
+      "l11": {
+        "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "line_start": 297,
+        "line_end_inclusive": 307,
+        "file_bytes": 73036,
+        "file_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+        "span_bytes": 4672,
+        "span_sha256": "c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1"
+      },
+      "adopted_registration": "MPR-RC-HELIXLABO-L2-070-001",
+      "version_target": "1.0"
+    }
+  },
+  "po_adoption_evidence": {
+    "po_rows": [
+      {
+        "label": "L2-066 PO adoption",
+        "revision": "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "line": 81,
+        "whole_file_bytes": 45099,
+        "whole_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "line_bytes": 604,
+        "line_sha256": "41121ae7430cd5890e3aae87edd38e1c3cc37b493cc20e65b6dacb0976d81d4f",
+        "literal": "| `HELIXLABO-L2-066` | 採択 | `MPR-RC-HELIXLABO-L2-066-001` | `docs/helix-labo/L2-requirements/labo-requirements.md` | `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9` | `sha256:d65780351792a4587966a7eb45c34359626200af5bdd8eb55e197b0a6f0db184` | `HELIXLABO-L2-066` | `docs/helix-labo/L11-acceptance/labo-acceptance.md` | `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0` | `sha256:0a1d72d7d0fb3b97b14ce6f53738785b76bce642a2f9b7c83c4328a45fc68cce` | `docs/governance/audits/requirement-registration/labo-bugbot-misrepair-comparison-coverage-receipt-2026-09-28.json` |\n"
+      },
+      {
+        "label": "L2-070 PO adoption",
+        "revision": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+        "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+        "line": 49,
+        "whole_file_bytes": 16056,
+        "whole_file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+        "line_bytes": 248,
+        "line_sha256": "b7a22604f813c40a97dfabf06a360b4bc1ce4d2856ab98edf953486463e0335c",
+        "literal": "| `HELIXLABO-L2-070` | 承認（通常採択22件に含む） | `MPR-RC-HELIXLABO-L2-070-001` | `sha256:07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533` | `sha256:c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1` |\n"
+      }
+    ],
+    "adopted_registration_rows": [
+      {
+        "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 557,
+        "line_bytes": 2626,
+        "line_sha256": "835c7329d392b5975f76654267f5040ed45336311ce24057a5470ae54b0f8e28",
+        "registration_id": "MPR-RC-HELIXLABO-L2-066-001",
+        "authority_effect": "none",
+        "requirement_identity": "HELIXLABO-L2-066",
+        "candidate_semantic_digest": "sha256:d65780351792a4587966a7eb45c34359626200af5bdd8eb55e197b0a6f0db184"
+      },
+      {
+        "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 626,
+        "line_bytes": 3824,
+        "line_sha256": "f1d8cffcc65efaeb4699621659a6dc122135a3a312322812af0cdf479cf3e492",
+        "registration_id": "MPR-RC-HELIXLABO-L2-070-001",
+        "authority_effect": "none",
+        "requirement_identity": "HELIXLABO-L2-070",
+        "candidate_semantic_digest": "sha256:07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533"
+      }
+    ]
+  },
+  "legacy_source_locators": [
+    {
+      "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "line": 75,
+      "file_bytes": 5990,
+      "file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+      "line_bytes_with_lf": 125,
+      "line_sha256_with_lf": "678d10fb645494bf12216a7dd4a4ff9f45a6cb88e4dfc6d7d23d9de30a15fbe8",
+      "line_sha256_without_line_ending": "9facff56cbc42f9f7157dd85f1078605951af16a52fef5ec698bb62fd46681bc",
+      "literal": "成功件数だけで評価せず、Aと同条件の費用・時間・手戻り・誤修復・未解消数を測定する。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+      "revision": "a4a365dcdfe824ebb28d040c8bc3bc924556efad",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "line": 399,
+      "file_bytes": 46889,
+      "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "line_bytes_with_lf": 445,
+      "line_sha256_with_lf": "aa9dacc58969d896bbfbe38ce9c2ed6b55f47476b4cd3a411041d62bebf70468",
+      "line_sha256_without_line_ending": "58be97d309362b845682602ae352b1954ed433fbc4b6552791f89be07d70db4f",
+      "literal": "追加するのは、first-pass acceptance、Attempt count、repair rounds、queue/active/review/Human待ち時間、escaped defects、rollback/Recovery、coverage、observer overhead、evidence freshnessなどである。これらは既存12指標のsilent renameではない。First-passの「初回」は最初のeligible candidateとし、内部で何度も修正した後の提出を隠さないためAttempt/repair回数を併記する。"
+    }
+  ],
+  "six_current_body_pins": [
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "revision": "b713e1a2ef2bab08983dfdfc92ae22dc2cc5c12e",
+      "bytes": 32819,
+      "sha256": "3e2bbc689b933773c06bf396df267516810d8d21bf976c0831a9c6e07687db8d",
+      "ends_lf": true
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "revision": "b713e1a2ef2bab08983dfdfc92ae22dc2cc5c12e",
+      "bytes": 353087,
+      "sha256": "fd2b4605dfa3eca4ad99861d9fb9966c6511f2cf777161258c85527aa78f144f",
+      "ends_lf": true
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "revision": "b713e1a2ef2bab08983dfdfc92ae22dc2cc5c12e",
+      "bytes": 91242,
+      "sha256": "343604239051cfc452d924688a98c15288b0e30f3e02492cda843269bbf58b4b",
+      "ends_lf": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "revision": "b713e1a2ef2bab08983dfdfc92ae22dc2cc5c12e",
+      "bytes": 31354,
+      "sha256": "bf240469ba0333665e9eabb49becb1443c8426e425f8c67e82c81baa4d0b1709",
+      "ends_lf": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "revision": "b713e1a2ef2bab08983dfdfc92ae22dc2cc5c12e",
+      "bytes": 692047,
+      "sha256": "6e096ff10779acad20f94a7a89e56bcec4bb04339634a395cbd5b2737fe0d666",
+      "ends_lf": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "revision": "b713e1a2ef2bab08983dfdfc92ae22dc2cc5c12e",
+      "bytes": 82074,
+      "sha256": "2983f735ae142e126946039b195a0be483b476ffa35ef5cffee976d9f299146a",
+      "ends_lf": true
+    }
+  ],
+  "prior_decisions_and_audits_preserved": [
+    {
+      "path": "docs/governance/decisions/helix-labo-stage5-parent066-l3-l10-po-decision-2026-10-07.md",
+      "bytes": 80348,
+      "sha256": "4c5486a945909fd807977c14efd515de07de80a6e3892aa0e145fd2b77279252",
+      "unchanged": true
+    },
+    {
+      "path": "docs/governance/decisions/helix-labo-stage5-parent070-l3-l10-po-decision-2026-10-07.md",
+      "bytes": 14484,
+      "sha256": "1a32f14b8841dd3e08aafd7f4c6f33bf1312207bf7846fc5ff1370c71c7bbf37",
+      "unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage5-parent066-review13-postbody-audit-2026-10-07-3d3784307.json",
+      "bytes": 149485,
+      "sha256": "b15991353e31e2284908191093d3537dcd443e993597c4080ae00d3f3bb5e676",
+      "unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage5-parent070-review05-postbody-audit-2026-10-07-eed7918a.json",
+      "bytes": 2248445,
+      "sha256": "9558381b2f5c2f6f7ca4db8b3d6997800aba8502bbdfa32823e5c69e1e532b11",
+      "unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage5-review02-correction-2026-10-08-6041047662.json",
+      "bytes": 7230,
+      "sha256": "449fdd5caa928c5ca1164e551da714b1c450a8fabb71a221065e0e1ddb4c7313",
+      "unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage5-review02-correction-2026-10-08-6041047662.md",
+      "bytes": 1784,
+      "sha256": "c2ea04525956b6b3a4ced57be7420d7cebf0781152afe3316170cc470ee2e46b",
+      "unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage5-parent066-authoring-audit-2026-10-07-fe489ac41.json",
+      "bytes": 186749,
+      "sha256": "685b7a391f90294e6e3876fd98802c0ea62617374b65ffa2198bf42e7533cd64",
+      "unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage5-parent070-authoring-audit-2026-10-07-395fee3c7.json",
+      "bytes": 488756,
+      "sha256": "b4c28e3813f8d78ae5df5d36ebd941b8c0a961c42ef7d3a27d547a9b389bd487",
+      "unchanged": true
+    }
+  ],
+  "validation": {
+    "checks": [
+      "formal raw comment byte count and SHA-256 verified against GitHub API object",
+      "all six body bytes and SHA-256 recomputed from exact reviewed Git HEAD",
+      "fixed L2/L11 full files and physical spans recomputed from their specified Git commits",
+      "PO adoption rows and adopted register rows read and pinned",
+      "legacy source locator lines read and pinned; candidate scope remains limited to cited atoms",
+      "prior decision and audit record bytes pinned; none modified"
+    ],
+    "not_performed": [
+      "condition 3 independent post-record review",
+      "PO post hoc confirmation",
+      "L10 fixture execution",
+      "runtime/tests/old CLI/hooks/old CI"
+    ],
+    "commit_or_push": false
+  },
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-labo-stage5-parent066-070-l3-l10-delegated-decision-evidence-2026-10-08.md",
+    "bytes": 8345,
+    "sha256": "0c2456a3a85937e8eaf97181fc69441597c919a78f4c0f239a5eda01a4736fa7"
+  }
+}
