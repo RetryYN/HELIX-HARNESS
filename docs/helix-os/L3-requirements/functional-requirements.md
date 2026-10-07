@@ -547,6 +547,8 @@ HELIX自身と複数projectの対象revisionごとに、L2-015〜024のunit、�
 
 **AC-OS-L3-025-02 — 部分成立と保持**：あるHARNESS製品の単独成立、別projectの未完了、L1-011/012のLABO移管状態をそれぞれ独立に扱う。後続版の前倒しとHELIX-OS外部製品化を拒否し、部分成立から7製品群・HELIX-OS全体の成立やfailure解消を作らない。
 
+**AC-OS-L3-025-03 — 入力束縛と構成体境界**：採用済みtarget revision、選択HARNESS構成版、各該当unitのidentity/revision/state/evidence、既存人間判断と停止条件を同一対象に束縛する。単独不足は該当source/unit/connectionの既存ownerへ返し、他の成立状態を保持する。文書または機構の存在だけではunit・connection・compositeを成立扱いしない。 未決authorityと残る受入義務は後続受入へ引き継ぎ、次の受入側でも未決状態と義務を保持する。
+
 ### `FR-OS-L3-026` — `HELIXOS-L2-026` 段階release構成の導出能力
 
 対象revision、source authority、目的・仕事範囲、候補pack境界、各要求の状態、入出力・契約版、機能/安全依存、owner、人の許容分担、検証範囲、更新・復旧条件を同じ導出入力へ束縛し、候補pack集合・除外・依存閉包・未解決不足・代替構成比較を返す。機能の必要性、依存/安全閉包、実行・受入証拠、最小性の立証を別状態で記録する。代替構成の探索空間・境界・比較が不足する場合は「最小候補／未立証」とし、候補の局所的な除去試験だけで全候補空間に対する最小性を証明済みとしない。trace上の循環だけから実行前提の自己依存と断定しない。unknown/missing/conflict/stale/非互換は不足のまま残し、空集合や暗黙の代替packで閉じない。候補導出、段階採択、実装・受入、配布/tagを別状態とし、結果から権限を作らない。欠落は要求/authority owner、pack境界は当該機構とHARNESS、依存・安全はそのowner/SECURITY、資源・復旧はINFRASTRUCTUREへ返す。
@@ -601,8 +603,6 @@ HELIX自身と複数projectの対象revisionごとに、L2-015〜024のunit、�
 ### Stage 5 review01補正 — AC traceの優先追補
 
 以下はStage 5の既存ACを置換せず不足を補う。旧AC本文のうち「failure解消を作らない」は固定L2/L11にない追加条件なので適用しない。「部分成立から構成体の成立を推定しない」という境界は維持する。以降のL10 review01補正overlayは、同じCASE IDに明記した限定訂正を優先し、それ以外の既存要件・owner・versionは保持する。
-
-**AC-OS-L3-025-03 — 入力束縛と構成体境界**：採用済みtarget revision、選択HARNESS構成版、各該当unitのidentity/revision/state/evidence、既存人間判断と停止条件を同一対象に束縛する。単独不足は該当source/unit/connectionの既存ownerへ返し、他の成立状態を保持する。文書または機構の存在だけではunit・connection・compositeを成立扱いしない。 未決authorityと残る受入義務は後続受入へ引き継ぎ、次の受入側でも未決状態と義務を保持する。
 
 **AC-OS-L3-026-04 — 入力完全性と導出境界**：目的、仕事範囲、検証範囲、利用可能環境、比較基準、適格性条件、input/output、更新条件、rollback条件を独立に照合する。欠落は候補を成立とせず固定L2記載の既存要求/source/pack/HARNESS/依存/SECURITY/INFRASTRUCTURE ownerへ原因別に返す。許可された人による作業も依存契約・安全義務を閉包から外さない。導出だけで採択・実装・受入・tag・配布を生成しない。 必要な検証を外したより小さい構成は、同一目的・scope・許容分担の比較でも不適格とし、最小性未立証の状態と混同しない。
 

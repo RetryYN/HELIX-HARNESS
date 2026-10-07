@@ -1252,5 +1252,5 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 
 | CASE ID | 親 / AC | 入力・単独変異 | 期待oracle・戻し先 |
 |---|---|---|---|
-| `CASE-OS-L10-025-031` | `HELIXOS-L2-025` / `AC-OS-L3-025-03` | 必要な既存人間判断のreceiptだけ欠落。対象revision・HARNESS構成版・全unit状態/証拠・停止条件は有効。 | 判断を捏造せず当該義務を未完として保持し、欠けた判断sourceへ返す。他unitの有効状態を保持し追加の判断者・承認を作らない。 |
+| `CASE-OS-L10-025-031` | `HELIXOS-L2-025` / `AC-OS-L3-025-03` | 必要な既存人間判断だけが入力にない。対象revision・HARNESS構成版・全unit状態/証拠・停止条件は有効。 | 判断を推測・捏造せず当該義務を未完として保持し、欠けた判断sourceへ返す。他unitの有効状態を保持し追加の判断者・承認を作らない。 |
 | `CASE-OS-L10-025-032` | `HELIXOS-L2-025` / `AC-OS-L3-025-03` | **正常引継ぎ**：構成体の他条件は保持し、authorityが未決で残る受入義務を後続受入へ渡す。 | 後続受入へ未決authorityと義務を明示して引き継ぎ、後続側でも未決・未完を保つ。完了やauthorityを作らない（L2-025:742–751, L11-025:396–399）。|

@@ -1,0 +1,293 @@
+{
+  "record_type": "OS Stage 5 L2-025 missing-AC placement repair and case-to-parent static audit",
+  "language": "ja",
+  "as_of": "2026-10-08",
+  "authority_effect": "none",
+  "base_revision": "83cb0bcd8bb3efe7022bf74f393b1fc0a0d746f1",
+  "worktree_branch": "codex/os-stage5-parent025-audit",
+  "scope": [
+    "HELIXOS-L2-025 only"
+  ],
+  "finding": {
+    "description": "AC-OS-L3-025-03 existed in the later Stage 5 review overlay and was already referenced by FV/NFR. The mismatch was that this existing criterion was not located under the FR-025 section. This is a locatability/section-placement cleanup, not a missing meaning or a new requirement.",
+    "repair": "Move the existing AC-025-03 wording unchanged into the FR-OS-L3-025 section after AC-025-02 and remove the later duplicate. This changes no L2/L11 meaning, owner, version, authority, or parent. Narrow CASE-025-031 from an unsupported receipt-specific representation to the parent input (existing human judgment); no receipt artifact/type is added.",
+    "initial_assessment_correction": "初報でAC-OS-L3-025-03がFR本文全体に存在しないと報告したのは後段Stage 5 review overlayの読み落としによる誤認。再読でoverlay内の既存文言とL10/NFR参照を確認した。本記録は新ACの欠落・新設として扱わず、親FR-025節外の配置不整合とCASE-025-031のreceipt固有表現だけを修正する。"
+  },
+  "fixed_parent": {
+    "L2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+    "L2_full_sha256": "c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a",
+    "L2_span": {
+      "start_line": 742,
+      "end_line": 751,
+      "inclusive": true,
+      "raw_byte_span_sha256": "b7166f6399db9a0f1d3a9db76977ec4ec0f1e7f708503ccc42beea0ec97121e1"
+    },
+    "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+    "L11_full_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+    "L11_span": {
+      "start_line": 394,
+      "end_line": 399,
+      "inclusive": true,
+      "raw_byte_span_sha256": "4fc6622e1bac457871fb23f84e693944fee7a9acebe90996c9e14ab86adb0c1f"
+    },
+    "authority_note": "Existing PO-adopted HELIXOS-L2-025 1.0 target remains the only parent. This draft inherits no earlier Stage 5 delegated approval; no approval is generated.",
+    "po_adoption": {
+      "decision": {
+        "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "git_blob_oid": "c30870995516c7aed5fbff4a067e704ef3b4e544",
+        "full_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+        "span": {
+          "start_line": 45,
+          "end_line": 48,
+          "inclusive": true,
+          "raw_byte_span_sha256": "ceb82a2a8174197bf5df3f3e918e2af1d452958354579ddc28e3b67f40031c7a"
+        }
+      },
+      "decision_scope": "HELIXOS-L2-025 is one of the explicitly adopted 16 identities at line 48; preserve existing version_target and applicability conditions.",
+      "registration": {
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "git_blob_oid": "686e85fff4e3b9e1c4d07d2eebc2002a6060f3b0",
+        "full_sha256": "e7dc1180361869379966fb33f4ab263cabdfe1137ceea32dedc2b6edfea388d1",
+        "span": {
+          "start_line": 59,
+          "end_line": 59,
+          "inclusive": true,
+          "raw_byte_span_sha256": "c7907da917d87aaf38e06f5d81a97906ab226b958956967dae151f2a392c2e69"
+        }
+      },
+      "registration_id": "MPR-RC-HELIXOS-L2-025-001",
+      "registration_authority_effect": "none; registered proposal is not approval or authority.",
+      "acquired_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7"
+    },
+    "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "source_revision_note": "Exact fixed parent authority source is 633bf12ea8f948db8ba3d6600179c4a9507377a7; this is distinct from base_revision/worktree base 83cb0bcd8bb3efe7022bf74f393b1fc0a0d746f1.",
+    "L2_source_ref": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "git_blob_oid": "552232e05685dd7f08347c07d21c69839ec49c31",
+      "full_sha256": "c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a",
+      "span": {
+        "start_line": 742,
+        "end_line": 751,
+        "inclusive": true,
+        "raw_byte_span_sha256": "b7166f6399db9a0f1d3a9db76977ec4ec0f1e7f708503ccc42beea0ec97121e1"
+      }
+    },
+    "L11_source_ref": {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "git_blob_oid": "2add11c06db588feea11d7d6c84fbb6c1e75b364",
+      "full_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+      "span": {
+        "start_line": 394,
+        "end_line": 399,
+        "inclusive": true,
+        "raw_byte_span_sha256": "4fc6622e1bac457871fb23f84e693944fee7a9acebe90996c9e14ab86adb0c1f"
+      }
+    }
+  },
+  "case_parent_trace": [
+    {
+      "case_id": "CASE-OS-L10-025-022",
+      "single_condition_or_normal": "CASE-OS-L10-025-022 選択HARNESS構成版のみ欠落",
+      "fixed_parent_basis": "L2-025:745 input「選択されたHARNESS構成版」",
+      "result": "directly derived; no unsupported case found"
+    },
+    {
+      "case_id": "CASE-OS-L10-025-023",
+      "single_condition_or_normal": "CASE-OS-L10-025-023 停止条件のみ欠落",
+      "fixed_parent_basis": "L2-025:745 input「停止条件」",
+      "result": "directly derived; no unsupported case found"
+    },
+    {
+      "case_id": "CASE-OS-L10-025-024",
+      "single_condition_or_normal": "CASE-OS-L10-025-024 採用済みtarget revisionのみ欠落",
+      "fixed_parent_basis": "L2-025:745 input「採用済み対象revision」",
+      "result": "directly derived; no unsupported case found"
+    },
+    {
+      "case_id": "CASE-OS-L10-025-025",
+      "single_condition_or_normal": "CASE-OS-L10-025-025 該当unit identityのみ欠落",
+      "fixed_parent_basis": "L2-025:745「L2-015〜024の各identity」",
+      "result": "directly derived; no unsupported case found"
+    },
+    {
+      "case_id": "CASE-OS-L10-025-026",
+      "single_condition_or_normal": "CASE-OS-L10-025-026 該当unit revisionのみ欠落",
+      "fixed_parent_basis": "L2-025:745「L2-015〜024の各revision」",
+      "result": "directly derived; no unsupported case found"
+    },
+    {
+      "case_id": "CASE-OS-L10-025-027",
+      "single_condition_or_normal": "CASE-OS-L10-025-027 該当unit stateのみ欠落",
+      "fixed_parent_basis": "L2-025:745「L2-015〜024の各state」",
+      "result": "directly derived; no unsupported case found"
+    },
+    {
+      "case_id": "CASE-OS-L10-025-028",
+      "single_condition_or_normal": "CASE-OS-L10-025-028 該当unit evidenceのみ欠落",
+      "fixed_parent_basis": "L2-025:745「L2-015〜024の各evidence」",
+      "result": "directly derived; no unsupported case found"
+    },
+    {
+      "case_id": "CASE-OS-L10-025-029",
+      "single_condition_or_normal": "CASE-OS-L10-025-029 document existenceのみでunit successとする誤成立",
+      "fixed_parent_basis": "L11-025:398「文書・機構の存在や単体passだけで全体を完成扱いしない」＋L2-025:747–748のunit/connection/composite別判定",
+      "result": "directly derived; no unsupported case found"
+    },
+    {
+      "case_id": "CASE-OS-L10-025-030",
+      "single_condition_or_normal": "CASE-OS-L10-025-030 mechanism existenceのみでcomposite successとする誤成立",
+      "fixed_parent_basis": "L11-025:398同上＋L2-025:747–748の構成体固有E2E受入",
+      "result": "directly derived; no unsupported case found"
+    },
+    {
+      "case_id": "CASE-OS-L10-025-031",
+      "single_condition_or_normal": "CASE-OS-L10-025-031: 必要な既存人間判断だけが入力にない（receipt artifact/typeは要求しない）。",
+      "fixed_parent_basis": "L2-025:745「既存人間判断」＋L11-025:396の既存judgment input。",
+      "result": "directly derived; receipt-specific representation removed as not stated by the parent"
+    },
+    {
+      "case_id": "CASE-OS-L10-025-032",
+      "single_condition_or_normal": "CASE-OS-L10-025-032 authority unresolvedかつremaining acceptance dutyの正常handoff",
+      "fixed_parent_basis": "L2-025:749「未完の受入義務を保持」＋L11-025:399「未決authorityと残る義務を後続受入へ引き継ぐ」",
+      "result": "directly derived; no unsupported case found"
+    }
+  ],
+  "legacy_sources": [
+    {
+      "asset_id": "LEGACY-ASSET-F542125805B777D8A56A",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "full_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "span": {
+        "start_line": 148,
+        "end_line": 168,
+        "inclusive": true,
+        "raw_byte_span_sha256": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9"
+      },
+      "reuse_disposition": "旧L3工程の形式比較。OS-025固有意味の直接sourceではない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-D27D4A1511BFD43623A9",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/lifecycle-stage-completion-goals.md",
+      "full_sha256": "21ba24bf781048f1cb03a20172c8049a6112690cda3d0d0f7dd0ba3cb0bd7406",
+      "span": {
+        "start_line": 43,
+        "end_line": 68,
+        "inclusive": true,
+        "raw_byte_span_sha256": "01c1c0f0939f813cd07c3959f6d353be9832cba400b09df38bef2d6edb4f9792"
+      },
+      "reuse_disposition": "工程exit scope/owner/output/evidence/unresolvedの旧L3。工程oracle構造を再利用し、OS-025業務意味は固定L2から再導出。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-7468443FABFA6D06C4DD",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/lifecycle-stage-completion-goals-acceptance.md",
+      "full_sha256": "72c193a904027ed118433a92a049b7330a9da0cfdfac7a5a06dc0887a54e7f65",
+      "span": {
+        "start_line": 17,
+        "end_line": 48,
+        "inclusive": true,
+        "raw_byte_span_sha256": "26e44426a24c8a985a03b83d0e30fdd25995a366d64b44f59af8810930171d8d"
+      },
+      "reuse_disposition": "document-existence-onlyを拒否し正負oracleを照合する旧paired consumer。oracle形式を比較・再導出。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "full_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "span": {
+        "start_line": 23,
+        "end_line": 50,
+        "inclusive": true,
+        "raw_byte_span_sha256": "7e2e71243303862897c86d9bcfd987a66ef3d1b92477808f5bf0b8ff35e7424e"
+      },
+      "reuse_disposition": "旧product lifecycle operations（HARNESS側）を意味比較に使用。OS-025 owner/operation/KPIへ移植しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-F46AB11BD14F2C0469F4",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/product-lifecycle-operations-acceptance.md",
+      "full_sha256": "19c75a442154b4d17e645143f4adaaa23791a1043caa73178e5d75cc468b7d58",
+      "span": {
+        "start_line": 17,
+        "end_line": 48,
+        "inclusive": true,
+        "raw_byte_span_sha256": "4c72e55a5e956b629d88918ef68c38e5148b3c09d050374088034060e550113e"
+      },
+      "reuse_disposition": "旧paired consumerは比較のみ。OS-025の直接consumerではない。"
+    }
+  ],
+  "legacy_search_limit": "Prior exact phrase search over the recorded inventory did not identify a direct old OS-025 L3/consumer. The selected old L3/L10 sources below establish process/oracle comparators only; this is not an exhaustive claim that no old source exists.",
+  "canonical_bodies": {
+    "BR": {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "full_sha256": "e12042f38e018c890155e2b6c5c51080a6504585fc4af94092ddc755795ae2f3",
+      "relevant_span": {
+        "start_line": 95,
+        "end_line": 115,
+        "inclusive": true,
+        "raw_byte_span_sha256": "2bd9275b12e154a7957268faa407b40f58d555a6f192e57ef985a6ab721813dd"
+      }
+    },
+    "FR": {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "full_sha256": "fefd3a35ea9c4d652ed2765f460775461175e08973dffad3579290be240e4dec",
+      "relevant_span": {
+        "start_line": 540,
+        "end_line": 553,
+        "inclusive": true,
+        "raw_byte_span_sha256": "cf9a5606de19b070777b902cab8b8c13ffd7ee321cbec864e3d6b0a4006368cc"
+      }
+    },
+    "NFR": {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "full_sha256": "948bd74bd5b20a3d359bb8aa42ba399aa6ddeecfbe1748dfe70e9a07201d4eac",
+      "relevant_span": {
+        "start_line": 117,
+        "end_line": 149,
+        "inclusive": true,
+        "raw_byte_span_sha256": "134f69221fed108b0adbc3006b54e0a705b8788d336d4c2c6d1cb5c40f7c3d61"
+      }
+    },
+    "BV": {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "full_sha256": "8102b93a3b1afe2825bc92d8acdfd98cca4fb50274974d61324707e547558a85",
+      "relevant_span": {
+        "start_line": 86,
+        "end_line": 105,
+        "inclusive": true,
+        "raw_byte_span_sha256": "bf31b161d861f1148a469e5fa5d7e5e64298b9ae0a71e8c466aa04bc3e3a7b4b"
+      }
+    },
+    "FV": {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "full_sha256": "55e080018decbf42cbba35ee430801fd25923a8c80623864653a79fed17d1e81",
+      "relevant_span": {
+        "start_line": 985,
+        "end_line": 992,
+        "inclusive": true,
+        "raw_byte_span_sha256": "95ead475a20d7e331f88e4565c52ec7c3e5941b402a06461930358245f953dc0"
+      }
+    },
+    "NFRV": {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "full_sha256": "2b7d63629298f33b34faf5add0b39645085d97234ace789397e97db37823a0b8",
+      "relevant_span": {
+        "start_line": 128,
+        "end_line": 149,
+        "inclusive": true,
+        "raw_byte_span_sha256": "0d3fdf567f150569dd4a65421baca644ca54fae996cc16c851baea064f6a17d5"
+      }
+    }
+  },
+  "verification": {
+    "case_count": 11,
+    "all_cases_have_parent_basis": true,
+    "unsupported_cases": [],
+    "cross_trace": "FR-025 AC-01..03; NFR-025 references AC-01..03; FV-025-022..032 reference AC-03; NFRV-025-01 aggregate remains within fixture counting only.",
+    "old_records_edited": false,
+    "runtime_or_legacy_test_executed": false,
+    "commit_or_push": false
+  }
+}
