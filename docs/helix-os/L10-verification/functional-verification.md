@@ -758,8 +758,8 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | CASE-OS-L10-040-07e | AC-OS-L3-040-03 | 未見budget/policy revisionで適用上限が不明。 | 追加retryを保留し、記録ではなく上限を決定する既存policy ownerへ戻す。 |
 | CASE-OS-L10-040-07f | AC-OS-L3-040-05 | ledgerに遅着attempt eventがあり、current lineageの再構築が未完。 | cap到達を推定せず追加retryを保留し、元eventと未完状態をHELIXOS-L2-019記録ownerへ戻す。 |
 | CASE-OS-L10-040-07g | AC-OS-L3-040-02 | 初回attemptを数えるpolicyを固定した共通正常入力から、集計側だけ初回を除外する変異を与える。 | policyどおりなら上限到達となる境界で追加retryを許さず、元policy semanticsと未完義務を保持する。 |
-| CASE-OS-L10-040-07h | AC-OS-L3-040-02 | 適用中policyが対象に含めるfailure classのattemptを一つだけ集計から除外する。 | 追加retryを許さず、policy指定の同一episode累積回数に基づいて上限を判定する。 |
-| CASE-OS-L10-040-07i | AC-OS-L3-040-02 | 適用中policyが対象外とするfailure classのattemptを一つだけ集計へ混入する。 | そのeventだけでは上限到達にせず、premature typed routeを作らない。 |
+| CASE-OS-L10-040-07h | AC-OS-L3-040-02 | 適用中policyの正しい同一episode集計では次のretryが入力済上限Nに達する境界を用意し、対象に含めるfailure classのattempt一つだけを集計から除外する。 | 誤集計でN-1と見えても追加retryを許さず、正しいpolicy指定の累積回数では上限到達として扱う。 |
+| CASE-OS-L10-040-07i | AC-OS-L3-040-02 | 適用中policyの正しい同一episode集計がN-1となる境界で、対象外failure classのattempt一つだけを誤って混入する。 | 混入によりNと見えてもpremature typed routeを作らず、policy対象内eventだけで上限を判定する。 |
 | CASE-OS-L10-041-05a | AC-OS-L3-041-02 | 会話要約だけでcanonical sourceの代わりにする。 | 正本確認済みとせずcoordination-only未完で固定L2の既存authority ownerへ戻す。 |
 | CASE-OS-L10-041-05b | AC-OS-L3-041-02 | conflict sourceを確認済みと表示。 | conflictを保持し継続を保留して固定L2の既存authority ownerへ戻す。 |
 | CASE-OS-L10-041-05c | AC-OS-L3-041-02 | CLR-R06 candidateまたはpacket存在を採択根拠に昇格。 | candidate/packetをauthorityにせず、固定L2の既存authority ownerへ戻す。 |

@@ -4,7 +4,7 @@
 
 この時点記録は、`5857c0a396cb24a23d765e3079a18a2367b6d078` を起点に、採択済み `HELIXOS-L2-040` に対応するFR/L10 oracleを明確化した差分を記録する。対象は040のみで、他のOS Stage 3親は変更しない。
 
-固定基点は `633bf12ea8f948db8ba3d6600179c4a9507377a7` の [L2要求](../../../../helix-os/L2-requirements/governance-requirements.md) 1125–1134、および [L11受入](../../../../helix-os/L11-acceptance/governance-acceptance.md) 732–743。固定L2全体SHA-256は `c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a`、040 spanは3403 bytes / `a5ba2bdca6bfc8adcf3216f523e882b53898d0a0424b886c1a5a6885542c3aee`。固定L11全体SHA-256は `40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997`、040 spanは2296 bytes / `2fdcdc32156561d4b9f9931ee20194bf39b297ff96d477e58ff0d48c3abe232b`。
+固定基点は `633bf12ea8f948db8ba3d6600179c4a9507377a7` の [L2要求](../../../helix-os/L2-requirements/governance-requirements.md) 1125–1134、および [L11受入](../../../helix-os/L11-acceptance/governance-acceptance.md) 732–743。固定L2全体SHA-256は `c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a`、040 spanは3403 bytes / `a5ba2bdca6bfc8adcf3216f523e882b53898d0a0424b886c1a5a6885542c3aee`。固定L11全体SHA-256は `40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997`、040 spanは2296 bytes / `2fdcdc32156561d4b9f9931ee20194bf39b297ff96d477e58ff0d48c3abe232b`。
 
 固定L11正常例の要求に合わせ、適用中既存policyが決める「初回attemptを数えるか」「対象failure class」「同一episodeの累積」を通常fixtureへ明示し、その意味の取り違えをそれぞれ独立negativeにした。policy入力の二つのcounter方式（初回を含む／含まない）は対照正常fixtureとして扱い、どちらかを優先・新設しない。適用中policyのfailure-class範囲も入力のまま適用する。新しいN値、schema、owner、approval、gate、performance閾値は追加していない。
 
@@ -19,7 +19,7 @@
 - `FR-OS-L3-040` のAC-01で、既存policyの初回計上有無・failure classを保ち、同一episode eventを同じsemanticsで集計する条件を明記した。
 - AC-02へ初回計上の反転とfailure classの除外/混入を独立変異として追加した。AC-04ではWorker/session resume後も同じepisode semanticsを保つことを明記した。ID、親、owner、scope、版は不変。
 - `CASE-OS-L10-040-01` は初回を数えるpolicy/数えないpolicyをそれぞれ正常fixtureにし、入力policyごとのfailure classと累積回数から上限判定するoracleを記録した。CASE-040-04は同一episode semanticsを交代/resume後も保持する。
-- `CASE-OS-L10-040-07g` は初回計上policyから初回だけを除く変異、`07h` は対象内failure一件だけの除外、`07i` は対象外failure一件だけの混入を独立に扱う。前二つは余分なretryを拒否し、後者はpremature routeを拒否する。各caseは適用中policyの入力値を使い、新しい数値やfailure taxonomyを作らない。
+- `CASE-OS-L10-040-07g` は初回計上policyから初回だけを除く変異、`07h` は正しい同一episode集計が既存上限Nへ達する境界で対象内failure一件を除外する変異、`07i` は正しい集計がN-1となる境界で対象外failure一件を混入する変異を独立に扱う。前二つは余分なretryを拒否し、後者はpremature routeを拒否する。Nはfixtureに入力された既存policy値であり、新規値ではない。各caseは適用中policyの入力値を使い、新しい数値やfailure taxonomyを作らない。
 - NFR-040 traceと対応するNFRV rowを同期し、counter semantics・failure class・episode累積の観測対象を明記した。NFR traceのAC-01..06範囲、NFR ID、比較閾値は増やしていない。
 
 ## 6本文のSHA-256
@@ -32,7 +32,7 @@
 | FR | `docs/helix-os/L3-requirements/functional-requirements.md` | 201877 | `501f32401d57de5ae4e03ad05ed6e407eedaf0663d140b3baa21d4620ce4299f` | 040のみ変更 |
 | NFR | `docs/helix-os/L3-requirements/nfr-grade.md` | 32949 | `27befa2872562b0e6dd48d98573fb73e49a3f431054a9b66c82d3182723eb8bb` | NFR-040 traceのみ変更 |
 | BV | `docs/helix-os/L10-verification/business-verification.md` | 17702 | `5a75c21ce10b33fc8441adda71253870fd20a8687c18e7939cfe8b25f9d393c8` | 不変 |
-| FV | `docs/helix-os/L10-verification/functional-verification.md` | 241285 | `ff9651fe2d9e72cb7652e91f245fe83ec0636f8eb758ad588849057b0367d3ec` | 040のみ変更 |
+| FV | `docs/helix-os/L10-verification/functional-verification.md` | 241485 | `784cc4e7970676638a5c4782f08a1bc31ad001274df8997ada121e7f2cf1ee38` | 040のみ変更 |
 | NFRV | `docs/helix-os/L10-verification/nfr-verification.md` | 29578 | `6cbaa2dbaa43d3a74224457d2eb839b6290ce053b88d3d258b38c72b30a79826` | NFR-040 oracleのみ変更 |
 
 ## 検証と限界
