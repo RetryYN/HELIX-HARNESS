@@ -1,0 +1,23 @@
+{
+  "status": "draft_unapproved_unexecuted",
+  "authority_effect": "none",
+  "previous_content_revision": "2801fb56211c9f6bd840e989115dac54caee6a03",
+  "response_id": "RH-PR2654-SECURITY-STAGE5-DUTIES-01-RESPONSE",
+  "source": "固定633bf12 L2-027:332–341、既存security-stage5-duty-repair-2026-10-07.jsonの旧source pinsを保持",
+  "changes": [
+    "M1 六本文CASE範囲111まで",
+    "m1 handoff結果missing/unknown CASE9件に独立source義務照合",
+    "m2 P2/P3 owner文言",
+    "m3 義務identity/source revision単独変異6件",
+    "m4 hold/denyの変異由来を記録",
+    "m5 owner粒度対応を記録"
+  ],
+  "six_body_sha256": {
+    "docs/helix-security/L3-requirements/nfr-grade.md": "5b4a647220bea4192788ac937f9ee889574abb49639493f5e78edadc2950f66e",
+    "docs/helix-security/L3-requirements/business-requirements.md": "30a0456a17c4c65e9427cc8931905cb7c1adf54c207514f948a7b179dcdb7019",
+    "docs/helix-security/L3-requirements/functional-requirements.md": "711c6bd6f804642ec414ef4b4903841c82a3aca155e6bed7732775adbeee0cf5",
+    "docs/helix-security/L10-verification/business-verification.md": "7da2a3b88c866c276065c793036708a633109b176b0381829c8d3c8293ff70a4",
+    "docs/helix-security/L10-verification/nfr-verification.md": "444560c4ffe00c4a330d6b8a76ad2c86798be1bd4ab506886c96ce0cc4a40e43",
+    "docs/helix-security/L10-verification/functional-verification.md": "74608e7a60bebed5512eadabe45f991eb8f5f5d0d11f0dce216233608501f846"
+  }
+}
