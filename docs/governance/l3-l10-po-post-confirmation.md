@@ -114,6 +114,25 @@ resource/environment状態をsource付きで観測し、限定recovery pathの�
 | <a id="docs-os"></a>HELIX-OS | [L3-BR](../helix-os/L3-requirements/business-requirements.md) · [L3-FR](../helix-os/L3-requirements/functional-requirements.md) · [L3-NFR](../helix-os/L3-requirements/nfr-grade.md) · [L10-BV](../helix-os/L10-verification/business-verification.md) · [L10-FV](../helix-os/L10-verification/functional-verification.md) · [L10-NFR](../helix-os/L10-verification/nfr-verification.md) |
 | <a id="docs-security"></a>HELIX-SECURITY | [L3-BR](../helix-security/L3-requirements/business-requirements.md) · [L3-FR](../helix-security/L3-requirements/functional-requirements.md) · [L3-NFR](../helix-security/L3-requirements/nfr-grade.md) · [L10-BV](../helix-security/L10-verification/business-verification.md) · [L10-FV](../helix-security/L10-verification/functional-verification.md) · [L10-NFR](../helix-security/L10-verification/nfr-verification.md) |
 
+### 本文の題名・冒頭の状態行と収録範囲
+
+8機構のL3／L10正本48本では、題名と冒頭の状態行が、最初に起草したStageの範囲を示したままになっている。本文にはその後のStageの節が追補されている。各本文の題名や状態行は、承認済みの本文の一部である。運用モデル「人に承認を求める回数を減らす」により、これを直すと新しい本文revisionで「見解の一致」をやり直す必要がある。このため、題名と状態行は各機構の次の正規修正で直し、それまでは本一覧を範囲の正とする。
+
+- 題名や冒頭の状態行（「Stage 1のみ」「未承認」「〜だけを対象」等）から、各節の対象親・承認状態を読まない。
+- 各節の対象親、対象revision、判断状態は、下の「41の機構×Stage区分の親集合と正式判断locator」と各判断記録を正とする。
+- 下表の「収録Stage」は、6本文の見出し（全レベル）に現れるStageの和集合である。文書ごとに節構成が異なる場合がある。
+
+| 機構 | 題名に残るStage表示 | 収録Stage（6本文の見出しの和集合） |
+|---|---|---|
+| HELIX-BRAIN | Stage 1（007/008/028） | Stage 1、Stage 2b、Stage 4、Stage 5 |
+| HELIX-CONNECT | Stage 1 | Stage 1、Stage 2a、Stage 4、Stage 5 |
+| HELIX-HARNESS | Stage 1: HARNESS-L2-010/011/023 | Stage 1、Stage 2a、Stage 2b、Stage 2c、Stage 3、Stage 4、Stage 5 |
+| HELIX-INFRASTRUCTURE | Stage 1（frontmatter `stage: 1`） | Stage 1、Stage 2a、Stage 2b、Stage 4、Stage 5 |
+| HELIX-INTELLIGENCE | Stage 2a | Stage 2a、Stage 2c、Stage 3、Stage 4、Stage 5 |
+| HELIX-LABO | Stage 1（001/011の候補）／Stage 1（001/011） | Stage 1、Stage 2a、Stage 2b、Stage 4、Stage 5 |
+| HELIX-OS | Stage 2b | Stage 2a、Stage 2b、Stage 2c、Stage 3、Stage 4、Stage 5 |
+| HELIX-SECURITY | Stage 1（19親の候補） | Stage 1、Stage 2c、Stage 3、Stage 4、Stage 5 |
+
 ## 41の機構×Stage区分の親集合と正式判断locator
 
 各行は固定274親のStage groupを保ち、指定mainのdecision record chainから親に対応する記録を表示する。latest full-six leafはrecord pathと六本文pinをGitから読み直した結果である。先行する判断recordはJSONのhistory inventoryに保持し、最新leafと混ぜない。Stage 1直接PO記録は別のsource経路として表示する。condition3・merge/read-after locatorも判断record leafやPO事後確認とは別に扱う。
