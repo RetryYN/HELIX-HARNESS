@@ -42,7 +42,7 @@
 
 ### BR-OS-023 — Handoff時にscopeと義務を落とさない
 
-固定親 `HELIXOS-L2-023` version target `1.0` の成果は、OS-016のportfolio traceにある対象要求revision・unit/connection/composite relation・source-bound stateを含めてsender/receiver間でexact revision/digest/scope/causal ID/evidence/unfinished dutiesを共有し、unit・connection・composite・次段の別々の判定を保つこと。transport receiptやPR/CI stateだけでbusiness completionを作らない。Acceptanceは `AC-OS-023-01`, `AC-OS-023-02`, `AC-OS-023-03` と `CASE-OS-023-01`, `CASE-OS-023-02a`, `CASE-OS-023-02b`, `CASE-OS-023-02c`, `CASE-OS-023-02d`, `CASE-OS-023-02e`, `CASE-OS-023-02f`, `CASE-OS-023-02g`, `CASE-OS-023-02h`, `CASE-OS-023-02i`, `CASE-OS-023-02j`, `CASE-OS-023-02k`, `CASE-OS-023-02l`, `CASE-OS-023-02m`, `CASE-OS-023-02n`, `CASE-OS-023-03`, `CASE-OS-017-HXT-SYS-01`, `CASE-OS-023-HXT-USE-01` を参照する。
+固定親 `HELIXOS-L2-023` version target `1.0` の成果は、OS-016のportfolio traceにある対象要求revision・unit/connection/composite relation・source-bound stateを含めてsender/receiver間でexact revision/digest/scope/causal ID/evidence/unfinished dutiesを共有し、unit・connection・composite・次段の別々の判定を保つこと。transport receiptやPR/CI stateだけでbusiness completionを作らない。Acceptanceは `AC-OS-023-01`, `AC-OS-023-02`, `AC-OS-023-03` と `CASE-OS-023-01`, `CASE-OS-023-02a`, `CASE-OS-023-02b`, `CASE-OS-023-02c`, `CASE-OS-023-02d`, `CASE-OS-023-02e`, `CASE-OS-023-02f`, `CASE-OS-023-02g`, `CASE-OS-023-02h`, `CASE-OS-023-02i`, `CASE-OS-023-02j`, `CASE-OS-023-02k`, `CASE-OS-023-02l`, `CASE-OS-023-02m`, `CASE-OS-023-02n`, `CASE-OS-023-02o`, `CASE-OS-023-02p`, `CASE-OS-023-02q`, `CASE-OS-023-02r`, `CASE-OS-023-03`, `CASE-OS-017-HXT-SYS-01`, `CASE-OS-023-HXT-USE-01` を参照する。
 
 ### BR-OS-027 — 未評価時にも限定初回作業を適切に扱う
 
