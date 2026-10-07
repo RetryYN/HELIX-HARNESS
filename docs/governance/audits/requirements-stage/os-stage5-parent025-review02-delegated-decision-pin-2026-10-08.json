@@ -1,0 +1,69 @@
+{
+  "record_type": "HDEC-OS-STAGE5-PARENT025-REVIEW02-2026-10-08",
+  "authority_effect": "none_pending_condition3_and_main_admission",
+  "scope": {
+    "mechanism": "HELIX-OS",
+    "stage": "5",
+    "parents": [
+      "HELIXOS-L2-025"
+    ],
+    "version": "1.0"
+  },
+  "review": {
+    "formal_comment_id": 6047203907,
+    "formal_body_raw": "## review02（HEAD 0ee0f8bd80b74f6686db17d7537d2eeed50bf0de / base dddab671b034b866efeb56af8f6c0f192a06fe3f）— Claude review_merge\n\n### 結論：Major 0。新しい本文revisionで委任条件1（Opus）と条件2（Fable「承認してよい」）が成立\n- review01のMinor修正と、main（親028/029 #2688まで）の統合で、本文のbytesが変わりました。このため、review01の承認は継承していません。\n- OpusとFableが、このrevisionを改めて独立に読みました。\n- 判断記録と6本文pinを追加した後に、条件3を別途照合します。\n\n### review01 Minorの反映（固定 `f6dad2a` L2:742–751 / L11:394–400）\n自動統合結果（`git merge-tree --write-tree dddab671b 4a6373249`）とHEADを比べると、`docs/helix-os` の差分は、FVのCASE-025-050〜057の8行だけです。\n- **CASE-050**：「project A=`project:campaign-site@r3`、project B=`project:data-migration@r8`」を明記しました。既存のfixture値に名前を付けただけで、意味の追加はありません。（Minor 1）\n- **CASE-051〜057**：期待欄に、次の2点を明記しました。（Minor 2）\n  - compositeは未完のまま維持する\n  - HELIX-selfとproject Aの成立状態、他のprojectの成立状態、未完義務を保持する\n- **CASE-056/057**：戻し先を具体化しました。\n  - 056：LABO評価の欠落は、LABOの既存source ownerへ返す。L1-011/012のLABO移管状態はOSへ戻さない。\n  - 057：OS還流の欠落は、OSの既存source ownerへ返す。\n- 以上の文言はいずれも、固定親の次の原文を個別化したものです。新しい戻し先、owner、gateはありません。\n  - L2:750「欠けたsource/unit/connectionへ返し…構成体の状態をunit単独成功で上書きしない」\n  - L2:751「HELIXOS-L2-012/013は対象外でありLABO移管状態を維持する」\n  - L11:400「構成体未完を維持する…L1-011/012のLABO移管をOSへ戻さない」\n- **Rootの役割**：定義を追補しました。（Minor 4）\n\n### 照合\n- **main由来の行の保持**\n  - 6本文のどれも、mainにあるIDをすべて保持しています。\n  - 新しく加わったIDは、CASE-025-050〜057の8件だけです。\n  - 親028/029、033、023、049の行は削除されていません。\n- **025の件数**：FVの `CASE-OS-L10-025-*` は50件で、重複はありません。番号は047〜057の連番です。\n- **監査のpin**：すべて実bytesと一致しました。\n  - 統合監査の6本文pin\n  - review01 comment本文（4,641 bytes、`6fc40e3e…`）\n  - 固定親、PO判断、register 59行、旧sourceのpin\n- **旧監査**：変わっていません。\n- **静的検査**：`scfctl validate` 147/0、`stale=0`、`git diff --check` が通りました。\n\n### HEADの6本文（次の判断記録・pinで固定するbytes）\n| 本文 | bytes | SHA-256 |\n|---|---:|---|\n| BR | 20,530 | `c0411b79…` |\n| FR | 204,625 | `401b79d8…` |\n| NFR | 35,375 | `615fd3a2…` |\n| BV | 18,061 | `ff702876…` |\n| FV | 253,822 | `14663b48…` |\n| NFRV | 32,546 | `c9eab3ce…` |\n\n### 返さない所見（Minor。承認は止めず、解消済みとも扱いません）\n1. **CASE-056の引用行**：CASE-056が引いている「HELIXOS-L2-025:744/750」について、「LABO移管状態をOSへ戻さない」の直接の原文はL2:751とL11:400です。L2:744は「OS機能として含めない」という文です。L2:751とL11:400を併記すると正確になります。\n2. **register pinのrevision**：review01-main-a007記録の `PO_adoption_register.full_sha256` は、checkpoint `633bf12` 時点のregister全体に一致する値です。記録には、対象のrevisionが明示されていません。line 59のshaは、HEADでも一致します。\n3. **project A側の単独欠落CASE**：review01のMinor 3（project A側の段だけを欠落させるCASE）は、任意として未追加です。\n\n### 未確認範囲\n- fixtureは実行していません。\n\n本reviewは承認・merge admissionを生成しません。\n",
+    "formal_body_utf8_bytes": 4103,
+    "formal_body_sha256": "daa3199e496cd982400617e3c6b7c6e7ce98e586cfa652b81f1d08300a0c9ff3",
+    "reviewed_head": "0ee0f8bd80b74f6686db17d7537d2eeed50bf0de",
+    "review_base": "dddab671b034b866efeb56af8f6c0f192a06fe3f",
+    "condition1": "satisfied: Opus Major 0",
+    "condition2": "satisfied: Fable 承認してよい",
+    "condition3": "pending"
+  },
+  "six_body_pins": [
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "bytes": 20530,
+      "sha256": "c0411b7940db8f9c6d1f13ebe41375bb15b6745fdf6064dcd26ac72a845a6568"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "bytes": 204625,
+      "sha256": "401b79d8c983408567a2167f2b15f612ddcba431524de16db81840e98cf15c92"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "bytes": 35375,
+      "sha256": "615fd3a232335cbee97e1e9fd76b132415068aaa9a25dc4f114aa4f2066b0c94"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "bytes": 18061,
+      "sha256": "ff70287629c2087601ec50c2b06091aa20a953ef11ec80f1b41b4f461cab54d1"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "bytes": 253822,
+      "sha256": "14663b48168f405d2673c94dd72fd238f5c2b93483c634aedd98a790245bd2b0"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "bytes": 32546,
+      "sha256": "c9eab3ce4d97057953fc16e31332241c91c088a338b888481e7b19d2c87fd135"
+    }
+  ],
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-os-stage5-parent025-review02-l3-l10-delegated-decision-2026-10-08.md",
+    "bytes": 2789,
+    "sha256": "518dc43af760521352f9c9d7727a80ae312f55c6ebe4d52fdc154c037bd1e6ff"
+  },
+  "minor_not_returned": [
+    "CASE056のLABO移管保持の直接根拠は固定L2:751/L11:400。本文の744/750引用だけで直接根拠の完備を主張しない。",
+    "review01-main-a007監査のPO_adoption_register.full_sha256は633bf12 checkpointの全体値でありHEAD全体値ではない。line59のSHAはHEADでも一致する。",
+    "project A側の単独欠落CASEは任意として未追加。fixture未実行。"
+  ],
+  "limits": [
+    "fixture未実行",
+    "274親検収未完"
+  ]
+}
