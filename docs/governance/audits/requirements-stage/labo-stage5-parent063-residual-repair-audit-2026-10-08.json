@@ -1,0 +1,224 @@
+{
+  "title": "LABO Stage5 parent063 residual repair audit",
+  "reviewed_base": "f0e210b3cdf5c1f95dfcf07cfc3504a240dd2e4d",
+  "branch": "codex/labo-stage5-063-ac03-revision-repair",
+  "authority_effect": "none",
+  "scope": [
+    "L3 AC01-03 definition from fixed meaning",
+    "CASE03b version target/reason/return class",
+    "CASE04b LABO knowledge owner",
+    "CASE66 single-green rejection",
+    "CASE67 synthetic positive full lineage",
+    "CASE68 no forced repair from historical evaluation",
+    "all six Stage5 paired-document indexes",
+    "AC mapping alignment: AC02 normative CASE02/68; stale/revision fixtures 12/27/40/59 remain AC03 according to CASE rows; CASE68 excluded from AC03"
+  ],
+  "fixed_parent": {
+    "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+    "L2_path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+    "L2_lines": "480-489",
+    "L2_file_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+    "L2_span_sha256": "274ea8f4562f7677b90f72bdbc8ba474540fdb74e3f6ff9e6632ad1274566c1a",
+    "L11_path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+    "L11_lines": "225-231",
+    "L11_file_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+    "L11_span_sha256": "5e7c8afa50b3f430b01b641f145abee034e0b4ef87af3a4146c820c9c9aea174"
+  },
+  "official_reviews": [
+    {
+      "comment_id": 6018603693,
+      "pr": 2630,
+      "bytes": 6873,
+      "sha256": "70064f1fe4e0a1f456f11934bf22da3208fa7208570e599d7712ec79ec66a5f1",
+      "scope": "official review01 residuals R1-R14"
+    },
+    {
+      "comment_id": 6018940116,
+      "pr": 2630,
+      "bytes": 2986,
+      "sha256": "f0bbb97da94e845dd6194d0b650cfd76c215027869515ea6aa227866a222b71f",
+      "scope": "official review02 residuals R15-R17"
+    }
+  ],
+  "legacy_sources": [
+    {
+      "name": "P4-02 HR-FR-P4-02 / HAC-P4-02a,b baseline",
+      "revision": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "file_sha256": "665dbbfc09ac27369c102ad1963f03cab16e44bb57cd80e0efe1e89dc6325393",
+      "spans": {
+        "149": "bacb965380167dbc0492aad52ed470f67181d3b3569c2a39282b2184546acb25",
+        "230-231": "c201bfb26cdc61558e750f60fae2107d84f290d23479ea53fdce11a41e761883"
+      }
+    },
+    {
+      "name": "P4-02 HR-FR-P4-02 / HAC-P4-02a,b pre-isolation",
+      "revision": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "file_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "spans": {
+        "155": "bacb965380167dbc0492aad52ed470f67181d3b3569c2a39282b2184546acb25",
+        "239-240": "c201bfb26cdc61558e750f60fae2107d84f290d23479ea53fdce11a41e761883"
+      }
+    },
+    {
+      "name": "paired consumer HAT-P4-02",
+      "revision": "f0e210b3cdf5c1f95dfcf07cfc3504a240dd2e4d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "file_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+      "spans": {
+        "112": "7e567d6913cb01071968d1f08e6f8e48883e57f2174af8c043408734e5e0ac9e"
+      }
+    },
+    {
+      "name": "related UIL R11/R12 and state sequence; not direct P4 requirement",
+      "revision": "archive snapshot pinned by current FR:1735-1744",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "spans": "175-181,183-187,210-220; current FR retains asset ID LEGACY-ASSET-02D897E62EF2FA267267"
+    },
+    {
+      "name": "PO knowledge-owner decision HMC-BR-003",
+      "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+      "path": "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md",
+      "file_sha256": "a60e2c9c5b9d0828acdf4348e5cabbf7f3c032ec5d33b628f3d9e2bf305176de",
+      "span_sha256": "91a7d09a63beddee56928aa8a0ab98c24bc655434983d33a6c090dc09c929ace",
+      "span": "66-70"
+    }
+  ],
+  "six_document_pins": {
+    "BR": {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "before_blob": "638fdbd59170dfa410b83096f964929445dae562",
+      "before_bytes": 32852,
+      "before_sha256": "9f56b674f11f9b666bc546a20e7a7492d1dfe377a24495d351392698c8389777",
+      "after_bytes": 32997,
+      "after_sha256": "b201d0b7ebf8e3289bb914a354a3ee749f35b626852d2ab572c1b454ebcaca55"
+    },
+    "FR": {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "before_blob": "0bdea32c084c33689e604a028fcf6016bb7e22e1",
+      "before_bytes": 354627,
+      "before_sha256": "0f11b654be30baae1749800ce3c184a146ceb4bce22710f762ef368f5d40e536",
+      "after_bytes": 356465,
+      "after_sha256": "690421dd0bf5cae879e9c2f1cf18b9d046cabb8e89a1c2774a8a3b72be7f8399"
+    },
+    "NFR": {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "before_blob": "70dd3111b152bc6389c8b9a551346a7ce05b217b",
+      "before_bytes": 91404,
+      "before_sha256": "d5838368f1ec9ee9e57cc143aa6e346ae1ff7f924d46c234880798098936b773",
+      "after_bytes": 91447,
+      "after_sha256": "703ffcd721ca20a2efbead89de3648801f4071f3ee3ec58c578b8aa7f6029eda"
+    },
+    "BV": {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "before_blob": "5f587607eaa2862dcd66245471aac4e6b2b7203d",
+      "before_bytes": 31387,
+      "before_sha256": "54e42a8af0d30f7eb1c2b75810b51fab6197558633ab3bac7a50b024e581445e",
+      "after_bytes": 31603,
+      "after_sha256": "d3d45f3162c86b29c4b2a10ee3d64fb7eb50c18f94185a5954f1b5db0b0b05de"
+    },
+    "FV": {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "before_blob": "95275eb62f744b30fa8fc3d9fcffac24f4aa5741",
+      "before_bytes": 693873,
+      "before_sha256": "304aebc0edf618fd0eba2d73b745611b1d259ffd94429c0375df16ca58874bb4",
+      "after_bytes": 696007,
+      "after_sha256": "fff8de19d9922d1c0e01226752f110044b3c694e371875666d24dd2789ec8185"
+    },
+    "NFRV": {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "before_blob": "45d48e573e765016ba1cef0104286dc7611b3b68",
+      "before_bytes": 82275,
+      "before_sha256": "922f8fccc63917178606dbb5edd165f5bdc6805de3753ead6d703b8342fdb8b7",
+      "after_bytes": 82394,
+      "after_sha256": "0fcbc7b8b2475a88e225a08e4d0a0410cb02ec1678cb6a9d13b43947f62b9326"
+    }
+  },
+  "changes": [
+    {
+      "id": "R1",
+      "files": [
+        "FR",
+        "FV",
+        "BR",
+        "BV",
+        "NFR",
+        "NFRV"
+      ],
+      "effect": "L3 AC-01/02/03 now define normal evaluation/lineage, unknown/uncompleted state, and fixed failure/return boundaries; ACs map to existing cases."
+    },
+    {
+      "id": "R2",
+      "files": [
+        "FR"
+      ],
+      "effect": "corrected fixed L2/L11 locators to the exact source lines."
+    },
+    {
+      "id": "R5",
+      "files": [
+        "FV",
+        "NFR",
+        "NFRV"
+      ],
+      "effect": "enumerated normal-candidate IDs (01/02/05/07/10/67); updated counts 72 total, normal 6, negative 55, indexes 11."
+    },
+    {
+      "id": "R7",
+      "files": [
+        "FV"
+      ],
+      "effect": "CASE04b routes knowledge evaluation/retention to LABO under HMC-BR-003; no generic owner or BRAIN promotion authority."
+    },
+    {
+      "id": "R9",
+      "files": [
+        "FV",
+        "FR",
+        "BR",
+        "BV",
+        "NFR",
+        "NFRV"
+      ],
+      "effect": "CASE66 rejects one green alone; CASE68 rejects imposing a new repair/OS assignment from historical evaluation alone; CASE67 includes normal OS backlog linkage."
+    },
+    {
+      "id": "R10",
+      "files": [
+        "FV",
+        "FR",
+        "BR",
+        "BV",
+        "NFR",
+        "NFRV"
+      ],
+      "effect": "CASE67 is a synthetic source-bound positive lineage for OS registration, owner adoption/change, HARNESS verification, post-operation observation/effect, and LABO evaluation; each event is input evidence from its existing actor."
+    },
+    {
+      "id": "R11/R17",
+      "files": [
+        "FV",
+        "FR",
+        "NFR",
+        "NFRV"
+      ],
+      "effect": "CASE03b pins the mismatching revision to the repair-result evidence record; only that field differs. It routes to observation provider category, identity unknown if unidentifiable, and keeps LABO evaluation open; applicability revision change is expressly outside the fixture."
+    }
+  ],
+  "validation": {
+    "repository_diff_check": "PASS (`git diff --check`)",
+    "fixture_counts": "PASS: 72 unique CASE definitions; all 72 IDs exist in NFR inventory; normal candidates 6, negative candidates 55, non-independent indexes 11; CASE65–68 are one continuous Markdown table.",
+    "ac_and_trace_alignment": "PASS: AC-01 normative CASEs 01/05/07/10/67; AC-02 normative CASEs 02/68; AC-03 normative CASEs 03a–d/04a–b/06/08/09/11–66. CASE12/27/40/59 are supplementary stale/revision negative examples whose rows identify AC-03, not normative AC-02 fixtures. CASE68 is AC-02 only.",
+    "six_document_pins": "PASS: all six post-change SHA-256 values recomputed from final worktree bytes.",
+    "legacy_runtime_tests_ci": "not run"
+  },
+  "limitations": [
+    "Design fixtures only; no L10 execution or measured evidence.",
+    "No new threshold, gate, owner category, authority, permission, or approval introduced.",
+    "061 R4 is outside this parent-scoped change and remains separately reported.",
+    "No legacy runtime/test/CI was run."
+  ],
+  "integration_base_after_unrelated_main": "a00711ee8a0817cf6553b8a671a0abee54ce6e73",
+  "integration_note": "最新mainの取り込みはOS Stage3の別scope変更のみ。LABO Stage5 six-doc本文に対する外部差分はなく、reviewed_base f0e210b3は監査開始時点の親として保持。"
+}

@@ -201,7 +201,7 @@
 | `LABO-063-NFR-02` 状態遷移と戻し先 | warning、candidate、OS registration/routing、owner adoption/change、HARNESS verification、post-operation observation、effect evaluationを区別し、未完stateを成功へ変換しない。 | 個々の欠落/stale oracleはL10の定義と固定L2/L11を参照する。対象owner/observation sourceの個体識別ができない場合はunknownを保持する。 |
 | `LABO-063-NFR-03` authority境界と未完状態 | LABOは知識を評価・保持し、gate強制、canonical write、採否/assignment/permission/authority生成をしない。OS registration、対象owner adoption/change、HARNESS verification、post-operation observation/effect evaluationを別状態に保ち、candidate/receipt/修復成功を完了へ丸めない。 | L3 `LABO-063-AC-03` とL10 `LABO-063-NFR-03` の状態境界を対応させる。固定L2/L11の既存責務区分のみを適用し、generic owner・新threshold・新authorityを追加しない。 |
 
-L10は69個の完全ID定義を保持する。literalから抽出した分類候補は正常5、negative 53、非独立索引11だが、独立性や意味的被覆の検収結果ではない。L10-LABO-063-CASE-58はL10-LABO-063-CASE-13と同じ観測欠落軸を含むため、単独負例の実測分母へ二重計上しない。実測母集団とCASE inventoryを混同しない。固定再発閾値、観測窓、最低試行数、SLA、合格率を新設せず、入力された母集団/閾値が不明ならunknownとする。
+L10は旧公開69 IDと追補CASE-66〜68を含む72個の完全ID定義を持つ。分類候補は正常6（CASE-01/02/05/07/10/67）、negative55、非独立索引11であり、独立性や意味的被覆の検収結果ではない。L10-LABO-063-CASE-58はL10-LABO-063-CASE-13と同じ観測欠落軸を含むため、単独負例の実測分母へ二重計上しない。実測母集団とCASE inventoryを混同しない。固定再発閾値、観測窓、最低試行数、SLA、合格率を新設せず、入力された母集団/閾値が不明ならunknownとする。
 
 ### HELIXLABO-L2-065 — 根拠付き測定候補（1.0候補）
 

@@ -1,0 +1,261 @@
+{
+  "title": "LABO Stage5 parent063 review01 M1/Minor correction appendix",
+  "authority_effect": "none",
+  "approval_effect": "none",
+  "execution_effect": "none",
+  "review01_formal_comment": {
+    "comment_id": 6047159268,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2694#issuecomment-6047159268",
+    "head": null,
+    "path": null,
+    "body_bytes": 6341,
+    "body_sha256": "8573a207e5994b3d0db925fadf820d799f4890a9cc058237baaabfdb26ecb40c"
+  },
+  "reviewed_head": "838caee4f198a7dfe66c1137ac4c7a04ce8f512a",
+  "merge_base": "ce70628e53ff5f78c1321accf57429c740ea585d",
+  "latest_main_integrated": "dddab671b034b866efeb56af8f6c0f192a06fe3f",
+  "worktree_head_after_main_sync_before_changes": "b449de7d10e45e03e900da342f5bb21e19e801d3",
+  "main_sync_scope": "ce70628..dddab671 contains OS docs/audits only; no LABO body changes were merged from this interval.",
+  "scope": [
+    "LABO Stage5 parent063 only",
+    "M1 FR CASE/AC trace index counts",
+    "Minor1–5: crosswalk AC mappings, HARNESS evidence-provider distinction, L2:482/L2:489 mapping, AC02 unknown retention versus AC03 routing, CASE66/34 distinction, audit pin state"
+  ],
+  "fixed_parent": {
+    "L2": {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "lines": "480-489",
+      "file_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+      "span_sha256": "274ea8f4562f7677b90f72bdbc8ba474540fdb74e3f6ff9e6632ad1274566c1a",
+      "span_bytes": 4297
+    },
+    "L11": {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "lines": "225-231",
+      "file_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+      "span_sha256": "5e7c8afa50b3f430b01b641f145abee034e0b4ef87af3a4146c820c9c9aea174",
+      "span_bytes": 1928
+    }
+  },
+  "legacy_and_decision_sources": {
+    "direct_old_P4_02_asset": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+    "P4_02_baseline_HRFR": {
+      "revision": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "lines": "149-149",
+      "file_sha256": "665dbbfc09ac27369c102ad1963f03cab16e44bb57cd80e0efe1e89dc6325393",
+      "span_sha256": "bacb965380167dbc0492aad52ed470f67181d3b3569c2a39282b2184546acb25",
+      "span_bytes": 168
+    },
+    "P4_02_baseline_HAC": {
+      "revision": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "lines": "230-231",
+      "file_sha256": "665dbbfc09ac27369c102ad1963f03cab16e44bb57cd80e0efe1e89dc6325393",
+      "span_sha256": "c201bfb26cdc61558e750f60fae2107d84f290d23479ea53fdce11a41e761883",
+      "span_bytes": 293
+    },
+    "P4_02_preisolation_HRFR": {
+      "revision": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "lines": "155-155",
+      "file_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "span_sha256": "bacb965380167dbc0492aad52ed470f67181d3b3569c2a39282b2184546acb25",
+      "span_bytes": 168
+    },
+    "P4_02_preisolation_HAC": {
+      "revision": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "lines": "239-240",
+      "file_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "span_sha256": "c201bfb26cdc61558e750f60fae2107d84f290d23479ea53fdce11a41e761883",
+      "span_bytes": 293
+    },
+    "paired_HAT_asset": "LEGACY-ASSET-44DD86E3DEC09E65EF51",
+    "HAT_P4_02": {
+      "revision": "f0e210b3cdf5c1f95dfcf07cfc3504a240dd2e4d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "lines": "112-112",
+      "file_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+      "span_sha256": "7e567d6913cb01071968d1f08e6f8e48883e57f2174af8c043408734e5e0ac9e",
+      "span_bytes": 164
+    },
+    "HMC_BR_003": {
+      "revision": "a2638477be294880ba33e215778a763caacfa6ee",
+      "path": "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md",
+      "lines": "66-70",
+      "file_sha256": "a60e2c9c5b9d0828acdf4348e5cabbf7f3c032ec5d33b628f3d9e2bf305176de",
+      "span_sha256": "91a7d09a63beddee56928aa8a0ab98c24bc655434983d33a6c090dc09c929ace",
+      "span_bytes": 705
+    }
+  },
+  "immutable_prior_audit_files": {
+    "docs/governance/audits/requirements-stage/labo-stage5-parent063-residual-repair-audit-2026-10-08.md": {
+      "bytes": 5277,
+      "sha256": "05157a22f6b7d9d26fc6f06961c947bf319c23ee7b0e72af575dfb50cc95df4a"
+    },
+    "docs/governance/audits/requirements-stage/labo-stage5-parent063-residual-repair-audit-2026-10-08.json": {
+      "bytes": 9904,
+      "sha256": "205a6c934d57b5cf5c1c712c6cf49ae65c15e7da6310bd153c61fe0923dfd4d3"
+    },
+    "docs/governance/audits/requirements-stage/labo-stage5-parent063-main069070071-integration-2026-10-08.md": {
+      "bytes": 594,
+      "sha256": "983f7c4c22a57381e9b93491815b318ce74446817b656d6a66eeb6750cbb2230"
+    },
+    "docs/governance/audits/requirements-stage/labo-stage5-parent063-main069070071-integration-2026-10-08.json": {
+      "bytes": 1477,
+      "sha256": "06bfe3cd0656aa990f6b6d2a83c6b0c2178ea137b82abf9dbb7868f9d4052f24"
+    }
+  },
+  "prior_integrated_six_body_pins_at_ce706": [
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "bytes": 32997,
+      "sha256": "b201d0b7ebf8e3289bb914a354a3ee749f35b626852d2ab572c1b454ebcaca55"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "bytes": 357249,
+      "sha256": "f9aa4d2fd0029e982bfa47050b6659b8caac84eabd352f9b2337569092a27ec9"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "bytes": 92697,
+      "sha256": "2003cfac5a9703f523158548651fd552580f1afa488ffb5498cc1d32d0be6cc0"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "bytes": 31875,
+      "sha256": "64f4c266c08a09bcea0c82a4dc22d30ad834ad936bfe73200f659a6befde1c4f"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "bytes": 699004,
+      "sha256": "23e4c65d2c4ff60daaca623ad364859a6dd9836e6e4fde494a7c922b865f0c2c"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "bytes": 83342,
+      "sha256": "ae8e80356a120a07c733a0aac8822c4937de414faee6fc221d0323cbe8f777e9"
+    }
+  ],
+  "six_body_pins_pre_review_and_final": {
+    "BR": {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "pre_change_head": "838caee4f198a7dfe66c1137ac4c7a04ce8f512a",
+      "pre_change_blob": "33cf455383afb3215d8db0f98f0f3a61677e9a4c",
+      "pre_change_bytes": 32997,
+      "pre_change_sha256": "b201d0b7ebf8e3289bb914a354a3ee749f35b626852d2ab572c1b454ebcaca55",
+      "final_worktree_blob": "33cf455383afb3215d8db0f98f0f3a61677e9a4c",
+      "final_bytes": 32997,
+      "final_sha256": "b201d0b7ebf8e3289bb914a354a3ee749f35b626852d2ab572c1b454ebcaca55"
+    },
+    "FR": {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "pre_change_head": "838caee4f198a7dfe66c1137ac4c7a04ce8f512a",
+      "pre_change_blob": "e55884f17e0f800ab6ce09b0124362464096b4d7",
+      "pre_change_bytes": 357249,
+      "pre_change_sha256": "f9aa4d2fd0029e982bfa47050b6659b8caac84eabd352f9b2337569092a27ec9",
+      "final_worktree_blob": "b1cb9874ee1bd3ca85f871e5e9d97fbbce768b00",
+      "final_bytes": 358302,
+      "final_sha256": "46f4b661f4a605433f9c2ea825db37d6fd8365e55378364fd9648765aaaa4718"
+    },
+    "NFR": {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "pre_change_head": "838caee4f198a7dfe66c1137ac4c7a04ce8f512a",
+      "pre_change_blob": "8c65102d313b4f44aa57e88133a5be5a79eaccd7",
+      "pre_change_bytes": 92697,
+      "pre_change_sha256": "2003cfac5a9703f523158548651fd552580f1afa488ffb5498cc1d32d0be6cc0",
+      "final_worktree_blob": "8c65102d313b4f44aa57e88133a5be5a79eaccd7",
+      "final_bytes": 92697,
+      "final_sha256": "2003cfac5a9703f523158548651fd552580f1afa488ffb5498cc1d32d0be6cc0"
+    },
+    "BV": {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "pre_change_head": "838caee4f198a7dfe66c1137ac4c7a04ce8f512a",
+      "pre_change_blob": "93a659fa3153ce98789eb478b2e283a138fb03d2",
+      "pre_change_bytes": 31875,
+      "pre_change_sha256": "64f4c266c08a09bcea0c82a4dc22d30ad834ad936bfe73200f659a6befde1c4f",
+      "final_worktree_blob": "93a659fa3153ce98789eb478b2e283a138fb03d2",
+      "final_bytes": 31875,
+      "final_sha256": "64f4c266c08a09bcea0c82a4dc22d30ad834ad936bfe73200f659a6befde1c4f"
+    },
+    "FV": {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "pre_change_head": "838caee4f198a7dfe66c1137ac4c7a04ce8f512a",
+      "pre_change_blob": "bdaaac749393e91f36a402ba5d3cdd403b64e107",
+      "pre_change_bytes": 699004,
+      "pre_change_sha256": "23e4c65d2c4ff60daaca623ad364859a6dd9836e6e4fde494a7c922b865f0c2c",
+      "final_worktree_blob": "0643b7f856e93d38a0f98a1a294b25880a88aefc",
+      "final_bytes": 699349,
+      "final_sha256": "34af787d35c067198041166b6e3bd7a4aee6c94907a93f336415a694a6e053d8"
+    },
+    "NFRV": {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "pre_change_head": "838caee4f198a7dfe66c1137ac4c7a04ce8f512a",
+      "pre_change_blob": "5fec13ae5d8801e5034de14e71be06d6cffb8c74",
+      "pre_change_bytes": 83342,
+      "pre_change_sha256": "ae8e80356a120a07c733a0aac8822c4937de414faee6fc221d0323cbe8f777e9",
+      "final_worktree_blob": "5fec13ae5d8801e5034de14e71be06d6cffb8c74",
+      "final_bytes": 83342,
+      "final_sha256": "ae8e80356a120a07c733a0aac8822c4937de414faee6fc221d0323cbe8f777e9"
+    }
+  },
+  "static_result": {
+    "case_rows": 72,
+    "unique_case_ids": 72,
+    "normal_candidate_ids": [
+      "01",
+      "02",
+      "05",
+      "07",
+      "10",
+      "67"
+    ],
+    "normal_candidate_count": 6,
+    "negative_candidate_count": 55,
+    "non_independent_index_count": 11,
+    "index_ids": [
+      "03a",
+      "24",
+      "25",
+      "30",
+      "31",
+      "32",
+      "33",
+      "35",
+      "36",
+      "39",
+      "63"
+    ],
+    "ac_fixture_distribution": {
+      "AC-01": 5,
+      "AC-02": 2,
+      "AC-03": 65
+    },
+    "case66_vs_case34": "CASE34 keeps candidate-only input; CASE66 now preserves a full source-bound evidence baseline and mutates only the candidate success-basis binding to a lone green receipt, separately from CASE20 procedure missing and CASE46 HARNESS receipt missing."
+  },
+  "correction_record": {
+    "prior_audit_claim": "The immutable residual-repair audit says the six paired bodies reflect 72 IDs and fixture_counts PASS, but FR:1756 in the reviewed bytes still says 69 definitions, normal 5, negative 53. The CASE table/NFR inventory had 72; the mismatch was that the crosswalk index was stale. This appendix narrows and corrects the prior PASS claim without editing that audit.",
+    "fixed_fr_trace": "Added L2:482 and L2:489 rows; L2:487 now traces AC01/02/03; L2:488 traces AC02/03.",
+    "ac03_harness": "L2:483 distinguishes HARNESS-supplied verification contract/result evidence from LABO evaluation; missing target-owner change or post-operation observation leaves the cycle incomplete.",
+    "ac02_ac03": "AC02 retains unknown/open for unidentifiable target revision/applicability. AC03 routes only identifiable missing evidence through fixed existing responsibility classes and does not erase unknown.",
+    "index_counts": "FR:1758 now says 72 (previous 69 plus CASE66–68), six normal candidates 01/02/05/07/10/67, 55 negative candidates, 11 non-independent indexes; CASE58/13 and no-independence/completeness attestation note retained.",
+    "integration_state": "The older integration JSON pins are the ce706 post-merge/pre-review state. The six final pins in this appendix are computed from the current post-correction working-tree bytes after dddab671 OS-only sync."
+  },
+  "validation": {
+    "git_diff_check": "PASS",
+    "six_body_hash_bytes": "PASS: final SHA-256, byte counts, and worktree blob IDs match all six pins; pre-review hashes independently recomputed from exact HEAD 838caee.",
+    "static_trace_counts": "PASS: 72 unique FV CASE IDs; 6 normal candidates, 55 negative candidates, 11 indexes; normative AC rows 5/2/65; all 72 IDs appear in NFRV; fixed crosswalk, AC2/AC3, CASE66/34 assertions match.",
+    "no_execution": "L10 fixtures, archive runtime/test/CI not run.",
+    "immutable_prior_audits": "PASS: previous residual-repair and main-integration audit files retain their recorded byte counts and SHA-256."
+  },
+  "limitations": [
+    "No L10 execution or measured evidence.",
+    "No new requirement meaning, owner, authority, threshold, or gate.",
+    "Prior audit records are immutable; this appendix only narrows/corrects the stale count-alignment assertion.",
+    "Only parent063 Stage5 and the specified crosswalk/fixture explanation were changed."
+  ]
+}

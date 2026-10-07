@@ -98,7 +98,7 @@
 
 | 固定親 | 業務evidence / 責務 | 正本参照 |
 |---|---|---|
-| `HELIXLABO-L2-063` | LABOは再発・適用範囲・根拠・未完義務を評価知識として保持する。OSは既存Feedback登録/routingを扱う。対象ownerが採否と変更を持ち、HARNESSは選択された変更の検証を担う。source identityが分からない場合はunknownを保持し、generic ownerを追加しない。 | `LABO-063-AC-01/02/03`; fixture・索引・分類候補はL10 `functional-verification.md` の063 sectionに記録する。 |
+| `HELIXLABO-L2-063` | LABOは再発・適用範囲・根拠・未完義務を評価知識として保持する。OSは既存Feedback登録/routingを扱う。対象ownerが採否と変更を持ち、HARNESSは選択された変更の検証を担う。source identityが分からない場合はunknownを保持し、generic ownerを追加しない。 | `LABO-063-AC-01/02/03`（FRで正常系譜、unknown/未完、失敗/固定責務への返却を定義）。CASE-66/68は単独green/new-repair誤要求の拒否、CASE-67は既存主体の合成正常系譜を照合し、fixture・索引分類はL10本文に従う。 |
 
 旧P4-02のrepair単位のclose/recipe保存は現063 cycleの全段階完了とは分ける。HMC-BR-003に基づくknowledge responsibilityを保持し、旧memory runtimeや自動採用権限を戻さない。
 
