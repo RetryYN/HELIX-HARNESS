@@ -1,0 +1,153 @@
+{
+  "record_type": "LABO-066 main merge/base connection audit",
+  "target_parent": "066",
+  "pr": 2635,
+  "source_combined_audit": {
+    "path": "/tmp/labo066-068-main-merge-audit-2026-10-07.json",
+    "bytes": 12259,
+    "sha256": "e0c58eb60f16a9b1de3c28512abf1ea625972f26d0c20b99ab38ddac47d4fc99"
+  },
+  "target_record": {
+    "path": "/home/tenni/.helix-worktrees/l3-labo-stage5-parent066",
+    "head_after": "5cefe16a1331d5a917b682725cfb1326e190167c",
+    "head_before": "3d378430760527a967188d863033930ef8f5fbb3",
+    "merge_parents": [
+      "3d378430760527a967188d863033930ef8f5fbb3",
+      "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c"
+    ],
+    "branch_base_before_merge": "0acbed34bfda48e32092feb63db61d2eff6d5ec4",
+    "merge_base_after_merge": "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c",
+    "merge_target": "03d9cd19dfb92dc7dda74c8cb50f85dc320c873c",
+    "six_documents": [
+      {
+        "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+        "bytes": 18159,
+        "sha256": "4978e928ca6bc8dc42eafe4ee96d204f38428ff0ad5d650f3d76ea3c7dec4ee2",
+        "premerge_full_sha256": "4978e928ca6bc8dc42eafe4ee96d204f38428ff0ad5d650f3d76ea3c7dec4ee2",
+        "branch_base": "0acbed34bfda48e32092feb63db61d2eff6d5ec4",
+        "base_prefix_bytes": 17356,
+        "base_prefix_sha256": "6eb0e6094202a519d34b84670c7c9fa9143ced0c8e25883bddc22c9a395feae7",
+        "base_blob_equals_target_main_blob": true,
+        "suffix_bytes": 803,
+        "suffix_sha256": "3dc759a6eb597cc46b0014dbedc2dc705810eebcc810e0bee891afbf3941fc3a",
+        "same_whole_blob_as_premerge": true,
+        "same_suffix_as_premerge": true,
+        "terminal_lf": true
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+        "bytes": 323429,
+        "sha256": "9892c96c4c88eeae1495d9a1ea363642cf2780f37845de8de7f2004a67c2a19a",
+        "premerge_full_sha256": "9892c96c4c88eeae1495d9a1ea363642cf2780f37845de8de7f2004a67c2a19a",
+        "branch_base": "0acbed34bfda48e32092feb63db61d2eff6d5ec4",
+        "base_prefix_bytes": 314755,
+        "base_prefix_sha256": "24dff56c5e90120360fe446c38e1e3b4b4b58db569fa8eb40d2be8b338161426",
+        "base_blob_equals_target_main_blob": true,
+        "suffix_bytes": 8674,
+        "suffix_sha256": "0c05073fe701db5780ef3605cf21bb4694bcf2ad473c2d8d93928fa43d7562d5",
+        "same_whole_blob_as_premerge": true,
+        "same_suffix_as_premerge": true,
+        "terminal_lf": true
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+        "bytes": 72262,
+        "sha256": "d3686b98f7d9164fd079b43b70f8b5035051db14c1c52562a07d1f864d56128d",
+        "premerge_full_sha256": "d3686b98f7d9164fd079b43b70f8b5035051db14c1c52562a07d1f864d56128d",
+        "branch_base": "0acbed34bfda48e32092feb63db61d2eff6d5ec4",
+        "base_prefix_bytes": 70949,
+        "base_prefix_sha256": "e39aadaf35521a2c9c49001581c2d6e7770156749a0705666105b579b4387be7",
+        "base_blob_equals_target_main_blob": true,
+        "suffix_bytes": 1313,
+        "suffix_sha256": "77be1f306c73a558daebba11ba608a02444940775b7695665c8e455f19932834",
+        "same_whole_blob_as_premerge": true,
+        "same_suffix_as_premerge": true,
+        "terminal_lf": true
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/business-verification.md",
+        "bytes": 16319,
+        "sha256": "6e40b71ea81fd98fa6aa0db9e7d7d026596c537e8a1edeb0c2bebd2d3177f595",
+        "premerge_full_sha256": "6e40b71ea81fd98fa6aa0db9e7d7d026596c537e8a1edeb0c2bebd2d3177f595",
+        "branch_base": "0acbed34bfda48e32092feb63db61d2eff6d5ec4",
+        "base_prefix_bytes": 15331,
+        "base_prefix_sha256": "43115cad1beeeb4aa887c80206936d2ecec6ef507447a559b4544222f8ccb089",
+        "base_blob_equals_target_main_blob": true,
+        "suffix_bytes": 988,
+        "suffix_sha256": "1d82064b50b3a3baa01dd013087966fa3202dd7f0e82b17ce512fcc2c2609553",
+        "same_whole_blob_as_premerge": true,
+        "same_suffix_as_premerge": true,
+        "terminal_lf": true
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "bytes": 549958,
+        "sha256": "8b2efd0bd2996915085c0dc6568776f7cb9f3346111bbf3ae878c0443e0044ea",
+        "premerge_full_sha256": "8b2efd0bd2996915085c0dc6568776f7cb9f3346111bbf3ae878c0443e0044ea",
+        "branch_base": "0acbed34bfda48e32092feb63db61d2eff6d5ec4",
+        "base_prefix_bytes": 487997,
+        "base_prefix_sha256": "2d0d893deb6ce95836b5b1b1f3b6a01511db36ce956a881788b5de1c26f5783b",
+        "base_blob_equals_target_main_blob": true,
+        "suffix_bytes": 61961,
+        "suffix_sha256": "84539c0de9f08a2b05584a245e02eb2b693019181040b4091ff122b1a83b0c52",
+        "same_whole_blob_as_premerge": true,
+        "same_suffix_as_premerge": true,
+        "terminal_lf": true
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+        "bytes": 62432,
+        "sha256": "b9977b3eaecfa1ecdda8ddf3d90fdf747c80f763f622bae6148e08ae71595f67",
+        "premerge_full_sha256": "b9977b3eaecfa1ecdda8ddf3d90fdf747c80f763f622bae6148e08ae71595f67",
+        "branch_base": "0acbed34bfda48e32092feb63db61d2eff6d5ec4",
+        "base_prefix_bytes": 60801,
+        "base_prefix_sha256": "d2c9c508465305c3edf9af1f6d2d247cd19f07617aefeca25f320eeaba56ceca",
+        "base_blob_equals_target_main_blob": true,
+        "suffix_bytes": 1631,
+        "suffix_sha256": "2da98c3255957ed95c0fb3ce9c51a85f84b97aabed6b90dcc8e87420556d72fd",
+        "same_whole_blob_as_premerge": true,
+        "same_suffix_as_premerge": true,
+        "terminal_lf": true
+      }
+    ],
+    "preexisting_audit_decision_blob_count": 2366,
+    "preexisting_audit_decision_blobs_unchanged": true,
+    "preexisting_audit_decision_blobs_unchanged_count": 2366,
+    "changed_existing_audit_decision_blobs": [],
+    "working_tree_clean": true,
+    "govcheck": "PASS: atoms=7622 requirements=57 files=58",
+    "git_diff_check": "PASS: target-main...HEAD and show --check",
+    "push": false
+  },
+  "postbody_audit_copy": {
+    "source_json": "/tmp/labo066-review13-postbody-audit-2026-10-07.json",
+    "published_json_path": "docs/governance/audits/requirements-stage/labo-stage5-parent066-review13-postbody-audit-2026-10-07-3d3784307.json",
+    "source_json_bytes": 149485,
+    "source_json_sha256": "b15991353e31e2284908191093d3537dcd443e993597c4080ae00d3f3bb5e676",
+    "published_json_bytes": 149485,
+    "published_json_sha256": "b15991353e31e2284908191093d3537dcd443e993597c4080ae00d3f3bb5e676",
+    "source_markdown": "/tmp/labo066-review13-postbody-audit-2026-10-07.md",
+    "published_markdown_path": "docs/governance/audits/requirements-stage/labo-stage5-parent066-review13-postbody-audit-2026-10-07-3d3784307.md",
+    "source_markdown_bytes": 4045,
+    "source_markdown_sha256": "9d94ec1aed97829dc8b29d3ac2956bccc4ee14bcea80f21b4acb34a724bfc750",
+    "published_markdown_bytes": 4045,
+    "published_markdown_sha256": "9d94ec1aed97829dc8b29d3ac2956bccc4ee14bcea80f21b4acb34a724bfc750",
+    "published_markdown_terminal_lf_count": 1
+  },
+  "checks": {
+    "merge_parent_is_exact_root_main": true,
+    "six_full_blobs_unchanged_across_merge": true,
+    "six_suffixes_unchanged_across_merge": true,
+    "six_branch_base_blobs_equal_target_main_blobs": true,
+    "all_preexisting_audit_and_decision_blobs_unchanged": true,
+    "govcheck_pass": true,
+    "git_diff_check_pass": true,
+    "push": false,
+    "fixture_runtime_or_old_ci_execution": false
+  },
+  "limits": [
+    "監査はこの親だけを対象とする。相手親のmerge結果・監査レコードは含めない。",
+    "postbody auditは当時点のimmutable auditをそのまま複製。base接続監査は今回のmerge時点記録。",
+    "PR review、要件承認、L10実行、fixture/runtime成功を主張しない。"
+  ]
+}
