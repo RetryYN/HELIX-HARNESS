@@ -94,7 +94,7 @@
 
 | 固定親 | 業務上の区分 | 対応先 |
 |---|---|---|
-| `HELIXLABO-L2-063` | LABOは許可された修復観測とepisode知識の範囲評価/保持、OSは既存Feedbackのregistration/routing、対象ownerはadoption/change、HARNESSは選択された変更のverificationを担う。post-operation observation/effect evaluationは後続状態として残す。 | `LABO-063-AC-01/02/03`。L10には旧ID保持、単独候補と非独立索引候補を区別して記録する。 |
+| `HELIXLABO-L2-063` | LABOは許可された修復観測とepisode知識の範囲評価/保持、OSは既存Feedbackのregistration/routing、対象ownerはadoption/change、HARNESSは選択された変更のverificationを担う。post-operation observation/effect evaluationは後続状態として残す。 | `LABO-063-AC-01/02/03`。CASE-67はOS登録、対象ownerの採否/変更、HARNESS検証、運用後観測/effectを既存source receiptとして一系譜で照合する合成正常fixture。CASE-66/68は単一greenと過去評価からの新規repair要求を拒否する。新しい実行・権限・採否を生成しない。 |
 
 個体source/owner identityが固定sourceから決まらない場合はunknownのままにする。G0順序metadata、CASE数、candidate、OS receiptから承認・実行許可・完了を生成しない。
 

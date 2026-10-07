@@ -2951,18 +2951,18 @@ L10定義の単独変異候補を固定sourceへ照合する。cause/applicabili
 
 #### CASE inventory（旧IDを保持）
 
-以下の表は旧公開063の全69完全ID定義を保持する。既存CASE literalの分類は候補にすぎず、fixtureの独立性や固定親意味の完全被覆を主張しない。L10-LABO-063-CASE-58はL10-LABO-063-CASE-13と同じpost-operation observation omission軸を保持しつつ、固定L2の原因区分に沿う観測提供主体への返却を明示する。識別可能な個体identityを作らず、identity不明はunknownとする。
+以下の表は旧公開063の全69完全ID定義と、本追補で追加したCASE-66〜68を保持する。現在72完全ID定義。候補分類は正常6（01/02/05/07/10/67）、negative55（66/68を含む）、非独立索引11。これらはfixture分類候補であり、独立性や固定親意味の完全被覆を主張しない。L10-LABO-063-CASE-58はL10-LABO-063-CASE-13と同じpost-operation observation omission軸を保持しつつ、固定L2の原因区分に沿う観測提供主体への返却を明示する。識別可能な個体identityを作らず、identity不明はunknownとする。
 
 | CASE ID | AC | 入力・変異 | 期待状態/oracle |
 |---|---|---|---|
 | `L10-LABO-063-CASE-01` | `LABO-063-AC-01` | 準備: repair result、HARNESS verification、target revision、同一episodeに結ばれた後続再発eventと反例があり、適用条件/入力閾値は根拠付きで与えられる。 | 同一条件で支持された予防candidateと根拠だけを返す。adoption、target変更、権限、gate有効化を生成しない。 |
 | `L10-LABO-063-CASE-02` | `LABO-063-AC-02` | 未見正常: 条件一致する未見再発eventと、そのsource/revision/cause/applicability/episode relationが追跡できる。 | 新しいevidenceとして保持し、別scope/causeへgeneralizeしない。 |
 | `L10-LABO-063-CASE-03a` | `LABO-063-AC-03` | 索引（独立fixtureではない）: L10-LABO-063-CASE-46のHARNESS verification receipt欠落を直接参照する。 | L10-LABO-063-CASE-46を唯一のfixtureとして参照し、L10-LABO-063-CASE-33との重複を数えない。 |
-| `L10-LABO-063-CASE-03b` | `LABO-063-AC-03` | target revisionだけ別 | evidenceを混ぜずtarget ownerへ。 戻し先: target owner。 |
+| `L10-LABO-063-CASE-03b` | `LABO-063-AC-03` | 準備: CASE-01と同じ対象/原因/適用条件/episode。単独変異: repair-result evidence recordの`target_revision`だけが、選択された対象revisionと不一致。修復手順・適用条件・他のsource identity/revisionは一致したまま。 | 異版evidenceを混ぜず、修復成功/再発防止評価を未完にする。該当result/target版の観測提供主体へ返し、提供主体identityを特定できなければunknownを保つ。適用条件の改版はこのCASEの変異に含めない。 |
 | `L10-LABO-063-CASE-03c` | `LABO-063-AC-03` | recurrence relationだけ欠落 | 再発効果の判断を未完としてLABO評価へ戻す。 |
 | `L10-LABO-063-CASE-03d` | `LABO-063-AC-03` | counterexampleだけ除外 | 予防candidate範囲を支持済みとしない。 |
 | `L10-LABO-063-CASE-04a` | `LABO-063-AC-03` | LABOがcanonical recipeへwrite | 拒否し既存ownerを保つ。 戻し先: canonical recipeの既存owner。 |
-| `L10-LABO-063-CASE-04b` | `LABO-063-AC-03` | 一件から汎用knowledgeへpromotion | 拒否。既存knowledge ownerへ戻す。 |
+| `L10-LABO-063-CASE-04b` | `LABO-063-AC-03` | 一件から汎用knowledgeへpromotion | 無条件promotionを拒否し、1.0の評価対象知識はLABOで保持する。generic knowledge化の採否は生成せず、適用範囲評価を未完とする。 |
 | `L10-LABO-063-CASE-18` | `LABO-063-AC-03` | 原因候補だけ欠落 | 予防範囲を確定せず未完にする。欠落した原因候補の既存source ownerが識別できればそこへ返し、識別不能はunknown。 |
 | `L10-LABO-063-CASE-19` | `LABO-063-AC-03` | 適用条件だけ欠落 | 別条件へ一般化せず未完にする。適用条件の既存source ownerが識別できればそこへ返し、識別不能はunknown。 |
 | `L10-LABO-063-CASE-20` | `LABO-063-AC-03` | 修復手順だけ欠落 | 成功手順とせず未完にする。修復手順のcanonical source providerが識別できればそこへ返し、識別不能はunknown。 |
@@ -3024,6 +3024,11 @@ L10定義の単独変異候補を固定sourceへ照合する。cause/applicabili
 | `L10-LABO-063-CASE-63` | `LABO-063-AC-03` | 索引（独立fixtureではない）: `L10-LABO-063-CASE-64`（原因だけ異なるeventを同一群へ混入）と`L10-LABO-063-CASE-65`（適用条件だけ異なるeventを同一群へ混入）を直接参照する。 | 各主fixtureのoracleを個別に確認し、二条件を一つの変異へ束ねず、独立fixtureとして二重計上しない。 |
 | `L10-LABO-063-CASE-64` | `LABO-063-AC-03` | 準備: 対象source/revision/適用条件が同一の再発eventを保持する。単独変異: cause identityだけが異なるeventを同一再発群へ加える。 | 原因別にgroupを分け、頻度を混ぜない。 |
 | `L10-LABO-063-CASE-65` | `LABO-063-AC-03` | 準備: 対象source/revision/causeが同一の再発eventを保持する。単独変異: applicability conditionだけが異なるeventを同一再発群へ加える。 | 適用条件別にgroupを分け、頻度を混ぜない。 |
+
+
+| `L10-LABO-063-CASE-66` | `LABO-063-AC-03` | 準備: source identity/episodeは特定できるが、修復手順、独立検証、再発防止根拠はない。単独変異: 一件のgreen結果だけを成功recipe/予防candidateとして扱う。 | 単一greenを成功手順とせず、LABO評価を未完に保つ。必要根拠の不足を補完せず、実行/採用を生成しない。 |
+| `L10-LABO-063-CASE-67` | `LABO-063-AC-01` | 合成正常fixture: 同一episodeで成功修復知識と根拠、既決thresholdを満たす同種再発、OS Feedback登録、target owner採否/変更、HARNESS verification、運用後観測とeffect評価がsource/revision付きで存在する。各状態はそれぞれ既存主体が記録した証拠として与える。 | 既存主体ごとのreceipt/状態を混同せず同一系譜で追跡し、LABOは根拠付きcandidate/評価だけを保持する。新規実行、採否、assignment、permission、gate有効化、target変更は生成しない。 |
+| `L10-LABO-063-CASE-68` | `LABO-063-AC-02` | 準備: 新規修復の実行を含まない過去の許可済み評価記録と、現在の未完義務状態を保持する。単独変異: 過去評価だけを理由に新規repair/OS assignmentを要求する。 | 過去記録の評価/保持を続け、新規repairやassignmentを要求しない。既存の未完義務はそのまま保持する。 |
 
 ### L10-LABO-065 — functional verification候補
 

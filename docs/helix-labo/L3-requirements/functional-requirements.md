@@ -1721,16 +1721,23 @@ LABOは、許可された修復観測と既存の評価記録から、成功修�
 
 | 固定sourceの句 | trace先 | 条件と境界 |
 |---|---|---|
-| L2-063:480–482 成功した修復知識、入力field、source/evidence | `LABO-063-AC-01/03` | 対象/版、原因候補、適用条件、修復手順・結果、検証、反例を元episodeへ結ぶ。案や単独greenで成功としない。 |
-| L2-063:482–484 recipe・適用scope・原証拠・残義務の保持とOS Feedback登録 | `LABO-063-AC-01/03` | 知識評価・保持はLABO、既存Feedbackでの登録/routingはOS。修復作業終了だけでどちらも完了しない。 |
-| L2-063:484–485 同種反復、同一性、閾値/観測範囲 | `LABO-063-AC-01/03` | 問題・手順・適用条件・版・episodeを照合し、再送/重複観測を重ねず、異なる原因/条件を混ぜない。閾値と母集団は入力であり、新数値を定めない。unknownを0としない。 |
-| L2-063:485–487 gate/detector候補と未処理warning | `LABO-063-AC-01/03` | 根拠付き候補とwarningを可視化する。LABOは直接有効化・強制しない。 |
-| L2-063:487–489 既存依存と必要時のOS割当/HARNESS検証 | `LABO-063-AC-01/03` | 過去履歴の評価に新規repairを要求しない。再実験・修正を選んだ場合のみ既存OS assignmentとHARNESS契約を使う。特定知識を無条件にBRAINへ一般化しない。 |
-| L2-063:489–490 原因別戻し先と版変更後の再評価 | `LABO-063-AC-03` | 観測/target版不足は観測提供主体、修復成功/再発防止根拠不足はLABO評価、登録/routing不成立はOS、verification不足はHARNESSへ。source identityが固定sourceから分からない場合はunknownを保つ。 |
-| L11-063:225–226 成功手順、独立検証、候補、根拠、未処理warning | `LABO-063-AC-01/02/03` | 同種性・閾値根拠・母集団・反例を添える。未見eventは別evidenceとして追跡し、条件の異なる群へ一般化しない。 |
-| L11-063:226–228 個別反例 | `LABO-063-AC-03` | 以下L10定義の入力変異とoracleで照合する。CASE数・索引・列挙は意味の完全性を証明しない。 |
-| L11-063:228–230 未見、版変更、未完義務 | `LABO-063-AC-02/03` | cause/applicabilityが違えば同種と断定しない。旧成功を改版後へ流用せず、登録失敗、変更未完、運用後観測欠落を分けて保持する。 |
-| L11-063:230–231 知識・authorityの境界 | `LABO-063-AC-03` | LABO知識評価、OS登録/routing、対象ownerの採否/変更を区別し、memory正本化、未評価BRAIN一般化、頻度由来の権限生成を拒否する。 |
+| L2-063:483 入力field、source/evidence | `LABO-063-AC-01/03` | 対象/版、原因候補、適用条件、修復手順・結果、検証、反例を元episodeへ結ぶ。案や単独greenで成功としない。 |
+| L2-063:484 recipe・適用scope・原証拠・残義務の保持とOS Feedback登録 | `LABO-063-AC-01/03` | 知識評価・保持はLABO、既存Feedbackでの登録/routingはOS。修復作業終了だけでどちらも完了しない。 |
+| L2-063:485 同種反復、同一性、閾値/観測範囲 | `LABO-063-AC-01/03` | 問題・手順・適用条件・版・episodeを照合し、再送/重複観測を重ねず、異なる原因/条件を混ぜない。閾値と母集団は入力であり、新数値を定めない。unknownを0としない。 |
+| L2-063:486 gate/detector候補と未処理warning | `LABO-063-AC-01/03` | 根拠付き候補とwarningを可視化する。LABOは直接有効化・強制しない。 |
+| L2-063:487 既存依存と必要時のOS割当/HARNESS検証 | `LABO-063-AC-01/03` | 過去履歴の評価に新規repairを要求しない。再実験・修正を選んだ場合のみ既存OS assignmentとHARNESS契約を使う。特定知識を無条件にBRAINへ一般化しない。 |
+| L2-063:488 原因別戻し先と版変更後の再評価 | `LABO-063-AC-03` | 観測/target版不足は観測提供主体、修復成功/再発防止根拠不足はLABO評価、登録/routing不成立はOS、verification不足はHARNESSへ。source identityが固定sourceから分からない場合はunknownを保つ。 |
+| L11-063:228 成功手順、独立検証、候補、根拠、未処理warning | `LABO-063-AC-01/02/03` | 同種性・閾値根拠・母集団・反例を添える。未見eventは別evidenceとして追跡し、条件の異なる群へ一般化しない。 |
+| L11-063:229 個別反例 | `LABO-063-AC-03` | 以下L10定義の入力変異とoracleで照合する。CASE数・索引・列挙は意味の完全性を証明しない。 |
+| L11-063:230 未見、版変更、未完義務 | `LABO-063-AC-02/03` | cause/applicabilityが違えば同種と断定しない。旧成功を改版後へ流用せず、登録失敗、変更未完、運用後観測欠落を分けて保持する。 |
+| L11-063:231 知識・authorityの境界 | `LABO-063-AC-03` | LABO知識評価、OS登録/routing、対象ownerの採否/変更を区別し、memory正本化、未評価BRAIN一般化、頻度由来の権限生成を拒否する。 |
+
+#### LABO-063受入条件
+
+- **LABO-063-AC-01 — 正常評価と系譜保持**：許可された修復観測について、対象/target revision、問題・原因候補・適用条件、修復手順/結果、HARNESS検証、再発・反例、episodeをsourceへ結んで保持する。根拠のある同種反復と既決の閾値/母集団から予防candidateを評価し、LABO知識保持、OS Feedback登録/routing、target ownerの採否/変更、HARNESS検証、運用後観測/effect評価をそれぞれ既存主体のsource-bound状態として区別する。正常例は合成fixtureであり、実行やauthorityを生成しない。対応CASE: 01/05/07/10/67。
+- **LABO-063-AC-02 — 未見・unknown・未完保持**：原因/適用条件/target revisionまたは母集団/閾値がunknown、変更後の再評価や後続義務が未完の場合、既存の成功/頻度を補完せずunknown/openを保持する。過去の評価だけを理由に新規repair/OS assignmentを要求せず、未見eventを根拠なしに別scopeへ一般化しない。対応CASE: 02/12/27/40/59/68。
+- **LABO-063-AC-03 — 不成立・固定責務へ返却**：単独の欠落/stale/mismatch、重複、根拠不足、またはLABOが正本化・gate強制・authority/assignmentを生成する変異を拒否する。観測または対象版の不足は既存の観測提供主体へ、修復成功/再発防止根拠の不足はLABO評価へ、Feedback登録/routing不成立はOSへ、verification不足はHARNESSへ返す。変更後の運用観測が欠ける場合は循環を未完としてLABO評価に保持する。source/owner identityが特定できなければunknownを保ち、新ownerを作らない。対応CASE: 03a–d/04a–b/06/08/09/11–66/68。
+
 
 ### 旧source起点、保持と差分
 
