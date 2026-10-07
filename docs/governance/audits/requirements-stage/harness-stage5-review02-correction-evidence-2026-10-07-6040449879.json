@@ -1,0 +1,433 @@
+{
+  "record_type": "l3_l10_stage5_review02_repair_evidence",
+  "record_id": "harness-stage5-review02-correction-evidence-2026-10-07-6040449879",
+  "language": "ja",
+  "scope": "HELIX-HARNESS Stage5 review02修正作成側証拠。既存review/decision auditと固定親は不変。",
+  "status": "本文修正候補を起草、source pinと静的照合を実施。独立review、Opus/Fable再照合、L3承認は未実施。",
+  "authority_effect": "none",
+  "formal_review": {
+    "pr": 2655,
+    "comment_id": 6040449879,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2655#issuecomment-6040449879",
+    "reviewed_head": "9add9f9c229c7ee0599768c5112e2129dfa1542d",
+    "reviewed_base": "b86ad094ac2e127e22f0fc4c50531482d0fcfa7d",
+    "body_sha256_utf8": "fe82aa7f365093a5c49ce4acef78f8aa14ad7211b3265963ede20f62b73c83ce"
+  },
+  "worktree": {
+    "path": "/home/tenni/.helix-worktrees/l3-harness-stage5-repair",
+    "branch": "codex/l3-harness-stage5-repair",
+    "base": "5efdf02678baebdb4be14987f4f5ab7af85bf823",
+    "head_before_changes": "9add9f9c229c7ee0599768c5112e2129dfa1542d"
+  },
+  "fixed_source_pins": [
+    {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "full_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+      "spans": [
+        {
+          "start_line": 542,
+          "end_line": 542,
+          "sha256_raw_lf": "baabc3c98492c3492288eb1c38c238dece33cd540bfa6a889f8609dedebf08c7"
+        },
+        {
+          "start_line": 546,
+          "end_line": 554,
+          "sha256_raw_lf": "05ca46481dd17842c3edc44fdd317949e92247d461e90e9dce890dd142c92fbb"
+        },
+        {
+          "start_line": 779,
+          "end_line": 779,
+          "sha256_raw_lf": "68889f196d3efb40e35147e5851bfa9a346a888595875da7b033dcf37d961847"
+        },
+        {
+          "start_line": 787,
+          "end_line": 789,
+          "sha256_raw_lf": "816af6cef2a7c4346c88675e9c8490ee3cff03455a7e5d1ce60b148298bea0dd"
+        },
+        {
+          "start_line": 796,
+          "end_line": 796,
+          "sha256_raw_lf": "797b3b4e8cba605cbd2f2067c2a5b5fa4094779ffe2f69cae4a8058f5589d41e"
+        },
+        {
+          "start_line": 807,
+          "end_line": 808,
+          "sha256_raw_lf": "26445ad0119111c474a7d374b62a4851c114f7141204b89d77525f59da239969"
+        }
+      ]
+    },
+    {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "full_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+      "spans": [
+        {
+          "start_line": 29,
+          "end_line": 30,
+          "sha256_raw_lf": "3d9a35a4d5742cee18c68f2532283341bccc34badf5fdaad7ad5a019d2a8f14e"
+        },
+        {
+          "start_line": 69,
+          "end_line": 69,
+          "sha256_raw_lf": "aad56b960d70626909e82948fba0b82e6fbe2ffd7f68fb1bacff117f5b35b8a7"
+        },
+        {
+          "start_line": 129,
+          "end_line": 130,
+          "sha256_raw_lf": "686b811419ba911d7e8108c03772ecad08ece11381ed529d0bccc35d431325cf"
+        },
+        {
+          "start_line": 354,
+          "end_line": 354,
+          "sha256_raw_lf": "c50e9971321942a2ec72483d45fc21edf84b4557c116f3cc75b8f7d1203f6668"
+        },
+        {
+          "start_line": 709,
+          "end_line": 709,
+          "sha256_raw_lf": "bf0e84a3a5bba5d9e0a358ae808b3894393a1829f115b94515d8c8c59fd082c4"
+        },
+        {
+          "start_line": 733,
+          "end_line": 733,
+          "sha256_raw_lf": "6abf50f6f3542f16923f78ec40507731638e1d71c457f7e7f1a95a255f923fc3"
+        },
+        {
+          "start_line": 491,
+          "end_line": 491,
+          "sha256_raw_lf": "15bfc597a5033eedd8e46c2f088b1548b3ad21b71be52c0841e1817c2e486da0"
+        }
+      ]
+    },
+    {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "full_sha256": "421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa",
+      "spans": [
+        {
+          "start_line": 575,
+          "end_line": 584,
+          "sha256_raw_lf": "2a5c1cb842fa1f431d6a07a23506ef4304671b9b407b32527684ddfed987a2a0"
+        }
+      ]
+    }
+  ],
+  "legacy_source_pins": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/multimodal-design-harness-authority.md",
+      "full_sha256_raw_lf": "baf570f59ac838302f69a27b17a6febca78bf911278af21a9d2f4f9e87a1edd2",
+      "spans": [
+        {
+          "start_line": 21,
+          "end_line": 38,
+          "sha256_raw_lf": "6a5390257ca2f93f19a1c821d63d2f984a95bcff2fc0726b9499e71f8ed0b5f2"
+        },
+        {
+          "start_line": 71,
+          "end_line": 93,
+          "sha256_raw_lf": "d65c67d34aacb486e265cf1acecf837c5089c01bda603bc4063cea07ab13819c"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-D11F51092619506417E4",
+      "use_and_limit": "025の設計artifact／evidence・provenanceの近接歴史例として実読。Web/Mobile等のmodality固有契約、旧approval/canonical lifecycleを025やBRAIN connector契約へ移さず、直接旧要件とはしない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/multimodal-design-harness-authority-acceptance.md",
+      "full_sha256_raw_lf": "d83e8ce533f456a2f58d07164ec5d5ec540791277bd9209d2fa79987a1163951",
+      "spans": [
+        {
+          "start_line": 17,
+          "end_line": 40,
+          "sha256_raw_lf": "9148f60291908f77067f8a37a45e41a7a301eabbf8736d27a2d00be178d81e1f"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-7F09A40DDA5C1F26A28C",
+      "use_and_limit": "025のpair境界に近い歴史的受入例として実読。UI/design IR authorityのfixture/oracleと現行025の一般設計統合を同一視せず、旧testを実行しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "full_sha256_raw_lf": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "spans": [
+        {
+          "start_line": 59,
+          "end_line": 59,
+          "sha256_raw_lf": "8186024e25dbf09ba7b7288b8df88a69ffaa4a960a4bd15e059f44fe170879db"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B",
+      "use_and_limit": "037の旧FR-L1-28。Phase 1一般systemとPhase 2 agent昇華、合流、後続traceの意味を再利用し、旧workflow固有の実装を置換。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md",
+      "full_sha256_raw_lf": "e5b6964567242a2440ded28ed99c1783f37a9326624c02283c7a975c3020063b",
+      "spans": [
+        {
+          "start_line": 464,
+          "end_line": 464,
+          "sha256_raw_lf": "f1250ab44c078412cf875eefbb7f0a9104e7dd5326406d5eaa591d5834b55939"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-3B905BB196962E2BE624",
+      "use_and_limit": "037の旧screen trace row。UIを選択したscope内でのphase state表示の意味を保持し、全scopeで旧Trace UIを強制しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/technical-requirements.md",
+      "full_sha256_raw_lf": "3e105358418cb54af0bc2e414d0b06171715ab2a26ea3b44dd16f932bcbfef88",
+      "spans": [
+        {
+          "start_line": 169,
+          "end_line": 169,
+          "sha256_raw_lf": "484e1f0f52f6718fc5763a9c3e302590673166f0db6bfac2b69f077c8f2bad62"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-96CCD05C4CCA06F50D3D",
+      "use_and_limit": "037の旧I-4。旧drive/phase.yamlフィールドは現行契約へ移さず、旧合流状態の履歴として参照。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/migration/v2-import-ledger.md",
+      "full_sha256_raw_lf": "abf13d130476bf46450339bacd1517651a8a7ebf21d2c40be63c86b9e7aa1322",
+      "spans": [
+        {
+          "start_line": 216,
+          "end_line": 216,
+          "sha256_raw_lf": "ac9d37805776c484809b9e6e803690245e70aff4f25bbf806a6d28e7606926a8"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-6279F4C46313824541B1",
+      "use_and_limit": "A-74旧判断史。V/W区別、対象systemに限る二段設計、HARNESS自身の単一Vという過去判断を保つ。旧tool/CI実行結果は再利用しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "full_sha256_raw_lf": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "spans": [
+        {
+          "start_line": 128,
+          "end_line": 128,
+          "sha256_raw_lf": "90f2931c10b9a821c7bb4dfbca14e91ccf0b1812098db113d50ee289dc8efa03"
+        },
+        {
+          "start_line": 187,
+          "end_line": 187,
+          "sha256_raw_lf": "c8e2b4a177c3228e343e3c499a471fe75992778c29e2df63a3c4e0053860afbd"
+        },
+        {
+          "start_line": 203,
+          "end_line": 203,
+          "sha256_raw_lf": "59bb3695045ffdbf8ef55b145ce542cfaec9570d40b916512af4857005661a91"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "use_and_limit": "035の旧HIL-FR-38/HIL-NFR-07/23。source root・acceptance contribution・minimality/budget evidence・acyclic derivationの意味を再利用し、旧Scope Authority Gate/threshold/approval運用を移さない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "full_sha256_raw_lf": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "spans": [
+        {
+          "start_line": 39,
+          "end_line": 39,
+          "sha256_raw_lf": "937b2eacf7bcbd43aee17f301204050acbbfbd56768d8b8c8bd83a273722da64"
+        },
+        {
+          "start_line": 68,
+          "end_line": 68,
+          "sha256_raw_lf": "bb254e86e276a830a99f937ab4ca4a940880bc1287ecc6850212246c0e3c3751"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "use_and_limit": "035の旧HR-FR-HIL-05/HAC境界。authority root/evidence/acyclicityと承認状態の分離の歴史例として参照。旧gateを現L3へ持ち込まない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "full_sha256_raw_lf": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "spans": [
+        {
+          "start_line": 37,
+          "end_line": 37,
+          "sha256_raw_lf": "c752ed0797d3f10712e4b483ef46fa42698a3f1f4feacf69ce14212d5c638b82"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "use_and_limit": "035のHAT-HIL-05。Scope/Closure/authority graphの静的対として参照し、旧acceptanceを実行しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L9-infinity-loop-platform-system-test-design.md",
+      "full_sha256_raw_lf": "e518b0cfe15ca4b999bd85120b8d74941a18ab0939ff6cda3dc20a8b7611b705",
+      "spans": [
+        {
+          "start_line": 48,
+          "end_line": 48,
+          "sha256_raw_lf": "b40434529b50478c487fb56188086a535fe73b3ac2bd0549f2fb8593d6aeace8"
+        }
+      ],
+      "use_and_limit": "035のHST-HIL-021。cycle/minimality deficiencyの歴史的反例形を参照し、現CASEへ直接移植せず実行もしない。"
+    }
+  ],
+  "legacy_mapping": "025: 旧multimodal design-authority/L3 acceptanceは設計artifact・evidenceの近接比較例に限る。既存Stage5 source inventoryで現行025に直接対応する旧L3要件/paired consumerは特定されず、BRAIN connector ownerの根拠も旧sourceにはない。025の要求意味と今回のCOREのBRAIN connector契約owner区分は固定L2/L11およびHELIXBRAIN-L2-030から再導出し、実製品owner identityは創作しない。037: FR-L1-28、旧screen/technical rows、A-74から二段の意味と適用境界を保持し、drive/phase field/layer/runtimeの旧方式を置換。035: HIL-FR-38/NFR-07/23、HR/HAT/HSTからsource-root/evidence/minimality/acyclicityを再導出し、旧gate/承認運用を移植しない。",
+  "finding_dispositions": [
+    {
+      "id": "M1",
+      "status": "修正",
+      "response": "037 S5-059 oracle now checks the source binding and value equality for evidence and applicability limits, alongside output relations and authority field source equality. S5-060/061 missing-field negatives remain."
+    },
+    {
+      "id": "M2",
+      "status": "修正",
+      "response": "037 AC-06 and S5-059/063 identify L3 requirement approval explicitly as L3要件承認, distinct from L2要求合意. S5-063 remains an isolated mutation on the later revision L3 approval field."
+    },
+    {
+      "id": "M3",
+      "status": "修正",
+      "response": "025 AC-07 and S5-012 name the fixed L2-026:542 COREのBRAIN connector契約 and canonical HELIXBRAIN-L2-030 source; S5-012 changes only version while connector identity exists. The synthetic owner category identifies the BRAIN connector contract used by CORE; missing BRAIN connector identity remains separately in S5-002/014. No product owner identity is asserted."
+    },
+    {
+      "id": "Minor-1",
+      "status": "修正",
+      "response": "025 AC-04 enumerates requirement adoption, L2 agreement, and L3 requirement approval independently; S5-065 adds an isolated L2 agreement non-generation negative while existing S5-006 and S5-037 cover L3 approval and adoption."
+    },
+    {
+      "id": "Minor-2",
+      "status": "修正",
+      "response": "035 AC-10 is limited to execution permission and AC-11 to implementation permission; S5-045 and S5-046 remain separate cases."
+    },
+    {
+      "id": "Minor-3",
+      "status": "修正",
+      "response": "025 AC-07/08 and S5-012/013 explicitly retain the nonconforming classification when holding version unknown or out of range."
+    },
+    {
+      "id": "Minor-4",
+      "status": "修正",
+      "response": "025 S5-013 identifies the known L2-009 applicable-contract source-owner category. S5-063 removes only its concrete owner identity while preserving that category as known, keeping identity unknown when missing, and forbidding inference of another owner."
+    },
+    {
+      "id": "Minor-5",
+      "status": "修正",
+      "response": "025 AC-08/S5-013 cite fixed L2-037:787 for L2-009 source-owner responsibility and fixed L11-009 backflow/source owner evidence; owner identity remains unknown if not declared."
+    },
+    {
+      "id": "Minor-6",
+      "status": "修正",
+      "response": "025/033 AC references now use slash-separated AC IDs. Existing CASE IDs are preserved; source table and NFR ranges cover explicit groups 001–041, 062–063, and new 065. IDs 042–061 are not fabricated or renumbered because the formal review states the range table is consistent and those rows are absent from the target scope."
+    },
+    {
+      "id": "Minor-7",
+      "status": "修正",
+      "response": "Business requirement and business verification Stage5 scope text explicitly includes 025-S5-062/063/065 and 033-S5-043/044 as functional authority CASEs, not business CASEs."
+    },
+    {
+      "id": "Minor-8",
+      "status": "修正",
+      "response": "Fixed L11-035 locator in the functional verification source note corrected from line 492 to 491."
+    }
+  ],
+  "prior_records_immutable": [
+    {
+      "path": "docs/governance/audits/requirements-stage/harness-stage5-review01-supplement-2026-10-06.json",
+      "sha256": "af71c0492e89ea4a6bb9089e8b47b3917671c9633be313b51121841feeebcdcb"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/harness-stage5-review01-root-acceptance-2026-10-06.json",
+      "sha256": "79e733fb7fe07a3d2564f142255df7bc5265ff663cedcf46b62a9e09231c50fb"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/harness-stage5-review02-repair-evidence-2026-10-07.json",
+      "sha256": "13a40fca330d0782c1457d4fb212f2b81df91ac135dc03f38d5d50e983c3f1ba"
+    }
+  ],
+  "six_body_documents": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "sha256": "7afabd6eb8e21121138d2fed4dca51580b05001fabef36eaa0c0771418b23bc9"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "sha256": "5e6926e91f979e479f858cea42ac1b63e2dea80c98da0601ea31613517b90a59"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "sha256": "23c2e434cd1104ca0d63ef6e140662e9bb21a47f9537e7ba3a0532b43d4b2569"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "sha256": "293912299b8edb38ba04e2de7031a4f7d4d1bdd98d18139fd2ab77a6a2465646"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "sha256": "4f4dea7543ac7314fb9222f30bf1e2649a2f165c7e8e4b2167bbbfda8c5bb633"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "sha256": "d71dde1ae6707e2f614deb3633b291a762db47a5da1af60bc6644c91123e04f7"
+    }
+  ],
+  "static_verification": {
+    "git_diff_check": "clean",
+    "checks": [
+      "formal review comment body hash pinned",
+      "fixed L2/L11 and HELIXBRAIN source spans pinned at exact revision",
+      "legacy source anchors pinned for 025 adjacent design authority, 037 FR-L1-28/A-74 phase semantics, and 035 HIL scope authority; unrelated Refactor/HIL-FR-55 anchors are excluded",
+      "Stage5 025/033 AC references use slash separator",
+      "025 CASE ID set unique; S5-012/013 owner identity exact-match fixtures and 062/063 identity-only missing cases match",
+      "037 S5-059 source value equality and 060/061 independent missing fields present",
+      "037 AC-06/S5-063 distinguish L2 agreement from L3 requirements approval",
+      "025 S5-065 has one output agreement-field mutation with source not-agreed baseline",
+      "035 AC-10 execution / AC-11 implementation mapping and S5-045/046 separation",
+      "NFR and business-side scopes include new and previously omitted case IDs",
+      "all six body SHA-256 values recorded",
+      "prior audit hashes unchanged",
+      "025 invariant, AC-025-07 and CASE-025-S5-012 all identify the same fixed CORE-consumed BRAIN connector contract and distinguish CORE/Template dependencies",
+      "037 AC-06 limits independent output negatives to design approval, L3 requirement approval, implementation permission while explaining L2 agreement distinction",
+      "old source anchors re-read and pinned for 025 adjacent design authority, 037 FR-L1-28/A-74 phase semantics, 035 HIL scope authority; unrelated Refactor/HIL-FR-55 anchors excluded",
+      "fixed L11-035 locator 491 source line is pinned at exact revision"
+    ],
+    "fixtures_executed": false,
+    "tests_or_old_cli_ci_runtime_executed": false,
+    "old_source_reconciliation": "re-read and full/span pinned; unrelated Refactor and HIL-FR-55 sources are excluded, with no positive authority claim"
+  },
+  "limitations": [
+    "静的CASEは設計のみで実行していない。",
+    "作成側の検査は独立reviewではない。",
+    "Opus/Fable再照合およびL3承認は未実施。"
+  ],
+  "actions_not_performed": [
+    "commit",
+    "push",
+    "PR comment/post",
+    "Ready",
+    "merge",
+    "L3 approval",
+    "implementation permission",
+    "execution permission"
+  ],
+  "removed_unrelated_legacy_anchors": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+      "lines": [
+        574,
+        610
+      ],
+      "reason": "旧source実読でRefactor requirement sectionと確認。Stage5の025設計統合/037二段phase/035根拠authorityの対応sourceではないため除外。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L3-acceptance-test-design.md",
+      "lines": [
+        121,
+        126
+      ],
+      "reason": "旧source実読でRefactor acceptance casesと確認。Stage5の今回指摘に対応するsourceではないため除外。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "line": 145,
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "reason": "旧HIL-FR-55はHARNESS-L2-043のexample coverage向け。今回の025/035/037 review02 evidenceから除外。"
+    }
+  ],
+  "record_documents": [
+    {
+      "path": "docs/governance/audits/requirements-stage/harness-stage5-review02-correction-2026-10-07-6040449879.md",
+      "sha256_utf8": "ca5d01a0ee7379c77d80dd6282b0b8ef8585c6bc7a313051884e46de62ca16ea"
+    }
+  ]
+}
