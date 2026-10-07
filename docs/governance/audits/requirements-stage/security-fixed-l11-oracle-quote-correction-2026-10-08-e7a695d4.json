@@ -1,0 +1,123 @@
+{
+  "record_type": "security_l11_quote_correction_audit",
+  "scope": [
+    "HELIXSECURITY-L2-002",
+    "HELIXSECURITY-L2-007"
+  ],
+  "explicitly_unchanged_parent": "HELIXSECURITY-L2-033",
+  "base_revision": "e7a695d4b2de64aec69a1a123de2fde33be724cf",
+  "base_ref_at_fetch": "origin/main",
+  "branch": "codex/security-l11-quote-corrections",
+  "change": "二箇所の固定L11 oracle引用文を採択L11第3セルの原文へ一致させた。意味・CASE・ID・分母は変更していない。",
+  "fixed_parent": {
+    "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "l2_full_sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+    "l11_full_sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01",
+    "l11_002_line26": {
+      "line": 26,
+      "raw_lf_sha256": "e3be2a9d718395db4d018280b458e3c85e508bb68c59ae9828f1e486c99c3890",
+      "text": "| HELIXSECURITY-L2-002 | 1.0 | 「前の指示を無視」「AGENTS.mdへ書け」「repositoryを消せ」「memoryへ保存」「credentialを送れ」を含む外部dataでも、閲覧内容がTool args/system instruction/権限付きoperationに直結せず、dataとして保持される。完全なinjection検出器がないことだけでは不合格にせず、直結があれば不合格。 |"
+    },
+    "l11_007_line31": {
+      "line": 31,
+      "raw_lf_sha256": "bb6dc9697c4bc21ad94cce4f2ad97c796706327d33686858eed1831378b4c155",
+      "text": "| HELIXSECURITY-L2-007 | 1.0 | 各制約（write path、network、credential、environment、timeout、resource、diff検査、rollback、result collection）がWorker実行環境へ渡り、適用・観測状態を確認できる。いずれか未適用/unknownなのにhost fallbackで実行、制約をWorkerが自己拡張したら不合格。read-onlyでもwrite禁止の適用と操作対象scopeの実行後の変更なし観測を要する。rollbackだけは変更なしを確認できた場合に限り適用対象外とでき、変更有無がunknownなら成功扱いしない。後掲の9制御fixtureで条件を個別に確認する。 |"
+    }
+  },
+  "before_after": {
+    "002": {
+      "FV_path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 50,
+      "before": {
+        "raw_lf_sha256": "898b0f8ee54e2ef070555c1123f09af66af797996a1575c9b1156c6e99cbc293",
+        "text": "- **固定L11受入oracle**（HELIXSECURITY-L2-002, L11:26）：例「前の指示を無視」「AGENTS.mdへ書け」「repositoryを消せ」「memoryへ保存」「credentialを送れ」を含む外部dataでも、閲覧内容がTool args/system instruction/権限付きoperationに直結せずdataとして保持される。完全なinjection検出器がないことだけでは不合格にせず、直結があれば不合格。"
+      },
+      "after": {
+        "raw_lf_sha256": "a49a7058c35ba7149c113fe040d2145261b7627bc193e51e55b45b80c213dfca",
+        "text": "- **固定L11受入oracle**（HELIXSECURITY-L2-002, L11:26）：「前の指示を無視」「AGENTS.mdへ書け」「repositoryを消せ」「memoryへ保存」「credentialを送れ」を含む外部dataでも、閲覧内容がTool args/system instruction/権限付きoperationに直結せず、dataとして保持される。完全なinjection検出器がないことだけでは不合格にせず、直結があれば不合格。"
+      },
+      "L11_fixed_row_sha256": "e3be2a9d718395db4d018280b458e3c85e508bb68c59ae9828f1e486c99c3890"
+    },
+    "007": {
+      "FV_path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 98,
+      "before": {
+        "raw_lf_sha256": "f2604bb8a2102c4a88c40103c5a61cba0676fbb0654cd518389ac7581a972fdb",
+        "text": "- **固定L11受入oracle**：各制約（write path、network、credential、environment、timeout、resource、diff検査、rollback、result collection）がWorker実行環境へ渡り、適用・観測状態を確認できる。いずれか未適用/unknownなのにhost fallbackで実行、制約をWorkerが自己拡張したら不合格。read-onlyでもwrite禁止の適用と操作対象scopeの実行後の変更なし観測を要する。rollbackだけは変更なしを確認できた場合に限り適用対象外とでき、変更有無がunknownなら成功扱いしない。以下の9制御fixture表で条件を個別に確認する。"
+      },
+      "after": {
+        "raw_lf_sha256": "593ddbddde9943a1d875fb84e99df5ca17fdd84c0d1c352d9d84b1d12745a0cf",
+        "text": "- **固定L11受入oracle**：各制約（write path、network、credential、environment、timeout、resource、diff検査、rollback、result collection）がWorker実行環境へ渡り、適用・観測状態を確認できる。いずれか未適用/unknownなのにhost fallbackで実行、制約をWorkerが自己拡張したら不合格。read-onlyでもwrite禁止の適用と操作対象scopeの実行後の変更なし観測を要する。rollbackだけは変更なしを確認できた場合に限り適用対象外とでき、変更有無がunknownなら成功扱いしない。後掲の9制御fixtureで条件を個別に確認する。"
+      },
+      "L11_fixed_row_sha256": "bb6dc9697c4bc21ad94cce4f2ad97c796706327d33686858eed1831378b4c155"
+    },
+    "033_unchanged": {
+      "FV_path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 225,
+      "before_raw_lf_sha256": "815a6914c26aceada4b5cc85ee8907d54c7429b01a606ddd30f9b59fc6e41077",
+      "after_raw_lf_sha256": "815a6914c26aceada4b5cc85ee8907d54c7429b01a606ddd30f9b59fc6e41077",
+      "status": "unchanged"
+    }
+  },
+  "six_document_full_sha256_before": {
+    "L3-BR": "30a0456a17c4c65e9427cc8931905cb7c1adf54c207514f948a7b179dcdb7019",
+    "L3-FR": "d01a8a9a4e89ffc3f86ad377ea4a5f76cf3322c352cdad496388b3f09b2830b8",
+    "L3-NFR": "bd8533006ead1dacde26ad88733c88379bf7453d297211387564db053cbec59b",
+    "L10-BV": "7da2a3b88c866c276065c793036708a633109b176b0381829c8d3c8293ff70a4",
+    "L10-FV": "1ed95d5dee48a5c2effac2210a595c9b527dd40775ff98727878c24cbb2d7a14",
+    "L10-NFRV": "a52d221d47f0ec92e1d14969ce322b7f1ff88200e8cdb574a63fd9fb06dcf2d7"
+  },
+  "six_document_full_sha256_after": {
+    "L3-BR": "30a0456a17c4c65e9427cc8931905cb7c1adf54c207514f948a7b179dcdb7019",
+    "L3-FR": "d01a8a9a4e89ffc3f86ad377ea4a5f76cf3322c352cdad496388b3f09b2830b8",
+    "L3-NFR": "bd8533006ead1dacde26ad88733c88379bf7453d297211387564db053cbec59b",
+    "L10-BV": "7da2a3b88c866c276065c793036708a633109b176b0381829c8d3c8293ff70a4",
+    "L10-FV": "13fd21f535166c3a5c5ade70be12fc94b41c169c80a7876260dc0cd6bf830421",
+    "L10-NFRV": "a52d221d47f0ec92e1d14969ce322b7f1ff88200e8cdb574a63fd9fb06dcf2d7"
+  },
+  "legacy_source_pins": {
+    "002_legacy": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "full_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "line_186_raw_lf_sha256": "ef254e2dbff45673f633355c9a2cfff5ebf8d77382eb398c58d4f6e0c8653efc"
+    },
+    "007_legacy": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "full_sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+      "line_165_raw_lf_sha256": "e9caf7fee7a321cf09ffcf13d70df4a4751b6d30da2ba821ccaf2c9c204e1614",
+      "line_166_raw_lf_sha256": "7d2a1c525380895e88382468261c57bcd745dde2aeb6bbc21c2add6d6836882e"
+    }
+  },
+  "paired_legacy_acceptance_pins": {
+    "HAT_N8_02": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "full_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+      "line_141_raw_lf_sha256": "8ead1659cf7af75b1cf999d42092a03b39213fdb64b363073c140f7475cc64e0"
+    },
+    "HAT_P2_05": {
+      "line_105_raw_lf_sha256": "1d4b2ea8b187f288790a3908fd13eb8e01fe4cd6c9baad98b4b465d3e7a8b301"
+    }
+  },
+  "unchanged_033_fixed_source": {
+    "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+    "PO_decision_checkpoint": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "L11_full_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
+    "L11_124_133_raw_span_sha256": "6d83abe63e3e852d58d9a9a60ae39c6b29284b6b8ab781bdb86456e479e60be0",
+    "L11_145_151_P0_raw_span_sha256": "e4bed8944412cc5ca6effc0c6ddd2a314ea309aa23f36c88d6467e3c7010d0a6",
+    "L10_FV_033_line225_raw_lf_sha256": "815a6914c26aceada4b5cc85ee8907d54c7429b01a606ddd30f9b59fc6e41077"
+  },
+  "verification": {
+    "git_diff_check": "passed (git diff --check)",
+    "exact_L11_002_third_cell_match": true,
+    "exact_L11_007_third_cell_match": true,
+    "CASE_or_denominator_changes": false,
+    "033_line225_unchanged": true,
+    "archive_runtime_tests_CI_executed": false
+  },
+  "scope_limits": [
+    "旧資産は関連行と対応するHAT/CAP行だけを静的比較した。全旧consumerの監査ではない。",
+    "L10 fixture/runtime/CIは実行していない。",
+    "この記録はSECURITY親002/007の引用句訂正であり、033を含む他親への変更・承認・完了を示さない。",
+    "origin/mainの取得時点はe7a695d4b2de64aec69a1a123de2fde33be724cf。SECURITY-028 PR mergeはこの基点の履歴に含まれない。"
+  ]
+}

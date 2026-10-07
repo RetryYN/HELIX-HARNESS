@@ -1,0 +1,324 @@
+{
+  "schema": "os-stage2c-source-field-oracles-audit/v1",
+  "基準revision": "0d8fcb67ef64e17e0e3529715011d6140652f017",
+  "対象": "HELIXOS-L2-028/029 Stage 2cのみ",
+  "変更方針": "固定L2が要求する選択source bindingを既存要件範囲で個別negativeへ展開。owner・threshold・schema・gate・meaning・version targetを変更しない。",
+  "documents": {
+    "BR": {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "full_sha256_before": "cbe1866df47503b17e8a11b786dee8da58cd8a2a0a99778b64bd4a669b2fa702",
+      "full_sha256_after": "cbe1866df47503b17e8a11b786dee8da58cd8a2a0a99778b64bd4a669b2fa702",
+      "stage2c_span_lines_before": [
+        9,
+        12
+      ],
+      "stage2c_span_sha256_before": "6b9411dc461481e75d9e01869532740eb8c8f1feb137c99acaa8078998542d34",
+      "stage2c_span_lines_after": [
+        9,
+        12
+      ],
+      "stage2c_span_sha256_after": "6b9411dc461481e75d9e01869532740eb8c8f1feb137c99acaa8078998542d34",
+      "changed": false
+    },
+    "FR": {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "full_sha256_before": "c2a11a70ccc7ad5af41eae92b3c690869c6e7e35fc22d2019b9287c980901731",
+      "full_sha256_after": "bbce9cd4ddf12d181486c3cd9ca8166a8114b12dd79703b823028ba96d9b7c88",
+      "stage2c_span_lines_before": [
+        57,
+        81
+      ],
+      "stage2c_span_sha256_before": "f0bfde5e6bf9c02d52fec65119c9978d88c1fd64ec7032facaaa7e9b99e654fb",
+      "stage2c_span_lines_after": [
+        57,
+        81
+      ],
+      "stage2c_span_sha256_after": "acf8b8b788c71030459bd1734c891006a7aefe19c493372e53d683f1caca753b",
+      "changed": true
+    },
+    "NFR": {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "full_sha256_before": "c815ea15001b7148a8b3257c36c2fb8a18cb19c035d0ef14f953ab9e993acacd",
+      "full_sha256_after": "1adbf2c993afada579bf465b25ffc661be1c7e23a8049fbbeddf0757eea959aa",
+      "stage2c_span_lines_before": [
+        17,
+        38
+      ],
+      "stage2c_span_sha256_before": "09cb25d80c13a044b4b5dda62eb99b936b594ff6af366976cec277cbc613ffb4",
+      "stage2c_span_lines_after": [
+        17,
+        38
+      ],
+      "stage2c_span_sha256_after": "76d06c429e39c7a02662904ab12897e39b266603fd57266bdd1645084f8652d9",
+      "changed": true
+    },
+    "BV": {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "full_sha256_before": "f785e13aa9a1ef8494154f03e20d0582418916281c51a6b729d385d5b66ef051",
+      "full_sha256_after": "f785e13aa9a1ef8494154f03e20d0582418916281c51a6b729d385d5b66ef051",
+      "stage2c_span_lines_before": [
+        13,
+        16
+      ],
+      "stage2c_span_sha256_before": "69ce11731d49164fdfd03c388ae75062b241005c19ff4aac50a635119ab6ed10",
+      "stage2c_span_lines_after": [
+        13,
+        16
+      ],
+      "stage2c_span_sha256_after": "69ce11731d49164fdfd03c388ae75062b241005c19ff4aac50a635119ab6ed10",
+      "changed": false
+    },
+    "FV": {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "full_sha256_before": "784b314d8425a26551a37951f777531570f287c87aef326d6ef751b521ad1822",
+      "full_sha256_after": "18db9ef75dae92c613a3f9c2cb8666cf5ed75bf1ca550b351669218c4b2f039c",
+      "stage2c_span_lines_before": [
+        79,
+        226
+      ],
+      "stage2c_span_sha256_before": "79870b07c85ac1ec5a6a4f69dd92e26b044c5b64b43b28d67204fe7749759823",
+      "stage2c_span_lines_after": [
+        79,
+        242
+      ],
+      "stage2c_span_sha256_after": "07066dab23d47a711ab10c0750a4fd459dcd19b0e8c647e4f693dfa648900c85",
+      "changed": true
+    },
+    "NFRV": {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "full_sha256_before": "bd98bf3265c74d5ddddd879b4f87d4eaec9343bf63ee377950c63f32fb47e868",
+      "full_sha256_after": "8203e109d5dbd1c862f16ee54ba8f275c0802e7c003f84319b5e2e942aabc7e2",
+      "stage2c_span_lines_before": [
+        15,
+        30
+      ],
+      "stage2c_span_sha256_before": "defd590d05aa4acf5e14e92ee7333f0e8a1e726fbef6bd411470a574b6da70f8",
+      "stage2c_span_lines_after": [
+        15,
+        30
+      ],
+      "stage2c_span_sha256_after": "37af06bbfa997196c4a8514b264c834ee35eb141b2af29f3b9d913b5adb02dfb",
+      "changed": true
+    }
+  },
+  "stage2c_adoption_record": {
+    "path": "docs/governance/audits/requirements-stage/l3-l10-os-stage2c-publication-cutout-2026-10-05-f9b34ab56.json",
+    "revision": "0d8fcb67ef64e17e0e3529715011d6140652f017",
+    "sha256": "680f30f7bf2c15788516eae1ac6f65cc869eaecaa7ead66d241d0b5adffc02e1",
+    "adoption_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "registrations": {
+      "028": "MPR-RC-HELIXOS-L2-028-001",
+      "029": "MPR-RC-HELIXOS-L2-029-003"
+    }
+  },
+  "legacy_sources": [
+    {
+      "asset": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "full_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "use": "強いtest/oracle作成者から軽量実装、consult、review/fixへ回す旧cycleの根拠",
+      "spans": [
+        {
+          "lines": [
+            147,
+            147
+          ],
+          "sha256": "80e5e1458b29a3a528da1363136da617fc21bc6212b46074b871e2ef0d6964cf",
+          "bytes": 1118
+        },
+        {
+          "lines": [
+            224,
+            224
+          ],
+          "sha256": "727dd6e270f6f0fdf2c1ae597c70366bf4db298b4476a073c408c5b8e2bdbd47",
+          "bytes": 2710
+        }
+      ]
+    },
+    {
+      "asset": "LEGACY-ASSET-1D32912A9A194FEAA7DE",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/harness-agent-lifecycle.md",
+      "full_sha256": "894500dee389a2fab00961697bae4baa71427c5ffe1431bbc77592497b2b3fd7",
+      "use": "旧role/input/lifecycle範囲",
+      "spans": [
+        {
+          "lines": [
+            36,
+            45
+          ],
+          "sha256": "374e75c8769bff4d51c3d9a4650674b5c9c2ecab798e68c04e86d937095ac162",
+          "bytes": 1178
+        },
+        {
+          "lines": [
+            50,
+            65
+          ],
+          "sha256": "36ab53d268c255d0eb5a296626e2e17fc38e0b89a0d444774e82af69490ce032",
+          "bytes": 1685
+        },
+        {
+          "lines": [
+            100,
+            118
+          ],
+          "sha256": "0c5225a20a730574fe912dcec7e610750befa8671df37b8d9cfda3c5ca7b70ab",
+          "bytes": 546
+        }
+      ]
+    },
+    {
+      "asset": "LEGACY-ASSET-D4E9C31E6AE7D18CA11D",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/harness-agent-lifecycle.md",
+      "full_sha256": "7c3fbb7c6f0ea8dcbdb8cdb7e06143331455f48c59263f29f970ae5c79a9e275",
+      "use": "旧role/source/context contract",
+      "spans": [
+        {
+          "lines": [
+            72,
+            94
+          ],
+          "sha256": "43b9c7e38cf0f57ef0ebd587c50d03f0b196ee61b77c7f7095fa6d9cd3ba3979",
+          "bytes": 726
+        },
+        {
+          "lines": [
+            126,
+            136
+          ],
+          "sha256": "e076919a8d529f1d297b5416ce24d5c698e838909e18284763925b26de5458d6",
+          "bytes": 304
+        }
+      ]
+    },
+    {
+      "asset": "LEGACY-ASSET-15D88CCE539AA79ED788",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/worker-budget-lifecycle.md",
+      "full_sha256": "dc366afb9d17229d3d963b4323bb3dad98a39ea0df268847f930cd9385acc8a2",
+      "use": "旧worker budget lifecycle",
+      "spans": [
+        {
+          "lines": [
+            13,
+            28
+          ],
+          "sha256": "73bd3068c37274fe4e8e53d92d960667c21d84a8da6da0ff2a7c4a974aa0f416",
+          "bytes": 1985
+        }
+      ]
+    },
+    {
+      "asset": "LEGACY-ASSET-44DD86E3DEC09E65EF51",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "full_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+      "use": "旧 acceptance pairing reference。実行根拠ではない",
+      "spans": [
+        {
+          "lines": [
+            104,
+            104
+          ],
+          "sha256": "c2d5905826996429f528a247e4781d58609a6f753eb5776498dda78629f8eb49",
+          "bytes": 1587
+        }
+      ]
+    },
+    {
+      "path": "docs/governance/decisions/worker-support-derivation-2026-09-27.md",
+      "full_sha256": "433e3887f834f9c0c9054282c4c25b9caee59334c1121a15fb7dad86661b014d",
+      "use": "旧cycleの再利用、役割/境界の再導出、旧runtime/schema/CLI/testの置換判断"
+    }
+  ],
+  "case_additions": {
+    "028": [
+      "CASE-OS-028-03s",
+      "CASE-OS-028-03t",
+      "CASE-OS-028-03u",
+      "CASE-OS-028-03v"
+    ],
+    "029": [
+      "CASE-OS-029-08a",
+      "CASE-OS-029-08b",
+      "CASE-OS-029-08c",
+      "CASE-OS-029-08d",
+      "CASE-OS-029-08e"
+    ]
+  },
+  "verification": {
+    "fixtures_executed": false,
+    "legacy_runtime_cli_tests_ci_executed": false,
+    "static_checks_pending": false,
+    "014_changed": false,
+    "static_checks": [
+      "git diff --check",
+      "JSON parse",
+      "CASE ID uniqueness and trace references",
+      "six-document pin recomputation",
+      "014 scope unchanged",
+      "legacy source full/span pins"
+    ]
+  },
+  "fixed_parents": {
+    "028": {
+      "L2": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "full_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+        "span_lines": [
+          847,
+          862
+        ],
+        "span_sha256": "1b81d41d7aba1f2801978e81d39b132eac4d2b6818a332d484152bd23330e313",
+        "span_bytes": 5371
+      },
+      "L11": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "full_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+        "span_lines": [
+          457,
+          466
+        ],
+        "span_sha256": "4eb5b74e57c0d8441d5bb41fc3cba5f5cb31d58d780c31e0f735692a6e060b93",
+        "span_bytes": 3192
+      }
+    },
+    "029": {
+      "L2": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "full_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+        "span_lines": [
+          863,
+          877
+        ],
+        "span_sha256": "59a37b8d83fb269c12263089d937e696d0b9bfe8684d46822e267588802878f8",
+        "span_bytes": 6358
+      },
+      "L11": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "full_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+        "span_lines": [
+          468,
+          478
+        ],
+        "span_sha256": "921d184ab89892a7a257600e13e80290053dc49749e9f708909f27f2bd2f42ea",
+        "span_bytes": 5830
+      }
+    }
+  },
+  "previous_inventory_audit": {
+    "path": "/tmp/os-stage2b-014_stage2c-028-029-meaning-audit-e028e18.md",
+    "sha256": "769c34dbcccd5e1b910e33f0245e25d6974b579be9150c08d9d8aece65353de8",
+    "json_path": "/tmp/os-stage2b-014_stage2c-028-029-meaning-audit-e028e18.json",
+    "json_sha256": "dfb417dfd3a4814d4027932f23950bc9c4420964cc75bb0c3b519d8d70abcf66"
+  },
+  "source_disposition": {
+    "reuse": "旧cycleにあるtest/oracle作成者・軽量実装者・consult・review/fixの役割循環を保持。",
+    "rederive": "現行のOS/INTELLIGENCE/SECURITY等の責務、source selection、scope、permission、return ownerは固定L2/L11と現行sourceを基準に再導出。今回のCASEはsource fieldsの単独欠落を既存正常経路に対するnegativeとして展開。",
+    "replace": "旧runtime、schema、CLI、test IDは移植・実行しない。現行L3/L10文書のCASE/traceに置換。",
+    "scope_limit": "028/029だけ。014 synthetic permission・実作用許可の区別は変更なし。BR/BVは独立business outcomeを定義しない既存境界を維持。"
+  }
+}

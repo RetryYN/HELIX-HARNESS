@@ -1,0 +1,47 @@
+{
+  "authority_effect": "none",
+  "base": "d629e25254a7c1d505543a0ce6ca3183c3fc4d67",
+  "previous_review_head": "80f38b4d485edaebbb9b93ea34ef11974982040c",
+  "formal_comment_id": 6046616206,
+  "formal_body_raw": "## review02（HEAD 80f38b4d485edaebbb9b93ea34ef11974982040c / base e7a695d4b2de64aec69a1a123de2fde33be724cf）— Claude review_merge\n\n### 結論：Major 0。同じ本文revisionで、委任条件1（Opus）と条件2（Fable「承認してよい」）が成立\n- OpusとFableが、このrevisionを独立に読みました。どちらもMajorなしで、承認してよいと判断しました。\n- review01でMinorとしていたFableは、「L2-029:877経由でsource ownerを導ける」という読みを撤回しました。L2-029:876に限るというOpusの判断に同意しています。\n- 判断記録と6本文pinを追加した後に、条件3を別途照合します。\n\n### review01 M1の解消（固定 `f6dad2a` L2-029:876）\n- 戻し先は、次のとおり変わりました。いずれもL2-029:876の区分内です。\n  - 08a/08b/08d → INTELLIGENCE/OS\n  - 08c → INTELLIGENCE/OS（task scopeの不一致は元Worker/OS）\n  - 08e → SECURITY/OS\n- 08のlead文は「L2-029:876の既存カテゴリに従って」になりました。\n- FV・FRの029-08節とAC-OS-029-01節に、「source owner」は残っていません。\n- 監査の訂正\n  - 新しい追補（`os-stage2c-028-029-review01-correction-2026-10-08.md`）が、既存監査の「029にもsource ownerの戻し先がある」は誤りだったと明記しています。\n  - 旧監査は変更されていません。\n\n### Minor対応の確認\n- **03vの分割**：source/利用許可→source owner/SECURITY、実resource制約→INFRASTRUCTURE、ticket/scope/authority→OS。いずれもL2-028:852/860の範囲内です。\n- **03tにholdを追加**：L2-028:857「許可や版が不明なら当該支援を保留」の延長にあたります。\n- **選択有無のunknownを未選択として扱わない**：L2-028:854とL2-029:872の「unknownを成功へ丸めない」に沿っています。別に計数するだけで、thresholdは置いていません。\n- **FR-OS-029の段階別support method**：L2-029:874から同じ文を再導出したものです。\n- **NFR-028の分子の拡大**：明記されています。分母の定義は変えていません。\n- 新しいgate、owner、thresholdはありません。\n\n### 照合\n- **SHA**：次の値は、すべて実bytesと一致しました。\n  - 訂正JSONの6本文before/afterと、固定親のspan\n  - 旧P2-04\n  - 統合JSONの6本文HEAD pin\n  - review01 comment 2件（4,787 bytes、3,180 bytes）\n- **旧inventory監査**：`/tmp` にあった旧inventory監査は、同じbytesのままrepositoryに固定されています。\n- **049の保持**：PRの差分（`e7a695d..HEAD`）に049の行はなく、mainの049の変更は保持されています。\n- **静的検査**：`scfctl validate` 147/0、`stale=0`、`git diff --check` が通りました。\n\n### HEADの6本文（次の判断記録・pinで固定するbytes）\n| 本文 | bytes | SHA-256 |\n|---|---:|---|\n| BR | 20,354 | `cbe1866d…` |\n| FR | 202,922 | `5f55d057…` |\n| NFR | 34,610 | `6eecd0ab…` |\n| BV | 17,774 | `f785e13a…` |\n| FV | 247,659 | `c4a26ba8…` |\n| NFRV | 31,708 | `c4b71120…` |\n\n### 返さない所見（Minor。承認を止めず、解消済みとは扱いません）\n1. 03vの「ticket/scope/authority→OS」は、L2-028:860の「OS管理・SECURITY」と、同じFRのAC-OS-028-04の「OS/SECURITY」に比べて、表記が非対称です。860の部分集合なので、新しいgateではありません。次の追補で「OS/SECURITY」に揃えてください。\n2. 08eの「SECURITY/OS」は、L2-029:876の「authorityはSECURITY」にOSを加えています。OSはcompositeの状態を受領し、束縛し、追跡する者（L2-029:870）なので、新しいownerではありません。\n\n### 未確認範囲\n- fixtureは実行していません。\n- 旧P2-04本文の意味対応は、精読していません。\n\n本reviewは承認・merge admissionを生成しません。\n",
+  "formal_body_sha256": "1911b788cac6262d248bc6ec2d6f6010fe716cb40fe004f10a732b4927b4105e",
+  "six_body_pins": [
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "bytes": 20430,
+      "sha256": "60b43aab032c879b32f29566c482a4c0f984d7f4c522614befba02994895d5ab"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "bytes": 204016,
+      "sha256": "ed2ccc69859826dd4614cef100185ffc56b34f3d7fd6a3bfa61841b980fd7cab"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "bytes": 34890,
+      "sha256": "bfb74fec64374fd0638d014d0863ce3c7bf5c6c9b5d9397043f67cc8ac16efee"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "bytes": 17850,
+      "sha256": "254351ea2067e4bb19e50adee9c544d589a2b2adc589568addb30c59982d03e9"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "bytes": 248409,
+      "sha256": "a6173748c502eab649c7b1b0af54db62caa5dc8a4b8d6e1c78e8448bb83fdcdc"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "bytes": 32007,
+      "sha256": "96215f2af5aafdf62a5cb3d5ffa267adc294f4b6d64a63c229ce24005a082530"
+    }
+  ],
+  "change": "02803v ticket/scope/authorityを固定L2:860とACに合わせOS/SECURITYへ統一。最新main023保持。",
+  "limits": [
+    "新本文への旧review承認継承なし",
+    "fixture未実行",
+    "274親意味検収未完",
+    "旧P2-04意味対応独立精読未確認"
+  ]
+}

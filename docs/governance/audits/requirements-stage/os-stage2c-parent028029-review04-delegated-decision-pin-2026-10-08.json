@@ -1,0 +1,69 @@
+{
+  "record_type": "HDEC-OS-STAGE2C-PARENT028029-REVIEW04-2026-10-08",
+  "authority_effect": "none_pending_condition3_and_main_admission",
+  "scope": {
+    "mechanism": "HELIX-OS",
+    "stage": "2c",
+    "parents": [
+      "HELIXOS-L2-028",
+      "HELIXOS-L2-029"
+    ],
+    "version": "1.0"
+  },
+  "review": {
+    "formal_comment_id": 6046990637,
+    "formal_body_raw": "## review04（HEAD beb3090a6cb372491a706dea97eb66b83c17d510 / base a00711ee8a0817cf6553b8a671a0abee54ce6e73）— Claude review_merge\n\n### 結論：Major 0。最新mainを統合した新しい本文revisionで、委任条件1（Opus）と条件2（Fable「承認してよい」）が成立\n- main `a00711e`（親033 #2690）の統合で、6本文のbytesが変わりました。\n- review03の承認は継承していません。OpusとFableが、このrevisionを改めて独立に読みました。\n\n### 統合の照合\n- **手編集なし**\n  - `git merge-tree --write-tree a00711ee8 621102c98` の自動統合結果と、HEADの `docs/helix-os` には差分がありません。\n  - 追加されたのは、新しい統合監査（`os-stage2c-028029-review03-main033-integration-2026-10-08.{md,json}`）だけです。\n- **028/029の差分は前回承認と同一**\n  - 本PRの変更行（a00711e..HEAD）は、review03で承認した差分（d629e25..621102c98）と並べ替えて比較し、完全に一致しました（27行）。\n  - `621102c98..HEAD` で変わった7行は、すべて親033の行（main #2690由来）です。028/029に触れる行は0件です。\n- **承認内容の保持**\n  - 03s〜03v（FV:141–144、03vの戻し先はOS/SECURITY）と、08a〜08e（FV:163–168、戻し先は固定L2:876の区分）は保持されています。\n  - traceとNFR/NFRVの記述は、review03と同じ文です。\n  - 親023・033・049の行はmainと同一です。ID衝突もありません。\n- **監査**\n  - 新しい統合監査の6本文pinは、実bytesと一致しました。\n  - 旧監査は変わっていません。\n- **静的検査**：`scfctl validate` 147/0、`stale=0`、`git diff --check` が通りました。\n\n### HEADの6本文（次の判断記録・pinで固定するbytes）\n| 本文 | bytes | SHA-256 |\n|---|---:|---|\n| BR | 20,490 | `da524c17…` |\n| FR | 204,534 | `6c4f90e7…` |\n| NFR | 35,167 | `8e859fa1…` |\n| BV | 17,963 | `8d028efe…` |\n| FV | 248,927 | `6457d8d8…` |\n| NFRV | 32,426 | `9770e3c3…` |\n\n### 返さない所見\n- review02/03で返さなかったMinor（08eの「SECURITY/OS」、03s〜uの「…/OS」表記）は、前回と同じ文のままです。\n\n### 未確認範囲\n- fixtureは実行していません。\n\n本reviewは承認・merge admissionを生成しません。\n",
+    "formal_body_utf8_bytes": 2351,
+    "formal_body_sha256": "2b4a04af991ccd84ef3d2a0e5aecc59931f1a8422edc7b9f24f08febadc05aa4",
+    "reviewed_head": "beb3090a6cb372491a706dea97eb66b83c17d510",
+    "review_base": "a00711ee8a0817cf6553b8a671a0abee54ce6e73",
+    "condition1": "satisfied: Opus Major 0",
+    "condition2": "satisfied: Fable 承認してよい",
+    "condition3": "pending"
+  },
+  "six_body_pins": [
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "bytes": 20490,
+      "sha256": "da524c179c66fea54c3e967a949fe5d8a1dc89b2241e513def4fca50e3cadb01"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "bytes": 204534,
+      "sha256": "6c4f90e717f84da309a7aa07feac003f53ae27eca44817d2c3cd73c95bd41a48"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "bytes": 35167,
+      "sha256": "8e859fa1fdc8958b1f3df8c6174dbff57144cd304e44ee9a5493fe74a8ccdde1"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "bytes": 17963,
+      "sha256": "8d028efe0e14ecd1769c95a5bf1926ab6e04d6b53981f9a9826635f8dc5ae9ad"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "bytes": 248927,
+      "sha256": "6457d8d8a147ca5d20a4f49c2b6ebe312975c4acf2b82debdff18c41e58d6d4d"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "bytes": 32426,
+      "sha256": "9770e3c37def57f6b8bd0bc95186798de8113b257658829ae3dd19f7602c4124"
+    }
+  ],
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-os-stage2c-parent028029-review04-l3-l10-delegated-decision-2026-10-08.md",
+    "bytes": 2845,
+    "sha256": "19863826ee41434b4ab54a477718e2607820bdc4fc53b17c11dcdc6e8868f910"
+  },
+  "minor_not_returned": [
+    "02908eのSECURITY/OSと02803s–uの…/OS表記は受領/束縛を担う既存OS役割の追補として保持。新ownerを生成しない。",
+    "旧P2-04意味対応の独立精読は先行reviewで未確認。作成側のsource意味監査と独立review証拠を混同しない。fixture未実行。"
+  ],
+  "limits": [
+    "fixture未実行",
+    "274親検収未完"
+  ]
+}
