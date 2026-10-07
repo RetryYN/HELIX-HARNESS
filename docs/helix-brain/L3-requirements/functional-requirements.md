@@ -726,11 +726,13 @@ BRAIN→HARNESS-CORE query/receipt接続において、常時必須のconnection
 
 **依存・版・戻し先**：L2-007/008/009/011/012/020、必要な場合のみL2-INFRA-017、LABO/OS/BRAIN change contracts。source/evaluation不足はLABO、登録・進行はOS、BRAIN changeのindependent verificationはBRAIN change owner、知識意味は該当L1、製品固有意味はProduct Coreへ戻す。unknown/hold/rejectはaccepted/matureへ進めない。`version_target: 1.0`。
 
-- **BRAIN-025-AC-01 — 正常な状態別trace**：内部candidateから始まり、source/provenance/revision、LABO evaluationの対象scope/method/result/failure/counterexample/unassessed range、OS registration/routing、BRAIN change revisionのindependent verificationと結果、最後の採否を個別owner・identity・対象revision付きで示す。全前提が固定契約どおり揃う場合に限りadoption stateへ進み、意味を変えない技術差分にhuman approvalを追加しない。
+- **BRAIN-025-AC-01 — 正常な状態別trace**：内部candidateから始まり、source/provenance/revision、LABO evaluationの対象scope/method/result/failure/counterexample/unassessed range、OS registration/routing、BRAIN change revisionのindependent verificationと結果、最後の採否を個別owner・identity・対象revision付きで示す。全前提が固定契約どおり揃う場合に限りadoption stateへ進み、意味を変えない技術差分にhuman approvalを追加しない。 提供する未完義務・finding・反例の各receiptについて、入力sourceにあるidentity・内容・担当owner・対象revisionが出力でも一致する。これらの残余を消去して採否完了とはしない。
 - **BRAIN-025-AC-02 — 入力欠落・誤昇格**：source identity、provenance、candidate revision、LABO evaluation identity、evaluation scope、method、result、failure、counterexample、未評価範囲、OS registration/routing state、BRAIN change identity、BRAIN change revision、independent verification evidence、independent verification resultの各欠落を単独で与える。どれもsuccess/accepted/matureに丸めず、欠落fieldと担当ownerを示し、該当段階のまま保留する。AI生成のみ、単一成功のみ、LABO評価のみ、OS ticketのみ、文書存在のみからの昇格をそれぞれ独立に拒否する。
 - **BRAIN-025-AC-03 — 順序・revision・owner**：各receiptが存在していても、LABO評価より前に記録されたOS登録、OS振分けより前に記録されたBRAIN検証、independent verificationより前に記録されたadoptionは順序不成立として拒否する。receiptの存在は保持し、欠落/unknownへ読み替えない。評価対象とcandidate revisionの不一致、評価後にcandidate revisionだけが変化した状態、OS/LABO/BRAINのownerまたはstate取り違え、verification subject revision不一致をそれぞれ独立に拒否する。状態は推測で補わずunknownまたは保留を返し、誤ったownerへ書き戻さない。
-- **BRAIN-025-AC-04 — 正常なhold/rejectとmaturity適用条件**：根拠あるholdおよびrejectを正規終端状態として保持し、accepted/matureへ昇格させない。Infrastructure candidateでmaturityを扱うfixtureではL2-INFRA-017の状態/evidenceを対象revisionへ結ぶ。Infrastructureでない候補ではmaturity判定を不要とし、当該親の他の受入条件を満たす正常pathを認める。選択したmaturity state/evidence/revisionがunknownまたは不一致なら保留し、未選択candidateへ一律適用しない。
+- **BRAIN-025-AC-04 — 正常なhold/rejectとmaturity適用条件**：根拠あるholdおよびrejectを正規終端状態として保持し、accepted/matureへ昇格させない。Infrastructure candidateでmaturityを扱うfixtureではL2-INFRA-017の状態/evidenceを対象revisionへ結ぶ。Infrastructureでない候補ではmaturity判定を不要とし、当該親の他の受入条件を満たす正常pathを認める。選択したmaturity state/evidence/revisionがunknownまたは不一致なら保留し、未選択candidateへ一律適用しない。 maturity evidenceの不足・対象revision不一致はsource/evaluation不足としてLABOへ返す。L2-INFRA-017は参照契約であって返却ownerにはしない。
 - **BRAIN-025-AC-05 — 製品固有意味の分離**：製品要求/業務規則/製品判断がcandidateに含まれるときgeneric BRAIN knowledgeへ昇格せず該当Product Coreへ返す。generic meaningとproduct-specific remainderを区別できる候補は、固定L2の他条件に従って評価を続ける。
+
+- **BRAIN-025-AC-06 — 提供receiptの個別照合**：AC-01の他条件を保ち、findingおよび未完義務の各receiptについて、receipt欠落、内容改変、owner取り違え、対象revision不一致を一つずつ独立に与える。元sourceと出力の不一致を検出し、元の内容・owner・対象revisionを保持して当該receiptのsource ownerへ訂正を返す。元ownerが不明ならunknownのまま保留し、ownerを推定しない。receiptの存在だけで残余解消や採否完了を生成しない。
 
 
 | 親 | AC | 明示CASE trace |
@@ -742,3 +744,4 @@ BRAIN→HARNESS-CORE query/receipt接続において、常時必須のconnection
 | `HELIXBRAIN-L2-025` | `BRAIN-025-AC-03` | `L10-BRAIN-025-C07`, `L10-BRAIN-025-C08`, `L10-BRAIN-025-C09`, `L10-BRAIN-025-C23`, `L10-BRAIN-025-C24`, `L10-BRAIN-025-C25`, `L10-BRAIN-025-C26`, `L10-BRAIN-025-C34`, `L10-BRAIN-025-C37`–`L10-BRAIN-025-C45` |
 | `HELIXBRAIN-L2-025` | `BRAIN-025-AC-04` | `L10-BRAIN-025-C27`, `L10-BRAIN-025-C28`, `L10-BRAIN-025-C29`, `L10-BRAIN-025-C30`, `L10-BRAIN-025-C47`, `L10-BRAIN-025-C48`, `L10-BRAIN-025-C49` |
 | `HELIXBRAIN-L2-025` | `BRAIN-025-AC-05` | `L10-BRAIN-025-C31`, `L10-BRAIN-025-C32` |
+| `HELIXBRAIN-L2-025` | `BRAIN-025-AC-06` | `L10-BRAIN-025-C53`–`L10-BRAIN-025-C60` |
