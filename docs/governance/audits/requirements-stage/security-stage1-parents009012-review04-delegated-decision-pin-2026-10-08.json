@@ -1,0 +1,181 @@
+{
+  "record_type": "security_stage1_parents009012_review04_delegated_decision_pin",
+  "authority_effect": "none_pending_condition3_and_main_admission",
+  "scope": {
+    "mechanism": "HELIX-SECURITY",
+    "stage": "Stage 1",
+    "parents": [
+      "HELIXSECURITY-L2-009",
+      "HELIXSECURITY-L2-012"
+    ],
+    "version_target": "1.0",
+    "adopted_registrations": [
+      "MPR-RC-HELIXSECURITY-L2-009-002",
+      "MPR-RC-HELIXSECURITY-L2-012-001"
+    ],
+    "exclusions": [
+      "other 17 Stage 1 parents",
+      "parent033 separate decision",
+      "Stage 2c parent031",
+      "other stages/mechanisms",
+      "L10 execution/pass",
+      "implementation/release/issue close"
+    ]
+  },
+  "review": {
+    "formal_comment_id": 6044761871,
+    "formal_comment_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2676#issuecomment-6044761871",
+    "formal_body_raw": "## review04（HEAD 09dda5431bd92c23ea61a1a8adfe35547ecba655 / base 5857c0a396cb24a23d765e3079a18a2367b6d078）— Claude review_merge\n\n### 結論：Major 0。新しい本文revisionで、委任条件1（Opus）と条件2（Fable「承認してよい」）が成立\n- 6本文のbytesは、#2674のmerge（main `5857c0a`）を取り込んだことで変わりました。\n- このため、review02・03の承認は継承していません。OpusとFableが、この統合revisionを改めて独立に読みました。\n\n### 統合の機械的な照合\n- **手編集なし**：HEADのtree `74c75263…` は、`git merge-tree --write-tree 5857c0a39 5b64c34fb`（main＋条件3照合済みHEAD）の自動merge結果と同一です。\n- **差分は前回承認分と同じ**：`5857c0a..HEAD` の `docs/helix-security` 変更行は、review02の対象差分（`9229f59..cb66a4d49`）の変更行と完全に一致します。対象はFRの3 hunkとFVの2 hunkです。\n- **変更のない本文**：nfr-grade、nfr-verification、BR、BVはmainのままです。\n\n### 統合後の本文\n\n**親009/012（review02の承認内容と同じ）**\n- 固定L11の引用はFV:133がL11:33、FV:160がL11:36の原文と、文字列が完全に一致しました。\n- CASE-009-01 には、次の3点がそのまま入っています。\n  - 期待recipient集合とSUT列挙の照合\n  - trigger×recipientごとに未達と未観測を別々に置くnegative\n  - 別triggerの成功で代わりにしない、という扱い\n- Agent packageとAgent definitionの区別は、FVの未見正常例とFRの導出注記に置かれています。\n\n**親031（#2674の承認内容と同じ）**\n- 次の箇所は、#2674の承認差分どおり残っています。\n  - FR:3・9とFV:3のscope宣言\n  - FV:34の031行\n  - FV:338の「19 FR、19 AC、33 CASE、031は加算しない」\n  - CASE-031-02c/02d\n  - NFR/NFRVの分母\n- 実測の件数は、Stage 2c節より前のFRが19、ACが19、CASEが33（重複なし）でした。FV表は20行（19＋031）です。\n\n**相互作用**\n- 009/012の変更は、Stage 1節内のAC文、fixture文、対象の語だけです。IDの追加・削除、集計、scope宣言には触れていないため、矛盾はありません。\n\n**固定親の現行性**\n- HEADで、次の範囲が固定親のSHAと一致しました。staleではありません。\n  - L2:150–159、180–189\n  - L11:33、36\n- `633bf12` の範囲（L2-031、L11-031）も、`git diff 633bf12 HEAD` が空です。\n\n### 新しい6本文（次の判断記録・pinで固定するbytes）\n\n| 本文 | bytes | SHA-256 |\n|---|---:|---|\n| BR | 2,999 | `30a0456a…` |\n| FR | 137,065 | `d01a8a9a…` |\n| NFR | 18,198 | `bd853300…` |\n| BV | 2,356 | `7da2a3b8…` |\n| FV | 177,815 | `1ed95d5d…` |\n| NFRV | 13,684 | `a52d221d…` |\n\n### 静的検査\n- `scfctl validate` 147/0、`stale=0`、`govcheck` ok（atoms=7622）、`git diff --check` はすべて通りました。\n\n### 手続き\n- HEADにある既存の判断記録とpin（`reviewed_content_head: cb66a4d49`）は、以前の時点の記録です。新しい6本文とは一致しません。\n- 書き換えずに、`09dda5431` 用の判断記録と6本文pinを別commitで追加してください。その後、条件3を依頼してください。\n\n### 未確認範囲\n- fixtureは実行していません。\n- 旧CAP-001–007の本文は再読していません。\n- Stage 1の他17親とStage 3〜5節は対象外です。本PRと#2674のどちらでも変更されていません。\n\n本reviewは承認やmerge admissionを生成しません。\n",
+    "formal_body_utf8_bytes": 3607,
+    "formal_body_sha256": "2eba17496b97fdd6ba080d9381baa5fc85a7caf0c0153db1490523b729eb3ca1",
+    "reviewed_head": "09dda5431bd92c23ea61a1a8adfe35547ecba655",
+    "review_base": "5857c0a396cb24a23d765e3079a18a2367b6d078",
+    "condition1": "satisfied: Opus Major 0",
+    "condition2": "satisfied: Fable 承認してよい",
+    "condition3": "pending"
+  },
+  "fixed_parent_source": {
+    "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "sources": [
+      {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "full_bytes": 55544,
+        "full_sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+        "start_line": 150,
+        "end_line_inclusive": 159,
+        "span_bytes": 1450,
+        "span_sha256": "1e0f47fdc6cdce52f324d178b6c927b4519ab9412f51f7bfb1def0a33df9abca",
+        "line_ending": "raw bytes, LF inclusive"
+      },
+      {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "full_bytes": 20428,
+        "full_sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01",
+        "start_line": 33,
+        "end_line_inclusive": 33,
+        "span_bytes": 730,
+        "span_sha256": "749fcd644ce86f164a511fcef1381bbfd9aba301fccd6c6ce4d8f01e7fd7324e",
+        "line_ending": "raw bytes, LF inclusive"
+      },
+      {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "full_bytes": 55544,
+        "full_sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+        "start_line": 180,
+        "end_line_inclusive": 189,
+        "span_bytes": 989,
+        "span_sha256": "6d2afeee0c6f60a332265c1196c447f47b578e6e72700b8216d03d4e00f49a27",
+        "line_ending": "raw bytes, LF inclusive"
+      },
+      {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "full_bytes": 20428,
+        "full_sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01",
+        "start_line": 36,
+        "end_line_inclusive": 36,
+        "span_bytes": 299,
+        "span_sha256": "1663d911bb3c1800f17b00172f4e1ec8234cdc7605cb6d0dae2760bc3ed3c114",
+        "line_ending": "raw bytes, LF inclusive"
+      }
+    ]
+  },
+  "adoption_checkpoint": {
+    "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "closure_rows": [
+      {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/audits/requirements-stage/requirements-stage-closure-2026-10-03.md",
+        "line": 442,
+        "bytes": 476,
+        "sha256": "ab2349c8c35dba24add40ba55cebd2873645f534d9bbbccd08bf64dbbdff3f2a",
+        "raw": "| `HELIXSECURITY-L2-012` | `MPR-RC-HELIXSECURITY-L2-012-001` / 採択 | Supply Chain provenance | HELIX-SECURITY | 候補L2の適用範囲を参照。明示された配置・意味範囲はPO判断本文を保持。 `docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md` | `docs/helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-012` / `docs/helix-security/L11-acceptance/security-acceptance.md:36` (`HELIXSECURITY-L2-012`) |"
+      },
+      {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/audits/requirements-stage/requirements-stage-closure-2026-10-03.md",
+        "line": 460,
+        "bytes": 493,
+        "sha256": "b7e06c7f712364281268998687a4377b4ef0329379a4d37abc2df31f820aed5a",
+        "raw": "| `HELIXSECURITY-L2-009` | `MPR-RC-HELIXSECURITY-L2-009-002` / 採択 | revoke / quarantine伝播（構成体） | HELIX-SECURITY | 候補L2の適用範囲を参照。明示された配置・意味範囲はPO判断本文を保持。 `docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md` | `docs/helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-009` / `docs/helix-security/L11-acceptance/security-acceptance.md:33` (`HELIXSECURITY-L2-009`) |"
+      }
+    ],
+    "po_decision_rows": [
+      {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+        "line": 47,
+        "bytes": 209,
+        "sha256": "c1b7c98cc2bfebae86a60bdefc9890a37218d80bfa92e50ecbb3b164ce3057ea",
+        "raw": "| `HELIXSECURITY-L2-009` | `composite` | 1.0 | `MPR-RC-HELIXSECURITY-L2-009-001 → MPR-RC-HELIXSECURITY-L2-009-002` | `SECURITY-stage` | `registered_proposal` / authority_effect `none` / coverage `no_loss` |"
+      },
+      {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+        "line": 50,
+        "bytes": 173,
+        "sha256": "e2550180acfa2e7d9917908f35a6499f7187f100afe134acdb62bc66c6fc8af5",
+        "raw": "| `HELIXSECURITY-L2-012` | `unit` | 1.0 | `MPR-RC-HELIXSECURITY-L2-012-001` | `SECURITY-functional` | `registered_proposal` / authority_effect `none` / coverage `no_loss` |"
+      }
+    ],
+    "interpretation": "Adopted registration evidence at checkpoint 633; separate from fixed L2/L11 source revision f6dad."
+  },
+  "old_source_scope": {
+    "prior_audit": "docs/governance/audits/requirements-stage/security-stage1-parent009-trigger-matrix-012-scope-audit-2026-10-08.md",
+    "review01_correction": "docs/governance/audits/requirements-stage/security-stage1-009-012-review01-correction-2026-10-08.md",
+    "formal_limit": "CAP-001–007 text was not reread in review02; no broader old-source or consumer-read claim is made here."
+  },
+  "six_body_pins": [
+    {
+      "label": "L3-BR",
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "bytes": 2999,
+      "sha256": "30a0456a17c4c65e9427cc8931905cb7c1adf54c207514f948a7b179dcdb7019"
+    },
+    {
+      "label": "L3-FR",
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "bytes": 137065,
+      "sha256": "d01a8a9a4e89ffc3f86ad377ea4a5f76cf3322c352cdad496388b3f09b2830b8"
+    },
+    {
+      "label": "L3-NFR",
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "bytes": 18198,
+      "sha256": "bd8533006ead1dacde26ad88733c88379bf7453d297211387564db053cbec59b"
+    },
+    {
+      "label": "L10-BV",
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "bytes": 2356,
+      "sha256": "7da2a3b88c866c276065c793036708a633109b176b0381829c8d3c8293ff70a4"
+    },
+    {
+      "label": "L10-FV",
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "bytes": 177815,
+      "sha256": "1ed95d5dee48a5c2effac2210a595c9b527dd40775ff98727878c24cbb2d7a14"
+    },
+    {
+      "label": "L10-NFRV",
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "bytes": 13684,
+      "sha256": "a52d221d47f0ec92e1d14969ce322b7f1ff88200e8cdb574a63fd9fb06dcf2d7"
+    }
+  ],
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-security-stage1-parents009012-review04-l3-l10-delegated-decision-2026-10-08.md",
+    "bytes": 3710,
+    "sha256": "10ff5dc3f5496a195bb4ab4beaf50e0e4093d5e64260ef5e0d8acbad74f06faf"
+  },
+  "limitations": [
+    "CAP本文再読なし",
+    "fixture未実行",
+    "他17親・他Stage対象外",
+    "274親意味検収未完"
+  ],
+  "prior_decision": "review02は旧revisionの時点記録として保持。承認継承なし。"
+}

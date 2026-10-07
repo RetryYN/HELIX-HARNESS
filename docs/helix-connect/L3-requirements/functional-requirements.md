@@ -42,7 +42,7 @@
 
 **責務・依存とfailure時の戻し先（固定L2の保持）**：接続候補と両端ownerが宣言した契約。通信、再送、他接続を必須にしない。 戻し先: 欠落/衝突/unknownは登録を未成立にし、不足または矛盾した宣言を該当する接続元・consumer ownerへ戻す。
 
-**L3 acceptance (`CONNECT-AC-001-01`)**：登録identityと両端契約が一意に結び付き、不足・不明・同一接続identityの異なる宣言による重複・identity衝突は利用可能にならない。識別可能な別接続による端点共有は拒否しない。能力名、契約/成果物/依存版、scope、correlation ID、期限、冪等キー、result stateを含む完全descriptorを照合し、各必須値欠落・未登録revision・衝突をusableにせず、別identityや既定登録へのfallbackで補わない。登録から業務承認・SECURITY許可を生成しない
+**L3 acceptance (`CONNECT-AC-001-01`)**：登録identityと両端契約が一意に結び付き、不足・不明・同一接続identityの異なる宣言による重複・identity衝突は利用可能にならない。識別可能な別接続による端点共有は拒否しない。能力名、契約/成果物/依存版、scope、correlation ID、期限、冪等キー、result stateを含む完全descriptorを照合し、各必須値欠落・未登録revision・衝突をusableにせず、別identityや既定登録へのfallbackで補わない。source/consumerが適用対象として宣言したSECURITY許可・data-use・classification識別子は、値を変更せずdescriptorと登録receiptへ結ぶ。いずれかの適用識別子が欠落またはunknownなら登録をusableにせず、宣言元のsource/consumer ownerへ戻す。source/consumerがこの登録scopeに適用する識別子はないと明示した場合の正常登録も許し、識別子の有無から適用性を推測しない。登録から業務承認・SECURITY許可を生成せず、送信時の許可有効性を判定しない。
 
 **対応L11 acceptance**：`HELIXCONNECT-L11-001`。
 

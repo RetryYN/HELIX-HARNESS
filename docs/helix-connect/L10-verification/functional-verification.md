@@ -6,13 +6,13 @@
 
 各caseは下記の該当L3 AC IDを一つ以上明示して対応する。複数caseが一つのACを異なる正常・反例境界から検証する場合も、対応表とcase見出しで追跡できるようにする。共通FRの受入条件が個別ACを補う場合は、その規則と固定L11句（L11-001行44、L11-003行56）を対応表・当該caseから追跡する。検証入力は固定revisionの宣言/receipt/test fixtureから組み立て、外部送信や実環境副作用を要求しない。実行時はHARNESSがtest scope、証拠、依存version、停止/再開を扱い、OS/SECURITYがそれぞれのstate/authorityを保有する。未観測はpassでなくunknown。全体の合否を一つのtransport successに還元しない。
 
-各caseの正常fixtureはL3「固定親の入出力と共通束縛」の同じ親行を含む。入力・出力と適用識別子を一つずつ欠落・不一致にした反例を同case内で測り、別field・別接続・既定値で補わない。登録・参照操作は送信許可を生成せず、送信適格性照合を行う操作だけ既存許可とdata-use条件を照合する。
+各caseの正常fixtureはL3「固定親の入出力と共通束縛」の同じ親行を含む。親のCASE群で入力・出力と適用識別子の欠落・不一致を個別に測り、別field・別接続・既定値で補わない。登録・参照操作は送信許可を生成せず、送信適格性照合を行う操作だけ既存許可とdata-use条件を照合する。
 
 ## 親要件とL3/L10対応表
 
 | 固定L2 identity | L3 FR | L3 AC | L10 case | 版 |
 |---|---|---|---|---|
-| `HELIXCONNECT-L2-001` | `CONNECT-FR-001-01` | `CONNECT-AC-001-01` | `CONNECT-CASE-001-01` | 1.0 |
+| `HELIXCONNECT-L2-001` | `CONNECT-FR-001-01` | `CONNECT-AC-001-01` | `CONNECT-CASE-001-01`〜`CONNECT-CASE-001-08` | 1.0 |
 | `HELIXCONNECT-L2-002` | `CONNECT-FR-002-01` | `CONNECT-AC-002-01` | `CONNECT-CASE-002-01` | 1.0 |
 | `HELIXCONNECT-L2-003` | `CONNECT-FR-003-01` | `CONNECT-AC-003-01` | `CONNECT-CASE-003-01` | 1.0 |
 | `HELIXCONNECT-L2-004` | `CONNECT-FR-004-01` | `CONNECT-AC-004-01` | `CONNECT-CASE-004-01` | 1.0 |
@@ -22,7 +22,7 @@
 
 | 固定親 / L3 / AC / case | 入力 → 出力・保証 | 否定・境界oracle | 主担当 / 失敗時の戻し先 | 依存owner区分 | 版 |
 |---|---|---|---|---|---|
-| `HELIXCONNECT-L2-001` / `CONNECT-FR-001-01` / `CONNECT-AC-001-01` / `CONNECT-CASE-001-01` | endpoint/owner/direction/scope/contract・revisionを入力し、一意な登録identityを返す | 必須要素欠落、unknown、同一IDの矛盾宣言はusable不可。別IDのendpoint共有は許容 | CONNECTは登録結果。矛盾はsource/consumer endpoint ownerへ戻す | 業務意味=端点owner、authority=SECURITY、assignment=OS、fixture/証拠=HARNESS | 1.0 |
+| `HELIXCONNECT-L2-001` / `CONNECT-FR-001-01` / `CONNECT-AC-001-01` / `CONNECT-CASE-001-01`〜`CONNECT-CASE-001-08` | endpoint/owner/direction/scope/contract・revisionと、source/consumerが適用対象として宣言したSECURITY許可・data-use・classification識別子を入力し、一意な登録identityと識別子参照を返す | 各適用識別子のmissing/unknownは単独でusable不可。識別子なしと宣言されたregistration-only正常対照は拒否しない。別IDのendpoint共有は許容 | CONNECTは登録結果。欠落/unknown/矛盾した宣言は宣言元source/consumer endpoint ownerへ戻す。許可の有効性は送信時の既存owner判定へ残す | 契約=端点owner、許可/data-use/classification=既存source/SECURITY owner、assignment=OS、fixture/証拠=HARNESS | 1.0 |
 | `HELIXCONNECT-L2-002` / `CONNECT-FR-002-01` / `CONNECT-AC-002-01` / `CONNECT-CASE-002-01` | 現revision組・宣言互換範囲・read scope、送信時の既存許可を入力しcompatible/incompatible/unknown/staleと送信適格性を分離 | drift後のstale再照合なし、不一致/unknown、送信時の許可欠落でattempt 0 | 契約不一致は接続設計/契約owner、比較不能はunknown/stale記録・送信保留（固定L2に専用戻し先の明記なし）、読取りaccessは既存owner/authority、送信許可差はSECURITYへ返す | 契約=両端owner、authority=SECURITY、assignment=OS、測定証拠=HARNESS | 1.0 |
 | `HELIXCONNECT-L2-003` / `CONNECT-FR-003-01` / `CONNECT-AC-003-01` / `CONNECT-CASE-003-01` | connection/operation/contract revision/compatibility receiptに結ぶenvelopeを入力し、技術結果を返す | 未識別operation、contract外、revision違いを成功扱いしない | 契約差は両端owner、scopeはSECURITY、業務結果はreceiver business ownerへ返す | 契約=両端owner、authority=SECURITY、進行=OS、fixture=HARNESS | 1.0 |
 | `HELIXCONNECT-L2-004` / `CONNECT-FR-004-01` / `CONNECT-AC-004-01` / `CONNECT-CASE-004-01` | retryable technical failure、同一ID/digest/revision、既存契約上限を入力しattempt/receiptとunfinishedを返す | 異digest、上限超過、business failure再送、新revision混載を拒否。重複効果0 | operation ownerへ未完義務/試行数、業務結果はbusiness owner、expiryはSECURITYへ | retry契約=connection owner、authority=SECURITY、実行=OS/CONNECT、証拠=HARNESS | 1.0 |
@@ -33,10 +33,32 @@
 
 - **対象AC**: `CONNECT-AC-001-01`
 - **固定L11受入oracle**：登録identityと両端契約が一意に結び付き、不足・不明・同一接続identityの異なる宣言による重複・identity衝突は利用可能にならない。識別可能な別接続による端点共有は拒否しない
-- **正常fixture**: 各connection identityは端点/owner/方向/scope/意味契約identityとrevision/adapter・transport revision/互換範囲/状態へ一意に結び付く。endpoint共有は異なるconnection identityなら許す。重複宣言/identity衝突/端点または契約の欠落・unknownをusableにしない。登録は業務承認・通信権限ではない。
+- **正常fixture**: source/consumerの宣言により三つの識別子が適用される接続では、合成fixture値`fixture-security-permission-001`、`fixture-data-use-001`、`fixture-classification-001`をdescriptorと登録receiptへ値どおり結ぶ。これらは参照保持を試すopaque fixture IDであり、policy内容や許可有効性を表さない。各connection identityは端点/owner/方向/scope/意味契約identityとrevision/adapter・transport revision/互換範囲/状態へ一意に結び付く。endpoint共有は異なるconnection identityなら許す。重複宣言/identity衝突/端点または契約の欠落・unknownをusableにしない。登録は業務承認・通信権限ではない。
 - **negative/boundary oracle**：端点/意味契約欠落、unknown、同identityの異宣言、identity衝突を個別に与え、いずれもusableにならないこと。異なるidentityで端点を共有する正例は拒否しない。能力名、契約/成果物/依存版、scope、correlation ID、期限、冪等キー、result stateの各必須値欠落と未登録revisionを個別fixtureにし、usableや別identity/既定登録へのfallbackを拒否、業務承認/SECURITY許可を生成しない。未見の別接続descriptorも同契約で照合する。
 - **責務・失敗時の戻し先**：接続候補と両端ownerが宣言した契約。通信、再送、他接続を必須にしない。 failure時は、欠落/衝突/unknownは登録を未成立にし、不足または矛盾した宣言を該当する接続元・consumer ownerへ戻す。
 - **証拠**: fixture input、照合revision、event/receipt列、最終状態と未完owner。実通信payload自体は不要。
+
+### CONNECT-CASE-001-02 — `001` / 適用識別子なしの正常対照
+
+- **対象AC**: `CONNECT-AC-001-01`
+- **fixture**: source/consumerが登録-only scopeを宣言し、この登録ではSECURITY許可・data-use・classification識別子を適用しないと明示する。通信・送信operationは含めない。他の端点/owner/方向/scope/意味契約/adapter・transport revision/互換範囲は正常な`CONNECT-CASE-001-01`と同じ条件で保持する。
+- **期待**: 登録はusableとなり、適用識別子がないことだけで拒否しない。CONNECTは適用性を独自判定せず、送信許可や業務承認を生成しない。
+- **限界**: これはsource/consumer宣言を入力にするnormal controlであり、適用性を判定するfield/schemaや新しいgateを定めない。
+
+### CONNECT-CASE-001-03〜08 — `001` / 適用識別子の独立missing/unknown negative
+
+各fixtureは適用識別子ありの`CONNECT-CASE-001-01`から一つだけ変異させ、他の識別子、接続descriptor、宣言、source/consumer ownerを保つ。識別子自体の衝突は、`CONNECT-CASE-001-01`の同一接続identityに対する異宣言negativeで測る。`unknown`はここでは宣言された一つの識別子を入力sourceから解決できないfixtureを指し、SECURITY許可の有効性・有効期限・送信適格性をCONNECTが判定する意味ではない。
+
+| CASE | 単独変異 | 期待状態／戻し先 |
+|---|---|---|
+| `CONNECT-CASE-001-03` | 適用SECURITY許可識別子だけmissing | 登録をusableにせず、その識別子を宣言したsource/consumer ownerへ戻す |
+| `CONNECT-CASE-001-04` | 適用SECURITY許可識別子だけunknown | 登録をusableにせず、その識別子を宣言したsource/consumer ownerへ戻す。許可の有効性は判定しない |
+| `CONNECT-CASE-001-05` | 適用data-use識別子だけmissing | 登録をusableにせず、その識別子を宣言したsource/consumer ownerへ戻す |
+| `CONNECT-CASE-001-06` | 適用data-use識別子だけunknown | 登録をusableにせず、その識別子を宣言したsource/consumer ownerへ戻す |
+| `CONNECT-CASE-001-07` | 適用classification識別子だけmissing | 登録をusableにせず、その識別子を宣言したsource/consumer ownerへ戻す |
+| `CONNECT-CASE-001-08` | 適用classification識別子だけunknown | 登録をusableにせず、その識別子を宣言したsource/consumer ownerへ戻す |
+
+全caseで他の入力は正常のまま保ち、別identifier、既定値、別接続から補完しない。返却は登録入力の不足/解決不能に限り、permission validityやdata-use/classification policyの判定を新設しない。
 
 ### CONNECT-CASE-002-01 — `002` / 互換性/stale
 

@@ -1,0 +1,104 @@
+{
+  "record_type": "connect_stage1_parent001_review02_delegated_decision_pin",
+  "authority_effect": "none_pending_condition3_and_main_admission",
+  "scope": {
+    "mechanism": "HELIX-CONNECT",
+    "stage": "Stage 1",
+    "parents": [
+      "HELIXCONNECT-L2-001"
+    ],
+    "registration": "MPR-RC-HELIXCONNECT-L2-001-002",
+    "version": "1.0"
+  },
+  "review": {
+    "formal_comment_id": 6044844076,
+    "formal_comment_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2677#issuecomment-6044844076",
+    "formal_body_raw": "## review02（HEAD 617801a9e66fe6ff30bfddc8c1e72a3c43c2a722 / base 5857c0a396cb24a23d765e3079a18a2367b6d078）— Claude review_merge\n\n### 結論：Major 0。同じ本文revisionで、委任条件1（Opus）と条件2（Fable「承認してよい」）が成立\n- OpusとFableが、このrevisionを独立に読みました。どちらもMajorはなく、承認してよいと判断しました。\n- 判断記録と6本文pinを追加した後に、条件3を別に照合します。\n- 旧reviewの判断は継承していません。\n\n### review01の解消（固定 `f6dad2a` L2:56–65 / L11:42–44 で照合）\n- **M1は解消しました**\n  - FR表（FR:25）のL2-001の出力セルは、固定L2:63と逐語で一致しています。入力セルも、L2:62と一致しています。\n  - 識別子をdescriptorと登録receiptへ値どおり結ぶ条件は、表の外のAC-001-01（FR:45）に、L3の導出として残っています。\n- **m1は解消しました**\n  - FV:50に「識別子自体の衝突は、CASE-001-01の同一接続identityに対する異宣言negativeで測る」が追記されました。\n  - CASE-001-01のnegative（FV:36）は、次の固定親の条件に直接対応する既存の負例です。新しいoracleは作っていません。\n    - 固定L2:58「同一接続identityを異なる宣言で重複登録…利用可能にしない」\n    - 固定L11:44\n- **nitは追補で対応されています**：既存の監査は変更せず、追補で表現を訂正しています。\n\n### PR全体\n- **戻し先**：AC-001-01とCASE-001-03〜08の戻し先は、いずれもL2:65「欠落/衝突/unknown→登録を未成立にし、接続元・consumer ownerへ戻す」の範囲内です。送信時の許可の有効性は、L2-002に残しています。\n- **CASE-001-02（非適用の正常対照）**：source/consumerの明示宣言を入力にしています。適用性を推測せず、許可も生成しません。新しいgateもありません。\n- **IDの同期**：対応表、責務表、BVはいずれもCASE-001-01〜08で揃っています。\n- **#2674の取込み**：mainの取込みで `docs/helix-connect` は変わっていません。\n- **固定文書と変更のない本文**：固定L2全体 `31e3f234…`、L11全体 `bc0cf2f3…` は不変です。BR、NFR、NFRVもbaseのままです。\n- **SHAの照合**：次がすべて実bytesと一致しました。\n  - review01 comment本文：5,805 bytes、`765949c4…`\n  - 固定親のspan：L2 `895fae2d…`、L11 `437f822e…`\n  - 追補監査に記載の6本文SHA（修正前と修正後）\n- **静的検査**：`scfctl validate` 147/0、`stale=0`、`git diff --check` が通りました。\n\n### 新しい6本文（次の判断記録・pinで固定するbytes）\n| 本文 | bytes | SHA-256 |\n|---|---:|---|\n| BR | 2,305 | `3ff964c1…` |\n| FR | 52,841 | `b3e4a47c…` |\n| NFR | 9,340 | `8becd7af…` |\n| BV | 2,121 | `5d03d9c9…` |\n| FV | 103,995 | `75a384b3…` |\n| NFRV | 8,472 | `9efc5ddc…` |\n\n### 返さない所見（Minor。承認を止めず、解消済みとは扱いません）\n- FV責務表（FV:25）の「入力 → 出力・保証」列に、「一意な登録identityと識別子参照を返す」とあります。\n  - 行の見出しが「固定親 / L3 / AC / case」なので、固定親の出力として読まれるおそれがあります。\n  - この列はもともと要約欄で、ACからの導出として読めるので、意味の違反ではありません。\n  - 次に修正する機会に「（AC-001-01導出）」などの注記を付けると、M1と同じ種類の誤読を防げます。\n\n### 未確認範囲\n- FR表のL2-002〜005行は、本PRの差分の外なので逐語照合していません。\n- 旧asset（`c854d776…`、`3b3e8b72…`）のSHAは、今回は再計算していません。review01で照合した値と同じ表記です。\n- fixtureは実行していません。\n\n本reviewは承認やmerge admissionを生成しません。\n",
+    "formal_body_utf8_bytes": 4019,
+    "formal_body_sha256": "423ec055961da9cf6dccc2ace93c0001aec4c79c9ce9ff6f51ff941533a82f82",
+    "reviewed_head": "617801a9e66fe6ff30bfddc8c1e72a3c43c2a722",
+    "review_base": "5857c0a396cb24a23d765e3079a18a2367b6d078",
+    "condition1": "satisfied: Opus Major 0",
+    "condition2": "satisfied: Fable 承認してよい",
+    "condition3": "pending"
+  },
+  "fixed_parent_source": [
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "start_line": 56,
+      "end_line_inclusive": 65,
+      "full_sha256": "31e3f234172bb5a92b26d41db2de21534cd4301274fc7e2800b4f8a935ce598b",
+      "span_sha256": "895fae2d3c5cd5c725a31e6c16a6d7032e17da08f4e2e509fabb52f0cd85da18"
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "start_line": 42,
+      "end_line_inclusive": 44,
+      "full_sha256": "bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad",
+      "span_sha256": "437f822eee764595ff677ca31b6789e9d51179cfc6c6f1bb461eaaed54a0d056"
+    }
+  ],
+  "adoption_checkpoint": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+  "six_body_pins": [
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.md",
+      "bytes": 2305,
+      "sha256": "3ff964c1b762c9f67228214d62df5e208d0e0ab5bd4f2ffb57b26f8684ebd925"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "bytes": 52841,
+      "sha256": "b3e4a47c0f49978880fc9bae7697d9b67eeaf72a112f821fef167c230c9d2e4b"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "bytes": 9340,
+      "sha256": "8becd7af6701e3de40a300c617aa3eca2d0214a867a2685b8615efcf8b7582aa"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.md",
+      "bytes": 2121,
+      "sha256": "5d03d9c92b4b19cf291c3de6f96107b371f679b77bc9ae49183af7b2e97b8b5a"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "bytes": 103995,
+      "sha256": "75a384b335c0d7e1f816644f498982e903fb0c5003a5e266a6d1019cecad6dcc"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "bytes": 8472,
+      "sha256": "9efc5ddc902da565ad3d1295b2088ade1e7ab3427f1b4206ff3d4686a1197e48"
+    }
+  ],
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-connect-stage1-parent001-review02-l3-l10-delegated-decision-2026-10-08.md",
+    "bytes": 3505,
+    "sha256": "10f87e2287c2f1243cf65da1a611c5f77699e682073025369a7c46ccaaa1c916"
+  },
+  "minor_not_returned": "FV:25出力要約のAC導出注記候補。未解消、承認を止めない。",
+  "limits": [
+    "旧asset SHA再計算なし",
+    "FR親002–005逐語照合なし",
+    "fixture未実行",
+    "274親検収未完"
+  ],
+  "old_source": [
+    {
+      "asset_id": "LEGACY-ASSET-9B7682EBDEA171005D45",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/distribution-package-release-requirements.md",
+      "lines": "24-83",
+      "sha256": "c854d77696bba4904bc91c1d32b8f1bd714408480f16538b7eb7e77291104f1c",
+      "use": "adjacent distribution-profile identity structure only; not authority for current SECURITY/data-use/classification identifier semantics"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-6C9D2BE4E3C77D78F8EB",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/distribution-package-release-system-test-design.md",
+      "lines": "1-58",
+      "sha256": "3b3e8b72c51ac418ed58c9278cb07f683c37eaf723d6710d12c1ddfb34a811fc",
+      "use": "normal/negative/evidence mapping structure only"
+    }
+  ]
+}
