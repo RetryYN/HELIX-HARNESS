@@ -95,7 +95,7 @@ NFR候補は計測対象と比較値であり、POごとのparameter gateでは�
 | CASE ID | NFR trace | 観測・分母・未知の扱い |
 |---|---|---|
 | CASE-OS-L10-NFR-037-02 | NFR-OS-L3-037-01 | weekly drift route と cumulative debt route を別scope/ownerで測定し、観測済み対象期間数を分母、欠測をnot observedとして残す。成功候補・価値判定はOSが生成しない。 |
-| CASE-OS-L10-NFR-049-02 | NFR-OS-L3-049-01 | 既存config revisionが一定の各区間でconfigured capacity × 有効な経過時間を分母として別記し、設定変更が既存の観測時点で判別できる場合だけ区間ごとの分母を合算する。assignment/task count、unused capacity、unfinished lineageを独立集計する。時間0・欠測capacity・不明なrevision境界は算出不能でunknown/未評価とし、分母が有効でcount 0の場合のみ実測0とする。 |
+| CASE-OS-L10-NFR-049-02 | NFR-OS-L3-049-01 | 既存config revisionが一定の各区間でconfigured capacity × 有効な経過時間を分母として区間ごとに別記し、すべての区間境界が既存の観測時点で判別できる場合に限り区間分母の合算値も示す。assignment/task count、unused capacity、unfinished lineageを独立集計する。時間0・欠測capacity・不明なrevision境界は算出不能でunknown/未評価とし、分母が有効でcount 0の場合のみ実測0とする。 |
 | CASE-OS-L10-NFR-049-03 | NFR-OS-L3-049-01 | CASE-OS-L10-049-04の設定revision一定・観測時間既知の正常区間、CASE-OS-L10-049-08の記録済みrevision境界、CASE-OS-L10-049-09の観測時間unknownを別々に集計する。revisionをまたぐ区間を一つのcapacityで計算した値、unknownを0または成功率へ置換した値を誤計測として数える。 |
 | CASE-OS-L10-NFR-050-02 | NFR-OS-L3-050-01 | 同期間のtyped metricとeligible reviewer capacityを集計し、cause unknown/metric missing/lease staleは分母から除外せず未評価数として別表示。評価値だけでquality/merge stateを作らない。 |
 | CASE-OS-L10-NFR-051-02 | NFR-OS-L3-051-01 | scope/class/revisionごとの適格evidence件数を母集団にし、期限欠測・source stale・availability unknownを別状態で報告する。provider名は適格性の代理値にしない。 |
