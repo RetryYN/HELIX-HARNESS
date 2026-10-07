@@ -602,7 +602,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 - 変異: 基準入力。記載field/valueをそのまま提示し、他項目・共通scope・source revisionは固定。
 - 入力: model={id=model-sim,revision=model-r2}; worker={id=worker-sim,contract=worker-contract-sim@sim-r3}; binding={worker=worker-sim,resource=worker-host-sim}; source_revision=sim-r1
 - oracle: model/runtime/Worker identity、contract revision、resource bindingを別fieldで照合し、modelの存在でWorker実行を推定しない。
-- owner/戻し先: Worker契約の責務ownerは固定親で未特定=unknown。runtime/resource source owner=unknown。resource不足が別途ある場合に限り固定L2-025:294のresource ownerへ戻す
+- owner/戻し先: Worker共通実行契約の責務ownerはHELIX-OS（HELIXOS-L2-004:538、2026-09-26 PO判断）。具体contract identity/revision/sourceは個別状態として保持する。runtime/resource source ownerは固定親で特定されないためunknown。resource不足時だけ固定L2-025:294のresource ownerへ戻す
 - trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
 
 #### CASE-INFRA-011-S5-020 — 項目07 Model/Worker Runtime / missing
@@ -619,8 +619,8 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 - 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `model={id=model-sim,revision=model-r2}; worker={id=worker-sim,contract=worker-contract-sim@sim-r3}; binding={worker=worker-sim,resource=worker-host-sim}; source_revision=sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
 - 変異: worker.contract.revisionだけをsim-r2へ変更する
 - 入力: model={id=model-sim,revision=model-r2}; worker={id=worker-sim,contract=worker-contract-sim@sim-r3}; binding={worker=worker-sim,resource=worker-host-sim}; source_revision=sim-r1
-- oracle: current contractと照合できない状態を保持し、欠けたunit/connection ownerは固定親で未特定のためunknownとする。
-- owner/戻し先: 欠けたunit/connection ownerは固定親で未特定=unknown。runtime/resource source owner=unknown。resource不足が別途ある場合に限り固定L2-025:294のresource ownerへ戻す
+- oracle: current contractと照合できない状態を保持し、具体contract revisionのunknown/staleをOS契約ownerへ返す。
+- owner/戻し先: Worker共通実行契約の責務ownerはHELIX-OS（HELIXOS-L2-004:538、2026-09-26 PO判断）。具体contract identity/revision/sourceの不足・staleは同ownerへ返す。runtime/resource source ownerは固定親で特定されないためunknown。resource不足時だけ固定L2-025:294のresource ownerへ戻す
 - trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
 
 #### CASE-INFRA-011-S5-022 — 項目08 Capacity / 正常
@@ -845,7 +845,7 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 - 変異: 基準入力。記載field/valueをそのまま提示し、他項目・共通scope・source revisionは固定。
 - 入力: worker={id=worker-sim,contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01}; resource={id=worker-host-sim,revision=sim-r1}; mapping=worker-sim→worker-host-sim; authority_ref=security-authority-sim-01; work_ref=os-work-sim-01
 - oracle: Worker contract/assignment、resource mapping、SECURITY/OS referencesを別参照として記録し、resource availabilityだけでexecution成立を推定しない。
-- owner/戻し先: resource不足が別途ある場合に限り固定L2-025:294のresource ownerへ戻す。OS/SECURITY条件はそれぞれの既存owner。Worker契約の責務ownerは固定親で未特定=unknown
+- owner/戻し先: Worker共通実行契約の責務ownerはHELIX-OS（HELIXOS-L2-004:538、2026-09-26 PO判断）。具体contract identity/revision/sourceの不足・staleは同ownerへ返す。resource不足時は固定L2-025:294のresource ownerへ、OS/SECURITY条件は各既存ownerへ戻す
 - trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
 
 #### CASE-INFRA-011-S5-047 — 項目16 Worker execution / missing
@@ -853,8 +853,8 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 - 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `worker={id=worker-sim,contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01}; resource={id=worker-host-sim,revision=sim-r1}; mapping=worker-sim→worker-host-sim; authority_ref=security-authority-sim-01; work_ref=os-work-sim-01`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
 - 変異: worker.contractだけを空欄にする
 - 入力: worker={id=worker-sim,contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01}; resource={id=worker-host-sim,revision=sim-r1}; mapping=worker-sim→worker-host-sim; authority_ref=security-authority-sim-01; work_ref=os-work-sim-01
-- oracle: resourceの正常だけでWorker接続を成立させずWorker契約sourceの責務ownerは固定親で未特定のためunknownとして保留する。
-- owner/戻し先: Worker契約の責務ownerは固定親で未特定=unknown。別途resource不足がある場合に限り固定L2-025:294のresource ownerへ戻し、OS/SECURITY条件はそれぞれの既存owner
+- oracle: resourceの正常だけでWorker接続を成立させず、具体contract identityのmissingを保持してOS契約ownerへ返す。
+- owner/戻し先: Worker共通実行契約の責務ownerはHELIX-OS（HELIXOS-L2-004:538、2026-09-26 PO判断）。具体contract identityのmissingはOS契約ownerへ返す。resource不足時は固定L2-025:294のresource owner、SECURITY条件は既存ownerへ戻す
 - trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
 
 #### CASE-INFRA-011-S5-048 — 項目16 Worker execution / stale
@@ -862,8 +862,8 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 - 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `worker={id=worker-sim,contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01}; resource={id=worker-host-sim,revision=sim-r1}; mapping=worker-sim→worker-host-sim; authority_ref=security-authority-sim-01; work_ref=os-work-sim-01`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
 - 変異: worker.contract.revisionだけをsim-r2へ変更する
 - 入力: worker={id=worker-sim,contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01}; resource={id=worker-host-sim,revision=sim-r1}; mapping=worker-sim→worker-host-sim; authority_ref=security-authority-sim-01; work_ref=os-work-sim-01
-- oracle: stale contractをcurrentとして採用せずWorker契約sourceの責務ownerは固定親で未特定のためunknownとして保留する。
-- owner/戻し先: Worker契約の責務ownerは固定親で未特定=unknown。別途resource不足がある場合に限り固定L2-025:294のresource ownerへ戻し、OS/SECURITY条件はそれぞれの既存owner
+- oracle: stale contractをcurrentとして採用せず、具体contract revisionのstaleを保持してOS契約ownerへ返す。
+- owner/戻し先: Worker共通実行契約の責務ownerはHELIX-OS（HELIXOS-L2-004:538、2026-09-26 PO判断）。具体contract revisionのstaleは同ownerへ返す。resource不足時は固定L2-025:294のresource owner、OS/SECURITY条件は各既存ownerへ戻す
 - trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
 
 #### CASE-INFRA-011-S5-049 — 項目17 Bootstrap/Out-of-Band Recovery / 正常
@@ -1072,8 +1072,8 @@ CASE集合: 86件（unit 54、operation 5、recovery 9、connection/composite 9�
 - 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、変異前baseline `worker={id=worker-sim,contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01}; resource={id=worker-host-sim,revision=sim-r1}; mapping=worker-sim→worker-host-sim`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
 - 変異: worker.contractだけをmissingにする
 - 入力: worker={id=worker-sim,contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01}; resource={id=worker-host-sim,revision=sim-r1}; mapping=worker-sim→worker-host-sim
-- oracle: 資源対応の成功でWorker connectionを成立させずWorker契約の責務ownerは固定親で未特定=unknownとして保留する。
-- owner/戻し先: 欠けたunit/connection ownerは固定親で未特定=unknown
+- oracle: 資源対応の成功でWorker connectionを成立させず、具体contract identityのmissingを保持してOS契約ownerへ返す。
+- owner/戻し先: Worker共通実行契約の責務ownerはHELIX-OS（HELIXOS-L2-004:538、2026-09-26 PO判断）。具体contract identityのmissingはOS契約ownerへ返す。別の欠落ownerはsourceに示されない限りunknownのまま保持する
 - trace: `INFRA-011-AC-02`。合成fixtureの設計候補であり未実行。
 
 #### CASE-INFRA-011-S5-072 — 接続/合成 composite正常
