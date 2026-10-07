@@ -137,6 +137,12 @@ HARNESS-L2-041から独立business requirement、business owner、ROI/KPI/商業
 |---|---|---|
 | `HARNESS-L2-047` | 独立business requirementを導出しない | specialist必要性の測定とruntime-neutral契約生成は固定要求の機能責務であり、別の業務成果や固定team-sizeを追加しない。 |
 
+## Stage 3 親049の業務要件
+
+**採択済み固定親**：PO `po-decision-2026-09-30-live26.md:39,72`の登録`MPR-RC-HARNESS-L2-049-003`。source_repository_revision `ea6f756f96a7370de78e412d737c7a7ed472114a`、L2 `product-requirements.md:1070–1092` SHA-256 `a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116`、L11 `product-acceptance.md:802–814` SHA-256 `f3fb47da21371084e9f8c7c7f7ca6dd945c8e98ae7c7b70597c3fc44e4e08ee7`。旧318のL11および登録-002を親にしない。
+
+`HARNESS-L2-049`の採択意味は、入力されたrenderable prototypeの画面表示を選択scopeで計測し、機械検査の精度材料とprofile根拠の文言findingを返す範囲に限る。独立した事業価値、business owner、ROI、利用者受入KPI、release判断を追加しない。計測結果、profile上の文言finding、CASE数、fixture数、LABO精度評価は要求採択や事業受入を生成しない。
+
 ### HELIX-HARNESS L2-044 — 業務要件（Stage 3、version_target: 1.0、起草候補）
 
 起草候補。Stage 3、`version_target: 1.0`。POがHARNESS-L2-044に条件付き採択したB route / Design Contract Portfolioを対象とする。この候補はL3承認・実装・実行・個別部品配置・設計成立を表さない。
