@@ -1,0 +1,182 @@
+{
+  "record_type": "immutable_repair_evidence_snapshot",
+  "record_date": "2026-10-08",
+  "base_main": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+  "worktree_branch": "codex/os-stage5-025-multiproject-repair",
+  "scope": {
+    "mechanism": "HELIX-OS",
+    "stage": "Stage 5",
+    "fixed_parent": "HELIXOS-L2-025",
+    "l10_pair": "HELIXOS-L11-025"
+  },
+  "authority_distinction": {
+    "requirements_checkpoint": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "fixed_parent_adoption_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "current_edit_base": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+    "l3_approval": "not_created",
+    "l10_execution": "not_performed"
+  },
+  "fixed_parent_pins": [
+    {
+      "label": "L2-025",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "full_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "start_line": 742,
+      "end_line_exclusive": 752,
+      "section_sha256_lf_inclusive": "b7166f6399db9a0f1d3a9db76977ec4ec0f1e7f708503ccc42beea0ec97121e1",
+      "section_text": "### HELIXOS-L2-025 HELIX-OS統合運転（構成体候補）\n\n- **親L1**：HELIXOS-L1-001〜010。L1-011/012の移管済み研究・横断診断をOS機能として含めない。\n- **入力**：採用済み対象revision、選択されたHARNESS構成版、L2-015〜024の各identity/revision/state/evidence、既存人間判断と停止条件。\n- **提供**：HELIX自身と性質の異なる複数projectについて、要求形成・authorityからticket、Worker、検収、提供/運用、LABO評価、OS還流までを説明・統制する構成体の状態。\n- **保証**：単体・connection・compositeは別identity。1.0全体の確認ではHARNESSの7製品それぞれの単体成立、選択構成のconnection、構成体固有の端から端の受入を個別に確認する。各種未完・unknown・stale・未許可・人判断待ちを隠さず、2.0/3.0/4.0/5.0の能力を1.0条件の前提にしない。\n- **単独成立の依存**：L2-015〜024の該当revision、Conceptと対象別L1/L2、HARNESS/周辺機構の必要な接続契約、許可された資源。version_target: 1.0の全体到達確認に限る。個別の初期配布や単体成立は全7製品の完成待ちを要さない。\n- **失敗時の戻し先／未完義務**：端から端のtraceやconnectionが欠ける場合、欠けたsource/unit/connectionへ返し、未完の受入義務を保持する。構成体の状態をunit単独成功で上書きしない。\n- **束ねる既存条件**：HELIXOS-L2-001〜011／014のうち統合固有条件。HELIXOS-L2-012/013は対象外でありLABO移管状態を維持する。\n"
+    },
+    {
+      "label": "L11-025",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "full_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "start_line": 394,
+      "end_line_exclusive": 401,
+      "section_sha256_lf_inclusive": "d21d7708fe09cbee17d37ad66444d99631f16e2c8198924da9b608a1117eda18",
+      "section_text": "### HELIXOS-L2-025 HELIX-OS統合運転の受入\n\n- **入力・版**：採用済み対象revision、HARNESS構成版、L2-015〜024の該当identity/state/evidence、既存人間判断、停止条件を使う（1.0。後続2.0/3.0/4.0/5.0は前提にしない）。\n- **成功条件**：HELIX自身と性質の異なる複数projectで、要求authorityからticket/Worker/検収/提供・運用/LABO評価/OS還流までのtraceを確認する。各unit・connection・composite固有条件を分けて評価する。1.0全体判定ではHARNESS 7製品の各単体成立、選択構成の接続、構成体の端から端の受入を確認する。\n- **反例**：文書・機構の存在や単体passだけで全体を完成扱いする。unknown/stale/未許可/人判断待ちを隠す。7製品全体完成を個別の初期配布の前提にする。後続版能力を1.0の成功条件にする。HELIX-OSを外販製品と扱う。\n- **失敗時・未完義務**：欠けたunit/connection/sourceへ戻し、構成体未完を維持する。未決authorityと残る義務を後続受入へ引き継ぐ。L1-011/012のLABO移管をOSへ戻さない。\n"
+    }
+  ],
+  "po_decision": {
+    "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+    "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+    "full_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+    "locator": "lines 27, 48: fixed f6dad bytes and 025 inclusion"
+  },
+  "legacy_source": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+    "revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+    "full_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+    "l3_pair_format_span": {
+      "start_line": 148,
+      "end_line_exclusive": 170,
+      "sha256_lf_inclusive": "b1875f9b1ba51be0d5f7509993c521b6db7ab4990612dbaf6f69111475c6fb52"
+    },
+    "disposition": "L3 three-subdocument and L10 pair structure reused as form; old specific OS multi-project integration semantic source was not identified in limited phrase search; current semantic obligation re-derived from fixed L2/L11."
+  },
+  "limited_legacy_search": {
+    "scoped_paths": [
+      "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/",
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L10-",
+      "archive/legacy-generation-2026-09-14/root/docs/process/"
+    ],
+    "phrases": [
+      "統合運転",
+      "統合運転構成体",
+      "HELIX-OS統合"
+    ],
+    "result": "No matches in the scoped files searched for the three phrases. This is not a claim that no related legacy requirement exists."
+  },
+  "seed_semantic_audit": {
+    "path": "/tmp/os-stage5-parents-025-026-031-047-semantic-audit-2026-10-08.md",
+    "sha256": "c54df0ab4ed15f6f25249d479a3867ba6b8d380b1f6f848e27f1b83a619d0ecc",
+    "use": "starting point for re-reading; not authority or approval"
+  },
+  "repair": {
+    "finding": "Existing normal examples lacked one fixture containing HELIX plus multiple unlike projects with all seven trace values/source refs aligned. Existing single-stage negatives varied HELIX only, permitting a false success if project B lacked one stage while other project traces remained complete.",
+    "change": "Add one multi-project normal fixture (CASE-050), then seven isolated project B stage-missing fixtures (CASE-051..057). Preserve all other project/stage values; return missing source/unit to existing owner and retain unfinished duties. Synchronize L3 AC, L10 mapping, business/NFR ranges and denominator.",
+    "meaning_scope_owner_version_changed": false,
+    "new_gate_or_threshold": false,
+    "owner": "existing source/unit owner per fixed L2/L11; no owner added"
+  },
+  "fixture_inventory": {
+    "before_definition_count": 42,
+    "after_definition_count": 50,
+    "new_case_ids": [
+      "CASE-OS-L10-025-050",
+      "CASE-OS-L10-025-051",
+      "CASE-OS-L10-025-052",
+      "CASE-OS-L10-025-053",
+      "CASE-OS-L10-025-054",
+      "CASE-OS-L10-025-055",
+      "CASE-OS-L10-025-056",
+      "CASE-OS-L10-025-057"
+    ],
+    "new_case_count": 8,
+    "aliases_added": 0,
+    "runtime_executed": false,
+    "case_rows_found": 50,
+    "unique_case_ids": 50,
+    "nfr_definition_count_text": "50 definitions; not executions"
+  },
+  "documents": [
+    {
+      "label": "L3-BR",
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "before_full_sha256": "cbe1866df47503b17e8a11b786dee8da58cd8a2a0a99778b64bd4a669b2fa702",
+      "after_full_sha256": "1e499ff0f6cd559fbff69639cd724cf50e66e9126f8e54eedc779a7410ad5ca9",
+      "stage5_suffix_start_line": 93,
+      "stage5_suffix_sha256": "54abdd4505d84e119ec3a66d90c85dc00f136b4f204371039fe771391f961bde",
+      "after_bytes": 20394,
+      "before_stage5_suffix_sha256": "cab859b912e9a2b6a122322d879a55e0522ee4eb751c15ec335a6a5b356cce55"
+    },
+    {
+      "label": "L3-FR",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "before_full_sha256": "c2a11a70ccc7ad5af41eae92b3c690869c6e7e35fc22d2019b9287c980901731",
+      "after_full_sha256": "6a64f55a156a40aa91c5804e27b882d61def85814e5bfea5b7a2c3c5da25aebf",
+      "stage5_suffix_start_line": 538,
+      "stage5_suffix_sha256": "204995cb08db7074397d9587a1cb3592643b0b19968309c16c429b5cbd8cd315",
+      "after_bytes": 202300,
+      "before_stage5_suffix_sha256": "3114cf1855a7b13f3b8ff2ccb09f503ab0c0509ae51c8d50a743d4f8ce1c9ea3"
+    },
+    {
+      "label": "L3-NFR",
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "before_full_sha256": "c815ea15001b7148a8b3257c36c2fb8a18cb19c035d0ef14f953ab9e993acacd",
+      "after_full_sha256": "4977afcac4043c7913be6291268ffb7a46b66d03ecef4e637488ab4ec5a346af",
+      "stage5_suffix_start_line": 117,
+      "stage5_suffix_sha256": "e956885abd40abfc89e15d4ea19b746d7006d5845105722c271d31e8c37b4c1c",
+      "after_bytes": 33546,
+      "before_stage5_suffix_sha256": "0cb416b0ed18cbb80f1a46786932e2ab56b59f46e86279727c22a784eb93607c"
+    },
+    {
+      "label": "L10-BV",
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "before_full_sha256": "f785e13aa9a1ef8494154f03e20d0582418916281c51a6b729d385d5b66ef051",
+      "after_full_sha256": "bd136ea821f4619f89d93f5c460c80a046bad718b562340360301f715a7cdd16",
+      "stage5_suffix_start_line": 82,
+      "stage5_suffix_sha256": "acfe8deb93ae83afad4445a17607b055f948055fa51c3bce736a029b738c72ea",
+      "after_bytes": 17872,
+      "before_stage5_suffix_sha256": "5ce544b45f4d70befc8af820dfe61ad60cd9e4909703474055c09bc6d3086885"
+    },
+    {
+      "label": "L10-FV",
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "before_full_sha256": "784b314d8425a26551a37951f777531570f287c87aef326d6ef751b521ad1822",
+      "after_full_sha256": "a5261b342714b6a3ec64fee64273c40f7f31d097c4b0b226ff732c3eece3f075",
+      "stage5_suffix_start_line": 1007,
+      "stage5_suffix_sha256": "6b1c03cb3055157bd3494e27504edd2fa2a8e5d132707414f2185e78e101b0b5",
+      "after_bytes": 247877,
+      "before_stage5_suffix_sha256": "ca8e47306a682454d6d023835c5bced88a376caff652580e012a6a4d7d190b57"
+    },
+    {
+      "label": "L10-NFV",
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "before_full_sha256": "bd98bf3265c74d5ddddd879b4f87d4eaec9343bf63ee377950c63f32fb47e868",
+      "after_full_sha256": "0bf4c5d38a5b46888441a1f6f337413852df930dbac18c53814f9dc398a94aae",
+      "stage5_suffix_start_line": 125,
+      "stage5_suffix_sha256": "f078321e15fd0e5aec125a03bfb4dc0b9635ab232ccc234f62cbfb0687b68e1d",
+      "after_bytes": 30203,
+      "before_stage5_suffix_sha256": "bebc13f7a9e79e9f70af3e698c6b60d7730ec435216ee3ec125ceff6b8751ae3"
+    }
+  ],
+  "validation": {
+    "git_diff_check": "passed after all requirement and audit files were added to the index",
+    "cross_document_static_check": "passed: 50 unique functional CASE definitions; CASE-050..057 each appear once; seven single-stage project-B omissions retain other traces and return to existing source/unit owner; L3/L10 AC and business/NFR ranges agree; all six current full/suffix and pre-edit suffix hashes recomputed; fixed L2/L11 section pins recomputed",
+    "old_runtime_tests_ci": "not run",
+    "static_facts": [
+      "CASE-050 is one normal three-trace fixture with fixture IDs and revision/scope/source references.",
+      "CASE-051..057 each omit a different single stage on project:data-migration@r8 while other records/projects remain normal.",
+      "All seven new cases map to AC-025-03; CASE-050 maps to AC-025-01.",
+      "business/NFR references extend to 057; the stated denominator is 50 definitions, not execution count."
+    ]
+  },
+  "limitations": [
+    "Only parent 025 and its Stage 5 paired L3/L10 material were changed.",
+    "No CASE was executed and no runtime, old test, CI, PO post-confirmation, implementation, or release was performed.",
+    "Other OS parents/stages/consumers not covered by this repair remain outside scope."
+  ]
+}

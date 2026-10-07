@@ -135,7 +135,7 @@ NFR集約CASEはFVの個別functional CASEだけを集計する。fixture数は�
 
 | NFR候補 | 補正後のAC | 個別fixture範囲 | 観測内容と限界 |
 |---|---|---|---|
-| `NFR-OS-L3-025-01` | AC-025-01〜03 | CASE-025-01〜21, 022〜039, 047〜049。022〜032は既存補正CASE、033〜039は各trace stageの単独欠落、047〜049は配布gate/全体normal/1製品欠落。 | HELIX＋異種projectの要求authority→ticket→Worker→検収→提供/運用→LABO評価→OS還流各段のsource値一致、各段単独欠落、target revision/選択構成版/unit identity/state/evidence束縛、7製品gate/1製品欠落をfixtureごとに観測。doc/mechanism existenceのみの誤成立は0候補。全運転達成率ではない。|
+| `NFR-OS-L3-025-01` | AC-025-01〜03 | CASE-025-01〜21, 022〜039, 047〜057（定義50件、実行数ではない）。022〜032は既存補正CASE、033〜039はHELIX側trace各stageの単独欠落、047〜049は配布gate/全体normal/1製品欠落、050はHELIX＋複数異種projectの同一normal、051〜057はproject B各trace stageの単独欠落。 | HELIX＋複数異種projectを同一fixtureに含む各projectの要求authority→ticket→Worker→検収→提供/運用→LABO評価→OS還流各段のsource値一致、HELIX/project B各段単独欠落、target revision/選択構成版/unit identity/state/evidence束縛、7製品gate/1製品欠落をfixtureごとに観測。doc/mechanism existenceのみの誤成立は0候補。全運転達成率ではない。|
 | `NFR-OS-L3-026-01` | AC-026-01〜05 | CASE-026-01〜60。CASE-026-056〜059はAC-026-05、CASE-026-060はAC-026-03へ対応。 | 後続版/外部配布/結果生成、過小・過大構成、能力表示、入力10軸、資源不足/検証不合格、導出成功からの段階採択生成を分ける。空pack除外とdependency unknownは別state。SLO/固定pack数なし。|
 | `NFR-OS-L3-031-01` | AC-031-01〜05 | CASE-031-01〜95（066/068/070/072除外、031-25は031-06のalias）。 | 個別値、ticket/source/base/measurement scope・HARNESS義務集合の不一致、回収正常、旧数値の適用/意味変更、既決nightly工程、正しさ/性能、Recovery Issue非正本、LABO/authority境界、INFRA returnをfixture内で観測。母集団・適用予算不明は未評価。|
 | `NFR-OS-L3-047-01` | AC-047-01〜05 | CASE-047-01〜41。ただし047-20は047-04のalias。 | 元revision・issuer/target/reason/evidence/scope/relationの保持、参照両方向、提案authority境界、元assignmentと未完義務追跡をfixture内で観測。ticket処理KPIを作らない。|
