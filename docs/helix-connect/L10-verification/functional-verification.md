@@ -47,7 +47,7 @@
 
 ### CONNECT-CASE-001-03〜08 — `001` / 適用識別子の独立missing/unknown negative
 
-各fixtureは適用識別子ありの`CONNECT-CASE-001-01`から一つだけ変異させ、他の識別子、接続descriptor、宣言、source/consumer ownerを保つ。`unknown`はここでは宣言された一つの識別子を入力sourceから解決できないfixtureを指し、SECURITY許可の有効性・有効期限・送信適格性をCONNECTが判定する意味ではない。
+各fixtureは適用識別子ありの`CONNECT-CASE-001-01`から一つだけ変異させ、他の識別子、接続descriptor、宣言、source/consumer ownerを保つ。識別子自体の衝突は、`CONNECT-CASE-001-01`の同一接続identityに対する異宣言negativeで測る。`unknown`はここでは宣言された一つの識別子を入力sourceから解決できないfixtureを指し、SECURITY許可の有効性・有効期限・送信適格性をCONNECTが判定する意味ではない。
 
 | CASE | 単独変異 | 期待状態／戻し先 |
 |---|---|---|
