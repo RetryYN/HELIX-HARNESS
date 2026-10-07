@@ -1051,7 +1051,7 @@ operationへ戻った後の結果と旧/新rule versionをnew observationへ集�
 ### 受入条件候補
 
 - **LABO-023-AC-01 — 正常・trace**：usage observationは知識asset revisionと結果を区別して追跡する。
-- **LABO-023-AC-02 — failure/owner boundary**：unknown source identity、unauthorized knowledge use、BRAIN source contract欠落を受理せず、BRAIN knowledge sourceを編集/更新しない。source identity不明は固定L2-023のとおりBRAINへ返す。許可scope不明はL2-058:413に従い既存SECURITY permission ownerへ戻す。contract欠落は依存するBRAIN source contractの不成立として拒否/unknownを保ち、正本とauthorityの所在をLABOへ移さない。許可sourceごとのobservation identity/revisionを混合しない。
+- **LABO-023-AC-02 — failure/owner boundary**：unknown source identity、unauthorized knowledge use、BRAIN source contract欠落を受理せず、BRAIN knowledge sourceを編集/更新しない。source identity不明と依存するBRAIN source contract欠落は固定L2-023のBRAIN source責務へ戻す。許可scope不明はL2-058:413に従い既存SECURITY permission ownerへ戻す。欠落を理由に正本とauthorityの所在をLABOへ移さない。許可sourceごとのobservation identity/revisionを混合しない。
 
 ### 補正ACと個別fixtureの対応
 
@@ -1302,7 +1302,7 @@ Workerを機構・authority ownerにしない。
 ### 受入条件候補
 
 - **LABO-029-AC-01 — 正常・trace**：対象revisionとverification scope/statusが同一observationに残る。
-- **LABO-029-AC-02 — failure/owner boundary**：未実行/stale/interrupted/missing scopeおよびOS execution receipt identity不一致をpassにしない。固定L2-029が戻し先を定める検査scope欠落だけはsource ownerへ返す。それ以外のreceipt・contract・実行証拠の不備には固定親にない宛先を作らず拒否/unknownを保持する。LABOはCI/testを実行せずverification authorityも変更しない。許可sourceごとのobservation identity/revisionを混合しない。
+- **LABO-029-AC-02 — failure/owner boundary**：未実行/stale/interrupted/missing scopeおよびOS execution receipt identity不一致をpassにしない。固定L2-029が戻し先を定める検査scope欠落だけはsource ownerへ返す。OS execution evidence/receiptの欠落・不一致はOS execution evidence ownerへ、HARNESS verification contractの欠落・staleはHARNESS verification contract ownerへ返す。permission/classificationの不備はSECURITYへ返す。各条件を別々に判定し、誤ったownerへの返却は不合格とする。unknown/拒否を保持し、passやCI実行を生成しない。LABOはCI/testを実行せずverification authorityも変更しない。許可sourceごとのobservation identity/revisionを混合しない。
 
 ### 補正ACと個別fixtureの対応
 
@@ -1316,7 +1316,7 @@ Workerを機構・authority ownerにしない。
 |---|---|---|---|
 | parentの入力→出力とprovenance/version guarantee | `LABO-029-FR-01 / LABO-029-AC-01` | `L10-LABO-029-C01`, `L10-LABO-029-C04` | 許可input・source identity/revision・出力状態が対応 |
 | 不一致/欠落/unknown/staleの失敗規則 | `LABO-029-FR-01 / LABO-029-AC-02` | `L10-LABO-029-C05`, `L10-LABO-029-C06`, `L10-LABO-029-C07`, `L10-LABO-029-C09`, `L10-LABO-029-C10`, `L10-LABO-029-C11`, `L10-LABO-029-C12`, `L10-LABO-029-C16`, `L10-LABO-029-C17`, `L10-LABO-029-C18`, `L10-LABO-029-C19` | 各独立CASEの一条件変異を成功へ昇格せず、そのCASEの固定戻し先を照合 |
-| 責務ownerと変更禁止境界 | `LABO-029-FR-01 / LABO-029-AC-02` | `L10-LABO-029-C10`, `L10-LABO-029-C11`, `L10-LABO-029-C12`, `L10-LABO-029-C16` | 各CASEの責務区分と変更禁止oracleを独立に照合し、記載した固定戻し先を保持 |
+| 責務ownerと変更禁止境界 | `LABO-029-FR-01 / LABO-029-AC-02` | `L10-LABO-029-C10`, `L10-LABO-029-C11`, `L10-LABO-029-C12`, `L10-LABO-029-C16`, `L10-LABO-029-C17`, `L10-LABO-029-C18`, `L10-LABO-029-C19` | OS execution evidence/receiptの不備はOSへ、HARNESS verification contractの不備はHARNESSへ返す。誤ったownerへの返却は不合格とし、unknown/拒否を保持してpassやCI実行を生成しない |
 | 親範囲内のheld-out正常fixture | `LABO-029-FR-01 / LABO-029-AC-01` | `L10-LABO-029-C04` | 未見typeだけを理由に落とさず同じ親契約で照合 |
 
 ## LABO-030-FR-01 — HELIXLABO-L2-030 Product Core → Aggregate
@@ -1469,7 +1469,7 @@ source revision欠落・staleはL2接続共通前置き（159–162行）のsour
 ### 受入条件候補
 
 - **LABO-058-AC-01 — 正常・trace**：Workerだけを選択した呼出しではWorkerのconnector/permission/version/result contractを要求し、未選択BRAIN等の接続稼働を要求せず、選択/未選択と理由を表示する。Web/WEB-OSを明示選択した条件付きfixtureでは既存L2-031/032の採択source contractと該当接続・安全条件を照合する。
-- **LABO-058-AC-02 — failure/owner boundary**：選択sourceのmissingは未選択へ変えず、未選択/unconnected sourceはunobservedのままにする。選択sourceまたは呼出しscope自体がunknownなら既存call-scope ownerへ戻す。選択sourceのpermission/classification不足はSECURITYへ、source/contract/versionの不足・不一致は当該source/LABOまたは接続contractならCONNECTへ、OS assignment/receipt不足は既存OS ownerへ戻す。scope不足またはscope変更後のreceipt不一致は固定L2:413に従い当該source owner／SECURITYへ戻す。source集合等が明示変更された場合は新条件で再closureし、旧receiptを流用しない。058追補の存在だけを001の実行前提にせず、001固有の有効条件を満たす実行を拒まない。Bench評価済み、assignment permission、全source完了を主張しない。001の本文/責務/outputは変更せず、source選択条件だけを補う。source未選択はpermission不明データの取込許可にならない。Web/WEB-OSは選択時だけ既存採択source contractを要求し、外部取得2.0を1.0へ前倒ししない。
+- **LABO-058-AC-02 — failure/owner boundary**：選択sourceのmissingは未選択へ変えず、未選択/unconnected sourceはunobservedのままにする。選択sourceまたは呼出しscope自体がunknownなら既存call-scope ownerへ戻す。選択sourceのpermission/classification不足はSECURITYへ、source/contract/versionの不足・不一致は当該source owner/LABOまたは接続contractならCONNECTへ、OS assignment/receipt不足は既存OS ownerへ戻す。operation/source条件の不一致は当該selected source ownerへ戻し、誤った戻し先は不合格とする。scope不足またはscope変更後のreceipt不一致は固定L2:413に従い当該source owner／SECURITYへ戻す。source集合等が明示変更された場合は新条件で再closureし、旧receiptを流用しない。058追補の存在だけを001の実行前提にせず、001固有の有効条件を満たす実行を拒まない。Bench評価済み、assignment permission、全source完了を主張しない。001の本文/責務/outputは変更せず、source選択条件だけを補う。source未選択はpermission不明データの取込許可にならない。Web/WEB-OSは選択時だけ既存採択source contractを要求し、外部取得2.0を1.0へ前倒ししない。
 
 ### 補正ACと個別fixtureの対応
 
@@ -1484,11 +1484,12 @@ source revision欠落・staleはL2接続共通前置き（159–162行）のsour
 |---|---|---|---|
 | 呼出しscope/selected source/operation/permission/versionを入力として選択理由とunselectedを表示 | `LABO-058-FR-01 / LABO-058-AC-01` | `L10-LABO-058-C01`, `L10-LABO-058-C12` | 入力集合と選択/未選択一覧が一致し、選択理由が表示される |
 | 常時001 contractとselected-source dependency closure | `LABO-058-FR-01 / LABO-058-AC-01` | `L10-LABO-058-C01`, `L10-LABO-058-C12` | 選択した全sourceの接続/安全/版条件を検査 |
-| unselectedはunobserved、selected-missingはunmet dependency | `LABO-058-FR-01 / LABO-058-AC-02` | `L10-LABO-058-C07`, `L10-LABO-058-C13`, `L10-LABO-058-C19` | 未選択≠成功観測、選択欠落≠未選択化 |
+| unselectedはunobserved、selected-missingはunmet dependency | `LABO-058-FR-01 / LABO-058-AC-02` | `L10-LABO-058-C07`, `L10-LABO-058-C08`, `L10-LABO-058-C13`, `L10-LABO-058-C19` | 未選択≠成功観測、選択欠落≠未選択化 |
 | unknown selection/scopeはcall-scope owner、permission/classificationはSECURITYへ戻し、no selectionは未許可取込を許可しない | `LABO-058-FR-01 / LABO-058-AC-02` | `L10-LABO-058-C06`, `L10-LABO-058-C09`, `L10-LABO-058-C18`, `L10-LABO-058-C22` | 入力成立拒否と条件別の既存戻し先、unauthorized intake 0 |
+| reference-only資料を実行時必須依存へ変換しない | `LABO-058-FR-01 / LABO-058-AC-02` | `L10-LABO-058-C11` | 参照資料と当該呼出しの選択source dependencyを分離し、実行時必須化を拒否 |
 | Webは選択時だけL2-031の既存contract、external 2.0を1.0へ含めない | `LABO-058-FR-01 / LABO-058-AC-01/02` | `L10-LABO-058-C10`, `L10-LABO-058-C21`, `L10-LABO-058-C32`, `L10-LABO-058-C33`, `L10-LABO-058-C34` | 選択時の採択/接続/安全条件を照合し、未選択時の実稼働依存0、2.0 external intake 0 |
 | WEB-OSは選択時だけL2-032の既存contractとtenant/customer scope、authorityを保持 | `LABO-058-FR-01 / LABO-058-AC-01/02` | `L10-LABO-058-C37`, `L10-LABO-058-C38`, `L10-LABO-058-C39`, `L10-LABO-058-C40` | 選択時の採択/個別connector/scope条件を照合し、未選択時の実稼働依存0、WEB-OS authorityをsource側に保持 |
-| source集合/operation/scope/contract版の明示変更後にclosureを再検証 | `LABO-058-FR-01 / LABO-058-AC-02` | `L10-LABO-058-C14`, `L10-LABO-058-C15`, `L10-LABO-058-C16`, `L10-LABO-058-C17`, `L10-LABO-058-C24`, `L10-LABO-058-C25`, `L10-LABO-058-C30`, `L10-LABO-058-C31` | 旧receiptを流用せず新条件で再closureする。不足はsource/CONNECTまたはSECURITYへ、selection自体がunknownの場合だけcall-scope ownerへ戻す |
+| source集合/operation/scope/contract版の明示変更後にclosureを再検証 | `LABO-058-FR-01 / LABO-058-AC-02` | `L10-LABO-058-C14`, `L10-LABO-058-C15`, `L10-LABO-058-C16`, `L10-LABO-058-C17`, `L10-LABO-058-C23`, `L10-LABO-058-C24`, `L10-LABO-058-C25`, `L10-LABO-058-C30`, `L10-LABO-058-C31` | 旧receiptを流用せず新条件で再closureする。選択sourceのreceipt/operation/source不備は当該source ownerへ、接続contract不備はCONNECTへ、permission/classificationはSECURITYへ戻す。selection自体がunknownの場合だけcall-scope ownerへ戻し、誤った戻し先は不合格とする |
 | 未選択sourceを観測成功化／単一call passを全source完了化しない | `LABO-058-FR-01 / LABO-058-AC-02` | `L10-LABO-058-C19`, `L10-LABO-058-C20` | unselected remains not_observed、単一callは対応範囲だけを成功として保持 |
 | 観測成功をBench評価済み・割当許可へ昇格しない | `LABO-058-FR-01 / LABO-058-AC-02` | `L10-LABO-058-C26`, `L10-LABO-058-C27` | 観測成立を評価・割当authorityへ変換しない |
 | 1.0義務と既存001契約を保全 | `LABO-058-FR-01 / LABO-058-AC-02` | `L10-LABO-058-C28`, `L10-LABO-058-C29`, `L10-LABO-058-C35`, `L10-LABO-058-C36` | 未選択を理由に完成義務を削除せず001出力を改定しない |
@@ -1526,7 +1527,7 @@ CONNECT契約とOS assignment責務の戻し先は固定L2の接続共通前置�
 | `HELIXLABO-L2-030` | 固定親のscope/owner/version、条件句を保持 | `LABO-030-AC-01/02` | `L10-LABO-030-C01`, `L10-LABO-030-C04`, `L10-LABO-030-C05`, `L10-LABO-030-C06`, `L10-LABO-030-C07`, `L10-LABO-030-C08`, `L10-LABO-030-C09`, `L10-LABO-030-C10` |
 | `HELIXLABO-L2-034` | 固定親のscope/owner/version、条件句を保持 | `LABO-034-AC-01/02` | `L10-LABO-034-C01`, `L10-LABO-034-C03`, `L10-LABO-034-C04`, `L10-LABO-034-C05`, `L10-LABO-034-C06`, `L10-LABO-034-C07`, `L10-LABO-034-C08`, `L10-LABO-034-C09`, `L10-LABO-034-C10`, `L10-LABO-034-C11`, `L10-LABO-034-C12` |
 | `HELIXLABO-L2-035` | 固定親のscope/owner/version、条件句を保持 | `LABO-035-AC-01/02` | `L10-LABO-035-C01`, `L10-LABO-035-C04`, `L10-LABO-035-C05`, `L10-LABO-035-C06`, `L10-LABO-035-C07`, `L10-LABO-035-C08`, `L10-LABO-035-C09`, `L10-LABO-035-C10`, `L10-LABO-035-C11`, `L10-LABO-035-C12`, `L10-LABO-035-C13`, `L10-LABO-035-C14`, `L10-LABO-035-C15`, `L10-LABO-035-C16`, `L10-LABO-035-C17`, `L10-LABO-035-C18`, `L10-LABO-035-C19` |
-| `HELIXLABO-L2-058` | 固定親のscope/owner/version、条件句を保持 | `LABO-058-AC-01/02` | `L10-LABO-058-C01`, `L10-LABO-058-C06`, `L10-LABO-058-C07`, `L10-LABO-058-C08`, `L10-LABO-058-C09`, `L10-LABO-058-C10`, `L10-LABO-058-C11`, `L10-LABO-058-C12`, `L10-LABO-058-C13`, `L10-LABO-058-C14`, `L10-LABO-058-C15`, `L10-LABO-058-C16`, `L10-LABO-058-C17`, `L10-LABO-058-C18`, `L10-LABO-058-C19`, `L10-LABO-058-C20`, `L10-LABO-058-C21`, `L10-LABO-058-C22`, `L10-LABO-058-C23`, `L10-LABO-058-C24`, `L10-LABO-058-C25`, `L10-LABO-058-C26`, `L10-LABO-058-C27`, `L10-LABO-058-C28`, `L10-LABO-058-C29`, `L10-LABO-058-C30`, `L10-LABO-058-C31`, `L10-LABO-058-C32`, `L10-LABO-058-C33`, `L10-LABO-058-C34`, `L10-LABO-058-C35`, `L10-LABO-058-C36`, `L10-LABO-058-C37`, `L10-LABO-058-C38`, `L10-LABO-058-C39`, `L10-LABO-058-C40` |
+| `HELIXLABO-L2-058` | 固定親のscope/owner/version、条件句を保持 | `LABO-058-AC-01/02` | `L10-LABO-058-C01`, `L10-LABO-058-C06`, `L10-LABO-058-C07`, `L10-LABO-058-C08`, `L10-LABO-058-C09`, `L10-LABO-058-C10`, `L10-LABO-058-C11`, `L10-LABO-058-C12`, `L10-LABO-058-C13`, `L10-LABO-058-C14`, `L10-LABO-058-C15`, `L10-LABO-058-C16`, `L10-LABO-058-C17`, `L10-LABO-058-C18`, `L10-LABO-058-C19`, `L10-LABO-058-C20`, `L10-LABO-058-C21`, `L10-LABO-058-C22`, `L10-LABO-058-C23`, `L10-LABO-058-C24`, `L10-LABO-058-C25`, `L10-LABO-058-C26`, `L10-LABO-058-C27`, `L10-LABO-058-C28`, `L10-LABO-058-C29`, `L10-LABO-058-C30`, `L10-LABO-058-C31`, `L10-LABO-058-C32`, `L10-LABO-058-C33`, `L10-LABO-058-C34`, `L10-LABO-058-C35`, `L10-LABO-058-C36`, `L10-LABO-058-C37`, `L10-LABO-058-C38`, `L10-LABO-058-C39`, `L10-LABO-058-C40`, `L10-LABO-058-C41` |
 
 Stage 2b review01の集約CASEは索引としてのみ保持する。個別fixtureとnegative/NFR分母から除外し、上の親句traceでは個別CASEのoracleを照合する。
 

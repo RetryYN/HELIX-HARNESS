@@ -1283,13 +1283,13 @@ input observation identity/source revision；episode candidate identityとrelati
 
 - 対応AC: `LABO-029-AC-02`。固定親: `HELIXLABO-L2-029`。
 - 独立fixture（一条件だけ変更）: HARNESS verification contract・対象revision・検査scope・実行済みresult stateを有効のまま保持し、OS実行証拠だけを欠落させる。未実行状態との複合変異にしない。
-- 期待oracle: passを生成しない。OS実行証拠の追加owner routeを固定L2-029から導けないためunknownを保持し、CIを起動しない。
+- 期待oracle: passを生成しない。OS execution evidence/receiptの不足としてOS execution evidence ownerへ返し、HARNESSやLABOなど誤ったownerへの返却は不合格とする。unknownを保持し、CIを起動しない。
 
 ### L10-LABO-029-C18 — HARNESS verification contractだけがstale
 
 - 対応AC: `LABO-029-AC-02`。固定親: `HELIXLABO-L2-029`。
 - 独立fixture（一条件だけ変更）: OS実行証拠・対象revision・検査scope・result stateは有効のまま、HARNESS verification contractだけを現行対象よりstaleにする。
-- 期待oracle: HARNESS verification contractのstaleを現行契約へ読み替えずpassを生成しない。OS実行証拠は有効に保持し、契約不成立をunknownとして残す。追加routingを生成せずCIを起動しない。
+- 期待oracle: HARNESS verification contractのstaleを現行契約へ読み替えずpassを生成しない。HARNESS verification contract ownerへ戻し、OS execution evidenceは有効に保持する。OSやLABOなど誤ったownerへの返却は不合格とし、契約不成立をunknownとして残してCIを起動しない。
 
 
 
@@ -2091,7 +2091,7 @@ input observation identity/source revision；episode candidate identityとrelati
 
 - 対応AC: `LABO-058-AC-02`。固定親: `HELIXLABO-L2-058`。
 - 独立fixture（変更は一条件だけ）: source identityを保ち、selected operationだけをreceipt後に変更する。
-- 期待oracle: operation条件で再closureし旧receiptを流用しない。owner戻し先は固定L2で特定されないため拒否のみとする。
+- 期待oracle: operation条件で再closureし旧receiptを流用しない。operationと選択sourceの適合確認を当該selected source ownerへ戻す。permission/classification条件の不成立は固定L2-058:413に従いSECURITYへ戻し、source ownerやLABOなど誤ったownerへの返却は不合格とする。missing/unknownのまま保ち成功扱いしない。
 
 ### L10-LABO-058-C16 — scope変更後に旧receipt流用
 
@@ -2500,7 +2500,8 @@ input observation identity/source revision；episode candidate identityとrelati
 ### L10-LABO-023-C13 — BRAIN source contract欠落
 
 - 対応AC: `LABO-023-AC-02`。固定親: `HELIXLABO-L2-023`。
-- 入力/期待oracle: source identity/version/scope/permissionを保ちcontractだけ欠落。利用成功とせず固定L2-023の依存であるBRAIN source contract不成立として拒否/unknownを保持する。source identity不明の場合だけ固定L2-023に明記されたBRAINへ戻す。BRAIN正本は移管しない。
+- 独立fixture（一条件だけ変更）: source identity/version/scope/permissionを保ちcontractだけ欠落させる。
+- 期待oracle: 利用成功にせず、固定L2-023の依存であるBRAIN source contract ownerへ欠落を戻す。source identity不明も同じ既存BRAIN source責務へ戻す。SECURITYやLABOなど別ownerへの返却は不合格とし、拒否/unknownを保ってBRAIN正本を移管しない。
 
 ### L10-LABO-024-C17 — INTELLIGENCE正本書戻し要求
 
@@ -2510,7 +2511,8 @@ input observation identity/source revision；episode candidate identityとrelati
 ### L10-LABO-029-C19 — OS execution receipt不一致
 
 - 対応AC: `LABO-029-AC-02`。固定親: `HELIXLABO-L2-029`。
-- 入力/期待oracle: target revision/scope/HARNESS verification contractを保ちOS execution receipt identityだけ不一致。passにせず、固定親に明記のないrouteは作らず拒否/unknown。
+- 独立fixture（一条件だけ変更）: target revision/scope/HARNESS verification contractを保ち、OS execution receipt identityだけを不一致にする。
+- 期待oracle: passにせず、当該OS execution evidence ownerへ不一致receiptを戻す。HARNESS contract ownerやLABOへ誤返却した場合は不合格とし、unknownを保持する。
 
 ### L10-LABO-034-C11 — BRAIN connector欠落
 
