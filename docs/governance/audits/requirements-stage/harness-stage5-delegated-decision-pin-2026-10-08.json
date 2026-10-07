@@ -1,0 +1,220 @@
+{
+  "record_type": "immutable_delegated_decision_pin",
+  "authority_effect": "none_pending_condition3_and_main_admission",
+  "scope": "HARNESS Stage5 parents021025033035037 only",
+  "review_head": "c21523111debdbb4de8622f7557ed794319e4a7e",
+  "review_base": "f14ac303d265b6d23ecb1847b5dfd52901a442c6",
+  "review_comment_id": 6041633885,
+  "review_raw_body": "## review05（independent review、HEAD c21523111debdbb4de8622f7557ed794319e4a7e、merge-base f14ac303d265b6d23ecb1847b5dfd52901a442c6）\n\nreviewer: Claude（lane `review_merge`、**Opus 5.5**）。\n- 条件1は、Opus 5.5の照合と、reviewerによる確認で判定した。\n- 条件2は、Fable advisor（claude-fable-5-1）の見解である。Fableは、6本文のStage 5節（021/025/033/035/037）と、固定親（021/025/033は@f6dad2a33、035/037は@318ec4a04）を読み直して判断した。\n\n### 静的確認\n- scfctl validate 147/0、stale 0、residuals 0\n- govcheck ok\n- `git diff --check` clean\n- `git merge-tree`：最新mainと衝突なし\n\n### review04（#6041334894）への対応\n- **M1は解消した。**\n  - S5-066 が、NFR側の025の範囲の3か所に入った（nfr-grade.md:144、nfr-verification.md:105、:117。表記は「065〜066」「S5-065–066」）。\n  - nfr-grade.md:144 には、CORE自身の製品契約の版が明記された。\n  - 025のS5 CASEは、001–041、062、063、065、066 である。064 は037のIDなので、範囲表の飛び番とは食い違わない。\n- **m13〜m16 は解消した。**\n  - S5-066 の行は、065 の後ろへ移った。\n  - AC-11 の前の空行を除いた。\n  - S5-066 と AC-11 は、owner_identity `core-contract-owner:fixture` が完全に一致するかを照合するようになった。\n  - FR:492 に責務の根拠を追記した。根拠は、025の固定L2:552、026の固定L2:538・542、既存のCASE-026-04/19/20/21 である。新しいownerは作っていない。\n- **旧文と新文の突き合わせ（類型5）**：旧文は一字も削られていない。CASE行の移動先の内容は、旧行の内容をすべて含んでいる。\n- **main統合**：#2666（Stage3 043）の取り込みで、手で解消した競合はない（remerge-diffが空）。増えた差分は043の行だけで、Stage 5節には触れていない。`043-r10-025` は043の名前空間のIDで、025-S5 とは取り違えられていない。\n- **ID対応**：Stage 5のCASE定義（021:001–016、025:001–041+062/063/065/066、033:001–047、035:001–046、037:001–064）に、重複はない。L10が参照するAC IDは、すべてL3で定義されている。\n\n### Major\nなし。前回までに返したMajor（review01の6件、review02の3件、review03の2件、review04の1件）は、すべて解消した。\n\n### Minor（返却しない。次に触るときに直せばよい）\n- m17：nfr-grade.md:144 の「CORE自身の製品契約版・connector/Templateの既知ownerとidentity unknownを分ける」は、CORE owner identityが欠ける単独CASEもあるように読める。実際にあるのは、066（版unknown、identity宣言あり）だけである。固定親は対称のCASEを求めていないので、分母には影響しない。\n- m18：FR:489 の不変条件は、L3の戻し先の根拠として、L10 CASE-026-04/19/20/21 を挙げている。主な根拠は L2-025:552 と L2-026:538・542 で足りている。\n- m19：business-verification.md:55 は、owner戻しの S5-062/063/066 を「authority boundary」と呼んでいる。business-requirements.md:94 の例示には、065/066 がない。\n- m20：business-verification.md:128/150 と functional-verification.md:2159/2353 で、044/046の同じCASE IDが両方に出てくる（Stage 5の範囲外。別途確認が要る）。\n\n### 委任条件の状態\n- **条件1（Opus `no_findings`）：成立。** Major 0。\n- **条件2（Fable）：成立。** 結論行は原文のまま「承認してよい」。\n- 条件1と2は、同じbody revision（c21523111）でそろった。\n- **条件3は未照合。** 判断記録を作った後に、6本文が次のSHA-256から変わっていないことを照合する。\n\n| 文書 | SHA-256 |\n|---|---|\n| L3-BR | `9fb531a5…75e2` |\n| L3-FR | `bd038522…8c0c` |\n| L3-NFR | `ee84bc87…263d` |\n| L10-BV | `864b0034…65ad` |\n| L10-FV | `191dcb11…0e9a` |\n| L10-NFR | `b8a2ac27…7386` |\n\n### 未確認範囲\nなし。021/033/035/037のStage 5本文のうち、今回の差分以外の部分は、review01〜04の照合を引き継いだ。\n",
+  "review_raw_sha256": "1d9547637296f14c7bd5c62489626849fd400046c358a0b349de93a6b13e6480",
+  "review_raw_bytes": 4193,
+  "six_document_sha256": {
+    "docs/helix-harness/L3-requirements/business-requirements.md": "9fb531a55c61c4836ae614cadbd850f3967119cb1f0f2eb36dad1e39ebab75e2",
+    "docs/helix-harness/L3-requirements/functional-requirements.md": "bd038522d001d95229fb2e96e7f88f2adfe82a30b927224a42246b74aa378c0c",
+    "docs/helix-harness/L3-requirements/nfr-grade.md": "ee84bc87ff324eea929d266934c0debb856018aca25c0044f68b11c141c3263d",
+    "docs/helix-harness/L10-verification/business-verification.md": "864b0034aa84c4e9b29ec2ebb7bf2151a97dfdca0028c85ba2e0cee655d965ad",
+    "docs/helix-harness/L10-verification/functional-verification.md": "191dcb11cb400c10516e2a437314ffea60de97cb7432091ff6ee47f964640e9a",
+    "docs/helix-harness/L10-verification/nfr-verification.md": "b8a2ac27f92d9023dd3c24f7f3e16f6647e18e9272f2b3d94b7ced721b427386"
+  },
+  "fixed_source_pins": [
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "full_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "target_parents": [
+        "021",
+        "025",
+        "033"
+      ]
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "full_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "target_parents": [
+        "021",
+        "025",
+        "033"
+      ]
+    },
+    {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "full_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+      "target_parents": [
+        "035",
+        "037"
+      ]
+    },
+    {
+      "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "full_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+      "target_parents": [
+        "035",
+        "037"
+      ]
+    }
+  ],
+  "legacy_source_pins": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/multimodal-design-harness-authority.md",
+      "full_sha256_raw_lf": "baf570f59ac838302f69a27b17a6febca78bf911278af21a9d2f4f9e87a1edd2",
+      "spans": [
+        {
+          "start_line": 21,
+          "end_line": 38,
+          "sha256_raw_lf": "6a5390257ca2f93f19a1c821d63d2f984a95bcff2fc0726b9499e71f8ed0b5f2"
+        },
+        {
+          "start_line": 71,
+          "end_line": 93,
+          "sha256_raw_lf": "d65c67d34aacb486e265cf1acecf837c5089c01bda603bc4063cea07ab13819c"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-D11F51092619506417E4",
+      "use_and_limit": "025の設計artifact／evidence・provenanceの近接歴史例として実読。Web/Mobile等のmodality固有契約、旧approval/canonical lifecycleを025やBRAIN connector契約へ移さず、直接旧要件とはしない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/multimodal-design-harness-authority-acceptance.md",
+      "full_sha256_raw_lf": "d83e8ce533f456a2f58d07164ec5d5ec540791277bd9209d2fa79987a1163951",
+      "spans": [
+        {
+          "start_line": 17,
+          "end_line": 40,
+          "sha256_raw_lf": "9148f60291908f77067f8a37a45e41a7a301eabbf8736d27a2d00be178d81e1f"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-7F09A40DDA5C1F26A28C",
+      "use_and_limit": "025のpair境界に近い歴史的受入例として実読。UI/design IR authorityのfixture/oracleと現行025の一般設計統合を同一視せず、旧testを実行しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "full_sha256_raw_lf": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "spans": [
+        {
+          "start_line": 59,
+          "end_line": 59,
+          "sha256_raw_lf": "8186024e25dbf09ba7b7288b8df88a69ffaa4a960a4bd15e059f44fe170879db"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B",
+      "use_and_limit": "037の旧FR-L1-28。Phase 1一般systemとPhase 2 agent昇華、合流、後続traceの意味を再利用し、旧workflow固有の実装を置換。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md",
+      "full_sha256_raw_lf": "e5b6964567242a2440ded28ed99c1783f37a9326624c02283c7a975c3020063b",
+      "spans": [
+        {
+          "start_line": 464,
+          "end_line": 464,
+          "sha256_raw_lf": "f1250ab44c078412cf875eefbb7f0a9104e7dd5326406d5eaa591d5834b55939"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-3B905BB196962E2BE624",
+      "use_and_limit": "037の旧screen trace row。UIを選択したscope内でのphase state表示の意味を保持し、全scopeで旧Trace UIを強制しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/technical-requirements.md",
+      "full_sha256_raw_lf": "3e105358418cb54af0bc2e414d0b06171715ab2a26ea3b44dd16f932bcbfef88",
+      "spans": [
+        {
+          "start_line": 169,
+          "end_line": 169,
+          "sha256_raw_lf": "484e1f0f52f6718fc5763a9c3e302590673166f0db6bfac2b69f077c8f2bad62"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-96CCD05C4CCA06F50D3D",
+      "use_and_limit": "037の旧I-4。旧drive/phase.yamlフィールドは現行契約へ移さず、旧合流状態の履歴として参照。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/migration/v2-import-ledger.md",
+      "full_sha256_raw_lf": "abf13d130476bf46450339bacd1517651a8a7ebf21d2c40be63c86b9e7aa1322",
+      "spans": [
+        {
+          "start_line": 216,
+          "end_line": 216,
+          "sha256_raw_lf": "ac9d37805776c484809b9e6e803690245e70aff4f25bbf806a6d28e7606926a8"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-6279F4C46313824541B1",
+      "use_and_limit": "A-74旧判断史。V/W区別、対象systemに限る二段設計、HARNESS自身の単一Vという過去判断を保つ。旧tool/CI実行結果は再利用しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "full_sha256_raw_lf": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "spans": [
+        {
+          "start_line": 128,
+          "end_line": 128,
+          "sha256_raw_lf": "90f2931c10b9a821c7bb4dfbca14e91ccf0b1812098db113d50ee289dc8efa03"
+        },
+        {
+          "start_line": 187,
+          "end_line": 187,
+          "sha256_raw_lf": "c8e2b4a177c3228e343e3c499a471fe75992778c29e2df63a3c4e0053860afbd"
+        },
+        {
+          "start_line": 203,
+          "end_line": 203,
+          "sha256_raw_lf": "59bb3695045ffdbf8ef55b145ce542cfaec9570d40b916512af4857005661a91"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "use_and_limit": "035の旧HIL-FR-38/HIL-NFR-07/23。source root・acceptance contribution・minimality/budget evidence・acyclic derivationの意味を再利用し、旧Scope Authority Gate/threshold/approval運用を移さない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "full_sha256_raw_lf": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "spans": [
+        {
+          "start_line": 39,
+          "end_line": 39,
+          "sha256_raw_lf": "937b2eacf7bcbd43aee17f301204050acbbfbd56768d8b8c8bd83a273722da64"
+        },
+        {
+          "start_line": 68,
+          "end_line": 68,
+          "sha256_raw_lf": "bb254e86e276a830a99f937ab4ca4a940880bc1287ecc6850212246c0e3c3751"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "use_and_limit": "035の旧HR-FR-HIL-05/HAC境界。authority root/evidence/acyclicityと承認状態の分離の歴史例として参照。旧gateを現L3へ持ち込まない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "full_sha256_raw_lf": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "spans": [
+        {
+          "start_line": 37,
+          "end_line": 37,
+          "sha256_raw_lf": "c752ed0797d3f10712e4b483ef46fa42698a3f1f4feacf69ce14212d5c638b82"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "use_and_limit": "035のHAT-HIL-05。Scope/Closure/authority graphの静的対として参照し、旧acceptanceを実行しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L9-infinity-loop-platform-system-test-design.md",
+      "full_sha256_raw_lf": "e518b0cfe15ca4b999bd85120b8d74941a18ab0939ff6cda3dc20a8b7611b705",
+      "spans": [
+        {
+          "start_line": 48,
+          "end_line": 48,
+          "sha256_raw_lf": "b40434529b50478c487fb56188086a535fe73b3ac2bd0549f2fb8593d6aeace8"
+        }
+      ],
+      "use_and_limit": "035のHST-HIL-021。cycle/minimality deficiencyの歴史的反例形を参照し、現CASEへ直接移植せず実行もしない。"
+    }
+  ],
+  "prior_source_disposition": {
+    "path": "docs/governance/audits/requirements-stage/harness-stage5-review02-correction-evidence-2026-10-07-6040449879.json",
+    "sha256": "6ae784acc6f15091bbd9b62c65e8d295e6aefd4892e046175a0ecf509ef5d555",
+    "treatment": "unchanged"
+  },
+  "condition1": "Opus5.5 no_findings Major0",
+  "condition2": "Fable claude-fable-5-1 承認してよい",
+  "condition3": "pending independent comparison",
+  "minor_disposition": "m17-m20 explicitly not returned; m20 Stage3 duplicate ID issue tracked separately; bodies unchanged",
+  "source_pin_correction": "review03 audit f6dad773–789 empty span is not used as source evidence; current decision pins318ec035037 full source instead; old audit preserved"
+}
