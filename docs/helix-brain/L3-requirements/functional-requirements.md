@@ -29,19 +29,21 @@ Pattern / Unit / Part候補を、source identity・revision、provenance、evide
 
 ### 受入条件（AC候補）
 
-- **BRAIN-007-AC-01 — 正常・追跡**：完全なsource/evidenceとscopeがあり、LABO対象revisionがcandidate revisionに一致する場合、採否前candidateの各owner stateを分離し由来を追跡する。既存契約に沿って採用済みの記録も、同じsource/evidenceからLABO評価、OS登録・振分け、独立検証および採否根拠まで辿れる。新しい判定閾値・actor承認は設けない。
-- **BRAIN-007-AC-02 — 異常・境界**：source identity/revision、provenance、evidence、adopted reason、evaluated scope、counterexample、limitationのいずれか欠落・stale・不一致、LABO評価を未実施なのに評価済みとする入力、LABO対象revisionの不一致、AI生成のみまたは実績一件のみでaccepted/matureとする入力は不成立。採用状態にしない理由と不足項目を示し、根拠欠落・staleはcandidateに保って未採用候補へ戻してpromotionを停止し、評価未実施・対象revision不一致はLABOの既存評価契約へ、上流意味変更は該当L1へ戻す。LABO評価、OS登録・振分け、BRAIN独立検証、採否の4状態を相互に代用しない。
+**必須groupは8つ**：source identity/revision、provenance、evidence、adopted reason、evaluated scope、counterexample、limitationの7 provenance groupに、LABO評価対象revisionを加える。source identityとsource revisionは同一provenance group内で別々に検査するatomic fieldであり、group数とatomic mutant数を混同しない。
+
+- **BRAIN-007-AC-01 — 正常・追跡**：8つの必須groupが揃い、LABO対象revisionがcandidate revisionに一致する場合、採否前candidateの各owner stateを分離し由来を追跡する。既存契約に沿って採用済みの記録も、同じsource/evidenceからLABO評価、OS登録・振分け、独立検証および採否根拠まで辿れる。新しい判定閾値・actor承認は設けない。
+- **BRAIN-007-AC-02 — 異常・境界**：8つの必須groupのいずれかの欠落・stale・不一致、source identity/revision各atomic fieldの個別欠落・stale・不一致、LABO評価未実施なのに評価済みとする入力、AI生成のみまたは実績一件のみでaccepted/matureとする入力は不成立。採用状態にしない理由と不足項目を示し、根拠欠落・staleはcandidateに保って未採用候補へ戻してpromotionを停止し、評価未実施・LABO対象revision不一致/欠落はLABOの既存評価契約へ、上流意味変更は該当L1へ戻す。LABO評価、OS登録・振分け、BRAIN独立検証、採否の4状態を相互に代用しない。
 
 ### 固定親句の被覆
 
 | 固定L2/L11の句・条件 | 要件／AC | 対応L10 case | 観測する状態・動作 |
 |---|---|---|---|
-| 入力／trace：Pattern・Unit・Part候補とsource、provenance、evidence、採用理由、evaluated scope、counterexample、limitation、LABO対象revision | `BRAIN-007-FR-01 / BRAIN-007-AC-01` | `L10-BRAIN-007-C01,C02,C03,C05` | 全field、source/revision、scope、LABO評価対象revision |
+| 入力／trace：Pattern・Unit・Part候補と8必須group（7 provenance group＋LABO対象revision） | `BRAIN-007-FR-01 / BRAIN-007-AC-01` | `L10-BRAIN-007-C01,C02,C03,C05,C10` | 8 groupの被覆とLABO評価対象revision。source identity/revisionは同一group内で別atomic fieldとして照合 |
 | 出力・責務：由来から採用状態まで追跡し、LABO評価、OS登録・振分け、BRAIN独立検証・採否は別状態 | `BRAIN-007-FR-01 / BRAIN-007-AC-01` | `L10-BRAIN-007-C01,C07,C08` | candidateと既採用record双方のsource-to-decision trace、各owner別state |
 | 否定・失敗：AI生成だけまたは一件の実績だけではaccepted/matureにしない | `BRAIN-007-AC-02` | `L10-BRAIN-007-C04` | 誤昇格0 |
-| 戻し先：source/evidence欠落時はcandidateへ戻しpromotionを止める。上流意味変更だけL1へ戻す | `BRAIN-007-AC-02` | `L10-BRAIN-007-C02,C03,C05` | 不足field・停止状態・未採用候補／LABO／該当L1戻し先 |
+| 戻し先：source/evidence欠落時はcandidateへ戻しpromotionを止める。LABO評価未実施・対象revision欠落/不一致はLABOへ戻す。上流意味変更だけL1へ戻す | `BRAIN-007-AC-02` | `L10-BRAIN-007-C02,C03,C05,C10` | 不足field・停止状態・未採用候補／LABO／該当L1戻し先 |
 | 依存・版：L1-007、L2-011/025、LABO→BRAIN `HELIXBRAIN-L2-020`、version 1.0 | `BRAIN-007-FR-01 / BRAIN-007-AC-01,AC-02` | `L10-BRAIN-007-C01,C05` | 依存revisionとcandidate/LABO対象revisionを照合し、version_targetを実装・採否と混同しない |
-| L11正常・反例caseのAC/L10結合 | `BRAIN-007-AC-01, BRAIN-007-AC-02` | `L10-BRAIN-007-C01`〜`L10-BRAIN-007-C09` | scope/counterexample欠落、revision mismatch、stale evidence、別owner receipt、採用済み記録を各fixtureで区別し、該当状態と戻し先を観測 |
+| L11正常・反例caseのAC/L10結合 | `BRAIN-007-AC-01, BRAIN-007-AC-02` | `L10-BRAIN-007-C01`〜`L10-BRAIN-007-C10` | 8 group coverage、source identity/revisionの別atomic変異、LABO対象revision欠落/不一致、scope/counterexample欠落、stale evidence、別owner receipt、採用済み記録を区別し、該当状態と戻し先を観測 |
 
 LABOへ評価を返す出典は、同PO固定revisionの`docs/helix-brain/L2-requirements/brain-requirements.md:414-423`（L2-020、失敗時の戻し先421行）である。評価と対象revisionが結べない場合はunknown候補として止め、LABOへ評価を返す。007のsource/evidence不足は未採用候補へ戻してpromotion停止を保つ。
 
