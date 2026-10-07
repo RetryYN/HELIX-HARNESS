@@ -1,0 +1,172 @@
+{
+  "record_type": "security_stage2c_parent031_review02_delegated_decision_pin",
+  "authority_effect": "none_pending_condition3_and_main_admission",
+  "recorded_at": "2026-10-08",
+  "scope": {
+    "mechanism": "HELIX-SECURITY",
+    "stage": "Stage 2c",
+    "parent": "HELIXSECURITY-L2-031",
+    "version_target": "1.0",
+    "adopted_registration": "MPR-RC-HELIXSECURITY-L2-031-001",
+    "exclusions": [
+      "other Stage 2c parents",
+      "Stage 3-5",
+      "other Stage 1 parents",
+      "other mechanisms",
+      "L10 execution/pass",
+      "implementation/release/issue close"
+    ]
+  },
+  "review": {
+    "pr": 2674,
+    "formal_comment_id": 6044221756,
+    "formal_comment_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2674#issuecomment-6044221756",
+    "formal_comment_created_at": "2026-10-07T18:27:28Z",
+    "formal_author_api": "RetryYN",
+    "formal_body_utf8_bytes": 5319,
+    "formal_body_sha256": "1970499f2362d61e8d7725438d8994a09981f4d5553f596e1b4ef833875dde7c",
+    "formal_body_raw": "## review02（HEAD d9e473d0cf36cb9869aec11ee00f8524c2eba4db / base 9229f59edc36b8396ea99bde5f6f903b35c1ccdf）— Claude review_merge\n\n### 結論：Major 0。委任条件1（Opus）と条件2（Fable「承認してよい」）は、同じ本文revisionで成立\n- **成立の根拠**：OpusとFableが、この同じrevisionを独立に読みました。どちらもMajorなしで、承認してよいと判断しました。\n- **残る手続き**：判断記録と6本文のpinを足した後に、条件3を別に照合します。\n- **対象範囲**：review01（comment 6043853781）のM1修正、m1修正、および修正前から維持されるpayload適用条件です。旧reviewの承認は継承していません。\n\n### M1の解消（固定 `633bf12` L2:427–446 / L11:104–115 で照合）\n| 項目 | 確認結果 |\n|---|---|\n| `SECURITY-CASE-031-02c`（FV:356） | L2:434「未選択/未許可sourceを推測して複製しない」を、他の開始条件を正常に保った単独変異のreject CASEとして持つ |\n| `SECURITY-CASE-031-02d`（FV:357） | L2:440「未選択sourceは未観測のまま、別sourceへfallbackしない」を、同じく単独変異のreject CASEとして持つ |\n| 期待結果 | すべて固定親の既存カテゴリ内（下の内訳） |\n| 新しく加わったもの | owner、承認者、gateのいずれもなし |\n| AC-031-02（FR:348） | 「これらの独立negativeに加え」と追記した形で、元の受入条件を保っている |\n| FV表（FV:34） | 031を「Stage 2c、Stage 1範囲外」として追加。Stage 1の集計19/19/33（FV:338）は変わらない |\n| NFR:53 / NFR:57 / NFRV:24–26 | 02cと02dを、それぞれ独立したrequired negativeとして分母とtraceに置いている |\n| 元のpayload適用条件 | 維持されている（manifestはファイル情報を要するtaskに限る。FR:364、FV:355、FV:384–385） |\n| 既存の境界check | 削除なし |\n\n期待結果の出典は次のとおりです。\n- 開始拒否：L2:444\n- 開始後に検出したときの隔離：L2:434末尾、L2:444\n- 未観測の保持：L2:440\n- source/payload ownerへの返却：L2:431/434の払出し主体と、既存のowner oracle（FV:359）\n- 他のownerへ返したら不合格：L2:437、L11:112\n\n### m1の解消\n- FR:3、FR:9、FV:3のscope宣言を「Stage 1節とStage 2c節を別scopeで扱う」に改め、031節と矛盾しなくなりました。\n\n### 照合・静的検査\n- **固定親のSHA**：L2全体 `aa9d6446…`、span `3ff72f91…`、L11全体 `e4d92364…`、span `3b2700d5…` を照合し、いずれも一致しました。\n- **6本文**：監査記録の修正前（`e7853ba7c`）と修正後のSHAは、どちらも実bytesと一致しました。BRとBVは不変です。\n- **review01 comment**：本文の長さとSHA-256（7,308 bytes、`7211f0a6…`）が一致しました。\n- **merge commitの範囲**：9229の取込みは、mainの内容をそのまま取り込んだmergeです。PR固有の差分は、`docs/helix-security`の4本文と監査記録2本に限られます。\n- **静的検査**：`scfctl validate` 147/0、`stale=0`、`git diff --check` 通過。\n\n### 返さない所見（Minor。承認を止めない。解消済みとは扱わない）\n1. **02cの2状態**：02cは「未選択または未許可」の2状態を1つのCASE IDに入れています。固定L2:434が1文の1禁止なので、ID粒度は整合しています。ただ、fixtureが片方の状態だけで済むと読めます。次のrevisionで、2状態を別々のfixtureにすると明記するのが望ましいです。\n2. **02cの適用範囲**：NFR:53とNFRV:25は、02cを「ファイル情報を要する適用条件」の範囲に限っています。一方、L2:434とFR:348/FV:356は無条件の禁止です。ファイル情報を要しないtaskでの推測複製は、CASE-031-04（canonical readの拒否）とCASE-031-06（scope外read/writeの検出）で別に捕捉されるので、影響は小さいです。\n3. **OSへの記録**：02cと02dの本文は、L2:444「理由・対象revision・未完義務をOS assignmentへ記録」に触れていません。CASE-031-06がこの記録を包括しているので、記述の省略です。\n4. **FV表の部分列挙**：FV:34の「（CASE-031-02a–02dを含む）」は一部だけを挙げています。01a–d、03a–c、05a、06a–fは書かれていません。表示上の問題で、traceの欠落ではありません。\n5. **表題行**：4文書の表題行「Stage 1（19親の候補）」が残っています。\n\n### 未確認範囲（理由付きで閉じる）\n- **fixture**：実行していません。本PRの主張の外です。\n- **旧source**：HR-FR-HIL-23の旧本文（line 57/86）は再読していません。監査記録の帰属は、具体的な禁止を固定L2:434/440から再導出しており、旧sourceへ帰属させていないことを確認しました。\n- **対象外**：Stage 3〜5節、他の親、govcheckは本差分の対象外です。\n\n本reviewは承認・merge admissionを生成しません。判断記録と6本文pinを足した後に条件3を依頼してください。そのときは、6本文がこのrevisionから変わっていないことを照合します。\n",
+    "reviewed_head": "d9e473d0cf36cb9869aec11ee00f8524c2eba4db",
+    "review_base": "9229f59edc36b8396ea99bde5f6f903b35c1ccdf",
+    "reviewer": "Claude review_merge lane / Opus 5.5; Fable advisor conclusion recorded in same formal comment",
+    "condition1": {
+      "status": "satisfied",
+      "evidence": "Formal review02 reports Opus read the same body revision, Major 0."
+    },
+    "condition2": {
+      "status": "satisfied",
+      "evidence": "Formal review02 reports Fable read the same body revision and concluded 「承認してよい」."
+    },
+    "condition3": {
+      "status": "pending_after_decision_record_and_six_body_pins",
+      "evidence": "Formal review requires a separate post-record/post-pin six-body identity check; Root has not completed it in this draft."
+    },
+    "minor_not_resolved": [
+      {
+        "id": "m1",
+        "status": "explicitly_not_returned_nonblocking_unresolved",
+        "text": "CASE-031-02c groups unselected and unpermitted states under one ID; clarify separate fixtures in a future revision."
+      },
+      {
+        "id": "m2",
+        "status": "explicitly_not_returned_nonblocking_unresolved",
+        "text": "NFR/NFRV limit CASE-031-02c applicability to file-needed tasks while fixed L2/FR/FV prohibition is unconditional; review cites CASE-031-04/06 and low impact."
+      },
+      {
+        "id": "m3",
+        "status": "explicitly_not_returned_nonblocking_unresolved",
+        "text": "CASE-031-02c/02d do not repeat L2:444 reason/revision/open-duty recording to OS assignment; review considers CASE-031-06 inclusive."
+      },
+      {
+        "id": "m4",
+        "status": "explicitly_not_returned_nonblocking_unresolved",
+        "text": "FV parent map examples list 02a–02d only and omit other appended CASE IDs; review treats as display-only, not trace loss."
+      },
+      {
+        "id": "m5",
+        "status": "explicitly_not_returned_nonblocking_unresolved",
+        "text": "Four document title rows still say Stage 1 (19-parent candidate)."
+      }
+    ],
+    "unconfirmed_scope": [
+      "fixtures not executed; out of scope per formal review",
+      "formal review02 did not reread legacy HR-FR-HIL-23 text (line 57/86); its current mapping remains as in prior M1 audit and is not expanded to all consumers",
+      "Stage 3–5, other parents/stages/mechanisms, and govcheck not assessed"
+    ]
+  },
+  "approved_body_revision": "d9e473d0cf36cb9869aec11ee00f8524c2eba4db",
+  "fixed_parent_source": {
+    "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "sources": [
+      {
+        "label": "L2-031",
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "start_line": 427,
+        "end_line_inclusive": 446,
+        "full_bytes": 94568,
+        "full_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+        "span_bytes": 10269,
+        "span_sha256": "3ff72f9130d888213e2f3e5226a22bfedb965b9e80beebea810b8fec04cd964a",
+        "line_ending": "raw bytes, LF inclusive"
+      },
+      {
+        "label": "L11-031",
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "start_line": 104,
+        "end_line_inclusive": 115,
+        "full_bytes": 58006,
+        "full_sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+        "span_bytes": 6536,
+        "span_sha256": "3b2700d511ea0feb8bbeb3dcedd7dd3eb9d1a26a2aeb9c79f57f835c045c0cd7",
+        "line_ending": "raw bytes, LF inclusive"
+      }
+    ],
+    "po_adoption": {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "line": 90,
+      "full_bytes": 45099,
+      "full_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "span_bytes": 626,
+      "span_sha256": "379137e4c6eeebab8e4291ed17c87dbbfb8f77e9074fdab642144ee4a6bd644a",
+      "registration_id": "MPR-RC-HELIXSECURITY-L2-031-001"
+    }
+  },
+  "old_source_mapping": {
+    "source": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+    "full_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+    "locators": [
+      "HR-FR-HIL-23 line 57",
+      "HAC-HIL-23a/b/c line 86"
+    ],
+    "record": "docs/governance/audits/requirements-stage/security-stage2c-payload-review01-m1-correction-2026-10-08.md",
+    "review02_status": "formal review explicitly says the old text was not reread; no broader consumer-read claim"
+  },
+  "six_body_pins": [
+    {
+      "label": "L3-BR",
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "bytes": 2999,
+      "sha256": "30a0456a17c4c65e9427cc8931905cb7c1adf54c207514f948a7b179dcdb7019"
+    },
+    {
+      "label": "L3-FR",
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "bytes": 136817,
+      "sha256": "ae9d5ec49d63f247eaa540961f22eae5071fe213c15b267722313764928d7b81"
+    },
+    {
+      "label": "L3-NFR",
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "bytes": 18198,
+      "sha256": "bd8533006ead1dacde26ad88733c88379bf7453d297211387564db053cbec59b"
+    },
+    {
+      "label": "L10-BV",
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "bytes": 2356,
+      "sha256": "7da2a3b88c866c276065c793036708a633109b176b0381829c8d3c8293ff70a4"
+    },
+    {
+      "label": "L10-FV",
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "bytes": 177050,
+      "sha256": "307b9c10260319bd3f904c4695f1173853452233418c5517bbedd623b79ea929"
+    },
+    {
+      "label": "L10-NFRV",
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "bytes": 13684,
+      "sha256": "a52d221d47f0ec92e1d14969ce322b7f1ff88200e8cdb574a63fd9fb06dcf2d7"
+    }
+  ],
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-security-stage2c-parent031-review02-l3-l10-delegated-decision-2026-10-08.md",
+    "revision": null,
+    "bytes": 7438,
+    "sha256": "67d7bc313bedec38a3668cb965b3a7b7c33ce46363130bae162523f15ff56e6b"
+  },
+  "verification": "Formal review02 body raw SHA is pinned. Six current body bytes at reviewed HEAD were recalculated and match the recorded hashes. These pins do not satisfy condition3; independent post-record/post-pin comparison remains pending."
+}

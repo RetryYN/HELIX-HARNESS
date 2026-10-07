@@ -1,6 +1,6 @@
 # HELIX-SECURITY L10 総合検証 — Stage 1（19親の候補）
 
-> 状態：未実行の総合検証設計。合格証拠・L3承認・実行許可を生成しない。対象は`HELIXSECURITY-L2-001`〜`016`、`020`、`028`、`033`の19親だけ。
+> 状態：未実行の総合検証設計。合格証拠・L3承認・実行許可を生成しない。Stage 1節は`HELIXSECURITY-L2-001`〜`016`、`020`、`028`、`033`の19親を対象とし、Stage 2cの`HELIXSECURITY-L2-031`は下記の別scopeで扱う。
 
 ## 共通oracle
 
@@ -10,7 +10,7 @@ L2-002の命令様入力からsecurity policy変更へ直結させない条件�
 
 ## 固定親とL3/L10対応
 
-| 固定L2 identity | L3 FR | L3 AC | L10 CASE | 版 |
+| 固定L2 identity（Stage 1 19親と別scopeのStage 2c親） | L3 FR | L3 AC | L10 CASE | 版 |
 |---|---|---|---|---|
 | `HELIXSECURITY-L2-001` | `SECURITY-FR-001-01` | `SECURITY-AC-001-01` | `SECURITY-CASE-001-01` | 1.0 |
 | `HELIXSECURITY-L2-002` | `SECURITY-FR-002-01` | `SECURITY-AC-002-01` | `SECURITY-CASE-002-01` | 1.0 |
@@ -31,6 +31,7 @@ L2-002の命令様入力からsecurity policy変更へ直結させない条件�
 | `HELIXSECURITY-L2-020` | `SECURITY-FR-020-01` | `SECURITY-AC-020-01` | `SECURITY-CASE-020-01` | Guard基盤は1.0、Botは必要時のみ |
 | `HELIXSECURITY-L2-028` | `SECURITY-FR-028-01` | `SECURITY-AC-028-01` | `SECURITY-CASE-028-01` | 1.0 |
 | `HELIXSECURITY-L2-033` | `SECURITY-FR-033-01` | `SECURITY-AC-033-01` | `SECURITY-CASE-033-01`–`SECURITY-CASE-033-15` | 1.0 |
+| `HELIXSECURITY-L2-031`（Stage 2c、Stage 1範囲外） | `SECURITY-FR-031-01`–`SECURITY-FR-031-06` | `SECURITY-AC-031-01`–`SECURITY-AC-031-06` | `SECURITY-CASE-031-01`–`SECURITY-CASE-031-06`（CASE-031-02a–02dを含む） | 1.0候補 |
 
 ## Case catalog
 
@@ -334,7 +335,7 @@ L2-002の命令様入力からsecurity policy変更へ直結させない条件�
 5. L2-010/011/012/013/028のupdate/artifact情報を同一descriptor/artifact chainで照合する。HARNESS共通交換/rollbackはHARNESSへ残す。
 6. L2-014はmemory/training/BRAIN target別のSECURITY判定のみを返し、handoff、LABO評価、BRAIN登録、実保存をこのsliceで成功扱いしない。
 
-総合判定候補はこのStage 1の19 FR、19 AC、33 functional CASEおよび適用するNFRだけを、同一対象revisionで照合する。設計は未実行であり、case greenやreceiptからL3承認、authority、実装・実行許可を生成しない。
+総合判定候補はこのStage 1の19 FR、19 AC、33 functional CASEおよび適用するNFRだけを、同一対象revisionで照合する。Stage 2cの031は別scopeで6 FR/ACと対応CASEを下記に記し、Stage 1の件数へ加算しない。設計は未実行であり、case greenやreceiptからL3承認、authority、実装・実行許可を生成しない。
 
 ## Stage 2c（HELIXSECURITY-L2-031）— 対L3 functional verification
 
@@ -352,6 +353,8 @@ L2-002の命令様入力からsecurity policy変更へ直結させない条件�
 
 - **通常**：ファイル情報を要するtaskでは開始前に正しいruntime/config、SECURITY許可条件、OS ticket/assignment/task revision、選択owner/system提供のmanifest/digest/classification、Worker/INFRASTRUCTURE制約を与える。ファイル情報を要しないtaskではmanifestなしの合成fixtureを別にし、他の適用条件が満たされれば開始可否を判断する。どちらもresult/diff/receiptがまだなくても要求しない。
 - **個別negative**：runtime identity、authority tuple、assignment revision、scopeはそれぞれ独立に欠落・不一致・staleへ変え、開始を拒否する。payload manifest/digest欠落negativeはファイル情報を要するtaskに限り、当該source選択と適用条件を正常に保ったまま変異する。開始前に未生成のresult/diff/完了receiptを要求する変異も不合格。
+- **payload source独立negative**：`SECURITY-CASE-031-02c`は他の開始条件を正常に保ち、task固有sourceが未選択または未許可の状態だけを与え、sourceを推測して複製しようとする単独変異とする。開始せず、開始後に検出した場合は結果を隔離する。未選択sourceは未観測のまま、未許可sourceは未許可のまま保持して既存source/payload ownerへ返す。他ownerへの返却は不合格。
+- **payload source独立negative**：`SECURITY-CASE-031-02d`はtask固有のsource選択・許可および他の開始条件を正常に保ち、選択sourceの欠落だけを与えて別sourceへfallbackする単独変異とする。開始せず、開始後に検出した場合は結果を隔離し、未選択の別sourceを未観測のまま保持して既存source/payload ownerへ返す。他ownerへの返却は不合格。
 - **未見正常**：`SECURITY-CASE-031-02a`はファイル情報を要しない新taskでmanifestを要求せず開始判定し、`SECURITY-CASE-031-02b`はファイル情報を要する新しい選択payload path/revisionでowner/system明示manifestとscopeが一致する場合の正常例とする。未選択sourceを補完しない。
 - **owner oracle**：manifest不足はsource/payload owner、assignmentはOS、authority/policyはSECURITYへ返す。
 
@@ -381,8 +384,8 @@ L2-002の命令様入力からsecurity policy変更へ直結させない条件�
 ### SECURITY-CASE-031-06 — owner別戻し、隔離、無関係scope（`SECURITY-AC-031-06`）
 
 - **通常**：有効な追加runtime assignmentと独立した無関係operationを同時にfixtureし、対象runに不足があれば対象だけhold/隔離、無関係operationは有効な既存条件で継続する。
-- **個別negative**：開始前authority/runtime/scope/payload/isolation/credential/classification/該当egress条件、開始後の適用観測/diff/result receiptを個別に欠落・unknown・staleへ変異する。開始前は対象runを開始せず、開始後は結果をaccepted/verified/promotedにせず隔離/holdする。各不足をSECURITY、OS、Worker、INFRASTRUCTURE、HARNESSの該当ownerへ返し、誤ったownerに代行させない。
-- **変更・逸脱の個別negative**：runtime identity/version/config、scope、payload identity/revision/digest、credential/data classification、authorityを一つずつ変更し、旧判定の流用を拒否して当該条件を再照合する。scope外read、scope外write、許可path外diff、deny対象egress、適用観測unknown、host fallbackをそれぞれ独立に与え、対象run停止・結果隔離・該当owner返却・OSの未完義務記録を観測する。
+- **個別negative**：開始前authority/runtime/scope/isolation/credential/classification/該当egress条件、開始後の適用観測/diff/result receiptを個別に欠落・unknown・staleへ変異する。payloadの欠落・unknown・stale変異は、ファイル情報を要し、選択payloadが適用されるtaskに限る。ファイル情報を要しないtaskはpayload/manifestなしでも他の適用条件が満たされれば開始可否を判定する正常対照とし、payload不在だけによる拒否を不合格にする。適用性unknownは非該当として通さず、該当条件のownerへ返して保留する。開始前は対象runを開始せず、開始後は結果をaccepted/verified/promotedにせず隔離/holdする。各不足をSECURITY、OS、Worker、INFRASTRUCTURE、HARNESSの該当ownerへ返し、誤ったownerに代行させない。
+- **変更・逸脱の個別negative**：runtime identity/version/config、scope、適用される選択payloadのidentity/revision/digest、credential/data classification、authorityを一つずつ変更し、旧判定の流用を拒否して当該条件を再照合する。payload変更fixtureはファイル情報を要するtaskに限り、ファイル情報を要しない正常対照に架空のpayload identityを要求しない。scope外read、scope外write、許可path外diff、deny対象egress、適用観測unknown、host fallbackをそれぞれ独立に与え、対象run停止・結果隔離・該当owner返却・OSの未完義務記録を観測する。
 - **authority越境とquotaの独立fixture**：`SECURITY-CASE-031-06a`はSECURITYがassignment/placement/commitを決める、`SECURITY-CASE-031-06b`はOSがpolicy/enforcer/実資源を代替する、`SECURITY-CASE-031-06c`はINFRASTRUCTUREがsecurity authorityを発行する、`SECURITY-CASE-031-06d`はWorker出力がHARNESS検証またはOS昇格を迂回する各単独変異とする。各々を拒否し、固定ownerへ返す。`SECURITY-CASE-031-06e`はruntimeまたはINFRASTRUCTUREが既存quota失敗を報告する単独negativeとし、閾値を追加せず成功扱いを拒否し、既存停止伝播とOS assignmentの未完義務へ返す。`SECURITY-CASE-031-06f`は追加runtime failureを理由に別runtimeを一律停止する単独変異とし、無関係operationの既存有効条件を保つ。
 - **未見正常**：無関係scopeの異なる実行条件で、031に該当しない通常operationが既存authorityに従って進める。追加runtime failureから主Worker全体停止を生成しない。
 - **owner oracle**：OS assignmentに対象revisionと未完義務を記録し、SECURITY policy不足はSECURITY、物理制約はWorker/INFRASTRUCTURE、検証はHARNESSへ戻す。requirements/approval/mergeの判断を生成しない。
