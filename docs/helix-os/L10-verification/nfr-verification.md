@@ -129,9 +129,9 @@ NFR候補は計測対象と比較値であり、POごとのparameter gateでは�
 | NFR CASE | NFR候補 | 集計対象 functional CASE | 観測と未評価条件 |
 |---|---|---|---|
 | `CASE-OS-L10-NFR-025-01` | `NFR-OS-L3-025-01` | `CASE-OS-L10-025-01`–`32` | service①〜⑦および選択scopeの正常/部分未見とunknown等のfixture内分類・誤結合を計数。全運転KPIではない。|
-| `CASE-OS-L10-NFR-026-01` | `NFR-OS-L3-026-01` | `CASE-OS-L10-026-01`–`55` | source/contract/permission/dependency/recovery/human入力状態、closure、空pack集合の候補除外、代替space、minimum-proof stateを分離。|
-| `CASE-OS-L10-NFR-031-01` | `NFR-OS-L3-031-01` | `CASE-OS-L10-031-01`–`87` (066/068/070/072除外; 031-25 alias) | old 60s/3m comparisonと現在適用budgetを混同しない。各固定L2-031 measurement fieldの有無/stale/scope不一致、AC03単変異、安全性/並列化/回収traceをCASE別集計し、欠落population等のpercentileを未評価とする。|
-| `CASE-OS-L10-NFR-047-01` | `NFR-OS-L3-047-01` | `CASE-OS-L10-047-01`–`38` | reason/evidence/根拠source revisionの独立欠落、Assignment/Attempt/result/authority非継承、unknown軸、双方向参照・owner backflowをCASE別集計する。|
+| `CASE-OS-L10-NFR-026-01` | `NFR-OS-L3-026-01` | `CASE-OS-L10-026-01`–`60` | source/contract/permission/dependency/recovery/human入力状態、pack版・適用対象・一周出力、closure、空pack集合の候補除外、代替space、minimum-proof stateを分離。|
+| `CASE-OS-L10-NFR-031-01` | `NFR-OS-L3-031-01` | `CASE-OS-L10-031-01`–`95` (066/068/070/072除外; 031-25 alias) | old 60s/3m comparisonと現在適用budgetを混同しない。wall-clock、runner-minute、failure feedback latency p50/p95、超過原因を含む固定L2-031 measurement fieldの有無/stale/scope不一致、Recovery Issue正本誤用、AC03単変異、安全性/並列化/回収traceをCASE別集計し、欠落population等のpercentileを未評価とする。|
+| `CASE-OS-L10-NFR-047-01` | `NFR-OS-L3-047-01` | `CASE-OS-L10-047-01`–`41` | reason/evidence/根拠source revisionの独立欠落、元assignmentとのrelation・未完義務追跡、Assignment/Attempt/result/authority非継承、unknown軸、双方向参照・owner backflowをCASE別集計する。|
 
 これらはdocumented fixtureの静的集計候補であり、実測やoperational NFR達成を示さない。
 
@@ -142,8 +142,8 @@ NFR候補は計測対象と比較値であり、POごとのparameter gateでは�
 | NFR CASE | 親 / NFR / AC | 補正後functional CASE集合 | 観測 |
 |---|---|---|---|
 | `CASE-OS-L10-NFR-025-01` | 025 / NFR-025-01 / AC-025-01〜03 | CASE-025-01〜32、aliasなし | 固定L2入力の個別欠落、unit・connection・composite区分、document/mechanism existenceのみの誤成立。|
-| `CASE-OS-L10-NFR-026-01` | 026 / NFR-026-01 / AC-026-01〜04 | CASE-026-01〜55、全ID個別判定 | 入力単独欠落、依存/安全/比較状態、結果から状態生成、scope・環境・更新/rollback、資源不足の返却。|
-| `CASE-OS-L10-NFR-031-01` | 031 / NFR-031-01 / AC-031-01〜04 | CASE-031-01〜87（066/068/070/072除外）、ただし031-25は031-06のalias | 予算/母集団/改善前後値、ticket/source/base/measurement scope、旧数値/既決工程、正しさ/性能、LABO/authority、非縮退回収を分離。|
-| `CASE-OS-L10-NFR-047-01` | 047 / NFR-047-01 / AC-047-01〜04 | CASE-047-01〜38、ただし047-20は047-04のalias | r1/r2、source scope/revision/issuer/conflict、proposal authority、Ticket→Ticket参照をそれぞれ観測。|
+| `CASE-OS-L10-NFR-026-01` | 026 / NFR-026-01 / AC-026-01〜05 | CASE-026-01〜60、全ID個別判定 | 入力単独欠落、dependency/安全/比較状態、pack版/適用対象/一周出力、結果から状態生成、scope・環境・更新/rollback、資源不足の返却、導出成功からStage構成採択を生成しない。|
+| `CASE-OS-L10-NFR-031-01` | 031 / NFR-031-01 / AC-031-01〜05 | CASE-031-01〜95（066/068/070/072除外）、ただし031-25は031-06のalias | 各measurement field、Recovery Issue正本誤用、予算/母集団/改善前後値、ticket/source/base/measurement scope、旧数値/既決工程、正しさ/性能、LABO/authority、非縮退回収を分離。|
+| `CASE-OS-L10-NFR-047-01` | 047 / NFR-047-01 / AC-047-01〜05 | CASE-047-01〜41、ただし047-20は047-04のalias | r1/r2、元assignment・未完義務、source scope/revision/issuer/conflict、proposal authority、Ticket→Ticket参照をそれぞれ観測。|
 
 既存CASE-025-17の戻し先、026-25の空pack除外とdependency unknownの区別、031-26〜30のAC-031-03/04 trace、047-11の明示的適格化なしという前提はfunctional overlayに従う。未知の実測値・適用分母は未評価のまま残し、旧followupが述べるcoverageを実測または独立review成立とは解釈しない。

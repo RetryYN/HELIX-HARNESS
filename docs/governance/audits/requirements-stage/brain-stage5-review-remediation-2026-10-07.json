@@ -1,0 +1,140 @@
+{
+  "record_type": "review-remediation-evidence",
+  "status": "draft_for_root_inspection",
+  "date": "2026-10-07",
+  "target": "HELIX-BRAIN Stage 5 / PR #2653 formal review remediation",
+  "base_head": "3bd7267cd573ecd0e810c6c3a8aa82bda21142bb",
+  "review_target_head": "3bd7267cd573ecd0e810c6c3a8aa82bda21142bb",
+  "formal_review_comment": {
+    "repository": "RetryYN/HELIX-HARNESS",
+    "issue": 2653,
+    "comment_id": "6039471250",
+    "review_receipt": "RH-PR2653-BRAIN-STAGE5-RECEIPTS-01-RESPONSE"
+  },
+  "fixed_parent_pins": {
+    "l2": {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "full_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+      "spans": [
+        {
+          "lines": "464-473",
+          "sha256": "a65af00d769a3e2ef3dbe5fedc6034ab67e1c4e44d5e2baa8b8d8ad381df6be5"
+        }
+      ]
+    },
+    "l11": {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "full_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+      "spans": [
+        {
+          "lines": "65-65",
+          "sha256": "820a9905a103a6993004f6db6bfad8222091898c704a56eb51e865c75a81b895"
+        }
+      ]
+    }
+  },
+  "legacy_source_pins": {
+    "RCLS-BR-004/006": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md",
+      "full_sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c",
+      "spans": [
+        {
+          "lines": "37-48",
+          "sha256": "544c67d83c4ecb5dcbfbae26d260f6a8c8bc5b4f40c1d411ad690863715b8ead"
+        }
+      ]
+    },
+    "RCLS-AC-004/007/017/019": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+      "full_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7",
+      "spans": [
+        {
+          "lines": "24-27",
+          "sha256": "b30e5bdff85610a491abb80d42341e508e96a24ce819f608be7ee35f1d920c6c"
+        },
+        {
+          "lines": "37-39",
+          "sha256": "91059efe7d11697a14c529c58614fc4f2188c7e73b6d0030f8292eda976f3900"
+        }
+      ]
+    }
+  },
+  "source_interpretation": {
+    "reuse_and_derivation": "Keep owner-attached receipts, staged LABO evaluation → OS registration/routing → BRAIN independent verification → adoption, and no promotion from receipt existence alone. Re-derive AC-06 coverage for finding, unfinished-duty, and counterexample receipts with isolated field mutations.",
+    "return_categories": "Fixed L2-025 line 471 assigns source/evaluation to LABO, registration/progress to OS, knowledge meaning to the corresponding L1, and BRAIN change verification to the BRAIN change owner. Line 472 continues the bundled conditions; citations in cases point to line 471 for category mapping.",
+    "legacy_trace": "RCLS-BR-004/006 and RCLS-AC-004/007/019 support staged promotion, independent verification and authority separation; RCLS-AC-017 is not adopted as a human approval gate."
+  },
+  "findings_addressed": [
+    {
+      "id": "M1",
+      "change": "Added C61-C62, single source-owner unknown mutations for finding and unfinished duty; preserve unknown/hold, forbid inference, identify correction category, prohibit adoption completion."
+    },
+    {
+      "id": "M2",
+      "change": "Updated BR/NFR/BV/NFV L2-025 rows to AC-01..06 and C01-C66."
+    },
+    {
+      "id": "m1",
+      "change": "Added C63-C66, separate missing/content/owner/revision mutants for the counterexample receipt."
+    },
+    {
+      "id": "m2",
+      "change": "OS routing completion event precedes BRAIN verification/adoption. Unfinished duty-9 is separate post-adoption observation residue and remains unfinished."
+    },
+    {
+      "id": "m3",
+      "change": "AC-06 maps receipt classes to fixed L2-025 return categories; C53-C66 expected outcomes name LABO or OS categories and preserve unknown original owner where unknown."
+    },
+    {
+      "id": "m4",
+      "change": "Placed C53-C66 before the shared observation paragraph and normalized case spacing / trailing whitespace."
+    }
+  ],
+  "target_files": [
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "sha256": "fd3f2870c75f0ae473eababb1d033a01ae16a37fc2c5c12f036d8f6fe78489dc"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "sha256": "b2e80dcc9a4beb7d03c66b9eb7352fe08f9941400de631566643f2d1a061d559"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.md",
+      "sha256": "e9c4345bcb6ad6c691bd67745f5fe24bab5657f153b1d417efee5ce4dfd3f6f6"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/nfr-grade.md",
+      "sha256": "cdcf0aae6552df64ac9efb87978c488f4ee8efe873bd95a0e6993b800f895e19"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.md",
+      "sha256": "ab171d52ad77aab8a9f6674209390ba90bde1b842c27888cbed0643bcb2f7efc"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/nfr-verification.md",
+      "sha256": "b3bf45fc4e30258ab9771c905e0441a08225da2245e6723ba009ca2d78c53630"
+    }
+  ],
+  "static_validation": {
+    "result": "pass",
+    "checks": [
+      "66 unique sequential L10-BRAIN-025 CASE IDs C01-C66",
+      "C53-C66 map to AC-06",
+      "C61/C62 preserve unknown and hold without inference and prevent adoption completion",
+      "C01 OS routing completion precedes BRAIN verification/adoption",
+      "four support crosswalk rows include AC-01..06 and C01-C66",
+      "git diff --check"
+    ],
+    "execution": "Documentation-only static checks; no archived test, old CLI, hook, runtime, or CI executed."
+  },
+  "authority_and_delivery": {
+    "requirement_approval": "not established or claimed",
+    "Opus_Fable_new_approval": "not generated",
+    "commit_push_pr_comment": "none; Root retains commit/push and delivery responsibility",
+    "independent_review": "not performed by this author; formal review findings were used as input only"
+  },
+  "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+  "authority_effect": "none",
+  "root_acceptance_note": "Root found C57-C62 require a genuinely unfinished duty while Worker closed duty-9 in C01. C01 duty-9 now declares post-adoption observation residue; completed routing uses separate state event, so adoption prerequisite ordering and unfinished-duty output oracle both remain testable."
+}
