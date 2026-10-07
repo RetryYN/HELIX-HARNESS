@@ -128,7 +128,7 @@
 
 | 固定親 | 独立business outcome | 正本AC / CASE index |
 |---|---|---|
-| `HELIXLABO-L2-067` | なし。candidate/Attempt内修復の未実行観測evidenceだけ。 | `LABO-067-AC-01/02/03`; `L10-LABO-067-CASE-01/02/03a–g/04a–b/05–23/24–38` |
+| `HELIXLABO-L2-067` | なし。candidate/Attempt内修復の未実行観測evidenceだけ。 | `LABO-067-AC-01/02/03`; `L10-LABO-067-CASE-01/02/03a–g/04a–b/05–23/24–39` |
 
 これは未実行design参照であり、business completionや実験を表さない。
 

@@ -1,0 +1,150 @@
+{
+  "record_type": "immutable_review_correction_evidence",
+  "record_status": "evidence_only_no_approval_effect",
+  "created_at_local": "2026-10-08 Asia/Tokyo",
+  "scope": {
+    "mechanism": "HELIX-LABO",
+    "stage": 5,
+    "parents": [
+      "HELIXLABO-L2-059"
+    ],
+    "related_index_scope": "059 FR/CASE trace only; CASE-067 existing index cases untouched"
+  },
+  "base_integration": {
+    "latest_remote_main": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+    "merge_commit_before_scope_edits": "53437d6fe8e4fd953c7d75e83190d0efdd14df5d",
+    "included_main_change": "#2685 LABO Stage5 parent060 BR/BV/NFR trace merge"
+  },
+  "review_comment": {
+    "comment_id": 6046160520,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2687#issuecomment-6046160520",
+    "updated_at": "2026-10-07T20:23:42Z",
+    "reviewed_head": "6354975f743420e4007ddf823d67c935f218d2d8",
+    "reviewed_base": "0d8fcb67ef64e17e0e3529715011d6140652f017",
+    "body_bytes": 5645,
+    "body_sha256": "3e17f666060f73c56b3ec196467248c7521d34fbbc54079ed3b91abfcf12615d"
+  },
+  "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+  "fixed_parent_pins": {
+    "L2-059": {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "span": "416-439",
+      "file_bytes": 73845,
+      "file_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "span_bytes": 12103,
+      "span_sha256": "10edd365a96da6d00927fe40ce16f250978f99c3d248c3ad2f7ff5364e59856c"
+    },
+    "L11-059": {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "span": "164-176",
+      "file_bytes": 40455,
+      "file_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "span_bytes": 4437,
+      "span_sha256": "fd4c82e44537af100c0578c69264c179ea88beb68756a74766c79e40f0722a43"
+    }
+  },
+  "legacy_source_pins": [
+    {
+      "asset_id": "LEGACY-ASSET-28FB139B26CD61CC51EE",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+      "line_span": "76-147",
+      "file_bytes": 6446,
+      "file_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+      "span_bytes": 2806,
+      "span_sha256": "f5dd8a2903a9950de8d954f35a1e9f8cbc74e33121e354f61d9cac4d4a21deb0"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A952A3A175EB82A4781B",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+      "line_span": "30-40",
+      "file_bytes": 3701,
+      "file_sha256": "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185",
+      "span_bytes": 2014,
+      "span_sha256": "c18d852ec4e38946c14d7718b568450308916a4a4bd2accc14b2bf6c491850d2"
+    }
+  ],
+  "six_document_sha256_before_after": [
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "before_bytes": 32852,
+      "before_sha256": "9f56b674f11f9b666bc546a20e7a7492d1dfe377a24495d351392698c8389777",
+      "after_bytes": 32852,
+      "after_sha256": "9f56b674f11f9b666bc546a20e7a7492d1dfe377a24495d351392698c8389777",
+      "changed": false
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "before_bytes": 354464,
+      "before_sha256": "808808886ec910671ca1a67320c7563156abb29b28a1b93e19b15ab0c55b85e1",
+      "after_bytes": 354627,
+      "after_sha256": "0f11b654be30baae1749800ce3c184a146ceb4bce22710f762ef368f5d40e536",
+      "changed": true
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "before_bytes": 91368,
+      "before_sha256": "fac5bbc57a59431385b6dc6a76113474da1564fc263f6d74e7f97bb4133a6300",
+      "after_bytes": 91404,
+      "after_sha256": "d5838368f1ec9ee9e57cc143aa6e346ae1ff7f924d46c234880798098936b773",
+      "changed": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "before_bytes": 31387,
+      "before_sha256": "54e42a8af0d30f7eb1c2b75810b51fab6197558633ab3bac7a50b024e581445e",
+      "after_bytes": 31387,
+      "after_sha256": "54e42a8af0d30f7eb1c2b75810b51fab6197558633ab3bac7a50b024e581445e",
+      "changed": false
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "before_bytes": 693375,
+      "before_sha256": "9ea0bc55f0d555cb2b8481dedf2b891b9efdee7e3433829d9e1013d214661ce6",
+      "after_bytes": 693873,
+      "after_sha256": "304aebc0edf618fd0eba2d73b745611b1d259ffd94429c0375df16ca58874bb4",
+      "changed": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "before_bytes": 82227,
+      "before_sha256": "038bd1f7a995b3c61008693f6b7ae6369cb1b2399ea192420419e08a9174a623",
+      "after_bytes": 82275,
+      "after_sha256": "922f8fccc63917178606dbb5edd165f5bdc6805de3753ead6d703b8342fdb8b7",
+      "changed": true
+    }
+  ],
+  "correction": [
+    {
+      "finding": "CASE-14 combined task/source revision mutation could pass if one field were ignored",
+      "treatment": "CASE-14 now varies task revision only; existing CASE-58 remains the source-revision-only fixture."
+    },
+    {
+      "finding": "CASE-71 combined requirement/acceptance-oracle revision mutation could pass if one field were ignored",
+      "treatment": "CASE-71 now varies requirement revision only; new independent CASE-72 varies acceptance-oracle revision only."
+    },
+    {
+      "finding": "FR trace/index range did not include the new separated revision fixtures",
+      "treatment": "FR trace maps 14, 58, 71, 72; FR change-forbidden CASE range includes 48–72. AC-03 maps each mismatch to its existing L2:429 destination class."
+    },
+    {
+      "finding": "NFR and inventory counts did not include CASE-72",
+      "treatment": "85 definitions, 79 independent fixtures, 1 compound and 5 index definitions; CASE-48 is the added normal, CASE-49–72 are 24 negatives."
+    }
+  ],
+  "static_checks": {
+    "case_ids_unique_in_stage_section": true,
+    "case14_task_revision_only_and_case58_source_revision_preserved": true,
+    "case71_requirement_revision_only": true,
+    "case72_acceptance_oracle_revision_only": true,
+    "fr_trace_revision_fields_and_ranges_synchronized": true,
+    "nfr_counts_synchronized": true,
+    "git_diff_check": true
+  },
+  "limitations": [
+    "No legacy runtime, CLI, hook, test, or CI was executed.",
+    "No fixture execution or empirical acceptance result was produced.",
+    "Formal comment established its statements for HEAD 6354975, but this correction creates new content bytes; it does not carry forward reviewer approval or condition-3 admission.",
+    "Previous immutable audit and decision records were not modified.",
+    "Only six L3/L10 documents were pinned; business requirements and business verification bytes remain unchanged."
+  ]
+}
