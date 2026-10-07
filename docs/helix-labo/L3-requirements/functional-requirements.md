@@ -1609,7 +1609,7 @@ LABOはFeedbackの評価・candidate提示・変更後re-observationを担う。
 
 | 固定条件 | L3で保つ意味 | 対AC | 既存/追加L10根拠 |
 |---|---|---|---|
-| L2-059:420、L11:170 | 同一task/work scope、要求/受入/oracle revision、対象期間、scorer/run condition、OS receiptを選択比較に束縛する。 | AC-01/03 | CASE-01/02、03a/b/i、10–14、51、57–62 |
+| L2-059:420、L11:170 | 同一task/work scope、要求/受入/oracle revision、対象期間、scorer/run condition、OS receiptを選択比較に束縛する。task/source revisionとrequirement/acceptance oracle revisionを別fieldとして照合する。 | AC-01/03 | CASE-01/02、03a/b/i、10–14、51、57–62、71 |
 | L2-059:420/426、L11:170/173–175 | 実験条件とcohortを別軸にし、目的別に二群/三群を選ぶ。未選択群を必須化しない。 | AC-01/02/03 | CASE-01/02、03h/i、15、21、50 |
 | L2-059:420/429、L11:170/173/176 | 現行OS割当とhistorical当時のactor/authority/receiptを保ち、assignmentを後付けしない。 | AC-01/03 | CASE-01、16、51 |
 | L2-059:421–422、L11:170/173–175 | oracle別のquality/acceptance出力、同順位/比較不能、品質先行、適用可能な既決priorityの再利用。 | AC-01/02/03 | CASE-01/02、03b–d、05–08、48–49 |
@@ -1619,7 +1619,7 @@ LABOはFeedbackの評価・candidate提示・変更後re-observationを担う。
 
 - LABO-059-AC-01 正常: 選択目的に必要な比較群と同一条件、適用可能なquality oracle/既決decision、OS assignment/実験結果receiptを対応づけ、quality、acceptance、cost、time、人介入、effortと比較不能項目を別々に返す。有効decisionは同scope内で再利用する。
 - LABO-059-AC-02 未見正常: 条件が選択scope内で適用可能な未見taskでも、選択した群の証拠を保って比較する。未選択群の欠落で選択済み比較を拒否しない。未見taskへの一般化は主張しない。
-- LABO-059-AC-03 不成立・戻し先: 条件/receipt/identity/revisionの欠落や不一致、品質未達の相殺、cost/time/human quantityの欠落、未完runの成功化、過去結果のcurrent化、scope外claim、LABOによるauthority副作用を独立oracleで拒否する。戻し先はL2-059:429に明記された原因別既存source区分へ限定し、未特定ならunknownを保つ。
+- LABO-059-AC-03 不成立・戻し先: 条件/receipt/identity/revisionの欠落や不一致、品質未達の相殺、cost/time/human quantityの欠落、未完runの成功化、過去結果のcurrent化、scope外claim、LABOによるauthority副作用を独立oracleで拒否する。task/source側revisionの不一致とrequirement/acceptance oracle revisionの不一致を別fieldとして照合し、前者は既存OSまたは観測sourceへ、後者は既存HARNESS/要求ownerへ戻す。個別source/owner identityが特定できない場合はunknownを保つ（L10 CASE-14/71）。その他の戻し先もL2-059:429に明記された原因別既存source区分へ限定し、未特定ならunknownを保つ。
 
 #### 旧source起点と対応
 

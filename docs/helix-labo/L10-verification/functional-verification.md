@@ -2644,7 +2644,7 @@ CASE-01は旧snapshot上の高水準正常説明である。各下記candidate�
 | `L10-LABO-059-CASE-11` | LABO-059-AC-03 | 単独変異: run protocol だけ異なる。その他の入力は `CASE-01` と同一。 | 異なるprotocolを比較群へ混ぜない 戻し先: LABO。 |
 | `L10-LABO-059-CASE-12` | LABO-059-AC-03 | 単独変異: hardware class だけ異なる。その他の入力は `CASE-01` と同一。 | 異なるhardware条件を比較群へ混ぜない 戻し先: LABO。 |
 | `L10-LABO-059-CASE-13` | LABO-059-AC-03 | 単独変異: toolchain revision だけ異なる。その他の入力は `CASE-01` と同一。 | 異なるtoolchain条件を比較群へ混ぜない 戻し先: LABO。 |
-| `L10-LABO-059-CASE-14` | LABO-059-AC-03 | 単独変異: requirement/task revision だけ異なる。その他の入力は `CASE-01` と同一。 | 異なるrevisionを比較群へ混ぜない 戻し先: HARNESS。 |
+| `L10-LABO-059-CASE-14` | LABO-059-AC-03 | 単独変異: task/source revisionだけが選択scopeの期待版と異なる。requirement/acceptance oracle revisionとその他の入力は `CASE-01` と同一。 | 異なるtask/source revisionのresultを比較群へ混ぜず、当該比較を未評価/比較不能にする。戻し先は既存OSまたは観測source。個別source/owner identityが不明ならunknownを保持する。 |
 | `L10-LABO-059-CASE-15` | LABO-059-AC-03 | 単独変異: no-Harness runに他のHELIX支援が残る条件だけを変更。その他の入力は `CASE-01` と同一。 | 当該cohortをHELIXなしと呼ばない 戻し先: LABO。 |
 | `L10-LABO-059-CASE-16` | LABO-059-AC-03 | 単独変異: historical runへ現行OS assignmentを遡及付与だけを変更。その他の入力は `CASE-01` と同一。 | 当時のauthority/receiptを保持し後付けassignmentを拒否する 戻し先: OS。 |
 | `L10-LABO-059-CASE-17` | LABO-059-AC-03 | 単独変異: subscription/API-equivalent区分costの欠落だけを変更。その他の入力は `CASE-01` と同一。 | 総費用を完全とせず該当費用欠落を示す。subscription/API-equivalentの価格sourceが識別できればLABO-055またはそのsourceへ、identity不明ならunknown。 |
@@ -2705,11 +2705,12 @@ CASE-01は旧snapshot上の高水準正常説明である。各下記candidate�
 | `L10-LABO-059-CASE-68` | LABO-059-AC-03 | 入力と他の出力は固定し、LABOの出力field ticket issuanceだけに新しい作用/値を生成する。 | ticketを起票しない。 固定親に指定のない戻し先・owner・権限を新設しない。L2-059:428。 |
 | `L10-LABO-059-CASE-69` | LABO-059-AC-03 | 入力と他の出力は固定し、LABOの出力field permissionだけに新しい作用/値を生成する。 | permissionを変更しない。 固定親に指定のない戻し先・owner・権限を新設しない。L2-059:428。 |
 | `L10-LABO-059-CASE-70` | LABO-059-AC-03 | 入力と他の出力は固定し、LABOの出力field merge authorityだけに新しい作用/値を生成する。 | merge authorityを変更しない。 固定親に指定のない戻し先・owner・権限を新設しない。L2-059:428。 |
+| `L10-LABO-059-CASE-71` | LABO-059-AC-03 | 単独変異: requirement/acceptance oracle revisionだけが選択scopeの期待版と異なる。task/source revisionとその他の入力は `CASE-01` と同一。 | 異なるrequirement/acceptance oracle revisionのresultを比較群へ混ぜず、当該比較を未評価/比較不能にする。既存HARNESS/要求ownerへ戻す。個別source/owner identityが不明ならunknownを保持する。 |
 
 
 #### CASE索引と分類
 
-既存a4a365由来CASE60件はすべて保持する。CASE-30は複数費目を含む既存compound、CASE-22/33/34/35/36は非独立indexであり、独立negativeへ再分類しない。CASE-01/02を正常fixtureとし、既存の独立negative52件を保つ。追加はCASE-48正常1件、CASE-49–70 negative22件である。追加negativeは単独変異（入力field 9件、固定入力からの出力変異13件）として定義し、CASE-64だけはprovider label入力を変えscore不変を期待する。独立fixtureの設計数は既存54＋追加23＝77、別に既存compound1・index5を定義として保持する。実行・合格・実測数ではない。
+既存a4a365由来CASE60件はすべて保持する。CASE-30は複数費目を含む既存compound、CASE-22/33/34/35/36は非独立indexであり、独立negativeへ再分類しない。CASE-01/02を正常fixtureとし、既存の独立negative52件を保つ。追加はCASE-48正常1件、CASE-49–71 negative23件である。追加negativeは単独変異（入力field 10件、固定入力からの出力変異13件）として定義し、CASE-64だけはprovider label入力を変えscore不変を期待する。独立fixtureの設計数は既存54＋追加24＝78、別に既存compound1・index5を定義として保持する。実行・合格・実測数ではない。
 
 
 ### CASE-LABO-060 — 支援有無の同一設定比較
@@ -3230,7 +3231,7 @@ CASE IDは旧公開a4 revisionの42定義IDを保持する。索引は定義行�
 | `L10-LABO-067-CASE-38` | `LABO-067-FR-01` | `LABO-067-AC-03` | B0の観測入力を不変とし、既存candidate選択状態を入力状態のまま保持する。 | LABO観測出力に新しい`selected_candidate`だけを生成する誤出力を加える。 | `selected_candidate`を生成せず観測材料だけを返し、既存candidate選択状態を変更しない。個体identityが不明でも固定L2の既知責務区分を保持する。 |
 | `L10-LABO-067-CASE-39` | `LABO-067-FR-01` | `LABO-067-AC-03` | B0の観測入力と既存059の費用定義・比較条件を保持する。LABOは既存cost gateを変更していない。 | 入力を変更せず、LABOの観測出力へ既存059のcost gateを変更する値だけを誤追加する。 | cost gateの変更を拒否し、059の費用・比較条件を保持する。067は観測材料だけを返し、誤出力をLABO評価責務へ戻す。 |
 
-新CASE-24–38はCASE-01–23と照合する追加fixture候補であり、欠落個体identityではknown role classを保つ。CASE-29/30/31/32はassignment/SECURITY permission/採否/Worker-start生成という別出力を単独で拒否する。old CASE-04bのWorker assignment拒否もそのまま残し、ID数から意味完全性を主張しない。
+新CASE-24–39はCASE-01–23と照合する追加fixture候補であり、欠落個体identityではknown role classを保つ。CASE-29/30/31/32はassignment/SECURITY permission/採否/Worker-start生成という別出力を単独で拒否する。old CASE-04bのWorker assignment拒否もそのまま残し、ID数から意味完全性を主張しない。
 
 ## Stage 5 — HELIX-LABO L10 機能総合検証候補 — HELIXLABO-L2-069
 
