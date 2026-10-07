@@ -75,7 +75,7 @@ NFR候補は計測対象と比較値であり、POごとのparameter gateでは�
 | CASE ID | NFR trace | 計測fixture・oracle |
 |---|---|---|
 | CASE-OS-L10-NFR-032-01 | NFR-OS-L3-032-01 | 完全一致positiveと全列挙field個別mutation。selected case coverageと誤eligible数を計測し、policy operationごとの既存SECURITY-L2-008 authority欠落/不一致を独立件数にする。 |
-| CASE-OS-L10-NFR-033-01 | NFR-OS-L3-033-01 | selected capabilityごと2回、stressで3回same snapshot rerun。digest/fingerprint equalityと未実行選択数、dedupe evidence loss、差異のquarantine/unfinished保持、registry参照のみの権限誤認を計測。 |
+| CASE-OS-L10-NFR-033-01 | NFR-OS-L3-033-01 | selected capabilityごと2回、stressで3回same snapshot rerun。digest/fingerprint equalityと未実行選択数、選択detectorの適用engine/output種別関係の宣言・選択対象・OS登録receipt間の一致、適用関係欠落/不一致の誤受入数を計測する。適用宣言欠落/選択対象との不一致は既存detector意味ownerへ、宣言正常でOS登録receiptだけ欠落/不一致ならOS登録receipt ownerへ返す。dedupe evidence loss、差異のquarantine/unfinished保持、registry参照のみの権限誤認も計測し、適用関係やreceipt不整合を含むscopeの再現成功数は0とする。 |
 | CASE-OS-L10-NFR-034-01 | NFR-OS-L3-034-01 | dispositionごと所定evidence set、各欠落mutation。required-evidence coverage/誤terminal数。 |
 | CASE-OS-L10-NFR-035-01 | NFR-OS-L3-035-01 | 同一eventを3回delivery、headを変えた次eventも投入。registration cardinalityとold-head reuse数。 |
 | CASE-OS-L10-NFR-036-01 | NFR-OS-L3-036-01 | 複数upgrade ticketの全Retrofit upgradeごとにplan前/apply直前のsource/authority capture。upgrade単位境界網羅率・stale pass数。非upgrade保持群はFV CASE-OS-L10-036-07, CASE-OS-L10-036-08a, CASE-OS-L10-036-08bだけを別集計し、固定L11が要求するHARNESS duty/read-only policy保持に対する省略期待数0を照合する。upgrade分母と混ぜず、別の数値閾値は設けない。 |

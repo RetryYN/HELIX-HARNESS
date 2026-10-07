@@ -48,7 +48,7 @@ fixtureと実観測を分けて記録し、各親についてtrace正確性、un
 | CASE ID | 親と参照AC | 観測・期待 | 対象外 |
 |---|---|---|---|
 | CASE-OS-L10-BIZ-032 | HELIXOS-L2-032 / FR-OS-L3-032 AC-01..06 | eligible/failure/unknownを分け、quarantineから全体greenを導かない。 | failure解消目標 |
-| CASE-OS-L10-BIZ-033 | HELIXOS-L2-033 / FR-OS-L3-033 AC-01..06 | 選択scope再現receiptと未評価を分ける。 | detector精度KPI |
+| CASE-OS-L10-BIZ-033 | HELIXOS-L2-033 / FR-OS-L3-033 AC-01..06 | 選択scope再現receiptと未評価を分け、選択detectorの適用engine/output種別関係が欠落・不一致なら未評価として既存ownerへ戻す。 | detector精度KPI |
 | CASE-OS-L10-BIZ-034 | HELIXOS-L2-034 / FR-OS-L3-034 AC-01..05 | 原event/disposition/appeal履歴を保ち、OSがrisk acceptanceを確定しない。 | risk appetite |
 | CASE-OS-L10-BIZ-035 | HELIXOS-L2-035 / FR-OS-L3-035 AC-01..05 | job登録と監査実施・finding解消を別状態にする。 | 監査時間SLO |
 | CASE-OS-L10-BIZ-036 | HELIXOS-L2-036 / FR-OS-L3-036 AC-01..04 | upgradeのpreflight/plan/applyと、非upgradeの既存検証義務・read-only policy保持を別状態で示す。 | Retrofit投資効果 |
