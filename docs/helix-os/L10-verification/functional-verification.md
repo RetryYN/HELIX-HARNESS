@@ -141,7 +141,7 @@ L11-028:462-463のAPI契約を固定oracleとする。`amount <= configured maxi
 | `CASE-OS-028-03s` | consultの有無は変えず、実際に選択したsource identityだけをmissing/別sourceへ変える。他source fieldは固定 | そのsourceを使う支援だけをholdしsource owner/INTELLIGENCE/OSへ戻す。別sourceへ推測置換しない |
 | `CASE-OS-028-03t` | 選択sourceのprovenanceだけをmissingにする。identity/revision/permission等は固定 | source利用を成功扱いせず当該支援をholdし、source owner/INTELLIGENCE/OSへ戻す |
 | `CASE-OS-028-03u` | 選択sourceのrelevanceだけをunknown/不適合にする。他source fieldは固定 | 関連性を推定せず当該支援をholdしINTELLIGENCE/source owner/OSへ戻す |
-| `CASE-OS-028-03v` | 選択sourceのconstraintsだけをmissingにする。他source fieldは固定 | 制約適用を確認できるまで当該支援をholdし、source/利用許可の不足はsource owner/SECURITYへ、実resource制約はINFRASTRUCTUREへ、ticket/scope/authorityの状態はOSへ戻す |
+| `CASE-OS-028-03v` | 選択sourceのconstraintsだけをmissingにする。他source fieldは固定 | 制約適用を確認できるまで当該支援をholdし、source/利用許可の不足はsource owner/SECURITYへ、実resource制約はINFRASTRUCTUREへ、ticket/scope/authorityの状態はOS/SECURITYへ戻す |
 
 ### CASE-OS-028-04 — 未見endpointとoracle適用可否（AC-OS-028-04）
 
