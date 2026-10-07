@@ -3481,7 +3481,7 @@ CASE-09/11/13/15/18は旧literal上も索引であり、各主fixtureへ直接�
 | candidate / Q3 | 1 | 1 | 誤修復receiptがあり、cutoff時にも受入可能な解決なし |
 | candidate / Q4 | 0 | 0 | cutoff前に受入可能な修復を確認 |
 
-以下の三つの表は合計86 unique ID。列中のowner routeは固定L2/L11が明示する既知責務区分だけを用いる。責務カテゴリが分かっている場合、それを個体identity unknownで消さない。個体owner自体がsourceから特定できない場合は個体unknownも記録する。
+以下の三つの表は合計86 unique CASE ID。加えて別のunknown理由・影響case表にr08の5 distinct line IDがあるため、これらの表にあるline-ID行は合計91行（86 CASE ID + 5 r08 ID）となる。列中のowner routeは固定L2/L11が明示する既知責務区分だけを用いる。責務カテゴリが分かっている場合、それを個体identity unknownで消さない。個体owner自体がsourceから特定できない場合は個体unknownも記録する。
 
 | CASE ID | FR ID | AC ID | baseline/input | mutation/index role | expected oracle / return route |
 |---|---|---|---|---|---|
@@ -3594,7 +3594,7 @@ CASE-44..82は上記の表に属するこの候補内の安定IDで、canonical�
 
 固定親はPO live26の49行が採択した `MPR-RC-HELIXLABO-L2-070-001`。source revision `ea6f756f96a7370de78e412d737c7a7ed472114a` のL2:561–574 SHA `07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533`、L11:297–307 SHA `c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1`をraw-LFで照合した。旧候補が参照した0abb2894の同範囲とbytesは一致し、採択状態はPO記録で確認する。
 
-対象は固定L2/L11が選択した9 atomに限る。旧FVの84 literalと各raw hashは添付JSONの `old_84_case_literal_audit` に保全し、本文の現行normative定義は旧84 IDを意味再導出した84行、CASE-85、およびCASE-86..127の42行からなる127行の6列表とする。raw literalは現行oracle、実行結果、現行完全性の証拠として扱わない。Index/alias行は独立変異として二重計上しない。行数・ID保持は意味完全性、独立性、実行合格または承認を示さない。
+対象は固定L2/L11が選択した9 atomに限る。旧FVの84 literalと各raw hashは添付JSONの `old_84_case_literal_audit` に保全し、本文の現行normative定義は旧84 IDを意味再導出した84行、CASE-85、およびCASE-86..130の45行からなる130行の6列表とする。raw literalは現行oracle、実行結果、現行完全性の証拠として扱わない。Index/alias行は独立変異として二重計上しない。行数・ID保持は意味完全性、独立性、実行合格または承認を示さない。
 
 | CASE ID | AC ID | baseline | single mutation / normal setup | expected oracle / responsibility return | 範囲・制限 |
 |---|---|---|---|---|---|
@@ -3725,9 +3725,8 @@ CASE-44..82は上記の表に属するこの候補内の安定IDで、canonical�
 | `L10-LABO-070-CASE-125` | `LABO-070-AC-01` | CASE-01と同じ正常入力B0。対象revision T0、source identity/revision/provenanceのsource receipt実値、scope/window、適用可能なoracle、他のreceipt/fieldは固定して有効。source provenance outputのbaselineは正常かつ現在の選択範囲に一致する。 | 単独変異: LABO outputのprovenance fieldだけを欠落させる。ほかの入力・receipt・出力fieldは不変。 | 不完全なLABO出力を拒否し、当該出力fieldをreceiptの実値P0へ訂正する。正常sourceへ返さず他の出力fieldを保持する。固定L2-070/L11-070の該当境界に限定し、新しい閾値・expiry・owner・decisionを加えない。 | 固定親 review05 M1/M2の当該fieldだけを照合。個体identity unknownは既知責務区分から分け、件数から完全性を主張しない。 |
 | `L10-LABO-070-CASE-126` | `LABO-070-AC-01` | CASE-01と同じ正常入力B0。対象revision T0、source identity/revision/provenanceのsource receipt実値、scope/window、適用可能なoracle、他のreceipt/fieldは固定して有効。source provenance outputのbaselineは正常かつ現在の選択範囲に一致する。 | 単独変異: LABO outputのprovenance fieldだけをP0から異なるP1へ変える。ほかの入力・receipt・出力fieldは不変。 | 不一致のLABO出力を拒否し、当該出力fieldを正確なP0へ訂正する。正常sourceへ返さず他の出力fieldを保持する。固定L2-070/L11-070の該当境界に限定し、新しい閾値・expiry・owner・decisionを加えない。 | 固定親 review05 M1/M2の当該fieldだけを照合。個体identity unknownは既知責務区分から分け、件数から完全性を主張しない。 |
 | `L10-LABO-070-CASE-127` | `LABO-070-AC-03`, `LABO-070-AC-05` | CASE-01と同じ有効な067/068 field。各定義revision、identity/grain、receipt、scorecard scopeは基準scope S0と一致する。 | 単独変異: 068 fieldのscopeだけをS0と異なる値にする。067 fieldと全source/output条件は不変。 | 068 fieldだけを理由付きunavailable/unknownにし、067 fieldと他の正常fieldを保持する。scope違いのAttempt countを混ぜず、complete co-present scorecardとしない。LABO scope評価責務へ戻す。 | 固定L2/L11-070のscope不一致時のfield隔離を照合。 |
-
 | `L10-LABO-070-CASE-128` | `LABO-070-AC-03` | CASE-01と同じ正常scorecard入力B0。scorecard scope S0、4 duration、escaped-defect、rollback/Recovery、observer overhead、freshnessの各汎用event/receipt scope S0、067/068 fieldは有効で一致する。全scope値は合成fixture値。 | 単独変異: 汎用telemetryのqueue-wait event/receiptのscope fieldだけをS0からS1へ変える。他のevent/receipt、scorecard scope、067/068 field、他の入力・出力は不変。 | scope不一致のqueue-wait fieldをreason付きunknown/unavailableとし、S1 eventをS0 scorecardへ混ぜない。他のscope一致する汎用metric・067/068 fieldは保持し、queue-waitの欠落を隠して完全なscorecardと主張しない。比較・scope評価責務はLABOに残す。 | 固定L2/L11-070の汎用event scope隔離を、067/068固有scope CASE-18/127と分けて照合。 |
 | `L10-LABO-070-CASE-129` | `LABO-070-AC-03`, `LABO-070-AC-05` | CASE-01と同じ正常scorecard入力B0。067 definition revision D0670（D0670/D0671は合成fixtureラベル）、predicate/oracle、identity/grain、scope、receiptと、068側を含む他fieldは有効で一致する。 | 単独変異: 067 fieldのdefinition_revision参照だけをD0670から互換性のない既知revision D0671へ変える。predicate/oracle、068 field、他のreceipt/outputは不変。 | 067 fieldだけをunknown/unavailableとして理由を保ち、068と他の正常fieldを保持する。異なる定義revisionを適用・換算せず、067定義/receiptの既存責務区分へ返す。complete co-present scorecardとしない。 | 固定L2/L11-070の067定義revision一致とfield隔離を照合。 |
-| `L10-LABO-070-CASE-130` | `LABO-070-AC-03`, `LABO-070-AC-05` | CASE-01と同じ正常scorecard入力B0。068 definition revision D0680（D0680/D0681は合成fixtureラベル）、OS Attempt identity集合/完全性receipt、identity/grain、scopeと、067側を含む他fieldは有効で一致する。 | 単独変異: 068 fieldのdefinition_revision参照だけをD0680から互換性のない既知revision D0681へ変える。Attempt identities/完全性receipt、067 field、他のreceipt/outputは不変。 | 068 fieldだけをunknown/unavailableとして理由を保ち、067と他の正常fieldを保持する。異なる定義revisionを適用・換算せず、068定義/OS記録の既存責務区分へ返す。complete co-present scorecardとしない。 | 固定L2/L11-070の068定義revision一致とfield隔離を照合。 |
+| `L10-LABO-070-CASE-130` | `LABO-070-AC-03`, `LABO-070-AC-05` | CASE-01と同じ正常scorecard入力B0。068 definition revision D0680（D0680/D0681は合成fixtureラベル）、OS Attempt identity集合/完全性receipt、identity/grain、scopeと、067側を含む他fieldは有効で一致する。 | 単独変異: 068 fieldのdefinition_revision参照だけをD0680から互換性のない既知revision D0681へ変える。Attempt identities/完全性receipt、067 field、他のreceipt/outputは不変。 | 068 fieldだけをunknown/unavailableとして理由を保ち、067と他の正常fieldを保持する。異なる定義revisionを適用・換算せず、固定FR-070が定めるtask/要求ownerの既存責務区分へ返す。OS Attempt identity集合と完全性receiptはCASE-130の正常baselineとして保持し、定義revisionの戻し先とは混同しない。complete co-present scorecardとしない。 | 固定L2/L11-070の068定義revision一致とfield隔離を照合。 |
 
 **index/aliasの扱い**：旧index/alias IDは意味再導出した索引行として保持し、独立変異として数えない。raw旧84 literalは添付JSON監査に保全する。
