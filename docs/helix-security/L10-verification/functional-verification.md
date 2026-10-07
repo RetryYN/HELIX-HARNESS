@@ -1,6 +1,6 @@
 # HELIX-SECURITY L10 総合検証 — Stage 1（19親の候補）
 
-> 状態：未実行の総合検証設計。合格証拠・L3承認・実行許可を生成しない。対象は`HELIXSECURITY-L2-001`〜`016`、`020`、`028`、`033`の19親だけ。
+> 状態：未実行の総合検証設計。合格証拠・L3承認・実行許可を生成しない。Stage 1節は`HELIXSECURITY-L2-001`〜`016`、`020`、`028`、`033`の19親を対象とし、Stage 2cの`HELIXSECURITY-L2-031`は下記の別scopeで扱う。
 
 ## 共通oracle
 
@@ -10,7 +10,7 @@ L2-002の命令様入力からsecurity policy変更へ直結させない条件�
 
 ## 固定親とL3/L10対応
 
-| 固定L2 identity | L3 FR | L3 AC | L10 CASE | 版 |
+| 固定L2 identity（Stage 1 19親と別scopeのStage 2c親） | L3 FR | L3 AC | L10 CASE | 版 |
 |---|---|---|---|---|
 | `HELIXSECURITY-L2-001` | `SECURITY-FR-001-01` | `SECURITY-AC-001-01` | `SECURITY-CASE-001-01` | 1.0 |
 | `HELIXSECURITY-L2-002` | `SECURITY-FR-002-01` | `SECURITY-AC-002-01` | `SECURITY-CASE-002-01` | 1.0 |
@@ -31,6 +31,7 @@ L2-002の命令様入力からsecurity policy変更へ直結させない条件�
 | `HELIXSECURITY-L2-020` | `SECURITY-FR-020-01` | `SECURITY-AC-020-01` | `SECURITY-CASE-020-01` | Guard基盤は1.0、Botは必要時のみ |
 | `HELIXSECURITY-L2-028` | `SECURITY-FR-028-01` | `SECURITY-AC-028-01` | `SECURITY-CASE-028-01` | 1.0 |
 | `HELIXSECURITY-L2-033` | `SECURITY-FR-033-01` | `SECURITY-AC-033-01` | `SECURITY-CASE-033-01`–`SECURITY-CASE-033-15` | 1.0 |
+| `HELIXSECURITY-L2-031`（Stage 2c、Stage 1範囲外） | `SECURITY-FR-031-01`–`SECURITY-FR-031-06` | `SECURITY-AC-031-01`–`SECURITY-AC-031-06` | `SECURITY-CASE-031-01`–`SECURITY-CASE-031-06`（CASE-031-02a–02dを含む） | 1.0候補 |
 
 ## Case catalog
 
@@ -334,7 +335,7 @@ L2-002の命令様入力からsecurity policy変更へ直結させない条件�
 5. L2-010/011/012/013/028のupdate/artifact情報を同一descriptor/artifact chainで照合する。HARNESS共通交換/rollbackはHARNESSへ残す。
 6. L2-014はmemory/training/BRAIN target別のSECURITY判定のみを返し、handoff、LABO評価、BRAIN登録、実保存をこのsliceで成功扱いしない。
 
-総合判定候補はこのStage 1の19 FR、19 AC、33 functional CASEおよび適用するNFRだけを、同一対象revisionで照合する。設計は未実行であり、case greenやreceiptからL3承認、authority、実装・実行許可を生成しない。
+総合判定候補はこのStage 1の19 FR、19 AC、33 functional CASEおよび適用するNFRだけを、同一対象revisionで照合する。Stage 2cの031は別scopeで6 FR/ACと対応CASEを下記に記し、Stage 1の件数へ加算しない。設計は未実行であり、case greenやreceiptからL3承認、authority、実装・実行許可を生成しない。
 
 ## Stage 2c（HELIXSECURITY-L2-031）— 対L3 functional verification
 
@@ -352,6 +353,8 @@ L2-002の命令様入力からsecurity policy変更へ直結させない条件�
 
 - **通常**：ファイル情報を要するtaskでは開始前に正しいruntime/config、SECURITY許可条件、OS ticket/assignment/task revision、選択owner/system提供のmanifest/digest/classification、Worker/INFRASTRUCTURE制約を与える。ファイル情報を要しないtaskではmanifestなしの合成fixtureを別にし、他の適用条件が満たされれば開始可否を判断する。どちらもresult/diff/receiptがまだなくても要求しない。
 - **個別negative**：runtime identity、authority tuple、assignment revision、scopeはそれぞれ独立に欠落・不一致・staleへ変え、開始を拒否する。payload manifest/digest欠落negativeはファイル情報を要するtaskに限り、当該source選択と適用条件を正常に保ったまま変異する。開始前に未生成のresult/diff/完了receiptを要求する変異も不合格。
+- **payload source独立negative**：`SECURITY-CASE-031-02c`は他の開始条件を正常に保ち、task固有sourceが未選択または未許可の状態だけを与え、sourceを推測して複製しようとする単独変異とする。開始せず、開始後に検出した場合は結果を隔離する。未選択sourceは未観測のまま、未許可sourceは未許可のまま保持して既存source/payload ownerへ返す。他ownerへの返却は不合格。
+- **payload source独立negative**：`SECURITY-CASE-031-02d`はtask固有のsource選択・許可および他の開始条件を正常に保ち、選択sourceの欠落だけを与えて別sourceへfallbackする単独変異とする。開始せず、開始後に検出した場合は結果を隔離し、未選択の別sourceを未観測のまま保持して既存source/payload ownerへ返す。他ownerへの返却は不合格。
 - **未見正常**：`SECURITY-CASE-031-02a`はファイル情報を要しない新taskでmanifestを要求せず開始判定し、`SECURITY-CASE-031-02b`はファイル情報を要する新しい選択payload path/revisionでowner/system明示manifestとscopeが一致する場合の正常例とする。未選択sourceを補完しない。
 - **owner oracle**：manifest不足はsource/payload owner、assignmentはOS、authority/policyはSECURITYへ返す。
 

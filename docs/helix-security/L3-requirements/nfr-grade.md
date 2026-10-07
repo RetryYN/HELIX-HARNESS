@@ -50,11 +50,11 @@
 
 | 候補ID / AC | 候補parameter | 候補測定・判定 | 根拠と限界 |
 |---|---|---|---|
-| `SEC-NFR-031-01` / `SECURITY-AC-031-01..06` | 選択scope内の必須依存・境界検査coverage | L2-031/L11-031が明記する当該operationの常時依存と、操作時・選択入力・後段に該当する条件を個別にfixture化する。**候補値**は必須検査のfixture coverage 100%、必須negativeの独立変異ごとの誤受入0件、必須証拠/owner戻しの未解消不一致0件。分母は「このscopeで固定親が必須とする個別条件」で、条件付き依存は条件fixtureに入った場合のみ分母へ含める。未選択、未観測、unknown、missing、stale、検査不能をpass/0件として数えず、適用状態と未評価理由を別記する。 | L2-031/L11-031の依存4区分、個別境界とfail-close条件を測定可能にする候補。固定sourceに製品閾値がないため、性能・quota値を追加しない。100%/0件はこの選択scopeの文書上の受入検査候補で、一般system KPI、実測結果、承認済値ではない。|
+| `SEC-NFR-031-01` / `SECURITY-AC-031-01..06` | 選択scope内の必須依存・境界検査coverage | L2-031/L11-031が明記する当該operationの常時依存と、操作時・選択入力・後段に該当する条件を個別にfixture化する。`SECURITY-CASE-031-02c`（未選択/未許可sourceの推測複製）と`SECURITY-CASE-031-02d`（選択source欠落時の別source fallback）は独立したnegative obligationとして、ファイル情報を要する適用条件のscope内でそれぞれ分母に含める。**候補値**は必須検査のfixture coverage 100%、必須negativeの独立変異ごとの誤受入0件、必須証拠/owner戻しの未解消不一致0件。分母は「このscopeで固定親が必須とする個別条件」で、条件付き依存は条件fixtureに入った場合のみ分母へ含める。未選択、未観測、unknown、missing、stale、検査不能をpass/0件として数えず、適用状態と未評価理由を別記する。 | L2-031/L11-031の依存4区分、個別境界とfail-close条件を測定可能にする候補。固定sourceに製品閾値がないため、性能・quota値を追加しない。100%/0件はこの選択scopeの文書上の受入検査候補で、一般system KPI、実測結果、承認済値ではない。|
 
 ### SEC-NFR-031-01 対応L10測定
 
-L10はSECURITY-CASE-031-01〜06の通常・個別negative・未見正常fixtureを同一scopeで参照し、各FR/AC obligation、CASE、判定根拠、owner別戻しを一意に識別できるtrace inventoryを作る。FR/AC/CASE間の多対多対応を許し、重複ID禁止とrequired obligation未対応を区別する。分母0の集計は数値0でなく「該当条件なし」と記録する。未選択の外部送信、停止/逸脱、verification/adoption条件は分母へ足さない。要求を満たさない入力の拒否だけでなく、適用可能な未見正常例、選択copyの利用、無関係operation継続も測る。実行・runtime・実secretは使わない。
+L10はSECURITY-CASE-031-01〜06（SECURITY-CASE-031-02a〜02dを含む）の通常・個別negative・未見正常fixtureを同一scopeで参照し、各FR/AC obligation、CASE、判定根拠、owner別戻しを一意に識別できるtrace inventoryを作る。`SECURITY-CASE-031-02c`と`SECURITY-CASE-031-02d`は別々のrequired negative obligationであり、他CASEのcoverageで相殺しない。FR/AC/CASE間の多対多対応を許し、重複ID禁止とrequired obligation未対応を区別する。分母0の集計は数値0でなく「該当条件なし」と記録する。未選択の外部送信、停止/逸脱、verification/adoption条件は分母へ足さない。要求を満たさない入力の拒否だけでなく、適用可能な未見正常例、選択copyの利用、無関係operation継続も測る。実行・runtime・実secretは使わない。
 
 候補結果の状態は適用条件外、未選択/未観測、missing/unknown/stale、fixture不成立、negative不合格、未見正常不成立、owner返却保留、測定可能な結果を混同せず記録する。これらはL3候補の測定語彙であり、固定sourceにない新しい製品status/schemaを決めない。実行可能性に数値が必要な場合は、根拠・比較案・測定方法・判定境界付き候補としてL3/L10対でL4へ渡す。
 

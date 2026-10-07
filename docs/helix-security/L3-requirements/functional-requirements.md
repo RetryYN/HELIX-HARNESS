@@ -1,12 +1,12 @@
 # HELIX-SECURITY L3 機能要件 — Stage 1（19親の候補）
 
-> 状態：L3要件の起草候補。L3承認、実装方式確定、実行・配布許可、受入結果を表さない。本書はHELIXSECURITY-L2-001〜016、020、028、033の19 identityだけを対象とする。
+> 状態：L3要件の起草候補。L3承認、実装方式確定、実行・配布許可、受入結果を表さない。Stage 1節はHELIXSECURITY-L2-001〜016、020、028、033の19 identityを対象とし、Stage 2cのHELIXSECURITY-L2-031と後続Stageは各独立節で扱う。
 
 ## 適用・authority・版境界
 
 SECURITYは全操作にoperation-specific authority境界を適用し、有効な既決権限を再利用する。通常作業の毎回の人間承認を追加しない。既存authorityのactor/target/operation/revision/environment/scope/expiryを照合し、missing・mismatch・expired・unknownは既存L2契約どおりdeny/holdする。L2-009は該当scopeのrecipientへの停止伝播を保つ。L2-033は採択訂正版の適用範囲内で有効なscoped credential-useを認め、raw secretやsecret/機密task本文の露出を許さず、Worker出力からauthorityやstateを生成しない。
 
-Stage 1だけを切り出す。L2-015はasset identity基盤、L2-016は分類記録、L2-020は決定的Guard基盤、L2-033は採択MPR `-002`と別pinされたP0追補の範囲を保つ。後続Web条件、1.x sink/publication enforcementを1.0へ前倒ししない。hold/reject親、Stage 2cの031、他Stageのidentityをこの文書へ含めない。技術値は根拠付き候補であり、parameterごとのPO承認を作らない。要求の意味・scope・owner・versionを変える場合にだけL2へ戻す。
+Stage 1の19親とStage 2cの031を別節・別scopeで扱う。L2-015はasset identity基盤、L2-016は分類記録、L2-020は決定的Guard基盤、L2-033は採択MPR `-002`と別pinされたP0追補の範囲を保つ。後続Web条件、1.x sink/publication enforcementを1.0へ前倒ししない。hold/reject親および各節に列挙しない他Stage identityは対象外とする。技術値は根拠付き候補であり、parameterごとのPO承認を作らない。要求の意味・scope・owner・versionを変える場合にだけL2へ戻す。
 
 ## 旧HELIXからの対応と差分理由
 
@@ -345,7 +345,7 @@ CASE-033-02〜04の不足owner分類はOS、CASE-033-05〜07の適用観測対�
 
 ### SECURITY-FR-031-02 — 実行前入力と開始条件
 
-開始入力はruntime/config identity、許可済みoperation/data class/scope/expiry、既存OS ticket/assignment/task revision、Worker/INFRASTRUCTURE制約、返却proposalに適用する既存schema/digest policyに限る。taskにファイル情報が必要な場合だけ、owner/systemが選択し別のisolated copyへ払い出した必要最小payloadのsource identity・revision・path/digest manifest・classificationを束縛する。ファイル情報を必要としないtaskにmanifestを要求しない。未選択payload sourceを推測・fallbackしない。開始前に実行結果、filesystem diff、完了receiptを要求しない。assignmentはruntime採用、要求承認、merge/promotionを許可しない。**SECURITY-AC-031-02**は適用条件に応じた入力だけで開始可否を判定し、未生成の実行後結果を前提にしないことを受入条件とする。
+開始入力はruntime/config identity、許可済みoperation/data class/scope/expiry、既存OS ticket/assignment/task revision、Worker/INFRASTRUCTURE制約、返却proposalに適用する既存schema/digest policyに限る。taskにファイル情報が必要な場合だけ、owner/systemが選択し別のisolated copyへ払い出した必要最小payloadのsource identity・revision・path/digest manifest・classificationを束縛する。ファイル情報を必要としないtaskにmanifestを要求しない。task固有sourceが未選択/未許可のまま推測複製すること、および選択sourceが欠けた際に別sourceへfallbackすることを許さない。これらでは開始を拒否し、開始後に検出した場合は結果を隔離する。未選択sourceは未観測のまま、未許可sourceは未許可のまま保持して既存source/payload ownerへ返す。他のownerへ返したら不合格とする。開始前に実行結果、filesystem diff、完了receiptを要求しない。assignmentはruntime採用、要求承認、merge/promotionを許可しない。**SECURITY-AC-031-02**はこれらの独立negativeに加え、適用条件に応じた入力だけで開始可否を判定し、未生成の実行後結果を前提にしないことを受入条件とする。
 
 ### SECURITY-FR-031-03 — proposal-onlyと権威境界
 
