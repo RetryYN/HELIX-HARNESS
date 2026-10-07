@@ -1,0 +1,147 @@
+{
+  "record_type": "OS Stage 5 parent 025 review01 repair and latest-main integration evidence",
+  "language": "ja",
+  "as_of": "2026-10-08",
+  "authority_effect": "none",
+  "scope": [
+    "HELIXOS-L2-025 only",
+    "Stage 5 L3/L10 review01 Minor1, Minor2, Minor4 response",
+    "integration of latest main after OS Stage 3 parent 033 merge #2690"
+  ],
+  "revisions": {
+    "reviewed_pre_repair_head": "4a637324935fa03456dffef636ee7180493aaa90",
+    "review_base": "e7a695d4b2de64aec69a1a123de2fde33be724cf",
+    "repair_commit": "37d74c7a29bbef783f818e21698259967c950388",
+    "latest_main_integration_base": "a00711ee8a0817cf6553b8a671a0abee54ce6e73",
+    "integration_commit": "da4104a869943e2cfb5156d9c0e7ba3e1514733d",
+    "branch": "codex/os-stage5-025-multiproject-repair"
+  },
+  "review_comment": {
+    "pull_request": 2692,
+    "comment_id": "6046586065",
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2692#issuecomment-6046586065",
+    "raw_utf8_body_bytes": 4641,
+    "raw_utf8_body_sha256": "6fc40e3e9fb50516a01d48ce921658f8db298a7c720cd7546e7f5c242571fad8",
+    "read_in_full": true,
+    "review_result_on_reviewed_head": "Major 0; Opus/Fable conclusions on reviewed body only; not inherited by later body revisions"
+  },
+  "root_role_definition": "この追補でRootは作成側検収担当を指す役割名。独立review担当、PO、L3承認者を意味しない。",
+  "fixed_sources": {
+    "adopted_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "L2": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "span_lines_inclusive": [742, 751],
+      "full_bytes": 153353,
+      "full_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "raw_lf_span_bytes": 1633,
+      "raw_lf_span_sha256": "b7166f6399db9a0f1d3a9db76977ec4ec0f1e7f708503ccc42beea0ec97121e1"
+    },
+    "L11": {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "span_lines_inclusive": [394, 400],
+      "full_bytes": 82708,
+      "full_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "raw_lf_span_bytes": 1161,
+      "raw_lf_span_sha256": "d21d7708fe09cbee17d37ad66444d99631f16e2c8198924da9b608a1117eda18"
+    },
+    "requirement_decision_checkpoint": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "PO_decision": {
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "span_lines_inclusive": [45, 48],
+      "full_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "raw_lf_span_sha256": "ceb82a2a8174197bf5df3f3e918e2af1d452958354579ddc28e3b67f40031c7a"
+    },
+    "PO_adoption_register": {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "line": 59,
+      "full_sha256": "e7dc1180361869379966fb33f4ab263cabdfe1137ceea32dedc2b6edfea388d1",
+      "line_sha256": "c7907da917d87aaf38e06f5d81a97906ab226b958956967dae151f2a392c2e69"
+    },
+    "legacy_source": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "source_revision": "4084ab11560dc19e5c7bf74ae6df7adcd0e2e9c0",
+      "span_lines_inclusive": [148, 169],
+      "full_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "raw_lf_span_sha256": "b1875f9b1ba51be0d5f7509993c521b6db7ab4990612dbaf6f69111475c6fb52",
+      "disposition": "旧L3/L10対構造の形式比較。025業務意味は固定L2/L11から再導出。旧runtime等は実行していない。"
+    }
+  },
+  "finding_repairs": {
+    "minor_1": "CASE-OS-L10-025-050にproject A=project:campaign-site@r3、project B=project:data-migration@r8を定義。",
+    "minor_2": "CASE-051〜057の期待欄にtrace未完/composite未完、HELIX-self/project A/他projectの成立状態、未完義務の保持を個別に記載。CASE-056はLABO既存source owner、CASE-057はOS既存source ownerへの戻しを明示。",
+    "minor_3": "project A単独欠落CASEの追加は任意所見として採用せず、caseやIDを追加していない。",
+    "minor_4": "本文のRootを作成側検収担当と本追補内で定義。旧統合記録は変更していない。"
+  },
+  "immutable_prior_records": [
+    {
+      "path": "docs/governance/audits/requirements-stage/helix-os-stage5-parent025-ac-repair-2026-10-08.json",
+      "sha256": "5c25ab89e1d67cc0e7a250217b05caa6cc99c11b5e6eaf36e4abe856be4d7435",
+      "unchanged_from": "4a637324935fa03456dffef636ee7180493aaa90"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/helix-os-stage5-parent025-review01-repair-2026-10-08.json",
+      "sha256": "4ffd0b2f7a2b155ccc8a94f317d599539c43edec9ce77d154362f6a07615bf60",
+      "unchanged_from": "4a637324935fa03456dffef636ee7180493aaa90"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/os-stage5-parent025-main049-integration-2026-10-08.md",
+      "sha256": "f56e22ee66177deb9322e63b5cd2b14f19f8376d723c25ddcd92fb6685b396cd",
+      "unchanged_from": "4a637324935fa03456dffef636ee7180493aaa90"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/os-stage5-parent025-main049-integration-2026-10-08.json",
+      "sha256": "613327fa52ddc44a13c9cf5b1e4b309b4cc074f0515a96b49b6b38419abcbea9",
+      "unchanged_from": "4a637324935fa03456dffef636ee7180493aaa90"
+    }
+  ],
+  "final_six_body_pins": {
+    "docs/helix-os/L3-requirements/business-requirements.md": {
+      "bytes": 20530,
+      "sha256": "c0411b7940db8f9c6d1f13ebe41375bb15b6745fdf6064dcd26ac72a845a6568"
+    },
+    "docs/helix-os/L3-requirements/functional-requirements.md": {
+      "bytes": 203949,
+      "sha256": "78d2b3548b3a2bca13c0f7451036c941d9e661eb33d307c6673f3a716f445048"
+    },
+    "docs/helix-os/L3-requirements/nfr-grade.md": {
+      "bytes": 34529,
+      "sha256": "444230c6f0959d1703525137d0f12d48afe62396338768dbab61051c225748ca"
+    },
+    "docs/helix-os/L10-verification/business-verification.md": {
+      "bytes": 18061,
+      "sha256": "ff70287629c2087601ec50c2b06091aa20a953ef11ec80f1b41b4f461cab54d1"
+    },
+    "docs/helix-os/L10-verification/functional-verification.md": {
+      "bytes": 250771,
+      "sha256": "9db2c54b3330f2149523ee50e06121f8d7c93e902a63174fce55586b8a9fab90"
+    },
+    "docs/helix-os/L10-verification/nfr-verification.md": {
+      "bytes": 31824,
+      "sha256": "4842697e167c9e8e2b3901abb14fbf9a94b7c9c540d7808b3a401e5cb21cc466"
+    }
+  },
+  "static_verification": {
+    "functional_verification_parent025_case_count": 50,
+    "functional_verification_parent025_case_ids_unique": true,
+    "case_050_normal_fixture_defines_A_and_B": true,
+    "cases_051_to_057_each_single_missing_project_B_stage": true,
+    "cases_051_to_057_expect_incomplete_composite_and_retain_valid_traces_and_remaining_duty": true,
+    "case_056_return_owner": "LABO existing source owner; OS does not absorb L1-011/012 transfer",
+    "case_057_return_owner": "OS existing source owner",
+    "old_audits_byte_identical_to_reviewed_head": true,
+    "git_diff_check": "passed",
+    "scfctl_validate": "passed: bindings=147 fail=0",
+    "scfctl_stale": "passed: stale=0",
+    "runtime_fixture_or_legacy_execution": false
+  },
+  "approval_and_limits": {
+    "review01_major_count_on_reviewed_head": 0,
+    "review01_opus_fable_findings_inherited_by_final_six_bodies": false,
+    "final_bodies_require_independent_re_review": true,
+    "L3_approval_generated": false,
+    "PO_post_confirmation_recorded": false,
+    "L10_execution_or_fixture_result_generated": false,
+    "implementation_admission_generated": false,
+    "scope_limit": "Only parent 025 Stage 5 repair and integration evidence. Other OS parents/stages are not reviewed by this record."
+  }
+}
