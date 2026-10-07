@@ -1,0 +1,112 @@
+{
+  "record_type": "intelligence-stage5-063-ac02-index-clarification",
+  "authority_effect": "none",
+  "base_revision": "4bc86c3a19652033ede35ddef118185fbb004649",
+  "scope": {
+    "mechanism": "HELIX-INTELLIGENCE",
+    "stage": 5,
+    "parent": "HELIXINTELLIGENCE-L2-063",
+    "ac": "AC-INT-063-02",
+    "existing_cases_only": [
+      "CASE-INT-063-02a",
+      "CASE-INT-063-02b",
+      "CASE-INT-063-02c",
+      "CASE-INT-063-02d",
+      "CASE-INT-063-02e",
+      "CASE-INT-063-02f",
+      "CASE-INT-063-02g",
+      "CASE-INT-063-04g",
+      "CASE-INT-063-04h"
+    ],
+    "new_cases_added": false,
+    "fixed_l2_l11_changed": false
+  },
+  "fixed_sources": {
+    "l2": {
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "lines": "372-376",
+      "sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c"
+    },
+    "l11": {
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "lines": "117,284",
+      "sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33"
+    }
+  },
+  "reason_and_change": {
+    "before": "AC-INT-063-02 says CASE-INT-063-02a〜02g are independently evaluated, but explicitly excludes legacy 02d later in the same line; FV says 02g is a composite legacy index and splits out-of-order/duplicate into 04g/04h. NFR counts 04a–04h, not 02g.",
+    "after": "AC-INT-063-02 explicitly treats 02a-c and 02e-f as independent; 02d remains excluded; 02g is a composite index to independently assessed 04g and 04h. Existing owner returns and behaviors are preserved.",
+    "why": "Resolve exact AC summary vs L10/NFR fixture population mismatch without adding requirements, cases, thresholds, or changing fixed parent meaning."
+  },
+  "legacy_source_review": [
+    {
+      "asset_id": "LEGACY-ASSET-02D897E62EF2FA267267",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "lines": "59-76,162-196",
+      "meaning": "historical/candidate effect and episode lineage; re-derived only as source/time/owner separation, old recipe promotion and runtime workflow not transferred"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-0B5B38F146D9538C9A36",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-improvement-loop-acceptance.md",
+      "lines": "1-46",
+      "meaning": "independent acceptance oracle and duplicate/history boundaries; no old execution reused"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "lines": "154-156,237-242",
+      "meaning": "historical/current time and knowledge/effect owner boundary context"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-44DD86E3DEC09E65EF51",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "lines": "32-90,91-216",
+      "meaning": "paired oracle/trace context; no prior pass carried forward"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "lines": "31-52",
+      "meaning": "source-transition and unresolved/authority separation; interview/schema design not transferred"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-6FFD7F4E58066D08B053",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-workflow-ai-judgment-engine-acceptance.md",
+      "lines": "17-34",
+      "meaning": "independent negative/test trace form; no legacy runtime or test execution"
+    }
+  ],
+  "existing_069_audit": {
+    "path": "docs/governance/audits/requirements-stage/intelligence-stage5-069-ceiling-input-vs-ignored-correction-2026-10-08.md",
+    "base_sha256": "434efa47e4c6b44cb3331621283e3a37a526429df80c6a115714337d120d4b2d",
+    "changed": false
+  },
+  "six_document_sha256": {
+    "before_4bc86c3": {
+      "docs/helix-intelligence/L3-requirements/business-requirements.md": "026d95fbf023ef384834ebd3b215a469f2fea648190d15d45494b5ea4cc91959",
+      "docs/helix-intelligence/L3-requirements/functional-requirements.md": "c4f7b0cc4b85f00e3ebbf20595ac457bcddd9b3855236e7f786a1eba30797cfe",
+      "docs/helix-intelligence/L3-requirements/nfr-grade.md": "e117fa2b96fc37e8623485b7af4c31d830da4c705deff975fcff3937cbd29895",
+      "docs/helix-intelligence/L10-verification/business-verification.md": "b476b0939b7da50cf75db66d235095f94e591ac929ef046721224b5112d04552",
+      "docs/helix-intelligence/L10-verification/functional-verification.md": "361f5a6e40a3c34dc1b231298cae933dbbfe9cba95c3608067c23d660c194078",
+      "docs/helix-intelligence/L10-verification/nfr-verification.md": "92b7f8a4825a95398c8b7038b9be8cd77301feeef61bd517dd247669d4c6654d"
+    },
+    "after_worktree": {
+      "docs/helix-intelligence/L3-requirements/business-requirements.md": "026d95fbf023ef384834ebd3b215a469f2fea648190d15d45494b5ea4cc91959",
+      "docs/helix-intelligence/L3-requirements/functional-requirements.md": "a8181f7b6c1873d43c7917e7912a2da97e2a2dcb4985c1e432bce105fdfe27b3",
+      "docs/helix-intelligence/L3-requirements/nfr-grade.md": "e117fa2b96fc37e8623485b7af4c31d830da4c705deff975fcff3937cbd29895",
+      "docs/helix-intelligence/L10-verification/business-verification.md": "b476b0939b7da50cf75db66d235095f94e591ac929ef046721224b5112d04552",
+      "docs/helix-intelligence/L10-verification/functional-verification.md": "361f5a6e40a3c34dc1b231298cae933dbbfe9cba95c3608067c23d660c194078",
+      "docs/helix-intelligence/L10-verification/nfr-verification.md": "92b7f8a4825a95398c8b7038b9be8cd77301feeef61bd517dd247669d4c6654d"
+    }
+  },
+  "validation": {
+    "diff_check": "pending",
+    "six_sha_recomputed": "passed",
+    "id_mapping": "no IDs added; 02g indexes 04g/04h",
+    "old_069_audit_immutable": "verified against base blob",
+    "runtime_or_old_tests": "not run",
+    "independent_review": "pending"
+  }
+}
