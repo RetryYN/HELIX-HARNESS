@@ -1,0 +1,1973 @@
+{
+  "record_type": "targeted_read_only_confirmation_addendum",
+  "as_of_commit": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+  "as_of_ref": "origin/main",
+  "scope": "元監査分類が「親を含むが結論限定・不明」だったLABO 19親とINFRASTRUCTURE 011のみ",
+  "parent_count": 20,
+  "parents": [
+    {
+      "parent_id": "HELIXLABO-L2-012",
+      "stage": "Stage 2b",
+      "audit_refs": [
+        "A028"
+      ],
+      "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l2_locator": "docs/helix-labo/L2-requirements/labo-requirements.md#L167–170",
+      "fixed_l11_locator": "docs/helix-labo/L11-acceptance/labo-acceptance.md#L63",
+      "current_fr_crosswalk_locator": "docs/helix-labo/L3-requirements/functional-requirements.md#L565",
+      "current_ac_ids": [
+        "LABO-012-AC-01",
+        "LABO-012-AC-02"
+      ],
+      "current_l10_case_count": 10,
+      "historical_case_section_sha_matches": 10,
+      "historical_case_section_sha_total": 10,
+      "finding": "この限定照合では具体的要件欠落を確認せず。旧監査に親別意味結論・旧consumer全量照合の記載がない点は証拠範囲の限界として保持。",
+      "basis": "旧監査CASE 10/10 section SHA一致。current FR crosswalk rowにAC LABO-012-AC-01, LABO-012-AC-02とnormal/negative/index CASEが列挙され、固定L2/L11の範囲・版と矛盾する候補を確認しなかった。",
+      "fixed_l2_l11_authority_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_revision_role": "officially fixed L2/L11 semantic source revision (decision-record-backed)",
+      "current_comparison_snapshot": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+      "authority_decision_record": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md"
+    },
+    {
+      "parent_id": "HELIXLABO-L2-013",
+      "stage": "Stage 2b",
+      "audit_refs": [
+        "A028"
+      ],
+      "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l2_locator": "docs/helix-labo/L2-requirements/labo-requirements.md#L171–174",
+      "fixed_l11_locator": "docs/helix-labo/L11-acceptance/labo-acceptance.md#L64",
+      "current_fr_crosswalk_locator": "docs/helix-labo/L3-requirements/functional-requirements.md#L566",
+      "current_ac_ids": [
+        "LABO-013-AC-01",
+        "LABO-013-AC-02"
+      ],
+      "current_l10_case_count": 17,
+      "historical_case_section_sha_matches": 17,
+      "historical_case_section_sha_total": 17,
+      "finding": "この限定照合では具体的要件欠落を確認せず。旧監査に親別意味結論・旧consumer全量照合の記載がない点は証拠範囲の限界として保持。",
+      "basis": "旧監査CASE 17/17 section SHA一致。current FR crosswalk rowにAC LABO-013-AC-01, LABO-013-AC-02とnormal/negative/index CASEが列挙され、固定L2/L11の範囲・版と矛盾する候補を確認しなかった。",
+      "fixed_l2_l11_authority_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_revision_role": "officially fixed L2/L11 semantic source revision (decision-record-backed)",
+      "current_comparison_snapshot": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+      "authority_decision_record": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md"
+    },
+    {
+      "parent_id": "HELIXLABO-L2-014",
+      "stage": "Stage 2b",
+      "audit_refs": [
+        "A028"
+      ],
+      "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l2_locator": "docs/helix-labo/L2-requirements/labo-requirements.md#L175–178",
+      "fixed_l11_locator": "docs/helix-labo/L11-acceptance/labo-acceptance.md#L65",
+      "current_fr_crosswalk_locator": "docs/helix-labo/L3-requirements/functional-requirements.md#L567",
+      "current_ac_ids": [
+        "LABO-014-AC-01",
+        "LABO-014-AC-02"
+      ],
+      "current_l10_case_count": 12,
+      "historical_case_section_sha_matches": 12,
+      "historical_case_section_sha_total": 12,
+      "finding": "この限定照合では具体的要件欠落を確認せず。旧監査に親別意味結論・旧consumer全量照合の記載がない点は証拠範囲の限界として保持。",
+      "basis": "旧監査CASE 12/12 section SHA一致。current FR crosswalk rowにAC LABO-014-AC-01, LABO-014-AC-02とnormal/negative/index CASEが列挙され、固定L2/L11の範囲・版と矛盾する候補を確認しなかった。",
+      "fixed_l2_l11_authority_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_revision_role": "officially fixed L2/L11 semantic source revision (decision-record-backed)",
+      "current_comparison_snapshot": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+      "authority_decision_record": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md"
+    },
+    {
+      "parent_id": "HELIXLABO-L2-015",
+      "stage": "Stage 2b",
+      "audit_refs": [
+        "A028"
+      ],
+      "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l2_locator": "docs/helix-labo/L2-requirements/labo-requirements.md#L179–182",
+      "fixed_l11_locator": "docs/helix-labo/L11-acceptance/labo-acceptance.md#L66",
+      "current_fr_crosswalk_locator": "docs/helix-labo/L3-requirements/functional-requirements.md#L568",
+      "current_ac_ids": [
+        "LABO-015-AC-01",
+        "LABO-015-AC-02"
+      ],
+      "current_l10_case_count": 12,
+      "historical_case_section_sha_matches": 12,
+      "historical_case_section_sha_total": 12,
+      "finding": "この限定照合では具体的要件欠落を確認せず。旧監査に親別意味結論・旧consumer全量照合の記載がない点は証拠範囲の限界として保持。",
+      "basis": "旧監査CASE 12/12 section SHA一致。current FR crosswalk rowにAC LABO-015-AC-01, LABO-015-AC-02とnormal/negative/index CASEが列挙され、固定L2/L11の範囲・版と矛盾する候補を確認しなかった。",
+      "fixed_l2_l11_authority_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_revision_role": "officially fixed L2/L11 semantic source revision (decision-record-backed)",
+      "current_comparison_snapshot": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+      "authority_decision_record": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md"
+    },
+    {
+      "parent_id": "HELIXLABO-L2-016",
+      "stage": "Stage 2b",
+      "audit_refs": [
+        "A028"
+      ],
+      "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l2_locator": "docs/helix-labo/L2-requirements/labo-requirements.md#L183–186",
+      "fixed_l11_locator": "docs/helix-labo/L11-acceptance/labo-acceptance.md#L67",
+      "current_fr_crosswalk_locator": "docs/helix-labo/L3-requirements/functional-requirements.md#L569",
+      "current_ac_ids": [
+        "LABO-016-AC-01",
+        "LABO-016-AC-02"
+      ],
+      "current_l10_case_count": 11,
+      "historical_case_section_sha_matches": 11,
+      "historical_case_section_sha_total": 11,
+      "finding": "この限定照合では具体的要件欠落を確認せず。旧監査に親別意味結論・旧consumer全量照合の記載がない点は証拠範囲の限界として保持。",
+      "basis": "旧監査CASE 11/11 section SHA一致。current FR crosswalk rowにAC LABO-016-AC-01, LABO-016-AC-02とnormal/negative/index CASEが列挙され、固定L2/L11の範囲・版と矛盾する候補を確認しなかった。",
+      "fixed_l2_l11_authority_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_revision_role": "officially fixed L2/L11 semantic source revision (decision-record-backed)",
+      "current_comparison_snapshot": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+      "authority_decision_record": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md"
+    },
+    {
+      "parent_id": "HELIXLABO-L2-017",
+      "stage": "Stage 2b",
+      "audit_refs": [
+        "A029"
+      ],
+      "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l2_locator": "docs/helix-labo/L2-requirements/labo-requirements.md#L187–190",
+      "fixed_l11_locator": "docs/helix-labo/L11-acceptance/labo-acceptance.md#L68",
+      "current_fr_crosswalk_locator": "docs/helix-labo/L3-requirements/functional-requirements.md#L570",
+      "current_ac_ids": [
+        "LABO-017-AC-01",
+        "LABO-017-AC-02"
+      ],
+      "current_l10_case_count": 13,
+      "historical_case_section_sha_matches": 13,
+      "historical_case_section_sha_total": 13,
+      "finding": "この限定照合では具体的要件欠落を確認せず。旧監査に親別意味結論・旧consumer全量照合の記載がない点は証拠範囲の限界として保持。",
+      "basis": "旧監査CASE 13/13 section SHA一致。current FR crosswalk rowにAC LABO-017-AC-01, LABO-017-AC-02とnormal/negative/index CASEが列挙され、固定L2/L11の範囲・版と矛盾する候補を確認しなかった。",
+      "fixed_l2_l11_authority_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_revision_role": "officially fixed L2/L11 semantic source revision (decision-record-backed)",
+      "current_comparison_snapshot": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+      "authority_decision_record": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md"
+    },
+    {
+      "parent_id": "HELIXLABO-L2-018",
+      "stage": "Stage 2b",
+      "audit_refs": [
+        "A029"
+      ],
+      "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l2_locator": "docs/helix-labo/L2-requirements/labo-requirements.md#L191–194",
+      "fixed_l11_locator": "docs/helix-labo/L11-acceptance/labo-acceptance.md#L69",
+      "current_fr_crosswalk_locator": "docs/helix-labo/L3-requirements/functional-requirements.md#L571",
+      "current_ac_ids": [
+        "LABO-018-AC-01",
+        "LABO-018-AC-02"
+      ],
+      "current_l10_case_count": 10,
+      "historical_case_section_sha_matches": 10,
+      "historical_case_section_sha_total": 10,
+      "finding": "この限定照合では具体的要件欠落を確認せず。旧監査に親別意味結論・旧consumer全量照合の記載がない点は証拠範囲の限界として保持。",
+      "basis": "旧監査CASE 10/10 section SHA一致。current FR crosswalk rowにAC LABO-018-AC-01, LABO-018-AC-02とnormal/negative/index CASEが列挙され、固定L2/L11の範囲・版と矛盾する候補を確認しなかった。",
+      "fixed_l2_l11_authority_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_revision_role": "officially fixed L2/L11 semantic source revision (decision-record-backed)",
+      "current_comparison_snapshot": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+      "authority_decision_record": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md"
+    },
+    {
+      "parent_id": "HELIXLABO-L2-019",
+      "stage": "Stage 2b",
+      "audit_refs": [
+        "A029"
+      ],
+      "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l2_locator": "docs/helix-labo/L2-requirements/labo-requirements.md#L195–198",
+      "fixed_l11_locator": "docs/helix-labo/L11-acceptance/labo-acceptance.md#L70",
+      "current_fr_crosswalk_locator": "docs/helix-labo/L3-requirements/functional-requirements.md#L572",
+      "current_ac_ids": [
+        "LABO-019-AC-01",
+        "LABO-019-AC-02"
+      ],
+      "current_l10_case_count": 11,
+      "historical_case_section_sha_matches": 11,
+      "historical_case_section_sha_total": 11,
+      "finding": "この限定照合では具体的要件欠落を確認せず。旧監査に親別意味結論・旧consumer全量照合の記載がない点は証拠範囲の限界として保持。",
+      "basis": "旧監査CASE 11/11 section SHA一致。current FR crosswalk rowにAC LABO-019-AC-01, LABO-019-AC-02とnormal/negative/index CASEが列挙され、固定L2/L11の範囲・版と矛盾する候補を確認しなかった。",
+      "fixed_l2_l11_authority_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_revision_role": "officially fixed L2/L11 semantic source revision (decision-record-backed)",
+      "current_comparison_snapshot": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+      "authority_decision_record": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md"
+    },
+    {
+      "parent_id": "HELIXLABO-L2-020",
+      "stage": "Stage 2b",
+      "audit_refs": [
+        "A029"
+      ],
+      "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l2_locator": "docs/helix-labo/L2-requirements/labo-requirements.md#L199–202",
+      "fixed_l11_locator": "docs/helix-labo/L11-acceptance/labo-acceptance.md#L71",
+      "current_fr_crosswalk_locator": "docs/helix-labo/L3-requirements/functional-requirements.md#L573",
+      "current_ac_ids": [
+        "LABO-020-AC-01",
+        "LABO-020-AC-02"
+      ],
+      "current_l10_case_count": 12,
+      "historical_case_section_sha_matches": 12,
+      "historical_case_section_sha_total": 12,
+      "finding": "この限定照合では具体的要件欠落を確認せず。旧監査に親別意味結論・旧consumer全量照合の記載がない点は証拠範囲の限界として保持。",
+      "basis": "旧監査CASE 12/12 section SHA一致。current FR crosswalk rowにAC LABO-020-AC-01, LABO-020-AC-02とnormal/negative/index CASEが列挙され、固定L2/L11の範囲・版と矛盾する候補を確認しなかった。",
+      "fixed_l2_l11_authority_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_revision_role": "officially fixed L2/L11 semantic source revision (decision-record-backed)",
+      "current_comparison_snapshot": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+      "authority_decision_record": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md"
+    },
+    {
+      "parent_id": "HELIXLABO-L2-021",
+      "stage": "Stage 2b",
+      "audit_refs": [
+        "A029"
+      ],
+      "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l2_locator": "docs/helix-labo/L2-requirements/labo-requirements.md#L203–206",
+      "fixed_l11_locator": "docs/helix-labo/L11-acceptance/labo-acceptance.md#L72",
+      "current_fr_crosswalk_locator": "docs/helix-labo/L3-requirements/functional-requirements.md#L574",
+      "current_ac_ids": [
+        "LABO-021-AC-01",
+        "LABO-021-AC-02"
+      ],
+      "current_l10_case_count": 14,
+      "historical_case_section_sha_matches": 14,
+      "historical_case_section_sha_total": 14,
+      "finding": "この限定照合では具体的要件欠落を確認せず。旧監査に親別意味結論・旧consumer全量照合の記載がない点は証拠範囲の限界として保持。",
+      "basis": "旧監査CASE 14/14 section SHA一致。current FR crosswalk rowにAC LABO-021-AC-01, LABO-021-AC-02とnormal/negative/index CASEが列挙され、固定L2/L11の範囲・版と矛盾する候補を確認しなかった。",
+      "fixed_l2_l11_authority_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_revision_role": "officially fixed L2/L11 semantic source revision (decision-record-backed)",
+      "current_comparison_snapshot": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+      "authority_decision_record": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md"
+    },
+    {
+      "parent_id": "HELIXLABO-L2-022",
+      "stage": "Stage 2b",
+      "audit_refs": [
+        "A030"
+      ],
+      "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l2_locator": "docs/helix-labo/L2-requirements/labo-requirements.md#L207–210",
+      "fixed_l11_locator": "docs/helix-labo/L11-acceptance/labo-acceptance.md#L73",
+      "current_fr_crosswalk_locator": "docs/helix-labo/L3-requirements/functional-requirements.md#L575",
+      "current_ac_ids": [
+        "LABO-022-AC-01",
+        "LABO-022-AC-02"
+      ],
+      "current_l10_case_count": 18,
+      "historical_case_section_sha_matches": 18,
+      "historical_case_section_sha_total": 18,
+      "finding": "この限定照合では具体的要件欠落を確認せず。旧監査に親別意味結論・旧consumer全量照合の記載がない点は証拠範囲の限界として保持。",
+      "basis": "旧監査CASE 18/18 section SHA一致。current FR crosswalk rowにAC LABO-022-AC-01, LABO-022-AC-02とnormal/negative/index CASEが列挙され、固定L2/L11の範囲・版と矛盾する候補を確認しなかった。",
+      "fixed_l2_l11_authority_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_revision_role": "officially fixed L2/L11 semantic source revision (decision-record-backed)",
+      "current_comparison_snapshot": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+      "authority_decision_record": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md"
+    },
+    {
+      "parent_id": "HELIXLABO-L2-023",
+      "stage": "Stage 2b",
+      "audit_refs": [
+        "A030"
+      ],
+      "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l2_locator": "docs/helix-labo/L2-requirements/labo-requirements.md#L211–214",
+      "fixed_l11_locator": "docs/helix-labo/L11-acceptance/labo-acceptance.md#L74",
+      "current_fr_crosswalk_locator": "docs/helix-labo/L3-requirements/functional-requirements.md#L576",
+      "current_ac_ids": [
+        "LABO-023-AC-01",
+        "LABO-023-AC-02"
+      ],
+      "current_l10_case_count": 14,
+      "historical_case_section_sha_matches": 14,
+      "historical_case_section_sha_total": 14,
+      "finding": "この限定照合では具体的要件欠落を確認せず。旧監査に親別意味結論・旧consumer全量照合の記載がない点は証拠範囲の限界として保持。",
+      "basis": "旧監査CASE 14/14 section SHA一致。current FR crosswalk rowにAC LABO-023-AC-01, LABO-023-AC-02とnormal/negative/index CASEが列挙され、固定L2/L11の範囲・版と矛盾する候補を確認しなかった。",
+      "fixed_l2_l11_authority_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_revision_role": "officially fixed L2/L11 semantic source revision (decision-record-backed)",
+      "current_comparison_snapshot": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+      "authority_decision_record": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md"
+    },
+    {
+      "parent_id": "HELIXLABO-L2-024",
+      "stage": "Stage 2b",
+      "audit_refs": [
+        "A030"
+      ],
+      "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l2_locator": "docs/helix-labo/L2-requirements/labo-requirements.md#L215–218",
+      "fixed_l11_locator": "docs/helix-labo/L11-acceptance/labo-acceptance.md#L75",
+      "current_fr_crosswalk_locator": "docs/helix-labo/L3-requirements/functional-requirements.md#L577",
+      "current_ac_ids": [
+        "LABO-024-AC-01",
+        "LABO-024-AC-02"
+      ],
+      "current_l10_case_count": 12,
+      "historical_case_section_sha_matches": 12,
+      "historical_case_section_sha_total": 12,
+      "finding": "この限定照合では具体的要件欠落を確認せず。旧監査に親別意味結論・旧consumer全量照合の記載がない点は証拠範囲の限界として保持。",
+      "basis": "旧監査CASE 12/12 section SHA一致。current FR crosswalk rowにAC LABO-024-AC-01, LABO-024-AC-02とnormal/negative/index CASEが列挙され、固定L2/L11の範囲・版と矛盾する候補を確認しなかった。",
+      "fixed_l2_l11_authority_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_revision_role": "officially fixed L2/L11 semantic source revision (decision-record-backed)",
+      "current_comparison_snapshot": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+      "authority_decision_record": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md"
+    },
+    {
+      "parent_id": "HELIXLABO-L2-025",
+      "stage": "Stage 2b",
+      "audit_refs": [
+        "A030"
+      ],
+      "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l2_locator": "docs/helix-labo/L2-requirements/labo-requirements.md#L219–222",
+      "fixed_l11_locator": "docs/helix-labo/L11-acceptance/labo-acceptance.md#L76",
+      "current_fr_crosswalk_locator": "docs/helix-labo/L3-requirements/functional-requirements.md#L578",
+      "current_ac_ids": [
+        "LABO-025-AC-01",
+        "LABO-025-AC-02"
+      ],
+      "current_l10_case_count": 11,
+      "historical_case_section_sha_matches": 11,
+      "historical_case_section_sha_total": 11,
+      "finding": "この限定照合では具体的要件欠落を確認せず。旧監査に親別意味結論・旧consumer全量照合の記載がない点は証拠範囲の限界として保持。",
+      "basis": "旧監査CASE 11/11 section SHA一致。current FR crosswalk rowにAC LABO-025-AC-01, LABO-025-AC-02とnormal/negative/index CASEが列挙され、固定L2/L11の範囲・版と矛盾する候補を確認しなかった。",
+      "fixed_l2_l11_authority_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_revision_role": "officially fixed L2/L11 semantic source revision (decision-record-backed)",
+      "current_comparison_snapshot": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+      "authority_decision_record": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md"
+    },
+    {
+      "parent_id": "HELIXLABO-L2-026",
+      "stage": "Stage 2b",
+      "audit_refs": [
+        "A030"
+      ],
+      "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l2_locator": "docs/helix-labo/L2-requirements/labo-requirements.md#L223–226",
+      "fixed_l11_locator": "docs/helix-labo/L11-acceptance/labo-acceptance.md#L77",
+      "current_fr_crosswalk_locator": "docs/helix-labo/L3-requirements/functional-requirements.md#L579",
+      "current_ac_ids": [
+        "LABO-026-AC-01",
+        "LABO-026-AC-02"
+      ],
+      "current_l10_case_count": 10,
+      "historical_case_section_sha_matches": 10,
+      "historical_case_section_sha_total": 10,
+      "finding": "この限定照合では具体的要件欠落を確認せず。旧監査に親別意味結論・旧consumer全量照合の記載がない点は証拠範囲の限界として保持。",
+      "basis": "旧監査CASE 10/10 section SHA一致。current FR crosswalk rowにAC LABO-026-AC-01, LABO-026-AC-02とnormal/negative/index CASEが列挙され、固定L2/L11の範囲・版と矛盾する候補を確認しなかった。",
+      "fixed_l2_l11_authority_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_revision_role": "officially fixed L2/L11 semantic source revision (decision-record-backed)",
+      "current_comparison_snapshot": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+      "authority_decision_record": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md"
+    },
+    {
+      "parent_id": "HELIXLABO-L2-035",
+      "stage": "Stage 2b",
+      "audit_refs": [
+        "A032"
+      ],
+      "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l2_locator": "docs/helix-labo/L2-requirements/labo-requirements.md#L259–262",
+      "fixed_l11_locator": "docs/helix-labo/L11-acceptance/labo-acceptance.md#L86",
+      "current_fr_crosswalk_locator": "docs/helix-labo/L3-requirements/functional-requirements.md#L585",
+      "current_ac_ids": [
+        "LABO-035-AC-01",
+        "LABO-035-AC-02"
+      ],
+      "current_l10_case_count": 19,
+      "current_l10_independent_case_count": 17,
+      "historical_case_section_sha_matches": 19,
+      "historical_case_section_sha_total": 19,
+      "finding": "A032の限定結論「具体的欠落なし」とCASE本文hashは現行mainでも保持。旧consumer全量/独立review/fixture実行は未確認で、L3/L10意味欠落とは扱わない。",
+      "basis": "旧監査に記録された全CASE本文hashを現行mainで照合。FR crosswalkと固定L2/L11 acceptance rowを確認。",
+      "fixed_l2_l11_authority_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_revision_role": "officially fixed L2/L11 semantic source revision (decision-record-backed)",
+      "current_comparison_snapshot": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+      "authority_decision_record": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md"
+    },
+    {
+      "parent_id": "HELIXLABO-L2-058",
+      "stage": "Stage 2b",
+      "audit_refs": [
+        "A032"
+      ],
+      "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l2_locator": "docs/helix-labo/L2-requirements/labo-requirements.md#L403–415",
+      "fixed_l11_locator": "docs/helix-labo/L11-acceptance/labo-acceptance.md#L156–162",
+      "current_fr_crosswalk_locator": "docs/helix-labo/L3-requirements/functional-requirements.md#L586",
+      "current_ac_ids": [
+        "LABO-058-AC-01",
+        "LABO-058-AC-02"
+      ],
+      "current_l10_case_count": 41,
+      "current_l10_independent_case_count": 37,
+      "historical_case_section_sha_matches": 41,
+      "historical_case_section_sha_total": 41,
+      "finding": "A032の限定結論「具体的欠落なし」とCASE本文hashは現行mainでも保持。旧consumer全量/独立review/fixture実行は未確認で、L3/L10意味欠落とは扱わない。",
+      "basis": "旧監査に記録された全CASE本文hashを現行mainで照合。FR crosswalkと固定L2/L11 acceptance rowを確認。",
+      "fixed_l2_l11_authority_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_revision_role": "officially fixed L2/L11 semantic source revision (decision-record-backed)",
+      "current_comparison_snapshot": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+      "authority_decision_record": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md"
+    },
+    {
+      "parent_id": "HELIXLABO-L2-050",
+      "stage": "Stage 5",
+      "audit_refs": [
+        "A037",
+        "A044"
+      ],
+      "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_decision": "docs/governance/decisions/helix-labo-stage5-parent050-l3-l10-po-decision-2026-10-06.md",
+      "fixed_l2_l11_spans_verified": [
+        true,
+        true
+      ],
+      "current_six_document_spans_verified": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "fixed_l2_locator": "docs/helix-labo/L2-requirements/labo-requirements.md#L298–303 (revision f6dad2a33e24f000b87d7f09b8d40288257e74cc)",
+      "fixed_l11_locator": "docs/helix-labo/L11-acceptance/labo-acceptance.md#L120–126 (revision f6dad2a33e24f000b87d7f09b8d40288257e74cc)",
+      "current_fr_locator": "docs/helix-labo/L3-requirements/functional-requirements.md#L1555–1597",
+      "current_ac_ids": [
+        "LABO-050-AC-01",
+        "LABO-050-AC-02",
+        "LABO-050-AC-03"
+      ],
+      "current_l10_locator": "docs/helix-labo/L10-verification/functional-verification.md#L2561–2608",
+      "current_fixture_definitions": 37,
+      "current_independent_fixtures": 32,
+      "current_indexes_or_labels": 5,
+      "finding": "本文側の現行AC/CASEはOS ticket/assignmentと実験評価binding、target owner、11段階、effect/regression欠落を分けている。A044の既知R1/R2 residualは過去記録上の非blockerとして保持するが、この限定読了で新たな固定要求違反を確定しない。",
+      "residual": "A044: parent source細分の戻し先とCASE-19/29戻し先はfixed authorityから明示されない既知non-blocking residual。要件達成/承認の推定には使わない。",
+      "fixed_l2_l11_authority_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_revision_role": "officially fixed L2/L11 semantic source revision (decision-record-backed)",
+      "current_comparison_snapshot": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+      "authority_decision_record": "docs/governance/decisions/helix-labo-stage5-parent050-l3-l10-po-decision-2026-10-06.md"
+    },
+    {
+      "parent_id": "HELIXLABO-L2-059",
+      "stage": "Stage 5",
+      "audit_refs": [
+        "A038",
+        "A042",
+        "current main d8ba"
+      ],
+      "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l2_locator": "docs/helix-labo/L2-requirements/labo-requirements.md#L416–439 (official decision span); owner detail L2:427/429",
+      "fixed_l11_locator": "docs/helix-labo/L11-acceptance/labo-acceptance.md#L164–176 (official decision span); relevant row L11:170",
+      "current_fr_locator": "docs/helix-labo/L3-requirements/functional-requirements.md#L1602–1622",
+      "current_ac_ids": [
+        "LABO-059-AC-01",
+        "LABO-059-AC-02",
+        "LABO-059-AC-03"
+      ],
+      "current_l10_case_definition_count": 85,
+      "current_l10_case_ids": [
+        "L10-LABO-059-CASE-14",
+        "L10-LABO-059-CASE-58",
+        "L10-LABO-059-CASE-71",
+        "L10-LABO-059-CASE-72"
+      ],
+      "current_l10_case_locators": [
+        "docs/helix-labo/L10-verification/functional-verification.md#L2647",
+        "docs/helix-labo/L10-verification/functional-verification.md#L2695",
+        "docs/helix-labo/L10-verification/functional-verification.md#L2708",
+        "docs/helix-labo/L10-verification/functional-verification.md#L2709"
+      ],
+      "finding": "A038時点の未解決candidateは現行本文で解消。task revision (CASE-14)、source revision (CASE-58)、requirement revision (CASE-71)、acceptance-oracle revision (CASE-72)を独立field/独立fixtureとし、fixed L2:429の既存owner区分へ返す。unknown identityを保持。具体欠陥なし。",
+      "fixed_l2_l11_authority_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_revision_role": "officially fixed L2/L11 semantic source revision (decision-record-backed)",
+      "current_comparison_snapshot": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+      "authority_decision_record": "docs/governance/decisions/helix-labo-stage5-parent059067-review02-l3-l10-delegated-decision-2026-10-08.md",
+      "decision_record_specific_parent_revision": "059=f6dad2a33e24f000b87d7f09b8d40288257e74cc; 067=318ec4a (outside scope)",
+      "decision_record_status": "recorded_pending_condition3; authority_effect none pending condition3 and main admission",
+      "current_l10_case_count": 85,
+      "current_l10_table_row_count": 82,
+      "current_l10_bullet_case_definitions": 3,
+      "current_l10_independent_case_count": 79,
+      "current_l10_compound_definition_count": 1,
+      "current_l10_index_definition_count": 5,
+      "decision_record_status_at_creation": "recorded_pending_condition3",
+      "current_admission_or_authority_effect": "not_assessed_by_this_addendum; consult current decision chain after condition3/main admission"
+    },
+    {
+      "parent_id": "HELIXINFRASTRUCTURE-L2-011",
+      "stage": "Stage 5",
+      "audit_refs": [
+        "A017"
+      ],
+      "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_decision": "docs/governance/decisions/helix-infrastructure-stage5-l3-l10-po-decision-2026-10-06.md",
+      "fixed_l2_locator": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md#L138–146",
+      "fixed_l11_locator": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md#L140–150",
+      "current_fr_locator": "docs/helix-infrastructure/L3-requirements/functional-requirements.md#L401–433",
+      "current_ac_ids": [
+        "INFRA-011-AC-01",
+        "INFRA-011-AC-02",
+        "INFRA-011-AC-03",
+        "INFRA-011-AC-04"
+      ],
+      "current_l10_locator": "docs/helix-infrastructure/L10-verification/functional-verification.md#L431–1209",
+      "current_case_headings": 86,
+      "case_ids_match_original_report": true,
+      "historical_six_full_sha_match_current": true,
+      "current_six_sha256": {
+        "docs/helix-infrastructure/L3-requirements/business-requirements.md": "429291b0cec7dcf63271b4aef419120476e70bff9054002aeb872e888c8eb328",
+        "docs/helix-infrastructure/L3-requirements/functional-requirements.md": "425d0746efe875dbfbeebc26562adea99a3cdd8e8ef6377a0164bca1d624cc2d",
+        "docs/helix-infrastructure/L3-requirements/nfr-grade.md": "7a6e9bd1d2125805791756c031a1a9228e7e3467c10b35bb473245338284ad75",
+        "docs/helix-infrastructure/L10-verification/business-verification.md": "c0c583732c75ba2545e0c3229f98ea4d280c82dfedc449a9ee6be0fb77f0a79f",
+        "docs/helix-infrastructure/L10-verification/functional-verification.md": "163107e7cd9d6ef04f38b5ffd974f487b96a9501980f27e37a9d2095099a9a52",
+        "docs/helix-infrastructure/L10-verification/nfr-verification.md": "4e8d94b7515e87da8c809b26d190e1e08e7d21060f1c6fdefbfc9d75ca65145b"
+      },
+      "finding": "限定範囲では具体的欠落なし。18項目の単体確認、connection/composite分離、unknown/stale/mismatch/unauthorized拒否、部分完了保持、read-onlyと復旧の個別oracleが固定L2/L11およびAC01–04と整合。旧source/intake全consumerは再読していない。",
+      "fixed_l2_l11_authority_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_revision_role": "officially fixed L2/L11 semantic source revision (decision-record-backed)",
+      "current_comparison_snapshot": "d8ba018d74b05846e0eb489ed608c2881c9937cd",
+      "authority_decision_record": "docs/governance/decisions/helix-infrastructure-stage5-l3-l10-po-decision-2026-10-06.md"
+    }
+  ],
+  "original_audit_snapshot_pins": {
+    "A028": {
+      "path": "/tmp/root-labo-stage2b-012-016-semantic-review-5857c0a.json",
+      "bytes": 6805,
+      "sha256": "55d28520b047d9d18ba2675a50589975cc0f82e0d077d1eff5c0a5732e29d3fa"
+    },
+    "A029": {
+      "path": "/tmp/root-labo-stage2b-017-021-semantic-review-5857c0a.json",
+      "bytes": 6748,
+      "sha256": "0187da76497188872488b0b1d98810f581e9447f5b0b54dfd8e748edbd940646"
+    },
+    "A030": {
+      "path": "/tmp/root-labo-stage2b-022-026-semantic-review-5857c0a.json",
+      "bytes": 7202,
+      "sha256": "0efa109064fa6ecd377cef2709c8522bbc60749836a996306db0418cb7f3ad60"
+    },
+    "A032": {
+      "path": "/tmp/root-labo-stage2b-035-058-semantic-review-c9e73bc.json",
+      "bytes": 10769,
+      "sha256": "96cde95e547a0c9d484a5320f96a955934f37a2c6a4e76e657af7e82996cafd2"
+    },
+    "A037": {
+      "path": "/tmp/root-labo-stage5-050-semantic-review-37a8283.json",
+      "bytes": 2745,
+      "sha256": "8b9c0cb976d163fc7cec460a62f552adeffef7ed9099961ebc435b849e9a426b"
+    },
+    "A038": {
+      "path": "/tmp/root-labo-stage5-059-semantic-review-37a8283.json",
+      "bytes": 4201,
+      "sha256": "91ac697d7219ec47d3dd408ed36fea4ff3a84c31c973dd46065395edff339158"
+    },
+    "A044": {
+      "path": "/tmp/root-labo-stage5-050-061-063-supplement-e7a695d4.json",
+      "bytes": 38139,
+      "sha256": "52f04f631a8363eeec1894b1135fcac0b29a818cae2035f8bcf7cd3d396b5158"
+    },
+    "A017": {
+      "path": "/tmp/root-infrastructure-stage5-011-semantic-review-9229f59.json",
+      "bytes": 3704,
+      "sha256": "e984281820334f014fc67f72ae014efa957b6d821e5afb9ccfc5d0d72aabacf8"
+    }
+  },
+  "case_hash_rechecks": {
+    "A028_A029_A030": {
+      "matches": 187,
+      "total": 187
+    },
+    "A032_035_058": {
+      "matches": 60,
+      "total": 60
+    }
+  },
+  "limits": [
+    "これは固定要求→現在のAC→関連CASEの限定照合であり、274件/159件の全量意味監査ではない。",
+    "Stage2bの古い全6本文SHAは後続追補で全体bytesが変わったため現行file SHAとは一致しない。親ごとの旧CASE section SHAは全件一致。",
+    "旧source全体・全consumer、全旧auditに対する再監査は行わない。過去監査が特記する旧source未再読はそのまま限界とする。",
+    "fixture/runtime/旧CLI/旧CI/testは実行していない。独立reviewや権限/承認状態を生成しない。"
+  ],
+  "case_hash_detail": {
+    "A028": {
+      "L10-LABO-012-C01": {
+        "expected_sha256": "bff6d56010e38a7e8dae7a6af36ab882bbfab487840e8aa4aaac9a00ca30c1d1",
+        "current_sha256": "bff6d56010e38a7e8dae7a6af36ab882bbfab487840e8aa4aaac9a00ca30c1d1",
+        "match": true
+      },
+      "L10-LABO-012-C02": {
+        "expected_sha256": "9166be97afd8d2946940dcea84d40d0badb35a43f8d3f6738ed2d648a365048e",
+        "current_sha256": "9166be97afd8d2946940dcea84d40d0badb35a43f8d3f6738ed2d648a365048e",
+        "match": true
+      },
+      "L10-LABO-012-C03": {
+        "expected_sha256": "da9045281daee8430846b6892cbb294dae722f9910a7a245d7ace65b0001276b",
+        "current_sha256": "da9045281daee8430846b6892cbb294dae722f9910a7a245d7ace65b0001276b",
+        "match": true
+      },
+      "L10-LABO-012-C04": {
+        "expected_sha256": "c1cd603526d86beebab9011013db29c4cfe82af05dd127418d3e53b993cd7898",
+        "current_sha256": "c1cd603526d86beebab9011013db29c4cfe82af05dd127418d3e53b993cd7898",
+        "match": true
+      },
+      "L10-LABO-013-C01": {
+        "expected_sha256": "35835da9e40f9eb15982eae4c31d44d3c193c9c90ae13fa1c61579bafb7796dc",
+        "current_sha256": "35835da9e40f9eb15982eae4c31d44d3c193c9c90ae13fa1c61579bafb7796dc",
+        "match": true
+      },
+      "L10-LABO-013-C02": {
+        "expected_sha256": "a84cd7df3bb77000215bb329a6e3bbf9b78423b598b686d3a139cb8071818d15",
+        "current_sha256": "a84cd7df3bb77000215bb329a6e3bbf9b78423b598b686d3a139cb8071818d15",
+        "match": true
+      },
+      "L10-LABO-013-C03": {
+        "expected_sha256": "24ae27c0bca1a06b7474057de9702659bd30c9572343dbb6505040f9dadd1b63",
+        "current_sha256": "24ae27c0bca1a06b7474057de9702659bd30c9572343dbb6505040f9dadd1b63",
+        "match": true
+      },
+      "L10-LABO-013-C04": {
+        "expected_sha256": "137c445b25b122ef2c6ea45c544aac3d33f5487a04d4166a60da005c373576c9",
+        "current_sha256": "137c445b25b122ef2c6ea45c544aac3d33f5487a04d4166a60da005c373576c9",
+        "match": true
+      },
+      "L10-LABO-014-C01": {
+        "expected_sha256": "16352a59e7ebe30788b7eb51c5ed5c6cd59d10ce2889e8084af94ab2135b53dc",
+        "current_sha256": "16352a59e7ebe30788b7eb51c5ed5c6cd59d10ce2889e8084af94ab2135b53dc",
+        "match": true
+      },
+      "L10-LABO-014-C02": {
+        "expected_sha256": "b5102d78d6a6ff2de69face681c7bd583514c1321498c426ac82b86d5b5bf935",
+        "current_sha256": "b5102d78d6a6ff2de69face681c7bd583514c1321498c426ac82b86d5b5bf935",
+        "match": true
+      },
+      "L10-LABO-014-C03": {
+        "expected_sha256": "153e7b43ccb55d89bea26e3431c1f8737261a807f4ed46ebafa6dcef3d9015ca",
+        "current_sha256": "153e7b43ccb55d89bea26e3431c1f8737261a807f4ed46ebafa6dcef3d9015ca",
+        "match": true
+      },
+      "L10-LABO-014-C04": {
+        "expected_sha256": "28428ed5539b405916d71a4deab780708b14fb11e3ee4a7fadefa18a2f970700",
+        "current_sha256": "28428ed5539b405916d71a4deab780708b14fb11e3ee4a7fadefa18a2f970700",
+        "match": true
+      },
+      "L10-LABO-015-C01": {
+        "expected_sha256": "b68be8e11be1cd0c212fa1217614aa1d9376cd7ffdbda8063f2810ac2414fd67",
+        "current_sha256": "b68be8e11be1cd0c212fa1217614aa1d9376cd7ffdbda8063f2810ac2414fd67",
+        "match": true
+      },
+      "L10-LABO-015-C02": {
+        "expected_sha256": "10488665eb34e0d8c1215620ac30314151d1152ea725eb2674826bf41d5805f8",
+        "current_sha256": "10488665eb34e0d8c1215620ac30314151d1152ea725eb2674826bf41d5805f8",
+        "match": true
+      },
+      "L10-LABO-015-C03": {
+        "expected_sha256": "cb406cdbcf83ea7afdbf82a4ac68b51ea98f04774288a81ec1669e29b5f2d147",
+        "current_sha256": "cb406cdbcf83ea7afdbf82a4ac68b51ea98f04774288a81ec1669e29b5f2d147",
+        "match": true
+      },
+      "L10-LABO-015-C04": {
+        "expected_sha256": "c54bad6f234d467561c97a1890ba88effde7d2736f4dd54660294c043cebd30b",
+        "current_sha256": "c54bad6f234d467561c97a1890ba88effde7d2736f4dd54660294c043cebd30b",
+        "match": true
+      },
+      "L10-LABO-016-C01": {
+        "expected_sha256": "c7a48587e5e80330063218cf020952d6091c5c297e89bf2e255deac4ca7b548e",
+        "current_sha256": "c7a48587e5e80330063218cf020952d6091c5c297e89bf2e255deac4ca7b548e",
+        "match": true
+      },
+      "L10-LABO-016-C02": {
+        "expected_sha256": "5b55b0e79c15f7a168a99bb74e522228af790866a0d4d509bbc2adcc977d7955",
+        "current_sha256": "5b55b0e79c15f7a168a99bb74e522228af790866a0d4d509bbc2adcc977d7955",
+        "match": true
+      },
+      "L10-LABO-016-C03": {
+        "expected_sha256": "6cbd0cab46f9ebc37d7c84702b50aa944325a53a13899815ef0a081180a06af6",
+        "current_sha256": "6cbd0cab46f9ebc37d7c84702b50aa944325a53a13899815ef0a081180a06af6",
+        "match": true
+      },
+      "L10-LABO-016-C04": {
+        "expected_sha256": "140a4f9cd083ddfc014fff8ffbbef31d6fe7333e4afb32e5b64a00a0af14c73d",
+        "current_sha256": "140a4f9cd083ddfc014fff8ffbbef31d6fe7333e4afb32e5b64a00a0af14c73d",
+        "match": true
+      },
+      "L10-LABO-016-C10": {
+        "expected_sha256": "12d7f426ac278f905479d61b18a4201a4aec86dd2a801fde0837e039c4f271f7",
+        "current_sha256": "12d7f426ac278f905479d61b18a4201a4aec86dd2a801fde0837e039c4f271f7",
+        "match": true
+      },
+      "L10-LABO-012-C05": {
+        "expected_sha256": "a942de427032ab336a81f5d7ff59d91c3494a69a26c9648d1ab3cddcc53dad62",
+        "current_sha256": "a942de427032ab336a81f5d7ff59d91c3494a69a26c9648d1ab3cddcc53dad62",
+        "match": true
+      },
+      "L10-LABO-012-C06": {
+        "expected_sha256": "cbf7e989a11ec72866d538c3799bd5d145983cdfe4064a3cfa6c01e724ae0fcf",
+        "current_sha256": "cbf7e989a11ec72866d538c3799bd5d145983cdfe4064a3cfa6c01e724ae0fcf",
+        "match": true
+      },
+      "L10-LABO-013-C05": {
+        "expected_sha256": "30979d188d4e57c43c78ce57ce510a164debffab6b7a633a515b550e2e10894c",
+        "current_sha256": "30979d188d4e57c43c78ce57ce510a164debffab6b7a633a515b550e2e10894c",
+        "match": true
+      },
+      "L10-LABO-013-C06": {
+        "expected_sha256": "0ba8935f6d6790928701c7761d6c00ba8dcdf3d68315777f706510694782fcd0",
+        "current_sha256": "0ba8935f6d6790928701c7761d6c00ba8dcdf3d68315777f706510694782fcd0",
+        "match": true
+      },
+      "L10-LABO-014-C05": {
+        "expected_sha256": "1782c762810701480a71f22e0332cbe6d9f985cf46044777c8db9ac16f1e9ff5",
+        "current_sha256": "1782c762810701480a71f22e0332cbe6d9f985cf46044777c8db9ac16f1e9ff5",
+        "match": true
+      },
+      "L10-LABO-014-C06": {
+        "expected_sha256": "1b18d7c043fea9c9f2f856d194e5b5fef80d544b37c423c4334e857057b425a1",
+        "current_sha256": "1b18d7c043fea9c9f2f856d194e5b5fef80d544b37c423c4334e857057b425a1",
+        "match": true
+      },
+      "L10-LABO-014-C07": {
+        "expected_sha256": "1a9eb6be9a9a8be21a2a37a6e05db41c5965aef8fd587364aca2bc8f47532252",
+        "current_sha256": "1a9eb6be9a9a8be21a2a37a6e05db41c5965aef8fd587364aca2bc8f47532252",
+        "match": true
+      },
+      "L10-LABO-015-C05": {
+        "expected_sha256": "b01db05fcb26b055cced8dba8b986b90a9a460cf57b2d7345a5dadc26c3344c7",
+        "current_sha256": "b01db05fcb26b055cced8dba8b986b90a9a460cf57b2d7345a5dadc26c3344c7",
+        "match": true
+      },
+      "L10-LABO-015-C06": {
+        "expected_sha256": "fb00819914895d74365cad75fce373a6aa7436ee7cfa5ffcdf0bd0392efc2c9f",
+        "current_sha256": "fb00819914895d74365cad75fce373a6aa7436ee7cfa5ffcdf0bd0392efc2c9f",
+        "match": true
+      },
+      "L10-LABO-015-C07": {
+        "expected_sha256": "efc1fac72a222bbcd0b92f4aa0ec307f0a53285bb18df7cf6abddb83954d7e0a",
+        "current_sha256": "efc1fac72a222bbcd0b92f4aa0ec307f0a53285bb18df7cf6abddb83954d7e0a",
+        "match": true
+      },
+      "L10-LABO-015-C08": {
+        "expected_sha256": "6b2d9d9c4a2ec6057eb642293460166f117f6f99ac816f7c96f152c1891b8255",
+        "current_sha256": "6b2d9d9c4a2ec6057eb642293460166f117f6f99ac816f7c96f152c1891b8255",
+        "match": true
+      },
+      "L10-LABO-016-C05": {
+        "expected_sha256": "65da456e95d7c6641e1248db41aa56f5c57df62b1cd67e23277855dee9537898",
+        "current_sha256": "65da456e95d7c6641e1248db41aa56f5c57df62b1cd67e23277855dee9537898",
+        "match": true
+      },
+      "L10-LABO-016-C06": {
+        "expected_sha256": "55563ee2318cbe91e2d34e79497dc0f94c28d497f9abb2f2abd5a5a71092ea30",
+        "current_sha256": "55563ee2318cbe91e2d34e79497dc0f94c28d497f9abb2f2abd5a5a71092ea30",
+        "match": true
+      },
+      "L10-LABO-016-C07": {
+        "expected_sha256": "6eefaba1f933a3257b2ff9f2a26acdd3d85a6ac26ec9e60795e3bec51bb714d5",
+        "current_sha256": "6eefaba1f933a3257b2ff9f2a26acdd3d85a6ac26ec9e60795e3bec51bb714d5",
+        "match": true
+      },
+      "L10-LABO-012-C07": {
+        "expected_sha256": "ed4ecc759de99f9f4d9ab7a1c007512224c033841cb450ef65ff74831d04e5b0",
+        "current_sha256": "ed4ecc759de99f9f4d9ab7a1c007512224c033841cb450ef65ff74831d04e5b0",
+        "match": true
+      },
+      "L10-LABO-013-C07": {
+        "expected_sha256": "30fb3e8cb69ea3c4c8e2ba091b84e130631dbe479bc1ad4305dbe70200bc877b",
+        "current_sha256": "30fb3e8cb69ea3c4c8e2ba091b84e130631dbe479bc1ad4305dbe70200bc877b",
+        "match": true
+      },
+      "L10-LABO-013-C08": {
+        "expected_sha256": "e0c5daf0bb1fc5eb56d716a71120d68da75584ccde28c9178b0116dba26bc2e4",
+        "current_sha256": "e0c5daf0bb1fc5eb56d716a71120d68da75584ccde28c9178b0116dba26bc2e4",
+        "match": true
+      },
+      "L10-LABO-013-C09": {
+        "expected_sha256": "1a3e837d9afa190851da08b40e35eb1243a02aa7bce4f708fb3c4306f2663840",
+        "current_sha256": "1a3e837d9afa190851da08b40e35eb1243a02aa7bce4f708fb3c4306f2663840",
+        "match": true
+      },
+      "L10-LABO-013-C10": {
+        "expected_sha256": "760d0b59cf469eb2edc8725bb589f6f3681a7a230badefd2f8b2483eade1b398",
+        "current_sha256": "760d0b59cf469eb2edc8725bb589f6f3681a7a230badefd2f8b2483eade1b398",
+        "match": true
+      },
+      "L10-LABO-013-C11": {
+        "expected_sha256": "80749934d1d8bae527ffad1e35962706ffe55531fd9f43aebce1656ce6eb9f56",
+        "current_sha256": "80749934d1d8bae527ffad1e35962706ffe55531fd9f43aebce1656ce6eb9f56",
+        "match": true
+      },
+      "L10-LABO-013-C12": {
+        "expected_sha256": "b82bc341c6b6264e84b2009e73a5c54d797d5493543f9f11392b83ed97da7ab5",
+        "current_sha256": "b82bc341c6b6264e84b2009e73a5c54d797d5493543f9f11392b83ed97da7ab5",
+        "match": true
+      },
+      "L10-LABO-013-C13": {
+        "expected_sha256": "157fb37d64db11b4b67611aeead676400f0b2aa6628e93d148633a34f0970e42",
+        "current_sha256": "157fb37d64db11b4b67611aeead676400f0b2aa6628e93d148633a34f0970e42",
+        "match": true
+      },
+      "L10-LABO-013-C14": {
+        "expected_sha256": "cb90879f6145d92f43da2f7f3ded0c0d4f1002f00e26944c06ecaf6eefc67538",
+        "current_sha256": "cb90879f6145d92f43da2f7f3ded0c0d4f1002f00e26944c06ecaf6eefc67538",
+        "match": true
+      },
+      "L10-LABO-013-C15": {
+        "expected_sha256": "a8e6c644663fe18f4dc30b232ff9bf36f0adea3f124a4fe68f9202f9267d7b61",
+        "current_sha256": "a8e6c644663fe18f4dc30b232ff9bf36f0adea3f124a4fe68f9202f9267d7b61",
+        "match": true
+      },
+      "L10-LABO-013-C16": {
+        "expected_sha256": "d90e62eb63567d06f955bfe0ffe56dac308db74f6fe8acb48a57869e8f97667e",
+        "current_sha256": "d90e62eb63567d06f955bfe0ffe56dac308db74f6fe8acb48a57869e8f97667e",
+        "match": true
+      },
+      "L10-LABO-014-C08": {
+        "expected_sha256": "cab8ac9e2a8de8bbbfb976a21f81a79acc71ee1f422af5b19c2a047221923580",
+        "current_sha256": "cab8ac9e2a8de8bbbfb976a21f81a79acc71ee1f422af5b19c2a047221923580",
+        "match": true
+      },
+      "L10-LABO-014-C09": {
+        "expected_sha256": "c49e9e8db68c578ba86ba478216793fdb0c7f8fa2feefc2f7e2ab053d2c4386a",
+        "current_sha256": "c49e9e8db68c578ba86ba478216793fdb0c7f8fa2feefc2f7e2ab053d2c4386a",
+        "match": true
+      },
+      "L10-LABO-015-C09": {
+        "expected_sha256": "be58a15b715caae423e57284af21d7374ebc1cd1f52b60c788dc8e380de25c69",
+        "current_sha256": "be58a15b715caae423e57284af21d7374ebc1cd1f52b60c788dc8e380de25c69",
+        "match": true
+      },
+      "L10-LABO-016-C08": {
+        "expected_sha256": "43c54085eb5b54b68404d12b57e18007e0b6637cd0fdbeb8d00e57cd067b7e0a",
+        "current_sha256": "43c54085eb5b54b68404d12b57e18007e0b6637cd0fdbeb8d00e57cd067b7e0a",
+        "match": true
+      },
+      "L10-LABO-012-C08": {
+        "expected_sha256": "2f66a02803647818effc856404fc7ca8eee2d6d7dfdc73747eb51dbeace22496",
+        "current_sha256": "2f66a02803647818effc856404fc7ca8eee2d6d7dfdc73747eb51dbeace22496",
+        "match": true
+      },
+      "L10-LABO-012-C09": {
+        "expected_sha256": "8a5d4ab6360392c00d58c57abb94282bf7ac9bbda1b861113491e4b2dc76e506",
+        "current_sha256": "8a5d4ab6360392c00d58c57abb94282bf7ac9bbda1b861113491e4b2dc76e506",
+        "match": true
+      },
+      "L10-LABO-013-C17": {
+        "expected_sha256": "e4e7c022e0b734f7761e38eb4686d79e69fd59a3487c41d01e010f7dd5a5e440",
+        "current_sha256": "e4e7c022e0b734f7761e38eb4686d79e69fd59a3487c41d01e010f7dd5a5e440",
+        "match": true
+      },
+      "L10-LABO-014-C10": {
+        "expected_sha256": "3c1aab193787425f8b97dd66c1ece2df4208454580cbd15d958e0e358c6c4245",
+        "current_sha256": "3c1aab193787425f8b97dd66c1ece2df4208454580cbd15d958e0e358c6c4245",
+        "match": true
+      },
+      "L10-LABO-015-C10": {
+        "expected_sha256": "bab6955cf73c251d7337c1355c2b9cd7d3a0424eb26af14512fa41e27642d87a",
+        "current_sha256": "bab6955cf73c251d7337c1355c2b9cd7d3a0424eb26af14512fa41e27642d87a",
+        "match": true
+      },
+      "L10-LABO-016-C09": {
+        "expected_sha256": "75e960fdcf489fa454e6d9a05dea4a5b0564a7272ef623fbc4845375c94ba5e2",
+        "current_sha256": "75e960fdcf489fa454e6d9a05dea4a5b0564a7272ef623fbc4845375c94ba5e2",
+        "match": true
+      },
+      "L10-LABO-014-C11": {
+        "expected_sha256": "1ca00dabf83c91904857d55c63fbabd701fd6b9476704a3533251a9b78a47ec1",
+        "current_sha256": "1ca00dabf83c91904857d55c63fbabd701fd6b9476704a3533251a9b78a47ec1",
+        "match": true
+      },
+      "L10-LABO-014-C12": {
+        "expected_sha256": "3d41d97beb27ecfc2b63e5027c4456a99ee358102e5af30b4ac8c8e477a01cbb",
+        "current_sha256": "3d41d97beb27ecfc2b63e5027c4456a99ee358102e5af30b4ac8c8e477a01cbb",
+        "match": true
+      },
+      "L10-LABO-015-C11": {
+        "expected_sha256": "48b3e1a6c035a07ee86dfc901bcc7362044e8aac3240f2c86ee58c86bd6ea2fa",
+        "current_sha256": "48b3e1a6c035a07ee86dfc901bcc7362044e8aac3240f2c86ee58c86bd6ea2fa",
+        "match": true
+      },
+      "L10-LABO-015-C12": {
+        "expected_sha256": "5c5b12c4610380b339b789ba82c29b718a652f2c58ad0e90bb9fa489b1904537",
+        "current_sha256": "5c5b12c4610380b339b789ba82c29b718a652f2c58ad0e90bb9fa489b1904537",
+        "match": true
+      },
+      "L10-LABO-012-C10": {
+        "expected_sha256": "614e4b3029d3b441981171ec9dd376ee785ef65d4f1c8bc1a5ffcbc3b65b6d52",
+        "current_sha256": "614e4b3029d3b441981171ec9dd376ee785ef65d4f1c8bc1a5ffcbc3b65b6d52",
+        "match": true
+      },
+      "L10-LABO-016-C11": {
+        "expected_sha256": "f7c0042a1500cb8e16ff001714a2e171f1f8d67623f7ac35471b0741a6dc8f52",
+        "current_sha256": "f7c0042a1500cb8e16ff001714a2e171f1f8d67623f7ac35471b0741a6dc8f52",
+        "match": true
+      }
+    },
+    "A029": {
+      "L10-LABO-017-C01": {
+        "expected_sha256": "00af137cb1d7312bf670f2beaee487884ff5e527c6da089f932fa45b4aa29da8",
+        "current_sha256": "00af137cb1d7312bf670f2beaee487884ff5e527c6da089f932fa45b4aa29da8",
+        "match": true
+      },
+      "L10-LABO-017-C02": {
+        "expected_sha256": "c9c6873235a2a3804d92555a3c291f0244d1ab8f94f6319f127c8f41910fcf67",
+        "current_sha256": "c9c6873235a2a3804d92555a3c291f0244d1ab8f94f6319f127c8f41910fcf67",
+        "match": true
+      },
+      "L10-LABO-017-C03": {
+        "expected_sha256": "8070febf87bcf227fd72b392f56cb1e1277b42a85b433ba39b32e76f82a66f20",
+        "current_sha256": "8070febf87bcf227fd72b392f56cb1e1277b42a85b433ba39b32e76f82a66f20",
+        "match": true
+      },
+      "L10-LABO-017-C04": {
+        "expected_sha256": "ba8af1f2c93f1c55e46e4273dc419fe2e2c1ed5bc8a40195cb9f43d9d8cf4824",
+        "current_sha256": "ba8af1f2c93f1c55e46e4273dc419fe2e2c1ed5bc8a40195cb9f43d9d8cf4824",
+        "match": true
+      },
+      "L10-LABO-018-C01": {
+        "expected_sha256": "49f9de3d81d732f153e459deca2902977b2d51d3c6219750716db8f2cbfc3dd7",
+        "current_sha256": "49f9de3d81d732f153e459deca2902977b2d51d3c6219750716db8f2cbfc3dd7",
+        "match": true
+      },
+      "L10-LABO-018-C02": {
+        "expected_sha256": "16afb6a0c2c3faa4d4260037a65dafcf3b143b005a5bb153d165151da6377a00",
+        "current_sha256": "16afb6a0c2c3faa4d4260037a65dafcf3b143b005a5bb153d165151da6377a00",
+        "match": true
+      },
+      "L10-LABO-018-C03": {
+        "expected_sha256": "79a73e9a84d1278adcb13bf72bca1eb774c326561c0e5844d75fed6728cd7e78",
+        "current_sha256": "79a73e9a84d1278adcb13bf72bca1eb774c326561c0e5844d75fed6728cd7e78",
+        "match": true
+      },
+      "L10-LABO-018-C04": {
+        "expected_sha256": "9c969d8caa170a3881f36e66f91272fc7a82a733df5d4fd54c5affcc9f49985c",
+        "current_sha256": "9c969d8caa170a3881f36e66f91272fc7a82a733df5d4fd54c5affcc9f49985c",
+        "match": true
+      },
+      "L10-LABO-019-C01": {
+        "expected_sha256": "df628e29ed394997ad70eaa9b1cbf8ed7bf5558961271a8f257f32d250bad8a3",
+        "current_sha256": "df628e29ed394997ad70eaa9b1cbf8ed7bf5558961271a8f257f32d250bad8a3",
+        "match": true
+      },
+      "L10-LABO-019-C02": {
+        "expected_sha256": "3e191e9aa615b64b384d8ad20bac7d71f68e4cf2f2f049b6542f485c85c709e1",
+        "current_sha256": "3e191e9aa615b64b384d8ad20bac7d71f68e4cf2f2f049b6542f485c85c709e1",
+        "match": true
+      },
+      "L10-LABO-019-C03": {
+        "expected_sha256": "637beeb37ea47fde41d71d51eac53c28605301f6411d4ad5b3c070286a08c1f1",
+        "current_sha256": "637beeb37ea47fde41d71d51eac53c28605301f6411d4ad5b3c070286a08c1f1",
+        "match": true
+      },
+      "L10-LABO-019-C04": {
+        "expected_sha256": "66839d1370905dfa0b10bfca719788548ed311510343a1cd582f12be6e2e5b04",
+        "current_sha256": "66839d1370905dfa0b10bfca719788548ed311510343a1cd582f12be6e2e5b04",
+        "match": true
+      },
+      "L10-LABO-020-C01": {
+        "expected_sha256": "b21e2fab4a8fca0f95e75c7116064613fdea73f47f1ef561200d1bec45a316ac",
+        "current_sha256": "b21e2fab4a8fca0f95e75c7116064613fdea73f47f1ef561200d1bec45a316ac",
+        "match": true
+      },
+      "L10-LABO-020-C02": {
+        "expected_sha256": "a65669109e977d1f1ae136e714d8925905c30721ad42c3d4673fc39cd808eff0",
+        "current_sha256": "a65669109e977d1f1ae136e714d8925905c30721ad42c3d4673fc39cd808eff0",
+        "match": true
+      },
+      "L10-LABO-020-C03": {
+        "expected_sha256": "2539e64a2ea7c807cf92cb8e45e1cf75ea43a037b29f0aceb9aeed3ed5f8767a",
+        "current_sha256": "2539e64a2ea7c807cf92cb8e45e1cf75ea43a037b29f0aceb9aeed3ed5f8767a",
+        "match": true
+      },
+      "L10-LABO-020-C04": {
+        "expected_sha256": "6a8614c94b09dfcac9b2c18734c2ec3f35a87eae0cecb95942a51fca933fbca3",
+        "current_sha256": "6a8614c94b09dfcac9b2c18734c2ec3f35a87eae0cecb95942a51fca933fbca3",
+        "match": true
+      },
+      "L10-LABO-021-C01": {
+        "expected_sha256": "cc7402608b75f3e5b0f853e0bb2eb439dffe74ffa2565faafe20786ac33b1bbb",
+        "current_sha256": "cc7402608b75f3e5b0f853e0bb2eb439dffe74ffa2565faafe20786ac33b1bbb",
+        "match": true
+      },
+      "L10-LABO-021-C02": {
+        "expected_sha256": "0b792569eeb4578520309825be8519d01365deb5c22efb3518d036831ad3a901",
+        "current_sha256": "0b792569eeb4578520309825be8519d01365deb5c22efb3518d036831ad3a901",
+        "match": true
+      },
+      "L10-LABO-021-C03": {
+        "expected_sha256": "ee186299cefea43827efadd580173106654971a4d986d8a798b397168f674cf0",
+        "current_sha256": "ee186299cefea43827efadd580173106654971a4d986d8a798b397168f674cf0",
+        "match": true
+      },
+      "L10-LABO-021-C04": {
+        "expected_sha256": "2e5812917139fb08c8cede2128915ee677c08c1f430ba574c6060ed4d7977b9f",
+        "current_sha256": "2e5812917139fb08c8cede2128915ee677c08c1f430ba574c6060ed4d7977b9f",
+        "match": true
+      },
+      "L10-LABO-017-C10": {
+        "expected_sha256": "28d7fe9ff2b456f701fdd90b3c9f1f7fe4983365377131475eda61de53ccae2c",
+        "current_sha256": "28d7fe9ff2b456f701fdd90b3c9f1f7fe4983365377131475eda61de53ccae2c",
+        "match": true
+      },
+      "L10-LABO-020-C12": {
+        "expected_sha256": "a43e8099d0d75faecdcf38d8a16177e5a6f97f928c7ea8a6d688250b4758150e",
+        "current_sha256": "a43e8099d0d75faecdcf38d8a16177e5a6f97f928c7ea8a6d688250b4758150e",
+        "match": true
+      },
+      "L10-LABO-021-C16": {
+        "expected_sha256": "9d2c9cfb00bb2f209860e871f616de15c42412066824ce1931ae56710c41ef05",
+        "current_sha256": "9d2c9cfb00bb2f209860e871f616de15c42412066824ce1931ae56710c41ef05",
+        "match": true
+      },
+      "L10-LABO-017-C05": {
+        "expected_sha256": "bf0d55ada4a12fbc93a73ccb4f7c9f70586f4d98d4f4d449352c1044a4eefa81",
+        "current_sha256": "bf0d55ada4a12fbc93a73ccb4f7c9f70586f4d98d4f4d449352c1044a4eefa81",
+        "match": true
+      },
+      "L10-LABO-017-C06": {
+        "expected_sha256": "2dfe4d192b7cb6ca87695acdff0578e7378d834bbe2f3aa25f4ebc8a5c0e0969",
+        "current_sha256": "2dfe4d192b7cb6ca87695acdff0578e7378d834bbe2f3aa25f4ebc8a5c0e0969",
+        "match": true
+      },
+      "L10-LABO-017-C07": {
+        "expected_sha256": "7781414b6a0deeb2219cc5e4c22eb199dd35227e1e1b73351b7b24d3eb4a8a94",
+        "current_sha256": "7781414b6a0deeb2219cc5e4c22eb199dd35227e1e1b73351b7b24d3eb4a8a94",
+        "match": true
+      },
+      "L10-LABO-017-C08": {
+        "expected_sha256": "1ddf09841b242d22bc96e667cc1ec21f786e7568a8866ee583733448fbdcbe57",
+        "current_sha256": "1ddf09841b242d22bc96e667cc1ec21f786e7568a8866ee583733448fbdcbe57",
+        "match": true
+      },
+      "L10-LABO-018-C05": {
+        "expected_sha256": "7066cec19bddd5728fd4e04c7fcc4686a60280ab77c7cb1e18856cff4270ab7a",
+        "current_sha256": "7066cec19bddd5728fd4e04c7fcc4686a60280ab77c7cb1e18856cff4270ab7a",
+        "match": true
+      },
+      "L10-LABO-018-C06": {
+        "expected_sha256": "4687f7160e9159d909d87cbd1afa6583d2e7666b82bb29e7eaaa91f6e99cbb54",
+        "current_sha256": "4687f7160e9159d909d87cbd1afa6583d2e7666b82bb29e7eaaa91f6e99cbb54",
+        "match": true
+      },
+      "L10-LABO-018-C07": {
+        "expected_sha256": "a08541cedccff6aa1a3e73698b0a7da3672479d754e63a50f6b2d04500e9aada",
+        "current_sha256": "a08541cedccff6aa1a3e73698b0a7da3672479d754e63a50f6b2d04500e9aada",
+        "match": true
+      },
+      "L10-LABO-019-C05": {
+        "expected_sha256": "585780d6047d6b83d0e23fa406e3e67288ed53f164664794213e4af09ce5e34e",
+        "current_sha256": "585780d6047d6b83d0e23fa406e3e67288ed53f164664794213e4af09ce5e34e",
+        "match": true
+      },
+      "L10-LABO-019-C06": {
+        "expected_sha256": "7a505c39e3f0af85c0d34da1bc9aa751b5d5f34d625a0c566f90c1df3ffd3bde",
+        "current_sha256": "7a505c39e3f0af85c0d34da1bc9aa751b5d5f34d625a0c566f90c1df3ffd3bde",
+        "match": true
+      },
+      "L10-LABO-019-C07": {
+        "expected_sha256": "c547a0099411dd4cf6ee84bff1a938e183e468a263c6ef204a2d790ffc3a8e42",
+        "current_sha256": "c547a0099411dd4cf6ee84bff1a938e183e468a263c6ef204a2d790ffc3a8e42",
+        "match": true
+      },
+      "L10-LABO-019-C08": {
+        "expected_sha256": "68bcd609212d9e99e835eee7bd19429b1efc0579970ccae13fb31c73c1fd2fa4",
+        "current_sha256": "68bcd609212d9e99e835eee7bd19429b1efc0579970ccae13fb31c73c1fd2fa4",
+        "match": true
+      },
+      "L10-LABO-020-C05": {
+        "expected_sha256": "697f4b650ee0308cc16479caa7411fdf73baf6f8da875811d1425e929b88c3d2",
+        "current_sha256": "697f4b650ee0308cc16479caa7411fdf73baf6f8da875811d1425e929b88c3d2",
+        "match": true
+      },
+      "L10-LABO-020-C06": {
+        "expected_sha256": "bc9ac916131afbb5bfec704e2bb8e6967e6d3aa94e90d6e74dacc83b9af72c35",
+        "current_sha256": "bc9ac916131afbb5bfec704e2bb8e6967e6d3aa94e90d6e74dacc83b9af72c35",
+        "match": true
+      },
+      "L10-LABO-020-C07": {
+        "expected_sha256": "bac5f5feb778e08e710693df12397af5fb8a29788a9032ca4393d48e3406151a",
+        "current_sha256": "bac5f5feb778e08e710693df12397af5fb8a29788a9032ca4393d48e3406151a",
+        "match": true
+      },
+      "L10-LABO-020-C08": {
+        "expected_sha256": "48974d4abd579691807f3900000d334c303a173157eaf71d5d1f8c09bbb916fa",
+        "current_sha256": "48974d4abd579691807f3900000d334c303a173157eaf71d5d1f8c09bbb916fa",
+        "match": true
+      },
+      "L10-LABO-021-C05": {
+        "expected_sha256": "c62f36a75192994d0fb9020bc3e50ca0c77d343a8f80ad78cda3294585adc0e1",
+        "current_sha256": "c62f36a75192994d0fb9020bc3e50ca0c77d343a8f80ad78cda3294585adc0e1",
+        "match": true
+      },
+      "L10-LABO-021-C06": {
+        "expected_sha256": "3747042bcae9e9edccba717ce2c7206434612d85b5d7056f826050104d3691e5",
+        "current_sha256": "3747042bcae9e9edccba717ce2c7206434612d85b5d7056f826050104d3691e5",
+        "match": true
+      },
+      "L10-LABO-021-C07": {
+        "expected_sha256": "7bfc8be65b2081fba2f89e4d2da3ca99ea0185e380a1d37a814bf61088da3084",
+        "current_sha256": "7bfc8be65b2081fba2f89e4d2da3ca99ea0185e380a1d37a814bf61088da3084",
+        "match": true
+      },
+      "L10-LABO-021-C08": {
+        "expected_sha256": "082a53bf92d94f2b86f7b7aa4219e2f2304dc375a724a871343f914c098aa3e4",
+        "current_sha256": "082a53bf92d94f2b86f7b7aa4219e2f2304dc375a724a871343f914c098aa3e4",
+        "match": true
+      },
+      "L10-LABO-018-C08": {
+        "expected_sha256": "ac3fc252317d9d4ae126219ed62d6477d5cd30ac7aba20f27a96ae50b9e770d7",
+        "current_sha256": "ac3fc252317d9d4ae126219ed62d6477d5cd30ac7aba20f27a96ae50b9e770d7",
+        "match": true
+      },
+      "L10-LABO-019-C09": {
+        "expected_sha256": "37fe47fcb5cf35f3138edfa60509b911e9db20a7fe0c8c878241cf6894c6b5e1",
+        "current_sha256": "37fe47fcb5cf35f3138edfa60509b911e9db20a7fe0c8c878241cf6894c6b5e1",
+        "match": true
+      },
+      "L10-LABO-020-C09": {
+        "expected_sha256": "d40d97782b4aeeb736c4a8082a7781c4f7068b8641480993ef8df80ff5ad4071",
+        "current_sha256": "d40d97782b4aeeb736c4a8082a7781c4f7068b8641480993ef8df80ff5ad4071",
+        "match": true
+      },
+      "L10-LABO-020-C10": {
+        "expected_sha256": "18fa126ab6f99bbc07a61ece1ab18382ec1cb61816ccb19ca8ab39b96c9349dd",
+        "current_sha256": "18fa126ab6f99bbc07a61ece1ab18382ec1cb61816ccb19ca8ab39b96c9349dd",
+        "match": true
+      },
+      "L10-LABO-021-C09": {
+        "expected_sha256": "35bfe47ebc9e84b629a94fb9d833a2305f933a20281c16db708ddb44814f6389",
+        "current_sha256": "35bfe47ebc9e84b629a94fb9d833a2305f933a20281c16db708ddb44814f6389",
+        "match": true
+      },
+      "L10-LABO-021-C10": {
+        "expected_sha256": "baa21ded370ad386cc6681b34120c207123b00cf058715103ae5d576c038e898",
+        "current_sha256": "baa21ded370ad386cc6681b34120c207123b00cf058715103ae5d576c038e898",
+        "match": true
+      },
+      "L10-LABO-017-C09": {
+        "expected_sha256": "8830bff2738b79a9469656ada67f956e86e35269c4def451353ab1b21d658a9d",
+        "current_sha256": "8830bff2738b79a9469656ada67f956e86e35269c4def451353ab1b21d658a9d",
+        "match": true
+      },
+      "L10-LABO-018-C09": {
+        "expected_sha256": "20775dbcbca7384c212d3d6cb9f475bc4818df43055308a3e62b8f07c1b96235",
+        "current_sha256": "20775dbcbca7384c212d3d6cb9f475bc4818df43055308a3e62b8f07c1b96235",
+        "match": true
+      },
+      "L10-LABO-018-C10": {
+        "expected_sha256": "9b2791023aab31276b927731b1e418b9c3f9fb117229c0560d0c105b888caa00",
+        "current_sha256": "9b2791023aab31276b927731b1e418b9c3f9fb117229c0560d0c105b888caa00",
+        "match": true
+      },
+      "L10-LABO-019-C10": {
+        "expected_sha256": "cf7926463b7a44143a9e8931dc75cd7044bb11ce4a8ae776bb59ee4d3cfdfdd4",
+        "current_sha256": "cf7926463b7a44143a9e8931dc75cd7044bb11ce4a8ae776bb59ee4d3cfdfdd4",
+        "match": true
+      },
+      "L10-LABO-019-C11": {
+        "expected_sha256": "5b0c7466bc99199af3bca9dac7cd32ea34e9bdccda9034810e11f177c5beea4c",
+        "current_sha256": "5b0c7466bc99199af3bca9dac7cd32ea34e9bdccda9034810e11f177c5beea4c",
+        "match": true
+      },
+      "L10-LABO-021-C11": {
+        "expected_sha256": "315c0b92fd5e916ef946e9fab2662f851cc66e6c63a1cb5bcd8833f81762b1f5",
+        "current_sha256": "315c0b92fd5e916ef946e9fab2662f851cc66e6c63a1cb5bcd8833f81762b1f5",
+        "match": true
+      },
+      "L10-LABO-020-C11": {
+        "expected_sha256": "4753f625b8a582f06bc8c07b6a56e01b5c910a4b84aea7128d2fbe1bb8b74273",
+        "current_sha256": "4753f625b8a582f06bc8c07b6a56e01b5c910a4b84aea7128d2fbe1bb8b74273",
+        "match": true
+      },
+      "L10-LABO-021-C12": {
+        "expected_sha256": "5c6e3775bb3ccae2618ee6464d1eddc3f047ffa190cb21711949c30515411048",
+        "current_sha256": "5c6e3775bb3ccae2618ee6464d1eddc3f047ffa190cb21711949c30515411048",
+        "match": true
+      },
+      "L10-LABO-017-C11": {
+        "expected_sha256": "1e5916b081717f1079a527835b9db651df560b720c2b7ecfaca7660dba1a668d",
+        "current_sha256": "1e5916b081717f1079a527835b9db651df560b720c2b7ecfaca7660dba1a668d",
+        "match": true
+      },
+      "L10-LABO-017-C12": {
+        "expected_sha256": "9f1761369c4c1a6b21417e05bcd046cded5a203f620ca17d32f60c2531b64b30",
+        "current_sha256": "9f1761369c4c1a6b21417e05bcd046cded5a203f620ca17d32f60c2531b64b30",
+        "match": true
+      },
+      "L10-LABO-017-C13": {
+        "expected_sha256": "15ce2fdbe810e8254cac71f4865f45356548db3d8ac60258b2df680fd1daae9e",
+        "current_sha256": "15ce2fdbe810e8254cac71f4865f45356548db3d8ac60258b2df680fd1daae9e",
+        "match": true
+      },
+      "L10-LABO-021-C13": {
+        "expected_sha256": "1b783cc04e2bd01653706f3e6f0389b7f857f98fad65117ef37dd5b3d39d3ee9",
+        "current_sha256": "1b783cc04e2bd01653706f3e6f0389b7f857f98fad65117ef37dd5b3d39d3ee9",
+        "match": true
+      }
+    },
+    "A030": {
+      "L10-LABO-022-C01": {
+        "expected_sha256": "57a74f346d516db4a41a370d45eee9ed4c51e157340c8cf7c37303b8a7a74e73",
+        "current_sha256": "57a74f346d516db4a41a370d45eee9ed4c51e157340c8cf7c37303b8a7a74e73",
+        "match": true
+      },
+      "L10-LABO-022-C02": {
+        "expected_sha256": "0ab9754419d7a8fabe4486fddde04fb3469be588f409daa790fb57b8994cfd79",
+        "current_sha256": "0ab9754419d7a8fabe4486fddde04fb3469be588f409daa790fb57b8994cfd79",
+        "match": true
+      },
+      "L10-LABO-022-C03": {
+        "expected_sha256": "1769c9aba4ffab37db79dfde35d44333790e3d12760a8018038e98469cb6f3f5",
+        "current_sha256": "1769c9aba4ffab37db79dfde35d44333790e3d12760a8018038e98469cb6f3f5",
+        "match": true
+      },
+      "L10-LABO-022-C04": {
+        "expected_sha256": "810eea1d3082b9c2cc2a6a7601e86671ca9a7f7813ebb7fcbdf819e30f77d0fc",
+        "current_sha256": "810eea1d3082b9c2cc2a6a7601e86671ca9a7f7813ebb7fcbdf819e30f77d0fc",
+        "match": true
+      },
+      "L10-LABO-023-C01": {
+        "expected_sha256": "dfaf68e908102cb81ea07ae9174999a8d139a03acb859ba9fcaa2c5c6b7ead97",
+        "current_sha256": "dfaf68e908102cb81ea07ae9174999a8d139a03acb859ba9fcaa2c5c6b7ead97",
+        "match": true
+      },
+      "L10-LABO-023-C02": {
+        "expected_sha256": "3ad49b776dce47cad63803abe2c13a240c2a1ed40bef7ea7b34b5ffb88d8d795",
+        "current_sha256": "3ad49b776dce47cad63803abe2c13a240c2a1ed40bef7ea7b34b5ffb88d8d795",
+        "match": true
+      },
+      "L10-LABO-023-C03": {
+        "expected_sha256": "825b60759eb094aae81afbaba249b6d03978c2d1a31d6818cdc4e2889637d3d8",
+        "current_sha256": "825b60759eb094aae81afbaba249b6d03978c2d1a31d6818cdc4e2889637d3d8",
+        "match": true
+      },
+      "L10-LABO-023-C04": {
+        "expected_sha256": "bccbee8283219421a8b18a3a5fd79846b0325fc71fb95041a99fe2892c3e67d6",
+        "current_sha256": "bccbee8283219421a8b18a3a5fd79846b0325fc71fb95041a99fe2892c3e67d6",
+        "match": true
+      },
+      "L10-LABO-024-C01": {
+        "expected_sha256": "f33baf4587ee409e67bae87f7d8e814762f5521b9febd3a7c66f9fc6801fcae4",
+        "current_sha256": "f33baf4587ee409e67bae87f7d8e814762f5521b9febd3a7c66f9fc6801fcae4",
+        "match": true
+      },
+      "L10-LABO-024-C02": {
+        "expected_sha256": "5e2fc0d97cc282c051f0c48067d3915485f76f168f49a56197ce9f9cbd9e7fa0",
+        "current_sha256": "5e2fc0d97cc282c051f0c48067d3915485f76f168f49a56197ce9f9cbd9e7fa0",
+        "match": true
+      },
+      "L10-LABO-024-C03": {
+        "expected_sha256": "fe233d7fbfd6daae1948694d37806c6855695b0b4ea6c22b4f50151af145a360",
+        "current_sha256": "fe233d7fbfd6daae1948694d37806c6855695b0b4ea6c22b4f50151af145a360",
+        "match": true
+      },
+      "L10-LABO-024-C04": {
+        "expected_sha256": "a0b0533cdb4fa294ff3c2e2cfeafeae9df8ac59f6c66dc8d7d5c4ec754d44b76",
+        "current_sha256": "a0b0533cdb4fa294ff3c2e2cfeafeae9df8ac59f6c66dc8d7d5c4ec754d44b76",
+        "match": true
+      },
+      "L10-LABO-025-C01": {
+        "expected_sha256": "1c99a99ca2e4cee4fd7f8a4885957e48f473c01e2352164b8769ee1cb4210cd5",
+        "current_sha256": "1c99a99ca2e4cee4fd7f8a4885957e48f473c01e2352164b8769ee1cb4210cd5",
+        "match": true
+      },
+      "L10-LABO-025-C02": {
+        "expected_sha256": "ffdeddcaf359260ff5f191002209dd64e6260fb93622848a3a81d22d5291ba12",
+        "current_sha256": "ffdeddcaf359260ff5f191002209dd64e6260fb93622848a3a81d22d5291ba12",
+        "match": true
+      },
+      "L10-LABO-025-C03": {
+        "expected_sha256": "415ce6d29190f1d76ceb4a5abbdf575a62f22d622c8ad7abe59bf25c92104d11",
+        "current_sha256": "415ce6d29190f1d76ceb4a5abbdf575a62f22d622c8ad7abe59bf25c92104d11",
+        "match": true
+      },
+      "L10-LABO-025-C04": {
+        "expected_sha256": "80f6b3d70fd17558f1b325abae40867a3e1bc0703191c1b6b02c13e7594f6571",
+        "current_sha256": "80f6b3d70fd17558f1b325abae40867a3e1bc0703191c1b6b02c13e7594f6571",
+        "match": true
+      },
+      "L10-LABO-026-C01": {
+        "expected_sha256": "84f9b82e78bf21a97e52f7af3a8f7416aa86544ba7746173aef510cea4ecbd4a",
+        "current_sha256": "84f9b82e78bf21a97e52f7af3a8f7416aa86544ba7746173aef510cea4ecbd4a",
+        "match": true
+      },
+      "L10-LABO-026-C02": {
+        "expected_sha256": "1e8dfa819f2fe4aa80f131e51251220344af33e98d6da8a26d862ab0bfe04a39",
+        "current_sha256": "1e8dfa819f2fe4aa80f131e51251220344af33e98d6da8a26d862ab0bfe04a39",
+        "match": true
+      },
+      "L10-LABO-026-C03": {
+        "expected_sha256": "1a5f200ed0225489af190c4c87a26ec63f561a120f3c74936ece85c9450d27b9",
+        "current_sha256": "1a5f200ed0225489af190c4c87a26ec63f561a120f3c74936ece85c9450d27b9",
+        "match": true
+      },
+      "L10-LABO-026-C04": {
+        "expected_sha256": "60a85bcfa267a3854b379d40676b847cbe2463b7ae1092351e1f395c235a52fa",
+        "current_sha256": "60a85bcfa267a3854b379d40676b847cbe2463b7ae1092351e1f395c235a52fa",
+        "match": true
+      },
+      "L10-LABO-022-C16": {
+        "expected_sha256": "db8e5007b141ba692b4b07895065223edc5cc8142870c9e46bc1e645cfd1aab4",
+        "current_sha256": "db8e5007b141ba692b4b07895065223edc5cc8142870c9e46bc1e645cfd1aab4",
+        "match": true
+      },
+      "L10-LABO-023-C16": {
+        "expected_sha256": "56adcd96d057260112872600d48ac8b19b90405ed1b7d6e685843e5c1e1ed028",
+        "current_sha256": "56adcd96d057260112872600d48ac8b19b90405ed1b7d6e685843e5c1e1ed028",
+        "match": true
+      },
+      "L10-LABO-024-C16": {
+        "expected_sha256": "902f37c192d1eaa6bcac8b39019c53e11ee7c519d239c1027e0cceea1844638e",
+        "current_sha256": "902f37c192d1eaa6bcac8b39019c53e11ee7c519d239c1027e0cceea1844638e",
+        "match": true
+      },
+      "L10-LABO-025-C16": {
+        "expected_sha256": "3fa5cc27170807ff486a49ffe7d1893ae4c10e7ed54fd9ffa7c1aa8be879d5b5",
+        "current_sha256": "3fa5cc27170807ff486a49ffe7d1893ae4c10e7ed54fd9ffa7c1aa8be879d5b5",
+        "match": true
+      },
+      "L10-LABO-026-C16": {
+        "expected_sha256": "8c33aeac5deca910c81a6a83670d6eebc91ee1ce36fde3d1d5ced1a7a3e2ff59",
+        "current_sha256": "8c33aeac5deca910c81a6a83670d6eebc91ee1ce36fde3d1d5ced1a7a3e2ff59",
+        "match": true
+      },
+      "L10-LABO-022-C05": {
+        "expected_sha256": "1a5fbad4f58a7b8aae603a7eeeace03abe97723cb10f113b91ef4190e51dd692",
+        "current_sha256": "1a5fbad4f58a7b8aae603a7eeeace03abe97723cb10f113b91ef4190e51dd692",
+        "match": true
+      },
+      "L10-LABO-022-C06": {
+        "expected_sha256": "5878ca49d4fdd20d2b8f31167c9da822f28ea8859cbef999d2a63d51092f829f",
+        "current_sha256": "5878ca49d4fdd20d2b8f31167c9da822f28ea8859cbef999d2a63d51092f829f",
+        "match": true
+      },
+      "L10-LABO-022-C07": {
+        "expected_sha256": "26c4402e6b91ee7d97b3bf4d1dce0602d9506365b032a421e7b710f201820c64",
+        "current_sha256": "26c4402e6b91ee7d97b3bf4d1dce0602d9506365b032a421e7b710f201820c64",
+        "match": true
+      },
+      "L10-LABO-022-C08": {
+        "expected_sha256": "b5f870b3489925e965ef5d49aa2d51285814979dfd03b0125699692f73d477f5",
+        "current_sha256": "b5f870b3489925e965ef5d49aa2d51285814979dfd03b0125699692f73d477f5",
+        "match": true
+      },
+      "L10-LABO-023-C05": {
+        "expected_sha256": "618a038686195fc00073c0725519ff6895547fc52b3128a26596e487859c5760",
+        "current_sha256": "618a038686195fc00073c0725519ff6895547fc52b3128a26596e487859c5760",
+        "match": true
+      },
+      "L10-LABO-023-C06": {
+        "expected_sha256": "5e3ee4ea739c7686e2248d85ae60749e5911df5db71c0fedb7599ef725ae1670",
+        "current_sha256": "5e3ee4ea739c7686e2248d85ae60749e5911df5db71c0fedb7599ef725ae1670",
+        "match": true
+      },
+      "L10-LABO-023-C07": {
+        "expected_sha256": "3278f2e0b4c58d0d6ff30f938a93617d7d8d4ae9fbc90e5dfcdff7dbb4135b3e",
+        "current_sha256": "3278f2e0b4c58d0d6ff30f938a93617d7d8d4ae9fbc90e5dfcdff7dbb4135b3e",
+        "match": true
+      },
+      "L10-LABO-024-C05": {
+        "expected_sha256": "e1448d4d052b6a0aa1311b3e5f41d16abdce33d8ec92dcb7cd2545b44885db12",
+        "current_sha256": "e1448d4d052b6a0aa1311b3e5f41d16abdce33d8ec92dcb7cd2545b44885db12",
+        "match": true
+      },
+      "L10-LABO-024-C06": {
+        "expected_sha256": "54b84b8ec8582f30f3f572e3437f92528bd428753a4722df298ab80f4b3a4e7b",
+        "current_sha256": "54b84b8ec8582f30f3f572e3437f92528bd428753a4722df298ab80f4b3a4e7b",
+        "match": true
+      },
+      "L10-LABO-024-C07": {
+        "expected_sha256": "2233cd9591fd9e973bf656a1be2fa2ac913e41e33fd9e73ec66ff58b06eca86a",
+        "current_sha256": "2233cd9591fd9e973bf656a1be2fa2ac913e41e33fd9e73ec66ff58b06eca86a",
+        "match": true
+      },
+      "L10-LABO-025-C05": {
+        "expected_sha256": "b0b48c9d24277893b98c24f2c281e175f1e794af71b07b61bf9d70119dacc321",
+        "current_sha256": "b0b48c9d24277893b98c24f2c281e175f1e794af71b07b61bf9d70119dacc321",
+        "match": true
+      },
+      "L10-LABO-025-C06": {
+        "expected_sha256": "6b79eaf4e546ffd6d8b61147e26fa1319212f59a8f6d93b224487dda4f06c449",
+        "current_sha256": "6b79eaf4e546ffd6d8b61147e26fa1319212f59a8f6d93b224487dda4f06c449",
+        "match": true
+      },
+      "L10-LABO-025-C07": {
+        "expected_sha256": "e3f01dcf720f0cfbb3dc3bb1dd4d1225610659fd63576d8849c290d5347c8235",
+        "current_sha256": "e3f01dcf720f0cfbb3dc3bb1dd4d1225610659fd63576d8849c290d5347c8235",
+        "match": true
+      },
+      "L10-LABO-026-C05": {
+        "expected_sha256": "79af15f3eb4700024ad0da7f98d521942f55122d7997b70c662a75088028af76",
+        "current_sha256": "79af15f3eb4700024ad0da7f98d521942f55122d7997b70c662a75088028af76",
+        "match": true
+      },
+      "L10-LABO-026-C06": {
+        "expected_sha256": "61ff718b3d6ba6cde2345ba8a2573f2b0153e866cb26629be42a5e31b1c3b18c",
+        "current_sha256": "61ff718b3d6ba6cde2345ba8a2573f2b0153e866cb26629be42a5e31b1c3b18c",
+        "match": true
+      },
+      "L10-LABO-026-C07": {
+        "expected_sha256": "72a4757d0ee426f95d9e0762472fd0497e18f4b07491995637d57dfb4eec71b8",
+        "current_sha256": "72a4757d0ee426f95d9e0762472fd0497e18f4b07491995637d57dfb4eec71b8",
+        "match": true
+      },
+      "L10-LABO-022-C09": {
+        "expected_sha256": "d91fa4da0288b65e1442cf4e98a6b6dfc044e17253d6c05bde7719f0421af93f",
+        "current_sha256": "d91fa4da0288b65e1442cf4e98a6b6dfc044e17253d6c05bde7719f0421af93f",
+        "match": true
+      },
+      "L10-LABO-022-C10": {
+        "expected_sha256": "84cd530759696596fb924ca7188264613ffb297b199e33705cf8a9f244c02758",
+        "current_sha256": "84cd530759696596fb924ca7188264613ffb297b199e33705cf8a9f244c02758",
+        "match": true
+      },
+      "L10-LABO-022-C11": {
+        "expected_sha256": "44b052c7f6a8d2908690c0acae58d1c53c9d3a8677c70be42de5036338726ce6",
+        "current_sha256": "44b052c7f6a8d2908690c0acae58d1c53c9d3a8677c70be42de5036338726ce6",
+        "match": true
+      },
+      "L10-LABO-023-C08": {
+        "expected_sha256": "e5d5bfd7582a245bfdd29fa8db1ea204c88d83240dc0b7aba49d27590c9c369b",
+        "current_sha256": "e5d5bfd7582a245bfdd29fa8db1ea204c88d83240dc0b7aba49d27590c9c369b",
+        "match": true
+      },
+      "L10-LABO-023-C09": {
+        "expected_sha256": "d75aeaa32e441a2c19bd764afdd5461036530e91997cd25e678e6c93ea239699",
+        "current_sha256": "d75aeaa32e441a2c19bd764afdd5461036530e91997cd25e678e6c93ea239699",
+        "match": true
+      },
+      "L10-LABO-023-C10": {
+        "expected_sha256": "f525cd92879f6262d47d5e8343d6f23c910478223090b41a685732cb1c95ce35",
+        "current_sha256": "f525cd92879f6262d47d5e8343d6f23c910478223090b41a685732cb1c95ce35",
+        "match": true
+      },
+      "L10-LABO-024-C08": {
+        "expected_sha256": "baf13ebc6e875e486f8a0852c88c24c6caa1d9e84b7498c2900f218093246617",
+        "current_sha256": "baf13ebc6e875e486f8a0852c88c24c6caa1d9e84b7498c2900f218093246617",
+        "match": true
+      },
+      "L10-LABO-024-C09": {
+        "expected_sha256": "1cd5630221c4d5e3ff29cb3b14c0dc5a6bc918188eabfd6b466dd048b803ecb0",
+        "current_sha256": "1cd5630221c4d5e3ff29cb3b14c0dc5a6bc918188eabfd6b466dd048b803ecb0",
+        "match": true
+      },
+      "L10-LABO-025-C08": {
+        "expected_sha256": "302032a818dad1477be0e556b095364bfb1cfa03031d4d86b6bfbd87b1c89742",
+        "current_sha256": "302032a818dad1477be0e556b095364bfb1cfa03031d4d86b6bfbd87b1c89742",
+        "match": true
+      },
+      "L10-LABO-025-C09": {
+        "expected_sha256": "972a67b492d936d0ec3aa09ee6ce53a7f28e6718d090c53fda32802e0643a726",
+        "current_sha256": "972a67b492d936d0ec3aa09ee6ce53a7f28e6718d090c53fda32802e0643a726",
+        "match": true
+      },
+      "L10-LABO-026-C08": {
+        "expected_sha256": "82248a97ff6f8dc40758eaaa91910009428f311959cc1a986fdef4f5aebec0b2",
+        "current_sha256": "82248a97ff6f8dc40758eaaa91910009428f311959cc1a986fdef4f5aebec0b2",
+        "match": true
+      },
+      "L10-LABO-026-C09": {
+        "expected_sha256": "ce97bf3f3f71a2bae2a2c4f24006bf12bda3bdd66322c06de22e058b69042fb0",
+        "current_sha256": "ce97bf3f3f71a2bae2a2c4f24006bf12bda3bdd66322c06de22e058b69042fb0",
+        "match": true
+      },
+      "L10-LABO-023-C11": {
+        "expected_sha256": "633be66529531005816414dffab67721f52df02f2fe62c1bf85af588ecaf5781",
+        "current_sha256": "633be66529531005816414dffab67721f52df02f2fe62c1bf85af588ecaf5781",
+        "match": true
+      },
+      "L10-LABO-022-C12": {
+        "expected_sha256": "2abf0064e7654ec69b9722bc2ab12e9d521ad7772f5d42623c1975051d910e89",
+        "current_sha256": "2abf0064e7654ec69b9722bc2ab12e9d521ad7772f5d42623c1975051d910e89",
+        "match": true
+      },
+      "L10-LABO-022-C13": {
+        "expected_sha256": "45b83a4ca067780d7bd03d89bfa36492284f9d3c34eb940a68f2465eb0272684",
+        "current_sha256": "45b83a4ca067780d7bd03d89bfa36492284f9d3c34eb940a68f2465eb0272684",
+        "match": true
+      },
+      "L10-LABO-022-C14": {
+        "expected_sha256": "20da49224592b15ad110d2d821833b5c508a990e29e6563110f85c0edfb64a97",
+        "current_sha256": "20da49224592b15ad110d2d821833b5c508a990e29e6563110f85c0edfb64a97",
+        "match": true
+      },
+      "L10-LABO-023-C12": {
+        "expected_sha256": "fc70c4d56168df0272e5b516458ea11701200399a0dc6d6277c7f05f5fc28d96",
+        "current_sha256": "fc70c4d56168df0272e5b516458ea11701200399a0dc6d6277c7f05f5fc28d96",
+        "match": true
+      },
+      "L10-LABO-022-C15": {
+        "expected_sha256": "af8083e9731f6bad5907d21cc1f9e16971b164a0e92334ff750e1fd8a63a4d15",
+        "current_sha256": "af8083e9731f6bad5907d21cc1f9e16971b164a0e92334ff750e1fd8a63a4d15",
+        "match": true
+      },
+      "L10-LABO-022-C17": {
+        "expected_sha256": "f9618828ebc5b7915c0dceb0d1fe007a3af0a04e6234d977271dff3ea2b56732",
+        "current_sha256": "f9618828ebc5b7915c0dceb0d1fe007a3af0a04e6234d977271dff3ea2b56732",
+        "match": true
+      },
+      "L10-LABO-022-C18": {
+        "expected_sha256": "f237521cb39174d672962758e12586d627b59b3d2a1e604d4eb3d706305e7747",
+        "current_sha256": "f237521cb39174d672962758e12586d627b59b3d2a1e604d4eb3d706305e7747",
+        "match": true
+      },
+      "L10-LABO-023-C13": {
+        "expected_sha256": "6403524530994749475bc3b3dce0f3e485283ecc2e17a0f0cc5ecb57cae0deda",
+        "current_sha256": "6403524530994749475bc3b3dce0f3e485283ecc2e17a0f0cc5ecb57cae0deda",
+        "match": true
+      },
+      "L10-LABO-024-C17": {
+        "expected_sha256": "35f9e2703fdbff28b6afc6be797a613277384907289b96b96e72a9e2916513a4",
+        "current_sha256": "35f9e2703fdbff28b6afc6be797a613277384907289b96b96e72a9e2916513a4",
+        "match": true
+      },
+      "L10-LABO-025-C10": {
+        "expected_sha256": "e2ddd86a4101110b014746c2d72e5a13375fc1233b1ede978b7bb39d23be7f7e",
+        "current_sha256": "e2ddd86a4101110b014746c2d72e5a13375fc1233b1ede978b7bb39d23be7f7e",
+        "match": true
+      },
+      "L10-LABO-024-C18": {
+        "expected_sha256": "c120d55083749449b2c11dfa32b2c48f3f36dd5c622d5932b9b240386cd06789",
+        "current_sha256": "c120d55083749449b2c11dfa32b2c48f3f36dd5c622d5932b9b240386cd06789",
+        "match": true
+      }
+    },
+    "A032:035": {
+      "L10-LABO-035-C01": {
+        "expected_sha256": "adc6bf599205349fd2e1ef6f1e30ab49c11ea8a3dfd18eed12677986164df285",
+        "current_sha256": "adc6bf599205349fd2e1ef6f1e30ab49c11ea8a3dfd18eed12677986164df285",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-035-C02": {
+        "expected_sha256": "1bfbffaa35929cd41139a3797d668c34dd47fc4658ada6737401f265a9337223",
+        "current_sha256": "1bfbffaa35929cd41139a3797d668c34dd47fc4658ada6737401f265a9337223",
+        "match": true,
+        "index": true
+      },
+      "L10-LABO-035-C03": {
+        "expected_sha256": "d9f63d35e3742e2302f3117b02de841545c5e0b8c6e6ba28f982fbbcf2b36f72",
+        "current_sha256": "d9f63d35e3742e2302f3117b02de841545c5e0b8c6e6ba28f982fbbcf2b36f72",
+        "match": true,
+        "index": true
+      },
+      "L10-LABO-035-C04": {
+        "expected_sha256": "5ae48d79ef024e82021e6533c758ed9bcbb769efb8223cbd4840986ee98d56f1",
+        "current_sha256": "5ae48d79ef024e82021e6533c758ed9bcbb769efb8223cbd4840986ee98d56f1",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-035-C05": {
+        "expected_sha256": "d65cb82566d5bcc2f02bf6e1bff5897cc810e1fb7f29bcfe31df2891f43fac3c",
+        "current_sha256": "d65cb82566d5bcc2f02bf6e1bff5897cc810e1fb7f29bcfe31df2891f43fac3c",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-035-C06": {
+        "expected_sha256": "411a4b1b0af80cd97901fbdf89364f6f6131915703357cf1791770fe778ff0c2",
+        "current_sha256": "411a4b1b0af80cd97901fbdf89364f6f6131915703357cf1791770fe778ff0c2",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-035-C07": {
+        "expected_sha256": "ce7d862dd7f1a0a1f1530a7ee5491ed9fc7cf4a554a294b80b8d21e011583242",
+        "current_sha256": "ce7d862dd7f1a0a1f1530a7ee5491ed9fc7cf4a554a294b80b8d21e011583242",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-035-C08": {
+        "expected_sha256": "fbfbf99e531de03b53768ca736fee22e09a0cd051acb3966a6d414f6abd2d198",
+        "current_sha256": "fbfbf99e531de03b53768ca736fee22e09a0cd051acb3966a6d414f6abd2d198",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-035-C09": {
+        "expected_sha256": "d8137af96240248504b9833abbd4990dcd0a914e8ba8a70dd2391870edadc2c4",
+        "current_sha256": "d8137af96240248504b9833abbd4990dcd0a914e8ba8a70dd2391870edadc2c4",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-035-C10": {
+        "expected_sha256": "85a72b76bf8a1a1ddbe87514c83807d5914562da57ccb03b2c219e31ca493f5e",
+        "current_sha256": "85a72b76bf8a1a1ddbe87514c83807d5914562da57ccb03b2c219e31ca493f5e",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-035-C11": {
+        "expected_sha256": "b1671274526c16da00dc86e7773a97e0b09e366d8a52d0caf6d8ff6c0c9f8d3a",
+        "current_sha256": "b1671274526c16da00dc86e7773a97e0b09e366d8a52d0caf6d8ff6c0c9f8d3a",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-035-C12": {
+        "expected_sha256": "eaec85dab4cab445facc3b0b040a58cf183a25e55f92d4dc9ca6df39ea584d70",
+        "current_sha256": "eaec85dab4cab445facc3b0b040a58cf183a25e55f92d4dc9ca6df39ea584d70",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-035-C13": {
+        "expected_sha256": "ceffa08e53e163ad33ee6d0c91aaaf43c158077cd04c371a6a7c42c7bdcb955d",
+        "current_sha256": "ceffa08e53e163ad33ee6d0c91aaaf43c158077cd04c371a6a7c42c7bdcb955d",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-035-C14": {
+        "expected_sha256": "0bd5240e44ff47d0818480fdf9598fd21b7a5e33e999fbb914ee5dd9a9a98991",
+        "current_sha256": "0bd5240e44ff47d0818480fdf9598fd21b7a5e33e999fbb914ee5dd9a9a98991",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-035-C15": {
+        "expected_sha256": "f4edcb288663d541befa1929b889a7e9f7a401142812504998913924b7cd7949",
+        "current_sha256": "f4edcb288663d541befa1929b889a7e9f7a401142812504998913924b7cd7949",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-035-C16": {
+        "expected_sha256": "b7ac24f8210691ae075bf886db08cd4038b74f9cb5fefe8ab52bba39ceddf00d",
+        "current_sha256": "b7ac24f8210691ae075bf886db08cd4038b74f9cb5fefe8ab52bba39ceddf00d",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-035-C17": {
+        "expected_sha256": "1d204fe96dc5078df114d5a816b4cef0aa16c13f50bb6acb97143d11b5a984bf",
+        "current_sha256": "1d204fe96dc5078df114d5a816b4cef0aa16c13f50bb6acb97143d11b5a984bf",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-035-C18": {
+        "expected_sha256": "7a4611603c40b3a117187b776d234ad5740bddf53031eacd3b6d92447cf93008",
+        "current_sha256": "7a4611603c40b3a117187b776d234ad5740bddf53031eacd3b6d92447cf93008",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-035-C19": {
+        "expected_sha256": "bc5a23c66d7ad7d6cea508575029a86b16efb147d13bc87066c46f0270640b8e",
+        "current_sha256": "bc5a23c66d7ad7d6cea508575029a86b16efb147d13bc87066c46f0270640b8e",
+        "match": true,
+        "index": false
+      }
+    },
+    "A032:058": {
+      "L10-LABO-058-C01": {
+        "expected_sha256": "00609d1f5f4b3b71ee4d2e08263e2789140bada9fa0c43a3b1f00c11269ef582",
+        "current_sha256": "00609d1f5f4b3b71ee4d2e08263e2789140bada9fa0c43a3b1f00c11269ef582",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C02": {
+        "expected_sha256": "83c3f3f898dfb285156106b01628f3ed8e05f0d3fe6e8f27630fe6de91c2b794",
+        "current_sha256": "83c3f3f898dfb285156106b01628f3ed8e05f0d3fe6e8f27630fe6de91c2b794",
+        "match": true,
+        "index": true
+      },
+      "L10-LABO-058-C03": {
+        "expected_sha256": "5de7f1e10bf0c4c5463397c5c22956eebd530066b92a42172a627aaf8d6c4ce2",
+        "current_sha256": "5de7f1e10bf0c4c5463397c5c22956eebd530066b92a42172a627aaf8d6c4ce2",
+        "match": true,
+        "index": true
+      },
+      "L10-LABO-058-C04": {
+        "expected_sha256": "3dd3c763410ef1c01005c2cd9797a85c116c7efed361675b93e429d416b7fa3d",
+        "current_sha256": "3dd3c763410ef1c01005c2cd9797a85c116c7efed361675b93e429d416b7fa3d",
+        "match": true,
+        "index": true
+      },
+      "L10-LABO-058-C05": {
+        "expected_sha256": "504e80a121265ca9fd49c87399b79e979841924b046cfe81c1d9697e90d0d487",
+        "current_sha256": "504e80a121265ca9fd49c87399b79e979841924b046cfe81c1d9697e90d0d487",
+        "match": true,
+        "index": true
+      },
+      "L10-LABO-058-C06": {
+        "expected_sha256": "728058631448260fd6c21cfd837e80691d01f3196f2312d81ac37668047171c8",
+        "current_sha256": "728058631448260fd6c21cfd837e80691d01f3196f2312d81ac37668047171c8",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C07": {
+        "expected_sha256": "2a35ffddc11345f0a31fc4bd0f3a1f11c6349da10571002c21fbebf72bb6f874",
+        "current_sha256": "2a35ffddc11345f0a31fc4bd0f3a1f11c6349da10571002c21fbebf72bb6f874",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C08": {
+        "expected_sha256": "cc7a724885a1a53beddf3309260fd0b2f895c9c7046eb56ae44d3ce618be1cf0",
+        "current_sha256": "cc7a724885a1a53beddf3309260fd0b2f895c9c7046eb56ae44d3ce618be1cf0",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C09": {
+        "expected_sha256": "78ae9d9341b5762075e29f8d799c3db975652080c98523102de1ecd575de237a",
+        "current_sha256": "78ae9d9341b5762075e29f8d799c3db975652080c98523102de1ecd575de237a",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C10": {
+        "expected_sha256": "497df572e08a9d471949f5a9f0a25941cab199d7777e84a4465976f0611aee25",
+        "current_sha256": "497df572e08a9d471949f5a9f0a25941cab199d7777e84a4465976f0611aee25",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C11": {
+        "expected_sha256": "8cd9dc65b880b40813b02b133d9000b2b73decce7e7e267bd55d9b92118be86c",
+        "current_sha256": "8cd9dc65b880b40813b02b133d9000b2b73decce7e7e267bd55d9b92118be86c",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C12": {
+        "expected_sha256": "d1e29bac4f2d7759d339a2a8df05c246d1583e665bc1289763d4644672cad3ad",
+        "current_sha256": "d1e29bac4f2d7759d339a2a8df05c246d1583e665bc1289763d4644672cad3ad",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C13": {
+        "expected_sha256": "0973041928f529f174f6f67b3b0595a45bf3697128f628e93b5f723e55dc2cea",
+        "current_sha256": "0973041928f529f174f6f67b3b0595a45bf3697128f628e93b5f723e55dc2cea",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C14": {
+        "expected_sha256": "a47e213db46fa53712b7bcabf542cf9361bd65f5afb17956cc0d7e9033188f5e",
+        "current_sha256": "a47e213db46fa53712b7bcabf542cf9361bd65f5afb17956cc0d7e9033188f5e",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C15": {
+        "expected_sha256": "87f9bdb1506e64bb50448eba26e7ae86088da6b9d06acc16cc222955c22afdfc",
+        "current_sha256": "87f9bdb1506e64bb50448eba26e7ae86088da6b9d06acc16cc222955c22afdfc",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C16": {
+        "expected_sha256": "556b4b19bf30686aa01ea1785bf63369a2556fed0646fe756c48c45e167a1bd6",
+        "current_sha256": "556b4b19bf30686aa01ea1785bf63369a2556fed0646fe756c48c45e167a1bd6",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C17": {
+        "expected_sha256": "97ce587199fbe2e35ba6208a61cd1d57c977e532c033473cf52eabfe7a4a4a2f",
+        "current_sha256": "97ce587199fbe2e35ba6208a61cd1d57c977e532c033473cf52eabfe7a4a4a2f",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C18": {
+        "expected_sha256": "aa219f529807e04993cacaf5b5ee940b51aab624c40c20b98316e6345e207f6f",
+        "current_sha256": "aa219f529807e04993cacaf5b5ee940b51aab624c40c20b98316e6345e207f6f",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C19": {
+        "expected_sha256": "0f9557c5de72997fb0a7670778e99df7a906cb154d73bda1679a545485f60e67",
+        "current_sha256": "0f9557c5de72997fb0a7670778e99df7a906cb154d73bda1679a545485f60e67",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C20": {
+        "expected_sha256": "d540c1c220c6a034b7dbc6e38eee5643259ffec2ca02bb9bb0418a2e791a5c59",
+        "current_sha256": "d540c1c220c6a034b7dbc6e38eee5643259ffec2ca02bb9bb0418a2e791a5c59",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C21": {
+        "expected_sha256": "8a519d59bb1e43508328cf366fd14032bb1c318286a27e77236f5f1d24731a6e",
+        "current_sha256": "8a519d59bb1e43508328cf366fd14032bb1c318286a27e77236f5f1d24731a6e",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C22": {
+        "expected_sha256": "f642d93ec993a7287242b9d0644f765755ac18e6f3c4f34707f3d8096fda4487",
+        "current_sha256": "f642d93ec993a7287242b9d0644f765755ac18e6f3c4f34707f3d8096fda4487",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C23": {
+        "expected_sha256": "f1821152515011695ad839085716752e1dff2fa364b655b3db8b51668d08cdb2",
+        "current_sha256": "f1821152515011695ad839085716752e1dff2fa364b655b3db8b51668d08cdb2",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C24": {
+        "expected_sha256": "6a6285b84538159c7f2df0a81e1075d471321c30492a945613b17e11fd9b5e97",
+        "current_sha256": "6a6285b84538159c7f2df0a81e1075d471321c30492a945613b17e11fd9b5e97",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C25": {
+        "expected_sha256": "67805bd5a3c1e18aeda665255360a7854647f4cec8cf8927828cbccc4abf84ee",
+        "current_sha256": "67805bd5a3c1e18aeda665255360a7854647f4cec8cf8927828cbccc4abf84ee",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C26": {
+        "expected_sha256": "a97f57762627e2c76e86aad39c8e370a0da62184285bfaeac5f01cc9ac6f1770",
+        "current_sha256": "a97f57762627e2c76e86aad39c8e370a0da62184285bfaeac5f01cc9ac6f1770",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C27": {
+        "expected_sha256": "97c5162ed5161c44b8c168d5593926c6fd89e552197edca664b3dde098e2a201",
+        "current_sha256": "97c5162ed5161c44b8c168d5593926c6fd89e552197edca664b3dde098e2a201",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C28": {
+        "expected_sha256": "b81d83913c45a47e109ffae1bc20e4821fbbbb8c4d19bbbbc5d3b8439d282d1c",
+        "current_sha256": "b81d83913c45a47e109ffae1bc20e4821fbbbb8c4d19bbbbc5d3b8439d282d1c",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C29": {
+        "expected_sha256": "f6b8c94e4a8c88f3bd24898ca4772e208b70aaf99e26ce30f4998487b5331b83",
+        "current_sha256": "f6b8c94e4a8c88f3bd24898ca4772e208b70aaf99e26ce30f4998487b5331b83",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C30": {
+        "expected_sha256": "36c8d8c4374f9deb1161bec0077aa96bd7114618f4808959e3d3c4815debd287",
+        "current_sha256": "36c8d8c4374f9deb1161bec0077aa96bd7114618f4808959e3d3c4815debd287",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C31": {
+        "expected_sha256": "48cc703f89114ae39a56e00c66a44f4f36d0866ebf08abb68255c0da46753fc9",
+        "current_sha256": "48cc703f89114ae39a56e00c66a44f4f36d0866ebf08abb68255c0da46753fc9",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C32": {
+        "expected_sha256": "51929f43b7ebcb23b6080fe24bf0ac7c69ff1a58eac920a1f96e6c51b253a03e",
+        "current_sha256": "51929f43b7ebcb23b6080fe24bf0ac7c69ff1a58eac920a1f96e6c51b253a03e",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C33": {
+        "expected_sha256": "0f0c875055a6a41bc06aea08989185f3eaa882c350a5ec1764b57b9669d94b92",
+        "current_sha256": "0f0c875055a6a41bc06aea08989185f3eaa882c350a5ec1764b57b9669d94b92",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C34": {
+        "expected_sha256": "01e7087de7f6b6987a9d823cd31744cb8395e1a2645e627d2f7bf1efd6f0c4a6",
+        "current_sha256": "01e7087de7f6b6987a9d823cd31744cb8395e1a2645e627d2f7bf1efd6f0c4a6",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C35": {
+        "expected_sha256": "e679d8fa02095332ea569e2ab6dd8732f450417fd89b4a0b8f580b71b1957343",
+        "current_sha256": "e679d8fa02095332ea569e2ab6dd8732f450417fd89b4a0b8f580b71b1957343",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C36": {
+        "expected_sha256": "cdbfa09578964439a48618d8709836c76fe0c7bb02011f64ad0ebfd2ef42e1ca",
+        "current_sha256": "cdbfa09578964439a48618d8709836c76fe0c7bb02011f64ad0ebfd2ef42e1ca",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C37": {
+        "expected_sha256": "e91955f6a09e722011129e6fa405ef638450f3db7c3ffd341a18acece54504b4",
+        "current_sha256": "e91955f6a09e722011129e6fa405ef638450f3db7c3ffd341a18acece54504b4",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C38": {
+        "expected_sha256": "617fd8dd09e0feb41eded2e3e1212852810479e34391ed1f9a87b6ef372cef23",
+        "current_sha256": "617fd8dd09e0feb41eded2e3e1212852810479e34391ed1f9a87b6ef372cef23",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C39": {
+        "expected_sha256": "bb9da25d55c35171e5f60c2d52a7efb39a5dc91e5a4019cd314666b936e9cc16",
+        "current_sha256": "bb9da25d55c35171e5f60c2d52a7efb39a5dc91e5a4019cd314666b936e9cc16",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C40": {
+        "expected_sha256": "908ef0ca980e14984a4ad813b3f5b02cc5c5a477578925a5bd7615b1976344de",
+        "current_sha256": "908ef0ca980e14984a4ad813b3f5b02cc5c5a477578925a5bd7615b1976344de",
+        "match": true,
+        "index": false
+      },
+      "L10-LABO-058-C41": {
+        "expected_sha256": "065d88b24dca36dd004010cf1ac398251e7b1c9358f01880bc0e8460a89acbbd",
+        "current_sha256": "065d88b24dca36dd004010cf1ac398251e7b1c9358f01880bc0e8460a89acbbd",
+        "match": true,
+        "index": false
+      }
+    }
+  },
+  "revision_basis": {
+    "authorized_l2_l11_semantic_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "meaning": "For each of the 20 rows, this is the fixed L2/L11 content revision established by the applicable official PO/delegated decision record below; it is not inferred merely because a same-byte span exists in that commit.",
+    "comparison_snapshot_revision": "origin/main d8ba018d74b05846e0eb489ed608c2881c9937cd",
+    "comparison_meaning": "Current L3/L10 text was compared at this main commit. Prior semantic-audit report revisions are historical audit snapshots, not substitutes for the fixed authority source.",
+    "audit_snapshot_revisions": {
+      "A028": "5857c0a396cb24a23d765e3079a18a2367b6d078",
+      "A029": "5857c0a396cb24a23d765e3079a18a2367b6d078",
+      "A030": "5857c0a396cb24a23d765e3079a18a2367b6d078",
+      "A032": "c9e73bcc367a9d5203c92ef9775511013da4f85d",
+      "A037": "37a8283be429c57f3706153ad522e7ad288fecc3",
+      "A038": "37a8283be429c57f3706153ad522e7ad288fecc3",
+      "A044": "e7a695d4b2de64aec69a1a123de2fde33be724cf (correction snapshot, not authority)",
+      "A017": "9229f59edc36b8396ea99bde5f6f903b35c1ccdf"
+    },
+    "official_decision_records": {
+      "LABO-L2/L11-wide-adoption": {
+        "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+        "applies_to": [
+          "HELIXLABO-L2-012..026",
+          "HELIXLABO-L2-035",
+          "HELIXLABO-L2-058"
+        ],
+        "fixed_content_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "role": "authority for adopted L2/L11 bytes; the audit revisions are comparison snapshots",
+        "record_blob_bytes": 12756,
+        "record_blob_sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0"
+      },
+      "LABO-050-stage5-delegated": {
+        "path": "docs/governance/decisions/helix-labo-stage5-parent050-l3-l10-po-decision-2026-10-06.md",
+        "applies_to": [
+          "HELIXLABO-L2-050"
+        ],
+        "fixed_content_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "role": "parent-specific authority record; fixed source is explicitly f6dad",
+        "record_blob_bytes": 6579,
+        "record_blob_sha256": "2192823d9df313c83cf983a7ec94260568096c0f8d0b36c346fbfcde1e2db7d4"
+      },
+      "LABO-059067-review02": {
+        "path": "docs/governance/decisions/helix-labo-stage5-parent059067-review02-l3-l10-delegated-decision-2026-10-08.md",
+        "applies_to": [
+          "HELIXLABO-L2-059",
+          "HELIXLABO-L2-067 (outside this addendum)"
+        ],
+        "parent_revisions": {
+          "059": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "067": "318ec4a (not 059)"
+        },
+        "role": "parent-specific record; explicitly assigns f6dad to 059 and 318ec to 067; do not transfer 067 revision",
+        "record_blob_bytes": 2956,
+        "record_blob_sha256": "17a4c07c153191a0fc83572696b1badf6c709b0d87d8944137d2f1ef56b71d92",
+        "status_at_record_creation": "recorded_pending_condition3",
+        "authority_effect_at_record_creation": "none_pending_condition3_and_main_admission",
+        "current_admission_or_authority_effect": "not_assessed_by_this_addendum; consult current decision chain after condition3/main admission"
+      },
+      "INFRA-011-stage5-delegated": {
+        "path": "docs/governance/decisions/helix-infrastructure-stage5-l3-l10-po-decision-2026-10-06.md",
+        "applies_to": [
+          "HELIXINFRASTRUCTURE-L2-011"
+        ],
+        "fixed_content_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "role": "parent-specific authority record; fixed source is explicitly f6dad",
+        "record_blob_bytes": 7659,
+        "record_blob_sha256": "d5ea6b07816aa01c565c1386909ac899159dc9708d34d55b8dbf504bebaa093f"
+      }
+    },
+    "specific_note_059_067": "The #2687 delegated record fixes parent 059 at f6dad and parent 067 at 318ec4a. Parent 067 is outside this 20-parent scope. The old A038/A042 and current main are comparison evidence only."
+  }
+}
