@@ -1,0 +1,31 @@
+{
+  "base": "e7a695d4b2de64aec69a1a123de2fde33be724cf",
+  "six_body_pins": {
+    "docs/helix-os/L3-requirements/business-requirements.md": {
+      "bytes": 20354,
+      "sha256": "cbe1866df47503b17e8a11b786dee8da58cd8a2a0a99778b64bd4a669b2fa702"
+    },
+    "docs/helix-os/L3-requirements/functional-requirements.md": {
+      "bytes": 202922,
+      "sha256": "5f55d05789c80541c5c5690fe556f0d94329320761b59e24ea83e27d9cc60b7f"
+    },
+    "docs/helix-os/L3-requirements/nfr-grade.md": {
+      "bytes": 34610,
+      "sha256": "6eecd0ab9003ec54d9b15f0cb57153c19d57762a89b4674768e4519ce347be46"
+    },
+    "docs/helix-os/L10-verification/business-verification.md": {
+      "bytes": 17774,
+      "sha256": "f785e13aa9a1ef8494154f03e20d0582418916281c51a6b729d385d5b66ef051"
+    },
+    "docs/helix-os/L10-verification/functional-verification.md": {
+      "bytes": 247659,
+      "sha256": "c4a26ba8bf62d00b5d5e0f4085c1b1bd60de2869a376933fb8f2243e6cd30b5d"
+    },
+    "docs/helix-os/L10-verification/nfr-verification.md": {
+      "bytes": 31708,
+      "sha256": "c4b711203184d7017f7e8ef7a15990576cb5443585076ff6af1eb26da5959ecf"
+    }
+  },
+  "review01_correction_head": "d681468850264e8e49d17f529ec808b4dff1bc7d",
+  "integration": "automatic merge; no manual body changes"
+}

@@ -18,11 +18,11 @@
 
 ### CASE-NFR-OS-028-01 — 認可済みconsult receipt census
 
-親 `HELIXOS-L2-028` / `NFR-OS-028-01`。対象母集団はscope/revision内で選択・認可されたactual consultation attempts。authorization後dispatch前に停止したattemptも未完として分母に含める。認可拒否は分母外の適格性観測として別記する。分子候補は、ticket/revision/scope、元assignment、authorization/actor、selected source identity/revision/permission/relevance、request/response/return receipt、status、return owner、attempt/cost/partial/unfinished/resumeの全必須fieldが同一attemptで一致するreceipt chain数。NFR-OS-028-01と同じ選択・認可済consult attemptを分母にし、authorization後dispatch前に停止したattemptも未完として含める。認可拒否は母集団外の適格性観測とする。attempt数、field別欠落/mismatch、denied、response missing、source unknown/stale/conflict、dispatch前停止、stopped、partialを別件数で示す。分母0/missingは割合なしとし、0件と区別する。実経過時間は同一attemptのauthorization receipt時刻からreturn receipt時刻までとし、両timestampが有効で同じ単位のattemptのみを集計する。n_valid/p50/p95、failed/missing/censored countsを分ける。n_valid=0でも失敗等の実観測があれば未測定ではなく分位値なしとし、実観測自体がない場合だけ未測定とする。threshold/SLAなし。
+親 `HELIXOS-L2-028` / `NFR-OS-028-01`。対象母集団はscope/revision内で選択・認可されたactual consultation attempts。authorization後dispatch前に停止したattemptも未完として分母に含める。認可拒否は分母外の適格性観測として別記する。分子候補は、ticket/revision/scope、元assignment、authorization/actor、sourceを選んだ場合のselected source identity/revision/provenance/permission/relevance/scope/constraints、request/response/return receipt、status、return owner、attempt/cost/partial/unfinished/resumeの全必須fieldが同一attemptで一致するreceipt chain数。未選択sourceのfieldは要求しない。source選択状態自体がmissing/unknownなら未選択とみなさず、missing/unknownとして別計数し、その場合は必須source fieldを完結分子に含めない。NFR-OS-028-01と同じ選択・認可済consult attemptを分母にし、authorization後dispatch前に停止したattemptも未完として含める。認可拒否は母集団外の適格性観測とする。attempt数、field別欠落/mismatch、denied、response missing、source unknown/stale/conflict、dispatch前停止、stopped、partialを別件数で示す。分母0/missingは割合なしとし、0件と区別する。実経過時間は同一attemptのauthorization receipt時刻からreturn receipt時刻までとし、両timestampが有効で同じ単位のattemptのみを集計する。n_valid/p50/p95、failed/missing/censored countsを分ける。n_valid=0でも失敗等の実観測があれば未測定ではなく分位値なしとし、実観測自体がない場合だけ未測定とする。threshold/SLAなし。
 
 ### CASE-NFR-OS-029-01 — composite stage and receipt census
 
-親 `HELIXOS-L2-029` / `NFR-OS-029-01`。対象母集団は明示scope/revision内で開始したcomposite attempts。全started attempt数を分母とし、stageごとのproposal/diff/optional consult/result/current independent review/owner receipt/repair/unfinished状態を分けて数える。完結trace/started attemptsの比率は比較候補で、分母0/missingなら算出しない。no-consultとconsult-selectedを別classとして示し、receipt missing/stale/identity conflict、finding unresolved、failed/stopped/partialを個別件数にする。finding=0かつcurrent exact HEAD/base/scope/oracle/resultが一致することはAC-OS-029-03のfixed oracleで、母集団全体のthresholdではない。
+親 `HELIXOS-L2-029` / `NFR-OS-029-01`。対象母集団は明示scope/revision内で開始したcomposite attempts。全started attempt数を分母とし、stageごとのproposal/diff/optional consult/result/current independent review/owner receipt/repair/unfinished状態を分けて数える。support選択時は選択source identity/version/scope/provenance/利用permissionと段階別support methodも完結traceのfieldとして照合し、consultなしのpre-work supportにも適用する。support未選択時はproposal/source fieldを要求しない。support選択状態自体がmissing/unknownなら未選択とみなさず、missing/unknownとして別計数し、必須source fieldの欠落を完結traceへ含めない。完結trace/started attemptsの比率は比較候補で、分母0/missingなら算出しない。no-consultとconsult-selectedを別classとして示し、receipt missing/stale/identity conflict、finding unresolved、failed/stopped/partialを個別件数にする。finding=0かつcurrent exact HEAD/base/scope/oracle/resultが一致することはAC-OS-029-03のfixed oracleで、母集団全体のthresholdではない。
 
 ### CASE-NFR-OS-029-02 — effort/time/cost分布
 
@@ -129,7 +129,7 @@ NFR候補は計測対象と比較値であり、POごとのparameter gateでは�
 
 | NFR CASE | NFR候補 | 集計対象 functional CASE | 観測と未評価条件 |
 |---|---|---|---|
-| `CASE-OS-L10-NFR-025-01` | `NFR-OS-L3-025-01` | `CASE-OS-L10-025-01`–`21`, `CASE-OS-L10-025-022`–`039`, `CASE-OS-L10-025-047`–`049` | HELIX自身＋異種projectの7段trace値一致/単独欠落、service①〜⑦/選択scope/部分未見、配布gate誤追加、全体normal/1製品欠落、unknown等のfixture内分類・誤結合を計数。全運転KPIではない。|
+| `CASE-OS-L10-NFR-025-01` | `NFR-OS-L3-025-01` | `CASE-OS-L10-025-01`–`21`, `CASE-OS-L10-025-022`–`039`, `CASE-OS-L10-025-047`–`057` | HELIX自身＋複数異種project同一fixtureの各7段trace値一致、project B各段単独欠落、service①〜⑦/選択scope/部分未見、配布gate誤追加、全体normal/1製品欠落、unknown等のfixture内分類・誤結合を計数。全運転KPIではない。|
 | `CASE-OS-L10-NFR-026-01` | `NFR-OS-L3-026-01` | `CASE-OS-L10-026-01`–`60` | source/contract/permission/dependency/recovery/human入力状態、pack版・適用対象・一周出力、closure、空pack集合の候補除外、代替space、minimum-proof stateを分離。|
 | `CASE-OS-L10-NFR-031-01` | `NFR-OS-L3-031-01` | `CASE-OS-L10-031-01`–`95` (066/068/070/072除外; 031-25 alias) | old 60s/3m comparisonと現在適用budgetを混同しない。wall-clock、runner-minute、failure feedback latency p50/p95、超過原因を含む固定L2-031 measurement fieldの有無/stale/scope不一致、Recovery Issue正本誤用、AC03単変異、安全性/並列化/回収traceをCASE別集計し、欠落population等のpercentileを未評価とする。|
 | `CASE-OS-L10-NFR-047-01` | `NFR-OS-L3-047-01` | `CASE-OS-L10-047-01`–`41` | reason/evidence/根拠source revisionの独立欠落、元assignmentとのrelation・未完義務追跡、Assignment/Attempt/result/authority非継承、unknown軸、双方向参照・owner backflowをCASE別集計する。|
@@ -142,7 +142,7 @@ NFR候補は計測対象と比較値であり、POごとのparameter gateでは�
 
 | NFR CASE | 親 / NFR / AC | 補正後functional CASE集合 | 観測 |
 |---|---|---|---|
-| `CASE-OS-L10-NFR-025-01` | 025 / NFR-025-01 / AC-025-01〜03 | CASE-025-01〜21、022〜039、047〜049、aliasなし | 固定L2入力と7段traceの個別欠落/値一致、unit・connection・composite区分、配布gateと1製品欠落、document/mechanism existenceのみの誤成立。|
+| `CASE-OS-L10-NFR-025-01` | 025 / NFR-025-01 / AC-025-01〜03 | CASE-025-01〜21、022〜039、047〜057、aliasなし、定義50件（実行数ではない） | 固定L2入力、複数異種projectの同一fixture trace値一致とproject B各段欠落、unit・connection・composite区分、配布gateと1製品欠落、document/mechanism existenceのみの誤成立。|
 | `CASE-OS-L10-NFR-026-01` | 026 / NFR-026-01 / AC-026-01〜05 | CASE-026-01〜60、全ID個別判定 | 入力単独欠落、dependency/安全/比較状態、pack版/適用対象/一周出力、結果から状態生成、scope・環境・更新/rollback、資源不足の返却、導出成功からStage構成採択を生成しない。|
 | `CASE-OS-L10-NFR-031-01` | 031 / NFR-031-01 / AC-031-01〜05 | CASE-031-01〜95（066/068/070/072除外）、ただし031-25は031-06のalias | 各measurement field、Recovery Issue正本誤用、予算/母集団/改善前後値、ticket/source/base/measurement scope、旧数値/既決工程、正しさ/性能、LABO/authority、非縮退回収を分離。|
 | `CASE-OS-L10-NFR-047-01` | 047 / NFR-047-01 / AC-047-01〜05 | CASE-047-01〜41、ただし047-20は047-04のalias | r1/r2、元assignment・未完義務、source scope/revision/issuer/conflict、proposal authority、Ticket→Ticket参照をそれぞれ観測。|

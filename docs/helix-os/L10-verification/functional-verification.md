@@ -138,6 +138,10 @@ L11-028:462-463のAPI契約を固定oracleとする。`amount <= configured maxi
 | `CASE-OS-028-03p` | 選択sourceの利用範囲だけを当該ticket scope外にする | ticket scope外のsource利用を拒み、source owner/SECURITY/OSへ戻す |
 | `CASE-OS-028-03q` | 実consultでsource/相談案receiptだけを欠落させる | connectionを未成立のまま保持しINTELLIGENCE/source owner/OSへ戻す |
 | `CASE-OS-028-03r` | response等は揃え、元Workerへのreturn handoff receiptだけを欠落させる | connectionを未成立のまま保持しOS/元Workerへ戻す |
+| `CASE-OS-028-03s` | consultの有無は変えず、実際に選択したsource identityだけをmissing/別sourceへ変える。他source fieldは固定 | そのsourceを使う支援だけをholdしsource owner/INTELLIGENCE/OSへ戻す。別sourceへ推測置換しない |
+| `CASE-OS-028-03t` | 選択sourceのprovenanceだけをmissingにする。identity/revision/permission等は固定 | source利用を成功扱いせず当該支援をholdし、source owner/INTELLIGENCE/OSへ戻す |
+| `CASE-OS-028-03u` | 選択sourceのrelevanceだけをunknown/不適合にする。他source fieldは固定 | 関連性を推定せず当該支援をholdしINTELLIGENCE/source owner/OSへ戻す |
+| `CASE-OS-028-03v` | 選択sourceのconstraintsだけをmissingにする。他source fieldは固定 | 制約適用を確認できるまで当該支援をholdし、source/利用許可の不足はsource owner/SECURITYへ、実resource制約はINFRASTRUCTUREへ、ticket/scope/authorityの状態はOS/SECURITYへ戻す |
 
 ### CASE-OS-028-04 — 未見endpointとoracle適用可否（AC-OS-028-04）
 
@@ -145,11 +149,23 @@ L11-028:465の未見fixture。別endpointでvalidation不具合が出たが、�
 
 ### CASE-OS-029-01 — 相談なしの準備と作業（AC-OS-029-01）
 
-L11-029:473のnormal routeを別fixtureで表す。確定assignmentを持つ元Workerの作業前taskでsupportを選択した場合は、INTELLIGENCEがapproved request/designとHARNESS-022の既存oracleからtest/instruction candidateを正確なsource revisionへ結び、OSが同じ軽量Worker設定でticketを開始する。consultは選択せずOS-028 receiptを要求しない。approved requirement/pair/oracleの適用、元Workerの実作業、HARNESS-022が定める許可済み検証の実行結果とsource-bound receipt、元Workerおよびsupport/test候補作成者とは別identityの独立reviewerによるcurrent差分・oracle・resultの確認を維持する。findingがあれば同じ軽量Worker設定の元Workerへ返して修正・再検証し、新HEADとresultを再び束縛する。LABO-L2-060は効果測定を明示的に選んだ場合だけcomparison materialとして参照し、runtime prerequisiteにしない。oracle適用はHARNESS-022に宣言された義務だけで行い、このcaseで新しいbusiness outcomeを補わない。
+L11-029:473のnormal routeを別fixtureで表す。確定assignmentを持つ元Workerの作業前taskでsupportを選択した場合は、INTELLIGENCEがapproved request/designとHARNESS-022の既存oracleからtest/instruction candidateを正確なsource revisionへ結び、OSが同じ軽量Worker設定でticketを開始する。consultは選択せずOS-028 receiptを要求しない。approved requirement/pair/oracleの適用、元Workerの実作業、HARNESS-022が定める許可済み検証の実行結果とsource-bound receipt、元Workerおよびsupport/test候補作成者とは別identityの独立reviewerによるcurrent差分・oracle・resultの確認を維持する。findingがあれば同じ軽量Worker設定の元Workerへ返して修正・再検証し、新HEADとresultを再び束縛する。LABO-L2-060は効果測定を明示的に選んだ場合だけcomparison materialとして参照し、runtime prerequisiteにしない。oracle適用はHARNESS-022に宣言された義務だけで行い、このcaseで新しいbusiness outcomeを補わない。選択support sourceのidentity/version/scope/provenance/利用permissionだけを一項目ずつ欠落/不一致にするconsultなしのnegativeはCASE-OS-029-08a–08eで、CASE-OS-029-01の正常基準と同じ他条件を保って照合する。
 
 ### CASE-OS-029-07 — supportとconsultを選ばない作業・検証（AC-OS-029-01/06）
 
 L2-029:873のsupport-unselected条件を、CASE-OS-029-01のINTELLIGENCE事前candidate経路と分けたnormal fixtureで照合する。確定assignmentを持つ元Workerがapproved requirementとpaired designを直接用い、既存HARNESS-022 oracleの適用義務を確認して許可済み経路で実作業と実検証を行い、対象source revisionに結ばれた結果receiptを記録する。support proposalとOS-028 consult receiptはいずれも要求しないが、必要な独立review/owner receiptは維持する。独立reviewerは元Workerと別identityでcurrent resultを確認する。findingがあれば元Workerが同一の軽量Worker設定で修正・再検証し、その新revisionのresult receiptと独立reviewを結び直す。proposal不要を検証義務免除と扱わず、oracleやbusiness outcomeを新設しない。
+
+### CASE-OS-029-08 — 作業前support選択・相談なしのsource binding negative（AC-OS-029-01）
+
+CASE-OS-029-01のsupport選択・consultなしの正常fixtureを基準にし、approved request/design、HARNESS-022 oracle、assignment、実作業/検証、result、review、他のsource fieldを固定する。各行は選択されたsupport sourceの一項目だけを変異し、選択sourceの使用だけを保留し、L2-029:876の既存カテゴリに従ってINTELLIGENCE/OS、元Worker/OSまたはSECURITY/OSへ戻して未完義務を保持する。実consultは行わずOS-028 receiptを要求しない。未選択supportではsource fieldsを要求せずCASE-OS-029-07の正常を維持する。
+
+| CASE | 単独変異 | 期待状態／戻し先 |
+|---|---|---|
+| `CASE-OS-029-08a` | 選択support source identityだけをmissing/別sourceにする | sourceを推測置換せず選択supportの使用を保留しINTELLIGENCE/OSへ戻す |
+| `CASE-OS-029-08b` | 選択support source versionだけをmissing/staleにする | versionを推測せず選択supportの使用を保留しINTELLIGENCE/OSへ戻す |
+| `CASE-OS-029-08c` | 選択support source scopeだけをmissing/対象外にする | source scope適合を推定せず選択supportの使用を保留しINTELLIGENCE/OSへ戻す。task scopeの不一致なら元Worker/OSへ戻す |
+| `CASE-OS-029-08d` | 選択support source provenanceだけをmissingにする | source来歴を推測せず選択supportの使用を保留しINTELLIGENCE/OSへ戻す |
+| `CASE-OS-029-08e` | 選択support source利用permissionだけをmissing/restrictedにする | 利用権限を推測せず当該supportをholdしSECURITY/OSへ戻す |
 
 ### CASE-OS-029-02 — 相談選択時のPATCH oracle（AC-OS-029-02）
 
@@ -206,8 +222,8 @@ L11-029:478の全因果順を、L11-029:474のPATCH fixtureとは別のfixture i
 
 | 固定親 | 機能要件 | AC / CASE | L11固定oracle |
 |---|---|---|---|
-| `HELIXOS-L2-028` | `FR-OS-028` | `AC-OS-028-01`→`CASE-OS-028-01`; `AC-OS-028-02`→`CASE-OS-028-02`, `CASE-OS-028-02a`, `CASE-OS-028-02b`, `CASE-OS-028-05`; `AC-OS-028-07`→`CASE-OS-028-07a`, `CASE-OS-028-07b`, `CASE-OS-028-07c`; `AC-OS-028-03`→`CASE-OS-028-03a`, `CASE-OS-028-03b`, `CASE-OS-028-03c`, `CASE-OS-028-03d`, `CASE-OS-028-03e`, `CASE-OS-028-03f`, `CASE-OS-028-03g`, `CASE-OS-028-03h`, `CASE-OS-028-03i`, `CASE-OS-028-03j`–`CASE-OS-028-03r`（`CASE-OS-028-02b`もL2-028:856の限定初回条件についてAC-OS-028-03へ対応）; `AC-OS-028-04`→`CASE-OS-028-04`; `AC-OS-028-05`→`CASE-OS-028-05`; `AC-OS-028-06`→`CASE-OS-028-06a`, `CASE-OS-028-06b`, `CASE-OS-028-06c`, `CASE-OS-028-06d`, `CASE-OS-028-06e` | L11:457-466 |
-| `HELIXOS-L2-029` | `FR-OS-029` | `AC-OS-029-01`→`CASE-OS-029-01`, `CASE-OS-029-07`; `AC-OS-029-02`→`CASE-OS-029-02`; `AC-OS-029-03`→`CASE-OS-029-03`; `AC-OS-029-04`→`CASE-OS-029-04a`, `CASE-OS-029-04b`, `CASE-OS-029-04c`, `CASE-OS-029-04d`, `CASE-OS-029-04e`, `CASE-OS-029-04f`, `CASE-OS-029-04g`, `CASE-OS-029-04h`, `CASE-OS-029-04i`, `CASE-OS-029-04j`, `CASE-OS-029-04k`, `CASE-OS-029-04l`; `AC-OS-029-05`→`CASE-OS-029-05`; `AC-OS-029-06`→`CASE-OS-029-07` (unselected support/consult finding rework/retest), `CASE-OS-029-06a`, `CASE-OS-029-06b`, `CASE-OS-029-06c`, `CASE-OS-029-06d`, `CASE-OS-029-06e` | L11:468-478 |
+| `HELIXOS-L2-028` | `FR-OS-028` | `AC-OS-028-01`→`CASE-OS-028-01`; `AC-OS-028-02`→`CASE-OS-028-02`, `CASE-OS-028-02a`, `CASE-OS-028-02b`, `CASE-OS-028-05`; `AC-OS-028-07`→`CASE-OS-028-07a`, `CASE-OS-028-07b`, `CASE-OS-028-07c`; `AC-OS-028-03`→`CASE-OS-028-03a`, `CASE-OS-028-03b`, `CASE-OS-028-03c`, `CASE-OS-028-03d`, `CASE-OS-028-03e`, `CASE-OS-028-03f`, `CASE-OS-028-03g`, `CASE-OS-028-03h`, `CASE-OS-028-03i`, `CASE-OS-028-03j`–`CASE-OS-028-03v`（`CASE-OS-028-02b`もL2-028:856の限定初回条件についてAC-OS-028-03へ対応）; `AC-OS-028-04`→`CASE-OS-028-04`; `AC-OS-028-05`→`CASE-OS-028-05`; `AC-OS-028-06`→`CASE-OS-028-06a`, `CASE-OS-028-06b`, `CASE-OS-028-06c`, `CASE-OS-028-06d`, `CASE-OS-028-06e` | L11:457-466 |
+| `HELIXOS-L2-029` | `FR-OS-029` | `AC-OS-029-01`→`CASE-OS-029-01`, `CASE-OS-029-07`, `CASE-OS-029-08a`, `CASE-OS-029-08b`, `CASE-OS-029-08c`, `CASE-OS-029-08d`, `CASE-OS-029-08e`; `AC-OS-029-02`→`CASE-OS-029-02`; `AC-OS-029-03`→`CASE-OS-029-03`; `AC-OS-029-04`→`CASE-OS-029-04a`, `CASE-OS-029-04b`, `CASE-OS-029-04c`, `CASE-OS-029-04d`, `CASE-OS-029-04e`, `CASE-OS-029-04f`, `CASE-OS-029-04g`, `CASE-OS-029-04h`, `CASE-OS-029-04i`, `CASE-OS-029-04j`, `CASE-OS-029-04k`, `CASE-OS-029-04l`; `AC-OS-029-05`→`CASE-OS-029-05`; `AC-OS-029-06`→`CASE-OS-029-07` (unselected support/consult finding rework/retest), `CASE-OS-029-06a`, `CASE-OS-029-06b`, `CASE-OS-029-06c`, `CASE-OS-029-06d`, `CASE-OS-029-06e` | L11:468-478 |
 
 ## C13 未解消事項の引継ぎ（identityのみ）
 
@@ -1018,9 +1034,9 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 
 | AC候補 | 親 | 正常・独立反例の範囲 |
 |---|---|---|
-| `AC-OS-L3-025-01` | `HELIXOS-L2-025` | HELIX自身＋性質の異なるprojectでの全段一致trace、各unit（サービス①〜⑦）、選択connection、composite正常を照合する。個別CASE: 025-01,03,05–13,048。|
+| `AC-OS-L3-025-01` | `HELIXOS-L2-025` | HELIX自身と複数の性質の異なるprojectを同一fixtureに含む全段一致trace、各unit（サービス①〜⑦）、選択connection、composite正常を照合する。個別CASE: 025-01,03,05–13,048,050。|
 | `AC-OS-L3-025-02` | `HELIXOS-L2-025` | 一つの対象projectの単独成立と7製品/別project/構成体の未完を分け、unknown/stale/未許可/human-wait、後続版前倒し・OS外部製品化・LABO移管戻し・7製品完成を個別初期配布へ要求する誤前提を拒否する。個別CASE: 025-02,04,14–21,047,049。|
-| `AC-OS-L3-025-03` | `HELIXOS-L2-025` | target/version/unit入力束縛、trace各段の単独欠落、未決authority・残る義務の後続受入への引継ぎを確認する。個別CASE: 025-022–039。|
+| `AC-OS-L3-025-03` | `HELIXOS-L2-025` | target/version/unit入力束縛、HELIXとproject Bのtrace各段単独欠落、未決authority・残る義務の後続受入への引継ぎを確認する。個別CASE: 025-022–039,051–057。|
 | `AC-OS-L3-026-01` | `HELIXOS-L2-026` | 同一revisionへ束縛したvalid入力から候補、closed dependency/safety set、除外、比較範囲を返す。空pack集合の除外と最小性誤導出を拒否する。個別CASE: 026-01,04–06,25–30。|
 | `AC-OS-L3-026-02` | `HELIXOS-L2-026` | source identity/revision、contract version/compatibility、recovery、permission/owner/human-processと通常/安全依存の各missing/unknown/stale/conflictを単独化する。個別CASE: 026-02,03,07–24。|
 | `AC-OS-L3-026-03` | `HELIXOS-L2-026` | 未決pack境界・未撤去working tree・別stage bootstrap cycleを閉包不足として保持し、局所的な1層削除だけのminimum主張を拒否する。trace-only cycleは誤判定しない。導出成功から段階構成採択を生成しない。個別CASE: 026-04,05,25–30,060。|
@@ -1297,3 +1313,11 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | `CASE-OS-L10-025-047` | `HELIXOS-L2-025` / `AC-OS-L3-025-02` | 個別初期配布対象1製品のunit/対象revision/許可は揃い、他6製品は未完。個別配布の前提として7製品すべての完成を要求する一変異。 | 固定L2の個別初期配布境界を保ち7製品全完成の追加前提を拒否する。対象unit状態を既存owner/sourceに従って保ち、全体1.0は成立扱いしない。|
 | `CASE-OS-L10-025-048` | `HELIXOS-L2-025` / `AC-OS-L3-025-01` | 1.0全体正常例。HARNESS 7製品それぞれの単体成立、選択connection、構成体固有端から端受入を同一scope/revisionで入力する。 | 7 unit、選択connection、compositeを別identityで照合し、固定L2の1.0全体確認を満たす正常oracleを返す。配布を生成しない。|
 | `CASE-OS-L10-025-049` | `HELIXOS-L2-025` / `AC-OS-L3-025-02` | CASE-025-048からHARNESSサービス⑥の単体成立/evidenceだけを欠落。残り6製品、選択connection、その他composite inputを保持する単独変異。 | 1.0全体を未完とし、6製品の個別成功は保持する。欠けたサービス⑥のsource/unit ownerへ返し、他製品を失敗扱いしない。|
+| `CASE-OS-L10-025-050` | `HELIXOS-L2-025` / `AC-OS-L3-025-01` | **正常multi-project fixture**：HELIX-self@r3（scope `OS self-management`、authority `auth:h3`）、project A=`project:campaign-site@r3`（scope `public-site service`、authority `auth:p3`）、project B=`project:data-migration@r8`（scope `data-migration service`、authority `auth:p8`）を同時に含める。各traceはそれぞれ `auth:h3→ticket:h3→worker:h3→inspect:h3→operate:h3→labo:h3→os-return:h3`、`auth:p3→ticket:p3→worker:p3→inspect:p3→operate:p3→labo:p3→os-return:p3`、`auth:p8→ticket:p8→worker:p8→inspect:p8→operate:p8→labo:p8→os-return:p8`。各段は当該project/revision/scope/authority refを保ち、直前段source refを直前IDへ一致させる。選択connectionとcomposite evidenceは各unitとは別identityで同じ対象revisionへ結ぶ。全ID・scopeはfixture値であり、実decisionを作らない。 | HELIX自身と二つの異種projectそれぞれについて7段の値/source参照一致を確認し、unit、選択connection、compositeのstateを分離して返す。各project traceのどれかで欠落があれば構成体全体を成立扱いしない。|
+| `CASE-OS-L10-025-051` | `HELIXOS-L2-025` / `AC-OS-L3-025-03` | CASE-025-050の全条件を保ち、project:data-migration@r8のauthority recordだけを欠落。他projectとHELIX、project Bの後続6段は正常値のまま保持する。 | project Bの要求形成/authority段を推測せずtrace未完とする。欠けたsource/unitの既存ownerへ返し、compositeは未完を維持する。HELIX-selfとproject Aの成立状態、他projectの成立状態、未完義務を保持する。|
+| `CASE-OS-L10-025-052` | `HELIXOS-L2-025` / `AC-OS-L3-025-03` | CASE-025-050の全条件を保ち、project:data-migration@r8のticket recordだけを欠落。他projectとHELIX、project Bの他6段は正常値のまま保持する。 | project Bのticketを後続Worker等から推測せずtrace未完とする。欠けたsource/unitの既存ownerへ返し、compositeは未完を維持する。HELIX-selfとproject Aの成立状態、他projectの成立状態、未完義務を保持する。|
+| `CASE-OS-L10-025-053` | `HELIXOS-L2-025` / `AC-OS-L3-025-03` | CASE-025-050の全条件を保ち、project:data-migration@r8のWorker recordだけを欠落。他projectとHELIX、project Bの他6段は正常値のまま保持する。 | project BのWorker実施を後段検収等から推測せずtrace未完とする。欠けたsource/unitの既存ownerへ返し、compositeは未完を維持する。HELIX-selfとproject Aの成立状態、他projectの成立状態、未完義務を保持する。|
+| `CASE-OS-L10-025-054` | `HELIXOS-L2-025` / `AC-OS-L3-025-03` | CASE-025-050の全条件を保ち、project:data-migration@r8のinspection recordだけを欠落。他projectとHELIX、project Bの他6段は正常値のまま保持する。 | project Bの検収を提供/運用等から推測せずtrace未完とする。欠けたsource/unitの既存ownerへ返し、compositeは未完を維持する。HELIX-selfとproject Aの成立状態、他projectの成立状態、未完義務を保持する。|
+| `CASE-OS-L10-025-055` | `HELIXOS-L2-025` / `AC-OS-L3-025-03` | CASE-025-050の全条件を保ち、project:data-migration@r8のoperation recordだけを欠落。他projectとHELIX、project Bの他6段は正常値のまま保持する。 | project Bの提供/運用をLABO評価やOS還流から推測せずtrace未完とする。欠けたsource/unitの既存ownerへ返し、compositeは未完を維持する。HELIX-selfとproject Aの成立状態、他projectの成立状態、未完義務を保持する。|
+| `CASE-OS-L10-025-056` | `HELIXOS-L2-025` / `AC-OS-L3-025-03` | CASE-025-050の全条件を保ち、project:data-migration@r8のLABO evaluation recordだけを欠落。他projectとHELIX、project Bの他6段は正常値のまま保持する。 | project BのLABO評価を前後段から推測せずtrace未完とする。欠けたLABO評価をLABOの既存source ownerへ返し、HELIXOS-L2-025:744/750に従いL1-011/012のLABO移管状態をOSへ戻さない。compositeは未完を維持し、HELIX-selfとproject Aの成立状態、他projectの成立状態、未完義務を保持する。|
+| `CASE-OS-L10-025-057` | `HELIXOS-L2-025` / `AC-OS-L3-025-03` | CASE-025-050の全条件を保ち、project:data-migration@r8のOS return recordだけを欠落。他projectとHELIX、project Bの他6段は正常値のまま保持する。 | project BのOS還流を前段から推測せずtrace未完とする。欠けたOS還流をOSの既存source ownerへ返し、compositeは未完を維持する。HELIX-selfとproject Aの成立状態、他projectの成立状態、未完義務を保持する。|
