@@ -1,0 +1,292 @@
+{
+  "record_type": "HARNESS-L2-049 review01 postbody時点監査",
+  "language": "ja",
+  "status": "Root統合後の正本時点を/tmpで静的に記録。独立review、fixture実行、意味完全性、L3承認の証拠ではない。",
+  "target": {
+    "worktree": "/home/tenni/.helix-worktrees/l3-harness-stage3-parent049",
+    "body_revision": "5962c76bb660d468a35b2eec0d3bcfdb9d03b6df",
+    "prior_body_revision": "f74a0e1cb51a2e35dae8b2f7fe949d5e7b5f71f0",
+    "base_revision": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+    "status_at_read": "## l3-harness-stage3-parent049...origin/l3-harness-stage3-parent049 [ahead 1]",
+    "changed_paths_from_base": [
+      "docs/governance/audits/requirements-stage/harness-stage3-parent049-authoring-audit-2026-10-07-db517b800.json",
+      "docs/governance/audits/requirements-stage/harness-stage3-parent049-authoring-audit-2026-10-07-db517b800.md",
+      "docs/helix-harness/L10-verification/business-verification.md",
+      "docs/helix-harness/L10-verification/functional-verification.md",
+      "docs/helix-harness/L10-verification/nfr-verification.md",
+      "docs/helix-harness/L3-requirements/business-requirements.md",
+      "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "docs/helix-harness/L3-requirements/nfr-grade.md"
+    ]
+  },
+  "integration_inputs": {
+    "root_checkpoint_path": "/tmp/root-harness049-review01-integration-checkpoint.json",
+    "root_checkpoint_sha256": "a2562411abab0d0132094409184d0b97f016737146d66a0821a24d739236fc07",
+    "candidate_path": "/tmp/harness049-review01-exact-candidate-2026-10-07.json",
+    "candidate_sha256": "674e76c96c21bb9ef575e2888056232a5d99f58d53ca5295439dda1e19a394c5",
+    "insertion_addendum_path": "/tmp/harness049-review01-fixture-insertion-location-addendum.json",
+    "insertion_addendum_sha256": "ffa3fd9452b8a8014bd15fd9d1635214b27b0663af44df0cfa97df0458659d45",
+    "old_case_literal_checkpoint_path": "/tmp/root-harness049-old-case-literal-checkpoint.json",
+    "old_case_literal_checkpoint_sha256": "ee97e9968c2098bc2786f70e9b16c0c99e9247d01a5dbb118a838375744ee48c"
+  },
+  "formal_review": {
+    "comment_id": 6024926713,
+    "raw_bundle_path": "/tmp/root-pr2647-comments-review01.json",
+    "raw_bundle_sha256": "1d621ba813f429c4a991659cd6f32b0032e8645f924613b9e619a6c974601b15",
+    "comment_body_sha256_utf8": "7e76d419719555ad85565586b80b0f21bb483d01ce088be811386e567ca341d7",
+    "R1_R5_verbatim": [
+      {
+        "id": "R1",
+        "raw_text": "- **R1（利用許可の戻し先）**：利用許可のunknown/missingを、「要求意味に関する既存上流owner」へ戻している（r09-003、r09-030）。固定L2の「不成立と戻し先」は、利用許可の宛先を区分していない。\n- **R2（localeの追加）**：localeを、選択入力の条件に加えている。固定L2の入力はdevice/viewだけで、localeは固定L11の未見例「locale等」にとどまる。\n- **R3（出力routeの誤りの訂正先）**：ブラインドはMajorとしたが、reviewerが残余とした。対象はr10-cause-specific-return-routeとFR:734である。\n  - これらは、入力が正常なときの049出力のroute誤りを、「049候補出力内で訂正し、L2入力ownerへは返さない」としている。\n  - これは、#2641（044）review05でreviewerが求めた形（自分の出力誤りは自分で訂正し、入力側ownerへ押し付けない）と同じである。そのため、固定親の返却区分の外にある新しい宛先とはみなさない。\n  - ただし、「正しい測定scopeのroute」の期待値がbaselineに書かれていない。正常入力ではrouteが「なし」になるのかを、明記することを勧める。\n- **R4（測定項目ごとの相殺）**：「各測定項目」ごとに、他項目の結果で埋めない単独CASEはない。r09-006が部分的に代替している。\n- **R5（正常判定の値）**：正常のr10-screen-id-no-issuance-proof-normalは、出力要素の値を照合していない。要素ごとの単独CASEが補っている。\n"
+      },
+      {
+        "id": "R2",
+        "raw_text": "- **R2（localeの追加）**：localeを、選択入力の条件に加えている。固定L2の入力はdevice/viewだけで、localeは固定L11の未見例「locale等」にとどまる。\n- **R3（出力routeの誤りの訂正先）**：ブラインドはMajorとしたが、reviewerが残余とした。対象はr10-cause-specific-return-routeとFR:734である。\n  - これらは、入力が正常なときの049出力のroute誤りを、「049候補出力内で訂正し、L2入力ownerへは返さない」としている。\n  - これは、#2641（044）review05でreviewerが求めた形（自分の出力誤りは自分で訂正し、入力側ownerへ押し付けない）と同じである。そのため、固定親の返却区分の外にある新しい宛先とはみなさない。\n  - ただし、「正しい測定scopeのroute」の期待値がbaselineに書かれていない。正常入力ではrouteが「なし」になるのかを、明記することを勧める。\n- **R4（測定項目ごとの相殺）**：「各測定項目」ごとに、他項目の結果で埋めない単独CASEはない。r09-006が部分的に代替している。\n- **R5（正常判定の値）**：正常のr10-screen-id-no-issuance-proof-normalは、出力要素の値を照合していない。要素ごとの単独CASEが補っている。\n"
+      },
+      {
+        "id": "R3",
+        "raw_text": "- **R3（出力routeの誤りの訂正先）**：ブラインドはMajorとしたが、reviewerが残余とした。対象はr10-cause-specific-return-routeとFR:734である。\n  - これらは、入力が正常なときの049出力のroute誤りを、「049候補出力内で訂正し、L2入力ownerへは返さない」としている。\n  - これは、#2641（044）review05でreviewerが求めた形（自分の出力誤りは自分で訂正し、入力側ownerへ押し付けない）と同じである。そのため、固定親の返却区分の外にある新しい宛先とはみなさない。\n  - ただし、「正しい測定scopeのroute」の期待値がbaselineに書かれていない。正常入力ではrouteが「なし」になるのかを、明記することを勧める。\n- **R4（測定項目ごとの相殺）**：「各測定項目」ごとに、他項目の結果で埋めない単独CASEはない。r09-006が部分的に代替している。\n- **R5（正常判定の値）**：正常のr10-screen-id-no-issuance-proof-normalは、出力要素の値を照合していない。要素ごとの単独CASEが補っている。\n"
+      },
+      {
+        "id": "R4",
+        "raw_text": "- **R4（測定項目ごとの相殺）**：「各測定項目」ごとに、他項目の結果で埋めない単独CASEはない。r09-006が部分的に代替している。\n- **R5（正常判定の値）**：正常のr10-screen-id-no-issuance-proof-normalは、出力要素の値を照合していない。要素ごとの単独CASEが補っている。\n"
+      },
+      {
+        "id": "R5",
+        "raw_text": "- **R5（正常判定の値）**：正常のr10-screen-id-no-issuance-proof-normalは、出力要素の値を照合していない。要素ごとの単独CASEが補っている。\n"
+      }
+    ],
+    "old_review_formal_text_retained": true
+  },
+  "source_authority": {
+    "registration": "MPR-RC-HARNESS-L2-049-003",
+    "adopted_input_source_revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+    "scope": "計測専用。既存renderable prototypeを測定し、prototype生成・Pattern選択・screen ID発行を加えない。-002を継承しない。",
+    "L2_L11_actual_physical_pins": [
+      {
+        "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "full_bytes": 304209,
+        "full_sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6",
+        "physical_line_start": 1070,
+        "physical_line_end_inclusive": 1092,
+        "span_bytes": 8823,
+        "span_raw_lf_sha256": "a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116"
+      },
+      {
+        "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "full_bytes": 207907,
+        "full_sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e",
+        "physical_line_start": 802,
+        "physical_line_end_inclusive": 814,
+        "span_bytes": 4239,
+        "span_raw_lf_sha256": "f3fb47da21371084e9f8c7c7f7ca6dd945c8e98ae7c7b70597c3fc44e4e08ee7"
+      }
+    ],
+    "PO_decision_record_pin": {
+      "revision": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+      "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+      "bytes": 16056,
+      "sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+      "rows": [
+        {
+          "physical_line": 39,
+          "bytes": 244,
+          "raw_lf_sha256": "928310ccfecf9d7269440a51d84123e5332f30236cc4396146f9862c6153a29a",
+          "literal": "| `HARNESS-L2-049` | 承認（通常採択22件に含む） | `MPR-RC-HARNESS-L2-049-003` | `sha256:a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116` | `sha256:f3fb47da21371084e9f8c7c7f7ca6dd945c8e98ae7c7b70597c3fc44e4e08ee7` |"
+        },
+        {
+          "physical_line": 72,
+          "bytes": 887,
+          "raw_lf_sha256": "410b827982a782cf507851e49843ccef13b48f9dc920f22205dd6769dbd9255f",
+          "literal": "HARNESS-L2-049の採択は登録`-003`および訂正済L11 oracleの計測専用意味に限る。試作品生成、Pattern選択、screen ID発行は含まず、別revision `-002`の処置を継承しない。HARNESS-L2-055/056はそれぞれ選択済みFR-48 gate atom、選択済みFR-49の6 canonical V-pair atomに限る。HARNESS-L2-062は既存負債を免除・解消扱いしない。HARNESS-L2-063は選択した3条件だけを採り、導入版未指定を維持する。HELIXLABO-L2-071は資格を操作権限や割当へ自動変換しない境界を含む。HELIXOS-L2-104は新しい認可権限や追加承認を作らず、105は記録充足と実際の復旧完了・release許可を区別する。HELIXOS-L2-106/107は根拠不足を未解決として返し、108/109/110は明示入力範囲の検査に限る。これらの限定は選択対象を広げない。"
+        }
+      ]
+    },
+    "PO_rows_39_72_actual_read": true,
+    "PO_record_revision_distinguished_from_adopted_input_revision": true
+  },
+  "legacy_fixtures": {
+    "old_source_revision": "3fd20391",
+    "old_source_path": "docs/helix-harness/L10-verification/functional-verification.md",
+    "old_raw_case_count": 82,
+    "old_case_checkpoint_root_read": "all82 definitions read in three batches; no semantic completeness or independence assertion",
+    "old_82_ids_all_present_current": true,
+    "current_before_case_count": 98,
+    "current_body_case_count": 102,
+    "unique_current_case_ids": 102,
+    "new_case_ids": [
+      "CASE-HARNESS-L10-049-r10-output-correction-candidate-missing",
+      "CASE-HARNESS-L10-049-r10-output-correction-candidate-mismatch",
+      "CASE-HARNESS-L10-049-r10-output-l3-requirements-freeze",
+      "CASE-HARNESS-L10-049-r10-output-l11-user-acceptance"
+    ],
+    "fixture_completeness_claim": false,
+    "raw_old_literal_sha_inventory_checkpoint_sha256": "ee97e9968c2098bc2786f70e9b16c0c99e9247d01a5dbb118a838375744ee48c"
+  },
+  "root_corrections_exactly_applied": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "before": "profileが定める文言役割・目安に基づくfindingは候補として返し、閾値や人の文言判断を作らない。",
+      "before_count_at_prior": 1,
+      "after": "profileが定める文言役割・目安に基づくfindingは候補として返し、閾値や人の文言判断を作らない。機械測定・候補出力からL3要件freezeまたはL11利用者受入を自己生成しない。",
+      "after_count_at_body": 1,
+      "applied_in_reproduction": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "before": "| `CASE-HARNESS-L10-049-r10-screen-id-no-issuance-proof-normal` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-01/03` | 対象revisionに結ばれた既存screen ID、利用許可、renderable prototype、current profile・選択device/view/locale、oracle/手段版、known fixtureを与える。各出力値はこの入力・oracleに対応し、修正候補はprofile/findingのsource根拠と一致、差戻し先は入力不足なしとしてnoneとする。screen IDの発行履歴証拠は入力しない。 | 変異なし。既存screen IDの発行履歴証拠だけを入力に要求するかを確認する。 | 計測を開始可能とし、定義された全出力を入力とoracleに照らして返す。修正候補はsource根拠と一致させ、入力不足がないため差戻し先をnoneとする。発行履歴がないことだけでunknownにせず、screen IDそのものの欠落とは区別する。 |",
+      "before_count_at_prior": 0,
+      "after": "| `CASE-HARNESS-L10-049-r10-screen-id-no-issuance-proof-normal` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-01/03` | 対象revisionに結ばれた既存screen ID、利用許可、renderable prototype、current profile・選択device/view/locale、oracle/手段版、known fixtureを与える。各出力値はこの入力・oracleに対応し、修正候補はprofile/findingのsource根拠と一致、差戻し先は入力不足なしとしてnoneとする。screen IDの発行履歴証拠は入力しない。 | 変異なし。既存screen IDの発行履歴証拠だけを入力に要求するかを確認する。 | 計測を開始可能とし、定義された全出力の各field値が入力source・選択oracle・根拠から得た期待値と一致することを個別に照合する。修正候補はsource根拠と一致させ、入力不足がないため差戻し先をnoneとする。発行履歴がないことだけでunknownにせず、screen IDそのものの欠落とは区別する。 |",
+      "after_count_at_body": 1,
+      "applied_in_reproduction": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "before": "| `CASE-HARNESS-L10-049-r10-output-l3-requirements-freeze` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-03` | 有効な測定入力と全ての正しい測定出力を固定し、L3要件freeze decisionは未入力とする。出力fieldはL3 requirement freezeだけを検査する。 | 049がL3要件freeze済みを出力する。 | L3要件freezeを生成せず、decision未入力を保持する。 |",
+      "before_count_at_prior": 0,
+      "after": "| `CASE-HARNESS-L10-049-r10-output-l3-requirements-freeze` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-03` | 有効な測定入力と全ての正しい測定出力を固定し、L3要件freeze decisionは未入力とする。出力fieldはL3 requirement freezeだけを検査する。 | 049がL3要件freeze済みを出力する。 | L3要件freezeの自己生成出力を拒否し、049自身の当該出力を訂正してclosureを拒否する。decision未入力を保持し、正常な測定入力の不足として入力ownerへ返さない。 |",
+      "after_count_at_body": 1,
+      "applied_in_reproduction": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "before": "| `CASE-HARNESS-L10-049-r10-output-l11-user-acceptance` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-03` | 有効な測定入力と全ての正しい測定出力を固定し、L11利用者受入decisionは未入力とする。出力fieldはL11 user acceptanceだけを検査する。 | 049がL11利用者受入済みを出力する。 | L11利用者受入を生成せず、decision未入力を保持する。 |",
+      "before_count_at_prior": 0,
+      "after": "| `CASE-HARNESS-L10-049-r10-output-l11-user-acceptance` | `FR-HARNESS-L3-049` | `AC-HARNESS-L3-049-03` | 有効な測定入力と全ての正しい測定出力を固定し、L11利用者受入decisionは未入力とする。出力fieldはL11 user acceptanceだけを検査する。 | 049がL11利用者受入済みを出力する。 | L11利用者受入の自己生成出力を拒否し、049自身の当該出力を訂正してclosureを拒否する。decision未入力を保持し、正常な測定入力の不足として入力ownerへ返さない。 |",
+      "after_count_at_body": 1,
+      "applied_in_reproduction": true
+    }
+  ],
+  "six_document_actual_pins": [
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "base_revision": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+      "base_bytes": 13240,
+      "base_sha256": "c51f0bc2b98ae5c6a77bfa354050ec70ee87a70641b5f0161b14d5a3afd33e8f",
+      "base_prefix_byte_exact": true,
+      "body_revision": "5962c76bb660d468a35b2eec0d3bcfdb9d03b6df",
+      "prior_revision": "f74a0e1cb51a2e35dae8b2f7fe949d5e7b5f71f0",
+      "prior_full_bytes": 13649,
+      "prior_full_sha256": "37a6bba0633b59f91977accc04a42804e53d3e2ed6e72dd3c290f57794412880",
+      "actual_full_bytes": 13649,
+      "actual_full_sha256": "37a6bba0633b59f91977accc04a42804e53d3e2ed6e72dd3c290f57794412880",
+      "suffix_start_offset": 13240,
+      "actual_suffix_bytes": 409,
+      "actual_suffix_sha256": "1cef7d5253b00096f65ccd25f5693740560ed7ae7aefb394cf0c65f5d79f6f57",
+      "matches_root_checkpoint_after_hash": true,
+      "matches_ordered_candidate_plus_root_extras": true
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "base_revision": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+      "base_bytes": 204919,
+      "base_sha256": "4fce6bb6cd3af5938a11719866050bd729234adbebf70c4210398aa90cad5dff",
+      "base_prefix_byte_exact": true,
+      "body_revision": "5962c76bb660d468a35b2eec0d3bcfdb9d03b6df",
+      "prior_revision": "f74a0e1cb51a2e35dae8b2f7fe949d5e7b5f71f0",
+      "prior_full_bytes": 212984,
+      "prior_full_sha256": "c03158ee32eafa513ae555be9a498a2fa5a29fc83103c8acab00e55a05af6ade",
+      "actual_full_bytes": 213501,
+      "actual_full_sha256": "501cb4d2bf6eaec73b7c96fd5d4b56697ddc8cfa58faaad6a8a9ba8b67d38eb0",
+      "suffix_start_offset": 204919,
+      "actual_suffix_bytes": 8582,
+      "actual_suffix_sha256": "4aa6041e07c227ac1177b47f296ba56bbf3dad384eeabb3e1c7d2983c434d32e",
+      "matches_root_checkpoint_after_hash": true,
+      "matches_ordered_candidate_plus_root_extras": true
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "base_revision": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+      "base_bytes": 42916,
+      "base_sha256": "b364e8c6dc92f4548df34638488fefec1533d13941a991de685a74bb64471fc9",
+      "base_prefix_byte_exact": true,
+      "body_revision": "5962c76bb660d468a35b2eec0d3bcfdb9d03b6df",
+      "prior_revision": "f74a0e1cb51a2e35dae8b2f7fe949d5e7b5f71f0",
+      "prior_full_bytes": 43599,
+      "prior_full_sha256": "320b11a9b8f60438b5b2158520c5d003e86e763474e8a19eab4b2b7715b75187",
+      "actual_full_bytes": 43599,
+      "actual_full_sha256": "320b11a9b8f60438b5b2158520c5d003e86e763474e8a19eab4b2b7715b75187",
+      "suffix_start_offset": 42916,
+      "actual_suffix_bytes": 683,
+      "actual_suffix_sha256": "792aacbbe5a6f92589d44c5fe0a8360a1d007227a77ad456b265ede53e4f7127",
+      "matches_root_checkpoint_after_hash": true,
+      "matches_ordered_candidate_plus_root_extras": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "base_revision": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+      "base_bytes": 8819,
+      "base_sha256": "2faacacf78b835b5127e990b805adb97b079439c887a1ef2bd6d69f2478d53c9",
+      "base_prefix_byte_exact": true,
+      "body_revision": "5962c76bb660d468a35b2eec0d3bcfdb9d03b6df",
+      "prior_revision": "f74a0e1cb51a2e35dae8b2f7fe949d5e7b5f71f0",
+      "prior_full_bytes": 9485,
+      "prior_full_sha256": "8cb3ba651a727467a4b7fad9f179085451c51fd95bb9259fa9da19215fce9d8e",
+      "actual_full_bytes": 9485,
+      "actual_full_sha256": "8cb3ba651a727467a4b7fad9f179085451c51fd95bb9259fa9da19215fce9d8e",
+      "suffix_start_offset": 8819,
+      "actual_suffix_bytes": 666,
+      "actual_suffix_sha256": "777950c97def13e824f1238ffbdf741e971c725d1825514f1c815c110a7673c2",
+      "matches_root_checkpoint_after_hash": true,
+      "matches_ordered_candidate_plus_root_extras": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "base_revision": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+      "base_bytes": 636566,
+      "base_sha256": "bc63c3abbabd727dbb2cfa37a5c3741985181308ad93378ebf2e5846907770f0",
+      "base_prefix_byte_exact": true,
+      "body_revision": "5962c76bb660d468a35b2eec0d3bcfdb9d03b6df",
+      "prior_revision": "f74a0e1cb51a2e35dae8b2f7fe949d5e7b5f71f0",
+      "prior_full_bytes": 685476,
+      "prior_full_sha256": "dedf302fbef90b215367c36d8274902be2de6a5b67c668eab70c5ba5e6fa8444",
+      "actual_full_bytes": 688477,
+      "actual_full_sha256": "3cb0797786c6276c0ae6c58a963d507402b42f9ab15d9cd0bf66c34a8246a041",
+      "suffix_start_offset": 636566,
+      "actual_suffix_bytes": 51911,
+      "actual_suffix_sha256": "6aa25538414ddff4f87225d87d4deb47af632cf0f0907ee26a1721e97eba5cb8",
+      "matches_root_checkpoint_after_hash": true,
+      "matches_ordered_candidate_plus_root_extras": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "base_revision": "ceda1c53b53c53fffb8c23f394add1f2b809deb1",
+      "base_bytes": 36464,
+      "base_sha256": "bb319529b2c2e2af75067c36bf204d386816fb7e78d48f18043973be6290ccd1",
+      "base_prefix_byte_exact": true,
+      "body_revision": "5962c76bb660d468a35b2eec0d3bcfdb9d03b6df",
+      "prior_revision": "f74a0e1cb51a2e35dae8b2f7fe949d5e7b5f71f0",
+      "prior_full_bytes": 37280,
+      "prior_full_sha256": "a28d216ca516bdafe3a57d994045a666b57ea2dd58628c574be8fa11d00e7c54",
+      "actual_full_bytes": 37280,
+      "actual_full_sha256": "a28d216ca516bdafe3a57d994045a666b57ea2dd58628c574be8fa11d00e7c54",
+      "suffix_start_offset": 36464,
+      "actual_suffix_bytes": 816,
+      "actual_suffix_sha256": "85c10e34ddd3bfcf2daae5ea88610629e8fe3e63c8a7250312999326b50d6a81",
+      "matches_root_checkpoint_after_hash": true,
+      "matches_ordered_candidate_plus_root_extras": true
+    }
+  ],
+  "checks": {
+    "candidate_replay_plus_root_extras_byte_matches_all_six_actual_body_blobs": true,
+    "six_documents_all_have_base_byte_exact_prefix": true,
+    "all_six_actual_full_hashes_match_checkpoint": true,
+    "old82_ids_present_no_duplicate_case_ids": true,
+    "new4_fixture_ids_each_once": true,
+    "git_diff_check": {
+      "command": "git diff --check ceda1c53b53c53fffb8c23f394add1f2b809deb1..5962c76bb660d468a35b2eec0d3bcfdb9d03b6df",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "only_six_expected_paths_changed": false
+  },
+  "limits": [
+    "candidate/review corrections were statically replayed; no fixture/render/oracle execution was performed.",
+    "Root reports govcheck/static-diff pass as integration verification; this audit independently reran only git diff --check and byte/hash/source/ID comparisons.",
+    "Root-created correction meaning is recorded as integrated text; no independent semantic review or closure/approval claim.",
+    "R1–R5 remain verbatim from formal review; this audit does not mark residuals resolved or approved."
+  ]
+}
