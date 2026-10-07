@@ -98,6 +98,16 @@ execution_status: designed_only_not_executed
 |---|---|---|
 | `HARNESS-L2-047` | 独立criterionなし | 事業成果を作らず、必要性判断/契約の機能ACと既存owner境界を照合する。 |
 
+## Stage 3 親049の業務検証
+
+**採択済み固定親**：PO `po-decision-2026-09-30-live26.md:39,72`の登録`MPR-RC-HARNESS-L2-049-003`。source_repository_revision `ea6f756f96a7370de78e412d737c7a7ed472114a`、L2 `product-requirements.md:1070–1092` SHA-256 `a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116`、L11 `product-acceptance.md:802–814` SHA-256 `f3fb47da21371084e9f8c7c7f7ca6dd945c8e98ae7c7b70597c3fc44e4e08ee7`。旧318のL11および登録-002を親にしない。
+
+| 観点 | 判定 | 禁止する読み替え |
+|---|---|---|
+| 049の採択意味 | 入力済みrenderable prototypeの画面表示計測、機械検査の精度材料、profile根拠の文言findingに限る。 | この範囲を独立business requirement/KPI/ROIへ広げず、render pass、CASE数、精度fixtureを事業成果・release判断にしない。 |
+| 要求受入 | 既存authorityに属する人の要求受入decisionを測定結果から生成しない。 | machine pass、LABO評価、POのL2採択からL3要件承認や利用者acceptanceを推定しない。 |
+| locale/device/view | 選択scope単位の機械観測状態を記録する。 | 特定locale/device/viewの観測を、未選択条件または要求受入の証明にしない。 |
+
 ## Stage 3 親043の業務検証
 
 | L2親 | 独立criterion | 対応関係 |

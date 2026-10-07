@@ -209,6 +209,12 @@ NFR候補はL10定義の測定母集団の設計にとどまり、抽出器の�
 |---|---|---|---|
 | `HARNESS-L2-047` | 共通の数値NFR/thresholdなし | 固定L2はtaskに適用される測定可能な利益を要求するが、共通thresholdを追加しない。 | 固定provider/model、価格閾値、Worker人数・team sizeを設けない。budgetの値/実行適用はOS既存契約。 |
 
+## Stage 3 親049の非機能候補（表示計測のevidence integrity）
+
+**採択済み固定親**：PO `po-decision-2026-09-30-live26.md:39,72`の登録`MPR-RC-HARNESS-L2-049-003`。source_repository_revision `ea6f756f96a7370de78e412d737c7a7ed472114a`、L2 `product-requirements.md:1070–1092` SHA-256 `a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116`、L11 `product-acceptance.md:802–814` SHA-256 `f3fb47da21371084e9f8c7c7f7ca6dd945c8e98ae7c7b70597c3fc44e4e08ee7`。旧318のL11および登録-002を親にしない。
+
+独立のperformance/latency/accuracy閾値、可用性目標、追加測定窓は固定L2-049から導出しない。選択scopeごとに対象revision、device/view/locale条件、profile、oracle/手段版、fixture、結果、evidenceの対応関係を追跡できることを定性的なevidence-integrity候補として記録する。欠落・不明はunknown/未評価として残し、未観測を0件・成功・合格へ丸めない。精度成立は候補数・fixture数・実行回数のみで推定しない。実測値と閾値は根拠sourceがないため本候補では設定しない。
+
 ## Stage 3 親043の非機能候補
 
 | NFR候補 / L2親 | 候補値 | 固定根拠 | 限界 |
